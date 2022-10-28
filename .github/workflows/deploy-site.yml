@@ -32,7 +32,10 @@ jobs:
       - name: Install dependencies
         run: pnpm i --frozen-lockfile
 
-      - name: Build
+      - name: Build the library
+        run: pnpm run --filter=@comfortdelgro/react-workbench build
+
+      - name: Build the website
         run: |
           pnpm run --filter=@comfortdelgro/design-system-website export
           pnpm run --filter=@comfortdelgro/react-workbench build:ladle
