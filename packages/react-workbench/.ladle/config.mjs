@@ -1,3 +1,3 @@
 export default {
-  base: '/workbench-design/',
+  base: '/workbench-design/ladle/',
 }

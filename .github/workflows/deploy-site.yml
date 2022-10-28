@@ -1,4 +1,4 @@
-name: Deploy Ladle to Github Pages
+name: Deploy Website
 
 on:
   push:
@@ -9,7 +9,7 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   deploy:
-    name: Deploy Ladle to Github Pages
+    name: Deploy Website to GitHub Pages
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -33,12 +33,14 @@ jobs:
         run: pnpm i --frozen-lockfile
 
       - name: Build
-        run: pnpm run --filter=@comfortdelgro/react-workbench build:ladle
+        run: |
+          pnpm run --filter=@comfortdelgro/design-system-website export
+          pnpm run --filter=@comfortdelgro/react-workbench build:ladle
+          mv packages/react-workbench/build apps/docs/out/ladle
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.CDG_BOT_GITHUB_TOKEN }}
-          publish_dir: ./packages/react-workbench/build
-          publish_branch: gh-pages/ladle
+          publish_dir: ./apps/docs/out
