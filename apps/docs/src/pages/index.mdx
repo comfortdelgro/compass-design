@@ -1,0 +1,99 @@
+# Get Started
+
+<div
+  className='w-full h-60 bg-gray-100 bg-no-repeat bg-cover'
+  style={{
+    backgroundImage: 'url(/banner.png)',
+  }}
+/>
+
+## Quick Start with Next.js
+
+1. Install the library
+
+import {Tabs, Tab, Callout} from 'nextra-theme-docs'
+
+<Tabs items={['npm', 'yarn', 'pnpm']} defaultIndex={1}>
+  <Tab>
+
+```bash
+npm i @comfortdelgro/react-workbench
+```
+
+  </Tab>
+  <Tab>
+
+```bash
+yarn add @comfortdelgro/react-workbench
+```
+
+  </Tab>
+  <Tab>
+
+```bash
+pnpm add @comfortdelgro/react-workbench
+```
+
+  </Tab>
+</Tabs>
+
+2. Add preflight flushing styles for SSR.
+
+```tsx {22} filename="_document.tsx"
+import Preflight from '@comfortdelgro/react-workbench/preflight'
+import Document, {
+  DocumentContext,
+  Head,
+  Html,
+  Main,
+  NextScript,
+} from 'next/document'
+
+class MyDocument extends Document {
+  static async getInitialProps(ctx: DocumentContext) {
+    const initialProps = await Document.getInitialProps(ctx)
+    return {
+      ...initialProps,
+      styles: <>{initialProps.styles}</>,
+    }
+  }
+
+  render() {
+    return (
+      <Html>
+        <Head>{Preflight.flush()}</Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    )
+  }
+}
+
+export default MyDocument
+```
+
+3. Add `Preflight` component for better CSS resets according to design guidelines.
+
+```tsx {7} filename="_app.tsx"
+import Preflight from '@comfortdelgro/react-workbench/preflight'
+import {AppProps} from 'next/app'
+
+const App: React.FC<AppProps> = ({Component, pageProps}) => {
+  return (
+    <>
+      <Preflight />
+      <Component {...pageProps} />
+    </>
+  )
+}
+
+export default App
+```
+
+4. You are good to go!
+
+---
+
+<Callout>You can opt out of step 3 but we'd recommend not to.</Callout>

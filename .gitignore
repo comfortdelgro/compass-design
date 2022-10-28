@@ -31,6 +31,10 @@ coverage
 .next/
 out/
 build
+next-env.d.ts
 
 # build artefacts
 dist/
+
+# typescript
+*.tsbuildinfo

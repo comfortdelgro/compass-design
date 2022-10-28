@@ -1,0 +1,4 @@
+html {
+  /* reset font features by nextra */
+  font-feature-settings: 'rlig' 0, 'calt' 0, 'ss01' 0, 'ss06' 0 !important;
+}

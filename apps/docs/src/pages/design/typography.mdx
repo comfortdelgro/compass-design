@@ -1,0 +1,64 @@
+import {Callout} from 'nextra-theme-docs'
+import {theme} from '@comfortdelgro/react-workbench/theme'
+import ColorBox from 'components/ColorBox'
+import FontWeights from 'components/FontWeights'
+import FontDisplay from 'components/FontDisplay'
+
+# Typography
+
+Good typography can help create clear hierarchies, organize information, and guide users through a product or experience.
+
+### Fonts
+
+- Poppin is the primary digital product typeface of Pax app for both iOS and AOS.
+- Native OS System feedback will use Roboto for AOS, and SF Sans Pro for IOS.
+
+### Weights
+
+The choice of font weight is also based on the principles of order, stability, and restraint. In most cases, just regular and bold should be enough.
+
+<FontWeights />
+
+### Sizes
+
+#### Display
+
+<div className='flex flex-col w-full items-start mt-2'>
+  <FontDisplay size={theme.fontSizes.display1} family='Poppins' weight='bold' />
+  <FontDisplay size={theme.fontSizes.display2} family='Poppins' weight='bold' />
+  <FontDisplay size={theme.fontSizes.display3} family='Poppins' weight='bold' />
+</div>
+
+#### Header
+
+<div className='flex flex-col w-full items-start mt-2'>
+  <FontDisplay size={theme.fontSizes.header1} family='Poppins' weight='bold' />
+  <FontDisplay size={theme.fontSizes.header2} family='Poppins' weight='bold' />
+  <FontDisplay size={theme.fontSizes.header3} family='Poppins' weight='bold' />
+  <FontDisplay size={theme.fontSizes.header4} family='Poppins' weight='bold' />
+  <FontDisplay size={theme.fontSizes.header5} family='Poppins' weight='bold' />
+</div>
+
+#### Body
+
+You can use `semibold` and `bold` font weights on these font sizes for emphasises.
+
+<div className='flex flex-col w-full items-start mt-2'>
+  <FontDisplay size={theme.fontSizes.body1} family='Poppins' weight='normal' />
+  <FontDisplay size={theme.fontSizes.body2} family='Poppins' weight='normal' />
+  <FontDisplay size={theme.fontSizes.body3} family='Poppins' weight='normal' />
+</div>
+
+#### Labels
+
+You can use `light`, `medium` and `semibold` font weights on these font sizes for emphasises.
+
+<div className='flex flex-col w-full items-start mt-2'>
+  <FontDisplay size={theme.fontSizes.label1} family='Poppins' weight='normal' />
+  <FontDisplay size={theme.fontSizes.label2} family='Poppins' weight='normal' />
+  <FontDisplay size={theme.fontSizes.label3} family='Poppins' weight='normal' />
+</div>
+
+### Links
+
+See `Link` component reference.
