@@ -21,7 +21,7 @@ const nextraConfig: DocsThemeConfig = {
       <div
         className='w-7 aspect-square bg-no-repeat bg-cover'
         style={{
-          backgroundImage: 'url(/logo.svg)',
+          backgroundImage: 'url(/workbench-design/logo.svg)',
         }}
       />
       <div className='font-bold'>Admin Portal Design System</div>
