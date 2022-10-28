@@ -6,11 +6,15 @@ export const StyledBadge = styled('span', {
   fontSize: '$label2',
   fontWeight: '$semibold',
 
-  padding: '$1 $3',
+  padding: '$1 $2_5',
   borderWidth: '$light',
   borderStyle: 'solid',
   borderColor: 'transparent',
   borderRadius: '$full',
+
+  '.icon': {
+    marginRight: '$1',
+  },
 
   variants: {
     color: {

@@ -1,31 +1,11 @@
-import type {StoryDecorator} from '@ladle/react'
+import {Column} from '../utils/components'
 import Link from './link'
 
 export const Links: React.FC = () => (
-  <>
-    <tr>
-      <Link href='/#page'>Go to another page</Link>
-    </tr>
-    <tr>
-      <Link href='https://google.com' external>
-        Go to Google
-      </Link>
-    </tr>
-  </>
+  <Column>
+    <Link href='/#page'>Go to another page</Link>
+    <Link href='https://google.com' external>
+      Go to Google
+    </Link>
+  </Column>
 )
-
-export default {
-  decorators: [
-    (Component) => (
-      <table
-        style={{
-          fontFamily: 'Poppins',
-        }}
-      >
-        <tbody>
-          <Component />
-        </tbody>
-      </table>
-    ),
-  ] as StoryDecorator[],
-}

@@ -1,45 +1,58 @@
-import type {StoryDecorator} from '@ladle/react'
+import {faThumbsUp, faVirus} from '@fortawesome/free-solid-svg-icons'
+import {Column, Row} from '../utils/components'
 import Badge from './badge'
 
 export const Variants: React.FC = () => (
-  <tr>
-    <td>
+  <Column>
+    <Row>
       <Badge label='Primary' color='info' variant='primary' />
-    </td>
-    <td>
       <Badge label='Secondary' color='success' variant='secondary' />
-    </td>
-    <td>
       <Badge label='Outline' color='danger' variant='outline' />
-    </td>
-  </tr>
+    </Row>
+
+    <h3>With Default Icons</h3>
+
+    <Row>
+      <Badge label='Primary' color='info' variant='primary' icon />
+      <Badge label='Secondary' color='success' variant='secondary' icon />
+      <Badge label='Outline' color='danger' variant='outline' icon />
+    </Row>
+  </Column>
 )
 
 export const Colors: React.FC = () => (
-  <tr>
-    <td>
+  <Column>
+    <Row>
       <Badge label='Info' color='info' />
-    </td>
-    <td>
       <Badge label='Success' color='success' />
-    </td>
-    <td>
       <Badge label='Danger' color='danger' />
-    </td>
-    <td>
       <Badge label='Warning' color='warning' />
-    </td>
-  </tr>
-)
+    </Row>
 
-export default {
-  decorators: [
-    (Component) => (
-      <table>
-        <tbody>
-          <Component />
-        </tbody>
-      </table>
-    ),
-  ] as StoryDecorator[],
-}
+    <h3>With Default Icons</h3>
+
+    <Row>
+      <Badge label='Info' color='info' icon />
+      <Badge label='Success' color='success' icon />
+      <Badge label='Warning' color='warning' icon />
+      <Badge label='Danger' color='danger' icon />
+    </Row>
+
+    <h3>With Custom Icons</h3>
+
+    <Row>
+      <Badge
+        label='LGTM'
+        color='success'
+        variant='secondary'
+        icon={faThumbsUp}
+      />
+      <Badge
+        label='Practice Social Distancing'
+        color='danger'
+        variant='outline'
+        icon={faVirus}
+      />
+    </Row>
+  </Column>
+)

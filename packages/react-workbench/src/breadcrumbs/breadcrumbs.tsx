@@ -1,11 +1,16 @@
+import type {IconProp} from '@fortawesome/fontawesome-svg-core'
+import {faChevronRight} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {useBreadcrumbs} from '@react-aria/breadcrumbs'
 import type {AriaBreadcrumbsProps} from '@react-types/breadcrumbs'
+import type {CSS} from '@stitches/react'
 import React from 'react'
 import type BreadcrumbItem from './breadcrumb-item'
 import {BreadcrumbsVariantProps, StyledBreadcrumbs} from './breadcrumbs.styles'
 
 interface Props extends BreadcrumbsVariantProps {
-  divider?: React.ReactNode
+  css?: CSS
+  dividerIcon?: IconProp
   isActive?: (item: number) => boolean
 }
 
@@ -13,16 +18,17 @@ export type BreadcrumbsProps = Props &
   Omit<React.ComponentPropsWithoutRef<'button'>, keyof Props>
 
 const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
-  divider,
+  css = {},
+  dividerIcon,
   children,
   isActive,
-  ...ariaProps
+  ...delegated
 }) => {
-  const {navProps} = useBreadcrumbs(ariaProps as AriaBreadcrumbsProps)
+  const {navProps} = useBreadcrumbs(delegated as AriaBreadcrumbsProps)
   const items = React.Children.toArray(children)
 
   return (
-    <StyledBreadcrumbs {...navProps}>
+    <StyledBreadcrumbs css={css} {...delegated} {...navProps}>
       <ol>
         {items.map((item, i) => (
           <React.Fragment key={i}>
@@ -31,7 +37,12 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
             })}
             {i < items.length - 1 && (
               <li aria-hidden className='divider'>
-                {divider || '/'}
+                {
+                  <FontAwesomeIcon
+                    className='divider-icon'
+                    icon={dividerIcon || faChevronRight}
+                  />
+                }
               </li>
             )}
           </React.Fragment>

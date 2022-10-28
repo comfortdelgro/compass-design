@@ -3,6 +3,7 @@ import type {VariantProps} from '../utils/stitches.types'
 
 export const StyledBreadcrumbItem = styled('a', {
   textDecoration: 'none',
+  transition: '$default',
 
   variants: {
     active: {

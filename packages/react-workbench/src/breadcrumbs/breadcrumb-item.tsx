@@ -1,9 +1,14 @@
 import {useBreadcrumbItem} from '@react-aria/breadcrumbs'
 import type {AriaBreadcrumbItemProps} from '@react-types/breadcrumbs'
+import type {CSS} from '@stitches/react'
 import React, {useRef} from 'react'
-import {StyledBreadcrumbItem} from './breadcrumb-item.styles'
+import {
+  BreadcrumbItemVariantProps,
+  StyledBreadcrumbItem,
+} from './breadcrumb-item.styles'
 
-interface Props {
+interface Props extends BreadcrumbItemVariantProps {
+  css?: CSS
   disabled?: boolean
 }
 
@@ -11,14 +16,15 @@ export type BreadcrumbItemProps = Props &
   Omit<React.ComponentPropsWithoutRef<'a'>, keyof Props>
 
 const BreadcrumbItem: React.FC<BreadcrumbItemProps> = ({
+  css = {},
   href,
   target,
   disabled,
   children,
-  ...props
+  ...delegated
 }) => {
   const ariaProps = {
-    ...props,
+    ...delegated,
     elementType: 'a',
     isDisabled: disabled,
   } as AriaBreadcrumbItemProps
@@ -30,10 +36,12 @@ const BreadcrumbItem: React.FC<BreadcrumbItemProps> = ({
     <li>
       <StyledBreadcrumbItem
         ref={ref}
+        css={css}
         href={href}
         target={target}
+        {...delegated}
         {...itemProps}
-        active={(props as {isActive: boolean}).isActive}
+        active={(delegated as {isActive: boolean}).isActive}
       >
         {children}
       </StyledBreadcrumbItem>

@@ -1,3 +1,6 @@
+import type {IconProp} from '@fortawesome/fontawesome-svg-core'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import type {CSS} from '@stitches/react'
 import React, {useRef} from 'react'
 import type AvatarGroup from './avatar-group'
 import {AvatarVariantProps, StyledAvatar} from './avatar.styles'
@@ -14,23 +17,39 @@ const calculateInitials = (name: string, size: AvatarVariantProps['size']) => {
 }
 
 interface Props extends AvatarVariantProps {
+  css?: CSS
   label?: string
+  icon?: IconProp
   image?: string
-  icon?: string
 }
 type HtmlSpanProps = React.ComponentPropsWithoutRef<'span'>
 type OmitList = keyof Props | 'children'
 
 export type AvatarProps = Omit<HtmlSpanProps, OmitList> & Props
 
-const Avatar: React.FC<AvatarProps> = ({size, label, ...delegated}) => {
+const Avatar: React.FC<AvatarProps> = ({
+  css = {},
+  size,
+  label,
+  icon,
+  image,
+  ...delegated
+}) => {
   const variantProps = {size} as AvatarVariantProps
   const ref = useRef<HTMLSpanElement>(null)
 
   return (
-    <StyledAvatar ref={ref} {...delegated} {...variantProps}>
+    <StyledAvatar ref={ref} css={css} {...delegated} {...variantProps}>
       {label ? (
         <span className='initials'>{calculateInitials(label, size)}</span>
+      ) : null}
+      {icon ? (
+        <div className='icon-wrapper'>
+          <FontAwesomeIcon className='icon' icon={icon} />
+        </div>
+      ) : null}
+      {image ? (
+        <img className='image' src={image} alt={label || 'Avatar'} />
       ) : null}
     </StyledAvatar>
   )

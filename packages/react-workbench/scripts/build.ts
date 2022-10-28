@@ -20,7 +20,7 @@ const makeCliOptions = (o: Record<string, unknown>) =>
 
 const cleanDist: ListrTask = {
   title: 'Removing existing dist/ directory to ensure a clean build',
-  skip: () => premiseOf(fs.stat(OUTPUT_DIR)),
+  skip: () => !premiseOf(fs.stat(OUTPUT_DIR)),
   task: () => runInShell(`rimraf ${OUTPUT_DIR}`),
 }
 

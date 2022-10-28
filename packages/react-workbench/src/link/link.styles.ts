@@ -6,6 +6,7 @@ export const StyledLink = styled('a', {
   fontWeight: '$medium',
   color: '$info',
   textDecoration: 'underline',
+  transition: '$default',
 })
 
 export type LinkVariantProps = VariantProps<typeof StyledLink>

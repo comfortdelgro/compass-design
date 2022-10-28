@@ -7,7 +7,7 @@
     "esModuleInterop": true,
     "exactOptionalPropertyTypes": true,
     "forceConsistentCasingInFileNames": true,
-    "importsNotUsedAsValues": "error",
+    "importsNotUsedAsValues": "preserve",
     "jsx": "react-jsx",
     "lib": ["dom", "ES2021"],
     "module": "ESNext",
