@@ -1,4 +1,4 @@
-name: Release
+name: Deploy Ladle to Github Pages
 
 on:
   push:
@@ -8,12 +8,17 @@ on:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  release:
-    name: Release
+  deploy:
+    name: Deploy Ladle to Github Pages
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
+
+      - name: Setup Bot
+        run: |
+          git config --global user.email "services.shared@zig.live"
+          git config --global user.name "CDG Zig Bot"
 
       - name: Setup PNPM
         uses: pnpm/action-setup@v2
@@ -35,5 +40,5 @@ jobs:
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.CDG_BOT_GITHUB_TOKEN }}
-          publish_dir: ./packages/build
+          publish_dir: ./packages/react-workbench/build
           publish_branch: gh-pages/ladle
