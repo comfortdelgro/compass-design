@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  basePath: '/workbench-design',
+  basePath: process.env.BASE_PATH || '/',
   images: {
     unoptimized: true,
   },

@@ -22,8 +22,7 @@
     "@react-aria/button": "^3.6.2",
     "@react-aria/link": "^3.3.4",
     "@react-aria/textfield": "^3.7.2",
-    "@stitches/react": "^1.2.8",
-    "framer-motion": "^7.6.1"
+    "@stitches/react": "^1.2.8"
   },
   "devDependencies": {
     "@comfortdelgro/eslint-config": "^1.0.2",
@@ -39,6 +38,7 @@
     "@types/react": "^18.0.21",
     "eslint": "^8.25.0",
     "execa": "^6.1.0",
+    "framer-motion": "^7.6.1",
     "listr": "^0.14.3",
     "prettier": "^2.7.1",
     "react": "^18.2.0",

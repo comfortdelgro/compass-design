@@ -37,8 +37,8 @@ jobs:
 
       - name: Build the website
         run: |
-          pnpm run --filter=@comfortdelgro/design-system-website export
-          pnpm run --filter=@comfortdelgro/react-workbench build:ladle
+          BASE_PATH="/workbench-design" pnpm run --filter=@comfortdelgro/design-system-website export
+          pnpm run --filter=@comfortdelgro/react-workbench build:ladle --base "/workbench-design/ladle"
           mv packages/react-workbench/build apps/docs/out/ladle
 
       - name: Deploy to GitHub Pages
