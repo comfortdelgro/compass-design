@@ -2,7 +2,7 @@
 
 import {DocsThemeConfig, useConfig} from 'nextra-theme-docs'
 
-const githubUrl = 'https://github.com/comfortdelgro/workbench-design'
+const githubUrl = 'https://github.com/comfortdelgro/compass-design'
 
 const nextraResets = {
   chat: false,
@@ -18,7 +18,7 @@ const nextraConfig: DocsThemeConfig = {
   },
   docsRepositoryBase: `${githubUrl}/blob/main/apps/docs`,
   project: {
-    link: 'https://github.com/comfortdelgro/workbench-design',
+    link: 'https://github.com/comfortdelgro/compass-design',
   },
   editLink: {
     text: 'Edit this page on GitHub',
@@ -28,7 +28,7 @@ const nextraConfig: DocsThemeConfig = {
       <div
         className='w-7 aspect-square bg-no-repeat bg-cover'
         style={{
-          backgroundImage: 'url(/workbench-design/logo.svg)',
+          backgroundImage: 'url(/compass-design/logo.svg)',
         }}
       />
       <div className='font-bold'>Admin Portal Design System</div>
@@ -44,14 +44,14 @@ const nextraConfig: DocsThemeConfig = {
           {
             url:
               frontMatter.image ||
-              'https://comfortdelgro.github.io/workbench-design/banner.png',
+              'https://comfortdelgro.github.io/compass-design/banner.png',
           },
         ],
       },
       titleTemplate: '%s – Compass Design System',
       twitter: {
         cardType: 'summary_large_image',
-        site: 'https://comfortdelgro.github.io/workbench-design',
+        site: 'https://comfortdelgro.github.io/compass-design',
       },
     }
   },

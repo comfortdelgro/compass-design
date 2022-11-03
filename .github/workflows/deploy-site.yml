@@ -37,8 +37,8 @@ jobs:
 
       - name: Build the website
         run: |
-          BASE_PATH="/workbench-design" pnpm run --filter=@comfortdelgro/design-system-website export
-          pnpm run --filter=@comfortdelgro/react-compass build:ladle --base "/workbench-design/ladle"
+          BASE_PATH="/compass-design" pnpm run --filter=@comfortdelgro/design-system-website export
+          pnpm run --filter=@comfortdelgro/react-compass build:ladle --base "/compass-design/ladle"
           mv packages/react-compass/build apps/docs/out/ladle
 
       - name: Deploy to GitHub Pages
