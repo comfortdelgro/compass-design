@@ -33,13 +33,13 @@ jobs:
         run: pnpm i --frozen-lockfile
 
       - name: Build the library
-        run: pnpm run --filter=@comfortdelgro/react-workbench build
+        run: pnpm run --filter=@comfortdelgro/react-compass build
 
       - name: Build the website
         run: |
           BASE_PATH="/workbench-design" pnpm run --filter=@comfortdelgro/design-system-website export
-          pnpm run --filter=@comfortdelgro/react-workbench build:ladle --base "/workbench-design/ladle"
-          mv packages/react-workbench/build apps/docs/out/ladle
+          pnpm run --filter=@comfortdelgro/react-compass build:ladle --base "/workbench-design/ladle"
+          mv packages/react-compass/build apps/docs/out/ladle
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

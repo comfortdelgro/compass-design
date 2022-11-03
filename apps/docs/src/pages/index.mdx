@@ -17,21 +17,21 @@ import {Tabs, Tab, Callout} from 'nextra-theme-docs'
   <Tab>
 
 ```bash
-npm i @comfortdelgro/react-workbench
+npm i @comfortdelgro/react-compass
 ```
 
   </Tab>
   <Tab>
 
 ```bash
-yarn add @comfortdelgro/react-workbench
+yarn add @comfortdelgro/react-compass
 ```
 
   </Tab>
   <Tab>
 
 ```bash
-pnpm add @comfortdelgro/react-workbench
+pnpm add @comfortdelgro/react-compass
 ```
 
   </Tab>
@@ -40,7 +40,7 @@ pnpm add @comfortdelgro/react-workbench
 2. Add preflight flushing styles for SSR.
 
 ```tsx {22} filename="_document.tsx"
-import Preflight from '@comfortdelgro/react-workbench/preflight'
+import Preflight from '@comfortdelgro/react-compass/preflight'
 import Document, {
   DocumentContext,
   Head,
@@ -77,7 +77,7 @@ export default MyDocument
 3. Add `Preflight` component for better CSS resets according to design guidelines.
 
 ```tsx {7} filename="_app.tsx"
-import Preflight from '@comfortdelgro/react-workbench/preflight'
+import Preflight from '@comfortdelgro/react-compass/preflight'
 import {AppProps} from 'next/app'
 
 const App: React.FC<AppProps> = ({Component, pageProps}) => {

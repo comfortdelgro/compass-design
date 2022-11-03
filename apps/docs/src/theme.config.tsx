@@ -38,7 +38,7 @@ const nextraConfig: DocsThemeConfig = {
     const {frontMatter} = useConfig()
     return {
       description:
-        frontMatter.description || "Comfortdelgro's Admin Portal Design System",
+        frontMatter.description || "Comfortdelgro's Compass Design System",
       openGraph: {
         images: [
           {
@@ -48,7 +48,7 @@ const nextraConfig: DocsThemeConfig = {
           },
         ],
       },
-      titleTemplate: '%s – Admin Portal Design System',
+      titleTemplate: '%s – Compass Design System',
       twitter: {
         cardType: 'summary_large_image',
         site: 'https://comfortdelgro.github.io/workbench-design',

@@ -1,5 +1,5 @@
 {
-  "name": "@comfortdelgro/design-system-website",
+  "name": "@comfortdelgro/compass-design-website",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,7 +10,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@comfortdelgro/react-workbench": "workspace:*",
+    "@comfortdelgro/react-compass": "workspace:*",
     "clsx": "^1.2.1",
     "next": "12.3.1",
     "nextra": "2.0.0-beta.41",

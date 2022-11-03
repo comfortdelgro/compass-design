@@ -1,4 +1,4 @@
-import Preflight from '@comfortdelgro/react-workbench/preflight'
+import Preflight from '@comfortdelgro/react-compass/preflight'
 import Document, {
   DocumentContext,
   Head,

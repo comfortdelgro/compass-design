@@ -1,4 +1,4 @@
-import {theme} from '@comfortdelgro/react-workbench/theme'
+import {theme} from '@comfortdelgro/react-compass/theme'
 
 interface Props {
   size: typeof theme['fontSizes'][keyof typeof theme['fontSizes']]
