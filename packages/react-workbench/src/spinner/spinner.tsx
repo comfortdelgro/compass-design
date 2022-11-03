@@ -14,7 +14,7 @@ const Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>((props, ref) => {
     // StyledComponentProps
     css = {},
     // ComponentProps
-    label,
+    label = true,
     // VariantProps
     size = 'md',
   } = props

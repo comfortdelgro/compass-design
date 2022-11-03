@@ -24,7 +24,7 @@ export const StyledSpinner = styled('div', {
   },
 
   '.ring .segment': {
-    borderColor: '$info transparent transparent transparent',
+    borderColor: '$cdgBlue transparent transparent transparent',
     animation: `${spin} 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite`,
   },
 
@@ -41,7 +41,7 @@ export const StyledSpinner = styled('div', {
   },
 
   '.label': {
-    color: '$info',
+    color: '$cdgBlue',
     fontFamily: '$sans',
     marginTop: '$2',
     marginBottom: '$2',
