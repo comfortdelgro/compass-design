@@ -8,6 +8,7 @@ import {useDOMRef} from '../utils/use-dom-ref'
 import {AlertVariantProps, StyledAlert} from './alert.styles'
 
 interface Props extends StyledComponentProps {
+  children?: React.ReactNode
   icon?: false | IconProp
   dismissible?: boolean
   onDismiss?: () => void
