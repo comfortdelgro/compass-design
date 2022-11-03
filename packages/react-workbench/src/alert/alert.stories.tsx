@@ -68,8 +68,8 @@ export const Dismissible: React.FC = () => {
             onDismiss={() => removeAlert(alert.key)}
             // motion
             layout
-            animate={{x: 20, opacity: 1}}
-            exit={{x: 0, opacity: 0}}
+            animate={{x: 0, opacity: 1}}
+            exit={{x: -20, opacity: 0}}
             transition={{duration: 0.2}}
           >
             <AlertContent />

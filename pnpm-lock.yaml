@@ -74,10 +74,14 @@ importers:
       '@react-aria/breadcrumbs': ^3.3.2
       '@react-aria/button': ^3.6.2
       '@react-aria/link': ^3.3.4
+      '@react-aria/searchfield': ^3.4.2
       '@react-aria/textfield': ^3.7.2
+      '@react-aria/utils': ^3.14.0
+      '@react-stately/searchfield': ^3.3.2
       '@react-types/breadcrumbs': ^3.4.4
       '@react-types/button': ^3.6.2
       '@react-types/link': ^3.3.4
+      '@react-types/searchfield': ^3.3.4
       '@react-types/textfield': ^3.6.0
       '@stitches/react': ^1.2.8
       '@swc/cli': ^0.1.57
@@ -103,15 +107,18 @@ importers:
       '@react-aria/breadcrumbs': 3.3.2_react@18.2.0
       '@react-aria/button': 3.6.2_react@18.2.0
       '@react-aria/link': 3.3.4_react@18.2.0
+      '@react-aria/searchfield': 3.4.2_react@18.2.0
       '@react-aria/textfield': 3.7.2_react@18.2.0
+      '@react-aria/utils': 3.14.0_react@18.2.0
+      '@react-stately/searchfield': 3.3.2_react@18.2.0
       '@stitches/react': 1.2.8_react@18.2.0
-      framer-motion: 7.6.1_biqbaboplfbrettd7655fr4n2y
     devDependencies:
       '@comfortdelgro/eslint-config': 1.0.2_jgy3n4355e6bfws3px3ickn7ti
       '@ladle/react': 2.4.5_biqbaboplfbrettd7655fr4n2y
       '@react-types/breadcrumbs': 3.4.4_react@18.2.0
       '@react-types/button': 3.6.2_react@18.2.0
       '@react-types/link': 3.3.4_react@18.2.0
+      '@react-types/searchfield': 3.3.4_react@18.2.0
       '@react-types/textfield': 3.6.0_react@18.2.0
       '@swc/cli': 0.1.57_@swc+core@1.3.10
       '@swc/core': 1.3.10
@@ -120,6 +127,7 @@ importers:
       '@types/react': 17.0.52
       eslint: 8.25.0
       execa: 6.1.0
+      framer-motion: 7.6.1_biqbaboplfbrettd7655fr4n2y
       listr: 0.14.3
       prettier: 2.7.1
       react: 18.2.0
@@ -1638,12 +1646,12 @@ packages:
     requiresBuild: true
     dependencies:
       '@emotion/memoize': 0.7.4
-    dev: false
+    dev: true
     optional: true
 
   /@emotion/memoize/0.7.4:
     resolution: {integrity: sha512-Ja/Vfqe3HpuzRsG1oBtWTHk2PGZ7GR+2Vz5iYGelAw8dx32K0y7PjVuxK6z1nMpZOqAFsRUPCkK1YjJ56qJlgw==}
-    dev: false
+    dev: true
     optional: true
 
   /@esbuild-kit/cjs-loader/2.4.0:
@@ -1995,7 +2003,7 @@ packages:
       '@motionone/types': 10.14.0
       '@motionone/utils': 10.14.0
       tslib: 2.4.0
-    dev: false
+    dev: true
 
   /@motionone/dom/10.13.1:
     resolution: {integrity: sha512-zjfX+AGMIt/fIqd/SL1Lj93S6AiJsEA3oc5M9VkUr+Gz+juRmYN1vfvZd6MvEkSqEjwPQgcjN7rGZHrDB9APfQ==}
@@ -2006,14 +2014,14 @@ packages:
       '@motionone/utils': 10.14.0
       hey-listen: 1.0.8
       tslib: 2.4.0
-    dev: false
+    dev: true
 
   /@motionone/easing/10.14.0:
     resolution: {integrity: sha512-2vUBdH9uWTlRbuErhcsMmt1jvMTTqvGmn9fHq8FleFDXBlHFs5jZzHJT9iw+4kR1h6a4SZQuCf72b9ji92qNYA==}
     dependencies:
       '@motionone/utils': 10.14.0
       tslib: 2.4.0
-    dev: false
+    dev: true
 
   /@motionone/generators/10.14.0:
     resolution: {integrity: sha512-6kRHezoFfIjFN7pPpaxmkdZXD36tQNcyJe3nwVqwJ+ZfC0e3rFmszR8kp9DEVFs9QL/akWjuGPSLBI1tvz+Vjg==}
@@ -2021,11 +2029,11 @@ packages:
       '@motionone/types': 10.14.0
       '@motionone/utils': 10.14.0
       tslib: 2.4.0
-    dev: false
+    dev: true
 
   /@motionone/types/10.14.0:
     resolution: {integrity: sha512-3bNWyYBHtVd27KncnJLhksMFQ5o2MSdk1cA/IZqsHtA9DnRM1SYgN01CTcJ8Iw8pCXF5Ocp34tyAjY7WRpOJJQ==}
-    dev: false
+    dev: true
 
   /@motionone/utils/10.14.0:
     resolution: {integrity: sha512-sLWBLPzRqkxmOTRzSaD3LFQXCPHvDzyHJ1a3VP9PRzBxyVd2pv51/gMOsdAcxQ9n+MIeGJnxzXBYplUHKj4jkw==}
@@ -2033,7 +2041,7 @@ packages:
       '@motionone/types': 10.14.0
       hey-listen: 1.0.8
       tslib: 2.4.0
-    dev: false
+    dev: true
 
   /@napi-rs/simple-git-android-arm-eabi/0.1.8:
     resolution: {integrity: sha512-JJCejHBB1G6O8nxjQLT4quWCcvLpC3oRdJJ9G3MFYSCoYS8i1bWCWeU+K7Br+xT+D6s1t9q8kNJAwJv9Ygpi0g==}
@@ -2422,6 +2430,23 @@ packages:
       react: 18.2.0
     dev: false
 
+  /@react-aria/searchfield/3.4.2_react@18.2.0:
+    resolution: {integrity: sha512-6AO8cG0LH+WAdlKZAZVOg+txLVBIfxfo+4uoxbaJz4YACJNMAmHdRN6xEH/utcx4vncLqPRM1PeqYlRQLYA8uQ==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@babel/runtime': 7.19.4
+      '@react-aria/i18n': 3.6.1_react@18.2.0
+      '@react-aria/interactions': 3.12.0_react@18.2.0
+      '@react-aria/textfield': 3.7.2_react@18.2.0
+      '@react-aria/utils': 3.14.0_react@18.2.0
+      '@react-stately/searchfield': 3.3.2_react@18.2.0
+      '@react-types/button': 3.6.2_react@18.2.0
+      '@react-types/searchfield': 3.3.4_react@18.2.0
+      '@react-types/shared': 3.15.0_react@18.2.0
+      react: 18.2.0
+    dev: false
+
   /@react-aria/ssr/3.3.0_react@18.2.0:
     resolution: {integrity: sha512-yNqUDuOVZIUGP81R87BJVi/ZUZp/nYOBXbPsRe7oltJOfErQZD+UezMpw4vM2KRz18cURffvmC8tJ6JTeyDtaQ==}
     peerDependencies:
@@ -2455,6 +2480,18 @@ packages:
       '@react-types/shared': 3.15.0_react@18.2.0
       clsx: 1.2.1
       react: 18.2.0
+
+  /@react-stately/searchfield/3.3.2_react@18.2.0:
+    resolution: {integrity: sha512-4MTpoqE1M/3aWb/Feau0QpQcjOEK3i8apyA7g9ltY5OtcwHMXDXXk9i3Pg4itk2CXqOY2LuJ+vHCctSnEAm9vw==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@babel/runtime': 7.19.4
+      '@react-stately/utils': 3.5.1_react@18.2.0
+      '@react-types/searchfield': 3.3.4_react@18.2.0
+      '@react-types/shared': 3.15.0_react@18.2.0
+      react: 18.2.0
+    dev: false
 
   /@react-stately/toggle/3.4.2_react@18.2.0:
     resolution: {integrity: sha512-+pO13Ap/tj4optu6VjQrEAaAoZvJAEwarMUaZvrkc0kdvMTNPdiT/2vhN32yvsSW0ssuFqToa3jMrTylCbpo8w==}
@@ -2518,6 +2555,15 @@ packages:
     dependencies:
       '@react-aria/interactions': 3.12.0_react@18.2.0
       '@react-types/shared': 3.15.0_react@18.2.0
+      react: 18.2.0
+
+  /@react-types/searchfield/3.3.4_react@18.2.0:
+    resolution: {integrity: sha512-NuzNTfP80qnCn+gJJMB/Fv1AhPjrSZyB2m0fVrss0Ua5bmtScxMhXA5Pak3aTDyn3xne2r97LwcAaCdsaDnD1w==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@react-types/shared': 3.15.0_react@18.2.0
+      '@react-types/textfield': 3.6.0_react@18.2.0
       react: 18.2.0
 
   /@react-types/shared/3.15.0_react@18.2.0:
@@ -4925,13 +4971,13 @@ packages:
       tslib: 2.4.0
     optionalDependencies:
       '@emotion/is-prop-valid': 0.8.8
-    dev: false
+    dev: true
 
   /framesync/6.1.2:
     resolution: {integrity: sha512-jBTqhX6KaQVDyus8muwZbBeGGP0XgujBRbQ7gM7BRdS3CadCZIHiawyzYLnafYcvZIh5j8WE7cxZKFn7dXhu9g==}
     dependencies:
       tslib: 2.4.0
-    dev: false
+    dev: true
 
   /fresh/0.5.2:
     resolution: {integrity: sha1-PYyt2Q2XZWn6g1qx+OSyOhBWBac=}
@@ -5267,7 +5313,7 @@ packages:
 
   /hey-listen/1.0.8:
     resolution: {integrity: sha512-COpmrF2NOg4TBWUJ5UVyaCU2A88wEMkUPK4hNqyCkqHbxT92BbvfjoSozkAIIm6XhicGlJHhFdullInrdhwU8Q==}
-    dev: false
+    dev: true
 
   /history/5.3.0:
     resolution: {integrity: sha512-ZqaKwjjrAYUYfLG+htGaIIZ4nioX2L70ZUMIFysS3xvBsSG4x/n1V6TXV3N8ZYNuFGlDirFg32T7B6WOUPDYcQ==}
@@ -7110,7 +7156,7 @@ packages:
       hey-listen: 1.0.8
       style-value-types: 5.1.2
       tslib: 2.4.0
-    dev: false
+    dev: true
 
   /postcss-import/14.1.0_postcss@8.4.18:
     resolution: {integrity: sha512-flwI+Vgm4SElObFVPpTIT7SU7R3qk2L7PyduMcokiaVKuWv9d/U+Gm/QAd8NDLuykTWTkcrjOeD2Pp1rMeBTGw==}
@@ -8131,7 +8177,7 @@ packages:
     dependencies:
       hey-listen: 1.0.8
       tslib: 2.4.0
-    dev: false
+    dev: true
 
   /styled-jsx/5.0.7_react@18.2.0:
     resolution: {integrity: sha512-b3sUzamS086YLRuvnaDigdAewz1/EFYlHpYBP5mZovKEdQQOIIYq8lApylub3HHZ6xFjV051kkGU7cudJmrXEA==}

@@ -8,18 +8,36 @@ export const StyledSpinner = styled('div', {
   alignItems: 'center',
   justifyContent: 'center',
 
-  '.path, .path::after': {
+  '.ring': {
+    position: 'relative',
     aspectRatio: '1 / 1',
+  },
+
+  '.ring .bg, .ring .segment': {
+    position: 'absolute',
+    borderStyle: 'solid',
     borderRadius: '$full',
   },
 
-  '.path': {
-    position: 'relative',
-    borderStyle: 'solid',
+  '.ring .bg': {
     borderColor: '$gray30',
-    borderLeftColor: '$info',
-    transform: 'translateZ(0)',
-    animation: `${spin} 1s infinite linear`,
+  },
+
+  '.ring .segment': {
+    borderColor: '$info transparent transparent transparent',
+    animation: `${spin} 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite`,
+  },
+
+  '.ring .segment:nth-child(1)': {
+    animationDelay: '-0.45s',
+  },
+
+  '.ring .segment:nth-child(2)': {
+    animationDelay: '-0.3s',
+  },
+
+  '.ring .segment:nth-child(3)': {
+    animationDelay: '-0.15s',
   },
 
   '.label': {
@@ -31,13 +49,36 @@ export const StyledSpinner = styled('div', {
 
   variants: {
     size: {
-      xl: {},
+      '2xl': {
+        '.ring, .ring div': {
+          width: '$16',
+          height: '$16',
+        },
+        '.ring div': {
+          borderWidth: '0.625rem',
+        },
+        '.label': {
+          fontSize: '$body2',
+        },
+      },
+      xl: {
+        '.ring, .ring div': {
+          width: '$12',
+          height: '$12',
+        },
+        '.ring div': {
+          borderWidth: '0.625rem',
+        },
+        '.label': {
+          fontSize: '$body2',
+        },
+      },
       lg: {
-        '.path, .path::after': {
+        '.ring, .ring div': {
           width: '$10',
           height: '$10',
         },
-        '.path': {
+        '.ring div': {
           borderWidth: '0.5rem',
         },
         '.label': {
@@ -45,11 +86,11 @@ export const StyledSpinner = styled('div', {
         },
       },
       md: {
-        '.path, .path::after': {
+        '.ring, .ring div': {
           width: '$8',
           height: '$8',
         },
-        '.path': {
+        '.ring div': {
           borderWidth: '0.375rem',
         },
         '.label': {
@@ -57,11 +98,11 @@ export const StyledSpinner = styled('div', {
         },
       },
       sm: {
-        '.path, .path::after': {
+        '.ring, .ring div': {
           width: '$6',
           height: '$6',
         },
-        '.path': {
+        '.ring div': {
           borderWidth: '0.25rem',
         },
         '.label': {

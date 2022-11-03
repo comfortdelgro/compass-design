@@ -1,68 +1,56 @@
-import type {IconProp} from '@fortawesome/fontawesome-svg-core'
-import {
-  faCheckCircle,
-  faCircleExclamation,
-  faClose,
-  faInfoCircle,
-} from '@fortawesome/free-solid-svg-icons'
+import {faClose} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import type {CSS} from '@stitches/react'
 import React from 'react'
 import Button from '../button/button'
+import {Icon, IconProp} from '../icon'
+import {getIconFromColor} from '../utils/get-icon-from-color'
+import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {AlertVariantProps, StyledAlert} from './alert.styles'
 
-const getIcon = (color: NonNullable<AlertVariantProps['color']>) => {
-  const icons: Record<typeof color, IconProp> = {
-    info: faInfoCircle,
-    success: faCheckCircle,
-    warning: faCircleExclamation,
-    danger: faCircleExclamation,
-  }
-
-  return icons[color]
-}
-
-interface Props extends AlertVariantProps {
-  css?: CSS
-  color: NonNullable<AlertVariantProps['color']>
+interface Props extends StyledComponentProps {
   icon?: false | IconProp
   dismissible?: boolean
   onDismiss?: () => void
 }
-export type AlertProps = Props &
-  Omit<React.ComponentPropsWithoutRef<'div'>, keyof Props>
+
+export type AlertProps = Props & AlertVariantProps
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
   const {
+    // StyledComponentProps
     css = {},
-    color,
+    // ComponentProps
     icon,
     dismissible,
     onDismiss,
     children,
-    ...delegated
+    // VariantProps
+    color = 'info',
   } = props
 
   const variantProps = {color} as AlertVariantProps
   const alertRef = useDOMRef<HTMLDivElement>(ref)
 
   const faIcon =
-    typeof icon === 'undefined' ? getIcon(color) : icon === false ? null : icon
+    typeof icon === 'undefined'
+      ? getIconFromColor(color)
+      : icon === false
+      ? null
+      : icon
 
   return (
-    <StyledAlert ref={alertRef} css={css} {...delegated} {...variantProps}>
+    <StyledAlert css={css} ref={alertRef} {...variantProps}>
       {faIcon ? <FontAwesomeIcon icon={faIcon} className='alert-icon' /> : null}
       <div className='alert-content'>{children}</div>
       {dismissible && (
         <Button
-          iconOnly
           size='sm'
           variant='ghost'
           className='alert-dismiss-button'
-          onClick={onDismiss}
+          onPress={() => onDismiss?.()}
         >
-          <FontAwesomeIcon className='alert-close-icon' icon={faClose} />
+          <Icon className='alert-close-icon' icon={faClose} />
         </Button>
       )}
     </StyledAlert>

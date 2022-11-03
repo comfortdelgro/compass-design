@@ -36,6 +36,21 @@ export const StyledTextarea = styled('textarea', {
   '&:disabled': {
     cursor: 'not-allowed',
   },
+
+  variants: {
+    errored: {
+      true: {
+        borderColor: '$danger',
+        '&:focus': {
+          borderColor: '$danger',
+        },
+      },
+    },
+  },
+
+  defaultVariants: {
+    errored: false,
+  },
 })
 
 export type TextareaVariantProps = VariantProps<typeof StyledTextarea>

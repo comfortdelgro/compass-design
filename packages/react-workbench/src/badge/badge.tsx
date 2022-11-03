@@ -1,56 +1,44 @@
 import type {IconProp} from '@fortawesome/fontawesome-svg-core'
-import {
-  faCheckCircle,
-  faCircleExclamation,
-  faInfoCircle,
-} from '@fortawesome/free-solid-svg-icons'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import type {CSS} from '@stitches/react'
-import React, {useRef} from 'react'
+import React from 'react'
+import {Icon} from '../icon'
+import {getIconFromColor} from '../utils/get-icon-from-color'
+import {StyledComponentProps} from '../utils/stitches.types'
+import {useDOMRef} from '../utils/use-dom-ref'
 import {BadgeVariantProps, StyledBadge} from './badge.styles'
 
-const getIcon = (color: NonNullable<BadgeVariantProps['color']>) => {
-  const icons: Record<typeof color, IconProp> = {
-    info: faInfoCircle,
-    success: faCheckCircle,
-    warning: faCircleExclamation,
-    danger: faCircleExclamation,
-  }
-
-  return icons[color]
-}
-
-interface Props extends BadgeVariantProps {
-  css?: CSS
+interface Props extends StyledComponentProps {
   label?: string
   icon?: boolean | IconProp
-  color: NonNullable<BadgeVariantProps['color']>
 }
-export type BadgeProps = Props &
-  Omit<React.ComponentPropsWithoutRef<'div'>, keyof Props | 'children'>
 
-const Badge: React.FC<BadgeProps> = ({
-  css = {},
-  label,
-  icon = false,
-  variant,
-  color,
-  ...delegated
-}) => {
+export type BadgeProps = Omit<Props, 'children'> & BadgeVariantProps
+
+const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
+  const {
+    // StyledComponentProps
+    css = {},
+    // ComponentProps
+    label,
+    icon = false,
+    // VariantProps
+    variant = 'primary',
+    color = 'info',
+  } = props
+
   const variantProps = {variant, color} as BadgeVariantProps
-  const ref = useRef<HTMLSpanElement>(null)
+  const badgeRef = useDOMRef<HTMLSpanElement>(ref)
 
   return (
-    <StyledBadge ref={ref} css={css} {...delegated} {...variantProps}>
+    <StyledBadge css={css} ref={badgeRef} {...variantProps}>
       {icon ? (
-        <FontAwesomeIcon
+        <Icon
           className='icon'
-          icon={typeof icon === 'boolean' ? getIcon(color) : icon}
+          icon={typeof icon === 'boolean' ? getIconFromColor(color) : icon}
         />
       ) : null}
       <span>{label}</span>
     </StyledBadge>
   )
-}
+})
 
 export default Badge

@@ -7,6 +7,7 @@ export const StyledAvatarGroup = styled('div', {
   flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'center',
+  width: 'fit-content',
 
   [`& ${StyledAvatar}`]: {
     marginRight: '-$2',

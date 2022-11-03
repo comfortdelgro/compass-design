@@ -1,5 +1,6 @@
 import type {
   createStitches,
+  CSS,
   VariantProps as StitchesVariantProps,
 } from '@stitches/react'
 import type {Primitive} from './types'
@@ -14,4 +15,8 @@ export type VariantProps<
   V = StitchesVariantProps<Component>,
 > = {
   [K in keyof V]: Extract<V[K], Primitive>
+}
+
+export interface StyledComponentProps {
+  css?: CSS
 }

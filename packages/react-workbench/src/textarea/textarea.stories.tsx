@@ -24,6 +24,13 @@ export const Variants: React.FC = () => {
         value={value}
         onChange={setValue}
       />
+      <Textarea
+        label='Text Label'
+        placeholder='Enter your message'
+        wordCount
+        maxLength={50}
+        errored
+      />
     </Column>
   )
 }

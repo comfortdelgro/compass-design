@@ -1,34 +1,37 @@
-import type {CSS} from '@stitches/react'
-import React, {useRef} from 'react'
+import React from 'react'
+import {StyledComponentProps} from '../utils/stitches.types'
+import {useDOMRef} from '../utils/use-dom-ref'
 import {AvatarGroupVariantProps, StyledAvatarGroup} from './avatar-group.styles'
 import {StyledAvatar} from './avatar.styles'
 
-interface Props extends AvatarGroupVariantProps {
-  css?: CSS
+interface Props extends StyledComponentProps {
   display?: number
 }
-type HtmlDivProps = React.ComponentPropsWithoutRef<'div'>
-type OmitList = keyof Props
-export type AvatarGroupProps = Omit<HtmlDivProps, OmitList> & Props
 
-const AvatarGroup: React.FC<AvatarGroupProps> = ({
-  css = {},
-  display = 4,
-  children,
-  ...delegated
-}) => {
-  const variantProps = {} as AvatarGroupVariantProps
-  const ref = useRef<HTMLDivElement>(null)
-  const avatars = React.Children.toArray(children)
+export type AvatarGroupProps = Props & AvatarGroupVariantProps
 
-  return (
-    <StyledAvatarGroup ref={ref} css={css} {...delegated} {...variantProps}>
-      {avatars.slice(0, display).map((avatar) => avatar)}
-      <StyledAvatar>
-        <span className='initials count'>+{avatars.length - display}</span>
-      </StyledAvatar>
-    </StyledAvatarGroup>
-  )
-}
+const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
+  (props, ref) => {
+    const {
+      // StyledComponentProps
+      css = {},
+      // ComponentProps
+      display = 4,
+      children,
+    } = props
+
+    const avatarGroupRef = useDOMRef<HTMLDivElement>(ref)
+    const avatars = React.Children.toArray(children)
+
+    return (
+      <StyledAvatarGroup css={css} ref={avatarGroupRef}>
+        {avatars.slice(0, display).map((avatar) => avatar)}
+        <StyledAvatar>
+          <span className='initials count'>+{avatars.length - display}</span>
+        </StyledAvatar>
+      </StyledAvatarGroup>
+    )
+  },
+)
 
 export default AvatarGroup

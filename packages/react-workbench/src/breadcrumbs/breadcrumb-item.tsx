@@ -1,52 +1,67 @@
 import {useBreadcrumbItem} from '@react-aria/breadcrumbs'
 import type {AriaBreadcrumbItemProps} from '@react-types/breadcrumbs'
-import type {CSS} from '@stitches/react'
-import React, {useRef} from 'react'
+import React, {useMemo} from 'react'
+import type {StyledComponentProps} from '../utils/stitches.types'
+import {useDOMRef} from '../utils/use-dom-ref'
 import {
   BreadcrumbItemVariantProps,
   StyledBreadcrumbItem,
 } from './breadcrumb-item.styles'
 
-interface Props extends BreadcrumbItemVariantProps {
-  css?: CSS
-  disabled?: boolean
+interface Props extends AriaBreadcrumbItemProps, StyledComponentProps {
+  href?: string
+  target?: string
 }
 
-export type BreadcrumbItemProps = Props &
-  Omit<React.ComponentPropsWithoutRef<'a'>, keyof Props>
+export type BreadcrumbItemProps = Props & BreadcrumbItemVariantProps
 
-const BreadcrumbItem: React.FC<BreadcrumbItemProps> = ({
-  css = {},
-  href,
-  target,
-  disabled,
-  children,
-  ...delegated
-}) => {
-  const ariaProps = {
-    ...delegated,
-    elementType: 'a',
-    isDisabled: disabled,
-  } as AriaBreadcrumbItemProps
+const BreadcrumbItem = React.forwardRef<HTMLAnchorElement, BreadcrumbItemProps>(
+  (props, ref) => {
+    const {
+      // StyledComponentProps
+      css = {},
+      // ComponentProps
+      href,
+      target,
+      isCurrent,
+      isDisabled,
+      // AriaBreadcrumbItemProps
+      ...ariaSafeProps
+    } = props
 
-  const ref = useRef<HTMLAnchorElement>(null)
-  const {itemProps} = useBreadcrumbItem(ariaProps, ref)
+    const {children} = ariaSafeProps
 
-  return (
-    <li>
-      <StyledBreadcrumbItem
-        ref={ref}
-        css={css}
-        href={href}
-        target={target}
-        {...delegated}
-        {...itemProps}
-        active={(delegated as {isActive: boolean}).isActive}
-      >
-        {children}
-      </StyledBreadcrumbItem>
-    </li>
-  )
-}
+    const elementType = useMemo(
+      () => (isCurrent || isDisabled ? 'span' : 'a'),
+      [isCurrent, isDisabled],
+    )
+
+    const linkRef = useDOMRef<HTMLAnchorElement>(ref)
+    const {itemProps} = useBreadcrumbItem(
+      {...ariaSafeProps, elementType},
+      linkRef,
+    )
+
+    return (
+      <li>
+        <StyledBreadcrumbItem
+          as={elementType}
+          css={css}
+          ref={linkRef}
+          // component props
+          href={href}
+          target={target}
+          // aria props
+          {...itemProps}
+          // variants
+          active={!!isCurrent}
+          disabled={!!isDisabled}
+        >
+          {children}
+        </StyledBreadcrumbItem>
+      </li>
+    )
+  },
+)
 
 export default BreadcrumbItem

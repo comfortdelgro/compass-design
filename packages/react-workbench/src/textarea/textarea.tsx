@@ -1,8 +1,11 @@
 import {useTextField} from '@react-aria/textfield'
-import type {AriaTextFieldProps, TextFieldProps} from '@react-types/textfield'
-import type {CSS} from '@stitches/react'
+import type {AriaTextFieldProps} from '@react-types/textfield'
 import React from 'react'
-import {StyledInputHelperText, StyledInputLabel} from '../input/input.styles'
+import {
+  StyledTextfieldHelperText,
+  StyledTextfieldLabel,
+} from '../textfield/textfield.styles'
+import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
   StyledTextarea,
@@ -10,39 +13,37 @@ import {
   TextareaVariantProps,
 } from './textarea.styles'
 
-interface Props extends TextareaVariantProps, TextFieldProps {
-  css?: CSS
+interface Props extends AriaTextFieldProps, StyledComponentProps {
   label?: string
   disabled?: boolean
   errored?: boolean
   wordCount?: boolean
 }
 
-export type TextareaProps = Props &
-  Omit<React.ComponentPropsWithoutRef<'textarea'>, keyof Props>
+export type TextareaProps = Props & TextareaVariantProps
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   (props, ref) => {
     const {
+      // StyledComponentProps
       css = {},
-      errored,
+      // ComponentProps
       label,
       disabled,
+      errored,
       wordCount,
-      onChange,
       maxLength,
-      ...delegated
+      // AriaTextFieldProps
+      ...ariaSafeProps
     } = props
 
     const variantProps = {errored} as TextareaVariantProps
     const ariaProps = {
       label,
       maxLength,
-      onChange,
-      isDisabled: disabled,
       inputElementType: 'textarea',
-      ...delegated,
-    } as unknown as AriaTextFieldProps // this is fine 🐶🔥
+      ...ariaSafeProps,
+    } as AriaTextFieldProps
 
     const textareaRef = useDOMRef<HTMLTextAreaElement>(ref)
     const {labelProps, inputProps, descriptionProps} = useTextField<'textarea'>(
@@ -52,21 +53,23 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
 
     return (
       <StyledTextareaWrapper>
-        <StyledInputLabel {...labelProps} disabled={!!disabled}>
+        <StyledTextfieldLabel {...labelProps} disabled={!!disabled}>
           {label}
-        </StyledInputLabel>
+        </StyledTextfieldLabel>
         <StyledTextarea
           ref={textareaRef}
           css={css}
-          {...delegated}
           {...inputProps}
           {...variantProps}
         />
         {wordCount ? (
-          <StyledInputHelperText className='word-count' {...descriptionProps}>
+          <StyledTextfieldHelperText
+            className='word-count'
+            {...descriptionProps}
+          >
             {inputProps.value?.toString().length ?? '0'}
             {maxLength ? `/${maxLength}` : null}
-          </StyledInputHelperText>
+          </StyledTextfieldHelperText>
         ) : null}
       </StyledTextareaWrapper>
     )

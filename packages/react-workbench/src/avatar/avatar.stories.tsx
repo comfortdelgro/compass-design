@@ -50,7 +50,7 @@ export const Variants = () => (
 )
 
 export const Group = () => (
-  <tr>
+  <>
     <AvatarGroup>
       <Avatar label='Leonhard Euler' image={images[0]} />
       <Avatar label='Isaac Newton' image={images[1]} />
@@ -60,5 +60,5 @@ export const Group = () => (
       <Avatar label='Ada Lovelace' image={images[0]} />
       <Avatar label='Max Planck' image={images[1]} />
     </AvatarGroup>
-  </tr>
+  </>
 )

@@ -1,44 +1,49 @@
 import {useLink} from '@react-aria/link'
 import type {AriaLinkProps} from '@react-types/link'
-import type {CSS} from '@stitches/react'
-import React, {useRef} from 'react'
+import React from 'react'
+import {StyledComponentProps} from '../utils/stitches.types'
+import {useDOMRef} from '../utils/use-dom-ref'
 import {LinkVariantProps, StyledLink} from './link.styles'
 
-interface Props extends LinkVariantProps {
-  css?: CSS
+interface Props extends AriaLinkProps, StyledComponentProps {
+  href?: string
+  target?: string
   external?: boolean
+  children?: React.ReactNode
 }
 
-export type LinkProps = Props &
-  Omit<React.ComponentPropsWithoutRef<'a'>, keyof Props>
+export type LinkProps = Props & LinkVariantProps
 
-const Link: React.FC<LinkProps> = ({
-  css = {},
-  href,
-  target,
-  external,
-  children,
-  ...delegated
-}) => {
-  const variantProps = {external} as LinkVariantProps
+const Link = React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
+  const {
+    // StyledComponentProps
+    css = {},
+    // ComponentProps
+    href,
+    target,
+    external,
+    children,
+    // AriaLinkProps
+    ...ariaSafeProps
+  } = props
 
-  const ref = useRef<HTMLAnchorElement>(null)
-  const {linkProps} = useLink(delegated as AriaLinkProps, ref)
+  const variantProps = {} as LinkVariantProps
+  const linkRef = useDOMRef<HTMLAnchorElement>(ref)
+  const {linkProps} = useLink({...ariaSafeProps}, linkRef)
 
   return (
     <StyledLink
-      ref={ref}
       css={css}
+      ref={ref}
       href={href}
-      target={target}
+      target={target || (external ? '_blank' : undefined)}
       rel={target === '_blank' || external ? 'noopener noreferrer' : undefined}
-      {...delegated}
       {...linkProps}
       {...variantProps}
     >
       {children}
     </StyledLink>
   )
-}
+})
 
 export default Link

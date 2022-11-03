@@ -1,7 +1,7 @@
-import type {IconProp} from '@fortawesome/fontawesome-svg-core'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import type {CSS} from '@stitches/react'
-import React, {useRef} from 'react'
+import React from 'react'
+import {Icon, IconProp} from '../icon'
+import {StyledComponentProps} from '../utils/stitches.types'
+import {useDOMRef} from '../utils/use-dom-ref'
 import type AvatarGroup from './avatar-group'
 import {AvatarVariantProps, StyledAvatar} from './avatar.styles'
 
@@ -16,36 +16,37 @@ const calculateInitials = (name: string, size: AvatarVariantProps['size']) => {
   return initials
 }
 
-interface Props extends AvatarVariantProps {
-  css?: CSS
+interface Props extends StyledComponentProps {
   label?: string
   icon?: IconProp
   image?: string
 }
-type HtmlSpanProps = React.ComponentPropsWithoutRef<'span'>
-type OmitList = keyof Props | 'children'
 
-export type AvatarProps = Omit<HtmlSpanProps, OmitList> & Props
+export type AvatarProps = Props & AvatarVariantProps
 
-const Avatar: React.FC<AvatarProps> = ({
-  css = {},
-  size,
-  label,
-  icon,
-  image,
-  ...delegated
-}) => {
+const Avatar = React.forwardRef<HTMLSpanElement, AvatarProps>((props, ref) => {
+  const {
+    // StyledComponentProps
+    css = {},
+    // ComponentProps
+    label,
+    icon,
+    image,
+    // VariantProps
+    size = 'md',
+  } = props
+
   const variantProps = {size} as AvatarVariantProps
-  const ref = useRef<HTMLSpanElement>(null)
+  const avatarRef = useDOMRef<HTMLSpanElement>(ref)
 
   return (
-    <StyledAvatar ref={ref} css={css} {...delegated} {...variantProps}>
+    <StyledAvatar css={css} ref={avatarRef} {...variantProps}>
       {label ? (
         <span className='initials'>{calculateInitials(label, size)}</span>
       ) : null}
       {icon ? (
         <div className='icon-wrapper'>
-          <FontAwesomeIcon className='icon' icon={icon} />
+          <Icon className='icon' icon={icon} />
         </div>
       ) : null}
       {image ? (
@@ -53,6 +54,6 @@ const Avatar: React.FC<AvatarProps> = ({
       ) : null}
     </StyledAvatar>
   )
-}
+})
 
 export default Avatar as typeof Avatar & {Group: typeof AvatarGroup}

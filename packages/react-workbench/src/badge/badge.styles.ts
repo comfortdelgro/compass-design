@@ -29,6 +29,7 @@ export const StyledBadge = styled('span', {
       outline: {},
     },
   },
+
   compoundVariants: [
     ...(() => {
       const colors = ['info', 'success', 'danger', 'warning']
@@ -67,8 +68,10 @@ export const StyledBadge = styled('span', {
         .flat()
     })(),
   ],
+
   defaultVariants: {
     variant: 'primary',
+    color: 'info',
   },
 })
 

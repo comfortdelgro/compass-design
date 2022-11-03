@@ -11,6 +11,7 @@ export const StyledBreadcrumbs = styled('nav', {
     alignItems: 'center',
     listStyle: 'none',
   },
+
   '.divider': {
     color: '$typeHeading',
     padding: '0 $2',

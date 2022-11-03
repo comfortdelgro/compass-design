@@ -1,41 +1,85 @@
 import {styled} from '../theme'
 import type {VariantProps} from '../utils/stitches.types'
-import {StyledLoading} from './loading.styles'
+import {blink} from './button.keyframes'
 
-export const StyledButton = styled('button', {
-  position: 'relative',
-  fontFamily: '$sans',
-  lineHeight: '$normal',
-  fontWeight: '$semibold',
-  borderWidth: '$light',
-  borderStyle: 'solid',
-  borderRadius: '$md',
-  cursor: 'pointer',
-  transition: '$button',
+export const StyledLoading = styled('span', {
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  width: '100%',
+  height: '100%',
 
-  '.left-icon, .right-icon': {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+
+  cursor: 'wait',
+
+  '.dots': {
+    display: 'inline-flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '2px',
+  },
+
+  '.dots i': {
+    display: 'inline-block',
+    flexShrink: 0,
+    width: '.375em',
+    height: '.375em',
+    borderRadius: '$full',
+    background: 'currentColor',
+    animation: `${blink} 1.4s infinite both`,
+  },
+
+  '.dots i:nth-child(1)': {animationDelay: '0s'},
+  '.dots i:nth-child(2)': {animationDelay: '0.2s'},
+  '.dots i:nth-child(3)': {animationDelay: '0.4s'},
+})
+
+export const StyledButtonContent = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flexWrap: 'nowrap',
+  flexShrink: 0,
+
+  '.icon': {
     width: '$4',
     height: '$4',
   },
 
-  '.left-icon-wrapper': {
+  '.icon.left': {
     marginRight: '$2',
   },
 
-  '.right-icon-wrapper': {
+  '.icon.right': {
     marginLeft: '$2',
   },
+})
 
-  '.loading-wrapper': {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
+export const StyledButton = styled('button', {
+  position: 'relative',
+  flexShrink: 0,
+
+  fontFamily: '$sans',
+  lineHeight: '$normal',
+  fontWeight: '$semibold',
+
+  borderWidth: '$light',
+  borderStyle: 'solid',
+  borderRadius: '$md',
+
+  cursor: 'pointer',
+  transition: '$button',
+
+  [`${StyledLoading}`]: {
     display: 'none',
-    alignItems: 'center',
-    justifyContent: 'center',
-    cursor: 'wait',
+  },
+
+  [`${StyledButtonContent}`]: {
+    visibility: 'visible',
   },
 
   '&:disabled': {
@@ -50,26 +94,14 @@ export const StyledButton = styled('button', {
       lg: {
         fontSize: '$body2',
         padding: '$2 $6',
-
-        [`${StyledLoading}`]: {
-          height: 'calc(1.5*$4)',
-        },
       },
       md: {
         fontSize: '$body3',
         padding: '$1_5 $4',
-
-        [`${StyledLoading}`]: {
-          height: 'calc(1.5*$3_5)',
-        },
       },
       sm: {
         fontSize: '$label2',
         padding: '$1 $2_5',
-
-        [`${StyledLoading}`]: {
-          height: 'calc(1.5*$3)',
-        },
       },
     },
     variant: {
@@ -111,28 +143,40 @@ export const StyledButton = styled('button', {
         },
       },
     },
-    block: {
+    fullWidth: {
       true: {
         width: '100%',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        paddingLeft: 0,
-        paddingRight: 0,
+
+        [`${StyledButtonContent}`]: {
+          '.children': {
+            flexGrow: 1,
+          },
+        },
       },
     },
     loading: {
       true: {
-        '.loading-wrapper': {
+        [`${StyledLoading}`]: {
           display: 'flex',
         },
-        '.content-wrapper': {
+        [`${StyledButtonContent}`]: {
           visibility: 'hidden',
         },
       },
     },
     iconOnly: {
-      true: {},
+      true: {
+        aspectRatio: '1 / 1',
+        padding: 0,
+
+        [`${StyledButtonContent}`]: {
+          '.children': {
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          },
+        },
+      },
     },
   },
   compoundVariants: [
@@ -141,8 +185,6 @@ export const StyledButton = styled('button', {
       iconOnly: true,
       css: {
         height: 'calc((1.5*$4) + (2*$2))',
-        aspectRatio: '1 / 1',
-        padding: 0,
       },
     },
     {
@@ -150,8 +192,6 @@ export const StyledButton = styled('button', {
       iconOnly: true,
       css: {
         height: 'calc((1.5*$3_5) + (2*$1_5))',
-        aspectRatio: '1 / 1',
-        padding: 0,
       },
     },
     {
@@ -159,14 +199,14 @@ export const StyledButton = styled('button', {
       iconOnly: true,
       css: {
         height: 'calc((1.5*$3) + (2*$1))',
-        aspectRatio: '1 / 1',
-        padding: 0,
       },
     },
   ],
   defaultVariants: {
     size: 'md',
     variant: 'primary',
+    fullWidth: false,
+    loading: false,
     iconOnly: false,
   },
 })

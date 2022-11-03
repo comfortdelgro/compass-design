@@ -19,17 +19,15 @@ export const StyledAlert = styled('div', {
   '.alert-icon': {
     width: '$4',
     height: '$4',
-    marginTop: '1px',
+    marginTop: '3px',
     marginRight: '$2',
-    lineHeight: '$normal',
   },
 
-  // to be updated after icon button variant is added
   '.alert-dismiss-button': {
     position: 'absolute',
-    top: '0',
-    right: '0',
-    margin: '$1 $1 0 0',
+    top: 0,
+    right: 0,
+    margin: '7px 7px 0 0',
   },
 
   variants: {

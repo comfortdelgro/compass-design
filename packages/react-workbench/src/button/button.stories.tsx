@@ -10,7 +10,7 @@ import {
   faMapMarkerAlt,
   faUserEdit,
 } from '@fortawesome/free-solid-svg-icons'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {Icon} from '../icon'
 import {Column, Row} from '../utils/components'
 import Button from './button'
 
@@ -21,7 +21,7 @@ export const Variants: React.FC = () => (
       <Button variant='secondary'>Secondary</Button>
       <Button variant='danger'>Danger</Button>
       <Button variant='ghost'>Ghost</Button>
-      <Button disabled>Disabled</Button>
+      <Button isDisabled>Disabled</Button>
     </Row>
 
     <h3>With Left Icons</h3>
@@ -38,7 +38,7 @@ export const Variants: React.FC = () => (
       <Button variant='ghost' leftIcon={faChevronDown}>
         Ghost
       </Button>
-      <Button disabled leftIcon={faChevronDown}>
+      <Button isDisabled leftIcon={faChevronDown}>
         Disabled
       </Button>
     </Row>
@@ -57,7 +57,7 @@ export const Variants: React.FC = () => (
       <Button variant='ghost' rightIcon={faChevronDown}>
         Ghost
       </Button>
-      <Button disabled rightIcon={faChevronDown}>
+      <Button isDisabled rightIcon={faChevronDown}>
         Disabled
       </Button>
     </Row>
@@ -92,47 +92,27 @@ export const Variants: React.FC = () => (
       >
         Ghost
       </Button>
-      <Button disabled leftIcon={faChevronDown} rightIcon={faMapMarkerAlt}>
+      <Button isDisabled leftIcon={faChevronDown} rightIcon={faMapMarkerAlt}>
         Disabled
       </Button>
     </Row>
 
     <h3>With only Icons</h3>
     <Row>
-      <Button variant='primary' size='lg'>
-        <FontAwesomeIcon icon={faBars} />
+      <Button variant='primary'>
+        <Icon icon={faBars} />
       </Button>
       <Button variant='secondary'>
-        <FontAwesomeIcon icon={faClose} />
+        <Icon icon={faClose} />
       </Button>
       <Button variant='danger'>
-        <FontAwesomeIcon icon={faExclamationTriangle} />
+        <Icon icon={faExclamationTriangle} />
       </Button>
       <Button variant='ghost'>
-        <FontAwesomeIcon icon={faBell} />
+        <Icon icon={faBell} />
       </Button>
-      <Button disabled>
-        <FontAwesomeIcon icon={faUserEdit} />
-      </Button>
-    </Row>
-
-    <h3>With only Icons + Icon Only Option</h3>
-
-    <Row>
-      <Button variant='primary' iconOnly>
-        <FontAwesomeIcon icon={faBars} />
-      </Button>
-      <Button variant='secondary' iconOnly>
-        <FontAwesomeIcon icon={faClose} />
-      </Button>
-      <Button variant='danger' iconOnly>
-        <FontAwesomeIcon icon={faExclamationTriangle} />
-      </Button>
-      <Button variant='ghost' iconOnly>
-        <FontAwesomeIcon icon={faBell} />
-      </Button>
-      <Button disabled iconOnly>
-        <FontAwesomeIcon icon={faUserEdit} />
+      <Button isDisabled>
+        <Icon icon={faUserEdit} />
       </Button>
     </Row>
 
@@ -150,7 +130,7 @@ export const Variants: React.FC = () => (
       <Button loading variant='ghost'>
         Ghost
       </Button>
-      <Button loading disabled>
+      <Button loading isDisabled>
         Disabled
       </Button>
     </Row>
@@ -164,8 +144,8 @@ export const Sizes = () => (
       <Button size='md'>Medium (Default)</Button>
       <Button size='sm'>Small</Button>
 
-      <div style={{width: '300px'}}>
-        <Button size='md' block>
+      <div style={{width: '300px', flexShrink: 0}}>
+        <Button size='md' fullWidth>
           Medium (Block)
         </Button>
       </div>
@@ -182,8 +162,13 @@ export const Sizes = () => (
       <Button size='sm' rightIcon={faChevronDown}>
         Dropdown
       </Button>
-      <div style={{width: '300px'}}>
-        <Button block size='md' leftIcon={faHeadset} rightIcon={faChevronDown}>
+      <div style={{width: '300px', flexShrink: 0}}>
+        <Button
+          size='md'
+          fullWidth
+          leftIcon={faHeadset}
+          rightIcon={faChevronDown}
+        >
           Contact Support
         </Button>
       </div>
