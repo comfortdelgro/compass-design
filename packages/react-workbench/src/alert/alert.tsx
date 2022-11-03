@@ -1,5 +1,4 @@
 import {faClose} from '@fortawesome/free-solid-svg-icons'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React from 'react'
 import Button from '../button/button'
 import {Icon, IconProp} from '../icon'
@@ -41,7 +40,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
 
   return (
     <StyledAlert css={css} ref={alertRef} {...variantProps}>
-      {faIcon ? <FontAwesomeIcon icon={faIcon} className='alert-icon' /> : null}
+      {faIcon ? <Icon icon={faIcon} className='alert-icon' /> : null}
       <div className='alert-content'>{children}</div>
       {dismissible && (
         <Button
