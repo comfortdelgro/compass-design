@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  basePath: process.env.BASE_PATH || '/',
+  basePath: process.env.BASE_PATH || '',
   images: {
     unoptimized: true,
   },
