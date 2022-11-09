@@ -29,7 +29,7 @@ export const StyledTextfieldBox = styled('div', {
   alignItems: 'center',
   borderWidth: '$medium',
   borderStyle: 'solid',
-  borderColor: 'transparent',
+  borderColor: '$divider',
   borderRadius: '$md',
   color: '$typeHeading',
   backgroundColor: '$whiteText',
