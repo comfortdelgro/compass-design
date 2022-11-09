@@ -5,6 +5,7 @@ import fs from 'node:fs/promises'
 // Config
 const INPUT_DIR = 'src'
 const OUTPUT_DIR = 'dist'
+const OUTPUT_ESM_DIR = 'dist/esm'
 
 // Define Utils
 
@@ -24,11 +25,19 @@ const cleanDist: ListrTask = {
   task: () => runInShell(`rimraf ${OUTPUT_DIR}`),
 }
 
-const swcBuild: ListrTask = {
+const swcBuildCommonJS: ListrTask = {
   title: 'Building CommonJS output with SWC',
   task: async () => {
     const buildScript = `swc ${INPUT_DIR} -d ${OUTPUT_DIR}`
     return runInShell(`${buildScript} -C module.type=commonjs`)
+  },
+}
+
+const swcBuildESM: ListrTask = {
+  title: 'Building CommonJS output with SWC',
+  task: async () => {
+    const buildScript = `swc ${INPUT_DIR} -d ${OUTPUT_ESM_DIR}`
+    return runInShell(`${buildScript} -C module.type=es6`)
   },
 }
 
@@ -49,9 +58,18 @@ const dtsBuild: ListrTask = {
 const tasks = new Listr([
   cleanDist,
   {
-    title: 'Build the package',
+    title: 'Build the package with CommonJS',
     task: () => {
-      const subtasks = new Listr([swcBuild, dtsBuild], {concurrent: true})
+      const subtasks = new Listr([swcBuildCommonJS, dtsBuild], {
+        concurrent: true,
+      })
+      return subtasks
+    },
+  },
+  {
+    title: 'Build the package with ESM',
+    task: () => {
+      const subtasks = new Listr([swcBuildESM, dtsBuild], {concurrent: true})
       return subtasks
     },
   },
@@ -76,6 +94,12 @@ const tasks = new Listr([
 
       if (packageJson.publishConfig) delete packageJson.publishConfig
       if (packageJson.files) delete packageJson.files
+
+      //Generate file for esm version
+      fs.writeFile(
+        `${OUTPUT_ESM_DIR}/package.json`,
+        JSON.stringify(packageJson, null, 2),
+      )
 
       return fs.writeFile(
         `${OUTPUT_DIR}/package.json`,
