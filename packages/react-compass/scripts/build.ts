@@ -4,7 +4,9 @@ import fs from 'node:fs/promises'
 
 // Config
 const INPUT_DIR = 'src'
+
 const OUTPUT_DIR = 'dist'
+const OUTPUT_COMMONJS_DIR = 'dist/commonjs'
 const OUTPUT_ESM_DIR = 'dist/esm'
 
 // Define Utils
@@ -28,7 +30,7 @@ const cleanDist: ListrTask = {
 const swcBuildCommonJS: ListrTask = {
   title: 'Building CommonJS output with SWC',
   task: async () => {
-    const buildScript = `swc ${INPUT_DIR} -d ${OUTPUT_DIR}`
+    const buildScript = `swc ${INPUT_DIR} -d ${OUTPUT_COMMONJS_DIR}`
     return runInShell(`${buildScript} -C module.type=commonjs`)
   },
 }
@@ -47,7 +49,7 @@ const dtsBuild: ListrTask = {
     const buildScript = `tsc -p tsconfig.build.json`
     const options = {
       declaration: true,
-      declarationDir: 'dist',
+      declarationDir: OUTPUT_COMMONJS_DIR,
       emitDeclarationOnly: true,
     }
 
@@ -83,22 +85,39 @@ const tasks = new Listr([
       packageJson.scripts = {}
       packageJson.devDependencies = {}
 
-      const pattern = new RegExp(`^${OUTPUT_DIR}/`)
-      const pathRefs = ['main', 'module', 'types']
+      // const pattern = new RegExp(`^${OUTPUT_DIR}/`)
+      // const pathRefs = ['main', 'module', 'types']
 
-      for (const ref of pathRefs) {
-        if (packageJson[ref]) {
-          packageJson[ref] = packageJson[ref].replace(pattern, './')
-        }
+      // for (const ref of pathRefs) {
+      //   if (packageJson[ref]) {
+      //     packageJson[ref] = packageJson[ref].replace(pattern, './')
+      //   }
+      // }
+      packageJson.type = 'module'
+      packageJson.main = './commonjs/index.js'
+      packageJson.types = './commonjs/index.d.js'
+      packageJson.module = './esm/index.js'
+      packageJson.exports = {
+        '.': {
+          import: './esm/index.js',
+          required: './commonjs/index.js',
+          default: './esm/index.js',
+        },
       }
 
       if (packageJson.publishConfig) delete packageJson.publishConfig
       if (packageJson.files) delete packageJson.files
 
-      //Generate file for esm version
+      // Generate package.json inside commonjs to interpret file to commonjs
       fs.writeFile(
-        `${OUTPUT_ESM_DIR}/package.json`,
-        JSON.stringify(packageJson, null, 2),
+        `${OUTPUT_COMMONJS_DIR}/package.json`,
+        JSON.stringify(
+          {
+            type: 'commonjs',
+          },
+          null,
+          2,
+        ),
       )
 
       return fs.writeFile(
