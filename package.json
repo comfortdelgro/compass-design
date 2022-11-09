@@ -1,6 +1,8 @@
 {
-  "name": "@comfortdelgro/compass-design-monorepo",
+  "name": "react-compass",
   "private": true,
+  "license": "MIT",
+  "author": "ComfortDelGro Corporation Limited (https://www.comfortdelgro.com/)",
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
