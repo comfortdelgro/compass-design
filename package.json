@@ -1,6 +1,5 @@
 {
   "name": "@comfortdelgro/compass-design-monorepo",
-  "version": "0.1.0",
   "private": false,
   "description": "Monorepo of react compass",
   "keywords": [
