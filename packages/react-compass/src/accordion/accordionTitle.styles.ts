@@ -6,6 +6,7 @@ export const StyledAccordionTitle = styled('div', {
   display: 'flex',
   position: 'relative',
   padding: '$4 $6 $4 $5',
+  color: '$primaryText',
   borderWidth: '$light',
   borderStyle: 'solid',
   borderColor: '$gray30',

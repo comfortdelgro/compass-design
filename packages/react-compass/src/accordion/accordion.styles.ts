@@ -4,6 +4,7 @@ export const StyledAccordion = styled('div', {
   width: '100%',
   position: 'relative',
   backgroundColor: '$background',
+  color: '$primaryText',
   borderRadius: '$lg',
   '& .accordion-body': {
     backgroundColor: 'inherit',

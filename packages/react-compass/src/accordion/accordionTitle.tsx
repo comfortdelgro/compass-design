@@ -1,4 +1,5 @@
 import {faChevronDown} from '@fortawesome/free-solid-svg-icons'
+import React from 'react'
 import {Icon, IconProp} from '../icon'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {StyledAccordionTitle} from './accordionTitle.styles'

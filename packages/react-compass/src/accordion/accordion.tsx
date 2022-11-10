@@ -5,6 +5,7 @@ import {IconProp} from '../icon'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {StyledAccordion} from './accordion.styles'
+import AccordionTable from './accordionTable'
 import {AccordionTitle} from './accordionTitle'
 
 interface Props extends StyledComponentProps {
@@ -77,4 +78,4 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
   },
 )
 
-export default Accordion
+export default Accordion as typeof Accordion & {Table: typeof AccordionTable}
