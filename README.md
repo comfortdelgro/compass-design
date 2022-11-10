@@ -68,10 +68,10 @@ The React Compass are licensed under the Apache 2.0 License.
 
 ## Supported Browsers
 
-- Microsoft Edge: last 3 versions
-- Mozilla Firefox: last 3 versions
-- Google Chrome: last 3 versions
-- Apple Safari: last 3 versions
-- Opera: last 3 versions
+- Microsoft Edge: last 2 versions
+- Mozilla Firefox: last 2 versions
+- Google Chrome: last 2 versions
+- Apple Safari: last 2 versions
+- Opera: last 2 versions
 
 ## Thank you
