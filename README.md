@@ -46,6 +46,13 @@ import {Alert} from '@comfortdelgro/react-compass'
 ;<Alert>Button Label</Alert>
 ```
 
+or
+
+```tsx
+import Alert from '@comfortdelgro/react-compass'
+;<Alert>Button Label</Alert>
+```
+
 ## Reporting a Bug
 
 If you spot a bug, inconsistency, or typo, please
@@ -64,7 +71,7 @@ React Compass follows [semantic versioning](https://semver.org/).
 
 ## License
 
-The React Compass are licensed under the Apache 2.0 License.
+The React Compass are licensed under the MIT License.
 
 ## Supported Browsers
 
