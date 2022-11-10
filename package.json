@@ -1,6 +1,21 @@
 {
   "name": "@comfortdelgro/compass-design-monorepo",
-  "private": true,
+  "version": "0.1.0",
+  "private": false,
+  "description": "Monorepo of react compass",
+  "keywords": [
+    "design system",
+    "react compass",
+    "react component library"
+  ],
+  "homepage": "https://github.com/comfortdelgro/compass-design#readme",
+  "bugs": {
+    "url": "https://github.com/comfortdelgro/compass-design/issues/new?labels=bug&template=bug.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/comfortdelgro/compass-design"
+  },
   "license": "MIT",
   "author": "ComfortDelGro Corporation Limited (https://www.comfortdelgro.com/)",
   "scripts": {
