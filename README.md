@@ -49,7 +49,7 @@ import {Alert} from '@comfortdelgro/react-compass'
 or
 
 ```tsx
-import Alert from '@comfortdelgro/react-compass'
+import Alert from '@comfortdelgro/react-compass/alert'
 ;<Alert>Button Label</Alert>
 ```
 
