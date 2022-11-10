@@ -1,6 +1,23 @@
 {
   "name": "@comfortdelgro/react-compass",
   "version": "0.1.0",
+  "description": "React compass",
+  "keywords": [
+    "design system",
+    "react compass",
+    "react component library"
+  ],
+  "homepage": "https://github.com/comfortdelgro/compass-design#readme",
+  "bugs": {
+    "url": "https://github.com/comfortdelgro/compass-design/issues/new?labels=bug&template=bug.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/comfortdelgro/compass-design",
+    "directory": "packages/react-compass"
+  },
+  "license": "MIT",
+  "author": "ComfortDelGro Corporation Limited (https://www.comfortdelgro.com/)",
   "sideEffects": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
