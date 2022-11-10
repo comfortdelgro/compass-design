@@ -2,15 +2,13 @@ import {execaCommand} from 'execa'
 import Listr, {ListrTask} from 'listr'
 import fs from 'node:fs/promises'
 
-// Config
+//=================================== CONFIG ===================================
 const INPUT_DIR = 'src'
-
 const OUTPUT_DIR = 'dist'
 const OUTPUT_COMMONJS_DIR = 'dist/commonjs'
 const OUTPUT_ESM_DIR = 'dist/esm'
 
-// Define Utils
-
+//=================================== UTILS ===================================
 const runInShell = (c: string) =>
   execaCommand(c, {stdio: 'inherit'}).catch(() => process.exit(1))
 const premiseOf = <T>(p: Promise<T>) => p.then(() => true).catch(() => false)
@@ -19,14 +17,14 @@ const makeCliOptions = (o: Record<string, unknown>) =>
     .map(([key, value]) => `--${key} ${value}`)
     .join(' ')
 
-// Define Tasks
-
+//=================================== CLEAN ===================================
 const cleanDist: ListrTask = {
   title: 'Removing existing dist/ directory to ensure a clean build',
   skip: () => !premiseOf(fs.stat(OUTPUT_DIR)),
   task: () => runInShell(`rimraf ${OUTPUT_DIR}`),
 }
 
+//=================================== BUILDING FILE FOR COMMONJS ===================================
 const swcBuildCommonJS: ListrTask = {
   title: 'Building CommonJS output with SWC',
   task: async () => {
@@ -35,16 +33,8 @@ const swcBuildCommonJS: ListrTask = {
   },
 }
 
-const swcBuildESM: ListrTask = {
-  title: 'Building CommonJS output with SWC',
-  task: async () => {
-    const buildScript = `swc ${INPUT_DIR} -d ${OUTPUT_ESM_DIR}`
-    return runInShell(`${buildScript} -C module.type=es6`)
-  },
-}
-
-const dtsBuild: ListrTask = {
-  title: 'Building typescript declaration files',
+const dtsBuildCommonJS: ListrTask = {
+  title: 'Building typescript declaration files for CommonJS',
   task: async () => {
     const buildScript = `tsc -p tsconfig.build.json`
     const options = {
@@ -57,12 +47,36 @@ const dtsBuild: ListrTask = {
   },
 }
 
+//=================================== BUILDING FILE FOR ESM ===================================
+const swcBuildESM: ListrTask = {
+  title: 'Building CommonJS output with SWC',
+  task: async () => {
+    const buildScript = `swc ${INPUT_DIR} -d ${OUTPUT_ESM_DIR}`
+    return runInShell(`${buildScript} -C module.type=es6`)
+  },
+}
+
+const dtsBuildESM: ListrTask = {
+  title: 'Building typescript declaration files for ESM',
+  task: async () => {
+    const buildScript = `tsc -p tsconfig.build.json`
+    const options = {
+      declaration: true,
+      declarationDir: OUTPUT_ESM_DIR,
+      emitDeclarationOnly: true,
+    }
+
+    return runInShell(`${buildScript} ${makeCliOptions(options)}`)
+  },
+}
+
+//=================================== RUNNER ===================================
 const tasks = new Listr([
   cleanDist,
   {
     title: 'Build the package with CommonJS',
     task: () => {
-      const subtasks = new Listr([swcBuildCommonJS, dtsBuild], {
+      const subtasks = new Listr([swcBuildCommonJS, dtsBuildCommonJS], {
         concurrent: true,
       })
       return subtasks
@@ -71,7 +85,7 @@ const tasks = new Listr([
   {
     title: 'Build the package with ESM',
     task: () => {
-      const subtasks = new Listr([swcBuildESM, dtsBuild], {concurrent: true})
+      const subtasks = new Listr([swcBuildESM, dtsBuildESM], {concurrent: true})
       return subtasks
     },
   },
@@ -84,18 +98,9 @@ const tasks = new Listr([
 
       packageJson.scripts = {}
       packageJson.devDependencies = {}
-
-      // const pattern = new RegExp(`^${OUTPUT_DIR}/`)
-      // const pathRefs = ['main', 'module', 'types']
-
-      // for (const ref of pathRefs) {
-      //   if (packageJson[ref]) {
-      //     packageJson[ref] = packageJson[ref].replace(pattern, './')
-      //   }
-      // }
       packageJson.type = 'module'
       packageJson.main = './commonjs/index.js'
-      packageJson.types = './commonjs/index.d.js'
+      packageJson.types = './commonjs/index.d.ts'
       packageJson.module = './esm/index.js'
       packageJson.exports = {
         '.': {
