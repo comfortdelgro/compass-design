@@ -13,7 +13,6 @@ implement user experiences consistent with
 <a href="https://github.com/comfortdelgro/compass-design/actions/workflows/release.yml">
   <img alt="Release" src="https://github.com/comfortdelgro/compass-design/actions/workflows/release.yml/badge.svg">
 </a>
----
 
 ## Getting started
 
