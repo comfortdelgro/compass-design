@@ -1,30 +1,35 @@
+import {faQuestionCircle} from '@fortawesome/free-regular-svg-icons'
 import {faChevronDown} from '@fortawesome/free-solid-svg-icons'
-import React from 'react'
+import React, {useContext} from 'react'
 import {Icon, IconProp} from '../icon'
 import {StyledComponentProps} from '../utils/stitches.types'
+import AccordionContext, {AccordionContextType} from './accordionContext'
 import {StyledAccordionTitle} from './accordionTitle.styles'
 
 interface Props extends StyledComponentProps {
-  title: string | React.ReactNode
-  icon: false | IconProp
-  expand: boolean
-  setExpand: () => void
-  onExpandedChange?:
-    | ((e: React.MouseEvent<HTMLElement, MouseEvent>) => void)
-    | undefined
+  icon?: false | IconProp
+  children: string | React.ReactNode
 }
 
-export type AccordionTitleProps = Props
+export type AccordionTitleProps = Props &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
-export const AccordionTitle = (props: AccordionTitleProps) => {
-  const {icon, expand, title, css = {}, onExpandedChange, setExpand} = props
+export const AccordionTitle = React.forwardRef<
+  HTMLDivElement,
+  AccordionTitleProps
+>((props: AccordionTitleProps, ref) => {
+  const {icon = faQuestionCircle, children, css = {}} = props
+
+  const contextValue = useContext(AccordionContext) as AccordionContextType
+
+  const {expand, onExpandedChange, setExpand} = contextValue
 
   const renderTitle = () => {
     //render title as h1 if it is a string
-    if (typeof title === 'string') {
-      return <h1>{title}</h1>
+    if (typeof children === 'string') {
+      return <h1>{children}</h1>
     }
-    return title
+    return children
   }
 
   const handleOnClick = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
@@ -50,6 +55,7 @@ export const AccordionTitle = (props: AccordionTitleProps) => {
     <StyledAccordionTitle
       className={`accordion-title-wrapper ${expand ? 'open' : 'close'}`}
       expand={expand ? 'open' : 'close'}
+      ref={ref}
       css={css}
       onClick={handleOnClick}
     >
@@ -60,4 +66,4 @@ export const AccordionTitle = (props: AccordionTitleProps) => {
       </div>
     </StyledAccordionTitle>
   )
-}
+})

@@ -1,8 +1,8 @@
-import {faPlusCircle} from '@fortawesome/free-solid-svg-icons'
 import {useState} from 'react'
 import {Column} from '../utils/components'
 import Accordion from './accordion'
 import AccordionTable from './accordionTable'
+import {AccordionTitle} from './accordionTitle'
 
 const lorem = `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi,
   officiis corporis magnam quo expedita nostrum temporibus quibusdam ipsa
@@ -25,19 +25,29 @@ export const Default: React.FC = () => {
     <Column>
       <h3>Default with icon</h3>
 
-      <Accordion title={'Title'}>{lorem}</Accordion>
+      <Accordion>
+        <AccordionTitle>Title</AccordionTitle>
+        {lorem}
+      </Accordion>
 
-      <Accordion icon={faPlusCircle} title={<p>{lorem}</p>}>
+      <Accordion>
+        <AccordionTitle>
+          <p>{lorem}</p>
+        </AccordionTitle>
         {lorem}
       </Accordion>
 
       <h3>Default without icon</h3>
 
-      <Accordion icon={false} title={'Title'}>
+      <Accordion>
+        <AccordionTitle icon={false}>Title</AccordionTitle>
         {lorem}
       </Accordion>
 
-      <Accordion icon={false} title={<p>{lorem}</p>}>
+      <Accordion>
+        <AccordionTitle icon={false}>
+          <p>{lorem}</p>
+        </AccordionTitle>
         {lorem}
       </Accordion>
 
@@ -45,14 +55,17 @@ export const Default: React.FC = () => {
 
       <Accordion
         defaultExpand={true}
-        title={<p>{lorem}</p>}
         css={{background: 'Wheat', color: 'SaddleBrown'}}
-        titleCss={{
-          background: 'burlywood',
-          textAlign: 'center',
-          color: 'currentColor',
-        }}
       >
+        <AccordionTitle
+          css={{
+            background: 'burlywood',
+            textAlign: 'center',
+            color: 'currentColor',
+          }}
+        >
+          <p>{lorem}</p>
+        </AccordionTitle>
         {lorem}
       </Accordion>
 
@@ -61,24 +74,30 @@ export const Default: React.FC = () => {
       <Accordion
         expand={expand === 'first'}
         onExpandedChange={handleControlledAccordion('first')}
-        title={<p>{lorem}</p>}
       >
+        <AccordionTitle>
+          <p>{lorem}</p>
+        </AccordionTitle>
         {lorem}
         {lorem}
       </Accordion>
       <Accordion
         expand={expand === 'second'}
         onExpandedChange={handleControlledAccordion('second')}
-        title={<p>{lorem}</p>}
       >
+        <AccordionTitle>
+          <p>{lorem}</p>
+        </AccordionTitle>
         {lorem}
         {lorem}
       </Accordion>
       <Accordion
         expand={expand === 'third'}
         onExpandedChange={handleControlledAccordion('third')}
-        title={<p>{lorem}</p>}
       >
+        <AccordionTitle>
+          <p>{lorem}</p>
+        </AccordionTitle>
         {lorem}
         {lorem}
       </Accordion>
@@ -88,19 +107,19 @@ export const Default: React.FC = () => {
 
 export const Table: React.FC = () => {
   const data = [
-    {leftData: 'Job ID', rightData: 'CDG180-1120'},
-    {leftData: 'Status', rightData: 'Ended'},
-    {leftData: 'Job Title', rightData: 'Demo 8'},
-    {leftData: 'Number of Pax', rightData: '4'},
-    {leftData: 'Job Type', rightData: 'One-way Transfer'},
-    {leftData: 'Date/Time', rightData: '10/10/2022, 04:10 PM'},
-    {leftData: 'Pick-up Location', rightData: 'Comfort Building'},
+    {id: 1, leftData: 'Job ID', rightData: 'CDG180-1120'},
+    {id: 2, leftData: 'Status', rightData: 'Ended'},
+    {id: 3, leftData: 'Job Title', rightData: 'Demo 8'},
+    {id: 4, leftData: 'Number of Pax', rightData: '4'},
+    {id: 5, leftData: 'Job Type', rightData: 'One-way Transfer'},
+    {id: 6, leftData: 'Date/Time', rightData: '10/10/2022, 04:10 PM'},
+    {id: 7, leftData: 'Pick-up Location', rightData: 'Comfort Building'},
   ]
 
   const renderAccordionTableItems = () => {
     return data.map((eachData) => {
       return (
-        <div>
+        <div key={eachData.id}>
           <p>
             <b>{eachData.leftData}</b>
           </p>
@@ -111,13 +130,10 @@ export const Table: React.FC = () => {
   }
 
   return (
-    <Accordion
-      title={
-        <h2>
-          <b>Business Profile</b>
-        </h2>
-      }
-    >
+    <Accordion>
+      <AccordionTitle>
+        <h2>Business Profile</h2>
+      </AccordionTitle>
       <p>{lorem}</p>
       <AccordionTable>{renderAccordionTableItems()}</AccordionTable>
       <p>{lorem}</p>

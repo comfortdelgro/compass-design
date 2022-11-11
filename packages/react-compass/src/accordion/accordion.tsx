@@ -1,20 +1,15 @@
-import {faQuestionCircle} from '@fortawesome/free-regular-svg-icons'
-import {CSS} from '@stitches/react'
 import React, {useState} from 'react'
-import {IconProp} from '../icon'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {StyledAccordion} from './accordion.styles'
+import AccordionContext from './accordionContext'
 import AccordionTable from './accordionTable'
 import {AccordionTitle} from './accordionTitle'
 
 interface Props extends StyledComponentProps {
-  titleCss?: CSS
-  icon?: false | IconProp
-  title: string | React.ReactNode
   expand?: boolean
-  children: React.ReactNode
   defaultExpand?: boolean
+  children: React.ReactNode
   onExpandedChange?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void
 }
 
@@ -26,13 +21,10 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
     const {
       // StyledComponentProps
       css = {},
-      titleCss = {},
       // ComponentProps
-      title,
-      icon = faQuestionCircle,
       expand: controlledExpand, //map the prop to a different name
       defaultExpand = false,
-      children,
+      children: childrenProps,
       onExpandedChange,
       // HTML Div props
       ...delegated
@@ -48,14 +40,22 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
       return uncontrolledExpand
     })()
 
-    // Toggle expansion state only if user doesnt control the component
+    // Toggle expansion state only when user doesnt control the component
     const setExpandIfUncontrolled = React.useCallback(() => {
       if (!controlledExpand !== undefined) {
         setUncontrolledExpand((prevState) => !prevState)
       }
     }, [])
 
+    const contextValue = React.useMemo(
+      () => ({expand, setExpand: setExpandIfUncontrolled, onExpandedChange}),
+      [expand, setExpandIfUncontrolled, onExpandedChange],
+    )
+
     const accordionRef = useDOMRef<HTMLDivElement>(ref)
+
+    //get the first child as an accordion title
+    const [accordionTitle, ...children] = React.Children.toArray(childrenProps)
 
     return (
       <StyledAccordion
@@ -64,18 +64,16 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
         css={css}
         ref={accordionRef}
       >
-        <AccordionTitle
-          css={titleCss}
-          title={title}
-          expand={expand}
-          icon={icon}
-          onExpandedChange={onExpandedChange}
-          setExpand={setExpandIfUncontrolled}
-        />
-        <div className='accordion-body'>{children}</div>
+        <AccordionContext.Provider value={contextValue}>
+          {accordionTitle}
+          <div className='accordion-body'>{children}</div>
+        </AccordionContext.Provider>
       </StyledAccordion>
     )
   },
 )
 
-export default Accordion as typeof Accordion & {Table: typeof AccordionTable}
+export default Accordion as typeof Accordion & {
+  Table: typeof AccordionTable
+  Title: typeof AccordionTitle
+}
