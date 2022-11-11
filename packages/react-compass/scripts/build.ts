@@ -17,6 +17,26 @@ const makeCliOptions = (o: Record<string, unknown>) =>
     .map(([key, value]) => `--${key} ${value}`)
     .join(' ')
 
+const getTypesVersions = async () => {
+  const result: any = {}
+  const exclude = ['utils']
+  const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
+  const folders = await fs.readdir(OUTPUT_ESM_DIR, {withFileTypes: true})
+  const directoriesInDIrectory = folders
+    .filter((item) => item.isDirectory())
+    .map((item) => item.name)
+  directoriesInDIrectory.forEach((item) => {
+    if (!exclude.includes(item)) {
+      result[capitalize(item)] = [
+        `esm/${item}/index.d.ts`,
+        `commonjs/${item}/index.d.ts`,
+      ]
+      result[item] = [`esm/${item}/index.d.ts`, `commonjs/${item}/index.d.ts`]
+    }
+  })
+  return result
+}
+
 //=================================== CLEAN ===================================
 const cleanDist: ListrTask = {
   title: 'Removing existing dist/ directory to ensure a clean build',
@@ -107,6 +127,17 @@ const tasks = new Listr([
           import: './esm/index.js',
           required: './commonjs/index.js',
           default: './esm/index.js',
+        },
+        './*': {
+          import: './esm/*/index.js',
+          required: './commonjs/*/index.js',
+          default: './esm/*/index.js',
+        },
+      }
+      const typesVersions = await getTypesVersions()
+      packageJson.typesVersions = {
+        '*': {
+          ...typesVersions,
         },
       }
 
