@@ -5,5 +5,5 @@ export const StyledCardBody = styled('div', {
   position: 'relative',
   backgroundColor: 'inherit',
   padding: '$6 $4 $6 $4',
-  borderRadius: '4px',
+  borderRadius: '$md',
 })
