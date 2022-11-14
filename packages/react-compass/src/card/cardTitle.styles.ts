@@ -8,5 +8,6 @@ export const StyledBCardTitle = styled('div', {
   '& .card-default-title': {
     fontSize: '$header4',
     margin: 0,
+    marginBottom: '12px',
   },
 })
