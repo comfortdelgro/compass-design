@@ -1,0 +1,42 @@
+{
+  "name": "@comfortdelgro/compass-icons",
+  "version": "0.0.0",
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    "./react/*": {
+      "require": "./react/*.cjs",
+      "import": "./react/*.mjs",
+      "types": "./react/*.d.ts"
+    },
+    "./iconify/*": {
+      "require": "./iconify/*.cjs",
+      "import": "./iconify/*.mjs",
+      "types": "./iconify/*.d.ts"
+    }
+  },
+  "files": [
+    "react",
+    "iconify",
+    "svgs"
+  ],
+  "scripts": {
+    "build": "tsx scripts/build.ts"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@iconify/tools": "^2.1.1",
+    "@iconify/types": "^2.0.0",
+    "@svgr/core": "^6.5.1",
+    "@swc/cli": "^0.1.57",
+    "@swc/core": "^1.3.10",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
+    "execa": "^6.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "rimraf": "^3.0.2",
+    "tsx": "^3.10.4",
+    "typescript": "^4.8.4"
+  }
+}
