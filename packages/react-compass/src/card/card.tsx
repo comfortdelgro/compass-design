@@ -8,6 +8,7 @@ import CardTitle from './cardTitle'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
+  isDisabled?: boolean
 }
 
 export type CardProps = Props &
@@ -20,7 +21,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
     // StyledComponentProps
     css = {},
     // VariantProps
-    variant = 'default',
+    isDisabled = false,
     size = 'full',
     // HTMLDiv Props
     ...delegated
@@ -30,7 +31,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
 
   return (
     <StyledCard
-      variant={variant}
+      variant={isDisabled ? 'disabled' : 'default'}
       size={size}
       css={css}
       ref={cardRef}

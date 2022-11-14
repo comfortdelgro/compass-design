@@ -1,6 +1,6 @@
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
-import {StyledBCardTitle} from './cardTitle.styles'
+import {StyledCardTitle, StyledCardTitleContainer} from './cardTitle.styles'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
@@ -15,15 +15,15 @@ const CardTitle = React.forwardRef<HTMLDivElement, CardTitleProps>(
 
     const renderTitle = () => {
       if (typeof children === 'string') {
-        return <h2 className='card-default-title'>{children}</h2>
+        return <StyledCardTitle>{children}</StyledCardTitle>
       }
       return children
     }
 
     return (
-      <StyledBCardTitle css={css} ref={ref} {...delegated}>
+      <StyledCardTitleContainer css={css} ref={ref} {...delegated}>
         {renderTitle()}
-      </StyledBCardTitle>
+      </StyledCardTitleContainer>
     )
   },
 )

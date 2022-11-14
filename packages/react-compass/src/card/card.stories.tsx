@@ -76,7 +76,7 @@ export const Variants: React.FC = () => {
         </Card.Body>
       </Card>
       <h3>Disabled</h3>
-      <Card variant={isDisabled ? 'disabled' : 'default'} size='large'>
+      <Card isDisabled={true} size='large'>
         <Card.Body>
           <Card.Title>Card title</Card.Title>
           <p style={{margin: 0}}>{lorem.slice(0, lorem.length / 2)}</p>
