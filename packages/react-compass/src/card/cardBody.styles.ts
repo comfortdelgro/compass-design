@@ -6,4 +6,5 @@ export const StyledCardBody = styled('div', {
   backgroundColor: 'inherit',
   padding: '$6 $4 $6 $4',
   borderRadius: '$md',
+  lineHeight: '$normal',
 })
