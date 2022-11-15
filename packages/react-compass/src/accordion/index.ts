@@ -1,6 +1,6 @@
 import Accordion from './accordion'
 import AccordionTable from './accordionTable'
-import {AccordionTitle} from './accordionTitle'
+import AccordionTitle from './accordionTitle'
 
 export {AccordionProps} from './accordion'
 export {AccordionTableProps} from './accordionTable'

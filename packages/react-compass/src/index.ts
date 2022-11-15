@@ -1,4 +1,9 @@
-export * from './accordion'
+export {
+  AccordionProps,
+  AccordionTableProps,
+  AccordionTitleProps,
+  default as Accordion,
+} from './accordion'
 export * from './alert'
 export * from './avatar'
 export * from './badge'

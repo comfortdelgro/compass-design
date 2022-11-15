@@ -4,13 +4,12 @@ import {useDOMRef} from '../utils/use-dom-ref'
 import {StyledAccordion} from './accordion.styles'
 import AccordionContext from './accordionContext'
 import AccordionTable from './accordionTable'
-import {AccordionTitle} from './accordionTitle'
-
+import AccordionTitle from './accordionTitle'
 interface Props extends StyledComponentProps {
   expand?: boolean
   defaultExpand?: boolean
   children: React.ReactNode
-  onExpandedChange?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void
+  onExpandChange?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void
 }
 
 export type AccordionProps = Props &
@@ -25,14 +24,14 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
       expand: controlledExpand, //map the prop to a different name
       defaultExpand = false,
       children: childrenProps,
-      onExpandedChange,
+      onExpandChange,
       // HTML Div props
       ...delegated
     } = props
 
     const [uncontrolledExpand, setUncontrolledExpand] = useState(defaultExpand)
 
-    // Decide component expansion state managed by its own or by user
+    // Component expansion state managed by its own or by user
     const expand: boolean = (() => {
       if (controlledExpand !== undefined) {
         return controlledExpand
@@ -48,8 +47,8 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
     }, [])
 
     const contextValue = React.useMemo(
-      () => ({expand, setExpand: setExpandIfUncontrolled, onExpandedChange}),
-      [expand, setExpandIfUncontrolled, onExpandedChange],
+      () => ({expand, setExpand: setExpandIfUncontrolled, onExpandChange}),
+      [expand, setExpandIfUncontrolled, onExpandChange],
     )
 
     const accordionRef = useDOMRef<HTMLDivElement>(ref)

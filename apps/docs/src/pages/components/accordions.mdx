@@ -1,0 +1,258 @@
+import ComponentDisplay from 'components/ComponentDisplay'
+import {Callout} from 'nextra-theme-docs'
+import {Accordion} from '@comfortdelgro/react-compass'
+
+# Accordions
+
+Build vertically collapsing accordions in combination with the Collapse component
+
+## Example
+
+### Basic Example
+
+```tsx {22}
+import {Accordion} from '@comfortdelgro/react-compass'
+
+function BasicExample() {
+  return (
+    <Accordion>
+      <Accordion.Title>Title</Accordion.Title>
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi,
+        officiis
+      </p>
+    </Accordion>
+  )
+}
+```
+
+<ComponentDisplay>
+  <Accordion>
+    <Accordion.Title><h1 style={{fontSize: '32px', fontWeight: 'bold'}}>Title</h1></Accordion.Title>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi, officiis</p>
+
+  </Accordion>
+</ComponentDisplay>
+
+### Controlled Accordion
+
+Manually control the behavior of accordions
+
+```tsx {9, 22, 23, 33, 34, 44, 45, 11-18 }
+import {Accordion} from '@comfortdelgro/react-compass'
+
+function ControlledAccordion() {
+    const lorem = `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi,
+    officiis corporis magnam quo expedita nostrum temporibus quibusdam ipsa
+    iste a consequuntur, adipisci eaque. Nobis voluptates impedit obcaecati
+    error optio consequatur.`
+
+    const [expand, setExpand] = useState<string | false>(false)
+
+    const handleControlledAccordion = (id: string) => () => {
+      setExpand((previous) => {
+        if (previous === id) {
+          return false
+        }
+        return id
+      })
+    }
+
+    return (
+      <Accordion
+        expand={expand === 'first'}
+        onExpandChange={handleControlledAccordion('first')}
+      >
+        <Accordion.Title>
+          <p>{lorem}</p>
+        </Accordion.Title>
+        {lorem}
+        {lorem}
+      </Accordion>
+
+      <Accordion
+        expand={expand === 'second'}
+        onExpandChange={handleControlledAccordion('second')}
+      >
+        <Accordion.Title>
+          <p>{lorem}</p>
+        </Accordion.Title>
+        {lorem}
+        {lorem}
+      </Accordion>
+
+      <Accordion
+        expand={expand === 'third'}
+        onExpandChange={handleControlledAccordion('third')}
+      >
+        <Accordion.Title>
+          <p>{lorem}</p>
+        </Accordion.Title>
+        {lorem}
+        {lorem}
+      </Accordion>
+    )
+}
+```
+
+<Callout>
+  See this example in
+  [ladle](https://comfortdelgro.github.io/compass-design/ladle/?story=accordion--default)
+</Callout>
+
+### Expand by default
+
+Set the Accordion to expand by default
+
+```tsx {5}
+import {Accordion} from '@comfortdelgro/react-compass'
+
+function ExpandDefault() {
+  return (
+    <Accordion defaultExpand={true}>
+      <Accordion.Title>Title</Accordion.Title>
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi,
+        officiis
+      </p>
+    </Accordion>
+  )
+}
+```
+
+<ComponentDisplay>
+  <Accordion defaultExpand={true}>
+    <Accordion.Title>
+      <h1 style={{fontSize: '32px', fontWeight: 'bold'}}>Title</h1>
+    </Accordion.Title>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi, officiis</p>
+  </Accordion>
+</ComponentDisplay>
+
+### Table Accordion
+
+```tsx {5}
+import {Accordion} from '@comfortdelgro/react-compass'
+
+function TableAccordion() {
+   const data = [
+    {id: 1, leftData: 'Job ID', rightData: 'CDG180-1120'},
+    {id: 2, leftData: 'Status', rightData: 'Ended'},
+    {id: 3, leftData: 'Job Title', rightData: 'Demo 8'},
+    {id: 4, leftData: 'Number of Pax', rightData: '4'},
+    {id: 5, leftData: 'Job Type', rightData: 'One-way Transfer'},
+    {id: 6, leftData: 'Date/Time', rightData: '10/10/2022, 04:10 PM'},
+    {id: 7, leftData: 'Pick-up Location', rightData: 'Comfort Building'},
+  ]
+
+  const renderAccordionTableItems = () => {
+    return data.map((eachData) => {
+      return (
+        <div key={eachData.id}>
+          <p>
+            <b>{eachData.leftData}</b>
+          </p>
+          <p style={{textAlign: 'left'}}>{eachData.rightData}</p>
+        </div>
+      )
+    })
+  }
+
+  return (
+    <Accordion>
+      <Accordion.Title>
+        <h2>Business Profile</h2>
+      </Accordion.Title>
+      <p>{lorem}</p>
+      <Accordion.Table>{renderAccordionTableItems()}</Accordion.Table>
+      <p>{lorem}</p>
+    </Accordion>
+  )
+}
+```
+
+<Callout>
+  See this example in
+  [ladle](https://comfortdelgro.github.io/compass-design/ladle/?story=accordion--table)
+</Callout>
+
+## Custom Accordions
+
+You can customize your accordions whatever you like !
+
+```tsx {7, 10-15}
+import {Accordion} from '@comfortdelgro/react-compass'
+
+function CustomizedColors() {
+  return (
+    <Accordion
+      defaultExpand={true}
+      css={{background: 'Wheat', color: 'SaddleBrown'}}
+    >
+      <Accordion.Title
+        css={{
+          textAlign: 'center',
+          background: 'burlywood',
+          textAlign: 'center',
+          color: 'currentColor',
+        }}
+      >
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi,
+          officiis Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+          Quasi, officiis
+        </p>
+      </Accordion.Title>
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi,
+        officiis
+      </p>
+    </Accordion>
+  )
+}
+```
+
+<ComponentDisplay>
+  <Accordion
+    defaultExpand={true}
+    css={{background: 'Wheat', color: 'SaddleBrown'}}
+  >
+    <Accordion.Title
+      css={{
+        textAlign: 'center',
+        backgroundColor: 'burlywood !important',
+        textAlign: 'center',
+      }}
+    >
+      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi, officiis Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi, officiis</p>
+    </Accordion.Title>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi, officiis</p>
+  </Accordion>
+</ComponentDisplay>
+
+## Props
+
+### Accordion 
+
+| Name           | Type        | Default | Description                                                                                                  |
+| :------------- | :---------- | :------ | :----------------------------------------------------------------------------------------------------------- |
+| children \*    | `ReactNode` | —       | The content to display in the accordion.                                                                     |
+| expand         | `boolean`   | `false` | If true, expands the accordion, otherwise collapse it. Setting this prop enables control over the accordion. |
+| defaultExpand  | `boolean`   | `false` | If true, expands the accordion by default.                                                                   |
+| onExpandChange | `function`  | —       | Callback fired when the expand/collapse state is changed.                                                    |
+| css            | `CSS`       | —       | The system prop that allows defining system overrides as well as additional CSS styles.                      |
+
+### Accordion.Title
+
+| Name     | Type                    | Default | Description                                                                                                       |
+| :------- | :---------------------- | :------ | :---------------------------------------------------------------------------------------------------------------- |
+| children | `ReactNode` \| `string` | —       | The content to display in the accordion title. If you pass children as a string, it will be render as `h1`        |
+| icon     | `IconProp` \| `false`   | —       | The icon of accordion title. By default it is a circle question mark. You can disable the icon by passing `false` |
+| css      | `CSS`                   | —       | The system prop that allows defining system overrides as well as additional CSS styles.                           |
+
+### Accordion.Table
+
+| Name        | Type        | Default | Description                                                                             |
+| :---------- | :---------- | :------ | :-------------------------------------------------------------------------------------- |
+| children \* | `ReactNode` | —       | The content to display in the accordion table.                                          |
+| css         | `CSS`       | —       | The system prop that allows defining system overrides as well as additional CSS styles. |

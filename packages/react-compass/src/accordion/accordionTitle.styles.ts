@@ -1,12 +1,11 @@
 import {styled} from '../theme'
 import {VariantProps} from '../utils/stitches.types'
 
-export const StyledAccordionTitle = styled('div', {
+export const StyledAccordionTitleWrapper = styled('div', {
   width: '100%',
   display: 'flex',
   position: 'relative',
   padding: '$4 $6 $4 $5',
-  color: '$primaryText',
   borderWidth: '$light',
   borderStyle: 'solid',
   borderColor: '$gray30',
@@ -47,21 +46,15 @@ export const StyledAccordionTitle = styled('div', {
 
   variants: {
     expand: {
-      close: {
-        background: '$background',
-      },
+      close: {},
       open: {
         borderBottomLeftRadius: 0,
         borderBottomRightRadius: 0,
-        background: '$gray20',
-        '& .accordion-chevron-icon': {
-          transform: 'rotate(180deg)',
-        },
       },
     },
   },
 })
 
 export type AccordionTitleVariantProps = VariantProps<
-  typeof StyledAccordionTitle
+  typeof StyledAccordionTitleWrapper
 >

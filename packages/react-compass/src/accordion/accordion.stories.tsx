@@ -2,7 +2,7 @@ import {useState} from 'react'
 import {Column} from '../utils/components'
 import Accordion from './accordion'
 import AccordionTable from './accordionTable'
-import {AccordionTitle} from './accordionTitle'
+import AccordionTitle from './accordionTitle'
 
 const lorem = `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi,
   officiis corporis magnam quo expedita nostrum temporibus quibusdam ipsa
@@ -73,7 +73,7 @@ export const Default: React.FC = () => {
 
       <Accordion
         expand={expand === 'first'}
-        onExpandedChange={handleControlledAccordion('first')}
+        onExpandChange={handleControlledAccordion('first')}
       >
         <AccordionTitle>
           <p>{lorem}</p>
@@ -83,7 +83,7 @@ export const Default: React.FC = () => {
       </Accordion>
       <Accordion
         expand={expand === 'second'}
-        onExpandedChange={handleControlledAccordion('second')}
+        onExpandChange={handleControlledAccordion('second')}
       >
         <AccordionTitle>
           <p>{lorem}</p>
@@ -93,7 +93,7 @@ export const Default: React.FC = () => {
       </Accordion>
       <Accordion
         expand={expand === 'third'}
-        onExpandedChange={handleControlledAccordion('third')}
+        onExpandChange={handleControlledAccordion('third')}
       >
         <AccordionTitle>
           <p>{lorem}</p>

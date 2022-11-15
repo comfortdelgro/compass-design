@@ -3,8 +3,9 @@ import {faChevronDown} from '@fortawesome/free-solid-svg-icons'
 import React, {useContext} from 'react'
 import {Icon, IconProp} from '../icon'
 import {StyledComponentProps} from '../utils/stitches.types'
+import AccordionButton from './accordionButton'
 import AccordionContext, {AccordionContextType} from './accordionContext'
-import {StyledAccordionTitle} from './accordionTitle.styles'
+import {StyledAccordionTitleWrapper} from './accordionTitle.styles'
 
 interface Props extends StyledComponentProps {
   icon?: false | IconProp
@@ -14,56 +15,60 @@ interface Props extends StyledComponentProps {
 export type AccordionTitleProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
-export const AccordionTitle = React.forwardRef<
-  HTMLDivElement,
-  AccordionTitleProps
->((props: AccordionTitleProps, ref) => {
-  const {icon = faQuestionCircle, children, css = {}} = props
+const AccordionTitle = React.forwardRef<HTMLButtonElement, AccordionTitleProps>(
+  (props: AccordionTitleProps, ref) => {
+    const {icon = faQuestionCircle, children, css = {}} = props
 
-  const contextValue = useContext(AccordionContext) as AccordionContextType
+    const contextValue = useContext(AccordionContext) as AccordionContextType
 
-  const {expand, onExpandedChange, setExpand} = contextValue
+    const {expand, onExpandChange, setExpand} = contextValue
 
-  const renderTitle = () => {
-    //render title as h1 if it is a string
-    if (typeof children === 'string') {
-      return <h1>{children}</h1>
+    const renderTitle = () => {
+      //render title as h1 if it is a string
+      if (typeof children === 'string') {
+        return <h1>{children}</h1>
+      }
+      return children
     }
-    return children
-  }
 
-  const handleOnClick = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    //will only trigger if accordion is uncontrolled
-    setExpand()
+    const handleOnClick = (e?: unknown) => {
+      const event = e as React.MouseEvent<HTMLElement, MouseEvent>
+      //will only trigger if accordion is uncontrolled
+      setExpand()
 
-    //trigger user callback if exist
-    if (onExpandedChange) {
-      onExpandedChange(e)
+      //trigger user callback if exist
+      if (onExpandChange) {
+        onExpandChange(event)
+      }
     }
-  }
 
-  const renderIcon = () => {
-    if (icon === false) return null
+    const renderLeftIcon = () => {
+      if (icon === false) return null
+      return (
+        <div className='accordion-left-icon-container'>
+          <Icon icon={icon} className='accordion-left-icon' />
+        </div>
+      )
+    }
+
     return (
-      <div className='accordion-left-icon-container'>
-        <Icon icon={icon} className='accordion-left-icon' />
-      </div>
+      <AccordionButton
+        ref={ref}
+        css={css}
+        className={`accordion-title-container ${expand ? 'open' : 'close'}`}
+        expand={expand ? 'open' : 'close'}
+        onPress={(e) => handleOnClick(e)}
+      >
+        <StyledAccordionTitleWrapper expand={expand ? 'open' : 'close'}>
+          {renderLeftIcon()}
+          <div className='accordion-title'>{renderTitle()}</div>
+          <div className='accordion-chevron-container'>
+            <Icon className='accordion-chevron-icon' icon={faChevronDown} />
+          </div>
+        </StyledAccordionTitleWrapper>
+      </AccordionButton>
     )
-  }
+  },
+)
 
-  return (
-    <StyledAccordionTitle
-      className={`accordion-title-wrapper ${expand ? 'open' : 'close'}`}
-      expand={expand ? 'open' : 'close'}
-      ref={ref}
-      css={css}
-      onClick={handleOnClick}
-    >
-      {renderIcon()}
-      <div className='accordion-title'>{renderTitle()}</div>
-      <div className='accordion-chevron-container'>
-        <Icon className='accordion-chevron-icon' icon={faChevronDown} />
-      </div>
-    </StyledAccordionTitle>
-  )
-})
+export default AccordionTitle
