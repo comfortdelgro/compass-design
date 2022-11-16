@@ -1,6 +1,6 @@
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
-import {StyledCardBody} from './cardBody.styles'
+import {StyledCardBody} from './card-body.styles'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode

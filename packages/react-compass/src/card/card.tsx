@@ -1,10 +1,10 @@
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
+import CardBody from './card-body'
+import CardImage from './card-image'
+import CardTitle from './card-title'
 import {CardVariantProps, StyledCard} from './card.styles'
-import CardBody from './cardBody'
-import CardImage from './cardImage'
-import CardTitle from './cardTitle'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
