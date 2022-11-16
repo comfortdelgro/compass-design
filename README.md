@@ -4,16 +4,6 @@ This project provides a set of components for the React Compass Design System th
 implement user experiences consistent with
 [ComfortDelGro's design principles](https://comfortdelgro.github.io/compass-design).
 
-<a href="./LICENSE">
-  <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="CofortDelGro's React Compass is released under the MIT license" />
-</a>
-<a href="https://turbo.build/">
-  <img src="https://img.shields.io/badge/maintained%20with-turbo-cc00ff.svg" alt="Maintained with Turborepo" />
-</a>
-<a href="https://github.com/comfortdelgro/compass-design/actions/workflows/release.yml">
-  <img alt="Release" src="https://github.com/comfortdelgro/compass-design/actions/workflows/release.yml/badge.svg">
-</a>
-
 ## Getting started
 
 ### React
@@ -41,15 +31,15 @@ pnpm install @comfortdelgro/react-compass
 **Usage**
 
 ```tsx
-import {Alert} from '@comfortdelgro/react-compass'
-;<Alert>Button Label</Alert>
+import {Button} from '@comfortdelgro/react-compass'
+;() => <Button variant='primary'>Click Me</Button>
 ```
 
 or
 
 ```tsx
-import Alert from '@comfortdelgro/react-compass/alert'
-;<Alert>Button Label</Alert>
+import Button from '@comfortdelgro/react-compass/button'
+;() => <Button variant='primary'>Click Me</Button>
 ```
 
 ## Reporting a Bug
@@ -62,15 +52,6 @@ Better yet, submit a pull request to address it.
 
 If you have an idea, we would love to hear about it. The best way to suggest a feature is to
 [open a feature issue](https://github.com/comfortdelgro/compass-design/issues/new?labels=feature&template=feature.md).
-The React Compass team will take a look and discuss it with you.
-
-## Versioning
-
-React Compass follows [semantic versioning](https://semver.org/).
-
-## License
-
-The React Compass are licensed under the MIT License.
 
 ## Supported Browsers
 
@@ -80,4 +61,10 @@ The React Compass are licensed under the MIT License.
 - Apple Safari: last 2 versions
 - Opera: last 2 versions
 
-## Thank you
+## Versioning
+
+React Compass follows [semantic versioning](https://semver.org).
+
+## License
+
+MIT © 2022
