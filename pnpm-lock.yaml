@@ -74,12 +74,15 @@ importers:
       '@react-aria/breadcrumbs': ^3.3.2
       '@react-aria/button': ^3.6.2
       '@react-aria/checkbox': ^3.6.0
+      '@react-aria/focus': ^3.9.0
+      '@react-aria/interactions': ^3.12.0
       '@react-aria/link': ^3.3.4
       '@react-aria/searchfield': ^3.4.2
       '@react-aria/table': ^3.5.0
       '@react-aria/textfield': ^3.7.2
       '@react-aria/utils': ^3.14.0
       '@react-aria/visually-hidden': ^3.5.0
+      '@react-stately/data': ^3.7.0
       '@react-stately/searchfield': ^3.3.2
       '@react-stately/table': ^3.5.0
       '@react-stately/toggle': ^3.4.2
@@ -115,12 +118,15 @@ importers:
       '@react-aria/breadcrumbs': 3.3.2_react@18.2.0
       '@react-aria/button': 3.6.2_react@18.2.0
       '@react-aria/checkbox': 3.6.0_react@18.2.0
+      '@react-aria/focus': 3.9.0_react@18.2.0
+      '@react-aria/interactions': 3.12.0_react@18.2.0
       '@react-aria/link': 3.3.4_react@18.2.0
       '@react-aria/searchfield': 3.4.2_react@18.2.0
       '@react-aria/table': 3.5.0_biqbaboplfbrettd7655fr4n2y
       '@react-aria/textfield': 3.7.2_react@18.2.0
       '@react-aria/utils': 3.14.0_react@18.2.0
       '@react-aria/visually-hidden': 3.5.0_react@18.2.0
+      '@react-stately/data': 3.7.0_react@18.2.0
       '@react-stately/searchfield': 3.3.2_react@18.2.0
       '@react-stately/table': 3.5.0_react@18.2.0
       '@react-stately/toggle': 3.4.2_react@18.2.0
@@ -2626,6 +2632,16 @@ packages:
 
   /@react-stately/collections/3.4.4_react@18.2.0:
     resolution: {integrity: sha512-gryUYCe6uzqE0ea5frTwOxOPpx/6Z42PRk7KetOh3ddN3Ts0j8XQP08jP1IB/7BC1QidrkHWvDCqGHxRiEjiIg==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@babel/runtime': 7.19.4
+      '@react-types/shared': 3.15.0_react@18.2.0
+      react: 18.2.0
+    dev: false
+
+  /@react-stately/data/3.7.0_react@18.2.0:
+    resolution: {integrity: sha512-+u5rKjraR7R6aMMXSDwH61jRRELnGGWr6xMFlk6G9fr8uAmil+AWrv8Dh8nZlJfy5I2hT1d8lbS9j5TRp/QFKg==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
