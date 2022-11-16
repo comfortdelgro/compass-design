@@ -11,6 +11,19 @@
   justify-content: space-between;
   gap: 1rem;
 }
+.avatarShowcaseContainer {
+  margin: 0;
+  padding: 0;
+  margin-top: 1rem;
+  margin-top: 1rem;
+  padding: 1.2rem;
+  border: 1px solid rgb(231, 228, 228);
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
 
 .codeContainer {
   margin: 0;

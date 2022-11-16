@@ -29,19 +29,19 @@ We recommend the second method to import components for the benefits of [tree sh
 
 <section className={styles.componentShowcaseContainer}>
   <Alert color='info'>This is an info alert — check it out!</Alert>
-  <Alert color='success'>This is an sucess alert — check it out!</Alert>
-  <Alert color='danger'>This is an danger alert — check it out!</Alert>
-  <Alert color='warning'>This is an warning alert — check it out!</Alert>
+  <Alert color='success'>This is a sucess alert — check it out!</Alert>
+  <Alert color='danger'>This is a danger alert — check it out!</Alert>
+  <Alert color='warning'>This is a warning alert — check it out!</Alert>
 </section>
 
 ```js
 <Alert color='info'> This is an info alert — check it out! </Alert>
 
-<Alert color='success'> This is an sucess alert — check it out! </Alert>
+<Alert color='success'> This is a sucess alert — check it out! </Alert>
 
-<Alert color='danger'> This is an danger alert — check it out! </Alert>
+<Alert color='danger'> This is a danger alert — check it out! </Alert>
 
-<Alert color='warning'> This is an warning alert — check it out! </Alert>
+<Alert color='warning'> This is a warning alert — check it out! </Alert>
 ```
 
 ---
@@ -113,12 +113,12 @@ The `icon` prop allows you to add an icon to the beginning of the alert componen
 
 <section className={styles.componentShowcaseContainer}>
   <Alert color='success' icon={faChessKing}>
-    This is an success alert — check it out!
+    This is a success alert — check it out!
   </Alert>
 </section>
 ```js
 <Alert color='success' icon={faChessKing}>
-  This is an success alert — check it out!
+  This is a success alert — check it out!
 </Alert>
 ```
 
@@ -134,7 +134,7 @@ With css prop, you can basically do anything that css can do.
     color='success'
     css={{backgroundColor: 'orange', '&:hover': {backgroundColor: 'red'}}}
   >
-    This is an success alert — check it out!
+    This is a success alert — check it out!
   </Alert>
 </section>
 
@@ -143,7 +143,7 @@ With css prop, you can basically do anything that css can do.
   color='success'
   css={{backgroundColor: 'orange', '&:hover': {backgroundColor: 'red'}}}
 >
-  This is an success alert — check it out!
+  This is a success alert — check it out!
 </Alert>
 ```
 
@@ -153,9 +153,9 @@ With css prop, you can basically do anything that css can do.
 
 | Name        | Type                   | Default | Description                                                                             |
 | :---------- | :--------------------- | :------ | :-------------------------------------------------------------------------------------- |
-| children    | `ReactNode` \|`String` | —       | The content to display in the accordion.                                                |
+| children    | `ReactNode` \|`String` | —       | The content to display in the alerts.                                                   |
 | dismissible | `boolean`              | `false` | If true, show the close icon.                                                           |
-| onDismiss   | `function`             | —       | Callback to close close the alerts.                                                     |
+| onDismiss   | `function`             | —       | Callback to close the alerts.                                                           |
 | icon        | `IconProp` \| `false`  | —       | The icon of the alerts. It'd disappear if the value is false.                           |
 | css         | `CSS`                  | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
 
