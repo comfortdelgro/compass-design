@@ -20,10 +20,8 @@ const TableCheckboxCell = React.forwardRef<HTMLTableCellElement, Props>(
       state,
     )
 
-    console.log({checkboxProps})
-
     return (
-      <StyledTableCheckboxCell ref={ref} {...gridCellProps}>
+      <StyledTableCheckboxCell ref={tableRowRef} {...gridCellProps}>
         <Checkbox {...checkboxProps} />
       </StyledTableCheckboxCell>
     )

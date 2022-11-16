@@ -3,7 +3,7 @@ import {useState} from 'react'
 import {Column, Row} from '../utils/components'
 import Checkbox from './checkbox'
 
-export const Variants: Story<{onChange: () => void}> = ({onChange}) => (
+export const Variants: Story<{onChange: () => void}> = () => (
   <Column>
     <Column>
       <Checkbox isSelected={false}>Unselected</Checkbox>

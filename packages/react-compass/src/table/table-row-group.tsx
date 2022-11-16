@@ -4,13 +4,14 @@ import {StyledTableRowGroup} from './table-row-group.styles'
 
 interface Props {
   as?: React.ElementType
+  children?: React.ReactNode
 }
 
-const TableRowGroup: React.FC<Props> = ({as = 'tbody', children}) => {
+const TableRowGroup: React.FC<Props> = ({as = 'tbody', children, ...props}) => {
   const {rowGroupProps} = useTableRowGroup()
 
   return (
-    <StyledTableRowGroup as={as} {...rowGroupProps}>
+    <StyledTableRowGroup as={as} {...props} {...rowGroupProps}>
       {children}
     </StyledTableRowGroup>
   )
