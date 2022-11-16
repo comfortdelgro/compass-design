@@ -1,12 +1,12 @@
 import Card from './card'
-import CardBody from './cardBody'
-import CardImage from './cardImage'
-import CardTitle from './cardTitle'
+import CardBody from './card-body'
+import CardImage from './card-image'
+import CardTitle from './card-title'
 
 export type {CardProps} from './card'
-export type {CardBodyProps} from './cardBody'
-export type {CardImageProps} from './cardImage'
-export type {CardTitleProps} from './cardTitle'
+export type {CardBodyProps} from './card-body'
+export type {CardImageProps} from './card-image'
+export type {CardTitleProps} from './card-title'
 
 Card.Body = CardBody
 Card.Image = CardImage
