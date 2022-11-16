@@ -15,9 +15,17 @@ const TableRow = React.forwardRef<HTMLTableRowElement, Props>(
   ({item, state, children}, ref) => {
     const tableRowRef = useDOMRef<HTMLTableRowElement>(ref)
     const {rowProps} = useTableRow({node: item}, state, tableRowRef)
+    const isSelected = state.selectionManager.isSelected(item.key)
 
     return (
-      <StyledTableRow ref={ref} {...rowProps}>
+      <StyledTableRow
+        css={{
+          backgroundColor: isSelected ? '$cdgBlue10' : 'transparent',
+          borderLeftColor: isSelected ? '$cdgBlue' : 'transparent',
+        }}
+        ref={tableRowRef}
+        {...rowProps}
+      >
         {children}
       </StyledTableRow>
     )

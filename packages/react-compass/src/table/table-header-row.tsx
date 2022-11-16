@@ -17,7 +17,7 @@ const TableHeaderRow = React.forwardRef<HTMLTableRowElement, Props>(
     const {rowProps} = useTableHeaderRow({node: item}, state, tableRowRef)
 
     return (
-      <StyledTableHeaderRow ref={ref} {...rowProps}>
+      <StyledTableHeaderRow ref={tableRowRef} {...rowProps}>
         {children}
       </StyledTableHeaderRow>
     )
