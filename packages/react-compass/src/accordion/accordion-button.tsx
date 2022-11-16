@@ -6,7 +6,7 @@ import {useDOMRef} from '../utils/use-dom-ref'
 import {
   AccordionTitleVariantProps,
   StyledAccordionButton,
-} from './accordionButton.styles'
+} from './accordion-button.styles'
 
 interface Props extends AriaButtonProps, StyledComponentProps {
   children?: React.ReactNode

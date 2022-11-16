@@ -1,7 +1,7 @@
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledAccordionTable} from './accordionTable.styles'
+import {StyledAccordionTable} from './accordion-table.styles'
 
 interface Props extends StyledComponentProps {
   children: React.ReactNode

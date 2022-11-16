@@ -3,9 +3,9 @@ import {faChevronDown} from '@fortawesome/free-solid-svg-icons'
 import React, {useContext} from 'react'
 import {Icon, IconProp} from '../icon'
 import {StyledComponentProps} from '../utils/stitches.types'
-import AccordionButton from './accordionButton'
-import AccordionContext, {AccordionContextType} from './accordionContext'
-import {StyledAccordionTitleWrapper} from './accordionTitle.styles'
+import AccordionButton from './accordion-button'
+import AccordionContext, {AccordionContextType} from './accordion-context'
+import {StyledAccordionTitleWrapper} from './accordion-title.styles'
 
 interface Props extends StyledComponentProps {
   icon?: false | IconProp

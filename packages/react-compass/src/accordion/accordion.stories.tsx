@@ -1,8 +1,8 @@
 import {useState} from 'react'
 import {Column} from '../utils/components'
 import Accordion from './accordion'
-import AccordionTable from './accordionTable'
-import AccordionTitle from './accordionTitle'
+import AccordionTable from './accordion-table'
+import AccordionTitle from './accordion-title'
 
 const lorem = `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi,
   officiis corporis magnam quo expedita nostrum temporibus quibusdam ipsa

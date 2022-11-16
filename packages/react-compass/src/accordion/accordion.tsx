@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
+import AccordionContext from './accordion-context'
+import AccordionTable from './accordion-table'
+import AccordionTitle from './accordion-title'
 import {StyledAccordion} from './accordion.styles'
-import AccordionContext from './accordionContext'
-import AccordionTable from './accordionTable'
-import AccordionTitle from './accordionTitle'
 interface Props extends StyledComponentProps {
   expand?: boolean
   defaultExpand?: boolean

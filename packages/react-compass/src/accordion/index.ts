@@ -1,10 +1,10 @@
 import Accordion from './accordion'
-import AccordionTable from './accordionTable'
-import AccordionTitle from './accordionTitle'
+import AccordionTable from './accordion-table'
+import AccordionTitle from './accordion-title'
 
 export {AccordionProps} from './accordion'
-export {AccordionTableProps} from './accordionTable'
-export {AccordionTitleProps} from './accordionTitle'
+export {AccordionTableProps} from './accordion-table'
+export {AccordionTitleProps} from './accordion-title'
 
 Accordion.Table = AccordionTable
 Accordion.Title = AccordionTitle
