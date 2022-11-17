@@ -1,0 +1,109 @@
+import {Callout} from 'nextra-theme-docs'
+import styles from '../../styles/Home.module.css'
+import {faThumbsUp, faVirus} from '@fortawesome/free-solid-svg-icons'
+import Spinner from '@comfortdelgro/react-compass/spinner'
+
+# Spinners
+
+Progress indicators commonly known as spinners, express an unspecified wait time or display the length of a process.
+
+---
+
+### Import:
+
+```js
+import {Spinner} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import Spinner from '@comfortdelgro/react-compass/spinner'
+```
+
+We recommend the second method to import components for the benefits of [tree shaking](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking).
+
+---
+
+### Default Circular:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Spinner size='2xl' />
+  <Spinner size='xl' />
+  <Spinner size='lg' />
+  <Spinner size='md' />
+  <Spinner size='sm' />
+</section>
+
+```js
+<Spinner size='2xl' />
+<Spinner size='xl' />
+<Spinner size='lg' />
+<Spinner size='md' />
+<Spinner size='sm' />
+```
+
+---
+
+### Circular without label:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Spinner size='2xl' label={false} />
+  <Spinner size='xl' label={false} />
+  <Spinner size='lg' label={false} />
+  <Spinner size='md' label={false} />
+  <Spinner size='sm' label={false} />
+</section>
+
+```js
+<Spinner size='2xl' label={false} />
+<Spinner size='xl' label={false} />
+<Spinner size='lg' label={false} />
+<Spinner size='md' label={false} />
+<Spinner size='sm' label={false} />
+```
+
+---
+
+### Circular with custom label:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Spinner size='2xl' label={'Running...'} />
+</section>
+
+```js
+<Spinner size='2xl' label={'Running...'} />
+```
+
+---
+
+### Custom styling:
+
+You can style React Compass's components with the css prop. <br/>
+With css prop, you can basically do anything that css can do.
+
+<section className={styles.avatarShowcaseContainer}>
+  <Spinner size='2xl' css={{height: '15em'}} />
+</section>
+
+```js
+<Spinner size='2xl' css={{height: '15em'}} />
+```
+
+---
+
+### Props:
+
+| Name  | Type                                 | Default | Description |
+| :---- | :----------------------------------- | :------ | :---------- |
+| size  | `sm`\| `md` \| `lg` \| `xl` \| `2xl` |         |             |
+| label | `false`\| `true` \| `String`         | —       |             |
+| css   | `CSS`                                | —       |             |
+
+---
+
+<Callout>
+  Check out our [ladle](/ladle?story=spinners--variants) for more info on this
+  component.
+</Callout>
+````
