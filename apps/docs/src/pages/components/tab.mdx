@@ -1,3 +1,7 @@
+import ComponentDisplay from 'components/ComponentDisplay'
+import {Callout} from 'nextra-theme-docs'
+import Tab from '@comfortdelgro/react-compass/tab'
+
 # Tab
 
 Tab can do quick switch between your content.
@@ -20,14 +24,37 @@ We recommend the second method to import components for the benefits of [tree sh
 
 ---
 
+<ComponentDisplay>
+	<Tab>
+		<Tab.List>
+			<Tab.Item value={1}>Tab1</Tab.Item>
+			<Tab.Item value={2}>Tab2</Tab.Item>
+			<Tab.Item value={3} disabled>Tab3</Tab.Item>
+		</Tab.List>
+		<Tab.Panel value={1}>Tab1 content</Tab.Panel>
+		<Tab.Panel value={2}>Tab2 content</Tab.Panel>
+		<Tab.Panel value={3}>Tab3 content</Tab.Panel>
+	</Tab>
+	<Tab variant='simple'>
+		<Tab.List>
+			<Tab.Item value={1}>Tab1</Tab.Item>
+			<Tab.Item value={2}>Tab2</Tab.Item>
+			<Tab.Item value={3} disabled>Tab3</Tab.Item>
+		</Tab.List>
+		<Tab.Panel value={1}>Tab1 content</Tab.Panel>
+		<Tab.Panel value={2}>Tab2 content</Tab.Panel>
+		<Tab.Panel value={3}>Tab3 content</Tab.Panel>
+	</Tab>
+</ComponentDisplay>
+
 ### Variant:
 Tab provide 2 style of tab: `simple` and `rounded` as default
 ```js
 <Tab variant='simple'>
 	<Tab.List>
-		<Tab.Item key='1' value={1}>Tab1</Tab.Item>
-		<Tab.Item key='2' value={2}>Tab2</Tab.Item>
-		<Tab.Item key='3' value={3} disabled>Tab3</Tab.Item>
+		<Tab.Item value={1}>Tab1</Tab.Item>
+		<Tab.Item value={2}>Tab2</Tab.Item>
+		<Tab.Item value={3} disabled>Tab3</Tab.Item>
 	</Tab.List>
 	<Tab.Panel value={1}>Tab1 content</Tab.Panel>
 	<Tab.Panel value={2}>Tab2 content</Tab.Panel>
@@ -36,9 +63,9 @@ Tab provide 2 style of tab: `simple` and `rounded` as default
 
 <Tab variant='rounded'>
 	<Tab.List>
-		<Tab.Item key='1' value={1}>Tab1</Tab.Item>
-		<Tab.Item key='2' value={2}>Tab2</Tab.Item>
-		<Tab.Item key='3' value={3} disabled>Tab3</Tab.Item>
+		<Tab.Item value={1}>Tab1</Tab.Item>
+		<Tab.Item value={2}>Tab2</Tab.Item>
+		<Tab.Item value={3} disabled>Tab3</Tab.Item>
 	</Tab.List>
 	<Tab.Panel value={1}>Tab1 content</Tab.Panel>
 	<Tab.Panel value={2}>Tab2 content</Tab.Panel>
@@ -49,12 +76,27 @@ Tab provide 2 style of tab: `simple` and `rounded` as default
 
 ### Tab Item Icon:
 You can define the position of the icon by props of Tab.Item
+
+<ComponentDisplay>
+	<Tab variant='rounded'>
+		<Tab.List>
+			<Tab.Item value={1}>Tab1</Tab.Item>
+			<Tab.Item value={2} icon="left">Tab2</Tab.Item>
+			<Tab.Item value={3} icon="right">Tab3</Tab.Item>
+			<Tab.Item key='4' value={4} icon="none" disabled>Tab4</Tab.Item>
+		</Tab.List>
+		<Tab.Panel value={1}>Tab1 content</Tab.Panel>
+		<Tab.Panel value={2}>Tab2 content</Tab.Panel>
+		<Tab.Panel value={3}>Tab3 content</Tab.Panel>
+	</Tab>
+</ComponentDisplay>
+
 ```js
 <Tab variant='rounded'>
 	<Tab.List>
-		<Tab.Item key='1' value={1} icon="top">Tab1</Tab.Item>
-		<Tab.Item key='2' value={2} icon="left">Tab2</Tab.Item>
-		<Tab.Item key='3' value={3} icon="right">Tab3</Tab.Item>
+		<Tab.Item value={1}>Tab1</Tab.Item>
+		<Tab.Item value={2} icon="left">Tab2</Tab.Item>
+		<Tab.Item value={3} icon="right">Tab3</Tab.Item>
 		<Tab.Item key='4' value={4} icon="none" disabled>Tab3</Tab.Item>
 	</Tab.List>
 	<Tab.Panel value={1}>Tab1 content</Tab.Panel>
@@ -66,23 +108,45 @@ You can define the position of the icon by props of Tab.Item
 
 ### Orientation:
 Direction of the tab: `vertical` and `horizontal` as default
+<ComponentDisplay>
+	<Tab orientation='horizontal'>
+		<Tab.List>
+			<Tab.Item value={1}>Tab1</Tab.Item>
+			<Tab.Item value={2}>Tab2</Tab.Item>
+			<Tab.Item value={3} disabled>Tab3</Tab.Item>
+		</Tab.List>
+		<Tab.Panel value={1}>Tab1 content</Tab.Panel>
+		<Tab.Panel value={2}>Tab2 content</Tab.Panel>
+		<Tab.Panel value={3}>Tab3 content</Tab.Panel>
+	</Tab>
+	<Tab orientation='vertical' variant='simple'>
+		<Tab.List>
+			<Tab.Item value={1}>Tab1</Tab.Item>
+			<Tab.Item value={2}>Tab2</Tab.Item>
+			<Tab.Item value={3} disabled>Tab3</Tab.Item>
+		</Tab.List>
+		<Tab.Panel value={1}>Tab1 content</Tab.Panel>
+		<Tab.Panel value={2}>Tab2 content</Tab.Panel>
+		<Tab.Panel value={3}>Tab3 content</Tab.Panel>
+	</Tab>
+</ComponentDisplay>
 ```js
-<Tab variant='horizontal'>
+<Tab orientation='horizontal'>
 	<Tab.List>
-		<Tab.Item key='1' value={1}>Tab1</Tab.Item>
-		<Tab.Item key='2' value={2}>Tab2</Tab.Item>
-		<Tab.Item key='3' value={3} disabled>Tab3</Tab.Item>
+		<Tab.Item value={1}>Tab1</Tab.Item>
+		<Tab.Item value={2}>Tab2</Tab.Item>
+		<Tab.Item value={3} disabled>Tab3</Tab.Item>
 	</Tab.List>
 	<Tab.Panel value={1}>Tab1 content</Tab.Panel>
 	<Tab.Panel value={2}>Tab2 content</Tab.Panel>
 	<Tab.Panel value={3}>Tab3 content</Tab.Panel>
 </Tab>
 
-<Tab variant='vertical'>
+<Tab orientation='vertical' variant='rounded'>
 	<Tab.List>
-		<Tab.Item key='1' value={1}>Tab1</Tab.Item>
-		<Tab.Item key='2' value={2}>Tab2</Tab.Item>
-		<Tab.Item key='3' value={3} disabled>Tab3</Tab.Item>
+		<Tab.Item value={1}>Tab1</Tab.Item>
+		<Tab.Item value={2}>Tab2</Tab.Item>
+		<Tab.Item value={3} disabled>Tab3</Tab.Item>
 	</Tab.List>
 	<Tab.Panel value={1}>Tab1 content</Tab.Panel>
 	<Tab.Panel value={2}>Tab2 content</Tab.Panel>
@@ -93,14 +157,14 @@ Direction of the tab: `vertical` and `horizontal` as default
 
 ### Custom styling:
 
-You can style React Compass's components with the css prop. <br/>
+You can style React Compass's components with the css prop.
 With css prop, you can basically do anything that css can do.
 ```js
 <Tab css={{opacity: '0.8', '&:hover': {opacity: '0.5', cursor: 'pointer'}}}>
 	<Tab.List>
-		<Tab.Item key='1' value={1} icon="top">Tab1</Tab.Item>
-		<Tab.Item key='2' value={2} icon="left">Tab2</Tab.Item>
-		<Tab.Item key='3' value={3} icon="right">Tab3</Tab.Item>
+		<Tab.Item value={1} icon="top">Tab1</Tab.Item>
+		<Tab.Item value={2} icon="left">Tab2</Tab.Item>
+		<Tab.Item value={3} icon="right">Tab3</Tab.Item>
 		<Tab.Item key='4' value={4} icon="none" disabled>Tab3</Tab.Item>
 	</Tab.List>
 	<Tab.Panel value={1}>Tab1 content</Tab.Panel>
@@ -119,9 +183,9 @@ With css prop, you can basically do anything that css can do.
 | :---- | :--------------------------- | :------ | :--------------------------------------------------------------------------------------------------- |
 | variant? | `rounded`,`simple`         |  `rounded`    | Style of the tab 
 | orientation? | `horizontal`,`vertical`| `horizontal`  | Direction of the tab |
-| disabledKeys?  | `Key[]` | —       | List of value of disable item.                                                                                
-| defaultSelectedKey? | `Key` | —       | Default tab selection by value of item                                                                          
-| selectedKey? | `Key` | —       | Current selection by value of item                                                                                   
+| disabledKeys?  | `Key[]` | —       | List of value of disable Item.                                                                                
+| defaultSelectedKey? | `Key` | —       | Default tab selection by value of Item                                                                          
+| selectedKey? | `Key` | —       | Current selection by value of Item                                                                                   
 | onChange? | `(value) => void` | —       | Callback function when value changed    
 | children | `ReactNode` | —       | We pass our avatars as children                                                                      
 | className? | `String` | —       | Extra class name for tab                  
@@ -140,10 +204,10 @@ With css prop, you can basically do anything that css can do.
 | Name     | Type                    | Default | Description                                                                             |
 | :------- | :---------------------- | :------ | :-------------------------------------------------------------------------------------- |
 | icon? | `none` \| `left`\| `right`\| `top` | —   `none` | Display icon in tab content           
-| disabled? | `Boolean` | —   `false` | Status of the item
-| value | `Key` | —   `false` | Value of the item
-| key? | `Key` | —   | Key of the item
-| children | `ReactNode` \| `String` | —       | Content of the tab item                                                                      
+| disabled? | `Boolean` | —   `false` | Status of the Item
+| value | `Key` | —   `false` | Value of the Item
+| key? | `Key` | —   | Key of the Item
+| children | `ReactNode` \| `String` | —       | Content of the tab Item                                                                      
 | className? | `String` | —       | Extra class name for tab                  
 | css?   | `CSS`                        | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
 
@@ -158,4 +222,6 @@ With css prop, you can basically do anything that css can do.
 | css?   | `CSS`                        | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
 ---
 
-Check out our [ladle](/ladle?story=tab--variants) for more info on this component.
+<Callout>
+	Check out our [ladle](/ladle?story=tab--variants) for more info on this component.
+</Callout>

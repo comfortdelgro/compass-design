@@ -10,21 +10,31 @@ export const StyledTabList = styled('div', {
   width: 'min-content',
   margin: '0',
   gap: '$4',
-  padding: '$4',
   borderRadius: '$full',
 
   variants: {
+    variant: {
+      rounded: {
+        background: '$background',
+      },
+      simple: {
+        background: 'transparent',
+      },
+    },
     orientation: {
       horizontal: {
+        padding: '$2',
         gridAutoFlow: 'column',
       },
       vertical: {
+        padding: '$4 $2',
         gridAutoFlow: 'row',
       },
     },
   },
   defaultVariants: {
     orientation: 'horizontal',
+    variant: 'rounded',
   },
 })
 
