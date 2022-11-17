@@ -16,7 +16,6 @@ export type TabProps = Props
 
 interface Props extends StyledComponentProps {
   className?: string
-  items?: Iterable<object>
   disabledKeys?: Key[]
   children?: React.ReactNode
   variant?: 'rounded' | 'simple'

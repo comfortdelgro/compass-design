@@ -1,13 +1,13 @@
-import {AriaTabProps} from '@react-aria/tabs'
 import React, {Key, useContext} from 'react'
 import type {StyledComponentProps} from '../../utils/stitches.types'
 import {TabContext} from '../tab'
 import {StyledTabItem, TabItemVariantProps} from './index.styles'
 
-interface Props extends AriaTabProps, StyledComponentProps {
+interface Props extends StyledComponentProps {
   className?: string
   children: React.ReactNode
   value: Key
+  key?: Key
   disabled?: boolean
   icon?: 'none' | 'left' | 'right' | 'top'
 }

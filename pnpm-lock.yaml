@@ -75,7 +75,6 @@ importers:
       '@react-aria/button': ^3.6.2
       '@react-aria/link': ^3.3.4
       '@react-aria/searchfield': ^3.4.2
-      '@react-aria/tabs': ^3.3.2
       '@react-aria/textfield': ^3.7.2
       '@react-aria/utils': ^3.14.0
       '@react-stately/searchfield': ^3.3.2
@@ -109,7 +108,6 @@ importers:
       '@react-aria/button': 3.6.2_react@18.2.0
       '@react-aria/link': 3.3.4_react@18.2.0
       '@react-aria/searchfield': 3.4.2_react@18.2.0
-      '@react-aria/tabs': 3.3.2_react@18.2.0
       '@react-aria/textfield': 3.7.2_react@18.2.0
       '@react-aria/utils': 3.14.0_react@18.2.0
       '@react-stately/searchfield': 3.3.2_react@18.2.0
@@ -2449,22 +2447,6 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@react-aria/selection/3.11.0_react@18.2.0:
-    resolution: {integrity: sha512-2Qcv0PxXqOrYYT1oL+TOaB+lE/jhIPzVEPHVmf8HYzEMP5WBYP8Q+R9no5s8x++b1W0DsbUVwmk9szY48O9Bmw==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
-    dependencies:
-      '@babel/runtime': 7.19.4
-      '@react-aria/focus': 3.9.0_react@18.2.0
-      '@react-aria/i18n': 3.6.1_react@18.2.0
-      '@react-aria/interactions': 3.12.0_react@18.2.0
-      '@react-aria/utils': 3.14.0_react@18.2.0
-      '@react-stately/collections': 3.4.4_react@18.2.0
-      '@react-stately/selection': 3.11.0_react@18.2.0
-      '@react-types/shared': 3.15.0_react@18.2.0
-      react: 18.2.0
-    dev: false
-
   /@react-aria/ssr/3.3.0_react@18.2.0:
     resolution: {integrity: sha512-yNqUDuOVZIUGP81R87BJVi/ZUZp/nYOBXbPsRe7oltJOfErQZD+UezMpw4vM2KRz18cURffvmC8tJ6JTeyDtaQ==}
     peerDependencies:
@@ -2472,24 +2454,6 @@ packages:
     dependencies:
       '@babel/runtime': 7.19.4
       react: 18.2.0
-
-  /@react-aria/tabs/3.3.2_react@18.2.0:
-    resolution: {integrity: sha512-ONRJDWqXdcX6rc5AWqbtSMMgnBeuKSIy8FOz77c5v2teIPR9uwwgwMsyjp4gJoGfa11yKOb89ZZBxIUHxjdIxQ==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
-    dependencies:
-      '@babel/runtime': 7.19.4
-      '@react-aria/focus': 3.9.0_react@18.2.0
-      '@react-aria/i18n': 3.6.1_react@18.2.0
-      '@react-aria/interactions': 3.12.0_react@18.2.0
-      '@react-aria/selection': 3.11.0_react@18.2.0
-      '@react-aria/utils': 3.14.0_react@18.2.0
-      '@react-stately/list': 3.5.4_react@18.2.0
-      '@react-stately/tabs': 3.2.2_react@18.2.0
-      '@react-types/shared': 3.15.0_react@18.2.0
-      '@react-types/tabs': 3.1.4_react@18.2.0
-      react: 18.2.0
-    dev: false
 
   /@react-aria/textfield/3.7.2_react@18.2.0:
     resolution: {integrity: sha512-GSzjSEMdLMcQmjxOKmTaphbfMan91J/VhYGkFYEYAwcSoVMjBsIl8VUOjZQ3+7LowQ0mOS4gE7ADigRj1w2f/Q==}
@@ -2517,29 +2481,6 @@ packages:
       clsx: 1.2.1
       react: 18.2.0
 
-  /@react-stately/collections/3.4.4_react@18.2.0:
-    resolution: {integrity: sha512-gryUYCe6uzqE0ea5frTwOxOPpx/6Z42PRk7KetOh3ddN3Ts0j8XQP08jP1IB/7BC1QidrkHWvDCqGHxRiEjiIg==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
-    dependencies:
-      '@babel/runtime': 7.19.4
-      '@react-types/shared': 3.15.0_react@18.2.0
-      react: 18.2.0
-    dev: false
-
-  /@react-stately/list/3.5.4_react@18.2.0:
-    resolution: {integrity: sha512-AB0r2RevKVAP2AOQM1JRuCVjS2UUxMJFshA53t8pV+OSVWeyirYccsMR49mWwU60ZnxYqBWVMN+Pl7NTPTnT8w==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
-    dependencies:
-      '@babel/runtime': 7.19.4
-      '@react-stately/collections': 3.4.4_react@18.2.0
-      '@react-stately/selection': 3.11.0_react@18.2.0
-      '@react-stately/utils': 3.5.1_react@18.2.0
-      '@react-types/shared': 3.15.0_react@18.2.0
-      react: 18.2.0
-    dev: false
-
   /@react-stately/searchfield/3.3.2_react@18.2.0:
     resolution: {integrity: sha512-4MTpoqE1M/3aWb/Feau0QpQcjOEK3i8apyA7g9ltY5OtcwHMXDXXk9i3Pg4itk2CXqOY2LuJ+vHCctSnEAm9vw==}
     peerDependencies:
@@ -2549,30 +2490,6 @@ packages:
       '@react-stately/utils': 3.5.1_react@18.2.0
       '@react-types/searchfield': 3.3.4_react@18.2.0
       '@react-types/shared': 3.15.0_react@18.2.0
-      react: 18.2.0
-    dev: false
-
-  /@react-stately/selection/3.11.0_react@18.2.0:
-    resolution: {integrity: sha512-cBgDzH+AY+bMEROJbcZFdhbMk0vgiwyqBB8ZKLtCL7EOHs2xeynTAohRM+/t27U/tF91o4qHPFo67Tkxrd16Bg==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
-    dependencies:
-      '@babel/runtime': 7.19.4
-      '@react-stately/collections': 3.4.4_react@18.2.0
-      '@react-stately/utils': 3.5.1_react@18.2.0
-      '@react-types/shared': 3.15.0_react@18.2.0
-      react: 18.2.0
-    dev: false
-
-  /@react-stately/tabs/3.2.2_react@18.2.0:
-    resolution: {integrity: sha512-7rG93LrsAV5q3X0kXzMnxab642768zzkSxP7u/qBObJJldg8cpK2yRmDTxpFuz0goB1qiswxsyUrA4ddIUgd+g==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
-    dependencies:
-      '@babel/runtime': 7.19.4
-      '@react-stately/list': 3.5.4_react@18.2.0
-      '@react-stately/utils': 3.5.1_react@18.2.0
-      '@react-types/tabs': 3.1.4_react@18.2.0
       react: 18.2.0
     dev: false
 
@@ -2655,15 +2572,6 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
       react: 18.2.0
-
-  /@react-types/tabs/3.1.4_react@18.2.0:
-    resolution: {integrity: sha512-4gXBeNUTD/pSXe3JNZRVftPep/mrmvnbqfNoJG15//HBmoLaWIRgD0FvhGJfK9bQ0PyVG11wrqRku2dy6zaGyw==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
-    dependencies:
-      '@react-types/shared': 3.15.0_react@18.2.0
-      react: 18.2.0
-    dev: false
 
   /@react-types/textfield/3.6.0_react@18.2.0:
     resolution: {integrity: sha512-fEa/lTqpWBn7ZE0cDsc700OhTBAxiy8ifm8AQcLYfZuRX4zqRoMpkXMWN0XMjYfoZzNrS0LJJ6pLBHTwrlXWWA==}

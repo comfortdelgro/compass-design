@@ -7,15 +7,11 @@ export const Variants: React.FC = () => (
     <Row>
       <Tab variant='simple'>
         <Tab.List>
-          <Tab.Item key='sd1' value={1} disabled>
+          <Tab.Item value={1} disabled>
             tab1
           </Tab.Item>
-          <Tab.Item key='sd2' value={2}>
-            tab2
-          </Tab.Item>
-          <Tab.Item key='sd3' value={3}>
-            tab3
-          </Tab.Item>
+          <Tab.Item value={2}>tab2</Tab.Item>
+          <Tab.Item value={3}>tab3</Tab.Item>
         </Tab.List>
         <Tab.Panel value={1}> tab1 content</Tab.Panel>
         <Tab.Panel value={2}> tab2 content</Tab.Panel>
@@ -27,15 +23,11 @@ export const Variants: React.FC = () => (
     <Row>
       <Tab variant='rounded'>
         <Tab.List>
-          <Tab.Item key='sd1' value={1} disabled>
+          <Tab.Item value={1} disabled>
             tab1
           </Tab.Item>
-          <Tab.Item key='sd2' value={2}>
-            tab2
-          </Tab.Item>
-          <Tab.Item key='sd3' value={3}>
-            tab3
-          </Tab.Item>
+          <Tab.Item value={2}>tab2</Tab.Item>
+          <Tab.Item value={3}>tab3</Tab.Item>
         </Tab.List>
         <Tab.Panel value={1}> tab1 content</Tab.Panel>
         <Tab.Panel value={2}> tab2 content</Tab.Panel>
@@ -51,13 +43,13 @@ export const Icon: React.FC = () => (
     <Row>
       <Tab variant='simple'>
         <Tab.List>
-          <Tab.Item key='sd1' value={1} disabled icon='left'>
+          <Tab.Item value={1} disabled icon='left'>
             tab1
           </Tab.Item>
-          <Tab.Item key='sd2' value={2} icon='left'>
+          <Tab.Item value={2} icon='left'>
             tab2
           </Tab.Item>
-          <Tab.Item key='sd3' value={3} icon='left'>
+          <Tab.Item value={3} icon='left'>
             tab3
           </Tab.Item>
         </Tab.List>
@@ -71,13 +63,13 @@ export const Icon: React.FC = () => (
     <Row>
       <Tab variant='rounded'>
         <Tab.List>
-          <Tab.Item key='sd1' value={1} disabled icon='left'>
+          <Tab.Item value={1} disabled icon='left'>
             tab1
           </Tab.Item>
-          <Tab.Item key='sd2' value={2} icon='left'>
+          <Tab.Item value={2} icon='left'>
             tab2
           </Tab.Item>
-          <Tab.Item key='sd3' value={3} icon='left'>
+          <Tab.Item value={3} icon='left'>
             tab3
           </Tab.Item>
         </Tab.List>
@@ -91,13 +83,13 @@ export const Icon: React.FC = () => (
     <Row>
       <Tab variant='simple'>
         <Tab.List>
-          <Tab.Item key='sd1' value={1} disabled icon='right'>
+          <Tab.Item value={1} disabled icon='right'>
             tab1
           </Tab.Item>
-          <Tab.Item key='sd2' value={2} icon='right'>
+          <Tab.Item value={2} icon='right'>
             tab2
           </Tab.Item>
-          <Tab.Item key='sd3' value={3} icon='right'>
+          <Tab.Item value={3} icon='right'>
             tab3
           </Tab.Item>
         </Tab.List>
@@ -111,13 +103,13 @@ export const Icon: React.FC = () => (
     <Row>
       <Tab variant='rounded'>
         <Tab.List>
-          <Tab.Item key='sd1' value={1} disabled icon='right'>
+          <Tab.Item value={1} disabled icon='right'>
             tab1
           </Tab.Item>
-          <Tab.Item key='sd2' value={2} icon='right'>
+          <Tab.Item value={2} icon='right'>
             tab2
           </Tab.Item>
-          <Tab.Item key='sd3' value={3} icon='right'>
+          <Tab.Item value={3} icon='right'>
             tab3
           </Tab.Item>
         </Tab.List>
@@ -131,13 +123,13 @@ export const Icon: React.FC = () => (
     <Row>
       <Tab variant='simple'>
         <Tab.List>
-          <Tab.Item key='sd1' value={1} disabled icon='top'>
+          <Tab.Item value={1} disabled icon='top'>
             tab1
           </Tab.Item>
-          <Tab.Item key='sd2' value={2} icon='top'>
+          <Tab.Item value={2} icon='top'>
             tab2
           </Tab.Item>
-          <Tab.Item key='sd3' value={3} icon='top'>
+          <Tab.Item value={3} icon='top'>
             tab3
           </Tab.Item>
         </Tab.List>
@@ -155,15 +147,11 @@ export const Orientation: React.FC = () => (
     <Row>
       <Tab orientation='horizontal'>
         <Tab.List>
-          <Tab.Item key='sd1' value={1} disabled>
+          <Tab.Item value={1} disabled>
             tab1
           </Tab.Item>
-          <Tab.Item key='sd2' value={2}>
-            tab2
-          </Tab.Item>
-          <Tab.Item key='sd3' value={3}>
-            tab3
-          </Tab.Item>
+          <Tab.Item value={2}>tab2</Tab.Item>
+          <Tab.Item value={3}>tab3</Tab.Item>
         </Tab.List>
         <Tab.Panel value={1}> tab1 content</Tab.Panel>
         <Tab.Panel value={2}> tab2 content</Tab.Panel>
@@ -175,15 +163,11 @@ export const Orientation: React.FC = () => (
     <Row>
       <Tab orientation='vertical'>
         <Tab.List>
-          <Tab.Item key='sd1' value={1} disabled>
+          <Tab.Item value={1} disabled>
             tab1
           </Tab.Item>
-          <Tab.Item key='sd2' value={2}>
-            tab2
-          </Tab.Item>
-          <Tab.Item key='sd3' value={3}>
-            tab3
-          </Tab.Item>
+          <Tab.Item value={2}>tab2</Tab.Item>
+          <Tab.Item value={3}>tab3</Tab.Item>
         </Tab.List>
         <Tab.Panel value={1}> tab1 content</Tab.Panel>
         <Tab.Panel value={2}> tab2 content</Tab.Panel>
@@ -195,15 +179,11 @@ export const Orientation: React.FC = () => (
     <Row>
       <Tab variant='simple' orientation='horizontal'>
         <Tab.List>
-          <Tab.Item key='sd1' value={1} disabled>
+          <Tab.Item value={1} disabled>
             tab1
           </Tab.Item>
-          <Tab.Item key='sd2' value={2}>
-            tab2
-          </Tab.Item>
-          <Tab.Item key='sd3' value={3}>
-            tab3
-          </Tab.Item>
+          <Tab.Item value={2}>tab2</Tab.Item>
+          <Tab.Item value={3}>tab3</Tab.Item>
         </Tab.List>
         <Tab.Panel value={1}> tab1 content</Tab.Panel>
         <Tab.Panel value={2}> tab2 content</Tab.Panel>
@@ -215,15 +195,11 @@ export const Orientation: React.FC = () => (
     <Row>
       <Tab variant='simple' orientation='vertical'>
         <Tab.List>
-          <Tab.Item key='sd1' value={1} disabled>
+          <Tab.Item value={1} disabled>
             tab1
           </Tab.Item>
-          <Tab.Item key='sd2' value={2}>
-            tab2
-          </Tab.Item>
-          <Tab.Item key='sd3' value={3}>
-            tab3
-          </Tab.Item>
+          <Tab.Item value={2}>tab2</Tab.Item>
+          <Tab.Item value={3}>tab3</Tab.Item>
         </Tab.List>
         <Tab.Panel value={1}> tab1 content</Tab.Panel>
         <Tab.Panel value={2}> tab2 content</Tab.Panel>
