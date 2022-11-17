@@ -1,0 +1,86 @@
+import {Callout} from 'nextra-theme-docs'
+import styles from '../../styles/Home.module.css'
+import {faThumbsUp, faVirus} from '@fortawesome/free-solid-svg-icons'
+import Link from '@comfortdelgro/react-compass/link'
+
+# Link
+
+The Link component allows you to easily customize anchor elements with your theme colors and typography styles.
+
+---
+
+### Import:
+
+```js
+import {Link} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import Link from '@comfortdelgro/react-compass/link'
+```
+
+We recommend the second method to import components for the benefits of [tree shaking](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking).
+
+---
+
+### Basic Link:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Link href='/#page'>Go to another page</Link>
+  <Link href='https://google.com' external>
+    Go to Google
+  </Link>
+</section>
+
+```js
+<Link href='/#page'>Go to another page</Link>
+<Link href='https://google.com' external>
+  Go to Google
+</Link>
+```
+
+---
+
+### Custom styling:
+
+You can style React Compass's components with the css prop. <br/>
+With css prop, you can basically do anything that css can do.
+
+<section className={styles.avatarShowcaseContainer}>
+  <Link
+    href='https://google.com'
+    external
+    css={{textDecoration: 'line-through', '&:hover': {color: 'grey'}}}
+  >
+    Go to Google
+  </Link>
+</section>
+
+```js
+<Link
+  href='https://google.com'
+  external
+  css={{textDecoration: 'line-through', '&:hover': {color: 'grey'}}}
+>
+  Go to Google
+</Link>
+```
+
+---
+
+### Props:
+
+| Name     | Type             | Default | Description |
+| :------- | :--------------- | :------ | :---------- |
+| external | `false`\| `true` |         |             |
+| css      | `CSS`            | —       |             |
+
+---
+
+<Callout>
+  Check out our [ladle](/ladle?story=button--variants) for more info on this
+  component.
+</Callout>
+````
