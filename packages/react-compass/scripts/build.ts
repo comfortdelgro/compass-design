@@ -18,19 +18,14 @@ const makeCliOptions = (o: Record<string, unknown>) =>
     .join(' ')
 
 const getTypesVersions = async () => {
-  const result: any = {}
+  const result: Record<string, unknown> = {}
   const exclude = ['utils']
-  const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
   const folders = await fs.readdir(OUTPUT_ESM_DIR, {withFileTypes: true})
   const directoriesInDIrectory = folders
     .filter((item) => item.isDirectory())
     .map((item) => item.name)
   directoriesInDIrectory.forEach((item) => {
     if (!exclude.includes(item)) {
-      result[capitalize(item)] = [
-        `esm/${item}/index.d.ts`,
-        `commonjs/${item}/index.d.ts`,
-      ]
       result[item] = [`esm/${item}/index.d.ts`, `commonjs/${item}/index.d.ts`]
     }
   })
