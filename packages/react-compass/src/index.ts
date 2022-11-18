@@ -11,3 +11,9 @@ export {default as Link, LinkProps} from './link'
 export {default as Preflight} from './preflight'
 export {default as Spinner, SpinnerProps} from './spinner'
 export {globalCss, styled, theme} from './theme'
+export {
+  Tooltip,
+  TooltipProps,
+  TooltipTrigger,
+  TooltipTriggerProps,
+} from './tooltip'
