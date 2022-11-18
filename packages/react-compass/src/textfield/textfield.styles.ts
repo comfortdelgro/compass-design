@@ -1,12 +1,12 @@
 import {styled} from '../theme'
 import type {VariantProps} from '../utils/stitches.types'
 
-export const StyledTextfieldWrapper = styled('div', {
+export const StyledTextFieldWrapper = styled('div', {
   display: 'block',
   fontFamily: '$sans',
 })
 
-export const StyledTextfieldLabel = styled('label', {
+export const StyledTextFieldLabel = styled('label', {
   fontSize: '$label1',
   fontWeight: '$medium',
   lineHeight: '$normal',
@@ -23,7 +23,7 @@ export const StyledTextfieldLabel = styled('label', {
   },
 })
 
-export const StyledTextfieldBox = styled('div', {
+export const StyledTextFieldBox = styled('div', {
   display: 'flex',
   flexDirection: 'row',
   alignItems: 'center',
@@ -84,7 +84,7 @@ export const StyledTextfieldBox = styled('div', {
   },
 })
 
-export const StyledTextfield = styled('input', {
+export const StyledTextField = styled('input', {
   fontSize: '$label1',
   fontWeight: '$medium',
   lineHeight: '$normal',
@@ -102,7 +102,7 @@ export const StyledTextfield = styled('input', {
   },
 })
 
-export const StyledTextfieldHelperText = styled('div', {
+export const StyledTextFieldHelperText = styled('div', {
   fontSize: '$label2',
   fontWeight: '$medium',
   transition: '$default',
@@ -118,4 +118,4 @@ export const StyledTextfieldHelperText = styled('div', {
   },
 })
 
-export type TextfieldVariantProps = VariantProps<typeof StyledTextfield>
+export type TextFieldVariantProps = VariantProps<typeof StyledTextField>

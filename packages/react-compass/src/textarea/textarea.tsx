@@ -2,8 +2,8 @@ import {useTextField} from '@react-aria/textfield'
 import type {AriaTextFieldProps} from '@react-types/textfield'
 import React from 'react'
 import {
-  StyledTextfieldHelperText,
-  StyledTextfieldLabel,
+  StyledTextFieldHelperText,
+  StyledTextFieldLabel,
 } from '../textfield/textfield.styles'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -53,9 +53,9 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
 
     return (
       <StyledTextareaWrapper>
-        <StyledTextfieldLabel {...labelProps} disabled={!!disabled}>
+        <StyledTextFieldLabel {...labelProps} disabled={!!disabled}>
           {label}
-        </StyledTextfieldLabel>
+        </StyledTextFieldLabel>
         <StyledTextarea
           ref={textareaRef}
           css={css}
@@ -63,13 +63,13 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           {...variantProps}
         />
         {wordCount ? (
-          <StyledTextfieldHelperText
+          <StyledTextFieldHelperText
             className='word-count'
             {...descriptionProps}
           >
             {inputProps.value?.toString().length ?? '0'}
             {maxLength ? `/${maxLength}` : null}
-          </StyledTextfieldHelperText>
+          </StyledTextFieldHelperText>
         ) : null}
       </StyledTextareaWrapper>
     )

@@ -5,12 +5,12 @@ import {Icon, IconProp} from '../icon'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
-  StyledTextfield,
-  StyledTextfieldBox,
-  StyledTextfieldHelperText,
-  StyledTextfieldLabel,
-  StyledTextfieldWrapper,
-  TextfieldVariantProps,
+  StyledTextField,
+  StyledTextFieldBox,
+  StyledTextFieldHelperText,
+  StyledTextFieldLabel,
+  StyledTextFieldWrapper,
+  TextFieldVariantProps,
 } from './textfield.styles'
 
 interface Props extends AriaTextFieldProps, StyledComponentProps {
@@ -21,9 +21,9 @@ interface Props extends AriaTextFieldProps, StyledComponentProps {
   rightIcon?: IconProp
 }
 
-export type TextfieldProps = Props & TextfieldVariantProps
+export type TextFieldProps = Props & TextFieldVariantProps
 
-const Textfield = React.forwardRef<HTMLInputElement, TextfieldProps>(
+const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
   (props, ref) => {
     const {
       // StyledComponentProps
@@ -51,28 +51,28 @@ const Textfield = React.forwardRef<HTMLInputElement, TextfieldProps>(
       useTextField(ariaProps, textfieldRef)
 
     return (
-      <StyledTextfieldWrapper>
-        <StyledTextfieldLabel {...labelProps} disabled={!!isDisabled}>
+      <StyledTextFieldWrapper>
+        <StyledTextFieldLabel {...labelProps} disabled={!!isDisabled}>
           {label}
-        </StyledTextfieldLabel>
-        <StyledTextfieldBox disabled={!!isDisabled} errored={!!errored}>
+        </StyledTextFieldLabel>
+        <StyledTextFieldBox disabled={!!isDisabled} errored={!!errored}>
           {leftIcon ? <Icon className='left-icon' icon={leftIcon} /> : null}
-          <StyledTextfield css={css} ref={textfieldRef} {...inputProps} />
+          <StyledTextField css={css} ref={textfieldRef} {...inputProps} />
           {rightIcon ? <Icon className='right-icon' icon={rightIcon} /> : null}
-        </StyledTextfieldBox>
+        </StyledTextFieldBox>
         {!errored && helperText ? (
-          <StyledTextfieldHelperText {...descriptionProps}>
+          <StyledTextFieldHelperText {...descriptionProps}>
             {helperText}
-          </StyledTextfieldHelperText>
+          </StyledTextFieldHelperText>
         ) : null}
         {errored ? (
-          <StyledTextfieldHelperText {...errorMessageProps} error>
+          <StyledTextFieldHelperText {...errorMessageProps} error>
             {helperText}
-          </StyledTextfieldHelperText>
+          </StyledTextFieldHelperText>
         ) : null}
-      </StyledTextfieldWrapper>
+      </StyledTextFieldWrapper>
     )
   },
 )
 
-export default Textfield
+export default TextField
