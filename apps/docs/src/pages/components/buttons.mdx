@@ -2,6 +2,7 @@ import {Callout} from 'nextra-theme-docs'
 import styles from '../../styles/Home.module.css'
 import {faThumbsUp, faVirus} from '@fortawesome/free-solid-svg-icons'
 import Button from '@comfortdelgro/react-compass/button'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 
 # Button
 
@@ -20,8 +21,6 @@ or
 ```js
 import Button from '@comfortdelgro/react-compass/button'
 ```
-
-We recommend the second method to import components for the benefits of [tree shaking](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking).
 
 ---
 
@@ -132,26 +131,28 @@ We recommend the second method to import components for the benefits of [tree sh
 ### Buttons with icons as content:
 
 <section className={styles.avatarShowcaseContainer}>
-  {/* <Button variant='secondary'>
-    <Button.Icon icon={faVirus} />
+  <Button variant='secondary'>
+    <FontAwesomeIcon icon={faVirus} />
   </Button>
   <Button variant='danger'>
-    <Button.Icon icon={faVirus} />
+    <FontAwesomeIcon icon={faVirus} />
   </Button>
   <Button variant='ghost'>
-    <Button.Icon icon={faVirus} />
-  </Button> */}
+    <FontAwesomeIcon icon={faVirus} />
+  </Button>
 </section>
 
 ```js
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+
 <Button variant='secondary'>
-  <Button.Icon icon={faVirus} />
+  <FontAwesomeIcon icon={faVirus} />
 </Button>
 <Button variant='danger'>
-  <Button.Icon icon={faVirus} />
+  <FontAwesomeIcon icon={faVirus} />
 </Button>
 <Button variant='ghost'>
-  <Button.Icon icon={faVirus} />
+  <FontAwesomeIcon icon={faVirus} />
 </Button>
 ```
 
@@ -230,4 +231,3 @@ With css prop, you can basically do anything that css can do.
   Check out our [ladle](/ladle?story=button--variants) for more info on this
   component.
 </Callout>
-````

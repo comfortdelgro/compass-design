@@ -21,8 +21,6 @@ or
 import Textfield from '@comfortdelgro/react-compass/textfield'
 ```
 
-We recommend the second method to import components for the benefits of [tree shaking](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking).
-
 ---
 
 ### Basic text field:
@@ -96,6 +94,7 @@ We recommend the second method to import components for the benefits of [tree sh
 ### Text field with icons:
 
 <section className={styles.avatarShowcaseContainer}>
+  <Textfield label='Name' leftIcon={faThumbsUp} placeholder='Enter your name' />
   <Textfield
     label='Name'
     rightIcon={faThumbsUp}
@@ -104,7 +103,12 @@ We recommend the second method to import components for the benefits of [tree sh
 </section>
 
 ```js
-<Textfield label='Name' rightIcon={faThumbsUp} placeholder='Enter your name' />
+<Textfield label='Name' leftIcon={faThumbsUp} placeholder='Enter your name' />
+<Textfield
+  label='Name'
+  rightIcon={faThumbsUp}
+  placeholder='Enter your name'
+/>
 ```
 
 ---
@@ -164,11 +168,17 @@ With css prop, you can basically do anything that css can do.
 
 ### Props:
 
-| Name | Type | Default | Description |
-| :--- | :--- | :------ | :---------- |
-|      |      |         |             |
-|      |      | —       |             |
-|      |      | —       |             |
+| Name          | Type                         | Default | Description                                       |
+| :------------ | :--------------------------- | :------ | :------------------------------------------------ |
+| `placeholder` | `string` \| `null`           | `null`  | `Placeholder of the text field`                   |
+| `label`       | `string` \| `null`           | `null`  | `Label of the text field`                         |
+| `helperText`  | `string` \| `null`           | —       |                                                   |
+| `errored`     | `true` \| `false`            | `false` | `Throw error when input value is wrong`           |
+| `value`       | `string`                     | —       | `Input value`                                     |
+| `rightIcon`   | `IconProp`\|`false`\| `true` | `false` | `Icon placed on the right side of the text field` |
+| `leftIcon`    | `IconProp`\|`false`\| `true` | `false` | `Icon placed on the left side of the text field`  |
+| `isDisabled`  | `false`\| `true`             | `false` | `Disable the text field when true`                |
+| `css `        | `CSS`                        | —       |                                                   |
 
 ---
 
@@ -176,4 +186,3 @@ With css prop, you can basically do anything that css can do.
   Check out our [ladle](/ladle?story=textfield--variants) for more info on this
   component.
 </Callout>
-````

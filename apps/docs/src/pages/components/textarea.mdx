@@ -21,15 +21,20 @@ or
 import Textarea from '@comfortdelgro/react-compass/textarea'
 ```
 
-We recommend the second method to import components for the benefits of [tree shaking](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking).
-
 ---
 
 ### Basic text areas:
 
 <section className={styles.textAreaShowcaseContainer}>
   <Textarea placeholder='Enter your message' />
-  <Textarea label='Text Label' placeholder='Enter your message' />
+  <Textarea label='Text Label' placeholder='Enter your message' isDisabled/>
+  <Textarea
+    label='Text Label'
+    placeholder='Enter your message'
+    value='Lorem ipsum dolor sit amet.'
+
+/>
+
   <Textarea
     label='Text Label'
     placeholder='Enter your message'
@@ -55,7 +60,7 @@ We recommend the second method to import components for the benefits of [tree sh
 
 ```js
   <Textarea placeholder='Enter your message' />
-  <Textarea label='Text Label' placeholder='Enter your message' />
+  <Textarea label='Text Label' placeholder='Enter your message' isDisabled/>
   <Textarea
     label='Text Label'
     placeholder='Enter your message'
@@ -112,11 +117,17 @@ With css prop, you can basically do anything that css can do.
 
 ### Props:
 
-| Name | Type | Default | Description |
-| :--- | :--- | :------ | :---------- |
-|      |      |         |             |
-|      |      | —       |             |
-|      |      | —       |             |
+| Name          | Type               | Default | Description                              |
+| :------------ | :----------------- | :------ | :--------------------------------------- |
+| `placeholder` | `string` \| `null` | `null`  | `Placeholder of the text field`          |
+| `label`       | `string` \| `null` | `null`  | `Label of the text field`                |
+| `errored`     | `true` \| `false`  | `false` | `Throw error when input value is wrong`  |
+| `value`       | `string`           | —       | `Input value`                            |
+| `isDisabled`  | `false`\| `true`   | `false` | `Disable the text field when true`       |
+| `css `        | `CSS`              | —       |                                          |
+| `wordCount`   | `false`\| `true`   | `false` | `Show word count of the input when true` |
+| `maxLength`   | `number`           | —       | `Limit length of the input`              |
+| `onChange`    | `function`         | —       |                                          |
 
 ---
 
@@ -124,4 +135,3 @@ With css prop, you can basically do anything that css can do.
   Check out our [ladle](/ladle?story=textarea--variants) for more info on this
   component.
 </Callout>
-````
