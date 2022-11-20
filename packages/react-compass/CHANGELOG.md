@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 0.3.0
+
+### Minor Changes
+
+- 3f9a901: Add more components
+
 ## 0.2.0
 
 ### Minor Changes
