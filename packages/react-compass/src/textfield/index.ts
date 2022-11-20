@@ -1,4 +1,4 @@
 import TextField from './textfield'
 
-export {TextFieldProps} from './textfield'
+export type {TextFieldProps} from './textfield'
 export default TextField
