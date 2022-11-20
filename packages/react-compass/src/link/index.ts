@@ -1,4 +1,4 @@
 import Link from './link'
 
-export {LinkProps} from './link'
+export type {LinkProps} from './link'
 export default Link
