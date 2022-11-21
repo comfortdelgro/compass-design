@@ -10,7 +10,6 @@ import {
 } from './wizard.styles'
 
 interface Props extends StyledComponentProps {
-  children?: React.ReactNode
   items: string[]
   currentStep?: number
 }
