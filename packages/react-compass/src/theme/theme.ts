@@ -36,6 +36,7 @@ const spacings = {
   72: '18rem', // 288px
   80: '20rem', // 320px
   96: '24rem', // 384px
+  108: '27rem', // 433px
 } as const
 
 export default defineTheme({
@@ -149,7 +150,7 @@ export default defineTheme({
     medium: '2px',
     thick: '3px',
   },
-  radii: {
+  radius: {
     md: '4px',
     lg: '8px',
     xl: '16px',
