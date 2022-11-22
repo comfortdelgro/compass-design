@@ -28,6 +28,17 @@ export {default as SearchField} from './searchfield'
 export type {SearchFieldProps} from './searchfield'
 export {default as Spinner} from './spinner'
 export type {SpinnerProps} from './spinner'
+export {default as SubBanner} from './subBanner'
+export type {
+  SubBannerDescriptionProps,
+  SubBannerDescriptionProps,
+  SubBannerImageProps,
+  SubBannerImageProps,
+  SubBannerProps,
+  SubBannerProps,
+  SubBannerTitleProps,
+  SubBannerTitleProps,
+} from './subBanner'
 export {default as Table} from './table'
 export type {TableProps} from './table'
 export {default as Textarea} from './textarea'

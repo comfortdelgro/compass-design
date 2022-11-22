@@ -15,7 +15,7 @@ import {
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
-  variant?: 'Primary' | 'Secondary'
+  variant?: 'primary' | 'secondary'
 }
 
 export type SubBannerProps = Props &
@@ -28,7 +28,7 @@ const SubBanner = React.forwardRef<HTMLDivElement, SubBannerProps>(
       // styled component props
       css = {},
       // VariantProps
-      variant = 'Primary',
+      variant = 'primary',
       // HTMLDiv Props
       ...delegated
     } = props
@@ -49,20 +49,36 @@ const SubBanner = React.forwardRef<HTMLDivElement, SubBannerProps>(
 
     return (
       <>
-        <StyledSubBanner
-          css={css}
-          ref={subBannerRef}
-          {...variantProps}
-          {...delegated}
-        >
-          {SubBannerImageElement}
-          <SubBannerBottom>
+        {variant == 'primary' ? (
+          <StyledSubBanner
+            css={css}
+            ref={subBannerRef}
+            {...variantProps}
+            {...delegated}
+          >
+            {SubBannerImageElement}
+            <SubBannerBottom>
+              <StyledBottomContentContainer>
+                {SubBannerTitleElement}
+                {SubBannerDescriptionElement}
+              </StyledBottomContentContainer>
+            </SubBannerBottom>
+          </StyledSubBanner>
+        ) : (
+          <StyledSubBanner
+            css={css}
+            ref={subBannerRef}
+            {...variantProps}
+            {...delegated}
+          >
+            {SubBannerImageElement}
+
             <StyledBottomContentContainer>
               {SubBannerTitleElement}
               {SubBannerDescriptionElement}
             </StyledBottomContentContainer>
-          </SubBannerBottom>
-        </StyledSubBanner>
+          </StyledSubBanner>
+        )}
       </>
     )
   },

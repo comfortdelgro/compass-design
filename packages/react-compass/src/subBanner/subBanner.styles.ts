@@ -2,22 +2,6 @@
 import {styled} from '../theme'
 import type {VariantProps} from '../utils/stitches.types'
 
-export const StyledSubBanner = styled('div', {
-  // reset
-  appearance: 'none',
-  border: 'none',
-  backgroundColor: 'transparent',
-  boxSizing: 'border-box',
-  margin: '0px',
-  padding: '0px',
-
-  // container
-  height: '$108',
-  width: '$80',
-  display: 'flex',
-  flexDirection: 'column',
-})
-
 export const StyledSubBannerImage = styled('img', {
   // reset
   appearance: 'none',
@@ -30,13 +14,6 @@ export const StyledSubBannerImage = styled('img', {
   // img
   width: '100%',
   height: '64.67%',
-  // Variants
-  variants: {
-    variant: {
-      primary: {},
-      secondary: {},
-    },
-  },
 })
 
 export const StyledSubBannerBottom = styled('div', {
@@ -57,11 +34,6 @@ export const StyledSubBannerBottom = styled('div', {
   flexDirection: 'column',
   justifyContent: 'center',
   gap: '0.375rem',
-
-  '& *': {
-    marginLeft: '1rem',
-    marginRight: '1rem',
-  },
 })
 
 export const StyledSubBannerTitle = styled('h1', {
@@ -108,6 +80,48 @@ export const StyledBottomContentContainer = styled('div', {
 
   // content container
   marginLeft: '$4',
+})
+
+export const StyledSubBanner = styled('div', {
+  // reset
+  appearance: 'none',
+  border: 'none',
+  backgroundColor: 'transparent',
+  boxSizing: 'border-box',
+  margin: '0px',
+  padding: '0px',
+
+  // container
+  height: '$108',
+  width: '$80',
+  display: 'flex',
+  flexDirection: 'column',
+
+  // Variants
+  variants: {
+    variant: {
+      primary: {},
+      secondary: {
+        position: 'relative',
+        [`& ${StyledSubBannerImage}`]: {
+          position: 'absolute',
+          height: '100%',
+          zIndex: -1,
+        },
+        [`& ${StyledSubBannerBottom}`]: {
+          display: 'none',
+        },
+        [`& ${StyledBottomContentContainer}`]: {
+          position: 'absolute',
+          bottom: '$2',
+        },
+      },
+    },
+  },
+
+  defaultVariants: {
+    variant: 'primary',
+  },
 })
 
 export type SubBannerVariantProps = VariantProps<typeof StyledSubBanner>
