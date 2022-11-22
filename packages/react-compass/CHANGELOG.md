@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 0.2.2
+
+### Patch Changes
+
+- ddbf1ad: `utils` now included back in `react-compass` exports and updated READMEs for both `compass-icons` and `react-compass` packages.
+
 ## 0.2.0
 
 ### Minor Changes
