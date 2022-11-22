@@ -7,7 +7,7 @@ export const Default: React.FC = () => {
 
   return (
     <Column>
-      <h3>Default Sub-anner</h3>
+      <h3>Default Sub-banner</h3>
       <SubBanner>
         <SubBanner.Image src={backgroundSrc} />
         <SubBanner.Title>My Title</SubBanner.Title>
