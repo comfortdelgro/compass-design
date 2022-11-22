@@ -11,7 +11,7 @@ export type SubBannerImageProps = Props &
 
 const SubBannerImage = React.forwardRef<HTMLImageElement, SubBannerImageProps>(
   (props, ref) => {
-    const {css = {}, ...delegated} = props
+    const {css = {}, id = 'myId', ...delegated} = props
     const subBannerImageRef = useDOMRef<HTMLImageElement>(ref)
     return (
       <>
@@ -19,6 +19,7 @@ const SubBannerImage = React.forwardRef<HTMLImageElement, SubBannerImageProps>(
           css={css}
           {...delegated}
           ref={subBannerImageRef}
+          id={id}
         />
       </>
     )

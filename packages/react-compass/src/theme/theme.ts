@@ -150,7 +150,7 @@ export default defineTheme({
     medium: '2px',
     thick: '3px',
   },
-  radius: {
+  radii: {
     md: '4px',
     lg: '8px',
     xl: '16px',

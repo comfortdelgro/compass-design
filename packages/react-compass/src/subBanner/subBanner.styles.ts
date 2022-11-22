@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 import {styled} from '../theme'
+import type {VariantProps} from '../utils/stitches.types'
 
 export const StyledSubBanner = styled('div', {
   // reset
@@ -13,6 +14,8 @@ export const StyledSubBanner = styled('div', {
   // container
   height: '$108',
   width: '$80',
+  display: 'flex',
+  flexDirection: 'column',
 })
 
 export const StyledSubBannerImage = styled('img', {
@@ -27,6 +30,13 @@ export const StyledSubBannerImage = styled('img', {
   // img
   width: '100%',
   height: '64.67%',
+  // Variants
+  variants: {
+    variant: {
+      primary: {},
+      secondary: {},
+    },
+  },
 })
 
 export const StyledSubBannerBottom = styled('div', {
@@ -42,10 +52,16 @@ export const StyledSubBannerBottom = styled('div', {
   height: '35.33%',
   backgroundColor: '$cdgBlue',
 
-  // position content container
+  // position title & description
   display: 'flex',
-  justifyContent: 'flex-start',
-  alignItems: 'center',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  gap: '0.375rem',
+
+  '& *': {
+    marginLeft: '1rem',
+    marginRight: '1rem',
+  },
 })
 
 export const StyledSubBannerTitle = styled('h1', {
@@ -82,17 +98,16 @@ export const StyledSubBannerDescription = styled('p', {
   fontWeight: '$fontWeights$normal',
 })
 
-// export const StyledSubBannerBottomContentContainer = styled('div', {
-//   // reset
-//   appearance: 'none',
-//   border: 'none',
-//   boxSizing: 'border-box',
-//   margin: '0px',
-//   padding: '0px',
+export const StyledBottomContentContainer = styled('div', {
+  // reset
+  appearance: 'none',
+  border: 'none',
+  boxSizing: 'border-box',
+  margin: '0px',
+  padding: '0px',
 
-//   // content container
-//   marginLeft: '$4',
+  // content container
+  marginLeft: '$4',
+})
 
-//   [`${StyledSubBannerTitle}`]: {},
-//   [`${StyledSubBannerDescription}`]: {},
-// })
+export type SubBannerVariantProps = VariantProps<typeof StyledSubBanner>
