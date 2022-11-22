@@ -157,6 +157,10 @@ const tasks = new Listr([
       )
     },
   },
+  {
+    title: 'Copy README.md',
+    task: () => fs.copyFile('README.md', `${OUTPUT_DIR}/README.md`),
+  },
 ])
 
 // Run 'em
