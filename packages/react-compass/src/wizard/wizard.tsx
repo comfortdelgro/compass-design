@@ -29,7 +29,7 @@ const Wizard = React.forwardRef<HTMLDivElement, WizardProps>((props, ref) => {
 
   return (
     <StyledWizard
-      css={{$$itemsLenght: `${items.length}`, ...css}}
+      css={{$$itemsLength: `${items.length}`, ...css}}
       ref={wizardRef}
     >
       <div className='wizard-progress-wrapper'>

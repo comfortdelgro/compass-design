@@ -8,7 +8,7 @@ export const StyledWizard = styled('div', {
     width: '100%',
     display: 'flex',
     '& .item-wrapper': {
-      width: 'calc(100% / $$itemsLenght)',
+      width: 'calc(100% / $$itemsLength)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
