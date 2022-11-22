@@ -108,7 +108,7 @@ export const StyledItem = styled('span', {
 })
 
 export const StyledContent = styled('div', {
-  width: 'calc(100% / $$itemsLenght)',
+  width: 'calc(100% / $$itemsLength)',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
