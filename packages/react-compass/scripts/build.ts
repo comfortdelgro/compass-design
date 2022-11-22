@@ -19,7 +19,7 @@ const makeCliOptions = (o: Record<string, unknown>) =>
 
 const getTypesVersions = async () => {
   const result: Record<string, unknown> = {}
-  const exclude = ['utils']
+  const exclude: string[] = []
   const folders = await fs.readdir(OUTPUT_ESM_DIR, {withFileTypes: true})
   const directoriesInDIrectory = folders
     .filter((item) => item.isDirectory())
