@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 0.2.3
+
+### Patch Changes
+
+- 9eb2e89: Update build step to include README file to publish to NPM.
+
 ## 0.2.2
 
 ### Patch Changes
