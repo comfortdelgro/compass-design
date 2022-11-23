@@ -7,6 +7,7 @@ export const StyledRadio = styled('div', {
   alignItems: 'center',
   cursor: 'pointer',
   minWidth: '$96',
+  width: 'min-content',
   '.radio-wrapper': {
     width: '16px important',
   },

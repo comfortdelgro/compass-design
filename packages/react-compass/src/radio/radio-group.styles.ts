@@ -5,16 +5,15 @@ export const StyledRadioGroup = styled('div', {
   position: 'relative',
   width: '100%',
   padding: '$2 $4',
-  display: 'grid',
+  display: 'flex',
   gap: '$4',
-  gridTemplateColumns: 'min-content',
   variants: {
     orientation: {
       horizontal: {
-        gridAutoFlow: 'column',
+        flexDirection: 'row',
       },
       vertical: {
-        gridAutoFlow: 'row',
+        flexDirection: 'column',
       },
     },
   },
