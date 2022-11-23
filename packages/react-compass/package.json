@@ -44,6 +44,7 @@
     "@react-aria/searchfield": "^3.4.2",
     "@react-aria/table": "^3.5.0",
     "@react-aria/textfield": "^3.7.2",
+    "@react-aria/toggle": "^3.4.1",
     "@react-aria/utils": "^3.14.0",
     "@react-aria/visually-hidden": "^3.5.0",
     "@react-stately/data": "^3.7.0",
