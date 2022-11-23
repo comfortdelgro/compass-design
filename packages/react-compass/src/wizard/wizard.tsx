@@ -21,7 +21,7 @@ const Wizard = React.forwardRef<HTMLDivElement, WizardProps>((props, ref) => {
     // StyledComponentProps
     css = {},
     // ComponentProps
-    currentStep = 3,
+    currentStep = 1,
     items,
   } = props
 
