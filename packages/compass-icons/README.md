@@ -1,47 +1,46 @@
-# React Compass
+# Compass Icons
 
-This project provides a set of components for the React Compass Design System that can be used to
-implement user experiences consistent with
-[ComfortDelGro's design principles](https://comfortdelgro.github.io/compass-design).
+Icons to be used with ComfortDelGro's Compass Design System Components. See [here](https://www.npmjs.com/package/@comfortdelgro/react-compass).
 
 ## Getting started
 
-### React
-
-**Installation**
+### Installation
 
 To get started, run
 
 ```sh
-yarn add @comfortdelgro/react-compass
+yarn add @comfortdelgro/compass-icons
 ```
 
 or
 
 ```sh
-npm install @comfortdelgro/react-compass
+npm install @comfortdelgro/compass-icons
 ```
 
 or
 
 ```sh
-pnpm install @comfortdelgro/react-compass
+pnpm install @comfortdelgro/compass-icons
 ```
 
 > Make sure you have all the required peer dependencies installed in the first place.
 
-**Usage**
+### Usage
+
+**Use as React components**,
 
 ```tsx
-import {Button} from '@comfortdelgro/react-compass'
-;() => <Button variant='primary'>Click Me</Button>
+import CrownIcon from '@comfortdelgro/compass-icons/react/crown'
+;() => <CrownIcon size={20}>Click Me</CrownIcon>
 ```
 
-or
+**Use with Iconify**
 
 ```tsx
-import Button from '@comfortdelgro/react-compass/button'
-;() => <Button variant='primary'>Click Me</Button>
+import crownIcon from '@comfortdelgro/compass-icons/iconify/crown'
+import {Icon} from '@iconify/react'
+;() => <Icon icon={crownIcon} size={20} />
 ```
 
 ## Reporting a Bug
