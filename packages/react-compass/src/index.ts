@@ -21,11 +21,32 @@ export {default as Icon} from './icon'
 export type {IconProp} from './icon'
 export {default as Link} from './link'
 export type {LinkProps} from './link'
+export {
+  default as MenuList,
+  MenuListContext,
+  MenuListDropdown,
+} from './menu-list'
+export type {
+  MenuListContextValue,
+  MenuListDropdownHeaderProps,
+  MenuListDropdownItemProps,
+  MenuListDropdownProps,
+  MenuListProps,
+} from './menu-list'
+export {default as Navbar} from './navbar'
+export type {NavbarBrandProps, NavbarIconProps, NavbarProps} from './navbar'
 export {default as Pagination} from './pagination'
 export type {PaginationProps} from './pagination'
 export {default as Preflight} from './preflight'
 export {default as SearchField} from './searchfield'
 export type {SearchFieldProps} from './searchfield'
+export {default as Sidebar, SidebarContext} from './sidebar'
+export type {
+  DividerProps,
+  SidebarContextValue,
+  SidebarItemProps,
+  SidebarProps,
+} from './sidebar'
 export {default as Spinner} from './spinner'
 export type {SpinnerProps} from './spinner'
 export {default as Table} from './table'

@@ -1,7 +1,7 @@
 import React, {useContext} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
+import {SidebarContext} from './sidebar-context'
 import {StyledSidebarItem} from './sidebar-item.styles'
-import {SidebarContext} from './sidebarContext'
 
 interface Props extends StyledComponentProps {
   children: React.ReactNode

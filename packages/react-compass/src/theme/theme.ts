@@ -23,6 +23,7 @@ const spacings = {
   16: '4rem', // 64px
   18: '4.5rem', // 72px
   20: '5rem', // 80px
+  22: '5.5rem', // 88px
   24: '6rem', // 96px
   28: '7rem', // 112px
   32: '8rem', // 128px

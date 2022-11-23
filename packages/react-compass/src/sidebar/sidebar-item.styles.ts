@@ -30,6 +30,12 @@ export const StyledSidebarItem = styled('div', {
     textOverflow: 'ellipsis',
   },
 
+  '& .sidebar-item-title > *': {
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+  },
+
   variants: {
     active: {
       active: {
@@ -43,7 +49,7 @@ export const StyledSidebarItem = styled('div', {
           left: 0,
           top: 0,
           height: '100%',
-          width: '$0_5',
+          width: '3px',
           backgroundColor: 'currentColor',
         },
       },

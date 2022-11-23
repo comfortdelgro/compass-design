@@ -1,7 +1,9 @@
 import React, {useState} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
+import Divider from './divider'
+import {SidebarContext} from './sidebar-context'
+import SidebarItem from './sidebar-item'
 import {StyledSidebar} from './sidebar.styles'
-import {SidebarContext} from './sidebarContext'
 
 interface Props extends StyledComponentProps {
   children: React.ReactNode
@@ -42,4 +44,7 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>((props, ref) => {
   )
 })
 
-export default Sidebar
+export default Sidebar as typeof Sidebar & {
+  Item: typeof SidebarItem
+  Divider: typeof Divider
+}

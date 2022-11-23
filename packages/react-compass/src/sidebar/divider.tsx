@@ -6,8 +6,10 @@ interface Props extends StyledComponentProps {
   children?: React.ReactNode
 }
 
-const Divider = React.forwardRef<HTMLDivElement, Props>((_, ref) => {
-  return <StyledDivider ref={ref} />
+export type DividerProps = Props
+
+const Divider = React.forwardRef<HTMLDivElement, DividerProps>((_, ref) => {
+  return <StyledDivider className='divider' ref={ref} />
 })
 
 export default Divider

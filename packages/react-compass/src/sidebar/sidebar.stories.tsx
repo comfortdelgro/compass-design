@@ -7,13 +7,12 @@ import {
   faTractor,
 } from '@fortawesome/free-solid-svg-icons'
 import {useState} from 'react'
+import Avatar from '../avatar'
 import Icon from '../icon'
 import {Row} from '../utils/components'
-import Divider from './divider'
-import {default as SidebarComponent} from './sidebar'
-import SidebarItem from './sidebar-item'
+import Sidebar from './index'
 
-export const Sidebar: React.FC = () => {
+export const Sidebars: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1)
 
   const items = [
@@ -34,10 +33,19 @@ export const Sidebar: React.FC = () => {
 
   return (
     <Row css={{position: 'relative'}}>
-      <SidebarComponent
-        css={{height: '720px', position: 'absolute', top: '40px', zIndex: 2}}
+      <Sidebar
+        css={{height: '800px', position: 'absolute', top: '0px', zIndex: 2}}
         expand
       >
+        <Sidebar.Item>
+          <div style={{width: '40px'}}>
+            <Avatar label='M' />
+          </div>
+          <h2 style={{fontSize: '24px', marginLeft: '22px', color: '#323130'}}>
+            Workbench
+          </h2>
+        </Sidebar.Item>
+        <Sidebar.Divider />
         {items.map((item) => (
           <a
             onClick={(e) => {
@@ -47,25 +55,25 @@ export const Sidebar: React.FC = () => {
             href='#'
             style={{color: 'inherit', textDecoration: 'none'}}
           >
-            <SidebarItem active={currentPage === item.id}>
+            <Sidebar.Item active={currentPage === item.id}>
               <Icon icon={item.icon}></Icon>
               <span>Placeholder</span>
-            </SidebarItem>
+            </Sidebar.Item>
           </a>
         ))}
-        <Divider />
-        <SidebarItem css={{marginTop: 'auto'}}>
+        <Sidebar.Divider />
+        <Sidebar.Item css={{marginTop: 'auto'}}>
           <Icon icon={faBank}></Icon>
           <span>Placeholder</span>
-        </SidebarItem>
-      </SidebarComponent>
-      <SidebarComponent
+        </Sidebar.Item>
+      </Sidebar>
+      <Sidebar
         css={{
-          height: '720px',
+          height: '800px',
           position: 'absolute',
           left: '200px',
           backgroundColor: '$primaryBg',
-          top: '40px',
+          top: '0px',
           zIndex: 1,
           '& .sidebar-item-active': {
             color: '$warning',
@@ -82,7 +90,7 @@ export const Sidebar: React.FC = () => {
             href='#'
             style={{color: 'inherit', textDecoration: 'none'}}
           >
-            <SidebarItem
+            <Sidebar.Item
               active={currentPage === item.id}
               css={{
                 '&:hover': {
@@ -92,15 +100,15 @@ export const Sidebar: React.FC = () => {
             >
               <Icon icon={item.icon}></Icon>
               <span>Placeholder</span>
-            </SidebarItem>
+            </Sidebar.Item>
           </a>
         ))}
-        <Divider />
-        <SidebarItem css={{marginTop: 'auto'}}>
+        <Sidebar.Divider />
+        <Sidebar.Item css={{marginTop: 'auto'}}>
           <Icon icon={faBank}></Icon>
           <span>Placeholder</span>
-        </SidebarItem>
-      </SidebarComponent>
+        </Sidebar.Item>
+      </Sidebar>
     </Row>
   )
 }

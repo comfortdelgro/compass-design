@@ -124,6 +124,7 @@ importers:
       '@react-types/grid': ^3.1.4
       '@react-types/link': ^3.3.4
       '@react-types/searchfield': ^3.3.4
+      '@react-types/shared': ^3.16.0
       '@react-types/table': ^3.3.2
       '@react-types/textfield': ^3.6.0
       '@stitches/react': ^1.2.8
@@ -172,6 +173,7 @@ importers:
       '@react-types/grid': 3.1.4_react@18.2.0
       '@react-types/link': 3.3.4_react@18.2.0
       '@react-types/searchfield': 3.3.4_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
       '@react-types/table': 3.3.2_react@18.2.0
       '@react-types/textfield': 3.6.0_react@18.2.0
       '@swc/cli': 0.1.57_@swc+core@1.3.10
@@ -2570,7 +2572,7 @@ packages:
       '@react-aria/link': 3.3.4_react@18.2.0
       '@react-aria/utils': 3.14.0_react@18.2.0
       '@react-types/breadcrumbs': 3.4.4_react@18.2.0
-      '@react-types/shared': 3.15.0_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
       react: 18.2.0
     dev: false
 
@@ -2585,7 +2587,7 @@ packages:
       '@react-aria/utils': 3.14.0_react@18.2.0
       '@react-stately/toggle': 3.4.2_react@18.2.0
       '@react-types/button': 3.6.2_react@18.2.0
-      '@react-types/shared': 3.15.0_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
       react: 18.2.0
     dev: false
 
@@ -2601,7 +2603,7 @@ packages:
       '@react-stately/checkbox': 3.3.0_react@18.2.0
       '@react-stately/toggle': 3.4.2_react@18.2.0
       '@react-types/checkbox': 3.4.0_react@18.2.0
-      '@react-types/shared': 3.15.0_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
       react: 18.2.0
     dev: false
 
@@ -2613,7 +2615,7 @@ packages:
       '@babel/runtime': 7.19.4
       '@react-aria/interactions': 3.12.0_react@18.2.0
       '@react-aria/utils': 3.14.0_react@18.2.0
-      '@react-types/shared': 3.15.0_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
       clsx: 1.2.1
       react: 18.2.0
     dev: false
@@ -2636,7 +2638,7 @@ packages:
       '@react-stately/virtualizer': 3.3.1_react@18.2.0
       '@react-types/checkbox': 3.4.0_react@18.2.0
       '@react-types/grid': 3.1.4_react@18.2.0
-      '@react-types/shared': 3.15.0_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     dev: false
@@ -2653,7 +2655,7 @@ packages:
       '@internationalized/string': 3.0.0
       '@react-aria/ssr': 3.3.0_react@18.2.0
       '@react-aria/utils': 3.14.0_react@18.2.0
-      '@react-types/shared': 3.15.0_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
       react: 18.2.0
     dev: false
 
@@ -2664,7 +2666,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.19.4
       '@react-aria/utils': 3.14.0_react@18.2.0
-      '@react-types/shared': 3.15.0_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
       react: 18.2.0
 
   /@react-aria/label/3.4.2_react@18.2.0:
@@ -2675,7 +2677,7 @@ packages:
       '@babel/runtime': 7.19.4
       '@react-aria/utils': 3.14.0_react@18.2.0
       '@react-types/label': 3.7.0_react@18.2.0
-      '@react-types/shared': 3.15.0_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
       react: 18.2.0
     dev: false
 
@@ -2689,7 +2691,7 @@ packages:
       '@react-aria/interactions': 3.12.0_react@18.2.0
       '@react-aria/utils': 3.14.0_react@18.2.0
       '@react-types/link': 3.3.4_react@18.2.0
-      '@react-types/shared': 3.15.0_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
       react: 18.2.0
     dev: false
 
@@ -2712,7 +2714,7 @@ packages:
       '@react-stately/searchfield': 3.3.2_react@18.2.0
       '@react-types/button': 3.6.2_react@18.2.0
       '@react-types/searchfield': 3.3.4_react@18.2.0
-      '@react-types/shared': 3.15.0_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
       react: 18.2.0
     dev: false
 
@@ -2728,7 +2730,7 @@ packages:
       '@react-aria/utils': 3.14.0_react@18.2.0
       '@react-stately/collections': 3.4.4_react@18.2.0
       '@react-stately/selection': 3.11.0_react@18.2.0
-      '@react-types/shared': 3.15.0_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
       react: 18.2.0
     dev: false
 
@@ -2758,7 +2760,7 @@ packages:
       '@react-stately/virtualizer': 3.3.1_react@18.2.0
       '@react-types/checkbox': 3.4.0_react@18.2.0
       '@react-types/grid': 3.1.4_react@18.2.0
-      '@react-types/shared': 3.15.0_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
       '@react-types/table': 3.3.2_react@18.2.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -2773,7 +2775,7 @@ packages:
       '@react-aria/focus': 3.9.0_react@18.2.0
       '@react-aria/label': 3.4.2_react@18.2.0
       '@react-aria/utils': 3.14.0_react@18.2.0
-      '@react-types/shared': 3.15.0_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
       '@react-types/textfield': 3.6.0_react@18.2.0
       react: 18.2.0
     dev: false
@@ -2789,7 +2791,7 @@ packages:
       '@react-aria/utils': 3.14.0_react@18.2.0
       '@react-stately/toggle': 3.4.2_react@18.2.0
       '@react-types/checkbox': 3.4.0_react@18.2.0
-      '@react-types/shared': 3.15.0_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
       '@react-types/switch': 3.2.4_react@18.2.0
       react: 18.2.0
     dev: false
@@ -2802,7 +2804,7 @@ packages:
       '@babel/runtime': 7.19.4
       '@react-aria/ssr': 3.3.0_react@18.2.0
       '@react-stately/utils': 3.5.1_react@18.2.0
-      '@react-types/shared': 3.15.0_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
       clsx: 1.2.1
       react: 18.2.0
 
@@ -2814,7 +2816,7 @@ packages:
       '@babel/runtime': 7.19.4
       '@react-aria/interactions': 3.12.0_react@18.2.0
       '@react-aria/utils': 3.14.0_react@18.2.0
-      '@react-types/shared': 3.15.0_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
       clsx: 1.2.1
       react: 18.2.0
     dev: false
@@ -2828,7 +2830,7 @@ packages:
       '@react-stately/toggle': 3.4.2_react@18.2.0
       '@react-stately/utils': 3.5.1_react@18.2.0
       '@react-types/checkbox': 3.4.0_react@18.2.0
-      '@react-types/shared': 3.15.0_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
       react: 18.2.0
     dev: false
 
@@ -2838,7 +2840,7 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
       '@babel/runtime': 7.19.4
-      '@react-types/shared': 3.15.0_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
       react: 18.2.0
     dev: false
 
@@ -2848,7 +2850,7 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
       '@babel/runtime': 7.19.4
-      '@react-types/shared': 3.15.0_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
       react: 18.2.0
     dev: false
 
@@ -2860,7 +2862,7 @@ packages:
       '@babel/runtime': 7.19.4
       '@react-stately/selection': 3.11.0_react@18.2.0
       '@react-types/grid': 3.1.4_react@18.2.0
-      '@react-types/shared': 3.15.0_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
       react: 18.2.0
     dev: false
 
@@ -2872,7 +2874,7 @@ packages:
       '@babel/runtime': 7.19.4
       '@react-stately/utils': 3.5.1_react@18.2.0
       '@react-types/searchfield': 3.3.4_react@18.2.0
-      '@react-types/shared': 3.15.0_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
       react: 18.2.0
     dev: false
 
@@ -2884,7 +2886,7 @@ packages:
       '@babel/runtime': 7.19.4
       '@react-stately/collections': 3.4.4_react@18.2.0
       '@react-stately/utils': 3.5.1_react@18.2.0
-      '@react-types/shared': 3.15.0_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
       react: 18.2.0
     dev: false
 
@@ -2898,7 +2900,7 @@ packages:
       '@react-stately/grid': 3.4.0_react@18.2.0
       '@react-stately/selection': 3.11.0_react@18.2.0
       '@react-types/grid': 3.1.4_react@18.2.0
-      '@react-types/shared': 3.15.0_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
       '@react-types/table': 3.3.2_react@18.2.0
       react: 18.2.0
     dev: false
@@ -2911,7 +2913,7 @@ packages:
       '@babel/runtime': 7.19.4
       '@react-stately/utils': 3.5.1_react@18.2.0
       '@react-types/checkbox': 3.4.0_react@18.2.0
-      '@react-types/shared': 3.15.0_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
       react: 18.2.0
     dev: false
 
@@ -2930,7 +2932,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.19.4
       '@react-aria/utils': 3.14.0_react@18.2.0
-      '@react-types/shared': 3.15.0_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
       react: 18.2.0
     dev: false
 
@@ -2940,7 +2942,7 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
       '@react-types/link': 3.3.4_react@18.2.0
-      '@react-types/shared': 3.15.0_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
       react: 18.2.0
 
   /@react-types/button/3.6.2_react@18.2.0:
@@ -2948,7 +2950,7 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
-      '@react-types/shared': 3.15.0_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
       react: 18.2.0
 
   /@react-types/checkbox/3.4.0_react@18.2.0:
@@ -2956,7 +2958,7 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
-      '@react-types/shared': 3.15.0_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
       react: 18.2.0
 
   /@react-types/grid/3.1.4_react@18.2.0:
@@ -2964,7 +2966,7 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
-      '@react-types/shared': 3.15.0_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
       react: 18.2.0
 
   /@react-types/label/3.7.0_react@18.2.0:
@@ -2972,7 +2974,7 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
-      '@react-types/shared': 3.15.0_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
       react: 18.2.0
     dev: false
 
@@ -2982,7 +2984,7 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
       '@react-aria/interactions': 3.12.0_react@18.2.0
-      '@react-types/shared': 3.15.0_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
       react: 18.2.0
 
   /@react-types/searchfield/3.3.4_react@18.2.0:
@@ -2990,12 +2992,12 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
-      '@react-types/shared': 3.15.0_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
       '@react-types/textfield': 3.6.0_react@18.2.0
       react: 18.2.0
 
-  /@react-types/shared/3.15.0_react@18.2.0:
-    resolution: {integrity: sha512-hwuE4BmgswqP+HRDSLMj7DcnYOCCK+ZRuKnc9AVhXS4LBrwRSkdUkNvXhgvqF5tav7IqTpG9pBYMR9wedehuhA==}
+  /@react-types/shared/3.16.0_react@18.2.0:
+    resolution: {integrity: sha512-IQgU4oAEvMwylEvaTsr2XB1G/mAoMe1JFYLD6G78v++oAR9l8o9MQxZ0YSeANDkqTamb2gKezGoT1RxvSKjVxw==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
@@ -3007,7 +3009,7 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
       '@react-types/checkbox': 3.4.0_react@18.2.0
-      '@react-types/shared': 3.15.0_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
       react: 18.2.0
     dev: false
 
@@ -3017,7 +3019,7 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
       '@react-types/grid': 3.1.4_react@18.2.0
-      '@react-types/shared': 3.15.0_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
       react: 18.2.0
 
   /@react-types/textfield/3.6.0_react@18.2.0:
@@ -3025,7 +3027,7 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
-      '@react-types/shared': 3.15.0_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
       react: 18.2.0
 
   /@rushstack/eslint-patch/1.2.0:
