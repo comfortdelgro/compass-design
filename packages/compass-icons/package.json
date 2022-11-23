@@ -1,6 +1,10 @@
 {
   "name": "@comfortdelgro/compass-icons",
+<<<<<<< HEAD
   "version": "0.1.0",
+=======
+  "version": "0.1.1",
+>>>>>>> 8c5eb6dbc84677a15ad4773e3bda5105974aa095
   "description": "Icons for React Compass Design System",
   "bugs": {
     "url": "https://github.com/comfortdelgro/compass-design/issues/new?labels=bug&template=bug.md"

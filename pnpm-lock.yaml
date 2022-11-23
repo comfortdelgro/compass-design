@@ -27,6 +27,7 @@ importers:
   apps/docs:
     specifiers:
       '@comfortdelgro/react-compass': workspace:*
+      '@fortawesome/free-solid-svg-icons': ^6.2.0
       '@types/node': ^18.11.0
       '@types/react': ^17.0.39
       '@types/react-dom': ^17.0.11
@@ -45,6 +46,7 @@ importers:
       typescript: ^4.8.4
     dependencies:
       '@comfortdelgro/react-compass': link:../../packages/react-compass/dist
+      '@fortawesome/free-solid-svg-icons': 6.2.0
       clsx: 1.2.1
       next: 12.3.1_biqbaboplfbrettd7655fr4n2y
       nextra: 2.0.0-beta.41_azq6kxkn3od7qdylwkyksrwopy
