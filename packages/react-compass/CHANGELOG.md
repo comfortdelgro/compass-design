@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 0.2.4
+
+### Patch Changes
+
+- 25e3f9f: Export utility components such as `Row`, `Column` from `react-compass` package.
+
 ## 0.2.3
 
 ### Patch Changes
