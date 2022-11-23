@@ -3,13 +3,13 @@ import React from 'react'
 import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
-import SubBannerBottom from './subBanner-bottom'
 import SubBannerDescription from './subBanner-description'
 import SubBannerImage from './subBanner-image'
 import SubBannerTitle from './subBanner-title'
 import {
   StyledBottomContentContainer,
   StyledSubBanner,
+  StyledSubBannerBottom,
   SubBannerVariantProps,
 } from './subBanner.styles'
 
@@ -34,15 +34,15 @@ const SubBanner = React.forwardRef<HTMLDivElement, SubBannerProps>(
     } = props
 
     const subBannerRef = useDOMRef<HTMLDivElement>(ref)
-    const {child: SubBannerImageElement, rest: childrenWithoutImageElement} =
+    const {child: SubBannerImageElement, rest: ChildrenWithoutImageElement} =
       pickChild<typeof SubBannerImage>(children, SubBannerImage)
 
-    const {child: SubBannerTitleElement, rest: childrenWithoutTitleElement} =
+    const {child: SubBannerTitleElement, rest: ChildrenWithoutTitleElement} =
       pickChild<typeof SubBannerTitle>(children, SubBannerTitle)
 
     const {
       child: SubBannerDescriptionElement,
-      rest: childrenWithoutDescriptionElement,
+      rest: ChildrenWithoutDescriptionElement,
     } = pickChild<typeof SubBannerDescription>(children, SubBannerDescription)
 
     const variantProps = {variant} as SubBannerVariantProps
@@ -57,12 +57,12 @@ const SubBanner = React.forwardRef<HTMLDivElement, SubBannerProps>(
             {...delegated}
           >
             {SubBannerImageElement}
-            <SubBannerBottom>
+            <StyledSubBannerBottom>
               <StyledBottomContentContainer>
                 {SubBannerTitleElement}
                 {SubBannerDescriptionElement}
               </StyledBottomContentContainer>
-            </SubBannerBottom>
+            </StyledSubBannerBottom>
           </StyledSubBanner>
         ) : (
           <StyledSubBanner
@@ -88,5 +88,4 @@ export default SubBanner as typeof SubBanner & {
   Image: typeof SubBannerImage
   Title: typeof SubBannerTitle
   Description: typeof SubBannerDescription
-  Bottom: typeof SubBannerBottom
 }

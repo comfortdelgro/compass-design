@@ -23,12 +23,14 @@ const spacings = {
   16: '4rem', // 64px
   20: '5rem', // 80px
   24: '6rem', // 96px
+  26: '6.5rem', // 104px
   28: '7rem', // 112px
   32: '8rem', // 128px
   36: '9rem', // 144px
   40: '10rem', // 160px
   44: '11rem', // 176px
   48: '12rem', // 192px
+  50: '12.5rem', // 200px
   52: '13rem', // 208px
   56: '14rem', // 224px
   60: '15rem', // 240px
@@ -37,6 +39,9 @@ const spacings = {
   80: '20rem', // 320px
   96: '24rem', // 384px
   108: '27rem', // 433px
+  128: '32rem', // 512px
+  206: '51.5rem', //824px
+  328: '82rem', // 1312px
 } as const
 
 export default defineTheme({
@@ -50,6 +55,7 @@ export default defineTheme({
     display2: '3rem',
     display3: '2.5rem',
 
+    header0: '2.5rem',
     header1: '2rem',
     header2: '1.75rem',
     header3: '1.5rem',
