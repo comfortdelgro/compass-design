@@ -4,6 +4,13 @@ export {default as Avatar} from './avatar'
 export type {AvatarGroupProps, AvatarProps} from './avatar'
 export {default as Badge} from './badge'
 export type {BadgeProps} from './badge'
+export {default as Banner} from './banner'
+export type {
+  BannerDescriptionProps,
+  BannerImageProps,
+  BannerProps,
+  BannerTitleProps,
+} from './banner'
 export {default as Breadcrumbs} from './breadcrumbs'
 export type {BreadcrumbItemProps, BreadcrumbsProps} from './breadcrumbs'
 export {default as Button} from './button'
@@ -31,12 +38,8 @@ export type {SpinnerProps} from './spinner'
 export {default as SubBanner} from './subBanner'
 export type {
   SubBannerDescriptionProps,
-  SubBannerDescriptionProps,
-  SubBannerImageProps,
   SubBannerImageProps,
   SubBannerProps,
-  SubBannerProps,
-  SubBannerTitleProps,
   SubBannerTitleProps,
 } from './subBanner'
 export {default as Table} from './table'
