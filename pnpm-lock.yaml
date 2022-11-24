@@ -111,12 +111,14 @@ importers:
       '@react-aria/link': ^3.3.4
       '@react-aria/searchfield': ^3.4.2
       '@react-aria/table': ^3.5.0
+      '@react-aria/tabs': ^3.3.3
       '@react-aria/textfield': ^3.7.2
       '@react-aria/utils': ^3.14.0
       '@react-aria/visually-hidden': ^3.5.0
       '@react-stately/data': ^3.7.0
       '@react-stately/searchfield': ^3.3.2
       '@react-stately/table': ^3.5.0
+      '@react-stately/tabs': ^3.2.3
       '@react-stately/toggle': ^3.4.2
       '@react-types/breadcrumbs': ^3.4.4
       '@react-types/button': ^3.6.2
@@ -155,12 +157,14 @@ importers:
       '@react-aria/link': 3.3.4_react@18.2.0
       '@react-aria/searchfield': 3.4.2_react@18.2.0
       '@react-aria/table': 3.5.0_biqbaboplfbrettd7655fr4n2y
+      '@react-aria/tabs': 3.3.3_react@18.2.0
       '@react-aria/textfield': 3.7.2_react@18.2.0
       '@react-aria/utils': 3.14.0_react@18.2.0
       '@react-aria/visually-hidden': 3.5.0_react@18.2.0
       '@react-stately/data': 3.7.0_react@18.2.0
       '@react-stately/searchfield': 3.3.2_react@18.2.0
       '@react-stately/table': 3.5.0_react@18.2.0
+      '@react-stately/tabs': 3.2.3_react@18.2.0
       '@react-stately/toggle': 3.4.2_react@18.2.0
       '@stitches/react': 1.2.8_react@18.2.0
     devDependencies:
@@ -2605,6 +2609,19 @@ packages:
       react: 18.2.0
     dev: false
 
+  /@react-aria/focus/3.10.0_react@18.2.0:
+    resolution: {integrity: sha512-idI7Etgh6y2BYi3X4d+EuUpzR7gPZ94Lf/0UNnVyMkDM9fzcdz/8DCBt0qKOff24HlaLE1rmREt0+iTR/qRgbA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@babel/runtime': 7.19.4
+      '@react-aria/interactions': 3.13.0_react@18.2.0
+      '@react-aria/utils': 3.14.1_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
+      clsx: 1.2.1
+      react: 18.2.0
+    dev: false
+
   /@react-aria/focus/3.9.0_react@18.2.0:
     resolution: {integrity: sha512-DwesjEjWjFfwAwzv9qeqkyKZNPAYmPa3UrygxzmXeKEg2JpaACGZPxRcmT2EFJFEDbX8daQDEeRGyLO49o5agg==}
     peerDependencies:
@@ -2657,6 +2674,22 @@ packages:
       react: 18.2.0
     dev: false
 
+  /@react-aria/i18n/3.6.2_react@18.2.0:
+    resolution: {integrity: sha512-/G22mZQcISX6DcKLBn4j/X53y2SOnFfiD4wOEuY7sIZZDryktd+3I/QHukCnNlf0tKK3PdixQLvWa9Q1RqTSaw==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@babel/runtime': 7.19.4
+      '@internationalized/date': 3.0.1
+      '@internationalized/message': 3.0.9
+      '@internationalized/number': 3.1.1
+      '@internationalized/string': 3.0.0
+      '@react-aria/ssr': 3.4.0_react@18.2.0
+      '@react-aria/utils': 3.14.1_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
+      react: 18.2.0
+    dev: false
+
   /@react-aria/interactions/3.12.0_react@18.2.0:
     resolution: {integrity: sha512-KcKurjPZwme9ggvGQjbjqZtZtuyXipTBVMHUah9a3+Dz7vXxhRg5vFaEdM79oQnNsrGFW5xS6SKBehl/JG6BMw==}
     peerDependencies:
@@ -2666,6 +2699,17 @@ packages:
       '@react-aria/utils': 3.14.0_react@18.2.0
       '@react-types/shared': 3.15.0_react@18.2.0
       react: 18.2.0
+
+  /@react-aria/interactions/3.13.0_react@18.2.0:
+    resolution: {integrity: sha512-gbZL+qs+6FPitR/abAramth4lqz/drEzXwzIDF6p6WyajF805mjyAgZin1/3mQygSE5BwJNDU7jMUSGRvgFyTw==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@babel/runtime': 7.19.4
+      '@react-aria/utils': 3.14.1_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
+      react: 18.2.0
+    dev: false
 
   /@react-aria/label/3.4.2_react@18.2.0:
     resolution: {integrity: sha512-ctygLrA4yY31440UMZdw21Iz4ogXupLJB5xpTU1KFXcvybSu+H3gvVCOJu1jFwR12bTKnkVogTWT6wwVYH2nFw==}
@@ -2732,6 +2776,22 @@ packages:
       react: 18.2.0
     dev: false
 
+  /@react-aria/selection/3.12.0_react@18.2.0:
+    resolution: {integrity: sha512-Akzx5Faxw+sOZFXLCOw6OddDNFbP5Kho3EP6bYJfd2pzMkBc8/JemC/YDrtIuy8e9x6Je9HHSZqtKjwiEaXWog==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@babel/runtime': 7.19.4
+      '@react-aria/focus': 3.10.0_react@18.2.0
+      '@react-aria/i18n': 3.6.2_react@18.2.0
+      '@react-aria/interactions': 3.13.0_react@18.2.0
+      '@react-aria/utils': 3.14.1_react@18.2.0
+      '@react-stately/collections': 3.5.0_react@18.2.0
+      '@react-stately/selection': 3.11.1_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
+      react: 18.2.0
+    dev: false
+
   /@react-aria/ssr/3.3.0_react@18.2.0:
     resolution: {integrity: sha512-yNqUDuOVZIUGP81R87BJVi/ZUZp/nYOBXbPsRe7oltJOfErQZD+UezMpw4vM2KRz18cURffvmC8tJ6JTeyDtaQ==}
     peerDependencies:
@@ -2739,6 +2799,15 @@ packages:
     dependencies:
       '@babel/runtime': 7.19.4
       react: 18.2.0
+
+  /@react-aria/ssr/3.4.0_react@18.2.0:
+    resolution: {integrity: sha512-qzuGk14/fUyUAoW/EBwgFcuMkVNXJVGlezTgZ1HovpCZ+p9844E7MUFHE7CuzFzPEIkVeqhBNIoIu+VJJ8YCOA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@babel/runtime': 7.19.4
+      react: 18.2.0
+    dev: false
 
   /@react-aria/table/3.5.0_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-oYcsIEYbbjAzojRWUsAdtfxPzlEKBmk6o4svDHnGqC9HSj8/yExn8b8RB0veDP7E+5IdO62pUwUy48jBwWu2uw==}
@@ -2762,6 +2831,24 @@ packages:
       '@react-types/table': 3.3.2_react@18.2.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /@react-aria/tabs/3.3.3_react@18.2.0:
+    resolution: {integrity: sha512-0GeArynZzWQuNXIp1DUexNdfFC0vnTLAhN9cd3ZJDc7jbAvwy5HB363ElYqfTqNgvrtMF1QTJo9tY6KmYWxLeg==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@babel/runtime': 7.19.4
+      '@react-aria/focus': 3.10.0_react@18.2.0
+      '@react-aria/i18n': 3.6.2_react@18.2.0
+      '@react-aria/interactions': 3.13.0_react@18.2.0
+      '@react-aria/selection': 3.12.0_react@18.2.0
+      '@react-aria/utils': 3.14.1_react@18.2.0
+      '@react-stately/list': 3.6.0_react@18.2.0
+      '@react-stately/tabs': 3.2.3_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
+      '@react-types/tabs': 3.1.5_react@18.2.0
+      react: 18.2.0
     dev: false
 
   /@react-aria/textfield/3.7.2_react@18.2.0:
@@ -2806,6 +2893,19 @@ packages:
       clsx: 1.2.1
       react: 18.2.0
 
+  /@react-aria/utils/3.14.1_react@18.2.0:
+    resolution: {integrity: sha512-+ynP0YlxN02MHVEBaeuTrIhBsfBYpfJn36pZm2t7ZEFbafH8DPaMGZ70ffYZXAESkWzRULXL3e79DheWOFI1qA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@babel/runtime': 7.19.4
+      '@react-aria/ssr': 3.4.0_react@18.2.0
+      '@react-stately/utils': 3.5.1_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
+      clsx: 1.2.1
+      react: 18.2.0
+    dev: false
+
   /@react-aria/visually-hidden/3.5.0_react@18.2.0:
     resolution: {integrity: sha512-tF/kCZCGv1yebwgH21cKbhjSV5CmB5/SAHOUM5YkO5V/lIFjaPtywcamIPI8F0JSfrwGF/Z9EqvqBxvIYGRlCA==}
     peerDependencies:
@@ -2842,6 +2942,16 @@ packages:
       react: 18.2.0
     dev: false
 
+  /@react-stately/collections/3.5.0_react@18.2.0:
+    resolution: {integrity: sha512-3BAMRjJqrka0IGvyK4m3WslqCeiEfQGx7YsXEIgIgMJoLpk6Fi1Eh4CI8coBnl/wcVLiIRMCIvxubwFRWTgzdg==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@babel/runtime': 7.19.4
+      '@react-types/shared': 3.16.0_react@18.2.0
+      react: 18.2.0
+    dev: false
+
   /@react-stately/data/3.7.0_react@18.2.0:
     resolution: {integrity: sha512-+u5rKjraR7R6aMMXSDwH61jRRELnGGWr6xMFlk6G9fr8uAmil+AWrv8Dh8nZlJfy5I2hT1d8lbS9j5TRp/QFKg==}
     peerDependencies:
@@ -2861,6 +2971,19 @@ packages:
       '@react-stately/selection': 3.11.0_react@18.2.0
       '@react-types/grid': 3.1.4_react@18.2.0
       '@react-types/shared': 3.15.0_react@18.2.0
+      react: 18.2.0
+    dev: false
+
+  /@react-stately/list/3.6.0_react@18.2.0:
+    resolution: {integrity: sha512-sah2JAiqlSZhg1tQBSv9866LeAJISmosOFsOsVZPfyfAewuCksA+8OHrFtbKmMyzU5MbrmpbR8v2zZH7c1CLdg==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@babel/runtime': 7.19.4
+      '@react-stately/collections': 3.5.0_react@18.2.0
+      '@react-stately/selection': 3.11.1_react@18.2.0
+      '@react-stately/utils': 3.5.1_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
       react: 18.2.0
     dev: false
 
@@ -2888,6 +3011,18 @@ packages:
       react: 18.2.0
     dev: false
 
+  /@react-stately/selection/3.11.1_react@18.2.0:
+    resolution: {integrity: sha512-UHB6/eH5NJ+Q70G+pmnxohHfR3bh0szT+lOlWPj7Mh76WPu9bu07IHKLEob6PSzyJ81h7+Ysk3hdIgS3TewGog==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@babel/runtime': 7.19.4
+      '@react-stately/collections': 3.5.0_react@18.2.0
+      '@react-stately/utils': 3.5.1_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
+      react: 18.2.0
+    dev: false
+
   /@react-stately/table/3.5.0_react@18.2.0:
     resolution: {integrity: sha512-C0HFfKMCOomqPtRCPs85AtoJGPnGu9mzFfwksFxAssdIatw3t66h5SJS0vSSql7Ku9h70scmvJR+nIOckx0IeA==}
     peerDependencies:
@@ -2900,6 +3035,18 @@ packages:
       '@react-types/grid': 3.1.4_react@18.2.0
       '@react-types/shared': 3.15.0_react@18.2.0
       '@react-types/table': 3.3.2_react@18.2.0
+      react: 18.2.0
+    dev: false
+
+  /@react-stately/tabs/3.2.3_react@18.2.0:
+    resolution: {integrity: sha512-23GX5iBX1IPY1sD4nq8sTgCfaCt+P2nORYnBWA01+iZoUX/g3BG3+3S2SVL1J7esmcapGnXNapUa2zEbf3aFRg==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@babel/runtime': 7.19.4
+      '@react-stately/list': 3.6.0_react@18.2.0
+      '@react-stately/utils': 3.5.1_react@18.2.0
+      '@react-types/tabs': 3.1.5_react@18.2.0
       react: 18.2.0
     dev: false
 
@@ -3001,6 +3148,14 @@ packages:
     dependencies:
       react: 18.2.0
 
+  /@react-types/shared/3.16.0_react@18.2.0:
+    resolution: {integrity: sha512-IQgU4oAEvMwylEvaTsr2XB1G/mAoMe1JFYLD6G78v++oAR9l8o9MQxZ0YSeANDkqTamb2gKezGoT1RxvSKjVxw==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+    dev: false
+
   /@react-types/switch/3.2.4_react@18.2.0:
     resolution: {integrity: sha512-LFrt8fbEu2QXoZ9FLYLmorCMTrQ3WmvkKpRYaMSj81COxXwIHbByZlH/nzL278fU40GkZGXz2f6ffEYeuc9Vcg==}
     peerDependencies:
@@ -3019,6 +3174,15 @@ packages:
       '@react-types/grid': 3.1.4_react@18.2.0
       '@react-types/shared': 3.15.0_react@18.2.0
       react: 18.2.0
+
+  /@react-types/tabs/3.1.5_react@18.2.0:
+    resolution: {integrity: sha512-YgWY8IajCDBZmBzR3eii0aW6+SjcAT/dmqDNmfIuVVnDN7sHQ3PFa0nbmByvb0SfjOkJYumt8TJwFUCugohS8A==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@react-types/shared': 3.16.0_react@18.2.0
+      react: 18.2.0
+    dev: false
 
   /@react-types/textfield/3.6.0_react@18.2.0:
     resolution: {integrity: sha512-fEa/lTqpWBn7ZE0cDsc700OhTBAxiy8ifm8AQcLYfZuRX4zqRoMpkXMWN0XMjYfoZzNrS0LJJ6pLBHTwrlXWWA==}
