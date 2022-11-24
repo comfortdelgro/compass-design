@@ -31,7 +31,6 @@ const TabItem = React.forwardRef<HTMLDivElement, TabItemProps>((props, ref) => {
   const context = useContext(TabContext)
   const disabledState =
     disabled || context?.props?.disabledKeys?.includes(value)
-  console.log(context?.props)
   const onClick = () => {
     if (!disabledState && !context?.props?.isDisabled) {
       context?.setSelectedTab?.(value)
