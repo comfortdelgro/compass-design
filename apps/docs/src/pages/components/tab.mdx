@@ -29,7 +29,7 @@ We recommend the second method to import components for the benefits of [tree sh
 		<Tab.List>
 			<Tab.Item value={1}>Tab1</Tab.Item>
 			<Tab.Item value={2}>Tab2</Tab.Item>
-			<Tab.Item value={3} disabled>Tab3</Tab.Item>
+			<Tab.Item value={3} isDisabled>Tab3</Tab.Item>
 		</Tab.List>
 		<Tab.Panel value={1}>Tab1 content</Tab.Panel>
 		<Tab.Panel value={2}>Tab2 content</Tab.Panel>
@@ -39,7 +39,7 @@ We recommend the second method to import components for the benefits of [tree sh
 		<Tab.List>
 			<Tab.Item value={1}>Tab1</Tab.Item>
 			<Tab.Item value={2}>Tab2</Tab.Item>
-			<Tab.Item value={3} disabled>Tab3</Tab.Item>
+			<Tab.Item value={3} isDisabled>Tab3</Tab.Item>
 		</Tab.List>
 		<Tab.Panel value={1}>Tab1 content</Tab.Panel>
 		<Tab.Panel value={2}>Tab2 content</Tab.Panel>
@@ -54,7 +54,7 @@ Tab provide 2 style of tab: `simple` and `rounded` as default
 	<Tab.List>
 		<Tab.Item value={1}>Tab1</Tab.Item>
 		<Tab.Item value={2}>Tab2</Tab.Item>
-		<Tab.Item value={3} disabled>Tab3</Tab.Item>
+		<Tab.Item value={3} isDisabled>Tab3</Tab.Item>
 	</Tab.List>
 	<Tab.Panel value={1}>Tab1 content</Tab.Panel>
 	<Tab.Panel value={2}>Tab2 content</Tab.Panel>
@@ -65,7 +65,7 @@ Tab provide 2 style of tab: `simple` and `rounded` as default
 	<Tab.List>
 		<Tab.Item value={1}>Tab1</Tab.Item>
 		<Tab.Item value={2}>Tab2</Tab.Item>
-		<Tab.Item value={3} disabled>Tab3</Tab.Item>
+		<Tab.Item value={3} isDisabled>Tab3</Tab.Item>
 	</Tab.List>
 	<Tab.Panel value={1}>Tab1 content</Tab.Panel>
 	<Tab.Panel value={2}>Tab2 content</Tab.Panel>
@@ -83,7 +83,7 @@ You can define the position of the icon by props of Tab.Item
 			<Tab.Item value={1}>Tab1</Tab.Item>
 			<Tab.Item value={2} icon="left">Tab2</Tab.Item>
 			<Tab.Item value={3} icon="right">Tab3</Tab.Item>
-			<Tab.Item key='4' value={4} icon="none" disabled>Tab4</Tab.Item>
+			<Tab.Item key='4' value={4} icon="none" isDisabled>Tab4</Tab.Item>
 		</Tab.List>
 		<Tab.Panel value={1}>Tab1 content</Tab.Panel>
 		<Tab.Panel value={2}>Tab2 content</Tab.Panel>
@@ -97,7 +97,7 @@ You can define the position of the icon by props of Tab.Item
 		<Tab.Item value={1}>Tab1</Tab.Item>
 		<Tab.Item value={2} icon="left">Tab2</Tab.Item>
 		<Tab.Item value={3} icon="right">Tab3</Tab.Item>
-		<Tab.Item key='4' value={4} icon="none" disabled>Tab3</Tab.Item>
+		<Tab.Item key='4' value={4} icon="none" isDisabled>Tab3</Tab.Item>
 	</Tab.List>
 	<Tab.Panel value={1}>Tab1 content</Tab.Panel>
 	<Tab.Panel value={2}>Tab2 content</Tab.Panel>
@@ -113,7 +113,7 @@ Direction of the tab: `vertical` and `horizontal` as default
 		<Tab.List>
 			<Tab.Item value={1}>Tab1</Tab.Item>
 			<Tab.Item value={2}>Tab2</Tab.Item>
-			<Tab.Item value={3} disabled>Tab3</Tab.Item>
+			<Tab.Item value={3} isDisabled>Tab3</Tab.Item>
 		</Tab.List>
 		<Tab.Panel value={1}>Tab1 content</Tab.Panel>
 		<Tab.Panel value={2}>Tab2 content</Tab.Panel>
@@ -123,7 +123,7 @@ Direction of the tab: `vertical` and `horizontal` as default
 		<Tab.List>
 			<Tab.Item value={1}>Tab1</Tab.Item>
 			<Tab.Item value={2}>Tab2</Tab.Item>
-			<Tab.Item value={3} disabled>Tab3</Tab.Item>
+			<Tab.Item value={3} isDisabled>Tab3</Tab.Item>
 		</Tab.List>
 		<Tab.Panel value={1}>Tab1 content</Tab.Panel>
 		<Tab.Panel value={2}>Tab2 content</Tab.Panel>
@@ -135,7 +135,7 @@ Direction of the tab: `vertical` and `horizontal` as default
 	<Tab.List>
 		<Tab.Item value={1}>Tab1</Tab.Item>
 		<Tab.Item value={2}>Tab2</Tab.Item>
-		<Tab.Item value={3} disabled>Tab3</Tab.Item>
+		<Tab.Item value={3} isDisabled>Tab3</Tab.Item>
 	</Tab.List>
 	<Tab.Panel value={1}>Tab1 content</Tab.Panel>
 	<Tab.Panel value={2}>Tab2 content</Tab.Panel>
@@ -146,7 +146,7 @@ Direction of the tab: `vertical` and `horizontal` as default
 	<Tab.List>
 		<Tab.Item value={1}>Tab1</Tab.Item>
 		<Tab.Item value={2}>Tab2</Tab.Item>
-		<Tab.Item value={3} disabled>Tab3</Tab.Item>
+		<Tab.Item value={3} isDisabled>Tab3</Tab.Item>
 	</Tab.List>
 	<Tab.Panel value={1}>Tab1 content</Tab.Panel>
 	<Tab.Panel value={2}>Tab2 content</Tab.Panel>
@@ -165,7 +165,7 @@ With css prop, you can basically do anything that css can do.
 		<Tab.Item value={1} icon="top">Tab1</Tab.Item>
 		<Tab.Item value={2} icon="left">Tab2</Tab.Item>
 		<Tab.Item value={3} icon="right">Tab3</Tab.Item>
-		<Tab.Item key='4' value={4} icon="none" disabled>Tab3</Tab.Item>
+		<Tab.Item key='4' value={4} icon="none" isDisabled>Tab3</Tab.Item>
 	</Tab.List>
 	<Tab.Panel value={1}>Tab1 content</Tab.Panel>
 	<Tab.Panel value={2}>Tab2 content</Tab.Panel>
@@ -179,47 +179,48 @@ With css prop, you can basically do anything that css can do.
 
 #### `<Tab/>` :
 
-| Name  | Type                         | Default | Description                                                                                          |
-| :---- | :--------------------------- | :------ | :--------------------------------------------------------------------------------------------------- |
-| variant? | `rounded`,`simple`         |  `rounded`    | Style of the tab 
-| orientation? | `horizontal`,`vertical`| `horizontal`  | Direction of the tab |
-| disabledKeys?  | `Key[]` | —       | List of value of disable Item.                                                                                
-| defaultSelectedKey? | `Key` | —       | Default tab selection by value of Item                                                                          
-| selectedKey? | `Key` | —       | Current selection by value of Item                                                                                   
-| onChange? | `(value) => void` | —       | Callback function when value changed    
-| children | `ReactNode` | —       | We pass our avatars as children                                                                      
-| className? | `String` | —       | Extra class name for tab                  
-| css?   | `CSS`                        | —       | The system prop that allows defining system overrides as well as additional CSS styles.              |
+| Name               | Type                   | Default     | Description                                                                                              |
+| :----------------- | :--------------------- | :---------- | :------------------------------------------------------------------------------------------------------- |
+| children*          | `ReactNode`            | —           | The contents of the collection.                                                                          |
+| variant            | `rounded`,`simple`     | `rounded`   | Style of the tab                                                                                         |
+| orientation        | `horizontal`,`vertical`| `horizontal`| Direction of the tab |                                                                                   |
+| isDisabled         | `boolean`              | `false`     | Whether the Tabs are disabled. Shows that a selection exists, but is not available in that circumstance. |
+| disabledKeys       | `Key[]`                | —           | The item keys that are disabled. These items cannot be selected, focused, or otherwise interacted with.  |
+| defaultSelectedKey | `Key`                  | —           | The currently selected key in the collection (uncontrolled).                                             |
+| selectedKey        | `Key`                  | —           | The currently selected key in the collection (controlled).                                               |
+| onSelectionChange  | `(value) => void`      | —           | Handler that is called when the selection changes.                                                       |
+| className          | `String`               | —           | Extra class name for tab.                                                                                |
+| css                | `CSS`                  | —           | The system prop that allows defining system overrides as well as additional CSS styles.                  |
 
 #### `<Tab.List/>` :
 
-| Name     | Type                    | Default | Description                                                                             |
-| :------- | :---------------------- | :------ | :-------------------------------------------------------------------------------------- |
-| children | `ReactNode` \| `String` | —       | We pass our avatars as children props to Tab.Item.                                  |                                                                        
-| className? | `String` | —       | Extra class name for tab                  
-| css?   | `CSS`                        | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
+| Name       | Type                    | Default | Description                                                                             |
+| :--------- | :---------------------- | :------ | :-------------------------------------------------------------------------------------- |
+| children*  | `ReactNode` \| `String` | —       | We pass our avatars as children props to Tab.Item.                                      |
+| className  | `String`                | —       | Extra class name for tab                                                                |
+| css        | `CSS`                   | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
 
 #### `<Tab.Item/>` :
 
-| Name     | Type                    | Default | Description                                                                             |
-| :------- | :---------------------- | :------ | :-------------------------------------------------------------------------------------- |
-| icon? | `none` \| `left`\| `right`\| `top` | —   `none` | Display icon in tab content           
-| disabled? | `Boolean` | —   `false` | Status of the Item
-| value | `Key` | —   `false` | Value of the Item
-| key? | `Key` | —   | Key of the Item
-| children | `ReactNode` \| `String` | —       | Content of the tab Item                                                                      
-| className? | `String` | —       | Extra class name for tab                  
-| css?   | `CSS`                        | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
+| Name        | Type                               | Default | Description                                                                             |
+| :---------- | :--------------------------------- | :------ | :-------------------------------------------------------------------------------------- |
+| icon        | `none` \| `left`\| `right`\| `top` | `none`  | Display icon in tab content                                                             |
+| isDisabled  | `Boolean`                          | `false` | Status of the Item                                                                      |
+| value*      | `Key`                              | —       | Value of the Item                                                                       |
+| key         | `Key`                              | —       | Key of the Item                                                                         |
+| children    | `ReactNode` \| `String`            | —       | Content of the tab Item                                                                 |
+| className   | `String`                           | -       | Extra class name for tab                                                                |
+| css         | `CSS`                              | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
 
 #### `<Tab.Panel/>` :
 
-| Name     | Type                    | Default | Description                                                                             |
-| :------- | :---------------------- | :------ | :-------------------------------------------------------------------------------------- |
-| key? | `Key` | —   | Key of the display content
-| value | `Key` | —   `false` | Value of the display content
-| children | `ReactNode` \| `String` | —       | Content will be display with matched value with Tab.Item                                                                      
-| className? | `String` | —       | Extra class name for tab                  
-| css?   | `CSS`                        | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
+| Name        | Type                    | Default | Description                                                                             |
+| :---------- | :---------------------- | :------ | :-------------------------------------------------------------------------------------- |
+| key         | `Key`                   | —       | Key of the display content
+| value*      | `Key`                   | -       | Value of the display content
+| children*   | `ReactNode` \| `String` | —       | Content will be display with matched value with Tab.Item                                                                      
+| className   | `String`                | —       | Extra class name for tab                  
+| css         | `CSS`                   | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
 ---
 
 <Callout>
