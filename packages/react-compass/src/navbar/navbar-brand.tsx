@@ -11,7 +11,7 @@ export type NavbarBrandProps = Props &
 
 const NavbarBrand = React.forwardRef<HTMLDivElement, NavbarBrandProps>(
   (props, ref) => {
-    const {children, css = {}, ...delegated} = props
+    const {children, className = '', css = {}, ...delegated} = props
 
     const renderChildren = () => {
       if (typeof children === 'string') {
@@ -22,7 +22,7 @@ const NavbarBrand = React.forwardRef<HTMLDivElement, NavbarBrandProps>(
 
     return (
       <StyledNavbarBrand
-        className='navbar-brand'
+        className={`${className} navbar-brand`}
         css={css}
         ref={ref}
         {...delegated}

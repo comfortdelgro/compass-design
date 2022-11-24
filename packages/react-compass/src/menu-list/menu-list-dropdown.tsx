@@ -24,6 +24,7 @@ const MenuListDropdown = React.forwardRef<
     isOpen: isOpenProp,
     onMenuListChange,
     defaultOpen = true,
+    className = '',
     css = {},
     ...delegated
   } = props
@@ -43,7 +44,7 @@ const MenuListDropdown = React.forwardRef<
 
   return (
     <StyledMenuListDropdown
-      className='menu-list-dropdown'
+      className={`${className} menu-list-dropdown`}
       ref={ref}
       css={css}
       {...delegated}

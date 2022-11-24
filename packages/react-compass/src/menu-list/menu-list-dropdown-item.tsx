@@ -5,7 +5,7 @@ import {StyledMenuListDropdownItem} from './menu-list-dropdown-item.styles'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
-  active?: boolean
+  isActive?: boolean
   icon?: IconProp
   isNested?: boolean
 }
@@ -17,12 +17,20 @@ const MenuListDropdownItem = React.forwardRef<
   HTMLDivElement,
   MenuListDropdownItemProps
 >((props, ref) => {
-  const {children, active, isNested, icon, css = {}, ...delegated} = props
+  const {
+    children,
+    isActive,
+    isNested,
+    icon,
+    className = '',
+    css = {},
+    ...delegated
+  } = props
 
   return (
     <StyledMenuListDropdownItem
-      className='menu-list-dropdown-item'
-      active={active ? 'active' : 'default'}
+      className={`${className} menu-list-dropdown-item`}
+      active={isActive ? 'active' : 'default'}
       nested={isNested ? 'nested' : 'default'}
       ref={ref}
       css={css}

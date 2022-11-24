@@ -15,29 +15,39 @@ export type SidebarProps = Props &
 
 const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>((props, ref) => {
   const [expandOnHover, setExpandOnHover] = useState(false)
-  const {children, expand = false, className, css = {}, ...delegated} = props
+  const {
+    children,
+    expand = false,
+    className = '',
+    css = {},
+    ...delegated
+  } = props
 
   const handleMouseOver = () => {
-    if (!expand) return
+    if (expand) return
     setExpandOnHover(true)
   }
 
   const handleMouseLeave = () => {
-    if (!expand) return
+    if (expand) return
     setExpandOnHover(false)
   }
+
+  // if expand prop is false -> always open the sidebar
+  // else, expand when hover
+  const isExpand = !expand ? expandOnHover : true
 
   return (
     <StyledSidebar
       css={css}
       ref={ref}
       className={`${className} ${expandOnHover ? 'sidebar-expanded' : ''}`}
-      size={expandOnHover ? 'full' : 'default'}
+      size={isExpand ? 'full' : 'default'}
       onMouseOver={handleMouseOver}
       onMouseLeave={handleMouseLeave}
       {...delegated}
     >
-      <SidebarContext.Provider value={{isExpand: expandOnHover}}>
+      <SidebarContext.Provider value={{isExpand: isExpand}}>
         {children}
       </SidebarContext.Provider>
     </StyledSidebar>

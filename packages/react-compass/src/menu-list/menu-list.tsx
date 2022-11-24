@@ -11,9 +11,14 @@ export type MenuListProps = Props &
 
 const MenuList = React.forwardRef<HTMLDivElement, MenuListProps>(
   (props, ref) => {
-    const {children, css = {}, ...delegated} = props
+    const {children, className = '', css = {}, ...delegated} = props
     return (
-      <StyledMenuList className='menu-list' ref={ref} css={css} {...delegated}>
+      <StyledMenuList
+        className={`${className} menu-list`}
+        ref={ref}
+        css={css}
+        {...delegated}
+      >
         {children}
       </StyledMenuList>
     )

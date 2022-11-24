@@ -35,7 +35,7 @@ export const Sidebars: React.FC = () => {
     <Row css={{position: 'relative'}}>
       <Sidebar
         css={{height: '800px', position: 'absolute', top: '0px', zIndex: 2}}
-        expand
+        expand={false}
       >
         <Sidebar.Item>
           <div style={{width: '40px'}}>
@@ -55,7 +55,7 @@ export const Sidebars: React.FC = () => {
             href='#'
             style={{color: 'inherit', textDecoration: 'none'}}
           >
-            <Sidebar.Item active={currentPage === item.id}>
+            <Sidebar.Item isActive={currentPage === item.id}>
               <Icon icon={item.icon}></Icon>
               <span>Placeholder</span>
             </Sidebar.Item>
@@ -91,7 +91,7 @@ export const Sidebars: React.FC = () => {
             style={{color: 'inherit', textDecoration: 'none'}}
           >
             <Sidebar.Item
-              active={currentPage === item.id}
+              isActive={currentPage === item.id}
               css={{
                 '&:hover': {
                   color: '$danger',

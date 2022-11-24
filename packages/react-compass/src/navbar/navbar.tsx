@@ -8,10 +8,19 @@ interface Props extends StyledComponentProps {
   children?: React.ReactNode
 }
 
-export type NavbarProps = Props & NavbarVariantProps
+export type NavbarProps = Props &
+  NavbarVariantProps &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const Navbar = React.forwardRef<HTMLDivElement, NavbarProps>((props, ref) => {
-  const {children, color = 'blue', variant = 'portal', css = {}} = props
+  const {
+    children,
+    color = 'blue',
+    variant = 'portal',
+    className = '',
+    css = {},
+    ...delegated
+  } = props
 
   const variantProps = {
     color: color,
@@ -20,7 +29,8 @@ const Navbar = React.forwardRef<HTMLDivElement, NavbarProps>((props, ref) => {
 
   return (
     <StyledNavbar
-      className={`navbar-${color}`}
+      className={`${className} navbar-${color}`}
+      {...delegated}
       {...variantProps}
       css={css}
       ref={ref}

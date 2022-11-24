@@ -25,6 +25,7 @@ const MenuListDropdownHeader = React.forwardRef<
     leftIcon,
     rightIcon,
     onPress: onPressProp,
+    className = '',
     css = {},
     ...ariaSafeProps
   } = props
@@ -104,7 +105,7 @@ const MenuListDropdownHeader = React.forwardRef<
 
   return (
     <StyledMenuListDropdownHeader
-      className='menu-list-dropdown-header'
+      className={`${className} menu-list-dropdown-header`}
       ref={ref}
       css={css}
       {...buttonProps}

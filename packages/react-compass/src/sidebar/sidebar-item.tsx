@@ -5,7 +5,7 @@ import {StyledSidebarItem} from './sidebar-item.styles'
 
 interface Props extends StyledComponentProps {
   children: React.ReactNode
-  active?: boolean
+  isActive?: boolean
 }
 
 export type SidebarItemProps = Props &
@@ -13,7 +13,7 @@ export type SidebarItemProps = Props &
 
 const SidebarItem = React.forwardRef<HTMLDivElement, SidebarItemProps>(
   (props, ref) => {
-    const {children, active, css = {}, className, ...delegated} = props
+    const {children, isActive, css = {}, className = '', ...delegated} = props
 
     const {isExpand} = useContext(SidebarContext)
 
@@ -23,8 +23,8 @@ const SidebarItem = React.forwardRef<HTMLDivElement, SidebarItemProps>(
       <StyledSidebarItem
         ref={ref}
         css={css}
-        className={`${className} ${active ? 'sidebar-item-active' : ''}`}
-        active={active ? 'active' : 'default'}
+        className={`${className} ${isActive ? 'sidebar-item-active' : ''}`}
+        active={isActive ? 'active' : 'default'}
         {...delegated}
       >
         {icon}

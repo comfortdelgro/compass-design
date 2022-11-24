@@ -9,7 +9,7 @@ export const MenuLists: React.FC = () => {
         <MenuListDropdown>
           <MenuListDropdown.Header>Dashboard</MenuListDropdown.Header>
           <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
-          <MenuListDropdown.Item active>Menu</MenuListDropdown.Item>
+          <MenuListDropdown.Item isActive>Menu</MenuListDropdown.Item>
           <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
           <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
           <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
