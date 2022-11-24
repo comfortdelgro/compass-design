@@ -7,7 +7,7 @@ export const Variants: React.FC = () => (
     <Row>
       <Tab variant='simple'>
         <Tab.List>
-          <Tab.Item value={1} disabled>
+          <Tab.Item value={1} isDisabled>
             tab1
           </Tab.Item>
           <Tab.Item value={2}>tab2</Tab.Item>
@@ -23,7 +23,7 @@ export const Variants: React.FC = () => (
     <Row>
       <Tab variant='rounded'>
         <Tab.List>
-          <Tab.Item value={1} disabled>
+          <Tab.Item value={1} isDisabled>
             tab1
           </Tab.Item>
           <Tab.Item value={2}>tab2</Tab.Item>
@@ -43,7 +43,7 @@ export const Icon: React.FC = () => (
     <Row>
       <Tab variant='simple'>
         <Tab.List>
-          <Tab.Item value={1} disabled icon='left'>
+          <Tab.Item value={1} isDisabled icon='left'>
             tab1
           </Tab.Item>
           <Tab.Item value={2} icon='left'>
@@ -63,7 +63,7 @@ export const Icon: React.FC = () => (
     <Row>
       <Tab variant='rounded'>
         <Tab.List>
-          <Tab.Item value={1} disabled icon='left'>
+          <Tab.Item value={1} isDisabled icon='left'>
             tab1
           </Tab.Item>
           <Tab.Item value={2} icon='left'>
@@ -83,7 +83,7 @@ export const Icon: React.FC = () => (
     <Row>
       <Tab variant='simple'>
         <Tab.List>
-          <Tab.Item value={1} disabled icon='right'>
+          <Tab.Item value={1} isDisabled icon='right'>
             tab1
           </Tab.Item>
           <Tab.Item value={2} icon='right'>
@@ -103,7 +103,7 @@ export const Icon: React.FC = () => (
     <Row>
       <Tab variant='rounded'>
         <Tab.List>
-          <Tab.Item value={1} disabled icon='right'>
+          <Tab.Item value={1} isDisabled icon='right'>
             tab1
           </Tab.Item>
           <Tab.Item value={2} icon='right'>
@@ -123,7 +123,7 @@ export const Icon: React.FC = () => (
     <Row>
       <Tab variant='simple'>
         <Tab.List>
-          <Tab.Item value={1} disabled icon='top'>
+          <Tab.Item value={1} isDisabled icon='top'>
             tab1
           </Tab.Item>
           <Tab.Item value={2} icon='top'>
@@ -147,7 +147,7 @@ export const Orientation: React.FC = () => (
     <Row>
       <Tab orientation='horizontal'>
         <Tab.List>
-          <Tab.Item value={1} disabled>
+          <Tab.Item value={1} isDisabled>
             tab1
           </Tab.Item>
           <Tab.Item value={2}>tab2</Tab.Item>
@@ -163,7 +163,7 @@ export const Orientation: React.FC = () => (
     <Row>
       <Tab orientation='vertical'>
         <Tab.List>
-          <Tab.Item value={1} disabled>
+          <Tab.Item value={1} isDisabled>
             tab1
           </Tab.Item>
           <Tab.Item value={2}>tab2</Tab.Item>
@@ -179,7 +179,7 @@ export const Orientation: React.FC = () => (
     <Row>
       <Tab variant='simple' orientation='horizontal'>
         <Tab.List>
-          <Tab.Item value={1} disabled>
+          <Tab.Item value={1} isDisabled>
             tab1
           </Tab.Item>
           <Tab.Item value={2}>tab2</Tab.Item>
@@ -195,7 +195,7 @@ export const Orientation: React.FC = () => (
     <Row>
       <Tab variant='simple' orientation='vertical'>
         <Tab.List>
-          <Tab.Item value={1} disabled>
+          <Tab.Item value={1} isDisabled>
             tab1
           </Tab.Item>
           <Tab.Item value={2}>tab2</Tab.Item>

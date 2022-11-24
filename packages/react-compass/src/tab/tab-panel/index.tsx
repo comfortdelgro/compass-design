@@ -6,6 +6,12 @@ interface Props extends StyledComponentProps {
   className?: string
   children: React.ReactNode
   value: string | number
+
+  'aria-label'?: string
+  'aria-labelledby'?: string
+  'aria-describedby'?: string
+  'aria-details'?: string
+  id?: string
 }
 
 export type TabPanelProps = Props

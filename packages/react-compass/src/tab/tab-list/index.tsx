@@ -7,6 +7,12 @@ import {StyledTabList, TabListVariantProps} from './index.styles'
 interface Props extends StyledComponentProps {
   className?: string
   children: React.ReactNode
+
+  'aria-label'?: string
+  'aria-labelledby'?: string
+  'aria-describedby'?: string
+  'aria-details'?: string
+  id?: string
 }
 
 export type TabListProps = Props & TabListVariantProps

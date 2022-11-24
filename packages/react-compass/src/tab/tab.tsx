@@ -22,7 +22,14 @@ interface Props extends StyledComponentProps {
   orientation?: 'horizontal' | 'vertical'
   onSelectionChange?: (key: Key) => void
   selectedKey?: Key
+  isDisabled?: boolean
   defaultSelectedKey?: Key
+
+  'aria-label'?: string
+  'aria-labelledby'?: string
+  'aria-describedby'?: string
+  'aria-details'?: string
+  id?: string
 }
 
 const Tab = React.forwardRef<HTMLDivElement, TabProps>((props, ref) => {

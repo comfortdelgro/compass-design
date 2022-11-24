@@ -10,6 +10,12 @@ interface Props extends StyledComponentProps {
   key?: Key
   isDisabled?: boolean
   icon?: 'none' | 'left' | 'right' | 'top'
+
+  'aria-label'?: string
+  'aria-labelledby'?: string
+  'aria-describedby'?: string
+  'aria-details'?: string
+  id?: string
 }
 
 export type TabItemProps = Props & TabItemVariantProps
@@ -25,9 +31,9 @@ const TabItem = React.forwardRef<HTMLDivElement, TabItemProps>((props, ref) => {
   const context = useContext(TabContext)
   const disabledState =
     disabled || context?.props?.disabledKeys?.includes(value)
-
+  console.log(context?.props)
   const onClick = () => {
-    if (!disabledState) {
+    if (!disabledState && !context?.props?.isDisabled) {
       context?.setSelectedTab?.(value)
     }
   }
