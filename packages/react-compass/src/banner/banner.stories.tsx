@@ -26,6 +26,15 @@ export const Variant: React.FC = () => {
 
   return (
     <Column>
+      <h3>Small sized Banner</h3>
+      <Banner size='sm'>
+        <Banner.Image src={backgroundSrc} />
+        <Banner.Title>My Title</Banner.Title>
+        <Banner.Description>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+        </Banner.Description>
+      </Banner>
+
       <h3>Medium sized Banner</h3>
       <Banner size='md'>
         <Banner.Image src={backgroundSrc} />

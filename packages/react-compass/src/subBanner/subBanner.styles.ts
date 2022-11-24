@@ -92,7 +92,7 @@ export const StyledSubBanner = styled('div', {
   padding: '0px',
 
   // container
-  height: '$108',
+  height: '$108_25',
   width: '$80',
   display: 'flex',
   flexDirection: 'column',

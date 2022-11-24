@@ -88,8 +88,11 @@ export const StyledBanner = styled('div', {
   // Variants
   variants: {
     size: {
-      md: {
+      sm: {
         width: '$206',
+      },
+      md: {
+        width: '$269',
       },
       lg: {
         width: '$328',

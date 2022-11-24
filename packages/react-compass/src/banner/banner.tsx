@@ -14,7 +14,7 @@ import {
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
-  size?: 'md' | 'lg' | 'full'
+  size?: 'sm' | 'md' | 'lg' | 'full'
 }
 
 export type BannerProps = Props &
