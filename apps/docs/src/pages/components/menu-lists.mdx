@@ -1,0 +1,182 @@
+import {Callout} from 'nextra-theme-docs'
+import styles from '../../styles/Home.module.css'
+import {MenuList, MenuListDropdown} from '@comfortdelgro/react-compass'
+import {faUser} from '@fortawesome/free-solid-svg-icons'
+
+# Menu List
+
+The Menu List component allows you to create a menu with expandable items
+
+---
+
+### Import:
+
+```js
+import {MenuList, MenuListDropdown} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import MenuList, {MenuListDropdown} from '@comfortdelgro/react-compass/MenuList'
+```
+
+---
+
+### Basic Menu List
+
+<section className={styles.avatarShowcaseContainer}>
+  <MenuList css={{height: '600px'}}>
+    <MenuListDropdown>
+      <MenuListDropdown.Header>Dashboard</MenuListDropdown.Header>
+      <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+      <MenuListDropdown.Item isActive>Menu</MenuListDropdown.Item>
+      <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+      <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+      <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+      <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+      <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+    </MenuListDropdown>
+  </MenuList>
+</section>
+
+```js
+<MenuList css={{height: '600px'}}>
+  <MenuListDropdown>
+    <MenuListDropdown.Header>Dashboard</MenuListDropdown.Header>
+    <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+    <MenuListDropdown.Item isActive>Menu</MenuListDropdown.Item>
+    <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+    <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+    <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+    <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+    <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+  </MenuListDropdown>
+</MenuList>
+```
+
+### Menu List with Icon
+
+<section className={styles.avatarShowcaseContainer}>
+  <MenuList css={{height: '600px'}}>
+    <MenuListDropdown>
+      <MenuListDropdown.Header>Dashboard</MenuListDropdown.Header>
+      <MenuListDropdown.Item icon={faUser}>Menu</MenuListDropdown.Item>
+      <MenuListDropdown.Item isActive icon={faUser}>
+        <p style={{marginTop: '0'}}>Menu</p>
+      </MenuListDropdown.Item>
+      <MenuListDropdown.Item icon={faUser}>Menu</MenuListDropdown.Item>
+      <MenuListDropdown.Item icon={faUser}>Menu</MenuListDropdown.Item>
+      <MenuListDropdown.Item icon={faUser}>Menu</MenuListDropdown.Item>
+      <MenuListDropdown.Item icon={faUser}>Menu</MenuListDropdown.Item>
+      <MenuListDropdown.Item icon={faUser}>Menu</MenuListDropdown.Item>
+    </MenuListDropdown>
+  </MenuList>
+</section>
+```js {4 - 10}
+<MenuList css={{height: '600px'}}>
+  <MenuListDropdown>
+    <MenuListDropdown.Header>Dashboard</MenuListDropdown.Header>
+    <MenuListDropdown.Item icon={faUser}>Menu</MenuListDropdown.Item>
+    <MenuListDropdown.Item isActive icon={faUser}>
+      Menu
+    </MenuListDropdown.Item>
+    <MenuListDropdown.Item icon={faUser}>Menu</MenuListDropdown.Item>
+    <MenuListDropdown.Item icon={faUser}>Menu</MenuListDropdown.Item>
+    <MenuListDropdown.Item icon={faUser}>Menu</MenuListDropdown.Item>
+    <MenuListDropdown.Item icon={faUser}>Menu</MenuListDropdown.Item>
+    <MenuListDropdown.Item icon={faUser}>Menu</MenuListDropdown.Item>
+  </MenuListDropdown>
+</MenuList>
+```
+
+### Nested Menu List
+
+<section className={styles.avatarShowcaseContainer}>
+  <MenuList css={{height: '800px'}}>
+    <MenuListDropdown>
+      <MenuListDropdown.Header>Dashboard</MenuListDropdown.Header>
+      <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+      <MenuListDropdown.Item isActive>Menu</MenuListDropdown.Item>
+      <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+      <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+      <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+      <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+      <MenuListDropdown.Item isNested>
+        <MenuListDropdown>
+          <MenuListDropdown.Header>Dashboard</MenuListDropdown.Header>
+          <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+          <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+          <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+          <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+          <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+          <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+          <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+        </MenuListDropdown>
+      </MenuListDropdown.Item>
+    </MenuListDropdown>
+  </MenuList>
+</section>
+
+```js {10}
+<MenuList css={{height: '800px'}}>
+  <MenuListDropdown>
+    <MenuListDropdown.Header>Dashboard</MenuListDropdown.Header>
+    <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+    <MenuListDropdown.Item isActive>Menu</MenuListDropdown.Item>
+    <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+    <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+    <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+    <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+    <MenuListDropdown.Item isNested>
+      <MenuListDropdown>
+        <MenuListDropdown.Header>Dashboard</MenuListDropdown.Header>
+        <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+        <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+        <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+        <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+        <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+        <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+        <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+      </MenuListDropdown>
+    </MenuListDropdown.Item>
+  </MenuListDropdown>
+</MenuList>
+```
+
+## Props
+
+### MenuList
+
+| Name     | Type              | Default | Description |
+| :------- | :---------------- | :------ | :---------- |
+| children | `React.ReactNode` | —       |             |
+| css      | `CSS`             | —       |             |
+
+### MenuListDropdown
+
+| Name             | Type                        | Default | Description                                         |
+| :--------------- | :-------------------------- | :------ | :-------------------------------------------------- |
+| children\*       | `React.ReactNode`           | —       | The first child must be the trigger.                |
+| isOpen           | `boolean`                   | —       | Whether the list is open by default (controlled).   |
+| defaultOpen      | `boolean`                   | true    | Whether the list is open by default (uncontrolled). |
+| onMenuListChange | `(isOpen: boolean) => void` | —       | Handler that is called when the list changes.       |
+| css              | `CSS`                       | —       |                                                     |
+
+### MenuListDropdown.Header
+
+| Name      | Type                  | Default | Description |
+| :-------- | :-------------------- | :------ | :---------- |
+| children  | `React.ReactNode`     | —       |             |
+| leftIcon  | `IconProp` \| `false` | true    |             |
+| rightIcon | `IconProp` \| `true`  | false   |             |
+| css       | `CSS`                 | —       |             |
+
+### MenuListDropdown.Item
+
+| Name     | Type              | Default | Description                                    |
+| :------- | :---------------- | :------ | :--------------------------------------------- |
+| children | `React.ReactNode` | —       |                                                |
+| isActive | `boolean`         | false   | Whether the item is currently activated or not |
+| icon     | `IconProp`        | —       |                                                |
+| css      | `CSS`             | —       |                                                |

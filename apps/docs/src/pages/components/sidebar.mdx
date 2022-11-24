@@ -1,0 +1,189 @@
+import {Callout} from 'nextra-theme-docs'
+import styles from '../../styles/Home.module.css'
+import Sidebar from '@comfortdelgro/react-compass/sidebar'
+import Icon from '@comfortdelgro/react-compass/icon'
+import Avatar from '@comfortdelgro/react-compass/avatar'
+import {
+  faAmbulance,
+  faBank,
+  faCar,
+  faHelicopter,
+} from '@fortawesome/free-solid-svg-icons'
+
+# Sidebar
+
+The Sidebar displays horizontally information and navigation relating to the current screen.
+
+---
+
+### Import
+
+```js
+import {Sidebar} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import Sidebar from '@comfortdelgro/react-compass/sidebar'
+```
+
+---
+
+### Basic Sidebar
+
+<section className={styles.componentShowcaseContainer}>
+  <Sidebar css={{height: '800px'}}>
+    <Sidebar.Item>
+      <Avatar label='M' />
+      <h2 style={{fontSize: '24px', marginLeft: '22px', color: '#323130'}}>
+        Workbench
+      </h2>
+    </Sidebar.Item>
+    <Sidebar.Divider />
+    <Sidebar.Item>
+      <Icon icon={faAmbulance}></Icon>
+      <span>Menu</span>
+    </Sidebar.Item>
+    <Sidebar.Item>
+      <Icon icon={faBank}></Icon>
+      <span>Menu</span>
+    </Sidebar.Item>
+    <Sidebar.Item>
+      <Icon icon={faCar}></Icon>
+      <span>Menu</span>
+    </Sidebar.Item>
+    <Sidebar.Item>
+      <Icon icon={faHelicopter}></Icon>
+      <span>Menu</span>
+    </Sidebar.Item>
+  </Sidebar>
+</section>
+
+```js
+<Sidebar css={{height: '800px'}}>
+  <Sidebar.Item>
+    <Avatar label='M' />
+    <h2 style={{fontSize: '24px', marginLeft: '22px', color: '#323130'}}>
+      Workbench
+    </h2>
+  </Sidebar.Item>
+  <Sidebar.Divider />
+  <Sidebar.Item>
+    <Icon icon={faAmbulance}></Icon>
+    <span>Menu</span>
+  </Sidebar.Item>
+  <Sidebar.Item>
+    <Icon icon={faBank}></Icon>
+    <span>Menu</span>
+  </Sidebar.Item>
+  <Sidebar.Item>
+    <Icon icon={faCar}></Icon>
+    <span>Menu</span>
+  </Sidebar.Item>
+  <Sidebar.Item>
+    <Icon icon={faHelicopter}></Icon>
+    <span>Menu</span>
+  </Sidebar.Item>
+</Sidebar>
+```
+
+### Expand
+
+You can expand the sidebar without hovering
+
+<section className={styles.componentShowcaseContainer}>
+  <Sidebar css={{height: '800px'}} expand>
+    <Sidebar.Item isActive>
+      <Icon icon={faHelicopter}></Icon>
+      <span>Menu</span>
+    </Sidebar.Item>
+  </Sidebar>
+</section>
+
+```js {1}
+<Sidebar css={{height: '800px'}} expand>
+  <Sidebar.Item isActive>
+    <Icon icon={faHelicopter}></Icon>
+    <span>Menu</span>
+  </Sidebar.Item>
+</Sidebar>
+```
+
+### Sidebar Item
+
+Sidebar Item accepts two children. If sidebar is not in expand mode, only the first child will be rendered
+
+<section className={styles.componentShowcaseContainer}>
+  <Sidebar css={{height: '800px'}}>
+    <Sidebar.Item isActive>
+      <Icon icon={faHelicopter}></Icon>
+      <span>Menu</span>
+    </Sidebar.Item>
+  </Sidebar>
+</section>
+
+```js {2-5}
+<Sidebar css={{height: '800px'}}>
+  <Sidebar.Item isActive>
+    <Icon icon={faHelicopter}></Icon>
+    <span>Menu</span>
+  </Sidebar.Item>
+</Sidebar>
+```
+
+### Sidebar Divider
+
+Sidebar divider provides a horizontal divider to sidebar
+
+<section className={styles.componentShowcaseContainer}>
+  <Sidebar css={{height: '800px'}}>
+    <Sidebar.Item isActive>
+      <Icon icon={faHelicopter}></Icon>
+      <span>Menu</span>
+    </Sidebar.Item>
+    <Sidebar.Divider />
+    <Sidebar.Item>
+      <Icon icon={faHelicopter}></Icon>
+      <span>Menu</span>
+    </Sidebar.Item>
+  </Sidebar>
+</section>
+
+```js {6}
+<Sidebar css={{height: '800px'}}>
+  <Sidebar.Item isActive>
+    <Icon icon={faHelicopter}></Icon>
+    <span>Menu</span>
+  </Sidebar.Item>
+  <Sidebar.Divider />
+  <Sidebar.Item>
+    <Icon icon={faHelicopter}></Icon>
+    <span>Menu</span>
+  </Sidebar.Item>
+</Sidebar>
+```
+
+### Props
+
+#### Sidebar
+
+| Name     | Type              | Default | Description                                                     |
+| :------- | :---------------- | :------ | :-------------------------------------------------------------- |
+| children | `React.ReactNode` | —       |                                                                 |
+| expand   | `boolean`         | false   | Whether the sidebar is expanded by default or expanded by hover |
+| css      | `CSS`             | —       |                                                                 |
+
+#### Sidebar Item
+
+| Name       | Type              | Default | Description                                    |
+| :--------- | :---------------- | :------ | :--------------------------------------------- |
+| children\* | `React.ReactNode` | —       | Accept only two children                       |
+| isActive   | `boolean`         | false   | Whether the item is currently activated or not |
+| css        | `CSS`             | —       |                                                |
+
+#### Sidebar Divider
+
+| Name | Type  | Default | Description |
+| :--- | :---- | :------ | :---------- |
+| css  | `CSS` | —       |             |

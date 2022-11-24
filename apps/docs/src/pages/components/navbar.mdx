@@ -1,0 +1,213 @@
+import {Callout} from 'nextra-theme-docs'
+import styles from '../../styles/Home.module.css'
+import Navbar from '@comfortdelgro/react-compass/navbar'
+import Button from '@comfortdelgro/react-compass/button'
+import Avatar from '@comfortdelgro/react-compass/avatar'
+import {faSearch} from '@fortawesome/free-solid-svg-icons'
+
+# Navbar
+
+The Navbar displays horizontally information and navigation relating to the current screen.
+
+---
+
+### Import
+
+```js
+import {Navbar} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import Navbar from '@comfortdelgro/react-compass/navbar'
+```
+
+---
+
+### Basic Navbar
+
+<section className={styles.componentShowcaseContainer}>
+  <Navbar>
+    <Avatar size='sm' label='asd' />
+    <Navbar.Brand>Workbench Title</Navbar.Brand>
+    <Button>Home</Button>
+    <Button>Services</Button>
+    <Button>Products</Button>
+  </Navbar>
+</section>
+
+```js
+<Navbar>
+  <Avatar size='sm' label='asd' />
+  <Navbar.Brand>Workbench Title</Navbar.Brand>
+  <Button>Home</Button>
+  <Button>Services</Button>
+  <Button>Products</Button>
+</Navbar>
+```
+
+### Brand
+
+Navbar Brand renders heading text that adapt to the current [color](#colors) of the Navbar
+
+<section className={styles.componentShowcaseContainer}>
+  <Navbar>
+    <Navbar.Brand>Workbench Title</Navbar.Brand>
+  </Navbar>
+</section>
+
+```js
+<Navbar>
+  <Navbar.Brand>Workbench Title</Navbar.Brand>
+</Navbar>
+```
+
+### Icon
+
+Navbar Icon renders Icon that adapt to the current [color](#colors) of the Navbar
+
+<section className={styles.componentShowcaseContainer}>
+  <Navbar>
+    <Navbar.Icon icon={faSearch} />
+  </Navbar>
+</section>
+
+```js
+<Navbar>
+  <Navbar.Icon icon={faSearch} />
+</Navbar>
+```
+
+### Variants
+
+#### Portal Version
+
+<section className={styles.componentShowcaseContainer}>
+  <Navbar variant='portal'>
+    <Avatar size='sm' label='asd' />
+    <Button>Home</Button>
+    <Button>Services</Button>
+    <Button>Products</Button>
+  </Navbar>
+</section>
+
+```js
+<Navbar variant='portal'>
+  <Avatar size='sm' label='asd' />
+  <Button>Home</Button>
+  <Button>Services</Button>
+  <Button>Products</Button>
+</Navbar>
+```
+
+#### Website Version
+
+<section className={styles.componentShowcaseContainer}>
+  <Navbar variant='website'>
+    <Avatar size='lg' label='asd' />
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'flex-end',
+        flexGrow: 1,
+        gap: '12px',
+        alignItems: 'center',
+      }}
+    >
+      <Button>Home</Button>
+      <Button>Services</Button>
+      <Button>Products</Button>
+    </div>
+  </Navbar>
+</section>
+
+```js
+<Navbar variant='website'>
+  <Avatar size='lg' label='asd' />
+  <div
+    style={{
+      display: 'flex',
+      justifyContent: 'flex-end',
+      flexGrow: 1,
+      gap: '12px',
+      alignItems: 'center',
+    }}
+  >
+    <Button>Home</Button>
+    <Button>Services</Button>
+    <Button>Products</Button>
+  </div>
+</Navbar>
+```
+
+### Colors
+
+#### Blue Color Version
+
+<section className={styles.componentShowcaseContainer}>
+  <Navbar color='blue'>
+    <Avatar size='sm' label='asd' />
+    <Navbar.Brand>Workbench Title</Navbar.Brand>
+    <Button>Home</Button>
+    <Button>Services</Button>
+    <Button>Products</Button>
+  </Navbar>
+</section>
+
+```js
+<Navbar color='blue'>
+  <Avatar size='sm' label='asd' />
+  <Navbar.Brand>Workbench Title</Navbar.Brand>
+  <Button>Home</Button>
+  <Button>Services</Button>
+  <Button>Products</Button>
+</Navbar>
+```
+
+#### White Color Version
+
+<section className={styles.componentShowcaseContainer}>
+  <Navbar color='white'>
+    <Avatar size='sm' label='asd' />
+    <Navbar.Brand>Workbench Title</Navbar.Brand>
+    <Button variant='ghost'>Home</Button>
+    <Button variant='ghost'>Services</Button>
+    <Button variant='ghost'>Products</Button>
+  </Navbar>
+</section>
+
+```js
+<Navbar color='white'>
+  <Avatar size='sm' label='asd' />
+  <Navbar.Brand>Workbench Title</Navbar.Brand>
+  <Button variant='ghost'>Home</Button>
+  <Button variant='ghost'>Services</Button>
+  <Button variant='ghost'>Products</Button>
+</Navbar>
+```
+
+### Props
+
+#### Navbar
+
+| Name     | Type                  | Default | Description |
+| :------- | :-------------------- | :------ | :---------- |
+| children | `React.ReactNode`     | —       |             |
+| color    | `white` \| `blue`     | —       |             |
+| variant  | `portal` \| `website` | —       |             |
+| css      | `CSS`                 | —       |             |
+
+#### Navbar.Brand
+
+| Name     | Type              | Default | Description |
+| :------- | :---------------- | :------ | :---------- |
+| children | `React.ReactNode` | —       |             |
+| css      | `CSS`             | —       |             |
+
+#### Navbar.Icon
+
+| Name | Type       | Default | Description |
+| :--- | :--------- | :------ | :---------- |
+| icon | `IconProp` | —       |             |
+| css  | `CSS`      | —       |             |
