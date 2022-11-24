@@ -8,7 +8,7 @@ interface Props extends StyledComponentProps {
   children: React.ReactNode
   value: Key
   key?: Key
-  disabled?: boolean
+  isDisabled?: boolean
   icon?: 'none' | 'left' | 'right' | 'top'
 }
 

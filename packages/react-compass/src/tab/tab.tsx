@@ -20,7 +20,7 @@ interface Props extends StyledComponentProps {
   children?: React.ReactNode
   variant?: 'rounded' | 'simple'
   orientation?: 'horizontal' | 'vertical'
-  onChange?: (key: Key) => void
+  onSelectionChange?: (key: Key) => void
   selectedKey?: Key
   defaultSelectedKey?: Key
 }
@@ -30,7 +30,7 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>((props, ref) => {
     selectedKey,
     defaultSelectedKey,
     children,
-    onChange,
+    onSelectionChange,
     ...ariaSafeProps
   } = props
 
@@ -43,7 +43,7 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>((props, ref) => {
   }, [selectedKey])
 
   const handleChange = (e: Key) => {
-    onChange?.(e)
+    onSelectionChange?.(e)
     setSelectedTab(e)
   }
 
