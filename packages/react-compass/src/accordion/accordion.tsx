@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import AccordionContext from './accordion-context'
@@ -31,6 +31,8 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
 
     const [uncontrolledExpand, setUncontrolledExpand] = useState(defaultExpand)
 
+    const accordionBodyRef = useRef<HTMLDivElement>(null)
+
     // Component expansion state managed by its own or by user
     const expand: boolean = (() => {
       if (controlledExpand !== undefined) {
@@ -38,6 +40,17 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
       }
       return uncontrolledExpand
     })()
+
+    // Calculate max height for accordion body for better transition animation
+    useEffect(() => {
+      if (!accordionBodyRef.current) return
+      const accordionBody = accordionBodyRef.current
+      if (expand) {
+        accordionBody.style.maxHeight = `${accordionBody.scrollHeight}px`
+      } else {
+        accordionBody.style.maxHeight = '0px'
+      }
+    }, [expand, accordionBodyRef.current])
 
     // Toggle expansion state only when user doesnt control the component
     const setExpandIfUncontrolled = React.useCallback(() => {
@@ -59,13 +72,15 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
     return (
       <StyledAccordion
         {...delegated}
-        expand={expand ? 'open' : 'close'}
+        // expand={expand ? 'open' : 'close'}
         css={css}
         ref={accordionRef}
       >
         <AccordionContext.Provider value={contextValue}>
           {accordionTitle}
-          <div className='accordion-body'>{children}</div>
+          <div className='accordion-body' ref={accordionBodyRef}>
+            <div className='accordion-body-inner'>{children}</div>
+          </div>
         </AccordionContext.Provider>
       </StyledAccordion>
     )

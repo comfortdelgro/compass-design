@@ -10,7 +10,6 @@ export const StyledAccordion = styled('div', {
     backgroundColor: 'inherit',
     color: 'inherit',
     height: 'auto',
-    padding: '$4 $6 $4 $5',
     borderWidth: '$light',
     borderStyle: 'solid',
     borderColor: '$gray30',
@@ -18,23 +17,10 @@ export const StyledAccordion = styled('div', {
     borderBottomLeftRadius: '$lg',
     borderBottomRightRadius: '$lg',
     overflow: 'hidden',
+    transition: 'max-height 0.25s ease-in-out',
+  },
+  '& .accordion-body-inner': {
+    padding: '$4 $6 $4 $5',
   },
   lineHeight: '$normal',
-
-  variants: {
-    expand: {
-      close: {
-        '& .accordion-body': {
-          border: 0,
-          padding: 0,
-          height: 0,
-        },
-      },
-      open: {
-        '& .accordion-body': {
-          height: 'auto',
-        },
-      },
-    },
-  },
 })
