@@ -37,6 +37,7 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
       css = {},
       // VariantProps
       size = 'lg',
+      // onPress
       // HTMLDiv Props
       ...delegated
     } = props
@@ -55,6 +56,17 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
 
     const variantProps = {size} as CarouselVariantProps
 
+    const [isNextImage, setIsNextImage] = React.useState(false)
+    const [isPrevImage, setIsPrevImage] = React.useState(false)
+
+    const prevSlideHandler = () => {
+      setIsPrevImage(!isPrevImage)
+    }
+
+    const nextSlideHandler = () => {
+      setIsNextImage(!isNextImage)
+    }
+
     return (
       <>
         <StyledCarousel
@@ -64,11 +76,16 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
           {...delegated}
         >
           {/* Background Image */}
-          {CarouselImageElement}
+          {React.cloneElement(CarouselImageElement as unknown as JSX.Element, {
+            isNextImage: isNextImage,
+            isPrevImage: isPrevImage,
+          })}
 
           {/* Container for all content*/}
           <StyledContainer>
-            <StyledPrevContainer>Prev</StyledPrevContainer>
+            <StyledPrevContainer onClick={() => prevSlideHandler()}>
+              Prev
+            </StyledPrevContainer>
             <StyledMainContentContainer>
               {CarouselTitleElement}
               {CarouselDescriptionElement}
@@ -78,6 +95,7 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
                     backgroundColor: '#0142AF',
                     color: '#F7F8F9',
                     height: '92.857%',
+                    border: 'none',
                   }}
                 >
                   Button
@@ -87,6 +105,10 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
                     backgroundColor: '#F7F8F9',
                     color: '#0142AF',
                     height: '92.857%',
+                    border: 'none',
+                    '&:hover': {
+                      color: '#F7F8F9',
+                    },
                   }}
                 >
                   Button
@@ -101,7 +123,9 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
                 </StyledCarouselIconsContainer>
               </StyledCarouselPaginationAndIconsContainer>
             </StyledMainContentContainer>
-            <StyledNextContainer>Next</StyledNextContainer>
+            <StyledNextContainer onClick={() => nextSlideHandler()}>
+              Next
+            </StyledNextContainer>
           </StyledContainer>
         </StyledCarousel>
       </>

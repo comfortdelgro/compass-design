@@ -51,13 +51,14 @@ export const StyledPrevContainer = styled('div', {
   padding: '0px',
 
   // Prev button container
-  backgroundColor: 'yellow', //test
+  // backgroundColor: 'yellow', //test
   height: '100%',
   width: '8.92%',
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'center',
   alignItems: 'center',
+  cursor: 'pointer',
   '& *': {
     color: '$whiteText',
     width: '$4',
@@ -73,9 +74,9 @@ export const StyledNextContainer = styled('div', {
   boxSizing: 'border-box',
   margin: '0px',
   padding: '0px',
-
+  cursor: 'pointer',
   // Prev button container
-  backgroundColor: 'yellow', //test
+  // backgroundColor: 'yellow', //test
   height: '100%',
   width: '8.92%',
   display: 'flex',
@@ -99,7 +100,7 @@ export const StyledMainContentContainer = styled('div', {
   padding: '0px',
 
   // Prev button container
-  backgroundColor: 'blue', //test
+  // backgroundColor: 'blue', //test
   height: '100%',
   width: '82.16%',
   display: 'flex',
