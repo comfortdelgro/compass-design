@@ -1,6 +1,6 @@
 {
   "name": "@comfortdelgro/react-compass",
-  "version": "0.2.0",
+  "version": "0.2.4",
   "description": "React Compass Design System by ComfortDelGro Corporation",
   "keywords": [
     "design system",
@@ -68,6 +68,7 @@
     "@types/listr": "^0.14.4",
     "@types/node": "^18.11.0",
     "@types/react": "^18.0.21",
+    "chalk": "^5.1.2",
     "eslint": "^8.25.0",
     "execa": "^6.1.0",
     "framer-motion": "^7.6.1",
