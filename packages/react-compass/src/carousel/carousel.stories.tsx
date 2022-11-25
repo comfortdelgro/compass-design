@@ -5,8 +5,9 @@ const backgroundSrc = [
   'https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(15).webp',
   'https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(22).webp',
   'https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(23).webp',
-  'https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(40).webp',
 ]
+
+const titles = ['First slide label', 'Second slide label', 'Third slide label']
 
 export const Default: React.FC = () => {
   return (
@@ -14,7 +15,7 @@ export const Default: React.FC = () => {
       <h3>Default carousel is large sized</h3>
       <Carousel>
         <Carousel.Image addresses={backgroundSrc} />
-        <Carousel.Title>My Title</Carousel.Title>
+        <Carousel.Title titles={titles} />
         <Carousel.Description>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit iste
           corrupti.
@@ -28,9 +29,9 @@ export const AutoSlide: React.FC = () => {
   return (
     <Column>
       <h3>Default carousel is large sized</h3>
-      <Carousel>
-        <Carousel.Image addresses={backgroundSrc} autoSlide={2000} />
-        <Carousel.Title>My Title</Carousel.Title>
+      <Carousel autoSlide={2500}>
+        <Carousel.Image addresses={backgroundSrc} />
+        <Carousel.Title titles={titles} />
         <Carousel.Description>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit iste
           corrupti.
@@ -46,7 +47,7 @@ export const Sizes: React.FC = () => {
       <h3>Small sized Carousel</h3>
       <Carousel size='sm'>
         <Carousel.Image addresses={backgroundSrc} />
-        <Carousel.Title>My Title</Carousel.Title>
+        <Carousel.Title titles={titles} />
         <Carousel.Description>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit iste
           corrupti.
@@ -56,7 +57,7 @@ export const Sizes: React.FC = () => {
       <h3>Medium sized Carousel</h3>
       <Carousel size='md'>
         <Carousel.Image addresses={backgroundSrc} />
-        <Carousel.Title>My Title</Carousel.Title>
+        <Carousel.Title titles={titles} />
         <Carousel.Description>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit iste
           corrupti.
@@ -66,7 +67,7 @@ export const Sizes: React.FC = () => {
       <h3>Large sized Carousel</h3>
       <Carousel size='lg'>
         <Carousel.Image addresses={backgroundSrc} />
-        <Carousel.Title>My Title</Carousel.Title>
+        <Carousel.Title titles={titles} />
         <Carousel.Description>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit iste
           corrupti.
@@ -76,7 +77,7 @@ export const Sizes: React.FC = () => {
       <h3>Full sized Carousel</h3>
       <Carousel size='full'>
         <Carousel.Image addresses={backgroundSrc} />
-        <Carousel.Title>My Title</Carousel.Title>
+        <Carousel.Title titles={titles} />
         <Carousel.Description>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit iste
           corrupti.

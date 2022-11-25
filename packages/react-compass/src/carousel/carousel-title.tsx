@@ -5,6 +5,10 @@ import {StyledCarouselTitle} from './carousel.styles'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
+  titles?: string[]
+  isNextSlide?: boolean
+  isPrevSlide?: boolean
+  autoSlide?: number
 }
 
 export type CarouselTitleProps = Props &
@@ -12,18 +16,50 @@ export type CarouselTitleProps = Props &
 
 const CarouselTitle = React.forwardRef<HTMLDivElement, CarouselTitleProps>(
   (props, ref) => {
-    const {children, css = {}, ...delegated} = props
+    const {
+      titles = [''],
+      css = {},
+      isNextSlide,
+      isPrevSlide,
+      autoSlide,
+      ...delegated
+    } = props
 
-    const renderTitle = () => {
-      if (typeof children === 'string') {
-        return <>{children}</>
+    const [titleIndex, setTitleIndex] = React.useState(0)
+
+    const nextTitleFunc = () => {
+      if (titleIndex < titles.length - 1) {
+        setTitleIndex(titleIndex + 1)
+      } else {
+        setTitleIndex(0)
       }
-      return children
     }
+
+    const prevTitleFunc = () => {
+      if (titleIndex > 0) {
+        setTitleIndex(titleIndex - 1)
+      } else {
+        setTitleIndex(titles.length - 1)
+      }
+    }
+
+    React.useEffect(() => {
+      nextTitleFunc()
+    }, [isNextSlide])
+
+    React.useEffect(() => {
+      prevTitleFunc()
+    }, [isPrevSlide])
+
+    React.useEffect(() => {
+      if (autoSlide) {
+        setTimeout(nextTitleFunc, autoSlide)
+      }
+    }, [titleIndex])
 
     return (
       <StyledCarouselTitle css={css} ref={ref} {...delegated}>
-        {renderTitle()}
+        {titles[titleIndex]}
       </StyledCarouselTitle>
     )
   },

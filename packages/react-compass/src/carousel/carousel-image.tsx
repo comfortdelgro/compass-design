@@ -6,8 +6,8 @@ import {StyledCarouselImage} from './carousel.styles'
 
 interface Props extends StyledComponentProps {
   addresses?: string[]
-  isNextImage?: boolean
-  isPrevImage?: boolean
+  isNextSlide?: boolean
+  isPrevSlide?: boolean
   autoSlide?: number
 }
 
@@ -19,9 +19,9 @@ const CarouselImage = React.forwardRef<HTMLImageElement, CarouselImageProps>(
     const {
       css = {},
       id = 'myId',
-      addresses = [],
-      isNextImage,
-      isPrevImage,
+      addresses = [''],
+      isNextSlide,
+      isPrevSlide,
       autoSlide,
     } = props
     const carouselImageRef = useDOMRef<HTMLImageElement>(ref)
@@ -45,11 +45,11 @@ const CarouselImage = React.forwardRef<HTMLImageElement, CarouselImageProps>(
 
     React.useEffect(() => {
       nextImageFunc()
-    }, [isNextImage])
+    }, [isNextSlide])
 
     React.useEffect(() => {
       prevImageFunc()
-    }, [isPrevImage])
+    }, [isPrevSlide])
 
     React.useEffect(() => {
       if (autoSlide) {

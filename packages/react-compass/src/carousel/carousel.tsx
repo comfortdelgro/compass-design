@@ -23,6 +23,7 @@ import {
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
   size?: 'sm' | 'md' | 'lg' | 'full'
+  autoSlide?: number
 }
 
 export type CarouselProps = Props &
@@ -37,7 +38,7 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
       css = {},
       // VariantProps
       size = 'lg',
-      // onPress
+      autoSlide,
       // HTMLDiv Props
       ...delegated
     } = props
@@ -56,15 +57,15 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
 
     const variantProps = {size} as CarouselVariantProps
 
-    const [isNextImage, setIsNextImage] = React.useState(false)
-    const [isPrevImage, setIsPrevImage] = React.useState(false)
+    const [isNextSlide, setIsNextImage] = React.useState(false)
+    const [isPrevSlide, setIsPrevImage] = React.useState(false)
 
     const prevSlideHandler = () => {
-      setIsPrevImage(!isPrevImage)
+      setIsPrevImage(!isPrevSlide)
     }
 
     const nextSlideHandler = () => {
-      setIsNextImage(!isNextImage)
+      setIsNextImage(!isNextSlide)
     }
 
     return (
@@ -77,8 +78,9 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
         >
           {/* Background Image */}
           {React.cloneElement(CarouselImageElement as unknown as JSX.Element, {
-            isNextImage: isNextImage,
-            isPrevImage: isPrevImage,
+            isNextSlide: isNextSlide,
+            isPrevSlide: isPrevSlide,
+            autoSlide: autoSlide,
           })}
 
           {/* Container for all content*/}
@@ -87,7 +89,14 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
               Prev
             </StyledPrevContainer>
             <StyledMainContentContainer>
-              {CarouselTitleElement}
+              {React.cloneElement(
+                CarouselTitleElement as unknown as JSX.Element,
+                {
+                  isNextSlide: isNextSlide,
+                  isPrevSlide: isPrevSlide,
+                  autoSlide: autoSlide,
+                },
+              )}
               {CarouselDescriptionElement}
               <StyledCarouselButtonContainer>
                 <Button
