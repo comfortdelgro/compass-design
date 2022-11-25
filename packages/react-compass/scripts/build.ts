@@ -1,89 +1,81 @@
+import chalk from 'chalk'
 import {execaCommand} from 'execa'
-import Listr, {ListrTask} from 'listr'
 import fs from 'node:fs/promises'
 
-// Config
 const INPUT_DIR = 'src'
 const OUTPUT_DIR = 'dist'
 
-// Define Utils
+const colors = [chalk.red, chalk.cyan, chalk.yellow, chalk.blue, chalk.green]
+const bgs = [
+  chalk.bgRed,
+  chalk.bgCyan,
+  chalk.bgYellow,
+  chalk.bgBlue,
+  chalk.bgGreen,
+]
+let execCounter = 0
+const runInShell = (c: string) => {
+  const index = execCounter++ % colors.length
+  const color = colors[index]!
+  const bg = bgs[index]!
 
-const runInShell = (c: string) =>
-  execaCommand(c, {stdio: 'inherit'}).catch(() => process.exit(1))
+  console.log(`${bg('Running'.padEnd(10))}: ${color(c)}`)
+  return execaCommand(c, {stdio: 'inherit'})
+    .then(() => console.log(`${bg('Done'.padEnd(10))}: ${color(c)}`))
+    .catch((e) => {
+      console.error(e)
+      process.exit(1)
+    })
+}
+
 const premiseOf = <T>(p: Promise<T>) => p.then(() => true).catch(() => false)
 const makeCliOptions = (o: Record<string, unknown>) =>
   Object.entries(o)
     .map(([key, value]) => `--${key} ${value}`)
     .join(' ')
 
-// Define Tasks
+const main = async () => {
+  // Remove existing dist/ directory to ensure a clean build
+  const doesDistExist = await premiseOf(fs.stat(OUTPUT_DIR))
+  if (doesDistExist) runInShell(`rimraf ${OUTPUT_DIR}`)
 
-const cleanDist: ListrTask = {
-  title: 'Removing existing dist/ directory to ensure a clean build',
-  skip: () => !premiseOf(fs.stat(OUTPUT_DIR)),
-  task: () => runInShell(`rimraf ${OUTPUT_DIR}`),
-}
+  const tscScript = 'tsc -p tsconfig.build.json'
+  const options = {
+    declaration: true,
+    declarationDir: OUTPUT_DIR,
+    emitDeclarationOnly: true,
+  }
+  void runInShell(`${tscScript} ${makeCliOptions(options)}`)
+  // ^ intentionally voided
 
-const swcBuild: ListrTask = {
-  title: 'Building CommonJS output with SWC',
-  task: async () => {
-    const buildScript = `swc ${INPUT_DIR} -d ${OUTPUT_DIR}`
-    return runInShell(`${buildScript} -C module.type=commonjs`)
-  },
-}
+  // Build
+  const swcScript = `swc ${INPUT_DIR} -d ${OUTPUT_DIR}`
+  await runInShell(`${swcScript} -C module.type=commonjs`)
 
-const dtsBuild: ListrTask = {
-  title: 'Building typescript declaration files',
-  task: async () => {
-    const buildScript = `tsc -p tsconfig.build.json`
-    const options = {
-      declaration: true,
-      declarationDir: 'dist',
-      emitDeclarationOnly: true,
+  // Generate package.json
+  const packageJson = await fs
+    .readFile('package.json', 'utf-8')
+    .then(JSON.parse)
+
+  packageJson.scripts = {}
+  packageJson.devDependencies = {}
+  if (packageJson.publishConfig) delete packageJson.publishConfig
+  if (packageJson.files) delete packageJson.files
+
+  const references = ['main', 'module', 'types']
+  for (const ref of references) {
+    if (packageJson[ref]) {
+      packageJson[ref] = packageJson[ref].replace(`${OUTPUT_DIR}/`, './')
     }
+  }
 
-    return runInShell(`${buildScript} ${makeCliOptions(options)}`)
-  },
+  await fs.writeFile(
+    `${OUTPUT_DIR}/package.json`,
+    JSON.stringify(packageJson, null, 2),
+  )
+
+  // Copy README.md
+  await fs.copyFile('README.md', `${OUTPUT_DIR}/README.md`)
 }
 
-const tasks = new Listr([
-  cleanDist,
-  {
-    title: 'Build the package',
-    task: () => {
-      const subtasks = new Listr([swcBuild, dtsBuild], {concurrent: true})
-      return subtasks
-    },
-  },
-  {
-    title: 'Generate package.json',
-    task: async () => {
-      const packageJson = await fs
-        .readFile('package.json', 'utf-8')
-        .then(JSON.parse)
-
-      packageJson.scripts = {}
-      packageJson.devDependencies = {}
-
-      const pattern = new RegExp(`^${OUTPUT_DIR}/`)
-      const pathRefs = ['main', 'module', 'types']
-
-      for (const ref of pathRefs) {
-        if (packageJson[ref]) {
-          packageJson[ref] = packageJson[ref].replace(pattern, './')
-        }
-      }
-
-      if (packageJson.publishConfig) delete packageJson.publishConfig
-      if (packageJson.files) delete packageJson.files
-
-      return fs.writeFile(
-        `${OUTPUT_DIR}/package.json`,
-        JSON.stringify(packageJson, null, 2),
-      )
-    },
-  },
-])
-
-// Run 'em
-tasks.run().catch((e) => console.error(e))
+main()

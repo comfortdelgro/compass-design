@@ -1,0 +1,290 @@
+# Cards
+
+Cards provide a flexible and extensible content container with multiple variants and options
+
+## Example
+
+```tsx {22}
+import {Card} from '@comfortdelgro/react-compass'
+
+function BasicExample() {
+  return (
+    <Card size='small'>
+      <Card.Body>
+        <Card.Title>Card title</Card.Title>
+        <p>This is a card paragraph</p>
+      </Card.Body>
+    </Card>
+  )
+}
+```
+
+import {Card} from '@comfortdelgro/react-compass'
+import ComponentDisplay from 'components/ComponentDisplay'
+
+<ComponentDisplay>
+  <Card size='small'>
+    <Card.Body>
+      <Card.Title>Card title</Card.Title>
+      <p style={{margin: 0}}>This is a card paragraph</p>
+    </Card.Body>
+  </Card>
+</ComponentDisplay>
+
+## Content
+
+### Body
+
+Use `<Card.Body>` to pad content inside a `<Card>`.
+
+```tsx {22}
+import {Card} from '@comfortdelgro/react-compass'
+
+function BodyOnlyExample() {
+  return (
+    <Card size='small'>
+      <Card.Body>
+        <p>This is a paragraph within a card body</p>
+      </Card.Body>
+    </Card>
+  )
+}
+```
+
+<ComponentDisplay>
+  <Card size='small'>
+    <Card.Body>
+      <p style={{margin: 0}}>This is a paragraph within a card body</p>
+    </Card.Body>
+  </Card>
+</ComponentDisplay>
+
+### Title
+
+Use `<Card.Title>` to create a title inside a `<Card.Body>`.
+
+```tsx {22}
+import {Card} from '@comfortdelgro/react-compass'
+
+function TitleExample() {
+  return (
+    <Card size='small'>
+      <Card.Body>
+        <Card.Title>Card title</Card.Title>
+        <p>This is a paragraph within a card body</p>
+      </Card.Body>
+    </Card>
+  )
+}
+```
+
+<ComponentDisplay>
+  <Card size='small'>
+    <Card.Body>
+      <Card.Title>Card title</Card.Title>
+      <p style={{margin: 0}}>This is a paragraph within a card body</p>
+    </Card.Body>
+  </Card>
+</ComponentDisplay>
+
+You can also use a different heading tag inside `<Card.Title>`
+
+```tsx {22}
+import {Card} from '@comfortdelgro/react-compass'
+
+function H1TitleExample() {
+  return (
+    <Card size='large'>
+      <Card.Body>
+        <Card.Title>
+          <h1>Card title as H1</h1>
+        </Card.Title>
+        <p>This is a paragraph within a card body</p>
+      </Card.Body>
+    </Card>
+  )
+}
+```
+
+<ComponentDisplay>
+  <Card size='large'>
+    <Card.Body>
+      <Card.Title>
+        <h1 style={{fontSize: '32px'}}>Card title as H1</h1>
+      </Card.Title>
+      <p style={{margin: 0}}>This is a paragraph within a card body</p>
+    </Card.Body>
+  </Card>
+</ComponentDisplay>
+
+### Image
+
+Use `<Card.Image>` to embed the image in a card `<Card>`.
+
+```tsx {22}
+import {Card} from '@comfortdelgro/react-compass'
+
+function ImageExample() {
+  const imageSrc =
+    'https://images.unsplash.com/flagged/photo-1562503542-2a1e6f03b16b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8c2luZ2Fwb3JlfGVufDB8fDB8fA%3D%3D&w=1000&q=80'
+
+  return (
+    <Card size='large'>
+      <Card.Image src={imageSrc} />
+      <Card.Body>
+        <Card.Title>Card with image</Card.Title>
+        <p>This is a paragraph within a card body</p>
+      </Card.Body>
+    </Card>
+  )
+}
+```
+
+<ComponentDisplay>
+  <Card size='large'>
+    <Card.Image
+      src={
+        'https://images.unsplash.com/flagged/photo-1562503542-2a1e6f03b16b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8c2luZ2Fwb3JlfGVufDB8fDB8fA%3D%3D&w=1000&q=80'
+      }
+    />
+    <Card.Body>
+      <Card.Title css={{fontSize: '24px'}}>Card with image</Card.Title>
+      <p style={{margin: 0}}>This is a paragraph within a card body</p>
+    </Card.Body>
+  </Card>
+</ComponentDisplay>
+
+## Sizes
+
+Card comes with different sizes: `small`, `large` and `full`.
+
+```tsx {22}
+import {Card} from '@comfortdelgro/react-compass'
+
+function BasicExample() {
+    const sizes = ['small', 'large', 'full']
+
+    return (
+       {sizes.map((size) => (
+        <Card size={size}>
+          <Card.Body>
+            <Card.Title>
+              Card with size: {size}
+            </Card.Title>
+            <p>This is a paragraph within a card body</p>
+          </Card.Body>
+        </Card>
+       ))}
+    );
+}
+```
+
+<ComponentDisplay>
+  {['small', 'large', 'full'].map((size) => (
+    <Card key={size} css={{marginBottom: '24px'}} size={size}>
+      <Card.Body>
+        <Card.Title css={{fontSize: '20px'}}>Card with size: {size}</Card.Title>
+        <p>This is a paragraph within a card body</p>
+      </Card.Body>
+    </Card>
+  ))}
+</ComponentDisplay>
+
+You can fully customize the card size.
+
+```tsx {22}
+import {Card} from '@comfortdelgro/react-compass'
+
+function BasicExample() {
+  const cardSize = '460px'
+
+  return (
+    <Card css={{width: cardSize}}>
+      <Card.Body>
+        <Card.Title>Card with customized size</Card.Title>
+        <p>This is a paragraph within a card body</p>
+      </Card.Body>
+    </Card>
+  )
+}
+```
+
+<ComponentDisplay>
+  <Card css={{width: '460px'}}>
+    <Card.Body>
+      <Card.Title css={{fontSize: '20px'}}>
+        Card with customized size
+      </Card.Title>
+      <p>This is a paragraph within a card body</p>
+    </Card.Body>
+  </Card>
+</ComponentDisplay>
+
+## Disabled
+
+Card can be disabled by passing `isDisabled` prop.
+
+```tsx {22}
+import {Card} from '@comfortdelgro/react-compass'
+import Button from '@comfortdelgro/react-compass/button'
+
+function DisabledCard() {
+  const isDisabled = true
+  return (
+    <Card size='small' isDisabled={isDisabled}>
+      <Card.Body>
+        <Card.Title>Disabled Card</Card.Title>
+        <p>This is a paragraph within a card body</p>
+        <Button isDisabled={isDisabled} variant='primary'>
+          Button
+        </Button>
+      </Card.Body>
+    </Card>
+  )
+}
+```
+
+import Button from '@comfortdelgro/react-compass/button'
+
+<ComponentDisplay>
+  <Card size='small' isDisabled>
+    <Card.Body>
+      <Card.Title>Disabled Card</Card.Title>
+      <p>This is a paragraph within a card body</p>
+      <Button isDisabled>Button</Button>
+    </Card.Body>
+  </Card>
+</ComponentDisplay>
+
+## Props
+
+### Card
+
+| Name       | Type                         | Default | Description                                                                             |
+| :--------- | :--------------------------- | :------ | :-------------------------------------------------------------------------------------- |
+| children   | `ReactNode`                  | —       | The content to display in the Card.                                                     |
+| size       | `small` \| `large` \| `full` | `full`  | The size of the Card                                                                    |
+| isDisabled | `boolean`                    | false   | Whether the card is disabled.                                                           |
+| css        | `CSS`                        | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
+
+### Card Body
+
+| Name     | Type        | Default | Description                                                                             |
+| :------- | :---------- | :------ | :-------------------------------------------------------------------------------------- |
+| children | `ReactNode` | —       | The content to display in the Card Image.                                               |
+| css      | `CSS`       | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
+
+### Card Title
+
+| Name     | Type        | Default | Description                                                                             |
+| :------- | :---------- | :------ | :-------------------------------------------------------------------------------------- |
+| children | `ReactNode` | —       | The content to display in the Card Image.                                               |
+| css      | `CSS`       | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
+
+### Card Image
+
+| Name   | Type     | Default | Description                                                                             |
+| :----- | :------- | :------ | :-------------------------------------------------------------------------------------- |
+| src \* | `string` | —       | The URL of the image.                                                                   |
+| alt \* | `string` | —       | Text description of the image.                                                          |
+| css    | `CSS`    | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
