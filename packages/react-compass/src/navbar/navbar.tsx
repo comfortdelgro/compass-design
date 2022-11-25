@@ -14,18 +14,21 @@ export type NavbarProps = Props &
 
 const Navbar = React.forwardRef<HTMLDivElement, NavbarProps>((props, ref) => {
   const {
+    // ComponentProps
     children,
     color = 'blue',
     variant = 'portal',
     className = '',
+    // StyledComponentProps
     css = {},
+    // HTMLDiv props
     ...delegated
   } = props
 
   const variantProps = {
     color: color,
     variant: variant,
-  }
+  } as NavbarVariantProps
 
   return (
     <StyledNavbar

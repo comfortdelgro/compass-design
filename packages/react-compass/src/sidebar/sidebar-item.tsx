@@ -13,7 +13,16 @@ export type SidebarItemProps = Props &
 
 const SidebarItem = React.forwardRef<HTMLDivElement, SidebarItemProps>(
   (props, ref) => {
-    const {children, isActive, css = {}, className = '', ...delegated} = props
+    const {
+      // ComponentProps
+      children,
+      isActive,
+      className = '',
+      // StyledComponentProps
+      css = {},
+      // HTML Div props
+      ...delegated
+    } = props
 
     const {isExpand} = useContext(SidebarContext)
 

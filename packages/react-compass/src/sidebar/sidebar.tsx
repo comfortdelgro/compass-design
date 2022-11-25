@@ -16,18 +16,25 @@ export type SidebarProps = Props &
 const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>((props, ref) => {
   const [expandOnHover, setExpandOnHover] = useState(false)
   const {
+    // ComponentProps
     children,
     expand = false,
     className = '',
+    // StyledComponentProps
     css = {},
+    // HTML Div props
     ...delegated
   } = props
 
+  // if component is controlled -> return
+  // if hover -> set expandOnHover state = true
   const handleMouseOver = () => {
     if (expand) return
     setExpandOnHover(true)
   }
 
+  // if component is controlled -> return
+  // if hover -> set expandOnHover state = false
   const handleMouseLeave = () => {
     if (expand) return
     setExpandOnHover(false)

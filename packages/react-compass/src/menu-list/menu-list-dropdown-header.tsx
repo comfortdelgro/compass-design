@@ -21,12 +21,15 @@ const MenuListDropdownHeader = React.forwardRef<
   MenuListDropdownHeaderProps
 >((props, ref) => {
   const {
+    // ComponentProps
     children,
     leftIcon,
     rightIcon,
     onPress: onPressProp,
     className = '',
+    // StyledComponentProps
     css = {},
+    // AriaButtonProps
     ...ariaSafeProps
   } = props
 
@@ -34,6 +37,7 @@ const MenuListDropdownHeader = React.forwardRef<
 
   const buttonRef = useDOMRef<HTMLButtonElement>(ref)
 
+  // toggle menu list when click by mouse or by keyboard
   const handleOnClick = (e: PressEvent) => {
     if (onPressProp) {
       onPressProp(e)

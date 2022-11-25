@@ -133,6 +133,7 @@ importers:
       '@types/listr': ^0.14.4
       '@types/node': ^18.11.0
       '@types/react': ^17.0.39
+      chalk: ^5.1.2
       eslint: ^8.25.0
       execa: ^6.1.0
       framer-motion: ^7.6.1
@@ -181,6 +182,7 @@ importers:
       '@types/listr': 0.14.4
       '@types/node': 18.11.0
       '@types/react': 17.0.52
+      chalk: 5.1.2
       eslint: 8.25.0
       execa: 6.1.0
       framer-motion: 7.6.1_biqbaboplfbrettd7655fr4n2y

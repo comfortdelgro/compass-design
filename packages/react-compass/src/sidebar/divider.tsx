@@ -10,7 +10,13 @@ export type DividerProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const Divider = React.forwardRef<HTMLDivElement, DividerProps>((props, ref) => {
-  const {className = '', ...delegated} = props
+  const {
+    // ComponentProps
+    className = '',
+    // HTML Div props
+    ...delegated
+  } = props
+
   return (
     <StyledDivider
       className={`${className} divider`}

@@ -20,12 +20,15 @@ const MenuListDropdown = React.forwardRef<
   MenuListDropdownProps
 >((props, ref) => {
   const {
+    // ComponentProps
     children,
     isOpen: isOpenProp,
     onMenuListChange,
     defaultOpen = true,
     className = '',
+    // StyledComponentProps
     css = {},
+    // HTML Div props
     ...delegated
   } = props
 
@@ -33,6 +36,7 @@ const MenuListDropdown = React.forwardRef<
 
   const [title, ...body] = React.Children.toArray(children)
 
+  // whether the state is controlled or not
   const isControlled = isOpenProp !== undefined
 
   const toggleOpen = () => {

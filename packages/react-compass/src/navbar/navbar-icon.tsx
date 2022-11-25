@@ -11,7 +11,13 @@ export type NavbarIconProps = Props
 
 const NavbarIcon = React.forwardRef<SVGSVGElement, NavbarIconProps>(
   (props, ref) => {
-    const {icon, css = {}} = props
+    const {
+      // ComponentProps
+      icon,
+      // StyledComponentProps
+      css = {},
+    } = props
+
     return (
       <StyledNavbarIcon
         className='navbar-icon'

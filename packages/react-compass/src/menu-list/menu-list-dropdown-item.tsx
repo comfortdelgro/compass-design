@@ -18,12 +18,15 @@ const MenuListDropdownItem = React.forwardRef<
   MenuListDropdownItemProps
 >((props, ref) => {
   const {
+    // ComponentProps
     children,
     isActive,
     isNested,
     icon,
     className = '',
+    // StyledComponentProps
     css = {},
+    // HTML Div props
     ...delegated
   } = props
 
