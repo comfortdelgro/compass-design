@@ -6,9 +6,7 @@ import {StyledCarouselDescription} from './carousel.styles'
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
   descriptions?: string[]
-  isNextSlide?: boolean
-  isPrevSlide?: boolean
-  autoSlide?: number
+  currentSlideIndex?: number
 }
 
 export type CarouselDescriptionProps = Props &
@@ -21,53 +19,15 @@ const CarouselDescription = React.forwardRef<
   const {
     descriptions = [''],
     css = {},
-    isNextSlide,
-    isPrevSlide,
-    autoSlide,
+    currentSlideIndex = 0,
     ...delegated
   } = props
 
   const [descriptionIndex, setDescriptionIndex] = React.useState(0)
-  const isNextMounted = React.useRef(false)
-  const isPrevMounted = React.useRef(false)
-
-  const nextDescriptionFunc = () => {
-    if (descriptionIndex < descriptions.length - 1) {
-      setDescriptionIndex(descriptionIndex + 1)
-    } else {
-      setDescriptionIndex(0)
-    }
-  }
-
-  const prevDescriptionFunc = () => {
-    if (descriptionIndex > 0) {
-      setDescriptionIndex(descriptionIndex - 1)
-    } else {
-      setDescriptionIndex(descriptions.length - 1)
-    }
-  }
 
   React.useEffect(() => {
-    if (isNextMounted.current) {
-      nextDescriptionFunc()
-    } else {
-      isNextMounted.current = true
-    }
-  }, [isNextSlide])
-
-  React.useEffect(() => {
-    if (isPrevMounted.current) {
-      prevDescriptionFunc()
-    } else {
-      isPrevMounted.current = true
-    }
-  }, [isPrevSlide])
-
-  React.useEffect(() => {
-    if (autoSlide) {
-      setTimeout(nextDescriptionFunc, autoSlide)
-    }
-  }, [descriptionIndex])
+    setDescriptionIndex(currentSlideIndex)
+  }, [currentSlideIndex])
 
   return (
     <StyledCarouselDescription css={css} ref={ref} {...delegated}>

@@ -6,9 +6,7 @@ import {StyledCarouselTitle} from './carousel.styles'
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
   titles?: string[]
-  isNextSlide?: boolean
-  isPrevSlide?: boolean
-  autoSlide?: number
+  currentSlideIndex?: number
 }
 
 export type CarouselTitleProps = Props &
@@ -16,56 +14,13 @@ export type CarouselTitleProps = Props &
 
 const CarouselTitle = React.forwardRef<HTMLDivElement, CarouselTitleProps>(
   (props, ref) => {
-    const {
-      titles = [''],
-      css = {},
-      isNextSlide,
-      isPrevSlide,
-      autoSlide,
-      ...delegated
-    } = props
+    const {titles = [''], css = {}, currentSlideIndex = 0, ...delegated} = props
 
     const [titleIndex, setTitleIndex] = React.useState(0)
-    const isNextMounted = React.useRef(false)
-    const isPrevMounted = React.useRef(false)
-
-    const nextTitleFunc = () => {
-      if (titleIndex < titles.length - 1) {
-        setTitleIndex(titleIndex + 1)
-      } else {
-        setTitleIndex(0)
-      }
-    }
-
-    const prevTitleFunc = () => {
-      if (titleIndex > 0) {
-        setTitleIndex(titleIndex - 1)
-      } else {
-        setTitleIndex(titles.length - 1)
-      }
-    }
 
     React.useEffect(() => {
-      if (isNextMounted.current) {
-        nextTitleFunc()
-      } else {
-        isNextMounted.current = true
-      }
-    }, [isNextSlide])
-
-    React.useEffect(() => {
-      if (isPrevMounted.current) {
-        prevTitleFunc()
-      } else {
-        isPrevMounted.current = true
-      }
-    }, [isPrevSlide])
-
-    React.useEffect(() => {
-      if (autoSlide) {
-        setTimeout(nextTitleFunc, autoSlide)
-      }
-    }, [titleIndex])
+      setTitleIndex(currentSlideIndex)
+    }, [currentSlideIndex])
 
     return (
       <StyledCarouselTitle css={css} ref={ref} {...delegated}>

@@ -4,10 +4,7 @@ import {StyledComponentProps} from '../utils/stitches.types'
 import {StyledCarouselButtonContainer} from './carousel.styles'
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
-  isNextSlide?: boolean
-  isPrevSlide?: boolean
-  autoSlide?: number
-  className?: string
+  currentSlideIndex?: number
 }
 
 export type CarouselButtonsProps = Props &
@@ -15,66 +12,21 @@ export type CarouselButtonsProps = Props &
 
 const CarouselButtons = React.forwardRef<HTMLDivElement, CarouselButtonsProps>(
   (props, ref) => {
-    const {
-      children,
-      css = {},
-      isNextSlide,
-      isPrevSlide,
-      autoSlide,
-      ...delegated
-    } = props
+    const {children, css = {}, currentSlideIndex = 0, ...delegated} = props
 
-    const [descriptionIndex, setButtonsIndex] = React.useState(0)
-    const isNextMounted = React.useRef(false)
-    const isPrevMounted = React.useRef(false)
-    const [currentSlideIndex, setCurrentSlideIndex] = React.useState(0)
+    const [currentButtonsIndex, setCurrentButtonsIndex] = React.useState(0)
     const buttons = React.Children.toArray(children)
-
-    const nextButtonsFunc = () => {
-      if (currentSlideIndex < buttons.length - 1) {
-        setCurrentSlideIndex(currentSlideIndex + 1)
-      } else {
-        setCurrentSlideIndex(0)
-      }
-    }
-
-    const prevButtonsFunc = () => {
-      if (currentSlideIndex > 0) {
-        setCurrentSlideIndex(currentSlideIndex - 1)
-      } else {
-        setCurrentSlideIndex(buttons.length - 1)
-      }
-    }
 
     const renderButtons = () => {
       if (buttons.length) {
-        return <>{buttons[currentSlideIndex]}</>
+        return <>{buttons[currentButtonsIndex]}</>
       }
     }
 
     React.useEffect(() => {
-      if (isNextMounted.current) {
-        nextButtonsFunc()
-      } else {
-        isNextMounted.current = true
-      }
-    }, [isNextSlide])
+      setCurrentButtonsIndex(currentSlideIndex)
+    }, [currentSlideIndex])
 
-    React.useEffect(() => {
-      if (isPrevMounted.current) {
-        prevButtonsFunc()
-      } else {
-        isPrevMounted.current = true
-      }
-    }, [isPrevSlide])
-
-    React.useEffect(() => {
-      if (autoSlide) {
-        setTimeout(nextButtonsFunc, autoSlide)
-      }
-    }, [descriptionIndex])
-
-    console.log('button children', children)
     return (
       <StyledCarouselButtonContainer css={css} ref={ref} {...delegated}>
         {renderButtons()}

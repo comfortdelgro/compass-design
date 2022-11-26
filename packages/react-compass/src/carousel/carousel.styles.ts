@@ -51,7 +51,6 @@ export const StyledPrevContainer = styled('div', {
   padding: '0px',
 
   // Prev button container
-  // backgroundColor: 'yellow', //test
   height: '100%',
   width: '8.92%',
   display: 'flex',
@@ -196,6 +195,7 @@ export const StyledCarouselPaginationContainer = styled('div', {
   width: '50%',
   display: 'flex',
   justifyContent: 'flex-start',
+  alignItems: 'center',
 })
 
 export const StyledCarouselIconsContainer = styled('div', {
@@ -212,6 +212,41 @@ export const StyledCarouselIconsContainer = styled('div', {
   width: '50%',
   display: 'flex',
   justifyContent: 'flex-end',
+})
+
+export const StylePagination = styled('div', {
+  // reset
+  appearance: 'none',
+  boxSizing: 'border-box',
+  margin: '0px',
+  padding: '0px',
+
+  // styling
+  width: '$4',
+  height: '$2',
+  backgroundColor: '$cdgBlue100',
+  borderRadius: '$full',
+  border: '1px solid white',
+  marginLeft: '$2_5',
+  cursor: 'pointer',
+  variants: {
+    current: {
+      true: {},
+      false: {
+        width: '$2',
+        height: '$2',
+        borderRadius: '$full',
+        border: '1px solid white',
+        marginLeft: '$2_5',
+        cursor: 'pointer',
+        backgroundColor: 'transparent',
+      },
+    },
+  },
+
+  defaultVariants: {
+    current: 'true',
+  },
 })
 
 export const StyledCarousel = styled('div', {

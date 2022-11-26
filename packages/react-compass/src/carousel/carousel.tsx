@@ -1,5 +1,8 @@
 /* eslint-disable prettier/prettier */
+import type {IconProp} from '@fortawesome/fontawesome-svg-core'
+import {faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
+import {Icon} from '../icon'
 import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -17,12 +20,15 @@ import {
   StyledMainContentContainer,
   StyledNextContainer,
   StyledPrevContainer,
+  StylePagination,
 } from './carousel.styles'
-
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
   size?: 'sm' | 'md' | 'lg' | 'full'
   autoSlide?: number
+  prevIcon?: IconProp
+  nextIcon?: IconProp
+  count: number
 }
 
 export type CarouselProps = Props &
@@ -35,9 +41,12 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
       children,
       // styled component props
       css = {},
-      // VariantProps
+      // ComponentProps
       size,
       autoSlide,
+      prevIcon = faChevronLeft,
+      nextIcon = faChevronRight,
+      count = 0,
       // HTMLDiv Props
       ...delegated
     } = props
@@ -58,17 +67,56 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
       pickChild<typeof CarouselButtons>(children, CarouselButtons)
 
     const variantProps = {size} as CarouselVariantProps
-
-    const [isNextSlide, setIsNextImage] = React.useState(false)
-    const [isPrevSlide, setIsPrevImage] = React.useState(false)
+    const [currentSlideIndex, setCurrentSlideIndex] = React.useState(0)
 
     const prevSlideHandler = () => {
-      setIsPrevImage(!isPrevSlide)
+      // setIsPrevImage(!isPrevSlide)
+      if (currentSlideIndex == 0) {
+        setCurrentSlideIndex(count - 1)
+      } else {
+        setCurrentSlideIndex(currentSlideIndex - 1)
+      }
     }
 
     const nextSlideHandler = () => {
-      setIsNextImage(!isNextSlide)
+      if (currentSlideIndex == count - 1) {
+        setCurrentSlideIndex(0)
+      } else {
+        setCurrentSlideIndex(currentSlideIndex + 1)
+      }
     }
+
+    const navigateToCurrentSlide = (index: number) => {
+      setCurrentSlideIndex(index)
+    }
+
+    const renderPagniation = () => {
+      const rows = []
+      for (let i = 0; i < count; i++) {
+        if (currentSlideIndex == i) {
+          rows.push(
+            <StylePagination
+              current='true'
+              onClick={() => navigateToCurrentSlide(i)}
+            />,
+          )
+        } else {
+          rows.push(
+            <StylePagination
+              current='false'
+              onClick={() => navigateToCurrentSlide(i)}
+            />,
+          )
+        }
+      }
+      return rows
+    }
+
+    React.useEffect(() => {
+      if (autoSlide) {
+        setTimeout(nextSlideHandler, autoSlide)
+      }
+    }, [currentSlideIndex])
 
     return (
       <>
@@ -79,45 +127,45 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
           {...delegated}
         >
           {/* Background Image */}
-          {React.cloneElement(CarouselImageElement as unknown as JSX.Element, {
-            isNextSlide: isNextSlide,
-            isPrevSlide: isPrevSlide,
-            autoSlide: autoSlide,
-          })}
+          {CarouselImageElement &&
+            React.cloneElement(CarouselImageElement as unknown as JSX.Element, {
+              currentSlideIndex: currentSlideIndex,
+              autoSlide: autoSlide,
+            })}
 
           {/* Container for all content*/}
           <StyledContainer>
             <StyledPrevContainer onClick={() => prevSlideHandler()}>
-              Prev
+              <Icon icon={prevIcon} />
             </StyledPrevContainer>
             <StyledMainContentContainer>
-              {React.cloneElement(
-                CarouselTitleElement as unknown as JSX.Element,
-                {
-                  isNextSlide: isNextSlide,
-                  isPrevSlide: isPrevSlide,
-                  autoSlide: autoSlide,
-                },
-              )}
-              {React.cloneElement(
-                CarouselDescriptionElement as unknown as JSX.Element,
-                {
-                  isNextSlide: isNextSlide,
-                  isPrevSlide: isPrevSlide,
-                  autoSlide: autoSlide,
-                },
-              )}
-              {React.cloneElement(
-                CarouselButtonsElement as unknown as JSX.Element,
-                {
-                  isNextSlide: isNextSlide,
-                  isPrevSlide: isPrevSlide,
-                  autoSlide: autoSlide,
-                },
-              )}
+              {CarouselTitleElement &&
+                React.cloneElement(
+                  CarouselTitleElement as unknown as JSX.Element,
+                  {
+                    currentSlideIndex: currentSlideIndex,
+                    autoSlide: autoSlide,
+                  },
+                )}
+              {CarouselDescriptionElement &&
+                React.cloneElement(
+                  CarouselDescriptionElement as unknown as JSX.Element,
+                  {
+                    currentSlideIndex: currentSlideIndex,
+                    autoSlide: autoSlide,
+                  },
+                )}
+              {CarouselButtonsElement &&
+                React.cloneElement(
+                  CarouselButtonsElement as unknown as JSX.Element,
+                  {
+                    currentSlideIndex: currentSlideIndex,
+                    autoSlide: autoSlide,
+                  },
+                )}
               <StyledCarouselPaginationAndIconsContainer>
                 <StyledCarouselPaginationContainer>
-                  Pagination
+                  {renderPagniation()}
                 </StyledCarouselPaginationContainer>
                 <StyledCarouselIconsContainer>
                   Icons
@@ -125,7 +173,7 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
               </StyledCarouselPaginationAndIconsContainer>
             </StyledMainContentContainer>
             <StyledNextContainer onClick={() => nextSlideHandler()}>
-              Next
+              <Icon icon={nextIcon} />
             </StyledNextContainer>
           </StyledContainer>
         </StyledCarousel>
