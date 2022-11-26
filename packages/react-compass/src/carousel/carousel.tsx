@@ -1,5 +1,10 @@
 /* eslint-disable prettier/prettier */
 import type {IconProp} from '@fortawesome/fontawesome-svg-core'
+import {
+  faFacebook,
+  faInstagram,
+  faTwitter,
+} from '@fortawesome/free-brands-svg-icons'
 import {faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
 import {Icon} from '../icon'
@@ -13,6 +18,7 @@ import CarouselTitle from './carousel-title'
 import {
   CarouselVariantProps,
   StyledCarousel,
+  StyledCarouselButtonContainer,
   StyledCarouselIconsContainer,
   StyledCarouselPaginationAndIconsContainer,
   StyledCarouselPaginationContainer,
@@ -25,10 +31,12 @@ import {
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
   size?: 'sm' | 'md' | 'lg' | 'full'
-  autoSlide?: number
+  auto?: number
   prevIcon?: IconProp
   nextIcon?: IconProp
+  socialIcons?: {icon: IconProp; target: string}[]
   count: number
+  view?: 'desktop' | 'mobile'
 }
 
 export type CarouselProps = Props &
@@ -43,10 +51,16 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
       css = {},
       // ComponentProps
       size,
-      autoSlide,
+      auto,
       prevIcon = faChevronLeft,
       nextIcon = faChevronRight,
       count = 0,
+      socialIcons = [
+        {icon: faFacebook, target: 'https://www.facebook.com/'},
+        {icon: faInstagram, target: 'https://www.instagram.com/'},
+        {icon: faTwitter, target: 'https://twitter.com/'},
+      ],
+      view = 'desktop',
       // HTMLDiv Props
       ...delegated
     } = props
@@ -66,7 +80,7 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
     const {child: CarouselButtonsElement, rest: childrenWithoutButtonsElement} =
       pickChild<typeof CarouselButtons>(children, CarouselButtons)
 
-    const variantProps = {size} as CarouselVariantProps
+    const variantProps = {size, view} as CarouselVariantProps
     const [currentSlideIndex, setCurrentSlideIndex] = React.useState(0)
 
     const prevSlideHandler = () => {
@@ -113,38 +127,111 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
     }
 
     React.useEffect(() => {
-      if (autoSlide) {
-        setTimeout(nextSlideHandler, autoSlide)
+      if (auto) {
+        setTimeout(nextSlideHandler, auto)
       }
     }, [currentSlideIndex])
 
     return (
       <>
-        <StyledCarousel
-          css={css}
-          ref={carouselRef}
-          {...variantProps}
-          {...delegated}
-        >
-          {/* Background Image */}
-          {CarouselImageElement &&
-            React.cloneElement(CarouselImageElement as unknown as JSX.Element, {
-              currentSlideIndex: currentSlideIndex,
-              autoSlide: autoSlide,
-            })}
+        {view == 'desktop' && (
+          <StyledCarousel
+            css={css}
+            ref={carouselRef}
+            {...variantProps}
+            {...delegated}
+          >
+            {/* Background Image */}
+            {CarouselImageElement &&
+              React.cloneElement(
+                CarouselImageElement as unknown as JSX.Element,
+                {
+                  currentSlideIndex: currentSlideIndex,
+                  auto: auto,
+                },
+              )}
 
-          {/* Container for all content*/}
-          <StyledContainer>
-            <StyledPrevContainer onClick={() => prevSlideHandler()}>
-              <Icon icon={prevIcon} />
-            </StyledPrevContainer>
+            {/* Container for all content*/}
+            <StyledContainer>
+              <StyledPrevContainer onClick={() => prevSlideHandler()}>
+                <Icon icon={prevIcon} />
+              </StyledPrevContainer>
+              <StyledMainContentContainer>
+                {CarouselTitleElement &&
+                  React.cloneElement(
+                    CarouselTitleElement as unknown as JSX.Element,
+                    {
+                      currentSlideIndex: currentSlideIndex,
+                      auto: auto,
+                    },
+                  )}
+                {CarouselDescriptionElement &&
+                  React.cloneElement(
+                    CarouselDescriptionElement as unknown as JSX.Element,
+                    {
+                      currentSlideIndex: currentSlideIndex,
+                      auto: auto,
+                    },
+                  )}
+                {CarouselButtonsElement &&
+                  React.cloneElement(
+                    CarouselButtonsElement as unknown as JSX.Element,
+                    {
+                      currentSlideIndex: currentSlideIndex,
+                      auto: auto,
+                    },
+                  )}
+                <StyledCarouselPaginationAndIconsContainer>
+                  <StyledCarouselPaginationContainer>
+                    {renderPagniation()}
+                  </StyledCarouselPaginationContainer>
+                  <StyledCarouselIconsContainer>
+                    {socialIcons.map((item, index) => {
+                      return (
+                        <Icon
+                          icon={item.icon as unknown as IconProp}
+                          onClick={() => window.open(item.target, '_blank')}
+                        />
+                      )
+                    })}
+                  </StyledCarouselIconsContainer>
+                </StyledCarouselPaginationAndIconsContainer>
+              </StyledMainContentContainer>
+              <StyledNextContainer onClick={() => nextSlideHandler()}>
+                <Icon icon={nextIcon} />
+              </StyledNextContainer>
+            </StyledContainer>
+          </StyledCarousel>
+        )}
+        {view == 'mobile' && (
+          <StyledCarousel
+            css={css}
+            ref={carouselRef}
+            {...variantProps}
+            {...delegated}
+          >
+            {/* Background Image */}
+            {CarouselImageElement &&
+              React.cloneElement(
+                CarouselImageElement as unknown as JSX.Element,
+                {
+                  currentSlideIndex: currentSlideIndex,
+                  auto: auto,
+                },
+              )}
+            <StyledCarouselPaginationContainer>
+              {renderPagniation()}
+            </StyledCarouselPaginationContainer>
+
+            {/* Container for all content*/}
+
             <StyledMainContentContainer>
               {CarouselTitleElement &&
                 React.cloneElement(
                   CarouselTitleElement as unknown as JSX.Element,
                   {
                     currentSlideIndex: currentSlideIndex,
-                    autoSlide: autoSlide,
+                    auto: auto,
                   },
                 )}
               {CarouselDescriptionElement &&
@@ -152,31 +239,22 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
                   CarouselDescriptionElement as unknown as JSX.Element,
                   {
                     currentSlideIndex: currentSlideIndex,
-                    autoSlide: autoSlide,
+                    auto: auto,
                   },
                 )}
+            </StyledMainContentContainer>
+            <StyledCarouselButtonContainer>
               {CarouselButtonsElement &&
                 React.cloneElement(
                   CarouselButtonsElement as unknown as JSX.Element,
                   {
                     currentSlideIndex: currentSlideIndex,
-                    autoSlide: autoSlide,
+                    auto: auto,
                   },
                 )}
-              <StyledCarouselPaginationAndIconsContainer>
-                <StyledCarouselPaginationContainer>
-                  {renderPagniation()}
-                </StyledCarouselPaginationContainer>
-                <StyledCarouselIconsContainer>
-                  Icons
-                </StyledCarouselIconsContainer>
-              </StyledCarouselPaginationAndIconsContainer>
-            </StyledMainContentContainer>
-            <StyledNextContainer onClick={() => nextSlideHandler()}>
-              <Icon icon={nextIcon} />
-            </StyledNextContainer>
-          </StyledContainer>
-        </StyledCarousel>
+            </StyledCarouselButtonContainer>
+          </StyledCarousel>
+        )}
       </>
     )
   },

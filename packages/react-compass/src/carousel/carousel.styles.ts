@@ -2,11 +2,6 @@
 import {styled} from '../theme'
 import type {VariantProps} from '../utils/stitches.types'
 
-// // Title & description
-// paddingLeft: '$24',
-// paddingRight: '$48',
-// paddingTop: '$46',
-
 // 0. Background image
 export const StyledCarouselImage = styled('img', {
   // reset
@@ -75,7 +70,6 @@ export const StyledNextContainer = styled('div', {
   padding: '0px',
   cursor: 'pointer',
   // Prev button container
-  // backgroundColor: 'yellow', //test
   height: '100%',
   width: '8.92%',
   display: 'flex',
@@ -212,6 +206,14 @@ export const StyledCarouselIconsContainer = styled('div', {
   width: '50%',
   display: 'flex',
   justifyContent: 'flex-end',
+  alignItems: 'center',
+  gap: '$4_5',
+  '& *': {
+    color: '$background',
+    cursor: 'pointer',
+    width: '$3_5',
+    height: '$3_5',
+  },
 })
 
 export const StylePagination = styled('div', {
@@ -281,11 +283,75 @@ export const StyledCarousel = styled('div', {
         width: '100%',
       },
     },
+    view: {
+      desktop: {},
+      mobile: {
+        width: '$80',
+        height: '$131_5',
+        display: 'flex',
+        flexDirection: 'column',
+        [`& ${StyledCarouselIconsContainer}`]: {
+          display: 'none',
+        },
+        [`& ${StyledPrevContainer}`]: {
+          display: 'none',
+        },
+        [`& ${StyledNextContainer}`]: {
+          display: 'none',
+        },
+        [`& ${StyledCarouselImage}`]: {
+          width: '100%',
+          height: '53.232%',
+          position: 'static',
+        },
+        [`& ${StyledMainContentContainer}`]: {
+          width: '100%',
+          height: '25.475%',
+          margin: '0',
+          padding: '0',
+          backgroundColor: '$cdgBlue',
+          paddingLeft: '$4',
+          paddingTop: '$6',
+        },
+        [`& ${StyledCarouselPaginationContainer}`]: {
+          width: '100%',
+          height: '$2_5',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          border: 'none',
+          background: 'transparent',
+          position: 'absolute',
+          top: '50%',
+        },
+        [`& ${StyledCarouselTitle}`]: {
+          fontSize: '$header3',
+          fontWeight: '$semibold',
+          height: '$9',
+          marginBotton: '$2',
+        },
+        [`& ${StyledCarouselDescription}`]: {
+          fontSize: '$body3',
+          fontWeight: '$normal',
+          height: '$10',
+        },
+        [`& ${StyledCarouselButtonContainer}`]: {
+          width: '100%',
+          height: '$28',
+          display: 'flex',
+          gap: '0',
+          flexDirection: 'column',
+          '& *': {
+            borderRadious: '0',
+          },
+        },
+      },
+    },
   },
 
   defaultVariants: {
     size: 'md',
   },
 })
-
+//StyledCarouselButtonContainer
 export type CarouselVariantProps = VariantProps<typeof StyledCarousel>
