@@ -149,7 +149,7 @@ export const StyledCarouselDescription = styled('p', {
   overflow: 'hidden',
 })
 
-export const StyledCarouselButtonContainer = styled('p', {
+export const StyledCarouselButtonContainer = styled('div', {
   // reset
   appearance: 'none',
   border: 'none',
@@ -165,7 +165,7 @@ export const StyledCarouselButtonContainer = styled('p', {
   gap: '$6',
 })
 
-export const StyledCarouselPaginationAndIconsContainer = styled('p', {
+export const StyledCarouselPaginationAndIconsContainer = styled('div', {
   // reset
   appearance: 'none',
   border: 'none',
@@ -182,7 +182,7 @@ export const StyledCarouselPaginationAndIconsContainer = styled('p', {
   marginTop: '$14',
 })
 
-export const StyledCarouselPaginationContainer = styled('p', {
+export const StyledCarouselPaginationContainer = styled('div', {
   // reset
   appearance: 'none',
   border: 'none',
@@ -198,7 +198,7 @@ export const StyledCarouselPaginationContainer = styled('p', {
   justifyContent: 'flex-start',
 })
 
-export const StyledCarouselIconsContainer = styled('p', {
+export const StyledCarouselIconsContainer = styled('div', {
   // reset
   appearance: 'none',
   border: 'none',
@@ -249,7 +249,7 @@ export const StyledCarousel = styled('div', {
   },
 
   defaultVariants: {
-    size: 'lg',
+    size: 'md',
   },
 })
 

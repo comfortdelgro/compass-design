@@ -1,16 +1,15 @@
 /* eslint-disable prettier/prettier */
 import React from 'react'
-import Button from '../button'
 import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
+import CarouselButtons from './carousel-buttons'
 import CarouselDescription from './carousel-description'
 import CarouselImage from './carousel-image'
 import CarouselTitle from './carousel-title'
 import {
   CarouselVariantProps,
   StyledCarousel,
-  StyledCarouselButtonContainer,
   StyledCarouselIconsContainer,
   StyledCarouselPaginationAndIconsContainer,
   StyledCarouselPaginationContainer,
@@ -37,7 +36,7 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
       // styled component props
       css = {},
       // VariantProps
-      size = 'lg',
+      size,
       autoSlide,
       // HTMLDiv Props
       ...delegated
@@ -54,6 +53,9 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
       child: CarouselDescriptionElement,
       rest: childrenWithoutDescriptionElement,
     } = pickChild<typeof CarouselDescription>(children, CarouselDescription)
+
+    const {child: CarouselButtonsElement, rest: childrenWithoutButtonsElement} =
+      pickChild<typeof CarouselButtons>(children, CarouselButtons)
 
     const variantProps = {size} as CarouselVariantProps
 
@@ -97,32 +99,22 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
                   autoSlide: autoSlide,
                 },
               )}
-              {CarouselDescriptionElement}
-              <StyledCarouselButtonContainer>
-                <Button
-                  css={{
-                    backgroundColor: '#0142AF',
-                    color: '#F7F8F9',
-                    height: '92.857%',
-                    border: 'none',
-                  }}
-                >
-                  Button
-                </Button>
-                <Button
-                  css={{
-                    backgroundColor: '#F7F8F9',
-                    color: '#0142AF',
-                    height: '92.857%',
-                    border: 'none',
-                    '&:hover': {
-                      color: '#F7F8F9',
-                    },
-                  }}
-                >
-                  Button
-                </Button>
-              </StyledCarouselButtonContainer>
+              {React.cloneElement(
+                CarouselDescriptionElement as unknown as JSX.Element,
+                {
+                  isNextSlide: isNextSlide,
+                  isPrevSlide: isPrevSlide,
+                  autoSlide: autoSlide,
+                },
+              )}
+              {React.cloneElement(
+                CarouselButtonsElement as unknown as JSX.Element,
+                {
+                  isNextSlide: isNextSlide,
+                  isPrevSlide: isPrevSlide,
+                  autoSlide: autoSlide,
+                },
+              )}
               <StyledCarouselPaginationAndIconsContainer>
                 <StyledCarouselPaginationContainer>
                   Pagination
@@ -146,4 +138,5 @@ export default Carousel as typeof Carousel & {
   Image: typeof CarouselImage
   Title: typeof CarouselTitle
   Description: typeof CarouselDescription
+  Buttons: typeof CarouselButtons
 }

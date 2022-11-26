@@ -26,6 +26,8 @@ const CarouselTitle = React.forwardRef<HTMLDivElement, CarouselTitleProps>(
     } = props
 
     const [titleIndex, setTitleIndex] = React.useState(0)
+    const isNextMounted = React.useRef(false)
+    const isPrevMounted = React.useRef(false)
 
     const nextTitleFunc = () => {
       if (titleIndex < titles.length - 1) {
@@ -44,11 +46,19 @@ const CarouselTitle = React.forwardRef<HTMLDivElement, CarouselTitleProps>(
     }
 
     React.useEffect(() => {
-      nextTitleFunc()
+      if (isNextMounted.current) {
+        nextTitleFunc()
+      } else {
+        isNextMounted.current = true
+      }
     }, [isNextSlide])
 
     React.useEffect(() => {
-      prevTitleFunc()
+      if (isPrevMounted.current) {
+        prevTitleFunc()
+      } else {
+        isPrevMounted.current = true
+      }
     }, [isPrevSlide])
 
     React.useEffect(() => {

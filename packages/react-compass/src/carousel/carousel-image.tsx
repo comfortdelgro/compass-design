@@ -26,6 +26,8 @@ const CarouselImage = React.forwardRef<HTMLImageElement, CarouselImageProps>(
     } = props
     const carouselImageRef = useDOMRef<HTMLImageElement>(ref)
     const [imageIndex, setImageIndex] = React.useState(0)
+    const isNextMounted = React.useRef(false)
+    const isPrevMounted = React.useRef(false)
 
     const nextImageFunc = () => {
       if (imageIndex < addresses.length - 1) {
@@ -43,12 +45,22 @@ const CarouselImage = React.forwardRef<HTMLImageElement, CarouselImageProps>(
       }
     }
 
+    // need to prevent this from on mount
+
     React.useEffect(() => {
-      nextImageFunc()
+      if (isNextMounted.current) {
+        nextImageFunc()
+      } else {
+        isNextMounted.current = true
+      }
     }, [isNextSlide])
 
     React.useEffect(() => {
-      prevImageFunc()
+      if (isPrevMounted.current) {
+        prevImageFunc()
+      } else {
+        isPrevMounted.current = true
+      }
     }, [isPrevSlide])
 
     React.useEffect(() => {
