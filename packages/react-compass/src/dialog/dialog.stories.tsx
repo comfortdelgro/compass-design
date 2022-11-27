@@ -1,5 +1,7 @@
+import {faBug} from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
 import Button from '../button'
+import {Icon} from '../icon'
 import {Column} from '../utils/components'
 import Dialog from './index'
 
@@ -50,9 +52,11 @@ export const Variant: React.FC = () => {
           <Dialog.Title>My title</Dialog.Title>
           <Dialog.Description>{lorem}</Dialog.Description>
           <Dialog.Actions>
-            <Button onPress={() => setAlertOpen(false)}>Cancel</Button>
-            <Button onPress={() => setAlertOpen(false)}>Do it</Button>
+            <Button onPress={() => setAlertOpen(false)}>Ok</Button>
           </Dialog.Actions>
+          <Dialog.Icon>
+            <Icon icon={faBug} />
+          </Dialog.Icon>
         </Dialog>
       </Dialog.Trigger>
     </Column>

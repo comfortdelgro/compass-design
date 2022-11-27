@@ -7,6 +7,7 @@ import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import DialogActions from './dialog-actions'
 import DialogDescription from './dialog-description'
+import DialogIcon from './dialog-icon'
 import DialogTitle from './dialog-title'
 import DialogTrigger from './dialog-trigger'
 import {DialogVariantProps, StyledDialog} from './dialog.styles'
@@ -65,6 +66,10 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
   const {child: DialogActionsElement, rest: childrenWithoutActionsElement} =
     pickChild<typeof DialogActions>(children, DialogActions)
 
+  // Pick icon child component
+  const {child: DialogIconElement, rest: childrenWithoutIconElement} =
+    pickChild<typeof DialogIcon>(children, DialogIcon)
+
   return (
     <FocusScope contain restoreFocus autoFocus>
       <StyledDialog
@@ -74,8 +79,8 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
         {...overlayProps}
         {...dialogProps}
       >
+        {variant == 'alert' ? DialogIconElement : null}
         {DialogTitleElement}
-
         {DialogDescriptionElement}
         {DialogActionsElement}
       </StyledDialog>
@@ -88,4 +93,5 @@ export default Dialog as typeof Dialog & {
   Title: typeof DialogTitle
   Description: typeof DialogDescription
   Actions: typeof DialogActions
+  Icon: typeof DialogIcon
 }

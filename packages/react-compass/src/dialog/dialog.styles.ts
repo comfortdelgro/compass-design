@@ -11,11 +11,14 @@ export const StyledDialogIconContainer = styled('div', {
 
   //icon container
   width: '100%',
-  height: '51.818%',
+  height: '$57',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   marginBottom: '$4',
+  '& *': {
+    height: '100%',
+  },
 })
 
 export const StyledDialogTitle = styled('h3', {
@@ -116,11 +119,22 @@ export const StyledDialog = styled('div', {
     variant: {
       confirmation: {},
       alert: {
-        height: '$110',
         [`& ${StyledDialogActionsContainer}`]: {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
+        },
+        [`& ${StyledDialogTitle}`]: {
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          textAlign: 'center',
+        },
+        [`& ${StyledDialogDescription}`]: {
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          textAlign: 'center',
         },
       },
     },
