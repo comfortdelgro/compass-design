@@ -11,9 +11,11 @@ const spacings = {
   3: '0.75rem', // 12px
   '3_5': '0.875rem', // 14px
   4: '1rem', // 16px
+  '4_5': '1.125rem',
   5: '1.25rem', // 20px
   6: '1.5rem', // 24px
   7: '1.75rem', // 28px
+  '7_5': '1.875rem', //30px
   8: '2rem', // 32px
   9: '2.25rem', // 36px
   10: '2.5rem', // 40px
@@ -22,13 +24,17 @@ const spacings = {
   14: '3.5rem', // 56px
   16: '4rem', // 64px
   20: '5rem', // 80px
+  21: '5.25rem', //84px
   24: '6rem', // 96px
+  26: '6.5rem', // 104px
   28: '7rem', // 112px
   32: '8rem', // 128px
   36: '9rem', // 144px
   40: '10rem', // 160px
   44: '11rem', // 176px
+  46: '11.5rem', //184
   48: '12rem', // 192px
+  50: '12.5rem', // 200px
   52: '13rem', // 208px
   56: '14rem', // 224px
   60: '15rem', // 240px
@@ -36,6 +42,15 @@ const spacings = {
   72: '18rem', // 288px
   80: '20rem', // 320px
   96: '24rem', // 384px
+  '108_25': '27.0625rem', // 433px
+  110: '27.5rem', //440px
+  120: '30rem', //480px
+  128: '32rem', // 512px
+  '131_5': '32.875rem', // 526px
+  160: '40rem', //640 rem
+  206: '51.5rem', //824px
+  269: '67.25rem', //1076px
+  328: '82rem', // 1312px
 } as const
 
 export default defineTheme({
@@ -49,6 +64,7 @@ export default defineTheme({
     display2: '3rem',
     display3: '2.5rem',
 
+    header0: '2.5rem',
     header1: '2rem',
     header2: '1.75rem',
     header3: '1.5rem',
@@ -87,6 +103,7 @@ export default defineTheme({
     cdgBlue: '$cdgBlue100',
     typeHeading: '$gray100',
     background: '#FFFFFF',
+    black: '#323130',
 
     primaryText: '$gray100',
     secondaryText: '$gray80',
