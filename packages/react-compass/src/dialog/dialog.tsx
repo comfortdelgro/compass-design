@@ -2,29 +2,24 @@ import {useDialog} from '@react-aria/dialog'
 import {FocusScope} from '@react-aria/focus'
 import {useModal, useOverlay, usePreventScroll} from '@react-aria/overlays'
 import React from 'react'
-import Button from '../button'
+import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {
-  DialogVariantProps,
-  StyledDialog,
-  StyledDialogActionsContainer,
-  StyledDialogDescription,
-  StyledDialogTitle,
-} from './dialog.styles'
-import DialogTrigger from './dialogTrigger'
+import DialogActions from './dialog-actions'
+import DialogDescription from './dialog-description'
+import DialogTitle from './dialog-title'
+import DialogTrigger from './dialog-trigger'
+import {DialogVariantProps, StyledDialog} from './dialog.styles'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
   title?: string
   confirmLabel?: string
   onClose?: () => void
+  variant?: 'confirmation' | 'alert'
 }
 
 export type DialogProps = Props & DialogVariantProps
-// export type DialogProps = Props &
-//   DialogVariantProps &
-//   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
   // let {overlayProps} = useOverlay()
@@ -44,7 +39,7 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
   } = props
 
   const variantProps = {variant} as DialogVariantProps
-  const dialogRef = useDOMRef<HTMLDivElement>(React.useRef(null))
+  const dialogRef = useDOMRef<HTMLDivElement>(ref)
 
   // Hanlde interacting outside of the dialog and pressing the Escape key to close the modal.
   const {overlayProps} = useOverlay(ariaSafeProps, dialogRef)
@@ -56,6 +51,20 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
   // Get props for its dialog and its title
   const {dialogProps, titleProps} = useDialog(ariaSafeProps, dialogRef)
 
+  // Pick title child component
+  const {child: DialogTitleElement, rest: childrenWithoutTitleElement} =
+    pickChild<typeof DialogTitle>(children, DialogTitle)
+
+  // Pick description child component
+  const {
+    child: DialogDescriptionElement,
+    rest: childrenWithoutDescriptionElement,
+  } = pickChild<typeof DialogDescription>(children, DialogDescription)
+
+  // Pick action child component
+  const {child: DialogActionsElement, rest: childrenWithoutActionsElement} =
+    pickChild<typeof DialogActions>(children, DialogActions)
+
   return (
     <FocusScope contain restoreFocus autoFocus>
       <StyledDialog
@@ -65,12 +74,10 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
         {...overlayProps}
         {...dialogProps}
       >
-        <StyledDialogTitle {...titleProps}>{title}</StyledDialogTitle>
-        <StyledDialogDescription>{children}</StyledDialogDescription>
-        <StyledDialogActionsContainer>
-          <Button onPress={() => onClose?.()}>Cancel</Button>
-          <Button onPress={() => onClose?.()}>{confirmLabel}</Button>
-        </StyledDialogActionsContainer>
+        {DialogTitleElement}
+
+        {DialogDescriptionElement}
+        {DialogActionsElement}
       </StyledDialog>
     </FocusScope>
   )
@@ -78,4 +85,7 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
 
 export default Dialog as typeof Dialog & {
   Trigger: typeof DialogTrigger
+  Title: typeof DialogTitle
+  Description: typeof DialogDescription
+  Actions: typeof DialogActions
 }

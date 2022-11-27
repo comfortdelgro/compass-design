@@ -73,6 +73,23 @@ export const StyledDialogActionsContainer = styled('div', {
   gap: '$2',
 })
 
+export const StyledDialogWrapper = styled('div', {
+  // reset
+  appearance: 'none',
+  border: 'none',
+  boxSizing: 'border-box',
+  margin: '0px',
+  background: 'transparent',
+
+  // wrapper styling
+  position: 'absolute',
+  top: '0',
+  left: '0',
+  width: '100%',
+  height: '100%',
+  zIndex: '999',
+})
+
 export const StyledDialog = styled('div', {
   // reset
   appearance: 'none',
@@ -82,13 +99,18 @@ export const StyledDialog = styled('div', {
 
   // dialog container
   width: '$120',
-  height: '$56',
+  minHeight: '$56',
   padding: '$4',
   backgroundColor: '$background',
   boxShadow:
     '0px 0.6px 1.8px rgba(0, 0, 0, 0.1), 0px 3.2px 7.2px rgba(0, 0, 0, 0.13)',
 
   borderRadius: '$lg',
+  position: 'fixed',
+  top: '50%',
+  left: '50%',
+  /* bring your own prefixes */
+  transform: `translate(-50%, -50%)`,
 
   variants: {
     variant: {
