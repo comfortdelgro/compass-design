@@ -51,7 +51,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       useTextField(ariaProps, textfieldRef)
 
     return (
-      <StyledTextFieldWrapper>
+      <StyledTextFieldWrapper css={css}>
         <StyledTextFieldLabel {...labelProps} disabled={!!isDisabled}>
           {label}
         </StyledTextFieldLabel>
