@@ -156,6 +156,7 @@ export const StyledTab = styled('div', {
       active: true,
       css: {
         color: '$cdgBlue100',
+        marginBottom: '-2px',
         borderBottom: '$cdgBlue 2px solid',
       },
     },
