@@ -1,5 +1,6 @@
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
+import { useDOMRef } from '../utils/use-dom-ref'
 import {StyledToastActionsContainer} from './toast.styles'
 
 interface Props extends StyledComponentProps {
@@ -12,9 +13,9 @@ export type ToastActionsProps = Props &
 const ToastActions = React.forwardRef<HTMLDivElement, ToastActionsProps>(
   (props, ref) => {
     const {children, css = {}, ...delegated} = props
-
+    const toastActionsRef = useDOMRef<HTMLDivElement>(ref)
     return (
-      <StyledToastActionsContainer css={css} ref={ref} {...delegated}>
+      <StyledToastActionsContainer css={css} ref={toastActionsRef} {...delegated}>
         {children}
       </StyledToastActionsContainer>
     )

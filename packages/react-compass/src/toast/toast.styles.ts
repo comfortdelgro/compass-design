@@ -59,7 +59,7 @@ export const StyledToastCloseIcon = styled('div', {
   },
 })
 
-export const StyledToastLabel = styled('div', {
+export const StyledToastLabel = styled('span', {
   // reset
   appearance: 'none',
   border: 'none',

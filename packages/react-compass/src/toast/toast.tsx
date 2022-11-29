@@ -43,6 +43,9 @@ const Toast = React.forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
   } = props
 
   const toastRef = useDOMRef<HTMLDivElement>(ref)
+  const variantProps = {color} as ToastVariantProps
+
+  // Pick child element from children props
   const {child: ToastActionsElement, rest: childrenWithoutActionsElement} =
     pickChild<typeof ToastActions>(children, ToastActions)
 
@@ -62,6 +65,7 @@ const Toast = React.forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
   const {child: ToastTitleElement, rest: childrenWithoutTitleElement} =
     pickChild<typeof ToastTitle>(children, ToastTitle)
 
+  // Auto close
   React.useEffect(() => {
     if (autoClose && typeof autoClose == 'number' && isOpen == true) {
       setTimeout(() => handleClose?.(), autoClose)
@@ -71,7 +75,7 @@ const Toast = React.forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
   return (
     <>
       {isOpen && (
-        <StyledToast color={color} css={css} ref={toastRef} {...delegated}>
+        <StyledToast {...variantProps} css={css} ref={toastRef} {...delegated}>
           <StyledToastHeader>
             <StyledToastHeaderLeft>
               {ToastIconElement}
@@ -79,12 +83,13 @@ const Toast = React.forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
             </StyledToastHeaderLeft>
             <StyledToastHeaderRight>
               {ToastLabelElement}
-              {React.cloneElement(
-                ToastCloseIconElement as unknown as JSX.Element,
-                {
-                  onClose: () => handleClose?.(),
-                },
-              )}
+              {ToastCloseIconElement &&
+                React.cloneElement(
+                  ToastCloseIconElement as unknown as JSX.Element,
+                  {
+                    onClose: () => handleClose?.(),
+                  },
+                )}
             </StyledToastHeaderRight>
           </StyledToastHeader>
           {ToastMessagelement}
