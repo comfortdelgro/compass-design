@@ -23,7 +23,6 @@ interface Props extends StyledComponentProps {
 export type DialogProps = Props & DialogVariantProps
 
 const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
-  // let {overlayProps} = useOverlay()
   const {
     // StyledComponentProps
     css = {},
@@ -35,7 +34,7 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
     onClose,
     // VariantProps
     variant = 'confirmation',
-    // AriaButtonProps
+    // AriaDialogProps
     ...ariaSafeProps
   } = props
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
+import {useDOMRef} from '../utils/use-dom-ref'
 import {StyledDialogIconContainer} from './dialog.styles'
 
 interface Props extends StyledComponentProps {
@@ -12,10 +13,9 @@ export type DialogIconProps = Props &
 const DialogIcon = React.forwardRef<HTMLDivElement, DialogIconProps>(
   (props, ref) => {
     const {children, css = {}, ...delegated} = props
-
-    console.log('icon children', children)
+    const dialogIconRef = useDOMRef<HTMLDivElement>(ref)
     return (
-      <StyledDialogIconContainer css={css} ref={ref} {...delegated}>
+      <StyledDialogIconContainer css={css} ref={dialogIconRef} {...delegated}>
         {children}
       </StyledDialogIconContainer>
     )

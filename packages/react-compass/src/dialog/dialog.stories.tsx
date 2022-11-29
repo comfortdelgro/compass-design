@@ -5,28 +5,20 @@ import {Icon} from '../icon'
 import {Column} from '../utils/components'
 import Dialog from './index'
 
-export const Variant: React.FC = () => {
+export const Default: React.FC = () => {
   const lorem =
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. pariatur.'
   const [defaultOpen, setDefaultOpen] = React.useState(false)
-  const handleDefaultClose = () => {
-    setDefaultOpen(false)
-  }
 
-  const [alertOpen, setAlertOpen] = React.useState(false)
-  const handleAlertClose = () => {
-    setAlertOpen(false)
-  }
   return (
     <Column>
-      <h3>Default dialog is confirmation dialog</h3>
+      <h3>Default dialog is confirmation variant</h3>
       <Button css={{width: '7.8rem'}} onPress={() => setDefaultOpen(true)}>
         Open Dialog
       </Button>
       <Dialog.Trigger
-        label='Open dialog'
         isOpen={defaultOpen}
-        handleClose={() => handleDefaultClose?.()}
+        handleClose={() => setDefaultOpen(false)}
       >
         <Dialog title='My title' confirmLabel='Do it'>
           <Dialog.Title>My title</Dialog.Title>
@@ -37,15 +29,44 @@ export const Variant: React.FC = () => {
           </Dialog.Actions>
         </Dialog>
       </Dialog.Trigger>
+    </Column>
+  )
+}
+
+export const Variants: React.FC = () => {
+  const lorem =
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. pariatur.'
+  const [confirmationOpen, setConfirmationOpen] = React.useState(false)
+  const [alertOpen, setAlertOpen] = React.useState(false)
+
+  return (
+    <Column>
+      <h3>Confirmation dialog</h3>
+      <Button css={{width: '7.8rem'}} onPress={() => setConfirmationOpen(true)}>
+        Open Dialog
+      </Button>
+      <Dialog.Trigger
+        isOpen={confirmationOpen}
+        handleClose={() => setConfirmationOpen(false)}
+        variant='confirmation'
+      >
+        <Dialog title='My title' confirmLabel='Do it'>
+          <Dialog.Title>My title</Dialog.Title>
+          <Dialog.Description>{lorem}</Dialog.Description>
+          <Dialog.Actions>
+            <Button onPress={() => setConfirmationOpen(false)}>Cancel</Button>
+            <Button onPress={() => setConfirmationOpen(false)}>Do it</Button>
+          </Dialog.Actions>
+        </Dialog>
+      </Dialog.Trigger>
 
       <h3>Alert dialog</h3>
       <Button css={{width: '7.8rem'}} onPress={() => setAlertOpen(true)}>
         Open Dialog
       </Button>
       <Dialog.Trigger
-        label='Open dialog'
         isOpen={alertOpen}
-        handleClose={() => handleAlertClose?.()}
+        handleClose={() => setAlertOpen(false)}
         variant='alert'
       >
         <Dialog title='My title' confirmLabel='Do it'>
