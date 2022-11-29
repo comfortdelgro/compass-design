@@ -8,25 +8,26 @@ interface Props extends StyledComponentProps {
 }
 
 export type SubBannerTitleProps = Props &
-  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
+  Omit<React.HTMLAttributes<HTMLHeadingElement>, keyof Props>
 
-const SubBannerTitle = React.forwardRef<HTMLDivElement, SubBannerTitleProps>(
-  (props, ref) => {
-    const {children, css = {}, ...delegated} = props
+const SubBannerTitle = React.forwardRef<
+  HTMLHeadingElement,
+  SubBannerTitleProps
+>((props, ref) => {
+  const {children, css = {}, ...delegated} = props
 
-    const renderTitle = () => {
-      if (typeof children === 'string') {
-        return <>{children}</>
-      }
-      return children
+  const renderTitle = () => {
+    if (typeof children === 'string') {
+      return <>{children}</>
     }
+    return children
+  }
 
-    return (
-      <StyledSubBannerTitle css={css} ref={ref} {...delegated}>
-        {renderTitle()}
-      </StyledSubBannerTitle>
-    )
-  },
-)
+  return (
+    <StyledSubBannerTitle css={css} ref={ref} {...delegated}>
+      {renderTitle()}
+    </StyledSubBannerTitle>
+  )
+})
 
 export default SubBannerTitle

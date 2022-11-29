@@ -1,13 +1,13 @@
 import {Column} from '../utils/components'
 import Banner from './index'
 
-export const Default: React.FC = () => {
-  const backgroundSrc =
-    'https://images.unsplash.com/flagged/photo-1562503542-2a1e6f03b16b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8c2luZ2Fwb3JlfGVufDB8fDB8fA%3D%3D&w=1000&q=80'
+const backgroundSrc =
+  'https://images.unsplash.com/photo-1614227154650-69524d5fb1a5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'
 
+export const Default: React.FC = () => {
   return (
     <Column>
-      <h3>Default banner is large sized</h3>
+      <h3>Default banner is medium sized</h3>
       <Banner>
         <Banner.Image src={backgroundSrc} />
         <Banner.Title>My Title</Banner.Title>
@@ -20,10 +20,7 @@ export const Default: React.FC = () => {
   )
 }
 
-export const Variant: React.FC = () => {
-  const backgroundSrc =
-    'https://images.unsplash.com/flagged/photo-1562503542-2a1e6f03b16b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8c2luZ2Fwb3JlfGVufDB8fDB8fA%3D%3D&w=1000&q=80'
-
+export const Sizes: React.FC = () => {
   return (
     <Column>
       <h3>Small sized Banner</h3>

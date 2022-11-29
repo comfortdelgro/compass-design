@@ -8,9 +8,9 @@ interface Props extends StyledComponentProps {
 }
 
 export type BannerTitleProps = Props &
-  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
+  Omit<React.HTMLAttributes<HTMLHeadingElement>, keyof Props>
 
-const BannerTitle = React.forwardRef<HTMLDivElement, BannerTitleProps>(
+const BannerTitle = React.forwardRef<HTMLHeadingElement, BannerTitleProps>(
   (props, ref) => {
     const {children, css = {}, ...delegated} = props
 

@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import React from 'react'
 import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
@@ -27,7 +26,7 @@ const Banner = React.forwardRef<HTMLDivElement, BannerProps>((props, ref) => {
     // styled component props
     css = {},
     // VariantProps
-    size = 'lg',
+    size = 'md',
     // HTMLDiv Props
     ...delegated
   } = props

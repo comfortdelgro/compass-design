@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import {styled} from '../theme'
 import type {VariantProps} from '../utils/stitches.types'
 
@@ -104,7 +103,7 @@ export const StyledBanner = styled('div', {
   },
 
   defaultVariants: {
-    size: 'lg',
+    size: 'md',
   },
 })
 

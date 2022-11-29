@@ -1,15 +1,18 @@
 import {Column} from '../utils/components'
 import SubBanner from './index'
 
-export const Default: React.FC = () => {
-  const backgroundSrc =
-    'https://images.unsplash.com/flagged/photo-1562503542-2a1e6f03b16b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8c2luZ2Fwb3JlfGVufDB8fDB8fA%3D%3D&w=1000&q=80'
+const horizontalBackgroundSrc =
+  'https://images.unsplash.com/photo-1603015445413-ffb825cedab4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'
 
+const verticalBackgroundSrc =
+  'https://images.unsplash.com/photo-1603015268794-b0a30631554d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
+
+export const Default: React.FC = () => {
   return (
     <Column>
-      <h3>Default Sub-banner</h3>
+      <h3>Default Sub-banner is primary variant</h3>
       <SubBanner>
-        <SubBanner.Image src={backgroundSrc} />
+        <SubBanner.Image src={horizontalBackgroundSrc} />
         <SubBanner.Title>My Title</SubBanner.Title>
         <SubBanner.Description>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste
@@ -21,14 +24,11 @@ export const Default: React.FC = () => {
 }
 
 export const Variant: React.FC = () => {
-  const backgroundSrc =
-    'https://images.unsplash.com/flagged/photo-1562503542-2a1e6f03b16b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8c2luZ2Fwb3JlfGVufDB8fDB8fA%3D%3D&w=1000&q=80'
-
   return (
     <Column>
       <h3>Primary</h3>
       <SubBanner variant='primary'>
-        <SubBanner.Image src={backgroundSrc} />
+        <SubBanner.Image src={horizontalBackgroundSrc} />
         <SubBanner.Title>My Title</SubBanner.Title>
         <SubBanner.Description>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste
@@ -38,7 +38,7 @@ export const Variant: React.FC = () => {
 
       <h3>Secondary</h3>
       <SubBanner variant='secondary'>
-        <SubBanner.Image src={backgroundSrc} />
+        <SubBanner.Image src={verticalBackgroundSrc} />
         <SubBanner.Title>My Title</SubBanner.Title>
         <SubBanner.Description>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste
