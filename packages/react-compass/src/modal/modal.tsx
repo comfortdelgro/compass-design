@@ -13,8 +13,6 @@ import {ModalVariantProps, StyledModal} from './modal.styles'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
-  title?: string
-  confirmLabel?: string
   onClose?: () => void
   size?: 'sm' | 'md' | 'lg'
 }
@@ -22,15 +20,12 @@ interface Props extends StyledComponentProps {
 export type ModalProps = Props & ModalVariantProps
 
 const Dialog = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
-  // let {overlayProps} = useOverlay()
   const {
     // StyledComponentProps
     css = {},
     // children
     children,
     // ComponentProps
-    title = '',
-    confirmLabel = '',
     onClose,
     // VariantProps
     size = 'md',

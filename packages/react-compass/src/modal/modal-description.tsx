@@ -1,5 +1,6 @@
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
+import {useDOMRef} from '../utils/use-dom-ref'
 import {StyledModalDescription} from './modal.styles'
 
 interface Props extends StyledComponentProps {
@@ -14,9 +15,9 @@ const ModalDescription = React.forwardRef<
   ModalDescriptionProps
 >((props, ref) => {
   const {children, css = {}, ...delegated} = props
-
+  const modalDescriptionRef = useDOMRef<HTMLDivElement>(ref)
   return (
-    <StyledModalDescription css={css} ref={ref} {...delegated}>
+    <StyledModalDescription css={css} ref={modalDescriptionRef} {...delegated}>
       {children}
     </StyledModalDescription>
   )

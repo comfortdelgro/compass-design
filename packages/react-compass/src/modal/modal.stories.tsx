@@ -4,7 +4,40 @@ import TextField from '../textfield'
 import {Column} from '../utils/components'
 import Modal from './index'
 
-export const Variant: React.FC = () => {
+export const Default: React.FC = () => {
+  const lorem =
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. pariatur.'
+  const [defaultOpen, setDefaultOpen] = React.useState(false)
+  const handleDefaultClose = () => {
+    setDefaultOpen(false)
+  }
+  return (
+    <Column>
+      <h3>Default Modal is Medium sized</h3>
+      <Button css={{width: '7.8rem'}} onPress={() => setDefaultOpen(true)}>
+        Open Modal
+      </Button>
+      <Modal.Trigger
+        isOpen={defaultOpen}
+        handleClose={() => handleDefaultClose?.()}
+      >
+        <Modal>
+          <Modal.Title>My small title</Modal.Title>
+          <Modal.Description>
+            {lorem}
+            <TextField />
+          </Modal.Description>
+          <Modal.Actions>
+            <Button onPress={() => setDefaultOpen(false)}>Cancel</Button>
+            <Button onPress={() => setDefaultOpen(false)}>Do it</Button>
+          </Modal.Actions>
+        </Modal>
+      </Modal.Trigger>
+    </Column>
+  )
+}
+
+export const Variants: React.FC = () => {
   const lorem =
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. pariatur.'
   const [smallOpen, setSmallOpen] = React.useState(false)
@@ -26,12 +59,11 @@ export const Variant: React.FC = () => {
         Open Modal
       </Button>
       <Modal.Trigger
-        label='Open modal'
         isOpen={smallOpen}
         handleClose={() => handleSmallClose?.()}
         size='sm'
       >
-        <Modal title='My title' confirmLabel='Do it'>
+        <Modal>
           <Modal.Title>My small title</Modal.Title>
           <Modal.Description>
             {lorem}
@@ -49,12 +81,11 @@ export const Variant: React.FC = () => {
         Open Modal
       </Button>
       <Modal.Trigger
-        label='Open modal'
         isOpen={mediumOpen}
         handleClose={() => handleMediumClose?.()}
         size='md'
       >
-        <Modal title='My title' confirmLabel='Do it'>
+        <Modal>
           <Modal.Title>My medium title</Modal.Title>
           <Modal.Description>
             {lorem} <TextField />
@@ -71,12 +102,11 @@ export const Variant: React.FC = () => {
         Open Modal
       </Button>
       <Modal.Trigger
-        label='Open modal'
         isOpen={largeOpen}
         handleClose={() => handleLargeClose?.()}
         size='lg'
       >
-        <Modal title='My title' confirmLabel='Do it'>
+        <Modal>
           <Modal.Title>My large title</Modal.Title>
           <Modal.Description>
             {lorem} <TextField />

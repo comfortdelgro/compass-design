@@ -9,7 +9,6 @@ import {StyledModalWrapper} from './modal.styles'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
-  label?: string
   isOpen?: boolean
   handleClose?: () => void
   size?: 'sm' | 'md' | 'lg'
@@ -27,23 +26,21 @@ const ModalTrigger = React.forwardRef<HTMLDivElement, ModalTriggerProps>(
       // children
       children,
       // ComponentProps
-      label = '',
       isOpen = false,
       handleClose,
       size = 'md',
-      // AriaButtonProps
+      // AriaModalProps
       ...ariaSafeProps
     } = props
 
-    const modalWrapperRef = useDOMRef<HTMLDivElement>(ref)
+    const modalRef = useDOMRef<HTMLDivElement>(ref)
     const {child: ModalElement, rest: childrenWithoutModalElement} = pickChild<
       typeof Modal
     >(children, Modal)
 
-    const modalRef = React.useRef<HTMLInputElement>(null)
     React.useEffect(() => {
       /**
-       * Alert if clicked on outside of element
+       * Close modal if clicked on outside of element
        */
       function handleClickOutside(event: MouseEvent) {
         event.preventDefault()
@@ -70,12 +67,13 @@ const ModalTrigger = React.forwardRef<HTMLDivElement, ModalTriggerProps>(
       <OverlayProvider>
         {isOpen && (
           <OverlayContainer>
-            <StyledModalWrapper>
-              {React.cloneElement(ModalElement as unknown as JSX.Element, {
-                onClose: () => handleClose?.(),
-                ref: modalRef,
-                size: size,
-              })}
+            <StyledModalWrapper css={css}>
+              {ModalElement &&
+                React.cloneElement(ModalElement as unknown as JSX.Element, {
+                  onClose: () => handleClose?.(),
+                  ref: modalRef,
+                  size: size,
+                })}
             </StyledModalWrapper>
           </OverlayContainer>
         )}

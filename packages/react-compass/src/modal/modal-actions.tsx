@@ -1,5 +1,6 @@
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
+import {useDOMRef} from '../utils/use-dom-ref'
 import {StyledModalActionsContainer} from './modal.styles'
 
 interface Props extends StyledComponentProps {
@@ -12,9 +13,13 @@ export type ModalActionsProps = Props &
 const ModalActions = React.forwardRef<HTMLDivElement, ModalActionsProps>(
   (props, ref) => {
     const {children, css = {}, ...delegated} = props
-
+    const modalActionRef = useDOMRef<HTMLDivElement>(ref)
     return (
-      <StyledModalActionsContainer css={css} ref={ref} {...delegated}>
+      <StyledModalActionsContainer
+        css={css}
+        ref={modalActionRef}
+        {...delegated}
+      >
         {children}
       </StyledModalActionsContainer>
     )

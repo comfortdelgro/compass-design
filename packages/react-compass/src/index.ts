@@ -21,6 +21,14 @@ export {default as Icon} from './icon'
 export type {IconProp} from './icon'
 export {default as Link} from './link'
 export type {LinkProps} from './link'
+export {default as Modal} from './modal'
+export type {
+  ModalActionsProps,
+  ModalDescriptionProps,
+  ModalProps,
+  ModalTitleProps,
+  ModalTriggerProps,
+} from './modal'
 export {default as Pagination} from './pagination'
 export type {PaginationProps} from './pagination'
 export {default as Preflight} from './preflight'
