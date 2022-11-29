@@ -1,5 +1,6 @@
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
+import { useDOMRef } from '../utils/use-dom-ref'
 import {StyledSidebarTitle} from './sidebar.styles'
 
 interface Props extends StyledComponentProps {
@@ -19,9 +20,9 @@ const SidebarTitle = React.forwardRef<HTMLDivElement, SidebarTitleProps>(
       }
       return children
     }
-
+    const sidebarTitleRef = useDOMRef<HTMLDivElement>(ref)
     return (
-      <StyledSidebarTitle css={css} ref={ref} {...delegated}>
+      <StyledSidebarTitle css={css} ref={sidebarTitleRef} {...delegated}>
         {renderTitle()}
       </StyledSidebarTitle>
     )

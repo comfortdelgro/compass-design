@@ -17,7 +17,6 @@ import {
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
-  isDisabled?: boolean
   isOpen?: boolean
   handleClose?: () => void
 }
@@ -32,7 +31,6 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>((props, ref) => {
     // StyledComponentProps
     css = {},
     // VariantProps
-    isDisabled = false,
     variant = 'primary',
     // Component props
     isOpen = false,
@@ -42,6 +40,7 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>((props, ref) => {
   } = props
 
   const sidebarRef = useDOMRef<HTMLDivElement>(ref)
+
   // Pick title actions component
   const {child: SidebarActionsElement, rest: childrenWithoutActionsElement} =
     pickChild<typeof SidebarActions>(children, SidebarActions)
@@ -52,7 +51,7 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>((props, ref) => {
 
   React.useEffect(() => {
     /**
-     * Alert if clicked on outside of element
+     * Close the sidebar if clicked on outside of element
      */
     function handleClickOutside(event: MouseEvent) {
       event.preventDefault()
@@ -78,10 +77,9 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>((props, ref) => {
   return (
     <>
       {isOpen && (
-        <StyledSidebarWrapper>
+        <StyledSidebarWrapper css={css}>
           <StyledSidebar
             variant={variant}
-            css={css}
             ref={sidebarRef}
             {...delegated}
           >

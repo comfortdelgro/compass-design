@@ -1,5 +1,6 @@
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
+import { useDOMRef } from '../utils/use-dom-ref'
 import {StyledSidebarContent} from './sidebar.styles'
 
 interface Props extends StyledComponentProps {
@@ -12,9 +13,9 @@ export type SidebarContentProps = Props &
 const SidebarContent = React.forwardRef<HTMLDivElement, SidebarContentProps>(
   (props, ref) => {
     const {children, css = {}, ...delegated} = props
-
+    const sidebarContentRef = useDOMRef<HTMLDivElement>(ref)
     return (
-      <StyledSidebarContent css={css} ref={ref} {...delegated}>
+      <StyledSidebarContent css={css} ref={sidebarContentRef} {...delegated}>
         {children}
       </StyledSidebarContent>
     )

@@ -26,6 +26,13 @@ export type {PaginationProps} from './pagination'
 export {default as Preflight} from './preflight'
 export {default as SearchField} from './searchfield'
 export type {SearchFieldProps} from './searchfield'
+export {default as Sidebar} from './sidebar'
+export type {
+  SidebarActionsProps,
+  SidebarContentProps,
+  SidebarProps,
+  SidebarTitleProps,
+} from './sidebar'
 export {default as Spinner} from './spinner'
 export type {SpinnerProps} from './spinner'
 export {default as Table} from './table'
