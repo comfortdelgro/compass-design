@@ -27,21 +27,9 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
   const multiProps = {
     ...ariaSafeProps,
     onChangeEnd: (v: number | number[]) =>
-      props.onChangeEnd?.(
-        typeof v === 'number'
-          ? v
-          : typeof v === 'function' && Array.isArray(v)
-          ? v[0]
-          : 0,
-      ),
+      props.onChangeEnd?.(typeof v === 'number' ? v : v[0] ? v[0] : 0),
     onChange: (v: number | number[]) =>
-      props.onChange?.(
-        typeof v === 'number'
-          ? v
-          : typeof v === 'function' && Array.isArray(v)
-          ? v[0]
-          : 0,
-      ),
+      props.onChange?.(typeof v === 'number' ? v : v[0] ? v[0] : 0),
   }
 
   const state = useSliderState({
