@@ -20,7 +20,7 @@ export const Default: React.FC = () => {
         isOpen={defaultOpen}
         handleClose={() => setDefaultOpen(false)}
       >
-        <Dialog title='My title' confirmLabel='Do it'>
+        <Dialog>
           <Dialog.Title>My title</Dialog.Title>
           <Dialog.Description>{lorem}</Dialog.Description>
           <Dialog.Actions>
@@ -50,7 +50,7 @@ export const Variants: React.FC = () => {
         handleClose={() => setConfirmationOpen(false)}
         variant='confirmation'
       >
-        <Dialog title='My title' confirmLabel='Do it'>
+        <Dialog>
           <Dialog.Title>My title</Dialog.Title>
           <Dialog.Description>{lorem}</Dialog.Description>
           <Dialog.Actions>
@@ -69,7 +69,7 @@ export const Variants: React.FC = () => {
         handleClose={() => setAlertOpen(false)}
         variant='alert'
       >
-        <Dialog title='My title' confirmLabel='Do it'>
+        <Dialog>
           <Dialog.Title>My title</Dialog.Title>
           <Dialog.Description>{lorem}</Dialog.Description>
           <Dialog.Actions>

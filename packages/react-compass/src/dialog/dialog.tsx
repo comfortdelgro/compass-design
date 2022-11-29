@@ -14,8 +14,6 @@ import {DialogVariantProps, StyledDialog} from './dialog.styles'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
-  title?: string
-  confirmLabel?: string
   onClose?: () => void
   variant?: 'confirmation' | 'alert'
 }
@@ -29,8 +27,6 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
     // children
     children,
     // ComponentProps
-    title = '',
-    confirmLabel = '',
     onClose,
     // VariantProps
     variant = 'confirmation',

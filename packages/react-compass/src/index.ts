@@ -17,6 +17,15 @@ export type {
 } from './card'
 export {default as Checkbox} from './checkbox'
 export type {CheckboxProps} from './checkbox'
+export {default as Dialog} from './dialog'
+export type {
+  DialogActionsProps,
+  DialogDescriptionProps,
+  DialogIconProps,
+  DialogProps,
+  DialogTitleProps,
+  DialogTriggerProps,
+} from './dialog'
 export {default as Icon} from './icon'
 export type {IconProp} from './icon'
 export {default as Link} from './link'
@@ -36,3 +45,4 @@ export {default as TextField} from './textfield'
 export type {TextFieldProps} from './textfield'
 export * from './theme'
 export * from './utils'
+e
