@@ -17,6 +17,16 @@ export type {
 } from './card'
 export {default as Checkbox} from './checkbox'
 export type {CheckboxProps} from './checkbox'
+export {Footer, FooterInfo} from './footer'
+export type {
+  FooterHeaderProps,
+  FooterInfoDownloadProps,
+  FooterInfoProps,
+  FooterInfoSocialProps,
+  FooterNavigationProps,
+  FooterPolicyProps,
+  FooterProps,
+} from './footer'
 export {default as Icon} from './icon'
 export type {IconProp} from './icon'
 export {default as Link} from './link'

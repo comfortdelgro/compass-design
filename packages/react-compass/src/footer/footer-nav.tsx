@@ -7,24 +7,25 @@ interface Props extends StyledComponentProps {
   gridItems: number
 }
 
-export type FooterNavProps = Props &
+export type FooterNavigationProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
-const FooterNavigation = React.forwardRef<HTMLDivElement, FooterNavProps>(
-  (props, ref) => {
-    const {children, gridItems, css = {}, ...delegated} = props
+const FooterNavigation = React.forwardRef<
+  HTMLDivElement,
+  FooterNavigationProps
+>((props, ref) => {
+  const {children, gridItems, css = {}, ...delegated} = props
 
-    const cssProps = {
-      $$gridItems: gridItems,
-      ...css,
-    }
+  const cssProps = {
+    $$gridItems: gridItems,
+    ...css,
+  }
 
-    return (
-      <StyledFooterNavigation ref={ref} css={cssProps} {...delegated}>
-        {children}
-      </StyledFooterNavigation>
-    )
-  },
-)
+  return (
+    <StyledFooterNavigation ref={ref} css={cssProps} {...delegated}>
+      {children}
+    </StyledFooterNavigation>
+  )
+})
 
 export default FooterNavigation

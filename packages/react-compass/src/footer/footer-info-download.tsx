@@ -6,12 +6,12 @@ interface Props extends StyledComponentProps {
   children?: React.ReactNode
 }
 
-export type FooterInfoDowloadProps = Props &
+export type FooterInfoDownloadProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const FooterInfoDownload = React.forwardRef<
   HTMLDivElement,
-  FooterInfoDowloadProps
+  FooterInfoDownloadProps
 >((props, ref) => {
   const {children, css = {}, ...delegated} = props
   return (

@@ -1,5 +1,7 @@
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
+import FooterInfoDownload from './footer-info-download'
+import FooterInfoSocial from './footer-info-social'
 import {StyledFooterInfo} from './footer-info.styles'
 
 interface Props extends StyledComponentProps {
@@ -20,4 +22,7 @@ const FooterInfo = React.forwardRef<HTMLDivElement, FooterInfoProps>(
   },
 )
 
-export default FooterInfo
+export default FooterInfo as typeof FooterInfo & {
+  Social: typeof FooterInfoSocial
+  Download: typeof FooterInfoDownload
+}
