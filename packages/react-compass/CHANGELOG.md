@@ -1,5 +1,29 @@
 # @comfortdelgro/react-compass
 
+## 0.2.5
+
+### Patch Changes
+
+- c95b969: Drop ESM support for `react-compass` package.
+## 0.2.4
+
+### Patch Changes
+
+- 25e3f9f: Export utility components such as `Row`, `Column` from `react-compass` package.
+
+## 0.2.3
+
+### Patch Changes
+
+- 9eb2e89: Update build step to include README file to publish to NPM.
+
+## 0.2.2
+
+### Patch Changes
+
+- ddbf1ad: `utils` now included back in `react-compass` exports and updated READMEs for both `compass-icons` and `react-compass` packages.
+
+
 ## 0.2.0
 
 ### Minor Changes
