@@ -26,6 +26,13 @@ export type {PaginationProps} from './pagination'
 export {default as Preflight} from './preflight'
 export {default as SearchField} from './searchfield'
 export type {SearchFieldProps} from './searchfield'
+export {default as Sidebar} from './sidebar'
+export type {
+  SidebarActionsProps,
+  SidebarContentProps,
+  SidebarProps,
+  SidebarTitleProps,
+} from './sidebar'
 export {default as Spinner} from './spinner'
 export type {SpinnerProps} from './spinner'
 export {default as Table} from './table'
@@ -35,4 +42,14 @@ export type {TextareaProps} from './textarea'
 export {default as TextField} from './textfield'
 export type {TextFieldProps} from './textfield'
 export * from './theme'
+export {default as Toast} from './toast'
+export type {
+  ToastActionsProps,
+  ToastCloseIconProps,
+  ToastIconProps,
+  ToastLabelProps,
+  ToastMessageProps,
+  ToastProps,
+  ToastTitleProps,
+} from './toast'
 export * from './utils'

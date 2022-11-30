@@ -66,9 +66,9 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
   const {collection} = state
 
   return (
-    <StyledTableWrapper>
+    <StyledTableWrapper css={css}>
       {toolbar && <>{toolbar}</>}
-      <StyledTable css={css} ref={tableRef} {...gridProps}>
+      <StyledTable ref={tableRef} {...gridProps}>
         <TableRowGroup as='thead'>
           {collection.headerRows.map((row) => (
             <TableHeaderRow key={row.key} item={row} state={state}>
