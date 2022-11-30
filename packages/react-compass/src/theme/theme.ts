@@ -9,11 +9,18 @@ const spacings = {
   2: '0.5rem', // 8px
   '2_5': '0.625rem', // 10px
   3: '0.75rem', // 12px
+  '3_25': '0.8125rem', //13px
   '3_5': '0.875rem', // 14px
   4: '1rem', // 16px
+  '4_25': '1.0625rem', //17px
+  '4_5': '1.125rem', //18px
   5: '1.25rem', // 20px
+  '5_25': '1.3125rem', //21px
+  '5_5': '1.375rem', //22px
   6: '1.5rem', // 24px
+  '6_5': '1.625rem',
   7: '1.75rem', // 28px
+  '7_5': '1.875rem', //30px
   8: '2rem', // 32px
   9: '2.25rem', // 36px
   10: '2.5rem', // 40px
@@ -24,20 +31,40 @@ const spacings = {
   18: '4.5rem', // 72px
   20: '5rem', // 80px
   22: '5.5rem', // 88px
+  21: '5.25rem', //84px
   24: '6rem', // 96px
+  '24_5': '6.125rem', //98px
+  26: '6.5rem', // 104px
   28: '7rem', // 112px
   32: '8rem', // 128px
   36: '9rem', // 144px
   40: '10rem', // 160px
   44: '11rem', // 176px
+  46: '11.5rem', //184
   48: '12rem', // 192px
+  50: '12.5rem', // 200px
   52: '13rem', // 208px
   56: '14rem', // 224px
+  57: '14.25rem', // 228px
   60: '15rem', // 240px
   64: '16rem', // 256px
   72: '18rem', // 288px
+  75: '18.75rem', //300px
   80: '20rem', // 320px
+  88: '22rem', //352px
   96: '24rem', // 384px
+  '108_25': '27.0625rem', // 433px
+  110: '27.5rem', //440px
+  120: '30rem', //480px
+  '131_5': '32.875rem', // 526px
+  160: '40rem', //640 rem
+  '110_5': '27.625rem', //442px
+  125: '31.25rem', //500px
+  128: '32rem', // 512px
+  200: '50rem', //800px
+  206: '51.5rem', //824px
+  269: '67.25rem', //1076px
+  328: '82rem', // 1312px
 } as const
 
 export default defineTheme({
@@ -51,6 +78,7 @@ export default defineTheme({
     display2: '3rem',
     display3: '2.5rem',
 
+    header0: '2.5rem',
     header1: '2rem',
     header2: '1.75rem',
     header3: '1.5rem',
@@ -89,6 +117,7 @@ export default defineTheme({
     cdgBlue: '$cdgBlue100',
     typeHeading: '$gray100',
     background: '#FFFFFF',
+    black: '#323130',
 
     primaryText: '$gray100',
     secondaryText: '$gray80',
