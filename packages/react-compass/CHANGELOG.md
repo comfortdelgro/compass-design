@@ -1,7 +1,16 @@
 # @comfortdelgro/react-compass
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+## 0.2.5
+
+### Patch Changes
+
+- c95b969: Drop ESM support for `react-compass` package.
+
+>>>>>>> develop
 ## 0.2.4
 
 ### Patch Changes

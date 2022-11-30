@@ -1,6 +1,9 @@
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
+<<<<<<< HEAD
 import {useDOMRef} from '../utils/use-dom-ref'
+=======
+>>>>>>> develop
 import {StyledDialogActionsContainer} from './dialog.styles'
 
 interface Props extends StyledComponentProps {

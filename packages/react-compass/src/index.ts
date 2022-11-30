@@ -1,3 +1,9 @@
+export {default as Accordion} from './accordion'
+export type {
+  AccordionProps,
+  AccordionTableProps,
+  AccordionTitleProps,
+} from './accordion'
 export {default as Alert} from './alert'
 export type {AlertProps} from './alert'
 export {default as Avatar} from './avatar'
@@ -30,11 +36,26 @@ export {default as Icon} from './icon'
 export type {IconProp} from './icon'
 export {default as Link} from './link'
 export type {LinkProps} from './link'
+export {default as Modal} from './modal'
+export type {
+  ModalActionsProps,
+  ModalDescriptionProps,
+  ModalProps,
+  ModalTitleProps,
+  ModalTriggerProps,
+} from './modal'
 export {default as Pagination} from './pagination'
 export type {PaginationProps} from './pagination'
 export {default as Preflight} from './preflight'
 export {default as SearchField} from './searchfield'
 export type {SearchFieldProps} from './searchfield'
+export {default as Sidebar} from './sidebar'
+export type {
+  SidebarActionsProps,
+  SidebarContentProps,
+  SidebarProps,
+  SidebarTitleProps,
+} from './sidebar'
 export {default as Spinner} from './spinner'
 export type {SpinnerProps} from './spinner'
 export {default as Table} from './table'
@@ -44,5 +65,16 @@ export type {TextareaProps} from './textarea'
 export {default as TextField} from './textfield'
 export type {TextFieldProps} from './textfield'
 export * from './theme'
+export {default as Toast} from './toast'
+export type {
+  ToastActionsProps,
+  ToastCloseIconProps,
+  ToastIconProps,
+  ToastLabelProps,
+  ToastMessageProps,
+  ToastProps,
+  ToastTitleProps,
+} from './toast'
 export * from './utils'
-e
+export {default as Wizard} from './wizard'
+export type {WizardProps} from './wizard'

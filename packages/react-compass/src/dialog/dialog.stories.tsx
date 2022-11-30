@@ -65,11 +65,20 @@ export const Variants: React.FC = () => {
         Open Dialog
       </Button>
       <Dialog.Trigger
+<<<<<<< HEAD
         isOpen={alertOpen}
         handleClose={() => setAlertOpen(false)}
         variant='alert'
       >
         <Dialog>
+=======
+        label='Open dialog'
+        isOpen={alertOpen}
+        handleClose={() => handleAlertClose?.()}
+        variant='alert'
+      >
+        <Dialog title='My title' confirmLabel='Do it'>
+>>>>>>> develop
           <Dialog.Title>My title</Dialog.Title>
           <Dialog.Description>{lorem}</Dialog.Description>
           <Dialog.Actions>

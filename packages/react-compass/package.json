@@ -1,6 +1,6 @@
 {
   "name": "@comfortdelgro/react-compass",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "React Compass Design System by ComfortDelGro Corporation",
   "keywords": [
     "design system",
@@ -40,10 +40,12 @@
     "@react-aria/checkbox": "^3.6.0",
     "@react-aria/dialog": "^3.4.1",
     "@react-aria/focus": "^3.9.0",
+    "@react-aria/i18n": "^3.6.2",
     "@react-aria/interactions": "^3.12.0",
     "@react-aria/link": "^3.3.4",
     "@react-aria/overlays": "^3.12.0",
     "@react-aria/searchfield": "^3.4.2",
+    "@react-aria/slider": "^3.2.3",
     "@react-aria/table": "^3.5.0",
     "@react-aria/textfield": "^3.7.2",
     "@react-aria/utils": "^3.14.0",
@@ -51,6 +53,7 @@
     "@react-stately/data": "^3.7.0",
     "@react-stately/overlays": "^3.4.3",
     "@react-stately/searchfield": "^3.3.2",
+    "@react-stately/slider": "^3.2.3",
     "@react-stately/table": "^3.5.0",
     "@react-stately/toggle": "^3.4.2",
     "@stitches/react": "^1.2.8"
@@ -71,6 +74,7 @@
     "@types/listr": "^0.14.4",
     "@types/node": "^18.11.0",
     "@types/react": "^18.0.21",
+    "chalk": "^5.1.2",
     "eslint": "^8.25.0",
     "execa": "^6.1.0",
     "framer-motion": "^7.6.1",

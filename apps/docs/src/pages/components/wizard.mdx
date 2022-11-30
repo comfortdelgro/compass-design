@@ -1,0 +1,56 @@
+import ComponentDisplay from '../../components/ComponentDisplay'
+import Wizard from '@comfortdelgro/react-compass/wizard'
+import {Callout} from 'nextra-theme-docs'
+
+# Wizard
+
+Using for display stepper
+
+---
+
+### Import
+
+```js
+import {Wizard, WizardProps} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import Wizard, {WizardProps} from '@comfortdelgro/react-compass/wizard'
+```
+
+We recommend the second method to import components for the benefits of [tree shaking](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking).
+
+---
+
+### Content
+
+The TooltipTrigger accepts exactly two children: the element which triggers the display of the Tooltip and the Tooltip itself. The trigger element must be the first child passed into the TooltipTrigger. All content should be internationalized.
+
+### Basic usage
+
+```js
+<Wizard items=["Step 1", "Step 2", "Step 3"] currentStep={1} />
+```
+<ComponentDisplay>
+    <Wizard items={["Step 1", "Step 2", "Step 3"]} currentStep={1} />
+</ComponentDisplay>
+---
+
+## Props
+
+### TooltipTrigger Props:
+
+| Name         | Type                             | Default  | Description                                                                                                                                        |
+| :----------- | :------------------------------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------- |
+| items        | `string[]`                       | -        | List of display contennt below the stepper                                                                                                         |
+| currentStep  | `number`                         | 1        | Current active step, start from 1                                                                                                                  |
+| css?         | `CSS`                            | —        | The system prop that allows defining system overrides as well as additional CSS styles.                                                            |
+
+---
+
+<Callout>
+  Check out our [ladle](/ladle?story=wizard) for more info on this
+  component.
+</Callout>
