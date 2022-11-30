@@ -67,7 +67,6 @@ const DialogTrigger = React.forwardRef<HTMLDivElement, DialogTriggerProps>(
       <OverlayProvider>
         {isOpen && (
           <OverlayContainer>
-<<<<<<< HEAD
             <StyledDialogWrapper css={css} {...delegated}>
               {DialogElement &&
                 React.cloneElement(DialogElement as unknown as JSX.Element, {
@@ -75,14 +74,6 @@ const DialogTrigger = React.forwardRef<HTMLDivElement, DialogTriggerProps>(
                   ref: dialogRef,
                   variant: variant,
                 })}
-=======
-            <StyledDialogWrapper>
-              {React.cloneElement(DialogElement as unknown as JSX.Element, {
-                onClose: () => handleClose?.(),
-                ref: dialogRef,
-                variant: variant,
-              })}
->>>>>>> develop
             </StyledDialogWrapper>
           </OverlayContainer>
         )}

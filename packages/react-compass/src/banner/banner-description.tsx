@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
+import {useDOMRef} from '../utils/use-dom-ref'
 import {StyledBannerDescription} from './banner.styles'
 
 interface Props extends StyledComponentProps {
@@ -15,9 +16,13 @@ const BannerDescription = React.forwardRef<
   BannerDescriptionProps
 >((props, ref) => {
   const {children, css = {}, ...delegated} = props
-
+  const bannerDescriptionRef = useDOMRef<HTMLDivElement>(ref)
   return (
-    <StyledBannerDescription css={css} ref={ref} {...delegated}>
+    <StyledBannerDescription
+      css={css}
+      ref={bannerDescriptionRef}
+      {...delegated}
+    >
       {children}
     </StyledBannerDescription>
   )
