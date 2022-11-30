@@ -8,6 +8,8 @@ export const StyledCard = styled('div', {
   boxShadow:
     '0px 0.3px 0.9px rgba(0, 0, 0, 0.1), 0px 1.6px 3.6px rgba(0, 0, 0, 0.13)',
   borderRadius: '$md',
+  display: 'flex',
+  flexDirection: 'column',
 
   '& button': {
     marginTop: '$6',
@@ -27,10 +29,10 @@ export const StyledCard = styled('div', {
       },
     },
     size: {
-      small: {
+      sm: {
         maxWidth: '$60',
       },
-      large: {
+      lg: {
         maxWidth: '$96',
       },
       full: {
