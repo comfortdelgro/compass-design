@@ -79,6 +79,8 @@ export type {TextareaProps} from './textarea'
 export {default as TextField} from './textfield'
 export type {TextFieldProps} from './textfield'
 export * from './theme'
+export {Tooltip, TooltipTrigger} from './tooltip'
+export type {TooltipProps, TooltipTriggerProps} from './tooltip'
 export {default as Toast} from './toast'
 export type {
   ToastActionsProps,
