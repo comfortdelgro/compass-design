@@ -5,20 +5,16 @@ import {Icon} from '../icon'
 import {Column} from '../utils/components'
 import Toast from './index'
 
-
 export const Default: React.FC = () => {
   const [isDefaultOpen, setIsDefaultOpen] = React.useState(false)
-  
+
   return (
     <Column>
       <h3>Default toast</h3>
       <Button css={{width: '8rem'}} onPress={() => setIsDefaultOpen(true)}>
         Open toast
       </Button>
-      <Toast
-        isOpen={isDefaultOpen}
-        handleClose={() => setIsDefaultOpen(false)}
-      >
+      <Toast isOpen={isDefaultOpen} handleClose={() => setIsDefaultOpen(false)}>
         <Toast.Icon>
           <Icon icon={faImage} />
         </Toast.Icon>

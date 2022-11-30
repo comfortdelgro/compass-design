@@ -1,6 +1,6 @@
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
-import { useDOMRef } from '../utils/use-dom-ref'
+import {useDOMRef} from '../utils/use-dom-ref'
 import {StyledToastCloseIcon} from './toast.styles'
 
 interface Props extends StyledComponentProps {

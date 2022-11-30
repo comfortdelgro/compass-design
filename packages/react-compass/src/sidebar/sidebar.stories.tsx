@@ -3,7 +3,6 @@ import Button from '../button'
 import {Column} from '../utils/components'
 import Sidebar from './index'
 
-
 export const Default: React.FC = () => {
   const [isDefaultOpen, setIsDefaultOpen] = React.useState(false)
   return (
@@ -30,11 +29,9 @@ export const Default: React.FC = () => {
           </Button>
         </Sidebar.Actions>
       </Sidebar>
-
     </Column>
   )
 }
-
 
 export const Variants: React.FC = () => {
   const [isPrimaryOpen, setIsPrimaryOpen] = React.useState(false)

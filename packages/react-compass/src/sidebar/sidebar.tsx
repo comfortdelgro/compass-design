@@ -78,11 +78,7 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>((props, ref) => {
     <>
       {isOpen && (
         <StyledSidebarWrapper css={css}>
-          <StyledSidebar
-            variant={variant}
-            ref={sidebarRef}
-            {...delegated}
-          >
+          <StyledSidebar variant={variant} ref={sidebarRef} {...delegated}>
             {variant == 'primary' && (
               <StyledSidebarHeader>
                 {SidebarTitleElement}
