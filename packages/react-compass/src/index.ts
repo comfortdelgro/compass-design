@@ -89,6 +89,8 @@ export type {
   ToastProps,
   ToastTitleProps,
 } from './toast'
+export {default as Toggle} from './toggle'
+export type {ToggleProps} from './toggle'
 export * from './utils'
 export {default as Wizard} from './wizard'
 export type {WizardProps} from './wizard'
