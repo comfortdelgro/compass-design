@@ -5,17 +5,16 @@ import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import Dialog from './dialog'
-import {StyledDialogWrapper} from './dialog.styles'
+import {DialogVariantProps, StyledDialogWrapper} from './dialog.styles'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
-  label?: string
   isOpen?: boolean
   handleClose?: () => void
-  variant?: 'confirmation' | 'alert'
 }
 
 export type DialogTriggerProps = Props &
+  DialogVariantProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const DialogTrigger = React.forwardRef<HTMLDivElement, DialogTriggerProps>(
@@ -27,22 +26,21 @@ const DialogTrigger = React.forwardRef<HTMLDivElement, DialogTriggerProps>(
       // children
       children,
       // ComponentProps
-      label = '',
       isOpen = false,
       handleClose,
+      // variant props
       variant = 'confirmation',
-      // AriaButtonProps
-      ...ariaSafeProps
+      // HTMLDiv Props
+      ...delegated
     } = props
 
-    const dialogWrapperRef = useDOMRef<HTMLDivElement>(ref)
     const {child: DialogElement, rest: childrenWithoutDialogElement} =
       pickChild<typeof Dialog>(children, Dialog)
 
-    const dialogRef = React.useRef<HTMLInputElement>(null)
+    const dialogRef = useDOMRef<HTMLDivElement>(ref)
     React.useEffect(() => {
       /**
-       * Alert if clicked on outside of element
+       * Close the dialog if clicked on outside of element
        */
       function handleClickOutside(event: MouseEvent) {
         event.preventDefault()
@@ -69,12 +67,22 @@ const DialogTrigger = React.forwardRef<HTMLDivElement, DialogTriggerProps>(
       <OverlayProvider>
         {isOpen && (
           <OverlayContainer>
+<<<<<<< HEAD
+            <StyledDialogWrapper css={css} {...delegated}>
+              {DialogElement &&
+                React.cloneElement(DialogElement as unknown as JSX.Element, {
+                  onClose: () => handleClose?.(),
+                  ref: dialogRef,
+                  variant: variant,
+                })}
+=======
             <StyledDialogWrapper>
               {React.cloneElement(DialogElement as unknown as JSX.Element, {
                 onClose: () => handleClose?.(),
                 ref: dialogRef,
                 variant: variant,
               })}
+>>>>>>> develop
             </StyledDialogWrapper>
           </OverlayContainer>
         )}

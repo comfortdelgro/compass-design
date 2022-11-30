@@ -14,8 +14,6 @@ import {DialogVariantProps, StyledDialog} from './dialog.styles'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
-  title?: string
-  confirmLabel?: string
   onClose?: () => void
   variant?: 'confirmation' | 'alert'
 }
@@ -23,19 +21,16 @@ interface Props extends StyledComponentProps {
 export type DialogProps = Props & DialogVariantProps
 
 const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
-  // let {overlayProps} = useOverlay()
   const {
     // StyledComponentProps
     css = {},
     // children
     children,
     // ComponentProps
-    title = '',
-    confirmLabel = '',
     onClose,
     // VariantProps
     variant = 'confirmation',
-    // AriaButtonProps
+    // AriaDialogProps
     ...ariaSafeProps
   } = props
 
