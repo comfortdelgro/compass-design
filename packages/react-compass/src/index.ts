@@ -79,6 +79,13 @@ export type {
   SidebarProps,
   SidebarTitleProps,
 } from './sidebar'
+export {default as Sidenav, SidenavContext} from './sidenav'
+export type {
+  DividerProps,
+  SidenavContextValue,
+  SidenavItemProps,
+  SidenavProps,
+} from './sidenav'
 export {default as Spinner} from './spinner'
 export type {SpinnerProps} from './spinner'
 export {default as SubBanner} from './subBanner'
