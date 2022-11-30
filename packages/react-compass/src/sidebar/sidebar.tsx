@@ -42,12 +42,18 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>((props, ref) => {
   const sidebarRef = useDOMRef<HTMLDivElement>(ref)
 
   // Pick title actions component
-  const {child: SidebarActionsElement, rest: childrenWithoutActionsElement} =
-    pickChild<typeof SidebarActions>(children, SidebarActions)
-  const {child: SidebarContentElement, rest: childrenWithoutContentElement} =
-    pickChild<typeof SidebarContent>(children, SidebarContent)
-  const {child: SidebarTitleElement, rest: childrenWithoutTitleElement} =
-    pickChild<typeof SidebarTitle>(children, SidebarTitle)
+  const {child: SidebarActionsElement} = pickChild<typeof SidebarActions>(
+    children,
+    SidebarActions,
+  )
+  const {child: SidebarContentElement} = pickChild<typeof SidebarContent>(
+    children,
+    SidebarContent,
+  )
+  const {child: SidebarTitleElement} = pickChild<typeof SidebarTitle>(
+    children,
+    SidebarTitle,
+  )
 
   React.useEffect(() => {
     /**

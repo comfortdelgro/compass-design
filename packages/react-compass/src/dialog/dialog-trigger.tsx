@@ -34,8 +34,7 @@ const DialogTrigger = React.forwardRef<HTMLDivElement, DialogTriggerProps>(
       ...delegated
     } = props
 
-    const {child: DialogElement, rest: childrenWithoutDialogElement} =
-      pickChild<typeof Dialog>(children, Dialog)
+    const {child: DialogElement} = pickChild<typeof Dialog>(children, Dialog)
 
     const dialogRef = useDOMRef<HTMLDivElement>(ref)
     React.useEffect(() => {

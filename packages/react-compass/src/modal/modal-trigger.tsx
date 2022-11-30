@@ -29,14 +29,10 @@ const ModalTrigger = React.forwardRef<HTMLDivElement, ModalTriggerProps>(
       isOpen = false,
       handleClose,
       size = 'md',
-      // AriaModalProps
-      ...ariaSafeProps
     } = props
 
     const modalRef = useDOMRef<HTMLDivElement>(ref)
-    const {child: ModalElement, rest: childrenWithoutModalElement} = pickChild<
-      typeof Modal
-    >(children, Modal)
+    const {child: ModalElement} = pickChild<typeof Modal>(children, Modal)
 
     React.useEffect(() => {
       /**
