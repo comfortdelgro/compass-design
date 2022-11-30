@@ -1,23 +1,10 @@
 # @comfortdelgro/react-compass
 
-<<<<<<< HEAD
-=======
-## 0.3.0
-
-### Minor Changes
-
-- f59cd41: Add new components: nabar, radio, tooltip, toggle, banner, sub-banner, dialog, wizard, accordion, modal, slider, toast, sidebar and tab components. And fix size props of Card component. And fix some styling issues of Avatar component
-
->>>>>>> main
 ## 0.2.5
 
 ### Patch Changes
 
 - c95b969: Drop ESM support for `react-compass` package.
-<<<<<<< HEAD
-=======
-
->>>>>>> main
 ## 0.2.4
 
 ### Patch Changes

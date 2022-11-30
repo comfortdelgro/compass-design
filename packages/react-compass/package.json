@@ -1,10 +1,6 @@
 {
   "name": "@comfortdelgro/react-compass",
-<<<<<<< HEAD
   "version": "0.2.5",
-=======
-  "version": "0.3.0",
->>>>>>> main
   "description": "React Compass Design System by ComfortDelGro Corporation",
   "keywords": [
     "design system",
