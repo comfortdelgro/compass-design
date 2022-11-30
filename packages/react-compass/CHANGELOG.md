@@ -5,6 +5,7 @@
 ### Patch Changes
 
 - c95b969: Drop ESM support for `react-compass` package.
+
 ## 0.2.4
 
 ### Patch Changes
