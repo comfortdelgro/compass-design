@@ -54,6 +54,8 @@ export type {
 export {default as Pagination} from './pagination'
 export type {PaginationProps} from './pagination'
 export {default as Preflight} from './preflight'
+export {default as Radio} from './radio'
+export type {RadioGroupProps, RadioProps} from './radio'
 export {default as SearchField} from './searchfield'
 export type {SearchFieldProps} from './searchfield'
 export {default as Sidebar} from './sidebar'
