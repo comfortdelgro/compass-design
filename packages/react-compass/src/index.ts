@@ -42,4 +42,14 @@ export type {TextareaProps} from './textarea'
 export {default as TextField} from './textfield'
 export type {TextFieldProps} from './textfield'
 export * from './theme'
+export {default as Toast} from './toast'
+export type {
+  ToastActionsProps,
+  ToastCloseIconProps,
+  ToastIconProps,
+  ToastLabelProps,
+  ToastMessageProps,
+  ToastProps,
+  ToastTitleProps,
+} from './toast'
 export * from './utils'
