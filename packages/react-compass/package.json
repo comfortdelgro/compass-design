@@ -43,31 +43,25 @@
     "@react-aria/i18n": "^3.6.2",
     "@react-aria/interactions": "^3.12.0",
     "@react-aria/link": "^3.3.4",
-<<<<<<< HEAD
-    "@react-aria/radio": "^3.4.1",
-=======
     "@react-aria/overlays": "^3.12.0",
->>>>>>> develop
+    "@react-aria/radio": "^3.4.1",
     "@react-aria/searchfield": "^3.4.2",
     "@react-aria/slider": "^3.2.3",
     "@react-aria/table": "^3.5.0",
+    "@react-aria/tabs": "^3.3.3",
     "@react-aria/textfield": "^3.7.2",
-<<<<<<< HEAD
-    "@react-aria/tooltip": "^3.3.3",
-=======
     "@react-aria/toggle": "^3.4.1",
->>>>>>> develop
+    "@react-aria/tooltip": "^3.3.3",
     "@react-aria/utils": "^3.14.0",
     "@react-aria/visually-hidden": "^3.5.0",
+    "@react-stately/collections": "^3.5.0",
     "@react-stately/data": "^3.7.0",
-<<<<<<< HEAD
-    "@react-stately/radio": "^3.6.1",
-=======
     "@react-stately/overlays": "^3.4.3",
->>>>>>> develop
+    "@react-stately/radio": "^3.6.1",
     "@react-stately/searchfield": "^3.3.2",
     "@react-stately/slider": "^3.2.3",
     "@react-stately/table": "^3.5.0",
+    "@react-stately/tabs": "^3.2.3",
     "@react-stately/toggle": "^3.4.2",
     "@react-stately/tooltip": "^3.2.3",
     "@stitches/react": "^1.2.8"

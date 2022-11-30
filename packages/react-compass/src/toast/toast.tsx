@@ -46,24 +46,35 @@ const Toast = React.forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
   const variantProps = {color} as ToastVariantProps
 
   // Pick child element from children props
-  const {child: ToastActionsElement, rest: childrenWithoutActionsElement} =
-    pickChild<typeof ToastActions>(children, ToastActions)
+  const {child: ToastActionsElement} = pickChild<typeof ToastActions>(
+    children,
+    ToastActions,
+  )
 
-  const {child: ToastCloseIconElement, rest: childrenWithoutCloseIconElement} =
-    pickChild<typeof ToastCloseIcon>(children, ToastCloseIcon)
+  const {child: ToastCloseIconElement} = pickChild<typeof ToastCloseIcon>(
+    children,
+    ToastCloseIcon,
+  )
 
-  const {child: ToastIconElement, rest: childrenWithoutIconElement} = pickChild<
-    typeof ToastIcon
-  >(children, ToastIcon)
+  const {child: ToastIconElement} = pickChild<typeof ToastIcon>(
+    children,
+    ToastIcon,
+  )
 
-  const {child: ToastLabelElement, rest: childrenWithoutLabelElement} =
-    pickChild<typeof ToastLabel>(children, ToastLabel)
+  const {child: ToastLabelElement} = pickChild<typeof ToastLabel>(
+    children,
+    ToastLabel,
+  )
 
-  const {child: ToastMessagelement, rest: childrenWithoutMessageElement} =
-    pickChild<typeof ToastMessage>(children, ToastMessage)
+  const {child: ToastMessagelement} = pickChild<typeof ToastMessage>(
+    children,
+    ToastMessage,
+  )
 
-  const {child: ToastTitleElement, rest: childrenWithoutTitleElement} =
-    pickChild<typeof ToastTitle>(children, ToastTitle)
+  const {child: ToastTitleElement} = pickChild<typeof ToastTitle>(
+    children,
+    ToastTitle,
+  )
 
   // Auto close
   React.useEffect(() => {

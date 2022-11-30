@@ -43,7 +43,6 @@ export {default as Icon} from './icon'
 export type {IconProp} from './icon'
 export {default as Link} from './link'
 export type {LinkProps} from './link'
-<<<<<<< HEAD
 export {
   default as MenuList,
   MenuListContext,
@@ -56,9 +55,6 @@ export type {
   MenuListDropdownProps,
   MenuListProps,
 } from './menu-list'
-export {default as Navbar} from './navbar'
-export type {NavbarBrandProps, NavbarIconProps, NavbarProps} from './navbar'
-=======
 export {default as Modal} from './modal'
 export type {
   ModalActionsProps,
@@ -67,7 +63,8 @@ export type {
   ModalTitleProps,
   ModalTriggerProps,
 } from './modal'
->>>>>>> develop
+export {default as Navbar} from './navbar'
+export type {NavbarBrandProps, NavbarIconProps, NavbarProps} from './navbar'
 export {default as Pagination} from './pagination'
 export type {PaginationProps} from './pagination'
 export {default as Preflight} from './preflight'
@@ -75,17 +72,6 @@ export {default as Radio} from './radio'
 export type {RadioGroupProps, RadioProps} from './radio'
 export {default as SearchField} from './searchfield'
 export type {SearchFieldProps} from './searchfield'
-<<<<<<< HEAD
-export {default as Sidebar, SidebarContext} from './sidebar'
-export type {
-  DividerProps,
-  SidebarContextValue,
-  SidebarItemProps,
-  SidebarProps,
-} from './sidebar'
-export {default as Spinner} from './spinner'
-export type {SpinnerProps} from './spinner'
-=======
 export {default as Sidebar} from './sidebar'
 export type {
   SidebarActionsProps,
@@ -93,8 +79,15 @@ export type {
   SidebarProps,
   SidebarTitleProps,
 } from './sidebar'
-export {default as Spinner, default as Spinner} from './spinner'
-export type {SpinnerProps, SpinnerProps} from './spinner'
+export {default as Sidenav, SidenavContext} from './sidenav'
+export type {
+  DividerProps,
+  SidenavContextValue,
+  SidenavItemProps,
+  SidenavProps,
+} from './sidenav'
+export {default as Spinner} from './spinner'
+export type {SpinnerProps} from './spinner'
 export {default as SubBanner} from './subBanner'
 export type {
   SubBannerDescriptionProps,
@@ -102,7 +95,6 @@ export type {
   SubBannerProps,
   SubBannerTitleProps,
 } from './subBanner'
->>>>>>> develop
 export {default as Table} from './table'
 export type {TableProps} from './table'
 export {default as Textarea} from './textarea'
@@ -110,8 +102,6 @@ export type {TextareaProps} from './textarea'
 export {default as TextField} from './textfield'
 export type {TextFieldProps} from './textfield'
 export * from './theme'
-export {Tooltip, TooltipTrigger} from './tooltip'
-export type {TooltipProps, TooltipTriggerProps} from './tooltip'
 export {default as Toast} from './toast'
 export type {
   ToastActionsProps,
@@ -124,6 +114,8 @@ export type {
 } from './toast'
 export {default as Toggle} from './toggle'
 export type {ToggleProps} from './toggle'
+export {Tooltip, TooltipTrigger} from './tooltip'
+export type {TooltipProps, TooltipTriggerProps} from './tooltip'
 export * from './utils'
 export {default as Wizard} from './wizard'
 export type {WizardProps} from './wizard'

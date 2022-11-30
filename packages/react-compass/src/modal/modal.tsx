@@ -44,21 +44,25 @@ const Dialog = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
   useModal()
 
   // Get props for its dialog and its title
-  const {dialogProps, titleProps} = useDialog(ariaSafeProps, dialogRef)
+  const {dialogProps} = useDialog(ariaSafeProps, dialogRef)
 
   // Pick title child component
-  const {child: ModalTitleElement, rest: childrenWithoutTitleElement} =
-    pickChild<typeof ModalTitle>(children, ModalTitle)
+  const {child: ModalTitleElement} = pickChild<typeof ModalTitle>(
+    children,
+    ModalTitle,
+  )
 
   // Pick description child component
-  const {
-    child: ModalDescriptionElement,
-    rest: childrenWithoutDescriptionElement,
-  } = pickChild<typeof ModalDescription>(children, ModalDescription)
+  const {child: ModalDescriptionElement} = pickChild<typeof ModalDescription>(
+    children,
+    ModalDescription,
+  )
 
   // Pick action child component
-  const {child: ModalActionsElement, rest: childrenWithoutActionsElement} =
-    pickChild<typeof ModalActions>(children, ModalActions)
+  const {child: ModalActionsElement} = pickChild<typeof ModalActions>(
+    children,
+    ModalActions,
+  )
 
   return (
     <FocusScope contain restoreFocus autoFocus>

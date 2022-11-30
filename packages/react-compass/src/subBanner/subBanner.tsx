@@ -34,16 +34,19 @@ const SubBanner = React.forwardRef<HTMLDivElement, SubBannerProps>(
     } = props
 
     const subBannerRef = useDOMRef<HTMLDivElement>(ref)
-    const {child: SubBannerImageElement, rest: ChildrenWithoutImageElement} =
-      pickChild<typeof SubBannerImage>(children, SubBannerImage)
+    const {child: SubBannerImageElement} = pickChild<typeof SubBannerImage>(
+      children,
+      SubBannerImage,
+    )
 
-    const {child: SubBannerTitleElement, rest: ChildrenWithoutTitleElement} =
-      pickChild<typeof SubBannerTitle>(children, SubBannerTitle)
+    const {child: SubBannerTitleElement} = pickChild<typeof SubBannerTitle>(
+      children,
+      SubBannerTitle,
+    )
 
-    const {
-      child: SubBannerDescriptionElement,
-      rest: ChildrenWithoutDescriptionElement,
-    } = pickChild<typeof SubBannerDescription>(children, SubBannerDescription)
+    const {child: SubBannerDescriptionElement} = pickChild<
+      typeof SubBannerDescription
+    >(children, SubBannerDescription)
 
     const variantProps = {variant} as SubBannerVariantProps
 

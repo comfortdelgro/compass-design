@@ -1,17 +1,17 @@
 import React, {useContext} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
-import {SidebarContext} from './sidebar-context'
-import {StyledSidebarItem} from './sidebar-item.styles'
+import {SidenavContext} from './sidenav-context'
+import {StyledSidenavItem} from './sidenav-item.styles'
 
 interface Props extends StyledComponentProps {
   children: React.ReactNode
   isActive?: boolean
 }
 
-export type SidebarItemProps = Props &
+export type SidenavItemProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
-const SidebarItem = React.forwardRef<HTMLDivElement, SidebarItemProps>(
+const SidenavItem = React.forwardRef<HTMLDivElement, SidenavItemProps>(
   (props, ref) => {
     const {
       // ComponentProps
@@ -24,23 +24,23 @@ const SidebarItem = React.forwardRef<HTMLDivElement, SidebarItemProps>(
       ...delegated
     } = props
 
-    const {isExpand} = useContext(SidebarContext)
+    const {isExpand} = useContext(SidenavContext)
 
     const [icon, title] = React.Children.toArray(children)
 
     return (
-      <StyledSidebarItem
+      <StyledSidenavItem
         ref={ref}
         css={css}
-        className={`${className} ${isActive ? 'sidebar-item-active' : ''}`}
+        className={`${className} ${isActive ? 'sidenav-item-active' : ''}`}
         active={isActive ? 'active' : 'default'}
         {...delegated}
       >
         {icon}
-        {isExpand && <div className='sidebar-item-title'>{title}</div>}
-      </StyledSidebarItem>
+        {isExpand && <div className='sidenav-item-title'>{title}</div>}
+      </StyledSidenavItem>
     )
   },
 )
 
-export default SidebarItem
+export default SidenavItem

@@ -1,6 +1,6 @@
 import {styled} from '../theme'
 
-export const StyledSidebarItem = styled('div', {
+export const StyledSidenavItem = styled('div', {
   color: '$gray80',
   display: 'flex',
   flexDirection: 'row',
@@ -21,7 +21,7 @@ export const StyledSidebarItem = styled('div', {
     color: '$cdgBlue',
   },
 
-  '& .sidebar-item-title': {
+  '& .sidenav-item-title': {
     fontSize: '$body3',
     fontWeight: '#semibold',
     marginLeft: '$2_5',
@@ -30,7 +30,7 @@ export const StyledSidebarItem = styled('div', {
     textOverflow: 'ellipsis',
   },
 
-  '& .sidebar-item-title > *': {
+  '& .sidenav-item-title > *': {
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     textOverflow: 'ellipsis',

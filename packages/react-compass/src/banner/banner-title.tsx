@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
+import {useDOMRef} from '../utils/use-dom-ref'
 import {StyledBannerTitle} from './banner.styles'
 
 interface Props extends StyledComponentProps {
@@ -13,7 +14,7 @@ export type BannerTitleProps = Props &
 const BannerTitle = React.forwardRef<HTMLHeadingElement, BannerTitleProps>(
   (props, ref) => {
     const {children, css = {}, ...delegated} = props
-
+    const bannerTitleRef = useDOMRef<HTMLDivElement>(ref)
     const renderTitle = () => {
       if (typeof children === 'string') {
         return <>{children}</>
@@ -22,7 +23,7 @@ const BannerTitle = React.forwardRef<HTMLHeadingElement, BannerTitleProps>(
     }
 
     return (
-      <StyledBannerTitle css={css} ref={ref} {...delegated}>
+      <StyledBannerTitle css={css} ref={bannerTitleRef} {...delegated}>
         {renderTitle()}
       </StyledBannerTitle>
     )
