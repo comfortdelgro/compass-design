@@ -16,7 +16,7 @@ export const Sizes: React.FC = () => {
   return (
     <Column>
       <h3>Basic card small size</h3>
-      <Card size='small'>
+      <Card size='sm'>
         <Card.Image src={backgroundSrc} />
         <Card.Body>
           <Card.Title>Card title</Card.Title>
@@ -26,7 +26,7 @@ export const Sizes: React.FC = () => {
       </Card>
 
       <h3>Basic card large size</h3>
-      <Card size='large'>
+      <Card size='lg'>
         <Card.Image src={backgroundSrc} />
         <Card.Body>
           <Card.Title>Card title</Card.Title>
@@ -67,7 +67,7 @@ export const Variants: React.FC = () => {
   return (
     <Column>
       <h3>Default</h3>
-      <Card size='large'>
+      <Card size='lg'>
         <Card.Body>
           <Card.Title>Card title</Card.Title>
           <p style={{margin: 0}}>{lorem.slice(0, lorem.length / 2)}</p>
@@ -76,7 +76,7 @@ export const Variants: React.FC = () => {
         </Card.Body>
       </Card>
       <h3>Disabled</h3>
-      <Card isDisabled={true} size='large'>
+      <Card isDisabled={true} size='lg'>
         <Card.Body>
           <Card.Title>Card title</Card.Title>
           <p style={{margin: 0}}>{lorem.slice(0, lorem.length / 2)}</p>
