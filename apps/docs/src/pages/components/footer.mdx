@@ -1,10 +1,7 @@
 import styles from '../../styles/Home.module.css'
-import {Footer, FooterInfo} from '@comfortdelgro/react-compass/footer'
-import Icon from '@comfortdelgro/react-compass/icon'
-import Link from '@comfortdelgro/react-compass/link'
-import Button from '@comfortdelgro/react-compass/button'
 import {faGlobe, faCamera} from '@fortawesome/free-solid-svg-icons'
 import {BasicFooter} from '../../components/BasicFooter'
+import {Callout} from 'nextra-theme-docs'
 
 # Footer
 
@@ -12,7 +9,7 @@ Footer component is an additional navigation used for displaying general informa
 
 ---
 
-### Import:
+### Import
 
 ```js
 import {Footer, FooterInfo} from '@comfortdelgro/react-compass'
@@ -26,11 +23,11 @@ import {Footer, FooterInfo} from '@comfortdelgro/react-compass/footer'
 
 ---
 
-### Content: 
+### Content
 
 Footer has some supports component like Header or Nav, you should use them together to make the footer responsive
 
-### Footer Variants:
+### Footer Variants
 
 #### White
 
@@ -197,3 +194,85 @@ Footer has some supports component like Header or Nav, you should use them toget
   ...
 </Footer>
 ```
+
+---
+
+### Footer.Header
+
+Footer.Header should contain company logo and/or language-changing button
+
+### Footer.Nav
+
+Footer.Nav should contain all links of pages in website for user to navigate
+
+### Footer.Policy
+
+Footer.Policy should contain links to policies and/or copyrights
+
+### FooterInfo
+
+FooterInfo should contain the address, social media and/or download links of the website
+
+### FooterInfo.Social
+
+### FooterInfo.Download
+
+### Props
+
+#### Footer
+
+| Name     | Type              | Default | Description |
+| :------- | :---------------- | :------ | :---------- |
+| children | `React.ReactNode` | —       |             |
+| css      | `CSS`             | —       |             |
+
+#### Footer.Header
+
+| Name     | Type              | Default | Description |
+| :------- | :---------------- | :------ | :---------- |
+| children | `React.ReactNode` | —       |             |
+| css      | `CSS`             | —       |             |
+
+#### Footer.Nav
+
+| Name             | Type              | Default | Description                                    |
+| :--------------- | :---------------- | :------ | :--------------------------------------------- |
+| children         | `React.ReactNode` | —       |                                                |
+| gridNumber       | `number`          | —       | Number of grid column                          |
+| tabletGridNumber | `number`          | —       | Number of grid column in the tablet responsive |
+| css              | `CSS`             | —       |                                                |
+
+#### Footer.Policy
+
+| Name     | Type              | Default | Description |
+| :------- | :---------------- | :------ | :---------- |
+| children | `React.ReactNode` | —       |             |
+| css      | `CSS`             | —       |             |
+
+#### FooterInfo
+
+| Name     | Type              | Default | Description |
+| :------- | :---------------- | :------ | :---------- |
+| children | `React.ReactNode` | —       |             |
+| css      | `CSS`             | —       |             |
+
+#### FooterInfo.Download
+
+| Name     | Type              | Default | Description |
+| :------- | :---------------- | :------ | :---------- |
+| children | `React.ReactNode` | —       |             |
+| css      | `CSS`             | —       |             |
+
+#### FooterInfo.Social
+
+| Name     | Type              | Default | Description |
+| :------- | :---------------- | :------ | :---------- |
+| children | `React.ReactNode` | —       |             |
+| css      | `CSS`             | —       |             |
+
+---
+
+<Callout>
+  Check out our [ladle](/ladle?story=footer--variants) for more info on this
+  component.
+</Callout>

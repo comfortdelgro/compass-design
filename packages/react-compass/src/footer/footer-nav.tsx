@@ -4,7 +4,8 @@ import {StyledFooterNavigation} from './footer-nav.styles'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
-  gridItems: number
+  gridNumber: number
+  tabletGridNumber?: number
 }
 
 export type FooterNavigationProps = Props &
@@ -14,10 +15,18 @@ const FooterNavigation = React.forwardRef<
   HTMLDivElement,
   FooterNavigationProps
 >((props, ref) => {
-  const {children, gridItems, css = {}, ...delegated} = props
+  const {
+    children,
+    gridNumber,
+    // tablet grid column number will be 3 by default if grid column number is greater than 3
+    tabletGridNumber = gridNumber >= 3 ? 3 : gridNumber,
+    css = {},
+    ...delegated
+  } = props
 
   const cssProps = {
-    $$gridItems: gridItems,
+    $$gridNumber: gridNumber,
+    $$tabletGridNumber: tabletGridNumber,
     ...css,
   }
 

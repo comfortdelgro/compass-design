@@ -18,12 +18,14 @@ export const BasicFooter = (props: BasicFooterProps) => {
 
   const buttonVariant = color === 'white' ? 'secondary' : 'primary'
 
+  const linkColor = color === 'white' ? '$gray70' : '$whiteText'
+
   return (
     <Footer
       color={color}
       css={{
         '& a': {
-          color: '$gray70',
+          color: linkColor,
           textDecoration: 'none',
           fontSize: '14px',
           fontWeight: '400',

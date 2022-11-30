@@ -2,7 +2,7 @@ import {styled} from '../theme'
 
 export const StyledFooterNavigation = styled('div', {
   display: 'grid',
-  gridTemplateColumns: 'repeat($$gridItems, 1fr)',
+  gridTemplateColumns: 'repeat($$gridNumber, 1fr)',
   gap: '32px',
   overflow: 'hidden',
 
@@ -13,7 +13,7 @@ export const StyledFooterNavigation = styled('div', {
   },
 
   '@tablet': {
-    gridTemplateColumns: 'repeat(3, 1fr)',
+    gridTemplateColumns: 'repeat($$tabletGridNumber, 1fr)',
   },
 
   '@mobile': {

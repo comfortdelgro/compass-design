@@ -99,7 +99,7 @@ export const Variants: React.FC = () => {
         </FooterHeader>
         <FooterNavigation
           className='center-items'
-          gridItems={navLinks.length}
+          gridNumber={navLinks.length}
           css={{
             '& .footer-nav-title': {
               fontSize: '16px',
@@ -188,7 +188,7 @@ export const Variants: React.FC = () => {
         </FooterHeader>
         <FooterNavigation
           className='center-items'
-          gridItems={navLinks.length}
+          gridNumber={navLinks.length}
           css={{
             '& .footer-nav-title': {
               fontSize: '16px',
@@ -277,7 +277,7 @@ export const Variants: React.FC = () => {
         </FooterHeader>
         <FooterNavigation
           className='center-items'
-          gridItems={navLinks.length}
+          gridNumber={navLinks.length}
           css={{
             '& .footer-nav-title': {
               fontSize: '16px',
