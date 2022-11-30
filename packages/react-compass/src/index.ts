@@ -67,3 +67,5 @@ export type {
   ToastTitleProps,
 } from './toast'
 export * from './utils'
+export {default as Wizard} from './wizard'
+export type {WizardProps} from './wizard'
