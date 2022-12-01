@@ -42,7 +42,8 @@ const reactOutput = './react/'
 
 // Import icons
 const iconSet = await importDirectory(input, {prefix})
-
+// Saving width, height, left, right of svg
+const dimensions = []
 // Validate, clean up, fix palette and optimise
 await iconSet.forEach(async (name, type) => {
   if (type !== 'icon') {
@@ -55,6 +56,7 @@ await iconSet.forEach(async (name, type) => {
     iconSet.remove(name)
     return
   }
+  dimensions[name] = svg.viewBox
 
   // Clean up and optimise icons
   try {
@@ -124,7 +126,8 @@ await fs.mkdir(reactPath)
 console.log(`Writing react outputs at "${reactOutput}"...`)
 for (const iconName in exported.icons) {
   const icon = exported.icons[iconName]
-  const svg = `<svg width="1em" height="1em" viewBox="0 0 ${icon.width} ${icon.height}">${icon.body}</svg>`
+  const des = dimensions[iconName]
+  const svg = `<svg width="1em" height="1em" viewBox="0 0 ${des.width} ${des.height}">${icon.body}</svg>`
   const tsCode = await transform(
     svg,
     {icon: true, typescript: true},
