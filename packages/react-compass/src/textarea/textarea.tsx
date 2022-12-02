@@ -52,7 +52,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     )
 
     return (
-      <StyledTextareaWrapper>
+      <StyledTextareaWrapper css={css}>
         <StyledTextFieldLabel {...labelProps} disabled={!!disabled}>
           {label}
         </StyledTextFieldLabel>

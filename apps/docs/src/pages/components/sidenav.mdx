@@ -1,0 +1,189 @@
+import {Callout} from 'nextra-theme-docs'
+import styles from '../../styles/Home.module.css'
+import Sidenav from '@comfortdelgro/react-compass/sidenav'
+import Icon from '@comfortdelgro/react-compass/icon'
+import Avatar from '@comfortdelgro/react-compass/avatar'
+import {
+  faAmbulance,
+  faBank,
+  faCar,
+  faHelicopter,
+} from '@fortawesome/free-solid-svg-icons'
+
+# Sidenav
+
+The Sidenav displays horizontally information and navigation relating to the current screen.
+
+---
+
+### Import
+
+```js
+import {Sidenav} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import Sidenav from '@comfortdelgro/react-compass/Sidenav'
+```
+
+---
+
+### Basic Sidenav
+
+<section className={styles.componentShowcaseContainer}>
+  <Sidenav css={{height: '800px'}}>
+    <Sidenav.Item>
+      <Avatar label='M' />
+      <h2 style={{fontSize: '24px', marginLeft: '22px', color: '#323130'}}>
+        Workbench
+      </h2>
+    </Sidenav.Item>
+    <Sidenav.Divider />
+    <Sidenav.Item>
+      <Icon icon={faAmbulance}></Icon>
+      <span>Menu</span>
+    </Sidenav.Item>
+    <Sidenav.Item>
+      <Icon icon={faBank}></Icon>
+      <span>Menu</span>
+    </Sidenav.Item>
+    <Sidenav.Item>
+      <Icon icon={faCar}></Icon>
+      <span>Menu</span>
+    </Sidenav.Item>
+    <Sidenav.Item>
+      <Icon icon={faHelicopter}></Icon>
+      <span>Menu</span>
+    </Sidenav.Item>
+  </Sidenav>
+</section>
+
+```js
+<Sidenav css={{height: '800px'}}>
+  <Sidenav.Item>
+    <Avatar label='M' />
+    <h2 style={{fontSize: '24px', marginLeft: '22px', color: '#323130'}}>
+      Workbench
+    </h2>
+  </Sidenav.Item>
+  <Sidenav.Divider />
+  <Sidenav.Item>
+    <Icon icon={faAmbulance}></Icon>
+    <span>Menu</span>
+  </Sidenav.Item>
+  <Sidenav.Item>
+    <Icon icon={faBank}></Icon>
+    <span>Menu</span>
+  </Sidenav.Item>
+  <Sidenav.Item>
+    <Icon icon={faCar}></Icon>
+    <span>Menu</span>
+  </Sidenav.Item>
+  <Sidenav.Item>
+    <Icon icon={faHelicopter}></Icon>
+    <span>Menu</span>
+  </Sidenav.Item>
+</Sidenav>
+```
+
+### Expand
+
+You can expand the Sidenav without hovering
+
+<section className={styles.componentShowcaseContainer}>
+  <Sidenav css={{height: '800px'}} expand>
+    <Sidenav.Item isActive>
+      <Icon icon={faHelicopter}></Icon>
+      <span>Menu</span>
+    </Sidenav.Item>
+  </Sidenav>
+</section>
+
+```js {1}
+<Sidenav css={{height: '800px'}} expand>
+  <Sidenav.Item isActive>
+    <Icon icon={faHelicopter}></Icon>
+    <span>Menu</span>
+  </Sidenav.Item>
+</Sidenav>
+```
+
+### Sidenav Item
+
+Sidenav Item accepts two children. If Sidenav is not in expand mode, only the first child will be rendered
+
+<section className={styles.componentShowcaseContainer}>
+  <Sidenav css={{height: '800px'}}>
+    <Sidenav.Item isActive>
+      <Icon icon={faHelicopter}></Icon>
+      <span>Menu</span>
+    </Sidenav.Item>
+  </Sidenav>
+</section>
+
+```js {2-5}
+<Sidenav css={{height: '800px'}}>
+  <Sidenav.Item isActive>
+    <Icon icon={faHelicopter}></Icon>
+    <span>Menu</span>
+  </Sidenav.Item>
+</Sidenav>
+```
+
+### Sidenav Divider
+
+Sidenav divider provides a horizontal divider to Sidenav
+
+<section className={styles.componentShowcaseContainer}>
+  <Sidenav css={{height: '800px'}}>
+    <Sidenav.Item isActive>
+      <Icon icon={faHelicopter}></Icon>
+      <span>Menu</span>
+    </Sidenav.Item>
+    <Sidenav.Divider />
+    <Sidenav.Item>
+      <Icon icon={faHelicopter}></Icon>
+      <span>Menu</span>
+    </Sidenav.Item>
+  </Sidenav>
+</section>
+
+```js {6}
+<Sidenav css={{height: '800px'}}>
+  <Sidenav.Item isActive>
+    <Icon icon={faHelicopter}></Icon>
+    <span>Menu</span>
+  </Sidenav.Item>
+  <Sidenav.Divider />
+  <Sidenav.Item>
+    <Icon icon={faHelicopter}></Icon>
+    <span>Menu</span>
+  </Sidenav.Item>
+</Sidenav>
+```
+
+### Props
+
+#### Sidenav
+
+| Name     | Type              | Default | Description                                                     |
+| :------- | :---------------- | :------ | :-------------------------------------------------------------- |
+| children | `React.ReactNode` | —       |                                                                 |
+| expand   | `boolean`         | false   | Whether the Sidenav is expanded by default or expanded by hover |
+| css      | `CSS`             | —       |                                                                 |
+
+#### Sidenav Item
+
+| Name       | Type              | Default | Description                                    |
+| :--------- | :---------------- | :------ | :--------------------------------------------- |
+| children\* | `React.ReactNode` | —       | Accept only two children                       |
+| isActive   | `boolean`         | false   | Whether the item is currently activated or not |
+| css        | `CSS`             | —       |                                                |
+
+#### Sidenav Divider
+
+| Name | Type  | Default | Description |
+| :--- | :---- | :------ | :---------- |
+| css  | `CSS` | —       |             |

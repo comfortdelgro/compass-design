@@ -3,8 +3,7 @@ import {
   faUser as faRegularUser,
 } from '@fortawesome/free-regular-svg-icons'
 import {Row} from '../utils/components'
-import Avatar from './avatar'
-import AvatarGroup from './avatar-group'
+import Avatar from './index'
 
 const images = [
   'https://i.pravatar.cc/150?img=32',
@@ -51,7 +50,7 @@ export const Variants = () => (
 
 export const Group = () => (
   <>
-    <AvatarGroup>
+    <Avatar.Group display={5}>
       <Avatar label='Leonhard Euler' image={images[0]} />
       <Avatar label='Isaac Newton' image={images[1]} />
       <Avatar label='Alan Turing' image={images[2]} />
@@ -59,6 +58,6 @@ export const Group = () => (
       <Avatar label='Edwin Hubble' image={images[4]} />
       <Avatar label='Ada Lovelace' image={images[0]} />
       <Avatar label='Max Planck' image={images[1]} />
-    </AvatarGroup>
+    </Avatar.Group>
   </>
 )
