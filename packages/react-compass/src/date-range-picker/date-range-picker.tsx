@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/unbound-method */
-import {DateValue, getLocalTimeZone, today} from '@internationalized/date'
+import {DateValue} from '@internationalized/date'
 import {useDateRangePicker} from '@react-aria/datepicker'
 import {AriaDialogProps} from '@react-aria/dialog'
 import {
@@ -7,34 +7,50 @@ import {
   useDateRangePickerState,
 } from '@react-stately/datepicker'
 import type {AriaButtonProps} from '@react-types/button'
-import type {RangeCalendarProps} from '@react-types/calendar'
+import type {DateRange, RangeCalendarProps} from '@react-types/calendar'
 import type {
   AriaDatePickerProps,
   SpectrumDateRangePickerProps,
 } from '@react-types/datepicker'
 import type {DOMAttributes} from '@react-types/shared'
 import React from 'react'
-import Button from '../button'
-import type {StyledComponentProps} from '../utils/stitches.types'
+import {DateField} from '../calendar/components'
+import Dialog from '../calendar/components/dialog'
+import Popover from '../calendar/components/popover'
+import RangeCalendar from '../range-calendar/range-calendar'
+import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {DateField} from './components'
-import Dialog from './components/dialog'
-import Popover from './components/popover'
-import {StyledDatepicker} from './date-picker.style'
-import RangeCalendar from './range-calendar'
+import {
+  StyledDateRangeInputsWrapper,
+  StyledRangeDatepicker,
+} from './date-range-picker.style'
 
 interface Props
   extends StyledComponentProps,
     SpectrumDateRangePickerProps<DateValue> {
   children?: React.ReactNode
   label?: string
+  startDateLabel?: string
+  endDateLabel?: string
+  shouldCloseOnSelect?: boolean
+  onApply?: (e?: DateRange) => void
+  onCancel?: () => void
 }
 
 const DateRangepicker = React.forwardRef<HTMLDivElement, Props>(
   (props, ref) => {
+    const {
+      startDateLabel,
+      endDateLabel,
+      shouldCloseOnSelect = false,
+      onApply,
+      onCancel,
+      ...delegated
+    } = props
+
     const state = useDateRangePickerState({
-      ...props,
-      shouldCloseOnSelect: () => false,
+      ...delegated,
+      shouldCloseOnSelect: () => shouldCloseOnSelect,
     })
 
     const calendarRef = useDOMRef(ref)
@@ -47,12 +63,11 @@ const DateRangepicker = React.forwardRef<HTMLDivElement, Props>(
       buttonProps,
       dialogProps,
       calendarProps,
-    } = useDateRangePicker(props, state, calendarRef)
+    } = useDateRangePicker(delegated, state, calendarRef)
 
     return (
-      <StyledDatepicker>
+      <StyledRangeDatepicker ref={calendarRef}>
         <DateRangeInputsWrapper
-          ref={calendarRef}
           state={state}
           label={props.label}
           labelProps={labelProps}
@@ -60,14 +75,18 @@ const DateRangepicker = React.forwardRef<HTMLDivElement, Props>(
           startFieldProps={startFieldProps}
           endFieldProps={endFieldProps}
           buttonProps={buttonProps}
+          startDateLabel={startDateLabel}
+          endDateLabel={endDateLabel}
         />
         <DateRangeCalendarWrapper
           state={state}
+          onApply={onApply}
+          onCancel={onCancel}
           calendarRef={calendarRef}
           dialogProps={dialogProps}
           calendarProps={calendarProps}
         />
-      </StyledDatepicker>
+      </StyledRangeDatepicker>
     )
   },
 )
@@ -80,6 +99,8 @@ interface DateRangeInputsWrapperProps {
   startFieldProps: AriaDatePickerProps<DateValue>
   endFieldProps: AriaDatePickerProps<DateValue>
   buttonProps: AriaButtonProps
+  startDateLabel?: string | undefined
+  endDateLabel?: string | undefined
 }
 
 const DateRangeInputsWrapper = React.forwardRef<
@@ -94,22 +115,33 @@ const DateRangeInputsWrapper = React.forwardRef<
     startFieldProps,
     endFieldProps,
     buttonProps,
+    startDateLabel,
+    endDateLabel,
   } = props
 
   return (
-    <>
-      <span {...labelProps}>{label}</span>
-      <div {...groupProps} ref={ref}>
-        <div className='field'>
-          <DateField {...startFieldProps} />
-          <DateField {...endFieldProps} />
+    <StyledDateRangeInputsWrapper>
+      <span {...labelProps} className='date-range-label'>
+        {label}
+      </span>
+      <div {...groupProps} ref={ref} className='date-range-inputs-body'>
+        <div className='date-range-fields'>
+          <DateField
+            {...startFieldProps}
+            label={startDateLabel}
+            buttonProps={buttonProps}
+          />
+          <DateField
+            {...endFieldProps}
+            label={endDateLabel}
+            buttonProps={buttonProps}
+          />
           {state.validationState === 'invalid' && (
             <span aria-hidden='true'>🚫</span>
           )}
         </div>
-        <Button {...buttonProps}>🗓</Button>
       </div>
-    </>
+    </StyledDateRangeInputsWrapper>
   )
 })
 
@@ -118,10 +150,13 @@ interface DateRangeCalendarWrapperProps {
   calendarRef: React.RefObject<HTMLDivElement>
   dialogProps: AriaDialogProps
   calendarProps: RangeCalendarProps<DateValue>
+  onApply: ((e?: DateRange) => void) | undefined
+  onCancel: (() => void) | undefined
 }
 
 const DateRangeCalendarWrapper = (props: DateRangeCalendarWrapperProps) => {
-  const {state, calendarRef, dialogProps, calendarProps} = props
+  const {state, calendarRef, dialogProps, calendarProps, onApply, onCancel} =
+    props
 
   return (
     <>
@@ -130,13 +165,14 @@ const DateRangeCalendarWrapper = (props: DateRangeCalendarWrapperProps) => {
           state={state}
           triggerRef={calendarRef}
           placement='bottom start'
+          offset={8}
         >
           <Dialog {...dialogProps}>
             <RangeCalendar
-              defaultValue={{
-                start: today(getLocalTimeZone()),
-                end: today(getLocalTimeZone()).add({weeks: 2}),
-              }}
+              state={state}
+              hasFooter={true}
+              onApplyCallback={onApply}
+              onCancelCallback={onCancel}
               {...calendarProps}
             />
           </Dialog>

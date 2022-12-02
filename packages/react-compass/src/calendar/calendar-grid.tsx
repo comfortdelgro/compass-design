@@ -6,9 +6,11 @@ import {
 import {useCalendarGrid} from '@react-aria/calendar'
 import {useLocale} from '@react-aria/i18n'
 import {CalendarState, RangeCalendarState} from '@react-stately/calendar'
+import {StyledComponentProps} from '../utils/stitches.types'
 import CalendarCell from './calendar-cell'
+import {StyledCalendarGrid} from './calendar-grid.style'
 
-interface Props {
+interface Props extends StyledComponentProps {
   state: CalendarState | RangeCalendarState
   offset?: DateDuration
 }
@@ -21,13 +23,13 @@ const DEFAULT_OFFSET: DateDuration = {
 }
 
 const CalendarGrid = (props: Props) => {
-  const {state, offset = DEFAULT_OFFSET} = props
+  const {state, offset = DEFAULT_OFFSET, css = {}} = props
 
   const {locale} = useLocale()
   const startDate = state.visibleRange.start.add(offset)
   const endDate = endOfMonth(startDate)
 
-  const {gridProps, headerProps, weekDays} = useCalendarGrid(
+  const {gridProps, headerProps} = useCalendarGrid(
     {
       startDate,
       endDate,
@@ -35,14 +37,18 @@ const CalendarGrid = (props: Props) => {
     state,
   )
 
+  const weekDays = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
+
   const weeksInMonth = getWeeksInMonth(startDate, locale)
 
   return (
-    <table {...gridProps} cellPadding='0' className='flex-1'>
-      <thead {...headerProps} className='text-gray-600'>
+    <StyledCalendarGrid {...gridProps} css={css} cellPadding='0'>
+      <thead {...headerProps}>
         <tr>
           {weekDays.map((day, index) => (
-            <th key={index}>{day}</th>
+            <th key={index} className='calendar-weekday'>
+              {day}
+            </th>
           ))}
         </tr>
       </thead>
@@ -66,7 +72,7 @@ const CalendarGrid = (props: Props) => {
           </tr>
         ))}
       </tbody>
-    </table>
+    </StyledCalendarGrid>
   )
 }
 

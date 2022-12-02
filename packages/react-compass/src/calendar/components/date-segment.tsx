@@ -5,6 +5,7 @@ import type {
 } from '@react-stately/datepicker'
 import React from 'react'
 import {useDOMRef} from '../../utils/use-dom-ref'
+import {StyledDateSegment} from './date-segment.style'
 
 interface Props {
   segment: IDateSegment
@@ -19,13 +20,13 @@ const DateSegment = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   const {segmentProps} = useDateSegment(segment, state, dateSegmentRef)
 
   return (
-    <div
+    <StyledDateSegment
       {...segmentProps}
       ref={dateSegmentRef}
-      className={`segment ${segment.isPlaceholder ? 'placeholder' : ''}`}
+      className={`segment ${segment.isPlaceholder ? 'placeholder' : 'number'}`}
     >
       {segment.text}
-    </div>
+    </StyledDateSegment>
   )
 })
 

@@ -36,8 +36,6 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
         ref={popoverRef}
         style={{
           ...popoverProps.style,
-          background: 'var(--page-background)',
-          border: '1px solid gray',
         }}
       >
         <DismissButton onDismiss={state.close} />

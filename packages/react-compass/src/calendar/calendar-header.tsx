@@ -1,7 +1,4 @@
-import {
-  faChevronLeft,
-  faCircleChevronRight,
-} from '@fortawesome/free-solid-svg-icons'
+import {faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons'
 import {useDateFormatter} from '@react-aria/i18n'
 import {VisuallyHidden} from '@react-aria/visually-hidden'
 import {CalendarState, RangeCalendarState} from '@react-stately/calendar'
@@ -10,9 +7,12 @@ import type {DOMAttributes} from '@react-types/shared'
 import React from 'react'
 import Button from '../button'
 import Icon from '../icon'
+import {StyledComponentProps} from '../utils/stitches.types'
+import {StyledCalendarHeader} from './calendar-header.style'
 
-interface Props {
+interface Props extends StyledComponentProps {
   children?: React.ReactNode
+  variant?: 'default' | 'range'
   state: CalendarState | RangeCalendarState
   calendarProps: DOMAttributes
   prevButtonProps: AriaButtonProps
@@ -20,7 +20,14 @@ interface Props {
 }
 
 const CalendarHeader = (props: Props) => {
-  const {state, calendarProps, prevButtonProps, nextButtonProps} = props
+  const {
+    state,
+    variant = 'default',
+    calendarProps,
+    prevButtonProps,
+    nextButtonProps,
+    css = {},
+  } = props
 
   const monthDateFormatter = useDateFormatter({
     month: 'long',
@@ -29,7 +36,7 @@ const CalendarHeader = (props: Props) => {
   })
 
   return (
-    <div className='flex items-center py-4'>
+    <StyledCalendarHeader css={css}>
       {/* Add a screen reader only description of the entire visible range rather than
        * a separate heading above each month grid. This is placed first in the DOM order
        * so that it is the first thing a touch screen reader user encounters.
@@ -38,28 +45,39 @@ const CalendarHeader = (props: Props) => {
       <VisuallyHidden>
         <h2>{calendarProps['aria-label']}</h2>
       </VisuallyHidden>
-      <Button {...prevButtonProps}>
-        <Icon icon={faChevronLeft} />
-      </Button>
-      <h2
-        // We have a visually hidden heading describing the entire visible range,
-        // and the calendar itself describes the individual month
-        // so we don't need to repeat that here for screen reader users.
-        aria-hidden
-      >
-        {monthDateFormatter.format(
-          state.visibleRange.start.toDate(state.timeZone),
+      <div className='calendar-header-left-side'>
+        <Button variant='ghost' {...prevButtonProps}>
+          <Icon icon={faChevronLeft} />
+        </Button>
+        <h2
+          // We have a visually hidden heading describing the entire visible range,
+          // and the calendar itself describes the individual month
+          // so we don't need to repeat that here for screen reader users.
+          aria-hidden
+        >
+          {monthDateFormatter.format(
+            state.visibleRange.start.toDate(state.timeZone),
+          )}
+        </h2>
+        {variant === 'default' && (
+          <Button variant='ghost' {...nextButtonProps}>
+            <Icon icon={faChevronRight} />
+          </Button>
         )}
-      </h2>
-      <h2 aria-hidden>
-        {monthDateFormatter.format(
-          state.visibleRange.start.add({months: 1}).toDate(state.timeZone),
-        )}
-      </h2>
-      <Button {...nextButtonProps}>
-        <Icon icon={faCircleChevronRight} />
-      </Button>
-    </div>
+      </div>
+      {variant === 'range' && (
+        <div className='calendar-header-right-side'>
+          <h2 aria-hidden>
+            {monthDateFormatter.format(
+              state.visibleRange.start.add({months: 1}).toDate(state.timeZone),
+            )}
+          </h2>
+          <Button variant='ghost' {...nextButtonProps}>
+            <Icon icon={faChevronRight} />
+          </Button>
+        </div>
+      )}
+    </StyledCalendarHeader>
   )
 }
 
