@@ -55,7 +55,7 @@ export const BasicFooter = (props: BasicFooterProps) => {
       </Footer.Header>
       <Footer.Nav
         className='center-items'
-        gridItems={6}
+        gridNumber={6}
         css={{
           '& .footer-nav-title': {
             fontSize: '16px',
