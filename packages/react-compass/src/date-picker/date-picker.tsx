@@ -24,9 +24,12 @@ interface Props
     SpectrumDatePickerProps<DateValue> {
   children?: React.ReactNode
   label?: string
+  isInvalid?: boolean
   shouldCloseOnSelect?: boolean
   onCancel?: (() => void) | undefined
 }
+
+export type DatePickerProps = Props
 
 const DatePicker = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   const state = useDatePickerState({
@@ -39,12 +42,19 @@ const DatePicker = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   const {groupProps, fieldProps, buttonProps, dialogProps, calendarProps} =
     useDatePicker(props, state, calendarRef)
 
+  const extendedFieldProps = {
+    necessityIndicator: props.necessityIndicator,
+    ...fieldProps,
+  }
+
   return (
-    <StyledDatePicker ref={calendarRef}>
+    <StyledDatePicker>
       <DatePickerFieldWrapper
+        ref={calendarRef}
         groupProps={groupProps}
-        fieldProps={fieldProps}
+        fieldProps={extendedFieldProps}
         buttonProps={buttonProps}
+        isInvalid={props.isInvalid}
         label={props.label}
       />
       <DatePickerCalendarWrapper
@@ -63,17 +73,26 @@ interface DatePickerFieldWrapperProps {
   fieldProps: AriaDatePickerProps<DateValue>
   buttonProps: AriaButtonProps
   label?: string | undefined
+  isInvalid?: boolean | undefined
 }
 
-const DatePickerFieldWrapper = (props: DatePickerFieldWrapperProps) => {
-  const {groupProps, fieldProps, buttonProps, label} = props
+const DatePickerFieldWrapper = React.forwardRef<
+  HTMLDivElement,
+  DatePickerFieldWrapperProps
+>((props, ref) => {
+  const {groupProps, fieldProps, buttonProps, label, isInvalid} = props
 
   return (
-    <StyledDatePickerFieldWrapper {...groupProps}>
-      <DateField {...fieldProps} buttonProps={buttonProps} label={label} />
+    <StyledDatePickerFieldWrapper {...groupProps} ref={ref}>
+      <DateField
+        {...fieldProps}
+        buttonProps={buttonProps}
+        label={label}
+        isInvalid={isInvalid}
+      />
     </StyledDatePickerFieldWrapper>
   )
-}
+})
 
 interface DatePickerCalendarWrapperProps {
   state: DatePickerState

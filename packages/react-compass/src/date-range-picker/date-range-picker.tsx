@@ -30,6 +30,7 @@ interface Props
     SpectrumDateRangePickerProps<DateValue> {
   children?: React.ReactNode
   label?: string
+  isInvalid?: boolean
   startDateLabel?: string
   endDateLabel?: string
   shouldCloseOnSelect?: boolean
@@ -37,7 +38,9 @@ interface Props
   onCancel?: () => void
 }
 
-const DateRangepicker = React.forwardRef<HTMLDivElement, Props>(
+export type DateRangePickerProps = Props
+
+const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
   (props, ref) => {
     const {
       startDateLabel,
@@ -65,6 +68,16 @@ const DateRangepicker = React.forwardRef<HTMLDivElement, Props>(
       calendarProps,
     } = useDateRangePicker(delegated, state, calendarRef)
 
+    const extendedStartFieldProps = {
+      necessityIndicator: props.necessityIndicator,
+      ...startFieldProps,
+    }
+
+    const extendedEndFieldProps = {
+      necessityIndicator: props.necessityIndicator,
+      ...endFieldProps,
+    }
+
     return (
       <StyledRangeDatepicker ref={calendarRef}>
         <DateRangeInputsWrapper
@@ -72,11 +85,12 @@ const DateRangepicker = React.forwardRef<HTMLDivElement, Props>(
           label={props.label}
           labelProps={labelProps}
           groupProps={groupProps}
-          startFieldProps={startFieldProps}
-          endFieldProps={endFieldProps}
+          startFieldProps={extendedStartFieldProps}
+          endFieldProps={extendedEndFieldProps}
           buttonProps={buttonProps}
           startDateLabel={startDateLabel}
           endDateLabel={endDateLabel}
+          isInvalid={props.isInvalid}
         />
         <DateRangeCalendarWrapper
           state={state}
@@ -101,6 +115,7 @@ interface DateRangeInputsWrapperProps {
   buttonProps: AriaButtonProps
   startDateLabel?: string | undefined
   endDateLabel?: string | undefined
+  isInvalid?: boolean | undefined
 }
 
 const DateRangeInputsWrapper = React.forwardRef<
@@ -108,7 +123,6 @@ const DateRangeInputsWrapper = React.forwardRef<
   DateRangeInputsWrapperProps
 >((props, ref) => {
   const {
-    state,
     label,
     labelProps,
     groupProps,
@@ -117,6 +131,7 @@ const DateRangeInputsWrapper = React.forwardRef<
     buttonProps,
     startDateLabel,
     endDateLabel,
+    isInvalid,
   } = props
 
   return (
@@ -130,15 +145,14 @@ const DateRangeInputsWrapper = React.forwardRef<
             {...startFieldProps}
             label={startDateLabel}
             buttonProps={buttonProps}
+            isInvalid={isInvalid}
           />
           <DateField
             {...endFieldProps}
             label={endDateLabel}
             buttonProps={buttonProps}
+            isInvalid={isInvalid}
           />
-          {state.validationState === 'invalid' && (
-            <span aria-hidden='true'>🚫</span>
-          )}
         </div>
       </div>
     </StyledDateRangeInputsWrapper>
@@ -182,4 +196,4 @@ const DateRangeCalendarWrapper = (props: DateRangeCalendarWrapperProps) => {
   )
 }
 
-export default DateRangepicker
+export default DateRangePicker

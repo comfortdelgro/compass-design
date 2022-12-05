@@ -26,8 +26,14 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
 
     const cellRef = useDOMRef(ref)
 
-    const {cellProps, buttonProps, isSelected, isDisabled, formattedDate} =
-      useCalendarCell({date}, state, cellRef)
+    const {
+      cellProps,
+      buttonProps,
+      isSelected,
+      isDisabled,
+      isUnavailable,
+      formattedDate,
+    } = useCalendarCell({date}, state, cellRef)
 
     const isOutsideMonth = !isSameMonth(currentMonth, date)
 
@@ -53,6 +59,7 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
       if (isSelected && isRangeCalendar) className += 'selected '
       else if (isSelected && !isRangeCalendar) className += 'highlighted '
       if (isSelectionStart || isSelectionEnd) className += 'highlighted '
+      if (isUnavailable) className += 'unavailable '
       if (isToday) className += 'today '
       return className
     }

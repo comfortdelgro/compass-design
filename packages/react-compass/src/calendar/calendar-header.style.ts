@@ -19,4 +19,9 @@ export const StyledCalendarHeader = styled('div', {
     marginLeft: 'auto',
     marginRight: 'auto',
   },
+
+  '& .calendar-header-icon': {
+    width: '12px',
+    height: '12px',
+  },
 })

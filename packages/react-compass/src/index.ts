@@ -21,6 +21,8 @@ export {default as Breadcrumbs} from './breadcrumbs'
 export type {BreadcrumbItemProps, BreadcrumbsProps} from './breadcrumbs'
 export {default as Button} from './button'
 export type {ButtonProps} from './button'
+export {default as Calendar} from './calendar'
+export type {CalendarProps} from './calendar'
 export {default as Card} from './card'
 export type {
   CardBodyProps,
@@ -30,6 +32,10 @@ export type {
 } from './card'
 export {default as Checkbox} from './checkbox'
 export type {CheckboxProps} from './checkbox'
+export {default as DatePicker} from './date-picker'
+export type {DatePickerProps} from './date-picker'
+export {default as DateRangePicker} from './date-range-picker'
+export type {DateRangePickerProps} from './date-range-picker'
 export {default as Dialog} from './dialog'
 export type {
   DialogActionsProps,
@@ -70,6 +76,8 @@ export type {PaginationProps} from './pagination'
 export {default as Preflight} from './preflight'
 export {default as Radio} from './radio'
 export type {RadioGroupProps, RadioProps} from './radio'
+export {default as RangeCalendar} from './range-calendar'
+export type {RangeCalendarProps, RangeValue} from './range-calendar'
 export {default as SearchField} from './searchfield'
 export type {SearchFieldProps} from './searchfield'
 export {default as Sidebar} from './sidebar'

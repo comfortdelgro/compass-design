@@ -1,0 +1,173 @@
+import RangeCalendar from '@comfortdelgro/react-compass/range-calendar'
+import styles from '../../styles/Home.module.css'
+import {ControlledRangeCalendar, ValidatedRangeCalendar} from '../../components/Calendars'
+
+# Range Calendar
+
+RangeCalendars display a grid of days in one or more months and allow users to select a contiguous range of dates.
+
+### Pre-Install
+
+Install these packages to use their utilities
+
+import {Tabs, Tab, Callout} from 'nextra-theme-docs'
+
+<Tabs items={['npm', 'yarn', 'pnpm']} defaultIndex={0}>
+  <Tab>
+    ```bash
+      npm i @react-aria/i18n @internationalized/date 
+    ```
+  </Tab>
+  <Tab>
+    ``` bash
+      yarn add @react-aria/i18n @internationalized/date 
+    ```
+  </Tab>
+  <Tab>
+    ``` bash
+      pnpm add @react-aria/i18n @internationalized/date 
+    ```
+  </Tab>
+</Tabs>
+
+---
+
+### Import
+
+```js
+import {RangeCalendar} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import RangeCalendar from '@comfortdelgro/react-compass/range-calendar'
+```
+
+---
+
+### Basic
+
+<section className={styles.componentShowcaseContainer}>
+  <RangeCalendar />
+</section>
+
+```js
+<RangeCalendar />
+```
+
+### Controlled
+
+<section className={styles.componentShowcaseContainer}>
+  <ControlledRangeCalendar/>
+</section>
+
+```js
+import {RangeCalendar, RangeValue} from '@comfortdelgro/react-compass'
+import {
+  DateValue,
+  getLocalTimeZone,
+  parseDate,
+  today,
+} from '@internationalized/date'
+import {useDateFormatter} from '@react-aria/i18n'
+
+function ControlledRangeCalendar() {
+  const [range, setRange] = React.useState<RangeValue<DateValue>>({
+    start: parseDate('2020-02-03'),
+    end: parseDate('2020-02-08'),
+  })
+  const formatter = useDateFormatter({dateStyle: 'long'})
+  return (
+    <>
+      {range &&
+        formatter.formatRange(
+          range.start.toDate(getLocalTimeZone()),
+          range.end.toDate(getLocalTimeZone()),
+        )}
+      <RangeCalendar onChange={setRange} />
+    </>
+  )
+}
+```
+
+### Validation
+
+Range Calendar supports marking certain dates as unavailable. These dates cannot be selected by the user and are displayed with a crossed out appearance. The isDateUnavailable prop accepts a callback that is called to evaluate whether each visible date is unavailable.
+
+These examples prevent selecting weekends.
+
+#### Contiguous ranges
+
+<section className={styles.componentShowcaseContainer}>
+  <ValidatedRangeCalendar />
+</section>
+
+```js
+function ValidatedRangeCalendar() {
+  const {locale} = useLocale()
+  return (
+    <RangeCalendar
+      isDateUnavailable={(date) => isWeekend(date, locale)}
+    />
+  )
+}
+```
+
+#### Non-contiguous ranges
+
+The ```allowsNonContiguousRanges``` prop enables a range to be selected even if there are unavailable dates in the middle.
+The value emitted in the onChange event will still be a single range with a start and end property, 
+but unavailable dates will not be displayed as selected.
+It is up to applications to split the full selected range into multiple as needed for business logic.
+
+<section className={styles.componentShowcaseContainer}>
+  <ValidatedRangeCalendar contiguos={true}/>
+</section>
+
+```js
+function ValidatedRangeCalendar() {
+  const {locale} = useLocale()
+  return (
+    <RangeCalendar
+      isDateUnavailable={(date) => isWeekend(date, locale)}
+      allowsNonContiguousRanges
+    />
+  )
+}
+```
+
+### Disabled
+
+<section className={styles.componentShowcaseContainer}>
+  <RangeCalendar aria-label="Event date" isDisabled />
+</section>
+
+```js
+<RangeCalendar aria-label="Event date" isDisabled />
+```
+
+### Read-only
+
+<section className={styles.componentShowcaseContainer}>
+  <RangeCalendar aria-label="Event date" isReadOnly />
+</section>
+
+```js
+<RangeCalendar aria-label="Event date" isReadOnly />
+```
+
+### Props
+
+| Name                      | Type                           | Default | Description                                                                                                                                |
+| :------------------------ | :----------------------------- | :------ | :----------------------------------------------------------------------------------------------------------------------------------------- |
+| minValue                  | `DateValue`                    |         | The minimum allowed date that a user may select.                                                                                           |
+| maxValue                  | `DateValue`                    |         | The maximum allowed date that a user may select.                                                                                           |
+| isReadOnly                | `boolean`                      | false   | Whether the calendar value is immutable.                                                                                                   |
+| isDisabled                | `boolean`                      | false   | Whether the calendar is disabled.                                                                                                          |
+| value                     | `RangeValue<DateValue>`        |         | The current value (controlled).                                                                                                            |
+| defaultValue              | `RangeValue<DateValue>`        |         | The default value (uncontrolled).                                                                                                          |
+| allowsNonContiguousRanges | `boolean`                      |         | When combined with isDateUnavailable, determines whether non-contiguous ranges, i.e. ranges containing unavailable dates, may be selected. |
+| onChange                  | `(e: DateValue) => void`       |         | The default value (uncontrolled).                                                                                                          |
+| isDateUnavailable         | `(date: DateValue) => boolean` |         | Callback that is called for each date of the calendar. If it returns true, then the date is unavailable.                                   |
+

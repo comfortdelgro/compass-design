@@ -6,11 +6,13 @@ import {
 import {useCalendarGrid} from '@react-aria/calendar'
 import {useLocale} from '@react-aria/i18n'
 import {CalendarState, RangeCalendarState} from '@react-stately/calendar'
+import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import CalendarCell from './calendar-cell'
 import {StyledCalendarGrid} from './calendar-grid.style'
 
 interface Props extends StyledComponentProps {
+  children?: React.ReactNode
   state: CalendarState | RangeCalendarState
   offset?: DateDuration
 }

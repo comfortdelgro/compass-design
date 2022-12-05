@@ -1,4 +1,5 @@
 import {styled} from '../../theme'
+import {StyledDateSegment} from './date-segment.style'
 
 export const StyledDateField = styled('div', {
   display: 'flex',
@@ -13,7 +14,7 @@ export const StyledDateField = styled('div', {
   },
 
   '& .date-field-input': {
-    width: '197px',
+    minWidth: '197px',
     height: '44px',
     display: 'flex',
     alignItems: 'center',
@@ -25,5 +26,32 @@ export const StyledDateField = styled('div', {
 
   '& .toggle-calendar-button': {
     marginLeft: 'auto',
+  },
+
+  '& .toggle-calendar-button .toggle-calendar-icon': {
+    width: '12px',
+    height: '12px',
+  },
+
+  variants: {
+    isDisabled: {
+      true: {
+        cursor: 'not-allowed',
+        '& .date-field-input': {
+          backgroundColor: '$gray20',
+        },
+        [`& ${StyledDateSegment}`]: {
+          color: '$gray60',
+        },
+      },
+    },
+
+    isInvalid: {
+      true: {
+        '& .date-field-input': {
+          borderColor: '$danger',
+        },
+      },
+    },
   },
 })

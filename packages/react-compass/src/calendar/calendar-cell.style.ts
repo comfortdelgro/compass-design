@@ -26,6 +26,11 @@ export const StyledCalendarCell = styled('td', {
     borderRadius: '$md',
   },
 
+  '&.unavailable .calendar-cell-value': {
+    textDecoration: 'line-through',
+    color: '$gray50',
+  },
+
   '&.highlighted .calendar-cell-value': {
     color: '$whiteText',
   },

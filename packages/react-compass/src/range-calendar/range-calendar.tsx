@@ -25,77 +25,81 @@ interface Props
   onApplyCallback?: ((e?: DateRange) => void) | undefined
 }
 
-const RangeCalendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
-  const {
-    state: pickerState,
-    hasFooter,
-    onCancelCallback,
-    onApplyCallback,
-    ...delegated
-  } = props
+export type RangeCalendarProps = Props
 
-  const {locale} = useLocale()
-  const state = useRangeCalendarState({
-    ...delegated,
-    visibleDuration: {months: 2},
-    locale,
-    createCalendar,
-  })
+const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
+  (props, ref) => {
+    const {
+      state: pickerState,
+      hasFooter,
+      onCancelCallback,
+      onApplyCallback,
+      ...delegated
+    } = props
 
-  const rangeCalendarRef = useDOMRef(ref)
+    const {locale} = useLocale()
+    const state = useRangeCalendarState({
+      ...delegated,
+      visibleDuration: {months: 2},
+      locale,
+      createCalendar,
+    })
 
-  const {calendarProps, prevButtonProps, nextButtonProps} = useRangeCalendar(
-    delegated,
-    state,
-    rangeCalendarRef,
-  )
+    const rangeCalendarRef = useDOMRef(ref)
 
-  const formatter = useDateFormatter({})
+    const {calendarProps, prevButtonProps, nextButtonProps} = useRangeCalendar(
+      delegated,
+      state,
+      rangeCalendarRef,
+    )
 
-  const handleCancelButtonClick = () => {
-    onCancelCallback?.()
-    pickerState?.close()
-    return
-  }
+    const formatter = useDateFormatter({})
 
-  const handleApplyButtonClick = () => {
-    if (pickerState) onApplyCallback?.(pickerState.value)
-    pickerState?.close()
-    return
-  }
+    const handleCancelButtonClick = () => {
+      onCancelCallback?.()
+      pickerState?.close()
+      return
+    }
 
-  return (
-    <StyledRangeCalendar ref={rangeCalendarRef}>
-      <CalendarHeader
-        state={state}
-        variant='range'
-        calendarProps={calendarProps}
-        prevButtonProps={prevButtonProps}
-        nextButtonProps={nextButtonProps}
-      />
-      <div className='calendar-body'>
-        <CalendarGrid state={state} />
-        <CalendarGrid state={state} offset={{months: 1}} />
-      </div>
-      {hasFooter && (
-        <div className='calendar-footer'>
-          <p className='preview-date'>
-            {state.value &&
-              formatter.formatRange(
-                state.value.start.toDate(getLocalTimeZone()),
-                state.value.end.toDate(getLocalTimeZone()),
-              )}
-          </p>
-          <Button variant='ghost' onPress={handleCancelButtonClick}>
-            Cancel
-          </Button>
-          <Button variant='primary' onPress={handleApplyButtonClick}>
-            Apply
-          </Button>
+    const handleApplyButtonClick = () => {
+      if (pickerState) onApplyCallback?.(pickerState.value)
+      pickerState?.close()
+      return
+    }
+
+    return (
+      <StyledRangeCalendar ref={rangeCalendarRef}>
+        <CalendarHeader
+          state={state}
+          variant='range'
+          calendarProps={calendarProps}
+          prevButtonProps={prevButtonProps}
+          nextButtonProps={nextButtonProps}
+        />
+        <div className='calendar-body'>
+          <CalendarGrid state={state} />
+          <CalendarGrid state={state} offset={{months: 1}} />
         </div>
-      )}
-    </StyledRangeCalendar>
-  )
-})
+        {hasFooter && (
+          <div className='calendar-footer'>
+            <p className='preview-date'>
+              {state.value &&
+                formatter.formatRange(
+                  state.value.start.toDate(getLocalTimeZone()),
+                  state.value.end.toDate(getLocalTimeZone()),
+                )}
+            </p>
+            <Button variant='ghost' onPress={handleCancelButtonClick}>
+              Cancel
+            </Button>
+            <Button variant='primary' onPress={handleApplyButtonClick}>
+              Apply
+            </Button>
+          </div>
+        )}
+      </StyledRangeCalendar>
+    )
+  },
+)
 
 export default RangeCalendar

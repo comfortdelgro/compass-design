@@ -1,6 +1,7 @@
 import {styled} from '../theme'
 
 export const StyledRangeCalendar = styled('div', {
+  width: 'fit-content',
   backgroundColor: '$background',
   boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.08)',
   borderRadius: '$md',

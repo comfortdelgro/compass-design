@@ -47,7 +47,10 @@ const CalendarHeader = (props: Props) => {
       </VisuallyHidden>
       <div className='calendar-header-left-side'>
         <Button variant='ghost' {...prevButtonProps}>
-          <Icon icon={faChevronLeft} />
+          <Icon
+            className='calendar-header-icon chevron-left'
+            icon={faChevronLeft}
+          />
         </Button>
         <h2
           // We have a visually hidden heading describing the entire visible range,
@@ -61,7 +64,10 @@ const CalendarHeader = (props: Props) => {
         </h2>
         {variant === 'default' && (
           <Button variant='ghost' {...nextButtonProps}>
-            <Icon icon={faChevronRight} />
+            <Icon
+              className='calendar-header-icon chevron-right'
+              icon={faChevronRight}
+            />
           </Button>
         )}
       </div>
@@ -73,7 +79,10 @@ const CalendarHeader = (props: Props) => {
             )}
           </h2>
           <Button variant='ghost' {...nextButtonProps}>
-            <Icon icon={faChevronRight} />
+            <Icon
+              className='calendar-header-icon chevron-right'
+              icon={faChevronRight}
+            />
           </Button>
         </div>
       )}

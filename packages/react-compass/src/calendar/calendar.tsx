@@ -18,6 +18,8 @@ interface Props extends StyledComponentProps, SpectrumCalendarProps<DateValue> {
   onCancelCallback?: (() => void) | undefined
 }
 
+export type CalendarProps = Props
+
 const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   const {
     state: pickerState,
