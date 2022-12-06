@@ -7,6 +7,6 @@ export const StyledRangeDatepicker = styled('div', {
 export const StyledDateRangeInputsWrapper = styled('div', {
   '& .date-range-fields': {
     display: 'flex',
-    gap: '24px',
+    gap: '$6',
   },
 })

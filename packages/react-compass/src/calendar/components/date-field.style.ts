@@ -5,20 +5,20 @@ export const StyledDateField = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'flex-end',
-  gap: '4px',
+  gap: '$1',
 
   '& .date-field-label': {
-    fontSize: '14px',
+    fontSize: '$body3',
     fontWeight: '$semibold',
     color: '$gray90',
   },
 
   '& .date-field-input': {
-    minWidth: '197px',
-    height: '44px',
+    minWidth: '$49',
+    height: '$11',
     display: 'flex',
     alignItems: 'center',
-    padding: '0 16px',
+    padding: '0 $4',
     backgroundColor: '$background',
     border: '1px solid $gray30',
     borderRadius: '$md',
@@ -29,8 +29,8 @@ export const StyledDateField = styled('div', {
   },
 
   '& .toggle-calendar-button .toggle-calendar-icon': {
-    width: '12px',
-    height: '12px',
+    width: '$3',
+    height: '$3',
   },
 
   variants: {
@@ -38,7 +38,7 @@ export const StyledDateField = styled('div', {
       true: {
         cursor: 'not-allowed',
         '& .date-field-input': {
-          backgroundColor: '$gray20',
+          backgroundColor: '$divider',
         },
         [`& ${StyledDateSegment}`]: {
           color: '$gray60',

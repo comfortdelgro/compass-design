@@ -40,7 +40,7 @@ export const StyledCalendarCell = styled('td', {
     justifyContent: 'center',
     alignItems: 'center',
     height: '100%',
-    fontSize: '14px',
+    fontSize: '$body3',
     color: '$gray100',
   },
 

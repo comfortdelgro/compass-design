@@ -32,6 +32,7 @@ interface Props
 export type DatePickerProps = Props
 
 const DatePicker = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
+  const {css = {}} = props
   const state = useDatePickerState({
     ...props,
     shouldCloseOnSelect: () => props.shouldCloseOnSelect ?? false,
@@ -48,7 +49,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   }
 
   return (
-    <StyledDatePicker>
+    <StyledDatePicker css={css}>
       <DatePickerFieldWrapper
         ref={calendarRef}
         groupProps={groupProps}

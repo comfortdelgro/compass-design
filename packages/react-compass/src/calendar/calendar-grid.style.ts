@@ -1,21 +1,21 @@
 import {styled} from '../theme'
 
 export const StyledCalendarGrid = styled('table', {
-  marginTop: '8px',
+  marginTop: '$2',
   borderCollapse: 'collapse',
 
   '& .calendar-weekday': {
-    fontSize: '12px',
+    fontSize: '$label2',
     fontWeight: '$semibold',
     color: '$cdgBlue120',
   },
 
   '& th, & td': {
-    width: '41px',
+    width: '$10',
   },
 
   '& td': {
-    height: '32px',
+    height: '$8',
   },
 
   '& td > div': {

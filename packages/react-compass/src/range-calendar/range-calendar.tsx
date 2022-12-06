@@ -32,6 +32,7 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
     const {
       state: pickerState,
       hasFooter,
+      css = {},
       onCancelCallback,
       onApplyCallback,
       ...delegated
@@ -68,7 +69,7 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
     }
 
     return (
-      <StyledRangeCalendar ref={rangeCalendarRef}>
+      <StyledRangeCalendar ref={rangeCalendarRef} css={css}>
         <CalendarHeader
           state={state}
           variant='range'

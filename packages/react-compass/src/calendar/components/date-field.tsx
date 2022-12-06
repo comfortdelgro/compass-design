@@ -27,8 +27,6 @@ const DateField = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     createCalendar,
   })
 
-  console.log(props)
-
   const dateFieldRef = useDOMRef(ref)
 
   const {labelProps, fieldProps} = useDateField(props, state, dateFieldRef)
@@ -39,7 +37,14 @@ const DateField = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
 
   const isInvalid = !!props.isInvalid || state.validationState === 'invalid'
 
-  const requiredLabeling = () => {
+  /**
+   * Generate label depending on props
+   * - isRequired AND icon => '*'
+   * - isRequired AND label => '(required)'
+   * - not isRequired AND label => '(optional)'
+   * - not isRequired AND not label => ''
+   */
+  const generateLabeling = () => {
     const necessityIndicator = props.necessityIndicator ?? 'icon'
     if (props.isRequired && necessityIndicator === 'icon') {
       return '*'
@@ -54,7 +59,7 @@ const DateField = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   return (
     <StyledDateField isDisabled={isDisabled} isInvalid={isInvalid}>
       <span {...labelProps} className='date-field-label'>
-        {props.label} {requiredLabeling()}
+        {props.label} {generateLabeling()}
       </span>
       <div {...fieldProps} ref={dateFieldRef} className='date-field-input'>
         {state.segments.map((segment, i) => {

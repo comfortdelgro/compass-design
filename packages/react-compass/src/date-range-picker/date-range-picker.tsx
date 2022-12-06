@@ -46,6 +46,7 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
       startDateLabel,
       endDateLabel,
       shouldCloseOnSelect = false,
+      css = {},
       onApply,
       onCancel,
       ...delegated
@@ -79,7 +80,7 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
     }
 
     return (
-      <StyledRangeDatepicker ref={calendarRef}>
+      <StyledRangeDatepicker ref={calendarRef} css={css}>
         <DateRangeInputsWrapper
           state={state}
           label={props.label}

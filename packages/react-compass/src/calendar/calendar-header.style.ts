@@ -13,7 +13,7 @@ export const StyledCalendarHeader = styled('div', {
 
   '& h2': {
     fontWeight: '$semibold',
-    fontSize: '14px',
+    fontSize: '$body3',
     color: '$cdgBlue100',
     margin: 0,
     marginLeft: 'auto',
@@ -21,7 +21,7 @@ export const StyledCalendarHeader = styled('div', {
   },
 
   '& .calendar-header-icon': {
-    width: '12px',
-    height: '12px',
+    width: '$3',
+    height: '$3',
   },
 })
