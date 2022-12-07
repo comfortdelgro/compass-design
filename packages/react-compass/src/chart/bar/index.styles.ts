@@ -4,6 +4,7 @@ import type {VariantProps} from '../../utils/stitches.types'
 export const StyledChart = styled('div', {
   fontFamily: 'inherit',
   backgroundColor: '#FFFFFF',
+  // backgroundColor: 'red',
   padding: '$6 $4',
   display: 'flex',
   flexDirection: 'column',
@@ -15,42 +16,70 @@ export const StyledChart = styled('div', {
     marginBottom: '$6',
   },
 })
-
 export const StyledContent = styled('div', {
   display: 'flex',
-  alignItems: 'end',
-  padding: '$8 0 $6 $16',
+  flexDirection: 'column',
+  padding: '0 $6 $6 $16',
+})
+
+export const StyledLabels = styled('div', {
+  position: 'relative',
+  width: '100%',
+  fontSize: '$label2',
+  color: '$gray50',
+  display: 'flex',
+  '& > span': {
+    position: 'absolute',
+    fontSize: '$label2',
+    color: '$gray50',
+    // marginBottom: '$2',
+  },
+  '& div': {
+    width: '100%',
+    marginRight: '-$2',
+    display: 'flex',
+    justifyContent: 'space-between',
+    '& span': {
+      display: 'flex',
+      alignItems: 'end',
+      color: '$gray70',
+      fontWeight: '$semibold',
+      justifyContent: 'flex-end',
+      '&:first-child': {
+        height: 'auto',
+      },
+    },
+  },
 })
 
 export const StyledBox = styled('div', {
   flexGrow: 1,
   display: 'flex',
   justifyContent: 'space-between',
-  flexDirection: 'column-reverse',
   position: 'relative',
   '& .chart-box-line-kind': {
     position: 'absolute',
-    left: '-$8',
-    top: '-$8',
+    left: '-$10',
+    bottom: '-$6',
     color: '$gray60',
     fontWeight: '$semibold',
     fontSize: '$label2',
   },
   '& .chart-box-line': {
-    height: '0px',
-    width: '100%',
+    height: '100%',
+    width: '0',
     border: 'none',
-    borderTop: '1px dashed $gray30',
-    marginBottom: '-1px',
+    borderRight: '1px dashed $gray30',
+    marginRight: '-1px',
     display: 'flex',
-    alignItems: 'center',
+    justifyContent: 'center',
     '&:nth-child(2)': {
-      borderTop: '1px solid $gray60',
+      borderRight: '1px solid $gray60',
     },
     '&:before': {
       content: 'attr(title)',
       position: 'absolute',
-      left: '-$8',
+      bottom: '-$6',
       fontSize: '$label2',
       fontWeight: '$semibold',
       color: '$gray70',
@@ -66,18 +95,21 @@ export const StyledBody = styled('div', {
   left: 0,
   right: 0,
   display: 'flex',
+  flexDirection: 'column',
   '& div': {
-    height: '100%',
-    width: 'calc((100% / $$length) -  1rem)',
+    width: '100%',
+    height: 'calc((100% / $$length) -  1rem)',
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'end',
+    alignItems: 'start',
     '&:before': {
       content: 'attr(title)',
       position: 'absolute',
-      bottom: '-$6',
+      left: '-$6',
       fontSize: '$label2',
-      color: '#009EDA',
+      fontWeight: '$semibold',
+      color: '$gray70',
     },
   },
 })

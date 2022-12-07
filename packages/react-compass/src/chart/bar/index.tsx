@@ -2,7 +2,7 @@ import React from 'react'
 import {StyledComponentProps} from '../../utils/stitches.types'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import Legend from '../legend'
-import {colors, DataSet} from '../utils'
+import {colors} from '../utils'
 import {
   ChartVariantProps,
   StyledBody,
@@ -14,20 +14,28 @@ import {
 interface Props extends StyledComponentProps {
   legendPosition?: 'top' | 'bottom'
   title?: string
-  dataSet: DataSet
+  dataSet: {
+    labels: number[]
+    data: Array<{
+      title: string
+      data: number[]
+    }>
+    legends: string[]
+  }
 }
 
-export type ColumnChartProps = Props & ChartVariantProps
+export type BarChartProps = Props & ChartVariantProps
 
-const ColumnChart = React.forwardRef<HTMLDivElement, ColumnChartProps>(
+const BarChart = React.forwardRef<HTMLDivElement, BarChartProps>(
   (props, ref) => {
     const {
       // StyledComponentProps
       css = {},
-      dataSet,
       title,
+      dataSet,
       legendPosition = 'top',
     } = props
+
     const chartRef = useDOMRef<HTMLDivElement>(ref)
 
     const labels = dataSet.labels
@@ -54,13 +62,13 @@ const ColumnChart = React.forwardRef<HTMLDivElement, ColumnChartProps>(
               ))}
             <StyledBody css={{$$length: `${data.length}`}}>
               {data.map((item, i) => (
-                <div title={item.title} key={`chart-column-column-${i}`}>
+                <div title={item.title} key={`chart-bar-column-${i}`}>
                   {item.data.map((d, index) => (
                     <div
-                      key={`chart-column-subcolumn-${i}-${index}`}
+                      key={`chart-bar-subcolumn-${i}-${index}`}
                       style={{
-                        width: `calc(100% / ${item.data.length})`,
-                        height: `${(d / Math.max(...labels)) * 100}%`,
+                        height: `calc(100% / ${item.data.length})`,
+                        width: `${(d / Math.max(...labels)) * 100}%`,
                         backgroundColor: colors[index],
                       }}
                     />
@@ -78,4 +86,4 @@ const ColumnChart = React.forwardRef<HTMLDivElement, ColumnChartProps>(
   },
 )
 
-export default ColumnChart
+export default BarChart

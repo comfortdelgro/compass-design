@@ -28,6 +28,13 @@ export const StyledBox = styled('div', {
   justifyContent: 'space-between',
   flexDirection: 'column-reverse',
   position: 'relative',
+  '& svg': {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+  },
   '& .chart-box-line-kind': {
     position: 'absolute',
     left: '-$8',
@@ -72,6 +79,12 @@ export const StyledBody = styled('div', {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'end',
+    '& div': {
+      position: 'absolute',
+      width: `0`,
+      height: `0`,
+      borderRadius: '$full',
+    },
     '&:before': {
       content: 'attr(title)',
       position: 'absolute',
