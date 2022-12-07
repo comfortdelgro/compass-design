@@ -2,7 +2,14 @@ import React, {useEffect, useMemo, useState} from 'react'
 import {StyledComponentProps} from '../../utils/stitches.types'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import Legend from '../legend'
-import {colors, DataSet, LegendPosition, Line, Point} from '../utils'
+import {
+  colors,
+  DataSet,
+  LegendPosition,
+  Line,
+  Point,
+  useWindowSize,
+} from '../utils'
 import {
   ChartVariantProps,
   StyledBody,
@@ -28,6 +35,7 @@ const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>(
       title,
       legendPosition = 'top',
     } = props
+    const {width} = useWindowSize()
     const chartRef = useDOMRef<HTMLDivElement>(ref)
     const [lines, setLines] = useState<Line[][]>()
     const [paths, setPaths] = useState<string[]>()
@@ -76,7 +84,7 @@ const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>(
         path.push(str)
       })
       setPaths(path)
-    }, [])
+    }, [width])
 
     return (
       <StyledChart ref={chartRef} css={css}>

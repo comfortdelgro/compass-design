@@ -2,7 +2,7 @@ import React, {useEffect, useMemo, useState} from 'react'
 import {StyledComponentProps} from '../../utils/stitches.types'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import Legend from '../legend'
-import {colors, DataSet, LegendPosition, Line} from '../utils'
+import {colors, DataSet, LegendPosition, Line, useWindowSize} from '../utils'
 import {
   ChartVariantProps,
   StyledBody,
@@ -28,6 +28,7 @@ const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>(
       title,
       legendPosition = 'top',
     } = props
+    const {width} = useWindowSize()
     const chartRef = useDOMRef<HTMLDivElement>(ref)
     const [lines, setLines] = useState<Line[][]>()
 
@@ -55,7 +56,7 @@ const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>(
         linesResult.push(linesTemp)
       })
       setLines(linesResult)
-    }, [])
+    }, [width])
 
     return (
       <StyledChart ref={chartRef} css={css}>
