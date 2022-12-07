@@ -7,4 +7,12 @@ export type {AreaChartProps} from './area'
 export type {BarChartProps} from './bar'
 export type {ColumnChartProps} from './column'
 export type {LineChartProps} from './line'
-export {ColumnChart, BarChart, LineChart, AreaChart}
+
+const Chart = {
+  Column: ColumnChart,
+  Bar: BarChart,
+  Line: LineChart,
+  Area: AreaChart,
+}
+
+export default Chart

@@ -1,8 +1,5 @@
 import {Column} from '../utils/components'
-import AreaChart from './area'
-import BarChart from './bar'
-import ColumnChart from './column'
-import LineChart from './line'
+import Chart from './index'
 
 const dataSet = {
   labels: [0, 50, 100, 150, 200, 250, 300, 350, 400, 450],
@@ -34,7 +31,7 @@ const dataSet = {
 export const Areas: React.FC = () => (
   <Column>
     <div style={{width: '100%'}}>
-      <AreaChart dataSet={dataSet} title='Area Chart' />
+      <Chart.Area dataSet={dataSet} title='Area Chart' />
     </div>
   </Column>
 )
@@ -42,7 +39,7 @@ export const Areas: React.FC = () => (
 export const Columns: React.FC = () => (
   <Column>
     <div style={{width: '100%'}}>
-      <ColumnChart dataSet={dataSet} title='Column Chart' />
+      <Chart.Column dataSet={dataSet} title='Column Chart' />
     </div>
   </Column>
 )
@@ -50,7 +47,7 @@ export const Columns: React.FC = () => (
 export const Lines: React.FC = () => (
   <Column>
     <div style={{width: '100%'}}>
-      <LineChart dataSet={dataSet} title='Line Chart' />
+      <Chart.Line dataSet={dataSet} title='Line Chart' />
     </div>
   </Column>
 )
@@ -58,7 +55,7 @@ export const Lines: React.FC = () => (
 export const Bars: React.FC = () => (
   <Column>
     <div style={{width: '100%'}}>
-      <BarChart dataSet={dataSet} title='Bar Chart' />
+      <Chart.Bar dataSet={dataSet} title='Bar Chart' />
     </div>
   </Column>
 )
