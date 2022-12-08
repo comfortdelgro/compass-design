@@ -17,6 +17,7 @@ export const StyledSidenav = styled('div', {
     size: {
       full: {
         width: '$72',
+        minWidth: '$72',
         filter:
           'drop-shadow(0px 0.6px 1.8px rgba(0, 0, 0, 0.1)) drop-shadow(0px 3.2px 7.2px rgba(0, 0, 0, 0.13))',
       },
