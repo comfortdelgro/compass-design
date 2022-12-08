@@ -65,6 +65,15 @@ export type {
 } from './modal'
 export {default as Navbar} from './navbar'
 export type {NavbarBrandProps, NavbarIconProps, NavbarProps} from './navbar'
+export {PageHeader, SubHeader} from './page-header'
+export type {
+  PageHeaderDescriptionProps,
+  PageHeaderHeaderProps,
+  PageHeaderProps,
+  PageHeaderSubtitleProps,
+  PageHeaderTitleProps,
+  SubHeaderProps,
+} from './page-header'
 export {default as Pagination} from './pagination'
 export type {PaginationProps} from './pagination'
 export {default as Preflight} from './preflight'
