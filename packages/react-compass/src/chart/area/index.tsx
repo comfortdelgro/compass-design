@@ -21,6 +21,7 @@ import {
 interface Props extends StyledComponentProps {
   legendPosition?: LegendPosition
   title?: string
+  unit?: string
   dataSet: DataSet
 }
 
@@ -33,6 +34,7 @@ const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>(
       css = {},
       dataSet,
       title,
+      unit = 'Unit',
       legendPosition = 'top',
     } = props
     const {width} = useWindowSize()
@@ -97,7 +99,7 @@ const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>(
             style={{height: `${labels.length * 45}px`}}
             id='chart-line-box'
           >
-            <div className='chart-box-line-kind'>Unit</div>
+            <div className='chart-box-line-kind'>{unit}</div>
             {Array(labels.length)
               .fill(0)
               .map((_, index) => (

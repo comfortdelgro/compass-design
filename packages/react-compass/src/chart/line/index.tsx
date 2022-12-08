@@ -14,6 +14,7 @@ import {
 interface Props extends StyledComponentProps {
   legendPosition?: LegendPosition
   title?: string
+  unit?: string
   dataSet: DataSet
 }
 
@@ -26,6 +27,7 @@ const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>(
       css = {},
       dataSet,
       title,
+      unit = 'Unit',
       legendPosition = 'top',
     } = props
     const {width} = useWindowSize()
@@ -69,7 +71,7 @@ const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>(
             style={{height: `${labels.length * 45}px`}}
             id='chart-line-box'
           >
-            <div className='chart-box-line-kind'>Unit</div>
+            <div className='chart-box-line-kind'>{unit}</div>
             {Array(labels.length)
               .fill(0)
               .map((_, index) => (

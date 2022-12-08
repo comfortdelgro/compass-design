@@ -8,7 +8,14 @@ export type {BarChartProps} from './bar'
 export type {ColumnChartProps} from './column'
 export type {LineChartProps} from './line'
 
-const Chart = {
+// Aliases
+interface ComposableChart {
+  Column: typeof ColumnChart
+  Bar: typeof BarChart
+  Line: typeof LineChart
+  Area: typeof AreaChart
+}
+const Chart: ComposableChart = {
   Column: ColumnChart,
   Bar: BarChart,
   Line: LineChart,

@@ -2,7 +2,7 @@ import React from 'react'
 import {StyledComponentProps} from '../../utils/stitches.types'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import Legend from '../legend'
-import {colors} from '../utils'
+import {colors, DataSet, LegendPosition} from '../utils'
 import {
   ChartVariantProps,
   StyledBody,
@@ -12,16 +12,10 @@ import {
 } from './index.styles'
 
 interface Props extends StyledComponentProps {
-  legendPosition?: 'top' | 'bottom'
+  legendPosition?: LegendPosition
   title?: string
-  dataSet: {
-    labels: number[]
-    data: Array<{
-      title: string
-      data: number[]
-    }>
-    legends: string[]
-  }
+  unit?: string
+  dataSet: DataSet
 }
 
 export type BarChartProps = Props & ChartVariantProps
@@ -33,6 +27,7 @@ const BarChart = React.forwardRef<HTMLDivElement, BarChartProps>(
       css = {},
       title,
       dataSet,
+      unit = 'Unit',
       legendPosition = 'top',
     } = props
 
@@ -50,7 +45,7 @@ const BarChart = React.forwardRef<HTMLDivElement, BarChartProps>(
         )}
         <StyledContent>
           <StyledBox style={{height: `${labels.length * 45}px`}}>
-            <div className='chart-box-line-kind'>Unit</div>
+            <div className='chart-box-line-kind'>{unit}</div>
             {Array(labels.length)
               .fill(0)
               .map((_, index) => (

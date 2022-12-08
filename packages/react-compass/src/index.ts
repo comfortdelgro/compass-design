@@ -28,6 +28,13 @@ export type {
   CardProps,
   CardTitleProps,
 } from './card'
+export {default as Chart} from './chart'
+export type {
+  AreaChartProps,
+  BarChartProps,
+  ColumnChartProps,
+  LineChartProps,
+} from './chart'
 export {default as Checkbox} from './checkbox'
 export type {CheckboxProps} from './checkbox'
 export {default as Dialog} from './dialog'
