@@ -94,7 +94,11 @@ await fs.mkdir(iconifyPath)
 
 console.log(`Writing iconify outputs at "${iconifyOutput}"...`)
 for (const iconName in exported.icons) {
-  const data = `const data = ${JSON.stringify(exported.icons[iconName])}`
+  const des = dimensions[iconName]
+  const icon = exported.icons[iconName];
+  icon.width = des.width
+  icon.height = des.height
+  const data = `const data = ${JSON.stringify(icon)}`
 
   // Write CJS
   fs.writeFile(
