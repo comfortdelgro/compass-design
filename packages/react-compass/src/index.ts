@@ -39,6 +39,15 @@ export type {
   DialogTitleProps,
   DialogTriggerProps,
 } from './dialog'
+export {default as Error} from './error'
+export type {
+  ErrorActionProps,
+  ErrorDescriptionProps,
+  ErrorIconProps,
+  ErrorImageProps,
+  ErrorProps,
+  ErrorTitleProps,
+} from './error'
 export {default as Icon} from './icon'
 export type {IconProp} from './icon'
 export {default as Link} from './link'
