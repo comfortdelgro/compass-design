@@ -3,14 +3,14 @@ import {VariantProps} from '../utils/stitches.types'
 
 /**
  * Variants for files upload and their api:
- * 1. clickSingle
+ * 1. click
  * - buttonTitle
  * - description (uploaded file shows here)
  * - deleteIcon & invalidIcon & successIcon & downloadIcon & loadingIcon
  * - fileType
  * - maxSize
  *
- * 2. clickMultiple
+ * 2.
  * - buttonTitle
  * - description (uploaded files don't show here, they show in 'UploadedFileDisplay' component)
  * - deleteIcon & invalidIcon & successIcon & downloadIcon & loadingIcon
@@ -20,6 +20,43 @@ import {VariantProps} from '../utils/stitches.types'
  * 3. drop
  *
  */
+
+export const StyledUploadIcon = styled('div', {
+  // reset
+  appearance: 'none',
+  border: 'none',
+  boxSizing: 'border-box',
+  margin: '0px',
+  padding: '0px',
+  background: 'transparent',
+
+  // styling
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'center',
+  justifyItems: 'center',
+})
+
+export const StyledOrLetter = styled('a', {
+  // reset
+  appearance: 'none',
+  border: 'none',
+  boxSizing: 'border-box',
+  margin: '0px',
+  padding: '0px',
+  background: 'transparent',
+
+  // styling
+  fontFamily: '$sans',
+  fontWeight: '$semibold',
+  fontSize: '$label3',
+  lineHeight: '$normal',
+  color: '$gray50',
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'center',
+  justifyItems: 'center',
+})
 
 export const StyledUploadError = styled('a', {
   // reset
@@ -185,8 +222,7 @@ export const StyledUploadWrapper = styled('div', {
 
   variants: {
     variant: {
-      clickSingle: {},
-      clickMultiple: {},
+      click: {},
       dropPrimary: {
         [`${StyledUploadContainer}`]: {
           height: '$12_5',
@@ -223,7 +259,50 @@ export const StyledUploadWrapper = styled('div', {
           justifyContent: 'flex-start',
         },
       },
-      dropSecondary: {},
+      dropSecondary: {
+        [`${StyledUploadContainer}`]: {
+          height: '$39_25',
+          boxShadow: 'none',
+          border: '1px dashed #8A8886',
+          cursor: 'pointer',
+          backgroundColor: '$gray10',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          padding: '$4',
+          '&:hover': {
+            backgroundColor: '$gray20',
+          },
+          position: 'relative',
+          '& input': {
+            display: 'block',
+            opacity: 0,
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            cursor: 'pointer',
+          },
+        },
+        [`${StyledUploadButton}`]: {
+          width: '100%',
+          boxShadow: 'none',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'transparent',
+          '&:hover': {
+            backgroundColor: 'transparent',
+          },
+        },
+        [`${StyledUploadContent}`]: {
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        },
+      },
     },
   },
 })

@@ -116,6 +116,13 @@ export {default as Toggle} from './toggle'
 export type {ToggleProps} from './toggle'
 export {Tooltip, TooltipTrigger} from './tooltip'
 export type {TooltipProps, TooltipTriggerProps} from './tooltip'
+export {default as Upload} from './upload'
+export type {
+  UploadButtonProps,
+  UploadIconProps,
+  UploadPlaceholderProps,
+  UploadProps,
+} from './upload'
 export * from './utils'
 export {default as Wizard} from './wizard'
 export type {WizardProps} from './wizard'

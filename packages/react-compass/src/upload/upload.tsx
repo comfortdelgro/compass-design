@@ -3,8 +3,10 @@ import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import UploadButton from './upload-button'
+import UploadIcon from './upload-icon'
 import UploadPlaceholder from './upload-placeholder'
 import {
+  StyledOrLetter,
   StyledUploadContainer,
   StyledUploadContent,
   StyledUploadError,
@@ -17,7 +19,7 @@ import {
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
   isDisabled?: boolean
-  getFile?: (selectedFiles: File) => void
+  getFile?: (selectedFiles: File[]) => void
   fileExtenstions?: string
   fileSizeLimit?: number
   multiple?: boolean
@@ -33,7 +35,7 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
     // StyledComponentProps
     css = {},
     // VariantProps
-    variant = 'clickSingle',
+    variant = 'click',
     // Component props
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     getFile = () => {},
@@ -46,9 +48,7 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
 
   const uploadRef = useDOMRef<HTMLDivElement>(ref)
   const uploadInputRef = React.useRef<HTMLInputElement>(null)
-  const [selectedFiles, setSelectedFiles] = React.useState<
-    false | File | FileList
-  >(false)
+  const [selectedFiles, setSelectedFiles] = React.useState<File[]>([])
   const [error, setError] = React.useState<false | string>(false)
 
   // Pick upload button child component
@@ -63,6 +63,12 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
     UploadPlaceholder,
   )
 
+  // Pick upload Icon child component
+  const {child: UploadIconElement} = pickChild<typeof UploadIcon>(
+    children,
+    UploadIcon,
+  )
+
   // hanlder functions
   const hanldeDrop = (e: DragEvent) => {
     e.preventDefault()
@@ -70,7 +76,8 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
     const dt = e.dataTransfer
     if (!dt) return
     const files = dt.files as unknown as FileList
-    setSelectedFiles(files[0] as File)
+    if (multiple) setSelectedFiles([...selectedFiles, files[0] as File])
+    if (!multiple) setSelectedFiles([files[0] as File])
   }
 
   const handleFileFieldChange = (event: MouseEvent) => {
@@ -82,7 +89,8 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
       if (file.size > fileSizeLimit) {
         setError('Sorry, your file exceeds our size limit.')
       } else {
-        setSelectedFiles(file)
+        if (multiple) setSelectedFiles([...selectedFiles, file])
+        if (!multiple) setSelectedFiles([file])
       }
     }
   }
@@ -131,7 +139,7 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
   // Event listener to drag & drop
 
   React.useEffect(() => {
-    if (variant == 'clickMultiple' || variant == 'clickSingle') return
+    if (variant == 'click') return
     const dropArea = document.getElementById('drop-files-area') as HTMLElement
     dropArea.addEventListener('drop', hanldeDrop, false)
     return () => {
@@ -141,7 +149,7 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
 
   React.useEffect(() => {
     if (selectedFiles) {
-      getFile(selectedFiles as File)
+      getFile(selectedFiles)
     }
   }, [selectedFiles])
 
@@ -155,7 +163,9 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
     >
       <StyledUploadContainer>
         {renderFileInputElement()}
+        {variant == 'dropSecondary' && UploadIconElement}
         {UploadButtonElement &&
+          variant !== 'dropSecondary' &&
           React.cloneElement(UploadButtonElement as unknown as JSX.Element, {
             onClick: () => {
               uploadInputRef.current && uploadInputRef.current.click()
@@ -163,18 +173,28 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
             },
           })}
         <StyledUploadContent>
-          {selectedFiles &&
-          variant == 'clickSingle' &&
-          !Array.isArray(selectedFiles) ? (
+          {selectedFiles && variant == 'click' && !multiple ? (
             <>
               <StyledUploadFileName>
-                {(selectedFiles as File).name}
+                {selectedFiles[0]?.name}
               </StyledUploadFileName>
             </>
           ) : (
             UploadPlaceholderElement
           )}
         </StyledUploadContent>
+
+        {UploadButtonElement && variant == 'dropSecondary' && (
+          <StyledOrLetter>OR</StyledOrLetter>
+        )}
+        {UploadButtonElement &&
+          variant == 'dropSecondary' &&
+          React.cloneElement(UploadButtonElement as unknown as JSX.Element, {
+            onClick: () => {
+              uploadInputRef.current && uploadInputRef.current.click()
+              setError(false)
+            },
+          })}
       </StyledUploadContainer>
       <StyledUploadMaxSize>
         Maximum size: {convertFileSizeToReadableNumber()}
@@ -187,4 +207,5 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
 export default Upload as typeof Upload & {
   Button: typeof UploadButton
   Placeholder: typeof UploadPlaceholder
+  Icon: typeof UploadIcon
 }
