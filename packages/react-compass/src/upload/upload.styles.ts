@@ -110,13 +110,15 @@ export const StyledUploadContent = styled('div', {
   background: 'transparent',
 
   //upload button styling
+  //borderRadius: '0px 4px 4px 0px',
   width: '69.725%',
+  height: '100%',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
 })
 
-export const StyledUploadButton = styled('button', {
+export const StyledUploadButton = styled('div', {
   // reset
   appearance: 'none',
   border: 'none',
@@ -127,6 +129,8 @@ export const StyledUploadButton = styled('button', {
 
   // upload button styling
   width: '30.275%',
+  height: '100%',
+  // borderRadius: '4px 0px 0px 4px',
   backgroundColor: '#F7F8F9',
   fontFamily: '$sans',
   fontSize: '$label1',
@@ -136,7 +140,7 @@ export const StyledUploadButton = styled('button', {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  borderRight: '1px solid #E6E6E6',
+  boxShadow: '1px 0 0 0 #E6E6E6',
   '&:hover': {
     backgroundColor: '$gray20',
   },
@@ -154,18 +158,11 @@ export const StyledUploadContainer = styled('div', {
   //container styling
   width: '$81_75',
   height: '$11',
-  border: '1px solid #E6E6E6',
-  borderRadius: '0px 8px 8px 0px',
+  boxShadow: '0 0 0 1px #E6E6E6',
+  overflow: 'hidden',
+  borderRadius: '$lg',
   display: 'flex',
   gap: '0px',
-
-  variants: {
-    variant: {
-      clickSingle: {},
-      clickMultiple: {},
-      drop: {},
-    },
-  },
 })
 
 export const StyledUploadWrapper = styled('div', {
@@ -182,12 +179,51 @@ export const StyledUploadWrapper = styled('div', {
   flexDirection: 'column',
   justifyContent: 'flex-start',
   gap: '$2',
+  '& input': {
+    display: 'none',
+  },
 
   variants: {
     variant: {
       clickSingle: {},
       clickMultiple: {},
-      drop: {},
+      dropPrimary: {
+        [`${StyledUploadContainer}`]: {
+          height: '$12_5',
+          boxShadow: 'none',
+          border: '1px dashed #8A8886',
+          cursor: 'pointer',
+          backgroundColor: '$gray10',
+          '&:hover': {
+            backgroundColor: '$gray20',
+          },
+          position: 'relative',
+          '& input': {
+            display: 'block',
+            opacity: 0,
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            cursor: 'pointer',
+          },
+        },
+        [`${StyledUploadButton}`]: {
+          width: '50%',
+          boxShadow: 'none',
+          backgroundColor: 'transparent',
+          '&:hover': {
+            backgroundColor: 'transparent',
+          },
+        },
+        [`${StyledUploadContent}`]: {
+          width: '50%',
+          display: 'flex',
+          justifyContent: 'flex-start',
+        },
+      },
+      dropSecondary: {},
     },
   },
 })
