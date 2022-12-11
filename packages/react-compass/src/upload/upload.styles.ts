@@ -1,26 +1,6 @@
 import {styled} from '../theme'
 import {VariantProps} from '../utils/stitches.types'
 
-/**
- * Variants for files upload and their api:
- * 1. click
- * - buttonTitle
- * - description (uploaded file shows here)
- * - deleteIcon & invalidIcon & successIcon & downloadIcon & loadingIcon
- * - fileType
- * - maxSize
- *
- * 2.
- * - buttonTitle
- * - description (uploaded files don't show here, they show in 'UploadedFileDisplay' component)
- * - deleteIcon & invalidIcon & successIcon & downloadIcon & loadingIcon
- * - fileType
- * - maxSize
- *
- * 3. drop
- *
- */
-
 export const StyledUploadIcon = styled('div', {
   // reset
   appearance: 'none',
