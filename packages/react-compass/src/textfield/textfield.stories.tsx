@@ -2,7 +2,7 @@ import {faUser} from '@fortawesome/free-regular-svg-icons'
 import {faChevronDown} from '@fortawesome/free-solid-svg-icons'
 import type {StoryDecorator} from '@ladle/react'
 import {Column, Row} from '../utils/components'
-import Textfield from './textfield'
+import Textfield from './index'
 
 export const Variants: React.FC = () => (
   <Column>

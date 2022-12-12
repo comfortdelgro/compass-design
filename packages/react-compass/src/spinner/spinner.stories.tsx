@@ -1,5 +1,5 @@
 import {Column, Row} from '../utils/components'
-import Spinner from './spinner'
+import Spinner from './index'
 
 export const Spinners: React.FC = () => (
   <Column>
