@@ -216,6 +216,93 @@ export const StyledTimelineContainer = styled('div', {
         },
       },
     },
+
+    // compount with: horizontal top label & bottom items
+    {
+      mode: 'horizontal',
+      labelAlignment: 'top',
+      itemAlignment: 'bottom',
+      css: {
+        boxShadow: '0 -1px 0 0 #D2D0CE',
+        display: 'flex',
+        flexDirection: 'row',
+        // justifyContent: 'flex-start',
+        padding: '0',
+        gap: '$39',
+        [`${StyledItemHeaderContainer}`]: {
+          display: 'flex',
+          flexDirection: 'column-reverse',
+          right: '0',
+        },
+        [`${StyledItemContainer}`]: {
+          position: 'relative',
+          bottom: '4rem',
+          display: 'flex',
+          justifyContent: 'flex-start',
+        },
+        [`${StyledItemContentWrapper}`]: {
+          // display: 'flex',
+          // justifyContent: 'flex-start',
+        },
+      },
+    },
+    {
+      mode: 'horizontal',
+      labelAlignment: 'bottom',
+      itemAlignment: 'top',
+      css: {
+        boxShadow: '0 1px 0 0 #D2D0CE',
+        display: 'flex',
+        flexDirection: 'row',
+        padding: '0',
+        gap: '$39',
+        [`${StyledItemHeaderContainer}`]: {
+          display: 'flex',
+          flexDirection: 'column',
+          right: '0',
+        },
+        [`${StyledItemContainer}`]: {
+          position: 'relative',
+          top: '3.95rem',
+          display: 'flex',
+          justifyContent: 'flex-start',
+          flexDirection: 'column-reverse',
+        },
+        [`${StyledItemContentWrapper}`]: {},
+      },
+    },
+    {
+      mode: 'horizontal',
+      labelAlignment: 'alternate',
+      itemAlignment: 'alternate',
+      css: {
+        boxShadow: '0 1px 0 0 #D2D0CE',
+        display: 'flex',
+        flexDirection: 'row',
+        padding: '0',
+        gap: '$39',
+        [`${StyledItemHeaderContainer}`]: {
+          display: 'flex',
+          flexDirection: 'column',
+          right: '0',
+        },
+        [`${StyledItemContainer}`]: {
+          position: 'relative',
+          top: '3.95rem',
+          display: 'flex',
+          justifyContent: 'flex-start',
+          flexDirection: 'column-reverse',
+        },
+        [`${StyledItemContentWrapper}`]: {},
+        '& .itemContainer-even': {
+          flexDirection: 'column',
+          top: '9.2rem',
+        },
+        '& .header-even': {
+          flexDirection: 'column-reverse',
+        },
+      },
+    },
   ],
 
   defaultVariants: {

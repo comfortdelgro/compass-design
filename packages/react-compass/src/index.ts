@@ -102,6 +102,8 @@ export type {TextareaProps} from './textarea'
 export {default as TextField} from './textfield'
 export type {TextFieldProps} from './textfield'
 export * from './theme'
+export {default as TimeLine} from './timeline'
+export type {TimelineItemProps, TimelineProps} from './timeline'
 export {default as Toast} from './toast'
 export type {
   ToastActionsProps,

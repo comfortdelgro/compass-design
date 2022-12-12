@@ -41,7 +41,12 @@ const TimelineItem = React.forwardRef<HTMLDivElement, TimelineItemProps>(
     }
     return (
       <>
-        <StyledItemContainer css={css} ref={timelineItemRef} {...delegated}>
+        <StyledItemContainer
+          css={css}
+          ref={timelineItemRef}
+          {...delegated}
+          className={className('itemContainer')}
+        >
           <StyledItemHeaderContainer className={className('header')}>
             <StyledItemDot>{dot}</StyledItemDot>
             <StyledItemLabel className={className('label')}>
