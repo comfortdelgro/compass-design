@@ -1,8 +1,8 @@
 import {styled} from '../theme'
 
 export const StyledListImage = styled('img', {
-  width: '40px',
-  height: '40px',
+  width: '$10',
+  height: '$10',
   borderRadius: '$lg',
   objectFit: 'cover',
 })

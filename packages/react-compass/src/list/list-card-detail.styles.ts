@@ -12,15 +12,15 @@ export const StyledListCardDetail = styled('div', {
 
   '.list-card-detail-title': {
     margin: 0,
-    fontSize: '12px',
+    fontSize: '$label2',
     lineHeight: '18px',
     color: '$gray80',
     fontWeight: '$medium',
   },
 
   [`.list-card-detail-avatars ${StyledAvatar}`]: {
-    height: '16px',
-    width: '16px',
+    height: '$4',
+    width: '$4',
   },
 
   [`.list-card-detail-avatars ${StyledAvatarGroup} ${StyledAvatar}`]: {
@@ -29,7 +29,7 @@ export const StyledListCardDetail = styled('div', {
   },
 
   [`.list-card-detail-avatars .initials`]: {
-    fontSize: '8px',
+    fontSize: '$label3',
   },
 
   '.list-card-detail-footer': {
@@ -40,9 +40,9 @@ export const StyledListCardDetail = styled('div', {
 
   '.list-card-detail-description': {
     color: '$gray80',
-    fontSize: '10px',
+    fontSize: '$label3',
     lineHeight: '16px',
-    fontWeight: '500',
+    fontWeight: '$medium',
   },
 
   variants: {

@@ -5,6 +5,7 @@ import {VariantProps} from '../utils/stitches.types'
 export const StyledListCard = styled('div', {
   padding: '$4',
   border: '1px solid $primaryBg',
+  borderRadius: '$md',
 
   '.list-card-header': {
     display: 'flex',
@@ -15,12 +16,12 @@ export const StyledListCard = styled('div', {
   '.list-card-header-right-side': {
     display: 'flex',
     alignItems: 'center',
-    gap: '16px',
+    gap: '$4',
   },
 
   '.list-card-title': {
     margin: 0,
-    fontSize: '16px',
+    fontSize: '$header5',
     fontWeight: '$semibold',
     color: '$gray100',
     lineHeight: '24px',
@@ -29,7 +30,7 @@ export const StyledListCard = styled('div', {
   '.list-card-description': {
     margin: 0,
     marginTop: '$2',
-    fontSize: '14px',
+    fontSize: '$body3',
     lineHeight: '21px',
     color: '$gray80',
   },
@@ -46,7 +47,7 @@ export const StyledListCard = styled('div', {
   },
 
   '.list-card-ellipsis-icon': {
-    width: '6px',
+    width: '$1_5',
     height: '23px',
   },
 

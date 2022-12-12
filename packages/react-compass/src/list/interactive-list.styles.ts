@@ -13,9 +13,9 @@ export const StyledInteractiveList = styled('div', {
     alignItems: 'center',
   },
 
-  [`& .interactive-list-header ${StyledAvatar}`]: {
-    height: '32px',
-    width: '32px',
+  [`& ${StyledAvatar}`]: {
+    height: '$8',
+    width: '$8',
   },
 
   [`.interactive-list-header ${StyledAvatarGroup}`]: {
@@ -36,14 +36,15 @@ export const StyledInteractiveList = styled('div', {
 
   '& .interactive-list-title': {
     margin: 0,
-    fontSize: '16px',
+    fontSize: '$header5',
     color: '$gray90',
     lineHeight: '24px',
+    fontWeight: 'bold',
   },
 
   '& .interactive-list-description': {
     margin: 0,
-    fontSize: '14px',
+    fontSize: '$body3',
     color: '$gray70',
     lineHeight: '21px',
   },
@@ -54,8 +55,9 @@ export const StyledInteractiveList = styled('div', {
   },
 
   '& .interactive-list-chevron-icon': {
-    width: '16px',
-    height: '26px',
+    width: '$4',
+    height: '$6_5',
+    color: 'black',
   },
 
   variants: {

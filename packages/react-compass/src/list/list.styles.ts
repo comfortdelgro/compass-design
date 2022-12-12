@@ -27,14 +27,14 @@ export const StyledList = styled('div', {
   },
 
   '& .list-left-side svg': {
-    width: '22px',
-    height: '22px',
+    width: '$5_5',
+    height: '$5_5',
   },
 
   '& .list-text-wrapper': {
     display: 'flex',
     flexDirection: 'column',
-    gap: '4px',
+    gap: '$1',
   },
 
   '& .list-text-title': {
@@ -44,7 +44,7 @@ export const StyledList = styled('div', {
   },
 
   '& .list-text-description': {
-    fontSize: '14px',
+    fontSize: '$body3',
   },
 
   '& .list-right-side': {
@@ -55,12 +55,12 @@ export const StyledList = styled('div', {
   },
 
   '& .list-right-side-text': {
-    fontSize: '14px',
+    fontSize: '$body3',
   },
 
   '& .list-right-side svg': {
-    width: '14px',
-    height: '24px',
+    width: '$3_5',
+    height: '$6',
   },
 
   variants: {
@@ -178,37 +178,37 @@ export const StyledList = styled('div', {
     },
     size: {
       sm: {
-        padding: '10px 16px',
+        padding: '$2_5 $4',
 
         '& .list-left-info': {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          width: '32px',
-          height: '32px',
+          width: '$8',
+          height: '$8',
           borderRadius: '100%',
           backgroundColor: '$background',
         },
 
         '& .list-left-info svg': {
-          width: '14px',
-          height: '14px',
+          width: '$3_5',
+          height: '$3_5',
           color: '$gray60',
         },
 
         '& .list-text-title': {
-          fontSize: '12px',
+          fontSize: '$label2',
           fontWeight: '$normal',
           color: '$gray60',
         },
 
         '& .list-text-description': {
-          fontSize: '14px',
+          fontSize: '$body3',
           color: '$gray70',
         },
 
         '& .list-text-wrapper': {
-          gap: '8px',
+          gap: '$2',
         },
 
         //hover

@@ -1,3 +1,629 @@
+import {Callout} from 'nextra-theme-docs'
+import styles from '../../styles/Home.module.css'
+import {
+  List,
+  ListCard,
+  InteractiveList,
+  Avatar,
+  Icon,
+  Badge,
+} from '@comfortdelgro/react-compass'
+import {faChevronRight} from '@fortawesome/free-solid-svg-icons'
+import {faAddressBook, faClone} from '@fortawesome/free-regular-svg-icons'
+
+# List
+
+Lists show a large set of items or options to the user.
+
+---
+
+### Import
+
+```js
+import {List, ListCard, InteractiveList} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import List, {
+  ListCard,
+  InteractiveList,
+} from '@comfortdelgro/react-compass/badge'
+```
+
+---
+
+### Basic
+
+<section className={styles.componentShowcaseContainer}>
+  <List
+    title='Title'
+    description='Line 1'
+    leftInfo={<Avatar label='A' />}
+    rightInfo={{text: 'Details', icon: <Icon icon={faChevronRight} />}}
+  />
+  <List
+    title='Title'
+    description='Line 1'
+    leftInfo={
+      <List.Image
+        src={
+          'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+        }
+        alt='singapore'
+      />
+    }
+    rightInfo={{text: 'Details', icon: <Icon icon={faChevronRight} />}}
+  />
+  <List
+    title='Title'
+    description='Line 1'
+    leftInfo={<Icon icon={faAddressBook} />}
+    rightInfo={{text: 'Details', icon: <Icon icon={faChevronRight} />}}
+  />
+</section>
+
+```js
+<List
+  title='Title'
+  description='Line 1'
+  leftInfo={<Avatar label='A' />}
+  rightInfo={{text: 'Details', icon: <Icon icon={faChevronRight} />}}
+/>
+<List
+  title='Title'
+  description='Line 1'
+  leftInfo={<List.Image src={'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'} alt='singapore' />}
+  rightInfo={{text: 'Details', icon: <Icon icon={faChevronRight} />}}
+/>
+ <List
+  title='Title'
+  description='Line 1'
+  leftInfo={<Icon icon={faAddressBook} />}
+  rightInfo={{text: 'Details', icon: <Icon icon={faChevronRight} />}}
+/>
+```
+
+---
+
+### Disabled
+
+<section className={styles.componentShowcaseContainer}>
+  <List
+    isDisabled
+    title='Title'
+    description='Line 1'
+    leftInfo={<Avatar label='A' />}
+    rightInfo={{text: 'Details', icon: <Icon icon={faChevronRight} />}}
+  />
+</section>
+
+```js {2}
+<List
+  isDisabled
+  title='Title'
+  description='Line 1'
+  leftInfo={<Avatar label='A' />}
+  rightInfo={{text: 'Details', icon: <Icon icon={faChevronRight} />}}
+/>
+```
+
+### Sizes
+
+Small size version of the list
+
+<section className={styles.componentShowcaseContainer}>
+  <List
+    size='sm'
+    leftInfo={<Icon icon={faClone} />}
+    title='Title'
+    description='Lorem Ipsum'
+    css={{maxWidth: '198px'}}
+  />
+  <List
+    size='sm'
+    isDisabled
+    leftInfo={<Icon icon={faClone} />}
+    title='Title'
+    description='Lorem Ipsum'
+    css={{maxWidth: '198px'}}
+  />
+</section>
+
+```js {2, 9}
+<List
+  size='sm'
+  leftInfo={<Icon icon={faClone} />}
+  title='Title'
+  description='Lorem Ipsum'
+  css={{maxWidth: '198px'}}
+/>
+<List
+  size='sm'
+  isDisabled
+  leftInfo={<Icon icon={faClone} />}
+  title='Title'
+  description='Lorem Ipsum'
+  css={{maxWidth: '198px'}}
+/>
+```
+
+### Variant
+
+<section className={styles.componentShowcaseContainer}>
+  <List
+    title='Title'
+    variant='item'
+    description='Line 1'
+    leftInfo={<Avatar label='A' />}
+    rightInfo={{text: 'Details', icon: <Icon icon={faChevronRight} />}}
+  />
+  <List
+    variant='item'
+    title='Title'
+    description='Line 1'
+    leftInfo={
+      <List.Image
+        src={
+          'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+        }
+        alt='singapore'
+      />
+    }
+    rightInfo={{text: 'Details', icon: <Icon icon={faChevronRight} />}}
+  />
+  <List
+    title='Title'
+    variant='item'
+    description='Line 1'
+    leftInfo={<Icon icon={faAddressBook} />}
+    rightInfo={{text: 'Details', icon: <Icon icon={faChevronRight} />}}
+  />
+</section>
+
+```js
+<List
+  title='Title'
+  variant='item'
+  description='Line 1'
+  leftInfo={<Avatar label='A' />}
+  rightInfo={{text: 'Details', icon: <Icon icon={faChevronRight} />}}
+/>
+<List
+  variant='item'
+  title='Title'
+  description='Line 1'
+  leftInfo={
+    <List.Image
+      src={
+        'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+      }
+      alt='singapore'
+    />
+  }
+  rightInfo={{text: 'Details', icon: <Icon icon={faChevronRight} />}}
+/>
+<List
+  title='Title'
+  variant='item'
+  description='Line 1'
+  leftInfo={<Icon icon={faAddressBook} />}
+  rightInfo={{text: 'Details', icon: <Icon icon={faChevronRight} />}}
+/>
+```
+
+### Related Components
+
+#### ListCard
+
+<section className={styles.componentShowcaseContainer}>
+  <ListCard
+    showActionButton
+    title='Lorem Ipsum'
+    description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+    badge={<Badge label='Active' color='success' variant='secondary' />}
+    css={{width: '347px'}}
+  >
+    <ListCard.Detail
+      title='Detail 1'
+      avatar={<Avatar label='A' />}
+      description='Lorem Ipsum'
+    />
+    <ListCard.Detail
+      title='Detail 1'
+      avatar={<Avatar label='A' />}
+      description='Lorem Ipsum'
+    />
+  </ListCard>
+  <ListCard
+    showActionButton
+    title='Lorem Ipsum'
+    description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+    badge={<Badge label='Active' color='success' variant='secondary' />}
+    css={{width: '347px'}}
+  >
+    <ListCard.Detail
+      title='Detail 1'
+      avatar={
+        <Avatar.Group>
+          <Avatar
+            image={
+              'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+            }
+          />
+          <Avatar
+            image={
+              'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+            }
+          />
+          <Avatar
+            image={
+              'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+            }
+          />
+          <Avatar
+            image={
+              'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+            }
+          />
+          <Avatar
+            image={
+              'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+            }
+          />
+          <Avatar
+            image={
+              'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+            }
+          />
+        </Avatar.Group>
+      }
+    />
+    <ListCard.Detail
+      title='Detail 1'
+      avatar={
+        <Avatar.Group>
+          <Avatar
+            image={
+              'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+            }
+          />
+          <Avatar
+            image={
+              'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+            }
+          />
+          <Avatar
+            image={
+              'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+            }
+          />
+          <Avatar
+            image={
+              'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+            }
+          />
+          <Avatar
+            image={
+              'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+            }
+          />
+          <Avatar
+            image={
+              'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+            }
+          />
+        </Avatar.Group>
+      }
+    />
+  </ListCard>
+</section>
+
+```js
+<ListCard
+  showActionButton
+  title='Lorem Ipsum'
+  description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+  badge={<Badge label='Active' color='success' variant='secondary' />}
+  css={{width: '347px'}}
+>
+  <ListCard.Detail
+    title='Detail 1'
+    avatar={<Avatar label='A' />}
+    description='Lorem Ipsum'
+  />
+  <ListCard.Detail
+    title='Detail 1'
+    avatar={<Avatar label='A' />}
+    description='Lorem Ipsum'
+  />
+</ListCard>
+<ListCard
+  showActionButton
+  title='Lorem Ipsum'
+  description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+  badge={<Badge label='Active' color='success' variant='secondary' />}
+  css={{width: '347px'}}
+>
+  <ListCard.Detail
+    title='Detail 1'
+    avatar={
+      <Avatar.Group>
+        <Avatar
+          image={
+            'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+          }
+        />
+        <Avatar
+          image={
+            'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+          }
+        />
+        <Avatar
+          image={
+            'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+          }
+        />
+        <Avatar
+          image={
+            'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+          }
+        />
+        <Avatar
+          image={
+            'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+          }
+        />
+        <Avatar
+          image={
+            'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+          }
+        />
+      </Avatar.Group>
+    }
+  />
+  <ListCard.Detail
+    title='Detail 1'
+    avatar={
+      <Avatar.Group>
+        <Avatar
+          image={
+            'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+          }
+        />
+        <Avatar
+          image={
+            'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+          }
+        />
+        <Avatar
+          image={
+            'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+          }
+        />
+        <Avatar
+          image={
+            'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+          }
+        />
+        <Avatar
+          image={
+            'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+          }
+        />
+        <Avatar
+          image={
+            'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+          }
+        />
+      </Avatar.Group>
+    }
+  />
+</ListCard>
+```
+
+#### InteractiveListing
+
+<section className={styles.componentShowcaseContainer}>
+  <InteractiveList
+    groupLabel={
+      <div
+        style={{
+          width: '84px',
+          height: '58px',
+          backgroundColor: '#009EDA',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          borderRadius: '4px',
+          color: 'white',
+          fontSize: '28px',
+          fontWeight: 'bold',
+        }}
+      >
+        XXX
+      </div>
+    }
+    avatar={
+      <Avatar.Group>
+        <Avatar
+          image={
+            'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+          }
+        />
+        <Avatar
+          image={
+            'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+          }
+        />
+        <Avatar
+          image={
+            'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+          }
+        />
+        <Avatar
+          image={
+            'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+          }
+        />
+        <Avatar
+          image={
+            'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+          }
+        />
+        <Avatar
+          image={
+            'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+          }
+        />
+      </Avatar.Group>
+    }
+    title='Title'
+    description='Lorem ipsum dolor sit amet'
+    css={{width: '315px', height: 'fit-content'}}
+  />
+  <InteractiveList
+    showIcon
+    variant='dropdown'
+    avatar={
+      <Avatar
+        image={
+          'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+        }
+      />
+    }
+    title='Profile Name'
+    description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+    css={{width: '315px', height: 'fit-content'}}
+  />
+</section>
+
+```js
+<InteractiveList
+  groupLabel={
+    <div
+      style={{
+        width: '84px',
+        height: '58px',
+        backgroundColor: '#009EDA',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: '4px',
+        color: 'white',
+        fontSize: '28px',
+        fontWeight: 'bold',
+      }}
+    >
+      XXX
+    </div>
+  }
+  avatar={
+    <Avatar.Group>
+      <Avatar
+        image={
+          'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+        }
+      />
+      <Avatar
+        image={
+          'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+        }
+      />
+      <Avatar
+        image={
+          'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+        }
+      />
+      <Avatar
+        image={
+          'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+        }
+      />
+      <Avatar
+        image={
+          'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+        }
+      />
+      <Avatar
+        image={
+          'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+        }
+      />
+    </Avatar.Group>
+  }
+  title='Title'
+  description='Lorem ipsum dolor sit amet'
+  css={{width: '315px', height: 'fit-content'}}
+/>
+<InteractiveList
+  showIcon
+  variant='dropdown'
+  avatar={
+    <Avatar
+      image={
+        'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+      }
+    />
+  }
+  title='Profile Name'
+  description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+  css={{width: '315px', height: 'fit-content'}}
+/>
+```
+
+### Props:
+
+#### List
+
+| Name        | Type                                        | Default       | Description                      |
+| :---------- | :------------------------------------------ | :------------ | :------------------------------- |
+| leftInfo    | `React.ReactNode`                           | —             | Left side information component  |
+| title       | `string`                                    | —             |                                  |
+| description | `string`                                    | —             |                                  |
+| rightInfo   | `{ text?: string, icon?: React.ReactNode }` | —             | Right side information component |
+| isDisabled  | `boolean`                                   | —             |                                  |
+| variant     | `"item" \| "interactive"`                   | `interactive` |                                  |
+| css         | `CSS`                                       | —             |                                  |
+
+#### List.Image
+
+| Name | Type  | Default | Description |
+| :--- | :---- | :------ | :---------- |
+| css  | `CSS` | —       |             |
+
+#### ListCard
+
+| Name             | Type              | Default | Description                         |
+| :--------------- | :---------------- | :------ | :---------------------------------- |
+| title            | `string`          | —       |                                     |
+| badge            | `React.ReactNode` | —       |                                     |
+| description      | `string`          | —       |                                     |
+| showActionButton | `boolean`         | —       | Whether the action button is showed |
+| isDisabled       | `boolean`         | —       |                                     |
+| css              | `CSS`             | —       |                                     |
+
+#### ListCard.Detail
+
+| Name        | Type              | Default | Description |
+| :---------- | :---------------- | :------ | :---------- |
+| title       | `string`          | —       |             |
+| description | `string`          | —       |             |
+| avatar      | `React.ReactNode` | —       |             |
+| css         | `CSS`             | —       |             |
+
+#### InteractiveList
+
+| Name       | Type                      | Default | Description                |
+| :--------- | :------------------------ | :------ | :------------------------- |
+| groupLabel | `React.ReactNode`         | —       |                            |
+| avatar     | `React.ReactNode`         | —       |                            |
+| title      | `string`                  | —       |                            |
+| variant    | `'default' \| 'dropdown'` | —       |                            |
+| showIcon   | `boolean`                 | —       | Whether the icon is showed |
+| css        | `CSS`                     | —       |                            |
+
 <Callout>
   Check out our [ladle](/ladle?story=list--variants) for more info on this
   component.
