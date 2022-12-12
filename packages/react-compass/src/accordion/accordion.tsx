@@ -78,7 +78,10 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
       >
         <AccordionContext.Provider value={contextValue}>
           {accordionTitle}
-          <div className='accordion-body' ref={accordionBodyRef}>
+          <div
+            className={`accordion-body ${expand ? 'expanded' : 'collapsed'}`}
+            ref={accordionBodyRef}
+          >
             <div className='accordion-body-inner'>{children}</div>
           </div>
         </AccordionContext.Provider>
