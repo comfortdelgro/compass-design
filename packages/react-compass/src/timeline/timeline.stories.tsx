@@ -10,42 +10,110 @@ export const Default: React.FC = () => {
         Default timeline is vertical with label and item both are aligned on the
         right
       </h3>
-      <Timeline>
-        <Timeline.Item
-          label='June'
-          dot={
-            <Icon
-              icon={faCalendarDay}
-              style={{color: 'white', height: '50%'}}
-            />
-          }
-        >
-          <p>reminder 1</p>
-          <p>reminder 2</p>
-        </Timeline.Item>
-        <Timeline.Item
-          label='July'
-          dot={
-            <Icon icon={faCalendarDay} style={{color: 'red', height: '50%'}} />
-          }
-        >
-          <p>reminder 3</p>
-          <p>reminder 4</p>
-        </Timeline.Item>
-        <Timeline.Item
-          label='August'
-          dot={
-            <Icon
-              icon={faCalendarDay}
-              style={{color: 'white', height: '50%'}}
-            />
-          }
-        >
-          <p>reminder 5</p>
-          <p>reminder 6</p>
-          <p>reminder 7</p>
-        </Timeline.Item>
-      </Timeline>
+      <div style={{position: 'relative', left: '11.55rem'}}>
+        <Timeline>
+          <Timeline.Item
+            label='June'
+            dot={
+              <Icon
+                icon={faCalendarDay}
+                style={{color: 'white', height: '50%'}}
+              />
+            }
+          >
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: 'fit-content',
+              }}
+            >
+              reminder 2
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: 'fit-content',
+              }}
+            >
+              reminder 2
+            </div>
+          </Timeline.Item>
+          <Timeline.Item
+            label='July'
+            dot={
+              <Icon
+                icon={faCalendarDay}
+                style={{color: 'red', height: '50%'}}
+              />
+            }
+          >
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: 'fit-content',
+              }}
+            >
+              reminder 3
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: 'fit-content',
+              }}
+            >
+              reminder 4
+            </div>
+          </Timeline.Item>
+          <Timeline.Item
+            label='August'
+            dot={
+              <Icon
+                icon={faCalendarDay}
+                style={{color: 'white', height: '50%'}}
+              />
+            }
+          >
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: 'fit-content',
+              }}
+            >
+              reminder 5
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: 'fit-content',
+              }}
+            >
+              reminder 6
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: 'fit-content',
+              }}
+            >
+              reminder 7
+            </div>
+          </Timeline.Item>
+        </Timeline>
+      </div>
     </Column>
   )
 }
@@ -64,8 +132,26 @@ export const Variants: React.FC = () => {
             />
           }
         >
-          <p style={{textAlign: 'right'}}>reminder 1234</p>
-          <p style={{textAlign: 'right'}}>reminder 2</p>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: 'fit-content',
+            }}
+          >
+            reminder 2
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: 'fit-content',
+            }}
+          >
+            reminder 2
+          </div>
         </Timeline.Item>
         <Timeline.Item
           label='July'
@@ -73,8 +159,26 @@ export const Variants: React.FC = () => {
             <Icon icon={faCalendarDay} style={{color: 'red', height: '50%'}} />
           }
         >
-          <p style={{textAlign: 'right'}}>reminder 3</p>
-          <p style={{textAlign: 'right'}}>reminder 4</p>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: 'fit-content',
+            }}
+          >
+            reminder 3
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: 'fit-content',
+            }}
+          >
+            reminder 4
+          </div>
         </Timeline.Item>
         <Timeline.Item
           label='August'
@@ -85,9 +189,36 @@ export const Variants: React.FC = () => {
             />
           }
         >
-          <p style={{textAlign: 'right'}}>reminder 5</p>
-          <p style={{textAlign: 'right'}}>reminder 6</p>
-          <p style={{textAlign: 'right'}}>reminder 7</p>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: 'fit-content',
+            }}
+          >
+            reminder 5
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: 'fit-content',
+            }}
+          >
+            reminder 6
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: 'fit-content',
+            }}
+          >
+            reminder 7
+          </div>
         </Timeline.Item>
       </Timeline>
       <h3>Vertical timeline with left-side labels and right-side items</h3>
@@ -102,8 +233,26 @@ export const Variants: React.FC = () => {
               />
             }
           >
-            <p>reminder 1234</p>
-            <p>reminder 2</p>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: 'fit-content',
+              }}
+            >
+              reminder 2
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: 'fit-content',
+              }}
+            >
+              reminder 2
+            </div>
           </Timeline.Item>
           <Timeline.Item
             label='July'
@@ -114,8 +263,26 @@ export const Variants: React.FC = () => {
               />
             }
           >
-            <p>reminder 3</p>
-            <p>reminder 4</p>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: 'fit-content',
+              }}
+            >
+              reminder 3
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: 'fit-content',
+              }}
+            >
+              reminder 4
+            </div>
           </Timeline.Item>
           <Timeline.Item
             label='August'
@@ -126,9 +293,36 @@ export const Variants: React.FC = () => {
               />
             }
           >
-            <p>reminder 5</p>
-            <p>reminder 6</p>
-            <p>reminder 7</p>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: 'fit-content',
+              }}
+            >
+              reminder 5
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: 'fit-content',
+              }}
+            >
+              reminder 6
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: 'fit-content',
+              }}
+            >
+              reminder 7
+            </div>
           </Timeline.Item>
         </Timeline>
       </div>
@@ -145,8 +339,26 @@ export const Variants: React.FC = () => {
               />
             }
           >
-            <p style={{textAlign: 'right'}}>reminder 1234</p>
-            <p style={{textAlign: 'right'}}>reminder 2</p>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: 'fit-content',
+              }}
+            >
+              reminder 2
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: 'fit-content',
+              }}
+            >
+              reminder 2
+            </div>
           </Timeline.Item>
           <Timeline.Item
             label='July'
@@ -157,8 +369,26 @@ export const Variants: React.FC = () => {
               />
             }
           >
-            <p style={{textAlign: 'right'}}>reminder 3</p>
-            <p style={{textAlign: 'right'}}>reminder 4</p>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: 'fit-content',
+              }}
+            >
+              reminder 3
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: 'fit-content',
+              }}
+            >
+              reminder 4
+            </div>
           </Timeline.Item>
           <Timeline.Item
             label='August'
@@ -169,11 +399,255 @@ export const Variants: React.FC = () => {
               />
             }
           >
-            <p style={{textAlign: 'right'}}>reminder 5</p>
-            <p style={{textAlign: 'right'}}>reminder 6</p>
-            <p style={{textAlign: 'right'}}>reminder 7</p>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: 'fit-content',
+              }}
+            >
+              reminder 5
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: 'fit-content',
+              }}
+            >
+              reminder 6
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: 'fit-content',
+              }}
+              s
+            >
+              reminder 7
+            </div>
           </Timeline.Item>
         </Timeline>
+
+        <h3>Vertical timeline with left-side labels and left-side items</h3>
+        <Timeline mode='vertical' labelAlignment='left' itemAlignment='left'>
+          <Timeline.Item
+            label='June'
+            dot={
+              <Icon
+                icon={faCalendarDay}
+                style={{color: 'white', height: '50%'}}
+              />
+            }
+          >
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: 'fit-content',
+              }}
+            >
+              reminder 2
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: 'fit-content',
+              }}
+            >
+              reminder 2
+            </div>
+          </Timeline.Item>
+          <Timeline.Item
+            label='July'
+            dot={
+              <Icon
+                icon={faCalendarDay}
+                style={{color: 'red', height: '50%'}}
+              />
+            }
+          >
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: 'fit-content',
+              }}
+            >
+              reminder 3
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: 'fit-content',
+              }}
+            >
+              reminder 4
+            </div>
+          </Timeline.Item>
+          <Timeline.Item
+            label='August'
+            dot={
+              <Icon
+                icon={faCalendarDay}
+                style={{color: 'white', height: '50%'}}
+              />
+            }
+          >
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: 'fit-content',
+              }}
+            >
+              reminder 5
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: 'fit-content',
+              }}
+            >
+              reminder 6
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: 'fit-content',
+              }}
+            >
+              reminder 7
+            </div>
+          </Timeline.Item>
+        </Timeline>
+        <h3>Vertical timeline with alternate alignment</h3>
+        <div style={{position: 'relative', left: '11.55rem'}}>
+          <Timeline
+            mode='vertical'
+            labelAlignment='alternate'
+            itemAlignment='alternate'
+          >
+            <Timeline.Item
+              identifier={0}
+              label='June'
+              dot={
+                <Icon
+                  icon={faCalendarDay}
+                  style={{color: 'white', height: '50%'}}
+                />
+              }
+            >
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  width: 'fit-content',
+                }}
+              >
+                reminder 2
+              </div>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  width: 'fit-content',
+                }}
+              >
+                reminder 2
+              </div>
+            </Timeline.Item>
+            <Timeline.Item
+              identifier={1}
+              label='July'
+              dot={
+                <Icon
+                  icon={faCalendarDay}
+                  style={{color: 'red', height: '50%'}}
+                />
+              }
+            >
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  width: 'fit-content',
+                }}
+              >
+                reminder 3
+              </div>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  width: 'fit-content',
+                }}
+              >
+                reminder 4
+              </div>
+            </Timeline.Item>
+            <Timeline.Item
+              identifier={2}
+              label='August'
+              dot={
+                <Icon
+                  icon={faCalendarDay}
+                  style={{color: 'white', height: '50%'}}
+                />
+              }
+            >
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  width: 'fit-content',
+                }}
+              >
+                reminder 5
+              </div>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  width: 'fit-content',
+                }}
+              >
+                reminder 6
+              </div>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  width: 'fit-content',
+                }}
+              >
+                reminder 7
+              </div>
+            </Timeline.Item>
+          </Timeline>
+        </div>
       </div>
     </Column>
   )

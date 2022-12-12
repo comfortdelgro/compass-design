@@ -1,6 +1,22 @@
 import {styled} from '../theme'
 import type {VariantProps} from '../utils/stitches.types'
 
+export const StyledItemContentWrapper = styled('div', {
+  // reset
+  appearance: 'none',
+  border: 'none',
+  boxSizing: 'border-box',
+  margin: '0px',
+  padding: '0px',
+  height: 'fit-content',
+  width: 'fit-content',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '$4',
+  marginBottom: '$6',
+  marginTop: '$6',
+})
+
 export const StyledItemDot = styled('div', {
   // reset
   appearance: 'none',
@@ -98,12 +114,14 @@ export const StyledTimelineContainer = styled('div', {
       left: {},
       top: {},
       bottom: {},
+      alternate: {},
     },
     itemAlignment: {
       right: {},
       left: {},
       top: {},
       bottom: {},
+      alternate: {},
     },
   },
 
@@ -115,7 +133,7 @@ export const StyledTimelineContainer = styled('div', {
       itemAlignment: 'right',
       css: {},
     },
-    // compound with: left-side label & left-side items
+    // compound with: vertical left-side label & left-side items
     {
       mode: 'vertical',
       labelAlignment: 'left',
@@ -136,7 +154,7 @@ export const StyledTimelineContainer = styled('div', {
       },
     },
 
-    // compound with: left-side label & right-side items
+    // compound with: vertical left-side label & right-side items
     {
       mode: 'vertical',
       labelAlignment: 'left',
@@ -155,7 +173,7 @@ export const StyledTimelineContainer = styled('div', {
       },
     },
 
-    // compound with: right-side label & left-side items
+    // compound with: vertical right-side label & left-side items
     {
       mode: 'vertical',
       labelAlignment: 'right',
@@ -165,7 +183,7 @@ export const StyledTimelineContainer = styled('div', {
 
         [`${StyledItemHeaderContainer}`]: {
           position: 'relative',
-          left: '8.5rem',
+          left: '7rem',
         },
         [`${StyledItemLabel}`]: {
           //justifyContent: 'flex-end',
@@ -173,23 +191,31 @@ export const StyledTimelineContainer = styled('div', {
       },
     },
 
-    // compound with: top label & bottom items
-    // {
-    //   mode: 'horizontal',
-    //   labelAlignment: 'top',
-    //   itemAlignment: 'bottom',
-    //   css: {
-    //     boxShadow: '1px 0 0 0 #D2D0CE',
-
-    //     [`${StyledItemHeaderContainer}`]: {
-    //       position: 'relative',
-    //       left: '8.5rem',
-    //     },
-    //     [`${StyledItemLabel}`]: {
-    //       //justifyContent: 'flex-end',
-    //     },
-    //   },
-    // },
+    // compound with: vertical alternate
+    {
+      mode: 'vertical',
+      labelAlignment: 'alternate',
+      itemAlignment: 'alternate',
+      css: {
+        [`${StyledItemHeaderContainer}`]: {},
+        [`${StyledItemLabel}`]: {},
+        '& .header-even': {},
+        '& .header-odd': {
+          display: 'flex',
+          flexDirection: 'row-reverse',
+          position: 'relative',
+          right: '7rem',
+        },
+        '& .label-odd': {
+          display: 'flex',
+          justifyContent: 'flex-end',
+        },
+        '& .content-even': {
+          position: 'relative',
+          right: '10.1rem',
+        },
+      },
+    },
   ],
 
   defaultVariants: {
