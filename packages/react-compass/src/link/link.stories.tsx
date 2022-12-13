@@ -1,5 +1,5 @@
 import {Column} from '../utils/components'
-import Link from './link'
+import Link from './index'
 
 export const Links: React.FC = () => (
   <Column>

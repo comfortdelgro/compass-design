@@ -1,5 +1,5 @@
 import {Column, Row} from '../utils/components'
-import Toggle from './toggle'
+import Toggle from './index'
 
 export const Sizes: React.FC = () => (
   <Column>

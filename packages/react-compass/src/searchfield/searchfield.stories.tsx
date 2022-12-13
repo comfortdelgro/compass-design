@@ -1,6 +1,6 @@
 import type {StoryDecorator} from '@ladle/react'
 import {Column, Row} from '../utils/components'
-import SearchField from './searchfield'
+import SearchField from './index'
 
 export const Variants: React.FC = () => (
   <Column>

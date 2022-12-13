@@ -3,7 +3,7 @@ import {AnimatePresence, motion} from 'framer-motion'
 import {useState} from 'react'
 import Link from '../link/link' // import the component directly
 import {Column} from '../utils/components'
-import Alert from './alert'
+import Alert from './index'
 
 const AlertContent: React.FC = () => (
   <>
