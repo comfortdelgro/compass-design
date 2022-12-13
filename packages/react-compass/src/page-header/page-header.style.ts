@@ -33,6 +33,14 @@ export const StyledPageHeader = styled('div', {
         [`& ${StyledPageHeaderDescription}`]: {
           color: '$gray80',
         },
+
+        [`& ${StyledBreadcrumbItem}`]: {
+          color: '$gray70',
+        },
+
+        [`& ${StyledBreadcrumbItem}.active`]: {
+          color: '#009EDA',
+        },
       },
       blue: {
         backgroundColor: '$cdgBlue100',
@@ -49,6 +57,10 @@ export const StyledPageHeader = styled('div', {
         },
 
         [`& ${StyledBreadcrumbItem}`]: {
+          color: '$gray70',
+        },
+
+        [`& .divider-icon`]: {
           color: '$gray70',
         },
 
