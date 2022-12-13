@@ -41,9 +41,16 @@ const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
       searchFieldRef,
     )
 
+    console.log('inputProps', inputProps)
+    console.log('clearButton', clearButtonProps)
+
     return (
       <StyledSearchFieldBox disabled={!!isDisabled} css={css}>
-        <StyledSearchFieldInput ref={searchFieldRef} {...inputProps} />
+        <StyledSearchFieldInput
+          ref={searchFieldRef}
+          {...inputProps}
+          type='text'
+        />
         {state.value !== '' ? (
           <Button {...clearButtonProps} size='sm' variant='ghost'>
             <Icon className='icon' icon={faClose} />
