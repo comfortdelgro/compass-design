@@ -2,6 +2,7 @@ import {styled} from '../theme'
 
 export const StyledAccordion = styled('div', {
   width: '100%',
+  minHeight: '82px',
   position: 'relative',
   backgroundColor: '$background',
   color: '$primaryText',
@@ -18,6 +19,9 @@ export const StyledAccordion = styled('div', {
     borderBottomRightRadius: '$lg',
     overflow: 'hidden',
     transition: 'max-height 0.25s ease-in-out',
+  },
+  '& .accordion-body.collapsed': {
+    border: 'none',
   },
   '& .accordion-body-inner': {
     padding: '$4 $6 $4 $5',

@@ -1,6 +1,6 @@
 import {useState} from 'react'
 import {Column, Row} from '../utils/components'
-import Slider from './slider'
+import Slider from './index'
 
 export const Sliders: React.FC = () => {
   const [value, setValue] = useState<number>(20)

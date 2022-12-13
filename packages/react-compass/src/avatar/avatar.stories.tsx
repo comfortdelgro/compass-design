@@ -50,14 +50,14 @@ export const Variants = () => (
 
 export const Group = () => (
   <>
-    <Avatar.Group display={5}>
-      <Avatar label='Leonhard Euler' image={images[0]} />
-      <Avatar label='Isaac Newton' image={images[1]} />
-      <Avatar label='Alan Turing' image={images[2]} />
-      <Avatar label='David Hilbert' image={images[3]} />
-      <Avatar label='Edwin Hubble' image={images[4]} />
-      <Avatar label='Ada Lovelace' image={images[0]} />
-      <Avatar label='Max Planck' image={images[1]} />
+    <Avatar.Group display={5} size='sm' disabledAnimation>
+      <Avatar label='Leonhard Euler' image={images[0]} size='sm' />
+      <Avatar label='Isaac Newton' image={images[1]} size='sm' />
+      <Avatar label='Alan Turing' image={images[2]} size='sm' />
+      <Avatar label='David Hilbert' image={images[3]} size='sm' />
+      <Avatar label='Edwin Hubble' image={images[4]} size='sm' />
+      <Avatar label='Ada Lovelace' image={images[0]} size='sm' />
+      <Avatar label='Max Planck' image={images[1]} size='sm' />
     </Avatar.Group>
   </>
 )

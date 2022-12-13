@@ -1,6 +1,6 @@
 import {faThumbsUp, faVirus} from '@fortawesome/free-solid-svg-icons'
 import {Column, Row} from '../utils/components'
-import Badge from './badge'
+import Badge from './index'
 
 export const Variants: React.FC = () => (
   <Column>

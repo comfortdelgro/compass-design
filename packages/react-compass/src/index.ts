@@ -30,12 +30,37 @@ export type {
   CardProps,
   CardTitleProps,
 } from './card'
+export {default as Chart} from './chart'
+export type {
+  AreaChartProps,
+  BarChartProps,
+  ColumnChartProps,
+  LineChartProps,
+} from './chart'
+export {default as Carousel} from './carousel'
+export type {
+  CarouselButtonsProps,
+  CarouselDescriptionProps,
+  CarouselImageProps,
+  CarouselProps,
+  CarouselTitleProps,
+} from './carousel'
 export {default as Checkbox} from './checkbox'
 export type {CheckboxProps} from './checkbox'
 export {default as DatePicker} from './date-picker'
 export type {DatePickerProps} from './date-picker'
 export {default as DateRangePicker} from './date-range-picker'
 export type {DateRangePickerProps} from './date-range-picker'
+export {Footer, FooterInfo} from './footer'
+export type {
+  FooterHeaderProps,
+  FooterInfoDownloadProps,
+  FooterInfoProps,
+  FooterInfoSocialProps,
+  FooterNavigationProps,
+  FooterPolicyProps,
+  FooterProps,
+} from './footer'
 export {default as Dialog} from './dialog'
 export type {
   DialogActionsProps,
@@ -45,10 +70,27 @@ export type {
   DialogTitleProps,
   DialogTriggerProps,
 } from './dialog'
+export {default as Error} from './error'
+export type {
+  ErrorActionProps,
+  ErrorDescriptionProps,
+  ErrorIconProps,
+  ErrorImageProps,
+  ErrorProps,
+  ErrorTitleProps,
+} from './error'
 export {default as Icon} from './icon'
 export type {IconProp} from './icon'
 export {default as Link} from './link'
 export type {LinkProps} from './link'
+export {default as List, InteractiveList, ListCard} from './list'
+export type {
+  InteractiveListProps,
+  ListCardDetailProps,
+  ListCardProps,
+  ListImageProps,
+  ListProps,
+} from './list'
 export {
   default as MenuList,
   MenuListContext,
@@ -71,9 +113,20 @@ export type {
 } from './modal'
 export {default as Navbar} from './navbar'
 export type {NavbarBrandProps, NavbarIconProps, NavbarProps} from './navbar'
+export {PageHeader, SubHeader} from './page-header'
+export type {
+  PageHeaderDescriptionProps,
+  PageHeaderHeaderProps,
+  PageHeaderProps,
+  PageHeaderSubtitleProps,
+  PageHeaderTitleProps,
+  SubHeaderProps,
+} from './page-header'
 export {default as Pagination} from './pagination'
 export type {PaginationProps} from './pagination'
 export {default as Preflight} from './preflight'
+export {default as ProgressBar} from './progress-bar'
+export type {ProgressBarProps} from './progress-bar'
 export {default as Radio} from './radio'
 export type {RadioGroupProps, RadioProps} from './radio'
 export {default as RangeCalendar} from './range-calendar'
@@ -110,6 +163,8 @@ export type {TextareaProps} from './textarea'
 export {default as TextField} from './textfield'
 export type {TextFieldProps} from './textfield'
 export * from './theme'
+export {default as TimeLine} from './timeline'
+export type {TimelineItemProps, TimelineProps} from './timeline'
 export {default as Toast} from './toast'
 export type {
   ToastActionsProps,
@@ -124,6 +179,13 @@ export {default as Toggle} from './toggle'
 export type {ToggleProps} from './toggle'
 export {Tooltip, TooltipTrigger} from './tooltip'
 export type {TooltipProps, TooltipTriggerProps} from './tooltip'
+export {default as Upload} from './upload'
+export type {
+  UploadButtonProps,
+  UploadIconProps,
+  UploadPlaceholderProps,
+  UploadProps,
+} from './upload'
 export * from './utils'
 export {default as Wizard} from './wizard'
 export type {WizardProps} from './wizard'

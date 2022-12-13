@@ -3,6 +3,7 @@ import {VariantProps} from '../utils/stitches.types'
 
 export const StyledAccordionTitleWrapper = styled('div', {
   width: '100%',
+  minHeight: '82px',
   display: 'flex',
   position: 'relative',
   padding: '$4 $6 $4 $5',
@@ -23,25 +24,23 @@ export const StyledAccordionTitleWrapper = styled('div', {
   },
 
   '& .accordion-left-icon-container': {
-    display: 'flex',
-    alignItems: 'center',
     marginRight: '$6',
   },
 
   '& .accordion-left-icon': {
     width: '$5',
     height: '$5',
+    marginTop: '12px',
   },
 
   '& .accordion-chevron-container': {
-    display: 'flex',
-    alignItems: 'center',
     marginLeft: '$6',
   },
 
   '& .accordion-chevron-icon': {
     width: '$5',
     height: '$0.75',
+    marginTop: '12px',
   },
 
   variants: {

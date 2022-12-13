@@ -15,6 +15,20 @@ export const StyledAvatarGroup = styled('div', {
       marginTop: '-$4',
     },
   },
+
+  variants: {
+    disabledAnimation: {
+      false: {},
+      true: {
+        [`& ${StyledAvatar}`]: {
+          marginRight: '-$2',
+          '&:hover': {
+            marginTop: '0px',
+          },
+        },
+      },
+    },
+  },
 })
 
 export type AvatarGroupVariantProps = VariantProps<typeof StyledAvatarGroup>

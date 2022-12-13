@@ -26,10 +26,12 @@ importers:
 
   apps/docs:
     specifiers:
+      '@comfortdelgro/compass-icons': workspace:^0.1.1
       '@comfortdelgro/react-compass': workspace:*
       '@fortawesome/free-solid-svg-icons': ^6.2.0
       '@internationalized/date': ^3.0.1
       '@react-aria/i18n': ^3.6.2
+      '@iconify/react': ^4.0.1
       '@types/node': ^18.11.0
       '@types/react': ^17.0.39
       '@types/react-dom': ^17.0.11
@@ -47,10 +49,12 @@ importers:
       tailwindcss: ^3.2.1
       typescript: ^4.8.4
     dependencies:
+      '@comfortdelgro/compass-icons': link:../../packages/compass-icons
       '@comfortdelgro/react-compass': link:../../packages/react-compass/dist
       '@fortawesome/free-solid-svg-icons': 6.2.1
       '@internationalized/date': 3.0.1
       '@react-aria/i18n': 3.6.2_react@18.2.0
+      '@iconify/react': 4.0.1_react@18.2.0
       clsx: 1.2.1
       next: 12.3.1_biqbaboplfbrettd7655fr4n2y
       nextra: 2.0.0-beta.41_azq6kxkn3od7qdylwkyksrwopy
@@ -119,6 +123,7 @@ importers:
       '@react-aria/interactions': ^3.12.0
       '@react-aria/link': ^3.3.4
       '@react-aria/overlays': ^3.12.0
+      '@react-aria/progress': ^3.3.3
       '@react-aria/radio': ^3.4.1
       '@react-aria/searchfield': ^3.4.2
       '@react-aria/slider': ^3.2.3
@@ -188,6 +193,7 @@ importers:
       '@react-aria/interactions': 3.13.0_react@18.2.0
       '@react-aria/link': 3.3.5_react@18.2.0
       '@react-aria/overlays': 3.12.0_biqbaboplfbrettd7655fr4n2y
+      '@react-aria/progress': 3.3.3_react@18.2.0
       '@react-aria/radio': 3.4.1_react@18.2.0
       '@react-aria/searchfield': 3.4.3_react@18.2.0
       '@react-aria/slider': 3.2.3_react@18.2.0
@@ -1934,6 +1940,15 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
 
+  /@iconify/react/4.0.1_react@18.2.0:
+    resolution: {integrity: sha512-/DBJqh5K7W4f+d4kpvyJa/OTpVa3GfgrE9bZFAKP0vIWDr0cvVU9MVvbbkek216w9nLQhpJY/FeJtc6izB1PHw==}
+    peerDependencies:
+      react: '>=16'
+    dependencies:
+      '@iconify/types': 2.0.0
+      react: 18.2.0
+    dev: false
+
   /@iconify/tools/2.1.2_@iconify+types@2.0.0:
     resolution: {integrity: sha512-HNYw3K0KtdkB9xNo5jNMTW73DnVBACS0V6iMaL7i1kb8fMPq0BeMP9vmocii3JdJeBc4+nST61H4Sel0Ps5bJg==}
     peerDependencies:
@@ -1959,7 +1974,6 @@ packages:
 
   /@iconify/types/2.0.0:
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
-    dev: true
 
   /@iconify/utils/2.0.2:
     resolution: {integrity: sha512-13B3wJxDLmSNBEIEpKleKSkJVQgdAy9ra3Xsu233i/5qD5yXBGhpOFxTB/k8cqme0xVsMKBPV5vbvq9MgQlX+w==}
@@ -2718,6 +2732,20 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
+  /@react-aria/progress/3.3.3_react@18.2.0:
+    resolution: {integrity: sha512-yRE9fBfbjSdyWHWeQ4HqEURAT8foa9drGCJIKnMUx08dEsPAXvdh9tvnAvr1kbJnDlZxVwhlbTyFCwB+E2Mfag==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@babel/runtime': 7.20.6
+      '@react-aria/i18n': 3.6.2_react@18.2.0
+      '@react-aria/label': 3.4.3_react@18.2.0
+      '@react-aria/utils': 3.14.1_react@18.2.0
+      '@react-types/progress': 3.2.5_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
+      react: 18.2.0
+    dev: false
+
   /@react-aria/radio/3.4.1_react@18.2.0:
     resolution: {integrity: sha512-a1JFxFOiExX1ZRGBE31LW4dgc3VmW2v3upJ5snGQldC83o0XxqNavmOef+fMsIRV0AQA/mcxAJVNQ0n9SfIiUQ==}
     peerDependencies:
@@ -3229,6 +3257,15 @@ packages:
     dependencies:
       '@react-types/shared': 3.16.0_react@18.2.0
       react: 18.2.0
+
+  /@react-types/progress/3.2.5_react@18.2.0:
+    resolution: {integrity: sha512-pFSqaj6rlSdPqGHVErJ8G3RkIyYigoJ3EVozvhR9bcKkLlhnzJiFgOZl+k5u/ZKJOA+YHivIHJwg+Kl1sG0J6A==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@react-types/shared': 3.16.0_react@18.2.0
+      react: 18.2.0
+    dev: false
 
   /@react-types/radio/3.3.1_react@18.2.0:
     resolution: {integrity: sha512-q/x0kMvBsu6mH4bIkp/Jjrm9ff5y/p3UR0V4CmQFI7604gQd2Dt1dZMU/2HV9x70r1JfWRrDeRrVjUHVfFL5Vg==}

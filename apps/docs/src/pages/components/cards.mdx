@@ -117,6 +117,42 @@ function H1TitleExample() {
   </Card>
 </ComponentDisplay>
 
+### Action
+
+Use `<Card.Action>` to create an area for action buttons in a card `<Card.Body>`.
+
+```tsx {22}
+import {Card} from '@comfortdelgro/react-compass'
+
+function CardActionExample() {
+  return (
+    <Card size='lg'>
+      <Card.Body>
+        <Card.Title>Card title as H1</Card.Title>
+        <p>This is a paragraph within a card body</p>
+        <Card.Action>
+          <Button variant='primary'>Button</Button>
+          <Button variant='secondary'>Button</Button>
+        </Card.Action>
+      </Card.Body>
+    </Card>
+  )
+}
+```
+
+<ComponentDisplay>
+  <Card size='lg'>
+    <Card.Body>
+      <Card.Title>Card title as H1</Card.Title>
+      <p>This is a paragraph within a card body</p>
+      <Card.Action>
+        <Button variant='primary'>Button</Button>
+        <Button variant='secondary'>Button</Button>
+      </Card.Action>
+    </Card.Body>
+  </Card>
+</ComponentDisplay>
+
 ### Image
 
 Use `<Card.Image>` to embed the image in a card `<Card>`.
@@ -161,7 +197,7 @@ Card comes with different sizes: `sm`, `lg` and `full`.
 ```tsx {22}
 import {Card} from '@comfortdelgro/react-compass'
 
-function BasicExample() {
+function SizesExample() {
     const sizes = ['sm', 'lg', 'full']
 
     return (
@@ -183,8 +219,8 @@ function BasicExample() {
   {['sm', 'lg', 'full'].map((size) => (
     <Card key={size} css={{marginBottom: '24px'}} size={size}>
       <Card.Body>
-        <Card.Title css={{fontSize: '20px'}}>Card with size: {size}</Card.Title>
-        <p>This is a paragraph within a card body</p>
+        <Card.Title>Card with size</Card.Title>
+        <p style={{margin: 0}}>This is a paragraph within a card body</p>
       </Card.Body>
     </Card>
   ))}
@@ -195,7 +231,7 @@ You can fully customize the card size.
 ```tsx {22}
 import {Card} from '@comfortdelgro/react-compass'
 
-function BasicExample() {
+function CustomizedWidthExample() {
   const cardSize = '460px'
 
   return (
@@ -212,10 +248,8 @@ function BasicExample() {
 <ComponentDisplay>
   <Card css={{width: '460px'}}>
     <Card.Body>
-      <Card.Title css={{fontSize: '20px'}}>
-        Card with customized size
-      </Card.Title>
-      <p>This is a paragraph within a card body</p>
+      <Card.Title> Card with customized size </Card.Title>
+      <p style={{margin: 0}}>This is a paragraph within a card body</p>
     </Card.Body>
   </Card>
 </ComponentDisplay>
@@ -235,9 +269,11 @@ function DisabledCard() {
       <Card.Body>
         <Card.Title>Disabled Card</Card.Title>
         <p>This is a paragraph within a card body</p>
-        <Button isDisabled={isDisabled} variant='primary'>
-          Button
-        </Button>
+        <Card.Action>
+          <Button isDisabled={isDisabled} variant='primary'>
+            Button
+          </Button>
+        </Card.Action>
       </Card.Body>
     </Card>
   )
@@ -251,7 +287,68 @@ import Button from '@comfortdelgro/react-compass/button'
     <Card.Body>
       <Card.Title>Disabled Card</Card.Title>
       <p>This is a paragraph within a card body</p>
-      <Button isDisabled>Button</Button>
+      <Card.Action>
+        <Button isDisabled>Button</Button>
+      </Card.Action>
+    </Card.Body>
+  </Card>
+</ComponentDisplay>
+
+## Clickable
+
+Card can be clicked and focused by passing `isClickable` prop.
+
+```tsx {22}
+import {Card} from '@comfortdelgro/react-compass'
+
+function DisabledCard() {
+  return (
+    <Card size='sm' isClickable onClick={() => alert('clicked')}>
+      <Card.Body>
+        <Card.Title>Clickable Card</Card.Title>
+        <p>This is a paragraph within a card body</p>
+      </Card.Body>
+    </Card>
+  )
+}
+```
+
+<ComponentDisplay>
+  <Card size='sm' isClickable onClick={() => alert('clicked')}>
+    <Card.Body>
+      <Card.Title>Clickable Card</Card.Title>
+      <p>This is a paragraph within a card body</p>
+      <Card.Action>
+        <Button>Button</Button>
+      </Card.Action>
+    </Card.Body>
+  </Card>
+</ComponentDisplay>
+
+## Shadowless
+
+Card will not have shadows when passing `isShadowless` prop.
+
+```tsx {22}
+import {Card} from '@comfortdelgro/react-compass'
+
+function DisabledCard() {
+  return (
+    <Card size='sm' isShadowless>
+      <Card.Body>
+        <Card.Title>Shadowless Card</Card.Title>
+        <p>This is a paragraph within a card body</p>
+      </Card.Body>
+    </Card>
+  )
+}
+```
+
+<ComponentDisplay>
+  <Card size='sm' isShadowless>
+    <Card.Body>
+      <Card.Title>Shadowless Card</Card.Title>
+      <p>This is a paragraph within a card body</p>
     </Card.Body>
   </Card>
 </ComponentDisplay>
@@ -260,12 +357,14 @@ import Button from '@comfortdelgro/react-compass/button'
 
 ### Card
 
-| Name       | Type                   | Default | Description                                                                             |
-| :--------- | :--------------------- | :------ | :-------------------------------------------------------------------------------------- |
-| children   | `ReactNode`            | —       | The content to display in the Card.                                                     |
-| size       | `sm` \| `lg` \| `full` | `full`  | The size of the Card                                                                    |
-| isDisabled | `boolean`              | false   | Whether the card is disabled.                                                           |
-| css        | `CSS`                  | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
+| Name         | Type                   | Default | Description                                                                             |
+| :----------- | :--------------------- | :------ | :-------------------------------------------------------------------------------------- |
+| children     | `ReactNode`            | —       | The content to display in the Card.                                                     |
+| size         | `sm` \| `lg` \| `full` | `full`  | The size of the Card                                                                    |
+| isDisabled   | `boolean`              | false   | Whether the card is disabled.                                                           |
+| isClickable  | `boolean`              | false   | Whether the card is clickable.                                                          |
+| isShadowless | `boolean`              | false   | Whether the card is shadowless.                                                         |
+| css          | `CSS`                  | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
 
 ### Card Body
 
@@ -275,6 +374,13 @@ import Button from '@comfortdelgro/react-compass/button'
 | css      | `CSS`       | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
 
 ### Card Title
+
+| Name     | Type        | Default | Description                                                                             |
+| :------- | :---------- | :------ | :-------------------------------------------------------------------------------------- |
+| children | `ReactNode` | —       | The content to display in the Card Image.                                               |
+| css      | `CSS`       | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
+
+### Card Action
 
 | Name     | Type        | Default | Description                                                                             |
 | :------- | :---------- | :------ | :-------------------------------------------------------------------------------------- |

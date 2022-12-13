@@ -52,6 +52,7 @@ const BreadcrumbItem = React.forwardRef<HTMLAnchorElement, BreadcrumbItemProps>(
           href={href}
           target={target}
           // aria props
+          className={isCurrent ? 'active' : ''}
           {...itemProps}
           // variants
           active={!!isCurrent}
