@@ -15,6 +15,7 @@ export const StyledCalendarCell = styled('td', {
 
   '&:hover': {
     backgroundColor: '$cdgBlue40 !important',
+    borderRadius: '$md',
   },
 
   '&.selected': {
