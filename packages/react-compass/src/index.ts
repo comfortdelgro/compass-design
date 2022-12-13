@@ -28,6 +28,14 @@ export type {
   CardProps,
   CardTitleProps,
 } from './card'
+export {default as Carousel} from './carousel'
+export type {
+  CarouselButtonsProps,
+  CarouselDescriptionProps,
+  CarouselImageProps,
+  CarouselProps,
+  CarouselTitleProps,
+} from './carousel'
 export {default as Checkbox} from './checkbox'
 export type {CheckboxProps} from './checkbox'
 export {default as Dialog} from './dialog'
