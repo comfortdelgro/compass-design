@@ -24,6 +24,7 @@ export type TooltipTriggerProps = Props &
 
 const DEFAULT_OFFSET = 16
 const DEFAULT_CROSS_OFFSET = 0
+const FALLBACK_CROSS_OFFSET = 16
 
 const TooltipTrigger = React.forwardRef<HTMLButtonElement, TooltipTriggerProps>(
   (props, ref) => {
@@ -36,7 +37,6 @@ const TooltipTrigger = React.forwardRef<HTMLButtonElement, TooltipTriggerProps>(
       onOpenChange,
       // AriaTooltipProps with default value
       offset = DEFAULT_OFFSET,
-      crossOffset = DEFAULT_CROSS_OFFSET,
       placement = 'bottom',
       defaultOpen = false,
       shouldFlip = true,
@@ -44,10 +44,18 @@ const TooltipTrigger = React.forwardRef<HTMLButtonElement, TooltipTriggerProps>(
       ...delegated
     } = props
 
+    let {crossOffset = DEFAULT_CROSS_OFFSET} = props
+
     //set default value for tooltip trigger props
     const tooltipTriggerStateProps: TooltipTriggerAriaProps = {
       delay: 0,
       ...props,
+    }
+
+    if (placement === 'right bottom' || placement === 'left bottom') {
+      crossOffset = DEFAULT_CROSS_OFFSET + FALLBACK_CROSS_OFFSET
+    } else if (placement === 'right top' || placement === 'left top') {
+      crossOffset = DEFAULT_CROSS_OFFSET - FALLBACK_CROSS_OFFSET
     }
 
     // tooltip trigger state that will be managed by react-aria
