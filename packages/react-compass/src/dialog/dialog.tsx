@@ -1,6 +1,3 @@
-import {useDialog} from '@react-aria/dialog'
-import {FocusScope} from '@react-aria/focus'
-import {useModal, useOverlay, usePreventScroll} from '@react-aria/overlays'
 import React from 'react'
 import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
@@ -30,22 +27,12 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
     onClose,
     // VariantProps
     variant = 'confirmation',
-    // AriaDialogProps
-    ...ariaSafeProps
+    // html element props
+    ...delegated
   } = props
 
   const variantProps = {variant} as DialogVariantProps
   const dialogRef = useDOMRef<HTMLDivElement>(ref)
-
-  // Hanlde interacting outside of the dialog and pressing the Escape key to close the modal.
-  const {overlayProps} = useOverlay(ariaSafeProps, dialogRef)
-
-  // Prevent scrolling while the modal is open, and hide content outside the modal from screen readers.
-  usePreventScroll()
-  useModal()
-
-  // Get props for its dialog and its title
-  const {dialogProps} = useDialog(ariaSafeProps, dialogRef)
 
   // Pick title child component
   const {child: DialogTitleElement} = pickChild<typeof DialogTitle>(
@@ -72,20 +59,12 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
   )
 
   return (
-    <FocusScope contain restoreFocus autoFocus>
-      <StyledDialog
-        css={css}
-        ref={dialogRef}
-        {...variantProps}
-        {...overlayProps}
-        {...dialogProps}
-      >
-        {variant == 'alert' ? DialogIconElement : null}
-        {DialogTitleElement}
-        {DialogDescriptionElement}
-        {DialogActionsElement}
-      </StyledDialog>
-    </FocusScope>
+    <StyledDialog css={css} ref={dialogRef} {...variantProps} {...delegated}>
+      {variant == 'alert' ? DialogIconElement : null}
+      {DialogTitleElement}
+      {DialogDescriptionElement}
+      {DialogActionsElement}
+    </StyledDialog>
   )
 })
 

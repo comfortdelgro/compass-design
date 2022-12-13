@@ -1,8 +1,6 @@
 import {useState} from 'react'
 import {Column} from '../utils/components'
-import Accordion from './accordion'
-import AccordionTable from './accordion-table'
-import AccordionTitle from './accordion-title'
+import Accordion from './index'
 
 const lorem = `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi,
   officiis corporis magnam quo expedita nostrum temporibus quibusdam ipsa
@@ -26,28 +24,28 @@ export const Default: React.FC = () => {
       <h3>Default with icon</h3>
 
       <Accordion>
-        <AccordionTitle>Title</AccordionTitle>
+        <Accordion.Title>Title</Accordion.Title>
         {lorem}
       </Accordion>
 
       <Accordion>
-        <AccordionTitle>
+        <Accordion.Title>
           <p>{lorem}</p>
-        </AccordionTitle>
+        </Accordion.Title>
         {lorem}
       </Accordion>
 
       <h3>Default without icon</h3>
 
       <Accordion>
-        <AccordionTitle icon={false}>Title</AccordionTitle>
+        <Accordion.Title icon={false}>Title</Accordion.Title>
         {lorem}
       </Accordion>
 
       <Accordion>
-        <AccordionTitle icon={false}>
+        <Accordion.Title icon={false}>
           <p>{lorem}</p>
-        </AccordionTitle>
+        </Accordion.Title>
         {lorem}
       </Accordion>
 
@@ -57,7 +55,7 @@ export const Default: React.FC = () => {
         defaultExpand={true}
         css={{background: 'Wheat', color: 'SaddleBrown'}}
       >
-        <AccordionTitle
+        <Accordion.Title
           css={{
             background: 'burlywood',
             textAlign: 'center',
@@ -65,7 +63,7 @@ export const Default: React.FC = () => {
           }}
         >
           <p>{lorem}</p>
-        </AccordionTitle>
+        </Accordion.Title>
         {lorem}
       </Accordion>
 
@@ -75,9 +73,9 @@ export const Default: React.FC = () => {
         expand={expand === 'first'}
         onExpandChange={handleControlledAccordion('first')}
       >
-        <AccordionTitle>
+        <Accordion.Title>
           <p>{lorem}</p>
-        </AccordionTitle>
+        </Accordion.Title>
         {lorem}
         {lorem}
       </Accordion>
@@ -85,9 +83,9 @@ export const Default: React.FC = () => {
         expand={expand === 'second'}
         onExpandChange={handleControlledAccordion('second')}
       >
-        <AccordionTitle>
+        <Accordion.Title>
           <p>{lorem}</p>
-        </AccordionTitle>
+        </Accordion.Title>
         {lorem}
         {lorem}
       </Accordion>
@@ -95,9 +93,9 @@ export const Default: React.FC = () => {
         expand={expand === 'third'}
         onExpandChange={handleControlledAccordion('third')}
       >
-        <AccordionTitle>
+        <Accordion.Title>
           <p>{lorem}</p>
-        </AccordionTitle>
+        </Accordion.Title>
         {lorem}
         {lorem}
       </Accordion>
@@ -131,11 +129,11 @@ export const Table: React.FC = () => {
 
   return (
     <Accordion>
-      <AccordionTitle>
+      <Accordion.Title>
         <h2>Business Profile</h2>
-      </AccordionTitle>
+      </Accordion.Title>
       <p>{lorem}</p>
-      <AccordionTable>{renderAccordionTableItems()}</AccordionTable>
+      <Accordion.Table>{renderAccordionTableItems()}</Accordion.Table>
       <p>{lorem}</p>
     </Accordion>
   )

@@ -1,7 +1,7 @@
 import type {StoryDecorator} from '@ladle/react'
 import {useState} from 'react'
 import {Column} from '../utils/components'
-import Textarea from './textarea'
+import Textarea from './index'
 
 export const Variants: React.FC = () => {
   const [value, setValue] = useState('Lorem ipsum dolor sit amet.')

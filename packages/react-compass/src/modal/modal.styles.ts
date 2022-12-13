@@ -19,7 +19,7 @@ export const StyledModalTitle = styled('h3', {
   color: '$black',
 })
 
-export const StyledModalDescription = styled('p', {
+export const StyledModalDescription = styled('div', {
   // reset
   appearance: 'none',
   border: 'none',

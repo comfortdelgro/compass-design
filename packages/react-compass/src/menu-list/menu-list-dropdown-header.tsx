@@ -1,4 +1,3 @@
-import {faChevronDown} from '@fortawesome/free-solid-svg-icons'
 import {AriaButtonProps, useButton} from '@react-aria/button'
 import type {PressEvent} from '@react-types/shared'
 import React, {useContext} from 'react'
@@ -55,11 +54,10 @@ const MenuListDropdownHeader = React.forwardRef<
   const renderLeftIcon = () => {
     if (leftIcon === undefined) {
       return (
-        <Icon
+        <ChevronIcon
           className={`menu-list-dropdown-chevron-down-left-icon ${
             isOpen ? 'rotated-icon' : ''
           }`}
-          icon={faChevronDown}
         />
       )
     } else if (leftIcon === false) {
@@ -79,11 +77,10 @@ const MenuListDropdownHeader = React.forwardRef<
   const renderRightIcon = () => {
     if (rightIcon === true) {
       return (
-        <Icon
+        <ChevronIcon
           className={`menu-list-dropdown-chevron-down-right-icon ${
             isOpen ? 'rotated-icon' : ''
           }`}
-          icon={faChevronDown}
         />
       )
     } else if (rightIcon === undefined) {
@@ -122,3 +119,25 @@ const MenuListDropdownHeader = React.forwardRef<
 })
 
 export default MenuListDropdownHeader
+
+interface ChevronIconProps {
+  className: string
+}
+
+const ChevronIcon = (props: ChevronIconProps) => {
+  return (
+    <svg
+      width='12'
+      height='8'
+      viewBox='0 0 12 8'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      {...props}
+    >
+      <path
+        d='M5.15244 6.82759C5.62099 7.28332 6.38193 7.28332 6.85048 6.82759L11.6485 2.16093C11.9933 1.82551 12.0945 1.32603 11.9071 0.888532C11.7197 0.451032 11.2849 0.166656 10.7976 0.166656L1.20159 0.170303C0.718038 0.170303 0.279471 0.454678 0.0920492 0.892178C-0.0953726 1.32968 0.00958361 1.82916 0.350691 2.16457L5.14869 6.83124L5.15244 6.82759Z'
+        fill='#605E5C'
+      />
+    </svg>
+  )
+}
