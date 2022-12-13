@@ -83,24 +83,24 @@ export default defineTheme({
     mono: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
   },
   fontSizes: {
-    display1: '3.5rem',
-    display2: '3rem',
-    display3: '2.5rem',
+    display1: '3.5rem', //56px
+    display2: '3rem', //48px
+    display3: '2.5rem', //40px
 
-    header0: '2.5rem',
-    header1: '2rem',
-    header2: '1.75rem',
-    header3: '1.5rem',
-    header4: '1.25rem',
-    header5: '1rem',
+    header0: '2.5rem', //40px
+    header1: '2rem', //32px
+    header2: '1.75rem', //28px
+    header3: '1.5rem', //24px
+    header4: '1.25rem', //20px
+    header5: '1rem', //16px
 
-    body1: '1.25rem',
-    body2: '1rem',
-    body3: '0.875rem',
+    body1: '1.25rem', //20px
+    body2: '1rem', //16px
+    body3: '0.875rem', //14px
 
-    label1: '0.875rem',
-    label2: '0.75rem',
-    label3: '0.625rem',
+    label1: '0.875rem', //14px
+    label2: '0.75rem', //12px
+    label3: '0.625rem', //10px
   },
   lineHeights: {
     tight: 1.25,
