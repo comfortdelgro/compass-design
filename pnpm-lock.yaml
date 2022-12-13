@@ -26,8 +26,10 @@ importers:
 
   apps/docs:
     specifiers:
+      '@comfortdelgro/compass-icons': workspace:^0.1.1
       '@comfortdelgro/react-compass': workspace:*
       '@fortawesome/free-solid-svg-icons': ^6.2.0
+      '@iconify/react': ^4.0.1
       '@types/node': ^18.11.0
       '@types/react': ^17.0.39
       '@types/react-dom': ^17.0.11
@@ -45,15 +47,17 @@ importers:
       tailwindcss: ^3.2.1
       typescript: ^4.8.4
     dependencies:
+      '@comfortdelgro/compass-icons': link:../../packages/compass-icons
       '@comfortdelgro/react-compass': link:../../packages/react-compass/dist
       '@fortawesome/free-solid-svg-icons': 6.2.1
+      '@iconify/react': 4.0.1_react@18.2.0
       clsx: 1.2.1
       next: 12.3.1_biqbaboplfbrettd7655fr4n2y
       nextra: 2.0.0-beta.41_azq6kxkn3od7qdylwkyksrwopy
       nextra-theme-docs: 2.0.0-beta.41_azq6kxkn3od7qdylwkyksrwopy
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      react-hot-toast: 2.4.0_owo25xnefcwdq3zjgtohz6dbju
+      react-hot-toast: 2.4.0_biqbaboplfbrettd7655fr4n2y
     devDependencies:
       '@types/node': 18.11.9
       '@types/react': 17.0.52
@@ -1918,6 +1922,15 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
 
+  /@iconify/react/4.0.1_react@18.2.0:
+    resolution: {integrity: sha512-/DBJqh5K7W4f+d4kpvyJa/OTpVa3GfgrE9bZFAKP0vIWDr0cvVU9MVvbbkek216w9nLQhpJY/FeJtc6izB1PHw==}
+    peerDependencies:
+      react: '>=16'
+    dependencies:
+      '@iconify/types': 2.0.0
+      react: 18.2.0
+    dev: false
+
   /@iconify/tools/2.1.2_@iconify+types@2.0.0:
     resolution: {integrity: sha512-HNYw3K0KtdkB9xNo5jNMTW73DnVBACS0V6iMaL7i1kb8fMPq0BeMP9vmocii3JdJeBc4+nST61H4Sel0Ps5bJg==}
     peerDependencies:
@@ -1943,7 +1956,6 @@ packages:
 
   /@iconify/types/2.0.0:
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
-    dev: true
 
   /@iconify/utils/2.0.2:
     resolution: {integrity: sha512-13B3wJxDLmSNBEIEpKleKSkJVQgdAy9ra3Xsu233i/5qD5yXBGhpOFxTB/k8cqme0xVsMKBPV5vbvq9MgQlX+w==}
@@ -5275,7 +5287,7 @@ packages:
       eslint: 8.28.0
       eslint-import-resolver-node: 0.3.6
       eslint-import-resolver-typescript: 2.7.1_ktrec6dplf4now6nlbc6d67jee
-      eslint-plugin-import: 2.26.0_eslint@8.28.0
+      eslint-plugin-import: 2.26.0_zakvy25bvwc2d644723rsy4ypy
       eslint-plugin-jsx-a11y: 6.6.1_eslint@8.28.0
       eslint-plugin-react: 7.31.11_eslint@8.28.0
       eslint-plugin-react-hooks: 4.6.0_eslint@8.28.0
@@ -5312,7 +5324,7 @@ packages:
     dependencies:
       debug: 4.3.4
       eslint: 8.28.0
-      eslint-plugin-import: 2.26.0_eslint@8.28.0
+      eslint-plugin-import: 2.26.0_zakvy25bvwc2d644723rsy4ypy
       glob: 7.2.3
       is-glob: 4.0.3
       resolve: 1.22.1
@@ -5321,7 +5333,7 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-module-utils/2.7.4_sjge656jyd3rr27cepuzx7h5u4:
+  /eslint-module-utils/2.7.4_xb4o4f5ycgo55brxm3dvl3ugdy:
     resolution: {integrity: sha512-j4GT+rqzCoRKHwURX7pddtIPGySnX9Si/cgMI5ztrcqOPtk5dDEeZ34CQVPphnqkJytlc97Vuk05Um2mJ3gEQA==}
     engines: {node: '>=4'}
     peerDependencies:
@@ -5342,14 +5354,16 @@ packages:
       eslint-import-resolver-webpack:
         optional: true
     dependencies:
+      '@typescript-eslint/parser': 5.45.0_hsf322ms6xhhd4b5ne6lb74y4a
       debug: 3.2.7
       eslint: 8.28.0
       eslint-import-resolver-node: 0.3.6
+      eslint-import-resolver-typescript: 2.7.1_ktrec6dplf4now6nlbc6d67jee
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /eslint-plugin-import/2.26.0_eslint@8.28.0:
+  /eslint-plugin-import/2.26.0_zakvy25bvwc2d644723rsy4ypy:
     resolution: {integrity: sha512-hYfi3FXaM8WPLf4S1cikh/r4IxnO6zrhZbEGz2b660EJRbuxgpDS5gkCuYgGWg2xxh2rBuIr4Pvhve/7c31koA==}
     engines: {node: '>=4'}
     peerDependencies:
@@ -5359,13 +5373,14 @@ packages:
       '@typescript-eslint/parser':
         optional: true
     dependencies:
+      '@typescript-eslint/parser': 5.45.0_hsf322ms6xhhd4b5ne6lb74y4a
       array-includes: 3.1.6
       array.prototype.flat: 1.3.1
       debug: 2.6.9
       doctrine: 2.1.0
       eslint: 8.28.0
       eslint-import-resolver-node: 0.3.6
-      eslint-module-utils: 2.7.4_sjge656jyd3rr27cepuzx7h5u4
+      eslint-module-utils: 2.7.4_xb4o4f5ycgo55brxm3dvl3ugdy
       has: 1.0.3
       is-core-module: 2.11.0
       is-glob: 4.0.3
@@ -6172,12 +6187,10 @@ packages:
     resolution: {integrity: sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg==}
     dev: true
 
-  /goober/2.1.11_csstype@3.1.1:
+  /goober/2.1.11:
     resolution: {integrity: sha512-5SS2lmxbhqH0u9ABEWq7WPU69a4i2pYcHeCxqaNq6Cw3mnrF0ghWNM4tEGid4dKy8XNIAUbuThuozDHHKJVh3A==}
     peerDependencies:
       csstype: ^3.0.10
-    dependencies:
-      csstype: 3.1.1
     dev: false
 
   /graceful-fs/4.2.10:
@@ -8465,14 +8478,14 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: true
 
-  /react-hot-toast/2.4.0_owo25xnefcwdq3zjgtohz6dbju:
+  /react-hot-toast/2.4.0_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-qnnVbXropKuwUpriVVosgo8QrB+IaPJCpL8oBI6Ov84uvHZ5QQcTp2qg6ku2wNfgJl6rlQXJIQU5q+5lmPOutA==}
     engines: {node: '>=10'}
     peerDependencies:
       react: '>=16'
       react-dom: '>=16'
     dependencies:
-      goober: 2.1.11_csstype@3.1.1
+      goober: 2.1.11
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     transitivePeerDependencies:
