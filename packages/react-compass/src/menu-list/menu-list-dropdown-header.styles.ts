@@ -11,6 +11,10 @@ export const StyledMenuListDropdownHeader = styled('button', {
   backgroundColor: 'inherit',
   padding: '$1_5',
 
+  '&:focus-visible': {
+    outline: '#678ECF solid 2px',
+  },
+
   '& .menu-list-dropdown-title': {
     color: '$gray100',
     fontSize: '$3_5',
@@ -19,14 +23,10 @@ export const StyledMenuListDropdownHeader = styled('button', {
   },
 
   '& .menu-list-dropdown-chevron-down-left-icon': {
-    width: '$4',
-    height: '$4',
     marginRight: '$2_5',
   },
 
   '& .menu-list-dropdown-chevron-down-right-icon': {
-    width: '$4',
-    height: '$4',
     marginLeft: 'auto',
   },
 

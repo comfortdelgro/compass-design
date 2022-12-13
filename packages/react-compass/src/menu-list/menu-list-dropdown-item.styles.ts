@@ -2,14 +2,20 @@ import {styled} from '../theme'
 import {StyledMenuListDropdownHeader} from './menu-list-dropdown-header.styles'
 
 export const StyledMenuListDropdownItem = styled('div', {
+  minHeight: '$10',
   display: 'flex',
   flexDirection: 'row',
   color: '$gray80',
   padding: '$2 $3',
   borderRadius: '$md',
   cursor: 'pointer',
+  alignItems: 'center',
   '&:hover': {
     backgroundColor: '$background',
+  },
+
+  '&:focus-visible': {
+    outline: '#678ECF solid 2px',
   },
 
   '& .menu-list-dropdown-item-icon': {
@@ -24,6 +30,18 @@ export const StyledMenuListDropdownItem = styled('div', {
         backgroundColor: '$background',
       },
       default: {},
+    },
+    disabled: {
+      true: {
+        color: '$gray50',
+        '& .menu-list-dropdown-item-icon': {
+          color: '$gray50',
+        },
+        '&:hover': {
+          backgroundColor: 'inherit',
+          cursor: 'not-allowed',
+        },
+      },
     },
     nested: {
       nested: {

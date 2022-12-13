@@ -8,6 +8,7 @@ interface Props extends StyledComponentProps {
   isActive?: boolean
   icon?: IconProp
   isNested?: boolean
+  isDisabled?: boolean
 }
 
 export type MenuListDropdownItemProps = Props &
@@ -22,6 +23,7 @@ const MenuListDropdownItem = React.forwardRef<
     children,
     isActive,
     isNested,
+    isDisabled,
     icon,
     className = '',
     // StyledComponentProps
@@ -35,8 +37,10 @@ const MenuListDropdownItem = React.forwardRef<
       className={`${className} menu-list-dropdown-item`}
       active={isActive ? 'active' : 'default'}
       nested={isNested ? 'nested' : 'default'}
+      disabled={!!isDisabled}
       ref={ref}
       css={css}
+      tabIndex={isDisabled ? 1 : 0}
       {...delegated}
     >
       {icon && <Icon icon={icon} className='menu-list-dropdown-item-icon' />}
