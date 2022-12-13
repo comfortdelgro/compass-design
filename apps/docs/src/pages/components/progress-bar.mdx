@@ -1,0 +1,132 @@
+import {Callout} from 'nextra-theme-docs'
+import styles from '../../styles/Home.module.css'
+import ProgressBar from '@comfortdelgro/react-compass/progress-bar'
+
+# ProgressBar
+
+Provides the accessibility implementation for a progress bar component. Progress bars show either determinate or indeterminate progress of an operation over time.
+
+---
+
+### Import:
+
+```js
+import {ProgressBar} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import ProgressBar from '@comfortdelgro/react-compass/progress-bar'
+```
+
+---
+
+### Basic Usage:
+
+<section className={styles.avatarShowcaseContainer}>
+    <ProgressBar value={20} label='Label Left' rightLabel='Label Right' />
+</section>
+
+```js
+<ProgressBar value={20} label='Label Left' rightLabel='Label Right' />
+```
+
+---
+
+### Size:
+
+<section className={styles.avatarShowcaseContainer} style={{flexDirection: 'column'}}>
+  <div style={{width: '100%', marginBottom: '10px'}}>
+    <ProgressBar value={20} size='sm' label='sm' />
+  </div>
+  <div style={{width: '100%', marginBottom: '10px'}}>
+    <ProgressBar value={20} size='md' label='md' />
+  </div>
+  <div style={{width: '100%', marginBottom: '10px'}}>
+    <ProgressBar value={20} size='lg' label='lg'/>
+  </div>
+  <div style={{width: '100%', marginBottom: '10px'}}>
+    <ProgressBar value={20} size='xl' label='xl'/>
+  </div>
+</section>
+
+```js
+<ProgressBar value={20} size='sm' label='sm' />
+<ProgressBar value={20} size='md' label='md' />
+<ProgressBar value={20} size='lg' label='lg'/>
+<ProgressBar value={20} size='xl' label='xl'/>
+```
+
+---
+
+### Color:
+
+<section className={styles.avatarShowcaseContainer} style={{flexDirection: 'column'}}>
+  <div style={{width: '100%', marginBottom: '10px'}}>
+    <ProgressBar value={20} color='blue' label='blue' />
+  </div>
+  <div style={{width: '100%', marginBottom: '10px'}}>
+    <ProgressBar value={20} color='green' label='green' />
+  </div>
+</section>
+
+```js
+<ProgressBar value={20} color='blue' label='blue' />
+<ProgressBar value={20} color='green' label='md' />
+```
+
+---
+
+### Variant:
+
+<section className={styles.avatarShowcaseContainer} style={{flexDirection: 'column'}}>
+  <div style={{width: '100%', marginBottom: '10px'}}>
+    <ProgressBar value={20} variant='normal' label='normal' />
+  </div>
+  <div style={{width: '100%', marginBottom: '10px'}}>
+    <ProgressBar value={20} variant='rounded' label='rounded' />
+  </div>
+</section>
+
+```js
+<ProgressBar value={20} variant='normal' />
+<ProgressBar value={20} variant='rounded' />
+```
+
+---
+
+### Custom styling:
+
+You can style React Compass's components with the css prop. <br/>
+With css prop, you can basically do anything that css can do.
+
+<section className={styles.avatarShowcaseContainer}>
+  <ProgressBar value={20} css={{ '.progress-bar': {backgroundColor: 'red'} }} />
+</section>
+
+```js
+  <ProgressBar value={20} css={{ '.progress-bar': {backgroundColor: 'red'} }} />
+```
+
+---
+
+### Props:
+
+| Name            | Type      | Default | Description                                                      |
+|:----------------|:----------|:--------|:-----------------------------------------------------------------|
+| isIndeterminate | `boolean` | -       | Whether presentation is indeterminate when progress isn't known. |
+| label           | `boolean` | `false` | The content to display as the left label.                        |
+| rightLabel      | `boolean` | `false` | The content to display as the right label.                       |
+| value           | `number`  | `0`     | The current value (controlled).                                  |
+| minValue        | `number`  | `0`     | The smallest value allowed for the input.                        |
+| maxValue        | `number`  | `100`   | Whether presentation is indeterminate when progress isn't known. |
+| isIndeterminate | `boolean` | `false` | Whether presentation is indeterminate when progress isn't known. |
+| css             | `CSS`     | —       | Extra styles for progress bar                                    |
+
+---
+
+<Callout>
+  Check out our [ladle](/ladle?story=progress-bar--variants) for more info on this
+  component.
+</Callout>
