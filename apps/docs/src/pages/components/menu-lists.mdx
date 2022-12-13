@@ -144,6 +144,60 @@ import MenuList, {MenuListDropdown} from '@comfortdelgro/react-compass/MenuList'
 </MenuList>
 ```
 
+### Disabled
+
+<section className={styles.avatarShowcaseContainer}>
+  <MenuList css={{height: '800px'}}>
+    <MenuListDropdown>
+      <MenuListDropdown.Header>Dashboard</MenuListDropdown.Header>
+      <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+      <MenuListDropdown.Item isActive>Menu</MenuListDropdown.Item>
+      <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+      <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+      <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+      <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+      <MenuListDropdown.Item isNested>
+        <MenuListDropdown>
+          <MenuListDropdown.Header>Dashboard</MenuListDropdown.Header>
+          <MenuListDropdown.Item icon={faUser}>Menu</MenuListDropdown.Item>
+          <MenuListDropdown.Item isDisabled icon={faUser}>Menu</MenuListDropdown.Item>
+          <MenuListDropdown.Item icon={faUser}>Menu</MenuListDropdown.Item>
+          <MenuListDropdown.Item icon={faUser}>Menu</MenuListDropdown.Item>
+          <MenuListDropdown.Item icon={faUser}>Menu</MenuListDropdown.Item>
+          <MenuListDropdown.Item icon={faUser}>Menu</MenuListDropdown.Item>
+          <MenuListDropdown.Item icon={faUser}>Menu</MenuListDropdown.Item>
+        </MenuListDropdown>
+      </MenuListDropdown.Item>
+    </MenuListDropdown>
+  </MenuList>
+</section>
+
+```js {13}
+  <MenuList css={{height: '800px'}}>
+    <MenuListDropdown>
+      <MenuListDropdown.Header>Dashboard</MenuListDropdown.Header>
+      <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+      <MenuListDropdown.Item isActive>Menu</MenuListDropdown.Item>
+      <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+      <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+      <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+      <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+      <MenuListDropdown.Item isNested>
+        <MenuListDropdown>
+          <MenuListDropdown.Header>Dashboard</MenuListDropdown.Header>
+          <MenuListDropdown.Item icon={faUser}>Menu</MenuListDropdown.Item>
+          <MenuListDropdown.Item isDisabled icon={faUser}>Menu</MenuListDropdown.Item>
+          <MenuListDropdown.Item icon={faUser}>Menu</MenuListDropdown.Item>
+          <MenuListDropdown.Item icon={faUser}>Menu</MenuListDropdown.Item>
+          <MenuListDropdown.Item icon={faUser}>Menu</MenuListDropdown.Item>
+          <MenuListDropdown.Item icon={faUser}>Menu</MenuListDropdown.Item>
+          <MenuListDropdown.Item icon={faUser}>Menu</MenuListDropdown.Item>
+        </MenuListDropdown>
+      </MenuListDropdown.Item>
+    </MenuListDropdown>
+  </MenuList>
+```
+
 ## Props
 
 ### MenuList
@@ -174,9 +228,11 @@ import MenuList, {MenuListDropdown} from '@comfortdelgro/react-compass/MenuList'
 
 ### MenuListDropdown.Item
 
-| Name     | Type              | Default | Description                                    |
-| :------- | :---------------- | :------ | :--------------------------------------------- |
-| children | `React.ReactNode` | —       |                                                |
-| isActive | `boolean`         | false   | Whether the item is currently activated or not |
-| icon     | `IconProp`        | —       |                                                |
-| css      | `CSS`             | —       |                                                |
+| Name       | Type              | Default | Description                                    |
+| :--------- | :---------------- | :------ | :--------------------------------------------- |
+| children   | `React.ReactNode` | —       |                                                |
+| isActive   | `boolean`         | false   | Whether the item is currently activated or not |
+| isDisabled | `boolean`         | false   | Whether the item is currently disabled or not  |
+| icon       | `IconProp`        | —       |                                                |
+| css        | `CSS`             | —       |                                                |
+
