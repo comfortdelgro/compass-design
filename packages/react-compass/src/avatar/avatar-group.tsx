@@ -7,6 +7,8 @@ import {StyledAvatar} from './avatar.styles'
 interface Props extends StyledComponentProps {
   display?: number
   children?: React.ReactNode
+  size?: 'md' | 'lg' | 'sm' | 'xs'
+  disabledAnimation?: boolean
 }
 
 export type AvatarGroupProps = Props & AvatarGroupVariantProps
@@ -19,16 +21,22 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
       // ComponentProps
       display = 4,
       children,
+      size = 'md',
+      disabledAnimation = false,
     } = props
 
     const avatarGroupRef = useDOMRef<HTMLDivElement>(ref)
     const avatars = React.Children.toArray(children)
 
     return (
-      <StyledAvatarGroup css={css} ref={avatarGroupRef}>
+      <StyledAvatarGroup
+        css={css}
+        ref={avatarGroupRef}
+        disabledAnimation={disabledAnimation}
+      >
         {avatars.slice(0, display).map((avatar) => avatar)}
         {display < avatars.length && (
-          <StyledAvatar>
+          <StyledAvatar size={size}>
             <span className='initials count'>+{avatars.length - display}</span>
           </StyledAvatar>
         )}

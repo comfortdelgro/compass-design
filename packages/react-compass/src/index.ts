@@ -28,6 +28,14 @@ export type {
   CardProps,
   CardTitleProps,
 } from './card'
+export {default as Carousel} from './carousel'
+export type {
+  CarouselButtonsProps,
+  CarouselDescriptionProps,
+  CarouselImageProps,
+  CarouselProps,
+  CarouselTitleProps,
+} from './carousel'
 export {default as Checkbox} from './checkbox'
 export type {CheckboxProps} from './checkbox'
 export {default as Dialog} from './dialog'
@@ -39,6 +47,15 @@ export type {
   DialogTitleProps,
   DialogTriggerProps,
 } from './dialog'
+export {default as Error} from './error'
+export type {
+  ErrorActionProps,
+  ErrorDescriptionProps,
+  ErrorIconProps,
+  ErrorImageProps,
+  ErrorProps,
+  ErrorTitleProps,
+} from './error'
 export {default as Icon} from './icon'
 export type {IconProp} from './icon'
 export {default as Link} from './link'
@@ -118,6 +135,13 @@ export {default as Toggle} from './toggle'
 export type {ToggleProps} from './toggle'
 export {Tooltip, TooltipTrigger} from './tooltip'
 export type {TooltipProps, TooltipTriggerProps} from './tooltip'
+export {default as Upload} from './upload'
+export type {
+  UploadButtonProps,
+  UploadIconProps,
+  UploadPlaceholderProps,
+  UploadProps,
+} from './upload'
 export * from './utils'
 export {default as Wizard} from './wizard'
 export type {WizardProps} from './wizard'
