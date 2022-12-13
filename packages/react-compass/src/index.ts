@@ -28,6 +28,13 @@ export type {
   CardProps,
   CardTitleProps,
 } from './card'
+export {default as Chart} from './chart'
+export type {
+  AreaChartProps,
+  BarChartProps,
+  ColumnChartProps,
+  LineChartProps,
+} from './chart'
 export {default as Carousel} from './carousel'
 export type {
   CarouselButtonsProps,
