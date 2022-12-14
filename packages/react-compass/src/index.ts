@@ -30,13 +30,6 @@ export type {
   CardProps,
   CardTitleProps,
 } from './card'
-export {default as Chart} from './chart'
-export type {
-  AreaChartProps,
-  BarChartProps,
-  ColumnChartProps,
-  LineChartProps,
-} from './chart'
 export {default as Carousel} from './carousel'
 export type {
   CarouselButtonsProps,
@@ -45,22 +38,19 @@ export type {
   CarouselProps,
   CarouselTitleProps,
 } from './carousel'
+export {default as Chart} from './chart'
+export type {
+  AreaChartProps,
+  BarChartProps,
+  ColumnChartProps,
+  LineChartProps,
+} from './chart'
 export {default as Checkbox} from './checkbox'
 export type {CheckboxProps} from './checkbox'
 export {default as DatePicker} from './date-picker'
 export type {DatePickerProps} from './date-picker'
 export {default as DateRangePicker} from './date-range-picker'
 export type {DateRangePickerProps} from './date-range-picker'
-export {Footer, FooterInfo} from './footer'
-export type {
-  FooterHeaderProps,
-  FooterInfoDownloadProps,
-  FooterInfoProps,
-  FooterInfoSocialProps,
-  FooterNavigationProps,
-  FooterPolicyProps,
-  FooterProps,
-} from './footer'
 export {default as Dialog} from './dialog'
 export type {
   DialogActionsProps,
@@ -79,6 +69,16 @@ export type {
   ErrorProps,
   ErrorTitleProps,
 } from './error'
+export {Footer, FooterInfo} from './footer'
+export type {
+  FooterHeaderProps,
+  FooterInfoDownloadProps,
+  FooterInfoProps,
+  FooterInfoSocialProps,
+  FooterNavigationProps,
+  FooterPolicyProps,
+  FooterProps,
+} from './footer'
 export {default as Icon} from './icon'
 export type {IconProp} from './icon'
 export {default as Link} from './link'
