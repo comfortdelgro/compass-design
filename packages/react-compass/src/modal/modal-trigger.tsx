@@ -32,10 +32,35 @@ const ModalTrigger = React.forwardRef<HTMLDivElement, ModalTriggerProps>(
     const modalRef = useDOMRef<HTMLDivElement>(ref)
     const {child: ModalElement} = pickChild<typeof Modal>(children, Modal)
 
+    React.useEffect(() => {
+      /**
+       * Close the sidebar if clicked on outside of element
+       */
+      function handleClickOutside(event: MouseEvent) {
+        event.preventDefault()
+        if (
+          modalRef.current &&
+          !modalRef?.current?.contains(event.target as Node)
+        ) {
+          handleClose?.()
+        }
+      }
+      // Bind the event listener
+      document.addEventListener('mousedown', (event) => {
+        handleClickOutside(event as unknown as MouseEvent)
+      })
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener('mousedown', (event) => {
+          handleClickOutside(event as unknown as MouseEvent)
+        })
+      }
+    }, [modalRef])
+
     return (
       <>
         {isOpen && (
-          <StyledModalWrapper css={css} onClick={handleClose}>
+          <StyledModalWrapper css={css}>
             {ModalElement &&
               React.cloneElement(ModalElement as unknown as JSX.Element, {
                 onClose: () => handleClose?.(),

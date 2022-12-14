@@ -36,10 +36,35 @@ const DialogTrigger = React.forwardRef<HTMLDivElement, DialogTriggerProps>(
 
     const dialogRef = useDOMRef<HTMLDivElement>(ref)
 
+    React.useEffect(() => {
+      /**
+       * Close the sidebar if clicked on outside of element
+       */
+      function handleClickOutside(event: MouseEvent) {
+        event.preventDefault()
+        if (
+          dialogRef.current &&
+          !dialogRef?.current?.contains(event.target as Node)
+        ) {
+          handleClose?.()
+        }
+      }
+      // Bind the event listener
+      document.addEventListener('mousedown', (event) => {
+        handleClickOutside(event as unknown as MouseEvent)
+      })
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener('mousedown', (event) => {
+          handleClickOutside(event as unknown as MouseEvent)
+        })
+      }
+    }, [dialogRef])
+
     return (
       <>
         {isOpen && (
-          <StyledDialogWrapper css={css} {...delegated} onClick={handleClose}>
+          <StyledDialogWrapper css={css} {...delegated}>
             {DialogElement &&
               React.cloneElement(DialogElement as unknown as JSX.Element, {
                 onClose: () => handleClose?.(),

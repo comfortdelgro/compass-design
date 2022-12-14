@@ -173,7 +173,7 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
             },
           })}
         <StyledUploadContent>
-          {selectedFiles && variant == 'click' && !multiple ? (
+          {selectedFiles.length && variant == 'click' && !multiple ? (
             <>
               <StyledUploadFileName>
                 {selectedFiles[0]?.name}
