@@ -10,6 +10,7 @@ import {Card} from '@comfortdelgro/react-compass'
 function BasicExample() {
   return (
     <Card size='sm'>
+    <Card size='sm'>
       <Card.Body>
         <Card.Title>Card title</Card.Title>
         <p>This is a card paragraph</p>
@@ -23,6 +24,7 @@ import {Card} from '@comfortdelgro/react-compass'
 import ComponentDisplay from 'components/ComponentDisplay'
 
 <ComponentDisplay>
+  <Card size='sm'>
   <Card size='sm'>
     <Card.Body>
       <Card.Title>Card title</Card.Title>
@@ -43,6 +45,7 @@ import {Card} from '@comfortdelgro/react-compass'
 function BodyOnlyExample() {
   return (
     <Card size='sm'>
+    <Card size='sm'>
       <Card.Body>
         <p>This is a paragraph within a card body</p>
       </Card.Body>
@@ -52,6 +55,7 @@ function BodyOnlyExample() {
 ```
 
 <ComponentDisplay>
+  <Card size='sm'>
   <Card size='sm'>
     <Card.Body>
       <p style={{margin: 0}}>This is a paragraph within a card body</p>
@@ -69,6 +73,7 @@ import {Card} from '@comfortdelgro/react-compass'
 function TitleExample() {
   return (
     <Card size='sm'>
+    <Card size='sm'>
       <Card.Body>
         <Card.Title>Card title</Card.Title>
         <p>This is a paragraph within a card body</p>
@@ -79,6 +84,7 @@ function TitleExample() {
 ```
 
 <ComponentDisplay>
+  <Card size='sm'>
   <Card size='sm'>
     <Card.Body>
       <Card.Title>Card title</Card.Title>
@@ -95,6 +101,7 @@ import {Card} from '@comfortdelgro/react-compass'
 function H1TitleExample() {
   return (
     <Card size='lg'>
+    <Card size='lg'>
       <Card.Body>
         <Card.Title>
           <h1>Card title as H1</h1>
@@ -108,11 +115,48 @@ function H1TitleExample() {
 
 <ComponentDisplay>
   <Card size='lg'>
+  <Card size='lg'>
     <Card.Body>
       <Card.Title>
         <h1 style={{fontSize: '32px'}}>Card title as H1</h1>
       </Card.Title>
       <p style={{margin: 0}}>This is a paragraph within a card body</p>
+    </Card.Body>
+  </Card>
+</ComponentDisplay>
+
+### Action
+
+Use `<Card.Action>` to create an area for action buttons in a card `<Card.Body>`.
+
+```tsx {22}
+import {Card} from '@comfortdelgro/react-compass'
+
+function CardActionExample() {
+  return (
+    <Card size='lg'>
+      <Card.Body>
+        <Card.Title>Card title as H1</Card.Title>
+        <p>This is a paragraph within a card body</p>
+        <Card.Action>
+          <Button variant='primary'>Button</Button>
+          <Button variant='secondary'>Button</Button>
+        </Card.Action>
+      </Card.Body>
+    </Card>
+  )
+}
+```
+
+<ComponentDisplay>
+  <Card size='lg'>
+    <Card.Body>
+      <Card.Title>Card title as H1</Card.Title>
+      <p>This is a paragraph within a card body</p>
+      <Card.Action>
+        <Button variant='primary'>Button</Button>
+        <Button variant='secondary'>Button</Button>
+      </Card.Action>
     </Card.Body>
   </Card>
 </ComponentDisplay>
@@ -130,6 +174,7 @@ function ImageExample() {
 
   return (
     <Card size='lg'>
+    <Card size='lg'>
       <Card.Image src={imageSrc} />
       <Card.Body>
         <Card.Title>Card with image</Card.Title>
@@ -141,6 +186,7 @@ function ImageExample() {
 ```
 
 <ComponentDisplay>
+  <Card size='lg'>
   <Card size='lg'>
     <Card.Image
       src={
@@ -157,11 +203,12 @@ function ImageExample() {
 ## Sizes
 
 Card comes with different sizes: `sm`, `lg` and `full`.
+Card comes with different sizes: `sm`, `lg` and `full`.
 
 ```tsx {22}
 import {Card} from '@comfortdelgro/react-compass'
 
-function BasicExample() {
+function SizesExample() {
     const sizes = ['sm', 'lg', 'full']
 
     return (
@@ -181,10 +228,11 @@ function BasicExample() {
 
 <ComponentDisplay>
   {['sm', 'lg', 'full'].map((size) => (
+  {['sm', 'lg', 'full'].map((size) => (
     <Card key={size} css={{marginBottom: '24px'}} size={size}>
       <Card.Body>
-        <Card.Title css={{fontSize: '20px'}}>Card with size: {size}</Card.Title>
-        <p>This is a paragraph within a card body</p>
+        <Card.Title>Card with size</Card.Title>
+        <p style={{margin: 0}}>This is a paragraph within a card body</p>
       </Card.Body>
     </Card>
   ))}
@@ -195,7 +243,7 @@ You can fully customize the card size.
 ```tsx {22}
 import {Card} from '@comfortdelgro/react-compass'
 
-function BasicExample() {
+function CustomizedWidthExample() {
   const cardSize = '460px'
 
   return (
@@ -212,10 +260,8 @@ function BasicExample() {
 <ComponentDisplay>
   <Card css={{width: '460px'}}>
     <Card.Body>
-      <Card.Title css={{fontSize: '20px'}}>
-        Card with customized size
-      </Card.Title>
-      <p>This is a paragraph within a card body</p>
+      <Card.Title> Card with customized size </Card.Title>
+      <p style={{margin: 0}}>This is a paragraph within a card body</p>
     </Card.Body>
   </Card>
 </ComponentDisplay>
@@ -232,12 +278,15 @@ function DisabledCard() {
   const isDisabled = true
   return (
     <Card size='sm' isDisabled={isDisabled}>
+    <Card size='sm' isDisabled={isDisabled}>
       <Card.Body>
         <Card.Title>Disabled Card</Card.Title>
         <p>This is a paragraph within a card body</p>
-        <Button isDisabled={isDisabled} variant='primary'>
-          Button
-        </Button>
+        <Card.Action>
+          <Button isDisabled={isDisabled} variant='primary'>
+            Button
+          </Button>
+        </Card.Action>
       </Card.Body>
     </Card>
   )
@@ -248,10 +297,72 @@ import Button from '@comfortdelgro/react-compass/button'
 
 <ComponentDisplay>
   <Card size='sm' isDisabled>
+  <Card size='sm' isDisabled>
     <Card.Body>
       <Card.Title>Disabled Card</Card.Title>
       <p>This is a paragraph within a card body</p>
-      <Button isDisabled>Button</Button>
+      <Card.Action>
+        <Button isDisabled>Button</Button>
+      </Card.Action>
+    </Card.Body>
+  </Card>
+</ComponentDisplay>
+
+## Clickable
+
+Card can be clicked and focused by passing `isClickable` prop.
+
+```tsx {22}
+import {Card} from '@comfortdelgro/react-compass'
+
+function DisabledCard() {
+  return (
+    <Card size='sm' isClickable onClick={() => alert('clicked')}>
+      <Card.Body>
+        <Card.Title>Clickable Card</Card.Title>
+        <p>This is a paragraph within a card body</p>
+      </Card.Body>
+    </Card>
+  )
+}
+```
+
+<ComponentDisplay>
+  <Card size='sm' isClickable onClick={() => alert('clicked')}>
+    <Card.Body>
+      <Card.Title>Clickable Card</Card.Title>
+      <p>This is a paragraph within a card body</p>
+      <Card.Action>
+        <Button>Button</Button>
+      </Card.Action>
+    </Card.Body>
+  </Card>
+</ComponentDisplay>
+
+## Shadowless
+
+Card will not have shadows when passing `isShadowless` prop.
+
+```tsx {22}
+import {Card} from '@comfortdelgro/react-compass'
+
+function DisabledCard() {
+  return (
+    <Card size='sm' isShadowless>
+      <Card.Body>
+        <Card.Title>Shadowless Card</Card.Title>
+        <p>This is a paragraph within a card body</p>
+      </Card.Body>
+    </Card>
+  )
+}
+```
+
+<ComponentDisplay>
+  <Card size='sm' isShadowless>
+    <Card.Body>
+      <Card.Title>Shadowless Card</Card.Title>
+      <p>This is a paragraph within a card body</p>
     </Card.Body>
   </Card>
 </ComponentDisplay>
@@ -260,12 +371,14 @@ import Button from '@comfortdelgro/react-compass/button'
 
 ### Card
 
-| Name       | Type                   | Default | Description                                                                             |
-| :--------- | :--------------------- | :------ | :-------------------------------------------------------------------------------------- |
-| children   | `ReactNode`            | —       | The content to display in the Card.                                                     |
-| size       | `sm` \| `lg` \| `full` | `full`  | The size of the Card                                                                    |
-| isDisabled | `boolean`              | false   | Whether the card is disabled.                                                           |
-| css        | `CSS`                  | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
+| Name         | Type                   | Default | Description                                                                             |
+| :----------- | :--------------------- | :------ | :-------------------------------------------------------------------------------------- |
+| children     | `ReactNode`            | —       | The content to display in the Card.                                                     |
+| size         | `sm` \| `lg` \| `full` | `full`  | The size of the Card                                                                    |
+| isDisabled   | `boolean`              | false   | Whether the card is disabled.                                                           |
+| isClickable  | `boolean`              | false   | Whether the card is clickable.                                                          |
+| isShadowless | `boolean`              | false   | Whether the card is shadowless.                                                         |
+| css          | `CSS`                  | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
 
 ### Card Body
 
@@ -275,6 +388,13 @@ import Button from '@comfortdelgro/react-compass/button'
 | css      | `CSS`       | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
 
 ### Card Title
+
+| Name     | Type        | Default | Description                                                                             |
+| :------- | :---------- | :------ | :-------------------------------------------------------------------------------------- |
+| children | `ReactNode` | —       | The content to display in the Card Image.                                               |
+| css      | `CSS`       | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
+
+### Card Action
 
 | Name     | Type        | Default | Description                                                                             |
 | :------- | :---------- | :------ | :-------------------------------------------------------------------------------------- |

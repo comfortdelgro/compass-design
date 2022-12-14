@@ -89,7 +89,7 @@ const ColorBox: React.FC<Props> = ({color}) => {
   useEffect(() => {
     setResolvedColor(takeOpacityOut(getResolvedColor(color.value)).color)
     setResolvedColorOpacity(resolvedColorOpacity)
-  }, [])
+  }, [color.value, resolvedColorOpacity])
 
   return (
     <div

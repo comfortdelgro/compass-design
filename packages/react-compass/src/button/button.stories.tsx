@@ -12,7 +12,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import {Icon} from '../icon'
 import {Column, Row} from '../utils/components'
-import Button from './button'
+import Button from './index'
 
 export const Variants: React.FC = () => (
   <Column>

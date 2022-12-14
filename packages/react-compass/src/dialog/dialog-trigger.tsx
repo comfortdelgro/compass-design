@@ -1,6 +1,4 @@
-import {OverlayContainer, OverlayProvider} from '@react-aria/overlays'
-
-import React, {MouseEvent} from 'react'
+import React from 'react'
 import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -37,9 +35,10 @@ const DialogTrigger = React.forwardRef<HTMLDivElement, DialogTriggerProps>(
     const {child: DialogElement} = pickChild<typeof Dialog>(children, Dialog)
 
     const dialogRef = useDOMRef<HTMLDivElement>(ref)
+
     React.useEffect(() => {
       /**
-       * Close the dialog if clicked on outside of element
+       * Close the sidebar if clicked on outside of element
        */
       function handleClickOutside(event: MouseEvent) {
         event.preventDefault()
@@ -63,20 +62,18 @@ const DialogTrigger = React.forwardRef<HTMLDivElement, DialogTriggerProps>(
     }, [dialogRef])
 
     return (
-      <OverlayProvider>
+      <>
         {isOpen && (
-          <OverlayContainer>
-            <StyledDialogWrapper css={css} {...delegated}>
-              {DialogElement &&
-                React.cloneElement(DialogElement as unknown as JSX.Element, {
-                  onClose: () => handleClose?.(),
-                  ref: dialogRef,
-                  variant: variant,
-                })}
-            </StyledDialogWrapper>
-          </OverlayContainer>
+          <StyledDialogWrapper css={css} {...delegated}>
+            {DialogElement &&
+              React.cloneElement(DialogElement as unknown as JSX.Element, {
+                onClose: () => handleClose?.(),
+                ref: dialogRef,
+                variant: variant,
+              })}
+          </StyledDialogWrapper>
         )}
-      </OverlayProvider>
+      </>
     )
   },
 )

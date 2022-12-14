@@ -21,7 +21,10 @@ export const Sizes: React.FC = () => {
         <Card.Body>
           <Card.Title>Card title</Card.Title>
           <p style={{margin: 0}}>{lorem.slice(0, lorem.length / 5)}</p>
-          <Button variant='primary'>Button</Button>
+          <Card.Action>
+            <Button variant='primary'>Button</Button>
+            <Button variant='primary'>Button</Button>
+          </Card.Action>
         </Card.Body>
       </Card>
 
@@ -31,8 +34,10 @@ export const Sizes: React.FC = () => {
         <Card.Body>
           <Card.Title>Card title</Card.Title>
           <p style={{margin: 0}}>{lorem.slice(0, lorem.length / 2)}</p>
-          <Button variant='primary'>Button</Button>
-          <Button variant='secondary'>Button</Button>
+          <Card.Action>
+            <Button variant='primary'>Button</Button>
+            <Button variant='secondary'>Button</Button>
+          </Card.Action>
         </Card.Body>
       </Card>
 
@@ -42,19 +47,23 @@ export const Sizes: React.FC = () => {
         <Card.Body>
           <Card.Title>Card title</Card.Title>
           <p style={{margin: 0}}>{lorem}</p>
-          <Button variant='primary'>Button</Button>
-          <Button variant='secondary'>Button</Button>
+          <Card.Action>
+            <Button variant='primary'>Button</Button>
+            <Button variant='secondary'>Button</Button>
+          </Card.Action>
         </Card.Body>
       </Card>
 
       <h3>Basic card customized size</h3>
-      <Card css={{maxWidth: '400px'}}>
+      <Card css={{maxWidth: '400px'}} isClickable>
         <Card.Image src={backgroundSrc} />
         <Card.Body>
           <Card.Title>Card title</Card.Title>
           <p style={{margin: 0}}>{lorem}</p>
-          <Button variant='primary'>Button</Button>
-          <Button variant='secondary'>Button</Button>
+          <Card.Action>
+            <Button variant='primary'>Button</Button>
+            <Button variant='secondary'>Button</Button>
+          </Card.Action>
         </Card.Body>
       </Card>
     </Column>
@@ -71,8 +80,10 @@ export const Variants: React.FC = () => {
         <Card.Body>
           <Card.Title>Card title</Card.Title>
           <p style={{margin: 0}}>{lorem.slice(0, lorem.length / 2)}</p>
-          <Button variant='primary'>Button</Button>
-          <Button variant='secondary'>Button</Button>
+          <Card.Action>
+            <Button variant='primary'>Button</Button>
+            <Button variant='secondary'>Button</Button>
+          </Card.Action>
         </Card.Body>
       </Card>
       <h3>Disabled</h3>
@@ -80,12 +91,14 @@ export const Variants: React.FC = () => {
         <Card.Body>
           <Card.Title>Card title</Card.Title>
           <p style={{margin: 0}}>{lorem.slice(0, lorem.length / 2)}</p>
-          <Button isDisabled={isDisabled} variant='primary'>
-            Button
-          </Button>
-          <Button isDisabled={isDisabled} variant='secondary'>
-            Button
-          </Button>
+          <Card.Action>
+            <Button isDisabled={isDisabled} variant='primary'>
+              Button
+            </Button>
+            <Button isDisabled={isDisabled} variant='secondary'>
+              Button
+            </Button>
+          </Card.Action>
         </Card.Body>
       </Card>
     </Column>

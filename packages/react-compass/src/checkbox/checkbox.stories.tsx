@@ -1,7 +1,7 @@
 import {Story} from '@ladle/react'
 import {useState} from 'react'
 import {Column, Row} from '../utils/components'
-import Checkbox from './checkbox'
+import Checkbox from './index'
 
 export const Variants: Story<{onChange: () => void}> = () => (
   <Column>

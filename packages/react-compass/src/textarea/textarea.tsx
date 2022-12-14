@@ -56,12 +56,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         <StyledTextFieldLabel {...labelProps} disabled={!!disabled}>
           {label}
         </StyledTextFieldLabel>
-        <StyledTextarea
-          ref={textareaRef}
-          css={css}
-          {...inputProps}
-          {...variantProps}
-        />
+        <StyledTextarea ref={textareaRef} {...inputProps} {...variantProps} />
         {wordCount ? (
           <StyledTextFieldHelperText
             className='word-count'

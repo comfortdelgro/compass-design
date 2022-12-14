@@ -1,6 +1,4 @@
-import {OverlayContainer, OverlayProvider} from '@react-aria/overlays'
-
-import React, {MouseEvent} from 'react'
+import React from 'react'
 import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -36,7 +34,7 @@ const ModalTrigger = React.forwardRef<HTMLDivElement, ModalTriggerProps>(
 
     React.useEffect(() => {
       /**
-       * Close modal if clicked on outside of element
+       * Close the sidebar if clicked on outside of element
        */
       function handleClickOutside(event: MouseEvent) {
         event.preventDefault()
@@ -60,20 +58,18 @@ const ModalTrigger = React.forwardRef<HTMLDivElement, ModalTriggerProps>(
     }, [modalRef])
 
     return (
-      <OverlayProvider>
+      <>
         {isOpen && (
-          <OverlayContainer>
-            <StyledModalWrapper css={css}>
-              {ModalElement &&
-                React.cloneElement(ModalElement as unknown as JSX.Element, {
-                  onClose: () => handleClose?.(),
-                  ref: modalRef,
-                  size: size,
-                })}
-            </StyledModalWrapper>
-          </OverlayContainer>
+          <StyledModalWrapper css={css}>
+            {ModalElement &&
+              React.cloneElement(ModalElement as unknown as JSX.Element, {
+                onClose: () => handleClose?.(),
+                ref: modalRef,
+                size: size,
+              })}
+          </StyledModalWrapper>
         )}
-      </OverlayProvider>
+      </>
     )
   },
 )

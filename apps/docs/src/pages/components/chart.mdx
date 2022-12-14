@@ -1,0 +1,208 @@
+import {Callout} from 'nextra-theme-docs'
+import styles from '../../styles/Home.module.css'
+import Chart from '@comfortdelgro/react-compass/chart'
+
+# Chart
+
+The Chart using for visualize your data.
+
+---
+
+### Import:
+
+```js
+import {Chart} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import Chart from '@comfortdelgro/react-compass/chart'
+```
+
+---
+
+### Column:
+<section className={styles.avatarShowcaseContainer}>
+    <div style={{width: '100%'}}>
+      <Chart.Column 
+        dataSet={{
+          labels: [0, 50, 100, 150, 200, 250, 300, 350, 400, 450],
+          data: [
+            {
+              title: '1',
+              data: [300, 430],
+            },
+            {
+              title: '2',
+              data: [320, 230],
+            },
+            {
+              title: '3',
+              data: [260, 370],
+            },
+            {
+              title: '4',
+              data: [300, 430],
+            },
+            {
+              title: '5',
+              data: [300, 430],
+            },
+          ],
+          legends: ['legend1', 'legend2'],
+        }} 
+        title='Column Chart' />
+    </div>
+</section>
+
+```js
+  <Chart.Column dataSet={dataSet} title='Column Chart' />
+```
+
+---
+
+### Bar:
+<section className={styles.avatarShowcaseContainer}>
+    <div style={{width: '100%'}}>
+      <Chart.Bar 
+        dataSet={{
+          labels: [0, 50, 100, 150, 200, 250, 300, 350, 400, 450],
+          data: [
+            {
+              title: '1',
+              data: [300, 430],
+            },
+            {
+              title: '2',
+              data: [320, 230],
+            },
+            {
+              title: '3',
+              data: [260, 370],
+            },
+            {
+              title: '4',
+              data: [300, 430],
+            },
+            {
+              title: '5',
+              data: [300, 430],
+            },
+          ],
+          legends: ['legend1', 'legend2'],
+        }} 
+        title='Bar Chart' />
+    </div>
+</section>
+
+```js
+  <Chart.Bar dataSet={dataSet} title='Bar Chart' />
+```
+
+---
+
+### Line:
+<section className={styles.avatarShowcaseContainer}>
+    <div style={{width: '100%'}}>
+      <Chart.Line 
+        dataSet={{
+          labels: [0, 50, 100, 150, 200, 250, 300, 350, 400, 450],
+          data: [
+            {
+              title: '1',
+              data: [300, 430],
+            },
+            {
+              title: '2',
+              data: [320, 230],
+            },
+            {
+              title: '3',
+              data: [260, 370],
+            },
+            {
+              title: '4',
+              data: [300, 430],
+            },
+            {
+              title: '5',
+              data: [300, 430],
+            },
+          ],
+          legends: ['legend1', 'legend2'],
+        }} 
+        title='Line Chart' />
+    </div>
+</section>
+
+```js
+  <Chart.Line dataSet={dataSet} title='Line Chart' />
+```
+
+---
+
+### Area:
+<section className={styles.avatarShowcaseContainer}>
+    <div style={{width: '100%'}}>
+      <Chart.Area 
+        dataSet={{
+          labels: [0, 50, 100, 150, 200, 250, 300, 350, 400, 450],
+          data: [
+            {
+              title: '1',
+              data: [300, 430],
+            },
+            {
+              title: '2',
+              data: [320, 230],
+            },
+            {
+              title: '3',
+              data: [260, 370],
+            },
+            {
+              title: '4',
+              data: [300, 430],
+            },
+            {
+              title: '5',
+              data: [300, 430],
+            },
+          ],
+          legends: ['legend1', 'legend2'],
+        }} 
+        title='Area Chart' />
+    </div>
+</section>
+
+```js
+  <Chart.Area dataSet={dataSet} title='Area Chart' />
+```
+
+---
+
+### Props:
+
+| Name    | Type      | Default | Description                |
+|:--------|:----------|:--------|:---------------------------|
+| dataSet | `DataSet` | -       | Data set of the chart      |
+| unit    | `string`  | -       | Unit of the dataset lables |
+| title   | `string`  | -       | Display title of the chart |
+| css     | `CSS`     | —       |                            |
+
+Type of DataSet includes:
+| Name     | Type                               | Default | Description                                                                              |
+| :------- | :--------------------------------- | :------ | :--------------------------------------------------------------------------------------- |
+| labels   | `number[]`                         | -       | List of labels                                                                           |
+| legends  | `string[]`                         | -       | List of kind of data                                                                     |
+| data     | `{ title: string, data: number[]}` | -       | -                                                                                        |
+|          | `title: string`                    | -       | Title of the point data                                                                  |
+|          | `data: number[]`                   | -       | List of value in one point                                                               |
+| css      | `CSS`                              | —       | The system prop that allows defining system overrides as well as additional CSS styles.  |
+---
+
+<Callout>
+  Check out our [ladle](/ladle?story=chart--columns) for more info on this
+  component.
+</Callout>

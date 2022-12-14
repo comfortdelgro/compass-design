@@ -18,7 +18,7 @@ import Pagination from '../pagination/pagination'
 import SearchField from '../searchfield/searchfield'
 import {theme} from '../theme'
 import {useAsyncList} from '../utils'
-import Table from './table'
+import Table from './index'
 
 export const FullFeatured: React.FC = () => {
   const columns = [

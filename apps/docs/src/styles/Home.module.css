@@ -52,3 +52,16 @@
   justify-content: space-between;
   gap: 1rem;
 }
+
+.iconWrapper {
+  width: 10%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+}
+.iconWrapper p {
+  font-size: 0.75rem;
+  word-break: break-word;
+  text-align: center
+}

@@ -26,8 +26,12 @@ importers:
 
   apps/docs:
     specifiers:
+      '@comfortdelgro/compass-icons': workspace:^0.1.1
       '@comfortdelgro/react-compass': workspace:*
       '@fortawesome/free-solid-svg-icons': ^6.2.0
+      '@iconify/react': ^4.0.1
+      '@internationalized/date': ^3.0.1
+      '@react-aria/i18n': ^3.6.2
       '@types/node': ^18.11.0
       '@types/react': ^17.0.39
       '@types/react-dom': ^17.0.11
@@ -45,8 +49,12 @@ importers:
       tailwindcss: ^3.2.1
       typescript: ^4.8.4
     dependencies:
+      '@comfortdelgro/compass-icons': link:../../packages/compass-icons
       '@comfortdelgro/react-compass': link:../../packages/react-compass/dist
       '@fortawesome/free-solid-svg-icons': 6.2.1
+      '@iconify/react': 4.0.1_react@18.2.0
+      '@internationalized/date': 3.0.1
+      '@react-aria/i18n': 3.6.2_react@18.2.0
       clsx: 1.2.1
       next: 12.3.1_biqbaboplfbrettd7655fr4n2y
       nextra: 2.0.0-beta.41_azq6kxkn3od7qdylwkyksrwopy
@@ -99,19 +107,24 @@ importers:
     specifiers:
       '@comfortdelgro/eslint-config': ^1.0.2
       '@fortawesome/fontawesome-svg-core': ^6.2.0
+      '@fortawesome/free-brands-svg-icons': ^6.2.1
       '@fortawesome/free-regular-svg-icons': ^6.2.0
       '@fortawesome/free-solid-svg-icons': ^6.2.0
       '@fortawesome/react-fontawesome': ^0.2.0
+      '@internationalized/date': ^3.0.1
       '@ladle/react': ^2.4.5
       '@react-aria/breadcrumbs': ^3.3.2
       '@react-aria/button': ^3.6.2
+      '@react-aria/calendar': ^3.0.4
       '@react-aria/checkbox': ^3.6.0
+      '@react-aria/datepicker': ^3.2.0
       '@react-aria/dialog': ^3.4.1
       '@react-aria/focus': ^3.9.0
       '@react-aria/i18n': ^3.6.2
       '@react-aria/interactions': ^3.12.0
       '@react-aria/link': ^3.3.4
       '@react-aria/overlays': ^3.12.0
+      '@react-aria/progress': ^3.3.3
       '@react-aria/radio': ^3.4.1
       '@react-aria/searchfield': ^3.4.2
       '@react-aria/slider': ^3.2.3
@@ -122,8 +135,10 @@ importers:
       '@react-aria/tooltip': ^3.3.3
       '@react-aria/utils': ^3.14.0
       '@react-aria/visually-hidden': ^3.5.0
+      '@react-stately/calendar': ^3.0.4
       '@react-stately/collections': ^3.5.0
       '@react-stately/data': ^3.7.0
+      '@react-stately/datepicker': ^3.2.0
       '@react-stately/overlays': ^3.4.3
       '@react-stately/radio': ^3.6.1
       '@react-stately/searchfield': ^3.3.2
@@ -134,7 +149,9 @@ importers:
       '@react-stately/tooltip': ^3.2.3
       '@react-types/breadcrumbs': ^3.4.4
       '@react-types/button': ^3.6.2
+      '@react-types/calendar': ^3.0.4
       '@react-types/checkbox': ^3.4.0
+      '@react-types/datepicker': ^3.1.3
       '@react-types/grid': ^3.1.4
       '@react-types/link': ^3.3.4
       '@react-types/overlays': ^3.6.5
@@ -162,18 +179,23 @@ importers:
       typescript: ^4.8.4
     dependencies:
       '@fortawesome/fontawesome-svg-core': 6.2.1
+      '@fortawesome/free-brands-svg-icons': 6.2.1
       '@fortawesome/free-regular-svg-icons': 6.2.1
       '@fortawesome/free-solid-svg-icons': 6.2.1
       '@fortawesome/react-fontawesome': 0.2.0_z27bm67dtmuyyvss23ckjdrcuy
+      '@internationalized/date': 3.0.1
       '@react-aria/breadcrumbs': 3.4.0_react@18.2.0
       '@react-aria/button': 3.6.3_react@18.2.0
+      '@react-aria/calendar': 3.0.4_biqbaboplfbrettd7655fr4n2y
       '@react-aria/checkbox': 3.7.0_react@18.2.0
+      '@react-aria/datepicker': 3.2.0_biqbaboplfbrettd7655fr4n2y
       '@react-aria/dialog': 3.4.1_biqbaboplfbrettd7655fr4n2y
       '@react-aria/focus': 3.10.0_react@18.2.0
       '@react-aria/i18n': 3.6.2_react@18.2.0
       '@react-aria/interactions': 3.13.0_react@18.2.0
       '@react-aria/link': 3.3.5_react@18.2.0
       '@react-aria/overlays': 3.12.0_biqbaboplfbrettd7655fr4n2y
+      '@react-aria/progress': 3.3.3_react@18.2.0
       '@react-aria/radio': 3.4.1_react@18.2.0
       '@react-aria/searchfield': 3.4.3_react@18.2.0
       '@react-aria/slider': 3.2.3_react@18.2.0
@@ -184,8 +206,10 @@ importers:
       '@react-aria/tooltip': 3.3.3_react@18.2.0
       '@react-aria/utils': 3.14.1_react@18.2.0
       '@react-aria/visually-hidden': 3.6.0_react@18.2.0
+      '@react-stately/calendar': 3.0.4_react@18.2.0
       '@react-stately/collections': 3.5.0_react@18.2.0
       '@react-stately/data': 3.8.0_react@18.2.0
+      '@react-stately/datepicker': 3.2.0_react@18.2.0
       '@react-stately/overlays': 3.4.3_react@18.2.0
       '@react-stately/radio': 3.6.1_react@18.2.0
       '@react-stately/searchfield': 3.3.3_react@18.2.0
@@ -194,6 +218,7 @@ importers:
       '@react-stately/tabs': 3.2.3_react@18.2.0
       '@react-stately/toggle': 3.4.3_react@18.2.0
       '@react-stately/tooltip': 3.2.3_react@18.2.0
+      '@react-types/calendar': 3.0.4_react@18.2.0
       '@stitches/react': 1.2.8_react@18.2.0
     devDependencies:
       '@comfortdelgro/eslint-config': 1.0.2_7kqmbfin2hbsatd5vaz65frvs4
@@ -201,6 +226,7 @@ importers:
       '@react-types/breadcrumbs': 3.4.5_react@18.2.0
       '@react-types/button': 3.7.0_react@18.2.0
       '@react-types/checkbox': 3.4.1_react@18.2.0
+      '@react-types/datepicker': 3.1.3_react@18.2.0
       '@react-types/grid': 3.1.5_react@18.2.0
       '@react-types/link': 3.3.5_react@18.2.0
       '@react-types/overlays': 3.6.5_react@18.2.0
@@ -1857,6 +1883,14 @@ packages:
       '@fortawesome/fontawesome-common-types': 6.2.1
     dev: false
 
+  /@fortawesome/free-brands-svg-icons/6.2.1:
+    resolution: {integrity: sha512-L8l4MfdHPmZlJ72PvzdfwOwbwcCAL0vx48tJRnI6u1PJXh+j2f3yDoKyQgO3qjEsgD5Fr2tQV/cPP8F/k6aUig==}
+    engines: {node: '>=6'}
+    requiresBuild: true
+    dependencies:
+      '@fortawesome/fontawesome-common-types': 6.2.1
+    dev: false
+
   /@fortawesome/free-regular-svg-icons/6.2.1:
     resolution: {integrity: sha512-wiqcNDNom75x+pe88FclpKz7aOSqS2lOivZeicMV5KRwOAeypxEYWAK/0v+7r+LrEY30+qzh8r2XDaEHvoLsMA==}
     engines: {node: '>=6'}
@@ -1916,6 +1950,15 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
 
+  /@iconify/react/4.0.1_react@18.2.0:
+    resolution: {integrity: sha512-/DBJqh5K7W4f+d4kpvyJa/OTpVa3GfgrE9bZFAKP0vIWDr0cvVU9MVvbbkek216w9nLQhpJY/FeJtc6izB1PHw==}
+    peerDependencies:
+      react: '>=16'
+    dependencies:
+      '@iconify/types': 2.0.0
+      react: 18.2.0
+    dev: false
+
   /@iconify/tools/2.1.2_@iconify+types@2.0.0:
     resolution: {integrity: sha512-HNYw3K0KtdkB9xNo5jNMTW73DnVBACS0V6iMaL7i1kb8fMPq0BeMP9vmocii3JdJeBc4+nST61H4Sel0Ps5bJg==}
     peerDependencies:
@@ -1941,7 +1984,6 @@ packages:
 
   /@iconify/types/2.0.0:
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
-    dev: true
 
   /@iconify/utils/2.0.2:
     resolution: {integrity: sha512-13B3wJxDLmSNBEIEpKleKSkJVQgdAy9ra3Xsu233i/5qD5yXBGhpOFxTB/k8cqme0xVsMKBPV5vbvq9MgQlX+w==}
@@ -1960,7 +2002,6 @@ packages:
     resolution: {integrity: sha512-E/3lASs4mAeJ2Z2ye6ab7eUD0bPUfTeNVTAv6IS+ne9UtMu9Uepb9A1U2Ae0hDr6WAlBuvUtrakaxEdYB9TV6Q==}
     dependencies:
       '@babel/runtime': 7.20.6
-    dev: false
 
   /@internationalized/message/3.0.9:
     resolution: {integrity: sha512-yHQggKWUuSvj1GznVtie4tcYq+xMrkd/lTKCFHp6gG18KbIliDw+UI7sL9+yJPGuWiR083xuLyyhzqiPbNOEww==}
@@ -2507,6 +2548,26 @@ packages:
       react: 18.2.0
     dev: false
 
+  /@react-aria/calendar/3.0.4_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-FE52NSR631YO+ew0k/Qt90C+qV9qJV53uAkFYWXzYE0zeE9/+IM0Jtrb/rdcmUhsx/c4l9tzNPAMdFjKvkawXw==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@babel/runtime': 7.20.6
+      '@internationalized/date': 3.0.1
+      '@react-aria/i18n': 3.6.2_react@18.2.0
+      '@react-aria/interactions': 3.13.0_react@18.2.0
+      '@react-aria/live-announcer': 3.1.1
+      '@react-aria/utils': 3.14.1_react@18.2.0
+      '@react-stately/calendar': 3.0.4_react@18.2.0
+      '@react-types/button': 3.7.0_react@18.2.0
+      '@react-types/calendar': 3.0.4_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
   /@react-aria/checkbox/3.7.0_react@18.2.0:
     resolution: {integrity: sha512-CGVfBcCK3e8YwjPSgIMTQbMxbjTtsDy9xGkw/7iCMVIsHC7MfzO8Ny5qJJbQ2dVkNnSfIgQdtWikYGJN2QjeDw==}
     peerDependencies:
@@ -2521,6 +2582,32 @@ packages:
       '@react-types/checkbox': 3.4.1_react@18.2.0
       '@react-types/shared': 3.16.0_react@18.2.0
       react: 18.2.0
+    dev: false
+
+  /@react-aria/datepicker/3.2.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-qsnAcKeWzmZadXtQPpmTN4TNO10Vq/TXSsf5PF+2MInsJQjEWTN8YFFgTbKVf7ksDwfDRSarTV0f+hZbi5scHA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@babel/runtime': 7.20.6
+      '@internationalized/date': 3.0.1
+      '@internationalized/number': 3.1.1
+      '@internationalized/string': 3.0.0
+      '@react-aria/focus': 3.10.0_react@18.2.0
+      '@react-aria/i18n': 3.6.2_react@18.2.0
+      '@react-aria/interactions': 3.13.0_react@18.2.0
+      '@react-aria/label': 3.4.3_react@18.2.0
+      '@react-aria/spinbutton': 3.2.0_biqbaboplfbrettd7655fr4n2y
+      '@react-aria/utils': 3.14.1_react@18.2.0
+      '@react-stately/datepicker': 3.2.0_react@18.2.0
+      '@react-types/button': 3.7.0_react@18.2.0
+      '@react-types/calendar': 3.0.4_react@18.2.0
+      '@react-types/datepicker': 3.1.3_react@18.2.0
+      '@react-types/dialog': 3.4.5_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /@react-aria/dialog/3.4.1_biqbaboplfbrettd7655fr4n2y:
@@ -2655,6 +2742,20 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
+  /@react-aria/progress/3.3.3_react@18.2.0:
+    resolution: {integrity: sha512-yRE9fBfbjSdyWHWeQ4HqEURAT8foa9drGCJIKnMUx08dEsPAXvdh9tvnAvr1kbJnDlZxVwhlbTyFCwB+E2Mfag==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@babel/runtime': 7.20.6
+      '@react-aria/i18n': 3.6.2_react@18.2.0
+      '@react-aria/label': 3.4.3_react@18.2.0
+      '@react-aria/utils': 3.14.1_react@18.2.0
+      '@react-types/progress': 3.2.5_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
+      react: 18.2.0
+    dev: false
+
   /@react-aria/radio/3.4.1_react@18.2.0:
     resolution: {integrity: sha512-a1JFxFOiExX1ZRGBE31LW4dgc3VmW2v3upJ5snGQldC83o0XxqNavmOef+fMsIRV0AQA/mcxAJVNQ0n9SfIiUQ==}
     peerDependencies:
@@ -2722,6 +2823,22 @@ packages:
       '@react-types/shared': 3.16.0_react@18.2.0
       '@react-types/slider': 3.3.1_react@18.2.0
       react: 18.2.0
+    dev: false
+
+  /@react-aria/spinbutton/3.2.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-6pbfC/uOz1k+D6NL7l/o855yr3hMBaiLdZpKdGu4N/vybnyS5ZcjX9Y1VswBZjYgvZ3Ojp8fSu/buZMU/zAISw==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@babel/runtime': 7.20.6
+      '@react-aria/i18n': 3.6.2_react@18.2.0
+      '@react-aria/live-announcer': 3.1.1
+      '@react-aria/utils': 3.14.1_react@18.2.0
+      '@react-types/button': 3.7.0_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /@react-aria/ssr/3.4.0_react@18.2.0:
@@ -2844,6 +2961,20 @@ packages:
       react: 18.2.0
     dev: false
 
+  /@react-stately/calendar/3.0.4_react@18.2.0:
+    resolution: {integrity: sha512-KaytmQVRqEOoKuLDgrm8RzY7ZHJ24IlDirN4dZj1wBHYt7RkAtwgqyTF/eyhS6/VYegmPhu53GcsSk0I3W+xLQ==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@babel/runtime': 7.20.6
+      '@internationalized/date': 3.0.1
+      '@react-stately/utils': 3.5.1_react@18.2.0
+      '@react-types/calendar': 3.0.4_react@18.2.0
+      '@react-types/datepicker': 3.1.3_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
+      react: 18.2.0
+    dev: false
+
   /@react-stately/checkbox/3.3.1_react@18.2.0:
     resolution: {integrity: sha512-r2hL11GF9r2ztUFEhpiVgiXgE+W99tyL1Kt7rOiTZ8/aMBGWwBxOHAdHeqcWFeBgOztXuJsKiDu82necEG4xhA==}
     peerDependencies:
@@ -2873,6 +3004,21 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
       '@babel/runtime': 7.20.6
+      '@react-types/shared': 3.16.0_react@18.2.0
+      react: 18.2.0
+    dev: false
+
+  /@react-stately/datepicker/3.2.0_react@18.2.0:
+    resolution: {integrity: sha512-isFB8jpeiig3vfstWKkaY0cdejG0XT47Q9jZJgsrsEqpMVFBmcvlQQQ3WNqP4yC5c7Mrs3tAscY7WtbPIkDQ4g==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@babel/runtime': 7.20.6
+      '@internationalized/date': 3.0.1
+      '@internationalized/string': 3.0.0
+      '@react-stately/overlays': 3.4.3_react@18.2.0
+      '@react-stately/utils': 3.5.1_react@18.2.0
+      '@react-types/datepicker': 3.1.3_react@18.2.0
       '@react-types/shared': 3.16.0_react@18.2.0
       react: 18.2.0
     dev: false
@@ -3050,11 +3196,31 @@ packages:
       '@react-types/shared': 3.16.0_react@18.2.0
       react: 18.2.0
 
+  /@react-types/calendar/3.0.4_react@18.2.0:
+    resolution: {integrity: sha512-0hKaaEil2XbdUESQe9Yg2uLVNvNcFHVzXN6KoQHGBPnpWlkwa24ufKiX27mAWOAoce0nEXlVBG1H9C/kwLMcMw==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@internationalized/date': 3.0.1
+      '@react-types/shared': 3.16.0_react@18.2.0
+      react: 18.2.0
+    dev: false
+
   /@react-types/checkbox/3.4.1_react@18.2.0:
     resolution: {integrity: sha512-kDMpy9SntjGQ7x00m5zmW8GENPouOtyiDgiEDKsPXUr2iYqHsNtricqVyG9S9+6hqpzuu8BzTcvZamc/xYjzlg==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
+      '@react-types/shared': 3.16.0_react@18.2.0
+      react: 18.2.0
+
+  /@react-types/datepicker/3.1.3_react@18.2.0:
+    resolution: {integrity: sha512-5ZsCU/quVXMCQd3T9yLYKOviSghBaSx/vqzJDsDGimyFRAxd4n95PRl8SjlGjVf6lR0WSihCbcXB/D+b8/RJIA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@internationalized/date': 3.0.1
+      '@react-types/overlays': 3.6.5_react@18.2.0
       '@react-types/shared': 3.16.0_react@18.2.0
       react: 18.2.0
 
@@ -3101,6 +3267,15 @@ packages:
     dependencies:
       '@react-types/shared': 3.16.0_react@18.2.0
       react: 18.2.0
+
+  /@react-types/progress/3.2.5_react@18.2.0:
+    resolution: {integrity: sha512-pFSqaj6rlSdPqGHVErJ8G3RkIyYigoJ3EVozvhR9bcKkLlhnzJiFgOZl+k5u/ZKJOA+YHivIHJwg+Kl1sG0J6A==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@react-types/shared': 3.16.0_react@18.2.0
+      react: 18.2.0
+    dev: false
 
   /@react-types/radio/3.3.1_react@18.2.0:
     resolution: {integrity: sha512-q/x0kMvBsu6mH4bIkp/Jjrm9ff5y/p3UR0V4CmQFI7604gQd2Dt1dZMU/2HV9x70r1JfWRrDeRrVjUHVfFL5Vg==}

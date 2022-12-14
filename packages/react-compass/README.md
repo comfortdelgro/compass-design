@@ -10,7 +10,7 @@ implement user experiences consistent with
 
 **Installation**
 
-To get started using Canvas kit React first add or install the module to your existing React project
+To get started, run
 
 ```sh
 yarn add @comfortdelgro/react-compass
@@ -27,6 +27,8 @@ or
 ```sh
 pnpm install @comfortdelgro/react-compass
 ```
+
+> Make sure you have all the required peer dependencies installed in the first place.
 
 **Usage**
 
@@ -52,18 +54,6 @@ Better yet, submit a pull request to address it.
 
 If you have an idea, we would love to hear about it. The best way to suggest a feature is to
 [open a feature issue](https://github.com/comfortdelgro/compass-design/issues/new?labels=feature&template=feature.md).
-
-## Supported Browsers
-
-- Microsoft Edge: last 2 versions
-- Mozilla Firefox: last 2 versions
-- Google Chrome: last 2 versions
-- Apple Safari: last 2 versions
-- Opera: last 2 versions
-
-## Versioning
-
-React Compass follows [semantic versioning](https://semver.org).
 
 ## License
 

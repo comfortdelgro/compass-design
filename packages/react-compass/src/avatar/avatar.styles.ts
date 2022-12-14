@@ -81,6 +81,9 @@ export const StyledAvatar = styled('span', {
           width: '$4',
           height: '$4',
         },
+        // '.initials.count': {
+        //   width: '$4',
+        // },
       },
     },
   },
