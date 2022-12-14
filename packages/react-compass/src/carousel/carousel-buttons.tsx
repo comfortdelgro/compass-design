@@ -21,6 +21,7 @@ const CarouselButtons = React.forwardRef<HTMLDivElement, CarouselButtonsProps>(
       if (buttons.length) {
         return <>{buttons[currentButtonsIndex]}</>
       }
+      return <></>
     }
 
     React.useEffect(() => {

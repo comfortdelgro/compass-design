@@ -426,7 +426,6 @@ export const Variants: React.FC = () => {
                 alignItems: 'center',
                 width: 'fit-content',
               }}
-              s
             >
               reminder 7
             </div>

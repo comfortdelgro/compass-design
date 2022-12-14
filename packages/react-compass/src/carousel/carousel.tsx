@@ -66,19 +66,24 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
     } = props
 
     const carouselRef = useDOMRef<HTMLDivElement>(ref)
-    const {child: CarouselImageElement, rest: childrenWithoutImageElement} =
-      pickChild<typeof CarouselImage>(children, CarouselImage)
+    const {child: CarouselImageElement} = pickChild<typeof CarouselImage>(
+      children,
+      CarouselImage,
+    )
 
-    const {child: CarouselTitleElement, rest: childrenWithoutTitleElement} =
-      pickChild<typeof CarouselTitle>(children, CarouselTitle)
+    const {child: CarouselTitleElement} = pickChild<typeof CarouselTitle>(
+      children,
+      CarouselTitle,
+    )
 
-    const {
-      child: CarouselDescriptionElement,
-      rest: childrenWithoutDescriptionElement,
-    } = pickChild<typeof CarouselDescription>(children, CarouselDescription)
+    const {child: CarouselDescriptionElement} = pickChild<
+      typeof CarouselDescription
+    >(children, CarouselDescription)
 
-    const {child: CarouselButtonsElement, rest: childrenWithoutButtonsElement} =
-      pickChild<typeof CarouselButtons>(children, CarouselButtons)
+    const {child: CarouselButtonsElement} = pickChild<typeof CarouselButtons>(
+      children,
+      CarouselButtons,
+    )
 
     const variantProps = {size, view} as CarouselVariantProps
     const [currentSlideIndex, setCurrentSlideIndex] = React.useState(0)
@@ -186,7 +191,7 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
                     {renderPagniation()}
                   </StyledCarouselPaginationContainer>
                   <StyledCarouselIconsContainer>
-                    {socialIcons.map((item, index) => {
+                    {socialIcons.map((item) => {
                       return (
                         <Icon
                           icon={item.icon as unknown as IconProp}

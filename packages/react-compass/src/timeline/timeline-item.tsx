@@ -30,7 +30,6 @@ const TimelineItem = React.forwardRef<HTMLDivElement, TimelineItemProps>(
       ...delegated
     } = props
     const timelineItemRef = useDOMRef<HTMLDivElement>(ref)
-    const items = React.Children.toArray(children)
 
     // classname for styling alternate
     const className = (prefix: string) => {
