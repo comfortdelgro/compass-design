@@ -191,11 +191,12 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
                     {renderPagniation()}
                   </StyledCarouselPaginationContainer>
                   <StyledCarouselIconsContainer>
-                    {socialIcons.map((item) => {
+                    {socialIcons.map((item, index) => {
                       return (
                         <Icon
                           icon={item.icon as unknown as IconProp}
                           onClick={() => window.open(item.target, '_blank')}
+                          key={index}
                         />
                       )
                     })}
