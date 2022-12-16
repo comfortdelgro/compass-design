@@ -25,7 +25,7 @@ describe('accordion.cy.ts', () => {
     // cy.document().matchImage()
   })
 
-  it('C01: Able to click to show children', () => {
+  it('C02: Able to click to show children', () => {
     const accordion = (
       <Accordion id='accordion'>
         <Accordion.Title icon={false}>Title</Accordion.Title>
