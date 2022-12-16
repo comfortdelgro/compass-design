@@ -1,7 +1,8 @@
 import Button from './index'
+type Variant = 'primary' | 'secondary' | 'danger' | 'ghost'
 
 describe('button.cy.ts', () => {
-  it('should render children', () => {
+  it('C01: Should render children', () => {
     const children = 'Click Me!'
     const button = <Button>{children}</Button>
 
@@ -10,17 +11,25 @@ describe('button.cy.ts', () => {
     cy.document().matchImage()
   })
 
-  it('should support all variants', () => {
-    const children = 'Click Me!'
+  it('C02: Should support all variants', () => {
+    const listOfVariants: Variant[] = [
+      'primary',
+      'secondary',
+      'danger',
+      'ghost',
+    ]
     cy.mount(
       <>
-        <Button variant='primary'>{children}</Button>
-        <Button variant='secondary'>{children}</Button>
-        <Button variant='danger'>{children}</Button>
-        <Button variant='ghost'>{children}</Button>
+        {listOfVariants.map((item) => (
+          <Button variant={item} id={item}>
+            {item}
+          </Button>
+        ))}
       </>,
     )
-
+    listOfVariants.forEach((item) => {
+      cy.get(`#${item}`).should('have.text', item)
+    })
     cy.document().matchImage()
   })
 })
