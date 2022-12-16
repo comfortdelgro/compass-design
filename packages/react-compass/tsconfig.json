@@ -23,5 +23,12 @@
     "strict": true,
     "target": "ES2021"
   },
-  "include": ["src", "scripts", ".ladle"]
+  "include": [
+    "src",
+    "scripts",
+    ".ladle",
+    "vite.config.ts",
+    "cypress.config.ts",
+    "cypress"
+  ]
 }
