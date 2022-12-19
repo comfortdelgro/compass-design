@@ -14,6 +14,7 @@ export const StyledSearchFieldBox = styled('div', {
   color: '$typeHeading',
   backgroundColor: '$whiteText',
   transition: '$default',
+  minWidth: '$48',
 
   '&:focus-within': {
     borderColor: '$cdgBlue',
@@ -49,7 +50,7 @@ export const StyledSearchFieldInput = styled('input', {
   border: 0,
   borderRadius: '$md',
   backgroundColor: 'transparent',
-  width: '$48',
+  width: '100%',
 
   '&:focus': {
     outline: 'none',
