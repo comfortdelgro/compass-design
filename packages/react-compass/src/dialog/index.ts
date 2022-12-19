@@ -18,4 +18,11 @@ Dialog.Description = DialogDescription
 Dialog.Actions = DialogActions
 Dialog.Icon = DialogIcon
 
+Dialog.Trigger.displayName = 'Dialog.Trigger'
+Dialog.Title.displayName = 'Dialog.Title'
+Dialog.Description.displayName = 'Dialog.Description'
+Dialog.Actions.displayName = 'Dialog.Actions'
+Dialog.Icon.displayName = 'Dialog.Icon'
+Dialog.displayName = 'Dialog'
+
 export default Dialog

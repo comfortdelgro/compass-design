@@ -14,4 +14,8 @@ export {ListCard, InteractiveList}
 List.Image = ListImage
 ListCard.Detail = ListCardDetail
 
+List.Image.displayName = 'List.Image'
+ListCard.Detail.displayName = 'ListCard.Detail'
+List.displayName = 'List'
+
 export default List

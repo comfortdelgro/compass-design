@@ -12,4 +12,9 @@ Upload.Button = UploadButton
 Upload.Placeholder = UploadPlaceholder
 Upload.Icon = UploadIcon
 
+Upload.Button.displayName = 'Upload.Button'
+Upload.Placeholder.displayName = 'Upload.Placeholder'
+Upload.Icon.displayName = 'Upload.Icon'
+Upload.displayName = 'Upload'
+
 export default Upload

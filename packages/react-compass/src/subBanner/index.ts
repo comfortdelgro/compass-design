@@ -12,4 +12,9 @@ SubBanner.Image = SubBannerImage
 SubBanner.Title = SubBannerTitle
 SubBanner.Description = SubBannerDescription
 
+SubBanner.Image.displayName = 'SubBanner.Image'
+SubBanner.Title.displayName = 'SubBanner.Title'
+SubBanner.Description.displayName = 'SubBanner.Description'
+SubBanner.displayName = 'SubBanner'
+
 export default SubBanner

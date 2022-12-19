@@ -18,4 +18,11 @@ Error.Icon = ErrorIcon
 Error.Image = ErrorImage
 Error.Title = ErrorTitle
 
+Error.Action.displayName = 'Error.Action'
+Error.Description.displayName = 'Error.Description'
+Error.Icon.displayName = 'Error.Icon'
+Error.Image.displayName = 'Error.Image'
+Error.Title.displayName = 'Error.Title'
+Error.displayName = 'Error'
+
 export default Error
