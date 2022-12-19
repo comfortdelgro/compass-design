@@ -10,4 +10,8 @@ export type {SidenavItemProps} from './sidenav-item'
 Sidenar.Item = SidebarItem
 Sidenar.Divider = Divider
 
+Sidenar.Item.displayName = 'Sidenar.Item'
+Sidenar.Divider.displayName = 'Sidenar.Divider'
+Sidenar.displayName = 'Sidenar'
+
 export default Sidenar

@@ -9,4 +9,8 @@ export type {NavbarIconProps} from './navbar-icon'
 Navbar.Brand = NavbarBrand
 Navbar.Icon = NavbarIcon
 
+Navbar.Brand.displayName = 'Navbar.Brand'
+Navbar.Brand.displayName = 'Navbar.Brand'
+Navbar.displayName = 'Navbar'
+
 export default Navbar

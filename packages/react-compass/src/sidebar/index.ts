@@ -12,4 +12,9 @@ Sidebar.Actions = SidebarActions
 Sidebar.Content = SidebarContent
 Sidebar.Title = SidebarTitle
 
+Sidebar.Actions.displayName = 'Sidebar.Actions'
+Sidebar.Content.displayName = 'Sidebar.Content'
+Sidebar.Title.displayName = 'Sidebar.Title'
+Sidebar.displayName = 'Sidebar'
+
 export default Sidebar
