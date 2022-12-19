@@ -13,5 +13,5 @@
     "externalHelpers": false
   },
   "minify": false,
-  "exclude": [".*\\.stories.(ts|tsx)$"]
+  "exclude": [".*\\.stories.(ts|tsx)$", ".*\\.cy.(ts|tsx)$"]
 }
