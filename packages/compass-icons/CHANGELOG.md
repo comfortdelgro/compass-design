@@ -1,5 +1,11 @@
 # @comfortdelgro/compass-icons
 
+## 0.2.1
+
+### Patch Changes
+
+- e813311: Update build script
+
 ## 0.2.0
 
 ### Minor Changes
