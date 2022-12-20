@@ -1,13 +1,15 @@
 import {parseDate} from '@internationalized/date'
-import Calendar from './index'
+import DatePicker from './index'
 
 const centerDateString = `2022-05-15`
 
-describe('calendar.cy.ts', () => {
+describe('date-picker.cy.ts', () => {
   it('C01: Should render children', () => {
-    const calendar = <Calendar defaultValue={parseDate(centerDateString)} />
+    const datePicker = <DatePicker defaultValue={parseDate(centerDateString)} />
 
-    cy.mount(calendar)
+    cy.mount(datePicker)
+
+    cy.get('button[aria-label="Calendar"]').click()
     cy.get(
       `[aria-label="Saturday, May 14, 2022"] > .calendar-cell-value`,
     ).click()
