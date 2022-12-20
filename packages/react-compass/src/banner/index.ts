@@ -12,4 +12,9 @@ Banner.Image = BannerImage
 Banner.Title = BannerTitle
 Banner.Description = BannerDescription
 
+Banner.Image.displayName = 'Banner.Image'
+Banner.Title.displayName = 'Banner.Title'
+Banner.Description.displayName = 'Banner.Description'
+Banner.displayName = 'Banner'
+
 export default Banner

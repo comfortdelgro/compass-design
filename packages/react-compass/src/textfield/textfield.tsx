@@ -52,9 +52,11 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
 
     return (
       <StyledTextFieldWrapper css={css}>
-        <StyledTextFieldLabel {...labelProps} disabled={!!isDisabled}>
-          {label}
-        </StyledTextFieldLabel>
+        {label && (
+          <StyledTextFieldLabel {...labelProps} disabled={!!isDisabled}>
+            {label}
+          </StyledTextFieldLabel>
+        )}
         <StyledTextFieldBox disabled={!!isDisabled} errored={!!errored}>
           {leftIcon ? <Icon className='left-icon' icon={leftIcon} /> : null}
           <StyledTextField css={css} ref={textfieldRef} {...inputProps} />

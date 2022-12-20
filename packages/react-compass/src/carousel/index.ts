@@ -15,4 +15,10 @@ Carousel.Title = CarouselTitle
 Carousel.Description = CarouselDescription
 Carousel.Buttons = CarouselButtons
 
+Carousel.Image.displayName = 'Carousel.Image'
+Carousel.Title.displayName = 'Carousel.Title'
+Carousel.Description.displayName = 'Carousel.Description'
+Carousel.Buttons.displayName = 'Carousel.Buttons'
+Carousel.displayName = 'Carousel'
+
 export default Carousel

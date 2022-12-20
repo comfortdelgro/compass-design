@@ -15,4 +15,10 @@ Modal.Title = ModalTitle
 Modal.Description = ModalDescription
 Modal.Actions = ModalActions
 
+Modal.Trigger.displayName = 'Modal.Trigger'
+Modal.Title.displayName = 'Modal.Title'
+Modal.Description.displayName = 'Modal.Description'
+Modal.Actions.displayName = 'Modal.Actions'
+Modal.displayName = 'Modal'
+
 export default Modal

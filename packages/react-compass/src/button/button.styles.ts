@@ -52,10 +52,16 @@ export const StyledButtonContent = styled('div', {
 
   '.icon.left': {
     marginRight: '$2',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
   '.icon.right': {
     marginLeft: '$2',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 })
 

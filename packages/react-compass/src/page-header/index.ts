@@ -21,3 +21,12 @@ PageHeader.Description = PageHeaderDescription
 SubHeader.Header = PageHeaderHeader
 SubHeader.Title = PageHeaderTitle
 SubHeader.Description = PageHeaderDescription
+
+PageHeader.Header.displayName = 'PageHeader.Header'
+PageHeader.Title.displayName = 'PageHeader.Title'
+PageHeader.Subtitle.displayName = 'PageHeader.Subtitle'
+PageHeader.Description.displayName = 'PageHeader.Description'
+
+SubHeader.Header.displayName = 'SubHeader.Header'
+SubHeader.Title.displayName = 'SubHeader.Title'
+SubHeader.Description.displayName = 'SubHeader.Description'

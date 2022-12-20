@@ -25,39 +25,40 @@ export const Variants: React.FC = () => (
     </Row>
 
     <h3>With Left Icons</h3>
+
     <Row>
-      <Button variant='primary' leftIcon={faChevronDown}>
+      <Button variant='primary' leftIcon={<Icon icon={faChevronDown} />}>
         Primary
       </Button>
-      <Button variant='secondary' leftIcon={faChevronDown}>
+      <Button variant='secondary' leftIcon={<Icon icon={faChevronDown} />}>
         Secondary
       </Button>
-      <Button variant='danger' leftIcon={faChevronDown}>
+      <Button variant='danger' leftIcon={<Icon icon={faChevronDown} />}>
         Danger
       </Button>
-      <Button variant='ghost' leftIcon={faChevronDown}>
+      <Button variant='ghost' leftIcon={<Icon icon={faChevronDown} />}>
         Ghost
       </Button>
-      <Button isDisabled leftIcon={faChevronDown}>
+      <Button isDisabled leftIcon={<Icon icon={faChevronDown} />}>
         Disabled
       </Button>
     </Row>
 
     <h3>With Right Icons</h3>
     <Row>
-      <Button variant='primary' rightIcon={faChevronDown}>
+      <Button variant='primary' rightIcon={<Icon icon={faChevronDown} />}>
         Primary
       </Button>
-      <Button variant='secondary' rightIcon={faChevronDown}>
+      <Button variant='secondary' rightIcon={<Icon icon={faChevronDown} />}>
         Secondary
       </Button>
-      <Button variant='danger' rightIcon={faChevronDown}>
+      <Button variant='danger' rightIcon={<Icon icon={faChevronDown} />}>
         Danger
       </Button>
-      <Button variant='ghost' rightIcon={faChevronDown}>
+      <Button variant='ghost' rightIcon={<Icon icon={faChevronDown} />}>
         Ghost
       </Button>
-      <Button isDisabled rightIcon={faChevronDown}>
+      <Button isDisabled rightIcon={<Icon icon={faChevronDown} />}>
         Disabled
       </Button>
     </Row>
@@ -66,33 +67,37 @@ export const Variants: React.FC = () => (
     <Row>
       <Button
         variant='primary'
-        leftIcon={faChevronDown}
-        rightIcon={faMapMarkerAlt}
+        leftIcon={<Icon icon={faChevronDown} />}
+        rightIcon={<Icon icon={faMapMarkerAlt} />}
       >
         Primary
       </Button>
       <Button
         variant='secondary'
-        leftIcon={faChevronDown}
-        rightIcon={faMapMarkerAlt}
+        leftIcon={<Icon icon={faChevronDown} />}
+        rightIcon={<Icon icon={faMapMarkerAlt} />}
       >
         Secondary
       </Button>
       <Button
         variant='danger'
-        leftIcon={faChevronDown}
-        rightIcon={faMapMarkerAlt}
+        leftIcon={<Icon icon={faChevronDown} />}
+        rightIcon={<Icon icon={faMapMarkerAlt} />}
       >
         Danger
       </Button>
       <Button
         variant='ghost'
-        leftIcon={faChevronDown}
-        rightIcon={faMapMarkerAlt}
+        leftIcon={<Icon icon={faChevronDown} />}
+        rightIcon={<Icon icon={faMapMarkerAlt} />}
       >
         Ghost
       </Button>
-      <Button isDisabled leftIcon={faChevronDown} rightIcon={faMapMarkerAlt}>
+      <Button
+        isDisabled
+        leftIcon={<Icon icon={faChevronDown} />}
+        rightIcon={<Icon icon={faMapMarkerAlt} />}
+      >
         Disabled
       </Button>
     </Row>
@@ -153,21 +158,21 @@ export const Sizes = () => (
 
     <h3>With Icons</h3>
     <Row>
-      <Button size='lg' leftIcon={faHamburger}>
+      <Button size='lg' leftIcon={<Icon icon={faHamburger} />}>
         Big Mac
       </Button>
-      <Button size='md' rightIcon={faDownload}>
+      <Button size='md' rightIcon={<Icon icon={faDownload} />}>
         Download
       </Button>
-      <Button size='sm' rightIcon={faChevronDown}>
+      <Button size='sm' rightIcon={<Icon icon={faChevronDown} />}>
         Dropdown
       </Button>
       <div style={{width: '300px', flexShrink: 0}}>
         <Button
           size='md'
           fullWidth
-          leftIcon={faHeadset}
-          rightIcon={faChevronDown}
+          leftIcon={<Icon icon={faHeadset} />}
+          rightIcon={<Icon icon={faChevronDown} />}
         >
           Contact Support
         </Button>

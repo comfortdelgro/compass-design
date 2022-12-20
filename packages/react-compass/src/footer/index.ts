@@ -21,3 +21,9 @@ Footer.Policy = FooterPolicy
 
 FooterInfo.Download = FooterInfoDownload
 FooterInfo.Social = FooterInfoSocial
+
+Footer.Header.displayName = 'Footer.Header'
+Footer.Nav.displayName = 'Footer.Nav'
+Footer.Policy.displayName = 'Footer.Policy'
+FooterInfo.Download.displayName = 'FooterInfo.Download'
+FooterInfo.Social.displayName = 'FooterInfo.Social'

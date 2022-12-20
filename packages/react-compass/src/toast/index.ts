@@ -21,4 +21,11 @@ Toast.Icon = ToastIcon
 Toast.Label = ToastLabel
 Toast.Title = ToastTitle
 
+Toast.Actions.displayName = 'Toast.Actions'
+Toast.CloseIcon.displayName = 'Toast.CloseIcon'
+Toast.Icon.displayName = 'Toast.Icon'
+Toast.Label.displayName = 'Toast.Label'
+Toast.Title.displayName = 'Toast.Title'
+Toast.displayName = 'Toast'
+
 export default Toast

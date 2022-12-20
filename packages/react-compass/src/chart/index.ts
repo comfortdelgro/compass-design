@@ -22,4 +22,9 @@ const Chart: ComposableChart = {
   Area: AreaChart,
 }
 
+Chart.Column.displayName = 'Chart.Column'
+Chart.Bar.displayName = 'Chart.Bar'
+Chart.Line.displayName = 'Chart.Line'
+Chart.Area.displayName = 'Chart.Area'
+
 export default Chart

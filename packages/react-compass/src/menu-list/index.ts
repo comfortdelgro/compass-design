@@ -14,4 +14,8 @@ export {MenuListDropdown}
 MenuListDropdown.Header = MenuListDropdownHeader
 MenuListDropdown.Item = MenuListDropdownItem
 
+MenuListDropdown.Header.displayName = 'MenuListDropdown.Header'
+MenuListDropdown.Item.displayName = 'MenuListDropdown.Item'
+MenuList.displayName = 'MenuList'
+
 export default MenuList

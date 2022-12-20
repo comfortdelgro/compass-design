@@ -1,9 +1,6 @@
 import {useButton} from '@react-aria/button'
 import type {AriaButtonProps} from '@react-types/button'
-import React, {useMemo} from 'react'
-import {Icon, IconProp} from '../icon'
-import {emptyIcon} from '../utils/empty-icon'
-import {isOnlyChild} from '../utils/is-icon-only'
+import React from 'react'
 import type {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
@@ -16,8 +13,8 @@ import {
 interface Props extends AriaButtonProps, StyledComponentProps {
   children?: React.ReactNode
   className?: string
-  leftIcon?: IconProp
-  rightIcon?: IconProp
+  leftIcon?: React.ReactNode
+  rightIcon?: React.ReactNode
 }
 
 export type ButtonProps = Props & ButtonVariantProps
@@ -51,14 +48,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const buttonRef = useDOMRef<HTMLButtonElement>(ref)
     const {buttonProps} = useButton(ariaSafeProps, buttonRef)
-    const iconOnly = useMemo(() => isOnlyChild(children, Icon), [])
 
     const variantProps = {
       variant,
       size,
       fullWidth,
       loading,
-      iconOnly,
     } as ButtonVariantProps
 
     return (
@@ -89,12 +84,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         </StyledLoading>
 
         <StyledButtonContent>
-          {leftIcon || (fullWidth && rightIcon) ? ( // to prevent alignment issues when there's only one icon
-            <Icon className='icon left' icon={leftIcon || emptyIcon} />
+          {leftIcon || (fullWidth && rightIcon) ? (
+            <div className='icon left'>{leftIcon}</div>
           ) : null}
           <span className='children'>{children}</span>
           {rightIcon || (fullWidth && leftIcon) ? (
-            <Icon className='icon right' icon={rightIcon || emptyIcon} />
+            <div className='icon right'>{rightIcon}</div>
           ) : null}
         </StyledButtonContent>
       </StyledButton>
