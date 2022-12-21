@@ -23,12 +23,13 @@ export const useWindowSize = () => {
 }
 
 export const colors = ['#009EDA', '#D83B01', '#F8DB96', '#D1E8CF']
+
+type Data = Array<{
+  title: string
+  data: number[]
+}>
 export interface DataSet {
-  labels: number[]
-  data: Array<{
-    title: string
-    data: number[]
-  }>
+  data: Data
   legends?: string[]
 }
 
@@ -45,3 +46,30 @@ export interface Point {
 }
 
 export type LegendPosition = 'top' | 'bottom'
+
+const getMaxValueOfYAxis = (x: number) => {
+  if (x < 10) return 10
+  const divider = +`5${Array(Math.max(x.toString().length - 2, 1))
+    .fill(0)
+    .join('')}`
+  if (x % divider === 0) x = x + 1
+  return Math.ceil(x / divider) * divider
+}
+
+export const getStep = (data: Data) => {
+  const arr = []
+  for (const i of data) {
+    for (const j of i.data) {
+      arr.push(j)
+    }
+  }
+  const x = Math.max(...arr)
+  const result = []
+  const max = getMaxValueOfYAxis(x)
+  console.log(max)
+  const step = max / 10
+  for (let i = 0; i <= 10; i++) {
+    result.push(i * step)
+  }
+  return result
+}
