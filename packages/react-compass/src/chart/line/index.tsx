@@ -2,7 +2,14 @@ import React, {useEffect, useMemo, useState} from 'react'
 import {StyledComponentProps} from '../../utils/stitches.types'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import Legend from '../legend'
-import {colors, DataSet, LegendPosition, Line, useWindowSize} from '../utils'
+import {
+  colors,
+  DataSet,
+  getStep,
+  LegendPosition,
+  Line,
+  useWindowSize,
+} from '../utils'
 import {
   ChartVariantProps,
   StyledBody,
@@ -34,7 +41,7 @@ const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>(
     const chartRef = useDOMRef<HTMLDivElement>(ref)
     const [lines, setLines] = useState<Line[][]>()
 
-    const labels = useMemo(() => dataSet.labels, [dataSet])
+    const labels = useMemo(() => getStep(dataSet.data), [dataSet])
     const data = useMemo(() => dataSet.data, [dataSet])
     const legends = useMemo(() => dataSet.legends, [dataSet])
 

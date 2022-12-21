@@ -5,6 +5,7 @@ import Legend from '../legend'
 import {
   colors,
   DataSet,
+  getStep,
   LegendPosition,
   Line,
   Point,
@@ -42,7 +43,7 @@ const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>(
     const [lines, setLines] = useState<Line[][]>()
     const [paths, setPaths] = useState<string[]>()
 
-    const labels = useMemo(() => dataSet.labels, [dataSet])
+    const labels = useMemo(() => getStep(dataSet.data), [dataSet])
     const data = useMemo(() => dataSet.data, [dataSet])
     const legends = useMemo(() => dataSet.legends, [dataSet])
 
