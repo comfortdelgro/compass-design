@@ -64,7 +64,7 @@ export const StyledSubBannerDescription = styled('p', {
 
   // font style
   fontFamily: '$sans',
-  fontSize: '$3_5',
+  fontSize: '$label1',
   color: '$whiteText',
   lineHeight: '$lineHeights$normal',
   fontWeight: '$fontWeights$normal',
@@ -76,10 +76,9 @@ export const StyledBottomContentContainer = styled('div', {
   border: 'none',
   boxSizing: 'border-box',
   margin: '0px',
-  padding: '0px',
 
   // content container
-  marginLeft: '$4',
+  padding: '0px $4',
 })
 
 export const StyledSubBanner = styled('div', {
