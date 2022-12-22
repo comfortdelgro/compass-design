@@ -1,8 +1,8 @@
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
-import PageHeaderDescription from './page-header-description'
-import PageHeaderHeader from './page-header-header'
-import PageHeaderTitle from './page-header-title'
+import SubHeaderDescription from './sub-header-description'
+import SubHeaderHeader from './sub-header-header'
+import SubHeaderTitle from './sub-header-title'
 import {StyledSubHeader} from './sub-header.style'
 
 interface Props extends StyledComponentProps {
@@ -24,7 +24,7 @@ const SubHeader = React.forwardRef<HTMLDivElement, SubHeaderProps>(
 )
 
 export default SubHeader as typeof SubHeader & {
-  Title: typeof PageHeaderTitle
-  Header: typeof PageHeaderHeader
-  Description: typeof PageHeaderDescription
+  Title: typeof SubHeaderTitle
+  Header: typeof SubHeaderHeader
+  Description: typeof SubHeaderDescription
 }
