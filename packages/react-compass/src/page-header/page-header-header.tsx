@@ -6,7 +6,8 @@ interface Props extends StyledComponentProps {
   children: React.ReactNode
 }
 
-export type PageHeaderHeaderProps = Props
+export type PageHeaderHeaderProps = Props &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const PageHeaderHeader = React.forwardRef<
   HTMLDivElement,
