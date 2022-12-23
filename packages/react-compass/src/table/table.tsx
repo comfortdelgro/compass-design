@@ -68,41 +68,48 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
   return (
     <StyledTableWrapper css={css}>
       {toolbar && <>{toolbar}</>}
-      <StyledTable ref={tableRef} {...gridProps}>
-        <TableRowGroup as='thead'>
-          {collection.headerRows.map((row) => (
-            <TableHeaderRow key={row.key} item={row} state={state}>
-              {[...row.childNodes].map((column) =>
-                (column.props as {isSelectionCell: boolean}).isSelectionCell ? (
-                  <TableSelectAllCell
-                    key={column.key}
-                    column={column}
-                    state={state}
-                  />
-                ) : (
-                  <TableColumnHeader
-                    key={column.key}
-                    column={column}
-                    state={state}
-                  />
-                ),
-              )}
-            </TableHeaderRow>
-          ))}
-        </TableRowGroup>
-        <TableRowGroup as='tbody'>
-          {[...collection.body.childNodes].map((row) => (
-            <TableRow key={row.key} item={row} state={state}>
-              {[...row.childNodes].map((cell) =>
-                (cell.props as {isSelectionCell: boolean}).isSelectionCell ? (
-                  <TableCheckboxCell key={cell.key} cell={cell} state={state} />
-                ) : (
-                  <TableCell key={cell.key} cell={cell} state={state} />
-                ),
-              )}
-            </TableRow>
-          ))}
-        </TableRowGroup>
+      <StyledTable>
+        <table ref={tableRef} {...gridProps}>
+          <TableRowGroup as='thead'>
+            {collection.headerRows.map((row) => (
+              <TableHeaderRow key={row.key} item={row} state={state}>
+                {[...row.childNodes].map((column) =>
+                  (column.props as {isSelectionCell: boolean})
+                    .isSelectionCell ? (
+                    <TableSelectAllCell
+                      key={column.key}
+                      column={column}
+                      state={state}
+                    />
+                  ) : (
+                    <TableColumnHeader
+                      key={column.key}
+                      column={column}
+                      state={state}
+                    />
+                  ),
+                )}
+              </TableHeaderRow>
+            ))}
+          </TableRowGroup>
+          <TableRowGroup as='tbody'>
+            {[...collection.body.childNodes].map((row) => (
+              <TableRow key={row.key} item={row} state={state}>
+                {[...row.childNodes].map((cell) =>
+                  (cell.props as {isSelectionCell: boolean}).isSelectionCell ? (
+                    <TableCheckboxCell
+                      key={cell.key}
+                      cell={cell}
+                      state={state}
+                    />
+                  ) : (
+                    <TableCell key={cell.key} cell={cell} state={state} />
+                  ),
+                )}
+              </TableRow>
+            ))}
+          </TableRowGroup>
+        </table>
       </StyledTable>
       {footer && <>{footer}</>}
     </StyledTableWrapper>
