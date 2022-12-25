@@ -1,7 +1,6 @@
 import styles from '../../styles/Home.module.css'
 import {
   PageHeaderComponent,
-  SubHeaderComponent,
   MiniPageHeader,
 } from '../../components/PageHeaderComponent'
 
@@ -9,20 +8,18 @@ import {
 
 The Page header is used to begin pages and is a format guideline to how the top of a page should be organised
 
-The Sub header is then used to follow up on the top of subsequent child pages
-
 ---
 
 ### Import
 
 ```js
-import {PageHeader, SubHeader} from '@comfortdelgro/react-compass'
+import {PageHeader} from '@comfortdelgro/react-compass'
 ```
 
 or
 
 ```js
-import {PageHeader, SubHeader} from '@comfortdelgro/react-compass/page-header'
+import PageHeader from '@comfortdelgro/react-compass/page-header'
 ```
 
 ---
@@ -91,21 +88,6 @@ export function PageHeaderComponent() {
 }
 ```
 
-### Basic SubHeader
-
-<section className={styles.componentShowcaseContainer}>
-  <SubHeaderComponent />
-</section>
-
-```js
-<SubHeader>
-  <SubHeader.Header>
-    <SubHeader.Title>Title</SubHeader.Title>
-  </SubHeader.Header>
-  <SubHeader.Description>Description.</SubHeader.Description>
-</SubHeader>
-```
-
 ### PageHeader Colors
 
 PageHeader has two color in `color` props, `white` and `blue`. By default, the color is `white`
@@ -162,75 +144,43 @@ PageHeader has two color in `color` props, `white` and `blue`. By default, the c
 
 #### PageHeader
 
-| Name     | Type                  | Default | Description |
-| :------- | :-------------------- | :------ | :---------- |
-| children | `React.ReactNode`     | —       |             |
-| color    | `white` \| `blue`     | —       |             |
-| css      | `CSS`                 | —       |             |
+| Name     | Type              | Default | Description |
+| :------- | :---------------- | :------ | :---------- |
+| children | `React.ReactNode` | —       |             |
+| color    | `white` \| `blue` | —       |             |
+| css      | `CSS`             | —       |             |
 
 #### PageHeader.Header
 
-| Name     | Type                  | Default | Description |
-| :------- | :-------------------- | :------ | :---------- |
-| children | `React.ReactNode`     | —       |             |
-| css      | `CSS`                 | —       |             |
+| Name     | Type              | Default | Description |
+| :------- | :---------------- | :------ | :---------- |
+| children | `React.ReactNode` | —       |             |
+| css      | `CSS`             | —       |             |
 
 #### PageHeader.Title
 
-| Name     | Type                  | Default | Description |
-| :------- | :-------------------- | :------ | :---------- |
-| children | `React.ReactNode`     | —       |             |
-| css      | `CSS`                 | —       |             |
+| Name     | Type              | Default | Description |
+| :------- | :---------------- | :------ | :---------- |
+| children | `React.ReactNode` | —       |             |
+| css      | `CSS`             | —       |             |
 
 #### PageHeader.Subtitle
 
-| Name     | Type                  | Default | Description |
-| :------- | :-------------------- | :------ | :---------- |
-| children | `React.ReactNode`     | —       |             |
-| css      | `CSS`                 | —       |             |
+| Name     | Type              | Default | Description |
+| :------- | :---------------- | :------ | :---------- |
+| children | `React.ReactNode` | —       |             |
+| css      | `CSS`             | —       |             |
 
 #### PageHeader.Description
 
-| Name     | Type                  | Default | Description |
-| :------- | :-------------------- | :------ | :---------- |
-| children | `React.ReactNode`     | —       |             |
-| css      | `CSS`                 | —       |             |
-
-#### SubHeader
-
-| Name     | Type                  | Default | Description |
-| :------- | :-------------------- | :------ | :---------- |
-| children | `React.ReactNode`     | —       |             |
-| css      | `CSS`                 | —       |             |
-
-#### SubHeader.Header
-
-| Name     | Type                  | Default | Description |
-| :------- | :-------------------- | :------ | :---------- |
-| children | `React.ReactNode`     | —       |             |
-| css      | `CSS`                 | —       |             |
-
-#### SubHeader.Title
-
-| Name     | Type                  | Default | Description |
-| :------- | :-------------------- | :------ | :---------- |
-| children | `React.ReactNode`     | —       |             |
-| css      | `CSS`                 | —       |             |
-
-#### SubHeader.Description
-
-| Name     | Type                  | Default | Description |
-| :------- | :-------------------- | :------ | :---------- |
-| children | `React.ReactNode`     | —       |             |
-| css      | `CSS`                 | —       |             |
+| Name     | Type              | Default | Description |
+| :------- | :---------------- | :------ | :---------- |
+| children | `React.ReactNode` | —       |             |
+| css      | `CSS`             | —       |             |
 
 import {Callout} from 'nextra-theme-docs'
 
 <Callout>
   Check out our [ladle](/ladle?story=page-header--variants) for more info on
   this component.
-</Callout>  
-
-
-
-
+</Callout>{' '}

@@ -24,7 +24,9 @@ interface Props extends StyledComponentProps {
   onChange?: (page: number) => void
 }
 
-export type PaginationProps = Props & PaginationVariantProps
+export type PaginationProps = Props &
+  PaginationVariantProps &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const Ellipsis: React.FC<
   React.ComponentPropsWithoutRef<typeof StyledPagination> & {isBefore: boolean}
