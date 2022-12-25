@@ -1,0 +1,106 @@
+import {Callout} from 'nextra-theme-docs'
+import Pagination from '@comfortdelgro/react-compass/pagination'
+import styles from '../../styles/Home.module.css'
+
+# Pagination
+
+The Pagination component enables the user to select a specific page from a range of pages.
+
+---
+
+### Import:
+
+```js
+import {Pagination} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import Pagination from '@comfortdelgro/react-compass/alert'
+```
+
+---
+
+### Basic pagination:
+
+<section
+  style={{
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: '5rem',
+  }}
+>
+  <Pagination total={10} />
+</section>
+
+```js
+<Pagination total={10} />
+```
+
+---
+
+### Pagination with current page prop:
+
+<section
+  style={{
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: '5rem',
+  }}
+>
+  <Pagination total={10} page={3} />
+</section>
+
+```js
+<Pagination total={10} page={3} />
+```
+
+---
+
+### Pagination with onChange prop:
+
+<section
+  style={{
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: '5rem',
+  }}
+>
+  <Pagination
+    total={10}
+    onChange={(page) => {
+      console.log(page)
+    }}
+  />
+</section>
+
+```js
+<Pagination
+  total={10}
+  onChange={(page) => {
+    console.log(page)
+  }}
+/>
+```
+
+---
+
+### Props:
+
+| Name     | Type       | Default | Description                                                                             |
+| :------- | :--------- | :------ | :-------------------------------------------------------------------------------------- |
+| total    | `number`   | `1`     | Total pages to be displayed.                                                            |
+| page     | `number`   | `1`     | Currenty selected page.                                                                 |
+| onChange | `function` | —       | Callback to catch current page.                                                         |
+| css      | `CSS`      | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
+
+---
+
+<Callout>
+  Check out our [ladle](/ladle?story=pagination--default) for more info on this
+  component.
+</Callout>
