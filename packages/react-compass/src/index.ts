@@ -113,14 +113,13 @@ export type {
 } from './modal'
 export {default as Navbar} from './navbar'
 export type {NavbarBrandProps, NavbarIconProps, NavbarProps} from './navbar'
-export {PageHeader, SubHeader} from './page-header'
+export {default as PageHeader} from './page-header'
 export type {
   PageHeaderDescriptionProps,
   PageHeaderHeaderProps,
   PageHeaderProps,
   PageHeaderSubtitleProps,
   PageHeaderTitleProps,
-  SubHeaderProps,
 } from './page-header'
 export {default as Pagination} from './pagination'
 export type {PaginationProps} from './pagination'
@@ -149,6 +148,14 @@ export type {
 } from './sidenav'
 export {default as Spinner} from './spinner'
 export type {SpinnerProps} from './spinner'
+export {default as SubHeader} from './sub-header'
+export type {
+  SubHeaderDescriptionProps,
+  SubHeaderHeaderProps,
+  SubHeaderProps,
+  SubHeaderSubtitleProps,
+  SubHeaderTitleProps,
+} from './sub-header'
 export {default as SubBanner} from './subBanner'
 export type {
   SubBannerDescriptionProps,
