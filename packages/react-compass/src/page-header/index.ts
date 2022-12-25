@@ -15,6 +15,7 @@ PageHeader.Title = PageHeaderTitle
 PageHeader.Subtitle = PageHeaderSubtitle
 PageHeader.Description = PageHeaderDescription
 
+PageHeader.displayName = 'PageHeader'
 PageHeader.Header.displayName = 'PageHeader.Header'
 PageHeader.Title.displayName = 'PageHeader.Title'
 PageHeader.Subtitle.displayName = 'PageHeader.Subtitle'

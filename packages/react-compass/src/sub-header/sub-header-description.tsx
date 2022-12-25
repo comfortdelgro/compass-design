@@ -6,7 +6,8 @@ interface Props extends StyledComponentProps {
   children: React.ReactNode
 }
 
-export type SubHeaderDescriptionProps = Props
+export type SubHeaderDescriptionProps = Props &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const SubHeaderDescription = React.forwardRef<
   HTMLDivElement,
