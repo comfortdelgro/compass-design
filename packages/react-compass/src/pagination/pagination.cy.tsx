@@ -19,7 +19,7 @@ describe('pagination.cy.ts', () => {
 
     cy.mount(pagination)
     //confirm total number of pages shown
-    cy.get('.c-hSXQHM').and('contain', '10')
+    cy.get('.c-hSXQHM').eq(-2).should('contain', '10')
 
     //confirm current page selected
     cy.get('.c-hSXQHM-hJZsla-active-true').should('have.text', '2')

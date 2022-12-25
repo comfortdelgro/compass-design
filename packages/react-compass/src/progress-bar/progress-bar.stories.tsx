@@ -1,5 +1,5 @@
 import {Column} from '../utils/components'
-import ProgressBar from './progress-bar'
+import ProgressBar from './index'
 
 export const Size: React.FC = () => (
   <Column>
