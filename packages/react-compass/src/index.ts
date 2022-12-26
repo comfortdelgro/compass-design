@@ -167,6 +167,8 @@ export type {
 } from './subBanner'
 export {default as Table} from './table'
 export type {TableProps} from './table'
+export {default as TagBox} from './tag-box'
+export type {TagBoxActionProps, TagBoxProps} from './tag-box'
 export {default as Textarea} from './textarea'
 export type {TextareaProps} from './textarea'
 export {default as TextField} from './textfield'
