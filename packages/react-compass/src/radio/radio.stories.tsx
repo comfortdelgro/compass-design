@@ -12,6 +12,7 @@ export const Variants: React.FC = () => (
           description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
           value='1'
           tooltip='This is tooltip'
+          id='item1'
         />
         <Radio
           variant='outlined'
