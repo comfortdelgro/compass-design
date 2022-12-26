@@ -1,6 +1,6 @@
 import {Variants} from './range-calendar.stories'
 
-describe('progress-bar.cy.ts', () => {
+describe('range-calendar.cy.ts', () => {
   beforeEach(() => {
     cy.viewport(1280, 720)
   })
