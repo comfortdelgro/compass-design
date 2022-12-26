@@ -123,6 +123,7 @@ importers:
       '@react-aria/focus': ^3.9.0
       '@react-aria/i18n': ^3.6.2
       '@react-aria/interactions': ^3.12.0
+      '@react-aria/label': ^3.4.4
       '@react-aria/link': ^3.3.4
       '@react-aria/numberfield': ^3.3.4
       '@react-aria/overlays': ^3.12.0
@@ -199,6 +200,7 @@ importers:
       '@react-aria/focus': 3.10.0_react@18.2.0
       '@react-aria/i18n': 3.6.2_react@18.2.0
       '@react-aria/interactions': 3.13.0_react@18.2.0
+      '@react-aria/label': 3.4.4_react@18.2.0
       '@react-aria/link': 3.3.5_react@18.2.0
       '@react-aria/numberfield': 3.3.4_biqbaboplfbrettd7655fr4n2y
       '@react-aria/overlays': 3.12.0_biqbaboplfbrettd7655fr4n2y
@@ -2671,7 +2673,7 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
       '@babel/runtime': 7.20.6
-      '@react-aria/label': 3.4.3_react@18.2.0
+      '@react-aria/label': 3.4.4_react@18.2.0
       '@react-aria/toggle': 3.4.1_react@18.2.0
       '@react-aria/utils': 3.14.1_react@18.2.0
       '@react-stately/checkbox': 3.3.1_react@18.2.0
@@ -2694,7 +2696,7 @@ packages:
       '@react-aria/focus': 3.10.0_react@18.2.0
       '@react-aria/i18n': 3.6.2_react@18.2.0
       '@react-aria/interactions': 3.13.0_react@18.2.0
-      '@react-aria/label': 3.4.3_react@18.2.0
+      '@react-aria/label': 3.4.4_react@18.2.0
       '@react-aria/spinbutton': 3.2.0_biqbaboplfbrettd7655fr4n2y
       '@react-aria/utils': 3.14.1_react@18.2.0
       '@react-stately/datepicker': 3.2.0_react@18.2.0
@@ -2826,18 +2828,6 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@react-aria/label/3.4.3_react@18.2.0:
-    resolution: {integrity: sha512-g8NSHQKha6xOpR0cUQ6cmH/HwGJdebEbyy+c1I6VeW6me8lSF47xLnybnA6LBV4x9hJqkST6rfL/oPaBMCEKNA==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
-    dependencies:
-      '@babel/runtime': 7.20.6
-      '@react-aria/utils': 3.14.1_react@18.2.0
-      '@react-types/label': 3.7.1_react@18.2.0
-      '@react-types/shared': 3.16.0_react@18.2.0
-      react: 18.2.0
-    dev: false
-
   /@react-aria/label/3.4.4_react@18.2.0:
     resolution: {integrity: sha512-1fuYf2UctNhBy31uYN7OhdcrwzlB5GS0+C49gDkwWzccB7yr+CoOJ5UQUoVB7WBmzrc+CuzwWxSDd4OupSYIZQ==}
     peerDependencies:
@@ -2926,7 +2916,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.20.6
       '@react-aria/i18n': 3.6.2_react@18.2.0
-      '@react-aria/label': 3.4.3_react@18.2.0
+      '@react-aria/label': 3.4.4_react@18.2.0
       '@react-aria/utils': 3.14.1_react@18.2.0
       '@react-types/progress': 3.2.5_react@18.2.0
       '@react-types/shared': 3.16.0_react@18.2.0
@@ -2942,7 +2932,7 @@ packages:
       '@react-aria/focus': 3.10.0_react@18.2.0
       '@react-aria/i18n': 3.6.2_react@18.2.0
       '@react-aria/interactions': 3.13.0_react@18.2.0
-      '@react-aria/label': 3.4.3_react@18.2.0
+      '@react-aria/label': 3.4.4_react@18.2.0
       '@react-aria/utils': 3.14.1_react@18.2.0
       '@react-stately/radio': 3.6.1_react@18.2.0
       '@react-types/radio': 3.3.1_react@18.2.0
@@ -2992,7 +2982,7 @@ packages:
       '@react-aria/focus': 3.10.0_react@18.2.0
       '@react-aria/i18n': 3.6.2_react@18.2.0
       '@react-aria/interactions': 3.13.0_react@18.2.0
-      '@react-aria/label': 3.4.3_react@18.2.0
+      '@react-aria/label': 3.4.4_react@18.2.0
       '@react-aria/utils': 3.14.1_react@18.2.0
       '@react-stately/radio': 3.6.1_react@18.2.0
       '@react-stately/slider': 3.2.3_react@18.2.0
@@ -3100,7 +3090,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.20.6
       '@react-aria/focus': 3.10.0_react@18.2.0
-      '@react-aria/label': 3.4.3_react@18.2.0
+      '@react-aria/label': 3.4.4_react@18.2.0
       '@react-aria/utils': 3.14.1_react@18.2.0
       '@react-types/shared': 3.16.0_react@18.2.0
       '@react-types/textfield': 3.6.1_react@18.2.0

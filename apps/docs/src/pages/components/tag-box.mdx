@@ -1,0 +1,65 @@
+import ComponentDisplay from 'components/ComponentDisplay'
+import {Callout} from 'nextra-theme-docs'
+import {TagBox, Button} from '@comfortdelgro/react-compass'
+
+# Tag Box
+
+Using to display list of tags
+
+## Example
+
+### Basic Example
+
+```tsx {22}
+import {TagBox} from '@comfortdelgro/react-compass'
+
+<TagBox
+  label='Text Label'
+  items={[
+    {id: 1, value: 'Item 1'},
+    {id: 2, value: 'Item 2'},
+  ]}
+  onRemove={(e) => console.log(e)}
+  helperText='Helper text'
+>
+  <TagBox.Action>
+    <Button variant='primary'>Call to action</Button>
+  </TagBox.Action>
+</TagBox>
+```
+
+<ComponentDisplay>
+  <TagBox
+    label='Text Label'
+    items={[
+      {id: 1, value: 'Item 1'},
+      {id: 2, value: 'Item 2'},
+    ]}
+    onRemove={(e) => console.log(e)}
+    helperText='Helper text'
+  >
+    <TagBox.Action>
+      <Button variant='primary'>Call to action</Button>
+    </TagBox.Action>
+  </TagBox>
+</ComponentDisplay>
+
+## Props
+
+### TagBox 
+
+| Name           | Type        | Default | Description                                                                                                  |
+| :------------- | :---------- | :------ | :----------------------------------------------------------------------------------------------------------- |
+| children       | `ReactNode` | —       | The content to display in the tag box. It should be TabBox.Action                                            |
+| label          | `string`    | -       | The content to display as the label.                                                                         |
+| items          | `Item  `    | -       | List of tags displayed in the tag box.                                                                       |
+| helperText     | `string`    | -       | The little helper text display below the tag box.                                                            |
+| onRemove       | `function`  | —       | Callback fired when the click to remove a tag.                                                               |
+| css            | `CSS`       | —       | The system prop that allows defining system overrides as well as additional CSS styles.                      |
+
+### TagBox.Action
+
+| Name     | Type                    | Default | Description                                                                                                       |
+| :------- | :---------------------- | :------ | :---------------------------------------------------------------------------------------------------------------- |
+| children | `ReactNode`             | —       | The content to display in the tag box action.                                                                     |
+| css      | `CSS`                   | —       | The system prop that allows defining system overrides as well as additional CSS styles.                           |
