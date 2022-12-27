@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 0.5.0
+
+### Minor Changes
+
+- 195da82: Add test/docs for all components and add new components: tag box & quantity togger
+
 ## 0.4.0
 
 ### Minor Changes
