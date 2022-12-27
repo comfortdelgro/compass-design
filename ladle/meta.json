@@ -131,7 +131,7 @@
         "Button"
       ],
       "locStart": 17,
-      "locEnd": 138,
+      "locEnd": 143,
       "filePath": "src/button/button.stories.tsx",
       "meta": {}
     },
@@ -140,8 +140,8 @@
       "levels": [
         "Button"
       ],
-      "locStart": 140,
-      "locEnd": 177,
+      "locStart": 145,
+      "locEnd": 182,
       "filePath": "src/button/button.stories.tsx",
       "meta": {}
     },
@@ -200,8 +200,8 @@
       "levels": [
         "Chart"
       ],
-      "locStart": 31,
-      "locEnd": 37,
+      "locStart": 30,
+      "locEnd": 36,
       "filePath": "src/chart/chart.stories.tsx",
       "meta": {}
     },
@@ -210,8 +210,8 @@
       "levels": [
         "Chart"
       ],
-      "locStart": 39,
-      "locEnd": 45,
+      "locStart": 38,
+      "locEnd": 44,
       "filePath": "src/chart/chart.stories.tsx",
       "meta": {}
     },
@@ -220,8 +220,8 @@
       "levels": [
         "Chart"
       ],
-      "locStart": 47,
-      "locEnd": 53,
+      "locStart": 46,
+      "locEnd": 52,
       "filePath": "src/chart/chart.stories.tsx",
       "meta": {}
     },
@@ -230,8 +230,8 @@
       "levels": [
         "Chart"
       ],
-      "locStart": 55,
-      "locEnd": 61,
+      "locStart": 54,
+      "locEnd": 60,
       "filePath": "src/chart/chart.stories.tsx",
       "meta": {}
     },
@@ -430,19 +430,19 @@
       "levels": [
         "Page header"
       ],
-      "locStart": 18,
-      "locEnd": 170,
+      "locStart": 13,
+      "locEnd": 120,
       "filePath": "src/page-header/page-header.stories.tsx",
       "meta": {}
     },
-    "page-header--page-sub-header": {
-      "name": "Page sub header",
+    "pagination--default": {
+      "name": "Default",
       "levels": [
-        "Page header"
+        "Pagination"
       ],
-      "locStart": 172,
-      "locEnd": 183,
-      "filePath": "src/page-header/page-header.stories.tsx",
+      "locStart": 4,
+      "locEnd": 6,
+      "filePath": "src/pagination/pagination.stories.tsx",
       "meta": {}
     },
     "pagination--variants": {
@@ -450,8 +450,8 @@
       "levels": [
         "Pagination"
       ],
-      "locStart": 3,
-      "locEnd": 5,
+      "locStart": 8,
+      "locEnd": 24,
       "filePath": "src/pagination/pagination.stories.tsx",
       "meta": {}
     },
@@ -485,13 +485,23 @@
       "filePath": "src/progress-bar/progress-bar.stories.tsx",
       "meta": {}
     },
+    "quantity-toggle--variants": {
+      "name": "Variants",
+      "levels": [
+        "Quantity toggle"
+      ],
+      "locStart": 5,
+      "locEnd": 33,
+      "filePath": "src/quantity-toggle/quantity-toggle.stories.tsx",
+      "meta": {}
+    },
     "radio--variants": {
       "name": "Variants",
       "levels": [
         "Radio"
       ],
       "locStart": 4,
-      "locEnd": 57,
+      "locEnd": 58,
       "filePath": "src/radio/radio.stories.tsx",
       "meta": {}
     },
@@ -500,8 +510,8 @@
       "levels": [
         "Radio"
       ],
-      "locStart": 59,
-      "locEnd": 94,
+      "locStart": 60,
+      "locEnd": 95,
       "filePath": "src/radio/radio.stories.tsx",
       "meta": {}
     },
@@ -575,6 +585,16 @@
       "filePath": "src/spinner/spinner.stories.tsx",
       "meta": {}
     },
+    "sub-header--default": {
+      "name": "Default",
+      "levels": [
+        "Sub header"
+      ],
+      "locStart": 5,
+      "locEnd": 18,
+      "filePath": "src/sub-header/sub-header.stories.tsx",
+      "meta": {}
+    },
     "sub-banner--default": {
       "name": "Default",
       "levels": [
@@ -633,6 +653,16 @@
       "locStart": 87,
       "locEnd": 119,
       "filePath": "src/tabs/tab.stories.tsx",
+      "meta": {}
+    },
+    "tag-box--tag-boxs": {
+      "name": "Tag boxs",
+      "levels": [
+        "Tag box"
+      ],
+      "locStart": 10,
+      "locEnd": 43,
+      "filePath": "src/tag-box/tag-box.stories.tsx",
       "meta": {}
     },
     "textarea--variants": {
@@ -705,8 +735,8 @@
       "filePath": "src/toast/toast.stories.tsx",
       "meta": {}
     },
-    "toggle--sizes": {
-      "name": "Sizes",
+    "toggle--variants": {
+      "name": "Variants",
       "levels": [
         "Toggle"
       ],
@@ -741,7 +771,7 @@
         "Tooltip"
       ],
       "locStart": 280,
-      "locEnd": 318,
+      "locEnd": 323,
       "filePath": "src/tooltip/tooltip.stories.tsx",
       "meta": {}
     },
