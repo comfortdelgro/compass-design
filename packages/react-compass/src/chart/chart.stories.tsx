@@ -2,7 +2,6 @@ import {Column} from '../utils/components'
 import Chart from './index'
 
 const dataSet = {
-  labels: [0, 50, 100, 150, 200, 250, 300, 350, 400, 450],
   data: [
     {
       title: '1',

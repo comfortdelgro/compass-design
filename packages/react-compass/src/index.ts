@@ -113,20 +113,21 @@ export type {
 } from './modal'
 export {default as Navbar} from './navbar'
 export type {NavbarBrandProps, NavbarIconProps, NavbarProps} from './navbar'
-export {PageHeader, SubHeader} from './page-header'
+export {default as PageHeader} from './page-header'
 export type {
   PageHeaderDescriptionProps,
   PageHeaderHeaderProps,
   PageHeaderProps,
   PageHeaderSubtitleProps,
   PageHeaderTitleProps,
-  SubHeaderProps,
 } from './page-header'
 export {default as Pagination} from './pagination'
 export type {PaginationProps} from './pagination'
 export {default as Preflight} from './preflight'
 export {default as ProgressBar} from './progress-bar'
 export type {ProgressBarProps} from './progress-bar'
+export {default as QuantityToggle} from './quantity-toggle'
+export type {QuantityToggleProps} from './quantity-toggle'
 export {default as Radio} from './radio'
 export type {RadioGroupProps, RadioProps} from './radio'
 export {default as RangeCalendar} from './range-calendar'
@@ -149,6 +150,14 @@ export type {
 } from './sidenav'
 export {default as Spinner} from './spinner'
 export type {SpinnerProps} from './spinner'
+export {default as SubHeader} from './sub-header'
+export type {
+  SubHeaderDescriptionProps,
+  SubHeaderHeaderProps,
+  SubHeaderProps,
+  SubHeaderSubtitleProps,
+  SubHeaderTitleProps,
+} from './sub-header'
 export {default as SubBanner} from './subBanner'
 export type {
   SubBannerDescriptionProps,
@@ -158,6 +167,8 @@ export type {
 } from './subBanner'
 export {default as Table} from './table'
 export type {TableProps} from './table'
+export {default as TagBox} from './tag-box'
+export type {TagBoxActionProps, TagBoxProps} from './tag-box'
 export {default as Textarea} from './textarea'
 export type {TextareaProps} from './textarea'
 export {default as TextField} from './textfield'

@@ -1,0 +1,107 @@
+import {Callout} from 'nextra-theme-docs'
+import QuantityToggle from '@comfortdelgro/react-compass/quantity-toggle'
+import styles from '../../styles/Home.module.css'
+import {faChessKing} from '@fortawesome/free-solid-svg-icons'
+
+# Quantity Toggle
+
+Quantity Toggle fields allow users to enter a number, and increment or decrement the value using stepper buttons.
+
+---
+
+### Import:
+
+```js
+import {QuantityToggle} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import QuantityToggle from '@comfortdelgro/react-compass/quantity-toggle'
+```
+
+---
+
+### Basic Quantity Toggle:
+
+<section className={styles.componentShowcaseContainer}>
+  <QuantityToggle
+    placeholder='Price'
+    formatOptions={{
+      style: 'currency',
+      currency: 'USD',
+    }}
+  />
+</section>
+
+```js
+<QuantityToggle
+  placeholder='Price'
+  formatOptions={{
+    style: 'currency',
+    currency: 'USD',
+  }}
+/>
+```
+
+---
+
+### Disabled:
+
+<section className={styles.componentShowcaseContainer}>
+  <QuantityToggle defaultValue={2} isDisabled helperText='Bla Bla Bla' />
+</section>
+
+```js
+<QuantityToggle defaultValue={2} isDisabled helperText='Bla Bla Bla' />
+```
+
+---
+
+### Error:
+
+<section className={styles.componentShowcaseContainer}>
+  <QuantityToggle defaultValue={2} isErrored helperText='Bla Bla Bla' />
+</section>
+
+```js
+<QuantityToggle defaultValue={2} isErrored helperText='Bla Bla Bla' />
+```
+
+---
+
+### Props:
+
+| Name            | Type                           | Default | Description                                                                                                                                               |
+|:----------------|:-------------------------------|:--------|:----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| formatOptions   | `Intl.NumberFormatOptions`     | —       | Formatting options for the value displayed in the number field. This also affects what characters are allowed to be typed by the user.                    |
+| isDisabled      | `boolean`                      | `false` | Whether the input is disabled.                                                                                                                            |
+| isErrored       | `boolean`                      | `false` | Whether the input is errored.                                                                                                                             |
+| isReadOnly      | `boolean`                      | `false` | Whether the input can be selected but not changed by the user.                                                                                            |
+| isRequired      | `boolean`                      | `false` | Whether user input is required on the input before form submission. Often paired with the necessityIndicator prop to add a visual indicator to the input. |
+| validationState | `ValidationState`              | —       | Whether the input should display its "valid" or "invalid" visual styling.                                                                                 |
+| autoFocus       | `boolean`                      | —       | Whether the element should receive focus on render.                                                                                                       |
+| onFocus         | `(e: FocusEvent) => void`      | —       | Handler that is called when the element receives focus.                                                                                                   |
+| onBlur          | `(e: FocusEvent) => void`      | —       | Handler that is called when the element loses focus.                                                                                                      |
+| onFocusChange   | `(isFocused: boolean) => void` | —       | Handler that is called when the element's focus status changes.                                                                                           |
+| onKeyDown       | `(e: FocusEvent) => void`      | —       | Handler that is called when a key is pressed.                                                                                                             |
+| onKeyUp         | `(e: FocusEvent) => void`      | —       | Handler that is called when a key is released.                                                                                                            |
+| placeholder     | `string`                       | —       | Temporary text that occupies the text input when it is empty.                                                                                             |
+| helperText      | `string`                       | —       | The helper text below.                                                                                                                                    |
+| value           | `number`                       | —       | The current value (controlled).                                                                                                                           |
+| defaultValue    | `number`                       | —       | The default value (uncontrolled).                                                                                                                         |
+| onChange        | `(value: T) => void`           | —       | Handler that is called when the value changes.                                                                                                            |
+| minValue        | `number`                       | —       | The smallest value allowed for the input.                                                                                                                 |
+| maxValue        | `number`                       | —       | The largest value allowed for the input.                                                                                                                  |
+| step            | `number`                       | —       | The amount that the input value changes with each increment or decrement "tick".                                                                          |
+| label           | `ReactNode`                    | —       | The content to display as the label.                                                                                                                      |
+| isErrored       | `ReactNode`                    | —       | The amount that the input value changes with each increment or decrement "tick".                                                                          |
+| css             | `CSS`                          | —       | The system prop that allows defining system overrides as well as additional CSS styles.                                                                   |
+
+---
+
+<Callout>
+  Check out our [ladle](/ladle?story=quatity-toggle--variants) for more info on this
+  component.
+</Callout>

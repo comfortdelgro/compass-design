@@ -2,6 +2,7 @@ import {Callout} from 'nextra-theme-docs'
 import styles from '../../styles/Home.module.css'
 import {faThumbsUp, faVirus} from '@fortawesome/free-solid-svg-icons'
 import Button from '@comfortdelgro/react-compass/button'
+import Icon from '@comfortdelgro/react-compass/icon'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 
 # Button
@@ -47,25 +48,25 @@ import Button from '@comfortdelgro/react-compass/button'
 ### Buttons with left icons :
 
 <section className={styles.avatarShowcaseContainer}>
-  <Button variant='secondary' leftIcon={faThumbsUp}>
+  <Button variant='secondary' leftIcon={<Icon icon={faThumbsUp} />}>
     Secondary
   </Button>
-  <Button variant='danger' leftIcon={faThumbsUp}>
+  <Button variant='danger' leftIcon={<Icon icon={faThumbsUp} />}>
     Danger
   </Button>
-  <Button variant='ghost' leftIcon={faThumbsUp}>
+  <Button variant='ghost' leftIcon={<Icon icon={faThumbsUp} />}>
     Ghost
   </Button>
 </section>
 
 ```js
-<Button variant='secondary' leftIcon={faThumbsUp}>
+<Button variant='secondary' leftIcon={<Icon icon={faThumbsUp} />}>
   Secondary
 </Button>
-<Button variant='danger' leftIcon={faThumbsUp}>
+<Button variant='danger' leftIcon={<Icon icon={faThumbsUp} />}>
   Danger
 </Button>
-<Button variant='ghost' leftIcon={faThumbsUp}>
+<Button variant='ghost' leftIcon={<Icon icon={faThumbsUp} />}>
   Ghost
 </Button>
 ```
@@ -75,25 +76,25 @@ import Button from '@comfortdelgro/react-compass/button'
 ### Buttons with right icons :
 
 <section className={styles.avatarShowcaseContainer}>
-  <Button variant='secondary' rightIcon={faThumbsUp}>
+  <Button variant='secondary' rightIcon={<Icon icon={faThumbsUp} />}>
     Secondary
   </Button>
-  <Button variant='danger' rightIcon={faThumbsUp}>
+  <Button variant='danger' rightIcon={<Icon icon={faThumbsUp} />}>
     Danger
   </Button>
-  <Button variant='ghost' rightIcon={faThumbsUp}>
+  <Button variant='ghost' rightIcon={<Icon icon={faThumbsUp} />}>
     Ghost
   </Button>
 </section>
 
 ```js
-<Button variant='secondary' rightIcon={faThumbsUp}>
+<Button variant='secondary' rightIcon={<Icon icon={faThumbsUp} />}>
   Secondary
 </Button>
-<Button variant='danger' rightIcon={faThumbsUp}>
+<Button variant='danger' rightIcon={<Icon icon={faThumbsUp} />}>
   Danger
 </Button>
-<Button variant='ghost' rightIcon={faThumbsUp}>
+<Button variant='ghost' rightIcon={<Icon icon={faThumbsUp} />}>
   Ghost
 </Button>
 ```
@@ -103,25 +104,25 @@ import Button from '@comfortdelgro/react-compass/button'
 ### Buttons with both left and right icons :
 
 <section className={styles.avatarShowcaseContainer}>
-  <Button variant='secondary' rightIcon={faThumbsUp} leftIcon={faVirus}>
+  <Button variant='secondary' rightIcon={<Icon icon={faThumbsUp} />} leftIcon={<Icon icon={faVirus} />}>
     Secondary
   </Button>
-  <Button variant='danger' rightIcon={faThumbsUp} leftIcon={faVirus}>
+  <Button variant='danger' rightIcon={<Icon icon={faThumbsUp} />} leftIcon={<Icon icon={faVirus} />}>
     Danger
   </Button>
-  <Button variant='ghost' rightIcon={faThumbsUp} leftIcon={faVirus}>
+  <Button variant='ghost' rightIcon={<Icon icon={faThumbsUp} />} leftIcon={<Icon icon={faVirus} />}>
     Ghost
   </Button>
 </section>
 
 ```js
-<Button variant='secondary' rightIcon={faThumbsUp} leftIcon={faVirus}>
+<Button variant='secondary' rightIcon={<Icon icon={faThumbsUp} />} leftIcon={<Icon icon={faVirus} />}>
   Secondary
 </Button>
-<Button variant='danger' rightIcon={faThumbsUp} leftIcon={faVirus}>
+<Button variant='danger' rightIcon={<Icon icon={faThumbsUp} />} leftIcon={<Icon icon={faVirus} />}>
   Danger
 </Button>
-<Button variant='ghost' rightIcon={faThumbsUp} leftIcon={faVirus}>
+<Button variant='ghost' rightIcon={<Icon icon={faThumbsUp} />} leftIcon={<Icon icon={faVirus} />}>
   Ghost
 </Button>
 ```
@@ -132,13 +133,13 @@ import Button from '@comfortdelgro/react-compass/button'
 
 <section className={styles.avatarShowcaseContainer}>
   <Button variant='secondary'>
-    <FontAwesomeIcon icon={faVirus} />
+    <FontAwesomeIcon icon={<Icon icon={faVirus} />} />
   </Button>
   <Button variant='danger'>
-    <FontAwesomeIcon icon={faVirus} />
+    <FontAwesomeIcon icon={<Icon icon={faVirus} />} />
   </Button>
   <Button variant='ghost'>
-    <FontAwesomeIcon icon={faVirus} />
+    <FontAwesomeIcon icon={<Icon icon={faVirus} />} />
   </Button>
 </section>
 
@@ -146,13 +147,13 @@ import Button from '@comfortdelgro/react-compass/button'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 
 <Button variant='secondary'>
-  <FontAwesomeIcon icon={faVirus} />
+  <FontAwesomeIcon icon={<Icon icon={faVirus} />} />
 </Button>
 <Button variant='danger'>
-  <FontAwesomeIcon icon={faVirus} />
+  <FontAwesomeIcon icon={<Icon icon={faVirus} />} />
 </Button>
 <Button variant='ghost'>
-  <FontAwesomeIcon icon={faVirus} />
+  <FontAwesomeIcon icon={<Icon icon={faVirus} />} />
 </Button>
 ```
 
@@ -164,10 +165,10 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
   <Button variant='secondary' loading>
     Secondary
   </Button>
-  <Button variant='danger' loading rightIcon={faThumbsUp}>
+  <Button variant='danger' loading rightIcon={<Icon icon={faThumbsUp} />}>
     Danger
   </Button>
-  <Button variant='ghost' loading rightIcon={faThumbsUp}>
+  <Button variant='ghost' loading rightIcon={<Icon icon={faThumbsUp} />}>
     Ghost
   </Button>
 </section>
@@ -176,10 +177,10 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 <Button variant='secondary' loading>
   Secondary
 </Button>
-<Button variant='danger' loading rightIcon={faThumbsUp}>
+<Button variant='danger' loading rightIcon={<Icon icon={faThumbsUp} />}>
   Danger
 </Button>
-<Button variant='ghost' loading rightIcon={faThumbsUp}>
+<Button variant='ghost' loading rightIcon={<Icon icon={faThumbsUp} />}>
   Ghost
 </Button>
 ```
@@ -194,7 +195,7 @@ With css prop, you can basically do anything that css can do.
 <section className={styles.avatarShowcaseContainer}>
   <Button
     variant='danger'
-    rightIcon={faThumbsUp}
+    rightIcon={<Icon icon={faThumbsUp} />}
     css={{'&:hover': {color: 'grey'}}}
   >
     Danger
@@ -204,7 +205,7 @@ With css prop, you can basically do anything that css can do.
 ```js
 <Button
   variant='danger'
-  rightIcon={faThumbsUp}
+  rightIcon={<Icon icon={faThumbsUp} />}
   css={{'&:hover': {color: 'grey'}}}
 >
   Danger

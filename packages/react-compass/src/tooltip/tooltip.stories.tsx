@@ -283,7 +283,12 @@ export const Controlled: React.FC = () => {
   return (
     <div>
       <h1>Tooltip is {isOpen ? 'Open' : 'Close'}</h1>
-      <TooltipTrigger placement={'bottom'} open={isOpen} onOpenChange={setOpen}>
+      <TooltipTrigger
+        placement={'bottom'}
+        open={isOpen}
+        onOpenChange={setOpen}
+        id='text'
+      >
         <a href='#'>Controlled tooltip</a>
         <Tooltip title='Tooltip' dismissible>
           <p>

@@ -20,7 +20,7 @@ export const StyledDateField = styled('div', {
     alignItems: 'center',
     padding: '0 $4',
     backgroundColor: '$background',
-    border: '1px solid $gray30',
+    border: '2px solid $gray30',
     borderRadius: '$md',
   },
 

@@ -43,3 +43,6 @@ packages/compass-icons/react/
 
 # editors
 .idea
+
+# cypress snapshot
+_image_snapshots_

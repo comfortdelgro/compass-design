@@ -3,6 +3,6 @@ import Wizard from './wizard'
 
 export const Variants: React.FC = () => (
   <Column>
-    <Wizard items={['Value1', 'Value2', 'Value3', 'Value4']} />
+    <Wizard items={['Value1', 'Value2', 'Value3', 'Value4']} currentStep={2} />
   </Column>
 )

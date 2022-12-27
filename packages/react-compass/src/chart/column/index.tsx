@@ -1,8 +1,8 @@
-import React from 'react'
+import React, {useMemo} from 'react'
 import {StyledComponentProps} from '../../utils/stitches.types'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import Legend from '../legend'
-import {colors, DataSet, LegendPosition} from '../utils'
+import {colors, DataSet, getStep, LegendPosition} from '../utils'
 import {
   ChartVariantProps,
   StyledBody,
@@ -32,9 +32,9 @@ const ColumnChart = React.forwardRef<HTMLDivElement, ColumnChartProps>(
     } = props
     const chartRef = useDOMRef<HTMLDivElement>(ref)
 
-    const labels = dataSet.labels
-    const data = dataSet.data
-    const legends = dataSet.legends
+    const labels = useMemo(() => getStep(dataSet.data), [dataSet])
+    const data = useMemo(() => dataSet.data, [dataSet])
+    const legends = useMemo(() => dataSet.legends, [dataSet])
 
     return (
       <StyledChart ref={chartRef} css={css}>

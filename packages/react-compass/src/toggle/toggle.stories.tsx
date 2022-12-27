@@ -1,7 +1,7 @@
 import {Column, Row} from '../utils/components'
 import Toggle from './index'
 
-export const Sizes: React.FC = () => (
+export const Variants: React.FC = () => (
   <Column>
     <h3>Small</h3>
     <Row>
