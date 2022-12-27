@@ -1,0 +1,246 @@
+import {Callout} from 'nextra-theme-docs'
+import Toast from '../../components/Toast'
+
+# Sidebar
+
+---
+
+### Import
+
+```js
+import {Sidebar} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import Sidebar from '@comfortdelgro/react-compass/sidebar'
+```
+
+---
+
+### Default
+
+<Toast color='neutral' />
+
+```js
+<Button
+    css={{width: '8rem', color: 'black'}}
+    onPress={() => setIsOpen(true)}
+>
+    Open toast
+</Button>
+    <Toast
+        isOpen={isOpen}
+        handleClose={() => setIsOpen(false)}
+    >
+        <Toast.Icon>
+          <Icon icon={faImage} />
+        </Toast.Icon>
+        <Toast.Title>My Title</Toast.Title>
+        <Toast.Label>a few minutes ago</Toast.Label>
+        <Toast.CloseIcon>
+          <Icon icon={faXmark} />
+        </Toast.CloseIcon>
+        <Toast.Message>Lorem ipsum dolor, sit amet consectetur.</Toast.Message>
+        <Toast.Actions>
+          <Button css={{color: 'black'}}>Take action</Button>
+          <Button css={{color: 'black'}}>Take action</Button>
+        </Toast.Actions>
+    </Toast>
+```
+
+---
+
+### Color: Neutral
+
+<Toast color='neutral' />
+
+```js
+<Button
+    css={{width: '8rem', color: 'black'}}
+    onPress={() => setIsOpen(true)}
+    color='neutral'
+>
+    Open toast
+</Button>
+    <Toast
+        isOpen={isOpen}
+        handleClose={() => setIsOpen(false)}
+    >
+        <Toast.Icon>
+          <Icon icon={faImage} />
+        </Toast.Icon>
+        <Toast.Title>My Title</Toast.Title>
+        <Toast.Label>a few minutes ago</Toast.Label>
+        <Toast.CloseIcon>
+          <Icon icon={faXmark} />
+        </Toast.CloseIcon>
+        <Toast.Message>Lorem ipsum dolor, sit amet consectetur.</Toast.Message>
+        <Toast.Actions>
+          <Button css={{color: 'black'}}>Take action</Button>
+          <Button css={{color: 'black'}}>Take action</Button>
+        </Toast.Actions>
+    </Toast>
+```
+
+---
+
+### Color: Informative
+
+<Toast color='informative' />
+
+```js
+<Button
+    css={{width: '8rem', color: 'black'}}
+    onPress={() => setIsOpen(true)}
+>
+    Open toast
+</Button>
+
+<Toast
+    isOpen={isOpen}
+    handleClose={() => setIsOpen(false)}
+    color='informative'
+>
+    <Toast.Icon>
+        <Icon icon={faImage} />
+    </Toast.Icon>
+    <Toast.Title>My Title</Toast.Title>
+    <Toast.Label>a few minutes ago</Toast.Label>
+    <Toast.CloseIcon>
+        <Icon icon={faXmark} />
+    </Toast.CloseIcon>
+    <Toast.Message>Lorem ipsum dolor, sit amet consectetur.</Toast.Message>
+    <Toast.Actions>
+        <Button css={{color: 'black'}}>Take action</Button>
+        <Button css={{color: 'black'}}>Take action</Button>
+    </Toast.Actions>
+</Toast>
+```
+
+---
+
+### Color: Positive
+
+<Toast color='positive' />
+
+```js
+<Button
+    css={{width: '8rem', color: 'black'}}
+    onPress={() => setIsOpen(true)}
+>
+    Open toast
+</Button>
+
+<Toast
+    isOpen={isOpen}
+    handleClose={() => setIsOpen(false)}
+    color='positive'
+>
+    <Toast.Icon>
+        <Icon icon={faImage} />
+    </Toast.Icon>
+    <Toast.Title>My Title</Toast.Title>
+    <Toast.Label>a few minutes ago</Toast.Label>
+    <Toast.CloseIcon>
+        <Icon icon={faXmark} />
+    </Toast.CloseIcon>
+    <Toast.Message>Lorem ipsum dolor, sit amet consectetur.</Toast.Message>
+    <Toast.Actions>
+        <Button css={{color: 'black'}}>Take action</Button>
+        <Button css={{color: 'black'}}>Take action</Button>
+    </Toast.Actions>
+</Toast>
+```
+
+---
+
+### Color: Negative
+
+<Toast color='negative' />
+
+```js
+<Button
+    css={{width: '8rem', color: 'black'}}
+    onPress={() => setIsOpen(true)}
+>
+    Open toast
+</Button>
+
+<Toast
+    isOpen={isOpen}
+    handleClose={() => setIsOpen(false)}
+    color='negative'
+>
+    <Toast.Icon>
+        <Icon icon={faImage} />
+    </Toast.Icon>
+    <Toast.Title>My Title</Toast.Title>
+    <Toast.Label>a few minutes ago</Toast.Label>
+    <Toast.CloseIcon>
+        <Icon icon={faXmark} />
+    </Toast.CloseIcon>
+    <Toast.Message>Lorem ipsum dolor, sit amet consectetur.</Toast.Message>
+    <Toast.Actions>
+        <Button css={{color: 'black'}}>Take action</Button>
+        <Button css={{color: 'black'}}>Take action</Button>
+    </Toast.Actions>
+</Toast>
+```
+
+---
+
+### Auto close
+
+<Toast autoClose={800} />
+
+```js
+<Button
+    css={{width: '8rem', color: 'black'}}
+    onPress={() => setIsOpen(true)}
+>
+    Open toast
+</Button>
+
+<Toast
+    isOpen={isOpen}
+    handleClose={() => setIsOpen(false)}
+    color='negative'
+    autoClose = {800}
+>
+    <Toast.Icon>
+        <Icon icon={faImage} />
+    </Toast.Icon>
+    <Toast.Title>My Title</Toast.Title>
+    <Toast.Label>a few minutes ago</Toast.Label>
+    <Toast.CloseIcon>
+        <Icon icon={faXmark} />
+    </Toast.CloseIcon>
+    <Toast.Message>Lorem ipsum dolor, sit amet consectetur.</Toast.Message>
+    <Toast.Actions>
+        <Button css={{color: 'black'}}>Take action</Button>
+        <Button css={{color: 'black'}}>Take action</Button>
+    </Toast.Actions>
+</Toast>
+```
+
+---
+
+## Props
+
+| Name        | Type                                                   | Default   | Description                                                                             |
+| :---------- | :----------------------------------------------------- | :-------- | :-------------------------------------------------------------------------------------- |
+| color       | `informative` \| `neutral` \| `negative` \| `positive` | 'neutral' | Variants                                                                                |
+| handleClose | `Function`                                             | -         | Callback to close toast.                                                                |
+| isOpen      | `boolean`                                              | false     | The toast is visible when true.                                                         |
+| autoClose   | `false` \| `number`                                    | false     | Number of miliseconds to auto close.                                                    |
+| css         | `CSS`                                                  | —         | The system prop that allows defining system overrides as well as additional CSS styles. |
+
+---
+
+<Callout>
+  Check out our [ladle](/ladle?story=toast--default) for more info on this
+  component.
+</Callout>
+```
