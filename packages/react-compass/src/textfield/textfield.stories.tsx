@@ -1,6 +1,7 @@
 import {faUser} from '@fortawesome/free-regular-svg-icons'
 import {faChevronDown} from '@fortawesome/free-solid-svg-icons'
 import type {StoryDecorator} from '@ladle/react'
+import Icon from '../icon'
 import {Column, Row} from '../utils/components'
 import Textfield from './index'
 
@@ -37,16 +38,20 @@ export const Variants: React.FC = () => (
 
     <h3>With Icons</h3>
     <Row>
-      <Textfield label='Name' leftIcon={faUser} placeholder='Enter your name' />
       <Textfield
         label='Name'
-        rightIcon={faChevronDown}
+        leftIcon={<Icon icon={faUser} />}
         placeholder='Enter your name'
       />
       <Textfield
         label='Name'
-        leftIcon={faUser}
-        rightIcon={faChevronDown}
+        rightIcon={<Icon icon={faChevronDown} />}
+        placeholder='Enter your name'
+      />
+      <Textfield
+        label='Name'
+        leftIcon={<Icon icon={faUser} />}
+        rightIcon={<Icon icon={faChevronDown} />}
         placeholder='Enter your name'
       />
     </Row>
@@ -56,20 +61,20 @@ export const Variants: React.FC = () => (
       <Textfield label='Name' placeholder='Enter your name' isDisabled />
       <Textfield
         label='Name'
-        leftIcon={faUser}
+        leftIcon={<Icon icon={faUser} />}
         placeholder='Enter your name'
         isDisabled
       />
       <Textfield
         label='Name'
-        rightIcon={faChevronDown}
+        rightIcon={<Icon icon={faChevronDown} />}
         placeholder='Enter your name'
         isDisabled
       />
       <Textfield
         label='Name'
-        leftIcon={faUser}
-        rightIcon={faChevronDown}
+        leftIcon={<Icon icon={faUser} />}
+        rightIcon={<Icon icon={faChevronDown} />}
         placeholder='Enter your name'
         isDisabled
       />
