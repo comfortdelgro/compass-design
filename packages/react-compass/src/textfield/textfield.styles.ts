@@ -2,6 +2,7 @@ import {styled} from '../theme'
 import type {VariantProps} from '../utils/stitches.types'
 
 export const StyledTextFieldWrapper = styled('div', {
+  width: '100%',
   display: 'block',
   fontFamily: '$sans',
 })
@@ -24,6 +25,7 @@ export const StyledTextFieldLabel = styled('label', {
 })
 
 export const StyledTextFieldBox = styled('div', {
+  width: '100%',
   display: 'flex',
   flexDirection: 'row',
   alignItems: 'center',
@@ -85,6 +87,7 @@ export const StyledTextFieldBox = styled('div', {
 })
 
 export const StyledTextField = styled('input', {
+  width: '100%',
   fontSize: '$label1',
   fontWeight: '$medium',
   lineHeight: '$normal',

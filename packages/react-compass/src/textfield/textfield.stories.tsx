@@ -8,7 +8,9 @@ import Textfield from './index'
 export const Variants: React.FC = () => (
   <Column>
     <Row>
-      <Textfield placeholder='Enter your name' />
+      <div style={{width: '100%'}}>
+        <Textfield placeholder='Enter your name' />
+      </div>
     </Row>
 
     <h3>With Label</h3>
