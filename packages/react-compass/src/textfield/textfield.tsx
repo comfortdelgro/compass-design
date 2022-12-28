@@ -1,7 +1,6 @@
 import {useTextField} from '@react-aria/textfield'
 import type {AriaTextFieldProps} from '@react-types/textfield'
 import React from 'react'
-import {Icon, IconProp} from '../icon'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
@@ -17,8 +16,8 @@ interface Props extends AriaTextFieldProps, StyledComponentProps {
   label?: string
   errored?: boolean
   helperText?: string
-  leftIcon?: IconProp
-  rightIcon?: IconProp
+  leftIcon?: React.ReactNode
+  rightIcon?: React.ReactNode
 }
 
 export type TextFieldProps = Props & TextFieldVariantProps
@@ -58,9 +57,9 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
           </StyledTextFieldLabel>
         )}
         <StyledTextFieldBox disabled={!!isDisabled} errored={!!errored}>
-          {leftIcon ? <Icon className='left-icon' icon={leftIcon} /> : null}
+          {leftIcon ? <div className='left-icon'>{leftIcon}</div> : null}
           <StyledTextField css={css} ref={textfieldRef} {...inputProps} />
-          {rightIcon ? <Icon className='right-icon' icon={rightIcon} /> : null}
+          {rightIcon ? <div className='right-icon'>{rightIcon}</div> : null}
         </StyledTextFieldBox>
         {!errored && helperText ? (
           <StyledTextFieldHelperText {...descriptionProps}>
