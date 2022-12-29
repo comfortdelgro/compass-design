@@ -8,7 +8,7 @@ export const StyledTableHeaderWrapper = styled('div', {
 })
 
 export const StyledTableSortingIndicator = styled('span', {
-  color: '$gray60',
+  color: '$gray30',
   textAlign: 'right',
 })
 
