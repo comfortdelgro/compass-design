@@ -5,6 +5,7 @@ import {
   PageHeader,
   SubHeader,
 } from '@comfortdelgro/react-compass'
+import React from 'react'
 
 export function PageHeaderComponent() {
   return (

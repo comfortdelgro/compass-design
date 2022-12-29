@@ -1,9 +1,6 @@
 import Breadcrumbs from '@comfortdelgro/react-compass/breadcrumbs'
 import {faVirus} from '@fortawesome/free-solid-svg-icons'
-// const isCurrent = (i: number) => {
-//   if (window && window.location) return window.location.hash === `#${i}`
-//   return false
-// }
+import React from 'react'
 
 export function BasicBreadcrumb() {
   return (
@@ -17,7 +14,6 @@ export function BasicBreadcrumb() {
     </Breadcrumbs>
   )
 }
-//dividerIcon={faLocationArrow}
 
 export function CustomDividerBreadcrumb() {
   return (
