@@ -25,6 +25,12 @@ export const Sliders: React.FC = () => {
           <Slider isDisabled />
         </div>
       </Row>
+      <Row>
+        <div style={{width: '100%', marginBottom: '2rem'}}>
+          <h3>Tooltip disabled</h3>
+          <Slider tooltip={false} />
+        </div>
+      </Row>
     </Column>
   )
 }
