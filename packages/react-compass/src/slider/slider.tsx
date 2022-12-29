@@ -8,6 +8,7 @@ import {SliderVariantProps, StyledSlider, StyledThumb} from './slider.styles'
 
 interface Props extends AriaSliderProps<number>, StyledComponentProps {
   formatOptions?: Intl.NumberFormatOptions
+  tooltip?: boolean
 }
 
 export type SliderProps = Props & SliderVariantProps
@@ -16,6 +17,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
   const {
     // StyledComponentProps
     css = {},
+    tooltip = true,
     // ComponentProps
     ...ariaSafeProps
   } = props
@@ -56,7 +58,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
           }}
         />
         <div {...trackProps} ref={trackRef} className='slider-track'>
-          <Thumb state={state} trackRef={trackRef} />
+          <Thumb tooltip={tooltip} state={state} trackRef={trackRef} />
         </div>
       </div>
     </StyledSlider>
@@ -66,10 +68,11 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
 interface ThumbProps {
   state: SliderState
   trackRef: React.RefObject<HTMLDivElement>
+  tooltip: boolean
 }
 
 const Thumb = React.forwardRef<HTMLInputElement, ThumbProps>((props, ref) => {
-  const {state, trackRef} = props
+  const {state, trackRef, tooltip} = props
   const value = state.values[0] ?? 0
   const inputRef = useDOMRef<HTMLInputElement>(ref)
   const opts = {index: 0, trackRef, inputRef}
@@ -84,7 +87,7 @@ const Thumb = React.forwardRef<HTMLInputElement, ThumbProps>((props, ref) => {
       <div {...thumbProps} className='slider-thumb-handle'>
         <input ref={inputRef} {...inputProps} style={{display: 'none'}} />
       </div>
-      {isDragging && <div className='slider-value'>{value}</div>}
+      {tooltip && isDragging && <div className='slider-value'>{value}</div>}
     </StyledThumb>
   )
 })
