@@ -1,6 +1,7 @@
 import {Callout} from 'nextra-theme-docs'
 import styles from '../../styles/Home.module.css'
 import {faThumbsUp, faVirus} from '@fortawesome/free-solid-svg-icons'
+import {Icon} from '@iconify/react'
 import Textfield from '@comfortdelgro/react-compass/textfield'
 
 # Text Field
@@ -94,19 +95,19 @@ import Textfield from '@comfortdelgro/react-compass/textfield'
 ### Text field with icons:
 
 <section className={styles.avatarShowcaseContainer}>
-  <Textfield label='Name' leftIcon={faThumbsUp} placeholder='Enter your name' />
+  <Textfield label='Name' leftIcon={<Icon icon={faThumbsUp} />} placeholder='Enter your name' />
   <Textfield
     label='Name'
-    rightIcon={faThumbsUp}
+    rightIcon={<Icon icon={faThumbsUp} />}
     placeholder='Enter your name'
   />
 </section>
 
 ```js
-<Textfield label='Name' leftIcon={faThumbsUp} placeholder='Enter your name' />
+<Textfield label='Name' leftIcon={<Icon icon={faThumbsUp} />} placeholder='Enter your name' />
 <Textfield
   label='Name'
-  rightIcon={faThumbsUp}
+  rightIcon={<Icon icon={faThumbsUp} />}
   placeholder='Enter your name'
 />
 ```
@@ -175,8 +176,8 @@ With css prop, you can basically do anything that css can do.
 | `helperText`  | `string` \| `null`           | —       |                                                   |
 | `errored`     | `true` \| `false`            | `false` | `Throw error when input value is wrong`           |
 | `value`       | `string`                     | —       | `Input value`                                     |
-| `rightIcon`   | `IconProp`\|`false`\| `true` | `false` | `Icon placed on the right side of the text field` |
-| `leftIcon`    | `IconProp`\|`false`\| `true` | `false` | `Icon placed on the left side of the text field`  |
+| `rightIcon`   | `ReactNode`                  | -       | `Icon placed on the right side of the text field` |
+| `leftIcon`    | `ReactNode`                  | -       | `Icon placed on the left side of the text field`  |
 | `isDisabled`  | `false`\| `true`             | `false` | `Disable the text field when true`                |
 | `css `        | `CSS`                        | —       |                                                   |
 
