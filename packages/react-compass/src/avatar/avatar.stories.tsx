@@ -58,6 +58,9 @@ export const Group = () => (
       <Avatar label='Edwin Hubble' image={images[4]} size='sm' />
       <Avatar label='Ada Lovelace' image={images[0]} size='sm' />
       <Avatar label='Max Planck' image={images[1]} size='sm' />
+      <Avatar label='Leonhard Euler' image={images[0]} size='sm' />
+      <Avatar label='Isaac Newton' image={images[1]} size='sm' />
+      <Avatar label='Alan Turing' image={images[2]} size='sm' />
     </Avatar.Group>
   </>
 )

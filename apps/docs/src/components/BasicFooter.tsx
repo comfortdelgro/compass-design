@@ -6,7 +6,6 @@ import {
   Link,
 } from '@comfortdelgro/react-compass'
 import {faCamera, faGlobe} from '@fortawesome/free-solid-svg-icons'
-import React from 'react'
 
 interface BasicFooterProps {
   color?: 'white' | 'black' | 'blue'

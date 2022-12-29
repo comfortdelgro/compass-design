@@ -7,7 +7,7 @@ import {StyledAvatar} from './avatar.styles'
 interface Props extends StyledComponentProps {
   display?: number
   children?: React.ReactNode
-  size?: 'md' | 'lg' | 'sm' | 'xs'
+  size?: 'lg' | 'md' | 'sm' | 'xs'
   disabledAnimation?: boolean
 }
 
@@ -28,6 +28,14 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
     const avatarGroupRef = useDOMRef<HTMLDivElement>(ref)
     const avatars = React.Children.toArray(children)
 
+    const determineFontSize = () => {
+      if (size == 'lg' || size == 'md') return '1rem'
+      if (size == 'sm' && avatars.length - display > 9) return '0.8rem'
+      if (size == 'xs' && avatars.length - display < 10) return '0.8rem'
+      if (size == 'xs' && avatars.length - display > 9) return '0.5rem'
+      return '1rem'
+    }
+
     return (
       <StyledAvatarGroup
         css={css}
@@ -36,7 +44,10 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
       >
         {avatars.slice(0, display).map((avatar) => avatar)}
         {display < avatars.length && (
-          <StyledAvatar size={size}>
+          <StyledAvatar
+            size={size}
+            css={{'.initials': {fontSize: determineFontSize()}}}
+          >
             <span className='initials count'>+{avatars.length - display}</span>
           </StyledAvatar>
         )}

@@ -1,5 +1,3 @@
-import React from 'react'
-
 const FontWeights: React.FC = () => {
   const weights = {
     regular: 400,
