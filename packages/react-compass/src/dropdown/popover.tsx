@@ -1,15 +1,38 @@
-import {
-  DismissButton,
-  Overlay,
-  OverlayTriggerAria,
-  usePopover,
-} from '@react-aria/overlays'
+import {DismissButton, Overlay, usePopover} from '@react-aria/overlays'
 import {OverlayTriggerState} from '@react-stately/overlays'
-import React from 'react'
+import React, {RefObject} from 'react'
 import {useDOMRef} from '../utils/use-dom-ref'
 
-interface Props extends OverlayTriggerAria {
+export type Placement =
+  | 'bottom'
+  | 'bottom left'
+  | 'bottom right'
+  | 'bottom start'
+  | 'bottom end'
+  | 'top'
+  | 'top left'
+  | 'top right'
+  | 'top start'
+  | 'top end'
+  | 'left'
+  | 'left top'
+  | 'left bottom'
+  | 'start'
+  | 'start top'
+  | 'start bottom'
+  | 'right'
+  | 'right top'
+  | 'right bottom'
+  | 'end'
+  | 'end top'
+  | 'end bottom'
+interface Props {
   state: OverlayTriggerState
+  triggerRef: RefObject<Element>
+  popoverRef: RefObject<Element>
+  children: React.ReactElement
+  isNonModal: boolean
+  placement?: Placement
 }
 
 const Popover = React.forwardRef<HTMLDivElement, Props>(
@@ -19,7 +42,6 @@ const Popover = React.forwardRef<HTMLDivElement, Props>(
       {
         ...props,
         popoverRef,
-        triggerRef: props.triggerProps,
       },
       state,
     )
