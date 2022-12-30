@@ -3,6 +3,13 @@ import type {VariantProps} from '../utils/stitches.types'
 
 export const StyledDropdownWrapper = styled('div', {
   width: '100%',
+  label: {
+    fontSize: '$label1',
+    fontWeight: '$semibold',
+    marginBottom: '$2',
+    display: 'inline-block',
+    width: '100%',
+  },
 })
 
 export const StyledDropdown = styled('div', {

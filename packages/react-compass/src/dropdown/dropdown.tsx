@@ -81,7 +81,7 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
 
     return (
       <StyledDropdownWrapper css={css} ref={dropdownRef} {...variantProps}>
-        <label {...labelProps}>{props.label}</label>
+        {props.label && <label {...labelProps}>{props.label}</label>}
         <StyledDropdown ref={wrapperRef} isEmpty={!state.inputValue}>
           <Button {...buttonProps} ref={buttonRef}>
             {!searchable && (
