@@ -1,6 +1,5 @@
 import {AriaListBoxOptions, useListBox, useOption} from '@react-aria/listbox'
 import {ComboBoxState} from '@react-stately/combobox'
-// import {Node} from '@react-types/shared'
 import React, {Key} from 'react'
 import {Node} from '../tabs/types'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -15,18 +14,7 @@ const ListBox = React.forwardRef<HTMLUListElement, Props>(
     const {listBoxProps} = useListBox(props, state, listBoxRef)
 
     return (
-      <ul
-        {...listBoxProps}
-        ref={listBoxRef}
-        style={{
-          margin: 0,
-          padding: 0,
-          listStyle: 'none',
-          maxHeight: 150,
-          overflow: 'auto',
-          minWidth: 200,
-        }}
-      >
+      <ul {...listBoxProps} ref={listBoxRef}>
         {[...state.collection].map((item) => (
           <Option key={item.key} item={item} state={state} />
         ))}
@@ -56,10 +44,8 @@ const Option = React.forwardRef<HTMLLIElement, ExtendedOptionsProps>(
     let color = 'black'
 
     if (isSelected) {
-      backgroundColor = 'blueviolet'
-      color = 'white'
-    } else if (isFocused) {
-      backgroundColor = 'gray'
+      backgroundColor = '#F9F9F9'
+      color = '333333'
     } else if (isDisabled) {
       backgroundColor = 'transparent'
       color = 'gray'
@@ -72,9 +58,6 @@ const Option = React.forwardRef<HTMLLIElement, ExtendedOptionsProps>(
         style={{
           background: backgroundColor,
           color: color,
-          padding: '2px 5px',
-          outline: 'none',
-          cursor: 'pointer',
         }}
       >
         {item.rendered}

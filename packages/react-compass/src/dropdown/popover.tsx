@@ -42,6 +42,7 @@ const Popover = React.forwardRef<HTMLDivElement, Props>(
       {
         ...props,
         popoverRef,
+        offset: 24,
       },
       state,
     )
@@ -49,17 +50,20 @@ const Popover = React.forwardRef<HTMLDivElement, Props>(
     const close = () => state.close()
     return (
       <Overlay>
-        <div
-          {...popoverProps}
-          ref={popoverRef}
-          style={{
-            ...popoverProps.style,
-            background: 'lightgray',
-            border: '1px solid gray',
-          }}
-        >
-          {children}
-          <DismissButton onDismiss={close} />
+        <div style={{position: 'relative'}}>
+          <div
+            {...popoverProps}
+            ref={popoverRef}
+            style={{
+              ...popoverProps.style,
+              background: 'lightgray',
+              width: '100%',
+              border: '1px solid gray',
+            }}
+          >
+            {children}
+            <DismissButton onDismiss={close} />
+          </div>
         </div>
       </Overlay>
     )

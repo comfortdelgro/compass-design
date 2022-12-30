@@ -4,7 +4,7 @@ import Dropdown from './index'
 
 export const Dropdowns: React.FC = () => (
   <Column>
-    <Dropdown label='Favorite Animal'>
+    <Dropdown label='Favorite Animal' placeholder='adasdasd'>
       <Item key='red panda'>Red Panda</Item>
       <Item key='cat'>Cat</Item>
       <Item key='dog'>Dog</Item>

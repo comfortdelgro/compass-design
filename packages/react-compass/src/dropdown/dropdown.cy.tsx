@@ -1,15 +1,18 @@
-import Link from './index'
+import {Item} from '@react-stately/collections'
+import Dropdown from './index'
 
-describe('link.cy.ts', () => {
+describe('dropdown.cy.ts', () => {
   it('C01: Should render children', () => {
-    const link = (
-      <Link href='https://google.com' external>
-        Go to Google
-      </Link>
+    const dropdown = (
+      <Dropdown label='Favorite Animal' placeholder='adasdasd'>
+        <Item key='red panda'>Red Panda</Item>
+        <Item key='cat'>Cat</Item>
+        <Item key='dog'>Dog</Item>
+        <Item key='aardvark'>Aardvark</Item>
+        <Item key='kangaroo'>Kangaroo</Item>
+        <Item key='snake'>Snake</Item>
+      </Dropdown>
     )
-    cy.mount(link)
-    cy.get('a')
-      .should('be.visible')
-      .should('have.attr', 'href', 'https://google.com')
+    cy.mount(dropdown)
   })
 })

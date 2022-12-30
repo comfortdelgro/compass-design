@@ -1,3 +1,4 @@
+import {AriaButtonProps, useButton} from '@react-aria/button'
 import {useComboBox} from '@react-aria/combobox'
 import {useFilter} from '@react-aria/i18n'
 import {ComboBoxStateOptions, useComboBoxState} from '@react-stately/combobox'
@@ -6,14 +7,14 @@ import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
   DropdownVariantProps,
+  StyledBox,
   StyledDropdown,
   StyledDropdownWrapper,
 } from './dropdown.styles'
 import ListBox from './list-box'
-import Popover from './popover'
 
 interface Props<T> extends ComboBoxStateOptions<T>, StyledComponentProps {
-  // children?: React.ReactNode
+  searchable?: boolean
 }
 
 export type DropdownProps<T = object> = Props<T> & DropdownVariantProps
@@ -23,6 +24,7 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
     const {
       // StyledComponentProps
       css = {},
+      searchable,
       // ComponentProps
       menuTrigger = 'focus',
       // AriaDropdownProps
@@ -36,10 +38,11 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
       menuTrigger,
     })
 
-    const buttonRef = React.useRef(null)
-    const inputRef = React.useRef(null)
-    const listBoxRef = React.useRef(null)
-    const popoverRef = React.useRef(null)
+    const wrapperRef = React.useRef<HTMLDivElement>(null)
+    const buttonRef = React.useRef<HTMLButtonElement>(null)
+    const inputRef = React.useRef<HTMLInputElement>(null)
+    const listBoxRef = React.useRef<HTMLUListElement>(null)
+    const popoverRef = React.useRef<HTMLDivElement>(null)
     const {buttonProps, inputProps, listBoxProps, labelProps} = useComboBox(
       {
         ...props,
@@ -54,31 +57,66 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
     const variantProps = {} as DropdownVariantProps
     const dropdownRef = useDOMRef<HTMLDivElement>(ref)
 
+    React.useEffect(() => {
+      /**
+       * Close the sidebar if clicked on outside of element
+       */
+      function handleClickOutside(event: MouseEvent) {
+        if (
+          listBoxRef.current &&
+          !listBoxRef?.current?.contains(event.target as Node) &&
+          !wrapperRef?.current?.contains(event.target as Node)
+        ) {
+          event.preventDefault()
+          state.setOpen(false)
+        }
+      }
+      // Bind the event listener
+      document.addEventListener('mousedown', handleClickOutside)
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener('mousedown', handleClickOutside)
+      }
+    }, [listBoxRef, wrapperRef])
+
     return (
       <StyledDropdownWrapper css={css} ref={dropdownRef} {...variantProps}>
         <label {...labelProps}>{props.label}</label>
-        <StyledDropdown>
-          <input {...inputProps} ref={inputRef} />
-          <button {...buttonProps} ref={buttonRef}>
-            <Icon />
-          </button>
-          {state.isOpen && (
-            <Popover
-              state={state}
-              triggerRef={inputRef}
-              popoverRef={popoverRef}
-              isNonModal
-              placement='bottom start'
-            >
-              <ListBox
-                {...listBoxProps}
-                // listBoxRef={listBoxRef}
-                state={state}
-              />
-            </Popover>
-          )}
+        <StyledDropdown ref={wrapperRef} isEmpty={!state.inputValue}>
+          <Button {...buttonProps} ref={buttonRef}>
+            {!searchable && (
+              <p>
+                {inputProps.value ? inputProps.value : inputProps.placeholder}
+              </p>
+            )}
+            <input
+              {...inputProps}
+              ref={inputRef}
+              style={!searchable ? {display: 'none'} : {}}
+            />
+            <div className='dropdown-icon'>
+              <Icon />
+            </div>
+          </Button>
         </StyledDropdown>
+        {state.isOpen && (
+          <StyledBox ref={popoverRef}>
+            <ListBox {...listBoxProps} ref={listBoxRef} state={state} />
+          </StyledBox>
+        )}
       </StyledDropdownWrapper>
+    )
+  },
+)
+
+const Button = React.forwardRef<HTMLButtonElement, AriaButtonProps>(
+  (props, ref) => {
+    const buttonRef = useDOMRef<HTMLButtonElement>(ref)
+    const {buttonProps} = useButton(props, buttonRef)
+    return (
+      <button {...buttonProps} ref={ref}>
+        {props.children}
+      </button>
     )
   },
 )
