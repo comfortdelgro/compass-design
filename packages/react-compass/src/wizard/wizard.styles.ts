@@ -72,7 +72,7 @@ export const StyledItem = styled('span', {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  color: '$whiteText',
+  color: '$cdgBlue120',
   fontWeight: '$medium',
   fontSize: '$label2',
   lineHeight: '$tight',
@@ -83,6 +83,7 @@ export const StyledItem = styled('span', {
     active: {
       true: {
         backgroundColor: '$cdgBlue100',
+        color: '$whiteText',
         '&:hover': {
           '&:after': {
             width: '$7',

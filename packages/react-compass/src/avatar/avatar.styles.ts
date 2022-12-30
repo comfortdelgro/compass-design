@@ -12,6 +12,7 @@ export const StyledAvatar = styled('span', {
   userSelect: 'none',
   color: '$info',
   transition: '$default',
+  boxSizing: 'border-box',
 
   '.initials, .icon-wrapper, .image': {
     width: '100%',

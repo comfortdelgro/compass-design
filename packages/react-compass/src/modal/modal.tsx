@@ -3,14 +3,15 @@ import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import ModalActions from './modal-actions'
+import ModalCloseIcon from './modal-closeIcon'
 import ModalDescription from './modal-description'
 import ModalTitle from './modal-title'
 import ModalTrigger from './modal-trigger'
-import {ModalVariantProps, StyledModal} from './modal.styles'
+import {ModalVariantProps, StyledModal, StyledModalHeader} from './modal.styles'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
-  onClose?: () => void
+  handleClose?: () => void
   size?: 'sm' | 'md' | 'lg'
 }
 
@@ -23,7 +24,7 @@ const Dialog = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
     // children
     children,
     // ComponentProps
-    onClose,
+    handleClose,
     // VariantProps
     size = 'md',
     // AriaButtonProps
@@ -51,9 +52,22 @@ const Dialog = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
     ModalActions,
   )
 
+  // Pick modal close icon
+  const {child: CloseIconElement} = pickChild<typeof ModalCloseIcon>(
+    children,
+    ModalCloseIcon,
+  )
+
   return (
     <StyledModal css={css} ref={dialogRef} {...delegated} {...variantProps}>
-      {ModalTitleElement}
+      <StyledModalHeader>
+        {ModalTitleElement}
+        {CloseIconElement &&
+          React.cloneElement(CloseIconElement as unknown as JSX.Element, {
+            onClose: () => handleClose?.(),
+          })}
+      </StyledModalHeader>
+
       {ModalDescriptionElement}
       {ModalActionsElement}
     </StyledModal>
@@ -65,4 +79,5 @@ export default Dialog as typeof Dialog & {
   Title: typeof ModalTitle
   Description: typeof ModalDescription
   Actions: typeof ModalActions
+  CloseIcon: typeof ModalCloseIcon
 }

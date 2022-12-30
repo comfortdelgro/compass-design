@@ -1,7 +1,7 @@
 import {styled} from '../theme'
 
 export const StyledTable = styled('div', {
-  overflowX: 'scroll',
+  overflowX: 'auto',
   table: {
     fontFamily: '$sans',
     borderCollapse: 'collapse',

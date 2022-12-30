@@ -1,5 +1,7 @@
+import {faXmark} from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
 import Button from '../button'
+import Icon from '../icon'
 import TextField from '../textfield'
 import {Column} from '../utils/components'
 import Modal from './index'
@@ -23,6 +25,9 @@ export const Default: React.FC = () => {
       >
         <Modal>
           <Modal.Title>My small title</Modal.Title>
+          <Modal.CloseIcon>
+            <Icon icon={faXmark} />
+          </Modal.CloseIcon>
           <Modal.Description>
             {lorem}
             <TextField />

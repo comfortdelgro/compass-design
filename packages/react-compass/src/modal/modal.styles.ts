@@ -1,17 +1,36 @@
 import {styled} from '../theme'
 import type {VariantProps} from '../utils/stitches.types'
 
+export const StyledModalHeader = styled('h3', {
+  // reset
+  appearance: 'none',
+  border: 'none',
+  boxSizing: 'border-box',
+  margin: '0px',
+  padding: '0px',
+  paddingLeft: '$4',
+  paddingRight: '$4',
+
+  //title
+  width: '100%',
+  height: '32.143%',
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+})
+
 export const StyledModalTitle = styled('h3', {
   // reset
   appearance: 'none',
   border: 'none',
   boxSizing: 'border-box',
   margin: '0px',
-  padding: '$4',
+  paddingTop: '$4',
+  paddingBottom: '$4',
 
   //title
-  width: '100%',
-  height: '32.143%',
+  width: '80%',
+  height: '100%',
   fontFamily: '$sans',
   fontWeight: '$semibold',
   fontSize: '$header3',
@@ -63,7 +82,7 @@ export const StyledModalWrapper = styled('div', {
   border: 'none',
   boxSizing: 'border-box',
   margin: '0px',
-  background: 'transparent',
+  background: '#00000066',
 
   // wrapper styling
   position: 'absolute',
@@ -74,12 +93,35 @@ export const StyledModalWrapper = styled('div', {
   zIndex: '999',
 })
 
+export const StyledModalCloseIcon = styled('div', {
+  // reset
+  appearance: 'none',
+  border: 'none',
+  boxSizing: 'border-box',
+  background: 'transparent',
+  margin: '0px',
+  padding: '0px',
+
+  // styling
+  width: '$3_5',
+  height: '$3_5',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  cursor: 'pointer',
+  '& *': {
+    width: '100%',
+    height: '100%',
+  },
+})
+
 export const StyledModal = styled('div', {
   // reset
   appearance: 'none',
   border: 'none',
   boxSizing: 'border-box',
   margin: '0px',
+  zIndex: '1000',
 
   // modal container
   width: '$120',

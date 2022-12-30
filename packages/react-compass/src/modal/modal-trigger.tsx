@@ -62,6 +62,7 @@ const ModalTrigger = React.forwardRef<HTMLDivElement, ModalTriggerProps>(
                 onClose: () => handleClose?.(),
                 ref: modalRef,
                 size: size,
+                handleClose: () => handleClose?.(),
               })}
           </StyledModalWrapper>
         )}
