@@ -13,7 +13,6 @@ describe('sidebar.cy.ts', () => {
     cy.get('.c-bstbuK').should('not.exist')
   })
 })
-import {Default as Sidebar} from './sidebar.stories'
 
 describe('sidebar.cy.ts', () => {
   beforeEach(() => {

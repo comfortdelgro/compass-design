@@ -42,7 +42,6 @@ describe('progress-bar.cy.ts', () => {
     cy.get('.c-eBLxVd div').should('have.css', 'display').and('eq', 'block')
   })
 })
-import Radio from './index'
 
 describe('progress-bar.cy.ts', () => {
   beforeEach(() => {

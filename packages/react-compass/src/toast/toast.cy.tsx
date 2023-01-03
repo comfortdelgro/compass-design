@@ -13,7 +13,6 @@ describe('sidebar.cy.ts', () => {
     cy.get('.c-enSzkB').should('not.exist')
   })
 })
-import {Default as Toast} from './toast.stories'
 
 describe('sidebar.cy.ts', () => {
   beforeEach(() => {

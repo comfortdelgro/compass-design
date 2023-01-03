@@ -11,7 +11,6 @@ describe('toggle.cy.ts', () => {
     cy.get(`[role='tooltip']`).should('exist')
   })
 })
-import {Controlled as ControlledTooltip} from './tooltip.stories'
 
 describe('toggle.cy.ts', () => {
   beforeEach(() => {

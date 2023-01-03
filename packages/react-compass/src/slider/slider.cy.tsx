@@ -20,7 +20,6 @@ describe('range-calendar.cy.ts', () => {
       .and('include', `width: ${value}%`)
   })
 })
-import Slider from './index'
 
 describe('range-calendar.cy.ts', () => {
   beforeEach(() => {
