@@ -1,0 +1,230 @@
+import {Callout} from 'nextra-theme-docs'
+import styles from '../../styles/Home.module.css'
+import Dropdown from '@comfortdelgro/react-compass/dropdown'
+import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons'
+import Icon from '@comfortdelgro/react-compass/icon'
+
+# Dropdown
+
+Provides the behavior and accessibility implementation for a combo box component. A combo box combines a text input with a listbox, allowing users to filter a list of options to items matching a query.
+
+---
+
+### Import:
+
+```js
+import {Dropdown} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import Dropdown from '@comfortdelgro/react-compass/dropdown'
+```
+
+We recommend the second method to import components for the benefits of [tree shaking](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking).
+
+---
+
+### Without Header:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Dropdown label='Favorite Animal' placeholder='Choose an animal'>
+    <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
+    <Dropdown.Item key='cat'>Cat</Dropdown.Item>
+    <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+    <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+    <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+    <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+  </Dropdown>
+</section>
+
+```js
+<Dropdown label='Favorite Animal' placeholder='Choose an animal'>
+  <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
+  <Dropdown.Item key='cat'>Cat</Dropdown.Item>
+  <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+  <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+  <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+  <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+</Dropdown>
+```
+
+---
+
+### With Header:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Dropdown
+    label='Favorite Animal'
+    placeholder='Choose an animal'
+    headerTitle='Filter title'
+  >
+    <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
+    <Dropdown.Item key='cat'>Cat</Dropdown.Item>
+    <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+    <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+    <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+    <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+  </Dropdown>
+</section>
+
+```js
+<Dropdown
+  label='Favorite Animal'
+  placeholder='Choose an animal'
+  headerTitle='Filter title'
+>
+  <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
+  <Dropdown.Item key='cat'>Cat</Dropdown.Item>
+  <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+  <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+  <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+  <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+</Dropdown>
+```
+
+---
+
+### With Searchable:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Dropdown label='Favorite Animal' placeholder='Choose an animal' searchable>
+    <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
+    <Dropdown.Item key='cat'>Cat</Dropdown.Item>
+    <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+    <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+    <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+    <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+  </Dropdown>
+</section>
+
+```js
+<Dropdown label='Favorite Animal' placeholder='Choose an animal' searchable>
+  <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
+  <Dropdown.Item key='cat'>Cat</Dropdown.Item>
+  <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+  <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+  <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+  <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+</Dropdown>
+```
+
+---
+
+### Loading:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Dropdown label='Favorite Animal' placeholder='Choose an animal' isLoading>
+    <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
+    <Dropdown.Item key='cat'>Cat</Dropdown.Item>
+    <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+    <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+    <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+    <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+  </Dropdown>
+</section>
+
+```js
+<Dropdown label='Favorite Animal' placeholder='Choose an animal' isLoading>
+  <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
+  <Dropdown.Item key='cat'>Cat</Dropdown.Item>
+  <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+  <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+  <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+  <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+</Dropdown>
+```
+
+---
+
+### With Icon:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Dropdown
+    label='Favorite Animal'
+    placeholder='Choose an animal'
+    icon={<Icon icon={faExclamationTriangle} />}
+  >
+    <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
+    <Dropdown.Item key='cat'>Cat</Dropdown.Item>
+    <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+    <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+    <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+    <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+  </Dropdown>
+</section>
+
+```js
+<Dropdown
+  label='Favorite Animal'
+  placeholder='Choose an animal'
+  icon={<Icon icon={faExclamationTriangle} />}
+>
+  <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
+  <Dropdown.Item key='cat'>Cat</Dropdown.Item>
+  <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+  <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+  <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+  <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+</Dropdown>
+```
+
+
+---
+### Props:
+
+#### `<Dropdown/>` :
+| Name               | Type                                                         | Default | Description                                                                                                                                               |
+| :----------------- | :----------------------------------------------------------- | :------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| searchable         | `boolean`                                                    | 'false' | Enable search field for dropdown items                                                                                                                    |
+| isLoading          | `boolean`                                                    | 'false' | Loading effect when list of items is loading by API                                                                                                       |
+| icon               | `React.ReactNode`                                            | -       | Icon display in right side                                                                                                                                |
+| headerTitle        | `string`                                                     | -       | Title display of header inside popover                                                                                                                    |
+| headerOnClick      | `(e: PressEvent) => void`                                    | -       | On click of clear button inside popover                                                                                                                   |
+| keyboardDelegate   | `KeyboardDelegate`                                           | —       | An optional keyboard delegate implementation, to override the default.                                                                                    |
+| shouldFocusWrap    | `boolean`                                                    | —       | Whether keyboard navigation is circular.                                                                                                                  |
+| defaultItems       | `Iterable`                                                   | —       | The list of ComboBox items (uncontrolled).                                                                                                                |
+| items              | `Iterable`                                                   | —       | The list of ComboBox items (controlled).                                                                                                                  |
+| onOpenChange       | `(isOpen: boolean, menuTrigger?: MenuTriggerAction) => void` | —       | Method that is called when the open state of the menu changes. Returns the new open state and the action that caused the opening of the menu.             |
+| inputValue         | `string`                                                     | —       | The value of the ComboBox input (controlled).                                                                                                             |
+| defaultInputValue  | `string`                                                     | —       | The default value of the ComboBox input (uncontrolled).                                                                                                   |
+| onInputChange      | `(value: string) => void`                                    | —       | Handler that is called when the ComboBox input value changes.                                                                                             |
+| allowsCustomValue  | `boolean`                                                    | —       | Whether the ComboBox allows a non-item matching input value to be set.                                                                                    |
+| menuTrigger        | `MenuTriggerAction`                                          | 'input' | The interaction required to display the ComboBox menu.                                                                                                    |
+| name               | `string`                                                     | —       | The name of the input element, used when submitting an HTML form. See MDN.                                                                                |
+| disabledKeys       | `Iterable`                                                   | —       | The item keys that are disabled. These items cannot be selected, focused, or otherwise interacted with.                                                   |
+| selectedKey        | `Key`\|`null`                                                | —       | The currently selected key in the collection (controlled).                                                                                                |
+| defaultSelectedKey | `Key`                                                        | —       | The initial selected key in the collection (uncontrolled).                                                                                                |
+| onSelectionChange  | `(key: Key) => any`                                          | —       | Handler that is called when the selection changes.                                                                                                        |
+| isDisabled         | `boolean`                                                    | —       | Whether the input is disabled.                                                                                                                            |
+| isReadOnly         | `boolean`                                                    | —       | Whether the input can be selected but not changed by the user.                                                                                            |
+| placeholder        | `string`                                                     | —       | Temporary text that occupies the text input when it is empty.                                                                                             |
+| validationState    | `ValidationState`                                            | —       | Whether the input should display its "valid" or "invalid" visual styling.                                                                                 |
+| isRequired         | `boolean`                                                    | —       | Whether user input is required on the input before form submission. Often paired with the necessityIndicator prop to add a visual indicator to the input. |
+| autoFocus          | `boolean`                                                    | —       | Whether the element should receive focus on render.                                                                                                       |
+| onFocus            | `(e: FocusEvent) => void`                                    | —       | Handler that is called when the element receives focus.                                                                                                   |
+| onBlur             | `(e: FocusEvent) => void`                                    | —       | Handler that is called when the element loses focus.                                                                                                      |
+| onFocusChange      | `(isFocused: boolean) => void`                               | —       | Handler that is called when the element's focus status changes.                                                                                           |
+| onKeyDown          | `(e: KeyboardEvent) => void`                                 | —       | Handler that is called when a key is pressed.                                                                                                             |
+| onKeyUp            | `(e: KeyboardEvent) => void`                                 | —       | Handler that is called when a key is released.                                                                                                            |
+| label              | `ReactNode`                                                  | —       | The content to display as the label.                                                                                                                      |
+| description        | `ReactNode`                                                  | —       | A description for the field. Provides a hint such as specific requirements for what to choose.                                                            |
+
+
+#### `<Dropdown.Item/>` :
+
+| Name        | Type                               | Default | Description                                                                             |
+| :---------- | :--------------------------------- | :------ | :-------------------------------------------------------------------------------------- |
+| title       | `string`                           | —       | The title of the tab.                                                                   |
+| key         | `Key`                              | —       | The key of the tab.                                                                     |
+| children    | `ReactNode` \| `String`            | —       | The content of the tab Item                                                             |
+| className   | `String`                           | -       | Extra class name for tab                                                                |
+| css         | `CSS`                              | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
+
+---
+
+<Callout>
+  Check out our [ladle](/ladle?story=dropdown--variants) for more info on this
+  component.
+</Callout>
