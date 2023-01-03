@@ -61,7 +61,7 @@
         "Avatar"
       ],
       "locStart": 51,
-      "locEnd": 63,
+      "locEnd": 66,
       "filePath": "src/avatar/avatar.stories.tsx",
       "meta": {}
     },
@@ -400,8 +400,8 @@
       "levels": [
         "Modal"
       ],
-      "locStart": 7,
-      "locEnd": 38,
+      "locStart": 9,
+      "locEnd": 43,
       "filePath": "src/modal/modal.stories.tsx",
       "meta": {}
     },
@@ -410,8 +410,8 @@
       "levels": [
         "Modal"
       ],
-      "locStart": 40,
-      "locEnd": 122,
+      "locStart": 45,
+      "locEnd": 127,
       "filePath": "src/modal/modal.stories.tsx",
       "meta": {}
     },
@@ -571,7 +571,7 @@
         "Slider"
       ],
       "locStart": 5,
-      "locEnd": 30,
+      "locEnd": 36,
       "filePath": "src/slider/slider.stories.tsx",
       "meta": {}
     },
@@ -680,8 +680,8 @@
       "levels": [
         "Textfield"
       ],
-      "locStart": 7,
-      "locEnd": 78,
+      "locStart": 8,
+      "locEnd": 83,
       "filePath": "src/textfield/textfield.stories.tsx",
       "meta": {}
     },
