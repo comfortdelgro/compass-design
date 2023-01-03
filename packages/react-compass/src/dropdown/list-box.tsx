@@ -17,7 +17,7 @@ const ListBox = React.forwardRef<HTMLDivElement, Props>(
     const {listBoxProps} = useListBox(props, state, listBoxRef)
 
     return (
-      <div {...listBoxProps} ref={listBoxRef} className='dropdown-listbox'>
+      <div {...listBoxProps} ref={listBoxRef}>
         {props.headerTitle && (
           <Header title={props.headerTitle} onPress={props?.headerOnClick} />
         )}

@@ -1,6 +1,7 @@
 import {AriaButtonProps, useButton} from '@react-aria/button'
 import {useComboBox} from '@react-aria/combobox'
 import {useFilter} from '@react-aria/i18n'
+import {Item} from '@react-stately/collections'
 import {ComboBoxStateOptions, useComboBoxState} from '@react-stately/combobox'
 import React from 'react'
 import {StyledLoading} from '../dropdown/dropdown.styles'
@@ -8,11 +9,11 @@ import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
   DropdownVariantProps,
-  StyledBox,
   StyledDropdown,
   StyledDropdownWrapper,
 } from './dropdown.styles'
 import ListBox from './list-box'
+import Popover from './popover'
 
 interface Props<T> extends ComboBoxStateOptions<T>, StyledComponentProps {
   searchable?: boolean
@@ -63,29 +64,6 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
     const variantProps = {} as DropdownVariantProps
     const dropdownRef = useDOMRef<HTMLDivElement>(ref)
 
-    React.useEffect(() => {
-      /**
-       * Close the sidebar if clicked on outside of element
-       */
-      function handleClickOutside(event: MouseEvent) {
-        console.log(event)
-        if (
-          listBoxRef.current &&
-          !listBoxRef?.current?.contains(event.target as Node) &&
-          !wrapperRef?.current?.contains(event.target as Node)
-        ) {
-          event.preventDefault()
-          state.setOpen(false)
-        }
-      }
-      // Bind the event listener
-      document.addEventListener('mousedown', handleClickOutside)
-      return () => {
-        // Unbind the event listener on clean up
-        document.removeEventListener('mousedown', handleClickOutside)
-      }
-    }, [listBoxRef, wrapperRef])
-
     return (
       <StyledDropdownWrapper css={css} ref={dropdownRef} {...variantProps}>
         {props.label && <label {...labelProps}>{props.label}</label>}
@@ -105,7 +83,11 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
           </Button>
         </StyledDropdown>
         {state.isOpen && (
-          <StyledBox ref={popoverRef}>
+          <Popover
+            state={state}
+            triggerRef={wrapperRef}
+            popoverRef={popoverRef}
+          >
             {props.isLoading ? (
               <StyledLoading>
                 <div className='spinner'>
@@ -124,7 +106,7 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
                 headerOnClick={(e) => props?.headerOnClick?.(e)}
               />
             )}
-          </StyledBox>
+          </Popover>
         )}
       </StyledDropdownWrapper>
     )
@@ -152,4 +134,6 @@ const Icon = () => (
   </svg>
 )
 
-export default Dropdown
+export default Dropdown as typeof Dropdown & {
+  Item: typeof Item
+}
