@@ -19,6 +19,7 @@ interface Props extends StyledComponentProps {
   children?: React.ReactNode
   isOpen?: boolean
   handleClose?: () => void
+  position?: 'left' | 'right'
 }
 
 export type SidebarProps = Props &
@@ -32,6 +33,7 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>((props, ref) => {
     css = {},
     // VariantProps
     variant = 'primary',
+    position = 'left',
     // Component props
     isOpen = false,
     handleClose,
@@ -76,11 +78,24 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>((props, ref) => {
     }
   }, [sidebarRef])
 
+  React.useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+  }, [isOpen])
+
   return (
     <>
       {isOpen && (
         <StyledSidebarWrapper css={css}>
-          <StyledSidebar variant={variant} ref={sidebarRef} {...delegated}>
+          <StyledSidebar
+            variant={variant}
+            position={position}
+            ref={sidebarRef}
+            {...delegated}
+          >
             {variant == 'primary' && (
               <StyledSidebarHeader>
                 {SidebarTitleElement}
