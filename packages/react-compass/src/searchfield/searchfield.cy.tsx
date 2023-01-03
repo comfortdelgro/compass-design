@@ -22,7 +22,6 @@ describe('searchfield.cy.ts', () => {
       })
   })
 })
-import SearchField from './index'
 
 describe('searchfield.cy.ts', () => {
   beforeEach(() => {

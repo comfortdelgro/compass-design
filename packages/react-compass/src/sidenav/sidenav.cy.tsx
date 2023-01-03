@@ -13,7 +13,6 @@ describe('range-calendar.cy.ts', () => {
     cy.get('.sidenav-expanded').should('exist')
   })
 })
-import {NoExpandSidenav} from './testComponent'
 
 describe('range-calendar.cy.ts', () => {
   beforeEach(() => {

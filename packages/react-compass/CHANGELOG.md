@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 0.6.0
+
+### Minor Changes
+
+- 83f5bf6: Add more components and fix few bugs on current components.
+
 ## 0.5.0
 
 ### Minor Changes

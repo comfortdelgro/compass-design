@@ -13,7 +13,6 @@ describe('toggle.cy.ts', () => {
       .and('include', 'c-jozUte-kBgkqj-active-true')
   })
 })
-import {Variants as Toggles} from './toggle.stories'
 
 describe('toggle.cy.ts', () => {
   beforeEach(() => {

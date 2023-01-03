@@ -25,7 +25,6 @@ describe('sub-header.cy.ts', () => {
     cy.get('#description').should('be.visible').and('have.text', 'Description')
   })
 })
-import SubHeader from './index'
 
 describe('sub-header.cy.ts', () => {
   beforeEach(() => {
