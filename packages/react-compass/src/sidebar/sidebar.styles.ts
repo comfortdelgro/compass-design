@@ -11,9 +11,10 @@ export const StyledSidebarCloseIcon = styled('div', {
   background: 'transparent',
 
   // title style
-  height: '100%',
+  height: '$6',
+  width: '$6',
   display: 'flex',
-  justifyContent: 'flex-start',
+  justifyContent: 'center',
   alignItems: 'center',
   cursor: 'pointer',
   '& *': {
@@ -73,6 +74,7 @@ export const StyledSidebarContent = styled('div', {
   margin: '0px',
   padding: '$4',
   background: 'transparent',
+  overflow: 'hidden',
 
   // header style
   width: '100%',
@@ -86,6 +88,7 @@ export const StyledSidebarHeader = styled('div', {
   margin: '0px',
   padding: '0px',
   background: 'transparent',
+  borderBottom: '0.5px solid #C8C6C4',
 
   // header style
   width: '100%',
@@ -106,7 +109,7 @@ export const StyledSidebarWrapper = styled('div', {
   boxSizing: 'border-box',
   margin: '0px',
   padding: '0px',
-  background: 'transparent',
+  background: 'rgba(0, 0, 0, 0.4)',
 
   // wrapper styling
   position: 'absolute',
@@ -124,18 +127,26 @@ export const StyledSidebar = styled('div', {
   boxSizing: 'border-box',
   margin: '0px',
   padding: '0px',
+  overflow: 'hidden',
 
   // sidebar styling
   width: '$88',
   height: '100vh',
   position: 'absolute',
   top: '0',
-  left: '0',
   zIndex: '1000',
   backgroundColor: '$primaryBg',
 
   // variants
   variants: {
+    position: {
+      left: {
+        left: '0',
+      },
+      right: {
+        right: '0',
+      },
+    },
     variant: {
       primary: {},
       secondary: {backgroundColor: '$background', padding: '$12'},
@@ -144,6 +155,7 @@ export const StyledSidebar = styled('div', {
 
   defaultVariants: {
     variant: 'primary',
+    position: 'left',
   },
 })
 
