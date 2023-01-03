@@ -15,7 +15,6 @@ describe('wizard.cy.ts', () => {
       .and('include', 'c-hGkPwH-ftQEAz-active-true')
   })
 })
-import {Variants as Wizard} from './wizard.stories'
 
 describe('wizard.cy.ts', () => {
   beforeEach(() => {
