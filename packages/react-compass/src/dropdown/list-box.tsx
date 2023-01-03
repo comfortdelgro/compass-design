@@ -3,22 +3,30 @@ import {ComboBoxState} from '@react-stately/combobox'
 import React, {Key} from 'react'
 import {Node} from '../tabs/types'
 import {useDOMRef} from '../utils/use-dom-ref'
+import Header from './header'
 
 interface Props<T = unknown> extends AriaListBoxOptions<T> {
   state: ComboBoxState<T>
+  headerTitle: string | undefined
+  headerOnClick: (e: unknown) => void
 }
 
-const ListBox = React.forwardRef<HTMLUListElement, Props>(
+const ListBox = React.forwardRef<HTMLDivElement, Props>(
   ({state, ...props}, ref) => {
-    const listBoxRef = useDOMRef<HTMLUListElement>(ref)
+    const listBoxRef = useDOMRef<HTMLDivElement>(ref)
     const {listBoxProps} = useListBox(props, state, listBoxRef)
 
     return (
-      <ul {...listBoxProps} ref={listBoxRef}>
-        {[...state.collection].map((item) => (
-          <Option key={item.key} item={item} state={state} />
-        ))}
-      </ul>
+      <div {...listBoxProps} ref={listBoxRef} className='dropdown-listbox'>
+        {props.headerTitle && (
+          <Header title={props.headerTitle} onPress={props?.headerOnClick} />
+        )}
+        <ul>
+          {[...state.collection].map((item) => (
+            <Option key={item.key} item={item} state={state} />
+          ))}
+        </ul>
+      </div>
     )
   },
 )
@@ -34,7 +42,7 @@ interface ExtendedOptionsProps<T = unknown> {
 const Option = React.forwardRef<HTMLLIElement, ExtendedOptionsProps>(
   ({item, state}, ref) => {
     const optionRef = useDOMRef<HTMLLIElement>(ref)
-    const {optionProps, isSelected, isFocused, isDisabled} = useOption(
+    const {optionProps, isSelected, isDisabled} = useOption(
       {key: item.key},
       state,
       optionRef,

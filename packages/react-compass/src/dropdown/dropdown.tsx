@@ -3,6 +3,7 @@ import {useComboBox} from '@react-aria/combobox'
 import {useFilter} from '@react-aria/i18n'
 import {ComboBoxStateOptions, useComboBoxState} from '@react-stately/combobox'
 import React from 'react'
+import {StyledLoading} from '../dropdown/dropdown.styles'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
@@ -15,6 +16,10 @@ import ListBox from './list-box'
 
 interface Props<T> extends ComboBoxStateOptions<T>, StyledComponentProps {
   searchable?: boolean
+  isLoading?: boolean
+  icon?: React.ReactNode
+  headerTitle?: string
+  headerOnClick?: (e: unknown) => void
 }
 
 export type DropdownProps<T = object> = Props<T> & DropdownVariantProps
@@ -25,6 +30,7 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
       // StyledComponentProps
       css = {},
       searchable,
+      icon = <Icon />,
       // ComponentProps
       menuTrigger = 'focus',
       // AriaDropdownProps
@@ -41,7 +47,7 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
     const wrapperRef = React.useRef<HTMLDivElement>(null)
     const buttonRef = React.useRef<HTMLButtonElement>(null)
     const inputRef = React.useRef<HTMLInputElement>(null)
-    const listBoxRef = React.useRef<HTMLUListElement>(null)
+    const listBoxRef = React.useRef<HTMLDivElement>(null)
     const popoverRef = React.useRef<HTMLDivElement>(null)
     const {buttonProps, inputProps, listBoxProps, labelProps} = useComboBox(
       {
@@ -62,6 +68,7 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
        * Close the sidebar if clicked on outside of element
        */
       function handleClickOutside(event: MouseEvent) {
+        console.log(event)
         if (
           listBoxRef.current &&
           !listBoxRef?.current?.contains(event.target as Node) &&
@@ -94,14 +101,29 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
               ref={inputRef}
               style={!searchable ? {display: 'none'} : {}}
             />
-            <div className='dropdown-icon'>
-              <Icon />
-            </div>
+            <div className='dropdown-icon'>{icon}</div>
           </Button>
         </StyledDropdown>
         {state.isOpen && (
           <StyledBox ref={popoverRef}>
-            <ListBox {...listBoxProps} ref={listBoxRef} state={state} />
+            {props.isLoading ? (
+              <StyledLoading>
+                <div className='spinner'>
+                  <div className='spinner-1' />
+                  <div className='spinner-2' />
+                  <div className='spinner-3' />
+                  <div />
+                </div>
+              </StyledLoading>
+            ) : (
+              <ListBox
+                {...listBoxProps}
+                ref={listBoxRef}
+                state={state}
+                headerTitle={props.headerTitle}
+                headerOnClick={(e) => props?.headerOnClick?.(e)}
+              />
+            )}
           </StyledBox>
         )}
       </StyledDropdownWrapper>
