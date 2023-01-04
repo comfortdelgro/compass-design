@@ -200,5 +200,7 @@ export type {
   UploadProps,
 } from './upload'
 export * from './utils'
+export {default as VideoPlayer} from './video-player'
+export type {VideoPlayerProps} from './video-player'
 export {default as Wizard} from './wizard'
 export type {WizardProps} from './wizard'
