@@ -1,18 +1,19 @@
 import React from 'react'
 import {StyledComponentProps} from '../../utils/stitches.types'
 import {useDOMRef} from '../../utils/use-dom-ref'
-import {colors, LegendPosition} from '../utils'
+import {LegendPosition} from '../utils'
 import {LegendVariantProps, StyledLegend} from './index.styles'
 
 interface Props extends StyledComponentProps {
   legends: string[]
   position: LegendPosition
+  colors: string[]
 }
 
 export type LegendProps = Props & LegendVariantProps
 
 const Legend = React.forwardRef<HTMLDivElement, LegendProps>((props, ref) => {
-  const {legends = [], position = 'top'} = props
+  const {legends = [], colors = [], position = 'top'} = props
   const legendRef = useDOMRef<HTMLDivElement>(ref)
 
   return (

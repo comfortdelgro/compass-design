@@ -20,6 +20,33 @@ export const StyledContent = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   padding: '0 $6 $6 $16',
+  variants: {
+    hideYAxis: {
+      true: {
+        paddingLeft: '$11',
+        paddingRight: '$6',
+      },
+      false: {},
+    },
+    hideXAxis: {
+      true: {
+        paddingLeft: '$8',
+        paddingTop: 0,
+        paddingBottom: 0,
+        paddingRight: 0,
+      },
+      false: {},
+    },
+  },
+  compoundVariants: [
+    {
+      hideYAxis: true,
+      hideXAxis: true,
+      css: {
+        padding: 0,
+      },
+    },
+  ],
 })
 
 export const StyledLabels = styled('div', {

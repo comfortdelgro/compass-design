@@ -20,6 +20,22 @@ export const StyledContent = styled('div', {
   display: 'flex',
   alignItems: 'end',
   padding: '$8 0 $6 $16',
+  variants: {
+    hideYAxis: {
+      true: {
+        paddingLeft: 0,
+        paddingRight: 0,
+      },
+      false: {},
+    },
+    hideXAxis: {
+      true: {
+        paddingTop: 0,
+        paddingBottom: 0,
+      },
+      false: {},
+    },
+  },
 })
 
 export const StyledBox = styled('div', {

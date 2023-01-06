@@ -180,12 +180,16 @@ import Chart from '@comfortdelgro/react-compass/chart'
 
 ### Props:
 
-| Name    | Type      | Default | Description                |
-|:--------|:----------|:--------|:---------------------------|
-| dataSet | `DataSet` | -       | Data set of the chart      |
-| unit    | `string`  | -       | Unit of the dataset lables |
-| title   | `string`  | -       | Display title of the chart |
-| css     | `CSS`     | —       |                            |
+| Name       | Type       | Default | Description                                          |
+| :----------| :----------| :-------| :----------------------------------------------------|
+| dataSet    | `DataSet`  | -       | Data set of the chart                                |
+| unit       | `string`   | -       | Unit of the dataset lables                           |
+| title      | `string`   | -       | Display title of the chart                           |
+| hideYAxis  | `boolean`  | false   | Hide the y-axis of the chart                         |
+| hideXAxis  | `boolean`  | false   | Hide the x-axis of the chart                         |
+| dataColors | `string[]` | -       | Color of each data line in the chart                 |
+| stepHeight | `number`   | 40      | Height between each data line in the chart, min = 20 |
+| css        | `CSS`      | —       |                                                      |
 
 Type of DataSet includes:
 | Name     | Type                               | Default | Description                                                                              |

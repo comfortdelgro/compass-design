@@ -3,11 +3,11 @@ import {StyledComponentProps} from '../../utils/stitches.types'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import Legend from '../legend'
 import {
-  colors,
-  DataSet,
+  Chart,
+  getColors,
   getStep,
-  LegendPosition,
   Line,
+  MIN_HEIGHT,
   Point,
   useWindowSize,
 } from '../utils'
@@ -19,12 +19,7 @@ import {
   StyledContent,
 } from './index.styles'
 
-interface Props extends StyledComponentProps {
-  legendPosition?: LegendPosition
-  title?: string
-  unit?: string
-  dataSet: DataSet
-}
+interface Props extends StyledComponentProps, Chart {}
 
 export type AreaChartProps = Props & ChartVariantProps
 
@@ -37,6 +32,10 @@ const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>(
       title,
       unit = 'Unit',
       legendPosition = 'top',
+      hideYAxis = false,
+      hideXAxis = false,
+      dataColors = [],
+      stepHeight = 40,
     } = props
     const {width} = useWindowSize()
     const chartRef = useDOMRef<HTMLDivElement>(ref)
@@ -46,6 +45,11 @@ const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>(
     const labels = useMemo(() => getStep(dataSet.data), [dataSet])
     const data = useMemo(() => dataSet.data, [dataSet])
     const legends = useMemo(() => dataSet.legends, [dataSet])
+    const colors: string[] = useMemo(() => getColors(dataColors), [dataColors])
+    const height: number = useMemo(
+      () => Math.max(stepHeight, MIN_HEIGHT),
+      [stepHeight],
+    )
 
     useEffect(() => {
       const box = document.getElementById('chart-line-box')
@@ -93,26 +97,29 @@ const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>(
       <StyledChart ref={chartRef} css={css}>
         {title && <h1>{title}</h1>}
         {legendPosition === 'top' && legends && legends.length > 0 && (
-          <Legend position={legendPosition} legends={legends} />
+          <Legend position={legendPosition} legends={legends} colors={colors} />
         )}
-        <StyledContent>
+        <StyledContent hideYAxis={hideYAxis} hideXAxis={hideXAxis}>
           <StyledBox
-            style={{height: `${labels.length * 45}px`}}
+            style={{height: `${labels.length * height}px`}}
             id='chart-line-box'
           >
-            <div className='chart-box-line-kind'>{unit}</div>
+            <div className='chart-box-line-kind'>{!hideYAxis ? unit : ''}</div>
             {Array(labels.length)
               .fill(0)
               .map((_, index) => (
                 <div
                   key={`${labels[index]}-index`}
                   className='chart-box-line'
-                  title={`${labels[index]}`}
+                  title={hideYAxis ? '' : `${labels[index]}`}
                 />
               ))}
             <StyledBody css={{$$length: `${data.length}`}}>
               {data.map((item, i) => (
-                <div title={item.title} key={`chart-line-column-${i}`}>
+                <div
+                  title={hideXAxis ? '' : `${item.title}`}
+                  key={`chart-line-column-${i}`}
+                >
                   {item.data.map((d, j) => (
                     <div
                       id={`chart-line-point-${i}-${j}`}
@@ -184,7 +191,7 @@ const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>(
           </StyledBox>
         </StyledContent>
         {legendPosition === 'bottom' && legends && legends.length > 0 && (
-          <Legend position={legendPosition} legends={legends} />
+          <Legend position={legendPosition} legends={legends} colors={colors} />
         )}
       </StyledChart>
     )
