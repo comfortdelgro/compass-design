@@ -71,6 +71,8 @@ export type {
   ErrorProps,
   ErrorTitleProps,
 } from './error'
+export {default as File} from './file'
+export type {FilePreviewProps, FileStateProps} from './file'
 export {Footer, FooterInfo} from './footer'
 export type {
   FooterHeaderProps,
@@ -193,12 +195,7 @@ export type {ToggleProps} from './toggle'
 export {Tooltip, TooltipTrigger} from './tooltip'
 export type {TooltipProps, TooltipTriggerProps} from './tooltip'
 export {default as Upload} from './upload'
-export type {
-  UploadButtonProps,
-  UploadIconProps,
-  UploadPlaceholderProps,
-  UploadProps,
-} from './upload'
+export type {UploadDragAndDropProps, UploadProps} from './upload'
 export * from './utils'
 export {default as VideoPlayer} from './video-player'
 export type {VideoPlayerProps} from './video-player'
