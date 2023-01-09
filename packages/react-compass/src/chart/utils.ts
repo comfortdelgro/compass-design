@@ -22,7 +22,30 @@ export const useWindowSize = () => {
   return windowSize
 }
 
-export const colors = ['#009EDA', '#D83B01', '#F8DB96', '#D1E8CF']
+export const colorsDefault = [
+  '#009EDA',
+  '#D83B01',
+  '#F8DB96',
+  '#D1E8CF',
+  '#fd6868',
+  '#53cfc9',
+  '#a2d925',
+  '#decf3f',
+  '#734fe9',
+  '#cd82ad',
+  '#006d92',
+  '#de7c00',
+  '#f33232',
+  '#3f9a80',
+  '#53c200',
+  '#d7af00',
+  '#4c26c9',
+  '#d44d99',
+]
+
+export const getColors = (df: string[]) => [...df, ...colorsDefault]
+
+export const MIN_HEIGHT = 20
 
 type Data = Array<{
   title: string
@@ -46,6 +69,17 @@ export interface Point {
 }
 
 export type LegendPosition = 'top' | 'bottom'
+
+export interface Chart {
+  legendPosition?: LegendPosition
+  title?: string
+  unit?: string
+  dataSet: DataSet
+  hideYAxis?: boolean
+  hideXAxis?: boolean
+  dataColors?: string[]
+  stepHeight?: number
+}
 
 const getMaxValueOfYAxis = (x: number) => {
   if (x < 10) return 10
