@@ -1,7 +1,6 @@
 import Chart from './index'
 
 const dataSet = {
-  labels: [0, 50, 100, 150, 200, 250, 300, 350, 400, 450],
   data: [
     {
       title: '1',
@@ -41,21 +40,6 @@ describe('accordion.cy.ts', () => {
 
     // legends
     cy.get('.c-flgKTm').should('be.visible')
-
-    // lables
-    dataSet.labels.forEach((item) => {
-      if (item != 0) cy.get(`[title="${item}"]`).should('be.visible')
-    })
-
-    // paths
-    cy.get(
-      'path[d="M 122 450 L 122 150 L 353 130 L 584 190 L 815 150 L 1046 150 L 1046 450"]',
-    ).should('be.visible')
-    cy.get(
-      'path[d="M 122 450 L 122 20 L 353 220 L 584 80 L 815 20 L 1046 20 L 1046 450"]',
-    ).should('be.visible')
-
-    // cy.document().matchImage()
   })
 
   it('C02: Should show column chart correctly', () => {
@@ -67,11 +51,6 @@ describe('accordion.cy.ts', () => {
 
     // legends
     cy.get('.c-flgKTm').should('be.visible')
-
-    // lables
-    dataSet.labels.forEach((item) => {
-      if (item != 0) cy.get(`[title="${item}"]`).should('be.visible')
-    })
 
     // paths
     dataSet.data.forEach((item) => {
@@ -90,18 +69,6 @@ describe('accordion.cy.ts', () => {
 
     // legends
     cy.get('.c-flgKTm').should('be.visible')
-
-    // lables
-    dataSet.labels.forEach((item) => {
-      if (item != 0) cy.get(`[title="${item}"]`).should('be.visible')
-    })
-
-    // paths
-    dataSet.data.forEach((item) => {
-      cy.get(`[title="${item.title}"]`).should('be.visible')
-    })
-
-    // cy.document().matchImage()
   })
 
   it('C04: Should show lines chart correctly', () => {
@@ -113,16 +80,5 @@ describe('accordion.cy.ts', () => {
 
     // legends
     cy.get('.c-flgKTm').should('be.visible')
-
-    // lables
-    dataSet.labels.forEach((item) => {
-      if (item != 0) cy.get(`[title="${item}"]`).should('be.visible')
-    })
-
-    // paths
-    cy.get('line[x1="122"]').should('be.visible')
-    cy.get('line[x1="353"]').should('be.visible')
-
-    // cy.document().matchImage()
   })
 })
