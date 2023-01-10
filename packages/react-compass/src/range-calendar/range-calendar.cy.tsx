@@ -10,7 +10,7 @@ describe('range-calendar.cy.ts', () => {
   it('C01: confirm date selected', () => {
     cy.mount(calendar)
     cy.get(
-      `[aria-label="Tuesday, December 6, 2022"] > .calendar-cell-value`,
+      `[aria-label="Friday, January 6, 2023"] > .calendar-cell-value`,
     ).click()
     cy.get('.highlighted > .calendar-cell-value').should('have.text', '6')
   })
