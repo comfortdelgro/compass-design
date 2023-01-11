@@ -47,6 +47,12 @@ export type {
 } from './chart'
 export {default as Checkbox} from './checkbox'
 export type {CheckboxProps} from './checkbox'
+export {default as DashboardSidecard} from './dashboard-sidecard'
+export type {
+  DashboardSidecardContentProps,
+  DashboardSidecardHeaderProps,
+  DashboardSidecardProps,
+} from './dashboard-sidecard'
 export {default as DatePicker} from './date-picker'
 export type {DatePickerProps} from './date-picker'
 export {default as DateRangePicker} from './date-range-picker'
