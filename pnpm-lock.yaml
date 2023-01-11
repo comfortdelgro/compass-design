@@ -177,6 +177,7 @@ importers:
       '@types/react': ^17.0.39
       '@vitejs/plugin-react': ^2.2.0
       chalk: ^5.1.2
+      chart.js: ^4.1.2
       cypress: ^12.1.0
       eslint: ^8.25.0
       execa: ^6.1.0
@@ -184,6 +185,7 @@ importers:
       listr: ^0.14.3
       prettier: ^2.7.1
       react: ^18.2.0
+      react-chartjs-2: ^5.2.0
       react-dom: ^18.2.0
       rimraf: ^3.0.2
       tsx: ^3.10.4
@@ -240,6 +242,8 @@ importers:
       '@react-types/calendar': 3.0.4_react@18.2.0
       '@react-types/combobox': 3.5.5_react@18.2.0
       '@stitches/react': 1.2.8_react@18.2.0
+      chart.js: 4.1.2
+      react-chartjs-2: 5.2.0_mfjxiilvrceiwtanada6fxhije
     devDependencies:
       '@comfortdelgro/eslint-config': 1.0.2_lqwc2zjgrlxsq4ydjmen4lphum
       '@frsource/cypress-plugin-visual-regression-diff': 3.2.7_cypress@12.1.0
@@ -2168,6 +2172,10 @@ packages:
       '@jridgewell/resolve-uri': 3.1.0
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
+
+  /@kurkle/color/0.3.1:
+    resolution: {integrity: sha512-hW0GwZj06z/ZFUW2Espl7toVDjghJN+EKqyXzPSV8NV89d5BYp5rRMBJoc+aUN0x5OXDMeRQHazejr2Xmqj2tw==}
+    dev: false
 
   /@ladle/react-context/1.0.1_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-xVQ8siyOEQG6e4Knibes1uA3PTyXnqiMmfSmd5pIbkzeDty8NCBtYHhTXSlfmcDNEsw/G8OzNWo4VbyQAVDl2A==}
@@ -5163,6 +5171,13 @@ packages:
   /chardet/0.7.0:
     resolution: {integrity: sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==}
     dev: true
+
+  /chart.js/4.1.2:
+    resolution: {integrity: sha512-9L1w6WLPq6ztiWVVOYtDtpo0CUsBKDWPrUEdwChAyzczaikqeSwNKEv3QpJ7EO4ICcLSi6UDVhgvcnUhRJidRA==}
+    engines: {pnpm: ^7.0.0}
+    dependencies:
+      '@kurkle/color': 0.3.1
+    dev: false
 
   /check-more-types/2.24.0:
     resolution: {integrity: sha512-Pj779qHxV2tuapviy1bSZNEL1maXr13bPYpsvSDB68HlYcYuhlDrmGd63i0JHMCLKzc7rUSNIrpdJlhVlNwrxA==}
@@ -9763,6 +9778,16 @@ packages:
       minimist: 1.2.7
       strip-json-comments: 2.0.1
     dev: true
+
+  /react-chartjs-2/5.2.0_mfjxiilvrceiwtanada6fxhije:
+    resolution: {integrity: sha512-98iN5aguJyVSxp5U3CblRLH67J8gkfyGNbiK3c+l1QI/G4irHMPQw44aEPmjVag+YKTyQ260NcF82GTQ3bdscA==}
+    peerDependencies:
+      chart.js: ^4.1.1
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      chart.js: 4.1.2
+      react: 18.2.0
+    dev: false
 
   /react-dom/18.2.0_react@18.2.0:
     resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
