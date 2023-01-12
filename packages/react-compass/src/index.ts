@@ -47,6 +47,12 @@ export type {
 } from './chart'
 export {default as Checkbox} from './checkbox'
 export type {CheckboxProps} from './checkbox'
+export {default as DashboardSidecard} from './dashboard-sidecard'
+export type {
+  DashboardSidecardContentProps,
+  DashboardSidecardHeaderProps,
+  DashboardSidecardProps,
+} from './dashboard-sidecard'
 export {default as DatePicker} from './date-picker'
 export type {DatePickerProps} from './date-picker'
 export {default as DateRangePicker} from './date-range-picker'
@@ -60,6 +66,8 @@ export type {
   DialogTitleProps,
   DialogTriggerProps,
 } from './dialog'
+export {default as Dropdown} from './dropdown'
+export type {DropdownProps} from './dropdown'
 export {default as Error} from './error'
 export type {
   ErrorActionProps,
@@ -69,6 +77,8 @@ export type {
   ErrorProps,
   ErrorTitleProps,
 } from './error'
+export {default as File} from './file'
+export type {FilePreviewProps, FileStateProps} from './file'
 export {Footer, FooterInfo} from './footer'
 export type {
   FooterHeaderProps,
@@ -79,6 +89,8 @@ export type {
   FooterPolicyProps,
   FooterProps,
 } from './footer'
+export {default as Grid} from './grid'
+export type {GridContainerProps, GridItemProps} from './grid'
 export {default as Icon} from './icon'
 export type {IconProp} from './icon'
 export {default as Link} from './link'
@@ -191,12 +203,9 @@ export type {ToggleProps} from './toggle'
 export {Tooltip, TooltipTrigger} from './tooltip'
 export type {TooltipProps, TooltipTriggerProps} from './tooltip'
 export {default as Upload} from './upload'
-export type {
-  UploadButtonProps,
-  UploadIconProps,
-  UploadPlaceholderProps,
-  UploadProps,
-} from './upload'
+export type {UploadDragAndDropProps, UploadProps} from './upload'
 export * from './utils'
+export {default as VideoPlayer} from './video-player'
+export type {VideoPlayerProps} from './video-player'
 export {default as Wizard} from './wizard'
 export type {WizardProps} from './wizard'

@@ -1,6 +1,3 @@
-import {faCloudArrowUp} from '@fortawesome/free-solid-svg-icons'
-import Button from '../button'
-import {Icon} from '../icon'
 import {Column} from '../utils/components'
 import Upload from './index'
 
@@ -18,12 +15,9 @@ export const Default: React.FC = () => {
       </h3>
       <Upload
         getFile={getFileFunc}
-        fileExtenstions='image/*, .docs, .docx'
-        fileSizeLimit={30000}
-      >
-        <Upload.Button>Browse file</Upload.Button>
-        <Upload.Placeholder>No file chosen</Upload.Placeholder>
-      </Upload>
+        accept='image/*, .docs, .docx'
+        // fileSizeLimit={30000}
+      />
     </Column>
   )
 }
@@ -34,76 +28,34 @@ export const Variants: React.FC = () => {
       <h3>Click-to-upload</h3>
       <Upload
         getFile={getFileFunc}
-        fileExtenstions='image/*, .docs, .docx'
-        fileSizeLimit={30000}
-        variant='click'
-      >
-        <Upload.Button>Browse file</Upload.Button>
-        <Upload.Placeholder>No file chosen</Upload.Placeholder>
-      </Upload>
+        accept='image/*, .docs, .docx'
+        // fileSizeLimit={30000}
+      />
 
       <h3>Allow multiple uploaded file</h3>
       <Upload
         getFile={getFileFunc}
-        fileExtenstions='image/*, .docs, .docx'
-        fileSizeLimit={3000000}
-        variant='click'
-        multiple={true}
-      >
-        <Upload.Button>Browse file</Upload.Button>
-        <Upload.Placeholder>Please upload</Upload.Placeholder>
-      </Upload>
+        accept='image/*, .docs, .docx'
+        // fileSizeLimit={30000}
+        multiple
+      />
 
       <h3>Primary drag-and-drop</h3>
-      <Upload
+      <Upload.DragAndDrop
         getFile={getFileFunc}
-        fileExtenstions='image/*, .docs, .docx'
+        accept='image/*, .docs, .docx'
         fileSizeLimit={30000}
-        variant='dropPrimary'
         multiple
-      >
-        <Upload.Button>
-          <Button
-            css={{
-              width: '80%',
-              height: '60%',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            Upload files
-          </Button>
-        </Upload.Button>
-        <Upload.Placeholder>or Drop files</Upload.Placeholder>
-      </Upload>
+      />
 
       <h3>Secondary drag-and-drop</h3>
-      <Upload
+      <Upload.DragAndDrop
         getFile={getFileFunc}
-        fileExtenstions='image/*, .docs, .docx'
+        accept='image/*, .docs, .docx'
         fileSizeLimit={30000}
-        variant='dropSecondary'
+        variant='area'
         multiple={true}
-      >
-        <Upload.Icon>
-          <Icon icon={faCloudArrowUp} />
-        </Upload.Icon>
-        <Upload.Button>
-          <Button
-            css={{
-              width: '40%',
-              height: '60%',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            Upload files
-          </Button>
-        </Upload.Button>
-        <Upload.Placeholder>or Drop files</Upload.Placeholder>
-      </Upload>
+      />
     </Column>
   )
 }

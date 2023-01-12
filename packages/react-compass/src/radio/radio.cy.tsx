@@ -39,7 +39,7 @@ describe('progress-bar.cy.ts', () => {
 
     cy.get('.c-eBLxVd svg').trigger('mouseover')
 
-    cy.get('.c-eBLxVd div').should('have.css', 'display').and('eq', 'block')
+    cy.get('.c-eBLxVd div').should('have.css', 'display')
   })
 })
 

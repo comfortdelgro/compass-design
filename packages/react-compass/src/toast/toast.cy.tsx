@@ -1,6 +1,6 @@
 import {Default as Toast} from './toast.stories'
 
-describe('sidebar.cy.ts', () => {
+describe('toast.cy.ts', () => {
   beforeEach(() => {
     cy.viewport(1280, 720)
   })

@@ -1,20 +1,13 @@
 import Upload from './upload'
-import UploadButton from './upload-button'
-import UploadIcon from './upload-icon'
-import UploadPlaceholder from './upload-placeholder'
+import UploadDragAndDrop from './upload-drag-and-drop'
 
 export type {UploadProps} from './upload'
-export type {UploadButtonProps} from './upload-button'
-export type {UploadIconProps} from './upload-icon'
-export type {UploadPlaceholderProps} from './upload-placeholder'
+export type {UploadDragAndDropProps} from './upload-drag-and-drop'
 
-Upload.Button = UploadButton
-Upload.Placeholder = UploadPlaceholder
-Upload.Icon = UploadIcon
+Upload.DragAndDrop = UploadDragAndDrop
 
-Upload.Button.displayName = 'Upload.Button'
-Upload.Placeholder.displayName = 'Upload.Placeholder'
-Upload.Icon.displayName = 'Upload.Icon'
+Upload.DragAndDrop.displayName = 'Upload.DragAndDrop'
+
 Upload.displayName = 'Upload'
 
 export default Upload

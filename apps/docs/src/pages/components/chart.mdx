@@ -26,37 +26,37 @@ import Chart from '@comfortdelgro/react-compass/chart'
 <section className={styles.avatarShowcaseContainer}>
     <div style={{width: '100%'}}>
       <Chart.Column 
-        dataSet={{
-          data: [
-            {
-              title: '1',
-              data: [300, 430],
-            },
-            {
-              title: '2',
-              data: [320, 230],
-            },
-            {
-              title: '3',
-              data: [260, 370],
-            },
-            {
-              title: '4',
-              data: [300, 430],
-            },
-            {
-              title: '5',
-              data: [300, 430],
-            },
-          ],
-          legends: ['legend1', 'legend2'],
-        }} 
-        title='Column Chart' />
+        labels = {['January', 'February', 'March', 'April', 'May', 'June', 'July']}
+        data = {[
+          {
+            label: 'Dataset 1',
+            data: new Array(7).fill(0).map(() => Math.floor(Math.random() * 1000)),
+          },
+          {
+            label: 'Dataset 2',
+            data: new Array(7).fill(0).map(() => Math.floor(Math.random() * 1000)),
+          },
+        ]}
+        title='Column Chart' 
+      />
     </div>
 </section>
 
 ```js
-  <Chart.Column dataSet={dataSet} title='Column Chart' />
+  <Chart.Column 
+    labels = {['January', 'February', 'March', 'April', 'May', 'June', 'July']}
+    data = {[
+      {
+        label: 'Dataset 1',
+        data: new Array(7).fill(0).map(() => Math.floor(Math.random() * 1000)),
+      },
+      {
+        label: 'Dataset 2',
+        data: new Array(7).fill(0).map(() => Math.floor(Math.random() * 1000)),
+      },
+    ]}
+    title='Column Chart' 
+  />
 ```
 
 ---
@@ -65,37 +65,37 @@ import Chart from '@comfortdelgro/react-compass/chart'
 <section className={styles.avatarShowcaseContainer}>
     <div style={{width: '100%'}}>
       <Chart.Bar 
-        dataSet={{
-          data: [
-            {
-              title: '1',
-              data: [300, 430],
-            },
-            {
-              title: '2',
-              data: [320, 230],
-            },
-            {
-              title: '3',
-              data: [260, 370],
-            },
-            {
-              title: '4',
-              data: [300, 430],
-            },
-            {
-              title: '5',
-              data: [300, 430],
-            },
-          ],
-          legends: ['legend1', 'legend2'],
-        }} 
-        title='Bar Chart' />
+        labels = {['January', 'February', 'March', 'April', 'May', 'June', 'July']}
+        data = {[
+          {
+            label: 'Dataset 1',
+            data: new Array(7).fill(0).map(() => Math.floor(Math.random() * 1000)),
+          },
+          {
+            label: 'Dataset 2',
+            data: new Array(7).fill(0).map(() => Math.floor(Math.random() * 1000)),
+          },
+        ]}
+        title='Bar Chart' 
+      />
     </div>
 </section>
 
 ```js
-  <Chart.Bar dataSet={dataSet} title='Bar Chart' />
+  <Chart.Bar 
+    labels = {['January', 'February', 'March', 'April', 'May', 'June', 'July']}
+    data = {[
+      {
+        label: 'Dataset 1',
+        data: new Array(7).fill(0).map(() => Math.floor(Math.random() * 1000)),
+      },
+      {
+        label: 'Dataset 2',
+        data: new Array(7).fill(0).map(() => Math.floor(Math.random() * 1000)),
+      },
+    ]}
+    title='Bar Chart' 
+  />
 ```
 
 ---
@@ -104,37 +104,37 @@ import Chart from '@comfortdelgro/react-compass/chart'
 <section className={styles.avatarShowcaseContainer}>
     <div style={{width: '100%'}}>
       <Chart.Line 
-        dataSet={{
-          data: [
-            {
-              title: '1',
-              data: [300, 430],
-            },
-            {
-              title: '2',
-              data: [320, 230],
-            },
-            {
-              title: '3',
-              data: [260, 370],
-            },
-            {
-              title: '4',
-              data: [300, 430],
-            },
-            {
-              title: '5',
-              data: [300, 430],
-            },
-          ],
-          legends: ['legend1', 'legend2'],
-        }} 
-        title='Line Chart' />
+        labels = {['January', 'February', 'March', 'April', 'May', 'June', 'July']}
+        data = {[
+          {
+            label: 'Dataset 1',
+            data: new Array(7).fill(0).map(() => Math.floor(Math.random() * 1000)),
+          },
+          {
+            label: 'Dataset 2',
+            data: new Array(7).fill(0).map(() => Math.floor(Math.random() * 1000)),
+          },
+        ]}
+        title='Line Chart' 
+      />
     </div>
 </section>
 
 ```js
-  <Chart.Line dataSet={dataSet} title='Line Chart' />
+  <Chart.Line 
+    labels = {['January', 'February', 'March', 'April', 'May', 'June', 'July']}
+    data = {[
+      {
+        label: 'Dataset 1',
+        data: new Array(7).fill(0).map(() => Math.floor(Math.random() * 1000)),
+      },
+      {
+        label: 'Dataset 2',
+        data: new Array(7).fill(0).map(() => Math.floor(Math.random() * 1000)),
+      },
+    ]}
+    title='Line Chart' 
+  />
 ```
 
 ---
@@ -143,58 +143,62 @@ import Chart from '@comfortdelgro/react-compass/chart'
 <section className={styles.avatarShowcaseContainer}>
     <div style={{width: '100%'}}>
       <Chart.Area 
-        dataSet={{
-          data: [
-            {
-              title: '1',
-              data: [300, 430],
-            },
-            {
-              title: '2',
-              data: [320, 230],
-            },
-            {
-              title: '3',
-              data: [260, 370],
-            },
-            {
-              title: '4',
-              data: [300, 430],
-            },
-            {
-              title: '5',
-              data: [300, 430],
-            },
-          ],
-          legends: ['legend1', 'legend2'],
-        }} 
-        title='Area Chart' />
+        labels = {['January', 'February', 'March', 'April', 'May', 'June', 'July']}
+        data = {[
+          {
+            label: 'Dataset 1',
+            data: new Array(7).fill(0).map(() => Math.floor(Math.random() * 1000)),
+          },
+          {
+            label: 'Dataset 2',
+            data: new Array(7).fill(0).map(() => Math.floor(Math.random() * 1000)),
+          },
+        ]}
+        title='Area Chart' 
+      />
     </div>
 </section>
 
 ```js
-  <Chart.Area dataSet={dataSet} title='Area Chart' />
+  <Chart.Area 
+    labels = {['January', 'February', 'March', 'April', 'May', 'June', 'July']}
+    data = {[
+      {
+        label: 'Dataset 1',
+        data: new Array(7).fill(0).map(() => Math.floor(Math.random() * 1000)),
+      },
+      {
+        label: 'Dataset 2',
+        data: new Array(7).fill(0).map(() => Math.floor(Math.random() * 1000)),
+      },
+    ]}
+    title='Area Chart' 
+  />
 ```
 
 ---
 
 ### Props:
 
-| Name    | Type      | Default | Description                |
-|:--------|:----------|:--------|:---------------------------|
-| dataSet | `DataSet` | -       | Data set of the chart      |
-| unit    | `string`  | -       | Unit of the dataset lables |
-| title   | `string`  | -       | Display title of the chart |
-| css     | `CSS`     | —       |                            |
+| Name           | Type                             | Default | Description                  |
+|:---------------|:---------------------------------|:--------|:-----------------------------|
+| data           | `Dataset[]`                      | -       | Data set of the chart        |
+| labels         | `string[]`                       | -       | List of lables in the chart  |
+| unit           | `string`                         | -       | Unit of the dataset lables   |
+| title          | `string`                         | -       | Display title of the chart   |
+| hideYAxis      | `boolean`                        | false   | Hide the y-axis of the chart |
+| hideXAxis      | `boolean`                        | false   | Hide the x-axis of the chart |
+| legendPosition | `top`\|`bottom`\|`left`\|`right` | false   | Position of the legends      |
+
 
 Type of DataSet includes:
-| Name     | Type                               | Default | Description                                                                              |
-| :------- | :--------------------------------- | :------ | :--------------------------------------------------------------------------------------- |
-| legends  | `string[]`                         | -       | List of kind of data                                                                     |
-| data     | `{ title: string, data: number[]}` | -       | -                                                                                        |
-|          | `title: string`                    | -       | Title of the point data                                                                  |
-|          | `data: number[]`                   | -       | List of value in one point                                                               |
-| css      | `CSS`                              | —       | The system prop that allows defining system overrides as well as additional CSS styles.  |
+| Name            | Type       | Default | Description                                |  |
+|:----------------|:-----------|:--------|:-------------------------------------------|--|
+| label           | `string`   | -       | Name of the dataset                        |  |
+| data            | `number[]` | -       | List of value in dataset                   |  |
+| backgroundColor | `string`   | -       | Background color in 1 point of the dataset |  |
+| borderColor     | `string`   | -       | Border color in 1 point of the dataset     |  |
+
 ---
 
 <Callout>

@@ -64,7 +64,7 @@ const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>((props, ref) => {
     const tooltipArrowStyle: TooltipArrowStyle = {
       '&:before': {
         // set color of the arrow base on user's tooltip color
-        color: css.backgroundColor,
+        color: css.backgroundColor || css.background,
         /*
         set position of the arrow base on trigger properties
         must substract an observational error number, 

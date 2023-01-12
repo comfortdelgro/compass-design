@@ -1,5 +1,6 @@
 import React from 'react'
 import Button from '../button'
+import TextField from '../textfield'
 import {Column} from '../utils/components'
 import Sidebar from './index'
 
@@ -19,7 +20,10 @@ export const Default: React.FC = () => {
         handleClose={() => setIsDefaultOpen(false)}
       >
         <Sidebar.Title>My title</Sidebar.Title>
-        <Sidebar.Content>My content</Sidebar.Content>
+        <Sidebar.Content>
+          <TextField name='title' />
+          <TextField name='subtitle' />
+        </Sidebar.Content>
         <Sidebar.Actions>
           <Button css={{width: '45%', height: '100%', fontSize: '1em'}}>
             Action

@@ -18,6 +18,7 @@ interface Props extends AriaTextFieldProps, StyledComponentProps {
   helperText?: string
   leftIcon?: React.ReactNode
   rightIcon?: React.ReactNode
+  onChangeEvent?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export type TextFieldProps = Props & TextFieldVariantProps
@@ -33,6 +34,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       helperText,
       leftIcon,
       rightIcon,
+      onChangeEvent,
       // AriaTextFieldProps
       isDisabled,
       ...ariaSafeProps
@@ -49,6 +51,11 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
     const {labelProps, inputProps, descriptionProps, errorMessageProps} =
       useTextField(ariaProps, textfieldRef)
 
+    const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      inputProps.onChange?.(event)
+      onChangeEvent?.(event)
+    }
+
     return (
       <StyledTextFieldWrapper css={css}>
         {label && (
@@ -58,7 +65,12 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
         )}
         <StyledTextFieldBox disabled={!!isDisabled} errored={!!errored}>
           {leftIcon ? <div className='left-icon'>{leftIcon}</div> : null}
-          <StyledTextField css={css} ref={textfieldRef} {...inputProps} />
+          <StyledTextField
+            css={css}
+            ref={textfieldRef}
+            {...inputProps}
+            onChange={handleOnChange}
+          />
           {rightIcon ? <div className='right-icon'>{rightIcon}</div> : null}
         </StyledTextFieldBox>
         {!errored && helperText ? (

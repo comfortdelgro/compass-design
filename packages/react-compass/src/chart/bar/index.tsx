@@ -1,84 +1,31 @@
-import React, {useMemo} from 'react'
-import {StyledComponentProps} from '../../utils/stitches.types'
-import {useDOMRef} from '../../utils/use-dom-ref'
-import Legend from '../legend'
-import {colors, DataSet, getStep, LegendPosition} from '../utils'
 import {
-  ChartVariantProps,
-  StyledBody,
-  StyledBox,
-  StyledChart,
-  StyledContent,
-} from './index.styles'
+  BarElement,
+  CategoryScale,
+  Chart as ChartJS,
+  Legend,
+  LinearScale,
+  Title,
+  Tooltip,
+} from 'chart.js'
+import React, {useMemo} from 'react'
+import {Bar} from 'react-chartjs-2'
+import {buildData, Chart, DEFAULT_HORIZONTAL_OPTIONS} from '../utils'
 
-interface Props extends StyledComponentProps {
-  legendPosition?: LegendPosition
-  title?: string
-  unit?: string
-  dataSet: DataSet
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
+
+export type BarChartProps = Chart
+
+const BarChart: React.FC<BarChartProps> = (props) => {
+  const {data = [], labels = [], unit, title, legendPosition = 'top'} = props
+
+  const mappedData = useMemo(
+    () => buildData(labels, data, 'bar'),
+    [data, labels],
+  )
+
+  const options = DEFAULT_HORIZONTAL_OPTIONS(legendPosition, title, unit)
+
+  return <Bar options={options} data={mappedData} />
 }
-
-export type BarChartProps = Props & ChartVariantProps
-
-const BarChart = React.forwardRef<HTMLDivElement, BarChartProps>(
-  (props, ref) => {
-    const {
-      // StyledComponentProps
-      css = {},
-      title,
-      dataSet,
-      unit = 'Unit',
-      legendPosition = 'top',
-    } = props
-
-    const chartRef = useDOMRef<HTMLDivElement>(ref)
-
-    const labels = useMemo(() => getStep(dataSet.data), [dataSet])
-    const data = useMemo(() => dataSet.data, [dataSet])
-    const legends = useMemo(() => dataSet.legends, [dataSet])
-
-    return (
-      <StyledChart ref={chartRef} css={css}>
-        {title && <h1>{title}</h1>}
-        {legendPosition === 'top' && legends && legends.length > 0 && (
-          <Legend position={legendPosition} legends={legends} />
-        )}
-        <StyledContent>
-          <StyledBox style={{height: `${labels.length * 45}px`}}>
-            <div className='chart-box-line-kind'>{unit}</div>
-            {Array(labels.length)
-              .fill(0)
-              .map((_, index) => (
-                <div
-                  key={`${labels[index]}-index`}
-                  className='chart-box-line'
-                  title={`${labels[index]}`}
-                />
-              ))}
-            <StyledBody css={{$$length: `${data.length}`}}>
-              {data.map((item, i) => (
-                <div title={item.title} key={`chart-bar-column-${i}`}>
-                  {item.data.map((d, index) => (
-                    <div
-                      key={`chart-bar-subcolumn-${i}-${index}`}
-                      style={{
-                        height: `calc(100% / ${item.data.length})`,
-                        width: `${(d / Math.max(...labels)) * 100}%`,
-                        backgroundColor: colors[index],
-                      }}
-                    />
-                  ))}
-                </div>
-              ))}
-            </StyledBody>
-          </StyledBox>
-        </StyledContent>
-        {legendPosition === 'bottom' && legends && legends.length > 0 && (
-          <Legend position={legendPosition} legends={legends} />
-        )}
-      </StyledChart>
-    )
-  },
-)
 
 export default BarChart
