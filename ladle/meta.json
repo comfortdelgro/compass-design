@@ -605,16 +605,6 @@
       "filePath": "src/sidebar/sidebar.stories.tsx",
       "meta": {}
     },
-    "sidenav--sidenavs": {
-      "name": "Sidenavs",
-      "levels": [
-        "Sidenav"
-      ],
-      "locStart": 15,
-      "locEnd": 114,
-      "filePath": "src/sidenav/sidenav.stories.tsx",
-      "meta": {}
-    },
     "slider--sliders": {
       "name": "Sliders",
       "levels": [
@@ -623,6 +613,16 @@
       "locStart": 5,
       "locEnd": 36,
       "filePath": "src/slider/slider.stories.tsx",
+      "meta": {}
+    },
+    "sidenav--sidenavs": {
+      "name": "Sidenavs",
+      "levels": [
+        "Sidenav"
+      ],
+      "locStart": 15,
+      "locEnd": 114,
+      "filePath": "src/sidenav/sidenav.stories.tsx",
       "meta": {}
     },
     "spinner--spinners": {
