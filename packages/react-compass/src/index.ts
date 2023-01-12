@@ -89,6 +89,8 @@ export type {
   FooterPolicyProps,
   FooterProps,
 } from './footer'
+export {default as Grid} from './grid'
+export type {GridContainerProps, GridItemProps} from './grid'
 export {default as Icon} from './icon'
 export type {IconProp} from './icon'
 export {default as Link} from './link'
