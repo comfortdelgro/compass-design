@@ -31,7 +31,8 @@ const Popover = React.forwardRef<HTMLDivElement, Props>(
             props.triggerRef.current?.clientWidth
               ? {
                   ...popoverProps.style,
-                  width: props.triggerRef.current.clientWidth + 2,
+                  width: 'fit-content',
+                  minWidth: props.triggerRef.current.clientWidth + 2,
                 }
               : {...popoverProps?.style}
           }
