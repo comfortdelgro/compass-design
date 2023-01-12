@@ -1,5 +1,11 @@
 # @comfortdelgro/compass-icons
 
+## 0.3.0
+
+### Minor Changes
+
+- 83f5bf6: Add more components and fix few bugs on current components.
+
 ## 0.2.1
 
 ### Patch Changes

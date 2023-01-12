@@ -132,6 +132,7 @@ export const StyledModal = styled('div', {
     '0px 0.6px 1.8px rgba(0, 0, 0, 0.1), 0px 3.2px 7.2px rgba(0, 0, 0, 0.13)',
 
   borderRadius: '$lg',
+  overflow: 'clip',
   position: 'fixed',
   top: '50%',
   left: '50%',

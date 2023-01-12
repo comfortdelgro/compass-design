@@ -11,3 +11,15 @@ describe('toggle.cy.ts', () => {
     cy.get(`[role='tooltip']`).should('exist')
   })
 })
+
+describe('toggle.cy.ts', () => {
+  beforeEach(() => {
+    cy.viewport(1280, 720)
+  })
+
+  it('C01: confirm toggle switch when being clicked', () => {
+    cy.mount(<ControlledTooltip />)
+    cy.get('#text').focus()
+    cy.get(`[role='tooltip']`).should('exist')
+  })
+})
