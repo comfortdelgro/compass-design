@@ -200,8 +200,8 @@
       "levels": [
         "Chart"
       ],
-      "locStart": 30,
-      "locEnd": 36,
+      "locStart": 17,
+      "locEnd": 23,
       "filePath": "src/chart/chart.stories.tsx",
       "meta": {}
     },
@@ -210,8 +210,8 @@
       "levels": [
         "Chart"
       ],
-      "locStart": 38,
-      "locEnd": 44,
+      "locStart": 25,
+      "locEnd": 31,
       "filePath": "src/chart/chart.stories.tsx",
       "meta": {}
     },
@@ -220,8 +220,8 @@
       "levels": [
         "Chart"
       ],
-      "locStart": 46,
-      "locEnd": 52,
+      "locStart": 33,
+      "locEnd": 39,
       "filePath": "src/chart/chart.stories.tsx",
       "meta": {}
     },
@@ -230,8 +230,8 @@
       "levels": [
         "Chart"
       ],
-      "locStart": 54,
-      "locEnd": 60,
+      "locStart": 41,
+      "locEnd": 47,
       "filePath": "src/chart/chart.stories.tsx",
       "meta": {}
     },
@@ -253,6 +253,16 @@
       "locStart": 92,
       "locEnd": 109,
       "filePath": "src/checkbox/checkbox.stories.tsx",
+      "meta": {}
+    },
+    "dashboard-sidecard--default": {
+      "name": "Default",
+      "levels": [
+        "Dashboard sidecard"
+      ],
+      "locStart": 7,
+      "locEnd": 59,
+      "filePath": "src/dashboard-sidecard/dashboardSidecard.stories.tsx",
       "meta": {}
     },
     "date-picker--variants": {
@@ -315,6 +325,16 @@
       "filePath": "src/dialog/dialog.stories.tsx",
       "meta": {}
     },
+    "dropdown--dropdowns": {
+      "name": "Dropdowns",
+      "levels": [
+        "Dropdown"
+      ],
+      "locStart": 6,
+      "locEnd": 62,
+      "filePath": "src/dropdown/dropdown.stories.tsx",
+      "meta": {}
+    },
     "error--default": {
       "name": "Default",
       "levels": [
@@ -335,6 +355,26 @@
       "filePath": "src/error/error.stories.tsx",
       "meta": {}
     },
+    "file--states": {
+      "name": "States",
+      "levels": [
+        "File"
+      ],
+      "locStart": 4,
+      "locEnd": 27,
+      "filePath": "src/file/file.stories.tsx",
+      "meta": {}
+    },
+    "file--previews": {
+      "name": "Previews",
+      "levels": [
+        "File"
+      ],
+      "locStart": 29,
+      "locEnd": 38,
+      "filePath": "src/file/file.stories.tsx",
+      "meta": {}
+    },
     "footer--variants": {
       "name": "Variants",
       "levels": [
@@ -343,6 +383,16 @@
       "locStart": 15,
       "locEnd": 341,
       "filePath": "src/footer/footer.stories.tsx",
+      "meta": {}
+    },
+    "grid--default": {
+      "name": "Default",
+      "levels": [
+        "Grid"
+      ],
+      "locStart": 4,
+      "locEnd": 39,
+      "filePath": "src/grid/grid.stories.tsx",
       "meta": {}
     },
     "link--links": {
@@ -540,8 +590,8 @@
       "levels": [
         "Sidebar"
       ],
-      "locStart": 6,
-      "locEnd": 34,
+      "locStart": 7,
+      "locEnd": 38,
       "filePath": "src/sidebar/sidebar.stories.tsx",
       "meta": {}
     },
@@ -550,8 +600,8 @@
       "levels": [
         "Sidebar"
       ],
-      "locStart": 36,
-      "locEnd": 90,
+      "locStart": 40,
+      "locEnd": 94,
       "filePath": "src/sidebar/sidebar.stories.tsx",
       "meta": {}
     },
@@ -780,8 +830,8 @@
       "levels": [
         "Upload"
       ],
-      "locStart": 12,
-      "locEnd": 29,
+      "locStart": 9,
+      "locEnd": 23,
       "filePath": "src/upload/upload.stories.tsx",
       "meta": {}
     },
@@ -790,9 +840,19 @@
       "levels": [
         "Upload"
       ],
-      "locStart": 31,
-      "locEnd": 109,
+      "locStart": 25,
+      "locEnd": 61,
       "filePath": "src/upload/upload.stories.tsx",
+      "meta": {}
+    },
+    "video-player--default": {
+      "name": "Default",
+      "levels": [
+        "Video player"
+      ],
+      "locStart": 5,
+      "locEnd": 19,
+      "filePath": "src/video-player/video-player.stories.tsx",
       "meta": {}
     },
     "wizard--variants": {
