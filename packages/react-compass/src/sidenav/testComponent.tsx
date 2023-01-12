@@ -70,4 +70,3 @@ export const NoExpandSidenav: React.FC = () => {
     </Row>
   )
 }
-

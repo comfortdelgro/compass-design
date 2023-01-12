@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 0.7.0
+
+### Minor Changes
+
+- 9885a4f: add components: videoplayer, file preview, dropdown component, grid, dashboard sidecard. and fix bugs on ccurrent components
+
 ## 0.6.0
 
 ### Minor Changes
