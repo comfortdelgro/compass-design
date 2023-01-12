@@ -1,36 +1,23 @@
 import {Column} from '../utils/components'
 import Chart from './index'
 
-const dataSet = {
-  data: [
-    {
-      title: '1',
-      data: [300, 430],
-    },
-    {
-      title: '2',
-      data: [320, 230],
-    },
-    {
-      title: '3',
-      data: [260, 370],
-    },
-    {
-      title: '4',
-      data: [300, 430],
-    },
-    {
-      title: '5',
-      data: [300, 430],
-    },
-  ],
-  legends: ['legend1', 'legend2'],
-}
+const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July']
+
+const data = [
+  {
+    label: 'Dataset 1',
+    data: labels.map(() => Math.floor(Math.random() * 1000)),
+  },
+  {
+    label: 'Dataset 2',
+    data: labels.map(() => Math.floor(Math.random() * 1000)),
+  },
+]
 
 export const Areas: React.FC = () => (
   <Column>
     <div style={{width: '100%'}}>
-      <Chart.Area dataSet={dataSet} title='Area Chart' />
+      <Chart.Area labels={labels} data={data} title='Area Chart' />
     </div>
   </Column>
 )
@@ -38,7 +25,7 @@ export const Areas: React.FC = () => (
 export const Columns: React.FC = () => (
   <Column>
     <div style={{width: '100%'}}>
-      <Chart.Column dataSet={dataSet} title='Column Chart' />
+      <Chart.Column labels={labels} data={data} title='Column Chart' />
     </div>
   </Column>
 )
@@ -46,7 +33,7 @@ export const Columns: React.FC = () => (
 export const Lines: React.FC = () => (
   <Column>
     <div style={{width: '100%'}}>
-      <Chart.Line dataSet={dataSet} title='Line Chart' />
+      <Chart.Line labels={labels} data={data} title='Line Chart' />
     </div>
   </Column>
 )
@@ -54,7 +41,7 @@ export const Lines: React.FC = () => (
 export const Bars: React.FC = () => (
   <Column>
     <div style={{width: '100%'}}>
-      <Chart.Bar dataSet={dataSet} title='Bar Chart' />
+      <Chart.Bar labels={labels} data={data} title='Bar Chart' />
     </div>
   </Column>
 )
