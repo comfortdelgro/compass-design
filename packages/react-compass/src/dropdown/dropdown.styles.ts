@@ -50,6 +50,9 @@ export const StyledDropdown = styled('div', {
       },
     },
     p: {
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis',
+      overflow: 'hidden',
       fontSize: '$label1',
       fontWeight: '$semibold',
       height: '$6',
@@ -62,6 +65,9 @@ export const StyledDropdown = styled('div', {
       margin: 0,
     },
     input: {
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis',
+      overflow: 'hidden',
       fontSize: '$label1',
       fontWeight: '$semibold',
       height: '$6',
