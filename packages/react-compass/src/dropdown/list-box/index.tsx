@@ -10,23 +10,26 @@ interface Props<T = unknown> extends AriaListBoxOptions<T> {
   headerTitle: string | undefined
   headerOnClick: (e: unknown) => void
 }
-
-const ListBox = React.forwardRef<HTMLDivElement, Props>(
+const ListBox = React.forwardRef<HTMLUListElement, Props>(
   ({state, ...props}, ref) => {
-    const listBoxRef = useDOMRef<HTMLDivElement>(ref)
-    const {listBoxProps} = useListBox(props, state, listBoxRef)
+    const listBoxRef = useDOMRef<HTMLUListElement>(ref)
+    const {listBoxProps} = useListBox(
+      {...props, ...listBoxRef},
+      state,
+      listBoxRef,
+    )
 
     return (
-      <div {...listBoxProps} ref={listBoxRef}>
+      <>
         {props.headerTitle && (
           <Header title={props.headerTitle} onPress={props?.headerOnClick} />
         )}
-        <ul>
+        <ul {...listBoxProps} ref={listBoxRef}>
           {[...state.collection].map((item) => (
             <Option key={item.key} item={item} state={state} />
           ))}
         </ul>
-      </div>
+      </>
     )
   },
 )

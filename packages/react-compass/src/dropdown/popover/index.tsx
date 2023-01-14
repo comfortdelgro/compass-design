@@ -26,7 +26,6 @@ const Popover = React.forwardRef<HTMLDivElement, Props>(
         <StyledPopover
           {...popoverProps}
           ref={popoverRef}
-          className='popover'
           style={
             props.triggerRef.current?.clientWidth
               ? {

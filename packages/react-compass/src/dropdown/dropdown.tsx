@@ -45,11 +45,12 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
       menuTrigger,
     })
 
-    const wrapperRef = React.useRef<HTMLDivElement>(null)
-    const buttonRef = React.useRef<HTMLButtonElement>(null)
-    const inputRef = React.useRef<HTMLInputElement>(null)
-    const listBoxRef = React.useRef<HTMLDivElement>(null)
-    const popoverRef = React.useRef<HTMLDivElement>(null)
+    const wrapperRef = useDOMRef<HTMLDivElement>(null)
+    const buttonRef = useDOMRef<HTMLButtonElement>(null)
+    const inputRef = useDOMRef<HTMLInputElement>(null)
+    const listBoxRef = useDOMRef<HTMLUListElement>(null)
+    const popoverRef = useDOMRef<HTMLDivElement>(null)
+
     const {buttonProps, inputProps, listBoxProps, labelProps} = useComboBox(
       {
         ...props,
