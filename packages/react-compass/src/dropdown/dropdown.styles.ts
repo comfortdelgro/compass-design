@@ -113,13 +113,6 @@ export const StyledPopover = styled('div', {
     marginInlineStart: 0,
     marginInlineEnd: 0,
     paddingInlineStart: 0,
-    li: {
-      fontSize: '$label1',
-      fontWeight: '$medium',
-      padding: '$2 $4',
-      outline: 'none',
-      cursor: 'pointer',
-    },
   },
 })
 

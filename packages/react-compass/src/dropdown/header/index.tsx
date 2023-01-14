@@ -1,8 +1,8 @@
 import {useButton} from '@react-aria/button'
 import type {AriaButtonProps} from '@react-types/button'
 import React from 'react'
-import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledHeaderList} from './dropdown.styles'
+import {useDOMRef} from '../../utils/use-dom-ref'
+import {StyledHeaderList} from '../dropdown.styles'
 
 interface Props extends AriaButtonProps {
   title: string

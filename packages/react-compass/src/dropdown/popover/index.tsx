@@ -1,8 +1,8 @@
 import {AriaPopoverProps, Overlay, usePopover} from '@react-aria/overlays'
 import {ComboBoxState} from '@react-stately/combobox'
 import React from 'react'
-import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledPopover} from './dropdown.styles'
+import {useDOMRef} from '../../utils/use-dom-ref'
+import {StyledPopover} from '../dropdown.styles'
 
 interface Props<T = unknown> extends AriaPopoverProps {
   state: ComboBoxState<T>
