@@ -14,12 +14,15 @@ import {
 
 interface Props extends AriaTextFieldProps, StyledComponentProps {
   label?: string
-  errored?: boolean
+  isErrored?: boolean
+  isRequired?: boolean
   helperText?: string
+  errorMessage?: string
   prefix?: React.ReactNode
   leftIcon?: React.ReactNode
   rightIcon?: React.ReactNode
   onChangeEvent?: (event: React.ChangeEvent<HTMLInputElement>) => void
+  onChange?: (value: string) => void
 }
 
 export type TextFieldProps = Props &
@@ -33,12 +36,15 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       css = {},
       // ComponentProps
       label,
-      errored,
+      isErrored,
+      isRequired,
       helperText,
+      errorMessage,
       leftIcon,
       rightIcon,
       prefix,
       onChangeEvent,
+      onChange,
       // AriaTextFieldProps
       isDisabled,
       ...ariaSafeProps
@@ -61,18 +67,19 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       useTextField(ariaProps, textfieldRef)
 
     const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      inputProps.onChange?.(event)
+      //inputProps.onChange?.(event)
+      onChange?.(event.target.value)
       onChangeEvent?.(event)
     }
 
     return (
       <StyledTextFieldWrapper css={css} {...htmlProps}>
         {label && (
-          <StyledTextFieldLabel {...labelProps} disabled={!!isDisabled}>
-            {label}
+          <StyledTextFieldLabel {...labelProps} isDisabled={!!isDisabled}>
+            {isRequired && <span>*</span>} {label}
           </StyledTextFieldLabel>
         )}
-        <StyledTextFieldBox disabled={!!isDisabled} errored={!!errored}>
+        <StyledTextFieldBox isDisabled={!!isDisabled} isErrored={!!isErrored}>
           {leftIcon ? <div className='left-icon'>{leftIcon}</div> : null}
           {prefix ? <div className='prefix'>{prefix}</div> : null}
           <StyledTextField
@@ -83,13 +90,13 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
           />
           {rightIcon ? <div className='right-icon'>{rightIcon}</div> : null}
         </StyledTextFieldBox>
-        {!errored && helperText ? (
-          <StyledTextFieldHelperText {...descriptionProps}>
-            {helperText}
-          </StyledTextFieldHelperText>
-        ) : null}
-        {errored ? (
+        {isErrored && errorMessage && (
           <StyledTextFieldHelperText {...errorMessageProps} error>
+            {errorMessage}
+          </StyledTextFieldHelperText>
+        )}
+        {helperText ? (
+          <StyledTextFieldHelperText {...descriptionProps}>
             {helperText}
           </StyledTextFieldHelperText>
         ) : null}

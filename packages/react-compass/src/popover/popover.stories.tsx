@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import Button from '../button'
+import {useDOMRef} from '../utils/use-dom-ref'
 import Popover from './popover'
 
 const SamplePopover = () => {
@@ -7,26 +8,6 @@ const SamplePopover = () => {
     <div
       className='popover-content'
       style={{
-        marginTop: '10px',
-        padding: '10px',
-        background: '#ffffff',
-        boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
-        borderRadius: '5px',
-        width: '300px',
-        height: '200px',
-      }}
-    >
-      Popover content here
-    </div>
-  )
-}
-
-const SampleTopPopover = () => {
-  return (
-    <div
-      className='popover-content'
-      style={{
-        marginBottom: '10px',
         padding: '10px',
         background: '#ffffff',
         boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
@@ -47,6 +28,14 @@ export const Popovers = () => {
   const [isOpen4, setIsOpen4] = useState(false)
   const [isOpen5, setIsOpen5] = useState(false)
   const [isOpen6, setIsOpen6] = useState(false)
+  const [isOpen7, setIsOpen7] = useState(false)
+  const [isOpen8, setIsOpen8] = useState(false)
+  const [isOpen9, setIsOpen9] = useState(false)
+  const [isOpen10, setIsOpen10] = useState(false)
+  const [isOpen11, setIsOpen11] = useState(false)
+  const [isOpen12, setIsOpen12] = useState(false)
+
+  const ref = useDOMRef<HTMLDivElement>()
 
   const openPopover1 = () => {
     setIsOpen1(true)
@@ -72,22 +61,48 @@ export const Popovers = () => {
     setIsOpen6(true)
   }
 
+  const openPopover7 = () => {
+    setIsOpen7(true)
+  }
+
+  const openPopover8 = () => {
+    setIsOpen8(true)
+  }
+
+  const openPopover9 = () => {
+    setIsOpen9(true)
+  }
+
+  const openPopover10 = () => {
+    setIsOpen10(true)
+  }
+
+  const openPopover11 = () => {
+    setIsOpen11(true)
+  }
+
+  const openPopover12 = () => {
+    setIsOpen12(true)
+  }
+
   return (
     <>
-      <div className='popover-sample'>
+      <div className='popover-sample' ref={ref}>
         <Popover
           isOpen={isOpen1}
           anchor={
             <Button variant='primary' onPress={openPopover1}>
-              Open
+              Bottom left
             </Button>
           }
+          attachToElement={ref.current && ref.current.parentElement}
           onClose={() => {
             setIsOpen1(false)
           }}
         >
           <SamplePopover />
         </Popover>
+
         <Popover
           isOpen={isOpen5}
           anchor={
@@ -96,6 +111,7 @@ export const Popovers = () => {
             </Button>
           }
           direction='bottom-center'
+          attachToElement={ref.current && ref.current.parentElement}
           onClose={() => {
             setIsOpen5(false)
           }}
@@ -113,10 +129,11 @@ export const Popovers = () => {
           isOpen={isOpen2}
           anchor={
             <Button variant='primary' onPress={openPopover2}>
-              Open
+              Bottom right
             </Button>
           }
-          direction='bottom-left'
+          direction='bottom-right'
+          attachToElement={ref.current && ref.current.parentElement}
           onClose={() => {
             setIsOpen2(false)
           }}
@@ -131,23 +148,25 @@ export const Popovers = () => {
           display: 'flex',
           alignItems: 'flex-end',
           justifyContent: 'flex-start',
-          height: '300px',
+          height: '600px',
         }}
       >
         <Popover
           isOpen={isOpen3}
           anchor={
             <Button variant='primary' onPress={openPopover3}>
-              Open
+              Top left
             </Button>
           }
-          direction='top-right'
+          direction='top-left'
+          attachToElement={ref.current && ref.current.parentElement}
           onClose={() => {
             setIsOpen3(false)
           }}
         >
-          <SampleTopPopover />
+          <SamplePopover />
         </Popover>
+
         <Popover
           isOpen={isOpen6}
           anchor={
@@ -156,12 +175,30 @@ export const Popovers = () => {
             </Button>
           }
           direction='top-center'
+          attachToElement={ref.current && ref.current.parentElement}
           onClose={() => {
             setIsOpen6(false)
           }}
           style={{marginLeft: '120px'}}
         >
-          <SampleTopPopover />
+          <SamplePopover />
+        </Popover>
+
+        <Popover
+          isOpen={isOpen4}
+          anchor={
+            <Button variant='primary' onPress={openPopover4}>
+              Top right
+            </Button>
+          }
+          direction='top-right'
+          attachToElement={ref.current && ref.current.parentElement}
+          onClose={() => {
+            setIsOpen4(false)
+          }}
+          style={{marginLeft: '120px'}}
+        >
+          <SamplePopover />
         </Popover>
       </div>
 
@@ -170,23 +207,118 @@ export const Popovers = () => {
         style={{
           display: 'flex',
           alignItems: 'flex-end',
-          justifyContent: 'flex-end',
-          height: '200px',
+          justifyContent: 'flex-start',
+          height: '600px',
         }}
       >
         <Popover
-          isOpen={isOpen4}
+          isOpen={isOpen7}
           anchor={
-            <Button variant='primary' onPress={openPopover4}>
-              Open
+            <Button variant='primary' onPress={openPopover7}>
+              Bottom left
             </Button>
           }
-          direction='top-left'
+          direction='bottom-left'
+          attachToElement={ref.current && ref.current.parentElement}
           onClose={() => {
-            setIsOpen4(false)
+            setIsOpen7(false)
           }}
         >
-          <SampleTopPopover />
+          <SamplePopover />
+        </Popover>
+
+        <Popover
+          isOpen={isOpen8}
+          anchor={
+            <Button variant='primary' onPress={openPopover8}>
+              Bottom center
+            </Button>
+          }
+          direction='bottom-center'
+          attachToElement={ref.current && ref.current.parentElement}
+          onClose={() => {
+            setIsOpen8(false)
+          }}
+          style={{marginLeft: '120px'}}
+        >
+          <SamplePopover />
+        </Popover>
+
+        <Popover
+          isOpen={isOpen9}
+          anchor={
+            <Button variant='primary' onPress={openPopover9}>
+              Bottom right
+            </Button>
+          }
+          direction='bottom-right'
+          attachToElement={ref.current && ref.current.parentElement}
+          onClose={() => {
+            setIsOpen9(false)
+          }}
+          style={{marginLeft: '120px'}}
+        >
+          <SamplePopover />
+        </Popover>
+      </div>
+
+      <div
+        className='popover-sample'
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'flex-start',
+          height: '800px',
+        }}
+      >
+        <Popover
+          isOpen={isOpen10}
+          anchor={
+            <Button variant='primary' onPress={openPopover10}>
+              Bottom left
+            </Button>
+          }
+          direction='bottom-left'
+          attachToElement={ref.current && ref.current.parentElement}
+          onClose={() => {
+            setIsOpen10(false)
+          }}
+        >
+          <SamplePopover />
+        </Popover>
+
+        <Popover
+          isOpen={isOpen11}
+          anchor={
+            <Button variant='primary' onPress={openPopover11}>
+              Bottom center
+            </Button>
+          }
+          direction='bottom-center'
+          attachToElement={ref.current && ref.current.parentElement}
+          onClose={() => {
+            setIsOpen11(false)
+          }}
+          style={{marginLeft: '120px'}}
+        >
+          <SamplePopover />
+        </Popover>
+
+        <Popover
+          isOpen={isOpen12}
+          anchor={
+            <Button variant='primary' onPress={openPopover12}>
+              Bottom right
+            </Button>
+          }
+          direction='bottom-right'
+          attachToElement={ref.current && ref.current.parentElement}
+          onClose={() => {
+            setIsOpen12(false)
+          }}
+          style={{marginLeft: '120px'}}
+        >
+          <SamplePopover />
         </Popover>
       </div>
     </>

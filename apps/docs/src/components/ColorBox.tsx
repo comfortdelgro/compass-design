@@ -100,7 +100,9 @@ const ColorBox: React.FC<Props> = ({color, gradient = false}) => {
       className='w-36 h-24 p-2 font-mono text-xs font-semibold flex flex-col items-start justify-between cursor-copy flex-shrink-0 transition-all hover:scale-105'
       style={{
         backgroundColor: !gradient ? color.value : 'transparent',
-        backgroundImage: gradient ? `linear-gradient(to right, ${color.value})` : 'none',
+        backgroundImage: gradient
+          ? `linear-gradient(to right, ${color.value})`
+          : 'none',
         opacity: resolvedColorOpacity,
         color: resolvedColor
           ? getAccessibleColor(resolvedColor)

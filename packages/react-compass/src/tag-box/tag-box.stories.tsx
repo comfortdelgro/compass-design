@@ -30,6 +30,7 @@ export const TagBoxs: React.FC = () => (
       label='Text Label'
       items={items}
       icon={<Icon icon={faExclamationTriangle} />}
+      isRequired
       onRemove={(e) => console.log(e)}
       onEdit={(i, v) => console.log(i, v)}
       helperText='Helper text'

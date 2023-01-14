@@ -19,6 +19,10 @@ export const StyledDropdownWrapper = styled('div', {
     marginBottom: '$2',
     display: 'inline-block',
     width: '100%',
+    span: {
+      marginRight: '$1',
+      color: '$danger',
+    },
   },
 })
 
@@ -78,6 +82,14 @@ export const StyledDropdown = styled('div', {
         },
       },
     },
+    isDisabled: {
+      true: {
+        color: '#b7b7b7 !important',
+        input: {
+          color: '#b7b7b7 !important',
+        },
+      },
+    },
     isErrored: {
       true: {
         borderColor: '$danger',
@@ -94,7 +106,6 @@ export const StyledDropdown = styled('div', {
         },
       },
     },
-
   },
 })
 
@@ -152,6 +163,14 @@ export const StyledFlag = styled('div', {
             fontSize: '$label1',
             fontWeight: '$semibold',
           },
+        },
+      },
+    },
+    isDisabled: {
+      true: {
+        color: '#b7b7b7 !important',
+        input: {
+          color: '#b7b7b7 !important',
         },
       },
     },
@@ -217,6 +236,13 @@ export const StyledSelect = styled('div', {
         },
       },
     },
+    isDisabled: {
+      true: {
+        button: {
+          cursor: 'default',
+        },
+      },
+    },
     isErrored: {
       true: {
         borderColor: '$danger',
@@ -249,7 +275,7 @@ export const StyledFlagIcon = styled('div', {
   svg: {
     width: '$6',
     height: '$6',
-  }
+  },
 })
 
 export const StyledPopover = styled('div', {

@@ -48,7 +48,7 @@ function Option({item, state}: Props) {
     >
       {currentState?.['alpha-3'] && (
         <StyledFlag>
-          <Flag iso={currentState['alpha-3']} />
+          <Flag iso={currentState['alpha-2']} />
         </StyledFlag>
       )}
       <StyledContent>{item.rendered}</StyledContent>

@@ -1,5 +1,23 @@
 # @comfortdelgro/compass-icons
 
+## 0.12.0
+
+### Minor Changes
+
+- bfd95f0: Fix build
+
+## 0.11.0
+
+### Minor Changes
+
+- cdb9b10: Fix bugs in icon build and textfiel
+
+## 0.10.0
+
+### Minor Changes
+
+- baeddd7: Add flag icons and fix bugs
+
 ## 0.9.0
 
 ### Minor Changes
