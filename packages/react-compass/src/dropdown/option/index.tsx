@@ -1,7 +1,6 @@
 import {useOption} from '@react-aria/listbox'
 import {ComboBoxState} from '@react-stately/combobox'
 import React, {Key} from 'react'
-import {useDOMRef} from '../../utils/use-dom-ref'
 import {DropdownItemProps} from '../item'
 import {
   OptionVariantProps,
@@ -17,19 +16,19 @@ interface Props<T = unknown> extends OptionVariantProps {
   item: Node<T>
 }
 
-const Option = React.forwardRef<HTMLLIElement, Props>(({item, state}, ref) => {
-  const optionRef = useDOMRef<HTMLLIElement>(ref)
+const Option: React.FC<Props> = ({item, state}) => {
+  const ref = React.useRef<HTMLLIElement>(null)
   const {optionProps, isSelected, isDisabled} = useOption(
     {key: item.key},
     state,
-    optionRef,
+    ref,
   )
   const {type = 'icon', leftIcon, rightIcon, rightColor} = item.props ?? {}
 
   return (
     <StyledOption
       {...optionProps}
-      ref={optionRef}
+      ref={ref}
       isSelected={isSelected}
       isDisabled={isDisabled}
     >
@@ -41,7 +40,7 @@ const Option = React.forwardRef<HTMLLIElement, Props>(({item, state}, ref) => {
       )}
     </StyledOption>
   )
-})
+}
 
 export default Option
 

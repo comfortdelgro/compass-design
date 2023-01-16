@@ -101,7 +101,7 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
             ) : (
               <ListBox
                 {...listBoxProps}
-                ref={listBoxRef}
+                listBoxRef={listBoxRef}
                 state={state}
                 headerTitle={props.headerTitle}
                 headerOnClick={(e) => props?.headerOnClick?.(e)}
