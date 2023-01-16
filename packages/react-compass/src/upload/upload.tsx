@@ -1,4 +1,3 @@
-import {useId} from '@react-aria/utils'
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -48,7 +47,6 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
   const uploadInputRef = React.useRef<HTMLInputElement>(null)
   const [selectedFiles, setSelectedFiles] = React.useState<File[]>([])
   const [error, setError] = React.useState<false | string>(false)
-  const id = useId()
   // hanlder functions
 
   const handleFileFieldChange = (event: MouseEvent) => {
@@ -66,6 +64,8 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
     }
   }
 
+  const onLableClick = () => uploadInputRef.current?.click()
+
   React.useEffect(() => {
     if (selectedFiles) {
       getFile?.(selectedFiles)
@@ -79,13 +79,12 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
           ref={uploadInputRef}
           type='file'
           accept={accept}
-          id={id}
           multiple={multiple}
           onChange={(event) => {
             handleFileFieldChange(event as unknown as MouseEvent)
           }}
         />
-        <StyledBrowseFile htmlFor={id}>
+        <StyledBrowseFile onClick={onLableClick}>
           <span>Browse file</span>
         </StyledBrowseFile>
         <StyledUploadContent

@@ -1,4 +1,3 @@
-import {useId} from '@react-aria/utils'
 import React from 'react'
 import {StyledComponentProps} from '../../utils/stitches.types'
 import {useDOMRef} from '../../utils/use-dom-ref'
@@ -54,7 +53,6 @@ const UploadDragAndDrop = React.forwardRef<
   const uploadInputRef = React.useRef<HTMLInputElement>(null)
   const [selectedFiles, setSelectedFiles] = React.useState<File[]>([])
   const [error, setError] = React.useState<false | string>(false)
-  const id = useId()
 
   // hanlder functions
   const hanldeDrop = (e: React.DragEvent<HTMLDivElement>) => {
@@ -88,6 +86,8 @@ const UploadDragAndDrop = React.forwardRef<
     }
   }
 
+  const onLableClick = () => uploadInputRef.current?.click()
+
   React.useEffect(() => {
     if (selectedFiles) {
       getFile(selectedFiles)
@@ -99,7 +99,6 @@ const UploadDragAndDrop = React.forwardRef<
       variant={variant}
       css={css}
       ref={uploadRef}
-      id={id}
       onDrop={hanldeDrop}
       onDragOver={hanldeDragOver}
       {...delegated}
@@ -109,13 +108,12 @@ const UploadDragAndDrop = React.forwardRef<
           ref={uploadInputRef}
           type='file'
           accept={accept}
-          id={id}
           multiple={multiple}
           onChange={(event) => {
             handleFileFieldChange(event as unknown as MouseEvent)
           }}
         />
-        <StyledUploadButton htmlFor={id}>
+        <StyledUploadButton onClick={onLableClick}>
           {variant === 'field' && (
             <svg width='16' height='16' viewBox='0 0 16 16' fill='none'>
               <path
