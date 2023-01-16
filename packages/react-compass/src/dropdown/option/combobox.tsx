@@ -16,9 +16,9 @@ interface Props<T = unknown> extends OptionVariantProps {
   item: Node<T>
 }
 
-function Option({item, state}: Props) {
-  const ref = React.useRef(null)
-  const {optionProps, isSelected, isFocused, isDisabled} = useOption(
+const Option: React.FC<Props> = ({item, state}) => {
+  const ref = React.useRef<HTMLLIElement>(null)
+  const {optionProps, isSelected, isDisabled} = useOption(
     {key: item.key},
     state,
     ref,
@@ -29,7 +29,6 @@ function Option({item, state}: Props) {
     <StyledOption
       {...optionProps}
       ref={ref}
-      isFocused={isFocused}
       isSelected={isSelected}
       isDisabled={isDisabled}
     >
