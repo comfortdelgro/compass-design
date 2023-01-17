@@ -25,6 +25,7 @@ const Radio: React.FC<RadioProps> = (props) => {
     rightLabel,
     isDisabled = false,
     variant = 'simple',
+    css = {},
   } = props
   const context = useContext(RadioContext)
   const state = context as RadioGroupState
@@ -34,7 +35,12 @@ const Radio: React.FC<RadioProps> = (props) => {
     if (ref.current) ref.current.click()
   }
   return (
-    <StyledRadio disabled={isDisabled} variant={variant} onClick={onClick}>
+    <StyledRadio
+      disabled={isDisabled}
+      variant={variant}
+      onClick={onClick}
+      css={css}
+    >
       <input style={{display: 'none'}} {...inputProps} ref={ref} />
       <div className='radio-wrapper'>
         <StyledRadioInput

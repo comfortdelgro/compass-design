@@ -117,7 +117,7 @@ export const StyledSidebarWrapper = styled('div', {
   left: '0',
   width: '100%',
   height: '100%',
-  zIndex: '999',
+  zIndex: '49',
 })
 
 export const StyledSidebar = styled('div', {
@@ -134,7 +134,7 @@ export const StyledSidebar = styled('div', {
   height: '100vh',
   position: 'absolute',
   top: '0',
-  zIndex: '1000',
+  zIndex: '50',
   backgroundColor: '$primaryBg',
 
   // variants
