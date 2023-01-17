@@ -194,6 +194,7 @@ export const StyledToast = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   gap: '$4',
+  zIndex: '60',
 
   //center
   position: 'fixed',
