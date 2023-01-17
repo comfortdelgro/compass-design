@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 0.8.0
+
+### Minor Changes
+
+- 37c5b04: fix upload, standardize zIndex, update breakpoint, fix radio button css prop
+
 ## 0.7.0
 
 ### Minor Changes
