@@ -90,7 +90,7 @@ export const StyledDialogWrapper = styled('div', {
   left: '0',
   width: '100%',
   height: '100%',
-  zIndex: '999',
+  zIndex: '49',
 })
 
 export const StyledDialog = styled('div', {
@@ -99,7 +99,7 @@ export const StyledDialog = styled('div', {
   border: 'none',
   boxSizing: 'border-box',
   margin: '0px',
-  zIndex: '1000',
+  zIndex: '50',
 
   // dialog container
   width: '$120',

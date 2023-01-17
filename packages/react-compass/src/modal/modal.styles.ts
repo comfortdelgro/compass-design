@@ -90,7 +90,7 @@ export const StyledModalWrapper = styled('div', {
   left: '0',
   width: '100%',
   height: '100%',
-  zIndex: '999',
+  zIndex: '49',
 })
 
 export const StyledModalCloseIcon = styled('div', {
@@ -121,7 +121,7 @@ export const StyledModal = styled('div', {
   border: 'none',
   boxSizing: 'border-box',
   margin: '0px',
-  zIndex: '1000',
+  zIndex: '50',
 
   // modal container
   width: '$120',
