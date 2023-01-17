@@ -84,6 +84,7 @@ export const StyledGridItem = styled('div', {
     sm: {...calculateCols('sm')},
     md: {...calculateCols('md')},
     lg: {...calculateCols('lg')},
+    xl: {...calculateCols('xl')},
   },
 })
 

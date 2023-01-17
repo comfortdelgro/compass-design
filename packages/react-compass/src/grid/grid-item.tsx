@@ -13,8 +13,8 @@ export type GridItemProps = Props &
 
 const GridItem = React.forwardRef<HTMLDivElement, GridItemProps>(
   (props, ref) => {
-    const {children, css = {}, xs, sm, md, lg, ...delegated} = props
-    const variantProps = {xs, sm, md, lg} as GridItemVariantProps
+    const {children, css = {}, xs, sm, md, lg, xl, ...delegated} = props
+    const variantProps = {xs, sm, md, lg, xl} as GridItemVariantProps
     const gridItemRef = useDOMRef<HTMLDivElement>(ref)
 
     return (
