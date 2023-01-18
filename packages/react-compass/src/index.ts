@@ -95,8 +95,14 @@ export {default as Icon} from './icon'
 export type {IconProp} from './icon'
 export {default as Link} from './link'
 export type {LinkProps} from './link'
-export {default as List, InteractiveList, ListCard} from './list'
+export {
+  default as List,
+  DragAndDropList,
+  InteractiveList,
+  ListCard,
+} from './list'
 export type {
+  DragAndDropListProps,
   InteractiveListProps,
   ListCardDetailProps,
   ListCardProps,
