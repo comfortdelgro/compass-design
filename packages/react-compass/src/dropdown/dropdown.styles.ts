@@ -140,6 +140,11 @@ export const StyledHeaderList = styled('div', {
   },
 })
 
+export const StyledPopoverWrapper = styled('div', {
+  position: 'relative',
+  marginTop: '$1',
+})
+
 export const StyledLoading = styled('div', {
   display: 'flex',
   justifyContent: 'center',

@@ -1,9 +1,4 @@
-import {
-  AriaPopoverProps,
-  DismissButton,
-  Overlay,
-  usePopover,
-} from '@react-aria/overlays'
+import {AriaPopoverProps, usePopover} from '@react-aria/overlays'
 import {ComboBoxState} from '@react-stately/combobox'
 import React from 'react'
 import {StyledPopover} from '../dropdown.styles'
@@ -27,24 +22,21 @@ const Popover: React.FC<Props> = ({children, state, ...props}) => {
     {...state, close: () => state.setOpen(false)},
   )
   return (
-    <Overlay>
-      <StyledPopover
-        {...popoverProps}
-        ref={popoverRef}
-        style={
-          props.triggerRef.current?.clientWidth
-            ? {
-                ...popoverProps.style,
-                width: 'fit-content',
-                minWidth: props.triggerRef.current.clientWidth + 2,
-              }
-            : {...popoverProps?.style}
-        }
-      >
-        {children}
-        <DismissButton onDismiss={() => state.close()} />
-      </StyledPopover>
-    </Overlay>
+    <StyledPopover
+      {...popoverProps}
+      ref={popoverRef}
+      style={
+        props.triggerRef.current?.clientWidth
+          ? {
+              // ...popoverProps.style,
+              width: 'fit-content',
+              minWidth: props.triggerRef.current.clientWidth + 2,
+            }
+          : {...popoverProps?.style}
+      }
+    >
+      {children}
+    </StyledPopover>
   )
 }
 
