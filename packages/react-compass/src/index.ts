@@ -123,6 +123,11 @@ export type {
   ModalTitleProps,
   ModalTriggerProps,
 } from './modal'
+export {default as MultipleDropdown} from './multiple-dropdown'
+export type {
+  MultipleDropdownItemProps,
+  MultipleDropdownProps,
+} from './multiple-dropdown'
 export {default as Navbar} from './navbar'
 export type {NavbarBrandProps, NavbarIconProps, NavbarProps} from './navbar'
 export {default as PageHeader} from './page-header'
