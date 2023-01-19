@@ -331,7 +331,7 @@
         "Dropdown"
       ],
       "locStart": 6,
-      "locEnd": 62,
+      "locEnd": 69,
       "filePath": "src/dropdown/dropdown.stories.tsx",
       "meta": {}
     },
@@ -410,8 +410,8 @@
       "levels": [
         "List"
       ],
-      "locStart": 25,
-      "locEnd": 369,
+      "locStart": 27,
+      "locEnd": 371,
       "filePath": "src/list/list.stories.tsx",
       "meta": {}
     },
@@ -420,8 +420,8 @@
       "levels": [
         "List"
       ],
-      "locStart": 371,
-      "locEnd": 571,
+      "locStart": 373,
+      "locEnd": 573,
       "filePath": "src/list/list.stories.tsx",
       "meta": {}
     },
@@ -430,8 +430,18 @@
       "levels": [
         "List"
       ],
-      "locStart": 573,
-      "locEnd": 734,
+      "locStart": 575,
+      "locEnd": 736,
+      "filePath": "src/list/list.stories.tsx",
+      "meta": {}
+    },
+    "list--drag-and-drop": {
+      "name": "Drag and drop",
+      "levels": [
+        "List"
+      ],
+      "locStart": 738,
+      "locEnd": 750,
       "filePath": "src/list/list.stories.tsx",
       "meta": {}
     },
@@ -450,8 +460,8 @@
       "levels": [
         "Modal"
       ],
-      "locStart": 9,
-      "locEnd": 43,
+      "locStart": 12,
+      "locEnd": 98,
       "filePath": "src/modal/modal.stories.tsx",
       "meta": {}
     },
@@ -460,8 +470,8 @@
       "levels": [
         "Modal"
       ],
-      "locStart": 45,
-      "locEnd": 127,
+      "locStart": 100,
+      "locEnd": 182,
       "filePath": "src/modal/modal.stories.tsx",
       "meta": {}
     },
@@ -823,6 +833,56 @@
       "locStart": 280,
       "locEnd": 323,
       "filePath": "src/tooltip/tooltip.stories.tsx",
+      "meta": {}
+    },
+    "typography--display": {
+      "name": "Display",
+      "levels": [
+        "Typography"
+      ],
+      "locStart": 6,
+      "locEnd": 12,
+      "filePath": "src/typography/typography.stories.tsx",
+      "meta": {}
+    },
+    "typography--header": {
+      "name": "Header",
+      "levels": [
+        "Typography"
+      ],
+      "locStart": 14,
+      "locEnd": 23,
+      "filePath": "src/typography/typography.stories.tsx",
+      "meta": {}
+    },
+    "typography--body": {
+      "name": "Body",
+      "levels": [
+        "Typography"
+      ],
+      "locStart": 25,
+      "locEnd": 49,
+      "filePath": "src/typography/typography.stories.tsx",
+      "meta": {}
+    },
+    "typography--label": {
+      "name": "Label",
+      "levels": [
+        "Typography"
+      ],
+      "locStart": 51,
+      "locEnd": 84,
+      "filePath": "src/typography/typography.stories.tsx",
+      "meta": {}
+    },
+    "typography--link": {
+      "name": "Link",
+      "levels": [
+        "Typography"
+      ],
+      "locStart": 86,
+      "locEnd": 95,
+      "filePath": "src/typography/typography.stories.tsx",
       "meta": {}
     },
     "upload--default": {
