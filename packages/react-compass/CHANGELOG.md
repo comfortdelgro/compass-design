@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 0.9.0
+
+### Minor Changes
+
+- 08d3036: Add new components: dropdown, drap-and-drop. and fix bugs
+
 ## 0.8.0
 
 ### Minor Changes
