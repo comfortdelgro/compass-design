@@ -327,7 +327,6 @@ export const StyledHeaderList = styled('div', {
 
 export const StyledPopoverWrapper = styled('div', {
   position: 'relative',
-  zIndex: 2,
   marginTop: '$1',
 })
 
