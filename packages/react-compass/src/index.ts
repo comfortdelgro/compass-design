@@ -95,8 +95,14 @@ export {default as Icon} from './icon'
 export type {IconProp} from './icon'
 export {default as Link} from './link'
 export type {LinkProps} from './link'
-export {default as List, InteractiveList, ListCard} from './list'
+export {
+  default as List,
+  DragAndDropList,
+  InteractiveList,
+  ListCard,
+} from './list'
 export type {
+  DragAndDropListProps,
   InteractiveListProps,
   ListCardDetailProps,
   ListCardProps,
@@ -202,6 +208,7 @@ export {default as Toggle} from './toggle'
 export type {ToggleProps} from './toggle'
 export {Tooltip, TooltipTrigger} from './tooltip'
 export type {TooltipProps, TooltipTriggerProps} from './tooltip'
+export {default as Typography} from './typography'
 export {default as Upload} from './upload'
 export type {UploadDragAndDropProps, UploadProps} from './upload'
 export * from './utils'

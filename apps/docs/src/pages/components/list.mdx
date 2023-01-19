@@ -4,6 +4,7 @@ import {
   List,
   ListCard,
   InteractiveList,
+  DragAndDropList,
   Avatar,
   Icon,
   Badge,
@@ -573,6 +574,24 @@ Small size version of the list
 />
 ```
 
+#### InteractiveListing
+
+<section className={styles.componentShowcaseContainer}>
+  <DragAndDropList>
+    <DragAndDropList.Item key='1'>Item 1</DragAndDropList.Item>
+    <DragAndDropList.Item key='2'>Item 2</DragAndDropList.Item>
+    <DragAndDropList.Item key='3'>Item 3</DragAndDropList.Item>
+  </DragAndDropList>
+</section>
+
+```js
+  <DragAndDropList>
+      <DragAndDropList.Item key='1'>Item 1</DragAndDropList.Item>
+      <DragAndDropList.Item key='2'>Item 2</DragAndDropList.Item>
+      <DragAndDropList.Item key='3'>Item 3</DragAndDropList.Item>
+  </DragAndDropList>
+```
+
 ### Props:
 
 #### List
@@ -623,6 +642,25 @@ Small size version of the list
 | variant    | `'default' \| 'dropdown'` | —       |                            |
 | showIcon   | `boolean`                 | —       | Whether the icon is showed |
 | css        | `CSS`                     | —       |                            |
+
+
+#### DragAndDropList
+
+| Name                     | Type       | Default | Description                                                |
+| :------------------------| :----------| :-------| :----------------------------------------------------------|
+| onReorder                | `Function` | —       | Fire when drag and drop an items, returned an event object |
+| onReorderonReorderByKeys | `Function` | —       | Fire when drag and drop an items, returned an array keys   |
+| css                      | `CSS`      | —       |                                                            |
+
+
+#### DragAndDropList.Item
+| Name      | Type                  | Default | Description                                                                             |
+| :---------| :---------------------| :-------| :---------------------------------------------------------------------------------------|
+| title     | `string`              | —       | The title of the tab.                                                                   |
+| key       | `Key`                 | —       | The key of the tab.                                                                     |
+| children  | `ReactNode`\|`String` | —       | The content of the tab Item                                                             |
+| className | `String`              | -       | Extra class name for tab                                                                |
+| css       | `CSS`                 | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
 
 <Callout>
   Check out our [ladle](/ladle?story=list--variants) for more info on this

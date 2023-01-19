@@ -17,7 +17,7 @@ interface Props extends StyledComponentProps {
 
 export type ModalProps = Props & ModalVariantProps
 
-const Dialog = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
+const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
   const {
     // StyledComponentProps
     css = {},
@@ -32,7 +32,7 @@ const Dialog = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
   } = props
 
   const variantProps = {size} as ModalVariantProps
-  const dialogRef = useDOMRef<HTMLDivElement>(ref)
+  const ModalRef = useDOMRef<HTMLDivElement>(ref)
 
   // Pick title child component
   const {child: ModalTitleElement} = pickChild<typeof ModalTitle>(
@@ -59,7 +59,7 @@ const Dialog = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
   )
 
   return (
-    <StyledModal css={css} ref={dialogRef} {...delegated} {...variantProps}>
+    <StyledModal css={css} ref={ModalRef} {...delegated} {...variantProps}>
       <StyledModalHeader>
         {ModalTitleElement}
         {CloseIconElement &&
@@ -74,7 +74,7 @@ const Dialog = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
   )
 })
 
-export default Dialog as typeof Dialog & {
+export default Modal as typeof Modal & {
   Trigger: typeof ModalTrigger
   Title: typeof ModalTitle
   Description: typeof ModalDescription
