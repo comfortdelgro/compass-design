@@ -47,6 +47,7 @@ export const ReactTableStory: React.FC = () => {
         accessorKey: 'firstName',
         cell: (info) => <i>{info.getValue<string>()}</i>,
         footer: (info) => info.column.id,
+        header: () => <span>First Name</span>,
       },
       {
         accessorFn: (row) => row.lastName,

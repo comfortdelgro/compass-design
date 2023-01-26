@@ -17,4 +17,5 @@ export const StyledReactTableColumnHeader = styled('th', {
   fontSize: '$label1',
   fontWeight: '$semibold',
   padding: '$3_5 $3',
+  position: 'relative',
 })

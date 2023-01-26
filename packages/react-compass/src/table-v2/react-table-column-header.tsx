@@ -6,6 +6,7 @@ import {
   StyledReactTableHeaderWrapper,
   StyledReactTableSortingIndicator,
 } from './react-table-column-header.styles'
+import ReactTableResizer from './react-table-resizer'
 
 interface Props {
   headerProps: any
@@ -15,7 +16,16 @@ const ReactTableColumnHeader = React.forwardRef<HTMLTableCellElement, Props>(
   ({headerProps}, ref) => {
     const tableRowRef = useDOMRef<HTMLTableCellElement>(ref)
     return (
-      <StyledReactTableColumnHeader ref={tableRowRef}>
+      <StyledReactTableColumnHeader
+        ref={tableRowRef}
+        {...{
+          key: headerProps.id,
+          colSpan: headerProps.colSpan,
+          style: {
+            width: headerProps.getSize(),
+          },
+        }}
+      >
         <StyledReactTableHeaderWrapper
           {...{
             className: headerProps.column.getCanSort()
@@ -74,6 +84,7 @@ const ReactTableColumnHeader = React.forwardRef<HTMLTableCellElement, Props>(
               }[headerProps.column.getIsSorted() as string] ?? null}
             </>
           )}
+          <ReactTableResizer headerProps={headerProps} />
         </StyledReactTableHeaderWrapper>
       </StyledReactTableColumnHeader>
     )

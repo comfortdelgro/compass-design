@@ -1,5 +1,4 @@
 import {
-  flexRender,
   getCoreRowModel,
   getSortedRowModel,
   SortingState,
@@ -63,6 +62,7 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
       state: {
         sorting,
       },
+      columnResizeMode: 'onChange',
       onSortingChange: setSorting,
       getCoreRowModel: getCoreRowModel(),
       getSortedRowModel: getSortedRowModel(),
@@ -72,11 +72,19 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
       <StyledReactTableWrapper css={css}>
         {toolbar && <>{toolbar}</>}
         <StyledReactTable>
-          <table ref={tableRef}>
+          <table
+            ref={tableRef}
+            {...{
+              style: {
+                width: table.getCenterTotalSize(),
+              },
+            }}
+          >
             <ReactTableRowGroup as='thead'>
               {table.getHeaderGroups().map((headerGroup) => (
                 <ReactTableHeaderRow key={headerGroup.id}>
                   {headerGroup.headers.map((header) => {
+                    debugger
                     return (
                       <ReactTableColumnHeader
                         key={header.id}
@@ -92,15 +100,7 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
                 return (
                   <ReactTableRow key={row.id}>
                     {row.getVisibleCells().map((cell) => {
-                      return (
-                        <ReactTableCell
-                          key={cell.id}
-                          cell={flexRender(
-                            cell.column.columnDef.cell,
-                            cell.getContext(),
-                          )}
-                        />
-                      )
+                      return <ReactTableCell key={cell.id} cell={cell} />
                     })}
                   </ReactTableRow>
                 )
