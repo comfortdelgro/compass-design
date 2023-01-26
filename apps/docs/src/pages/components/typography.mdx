@@ -1,0 +1,281 @@
+import {Callout} from 'nextra-theme-docs'
+import styles from '../../styles/Home.module.css'
+import Typography from '@comfortdelgro/react-compass/typography'
+
+# Typography
+
+Use typography to present your design and content as clearly and efficiently as possible.
+
+---
+
+### Import:
+
+```js
+import {Typography} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import Typography from '@comfortdelgro/react-compass/typography'
+```
+
+---
+
+### Display:
+
+<div className={styles.avatarShowcaseContainer} style={{display: 'flex', flexDirection: 'column'}}>
+  <Typography.Display variant='display1'>The quick brown</Typography.Display>
+  <Typography.Display variant='display2'>The quick brown</Typography.Display>
+  <Typography.Display variant='display3'>The quick brown</Typography.Display>
+</div>
+
+```js
+  <Typography.Display variant='display1'>The quick brown</Typography.Display>
+  <Typography.Display variant='display2'>The quick brown</Typography.Display>
+  <Typography.Display variant='display3'>The quick brown</Typography.Display>
+```
+
+---
+
+### Header:
+
+<div className={styles.avatarShowcaseContainer} style={{display: 'flex', flexDirection: 'column'}}>
+  <Typography.Header variant='header0'>The quick brown</Typography.Header>
+  <Typography.Header variant='header1'>The quick brown</Typography.Header>
+  <Typography.Header variant='header2'>The quick brown</Typography.Header>
+  <Typography.Header variant='header3'>The quick brown</Typography.Header>
+  <Typography.Header variant='header4'>The quick brown</Typography.Header>
+  <Typography.Header variant='header5'>The quick brown</Typography.Header>
+</div>
+
+```js
+  <Typography.Header variant='header0'>The quick brown</Typography.Header>
+  <Typography.Header variant='header1'>The quick brown</Typography.Header>
+  <Typography.Header variant='header2'>The quick brown</Typography.Header>
+  <Typography.Header variant='header3'>The quick brown</Typography.Header>
+  <Typography.Header variant='header4'>The quick brown</Typography.Header>
+  <Typography.Header variant='header5'>The quick brown</Typography.Header>
+```
+
+---
+
+### Body:
+
+<div className={styles.avatarShowcaseContainer} style={{display: 'flex', flexDirection: 'column'}}>
+  <Typography.Body variant='body1' component='div'>The quick brown</Typography.Body>
+  <Typography.Body variant='body1' weight='emphasis' component='div'>
+    The quick brown
+  </Typography.Body>
+  <Typography.Body variant='body1' weight='bold' component='div'>
+    The quick brown
+  </Typography.Body>
+  <Typography.Body variant='body2' component='div'>The quick brown</Typography.Body>
+  <Typography.Body variant='body2' weight='emphasis' component='div'>
+    The quick brown
+  </Typography.Body>
+  <Typography.Body variant='body2' weight='bold' component='div'>
+    The quick brown
+  </Typography.Body>
+  <Typography.Body variant='body3' component='div'>The quick brown</Typography.Body>
+  <Typography.Body variant='body3' weight='emphasis' component='div'>
+    The quick brown
+  </Typography.Body>
+  <Typography.Body variant='body3' weight='bold' component='div'>
+    The quick brown
+  </Typography.Body>
+</div>
+
+```js
+  <Typography.Body variant='body1'>The quick brown</Typography.Body>
+  <Typography.Body variant='body1' weight='emphasis'>
+    The quick brown
+  </Typography.Body>
+  <Typography.Body variant='body1' weight='bold'>
+    The quick brown
+  </Typography.Body>
+  <Typography.Body variant='body2'>The quick brown</Typography.Body>
+  <Typography.Body variant='body2' weight='emphasis'>
+    The quick brown
+  </Typography.Body>
+  <Typography.Body variant='body2' weight='bold'>
+    The quick brown
+  </Typography.Body>
+  <Typography.Body variant='body3'>The quick brown</Typography.Body>
+  <Typography.Body variant='body3' weight='emphasis'>
+    The quick brown
+  </Typography.Body>
+  <Typography.Body variant='body3' weight='bold'>
+    The quick brown
+  </Typography.Body>
+```
+
+---
+
+### Label:
+
+<div className={styles.avatarShowcaseContainer} style={{display: 'flex', flexDirection: 'column'}}>
+  <Typography.Label variant='label1'>The quick brown</Typography.Label>
+  <Typography.Label variant='label1' weight='emphasis' component='div'>
+    The quick brown
+  </Typography.Label>
+  <Typography.Label variant='label1' weight='bold' component='div'>
+    The quick brown
+  </Typography.Label>
+  <Typography.Label variant='label1' weight='light' component='div'>
+    The quick brown
+  </Typography.Label>
+  <Typography.Label variant='label2' component='div'>The quick brown</Typography.Label>
+  <Typography.Label variant='label2' weight='emphasis' component='div'>
+    The quick brown
+  </Typography.Label>
+  <Typography.Label variant='label2' weight='bold' component='div'>
+    The quick brown
+  </Typography.Label>
+  <Typography.Label variant='label2' weight='light' component='div'>
+    The quick brown
+  </Typography.Label>
+  <Typography.Label variant='label3' component='div'>The quick brown</Typography.Label>
+  <Typography.Label variant='label3' weight='emphasis' component='div'>
+    The quick brown
+  </Typography.Label>
+  <Typography.Label variant='label3' weight='bold' component='div'>
+    The quick brown
+  </Typography.Label>
+  <Typography.Label variant='label3' weight='light' component='div'>
+    The quick brown
+  </Typography.Label>
+</div>
+
+```js
+  <Typography.Label variant='label1'>The quick brown</Typography.Label>
+  <Typography.Label variant='label1' weight='emphasis'>
+    The quick brown
+  </Typography.Label>
+  <Typography.Label variant='label1' weight='bold'>
+    The quick brown
+  </Typography.Label>
+  <Typography.Label variant='label1' weight='light'>
+    The quick brown
+  </Typography.Label>
+  <Typography.Label variant='label2'>The quick brown</Typography.Label>
+  <Typography.Label variant='label2' weight='emphasis'>
+    The quick brown
+  </Typography.Label>
+  <Typography.Label variant='label2' weight='bold'>
+    The quick brown
+  </Typography.Label>
+  <Typography.Label variant='label2' weight='light'>
+    The quick brown
+  </Typography.Label>
+  <Typography.Label variant='label3'>The quick brown</Typography.Label>
+  <Typography.Label variant='label3' weight='emphasis'>
+    The quick brown
+  </Typography.Label>
+  <Typography.Label variant='label3' weight='bold'>
+    The quick brown
+  </Typography.Label>
+  <Typography.Label variant='label3' weight='light'>
+    The quick brown
+  </Typography.Label>
+```
+
+---
+
+### Link:
+
+<div className={styles.avatarShowcaseContainer} style={{display: 'flex', flexDirection: 'column'}}>
+  <Typography.Link variant='link1'>The quick brown</Typography.Link>
+  <Typography.Link variant='link2'>The quick brown</Typography.Link>
+  <Typography.Link variant='link3'>The quick brown</Typography.Link>
+  <Typography.Link variant='link3' weight='emphasis'>
+    The quick brown
+  </Typography.Link>
+</div>
+
+```js
+  <Typography.Link variant='link1'>The quick brown</Typography.Link>
+  <Typography.Link variant='link2'>The quick brown</Typography.Link>
+  <Typography.Link variant='link3'>The quick brown</Typography.Link>
+  <Typography.Link variant='link3' weight='emphasis'>
+    The quick brown
+  </Typography.Link>
+```
+
+---
+
+### Custom styling:
+
+You can style React Compass's components with the css prop. <br/>
+With css prop, you can basically do anything that css can do.
+
+<div className={styles.avatarShowcaseContainer}>
+  <Typography.Display variant='display1' css={{color: 'red'}}>The quick brown</Typography.Display>
+</div>
+
+```js
+  <Typography.Display variant='display1' css={{color: 'red'}}>The quick brown</Typography.Display>
+```
+
+---
+
+### Props Body:
+
+| Name     | Type             | Default | Description                        |
+| :------- | :--------------- | :------ | :--------------------------------- |
+| variant  | `body1`\|`body2`\|`body3` | `body1` | Font size of text |
+| component  | `Component` | - |Displayed as specific tag |
+| weight  | `none`\|`bold`\|`emphasis` | `none` | Font weight of text |
+| css      | `CSS`            | —       |                                    |
+
+---
+
+### Props Display:
+
+| Name     | Type             | Default | Description                        |
+| :------- | :--------------- | :------ | :--------------------------------- |
+| variant  | `display1`\|`display2`\|`display3` | `display1` | Font size of text |
+| component  | `Component` | - |Displayed as specific tag |
+| css      | `CSS`            | —       |                                    |
+
+---
+
+### Props Header:
+
+| Name     | Type             | Default | Description                        |
+| :------- | :--------------- | :------ | :--------------------------------- |
+| variant  | `header0`\|`header1`\|`header2`\|`header3`\|`header4`\|`header5` | `header1` | Font size of text |
+| component  | `Component` | - |Displayed as specific tag |
+| css      | `CSS`            | —       |                                    |
+
+---
+
+### Props Label:
+
+| Name     | Type             | Default | Description                        |
+| :------- | :--------------- | :------ | :--------------------------------- |
+| variant  | `label1`\|`label2`\|`label3` | `label1` | Font size of text |
+| component  | `Component` | - |Displayed as specific tag |
+| weight  | `none`\|`bold`\|`emphasis`\|`light` | `none` | Font weight of text |
+| css      | `CSS`            | —       |                                    |
+
+---
+
+### Props Link:
+
+| Name     | Type             | Default | Description                        |
+| :------- | :--------------- | :------ | :--------------------------------- |
+| variant  | `link1`\|`link2`\|`link3` | `link1` | Font size of text |
+| component  | `Component` | - |Displayed as specific tag |
+| weight  | `none`\|`emphasis` | `none` | Font weight of text |
+| css      | `CSS`            | —       |                                    |
+
+### Component
+Component type equals: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "label" | "p" | "span"
+
+---
+
+<Callout>
+  Check out our [ladle](/ladle?story=typography--body) for more info on this
+  component.
+</Callout>

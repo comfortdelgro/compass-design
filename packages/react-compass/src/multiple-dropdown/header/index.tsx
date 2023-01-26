@@ -1,23 +1,22 @@
 import {useButton} from '@react-aria/button'
 import type {AriaButtonProps} from '@react-types/button'
 import React from 'react'
-import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledHeaderList} from './dropdown.styles'
+import {StyledHeaderList} from '../multiple-dropdown.styles'
 
 interface Props extends AriaButtonProps {
   title: string
 }
 
-const Header = React.forwardRef<HTMLButtonElement, Props>((props, ref) => {
-  const buttonRef = useDOMRef<HTMLButtonElement>(ref)
+const Header: React.FC<Props> = ({title, ...props}) => {
+  const buttonRef = React.useRef<HTMLButtonElement>(null)
   const {buttonProps} = useButton(props, buttonRef)
 
   return (
     <StyledHeaderList>
-      <span>{props.title}</span>
+      <span>{title}</span>
       <button {...buttonProps}>Clear</button>
     </StyledHeaderList>
   )
-})
+}
 
 export default Header

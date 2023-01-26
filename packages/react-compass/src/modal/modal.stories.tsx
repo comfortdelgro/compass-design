@@ -1,8 +1,11 @@
 import {faXmark} from '@fortawesome/free-solid-svg-icons'
+import type {Placement} from '@react-types/overlays'
 import React from 'react'
 import Button from '../button'
+import Dropdown from '../dropdown'
 import Icon from '../icon'
 import TextField from '../textfield'
+import {Tooltip, TooltipTrigger} from '../tooltip'
 import {Column} from '../utils/components'
 import Modal from './index'
 
@@ -13,6 +16,14 @@ export const Default: React.FC = () => {
   const handleDefaultClose = () => {
     setDefaultOpen(false)
   }
+  const rightSides = [
+    {triggerElement: <a href='#'>Right tooltip</a>, placement: 'right'},
+    {
+      triggerElement: <a href='#'>Right-bottom tooltip</a>,
+      placement: 'right bottom',
+    },
+    {triggerElement: <a href='#'>Right-top tooltip</a>, placement: 'right top'},
+  ]
   return (
     <Column>
       <h3>Default Modal is Medium sized</h3>
@@ -31,6 +42,50 @@ export const Default: React.FC = () => {
           <Modal.Description>
             {lorem}
             <TextField />
+            <Dropdown label='Favorite Animal' placeholder='Choose an animal'>
+              <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
+              <Dropdown.Item key='cat'>Cat</Dropdown.Item>
+              <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+              <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+              <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+              <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+            </Dropdown>
+            {rightSides.map((side) => {
+              const placement = side.placement as Placement
+              return (
+                <TooltipTrigger placement={placement}>
+                  {side.triggerElement}
+                  <Tooltip title='Tooltip' dismissible>
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Recusandae blanditiis laborum commodi mollitia officiis
+                      minus ipsum totam fuga odit, dicta magnam numquam
+                      reprehenderit et sequi dignissimos iusto deleniti. Quia,
+                      modi
+                    </p>
+                    <div
+                      style={{
+                        display: 'grid',
+                        gridTemplateColumns: '1fr 1fr',
+                        marginTop: '16px',
+                        gap: '16px',
+                      }}
+                    >
+                      <Button fullWidth variant='primary'>
+                        Button
+                      </Button>
+                      <Button
+                        fullWidth
+                        variant='secondary'
+                        css={{backgroundColor: 'white'}}
+                      >
+                        Button
+                      </Button>
+                    </div>
+                  </Tooltip>
+                </TooltipTrigger>
+              )
+            })}
           </Modal.Description>
           <Modal.Actions>
             <Button onPress={() => setDefaultOpen(false)}>Cancel</Button>

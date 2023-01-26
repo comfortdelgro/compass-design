@@ -1,11 +1,13 @@
 import {faAddressBook, faClone} from '@fortawesome/free-regular-svg-icons'
 import {faChevronRight} from '@fortawesome/free-solid-svg-icons'
 import {StoryDecorator} from '@ladle/react'
+import React, {Key} from 'react'
 import Avatar from '../avatar'
 import AvatarGroup from '../avatar/avatar-group'
 import Badge from '../badge'
 import Icon from '../icon'
 import {Column} from '../utils/components'
+import DragAndDropList from './drag-and-drop'
 import InteractiveList from './interactive-list'
 import List from './list'
 import ListCard from './list-card'
@@ -730,6 +732,20 @@ export const InteractiveLists: React.FC = () => {
         />
       </div>
     </Column>
+  )
+}
+
+export const DragAndDrop: React.FC = () => {
+  const [arr, setArr] = React.useState<Key[]>(['red', 'green', 'blue'])
+  const onReorderByKeys = (keys: Key[]) => {
+    setArr([...keys])
+  }
+  return (
+    <DragAndDropList onReorderByKeys={onReorderByKeys}>
+      {arr.map((a) => (
+        <DragAndDropList.Item key={a}>{a}</DragAndDropList.Item>
+      ))}
+    </DragAndDropList>
   )
 }
 

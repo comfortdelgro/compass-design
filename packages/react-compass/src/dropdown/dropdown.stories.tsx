@@ -7,8 +7,15 @@ export const Dropdowns: React.FC = () => (
   <Column>
     <h3>Without Header</h3>
     <Dropdown label='Favorite Animal' placeholder='Choose an animal'>
-      <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
-      <Dropdown.Item key='cat'>Cat</Dropdown.Item>
+      <Dropdown.Item
+        key='red panda'
+        leftIcon={<Icon icon={faExclamationTriangle} />}
+      >
+        Red Panda
+      </Dropdown.Item>
+      <Dropdown.Item key='cat' type='color' rightColor='red'>
+        Cat
+      </Dropdown.Item>
       <Dropdown.Item key='dog'>Dog</Dropdown.Item>
       <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
       <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
