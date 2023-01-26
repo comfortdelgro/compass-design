@@ -84,7 +84,6 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
               {table.getHeaderGroups().map((headerGroup) => (
                 <ReactTableHeaderRow key={headerGroup.id}>
                   {headerGroup.headers.map((header) => {
-                    debugger
                     return (
                       <ReactTableColumnHeader
                         key={header.id}

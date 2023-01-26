@@ -1,11 +1,12 @@
-import React, {HTMLProps} from 'react'
+import React from 'react'
 import {StyledCheckboxLabel} from '../checkbox/checkbox.styles'
+import {StyledReactCheckboxInput} from './react-table-checkbox.styles'
 
 const ReactTableCheckbox = ({
   indeterminate,
   className = '',
   ...rest
-}: {indeterminate?: boolean} & HTMLProps<HTMLInputElement>) => {
+}: {indeterminate?: boolean} & any) => {
   const ref = React.useRef<HTMLInputElement>(null!)
 
   React.useEffect(() => {
@@ -16,7 +17,7 @@ const ReactTableCheckbox = ({
 
   return (
     <StyledCheckboxLabel>
-      <input
+      <StyledReactCheckboxInput
         type='checkbox'
         ref={ref}
         className={className + ' cursor-pointer'}
