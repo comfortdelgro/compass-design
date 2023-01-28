@@ -16,6 +16,7 @@ import Button from '../button/button'
 import {Icon} from '../icon'
 import Pagination from '../pagination/pagination'
 import SearchField from '../searchfield/searchfield'
+import {ReactTableStory} from '../table-v2/react-table.stories'
 import {theme} from '../theme'
 import {useAsyncList} from '../utils'
 import Table from './index'
@@ -257,5 +258,12 @@ export const FullFeatured: React.FC = () => {
         </div>
       </Table.Footer>
     </div>
+  )
+}
+export const ReactTable: React.FC = () => {
+  return (
+    <>
+      <ReactTableStory></ReactTableStory>
+    </>
   )
 }

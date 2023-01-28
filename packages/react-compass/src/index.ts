@@ -192,6 +192,8 @@ export type {
 } from './subBanner'
 export {default as Table} from './table'
 export type {TableProps} from './table'
+export {default as TableV2} from './table-v2'
+export type {ReactTableProps} from './table-v2'
 export {default as TagBox} from './tag-box'
 export type {TagBoxActionProps, TagBoxProps} from './tag-box'
 export {default as Textarea} from './textarea'
