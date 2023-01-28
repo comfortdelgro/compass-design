@@ -17,6 +17,8 @@ export type {
   BannerProps,
   BannerTitleProps,
 } from './banner'
+export {default as Box} from './box'
+export type {BoxProps} from './box'
 export {default as Breadcrumbs} from './breadcrumbs'
 export type {BreadcrumbItemProps, BreadcrumbsProps} from './breadcrumbs'
 export {default as Button} from './button'
