@@ -97,7 +97,7 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
             <ReactTableRowGroup as='tbody'>
               {table.getRowModel().rows.map((row) => {
                 return (
-                  <ReactTableRow key={row.id}>
+                  <ReactTableRow key={row.id} isSelected={row.getIsSelected()}>
                     {row.getVisibleCells().map((cell) => {
                       return <ReactTableCell key={cell.id} cell={cell} />
                     })}
