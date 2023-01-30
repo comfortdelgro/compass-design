@@ -94,10 +94,14 @@ export const StyledSelect = styled('div', {
     fontSize: '$label1',
     fontWeight: '$semibold',
     svg: {
+      flexShrink: 0,
       width: '$4',
       height: '$4',
     },
     span: {
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis',
+      overflow: 'hidden',
       flexGrow: 1,
       textAlign: 'start',
     },
