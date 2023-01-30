@@ -133,6 +133,7 @@ importers:
       '@react-aria/progress': ^3.3.3
       '@react-aria/radio': ^3.4.1
       '@react-aria/searchfield': ^3.4.2
+      '@react-aria/select': ^3.8.4
       '@react-aria/selection': ^3.12.1
       '@react-aria/slider': ^3.2.3
       '@react-aria/table': ^3.5.0
@@ -153,6 +154,7 @@ importers:
       '@react-stately/overlays': ^3.4.3
       '@react-stately/radio': ^3.6.1
       '@react-stately/searchfield': ^3.3.2
+      '@react-stately/select': ^3.3.4
       '@react-stately/slider': ^3.2.3
       '@react-stately/table': ^3.5.0
       '@react-stately/tabs': ^3.2.3
@@ -220,6 +222,7 @@ importers:
       '@react-aria/progress': 3.3.3_react@18.2.0
       '@react-aria/radio': 3.4.1_react@18.2.0
       '@react-aria/searchfield': 3.4.3_react@18.2.0
+      '@react-aria/select': 3.8.4_biqbaboplfbrettd7655fr4n2y
       '@react-aria/selection': 3.12.1_react@18.2.0
       '@react-aria/slider': 3.2.3_react@18.2.0
       '@react-aria/table': 3.6.0_biqbaboplfbrettd7655fr4n2y
@@ -240,6 +243,7 @@ importers:
       '@react-stately/overlays': 3.4.3_react@18.2.0
       '@react-stately/radio': 3.6.1_react@18.2.0
       '@react-stately/searchfield': 3.3.3_react@18.2.0
+      '@react-stately/select': 3.3.4_react@18.2.0
       '@react-stately/slider': 3.2.3_react@18.2.0
       '@react-stately/table': 3.6.0_react@18.2.0
       '@react-stately/tabs': 3.2.3_react@18.2.0
@@ -3087,6 +3091,29 @@ packages:
       '@react-types/searchfield': 3.3.5_react@18.2.0
       '@react-types/shared': 3.16.0_react@18.2.0
       react: 18.2.0
+    dev: false
+
+  /@react-aria/select/3.8.4_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-d2JOe11lUoGLvsE32bZRMq32SzXuyLNczyTOLrWM0e9fsOr49A8p6L6bFm3symU/KpwjjnO+pf5IkvgEq+GoJg==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@react-aria/i18n': 3.6.3_react@18.2.0
+      '@react-aria/interactions': 3.13.1_react@18.2.0
+      '@react-aria/label': 3.4.4_react@18.2.0
+      '@react-aria/listbox': 3.7.2_react@18.2.0
+      '@react-aria/menu': 3.7.1_biqbaboplfbrettd7655fr4n2y
+      '@react-aria/selection': 3.12.1_react@18.2.0
+      '@react-aria/utils': 3.14.2_react@18.2.0
+      '@react-aria/visually-hidden': 3.6.1_react@18.2.0
+      '@react-stately/select': 3.3.4_react@18.2.0
+      '@react-types/button': 3.7.0_react@18.2.0
+      '@react-types/select': 3.6.5_react@18.2.0
+      '@react-types/shared': 3.16.0_react@18.2.0
+      '@swc/helpers': 0.4.14
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /@react-aria/selection/3.12.1_react@18.2.0:

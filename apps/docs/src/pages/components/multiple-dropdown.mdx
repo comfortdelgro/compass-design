@@ -26,7 +26,58 @@ We recommend the second method to import components for the benefits of [tree sh
 
 ---
 
-### Without Header:
+### Controlled:
+
+<section className={styles.avatarShowcaseContainer}>
+  <MultipleDropdown
+    label='Favorite Animal'
+    selectionMode='multiple'
+    disabledKeys={['snake']}
+    placeholder='Choose an animal'
+    defaultSelectedKeys={['cat']}
+  >
+    <MultipleDropdown.Item
+      leftIcon={<Icon icon={faExclamationTriangle} />}
+      key='red panda'
+    >
+      Red Panda
+    </MultipleDropdown.Item>
+    <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+  </MultipleDropdown>
+</section>
+
+```js
+  <MultipleDropdown
+    label='Favorite Animal'
+    selectionMode='multiple'
+    disabledKeys={['snake']}
+    placeholder='Choose an animal'
+    selectedKeys={value}
+    onSelectionChange={(k: 'all' | Set<Key>) =>
+      setValue(k === 'all' ? k : [...k])
+    }
+  >
+    <MultipleDropdown.Item
+      leftIcon={<Icon icon={faExclamationTriangle} />}
+      key='red panda'
+    >
+      Red Panda
+    </MultipleDropdown.Item>
+    <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+  </MultipleDropdown>
+```
+
+---
+
+### UnControlled:
 
 <section className={styles.avatarShowcaseContainer}>
   <MultipleDropdown
@@ -35,7 +86,12 @@ We recommend the second method to import components for the benefits of [tree sh
     disabledKeys={['snake']}
     placeholder='Choose an animal'
   >
-    <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
+    <MultipleDropdown.Item
+      leftIcon={<Icon icon={faExclamationTriangle} />}
+      key='red panda'
+    >
+      Red Panda
+    </MultipleDropdown.Item>
     <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
     <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
     <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
@@ -51,7 +107,12 @@ We recommend the second method to import components for the benefits of [tree sh
     disabledKeys={['snake']}
     placeholder='Choose an animal'
   >
-    <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
+    <MultipleDropdown.Item
+      leftIcon={<Icon icon={faExclamationTriangle} />}
+      key='red panda'
+    >
+      Red Panda
+    </MultipleDropdown.Item>
     <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
     <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
     <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
@@ -73,7 +134,12 @@ We recommend the second method to import components for the benefits of [tree sh
     headerTitle='Filter title'
     headerOnClick={() => console.log('clicked')}
   >
-    <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
+    <MultipleDropdown.Item
+      leftIcon={<Icon icon={faExclamationTriangle} />}
+      key='red panda'
+    >
+      Red Panda
+    </MultipleDropdown.Item>
     <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
     <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
     <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
@@ -91,7 +157,12 @@ We recommend the second method to import components for the benefits of [tree sh
     headerTitle='Filter title'
     headerOnClick={() => console.log('clicked')}
   >
-    <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
+    <MultipleDropdown.Item
+      leftIcon={<Icon icon={faExclamationTriangle} />}
+      key='red panda'
+    >
+      Red Panda
+    </MultipleDropdown.Item>
     <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
     <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
     <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
@@ -111,7 +182,12 @@ We recommend the second method to import components for the benefits of [tree sh
     placeholder='Choose an animal'
     isLoading
   >
-    <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
+    <MultipleDropdown.Item
+      leftIcon={<Icon icon={faExclamationTriangle} />}
+      key='red panda'
+    >
+      Red Panda
+    </MultipleDropdown.Item>
     <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
     <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
     <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
@@ -127,7 +203,13 @@ We recommend the second method to import components for the benefits of [tree sh
     placeholder='Choose an animal'
     isLoading
   >
-    <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
+    
+    <MultipleDropdown.Item
+      leftIcon={<Icon icon={faExclamationTriangle} />}
+      key='red panda'
+    >
+      Red Panda
+    </MultipleDropdown.Item>
     <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
     <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
     <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
@@ -147,7 +229,13 @@ We recommend the second method to import components for the benefits of [tree sh
     placeholder='Choose an animal'
     icon={<Icon icon={faExclamationTriangle} />}
   >
-    <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
+    
+    <MultipleDropdown.Item
+      leftIcon={<Icon icon={faExclamationTriangle} />}
+      key='red panda'
+    >
+      Red Panda
+    </MultipleDropdown.Item>
     <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
     <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
     <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
@@ -163,7 +251,13 @@ We recommend the second method to import components for the benefits of [tree sh
     placeholder='Choose an animal'
     icon={<Icon icon={faExclamationTriangle} />}
   >
-    <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
+    
+    <MultipleDropdown.Item
+      leftIcon={<Icon icon={faExclamationTriangle} />}
+      key='red panda'
+    >
+      Red Panda
+    </MultipleDropdown.Item>
     <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
     <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
     <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
@@ -208,10 +302,10 @@ We recommend the second method to import components for the benefits of [tree sh
 
 | Name        | Type                               | Default | Description                                                                             |
 | :---------- | :--------------------------------- | :------ | :-------------------------------------------------------------------------------------- |
-| title       | `string`                           | —       | The title of the item.                                                                   |
-| key         | `Key`                              | —       | The key of the item.                                                                     |
-| children    | `ReactNode` \| `String`            | —       | The content of the item Item                                                             |
-| css         | `CSS`                              | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
+| title       | `string`                           | —       | The title of the dropdown.                                                              |
+| key         | `Key`                              | —       | The key of the dropdown.                                                                |
+| children    | `ReactNode` \| `String`            | —       | The content of the dropdown Item                                                        |
+| leftIcon    | `ReactNode`                        | -       | Left icon of the dropdown Item                                                          |
 
 ---
 
