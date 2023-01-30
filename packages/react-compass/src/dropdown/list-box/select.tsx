@@ -1,24 +1,20 @@
 import {AriaListBoxOptions, useListBox} from '@react-aria/listbox'
-import {ComboBoxState} from '@react-stately/combobox'
+import {SelectState} from '@react-stately/select'
 import React from 'react'
 import Header from '../header'
-import Option from '../option'
+import Option from '../option/select'
 
 interface Props<T = unknown> extends AriaListBoxOptions<T> {
-  state: ComboBoxState<T>
+  state: SelectState<T>
   headerTitle: string | undefined
   headerOnClick: (e: unknown) => void
   listBoxRef: React.RefObject<HTMLUListElement>
 }
 
-const ListBox: React.FC<Props> = (props) => {
-  const ref = React.useRef<HTMLUListElement>(null)
+function ListBox(props: Props) {
+  const ref = React.useRef(null)
   const {listBoxRef = ref, state} = props
-  const {listBoxProps} = useListBox(
-    {...props, ...listBoxRef},
-    state,
-    listBoxRef,
-  )
+  const {listBoxProps} = useListBox(props, state, listBoxRef)
 
   return (
     <>
