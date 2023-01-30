@@ -2,11 +2,16 @@ import {useFocusRing} from '@react-aria/focus'
 import {useOption} from '@react-aria/listbox'
 import {mergeProps} from '@react-aria/utils'
 import {ListState} from '@react-stately/list'
-import type {Node} from '@react-types/shared'
 import React, {Key} from 'react'
 import {StyledComponentProps} from '../../utils/stitches.types'
 import {useDOMRef} from '../../utils/use-dom-ref'
-import {StyledContent, StyledOption, StyledRightIcon} from './index.styles'
+import {MultipleDropdownItemProps} from '../item'
+import {
+  StyledContent,
+  StyledIcon,
+  StyledOption,
+  StyledRightIcon,
+} from './index.styles'
 
 interface Props<T> extends StyledComponentProps {
   state: ListState<T>
@@ -19,21 +24,25 @@ export type LinkProps<T = object> = Props<T>
 const Option = React.forwardRef<HTMLLIElement, LinkProps>(
   ({item, state}, r) => {
     const ref = useDOMRef<HTMLLIElement>(r)
-    const {optionProps, isSelected, isDisabled} = useOption(
+    const {optionProps, isSelected, isDisabled, isFocused} = useOption(
       {key: item.key},
       state,
       ref,
     )
 
-    const {focusProps} = useFocusRing()
-
+    const {isFocusVisible, focusProps} = useFocusRing()
+    const {leftIcon} = item.props ?? {}
+      
+    console.log(isFocusVisible, isFocused)
     return (
       <StyledOption
+        isFocused={isFocused}
         isSelected={isSelected}
         isDisabled={isDisabled}
         {...mergeProps(optionProps, focusProps)}
         ref={ref}
       >
+        {leftIcon && <StyledIcon>{leftIcon}</StyledIcon>}
         <StyledContent>{item.rendered}</StyledContent>
         <StyledRightIcon isSelected={isSelected}>
           <div>
@@ -55,3 +64,22 @@ const Tick = () => (
 )
 
 export default Option
+export interface Node<T> {
+  type: string
+  key: Key
+  value: T
+  level: number
+  hasChildNodes: boolean
+  childNodes: Iterable<Node<T>>
+  rendered: React.ReactNode
+  textValue: string
+  'aria-label'?: string
+  index?: number
+  wrapper?: (element: React.ReactElement) => React.ReactElement
+  parentKey?: Key
+  prevKey?: Key
+  nextKey?: Key
+  props?: MultipleDropdownItemProps
+  /** @private */
+  shouldInvalidate?: (context: unknown) => boolean
+}

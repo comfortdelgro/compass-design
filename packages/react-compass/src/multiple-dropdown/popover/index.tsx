@@ -1,4 +1,9 @@
-import {AriaPopoverProps, usePopover} from '@react-aria/overlays'
+import {
+  AriaPopoverProps,
+  DismissButton,
+  Overlay,
+  usePopover,
+} from '@react-aria/overlays'
 import React from 'react'
 import {StyledPopover} from '../multiple-dropdown.styles'
 import {CollapseState} from '../utils'
@@ -16,7 +21,7 @@ const Popover: React.FC<Props> = ({children, collapseState, ...props}) => {
     {
       ...props,
       offset: 8,
-      shouldFlip: false,
+      shouldFlip: true,
       popoverRef,
     },
     {
@@ -27,23 +32,22 @@ const Popover: React.FC<Props> = ({children, collapseState, ...props}) => {
       toggle: () => collapseState.open(),
     },
   )
-  return (
-    <StyledPopover
-      {...popoverProps}
-      ref={popoverRef}
-      style={
-        props.triggerRef.current?.clientWidth
-          ? {
-              // ...popoverProps.style,
-              width: 'fit-content',
-              minWidth: props.triggerRef.current.clientWidth + 2,
-              zIndex: 9999,
-            }
-          : {...popoverProps?.style}
+
+  const styles = props.triggerRef.current?.clientWidth
+    ? {
+        ...popoverProps.style,
+        width: 'fit-content',
+        minWidth: props.triggerRef.current.clientWidth + 2,
       }
-    >
-      {children}
-    </StyledPopover>
+    : {...popoverProps?.style}
+
+  return (
+    <Overlay>
+      <StyledPopover {...popoverProps} ref={popoverRef} style={styles}>
+        {children}
+        <DismissButton onDismiss={() => collapseState.close()} />
+      </StyledPopover>
+    </Overlay>
   )
 }
 

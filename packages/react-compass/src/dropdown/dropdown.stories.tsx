@@ -19,10 +19,15 @@ export const Select: React.FC = () => {
           key='red panda'
           leftIcon={<Icon icon={faExclamationTriangle} />}
         >
-          Red Panda
+          Red Panda Red Panda Red Panda Red Panda Red Panda
         </Dropdown.Item>
-        <Dropdown.Item key='cat' type='color' rightColor='red'>
-          Cat
+        <Dropdown.Item
+          key='cat'
+          leftIcon={<Icon icon={faExclamationTriangle} />}
+          type='color'
+          rightColor='red'
+        >
+          Cat Red Panda Red Panda Red Panda Red Panda Red Panda
         </Dropdown.Item>
         <Dropdown.Item key='dog'>Dog</Dropdown.Item>
         <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
