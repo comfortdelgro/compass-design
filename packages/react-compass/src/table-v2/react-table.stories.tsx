@@ -101,7 +101,8 @@ export const ReactTableStory: React.FC = () => {
     debugTable: true,
     data: data,
     columns: columns,
-    enableSorting: false,
+    //enable sorting
+    enableSorting: true,
   })
 
   return (
