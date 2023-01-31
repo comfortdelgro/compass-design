@@ -10,6 +10,7 @@ const ReactTableCheckboxCell = ({
   return (
     <StyledReactTableCheckboxCell>
       <ReactTableCheckbox
+        indeterminate={indeterminate}
         type='checkbox'
         className={className + ' cursor-pointer'}
         {...rest}

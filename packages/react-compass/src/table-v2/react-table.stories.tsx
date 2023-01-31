@@ -3,7 +3,14 @@ import {
   faFileLines,
   faTrashAlt,
 } from '@fortawesome/free-solid-svg-icons'
-import {ColumnDef} from '@tanstack/react-table'
+import {
+  ColumnDef,
+  getCoreRowModel,
+  getFilteredRowModel,
+  getSortedRowModel,
+  SortingState,
+  useReactTable,
+} from '@tanstack/react-table'
 import React, {useState} from 'react'
 import Button from '../button/button'
 import {Icon} from '../icon'
@@ -15,9 +22,10 @@ import ReactTableCheckboxCell from './react-table-checkbox-cell'
 
 export const ReactTableStory: React.FC = () => {
   const [page, setPage] = useState(1)
-  const [data, setData] = React.useState(() => makeData(10))
+  const [data] = React.useState(() => makeData(10))
 
-  const refreshData = () => setData(() => makeData(10))
+  const [sorting, setSorting] = React.useState<SortingState>([])
+
   const columns = React.useMemo<ColumnDef<Person>[]>(
     () => [
       {
@@ -80,9 +88,25 @@ export const ReactTableStory: React.FC = () => {
     ],
     [],
   )
+
+  const table = useReactTable({
+    state: {
+      sorting,
+    },
+    columnResizeMode: 'onChange',
+    onSortingChange: setSorting,
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    debugTable: true,
+    data: data,
+    columns: columns,
+    enableSorting: false,
+  })
+
   return (
     <div>
-      <ReactTable selectionMode='multiple' columns={columns} data={data}>
+      <ReactTable table={table}>
         <ReactTable.Toolbar
           css={{
             display: 'flex',

@@ -1,4 +1,4 @@
-import {flexRender} from '@tanstack/react-table'
+import {flexRender, Header} from '@tanstack/react-table'
 import React from 'react'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
@@ -9,7 +9,7 @@ import {
 import ReactTableResizer from './react-table-resizer'
 
 interface Props {
-  headerProps: any
+  headerProps: Header<any, unknown>
 }
 
 const ReactTableColumnHeader = React.forwardRef<HTMLTableCellElement, Props>(

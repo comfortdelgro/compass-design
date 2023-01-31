@@ -1,20 +1,26 @@
+import {faCheck, faMinus} from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
-import {StyledCheckboxLabel} from '../checkbox/checkbox.styles'
+import {
+  StyledCheckboxBox,
+  StyledCheckboxCheckmark,
+  StyledCheckboxLabel,
+} from '../checkbox/checkbox.styles'
+import Icon from '../icon'
 import {StyledReactCheckboxInput} from './react-table-checkbox.styles'
 
 const ReactTableCheckbox = ({
   indeterminate,
   className = '',
   ...rest
-}: {indeterminate?: boolean} & any) => {
+}: {indeterminate: boolean | undefined} & {className: string}) => {
   const ref = React.useRef<HTMLInputElement>(null!)
 
   React.useEffect(() => {
     if (typeof indeterminate === 'boolean') {
-      ref.current.indeterminate = !rest.checked && indeterminate
+      ref.current.indeterminate =
+        !(rest as HTMLInputElement).checked && indeterminate
     }
   }, [ref, indeterminate])
-
   return (
     <StyledCheckboxLabel>
       <StyledReactCheckboxInput
@@ -23,6 +29,11 @@ const ReactTableCheckbox = ({
         className={className + ' cursor-pointer'}
         {...rest}
       />
+      <StyledCheckboxBox disabled={false} rounded={false}>
+        <StyledCheckboxCheckmark>
+          <Icon icon={indeterminate ? faMinus : faCheck} className='icon' />
+        </StyledCheckboxCheckmark>
+      </StyledCheckboxBox>
     </StyledCheckboxLabel>
   )
 }

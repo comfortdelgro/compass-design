@@ -6,5 +6,6 @@ export const StyledReactTableRow = styled('tr', {
   borderLeftWidth: '$medium',
   borderLeftStyle: 'solid',
   borderLeftColor: 'transparent',
+  borderWidth: `$borderWidths.light`,
   transition: '$default',
 })
