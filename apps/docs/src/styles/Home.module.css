@@ -11,6 +11,7 @@
   justify-content: space-between;
   gap: 1rem;
 }
+
 .avatarShowcaseContainer {
   margin: 0;
   padding: 0;
@@ -60,8 +61,22 @@
   flex-direction: column;
   cursor: pointer;
 }
+
 .iconWrapper p {
   font-size: 0.75rem;
   word-break: break-word;
-  text-align: center
+  text-align: center;
+}
+
+.contentSliderDemo {
+  background: #f0f0f0;
+  margin-top: 20px;
+}
+
+.contentSliderDemo h3 {
+  font-size: 24px;
+}
+
+.contentSliderDemo .slide-content {
+  padding: 20px;
 }

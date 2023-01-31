@@ -17,10 +17,12 @@ export const StyledContentSlider = styled('div', {
     },
   },
 
-  '@container contentSlider (min-width: 769px)': {
-    '.slider-slide button.secondary': {
-      background: '$whiteText',
-    },
+  '.slider-slide button.primary': {
+    background: '$cdgBlue100',
+  },
+
+  '.slider-slide button.secondary': {
+    background: '$whiteText',
   },
 
   '@container contentSlider (max-width: 768px)': {
@@ -61,7 +63,9 @@ export const StyledContentSlider = styled('div', {
       height: '100%',
     },
     '.content-slider-controls': {
-      display: 'none',
+      svg: {
+        height: '24px',
+      },
     },
     '.content-slider-title': {
       fontSize: '24px',
@@ -71,6 +75,33 @@ export const StyledContentSlider = styled('div', {
     '.content-slider-description': {
       fontSize: '14px',
       margin: '0 16px',
+    },
+  },
+})
+
+export const StyledContentSliderMobile = styled('div', {
+  '.slide-mobile-buttons': {
+    flexDirection: 'column',
+    gap: 0,
+    marginTop: '0',
+  },
+  button: {
+    borderRadius: '0',
+    padding: '16px 24px',
+  },
+  '.content-slider-container': {},
+  '&.content-slider-mobile-mode .content-slider-bottom-nav': {
+    top: '292px',
+    zIndex: '2',
+  },
+  '&.floating-content .content-slider': {
+    '.slide-body': {
+      position: 'absolute',
+      height: 'auto',
+      background: 'transparent',
+    },
+    '.content-slider-bottom-nav': {
+      top: 'calc(100% - 30px)',
     },
   },
 })
@@ -98,6 +129,8 @@ export const StyledSliderSocials = styled('div', {
   gap: '18px',
   svg: {
     cursor: 'pointer',
+    width: '16px',
+    height: '16px',
   },
 })
 
@@ -114,11 +147,11 @@ export const StyledContentSliderDot = styled('div', {
   border: '1px solid $whiteText',
   background: 'transparent',
   cursor: 'pointer',
-  transition: 'all 0.3s ease-in-out',
+  transition: '$default',
   '&.active': {
     background: '$cdgBlue100',
     width: '16px',
-    transition: 'all 0.3s ease-in-out',
+    transition: '$default',
   },
 })
 
@@ -129,10 +162,51 @@ export const StyledContentSliderContentItem = styled('div', {
   height: '100%',
   opacity: 0,
   objectFit: 'cover',
-  transition: 'all 0.3s ease-in-out',
+  transition: '$default',
   '&.active': {
     opacity: 1,
-    transition: 'all 0.3s ease-in-out',
+    transition: '$default',
+  },
+
+  '&.mobile-mode': {
+    flex: '1',
+    display: 'flex',
+    flexDirection: 'column',
+    '.slide-body': {
+      display: 'flex',
+      flexDirection: 'column',
+      background: '$cdgBlue100',
+      padding: '24px 16px',
+      position: 'relative',
+      height: '98px',
+      overflow: 'hidden',
+      gap: '8px',
+      flex: 'unset',
+    },
+    '.slide-background': {
+      height: 'auto',
+      flex: '1',
+    },
+    '.carousel-mobile-inner-content': {
+      alignItems: 'stretch',
+      height: '100%',
+      gap: '0',
+      display: 'flex',
+      flexDirection: 'column',
+    },
+    '.content-slider-dots': {
+      position: 'absolute',
+      top: '-20px',
+      left: '16px',
+      right: '16px',
+      justifyContent: 'center',
+    },
+    '.content-slider-title': {
+      margin: '0',
+    },
+    '.content-slider-description': {
+      margin: '0',
+    },
   },
 })
 
@@ -143,10 +217,10 @@ export const StyledContentSliderImageItem = styled('img', {
   height: '100%',
   opacity: 0,
   objectFit: 'cover',
-  transition: 'all 0.3s ease-in-out',
+  transition: '$default',
   '&.active': {
     opacity: 1,
-    transition: 'all 0.3s ease-in-out',
+    transition: '$default',
   },
 })
 
@@ -162,19 +236,41 @@ export const StyledContentSliderNav = styled('div', {
   '&:active': {
     background: 'rgba(125,125,125, 0.5)',
   },
+  '&.text': {
+    borderRadius: '0',
+    padding: '5px',
+    fontWeight: '600',
+    textTransform: 'uppercase',
+    fontSize: '16px',
+  },
+  svg: {
+    height: '36px',
+  },
 })
 
 export const StyledContentSliderNext = styled(StyledContentSliderNav, {
   right: '10px',
+  '&.text': {
+    transform: 'rotate(90deg)',
+  },
 })
 
 export const StyledContentSliderPrev = styled(StyledContentSliderNav, {
   left: '10px',
+  '&.text': {
+    transform: 'rotate(-90deg)',
+  },
 })
 
 export const StyledSlideBackground = styled('img', {
   width: '100%',
   height: '100%',
+  objectFit: 'cover',
+})
+
+export const StyledMobileSlideBackground = styled('img', {
+  width: '100%',
+  flex: '1',
   objectFit: 'cover',
 })
 
@@ -205,14 +301,35 @@ export const StyledSlideBody = styled('div', {
     alignItems: 'flex-start',
     justifyContent: 'flex-end',
   },
+  '&.start-center': {
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    textAlign: 'center',
+  },
+  '&.center-center': {
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+  },
   '&.end-center': {
     alignItems: 'center',
     justifyContent: 'flex-end',
     textAlign: 'right',
   },
+  '&.start-end': {
+    alignItems: 'flex-end',
+    justifyContent: 'flex-start',
+    textAlign: 'right',
+  },
   '&.center-end': {
     alignItems: 'flex-end',
     justifyContent: 'center',
+    textAlign: 'center',
+  },
+  '&.end-end': {
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+    textAlign: 'right',
   },
 })
 

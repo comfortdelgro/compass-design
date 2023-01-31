@@ -13,9 +13,12 @@ export type NinePartAlignment =
 
 export type ButtonType = 'primary' | 'secondary'
 
+export type NavigationButtonType = 'icon' | 'text'
+
 export interface ContentSliderButton {
   type: ButtonType
   label: string
+  callback?: () => void
 }
 
 export interface ContentSliderItem {
@@ -30,4 +33,12 @@ export interface ContentSliderItem {
 export interface SocicalIcon {
   icon: IconDefinition
   url: string
+}
+
+export interface CarouselOptions {
+  autoSwitch?: boolean
+  useNavigation?: boolean
+  useDotIndicator?: boolean
+  navigationButtonType?: NavigationButtonType
+  onSwitchSlide?: (index: number) => void
 }

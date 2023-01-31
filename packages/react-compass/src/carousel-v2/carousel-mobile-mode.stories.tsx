@@ -4,8 +4,13 @@ import {
   faTiktok,
 } from '@fortawesome/free-brands-svg-icons'
 import React from 'react'
-import CarouselV2 from './carousel-v2'
-import {ContentSliderItem, SocicalIcon} from './content-slider.types'
+import {styled} from '../theme'
+import CarouselMobile from './carousel-mobile'
+import {
+  ContentSliderButton,
+  ContentSliderItem,
+  SocicalIcon,
+} from './content-slider.types'
 
 const socials: SocicalIcon[] = [
   {
@@ -21,10 +26,6 @@ const slideData: ContentSliderItem[] = [
     image: 'https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(15).webp',
     title: 'Content slider is awesome',
     description: 'You can put whatever you want here',
-    buttons: [
-      {type: 'primary', label: 'Awesome'},
-      {type: 'secondary', label: 'Take a tour'},
-    ],
     mask: 0.2,
   },
   {
@@ -32,10 +33,6 @@ const slideData: ContentSliderItem[] = [
     title: 'This slide contains buttons',
     description: 'These button can listen and handle user click event',
     alignment: 'center-end',
-    buttons: [
-      {type: 'primary', label: 'Awesome'},
-      {type: 'secondary', label: 'Take a tour'},
-    ],
     mask: 0.5,
   },
   {
@@ -65,30 +62,68 @@ const slideData: ContentSliderItem[] = [
   },
 ]
 
-export const OnlyContent = () => {
-  return (
-    <div className='content-slider-sample'>
-      <CarouselV2 data={slideData} useNavigation={false} />
-    </div>
-  )
-}
+const StyledSampleAnyContentSlider = styled('div', {
+  width: '480px',
+})
 
-export const WithSocials = () => {
-  return (
-    <div className='content-slider-sample'>
-      <CarouselV2 data={slideData} socials={socials} />
-    </div>
-  )
-}
+const buttons: ContentSliderButton[] = [
+  {
+    type: 'secondary',
+    label: 'Button',
+    callback: () => {
+      console.log('Button clicked')
+    },
+  },
+  {
+    type: 'primary',
+    label: 'Call action',
+    callback: () => {
+      console.log('Call action clicked')
+    },
+  },
+]
 
-export const NavigationTextButton = () => {
+export const WithButtons = () => {
   return (
-    <div className='content-slider-sample'>
-      <CarouselV2
+    <StyledSampleAnyContentSlider className='content-slider-sample'>
+      <CarouselMobile
         data={slideData}
-        socials={socials}
-        navigationButtonType={'text'}
+        useNavigation={false}
+        buttons={buttons}
       />
-    </div>
+    </StyledSampleAnyContentSlider>
+  )
+}
+
+export const NoButtons = () => {
+  return (
+    <StyledSampleAnyContentSlider className='content-slider-sample'>
+      <CarouselMobile data={slideData} useNavigation={false} />
+    </StyledSampleAnyContentSlider>
+  )
+}
+
+export const FloatingContent = () => {
+  return (
+    <StyledSampleAnyContentSlider className='content-slider-sample'>
+      <CarouselMobile
+        data={slideData}
+        floatingContent={true}
+        useNavigation={false}
+      />
+    </StyledSampleAnyContentSlider>
+  )
+}
+
+export const FloatingContentWithButtons = () => {
+  return (
+    <StyledSampleAnyContentSlider className='content-slider-sample'>
+      <CarouselMobile
+        data={slideData}
+        floatingContent={true}
+        useNavigation={false}
+        buttons={buttons}
+      />
+    </StyledSampleAnyContentSlider>
   )
 }

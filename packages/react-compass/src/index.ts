@@ -38,6 +38,7 @@ export type {
   CarouselProps,
   CarouselTitleProps,
 } from './carousel'
+export * from './carousel-v2'
 export {default as Chart} from './chart'
 export type {
   AreaChartProps,

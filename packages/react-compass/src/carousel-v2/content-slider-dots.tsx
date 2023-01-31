@@ -1,3 +1,4 @@
+import React from 'react'
 import {
   StyledContentSliderDot,
   StyledContentSliderDots,
@@ -11,13 +12,13 @@ interface Props {
 
 const ContentSliderDots = ({length, current, dotClick = () => {}}: Props) => {
   return (
-    <StyledContentSliderDots>
+    <StyledContentSliderDots className='content-slider-dots'>
       {Array(length)
-        .fill(null)
+        .fill(0)
         .map((item: any, index: number) => {
           return (
             <StyledContentSliderDot
-              key={index}
+              key={index + item}
               className={`${index === current ? ' active' : ''}`}
               onClick={() => {
                 dotClick(index)

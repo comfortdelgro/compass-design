@@ -1,0 +1,120 @@
+import {Callout} from 'nextra-theme-docs'
+import styles from '../../styles/Home.module.css'
+import Badge from '@comfortdelgro/react-compass/badge'
+import {
+  faThumbsUp,
+  faVirus,
+  faChevronLeft,
+  faChevronRight,
+} from '@fortawesome/free-solid-svg-icons'
+
+import {
+  SampleContentSlider,
+  ImageOnlyDemo,
+  TextNavigationButton,
+  PromotionSlider,
+  PromotionSliderWithSocials,
+  AutoPlaySlider,
+  SlideAlignment,
+} from '../../components/ContentSliders'
+
+# Carousel
+
+Badges can be used to highlight important bits of information such as labels, notifications, data trends & status.
+
+---
+
+### Import:
+
+```js
+import {ContentSlider} from '@comfortdelgro/react-compass/carousel-v2'
+```
+
+---
+
+### Image only slider:
+
+<section className={styles.contentSliderDemo}>
+  <ImageOnlyDemo />
+</section>
+
+```js
+<Badge label='Default' />
+```
+
+### Text buttons:
+
+<section className={styles.contentSliderDemo}>
+  <TextNavigationButton />
+</section>
+
+```js
+<Badge label='Default' />
+```
+
+### Promotion slider:
+
+<section className={styles.contentSliderDemo}>
+  <PromotionSlider />
+</section>
+
+```js
+<Badge label='Default' />
+```
+
+### Pause:
+
+<section className={styles.contentSliderDemo}>
+  <AutoPlaySlider />
+</section>
+
+```js
+<Badge label='Default' />
+```
+
+### Slide alignment:
+
+<section className={styles.contentSliderDemo}>
+  <SlideAlignment />
+</section>
+
+```js
+<Badge label='Default' />
+```
+
+### With socials icons:
+
+<section className={styles.contentSliderDemo}>
+  <PromotionSliderWithSocials />
+</section>
+
+```js
+<Badge label='Default' />
+```
+
+### Any content slider:
+
+<section className={styles.contentSliderDemo}>
+  <SampleContentSlider />
+</section>
+
+```js
+<Badge label='Default' />
+```
+
+### Props:
+
+| Name    | Type                                         | Default | Description                                                                                                                       |
+| :------ | :------------------------------------------- | :------ | :-------------------------------------------------------------------------------------------------------------------------------- |
+| color   | `info` \| `success` \| `warning` \| `danger` | info    | These colors will determine the color of background of the badges.                                                                |
+| label   | `String `                                    | —       | Lable of the badges.                                                                                                              |
+| variant | `primary` \| `secondary` \| `outline`        | primary | Variants will determine the color of the badges' label, border and the darkness of its background .                               |
+| icon    | `IconProp`\|`false`\| `true`                 | false   | When false, no icon is shown in the badge. When true, the default icons are shown. And you can pass in custom icons to this prop. |
+| css     | `CSS`                                        | —       | The system prop that allows defining system overrides as well as additional CSS styles.                                           |
+
+---
+
+<Callout>
+  Check out our [ladle](/ladle?story=badge--variants) for more info on this
+  component.
+</Callout>
