@@ -107,10 +107,8 @@ export const DEFAULT_VERTICAL_OPTIONS = (
           },
           padding: 8,
         },
-        border: {
-          color: '#D2D0CE',
-        },
         grid: {
+          borderColor: '#D2D0CE',
           display: false,
         },
       },
@@ -135,10 +133,9 @@ export const DEFAULT_VERTICAL_OPTIONS = (
         },
         grid: {
           tickColor: '#ffffff',
-        },
-        border: {
-          dash: [4, 4],
-          color: '#ffffff',
+          borderColor: '#ffffff',
+          borderDash: [4, 4],
+          borderWidth: 1,
         },
       },
     },
@@ -165,11 +162,9 @@ export const DEFAULT_HORIZONTAL_OPTIONS = (
           },
           padding: 8,
         },
-        border: {
-          color: '#D2D0CE',
-        },
         grid: {
           display: false,
+          borderColor: '#D2D0CE',
         },
       },
       x: {
@@ -193,10 +188,9 @@ export const DEFAULT_HORIZONTAL_OPTIONS = (
         },
         grid: {
           tickColor: '#ffffff',
-        },
-        border: {
-          dash: [4, 4],
-          color: '#ffffff',
+          borderColor: '#ffffff',
+          borderDash: [4, 4],
+          borderWidth: 1,
         },
       },
     },

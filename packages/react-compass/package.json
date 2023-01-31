@@ -86,8 +86,8 @@
     "@react-types/calendar": "^3.0.4",
     "@react-types/combobox": "^3.5.5",
     "@stitches/react": "^1.2.8",
-    "chart.js": "^4.1.2",
-    "react-chartjs-2": "^5.2.0"
+    "chart.js": "^3.9.1",
+    "react-chartjs-2": "^4.3.1"
   },
   "devDependencies": {
     "@comfortdelgro/eslint-config": "^1.0.2",
