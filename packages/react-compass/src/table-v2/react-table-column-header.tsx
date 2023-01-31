@@ -3,7 +3,6 @@ import React from 'react'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
   StyledReactTableColumnHeader,
-  StyledReactTableHeaderWrapper,
   StyledReactTableSortingIndicator,
 } from './react-table-column-header.styles'
 import ReactTableResizer from './react-table-resizer'
@@ -26,7 +25,7 @@ const ReactTableColumnHeader = React.forwardRef<HTMLTableCellElement, Props>(
           },
         }}
       >
-        <StyledReactTableHeaderWrapper
+        <div
           {...{
             className: headerProps.column.getCanSort()
               ? 'cursor-pointer select-none'
@@ -85,7 +84,7 @@ const ReactTableColumnHeader = React.forwardRef<HTMLTableCellElement, Props>(
             </>
           )}
           <ReactTableResizer headerProps={headerProps} />
-        </StyledReactTableHeaderWrapper>
+        </div>
       </StyledReactTableColumnHeader>
     )
   },
