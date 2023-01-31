@@ -16,91 +16,17 @@ import {
   PromotionSliderWithSocials,
   AutoPlaySlider,
   SlideAlignment,
+  CarouselMobileMode,
+  CarouselMobileFloatingContent,
 } from '../../components/ContentSliders'
+
+import {Accordion} from '@comfortdelgro/react-compass'
 
 # Carousel
 
 Badges can be used to highlight important bits of information such as labels, notifications, data trends & status.
 
 ---
-
-### Import:
-
-```js
-import {ContentSlider} from '@comfortdelgro/react-compass/carousel-v2'
-```
-
----
-
-### Image only slider:
-
-<section className={styles.contentSliderDemo}>
-  <ImageOnlyDemo />
-</section>
-
-```js
-<Badge label='Default' />
-```
-
-### Text buttons:
-
-<section className={styles.contentSliderDemo}>
-  <TextNavigationButton />
-</section>
-
-```js
-<Badge label='Default' />
-```
-
-### Promotion slider:
-
-<section className={styles.contentSliderDemo}>
-  <PromotionSlider />
-</section>
-
-```js
-<Badge label='Default' />
-```
-
-### Pause:
-
-<section className={styles.contentSliderDemo}>
-  <AutoPlaySlider />
-</section>
-
-```js
-<Badge label='Default' />
-```
-
-### Slide alignment:
-
-<section className={styles.contentSliderDemo}>
-  <SlideAlignment />
-</section>
-
-```js
-<Badge label='Default' />
-```
-
-### With socials icons:
-
-<section className={styles.contentSliderDemo}>
-  <PromotionSliderWithSocials />
-</section>
-
-```js
-<Badge label='Default' />
-```
-
-### Any content slider:
-
-<section className={styles.contentSliderDemo}>
-  <SampleContentSlider />
-</section>
-
-```js
-<Badge label='Default' />
-```
 
 ### Props:
 
@@ -113,6 +39,278 @@ import {ContentSlider} from '@comfortdelgro/react-compass/carousel-v2'
 | css     | `CSS`                                        | —       | The system prop that allows defining system overrides as well as additional CSS styles.                                           |
 
 ---
+
+### Methods:
+
+| Name          | Type                      | Default  | Description                              |
+| :------------ | :------------------------ | :------- | :--------------------------------------- |
+| onSwitchSlide | `(index: number) => void` | `number` | Event that calls when slide has switched |
+
+---
+
+### Import:
+
+```js
+import {
+  CarouselImageSlide,
+  CarouselMobile,
+  CarouselSlide,
+  CarouselV2,
+  ContentSlider,
+  ContentSliderButton,
+  ContentSliderItem,
+  Dropdown,
+  NinePartAlignment,
+  SocicalIcon,
+} from '@comfortdelgro/react-compass'
+```
+
+---
+
+### Image only slider:
+
+<section className={styles.contentSliderDemo}>
+  <ImageOnlyDemo />
+</section>
+
+```js
+const [activeIndex, setActiveIndex] = useState(0)
+
+const imageUrls = [
+  'https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(15).webp',
+  'https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(22).webp',
+  'https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(23).webp',
+]
+
+const handleSwitchSlide = (index: number) => {
+  setActiveIndex(index)
+}
+
+return (
+  <div className='content-slider-sample'>
+    <ContentSlider onSwitchSlide={handleSwitchSlide}>
+      {imageUrls.map((imageUrl: string, index: number) => (
+        <CarouselImageSlide
+          key={index}
+          active={activeIndex === index}
+          imageUrl={imageUrl}
+        />
+      ))}
+    </ContentSlider>
+  </div>
+)
+```
+
+### Promotion slider:
+
+<Accordion>
+  <Accordion.Title>Let's init some data</Accordion.Title>
+  
+```js
+const slideData: ContentSliderItem[] = [
+  {
+    image: 'https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(15).webp',
+    title: 'Content slider is awesome',
+    description: 'You can put whatever you want here',
+    buttons: [
+      {type: 'primary', label: 'Awesome'},
+      {type: 'secondary', label: 'Take a tour'},
+    ],
+    mask: 0.2,
+  },
+  {
+    image: 'https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(15).webp',
+    title: 'This slide contains buttons',
+    description: 'These button can listen and handle user click event',
+    alignment: 'center-end',
+    buttons: [
+      {type: 'primary', label: 'Awesome'},
+      {type: 'secondary', label: 'Take a tour'},
+    ],
+    mask: 0.5,
+  },
+  {
+    image: 'https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(23).webp',
+    title: 'This slide has different alignment',
+    description: 'You can use the document for the other alignment options',
+    alignment: 'end-center',
+  },
+  {
+    image: 'https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(15).webp',
+    title: 'Content slider is awesome',
+    description: 'You can put whatever you want here',
+    mask: 0.1,
+  },
+  {
+    image: 'https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(15).webp',
+    title: 'This slide contains buttons',
+    description: 'These button can listen and handle user click event',
+    alignment: 'center-end',
+  },
+  {
+    image: 'https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(23).webp',
+    title: 'This slide has different alignment',
+    description: 'You can use the document for the other alignment options',
+    alignment: 'end-center',
+    mask: 0.3,
+  },
+]
+```
+</Accordion>
+
+<section className={styles.contentSliderDemo}>
+  <PromotionSlider />
+</section>
+
+```js
+<CarouselV2 data={slideData} />
+```
+
+### Mobile mode:
+
+<section className={styles.contentSliderDemo}>
+  <CarouselMobileMode />
+</section>
+
+```js
+<CarouselMobile data={slideData} useNavigation={false} buttons={buttons} />
+```
+
+### Mobile mode - floating content:
+
+<section className={styles.contentSliderDemo}>
+  <CarouselMobileFloatingContent />
+</section>
+
+```js
+<CarouselMobile data={slideData} floatingContent={true} buttons={buttons} />
+```
+
+### Pause:
+
+<section className={styles.contentSliderDemo}>
+  <AutoPlaySlider />
+</section>
+
+```js
+<CarouselV2 data={slideData} autoSwitch={false} />
+```
+
+### Slide alignment:
+
+<section className={styles.contentSliderDemo}>
+  <SlideAlignment />
+</section>
+
+```js
+  // Nine parts alignment
+  * 'start-start'
+  * 'center-start'
+  * 'end-start'
+  * 'start-center'
+  * 'center-center'
+  * 'end-center'
+  * 'start-end'
+  * 'center-end'
+  * 'end-end'
+  const slides: ContentSliderItem[] = [
+    {
+      ...
+      title: 'This slide contains buttons',
+      description: 'These button can listen and handle user click event',
+
+      // Place your alignment here
+      alignment: 'start-start',
+      ...
+    },
+  ]
+<CarouselV2 data={slides} autoSwitch={false} />
+```
+
+### With socials icons:
+
+<section className={styles.contentSliderDemo}>
+  <PromotionSliderWithSocials />
+</section>
+
+```js
+import {
+  faPinterest,
+  faTelegram,
+  faTiktok,
+} from '@fortawesome/free-brands-svg-icons'
+
+const socials: SocicalIcon[] = [
+  {
+    icon: faPinterest,
+    url: 'https://www.pinterest.com.au/',
+  },
+  {icon: faTiktok, url: 'https://www.tiktok.com/'},
+  {icon: faTelegram, url: 'https://telegram.org/'},
+]
+
+export const PromotionSliderWithSocials = () => {
+  return <CarouselV2 data={slideData} socials={socials} />
+}
+```
+
+### Text buttons:
+
+<section className={styles.contentSliderDemo}>
+  <TextNavigationButton />
+</section>
+
+```js
+<ContentSlider onSwitchSlide={handleSwitchSlide} navigationButtonType='text'>
+  ...Slider content
+</ContentSlider>
+```
+
+### Any content slider:
+
+<section className={styles.contentSliderDemo}>
+  <SampleContentSlider />
+</section>
+
+```js
+const [activeIndex, setActiveIndex] = useState(0)
+
+const handleSwitchSlide = (index: number) => {
+  setActiveIndex(index)
+}
+
+return (
+  <ContentSlider onSwitchSlide={handleSwitchSlide}>
+    <CarouselSlide active={activeIndex === 0}>
+      <h3>First slide</h3>
+      <br />
+      You can put any content here
+      <br />
+      Replace this content with everything you want
+      <br />
+      With your own custom styles
+      <br />
+      <i>The gray background here is just for this sample</i>
+    </CarouselSlide>
+    <CarouselSlide active={activeIndex === 1}>
+      <h3>Second slide</h3>
+      <br />
+      Even if you&apos;re using a <b>rich text content</b>,{' '}
+      <i>It also works!</i>
+      <br />
+      <Image
+        width={100}
+        height={100}
+        alt='sample image'
+        src='https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(15).webp'
+      />
+    </CarouselSlide>
+    <CarouselSlide active={activeIndex === 2}>
+      <h3>This is the last slide</h3>
+    </CarouselSlide>
+  </ContentSlider>
+)
+```
 
 <Callout>
   Check out our [ladle](/ladle?story=badge--variants) for more info on this

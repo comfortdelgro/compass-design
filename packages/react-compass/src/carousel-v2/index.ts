@@ -1,8 +1,10 @@
 import CarouselImageSlide from './carousel-image-slide'
+import CarouselMobile from './carousel-mobile'
 import CarouselSlide from './carousel-slide'
 import CarouselV2 from './carousel-v2'
 import ContentSlider from './content-slider'
 import {
+  ContentSliderButton,
   ContentSliderItem,
   NinePartAlignment,
   SocicalIcon,
@@ -13,7 +15,9 @@ export {
   CarouselSlide,
   CarouselImageSlide,
   CarouselV2,
+  CarouselMobile,
   SocicalIcon,
   ContentSliderItem,
   NinePartAlignment,
+  ContentSliderButton,
 }

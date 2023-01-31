@@ -46,10 +46,7 @@ export const StyledContentSlider = styled('div', {
     '.slider-slide .slide-body': {
       flex: 1,
       display: 'flex',
-      bottom: '40px',
-      right: '0',
-      left: '0',
-      top: '0',
+      inset: '50px',
       gap: '8px',
     },
     '.slide-button-row': {
@@ -86,19 +83,34 @@ export const StyledContentSliderMobile = styled('div', {
     marginTop: '0',
   },
   button: {
+    '&.primary': {
+      background: '$cdgBlue100',
+    },
     borderRadius: '0',
     padding: '16px 24px',
   },
-  '.content-slider-container': {},
+  '.content-slider-container': {
+    height: 'auto',
+  },
   '&.content-slider-mobile-mode .content-slider-bottom-nav': {
-    top: '292px',
+    top: '260px',
     zIndex: '2',
+  },
+  '&:not(.floating-content) .content-slider': {
+    '.slide-body': {
+      justifyContent: 'flex-start',
+    },
   },
   '&.floating-content .content-slider': {
     '.slide-body': {
       position: 'absolute',
       height: 'auto',
       background: 'transparent',
+      padding: '0',
+      inset: '60px',
+    },
+    '.slide-background': {
+      height: '412px',
     },
     '.content-slider-bottom-nav': {
       top: 'calc(100% - 30px)',
@@ -170,22 +182,26 @@ export const StyledContentSliderContentItem = styled('div', {
 
   '&.mobile-mode': {
     flex: '1',
-    display: 'flex',
+    display: 'none',
     flexDirection: 'column',
+    position: 'relative',
+    '&.active': {
+      display: 'flex',
+    },
     '.slide-body': {
       display: 'flex',
       flexDirection: 'column',
       background: '$cdgBlue100',
       padding: '24px 16px',
       position: 'relative',
-      height: '98px',
       overflow: 'hidden',
       gap: '8px',
       flex: 'unset',
+      inset: 0,
     },
     '.slide-background': {
-      height: 'auto',
-      flex: '1',
+      height: '280px',
+      flex: 'none',
     },
     '.carousel-mobile-inner-content': {
       alignItems: 'stretch',
@@ -233,6 +249,7 @@ export const StyledContentSliderNav = styled('div', {
   fontSize: '30px',
   cursor: 'pointer',
   borderRadius: '30px',
+  zIndex: '2',
   '&:active': {
     background: 'rgba(125,125,125, 0.5)',
   },

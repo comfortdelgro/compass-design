@@ -1,8 +1,10 @@
 import {
   CarouselImageSlide,
+  CarouselMobile,
   CarouselSlide,
   CarouselV2,
   ContentSlider,
+  ContentSliderButton,
   ContentSliderItem,
   Dropdown,
   NinePartAlignment,
@@ -74,6 +76,23 @@ const slideData: ContentSliderItem[] = [
   },
 ]
 
+const buttons: ContentSliderButton[] = [
+  {
+    type: 'secondary',
+    label: 'Button',
+    callback: () => {
+      alert('Button clicked')
+    },
+  },
+  {
+    type: 'primary',
+    label: 'Call action',
+    callback: () => {
+      alert('Call action clicked')
+    },
+  },
+]
+
 export const PromotionSlider = () => {
   return (
     <div className='content-slider-sample'>
@@ -94,6 +113,30 @@ export const PromotionSliderWithSocials = () => {
   return (
     <div className='content-slider-sample'>
       <CarouselV2 data={slideData} socials={socials} />
+    </div>
+  )
+}
+
+export const CarouselMobileMode = () => {
+  return (
+    <div style={{width: '320px'}}>
+      <CarouselMobile
+        data={slideData}
+        useNavigation={false}
+        buttons={buttons}
+      />
+    </div>
+  )
+}
+
+export const CarouselMobileFloatingContent = () => {
+  return (
+    <div style={{width: '480px'}}>
+      <CarouselMobile
+        data={slideData}
+        floatingContent={true}
+        buttons={buttons}
+      />
     </div>
   )
 }
