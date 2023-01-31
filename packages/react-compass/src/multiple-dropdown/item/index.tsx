@@ -1,13 +1,18 @@
 import {Item} from '@react-stately/collections'
 import React from 'react'
 
-interface Props {
+interface Props<T> {
   leftIcon?: React.ReactNode
-  children: string
+  children: React.ReactNode | string
   key: string
+  title?: React.ReactNode
+  textValue?: string
+  'aria-label'?: string
+  childItems?: Iterable<T>
+  hasChildItems?: boolean
 }
 
-export type MultipleDropdownItemProps = Props
+export type MultipleDropdownItemProps<T = object> = Props<T>
 
 const MultipleDropdownItem: React.FC<MultipleDropdownItemProps> = ({
   children,

@@ -1,10 +1,10 @@
 import {AriaListBoxOptions, useListBox} from '@react-aria/listbox'
-import {Item} from '@react-stately/collections'
 import {ListProps, useListState} from '@react-stately/list'
 import React, {Key} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import Header from './header'
+import MultipleDropdownItem from './item'
 import {
   DropdownVariantProps,
   StyledDropdown,
@@ -45,7 +45,7 @@ const MultipleDropdown = React.forwardRef<
   const state = useListState(props)
   const ref = useDOMRef<HTMLDivElement>(r)
   const {listBoxProps, labelProps} = useListBox(props, state, ref)
-  const wrapperRef = useDOMRef<HTMLDivElement>(null)
+  const wrapperRef = useDOMRef<HTMLButtonElement>(null)
   const popoverRef = useDOMRef<HTMLDivElement>(null)
   const collapseState = {
     isOpen: isOpen,
@@ -74,8 +74,8 @@ const MultipleDropdown = React.forwardRef<
   return (
     <StyledDropdownWrapper css={css} ref={ref}>
       {props.label && <label {...labelProps}>{props.label}</label>}
-      <StyledDropdown ref={wrapperRef}>
-        <Button onPress={collapseState.toggle}>
+      <StyledDropdown>
+        <Button onPress={collapseState.toggle} ref={wrapperRef}>
           <StyledSelectedItemWrapper>
             {selectedNode.length === 0 && <p>{props.placeholder}</p>}
             {selectedNode.length > 0 &&
@@ -97,6 +97,7 @@ const MultipleDropdown = React.forwardRef<
             collapseState={collapseState}
             triggerRef={wrapperRef}
             popoverRef={popoverRef}
+            placement='bottom start'
           >
             {props.isLoading ? (
               <StyledLoading>
@@ -130,5 +131,5 @@ const MultipleDropdown = React.forwardRef<
 })
 
 export default MultipleDropdown as typeof MultipleDropdown & {
-  Item: typeof Item
+  Item: typeof MultipleDropdownItem
 }

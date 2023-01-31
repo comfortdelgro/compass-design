@@ -4,18 +4,19 @@ import {
   Overlay,
   usePopover,
 } from '@react-aria/overlays'
+import {SelectState} from '@react-stately/select'
 import React from 'react'
-import {StyledPopover} from '../multiple-dropdown.styles'
-import {CollapseState} from '../utils'
+import {StyledPopover} from '../dropdown.styles'
 
-interface Props extends AriaPopoverProps {
-  collapseState: CollapseState
+interface Props<T = unknown> extends AriaPopoverProps {
+  state: SelectState<T>
+  triggerRef: React.RefObject<HTMLButtonElement>
   popoverRef: React.RefObject<HTMLDivElement>
   children: React.ReactNode
 }
 
-const Popover: React.FC<Props> = ({children, collapseState, ...props}) => {
-  const ref = React.useRef<HTMLDivElement>(null)
+function Popover({children, state, ...props}: Props) {
+  const ref = React.useRef(null)
   const {popoverRef = ref} = props
   const {popoverProps} = usePopover(
     {
@@ -24,13 +25,7 @@ const Popover: React.FC<Props> = ({children, collapseState, ...props}) => {
       shouldFlip: true,
       popoverRef,
     },
-    {
-      close: () => collapseState.close(),
-      isOpen: collapseState.isOpen,
-      setOpen: (isOpen) => collapseState.setOpen(isOpen),
-      open: () => collapseState.open(),
-      toggle: () => collapseState.open(),
-    },
+    state,
   )
 
   const styles = props.triggerRef.current?.clientWidth
@@ -45,10 +40,9 @@ const Popover: React.FC<Props> = ({children, collapseState, ...props}) => {
     <Overlay>
       <StyledPopover {...popoverProps} ref={popoverRef} style={styles}>
         {children}
-        <DismissButton onDismiss={() => collapseState.close()} />
+        <DismissButton onDismiss={() => state.close()} />
       </StyledPopover>
     </Overlay>
   )
 }
-
 export default Popover

@@ -34,10 +34,6 @@ export const StyledDropdown = styled('div', {
     padding: '$3 $4',
     gap: '$1',
     backgroundColor: '#FFFFFF',
-    '&:focus-visible': {
-      outline: 0,
-      borderRadius: 0,
-    },
     '.dropdown-icon': {
       flexShrink: 0,
       width: '$6',
@@ -71,10 +67,10 @@ export const StyledPopover = styled('div', {
   margin: 0,
   padding: '$2 0',
   borderRadius: '$md',
-  position: 'absolute',
+  // position: 'absolute',
+  // top: '0px',
+  // left: '0px',
   width: '100%',
-  top: '0px',
-  left: '0px',
   background: '#FFFFFF',
   boxShadow:
     '0px 0.6px 1.8px rgba(0, 0, 0, 0.1), 0px 3.2px 7.2px rgba(0, 0, 0, 0.13)',
