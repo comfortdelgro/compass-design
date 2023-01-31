@@ -14,8 +14,8 @@ const ReactTableRow = React.forwardRef<HTMLTableRowElement, Props>(
     return (
       <StyledReactTableRow
         css={{
-          backgroundColor: isSelected ? '$cdgBlue10' : 'transparent',
-          borderLeftColor: isSelected ? '$cdgBlue' : 'transparent',
+          backgroundColor: isSelected ? '$cdgBlue10' : 'unset',
+          borderLeftColor: isSelected ? '$cdgBlue' : 'inherit',
         }}
         ref={tableRowRef}
       >

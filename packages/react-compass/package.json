@@ -86,6 +86,7 @@
     "@react-types/calendar": "^3.0.4",
     "@react-types/combobox": "^3.5.5",
     "@stitches/react": "^1.2.8",
+    "@tanstack/react-table": "^8.7.6",
     "chart.js": "^3.9.1",
     "react-chartjs-2": "^4.3.1"
   },

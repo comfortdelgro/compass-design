@@ -1,12 +1,5 @@
 import {styled} from '../theme'
 
-export const StyledReactTableHeaderWrapper = styled('div', {
-  display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-})
-
 export const StyledReactTableSortingIndicator = styled('span', {
   color: '$gray30',
   textAlign: 'right',
