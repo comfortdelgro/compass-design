@@ -224,7 +224,7 @@ export const SlideAlignment = () => {
     <>
       <div>
         <div style={{width: '300px', padding: '20px'}}>
-          <Dropdown
+          <Dropdown.Select
             label='Select alignment'
             placeholder='Select alignment'
             onSelectionChange={handleSelectAlignment}
@@ -238,7 +238,7 @@ export const SlideAlignment = () => {
             <Dropdown.Item key='start-end'>start-end</Dropdown.Item>
             <Dropdown.Item key='center-end'>center-end</Dropdown.Item>
             <Dropdown.Item key='end-end'>end-end</Dropdown.Item>
-          </Dropdown>
+          </Dropdown.Select>
         </div>
         <div className='content-slider-sample'>
           <CarouselV2 data={alignmentData} autoSwitch={false} />
