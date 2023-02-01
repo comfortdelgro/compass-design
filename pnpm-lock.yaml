@@ -126,6 +126,7 @@ importers:
       '@react-aria/datepicker': ^3.2.0
       '@react-aria/dialog': ^3.4.1
       '@react-aria/dnd': ^3.0.1
+      '@react-aria/dnd': ^3.0.1
       '@react-aria/focus': ^3.9.0
       '@react-aria/i18n': ^3.6.2
       '@react-aria/interactions': ^3.12.0
@@ -242,6 +243,7 @@ importers:
       '@react-stately/combobox': 3.3.1_react@18.2.0
       '@react-stately/data': 3.8.0_react@18.2.0
       '@react-stately/datepicker': 3.2.0_react@18.2.0
+      '@react-stately/dnd': 3.0.1_react@18.2.0
       '@react-stately/dnd': 3.0.1_react@18.2.0
       '@react-stately/list': 3.6.1_react@18.2.0
       '@react-stately/numberfield': 3.3.1_react@18.2.0
@@ -3095,27 +3097,20 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@react-aria/select/3.8.4_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-d2JOe11lUoGLvsE32bZRMq32SzXuyLNczyTOLrWM0e9fsOr49A8p6L6bFm3symU/KpwjjnO+pf5IkvgEq+GoJg==}
+  /@react-aria/selection/3.12.0_react@18.2.0:
+    resolution: {integrity: sha512-Akzx5Faxw+sOZFXLCOw6OddDNFbP5Kho3EP6bYJfd2pzMkBc8/JemC/YDrtIuy8e9x6Je9HHSZqtKjwiEaXWog==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
-      react-dom: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
-      '@react-aria/i18n': 3.6.3_react@18.2.0
-      '@react-aria/interactions': 3.13.1_react@18.2.0
-      '@react-aria/label': 3.4.4_react@18.2.0
-      '@react-aria/listbox': 3.7.2_react@18.2.0
-      '@react-aria/menu': 3.7.1_biqbaboplfbrettd7655fr4n2y
-      '@react-aria/selection': 3.12.1_react@18.2.0
-      '@react-aria/utils': 3.14.2_react@18.2.0
-      '@react-aria/visually-hidden': 3.6.1_react@18.2.0
-      '@react-stately/select': 3.3.4_react@18.2.0
-      '@react-types/button': 3.7.0_react@18.2.0
-      '@react-types/select': 3.6.5_react@18.2.0
+      '@babel/runtime': 7.20.6
+      '@react-aria/focus': 3.10.0_react@18.2.0
+      '@react-aria/i18n': 3.6.2_react@18.2.0
+      '@react-aria/interactions': 3.13.0_react@18.2.0
+      '@react-aria/utils': 3.14.1_react@18.2.0
+      '@react-stately/collections': 3.5.0_react@18.2.0
+      '@react-stately/selection': 3.11.1_react@18.2.0
       '@react-types/shared': 3.16.0_react@18.2.0
-      '@swc/helpers': 0.4.14
       react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /@react-aria/selection/3.12.1_react@18.2.0:
