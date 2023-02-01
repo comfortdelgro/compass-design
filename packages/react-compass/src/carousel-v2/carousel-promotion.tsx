@@ -39,6 +39,7 @@ const CarouselPromotion = React.forwardRef<
     navigationButtonType = 'icon',
     css = {},
     onSwitchSlide = () => {},
+    ...delegated
   } = props
   const carouselRef = useDOMRef<HTMLDivElement>(ref)
 
@@ -62,6 +63,7 @@ const CarouselPromotion = React.forwardRef<
       navigationButtonType={navigationButtonType}
       ref={carouselRef}
       css={css}
+      {...delegated}
       className={`current-slide-buttons-${generateButtonRangeClassName()}`}
     >
       {data.map((dataItem: CarouselSliderItem, index: number) => (

@@ -14,12 +14,13 @@ export type CarouselSlideProps = Props &
 
 const CarouselSlide = React.forwardRef<HTMLDivElement, CarouselSlideProps>(
   (props, ref) => {
-    const {children, className, active, css = {}} = props
+    const {children, className, active, css = {}, ...delegated} = props
     const slideRef = useDOMRef<HTMLDivElement>(ref)
     return (
       <StyledCarouselSliderContentItem
         ref={slideRef}
         css={css}
+        {...delegated}
         className={`slider-slide ${className || ''} ${active ? ' active' : ''}`}
       >
         {children}

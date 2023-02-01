@@ -16,12 +16,13 @@ const CarouselImageSlide = React.forwardRef<
   HTMLImageElement,
   CarouselImageSlideProps
 >((props, ref) => {
-  const {imageUrl, className, active, css = {}} = props
+  const {imageUrl, className, active, css = {}, ...delegated} = props
   const imageRef = useDOMRef<HTMLImageElement>(ref)
   return (
     <StyledCarouselSliderImageItem
       ref={imageRef}
       css={css}
+      {...delegated}
       className={`slider-slide ${className || ''} ${active ? ' active' : ''}`}
       src={imageUrl}
     />

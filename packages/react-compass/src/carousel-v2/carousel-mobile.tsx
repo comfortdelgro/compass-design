@@ -42,6 +42,7 @@ const CarouselMobile = React.forwardRef<HTMLDivElement, CarouselMobileProps>(
       navigationButtonType = 'icon',
       css = {},
       onSwitchSlide = () => {},
+      ...delegated
     } = props
     const carouselRef = useDOMRef<HTMLDivElement>(ref)
 
@@ -60,6 +61,7 @@ const CarouselMobile = React.forwardRef<HTMLDivElement, CarouselMobileProps>(
       <StyledCarouselSliderMobile
         ref={carouselRef}
         css={css}
+        {...delegated}
         className={`content-slider-mobile-mode${
           floatingContent ? ' floating-content' : ''
         }`}

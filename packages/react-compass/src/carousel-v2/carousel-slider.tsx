@@ -44,6 +44,7 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
       className,
       css = {},
       onSwitchSlide = () => {},
+      ...delegated
     } = props
 
     const sliderRef = useDOMRef<HTMLDivElement>(ref)
@@ -86,6 +87,7 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
       <StyledCarouselSlider
         css={css}
         ref={sliderRef}
+        {...delegated}
         className={`content-slider${className ? ' ' + className : ''}`}
       >
         <StyledCarouselSliderContainer className='content-slider-container'>

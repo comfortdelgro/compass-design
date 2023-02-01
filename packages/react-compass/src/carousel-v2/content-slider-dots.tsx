@@ -17,12 +17,13 @@ export type CarouselDotProps = Props &
 
 const CarouselSliderDots = React.forwardRef<HTMLDivElement, CarouselDotProps>(
   (props, ref) => {
-    const {length, current, css = {}, dotClick = () => {}} = props
+    const {length, current, css = {}, dotClick = () => {}, ...delegated} = props
     const dotRef = useDOMRef<HTMLDivElement>(ref)
     return (
       <StyledCarouselSliderDots
         ref={dotRef}
         css={css}
+        {...delegated}
         className='content-slider-dots'
       >
         {Array(length)
