@@ -1,19 +1,31 @@
 import React from 'react'
-import {StyledContentSliderImageItem} from './content-slider.styles'
+import {StyledComponentProps} from '../utils/stitches.types'
+import {useDOMRef} from '../utils/use-dom-ref'
+import {StyledCarouselSliderImageItem} from './content-slider.styles'
 
-interface Props {
+interface Props extends StyledComponentProps {
   imageUrl: string
   className?: string
   active: boolean
 }
 
-const CarouselImageSlide = ({imageUrl, className, active}: Props) => {
+export type CarouselImageSlideProps = Props &
+  Omit<React.HTMLAttributes<HTMLImageElement>, keyof Props>
+
+const CarouselImageSlide = React.forwardRef<
+  HTMLImageElement,
+  CarouselImageSlideProps
+>((props, ref) => {
+  const {imageUrl, className, active, css = {}} = props
+  const imageRef = useDOMRef<HTMLImageElement>(ref)
   return (
-    <StyledContentSliderImageItem
+    <StyledCarouselSliderImageItem
+      ref={imageRef}
+      css={css}
       className={`slider-slide ${className || ''} ${active ? ' active' : ''}`}
       src={imageUrl}
     />
   )
-}
+})
 
 export default CarouselImageSlide

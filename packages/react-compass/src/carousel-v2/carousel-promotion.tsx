@@ -1,8 +1,9 @@
 import React, {useState} from 'react'
 import Button from '../button'
-import ContentSlider from './content-slider'
+import {useDOMRef} from '../utils/use-dom-ref'
+import CarouselSlider from './carousel-slider'
 import {
-  StyledContentSliderContentItem,
+  StyledCarouselSliderContentItem,
   StyledSlideBackground,
   StyledSlideBody,
   StyledSlideButtonRow,
@@ -12,25 +13,35 @@ import {
 } from './content-slider.styles'
 import {
   CarouselOptions,
-  ContentSliderItem,
+  CarouselSliderItem,
   NavigationButtonType,
   SocicalIcon,
 } from './content-slider.types'
 
 interface Props extends CarouselOptions {
-  data: ContentSliderItem[]
+  data: CarouselSliderItem[]
   socials?: SocicalIcon[]
   navigationButtonType?: NavigationButtonType
 }
 
-const CarouselV2 = ({
-  data,
-  socials = [],
-  useNavigation = true,
-  autoSwitch = true,
-  navigationButtonType = 'icon',
-  onSwitchSlide = () => {},
-}: Props) => {
+export type CarouselPromotionProps = Props &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
+
+const CarouselPromotion = React.forwardRef<
+  HTMLDivElement,
+  CarouselPromotionProps
+>((props, ref) => {
+  const {
+    data,
+    socials = [],
+    useNavigation = true,
+    autoSwitch = true,
+    navigationButtonType = 'icon',
+    css = {},
+    onSwitchSlide = () => {},
+  } = props
+  const carouselRef = useDOMRef<HTMLDivElement>(ref)
+
   const [activeIndex, setActiveIndex] = useState(0)
 
   const handleSwitchSlide = (index: number) => {
@@ -43,16 +54,18 @@ const CarouselV2 = ({
   }
 
   return (
-    <ContentSlider
+    <CarouselSlider
       onSwitchSlide={handleSwitchSlide}
       socials={socials || []}
       useNavigation={useNavigation}
       autoSwitch={autoSwitch}
       navigationButtonType={navigationButtonType}
+      ref={carouselRef}
+      css={css}
       className={`current-slide-buttons-${generateButtonRangeClassName()}`}
     >
-      {data.map((dataItem: ContentSliderItem, index: number) => (
-        <StyledContentSliderContentItem
+      {data.map((dataItem: CarouselSliderItem, index: number) => (
+        <StyledCarouselSliderContentItem
           key={index}
           className={`slider-slide${activeIndex === index ? ' active' : ''}`}
         >
@@ -89,10 +102,10 @@ const CarouselV2 = ({
               </StyledSlideButtonRow>
             )}
           </StyledSlideBody>
-        </StyledContentSliderContentItem>
+        </StyledCarouselSliderContentItem>
       ))}
-    </ContentSlider>
+    </CarouselSlider>
   )
-}
+})
 
-export default CarouselV2
+export default CarouselPromotion

@@ -4,8 +4,8 @@ import {
   faTiktok,
 } from '@fortawesome/free-brands-svg-icons'
 import React from 'react'
-import CarouselV2 from './carousel-v2'
-import {ContentSliderItem, SocicalIcon} from './content-slider.types'
+import CarouselPromotion from './carousel-promotion'
+import {CarouselSliderItem, SocicalIcon} from './content-slider.types'
 
 const socials: SocicalIcon[] = [
   {
@@ -16,7 +16,7 @@ const socials: SocicalIcon[] = [
   {icon: faTelegram, url: 'https://telegram.org/'},
 ]
 
-const slideData: ContentSliderItem[] = [
+const slideData: CarouselSliderItem[] = [
   {
     image: 'https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(15).webp',
     title: 'Content slider is awesome',
@@ -68,7 +68,7 @@ const slideData: ContentSliderItem[] = [
 export const OnlyContent = () => {
   return (
     <div className='content-slider-sample'>
-      <CarouselV2 data={slideData} useNavigation={false} />
+      <CarouselPromotion data={slideData} useNavigation={false} />
     </div>
   )
 }
@@ -76,7 +76,7 @@ export const OnlyContent = () => {
 export const WithSocials = () => {
   return (
     <div className='content-slider-sample'>
-      <CarouselV2 data={slideData} socials={socials} />
+      <CarouselPromotion data={slideData} socials={socials} />
     </div>
   )
 }
@@ -84,7 +84,7 @@ export const WithSocials = () => {
 export const NavigationTextButton = () => {
   return (
     <div className='content-slider-sample'>
-      <CarouselV2
+      <CarouselPromotion
         data={slideData}
         socials={socials}
         navigationButtonType={'text'}

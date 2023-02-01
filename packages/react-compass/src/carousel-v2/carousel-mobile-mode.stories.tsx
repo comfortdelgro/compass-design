@@ -7,8 +7,8 @@ import React from 'react'
 import {styled} from '../theme'
 import CarouselMobile from './carousel-mobile'
 import {
-  ContentSliderButton,
-  ContentSliderItem,
+  CarouselSliderButton,
+  CarouselSliderItem,
   SocicalIcon,
 } from './content-slider.types'
 
@@ -21,7 +21,7 @@ const socials: SocicalIcon[] = [
   {icon: faTelegram, url: 'https://telegram.org/'},
 ]
 
-const slideData: ContentSliderItem[] = [
+const slideData: CarouselSliderItem[] = [
   {
     image: 'https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(15).webp',
     title: 'Content slider is awesome',
@@ -62,11 +62,11 @@ const slideData: ContentSliderItem[] = [
   },
 ]
 
-const StyledSampleAnyContentSlider = styled('div', {
+const StyledSampleAnyCarouselSlider = styled('div', {
   width: '480px',
 })
 
-const buttons: ContentSliderButton[] = [
+const buttons: CarouselSliderButton[] = [
   {
     type: 'secondary',
     label: 'Button',
@@ -85,45 +85,45 @@ const buttons: ContentSliderButton[] = [
 
 export const WithButtons = () => {
   return (
-    <StyledSampleAnyContentSlider className='content-slider-sample'>
+    <StyledSampleAnyCarouselSlider className='content-slider-sample'>
       <CarouselMobile
         data={slideData}
         useNavigation={false}
         buttons={buttons}
       />
-    </StyledSampleAnyContentSlider>
+    </StyledSampleAnyCarouselSlider>
   )
 }
 
 export const NoButtons = () => {
   return (
-    <StyledSampleAnyContentSlider className='content-slider-sample'>
+    <StyledSampleAnyCarouselSlider className='content-slider-sample'>
       <CarouselMobile data={slideData} useNavigation={false} />
-    </StyledSampleAnyContentSlider>
+    </StyledSampleAnyCarouselSlider>
   )
 }
 
 export const FloatingContent = () => {
   return (
-    <StyledSampleAnyContentSlider className='content-slider-sample'>
+    <StyledSampleAnyCarouselSlider className='content-slider-sample'>
       <CarouselMobile
         data={slideData}
         floatingContent={true}
         useNavigation={false}
       />
-    </StyledSampleAnyContentSlider>
+    </StyledSampleAnyCarouselSlider>
   )
 }
 
 export const FloatingContentWithButtons = () => {
   return (
-    <StyledSampleAnyContentSlider className='content-slider-sample'>
+    <StyledSampleAnyCarouselSlider className='content-slider-sample'>
       <CarouselMobile
         data={slideData}
         floatingContent={true}
         useNavigation={false}
         buttons={buttons}
       />
-    </StyledSampleAnyContentSlider>
+    </StyledSampleAnyCarouselSlider>
   )
 }

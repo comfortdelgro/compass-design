@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
 import {styled} from '../theme'
 import CarouselSlide from './carousel-slide'
-import ContentSlider from './content-slider'
-import {StyledContentSliderImageItem} from './content-slider.styles'
+import CarouselSlider from './carousel-slider'
+import {StyledCarouselSliderImageItem} from './content-slider.styles'
 
 export const NoDots = () => {
   const [activeIndex, setActiveIndex] = useState(0)
@@ -19,15 +19,15 @@ export const NoDots = () => {
 
   return (
     <div className='content-slider-sample'>
-      <ContentSlider onSwitchSlide={handleSwitchSlide} useDotIndicator={false}>
+      <CarouselSlider onSwitchSlide={handleSwitchSlide} useDotIndicator={false}>
         {imageUrls.map((imageUrl: string, index: number) => (
-          <StyledContentSliderImageItem
+          <StyledCarouselSliderImageItem
             key={index}
             className={`slider-side${activeIndex === index ? ' active' : ''}`}
             src={imageUrl}
           />
         ))}
-      </ContentSlider>
+      </CarouselSlider>
     </div>
   )
 }
@@ -47,15 +47,15 @@ export const ArrowIconButton = () => {
 
   return (
     <div className='content-slider-sample'>
-      <ContentSlider onSwitchSlide={handleSwitchSlide}>
+      <CarouselSlider onSwitchSlide={handleSwitchSlide}>
         {imageUrls.map((imageUrl: string, index: number) => (
-          <StyledContentSliderImageItem
+          <StyledCarouselSliderImageItem
             key={index}
             className={`slider-side${activeIndex === index ? ' active' : ''}`}
             src={imageUrl}
           />
         ))}
-      </ContentSlider>
+      </CarouselSlider>
     </div>
   )
 }
@@ -75,23 +75,23 @@ export const TextButton = () => {
 
   return (
     <div className='content-slider-sample'>
-      <ContentSlider
+      <CarouselSlider
         onSwitchSlide={handleSwitchSlide}
         navigationButtonType='text'
       >
         {imageUrls.map((imageUrl: string, index: number) => (
-          <StyledContentSliderImageItem
+          <StyledCarouselSliderImageItem
             key={index}
             className={`slider-side${activeIndex === index ? ' active' : ''}`}
             src={imageUrl}
           />
         ))}
-      </ContentSlider>
+      </CarouselSlider>
     </div>
   )
 }
 
-const StyledSampleAnyContentSlider = styled('div', {
+const StyledSampleAnyCarouselSlider = styled('div', {
   background: '#cccccc',
 })
 
@@ -103,8 +103,8 @@ export const AnyContent = () => {
   }
 
   return (
-    <StyledSampleAnyContentSlider className='content-slider-sample'>
-      <ContentSlider
+    <StyledSampleAnyCarouselSlider className='content-slider-sample'>
+      <CarouselSlider
         onSwitchSlide={handleSwitchSlide}
         navigationButtonType='text'
       >
@@ -129,7 +129,7 @@ export const AnyContent = () => {
             src='https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(15).webp'
           />
         </CarouselSlide>
-      </ContentSlider>
-    </StyledSampleAnyContentSlider>
+      </CarouselSlider>
+    </StyledSampleAnyCarouselSlider>
   )
 }
