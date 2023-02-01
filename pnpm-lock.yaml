@@ -28,6 +28,8 @@ importers:
     specifiers:
       '@comfortdelgro/compass-icons': workspace:^0.3.0
       '@comfortdelgro/react-compass': workspace:*
+      '@fortawesome/free-brands-svg-icons': ^6.2.1
+      '@fortawesome/free-regular-svg-icons': ^6.2.0
       '@fortawesome/free-solid-svg-icons': ^6.2.0
       '@iconify/react': ^4.0.1
       '@internationalized/date': ^3.0.1
@@ -51,6 +53,8 @@ importers:
     dependencies:
       '@comfortdelgro/compass-icons': link:../../packages/compass-icons
       '@comfortdelgro/react-compass': link:../../packages/react-compass/dist
+      '@fortawesome/free-brands-svg-icons': 6.2.1
+      '@fortawesome/free-regular-svg-icons': 6.2.1
       '@fortawesome/free-solid-svg-icons': 6.2.1
       '@iconify/react': 4.0.1_react@18.2.0
       '@internationalized/date': 3.0.1
