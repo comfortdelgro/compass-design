@@ -1,3 +1,4 @@
+import {CSS} from '@stitches/react'
 import React, {ChangeEvent, useEffect, useRef, useState} from 'react'
 import {useDOMRef} from '../utils/use-dom-ref'
 
@@ -27,13 +28,14 @@ interface Props {
   customError?: string
   onFileChange?: (data: File | null, error?: string) => void
   placeholder?: string
+  css?: CSS
 }
 
 export type UploadProps = Props &
   UploadVariantProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
-const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
+const Upload2 = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
   const {
     // styled component prop
     css = {},
@@ -144,4 +146,4 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
   )
 })
 
-export default Upload
+export default Upload2
