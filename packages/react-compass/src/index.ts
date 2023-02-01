@@ -17,6 +17,8 @@ export type {
   BannerProps,
   BannerTitleProps,
 } from './banner'
+export {default as Box} from './box'
+export type {BoxProps} from './box'
 export {default as Breadcrumbs} from './breadcrumbs'
 export type {BreadcrumbItemProps, BreadcrumbsProps} from './breadcrumbs'
 export {default as Button} from './button'
@@ -47,6 +49,7 @@ export type {
 } from './chart'
 export {default as Checkbox} from './checkbox'
 export type {CheckboxProps} from './checkbox'
+export {cdgBlue, gray} from './colors'
 export {default as DashboardSidecard} from './dashboard-sidecard'
 export type {
   DashboardSidecardContentProps,
@@ -190,6 +193,8 @@ export type {
 } from './subBanner'
 export {default as Table} from './table'
 export type {TableProps} from './table'
+export {default as TableV2} from './table-v2'
+export type {ReactTableProps} from './table-v2'
 export {default as TagBox} from './tag-box'
 export type {TagBoxActionProps, TagBoxProps} from './tag-box'
 export {default as Textarea} from './textarea'
