@@ -99,6 +99,7 @@ export const DEFAULT_VERTICAL_OPTIONS = (
     layout: DEFAULT_LAYOUT,
     scales: {
       x: {
+        beginAtZero: true,
         ticks: {
           color: '#009EDA',
           font: {
@@ -113,6 +114,7 @@ export const DEFAULT_VERTICAL_OPTIONS = (
         },
       },
       y: {
+        beginAtZero: true,
         title: {
           display: !!unit,
           title: true,
@@ -154,6 +156,7 @@ export const DEFAULT_HORIZONTAL_OPTIONS = (
     layout: DEFAULT_LAYOUT,
     scales: {
       y: {
+        beginAtZero: true,
         ticks: {
           color: '#A19F9D',
           font: {
@@ -168,6 +171,7 @@ export const DEFAULT_HORIZONTAL_OPTIONS = (
         },
       },
       x: {
+        beginAtZero: true,
         title: {
           display: !!unit,
           title: true,
