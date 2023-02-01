@@ -31,11 +31,11 @@ interface Props {
   css?: CSS
 }
 
-export type UploadProps = Props &
+export type Upload2Props = Props &
   UploadVariantProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
-const Upload2 = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
+const Upload2 = React.forwardRef<HTMLDivElement, Upload2Props>((props, ref) => {
   const {
     // styled component prop
     css = {},
