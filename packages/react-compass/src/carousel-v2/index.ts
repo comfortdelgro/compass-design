@@ -4,6 +4,7 @@ import CarouselSlide from './carousel-slide'
 import CarouselV2 from './carousel-v2'
 import ContentSlider from './content-slider'
 import {
+  ButtonType,
   ContentSliderButton,
   ContentSliderItem,
   NinePartAlignment,
@@ -20,4 +21,5 @@ export {
   ContentSliderItem,
   NinePartAlignment,
   ContentSliderButton,
+  ButtonType,
 }

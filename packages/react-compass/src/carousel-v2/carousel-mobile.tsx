@@ -31,7 +31,7 @@ const CarouselMobile = ({
   socials,
   autoSwitch = false,
   floatingContent = false,
-  useNavigation = true,
+  useNavigation = false,
   useDotIndicator = true,
   navigationButtonType = 'icon',
   onSwitchSlide = () => {},
