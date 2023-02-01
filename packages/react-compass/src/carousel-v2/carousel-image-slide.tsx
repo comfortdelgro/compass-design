@@ -1,4 +1,3 @@
-import React from 'react'
 import {StyledContentSliderImageItem} from './content-slider.styles'
 
 interface Props {

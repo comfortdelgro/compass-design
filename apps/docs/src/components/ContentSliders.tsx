@@ -221,28 +221,30 @@ export const SlideAlignment = () => {
   }
 
   return (
-    <div>
-      <div style={{width: '300px', padding: '20px'}}>
-        <Dropdown
-          label='Select alignment'
-          placeholder='Select alignment'
-          onSelectionChange={handleSelectAlignment}
-        >
-          <Dropdown.Item key='start-start'>start-start</Dropdown.Item>
-          <Dropdown.Item key='ccenter-startat'>center-start</Dropdown.Item>
-          <Dropdown.Item key='end-start'>end-start</Dropdown.Item>
-          <Dropdown.Item key='start-center'>start-center</Dropdown.Item>
-          <Dropdown.Item key='center-center'>center-center</Dropdown.Item>
-          <Dropdown.Item key='end-center'>end-center</Dropdown.Item>
-          <Dropdown.Item key='start-end'>start-end</Dropdown.Item>
-          <Dropdown.Item key='center-end'>center-end</Dropdown.Item>
-          <Dropdown.Item key='end-end'>end-end</Dropdown.Item>
-        </Dropdown>
+    <>
+      <div>
+        <div style={{width: '300px', padding: '20px'}}>
+          <Dropdown
+            label='Select alignment'
+            placeholder='Select alignment'
+            onSelectionChange={handleSelectAlignment}
+          >
+            <Dropdown.Item key='start-start'>start-start</Dropdown.Item>
+            <Dropdown.Item key='ccenter-startat'>center-start</Dropdown.Item>
+            <Dropdown.Item key='end-start'>end-start</Dropdown.Item>
+            <Dropdown.Item key='start-center'>start-center</Dropdown.Item>
+            <Dropdown.Item key='center-center'>center-center</Dropdown.Item>
+            <Dropdown.Item key='end-center'>end-center</Dropdown.Item>
+            <Dropdown.Item key='start-end'>start-end</Dropdown.Item>
+            <Dropdown.Item key='center-end'>center-end</Dropdown.Item>
+            <Dropdown.Item key='end-end'>end-end</Dropdown.Item>
+          </Dropdown>
+        </div>
+        <div className='content-slider-sample'>
+          <CarouselV2 data={alignmentData} autoSwitch={false} />
+        </div>
       </div>
-      <div className='content-slider-sample'>
-        <CarouselV2 data={alignmentData} autoSwitch={false} />
-      </div>
-    </div>
+    </>
   )
 }
 
