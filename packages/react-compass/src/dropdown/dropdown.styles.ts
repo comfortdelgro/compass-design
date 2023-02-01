@@ -25,6 +25,8 @@ export const StyledDropdownWrapper = styled('div', {
 export const StyledDropdown = styled('div', {
   width: '100%',
   border: '1px solid #E6E6E6',
+  background: '#FFFFFF',
+  overflow: 'hidden',
   borderRadius: '$md',
   position: 'relative',
   zIndex: 1,
@@ -78,6 +80,8 @@ export const StyledDropdown = styled('div', {
 export const StyledSelect = styled('div', {
   width: '100%',
   border: '1px solid #E6E6E6',
+  background: '#FFFFFF',
+  overflow: 'hidden',
   borderRadius: '$md',
   zIndex: 1,
   button: {
