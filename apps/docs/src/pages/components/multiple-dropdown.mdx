@@ -1,0 +1,315 @@
+import {Callout} from 'nextra-theme-docs'
+import styles from '../../styles/Home.module.css'
+import MultipleDropdown from '@comfortdelgro/react-compass/multiple-dropdown'
+import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons'
+import Icon from '@comfortdelgro/react-compass/icon'
+
+# Multiple Dropdown
+
+Provides the behavior and accessibility implementation for a listbox component. A listbox displays a list of options and allows a user to select one or more of them.
+
+---
+
+### Import:
+
+```js
+import {Dropdown} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import Dropdown from '@comfortdelgro/react-compass/dropdown'
+```
+
+We recommend the second method to import components for the benefits of [tree shaking](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking).
+
+---
+
+### Controlled:
+
+<section className={styles.avatarShowcaseContainer}>
+  <MultipleDropdown
+    label='Favorite Animal'
+    selectionMode='multiple'
+    disabledKeys={['snake']}
+    placeholder='Choose an animal'
+    defaultSelectedKeys={['cat']}
+  >
+    <MultipleDropdown.Item
+      leftIcon={<Icon icon={faExclamationTriangle} />}
+      key='red panda'
+    >
+      Red Panda
+    </MultipleDropdown.Item>
+    <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+  </MultipleDropdown>
+</section>
+
+```js
+  <MultipleDropdown
+    label='Favorite Animal'
+    selectionMode='multiple'
+    disabledKeys={['snake']}
+    placeholder='Choose an animal'
+    selectedKeys={value}
+    onSelectionChange={(k: 'all' | Set<Key>) =>
+      setValue(k === 'all' ? k : [...k])
+    }
+  >
+    <MultipleDropdown.Item
+      leftIcon={<Icon icon={faExclamationTriangle} />}
+      key='red panda'
+    >
+      Red Panda
+    </MultipleDropdown.Item>
+    <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+  </MultipleDropdown>
+```
+
+---
+
+### UnControlled:
+
+<section className={styles.avatarShowcaseContainer}>
+  <MultipleDropdown
+    label='Favorite Animal'
+    selectionMode='multiple'
+    disabledKeys={['snake']}
+    placeholder='Choose an animal'
+  >
+    <MultipleDropdown.Item
+      leftIcon={<Icon icon={faExclamationTriangle} />}
+      key='red panda'
+    >
+      Red Panda
+    </MultipleDropdown.Item>
+    <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+  </MultipleDropdown>
+</section>
+
+```js
+  <MultipleDropdown
+    label='Favorite Animal'
+    selectionMode='multiple'
+    disabledKeys={['snake']}
+    placeholder='Choose an animal'
+  >
+    <MultipleDropdown.Item
+      leftIcon={<Icon icon={faExclamationTriangle} />}
+      key='red panda'
+    >
+      Red Panda
+    </MultipleDropdown.Item>
+    <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+  </MultipleDropdown>
+```
+
+---
+
+### With Header:
+
+<section className={styles.avatarShowcaseContainer}>
+  <MultipleDropdown
+    selectionMode='multiple'
+    disabledKeys={['snake']}
+    label='Favorite Animal'
+    placeholder='Choose an animal'
+    headerTitle='Filter title'
+    headerOnClick={() => console.log('clicked')}
+  >
+    <MultipleDropdown.Item
+      leftIcon={<Icon icon={faExclamationTriangle} />}
+      key='red panda'
+    >
+      Red Panda
+    </MultipleDropdown.Item>
+    <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+  </MultipleDropdown>
+</section>
+
+```js
+  <MultipleDropdown
+    selectionMode='multiple'
+    disabledKeys={['snake']}
+    label='Favorite Animal'
+    placeholder='Choose an animal'
+    headerTitle='Filter title'
+    headerOnClick={() => console.log('clicked')}
+  >
+    <MultipleDropdown.Item
+      leftIcon={<Icon icon={faExclamationTriangle} />}
+      key='red panda'
+    >
+      Red Panda
+    </MultipleDropdown.Item>
+    <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+  </MultipleDropdown>
+```
+
+---
+
+### Loading:
+
+<section className={styles.avatarShowcaseContainer}>
+  <MultipleDropdown
+    selectionMode='multiple'
+    label='Favorite Animal'
+    placeholder='Choose an animal'
+    isLoading
+  >
+    <MultipleDropdown.Item
+      leftIcon={<Icon icon={faExclamationTriangle} />}
+      key='red panda'
+    >
+      Red Panda
+    </MultipleDropdown.Item>
+    <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+  </MultipleDropdown>
+</section>
+
+```js
+  <MultipleDropdown
+    selectionMode='multiple'
+    label='Favorite Animal'
+    placeholder='Choose an animal'
+    isLoading
+  >
+    
+    <MultipleDropdown.Item
+      leftIcon={<Icon icon={faExclamationTriangle} />}
+      key='red panda'
+    >
+      Red Panda
+    </MultipleDropdown.Item>
+    <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+  </MultipleDropdown>
+```
+
+---
+
+### With Icon:
+
+<section className={styles.avatarShowcaseContainer}>
+  <MultipleDropdown
+    selectionMode='multiple'
+    label='Favorite Animal'
+    placeholder='Choose an animal'
+    icon={<Icon icon={faExclamationTriangle} />}
+  >
+    
+    <MultipleDropdown.Item
+      leftIcon={<Icon icon={faExclamationTriangle} />}
+      key='red panda'
+    >
+      Red Panda
+    </MultipleDropdown.Item>
+    <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+  </MultipleDropdown>
+</section>
+
+```js
+  <MultipleDropdown
+    selectionMode='multiple'
+    label='Favorite Animal'
+    placeholder='Choose an animal'
+    icon={<Icon icon={faExclamationTriangle} />}
+  >
+    
+    <MultipleDropdown.Item
+      leftIcon={<Icon icon={faExclamationTriangle} />}
+      key='red panda'
+    >
+      Red Panda
+    </MultipleDropdown.Item>
+    <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+  </MultipleDropdown>
+```
+
+
+---
+### Props:
+
+#### `<MultipleDropdown/>` :
+| Name                   | Type                           | Default | Description                                                                                                                                                             |
+| :----------------------| :------------------------------| :-------| :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| isLoading              | `boolean`                      | 'false' | Loading effect when list of items is loading by API                                                                                                                     |
+| icon                   | `React.ReactNode`              | -       | Icon display in right side                                                                                                                                              |
+| headerTitle            | `string`                       | -       | Title display of header inside popover                                                                                                                                  |
+| headerOnClick          | `(e: PressEvent) => void`      | -       | On click of clear button inside popover                                                                                                                                 |
+| isVirtualized          | `boolean`                      | -       | Whether the listbox uses virtual scrolling.                                                                                                                             |
+| keyboardDelegate       | `KeyboardDelegate`             | -       | An optional keyboard delegate implementation for type to select, to override the default.                                                                               |
+| shouldUseVirtualFocus  | `boolean`                      | -       | Whether the listbox items should use virtual focus instead of being focused directly.                                                                                   |
+| shouldSelectOnPressUp  | `boolean`                      | -       | Whether selection should occur on press up instead of press down.                                                                                                       |
+| shouldFocusOnHover     | `boolean`                      | -       | Whether options should be focused when the user hovers over them.                                                                                                       |
+| label                  | `ReactNode`                    | -       | An optional visual label for the listbox.                                                                                                                               |
+| onAction               | `(key: Key) => void`           | -       | Handler that is called when a user performs an action on an item. The exact user event depends on the collection's selectionBehavior prop and the interaction modality. |
+| autoFocus              | `boolean FocusStrategy`        | -       | Whether to auto focus the listbox or an option.                                                                                                                         |
+| shouldFocusWrap        | `boolean`                      | -       | Whether focus should wrap around when the end/start is reached.                                                                                                         |
+| items                  | `Iterable<T>`                  | -       | Item objects in the collection.                                                                                                                                         |
+| disabledKeys           | `Iterable<Key>`                | -       | The item keys that are disabled. These items cannot be selected, focused, or otherwise interacted with.                                                                 |
+| selectionMode          | `SelectionMode`                | -       | The type of selection that is allowed in the collection.                                                                                                                |
+| disallowEmptySelection | `boolean`                      | -       | Whether the collection allows empty selection.                                                                                                                          |
+| selectedKeys           | `'all' Iterable<Key>`          | -       | The currently selected keys in the collection (controlled).                                                                                                             |
+| defaultSelectedKeys    | `'all' Iterable<Key>`          | -       | The initial selected keys in the collection (uncontrolled).                                                                                                             |
+| onSelectionChange      | `(keys: Selection) => any`     | -       | Handler that is called when the selection changes.                                                                                                                      |
+| onFocus                | `(e: FocusEvent) => void`      | -       | Handler that is called when the element receives focus.                                                                                                                 |
+| onBlur                 | `(e: FocusEvent) => void`      | -       | Handler that is called when the element loses focus.                                                                                                                    |
+| onFocusChange          | `(isFocused: boolean) => void` | -       | Handler that is called when the element's focus status changes.                                                                                                         |
+| id                     | `string`                       | -       | The element's unique identifier. See MDN.                                                                                                                               |
+
+#### `<MultipleDropdown.Item/>` :
+
+| Name        | Type                               | Default | Description                                                                             |
+| :---------- | :--------------------------------- | :------ | :-------------------------------------------------------------------------------------- |
+| title       | `string`                           | —       | The title of the dropdown.                                                              |
+| key         | `Key`                              | —       | The key of the dropdown.                                                                |
+| children    | `ReactNode` \| `String`            | —       | The content of the dropdown Item                                                        |
+| leftIcon    | `ReactNode`                        | -       | Left icon of the dropdown Item                                                          |
+
+---
+
+<Callout>
+  Check out our [ladle](/ladle?story=multiple-dropdown--variants) for more info on this
+  component.
+</Callout>

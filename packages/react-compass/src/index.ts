@@ -17,6 +17,8 @@ export type {
   BannerProps,
   BannerTitleProps,
 } from './banner'
+export {default as Box} from './box'
+export type {BoxProps} from './box'
 export {default as Breadcrumbs} from './breadcrumbs'
 export type {BreadcrumbItemProps, BreadcrumbsProps} from './breadcrumbs'
 export {default as Button} from './button'
@@ -38,6 +40,7 @@ export type {
   CarouselProps,
   CarouselTitleProps,
 } from './carousel'
+export * from './carousel-v2'
 export {default as Chart} from './chart'
 export type {
   AreaChartProps,
@@ -47,6 +50,7 @@ export type {
 } from './chart'
 export {default as Checkbox} from './checkbox'
 export type {CheckboxProps} from './checkbox'
+export {cdgBlue, gray} from './colors'
 export {default as DashboardSidecard} from './dashboard-sidecard'
 export type {
   DashboardSidecardContentProps,
@@ -129,6 +133,11 @@ export type {
   ModalTitleProps,
   ModalTriggerProps,
 } from './modal'
+export {default as MultipleDropdown} from './multiple-dropdown'
+export type {
+  MultipleDropdownItemProps,
+  MultipleDropdownProps,
+} from './multiple-dropdown'
 export {default as Navbar} from './navbar'
 export type {NavbarBrandProps, NavbarIconProps, NavbarProps} from './navbar'
 export {default as PageHeader} from './page-header'
@@ -185,6 +194,10 @@ export type {
 } from './subBanner'
 export {default as Table} from './table'
 export type {TableProps} from './table'
+export {default as TableV2} from './table-v2'
+export type {ReactTableProps} from './table-v2'
+export {default as Tabs} from './tabs'
+export type {TabsProps} from './tabs'
 export {default as TagBox} from './tag-box'
 export type {TagBoxActionProps, TagBoxProps} from './tag-box'
 export {default as Textarea} from './textarea'
@@ -211,6 +224,8 @@ export type {TooltipProps, TooltipTriggerProps} from './tooltip'
 export {default as Typography} from './typography'
 export {default as Upload} from './upload'
 export type {UploadDragAndDropProps, UploadProps} from './upload'
+export {default as Upload2} from './upload-v2'
+export type {Upload2Props} from './upload-v2'
 export * from './utils'
 export {default as VideoPlayer} from './video-player'
 export type {VideoPlayerProps} from './video-player'

@@ -2,7 +2,6 @@ import {useComboBox} from '@react-aria/combobox'
 import {useFilter} from '@react-aria/i18n'
 import {ComboBoxStateOptions, useComboBoxState} from '@react-stately/combobox'
 import React from 'react'
-import {StyledLoading} from '../dropdown/dropdown.styles'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
@@ -11,8 +10,8 @@ import {
   StyledDropdownWrapper,
 } from './dropdown.styles'
 import DropdownItem from './item'
-import ListBox from './list-box'
-import Popover from './popover'
+import ListBox from './list-box/combox'
+import Popover from './popover/combox'
 import {Button, Icon} from './utils'
 
 interface Props<T> extends ComboBoxStateOptions<T>, StyledComponentProps {
@@ -30,26 +29,23 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
     const {
       // StyledComponentProps
       css = {},
-      searchable,
       icon = <Icon />,
-      // ComponentProps
-      menuTrigger = 'focus',
       // AriaDropdownProps
     } = props
+    const variantProps = {} as DropdownVariantProps
+    const dropdownRef = useDOMRef<HTMLDivElement>(ref)
     const filter = useFilter({sensitivity: 'base'})
     const contains = (string: string, substring: string) =>
       filter.contains(string, substring)
     const state = useComboBoxState({
       ...props,
       defaultFilter: contains,
-      menuTrigger,
     })
 
-    const wrapperRef = useDOMRef<HTMLDivElement>(null)
-    const buttonRef = useDOMRef<HTMLButtonElement>(null)
-    const inputRef = useDOMRef<HTMLInputElement>(null)
-    const listBoxRef = useDOMRef<HTMLUListElement>(null)
-    const popoverRef = useDOMRef<HTMLDivElement>(null)
+    const buttonRef = React.useRef<HTMLButtonElement>(null)
+    const inputRef = React.useRef<HTMLInputElement>(null)
+    const listBoxRef = React.useRef<HTMLUListElement>(null)
+    const popoverRef = React.useRef<HTMLDivElement>(null)
 
     const {buttonProps, inputProps, listBoxProps, labelProps} = useComboBox(
       {
@@ -61,54 +57,32 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
       },
       state,
     )
-
-    const variantProps = {} as DropdownVariantProps
-    const dropdownRef = useDOMRef<HTMLDivElement>(ref)
-
     return (
       <StyledDropdownWrapper css={css} ref={dropdownRef} {...variantProps}>
         {props.label && <label {...labelProps}>{props.label}</label>}
-        <StyledDropdown ref={wrapperRef} isEmpty={!state.inputValue}>
+        <StyledDropdown isEmpty={!inputProps.value}>
+          <input {...inputProps} ref={inputRef} />
           <Button {...buttonProps} ref={buttonRef}>
-            {!searchable && (
-              <p>
-                {inputProps.value ? inputProps.value : inputProps.placeholder}
-              </p>
-            )}
-            <input
-              {...inputProps}
-              ref={inputRef}
-              style={!searchable ? {display: 'none'} : {}}
-            />
-            <div className='dropdown-icon'>{icon}</div>
+            {icon}
           </Button>
-        </StyledDropdown>
-        {state.isOpen && (
-          <Popover
-            state={state}
-            triggerRef={wrapperRef}
-            popoverRef={popoverRef}
-          >
-            {props.isLoading ? (
-              <StyledLoading>
-                <div className='spinner'>
-                  <div className='spinner-1' />
-                  <div className='spinner-2' />
-                  <div className='spinner-3' />
-                  <div />
-                </div>
-              </StyledLoading>
-            ) : (
+          {state.isOpen && (
+            <Popover
+              state={state}
+              triggerRef={inputRef}
+              popoverRef={popoverRef}
+              isNonModal
+              placement='bottom start'
+            >
               <ListBox
                 {...listBoxProps}
-                listBoxRef={listBoxRef}
-                state={state}
                 headerTitle={props.headerTitle}
                 headerOnClick={(e) => props?.headerOnClick?.(e)}
+                listBoxRef={listBoxRef}
+                state={state}
               />
-            )}
-          </Popover>
-        )}
+            </Popover>
+          )}
+        </StyledDropdown>
       </StyledDropdownWrapper>
     )
   },

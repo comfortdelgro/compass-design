@@ -10,42 +10,39 @@ import {StyledPopover} from '../dropdown.styles'
 
 interface Props<T = unknown> extends AriaPopoverProps {
   state: ComboBoxState<T>
+  triggerRef: React.RefObject<HTMLInputElement>
   popoverRef: React.RefObject<HTMLDivElement>
   children: React.ReactNode
 }
 
-const Popover: React.FC<Props> = ({children, state, ...props}) => {
-  const ref = React.useRef<HTMLDivElement>(null)
+function Popover({children, state, ...props}: Props) {
+  const ref = React.useRef(null)
   const {popoverRef = ref} = props
   const {popoverProps} = usePopover(
     {
       ...props,
       offset: 8,
-      shouldFlip: false,
+      shouldFlip: true,
       popoverRef,
     },
-    {...state, close: () => state.setOpen(false)},
+    state,
   )
+
+  const styles = props.triggerRef.current?.clientWidth
+    ? {
+        ...popoverProps.style,
+        width: 'fit-content',
+        minWidth: props.triggerRef.current.clientWidth + 2,
+      }
+    : {...popoverProps?.style}
+
   return (
     <Overlay>
-      <StyledPopover
-        {...popoverProps}
-        ref={popoverRef}
-        style={
-          props.triggerRef.current?.clientWidth
-            ? {
-                ...popoverProps.style,
-                width: 'fit-content',
-                minWidth: props.triggerRef.current.clientWidth + 2,
-              }
-            : {...popoverProps?.style}
-        }
-      >
+      <StyledPopover {...popoverProps} ref={popoverRef} style={styles}>
         {children}
         <DismissButton onDismiss={() => state.close()} />
       </StyledPopover>
     </Overlay>
   )
 }
-
 export default Popover

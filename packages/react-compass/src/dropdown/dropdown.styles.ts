@@ -25,66 +25,96 @@ export const StyledDropdownWrapper = styled('div', {
 export const StyledDropdown = styled('div', {
   width: '100%',
   border: '1px solid #E6E6E6',
+  background: '#FFFFFF',
+  overflow: 'hidden',
   borderRadius: '$md',
-  button: {
-    cursor: 'pointer',
-    border: 'none',
+  position: 'relative',
+  zIndex: 1,
+  input: {
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
+    overflow: 'hidden',
+    fontSize: '$label1',
+    fontWeight: '$semibold',
     width: '100%',
+    height: '$11',
+    flexGrow: 1,
+    border: 'none',
+    padding: '$3 $11 $3 $4',
+    margin: 0,
+  },
+  button: {
+    position: 'absolute',
+    cursor: 'pointer',
+    top: '50%',
+    right: '$3',
+    transform: 'translateY(-50%)',
+    width: '$6',
+    height: '$6',
     display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 0,
+    border: 'none',
+    background: 'transparent',
+    svg: {
+      width: '$4',
+      height: '$4',
+    },
+  },
+  variants: {
+    isEmpty: {
+      true: {
+        input: {
+          '&::placeholder': {
+            color: '#B4B4B4',
+            fontSize: '$label1',
+            fontWeight: '$semibold',
+          },
+        },
+      },
+    },
+  },
+})
+
+export const StyledSelect = styled('div', {
+  width: '100%',
+  border: '1px solid #E6E6E6',
+  background: '#FFFFFF',
+  overflow: 'hidden',
+  borderRadius: '$md',
+  zIndex: 1,
+  button: {
     padding: '$3 $4',
+    width: '100%',
+    height: '$11',
+    cursor: 'pointer',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    border: 'none',
     gap: '$1',
-    backgroundColor: '#FFFFFF',
-    '.dropdown-icon': {
+    background: 'transparent',
+    fontSize: '$label1',
+    fontWeight: '$semibold',
+    svg: {
       flexShrink: 0,
-      width: '$6',
-      height: '$6',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: 0,
-      border: 'none',
-      background: 'transparent',
-      svg: {
-        width: '$4',
-        height: '$4',
-      },
+      width: '$4',
+      height: '$4',
     },
-    p: {
+    span: {
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis',
       overflow: 'hidden',
-      fontSize: '$label1',
-      fontWeight: '$semibold',
-      height: '$6',
-      display: 'flex',
-      alignItems: 'center',
       flexGrow: 1,
-      border: 'none',
       textAlign: 'start',
-      padding: 0,
-      margin: 0,
-    },
-    input: {
-      whiteSpace: 'nowrap',
-      textOverflow: 'ellipsis',
-      overflow: 'hidden',
-      fontSize: '$label1',
-      fontWeight: '$semibold',
-      height: '$6',
-      flexGrow: 1,
-      border: 'none',
-      padding: 0,
-      margin: 0,
-      '&:focus': {
-        outline: 'none',
-      },
     },
   },
   variants: {
     isEmpty: {
       true: {
         button: {
-          p: {
+          span: {
             color: '#B4B4B4',
           },
         },
@@ -97,10 +127,7 @@ export const StyledPopover = styled('div', {
   margin: 0,
   padding: '$2 0',
   borderRadius: '$md',
-  position: 'absolute',
   width: '100%',
-  top: '0px',
-  left: '0px',
   background: '#FFFFFF',
   boxShadow:
     '0px 0.6px 1.8px rgba(0, 0, 0, 0.1), 0px 3.2px 7.2px rgba(0, 0, 0, 0.13)',
@@ -113,6 +140,9 @@ export const StyledPopover = styled('div', {
     marginInlineStart: 0,
     marginInlineEnd: 0,
     paddingInlineStart: 0,
+    '&:focus': {
+      outline: 'none',
+    },
   },
 })
 
@@ -138,6 +168,12 @@ export const StyledHeaderList = styled('div', {
     cursor: 'pointer',
     backgroundColor: 'transparent',
   },
+})
+
+export const StyledPopoverWrapper = styled('div', {
+  position: 'relative',
+  zIndex: 2,
+  marginTop: '$1',
 })
 
 export const StyledLoading = styled('div', {

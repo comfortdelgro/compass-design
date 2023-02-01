@@ -7,7 +7,7 @@ export const Button = React.forwardRef<HTMLButtonElement, AriaButtonProps>(
     const buttonRef = useDOMRef<HTMLButtonElement>(ref)
     const {buttonProps} = useButton(props, buttonRef)
     return (
-      <button {...buttonProps} ref={ref}>
+      <button {...buttonProps} ref={buttonRef}>
         {props.children}
       </button>
     )

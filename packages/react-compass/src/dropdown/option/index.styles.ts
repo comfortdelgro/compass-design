@@ -15,6 +15,11 @@ export const StyledOption = styled('li', {
     backgroundColor: '#F3F2F1',
   },
   variants: {
+    isFocused: {
+      true: {
+        backgroundColor: '#F3F2F1',
+      },
+    },
     isSelected: {
       true: {
         backgroundColor: '#F3F2F1',
