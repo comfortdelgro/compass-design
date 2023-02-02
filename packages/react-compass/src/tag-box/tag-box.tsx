@@ -20,11 +20,12 @@ type Item = {
   value: string
   icon?: React.ReactNode
   isDisabled?: boolean
+  isError?: boolean
 }
 
 interface Props extends LabelAriaProps, StyledComponentProps {
   items: Item[]
-  labelPositions?: 'top' | 'left'
+  labelPosition?: 'top' | 'left'
   collaspable?: boolean
   icon?: React.ReactNode
   helperText?: string
@@ -38,8 +39,8 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
   const {
     // StyledComponentProps
     css = {},
-    labelPositions = 'top',
-    collaspable = true,
+    labelPosition = 'top',
+    collaspable = false,
     items,
     helperText,
     children,
@@ -59,6 +60,7 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
   const [elRefs, setElRefs] = React.useState<Array<RefObject<HTMLDivElement>>>(
     [],
   )
+  const [isOpen, setIsOpen] = React.useState(false)
 
   React.useEffect(() => {
     // add or remove refs
@@ -70,25 +72,33 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
   }, [items])
 
   React.useEffect(() => {
-    let total = boxContentRef.current?.clientWidth ?? 0
-    let count = 0
-    for (const i of elRefs) {
-      const w = i.current?.clientWidth
-      if (w) {
-        if (w < total) {
-          total = total - w - 16
-        } else {
-          i.current.style.display = 'none'
-          count++
+    if (collaspable && !isOpen) {
+      let total = boxContentRef.current?.clientWidth ?? 0
+      let count = 0
+      for (const i of elRefs) {
+        const w = i.current?.clientWidth
+        if (w) {
+          const t = total - w - 16
+          if (t > 37) {
+            total = t
+          } else {
+            i.current.style.display = 'none'
+            count++
+          }
         }
       }
+      setRemainingCount(Math.min(count, 99))
+    } else {
+      for (const i of elRefs) {
+        if (i.current) i.current.style.display = 'flex'
+      }
+      setRemainingCount(0)
     }
-    setRemainingCount(count)
-  }, [elRefs])
+  }, [elRefs, isOpen, collaspable])
 
   return (
     <StyledTagBox css={css} ref={tagBoxRef}>
-      <StyledBoxWrapper labelPositions={labelPositions}>
+      <StyledBoxWrapper labelPosition={labelPosition}>
         {props.label && <label {...labelProps}>{props.label}</label>}
         <StyledBox {...fieldProps} collaspable={collaspable}>
           {props.icon && <StyledIcon>{props.icon}</StyledIcon>}
@@ -97,6 +107,7 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
               <StyledItem
                 key={item.id}
                 isDisabled={!!item.isDisabled}
+                isError={!!item.isError}
                 ref={elRefs[index]}
               >
                 {item.icon}
@@ -116,8 +127,11 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
             )}
           </StyledBoxContent>
           {collaspable && (
-            <StyledIcon css={{cursor: 'pointer'}}>
-              <ChevronDown />
+            <StyledIcon
+              css={{cursor: 'pointer'}}
+              onClick={() => setIsOpen((v) => !v)}
+            >
+              {isOpen ? <ChevronUp /> : <ChevronDown />}
             </StyledIcon>
           )}
         </StyledBox>
@@ -141,13 +155,23 @@ const Xmark = ({...rest}) => (
 )
 
 const ChevronDown = ({...rest}) => (
-  <svg {...rest} width='16' height='16' viewBox='0 0 16 16' fill='none'>
+  <svg width='24' height='24' viewBox='0 0 24 24' fill='none' {...rest}>
     <path
-      d='M8.33276 12.3334C8.02004 12.3334 7.70717 12.2125 7.46885 11.9707L1.35805 5.78022C0.880649 5.29658 0.880649 4.5131 1.35805 4.02947C1.83546 3.54584 2.60886 3.54584 3.08626 4.02947L8.33276 9.34651L13.5804 4.03044C14.0578 3.54681 14.8312 3.54681 15.3086 4.03044C15.786 4.51407 15.786 5.29755 15.3086 5.78118L9.19782 11.9717C8.95912 12.2135 8.64594 12.3334 8.33276 12.3334Z'
+      d='M11.9991 18C11.5301 18 11.0608 17.8186 10.7033 17.4559L1.53708 8.1702C0.820973 7.44475 0.820973 6.26953 1.53708 5.54408C2.25319 4.81864 3.41329 4.81864 4.12939 5.54408L11.9991 13.5196L19.8706 5.54554C20.5867 4.82009 21.7468 4.82009 22.4629 5.54554C23.179 6.27098 23.179 7.44621 22.4629 8.17165L13.2967 17.4574C12.9387 17.8201 12.4689 18 11.9991 18Z'
       fill='#201F1E'
     />
   </svg>
 )
+
+const ChevronUp = ({...rest}) => (
+  <svg width='24' height='24' viewBox='0 0 24 24' fill='none' {...rest}>
+    <path
+      d='M12.0009 5C12.4699 5 12.9392 5.18136 13.2967 5.54409L22.4629 14.8298C23.179 15.5552 23.179 16.7305 22.4629 17.4559C21.7468 18.1814 20.5867 18.1814 19.8706 17.4559L12.0009 9.48036L4.12939 17.4545C3.41329 18.1799 2.25319 18.1799 1.53708 17.4545C0.820973 16.729 0.820973 15.5538 1.53708 14.8284L10.7033 5.54264C11.0613 5.17991 11.5311 5 12.0009 5Z'
+      fill='#201F1E'
+    />
+  </svg>
+)
+
 export default TagBox as typeof TagBox & {
   Action: typeof TagBoxAction
 }
