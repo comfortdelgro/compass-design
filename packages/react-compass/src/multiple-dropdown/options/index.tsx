@@ -33,7 +33,6 @@ const Option = React.forwardRef<HTMLLIElement, LinkProps>(
     const {isFocusVisible, focusProps} = useFocusRing()
     const {leftIcon} = item.props ?? {}
 
-    console.log(isFocusVisible, isFocused)
     return (
       <StyledOption
         isFocused={isFocused}
