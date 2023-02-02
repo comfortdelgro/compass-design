@@ -25,7 +25,7 @@ type Item = {
 
 interface Props extends LabelAriaProps, StyledComponentProps {
   items: Item[]
-  labelPositions?: 'top' | 'left'
+  labelPosition?: 'top' | 'left'
   collaspable?: boolean
   icon?: React.ReactNode
   helperText?: string
@@ -39,8 +39,8 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
   const {
     // StyledComponentProps
     css = {},
-    labelPositions = 'top',
-    collaspable = true,
+    labelPosition = 'top',
+    collaspable = false,
     items,
     helperText,
     children,
@@ -98,7 +98,7 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
 
   return (
     <StyledTagBox css={css} ref={tagBoxRef}>
-      <StyledBoxWrapper labelPositions={labelPositions}>
+      <StyledBoxWrapper labelPosition={labelPosition}>
         {props.label && <label {...labelProps}>{props.label}</label>}
         <StyledBox {...fieldProps} collaspable={collaspable}>
           {props.icon && <StyledIcon>{props.icon}</StyledIcon>}

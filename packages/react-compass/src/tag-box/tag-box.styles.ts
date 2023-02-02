@@ -14,7 +14,7 @@ export const StyledBoxWrapper = styled('div', {
     display: 'inline-block',
   },
   variants: {
-    labelPositions: {
+    labelPosition: {
       top: {
         flexDirection: 'column',
         gap: '$2',
