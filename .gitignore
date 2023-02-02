@@ -23,6 +23,10 @@ yarn-error.log*
 
 # testing
 coverage
+packages/react-compass/cypress/
+packages/react-compass/cypress/videos/
+
+.env.production
 
 # turbo
 .turbo
