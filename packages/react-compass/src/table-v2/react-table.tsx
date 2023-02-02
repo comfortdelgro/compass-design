@@ -1,9 +1,18 @@
-import {Table} from '@tanstack/react-table'
+import {
+  ColumnDef,
+  getCoreRowModel,
+  getFilteredRowModel,
+  getSortedRowModel,
+  SortingState,
+  useReactTable,
+} from '@tanstack/react-table'
 import React from 'react'
 import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import ReactTableCell from './react-table-cell'
+import ReactTableCheckbox from './react-table-checkbox'
+import ReactTableCheckboxCell from './react-table-checkbox-cell'
 import ReactTableColumnHeader from './react-table-column-header'
 import ReactTableFooter from './react-table-footer'
 import ReactTableHeaderRow from './react-table-header-row'
@@ -16,7 +25,8 @@ import {
 import {StyledReactTable, StyledReactTableWrapper} from './react-table.styles'
 
 export interface Props<T> extends StyledComponentProps {
-  table: Table<T>
+  data: T[]
+  columns: Array<ColumnDef<T>>
   children: React.ReactNode
 }
 
@@ -27,9 +37,12 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
     const {
       // StyledComponentProps
       css = {},
-      table,
+      data,
+      columns,
       children,
     } = props
+
+    const [sorting, setSorting] = React.useState<SortingState>([])
 
     const {child: toolbar, rest: childrenWithoutToolbar} = pickChild<
       typeof TableToolbar
@@ -41,6 +54,23 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
     )
 
     const tableRef = useDOMRef<HTMLTableElement>(ref)
+
+    const table = useReactTable({
+      state: {
+        sorting,
+      },
+      columnResizeMode: 'onChange',
+      onSortingChange: setSorting,
+      getCoreRowModel: getCoreRowModel(),
+      getSortedRowModel: getSortedRowModel(),
+      getFilteredRowModel: getFilteredRowModel(),
+      debugTable: true,
+      data: data,
+      columns: columns,
+      //enable sorting
+      enableSorting: true,
+    })
+
     return (
       <StyledReactTableWrapper css={css}>
         {toolbar && <>{toolbar}</>}
@@ -82,8 +112,12 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
 type ReactComposableTable = typeof ReactTable & {
   Toolbar: typeof ReactTableToolbar
   Footer: typeof ReactTableFooter
+  Checkbox: typeof ReactTableCheckbox
+  CheckboxCell: typeof ReactTableCheckboxCell
 }
 ;(ReactTable as ReactComposableTable).Toolbar = ReactTableToolbar
 ;(ReactTable as ReactComposableTable).Footer = ReactTableFooter
-
+;(ReactTable as ReactComposableTable).Checkbox = ReactTableCheckbox
+;(ReactTable as ReactComposableTable).CheckboxCell = ReactTableCheckboxCell
+export type ColumnConfig<T> = ColumnDef<T>
 export default ReactTable as ReactComposableTable

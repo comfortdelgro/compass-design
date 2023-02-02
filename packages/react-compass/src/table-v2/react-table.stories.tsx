@@ -3,35 +3,24 @@ import {
   faFileLines,
   faTrashAlt,
 } from '@fortawesome/free-solid-svg-icons'
-import {
-  ColumnDef,
-  getCoreRowModel,
-  getFilteredRowModel,
-  getSortedRowModel,
-  SortingState,
-  useReactTable,
-} from '@tanstack/react-table'
+
 import React, {useState} from 'react'
 import Button from '../button/button'
 import {Icon} from '../icon'
 import Pagination from '../pagination/pagination'
 import SearchField from '../searchfield/searchfield'
 import {makeData, Person} from './makeData'
-import ReactTable from './react-table'
-import ReactTableCheckboxCell from './react-table-checkbox-cell'
-
+import ReactTable, {ColumnConfig} from './react-table'
 export const ReactTableStory: React.FC = () => {
   const [page, setPage] = useState(1)
   const [data] = React.useState(() => makeData(10))
 
-  const [sorting, setSorting] = React.useState<SortingState>([])
-
-  const columns = React.useMemo<ColumnDef<Person>[]>(
+  const columns = React.useMemo<Array<ColumnConfig<Person>>>(
     () => [
       {
         id: 'select',
         header: ({table}) => (
-          <ReactTableCheckboxCell
+          <ReactTable.CheckboxCell
             {...{
               checked: table.getIsAllRowsSelected(),
               indeterminate: table.getIsSomeRowsSelected(),
@@ -41,7 +30,7 @@ export const ReactTableStory: React.FC = () => {
         ),
         cell: ({row}) => (
           <div className='px-1'>
-            <ReactTableCheckboxCell
+            <ReactTable.CheckboxCell
               {...{
                 checked: row.getIsSelected(),
                 indeterminate: row.getIsSomeSelected(),
@@ -102,25 +91,9 @@ export const ReactTableStory: React.FC = () => {
     [],
   )
 
-  const table = useReactTable({
-    state: {
-      sorting,
-    },
-    columnResizeMode: 'onChange',
-    onSortingChange: setSorting,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    debugTable: true,
-    data: data,
-    columns: columns,
-    //enable sorting
-    enableSorting: true,
-  })
-
   return (
     <div>
-      <ReactTable table={table}>
+      <ReactTable data={data} columns={columns}>
         <ReactTable.Toolbar
           css={{
             display: 'flex',
