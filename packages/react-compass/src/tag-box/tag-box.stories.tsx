@@ -1,10 +1,20 @@
+import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons'
 import Button from '../button'
+import Icon from '../icon'
 import {Column} from '../utils/components'
 import TagBox from './index'
 
 const items = [
-  {id: 1, value: 'Item 1'},
-  {id: 2, value: 'Item 2'},
+  {id: 1, value: 'Item 1', icon: <Icon icon={faExclamationTriangle} />},
+  {id: 2, value: 'Item 2', isDisabled: true},
+  {id: 3, value: 'Item 3', icon: <Icon icon={faExclamationTriangle} />},
+  {id: 4, value: 'Item 4', isDisabled: true},
+  {id: 5, value: 'Item 5', icon: <Icon icon={faExclamationTriangle} />},
+  {id: 6, value: 'Item 6', isDisabled: true},
+  {id: 7, value: 'Item 7', icon: <Icon icon={faExclamationTriangle} />},
+  {id: 8, value: 'Item 8', isDisabled: true},
+  {id: 9, value: 'Item 9', icon: <Icon icon={faExclamationTriangle} />},
+  {id: 10, value: 'Item 10', isDisabled: true},
 ]
 
 export const TagBoxs: React.FC = () => (
@@ -13,6 +23,7 @@ export const TagBoxs: React.FC = () => (
     <TagBox
       label='Text Label'
       items={items}
+      icon={<Icon icon={faExclamationTriangle} />}
       onRemove={(e) => console.log(e)}
       helperText='Helper text'
     >

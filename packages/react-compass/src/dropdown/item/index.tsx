@@ -18,8 +18,8 @@ interface Props<T> extends StyledComponentProps {
 
 export type DropdownItemProps<T = object> = Props<T>
 
-const DropdownItem: React.FC<DropdownItemProps> = ({children, key}) => (
-  <Item key={key}>{children}</Item>
+const DropdownItem: React.FC<DropdownItemProps> = ({children, ...props}) => (
+  <Item {...props}>{children}</Item>
 )
 
 export default DropdownItem
