@@ -39,6 +39,7 @@ export const StyledIcon = styled('div', {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+  userSelect: 'none',
   svg: {
     width: '$4',
     height: '$4',
@@ -86,6 +87,9 @@ export const StyledItem = styled('div', {
     width: '$3',
     height: '$3',
   },
+  '&:hover': {
+    backgroundColor: '#EAEBEB',
+  },
   variants: {
     isDisabled: {
       true: {
@@ -96,6 +100,11 @@ export const StyledItem = styled('div', {
         'tag-box-x-icon': {
           cursor: 'pointer',
         },
+      },
+    },
+    isError: {
+      true: {
+        border: '1px solid #A4262C',
       },
     },
   },

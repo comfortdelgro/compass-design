@@ -9,7 +9,12 @@ const items = [
   {id: 2, value: 'Item 2', isDisabled: true},
   {id: 3, value: 'Item 3', icon: <Icon icon={faExclamationTriangle} />},
   {id: 4, value: 'Item 4', isDisabled: true},
-  {id: 5, value: 'Item 5', icon: <Icon icon={faExclamationTriangle} />},
+  {
+    id: 5,
+    value: 'Item 5',
+    icon: <Icon icon={faExclamationTriangle} />,
+    isError: true,
+  },
   {id: 6, value: 'Item 6', isDisabled: true},
   {id: 7, value: 'Item 7', icon: <Icon icon={faExclamationTriangle} />},
   {id: 8, value: 'Item 8', isDisabled: true},
