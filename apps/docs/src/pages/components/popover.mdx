@@ -1,0 +1,87 @@
+import {Callout} from 'nextra-theme-docs'
+import styles from '../../styles/Home.module.css'
+import Badge from '@comfortdelgro/react-compass/badge'
+import {
+  faThumbsUp,
+  faVirus,
+  faChevronLeft,
+  faChevronRight,
+} from '@fortawesome/free-solid-svg-icons'
+
+import {Popovers} from '../../components/popovers'
+
+import {Accordion} from '@comfortdelgro/react-compass'
+
+# Popover
+
+When you want to show a content on above and anchor with an element when user click on it, just use this component follow this guidelines.
+
+This component can be used for some cases like notification list, user menu.
+
+Actually, you can put whatever you want into the popover content, which is the children of Popover. Default display of popover is inline-block to keep it wraps around the anchor element.
+
+---
+
+### Props:
+
+| Name      | Type                                                | Default        | Description                                        |
+| :-------- | :-------------------------------------------------- | :------------- | :------------------------------------------------- |
+| anchor    | `React.ReactNode`                                   | `-`            | Element that when you click on to show the Popover |
+| isOpen    | `boolean`                                           | `-`            | Let Popover content open                           |
+| direction | `bottom-right` `bottom-left` `top-right` `top-left` | `bottom-right` | Direction of Popover content                       |
+
+---
+
+### Methods:
+
+| Name    | Type         | Default                                       | Description |
+| :------ | :----------- | :-------------------------------------------- | :---------- |
+| onClose | `() => void` | Event that calls when use has clicked outside |
+
+---
+
+### Import:
+
+```js
+import Popover, {PopoverDirection} from '@comfortdelgro/react-compass/popover'
+```
+
+---
+
+### Image only slider:
+
+<section className={styles.contentSliderDemo}>
+  <Popovers />
+</section>
+
+```js
+const [isOpen, setIsOpen] = useState(false)
+const direction = 'bottom-right'
+
+return (
+  <Popover
+    isOpen={isOpen}
+    anchor={
+      <Button
+        variant='secondary'
+        onPress={() => {
+          setIsOpen(true)
+        }}
+      >
+        Open
+      </Button>
+    }
+    direction={direction}
+    onClose={() => {
+      setIsLeftOpen(false)
+    }}
+  >
+    <SampleTopPopover />
+  </Popover>
+)
+```
+
+<Callout>
+  Check out our [ladle](/ladle?story=badge--variants) for more info on this
+  component.
+</Callout>
