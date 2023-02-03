@@ -54,7 +54,9 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
 
     const state = useDateRangePickerState({
       ...delegated,
-      shouldCloseOnSelect: () => shouldCloseOnSelect,
+      shouldCloseOnSelect: props.granularity
+        ? true
+        : props.shouldCloseOnSelect ?? false,
     })
 
     const calendarRef = useDOMRef(ref)
