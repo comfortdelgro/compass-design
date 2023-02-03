@@ -5,9 +5,11 @@ import {StyledPopover, StyledPopoverContent} from './popover.style'
 
 export type PopoverDirection =
   | 'bottom-right'
+  | 'bottom-center'
   | 'bottom-left'
   | 'top-right'
   | 'top-left'
+  | 'top-center'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode

@@ -25,4 +25,14 @@ export const StyledPopoverContent = styled('div', {
     bottom: '100%',
     left: '0',
   },
+  '&.bottom-center': {
+    top: '100%',
+    transform: 'translateX(-50%)',
+    left: '50%',
+  },
+  '&.top-center': {
+    bottom: '100%',
+    transform: 'translateX(-50%)',
+    left: '50%',
+  },
 })

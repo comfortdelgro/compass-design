@@ -50,8 +50,10 @@ export const Popovers = () => {
         >
           <Dropdown.Item key='bottom-right'>bottom-right</Dropdown.Item>
           <Dropdown.Item key='bottom-left'>bottom-left</Dropdown.Item>
+          <Dropdown.Item key='bottom-center'>bottom-center</Dropdown.Item>
           <Dropdown.Item key='top-right'>top-right</Dropdown.Item>
           <Dropdown.Item key='top-left'>top-left</Dropdown.Item>
+          <Dropdown.Item key='top-center'>top-center</Dropdown.Item>
         </Dropdown.Select>
       </div>
       <div
