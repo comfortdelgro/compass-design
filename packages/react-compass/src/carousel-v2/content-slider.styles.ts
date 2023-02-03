@@ -6,6 +6,24 @@ export const StyledCarouselSlider = styled('div', {
   overflow: 'hidden',
   containerType: 'inline-size',
   containerName: 'contentSlider',
+
+  '&.effect-slide': {
+    '.content-slider-container': {
+      overflow: 'hidden',
+      display: 'flex',
+    },
+    '.slider-scroller': {
+      display: 'flex',
+      transition: '$default',
+    },
+    '.slider-slide': {
+      position: 'relative',
+      width: '100%',
+      flexShrink: '0',
+      opacity: '1',
+    },
+  },
+
   '.content-slider-container': {
     height: '512px',
   },

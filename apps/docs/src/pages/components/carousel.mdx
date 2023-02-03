@@ -18,6 +18,7 @@ import {
   SlideAlignment,
   CarouselMobileMode,
   CarouselMobileFloatingContent,
+  PromotionSliderSlideEffect,
 } from '../../components/CarouselSliders'
 
 import {Accordion} from '@comfortdelgro/react-compass'
@@ -63,6 +64,7 @@ The design for mobile mode is too different with desktop mode, we can not handle
 | useNavigation        | `boolean`                | `true`  | To show next and previous buttons                                                        |
 | useDotIndicator      | `boolean`                | `true`  | To show dot indicators                                                                   |
 | navigationButtonType | `icon` `text`            | `icon`  | To use arrow icon or next & prev text                                                    |
+| effect               | `fade` `slide`           | `fade`  | The effect of transition between slides                                                  |
 | data                 | `CarouselSliderItem[]`   | `-`     | Required parameters                                                                      |
 | socials              | `SocicalIcon[]`          | `[]`    | List of social icons definition                                                          |
 | buttons              | `CarouselSliderButton[]` | `[]`    | Buttons that displays under the slider, so currently it only works with `CarouselMobile` |
@@ -189,6 +191,16 @@ const slideData: CarouselSliderItem[] = [
 
 ```js
 <CarouselSlider.Promotion data={slideData} />
+```
+
+### Slide effect
+
+<section className={styles.contentSliderDemo}>
+  <PromotionSliderSlideEffect />
+</section>
+
+```js
+<CarouselSlider.Promotion data={slideData} effect={'slide'} />
 ```
 
 ### Mobile mode:

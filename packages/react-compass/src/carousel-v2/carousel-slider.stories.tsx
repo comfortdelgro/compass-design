@@ -168,8 +168,13 @@ export const Promotion = () => {
   return (
     <>
       <StyledSampleAnyCarouselSlider className='content-slider-sample'>
-        <h2>Promotion</h2>
-        <CarouselPromotion data={slideData} useNavigation={false} />
+        <h2>Promotion - Slide effect</h2>
+        <CarouselPromotion data={slideData} effect={'slide'} />
+      </StyledSampleAnyCarouselSlider>
+
+      <StyledSampleAnyCarouselSlider className='content-slider-sample'>
+        <h2>Promotion - Fade effect</h2>
+        <CarouselPromotion data={slideData} />
       </StyledSampleAnyCarouselSlider>
 
       <StyledSampleAnyCarouselSlider className='content-slider-sample'>

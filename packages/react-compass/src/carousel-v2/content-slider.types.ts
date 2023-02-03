@@ -16,6 +16,8 @@ export type ButtonType = 'primary' | 'secondary'
 
 export type NavigationButtonType = 'icon' | 'text'
 
+export type AnimationType = 'fade' | 'slide'
+
 export interface CarouselSliderButton {
   type: ButtonType
   label: string
@@ -37,6 +39,7 @@ export interface SocicalIcon {
 }
 
 export interface CarouselOptions extends StyledComponentProps {
+  effect?: AnimationType
   autoSwitch?: boolean
   useNavigation?: boolean
   useDotIndicator?: boolean

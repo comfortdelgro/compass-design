@@ -10,6 +10,7 @@ CarouselSlider.Promotion = CarouselPromotion
 CarouselSlider.Mobile = CarouselMobile
 
 export type {
+  AnimationType,
   ButtonType,
   CarouselOptions,
   CarouselSliderButton,

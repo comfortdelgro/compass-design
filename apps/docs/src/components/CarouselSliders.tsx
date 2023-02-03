@@ -97,6 +97,14 @@ export const PromotionSlider = () => {
   )
 }
 
+export const PromotionSliderSlideEffect = () => {
+  return (
+    <div className='content-slider-sample'>
+      <CarouselSlider.Promotion data={slideData} effect={'slide'} />
+    </div>
+  )
+}
+
 export const AutoPlaySlider = () => {
   return (
     <div className='content-slider-sample'>

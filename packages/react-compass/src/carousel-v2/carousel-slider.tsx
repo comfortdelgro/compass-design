@@ -16,7 +16,11 @@ import {
   StyledCarouselSliderPrev,
   StyledSliderSocials,
 } from './content-slider.styles'
-import {NavigationButtonType, SocicalIcon} from './content-slider.types'
+import {
+  AnimationType,
+  NavigationButtonType,
+  SocicalIcon,
+} from './content-slider.types'
 
 interface Props extends StyledComponentProps {
   children: React.ReactNode[]
@@ -26,6 +30,7 @@ interface Props extends StyledComponentProps {
   navigationButtonType?: NavigationButtonType
   socials?: SocicalIcon[]
   className?: string
+  effect?: AnimationType
   onSwitchSlide?: (index: number) => void
 }
 
@@ -42,6 +47,7 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
       navigationButtonType = 'icon',
       socials,
       className,
+      effect = 'fade',
       css = {},
       onSwitchSlide = () => {},
       ...delegated
@@ -83,15 +89,41 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
       }
     }
 
+    const getViewWidth = () => {
+      return (
+        (sliderRef.current &&
+          sliderRef.current.clientWidth * children.length + 'px') ||
+        0
+      )
+    }
+
+    const getViewPosition = () => {
+      return (sliderRef.current && sliderRef.current.clientWidth * current) || 0
+    }
+
     return (
       <StyledCarouselSlider
         css={css}
         ref={sliderRef}
         {...delegated}
-        className={`content-slider${className ? ' ' + className : ''}`}
+        className={`content-slider effect-${effect} ${
+          className ? ' ' + className : ''
+        }`}
       >
         <StyledCarouselSliderContainer className='content-slider-container'>
-          {children}
+          {effect === 'slide' ? (
+            <div
+              className='slider-scroller'
+              style={{
+                width: getViewWidth(),
+                transform: `translate3d(-${getViewPosition()}px, 0, 0)`,
+              }}
+            >
+              {children}
+            </div>
+          ) : (
+            children
+          )}
         </StyledCarouselSliderContainer>
         {useNavigation && children.length > 1 && (
           <div className='content-slider-controls'>
