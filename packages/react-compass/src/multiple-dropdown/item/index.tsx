@@ -16,7 +16,7 @@ export type MultipleDropdownItemProps<T = object> = Props<T>
 
 const MultipleDropdownItem: React.FC<MultipleDropdownItemProps> = ({
   children,
-  key,
-}) => <Item key={key}>{children}</Item>
+  ...props
+}) => <Item {...props}>{children}</Item>
 
 export default MultipleDropdownItem
