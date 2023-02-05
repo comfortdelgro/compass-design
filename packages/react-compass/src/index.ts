@@ -194,9 +194,11 @@ export type {
 } from './subBanner'
 export {default as Table} from './table'
 export type {TableProps} from './table'
-export {default as ReactTable} from './table-v2'
-export type {ReactTableProps} from './table-v2'
-export {ReactTableConfig} from './table-v2/react-table-config-model'
+export {
+  default as ReactTable,
+  Options as ReactTableOptions,
+  ReactTableProps,
+} from './table-v2'
 export {default as Tabs} from './tabs'
 export type {TabsProps} from './tabs'
 export {default as TagBox} from './tag-box'

@@ -7,23 +7,26 @@ interface Props extends StyledComponentProps {
   children?: React.ReactNode
 }
 
-const ReactTableFooter = React.forwardRef<HTMLDivElement, Props>(
-  (props, ref) => {
-    const {
-      // StyledComponentProps
-      css = {},
-      // ComponentProps
-      children,
-    } = props
+export type ReactTableFooterProps = Props
 
-    const reactTableFooterRef = useDOMRef<HTMLDivElement>(ref)
+const ReactTableFooter = React.forwardRef<
+  HTMLDivElement,
+  ReactTableFooterProps
+>((props, ref) => {
+  const {
+    // StyledComponentProps
+    css = {},
+    // ComponentProps
+    children,
+  } = props
 
-    return (
-      <StyledReactTableFooter css={css} ref={reactTableFooterRef}>
-        {children}
-      </StyledReactTableFooter>
-    )
-  },
-)
+  const reactTableFooterRef = useDOMRef<HTMLDivElement>(ref)
+
+  return (
+    <StyledReactTableFooter css={css} ref={reactTableFooterRef}>
+      {children}
+    </StyledReactTableFooter>
+  )
+})
 
 export default ReactTableFooter

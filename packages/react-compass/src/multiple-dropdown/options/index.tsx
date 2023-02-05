@@ -30,7 +30,7 @@ const Option = React.forwardRef<HTMLLIElement, LinkProps>(
       ref,
     )
 
-    const {isFocusVisible, focusProps} = useFocusRing()
+    const {focusProps} = useFocusRing()
     const {leftIcon} = item.props ?? {}
 
     return (

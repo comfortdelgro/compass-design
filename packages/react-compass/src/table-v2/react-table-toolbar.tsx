@@ -7,23 +7,26 @@ interface Props extends StyledComponentProps {
   children?: React.ReactNode
 }
 
-const ReactTableToolbar = React.forwardRef<HTMLDivElement, Props>(
-  (props, ref) => {
-    const {
-      // StyledComponentProps
-      css = {},
-      // ComponentProps
-      children,
-    } = props
+export type ReactTableToolbarProps = Props
 
-    const tableToolbarRef = useDOMRef<HTMLDivElement>(ref)
+const ReactTableToolbar = React.forwardRef<
+  HTMLDivElement,
+  ReactTableToolbarProps
+>((props, ref) => {
+  const {
+    // StyledComponentProps
+    css = {},
+    // ComponentProps
+    children,
+  } = props
 
-    return (
-      <StyledReactTableToolbar css={css} ref={tableToolbarRef}>
-        {children}
-      </StyledReactTableToolbar>
-    )
-  },
-)
+  const tableToolbarRef = useDOMRef<HTMLDivElement>(ref)
+
+  return (
+    <StyledReactTableToolbar css={css} ref={tableToolbarRef}>
+      {children}
+    </StyledReactTableToolbar>
+  )
+})
 
 export default ReactTableToolbar

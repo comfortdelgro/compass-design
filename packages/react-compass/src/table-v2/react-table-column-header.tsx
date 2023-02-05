@@ -13,6 +13,7 @@ interface Props {
 
 const ReactTableColumnHeader = React.forwardRef<HTMLTableCellElement, Props>(
   ({headerProps}, ref) => {
+    const enableResizing = headerProps?.column?.columnDef?.enableResizing
     const tableRowRef = useDOMRef<HTMLTableCellElement>(ref)
     return (
       <StyledReactTableColumnHeader
@@ -27,10 +28,15 @@ const ReactTableColumnHeader = React.forwardRef<HTMLTableCellElement, Props>(
       >
         <div
           {...{
-            className: headerProps.column.getCanSort()
-              ? 'cursor-pointer select-none'
-              : '',
             onClick: headerProps.column.getToggleSortingHandler(),
+          }}
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            minHeight: '30px',
+            alignItems: 'center',
+            cursor: headerProps.column.getCanSort() ? 'pointer' : 'unset',
+            userSelect: headerProps.column.getCanSort() ? 'none' : 'unset',
           }}
         >
           {headerProps.isPlaceholder ? null : (
@@ -83,7 +89,7 @@ const ReactTableColumnHeader = React.forwardRef<HTMLTableCellElement, Props>(
               }[headerProps.column.getIsSorted() as string] ?? null}
             </>
           )}
-          <ReactTableResizer headerProps={headerProps} />
+          {enableResizing && <ReactTableResizer headerProps={headerProps} />}
         </div>
       </StyledReactTableColumnHeader>
     )

@@ -2,6 +2,7 @@ import {Callout} from 'nextra-theme-docs'
 import styles from '../../styles/Home.module.css'
 import {faThumbsUp, faVirus} from '@fortawesome/free-solid-svg-icons'
 import Textarea from '@comfortdelgro/react-compass/textarea'
+import {ReactTableStory} from 'components/TableV2'
 
 # Table-v2
 
@@ -18,7 +19,7 @@ import {ReactTable} from '@comfortdelgro/react-compass'
 or
 
 ```js
-import ReactTable from '@comfortdelgro/react-compass/textarea'
+import ReactTable from '@comfortdelgro/react-compass/table-v2'
 ```
 
 ---
@@ -26,36 +27,7 @@ import ReactTable from '@comfortdelgro/react-compass/textarea'
 ### Basic table-v2:
 
 <section className={styles.textAreaShowcaseContainer}>
-  <Textarea placeholder='Enter your message' />
-  <Textarea label='Text Label' placeholder='Enter your message' isDisabled/>
-  <Textarea
-    label='Text Label'
-    placeholder='Enter your message'
-    value='Lorem ipsum dolor sit amet.'
-
-/>
-
-  <Textarea
-    label='Text Label'
-    placeholder='Enter your message'
-    wordCount
-    value='Lorem ipsum dolor sit amet.'
-  />
-  <Textarea
-    label='Text Label'
-    placeholder='Enter your message'
-    wordCount
-    maxLength={50}
-    value={'Lorem ipsum dolor sit amet.'}
-    onChange={() => {}}
-  />
-  <Textarea
-    label='Text Label'
-    placeholder='Enter your message'
-    wordCount
-    maxLength={50}
-    errored
-  />
+  <ReactTableStory />
 </section>
 
 ```js

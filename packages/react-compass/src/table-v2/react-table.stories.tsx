@@ -3,17 +3,24 @@ import {
   faFileLines,
   faTrashAlt,
 } from '@fortawesome/free-solid-svg-icons'
+import {ColumnDef} from '@tanstack/react-table'
 
 import React, {useState} from 'react'
-import Button from '../button/button'
+import ReactTable, {ColumnConfig} from '.'
+import Button from '../button'
 import {Icon} from '../icon'
-import Pagination from '../pagination/pagination'
-import SearchField from '../searchfield/searchfield'
+import Pagination from '../pagination'
+import SearchField from '../searchfield'
 import {makeData, Person} from './makeData'
-import ReactTable, {ColumnConfig} from './react-table'
+import {Options} from './react-table'
 export const ReactTableStory: React.FC = () => {
   const [page, setPage] = useState(1)
   const [data] = React.useState(() => makeData(10))
+  const options: Options = {
+    enableSorting: true,
+    enableMultiSort: false,
+    columnResizeMode: 'onChange',
+  }
 
   const columns = React.useMemo<Array<ColumnConfig<Person>>>(
     () => [
@@ -49,6 +56,7 @@ export const ReactTableStory: React.FC = () => {
             accessorKey: 'firstName',
             cell: (info) => info.getValue<string>(),
             footer: (props) => props.column.id,
+            enableResizing: false,
           },
           {
             accessorFn: (row) => row.lastName,
@@ -56,6 +64,7 @@ export const ReactTableStory: React.FC = () => {
             cell: (info) => info.getValue<string>(),
             header: () => <span>Last Name</span>,
             footer: (props) => props.column.id,
+            enableResizing: true,
           },
         ],
       },
@@ -90,10 +99,11 @@ export const ReactTableStory: React.FC = () => {
     ],
     [],
   )
+  const columnEmpty: ColumnDef<any, unknown>[] = []
 
   return (
     <div>
-      <ReactTable data={data} columns={columns}>
+      <ReactTable data={[]} columns={columns} options={options}>
         <ReactTable.Toolbar
           css={{
             display: 'flex',
