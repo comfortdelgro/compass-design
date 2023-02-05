@@ -5,6 +5,7 @@ import ReactTableCheckboxCell from './react-table-checkbox-cell'
 import ReactTableFooter from './react-table-footer'
 import ReactTableToolbar from './react-table-toolbar'
 
+export {Options} from './react-table'
 export type {ReactTableProps} from './react-table'
 export type {ReactTableCheckboxProps} from './react-table-checkbox'
 export type {ReactTableCheckboxCellProps} from './react-table-checkbox-cell'
