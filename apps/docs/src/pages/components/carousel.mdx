@@ -9,7 +9,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 
 import {
-  SampleContentSlider,
+  SampleCarouselSlider,
   ImageOnlyDemo,
   TextNavigationButton,
   PromotionSlider,
@@ -18,54 +18,56 @@ import {
   SlideAlignment,
   CarouselMobileMode,
   CarouselMobileFloatingContent,
-} from '../../components/ContentSliders'
+  PromotionSliderSlideEffect,
+} from '../../components/CarouselSliders'
 
 import {Accordion} from '@comfortdelgro/react-compass'
 
 # Carousel
 
-A group of slider components. The core component is ContentSlider with common feature is switching slides. It allows you to pass a list of children elements, to keep it flexible.
+A group of slider components. The core component is CarouselSlider with common feature is switching slides. It allows you to pass a list of children elements, to keep it flexible.
 Children should be `CarouselSlide` or `CarouselImageSlide`. In case you want to customize it, please use `slider-side` class name for children and `active` class name for slide that activated.
 
-For next version of carousel, we have CarouselV2, this component extends and reuse ContentSlider component. To use it, you just need to simply pass the array of data into it.
+For next version of carousel, we have `CarouselSlider.Promotion`, this component extends and reuse `CarouselSlider` component. To use it, you just need to simply pass the array of data into it.
 
-The design for mobile mode is too different with desktop mode, we can not handle it by using the same template, so now we have CarouselMobile component. Otherwise, ContentSlider will have basic responsive layout itself.
+The design for mobile mode is too different with desktop mode, we can not handle it by using the same template, so now we have `CarouselSlider.Mobile` component. Otherwise, `CarouselSlider` will have basic responsive layout itself.
 
 ---
 
 ### Components:
 
-| Name               | Type        | Default | Description                                                                      |
-| :----------------- | :---------- | :------ | :------------------------------------------------------------------------------- |
-| ContentSlider      | `Component` |         | Core slider that can be reused for multiple purpose of sliding things            |
-| CarouselV2         | `Component` |         | Next version of current carousel that extends from ContentSlider                 |
-| CarouselMobile     | `Component` |         | Sepecial extended version of ContentSlider to support different layout on mobile |
-| CarouselSlide      | `Component` |         | A component that contains slide content                                          |
-| CarouselImageSlide | `Component` |         | Slide component use for a slider that accept only images                         |
+| Name                      | Type        | Default | Description                                                                       |
+| :------------------------ | :---------- | :------ | :-------------------------------------------------------------------------------- |
+| CarouselSlider            | `Component` |         | Core slider that can be reused for multiple purpose of sliding things             |
+| CarouselSlider.Promotion  | `Component` |         | Next version of current carousel that extends from CarouselSlider                 |
+| CarouselSlider.Mobile     | `Component` |         | Sepecial extended version of CarouselSlider to support different layout on mobile |
+| CarouselSlider.Slide      | `Component` |         | A component that contains slide content                                           |
+| CarouselSlider.ImageSlide | `Component` |         | Slide component use for a slider that accept only images                          |
 
 ### Types:
 
-| Name                | Type                  | Default | Description                                                                                  |
-| :------------------ | :-------------------- | :------ | :------------------------------------------------------------------------------------------- |
-| ContentSliderItem   | `ContentSliderItem`   |         | Promotion slider item data                                                                   |
-| SocicalIcon         | `SocicalIcon`         |         | Item contains social icon data: `icon` and `url`                                             |
-| NinePartAlignment   | `NinePartAlignment`   |         | Alignment that apply for a single slide item, remember to put it into ContentSliderItem data |
-| ContentSliderButton | `ContentSliderButton` |         | Button that use in sliders definition: `type`, `label`, `callback`                           |
-| ButtonType          | `ButtonType`          |         | `primary` `secondary`                                                                        |
+| Name                 | Type                   | Default | Description                                                                                   |
+| :------------------- | :--------------------- | :------ | :-------------------------------------------------------------------------------------------- |
+| CarouselSliderItem   | `CarouselSliderItem`   |         | Promotion slider item data                                                                    |
+| SocicalIcon          | `SocicalIcon`          |         | Item contains social icon data: `icon` and `url`                                              |
+| NinePartAlignment    | `NinePartAlignment`    |         | Alignment that apply for a single slide item, remember to put it into CarouselSliderItem data |
+| CarouselSliderButton | `CarouselSliderButton` |         | Button that use in sliders definition: `type`, `label`, `callback`                            |
+| ButtonType           | `ButtonType`           |         | `primary` `secondary`                                                                         |
 
 ---
 
 ### Props:
 
-| Name                 | Type                    | Default | Description                                                                              |
-| :------------------- | :---------------------- | :------ | :--------------------------------------------------------------------------------------- |
-| autoSwitch           | `boolean`               | `true`  | To let the slider auto switch in every 300ms                                             |
-| useNavigation        | `boolean`               | `true`  | To show next and previous buttons                                                        |
-| useDotIndicator      | `boolean`               | `true`  | To show dot indicators                                                                   |
-| navigationButtonType | `icon` `text`           | `icon`  | To use arrow icon or next & prev text                                                    |
-| data                 | `ContentSliderItem[]`   | `-`     | Required parameters                                                                      |
-| socials              | `SocicalIcon[]`         | `[]`    | List of social icons definition                                                          |
-| buttons              | `ContentSliderButton[]` | `[]`    | Buttons that displays under the slider, so currently it only works with `CarouselMobile` |
+| Name                 | Type                     | Default | Description                                                                              |
+| :------------------- | :----------------------- | :------ | :--------------------------------------------------------------------------------------- |
+| autoSwitch           | `boolean`                | `true`  | To let the slider auto switch in every 300ms                                             |
+| useNavigation        | `boolean`                | `true`  | To show next and previous buttons                                                        |
+| useDotIndicator      | `boolean`                | `true`  | To show dot indicators                                                                   |
+| navigationButtonType | `icon` `text`            | `icon`  | To use arrow icon or next & prev text                                                    |
+| effect               | `fade` `slide`           | `fade`  | The effect of transition between slides                                                  |
+| data                 | `CarouselSliderItem[]`   | `-`     | Required parameters                                                                      |
+| socials              | `SocicalIcon[]`          | `[]`    | List of social icons definition                                                          |
+| buttons              | `CarouselSliderButton[]` | `[]`    | Buttons that displays under the slider, so currently it only works with `CarouselMobile` |
 
 ---
 
@@ -80,14 +82,13 @@ The design for mobile mode is too different with desktop mode, we can not handle
 ### Import:
 
 ```js
+// Carousel
+import {CarouselSlider} from '@comfortdelgro/react-compass'
+
+// Types
 import {
-  CarouselImageSlide,
-  CarouselMobile,
-  CarouselSlide,
-  CarouselV2,
-  ContentSlider,
-  ContentSliderButton,
-  ContentSliderItem,
+  CarouselSliderButton,
+  CarouselSliderItem,
   NinePartAlignment,
   SocicalIcon,
 } from '@comfortdelgro/react-compass'
@@ -115,15 +116,15 @@ const handleSwitchSlide = (index: number) => {
 }
 
 return (
-  <ContentSlider onSwitchSlide={handleSwitchSlide}>
+  <CarouselSlider onSwitchSlide={handleSwitchSlide}>
     {imageUrls.map((imageUrl: string, index: number) => (
-      <CarouselImageSlide
+      <CarouselSlider.ImageSlide
         key={index}
         active={activeIndex === index}
         imageUrl={imageUrl}
       />
     ))}
-  </ContentSlider>
+  </CarouselSlider>
 )
 ```
 
@@ -133,7 +134,7 @@ return (
   <Accordion.Title>Let's init some data</Accordion.Title>
   
 ```js
-const slideData: ContentSliderItem[] = [
+const slideData: CarouselSliderItem[] = [
   {
     image: 'https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(15).webp',
     title: 'Content slider is awesome',
@@ -189,7 +190,17 @@ const slideData: ContentSliderItem[] = [
 </section>
 
 ```js
-<CarouselV2 data={slideData} />
+<CarouselSlider.Promotion data={slideData} />
+```
+
+### Slide effect
+
+<section className={styles.contentSliderDemo}>
+  <PromotionSliderSlideEffect />
+</section>
+
+```js
+<CarouselSlider.Promotion data={slideData} effect={'slide'} />
 ```
 
 ### Mobile mode:
@@ -199,17 +210,25 @@ const slideData: ContentSliderItem[] = [
 </section>
 
 ```js
-<CarouselMobile data={slideData} useNavigation={false} buttons={buttons} />
+<CarouselSlider.Mobile
+  data={slideData}
+  useNavigation={false}
+  buttons={buttons}
+/>
 ```
 
-### Mobile mode - floating content:
+### Mobile - floating content:
 
 <section className={styles.contentSliderDemo}>
   <CarouselMobileFloatingContent />
 </section>
 
 ```js
-<CarouselMobile data={slideData} floatingContent={true} buttons={buttons} />
+<CarouselSlider.Mobile
+  data={slideData}
+  floatingContent={true}
+  buttons={buttons}
+/>
 ```
 
 ### Pause:
@@ -219,7 +238,7 @@ const slideData: ContentSliderItem[] = [
 </section>
 
 ```js
-<CarouselV2 data={slideData} autoSwitch={false} />
+<CarouselSlider.Promotion data={slideData} autoSwitch={false} />
 ```
 
 ### Slide alignment:
@@ -239,7 +258,7 @@ const slideData: ContentSliderItem[] = [
   * 'start-end'
   * 'center-end'
   * 'end-end'
-  const slides: ContentSliderItem[] = [
+  const slides: CarouselSliderItem[] = [
     {
       ...
       title: 'This slide contains buttons',
@@ -250,7 +269,7 @@ const slideData: ContentSliderItem[] = [
       ...
     },
   ]
-<CarouselV2 data={slides} autoSwitch={false} />
+<CarouselSlider.Promotion data={alignmentData} autoSwitch={false} />
 ```
 
 ### With socials icons:
@@ -276,7 +295,7 @@ const socials: SocicalIcon[] = [
 ]
 
 export const PromotionSliderWithSocials = () => {
-  return <CarouselV2 data={slideData} socials={socials} />
+  return <CarouselSlider.Promotion data={slideData} socials={socials} />
 }
 ```
 
@@ -287,15 +306,21 @@ export const PromotionSliderWithSocials = () => {
 </section>
 
 ```js
-<ContentSlider onSwitchSlide={handleSwitchSlide} navigationButtonType='text'>
+<CarouselSlider onSwitchSlide={handleSwitchSlide} navigationButtonType='text'>
   ...Slider content
-</ContentSlider>
+</CarouselSlider>
+
+Or
+<CarouselSlider.Promotion onSwitchSlide={handleSwitchSlide} navigationButtonType='text'/>
+
+Or
+<CarouselSlider.Mobile onSwitchSlide={handleSwitchSlide} navigationButtonType='text'/>
 ```
 
 ### Any content slider:
 
 <section className={styles.contentSliderDemo}>
-  <SampleContentSlider />
+  <SampleCarouselSlider />
 </section>
 
 ```js
@@ -306,8 +331,8 @@ const handleSwitchSlide = (index: number) => {
 }
 
 return (
-  <ContentSlider onSwitchSlide={handleSwitchSlide}>
-    <CarouselSlide active={activeIndex === 0}>
+  <CarouselSlider onSwitchSlide={handleSwitchSlide}>
+    <CarouselSlider.Slide active={activeIndex === 0}>
       <h3>First slide</h3>
       <br />
       You can put any content here
@@ -317,8 +342,8 @@ return (
       With your own custom styles
       <br />
       <i>The gray background here is just for this sample</i>
-    </CarouselSlide>
-    <CarouselSlide active={activeIndex === 1}>
+    </CarouselSlider.Slide>
+    <CarouselSlider.Slide active={activeIndex === 1}>
       <h3>Second slide</h3>
       <br />
       Even if you&apos;re using a <b>rich text content</b>,{' '}
@@ -330,11 +355,11 @@ return (
         alt='sample image'
         src='https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(15).webp'
       />
-    </CarouselSlide>
-    <CarouselSlide active={activeIndex === 2}>
+    </CarouselSlider.Slide>
+    <CarouselSlider.Slide active={activeIndex === 2}>
       <h3>This is the last slide</h3>
-    </CarouselSlide>
-  </ContentSlider>
+    </CarouselSlider.Slide>
+  </CarouselSlider>
 )
 ```
 
