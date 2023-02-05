@@ -150,6 +150,8 @@ export type {
 } from './page-header'
 export {default as Pagination} from './pagination'
 export type {PaginationProps} from './pagination'
+export {default as Popover} from './popover'
+export type {PopoverDirection, PopoverProps} from './popover'
 export {default as Preflight} from './preflight'
 export {default as ProgressBar} from './progress-bar'
 export type {ProgressBarProps} from './progress-bar'
