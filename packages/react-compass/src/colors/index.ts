@@ -1,1 +1,15 @@
-export {cdgBlue, gray} from './colors'
+export {
+  background,
+  cdgBlue,
+  divider,
+  error,
+  gray,
+  info,
+  input,
+  overlays,
+  primary,
+  severe,
+  success,
+  text,
+  warning,
+} from './colors'
