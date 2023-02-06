@@ -1,4 +1,5 @@
 import {IconDefinition} from '@fortawesome/free-regular-svg-icons'
+import {StyledComponentProps} from '../utils/stitches.types'
 
 export type NinePartAlignment =
   | 'start-start'
@@ -15,17 +16,19 @@ export type ButtonType = 'primary' | 'secondary'
 
 export type NavigationButtonType = 'icon' | 'text'
 
-export interface ContentSliderButton {
+export type AnimationType = 'fade' | 'slide'
+
+export interface CarouselSliderButton {
   type: ButtonType
   label: string
   callback?: () => void
 }
 
-export interface ContentSliderItem {
+export interface CarouselSliderItem {
   image: string
   title: string
   description: string
-  buttons?: ContentSliderButton[]
+  buttons?: CarouselSliderButton[]
   alignment?: NinePartAlignment
   mask?: number
 }
@@ -35,7 +38,8 @@ export interface SocicalIcon {
   url: string
 }
 
-export interface CarouselOptions {
+export interface CarouselOptions extends StyledComponentProps {
+  effect?: AnimationType
   autoSwitch?: boolean
   useNavigation?: boolean
   useDotIndicator?: boolean

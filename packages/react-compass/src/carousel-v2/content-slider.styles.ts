@@ -1,11 +1,29 @@
 import {styled} from '../theme'
 
-export const StyledContentSlider = styled('div', {
+export const StyledCarouselSlider = styled('div', {
   display: 'block',
   position: 'relative',
   overflow: 'hidden',
   containerType: 'inline-size',
   containerName: 'contentSlider',
+
+  '&.effect-slide': {
+    '.content-slider-container': {
+      overflow: 'hidden',
+      display: 'flex',
+    },
+    '.slider-scroller': {
+      display: 'flex',
+      transition: '$default',
+    },
+    '.slider-slide': {
+      position: 'relative',
+      width: '100%',
+      flexShrink: '0',
+      opacity: '1',
+    },
+  },
+
   '.content-slider-container': {
     height: '512px',
   },
@@ -76,7 +94,7 @@ export const StyledContentSlider = styled('div', {
   },
 })
 
-export const StyledContentSliderMobile = styled('div', {
+export const StyledCarouselSliderMobile = styled('div', {
   '.slide-mobile-buttons': {
     flexDirection: 'column',
     gap: 0,
@@ -118,11 +136,11 @@ export const StyledContentSliderMobile = styled('div', {
   },
 })
 
-export const StyledContentSliderContainer = styled('div', {
+export const StyledCarouselSliderContainer = styled('div', {
   height: '100%',
 })
 
-export const StyledContentSliderBottomNav = styled('div', {
+export const StyledCarouselSliderBottomNav = styled('div', {
   position: 'absolute',
   bottom: '70px',
   left: '100px',
@@ -146,12 +164,12 @@ export const StyledSliderSocials = styled('div', {
   },
 })
 
-export const StyledContentSliderDots = styled('div', {
+export const StyledCarouselSliderDots = styled('div', {
   display: 'flex',
   gap: '10px',
 })
 
-export const StyledContentSliderDot = styled('div', {
+export const StyledCarouselSliderDot = styled('div', {
   display: 'inline-block',
   width: '8px',
   height: '8px',
@@ -167,7 +185,7 @@ export const StyledContentSliderDot = styled('div', {
   },
 })
 
-export const StyledContentSliderContentItem = styled('div', {
+export const StyledCarouselSliderContentItem = styled('div', {
   display: 'block',
   position: 'absolute',
   width: '100%',
@@ -226,7 +244,7 @@ export const StyledContentSliderContentItem = styled('div', {
   },
 })
 
-export const StyledContentSliderImageItem = styled('img', {
+export const StyledCarouselSliderImageItem = styled('img', {
   display: 'block',
   position: 'absolute',
   width: '100%',
@@ -240,7 +258,7 @@ export const StyledContentSliderImageItem = styled('img', {
   },
 })
 
-export const StyledContentSliderNav = styled('div', {
+export const StyledCarouselSliderNav = styled('div', {
   position: 'absolute',
   top: '50%',
   padding: '7px 12px',
@@ -265,14 +283,14 @@ export const StyledContentSliderNav = styled('div', {
   },
 })
 
-export const StyledContentSliderNext = styled(StyledContentSliderNav, {
+export const StyledCarouselSliderNext = styled(StyledCarouselSliderNav, {
   right: '10px',
   '&.text': {
     transform: 'rotate(90deg)',
   },
 })
 
-export const StyledContentSliderPrev = styled(StyledContentSliderNav, {
+export const StyledCarouselSliderPrev = styled(StyledCarouselSliderNav, {
   left: '10px',
   '&.text': {
     transform: 'rotate(-90deg)',

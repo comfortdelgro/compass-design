@@ -6,7 +6,16 @@ import {
   StyledCheckboxLabel,
 } from '../checkbox/checkbox.styles'
 import Icon from '../icon'
+import {StyledComponentProps} from '../utils/stitches.types'
 import {StyledReactCheckboxInput} from './react-table-checkbox.styles'
+
+interface Props extends StyledComponentProps {
+  children?: React.ReactNode
+  indeterminate: boolean | undefined
+  className: string
+}
+
+export type ReactTableCheckboxProps = Props
 
 const ReactTableCheckbox = ({
   indeterminate,

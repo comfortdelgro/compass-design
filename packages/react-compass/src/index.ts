@@ -17,8 +17,8 @@ export type {
   BannerProps,
   BannerTitleProps,
 } from './banner'
-export {default as Box} from './box'
-export type {BoxProps} from './box'
+export {default as Box, default as Box} from './box'
+export type {BoxProps, BoxProps} from './box'
 export {default as Breadcrumbs} from './breadcrumbs'
 export type {BreadcrumbItemProps, BreadcrumbsProps} from './breadcrumbs'
 export {default as Button} from './button'
@@ -40,7 +40,16 @@ export type {
   CarouselProps,
   CarouselTitleProps,
 } from './carousel'
-export * from './carousel-v2'
+export {default as CarouselSlider} from './carousel-v2'
+export type {
+  ButtonType,
+  CarouselOptions,
+  CarouselSliderButton,
+  CarouselSliderItem,
+  NavigationButtonType,
+  NinePartAlignment,
+  SocicalIcon,
+} from './carousel-v2'
 export {default as Chart} from './chart'
 export type {
   AreaChartProps,
@@ -50,7 +59,7 @@ export type {
 } from './chart'
 export {default as Checkbox} from './checkbox'
 export type {CheckboxProps} from './checkbox'
-export {cdgBlue, gray} from './colors'
+export {cdgBlue, cdgBlue, gray, gray} from './colors'
 export {default as DashboardSidecard} from './dashboard-sidecard'
 export type {
   DashboardSidecardContentProps,
@@ -133,9 +142,14 @@ export type {
   ModalTitleProps,
   ModalTriggerProps,
 } from './modal'
-export {default as MultipleDropdown} from './multiple-dropdown'
+export {
+  default as MultipleDropdown,
+  default as MultipleDropdown,
+} from './multiple-dropdown'
 export type {
   MultipleDropdownItemProps,
+  MultipleDropdownItemProps,
+  MultipleDropdownProps,
   MultipleDropdownProps,
 } from './multiple-dropdown'
 export {default as Navbar} from './navbar'
@@ -150,6 +164,8 @@ export type {
 } from './page-header'
 export {default as Pagination} from './pagination'
 export type {PaginationProps} from './pagination'
+export {default as Popover} from './popover'
+export type {PopoverDirection, PopoverProps} from './popover'
 export {default as Preflight} from './preflight'
 export {default as ProgressBar} from './progress-bar'
 export type {ProgressBarProps} from './progress-bar'
@@ -194,8 +210,11 @@ export type {
 } from './subBanner'
 export {default as Table} from './table'
 export type {TableProps} from './table'
-export {default as TableV2} from './table-v2'
-export type {ReactTableProps} from './table-v2'
+export {
+  default as ReactTable,
+  OptionType as ReactTableOptions,
+  ReactTableProps,
+} from './table-v2'
 export {default as Tabs} from './tabs'
 export type {TabsProps} from './tabs'
 export {default as TagBox} from './tag-box'
@@ -224,8 +243,8 @@ export type {TooltipProps, TooltipTriggerProps} from './tooltip'
 export {default as Typography} from './typography'
 export {default as Upload} from './upload'
 export type {UploadDragAndDropProps, UploadProps} from './upload'
-export {default as Upload2} from './upload-v2'
-export type {Upload2Props} from './upload-v2'
+export {default as Upload2, default as Upload2} from './upload-v2'
+export type {Upload2Props, Upload2Props} from './upload-v2'
 export * from './utils'
 export {default as VideoPlayer} from './video-player'
 export type {VideoPlayerProps} from './video-player'
