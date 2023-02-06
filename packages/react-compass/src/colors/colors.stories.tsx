@@ -3,6 +3,7 @@ import {
   cdgBlue,
   divider,
   error,
+  gradients,
   gray,
   info,
   input,
@@ -15,31 +16,42 @@ import {
 } from './index'
 
 interface BoxProps {
-  background: string
+  background: string | string[]
   name: string
   objectRef: string
   whiteText?: boolean
 }
 
-const Box: React.FC<BoxProps> = (props) => (
-  <div
-    style={{
-      width: '240px',
-      height: '160px',
-      padding: 10,
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'space-between',
-      backgroundColor: props.background,
-      color: props.whiteText ? 'white' : 'black',
-    }}
-  >
-    <span style={{fontSize: 16, fontWeight: 600}}>
-      {props.name} ({props.background})
-    </span>
-    <span style={{fontSize: 14, fontWeight: 400}}>{props.objectRef}</span>
-  </div>
-)
+const Box: React.FC<BoxProps> = (props) => {
+  const background =
+    typeof props.background === 'string'
+      ? props.background
+      : props.background.join(', ')
+  return (
+    <div
+      style={{
+        width: '240px',
+        height: '160px',
+        padding: 10,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        backgroundColor:
+          typeof props.background === 'string' ? background : undefined,
+        backgroundImage:
+          typeof props.background !== 'string'
+            ? `linear-gradient(to right, ${background})`
+            : undefined,
+        color: props.whiteText ? 'white' : 'black',
+      }}
+    >
+      <span style={{fontSize: 16, fontWeight: 600}}>
+        {props.name} ({background})
+      </span>
+      <span style={{fontSize: 14, fontWeight: 400}}>{props.objectRef}</span>
+    </div>
+  )
+}
 
 export const Colors: React.FC = () => {
   return (
@@ -297,6 +309,24 @@ export const Colors: React.FC = () => {
           background={background.darker}
           name='Darker'
           objectRef='background.darker'
+        />
+      </div>
+      <h3>Gradients</h3>
+      <div style={{display: 'flex', flexWrap: 'wrap'}}>
+        <Box
+          background={gradients.orange}
+          name='Orange'
+          objectRef='gradients.orange'
+        />
+        <Box
+          background={gradients.rainbow}
+          name='Rainbow'
+          objectRef='gradients.rainbow'
+        />
+        <Box
+          background={gradients.orangeBlue}
+          name='Orange Blue'
+          objectRef='gradients.orangeBlue'
         />
       </div>
     </>

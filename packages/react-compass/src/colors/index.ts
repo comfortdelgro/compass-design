@@ -3,6 +3,7 @@ export {
   cdgBlue,
   divider,
   error,
+  gradients,
   gray,
   info,
   input,
