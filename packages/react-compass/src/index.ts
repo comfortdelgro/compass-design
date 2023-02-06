@@ -196,7 +196,7 @@ export {default as Table} from './table'
 export type {TableProps} from './table'
 export {
   default as ReactTable,
-  Options as ReactTableOptions,
+  OptionType as ReactTableOptions,
   ReactTableProps,
 } from './table-v2'
 export {default as Tabs} from './tabs'

@@ -6,17 +6,17 @@ import {
 import {ColumnDef} from '@tanstack/react-table'
 
 import React, {useState} from 'react'
-import ReactTable, {ColumnConfig} from '.'
+import ReactTable, {ColumnConfig, OptionType} from '.'
 import Button from '../button'
 import {Icon} from '../icon'
 import Pagination from '../pagination'
 import SearchField from '../searchfield'
 import {makeData, Person} from './makeData'
-import {Options} from './react-table'
+
 export const ReactTableStory: React.FC = () => {
   const [page, setPage] = useState(1)
   const [data] = React.useState(() => makeData(10))
-  const options: Options = {
+  const options: OptionType = {
     enableSorting: true,
     enableMultiSort: false,
     columnResizeMode: 'onChange',

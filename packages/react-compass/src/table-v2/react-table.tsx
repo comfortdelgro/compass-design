@@ -30,10 +30,12 @@ export interface Options {
   enableMultiSort: boolean
   columnResizeMode: 'onChange' | 'onEnd'
 }
+
+export type OptionType = Options
 export interface Props<T> extends StyledComponentProps {
   data: T[]
   columns: Array<ColumnDef<T>>
-  options: Options
+  options: OptionType
   children: React.ReactNode
 }
 
@@ -81,6 +83,7 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
       enableMultiSort: options.enableMultiSort,
       columnResizeMode: 'onChange',
     })
+
     return (
       <StyledReactTableWrapper css={css}>
         {toolbar && <>{toolbar}</>}
@@ -100,25 +103,29 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
                 </ReactTableHeaderRow>
               ))}
             </ReactTableRowGroup>
-            {table.getRowModel().rows.length === 0 ||
-            table.getRowModel().rows === undefined ? (
-              <NoDataComponent></NoDataComponent>
-            ) : (
+            {
               <ReactTableRowGroup as='tbody'>
-                {table.getRowModel().rows.map((row) => {
-                  return (
-                    <ReactTableRow
-                      key={row.id}
-                      isSelected={row.getIsSelected()}
-                    >
-                      {row.getVisibleCells().map((cell) => {
-                        return <ReactTableCell key={cell.id} cell={cell} />
-                      })}
-                    </ReactTableRow>
-                  )
-                })}
+                {table.getRowModel().rows.length === 0 ||
+                table.getRowModel().rows === undefined ? (
+                  <NoDataComponent
+                    colSpan={table.getAllLeafColumns()?.length}
+                  ></NoDataComponent>
+                ) : (
+                  table.getRowModel().rows.map((row) => {
+                    return (
+                      <ReactTableRow
+                        key={row.id}
+                        isSelected={row.getIsSelected()}
+                      >
+                        {row.getVisibleCells().map((cell) => {
+                          return <ReactTableCell key={cell.id} cell={cell} />
+                        })}
+                      </ReactTableRow>
+                    )
+                  })
+                )}
               </ReactTableRowGroup>
-            )}
+            }
           </table>
         </StyledReactTable>
         {footer && <>{footer}</>}
