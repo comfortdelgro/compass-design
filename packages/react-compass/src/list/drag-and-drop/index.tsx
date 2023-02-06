@@ -26,7 +26,7 @@ export interface DragAndDropListProps<T = object>
   extends ListProps<T>,
     DroppableCollectionProps,
     StyledComponentProps {
-  onReorderByKeys: (keys: Key[]) => void
+  onReorderByKeys?: (keys: Key[]) => void
 }
 
 function DragAndDropList(props: DragAndDropListProps) {
@@ -42,7 +42,7 @@ function DragAndDropList(props: DragAndDropListProps) {
   )
 
   const onReorder = (e: DroppableCollectionReorderEvent) => {
-    props.onReorderByKeys(onReoderComplete(e))
+    props.onReorderByKeys?.(onReoderComplete(e))
     props.onReorder?.(e)
   }
 

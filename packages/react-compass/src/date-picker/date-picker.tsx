@@ -35,7 +35,9 @@ const DatePicker = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   const {css = {}} = props
   const state = useDatePickerState({
     ...props,
-    shouldCloseOnSelect: () => props.shouldCloseOnSelect ?? false,
+    shouldCloseOnSelect: props.granularity
+      ? true
+      : props.shouldCloseOnSelect ?? false,
   })
 
   const calendarRef = useDOMRef(ref)

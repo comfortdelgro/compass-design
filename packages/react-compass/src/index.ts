@@ -40,7 +40,16 @@ export type {
   CarouselProps,
   CarouselTitleProps,
 } from './carousel'
-export * from './carousel-v2'
+export {default as CarouselSlider} from './carousel-v2'
+export type {
+  ButtonType,
+  CarouselOptions,
+  CarouselSliderButton,
+  CarouselSliderItem,
+  NavigationButtonType,
+  NinePartAlignment,
+  SocicalIcon,
+} from './carousel-v2'
 export {default as Chart} from './chart'
 export type {
   AreaChartProps,
@@ -150,6 +159,8 @@ export type {
 } from './page-header'
 export {default as Pagination} from './pagination'
 export type {PaginationProps} from './pagination'
+export {default as Popover} from './popover'
+export type {PopoverDirection, PopoverProps} from './popover'
 export {default as Preflight} from './preflight'
 export {default as ProgressBar} from './progress-bar'
 export type {ProgressBarProps} from './progress-bar'

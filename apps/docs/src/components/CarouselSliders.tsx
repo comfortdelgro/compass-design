@@ -1,11 +1,7 @@
 import {
-  CarouselImageSlide,
-  CarouselMobile,
-  CarouselSlide,
-  CarouselV2,
-  ContentSlider,
-  ContentSliderButton,
-  ContentSliderItem,
+  CarouselSlider,
+  CarouselSliderButton,
+  CarouselSliderItem,
   Dropdown,
   NinePartAlignment,
   SocicalIcon,
@@ -27,7 +23,7 @@ const socials: SocicalIcon[] = [
   {icon: faTelegram, url: 'https://telegram.org/'},
 ]
 
-const slideData: ContentSliderItem[] = [
+const slideData: CarouselSliderItem[] = [
   {
     image: 'https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(15).webp',
     title: 'Content slider is awesome',
@@ -76,7 +72,7 @@ const slideData: ContentSliderItem[] = [
   },
 ]
 
-const buttons: ContentSliderButton[] = [
+const buttons: CarouselSliderButton[] = [
   {
     type: 'secondary',
     label: 'Button',
@@ -96,7 +92,15 @@ const buttons: ContentSliderButton[] = [
 export const PromotionSlider = () => {
   return (
     <div className='content-slider-sample'>
-      <CarouselV2 data={slideData} />
+      <CarouselSlider.Promotion data={slideData} />
+    </div>
+  )
+}
+
+export const PromotionSliderSlideEffect = () => {
+  return (
+    <div className='content-slider-sample'>
+      <CarouselSlider.Promotion data={slideData} effect={'slide'} />
     </div>
   )
 }
@@ -104,7 +108,7 @@ export const PromotionSlider = () => {
 export const AutoPlaySlider = () => {
   return (
     <div className='content-slider-sample'>
-      <CarouselV2 data={slideData} autoSwitch={false} />
+      <CarouselSlider.Promotion data={slideData} autoSwitch={false} />
     </div>
   )
 }
@@ -112,7 +116,7 @@ export const AutoPlaySlider = () => {
 export const PromotionSliderWithSocials = () => {
   return (
     <div className='content-slider-sample'>
-      <CarouselV2 data={slideData} socials={socials} />
+      <CarouselSlider.Promotion data={slideData} socials={socials} />
     </div>
   )
 }
@@ -120,7 +124,7 @@ export const PromotionSliderWithSocials = () => {
 export const CarouselMobileMode = () => {
   return (
     <div style={{width: '320px'}}>
-      <CarouselMobile
+      <CarouselSlider.Mobile
         data={slideData}
         useNavigation={false}
         buttons={buttons}
@@ -132,7 +136,7 @@ export const CarouselMobileMode = () => {
 export const CarouselMobileFloatingContent = () => {
   return (
     <div style={{width: '480px'}}>
-      <CarouselMobile
+      <CarouselSlider.Mobile
         data={slideData}
         floatingContent={true}
         buttons={buttons}
@@ -156,15 +160,15 @@ export const ImageOnlyDemo = () => {
 
   return (
     <div className='content-slider-sample'>
-      <ContentSlider onSwitchSlide={handleSwitchSlide}>
+      <CarouselSlider onSwitchSlide={handleSwitchSlide}>
         {imageUrls.map((imageUrl: string, index: number) => (
-          <CarouselImageSlide
+          <CarouselSlider.ImageSlide
             key={index}
             active={activeIndex === index}
             imageUrl={imageUrl}
           />
         ))}
-      </ContentSlider>
+      </CarouselSlider>
     </div>
   )
 }
@@ -184,25 +188,25 @@ export const TextNavigationButton = () => {
 
   return (
     <div className='content-slider-sample'>
-      <ContentSlider
+      <CarouselSlider
         onSwitchSlide={handleSwitchSlide}
         navigationButtonType='text'
       >
         {imageUrls.map((imageUrl: string, index: number) => (
-          <CarouselImageSlide
+          <CarouselSlider.ImageSlide
             key={index}
             active={activeIndex === index}
             imageUrl={imageUrl}
           />
         ))}
-      </ContentSlider>
+      </CarouselSlider>
     </div>
   )
 }
 
 export const SlideAlignment = () => {
   const [alignment, setAlignment] = useState<NinePartAlignment>('start-start')
-  const alignmentData: ContentSliderItem[] = [
+  const alignmentData: CarouselSliderItem[] = [
     {
       image: 'https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(15).webp',
       title: 'This slide contains buttons',
@@ -241,14 +245,14 @@ export const SlideAlignment = () => {
           </Dropdown.Select>
         </div>
         <div className='content-slider-sample'>
-          <CarouselV2 data={alignmentData} autoSwitch={false} />
+          <CarouselSlider.Promotion data={alignmentData} autoSwitch={false} />
         </div>
       </div>
     </>
   )
 }
 
-export const SampleContentSlider = () => {
+export const SampleCarouselSlider = () => {
   const [activeIndex, setActiveIndex] = useState(0)
 
   const handleSwitchSlide = (index: number) => {
@@ -256,8 +260,8 @@ export const SampleContentSlider = () => {
   }
 
   return (
-    <ContentSlider onSwitchSlide={handleSwitchSlide}>
-      <CarouselSlide active={activeIndex === 0}>
+    <CarouselSlider onSwitchSlide={handleSwitchSlide}>
+      <CarouselSlider.Slide active={activeIndex === 0}>
         <h3>First slide</h3>
         <br />
         You can put any content here
@@ -267,8 +271,8 @@ export const SampleContentSlider = () => {
         With your own custom styles
         <br />
         <i>The gray background here is just for this sample</i>
-      </CarouselSlide>
-      <CarouselSlide active={activeIndex === 1}>
+      </CarouselSlider.Slide>
+      <CarouselSlider.Slide active={activeIndex === 1}>
         <h3>Second slide</h3>
         <br />
         Even if you&apos;re using a <b>rich text content</b>,{' '}
@@ -280,10 +284,10 @@ export const SampleContentSlider = () => {
           alt='sample image'
           src='https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(15).webp'
         />
-      </CarouselSlide>
-      <CarouselSlide active={activeIndex === 2}>
+      </CarouselSlider.Slide>
+      <CarouselSlider.Slide active={activeIndex === 2}>
         <h3>This is the last slide</h3>
-      </CarouselSlide>
-    </ContentSlider>
+      </CarouselSlider.Slide>
+    </CarouselSlider>
   )
 }

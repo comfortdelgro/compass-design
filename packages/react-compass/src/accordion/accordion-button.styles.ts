@@ -2,13 +2,19 @@ import {styled} from '../theme'
 import {VariantProps} from '../utils/stitches.types'
 
 export const StyledAccordionButton = styled('button', {
+  // reset
+  appearance: 'none',
+  border: 'none',
+  backgroundColor: 'transparent',
+  boxSizing: 'border-box',
+  margin: '0px',
+  padding: '0px',
+  // styling
   width: '100%',
   textAlign: 'unset',
   position: 'relative',
-  border: 'none',
   borderRadius: '$lg',
   color: '$primaryText',
-  padding: 0,
   '&:focus-visible': {
     outline: 'none',
     /* custom focus styles */
