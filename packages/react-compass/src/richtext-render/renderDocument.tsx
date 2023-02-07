@@ -14,7 +14,7 @@ const RenderDocument = (
   const Text = ({children}: childrenProps) => <p>{children}</p>
   const documentOptions = options ?? {
     renderNode: {
-      [BLOCKS.PARAGRAPH]: (node: unknown, children: React.ReactNode) => (
+      [BLOCKS.PARAGRAPH]: (_node: unknown, children: React.ReactNode) => (
         <Text>{children}</Text>
       ),
     },
