@@ -205,114 +205,64 @@
       "filePath": "src/carousel/carousel.stories.tsx",
       "meta": {}
     },
-    "carousel-mobile-mode--with-buttons": {
-      "name": "With buttons",
-      "levels": [
-        "Carousel mobile mode"
-      ],
-      "locStart": 86,
-      "locEnd": 96,
-      "filePath": "src/carousel-v2/carousel-mobile-mode.stories.tsx",
-      "meta": {}
-    },
-    "carousel-mobile-mode--no-buttons": {
-      "name": "No buttons",
-      "levels": [
-        "Carousel mobile mode"
-      ],
-      "locStart": 98,
-      "locEnd": 104,
-      "filePath": "src/carousel-v2/carousel-mobile-mode.stories.tsx",
-      "meta": {}
-    },
-    "carousel-mobile-mode--floating-content": {
-      "name": "Floating content",
-      "levels": [
-        "Carousel mobile mode"
-      ],
-      "locStart": 106,
-      "locEnd": 116,
-      "filePath": "src/carousel-v2/carousel-mobile-mode.stories.tsx",
-      "meta": {}
-    },
-    "carousel-mobile-mode--floating-content-with-buttons": {
-      "name": "Floating content with buttons",
-      "levels": [
-        "Carousel mobile mode"
-      ],
-      "locStart": 118,
-      "locEnd": 129,
-      "filePath": "src/carousel-v2/carousel-mobile-mode.stories.tsx",
-      "meta": {}
-    },
-    "carousel-slider--no-dots": {
-      "name": "No dots",
+    "carousel-slider--sliders": {
+      "name": "Sliders",
       "levels": [
         "Carousel slider"
       ],
-      "locStart": 7,
-      "locEnd": 33,
+      "locStart": 94,
+      "locEnd": 165,
       "filePath": "src/carousel-v2/carousel-slider.stories.tsx",
       "meta": {}
     },
-    "carousel-slider--arrow-icon-button": {
-      "name": "Arrow icon button",
+    "carousel-slider--promotion": {
+      "name": "Promotion",
       "levels": [
         "Carousel slider"
       ],
-      "locStart": 35,
-      "locEnd": 61,
+      "locStart": 167,
+      "locEnd": 195,
       "filePath": "src/carousel-v2/carousel-slider.stories.tsx",
       "meta": {}
     },
-    "carousel-slider--text-button": {
-      "name": "Text button",
+    "carousel-slider--mobile": {
+      "name": "Mobile",
       "levels": [
         "Carousel slider"
       ],
-      "locStart": 63,
-      "locEnd": 92,
+      "locStart": 197,
+      "locEnd": 234,
       "filePath": "src/carousel-v2/carousel-slider.stories.tsx",
       "meta": {}
     },
-    "carousel-slider--any-content": {
-      "name": "Any content",
-      "levels": [
-        "Carousel slider"
-      ],
-      "locStart": 98,
-      "locEnd": 135,
-      "filePath": "src/carousel-v2/carousel-slider.stories.tsx",
-      "meta": {}
-    },
-    "carousel-v2--only-content": {
-      "name": "Only content",
+    "carousel-v2--sliders": {
+      "name": "Sliders",
       "levels": [
         "Carousel v2"
       ],
-      "locStart": 68,
-      "locEnd": 74,
-      "filePath": "src/carousel-v2/carousel-v2.stories.tsx",
+      "locStart": 94,
+      "locEnd": 165,
+      "filePath": "src/carousel-v2/carouselV2.stories.tsx",
       "meta": {}
     },
-    "carousel-v2--with-socials": {
-      "name": "With socials",
+    "carousel-v2--promotion": {
+      "name": "Promotion",
       "levels": [
         "Carousel v2"
       ],
-      "locStart": 76,
-      "locEnd": 82,
-      "filePath": "src/carousel-v2/carousel-v2.stories.tsx",
+      "locStart": 167,
+      "locEnd": 195,
+      "filePath": "src/carousel-v2/carouselV2.stories.tsx",
       "meta": {}
     },
-    "carousel-v2--navigation-text-button": {
-      "name": "Navigation text button",
+    "carousel-v2--mobile": {
+      "name": "Mobile",
       "levels": [
         "Carousel v2"
       ],
-      "locStart": 84,
-      "locEnd": 94,
-      "filePath": "src/carousel-v2/carousel-v2.stories.tsx",
+      "locStart": 197,
+      "locEnd": 234,
+      "filePath": "src/carousel-v2/carouselV2.stories.tsx",
       "meta": {}
     },
     "chart--areas": {
@@ -380,8 +330,8 @@
       "levels": [
         "Colors"
       ],
-      "locStart": 3,
-      "locEnd": 14,
+      "locStart": 56,
+      "locEnd": 334,
       "filePath": "src/colors/colors.stories.tsx",
       "meta": {}
     },
@@ -665,6 +615,16 @@
       "filePath": "src/pagination/pagination.stories.tsx",
       "meta": {}
     },
+    "popover--popovers": {
+      "name": "Popovers",
+      "levels": [
+        "Popover"
+      ],
+      "locStart": 43,
+      "locEnd": 194,
+      "filePath": "src/popover/popover.stories.tsx",
+      "meta": {}
+    },
     "progress-bar--size": {
       "name": "Size",
       "levels": [
@@ -735,13 +695,23 @@
       "filePath": "src/range-calendar/range-calendar.stories.tsx",
       "meta": {}
     },
+    "richtext-render--default": {
+      "name": "Default",
+      "levels": [
+        "Richtext render"
+      ],
+      "locStart": 62,
+      "locEnd": 68,
+      "filePath": "src/richtext-render/richtext-render.stories.tsx",
+      "meta": {}
+    },
     "searchfield--variants": {
       "name": "Variants",
       "levels": [
         "Searchfield"
       ],
-      "locStart": 5,
-      "locEnd": 20,
+      "locStart": 6,
+      "locEnd": 22,
       "filePath": "src/searchfield/searchfield.stories.tsx",
       "meta": {}
     },
@@ -825,34 +795,14 @@
       "filePath": "src/subBanner/subBanner.stories.tsx",
       "meta": {}
     },
-    "table--full-featured": {
-      "name": "Full featured",
-      "levels": [
-        "Table"
-      ],
-      "locStart": 24,
-      "locEnd": 262,
-      "filePath": "src/table/table.stories.tsx",
-      "meta": {}
-    },
-    "table--react-table": {
-      "name": "React table",
-      "levels": [
-        "Table"
-      ],
-      "locStart": 263,
-      "locEnd": 269,
-      "filePath": "src/table/table.stories.tsx",
-      "meta": {}
-    },
-    "react-table--react-table-story": {
+    "table-v2--react-table-story": {
       "name": "React table story",
       "levels": [
-        "React table"
+        "Table v2"
       ],
-      "locStart": 23,
-      "locEnd": 187,
-      "filePath": "src/table-v2/react-table.stories.tsx",
+      "locStart": 16,
+      "locEnd": 170,
+      "filePath": "src/table-v2/table-v2.stories.tsx",
       "meta": {}
     },
     "tab--icon": {
@@ -890,8 +840,18 @@
       "levels": [
         "Tag box"
       ],
-      "locStart": 10,
-      "locEnd": 43,
+      "locStart": 26,
+      "locEnd": 76,
+      "filePath": "src/tag-box/tag-box.stories.tsx",
+      "meta": {}
+    },
+    "tag-box--collaspable": {
+      "name": "Collaspable",
+      "levels": [
+        "Tag box"
+      ],
+      "locStart": 78,
+      "locEnd": 137,
       "filePath": "src/tag-box/tag-box.stories.tsx",
       "meta": {}
     },
@@ -910,8 +870,8 @@
       "levels": [
         "Textfield"
       ],
-      "locStart": 8,
-      "locEnd": 83,
+      "locStart": 9,
+      "locEnd": 84,
       "filePath": "src/textfield/textfield.stories.tsx",
       "meta": {}
     },
