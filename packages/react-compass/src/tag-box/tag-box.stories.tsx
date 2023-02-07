@@ -1,10 +1,27 @@
 import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons'
+import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons'
 import Button from '../button'
+import Icon from '../icon'
 import Icon from '../icon'
 import {Column} from '../utils/components'
 import TagBox from './index'
 
 const items = [
+  {id: 1, value: 'Item 1', icon: <Icon icon={faExclamationTriangle} />},
+  {id: 2, value: 'Item 2', isDisabled: true},
+  {id: 3, value: 'Item 3', icon: <Icon icon={faExclamationTriangle} />},
+  {id: 4, value: 'Item 4', isDisabled: true},
+  {
+    id: 5,
+    value: 'Item 5',
+    icon: <Icon icon={faExclamationTriangle} />,
+    isError: true,
+  },
+  {id: 6, value: 'Item 6', isDisabled: true},
+  {id: 7, value: 'Item 7', icon: <Icon icon={faExclamationTriangle} />},
+  {id: 8, value: 'Item 8', isDisabled: true},
+  {id: 9, value: 'Item 9', icon: <Icon icon={faExclamationTriangle} />},
+  {id: 10, value: 'Item 10', isDisabled: true},
   {id: 1, value: 'Item 1', icon: <Icon icon={faExclamationTriangle} />},
   {id: 2, value: 'Item 2', isDisabled: true},
   {id: 3, value: 'Item 3', icon: <Icon icon={faExclamationTriangle} />},
@@ -29,6 +46,7 @@ export const TagBoxs: React.FC = () => (
       label='Text Label'
       items={items}
       icon={<Icon icon={faExclamationTriangle} />}
+      icon={<Icon icon={faExclamationTriangle} />}
       onRemove={(e) => console.log(e)}
       helperText='Helper text'
     >
@@ -44,6 +62,8 @@ export const TagBoxs: React.FC = () => (
       icon={<Icon icon={faExclamationTriangle} />}
       onAdd={(e) => console.log(e)}
       onRemove={(e) => console.log(e)}
+      labelPosition='left'
+      label='Text Label'
       helperText='Helper text'
     >
       <TagBox.Action>

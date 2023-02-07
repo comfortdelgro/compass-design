@@ -166,3 +166,9 @@ const Upload2 = React.forwardRef<HTMLDivElement, Upload2Props>((props, ref) => {
 })
 
 export default Upload2
+
+export interface FileTypeItem {
+  accept: string
+  label: string
+  type: string[]
+}
