@@ -36,6 +36,20 @@ export const TagBoxs: React.FC = () => (
         <Button>Call to action</Button>
       </TagBox.Action>
     </TagBox>
+    <h3>Typeable</h3>
+    <TagBox
+      label='Text Label'
+      items={items}
+      typeable
+      icon={<Icon icon={faExclamationTriangle} />}
+      onAdd={(e) => console.log(e)}
+      onRemove={(e) => console.log(e)}
+      helperText='Helper text'
+    >
+      <TagBox.Action>
+        <Button>Call to action</Button>
+      </TagBox.Action>
+    </TagBox>
     <h3>Positioned Label</h3>
     <TagBox
       items={items}
@@ -68,6 +82,21 @@ export const Collaspable: React.FC = () => (
       collaspable
       items={items}
       icon={<Icon icon={faExclamationTriangle} />}
+      onRemove={(e) => console.log(e)}
+      helperText='Helper text'
+    >
+      <TagBox.Action>
+        <Button>Call to action</Button>
+      </TagBox.Action>
+    </TagBox>
+    <h3>Typeable</h3>
+    <TagBox
+      label='Text Label'
+      collaspable
+      typeable
+      items={items}
+      icon={<Icon icon={faExclamationTriangle} />}
+      onAdd={(e) => console.log(e)}
       onRemove={(e) => console.log(e)}
       helperText='Helper text'
     >
