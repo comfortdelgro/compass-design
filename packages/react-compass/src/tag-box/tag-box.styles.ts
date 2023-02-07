@@ -8,11 +8,6 @@ export const StyledTagBox = styled('div', {
 export const StyledBoxWrapper = styled('div', {
   width: '100%',
   display: 'flex',
-})
-
-export const StyledBoxWrapper = styled('div', {
-  width: '100%',
-  display: 'flex',
   label: {
     fontSize: '$body3',
     fontWeight: '$semibold',
@@ -49,45 +44,11 @@ export const StyledIcon = styled('div', {
     width: '$4',
     height: '$4',
   },
-  variants: {
-    labelPosition: {
-      top: {
-        flexDirection: 'column',
-        gap: '$2',
-      },
-      left: {
-        flexDirection: 'row',
-        gap: '$8',
-        label: {
-          maxWidth: '33%',
-          flexShrink: 0,
-          width: 'max-content',
-        },
-      },
-    },
-  },
 })
 
-export const StyledIcon = styled('div', {
-  marginTop: '$1',
-  width: '$6',
-  height: '$6',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  userSelect: 'none',
-  svg: {
-    width: '$4',
-    height: '$4',
-  },
-})
-
-export const StyledBox = styled('div', {
-  flexGrow: 1,
 export const StyledBox = styled('div', {
   flexGrow: 1,
   backgroundColor: '$background',
-  border: '1px solid #EDEBE9',
   border: '1px solid #EDEBE9',
   padding: '$2 $4',
   borderRadius: '$md',
@@ -151,10 +112,6 @@ export const StyledItem = styled('div', {
         },
       },
     },
-    isError: {
-      true: {
-        border: '1px solid #A4262C',
-      },
     isError: {
       true: {
         border: '1px solid #A4262C',
