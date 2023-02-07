@@ -4,6 +4,7 @@ import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import TagBoxAction from './tag-box-action'
+import TagBoxInput from './tag-box-input'
 import {
   StyledBox,
   StyledBoxContent,
@@ -27,9 +28,11 @@ interface Props extends LabelAriaProps, StyledComponentProps {
   items: Item[]
   labelPosition?: 'top' | 'left'
   collaspable?: boolean
+  typeable?: boolean
   icon?: React.ReactNode
   helperText?: string
   children?: React.ReactNode
+  onAdd?: (value: string) => void
   onRemove?: (index: string | number) => void
 }
 
@@ -41,10 +44,12 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
     css = {},
     labelPosition = 'top',
     collaspable = false,
+    typeable = false,
     items,
     helperText,
     children,
     onRemove,
+    onAdd,
     // AriaTagBoxProps
     ...ariaSafeProps
   } = props
@@ -124,6 +129,10 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
               <StyledItem key='remainingCount'>
                 <span>+{remainingCount}</span>
               </StyledItem>
+            )}
+            {((!collaspable && typeable) ||
+              (collaspable && typeable && isOpen)) && (
+              <TagBoxInput onEnter={(v) => onAdd?.(v)} />
             )}
           </StyledBoxContent>
           {collaspable && (

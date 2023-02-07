@@ -1,6 +1,7 @@
 import {faUser} from '@fortawesome/free-regular-svg-icons'
 import {faChevronDown} from '@fortawesome/free-solid-svg-icons'
 import type {StoryDecorator} from '@ladle/react'
+import React from 'react'
 import Icon from '../icon'
 import {Column, Row} from '../utils/components'
 import Textfield from './index'

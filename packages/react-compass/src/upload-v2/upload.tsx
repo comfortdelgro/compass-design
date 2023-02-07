@@ -30,6 +30,26 @@ interface Props {
   css?: CSS
 }
 
+export interface FileTypeItem {
+  accept: string
+  label: string
+  type: string[]
+}
+
+interface Props {
+  fileType: FileTypeItem
+  children?: React.ReactNode
+  maxFileSize?: number // in Megabyte
+  title?: string
+  value?: string | File
+  fileValueName?: string
+  customDescription?: string
+  customError?: string
+  onFileChange?: (data: File | null, error?: string) => void
+  placeholder?: string
+  css?: CSS
+}
+
 export type Upload2Props = Props &
   UploadVariantProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>

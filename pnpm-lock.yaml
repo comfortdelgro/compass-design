@@ -110,6 +110,9 @@ importers:
   packages/react-compass:
     specifiers:
       '@comfortdelgro/eslint-config': ^1.0.2
+      '@contentful/rich-text-html-renderer': ^16.0.2
+      '@contentful/rich-text-react-renderer': ^15.16.2
+      '@contentful/rich-text-types': ^16.0.2
       '@fortawesome/fontawesome-svg-core': ^6.2.0
       '@fortawesome/free-brands-svg-icons': ^6.2.1
       '@fortawesome/free-regular-svg-icons': ^6.2.0
@@ -202,6 +205,9 @@ importers:
       typescript: ^4.8.4
       vite: ^3.2.5
     dependencies:
+      '@contentful/rich-text-html-renderer': 16.0.2
+      '@contentful/rich-text-react-renderer': 15.16.2_biqbaboplfbrettd7655fr4n2y
+      '@contentful/rich-text-types': 16.0.2
       '@fortawesome/fontawesome-svg-core': 6.2.1
       '@fortawesome/free-brands-svg-icons': 6.2.1
       '@fortawesome/free-regular-svg-icons': 6.2.1
@@ -1812,6 +1818,31 @@ packages:
       - '@volar/vue-language-plugin-pug'
       - '@volar/vue-typescript'
     dev: true
+
+  /@contentful/rich-text-html-renderer/16.0.2:
+    resolution: {integrity: sha512-0flmxVixlNk5PMiHXAlABUJ2uURsWxOjbC6ZHhqpEVHU03kHMoIKfDdo6CRZc0S0rMWMO3c14Ei91E97T06T8w==}
+    engines: {node: '>=6.0.0'}
+    dependencies:
+      '@contentful/rich-text-types': 16.0.2
+      escape-html: 1.0.3
+    dev: false
+
+  /@contentful/rich-text-react-renderer/15.16.2_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-5UJxF+6DhcwkEsgJsHczJrCxveaQ95Oqj3NaJYmM9VDVKlvPK8cNXmSiWArHCEN0uw3yU/IS2sw16uIam3LsjQ==}
+    engines: {node: '>=6.0.0'}
+    peerDependencies:
+      react: ^16.8.6 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.6 || ^17.0.0 || ^18.0.0
+    dependencies:
+      '@contentful/rich-text-types': 16.0.2
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /@contentful/rich-text-types/16.0.2:
+    resolution: {integrity: sha512-ovbmCKQjlyGek4NuABoqDesC3FBV3e5jPMMdtT2mpOy9ia31MKO0NSFMRGZu7Q+veZzmDMja8S1i/XeFCUT9Pw==}
+    engines: {node: '>=6.0.0'}
+    dev: false
 
   /@cush/relative/1.0.0:
     resolution: {integrity: sha512-RpfLEtTlyIxeNPGKcokS+p3BZII/Q3bYxryFRglh5H3A3T8q9fsLYm72VYAMEOOIBLEa8o93kFLiBDUWKrwXZA==}
@@ -6299,7 +6330,6 @@ packages:
 
   /escape-html/1.0.3:
     resolution: {integrity: sha512-NiSupZ4OeuGwr68lGIeym/ksIZMJodUGOSCZ/FSnTxcrekbvqrgdUxlJOMpijaKZVjAJrWrGs/6Jy8OMuyj9ow==}
-    dev: true
 
   /escape-string-regexp/1.0.5:
     resolution: {integrity: sha512-vbRorB5FUQWvla16U8R/qgaFIya2qGzwDrNmCZuYKrbdSUMG6I1ZCGQRefkRVhuOkIGVne7BQ35DSfo1qvJqFg==}

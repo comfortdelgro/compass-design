@@ -1,4 +1,5 @@
 import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons'
+import React from 'react'
 import Button from '../button'
 import Icon from '../icon'
 import {Column} from '../utils/components'
@@ -29,6 +30,20 @@ export const TagBoxs: React.FC = () => (
       label='Text Label'
       items={items}
       icon={<Icon icon={faExclamationTriangle} />}
+      onRemove={(e) => console.log(e)}
+      helperText='Helper text'
+    >
+      <TagBox.Action>
+        <Button>Call to action</Button>
+      </TagBox.Action>
+    </TagBox>
+    <h3>Typeable</h3>
+    <TagBox
+      label='Text Label'
+      items={items}
+      typeable
+      icon={<Icon icon={faExclamationTriangle} />}
+      onAdd={(e) => console.log(e)}
       onRemove={(e) => console.log(e)}
       helperText='Helper text'
     >
@@ -68,6 +83,21 @@ export const Collaspable: React.FC = () => (
       collaspable
       items={items}
       icon={<Icon icon={faExclamationTriangle} />}
+      onRemove={(e) => console.log(e)}
+      helperText='Helper text'
+    >
+      <TagBox.Action>
+        <Button>Call to action</Button>
+      </TagBox.Action>
+    </TagBox>
+    <h3>Typeable</h3>
+    <TagBox
+      label='Text Label'
+      collaspable
+      typeable
+      items={items}
+      icon={<Icon icon={faExclamationTriangle} />}
+      onAdd={(e) => console.log(e)}
       onRemove={(e) => console.log(e)}
       helperText='Helper text'
     >
