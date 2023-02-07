@@ -54,7 +54,9 @@ const Select = React.forwardRef<HTMLButtonElement, DropdownProps>(
           <Button {...triggerProps} ref={selectRef}>
             <span {...valueProps}>
               {state.selectedItem
-                ? state.selectedItem.rendered
+                ? state.selectedItem.textValue !== ''
+                  ? state.selectedItem.textValue
+                  : state.selectedItem.rendered
                 : props.placeholder}
             </span>
             {icon}
