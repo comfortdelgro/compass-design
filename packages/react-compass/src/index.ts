@@ -59,7 +59,22 @@ export type {
 } from './chart'
 export {default as Checkbox} from './checkbox'
 export type {CheckboxProps} from './checkbox'
-export {cdgBlue, gray} from './colors'
+export {
+  background,
+  cdgBlue,
+  divider,
+  error,
+  gradients,
+  gray,
+  info,
+  input,
+  overlays,
+  primary,
+  severe,
+  success,
+  text,
+  warning,
+} from './colors'
 export {default as DashboardSidecard} from './dashboard-sidecard'
 export type {
   DashboardSidecardContentProps,
@@ -170,6 +185,8 @@ export {default as Radio} from './radio'
 export type {RadioGroupProps, RadioProps} from './radio'
 export {default as RangeCalendar} from './range-calendar'
 export type {RangeCalendarProps, RangeValue} from './range-calendar'
+export {default as RichTextRender} from './richtext-render'
+export type {Document, RichTextRenderProps} from './richtext-render'
 export {default as SearchField} from './searchfield'
 export type {SearchFieldProps} from './searchfield'
 export {default as Sidebar} from './sidebar'

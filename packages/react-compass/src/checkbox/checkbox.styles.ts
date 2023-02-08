@@ -1,6 +1,17 @@
 import {styled} from '../theme'
 import type {VariantProps} from '../utils/stitches.types'
 
+export const StyledCheckboxWrapper = styled('div', {
+  // reset
+  appearance: 'none',
+  border: 'none',
+  backgroundColor: 'transparent',
+  boxSizing: 'border-box',
+  margin: '0px',
+  padding: '0px',
+  lineHeight: 1.15,
+})
+
 export const StyledCheckboxInput = styled('input', {
   position: 'absolute',
   opacity: 0,

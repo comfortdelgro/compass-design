@@ -31,7 +31,7 @@ const nextraConfig: DocsThemeConfig = {
           backgroundImage: 'url(/compass-design/logo.svg)',
         }}
       />
-      <div className='font-bold'>Admin Portal Design System</div>
+      <div className='font-bold'>Compass Design</div>
     </div>
   ),
   getNextSeoProps: () => {

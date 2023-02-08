@@ -1,7 +1,6 @@
 import {CSS} from '@stitches/react'
 import React, {ChangeEvent, useEffect, useRef, useState} from 'react'
 import {useDOMRef} from '../utils/use-dom-ref'
-
 import {SizeUnit} from './constant'
 import {
   StyledUploadError,
@@ -11,6 +10,26 @@ import {
   StyledUploadWrapper,
   UploadVariantProps,
 } from './upload.styles'
+export interface FileTypeItem {
+  accept: string
+  label: string
+  type: string[]
+}
+
+interface Props {
+  fileType: FileTypeItem
+  children?: React.ReactNode
+  maxFileSize?: number // in Megabyte
+  title?: string
+  value?: string | File
+  fileValueName?: string
+  customDescription?: string
+  customError?: string
+  onFileChange?: (data: File | null, error?: string) => void
+  placeholder?: string
+  css?: CSS
+}
+
 export interface FileTypeItem {
   accept: string
   label: string
@@ -147,3 +166,9 @@ const Upload2 = React.forwardRef<HTMLDivElement, Upload2Props>((props, ref) => {
 })
 
 export default Upload2
+
+export interface FileTypeItem {
+  accept: string
+  label: string
+  type: string[]
+}

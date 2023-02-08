@@ -15,6 +15,7 @@ import {
   StyledCheckboxInput,
   StyledCheckboxLabel,
   StyledCheckboxLabelContent,
+  StyledCheckboxWrapper,
 } from './checkbox.styles'
 
 interface Props extends AriaCheckboxProps, StyledComponentProps {
@@ -55,26 +56,31 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     const {pressProps} = usePress({isDisabled: inputProps.disabled!})
 
     return (
-      <StyledCheckboxLabel css={css} {...mergeProps(hoverProps, pressProps)}>
-        <StyledCheckboxInput
-          type='checkbox'
-          ref={checkboxRef}
-          {...inputProps}
-        />
+      <StyledCheckboxWrapper>
+        <StyledCheckboxLabel css={css} {...mergeProps(hoverProps, pressProps)}>
+          <StyledCheckboxInput
+            type='checkbox'
+            ref={checkboxRef}
+            {...inputProps}
+          />
 
-        {/* Checkbox */}
-        <StyledCheckboxBox
-          disabled={!!isDisabled}
-          rounded={variant === 'rounded'}
-        >
-          <StyledCheckboxCheckmark>
-            <Icon icon={isIndeterminate ? faMinus : faCheck} className='icon' />
-          </StyledCheckboxCheckmark>
-        </StyledCheckboxBox>
+          {/* Checkbox */}
+          <StyledCheckboxBox
+            disabled={!!isDisabled}
+            rounded={variant === 'rounded'}
+          >
+            <StyledCheckboxCheckmark>
+              <Icon
+                icon={isIndeterminate ? faMinus : faCheck}
+                className='icon'
+              />
+            </StyledCheckboxCheckmark>
+          </StyledCheckboxBox>
 
-        {/* Label */}
-        <StyledCheckboxLabelContent>{children}</StyledCheckboxLabelContent>
-      </StyledCheckboxLabel>
+          {/* Label */}
+          <StyledCheckboxLabelContent>{children}</StyledCheckboxLabelContent>
+        </StyledCheckboxLabel>
+      </StyledCheckboxWrapper>
     )
   },
 )
