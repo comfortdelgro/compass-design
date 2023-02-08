@@ -10,7 +10,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@comfortdelgro/compass-icons": "workspace:^0.4.0",
+    "@comfortdelgro/compass-icons": "workspace:^0.6.0",
     "@comfortdelgro/react-compass": "workspace:*",
     "@fortawesome/free-brands-svg-icons": "^6.2.1",
     "@fortawesome/free-regular-svg-icons": "^6.2.0",

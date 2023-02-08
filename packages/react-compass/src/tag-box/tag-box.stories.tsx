@@ -1,4 +1,5 @@
 import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons'
+import React from 'react'
 import Button from '../button'
 import Icon from '../icon'
 import {Column} from '../utils/components'

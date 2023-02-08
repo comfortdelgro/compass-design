@@ -1,3 +1,4 @@
+
 import {documentToHtmlString} from '@contentful/rich-text-html-renderer'
 import {documentToReactComponents} from '@contentful/rich-text-react-renderer'
 import {BLOCKS, Document} from '@contentful/rich-text-types'
@@ -14,7 +15,7 @@ const RenderDocument = (
   const Text = ({children}: childrenProps) => <p>{children}</p>
   const documentOptions = options ?? {
     renderNode: {
-      [BLOCKS.PARAGRAPH]: (node: unknown, children: React.ReactNode) => (
+      [BLOCKS.PARAGRAPH]: (_node: unknown, children: React.ReactNode) => (
         <Text>{children}</Text>
       ),
     },

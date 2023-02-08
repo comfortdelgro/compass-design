@@ -1,3 +1,4 @@
+
 import {styled} from '../theme'
 import type {VariantProps} from '../utils/stitches.types'
 
@@ -15,3 +16,4 @@ export const StyledRichTextRenderContainer = styled('div', {
 export type StyledRichTextRenderContainerProps = VariantProps<
   typeof StyledRichTextRenderContainer
 >
+
