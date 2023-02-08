@@ -60,7 +60,13 @@ const MultipleDropdown = React.forwardRef<
   const collapseState = {
     isOpen: isOpen,
     setOpen: (v: boolean) => setIsOpen(v),
-    toggle: () => setIsOpen((v) => !v),
+    toggle: () =>
+      setIsOpen((v) => {
+        if (v && inputRef.current?.value !== '') {
+          return true
+        }
+        return !v
+      }),
     close: () => setIsOpen(false),
     open: () => setIsOpen(true),
   }
@@ -130,14 +136,14 @@ const MultipleDropdown = React.forwardRef<
   React.useEffect(() => {
     const c = filterCollection(state.collection, search, contains)
     setCollection(c)
-  }, [search])
+  }, [search, selectedNode.length])
 
   return (
     <StyledDropdownWrapper css={css} ref={ref}>
       {props.label && <label {...labelProps}>{props.label}</label>}
       <StyledDropdown onClick={collapseState.toggle} ref={wrapperRef}>
         <StyledSelectedItemWrapper>
-          {selectedNode.length === 0 && <p>{props.placeholder}</p>}
+          {selectedNode.length === 0 && !isOpen && <p>{props.placeholder}</p>}
           {selectedNode.length > 0 &&
             selectedNode.map((item) => (
               <StyledSelectedItem key={item.key}>
