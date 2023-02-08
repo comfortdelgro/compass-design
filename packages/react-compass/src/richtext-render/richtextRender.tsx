@@ -1,4 +1,3 @@
-
 import {Document} from '@contentful/rich-text-types'
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'

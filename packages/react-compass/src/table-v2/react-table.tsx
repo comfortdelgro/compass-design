@@ -6,7 +6,7 @@ import {
   SortingState,
   useReactTable,
 } from '@tanstack/react-table'
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -26,9 +26,10 @@ import {
 import {StyledReactTable, StyledReactTableWrapper} from './react-table.styles'
 
 export interface Options {
-  enableSorting: boolean
-  enableMultiSort: boolean
-  columnResizeMode: 'onChange' | 'onEnd'
+  enableSorting?: boolean
+  enableMultiSort?: boolean
+  manualSorting?: boolean
+  columnResizeMode?: 'onChange' | 'onEnd'
 }
 
 export type OptionType = Options
@@ -36,25 +37,27 @@ export interface Props<T> extends StyledComponentProps {
   data: T[]
   columns: Array<ColumnDef<T>>
   options: OptionType
+  onManualSorting?: (sortingField: SortingState) => void
   children: React.ReactNode
 }
 
-export type ReactTableProps<T = any> = Props<T>
+export type ReactTableProps<T = any> = Props<T> &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props<T>>
 
 const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
   (props, ref) => {
+    const [sorting, setSorting] = useState<SortingState>([])
     const {
       // StyledComponentProps
       css = {},
       data,
       columns,
       options,
+      onManualSorting,
       children,
       // HTMLDiv Props
       ...delegated
     } = props
-
-    const [sorting, setSorting] = React.useState<SortingState>([])
 
     const {child: toolbar, rest: childrenWithoutToolbar} = pickChild<
       typeof TableToolbar
@@ -69,7 +72,7 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
 
     const table = useReactTable({
       state: {
-        sorting,
+        sorting: sorting,
       },
       onSortingChange: setSorting,
       getCoreRowModel: getCoreRowModel(),
@@ -79,10 +82,14 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
       data: data,
       columns: columns,
       //enable sorting
-      enableSorting: options.enableSorting,
-      enableMultiSort: options.enableMultiSort,
-      columnResizeMode: 'onChange',
+      ...options,
     })
+
+    useEffect(() => {
+      if (typeof onManualSorting === 'function' && options.manualSorting) {
+        onManualSorting(sorting)
+      }
+    }, [sorting])
 
     return (
       <StyledReactTableWrapper css={css}>
