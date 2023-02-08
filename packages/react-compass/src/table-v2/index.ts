@@ -1,4 +1,4 @@
-import {ColumnDef} from '@tanstack/react-table'
+import {ColumnDef, SortingState} from '@tanstack/react-table'
 import ReactTable from './react-table'
 import ReactTableCheckbox from './react-table-checkbox'
 import ReactTableCheckboxCell from './react-table-checkbox-cell'
@@ -22,4 +22,5 @@ ReactTable.Footer.displayName = 'Card.Image'
 ReactTable.displayName = 'ReactTable'
 
 export type ColumnConfig<T> = ColumnDef<T>
+export type StateSorting = SortingState
 export default ReactTable

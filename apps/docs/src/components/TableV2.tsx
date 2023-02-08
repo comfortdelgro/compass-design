@@ -12,7 +12,7 @@ import {
   ReactTableOptions,
   SearchField,
 } from '@comfortdelgro/react-compass'
-import {ColumnConfig} from '@comfortdelgro/react-compass/table-v2'
+import {ColumnConfig, StateSorting} from '@comfortdelgro/react-compass/table-v2'
 import React, {useState} from 'react'
 
 export type Person = {
@@ -89,6 +89,10 @@ export const ReactTableStory: React.FC = () => {
     enableSorting: true,
     enableMultiSort: true,
     columnResizeMode: 'onChange',
+    manualSorting: true
+  }
+  const onSorting = (sortingField: StateSorting) => {
+    console.log('stateSorting', sortingField)
   }
 
   const columns = React.useMemo<Array<ColumnConfig<Person>>>(
@@ -171,7 +175,7 @@ export const ReactTableStory: React.FC = () => {
 
   return (
     <div>
-      <ReactTable data={data} columns={columns} options={options}>
+      <ReactTable data={data} columns={columns} options={options} onManualSorting={onSorting}>
         <ReactTable.Toolbar
           css={{
             display: 'flex',
