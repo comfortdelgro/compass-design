@@ -1,5 +1,7 @@
+import {useFilter} from '@react-aria/i18n'
 import {AriaListBoxOptions, useListBox} from '@react-aria/listbox'
-import {ListProps, useListState} from '@react-stately/list'
+import {ListCollection, ListProps, useListState} from '@react-stately/list'
+import type {Collection, Node} from '@react-types/shared'
 import React, {Key} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -16,7 +18,7 @@ import {
 } from './multiple-dropdown.styles'
 import Option from './options'
 import Popover from './popover'
-import {Button, Icon, XIcon} from './utils'
+import {Icon, XIcon} from './utils'
 
 interface Props<T>
   extends ListProps<T>,
@@ -42,11 +44,19 @@ const MultipleDropdown = React.forwardRef<
     // AriaDropdownProps
   } = props
   const [isOpen, setIsOpen] = React.useState(false)
+  const [search, setSearch] = React.useState('')
+  const [collection, setCollection] = React.useState<
+    Collection<Node<object>> | undefined
+  >()
+  const filter = useFilter({sensitivity: 'base'})
+  const contains = (string: string, substring: string) =>
+    filter.contains(string, substring)
   const state = useListState(props)
   const ref = useDOMRef<HTMLDivElement>(r)
   const {listBoxProps, labelProps} = useListBox(props, state, ref)
-  const wrapperRef = useDOMRef<HTMLButtonElement>(null)
+  const wrapperRef = useDOMRef<HTMLDivElement>(null)
   const popoverRef = useDOMRef<HTMLDivElement>(null)
+  const inputRef = useDOMRef<HTMLInputElement>(null)
   const collapseState = {
     isOpen: isOpen,
     setOpen: (v: boolean) => setIsOpen(v),
@@ -71,28 +81,78 @@ const MultipleDropdown = React.forwardRef<
     collapseState.toggle()
   }
 
+  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (wrapperRef.current) {
+      const string = e.target.value
+      setSearch(string)
+      if (string !== '') {
+        const fakeEle = document.createElement('div')
+        fakeEle.style.position = 'absolute'
+        fakeEle.style.top = '0'
+        fakeEle.style.left = '-9999px'
+        fakeEle.style.overflow = 'hidden'
+        fakeEle.style.visibility = 'hidden'
+        fakeEle.style.whiteSpace = 'nowrap'
+        fakeEle.style.height = '0'
+        fakeEle.style.width = 'fit-content'
+        fakeEle.style.maxWidth = `${wrapperRef.current.clientWidth - 62}px`
+        fakeEle.innerHTML = string.replace(/\s/g, '&' + 'nbsp;')
+        document.body.appendChild(fakeEle)
+        e.target.focus()
+        e.target.style.width = `${fakeEle.clientWidth + 4}px`
+        fakeEle.remove()
+      } else {
+        e.target.style.width = `4px`
+      }
+    }
+  }
+
+  React.useEffect(() => {
+    if (isOpen) {
+      inputRef.current?.focus()
+      if (wrapperRef.current) {
+        wrapperRef.current.style.outlineColor = '-webkit-focus-ring-color'
+        wrapperRef.current.style.outlineStyle = 'auto'
+      }
+    } else {
+      inputRef.current?.blur()
+      if (wrapperRef.current) {
+        wrapperRef.current.style.outlineColor = 'inherit'
+        wrapperRef.current.style.outlineStyle = 'inherit'
+      }
+    }
+  }, [isOpen])
+
+  React.useEffect(() => {
+    setCollection(state.collection)
+  }, [state.collection])
+
+  React.useEffect(() => {
+    const c = filterCollection(state.collection, search, contains)
+    setCollection(c)
+  }, [search])
+
   return (
     <StyledDropdownWrapper css={css} ref={ref}>
       {props.label && <label {...labelProps}>{props.label}</label>}
-      <StyledDropdown>
-        <Button onPress={collapseState.toggle} ref={wrapperRef}>
-          <StyledSelectedItemWrapper>
-            {selectedNode.length === 0 && <p>{props.placeholder}</p>}
-            {selectedNode.length > 0 &&
-              selectedNode.map((item) => (
-                <StyledSelectedItem key={item.key}>
-                  {item.text}
-                  <div onClick={() => removeItem(item.key)}>
-                    <XIcon />
-                  </div>
-                </StyledSelectedItem>
-              ))}
-          </StyledSelectedItemWrapper>
-          <div className='dropdown-icon'>{icon}</div>
-        </Button>
+      <StyledDropdown onClick={collapseState.toggle} ref={wrapperRef}>
+        <StyledSelectedItemWrapper>
+          {selectedNode.length === 0 && <p>{props.placeholder}</p>}
+          {selectedNode.length > 0 &&
+            selectedNode.map((item) => (
+              <StyledSelectedItem key={item.key}>
+                {item.text}
+                <div onClick={() => removeItem(item.key)}>
+                  <XIcon />
+                </div>
+              </StyledSelectedItem>
+            ))}
+          <input type='text' ref={inputRef} onChange={onInputChange} />
+        </StyledSelectedItemWrapper>
+        <div className='dropdown-icon'>{icon}</div>
       </StyledDropdown>
       <StyledPopoverWrapper>
-        {collapseState.isOpen && (
+        {collection && [...collection].length > 0 && collapseState.isOpen && (
           <Popover
             collapseState={collapseState}
             triggerRef={wrapperRef}
@@ -117,7 +177,7 @@ const MultipleDropdown = React.forwardRef<
                   />
                 )}
                 <ul {...listBoxProps}>
-                  {[...state.collection].map((item) => (
+                  {[...collection].map((item) => (
                     <Option key={item.key} item={item} state={state} />
                   ))}
                 </ul>
@@ -132,4 +192,32 @@ const MultipleDropdown = React.forwardRef<
 
 export default MultipleDropdown as typeof MultipleDropdown & {
   Item: typeof MultipleDropdownItem
+}
+type FilterFn = (textValue: string, inputValue: string) => boolean
+
+function filterCollection<T extends object>(
+  collection: Collection<Node<T>>,
+  inputValue: string,
+  filter: FilterFn,
+): Collection<Node<T>> {
+  return new ListCollection(filterNodes(collection, inputValue, filter))
+}
+
+function filterNodes<T>(
+  nodes: Iterable<Node<T>>,
+  inputValue: string,
+  filter: FilterFn,
+): Iterable<Node<T>> {
+  const filteredNode = []
+  for (const node of nodes) {
+    if (node.type === 'section' && node.hasChildNodes) {
+      const filtered = filterNodes(node.childNodes, inputValue, filter)
+      if ([...filtered].length > 0) {
+        filteredNode.push({...node, childNodes: filtered})
+      }
+    } else if (node.type !== 'section' && filter(node.textValue, inputValue)) {
+      filteredNode.push({...node})
+    }
+  }
+  return filteredNode
 }
