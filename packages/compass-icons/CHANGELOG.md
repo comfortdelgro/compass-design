@@ -1,5 +1,11 @@
 # @comfortdelgro/compass-icons
 
+## 0.7.0
+
+### Minor Changes
+
+- 3248b8b: Add more icons to workbench
+
 ## 0.6.0
 
 ### Minor Changes
