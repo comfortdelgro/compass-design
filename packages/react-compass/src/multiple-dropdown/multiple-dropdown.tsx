@@ -48,6 +48,9 @@ const MultipleDropdown = React.forwardRef<
   const [collection, setCollection] = React.useState<
     Collection<Node<object>> | undefined
   >()
+  const filter = useFilter({sensitivity: 'base'})
+  const contains = (string: string, substring: string) =>
+    filter.contains(string, substring)
   const state = useListState(props)
   const ref = useDOMRef<HTMLDivElement>(r)
   const {listBoxProps, labelProps} = useListBox(props, state, ref)
@@ -72,10 +75,6 @@ const MultipleDropdown = React.forwardRef<
     })
     return t
   }, [state])
-
-  const filter = useFilter({sensitivity: 'base'})
-  const contains = (string: string, substring: string) =>
-    filter.contains(string, substring)
 
   const removeItem = (key: Key) => {
     state.selectionManager.toggleSelection(key)

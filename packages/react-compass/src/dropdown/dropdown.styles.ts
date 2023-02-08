@@ -31,6 +31,8 @@ export const StyledDropdown = styled('div', {
   position: 'relative',
   zIndex: 1,
   input: {
+    boxSizing: 'border-box',
+    background: '#FFFFFF',
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
     overflow: 'hidden',
