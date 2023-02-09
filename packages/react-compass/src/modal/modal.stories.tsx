@@ -2,7 +2,6 @@ import {faXmark} from '@fortawesome/free-solid-svg-icons'
 import type {Placement} from '@react-types/overlays'
 import React from 'react'
 import Button from '../button'
-import Dropdown from '../dropdown'
 import Icon from '../icon'
 import TextField from '../textfield'
 import {Tooltip, TooltipTrigger} from '../tooltip'
@@ -42,14 +41,7 @@ export const Default: React.FC = () => {
           <Modal.Description>
             {lorem}
             <TextField />
-            <Dropdown label='Favorite Animal' placeholder='Choose an animal'>
-              <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
-              <Dropdown.Item key='cat'>Cat</Dropdown.Item>
-              <Dropdown.Item key='dog'>Dog</Dropdown.Item>
-              <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
-              <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
-              <Dropdown.Item key='snake'>Snake</Dropdown.Item>
-            </Dropdown>
+
             {rightSides.map((side) => {
               const placement = side.placement as Placement
               return (

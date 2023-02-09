@@ -3,10 +3,9 @@ import {
   faFileLines,
   faTrashAlt,
 } from '@fortawesome/free-solid-svg-icons'
-import {ColumnDef} from '@tanstack/react-table'
 
 import React, {useState} from 'react'
-import ReactTable, {ColumnConfig, OptionType} from '.'
+import ReactTable, {ColumnConfig, OptionType, StateSorting} from '.'
 import Button from '../button'
 import {Icon} from '../icon'
 import Pagination from '../pagination'
@@ -15,11 +14,16 @@ import {makeData, Person} from './makeData'
 
 export const ReactTableStory: React.FC = () => {
   const [page, setPage] = useState(1)
-  const [data] = React.useState(() => makeData(10))
+  const [data] = useState(() => makeData(10))
   const options: OptionType = {
     enableSorting: true,
-    enableMultiSort: false,
+    enableMultiSort: true,
     columnResizeMode: 'onChange',
+    manualSorting: true,
+  }
+
+  const onSorting = (sortingField: StateSorting) => {
+    console.log('stateSorting', sortingField)
   }
 
   const columns = React.useMemo<Array<ColumnConfig<Person>>>(
@@ -99,11 +103,16 @@ export const ReactTableStory: React.FC = () => {
     ],
     [],
   )
-  const columnEmpty: ColumnDef<any, unknown>[] = []
 
   return (
     <div>
-      <ReactTable data={[]} columns={columns} options={options}>
+      <ReactTable
+        data={data}
+        columns={columns}
+        options={options}
+        onManualSorting={onSorting}
+        className='yagin'
+      >
         <ReactTable.Toolbar
           css={{
             display: 'flex',

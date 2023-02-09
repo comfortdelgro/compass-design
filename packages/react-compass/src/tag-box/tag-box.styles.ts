@@ -69,7 +69,8 @@ export const StyledBox = styled('div', {
 export const StyledBoxContent = styled('div', {
   flexGrow: 1,
   display: 'flex',
-  alignItems: 'center',
+  alignItems: 'flex-start',
+  height: 'fit-content',
   flexWrap: 'wrap',
   gap: '$4',
   input: {
