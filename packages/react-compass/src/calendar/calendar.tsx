@@ -64,9 +64,6 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
           <Button variant='ghost' onPress={handleCancelButtonClick}>
             Cancel
           </Button>
-          <Button variant='ghost' onPress={handleCancelButtonClick}>
-            Cancel
-          </Button>
         </div>
       )}
     </StyledCalendar>
