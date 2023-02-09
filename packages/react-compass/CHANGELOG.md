@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 0.13.0
+
+### Minor Changes
+
+- cc3c8c7: Fix table, multidropdown, datepicker, tagbox
+
 ## 0.12.0
 
 ### Minor Changes
