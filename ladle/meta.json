@@ -351,7 +351,7 @@
         "Date picker"
       ],
       "locStart": 13,
-      "locEnd": 38,
+      "locEnd": 51,
       "filePath": "src/date-picker/date-picker.stories.tsx",
       "meta": {}
     },
@@ -360,8 +360,8 @@
       "levels": [
         "Date picker"
       ],
-      "locStart": 40,
-      "locEnd": 63,
+      "locStart": 53,
+      "locEnd": 76,
       "filePath": "src/date-picker/date-picker.stories.tsx",
       "meta": {}
     },
@@ -550,8 +550,8 @@
       "levels": [
         "Modal"
       ],
-      "locStart": 12,
-      "locEnd": 98,
+      "locStart": 11,
+      "locEnd": 90,
       "filePath": "src/modal/modal.stories.tsx",
       "meta": {}
     },
@@ -560,8 +560,8 @@
       "levels": [
         "Modal"
       ],
-      "locStart": 100,
-      "locEnd": 182,
+      "locStart": 92,
+      "locEnd": 174,
       "filePath": "src/modal/modal.stories.tsx",
       "meta": {}
     },
@@ -800,8 +800,8 @@
       "levels": [
         "Table v2"
       ],
-      "locStart": 16,
-      "locEnd": 170,
+      "locStart": 15,
+      "locEnd": 179,
       "filePath": "src/table-v2/table-v2.stories.tsx",
       "meta": {}
     },
