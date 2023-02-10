@@ -103,6 +103,10 @@ export default defineTheme({
     label1: '0.875rem', //14px
     label2: '0.75rem', //12px
     label3: '0.625rem', //10px
+
+    link1: '1.25rem', //20px
+    link2: '1rem', //16px
+    link3: '0.875rem', //14px
   },
   lineHeights: {
     tight: 1.25,

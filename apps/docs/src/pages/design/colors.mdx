@@ -6,6 +6,14 @@ import ColorBox from 'components/ColorBox'
 
 Color distinguishes a brand. It is used to convey personality, attracts the eye and indicate change.
 
+---
+
+```js
+import {theme} from '@comfortdelgro/react-compass/theme'
+```
+
+---
+
 ## Palette
 
 ### Primary Colors
@@ -22,6 +30,12 @@ Black is used primarily for body text and headings, and White is used for screen
   <ColorBox color={theme.colors.background} />
 </div>
 
+```js
+<p style={{ color: theme.colors.cdgBlue }} />
+<p style={{ color: theme.colors.typeHeading }} />
+<p style={{ color: theme.colors.background }} />
+```
+
 2. Text Colors
 
 <div className='flex flex-row mt-5'>
@@ -31,6 +45,13 @@ Black is used primarily for body text and headings, and White is used for screen
   <ColorBox color={theme.colors.whiteText} />
 </div>
 
+```js
+<p style={{ color: theme.colors.primaryText }} />
+<p style={{ color: theme.colors.secondaryText }} />
+<p style={{ color: theme.colors.disabledText }} />
+<p style={{ color: theme.colors.whiteText }} />
+```
+
 3. Dividers & Borders
 
 <div className='flex flex-row mt-5'>
@@ -38,6 +59,12 @@ Black is used primarily for body text and headings, and White is used for screen
   <ColorBox color={theme.colors.border} />
   <ColorBox color={theme.colors.activeBorder} />
 </div>
+
+```js
+<p style={{ color: theme.colors.divider }} />
+<p style={{ color: theme.colors.border }} />
+<p style={{ color: theme.colors.activeBorder }} />
+```
 
 ### Secondary Colors
 
@@ -57,6 +84,20 @@ Secondary color provides more ways to accent and distinguish our product. Each c
   <ColorBox color={theme.colors.warning} />
 </div>
 
+```js
+<p style={{ color: theme.colors.infoBg }} />
+<p style={{ color: theme.colors.dangerBg }} />
+<p style={{ color: theme.colors.successBg }} />
+<p style={{ color: theme.colors.severeWarningBg }} />
+<p style={{ color: theme.colors.warningBg }} />
+
+<p style={{ color: theme.colors.info }} />
+<p style={{ color: theme.colors.danger }} />
+<p style={{ color: theme.colors.success }} />
+<p style={{ color: theme.colors.severeWarning }} />
+<p style={{ color: theme.colors.warning }} />
+```
+
 ### Shades & Tints
 
 We intend for tints and shades to be ever evolving, offering an endless palette to choose from. Usage of these colors varies depending on scenarios, but they come in handy for components in our products.
@@ -74,12 +115,28 @@ We intend for tints and shades to be ever evolving, offering an endless palette 
   <ColorBox color={theme.colors.cdgBlue140} />
 </div>
 
+```js
+<p style={{ color: theme.colors.cdgBlue10 }} />
+<p style={{ color: theme.colors.cdgBlue20 }} />
+<p style={{ color: theme.colors.cdgBlue40 }} />
+<p style={{ color: theme.colors.cdgBlue60 }} />
+<p style={{ color: theme.colors.cdgBlue80 }} />
+<p style={{ color: theme.colors.cdgBlue100 }} />
+<p style={{ color: theme.colors.cdgBlue120 }} />
+<p style={{ color: theme.colors.cdgBlue140 }} />
+```
+
 2. Overlays
 
 <div className='flex flex-row mt-5'>
   <ColorBox color={theme.colors.overlayLight} />
   <ColorBox color={theme.colors.overlayDark} />
 </div>
+
+```js
+<p style={{ color: theme.colors.overlayLight }} />
+<p style={{ color: theme.colors.overlayDark }} />
+```
 
 3. Grays
 
@@ -98,6 +155,20 @@ We intend for tints and shades to be ever evolving, offering an endless palette 
   <ColorBox color={theme.colors.gray110} />
 </div>
 
+```js
+<p style={{ color: theme.colors.gray10 }} />
+<p style={{ color: theme.colors.gray20 }} />
+<p style={{ color: theme.colors.gray30 }} />
+<p style={{ color: theme.colors.gray40 }} />
+<p style={{ color: theme.colors.gray50 }} />
+<p style={{ color: theme.colors.gray60 }} />
+<p style={{ color: theme.colors.gray70 }} />
+<p style={{ color: theme.colors.gray80 }} />
+<p style={{ color: theme.colors.gray90 }} />
+<p style={{ color: theme.colors.gray100 }} />
+<p style={{ color: theme.colors.gray110 }} />
+```
+
 4. Backgrounds
 
 <div className='flex flex-row mt-5'>
@@ -105,6 +176,12 @@ We intend for tints and shades to be ever evolving, offering an endless palette 
   <ColorBox color={theme.colors.secondaryBg} />
   <ColorBox color={theme.colors.darkerBg} />
 </div>
+
+```js
+<p style={{ color: theme.colors.primaryBg }} />
+<p style={{ color: theme.colors.secondaryBg }} />
+<p style={{ color: theme.colors.darkerBg }} />
+```
 
 ## Rules
 
