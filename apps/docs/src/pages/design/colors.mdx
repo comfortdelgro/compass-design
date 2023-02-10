@@ -6,6 +6,14 @@ import ColorBox from 'components/ColorBox'
 
 Color distinguishes a brand. It is used to convey personality, attracts the eye and indicate change.
 
+---
+
+```js
+import {theme} from '@comfortdelgro/react-compass/theme'
+```
+
+---
+
 ## Palette
 
 ### Primary Colors
@@ -22,6 +30,12 @@ Black is used primarily for body text and headings, and White is used for screen
   <ColorBox color={theme.colors.background} />
 </div>
 
+```js
+<div style={{ backgroundColor: theme.colors.cdgBlue }} />
+<div style={{ backgroundColor: theme.colors.typeHeading }} />
+<div style={{ backgroundColor: theme.colors.background }} />
+```
+
 2. Text Colors
 
 <div className='flex flex-row mt-5'>
@@ -31,6 +45,13 @@ Black is used primarily for body text and headings, and White is used for screen
   <ColorBox color={theme.colors.whiteText} />
 </div>
 
+```js
+<div style={{ backgroundColor: theme.colors.primaryText }} />
+<div style={{ backgroundColor: theme.colors.secondaryText }} />
+<div style={{ backgroundColor: theme.colors.disabledText }} />
+<div style={{ backgroundColor: theme.colors.whiteText }} />
+```
+
 3. Dividers & Borders
 
 <div className='flex flex-row mt-5'>
@@ -38,6 +59,12 @@ Black is used primarily for body text and headings, and White is used for screen
   <ColorBox color={theme.colors.border} />
   <ColorBox color={theme.colors.activeBorder} />
 </div>
+
+```js
+<div style={{ backgroundColor: theme.colors.divider }} />
+<div style={{ backgroundColor: theme.colors.border }} />
+<div style={{ backgroundColor: theme.colors.activeBorder }} />
+```
 
 ### Secondary Colors
 
@@ -57,6 +84,20 @@ Secondary color provides more ways to accent and distinguish our product. Each c
   <ColorBox color={theme.colors.warning} />
 </div>
 
+```js
+<div style={{ backgroundColor: theme.colors.infoBg }} />
+<div style={{ backgroundColor: theme.colors.dangerBg }} />
+<div style={{ backgroundColor: theme.colors.successBg }} />
+<div style={{ backgroundColor: theme.colors.severeWarningBg }} />
+<div style={{ backgroundColor: theme.colors.warningBg }} />
+
+<div style={{ backgroundColor: theme.colors.info }} />
+<div style={{ backgroundColor: theme.colors.danger }} />
+<div style={{ backgroundColor: theme.colors.success }} />
+<div style={{ backgroundColor: theme.colors.severeWarning }} />
+<div style={{ backgroundColor: theme.colors.warning }} />
+```
+
 ### Shades & Tints
 
 We intend for tints and shades to be ever evolving, offering an endless palette to choose from. Usage of these colors varies depending on scenarios, but they come in handy for components in our products.
@@ -74,12 +115,28 @@ We intend for tints and shades to be ever evolving, offering an endless palette 
   <ColorBox color={theme.colors.cdgBlue140} />
 </div>
 
+```js
+<div style={{ backgroundColor: theme.colors.cdgBlue10 }} />
+<div style={{ backgroundColor: theme.colors.cdgBlue20 }} />
+<div style={{ backgroundColor: theme.colors.cdgBlue40 }} />
+<div style={{ backgroundColor: theme.colors.cdgBlue60 }} />
+<div style={{ backgroundColor: theme.colors.cdgBlue80 }} />
+<div style={{ backgroundColor: theme.colors.cdgBlue100 }} />
+<div style={{ backgroundColor: theme.colors.cdgBlue120 }} />
+<div style={{ backgroundColor: theme.colors.cdgBlue140 }} />
+```
+
 2. Overlays
 
 <div className='flex flex-row mt-5'>
   <ColorBox color={theme.colors.overlayLight} />
   <ColorBox color={theme.colors.overlayDark} />
 </div>
+
+```js
+<div style={{ backgroundColor: theme.colors.overlayLight }} />
+<div style={{ backgroundColor: theme.colors.overlayDark }} />
+```
 
 3. Grays
 
@@ -98,6 +155,20 @@ We intend for tints and shades to be ever evolving, offering an endless palette 
   <ColorBox color={theme.colors.gray110} />
 </div>
 
+```js
+<div style={{ backgroundColor: theme.colors.gray10 }} />
+<div style={{ backgroundColor: theme.colors.gray20 }} />
+<div style={{ backgroundColor: theme.colors.gray30 }} />
+<div style={{ backgroundColor: theme.colors.gray40 }} />
+<div style={{ backgroundColor: theme.colors.gray50 }} />
+<div style={{ backgroundColor: theme.colors.gray60 }} />
+<div style={{ backgroundColor: theme.colors.gray70 }} />
+<div style={{ backgroundColor: theme.colors.gray80 }} />
+<div style={{ backgroundColor: theme.colors.gray90 }} />
+<div style={{ backgroundColor: theme.colors.gray100 }} />
+<div style={{ backgroundColor: theme.colors.gray110 }} />
+```
+
 4. Backgrounds
 
 <div className='flex flex-row mt-5'>
@@ -105,6 +176,35 @@ We intend for tints and shades to be ever evolving, offering an endless palette 
   <ColorBox color={theme.colors.secondaryBg} />
   <ColorBox color={theme.colors.darkerBg} />
 </div>
+
+```js
+<div style={{ backgroundColor: theme.colors.primaryBg }} />
+<div style={{ backgroundColor: theme.colors.secondaryBg }} />
+<div style={{ backgroundColor: theme.colors.darkerBg }} />
+```
+
+5. Gradients
+
+<div className='flex flex-row mt-5'>
+  <ColorBox color={theme.colors.gradientOrange} gradient />
+  <ColorBox color={theme.colors.gradientRainbow} gradient />
+  <ColorBox color={theme.colors.gradientOrangeBlue} gradient />
+</div>
+
+```js
+<div style={{ 
+    backgroundImage: `linear-gradient(to right, ${theme.colors.gradientOrange})`
+  }}
+/>
+<div style={{ 
+    backgroundImage: `linear-gradient(to right, ${theme.colors.gradientRainbow})`
+  }}
+/>
+<div style={{ 
+    backgroundImage: `linear-gradient(to right, ${theme.colors.gradientOrangeBlue})`
+  }}
+/>
+```
 
 ## Rules
 
