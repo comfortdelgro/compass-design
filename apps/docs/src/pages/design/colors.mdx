@@ -31,9 +31,9 @@ Black is used primarily for body text and headings, and White is used for screen
 </div>
 
 ```js
-<p style={{ color: theme.colors.cdgBlue }} />
-<p style={{ color: theme.colors.typeHeading }} />
-<p style={{ color: theme.colors.background }} />
+<div style={{ backgroundColor: theme.colors.cdgBlue }} />
+<div style={{ backgroundColor: theme.colors.typeHeading }} />
+<div style={{ backgroundColor: theme.colors.background }} />
 ```
 
 2. Text Colors
@@ -46,10 +46,10 @@ Black is used primarily for body text and headings, and White is used for screen
 </div>
 
 ```js
-<p style={{ color: theme.colors.primaryText }} />
-<p style={{ color: theme.colors.secondaryText }} />
-<p style={{ color: theme.colors.disabledText }} />
-<p style={{ color: theme.colors.whiteText }} />
+<div style={{ backgroundColor: theme.colors.primaryText }} />
+<div style={{ backgroundColor: theme.colors.secondaryText }} />
+<div style={{ backgroundColor: theme.colors.disabledText }} />
+<div style={{ backgroundColor: theme.colors.whiteText }} />
 ```
 
 3. Dividers & Borders
@@ -61,9 +61,9 @@ Black is used primarily for body text and headings, and White is used for screen
 </div>
 
 ```js
-<p style={{ color: theme.colors.divider }} />
-<p style={{ color: theme.colors.border }} />
-<p style={{ color: theme.colors.activeBorder }} />
+<div style={{ backgroundColor: theme.colors.divider }} />
+<div style={{ backgroundColor: theme.colors.border }} />
+<div style={{ backgroundColor: theme.colors.activeBorder }} />
 ```
 
 ### Secondary Colors
@@ -85,17 +85,17 @@ Secondary color provides more ways to accent and distinguish our product. Each c
 </div>
 
 ```js
-<p style={{ color: theme.colors.infoBg }} />
-<p style={{ color: theme.colors.dangerBg }} />
-<p style={{ color: theme.colors.successBg }} />
-<p style={{ color: theme.colors.severeWarningBg }} />
-<p style={{ color: theme.colors.warningBg }} />
+<div style={{ backgroundColor: theme.colors.infoBg }} />
+<div style={{ backgroundColor: theme.colors.dangerBg }} />
+<div style={{ backgroundColor: theme.colors.successBg }} />
+<div style={{ backgroundColor: theme.colors.severeWarningBg }} />
+<div style={{ backgroundColor: theme.colors.warningBg }} />
 
-<p style={{ color: theme.colors.info }} />
-<p style={{ color: theme.colors.danger }} />
-<p style={{ color: theme.colors.success }} />
-<p style={{ color: theme.colors.severeWarning }} />
-<p style={{ color: theme.colors.warning }} />
+<div style={{ backgroundColor: theme.colors.info }} />
+<div style={{ backgroundColor: theme.colors.danger }} />
+<div style={{ backgroundColor: theme.colors.success }} />
+<div style={{ backgroundColor: theme.colors.severeWarning }} />
+<div style={{ backgroundColor: theme.colors.warning }} />
 ```
 
 ### Shades & Tints
@@ -116,14 +116,14 @@ We intend for tints and shades to be ever evolving, offering an endless palette 
 </div>
 
 ```js
-<p style={{ color: theme.colors.cdgBlue10 }} />
-<p style={{ color: theme.colors.cdgBlue20 }} />
-<p style={{ color: theme.colors.cdgBlue40 }} />
-<p style={{ color: theme.colors.cdgBlue60 }} />
-<p style={{ color: theme.colors.cdgBlue80 }} />
-<p style={{ color: theme.colors.cdgBlue100 }} />
-<p style={{ color: theme.colors.cdgBlue120 }} />
-<p style={{ color: theme.colors.cdgBlue140 }} />
+<div style={{ backgroundColor: theme.colors.cdgBlue10 }} />
+<div style={{ backgroundColor: theme.colors.cdgBlue20 }} />
+<div style={{ backgroundColor: theme.colors.cdgBlue40 }} />
+<div style={{ backgroundColor: theme.colors.cdgBlue60 }} />
+<div style={{ backgroundColor: theme.colors.cdgBlue80 }} />
+<div style={{ backgroundColor: theme.colors.cdgBlue100 }} />
+<div style={{ backgroundColor: theme.colors.cdgBlue120 }} />
+<div style={{ backgroundColor: theme.colors.cdgBlue140 }} />
 ```
 
 2. Overlays
@@ -134,8 +134,8 @@ We intend for tints and shades to be ever evolving, offering an endless palette 
 </div>
 
 ```js
-<p style={{ color: theme.colors.overlayLight }} />
-<p style={{ color: theme.colors.overlayDark }} />
+<div style={{ backgroundColor: theme.colors.overlayLight }} />
+<div style={{ backgroundColor: theme.colors.overlayDark }} />
 ```
 
 3. Grays
@@ -156,17 +156,17 @@ We intend for tints and shades to be ever evolving, offering an endless palette 
 </div>
 
 ```js
-<p style={{ color: theme.colors.gray10 }} />
-<p style={{ color: theme.colors.gray20 }} />
-<p style={{ color: theme.colors.gray30 }} />
-<p style={{ color: theme.colors.gray40 }} />
-<p style={{ color: theme.colors.gray50 }} />
-<p style={{ color: theme.colors.gray60 }} />
-<p style={{ color: theme.colors.gray70 }} />
-<p style={{ color: theme.colors.gray80 }} />
-<p style={{ color: theme.colors.gray90 }} />
-<p style={{ color: theme.colors.gray100 }} />
-<p style={{ color: theme.colors.gray110 }} />
+<div style={{ backgroundColor: theme.colors.gray10 }} />
+<div style={{ backgroundColor: theme.colors.gray20 }} />
+<div style={{ backgroundColor: theme.colors.gray30 }} />
+<div style={{ backgroundColor: theme.colors.gray40 }} />
+<div style={{ backgroundColor: theme.colors.gray50 }} />
+<div style={{ backgroundColor: theme.colors.gray60 }} />
+<div style={{ backgroundColor: theme.colors.gray70 }} />
+<div style={{ backgroundColor: theme.colors.gray80 }} />
+<div style={{ backgroundColor: theme.colors.gray90 }} />
+<div style={{ backgroundColor: theme.colors.gray100 }} />
+<div style={{ backgroundColor: theme.colors.gray110 }} />
 ```
 
 4. Backgrounds
@@ -178,9 +178,32 @@ We intend for tints and shades to be ever evolving, offering an endless palette 
 </div>
 
 ```js
-<p style={{ color: theme.colors.primaryBg }} />
-<p style={{ color: theme.colors.secondaryBg }} />
-<p style={{ color: theme.colors.darkerBg }} />
+<div style={{ backgroundColor: theme.colors.primaryBg }} />
+<div style={{ backgroundColor: theme.colors.secondaryBg }} />
+<div style={{ backgroundColor: theme.colors.darkerBg }} />
+```
+
+5. Gradients
+
+<div className='flex flex-row mt-5'>
+  <ColorBox color={theme.colors.gradientOrange} gradient />
+  <ColorBox color={theme.colors.gradientRainbow} gradient />
+  <ColorBox color={theme.colors.gradientOrangeBlue} gradient />
+</div>
+
+```js
+<div style={{ 
+    backgroundImage: `linear-gradient(to right, ${theme.colors.gradientOrange})`
+  }}
+/>
+<div style={{ 
+    backgroundImage: `linear-gradient(to right, ${theme.colors.gradientRainbow})`
+  }}
+/>
+<div style={{ 
+    backgroundImage: `linear-gradient(to right, ${theme.colors.gradientOrangeBlue})`
+  }}
+/>
 ```
 
 ## Rules

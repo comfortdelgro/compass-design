@@ -189,6 +189,10 @@ export default defineTheme({
     primaryBg: '#F5F5F6',
     secondaryBg: '#F0F0F0',
     darkerBg: '#EAEBEB',
+
+    gradientOrange: '#F02627, #EA8816',
+    gradientRainbow: '#0163AE, #D80837, #53AF35',
+    gradientOrangeBlue: '#D2132A, #0597DB',
   },
   borderWidths: {
     light: '1px',
