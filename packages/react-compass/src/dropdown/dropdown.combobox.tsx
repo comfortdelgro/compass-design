@@ -8,6 +8,7 @@ import {
   DropdownVariantProps,
   StyledDropdown,
   StyledDropdownWrapper,
+  StyledLoading,
 } from './dropdown.styles'
 import DropdownItem from './item'
 import ListBox from './list-box/combox'
@@ -73,14 +74,26 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
               isNonModal
               placement='bottom start'
             >
-              <ListBox
-                {...listBoxProps}
-                shouldFocusOnHover={false}
-                headerTitle={props.headerTitle}
-                headerOnClick={(e) => props?.headerOnClick?.(e)}
-                listBoxRef={listBoxRef}
-                state={state}
-              />
+              {props.isLoading ? (
+                <StyledLoading>
+                  <div className='spinner'>
+                    <div className='spinner-1' />
+                    <div className='spinner-2' />
+                    <div className='spinner-3' />
+                    <div />
+                  </div>
+                </StyledLoading>
+              ) : (
+                <ListBox
+                  {...listBoxProps}
+                  shouldFocusOnHover={false}
+                  isLoading={!!props.isLoading}
+                  headerTitle={props.headerTitle}
+                  headerOnClick={(e) => props?.headerOnClick?.(e)}
+                  listBoxRef={listBoxRef}
+                  state={state}
+                />
+              )}
             </Popover>
           )}
         </StyledDropdown>
