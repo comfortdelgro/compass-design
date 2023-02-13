@@ -71,6 +71,7 @@ const Select = React.forwardRef<HTMLButtonElement, DropdownProps>(
             >
               <ListBox
                 {...menuProps}
+                shouldFocusOnHover={false}
                 headerTitle={props.headerTitle}
                 headerOnClick={(e) => props?.headerOnClick?.(e)}
                 listBoxRef={listBoxRef}
