@@ -75,6 +75,7 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
             >
               <ListBox
                 {...listBoxProps}
+                shouldFocusOnHover={false}
                 headerTitle={props.headerTitle}
                 headerOnClick={(e) => props?.headerOnClick?.(e)}
                 listBoxRef={listBoxRef}
