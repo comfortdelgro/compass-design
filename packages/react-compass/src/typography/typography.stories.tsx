@@ -25,21 +25,21 @@ export const Header: React.FC = () => (
 export const Body: React.FC = () => (
   <Column>
     <Typography.Body variant='body1'>{text}</Typography.Body>
-    <Typography.Body variant='body1' weight='emphasis'>
+    <Typography.Body variant='body1' weight='semibold'>
       {text}
     </Typography.Body>
     <Typography.Body variant='body1' weight='bold'>
       {text}
     </Typography.Body>
     <Typography.Body variant='body2'>{text}</Typography.Body>
-    <Typography.Body variant='body2' weight='emphasis'>
+    <Typography.Body variant='body2' weight='semibold'>
       {text}
     </Typography.Body>
     <Typography.Body variant='body2' weight='bold'>
       {text}
     </Typography.Body>
     <Typography.Body variant='body3'>{text}</Typography.Body>
-    <Typography.Body variant='body3' weight='emphasis'>
+    <Typography.Body variant='body3' weight='semibold'>
       {text}
     </Typography.Body>
     <Typography.Body variant='body3' weight='bold'>
@@ -51,7 +51,7 @@ export const Body: React.FC = () => (
 export const Label: React.FC = () => (
   <Column>
     <Typography.Label variant='label1'>{text}</Typography.Label>
-    <Typography.Label variant='label1' weight='emphasis'>
+    <Typography.Label variant='label1' weight='semibold'>
       {text}
     </Typography.Label>
     <Typography.Label variant='label1' weight='bold'>
@@ -61,7 +61,7 @@ export const Label: React.FC = () => (
       {text}
     </Typography.Label>
     <Typography.Label variant='label2'>{text}</Typography.Label>
-    <Typography.Label variant='label2' weight='emphasis'>
+    <Typography.Label variant='label2' weight='semibold'>
       {text}
     </Typography.Label>
     <Typography.Label variant='label2' weight='bold'>
@@ -71,7 +71,7 @@ export const Label: React.FC = () => (
       {text}
     </Typography.Label>
     <Typography.Label variant='label3'>{text}</Typography.Label>
-    <Typography.Label variant='label3' weight='emphasis'>
+    <Typography.Label variant='label3' weight='semibold'>
       {text}
     </Typography.Label>
     <Typography.Label variant='label3' weight='bold'>
@@ -88,7 +88,7 @@ export const Link: React.FC = () => (
     <Typography.Link variant='link1'>{text}</Typography.Link>
     <Typography.Link variant='link2'>{text}</Typography.Link>
     <Typography.Link variant='link3'>{text}</Typography.Link>
-    <Typography.Link variant='link3' weight='emphasis'>
+    <Typography.Link variant='link3' weight='semibold'>
       {text}
     </Typography.Link>
   </Column>

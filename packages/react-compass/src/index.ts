@@ -59,22 +59,6 @@ export type {
 } from './chart'
 export {default as Checkbox} from './checkbox'
 export type {CheckboxProps} from './checkbox'
-export {
-  background,
-  cdgBlue,
-  divider,
-  error,
-  gradients,
-  gray,
-  info,
-  input,
-  overlays,
-  primary,
-  severe,
-  success,
-  text,
-  warning,
-} from './colors'
 export {default as DashboardSidecard} from './dashboard-sidecard'
 export type {
   DashboardSidecardContentProps,

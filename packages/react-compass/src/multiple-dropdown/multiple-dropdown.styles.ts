@@ -56,6 +56,9 @@ export const StyledDropdown = styled('div', {
     '&:focus': {
       outline: 'none',
     },
+    '&:focus-visible': {
+      outline: 'none',
+    },
   },
   variants: {
     isEmpty: {

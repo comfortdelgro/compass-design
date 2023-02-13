@@ -6,7 +6,7 @@ import {Component} from '../utils'
 interface Props extends StyledComponentProps {
   variant?: 'label1' | 'label2' | 'label3'
   component?: Component
-  weight?: 'none' | 'bold' | 'emphasis' | 'light'
+  weight?: 'none' | 'bold' | 'semibold' | 'light'
   children: React.ReactNode
 }
 
@@ -33,7 +33,7 @@ const Label: React.FC<Props> = (props) => {
         bold: {
           fontWeight: '$bold',
         },
-        emphasis: {
+        semibold: {
           fontWeight: '$semibold',
         },
         light: {

@@ -11,6 +11,7 @@ import {Column} from '../utils'
 import DatePicker from './date-picker'
 
 export const Variants: React.FC = () => {
+  const MyDate = today(getLocalTimeZone())
   return (
     <I18nProvider locale='en-SG'>
       <Column>
@@ -31,6 +32,18 @@ export const Variants: React.FC = () => {
           isInvalid
           label='Date'
           defaultValue={today(getLocalTimeZone())}
+        />
+        <h3>MinValue</h3>
+        <DatePicker
+          label='Date'
+          defaultValue={today(getLocalTimeZone())}
+          minValue={MyDate}
+        />
+        <h3>MaxValue</h3>
+        <DatePicker
+          label='Date'
+          defaultValue={today(getLocalTimeZone())}
+          maxValue={parseDate('2023-03-10')}
         />
       </Column>
     </I18nProvider>
