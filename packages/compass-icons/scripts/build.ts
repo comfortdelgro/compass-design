@@ -155,6 +155,22 @@ for (const iconName in exported.icons) {
       `${iconName}.mjs`,
     )} -C module.type=es6`,
   )
+  // Write index files (TS, CJS, ESM)
+  const tsxIndexFileName = path.join(reactOutput, `index.tsx`)
+  const exportCode = `export * from './'`
+  await fs.writeFile(tsxIndexFileName, exportCode)
+  await runInShell(
+    `swc ${tsxIndexFileName} -o ${path.join(
+      reactOutput,
+      `index.mjs`,
+    )} -C module.type=commonjs`,
+  )
+  await runInShell(
+    `swc ${tsxIndexFileName} -o ${path.join(
+      reactOutput,
+      `index.mjs`,
+    )} -C module.type=es6`,
+  )
 }
 
 await runInShell(`tsc --declaration --emitDeclarationOnly`)
