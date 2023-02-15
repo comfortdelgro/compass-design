@@ -157,5 +157,38 @@ for (const iconName in exported.icons) {
   )
 }
 
+// Write index files (TS, CJS, ESM) into React folder
+let indexFileContent: {[key: string]: string} = {}
+
+for (const iconName in exported.icons) {
+  const icon = exported.icons[iconName]
+  const des = dimensions[iconName]
+  const svg = `<svg width="1em" height="1em" viewBox="0 0 ${des.width} ${des.height}">${icon.body}</svg>`
+
+  indexFileContent[iconName] = svg
+}
+
+const tsxIndexFileName = path.join(reactOutput, `index.tsx`)
+
+let indexFileExport = `export default
+   ${JSON.stringify(indexFileContent)}
+   ;`
+
+await fs.writeFile(tsxIndexFileName, indexFileExport)
+
+await runInShell(
+  `swc ${tsxIndexFileName} -o ${path.join(
+    reactOutput,
+    `index.mjs`,
+  )} -C module.type=commonjs`,
+)
+
+await runInShell(
+  `swc ${tsxIndexFileName} -o ${path.join(
+    reactOutput,
+    `index.mjs`,
+  )} -C module.type=es6`,
+)
+
 await runInShell(`tsc --declaration --emitDeclarationOnly`)
 await runInShell(`rimraf react/**/*.tsx`)

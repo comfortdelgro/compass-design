@@ -81,6 +81,7 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
       debugTable: true,
       data: data,
       columns: columns,
+      isMultiSortEvent: () => true,
       //enable sorting
       ...options,
     })

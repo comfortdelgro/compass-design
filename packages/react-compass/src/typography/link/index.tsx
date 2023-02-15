@@ -4,7 +4,7 @@ import {StyledComponentProps} from '../../utils/stitches.types'
 
 interface Props extends StyledComponentProps {
   variant?: 'link1' | 'link2' | 'link3'
-  weight?: 'none' | 'emphasis'
+  weight?: 'none' | 'semibold'
   children: React.ReactNode
 }
 
@@ -20,7 +20,7 @@ const Link: React.FC<Props> = (props) => {
     variants: {
       weight: {
         none: {},
-        emphasis: {
+        semibold: {
           fontWeight: '$bold',
         },
       },

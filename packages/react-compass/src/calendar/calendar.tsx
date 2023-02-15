@@ -1,4 +1,9 @@
-import {createCalendar, DateValue} from '@internationalized/date'
+import {
+  CalendarDate,
+  createCalendar,
+  DateValue,
+  parseDate,
+} from '@internationalized/date'
 import {useCalendar} from '@react-aria/calendar'
 import {useLocale} from '@react-aria/i18n'
 import {useCalendarState} from '@react-stately/calendar'
@@ -16,6 +21,7 @@ interface Props extends StyledComponentProps, SpectrumCalendarProps<DateValue> {
   state?: DatePickerState
   hasFooter?: boolean
   onCancelCallback?: (() => void) | undefined
+  maxValue?: CalendarDate
 }
 
 export type CalendarProps = Props
@@ -26,6 +32,7 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     onCancelCallback,
     hasFooter = false,
     css = {},
+    maxValue = parseDate('2999-02-17'),
     ...delegated
   } = props
 
@@ -58,7 +65,7 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
         prevButtonProps={prevButtonProps}
         nextButtonProps={nextButtonProps}
       />
-      <CalendarGrid state={state} />
+      <CalendarGrid state={state} maxValue={maxValue} />
       {hasFooter && (
         <div className='calendar-footer'>
           <Button variant='ghost' onPress={handleCancelButtonClick}>
