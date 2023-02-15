@@ -24,7 +24,12 @@ export const Variants: React.FC = () => {
           {formatter.format(date.toDate(getLocalTimeZone()))}
         </span>
       </p>
-      <Calendar value={date} onChange={(e) => setDate(e)} />
+      <Calendar
+        value={date}
+        maxValue={today(getLocalTimeZone())}
+        //minValue={today(getLocalTimeZone())}
+        onChange={(e) => setDate(e)}
+      />
     </Column>
   )
 }

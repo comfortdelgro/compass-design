@@ -4,6 +4,7 @@ import {
   isSameDay,
   isSameMonth,
   isToday as isTodayFunction,
+  parseDate,
 } from '@internationalized/date'
 import {useCalendarCell} from '@react-aria/calendar'
 import {useFocusRing} from '@react-aria/focus'
@@ -18,11 +19,19 @@ interface Props extends StyledComponentProps {
   state: CalendarState | RangeCalendarState
   date: CalendarDate
   currentMonth: CalendarDate
+  maxValue?: CalendarDate
 }
 
 const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
   (props, ref) => {
-    const {state, date, currentMonth, css = {}} = props
+    const {
+      state,
+      date,
+      currentMonth,
+      css = {},
+      //maxValue = today(getLocalTimeZone()),
+      maxValue = parseDate('2099-02-17'),
+    } = props
 
     const cellRef = useDOMRef(ref)
 
@@ -30,10 +39,12 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
       cellProps,
       buttonProps,
       isSelected,
-      isDisabled,
+
       isUnavailable,
       formattedDate,
     } = useCalendarCell({date}, state, cellRef)
+
+    let {isDisabled} = useCalendarCell({date}, state, cellRef)
 
     const isOutsideMonth = !isSameMonth(currentMonth, date)
 
@@ -64,25 +75,53 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
       return className
     }
 
+    const maxValueClassFunc = () => {
+      if (date > maxValue) {
+        isDisabled = true
+      }
+      return
+    }
+    maxValueClassFunc()
+
     const {focusProps, isFocusVisible} = useFocusRing()
 
     return (
-      <StyledCalendarCell
-        {...cellProps}
-        {...mergeProps(buttonProps, focusProps)}
-        css={css}
-        className={classNameCombine()}
-      >
-        <div
-          ref={cellRef}
-          hidden={isOutsideMonth}
-          className={`calendar-cell-value ${isDisabled ? 'disabled' : ''} ${
-            isSelected ? 'selected' : ''
-          }`}
-        >
-          {formattedDate}
-        </div>
-      </StyledCalendarCell>
+      <>
+        {isDisabled ? (
+          <StyledCalendarCell
+            {...cellProps}
+            css={css}
+            className={classNameCombine()}
+          >
+            <div
+              ref={cellRef}
+              hidden={isOutsideMonth}
+              className={`calendar-cell-value  ${'disabled'} ${
+                isSelected ? 'selected' : ''
+              }`}
+            >
+              {formattedDate}
+            </div>
+          </StyledCalendarCell>
+        ) : (
+          <StyledCalendarCell
+            {...cellProps}
+            css={css}
+            className={classNameCombine()}
+            {...mergeProps(buttonProps, focusProps)}
+          >
+            <div
+              ref={cellRef}
+              hidden={isOutsideMonth}
+              className={`calendar-cell-value  ${
+                isDisabled ? 'disabled' : ''
+              } ${isSelected ? 'selected' : ''}`}
+            >
+              {formattedDate}
+            </div>
+          </StyledCalendarCell>
+        )}
+      </>
     )
   },
 )

@@ -8,7 +8,7 @@ import {StoryDecorator} from '@ladle/react'
 import {I18nProvider, useDateFormatter} from '@react-aria/i18n'
 import React, {useState} from 'react'
 import {Column} from '../utils'
-import DatePicker from './date-picker'
+import DatePicker from './index'
 
 export const Variants: React.FC = () => {
   const MyDate = today(getLocalTimeZone())
@@ -43,7 +43,7 @@ export const Variants: React.FC = () => {
         <DatePicker
           label='Date'
           defaultValue={today(getLocalTimeZone())}
-          maxValue={parseDate('2023-03-10')}
+          maxValue={today(getLocalTimeZone())}
         />
       </Column>
     </I18nProvider>

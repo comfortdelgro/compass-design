@@ -1,7 +1,9 @@
 import {
+  CalendarDate,
   DateDuration,
   endOfMonth,
   getWeeksInMonth,
+  parseDate,
 } from '@internationalized/date'
 import {useCalendarGrid} from '@react-aria/calendar'
 import {useLocale} from '@react-aria/i18n'
@@ -15,6 +17,7 @@ interface Props extends StyledComponentProps {
   children?: React.ReactNode
   state: CalendarState | RangeCalendarState
   offset?: DateDuration
+  maxValue?: CalendarDate
 }
 
 const DEFAULT_OFFSET: DateDuration = {
@@ -25,7 +28,12 @@ const DEFAULT_OFFSET: DateDuration = {
 }
 
 const CalendarGrid = (props: Props) => {
-  const {state, offset = DEFAULT_OFFSET, css = {}} = props
+  const {
+    state,
+    offset = DEFAULT_OFFSET,
+    css = {},
+    maxValue = parseDate('2999-02-17'),
+  } = props
 
   const {locale} = useLocale()
   const startDate = state.visibleRange.start.add(offset)
@@ -66,6 +74,7 @@ const CalendarGrid = (props: Props) => {
                     state={state}
                     date={date}
                     currentMonth={startDate}
+                    maxValue={maxValue}
                   />
                 ) : (
                   <td key={i} />
