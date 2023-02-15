@@ -1,4 +1,3 @@
-
 import {
   faDashboard,
   faFileLines,
@@ -90,7 +89,7 @@ export const ReactTableStory: React.FC = () => {
     enableSorting: true,
     enableMultiSort: true,
     columnResizeMode: 'onChange',
-    manualSorting: true
+    manualSorting: true,
   }
   const onSorting = (sortingField: StateSorting) => {
     console.log('stateSorting', sortingField)
@@ -176,7 +175,12 @@ export const ReactTableStory: React.FC = () => {
 
   return (
     <div>
-      <ReactTable data={data} columns={columns} options={options} onManualSorting={onSorting}>
+      <ReactTable
+        data={data}
+        columns={columns}
+        options={options}
+        onManualSorting={onSorting}
+      >
         <ReactTable.Toolbar
           css={{
             display: 'flex',
