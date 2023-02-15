@@ -39,7 +39,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.2.0",
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "@internationalized/date": "^3.0.1",
+    "@internationalized/date": "3.0.2",
     "@react-aria/breadcrumbs": "^3.3.2",
     "@react-aria/button": "^3.6.2",
     "@react-aria/calendar": "3.0.5",
