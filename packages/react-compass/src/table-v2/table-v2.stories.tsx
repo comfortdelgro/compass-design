@@ -17,9 +17,11 @@ export const ReactTableStory: React.FC = () => {
   const [data] = useState(() => makeData(10))
   const options: OptionType = {
     enableSorting: true,
-    enableMultiSort: false,
+    enableMultiSort: true,
     columnResizeMode: 'onChange',
+
     manualSorting: false,
+
   }
 
   const onSorting = (sortingField: StateSorting) => {

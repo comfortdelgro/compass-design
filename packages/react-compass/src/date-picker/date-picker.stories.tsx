@@ -43,7 +43,9 @@ export const Variants: React.FC = () => {
         <DatePicker
           label='Date'
           defaultValue={today(getLocalTimeZone())}
+
           maxValue={today(getLocalTimeZone())}
+
         />
       </Column>
     </I18nProvider>
