@@ -161,7 +161,7 @@
         "Calendar"
       ],
       "locStart": 13,
-      "locEnd": 30,
+      "locEnd": 35,
       "filePath": "src/calendar/calendar.stories.tsx",
       "meta": {}
     },
@@ -325,16 +325,6 @@
       "filePath": "src/checkbox/checkbox.stories.tsx",
       "meta": {}
     },
-    "colors--colors": {
-      "name": "Colors",
-      "levels": [
-        "Colors"
-      ],
-      "locStart": 56,
-      "locEnd": 334,
-      "filePath": "src/colors/colors.stories.tsx",
-      "meta": {}
-    },
     "dashboard-sidecard--default": {
       "name": "Default",
       "levels": [
@@ -351,7 +341,7 @@
         "Date picker"
       ],
       "locStart": 13,
-      "locEnd": 51,
+      "locEnd": 53,
       "filePath": "src/date-picker/date-picker.stories.tsx",
       "meta": {}
     },
@@ -360,8 +350,8 @@
       "levels": [
         "Date picker"
       ],
-      "locStart": 53,
-      "locEnd": 76,
+      "locStart": 55,
+      "locEnd": 78,
       "filePath": "src/date-picker/date-picker.stories.tsx",
       "meta": {}
     },
@@ -801,7 +791,7 @@
         "Table v2"
       ],
       "locStart": 15,
-      "locEnd": 179,
+      "locEnd": 183,
       "filePath": "src/table-v2/table-v2.stories.tsx",
       "meta": {}
     },
