@@ -1,5 +1,11 @@
 # @comfortdelgro/compass-icons
 
+## 0.8.0
+
+### Minor Changes
+
+- aa572d8: compass-icon now can be imported the whole package, table multi sort is fixed, date picker maxValue is now useable
+
 ## 0.7.0
 
 ### Minor Changes

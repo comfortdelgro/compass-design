@@ -21,7 +21,6 @@ export const ReactTableStory: React.FC = () => {
     columnResizeMode: 'onChange',
 
     manualSorting: false,
-
   }
 
   const onSorting = (sortingField: StateSorting) => {
