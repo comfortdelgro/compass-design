@@ -15,6 +15,7 @@ import {
   StyledPopoverWrapper,
   StyledSelectedItem,
   StyledSelectedItemWrapper,
+  StyledTextFieldHelperText,
 } from './multiple-dropdown.styles'
 import Option from './options'
 import Popover from './popover'
@@ -28,6 +29,8 @@ interface Props<T>
   icon?: React.ReactNode
   placeholder?: string
   headerTitle?: string
+  errored?: boolean
+  helperText?: string
   headerOnClick?: (e: unknown) => void
 }
 
@@ -41,6 +44,8 @@ const MultipleDropdown = React.forwardRef<
     // StyledComponentProps
     css = {},
     icon = <Icon />,
+    errored,
+    helperText,
     // AriaDropdownProps
   } = props
   const [isOpen, setIsOpen] = React.useState(false)
@@ -117,12 +122,15 @@ const MultipleDropdown = React.forwardRef<
     if (isOpen) {
       inputRef.current?.focus()
       if (wrapperRef.current) {
-        wrapperRef.current.style.outlineColor = '-webkit-focus-ring-color'
+        wrapperRef.current.style.outlineColor = errored
+          ? '#A4262C'
+          : '-webkit-focus-ring-color'
         wrapperRef.current.style.outlineStyle = 'auto'
       }
     } else {
       inputRef.current?.blur()
       if (wrapperRef.current) {
+        wrapperRef.current.style.outlineColor = errored ? '#A4262C' : 'inherit'
         wrapperRef.current.style.outlineColor = 'inherit'
         wrapperRef.current.style.outlineStyle = 'inherit'
       }
@@ -141,7 +149,11 @@ const MultipleDropdown = React.forwardRef<
   return (
     <StyledDropdownWrapper css={css} ref={ref}>
       {props.label && <label {...labelProps}>{props.label}</label>}
-      <StyledDropdown onClick={collapseState.toggle} ref={wrapperRef}>
+      <StyledDropdown
+        onClick={collapseState.toggle}
+        ref={wrapperRef}
+        errored={!!errored}
+      >
         <StyledSelectedItemWrapper>
           {selectedNode.length === 0 && !isOpen && <p>{props.placeholder}</p>}
           {selectedNode.length > 0 &&
@@ -192,6 +204,11 @@ const MultipleDropdown = React.forwardRef<
           </Popover>
         )}
       </StyledPopoverWrapper>
+      {helperText && (
+        <StyledTextFieldHelperText error={!!errored}>
+          {helperText}
+        </StyledTextFieldHelperText>
+      )}
     </StyledDropdownWrapper>
   )
 })

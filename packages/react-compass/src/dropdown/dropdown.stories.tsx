@@ -50,6 +50,27 @@ export const Select: React.FC = () => {
         <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
         <Dropdown.Item key='snake'>Snake</Dropdown.Item>
       </Dropdown.Select>
+      <h3>Erorr</h3>
+      <Dropdown.Select
+        label='Favorite Animal'
+        placeholder='Choose an animal'
+        errored
+        helperText='Use Helper Text for Errors'
+      >
+        <Dropdown.Item
+          key='red panda'
+          leftIcon={<Icon icon={faExclamationTriangle} />}
+        >
+          Red Panda
+        </Dropdown.Item>
+        <Dropdown.Item key='cat' type='color' rightColor='red'>
+          Cat
+        </Dropdown.Item>
+        <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+        <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+        <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+      </Dropdown.Select>
       <h3>With Header</h3>
       <Dropdown.Select
         label='Favorite Animal'
@@ -120,6 +141,27 @@ export const ComboBox: React.FC = () => {
       </Dropdown.ComboBox>
       <h3>UnControlled</h3>
       <Dropdown.ComboBox label='Favorite Animal' placeholder='Choose an animal'>
+        <Dropdown.Item
+          key='red panda'
+          leftIcon={<Icon icon={faExclamationTriangle} />}
+        >
+          Red Panda
+        </Dropdown.Item>
+        <Dropdown.Item key='cat' type='color' rightColor='red'>
+          Cat
+        </Dropdown.Item>
+        <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+        <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+        <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+      </Dropdown.ComboBox>
+      <h3>Erorr</h3>
+      <Dropdown.ComboBox
+        label='Favorite Animal'
+        placeholder='Choose an animal'
+        errored
+        helperText='Use Helper Text for Errors'
+      >
         <Dropdown.Item
           key='red panda'
           leftIcon={<Icon icon={faExclamationTriangle} />}

@@ -50,6 +50,27 @@ export const MultipleDropdowns: React.FC = () => {
         <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
         <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
       </MultipleDropdown>
+      <h3>Error</h3>
+      <MultipleDropdown
+        label='Favorite Animal'
+        selectionMode='multiple'
+        disabledKeys={['snake']}
+        placeholder='Choose an animal'
+        errored
+        helperText='Use Helper Text for Errors'
+      >
+        <MultipleDropdown.Item
+          leftIcon={<Icon icon={faExclamationTriangle} />}
+          key='red panda'
+        >
+          Red Panda
+        </MultipleDropdown.Item>
+        <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
+        <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
+        <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
+        <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
+        <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+      </MultipleDropdown>
       <h3>Header</h3>
       <MultipleDropdown
         selectionMode='multiple'

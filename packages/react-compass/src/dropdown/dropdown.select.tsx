@@ -7,6 +7,7 @@ import {
   DropdownVariantProps,
   StyledDropdownWrapper,
   StyledSelect,
+  StyledTextFieldHelperText,
 } from './dropdown.styles'
 import ListBox from './list-box/select'
 import Popover from './popover/select'
@@ -15,6 +16,8 @@ import {Button, Icon} from './utils'
 interface Props<T> extends SelectProps<T>, StyledComponentProps {
   isLoading?: boolean
   icon?: React.ReactNode
+  errored?: boolean
+  helperText?: string
   headerTitle?: string
   headerOnClick?: (e: unknown) => void
 }
@@ -27,6 +30,8 @@ const Select = React.forwardRef<HTMLButtonElement, DropdownProps>(
       // StyledComponentProps
       css = {},
       icon = <Icon />,
+      errored,
+      helperText,
       // AriaDropdownProps
     } = props
     const variantProps = {} as DropdownVariantProps
@@ -50,7 +55,7 @@ const Select = React.forwardRef<HTMLButtonElement, DropdownProps>(
           triggerRef={selectRef}
           label={props.label}
         />
-        <StyledSelect isEmpty={!state.selectedItem}>
+        <StyledSelect isEmpty={!state.selectedItem} errored={!!errored}>
           <Button {...triggerProps} ref={selectRef}>
             <span {...valueProps}>
               {state.selectedItem
@@ -81,6 +86,11 @@ const Select = React.forwardRef<HTMLButtonElement, DropdownProps>(
             </Popover>
           )}
         </StyledSelect>
+        {helperText && (
+          <StyledTextFieldHelperText error={!!errored}>
+            {helperText}
+          </StyledTextFieldHelperText>
+        )}
       </StyledDropdownWrapper>
     )
   },
