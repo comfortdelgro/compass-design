@@ -19,9 +19,7 @@ export const ReactTableStory: React.FC = () => {
     enableSorting: true,
     enableMultiSort: true,
     columnResizeMode: 'onChange',
-
     manualSorting: false,
-
   }
 
   const onSorting = (sortingField: StateSorting) => {
@@ -34,17 +32,31 @@ export const ReactTableStory: React.FC = () => {
         id: 'select',
         header: ({table}) => {
           return (
-            <ReactTable.CheckboxCell
-              {...{
-                checked: table.getIsAllRowsSelected(),
-                indeterminate: table.getIsSomeRowsSelected(),
-                onChange: table.getToggleAllRowsSelectedHandler(),
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
               }}
-            />
+            >
+              <ReactTable.CheckboxCell
+                {...{
+                  checked: table.getIsAllRowsSelected(),
+                  indeterminate: table.getIsSomeRowsSelected(),
+                  onChange: table.getToggleAllRowsSelectedHandler(),
+                }}
+              />
+            </div>
           )
         },
         cell: ({row}) => (
-          <div className='px-1'>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
             <ReactTable.CheckboxCell
               {...{
                 checked: row.getIsSelected(),
