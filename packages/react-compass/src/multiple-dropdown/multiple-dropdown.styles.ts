@@ -70,8 +70,9 @@ export const StyledDropdown = styled('div', {
         },
       },
     },
-    errored: {
+    isErrored: {
       true: {
+        borderWidth: 2,
         borderColor: '$danger',
         '&:focus': {
           borderColor: '$danger',
@@ -210,7 +211,7 @@ export const StyledLoading = styled('div', {
   },
 })
 
-export const StyledTextFieldHelperText = styled('div', {
+export const StyledHelperText = styled('div', {
   fontSize: '$label2',
   fontWeight: '$medium',
   transition: '$default',

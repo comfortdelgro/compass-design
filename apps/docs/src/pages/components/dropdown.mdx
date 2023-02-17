@@ -118,8 +118,8 @@ We recommend the second method to import components for the benefits of [tree sh
   <Dropdown.Select 
     label='Favorite Animal' 
     placeholder='Choose an animal'
-    errored
-    helperText='Use Helper Text for Errors'
+    isErrored
+    errorMessage='Use Helper Text for Errors'
   >
     <Dropdown.Item
       key='red panda'
@@ -141,8 +141,8 @@ We recommend the second method to import components for the benefits of [tree sh
   <Dropdown.Select 
     label='Favorite Animal' 
     placeholder='Choose an animal'
-    errored
-    helperText='Use Helper Text for Errors'
+    isErrored
+    errorMessage='Use Helper Text for Errors'
   >
     <Dropdown.Item
       key='red panda'
@@ -348,8 +348,8 @@ We recommend the second method to import components for the benefits of [tree sh
   <Dropdown.ComboBox 
     label='Favorite Animal' 
     placeholder='Choose an animal'
-    errored
-    helperText='Use Helper Text for Errors'
+    isErrored
+    errorMessage='Use Helper Text for Errors'
   >
     <Dropdown.Item
       key='red panda'
@@ -371,8 +371,8 @@ We recommend the second method to import components for the benefits of [tree sh
   <Dropdown.ComboBox 
     label='Favorite Animal' 
     placeholder='Choose an animal'
-    errored
-    helperText='Use Helper Text for Errors'
+    isErrored
+    errorMessage='Use Helper Text for Errors'
   >
     <Dropdown.Item
       key='red panda'
@@ -491,6 +491,8 @@ We recommend the second method to import components for the benefits of [tree sh
 | Name               | Type                                                         | Default | Description                                                                                                                                               |
 | :----------------- | :----------------------------------------------------------- | :------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | isLoading          | `boolean`                                                    | 'false' | Loading effect when list of items is loading by API                                                                                                       |
+| isErrored          | `boolean`                                                    | 'false' | Error state when dropdown is errored                                                                                                                      |
+| errorMessage       | `string`                                                     | -       | Error message for dropdown                                                                                                                                |
 | icon               | `React.ReactNode`                                            | -       | Icon display in right side                                                                                                                                |
 | headerTitle        | `string`                                                     | -       | Title display of header inside popover                                                                                                                    |
 | headerOnClick      | `(e: PressEvent) => void`                                    | -       | On click of clear button inside popover                                                                                                                   |

@@ -56,8 +56,8 @@ export const MultipleDropdowns: React.FC = () => {
         selectionMode='multiple'
         disabledKeys={['snake']}
         placeholder='Choose an animal'
-        errored
-        helperText='Use Helper Text for Errors'
+        isErrored
+        helperText='Error Message'
       >
         <MultipleDropdown.Item
           leftIcon={<Icon icon={faExclamationTriangle} />}

@@ -54,8 +54,8 @@ export const Select: React.FC = () => {
       <Dropdown.Select
         label='Favorite Animal'
         placeholder='Choose an animal'
-        errored
-        helperText='Use Helper Text for Errors'
+        isErrored
+        errorMessage='Error Message'
       >
         <Dropdown.Item
           key='red panda'
@@ -159,8 +159,8 @@ export const ComboBox: React.FC = () => {
       <Dropdown.ComboBox
         label='Favorite Animal'
         placeholder='Choose an animal'
-        errored
-        helperText='Use Helper Text for Errors'
+        isErrored
+        errorMessage='Error Message'
       >
         <Dropdown.Item
           key='red panda'

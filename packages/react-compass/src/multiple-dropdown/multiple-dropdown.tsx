@@ -11,11 +11,11 @@ import {
   DropdownVariantProps,
   StyledDropdown,
   StyledDropdownWrapper,
+  StyledHelperText,
   StyledLoading,
   StyledPopoverWrapper,
   StyledSelectedItem,
   StyledSelectedItemWrapper,
-  StyledTextFieldHelperText,
 } from './multiple-dropdown.styles'
 import Option from './options'
 import Popover from './popover'
@@ -29,7 +29,8 @@ interface Props<T>
   icon?: React.ReactNode
   placeholder?: string
   headerTitle?: string
-  errored?: boolean
+  isErrored?: boolean
+  errorMessage?: string
   helperText?: string
   headerOnClick?: (e: unknown) => void
 }
@@ -44,7 +45,8 @@ const MultipleDropdown = React.forwardRef<
     // StyledComponentProps
     css = {},
     icon = <Icon />,
-    errored,
+    isErrored,
+    errorMessage,
     helperText,
     // AriaDropdownProps
   } = props
@@ -122,7 +124,7 @@ const MultipleDropdown = React.forwardRef<
     if (isOpen) {
       inputRef.current?.focus()
       if (wrapperRef.current) {
-        wrapperRef.current.style.outlineColor = errored
+        wrapperRef.current.style.outlineColor = isErrored
           ? '#A4262C'
           : '-webkit-focus-ring-color'
         wrapperRef.current.style.outlineStyle = 'auto'
@@ -130,7 +132,9 @@ const MultipleDropdown = React.forwardRef<
     } else {
       inputRef.current?.blur()
       if (wrapperRef.current) {
-        wrapperRef.current.style.outlineColor = errored ? '#A4262C' : 'inherit'
+        wrapperRef.current.style.outlineColor = isErrored
+          ? '#A4262C'
+          : 'inherit'
         wrapperRef.current.style.outlineColor = 'inherit'
         wrapperRef.current.style.outlineStyle = 'inherit'
       }
@@ -152,7 +156,7 @@ const MultipleDropdown = React.forwardRef<
       <StyledDropdown
         onClick={collapseState.toggle}
         ref={wrapperRef}
-        errored={!!errored}
+        isErrored={!!isErrored}
       >
         <StyledSelectedItemWrapper>
           {selectedNode.length === 0 && !isOpen && <p>{props.placeholder}</p>}
@@ -204,11 +208,10 @@ const MultipleDropdown = React.forwardRef<
           </Popover>
         )}
       </StyledPopoverWrapper>
-      {helperText && (
-        <StyledTextFieldHelperText error={!!errored}>
-          {helperText}
-        </StyledTextFieldHelperText>
+      {errorMessage && (
+        <StyledHelperText error={!!isErrored}>{errorMessage}</StyledHelperText>
       )}
+      {helperText && <StyledHelperText>{helperText}</StyledHelperText>}
     </StyledDropdownWrapper>
   )
 })
