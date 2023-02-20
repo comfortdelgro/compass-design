@@ -42,7 +42,7 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
 
   const state = useCalendarState({
     ...delegated,
-    visibleDuration: {months: 2},
+    visibleDuration: {months: 1},
     locale,
     createCalendar,
   })
