@@ -12,7 +12,7 @@ export const StyledToastActionsContainer = styled('div', {
 
   // styling
   width: '$100%',
-  Height: '$6_5',
+  minHeight: '$6_5',
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'flex-start',
@@ -48,7 +48,7 @@ export const StyledToastCloseIcon = styled('div', {
 
   // styling
   width: '$3_5',
-  height: '$3_5',
+  minHeight: '$3_5',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -59,7 +59,7 @@ export const StyledToastCloseIcon = styled('div', {
   },
 })
 
-export const StyledToastLabel = styled('span', {
+export const StyledToastLabel = styled('div', {
   // reset
   appearance: 'none',
   border: 'none',
@@ -70,7 +70,7 @@ export const StyledToastLabel = styled('span', {
 
   // styling
   // width: '$5_5',
-  height: '$4_5',
+  minHeight: '$4_5',
   fontWeight: '$normal',
   fontFamily: '$sans',
   fontSize: '$label2',
@@ -92,7 +92,7 @@ export const StyledToastTitle = styled('h3', {
 
   // styling
   // width: '$5_5',
-  height: '$4_5',
+  minHeight: '$4_5',
   fontWeight: '$semibold',
   fontFamily: '$sans',
   fontSize: '$label1',
@@ -112,7 +112,7 @@ export const StyledToastIcon = styled('div', {
 
   // styling
   width: '$5_5',
-  height: '$4_5',
+  minHeight: '$4_5',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -133,7 +133,7 @@ export const StyledToastHeaderLeft = styled('div', {
   padding: '0px',
 
   // styling
-  height: '$5_25',
+  minHeight: '$5_25',
   display: 'flex',
   justifyContent: 'flex-start',
   gap: '$4_25',
@@ -150,7 +150,7 @@ export const StyledToastHeaderRight = styled('div', {
   padding: '0px',
 
   // styling
-  height: '$5_25',
+  minHeight: '$5_25',
   display: 'flex',
   justifyContent: 'flex-end',
   gap: '$4_25',
@@ -168,7 +168,7 @@ export const StyledToastHeader = styled('div', {
 
   // header styling
   width: '100%',
-  height: '$5_25',
+  minHeight: '$5_25',
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
