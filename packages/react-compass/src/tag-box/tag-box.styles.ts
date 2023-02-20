@@ -99,6 +99,7 @@ export const StyledItem = styled('div', {
   height: 'min-content',
   display: 'flex',
   alignItems: 'center',
+  justifyContent: 'center',
   borderRadius: '$md',
   svg: {
     width: '$3',
@@ -107,10 +108,18 @@ export const StyledItem = styled('div', {
   '&:hover': {
     backgroundColor: '#EAEBEB',
   },
+  input: {
+    fontSize: '$label2',
+    fontWeight: '$semibold',
+    height: 'fit-content',
+    padding: 0,
+    margin: 0,
+  },
   variants: {
     isDisabled: {
       true: {
         background: '#F0F0F0',
+        cursor: 'not-allowed',
         opacity: 0.4,
       },
       false: {
