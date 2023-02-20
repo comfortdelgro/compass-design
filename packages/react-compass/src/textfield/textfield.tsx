@@ -22,7 +22,9 @@ interface Props extends AriaTextFieldProps, StyledComponentProps {
   onChangeEvent?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-export type TextFieldProps = Props & TextFieldVariantProps
+export type TextFieldProps = Props &
+  TextFieldVariantProps &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
   (props, ref) => {
@@ -49,6 +51,11 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       ...ariaSafeProps,
     } as AriaTextFieldProps
 
+    const htmlProps = {...ariaSafeProps} as Omit<
+      React.HTMLAttributes<HTMLDivElement>,
+      keyof Props
+    >
+
     const textfieldRef = useDOMRef<HTMLInputElement>(ref)
     const {labelProps, inputProps, descriptionProps, errorMessageProps} =
       useTextField(ariaProps, textfieldRef)
@@ -59,7 +66,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
     }
 
     return (
-      <StyledTextFieldWrapper css={css}>
+      <StyledTextFieldWrapper css={css} {...htmlProps}>
         {label && (
           <StyledTextFieldLabel {...labelProps} disabled={!!isDisabled}>
             {label}
