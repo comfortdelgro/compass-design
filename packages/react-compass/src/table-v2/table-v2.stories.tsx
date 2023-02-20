@@ -32,6 +32,7 @@ export const ReactTableStory: React.FC = () => {
         id: 'select',
         header: ({table}) => {
           return (
+
             <div
               style={{
                 display: 'flex',
