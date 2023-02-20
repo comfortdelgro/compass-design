@@ -401,7 +401,7 @@
         "Dropdown"
       ],
       "locStart": 7,
-      "locEnd": 94,
+      "locEnd": 115,
       "filePath": "src/dropdown/dropdown.stories.tsx",
       "meta": {}
     },
@@ -410,8 +410,8 @@
       "levels": [
         "Dropdown"
       ],
-      "locStart": 96,
-      "locEnd": 178,
+      "locStart": 117,
+      "locEnd": 220,
       "filePath": "src/dropdown/dropdown.stories.tsx",
       "meta": {}
     },
@@ -561,7 +561,7 @@
         "Multiple dropdown"
       ],
       "locStart": 7,
-      "locEnd": 117,
+      "locEnd": 138,
       "filePath": "src/multiple-dropdown/multiple-dropdown.stories.tsx",
       "meta": {}
     },
@@ -573,6 +573,16 @@
       "locStart": 19,
       "locEnd": 150,
       "filePath": "src/navbar/navbar.stories.tsx",
+      "meta": {}
+    },
+    "otp-input--variants": {
+      "name": "Variants",
+      "levels": [
+        "Otp input"
+      ],
+      "locStart": 7,
+      "locEnd": 26,
+      "filePath": "src/otp-input/otpInput.stories.tsx",
       "meta": {}
     },
     "page-header--variants": {
@@ -791,7 +801,7 @@
         "Table v2"
       ],
       "locStart": 15,
-      "locEnd": 182,
+      "locEnd": 196,
       "filePath": "src/table-v2/table-v2.stories.tsx",
       "meta": {}
     },
@@ -831,7 +841,7 @@
         "Tag box"
       ],
       "locStart": 26,
-      "locEnd": 76,
+      "locEnd": 94,
       "filePath": "src/tag-box/tag-box.stories.tsx",
       "meta": {}
     },
@@ -840,8 +850,8 @@
       "levels": [
         "Tag box"
       ],
-      "locStart": 78,
-      "locEnd": 137,
+      "locStart": 96,
+      "locEnd": 175,
       "filePath": "src/tag-box/tag-box.stories.tsx",
       "meta": {}
     },
@@ -855,13 +865,23 @@
       "filePath": "src/textarea/textarea.stories.tsx",
       "meta": {}
     },
+    "textfield--select": {
+      "name": "Select",
+      "levels": [
+        "Textfield"
+      ],
+      "locStart": 9,
+      "locEnd": 23,
+      "filePath": "src/textfield/textfield.stories.tsx",
+      "meta": {}
+    },
     "textfield--variants": {
       "name": "Variants",
       "levels": [
         "Textfield"
       ],
-      "locStart": 9,
-      "locEnd": 84,
+      "locStart": 25,
+      "locEnd": 108,
       "filePath": "src/textfield/textfield.stories.tsx",
       "meta": {}
     },
@@ -891,7 +911,7 @@
         "Toast"
       ],
       "locStart": 8,
-      "locEnd": 34,
+      "locEnd": 37,
       "filePath": "src/toast/toast.stories.tsx",
       "meta": {}
     },
@@ -900,8 +920,8 @@
       "levels": [
         "Toast"
       ],
-      "locStart": 36,
-      "locEnd": 141,
+      "locStart": 39,
+      "locEnd": 144,
       "filePath": "src/toast/toast.stories.tsx",
       "meta": {}
     },
@@ -910,8 +930,8 @@
       "levels": [
         "Toast"
       ],
-      "locStart": 143,
-      "locEnd": 173,
+      "locStart": 146,
+      "locEnd": 176,
       "filePath": "src/toast/toast.stories.tsx",
       "meta": {}
     },
