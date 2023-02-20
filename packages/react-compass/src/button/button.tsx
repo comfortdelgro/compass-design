@@ -17,7 +17,9 @@ interface Props extends AriaButtonProps, StyledComponentProps {
   rightIcon?: React.ReactNode
 }
 
-export type ButtonProps = Props & ButtonVariantProps
+export type ButtonProps = Props &
+  ButtonVariantProps &
+  Omit<React.HTMLAttributes<HTMLButtonElement>, keyof Props>
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
@@ -40,11 +42,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const componentProps = {className}
 
-    // const {
-    //   // we have no information about these props
-    //   // todo: should we delegate them?
-    //   ...extraProps
-    // } = ariaSafeProps
+    const htmlProps = {...ariaSafeProps} as Omit<
+      React.HTMLAttributes<HTMLButtonElement>,
+      keyof Props
+    >
 
     const buttonRef = useDOMRef<HTMLButtonElement>(ref)
     let buttonProps = {}
@@ -72,6 +73,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {...buttonProps}
         {...componentProps}
         {...variantProps}
+        {...htmlProps}
       >
         <StyledLoading
           // make sure the loading indicator isn't visible to screen readers

@@ -22,7 +22,9 @@ interface Props extends StyledComponentProps {
   image?: string
 }
 
-export type AvatarProps = Props & AvatarVariantProps
+export type AvatarProps = Props &
+  AvatarVariantProps &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const Avatar = React.forwardRef<HTMLSpanElement, AvatarProps>((props, ref) => {
   const {
@@ -34,13 +36,15 @@ const Avatar = React.forwardRef<HTMLSpanElement, AvatarProps>((props, ref) => {
     image,
     // VariantProps
     size = 'md',
+    // html attribute
+    ...delegates
   } = props
 
   const variantProps = {size} as AvatarVariantProps
   const avatarRef = useDOMRef<HTMLSpanElement>(ref)
 
   return (
-    <StyledAvatar css={css} ref={avatarRef} {...variantProps}>
+    <StyledAvatar css={css} ref={avatarRef} {...variantProps} {...delegates}>
       {label ? (
         <span className='initials'>{calculateInitials(label, size)}</span>
       ) : null}
