@@ -31,6 +31,7 @@ export const TagBoxs: React.FC = () => (
       items={items}
       icon={<Icon icon={faExclamationTriangle} />}
       onRemove={(e) => console.log(e)}
+      onEdit={(i, v) => console.log(i, v)}
       helperText='Helper text'
     >
       <TagBox.Action>
@@ -45,6 +46,7 @@ export const TagBoxs: React.FC = () => (
       icon={<Icon icon={faExclamationTriangle} />}
       onAdd={(e) => console.log(e)}
       onRemove={(e) => console.log(e)}
+      onEdit={(i, v) => console.log(i, v)}
       helperText='Helper text'
     >
       <TagBox.Action>
@@ -57,6 +59,7 @@ export const TagBoxs: React.FC = () => (
       items={items}
       icon={<Icon icon={faExclamationTriangle} />}
       onRemove={(e) => console.log(e)}
+      onEdit={(i, v) => console.log(i, v)}
       isErrored
       errorMessage='Error Message'
       helperText='Helper text'
@@ -69,6 +72,7 @@ export const TagBoxs: React.FC = () => (
     <TagBox
       items={items}
       onRemove={(e) => console.log(e)}
+      onEdit={(i, v) => console.log(i, v)}
       labelPosition='left'
       label='Text Label'
       helperText='Helper text'
@@ -98,6 +102,7 @@ export const Collaspable: React.FC = () => (
       items={items}
       icon={<Icon icon={faExclamationTriangle} />}
       onRemove={(e) => console.log(e)}
+      onEdit={(i, v) => console.log(i, v)}
       helperText='Helper text'
     >
       <TagBox.Action>
@@ -113,6 +118,7 @@ export const Collaspable: React.FC = () => (
       icon={<Icon icon={faExclamationTriangle} />}
       onAdd={(e) => console.log(e)}
       onRemove={(e) => console.log(e)}
+      onEdit={(i, v) => console.log(i, v)}
       helperText='Helper text'
     >
       <TagBox.Action>
@@ -126,6 +132,7 @@ export const Collaspable: React.FC = () => (
       items={items}
       icon={<Icon icon={faExclamationTriangle} />}
       onRemove={(e) => console.log(e)}
+      onEdit={(i, v) => console.log(i, v)}
       isErrored
       errorMessage='Error Message'
       helperText='Helper text'
@@ -139,6 +146,7 @@ export const Collaspable: React.FC = () => (
       items={items}
       collaspable
       onRemove={(e) => console.log(e)}
+      onEdit={(i, v) => console.log(i, v)}
       labelPosition='left'
       label='Text Label'
       helperText='Helper text'
@@ -153,6 +161,7 @@ export const Collaspable: React.FC = () => (
       collaspable
       items={items}
       onRemove={(e) => console.log(e)}
+      onEdit={(i, v) => console.log(i, v)}
       helperText='Helper text'
     />
     <h3>No Helper text and Action</h3>

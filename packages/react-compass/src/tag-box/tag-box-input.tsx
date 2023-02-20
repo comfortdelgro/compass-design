@@ -17,7 +17,7 @@ const TagBoxInput = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
       onFocus={props.onFocus}
       onBlur={props.onBlur}
       onKeyDown={(e: KeyboardEvent<HTMLInputElement>) => {
-        const value = (e.target as HTMLTextAreaElement).value
+        const value = (e.target as HTMLInputElement).value
         if (value !== '' && e.key === 'Enter') {
           props.onEnter(value)
           if (tagBoxInputRef.current) tagBoxInputRef.current.value = ''
