@@ -29,7 +29,7 @@ const OTPInputComponent = React.forwardRef<HTMLDivElement, OTPInputProps>(
       onChangeOTP,
       ...delegated
     } = props
-    const inputRef = useDOMRef<HTMLInputElement>(ref)
+    const inputRef = useDOMRef<HTMLDivElement>(ref)
     const [activeInput, setActiveInput] = useState(0)
     const [otpValues, setOTPValues] = useState(Array<string>(length).fill(''))
 
