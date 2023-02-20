@@ -47,7 +47,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     // } = ariaSafeProps
 
     const buttonRef = useDOMRef<HTMLButtonElement>(ref)
-    const {buttonProps} = useButton(ariaSafeProps, buttonRef)
+    let buttonProps = {}
 
     const variantProps = {
       variant,
@@ -55,7 +55,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       fullWidth,
       loading,
     } as ButtonVariantProps
-
+    if (!loading) {
+      buttonProps = useButton(ariaSafeProps, buttonRef).buttonProps
+    }
     return (
       <StyledButton
         /** Stitches related props, such as `css` and `as` */
