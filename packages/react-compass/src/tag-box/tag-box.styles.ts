@@ -63,6 +63,12 @@ export const StyledBox = styled('div', {
         minHeight: '$32',
       },
     },
+    isErrored: {
+      true: {
+        borderColor: '$danger',
+        borderWidth: 2,
+      },
+    },
   },
 })
 
@@ -93,6 +99,7 @@ export const StyledItem = styled('div', {
   height: 'min-content',
   display: 'flex',
   alignItems: 'center',
+  justifyContent: 'center',
   borderRadius: '$md',
   svg: {
     width: '$3',
@@ -101,10 +108,18 @@ export const StyledItem = styled('div', {
   '&:hover': {
     backgroundColor: '#EAEBEB',
   },
+  input: {
+    fontSize: '$label2',
+    fontWeight: '$semibold',
+    height: 'fit-content',
+    padding: 0,
+    margin: 0,
+  },
   variants: {
     isDisabled: {
       true: {
         background: '#F0F0F0',
+        cursor: 'not-allowed',
         opacity: 0.4,
       },
       false: {
@@ -136,6 +151,25 @@ export const StyledTagBoxActionWrapper = styled('div', {
 export const StyledTagBoxAction = styled('div', {
   width: 'max-content',
   height: 'min-content',
+})
+
+export const StyledHelperText = styled('div', {
+  fontSize: '$label2',
+  fontWeight: '$medium',
+  transition: '$default',
+  marginTop: '$1',
+  color: '$gray70',
+
+  variants: {
+    error: {
+      true: {
+        color: '$danger',
+      },
+      false: {
+        color: '$gray70',
+      },
+    },
+  },
 })
 
 export type TagBoxVariantProps = VariantProps<typeof StyledTagBox>
