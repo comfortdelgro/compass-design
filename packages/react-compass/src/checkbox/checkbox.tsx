@@ -26,7 +26,9 @@ interface Props extends AriaCheckboxProps, StyledComponentProps {
   variant?: 'default' | 'rounded'
 }
 
-export type CheckboxProps = Props & CheckboxVariantProps
+export type CheckboxProps = Props &
+  CheckboxVariantProps &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   (props, ref) => {
@@ -54,10 +56,14 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
 
     const {hoverProps} = useHover({isDisabled: inputProps.disabled!})
     const {pressProps} = usePress({isDisabled: inputProps.disabled!})
+    const htmlProps = {...ariaSafeProps} as Omit<
+      React.HTMLAttributes<HTMLDivElement>,
+      keyof Props
+    >
 
     return (
-      <StyledCheckboxWrapper>
-        <StyledCheckboxLabel css={css} {...mergeProps(hoverProps, pressProps)}>
+      <StyledCheckboxWrapper css={css} {...htmlProps}>
+        <StyledCheckboxLabel {...mergeProps(hoverProps, pressProps)}>
           <StyledCheckboxInput
             type='checkbox'
             ref={checkboxRef}

@@ -9,6 +9,9 @@ import {
   StyledDropdown,
   StyledDropdownWrapper,
   StyledLoading,
+
+  StyledTextFieldHelperText,
+
 } from './dropdown.styles'
 import DropdownItem from './item'
 import ListBox from './list-box/combox'
@@ -19,6 +22,8 @@ interface Props<T> extends ComboBoxStateOptions<T>, StyledComponentProps {
   searchable?: boolean
   isLoading?: boolean
   icon?: React.ReactNode
+  isErrored?: boolean
+  errorMessage?: string
   headerTitle?: string
   headerOnClick?: (e: unknown) => void
 }
@@ -31,6 +36,8 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
       // StyledComponentProps
       css = {},
       icon = <Icon />,
+      isErrored,
+      errorMessage,
       // AriaDropdownProps
     } = props
     const variantProps = {} as DropdownVariantProps
@@ -61,7 +68,7 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
     return (
       <StyledDropdownWrapper css={css} ref={dropdownRef} {...variantProps}>
         {props.label && <label {...labelProps}>{props.label}</label>}
-        <StyledDropdown isEmpty={!inputProps.value}>
+        <StyledDropdown isEmpty={!inputProps.value} isErrored={!!isErrored}>
           <input {...inputProps} ref={inputRef} />
           <Button {...buttonProps} ref={buttonRef}>
             {icon}
@@ -97,6 +104,11 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
             </Popover>
           )}
         </StyledDropdown>
+        {errorMessage && (
+          <StyledTextFieldHelperText error={!!isErrored}>
+            {errorMessage}
+          </StyledTextFieldHelperText>
+        )}
       </StyledDropdownWrapper>
     )
   },

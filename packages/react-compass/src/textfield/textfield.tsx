@@ -16,12 +16,15 @@ interface Props extends AriaTextFieldProps, StyledComponentProps {
   label?: string
   errored?: boolean
   helperText?: string
+  prefix?: React.ReactNode
   leftIcon?: React.ReactNode
   rightIcon?: React.ReactNode
   onChangeEvent?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-export type TextFieldProps = Props & TextFieldVariantProps
+export type TextFieldProps = Props &
+  TextFieldVariantProps &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
   (props, ref) => {
@@ -34,6 +37,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       helperText,
       leftIcon,
       rightIcon,
+      prefix,
       onChangeEvent,
       // AriaTextFieldProps
       isDisabled,
@@ -47,6 +51,11 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       ...ariaSafeProps,
     } as AriaTextFieldProps
 
+    const htmlProps = {...ariaSafeProps} as Omit<
+      React.HTMLAttributes<HTMLDivElement>,
+      keyof Props
+    >
+
     const textfieldRef = useDOMRef<HTMLInputElement>(ref)
     const {labelProps, inputProps, descriptionProps, errorMessageProps} =
       useTextField(ariaProps, textfieldRef)
@@ -57,7 +66,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
     }
 
     return (
-      <StyledTextFieldWrapper css={css}>
+      <StyledTextFieldWrapper css={css} {...htmlProps}>
         {label && (
           <StyledTextFieldLabel {...labelProps} disabled={!!isDisabled}>
             {label}
@@ -65,6 +74,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
         )}
         <StyledTextFieldBox disabled={!!isDisabled} errored={!!errored}>
           {leftIcon ? <div className='left-icon'>{leftIcon}</div> : null}
+          {prefix ? <div className='prefix'>{prefix}</div> : null}
           <StyledTextField
             css={css}
             ref={textfieldRef}

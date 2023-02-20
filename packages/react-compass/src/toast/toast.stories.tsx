@@ -23,7 +23,10 @@ export const Default: React.FC = () => {
         <Toast.CloseIcon>
           <Icon icon={faXmark} />
         </Toast.CloseIcon>
-        <Toast.Message>Lorem ipsum dolor, sit amet consectetur.</Toast.Message>
+        <Toast.Message>
+          Lorem ipsum dolor, sit amet consectetur.Lorem ipsum dolor, sit amet
+          consectetur.
+        </Toast.Message>
         <Toast.Actions>
           <Button>Take action</Button>
           <Button>Take action</Button>

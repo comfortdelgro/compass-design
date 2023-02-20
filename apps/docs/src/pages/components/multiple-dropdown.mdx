@@ -123,6 +123,56 @@ We recommend the second method to import components for the benefits of [tree sh
 
 ---
 
+### Error:
+
+<section className={styles.avatarShowcaseContainer}>
+  <MultipleDropdown
+    label='Favorite Animal'
+    selectionMode='multiple'
+    disabledKeys={['snake']}
+    placeholder='Choose an animal'
+    isErrored
+    errorMessage='Use Helper Text for Errors'
+  >
+    <MultipleDropdown.Item
+      leftIcon={<Icon icon={faExclamationTriangle} />}
+      key='red panda'
+    >
+      Red Panda
+    </MultipleDropdown.Item>
+    <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+  </MultipleDropdown>
+</section>
+
+```js
+  <MultipleDropdown
+    label='Favorite Animal'
+    selectionMode='multiple'
+    disabledKeys={['snake']}
+    placeholder='Choose an animal'
+    isErrored
+    errorMessage='Use Helper Text for Errors'
+  >
+    <MultipleDropdown.Item
+      leftIcon={<Icon icon={faExclamationTriangle} />}
+      key='red panda'
+    >
+      Red Panda
+    </MultipleDropdown.Item>
+    <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+  </MultipleDropdown>
+```
+
+---
+
 ### With Header:
 
 <section className={styles.avatarShowcaseContainer}>
@@ -274,6 +324,8 @@ We recommend the second method to import components for the benefits of [tree sh
 | Name                   | Type                           | Default | Description                                                                                                                                                             |
 | :----------------------| :------------------------------| :-------| :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | isLoading              | `boolean`                      | 'false' | Loading effect when list of items is loading by API                                                                                                                     |
+| isErrored              | `boolean`                      | 'false' | Error state when dropdown is isErrored                                                                                                                                    |
+| errorMessage           | `string`                       | -       | Error message for dropdown                                                                                                                                              |
 | icon                   | `React.ReactNode`              | -       | Icon display in right side                                                                                                                                              |
 | headerTitle            | `string`                       | -       | Title display of header inside popover                                                                                                                                  |
 | headerOnClick          | `(e: PressEvent) => void`      | -       | On click of clear button inside popover                                                                                                                                 |

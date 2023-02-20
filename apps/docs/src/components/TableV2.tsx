@@ -95,30 +95,38 @@ export const ReactTableStory: React.FC = () => {
     console.log('stateSorting', sortingField)
   }
 
+  const TableHeader = ({table}: any) => {
+    return (
+      <ReactTable.CheckboxCell
+        {...{
+          checked: table.getIsAllRowsSelected(),
+          indeterminate: table.getIsSomeRowsSelected(),
+          onChange: table.getToggleAllRowsSelectedHandler(),
+        }}
+      />
+    )
+  }
+
+  const TableHeaderCell = ({row}: any) => {
+    return (
+      <div className='px-1'>
+        <ReactTable.CheckboxCell
+          {...{
+            checked: row.getIsSelected(),
+            indeterminate: row.getIsSomeSelected(),
+            onChange: row.getToggleSelectedHandler(),
+          }}
+        />
+      </div>
+    )
+  }
+
   const columns = React.useMemo<Array<ColumnConfig<Person>>>(
     () => [
       {
         id: 'select',
-        header: ({table}) => (
-          <ReactTable.CheckboxCell
-            {...{
-              checked: table.getIsAllRowsSelected(),
-              indeterminate: table.getIsSomeRowsSelected(),
-              onChange: table.getToggleAllRowsSelectedHandler(),
-            }}
-          />
-        ),
-        cell: ({row}) => (
-          <div className='px-1'>
-            <ReactTable.CheckboxCell
-              {...{
-                checked: row.getIsSelected(),
-                indeterminate: row.getIsSomeSelected(),
-                onChange: row.getToggleSelectedHandler(),
-              }}
-            />
-          </div>
-        ),
+        header: ({table}) => <TableHeader table={table} />,
+        cell: ({row}) => <TableHeaderCell row={row} />,
       },
       {
         id: 'name',
@@ -176,7 +184,7 @@ export const ReactTableStory: React.FC = () => {
   return (
     <div>
       <ReactTable
-        data={data}
+        data={[]}
         columns={columns}
         options={options}
         onManualSorting={onSorting}

@@ -15,6 +15,7 @@ const ReactTableColumnHeader = React.forwardRef<HTMLTableCellElement, Props>(
   ({headerProps}, ref) => {
     const enableResizing = headerProps?.column?.columnDef?.enableResizing
     const tableRowRef = useDOMRef<HTMLTableCellElement>(ref)
+
     return (
       <StyledReactTableColumnHeader
         ref={tableRowRef}
@@ -31,22 +32,30 @@ const ReactTableColumnHeader = React.forwardRef<HTMLTableCellElement, Props>(
             onClick: headerProps.column.getToggleSortingHandler(),
           }}
           style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            minHeight: '30px',
-            alignItems: 'center',
             cursor: headerProps.column.getCanSort() ? 'pointer' : 'unset',
             userSelect: headerProps.column.getCanSort() ? 'none' : 'unset',
           }}
         >
           {headerProps.isPlaceholder ? null : (
-            <>
-              <span>
-                {flexRender(
+            <div
+              style={
+                typeof flexRender(
                   headerProps.column.columnDef.header,
                   headerProps.getContext(),
-                )}
-              </span>
+                ) === 'string'
+                  ? {
+                      display: 'flex',
+                      minHeight: '30px',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                    }
+                  : {}
+              }
+            >
+              {flexRender(
+                headerProps.column.columnDef.header,
+                headerProps.getContext(),
+              )}
               {{
                 asc: (
                   <StyledReactTableSortingIndicator
@@ -87,7 +96,7 @@ const ReactTableColumnHeader = React.forwardRef<HTMLTableCellElement, Props>(
                   </StyledReactTableSortingIndicator>
                 ),
               }[headerProps.column.getIsSorted() as string] ?? null}
-            </>
+            </div>
           )}
           {enableResizing && <ReactTableResizer headerProps={headerProps} />}
         </div>
