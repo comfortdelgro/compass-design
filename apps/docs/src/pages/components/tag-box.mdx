@@ -87,6 +87,134 @@ import TagBox from '@comfortdelgro/react-compass/tag-box'
   </TagBox>
 ```
 
+### Typeable
+
+<section className={styles.avatarShowcaseContainer}>
+  <TagBox
+    label='Text Label'
+    items={[
+      {id: 1, value: 'Item 1', icon: <Icon icon={faExclamationTriangle} />},
+      {id: 2, value: 'Item 2', isDisabled: true},
+      {id: 3, value: 'Item 3', icon: <Icon icon={faExclamationTriangle} />},
+      {id: 4, value: 'Item 4', isDisabled: true},
+      {
+        id: 5,
+        value: 'Item 5',
+        icon: <Icon icon={faExclamationTriangle} />,
+        isError: true,
+      },
+      {id: 6, value: 'Item 6', isDisabled: true},
+      {id: 7, value: 'Item 7', icon: <Icon icon={faExclamationTriangle} />},
+      {id: 8, value: 'Item 8', isDisabled: true},
+      {id: 9, value: 'Item 9', icon: <Icon icon={faExclamationTriangle} />},
+      {id: 10, value: 'Item 10', isDisabled: true},
+    ]}
+    onRemove={(e) => console.log(e)}
+    onAdd={(e) => console.log(e)}
+    typeable
+    helperText='Helper text'
+  >
+    <TagBox.Action>
+      <Button>Call to action</Button>
+    </TagBox.Action>
+  </TagBox>
+</section>
+
+```js
+  <TagBox
+    label='Text Label'
+    items={[
+      {id: 1, value: 'Item 1', icon: <Icon icon={faExclamationTriangle} />},
+      {id: 2, value: 'Item 2', isDisabled: true},
+      {id: 3, value: 'Item 3', icon: <Icon icon={faExclamationTriangle} />},
+      {id: 4, value: 'Item 4', isDisabled: true},
+      {
+        id: 5,
+        value: 'Item 5',
+        icon: <Icon icon={faExclamationTriangle} />,
+        isError: true,
+      },
+      {id: 6, value: 'Item 6', isDisabled: true},
+      {id: 7, value: 'Item 7', icon: <Icon icon={faExclamationTriangle} />},
+      {id: 8, value: 'Item 8', isDisabled: true},
+      {id: 9, value: 'Item 9', icon: <Icon icon={faExclamationTriangle} />},
+      {id: 10, value: 'Item 10', isDisabled: true},
+    ]}
+    onRemove={(e) => console.log(e)}
+    onAdd={(e) => console.log(e)}
+    typeable
+    helperText='Helper text'
+  >
+    <TagBox.Action>
+      <Button>Call to action</Button>
+    </TagBox.Action>
+  </TagBox>
+```
+
+### Error
+
+<section className={styles.avatarShowcaseContainer}>
+  <TagBox
+    label='Text Label'
+    items={[
+      {id: 1, value: 'Item 1', icon: <Icon icon={faExclamationTriangle} />},
+      {id: 2, value: 'Item 2', isDisabled: true},
+      {id: 3, value: 'Item 3', icon: <Icon icon={faExclamationTriangle} />},
+      {id: 4, value: 'Item 4', isDisabled: true},
+      {
+        id: 5,
+        value: 'Item 5',
+        icon: <Icon icon={faExclamationTriangle} />,
+        isError: true,
+      },
+      {id: 6, value: 'Item 6', isDisabled: true},
+      {id: 7, value: 'Item 7', icon: <Icon icon={faExclamationTriangle} />},
+      {id: 8, value: 'Item 8', isDisabled: true},
+      {id: 9, value: 'Item 9', icon: <Icon icon={faExclamationTriangle} />},
+      {id: 10, value: 'Item 10', isDisabled: true},
+    ]}
+    onRemove={(e) => console.log(e)}
+    isErrored
+    errorMessage='Use Helper Text for Errors'
+    helperText='Helper text'
+  >
+    <TagBox.Action>
+      <Button>Call to action</Button>
+    </TagBox.Action>
+  </TagBox>
+</section>
+
+```js
+  <TagBox
+    label='Text Label'
+    items={[
+      {id: 1, value: 'Item 1', icon: <Icon icon={faExclamationTriangle} />},
+      {id: 2, value: 'Item 2', isDisabled: true},
+      {id: 3, value: 'Item 3', icon: <Icon icon={faExclamationTriangle} />},
+      {id: 4, value: 'Item 4', isDisabled: true},
+      {
+        id: 5,
+        value: 'Item 5',
+        icon: <Icon icon={faExclamationTriangle} />,
+        isError: true,
+      },
+      {id: 6, value: 'Item 6', isDisabled: true},
+      {id: 7, value: 'Item 7', icon: <Icon icon={faExclamationTriangle} />},
+      {id: 8, value: 'Item 8', isDisabled: true},
+      {id: 9, value: 'Item 9', icon: <Icon icon={faExclamationTriangle} />},
+      {id: 10, value: 'Item 10', isDisabled: true},
+    ]}
+    onRemove={(e) => console.log(e)}
+    isErrored
+    errorMessage='Use Helper Text for Errors'
+    helperText='Helper text'
+  >
+    <TagBox.Action>
+      <Button>Call to action</Button>
+    </TagBox.Action>
+  </TagBox>
+```
+
 ### Collaspable
 
 <section className={styles.avatarShowcaseContainer}>
@@ -156,6 +284,8 @@ import TagBox from '@comfortdelgro/react-compass/tag-box'
 | Name           | Type        | Default | Description                                                                                                  |
 | :------------- | :---------- | :------ | :----------------------------------------------------------------------------------------------------------- |
 | children       | `ReactNode` | —       | The content to display in the tag box. It should be TabBox.Action                                            |
+| isErrored      | `boolean`   | 'false' | Error state when tagbox is errored                                                                           |
+| errorMessage   | `string`    | -       | Error message for tagbox                                                                                     |
 | labelPosition  | `top` `left`| -       | The position of the label.                                                                                   |
 | collaspable    | `boolean`   | -       | Collaspable mode when tag bog is to much.                                                                    |
 | typeable       | `boolean`   | -       | Typeable mode for input new tag.                                                                             |

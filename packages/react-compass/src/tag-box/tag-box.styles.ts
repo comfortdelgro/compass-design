@@ -63,6 +63,12 @@ export const StyledBox = styled('div', {
         minHeight: '$32',
       },
     },
+    isErrored: {
+      true: {
+        borderColor: '$danger',
+        borderWidth: 2,
+      },
+    },
   },
 })
 
@@ -136,6 +142,25 @@ export const StyledTagBoxActionWrapper = styled('div', {
 export const StyledTagBoxAction = styled('div', {
   width: 'max-content',
   height: 'min-content',
+})
+
+export const StyledHelperText = styled('div', {
+  fontSize: '$label2',
+  fontWeight: '$medium',
+  transition: '$default',
+  marginTop: '$1',
+  color: '$gray70',
+
+  variants: {
+    error: {
+      true: {
+        color: '$danger',
+      },
+      false: {
+        color: '$gray70',
+      },
+    },
+  },
 })
 
 export type TagBoxVariantProps = VariantProps<typeof StyledTagBox>

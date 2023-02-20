@@ -70,6 +70,20 @@ export const StyledDropdown = styled('div', {
         },
       },
     },
+    isErrored: {
+      true: {
+        borderWidth: 2,
+        borderColor: '$danger',
+        '&:focus': {
+          borderColor: '$danger',
+          outlineColor: '$danger',
+        },
+        '&:focus-within': {
+          borderColor: '$danger',
+          outlineColor: '$danger',
+        },
+      },
+    },
   },
 })
 
@@ -193,6 +207,25 @@ export const StyledLoading = styled('div', {
     },
     '.spinner-3': {
       animationDelay: '-0.15s',
+    },
+  },
+})
+
+export const StyledHelperText = styled('div', {
+  fontSize: '$label2',
+  fontWeight: '$medium',
+  transition: '$default',
+  marginTop: '$1',
+  color: '$gray70',
+
+  variants: {
+    error: {
+      true: {
+        color: '$danger',
+      },
+      false: {
+        color: '$gray70',
+      },
     },
   },
 })

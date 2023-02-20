@@ -9,6 +9,7 @@ import {
   StyledBox,
   StyledBoxContent,
   StyledBoxWrapper,
+  StyledHelperText,
   StyledIcon,
   StyledItem,
   StyledTagBox,
@@ -31,6 +32,8 @@ interface Props extends LabelAriaProps, StyledComponentProps {
   typeable?: boolean
   icon?: React.ReactNode
   helperText?: string
+  isErrored?: boolean
+  errorMessage?: string
   children?: React.ReactNode
   onAdd?: (value: string) => void
   onRemove?: (index: string | number) => void
@@ -48,6 +51,8 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
     items,
     helperText,
     children,
+    isErrored,
+    errorMessage,
     onRemove,
     onAdd,
     // AriaTagBoxProps
@@ -62,10 +67,26 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
   const {labelProps, fieldProps} = useLabel(ariaSafeProps)
   const [remainingCount, setRemainingCount] = React.useState(0)
   const boxContentRef = React.useRef<HTMLDivElement>(null)
+  const boxRef = React.useRef<HTMLDivElement>(null)
   const [elRefs, setElRefs] = React.useState<Array<RefObject<HTMLDivElement>>>(
     [],
   )
   const [isOpen, setIsOpen] = React.useState(false)
+
+  const onFocus = () => {
+    if (boxRef.current) {
+      boxRef.current.style.outlineColor = isErrored
+        ? '#A4262C'
+        : '-webkit-focus-ring-color'
+      boxRef.current.style.outlineStyle = 'auto'
+    }
+  }
+
+  const onBlur = () => {
+    if (boxRef.current) {
+      boxRef.current.style.outline = 'none'
+    }
+  }
 
   React.useEffect(() => {
     // add or remove refs
@@ -105,45 +126,62 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
     <StyledTagBox css={css} ref={tagBoxRef}>
       <StyledBoxWrapper labelPosition={labelPosition}>
         {props.label && <label {...labelProps}>{props.label}</label>}
-        <StyledBox {...fieldProps} collaspable={collaspable}>
-          {props.icon && <StyledIcon>{props.icon}</StyledIcon>}
-          <StyledBoxContent ref={boxContentRef}>
-            {items.map((item, index) => (
-              <StyledItem
-                key={item.id}
-                isDisabled={!!item.isDisabled}
-                isError={!!item.isError}
-                ref={elRefs[index]}
+        <div>
+          <StyledBox
+            {...fieldProps}
+            ref={boxRef}
+            collaspable={collaspable}
+            isErrored={!!isErrored}
+          >
+            {props.icon && <StyledIcon>{props.icon}</StyledIcon>}
+
+            <StyledBoxContent ref={boxContentRef}>
+              {items.map((item, index) => (
+                <StyledItem
+                  key={item.id}
+                  isDisabled={!!item.isDisabled}
+                  isError={!!item.isError}
+                  ref={elRefs[index]}
+                >
+                  {item.icon}
+                  <span>{item.value}</span>
+                  <span style={item.isDisabled ? {} : {cursor: 'pointer'}}>
+                    <Xmark
+                      onClick={() => onRemove?.(item.id)}
+                      isDisabled={!!item.isDisabled}
+                    />
+                  </span>
+                </StyledItem>
+              ))}
+              {remainingCount > 0 && (
+                <StyledItem key='remainingCount'>
+                  <span>+{remainingCount}</span>
+                </StyledItem>
+              )}
+              {((!collaspable && typeable) ||
+                (collaspable && typeable && isOpen)) && (
+                <TagBoxInput
+                  onFocus={onFocus}
+                  onBlur={onBlur}
+                  onEnter={(v) => onAdd?.(v)}
+                />
+              )}
+            </StyledBoxContent>
+            {collaspable && (
+              <StyledIcon
+                css={{cursor: 'pointer'}}
+                onClick={() => setIsOpen((v) => !v)}
               >
-                {item.icon}
-                <span>{item.value}</span>
-                <span style={item.isDisabled ? {} : {cursor: 'pointer'}}>
-                  <Xmark
-                    onClick={() => onRemove?.(item.id)}
-                    isDisabled={!!item.isDisabled}
-                  />
-                </span>
-              </StyledItem>
-            ))}
-            {remainingCount > 0 && (
-              <StyledItem key='remainingCount'>
-                <span>+{remainingCount}</span>
-              </StyledItem>
+                {isOpen ? <ChevronUp /> : <ChevronDown />}
+              </StyledIcon>
             )}
-            {((!collaspable && typeable) ||
-              (collaspable && typeable && isOpen)) && (
-              <TagBoxInput onEnter={(v) => onAdd?.(v)} />
-            )}
-          </StyledBoxContent>
-          {collaspable && (
-            <StyledIcon
-              css={{cursor: 'pointer'}}
-              onClick={() => setIsOpen((v) => !v)}
-            >
-              {isOpen ? <ChevronUp /> : <ChevronDown />}
-            </StyledIcon>
+          </StyledBox>
+          {errorMessage && (
+            <StyledHelperText error={!!isErrored}>
+              {errorMessage}
+            </StyledHelperText>
           )}
-        </StyledBox>
+        </div>
       </StyledBoxWrapper>
       {(helperText || TagBoxActionElement) && (
         <StyledTagBoxActionWrapper>

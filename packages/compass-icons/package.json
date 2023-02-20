@@ -34,7 +34,9 @@
   "scripts": {
     "build": "tsx scripts/build.ts"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@react-aria/i18n": "^3.6.2"
+  },
   "devDependencies": {
     "@iconify/tools": "^2.1.1",
     "@iconify/types": "^2.0.0",
