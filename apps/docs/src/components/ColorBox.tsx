@@ -88,7 +88,7 @@ const ColorBox: React.FC<Props> = ({color, gradient = false}) => {
   const [resolvedColorOpacity, setResolvedColorOpacity] = useState<number>(1)
 
   useEffect(() => {
-    if(!gradient){
+    if (!gradient) {
       setResolvedColor(takeOpacityOut(getResolvedColor(color.value)).color)
       setResolvedColorOpacity(resolvedColorOpacity)
     }
@@ -101,12 +101,11 @@ const ColorBox: React.FC<Props> = ({color, gradient = false}) => {
       style={{
         backgroundColor: !gradient ? color.value : 'transparent',
 
-        backgroundImage: gradient ? `linear-gradient(to right, ${color.value})` : 'none',
+        backgroundImage: gradient
+          ? `linear-gradient(to right, ${color.value})`
+          : 'none',
         opacity: resolvedColorOpacity,
-        color: resolvedColor
-          ? getAccessibleColor(resolvedColor)
-          : '#000',
-
+        color: resolvedColor ? getAccessibleColor(resolvedColor) : '#000',
       }}
       onClick={() => {
         navigator && navigator.clipboard.writeText(resolvedColor || '')

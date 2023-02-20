@@ -9,9 +9,7 @@ import {
   StyledDropdown,
   StyledDropdownWrapper,
   StyledLoading,
-
   StyledTextFieldHelperText,
-
 } from './dropdown.styles'
 import DropdownItem from './item'
 import ListBox from './list-box/combox'
