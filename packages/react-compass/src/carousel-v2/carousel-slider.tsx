@@ -1,6 +1,7 @@
 import {faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons'
 import React, {useEffect, useState} from 'react'
 import Icon from '../icon'
+import {Pointer, Position} from '../utils/pointer'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import CarouselImageSlide from './carousel-image-slide'
@@ -54,7 +55,9 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
     } = props
 
     const sliderRef = useDOMRef<HTMLDivElement>(ref)
+    const scroller = useDOMRef<HTMLDivElement>(ref)
 
+    const [xPosition, setXPosition] = useState(0)
     const [current, setCurrent] = useState(0)
     const [timer, setTimer] = useState<any>()
 
@@ -63,6 +66,13 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
         setTimer(setTimeout(next, 3000))
       }
       onSwitchSlide(current)
+      setXPosition(
+        (sliderRef.current && sliderRef.current.clientWidth * current) || 0,
+      )
+
+      return () => {
+        clearTimeout(timer)
+      }
     }, [current])
 
     const next = () => {
@@ -89,16 +99,60 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
       }
     }
 
+    const getSlideWidth = () => {
+      return (sliderRef.current && sliderRef.current.clientWidth) || 0
+    }
+
     const getViewWidth = () => {
       return (
         (sliderRef.current &&
-          sliderRef.current.clientWidth * children.length + 'px') ||
+          sliderRef.current.clientWidth * children.length) ||
         0
       )
     }
 
-    const getViewPosition = () => {
-      return (sliderRef.current && sliderRef.current.clientWidth * current) || 0
+    const handlePointerDown = (event: React.PointerEvent) => {
+      const pointer = new Pointer()
+      pointer.start(new Position(event.pageX, event.pageY))
+      const startX = xPosition
+      clearCurrentTimer()
+
+      if (scroller.current) {
+        scroller.current.style.transition = 'none'
+        scroller.current.setPointerCapture(event.pointerId)
+
+        const handlePointerMove = (event: PointerEvent) => {
+          pointer.update(new Position(event.pageX, event.pageY))
+          setXPosition(startX - pointer.distance.x)
+        }
+
+        const handlePointerUp = (event: PointerEvent) => {
+          pointer.end(new Position(event.pageX, event.pageY))
+
+          if (scroller.current) {
+            scroller.current.removeEventListener(
+              'pointermove',
+              handlePointerMove,
+            )
+            scroller.current.style.transition = 'all 250ms ease'
+
+            if (Math.abs(pointer.distance.x) / getSlideWidth() > 0.2) {
+              if (pointer.distance.x < 0) {
+                next()
+              } else {
+                prev()
+              }
+            } else {
+              setXPosition(startX)
+            }
+          }
+        }
+
+        scroller.current.addEventListener('pointermove', handlePointerMove)
+        scroller.current.addEventListener('pointerup', handlePointerUp, {
+          once: true,
+        })
+      }
     }
 
     return (
@@ -113,11 +167,13 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
         <StyledCarouselSliderContainer className='content-slider-container'>
           {effect === 'slide' ? (
             <div
+              ref={scroller}
               className='slider-scroller'
               style={{
-                width: getViewWidth(),
-                transform: `translate3d(-${getViewPosition()}px, 0, 0)`,
+                width: `${getViewWidth()}px`,
+                transform: `translate3d(-${xPosition}px, 0, 0)`,
               }}
+              onPointerDown={handlePointerDown}
             >
               {children}
             </div>

@@ -8,6 +8,7 @@ export const StyledCarouselSlider = styled('div', {
   containerName: 'contentSlider',
 
   '&.effect-slide': {
+    userSelect: 'none',
     '.content-slider-container': {
       overflow: 'hidden',
       display: 'flex',
@@ -15,6 +16,7 @@ export const StyledCarouselSlider = styled('div', {
     '.slider-scroller': {
       display: 'flex',
       transition: '$default',
+      touchAction: 'none',
     },
     '.slider-slide': {
       position: 'relative',
@@ -268,6 +270,7 @@ export const StyledCarouselSliderNav = styled('div', {
   cursor: 'pointer',
   borderRadius: '30px',
   zIndex: '2',
+  lineHeight: '0',
   '&:active': {
     background: 'rgba(125,125,125, 0.5)',
   },

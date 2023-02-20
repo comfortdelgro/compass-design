@@ -76,6 +76,7 @@ const CarouselPromotion = React.forwardRef<
           <StyledSlideBackground
             className='slide-background'
             src={dataItem.image}
+            draggable={false}
           />
           {dataItem.mask && (
             <StyledSlideMask
