@@ -6,6 +6,22 @@ import Icon from '../icon'
 import {Column, Row} from '../utils/components'
 import Textfield from './index'
 
+export const Select = (
+  <input
+    value={'+64'}
+    style={{
+      fontSize: '0.8em',
+      lineHeight: '1em',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      appearance: 'none',
+      border: 'none',
+      width: '3rem',
+    }}
+  />
+)
+
 export const Variants: React.FC = () => (
   <Column>
     <Row>
@@ -78,6 +94,14 @@ export const Variants: React.FC = () => (
         rightIcon={<Icon icon={faChevronDown} />}
         placeholder='Enter your name'
         isDisabled
+      />
+    </Row>
+    <h3>Prefix</h3>
+    <Row>
+      <Textfield
+        label='Name'
+        prefix={Select}
+        placeholder='Enter your phone number'
       />
     </Row>
   </Column>
