@@ -59,6 +59,7 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
 
     const [xPosition, setXPosition] = useState(0)
     const [current, setCurrent] = useState(0)
+    const [viewWidth, setViewWidth] = useState(0)
     const [timer, setTimer] = useState<any>()
 
     useEffect(() => {
@@ -74,6 +75,14 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
         clearTimeout(timer)
       }
     }, [current])
+
+    // To update slider width based on the time sliderRef.current is available
+    useEffect(() => {
+      if (sliderRef && sliderRef.current) {
+        console.log(sliderRef.current.clientWidth)
+        setViewWidth(sliderRef.current.clientWidth * children.length)
+      }
+    }, [sliderRef])
 
     const next = () => {
       clearCurrentTimer()
@@ -103,14 +112,6 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
       return (sliderRef.current && sliderRef.current.clientWidth) || 0
     }
 
-    const getViewWidth = () => {
-      return (
-        (sliderRef.current &&
-          sliderRef.current.clientWidth * children.length) ||
-        0
-      )
-    }
-
     const handlePointerDown = (event: React.PointerEvent) => {
       const pointer = new Pointer()
       pointer.start(new Position(event.pageX, event.pageY))
@@ -135,7 +136,6 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
               handlePointerMove,
             )
             scroller.current.style.transition = 'all 250ms ease'
-
             if (Math.abs(pointer.distance.x) / getSlideWidth() > 0.2) {
               if (pointer.distance.x < 0) {
                 next()
@@ -150,6 +150,9 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
 
         scroller.current.addEventListener('pointermove', handlePointerMove)
         scroller.current.addEventListener('pointerup', handlePointerUp, {
+          once: true,
+        })
+        scroller.current.addEventListener('pointercancel', handlePointerUp, {
           once: true,
         })
       }
@@ -170,7 +173,7 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
               ref={scroller}
               className='slider-scroller'
               style={{
-                width: `${getViewWidth()}px`,
+                width: `${viewWidth}px`,
                 transform: `translate3d(-${xPosition}px, 0, 0)`,
               }}
               onPointerDown={handlePointerDown}

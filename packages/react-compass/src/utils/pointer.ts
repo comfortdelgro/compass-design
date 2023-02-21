@@ -17,6 +17,7 @@ export class Pointer {
 
   end(position: Position) {
     this.lastPoint = position
+    this.currentPoint = position
   }
 
   get distance(): Position {
