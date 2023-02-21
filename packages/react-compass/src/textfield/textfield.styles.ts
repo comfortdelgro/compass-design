@@ -56,6 +56,16 @@ export const StyledTextFieldBox = styled('div', {
     marginRight: '-$1',
   },
 
+  '.prefix': {
+    minWidth: '$5',
+    height: '$5',
+    marginLeft: '$2_5',
+    marginRight: '-$1',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
   '.right-icon': {
     width: '$4',
     height: '$4',

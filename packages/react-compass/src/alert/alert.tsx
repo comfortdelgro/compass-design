@@ -14,7 +14,9 @@ interface Props extends StyledComponentProps {
   onDismiss?: () => void
 }
 
-export type AlertProps = Props & AlertVariantProps
+export type AlertProps = Props &
+  AlertVariantProps &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
   const {
@@ -27,6 +29,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
     children,
     // VariantProps
     color = 'info',
+    ...delegates
   } = props
 
   const variantProps = {color} as AlertVariantProps
@@ -40,7 +43,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
       : icon
 
   return (
-    <StyledAlert css={css} ref={alertRef} {...variantProps}>
+    <StyledAlert css={css} ref={alertRef} {...variantProps} {...delegates}>
       {faIcon ? <Icon icon={faIcon} className='alert-icon' /> : null}
       <div className='alert-content'>{children}</div>
       {dismissible && (
