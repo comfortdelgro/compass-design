@@ -485,9 +485,25 @@ We recommend the second method to import components for the benefits of [tree sh
 ```
 
 ---
+
+### Flag:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Dropdown.Flag label='List of country' placeholder='Choose a country' keyType='phone-code' />
+</section>
+
+```js
+  <Dropdown.Flag 
+    label='List of country' 
+    placeholder='Choose a country' 
+    keyType='phone-code' 
+  />
+```
+
+---
 ### Props:
 
-#### `<Dropdown.Select/>` | `<Dropdown.ComboBox/>` :
+#### `<Dropdown.Select/>` | `<Dropdown.ComboBox/>` | `<Dropdown.Flag/>` :
 | Name               | Type                                                         | Default | Description                                                                                                                                               |
 | :----------------- | :----------------------------------------------------------- | :------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | isLoading          | `boolean`                                                    | 'false' | Loading effect when list of items is loading by API                                                                                                       |
@@ -525,6 +541,24 @@ We recommend the second method to import components for the benefits of [tree sh
 | label              | `ReactNode`                                                  | —       | The content to display as the label.                                                                                                                      |
 | description        | `ReactNode`                                                  | —       | A description for the field. Provides a hint such as specific requirements for what to choose.                                                            |
 
+
+#### `<Dropdown.Flag/>` :
+Include all of the props above and have extra new prop
+
+| Name        | Type                                                                  | Default    | Description                                                                             |
+| :---------- | :-------------------------------------------------------------------- | :--------- | :-------------------------------------------------------------------------------------- |
+| keyType       | `alpha-2` \| `alpha-3` \| `name` \| `country-code` \| `phone-code`  | `alpha-3`  | The value of selectedKey will depends by which type of key                                   |
+
+Example for key and value
+```
+{
+  name: 'Singapore',
+  'alpha-2': 'SG',
+  'alpha-3': 'SGP',
+  'country-code': '702',
+  'phone-code': '+65'
+}
+```
 
 #### `<Dropdown.Item/>` :
 

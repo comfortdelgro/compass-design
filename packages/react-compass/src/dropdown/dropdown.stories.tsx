@@ -4,6 +4,15 @@ import Icon from '../icon'
 import {Column} from '../utils/components'
 import Dropdown from './index'
 
+export const Flag: React.FC = () => {
+  return (
+    <Column>
+      <h3>Flag</h3>
+      <Dropdown.Flag label='List of country' placeholder='Choose a country' keyType='phone-code' />
+    </Column>
+  )
+}
+
 export const Select: React.FC = () => {
   const [value, setValue] = React.useState<Key>('cat')
   return (
