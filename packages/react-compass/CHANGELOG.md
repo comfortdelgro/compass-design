@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 0.16.0
+
+### Minor Changes
+
+- fdc5a1a: Fix bugs on button and dropdown, textfield, textarea
+
 ## 0.15.0
 
 ### Minor Changes
