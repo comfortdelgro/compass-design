@@ -395,13 +395,23 @@
       "filePath": "src/dialog/dialog.stories.tsx",
       "meta": {}
     },
+    "dropdown--flag": {
+      "name": "Flag",
+      "levels": [
+        "Dropdown"
+      ],
+      "locStart": 7,
+      "locEnd": 14,
+      "filePath": "src/dropdown/dropdown.stories.tsx",
+      "meta": {}
+    },
     "dropdown--select": {
       "name": "Select",
       "levels": [
         "Dropdown"
       ],
-      "locStart": 7,
-      "locEnd": 115,
+      "locStart": 16,
+      "locEnd": 124,
       "filePath": "src/dropdown/dropdown.stories.tsx",
       "meta": {}
     },
@@ -410,8 +420,8 @@
       "levels": [
         "Dropdown"
       ],
-      "locStart": 117,
-      "locEnd": 220,
+      "locStart": 126,
+      "locEnd": 229,
       "filePath": "src/dropdown/dropdown.stories.tsx",
       "meta": {}
     },
