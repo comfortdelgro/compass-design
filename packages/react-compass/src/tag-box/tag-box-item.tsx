@@ -69,9 +69,8 @@ const TagBoxItem = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
 
       inputRef?.current?.blur()
     }
-    if(e.key == "Escape" || e.keyCode == 27){
+    if (e.key == 'Escape' || e.keyCode == 27) {
       onBlur()
-
     }
   }
 
@@ -90,13 +89,11 @@ const TagBoxItem = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     }
   }, [value])
 
-
   const onBlur = () => {
     setInputValue(value)
     setEditable(false)
     caculateWidth(value, (w: number) => {
-      if(inputRef.current)
-        inputRef.current.style.width = `${w + 4}px`
+      if (inputRef.current) inputRef.current.style.width = `${w + 4}px`
     })
   }
 
@@ -109,9 +106,7 @@ const TagBoxItem = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
         onKeyDown={onKeyDown}
         onClick={onValueClick}
         onChange={onInputChange}
-
         onBlur={onBlur}
-
         style={{display: editable ? 'block' : 'none'}}
       />
       <span
