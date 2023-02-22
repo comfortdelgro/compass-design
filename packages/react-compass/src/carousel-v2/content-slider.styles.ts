@@ -6,8 +6,11 @@ export const StyledCarouselSlider = styled('div', {
   overflow: 'hidden',
   containerType: 'inline-size',
   containerName: 'contentSlider',
+  minWidth: '0',
+  minHeight: '0',
 
   '&.effect-slide': {
+    userSelect: 'none',
     '.content-slider-container': {
       overflow: 'hidden',
       display: 'flex',
@@ -15,6 +18,8 @@ export const StyledCarouselSlider = styled('div', {
     '.slider-scroller': {
       display: 'flex',
       transition: '$default',
+      touchAction: 'none',
+      minWidth: '0',
     },
     '.slider-slide': {
       position: 'relative',
@@ -26,6 +31,8 @@ export const StyledCarouselSlider = styled('div', {
 
   '.content-slider-container': {
     height: '512px',
+    minWidth: '0',
+    minHeight: '0',
   },
 
   '@container contentSlider (max-width: 1199px)': {
@@ -46,7 +53,7 @@ export const StyledCarouselSlider = styled('div', {
   '@container contentSlider (max-width: 768px)': {
     '.content-slider-container': {
       position: 'relative',
-      height: '412px',
+      height: 'auto',
     },
     '.content-slider-bottom-nav': {
       left: '20px',
@@ -128,7 +135,7 @@ export const StyledCarouselSliderMobile = styled('div', {
       inset: '60px',
     },
     '.slide-background': {
-      height: '412px',
+      height: '382px',
     },
     '.content-slider-bottom-nav': {
       top: 'calc(100% - 30px)',
@@ -199,8 +206,6 @@ export const StyledCarouselSliderContentItem = styled('div', {
   },
 
   '&.mobile-mode': {
-    flex: '1',
-    display: 'none',
     flexDirection: 'column',
     position: 'relative',
     '&.active': {
@@ -214,7 +219,6 @@ export const StyledCarouselSliderContentItem = styled('div', {
       position: 'relative',
       overflow: 'hidden',
       gap: '8px',
-      flex: 'unset',
       inset: 0,
     },
     '.slide-background': {
@@ -268,6 +272,7 @@ export const StyledCarouselSliderNav = styled('div', {
   cursor: 'pointer',
   borderRadius: '30px',
   zIndex: '2',
+  lineHeight: '0',
   '&:active': {
     background: 'rgba(125,125,125, 0.5)',
   },
