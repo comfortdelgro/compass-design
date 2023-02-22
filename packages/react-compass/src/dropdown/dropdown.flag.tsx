@@ -27,7 +27,7 @@ interface P<T = object> extends ComboBoxStateOptions<T>, StyledComponentProps {
   headerOnClick?: (e: unknown) => void
 }
 
-interface Props<T> extends Omit<P<T>, 'children'> {}
+type Props<T> = Omit<P<T>, 'children'>
 
 export type DropdownProps<T = object> = Props<T> & DropdownVariantProps
 
@@ -97,7 +97,7 @@ const PreDropdown = React.forwardRef<HTMLDivElement, P>((props, ref) => {
       <StyledFlag isEmpty={!inputProps.value} isErrored={!!isErrored}>
         {currentState && (
           <StyledFlagIcon>
-            <Flag iso={currentState['alpha-3'] as string} />
+            <Flag iso={currentState['alpha-3']} />
           </StyledFlagIcon>
         )}
         <input {...inputProps} ref={inputRef} />
