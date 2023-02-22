@@ -15,6 +15,7 @@ export const MultipleDropdowns: React.FC = () => {
         disabledKeys={['snake']}
         placeholder='Choose an animal'
         selectedKeys={value}
+        isRequired
         onSelectionChange={(k: 'all' | Set<Key>) =>
           setValue(k === 'all' ? k : [...k])
         }
@@ -57,7 +58,8 @@ export const MultipleDropdowns: React.FC = () => {
         disabledKeys={['snake']}
         placeholder='Choose an animal'
         isErrored
-        helperText='Error Message'
+        errorMessage='Error Message'
+        helperText='Helper Message'
       >
         <MultipleDropdown.Item
           leftIcon={<Icon icon={faExclamationTriangle} />}

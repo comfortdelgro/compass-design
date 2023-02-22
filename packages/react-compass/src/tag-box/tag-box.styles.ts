@@ -12,6 +12,10 @@ export const StyledBoxWrapper = styled('div', {
     fontSize: '$body3',
     fontWeight: '$semibold',
     display: 'inline-block',
+    span: {
+      marginRight: '$1',
+      color: '$danger',
+    },
   },
   variants: {
     labelPosition: {
