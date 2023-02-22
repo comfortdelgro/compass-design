@@ -1,6 +1,252 @@
 import {AriaButtonProps, useButton} from '@react-aria/button'
-import 'flag-icons/css/flag-icons.min.css'
 import React from 'react'
+import ADFlag from './flags/ad'
+import AEFlag from './flags/ae'
+import AFFlag from './flags/af'
+import AGFlag from './flags/ag'
+import AIFlag from './flags/ai'
+import ALFlag from './flags/al'
+import AMFlag from './flags/am'
+import AOFlag from './flags/ao'
+import AQFlag from './flags/aq'
+import ARFlag from './flags/ar'
+import ASFlag from './flags/as'
+import ATFlag from './flags/at'
+import AUFlag from './flags/au'
+import AWFlag from './flags/aw'
+import AXFlag from './flags/ax'
+import AZFlag from './flags/az'
+import BAFlag from './flags/ba'
+import BBFlag from './flags/bb'
+import BDFlag from './flags/bd'
+import BEFlag from './flags/be'
+import BFFlag from './flags/bf'
+import BGFlag from './flags/bg'
+import BHFlag from './flags/bh'
+import BIFlag from './flags/bi'
+import BJFlag from './flags/bj'
+import BLFlag from './flags/bl'
+import BMFlag from './flags/bm'
+import BNFlag from './flags/bn'
+import BOFlag from './flags/bo'
+import BQFlag from './flags/bq'
+import BRFlag from './flags/br'
+import BSFlag from './flags/bs'
+import BTFlag from './flags/bt'
+import BVFlag from './flags/bv'
+import BWFlag from './flags/bw'
+import BYFlag from './flags/by'
+import BZFlag from './flags/bz'
+import CAFlag from './flags/ca'
+import CCFlag from './flags/cc'
+import CDFlag from './flags/cd'
+import CFFlag from './flags/cf'
+import CGFlag from './flags/cg'
+import CHFlag from './flags/ch'
+import CIFlag from './flags/ci'
+import CKFlag from './flags/ck'
+import CLFlag from './flags/cl'
+import CMFlag from './flags/cm'
+import CNFlag from './flags/cn'
+import COFlag from './flags/co'
+import CRFlag from './flags/cr'
+import CUFlag from './flags/cu'
+import CVFlag from './flags/cv'
+import CWFlag from './flags/cw'
+import CXFlag from './flags/cx'
+import CYFlag from './flags/cy'
+import CZFlag from './flags/cz'
+import DEFlag from './flags/de'
+import DJFlag from './flags/dj'
+import DKFlag from './flags/dk'
+import DMFlag from './flags/dm'
+import DOFlag from './flags/do'
+import DZFlag from './flags/dz'
+import ECFlag from './flags/ec'
+import EEFlag from './flags/ee'
+import EGFlag from './flags/eg'
+import EHFlag from './flags/eh'
+import ERFlag from './flags/er'
+import ESFlag from './flags/es'
+import ETFlag from './flags/et'
+import FIFlag from './flags/fi'
+import FJFlag from './flags/fj'
+import FKFlag from './flags/fk'
+import FMFlag from './flags/fm'
+import FOFlag from './flags/fo'
+import FRFlag from './flags/fr'
+import GAFlag from './flags/ga'
+import GBFlag from './flags/gb'
+import GDFlag from './flags/gd'
+import GEFlag from './flags/ge'
+import GFFlag from './flags/gf'
+import GGFlag from './flags/gg'
+import GHFlag from './flags/gh'
+import GIFlag from './flags/gi'
+import GLFlag from './flags/gl'
+import GMFlag from './flags/gm'
+import GNFlag from './flags/gn'
+import GPFlag from './flags/gp'
+import GQFlag from './flags/gq'
+import GRFlag from './flags/gr'
+import GSFlag from './flags/gs'
+import GTFlag from './flags/gt'
+import GUFlag from './flags/gu'
+import GWFlag from './flags/gw'
+import GYFlag from './flags/gy'
+import HKFlag from './flags/hk'
+import HMFlag from './flags/hm'
+import HNFlag from './flags/hn'
+import HRFlag from './flags/hr'
+import HTFlag from './flags/ht'
+import HUFlag from './flags/hu'
+import IDFlag from './flags/id'
+import IEFlag from './flags/ie'
+import ILFlag from './flags/il'
+import IMFlag from './flags/im'
+import INFlag from './flags/in'
+import IOFlag from './flags/io'
+import IQFlag from './flags/iq'
+import IRFlag from './flags/ir'
+import ISFlag from './flags/is'
+import ITFlag from './flags/it'
+import JEFlag from './flags/je'
+import JMFlag from './flags/jm'
+import JOFlag from './flags/jo'
+import JPFlag from './flags/jp'
+import KEFlag from './flags/ke'
+import KGFlag from './flags/kg'
+import KHFlag from './flags/kh'
+import KIFlag from './flags/ki'
+import KMFlag from './flags/km'
+import KNFlag from './flags/kn'
+import KPFlag from './flags/kp'
+import KRFlag from './flags/kr'
+import KWFlag from './flags/kw'
+import KYFlag from './flags/ky'
+import KZFlag from './flags/kz'
+import LAFlag from './flags/la'
+import LBFlag from './flags/lb'
+import LCFlag from './flags/lc'
+import LIFlag from './flags/li'
+import LKFlag from './flags/lk'
+import LRFlag from './flags/lr'
+import LSFlag from './flags/ls'
+import LTFlag from './flags/lt'
+import LUFlag from './flags/lu'
+import LVFlag from './flags/lv'
+import LYFlag from './flags/ly'
+import MAFlag from './flags/ma'
+import MCFlag from './flags/mc'
+import MDFlag from './flags/md'
+import MEFlag from './flags/me'
+import MFFlag from './flags/mf'
+import MGFlag from './flags/mg'
+import MHFlag from './flags/mh'
+import MKFlag from './flags/mk'
+import MLFlag from './flags/ml'
+import MMFlag from './flags/mm'
+import MNFlag from './flags/mn'
+import MOFlag from './flags/mo'
+import MPFlag from './flags/mp'
+import MQFlag from './flags/mq'
+import MRFlag from './flags/mr'
+import MSFlag from './flags/ms'
+import MTFlag from './flags/mt'
+import MUFlag from './flags/mu'
+import MVFlag from './flags/mv'
+import MWFlag from './flags/mw'
+import MXFlag from './flags/mx'
+import MYFlag from './flags/my'
+import MZFlag from './flags/mz'
+import NAFlag from './flags/na'
+import NCFlag from './flags/nc'
+import NEFlag from './flags/ne'
+import NFFlag from './flags/nf'
+import NGFlag from './flags/ng'
+import NIFlag from './flags/ni'
+import NLFlag from './flags/nl'
+import NOFlag from './flags/no'
+import NPFlag from './flags/np'
+import NRFlag from './flags/nr'
+import NUFlag from './flags/nu'
+import NZFlag from './flags/nz'
+import OMFlag from './flags/om'
+import PAFlag from './flags/pa'
+import PEFlag from './flags/pe'
+import PFFlag from './flags/pf'
+import PGFlag from './flags/pg'
+import PHFlag from './flags/ph'
+import PKFlag from './flags/pk'
+import PLFlag from './flags/pl'
+import PMFlag from './flags/pm'
+import PNFlag from './flags/pn'
+import PRFlag from './flags/pr'
+import PSFlag from './flags/ps'
+import PTFlag from './flags/pt'
+import PWFlag from './flags/pw'
+import PYFlag from './flags/py'
+import QAFlag from './flags/qa'
+import REFlag from './flags/re'
+import ROFlag from './flags/ro'
+import RSFlag from './flags/rs'
+import RUFlag from './flags/ru'
+import RWFlag from './flags/rw'
+import SAFlag from './flags/sa'
+import SBFlag from './flags/sb'
+import SCFlag from './flags/sc'
+import SDFlag from './flags/sd'
+import SEFlag from './flags/se'
+import SGFlag from './flags/sg'
+import SHFlag from './flags/sh'
+import SIFlag from './flags/si'
+import SJFlag from './flags/sj'
+import SKFlag from './flags/sk'
+import SLFlag from './flags/sl'
+import SMFlag from './flags/sm'
+import SNFlag from './flags/sn'
+import SOFlag from './flags/so'
+import SRFlag from './flags/sr'
+import SSFlag from './flags/ss'
+import STFlag from './flags/st'
+import SVFlag from './flags/sv'
+import SXFlag from './flags/sx'
+import SYFlag from './flags/sy'
+import SZFlag from './flags/sz'
+import TCFlag from './flags/tc'
+import TDFlag from './flags/td'
+import TFFlag from './flags/tf'
+import TGFlag from './flags/tg'
+import THFlag from './flags/th'
+import TJFlag from './flags/tj'
+import TKFlag from './flags/tk'
+import TLFlag from './flags/tl'
+import TMFlag from './flags/tm'
+import TNFlag from './flags/tn'
+import TOFlag from './flags/to'
+import TRFlag from './flags/tr'
+import TTFlag from './flags/tt'
+import TVFlag from './flags/tv'
+import TWFlag from './flags/tw'
+import TZFlag from './flags/tz'
+import UAFlag from './flags/ua'
+import UGFlag from './flags/ug'
+import USFlag from './flags/us'
+import UYFlag from './flags/uy'
+import UZFlag from './flags/uz'
+import VAFlag from './flags/va'
+import VCFlag from './flags/vc'
+import VEFlag from './flags/ve'
+import VGFlag from './flags/vg'
+import VNFlag from './flags/vn'
+import VUFlag from './flags/vu'
+import WFFlag from './flags/wf'
+import WSFlag from './flags/ws'
+import YEFlag from './flags/ye'
+import YTFlag from './flags/yt'
+import ZAFlag from './flags/za'
+import ZMFlag from './flags/zm'
+import ZWFlag from './flags/zw'
 
 import {useDOMRef} from '../utils/use-dom-ref'
 
@@ -81,13 +327,6 @@ export const countries = [
     'alpha-3': 'AIA',
     'country-code': '660',
     'phone-code': '+1-264',
-  },
-  {
-    name: 'Antarctica',
-    'alpha-2': 'AQ',
-    'alpha-3': 'ATA',
-    'country-code': '010',
-    'phone-code': '+',
   },
   {
     name: 'Antigua and Barbuda',
@@ -1757,6 +1996,503 @@ export const countries = [
   },
 ]
 
-export const Flag = ({iso}: {iso: string}) => (
-  <span className={`fi fi-${iso.toLowerCase()}`} />
-)
+export const Flag = ({iso}: {iso: string}) => {
+  switch (iso) {
+    case 'AF':
+      return <AFFlag />
+    case 'AX':
+      return <AXFlag />
+    case 'AL':
+      return <ALFlag />
+    case 'DZ':
+      return <DZFlag />
+    case 'AS':
+      return <ASFlag />
+    case 'AD':
+      return <ADFlag />
+    case 'AO':
+      return <AOFlag />
+    case 'AI':
+      return <AIFlag />
+    case 'AQ':
+      return <AQFlag />
+    case 'AG':
+      return <AGFlag />
+    case 'AR':
+      return <ARFlag />
+    case 'AM':
+      return <AMFlag />
+    case 'AW':
+      return <AWFlag />
+    case 'AU':
+      return <AUFlag />
+    case 'AT':
+      return <ATFlag />
+    case 'AZ':
+      return <AZFlag />
+    case 'BS':
+      return <BSFlag />
+    case 'BH':
+      return <BHFlag />
+    case 'BD':
+      return <BDFlag />
+    case 'BB':
+      return <BBFlag />
+    case 'BY':
+      return <BYFlag />
+    case 'BE':
+      return <BEFlag />
+    case 'BZ':
+      return <BZFlag />
+    case 'BJ':
+      return <BJFlag />
+    case 'BM':
+      return <BMFlag />
+    case 'BT':
+      return <BTFlag />
+    case 'BO':
+      return <BOFlag />
+    case 'BQ':
+      return <BQFlag />
+    case 'BA':
+      return <BAFlag />
+    case 'BW':
+      return <BWFlag />
+    case 'BV':
+      return <BVFlag />
+    case 'BR':
+      return <BRFlag />
+    case 'IO':
+      return <IOFlag />
+    case 'BN':
+      return <BNFlag />
+    case 'BG':
+      return <BGFlag />
+    case 'BF':
+      return <BFFlag />
+    case 'BI':
+      return <BIFlag />
+    case 'CV':
+      return <CVFlag />
+    case 'KH':
+      return <KHFlag />
+    case 'CM':
+      return <CMFlag />
+    case 'CA':
+      return <CAFlag />
+    case 'KY':
+      return <KYFlag />
+    case 'CF':
+      return <CFFlag />
+    case 'TD':
+      return <TDFlag />
+    case 'CL':
+      return <CLFlag />
+    case 'CN':
+      return <CNFlag />
+    case 'CX':
+      return <CXFlag />
+    case 'CC':
+      return <CCFlag />
+    case 'CO':
+      return <COFlag />
+    case 'KM':
+      return <KMFlag />
+    case 'CG':
+      return <CGFlag />
+    case 'CD':
+      return <CDFlag />
+    case 'CK':
+      return <CKFlag />
+    case 'CR':
+      return <CRFlag />
+    case 'CI':
+      return <CIFlag />
+    case 'HR':
+      return <HRFlag />
+    case 'CU':
+      return <CUFlag />
+    case 'CW':
+      return <CWFlag />
+    case 'CY':
+      return <CYFlag />
+    case 'CZ':
+      return <CZFlag />
+    case 'DK':
+      return <DKFlag />
+    case 'DJ':
+      return <DJFlag />
+    case 'DM':
+      return <DMFlag />
+    case 'DO':
+      return <DOFlag />
+    case 'EC':
+      return <ECFlag />
+    case 'EG':
+      return <EGFlag />
+    case 'SV':
+      return <SVFlag />
+    case 'GQ':
+      return <GQFlag />
+    case 'ER':
+      return <ERFlag />
+    case 'EE':
+      return <EEFlag />
+    case 'SZ':
+      return <SZFlag />
+    case 'ET':
+      return <ETFlag />
+    case 'FK':
+      return <FKFlag />
+    case 'FO':
+      return <FOFlag />
+    case 'FJ':
+      return <FJFlag />
+    case 'FI':
+      return <FIFlag />
+    case 'FR':
+      return <FRFlag />
+    case 'GF':
+      return <GFFlag />
+    case 'PF':
+      return <PFFlag />
+    case 'TF':
+      return <TFFlag />
+    case 'GA':
+      return <GAFlag />
+    case 'GM':
+      return <GMFlag />
+    case 'GE':
+      return <GEFlag />
+    case 'DE':
+      return <DEFlag />
+    case 'GH':
+      return <GHFlag />
+    case 'GI':
+      return <GIFlag />
+    case 'GR':
+      return <GRFlag />
+    case 'GL':
+      return <GLFlag />
+    case 'GD':
+      return <GDFlag />
+    case 'GP':
+      return <GPFlag />
+    case 'GU':
+      return <GUFlag />
+    case 'GT':
+      return <GTFlag />
+    case 'GG':
+      return <GGFlag />
+    case 'GN':
+      return <GNFlag />
+    case 'GW':
+      return <GWFlag />
+    case 'GY':
+      return <GYFlag />
+    case 'HT':
+      return <HTFlag />
+    case 'HM':
+      return <HMFlag />
+    case 'VA':
+      return <VAFlag />
+    case 'HN':
+      return <HNFlag />
+    case 'HK':
+      return <HKFlag />
+    case 'HU':
+      return <HUFlag />
+    case 'IS':
+      return <ISFlag />
+    case 'IN':
+      return <INFlag />
+    case 'ID':
+      return <IDFlag />
+    case 'IR':
+      return <IRFlag />
+    case 'IQ':
+      return <IQFlag />
+    case 'IE':
+      return <IEFlag />
+    case 'IM':
+      return <IMFlag />
+    case 'IL':
+      return <ILFlag />
+    case 'IT':
+      return <ITFlag />
+    case 'JM':
+      return <JMFlag />
+    case 'JP':
+      return <JPFlag />
+    case 'JE':
+      return <JEFlag />
+    case 'JO':
+      return <JOFlag />
+    case 'KZ':
+      return <KZFlag />
+    case 'KE':
+      return <KEFlag />
+    case 'KI':
+      return <KIFlag />
+    case 'KP':
+      return <KPFlag />
+    case 'KR':
+      return <KRFlag />
+    case 'KW':
+      return <KWFlag />
+    case 'KG':
+      return <KGFlag />
+    case 'LA':
+      return <LAFlag />
+    case 'LV':
+      return <LVFlag />
+    case 'LB':
+      return <LBFlag />
+    case 'LS':
+      return <LSFlag />
+    case 'LR':
+      return <LRFlag />
+    case 'LY':
+      return <LYFlag />
+    case 'LI':
+      return <LIFlag />
+    case 'LT':
+      return <LTFlag />
+    case 'LU':
+      return <LUFlag />
+    case 'MO':
+      return <MOFlag />
+    case 'MG':
+      return <MGFlag />
+    case 'MW':
+      return <MWFlag />
+    case 'MY':
+      return <MYFlag />
+    case 'MV':
+      return <MVFlag />
+    case 'ML':
+      return <MLFlag />
+    case 'MT':
+      return <MTFlag />
+    case 'MH':
+      return <MHFlag />
+    case 'MQ':
+      return <MQFlag />
+    case 'MR':
+      return <MRFlag />
+    case 'MU':
+      return <MUFlag />
+    case 'YT':
+      return <YTFlag />
+    case 'MX':
+      return <MXFlag />
+    case 'FM':
+      return <FMFlag />
+    case 'MD':
+      return <MDFlag />
+    case 'MC':
+      return <MCFlag />
+    case 'MN':
+      return <MNFlag />
+    case 'ME':
+      return <MEFlag />
+    case 'MS':
+      return <MSFlag />
+    case 'MA':
+      return <MAFlag />
+    case 'MZ':
+      return <MZFlag />
+    case 'MM':
+      return <MMFlag />
+    case 'NA':
+      return <NAFlag />
+    case 'NR':
+      return <NRFlag />
+    case 'NP':
+      return <NPFlag />
+    case 'NL':
+      return <NLFlag />
+    case 'NC':
+      return <NCFlag />
+    case 'NZ':
+      return <NZFlag />
+    case 'NI':
+      return <NIFlag />
+    case 'NE':
+      return <NEFlag />
+    case 'NG':
+      return <NGFlag />
+    case 'NU':
+      return <NUFlag />
+    case 'NF':
+      return <NFFlag />
+    case 'MK':
+      return <MKFlag />
+    case 'MP':
+      return <MPFlag />
+    case 'NO':
+      return <NOFlag />
+    case 'OM':
+      return <OMFlag />
+    case 'PK':
+      return <PKFlag />
+    case 'PW':
+      return <PWFlag />
+    case 'PS':
+      return <PSFlag />
+    case 'PA':
+      return <PAFlag />
+    case 'PG':
+      return <PGFlag />
+    case 'PY':
+      return <PYFlag />
+    case 'PE':
+      return <PEFlag />
+    case 'PH':
+      return <PHFlag />
+    case 'PN':
+      return <PNFlag />
+    case 'PL':
+      return <PLFlag />
+    case 'PT':
+      return <PTFlag />
+    case 'PR':
+      return <PRFlag />
+    case 'QA':
+      return <QAFlag />
+    case 'RE':
+      return <REFlag />
+    case 'RO':
+      return <ROFlag />
+    case 'RU':
+      return <RUFlag />
+    case 'RW':
+      return <RWFlag />
+    case 'BL':
+      return <BLFlag />
+    case 'SH':
+      return <SHFlag />
+    case 'KN':
+      return <KNFlag />
+    case 'LC':
+      return <LCFlag />
+    case 'MF':
+      return <MFFlag />
+    case 'PM':
+      return <PMFlag />
+    case 'VC':
+      return <VCFlag />
+    case 'WS':
+      return <WSFlag />
+    case 'SM':
+      return <SMFlag />
+    case 'ST':
+      return <STFlag />
+    case 'SA':
+      return <SAFlag />
+    case 'SN':
+      return <SNFlag />
+    case 'RS':
+      return <RSFlag />
+    case 'SC':
+      return <SCFlag />
+    case 'SL':
+      return <SLFlag />
+    case 'SG':
+      return <SGFlag />
+    case 'SX':
+      return <SXFlag />
+    case 'SK':
+      return <SKFlag />
+    case 'SI':
+      return <SIFlag />
+    case 'SB':
+      return <SBFlag />
+    case 'SO':
+      return <SOFlag />
+    case 'ZA':
+      return <ZAFlag />
+    case 'GS':
+      return <GSFlag />
+    case 'SS':
+      return <SSFlag />
+    case 'ES':
+      return <ESFlag />
+    case 'LK':
+      return <LKFlag />
+    case 'SD':
+      return <SDFlag />
+    case 'SR':
+      return <SRFlag />
+    case 'SJ':
+      return <SJFlag />
+    case 'SE':
+      return <SEFlag />
+    case 'CH':
+      return <CHFlag />
+    case 'SY':
+      return <SYFlag />
+    case 'TW':
+      return <TWFlag />
+    case 'TJ':
+      return <TJFlag />
+    case 'TZ':
+      return <TZFlag />
+    case 'TH':
+      return <THFlag />
+    case 'TL':
+      return <TLFlag />
+    case 'TG':
+      return <TGFlag />
+    case 'TK':
+      return <TKFlag />
+    case 'TO':
+      return <TOFlag />
+    case 'TT':
+      return <TTFlag />
+    case 'TN':
+      return <TNFlag />
+    case 'TR':
+      return <TRFlag />
+    case 'TM':
+      return <TMFlag />
+    case 'TC':
+      return <TCFlag />
+    case 'TV':
+      return <TVFlag />
+    case 'UG':
+      return <UGFlag />
+    case 'UA':
+      return <UAFlag />
+    case 'AE':
+      return <AEFlag />
+    case 'GB':
+      return <GBFlag />
+    case 'US':
+      return <USFlag />
+    case 'UY':
+      return <UYFlag />
+    case 'UZ':
+      return <UZFlag />
+    case 'VU':
+      return <VUFlag />
+    case 'VE':
+      return <VEFlag />
+    case 'VN':
+      return <VNFlag />
+    case 'VG':
+      return <VGFlag />
+    case 'WF':
+      return <WFFlag />
+    case 'EH':
+      return <EHFlag />
+    case 'YE':
+      return <YEFlag />
+    case 'ZM':
+      return <ZMFlag />
+    case 'ZW':
+      return <ZWFlag />
+    default:
+      return null
+  }
+}
