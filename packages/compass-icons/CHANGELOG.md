@@ -1,5 +1,18 @@
 # @comfortdelgro/compass-icons
 
+## 0.9.0
+
+### Minor Changes
+
+- ce4513b: compass-icons: add mission country flags, fix build.
+  react-compass: add html attributes props to components, add prefix for textfield, set auto height for toast title, add otp input component, fix datepicker skipping 1 month when next clicked, error state for dropdown, editable tag
+
+## 0.8.0
+
+### Minor Changes
+
+- aa572d8: compass-icon now can be imported the whole package, table multi sort is fixed, date picker maxValue is now useable
+
 ## 0.7.0
 
 ### Minor Changes

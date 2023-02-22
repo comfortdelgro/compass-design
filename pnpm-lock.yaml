@@ -26,7 +26,7 @@ importers:
 
   apps/docs:
     specifiers:
-      '@comfortdelgro/compass-icons': workspace:^0.7.0
+      '@comfortdelgro/compass-icons': workspace:^0.9.0
       '@comfortdelgro/react-compass': workspace:*
       '@fortawesome/free-brands-svg-icons': ^6.2.1
       '@fortawesome/free-regular-svg-icons': ^6.2.0
@@ -786,14 +786,6 @@ packages:
     dev: true
     optional: true
 
-  /@comfortdelgro/compass-icons/0.9.0_react@18.2.0:
-    resolution: {integrity: sha512-Swedflolg5iZVaRvHsHPXdcBIb/w9jee5rY8W1dEFCWRPt+UEVcDzMYqmnTVcd5b1q2vYIiLiEa7hwTVNmUW5Q==}
-    dependencies:
-      '@react-aria/i18n': 3.6.3_react@18.2.0
-    transitivePeerDependencies:
-      - react
-    dev: false
-
   /@comfortdelgro/eslint-config/1.0.2_ztlnmuobvwn63gpuifwwrjpt4i:
     resolution: {integrity: sha512-oYzdVCbguqbpAaIieGsyoNmHz1fr1Gw8Yqq8RZpDiJQ7UQhWM0/bloGQTbrE55xP+X5JV0GXu9gHb4n28tt9VA==}
     peerDependencies:
@@ -811,6 +803,7 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+    optional: true
 
   /@comfortdelgro/prettier-config/1.0.2_silln3pw57har7jydmecgzoypa:
     resolution: {integrity: sha512-QJAp3A0x8oyaU+fTBVmHEJ/o5YaRpZ0Qagzx5MR5pjOieAneQ+bBFPPctlEdlb4seTFdbZG0PuAH3tgCPv8qmg==}
@@ -911,6 +904,7 @@ packages:
       esbuild: 0.17.8
       source-map-support: 0.5.21
     dev: true
+    optional: true
 
   /@esbuild-kit/esm-loader/2.5.5:
     resolution: {integrity: sha512-Qwfvj/qoPbClxCRNuac1Du01r9gvNOT+pMYtJDapfB1eoGN1YlJ1BixLyL9WVENRx5RXgNLdfYdx/CuswlGhMw==}
@@ -918,6 +912,7 @@ packages:
       '@esbuild-kit/core-utils': 3.1.0
       get-tsconfig: 4.4.0
     dev: true
+    optional: true
 
   /@esbuild/android-arm/0.15.18:
     resolution: {integrity: sha512-5GT+kcs2WVGjVs7+boataCkO5Fg0y4kCjzkB5bAip7H4jfnOS3dA6KPiww9W1OEKTKeAcUVhdZGvgI65OXmUnw==}

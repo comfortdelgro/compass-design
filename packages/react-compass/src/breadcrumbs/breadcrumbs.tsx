@@ -15,7 +15,9 @@ interface Props extends AriaBreadcrumbsProps, StyledComponentProps {
   isCurrent?: (item: number) => boolean
 }
 
-export type BreadcrumbsProps = Props & BreadcrumbsVariantProps
+export type BreadcrumbsProps = Props &
+  BreadcrumbsVariantProps &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const Breadcrumbs = React.forwardRef<HTMLDivElement, BreadcrumbsProps>(
   (props, ref) => {
@@ -35,8 +37,18 @@ const Breadcrumbs = React.forwardRef<HTMLDivElement, BreadcrumbsProps>(
     const {navProps} = useBreadcrumbs(ariaSafeProps)
     const items = React.Children.toArray(children)
 
+    const htmlProps = {...ariaSafeProps} as Omit<
+      React.HTMLAttributes<HTMLDivElement>,
+      keyof Props
+    >
+
     return (
-      <StyledBreadcrumbs css={css} ref={breadcrumbsRef} {...navProps}>
+      <StyledBreadcrumbs
+        css={css}
+        ref={breadcrumbsRef}
+        {...navProps}
+        {...htmlProps}
+      >
         <ol>
           {items.map((item, i) => (
             <React.Fragment key={i}>

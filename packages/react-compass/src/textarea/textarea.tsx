@@ -20,7 +20,9 @@ interface Props extends AriaTextFieldProps, StyledComponentProps {
   wordCount?: boolean
 }
 
-export type TextareaProps = Props & TextareaVariantProps
+export type TextareaProps = Props &
+  TextareaVariantProps &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   (props, ref) => {
@@ -51,8 +53,13 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       textareaRef,
     )
 
+    const htmlProps = {...ariaSafeProps} as Omit<
+      React.HTMLAttributes<HTMLDivElement>,
+      keyof Props
+    >
+
     return (
-      <StyledTextareaWrapper css={css}>
+      <StyledTextareaWrapper css={css} {...htmlProps}>
         <StyledTextFieldLabel {...labelProps} disabled={!!disabled}>
           {label}
         </StyledTextFieldLabel>

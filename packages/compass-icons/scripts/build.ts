@@ -163,8 +163,7 @@ let indexFileContent: {[key: string]: string} = {}
 for (const iconName in exported.icons) {
   const icon = exported.icons[iconName]
   const des = dimensions[iconName]
-  const svg = `<svg width="1em" height="1em" viewBox="0 0 ${des.width} ${des.height}">${icon.body}</svg>`
-
+  const svg = `<svg width="1em" height="1em" viewBox="${des.left} ${des.top} ${des.width} ${des.height}">${icon.body}</svg>`
   indexFileContent[iconName] = svg
 }
 
