@@ -43,7 +43,6 @@ export const StyledIcon = styled('div', {
   overflow: 'hidden',
 })
 
-
 export const StyledFlag = styled('div', {
   display: 'flex',
   alignItems: 'center',
@@ -55,7 +54,7 @@ export const StyledFlag = styled('div', {
   svg: {
     width: '$6',
     height: '$6',
-  }
+  },
 })
 
 export const StyledColor = styled('div', {
