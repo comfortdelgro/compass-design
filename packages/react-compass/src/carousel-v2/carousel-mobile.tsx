@@ -73,6 +73,7 @@ const CarouselMobile = React.forwardRef<HTMLDivElement, CarouselMobileProps>(
           autoSwitch={autoSwitch}
           navigationButtonType={navigationButtonType}
           useDotIndicator={useDotIndicator}
+          effect='slide'
           className={`current-slide-buttons-${generateButtonRangeClassName()}`}
         >
           {data.map((dataItem: CarouselSliderItem, index: number) => (
@@ -92,6 +93,7 @@ const CarouselMobile = React.forwardRef<HTMLDivElement, CarouselMobileProps>(
                 <StyledMobileSlideBackground
                   className='slide-background'
                   src={dataItem.image}
+                  draggable={false}
                 />
                 <StyledSlideBody
                   className={`slide-body ${

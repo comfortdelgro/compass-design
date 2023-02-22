@@ -29,6 +29,8 @@ export const StyledDropdown = styled('div', {
   overflow: 'hidden',
   borderRadius: '$md',
   position: 'relative',
+  display: 'flex',
+  alignItems: 'center',
   zIndex: 1,
   input: {
     boxSizing: 'border-box',
@@ -68,6 +70,83 @@ export const StyledDropdown = styled('div', {
     isEmpty: {
       true: {
         input: {
+          '&::placeholder': {
+            color: '#B4B4B4',
+            fontSize: '$label1',
+            fontWeight: '$semibold',
+          },
+        },
+      },
+    },
+    isErrored: {
+      true: {
+        borderColor: '$danger',
+        borderWidth: 2,
+        input: {
+          '&:focus': {
+            borderColor: '$danger',
+            outlineColor: '$danger',
+          },
+          '&:focus-within': {
+            borderColor: '$danger',
+            outlineColor: '$danger',
+          },
+        },
+      },
+    },
+
+  },
+})
+
+export const StyledFlag = styled('div', {
+  width: '100%',
+  border: '1px solid #E6E6E6',
+  background: '#FFFFFF',
+  overflow: 'hidden',
+  borderRadius: '$md',
+  position: 'relative',
+  display: 'flex',
+  alignItems: 'center',
+  zIndex: 1,
+  input: {
+    boxSizing: 'border-box',
+    background: '#FFFFFF',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
+    overflow: 'hidden',
+    fontSize: '$label1',
+    fontWeight: '$semibold',
+    width: '100%',
+    height: '$11',
+    flexGrow: 1,
+    border: 'none',
+    padding: '$3 $11 $3 $12',
+    margin: 0,
+  },
+  button: {
+    position: 'absolute',
+    cursor: 'pointer',
+    top: '50%',
+    right: '$3',
+    transform: 'translateY(-50%)',
+    width: '$6',
+    height: '$6',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 0,
+    border: 'none',
+    background: 'transparent',
+    svg: {
+      width: '$4',
+      height: '$4',
+    },
+  },
+  variants: {
+    isEmpty: {
+      true: {
+        input: {
+          padding: '$3 $11 $3 $4',
           '&::placeholder': {
             color: '#B4B4B4',
             fontSize: '$label1',
@@ -155,6 +234,22 @@ export const StyledSelect = styled('div', {
       },
     },
   },
+})
+
+export const StyledFlagIcon = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  left: '$3',
+  flexShrink: 0,
+  width: '$6',
+  height: '$6',
+  overflow: 'hidden',
+  position: 'absolute',
+  svg: {
+    width: '$6',
+    height: '$6',
+  }
 })
 
 export const StyledPopover = styled('div', {

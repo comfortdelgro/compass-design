@@ -17,7 +17,6 @@ import Popover from './popover/combox'
 import {Button, Icon} from './utils'
 
 interface Props<T> extends ComboBoxStateOptions<T>, StyledComponentProps {
-  searchable?: boolean
   isLoading?: boolean
   icon?: React.ReactNode
   isErrored?: boolean
