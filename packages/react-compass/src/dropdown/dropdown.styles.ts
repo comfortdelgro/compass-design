@@ -94,7 +94,6 @@ export const StyledDropdown = styled('div', {
         },
       },
     },
-
   },
 })
 
@@ -249,7 +248,7 @@ export const StyledFlagIcon = styled('div', {
   svg: {
     width: '$6',
     height: '$6',
-  }
+  },
 })
 
 export const StyledPopover = styled('div', {

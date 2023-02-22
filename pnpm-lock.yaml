@@ -198,7 +198,6 @@ importers:
       cypress: ^12.1.0
       eslint: ^8.25.0
       execa: ^6.1.0
-      flag-icons: ^6.6.6
       framer-motion: ^7.6.1
       listr: ^0.14.3
       prettier: ^2.7.1
@@ -271,7 +270,6 @@ importers:
       '@stitches/react': 1.2.8_react@18.2.0
       '@tanstack/react-table': 8.7.9_biqbaboplfbrettd7655fr4n2y
       chart.js: 3.9.1
-      flag-icons: 6.6.6
       react-chartjs-2: 4.3.1_2unjvz6v6rskedwoxtmbfw2rje
     devDependencies:
       '@comfortdelgro/eslint-config': 1.0.2_ztlnmuobvwn63gpuifwwrjpt4i
@@ -6355,10 +6353,6 @@ packages:
       micromatch: 4.0.5
       pkg-dir: 4.2.0
     dev: true
-
-  /flag-icons/6.6.6:
-    resolution: {integrity: sha512-4lHDKxldnQ7q617pf9Dx9nAetT+9zcMpUexbRrc9kjLw9KJgZ83zA5Dky3Vv7ZDzUjAiZ46x/cy5P0HnEnqA2A==}
-    dev: false
 
   /flat-cache/3.0.4:
     resolution: {integrity: sha512-dm9s5Pw7Jc0GvMYbshN6zchCA9RgQlzzEZX3vylR9IqFfS8XciblUXOKfW6SiuJ0e13eDYZoZV5wdrev7P3Nwg==}

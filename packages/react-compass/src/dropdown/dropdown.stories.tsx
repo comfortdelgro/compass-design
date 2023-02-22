@@ -8,7 +8,7 @@ export const Flag: React.FC = () => {
   return (
     <Column>
       <h3>Flag</h3>
-      <Dropdown.Flag label='List of country' placeholder='Choose a country' keyType='phone-code' />
+      <Dropdown.Flag label='List of country' placeholder='Choose a country' />
     </Column>
   )
 }
