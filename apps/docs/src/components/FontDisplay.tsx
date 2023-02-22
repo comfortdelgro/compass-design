@@ -5,6 +5,7 @@ interface Props {
   family: string
 
   weight: keyof typeof theme['fontWeights']
+
   color: string
 }
 

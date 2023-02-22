@@ -66,10 +66,12 @@ const TagBoxItem = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     const value = (e.target as HTMLInputElement).value
     if (value !== '' && e.key === 'Enter') {
       onEdit?.(id, value)
+
       inputRef?.current?.blur()
     }
     if(e.key == "Escape" || e.keyCode == 27){
       onBlur()
+
     }
   }
 
@@ -87,6 +89,7 @@ const TagBoxItem = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
       })
     }
   }, [value])
+
 
   const onBlur = () => {
     setInputValue(value)
@@ -106,7 +109,9 @@ const TagBoxItem = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
         onKeyDown={onKeyDown}
         onClick={onValueClick}
         onChange={onInputChange}
+
         onBlur={onBlur}
+
         style={{display: editable ? 'block' : 'none'}}
       />
       <span
