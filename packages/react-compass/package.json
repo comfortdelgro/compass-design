@@ -92,6 +92,7 @@
     "@stitches/react": "^1.2.8",
     "@tanstack/react-table": "^8.7.6",
     "chart.js": "^3.9.1",
+    "flag-icons": "^6.6.6",
     "react-chartjs-2": "^4.3.1"
   },
   "devDependencies": {

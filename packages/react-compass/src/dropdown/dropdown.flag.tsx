@@ -97,7 +97,7 @@ const PreDropdown = React.forwardRef<HTMLDivElement, P>((props, ref) => {
       <StyledFlag isEmpty={!inputProps.value} isErrored={!!isErrored}>
         {currentState && (
           <StyledFlagIcon>
-            <Flag iso={currentState['alpha-3']} />
+            <Flag iso={currentState['alpha-2']} />
           </StyledFlagIcon>
         )}
         <input {...inputProps} ref={inputRef} />
