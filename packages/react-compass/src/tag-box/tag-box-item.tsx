@@ -66,6 +66,10 @@ const TagBoxItem = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     const value = (e.target as HTMLInputElement).value
     if (value !== '' && e.key === 'Enter') {
       onEdit?.(id, value)
+      inputRef?.current?.blur()
+    }
+    if(e.key == "Escape" || e.keyCode == 27){
+      onBlur()
     }
   }
 
@@ -84,22 +88,14 @@ const TagBoxItem = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     }
   }, [value])
 
-  React.useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (
-        tagItemRef.current &&
-        !tagItemRef?.current?.contains(event.target as Node)
-      ) {
-        event.preventDefault()
-        setInputValue(value)
-        setEditable(false)
-      }
-    }
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [tagItemRef])
+  const onBlur = () => {
+    setInputValue(value)
+    setEditable(false)
+    caculateWidth(value, (w: number) => {
+      if(inputRef.current)
+        inputRef.current.style.width = `${w + 4}px`
+    })
+  }
 
   return (
     <StyledItem isDisabled={isDisabled} isError={isError} ref={tagItemRef}>
@@ -110,6 +106,7 @@ const TagBoxItem = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
         onKeyDown={onKeyDown}
         onClick={onValueClick}
         onChange={onInputChange}
+        onBlur={onBlur}
         style={{display: editable ? 'block' : 'none'}}
       />
       <span
