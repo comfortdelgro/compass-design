@@ -198,6 +198,7 @@ importers:
       cypress: ^12.1.0
       eslint: ^8.25.0
       execa: ^6.1.0
+      flag-icons: ^6.6.6
       framer-motion: ^7.6.1
       listr: ^0.14.3
       prettier: ^2.7.1
@@ -209,7 +210,7 @@ importers:
       typescript: ^4.8.4
       vite: ^3.2.5
     dependencies:
-      '@comfortdelgro/compass-icons': 0.9.0_react@18.2.0
+      '@comfortdelgro/compass-icons': link:../compass-icons
       '@contentful/rich-text-html-renderer': 16.0.2
       '@contentful/rich-text-react-renderer': 15.16.2_biqbaboplfbrettd7655fr4n2y
       '@contentful/rich-text-types': 16.0.2
@@ -270,6 +271,7 @@ importers:
       '@stitches/react': 1.2.8_react@18.2.0
       '@tanstack/react-table': 8.7.9_biqbaboplfbrettd7655fr4n2y
       chart.js: 3.9.1
+      flag-icons: 6.6.6
       react-chartjs-2: 4.3.1_2unjvz6v6rskedwoxtmbfw2rje
     devDependencies:
       '@comfortdelgro/eslint-config': 1.0.2_ztlnmuobvwn63gpuifwwrjpt4i
@@ -785,14 +787,6 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
-
-  /@comfortdelgro/compass-icons/0.9.0_react@18.2.0:
-    resolution: {integrity: sha512-Swedflolg5iZVaRvHsHPXdcBIb/w9jee5rY8W1dEFCWRPt+UEVcDzMYqmnTVcd5b1q2vYIiLiEa7hwTVNmUW5Q==}
-    dependencies:
-      '@react-aria/i18n': 3.6.3_react@18.2.0
-    transitivePeerDependencies:
-      - react
-    dev: false
 
   /@comfortdelgro/eslint-config/1.0.2_ztlnmuobvwn63gpuifwwrjpt4i:
     resolution: {integrity: sha512-oYzdVCbguqbpAaIieGsyoNmHz1fr1Gw8Yqq8RZpDiJQ7UQhWM0/bloGQTbrE55xP+X5JV0GXu9gHb4n28tt9VA==}
@@ -6361,6 +6355,10 @@ packages:
       micromatch: 4.0.5
       pkg-dir: 4.2.0
     dev: true
+
+  /flag-icons/6.6.6:
+    resolution: {integrity: sha512-4lHDKxldnQ7q617pf9Dx9nAetT+9zcMpUexbRrc9kjLw9KJgZ83zA5Dky3Vv7ZDzUjAiZ46x/cy5P0HnEnqA2A==}
+    dev: false
 
   /flat-cache/3.0.4:
     resolution: {integrity: sha512-dm9s5Pw7Jc0GvMYbshN6zchCA9RgQlzzEZX3vylR9IqFfS8XciblUXOKfW6SiuJ0e13eDYZoZV5wdrev7P3Nwg==}
