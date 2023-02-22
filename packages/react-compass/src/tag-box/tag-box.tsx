@@ -34,6 +34,7 @@ interface Props extends LabelAriaProps, StyledComponentProps {
   icon?: React.ReactNode
   helperText?: string
   isErrored?: boolean
+  isRequired?: boolean
   errorMessage?: string
   children?: React.ReactNode
   onAdd?: (value: string) => void

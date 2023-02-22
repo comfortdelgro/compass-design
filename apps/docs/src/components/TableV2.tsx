@@ -1,3 +1,4 @@
+
 import {
   faDashboard,
   faFileLines,
@@ -253,3 +254,4 @@ export const ReactTableStory: React.FC = () => {
     </div>
   )
 }
+

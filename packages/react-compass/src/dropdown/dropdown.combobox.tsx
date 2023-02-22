@@ -9,9 +9,7 @@ import {
   StyledDropdown,
   StyledDropdownWrapper,
   StyledLoading,
-
   StyledTextFieldHelperText,
-
 } from './dropdown.styles'
 import DropdownItem from './item'
 import ListBox from './list-box/combox'
@@ -19,7 +17,6 @@ import Popover from './popover/combox'
 import {Button, Icon} from './utils'
 
 interface Props<T> extends ComboBoxStateOptions<T>, StyledComponentProps {
-  searchable?: boolean
   isLoading?: boolean
   icon?: React.ReactNode
   isErrored?: boolean

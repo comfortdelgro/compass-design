@@ -40,15 +40,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       ...ariaSafeProps
     } = props
 
-    const componentProps = {className}
-
-    const htmlProps = {...ariaSafeProps} as Omit<
-      React.HTMLAttributes<HTMLButtonElement>,
-      keyof Props
-    >
-
     const buttonRef = useDOMRef<HTMLButtonElement>(ref)
-    let buttonProps = {}
+
+    const buttonProps = useButton(ariaSafeProps, buttonRef).buttonProps
 
     const variantProps = {
       variant,
@@ -56,36 +50,31 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       fullWidth,
       loading,
     } as ButtonVariantProps
-    if (!loading) {
-      buttonProps = useButton(ariaSafeProps, buttonRef).buttonProps
+
+    const componentProps = {
+      className,
+      ...variantProps,
+      ...buttonProps,
+      ...ariaSafeProps,
     }
+
     return (
-      <StyledButton
-        /** Stitches related props, such as `css` and `as` */
-        css={css}
-        /** React related props */
-        ref={buttonRef}
-        /**
-         * 1. Aria props first, e.g. aria attributes, events, etc.
-         * 2. Then component props, e.g. className, data-attributes, etc.
-         * 3. Then variant props at last, to make sure we have styles even in case of clash.
-         */
-        {...buttonProps}
-        {...componentProps}
-        {...variantProps}
-        {...htmlProps}
-      >
-        <StyledLoading
-          // make sure the loading indicator isn't visible to screen readers
-          hidden={!loading}
-          aria-hidden={!loading}
-        >
-          <div className='dots'>
-            <i />
-            <i />
-            <i />
-          </div>
-        </StyledLoading>
+      <StyledButton {...componentProps}>
+        {loading ? (
+          <StyledLoading
+            // make sure the loading indicator isn't visible to screen readers
+            hidden={!loading}
+            aria-hidden={!loading}
+          >
+            <div className='dots'>
+              <i />
+              <i />
+              <i />
+            </div>
+          </StyledLoading>
+        ) : (
+          <></>
+        )}
 
         <StyledButtonContent>
           {leftIcon || (fullWidth && rightIcon) ? (
