@@ -1,5 +1,11 @@
 # @comfortdelgro/compass-icons
 
+## 0.12.0
+
+### Minor Changes
+
+- bfd95f0: Fix build
+
 ## 0.11.0
 
 ### Minor Changes
