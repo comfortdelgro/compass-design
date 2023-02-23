@@ -24,7 +24,7 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
     // children
     children,
     // ComponentProps
-    onClose,
+    // onClose,
     // VariantProps
     variant = 'confirmation',
     // html element props

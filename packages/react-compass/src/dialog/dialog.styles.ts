@@ -15,7 +15,6 @@ export const StyledDialogIconContainer = styled('div', {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  marginBottom: '$4',
   '& *': {
     height: '100%',
   },
@@ -31,8 +30,6 @@ export const StyledDialogTitle = styled('h3', {
 
   //title
   width: '100%',
-  height: '32.143%',
-  marginBottom: '$4',
   fontFamily: '$sans',
   fontWeight: '$semibold',
   fontSize: '$header3',
@@ -49,9 +46,8 @@ export const StyledDialogDescription = styled('p', {
   padding: '0px',
 
   //title
+  flexGrow: 1,
   width: '100%',
-  height: '10.124%',
-  marginBottom: '$6',
   fontFamily: '$sans',
   fontWeight: '$normal',
   fontSize: '$body2',
@@ -69,7 +65,6 @@ export const StyledDialogActionsContainer = styled('div', {
 
   // container
   width: '100%',
-  height: '17.857%',
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'flex-end',
@@ -103,12 +98,14 @@ export const StyledDialog = styled('div', {
 
   // dialog container
   width: '$120',
-  minHeight: '$56',
   padding: '$4',
   backgroundColor: '$background',
   boxShadow:
     '0px 0.6px 1.8px rgba(0, 0, 0, 0.1), 0px 3.2px 7.2px rgba(0, 0, 0, 0.13)',
 
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '$4',
   borderRadius: '$lg',
   position: 'fixed',
   top: '50%',
