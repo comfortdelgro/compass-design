@@ -19,6 +19,10 @@ export const StyledDropdownWrapper = styled('div', {
     marginBottom: '$2',
     display: 'inline-block',
     width: '100%',
+    span: {
+      marginRight: '$1',
+      color: '$danger',
+    },
   },
 })
 
