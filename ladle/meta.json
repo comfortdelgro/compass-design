@@ -630,8 +630,8 @@
       "levels": [
         "Popover"
       ],
-      "locStart": 43,
-      "locEnd": 194,
+      "locStart": 24,
+      "locEnd": 326,
       "filePath": "src/popover/popover.stories.tsx",
       "meta": {}
     },
@@ -875,23 +875,13 @@
       "filePath": "src/textarea/textarea.stories.tsx",
       "meta": {}
     },
-    "textfield--select": {
-      "name": "Select",
-      "levels": [
-        "Textfield"
-      ],
-      "locStart": 9,
-      "locEnd": 23,
-      "filePath": "src/textfield/textfield.stories.tsx",
-      "meta": {}
-    },
     "textfield--variants": {
       "name": "Variants",
       "levels": [
         "Textfield"
       ],
       "locStart": 25,
-      "locEnd": 108,
+      "locEnd": 112,
       "filePath": "src/textfield/textfield.stories.tsx",
       "meta": {}
     },
