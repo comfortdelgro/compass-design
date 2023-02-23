@@ -1,4 +1,3 @@
-import Menu from '@comfortdelgro/compass-icons/react/menu'
 import Button from '@comfortdelgro/react-compass/button'
 import Dropdown from '@comfortdelgro/react-compass/dropdown'
 import Popover, {PopoverDirection} from '@comfortdelgro/react-compass/popover'
@@ -23,7 +22,7 @@ const SampleTopPopover = () => {
 }
 
 export const Popovers = () => {
-  const [direction, setDirection] = useState<PopoverDirection>('bottom-right')
+  const [direction, setDirection] = useState<PopoverDirection>('bottom-left')
   const [isLeftOpen, setIsLeftOpen] = useState(false)
   const [isRightOpen, setIsRightOpen] = useState(false)
 
@@ -48,8 +47,8 @@ export const Popovers = () => {
           onSelectionChange={selectDirection}
           selectedKey={direction}
         >
-          <Dropdown.Item key='bottom-right'>bottom-right</Dropdown.Item>
           <Dropdown.Item key='bottom-left'>bottom-left</Dropdown.Item>
+          <Dropdown.Item key='bottom-right'>bottom-right</Dropdown.Item>
           <Dropdown.Item key='bottom-center'>bottom-center</Dropdown.Item>
           <Dropdown.Item key='top-right'>top-right</Dropdown.Item>
           <Dropdown.Item key='top-left'>top-left</Dropdown.Item>
@@ -80,7 +79,9 @@ export const Popovers = () => {
         <Popover
           isOpen={isRightOpen}
           anchor={
-            <Menu onClick={openRightPopover} style={{cursor: 'pointer'}} />
+            <Button variant='secondary' onPress={openRightPopover}>
+              Open
+            </Button>
           }
           direction={direction}
           onClose={() => {

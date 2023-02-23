@@ -54,7 +54,7 @@ export const StyledFlag = styled('div', {
   svg: {
     width: '$6',
     height: '$6',
-  },
+  }
 })
 
 export const StyledColor = styled('div', {
