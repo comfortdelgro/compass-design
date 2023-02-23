@@ -44,14 +44,6 @@ const reactOutput = './react/'
 const iconSet = await importDirectory(input, {prefix})
 // Saving width, height, left, right of svg
 const dimensions = []
-const myPreset = [
-  {
-    name: 'preset-default',
-    params: {
-      cleanupIDs: false,
-    },
-  },
-]
 // Validate, clean up, fix palette and optimise
 await iconSet.forEach(async (name, type) => {
   if (type !== 'icon') {
