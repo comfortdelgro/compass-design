@@ -5,26 +5,6 @@
     "version": 1
   },
   "stories": {
-    "accordion--default": {
-      "name": "Default",
-      "levels": [
-        "Accordion"
-      ],
-      "locStart": 10,
-      "locEnd": 104,
-      "filePath": "src/accordion/accordion.stories.tsx",
-      "meta": {}
-    },
-    "accordion--table": {
-      "name": "Table",
-      "levels": [
-        "Accordion"
-      ],
-      "locStart": 106,
-      "locEnd": 140,
-      "filePath": "src/accordion/accordion.stories.tsx",
-      "meta": {}
-    },
     "alert--variants": {
       "name": "Variants",
       "levels": [
@@ -43,6 +23,26 @@
       "locStart": 50,
       "locEnd": 81,
       "filePath": "src/alert/alert.stories.tsx",
+      "meta": {}
+    },
+    "accordion--default": {
+      "name": "Default",
+      "levels": [
+        "Accordion"
+      ],
+      "locStart": 10,
+      "locEnd": 104,
+      "filePath": "src/accordion/accordion.stories.tsx",
+      "meta": {}
+    },
+    "accordion--table": {
+      "name": "Table",
+      "levels": [
+        "Accordion"
+      ],
+      "locStart": 106,
+      "locEnd": 140,
+      "filePath": "src/accordion/accordion.stories.tsx",
       "meta": {}
     },
     "avatar--variants": {
