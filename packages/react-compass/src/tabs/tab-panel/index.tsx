@@ -1,6 +1,6 @@
 import {AriaTabPanelProps, useTabPanel} from '@react-aria/tabs'
 import {TabListState} from '@react-stately/tabs'
-import React, {useMemo} from 'react'
+import React from 'react'
 import {useDOMRef} from '../../utils/use-dom-ref'
 
 interface TabPanelProps extends AriaTabPanelProps {
@@ -12,16 +12,13 @@ const TabPanel = React.forwardRef<HTMLDivElement, TabPanelProps>(
     const tabPanelRef = useDOMRef<HTMLDivElement>(ref)
     const {tabPanelProps} = useTabPanel(props, state, tabPanelRef)
 
-    const children = useMemo(() => {
-      const item: React.ReactElement<{children: React.ReactChild}> =
-        React.cloneElement(
-          state.selectedItem as React.ReactElement<{
-            children: React.ReactChild
-          }>,
-          {},
-        )
-      return item
-    }, [])
+    const children: React.ReactElement<{children: React.ReactChild}> =
+      React.cloneElement(
+        state.selectedItem as React.ReactElement<{
+          children: React.ReactChild
+        }>,
+        {},
+      )
 
     return (
       <div {...tabPanelProps} ref={tabPanelRef} className='tab-panel-wrapper'>
