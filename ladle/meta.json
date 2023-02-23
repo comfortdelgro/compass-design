@@ -571,7 +571,7 @@
         "Multiple dropdown"
       ],
       "locStart": 7,
-      "locEnd": 138,
+      "locEnd": 140,
       "filePath": "src/multiple-dropdown/multiple-dropdown.stories.tsx",
       "meta": {}
     },
@@ -861,7 +861,7 @@
         "Tag box"
       ],
       "locStart": 26,
-      "locEnd": 94,
+      "locEnd": 95,
       "filePath": "src/tag-box/tag-box.stories.tsx",
       "meta": {}
     },
@@ -870,8 +870,8 @@
       "levels": [
         "Tag box"
       ],
-      "locStart": 96,
-      "locEnd": 175,
+      "locStart": 97,
+      "locEnd": 176,
       "filePath": "src/tag-box/tag-box.stories.tsx",
       "meta": {}
     },
@@ -881,7 +881,7 @@
         "Textarea"
       ],
       "locStart": 6,
-      "locEnd": 40,
+      "locEnd": 42,
       "filePath": "src/textarea/textarea.stories.tsx",
       "meta": {}
     },
@@ -891,7 +891,7 @@
         "Textfield"
       ],
       "locStart": 25,
-      "locEnd": 115,
+      "locEnd": 116,
       "filePath": "src/textfield/textfield.stories.tsx",
       "meta": {}
     },
