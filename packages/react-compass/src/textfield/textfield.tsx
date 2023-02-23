@@ -21,6 +21,7 @@ interface Props extends AriaTextFieldProps, StyledComponentProps {
   leftIcon?: React.ReactNode
   rightIcon?: React.ReactNode
   onChangeEvent?: (event: React.ChangeEvent<HTMLInputElement>) => void
+  onChange?: (value: string) => void
 }
 
 export type TextFieldProps = Props &
@@ -41,6 +42,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       rightIcon,
       prefix,
       onChangeEvent,
+      onChange,
       // AriaTextFieldProps
       isDisabled,
       ...ariaSafeProps
@@ -63,7 +65,8 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       useTextField(ariaProps, textfieldRef)
 
     const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      inputProps.onChange?.(event)
+      //inputProps.onChange?.(event)
+      onChange?.(event.target.value)
       onChangeEvent?.(event)
     }
 

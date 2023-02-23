@@ -30,6 +30,8 @@ export const Variants: React.FC = () => (
         errored
         helperText='my helper text'
         errorMessage='my error message'
+        onChange={(e) => console.log('onChange', e)}
+        onChangeEvent={(e) => console.log('onChangeEvent', e)}
       />
     </Row>
 
