@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 0.21.0
+
+### Minor Changes
+
+- f7d1592: Fix iRequired
+
 ## 0.20.0
 
 ### Minor Changes
