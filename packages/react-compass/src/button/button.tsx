@@ -53,6 +53,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const componentProps = {
       className,
+      css,
       ...variantProps,
       ...buttonProps,
       ...ariaSafeProps,
