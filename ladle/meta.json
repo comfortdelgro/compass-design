@@ -5,26 +5,6 @@
     "version": 1
   },
   "stories": {
-    "alert--variants": {
-      "name": "Variants",
-      "levels": [
-        "Alert"
-      ],
-      "locStart": 14,
-      "locEnd": 46,
-      "filePath": "src/alert/alert.stories.tsx",
-      "meta": {}
-    },
-    "alert--dismissible": {
-      "name": "Dismissible",
-      "levels": [
-        "Alert"
-      ],
-      "locStart": 50,
-      "locEnd": 81,
-      "filePath": "src/alert/alert.stories.tsx",
-      "meta": {}
-    },
     "accordion--default": {
       "name": "Default",
       "levels": [
@@ -43,6 +23,26 @@
       "locStart": 106,
       "locEnd": 140,
       "filePath": "src/accordion/accordion.stories.tsx",
+      "meta": {}
+    },
+    "alert--variants": {
+      "name": "Variants",
+      "levels": [
+        "Alert"
+      ],
+      "locStart": 14,
+      "locEnd": 46,
+      "filePath": "src/alert/alert.stories.tsx",
+      "meta": {}
+    },
+    "alert--dismissible": {
+      "name": "Dismissible",
+      "levels": [
+        "Alert"
+      ],
+      "locStart": 50,
+      "locEnd": 81,
+      "filePath": "src/alert/alert.stories.tsx",
       "meta": {}
     },
     "avatar--variants": {
