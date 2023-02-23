@@ -1,5 +1,16 @@
 # @comfortdelgro/react-compass
 
+## 0.19.0
+
+### Minor Changes
+
+- cdb9b10: Fix bugs in icon build and textfiel
+
+### Patch Changes
+
+- Updated dependencies [cdb9b10]
+  - @comfortdelgro/compass-icons@0.11.0
+
 ## 0.18.0
 
 ### Minor Changes
