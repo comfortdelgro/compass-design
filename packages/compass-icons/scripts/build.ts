@@ -2,7 +2,6 @@ import fs from 'node:fs/promises'
 import path from 'node:path'
 
 import {importDirectory} from '@iconify/tools/lib/import/directory'
-import {runSVGO} from '@iconify/tools/lib/optimise/svgo'
 import {cleanupSVG} from '@iconify/tools/lib/svg/cleanup'
 import {transform} from '@svgr/core'
 import {execaCommand} from 'execa'
@@ -69,7 +68,7 @@ await iconSet.forEach(async (name, type) => {
   // Clean up and optimise icons
   try {
     await cleanupSVG(svg)
-    await runSVGO(svg, {cleanupIDs: false})
+    //await runSVGO(svg, {cleanupIDs: false})
   } catch (err) {
     // Invalid icon
     console.error(`Error parsing ${name}:`, err)
