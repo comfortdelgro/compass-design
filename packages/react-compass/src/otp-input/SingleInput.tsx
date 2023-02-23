@@ -1,4 +1,3 @@
-
 import React, {memo, useLayoutEffect} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -35,4 +34,3 @@ const SingleOTPInputComponent = React.forwardRef<
 
 const SingleOTPInput = memo(SingleOTPInputComponent)
 export default SingleOTPInput
-

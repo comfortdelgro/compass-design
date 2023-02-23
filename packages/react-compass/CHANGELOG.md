@@ -1,5 +1,28 @@
 # @comfortdelgro/react-compass
 
+## 0.18.0
+
+### Minor Changes
+
+- fb7d0dc: Show both helper text and error message in textfield and export whole intertionalized date
+
+## 0.17.0
+
+### Minor Changes
+
+- baeddd7: Add flag icons and fix bugs
+
+### Patch Changes
+
+- Updated dependencies [baeddd7]
+  - @comfortdelgro/compass-icons@0.10.0
+
+## 0.16.0
+
+### Minor Changes
+
+- fdc5a1a: Fix bugs on button and dropdown, textfield, textarea
+
 ## 0.15.0
 
 ### Minor Changes
