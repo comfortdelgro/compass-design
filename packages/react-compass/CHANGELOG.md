@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 0.20.0
+
+### Minor Changes
+
+- 68a5f66: Fix textarea onChange and onChangeEvent bugs
+
 ## 0.19.0
 
 ### Minor Changes
