@@ -1,5 +1,12 @@
 # @comfortdelgro/react-compass
 
+## 0.22.1
+
+### Patch Changes
+
+- Updated dependencies [bfd95f0]
+  - @comfortdelgro/compass-icons@0.12.0
+
 ## 0.22.0
 
 ### Minor Changes
