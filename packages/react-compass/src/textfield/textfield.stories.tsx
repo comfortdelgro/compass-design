@@ -27,8 +27,9 @@ export const Variants: React.FC = () => (
     <Row>
       <Textfield
         placeholder='Enter your name'
-        errorMessage='My error message'
         errored
+        helperText='my helper text'
+        errorMessage='my error message'
       />
     </Row>
 

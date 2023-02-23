@@ -16,6 +16,7 @@ interface Props extends AriaTextFieldProps, StyledComponentProps {
   label?: string
   errored?: boolean
   helperText?: string
+  errorMessage?: string
   prefix?: React.ReactNode
   leftIcon?: React.ReactNode
   rightIcon?: React.ReactNode
@@ -35,6 +36,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       label,
       errored,
       helperText,
+      errorMessage,
       leftIcon,
       rightIcon,
       prefix,
@@ -83,14 +85,12 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
           />
           {rightIcon ? <div className='right-icon'>{rightIcon}</div> : null}
         </StyledTextFieldBox>
-        {!errored && helperText ? (
-          <StyledTextFieldHelperText {...descriptionProps}>
-            {helperText}
-          </StyledTextFieldHelperText>
-        ) : null}
+        <StyledTextFieldHelperText {...descriptionProps}>
+          {helperText}
+        </StyledTextFieldHelperText>
         {errored ? (
           <StyledTextFieldHelperText {...errorMessageProps} error>
-            {helperText}
+            {errorMessage}
           </StyledTextFieldHelperText>
         ) : null}
       </StyledTextFieldWrapper>
