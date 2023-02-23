@@ -1,3 +1,4 @@
+import * as InternationalizedDate from '@internationalized/date'
 import {
   CalendarDate,
   createCalendar,
@@ -77,4 +78,6 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   )
 })
 
-export default Calendar
+export default Calendar as typeof Calendar & {
+  InternationalizedDate: typeof InternationalizedDate
+}
