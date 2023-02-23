@@ -18,6 +18,8 @@ interface Props extends AriaTextFieldProps, StyledComponentProps {
   disabled?: boolean
   errored?: boolean
   wordCount?: boolean
+  onChange?: (value: string) => void
+  onChangeEvent?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export type TextareaProps = Props &
@@ -35,6 +37,8 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       errored,
       wordCount,
       maxLength,
+      onChange,
+      onChangeEvent,
       // AriaTextFieldProps
       ...ariaSafeProps
     } = props
@@ -58,12 +62,25 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       keyof Props
     >
 
+    const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      //inputProps.onChange?.(event)
+      onChange?.(event.target.value)
+      onChangeEvent?.(event)
+    }
+
     return (
       <StyledTextareaWrapper css={css} {...htmlProps}>
         <StyledTextFieldLabel {...labelProps} disabled={!!disabled}>
           {label}
         </StyledTextFieldLabel>
-        <StyledTextarea ref={textareaRef} {...inputProps} {...variantProps} />
+        <StyledTextarea
+          ref={textareaRef}
+          {...inputProps}
+          {...variantProps}
+          onChange={(e) =>
+            handleOnChange(e as unknown as React.ChangeEvent<HTMLInputElement>)
+          }
+        />
         {wordCount ? (
           <StyledTextFieldHelperText
             className='word-count'

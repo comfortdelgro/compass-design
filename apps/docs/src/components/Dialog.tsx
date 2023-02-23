@@ -1,8 +1,9 @@
-import {Column, Icon} from '@comfortdelgro/react-compass'
-import Button from '@comfortdelgro/react-compass/button'
-import Dialog from '@comfortdelgro/react-compass/dialog'
 import {faBug} from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
+import Button from '@comfortdelgro/react-compass/button'
+import {Icon} from '@comfortdelgro/react-compass'
+import {Column} from '@comfortdelgro/react-compass'
+import Dialog from '@comfortdelgro/react-compass/dialog'
 
 export const Default: React.FC = () => {
   const lorem =
@@ -18,6 +19,7 @@ export const Default: React.FC = () => {
         onPress={() => setDefaultOpen(true)}
         variant='secondary'
       >
+
         Open Dialog
       </Button>
       <Dialog.Trigger
@@ -28,12 +30,14 @@ export const Default: React.FC = () => {
           <Dialog.Title>My title</Dialog.Title>
           <Dialog.Description>{lorem}</Dialog.Description>
           <Dialog.Actions>
+
             <Button onPress={() => setDefaultOpen(false)} variant='secondary'>
               Cancel
             </Button>
             <Button onPress={() => setDefaultOpen(false)} variant='secondary'>
               Do it
             </Button>
+
           </Dialog.Actions>
         </Dialog>
       </Dialog.Trigger>
@@ -56,6 +60,7 @@ export const Variants: React.FC = () => {
         onPress={() => setConfirmationOpen(true)}
         variant='secondary'
       >
+
         Open Dialog
       </Button>
       <Dialog.Trigger
@@ -67,6 +72,7 @@ export const Variants: React.FC = () => {
           <Dialog.Title>My title</Dialog.Title>
           <Dialog.Description>{lorem}</Dialog.Description>
           <Dialog.Actions>
+
             <Button
               onPress={() => setConfirmationOpen(false)}
               variant='secondary'
@@ -79,6 +85,7 @@ export const Variants: React.FC = () => {
             >
               Do it
             </Button>
+
           </Dialog.Actions>
         </Dialog>
       </Dialog.Trigger>
@@ -90,6 +97,7 @@ export const Variants: React.FC = () => {
         onPress={() => setAlertOpen(true)}
         variant='danger'
       >
+
         Open Dialog
       </Button>
       <Dialog.Trigger
@@ -101,9 +109,11 @@ export const Variants: React.FC = () => {
           <Dialog.Title>My title</Dialog.Title>
           <Dialog.Description>{lorem}</Dialog.Description>
           <Dialog.Actions>
+
             <Button onPress={() => setAlertOpen(false)} variant='secondary'>
               Ok
             </Button>
+
           </Dialog.Actions>
           <Dialog.Icon>
             <Icon icon={faBug} />
