@@ -1,5 +1,5 @@
 import type {StoryDecorator} from '@ladle/react'
-import {useState} from 'react'
+import React, {useState} from 'react'
 import {Column} from '../utils/components'
 import Textarea from './index'
 
@@ -8,7 +8,11 @@ export const Variants: React.FC = () => {
 
   return (
     <Column>
-      <Textarea placeholder='Enter your message' />
+      <Textarea
+        placeholder='Enter your message'
+        onChange={(value) => console.log('onChange', value)}
+        onChangeEvent={(e) => console.log('onChangeEvent', e)}
+      />
       <Textarea label='Text Label' placeholder='Enter your message' />
       <Textarea
         label='Text Label'
