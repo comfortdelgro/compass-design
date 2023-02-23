@@ -26,7 +26,7 @@ importers:
 
   apps/docs:
     specifiers:
-      '@comfortdelgro/compass-icons': workspace:^0.10.0
+      '@comfortdelgro/compass-icons': workspace:^0.11.0
       '@comfortdelgro/react-compass': workspace:*
       '@fortawesome/free-brands-svg-icons': ^6.2.1
       '@fortawesome/free-regular-svg-icons': ^6.2.0
@@ -114,7 +114,7 @@ importers:
 
   packages/react-compass:
     specifiers:
-      '@comfortdelgro/compass-icons': ^0.10.0
+      '@comfortdelgro/compass-icons': ^0.11.0
       '@comfortdelgro/eslint-config': ^1.0.2
       '@contentful/rich-text-html-renderer': ^16.0.2
       '@contentful/rich-text-react-renderer': ^15.16.2
