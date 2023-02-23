@@ -1,5 +1,16 @@
 # @comfortdelgro/react-compass
 
+## 0.17.0
+
+### Minor Changes
+
+- baeddd7: Add flag icons and fix bugs
+
+### Patch Changes
+
+- Updated dependencies [baeddd7]
+  - @comfortdelgro/compass-icons@0.10.0
+
 ## 0.16.0
 
 ### Minor Changes
