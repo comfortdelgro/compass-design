@@ -1,5 +1,11 @@
 # @comfortdelgro/compass-icons
 
+## 0.10.0
+
+### Minor Changes
+
+- baeddd7: Add flag icons and fix bugs
+
 ## 0.9.0
 
 ### Minor Changes
