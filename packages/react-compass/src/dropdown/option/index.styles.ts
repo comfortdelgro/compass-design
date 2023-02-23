@@ -43,7 +43,6 @@ export const StyledIcon = styled('div', {
   overflow: 'hidden',
 })
 
-
 export const StyledFlag = styled('div', {
   display: 'flex',
   alignItems: 'center',
