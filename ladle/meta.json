@@ -815,13 +815,23 @@
       "filePath": "src/table-v2/table-v2.stories.tsx",
       "meta": {}
     },
+    "tab--server-interaction": {
+      "name": "Server interaction",
+      "levels": [
+        "Tab"
+      ],
+      "locStart": 23,
+      "locEnd": 42,
+      "filePath": "src/tabs/tab.stories.tsx",
+      "meta": {}
+    },
     "tab--icon": {
       "name": "Icon",
       "levels": [
         "Tab"
       ],
-      "locStart": 4,
-      "locEnd": 51,
+      "locStart": 44,
+      "locEnd": 91,
       "filePath": "src/tabs/tab.stories.tsx",
       "meta": {}
     },
@@ -830,8 +840,8 @@
       "levels": [
         "Tab"
       ],
-      "locStart": 53,
-      "locEnd": 85,
+      "locStart": 93,
+      "locEnd": 125,
       "filePath": "src/tabs/tab.stories.tsx",
       "meta": {}
     },
@@ -840,8 +850,8 @@
       "levels": [
         "Tab"
       ],
-      "locStart": 87,
-      "locEnd": 119,
+      "locStart": 127,
+      "locEnd": 159,
       "filePath": "src/tabs/tab.stories.tsx",
       "meta": {}
     },
