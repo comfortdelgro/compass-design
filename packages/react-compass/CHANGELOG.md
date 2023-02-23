@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 0.18.0
+
+### Minor Changes
+
+- fb7d0dc: Show both helper text and error message in textfield and export whole intertionalized date
+
 ## 0.17.0
 
 ### Minor Changes
