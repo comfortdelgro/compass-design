@@ -15,8 +15,10 @@ import {
 
 interface Props extends AriaTextFieldProps, StyledComponentProps {
   label?: string
-  disabled?: boolean
-  errored?: boolean
+  isDisabled?: boolean
+  isRequired?: boolean
+  isErrored?: boolean
+  errorMessage?: string
   wordCount?: boolean
   onChange?: (value: string) => void
   onChangeEvent?: (event: React.ChangeEvent<HTMLInputElement>) => void
@@ -33,8 +35,10 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       css = {},
       // ComponentProps
       label,
-      disabled,
-      errored,
+      isDisabled,
+      isErrored,
+      isRequired,
+      errorMessage,
       wordCount,
       maxLength,
       onChange,
@@ -43,7 +47,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       ...ariaSafeProps
     } = props
 
-    const variantProps = {errored} as TextareaVariantProps
+    const variantProps = {isErrored} as TextareaVariantProps
     const ariaProps = {
       label,
       maxLength,
@@ -70,18 +74,21 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
 
     return (
       <StyledTextareaWrapper css={css} {...htmlProps}>
-        <StyledTextFieldLabel {...labelProps} disabled={!!disabled}>
-          {label}
-        </StyledTextFieldLabel>
+        {label && (
+          <StyledTextFieldLabel {...labelProps} isDisabled={!!isDisabled}>
+            {isRequired && <span>*</span>} {label}
+          </StyledTextFieldLabel>
+        )}
         <StyledTextarea
           ref={textareaRef}
-          {...inputProps}
-          {...variantProps}
+          isErrored={!!isErrored}
           onChange={(e) =>
             handleOnChange(e as unknown as React.ChangeEvent<HTMLInputElement>)
           }
+          {...inputProps}
+          {...variantProps}
         />
-        {wordCount ? (
+        {wordCount && (
           <StyledTextFieldHelperText
             className='word-count'
             {...descriptionProps}
@@ -89,7 +96,12 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
             {inputProps.value?.toString().length ?? '0'}
             {maxLength ? `/${maxLength}` : null}
           </StyledTextFieldHelperText>
-        ) : null}
+        )}
+        {isErrored && errorMessage && (
+          <StyledTextFieldHelperText error>
+            {errorMessage}
+          </StyledTextFieldHelperText>
+        )}
       </StyledTextareaWrapper>
     )
   },

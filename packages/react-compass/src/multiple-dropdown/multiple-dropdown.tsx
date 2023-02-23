@@ -29,6 +29,7 @@ interface Props<T>
   icon?: React.ReactNode
   placeholder?: string
   headerTitle?: string
+  isRequired?: boolean
   isErrored?: boolean
   errorMessage?: string
   helperText?: string
@@ -46,6 +47,7 @@ const MultipleDropdown = React.forwardRef<
     css = {},
     icon = <Icon />,
     isErrored,
+    isRequired,
     errorMessage,
     helperText,
     // AriaDropdownProps
@@ -154,7 +156,12 @@ const MultipleDropdown = React.forwardRef<
 
   return (
     <StyledDropdownWrapper css={css} ref={ref}>
-      {props.label && <label {...labelProps}>{props.label}</label>}
+      {props.label && (
+        <label {...labelProps}>
+          {isRequired && <span>*</span>}
+          {props.label}
+        </label>
+      )}
       <StyledDropdown
         onClick={collapseState.toggle}
         ref={wrapperRef}
