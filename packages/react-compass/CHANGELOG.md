@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 0.22.0
+
+### Minor Changes
+
+- c099ede: fix bugs in dialog
+
 ## 0.21.0
 
 ### Minor Changes
