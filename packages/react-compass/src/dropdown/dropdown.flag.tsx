@@ -24,7 +24,8 @@ interface P<T = object> extends ComboBoxStateOptions<T>, StyledComponentProps {
   isRequired?: boolean
   errorMessage?: string
   headerTitle?: string
-  keyType?: 'alpha-2' | 'alpha-3' | 'name' | 'country-code' | 'phone-code'
+  keyType?: 'alpha-2' | 'alpha-3' | 'name' | 'country-code'
+  onPhoneChange?: (p: string) => void
   headerOnClick?: (e: unknown) => void
 }
 
@@ -52,6 +53,7 @@ const PreDropdown = React.forwardRef<HTMLDivElement, P>((props, ref) => {
     isErrored,
     isRequired,
     errorMessage,
+    onPhoneChange,
     // AriaDropdownProps
   } = props
   const variantProps = {} as DropdownVariantProps
@@ -92,6 +94,12 @@ const PreDropdown = React.forwardRef<HTMLDivElement, P>((props, ref) => {
       ),
     [inputProps.value],
   )
+
+  React.useEffect(() => {
+    if (currentState?.['phone-code']) {
+      onPhoneChange?.(currentState['phone-code'])
+    }
+  }, [currentState])
 
   return (
     <StyledDropdownWrapper css={css} ref={dropdownRef} {...variantProps}>
