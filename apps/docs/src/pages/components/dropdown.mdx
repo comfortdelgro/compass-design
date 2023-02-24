@@ -547,7 +547,8 @@ Include all of the props above and have extra new prop
 
 | Name        | Type                                                                  | Default    | Description                                                                             |
 | :---------- | :-------------------------------------------------------------------- | :--------- | :-------------------------------------------------------------------------------------- |
-| keyType       | `alpha-2` \| `alpha-3` \| `name` \| `country-code` \| `phone-code`  | `alpha-3`  | The value of selectedKey will depends by which type of key                                   |
+| keyType       | `alpha-2` \| `alpha-3` \| `name` \| `country-code` \| `phone-code`  | `alpha-3`  | The value of selectedKey will depends by which type of key                              |
+| onPhoneChange | `(p: string) => void`                                               | —          | Return phone code of selected key. You may need to get phone code from this function, not from the key because some country has duplicated phone code |
 
 Example for key and value
 ```
