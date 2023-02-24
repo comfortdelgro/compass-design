@@ -33,6 +33,7 @@ const Select = React.forwardRef<HTMLButtonElement, DropdownProps>(
       icon = <Icon />,
       isErrored,
       isRequired,
+      isDisabled,
       errorMessage,
       // AriaDropdownProps
     } = props
@@ -62,7 +63,11 @@ const Select = React.forwardRef<HTMLButtonElement, DropdownProps>(
           triggerRef={selectRef}
           label={props.label}
         />
-        <StyledSelect isEmpty={!state.selectedItem} isErrored={!!isErrored}>
+        <StyledSelect
+          isEmpty={!state.selectedItem}
+          isErrored={!!isErrored}
+          isDisabled={!!isDisabled}
+        >
           <Button {...triggerProps} ref={selectRef}>
             <span {...valueProps}>
               {state.selectedItem

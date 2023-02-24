@@ -36,6 +36,7 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
       icon = <Icon />,
       isErrored,
       isRequired,
+      isDisabled,
       errorMessage,
       // AriaDropdownProps
     } = props
@@ -72,7 +73,11 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
             {props.label}
           </label>
         )}
-        <StyledDropdown isEmpty={!inputProps.value} isErrored={!!isErrored}>
+        <StyledDropdown
+          isEmpty={!inputProps.value}
+          isErrored={!!isErrored}
+          isDisabled={!!isDisabled}
+        >
           <input {...inputProps} ref={inputRef} />
           <Button {...buttonProps} ref={buttonRef}>
             {icon}

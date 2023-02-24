@@ -82,6 +82,14 @@ export const StyledDropdown = styled('div', {
         },
       },
     },
+    isDisabled: {
+      true: {
+        color: '#b7b7b7 !important',
+        input: {
+          color: '#b7b7b7 !important',
+        },
+      },
+    },
     isErrored: {
       true: {
         borderColor: '$danger',
@@ -158,6 +166,14 @@ export const StyledFlag = styled('div', {
         },
       },
     },
+    isDisabled: {
+      true: {
+        color: '#b7b7b7 !important',
+        input: {
+          color: '#b7b7b7 !important',
+        },
+      },
+    },
     isErrored: {
       true: {
         borderColor: '$danger',
@@ -217,6 +233,13 @@ export const StyledSelect = styled('div', {
           span: {
             color: '#B4B4B4',
           },
+        },
+      },
+    },
+    isDisabled: {
+      true: {
+        button: {
+          cursor: 'default',
         },
       },
     },
