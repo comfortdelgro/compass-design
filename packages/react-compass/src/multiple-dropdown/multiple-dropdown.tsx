@@ -29,6 +29,7 @@ interface Props<T>
   icon?: React.ReactNode
   placeholder?: string
   headerTitle?: string
+  isDisabled?: boolean
   isRequired?: boolean
   isErrored?: boolean
   errorMessage?: string
@@ -47,6 +48,7 @@ const MultipleDropdown = React.forwardRef<
     css = {},
     icon = <Icon />,
     isErrored,
+    isDisabled,
     isRequired,
     errorMessage,
     helperText,
@@ -71,10 +73,13 @@ const MultipleDropdown = React.forwardRef<
     setOpen: (v: boolean) => setIsOpen(v),
     toggle: () =>
       setIsOpen((v) => {
-        if (v && inputRef.current?.value !== '') {
-          return true
+        if (!isDisabled) {
+          if (v && inputRef.current?.value !== '') {
+            return true
+          }
+          return !v
         }
-        return !v
+        return v
       }),
     close: () => setIsOpen(false),
     open: () => setIsOpen(true),
@@ -166,6 +171,7 @@ const MultipleDropdown = React.forwardRef<
         onClick={collapseState.toggle}
         ref={wrapperRef}
         isErrored={!!isErrored}
+        isDisabled={!!isDisabled}
       >
         <StyledSelectedItemWrapper>
           {selectedNode.length === 0 && !isOpen && <p>{props.placeholder}</p>}
@@ -173,12 +179,21 @@ const MultipleDropdown = React.forwardRef<
             selectedNode.map((item) => (
               <StyledSelectedItem key={item.key}>
                 {item.text}
-                <div onClick={() => removeItem(item.key)}>
+                <div
+                  style={{cursor: isDisabled ? 'default' : 'pointer'}}
+                  onClick={() => {
+                    if (!isDisabled) {
+                      removeItem(item.key)
+                    }
+                  }}
+                >
                   <XIcon />
                 </div>
               </StyledSelectedItem>
             ))}
-          <input type='text' ref={inputRef} onChange={onInputChange} />
+          {!isDisabled && (
+            <input type='text' ref={inputRef} onChange={onInputChange} />
+          )}
         </StyledSelectedItemWrapper>
         <div className='dropdown-icon'>{icon}</div>
       </StyledDropdown>
