@@ -21,7 +21,9 @@ export const StyledCheckboxInput = styled('input', {
 })
 
 export const StyledCheckboxBox = styled('span', {
-  display: 'block',
+  position: 'absolute',
+  top: 0,
+  left: 0,
   height: '$4',
   width: '$4',
   backgroundColor: '$whiteText',
