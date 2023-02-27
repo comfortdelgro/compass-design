@@ -14,9 +14,13 @@ export const StyledTextFieldLabel = styled('label', {
   display: 'block',
   marginBottom: '$1',
   color: '$gray90',
+  span: {
+    marginRight: '$1',
+    color: '$danger',
+  },
 
   variants: {
-    disabled: {
+    isDisabled: {
       true: {
         color: '$disabledText',
       },
@@ -74,7 +78,7 @@ export const StyledTextFieldBox = styled('div', {
   },
 
   variants: {
-    disabled: {
+    isDisabled: {
       true: {
         color: '$disabledText',
         backgroundColor: '$gray20',
@@ -84,7 +88,7 @@ export const StyledTextFieldBox = styled('div', {
         },
       },
     },
-    errored: {
+    isErrored: {
       true: {
         borderColor: '$danger',
 

@@ -21,6 +21,7 @@ interface P<T = object> extends ComboBoxStateOptions<T>, StyledComponentProps {
   isLoading?: boolean
   icon?: React.ReactNode
   isErrored?: boolean
+  isRequired?: boolean
   errorMessage?: string
   headerTitle?: string
   keyType?: 'alpha-2' | 'alpha-3' | 'name' | 'country-code'
@@ -50,6 +51,8 @@ const PreDropdown = React.forwardRef<HTMLDivElement, P>((props, ref) => {
     css = {},
     icon = <Icon />,
     isErrored,
+    isRequired,
+    isDisabled,
     errorMessage,
     placeholder,
     onPhoneChange,
@@ -102,8 +105,17 @@ const PreDropdown = React.forwardRef<HTMLDivElement, P>((props, ref) => {
 
   return (
     <StyledDropdownWrapper css={css} ref={dropdownRef} {...variantProps}>
-      {props.label && <label {...labelProps}>{props.label}</label>}
-      <StyledFlag isEmpty={!inputProps.value} isErrored={!!isErrored}>
+      {props.label && (
+        <label {...labelProps}>
+          {isRequired && <span>*</span>}
+          {props.label}
+        </label>
+      )}
+      <StyledFlag
+        isEmpty={!inputProps.value && !placeholder}
+        isErrored={!!isErrored}
+        isDisabled={!!isDisabled}
+      >
         {currentState && (
           <StyledFlagIcon>
             <Flag iso={currentState['alpha-2']} />
