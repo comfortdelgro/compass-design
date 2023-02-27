@@ -3,9 +3,7 @@ import {theme} from '@comfortdelgro/react-compass/theme'
 interface Props {
   size: (typeof theme)['fontSizes'][keyof (typeof theme)['fontSizes']]
   family: string
-
   weight: keyof typeof theme['fontWeights']
-
   color: string
 }
 

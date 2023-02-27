@@ -16,10 +16,13 @@ interface Props extends AriaTextFieldProps, StyledComponentProps {
   label?: string
   errored?: boolean
   helperText?: string
+  errorMessage?: string
   prefix?: React.ReactNode
   leftIcon?: React.ReactNode
   rightIcon?: React.ReactNode
   onChangeEvent?: (event: React.ChangeEvent<HTMLInputElement>) => void
+  onChange?: (value: string) => void
+  password?: boolean
 }
 
 export type TextFieldProps = Props &
@@ -35,10 +38,13 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       label,
       errored,
       helperText,
+      errorMessage,
       leftIcon,
       rightIcon,
       prefix,
       onChangeEvent,
+      onChange,
+      password = false,
       // AriaTextFieldProps
       isDisabled,
       ...ariaSafeProps
@@ -61,8 +67,14 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       useTextField(ariaProps, textfieldRef)
 
     const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      inputProps.onChange?.(event)
+      //inputProps.onChange?.(event)
+      onChange?.(event.target.value)
       onChangeEvent?.(event)
+    }
+
+    const typeDetermineFunc = () => {
+      if (password == false) return 'text'
+      if (password == true) return 'password'
     }
 
     return (
@@ -80,17 +92,16 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
             ref={textfieldRef}
             {...inputProps}
             onChange={handleOnChange}
+            type={typeDetermineFunc()}
           />
           {rightIcon ? <div className='right-icon'>{rightIcon}</div> : null}
         </StyledTextFieldBox>
-        {!errored && helperText ? (
-          <StyledTextFieldHelperText {...descriptionProps}>
-            {helperText}
-          </StyledTextFieldHelperText>
-        ) : null}
+        <StyledTextFieldHelperText {...descriptionProps}>
+          {helperText}
+        </StyledTextFieldHelperText>
         {errored ? (
           <StyledTextFieldHelperText {...errorMessageProps} error>
-            {helperText}
+            {errorMessage}
           </StyledTextFieldHelperText>
         ) : null}
       </StyledTextFieldWrapper>

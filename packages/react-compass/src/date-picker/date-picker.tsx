@@ -2,6 +2,7 @@
 import {CalendarDate, DateValue, parseDate} from '@internationalized/date'
 import {AriaDatePickerProps, useDatePicker} from '@react-aria/datepicker'
 import {AriaDialogProps} from '@react-aria/dialog'
+import * as i18n from '@react-aria/i18n'
 import {DatePickerState, useDatePickerState} from '@react-stately/datepicker'
 import type {AriaButtonProps} from '@react-types/button'
 import type {CalendarProps} from '@react-types/calendar'
@@ -18,7 +19,6 @@ import {
   StyledDatePicker,
   StyledDatePickerFieldWrapper,
 } from './date-picker.style'
-
 interface Props
   extends StyledComponentProps,
     SpectrumDatePickerProps<DateValue> {
@@ -142,4 +142,6 @@ const DatePickerCalendarWrapper = (props: DatePickerCalendarWrapperProps) => {
   )
 }
 
-export default DatePicker
+export default DatePicker as typeof DatePicker & {
+  I18N: typeof i18n
+}

@@ -1,17 +1,12 @@
-import {
-  DateValue,
-  getLocalTimeZone,
-  parseDate,
-  today,
-} from '@internationalized/date'
+import {getLocalTimeZone, parseDate, today} from '@internationalized/date'
 import {StoryDecorator} from '@ladle/react'
 import {useDateFormatter} from '@react-aria/i18n'
 import React from 'react'
 import {Column} from '../utils'
-import Calendar from './calendar'
+import Calendar, {CalendarProps} from './calendar'
 
 export const Variants: React.FC = () => {
-  const [date, setDate] = React.useState<DateValue>(
+  const [date, setDate] = React.useState<CalendarProps>(
     parseDate(today(getLocalTimeZone()).toString()),
   )
   const formatter = useDateFormatter({dateStyle: 'full'})

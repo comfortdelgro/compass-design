@@ -6,7 +6,7 @@ import Icon from '../icon'
 import {Column, Row} from '../utils/components'
 import Textfield from './index'
 
-export const Select = (
+const Select = (
   <input
     value={'+64'}
     style={{
@@ -25,7 +25,15 @@ export const Select = (
 export const Variants: React.FC = () => (
   <Column>
     <Row>
-      <Textfield placeholder='Enter your name' />
+      <Textfield
+        placeholder='Enter your name'
+        errored
+        helperText='my helper text'
+        errorMessage='my error message'
+        onChange={(e) => console.log('onChange', e)}
+        onChangeEvent={(e) => console.log('onChangeEvent', e)}
+        password={true}
+      />
     </Row>
 
     <h3>With Label</h3>
