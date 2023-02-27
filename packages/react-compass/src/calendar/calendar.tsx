@@ -6,6 +6,7 @@ import {
   parseDate,
 } from '@internationalized/date'
 import {useCalendar} from '@react-aria/calendar'
+import * as i18n from '@react-aria/i18n'
 import {useLocale} from '@react-aria/i18n'
 import {useCalendarState} from '@react-stately/calendar'
 import {DatePickerState} from '@react-stately/datepicker'
@@ -80,4 +81,5 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
 
 export default Calendar as typeof Calendar & {
   InternationalizedDate: typeof InternationalizedDate
+  I18N: typeof i18n
 }
