@@ -1,6 +1,12 @@
 # @comfortdelgro/react-compass
 
-## 0.19.0
+## 0.22.1
+
+## 0.22.0
+
+## 0.21.0
+
+## 0.20.0
 
 ### Minor Changes
 
