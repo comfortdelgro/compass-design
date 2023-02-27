@@ -38,7 +38,7 @@ export const StyledTextarea = styled('textarea', {
   },
 
   variants: {
-    isErrored: {
+    errored: {
       true: {
         borderColor: '$danger',
         '&:focus': {
@@ -49,7 +49,7 @@ export const StyledTextarea = styled('textarea', {
   },
 
   defaultVariants: {
-    isErrored: false,
+    errored: false,
   },
 })
 

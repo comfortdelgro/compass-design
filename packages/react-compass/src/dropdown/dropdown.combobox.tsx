@@ -20,7 +20,6 @@ interface Props<T> extends ComboBoxStateOptions<T>, StyledComponentProps {
   isLoading?: boolean
   icon?: React.ReactNode
   isErrored?: boolean
-  isRequired?: boolean
   errorMessage?: string
   headerTitle?: string
   headerOnClick?: (e: unknown) => void
@@ -35,8 +34,6 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
       css = {},
       icon = <Icon />,
       isErrored,
-      isRequired,
-      isDisabled,
       errorMessage,
       // AriaDropdownProps
     } = props
@@ -67,17 +64,8 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
     )
     return (
       <StyledDropdownWrapper css={css} ref={dropdownRef} {...variantProps}>
-        {props.label && (
-          <label {...labelProps}>
-            {isRequired && <span>*</span>}
-            {props.label}
-          </label>
-        )}
-        <StyledDropdown
-          isEmpty={!inputProps.value}
-          isErrored={!!isErrored}
-          isDisabled={!!isDisabled}
-        >
+        {props.label && <label {...labelProps}>{props.label}</label>}
+        <StyledDropdown isEmpty={!inputProps.value} isErrored={!!isErrored}>
           <input {...inputProps} ref={inputRef} />
           <Button {...buttonProps} ref={buttonRef}>
             {icon}

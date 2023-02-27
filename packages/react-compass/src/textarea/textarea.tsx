@@ -15,10 +15,8 @@ import {
 
 interface Props extends AriaTextFieldProps, StyledComponentProps {
   label?: string
-  isDisabled?: boolean
-  isRequired?: boolean
-  isErrored?: boolean
-  errorMessage?: string
+  disabled?: boolean
+  errored?: boolean
   wordCount?: boolean
   onChange?: (value: string) => void
   onChangeEvent?: (event: React.ChangeEvent<HTMLInputElement>) => void
@@ -35,10 +33,8 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       css = {},
       // ComponentProps
       label,
-      isDisabled,
-      isErrored,
-      isRequired,
-      errorMessage,
+      disabled,
+      errored,
       wordCount,
       maxLength,
       onChange,
@@ -47,7 +43,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       ...ariaSafeProps
     } = props
 
-    const variantProps = {isErrored} as TextareaVariantProps
+    const variantProps = {errored} as TextareaVariantProps
     const ariaProps = {
       label,
       maxLength,
@@ -93,12 +89,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
             {inputProps.value?.toString().length ?? '0'}
             {maxLength ? `/${maxLength}` : null}
           </StyledTextFieldHelperText>
-        )}
-        {isErrored && errorMessage && (
-          <StyledTextFieldHelperText error>
-            {errorMessage}
-          </StyledTextFieldHelperText>
-        )}
+        ) : null}
       </StyledTextareaWrapper>
     )
   },

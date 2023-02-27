@@ -34,7 +34,6 @@ We recommend the second method to import components for the benefits of [tree sh
     selectionMode='multiple'
     disabledKeys={['snake']}
     placeholder='Choose an animal'
-    isRequired
     defaultSelectedKeys={['cat']}
   >
     <MultipleDropdown.Item
@@ -325,9 +324,7 @@ We recommend the second method to import components for the benefits of [tree sh
 | Name                   | Type                           | Default | Description                                                                                                                                                             |
 | :----------------------| :------------------------------| :-------| :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | isLoading              | `boolean`                      | 'false' | Loading effect when list of items is loading by API                                                                                                                     |
-| isErrored              | `boolean`                      | 'false' | Error state when dropdown is isErrored                                                                                                                                  |
-| isRequired             | `boolean`                      | —       | Whether user input is required on the input before form submission. Often paired with the necessityIndicator prop to add a visual indicator to the input.               |
-| isDisabled             | `boolean`                      | —       | Whether the input is disabled.                                                                                                                                          |
+| isErrored              | `boolean`                      | 'false' | Error state when dropdown is isErrored                                                                                                                                    |
 | errorMessage           | `string`                       | -       | Error message for dropdown                                                                                                                                              |
 | icon                   | `React.ReactNode`              | -       | Icon display in right side                                                                                                                                              |
 | headerTitle            | `string`                       | -       | Title display of header inside popover                                                                                                                                  |

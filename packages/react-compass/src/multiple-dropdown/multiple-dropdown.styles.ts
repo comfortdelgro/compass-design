@@ -19,10 +19,6 @@ export const StyledDropdownWrapper = styled('div', {
     marginBottom: '$2',
     display: 'inline-block',
     width: '100%',
-    span: {
-      marginRight: '$1',
-      color: '$danger',
-    },
   },
 })
 
@@ -72,11 +68,6 @@ export const StyledDropdown = styled('div', {
             color: '#B4B4B4',
           },
         },
-      },
-    },
-    isDisabled: {
-      true: {
-        cursor: 'default',
       },
     },
     isErrored: {
@@ -172,7 +163,6 @@ export const StyledSelectedItem = styled('div', {
   borderRadius: '$full',
   padding: '$1 $3',
   fontSize: '$label1',
-  cursor: 'default',
   fontWeight: '$semibold',
   display: 'flex',
   justifyContent: 'center',
