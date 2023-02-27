@@ -27,7 +27,7 @@ export const Variants: React.FC = () => (
     <Row>
       <Textfield
         placeholder='Enter your name'
-        errored
+        isErrored
         helperText='my helper text'
         errorMessage='my error message'
         onChange={(e) => console.log('onChange', e)}
