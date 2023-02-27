@@ -160,8 +160,8 @@
       "levels": [
         "Calendar"
       ],
-      "locStart": 13,
-      "locEnd": 35,
+      "locStart": 8,
+      "locEnd": 30,
       "filePath": "src/calendar/calendar.stories.tsx",
       "meta": {}
     },
@@ -203,36 +203,6 @@
       "locStart": 164,
       "locEnd": 187,
       "filePath": "src/carousel/carousel.stories.tsx",
-      "meta": {}
-    },
-    "carousel-slider--sliders": {
-      "name": "Sliders",
-      "levels": [
-        "Carousel slider"
-      ],
-      "locStart": 94,
-      "locEnd": 165,
-      "filePath": "src/carousel-v2/carousel-slider.stories.tsx",
-      "meta": {}
-    },
-    "carousel-slider--promotion": {
-      "name": "Promotion",
-      "levels": [
-        "Carousel slider"
-      ],
-      "locStart": 167,
-      "locEnd": 195,
-      "filePath": "src/carousel-v2/carousel-slider.stories.tsx",
-      "meta": {}
-    },
-    "carousel-slider--mobile": {
-      "name": "Mobile",
-      "levels": [
-        "Carousel slider"
-      ],
-      "locStart": 197,
-      "locEnd": 234,
-      "filePath": "src/carousel-v2/carousel-slider.stories.tsx",
       "meta": {}
     },
     "carousel-v2--sliders": {
@@ -340,8 +310,8 @@
       "levels": [
         "Date picker"
       ],
-      "locStart": 13,
-      "locEnd": 51,
+      "locStart": 10,
+      "locEnd": 48,
       "filePath": "src/date-picker/date-picker.stories.tsx",
       "meta": {}
     },
@@ -350,8 +320,8 @@
       "levels": [
         "Date picker"
       ],
-      "locStart": 53,
-      "locEnd": 76,
+      "locStart": 50,
+      "locEnd": 73,
       "filePath": "src/date-picker/date-picker.stories.tsx",
       "meta": {}
     },
@@ -360,8 +330,8 @@
       "levels": [
         "Date range picker"
       ],
-      "locStart": 9,
-      "locEnd": 31,
+      "locStart": 11,
+      "locEnd": 33,
       "filePath": "src/date-range-picker/date-range-picker.stories.tsx",
       "meta": {}
     },
@@ -370,8 +340,8 @@
       "levels": [
         "Date range picker"
       ],
-      "locStart": 33,
-      "locEnd": 50,
+      "locStart": 35,
+      "locEnd": 52,
       "filePath": "src/date-range-picker/date-range-picker.stories.tsx",
       "meta": {}
     },
@@ -811,7 +781,7 @@
         "Table v2"
       ],
       "locStart": 15,
-      "locEnd": 195,
+      "locEnd": 200,
       "filePath": "src/table-v2/table-v2.stories.tsx",
       "meta": {}
     },
@@ -921,7 +891,7 @@
         "Toast"
       ],
       "locStart": 8,
-      "locEnd": 37,
+      "locEnd": 34,
       "filePath": "src/toast/toast.stories.tsx",
       "meta": {}
     },
@@ -930,8 +900,8 @@
       "levels": [
         "Toast"
       ],
-      "locStart": 39,
-      "locEnd": 144,
+      "locStart": 36,
+      "locEnd": 141,
       "filePath": "src/toast/toast.stories.tsx",
       "meta": {}
     },
@@ -940,8 +910,8 @@
       "levels": [
         "Toast"
       ],
-      "locStart": 146,
-      "locEnd": 176,
+      "locStart": 143,
+      "locEnd": 173,
       "filePath": "src/toast/toast.stories.tsx",
       "meta": {}
     },
