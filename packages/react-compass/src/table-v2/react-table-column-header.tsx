@@ -39,10 +39,7 @@ const ReactTableColumnHeader = React.forwardRef<HTMLTableCellElement, Props>(
           {headerProps.isPlaceholder ? null : (
             <div
               style={
-                typeof flexRender(
-                  headerProps.column.columnDef.header,
-                  headerProps.getContext(),
-                ) === 'string'
+                headerProps.column.getCanSort()
                   ? {
                       display: 'flex',
                       minHeight: '30px',

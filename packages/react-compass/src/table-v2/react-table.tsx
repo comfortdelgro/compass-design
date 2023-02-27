@@ -30,6 +30,7 @@ export interface Options {
   enableMultiSort?: boolean
   manualSorting?: boolean
   columnResizeMode?: 'onChange' | 'onEnd'
+  initialSortBy?: SortingState
 }
 
 export type OptionType = Options
@@ -72,7 +73,7 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
 
     const table = useReactTable({
       state: {
-        sorting: sorting,
+        sorting: options.initialSortBy ? options.initialSortBy : sorting,
       },
       onSortingChange: setSorting,
       getCoreRowModel: getCoreRowModel(),
@@ -85,10 +86,13 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
       //enable sorting
       ...options,
     })
-
     useEffect(() => {
       if (typeof onManualSorting === 'function' && options.manualSorting) {
-        onManualSorting(sorting)
+        if (options.initialSortBy) {
+          onManualSorting(options.initialSortBy)
+        } else {
+          onManualSorting(sorting)
+        }
       }
     }, [sorting])
 

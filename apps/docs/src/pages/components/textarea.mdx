@@ -25,14 +25,14 @@ import Textarea from '@comfortdelgro/react-compass/textarea'
 
 ### Basic text areas:
 
-<section className={styles.textAreaShowcaseContainer} style={{display: 'flex', flexDirection: 'column'}}>
+<section className={styles.textAreaShowcaseContainer}>
   <Textarea placeholder='Enter your message' />
   <Textarea label='Text Label' placeholder='Enter your message' isDisabled/>
   <Textarea
     label='Text Label'
     placeholder='Enter your message'
     value='Lorem ipsum dolor sit amet.'
-    isRequired
+
 />
 
   <Textarea
@@ -54,8 +54,7 @@ import Textarea from '@comfortdelgro/react-compass/textarea'
     placeholder='Enter your message'
     wordCount
     maxLength={50}
-    isErrored
-    errorMessage='Error Message'
+    errored
   />
 </section>
 
@@ -64,7 +63,6 @@ import Textarea from '@comfortdelgro/react-compass/textarea'
   <Textarea label='Text Label' placeholder='Enter your message' isDisabled/>
   <Textarea
     label='Text Label'
-    isRequired
     placeholder='Enter your message'
     wordCount
     value='Lorem ipsum dolor sit amet.'
@@ -82,8 +80,7 @@ import Textarea from '@comfortdelgro/react-compass/textarea'
     placeholder='Enter your message'
     wordCount
     maxLength={50}
-    isErrored
-    errorMessage='Error Message'
+    errored
   />
 ```
 
@@ -100,8 +97,7 @@ With css prop, you can basically do anything that css can do.
     placeholder='Enter your message'
     wordCount
     maxLength={50}
-    isErrored
-    errorMessage='Error Message'
+    errored
     css={{height: '10em', width: '50em'}}
   />
 </section>
@@ -112,8 +108,7 @@ With css prop, you can basically do anything that css can do.
   placeholder='Enter your message'
   wordCount
   maxLength={50}
-  isErrored
-  errorMessage='Error Message'
+  errored
   css={{height: '10em', width: '50em'}}
 />
 ```
@@ -126,11 +121,9 @@ With css prop, you can basically do anything that css can do.
 | :------------ | :----------------- | :------ | :--------------------------------------- |
 | `placeholder` | `string` \| `null` | `null`  | `Placeholder of the text field`          |
 | `label`       | `string` \| `null` | `null`  | `Label of the text field`                |
-| `isErrored`   | `true` \| `false`  | `false` | `Throw error when input value is wrong`  |
-| `errorMessage`| `string`           | -       | `Error message when errored`             |
+| `errored`     | `true` \| `false`  | `false` | `Throw error when input value is wrong`  |
 | `value`       | `string`           | —       | `Input value`                            |
 | `isDisabled`  | `false`\| `true`   | `false` | `Disable the text field when true`       |
-| `isRequired`  | `false`\| `true`   | `false` | `Whether user input is required on the input before form submission`   |
 | `css `        | `CSS`              | —       |                                          |
 | `wordCount`   | `false`\| `true`   | `false` | `Show word count of the input when true` |
 | `maxLength`   | `number`           | —       | `Limit length of the input`              |

@@ -18,7 +18,6 @@ import {
   StyledDatePicker,
   StyledDatePickerFieldWrapper,
 } from './date-picker.style'
-
 interface Props
   extends StyledComponentProps,
     SpectrumDatePickerProps<DateValue> {
