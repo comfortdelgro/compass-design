@@ -25,7 +25,7 @@ interface Props extends StyledComponentProps, SpectrumCalendarProps<DateValue> {
   maxValue?: CalendarDate
 }
 
-export type CalendarProps = Props & DateValue
+export type CalendarProps = Props
 
 const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   const {

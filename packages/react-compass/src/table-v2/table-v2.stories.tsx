@@ -20,10 +20,6 @@ export const ReactTableStory: React.FC = () => {
     enableMultiSort: true,
     columnResizeMode: 'onChange',
     manualSorting: false,
-    initialSortBy: [
-      {id: 'firstName', desc: true},
-      {id: 'lastName', desc: false},
-    ],
   }
 
   const onSorting = (sortingField: StateSorting) => {
@@ -81,7 +77,6 @@ export const ReactTableStory: React.FC = () => {
             cell: (info) => info.getValue<string>(),
             footer: (props) => props.column.id,
             enableResizing: false,
-            sortDescriptor: 'asc',
           },
           {
             accessorFn: (row) => row.lastName,

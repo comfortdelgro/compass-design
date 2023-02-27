@@ -1,10 +1,9 @@
-import {getLocalTimeZone, parseDate} from '@internationalized/date'
+import {DateValue, getLocalTimeZone, parseDate} from '@internationalized/date'
 import {StoryDecorator} from '@ladle/react'
 import type {RangeValue} from '@react-types/shared'
 import React from 'react'
 import DatePicker from '../date-picker'
 import {Column} from '../utils'
-import {CalendarProps} from './../calendar'
 import DateRangePicker from './date-range-picker'
 
 const {I18nProvider, useDateFormatter} = DatePicker.I18N
@@ -34,7 +33,7 @@ export const Variants: React.FC = () => {
 }
 
 export const Controlled: React.FC = () => {
-  const [range, setRange] = React.useState<RangeValue<CalendarProps>>({
+  const [range, setRange] = React.useState<RangeValue<DateValue>>({
     start: parseDate('2020-02-03'),
     end: parseDate('2020-02-08'),
   })

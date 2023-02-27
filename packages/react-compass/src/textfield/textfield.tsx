@@ -22,7 +22,6 @@ interface Props extends AriaTextFieldProps, StyledComponentProps {
   rightIcon?: React.ReactNode
   onChangeEvent?: (event: React.ChangeEvent<HTMLInputElement>) => void
   onChange?: (value: string) => void
-  password?: boolean
 }
 
 export type TextFieldProps = Props &
@@ -44,7 +43,6 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       prefix,
       onChangeEvent,
       onChange,
-      password = false,
       // AriaTextFieldProps
       isDisabled,
       ...ariaSafeProps
@@ -72,11 +70,6 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       onChangeEvent?.(event)
     }
 
-    const typeDetermineFunc = () => {
-      if (password == false) return 'text'
-      if (password == true) return 'password'
-    }
-
     return (
       <StyledTextFieldWrapper css={css} {...htmlProps}>
         {label && (
@@ -92,7 +85,6 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
             ref={textfieldRef}
             {...inputProps}
             onChange={handleOnChange}
-            type={typeDetermineFunc()}
           />
           {rightIcon ? <div className='right-icon'>{rightIcon}</div> : null}
         </StyledTextFieldBox>
