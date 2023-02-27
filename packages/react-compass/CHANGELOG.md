@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 0.20.0
+
+### Minor Changes
+
+- b0430c0: Change errored to isErrored and fix some bugs
+
 ## 0.19.0
 
 ### Minor Changes
