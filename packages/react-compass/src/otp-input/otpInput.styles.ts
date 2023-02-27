@@ -1,3 +1,4 @@
+
 import {styled} from '../theme'
 import {VariantProps} from '../utils/stitches.types'
 
@@ -38,3 +39,4 @@ export const StyledOtpInputContainer = styled('div', {
 export type OtpInputContainerVariantProps = VariantProps<
   typeof StyledOtpInputContainer
 >
+

@@ -8,12 +8,12 @@ export const Variants: React.FC = () => {
 
   return (
     <Column>
-      <Textarea placeholder='Enter your message' />
       <Textarea
-        label='Text Label'
         placeholder='Enter your message'
-        isRequired
+        onChange={(value) => console.log('onChange', value)}
+        onChangeEvent={(e) => console.log('onChangeEvent', e)}
       />
+      <Textarea label='Text Label' placeholder='Enter your message' />
       <Textarea
         label='Text Label'
         placeholder='Enter your message'

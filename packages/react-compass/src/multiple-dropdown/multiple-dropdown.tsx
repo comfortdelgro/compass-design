@@ -89,7 +89,7 @@ const MultipleDropdown = React.forwardRef<
       key: Key
       text: string
     }> = []
-    if ([...state.collection].length > 0) {
+    if([...state.collection].length > 0) {
       state.selectionManager.selectedKeys.forEach((selectedKey) => {
         const item = state.collection.getItem(selectedKey)
         t.push({key: selectedKey, text: item.textValue})

@@ -54,7 +54,6 @@ const PreDropdown = React.forwardRef<HTMLDivElement, P>((props, ref) => {
     isRequired,
     isDisabled,
     errorMessage,
-    placeholder,
     onPhoneChange,
     // AriaDropdownProps
   } = props

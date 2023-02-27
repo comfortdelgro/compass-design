@@ -74,22 +74,18 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
 
     return (
       <StyledTextareaWrapper css={css} {...htmlProps}>
-        {label && (
-          <StyledTextFieldLabel {...labelProps} isDisabled={!!isDisabled}>
-            {isRequired && <span>*</span>} {label}
-          </StyledTextFieldLabel>
-        )}
+        <StyledTextFieldLabel {...labelProps} disabled={!!disabled}>
+          {label}
+        </StyledTextFieldLabel>
         <StyledTextarea
+          ref={textareaRef}
           {...inputProps}
           {...variantProps}
-          ref={textareaRef}
-          isErrored={!!isErrored}
-          onChange={(e) => {
-            console.log(e)
+          onChange={(e) =>
             handleOnChange(e as unknown as React.ChangeEvent<HTMLInputElement>)
-          }}
+          }
         />
-        {wordCount && (
+        {wordCount ? (
           <StyledTextFieldHelperText
             className='word-count'
             {...descriptionProps}

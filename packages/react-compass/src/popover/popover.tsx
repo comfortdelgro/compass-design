@@ -117,7 +117,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
           displayPosition.top = 'auto'
           displayPosition.left = anchorElement.offsetLeft + 'px'
           displayPosition.bottom =
-            window.innerHeight - bound.bottom + bound.height + offset + 'px'
+            offsetParent.clientHeight - anchorElement.offsetTop + offset + 'px'
           displayPosition.right = 'auto'
           break
 
@@ -126,7 +126,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
           displayPosition.left =
             anchorElement.offsetLeft + bound.width / 2 + 'px'
           displayPosition.bottom =
-            window.innerHeight - bound.bottom + bound.height + offset + 'px'
+            offsetParent.clientHeight - anchorElement.offsetTop + offset + 'px'
           displayPosition.right = 'auto'
           break
 
