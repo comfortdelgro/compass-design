@@ -1,5 +1,41 @@
 # @comfortdelgro/react-compass
 
+## 0.22.1
+
+### Patch Changes
+
+- Updated dependencies [bfd95f0]
+  - @comfortdelgro/compass-icons@0.12.0
+
+## 0.22.0
+
+### Minor Changes
+
+- c099ede: fix bugs in dialog
+
+## 0.21.0
+
+### Minor Changes
+
+- f7d1592: Fix iRequired
+
+## 0.20.0
+
+### Minor Changes
+
+- 68a5f66: Fix textarea onChange and onChangeEvent bugs
+
+## 0.19.0
+
+### Minor Changes
+
+- cdb9b10: Fix bugs in icon build and textfiel
+
+### Patch Changes
+
+- Updated dependencies [cdb9b10]
+  - @comfortdelgro/compass-icons@0.11.0
+
 ## 0.18.0
 
 ### Minor Changes

@@ -49,6 +49,7 @@ import TagBox from '@comfortdelgro/react-compass/tag-box'
       {id: 9, value: 'Item 9', icon: <Icon icon={faExclamationTriangle} />},
       {id: 10, value: 'Item 10', isDisabled: true},
     ]}
+    isRequired
     onRemove={(e) => console.log(e)}
     onEdit={(i, v) => console.log(i, v)}
     helperText='Helper text'
@@ -79,6 +80,7 @@ import TagBox from '@comfortdelgro/react-compass/tag-box'
       {id: 9, value: 'Item 9', icon: <Icon icon={faExclamationTriangle} />},
       {id: 10, value: 'Item 10', isDisabled: true},
     ]}
+    isRequired
     onRemove={(e) => console.log(e)}
     onEdit={(i, v) => console.log(i, v)}
     helperText='Helper text'
@@ -293,6 +295,7 @@ import TagBox from '@comfortdelgro/react-compass/tag-box'
 | :------------- | :---------- | :------ | :----------------------------------------------------------------------------------------------------------- |
 | children       | `ReactNode` | —       | The content to display in the tag box. It should be TabBox.Action                                            |
 | isErrored      | `boolean`   | 'false' | Error state when tagbox is errored                                                                           |
+| isRequired     | `false`\| `true` | 'false' | Whether user input is required on the input before form submission   |
 | errorMessage   | `string`    | -       | Error message for tagbox                                                                                     |
 | labelPosition  | `top` `left`| -       | The position of the label.                                                                                   |
 | collaspable    | `boolean`   | -       | Collaspable mode when tag bog is to much.                                                                    |
