@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 0.23.0
+
+### Minor Changes
+
+- Fix some bugs
+
 ## 0.22.1
 
 ## 0.22.0
