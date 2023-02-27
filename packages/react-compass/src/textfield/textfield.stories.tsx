@@ -32,6 +32,7 @@ export const Variants: React.FC = () => (
         errorMessage='my error message'
         onChange={(e) => console.log('onChange', e)}
         onChangeEvent={(e) => console.log('onChangeEvent', e)}
+        type='password'
       />
     </Row>
 
