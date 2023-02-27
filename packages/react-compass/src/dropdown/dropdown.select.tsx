@@ -17,6 +17,7 @@ interface Props<T> extends SelectProps<T>, StyledComponentProps {
   isLoading?: boolean
   icon?: React.ReactNode
   isErrored?: boolean
+  isRequired?: boolean
   errorMessage?: string
   headerTitle?: string
   headerOnClick?: (e: unknown) => void
@@ -31,6 +32,8 @@ const Select = React.forwardRef<HTMLButtonElement, DropdownProps>(
       css = {},
       icon = <Icon />,
       isErrored,
+      isRequired,
+      isDisabled,
       errorMessage,
       // AriaDropdownProps
     } = props
@@ -49,13 +52,22 @@ const Select = React.forwardRef<HTMLButtonElement, DropdownProps>(
 
     return (
       <StyledDropdownWrapper css={css} {...variantProps}>
-        {props.label && <label {...labelProps}>{props.label}</label>}
+        {props.label && (
+          <label {...labelProps}>
+            {isRequired && <span>*</span>}
+            {props.label}
+          </label>
+        )}
         <HiddenSelect
           state={state}
           triggerRef={selectRef}
           label={props.label}
         />
-        <StyledSelect isEmpty={!state.selectedItem} isErrored={!!isErrored}>
+        <StyledSelect
+          isEmpty={!state.selectedItem}
+          isErrored={!!isErrored}
+          isDisabled={!!isDisabled}
+        >
           <Button {...triggerProps} ref={selectRef}>
             <span {...valueProps}>
               {state.selectedItem

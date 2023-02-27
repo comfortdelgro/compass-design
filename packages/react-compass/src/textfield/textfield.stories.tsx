@@ -32,13 +32,12 @@ export const Variants: React.FC = () => (
         errorMessage='my error message'
         onChange={(e) => console.log('onChange', e)}
         onChangeEvent={(e) => console.log('onChangeEvent', e)}
-        password={true}
       />
     </Row>
 
     <h3>With Label</h3>
     <Row>
-      <Textfield label='Name' placeholder='Enter your name' />
+      <Textfield label='Name' placeholder='Enter your name' isRequired />
     </Row>
 
     <h3>With Helper Text</h3>
@@ -53,11 +52,12 @@ export const Variants: React.FC = () => (
     <h3>Error</h3>
     <Row>
       <Textfield
-        errored
+        isErrored
         value='Wrong Value'
         label='Name'
         placeholder='Enter your name'
-        helperText='Use Helper Text for Errors'
+        helperText='This is helpers text'
+        errorMessage='Errror'
       />
     </Row>
 

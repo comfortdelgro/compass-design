@@ -14,7 +14,8 @@ import {
 
 interface Props extends AriaTextFieldProps, StyledComponentProps {
   label?: string
-  errored?: boolean
+  isErrored?: boolean
+  isRequired?: boolean
   helperText?: string
   errorMessage?: string
   prefix?: React.ReactNode
@@ -22,7 +23,6 @@ interface Props extends AriaTextFieldProps, StyledComponentProps {
   rightIcon?: React.ReactNode
   onChangeEvent?: (event: React.ChangeEvent<HTMLInputElement>) => void
   onChange?: (value: string) => void
-  password?: boolean
 }
 
 export type TextFieldProps = Props &
@@ -36,7 +36,8 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       css = {},
       // ComponentProps
       label,
-      errored,
+      isErrored,
+      isRequired,
       helperText,
       errorMessage,
       leftIcon,
@@ -44,7 +45,6 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       prefix,
       onChangeEvent,
       onChange,
-      password = false,
       // AriaTextFieldProps
       isDisabled,
       ...ariaSafeProps
@@ -72,19 +72,14 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       onChangeEvent?.(event)
     }
 
-    const typeDetermineFunc = () => {
-      if (password == false) return 'text'
-      if (password == true) return 'password'
-    }
-
     return (
       <StyledTextFieldWrapper css={css} {...htmlProps}>
         {label && (
-          <StyledTextFieldLabel {...labelProps} disabled={!!isDisabled}>
-            {label}
+          <StyledTextFieldLabel {...labelProps} isDisabled={!!isDisabled}>
+            {isRequired && <span>*</span>} {label}
           </StyledTextFieldLabel>
         )}
-        <StyledTextFieldBox disabled={!!isDisabled} errored={!!errored}>
+        <StyledTextFieldBox isDisabled={!!isDisabled} isErrored={!!isErrored}>
           {leftIcon ? <div className='left-icon'>{leftIcon}</div> : null}
           {prefix ? <div className='prefix'>{prefix}</div> : null}
           <StyledTextField
@@ -92,16 +87,17 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
             ref={textfieldRef}
             {...inputProps}
             onChange={handleOnChange}
-            type={typeDetermineFunc()}
           />
           {rightIcon ? <div className='right-icon'>{rightIcon}</div> : null}
         </StyledTextFieldBox>
-        <StyledTextFieldHelperText {...descriptionProps}>
-          {helperText}
-        </StyledTextFieldHelperText>
-        {errored ? (
+        {isErrored && errorMessage && (
           <StyledTextFieldHelperText {...errorMessageProps} error>
             {errorMessage}
+          </StyledTextFieldHelperText>
+        )}
+        {helperText ? (
+          <StyledTextFieldHelperText {...descriptionProps}>
+            {helperText}
           </StyledTextFieldHelperText>
         ) : null}
       </StyledTextFieldWrapper>

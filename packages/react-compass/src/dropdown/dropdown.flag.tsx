@@ -54,6 +54,7 @@ const PreDropdown = React.forwardRef<HTMLDivElement, P>((props, ref) => {
     isRequired,
     isDisabled,
     errorMessage,
+    placeholder,
     onPhoneChange,
     // AriaDropdownProps
   } = props
@@ -104,8 +105,17 @@ const PreDropdown = React.forwardRef<HTMLDivElement, P>((props, ref) => {
 
   return (
     <StyledDropdownWrapper css={css} ref={dropdownRef} {...variantProps}>
-      {props.label && <label {...labelProps}>{props.label}</label>}
-      <StyledFlag isEmpty={!inputProps.value} isErrored={!!isErrored}>
+      {props.label && (
+        <label {...labelProps}>
+          {isRequired && <span>*</span>}
+          {props.label}
+        </label>
+      )}
+      <StyledFlag
+        isEmpty={!inputProps.value && !placeholder}
+        isErrored={!!isErrored}
+        isDisabled={!!isDisabled}
+      >
         {currentState && (
           <StyledFlagIcon>
             <Flag iso={currentState['alpha-2']} />
