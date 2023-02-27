@@ -55,7 +55,6 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
     helperText,
     children,
     isErrored,
-    isRequired,
     errorMessage,
     onRemove,
     onAdd,
@@ -130,12 +129,7 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
   return (
     <StyledTagBox css={css} ref={tagBoxRef}>
       <StyledBoxWrapper labelPosition={labelPosition}>
-        {props.label && (
-          <label {...labelProps}>
-            {isRequired && <span>*</span>}
-            {props.label}
-          </label>
-        )}
+        {props.label && <label {...labelProps}>{props.label}</label>}
         <div>
           <StyledBox
             {...fieldProps}
