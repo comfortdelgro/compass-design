@@ -2,7 +2,7 @@ import {getLocalTimeZone, parseDate, today} from '@internationalized/date'
 import {StoryDecorator} from '@ladle/react'
 import React from 'react'
 import {Column} from '../utils'
-import Calendar, {CalendarProps} from './calendar'
+import Calendar, {CalendarProps} from './index'
 
 const {useDateFormatter} = Calendar.I18N
 export const Variants: React.FC = () => {
