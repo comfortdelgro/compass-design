@@ -1,11 +1,13 @@
 import {getLocalTimeZone, parseDate} from '@internationalized/date'
 import {StoryDecorator} from '@ladle/react'
-import {I18nProvider, useDateFormatter} from '@react-aria/i18n'
 import type {RangeValue} from '@react-types/shared'
 import React from 'react'
+import DatePicker from '../date-picker'
 import {Column} from '../utils'
 import {CalendarProps} from './../calendar'
 import DateRangePicker from './date-range-picker'
+
+const {I18nProvider, useDateFormatter} = DatePicker.I18N
 
 export const Variants: React.FC = () => {
   return (

@@ -39,7 +39,7 @@ import Textfield from '@comfortdelgro/react-compass/textfield'
 ### Text field with label:
 
 <section className={styles.avatarShowcaseContainer}>
-  <Textfield label='Name' placeholder='Enter your name' isRequired />
+  <Textfield label='Name' placeholder='Enter your name' />
 </section>
 
 ```js
@@ -72,23 +72,21 @@ import Textfield from '@comfortdelgro/react-compass/textfield'
 
 <section className={styles.avatarShowcaseContainer}>
   <Textfield
-    isErrored
+    errored
     value='Wrong Value'
     label='Name'
     placeholder='Enter your name'
-    helperText='This is helpers text'
-    errorMessage='Errror'
+    helperText='Use Helper Text for Errors'
   />
 </section>
 
 ```js
 <Textfield
-  isErrored
+  errored
   value='Wrong Value'
   label='Name'
   placeholder='Enter your name'
-  helperText='This is helpers text'
-  errorMessage='Errror'
+  helperText='Use Helper Text for Errors'
 />
 ```
 
@@ -176,13 +174,11 @@ With css prop, you can basically do anything that css can do.
 | `placeholder` | `string` \| `null`           | `null`  | `Placeholder of the text field`                   |
 | `label`       | `string` \| `null`           | `null`  | `Label of the text field`                         |
 | `helperText`  | `string` \| `null`           | —       |                                                   |
-| `isErrored`   | `true` \| `false`            | `false` | `Throw error when input value is wrong`           |
-| `errorMessage`| `string`                     | -       | `Error message when errored`                      |
+| `errored`     | `true` \| `false`            | `false` | `Throw error when input value is wrong`           |
 | `value`       | `string`                     | —       | `Input value`                                     |
 | `rightIcon`   | `ReactNode`                  | -       | `Icon placed on the right side of the text field` |
 | `leftIcon`    | `ReactNode`                  | -       | `Icon placed on the left side of the text field`  |
 | `isDisabled`  | `false`\| `true`             | `false` | `Disable the text field when true`                |
-| `isRequired`  | `false`\| `true`             | `false` | `Whether user input is required on the input before form submission`   |
 | `css `        | `CSS`                        | —       |                                                   |
 
 ---
