@@ -47,12 +47,14 @@ export const StyledToastCloseIcon = styled('div', {
   padding: '0px',
 
   // styling
-  width: '$3_5',
+  minWidth: '$3_5',
+  maxWidth: '$3_5',
   minHeight: '$3_5',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   cursor: 'pointer',
+
   '& *': {
     width: '100%',
     height: '100%',
@@ -69,7 +71,7 @@ export const StyledToastLabel = styled('div', {
   padding: '0px',
 
   // styling
-  // width: '$5_5',
+  width: 'fit-content',
   minHeight: '$4_5',
   fontWeight: '$normal',
   fontFamily: '$sans',
@@ -81,7 +83,7 @@ export const StyledToastLabel = styled('div', {
   alignItems: 'center',
 })
 
-export const StyledToastTitle = styled('h3', {
+export const StyledToastTitle = styled('div', {
   // reset
   appearance: 'none',
   border: 'none',
@@ -91,7 +93,7 @@ export const StyledToastTitle = styled('h3', {
   padding: '0px',
 
   // styling
-  // width: '$5_5',
+  width: 'fit-content',
   minHeight: '$4_5',
   fontWeight: '$semibold',
   fontFamily: '$sans',
@@ -111,7 +113,8 @@ export const StyledToastIcon = styled('div', {
   padding: '0px',
 
   // styling
-  width: '$5_5',
+  minWidth: '$5_5',
+  maxWidth: '$5_5',
   minHeight: '$4_5',
   display: 'flex',
   justifyContent: 'center',
