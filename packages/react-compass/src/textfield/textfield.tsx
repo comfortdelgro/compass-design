@@ -73,8 +73,8 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
     }
 
     const typeDetermineFunc = () => {
-      if (password) return 'text'
-      return 'password'
+      if (password == false) return 'text'
+      if (password == true) return 'password'
     }
 
     return (
