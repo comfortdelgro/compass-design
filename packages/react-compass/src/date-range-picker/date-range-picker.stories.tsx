@@ -1,10 +1,12 @@
-import {DateValue, getLocalTimeZone, parseDate} from '@internationalized/date'
+import {getLocalTimeZone, parseDate} from '@internationalized/date'
 import {StoryDecorator} from '@ladle/react'
-import {I18nProvider, useDateFormatter} from '@react-aria/i18n'
 import type {RangeValue} from '@react-types/shared'
 import React from 'react'
 import {Column} from '../utils'
+import Calendar, {CalendarProps} from './../calendar'
 import DateRangePicker from './date-range-picker'
+
+const {I18nProvider, useDateFormatter} = Calendar.I18N
 
 export const Variants: React.FC = () => {
   return (
@@ -31,7 +33,7 @@ export const Variants: React.FC = () => {
 }
 
 export const Controlled: React.FC = () => {
-  const [range, setRange] = React.useState<RangeValue<DateValue>>({
+  const [range, setRange] = React.useState<RangeValue<CalendarProps>>({
     start: parseDate('2020-02-03'),
     end: parseDate('2020-02-08'),
   })

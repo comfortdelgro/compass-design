@@ -25,7 +25,6 @@ export const Select: React.FC = () => {
       <Dropdown.Select
         label='Favorite Animal'
         placeholder='Choose an animal'
-        isDisabled
         selectedKey={value}
         onSelectionChange={(k: Key) => setValue(k)}
       >

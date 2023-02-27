@@ -8,18 +8,17 @@ export const Variants: React.FC = () => {
 
   return (
     <Column>
-      <Textarea placeholder='Enter your message' />
       <Textarea
-        label='Text Label'
         placeholder='Enter your message'
-        isRequired
+        onChange={(value) => console.log('onChange', value)}
+        onChangeEvent={(e) => console.log('onChangeEvent', e)}
       />
+      <Textarea label='Text Label' placeholder='Enter your message' />
       <Textarea
         label='Text Label'
         placeholder='Enter your message'
         wordCount
         value='Lorem ipsum dolor sit amet.'
-        isRequired
       />
       <Textarea
         label='Text Label'
@@ -34,8 +33,7 @@ export const Variants: React.FC = () => {
         placeholder='Enter your message'
         wordCount
         maxLength={50}
-        isErrored
-        errorMessage='Error Message'
+        errored
       />
     </Column>
   )

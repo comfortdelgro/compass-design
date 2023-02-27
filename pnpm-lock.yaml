@@ -26,7 +26,7 @@ importers:
 
   apps/docs:
     specifiers:
-      '@comfortdelgro/compass-icons': workspace:^0.12.0
+      '@comfortdelgro/compass-icons': workspace:^0.10.0
       '@comfortdelgro/react-compass': workspace:*
       '@fortawesome/free-brands-svg-icons': ^6.2.1
       '@fortawesome/free-regular-svg-icons': ^6.2.0
@@ -785,14 +785,6 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
-
-  /@comfortdelgro/compass-icons/0.9.0_react@18.2.0:
-    resolution: {integrity: sha512-Swedflolg5iZVaRvHsHPXdcBIb/w9jee5rY8W1dEFCWRPt+UEVcDzMYqmnTVcd5b1q2vYIiLiEa7hwTVNmUW5Q==}
-    dependencies:
-      '@react-aria/i18n': 3.6.3_react@18.2.0
-    transitivePeerDependencies:
-      - react
-    dev: false
 
   /@comfortdelgro/eslint-config/1.0.2_ztlnmuobvwn63gpuifwwrjpt4i:
     resolution: {integrity: sha512-oYzdVCbguqbpAaIieGsyoNmHz1fr1Gw8Yqq8RZpDiJQ7UQhWM0/bloGQTbrE55xP+X5JV0GXu9gHb4n28tt9VA==}

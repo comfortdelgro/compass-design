@@ -29,8 +29,6 @@ interface Props<T>
   icon?: React.ReactNode
   placeholder?: string
   headerTitle?: string
-  isDisabled?: boolean
-  isRequired?: boolean
   isErrored?: boolean
   errorMessage?: string
   helperText?: string
@@ -48,8 +46,6 @@ const MultipleDropdown = React.forwardRef<
     css = {},
     icon = <Icon />,
     isErrored,
-    isDisabled,
-    isRequired,
     errorMessage,
     helperText,
     // AriaDropdownProps
@@ -73,13 +69,10 @@ const MultipleDropdown = React.forwardRef<
     setOpen: (v: boolean) => setIsOpen(v),
     toggle: () =>
       setIsOpen((v) => {
-        if (!isDisabled) {
-          if (v && inputRef.current?.value !== '') {
-            return true
-          }
-          return !v
+        if (v && inputRef.current?.value !== '') {
+          return true
         }
-        return v
+        return !v
       }),
     close: () => setIsOpen(false),
     open: () => setIsOpen(true),
@@ -161,17 +154,11 @@ const MultipleDropdown = React.forwardRef<
 
   return (
     <StyledDropdownWrapper css={css} ref={ref}>
-      {props.label && (
-        <label {...labelProps}>
-          {isRequired && <span>*</span>}
-          {props.label}
-        </label>
-      )}
+      {props.label && <label {...labelProps}>{props.label}</label>}
       <StyledDropdown
         onClick={collapseState.toggle}
         ref={wrapperRef}
         isErrored={!!isErrored}
-        isDisabled={!!isDisabled}
       >
         <StyledSelectedItemWrapper>
           {selectedNode.length === 0 && !isOpen && <p>{props.placeholder}</p>}
@@ -179,21 +166,12 @@ const MultipleDropdown = React.forwardRef<
             selectedNode.map((item) => (
               <StyledSelectedItem key={item.key}>
                 {item.text}
-                <div
-                  style={{cursor: isDisabled ? 'default' : 'pointer'}}
-                  onClick={() => {
-                    if (!isDisabled) {
-                      removeItem(item.key)
-                    }
-                  }}
-                >
+                <div onClick={() => removeItem(item.key)}>
                   <XIcon />
                 </div>
               </StyledSelectedItem>
             ))}
-          {!isDisabled && (
-            <input type='text' ref={inputRef} onChange={onInputChange} />
-          )}
+          <input type='text' ref={inputRef} onChange={onInputChange} />
         </StyledSelectedItemWrapper>
         <div className='dropdown-icon'>{icon}</div>
       </StyledDropdown>
