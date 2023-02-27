@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 0.19.0
+
+### Minor Changes
+
+- 5c62fdb: Fix checkbox css error, export type DatePicker, export i18n, fix dropdown bugs
+
 ## 0.18.0
 
 ### Minor Changes
