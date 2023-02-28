@@ -87,12 +87,12 @@ const MultipleDropdown = React.forwardRef<
   const selectedNode = React.useMemo(() => {
     const t: Array<{
       key: Key
-      text: string
+      rendered: React.ReactNode
     }> = []
     if ([...state.collection].length > 0) {
       state.selectionManager.selectedKeys.forEach((selectedKey) => {
         const item = state.collection.getItem(selectedKey)
-        t.push({key: selectedKey, text: item.textValue})
+        t.push({key: selectedKey, rendered: item.rendered})
       })
     }
     return t
@@ -178,7 +178,7 @@ const MultipleDropdown = React.forwardRef<
           {selectedNode.length > 0 &&
             selectedNode.map((item) => (
               <StyledSelectedItem key={item.key}>
-                {item.text}
+                <div>{item.rendered}</div>
                 <div
                   style={{cursor: isDisabled ? 'default' : 'pointer'}}
                   onClick={() => {
