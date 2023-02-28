@@ -20,10 +20,8 @@ export const MultipleDropdowns: React.FC = () => {
           setValue(k === 'all' ? k : [...k])
         }
       >
-        <MultipleDropdown.Item
-          leftIcon={<Icon icon={faExclamationTriangle} />}
-          key='red panda'
-        >
+        <MultipleDropdown.Item key='red panda'>
+          <Icon icon={faExclamationTriangle} style={{marginRight: 5}} />
           Red Panda
         </MultipleDropdown.Item>
         <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
@@ -39,12 +37,7 @@ export const MultipleDropdowns: React.FC = () => {
         disabledKeys={['snake']}
         placeholder='Choose an animal'
       >
-        <MultipleDropdown.Item
-          leftIcon={<Icon icon={faExclamationTriangle} />}
-          key='red panda'
-        >
-          Red Panda
-        </MultipleDropdown.Item>
+        <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
         <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
         <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
         <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
@@ -61,12 +54,7 @@ export const MultipleDropdowns: React.FC = () => {
         errorMessage='Error Message'
         helperText='Helper Message'
       >
-        <MultipleDropdown.Item
-          leftIcon={<Icon icon={faExclamationTriangle} />}
-          key='red panda'
-        >
-          Red Panda
-        </MultipleDropdown.Item>
+        <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
         <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
         <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
         <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
@@ -82,12 +70,7 @@ export const MultipleDropdowns: React.FC = () => {
         headerTitle='Filter title'
         headerOnClick={() => console.log('clicked')}
       >
-        <MultipleDropdown.Item
-          leftIcon={<Icon icon={faExclamationTriangle} />}
-          key='red panda'
-        >
-          Red Panda
-        </MultipleDropdown.Item>
+        <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
         <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
         <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
         <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
@@ -101,12 +84,7 @@ export const MultipleDropdowns: React.FC = () => {
         placeholder='Choose an animal'
         isLoading
       >
-        <MultipleDropdown.Item
-          leftIcon={<Icon icon={faExclamationTriangle} />}
-          key='red panda'
-        >
-          Red Panda
-        </MultipleDropdown.Item>
+        <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
         <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
         <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
         <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
@@ -123,12 +101,7 @@ export const MultipleDropdowns: React.FC = () => {
         headerTitle='Filter title'
         headerOnClick={() => console.log('clicked')}
       >
-        <MultipleDropdown.Item
-          leftIcon={<Icon icon={faExclamationTriangle} />}
-          key='red panda'
-        >
-          Red Panda
-        </MultipleDropdown.Item>
+        <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
         <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
         <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
         <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>

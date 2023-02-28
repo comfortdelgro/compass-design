@@ -1,6 +1,8 @@
+import {faEye, faEyeSlash} from '@fortawesome/free-solid-svg-icons'
 import {useTextField} from '@react-aria/textfield'
 import type {AriaTextFieldProps} from '@react-types/textfield'
 import React from 'react'
+import Icon from '../icon'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
@@ -23,6 +25,7 @@ interface Props extends AriaTextFieldProps, StyledComponentProps {
   rightIcon?: React.ReactNode
   onChangeEvent?: (event: React.ChangeEvent<HTMLInputElement>) => void
   onChange?: (value: string) => void
+  password?: boolean
 }
 
 export type TextFieldProps = Props &
@@ -45,6 +48,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       prefix,
       onChangeEvent,
       onChange,
+      password,
       // AriaTextFieldProps
       isDisabled,
       ...ariaSafeProps
@@ -66,17 +70,29 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
     const {labelProps, inputProps, descriptionProps, errorMessageProps} =
       useTextField(ariaProps, textfieldRef)
 
+    const [isPassWordVisible, setIsPassWordVisible] = React.useState(false)
+
     const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       //inputProps.onChange?.(event)
       onChange?.(event.target.value)
       onChangeEvent?.(event)
     }
 
+    const determineInputType = () => {
+      if (password == true && isPassWordVisible == false) {
+        return 'password'
+      } else if (password == true && isPassWordVisible == true) {
+        return 'text'
+      }
+      return null
+    }
+
     return (
       <StyledTextFieldWrapper css={css} {...htmlProps}>
         {label && (
           <StyledTextFieldLabel {...labelProps} isDisabled={!!isDisabled}>
-            {isRequired && <span>*</span>} {label}
+            {label}
+            {isRequired && <span>*</span>}
           </StyledTextFieldLabel>
         )}
         <StyledTextFieldBox isDisabled={!!isDisabled} isErrored={!!isErrored}>
@@ -86,9 +102,28 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
             css={css}
             ref={textfieldRef}
             {...inputProps}
+            type={determineInputType() || 'text'}
             onChange={handleOnChange}
           />
           {rightIcon ? <div className='right-icon'>{rightIcon}</div> : null}
+          {determineInputType() == 'password' ? (
+            <div
+              className='right-icon'
+              style={{cursor: 'pointer'}}
+              onClick={() => setIsPassWordVisible(true)}
+            >
+              <Icon icon={faEyeSlash} />
+            </div>
+          ) : null}
+          {determineInputType() == 'text' ? (
+            <div
+              className='right-icon'
+              style={{cursor: 'pointer'}}
+              onClick={() => setIsPassWordVisible(false)}
+            >
+              <Icon icon={faEye} />
+            </div>
+          ) : null}
         </StyledTextFieldBox>
         {isErrored && errorMessage && (
           <StyledTextFieldHelperText {...errorMessageProps} error>

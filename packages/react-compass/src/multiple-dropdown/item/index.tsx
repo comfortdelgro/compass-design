@@ -2,7 +2,6 @@ import {Item} from '@react-stately/collections'
 import React from 'react'
 
 interface Props<T> {
-  leftIcon?: React.ReactNode
   children: React.ReactNode | string
   key: string
   title?: React.ReactNode

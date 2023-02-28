@@ -10,6 +10,7 @@ import {
   faMapMarkerAlt,
   faUserEdit,
 } from '@fortawesome/free-solid-svg-icons'
+import React from 'react'
 import {Icon} from '../icon'
 import {Column, Row} from '../utils/components'
 import Button from './index'

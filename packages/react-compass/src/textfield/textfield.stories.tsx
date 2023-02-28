@@ -112,6 +112,14 @@ export const Variants: React.FC = () => (
         placeholder='Enter your phone number'
       />
     </Row>
+    <h3>Password</h3>
+    <Textfield
+      css={{width: '16rem'}}
+      label='Password'
+      placeholder='Enter your password'
+      helperText='Your password should contain at least 18 characters.'
+      password={true}
+    />
   </Column>
 )
 
