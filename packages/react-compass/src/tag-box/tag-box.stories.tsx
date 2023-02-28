@@ -100,6 +100,7 @@ export const Collaspable: React.FC = () => (
     <TagBox
       label='Text Label'
       collaspable
+      isRequired
       items={items}
       icon={<Icon icon={faExclamationTriangle} />}
       onRemove={(e) => console.log(e)}

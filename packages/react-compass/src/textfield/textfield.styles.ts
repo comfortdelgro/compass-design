@@ -15,7 +15,7 @@ export const StyledTextFieldLabel = styled('label', {
   marginBottom: '$1',
   color: '$gray90',
   span: {
-    marginRight: '$1',
+    marginLeft: '$1',
     color: '$danger',
   },
 

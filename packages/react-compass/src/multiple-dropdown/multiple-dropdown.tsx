@@ -163,8 +163,8 @@ const MultipleDropdown = React.forwardRef<
     <StyledDropdownWrapper css={css} ref={ref}>
       {props.label && (
         <label {...labelProps}>
-          {isRequired && <span>*</span>}
           {props.label}
+          {isRequired && <span>*</span>}
         </label>
       )}
       <StyledDropdown
