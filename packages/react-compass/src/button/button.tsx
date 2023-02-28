@@ -51,16 +51,19 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       loading,
     } as ButtonVariantProps
 
-    const componentProps = {
-      className,
-      css,
-      ...variantProps,
-      ...buttonProps,
-      ...ariaSafeProps,
+    const componentProps = () => {
+      if (loading) return {className, css, ...variantProps}
+      return {
+        className,
+        css,
+        ...variantProps,
+        ...buttonProps,
+        ...ariaSafeProps,
+      }
     }
-
+    const delegateProps = componentProps()
     return (
-      <StyledButton {...componentProps}>
+      <StyledButton {...delegateProps}>
         {loading ? (
           <StyledLoading
             // make sure the loading indicator isn't visible to screen readers
