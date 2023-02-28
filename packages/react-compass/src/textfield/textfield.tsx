@@ -81,9 +81,10 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
     const determineInputType = () => {
       if (password == true && isPassWordVisible == false) {
         return 'password'
-      } else {
+      } else if (password == true && isPassWordVisible == true) {
         return 'text'
       }
+      return null
     }
 
     return (
@@ -101,7 +102,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
             css={css}
             ref={textfieldRef}
             {...inputProps}
-            type={determineInputType()}
+            type={determineInputType() || 'text'}
             onChange={handleOnChange}
           />
           {rightIcon ? <div className='right-icon'>{rightIcon}</div> : null}
@@ -113,7 +114,8 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
             >
               <Icon icon={faEyeSlash} />
             </div>
-          ) : (
+          ) : null}
+          {determineInputType() == 'text' ? (
             <div
               className='right-icon'
               style={{cursor: 'pointer'}}
@@ -121,7 +123,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
             >
               <Icon icon={faEye} />
             </div>
-          )}
+          ) : null}
         </StyledTextFieldBox>
         {isErrored && errorMessage && (
           <StyledTextFieldHelperText {...errorMessageProps} error>
