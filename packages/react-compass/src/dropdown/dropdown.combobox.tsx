@@ -69,8 +69,8 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
       <StyledDropdownWrapper css={css} ref={dropdownRef} {...variantProps}>
         {props.label && (
           <label {...labelProps}>
-            {isRequired && <span>*</span>}
             {props.label}
+            {isRequired && <span>*</span>}
           </label>
         )}
         <StyledDropdown

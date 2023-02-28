@@ -54,8 +54,8 @@ const Select = React.forwardRef<HTMLButtonElement, DropdownProps>(
       <StyledDropdownWrapper css={css} {...variantProps}>
         {props.label && (
           <label {...labelProps}>
-            {isRequired && <span>*</span>}
             {props.label}
+            {isRequired && <span>*</span>}
           </label>
         )}
         <HiddenSelect

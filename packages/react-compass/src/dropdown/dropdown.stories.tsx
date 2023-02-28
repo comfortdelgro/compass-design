@@ -9,6 +9,7 @@ export const Flag: React.FC = () => {
     <Column>
       <h3>Flag</h3>
       <Dropdown.Flag
+        isRequired
         label='List of country'
         placeholder='Choose a country'
         onPhoneChange={(e) => console.log(e)}
@@ -23,6 +24,7 @@ export const Select: React.FC = () => {
     <Column>
       <h3>Controlled</h3>
       <Dropdown.Select
+        isRequired
         label='Favorite Animal'
         placeholder='Choose an animal'
         isDisabled
@@ -134,6 +136,7 @@ export const ComboBox: React.FC = () => {
     <Column>
       <h3>Controlled</h3>
       <Dropdown.ComboBox
+        isRequired
         label='Favorite Animal'
         placeholder='Choose an animal'
         selectedKey={value}

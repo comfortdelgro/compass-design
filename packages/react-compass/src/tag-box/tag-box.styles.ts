@@ -13,7 +13,7 @@ export const StyledBoxWrapper = styled('div', {
     fontWeight: '$semibold',
     display: 'inline-block',
     span: {
-      marginRight: '$1',
+      marginLeft: '$1',
       color: '$danger',
     },
   },

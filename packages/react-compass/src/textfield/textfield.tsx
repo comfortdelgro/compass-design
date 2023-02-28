@@ -76,7 +76,8 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       <StyledTextFieldWrapper css={css} {...htmlProps}>
         {label && (
           <StyledTextFieldLabel {...labelProps} isDisabled={!!isDisabled}>
-            {isRequired && <span>*</span>} {label}
+            {label}
+            {isRequired && <span>*</span>}
           </StyledTextFieldLabel>
         )}
         <StyledTextFieldBox isDisabled={!!isDisabled} isErrored={!!isErrored}>

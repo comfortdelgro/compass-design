@@ -107,8 +107,8 @@ const PreDropdown = React.forwardRef<HTMLDivElement, P>((props, ref) => {
     <StyledDropdownWrapper css={css} ref={dropdownRef} {...variantProps}>
       {props.label && (
         <label {...labelProps}>
-          {isRequired && <span>*</span>}
           {props.label}
+          {isRequired && <span>*</span>}
         </label>
       )}
       <StyledFlag
