@@ -6,12 +6,7 @@ import React, {Key} from 'react'
 import {StyledComponentProps} from '../../utils/stitches.types'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import {MultipleDropdownItemProps} from '../item'
-import {
-  StyledContent,
-  StyledIcon,
-  StyledOption,
-  StyledRightIcon,
-} from './index.styles'
+import {StyledContent, StyledOption, StyledRightIcon} from './index.styles'
 
 interface Props<T> extends StyledComponentProps {
   state: ListState<T>
@@ -31,7 +26,6 @@ const Option = React.forwardRef<HTMLLIElement, LinkProps>(
     )
 
     const {focusProps} = useFocusRing()
-    const {leftIcon} = item.props ?? {}
 
     return (
       <StyledOption
@@ -41,7 +35,6 @@ const Option = React.forwardRef<HTMLLIElement, LinkProps>(
         {...mergeProps(optionProps, focusProps)}
         ref={ref}
       >
-        {leftIcon && <StyledIcon>{leftIcon}</StyledIcon>}
         <StyledContent>{item.rendered}</StyledContent>
         <StyledRightIcon isSelected={isSelected}>
           <div>
