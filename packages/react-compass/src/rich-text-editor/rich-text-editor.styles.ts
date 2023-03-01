@@ -20,34 +20,12 @@ export const StyledMenuBar = styled('div', {
   margin: '0px',
 
   // Styling
-  paddingLeft: '24px',
-  paddingRight: '24px',
+  padding: '5px 24px',
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'space-between',
   backgroundColor: '#F3F2F1',
   width: '796px',
-
-  '& div': {
-    fontSize: '18px',
-    margin: '7px',
-    marginRight: '15px',
-    outline: 'none',
-    border: 'none',
-    background: 'none',
-    color: 'rgb(70, 70, 70)',
-    cursor: 'pointer',
-  },
-
-  '& div:last-child': {
-    marginRight: '7px',
-  },
-
-  '& .is_active': {
-    background: 'rgb(197, 197, 197)',
-    padding: '2px 3px',
-    borderRadius: '2px',
-  },
+  gap: '16px',
 })
 
 export const StyledRichTextEditor = styled('div', {
@@ -79,4 +57,22 @@ export const StyledRichTextEditor = styled('div', {
   overflow: 'clip',
 })
 
+export const StyledMenuBlock = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  gap: '8px',
+})
+export const StyledMenuItem = styled('div', {
+  borderRadius: '2px',
+  fontSize: '18px',
+  outline: 'none',
+  border: 'none',
+  background: 'none',
+  color: 'rgb(70, 70, 70)',
+  cursor: 'pointer',
+  padding: '10px',
+  '&.is_active': {
+    background: 'rgb(197, 197, 197)',
+  },
+})
 export type MenuBarVariantProps = VariantProps<typeof StyledRichTextEditor>
