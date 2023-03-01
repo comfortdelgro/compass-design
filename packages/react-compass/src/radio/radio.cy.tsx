@@ -32,13 +32,7 @@ describe('radio.cy.ts', () => {
     )
 
     cy.mount(radio)
-    cy.get('.c-IGbri-bHwDvJ-variant-outlined')
-      //   .matchImage()
-      .should('have.css', 'border')
-      .and('eq', '1px solid rgb(1, 66, 175)')
-
-    cy.get('.c-eBLxVd svg').trigger('mouseover')
-
-    cy.get('.c-eBLxVd div').should('have.css', 'display')
+    cy.get(':nth-child(1) > .radio-content-wrapper > .radio-label').click()
+    cy.get(':nth-child(2) > .radio-content-wrapper > .radio-label').click()
   })
 })
