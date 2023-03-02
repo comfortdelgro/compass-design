@@ -87,13 +87,7 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
       ...options,
     })
     useEffect(() => {
-      if (typeof onManualSorting === 'function' && options.manualSorting) {
-        if (options.initialSortBy) {
-          onManualSorting(options.initialSortBy)
-        } else {
-          onManualSorting(sorting)
-        }
-      }
+      onManualSorting?.(sorting)
     }, [sorting])
 
     return (
