@@ -17,7 +17,9 @@ interface Props extends AriaButtonProps, StyledComponentProps {
   rightIcon?: React.ReactNode
 }
 
-export type ButtonProps = Props & ButtonVariantProps
+export type ButtonProps = Props &
+  ButtonVariantProps &
+  Omit<React.HTMLAttributes<HTMLButtonElement>, keyof Props>
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
@@ -38,16 +40,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       ...ariaSafeProps
     } = props
 
-    const componentProps = {className}
-
-    // const {
-    //   // we have no information about these props
-    //   // todo: should we delegate them?
-    //   ...extraProps
-    // } = ariaSafeProps
-
     const buttonRef = useDOMRef<HTMLButtonElement>(ref)
-    const {buttonProps} = useButton(ariaSafeProps, buttonRef)
+
+    const buttonProps = useButton(ariaSafeProps, buttonRef).buttonProps
 
     const variantProps = {
       variant,
@@ -56,32 +51,34 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       loading,
     } as ButtonVariantProps
 
+    const componentProps = () => {
+      if (loading) return {className, css, ...variantProps}
+      return {
+        className,
+        css,
+        ...variantProps,
+        ...buttonProps,
+        ...ariaSafeProps,
+      }
+    }
+    const delegateProps = componentProps()
     return (
-      <StyledButton
-        /** Stitches related props, such as `css` and `as` */
-        css={css}
-        /** React related props */
-        ref={buttonRef}
-        /**
-         * 1. Aria props first, e.g. aria attributes, events, etc.
-         * 2. Then component props, e.g. className, data-attributes, etc.
-         * 3. Then variant props at last, to make sure we have styles even in case of clash.
-         */
-        {...buttonProps}
-        {...componentProps}
-        {...variantProps}
-      >
-        <StyledLoading
-          // make sure the loading indicator isn't visible to screen readers
-          hidden={!loading}
-          aria-hidden={!loading}
-        >
-          <div className='dots'>
-            <i />
-            <i />
-            <i />
-          </div>
-        </StyledLoading>
+      <StyledButton {...delegateProps}>
+        {loading ? (
+          <StyledLoading
+            // make sure the loading indicator isn't visible to screen readers
+            hidden={!loading}
+            aria-hidden={!loading}
+          >
+            <div className='dots'>
+              <i />
+              <i />
+              <i />
+            </div>
+          </StyledLoading>
+        ) : (
+          <></>
+        )}
 
         <StyledButtonContent>
           {leftIcon || (fullWidth && rightIcon) ? (

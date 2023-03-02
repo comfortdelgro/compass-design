@@ -21,16 +21,16 @@ export const Default: React.FC = () => {
     <Column>
       <h3>Default</h3>
       <Grid spacing='sm' alignItems='center' style={{height: '100%'}}>
-        <Grid.Item xs={12} sm={6} md={4} lg={3}>
+        <Grid.Item xs={12} sm={6} md={4} lg={3} xl={3}>
           {box}
         </Grid.Item>
-        <Grid.Item xs={12} sm={6} md={4} lg={3}>
+        <Grid.Item xs={12} sm={6} md={4} lg={3} xl={3}>
           {box}
         </Grid.Item>
-        <Grid.Item xs={12} sm={6} md={4} lg={3}>
+        <Grid.Item xs={12} sm={6} md={4} lg={3} xl={3}>
           {box}
         </Grid.Item>
-        <Grid.Item xs={12} sm={6} md={4} lg={3}>
+        <Grid.Item xs={12} sm={6} md={4} lg={3} xl={3}>
           {box}
         </Grid.Item>
       </Grid>

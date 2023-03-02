@@ -2,7 +2,6 @@ import fs from 'node:fs/promises'
 import path from 'node:path'
 
 import {importDirectory} from '@iconify/tools/lib/import/directory'
-import {runSVGO} from '@iconify/tools/lib/optimise/svgo'
 import {cleanupSVG} from '@iconify/tools/lib/svg/cleanup'
 import {transform} from '@svgr/core'
 import {execaCommand} from 'execa'
@@ -44,6 +43,14 @@ const reactOutput = './react/'
 const iconSet = await importDirectory(input, {prefix})
 // Saving width, height, left, right of svg
 const dimensions = []
+const myPreset = [
+  {
+    name: 'preset-default',
+    params: {
+      cleanupIDs: false,
+    },
+  },
+]
 // Validate, clean up, fix palette and optimise
 await iconSet.forEach(async (name, type) => {
   if (type !== 'icon') {
@@ -61,7 +68,7 @@ await iconSet.forEach(async (name, type) => {
   // Clean up and optimise icons
   try {
     await cleanupSVG(svg)
-    await runSVGO(svg)
+    //await runSVGO(svg, {cleanupIDs: false})
   } catch (err) {
     // Invalid icon
     console.error(`Error parsing ${name}:`, err)
@@ -156,6 +163,38 @@ for (const iconName in exported.icons) {
     )} -C module.type=es6`,
   )
 }
+
+// Write index files (TS, CJS, ESM) into React folder
+let indexFileContent: {[key: string]: string} = {}
+
+for (const iconName in exported.icons) {
+  const icon = exported.icons[iconName]
+  const des = dimensions[iconName]
+  const svg = `<svg width="1em" height="1em" viewBox=" ${des.left} ${des.top} ${des.width} ${des.height}">${icon.body}</svg>`
+  indexFileContent[iconName] = svg
+}
+
+const tsxIndexFileName = path.join(reactOutput, `index.tsx`)
+
+let indexFileExport = `export default
+   ${JSON.stringify(indexFileContent)}
+   ;`
+
+await fs.writeFile(tsxIndexFileName, indexFileExport)
+
+await runInShell(
+  `swc ${tsxIndexFileName} -o ${path.join(
+    reactOutput,
+    `index.mjs`,
+  )} -C module.type=commonjs`,
+)
+
+await runInShell(
+  `swc ${tsxIndexFileName} -o ${path.join(
+    reactOutput,
+    `index.mjs`,
+  )} -C module.type=es6`,
+)
 
 await runInShell(`tsc --declaration --emitDeclarationOnly`)
 await runInShell(`rimraf react/**/*.tsx`)

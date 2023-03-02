@@ -17,6 +17,8 @@ export type {
   BannerProps,
   BannerTitleProps,
 } from './banner'
+export {default as Box} from './box'
+export type {BoxProps} from './box'
 export {default as Breadcrumbs} from './breadcrumbs'
 export type {BreadcrumbItemProps, BreadcrumbsProps} from './breadcrumbs'
 export {default as Button} from './button'
@@ -38,6 +40,16 @@ export type {
   CarouselProps,
   CarouselTitleProps,
 } from './carousel'
+export {default as CarouselSlider} from './carousel-v2'
+export type {
+  ButtonType,
+  CarouselOptions,
+  CarouselSliderButton,
+  CarouselSliderItem,
+  NavigationButtonType,
+  NinePartAlignment,
+  SocicalIcon,
+} from './carousel-v2'
 export {default as Chart} from './chart'
 export type {
   AreaChartProps,
@@ -95,8 +107,14 @@ export {default as Icon} from './icon'
 export type {IconProp} from './icon'
 export {default as Link} from './link'
 export type {LinkProps} from './link'
-export {default as List, InteractiveList, ListCard} from './list'
+export {
+  default as List,
+  DragAndDropList,
+  InteractiveList,
+  ListCard,
+} from './list'
 export type {
+  DragAndDropListProps,
   InteractiveListProps,
   ListCardDetailProps,
   ListCardProps,
@@ -123,8 +141,15 @@ export type {
   ModalTitleProps,
   ModalTriggerProps,
 } from './modal'
+export {default as MultipleDropdown} from './multiple-dropdown'
+export type {
+  MultipleDropdownItemProps,
+  MultipleDropdownProps,
+} from './multiple-dropdown'
 export {default as Navbar} from './navbar'
 export type {NavbarBrandProps, NavbarIconProps, NavbarProps} from './navbar'
+export {default as OTPInput} from './otp-input'
+export type {OTPInputProps} from './otp-input'
 export {default as PageHeader} from './page-header'
 export type {
   PageHeaderDescriptionProps,
@@ -135,6 +160,8 @@ export type {
 } from './page-header'
 export {default as Pagination} from './pagination'
 export type {PaginationProps} from './pagination'
+export {default as Popover} from './popover'
+export type {PopoverDirection, PopoverProps} from './popover'
 export {default as Preflight} from './preflight'
 export {default as ProgressBar} from './progress-bar'
 export type {ProgressBarProps} from './progress-bar'
@@ -144,6 +171,8 @@ export {default as Radio} from './radio'
 export type {RadioGroupProps, RadioProps} from './radio'
 export {default as RangeCalendar} from './range-calendar'
 export type {RangeCalendarProps, RangeValue} from './range-calendar'
+export {default as RichTextRender} from './richtext-render'
+export type {Document, RichTextRenderProps} from './richtext-render'
 export {default as SearchField} from './searchfield'
 export type {SearchFieldProps} from './searchfield'
 export {default as Sidebar} from './sidebar'
@@ -179,6 +208,13 @@ export type {
 } from './subBanner'
 export {default as Table} from './table'
 export type {TableProps} from './table'
+export {
+  default as ReactTable,
+  OptionType as ReactTableOptions,
+  ReactTableProps,
+} from './table-v2'
+export {default as Tabs} from './tabs'
+export type {TabsProps} from './tabs'
 export {default as TagBox} from './tag-box'
 export type {TagBoxActionProps, TagBoxProps} from './tag-box'
 export {default as Textarea} from './textarea'
@@ -202,8 +238,11 @@ export {default as Toggle} from './toggle'
 export type {ToggleProps} from './toggle'
 export {Tooltip, TooltipTrigger} from './tooltip'
 export type {TooltipProps, TooltipTriggerProps} from './tooltip'
+export {default as Typography} from './typography'
 export {default as Upload} from './upload'
 export type {UploadDragAndDropProps, UploadProps} from './upload'
+export {default as Upload2} from './upload-v2'
+export type {Upload2Props} from './upload-v2'
 export * from './utils'
 export {default as VideoPlayer} from './video-player'
 export type {VideoPlayerProps} from './video-player'

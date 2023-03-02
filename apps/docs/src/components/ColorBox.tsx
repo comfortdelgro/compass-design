@@ -6,6 +6,7 @@ interface Props {
     token: string
     value: string
   }
+  gradient: boolean
 }
 
 function rgba2hex(color: string) {
@@ -82,24 +83,28 @@ const getResolvedColor = (color: string) => {
   return color
 }
 
-const ColorBox: React.FC<Props> = ({color}) => {
+const ColorBox: React.FC<Props> = ({color, gradient = false}) => {
   const [resolvedColor, setResolvedColor] = useState<string | null>(null)
   const [resolvedColorOpacity, setResolvedColorOpacity] = useState<number>(1)
 
   useEffect(() => {
-    setResolvedColor(takeOpacityOut(getResolvedColor(color.value)).color)
-    setResolvedColorOpacity(resolvedColorOpacity)
-  }, [color.value, resolvedColorOpacity])
+    if (!gradient) {
+      setResolvedColor(takeOpacityOut(getResolvedColor(color.value)).color)
+      setResolvedColorOpacity(resolvedColorOpacity)
+    }
+  }, [color.value, gradient, resolvedColorOpacity])
 
+  console.log(color.value, gradient)
   return (
     <div
       className='w-36 h-24 p-2 font-mono text-xs font-semibold flex flex-col items-start justify-between cursor-copy flex-shrink-0 transition-all hover:scale-105'
       style={{
-        backgroundColor: color.value,
+        backgroundColor: !gradient ? color.value : 'transparent',
+        backgroundImage: gradient
+          ? `linear-gradient(to right, ${color.value})`
+          : 'none',
         opacity: resolvedColorOpacity,
-        color: resolvedColor
-          ? getAccessibleColor(resolvedColor)
-          : 'transparent',
+        color: resolvedColor ? getAccessibleColor(resolvedColor) : '#000',
       }}
       onClick={() => {
         navigator && navigator.clipboard.writeText(resolvedColor || '')
@@ -107,7 +112,7 @@ const ColorBox: React.FC<Props> = ({color}) => {
       }}
     >
       <div>{color.token}</div>
-      <div>{resolvedColor}</div>
+      <div>{gradient ? color.value : resolvedColor}</div>
     </div>
   )
 }

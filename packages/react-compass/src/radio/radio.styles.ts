@@ -9,7 +9,10 @@ export const StyledRadio = styled('div', {
   minWidth: '$96',
   width: 'min-content',
   '.radio-wrapper': {
-    width: '16px important',
+    width: '16px !important',
+    display: 'flex !important',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   '.radio-content-wrapper': {
     flexGrow: 1,

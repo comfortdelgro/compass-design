@@ -16,32 +16,71 @@ const data = [
 
 export const Areas: React.FC = () => (
   <Column>
-    <div style={{width: '100%'}}>
-      <Chart.Area labels={labels} data={data} title='Area Chart' />
-    </div>
+    <h3>Basic usage</h3>
+    <Chart.Area labels={labels} data={data} title='Area Chart' />
+    <h3>With unit</h3>
+    <Chart.Area labels={labels} data={data} title='Area Chart' unit='unit' />
+    <h3>Positioned legends</h3>
+    <Chart.Area
+      labels={labels}
+      data={data}
+      title='Area Chart'
+      legendPosition='bottom'
+    />
   </Column>
 )
 
 export const Columns: React.FC = () => (
   <Column>
-    <div style={{width: '100%'}}>
-      <Chart.Column labels={labels} data={data} title='Column Chart' />
-    </div>
+    <h3>Basic usage</h3>
+    <Chart.Column labels={labels} data={data} title='Column Chart' />
+    <h3>With unit</h3>
+    <Chart.Column
+      labels={labels}
+      data={data}
+      title='Column Chart'
+      unit='unit'
+    />
+    <h3>Positioned legends</h3>
+    <Chart.Column
+      labels={labels}
+      data={data}
+      title='Column Chart'
+      legendPosition='bottom'
+    />
   </Column>
 )
 
 export const Lines: React.FC = () => (
   <Column>
-    <div style={{width: '100%'}}>
-      <Chart.Line labels={labels} data={data} title='Line Chart' />
-    </div>
+    <h3>Basic usage</h3>
+    <Chart.Line labels={labels} data={data} title='Line Chart' />
+    <h3>With unit</h3>
+    <Chart.Line labels={labels} data={data} title='Line Chart' unit='unit' />
+    <h3>Positioned legends</h3>
+    <Chart.Line
+      labels={labels}
+      data={data}
+      title='Line Chart'
+      legendPosition='bottom'
+    />
+    <Chart.Line labels={labels} data={data} title='Line Chart' />
   </Column>
 )
 
 export const Bars: React.FC = () => (
   <Column>
-    <div style={{width: '100%'}}>
-      <Chart.Bar labels={labels} data={data} title='Bar Chart' />
-    </div>
+    <h3>Basic usage</h3>
+    <Chart.Bar labels={labels} data={data} title='Bar Chart' />
+    <h3>With unit</h3>
+    <Chart.Bar labels={labels} data={data} title='Bar Chart' unit='unit' />
+    <h3>Positioned legends</h3>
+    <Chart.Bar
+      labels={labels}
+      data={data}
+      title='Bar Chart'
+      legendPosition='bottom'
+    />
+    <Chart.Line labels={labels} data={data} title='Line Chart' />
   </Column>
 )

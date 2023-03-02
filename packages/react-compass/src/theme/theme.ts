@@ -103,6 +103,10 @@ export default defineTheme({
     label1: '0.875rem', //14px
     label2: '0.75rem', //12px
     label3: '0.625rem', //10px
+
+    link1: '1.25rem', //20px
+    link2: '1rem', //16px
+    link3: '0.875rem', //14px
   },
   lineHeights: {
     tight: 1.25,
@@ -185,6 +189,10 @@ export default defineTheme({
     primaryBg: '#F5F5F6',
     secondaryBg: '#F0F0F0',
     darkerBg: '#EAEBEB',
+
+    gradientOrange: '#F02627, #EA8816',
+    gradientRainbow: '#0163AE, #D80837, #53AF35',
+    gradientOrangeBlue: '#D2132A, #0597DB',
   },
   borderWidths: {
     light: '1px',

@@ -1,5 +1,54 @@
 # @comfortdelgro/compass-icons
 
+## 0.12.0
+
+## 0.11.0
+
+## 0.10.0
+
+## 0.10.0
+
+### Minor Changes
+
+- baeddd7: Add flag icons and fix bugs
+
+## 0.9.0
+
+### Minor Changes
+
+- ce4513b: compass-icons: add mission country flags, fix build.
+  react-compass: add html attributes props to components, add prefix for textfield, set auto height for toast title, add otp input component, fix datepicker skipping 1 month when next clicked, error state for dropdown, editable tag
+
+## 0.8.0
+
+### Minor Changes
+
+- aa572d8: compass-icon now can be imported the whole package, table multi sort is fixed, date picker maxValue is now useable
+
+## 0.7.0
+
+### Minor Changes
+
+- 3248b8b: Add more icons to workbench
+
+## 0.6.0
+
+### Minor Changes
+
+- 433183b: 1. Add country flag icons 2. Add new components: tag input & rich text render 3. Fix: wrong alignment of checkbox, drag&drop list doesn't work with complex child
+
+## 0.5.0
+
+### Minor Changes
+
+- bf0c74a: 1. add more icons to compass-icon 2. Encapsulate table component and fix its props 3. Add more docs 4. Add more variants for tagbox 5. Fix date picker granularity 6. Fix accordion box-sizing 7. Add version 2 of Carousel
+
+## 0.4.0
+
+### Minor Changes
+
+- 6402cf3: 1. add more icons for workbench to compass-icon 2. add new components: carousel version 2, upload version 2, table version 2, multiple dropdown, box component, colors, Typography, Drag & drop list, 3. Fix bugs: position of tooltip, export of Tabs component, z-index standard for all components so that tooltip can work well with modal/dialog,
+
 ## 0.3.0
 
 ### Minor Changes

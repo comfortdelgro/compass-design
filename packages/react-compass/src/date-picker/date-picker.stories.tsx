@@ -1,16 +1,14 @@
-import {
-  DateValue,
-  getLocalTimeZone,
-  parseDate,
-  today,
-} from '@internationalized/date'
+import {getLocalTimeZone, parseDate, today} from '@internationalized/date'
 import {StoryDecorator} from '@ladle/react'
-import {I18nProvider, useDateFormatter} from '@react-aria/i18n'
 import React, {useState} from 'react'
 import {Column} from '../utils'
-import DatePicker from './date-picker'
+import Calendar, {CalendarProps} from './../calendar'
+import DatePicker from './index'
+
+const {I18nProvider, useDateFormatter} = Calendar.I18N
 
 export const Variants: React.FC = () => {
+  const MyDate = today(getLocalTimeZone())
   return (
     <I18nProvider locale='en-SG'>
       <Column>
@@ -32,13 +30,25 @@ export const Variants: React.FC = () => {
           label='Date'
           defaultValue={today(getLocalTimeZone())}
         />
+        <h3>MinValue</h3>
+        <DatePicker
+          label='Date'
+          defaultValue={today(getLocalTimeZone())}
+          minValue={MyDate}
+        />
+        <h3>MaxValue</h3>
+        <DatePicker
+          label='Date'
+          defaultValue={today(getLocalTimeZone())}
+          maxValue={today(getLocalTimeZone())}
+        />
       </Column>
     </I18nProvider>
   )
 }
 
 export const Controlled: React.FC = () => {
-  const [date, setDate] = useState<DateValue>(
+  const [date, setDate] = useState<CalendarProps>(
     parseDate(today(getLocalTimeZone()).toString()),
   )
 

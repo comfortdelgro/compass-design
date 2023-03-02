@@ -1,6 +1,6 @@
 {
   "name": "@comfortdelgro/compass-icons",
-  "version": "0.3.0",
+  "version": "0.10.0",
   "description": "Icons for React Compass Design System",
   "bugs": {
     "url": "https://github.com/comfortdelgro/compass-design/issues/new?labels=bug&template=bug.md"
@@ -34,7 +34,10 @@
   "scripts": {
     "build": "tsx scripts/build.ts"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@react-aria/i18n": "^3.6.2",
+    "svgo": "^3.0.2"
+  },
   "devDependencies": {
     "@iconify/tools": "^2.1.1",
     "@iconify/types": "^2.0.0",

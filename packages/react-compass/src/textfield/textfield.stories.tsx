@@ -1,19 +1,43 @@
 import {faUser} from '@fortawesome/free-regular-svg-icons'
 import {faChevronDown} from '@fortawesome/free-solid-svg-icons'
 import type {StoryDecorator} from '@ladle/react'
+import React from 'react'
 import Icon from '../icon'
 import {Column, Row} from '../utils/components'
 import Textfield from './index'
 
+const Select = (
+  <input
+    value={'+64'}
+    style={{
+      fontSize: '0.8em',
+      lineHeight: '1em',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      appearance: 'none',
+      border: 'none',
+      width: '3rem',
+    }}
+  />
+)
+
 export const Variants: React.FC = () => (
   <Column>
     <Row>
-      <Textfield placeholder='Enter your name' />
+      <Textfield
+        placeholder='Enter your name'
+        isErrored
+        helperText='my helper text'
+        errorMessage='my error message'
+        onChange={(e) => console.log('onChange', e)}
+        onChangeEvent={(e) => console.log('onChangeEvent', e)}
+      />
     </Row>
 
     <h3>With Label</h3>
     <Row>
-      <Textfield label='Name' placeholder='Enter your name' />
+      <Textfield label='Name' placeholder='Enter your name' isRequired />
     </Row>
 
     <h3>With Helper Text</h3>
@@ -28,11 +52,12 @@ export const Variants: React.FC = () => (
     <h3>Error</h3>
     <Row>
       <Textfield
-        errored
+        isErrored
         value='Wrong Value'
         label='Name'
         placeholder='Enter your name'
-        helperText='Use Helper Text for Errors'
+        helperText='This is helpers text'
+        errorMessage='Errror'
       />
     </Row>
 
@@ -79,6 +104,22 @@ export const Variants: React.FC = () => (
         isDisabled
       />
     </Row>
+    <h3>Prefix</h3>
+    <Row>
+      <Textfield
+        label='Name'
+        prefix={Select}
+        placeholder='Enter your phone number'
+      />
+    </Row>
+    <h3>Password</h3>
+    <Textfield
+      css={{width: '16rem'}}
+      label='Password'
+      placeholder='Enter your password'
+      helperText='Your password should contain at least 18 characters.'
+      password={true}
+    />
   </Column>
 )
 

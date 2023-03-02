@@ -1,5 +1,6 @@
 import React from 'react'
 import Button from '../button'
+import Dropdown from '../dropdown'
 import TextField from '../textfield'
 import {Column} from '../utils/components'
 import Sidebar from './index'
@@ -23,6 +24,15 @@ export const Default: React.FC = () => {
         <Sidebar.Content>
           <TextField name='title' />
           <TextField name='subtitle' />
+          <Dropdown.ComboBox
+            label='Favorite Animal'
+            placeholder='Choose an animal'
+          >
+            <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+            <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+            <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+            <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+          </Dropdown.ComboBox>
         </Sidebar.Content>
         <Sidebar.Actions>
           <Button css={{width: '45%', height: '100%', fontSize: '1em'}}>

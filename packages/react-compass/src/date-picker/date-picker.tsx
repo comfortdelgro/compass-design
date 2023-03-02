@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/unbound-method */
-import {DateValue} from '@internationalized/date'
+import {CalendarDate, DateValue, parseDate} from '@internationalized/date'
 import {AriaDatePickerProps, useDatePicker} from '@react-aria/datepicker'
 import {AriaDialogProps} from '@react-aria/dialog'
 import {DatePickerState, useDatePickerState} from '@react-stately/datepicker'
@@ -18,7 +18,6 @@ import {
   StyledDatePicker,
   StyledDatePickerFieldWrapper,
 } from './date-picker.style'
-
 interface Props
   extends StyledComponentProps,
     SpectrumDatePickerProps<DateValue> {
@@ -27,15 +26,18 @@ interface Props
   isInvalid?: boolean
   shouldCloseOnSelect?: boolean
   onCancel?: (() => void) | undefined
+  maxValue?: CalendarDate
 }
 
 export type DatePickerProps = Props
 
 const DatePicker = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
-  const {css = {}} = props
+  const {css = {}, maxValue = parseDate('2999-03-10')} = props
   const state = useDatePickerState({
     ...props,
-    shouldCloseOnSelect: () => props.shouldCloseOnSelect ?? false,
+    shouldCloseOnSelect: props.granularity
+      ? true
+      : props.shouldCloseOnSelect ?? false,
   })
 
   const calendarRef = useDOMRef(ref)
@@ -59,6 +61,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
         label={props.label}
       />
       <DatePickerCalendarWrapper
+        maxValue={maxValue}
         state={state}
         onCancel={props.onCancel}
         calendarProps={calendarProps}
@@ -101,10 +104,18 @@ interface DatePickerCalendarWrapperProps {
   dialogProps: AriaDialogProps
   calendarProps: CalendarProps<DateValue>
   onCancel?: (() => void) | undefined
+  maxValue?: CalendarDate
 }
 
 const DatePickerCalendarWrapper = (props: DatePickerCalendarWrapperProps) => {
-  const {state, calendarRef, dialogProps, calendarProps, onCancel} = props
+  const {
+    state,
+    calendarRef,
+    dialogProps,
+    calendarProps,
+    onCancel,
+    maxValue = parseDate('2999-03-10'),
+  } = props
 
   return (
     <>
@@ -121,6 +132,7 @@ const DatePickerCalendarWrapper = (props: DatePickerCalendarWrapperProps) => {
               hasFooter={true}
               onCancelCallback={onCancel}
               {...calendarProps}
+              maxValue={maxValue}
             />
           </Dialog>
         </Popover>

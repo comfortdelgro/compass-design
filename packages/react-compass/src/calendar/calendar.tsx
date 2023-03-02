@@ -1,5 +1,12 @@
-import {createCalendar, DateValue} from '@internationalized/date'
+import * as InternationalizedDate from '@internationalized/date'
+import {
+  CalendarDate,
+  createCalendar,
+  DateValue,
+  parseDate,
+} from '@internationalized/date'
 import {useCalendar} from '@react-aria/calendar'
+import * as i18n from '@react-aria/i18n'
 import {useLocale} from '@react-aria/i18n'
 import {useCalendarState} from '@react-stately/calendar'
 import {DatePickerState} from '@react-stately/datepicker'
@@ -16,9 +23,10 @@ interface Props extends StyledComponentProps, SpectrumCalendarProps<DateValue> {
   state?: DatePickerState
   hasFooter?: boolean
   onCancelCallback?: (() => void) | undefined
+  maxValue?: CalendarDate
 }
 
-export type CalendarProps = Props
+export type CalendarProps = Props & DateValue
 
 const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   const {
@@ -26,6 +34,7 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     onCancelCallback,
     hasFooter = false,
     css = {},
+    maxValue = parseDate('2999-02-17'),
     ...delegated
   } = props
 
@@ -35,7 +44,7 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
 
   const state = useCalendarState({
     ...delegated,
-    visibleDuration: {months: 2},
+    visibleDuration: {months: 1},
     locale,
     createCalendar,
   })
@@ -58,12 +67,9 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
         prevButtonProps={prevButtonProps}
         nextButtonProps={nextButtonProps}
       />
-      <CalendarGrid state={state} />
+      <CalendarGrid state={state} maxValue={maxValue} />
       {hasFooter && (
         <div className='calendar-footer'>
-          <Button variant='ghost' onPress={handleCancelButtonClick}>
-            Cancel
-          </Button>
           <Button variant='ghost' onPress={handleCancelButtonClick}>
             Cancel
           </Button>
@@ -73,4 +79,7 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   )
 })
 
-export default Calendar
+export default Calendar as typeof Calendar & {
+  InternationalizedDate: typeof InternationalizedDate
+  I18N: typeof i18n
+}

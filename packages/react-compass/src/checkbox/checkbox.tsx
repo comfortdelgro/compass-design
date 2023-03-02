@@ -15,6 +15,7 @@ import {
   StyledCheckboxInput,
   StyledCheckboxLabel,
   StyledCheckboxLabelContent,
+  StyledCheckboxWrapper,
 } from './checkbox.styles'
 
 interface Props extends AriaCheckboxProps, StyledComponentProps {
@@ -25,7 +26,9 @@ interface Props extends AriaCheckboxProps, StyledComponentProps {
   variant?: 'default' | 'rounded'
 }
 
-export type CheckboxProps = Props & CheckboxVariantProps
+export type CheckboxProps = Props &
+  CheckboxVariantProps &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   (props, ref) => {
@@ -53,28 +56,37 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
 
     const {hoverProps} = useHover({isDisabled: inputProps.disabled!})
     const {pressProps} = usePress({isDisabled: inputProps.disabled!})
+    const htmlProps = {...ariaSafeProps} as Omit<
+      React.HTMLAttributes<HTMLDivElement>,
+      keyof Props
+    >
 
     return (
-      <StyledCheckboxLabel css={css} {...mergeProps(hoverProps, pressProps)}>
-        <StyledCheckboxInput
-          type='checkbox'
-          ref={checkboxRef}
-          {...inputProps}
-        />
+      <StyledCheckboxWrapper css={css} {...htmlProps}>
+        <StyledCheckboxLabel {...mergeProps(hoverProps, pressProps)}>
+          <StyledCheckboxInput
+            type='checkbox'
+            ref={checkboxRef}
+            {...inputProps}
+          />
 
-        {/* Checkbox */}
-        <StyledCheckboxBox
-          disabled={!!isDisabled}
-          rounded={variant === 'rounded'}
-        >
-          <StyledCheckboxCheckmark>
-            <Icon icon={isIndeterminate ? faMinus : faCheck} className='icon' />
-          </StyledCheckboxCheckmark>
-        </StyledCheckboxBox>
+          {/* Checkbox */}
+          <StyledCheckboxBox
+            disabled={!!isDisabled}
+            rounded={variant === 'rounded'}
+          >
+            <StyledCheckboxCheckmark>
+              <Icon
+                icon={isIndeterminate ? faMinus : faCheck}
+                className='icon'
+              />
+            </StyledCheckboxCheckmark>
+          </StyledCheckboxBox>
 
-        {/* Label */}
-        <StyledCheckboxLabelContent>{children}</StyledCheckboxLabelContent>
-      </StyledCheckboxLabel>
+          {/* Label */}
+          <StyledCheckboxLabelContent>{children}</StyledCheckboxLabelContent>
+        </StyledCheckboxLabel>
+      </StyledCheckboxWrapper>
     )
   },
 )

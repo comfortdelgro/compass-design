@@ -99,6 +99,7 @@ export const DEFAULT_VERTICAL_OPTIONS = (
     layout: DEFAULT_LAYOUT,
     scales: {
       x: {
+        beginAtZero: true,
         ticks: {
           color: '#009EDA',
           font: {
@@ -107,14 +108,13 @@ export const DEFAULT_VERTICAL_OPTIONS = (
           },
           padding: 8,
         },
-        border: {
-          color: '#D2D0CE',
-        },
         grid: {
+          borderColor: '#D2D0CE',
           display: false,
         },
       },
       y: {
+        beginAtZero: true,
         title: {
           display: !!unit,
           title: true,
@@ -135,10 +135,9 @@ export const DEFAULT_VERTICAL_OPTIONS = (
         },
         grid: {
           tickColor: '#ffffff',
-        },
-        border: {
-          dash: [4, 4],
-          color: '#ffffff',
+          borderColor: '#ffffff',
+          borderDash: [4, 4],
+          borderWidth: 1,
         },
       },
     },
@@ -157,6 +156,7 @@ export const DEFAULT_HORIZONTAL_OPTIONS = (
     layout: DEFAULT_LAYOUT,
     scales: {
       y: {
+        beginAtZero: true,
         ticks: {
           color: '#A19F9D',
           font: {
@@ -165,14 +165,13 @@ export const DEFAULT_HORIZONTAL_OPTIONS = (
           },
           padding: 8,
         },
-        border: {
-          color: '#D2D0CE',
-        },
         grid: {
           display: false,
+          borderColor: '#D2D0CE',
         },
       },
       x: {
+        beginAtZero: true,
         title: {
           display: !!unit,
           title: true,
@@ -193,10 +192,9 @@ export const DEFAULT_HORIZONTAL_OPTIONS = (
         },
         grid: {
           tickColor: '#ffffff',
-        },
-        border: {
-          dash: [4, 4],
-          color: '#ffffff',
+          borderColor: '#ffffff',
+          borderDash: [4, 4],
+          borderWidth: 1,
         },
       },
     },

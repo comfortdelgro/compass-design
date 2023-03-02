@@ -1,4 +1,5 @@
 import {faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons'
+import {DateValue} from '@internationalized/date'
 import {useDateFormatter} from '@react-aria/i18n'
 import {VisuallyHidden} from '@react-aria/visually-hidden'
 import {CalendarState, RangeCalendarState} from '@react-stately/calendar'
@@ -17,6 +18,7 @@ interface Props extends StyledComponentProps {
   calendarProps: DOMAttributes
   prevButtonProps: AriaButtonProps
   nextButtonProps: AriaButtonProps
+  maxValue?: DateValue
 }
 
 const CalendarHeader = (props: Props) => {

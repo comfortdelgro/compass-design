@@ -1,5 +1,5 @@
 import type {StoryDecorator} from '@ladle/react'
-import {useState} from 'react'
+import React, {useState} from 'react'
 import {Column} from '../utils/components'
 import Textarea from './index'
 
@@ -9,12 +9,17 @@ export const Variants: React.FC = () => {
   return (
     <Column>
       <Textarea placeholder='Enter your message' />
-      <Textarea label='Text Label' placeholder='Enter your message' />
+      <Textarea
+        label='Text Label'
+        placeholder='Enter your message'
+        isRequired
+      />
       <Textarea
         label='Text Label'
         placeholder='Enter your message'
         wordCount
         value='Lorem ipsum dolor sit amet.'
+        isRequired
       />
       <Textarea
         label='Text Label'
@@ -29,7 +34,8 @@ export const Variants: React.FC = () => {
         placeholder='Enter your message'
         wordCount
         maxLength={50}
-        errored
+        isErrored
+        errorMessage='Error Message'
       />
     </Column>
   )
