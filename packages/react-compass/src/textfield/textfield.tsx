@@ -1,4 +1,4 @@
-import {faEye, faEyeSlash} from '@fortawesome/free-solid-svg-icons'
+import {faEye, faEyeSlash} from '@fortawesome/free-regular-svg-icons'
 import {useTextField} from '@react-aria/textfield'
 import type {AriaTextFieldProps} from '@react-types/textfield'
 import React from 'react'
@@ -108,7 +108,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
           {rightIcon ? <div className='right-icon'>{rightIcon}</div> : null}
           {determineInputType() == 'password' ? (
             <div
-              className='right-icon'
+              className='password-icon'
               style={{cursor: 'pointer'}}
               onClick={() => setIsPassWordVisible(true)}
             >
@@ -117,7 +117,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
           ) : null}
           {determineInputType() == 'text' ? (
             <div
-              className='right-icon'
+              className='password-icon'
               style={{cursor: 'pointer'}}
               onClick={() => setIsPassWordVisible(false)}
             >
