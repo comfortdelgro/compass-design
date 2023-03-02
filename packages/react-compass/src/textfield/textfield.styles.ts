@@ -77,6 +77,12 @@ export const StyledTextFieldBox = styled('div', {
     marginLeft: '-$1',
   },
 
+  '.password-icon': {
+    fontSize: '0.8em',
+    marginRight: '$2_5',
+    marginLeft: '-$1',
+  },
+
   variants: {
     isDisabled: {
       true: {
