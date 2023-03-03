@@ -18,7 +18,7 @@ interface Props<T = unknown> extends AriaPopoverProps {
 function Popover({children, state, ...props}: Props) {
   const ref = React.useRef(null)
   const {popoverRef = ref} = props
-  const {popoverProps} = usePopover(
+  const {popoverProps, underlayProps} = usePopover(
     {
       ...props,
       offset: 8,
@@ -38,7 +38,9 @@ function Popover({children, state, ...props}: Props) {
 
   return (
     <Overlay>
+      <div {...underlayProps} style={{position: 'fixed', inset: 0}} />
       <StyledPopover {...popoverProps} ref={popoverRef} style={styles}>
+        <DismissButton onDismiss={() => state.close()} />
         {children}
         <DismissButton onDismiss={() => state.close()} />
       </StyledPopover>

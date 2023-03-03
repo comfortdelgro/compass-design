@@ -83,7 +83,6 @@ const Select = React.forwardRef<HTMLButtonElement, DropdownProps>(
               state={state}
               triggerRef={selectRef}
               popoverRef={popoverRef}
-              isNonModal
               placement='bottom start'
             >
               <ListBox
