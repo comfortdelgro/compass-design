@@ -17,12 +17,31 @@ import Button from './index'
 
 export const Variants: React.FC = () => (
   <Column>
+    <h3>Basic</h3>
     <Row>
-      <Button variant='primary'>Primary</Button>
+      <Button type='submit' variant='primary'>
+        Primary
+      </Button>
       <Button variant='secondary'>Secondary</Button>
       <Button variant='danger'>Danger</Button>
       <Button variant='ghost'>Ghost</Button>
       <Button isDisabled>Disabled</Button>
+    </Row>
+
+    <h3>With ripple effect when being clicked</h3>
+    <Row>
+      <Button ripple type='submit' variant='primary'>
+        Primary
+      </Button>
+      <Button ripple variant='secondary'>
+        Secondary
+      </Button>
+      <Button ripple variant='danger'>
+        Danger
+      </Button>
+      <Button ripple variant='ghost'>
+        Ghost
+      </Button>
     </Row>
 
     <h3>With Left Icons</h3>
