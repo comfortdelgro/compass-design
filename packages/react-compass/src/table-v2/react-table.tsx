@@ -39,6 +39,7 @@ export interface Props<T> extends StyledComponentProps {
   columns: Array<ColumnDef<T>>
   options: OptionType
   onManualSorting?: (sortingField: SortingState) => void
+  onChangeRowSelection?: (selectionRows: T[]) => void
   children: React.ReactNode
 }
 
@@ -48,6 +49,8 @@ export type ReactTableProps<T = any> = Props<T> &
 const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
   (props, ref) => {
     const [sorting, setSorting] = useState<SortingState>([])
+    const [rowSelection, setRowSelection] = useState({})
+
     const {
       // StyledComponentProps
       css = {},
@@ -55,6 +58,7 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
       columns,
       options,
       onManualSorting,
+      onChangeRowSelection,
       children,
       // HTMLDiv Props
       ...delegated
@@ -73,12 +77,14 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
 
     const table = useReactTable({
       state: {
+        rowSelection,
         sorting: options.initialSortBy ? options.initialSortBy : sorting,
       },
       onSortingChange: setSorting,
       getCoreRowModel: getCoreRowModel(),
       getSortedRowModel: getSortedRowModel(),
       getFilteredRowModel: getFilteredRowModel(),
+      onRowSelectionChange: setRowSelection,
       debugTable: true,
       data: data,
       columns: columns,
@@ -86,6 +92,16 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
       //enable sorting
       ...options,
     })
+
+    useEffect(() => {
+      const selectedRowModel = table.getSelectedRowModel().rows
+      const selectedRowOriginals = selectedRowModel.map((item) => {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+        return item.original
+      })
+      onChangeRowSelection?.(selectedRowOriginals)
+    }, [rowSelection])
+
     useEffect(() => {
       onManualSorting?.(sorting)
     }, [sorting])
