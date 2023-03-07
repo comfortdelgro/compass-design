@@ -1,6 +1,14 @@
+import {keyframes} from '@stitches/react'
 import {styled} from '../theme'
 import type {VariantProps} from '../utils/stitches.types'
 import {blink} from './button.keyframes'
+
+const ripple = keyframes({
+  to: {
+    transform: 'scale(4)',
+    opacity: 0,
+  },
+})
 
 export const StyledLoading = styled('span', {
   position: 'absolute',
@@ -94,7 +102,18 @@ export const StyledButton = styled('button', {
     borderColor: '$divider',
     cursor: 'not-allowed',
   },
+  '&:focus': {
+    outline: 'none',
+    boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;',
+  },
 
+  '& .ripple': {
+    position: 'absolute',
+    borderRadius: '50%',
+    transform: `scale(0)`,
+    animation: `${ripple} 600ms linear`,
+    backgroundColor: 'rgba(255, 255, 255, 0.7)',
+  },
   variants: {
     size: {
       lg: {

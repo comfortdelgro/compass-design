@@ -51,7 +51,11 @@ export const Select: React.FC = () => {
         <Dropdown.Item key='snake'>Snake</Dropdown.Item>
       </Dropdown.Select>
       <h3>UnControlled</h3>
-      <Dropdown.Select label='Favorite Animal' placeholder='Choose an animal'>
+      <Dropdown.Select
+        label='Favorite Animal'
+        placeholder='Choose an animal'
+        defaultSelectedKey={'cat'}
+      >
         <Dropdown.Item
           key='red panda'
           leftIcon={<Icon icon={faExclamationTriangle} />}

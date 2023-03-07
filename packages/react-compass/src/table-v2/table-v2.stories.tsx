@@ -29,6 +29,9 @@ export const ReactTableStory: React.FC = () => {
   const onSorting = (sortingField: StateSorting) => {
     console.log('stateSorting', sortingField)
   }
+  const onChangeRowSelection = (rowSelection: any) => {
+    console.log('stateSelectedRows', rowSelection)
+  }
 
   const columns = React.useMemo<Array<ColumnConfig<Person>>>(
     () => [
@@ -132,6 +135,7 @@ export const ReactTableStory: React.FC = () => {
         columns={columns}
         options={options}
         onManualSorting={onSorting}
+        onChangeRowSelection={onChangeRowSelection}
         className='yagin'
       >
         <ReactTable.Toolbar

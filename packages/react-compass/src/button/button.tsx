@@ -9,17 +9,20 @@ import {
   StyledButtonContent,
   StyledLoading,
 } from './button.styles'
+import Ripple from './ripple'
 
 interface Props extends AriaButtonProps, StyledComponentProps {
   children?: React.ReactNode
   className?: string
   leftIcon?: React.ReactNode
   rightIcon?: React.ReactNode
+  onMouseDown?: (event: React.MouseEvent<HTMLButtonElement>) => void
+  ripple?: boolean
 }
 
 export type ButtonProps = Props &
   ButtonVariantProps &
-  Omit<React.HTMLAttributes<HTMLButtonElement>, keyof Props>
+  Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, keyof Props>
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
@@ -36,6 +39,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       size,
       fullWidth,
       loading,
+      onMouseDown,
+      ripple = false,
       // AriaButtonProps
       ...ariaSafeProps
     } = props
@@ -56,40 +61,83 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       return {
         className,
         css,
-        ...variantProps,
         ...buttonProps,
         ...ariaSafeProps,
+        ...variantProps,
       }
     }
     const delegateProps = componentProps()
-    return (
-      <StyledButton {...delegateProps}>
-        {loading ? (
-          <StyledLoading
-            // make sure the loading indicator isn't visible to screen readers
-            hidden={!loading}
-            aria-hidden={!loading}
-          >
-            <div className='dots'>
-              <i />
-              <i />
-              <i />
-            </div>
-          </StyledLoading>
-        ) : (
-          <></>
-        )}
 
-        <StyledButtonContent>
-          {leftIcon || (fullWidth && rightIcon) ? (
-            <div className='icon left'>{leftIcon}</div>
-          ) : null}
-          <span className='children'>{children}</span>
-          {rightIcon || (fullWidth && leftIcon) ? (
-            <div className='icon right'>{rightIcon}</div>
-          ) : null}
-        </StyledButtonContent>
-      </StyledButton>
+    return (
+      <>
+        {ripple ? (
+          <Ripple>
+            <StyledButton
+              {...delegateProps}
+              ref={buttonRef}
+              onMouseDown={onMouseDown}
+            >
+              {loading ? (
+                <StyledLoading
+                  // make sure the loading indicator isn't visible to screen readers
+                  hidden={!loading}
+                  aria-hidden={!loading}
+                >
+                  <div className='dots'>
+                    <i />
+                    <i />
+                    <i />
+                  </div>
+                </StyledLoading>
+              ) : (
+                <></>
+              )}
+
+              <StyledButtonContent>
+                {leftIcon || (fullWidth && rightIcon) ? (
+                  <div className='icon left'>{leftIcon}</div>
+                ) : null}
+                <span className='children'>{children}</span>
+                {rightIcon || (fullWidth && leftIcon) ? (
+                  <div className='icon right'>{rightIcon}</div>
+                ) : null}
+              </StyledButtonContent>
+            </StyledButton>
+          </Ripple>
+        ) : (
+          <StyledButton
+            {...delegateProps}
+            ref={buttonRef}
+            onMouseDown={onMouseDown}
+          >
+            {loading ? (
+              <StyledLoading
+                // make sure the loading indicator isn't visible to screen readers
+                hidden={!loading}
+                aria-hidden={!loading}
+              >
+                <div className='dots'>
+                  <i />
+                  <i />
+                  <i />
+                </div>
+              </StyledLoading>
+            ) : (
+              <></>
+            )}
+
+            <StyledButtonContent>
+              {leftIcon || (fullWidth && rightIcon) ? (
+                <div className='icon left'>{leftIcon}</div>
+              ) : null}
+              <span className='children'>{children}</span>
+              {rightIcon || (fullWidth && leftIcon) ? (
+                <div className='icon right'>{rightIcon}</div>
+              ) : null}
+            </StyledButtonContent>
+          </StyledButton>
+        )}
+      </>
     )
   },
 )
