@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 0.24.0
+
+### Minor Changes
+
+- afda7f6: Fix bugs in dropdown and add new password prop to textfield
+
 ## 0.23.0
 
 ### Minor Changes
