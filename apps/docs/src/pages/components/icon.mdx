@@ -1,5 +1,6 @@
 import {Callout} from 'nextra-theme-docs'
 import styles from '../../styles/Home.module.css'
+import IconBox from 'components/IconBox'
 import Activity from '@comfortdelgro/compass-icons/react/activity'
 import AddressBookFilled from '@comfortdelgro/compass-icons/react/address-book-filled'
 import AddressBookOutlined from '@comfortdelgro/compass-icons/react/address-book-outlined'
@@ -46,6 +47,7 @@ import ChartLineUpDuotone from '@comfortdelgro/compass-icons/react/chart-line-up
 import ChartPieDuotone from '@comfortdelgro/compass-icons/react/chart-pie-duotone'
 import Chart from '@comfortdelgro/compass-icons/react/chart'
 import Chat from '@comfortdelgro/compass-icons/react/chat'
+import Cities from '@comfortdelgro/compass-icons/react/cities'
 import ClapperboardPlay from '@comfortdelgro/compass-icons/react/clapperboard-play'
 import Classification from '@comfortdelgro/compass-icons/react/classification'
 import Clipboard from '@comfortdelgro/compass-icons/react/clipboard'
@@ -70,6 +72,7 @@ import EditDoutone from '@comfortdelgro/compass-icons/react/edit-doutone'
 import Edit from '@comfortdelgro/compass-icons/react/edit'
 import Email from '@comfortdelgro/compass-icons/react/email'
 import Excel from '@comfortdelgro/compass-icons/react/excel'
+import Export from '@comfortdelgro/compass-icons/react/export'
 import EyeSlash from '@comfortdelgro/compass-icons/react/eye-slash'
 import EyeSolid from '@comfortdelgro/compass-icons/react/eye-solid'
 import FaceFrown from '@comfortdelgro/compass-icons/react/face-frown'
@@ -87,12 +90,16 @@ import Fill from '@comfortdelgro/compass-icons/react/fill'
 import Filter from '@comfortdelgro/compass-icons/react/filter'
 import FolderOpen from '@comfortdelgro/compass-icons/react/folder-open'
 import Folder from '@comfortdelgro/compass-icons/react/folder'
+import FontColour from '@comfortdelgro/compass-icons/react/font-colour'
 import Font from '@comfortdelgro/compass-icons/react/font'
 import Gauge from '@comfortdelgro/compass-icons/react/gauge'
+import GearsDuotone from '@comfortdelgro/compass-icons/react/gears-duotone'
+import Gears from '@comfortdelgro/compass-icons/react/gears'
 import GlobeGray from '@comfortdelgro/compass-icons/react/globe-gray'
 import Globe from '@comfortdelgro/compass-icons/react/globe'
 import GridBoxes from '@comfortdelgro/compass-icons/react/grid-boxes'
 import Grids from '@comfortdelgro/compass-icons/react/grids'
+import GripDots from '@comfortdelgro/compass-icons/react/grip-dots'
 import GroupAddFilled from '@comfortdelgro/compass-icons/react/group-add-filled'
 import GroupAddOutlined from '@comfortdelgro/compass-icons/react/group-add-outlined'
 import GroupSettingsFilled from '@comfortdelgro/compass-icons/react/group-settings-filled'
@@ -114,6 +121,7 @@ import InfoSquare from '@comfortdelgro/compass-icons/react/info-square'
 import Inspect from '@comfortdelgro/compass-icons/react/inspect'
 import Instagram from '@comfortdelgro/compass-icons/react/instagram'
 import Invoice from '@comfortdelgro/compass-icons/react/invoice'
+import Italic from '@comfortdelgro/compass-icons/react/italic'
 import Job2 from '@comfortdelgro/compass-icons/react/job-2'
 import Job from '@comfortdelgro/compass-icons/react/job'
 import Key from '@comfortdelgro/compass-icons/react/key'
@@ -134,6 +142,7 @@ import MapMarked from '@comfortdelgro/compass-icons/react/map-marked'
 import MapMarker from '@comfortdelgro/compass-icons/react/map-marker'
 import Map from '@comfortdelgro/compass-icons/react/map'
 import Menu from '@comfortdelgro/compass-icons/react/menu'
+import MessageLines from '@comfortdelgro/compass-icons/react/message-lines'
 import Message from '@comfortdelgro/compass-icons/react/message'
 import MinusSquare from '@comfortdelgro/compass-icons/react/minus-square'
 import Minus from '@comfortdelgro/compass-icons/react/minus'
@@ -164,6 +173,7 @@ import ProfileCard from '@comfortdelgro/compass-icons/react/profile-card'
 import ProfileFilled from '@comfortdelgro/compass-icons/react/profile-filled'
 import ProfileOutlined from '@comfortdelgro/compass-icons/react/profile-outlined'
 import Profile from '@comfortdelgro/compass-icons/react/profile'
+import Project from '@comfortdelgro/compass-icons/react/project'
 import QuestionSquare from '@comfortdelgro/compass-icons/react/question-square'
 import Question from '@comfortdelgro/compass-icons/react/question'
 import QuoteLeft from '@comfortdelgro/compass-icons/react/quote-left'
@@ -172,8 +182,8 @@ import Refresh from '@comfortdelgro/compass-icons/react/refresh'
 import Reveal from '@comfortdelgro/compass-icons/react/reveal'
 import School from '@comfortdelgro/compass-icons/react/school'
 import Search from '@comfortdelgro/compass-icons/react/search'
-import SettingsDuotone from '@comfortdelgro/compass-icons/react/settings-duotone'
 import Settings from '@comfortdelgro/compass-icons/react/settings'
+import Shapes from '@comfortdelgro/compass-icons/react/shapes'
 import Share from '@comfortdelgro/compass-icons/react/share'
 import Shield2 from '@comfortdelgro/compass-icons/react/shield-2'
 import Shield from '@comfortdelgro/compass-icons/react/shield'
@@ -184,10 +194,16 @@ import Sort9To1Descending from '@comfortdelgro/compass-icons/react/sort-9-to-1-d
 import Sort from '@comfortdelgro/compass-icons/react/sort'
 import Sparkle from '@comfortdelgro/compass-icons/react/sparkle'
 import Spreadsheet from '@comfortdelgro/compass-icons/react/spreadsheet'
+import Stamp from '@comfortdelgro/compass-icons/react/stamp'
 import StarFilled from '@comfortdelgro/compass-icons/react/star-filled'
 import StarOutlined from '@comfortdelgro/compass-icons/react/star-outlined'
+import Status from '@comfortdelgro/compass-icons/react/status'
+import Store from '@comfortdelgro/compass-icons/react/store'
+import Strikethrough from '@comfortdelgro/compass-icons/react/strikethrough'
 import Suitcase from '@comfortdelgro/compass-icons/react/suitcase'
 import TableColumns from '@comfortdelgro/compass-icons/react/table-columns'
+import Table from '@comfortdelgro/compass-icons/react/table'
+import Tags from '@comfortdelgro/compass-icons/react/tags'
 import Taxi from '@comfortdelgro/compass-icons/react/taxi'
 import TextHeight from '@comfortdelgro/compass-icons/react/text-height'
 import ThumbDown from '@comfortdelgro/compass-icons/react/thumb-down'
@@ -196,11 +212,13 @@ import ThumbtackFilled from '@comfortdelgro/compass-icons/react/thumbtack-filled
 import ThumbtackOutlined from '@comfortdelgro/compass-icons/react/thumbtack-outlined'
 import TickCircle from '@comfortdelgro/compass-icons/react/tick-circle'
 import Tick from '@comfortdelgro/compass-icons/react/tick'
+import Ticket from '@comfortdelgro/compass-icons/react/ticket'
 import Timeline from '@comfortdelgro/compass-icons/react/timeline'
 import TrashDuotone from '@comfortdelgro/compass-icons/react/trash-duotone'
 import TrashFilled from '@comfortdelgro/compass-icons/react/trash-filled'
 import TrashOutlined from '@comfortdelgro/compass-icons/react/trash-outlined'
 import Twitter from '@comfortdelgro/compass-icons/react/twitter'
+import Underline from '@comfortdelgro/compass-icons/react/underline'
 import Unpin from '@comfortdelgro/compass-icons/react/unpin'
 import Upload from '@comfortdelgro/compass-icons/react/upload'
 import UserAddFilled from '@comfortdelgro/compass-icons/react/user-add-filled'
@@ -225,7 +243,6 @@ import ZoomIn from '@comfortdelgro/compass-icons/react/zoom-in'
 import ZoomMinus from '@comfortdelgro/compass-icons/react/zoom-minus'
 import ZoomOut from '@comfortdelgro/compass-icons/react/zoom-out'
 import ZoomPlus from '@comfortdelgro/compass-icons/react/zoom-plus'
-
 import * as iconLib from '@comfortdelgro/compass-icons/react/index'
 
 # Icons
@@ -260,906 +277,248 @@ import activityIcon from '@comfortdelgro/compass-icons/iconify/activity'
     alignItems: 'flex-start',
   }}
 >
-  <div className={styles.iconWrapper}>
-    <Activity width={20} height={20} />
-    <p>Activity</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <AddressBookFilled width={20} height={20} />
-    <p>AddressBookFilled</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <AddressBookOutlined width={20} height={20} />
-    <p>AddressBookOutlined</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <AlignCenter width={20} height={20} />
-    <p>AlignCenter</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <AlignJustify width={20} height={20} />
-    <p>AlignJustify</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <AlignLeft width={20} height={20} />
-    <p>AlignLeft</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <AlignRight width={20} height={20} />
-    <p>AlignRight</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <ArrowDownFilled width={20} height={20} />
-    <p>ArrowDownFilled</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <ArrowDownOutlined width={20} height={20} />
-    <p>ArrowDownOutlined</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <ArrowDown width={20} height={20} />
-    <p>ArrowDown</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <ArrowLeftFilled width={20} height={20} />
-    <p>ArrowLeftFilled</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <ArrowLeftOutlined width={20} height={20} />
-    <p>ArrowLeftOutlined</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <ArrowLeft width={20} height={20} />
-    <p>ArrowLeft</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <ArrowRightFilled width={20} height={20} />
-    <p>ArrowRightFilled</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <ArrowRightOutlined width={20} height={20} />
-    <p>ArrowRightOutlined</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <ArrowRight width={20} height={20} />
-    <p>ArrowRight</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <ArrowUpFilled width={20} height={20} />
-    <p>ArrowUpFilled</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <ArrowUpOutlined width={20} height={20} />
-    <p>ArrowUpOutlined</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <ArrowUp width={20} height={20} />
-    <p>ArrowUp</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <BadgeDollarDuotone width={20} height={20} />
-    <p>BadgeDollarDuotone</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Bid width={20} height={20} />
-    <p>Bid</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Bold width={20} height={20} />
-    <p>Bold</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <BrowserBlue width={20} height={20} />
-    <p>BrowserBlue</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <BrowserCyan width={20} height={20} />
-    <p>BrowserCyan</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <BrowserRed width={20} height={20} />
-    <p>BrowserRed</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Browser width={20} height={20} />
-    <p>Browser</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Bug width={20} height={20} />
-    <p>Bug</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Building width={20} height={20} />
-    <p>Building</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Bus2 width={20} height={20} />
-    <p>Bus2</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <BusAndCar width={20} height={20} />
-    <p>BusAndCar</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Bus width={20} height={20} />
-    <p>Bus</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <CalendarDaysDuotone width={20} height={20} />
-    <p>CalendarDaysDuotone</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <CalendarDaysFilled width={20} height={20} />
-    <p>CalendarDaysFilled</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <CalendarDaysOutlined width={20} height={20} />
-    <p>CalendarDaysOutlined</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Calendar width={20} height={20} />
-    <p>Calendar</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Cancelled width={20} height={20} />
-    <p>Cancelled</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Capacity width={20} height={20} />
-    <p>Capacity</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Car width={20} height={20} />
-    <p>Car</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <CaretDown width={20} height={20} />
-    <p>CaretDown</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <CaretLeft width={20} height={20} />
-    <p>CaretLeft</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <CaretRight width={20} height={20} />
-    <p>CaretRight</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <CaretUp width={20} height={20} />
-    <p>CaretUp</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <ChartLineUpDuotone width={20} height={20} />
-    <p>ChartLineUpDuotone</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <ChartPieDuotone width={20} height={20} />
-    <p>ChartPieDuotone</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Chart width={20} height={20} />
-    <p>Chart</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Chat width={20} height={20} />
-    <p>Chat</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <ClapperboardPlay width={20} height={20} />
-    <p>ClapperboardPlay</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Classification width={20} height={20} />
-    <p>Classification</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Clipboard width={20} height={20} />
-    <p>Clipboard</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <ClockFilled width={20} height={20} />
-    <p>ClockFilled</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <ClockOutlined width={20} height={20} />
-    <p>ClockOutlined</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <CloudUpload width={20} height={20} />
-    <p>CloudUpload</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Compass width={20} height={20} />
-    <p>Compass</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Copy width={20} height={20} />
-    <p>Copy</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <CreditCardFilled width={20} height={20} />
-    <p>CreditCardFilled</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <CreditCardOutlined width={20} height={20} />
-    <p>CreditCardOutlined</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <CrossCircle width={20} height={20} />
-    <p>CrossCircle</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Cross width={20} height={20} />
-    <p>Cross</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Crown width={20} height={20} />
-    <p>Crown</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <CustomerService width={20} height={20} />
-    <p>CustomerService</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Dashboard width={20} height={20} />
-    <p>Dashboard</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Deleted width={20} height={20} />
-    <p>Deleted</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Doctype width={20} height={20} />
-    <p>Doctype</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Document width={20} height={20} />
-    <p>Document</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Download width={20} height={20} />
-    <p>Download</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Driver width={20} height={20} />
-    <p>Driver</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <EditDoutone width={20} height={20} />
-    <p>EditDoutone</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Edit width={20} height={20} />
-    <p>Edit</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Email width={20} height={20} />
-    <p>Email</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Excel width={20} height={20} />
-    <p>Excel</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <EyeSlash width={20} height={20} />
-    <p>EyeSlash</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <EyeSolid width={20} height={20} />
-    <p>EyeSolid</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <FaceFrown width={20} height={20} />
-    <p>FaceFrown</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <FaceLaugh width={20} height={20} />
-    <p>FaceLaugh</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <FaceMeh width={20} height={20} />
-    <p>FaceMeh</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <FaceSadTear width={20} height={20} />
-    <p>FaceSadTear</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <FaceSmileHeart width={20} height={20} />
-    <p>FaceSmileHeart</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <FaceSmile width={20} height={20} />
-    <p>FaceSmile</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Facebook width={20} height={20} />
-    <p>Facebook</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <FileLaptop width={20} height={20} />
-    <p>FileLaptop</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <FilePen width={20} height={20} />
-    <p>FilePen</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <FileSignature width={20} height={20} />
-    <p>FileSignature</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <File width={20} height={20} />
-    <p>File</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Fill width={20} height={20} />
-    <p>Fill</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Filter width={20} height={20} />
-    <p>Filter</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <FolderOpen width={20} height={20} />
-    <p>FolderOpen</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Folder width={20} height={20} />
-    <p>Folder</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Font width={20} height={20} />
-    <p>Font</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Gauge width={20} height={20} />
-    <p>Gauge</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <GlobeGray width={20} height={20} />
-    <p>GlobeGray</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Globe width={20} height={20} />
-    <p>Globe</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <GridBoxes width={20} height={20} />
-    <p>GridBoxes</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Grids width={20} height={20} />
-    <p>Grids</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <GroupAddFilled width={20} height={20} />
-    <p>GroupAddFilled</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <GroupAddOutlined width={20} height={20} />
-    <p>GroupAddOutlined</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <GroupSettingsFilled width={20} height={20} />
-    <p>GroupSettingsFilled</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <GroupSettingsOutlined width={20} height={20} />
-    <p>GroupSettingsOutlined</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <H1 width={20} height={20} />
-    <p>H1</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <H3 width={20} height={20} />
-    <p>H3</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <HatWizard width={20} height={20} />
-    <p>HatWizard</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Heading width={20} height={20} />
-    <p>Heading</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <HeartFilled width={20} height={20} />
-    <p>HeartFilled</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <HeartOutlined width={20} height={20} />
-    <p>HeartOutlined</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <HexagonXmark width={20} height={20} />
-    <p>HexagonXmark</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Hide width={20} height={20} />
-    <p>Hide</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Home width={20} height={20} />
-    <p>Home</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <HourglassClockYellow width={20} height={20} />
-    <p>HourglassClockYellow</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <HourglassClock width={20} height={20} />
-    <p>HourglassClock</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <InfoFilled width={20} height={20} />
-    <p>InfoFilled</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <InfoOutlined width={20} height={20} />
-    <p>InfoOutlined</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <InfoSquare width={20} height={20} />
-    <p>InfoSquare</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Inspect width={20} height={20} />
-    <p>Inspect</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Instagram width={20} height={20} />
-    <p>Instagram</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Invoice width={20} height={20} />
-    <p>Invoice</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Job2 width={20} height={20} />
-    <p>Job2</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Job width={20} height={20} />
-    <p>Job</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Key width={20} height={20} />
-    <p>Key</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Layer width={20} height={20} />
-    <p>Layer</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Layers width={20} height={20} />
-    <p>Layers</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <LightbulbOn width={20} height={20} />
-    <p>LightbulbOn</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Link width={20} height={20} />
-    <p>Link</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Linkedin width={20} height={20} />
-    <p>Linkedin</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <ListOl width={20} height={20} />
-    <p>ListOl</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <ListUl width={20} height={20} />
-    <p>ListUl</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <List width={20} height={20} />
-    <p>List</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Logout width={20} height={20} />
-    <p>Logout</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <LowVolume width={20} height={20} />
-    <p>LowVolume</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <MailFilled width={20} height={20} />
-    <p>MailFilled</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <MailOutlined width={20} height={20} />
-    <p>MailOutlined</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Maintenance width={20} height={20} />
-    <p>Maintenance</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <MapMarked width={20} height={20} />
-    <p>MapMarked</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <MapMarker width={20} height={20} />
-    <p>MapMarker</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Map width={20} height={20} />
-    <p>Map</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Menu width={20} height={20} />
-    <p>Menu</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Message width={20} height={20} />
-    <p>Message</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <MinusSquare width={20} height={20} />
-    <p>MinusSquare</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Minus width={20} height={20} />
-    <p>Minus</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <MoneyBill width={20} height={20} />
-    <p>MoneyBill</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <MoneyCheckAlt width={20} height={20} />
-    <p>MoneyCheckAlt</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Money width={20} height={20} />
-    <p>Money</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Mute width={20} height={20} />
-    <p>Mute</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <NotificationBadge width={20} height={20} />
-    <p>NotificationBadge</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <NotificationDuotone width={20} height={20} />
-    <p>NotificationDuotone</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <NotificationFilled width={20} height={20} />
-    <p>NotificationFilled</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <NotificationOff width={20} height={20} />
-    <p>NotificationOff</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <NotificationOutlined width={20} height={20} />
-    <p>NotificationOutlined</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <OrgChartDuotone width={20} height={20} />
-    <p>OrgChartDuotone</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Outdent width={20} height={20} />
-    <p>Outdent</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <PasswordDuotone width={20} height={20} />
-    <p>PasswordDuotone</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Paste width={20} height={20} />
-    <p>Paste</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Pause width={20} height={20} />
-    <p>Pause</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Pdf width={20} height={20} />
-    <p>Pdf</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <PenNib width={20} height={20} />
-    <p>PenNib</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <PencilFilled width={20} height={20} />
-    <p>PencilFilled</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <PencilOutlined width={20} height={20} />
-    <p>PencilOutlined</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <PersonFilled width={20} height={20} />
-    <p>PersonFilled</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <PersonOutlined width={20} height={20} />
-    <p>PersonOutlined</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Phone width={20} height={20} />
-    <p>Phone</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <PlusSquare width={20} height={20} />
-    <p>PlusSquare</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Plus width={20} height={20} />
-    <p>Plus</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <ProfileCard width={20} height={20} />
-    <p>ProfileCard</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <ProfileFilled width={20} height={20} />
-    <p>ProfileFilled</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <ProfileOutlined width={20} height={20} />
-    <p>ProfileOutlined</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Profile width={20} height={20} />
-    <p>Profile</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <QuestionSquare width={20} height={20} />
-    <p>QuestionSquare</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Question width={20} height={20} />
-    <p>Question</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <QuoteLeft width={20} height={20} />
-    <p>QuoteLeft</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <QuoteRight width={20} height={20} />
-    <p>QuoteRight</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Refresh width={20} height={20} />
-    <p>Refresh</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Reveal width={20} height={20} />
-    <p>Reveal</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <School width={20} height={20} />
-    <p>School</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Search width={20} height={20} />
-    <p>Search</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <SettingsDuotone width={20} height={20} />
-    <p>SettingsDuotone</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Settings width={20} height={20} />
-    <p>Settings</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Share width={20} height={20} />
-    <p>Share</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Shield2 width={20} height={20} />
-    <p>Shield2</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Shield width={20} height={20} />
-    <p>Shield</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Sort1To9Ascending width={20} height={20} />
-    <p>Sort1To9Ascending</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Sort1To9Descending width={20} height={20} />
-    <p>Sort1To9Descending</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Sort9To1Ascending width={20} height={20} />
-    <p>Sort9To1Ascending</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Sort9To1Descending width={20} height={20} />
-    <p>Sort9To1Descending</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Sort width={20} height={20} />
-    <p>Sort</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Sparkle width={20} height={20} />
-    <p>Sparkle</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Spreadsheet width={20} height={20} />
-    <p>Spreadsheet</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <StarFilled width={20} height={20} />
-    <p>StarFilled</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <StarOutlined width={20} height={20} />
-    <p>StarOutlined</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Suitcase width={20} height={20} />
-    <p>Suitcase</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <TableColumns width={20} height={20} />
-    <p>TableColumns</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Taxi width={20} height={20} />
-    <p>Taxi</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <TextHeight width={20} height={20} />
-    <p>TextHeight</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <ThumbDown width={20} height={20} />
-    <p>ThumbDown</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <ThumbUp width={20} height={20} />
-    <p>ThumbUp</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <ThumbtackFilled width={20} height={20} />
-    <p>ThumbtackFilled</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <ThumbtackOutlined width={20} height={20} />
-    <p>ThumbtackOutlined</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <TickCircle width={20} height={20} />
-    <p>TickCircle</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Tick width={20} height={20} />
-    <p>Tick</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Timeline width={20} height={20} />
-    <p>Timeline</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <TrashDuotone width={20} height={20} />
-    <p>TrashDuotone</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <TrashFilled width={20} height={20} />
-    <p>TrashFilled</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <TrashOutlined width={20} height={20} />
-    <p>TrashOutlined</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Twitter width={20} height={20} />
-    <p>Twitter</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Unpin width={20} height={20} />
-    <p>Unpin</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Upload width={20} height={20} />
-    <p>Upload</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <UserAddFilled width={20} height={20} />
-    <p>UserAddFilled</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <UserAddOutlined width={20} height={20} />
-    <p>UserAddOutlined</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <UserDoutone width={20} height={20} />
-    <p>UserDoutone</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <UserGreen width={20} height={20} />
-    <p>UserGreen</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <UserGroupOutlined width={20} height={20} />
-    <p>UserGroupOutlined</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <UserTie width={20} height={20} />
-    <p>UserTie</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Users width={20} height={20} />
-    <p>Users</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Verified width={20} height={20} />
-    <p>Verified</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Volume width={20} height={20} />
-    <p>Volume</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <WarningFilled width={20} height={20} />
-    <p>WarningFilled</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <WarningOutlined width={20} height={20} />
-    <p>WarningOutlined</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Word width={20} height={20} />
-    <p>Word</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <WorkbenchText width={20} height={20} />
-    <p>WorkbenchText</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <Workbench width={20} height={20} />
-    <p>Workbench</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <ZigBizSquare width={20} height={20} />
-    <p>ZigBizSquare</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <ZigBizTsm width={20} height={20} />
-    <p>ZigBizTsm</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <ZigBizWhite width={20} height={20} />
-    <p>ZigBizWhite</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <ZigBiz width={20} height={20} />
-    <p>ZigBiz</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <ZoomIn width={20} height={20} />
-    <p>ZoomIn</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <ZoomMinus width={20} height={20} />
-    <p>ZoomMinus</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <ZoomOut width={20} height={20} />
-    <p>ZoomOut</p>
-  </div>
-  <div className={styles.iconWrapper}>
-    <ZoomPlus width={20} height={20} />
-    <p>ZoomPlus</p>
-  </div>
+  <IconBox component={<Activity width={40} height={40} />} name='Activity' />
+  <IconBox component={<AddressBookFilled width={40} height={40} />} name='AddressBookFilled' />
+  <IconBox component={<AddressBookOutlined width={40} height={40} />} name='AddressBookOutlined' />
+  <IconBox component={<AlignCenter width={40} height={40} />} name='AlignCenter' />
+  <IconBox component={<AlignJustify width={40} height={40} />} name='AlignJustify' />
+  <IconBox component={<AlignLeft width={40} height={40} />} name='AlignLeft' />
+  <IconBox component={<AlignRight width={40} height={40} />} name='AlignRight' />
+  <IconBox component={<ArrowDownFilled width={40} height={40} />} name='ArrowDownFilled' />
+  <IconBox component={<ArrowDownOutlined width={40} height={40} />} name='ArrowDownOutlined' />
+  <IconBox component={<ArrowDown width={40} height={40} />} name='ArrowDown' />
+  <IconBox component={<ArrowLeftFilled width={40} height={40} />} name='ArrowLeftFilled' />
+  <IconBox component={<ArrowLeftOutlined width={40} height={40} />} name='ArrowLeftOutlined' />
+  <IconBox component={<ArrowLeft width={40} height={40} />} name='ArrowLeft' />
+  <IconBox component={<ArrowRightFilled width={40} height={40} />} name='ArrowRightFilled' />
+  <IconBox component={<ArrowRightOutlined width={40} height={40} />} name='ArrowRightOutlined' />
+  <IconBox component={<ArrowRight width={40} height={40} />} name='ArrowRight' />
+  <IconBox component={<ArrowUpFilled width={40} height={40} />} name='ArrowUpFilled' />
+  <IconBox component={<ArrowUpOutlined width={40} height={40} />} name='ArrowUpOutlined' />
+  <IconBox component={<ArrowUp width={40} height={40} />} name='ArrowUp' />
+  <IconBox component={<BadgeDollarDuotone width={40} height={40} />} name='BadgeDollarDuotone' />
+  <IconBox component={<Bid width={40} height={40} />} name='Bid' />
+  <IconBox component={<Bold width={40} height={40} />} name='Bold' />
+  <IconBox component={<BrowserBlue width={40} height={40} />} name='BrowserBlue' />
+  <IconBox component={<BrowserCyan width={40} height={40} />} name='BrowserCyan' />
+  <IconBox component={<BrowserRed width={40} height={40} />} name='BrowserRed' />
+  <IconBox component={<Browser width={40} height={40} />} name='Browser' />
+  <IconBox component={<Bug width={40} height={40} />} name='Bug' />
+  <IconBox component={<Building width={40} height={40} />} name='Building' />
+  <IconBox component={<Bus2 width={40} height={40} />} name='Bus2' />
+  <IconBox component={<BusAndCar width={40} height={40} />} name='BusAndCar' />
+  <IconBox component={<Bus width={40} height={40} />} name='Bus' />
+  <IconBox component={<CalendarDaysDuotone width={40} height={40} />} name='CalendarDaysDuotone' />
+  <IconBox component={<CalendarDaysFilled width={40} height={40} />} name='CalendarDaysFilled' />
+  <IconBox component={<CalendarDaysOutlined width={40} height={40} />} name='CalendarDaysOutlined' />
+  <IconBox component={<Calendar width={40} height={40} />} name='Calendar' />
+  <IconBox component={<Cancelled width={40} height={40} />} name='Cancelled' />
+  <IconBox component={<Capacity width={40} height={40} />} name='Capacity' />
+  <IconBox component={<Car width={40} height={40} />} name='Car' />
+  <IconBox component={<CaretDown width={40} height={40} />} name='CaretDown' />
+  <IconBox component={<CaretLeft width={40} height={40} />} name='CaretLeft' />
+  <IconBox component={<CaretRight width={40} height={40} />} name='CaretRight' />
+  <IconBox component={<CaretUp width={40} height={40} />} name='CaretUp' />
+  <IconBox component={<ChartLineUpDuotone width={40} height={40} />} name='ChartLineUpDuotone' />
+  <IconBox component={<ChartPieDuotone width={40} height={40} />} name='ChartPieDuotone' />
+  <IconBox component={<Chart width={40} height={40} />} name='Chart' />
+  <IconBox component={<Chat width={40} height={40} />} name='Chat' />
+  <IconBox component={<Cities width={40} height={40} />} name='Cities' />
+  <IconBox component={<ClapperboardPlay width={40} height={40} />} name='ClapperboardPlay' />
+  <IconBox component={<Classification width={40} height={40} />} name='Classification' />
+  <IconBox component={<Clipboard width={40} height={40} />} name='Clipboard' />
+  <IconBox component={<ClockFilled width={40} height={40} />} name='ClockFilled' />
+  <IconBox component={<ClockOutlined width={40} height={40} />} name='ClockOutlined' />
+  <IconBox component={<CloudUpload width={40} height={40} />} name='CloudUpload' />
+  <IconBox component={<Compass width={40} height={40} />} name='Compass' />
+  <IconBox component={<Copy width={40} height={40} />} name='Copy' />
+  <IconBox component={<CreditCardFilled width={40} height={40} />} name='CreditCardFilled' />
+  <IconBox component={<CreditCardOutlined width={40} height={40} />} name='CreditCardOutlined' />
+  <IconBox component={<CrossCircle width={40} height={40} />} name='CrossCircle' />
+  <IconBox component={<Cross width={40} height={40} />} name='Cross' />
+  <IconBox component={<Crown width={40} height={40} />} name='Crown' />
+  <IconBox component={<CustomerService width={40} height={40} />} name='CustomerService' />
+  <IconBox component={<Dashboard width={40} height={40} />} name='Dashboard' />
+  <IconBox component={<Deleted width={40} height={40} />} name='Deleted' />
+  <IconBox component={<Doctype width={40} height={40} />} name='Doctype' />
+  <IconBox component={<Document width={40} height={40} />} name='Document' />
+  <IconBox component={<Download width={40} height={40} />} name='Download' />
+  <IconBox component={<Driver width={40} height={40} />} name='Driver' />
+  <IconBox component={<EditDoutone width={40} height={40} />} name='EditDoutone' />
+  <IconBox component={<Edit width={40} height={40} />} name='Edit' />
+  <IconBox component={<Email width={40} height={40} />} name='Email' />
+  <IconBox component={<Excel width={40} height={40} />} name='Excel' />
+  <IconBox component={<Export width={40} height={40} />} name='Export' />
+  <IconBox component={<EyeSlash width={40} height={40} />} name='EyeSlash' />
+  <IconBox component={<EyeSolid width={40} height={40} />} name='EyeSolid' />
+  <IconBox component={<FaceFrown width={40} height={40} />} name='FaceFrown' />
+  <IconBox component={<FaceLaugh width={40} height={40} />} name='FaceLaugh' />
+  <IconBox component={<FaceMeh width={40} height={40} />} name='FaceMeh' />
+  <IconBox component={<FaceSadTear width={40} height={40} />} name='FaceSadTear' />
+  <IconBox component={<FaceSmileHeart width={40} height={40} />} name='FaceSmileHeart' />
+  <IconBox component={<FaceSmile width={40} height={40} />} name='FaceSmile' />
+  <IconBox component={<Facebook width={40} height={40} />} name='Facebook' />
+  <IconBox component={<FileLaptop width={40} height={40} />} name='FileLaptop' />
+  <IconBox component={<FilePen width={40} height={40} />} name='FilePen' />
+  <IconBox component={<FileSignature width={40} height={40} />} name='FileSignature' />
+  <IconBox component={<File width={40} height={40} />} name='File' />
+  <IconBox component={<Fill width={40} height={40} />} name='Fill' />
+  <IconBox component={<Filter width={40} height={40} />} name='Filter' />
+  <IconBox component={<FolderOpen width={40} height={40} />} name='FolderOpen' />
+  <IconBox component={<Folder width={40} height={40} />} name='Folder' />
+  <IconBox component={<FontColour width={40} height={40} />} name='FontColour' />
+  <IconBox component={<Font width={40} height={40} />} name='Font' />
+  <IconBox component={<Gauge width={40} height={40} />} name='Gauge' />
+  <IconBox component={<GearsDuotone width={40} height={40} />} name='GearsDuotone' />
+  <IconBox component={<Gears width={40} height={40} />} name='Gears' />
+  <IconBox component={<GlobeGray width={40} height={40} />} name='GlobeGray' />
+  <IconBox component={<Globe width={40} height={40} />} name='Globe' />
+  <IconBox component={<GridBoxes width={40} height={40} />} name='GridBoxes' />
+  <IconBox component={<Grids width={40} height={40} />} name='Grids' />
+  <IconBox component={<GripDots width={40} height={40} />} name='GripDots' />
+  <IconBox component={<GroupAddFilled width={40} height={40} />} name='GroupAddFilled' />
+  <IconBox component={<GroupAddOutlined width={40} height={40} />} name='GroupAddOutlined' />
+  <IconBox component={<GroupSettingsFilled width={40} height={40} />} name='GroupSettingsFilled' />
+  <IconBox component={<GroupSettingsOutlined width={40} height={40} />} name='GroupSettingsOutlined' />
+  <IconBox component={<H1 width={40} height={40} />} name='H1' />
+  <IconBox component={<H3 width={40} height={40} />} name='H3' />
+  <IconBox component={<HatWizard width={40} height={40} />} name='HatWizard' />
+  <IconBox component={<Heading width={40} height={40} />} name='Heading' />
+  <IconBox component={<HeartFilled width={40} height={40} />} name='HeartFilled' />
+  <IconBox component={<HeartOutlined width={40} height={40} />} name='HeartOutlined' />
+  <IconBox component={<HexagonXmark width={40} height={40} />} name='HexagonXmark' />
+  <IconBox component={<Hide width={40} height={40} />} name='Hide' />
+  <IconBox component={<Home width={40} height={40} />} name='Home' />
+  <IconBox component={<HourglassClockYellow width={40} height={40} />} name='HourglassClockYellow' />
+  <IconBox component={<HourglassClock width={40} height={40} />} name='HourglassClock' />
+  <IconBox component={<InfoFilled width={40} height={40} />} name='InfoFilled' />
+  <IconBox component={<InfoOutlined width={40} height={40} />} name='InfoOutlined' />
+  <IconBox component={<InfoSquare width={40} height={40} />} name='InfoSquare' />
+  <IconBox component={<Inspect width={40} height={40} />} name='Inspect' />
+  <IconBox component={<Instagram width={40} height={40} />} name='Instagram' />
+  <IconBox component={<Invoice width={40} height={40} />} name='Invoice' />
+  <IconBox component={<Italic width={40} height={40} />} name='Italic' />
+  <IconBox component={<Job2 width={40} height={40} />} name='Job2' />
+  <IconBox component={<Job width={40} height={40} />} name='Job' />
+  <IconBox component={<Key width={40} height={40} />} name='Key' />
+  <IconBox component={<Layer width={40} height={40} />} name='Layer' />
+  <IconBox component={<Layers width={40} height={40} />} name='Layers' />
+  <IconBox component={<LightbulbOn width={40} height={40} />} name='LightbulbOn' />
+  <IconBox component={<Link width={40} height={40} />} name='Link' />
+  <IconBox component={<Linkedin width={40} height={40} />} name='Linkedin' />
+  <IconBox component={<ListOl width={40} height={40} />} name='ListOl' />
+  <IconBox component={<ListUl width={40} height={40} />} name='ListUl' />
+  <IconBox component={<List width={40} height={40} />} name='List' />
+  <IconBox component={<Logout width={40} height={40} />} name='Logout' />
+  <IconBox component={<LowVolume width={40} height={40} />} name='LowVolume' />
+  <IconBox component={<MailFilled width={40} height={40} />} name='MailFilled' />
+  <IconBox component={<MailOutlined width={40} height={40} />} name='MailOutlined' />
+  <IconBox component={<Maintenance width={40} height={40} />} name='Maintenance' />
+  <IconBox component={<MapMarked width={40} height={40} />} name='MapMarked' />
+  <IconBox component={<MapMarker width={40} height={40} />} name='MapMarker' />
+  <IconBox component={<Map width={40} height={40} />} name='Map' />
+  <IconBox component={<Menu width={40} height={40} />} name='Menu' />
+  <IconBox component={<MessageLines width={40} height={40} />} name='MessageLines' />
+  <IconBox component={<Message width={40} height={40} />} name='Message' />
+  <IconBox component={<MinusSquare width={40} height={40} />} name='MinusSquare' />
+  <IconBox component={<Minus width={40} height={40} />} name='Minus' />
+  <IconBox component={<MoneyBill width={40} height={40} />} name='MoneyBill' />
+  <IconBox component={<MoneyCheckAlt width={40} height={40} />} name='MoneyCheckAlt' />
+  <IconBox component={<Money width={40} height={40} />} name='Money' />
+  <IconBox component={<Mute width={40} height={40} />} name='Mute' />
+  <IconBox component={<NotificationBadge width={40} height={40} />} name='NotificationBadge' />
+  <IconBox component={<NotificationDuotone width={40} height={40} />} name='NotificationDuotone' />
+  <IconBox component={<NotificationFilled width={40} height={40} />} name='NotificationFilled' />
+  <IconBox component={<NotificationOff width={40} height={40} />} name='NotificationOff' />
+  <IconBox component={<NotificationOutlined width={40} height={40} />} name='NotificationOutlined' />
+  <IconBox component={<OrgChartDuotone width={40} height={40} />} name='OrgChartDuotone' />
+  <IconBox component={<Outdent width={40} height={40} />} name='Outdent' />
+  <IconBox component={<PasswordDuotone width={40} height={40} />} name='PasswordDuotone' />
+  <IconBox component={<Paste width={40} height={40} />} name='Paste' />
+  <IconBox component={<Pause width={40} height={40} />} name='Pause' />
+  <IconBox component={<Pdf width={40} height={40} />} name='Pdf' />
+  <IconBox component={<PenNib width={40} height={40} />} name='PenNib' />
+  <IconBox component={<PencilFilled width={40} height={40} />} name='PencilFilled' />
+  <IconBox component={<PencilOutlined width={40} height={40} />} name='PencilOutlined' />
+  <IconBox component={<PersonFilled width={40} height={40} />} name='PersonFilled' />
+  <IconBox component={<PersonOutlined width={40} height={40} />} name='PersonOutlined' />
+  <IconBox component={<Phone width={40} height={40} />} name='Phone' />
+  <IconBox component={<PlusSquare width={40} height={40} />} name='PlusSquare' />
+  <IconBox component={<Plus width={40} height={40} />} name='Plus' />
+  <IconBox component={<ProfileCard width={40} height={40} />} name='ProfileCard' />
+  <IconBox component={<ProfileFilled width={40} height={40} />} name='ProfileFilled' />
+  <IconBox component={<ProfileOutlined width={40} height={40} />} name='ProfileOutlined' />
+  <IconBox component={<Profile width={40} height={40} />} name='Profile' />
+  <IconBox component={<Project width={40} height={40} />} name='Project' />
+  <IconBox component={<QuestionSquare width={40} height={40} />} name='QuestionSquare' />
+  <IconBox component={<Question width={40} height={40} />} name='Question' />
+  <IconBox component={<QuoteLeft width={40} height={40} />} name='QuoteLeft' />
+  <IconBox component={<QuoteRight width={40} height={40} />} name='QuoteRight' />
+  <IconBox component={<Refresh width={40} height={40} />} name='Refresh' />
+  <IconBox component={<Reveal width={40} height={40} />} name='Reveal' />
+  <IconBox component={<School width={40} height={40} />} name='School' />
+  <IconBox component={<Search width={40} height={40} />} name='Search' />
+  <IconBox component={<Settings width={40} height={40} />} name='Settings' />
+  <IconBox component={<Shapes width={40} height={40} />} name='Shapes' />
+  <IconBox component={<Share width={40} height={40} />} name='Share' />
+  <IconBox component={<Shield2 width={40} height={40} />} name='Shield2' />
+  <IconBox component={<Shield width={40} height={40} />} name='Shield' />
+  <IconBox component={<Sort1To9Ascending width={40} height={40} />} name='Sort1To9Ascending' />
+  <IconBox component={<Sort1To9Descending width={40} height={40} />} name='Sort1To9Descending' />
+  <IconBox component={<Sort9To1Ascending width={40} height={40} />} name='Sort9To1Ascending' />
+  <IconBox component={<Sort9To1Descending width={40} height={40} />} name='Sort9To1Descending' />
+  <IconBox component={<Sort width={40} height={40} />} name='Sort' />
+  <IconBox component={<Sparkle width={40} height={40} />} name='Sparkle' />
+  <IconBox component={<Spreadsheet width={40} height={40} />} name='Spreadsheet' />
+  <IconBox component={<Stamp width={40} height={40} />} name='Stamp' />
+  <IconBox component={<StarFilled width={40} height={40} />} name='StarFilled' />
+  <IconBox component={<StarOutlined width={40} height={40} />} name='StarOutlined' />
+  <IconBox component={<Status width={40} height={40} />} name='Status' />
+  <IconBox component={<Store width={40} height={40} />} name='Store' />
+  <IconBox component={<Strikethrough width={40} height={40} />} name='Strikethrough' />
+  <IconBox component={<Suitcase width={40} height={40} />} name='Suitcase' />
+  <IconBox component={<TableColumns width={40} height={40} />} name='TableColumns' />
+  <IconBox component={<Table width={40} height={40} />} name='Table' />
+  <IconBox component={<Tags width={40} height={40} />} name='Tags' />
+  <IconBox component={<Taxi width={40} height={40} />} name='Taxi' />
+  <IconBox component={<TextHeight width={40} height={40} />} name='TextHeight' />
+  <IconBox component={<ThumbDown width={40} height={40} />} name='ThumbDown' />
+  <IconBox component={<ThumbUp width={40} height={40} />} name='ThumbUp' />
+  <IconBox component={<ThumbtackFilled width={40} height={40} />} name='ThumbtackFilled' />
+  <IconBox component={<ThumbtackOutlined width={40} height={40} />} name='ThumbtackOutlined' />
+  <IconBox component={<TickCircle width={40} height={40} />} name='TickCircle' />
+  <IconBox component={<Tick width={40} height={40} />} name='Tick' />
+  <IconBox component={<Ticket width={40} height={40} />} name='Ticket' />
+  <IconBox component={<Timeline width={40} height={40} />} name='Timeline' />
+  <IconBox component={<TrashDuotone width={40} height={40} />} name='TrashDuotone' />
+  <IconBox component={<TrashFilled width={40} height={40} />} name='TrashFilled' />
+  <IconBox component={<TrashOutlined width={40} height={40} />} name='TrashOutlined' />
+  <IconBox component={<Twitter width={40} height={40} />} name='Twitter' />
+  <IconBox component={<Underline width={40} height={40} />} name='Underline' />
+  <IconBox component={<Unpin width={40} height={40} />} name='Unpin' />
+  <IconBox component={<Upload width={40} height={40} />} name='Upload' />
+  <IconBox component={<UserAddFilled width={40} height={40} />} name='UserAddFilled' />
+  <IconBox component={<UserAddOutlined width={40} height={40} />} name='UserAddOutlined' />
+  <IconBox component={<UserDoutone width={40} height={40} />} name='UserDoutone' />
+  <IconBox component={<UserGreen width={40} height={40} />} name='UserGreen' />
+  <IconBox component={<UserGroupOutlined width={40} height={40} />} name='UserGroupOutlined' />
+  <IconBox component={<UserTie width={40} height={40} />} name='UserTie' />
+  <IconBox component={<Users width={40} height={40} />} name='Users' />
+  <IconBox component={<Verified width={40} height={40} />} name='Verified' />
+  <IconBox component={<Volume width={40} height={40} />} name='Volume' />
+  <IconBox component={<WarningFilled width={40} height={40} />} name='WarningFilled' />
+  <IconBox component={<WarningOutlined width={40} height={40} />} name='WarningOutlined' />
+  <IconBox component={<Word width={40} height={40} />} name='Word' />
+  <IconBox component={<WorkbenchText width={40} height={40} />} name='WorkbenchText' />
+  <IconBox component={<Workbench width={40} height={40} />} name='Workbench' />
+  <IconBox component={<ZigBizSquare width={40} height={40} />} name='ZigBizSquare' />
+  <IconBox component={<ZigBizTsm width={40} height={40} />} name='ZigBizTsm' />
+  <IconBox component={<ZigBizWhite width={40} height={40} />} name='ZigBizWhite' />
+  <IconBox component={<ZigBiz width={40} height={40} />} name='ZigBiz' />
+  <IconBox component={<ZoomIn width={40} height={40} />} name='ZoomIn' />
+  <IconBox component={<ZoomMinus width={40} height={40} />} name='ZoomMinus' />
+  <IconBox component={<ZoomOut width={40} height={40} />} name='ZoomOut' />
+  <IconBox component={<ZoomPlus width={40} height={40} />} name='ZoomPlus' />
 </section>
 
 ```js
