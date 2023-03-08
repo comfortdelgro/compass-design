@@ -62,7 +62,10 @@ import CalendarDaysDuotone from '@comfortdelgro/compass-icons/react/duotone/cale
 import ChartLineUpDuotone from '@comfortdelgro/compass-icons/react/duotone/chart-line-up-duotone'
 import ChartPieDuotone from '@comfortdelgro/compass-icons/react/duotone/chart-pie-duotone'
 import EditDuotone from '@comfortdelgro/compass-icons/react/duotone/edit-duotone'
+import FlagDuotoneGreen from '@comfortdelgro/compass-icons/react/duotone/flag-duotone-green'
+import FlagDuotone from '@comfortdelgro/compass-icons/react/duotone/flag-duotone'
 import GearsDuotone from '@comfortdelgro/compass-icons/react/duotone/gears-duotone'
+import GridDuotone from '@comfortdelgro/compass-icons/react/duotone/grid-duotone'
 import NotificationDuotone from '@comfortdelgro/compass-icons/react/duotone/notification-duotone'
 import OrgChartDuotone from '@comfortdelgro/compass-icons/react/duotone/org-chart-duotone'
 import PasswordDuotone from '@comfortdelgro/compass-icons/react/duotone/password-duotone'
@@ -147,8 +150,7 @@ import Font from '@comfortdelgro/compass-icons/react/font'
 import Gauge from '@comfortdelgro/compass-icons/react/gauge'
 import Gears from '@comfortdelgro/compass-icons/react/gears'
 import Globe from '@comfortdelgro/compass-icons/react/globe'
-import GridBoxes from '@comfortdelgro/compass-icons/react/grid-boxes'
-import Grids from '@comfortdelgro/compass-icons/react/grids'
+import Grid from '@comfortdelgro/compass-icons/react/grid'
 import GripDots from '@comfortdelgro/compass-icons/react/grip-dots'
 import H1 from '@comfortdelgro/compass-icons/react/h1'
 import H3 from '@comfortdelgro/compass-icons/react/h3'
@@ -533,32 +535,110 @@ import AddressBookFilled from '@comfortdelgro/compass-icons/react/filled/address
     alignItems: 'flex-start',
   }}
 >
-  <IconBox component={<AddressBookFilled width={40} height={40} />} name='AddressBookFilled' />
-  <IconBox component={<ArrowDownFilled width={40} height={40} />} name='ArrowDownFilled' />
-  <IconBox component={<ArrowLeftFilled width={40} height={40} />} name='ArrowLeftFilled' />
-  <IconBox component={<ArrowRightFilled width={40} height={40} />} name='ArrowRightFilled' />
-  <IconBox component={<ArrowUpFilled width={40} height={40} />} name='ArrowUpFilled' />
-  <IconBox component={<CalendarDaysFilled width={40} height={40} />} name='CalendarDaysFilled' />
-  <IconBox component={<ClockFilled width={40} height={40} />} name='ClockFilled' />
-  <IconBox component={<CreditCardFilled width={40} height={40} />} name='CreditCardFilled' />
-  <IconBox component={<DuplicateImageFilled width={40} height={40} />} name='DuplicateImageFilled' />
-  <IconBox component={<ExclamationFilled width={40} height={40} />} name='ExclamationFilled' />
-  <IconBox component={<GroupAddFilled width={40} height={40} />} name='GroupAddFilled' />
-  <IconBox component={<GroupSettingsFilled width={40} height={40} />} name='GroupSettingsFilled' />
-  <IconBox component={<HeartFilled width={40} height={40} />} name='HeartFilled' />
-  <IconBox component={<ImageFilled width={40} height={40} />} name='ImageFilled' />
-  <IconBox component={<InfoFilled width={40} height={40} />} name='InfoFilled' />
-  <IconBox component={<MailFilled width={40} height={40} />} name='MailFilled' />
-  <IconBox component={<NotificationFilled width={40} height={40} />} name='NotificationFilled' />
-  <IconBox component={<PencilFilled width={40} height={40} />} name='PencilFilled' />
-  <IconBox component={<PersonFilled width={40} height={40} />} name='PersonFilled' />
-  <IconBox component={<ProfileFilled width={40} height={40} />} name='ProfileFilled' />
-  <IconBox component={<QuestionFilled width={40} height={40} />} name='QuestionFilled' />
-  <IconBox component={<StarFilled width={40} height={40} />} name='StarFilled' />
-  <IconBox component={<ThumbtackFilled width={40} height={40} />} name='ThumbtackFilled' />
-  <IconBox component={<TrashFilled width={40} height={40} />} name='TrashFilled' />
-  <IconBox component={<UserAddFilled width={40} height={40} />} name='UserAddFilled' />
-  <IconBox component={<WarningFilled width={40} height={40} />} name='WarningFilled' />
+  <IconBox
+    component={<AddressBookFilled width={40} height={40} />}
+    name='AddressBookFilled'
+  />
+  <IconBox
+    component={<ArrowDownFilled width={40} height={40} />}
+    name='ArrowDownFilled'
+  />
+  <IconBox
+    component={<ArrowLeftFilled width={40} height={40} />}
+    name='ArrowLeftFilled'
+  />
+  <IconBox
+    component={<ArrowRightFilled width={40} height={40} />}
+    name='ArrowRightFilled'
+  />
+  <IconBox
+    component={<ArrowUpFilled width={40} height={40} />}
+    name='ArrowUpFilled'
+  />
+  <IconBox
+    component={<CalendarDaysFilled width={40} height={40} />}
+    name='CalendarDaysFilled'
+  />
+  <IconBox
+    component={<ClockFilled width={40} height={40} />}
+    name='ClockFilled'
+  />
+  <IconBox
+    component={<CreditCardFilled width={40} height={40} />}
+    name='CreditCardFilled'
+  />
+  <IconBox
+    component={<DuplicateImageFilled width={40} height={40} />}
+    name='DuplicateImageFilled'
+  />
+  <IconBox
+    component={<ExclamationFilled width={40} height={40} />}
+    name='ExclamationFilled'
+  />
+  <IconBox
+    component={<GroupAddFilled width={40} height={40} />}
+    name='GroupAddFilled'
+  />
+  <IconBox
+    component={<GroupSettingsFilled width={40} height={40} />}
+    name='GroupSettingsFilled'
+  />
+  <IconBox
+    component={<HeartFilled width={40} height={40} />}
+    name='HeartFilled'
+  />
+  <IconBox
+    component={<ImageFilled width={40} height={40} />}
+    name='ImageFilled'
+  />
+  <IconBox
+    component={<InfoFilled width={40} height={40} />}
+    name='InfoFilled'
+  />
+  <IconBox
+    component={<MailFilled width={40} height={40} />}
+    name='MailFilled'
+  />
+  <IconBox
+    component={<NotificationFilled width={40} height={40} />}
+    name='NotificationFilled'
+  />
+  <IconBox
+    component={<PencilFilled width={40} height={40} />}
+    name='PencilFilled'
+  />
+  <IconBox
+    component={<PersonFilled width={40} height={40} />}
+    name='PersonFilled'
+  />
+  <IconBox
+    component={<ProfileFilled width={40} height={40} />}
+    name='ProfileFilled'
+  />
+  <IconBox
+    component={<QuestionFilled width={40} height={40} />}
+    name='QuestionFilled'
+  />
+  <IconBox
+    component={<StarFilled width={40} height={40} />}
+    name='StarFilled'
+  />
+  <IconBox
+    component={<ThumbtackFilled width={40} height={40} />}
+    name='ThumbtackFilled'
+  />
+  <IconBox
+    component={<TrashFilled width={40} height={40} />}
+    name='TrashFilled'
+  />
+  <IconBox
+    component={<UserAddFilled width={40} height={40} />}
+    name='UserAddFilled'
+  />
+  <IconBox
+    component={<WarningFilled width={40} height={40} />}
+    name='WarningFilled'
+  />
 </section>
 
 ---
@@ -578,33 +658,114 @@ import AddressBookOutlined from '@comfortdelgro/compass-icons/react/outlined/add
     alignItems: 'flex-start',
   }}
 >
-  <IconBox component={<AddressBookOutlined width={40} height={40} />} name='AddressBookOutlined' />
-  <IconBox component={<ArrowDownOutlined width={40} height={40} />} name='ArrowDownOutlined' />
-  <IconBox component={<ArrowLeftOutlined width={40} height={40} />} name='ArrowLeftOutlined' />
-  <IconBox component={<ArrowRightOutlined width={40} height={40} />} name='ArrowRightOutlined' />
-  <IconBox component={<ArrowUpOutlined width={40} height={40} />} name='ArrowUpOutlined' />
-  <IconBox component={<CalendarDaysOutlined width={40} height={40} />} name='CalendarDaysOutlined' />
-  <IconBox component={<ClockOutlined width={40} height={40} />} name='ClockOutlined' />
-  <IconBox component={<CreditCardOutlined width={40} height={40} />} name='CreditCardOutlined' />
-  <IconBox component={<DuplicateImageOutlined width={40} height={40} />} name='DuplicateImageOutlined' />
-  <IconBox component={<ExclamationOutlined width={40} height={40} />} name='ExclamationOutlined' />
-  <IconBox component={<GroupAddOutlined width={40} height={40} />} name='GroupAddOutlined' />
-  <IconBox component={<GroupSettingsOutlined width={40} height={40} />} name='GroupSettingsOutlined' />
-  <IconBox component={<HeartOutlined width={40} height={40} />} name='HeartOutlined' />
-  <IconBox component={<ImageOutlined width={40} height={40} />} name='ImageOutlined' />
-  <IconBox component={<InfoOutlined width={40} height={40} />} name='InfoOutlined' />
-  <IconBox component={<MailOutlined width={40} height={40} />} name='MailOutlined' />
-  <IconBox component={<NotificationOutlined width={40} height={40} />} name='NotificationOutlined' />
-  <IconBox component={<PencilOutlined width={40} height={40} />} name='PencilOutlined' />
-  <IconBox component={<PersonOutlined width={40} height={40} />} name='PersonOutlined' />
-  <IconBox component={<ProfileOutlined width={40} height={40} />} name='ProfileOutlined' />
-  <IconBox component={<QuestionOutlined width={40} height={40} />} name='QuestionOutlined' />
-  <IconBox component={<StarOutlined width={40} height={40} />} name='StarOutlined' />
-  <IconBox component={<ThumbtackOutlined width={40} height={40} />} name='ThumbtackOutlined' />
-  <IconBox component={<TrashOutlined width={40} height={40} />} name='TrashOutlined' />
-  <IconBox component={<UserAddOutlined width={40} height={40} />} name='UserAddOutlined' />
-  <IconBox component={<UserGroupOutlined width={40} height={40} />} name='UserGroupOutlined' />
-  <IconBox component={<WarningOutlined width={40} height={40} />} name='WarningOutlined' />
+  <IconBox
+    component={<AddressBookOutlined width={40} height={40} />}
+    name='AddressBookOutlined'
+  />
+  <IconBox
+    component={<ArrowDownOutlined width={40} height={40} />}
+    name='ArrowDownOutlined'
+  />
+  <IconBox
+    component={<ArrowLeftOutlined width={40} height={40} />}
+    name='ArrowLeftOutlined'
+  />
+  <IconBox
+    component={<ArrowRightOutlined width={40} height={40} />}
+    name='ArrowRightOutlined'
+  />
+  <IconBox
+    component={<ArrowUpOutlined width={40} height={40} />}
+    name='ArrowUpOutlined'
+  />
+  <IconBox
+    component={<CalendarDaysOutlined width={40} height={40} />}
+    name='CalendarDaysOutlined'
+  />
+  <IconBox
+    component={<ClockOutlined width={40} height={40} />}
+    name='ClockOutlined'
+  />
+  <IconBox
+    component={<CreditCardOutlined width={40} height={40} />}
+    name='CreditCardOutlined'
+  />
+  <IconBox
+    component={<DuplicateImageOutlined width={40} height={40} />}
+    name='DuplicateImageOutlined'
+  />
+  <IconBox
+    component={<ExclamationOutlined width={40} height={40} />}
+    name='ExclamationOutlined'
+  />
+  <IconBox
+    component={<GroupAddOutlined width={40} height={40} />}
+    name='GroupAddOutlined'
+  />
+  <IconBox
+    component={<GroupSettingsOutlined width={40} height={40} />}
+    name='GroupSettingsOutlined'
+  />
+  <IconBox
+    component={<HeartOutlined width={40} height={40} />}
+    name='HeartOutlined'
+  />
+  <IconBox
+    component={<ImageOutlined width={40} height={40} />}
+    name='ImageOutlined'
+  />
+  <IconBox
+    component={<InfoOutlined width={40} height={40} />}
+    name='InfoOutlined'
+  />
+  <IconBox
+    component={<MailOutlined width={40} height={40} />}
+    name='MailOutlined'
+  />
+  <IconBox
+    component={<NotificationOutlined width={40} height={40} />}
+    name='NotificationOutlined'
+  />
+  <IconBox
+    component={<PencilOutlined width={40} height={40} />}
+    name='PencilOutlined'
+  />
+  <IconBox
+    component={<PersonOutlined width={40} height={40} />}
+    name='PersonOutlined'
+  />
+  <IconBox
+    component={<ProfileOutlined width={40} height={40} />}
+    name='ProfileOutlined'
+  />
+  <IconBox
+    component={<QuestionOutlined width={40} height={40} />}
+    name='QuestionOutlined'
+  />
+  <IconBox
+    component={<StarOutlined width={40} height={40} />}
+    name='StarOutlined'
+  />
+  <IconBox
+    component={<ThumbtackOutlined width={40} height={40} />}
+    name='ThumbtackOutlined'
+  />
+  <IconBox
+    component={<TrashOutlined width={40} height={40} />}
+    name='TrashOutlined'
+  />
+  <IconBox
+    component={<UserAddOutlined width={40} height={40} />}
+    name='UserAddOutlined'
+  />
+  <IconBox
+    component={<UserGroupOutlined width={40} height={40} />}
+    name='UserGroupOutlined'
+  />
+  <IconBox
+    component={<WarningOutlined width={40} height={40} />}
+    name='WarningOutlined'
+  />
 </section>
 
 ---
@@ -624,17 +785,62 @@ import BadgeDollarDuotone from '@comfortdelgro/compass-icons/react/duotone/badge
     alignItems: 'flex-start',
   }}
 >
-  <IconBox component={<BadgeDollarDuotone width={40} height={40} />} name='BadgeDollarDuotone' />
-  <IconBox component={<CalendarDaysDuotone width={40} height={40} />} name='CalendarDaysDuotone' />
-  <IconBox component={<ChartLineUpDuotone width={40} height={40} />} name='ChartLineUpDuotone' />
-  <IconBox component={<ChartPieDuotone width={40} height={40} />} name='ChartPieDuotone' />
-  <IconBox component={<EditDuotone width={40} height={40} />} name='EditDuotone' />
-  <IconBox component={<GearsDuotone width={40} height={40} />} name='GearsDuotone' />
-  <IconBox component={<NotificationDuotone width={40} height={40} />} name='NotificationDuotone' />
-  <IconBox component={<OrgChartDuotone width={40} height={40} />} name='OrgChartDuotone' />
-  <IconBox component={<PasswordDuotone width={40} height={40} />} name='PasswordDuotone' />
-  <IconBox component={<TrashDuotone width={40} height={40} />} name='TrashDuotone' />
-  <IconBox component={<UserDuotone width={40} height={40} />} name='UserDuotone' />
+  <IconBox
+    component={<BadgeDollarDuotone width={40} height={40} />}
+    name='BadgeDollarDuotone'
+  />
+  <IconBox
+    component={<CalendarDaysDuotone width={40} height={40} />}
+    name='CalendarDaysDuotone'
+  />
+  <IconBox
+    component={<ChartLineUpDuotone width={40} height={40} />}
+    name='ChartLineUpDuotone'
+  />
+  <IconBox
+    component={<ChartPieDuotone width={40} height={40} />}
+    name='ChartPieDuotone'
+  />
+  <IconBox
+    component={<EditDuotone width={40} height={40} />}
+    name='EditDuotone'
+  />
+  <IconBox
+    component={<FlagDuotoneGreen width={40} height={40} />}
+    name='FlagDuotoneGreen'
+  />
+  <IconBox
+    component={<FlagDuotone width={40} height={40} />}
+    name='FlagDuotone'
+  />
+  <IconBox
+    component={<GearsDuotone width={40} height={40} />}
+    name='GearsDuotone'
+  />
+  <IconBox
+    component={<GridDuotone width={40} height={40} />}
+    name='GridDuotone'
+  />
+  <IconBox
+    component={<NotificationDuotone width={40} height={40} />}
+    name='NotificationDuotone'
+  />
+  <IconBox
+    component={<OrgChartDuotone width={40} height={40} />}
+    name='OrgChartDuotone'
+  />
+  <IconBox
+    component={<PasswordDuotone width={40} height={40} />}
+    name='PasswordDuotone'
+  />
+  <IconBox
+    component={<TrashDuotone width={40} height={40} />}
+    name='TrashDuotone'
+  />
+  <IconBox
+    component={<UserDuotone width={40} height={40} />}
+    name='UserDuotone'
+  />
 </section>
 
 ---
@@ -657,11 +863,20 @@ import Compass from '@comfortdelgro/compass-icons/react/colorful/compass'
   <IconBox component={<Compass width={40} height={40} />} name='Compass' />
   <IconBox component={<Crown width={40} height={40} />} name='Crown' />
   <IconBox component={<Doctype width={40} height={40} />} name='Doctype' />
-  <IconBox component={<WorkbenchText width={40} height={40} />} name='WorkbenchText' />
+  <IconBox
+    component={<WorkbenchText width={40} height={40} />}
+    name='WorkbenchText'
+  />
   <IconBox component={<Workbench width={40} height={40} />} name='Workbench' />
-  <IconBox component={<ZigBizSquare width={40} height={40} />} name='ZigBizSquare' />
+  <IconBox
+    component={<ZigBizSquare width={40} height={40} />}
+    name='ZigBizSquare'
+  />
   <IconBox component={<ZigBizTsm width={40} height={40} />} name='ZigBizTsm' />
-  <IconBox component={<ZigBizWhite width={40} height={40} />} name='ZigBizWhite' />
+  <IconBox
+    component={<ZigBizWhite width={40} height={40} />}
+    name='ZigBizWhite'
+  />
   <IconBox component={<ZigBiz width={40} height={40} />} name='ZigBiz' />
 </section>
 
@@ -683,13 +898,25 @@ import Activity from '@comfortdelgro/compass-icons/react/activity'
   }}
 >
   <IconBox component={<Activity width={40} height={40} />} name='Activity' />
-  <IconBox component={<AlignCenter width={40} height={40} />} name='AlignCenter' />
-  <IconBox component={<AlignJustify width={40} height={40} />} name='AlignJustify' />
+  <IconBox
+    component={<AlignCenter width={40} height={40} />}
+    name='AlignCenter'
+  />
+  <IconBox
+    component={<AlignJustify width={40} height={40} />}
+    name='AlignJustify'
+  />
   <IconBox component={<AlignLeft width={40} height={40} />} name='AlignLeft' />
-  <IconBox component={<AlignRight width={40} height={40} />} name='AlignRight' />
+  <IconBox
+    component={<AlignRight width={40} height={40} />}
+    name='AlignRight'
+  />
   <IconBox component={<ArrowDown width={40} height={40} />} name='ArrowDown' />
   <IconBox component={<ArrowLeft width={40} height={40} />} name='ArrowLeft' />
-  <IconBox component={<ArrowRight width={40} height={40} />} name='ArrowRight' />
+  <IconBox
+    component={<ArrowRight width={40} height={40} />}
+    name='ArrowRight'
+  />
   <IconBox component={<ArrowUp width={40} height={40} />} name='ArrowUp' />
   <IconBox component={<Bid width={40} height={40} />} name='Bid' />
   <IconBox component={<Bold width={40} height={40} />} name='Bold' />
@@ -705,19 +932,37 @@ import Activity from '@comfortdelgro/compass-icons/react/activity'
   <IconBox component={<Car width={40} height={40} />} name='Car' />
   <IconBox component={<CaretDown width={40} height={40} />} name='CaretDown' />
   <IconBox component={<CaretLeft width={40} height={40} />} name='CaretLeft' />
-  <IconBox component={<CaretRight width={40} height={40} />} name='CaretRight' />
+  <IconBox
+    component={<CaretRight width={40} height={40} />}
+    name='CaretRight'
+  />
   <IconBox component={<CaretUp width={40} height={40} />} name='CaretUp' />
   <IconBox component={<Chart width={40} height={40} />} name='Chart' />
   <IconBox component={<Chat width={40} height={40} />} name='Chat' />
   <IconBox component={<Cities width={40} height={40} />} name='Cities' />
-  <IconBox component={<ClapperboardPlay width={40} height={40} />} name='ClapperboardPlay' />
-  <IconBox component={<Classification width={40} height={40} />} name='Classification' />
+  <IconBox
+    component={<ClapperboardPlay width={40} height={40} />}
+    name='ClapperboardPlay'
+  />
+  <IconBox
+    component={<Classification width={40} height={40} />}
+    name='Classification'
+  />
   <IconBox component={<Clipboard width={40} height={40} />} name='Clipboard' />
-  <IconBox component={<CloudUpload width={40} height={40} />} name='CloudUpload' />
+  <IconBox
+    component={<CloudUpload width={40} height={40} />}
+    name='CloudUpload'
+  />
   <IconBox component={<Copy width={40} height={40} />} name='Copy' />
-  <IconBox component={<CrossCircle width={40} height={40} />} name='CrossCircle' />
+  <IconBox
+    component={<CrossCircle width={40} height={40} />}
+    name='CrossCircle'
+  />
   <IconBox component={<Cross width={40} height={40} />} name='Cross' />
-  <IconBox component={<CustomerService width={40} height={40} />} name='CustomerService' />
+  <IconBox
+    component={<CustomerService width={40} height={40} />}
+    name='CustomerService'
+  />
   <IconBox component={<Dashboard width={40} height={40} />} name='Dashboard' />
   <IconBox component={<Deleted width={40} height={40} />} name='Deleted' />
   <IconBox component={<Document width={40} height={40} />} name='Document' />
@@ -732,36 +977,62 @@ import Activity from '@comfortdelgro/compass-icons/react/activity'
   <IconBox component={<FaceFrown width={40} height={40} />} name='FaceFrown' />
   <IconBox component={<FaceLaugh width={40} height={40} />} name='FaceLaugh' />
   <IconBox component={<FaceMeh width={40} height={40} />} name='FaceMeh' />
-  <IconBox component={<FaceSadTear width={40} height={40} />} name='FaceSadTear' />
-  <IconBox component={<FaceSmileHeart width={40} height={40} />} name='FaceSmileHeart' />
+  <IconBox
+    component={<FaceSadTear width={40} height={40} />}
+    name='FaceSadTear'
+  />
+  <IconBox
+    component={<FaceSmileHeart width={40} height={40} />}
+    name='FaceSmileHeart'
+  />
   <IconBox component={<FaceSmile width={40} height={40} />} name='FaceSmile' />
   <IconBox component={<Facebook width={40} height={40} />} name='Facebook' />
-  <IconBox component={<FileLaptop width={40} height={40} />} name='FileLaptop' />
+  <IconBox
+    component={<FileLaptop width={40} height={40} />}
+    name='FileLaptop'
+  />
   <IconBox component={<FilePen width={40} height={40} />} name='FilePen' />
-  <IconBox component={<FileSignature width={40} height={40} />} name='FileSignature' />
+  <IconBox
+    component={<FileSignature width={40} height={40} />}
+    name='FileSignature'
+  />
   <IconBox component={<File width={40} height={40} />} name='File' />
   <IconBox component={<Fill width={40} height={40} />} name='Fill' />
   <IconBox component={<Filter width={40} height={40} />} name='Filter' />
   <IconBox component={<Flag width={40} height={40} />} name='Flag' />
-  <IconBox component={<FolderOpen width={40} height={40} />} name='FolderOpen' />
+  <IconBox
+    component={<FolderOpen width={40} height={40} />}
+    name='FolderOpen'
+  />
   <IconBox component={<Folder width={40} height={40} />} name='Folder' />
-  <IconBox component={<FontColour width={40} height={40} />} name='FontColour' />
+  <IconBox
+    component={<FontColour width={40} height={40} />}
+    name='FontColour'
+  />
   <IconBox component={<Font width={40} height={40} />} name='Font' />
   <IconBox component={<Gauge width={40} height={40} />} name='Gauge' />
   <IconBox component={<Gears width={40} height={40} />} name='Gears' />
   <IconBox component={<Globe width={40} height={40} />} name='Globe' />
-  <IconBox component={<GridBoxes width={40} height={40} />} name='GridBoxes' />
-  <IconBox component={<Grids width={40} height={40} />} name='Grids' />
+  <IconBox component={<Grid width={40} height={40} />} name='Grid' />
   <IconBox component={<GripDots width={40} height={40} />} name='GripDots' />
   <IconBox component={<H1 width={40} height={40} />} name='H1' />
   <IconBox component={<H3 width={40} height={40} />} name='H3' />
   <IconBox component={<HatWizard width={40} height={40} />} name='HatWizard' />
   <IconBox component={<Heading width={40} height={40} />} name='Heading' />
-  <IconBox component={<HexagonXmark width={40} height={40} />} name='HexagonXmark' />
+  <IconBox
+    component={<HexagonXmark width={40} height={40} />}
+    name='HexagonXmark'
+  />
   <IconBox component={<Hide width={40} height={40} />} name='Hide' />
   <IconBox component={<Home width={40} height={40} />} name='Home' />
-  <IconBox component={<HourglassClock width={40} height={40} />} name='HourglassClock' />
-  <IconBox component={<InfoSquare width={40} height={40} />} name='InfoSquare' />
+  <IconBox
+    component={<HourglassClock width={40} height={40} />}
+    name='HourglassClock'
+  />
+  <IconBox
+    component={<InfoSquare width={40} height={40} />}
+    name='InfoSquare'
+  />
   <IconBox component={<Inspect width={40} height={40} />} name='Inspect' />
   <IconBox component={<Instagram width={40} height={40} />} name='Instagram' />
   <IconBox component={<Invoice width={40} height={40} />} name='Invoice' />
@@ -770,7 +1041,10 @@ import Activity from '@comfortdelgro/compass-icons/react/activity'
   <IconBox component={<Job width={40} height={40} />} name='Job' />
   <IconBox component={<Key width={40} height={40} />} name='Key' />
   <IconBox component={<Layers width={40} height={40} />} name='Layers' />
-  <IconBox component={<LightbulbOn width={40} height={40} />} name='LightbulbOn' />
+  <IconBox
+    component={<LightbulbOn width={40} height={40} />}
+    name='LightbulbOn'
+  />
   <IconBox component={<Link width={40} height={40} />} name='Link' />
   <IconBox component={<Linkedin width={40} height={40} />} name='Linkedin' />
   <IconBox component={<ListOl width={40} height={40} />} name='ListOl' />
@@ -778,35 +1052,65 @@ import Activity from '@comfortdelgro/compass-icons/react/activity'
   <IconBox component={<List width={40} height={40} />} name='List' />
   <IconBox component={<Logout width={40} height={40} />} name='Logout' />
   <IconBox component={<LowVolume width={40} height={40} />} name='LowVolume' />
-  <IconBox component={<Maintenance width={40} height={40} />} name='Maintenance' />
+  <IconBox
+    component={<Maintenance width={40} height={40} />}
+    name='Maintenance'
+  />
   <IconBox component={<MapMarked width={40} height={40} />} name='MapMarked' />
   <IconBox component={<MapMarker width={40} height={40} />} name='MapMarker' />
   <IconBox component={<Map width={40} height={40} />} name='Map' />
   <IconBox component={<Menu width={40} height={40} />} name='Menu' />
-  <IconBox component={<MessageLines width={40} height={40} />} name='MessageLines' />
+  <IconBox
+    component={<MessageLines width={40} height={40} />}
+    name='MessageLines'
+  />
   <IconBox component={<Message width={40} height={40} />} name='Message' />
-  <IconBox component={<MinusSquare width={40} height={40} />} name='MinusSquare' />
+  <IconBox
+    component={<MinusSquare width={40} height={40} />}
+    name='MinusSquare'
+  />
   <IconBox component={<Minus width={40} height={40} />} name='Minus' />
   <IconBox component={<MoneyBill width={40} height={40} />} name='MoneyBill' />
-  <IconBox component={<MoneyCheckAlt width={40} height={40} />} name='MoneyCheckAlt' />
+  <IconBox
+    component={<MoneyCheckAlt width={40} height={40} />}
+    name='MoneyCheckAlt'
+  />
   <IconBox component={<Money width={40} height={40} />} name='Money' />
   <IconBox component={<Mute width={40} height={40} />} name='Mute' />
-  <IconBox component={<NotificationBadge width={40} height={40} />} name='NotificationBadge' />
-  <IconBox component={<NotificationOff width={40} height={40} />} name='NotificationOff' />
+  <IconBox
+    component={<NotificationBadge width={40} height={40} />}
+    name='NotificationBadge'
+  />
+  <IconBox
+    component={<NotificationOff width={40} height={40} />}
+    name='NotificationOff'
+  />
   <IconBox component={<Outdent width={40} height={40} />} name='Outdent' />
   <IconBox component={<Paste width={40} height={40} />} name='Paste' />
   <IconBox component={<Pause width={40} height={40} />} name='Pause' />
   <IconBox component={<Pdf width={40} height={40} />} name='Pdf' />
   <IconBox component={<PenNib width={40} height={40} />} name='PenNib' />
   <IconBox component={<Phone width={40} height={40} />} name='Phone' />
-  <IconBox component={<PlusSquare width={40} height={40} />} name='PlusSquare' />
+  <IconBox
+    component={<PlusSquare width={40} height={40} />}
+    name='PlusSquare'
+  />
   <IconBox component={<Plus width={40} height={40} />} name='Plus' />
-  <IconBox component={<ProfileCard width={40} height={40} />} name='ProfileCard' />
+  <IconBox
+    component={<ProfileCard width={40} height={40} />}
+    name='ProfileCard'
+  />
   <IconBox component={<Profile width={40} height={40} />} name='Profile' />
   <IconBox component={<Project width={40} height={40} />} name='Project' />
-  <IconBox component={<QuestionSquare width={40} height={40} />} name='QuestionSquare' />
+  <IconBox
+    component={<QuestionSquare width={40} height={40} />}
+    name='QuestionSquare'
+  />
   <IconBox component={<QuoteLeft width={40} height={40} />} name='QuoteLeft' />
-  <IconBox component={<QuoteRight width={40} height={40} />} name='QuoteRight' />
+  <IconBox
+    component={<QuoteRight width={40} height={40} />}
+    name='QuoteRight'
+  />
   <IconBox component={<Refresh width={40} height={40} />} name='Refresh' />
   <IconBox component={<Reveal width={40} height={40} />} name='Reveal' />
   <IconBox component={<School width={40} height={40} />} name='School' />
@@ -816,26 +1120,53 @@ import Activity from '@comfortdelgro/compass-icons/react/activity'
   <IconBox component={<Share width={40} height={40} />} name='Share' />
   <IconBox component={<Shield2 width={40} height={40} />} name='Shield2' />
   <IconBox component={<Shield width={40} height={40} />} name='Shield' />
-  <IconBox component={<Sort1To9Ascending width={40} height={40} />} name='Sort1To9Ascending' />
-  <IconBox component={<Sort1To9Descending width={40} height={40} />} name='Sort1To9Descending' />
-  <IconBox component={<Sort9To1Ascending width={40} height={40} />} name='Sort9To1Ascending' />
-  <IconBox component={<Sort9To1Descending width={40} height={40} />} name='Sort9To1Descending' />
+  <IconBox
+    component={<Sort1To9Ascending width={40} height={40} />}
+    name='Sort1To9Ascending'
+  />
+  <IconBox
+    component={<Sort1To9Descending width={40} height={40} />}
+    name='Sort1To9Descending'
+  />
+  <IconBox
+    component={<Sort9To1Ascending width={40} height={40} />}
+    name='Sort9To1Ascending'
+  />
+  <IconBox
+    component={<Sort9To1Descending width={40} height={40} />}
+    name='Sort9To1Descending'
+  />
   <IconBox component={<Sort width={40} height={40} />} name='Sort' />
   <IconBox component={<Sparkle width={40} height={40} />} name='Sparkle' />
-  <IconBox component={<Spreadsheet width={40} height={40} />} name='Spreadsheet' />
+  <IconBox
+    component={<Spreadsheet width={40} height={40} />}
+    name='Spreadsheet'
+  />
   <IconBox component={<Stamp width={40} height={40} />} name='Stamp' />
   <IconBox component={<Status width={40} height={40} />} name='Status' />
   <IconBox component={<Store width={40} height={40} />} name='Store' />
-  <IconBox component={<Strikethrough width={40} height={40} />} name='Strikethrough' />
+  <IconBox
+    component={<Strikethrough width={40} height={40} />}
+    name='Strikethrough'
+  />
   <IconBox component={<Suitcase width={40} height={40} />} name='Suitcase' />
-  <IconBox component={<TableColumns width={40} height={40} />} name='TableColumns' />
+  <IconBox
+    component={<TableColumns width={40} height={40} />}
+    name='TableColumns'
+  />
   <IconBox component={<Table width={40} height={40} />} name='Table' />
   <IconBox component={<Tags width={40} height={40} />} name='Tags' />
   <IconBox component={<Taxi width={40} height={40} />} name='Taxi' />
-  <IconBox component={<TextHeight width={40} height={40} />} name='TextHeight' />
+  <IconBox
+    component={<TextHeight width={40} height={40} />}
+    name='TextHeight'
+  />
   <IconBox component={<ThumbDown width={40} height={40} />} name='ThumbDown' />
   <IconBox component={<ThumbUp width={40} height={40} />} name='ThumbUp' />
-  <IconBox component={<TickCircle width={40} height={40} />} name='TickCircle' />
+  <IconBox
+    component={<TickCircle width={40} height={40} />}
+    name='TickCircle'
+  />
   <IconBox component={<Tick width={40} height={40} />} name='Tick' />
   <IconBox component={<Ticket width={40} height={40} />} name='Ticket' />
   <IconBox component={<Timeline width={40} height={40} />} name='Timeline' />
@@ -1124,7 +1455,7 @@ import FlagAbw from '@comfortdelgro/compass-icons/react/country/flag-abw'
 ### Usage:
 
 ```js
-<Activity width={20} height={20} color="red"/>
+<Activity width={20} height={20} color='red' />
 ```
 
 or with iconify
