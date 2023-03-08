@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/unbound-method */
-import {CalendarDate, DateValue, parseDate} from '@internationalized/date'
+import {DateValue, parseDate} from '@internationalized/date'
 import {AriaDatePickerProps, useDatePicker} from '@react-aria/datepicker'
 import {AriaDialogProps} from '@react-aria/dialog'
 import {DatePickerState, useDatePickerState} from '@react-stately/datepicker'
@@ -26,7 +26,7 @@ interface Props
   isInvalid?: boolean
   shouldCloseOnSelect?: boolean
   onCancel?: (() => void) | undefined
-  maxValue?: CalendarDate
+  maxValue?: DateValue
 }
 
 export type DatePickerProps = Props
@@ -104,7 +104,7 @@ interface DatePickerCalendarWrapperProps {
   dialogProps: AriaDialogProps
   calendarProps: CalendarProps<DateValue>
   onCancel?: (() => void) | undefined
-  maxValue?: CalendarDate
+  maxValue?: DateValue
 }
 
 const DatePickerCalendarWrapper = (props: DatePickerCalendarWrapperProps) => {

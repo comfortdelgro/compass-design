@@ -1,10 +1,5 @@
 import * as InternationalizedDate from '@internationalized/date'
-import {
-  CalendarDate,
-  createCalendar,
-  DateValue,
-  parseDate,
-} from '@internationalized/date'
+import {createCalendar, DateValue, parseDate} from '@internationalized/date'
 import {useCalendar} from '@react-aria/calendar'
 import * as i18n from '@react-aria/i18n'
 import {useLocale} from '@react-aria/i18n'
@@ -23,7 +18,7 @@ interface Props extends StyledComponentProps, SpectrumCalendarProps<DateValue> {
   state?: DatePickerState
   hasFooter?: boolean
   onCancelCallback?: (() => void) | undefined
-  maxValue?: CalendarDate
+  maxValue?: DateValue
 }
 
 export type CalendarProps = Props & DateValue
