@@ -15,6 +15,16 @@ import RichTextEditor, {
 
 export const Default: React.FC = () => {
   const [description, setDescription] = React.useState<string>('')
+  return (
+    <Column>
+      <h3>Default Rich Text Editor</h3>
+      <RichTextEditor.Default onChange={(html) => setDescription(html)} />
+    </Column>
+  )
+}
+
+export const Cutomized: React.FC = () => {
+  const [description, setDescription] = React.useState<string>('')
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -36,51 +46,24 @@ export const Default: React.FC = () => {
 
     onUpdate: ({editor}) => {
       const html = editor.getHTML()
-      console.log(html)
       if (!html) return
-
       setDescription(html)
     },
   })
-  // const handleKeyDown = (event) => {
-
-  // }
   return (
     <Column>
-      <h3>Default Rich Text Editor</h3>
+      <h3>Cutomized Rich Text Editor</h3>
       <RichTextEditor editor={editor}>
-        <RichTextEditor.Toolbar wrapped>
+        <RichTextEditor.Toolbar>
           <RichTextEditor.ControlsGroup>
-            <RichTextEditor.Undo />
-            <RichTextEditor.Redo />
+            <RichTextEditor.H1 />
+            <RichTextEditor.H3 />
           </RichTextEditor.ControlsGroup>
           <RichTextEditor.ControlsGroup>
-            <RichTextEditor.HeadingsControl levels={[1, 2, 3, 4, 5, 6]} />
-          </RichTextEditor.ControlsGroup>
-          <RichTextEditor.ControlsGroup>
-            <RichTextEditor.ColorControl
-              colors={[
-                '#212529',
-                '#845EF7',
-                '#339AF0',
-                '#22B8CF',
-                '#51CF66',
-                '#FCC419',
-                '#FF6B6B',
-                '#F06595',
-                '#CED4DA',
-                '#5F3DC4',
-                '#1864AB',
-                '#0B7285',
-                '#2B8A3E',
-                '#E67700',
-                '#C92A2A',
-                '#C2255C',
-              ]}
-            />
-          </RichTextEditor.ControlsGroup>
-          <RichTextEditor.ControlsGroup>
-            <RichTextEditor.TextAlginmentSelector />
+            <RichTextEditor.AlignLeft />
+            <RichTextEditor.AlignCenter />
+            <RichTextEditor.AlignRight />
+            <RichTextEditor.AlignJustify />
           </RichTextEditor.ControlsGroup>
           <RichTextEditor.ControlsGroup>
             <RichTextEditor.Bold />
@@ -88,15 +71,16 @@ export const Default: React.FC = () => {
             <RichTextEditor.Underline />
             <RichTextEditor.Strikethrough />
           </RichTextEditor.ControlsGroup>
-          <RichTextEditor.ControlsGroup>
-            <RichTextEditor.BulletList />
-            <RichTextEditor.OrderedList />
-          </RichTextEditor.ControlsGroup>
-          {/* <RichTextEditor.ControlsGroup> */}
+          <RichTextEditor.BulletList />
+          <RichTextEditor.OrderedList />
           <RichTextEditor.Link />
           <RichTextEditor.Unlink />
           <RichTextEditor.Image />
-          {/* </RichTextEditor.ControlsGroup> */}
+          <RichTextEditor.Superscript />
+          <RichTextEditor.Subscript />
+          <RichTextEditor.Hr />
+          <RichTextEditor.Undo />
+          <RichTextEditor.Redo />
         </RichTextEditor.Toolbar>
       </RichTextEditor>
     </Column>

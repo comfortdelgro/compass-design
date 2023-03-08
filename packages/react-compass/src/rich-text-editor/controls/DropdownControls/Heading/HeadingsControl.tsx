@@ -15,6 +15,7 @@ export const HeadingsControl = ({levels}: HeadingsControlProps) => {
       setLevel(String(key))
       if (Number(key) === 0) {
         editor?.commands.setNode('paragraph')
+        editor?.chain().focus().run()
       } else {
         editor
           ?.chain()

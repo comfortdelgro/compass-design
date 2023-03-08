@@ -23,7 +23,7 @@ export const ColorControl = ({colors}: ColorControlProps) => {
       defaultSelectedKey={[...colorSet][0] as React.Key}
     >
       {[...colorSet].map((color) => (
-        <Item key={color}>
+        <Item key={color} textValue={color}>
           <StyledColorItem
             style={{backgroundColor: color}}
             active={editor?.isActive('color', color) ?? false}

@@ -10,6 +10,9 @@ export const StyledControl = styled('button', {
   border: 'none',
   borderRadius: 4,
   cursor: 'pointer',
+  background: 'none',
+  display: 'flex',
+  alignItems: 'center',
   '&:hover': {
     background: '#E1DFDD',
     color: '#000000',
@@ -20,7 +23,6 @@ export const StyledControl = styled('button', {
     borderColor: '$divider',
     cursor: 'not-allowed',
   },
-
   variants: {
     active: {
       true: {

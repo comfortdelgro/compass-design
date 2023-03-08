@@ -1,24 +1,31 @@
 import * as controls from './controls'
 import Control from './controls/Control/Control'
 import ControlsGroup from './controls/ControlsGroup/ControlsGroup'
+import {DefaultRichTextEditor} from './DefaultRichTextEditor'
 import RichTextEditor from './rich-text-editor'
 import Toolbar from './toolbar/Toolbar'
+export {Blockquote} from '@tiptap/extension-blockquote'
 export {Color} from '@tiptap/extension-color'
 export {FontFamily} from '@tiptap/extension-font-family'
 export {Heading} from '@tiptap/extension-heading'
+export {HorizontalRule} from '@tiptap/extension-horizontal-rule'
 export {Image} from '@tiptap/extension-image'
 export {Link} from '@tiptap/extension-link'
+export {Subscript} from '@tiptap/extension-subscript'
+export {Superscript} from '@tiptap/extension-superscript'
 export {TextAlign} from '@tiptap/extension-text-align'
 export {TextStyle} from '@tiptap/extension-text-style'
 export {Underline} from '@tiptap/extension-underline'
-export {useEditor} from '@tiptap/react'
+export {Editor, useEditor} from '@tiptap/react'
 export {StarterKit} from '@tiptap/starter-kit'
 export type {RichTextEditorProps} from './rich-text-editor'
+
 RichTextEditor.displayName = 'RichTextEditor'
 RichTextEditor.Control = Control
 RichTextEditor.ControlsGroup = ControlsGroup
 RichTextEditor.Toolbar = Toolbar
-
+// Extensions
+// RichTextEditor.Extensions.Blockquote = Blockquote
 // Controls components
 RichTextEditor.Bold = controls.BoldControl
 RichTextEditor.Italic = controls.ItalicControl
@@ -53,5 +60,6 @@ RichTextEditor.Highlight = controls.HighlightControl
 RichTextEditor.Hr = controls.HrControl
 RichTextEditor.Undo = controls.UndoControl
 RichTextEditor.Redo = controls.RedoControl
+RichTextEditor.Default = DefaultRichTextEditor
 
 export default RichTextEditor

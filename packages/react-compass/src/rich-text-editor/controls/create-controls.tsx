@@ -1,3 +1,4 @@
+import {Editor} from '@tiptap/react'
 import React, {forwardRef} from 'react'
 import {useRichTextEditorContext} from '../rich-text-editor.context'
 import {PremadeControlProps} from './Control/Control'
@@ -7,12 +8,25 @@ interface CreateControlProps {
   icon: React.FC
   label: string
   isActive?: {name: string; attributes?: Record<string, any> | string}
-  operation: {name: string; attributes?: Record<string, any> | string}
+  onPress: (editor: Editor | null) => () => void
+  // operation: {name: OperationName; attributes?: Record<string, any> | string}
 }
 
+// type OperationName =
+//   | 'undo'
+//   | 'redo'
+//   | 'toggleBold'
+//   | 'toggleItalic'
+//   | 'toggleUnderline'
+//   | 'toggleStrike'
+//   | 'unsetLink'
+//   | 'toggleBulletList'
+//   | 'toggleOrderedList'
+//   | 'toggleHeading'
 export function createControl({
   isActive,
-  operation,
+  // operation,
+  onPress,
   icon,
   label,
 }: CreateControlProps) {
@@ -26,9 +40,7 @@ export function createControl({
             : false
         }
         ref={ref}
-        onPress={() =>
-          editor?.chain().focus()[operation.name](operation.attributes).run()
-        }
+        onPress={onPress(editor)}
         icon={icon}
         aria-label={label}
         {...props}

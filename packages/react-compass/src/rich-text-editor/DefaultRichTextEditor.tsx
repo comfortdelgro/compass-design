@@ -1,0 +1,114 @@
+import React from 'react'
+import {OthersControl} from './controls/DropdownControls/Others/OthersControl'
+import RichTextEditor, {
+  Color,
+  Editor,
+  FontFamily,
+  Heading,
+  HorizontalRule,
+  Image,
+  Link,
+  StarterKit,
+  Subscript,
+  Superscript,
+  TextAlign,
+  TextStyle,
+  Underline,
+  useEditor,
+} from './index'
+export type DefaultRichTextEditorProps = {
+  editor?: Editor | null
+  onChange?: (html: string) => void
+}
+export const DefaultRichTextEditor = ({
+  editor,
+  onChange,
+}: DefaultRichTextEditorProps) => {
+  const editorInstance =
+    editor ??
+    useEditor({
+      extensions: [
+        StarterKit,
+        Underline,
+        FontFamily,
+        TextStyle,
+        Color,
+        TextAlign.configure({
+          types: ['heading', 'paragraph'],
+        }),
+        Heading.configure({
+          levels: [1, 2, 3, 4, 5, 6],
+        }),
+        Link,
+        Image,
+        Superscript,
+        Subscript,
+        HorizontalRule,
+      ],
+      content: ``,
+      injectCSS: false,
+
+      onUpdate: ({editor}) => {
+        const html = editor.getHTML()
+        if (!html) return
+        onChange?.(html)
+      },
+    })
+
+  return (
+    <RichTextEditor editor={editorInstance}>
+      <RichTextEditor.Toolbar>
+        <RichTextEditor.ControlsGroup>
+          <RichTextEditor.Undo />
+          <RichTextEditor.Redo />
+        </RichTextEditor.ControlsGroup>
+        <RichTextEditor.ControlsGroup>
+          <RichTextEditor.HeadingsControl levels={[1, 2, 3, 4, 5, 6]} />
+        </RichTextEditor.ControlsGroup>
+        <RichTextEditor.ControlsGroup>
+          <RichTextEditor.ColorControl
+            colors={[
+              '#212529',
+              '#845EF7',
+              '#339AF0',
+              '#22B8CF',
+              '#51CF66',
+              '#FCC419',
+              '#FF6B6B',
+              '#F06595',
+              '#CED4DA',
+              '#5F3DC4',
+              '#1864AB',
+              '#0B7285',
+              '#2B8A3E',
+              '#E67700',
+              '#C92A2A',
+              '#C2255C',
+            ]}
+          />
+        </RichTextEditor.ControlsGroup>
+        <RichTextEditor.ControlsGroup>
+          <RichTextEditor.TextAlginmentSelector />
+        </RichTextEditor.ControlsGroup>
+        <RichTextEditor.ControlsGroup>
+          <RichTextEditor.Bold />
+          <RichTextEditor.Italic />
+          <RichTextEditor.Underline />
+          <RichTextEditor.Strikethrough />
+        </RichTextEditor.ControlsGroup>
+        <RichTextEditor.ControlsGroup>
+          <RichTextEditor.BulletList />
+          <RichTextEditor.OrderedList />
+        </RichTextEditor.ControlsGroup>
+        <RichTextEditor.ControlsGroup>
+          <RichTextEditor.Link />
+          <RichTextEditor.Image />
+          <RichTextEditor.Blockquote />
+        </RichTextEditor.ControlsGroup>
+        <RichTextEditor.ControlsGroup>
+          <OthersControl />
+        </RichTextEditor.ControlsGroup>
+      </RichTextEditor.Toolbar>
+    </RichTextEditor>
+  )
+}

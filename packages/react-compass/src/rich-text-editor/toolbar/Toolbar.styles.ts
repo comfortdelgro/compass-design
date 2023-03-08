@@ -17,6 +17,7 @@ export const StyledToolbar = styled('div', {
   alignItems: 'center',
   gap: 16,
   position: 'static',
+  flexWrap: 'wrap',
   variants: {
     sticky: {
       true: {
@@ -24,11 +25,11 @@ export const StyledToolbar = styled('div', {
         top: 0,
       },
     },
-    wrapped: {
-      true: {
-        flexWrap: 'wrap',
-      },
-    },
+    // wrapped: {
+    //   true: {
+    //     flexWrap: 'wrap',
+    //   },
+    // },
   },
 })
 

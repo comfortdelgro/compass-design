@@ -7,7 +7,6 @@ export const StyledEditorContent = styled('div', {
   border: 'none',
   boxSizing: 'border-box',
   margin: '0px',
-
   // styling
   width: '796px',
 })
@@ -45,8 +44,27 @@ export const StyledRichTextEditor = styled('div', {
     minHeight: '100px',
     outline: 'none',
   },
+  '& .ProseMirror blockquote': {
+    borderLeft: '3px solid #0d0d0d1a',
+    paddingLeft: '1rem',
+  },
   '& .ProseMirror code': {
     marginTop: '0.75em',
+  },
+  '& .ProseMirror pre': {
+    background: '#0d0d0d',
+    borderRadius: '0.5rem',
+    color: '#fff',
+    padding: '0.75rem 1rem',
+    code: {
+      background: 'none',
+      color: 'inherit',
+      fontSize: '0.8rem',
+      padding: 0,
+    },
+  },
+  '& .ProseMirror sup': {
+    top: '-1rem',
   },
 
   // Styling menubar and content container

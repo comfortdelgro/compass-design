@@ -5,6 +5,7 @@ import {StyledComponentProps} from '../utils/stitches.types'
 import * as controls from './controls'
 import Control from './controls/Control/Control'
 import ControlsGroup from './controls/ControlsGroup/ControlsGroup'
+import {DefaultRichTextEditor} from './DefaultRichTextEditor'
 import {RichTextEditorProvider} from './rich-text-editor.context'
 import {
   StyledEditorContent,
@@ -21,14 +22,6 @@ interface Props extends StyledComponentProps {
 export type RichTextEditorProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
-export type ForwardRefWithStaticComponents<
-  Props extends Record<string, any>,
-  Static extends Record<string, any>,
-> = ((props: Props) => React.ReactElement) &
-  Static & {
-    displayName: string
-  }
-
 const RichTextEditor = React.forwardRef<HTMLDivElement, RichTextEditorProps>(
   (props, ref) => {
     const {
@@ -44,7 +37,7 @@ const RichTextEditor = React.forwardRef<HTMLDivElement, RichTextEditorProps>(
           editor,
         }}
       >
-        <StyledRichTextEditor css={css} {...delegated}>
+        <StyledRichTextEditor ref={ref} css={css} {...delegated}>
           {children}
           <StyledEditorContent>
             <EditorContent editor={editor} />
@@ -229,5 +222,6 @@ export default RichTextEditor as typeof RichTextEditor & {
   Hr: typeof controls.HrControl
   Undo: typeof controls.UndoControl
   Redo: typeof controls.RedoControl
+  Default: typeof DefaultRichTextEditor
   // UnsetColor: typeof controls.UnsetColorControl
 }

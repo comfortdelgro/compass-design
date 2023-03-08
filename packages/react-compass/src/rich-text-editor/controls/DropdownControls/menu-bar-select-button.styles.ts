@@ -19,7 +19,7 @@ export const StyledDropdownButton = styled('button', {
   },
   backgroundColor: 'rgb(243, 242, 241)',
   alignItems: 'center',
-  gap: 10,
+  gap: 16,
   variants: {
     isOpen: {
       true: {
