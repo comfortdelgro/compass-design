@@ -83,3 +83,5 @@ export default Calendar as typeof Calendar & {
   InternationalizedDate: typeof InternationalizedDate
   I18N: typeof i18n
 }
+
+export type DateValue
