@@ -1,5 +1,5 @@
 import Preflight from '@comfortdelgro/react-compass/preflight'
-import { SSRProvider } from '@react-aria/ssr'
+import {SSRProvider} from '@react-aria/ssr'
 import {AppProps} from 'next/app'
 import {Toaster} from 'react-hot-toast'
 import 'styles/global.css'

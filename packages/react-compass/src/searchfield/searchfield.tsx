@@ -13,7 +13,9 @@ import {
   StyledSearchFieldInput,
 } from './searchfield.styles'
 
-interface Props extends AriaSearchFieldProps, StyledComponentProps {}
+interface Props extends AriaSearchFieldProps, StyledComponentProps {
+  isErrored?: boolean
+}
 
 export type SearchFieldProps = Props & SearchFieldVariantProps
 
@@ -22,6 +24,7 @@ const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
     const {
       // StyledComponentProps
       css = {},
+      isErrored = false,
       // AriaSearchFieldProps
       isDisabled,
       ...ariaSafeProps
@@ -42,7 +45,11 @@ const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
     )
 
     return (
-      <StyledSearchFieldBox disabled={!!isDisabled} css={css}>
+      <StyledSearchFieldBox
+        disabled={!!isDisabled}
+        css={css}
+        isErrored={isErrored}
+      >
         <StyledSearchFieldInput
           ref={searchFieldRef}
           {...inputProps}

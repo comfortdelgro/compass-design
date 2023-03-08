@@ -54,7 +54,7 @@ import Textarea from '@comfortdelgro/react-compass/textarea'
     placeholder='Enter your message'
     wordCount
     maxLength={50}
-    errored
+    isErrored
   />
 </section>
 
@@ -80,7 +80,7 @@ import Textarea from '@comfortdelgro/react-compass/textarea'
     placeholder='Enter your message'
     wordCount
     maxLength={50}
-    errored
+    isErrored
   />
 ```
 
@@ -97,7 +97,7 @@ With css prop, you can basically do anything that css can do.
     placeholder='Enter your message'
     wordCount
     maxLength={50}
-    errored
+    isErrored
     css={{height: '10em', width: '50em'}}
   />
 </section>
@@ -108,7 +108,7 @@ With css prop, you can basically do anything that css can do.
   placeholder='Enter your message'
   wordCount
   maxLength={50}
-  errored
+  isErrored
   css={{height: '10em', width: '50em'}}
 />
 ```
@@ -121,7 +121,7 @@ With css prop, you can basically do anything that css can do.
 | :------------ | :----------------- | :------ | :--------------------------------------- |
 | `placeholder` | `string` \| `null` | `null`  | `Placeholder of the text field`          |
 | `label`       | `string` \| `null` | `null`  | `Label of the text field`                |
-| `errored`     | `true` \| `false`  | `false` | `Throw error when input value is wrong`  |
+| `isErrored`   | `true` \| `false`  | `false` | `Throw error when input value is wrong`  |
 | `value`       | `string`           | —       | `Input value`                            |
 | `isDisabled`  | `false`\| `true`   | `false` | `Disable the text field when true`       |
 | `css `        | `CSS`              | —       |                                          |

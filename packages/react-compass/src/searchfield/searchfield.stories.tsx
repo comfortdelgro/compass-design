@@ -11,7 +11,12 @@ export const Variants: React.FC = () => (
         onSubmit={(text) => console.log(text)}
         value={'asfsf'}
       />
-
+      <SearchField
+        placeholder='Search'
+        onSubmit={(text) => console.log(text)}
+        value={'asfsf'}
+        isErrored={true}
+      />
       <SearchField
         isDisabled
         placeholder='Search'
