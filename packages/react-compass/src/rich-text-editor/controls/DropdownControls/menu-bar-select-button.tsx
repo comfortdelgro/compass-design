@@ -1,8 +1,8 @@
 import {useButton} from '@react-aria/button'
 import type {AriaButtonProps} from '@react-types/button'
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {useDOMRef} from '../utils/use-dom-ref'
+import {StyledComponentProps} from '../../../utils/stitches.types'
+import {useDOMRef} from '../../../utils/use-dom-ref'
 import {
   RichTextEditorDropdownButtonVariantProps,
   StyledDropdownButton,
@@ -19,7 +19,7 @@ const MenuBarSelectButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
     const {
       children,
-      expand = 'close',
+      // expand = 'close',
       className,
       css = {},
       ...ariaSafeProps
@@ -30,7 +30,7 @@ const MenuBarSelectButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <StyledDropdownButton
-        expand={expand}
+        // expand={expand}
         ref={buttonRef}
         className={className}
         css={css}

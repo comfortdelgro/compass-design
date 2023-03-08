@@ -75,4 +75,80 @@ export const StyledMenuItem = styled('div', {
     background: 'rgb(197, 197, 197)',
   },
 })
+export const StyledColorItem = styled('div', {
+  borderRadius: 4,
+  width: 24,
+  height: 24,
+  variants: {
+    active: {
+      true: {
+        background: 'red',
+      },
+    },
+  },
+})
+
+export const List = styled('ul', {
+  maxHeight: '300px',
+  overflow: 'auto',
+  listStyle: 'none',
+  padding: 0,
+  margin: '4px 0',
+  outline: 'none',
+  width: '100%',
+})
+export const Grid = styled('ul', {
+  maxHeight: '300px',
+  padding: 9,
+  overflow: 'auto',
+  listStyle: 'none',
+  margin: '4px 0',
+  outline: 'none',
+  width: '100%',
+  display: 'grid',
+  gridTemplateColumns: 'auto auto auto auto auto auto auto auto',
+})
+
+export const ListItem = styled('li', {
+  fontSize: '14px',
+  background: 'none',
+  padding: '8px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  cursor: 'pointer',
+  outline: 'none',
+  color: '#333',
+  position: 'relative',
+  gap: 8,
+  '.overlapped-icon': {
+    position: 'absolute',
+    zIndex: 1,
+    color: '#FFFFFF !important',
+    left: '35%',
+    top: '32%',
+  },
+  variants: {
+    isFocused: {
+      true: {
+        background: '#F3F2F1',
+      },
+    },
+    isSelected: {
+      true: {
+        background: '#F3F2F1',
+        '.check-icon': {
+          color: '#0142AF',
+        },
+      },
+    },
+  },
+})
+
+export const ItemContent = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  gap: 5,
+})
+
 export type MenuBarVariantProps = VariantProps<typeof StyledRichTextEditor>
