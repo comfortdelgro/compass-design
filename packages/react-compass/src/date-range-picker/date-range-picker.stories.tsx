@@ -1,4 +1,3 @@
-import {getLocalTimeZone, parseDate} from '@internationalized/date'
 import {StoryDecorator} from '@ladle/react'
 import type {RangeValue} from '@react-types/shared'
 import React from 'react'
@@ -7,6 +6,7 @@ import Calendar, {CalendarProps} from './../calendar'
 import DateRangePicker from './date-range-picker'
 
 const {I18nProvider, useDateFormatter} = Calendar.I18N
+const {getLocalTimeZone, parseDate} = Calendar.InternationalizedDate
 
 export const Variants: React.FC = () => {
   return (
