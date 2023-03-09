@@ -1,5 +1,6 @@
 import {
   CalendarDate,
+  DateValue,
   getLocalTimeZone,
   isSameDay,
   isSameMonth,
@@ -19,7 +20,7 @@ interface Props extends StyledComponentProps {
   state: CalendarState | RangeCalendarState
   date: CalendarDate
   currentMonth: CalendarDate
-  maxValue?: CalendarDate
+  maxValue?: DateValue
 }
 
 const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(

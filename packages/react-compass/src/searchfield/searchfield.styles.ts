@@ -31,7 +31,7 @@ export const StyledSearchFieldBox = styled('div', {
         backgroundColor: '$gray20',
       },
     },
-    errored: {
+    isErrored: {
       true: {
         borderColor: '$danger',
         '&:focus-within': {

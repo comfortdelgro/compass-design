@@ -32,18 +32,15 @@ The TooltipTrigger accepts exactly two children: the element which triggers the 
 
 ```js
 <TooltipTrigger>
-  <a href="#">Hover me</a>
-  <Tooltip>
-    Tooltip
-  </Tooltip>
+  <a href='#'>Hover me</a>
+  <Tooltip>Tooltip</Tooltip>
 </TooltipTrigger>
 ```
+
 <ComponentDisplay>
   <TooltipTrigger>
     <a href='#'>Hover me</a>
-    <Tooltip>
-      Tooltip
-    </Tooltip>
+    <Tooltip>Tooltip</Tooltip>
   </TooltipTrigger>
 </ComponentDisplay>
 
@@ -54,7 +51,7 @@ Render title of the tooltip
 ```js
 <TooltipTrigger>
   <a href='#'>Hover me</a>
-  <Tooltip title="Title" dismissible>
+  <Tooltip title='Title' dismissible>
     Tooltip
   </Tooltip>
 </TooltipTrigger>
@@ -63,7 +60,10 @@ Render title of the tooltip
 <ComponentDisplay>
   <TooltipTrigger>
     <a href='#'>Hover me</a>
-    <Tooltip title={<p style={{fontSize: '20px', margin: 0}}>Title</p>} dismissible>
+    <Tooltip
+      title={<p style={{fontSize: '20px', margin: 0}}>Title</p>}
+      dismissible
+    >
       <p style={{marginTop: 0}}>Tooltip</p>
     </Tooltip>
   </TooltipTrigger>
@@ -76,17 +76,14 @@ Adjust delay of tooltip after hovering the trigger
 ```js
 <TooltipTrigger delay={1000}>
   <a href='#'>Hover me</a>
-  <Tooltip>
-    Tooltip
-  </Tooltip>
+  <Tooltip>Tooltip</Tooltip>
 </TooltipTrigger>
 ```
+
 <ComponentDisplay>
   <TooltipTrigger delay={1000}>
     <a href='#'>Hover me</a>
-    <Tooltip>
-      Tooltip
-    </Tooltip>
+    <Tooltip>Tooltip</Tooltip>
   </TooltipTrigger>
 </ComponentDisplay>
 
@@ -97,11 +94,10 @@ Enable a close button in the tooltip
 ```js
 <TooltipTrigger>
   <a href='#'>Hover me</a>
-  <Tooltip dismissible>
-    Tooltip
-  </Tooltip>
+  <Tooltip dismissible>Tooltip</Tooltip>
 </TooltipTrigger>
 ```
+
 <ComponentDisplay>
   <TooltipTrigger>
     <a href='#'>Hover me</a>
@@ -121,13 +117,13 @@ With css prop, you can basically do anything that css can do.
   <a href='#'>Hover me</a>
   <Tooltip
     title={<p style={{fontSize: '20px', margin: 0}}>Title</p>}
-    dismissible 
+    dismissible
     css={{backgroundColor: 'black'}}
   >
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae
-    blanditiis laborum commodi mollitia officiis minus ipsum totam fuga
-    odit, dicta magnam numquam reprehenderit et sequi dignissimos iusto
-    deleniti. Quia, modi
+    blanditiis laborum commodi mollitia officiis minus ipsum totam fuga odit,
+    dicta magnam numquam reprehenderit et sequi dignissimos iusto deleniti.
+    Quia, modi
   </Tooltip>
 </TooltipTrigger>
 ```
@@ -137,13 +133,15 @@ With css prop, you can basically do anything that css can do.
     <a href='#'>Hover me</a>
     <Tooltip
       title={<p style={{fontSize: '20px', margin: 0}}>Title</p>}
-      dismissible 
+      dismissible
       css={{backgroundColor: 'black'}}
     >
-     <p style={{margin: '16px 0'}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae
-      blanditiis laborum commodi mollitia officiis minus ipsum totam fuga
-      odit, dicta magnam numquam reprehenderit et sequi dignissimos iusto
-      deleniti. Quia, modi</p>
+      <p style={{margin: '16px 0'}}>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae
+        blanditiis laborum commodi mollitia officiis minus ipsum totam fuga
+        odit, dicta magnam numquam reprehenderit et sequi dignissimos iusto
+        deleniti. Quia, modi
+      </p>
     </Tooltip>
   </TooltipTrigger>
 </ComponentDisplay>
@@ -153,16 +151,14 @@ With css prop, you can basically do anything that css can do.
 The Tooltip's placement with respect to its trigger element can be adjusted using the placement prop. See the props table below for a full list of available placement combinations
 
 ```js
-<TooltipTrigger placement="right">
+<TooltipTrigger placement='right'>
   <a href='#'>Hover me</a>
-  <Tooltip>
-    Open on the right
-  </Tooltip>
+  <Tooltip>Open on the right</Tooltip>
 </TooltipTrigger>
 ```
 
 <ComponentDisplay>
-  <TooltipTrigger placement="right">
+  <TooltipTrigger placement='right'>
     <a href='#'>Hover me</a>
     <Tooltip>
       <p style={{marginTop: 0}}>Open on the right</p>
@@ -175,9 +171,7 @@ The Tooltip's placement with respect to its trigger element can be adjusted usin
 ```js
 <TooltipTrigger>
   <a href='#'>Hover me</a>
-  <Tooltip>
-    This will shift down.
-  </Tooltip>
+  <Tooltip>This will shift down.</Tooltip>
 </TooltipTrigger>
 ```
 
@@ -193,9 +187,7 @@ The Tooltip's placement with respect to its trigger element can be adjusted usin
 ```js
 <TooltipTrigger>
   <a href='#'>Hover me</a>
-  <Tooltip>
-    This will shift over to the right.
-  </Tooltip>
+  <Tooltip>This will shift over to the right.</Tooltip>
 </TooltipTrigger>
 ```
 

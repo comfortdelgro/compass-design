@@ -17,6 +17,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
     "@internationalized/date": "^3.0.1",
     "@react-aria/i18n": "^3.6.2",
+    "@react-aria/ssr": "^3.5.0",
     "@iconify/react": "^4.0.1",
     "clsx": "^1.2.1",
     "next": "12.3.1",

@@ -86,7 +86,6 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           ref={textareaRef}
           isErrored={!!isErrored}
           onChange={(e) => {
-            console.log(e)
             handleOnChange(e as unknown as React.ChangeEvent<HTMLInputElement>)
           }}
         />

@@ -1,6 +1,6 @@
 import {
-  CalendarDate,
   DateDuration,
+  DateValue,
   endOfMonth,
   getWeeksInMonth,
   parseDate,
@@ -17,7 +17,7 @@ interface Props extends StyledComponentProps {
   children?: React.ReactNode
   state: CalendarState | RangeCalendarState
   offset?: DateDuration
-  maxValue?: CalendarDate
+  maxValue?: DateValue
 }
 
 const DEFAULT_OFFSET: DateDuration = {
