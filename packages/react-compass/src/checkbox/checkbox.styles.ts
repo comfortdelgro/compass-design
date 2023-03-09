@@ -21,6 +21,34 @@ export const StyledCheckboxInput = styled('input', {
 })
 
 export const StyledCheckboxBox = styled('span', {
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  height: '$4',
+  width: '$4',
+  backgroundColor: '$whiteText',
+  borderWidth: '$light',
+  borderStyle: 'solid',
+  borderColor: '$activeBorder',
+  borderRadius: '$md',
+  transition: '$button',
+
+  variants: {
+    rounded: {
+      true: {
+        borderRadius: '$full',
+      },
+    },
+
+    disabled: {
+      true: {
+        backgroundColor: '$whiteText',
+        borderColor: '$gray50',
+      },
+    },
+  },
+})
+export const StyledTableCheckboxBox = styled('span', {
   display: 'block',
   height: '$4',
   width: '$4',
