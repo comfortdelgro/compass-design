@@ -50,6 +50,35 @@ export const StyledCheckboxBox = styled('span', {
   },
 })
 
+//add a different styles for checkbox table
+export const StyledTableCheckboxBox = styled('span', {
+  display: 'block', // using display block
+  height: '$4',
+  width: '$4',
+  //add background
+  backgroundColor: '$whiteText',
+  borderWidth: '$light',
+  borderStyle: 'solid',
+  borderColor: '$activeBorder',
+  borderRadius: '$md',
+  transition: '$button',
+  //mark for not disappear code
+  variants: {
+    rounded: {
+      true: {
+        borderRadius: '$full',
+      },
+    },
+    // a different markup
+    disabled: {
+      true: {
+        backgroundColor: '$whiteText',
+        borderColor: '$gray50',
+      },
+    },
+  },
+})
+
 export const StyledCheckboxCheckmark = styled('span', {
   display: 'none',
   color: '$whiteText',
