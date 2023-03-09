@@ -14,6 +14,7 @@ import {StyledTooltipTrigger} from './tooltip-trigger.styles'
 interface Props extends AriaTooltipProps, StyledComponentProps {
   children?: React.ReactNode
   open?: boolean
+  boundaryElement?: Element
   onOpenChange?: (isOpen: boolean) => void
 }
 
@@ -40,6 +41,7 @@ const TooltipTrigger = React.forwardRef<HTMLButtonElement, TooltipTriggerProps>(
       placement = 'bottom',
       defaultOpen = false,
       shouldFlip = true,
+      boundaryElement = document.body,
       // html button props
       ...delegated
     } = props
@@ -97,6 +99,8 @@ const TooltipTrigger = React.forwardRef<HTMLButtonElement, TooltipTriggerProps>(
       crossOffset,
       isOpen: openState,
       shouldFlip: shouldFlip,
+      boundaryElement: boundaryElement,
+      shouldUpdatePosition: true,
     })
 
     return (

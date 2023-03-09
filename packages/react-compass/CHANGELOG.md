@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 0.25.0
+
+### Minor Changes
+
+- 6eeb1c9: Fix bugs on table, tooltip and button
+
 ## 0.24.0
 
 ### Minor Changes
