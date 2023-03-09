@@ -14,7 +14,6 @@ const Wrapper = styled('div', {
   position: 'absolute',
   top: '100%',
   zIndex: 1,
-  // width: '200px',
   border: '1px solid lightgray',
   borderRadius: '4px',
   marginTop: '6px',

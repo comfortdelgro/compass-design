@@ -5,6 +5,7 @@ import {DefaultRichTextEditor} from './DefaultRichTextEditor'
 import RichTextEditor from './rich-text-editor'
 import Toolbar from './toolbar/Toolbar'
 export {Blockquote} from '@tiptap/extension-blockquote'
+export {CharacterCount} from '@tiptap/extension-character-count'
 export {Color} from '@tiptap/extension-color'
 export {FontFamily} from '@tiptap/extension-font-family'
 export {Heading} from '@tiptap/extension-heading'
@@ -17,6 +18,7 @@ export {TextAlign} from '@tiptap/extension-text-align'
 export {TextStyle} from '@tiptap/extension-text-style'
 export {Underline} from '@tiptap/extension-underline'
 export {Editor, useEditor} from '@tiptap/react'
+export type {JSONContent} from '@tiptap/react'
 export {StarterKit} from '@tiptap/starter-kit'
 export type {RichTextEditorProps} from './rich-text-editor'
 
@@ -47,7 +49,7 @@ RichTextEditor.AlignCenter = controls.AlignCenterControl
 RichTextEditor.AlignJustify = controls.AlignJustifyControl
 RichTextEditor.Superscript = controls.SuperscriptControl
 RichTextEditor.Subscript = controls.SubscriptControl
-RichTextEditor.Code = controls.CodeControl
+// RichTextEditor.Code = controls.CodeControl
 RichTextEditor.CodeBlock = controls.CodeBlockControl
 RichTextEditor.Link = controls.LinkControl
 // RichTextEditor.ClearFormatting = controls.ClearFormattingControl
@@ -56,7 +58,7 @@ RichTextEditor.Image = controls.ImageControl
 RichTextEditor.ColorControl = controls.ColorControl
 RichTextEditor.TextAlginmentSelector = controls.TextAlignmentSelectorControl
 RichTextEditor.HeadingsControl = controls.HeadingsControl
-RichTextEditor.Highlight = controls.HighlightControl
+// RichTextEditor.Highlight = controls.HighlightControl
 RichTextEditor.Hr = controls.HrControl
 RichTextEditor.Undo = controls.UndoControl
 RichTextEditor.Redo = controls.RedoControl

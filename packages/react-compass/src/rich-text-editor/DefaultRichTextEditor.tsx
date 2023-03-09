@@ -1,12 +1,16 @@
 import React from 'react'
+import {StyledComponentProps} from '../utils/stitches.types'
 import {OthersControl} from './controls/DropdownControls/Others/OthersControl'
+
 import RichTextEditor, {
+  CharacterCount,
   Color,
   Editor,
   FontFamily,
   Heading,
   HorizontalRule,
   Image,
+  JSONContent,
   Link,
   StarterKit,
   Subscript,
@@ -16,13 +20,23 @@ import RichTextEditor, {
   Underline,
   useEditor,
 } from './index'
-export type DefaultRichTextEditorProps = {
+
+type Props = {
   editor?: Editor | null
-  onChange?: (html: string) => void
+  onChange?: (html: string | JSONContent) => void
+  outputType?: 'html' | 'json'
+  characterCount?: number | null
 }
+export type DefaultRichTextEditorProps = StyledComponentProps &
+  Props &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof StyledComponentProps>
 export const DefaultRichTextEditor = ({
   editor,
   onChange,
+  css = {},
+  outputType = 'html',
+  characterCount = null,
+  ...delegated
 }: DefaultRichTextEditorProps) => {
   const editorInstance =
     editor ??
@@ -44,19 +58,32 @@ export const DefaultRichTextEditor = ({
         Superscript,
         Subscript,
         HorizontalRule,
+        CharacterCount.configure({
+          limit: characterCount,
+        }),
       ],
       content: ``,
       injectCSS: false,
 
       onUpdate: ({editor}) => {
-        const html = editor.getHTML()
-        if (!html) return
-        onChange?.(html)
+        let output
+        if (outputType === 'html') {
+          output = editor.getHTML()
+        } else {
+          output = editor.getJSON()
+        }
+        if (!output) return
+        onChange?.(output)
       },
     })
 
   return (
-    <RichTextEditor editor={editorInstance}>
+    <RichTextEditor
+      editor={editorInstance}
+      characterCount={characterCount}
+      css={css}
+      {...delegated}
+    >
       <RichTextEditor.Toolbar>
         <RichTextEditor.ControlsGroup>
           <RichTextEditor.Undo />

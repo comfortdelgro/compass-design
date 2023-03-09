@@ -17,7 +17,7 @@ export function OthersSelector<T extends object>(props: AriaSelectProps<T>) {
 
   // Get props for child elements from useSelect
   let ref = React.useRef(null)
-  let {triggerProps, valueProps, menuProps} = useSelect(props, state, ref)
+  let {triggerProps, menuProps} = useSelect(props, state, ref)
 
   // Get props for the button based on the trigger props from useSelect
   let {buttonProps} = useButton(triggerProps, ref)

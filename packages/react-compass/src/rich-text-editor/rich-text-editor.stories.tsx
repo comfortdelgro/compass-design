@@ -5,6 +5,7 @@ import RichTextEditor, {
   FontFamily,
   Heading,
   Image,
+  JSONContent,
   Link,
   StarterKit,
   TextAlign,
@@ -14,11 +15,14 @@ import RichTextEditor, {
 } from './index'
 
 export const Default: React.FC = () => {
-  const [description, setDescription] = React.useState<string>('')
+  const [description, setDescription] = React.useState<string | JSONContent>('')
   return (
     <Column>
       <h3>Default Rich Text Editor</h3>
-      <RichTextEditor.Default onChange={(html) => setDescription(html)} />
+      <RichTextEditor.Default
+        onChange={(content) => setDescription(content)}
+        characterCount={200}
+      />
     </Column>
   )
 }
@@ -57,7 +61,11 @@ export const Cutomized: React.FC = () => {
         <RichTextEditor.Toolbar>
           <RichTextEditor.ControlsGroup>
             <RichTextEditor.H1 />
+            <RichTextEditor.H2 />
             <RichTextEditor.H3 />
+            <RichTextEditor.H4 />
+            <RichTextEditor.H5 />
+            <RichTextEditor.H6 />
           </RichTextEditor.ControlsGroup>
           <RichTextEditor.ControlsGroup>
             <RichTextEditor.AlignLeft />

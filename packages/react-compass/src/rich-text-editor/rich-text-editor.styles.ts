@@ -73,6 +73,14 @@ export const StyledRichTextEditor = styled('div', {
   border: '1px solid #E9ECEF',
   width: '796px',
   overflow: 'clip',
+
+  // styling character count
+  '.character-count': {
+    color: '#868e96',
+    marginTop: '1rem',
+    marginLeft: '1rem',
+    marginBottom: '1rem',
+  },
 })
 
 export const StyledMenuBlock = styled('div', {

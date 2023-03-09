@@ -1,32 +1,3 @@
-// import {
-//   IconAlignCenter,
-//   IconAlignJustified,
-//   IconAlignLeft,
-//   IconAlignRight,
-//   IconBlockquote,
-//   IconBold,
-//   IconCircleOff,
-//   IconClearFormatting,
-//   IconCode,
-//   IconH1,
-//   IconH2,
-//   IconH3,
-//   IconH4,
-//   IconH5,
-//   IconH6,
-//   IconHighlight,
-//   IconItalic,
-//   IconLineDashed,
-//   IconList,
-//   IconListNumbers,
-//   IconStrikethrough,
-//   IconSubscript,
-//   IconSuperscript,
-//   IconUnderline,
-//   IconUnlink,
-// } from '@tabler/icons-react'
-import H1Icon from '@comfortdelgro/compass-icons/react/h1'
-import H3Icon from '@comfortdelgro/compass-icons/react/h3'
 import {
   faAlignCenter,
   faAlignJustify,
@@ -148,7 +119,7 @@ export const H1Control = createControl({
 export const H2Control = createControl({
   label: 'H2',
 
-  icon: () => <H1Icon />,
+  icon: () => <H2Icon />,
   isActive: {name: 'heading', attributes: {level: 2}},
   // operation: {name: 'toggleHeading', attributes: {level: 2}},
   onPress: (editor) => () =>
@@ -167,7 +138,7 @@ export const H3Control = createControl({
 
 export const H4Control = createControl({
   label: 'H4',
-  icon: () => <H1Icon />,
+  icon: () => <H4Icon />,
   isActive: {name: 'heading', attributes: {level: 4}},
   // operation: {name: 'toggleHeading', attributes: {level: 4}},
   onPress: (editor) => () =>
@@ -176,7 +147,7 @@ export const H4Control = createControl({
 
 export const H5Control = createControl({
   label: 'H5',
-  icon: () => <H1Icon />,
+  icon: () => <H5Icon />,
   isActive: {name: 'heading', attributes: {level: 5}},
   // operation: {name: 'toggleHeading', attributes: {level: 5}},
   onPress: (editor) => () =>
@@ -185,7 +156,7 @@ export const H5Control = createControl({
 
 export const H6Control = createControl({
   label: 'H6',
-  icon: () => <H1Icon />,
+  icon: () => <H6Icon />,
   isActive: {name: 'heading', attributes: {level: 6}},
   // operation: {name: 'toggleHeading', attributes: {level: 6}},
   onPress: (editor) => () =>
@@ -268,3 +239,147 @@ export const HrControl = createControl({
 
   // operation: {name: 'setHorizontalRule'},
 })
+
+const H1Icon = () => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width='18'
+    height='24'
+    viewBox='0 0 24 24'
+    stroke='black'
+    stroke-width='2'
+    fill='none'
+    stroke-linecap='round'
+    stroke-linejoin='round'
+  >
+    <path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
+    <path d='M19 18v-8l-2 2'></path>
+    <path d='M4 6v12'></path>
+    <path d='M12 6v12'></path>
+    <path d='M11 18h2'></path>
+    <path d='M3 18h2'></path>
+    <path d='M4 12h8'></path>
+    <path d='M3 6h2'></path>
+    <path d='M11 6h2'></path>
+  </svg>
+)
+
+const H2Icon = () => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width='18'
+    height='24'
+    viewBox='0 0 24 24'
+    stroke='black'
+    stroke-width='2'
+    fill='none'
+    stroke-linecap='round'
+    stroke-linejoin='round'
+  >
+    <path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
+    <path d='M17 12a2 2 0 1 1 4 0c0 .591 -.417 1.318 -.816 1.858l-3.184 4.143l4 0'></path>
+    <path d='M4 6v12'></path>
+    <path d='M12 6v12'></path>
+    <path d='M11 18h2'></path>
+    <path d='M3 18h2'></path>
+    <path d='M4 12h8'></path>
+    <path d='M3 6h2'></path>
+    <path d='M11 6h2'></path>
+  </svg>
+)
+
+const H3Icon = () => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width='18'
+    height='24'
+    viewBox='0 0 24 24'
+    stroke='black'
+    stroke-width='2'
+    fill='none'
+    stroke-linecap='round'
+    stroke-linejoin='round'
+  >
+    <path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
+    <path d='M19 14a2 2 0 1 0 -2 -2'></path>
+    <path d='M17 16a2 2 0 1 0 2 -2'></path>
+    <path d='M4 6v12'></path>
+    <path d='M12 6v12'></path>
+    <path d='M11 18h2'></path>
+    <path d='M3 18h2'></path>
+    <path d='M4 12h8'></path>
+    <path d='M3 6h2'></path>
+    <path d='M11 6h2'></path>
+  </svg>
+)
+const H4Icon = () => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width='18'
+    height='24'
+    viewBox='0 0 24 24'
+    stroke='black'
+    stroke-width='2'
+    fill='none'
+    stroke-linecap='round'
+    stroke-linejoin='round'
+  >
+    <path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
+    <path d='M20 18v-8l-4 6h5'></path>
+    <path d='M4 6v12'></path>
+    <path d='M12 6v12'></path>
+    <path d='M11 18h2'></path>
+    <path d='M3 18h2'></path>
+    <path d='M4 12h8'></path>
+    <path d='M3 6h2'></path>
+    <path d='M11 6h2'></path>
+  </svg>
+)
+const H5Icon = () => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width='18'
+    height='24'
+    viewBox='0 0 24 24'
+    stroke='black'
+    stroke-width='2'
+    fill='none'
+    stroke-linecap='round'
+    stroke-linejoin='round'
+  >
+    <path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
+    <path d='M17 18h2a2 2 0 1 0 0 -4h-2v-4h4'></path>
+    <path d='M4 6v12'></path>
+    <path d='M12 6v12'></path>
+    <path d='M11 18h2'></path>
+    <path d='M3 18h2'></path>
+    <path d='M4 12h8'></path>
+    <path d='M3 6h2'></path>
+    <path d='M11 6h2'></path>
+  </svg>
+)
+
+const H6Icon = () => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width='18'
+    height='24'
+    viewBox='0 0 24 24'
+    stroke='black'
+    stroke-width='2'
+    fill='none'
+    stroke-linecap='round'
+    stroke-linejoin='round'
+  >
+    <path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
+    <path d='M19 14a2 2 0 1 0 0 4a2 2 0 0 0 0 -4z'></path>
+    <path d='M21 12a2 2 0 1 0 -4 0v4'></path>
+    <path d='M4 6v12'></path>
+    <path d='M12 6v12'></path>
+    <path d='M11 18h2'></path>
+    <path d='M3 18h2'></path>
+    <path d='M4 12h8'></path>
+    <path d='M3 6h2'></path>
+    <path d='M11 6h2'></path>
+  </svg>
+)

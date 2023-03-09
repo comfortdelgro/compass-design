@@ -17,6 +17,7 @@ interface Props extends StyledComponentProps {
   children?: React.ReactNode
   setDescription?: (html: string) => void
   editor: Editor | null
+  characterCount?: number | null
 }
 
 export type RichTextEditorProps = Props &
@@ -29,6 +30,7 @@ const RichTextEditor = React.forwardRef<HTMLDivElement, RichTextEditorProps>(
       // setDescription = () => null,
       css = {},
       editor,
+      characterCount,
       ...delegated
     } = props
     return (
@@ -42,147 +44,14 @@ const RichTextEditor = React.forwardRef<HTMLDivElement, RichTextEditorProps>(
           <StyledEditorContent>
             <EditorContent editor={editor} />
           </StyledEditorContent>
+          {characterCount && (
+            <div className='character-count'>
+              {editor?.storage['characterCount'].characters()}/{characterCount}
+            </div>
+          )}
         </StyledRichTextEditor>
       </RichTextEditorProvider>
     )
-    //   const modalActionRef = useDOMRef<HTMLDivElement>(ref)
-    //   const editor = useEditor({
-    //     extensions: [
-    //       StarterKit,
-    //       Underline,
-    //       FontFamily,
-    //       TextStyle,
-    //       Color,
-    //       TextAlign.configure({
-    //         types: ['heading', 'paragraph'],
-    //       }),
-    //       Heading.configure({
-    //         levels: [1, 2, 3],
-    //       }),
-    //     ],
-    //     content: ``,
-    //     injectCSS: false,
-
-    //     onUpdate: ({editor}) => {
-    //       const html = editor.getHTML()
-    //       if (!html) return
-    //       setDescription(html)
-    //     },
-    //   })
-    //   if (!editor) return <></>
-    //   return (
-    //     <StyledRichTextEditor css={css} ref={modalActionRef} {...delegated}>
-    //       <StyledMenuBar>
-    //         <StyledMenuItem onClick={() => editor.chain().focus().undo().run()}>
-    //           <Icon icon={faRotateLeft} />
-    //         </StyledMenuItem>
-    //         <StyledMenuItem onClick={() => editor.chain().focus().redo().run()}>
-    //           <Icon icon={faRotateRight} />
-    //         </StyledMenuItem>
-    //         <StyledMenuBlock>
-    //           <ColorSelector
-    //             onSelectionChange={(key: React.Key) =>
-    //               editor
-    //                 .chain()
-    //                 .focus()
-    //                 .setColor(key as string)
-    //                 .run()
-    //             }
-    //             defaultSelectedKey='#212529'
-    //           >
-    //             <Item key='#212529' textValue=''>
-    //               <StyledColorItem color='gray-9' />
-    //             </Item>
-    //             <Item key='#845EF7' textValue=''>
-    //               <StyledColorItem color='violet-5' />
-    //             </Item>
-    //             <Item key='#339AF0' textValue=''>
-    //               <StyledColorItem color='blue-5' />
-    //             </Item>
-    //           </ColorSelector>
-    //         </StyledMenuBlock>
-    //         <StyledMenuBlock>
-    //           <TextAlignmentSelector
-    //             onSelectionChange={(key: React.Key) =>
-    //               editor
-    //                 .chain()
-    //                 .focus()
-    //                 .setTextAlign(key as string)
-    //                 .run()
-    //             }
-    //             defaultSelectedKey='left'
-    //           >
-    //             <Item key='left'>
-    //               <Icon className='dropdown-button-icon' icon={faAlignLeft} />{' '}
-    //               left
-    //             </Item>
-    //             <Item key='center'>
-    //               <Icon className='dropdown-button-icon' icon={faAlignCenter} />{' '}
-    //               center
-    //             </Item>
-    //             <Item key='right'>
-    //               <Icon className='dropdown-button-icon' icon={faAlignRight} />{' '}
-    //               right
-    //             </Item>
-    //             <Item key='justify'>
-    //               <Icon className='dropdown-button-icon' icon={faAlignJustify} />{' '}
-    //               justify
-    //             </Item>
-    //           </TextAlignmentSelector>
-    //         </StyledMenuBlock>
-    //         <StyledMenuBlock>
-    //           <HeadingSelector
-    //             onSelectionChange={(key: React.Key) =>
-    //               editor
-    //                 .chain()
-    //                 .focus()
-    //                 .setHeading({level: Number(key) as Level})
-    //                 .run()
-    //             }
-    //           >
-    //             <Item key='1' textValue='Heading 1'>
-    //               <h1>Heading 1</h1>
-    //             </Item>
-    //             <Item key='2' textValue='Heading 2'>
-    //               <h2>Heading 2</h2>
-    //             </Item>
-    //             <Item key='3' textValue='Heading 3'>
-    //               <h3>Heading 3</h3>
-    //             </Item>
-    //           </HeadingSelector>
-    //         </StyledMenuBlock>
-    //         <StyledMenuBlock>
-    //           <StyledMenuItem
-    //             className={editor.isActive('bold') ? 'is_active' : ''}
-    //             onClick={() => editor.chain().focus().toggleBold().run()}
-    //           >
-    //             <Icon icon={faBold} />
-    //           </StyledMenuItem>
-    //           <StyledMenuItem
-    //             className={editor.isActive('italic') ? 'is_active' : ''}
-    //             onClick={() => editor.chain().focus().toggleItalic().run()}
-    //           >
-    //             <Icon icon={faItalic} />
-    //           </StyledMenuItem>
-    //           <StyledMenuItem
-    //             className={editor.isActive('underline') ? 'is_active' : ''}
-    //             onClick={() => editor.chain().focus().toggleUnderline().run()}
-    //           >
-    //             <Icon icon={faUnderline} />
-    //           </StyledMenuItem>
-    //           <StyledMenuItem
-    //             className={editor.isActive('strike') ? 'is_active' : ''}
-    //             onClick={() => editor.chain().focus().toggleStrike().run()}
-    //           >
-    //             <Icon icon={faStrikethrough} />
-    //           </StyledMenuItem>
-    //         </StyledMenuBlock>
-    //       </StyledMenuBar>
-    //       <StyledEditorContent>
-    //         <EditorContent editor={editor} />
-    //       </StyledEditorContent>
-    //     </StyledRichTextEditor>
-    //   )
   },
 )
 export default RichTextEditor as typeof RichTextEditor & {
@@ -212,13 +81,13 @@ export default RichTextEditor as typeof RichTextEditor & {
   AlignJustify: typeof controls.AlignJustifyControl
   Superscript: typeof controls.SuperscriptControl
   Subscript: typeof controls.SubscriptControl
-  Code: typeof controls.CodeControl
+  // Code: typeof controls.CodeControl
   CodeBlock: typeof controls.CodeBlockControl
   // ColorPicker: typeof controls.ColorPickerControl
   ColorControl: typeof controls.ColorControl
   HeadingsControl: typeof controls.HeadingsControl
   TextAlginmentSelector: typeof controls.TextAlignmentSelectorControl
-  Highlight: typeof controls.HighlightControl
+  // Highlight: typeof controls.HighlightControl
   Hr: typeof controls.HrControl
   Undo: typeof controls.UndoControl
   Redo: typeof controls.RedoControl

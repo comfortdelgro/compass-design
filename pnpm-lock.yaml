@@ -194,6 +194,7 @@ importers:
       '@tanstack/react-table': ^8.7.6
       '@tiptap/extension-blockquote': 2.0.0-beta.220
       '@tiptap/extension-bold': 2.0.0-beta.220
+      '@tiptap/extension-character-count': 2.0.0-beta.220
       '@tiptap/extension-color': 2.0.0-beta.220
       '@tiptap/extension-font-family': 2.0.0-beta.209
       '@tiptap/extension-heading': 2.0.0-beta.220
@@ -295,6 +296,7 @@ importers:
       '@tanstack/react-table': 8.7.9_biqbaboplfbrettd7655fr4n2y
       '@tiptap/extension-blockquote': 2.0.0-beta.220_f4ffqkgz5d3wev7su7t7l2rrua
       '@tiptap/extension-bold': 2.0.0-beta.220_f4ffqkgz5d3wev7su7t7l2rrua
+      '@tiptap/extension-character-count': 2.0.0-beta.220_yigzpemuso7w4dfvvojjd6i4cm
       '@tiptap/extension-color': 2.0.0-beta.220_gcpwnt23nxb724tiu73zfw26iq
       '@tiptap/extension-font-family': 2.0.0-beta.209_gcpwnt23nxb724tiu73zfw26iq
       '@tiptap/extension-heading': 2.0.0-beta.220_f4ffqkgz5d3wev7su7t7l2rrua
@@ -3990,6 +3992,16 @@ packages:
       '@tiptap/core': ^2.0.0-beta.193
     dependencies:
       '@tiptap/core': 2.0.0-beta.209_p3mbvinurk4nfhjl2yhavjj4hy
+    dev: false
+
+  /@tiptap/extension-character-count/2.0.0-beta.220_yigzpemuso7w4dfvvojjd6i4cm:
+    resolution: {integrity: sha512-D2AbDi7Q429Ua6U+MdEtxyIEue8KEATOGfmvDlSv5wS+EsUbh6fkG/6yUKFtke2DaePXqbpkxfwXgLT0JP4zTg==}
+    peerDependencies:
+      '@tiptap/core': ^2.0.0-beta.209
+      '@tiptap/pm': ^2.0.0-beta.209
+    dependencies:
+      '@tiptap/core': 2.0.0-beta.209_p3mbvinurk4nfhjl2yhavjj4hy
+      '@tiptap/pm': 2.0.0-beta.220_f4ffqkgz5d3wev7su7t7l2rrua
     dev: false
 
   /@tiptap/extension-code-block/2.0.0-beta.209_prfudu5zgovreazvyjp3brspre:
