@@ -1,15 +1,15 @@
 import fs from 'node:fs/promises'
 import path from 'node:path'
 
-import { importDirectory } from '@iconify/tools/lib/import/directory'
-import { cleanupSVG } from '@iconify/tools/lib/svg/cleanup'
-import { transform } from '@svgr/core'
-import { execaCommand } from 'execa'
+import {importDirectory} from '@iconify/tools/lib/import/directory'
+import {cleanupSVG} from '@iconify/tools/lib/svg/cleanup'
+import {transform} from '@svgr/core'
+import {execaCommand} from 'execa'
 
 // Utils
 
 const runInShell = (c: string) =>
-  execaCommand(c, { stdio: 'inherit' }).catch(() => process.exit(1))
+  execaCommand(c, {stdio: 'inherit'}).catch(() => process.exit(1))
 
 function dirExists(dir: string): Promise<boolean> {
   return fs
@@ -39,9 +39,13 @@ const name = 'Compass Icons'
 // const iconifyOutput = './iconify/'
 // const reactOutput = './react/'
 
-async function buildIcons(input: string, iconifyOutput: string, reactOutput: string) {
+async function buildIcons(
+  input: string,
+  iconifyOutput: string,
+  reactOutput: string,
+) {
   // Import icons
-  const iconSet = await importDirectory(input, { prefix })
+  const iconSet = await importDirectory(input, {prefix})
   // Saving width, height, left, right of svg
   const dimensions = []
   const myPreset = [
@@ -97,7 +101,8 @@ async function buildIcons(input: string, iconifyOutput: string, reactOutput: str
   }
 
   const iconifyPath = path.normalize(iconifyOutput)
-  if (await dirExists(iconifyPath)) await fs.rmdir(iconifyPath, { recursive: true })
+  if (await dirExists(iconifyPath))
+    await fs.rmdir(iconifyPath, {recursive: true})
   await fs.mkdir(iconifyPath)
 
   console.log(`Writing iconify outputs at "${iconifyOutput}"...`)
@@ -132,7 +137,7 @@ async function buildIcons(input: string, iconifyOutput: string, reactOutput: str
   // Write react files
 
   const reactPath = path.normalize(reactOutput)
-  if (await dirExists(reactPath)) await fs.rmdir(reactPath, { recursive: true })
+  if (await dirExists(reactPath)) await fs.rmdir(reactPath, {recursive: true})
   await fs.mkdir(reactPath)
 
   console.log(`Writing react outputs at "${reactOutput}"...`)
@@ -142,8 +147,8 @@ async function buildIcons(input: string, iconifyOutput: string, reactOutput: str
     const svg = `<svg width="1em" height="1em" viewBox="0 0 ${des.width} ${des.height}">${icon.body}</svg>`
     const tsCode = await transform(
       svg,
-      { icon: true, typescript: true },
-      { componentName: toPascalCase(iconName) },
+      {icon: true, typescript: true},
+      {componentName: toPascalCase(iconName)},
     )
 
     // Write TS
@@ -166,7 +171,7 @@ async function buildIcons(input: string, iconifyOutput: string, reactOutput: str
   }
 
   // Write index files (TS, CJS, ESM) into React folder
-  let indexFileContent: { [key: string]: string } = {}
+  let indexFileContent: {[key: string]: string} = {}
 
   for (const iconName in exported.icons) {
     const icon = exported.icons[iconName]
