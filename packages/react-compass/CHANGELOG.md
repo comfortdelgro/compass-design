@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 0.26.0
+
+### Minor Changes
+
+- 515362a: Fix minor bugs: redundant console.log(), errored to become isErrored, checkbox css error and type for Calendar maxValue
+
 ## 0.25.0
 
 ### Minor Changes
