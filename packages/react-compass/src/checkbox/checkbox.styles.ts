@@ -20,8 +20,11 @@ export const StyledCheckboxInput = styled('input', {
   cursor: 'pointer',
 })
 
+//mark for merging point
 export const StyledCheckboxBox = styled('span', {
-  display: 'block',
+  position: 'absolute', //mark for merged
+  top: 0,
+  left: 0,
   height: '$4',
   width: '$4',
   backgroundColor: '$whiteText',
@@ -46,6 +49,7 @@ export const StyledCheckboxBox = styled('span', {
     },
   },
 })
+
 export const StyledTableCheckboxBox = styled('span', {
   display: 'block',
   height: '$4',
