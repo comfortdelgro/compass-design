@@ -96,34 +96,6 @@ const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>((props, ref) => {
     return <div className='tooltip-title'>{title}</div>
   }
 
-  // to make sure tooltip stay within screen
-
-  // const elements = document.querySelectorAll('[role="tooltip"]')
-
-  // elements.forEach((element) => {
-  //   const tooltipElement = element as HTMLElement // type assertion
-  //   const rect = tooltipElement.getBoundingClientRect()
-  //   const left = rect.left + window.pageXOffset
-  //   const top = rect.top + window.pageYOffset
-  //   const width = rect.width
-  //   const height = rect.height
-
-  //   const viewWidth = Math.max(
-  //     document.documentElement.clientWidth || 0,
-  //     window.innerWidth || 0,
-  //   )
-  //   const viewHeight = Math.max(
-  //     document.documentElement.clientHeight || 0,
-  //     window.innerHeight || 0,
-  //   )
-
-  //   const newLeft = Math.min(Math.max(left, 0), viewWidth - width)
-  //   const newTop = Math.min(Math.max(top, 0), viewHeight - height)
-
-  //   tooltipElement.style.left = newLeft.toString() + 'px'
-  //   tooltipElement.style.top = newTop.toString() + 'px'
-  // })
-
   return (
     <StyledTooltip ref={overlayRef} css={css} style={style} {...tooltipProps}>
       {/* only show header when it has title or dismissible = true */}
