@@ -1,5 +1,5 @@
 import {AriaButtonProps, useButton} from '@react-aria/button'
-import React from 'react'
+import React, {RefObject} from 'react'
 import ADFlag from './flags/ad'
 import AEFlag from './flags/ae'
 import AFFlag from './flags/af'
@@ -2495,4 +2495,40 @@ export const Flag = ({iso}: {iso: string}) => {
     default:
       return null
   }
+}
+
+export function useIsInViewport(ref: RefObject<Element>) {
+  const [isIntersecting, setIsIntersecting] = React.useState(false)
+
+  const observer = React.useMemo(
+    () =>
+      new IntersectionObserver(([entry]) =>
+        setIsIntersecting(!!entry?.isIntersecting),
+      ),
+    [ref.current],
+  )
+
+  React.useEffect(() => {
+    if (ref.current) observer.observe(ref.current)
+    return () => {
+      observer.disconnect()
+    }
+  }, [ref, observer])
+
+  return isIntersecting
+}
+export const getDistanceBetweenElements = (
+  a: HTMLDivElement,
+  b: HTMLDivElement,
+) => {
+  const getPositionAtCenter = (element: Element) => {
+    const {top, left, width, height} = element.getBoundingClientRect()
+    return {
+      x: left + width / 2,
+      y: top + height / 2,
+    }
+  }
+  const aPosition = getPositionAtCenter(a)
+  const bPosition = getPositionAtCenter(b)
+  return Math.hypot(aPosition.x - bPosition.x, aPosition.y - bPosition.y)
 }

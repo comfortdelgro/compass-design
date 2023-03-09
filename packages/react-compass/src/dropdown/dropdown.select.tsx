@@ -35,6 +35,9 @@ const Select = React.forwardRef<HTMLButtonElement, DropdownProps>(
       isRequired,
       isDisabled,
       errorMessage,
+      onLoadMore = () => {
+        //Load more
+      },
       // AriaDropdownProps
     } = props
     const variantProps = {} as DropdownVariantProps
@@ -88,6 +91,7 @@ const Select = React.forwardRef<HTMLButtonElement, DropdownProps>(
               <ListBox
                 {...menuProps}
                 shouldFocusOnHover={false}
+                onLoadMore={onLoadMore}
                 headerTitle={props.headerTitle}
                 isLoading={!!props.isLoading}
                 headerOnClick={(e) => props?.headerOnClick?.(e)}
