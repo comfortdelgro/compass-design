@@ -1,9 +1,9 @@
 import {faCheck, faMinus} from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
 import {
-  StyledCheckboxBox,
   StyledCheckboxCheckmark,
   StyledCheckboxLabel,
+  StyledTableCheckboxBox,
 } from '../checkbox/checkbox.styles'
 import Icon from '../icon'
 import {StyledComponentProps} from '../utils/stitches.types'
@@ -38,11 +38,11 @@ const ReactTableCheckbox = ({
         className={className + ' cursor-pointer'}
         {...rest}
       />
-      <StyledCheckboxBox disabled={false} rounded={false}>
+      <StyledTableCheckboxBox disabled={false} rounded={false}>
         <StyledCheckboxCheckmark>
           <Icon icon={indeterminate ? faMinus : faCheck} className='icon' />
         </StyledCheckboxCheckmark>
-      </StyledCheckboxBox>
+      </StyledTableCheckboxBox>
     </StyledCheckboxLabel>
   )
 }
