@@ -76,6 +76,32 @@ export const StyledTableCheckboxBox = styled('span', {
     },
   },
 })
+export const StyledTableCheckboxBox = styled('span', {
+  display: 'block',
+  height: '$4',
+  width: '$4',
+  backgroundColor: '$whiteText',
+  borderWidth: '$light',
+  borderStyle: 'solid',
+  borderColor: '$activeBorder',
+  borderRadius: '$md',
+  transition: '$button',
+
+  variants: {
+    rounded: {
+      true: {
+        borderRadius: '$full',
+      },
+    },
+
+    disabled: {
+      true: {
+        backgroundColor: '$whiteText',
+        borderColor: '$gray50',
+      },
+    },
+  },
+})
 
 export const StyledCheckboxCheckmark = styled('span', {
   display: 'none',
