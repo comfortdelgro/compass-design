@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 0.27.0
+
+### Minor Changes
+
+- d21df45: Fix isDisabled bug in textarea
+
 ## 0.26.0
 
 ### Minor Changes
