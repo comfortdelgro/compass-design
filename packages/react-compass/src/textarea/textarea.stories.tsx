@@ -37,6 +37,11 @@ export const Variants: React.FC = () => {
         isErrored
         errorMessage='Error Message'
       />
+      <Textarea
+        label='Disabled Text Label'
+        placeholder='Enter your message'
+        isDisabled={true}
+      />
     </Column>
   )
 }
