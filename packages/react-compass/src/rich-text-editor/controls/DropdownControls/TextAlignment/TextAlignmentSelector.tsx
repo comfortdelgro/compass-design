@@ -25,7 +25,7 @@ export function TextAlignmentSelector<T extends object>(
   let {buttonProps} = useButton(triggerProps, ref)
 
   return (
-    <div>
+    <>
       <HiddenSelect state={state} triggerRef={ref} label={props.label} />
       <StyledDropdownButton {...buttonProps} ref={ref} isOpen={state.isOpen}>
         <span {...valueProps}>
@@ -40,6 +40,6 @@ export function TextAlignmentSelector<T extends object>(
           <ListBox {...menuProps} state={state} />
         </Popover>
       )}
-    </div>
+    </>
   )
 }

@@ -1,5 +1,18 @@
 // import Heading from '@tiptap/extension-heading'
-import {Editor, EditorContent} from '@tiptap/react'
+import CharacterCount from '@tiptap/extension-character-count'
+import Color from '@tiptap/extension-color'
+import FontFamily from '@tiptap/extension-font-family'
+import Heading from '@tiptap/extension-heading'
+import Image from '@tiptap/extension-image'
+import Link from '@tiptap/extension-link'
+import Subscript from '@tiptap/extension-subscript'
+import Superscript from '@tiptap/extension-superscript'
+import TextAlign from '@tiptap/extension-text-align'
+import TextStyle from '@tiptap/extension-text-style'
+import Underline from '@tiptap/extension-underline'
+
+import {Content, EditorContent, JSONContent, useEditor} from '@tiptap/react'
+import StarterKit from '@tiptap/starter-kit'
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import * as controls from './controls'
@@ -15,9 +28,11 @@ import Toolbar from './toolbar/Toolbar'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
-  setDescription?: (html: string) => void
-  editor: Editor | null
+  outputType?: 'html' | 'json'
   characterCount?: number | null
+  onChange?: (html: string | JSONContent) => void
+  isEditable?: boolean
+  content?: Content
 }
 
 export type RichTextEditorProps = Props &
@@ -27,12 +42,52 @@ const RichTextEditor = React.forwardRef<HTMLDivElement, RichTextEditorProps>(
   (props, ref) => {
     const {
       children,
-      // setDescription = () => null,
       css = {},
-      editor,
       characterCount,
+      outputType,
+      onChange,
+      isEditable = true,
+      content = null,
       ...delegated
     } = props
+
+    const editor = useEditor({
+      content,
+      extensions: [
+        StarterKit,
+        Underline,
+        FontFamily,
+        TextStyle,
+        Color,
+        TextAlign.configure({
+          types: ['heading', 'paragraph'],
+        }),
+        Heading.configure({
+          levels: [1, 2, 3, 4, 5, 6],
+        }),
+        Link,
+        Image,
+        CharacterCount.configure({
+          limit: characterCount,
+        }),
+        Superscript,
+        Subscript,
+      ],
+      injectCSS: false,
+
+      onUpdate: ({editor}) => {
+        let output
+        if (outputType === 'html') {
+          output = editor.getHTML()
+        } else {
+          output = editor.getJSON()
+        }
+        if (!output) return
+        onChange?.(output)
+      },
+    })
+    editor?.setEditable(isEditable)
+
     return (
       <RichTextEditorProvider
         value={{
@@ -46,7 +101,7 @@ const RichTextEditor = React.forwardRef<HTMLDivElement, RichTextEditorProps>(
           </StyledEditorContent>
           {characterCount && (
             <div className='character-count'>
-              {editor?.storage['characterCount'].characters()}/{characterCount}
+              {editor?.storage['characterCount']?.characters()}/{characterCount}
             </div>
           )}
         </StyledRichTextEditor>
@@ -62,7 +117,6 @@ export default RichTextEditor as typeof RichTextEditor & {
   Italic: typeof controls.ItalicControl
   Strikethrough: typeof controls.StrikeThroughControl
   Underline: typeof controls.UnderlineControl
-  // ClearFormatting: typeof controls.ClearFormattingControl
   H1: typeof controls.H1Control
   H2: typeof controls.H2Control
   H3: typeof controls.H3Control
@@ -81,16 +135,17 @@ export default RichTextEditor as typeof RichTextEditor & {
   AlignJustify: typeof controls.AlignJustifyControl
   Superscript: typeof controls.SuperscriptControl
   Subscript: typeof controls.SubscriptControl
-  // Code: typeof controls.CodeControl
   CodeBlock: typeof controls.CodeBlockControl
-  // ColorPicker: typeof controls.ColorPickerControl
   ColorControl: typeof controls.ColorControl
   HeadingsControl: typeof controls.HeadingsControl
   TextAlginmentSelector: typeof controls.TextAlignmentSelectorControl
-  // Highlight: typeof controls.HighlightControl
   Hr: typeof controls.HrControl
   Undo: typeof controls.UndoControl
   Redo: typeof controls.RedoControl
   Default: typeof DefaultRichTextEditor
+  // Code: typeof controls.CodeControl
+  // ColorPicker: typeof controls.ColorPickerControl
+  // Highlight: typeof controls.HighlightControl
+  // ClearFormatting: typeof controls.ClearFormattingControl
   // UnsetColor: typeof controls.UnsetColorControl
 }

@@ -1,89 +1,16 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
 import {OthersControl} from './controls/DropdownControls/Others/OthersControl'
 
-import RichTextEditor, {
-  CharacterCount,
-  Color,
-  Editor,
-  FontFamily,
-  Heading,
-  HorizontalRule,
-  Image,
-  JSONContent,
-  Link,
-  StarterKit,
-  Subscript,
-  Superscript,
-  TextAlign,
-  TextStyle,
-  Underline,
-  useEditor,
-} from './index'
+import RichTextEditor, {RichTextEditorProps} from './index'
 
-type Props = {
-  editor?: Editor | null
-  onChange?: (html: string | JSONContent) => void
-  outputType?: 'html' | 'json'
-  characterCount?: number | null
-}
-export type DefaultRichTextEditorProps = StyledComponentProps &
-  Props &
-  Omit<React.HTMLAttributes<HTMLDivElement>, keyof StyledComponentProps>
 export const DefaultRichTextEditor = ({
-  editor,
   onChange,
   css = {},
-  outputType = 'html',
-  characterCount = null,
+  isEditable = true,
   ...delegated
-}: DefaultRichTextEditorProps) => {
-  const editorInstance =
-    editor ??
-    useEditor({
-      extensions: [
-        StarterKit,
-        Underline,
-        FontFamily,
-        TextStyle,
-        Color,
-        TextAlign.configure({
-          types: ['heading', 'paragraph'],
-        }),
-        Heading.configure({
-          levels: [1, 2, 3, 4, 5, 6],
-        }),
-        Link,
-        Image,
-        Superscript,
-        Subscript,
-        HorizontalRule,
-        CharacterCount.configure({
-          limit: characterCount,
-        }),
-      ],
-      content: ``,
-      injectCSS: false,
-
-      onUpdate: ({editor}) => {
-        let output
-        if (outputType === 'html') {
-          output = editor.getHTML()
-        } else {
-          output = editor.getJSON()
-        }
-        if (!output) return
-        onChange?.(output)
-      },
-    })
-
+}: RichTextEditorProps) => {
   return (
-    <RichTextEditor
-      editor={editorInstance}
-      characterCount={characterCount}
-      css={css}
-      {...delegated}
-    >
+    <RichTextEditor css={css} {...delegated}>
       <RichTextEditor.Toolbar>
         <RichTextEditor.ControlsGroup>
           <RichTextEditor.Undo />

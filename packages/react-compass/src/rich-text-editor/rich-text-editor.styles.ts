@@ -8,32 +8,15 @@ export const StyledEditorContent = styled('div', {
   boxSizing: 'border-box',
   margin: '0px',
   // styling
-  width: '796px',
-})
-
-export const StyledMenuBar = styled('div', {
-  // reset
-  appearance: 'none',
-  border: 'none',
-  boxSizing: 'border-box',
-  margin: '0px',
-
-  // Styling
-  padding: '5px 24px',
-  display: 'flex',
-  alignItems: 'center',
-  backgroundColor: '#F3F2F1',
-  width: '796px',
-  gap: '16px',
 })
 
 export const StyledRichTextEditor = styled('div', {
   // reset
   appearance: 'none',
-  //border: 'none',
   boxSizing: 'border-box',
   margin: '0px',
   padding: '0px',
+  maxWidth: '820px',
 
   // Styling for ProposeMirror
   '& .ProseMirror': {
@@ -64,14 +47,13 @@ export const StyledRichTextEditor = styled('div', {
     },
   },
   '& .ProseMirror sup': {
-    top: '-1rem',
+    top: '-0.5em',
   },
 
   // Styling menubar and content container
 
   borderRadius: '5px',
   border: '1px solid #E9ECEF',
-  width: '796px',
   overflow: 'clip',
 
   // styling character count

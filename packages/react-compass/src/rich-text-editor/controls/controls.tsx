@@ -28,82 +28,58 @@ export const UndoControl = createControl({
   icon: () => <Icon icon={faRotateLeft} />,
   isActive: {name: 'undo'},
   onPress: (editor) => () => editor?.chain().focus().undo().run(),
-  // operation: {name: 'undo'},
 })
 export const RedoControl = createControl({
   label: 'redo',
-
   icon: () => <Icon icon={faRotateRight} />,
   isActive: {name: 'redo'},
   onPress: (editor) => () => editor?.chain().focus().redo().run(),
-  // operation: {name: 'redo'},
 })
 export const BoldControl = createControl({
   label: 'bold',
-
   icon: () => <Icon icon={faBold} />,
   isActive: {name: 'bold'},
-  // operation: {name: 'toggleBold'},
   onPress: (editor) => () => editor?.chain().focus().toggleBold().run(),
 })
 
 export const ItalicControl = createControl({
   label: 'italic',
-
   icon: () => <Icon icon={faItalic} />,
   isActive: {name: 'italic'},
-  // operation: {name: 'toggleItalic'},
   onPress: (editor) => () => editor?.chain().focus().toggleItalic().run(),
 })
 
 export const UnderlineControl = createControl({
   label: 'underline',
-
   icon: () => <Icon icon={faUnderline} />,
   isActive: {name: 'underline'},
   onPress: (editor) => () => editor?.chain().focus().toggleUnderline().run(),
-  // operation: {name: 'toggleUnderline'},
 })
 
 export const StrikeThroughControl = createControl({
   label: 'strike through',
-
   icon: () => <Icon icon={faStrikethrough} />,
   isActive: {name: 'strike'},
   onPress: (editor) => () => editor?.chain().focus().toggleStrike().run(),
-
-  // operation: {name: 'toggleStrike'},
 })
-
-// export const ClearFormattingControl = createControl({
-//   icon: () => <Icon icon={fa} />,
-//   operation: {name: 'unsetAllMarks'},
-// })
 
 export const UnlinkControl = createControl({
   label: 'unset link',
-
   icon: () => <Icon icon={faUnlink} />,
   onPress: (editor) => () => editor?.chain().focus().unsetLink().run(),
-
-  // operation: {name: 'unsetLink'},
 })
 
 export const BulletListControl = createControl({
   label: 'bullet list',
-
   icon: () => <Icon icon={faList} />,
   isActive: {name: 'bulletList'},
-  // operation: {name: 'toggleBulletList'},
   onPress: (editor) => () => editor?.chain().focus().toggleBulletList().run(),
 })
 
 export const OrderedListControl = createControl({
   label: 'ordered list',
-
   icon: () => <Icon icon={faListNumeric} />,
   isActive: {name: 'orderedList'},
-  // operation: {name: 'toggleOrderedList'},
   onPress: (editor) => () => editor?.chain().focus().toggleOrderedList().run(),
 })
 
@@ -111,7 +87,6 @@ export const H1Control = createControl({
   label: 'H1',
   icon: () => <H1Icon />,
   isActive: {name: 'heading', attributes: {level: 1}},
-  // operation: {name: 'toggleHeading', attributes: {level: 1}},
   onPress: (editor) => () =>
     editor?.chain().focus().toggleHeading({level: 1}).run(),
 })
@@ -121,17 +96,14 @@ export const H2Control = createControl({
 
   icon: () => <H2Icon />,
   isActive: {name: 'heading', attributes: {level: 2}},
-  // operation: {name: 'toggleHeading', attributes: {level: 2}},
   onPress: (editor) => () =>
     editor?.chain().focus().toggleHeading({level: 2}).run(),
 })
 
 export const H3Control = createControl({
   label: 'H3',
-
   icon: () => <H3Icon />,
   isActive: {name: 'heading', attributes: {level: 3}},
-  // operation: {name: 'toggleHeading', attributes: {level: 3}},
   onPress: (editor) => () =>
     editor?.chain().focus().toggleHeading({level: 3}).run(),
 })
@@ -140,7 +112,6 @@ export const H4Control = createControl({
   label: 'H4',
   icon: () => <H4Icon />,
   isActive: {name: 'heading', attributes: {level: 4}},
-  // operation: {name: 'toggleHeading', attributes: {level: 4}},
   onPress: (editor) => () =>
     editor?.chain().focus().toggleHeading({level: 4}).run(),
 })
@@ -149,7 +120,6 @@ export const H5Control = createControl({
   label: 'H5',
   icon: () => <H5Icon />,
   isActive: {name: 'heading', attributes: {level: 5}},
-  // operation: {name: 'toggleHeading', attributes: {level: 5}},
   onPress: (editor) => () =>
     editor?.chain().focus().toggleHeading({level: 5}).run(),
 })
@@ -158,7 +128,6 @@ export const H6Control = createControl({
   label: 'H6',
   icon: () => <H6Icon />,
   isActive: {name: 'heading', attributes: {level: 6}},
-  // operation: {name: 'toggleHeading', attributes: {level: 6}},
   onPress: (editor) => () =>
     editor?.chain().focus().toggleHeading({level: 6}).run(),
 })
@@ -167,41 +136,32 @@ export const BlockquoteControl = createControl({
   label: 'blockquote',
   icon: () => <Icon icon={faQuoteLeft} />,
   isActive: {name: 'blockquote'},
-  // operation: {name: 'toggleBlockquote'},
   onPress: (editor) => () => editor?.chain().focus().toggleBlockquote().run(),
 })
 
 export const AlignLeftControl = createControl({
   label: 'left alignment text',
-
   icon: () => <Icon icon={faAlignLeft} />,
-  // operation: {name: 'setTextAlign', attributes: 'left'},
   onPress: (editor) => () => editor?.chain().focus().setTextAlign('left').run(),
 })
 
 export const AlignRightControl = createControl({
   label: 'right alignment text',
-
   icon: () => <Icon icon={faAlignRight} />,
-  // operation: {name: 'setTextAlign', attributes: 'right'},
   onPress: (editor) => () =>
     editor?.chain().focus().setTextAlign('right').run(),
 })
 
 export const AlignCenterControl = createControl({
   label: 'center alignment text',
-
   icon: () => <Icon icon={faAlignCenter} />,
-  // operation: {name: 'setTextAlign', attributes: 'center'},
   onPress: (editor) => () =>
     editor?.chain().focus().setTextAlign('center').run(),
 })
 
 export const AlignJustifyControl = createControl({
   label: 'justify alignment text',
-
   icon: () => <Icon icon={faAlignJustify} />,
-  // operation: {name: 'setTextAlign', attributes: 'justify'},
   onPress: (editor) => () =>
     editor?.chain().focus().setTextAlign('justify').run(),
 })
@@ -210,7 +170,6 @@ export const SubscriptControl = createControl({
   label: 'subscript',
   icon: () => <Icon icon={faSubscript} />,
   isActive: {name: 'subscript'},
-  // operation: {name: 'toggleSubscript'},
   onPress: (editor) => () => editor?.chain().focus().toggleSubscript().run(),
 })
 
@@ -218,26 +177,20 @@ export const SuperscriptControl = createControl({
   label: 'superscript',
   icon: () => <Icon icon={faSuperscript} />,
   isActive: {name: 'superscript'},
-  // operation: {name: 'toggleSuperscript'},
   onPress: (editor) => () => editor?.chain().focus().toggleSuperscript().run(),
 })
 
 export const CodeBlockControl = createControl({
   label: 'code block',
-
   icon: () => <Icon icon={faLaptopCode} />,
   isActive: {name: 'codeBlock'},
-  // operation: {name: 'toggleCodeBlock'},
   onPress: (editor) => () => editor?.chain().focus().toggleCodeBlock().run(),
 })
 
 export const HrControl = createControl({
   label: 'horizontal rule',
-
   icon: () => <Icon icon={faRulerHorizontal} />,
   onPress: (editor) => () => editor?.chain().focus().setHorizontalRule().run(),
-
-  // operation: {name: 'setHorizontalRule'},
 })
 
 const H1Icon = () => (
@@ -246,11 +199,11 @@ const H1Icon = () => (
     width='18'
     height='24'
     viewBox='0 0 24 24'
-    stroke='black'
-    stroke-width='2'
+    stroke='currentColor'
+    strokeWidth='2'
     fill='none'
-    stroke-linecap='round'
-    stroke-linejoin='round'
+    strokeLinecap='round'
+    strokeLinejoin='round'
   >
     <path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
     <path d='M19 18v-8l-2 2'></path>
@@ -270,11 +223,11 @@ const H2Icon = () => (
     width='18'
     height='24'
     viewBox='0 0 24 24'
-    stroke='black'
-    stroke-width='2'
+    stroke='currentColor'
+    strokeWidth='2'
     fill='none'
-    stroke-linecap='round'
-    stroke-linejoin='round'
+    strokeLinecap='round'
+    strokeLinejoin='round'
   >
     <path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
     <path d='M17 12a2 2 0 1 1 4 0c0 .591 -.417 1.318 -.816 1.858l-3.184 4.143l4 0'></path>
@@ -294,11 +247,11 @@ const H3Icon = () => (
     width='18'
     height='24'
     viewBox='0 0 24 24'
-    stroke='black'
-    stroke-width='2'
+    stroke='currentColor'
+    strokeWidth='2'
     fill='none'
-    stroke-linecap='round'
-    stroke-linejoin='round'
+    strokeLinecap='round'
+    strokeLinejoin='round'
   >
     <path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
     <path d='M19 14a2 2 0 1 0 -2 -2'></path>
@@ -318,11 +271,11 @@ const H4Icon = () => (
     width='18'
     height='24'
     viewBox='0 0 24 24'
-    stroke='black'
-    stroke-width='2'
+    stroke='currentColor'
+    strokeWidth='2'
     fill='none'
-    stroke-linecap='round'
-    stroke-linejoin='round'
+    strokeLinecap='round'
+    strokeLinejoin='round'
   >
     <path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
     <path d='M20 18v-8l-4 6h5'></path>
@@ -341,11 +294,11 @@ const H5Icon = () => (
     width='18'
     height='24'
     viewBox='0 0 24 24'
-    stroke='black'
-    stroke-width='2'
+    stroke='currentColor'
+    strokeWidth='2'
     fill='none'
-    stroke-linecap='round'
-    stroke-linejoin='round'
+    strokeLinecap='round'
+    strokeLinejoin='round'
   >
     <path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
     <path d='M17 18h2a2 2 0 1 0 0 -4h-2v-4h4'></path>
@@ -365,11 +318,11 @@ const H6Icon = () => (
     width='18'
     height='24'
     viewBox='0 0 24 24'
-    stroke='black'
-    stroke-width='2'
+    stroke='currentColor'
+    strokeWidth='2'
     fill='none'
-    stroke-linecap='round'
-    stroke-linejoin='round'
+    strokeLinecap='round'
+    strokeLinejoin='round'
   >
     <path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
     <path d='M19 14a2 2 0 1 0 0 4a2 2 0 0 0 0 -4z'></path>

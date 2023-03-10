@@ -23,7 +23,7 @@ export function OthersSelector<T extends object>(props: AriaSelectProps<T>) {
   let {buttonProps} = useButton(triggerProps, ref)
   const icon = <Icon className='accordion-chevron-icon' icon={faEllipsis} />
   return (
-    <div>
+    <>
       <HiddenSelect state={state} triggerRef={ref} label={props.label} />
       <StyledDropdownButton {...buttonProps} ref={ref} isOpen={state.isOpen}>
         {icon}
@@ -33,6 +33,6 @@ export function OthersSelector<T extends object>(props: AriaSelectProps<T>) {
           <ListBox {...menuProps} state={state} />
         </Popover>
       )}
-    </div>
+    </>
   )
 }

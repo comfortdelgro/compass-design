@@ -23,7 +23,7 @@ export function HeadingSelector<T extends object>(props: AriaSelectProps<T>) {
   let {buttonProps} = useButton(triggerProps, ref)
 
   return (
-    <div>
+    <>
       <HiddenSelect state={state} triggerRef={ref} label={props.label} />
       <StyledDropdownButton {...buttonProps} ref={ref} isOpen={state.isOpen}>
         <span {...valueProps}>
@@ -38,6 +38,6 @@ export function HeadingSelector<T extends object>(props: AriaSelectProps<T>) {
           <ListBox {...menuProps} state={state} />
         </Popover>
       )}
-    </div>
+    </>
   )
 }

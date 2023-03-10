@@ -9,9 +9,8 @@ export const StyledToolbar = styled('div', {
   margin: '0px',
 
   // Styling
-  padding: '5px 24px',
+  padding: '5px 20px',
   backgroundColor: '#F3F2F1',
-  width: 820,
   display: 'flex',
   justifyContent: 'flex-start',
   alignItems: 'center',
@@ -25,11 +24,6 @@ export const StyledToolbar = styled('div', {
         top: 0,
       },
     },
-    // wrapped: {
-    //   true: {
-    //     flexWrap: 'wrap',
-    //   },
-    // },
   },
 })
 

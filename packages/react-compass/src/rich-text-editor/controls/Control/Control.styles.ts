@@ -10,15 +10,19 @@ export const StyledControl = styled('button', {
   border: 'none',
   borderRadius: 4,
   cursor: 'pointer',
-  background: 'none',
+  backgroundColor: '#f3f2f1 !important',
   display: 'flex',
   alignItems: 'center',
+  width: 28,
+  height: 28,
+  justifyContent: 'center',
+  padding: 0,
   '&:hover': {
-    background: '#E1DFDD',
+    backgroundColor: '#E1DFDD !important',
     color: '#000000',
   },
   '&:disabled': {
-    background: '$divider',
+    backgroundColor: '$divider',
     color: '$disabledText',
     borderColor: '$divider',
     cursor: 'not-allowed',
@@ -26,8 +30,12 @@ export const StyledControl = styled('button', {
   variants: {
     active: {
       true: {
-        background: '#605E5C',
+        backgroundColor: '#605E5C !important',
         color: '#FFFFFF',
+        '&:hover': {
+          backgroundColor: '#605E5C !important',
+          color: '#FFFFFF',
+        },
       },
     },
   },
