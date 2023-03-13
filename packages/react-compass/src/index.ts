@@ -172,7 +172,11 @@ export type {RadioGroupProps, RadioProps} from './radio'
 export {default as RangeCalendar} from './range-calendar'
 export type {RangeCalendarProps, RangeValue} from './range-calendar'
 export {default as RichTextEditor} from './rich-text-editor'
-export type {RichTextEditorProps} from './rich-text-editor'
+export type {
+  Content,
+  JSONContent,
+  RichTextEditorProps,
+} from './rich-text-editor'
 export {default as RichTextRender} from './richtext-render'
 export type {Document, RichTextRenderProps} from './richtext-render'
 export {default as SearchField} from './searchfield'
