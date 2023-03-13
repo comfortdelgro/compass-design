@@ -743,7 +743,9 @@ export const DragAndDrop: React.FC = () => {
   return (
     <DragAndDropList onReorderByKeys={onReorderByKeys}>
       {arr.map((a) => (
-        <DragAndDropList.Item key={a}>{a}</DragAndDropList.Item>
+        <DragAndDropList.Item key={a}>
+          <div>{a}</div>
+        </DragAndDropList.Item>
       ))}
     </DragAndDropList>
   )
