@@ -5,10 +5,7 @@ import Icon from '../../../../icon'
 import {useRichTextEditorContext} from '../../../rich-text-editor.context'
 import {OthersSelector} from './OthersSelector'
 
-type CommandName =
-  // | 'toggleSuperscript'
-  // | 'toggleSubscript'
-  'setHorizontalRule' | 'toggleCodeBlock'
+type CommandName = 'setHorizontalRule' | 'toggleCodeBlock'
 export const OthersControl = () => {
   const {editor} = useRichTextEditorContext()
   const handleSelectionChange = (key: React.Key) => {

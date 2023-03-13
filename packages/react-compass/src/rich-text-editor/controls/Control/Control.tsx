@@ -5,13 +5,6 @@ import type {StyledComponentProps} from '../../../utils/stitches.types'
 import {useDOMRef} from '../../../utils/use-dom-ref'
 import {ControlVariantProps, StyledControl} from './Control.styles'
 
-// import {
-// ButtonVariantProps,
-// StyledButton,
-// StyledButtonContent,
-// StyledLoading
-// } from './control.styles'
-
 interface Props extends AriaButtonProps, StyledComponentProps {
   children?: React.ReactNode
   className?: string

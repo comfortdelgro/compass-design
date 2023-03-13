@@ -30,7 +30,6 @@ const MenuBarSelectButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <StyledDropdownButton
-        // expand={expand}
         ref={buttonRef}
         className={className}
         css={css}

@@ -29,9 +29,6 @@ export const StyledDropdownButton = styled('button', {
         '& .accordion-chevron-icon': {
           transform: 'rotate(180deg)',
         },
-        // '& .dropdown-button-icon': {
-        //   color: '#ffffff',
-        // },
       },
     },
   },
