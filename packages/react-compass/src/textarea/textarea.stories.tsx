@@ -41,6 +41,7 @@ export const Variants: React.FC = () => {
         label='Disabled Text Label'
         placeholder='Enter your message'
         isDisabled={true}
+
       />
     </Column>
   )
