@@ -38,9 +38,10 @@ export const Variants: React.FC = () => {
         errorMessage='Error Message'
       />
       <Textarea
-        label='Text Label'
+        label='Disabled Text Label'
         placeholder='Enter your message'
-        isDisabled
+        isDisabled={true}
+
       />
     </Column>
   )

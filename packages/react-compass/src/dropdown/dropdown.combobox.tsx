@@ -23,6 +23,7 @@ interface Props<T> extends ComboBoxStateOptions<T>, StyledComponentProps {
   isRequired?: boolean
   errorMessage?: string
   headerTitle?: string
+  onLoadMore?: () => void
   headerOnClick?: (e: unknown) => void
 }
 
@@ -38,6 +39,9 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
       isRequired,
       isDisabled,
       errorMessage,
+      onLoadMore = () => {
+        //Load more
+      },
       // AriaDropdownProps
     } = props
     const variantProps = {} as DropdownVariantProps
@@ -103,6 +107,7 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
                 <ListBox
                   {...listBoxProps}
                   shouldFocusOnHover={false}
+                  onLoadMore={onLoadMore}
                   isLoading={!!props.isLoading}
                   headerTitle={props.headerTitle}
                   headerOnClick={(e) => props?.headerOnClick?.(e)}

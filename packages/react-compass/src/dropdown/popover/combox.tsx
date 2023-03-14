@@ -18,15 +18,26 @@ interface Props<T = unknown> extends AriaPopoverProps {
 function Popover({children, state, ...props}: Props) {
   const ref = React.useRef(null)
   const {popoverRef = ref} = props
-  const {popoverProps} = usePopover(
+  const {popoverProps, underlayProps} = usePopover(
     {
       ...props,
       offset: 8,
       shouldFlip: true,
       popoverRef,
+      isNonModal: true,
     },
     state,
   )
+
+  // React.useEffect(() => {
+  //   const close = (e: Event) => {
+  //     e.preventDefault()
+  //   }
+  //   document.addEventListener('scroll', close, true)
+  //   return () => {
+  //     document.removeEventListener('scroll', close)
+  //   }
+  // }, [])
 
   const styles = props.triggerRef.current?.clientWidth
     ? {
@@ -38,7 +49,13 @@ function Popover({children, state, ...props}: Props) {
 
   return (
     <Overlay>
+      <div
+        {...underlayProps}
+        onClick={() => state.close()}
+        style={{position: 'fixed', inset: 0}}
+      />
       <StyledPopover {...popoverProps} ref={popoverRef} style={styles}>
+        <DismissButton onDismiss={() => state.close()} />
         {children}
         <DismissButton onDismiss={() => state.close()} />
       </StyledPopover>
