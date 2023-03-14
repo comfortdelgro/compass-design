@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 0.28.0
+
+### Minor Changes
+
+- f9db587: Fix bugs and add rich text editor
+
 ## 0.27.0
 
 ### Minor Changes
