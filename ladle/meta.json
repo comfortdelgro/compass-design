@@ -871,7 +871,7 @@
         "Textarea"
       ],
       "locStart": 6,
-      "locEnd": 48,
+      "locEnd": 47,
       "filePath": "src/textarea/textarea.stories.tsx",
       "meta": {}
     },
