@@ -30,9 +30,7 @@ function Popover({children, state, ...props}: Props) {
   )
 
   // React.useEffect(() => {
-  //   const close = (e: Event) => {
-  //     e.preventDefault()
-  //   }
+  //   const close = () => state.close()
   //   document.addEventListener('scroll', close, true)
   //   return () => {
   //     document.removeEventListener('scroll', close)
@@ -44,6 +42,7 @@ function Popover({children, state, ...props}: Props) {
         ...popoverProps.style,
         width: 'fit-content',
         minWidth: props.triggerRef.current.clientWidth + 2,
+        zIndex: 2147483640,
       }
     : {...popoverProps?.style}
 
@@ -52,7 +51,7 @@ function Popover({children, state, ...props}: Props) {
       <div
         {...underlayProps}
         onClick={() => state.close()}
-        style={{position: 'fixed', inset: 0}}
+        style={{position: 'fixed', inset: 0, zIndex: 2147483641}}
       />
       <StyledPopover {...popoverProps} ref={popoverRef} style={styles}>
         <DismissButton onDismiss={() => state.close()} />
