@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 0.29.0
+
+### Minor Changes
+
+- 7c7bc94: Remove rich text editor
+
 ## 0.28.0
 
 ### Minor Changes
