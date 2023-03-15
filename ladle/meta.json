@@ -675,26 +675,6 @@
       "filePath": "src/range-calendar/range-calendar.stories.tsx",
       "meta": {}
     },
-    "rich-text-editor--default": {
-      "name": "Default",
-      "levels": [
-        "Rich text editor"
-      ],
-      "locStart": 5,
-      "locEnd": 15,
-      "filePath": "src/rich-text-editor/rich-text-editor.stories.tsx",
-      "meta": {}
-    },
-    "rich-text-editor--cutomized": {
-      "name": "Cutomized",
-      "levels": [
-        "Rich text editor"
-      ],
-      "locStart": 17,
-      "locEnd": 57,
-      "filePath": "src/rich-text-editor/rich-text-editor.stories.tsx",
-      "meta": {}
-    },
     "richtext-render--default": {
       "name": "Default",
       "levels": [
