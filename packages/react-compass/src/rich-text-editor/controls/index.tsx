@@ -1,6 +1,0 @@
-export * from './controls'
-export {ColorControl} from './DropdownControls/Color/ColorControl'
-export {HeadingsControl} from './DropdownControls/Heading/HeadingsControl'
-export {TextAlignmentSelectorControl} from './DropdownControls/TextAlignment/TextAlignmentSelectorControl'
-export {ImageControl} from './ImageControl/ImageControl'
-export {LinkControl} from './LinkControl/LinkControl'
