@@ -31,27 +31,18 @@ export const StyledQuantityToggle = styled('div', {
       border: '1px solid #EDEBE9',
       backgroundColor: '$gray10',
     },
-    'button[aria-label="Decrease"]': {
-      borderRight: 'none',
-      borderRadius: '4px 0 0 4px',
-    },
-    'button[aria-label="Increase"]': {
-      borderLeft: 'none',
-      borderRadius: '0 4px 4px 0',
-    },
   },
-  '.quantity-toggle-label': {
+  label: {
     fontSize: '$label1',
-    fontWeight: '$semibold',
+    fontWeight: '$medium',
+    lineHeight: '$normal',
+    display: 'block',
     marginBottom: '$1',
     color: '$gray90',
-  },
-  '.quantity-toggle-helper-text': {
-    fontSize: '$label3',
-    fontWeight: '$semibold',
-    margin: 0,
-    marginTop: '$1',
-    color: '$gray50',
+    span: {
+      marginLeft: '$1',
+      color: '$danger',
+    },
   },
   variants: {
     isDisabled: {
@@ -77,6 +68,22 @@ export const StyledQuantityToggle = styled('div', {
             borderColor: '$danger',
           },
         },
+      },
+    },
+  },
+})
+
+export const StyledHelperText = styled('div', {
+  fontSize: '$label2',
+  fontWeight: '$medium',
+  transition: '$default',
+  marginTop: '$1',
+  color: '$gray70',
+
+  variants: {
+    error: {
+      true: {
+        color: '$danger',
       },
     },
   },

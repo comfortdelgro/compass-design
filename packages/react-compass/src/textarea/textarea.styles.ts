@@ -20,7 +20,7 @@ export const StyledTextarea = styled('textarea', {
   fontWeight: '$medium',
   lineHeight: '$normal',
   padding: '$1_5 $3',
-  borderWidth: '$medium',
+  borderWidth: '1px',
   borderStyle: 'solid',
   borderColor: 'transparent',
   borderRadius: '$md',

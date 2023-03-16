@@ -1,3 +1,4 @@
+import React from 'react'
 import QuantityToggle from './index'
 
 describe('quantity-toggle.cy.ts', () => {

@@ -93,7 +93,7 @@ export const StyledDropdown = styled('div', {
     isErrored: {
       true: {
         borderColor: '$danger',
-        borderWidth: 2,
+        borderWidth: 1,
         input: {
           '&:focus': {
             borderColor: '$danger',
@@ -177,7 +177,7 @@ export const StyledFlag = styled('div', {
     isErrored: {
       true: {
         borderColor: '$danger',
-        borderWidth: 2,
+        borderWidth: 1,
         input: {
           '&:focus': {
             borderColor: '$danger',
@@ -246,7 +246,7 @@ export const StyledSelect = styled('div', {
     isErrored: {
       true: {
         borderColor: '$danger',
-        borderWidth: 2,
+        borderWidth: 1,
         button: {
           '&:focus': {
             borderColor: '$danger',

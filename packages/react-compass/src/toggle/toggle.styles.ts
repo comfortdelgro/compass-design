@@ -10,6 +10,7 @@ export const StyledToggle = styled('div', {
   cursor: 'pointer',
   borderRadius: '$full',
   backgroundColor: '$gray70',
+  transition: 'background-color 500ms ease',
   '& .toggle-circle': {
     width: '$3',
     height: '$3',
