@@ -52,7 +52,7 @@ export const StyledCheckboxBox = styled('span', {
 
 //add a different styles for checkbox table
 export const StyledTableCheckboxBox = styled('span', {
-  display: 'block', // using display block
+  display: 'block',
   height: '$4',
   width: '$4',
   //add background
@@ -114,6 +114,19 @@ export const StyledCheckboxLabel = styled('label', {
   },
 
   [`${StyledCheckboxInput}:disabled:checked ~ ${StyledCheckboxBox}`]: {
+    borderColor: '$gray50',
+    backgroundColor: '$gray50',
+  },
+  [`${StyledCheckboxInput}:checked ~ ${StyledTableCheckboxBox}`]: {
+    borderColor: '$cdgBlue',
+    backgroundColor: '$cdgBlue',
+
+    [`${StyledCheckboxCheckmark}`]: {
+      display: 'flex',
+    },
+  },
+
+  [`${StyledCheckboxInput}:disabled:checked ~ ${StyledTableCheckboxBox}`]: {
     borderColor: '$gray50',
     backgroundColor: '$gray50',
   },
