@@ -70,7 +70,7 @@ export const StyledBox = styled('div', {
     isErrored: {
       true: {
         borderColor: '$danger',
-        borderWidth: 2,
+        borderWidth: 1,
       },
     },
   },
