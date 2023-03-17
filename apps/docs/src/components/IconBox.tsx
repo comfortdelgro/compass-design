@@ -27,6 +27,7 @@ const IconBox: React.FC<Props> = ({name, component}) => {
       }}
       onClick={() => {
         navigator && navigator.clipboard.writeText(name.replace(/\.?([A-Z])/g, function (x,y){return "-" + y.toLowerCase()}).replace(/^-/, ""))
+
         toast.success('Copied to clipboard')
       }}
     >
