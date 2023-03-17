@@ -7,3 +7,7 @@ table {
   display: table !important;
   width: 100%;
 }
+
+.scale:hover {
+  transform: scale(1.1);
+}

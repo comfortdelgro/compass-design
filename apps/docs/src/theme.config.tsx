@@ -24,14 +24,23 @@ const nextraConfig: DocsThemeConfig = {
     text: 'Edit this page on GitHub',
   },
   logo: () => (
-    <div className='flex flex-row items-center space-x-2'>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+      }}
+    >
       <div
-        className='w-7 aspect-square bg-no-repeat bg-cover'
         style={{
           backgroundImage: 'url(/compass-design/logo.svg)',
+          width: '1.75rem',
+          aspectRatio: '1 / 1',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover'
         }}
       />
-      <div className='font-bold'>Compass Design</div>
+      <div style={{fontWeight: 700}}>Compass Design</div>
     </div>
   ),
   getNextSeoProps: () => {

@@ -2,32 +2,48 @@ import {theme} from '@comfortdelgro/react-compass/theme'
 
 interface Props {
   size: (typeof theme)['fontSizes'][keyof (typeof theme)['fontSizes']]
-  family: string
   weight: keyof (typeof theme)['fontWeights']
   color: string
+  children: React.ReactElement
 }
 
 const FontDisplay: React.FC<Props> = ({
   size,
-  family,
   weight,
   color = '#000000',
 }) => {
   return (
-    <div className='w-full border-b last:border-b-0 py-5'>
-      <div className='font-mono text-sm flex flex-row space-x-10 text-gray-500 mb-2.5'>
+    <div
+      style={{
+        width: '100%',
+        borderBottom: '1px gray solid',
+        paddingTop: '1.25rem',
+        paddingBottom: '1.25rem',
+      }}
+    >
+      <div
+        style={{
+          fontSize: "0.875rem",
+          lineHeight: "1.25rem",
+          display: 'flex',
+          gap: '2.5rem',
+          color: 'rgb(107 114 128)',
+          marginBottom: '0.625rem',
+        }}
+      >
         <span>{size.token}</span>
         <span>size: {size.value}</span>
         <span>
-          {family} / <span className='capitalize'>{weight}</span>
+          <span style={{textTransform: 'capitalize'}}>{weight}</span>
         </span>
       </div>
 
       <div
-        className='overflow-hidden overflow-ellipsis max-w-full whitespace-nowrap leading-none'
         style={{
+          overflow: 'hidden',
+          whiteSpace: 'nowrap',
           fontSize: size.value,
-          fontFamily: family,
+          lineHeight: 1,
           fontWeight: theme.fontWeights[weight].value,
           color,
         }}
