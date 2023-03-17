@@ -9,42 +9,35 @@ interface CreateControlProps {
   label: string
   isActive?: {name: string; attributes?: Record<string, any> | string}
   onPress: (editor: Editor | null) => () => void
-  // operation: {name: OperationName; attributes?: Record<string, any> | string}
 }
 
-// type OperationName =
-//   | 'undo'
-//   | 'redo'
-//   | 'toggleBold'
-//   | 'toggleItalic'
-//   | 'toggleUnderline'
-//   | 'toggleStrike'
-//   | 'unsetLink'
-//   | 'toggleBulletList'
-//   | 'toggleOrderedList'
-//   | 'toggleHeading'
 export function createControl({
   isActive,
-  // operation,
   onPress,
   icon,
   label,
 }: CreateControlProps) {
-  return forwardRef<HTMLButtonElement, PremadeControlProps>((props, ref) => {
-    const {editor} = useRichTextEditorContext()
-    return (
-      <ControlBase
-        active={
-          isActive?.name
-            ? editor?.isActive(isActive.name, isActive.attributes) ?? false
-            : false
-        }
-        ref={ref}
-        onPress={onPress(editor)}
-        icon={icon}
-        aria-label={label}
-        {...props}
-      />
-    )
-  })
+  const CreatedControl = forwardRef<HTMLButtonElement, PremadeControlProps>(
+    (props, ref) => {
+      const {editor} = useRichTextEditorContext()
+      return (
+        <ControlBase
+          active={
+            isActive?.name
+              ? editor?.isActive(isActive.name, isActive.attributes) ?? false
+              : false
+          }
+          ref={ref}
+          onPress={onPress(editor)}
+          icon={icon}
+          aria-label={label}
+          {...props}
+        />
+      )
+    },
+  )
+  CreatedControl.defaultProps = {
+    controltype: 'control',
+  }
+  return CreatedControl
 }

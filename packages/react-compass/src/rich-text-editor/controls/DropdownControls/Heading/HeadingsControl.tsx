@@ -3,11 +3,13 @@ import React from 'react'
 import {useRichTextEditorContext} from '../../../rich-text-editor.context'
 import {HeadingSelector} from './HeadingSelector'
 export type HeadingsControlProps = {
-  levels: number[]
+  levels?: number[]
 }
 export type Level = 1 | 2 | 3 | 4 | 5 | 6
 
-export const HeadingsControl = ({levels}: HeadingsControlProps) => {
+export const HeadingsControl = ({
+  levels = [1, 2, 3, 4, 5, 6],
+}: HeadingsControlProps) => {
   const {editor} = useRichTextEditorContext()
   const levelsSet = new Set([0, ...levels])
   const [selectedHeadingLevel, setLevel] = React.useState<string>('0')

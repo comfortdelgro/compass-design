@@ -1,7 +1,6 @@
 import * as controls from './controls'
 import Control from './controls/Control/Control'
 import ControlsGroup from './controls/ControlsGroup/ControlsGroup'
-import {DefaultRichTextEditor} from './DefaultRichTextEditor'
 import RichTextEditor from './rich-text-editor'
 import Toolbar from './toolbar/Toolbar'
 // export {Blockquote} from '@tiptap/extension-blockquote'
@@ -55,11 +54,8 @@ RichTextEditor.HeadingsControl = controls.HeadingsControl
 RichTextEditor.Hr = controls.HrControl
 RichTextEditor.Undo = controls.UndoControl
 RichTextEditor.Redo = controls.RedoControl
-RichTextEditor.Default = DefaultRichTextEditor
 RichTextEditor.displayName = 'RichTextEditor'
-// RichTextEditor.Code = controls.CodeControl
 // RichTextEditor.ClearFormatting = controls.ClearFormattingControl
-// RichTextEditor.ColorPicker = controls.ColorPickerControl
 // RichTextEditor.Highlight = controls.HighlightControl
 
 export default RichTextEditor

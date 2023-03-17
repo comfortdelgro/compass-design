@@ -5,9 +5,28 @@ import {StyledColorItem} from '../../../rich-text-editor.styles'
 import {ColorSelector} from './ColorSelector'
 
 export type ColorControlProps = {
-  colors: string[]
+  colors?: string[]
 }
-export const ColorControl = ({colors}: ColorControlProps) => {
+
+const defaultColors = [
+  '#212529',
+  '#845EF7',
+  '#339AF0',
+  '#22B8CF',
+  '#51CF66',
+  '#FCC419',
+  '#FF6B6B',
+  '#F06595',
+  '#CED4DA',
+  '#5F3DC4',
+  '#1864AB',
+  '#0B7285',
+  '#2B8A3E',
+  '#E67700',
+  '#C92A2A',
+  '#C2255C',
+]
+export const ColorControl = ({colors = defaultColors}: ColorControlProps) => {
   const {editor} = useRichTextEditorContext()
   const colorSet = new Set(colors)
   const handleSelectionChange = (key: React.Key) => {

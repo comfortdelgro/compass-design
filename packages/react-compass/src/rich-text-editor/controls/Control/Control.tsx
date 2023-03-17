@@ -14,6 +14,7 @@ export interface PremadeControlProps
   extends AriaButtonProps,
     StyledComponentProps {
   icon?: React.FC
+  controltype?: string
 }
 export type ButtonProps = Props &
   ControlVariantProps &

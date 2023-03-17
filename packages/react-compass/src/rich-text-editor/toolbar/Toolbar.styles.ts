@@ -7,21 +7,21 @@ export const StyledToolbar = styled('div', {
   border: 'none',
   boxSizing: 'border-box',
   margin: '0px',
-
   // Styling
   padding: '5px 20px',
   backgroundColor: '#F3F2F1',
   display: 'flex',
   justifyContent: 'flex-start',
   alignItems: 'center',
-  gap: 16,
-  position: 'static',
-  flexWrap: 'wrap',
+  position: 'relative',
+  rowGap: 5,
   variants: {
-    sticky: {
+    inline: {
       true: {
-        position: 'sticky',
-        top: 0,
+        flexWrap: 'nowrap',
+      },
+      false: {
+        flexWrap: 'wrap',
       },
     },
   },

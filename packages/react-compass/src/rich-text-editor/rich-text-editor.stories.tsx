@@ -6,10 +6,39 @@ export const Default: React.FC = () => {
   return (
     <Column>
       <h3>Default Rich Text Editor</h3>
-      <RichTextEditor.Default
-        content={`<p>Example Text</p>`}
-        characterCount={200}
-      />
+      <RichTextEditor characterCount={200}>
+        <RichTextEditor.Toolbar>
+          <RichTextEditor.ControlsGroup>
+            <RichTextEditor.Undo />
+            <RichTextEditor.Redo />
+          </RichTextEditor.ControlsGroup>
+          <RichTextEditor.ControlsGroup>
+            <RichTextEditor.HeadingsControl />
+          </RichTextEditor.ControlsGroup>
+          <RichTextEditor.ControlsGroup>
+            <RichTextEditor.ColorControl />
+          </RichTextEditor.ControlsGroup>
+          <RichTextEditor.ControlsGroup>
+            <RichTextEditor.TextAlginmentSelector />
+          </RichTextEditor.ControlsGroup>
+          <RichTextEditor.ControlsGroup>
+            <RichTextEditor.Bold />
+            <RichTextEditor.Italic />
+            <RichTextEditor.Underline />
+            <RichTextEditor.Strikethrough />
+          </RichTextEditor.ControlsGroup>
+          <RichTextEditor.BulletList />
+          <RichTextEditor.OrderedList />
+          <RichTextEditor.Link />
+          <RichTextEditor.Unlink />
+          <RichTextEditor.Image />
+          <RichTextEditor.Superscript />
+          <RichTextEditor.Subscript />
+          <RichTextEditor.Hr />
+          <RichTextEditor.CodeBlock />
+          <RichTextEditor.Blockquote />
+        </RichTextEditor.Toolbar>
+      </RichTextEditor>
     </Column>
   )
 }
@@ -18,8 +47,8 @@ export const Cutomized: React.FC = () => {
   return (
     <Column>
       <h3>Cutomized Rich Text Editor</h3>
-      <RichTextEditor characterCount={200} css={{listStyleType: 'square'}}>
-        <RichTextEditor.Toolbar>
+      <RichTextEditor characterCount={200}>
+        <RichTextEditor.Toolbar inline={false}>
           <RichTextEditor.ControlsGroup>
             <RichTextEditor.H1 />
             <RichTextEditor.H2 />

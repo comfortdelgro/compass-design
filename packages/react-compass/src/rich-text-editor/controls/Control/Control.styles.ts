@@ -17,6 +17,7 @@ export const StyledControl = styled('button', {
   height: 28,
   justifyContent: 'center',
   padding: 0,
+  margin: '0 8px',
   '&:hover': {
     backgroundColor: '#E1DFDD !important',
     color: '#000000',

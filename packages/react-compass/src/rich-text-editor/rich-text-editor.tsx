@@ -16,7 +16,6 @@ import {StyledComponentProps} from '../utils/stitches.types'
 import * as controls from './controls'
 import Control from './controls/Control/Control'
 import ControlsGroup from './controls/ControlsGroup/ControlsGroup'
-import {DefaultRichTextEditor} from './DefaultRichTextEditor'
 import {RichTextEditorProvider} from './rich-text-editor.context'
 import {
   StyledEditorContent,
@@ -136,7 +135,6 @@ export default RichTextEditor as typeof RichTextEditor & {
   Hr: typeof controls.HrControl
   Undo: typeof controls.UndoControl
   Redo: typeof controls.RedoControl
-  Default: typeof DefaultRichTextEditor
   // Code: typeof controls.CodeControl
   // ColorPicker: typeof controls.ColorPickerControl
   // Highlight: typeof controls.HighlightControl

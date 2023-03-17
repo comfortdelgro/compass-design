@@ -40,8 +40,8 @@ export const LinkControl = React.forwardRef<
       active={editor?.isActive('link') ?? false}
       ref={ref}
       icon={() => <Icon icon={faLink} />}
-      aria-label={'link'}
       onPress={setLink}
+      className='control'
       {...delegated}
     ></ControlBase>
   )

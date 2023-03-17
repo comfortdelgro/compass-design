@@ -1,30 +1,28 @@
-import React from 'react'
+import React, {ReactNode} from 'react'
 import {StyledComponentProps} from '../../../utils/stitches.types'
-import {useDOMRef} from '../../../utils/use-dom-ref'
-import {
-  StyledControlsGroup,
-  StyledControlsGroupProps,
-} from './ControlsGroup.styles'
+import {StyledControlsGroupProps} from './ControlsGroup.styles'
+
 export type ControlsGroupProps = StyledComponentProps &
   StyledControlsGroupProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof StyledComponentProps>
 
 const ControlsGroup = React.forwardRef<HTMLDivElement, ControlsGroupProps>(
-  (props, ref) => {
+  (props) => {
     const {
       // StyledComponentProps
-      css = {},
       children,
-      // element
-      ...delegates
     } = props
-    const controlsGroupRef = useDOMRef<HTMLDivElement>(ref)
 
     return (
-      <StyledControlsGroup ref={controlsGroupRef} css={css} {...delegates}>
-        {children}
-      </StyledControlsGroup>
+      <>
+        {React.Children.map(children, (child: ReactNode, index) =>
+          React.cloneElement(child as React.ReactElement, {
+            style: {marginLeft: index === 0 ? '8px' : 0},
+          }),
+        )}
+      </>
     )
   },
 )
+
 export default ControlsGroup

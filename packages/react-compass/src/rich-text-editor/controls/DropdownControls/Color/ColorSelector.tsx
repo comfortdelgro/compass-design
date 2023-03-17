@@ -23,9 +23,14 @@ export function ColorSelector<T extends object>(props: AriaSelectProps<T>) {
   let {buttonProps} = useButton(triggerProps, ref)
 
   return (
-    <div>
+    <>
       <HiddenSelect state={state} triggerRef={ref} label={props.label} />
-      <StyledDropdownButton {...buttonProps} ref={ref} isOpen={state.isOpen}>
+      <StyledDropdownButton
+        {...buttonProps}
+        ref={ref}
+        isOpen={state.isOpen}
+        css={{width: 70}}
+      >
         <span {...valueProps}>
           {state.selectedItem
             ? state.selectedItem.rendered
@@ -38,6 +43,6 @@ export function ColorSelector<T extends object>(props: AriaSelectProps<T>) {
           <GridBox {...menuProps} state={state} />
         </Popover>
       )}
-    </div>
+    </>
   )
 }

@@ -25,7 +25,12 @@ export function HeadingSelector<T extends object>(props: AriaSelectProps<T>) {
   return (
     <>
       <HiddenSelect state={state} triggerRef={ref} label={props.label} />
-      <StyledDropdownButton {...buttonProps} ref={ref} isOpen={state.isOpen}>
+      <StyledDropdownButton
+        {...buttonProps}
+        ref={ref}
+        isOpen={state.isOpen}
+        css={{minWidth: 145, maxWidth: 145}}
+      >
         <span {...valueProps}>
           {state.selectedItem
             ? state.selectedItem.textValue

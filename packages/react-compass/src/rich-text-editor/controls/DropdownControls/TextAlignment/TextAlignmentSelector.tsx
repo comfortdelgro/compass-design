@@ -27,7 +27,12 @@ export function TextAlignmentSelector<T extends object>(
   return (
     <>
       <HiddenSelect state={state} triggerRef={ref} label={props.label} />
-      <StyledDropdownButton {...buttonProps} ref={ref} isOpen={state.isOpen}>
+      <StyledDropdownButton
+        {...buttonProps}
+        ref={ref}
+        isOpen={state.isOpen}
+        css={{width: 60}}
+      >
         <span {...valueProps}>
           {state.selectedItem
             ? state.selectedItem.props.children[0]

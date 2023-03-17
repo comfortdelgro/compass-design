@@ -15,15 +15,15 @@ export const StyledDropdownButton = styled('button', {
     outline: 'none',
   },
   '&:hover': {
-    backgroundColor: '#E1DFDD !important',
+    backgroundColor: '#E1DFDD',
   },
-  backgroundColor: '#f3f2f1 !important',
+  backgroundColor: '#f3f2f1',
   alignItems: 'center',
   gap: 16,
   variants: {
     isOpen: {
       true: {
-        backgroundColor: '#605E5C !important',
+        backgroundColor: '#605E5C',
         cursor: 'pointer',
         color: '#ffffff',
         '& .accordion-chevron-icon': {
