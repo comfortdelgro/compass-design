@@ -7,11 +7,7 @@ interface Props {
   children: React.ReactElement
 }
 
-const FontDisplay: React.FC<Props> = ({
-  size,
-  weight,
-  color = '#000000',
-}) => {
+const FontDisplay: React.FC<Props> = ({size, weight, color = '#000000'}) => {
   return (
     <div
       style={{
@@ -23,8 +19,8 @@ const FontDisplay: React.FC<Props> = ({
     >
       <div
         style={{
-          fontSize: "0.875rem",
-          lineHeight: "1.25rem",
+          fontSize: '0.875rem',
+          lineHeight: '1.25rem',
           display: 'flex',
           gap: '2.5rem',
           color: 'rgb(107 114 128)',
