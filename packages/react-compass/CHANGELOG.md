@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 0.30.0
+
+### Minor Changes
+
+- f18958bf: Fix minors bugs on table
+
 ## 0.29.0
 
 ### Minor Changes
