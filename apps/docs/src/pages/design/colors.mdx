@@ -24,7 +24,11 @@ Black is used primarily for body text and headings, and White is used for screen
 
 1. Main Colors
 
-<div className='flex flex-row mt-5'>
+<div
+  style={{
+    marginTop: '1.25rem',
+  }}
+>
   <ColorBox color={theme.colors.cdgBlue} />
   <ColorBox color={theme.colors.typeHeading} />
   <ColorBox color={theme.colors.background} />
@@ -38,7 +42,11 @@ Black is used primarily for body text and headings, and White is used for screen
 
 2. Text Colors
 
-<div className='flex flex-row mt-5'>
+<div
+  style={{
+    marginTop: '1.25rem',
+  }}
+>
   <ColorBox color={theme.colors.primaryText} />
   <ColorBox color={theme.colors.secondaryText} />
   <ColorBox color={theme.colors.disabledText} />
@@ -54,7 +62,11 @@ Black is used primarily for body text and headings, and White is used for screen
 
 3. Dividers & Borders
 
-<div className='flex flex-row mt-5'>
+<div
+  style={{
+    marginTop: '1.25rem',
+  }}
+>
   <ColorBox color={theme.colors.divider} />
   <ColorBox color={theme.colors.border} />
   <ColorBox color={theme.colors.activeBorder} />
@@ -70,7 +82,16 @@ Black is used primarily for body text and headings, and White is used for screen
 
 Secondary color provides more ways to accent and distinguish our product. Each color is selected with purpose in order to provide meaningful feedback within our products. Secondary colors can also be used to create unique secondary brands for each one of ComfortDelgro products.
 
-<div className='grid grid-rows-2 grid-cols-5 gap-0 mt-5 w-fit'>
+<div
+  style={{
+    marginTop: '1.25rem',
+    display: 'grid',
+    gridTemplateRows: 'repeat(2, minmax(0, 1fr))',
+    gridTemplateColumns: 'repeat(5, minmax(0, 1fr))',
+    gap: 0,
+    width: 'fit-content'
+  }}
+>
   <ColorBox color={theme.colors.infoBg} />
   <ColorBox color={theme.colors.dangerBg} />
   <ColorBox color={theme.colors.successBg} />
@@ -104,7 +125,16 @@ We intend for tints and shades to be ever evolving, offering an endless palette 
 
 1. Theme
 
-<div className='grid grid-rows-2 grid-cols-4 gap-0 mt-5 w-fit'>
+<div
+  style={{
+    marginTop: '1.25rem',
+    display: 'grid',
+    gridTemplateRows: 'repeat(2, minmax(0, 1fr))',
+    gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
+    gap: 0,
+    width: 'fit-content',
+  }}
+>
   <ColorBox color={theme.colors.cdgBlue10} />
   <ColorBox color={theme.colors.cdgBlue20} />
   <ColorBox color={theme.colors.cdgBlue40} />
@@ -128,7 +158,11 @@ We intend for tints and shades to be ever evolving, offering an endless palette 
 
 2. Overlays
 
-<div className='flex flex-row mt-5'>
+<div
+  style={{
+    marginTop: '1.25rem',
+  }}
+>
   <ColorBox color={theme.colors.overlayLight} />
   <ColorBox color={theme.colors.overlayDark} />
 </div>
@@ -140,7 +174,16 @@ We intend for tints and shades to be ever evolving, offering an endless palette 
 
 3. Grays
 
-<div className='grid grid-rows-3 grid-cols-4 gap-0 mt-5 w-fit'>
+<div
+  style={{
+    marginTop: '1.25rem',
+    display: 'grid',
+    gridTemplateRows: 'repeat(3, minmax(0, 1fr))',
+    gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
+    gap: 0,
+    width: 'fit-content',
+  }}
+>
   <ColorBox color={{token: 'white', value: '#FFFFFF'}} />
   <ColorBox color={theme.colors.gray10} />
   <ColorBox color={theme.colors.gray20} />
@@ -171,7 +214,11 @@ We intend for tints and shades to be ever evolving, offering an endless palette 
 
 4. Backgrounds
 
-<div className='flex flex-row mt-5'>
+<div
+  style={{
+    marginTop: '1.25rem',
+  }}
+>
   <ColorBox color={theme.colors.primaryBg} />
   <ColorBox color={theme.colors.secondaryBg} />
   <ColorBox color={theme.colors.darkerBg} />
@@ -185,22 +232,26 @@ We intend for tints and shades to be ever evolving, offering an endless palette 
 
 5. Gradients
 
-<div className='flex flex-row mt-5'>
+<div
+  style={{
+    marginTop: '1.25rem',
+  }}
+>
   <ColorBox color={theme.colors.gradientOrange} gradient />
   <ColorBox color={theme.colors.gradientRainbow} gradient />
   <ColorBox color={theme.colors.gradientOrangeBlue} gradient />
 </div>
 
 ```js
-<div style={{ 
+<div style={{
     backgroundImage: `linear-gradient(to right, ${theme.colors.gradientOrange})`
   }}
 />
-<div style={{ 
+<div style={{
     backgroundImage: `linear-gradient(to right, ${theme.colors.gradientRainbow})`
   }}
 />
-<div style={{ 
+<div style={{
     backgroundImage: `linear-gradient(to right, ${theme.colors.gradientOrangeBlue})`
   }}
 />
