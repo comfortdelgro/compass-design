@@ -6,7 +6,6 @@ interface Props {
   color: string
   children: React.ReactElement
 }
-
 const FontDisplay: React.FC<Props> = ({
   size,
   weight,
