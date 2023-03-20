@@ -123,7 +123,7 @@ importers:
       '@fortawesome/free-solid-svg-icons': ^6.2.0
       '@fortawesome/react-fontawesome': ^0.2.0
       '@frsource/cypress-plugin-visual-regression-diff': ^3.2.7
-      '@internationalized/date': 3.0.2
+      '@internationalized/date': 3.1.0
       '@ladle/react': ^2.4.5
       '@react-aria/breadcrumbs': ^3.3.2
       '@react-aria/button': ^3.6.2
@@ -220,7 +220,7 @@ importers:
       '@fortawesome/free-regular-svg-icons': 6.3.0
       '@fortawesome/free-solid-svg-icons': 6.3.0
       '@fortawesome/react-fontawesome': 0.2.0_d5rbrisxfyemehbvmdbryvgjte
-      '@internationalized/date': 3.0.2
+      '@internationalized/date': 3.1.0
       '@react-aria/breadcrumbs': 3.4.1_react@18.2.0
       '@react-aria/button': 3.6.4_react@18.2.0
       '@react-aria/calendar': 3.0.5_biqbaboplfbrettd7655fr4n2y
@@ -1539,12 +1539,12 @@ packages:
     resolution: {integrity: sha512-9V1IxesP6ASZj/hYyOXOC4yPJvidbbStyWQKLCQSqhhKACMOXoo+BddXZJy47ju9mqOMpWdrJ2rTx4yTxK9oag==}
     dependencies:
       '@swc/helpers': 0.4.14
+    dev: false
 
   /@internationalized/date/3.1.0:
     resolution: {integrity: sha512-wjeur7K4AecT+YwoBmBXQ/+n5lP69tuZc34hw09s44EozZK7FZHSyfPvRp5/xEb2D6abLboskDY4jG+Nt0TNUQ==}
     dependencies:
       '@swc/helpers': 0.4.14
-    dev: false
 
   /@internationalized/message/3.0.10:
     resolution: {integrity: sha512-vfLqEop/NH68IgqMcXJNSDqZ5Leg3EEgCxhuuSefU7vvdbptD3pwpUWXaK9igYPa+aZfUU0eqv86yqm76obtsw==}
@@ -2146,7 +2146,7 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
-      '@internationalized/date': 3.0.2
+      '@internationalized/date': 3.1.0
       '@react-aria/i18n': 3.6.3_react@18.2.0
       '@react-aria/interactions': 3.13.1_react@18.2.0
       '@react-aria/live-announcer': 3.1.2
@@ -2208,7 +2208,7 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
-      '@internationalized/date': 3.0.2
+      '@internationalized/date': 3.1.0
       '@internationalized/number': 3.1.2
       '@internationalized/string': 3.0.1
       '@react-aria/focus': 3.10.1_react@18.2.0
@@ -2320,7 +2320,7 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
-      '@internationalized/date': 3.0.2
+      '@internationalized/date': 3.1.0
       '@internationalized/message': 3.0.10
       '@internationalized/number': 3.1.2
       '@internationalized/string': 3.0.1
@@ -2845,7 +2845,7 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
-      '@internationalized/date': 3.0.2
+      '@internationalized/date': 3.1.0
       '@react-stately/utils': 3.5.2_react@18.2.0
       '@react-types/calendar': 3.0.5_react@18.2.0
       '@react-types/datepicker': 3.1.4_react@18.2.0
@@ -2917,7 +2917,7 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
-      '@internationalized/date': 3.0.2
+      '@internationalized/date': 3.1.0
       '@internationalized/string': 3.0.1
       '@react-stately/overlays': 3.4.4_react@18.2.0
       '@react-stately/utils': 3.5.2_react@18.2.0
@@ -3281,7 +3281,7 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
-      '@internationalized/date': 3.0.2
+      '@internationalized/date': 3.1.0
       '@react-types/shared': 3.16.0_react@18.2.0
       react: 18.2.0
     dev: false
@@ -3308,7 +3308,7 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
-      '@internationalized/date': 3.0.2
+      '@internationalized/date': 3.1.0
       '@react-types/overlays': 3.6.5_react@18.2.0
       '@react-types/shared': 3.16.0_react@18.2.0
       react: 18.2.0
