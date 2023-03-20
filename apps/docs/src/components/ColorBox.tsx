@@ -97,13 +97,13 @@ const ColorBox: React.FC<Props> = ({color, gradient = false}) => {
   console.log(color.value, gradient)
   return (
     <div
-      className='scale'
+      className="scale"
       style={{
         width: '9rem',
         height: '6rem',
         padding: '0.5rem',
-        fontSize: '0.75rem',
-        lineHeight: '1rem',
+        fontSize: "0.75rem",
+        lineHeight: "1rem",
         fontWeight: 600,
         display: 'flex',
         flexDirection: 'column',

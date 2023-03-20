@@ -37,7 +37,7 @@ const nextraConfig: DocsThemeConfig = {
           width: '1.75rem',
           aspectRatio: '1 / 1',
           backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
+          backgroundSize: 'cover'
         }}
       />
       <div style={{fontWeight: 700}}>Compass Design</div>
