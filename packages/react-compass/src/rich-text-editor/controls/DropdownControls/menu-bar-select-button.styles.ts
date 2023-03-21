@@ -4,13 +4,15 @@ import {VariantProps} from '../../../utils/stitches.types'
 export const StyledDropdownButton = styled('button', {
   width: '100%',
   padding: '4px 8px',
+  height: '28px',
   textAlign: 'unset',
   position: 'relative',
   border: 'none',
   borderRadius: '$lg',
   color: '$primaryText',
   cursor: 'pointer',
-  display: 'flex',
+  display: 'inline-flex',
+  float: 'left',
   '&:focus-visible': {
     outline: 'none',
   },

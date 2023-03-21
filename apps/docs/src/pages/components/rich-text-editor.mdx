@@ -99,7 +99,7 @@ const handleChange = (content: string | JSONContent) => {
 
 <br />
 <RichTextEditor characterCount={200}>
-  <RichTextEditor.Toolbar inline={false}>
+  <RichTextEditor.Toolbar>
     <RichTextEditor.ControlsGroup>
       <RichTextEditor.Undo />
       <RichTextEditor.Redo />
@@ -145,7 +145,7 @@ const handleChange = (content: string | JSONContent) => {
 }
 
 <RichTextEditor characterCount={200} onChange={handleChange}>
-  <RichTextEditor.Toolbar inline={false}>
+  <RichTextEditor.Toolbar>
     <RichTextEditor.ControlsGroup>
       <RichTextEditor.Undo />
       <RichTextEditor.Redo />
@@ -237,12 +237,6 @@ const handleChange = (content: string | JSONContent) => {
 | characterCount | `number` \| `null` | null    | Show maximum allowed characters.                                                        |
 | css            | `CSS`              | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
 | content        | `null`             | null    | You can provide the initial content for the editor.                                     |
-
-#### Toolbar
-
-| Name   | Type      | Default | Description                                                     |
-| :----- | :-------- | :------ | :-------------------------------------------------------------- |
-| inline | `boolean` | true    | Whether toolbar items display inline or wrapped into new lines. |
 
 #### HeadingsControl
 

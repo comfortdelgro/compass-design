@@ -10,21 +10,10 @@ export const StyledToolbar = styled('div', {
   // Styling
   padding: '5px 20px',
   backgroundColor: '#F3F2F1',
-  display: 'flex',
-  justifyContent: 'flex-start',
-  alignItems: 'center',
+  overflow: 'hidden',
+  maxHeight: 38,
   position: 'relative',
   rowGap: 5,
-  variants: {
-    inline: {
-      true: {
-        flexWrap: 'nowrap',
-      },
-      false: {
-        flexWrap: 'wrap',
-      },
-    },
-  },
 })
 
 export type StyledToolbarProps = VariantProps<typeof StyledToolbar>
