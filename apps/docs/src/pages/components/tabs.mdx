@@ -1,6 +1,7 @@
 import ComponentDisplay from 'components/ComponentDisplay'
 import {Callout} from 'nextra-theme-docs'
 import Tabs from '@comfortdelgro/react-compass/tabs'
+import TabPaneless from 'components/TabPaneless'
 
 # Tabs
 
@@ -153,6 +154,34 @@ Direction of the tab: `vertical` and `horizontal` as default
 ```
 ---
 
+### Paneless:
+You can use Tab.Paneless to display tab without default panel
+```js
+const [value, setValue] = React.useState<React.Key>('1')
+const items = [
+    {key: '1', title: 'Founding of Rome'},
+    {key: '2', title: 'Monarchy and Republic'},
+    {key: '3', title: 'Empire'},
+]
+return (
+    <div style={{width: '100%', display: 'flex', flexDirection: 'column'}}>
+        <Tabs.Paneless
+            variant='simple'
+            items={items}
+            selectedKey={value}
+            onSelectionChange={(v: React.Key) => setValue(v)}
+        />
+        {value === '1' && <h1>Arma virumque cano, Troiae qui primus ab oris.</h1>}
+        {value === '2' && <h1>Senatus Populusque Romanus.</h1>}
+        {value === '3' && <h1>Alea jacta est.</h1>}
+    </div>
+)
+```
+<ComponentDisplay>
+    <TabPaneless />
+</ComponentDisplay>
+---
+
 ### Custom styling:
 
 You can style React Compass's components with the css prop.
@@ -188,7 +217,7 @@ With css prop, you can basically do anything that css can do.
 
 ### Props:
 
-#### `<Tabs/>` :
+#### `<Tabs/>` | `<Tabs.Paneless/>`:
 
 | Name               | Type                               | Default     | Description                                                                                              |
 | :----------------- | :---------------------             | :---------- | :------------------------------------------------------------------------------------------------------- |
