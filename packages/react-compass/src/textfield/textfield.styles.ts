@@ -30,6 +30,7 @@ export const StyledTextFieldLabel = styled('label', {
 
 export const StyledTextFieldBox = styled('div', {
   width: '100%',
+  height: '$11',
   display: 'flex',
   flexDirection: 'row',
   alignItems: 'center',
