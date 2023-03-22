@@ -1,6 +1,12 @@
 import {styled} from '../theme'
 import type {VariantProps} from '../utils/stitches.types'
 
+export const StyledWrapper = styled('div', {
+  width: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+})
+
 export const StyledTabs = styled('div', {
   fontFamily: '$sans',
   lineHeight: '$normal',
