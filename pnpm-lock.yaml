@@ -65,12 +65,12 @@ importers:
       nextra-theme-docs: 2.0.0-beta.41_azq6kxkn3od7qdylwkyksrwopy
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      react-hot-toast: 2.4.0_biqbaboplfbrettd7655fr4n2y
+      react-hot-toast: 2.4.0_owo25xnefcwdq3zjgtohz6dbju
     devDependencies:
       '@types/node': 18.13.0
       '@types/react': 17.0.53
       '@types/react-dom': 17.0.19
-      autoprefixer: 10.4.13
+      autoprefixer: 10.4.13_postcss@8.4.21
       eslint: 8.34.0
       eslint-config-next: 12.2.6_7kw3g6rralp5ps6mg3uyzz6azm
       typescript: 4.9.5
@@ -2320,7 +2320,7 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
-      '@internationalized/date': 3.1.0
+      '@internationalized/date': 3.0.2
       '@internationalized/message': 3.0.10
       '@internationalized/number': 3.1.2
       '@internationalized/string': 3.0.1
@@ -4435,7 +4435,7 @@ packages:
     engines: {node: '>= 4.0.0'}
     dev: true
 
-  /autoprefixer/10.4.13:
+  /autoprefixer/10.4.13_postcss@8.4.21:
     resolution: {integrity: sha512-49vKpMqcZYsJjwotvt4+h/BCjJVnhGwcLpDt5xkcaOG3eLrG/HUYLagrihYsQ+qrIBgIzX1Rw7a6L8I/ZA1Atg==}
     engines: {node: ^10 || ^12 || >=14}
     hasBin: true
@@ -4447,6 +4447,7 @@ packages:
       fraction.js: 4.2.0
       normalize-range: 0.1.2
       picocolors: 1.0.0
+      postcss: 8.4.21
       postcss-value-parser: 4.2.0
     dev: true
 
@@ -5921,7 +5922,7 @@ packages:
       eslint: 8.34.0
       eslint-import-resolver-node: 0.3.7
       eslint-import-resolver-typescript: 2.7.1_mvgyw3chnqkp6sgfmmtihyjpnm
-      eslint-plugin-import: 2.27.5_rs3vv57at3nmz4hqu5776jt7sm
+      eslint-plugin-import: 2.27.5_eslint@8.34.0
       eslint-plugin-jsx-a11y: 6.7.1_eslint@8.34.0
       eslint-plugin-react: 7.32.2_eslint@8.34.0
       eslint-plugin-react-hooks: 4.6.0_eslint@8.34.0
@@ -5959,7 +5960,7 @@ packages:
     dependencies:
       debug: 4.3.4
       eslint: 8.34.0
-      eslint-plugin-import: 2.27.5_rs3vv57at3nmz4hqu5776jt7sm
+      eslint-plugin-import: 2.27.5_eslint@8.34.0
       glob: 7.2.3
       is-glob: 4.0.3
       resolve: 1.22.1
@@ -5968,7 +5969,7 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-module-utils/2.7.4_6cqvzoahotjofcopj2ra2ihrgu:
+  /eslint-module-utils/2.7.4_eyqnu5kib2hfrvsonwfdq4ojse:
     resolution: {integrity: sha512-j4GT+rqzCoRKHwURX7pddtIPGySnX9Si/cgMI5ztrcqOPtk5dDEeZ34CQVPphnqkJytlc97Vuk05Um2mJ3gEQA==}
     engines: {node: '>=4'}
     peerDependencies:
@@ -5989,16 +5990,14 @@ packages:
       eslint-import-resolver-webpack:
         optional: true
     dependencies:
-      '@typescript-eslint/parser': 5.52.0_7kw3g6rralp5ps6mg3uyzz6azm
       debug: 3.2.7
       eslint: 8.34.0
       eslint-import-resolver-node: 0.3.7
-      eslint-import-resolver-typescript: 2.7.1_mvgyw3chnqkp6sgfmmtihyjpnm
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /eslint-plugin-import/2.27.5_rs3vv57at3nmz4hqu5776jt7sm:
+  /eslint-plugin-import/2.27.5_eslint@8.34.0:
     resolution: {integrity: sha512-LmEt3GVofgiGuiE+ORpnvP+kAm3h6MLZJ4Q5HCyHADofsb4VzXFsRiWj3c0OFiV+3DWFh0qg3v9gcPlfc3zRow==}
     engines: {node: '>=4'}
     peerDependencies:
@@ -6008,7 +6007,6 @@ packages:
       '@typescript-eslint/parser':
         optional: true
     dependencies:
-      '@typescript-eslint/parser': 5.52.0_7kw3g6rralp5ps6mg3uyzz6azm
       array-includes: 3.1.6
       array.prototype.flat: 1.3.1
       array.prototype.flatmap: 1.3.1
@@ -6016,7 +6014,7 @@ packages:
       doctrine: 2.1.0
       eslint: 8.34.0
       eslint-import-resolver-node: 0.3.7
-      eslint-module-utils: 2.7.4_6cqvzoahotjofcopj2ra2ihrgu
+      eslint-module-utils: 2.7.4_eyqnu5kib2hfrvsonwfdq4ojse
       has: 1.0.3
       is-core-module: 2.11.0
       is-glob: 4.0.3
@@ -6976,10 +6974,12 @@ packages:
     resolution: {integrity: sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg==}
     dev: true
 
-  /goober/2.1.12:
+  /goober/2.1.12_csstype@3.1.1:
     resolution: {integrity: sha512-yXHAvO08FU1JgTXX6Zn6sYCUFfB/OJSX8HHjDSgerZHZmFKAb08cykp5LBw5QnmyMcZyPRMqkdyHUSSzge788Q==}
     peerDependencies:
       csstype: ^3.0.10
+    dependencies:
+      csstype: 3.1.1
     dev: false
 
   /gopd/1.0.1:
@@ -9598,14 +9598,14 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: true
 
-  /react-hot-toast/2.4.0_biqbaboplfbrettd7655fr4n2y:
+  /react-hot-toast/2.4.0_owo25xnefcwdq3zjgtohz6dbju:
     resolution: {integrity: sha512-qnnVbXropKuwUpriVVosgo8QrB+IaPJCpL8oBI6Ov84uvHZ5QQcTp2qg6ku2wNfgJl6rlQXJIQU5q+5lmPOutA==}
     engines: {node: '>=10'}
     peerDependencies:
       react: '>=16'
       react-dom: '>=16'
     dependencies:
-      goober: 2.1.12
+      goober: 2.1.12_csstype@3.1.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     transitivePeerDependencies:
