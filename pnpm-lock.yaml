@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 overrides:
+  '@internationalized/date': 3.1.0
   '@types/react': ^17.0.39
   '@types/react-dom': ^17.0.11
 
@@ -32,7 +33,7 @@ importers:
       '@fortawesome/free-regular-svg-icons': ^6.2.0
       '@fortawesome/free-solid-svg-icons': ^6.2.0
       '@iconify/react': ^4.0.1
-      '@internationalized/date': ^3.0.1
+      '@internationalized/date': 3.1.0
       '@react-aria/i18n': ^3.6.2
       '@react-aria/ssr': ^3.5.0
       '@types/node': ^18.11.0
@@ -56,7 +57,7 @@ importers:
       '@fortawesome/free-regular-svg-icons': 6.3.0
       '@fortawesome/free-solid-svg-icons': 6.3.0
       '@iconify/react': 4.1.0_react@18.2.0
-      '@internationalized/date': 3.0.2
+      '@internationalized/date': 3.1.0
       '@react-aria/i18n': 3.6.3_react@18.2.0
       '@react-aria/ssr': 3.5.0_react@18.2.0
       clsx: 1.2.1
@@ -123,7 +124,7 @@ importers:
       '@fortawesome/free-solid-svg-icons': ^6.2.0
       '@fortawesome/react-fontawesome': ^0.2.0
       '@frsource/cypress-plugin-visual-regression-diff': ^3.2.7
-      '@internationalized/date': 3.0.2
+      '@internationalized/date': 3.1.0
       '@ladle/react': ^2.4.5
       '@react-aria/breadcrumbs': ^3.3.2
       '@react-aria/button': ^3.6.2
@@ -220,7 +221,7 @@ importers:
       '@fortawesome/free-regular-svg-icons': 6.3.0
       '@fortawesome/free-solid-svg-icons': 6.3.0
       '@fortawesome/react-fontawesome': 0.2.0_d5rbrisxfyemehbvmdbryvgjte
-      '@internationalized/date': 3.0.2
+      '@internationalized/date': 3.1.0
       '@react-aria/breadcrumbs': 3.4.1_react@18.2.0
       '@react-aria/button': 3.6.4_react@18.2.0
       '@react-aria/calendar': 3.0.5_biqbaboplfbrettd7655fr4n2y
@@ -1535,12 +1536,6 @@ packages:
       - supports-color
     dev: true
 
-  /@internationalized/date/3.0.2:
-    resolution: {integrity: sha512-9V1IxesP6ASZj/hYyOXOC4yPJvidbbStyWQKLCQSqhhKACMOXoo+BddXZJy47ju9mqOMpWdrJ2rTx4yTxK9oag==}
-    dependencies:
-      '@swc/helpers': 0.4.14
-    dev: false
-
   /@internationalized/date/3.1.0:
     resolution: {integrity: sha512-wjeur7K4AecT+YwoBmBXQ/+n5lP69tuZc34hw09s44EozZK7FZHSyfPvRp5/xEb2D6abLboskDY4jG+Nt0TNUQ==}
     dependencies:
@@ -2320,7 +2315,7 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
-      '@internationalized/date': 3.0.2
+      '@internationalized/date': 3.1.0
       '@internationalized/message': 3.0.10
       '@internationalized/number': 3.1.2
       '@internationalized/string': 3.0.1
