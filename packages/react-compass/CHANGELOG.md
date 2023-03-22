@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 0.31.0
+
+### Minor Changes
+
+- 4bb5289f: hotfix:lock-ver-of-internationalized/date
+
 ## 0.30.0
 
 ### Minor Changes
