@@ -71,7 +71,7 @@ const UploadDragAndDrop = React.forwardRef<
   // hanlder functions
   const hanldeDrop = (e: React.DragEvent<HTMLDivElement>) => {
     const target = e.target as HTMLDivElement
-    target.style.outline = 'none'
+    target.removeAttribute('style')
     e.preventDefault()
     e.stopPropagation()
     const dt = e.dataTransfer
@@ -83,14 +83,15 @@ const UploadDragAndDrop = React.forwardRef<
   // hanlder functions
   const hanldeDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     const target = e.target as HTMLDivElement
-    target.style.outline = '2px #0142AF solid'
+    target.style.border = '1px dashed #0142AF'
+    target.style.backgroundColor = '#E6ECF7'
     e.preventDefault()
     e.stopPropagation()
   }
 
   const hanldeDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
     const target = e.target as HTMLDivElement
-    target.style.outline = 'none'
+    target.removeAttribute('style')
   }
 
   const handleFileFieldChange = (event: React.FormEvent<HTMLInputElement>) => {
