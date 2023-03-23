@@ -175,6 +175,9 @@ export const StyledUploadContainer = styled('div', {
   display: 'flex',
   alignItems: 'center',
   gap: '$2',
+  '*': {
+    pointerEvents: 'none',
+  },
 
   variants: {
     variant: {

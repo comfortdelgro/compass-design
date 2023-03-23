@@ -24,6 +24,7 @@ interface Props extends StyledComponentProps {
   accept?: string
   fileSizeLimit?: number
   multiple?: boolean
+  placeholder?: string
 }
 
 export type UploadProps = Props &
@@ -35,10 +36,13 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
     // StyledComponentProps
     css = {},
     // VariantProps
-    getFile,
+    getFile = () => {
+      // Default
+    },
     accept = DEFAULT_FILE_ACCEPT,
     fileSizeLimit = DEFAULT_FILE_LIMIT,
     multiple = false,
+    placeholder = 'No file chosen',
     // HTMLDiv Props
     ...delegated
   } = props
@@ -46,31 +50,32 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
   const uploadRef = useDOMRef<HTMLDivElement>(ref)
   const uploadInputRef = React.useRef<HTMLInputElement>(null)
   const [selectedFiles, setSelectedFiles] = React.useState<File[]>([])
-  const [error, setError] = React.useState<false | string>(false)
+  const [error, setError] = React.useState<undefined | string>()
   // hanlder functions
 
-  const handleFileFieldChange = (event: MouseEvent) => {
-    event.preventDefault()
-    const target = event.target as HTMLInputElement
-    const file =
-      target?.files !== null && (target?.files as unknown as FileList)[0]
-    if (file) {
-      if (file.size > fileSizeLimit) {
+  const filesValidator = (files: FileList) => {
+    if (files && files?.length > 0) {
+      const isInvalidFileSize = Array.from(files).some(
+        (file) => file.size > fileSizeLimit,
+      )
+      if (isInvalidFileSize) {
         setError('Sorry, your file exceeds our size limit.')
       } else {
-        if (multiple) setSelectedFiles([...selectedFiles, file])
-        if (!multiple) setSelectedFiles([file])
+        setError(undefined)
+        setSelectedFiles(Array.from(files))
+        getFile(Array.from(files))
       }
     }
   }
 
-  const onLableClick = () => uploadInputRef.current?.click()
+  const handleFileFieldChange = (event: React.FormEvent<HTMLInputElement>) => {
+    event.preventDefault()
+    const target = event.target as HTMLInputElement
+    const files = target?.files as unknown as FileList
+    filesValidator(files)
+  }
 
-  React.useEffect(() => {
-    if (selectedFiles) {
-      getFile?.(selectedFiles)
-    }
-  }, [selectedFiles])
+  const onLableClick = () => uploadInputRef.current?.click()
 
   return (
     <StyledUploadWrapper css={css} ref={uploadRef} {...delegated}>
@@ -80,19 +85,17 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
           type='file'
           accept={accept}
           multiple={multiple}
-          onChange={(event) => {
-            handleFileFieldChange(event as unknown as MouseEvent)
-          }}
+          onChange={handleFileFieldChange}
         />
         <StyledBrowseFile onClick={onLableClick}>
           <span>Browse file</span>
         </StyledBrowseFile>
-        <StyledUploadContent
-          fileSelected={selectedFiles.length > 0 && !multiple}
-        >
-          {selectedFiles.length > 0 && !multiple
-            ? selectedFiles[0]?.name
-            : 'No file chosen'}
+        <StyledUploadContent fileSelected={selectedFiles.length > 0}>
+          {selectedFiles.length > 0 ? (
+            <p>{selectedFiles.map((file) => file.name).join(', ')}</p>
+          ) : (
+            placeholder
+          )}
         </StyledUploadContent>
       </StyledUploadContainer>
 
