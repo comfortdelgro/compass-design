@@ -47,7 +47,6 @@ export const StyledUploadContent = styled('div', {
   border: 'none',
   boxSizing: 'border-box',
   margin: '0px',
-  padding: '0px',
   background: 'transparent',
 
   //upload button styling
@@ -56,12 +55,20 @@ export const StyledUploadContent = styled('div', {
   display: 'flex',
   alignItems: 'center',
   borderLeft: '1px solid #E6E6E6',
-  paddingLeft: '$4',
+  padding: '0 $4',
   fontSize: '$body2',
   fontWeight: '$semibold',
   whiteSpace: 'nowrap',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
+  p: {
+    margin: 0,
+    padding: 0,
+    wordWrap: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+  },
+
   variants: {
     fileSelected: {
       true: {
