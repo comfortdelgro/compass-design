@@ -420,8 +420,8 @@
       "levels": [
         "File"
       ],
-      "locStart": 4,
-      "locEnd": 27,
+      "locStart": 5,
+      "locEnd": 79,
       "filePath": "src/file/file.stories.tsx",
       "meta": {}
     },
@@ -430,8 +430,8 @@
       "levels": [
         "File"
       ],
-      "locStart": 29,
-      "locEnd": 38,
+      "locStart": 81,
+      "locEnd": 104,
       "filePath": "src/file/file.stories.tsx",
       "meta": {}
     },
@@ -795,13 +795,23 @@
       "filePath": "src/tabs/tab.stories.tsx",
       "meta": {}
     },
+    "tab--paneless": {
+      "name": "Paneless",
+      "levels": [
+        "Tab"
+      ],
+      "locStart": 44,
+      "locEnd": 69,
+      "filePath": "src/tabs/tab.stories.tsx",
+      "meta": {}
+    },
     "tab--icon": {
       "name": "Icon",
       "levels": [
         "Tab"
       ],
-      "locStart": 44,
-      "locEnd": 91,
+      "locStart": 71,
+      "locEnd": 118,
       "filePath": "src/tabs/tab.stories.tsx",
       "meta": {}
     },
@@ -810,8 +820,8 @@
       "levels": [
         "Tab"
       ],
-      "locStart": 93,
-      "locEnd": 125,
+      "locStart": 120,
+      "locEnd": 152,
       "filePath": "src/tabs/tab.stories.tsx",
       "meta": {}
     },
@@ -820,8 +830,8 @@
       "levels": [
         "Tab"
       ],
-      "locStart": 127,
-      "locEnd": 159,
+      "locStart": 154,
+      "locEnd": 186,
       "filePath": "src/tabs/tab.stories.tsx",
       "meta": {}
     },
@@ -1010,8 +1020,8 @@
       "levels": [
         "Upload"
       ],
-      "locStart": 9,
-      "locEnd": 23,
+      "locStart": 10,
+      "locEnd": 24,
       "filePath": "src/upload/upload.stories.tsx",
       "meta": {}
     },
@@ -1020,8 +1030,8 @@
       "levels": [
         "Upload"
       ],
-      "locStart": 25,
-      "locEnd": 61,
+      "locStart": 26,
+      "locEnd": 62,
       "filePath": "src/upload/upload.stories.tsx",
       "meta": {}
     },
