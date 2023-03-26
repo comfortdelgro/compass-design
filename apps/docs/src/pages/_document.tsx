@@ -21,7 +21,9 @@ class MyDocument extends Document {
     return (
       <SSRProvider>
         <Html>
-          <Head>{Preflight.flush()}</Head>
+          <Head>
+            {Preflight.flush()}
+          </Head>
           <body>
             <Main />
             <NextScript />

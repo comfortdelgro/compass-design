@@ -66,7 +66,7 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
     })
 
     const renderItem = useCallback(
-      (item: (typeof items)[number], index: number) => {
+      (item: typeof items[number], index: number) => {
         if (item === 'dots') {
           const isBefore = index < items.indexOf(active)
 

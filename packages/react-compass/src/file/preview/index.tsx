@@ -1,7 +1,6 @@
 import React from 'react'
 import {StyledComponentProps} from '../../utils/stitches.types'
 import {useDOMRef} from '../../utils/use-dom-ref'
-import FileState from '../state'
 import {
   PreviewVariantProps,
   StyledImagePreview,
@@ -10,10 +9,7 @@ import {
 
 interface Props extends StyledComponentProps {
   imageSrc?: string
-  fileName: string
-  imageIcon?: React.ReactNode
-  onIconPress?: () => void
-  icon?: 'close' | 'error' | 'success' | 'download' | 'loading'
+  children?: React.ReactNode
 }
 
 export type FilePreviewProps = Props & PreviewVariantProps
@@ -24,6 +20,7 @@ const FilePreview = React.forwardRef<HTMLDivElement, FilePreviewProps>(
       // StyledComponentProps
       css = {},
       imageSrc,
+      children,
     } = props
     const PreviewRef = useDOMRef<HTMLDivElement>(ref)
     const [failed, setFailed] = React.useState(false)
@@ -41,7 +38,7 @@ const FilePreview = React.forwardRef<HTMLDivElement, FilePreviewProps>(
             <Fallback />
           ) : null}
         </StyledImagePreview>
-        <FileState fileName='Filename.png' />
+        {children}
       </StyledPreview>
     )
   },

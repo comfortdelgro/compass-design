@@ -10,10 +10,23 @@ interface TabProps<T> extends AriaTabProps {
   variant: Variant | undefined
   icon: Icon | undefined
   state: TabListState<T>
+  textColor: string
+  indicatorColor: string
 }
 
 const Tab = React.forwardRef<HTMLDivElement, TabProps<object>>(
-  ({item, state, isDisabled, variant = 'rounded', icon = 'none'}, ref) => {
+  (
+    {
+      item,
+      state,
+      isDisabled,
+      textColor,
+      indicatorColor,
+      variant = 'rounded',
+      icon = 'none',
+    },
+    ref,
+  ) => {
     const {key, rendered} = item
     const tabRef = useDOMRef<HTMLDivElement>(ref)
     const {tabProps} = useTab({key}, state, tabRef)
@@ -29,6 +42,7 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps<object>>(
         active={state.selectedItem?.key === key}
         variant={variant}
         className='tab-item-wrapper'
+        css={{$$textColor: textColor, $$indicatorColor: indicatorColor}}
       >
         {rendered}
         {icon !== 'none' && (
