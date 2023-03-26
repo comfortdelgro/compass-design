@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 0.32.0
+
+### Minor Changes
+
+- 668a13f6: fix bugs in multiple dropdown, file.state now accepts reactnode, tab.paneless now returns value, add default placeholder for dropdown, fix overlap error for dropdown
+
 ## 0.31.0
 
 ### Minor Changes
