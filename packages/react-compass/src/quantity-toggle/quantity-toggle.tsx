@@ -32,6 +32,8 @@ interface Props extends StyledComponentProps {
 
 export type QuantityToggleProps = Props & QuantityToggleVariantProps
 
+type Value = number | string
+
 const QuantityToggle = React.forwardRef<HTMLInputElement, QuantityToggleProps>(
   (props, ref) => {
     const {
@@ -41,82 +43,112 @@ const QuantityToggle = React.forwardRef<HTMLInputElement, QuantityToggleProps>(
       step = 1,
       max = 999999999999999,
       min = -999999999999999,
+      formatOptions = {},
       placeholder,
       onChange,
       isErrored,
       isDisabled,
     } = props
 
+    const format = React.useMemo(() => {
+      return {
+        prefix: formatOptions?.prefix ?? '',
+        subfix: formatOptions?.subfix ?? '',
+        toFixed: formatOptions?.toFixed,
+      }
+    }, [formatOptions])
     const quantityToggleRef = useDOMRef<HTMLInputElement>(ref)
 
     //Main state
-    const formatOptions = {
-      prefix: props.formatOptions?.prefix ?? '',
-      subfix: props.formatOptions?.subfix ?? '',
-      toFixed: props.formatOptions?.toFixed,
-    }
-    const [cursorPos, setCursorPos] = React.useState<number | null>(0)
-    const [preValue, setPrevValue] = React.useState<number | string>(value ?? 0)
-    const [trueValue, setTrueValue] = React.useState<number | string>(
-      value ?? 0,
+    const [cursorPos, setCursorPos] = React.useState<number | null>(
+      value?.toString().length ?? 1,
     )
-    const [prefix, setPrefix] = React.useState<string>(
-      props.formatOptions?.prefix ?? '',
-    )
-    const [subfix, setSubfix] = React.useState<string>(
-      props.formatOptions?.subfix ?? '',
-    )
+    const [preValue, setPrevValue] = React.useState<Value>(value ?? 0)
+    const [trueValue, setTrueValue] = React.useState<Value>(value ?? 0)
+    const [prefix, setPrefix] = React.useState(formatOptions?.prefix ?? '')
+    const [subfix, setSubfix] = React.useState(formatOptions?.subfix ?? '')
 
     //Callback
     const increase = () => {
-      setTrueValue((v) => {
-        v = Math.min(+v + step, max)
+      function add(v: Value) {
+        if (v.toString().includes('.')) {
+          const n = Number.parseFloat(v.toString()) + step
+          v = Math.min(Number.parseFloat(n.toFixed(15)), max)
+        } else {
+          v = Math.min(Number(v) + step, max)
+        }
         return v
-      })
-      setPrevValue((v) => {
-        v = Math.min(+v + step, max)
-        return v
-      })
+      }
+
+      if (!Number.isNaN(trueValue)) {
+        setTrueValue((v) => add(v))
+        setPrevValue((v) => add(v))
+      }
     }
 
     const decrease = () => {
-      setTrueValue((v) => {
-        v = Math.max(+v - step, min)
+      function subtract(v: Value) {
+        if (v.toString().includes('.')) {
+          const n = Number.parseFloat(v.toString()) - step
+          v = Math.max(Number.parseFloat(n.toFixed(15)), min)
+        } else {
+          v = Math.max(Number(v) + step, min)
+        }
         return v
-      })
-      setPrevValue((v) => {
-        v = Math.max(+v - step, min)
-        return v
-      })
+      }
+      if (!Number.isNaN(trueValue)) {
+        setTrueValue((v) => subtract(v))
+        setPrevValue((v) => subtract(v))
+      }
     }
 
     const handleKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
       e.preventDefault()
-      e.stopPropagation()
       const target = e.target as HTMLInputElement
       const curPos = target.selectionStart ?? target.value.length
+      if (e.key === 'ArrowLeft') setCursorPos(Math.max(curPos - 1, 0))
+      if (e.key === 'ArrowRight')
+        setCursorPos(Math.min(curPos + 1, target.value.length))
       if (e.key === 'ArrowUp') increase()
       if (e.key === 'ArrowDown') decrease()
-      if (e.key === 'Backspace')
+      if (e.key === 'Backspace') {
         setTrueValue((v) => {
-          v = `${v}`.slice(0, -1)
+          if (v.toString().length === 1) {
+            v = ''
+          } else {
+            v =
+              `${trueValue}`.slice(0, Math.max(curPos - 1, 0)) +
+              `${trueValue}`.slice(curPos)
+          }
           return v
         })
-      if (e.key === '.' && !trueValue.toString().includes('.') && curPos) {
-        setTrueValue(
-          (v) =>
-            `${v.toString().slice(0, curPos)}${e.key}${v
-              .toString()
-              .slice(curPos)}`,
-        )
+        setCursorPos(curPos === 1 ? 1 : curPos - 1)
       }
+
+      if (
+        e.key === '-' &&
+        !trueValue.toString().includes('-') &&
+        (curPos === 0 || trueValue === 0)
+      ) {
+        setTrueValue((v) => (trueValue === 0 ? '-' : `-${v}`))
+        setCursorPos(curPos + 1)
+      }
+
+      if (e.key === '.' && !trueValue.toString().includes('.')) {
+        setTrueValue((v) => {
+          return `${v.toString().slice(0, curPos)}.${v
+            .toString()
+            .slice(curPos)}`
+        })
+        setCursorPos(curPos + 1)
+      }
+
       if (Number.isInteger(+e.key)) {
         setTrueValue((v) => {
           const n = `${v.toString().slice(0, curPos)}${e.key}${v
             .toString()
             .slice(curPos)}`
-          if (Number(n) >= max || Number(n) <= min) return v
-          v = !v ? e.key : n
+          if (Number(n) <= max && Number(n) >= min) v = !v ? e.key : n
           return v
         })
         setCursorPos(curPos + 1)
@@ -133,12 +165,10 @@ const QuantityToggle = React.forwardRef<HTMLInputElement, QuantityToggleProps>(
 
     const handleBlur = () => {
       if (trueValue !== '') {
-        setPrefix(formatOptions.prefix)
-        setSubfix(formatOptions.subfix)
-        setTrueValue((v) => {
-          setPrevValue(v)
-          return Number(v).toFixed(formatOptions.toFixed)
-        })
+        setPrefix(format.prefix)
+        setSubfix(format.subfix)
+        if (format.toFixed)
+          setTrueValue((v) => Number(v).toFixed(format.toFixed))
       }
     }
 
@@ -147,8 +177,12 @@ const QuantityToggle = React.forwardRef<HTMLInputElement, QuantityToggleProps>(
     }, [preValue])
 
     React.useEffect(() => {
-      quantityToggleRef.current?.setSelectionRange(cursorPos, cursorPos)
+      if (!Number.isNaN(trueValue)) setPrevValue(trueValue)
     }, [trueValue])
+
+    React.useEffect(() => {
+      quantityToggleRef.current?.setSelectionRange(cursorPos, cursorPos)
+    }, [cursorPos, trueValue])
 
     return (
       <StyledQuantityToggle
@@ -164,6 +198,7 @@ const QuantityToggle = React.forwardRef<HTMLInputElement, QuantityToggleProps>(
         )}
         <div role='group'>
           <button
+            disabled={isDisabled}
             onClick={decrease}
             style={{borderRight: 'none', borderRadius: '4px 0 0 4px'}}
           >
@@ -172,9 +207,7 @@ const QuantityToggle = React.forwardRef<HTMLInputElement, QuantityToggleProps>(
           <input
             disabled={isDisabled}
             type='text'
-            value={
-              trueValue !== '' ? `${prefix}${trueValue}${subfix}` : undefined
-            }
+            value={trueValue !== '' ? `${prefix}${trueValue}${subfix}` : ''}
             onKeyDown={handleKeydown}
             onFocus={handleFocus}
             onBlur={handleBlur}
@@ -182,6 +215,7 @@ const QuantityToggle = React.forwardRef<HTMLInputElement, QuantityToggleProps>(
             ref={quantityToggleRef}
           />
           <button
+            disabled={isDisabled}
             onClick={increase}
             style={{
               borderLeft: 'none',
