@@ -24,6 +24,8 @@ interface Props extends TLProps, StyledComponentProps {
   onSelectionChange: (key: Key) => void
   variant?: Variant
   icon?: Icon
+  textColor?: string
+  indicatorColor?: string
 }
 
 export type TabsProps = Props
@@ -48,10 +50,12 @@ interface PreTabsProps<T = object>
     StyledComponentProps {
   variant?: Variant
   icon?: Icon
+  textColor?: string
+  indicatorColor?: string
 }
 
 const Tabs = React.forwardRef<HTMLDivElement, PreTabsProps>((props, ref) => {
-  const {css = {}} = props
+  const {textColor = '#0142AF', indicatorColor = '#0142AF', css = {}} = props
   const tabRef = useDOMRef<HTMLDivElement>(ref)
   const state = useTabListState(props)
   const {tabListProps} = useTabList(props, state, tabRef)
@@ -71,6 +75,8 @@ const Tabs = React.forwardRef<HTMLDivElement, PreTabsProps>((props, ref) => {
           state={state}
           icon={props.icon}
           variant={props.variant}
+          textColor={textColor}
+          indicatorColor={indicatorColor}
         />
       ))}
     </StyledTabs>
