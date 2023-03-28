@@ -92,7 +92,7 @@ const QuantityToggle = React.forwardRef<HTMLInputElement, QuantityToggleProps>(
           const n = Number.parseFloat(v.toString()) - step
           v = Math.max(Number.parseFloat(n.toFixed(15)), min)
         } else {
-          v = Math.max(Number(v) + step, min)
+          v = Math.max(Number(v) - step, min)
         }
         return v
       }
@@ -167,18 +167,16 @@ const QuantityToggle = React.forwardRef<HTMLInputElement, QuantityToggleProps>(
       if (trueValue !== '') {
         setPrefix(format.prefix)
         setSubfix(format.subfix)
-        if (format.toFixed)
+        if (format.toFixed) {
+          setPrevValue(trueValue)
           setTrueValue((v) => Number(v).toFixed(format.toFixed))
+        }
       }
     }
 
     React.useEffect(() => {
       onChange?.(Number(preValue))
     }, [preValue])
-
-    React.useEffect(() => {
-      if (!Number.isNaN(trueValue)) setPrevValue(trueValue)
-    }, [trueValue])
 
     React.useEffect(() => {
       quantityToggleRef.current?.setSelectionRange(cursorPos, cursorPos)

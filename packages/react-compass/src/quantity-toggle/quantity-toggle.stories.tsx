@@ -10,11 +10,10 @@ export const Variants: React.FC = () => {
       <QuantityToggle
         label='Potato price'
         placeholder='Price'
-        onChange={(e) => console.log('tr', e)}
-        // min={-10}
+        onChange={(v) => console.log(v)}
         formatOptions={{
           prefix: '$',
-          // toFixed: 2,
+          toFixed: 2,
         }}
       />
       <h3>Un Controlled</h3>
@@ -26,7 +25,7 @@ export const Variants: React.FC = () => {
         onChange={(e) => setValue(e)}
         formatOptions={{
           prefix: '$',
-          toFixed: 2,
+          // toFixed: 2,
         }}
       />
       <h3>Disabled</h3>
