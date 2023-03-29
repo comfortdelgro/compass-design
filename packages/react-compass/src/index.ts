@@ -1,3 +1,4 @@
+export {SSRProvider} from '@react-aria/ssr'
 export {default as Accordion} from './accordion'
 export type {
   AccordionProps,
