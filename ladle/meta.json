@@ -641,7 +641,7 @@
         "Quantity toggle"
       ],
       "locStart": 5,
-      "locEnd": 47,
+      "locEnd": 48,
       "filePath": "src/quantity-toggle/quantity-toggle.stories.tsx",
       "meta": {}
     },
