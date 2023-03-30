@@ -29,7 +29,7 @@ const FontWeights: React.FC = () => {
             alignItems: 'center',
             justifyContent: 'flex-end',
             padding: '0.75rem',
-            fontWeight: weight
+            fontWeight: weight,
           }}
         >
           <div className='text-2xl text-[#080C4E]'>Aa</div>

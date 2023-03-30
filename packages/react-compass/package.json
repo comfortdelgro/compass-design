@@ -1,6 +1,6 @@
 {
   "name": "@comfortdelgro/react-compass",
-  "version": "0.32.0",
+  "version": "0.33.0",
   "description": "React Compass Design System by ComfortDelGro Corporation",
   "keywords": [
     "design system",
@@ -66,6 +66,7 @@
     "@react-aria/select": "^3.9.0",
     "@react-aria/selection": "^3.12.1",
     "@react-aria/slider": "^3.2.3",
+    "@react-aria/ssr": "^3.5.0",
     "@react-aria/table": "^3.5.0",
     "@react-aria/tabs": "^3.3.3",
     "@react-aria/textfield": "^3.7.2",
@@ -97,8 +98,7 @@
     "@tanstack/react-table": "^8.7.6",
     "chart.js": "^4.1.2",
     "html-react-parser": "^3.0.7",
-    "react-chartjs-2": "^5.2.0",
-    "@react-aria/ssr": "^3.5.0"
+    "react-chartjs-2": "^5.2.0"
   },
   "devDependencies": {
     "@comfortdelgro/eslint-config": "^1.0.2",
