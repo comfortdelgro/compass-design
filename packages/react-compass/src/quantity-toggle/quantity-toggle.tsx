@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {InputHTMLAttributes} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
@@ -7,7 +7,12 @@ import {
   StyledQuantityToggle,
 } from './quantity-toggle.styles'
 
-interface Props extends StyledComponentProps {
+type InputHTMLAttributesProps = Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  'onChange'
+>
+
+interface Props extends StyledComponentProps, InputHTMLAttributesProps {
   label?: string
   value?: number
   defaultValue?: number
@@ -17,7 +22,7 @@ interface Props extends StyledComponentProps {
   step?: number
   formatOptions?: {
     prefix?: string
-    subfix?: string
+    suffix?: string
     toFixed?: number
   }
   autoComplete?: string
@@ -48,12 +53,13 @@ const QuantityToggle = React.forwardRef<HTMLInputElement, QuantityToggleProps>(
       onChange,
       isErrored,
       isDisabled,
+      ...rest
     } = props
 
     const format = React.useMemo(() => {
       return {
         prefix: formatOptions?.prefix ?? '',
-        subfix: formatOptions?.subfix ?? '',
+        suffix: formatOptions?.suffix ?? '',
         toFixed: formatOptions?.toFixed,
       }
     }, [formatOptions])
@@ -66,7 +72,7 @@ const QuantityToggle = React.forwardRef<HTMLInputElement, QuantityToggleProps>(
     const [preValue, setPrevValue] = React.useState<Value>(value ?? 0)
     const [trueValue, setTrueValue] = React.useState<Value>(value ?? 0)
     const [prefix, setPrefix] = React.useState(formatOptions?.prefix ?? '')
-    const [subfix, setSubfix] = React.useState(formatOptions?.subfix ?? '')
+    const [suffix, setSuffix] = React.useState(formatOptions?.suffix ?? '')
 
     //Callback
     const increase = () => {
@@ -155,23 +161,25 @@ const QuantityToggle = React.forwardRef<HTMLInputElement, QuantityToggleProps>(
       }
     }
 
-    const handleFocus = () => {
+    const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
       if (trueValue !== '') {
         setPrefix('')
-        setSubfix('')
+        setSuffix('')
         setTrueValue(preValue)
       }
+      props.onFocus?.(event)
     }
 
-    const handleBlur = () => {
+    const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
       if (trueValue !== '') {
         setPrefix(format.prefix)
-        setSubfix(format.subfix)
+        setSuffix(format.suffix)
         if (format.toFixed) {
           setPrevValue(trueValue)
           setTrueValue((v) => Number(v).toFixed(format.toFixed))
         }
       }
+      props.onBlur?.(event)
     }
 
     React.useEffect(() => {
@@ -203,9 +211,11 @@ const QuantityToggle = React.forwardRef<HTMLInputElement, QuantityToggleProps>(
             -
           </button>
           <input
+            {...rest}
             disabled={isDisabled}
+            required={props.isRequired}
             type='text'
-            value={trueValue !== '' ? `${prefix}${trueValue}${subfix}` : ''}
+            value={trueValue !== '' ? `${prefix}${trueValue}${suffix}` : ''}
             onKeyDown={handleKeydown}
             onFocus={handleFocus}
             onBlur={handleBlur}
