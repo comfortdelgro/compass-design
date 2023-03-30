@@ -29,8 +29,8 @@ import QuantityToggle from '@comfortdelgro/react-compass/quantity-toggle'
   <QuantityToggle
     placeholder='Price'
     formatOptions={{
-      style: 'currency',
-      currency: 'USD',
+      prefix: '$',
+      toFixed: 2,
     }}
   />
 </section>
@@ -39,8 +39,8 @@ import QuantityToggle from '@comfortdelgro/react-compass/quantity-toggle'
 <QuantityToggle
   placeholder='Price'
   formatOptions={{
-    style: 'currency',
-    currency: 'USD',
+    prefix: '$',
+    toFixed: 2,
   }}
 />
 ```
@@ -50,11 +50,21 @@ import QuantityToggle from '@comfortdelgro/react-compass/quantity-toggle'
 ### Disabled:
 
 <section className={styles.componentShowcaseContainer}>
-  <QuantityToggle defaultValue={2} isDisabled helperText='Bla Bla Bla' />
+  <QuantityToggle
+    label='Potato price'
+    defaultValue={2}
+    isDisabled
+    helperText='This is helper text'
+  />
 </section>
 
 ```js
-<QuantityToggle defaultValue={2} isDisabled helperText='Bla Bla Bla' />
+  <QuantityToggle
+    label='Potato price'
+    defaultValue={2}
+    isDisabled
+    helperText='This is helper text'
+  />
 ```
 
 ---
@@ -62,11 +72,23 @@ import QuantityToggle from '@comfortdelgro/react-compass/quantity-toggle'
 ### Error:
 
 <section className={styles.componentShowcaseContainer}>
-  <QuantityToggle defaultValue={2} isErrored helperText='Bla Bla Bla' />
+  <QuantityToggle
+    label='Potato price'
+    defaultValue={2}
+    isErrored
+    helperText='This is helper text'
+    errorMessage='This is error message'
+  />
 </section>
 
 ```js
-<QuantityToggle defaultValue={2} isErrored helperText='Bla Bla Bla' />
+  <QuantityToggle
+    label='Potato price'
+    defaultValue={2}
+    isErrored
+    helperText='This is helper text'
+    errorMessage='This is error message'
+  />
 ```
 
 ---
@@ -75,7 +97,7 @@ import QuantityToggle from '@comfortdelgro/react-compass/quantity-toggle'
 
 | Name            | Type                           | Default | Description                                                                                                                                               |
 | :-------------- | :----------------------------- | :------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| formatOptions   | `Intl.NumberFormatOptions`     | —       | Formatting options for the value displayed in the number field. This also affects what characters are allowed to be typed by the user.                    |
+| formatOptions   | `FormatOptions`                | —       | Formatting options for the value displayed in the number field. This also affects what characters are allowed to be typed by the user.                    |
 | isDisabled      | `boolean`                      | `false` | Whether the input is disabled.                                                                                                                            |
 | isErrored       | `boolean`                      | `false` | Whether the input is isErrored.                                                                                                                           |
 | isReadOnly      | `boolean`                      | `false` | Whether the input can be selected but not changed by the user.                                                                                            |
@@ -98,6 +120,14 @@ import QuantityToggle from '@comfortdelgro/react-compass/quantity-toggle'
 | label           | `ReactNode`                    | —       | The content to display as the label.                                                                                                                      |
 | isErrored       | `ReactNode`                    | —       | The amount that the input value changes with each increment or decrement "tick".                                                                          |
 | css             | `CSS`                          | —       | The system prop that allows defining system overrides as well as additional CSS styles.                                                                   |
+
+## FormatOptions:
+
+| Name            | Type     | Default | Description                                                                       |
+| :-------------- | :------- | :------ | :-------------------------------------------------------------------------------- |
+| prefix          | `string` | —       | First character come with value, use for display type of the value                |
+| subfix          | `string` | `false` | Last character come with value, use for display type of the value                 |
+| toFixed         | `number` | `false` | Number of digits after the decimal point. Must be in the range 0 - 20, inclusive. |
 
 ---
 
