@@ -23,3 +23,4 @@ const TabPaneless: React.FC = () => {
 }
 
 export default TabPaneless
+
