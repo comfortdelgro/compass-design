@@ -1,4 +1,5 @@
 import {faBug} from '@fortawesome/free-solid-svg-icons'
+import React from 'react'
 import Button from '../button/index'
 import {Icon} from '../icon'
 import Error from './index'
