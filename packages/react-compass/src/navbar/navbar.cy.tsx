@@ -4,6 +4,7 @@ import {
   faChartGantt,
   faQuestionCircle,
 } from '@fortawesome/free-solid-svg-icons'
+import React from 'react'
 import Avatar from '../avatar'
 import Button from '../button'
 import SearchField from '../searchfield'
