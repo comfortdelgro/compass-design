@@ -1,3 +1,4 @@
+import React from 'react'
 import {NoExpandSidenav} from './testComponent'
 
 describe('range-calendar.cy.ts', () => {

@@ -1,3 +1,4 @@
+import React from 'react'
 import Radio from './index'
 
 describe('radio.cy.ts', () => {
