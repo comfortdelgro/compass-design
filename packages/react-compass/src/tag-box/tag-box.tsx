@@ -145,6 +145,10 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
             ref={boxRef}
             collaspable={collaspable}
             isErrored={!!isErrored}
+            aria-label={props['aria-label']}
+            aria-details={props['aria-details']}
+            aria-labelledby={props['aria-labelledby']}
+            aria-describedby={props['aria-describedby']}
           >
             {props.icon && <StyledIcon>{props.icon}</StyledIcon>}
 
