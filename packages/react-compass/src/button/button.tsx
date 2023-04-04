@@ -1,5 +1,3 @@
-import {useButton} from '@react-aria/button'
-import type {AriaButtonProps} from '@react-types/button'
 import React from 'react'
 import type {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -11,7 +9,7 @@ import {
 } from './button.styles'
 import Ripple from './ripple'
 
-interface Props extends AriaButtonProps, StyledComponentProps {
+interface Props extends StyledComponentProps {
   children?: React.ReactNode
   className?: string
   leftIcon?: React.ReactNode
@@ -47,8 +45,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const buttonRef = useDOMRef<HTMLButtonElement>(ref)
 
-    const buttonProps = useButton(ariaSafeProps, buttonRef).buttonProps
-
     const variantProps = {
       variant,
       size,
@@ -61,7 +57,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       return {
         className,
         css,
-        ...buttonProps,
         ...ariaSafeProps,
         ...variantProps,
       }
