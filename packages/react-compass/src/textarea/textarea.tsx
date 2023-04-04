@@ -1,5 +1,3 @@
-import {useTextField} from '@react-aria/textfield'
-import type {AriaTextFieldProps} from '@react-types/textfield'
 import React from 'react'
 import {
   StyledTextFieldHelperText,
@@ -13,15 +11,66 @@ import {
   TextareaVariantProps,
 } from './textarea.styles'
 
-interface Props extends AriaTextFieldProps, StyledComponentProps {
+interface Props extends StyledComponentProps {
+  id?: string
   label?: string
-  isDisabled?: boolean
-  isRequired?: boolean
+  cols?: number
+  rows?: number
+  tabIndex?: number
+  wrap?: string
+  autoCapitalize?: string
   isErrored?: boolean
-  errorMessage?: string
+  isRequired?: boolean
+  isDisabled?: boolean
+  isReadOnly?: boolean
+  validationState?: 'valid' | 'invalid'
+  description?: React.ReactNode
+  placeholder?: string
+  value?: string
+  defaultValue?: string
+  helperText?: string
+  autoComplete?: string
+  maxLength?: number
+  minLength?: number
   wordCount?: boolean
+  name?: string
+  pattern?: string
+  excludeFromTabOrder?: boolean
+  errorMessage?: string
+  onChangeEvent?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void
   onChange?: (value: string) => void
-  onChangeEvent?: (event: React.ChangeEvent<HTMLInputElement>) => void
+  onCopy?: React.ClipboardEventHandler<HTMLTextAreaElement>
+  onCut?: React.ClipboardEventHandler<HTMLTextAreaElement>
+  onPaste?: React.ClipboardEventHandler<HTMLTextAreaElement>
+  onCompositionStart?: React.CompositionEventHandler<HTMLTextAreaElement>
+  onCompositionEnd?: React.CompositionEventHandler<HTMLTextAreaElement>
+  onCompositionUpdate?: React.CompositionEventHandler<HTMLTextAreaElement>
+  onSelect?: React.ReactEventHandler<HTMLTextAreaElement>
+  onBeforeInput?: React.FormEventHandler<HTMLTextAreaElement>
+  onInput?: React.FormEventHandler<HTMLTextAreaElement>
+  onFocus?: (e: React.FocusEvent) => void
+  onBlur?: (e: React.FocusEvent) => void
+  onKeyDown?: (e: React.KeyboardEvent) => void
+  onKeyUp?: (e: React.KeyboardEvent) => void
+
+  autoFocus?: boolean
+  'aria-activedescendant'?: string
+  'aria-autocomplete'?: 'none' | 'inline' | 'list' | 'both'
+  'aria-haspopup'?:
+    | boolean
+    | 'false'
+    | 'true'
+    | 'menu'
+    | 'listbox'
+    | 'tree'
+    | 'grid'
+    | 'dialog'
+  'aria-controls'?: string
+  'aria-label'?: string
+  'aria-labelledby'?: string
+  'aria-describedby'?: string
+  'aria-details'?: string
+  'aria-errormessage'?: string
 }
 
 export type TextareaProps = Props &
@@ -35,67 +84,87 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       css = {},
       // ComponentProps
       label,
-      isDisabled,
-      isErrored,
-      isRequired,
+      id,
+      name,
+      value,
+      cols,
+      rows,
+      wrap,
+      tabIndex,
+      isDisabled = false,
+      isErrored = false,
+      isReadOnly = false,
+      isRequired = false,
       errorMessage,
       wordCount,
       maxLength,
+      minLength,
+      autoCapitalize,
+      autoFocus,
       onChange,
       onChangeEvent,
-      // AriaTextFieldProps
-      ...ariaSafeProps
     } = props
 
-    const variantProps = {isErrored} as TextareaVariantProps
-    const ariaProps = {
-      label,
-      maxLength,
-      inputElementType: 'textarea',
-      ...ariaSafeProps,
-    } as AriaTextFieldProps
-
+    const textareaId = id
     const textareaRef = useDOMRef<HTMLTextAreaElement>(ref)
-    const {labelProps, inputProps, descriptionProps} = useTextField<'textarea'>(
-      ariaProps,
-      textareaRef,
-    )
 
-    const htmlProps = {...ariaSafeProps} as Omit<
-      React.HTMLAttributes<HTMLDivElement>,
-      keyof Props
-    >
-
-    const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      //inputProps.onChange?.(event)
+    const handleOnChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
       onChange?.(event.target.value)
       onChangeEvent?.(event)
     }
 
     return (
-      <StyledTextareaWrapper css={css} {...htmlProps}>
+      <StyledTextareaWrapper css={css}>
         {label && (
-          <StyledTextFieldLabel {...labelProps} isDisabled={!!isDisabled}>
+          <StyledTextFieldLabel htmlFor={textareaId} isDisabled={!!isDisabled}>
             {label}
             {isRequired && <span>*</span>}
           </StyledTextFieldLabel>
         )}
         <StyledTextarea
-          {...inputProps}
-          {...variantProps}
+          id={textareaId}
           ref={textareaRef}
-          isErrored={!!isErrored}
-          disabled={!!isDisabled}
-          onChange={(e) => {
-            handleOnChange(e as unknown as React.ChangeEvent<HTMLInputElement>)
-          }}
+          cols={cols}
+          rows={rows}
+          wrap={wrap}
+          name={name}
+          value={value}
+          tabIndex={tabIndex}
+          autoFocus={autoFocus}
+          autoCapitalize={autoCapitalize}
+          readOnly={isReadOnly}
+          required={isRequired}
+          isErrored={isErrored}
+          disabled={isDisabled}
+          maxLength={maxLength}
+          minLength={minLength}
+          onCut={props.onCut}
+          onCopy={props.onCopy}
+          onBlur={props.onBlur}
+          onFocus={props.onFocus}
+          onPaste={props.onPaste}
+          onInput={props.onInput}
+          onKeyUp={props.onKeyUp}
+          onSelect={props.onSelect}
+          onChange={handleOnChange}
+          onKeyDown={props.onKeyDown}
+          onBeforeInput={props.onBeforeInput}
+          onCompositionEnd={props.onCompositionEnd}
+          onCompositionStart={props.onCompositionStart}
+          onCompositionUpdate={props.onCompositionUpdate}
+          aria-label={props['aria-label']}
+          aria-details={props['aria-details']}
+          aria-haspopup={props['aria-haspopup']}
+          aria-controls={props['aria-controls']}
+          aria-labelledby={props['aria-labelledby']}
+          aria-describedby={props['aria-describedby']}
+          aria-errormessage={props['aria-errormessage']}
+          aria-autocomplete={props['aria-autocomplete']}
+          aria-activedescendant={props['aria-activedescendant']}
         />
         {wordCount && (
-          <StyledTextFieldHelperText
-            className='word-count'
-            {...descriptionProps}
-          >
-            {inputProps.value?.toString().length ?? '0'}
+          <StyledTextFieldHelperText className='word-count'>
+            {textareaRef.current?.value?.toString().length ?? '0'}
             {maxLength ? `/${maxLength}` : null}
           </StyledTextFieldHelperText>
         )}
