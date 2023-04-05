@@ -47,11 +47,6 @@ const MenuListDropdownHeader = React.forwardRef<
     }
   }
 
-  // const {buttonProps} = useButton(
-  //   {onPress: handleOnClick, ...ariaSafeProps},
-  //   buttonRef,
-  // )
-
   const renderLeftIcon = () => {
     if (leftIcon === undefined) {
       return (
@@ -110,7 +105,7 @@ const MenuListDropdownHeader = React.forwardRef<
       className={`${className} menu-list-dropdown-header`}
       ref={buttonRef}
       css={css}
-      onClick={handleOnClick}
+      onMouseDown={handleOnClick}
       {...ariaSafeProps}
     >
       {renderLeftIcon()}
