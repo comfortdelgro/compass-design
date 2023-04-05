@@ -3,7 +3,7 @@ import {useSearchField} from '@react-aria/searchfield'
 import {useSearchFieldState} from '@react-stately/searchfield'
 import type {AriaSearchFieldProps} from '@react-types/searchfield'
 import React from 'react'
-import Button from '../button/button'
+import Button, { ButtonProps } from '../button/button'
 import {Icon} from '../icon'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -56,7 +56,7 @@ const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
           type='text'
         />
         {state.value !== '' ? (
-          <Button {...clearButtonProps} size='sm' variant='ghost'>
+          <Button {...clearButtonProps as unknown as ButtonProps} size='sm' variant='ghost'>
             <Icon className='icon' icon={faClose} />
           </Button>
         ) : (

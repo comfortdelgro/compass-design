@@ -8,6 +8,7 @@ import { useDOMRef } from '../utils/use-dom-ref'
 import { AlertVariantProps,StyledAlert } from './alert.styles'
 
 
+
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
   icon?: false | IconProp
@@ -52,7 +53,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
           size='sm'
           variant='ghost'
           className='alert-dismiss-button'
-          onMouseDown={() => onDismiss?.()}
+          onPress={() => onDismiss?.()}
         >
           <Icon className='alert-close-icon' icon={faClose} />
         </Button>

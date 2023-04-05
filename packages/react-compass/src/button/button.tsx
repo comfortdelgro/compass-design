@@ -14,8 +14,14 @@ interface Props extends StyledComponentProps {
   className?: string
   leftIcon?: React.ReactNode
   rightIcon?: React.ReactNode
+  onPress?: (
+    event:
+      | React.MouseEvent<HTMLButtonElement>
+      | React.TouchEvent<HTMLButtonElement>,
+  ) => void
   onMouseDown?: (event: React.MouseEvent<HTMLButtonElement>) => void
   ripple?: boolean
+  isDisabled?: boolean
 }
 
 export type ButtonProps = Props &
@@ -38,7 +44,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       fullWidth,
       loading,
       onMouseDown,
+      onPress,
       ripple = false,
+      isDisabled = false,
       // AriaButtonProps
       ...ariaSafeProps
     } = props
@@ -71,6 +79,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               {...delegateProps}
               ref={buttonRef}
               onMouseDown={onMouseDown}
+              onClick={onPress}
+              onTouchEnd={onPress}
+              disabled={isDisabled}
             >
               {loading ? (
                 <StyledLoading
@@ -104,6 +115,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             {...delegateProps}
             ref={buttonRef}
             onMouseDown={onMouseDown}
+            onClick={onPress}
+            onTouchEnd={onPress}
+            disabled={isDisabled}
           >
             {loading ? (
               <StyledLoading
