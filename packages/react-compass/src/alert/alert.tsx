@@ -1,11 +1,12 @@
-import {faClose} from '@fortawesome/free-solid-svg-icons'
+import { faClose } from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
 import Button from '../button/button'
-import {Icon, IconProp} from '../icon'
-import {getIconFromColor} from '../utils/get-icon-from-color'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {useDOMRef} from '../utils/use-dom-ref'
-import {AlertVariantProps, StyledAlert} from './alert.styles'
+import { Icon,IconProp } from '../icon'
+import { getIconFromColor } from '../utils/get-icon-from-color'
+import { StyledComponentProps } from '../utils/stitches.types'
+import { useDOMRef } from '../utils/use-dom-ref'
+import { AlertVariantProps,StyledAlert } from './alert.styles'
+
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
@@ -51,7 +52,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
           size='sm'
           variant='ghost'
           className='alert-dismiss-button'
-          onPress={() => onDismiss?.()}
+          onMouseDown={() => onDismiss?.()}
         >
           <Icon className='alert-close-icon' icon={faClose} />
         </Button>
