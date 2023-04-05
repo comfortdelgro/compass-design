@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 0.33.1
+
+### Patch Changes
+
+- 8dcd877f: Add html element props to new quantity toggle
+
 ## 0.33.0
 
 ### Minor Changes
