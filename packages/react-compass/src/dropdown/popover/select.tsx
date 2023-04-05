@@ -1,63 +1,51 @@
-import {
-  AriaPopoverProps,
-  DismissButton,
-  Overlay,
-  usePopover,
-} from '@react-aria/overlays'
-import {SelectState} from '@react-stately/select'
 import React from 'react'
 import {StyledPopover} from '../dropdown.styles'
 
-interface Props<T = unknown> extends AriaPopoverProps {
-  state: SelectState<T>
+interface Props {
+  close: () => void
   triggerRef: React.RefObject<HTMLButtonElement>
   popoverRef: React.RefObject<HTMLDivElement>
   children: React.ReactNode
 }
 
-function Popover({children, state, ...props}: Props) {
+function Popover({children, triggerRef, close, ...props}: Props) {
   const ref = React.useRef(null)
   const {popoverRef = ref} = props
-  const {popoverProps, underlayProps} = usePopover(
-    {
-      ...props,
-      offset: 8,
-      shouldFlip: true,
-      popoverRef,
-    },
-    state,
-  )
-
-  // React.useEffect(() => {
-  //   const close = () => state.close()
-  //   document.addEventListener('scroll', close, true)
-  //   return () => {
-  //     document.removeEventListener('scroll', close)
-  //   }
-  // }, [])
-
-  const styles = props.triggerRef.current?.clientWidth
+  const styles = triggerRef.current?.clientWidth
     ? {
-        ...popoverProps.style,
         width: 'fit-content',
-        minWidth: props.triggerRef.current.clientWidth + 2,
+        minWidth: triggerRef.current.clientWidth + 2,
         zIndex: 2147483641,
       }
-    : {...popoverProps?.style}
+    : {}
+
+  React.useEffect(() => {
+    const rect = popoverRef.current?.getBoundingClientRect()
+    if (rect) {
+      const isInViewport =
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <=
+          (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <=
+          (window.innerWidth || document.documentElement.clientWidth)
+
+      if (!isInViewport && popoverRef.current) {
+        popoverRef.current.style.bottom = '62px'
+      }
+    }
+  }, [])
 
   return (
-    <Overlay>
+    <>
       <div
-        {...underlayProps}
-        onClick={() => state.close()}
+        onClick={close}
         style={{position: 'fixed', inset: 0, zIndex: 2147483640}}
       />
-      <StyledPopover {...popoverProps} ref={popoverRef} style={styles}>
-        <DismissButton onDismiss={() => state.close()} />
+      <StyledPopover ref={popoverRef} style={styles}>
         {children}
-        <DismissButton onDismiss={() => state.close()} />
       </StyledPopover>
-    </Overlay>
+    </>
   )
 }
 export default Popover

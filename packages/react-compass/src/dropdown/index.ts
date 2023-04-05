@@ -20,6 +20,6 @@ const Dropdown: ComposableDropdown = {
   Item: Item,
 }
 
-Dropdown.Item = Item
+Dropdown.Item = DropdownItem
 
 export default Dropdown

@@ -278,7 +278,14 @@ export const StyledFlagIcon = styled('div', {
   },
 })
 
+export const StyledListBoxWrapper = styled('div', {
+  marginTop: '$2',
+  position: 'relative',
+  minWidth: '100%',
+})
+
 export const StyledPopover = styled('div', {
+  position: 'absolute',
   margin: 0,
   padding: '$2 0',
   borderRadius: '$md',

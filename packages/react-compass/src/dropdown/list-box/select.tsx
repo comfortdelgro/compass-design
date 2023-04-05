@@ -1,13 +1,14 @@
-import {AriaListBoxOptions, useListBox} from '@react-aria/listbox'
-import {SelectState} from '@react-stately/select'
 import React from 'react'
 import {StyledLoading} from '../dropdown.styles'
 import Header from '../header'
+import {DropdownItemProps} from '../item'
 import Option from '../option/select'
 import {getDistanceBetweenElements, useIsInViewport} from '../utils'
 
-interface Props<T = unknown> extends AriaListBoxOptions<T> {
-  state: SelectState<T>
+interface Props {
+  collection: Array<
+    React.DetailedReactHTMLElement<DropdownItemProps, HTMLElement>
+  >
   headerTitle: string | undefined
   isLoading: boolean
   headerOnClick: (e: unknown) => void
@@ -17,8 +18,7 @@ interface Props<T = unknown> extends AriaListBoxOptions<T> {
 
 function ListBox(props: Props) {
   const ref = React.useRef(null)
-  const {listBoxRef = ref, state} = props
-  const {listBoxProps} = useListBox(props, state, listBoxRef)
+  const {listBoxRef = ref, collection} = props
 
   const lastEl = React.useRef<HTMLDivElement | null>(null)
   const standEl = React.useRef<HTMLDivElement | null>(null)
@@ -40,7 +40,7 @@ function ListBox(props: Props) {
       {props.headerTitle && (
         <Header title={props.headerTitle} onPress={props?.headerOnClick} />
       )}
-      <ul {...listBoxProps} ref={listBoxRef}>
+      <ul ref={listBoxRef}>
         {props.isLoading ? (
           <StyledLoading>
             <div className='spinner'>
@@ -52,10 +52,10 @@ function ListBox(props: Props) {
           </StyledLoading>
         ) : (
           <>
-            {[...state.collection].map((item) => (
-              <Option key={item.key} item={item} state={state} />
+            {[...collection].map((item) => (
+              <Option key={item.key} item={item} />
             ))}
-            {[...state.collection].length > 0 && (
+            {[...collection].length > 0 && (
               <div style={{height: 1}} ref={lastEl} />
             )}
           </>

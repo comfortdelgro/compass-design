@@ -1,5 +1,3 @@
-import {useOption} from '@react-aria/listbox'
-import {SelectState} from '@react-stately/select'
 import React, {Key} from 'react'
 import {DropdownItemProps} from '../item'
 import {
@@ -10,31 +8,24 @@ import {
   StyledOption,
 } from './index.styles'
 
-interface Props<T = unknown> extends OptionVariantProps {
-  state: SelectState<T>
-  key: Key
-  item: Node<T>
+interface Props extends OptionVariantProps {
+  key: Key | null
+  item: React.DetailedReactHTMLElement<DropdownItemProps, HTMLElement>
 }
 
-function Option({item, state}: Props) {
+function Option({item}: Props) {
   const ref = React.useRef(null)
-  const {optionProps, isSelected, isFocused, isDisabled} = useOption(
-    {key: item.key},
-    state,
-    ref,
-  )
-  const {type = 'icon', leftIcon, rightIcon, rightColor} = item.props ?? {}
+  const {type = 'icon', leftIcon, rightIcon, rightColor, children} = item.props
 
   return (
     <StyledOption
-      {...optionProps}
       ref={ref}
-      isFocused={isFocused}
-      isSelected={isSelected}
-      isDisabled={isDisabled}
+      // isFocused={isFocused}
+      // isSelected={isSelected}
+      // isDisabled={isDisabled}
     >
       {leftIcon && <StyledIcon>{leftIcon}</StyledIcon>}
-      <StyledContent>{item.rendered}</StyledContent>
+      <StyledContent>{children}</StyledContent>
       {type === 'icon' && rightIcon && <StyledIcon>{rightIcon}</StyledIcon>}
       {type === 'color' && rightColor && (
         <StyledColor css={{$$bg: rightColor}} />
@@ -45,22 +36,22 @@ function Option({item, state}: Props) {
 
 export default Option
 
-export interface Node<T> {
-  type: string
-  key: Key
-  value: T
-  level: number
-  hasChildNodes: boolean
-  childNodes: Iterable<Node<T>>
-  rendered: React.ReactNode
-  textValue: string
-  'aria-label'?: string
-  index?: number
-  wrapper?: (element: React.ReactElement) => React.ReactElement
-  parentKey?: Key
-  prevKey?: Key
-  nextKey?: Key
-  props?: DropdownItemProps
-  /** @private */
-  shouldInvalidate?: (context: unknown) => boolean
-}
+// export interface Node<T> {
+//   type: string
+//   key: Key
+//   value: T
+//   level: number
+//   hasChildNodes: boolean
+//   childNodes: Iterable<Node<T>>
+//   rendered: React.ReactNode
+//   textValue: string
+//   'aria-label'?: string
+//   index?: number
+//   wrapper?: (element: React.ReactElement) => React.ReactElement
+//   parentKey?: Key
+//   prevKey?: Key
+//   nextKey?: Key
+//   props?: DropdownItemProps
+//   /** @private */
+//   shouldInvalidate?: (context: unknown) => boolean
+// }

@@ -1,29 +1,45 @@
-import {HiddenSelect, useSelect} from '@react-aria/select'
-import {SelectProps, useSelectState} from '@react-stately/select'
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
   DropdownVariantProps,
   StyledDropdownWrapper,
+  StyledListBoxWrapper,
   StyledSelect,
   StyledTextFieldHelperText,
 } from './dropdown.styles'
+import DropdownItem, {DropdownItemProps} from './item'
 import ListBox from './list-box/select'
+import {ListKeyboardDelegate} from './ListKeyboardDelegate'
 import Popover from './popover/select'
-import {Button, Icon} from './utils'
+import {Icon} from './utils'
 
-interface Props<T> extends SelectProps<T>, StyledComponentProps {
+interface Props extends StyledComponentProps {
+  label?: string
+  isOpen?: boolean
+  defaultOpen?: boolean
+  validationState?: 'valid' | 'invalid'
+  onOpenChange?: (isOpen: boolean) => void
+  disabledKeys?: Iterable<React.Key>
   isLoading?: boolean
   icon?: React.ReactNode
+  isDisabled?: boolean
+  isReadOnly?: boolean
   isErrored?: boolean
   isRequired?: boolean
+  description?: React.ReactNode
+  placeholder?: string
   errorMessage?: string
   headerTitle?: string
+  autoFocus?: boolean
   headerOnClick?: (e: unknown) => void
+  selectedKey?: React.Key | null
+  defaultSelectedKey?: React.Key
+  onSelectionChange?: (key: React.Key) => void
+  onLoadMore?: () => void
 }
 
-export type DropdownProps<T = object> = Props<T> & DropdownVariantProps
+export type DropdownProps = Props & DropdownVariantProps
 
 const Select = React.forwardRef<HTMLButtonElement, DropdownProps>(
   (props, ref) => {
@@ -31,76 +47,135 @@ const Select = React.forwardRef<HTMLButtonElement, DropdownProps>(
       // StyledComponentProps
       css = {},
       icon = <Icon />,
+      children,
+      isOpen,
+      defaultOpen = false,
       isErrored,
       isRequired,
-      isDisabled,
+      isDisabled = false,
       errorMessage,
+      selectedKey,
+      defaultSelectedKey,
+      disabledKeys = [],
       onLoadMore = () => {
         //Load more
       },
-      // AriaDropdownProps
     } = props
-    const variantProps = {} as DropdownVariantProps
+    const [currentKey, setCurrentKey] = React.useState<React.Key | undefined>(
+      defaultSelectedKey,
+    )
+    const [open, setOpen] = React.useState<boolean>(defaultOpen)
     const selectRef = useDOMRef<HTMLButtonElement>(ref)
-    const state = useSelectState(props)
 
     const listBoxRef = React.useRef<HTMLUListElement>(null)
     const popoverRef = React.useRef<HTMLDivElement>(null)
+    const collection = pickChilds(children, DropdownItem)
+    const selectedItem = collection.find((item) => {
+      return item.key === currentKey
+    })
 
-    const {labelProps, triggerProps, valueProps, menuProps} = useSelect(
-      props,
-      state,
-      selectRef,
+    const delegate = React.useMemo(
+      () => new ListKeyboardDelegate(collection, disabledKeys),
+      [collection, disabledKeys],
     )
 
+    React.useEffect(() => {
+      if (!selectedKey && defaultSelectedKey) {
+        setCurrentKey(defaultSelectedKey)
+      }
+      if (selectedKey) {
+        setCurrentKey(selectedKey)
+      }
+    }, [selectedKey])
+
+    React.useEffect(() => {
+      if (!isOpen && defaultOpen) {
+        setOpen(defaultOpen)
+      }
+      if (isOpen) {
+        setOpen(isOpen)
+      }
+    }, [isOpen])
+
+    React.useEffect(() => {
+      props.onOpenChange?.(open)
+    }, [open])
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      switch (e.key) {
+        case 'ArrowLeft': {
+          // prevent scrolling containers
+          e.preventDefault()
+
+          const key =
+            currentKey != null
+              ? delegate.getKeyAbove(currentKey)
+              : delegate.getFirstKey()
+          if (key) {
+            setCurrentKey(key)
+          }
+          break
+        }
+        // case 'ArrowRight': {
+        //   // prevent scrolling containers
+        //   e.preventDefault()
+
+        //   let key = currentKey != null ? delegate.getKeyBelow(currentKey) : delegate.getFirstKey()
+        //   if (key) {
+        //     setCurrentKey(key)
+        //   }
+        //   break
+        // }
+      }
+    }
+
     return (
-      <StyledDropdownWrapper css={css} {...variantProps}>
+      <StyledDropdownWrapper css={css}>
         {props.label && (
-          <label {...labelProps}>
+          <label>
             {props.label}
             {isRequired && <span>*</span>}
           </label>
         )}
-        <HiddenSelect
-          state={state}
-          triggerRef={selectRef}
-          label={props.label}
-        />
         <StyledSelect
-          isEmpty={!state.selectedItem}
+          isEmpty={!selectedItem}
           isErrored={!!isErrored}
-          isDisabled={!!isDisabled}
+          isDisabled={isDisabled}
         >
-          <Button {...triggerProps} ref={selectRef}>
-            <span {...valueProps}>
-              {state.selectedItem
-                ? state.selectedItem.textValue !== ''
-                  ? state.selectedItem.textValue
-                  : state.selectedItem.rendered
+          <button
+            ref={selectRef}
+            disabled={isDisabled}
+            onClick={() => setOpen(true)}
+            onKeyDown={(e) => e.preventDefault()}
+          >
+            <span>
+              {selectedItem
+                ? selectedItem.props.textValue
+                  ? selectedItem.props.textValue
+                  : selectedItem.props.children
                 : props.placeholder}
             </span>
             {icon}
-          </Button>
-          {state.isOpen && (
+          </button>
+        </StyledSelect>
+        <StyledListBoxWrapper>
+          {open && (
             <Popover
-              state={state}
-              triggerRef={selectRef}
               popoverRef={popoverRef}
-              placement='bottom start'
+              close={() => setOpen(false)}
+              triggerRef={selectRef}
             >
               <ListBox
-                {...menuProps}
-                shouldFocusOnHover={false}
+                collection={collection}
                 onLoadMore={onLoadMore}
                 headerTitle={props.headerTitle}
                 isLoading={!!props.isLoading}
                 headerOnClick={(e) => props?.headerOnClick?.(e)}
                 listBoxRef={listBoxRef}
-                state={state}
               />
             </Popover>
           )}
-        </StyledSelect>
+        </StyledListBoxWrapper>
         {errorMessage && (
           <StyledTextFieldHelperText error={!!isErrored}>
             {errorMessage}
@@ -110,5 +185,26 @@ const Select = React.forwardRef<HTMLButtonElement, DropdownProps>(
     )
   },
 )
+
+const pickChilds = (
+  children: React.ReactNode | undefined,
+  targetType: React.ElementType,
+): Array<React.DetailedReactHTMLElement<DropdownItemProps, HTMLElement>> => {
+  const matched: Array<
+    React.DetailedReactHTMLElement<DropdownItemProps, HTMLElement>
+  > = []
+  React.Children.forEach(children, (item) => {
+    if (!React.isValidElement(item)) return item
+    if (item.type === targetType) {
+      matched.push(
+        item as React.DetailedReactHTMLElement<DropdownItemProps, HTMLElement>,
+      )
+    }
+    return item
+  })
+  const childs = matched.length >= 0 ? matched : []
+
+  return childs
+}
 
 export default Select
