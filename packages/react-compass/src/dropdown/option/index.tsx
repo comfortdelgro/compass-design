@@ -1,6 +1,6 @@
 import React, {Key} from 'react'
+import {countries, Flag} from '../flags'
 import {DropdownItemProps} from '../item'
-import {countries, Flag} from '../utils'
 import {
   OptionVariantProps,
   StyledColor,
@@ -32,9 +32,12 @@ function Option({
 }: Props) {
   const ref = React.useRef(null)
   const {type = 'icon', leftIcon, rightIcon, rightColor, children} = item.props
-  const isSelected = currentKey === item.key
-  const isFocused = focusKey === item.key
-  const isDisabled = item.key ? [...disabledKeys].includes(item.key) : false
+  const isSelected = React.useMemo(() => currentKey === item.key, [currentKey])
+  const isFocused = React.useMemo(() => focusKey === item.key, [focusKey])
+  const isDisabled = React.useMemo(
+    () => (item.key ? [...disabledKeys].includes(item.key) : false),
+    [disabledKeys],
+  )
   const handleSelect = () => {
     if (item.key && !isDisabled) onSelect(item.key)
   }
@@ -79,23 +82,3 @@ function Option({
 }
 
 export default Option
-
-// export interface Node<T> {
-//   type: string
-//   key: Key
-//   value: T
-//   level: number
-//   hasChildNodes: boolean
-//   childNodes: Iterable<Node<T>>
-//   rendered: React.ReactNode
-//   textValue: string
-//   'aria-label'?: string
-//   index?: number
-//   wrapper?: (element: React.ReactElement) => React.ReactElement
-//   parentKey?: Key
-//   prevKey?: Key
-//   nextKey?: Key
-//   props?: DropdownItemProps
-//   /** @private */
-//   shouldInvalidate?: (context: unknown) => boolean
-// }

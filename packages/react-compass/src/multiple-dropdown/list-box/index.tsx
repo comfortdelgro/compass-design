@@ -1,9 +1,9 @@
 import React from 'react'
-import Header from '../header'
-import {DropdownItemProps} from '../item'
+import Header from '../../dropdown/header'
+import {DropdownItemProps} from '../../dropdown/item'
+import {StyledLoading} from '../../dropdown/list-box/index.styles'
+import {getDistanceBetweenElements, useIsInViewport} from '../../dropdown/utils'
 import Option from '../option'
-import {getDistanceBetweenElements, useIsInViewport} from '../utils'
-import {StyledLoading} from './index.styles'
 
 interface Props {
   collection: Array<
@@ -11,10 +11,9 @@ interface Props {
   >
   disabledKeys: Iterable<React.Key>
   focusKey: React.Key | undefined
-  currentKey: React.Key | undefined
+  currentKeys: Iterable<React.Key>
   headerTitle: string | undefined
   isLoading: boolean
-  dropdownType: 'select' | 'combobox' | 'flag'
   onLoadMore: () => void
   onHover: (key: React.Key | null) => void
   onSelect: (key: React.Key) => void
@@ -27,10 +26,9 @@ function ListBox(props: Props) {
   const {
     listBoxRef = ref,
     collection,
-    currentKey,
+    currentKeys,
     focusKey,
     disabledKeys,
-    dropdownType,
     onHover,
     onSelect,
   } = props
@@ -72,9 +70,8 @@ function ListBox(props: Props) {
                 key={item.key}
                 item={item}
                 disabledKeys={disabledKeys}
-                currentKey={currentKey}
+                currentKeys={currentKeys}
                 focusKey={focusKey}
-                dropdownType={dropdownType}
                 onHover={onHover}
                 onSelect={onSelect}
               />

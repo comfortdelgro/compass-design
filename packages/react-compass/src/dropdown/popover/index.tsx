@@ -1,23 +1,24 @@
 import React from 'react'
+import {LISTBOX_Z_INDEX, POPOVER_Z_INDEX} from '../utils'
 import {StyledPopover} from './index.styles'
 
 interface Props {
-  close: () => void
   triggerRef: React.RefObject<HTMLDivElement>
   popoverRef: React.RefObject<HTMLDivElement>
   children: React.ReactNode
+  close: () => void
+  handleKeyDown: (e: KeyboardEvent) => void
 }
 
-function Popover({children, triggerRef, close, ...props}: Props) {
+function Popover({
+  children,
+  triggerRef,
+  close,
+  handleKeyDown,
+  ...props
+}: Props) {
   const ref = React.useRef(null)
   const {popoverRef = ref} = props
-  const styles = triggerRef.current?.clientWidth
-    ? {
-        width: 'fit-content',
-        minWidth: triggerRef.current.clientWidth + 2,
-        zIndex: 2147483641,
-      }
-    : {}
 
   React.useEffect(() => {
     const rect = popoverRef.current?.getBoundingClientRect()
@@ -36,13 +37,28 @@ function Popover({children, triggerRef, close, ...props}: Props) {
     }
   }, [])
 
+  React.useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown)
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  })
+
   return (
     <>
       <div
         onClick={close}
-        style={{position: 'fixed', inset: 0, zIndex: 2147483600}}
+        style={{position: 'fixed', inset: 0, zIndex: POPOVER_Z_INDEX}}
       />
-      <StyledPopover ref={popoverRef} style={styles}>
+      <StyledPopover
+        ref={popoverRef}
+        style={{
+          minWidth: triggerRef.current?.clientWidth
+            ? triggerRef.current.clientWidth + 2
+            : '100%',
+        }}
+        css={{$$zIndex: LISTBOX_Z_INDEX}}
+      >
         {children}
       </StyledPopover>
     </>

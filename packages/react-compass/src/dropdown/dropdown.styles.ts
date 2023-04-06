@@ -280,7 +280,7 @@ export const StyledPopoverWrapper = styled('div', {
   marginTop: '$1',
 })
 
-export const StyledErrorMessage = styled('div', {
+export const StyledHelperText = styled('div', {
   fontSize: '$label2',
   fontWeight: '$medium',
   transition: '$default',

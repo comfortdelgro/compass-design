@@ -5,37 +5,39 @@ import {
   DropdownVariantProps,
   StyledComboBox,
   StyledDropdownWrapper,
-  StyledErrorMessage,
   StyledFlag,
   StyledFlagIcon,
+  StyledHelperText,
   StyledListBoxWrapper,
   StyledSelect,
 } from './dropdown.styles'
-import DropdownItem, {DropdownItemProps} from './item'
+import {countries, Flag} from './flags'
+import DropdownItem from './item'
 import ListBox from './list-box'
 import Popover from './popover'
-import {countries, Flag, Icon, ListKeyboardDelegate} from './utils'
+import {Icon, ListKeyboardDelegate, pickChilds, textContent} from './utils'
 
 interface Props extends StyledComponentProps {
   label?: string
   isOpen?: boolean
-  defaultOpen?: boolean
-  validationState?: 'valid' | 'invalid'
-  disabledKeys?: Iterable<React.Key>
   isLoading?: boolean
-  icon?: React.ReactNode
+  autoFocus?: boolean
+  isErrored?: boolean
+  helperText?: string
   isDisabled?: boolean
   isReadOnly?: boolean
-  isErrored?: boolean
+  headerTitle?: string
   isRequired?: boolean
-  description?: React.ReactNode
   placeholder?: string
   errorMessage?: string
-  headerTitle?: string
-  autoFocus?: boolean
+  defaultOpen?: boolean
+  icon?: React.ReactNode
+  children?: React.ReactNode
+  description?: React.ReactNode
   selectedKey?: React.Key | null
   defaultSelectedKey?: React.Key
-  children?: React.ReactNode
+  disabledKeys?: Iterable<React.Key>
+  validationState?: 'valid' | 'invalid'
   flagKeyType?: 'alpha-2' | 'alpha-3' | 'name' | 'country-code'
   headerOnClick?: (e: unknown) => void
   onOpenChange?: (isOpen: boolean) => void
@@ -50,51 +52,59 @@ export type DropdownProps = Props & DropdownVariantProps
 
 const Select = React.forwardRef<HTMLElement, DropdownProps>((props, ref) => {
   const {
-    // StyledComponentProps
     css = {},
-    icon = <Icon />,
-    children,
-    type = 'select',
     isOpen,
-    defaultOpen = false,
+    children,
     isErrored,
     isRequired,
-    isDisabled = false,
-    errorMessage,
-    placeholder,
+    helperText,
     selectedKey,
-    defaultSelectedKey,
+    placeholder,
+    errorMessage,
+    icon = <Icon />,
+    type = 'select',
     disabledKeys = [],
+    defaultSelectedKey,
+    isDisabled = false,
+    defaultOpen = false,
     onLoadMore = () => {
       //Load more
     },
   } = props
+  // ====================================== STATE ======================================
+  const [search, setSearch] = React.useState('')
+  const [isSearching, setIsSearching] = React.useState(false)
+  const [open, setOpen] = React.useState<boolean>(defaultOpen)
   const [currentKey, setCurrentKey] = React.useState<React.Key | undefined>(
     defaultSelectedKey,
   )
   const [focusKey, setFocusKey] = React.useState<React.Key | undefined>(
     defaultSelectedKey,
   )
-  const [search, setSearch] = React.useState('')
-  const [isSearching, setIsSearching] = React.useState(false)
-  const [open, setOpen] = React.useState<boolean>(defaultOpen)
-  const listBoxRef = React.useRef<HTMLUListElement>(null)
+
+  // ====================================== REF ======================================
   const popoverRef = React.useRef<HTMLDivElement>(null)
+  const listBoxRef = React.useRef<HTMLUListElement>(null)
   // Select ref
   const selectRef = useDOMRef<HTMLElement>(ref)
-
   // Combobox ref
-  const buttonRef = React.useRef<HTMLButtonElement>(null)
   const inputRef = React.useRef<HTMLInputElement>(null)
+  const buttonRef = React.useRef<HTMLButtonElement>(null)
 
-  const rawCollection = pickChilds(children, DropdownItem)
+  // ====================================== CONST ======================================
+  const rawCollection = React.useMemo(
+    () => pickChilds(children, DropdownItem),
+    [children],
+  )
+
   const collection = React.useMemo(() => {
     if (!isSearching) return rawCollection
     if (search === '') {
       return rawCollection
     } else {
       return rawCollection.filter((item) => {
-        return item.props.children?.toLowerCase().includes(search.toLowerCase())
+        const text = textContent(item)
+        return text?.toLowerCase().includes(search.toLowerCase())
       })
     }
   }, [rawCollection, search, isSearching])
@@ -104,8 +114,8 @@ const Select = React.forwardRef<HTMLElement, DropdownProps>((props, ref) => {
   })
 
   const delegate = React.useMemo(
-    () => new ListKeyboardDelegate(collection, disabledKeys),
-    [collection, disabledKeys],
+    () => new ListKeyboardDelegate(rawCollection, disabledKeys),
+    [rawCollection, disabledKeys],
   )
 
   const choosenFlag = React.useMemo(() => {
@@ -122,6 +132,7 @@ const Select = React.forwardRef<HTMLElement, DropdownProps>((props, ref) => {
     return null
   }, [search])
 
+  // ====================================== EFFECT ======================================
   React.useEffect(() => {
     if (choosenFlag?.['phone-code']) {
       props.onFlagChange?.(choosenFlag['phone-code'])
@@ -157,18 +168,20 @@ const Select = React.forwardRef<HTMLElement, DropdownProps>((props, ref) => {
   React.useEffect(() => {
     if (currentKey !== undefined) {
       setFocusKey(currentKey)
-      setSearch(selectedItem?.props.children ?? '')
+      const text = textContent(selectedItem as React.ReactElement)
+      setSearch(text ?? '')
       props.onSelectionChange?.(currentKey)
     }
   }, [currentKey])
 
+  // ====================================== CALLBACK ======================================
   const handleKeyDown = (e: KeyboardEvent) => {
     switch (e.key) {
       case 'ArrowUp':
       case 'ArrowLeft': {
         e.preventDefault()
         const key =
-          focusKey != null
+          focusKey != undefined && focusKey != -1
             ? delegate.getKeyAbove(focusKey)
             : delegate.getFirstKey()
         if (key) setFocusKey(key)
@@ -178,7 +191,7 @@ const Select = React.forwardRef<HTMLElement, DropdownProps>((props, ref) => {
       case 'ArrowRight': {
         e.preventDefault()
         const key =
-          focusKey != null
+          focusKey != undefined && focusKey != -1
             ? delegate.getKeyBelow(focusKey)
             : delegate.getFirstKey()
         if (key) setFocusKey(key)
@@ -222,6 +235,7 @@ const Select = React.forwardRef<HTMLElement, DropdownProps>((props, ref) => {
     setOpen(true)
   }
 
+  // ====================================== RENDER ======================================
   return (
     <StyledDropdownWrapper css={css}>
       {props.label && (
@@ -300,11 +314,12 @@ const Select = React.forwardRef<HTMLElement, DropdownProps>((props, ref) => {
         </StyledFlag>
       )}
       <StyledListBoxWrapper>
-        {open && (
+        {collection && collection.length > 0 && open && (
           <Popover
             popoverRef={popoverRef}
             close={close}
             triggerRef={selectRef as React.RefObject<HTMLDivElement>}
+            handleKeyDown={handleKeyDown}
           >
             <ListBox
               listBoxRef={listBoxRef}
@@ -315,7 +330,6 @@ const Select = React.forwardRef<HTMLElement, DropdownProps>((props, ref) => {
               isLoading={!!props.isLoading}
               headerTitle={props.headerTitle}
               dropdownType={type}
-              handleKeyDown={handleKeyDown}
               onHover={onHover}
               onSelect={onSelect}
               onLoadMore={onLoadMore}
@@ -325,33 +339,11 @@ const Select = React.forwardRef<HTMLElement, DropdownProps>((props, ref) => {
         )}
       </StyledListBoxWrapper>
       {errorMessage && (
-        <StyledErrorMessage error={!!isErrored}>
-          {errorMessage}
-        </StyledErrorMessage>
+        <StyledHelperText error={!!isErrored}>{errorMessage}</StyledHelperText>
       )}
+      {helperText && <StyledHelperText>{helperText}</StyledHelperText>}
     </StyledDropdownWrapper>
   )
 })
-
-const pickChilds = (
-  children: React.ReactNode | undefined,
-  targetType: React.ElementType,
-): Array<React.DetailedReactHTMLElement<DropdownItemProps, HTMLElement>> => {
-  const matched: Array<
-    React.DetailedReactHTMLElement<DropdownItemProps, HTMLElement>
-  > = []
-  React.Children.forEach(children, (item) => {
-    if (!React.isValidElement(item)) return item
-    if (item.type === targetType) {
-      matched.push(
-        item as React.DetailedReactHTMLElement<DropdownItemProps, HTMLElement>,
-      )
-    }
-    return item
-  })
-  const childs = matched.length >= 0 ? matched : []
-
-  return childs
-}
 
 export default Select

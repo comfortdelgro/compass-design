@@ -2,11 +2,12 @@ import {styled} from '../../theme'
 
 export const StyledPopover = styled('div', {
   position: 'absolute',
-  zIndex: 2147483641,
+  zIndex: '$$zIndex',
   margin: 0,
   padding: '$2 0',
   borderRadius: '$md',
-  width: '100%',
+  width: 'fit-content',
+  minWidth: '100%',
   background: '#FFFFFF',
   boxShadow:
     '0px 0.6px 1.8px rgba(0, 0, 0, 0.1), 0px 3.2px 7.2px rgba(0, 0, 0, 0.13)',

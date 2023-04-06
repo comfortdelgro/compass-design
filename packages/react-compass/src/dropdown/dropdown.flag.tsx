@@ -2,8 +2,8 @@ import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import Dropdown, {DropdownProps} from './dropdown'
 import {DropdownVariantProps} from './dropdown.styles'
+import {countries} from './flags'
 import DropdownItem from './item'
-import {countries} from './utils'
 
 interface P extends DropdownProps, StyledComponentProps {
   flagKeyType?: 'alpha-2' | 'alpha-3' | 'name' | 'country-code'
