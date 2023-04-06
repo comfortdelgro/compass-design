@@ -13,6 +13,18 @@ interface Props extends StyledComponentProps {
   isCurrent?: boolean
   isDisabled?: boolean
   children?: React.ReactNode
+
+  'aria-disabled'?: boolean
+  onBlur?: () => void
+  onClick?: () => void
+  onDragStart?: () => void
+  onFocus?: () => void
+  onKeyDown?: () => void
+  onKeyUp?: () => void
+  onMouseDown?: () => void
+  onPointerDown?: () => void
+  onPointerUp?: () => void
+  tabIndex?: number
 }
 
 export type BreadcrumbItemProps = Props & BreadcrumbItemVariantProps
@@ -54,6 +66,17 @@ const BreadcrumbItem = React.forwardRef<HTMLAnchorElement, BreadcrumbItemProps>(
           active={!!isCurrent}
           disabled={!!isDisabled}
           // aria props
+          aria-disabled={props['aria-disabled']}
+          onBlur={props.onBlur}
+          onClick={props.onClick}
+          onDragStart={props.onDragStart}
+          onFocus={props.onFocus}
+          onKeyDown={props.onKeyDown}
+          onKeyUp={props.onKeyUp}
+          onMouseDown={props.onMouseDown}
+          onPointerDown={props.onPointerDown}
+          onPointerUp={props.onPointerUp}
+          tabIndex={props.tabIndex}
           {...ariaSafeProps}
         >
           {children}

@@ -22,6 +22,21 @@ interface Props extends StyledComponentProps {
   onMouseDown?: (event: React.MouseEvent<HTMLButtonElement>) => void
   ripple?: boolean
   isDisabled?: boolean
+  'aria-controls'?: string
+  'aria-expanded'?: boolean
+  'aria-haspopup'?: boolean
+  'aria-pressed'?: boolean
+  disabled?: boolean
+  onBlur?: (e: React.FocusEvent) => void
+  onClick?: (e: React.MouseEvent) => void
+  onDragStart: (e: React.MouseEvent) => void
+  onFocus?: (e: React.FocusEvent) => void
+  onKeyDown?: (e: React.KeyboardEvent) => void
+  onKeyUp?: (e: React.KeyboardEvent) => void
+  onPointerDown?: (e: React.PointerEvent) => void
+  onPointerUp?: (e: React.PointerEvent) => void
+  tabIndex?: number
+  type?: 'button' | 'reset' | 'submit' | undefined
 }
 
 export type ButtonProps = Props &
@@ -82,6 +97,18 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               onClick={onPress}
               onTouchEnd={onPress}
               disabled={isDisabled}
+              aria-controls={props['aria-controls']}
+              aria-expanded={props['aria-expanded']}
+              aria-haspopup={props['aria-haspopup']}
+              aria-pressed={props['aria-pressed']}
+              tabIndex={props.tabIndex}
+              onBlur={props.onBlur}
+              onDragStart={props.onDragStart}
+              onFocus={props.onFocus}
+              onKeyDown={props.onKeyDown}
+              onKeyUp={props.onKeyUp}
+              onPointerDown={props.onPointerDown}
+              onPointerUp={props.onPointerUp}
             >
               {loading ? (
                 <StyledLoading
@@ -118,6 +145,18 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             onClick={onPress}
             onTouchEnd={onPress}
             disabled={isDisabled}
+            aria-controls={props['aria-controls']}
+            aria-expanded={props['aria-expanded']}
+            aria-haspopup={props['aria-haspopup']}
+            aria-pressed={props['aria-pressed']}
+            tabIndex={props.tabIndex}
+            onBlur={props.onBlur}
+            onDragStart={props.onDragStart}
+            onFocus={props.onFocus}
+            onKeyDown={props.onKeyDown}
+            onKeyUp={props.onKeyUp}
+            onPointerDown={props.onPointerDown}
+            onPointerUp={props.onPointerUp}
           >
             {loading ? (
               <StyledLoading
