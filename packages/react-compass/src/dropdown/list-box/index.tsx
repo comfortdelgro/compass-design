@@ -1,9 +1,9 @@
 import React from 'react'
-import {StyledLoading} from '../dropdown.styles'
 import Header from '../header'
 import {DropdownItemProps} from '../item'
-import Option from '../option/select'
+import Option from '../option'
 import {getDistanceBetweenElements, useIsInViewport} from '../utils'
+import {StyledLoading} from './index.styles'
 
 interface Props {
   collection: Array<
@@ -14,6 +14,7 @@ interface Props {
   currentKey: React.Key | undefined
   headerTitle: string | undefined
   isLoading: boolean
+  dropdownType: 'select' | 'combobox' | 'flag'
   onLoadMore: () => void
   onHover: (key: React.Key | null) => void
   onSelect: (key: React.Key) => void
@@ -30,6 +31,7 @@ function ListBox(props: Props) {
     currentKey,
     focusKey,
     disabledKeys,
+    dropdownType,
     onHover,
     onSelect,
     handleKeyDown,
@@ -81,6 +83,7 @@ function ListBox(props: Props) {
                 disabledKeys={disabledKeys}
                 currentKey={currentKey}
                 focusKey={focusKey}
+                dropdownType={dropdownType}
                 onHover={onHover}
                 onSelect={onSelect}
               />

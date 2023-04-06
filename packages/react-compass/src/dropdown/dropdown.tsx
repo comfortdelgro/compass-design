@@ -5,17 +5,16 @@ import {
   DropdownVariantProps,
   StyledComboBox,
   StyledDropdownWrapper,
+  StyledErrorMessage,
   StyledFlag,
   StyledFlagIcon,
   StyledListBoxWrapper,
   StyledSelect,
-  StyledTextFieldHelperText,
 } from './dropdown.styles'
 import DropdownItem, {DropdownItemProps} from './item'
-import ListBox from './list-box/select'
-import {ListKeyboardDelegate} from './ListKeyboardDelegate'
-import Popover from './popover/select'
-import {countries, Flag, Icon} from './utils'
+import ListBox from './list-box'
+import Popover from './popover'
+import {countries, Flag, Icon, ListKeyboardDelegate} from './utils'
 
 interface Props extends StyledComponentProps {
   label?: string
@@ -62,6 +61,7 @@ const Select = React.forwardRef<HTMLElement, DropdownProps>((props, ref) => {
     isRequired,
     isDisabled = false,
     errorMessage,
+    placeholder,
     selectedKey,
     defaultSelectedKey,
     disabledKeys = [],
@@ -108,24 +108,25 @@ const Select = React.forwardRef<HTMLElement, DropdownProps>((props, ref) => {
     [collection, disabledKeys],
   )
 
-  const currentState = React.useMemo(
-    () =>
-      countries.find(
+  const choosenFlag = React.useMemo(() => {
+    if (search !== '') {
+      return countries.find(
         (item) =>
           item.name === search ||
           item['alpha-2'] === search ||
           item['alpha-3'] === search ||
           item['phone-code'] === search ||
           item['country-code'] === search,
-      ),
-    [search],
-  )
+      )
+    }
+    return null
+  }, [search])
 
   React.useEffect(() => {
-    if (currentState?.['phone-code']) {
-      props.onFlagChange?.(currentState['phone-code'])
+    if (choosenFlag?.['phone-code']) {
+      props.onFlagChange?.(choosenFlag['phone-code'])
     }
-  }, [currentState])
+  }, [choosenFlag])
 
   React.useEffect(() => {
     if (!selectedKey && defaultSelectedKey) {
@@ -245,7 +246,7 @@ const Select = React.forwardRef<HTMLElement, DropdownProps>((props, ref) => {
                 ? selectedItem.props.textValue
                   ? selectedItem.props.textValue
                   : selectedItem.props.children
-                : props.placeholder}
+                : placeholder}
             </span>
             {icon}
           </button>
@@ -257,7 +258,12 @@ const Select = React.forwardRef<HTMLElement, DropdownProps>((props, ref) => {
           isErrored={!!isErrored}
           isDisabled={isDisabled}
         >
-          <input ref={inputRef} value={search} onChange={onSearch} />
+          <input
+            placeholder={placeholder}
+            ref={inputRef}
+            value={search}
+            onChange={onSearch}
+          />
           <button
             ref={buttonRef}
             disabled={isDisabled}
@@ -269,16 +275,21 @@ const Select = React.forwardRef<HTMLElement, DropdownProps>((props, ref) => {
       )}
       {type == 'flag' && (
         <StyledFlag
-          isEmpty={!selectedItem}
+          isEmpty={!choosenFlag}
           isErrored={!!isErrored}
           isDisabled={isDisabled}
         >
-          {currentState && (
+          {choosenFlag && (
             <StyledFlagIcon>
-              <Flag iso={currentState['alpha-2']} />
+              <Flag iso={choosenFlag['alpha-2']} />
             </StyledFlagIcon>
           )}
-          <input ref={inputRef} value={search} onChange={onSearch} />
+          <input
+            placeholder={placeholder}
+            ref={inputRef}
+            value={search}
+            onChange={onSearch}
+          />
           <button
             ref={buttonRef}
             disabled={isDisabled}
@@ -303,6 +314,7 @@ const Select = React.forwardRef<HTMLElement, DropdownProps>((props, ref) => {
               disabledKeys={disabledKeys}
               isLoading={!!props.isLoading}
               headerTitle={props.headerTitle}
+              dropdownType={type}
               handleKeyDown={handleKeyDown}
               onHover={onHover}
               onSelect={onSelect}
@@ -313,9 +325,9 @@ const Select = React.forwardRef<HTMLElement, DropdownProps>((props, ref) => {
         )}
       </StyledListBoxWrapper>
       {errorMessage && (
-        <StyledTextFieldHelperText error={!!isErrored}>
+        <StyledErrorMessage error={!!isErrored}>
           {errorMessage}
-        </StyledTextFieldHelperText>
+        </StyledErrorMessage>
       )}
     </StyledDropdownWrapper>
   )

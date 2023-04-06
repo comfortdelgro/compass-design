@@ -1,9 +1,11 @@
 import React, {Key} from 'react'
 import {DropdownItemProps} from '../item'
+import {countries, Flag} from '../utils'
 import {
   OptionVariantProps,
   StyledColor,
   StyledContent,
+  StyledFlag,
   StyledIcon,
   StyledOption,
 } from './index.styles'
@@ -14,6 +16,7 @@ interface Props extends OptionVariantProps {
   disabledKeys: Iterable<React.Key>
   currentKey: React.Key | undefined
   focusKey: React.Key | undefined
+  dropdownType: 'select' | 'combobox' | 'flag'
   onHover: (key: React.Key | null) => void
   onSelect: (key: React.Key) => void
 }
@@ -23,6 +26,7 @@ function Option({
   currentKey,
   focusKey,
   disabledKeys,
+  dropdownType,
   onHover,
   onSelect,
 }: Props) {
@@ -34,6 +38,21 @@ function Option({
   const handleSelect = () => {
     if (item.key && !isDisabled) onSelect(item.key)
   }
+
+  const flag = React.useMemo(() => {
+    if (dropdownType === 'flag') {
+      return countries.find(
+        (c) =>
+          c.name === item.key ||
+          c['alpha-2'] === item.key ||
+          c['alpha-3'] === item.key ||
+          c['phone-code'] === item.key ||
+          c['country-code'] === item.key,
+      )
+    }
+    return null
+  }, [dropdownType])
+
   return (
     <StyledOption
       ref={ref}
@@ -44,6 +63,11 @@ function Option({
       onMouseOut={() => onHover(-1)}
       isDisabled={isDisabled}
     >
+      {flag && (
+        <StyledFlag>
+          <Flag iso={flag['alpha-2']} />
+        </StyledFlag>
+      )}
       {leftIcon && <StyledIcon>{leftIcon}</StyledIcon>}
       <StyledContent>{children}</StyledContent>
       {type === 'icon' && rightIcon && <StyledIcon>{rightIcon}</StyledIcon>}

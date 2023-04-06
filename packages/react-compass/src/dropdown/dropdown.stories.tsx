@@ -12,7 +12,7 @@ export const Flag: React.FC = () => {
         isRequired
         label='List of country'
         placeholder='Choose a country'
-        onPhoneChange={(e) => console.log(e)}
+        onFlagChange={(e) => console.log(e)}
       />
     </Column>
   )

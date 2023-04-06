@@ -1,5 +1,5 @@
 import React from 'react'
-import {StyledPopover} from '../dropdown.styles'
+import {StyledPopover} from './index.styles'
 
 interface Props {
   close: () => void

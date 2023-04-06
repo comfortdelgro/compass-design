@@ -6,8 +6,8 @@ import DropdownItem from './item'
 import {countries} from './utils'
 
 interface P extends DropdownProps, StyledComponentProps {
-  keyType?: 'alpha-2' | 'alpha-3' | 'name' | 'country-code'
-  onPhoneChange?: (p: string) => void
+  flagKeyType?: 'alpha-2' | 'alpha-3' | 'name' | 'country-code'
+  onFlagChange?: (p: string) => void
 }
 
 type Props = Omit<P, 'children'>
@@ -19,7 +19,7 @@ const DropdownFlag = React.forwardRef<HTMLDivElement, DropdownFlagProps>(
     return (
       <PreDropdown ref={ref} {...props}>
         {countries.map((item) => (
-          <DropdownItem key={item[props.keyType ?? 'alpha-3']}>
+          <DropdownItem key={item[props.flagKeyType ?? 'alpha-3']}>
             {item.name}
           </DropdownItem>
         ))}
