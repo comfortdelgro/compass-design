@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 0.33.2
+
+### Patch Changes
+
+- bedbf4e8: Fix unclickable button in upload file component
+
 ## 0.33.1
 
 ### Patch Changes
