@@ -83,8 +83,11 @@ const UploadDragAndDrop = React.forwardRef<
   // hanlder functions
   const hanldeDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     const target = e.target as HTMLDivElement
-    target.style.border = '1px dashed #0142AF'
-    target.style.backgroundColor = '#E6ECF7'
+    if (target.tagName !== 'LABEL') {
+      console.log([e.target])
+      target.style.border = '1px dashed #0142AF'
+      target.style.backgroundColor = '#E6ECF7'
+    }
     e.preventDefault()
     e.stopPropagation()
   }
@@ -121,7 +124,13 @@ const UploadDragAndDrop = React.forwardRef<
         />
         <StyledUploadButton onClick={onLableClick}>
           {variant === 'field' && (
-            <svg width='16' height='16' viewBox='0 0 16 16' fill='none'>
+            <svg
+              width='16'
+              height='16'
+              viewBox='0 0 16 16'
+              fill='none'
+              style={{pointerEvents: 'none'}}
+            >
               <path
                 d='M12.2857 10.6249V12.375C12.2857 12.8581 11.9019 13.25 11.4286 13.25H4.57143C4.09812 13.25 3.71429 12.8581 3.71429 12.375V10.6249C3.71429 10.1418 3.33045 9.74993 2.85714 9.74993C2.38384 9.74993 2 10.1418 2 10.6249V12.375C2 13.8247 3.15125 15 4.57143 15H11.4286C12.8488 15 14 13.8247 14 12.375V10.6249C14 10.1418 13.6162 9.74993 13.1429 9.74993C12.6696 9.74993 12.2857 10.141 12.2857 10.6249ZM7.39464 1.25616L3.96607 4.75621C3.63098 5.09829 3.63152 5.652 3.96607 5.99353C4.30089 6.33533 4.8433 6.33533 5.17813 5.99353L7.14286 3.98852V9.74993C7.14286 10.2336 7.52616 10.6249 8 10.6249C8.47384 10.6249 8.85714 10.2336 8.85714 9.74993V3.98852L10.8227 5.99504C11.1575 6.33684 11.6999 6.33684 12.0347 5.99504C12.3696 5.65323 12.3696 5.09952 12.0347 4.75771L8.60616 1.25767C8.27054 0.914362 7.72946 0.914362 7.39464 1.25616Z'
                 fill='#0142AF'
@@ -129,9 +138,9 @@ const UploadDragAndDrop = React.forwardRef<
             </svg>
           )}
           {variant === 'area' ? (
-            <span>Browse Files</span>
+            <span style={{pointerEvents: 'none'}}>Browse Files</span>
           ) : (
-            <span>Upload files</span>
+            <span style={{pointerEvents: 'none'}}>Upload files</span>
           )}
         </StyledUploadButton>
         {variant === 'area' && <StyledOrLetter>or</StyledOrLetter>}
