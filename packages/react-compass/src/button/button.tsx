@@ -29,7 +29,7 @@ interface Props extends StyledComponentProps {
   disabled?: boolean
   onBlur?: (e: React.FocusEvent) => void
   onClick?: (e: React.MouseEvent) => void
-  onDragStart: (e: React.MouseEvent) => void
+  onDragStart?: (e: React.MouseEvent) => void
   onFocus?: (e: React.FocusEvent) => void
   onKeyDown?: (e: React.KeyboardEvent) => void
   onKeyUp?: (e: React.KeyboardEvent) => void
