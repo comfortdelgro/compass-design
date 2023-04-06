@@ -3,7 +3,7 @@ import {StyledPopover} from '../dropdown.styles'
 
 interface Props {
   close: () => void
-  triggerRef: React.RefObject<HTMLButtonElement>
+  triggerRef: React.RefObject<HTMLDivElement>
   popoverRef: React.RefObject<HTMLDivElement>
   children: React.ReactNode
 }
@@ -40,7 +40,7 @@ function Popover({children, triggerRef, close, ...props}: Props) {
     <>
       <div
         onClick={close}
-        style={{position: 'fixed', inset: 0, zIndex: 2147483640}}
+        style={{position: 'fixed', inset: 0, zIndex: 2147483600}}
       />
       <StyledPopover ref={popoverRef} style={styles}>
         {children}

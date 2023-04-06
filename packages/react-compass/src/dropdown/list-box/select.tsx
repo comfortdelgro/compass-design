@@ -9,16 +9,31 @@ interface Props {
   collection: Array<
     React.DetailedReactHTMLElement<DropdownItemProps, HTMLElement>
   >
+  disabledKeys: Iterable<React.Key>
+  focusKey: React.Key | undefined
+  currentKey: React.Key | undefined
   headerTitle: string | undefined
   isLoading: boolean
-  headerOnClick: (e: unknown) => void
   onLoadMore: () => void
+  onHover: (key: React.Key | null) => void
+  onSelect: (key: React.Key) => void
+  headerOnClick: (e: unknown) => void
+  handleKeyDown: (e: KeyboardEvent) => void
   listBoxRef: React.RefObject<HTMLUListElement>
 }
 
 function ListBox(props: Props) {
   const ref = React.useRef(null)
-  const {listBoxRef = ref, collection} = props
+  const {
+    listBoxRef = ref,
+    collection,
+    currentKey,
+    focusKey,
+    disabledKeys,
+    onHover,
+    onSelect,
+    handleKeyDown,
+  } = props
 
   const lastEl = React.useRef<HTMLDivElement | null>(null)
   const standEl = React.useRef<HTMLDivElement | null>(null)
@@ -34,6 +49,13 @@ function ListBox(props: Props) {
       }
     }
   }, [isInViewport])
+
+  React.useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown)
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  })
 
   return (
     <>
@@ -53,7 +75,15 @@ function ListBox(props: Props) {
         ) : (
           <>
             {[...collection].map((item) => (
-              <Option key={item.key} item={item} />
+              <Option
+                key={item.key}
+                item={item}
+                disabledKeys={disabledKeys}
+                currentKey={currentKey}
+                focusKey={focusKey}
+                onHover={onHover}
+                onSelect={onSelect}
+              />
             ))}
             {[...collection].length > 0 && (
               <div style={{height: 1}} ref={lastEl} />

@@ -6,7 +6,7 @@ interface Props extends StyledComponentProps {
   rightColor?: string
   leftIcon?: React.ReactNode
   rightIcon?: React.ReactNode
-  children: React.ReactNode | string
+  children: string
   key: React.Key
   textValue?: string
   'aria-label'?: string

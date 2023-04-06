@@ -26,7 +26,76 @@ export const StyledDropdownWrapper = styled('div', {
   },
 })
 
-export const StyledDropdown = styled('div', {
+export const StyledSelect = styled('div', {
+  width: '100%',
+  border: '1px solid #E6E6E6',
+  background: '#FFFFFF',
+  overflow: 'hidden',
+  borderRadius: '$md',
+  zIndex: 1,
+  button: {
+    padding: '$3 $4',
+    width: '100%',
+    height: '$11',
+    cursor: 'pointer',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    border: 'none',
+    gap: '$1',
+    background: 'transparent',
+    fontSize: '$label1',
+    fontWeight: '$semibold',
+    svg: {
+      flexShrink: 0,
+      width: '$4',
+      height: '$4',
+    },
+    span: {
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis',
+      overflow: 'hidden',
+      flexGrow: 1,
+      textAlign: 'start',
+    },
+  },
+  variants: {
+    isEmpty: {
+      true: {
+        button: {
+          span: {
+            color: '#B4B4B4',
+          },
+        },
+      },
+    },
+    isDisabled: {
+      true: {
+        button: {
+          cursor: 'default',
+        },
+      },
+    },
+    isErrored: {
+      true: {
+        borderColor: '$danger',
+        borderWidth: 1,
+        button: {
+          '&:focus': {
+            borderColor: '$danger',
+            outlineColor: '$danger',
+          },
+          '&:focus-within': {
+            borderColor: '$danger',
+            outlineColor: '$danger',
+          },
+        },
+      },
+    },
+  },
+})
+
+export const StyledComboBox = styled('div', {
   width: '100%',
   border: '1px solid #E6E6E6',
   background: '#FFFFFF',
@@ -193,75 +262,6 @@ export const StyledFlag = styled('div', {
   },
 })
 
-export const StyledSelect = styled('div', {
-  width: '100%',
-  border: '1px solid #E6E6E6',
-  background: '#FFFFFF',
-  overflow: 'hidden',
-  borderRadius: '$md',
-  zIndex: 1,
-  button: {
-    padding: '$3 $4',
-    width: '100%',
-    height: '$11',
-    cursor: 'pointer',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    border: 'none',
-    gap: '$1',
-    background: 'transparent',
-    fontSize: '$label1',
-    fontWeight: '$semibold',
-    svg: {
-      flexShrink: 0,
-      width: '$4',
-      height: '$4',
-    },
-    span: {
-      whiteSpace: 'nowrap',
-      textOverflow: 'ellipsis',
-      overflow: 'hidden',
-      flexGrow: 1,
-      textAlign: 'start',
-    },
-  },
-  variants: {
-    isEmpty: {
-      true: {
-        button: {
-          span: {
-            color: '#B4B4B4',
-          },
-        },
-      },
-    },
-    isDisabled: {
-      true: {
-        button: {
-          cursor: 'default',
-        },
-      },
-    },
-    isErrored: {
-      true: {
-        borderColor: '$danger',
-        borderWidth: 1,
-        button: {
-          '&:focus': {
-            borderColor: '$danger',
-            outlineColor: '$danger',
-          },
-          '&:focus-within': {
-            borderColor: '$danger',
-            outlineColor: '$danger',
-          },
-        },
-      },
-    },
-  },
-})
-
 export const StyledFlagIcon = styled('div', {
   display: 'flex',
   alignItems: 'center',
@@ -286,6 +286,7 @@ export const StyledListBoxWrapper = styled('div', {
 
 export const StyledPopover = styled('div', {
   position: 'absolute',
+  zIndex: 2147483641,
   margin: 0,
   padding: '$2 0',
   borderRadius: '$md',

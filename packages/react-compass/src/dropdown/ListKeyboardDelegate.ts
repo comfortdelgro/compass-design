@@ -27,15 +27,13 @@ export class ListKeyboardDelegate implements KeyboardDelegate {
 
   private getKeyIndex = (key: Key) => {
     const index = this.collection.findIndex((item) => item.key === key)
-    if (index < 0) {
-      return index + 1
-    }
+    if (index !== -1) return index
     return null
   }
 
   private getKeyAfter = (key: Key) => {
     const currentKeyIndex = this.getKeyIndex(key)
-    if (!currentKeyIndex) return null
+    if (currentKeyIndex === null) return null
     const nextKey = this.collection[currentKeyIndex + 1]?.key
     if (nextKey) return nextKey
     return null
@@ -43,7 +41,7 @@ export class ListKeyboardDelegate implements KeyboardDelegate {
 
   private getKeyBefore = (key: Key) => {
     const currentKeyIndex = this.getKeyIndex(key)
-    if (!currentKeyIndex) return null
+    if (currentKeyIndex === null) return null
     const nextKey = this.collection[currentKeyIndex - 1]?.key
     if (nextKey) return nextKey
     return null
@@ -84,16 +82,13 @@ export class ListKeyboardDelegate implements KeyboardDelegate {
   }
 
   getLastKey() {
-    // let key = this.collection.getLastKey()
-    // while (key != null) {
-    //   const item = this.collection.getItem(key)
-    //   if (item.type === 'item' && !this.disabledKeys.has(key)) {
-    //     return key
-    //   }
-
-    //   key = this.collection.getKeyBefore(key)
-    // }
-
+    let key = this.collection[this.collection.length - 1]?.key
+    while (key != null) {
+      if (![...this.disabledKeys].includes(key)) {
+        return key
+      }
+      key = this.getKeyBefore(key)
+    }
     return null
   }
 
