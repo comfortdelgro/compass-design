@@ -32,7 +32,9 @@ function Popover({
           (window.innerWidth || document.documentElement.clientWidth)
 
       if (!isInViewport && popoverRef.current) {
-        popoverRef.current.style.bottom = '62px'
+        popoverRef.current.style.bottom = `${
+          (triggerRef.current?.clientHeight ?? 42) + 18
+        }px`
       }
     }
   }, [])
