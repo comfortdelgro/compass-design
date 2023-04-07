@@ -1,5 +1,4 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
   DropdownVariantProps,
@@ -12,39 +11,22 @@ import {
   StyledSelect,
 } from './dropdown.styles'
 import {countries, Flag} from './flags'
-import DropdownItem from './item'
+import DropdownItem, {DropdownItemProps} from './item'
 import ListBox from './list-box'
 import Popover from './popover'
-import {Icon, ListKeyboardDelegate, pickChilds, textContent} from './utils'
+import {
+  DropdownBase,
+  Icon,
+  ListKeyboardDelegate,
+  pickChilds,
+  textContent,
+} from './utils'
 
-interface Props extends StyledComponentProps {
-  label?: string
-  isOpen?: boolean
-  isLoading?: boolean
-  autoFocus?: boolean
-  isErrored?: boolean
-  helperText?: string
-  isDisabled?: boolean
-  isReadOnly?: boolean
-  headerTitle?: string
-  isRequired?: boolean
-  placeholder?: string
-  errorMessage?: string
-  defaultOpen?: boolean
-  icon?: React.ReactNode
-  children?: React.ReactNode
-  description?: React.ReactNode
-  selectedKey?: React.Key | null
+interface Props extends DropdownBase {
+  selectedKey?: React.Key
   defaultSelectedKey?: React.Key
-  disabledKeys?: Iterable<React.Key>
-  validationState?: 'valid' | 'invalid'
   flagKeyType?: 'alpha-2' | 'alpha-3' | 'name' | 'country-code'
-  headerOnClick?: (e: unknown) => void
-  onOpenChange?: (isOpen: boolean) => void
   onSelectionChange?: (key: React.Key) => void
-  onFlagChange?: (p: string) => void
-  onLoadMore?: () => void
-
   type?: 'select' | 'combobox' | 'flag'
 }
 
@@ -93,7 +75,7 @@ const Select = React.forwardRef<HTMLElement, DropdownProps>((props, ref) => {
 
   // ====================================== CONST ======================================
   const rawCollection = React.useMemo(
-    () => pickChilds(children, DropdownItem),
+    () => pickChilds<DropdownItemProps>(children, DropdownItem),
     [children],
   )
 
@@ -109,7 +91,7 @@ const Select = React.forwardRef<HTMLElement, DropdownProps>((props, ref) => {
     }
   }, [rawCollection, search, isSearching])
 
-  const selectedItem = collection.find((item) => {
+  const selectedItem = rawCollection.find((item) => {
     return item.key === currentKey
   })
 
@@ -140,15 +122,26 @@ const Select = React.forwardRef<HTMLElement, DropdownProps>((props, ref) => {
   }, [choosenFlag])
 
   React.useEffect(() => {
+    const getTextFromKey = (key: React.Key) => {
+      const selected = rawCollection.find((item) => {
+        return item.key === key
+      })
+      if (selected) {
+        const text = textContent(selected)
+        return text
+      }
+      return ''
+    }
+
     if (!selectedKey && defaultSelectedKey) {
       setCurrentKey(defaultSelectedKey)
       setFocusKey(defaultSelectedKey)
-      setSearch(defaultSelectedKey.toString())
+      setSearch(getTextFromKey(defaultSelectedKey))
     }
     if (selectedKey) {
       setCurrentKey(selectedKey)
       setFocusKey(selectedKey)
-      setSearch(selectedKey.toString())
+      setSearch(getTextFromKey(selectedKey))
     }
   }, [selectedKey])
 
@@ -174,6 +167,7 @@ const Select = React.forwardRef<HTMLElement, DropdownProps>((props, ref) => {
     }
   }, [currentKey])
 
+  console.log(search)
   // ====================================== CALLBACK ======================================
   const handleKeyDown = (e: KeyboardEvent) => {
     switch (e.key) {

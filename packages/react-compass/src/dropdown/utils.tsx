@@ -1,5 +1,6 @@
 import React, {Key, RefObject} from 'react'
-import {DropdownItemProps} from './item'
+import {StyledComponentProps} from '../utils/stitches.types'
+import {DropdownItemBase, DropdownItemProps} from './item'
 
 export const POPOVER_Z_INDEX = 2147483640
 export const LISTBOX_Z_INDEX = 2147483640
@@ -12,20 +13,15 @@ export const Icon = () => (
     />
   </svg>
 )
-
-export const pickChilds = (
+export const pickChilds = <T extends DropdownItemBase>(
   children: React.ReactNode | undefined,
   targetType: React.ElementType,
-): Array<React.DetailedReactHTMLElement<DropdownItemProps, HTMLElement>> => {
-  const matched: Array<
-    React.DetailedReactHTMLElement<DropdownItemProps, HTMLElement>
-  > = []
+): Array<React.DetailedReactHTMLElement<T, HTMLElement>> => {
+  const matched: Array<React.DetailedReactHTMLElement<T, HTMLElement>> = []
   React.Children.forEach(children, (item) => {
     if (!React.isValidElement(item)) return item
     if (item.type === targetType) {
-      matched.push(
-        item as React.DetailedReactHTMLElement<DropdownItemProps, HTMLElement>,
-      )
+      matched.push(item as React.DetailedReactHTMLElement<T, HTMLElement>)
     }
     return item
   })
@@ -75,6 +71,35 @@ export interface KeyboardDelegate {
   getKeyAbove?(key: Key): Key | null
   getFirstKey?(key?: Key, global?: boolean): Key | null
   getLastKey?(key?: Key, global?: boolean): Key | null
+}
+export interface DropdownBase extends StyledComponentProps {
+  label?: string
+  isOpen?: boolean
+  isLoading?: boolean
+  autoFocus?: boolean
+  isErrored?: boolean
+  helperText?: string
+  isDisabled?: boolean
+  isReadOnly?: boolean
+  headerTitle?: string
+  isRequired?: boolean
+  placeholder?: string
+  errorMessage?: string
+  defaultOpen?: boolean
+  icon?: React.ReactNode
+  children?: React.ReactNode
+  description?: React.ReactNode
+  // selectedKey?: React.Key
+  // defaultSelectedKey?: React.Key
+  disabledKeys?: React.Key[]
+  // flagKeyType?: 'alpha-2' | 'alpha-3' | 'name' | 'country-code'
+  onLoadMore?: () => void
+  onFlagChange?: (p: string) => void
+  headerOnClick?: (e: unknown) => void
+  onOpenChange?: (isOpen: boolean) => void
+  // onSelectionChange?: (key: React.Key) => void
+
+  // type?: 'select' | 'combobox' | 'flag'
 }
 
 export class ListKeyboardDelegate implements KeyboardDelegate {

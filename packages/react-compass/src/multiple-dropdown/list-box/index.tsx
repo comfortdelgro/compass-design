@@ -9,9 +9,9 @@ interface Props {
   collection: Array<
     React.DetailedReactHTMLElement<DropdownItemProps, HTMLElement>
   >
-  disabledKeys: Iterable<React.Key>
+  disabledKeys: React.Key[]
   focusKey: React.Key | undefined
-  currentKeys: Iterable<React.Key>
+  currentKeys: React.Key[]
   headerTitle: string | undefined
   isLoading: boolean
   onLoadMore: () => void

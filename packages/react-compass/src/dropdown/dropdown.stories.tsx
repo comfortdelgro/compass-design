@@ -48,7 +48,7 @@ export const Select: React.FC = () => {
         <Dropdown.Item key='dog'>Dog</Dropdown.Item>
         <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
         <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
-        <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+        <Dropdown.Item key='snakessss'>Snake</Dropdown.Item>
       </Dropdown.Select>
       <h3>UnControlled</h3>
       <Dropdown.Select

@@ -6,13 +6,15 @@ import {
 import DropdownItem from '../dropdown/item'
 import Popover from '../dropdown/popover'
 import {
+  DropdownBase,
   Icon,
   ListKeyboardDelegate,
   pickChilds,
   textContent,
 } from '../dropdown/utils'
-import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
+import {DropdownItemProps} from './item'
+import ListBox from './list-box'
 import {
   DropdownVariantProps,
   StyledDropdown,
@@ -20,34 +22,11 @@ import {
   StyledSelectedItem,
   StyledSelectedItemWrapper,
 } from './multiple-dropdown.styles'
-
-import ListBox from './list-box'
 import {XIcon} from './utils'
 
-interface Props extends StyledComponentProps {
-  label?: string
-  isOpen?: boolean
-  isLoading?: boolean
-  isErrored?: boolean
-  helperText?: string
-  autoFocus?: boolean
-  isDisabled?: boolean
-  isReadOnly?: boolean
-  isRequired?: boolean
-  placeholder?: string
-  headerTitle?: string
-  errorMessage?: string
-  defaultOpen?: boolean
-  icon?: React.ReactNode
-  children?: React.ReactNode
-  description?: React.ReactNode
-  selectedKeys?: React.Key[] | null
+interface Props extends DropdownBase {
+  selectedKeys?: React.Key[]
   defaultSelectedKeys?: React.Key[]
-  disabledKeys?: Iterable<React.Key>
-  validationState?: 'valid' | 'invalid'
-  onLoadMore?: () => void
-  headerOnClick?: (e: unknown) => void
-  onOpenChange?: (isOpen: boolean) => void
   onSelectionChange?: (key: React.Key[]) => void
 }
 
@@ -92,7 +71,7 @@ const MultipleDropdown = React.forwardRef<
 
   // ====================================== CONST ======================================
   const rawCollection = React.useMemo(
-    () => pickChilds(children, DropdownItem),
+    () => pickChilds<DropdownItemProps>(children, DropdownItem),
     [children],
   )
 

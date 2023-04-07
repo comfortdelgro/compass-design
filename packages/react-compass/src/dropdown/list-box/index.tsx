@@ -6,20 +6,20 @@ import {getDistanceBetweenElements, useIsInViewport} from '../utils'
 import {StyledLoading} from './index.styles'
 
 interface Props {
+  isLoading: boolean
+  disabledKeys: React.Key[]
+  focusKey: React.Key | undefined
+  headerTitle: string | undefined
+  currentKey: React.Key | undefined
+  dropdownType: 'select' | 'combobox' | 'flag'
+  listBoxRef: React.RefObject<HTMLUListElement>
   collection: Array<
     React.DetailedReactHTMLElement<DropdownItemProps, HTMLElement>
   >
-  disabledKeys: Iterable<React.Key>
-  focusKey: React.Key | undefined
-  currentKey: React.Key | undefined
-  headerTitle: string | undefined
-  isLoading: boolean
-  dropdownType: 'select' | 'combobox' | 'flag'
   onLoadMore: () => void
   onHover: (key: React.Key | null) => void
   onSelect: (key: React.Key) => void
   headerOnClick: (e: unknown) => void
-  listBoxRef: React.RefObject<HTMLUListElement>
 }
 
 function ListBox(props: Props) {

@@ -4,7 +4,7 @@ import Icon from '../icon'
 import {Column} from '../utils/components'
 import MultipleDropdown from './index'
 
-export const MultipleDropdowns: React.FC = () => {
+export const Default: React.FC = () => {
   const [value, setValue] = React.useState<Key[]>(['cat'])
   return (
     <Column>

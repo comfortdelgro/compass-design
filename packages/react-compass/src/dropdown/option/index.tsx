@@ -12,11 +12,11 @@ import {
 
 interface Props extends OptionVariantProps {
   key: Key | null
-  item: React.DetailedReactHTMLElement<DropdownItemProps, HTMLElement>
-  disabledKeys: Iterable<React.Key>
-  currentKey: React.Key | undefined
+  disabledKeys: React.Key[]
   focusKey: React.Key | undefined
+  currentKey: React.Key | undefined
   dropdownType: 'select' | 'combobox' | 'flag'
+  item: React.DetailedReactHTMLElement<DropdownItemProps, HTMLElement>
   onHover: (key: React.Key | null) => void
   onSelect: (key: React.Key) => void
 }
@@ -38,6 +38,7 @@ function Option({
     () => (item.key ? [...disabledKeys].includes(item.key) : false),
     [disabledKeys],
   )
+
   const handleSelect = () => {
     if (item.key && !isDisabled) onSelect(item.key)
   }

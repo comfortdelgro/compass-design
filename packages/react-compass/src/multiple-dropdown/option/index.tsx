@@ -10,8 +10,8 @@ import {StyledRightIcon} from './index.styles'
 interface Props extends OptionVariantProps {
   key: Key | null
   item: React.DetailedReactHTMLElement<DropdownItemProps, HTMLElement>
-  disabledKeys: Iterable<React.Key>
-  currentKeys: Iterable<React.Key>
+  disabledKeys: React.Key[]
+  currentKeys: React.Key[]
   focusKey: React.Key | undefined
   onHover: (key: React.Key | null) => void
   onSelect: (key: React.Key) => void
@@ -27,12 +27,12 @@ function Option({
 }: Props) {
   const ref = React.useRef(null)
   const isSelected = React.useMemo(
-    () => (item.key ? [...currentKeys].includes(item.key) : false),
+    () => (item.key ? currentKeys.includes(item.key) : false),
     [currentKeys],
   )
   const isFocused = React.useMemo(() => focusKey === item.key, [focusKey])
   const isDisabled = React.useMemo(
-    () => (item.key ? [...disabledKeys].includes(item.key) : false),
+    () => (item.key ? disabledKeys.includes(item.key) : false),
     [disabledKeys],
   )
 
