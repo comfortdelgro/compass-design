@@ -517,7 +517,7 @@ We recommend the second method to import components for the benefits of [tree sh
     label='List of country'
     isRequired
     placeholder='Choose a country'
-    keyType='phone-code'
+    flagKeyType='phone-code'
   />
 </section>
 
@@ -525,7 +525,7 @@ We recommend the second method to import components for the benefits of [tree sh
 <Dropdown.Flag
   label='List of country'
   placeholder='Choose a country'
-  keyType='phone-code'
+  flagKeyType='phone-code'
 />
 ```
 
@@ -576,10 +576,12 @@ We recommend the second method to import components for the benefits of [tree sh
 
 Include all of the props above and have extra new prop
 
-| Name          | Type                                                               | Default   | Description                                                                                                                                           |
-| :------------ | :----------------------------------------------------------------- | :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| flagKeyType   | `alpha-2` \| `alpha-3` \| `name` \| `country-code` \| `phone-code` | `alpha-3` | The value of selectedKey will depends by which type of key                                                                                            |
-| onFlagChange  | `(p: string) => void`                                              | —         | Return phone code of selected key. You may need to get phone code from this function, not from the key because some country has duplicated phone code |
+| Name               | Type                                                               | Default   | Description                                                                                                                                           |
+| :----------------- | :----------------------------------------------------------------- | :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| flagKeyType        | `alpha-2` \| `alpha-3` \| `name` \| `country-code` \| `phone-code` | `alpha-3` | The value of selectedKey will depends by which type of key                                                                                            |
+| selectedCountry    | `Key`\|`null`                                                | —       | The currently selected key in the collection (controlled).                                                                                                |
+| defaultSelectedCountry | `Key`                                                        | —       | The initial selected key in the collection (uncontrolled).                                                                                                |
+| onCountryChange       | `(p: string) => void`                                              | —         | Return phone code of selected key. You may need to get phone code from this function, not from the key because some country has duplicated phone code |
 
 Example for key and value
 

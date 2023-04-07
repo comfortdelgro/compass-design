@@ -45,14 +45,7 @@ function Option({
 
   const flag = React.useMemo(() => {
     if (dropdownType === 'flag') {
-      return countries.find(
-        (c) =>
-          c.name === item.key ||
-          c['alpha-2'] === item.key ||
-          c['alpha-3'] === item.key ||
-          c['phone-code'] === item.key ||
-          c['country-code'] === item.key,
-      )
+      return countries.find((c) => c['alpha-3'] === item.key)
     }
     return null
   }, [dropdownType])

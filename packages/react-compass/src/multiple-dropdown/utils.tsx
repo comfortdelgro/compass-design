@@ -1,13 +1,5 @@
 import React from 'react'
 
-export interface CollapseState {
-  isOpen: boolean
-  setOpen: (v: boolean) => void
-  toggle: () => void
-  close: () => void
-  open: () => void
-}
-
 export const XIcon = () => (
   <svg width='10' height='10' viewBox='0 0 10 10' fill='none'>
     <g clipPath='url(#clip0_5299_13653)'>
@@ -23,3 +15,21 @@ export const XIcon = () => (
     </defs>
   </svg>
 )
+
+export function getDefaulValues(
+  defaulValue: React.Key[] | undefined,
+  value: React.Key[] | undefined,
+): React.Key[] {
+  let res: React.Key[] = []
+  if (
+    defaulValue !== undefined &&
+    defaulValue !== null &&
+    defaulValue.length > 0
+  ) {
+    res = defaulValue
+  }
+  if (value !== undefined && value !== null && value.length > 0) {
+    res = value
+  }
+  return res
+}

@@ -5,7 +5,7 @@ import {Column} from '../utils/components'
 import MultipleDropdown from './index'
 
 export const Default: React.FC = () => {
-  const [value, setValue] = React.useState<Key[]>(['cat'])
+  const [value, setValue] = React.useState<Key[]>([])
   return (
     <Column>
       <h3>Controlled</h3>
@@ -14,6 +14,7 @@ export const Default: React.FC = () => {
         disabledKeys={['snake']}
         placeholder='Choose an animal'
         selectedKeys={value}
+        defaultSelectedKeys={[]}
         isRequired
         onSelectionChange={(k: Key[]) => setValue(k)}
       >
@@ -31,6 +32,7 @@ export const Default: React.FC = () => {
       <MultipleDropdown
         label='Favorite Animal'
         disabledKeys={['snake']}
+        defaultSelectedKeys={['dog']}
         placeholder='Choose an animal'
       >
         <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>

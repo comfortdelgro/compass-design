@@ -22,7 +22,7 @@ import {
   StyledSelectedItem,
   StyledSelectedItemWrapper,
 } from './multiple-dropdown.styles'
-import {XIcon} from './utils'
+import {getDefaulValues, XIcon} from './utils'
 
 interface Props extends DropdownBase {
   selectedKeys?: React.Key[]
@@ -58,8 +58,9 @@ const MultipleDropdown = React.forwardRef<
   const [open, setOpen] = React.useState(false)
   const [search, setSearch] = React.useState('')
   const [isSearching, setIsSearching] = React.useState(false)
-  const [currentKeys, setCurrentKeys] =
-    React.useState<React.Key[]>(defaultSelectedKeys)
+  const [currentKeys, setCurrentKeys] = React.useState<React.Key[]>(
+    getDefaulValues(defaultSelectedKeys, selectedKeys),
+  )
   const [focusKey, setFocusKey] = React.useState<React.Key | undefined>()
 
   // ====================================== REF ======================================
@@ -115,16 +116,15 @@ const MultipleDropdown = React.forwardRef<
     }
   }, [currentKeys])
 
-  React.useEffect(() => {
-    if (!selectedKeys && defaultSelectedKeys) {
-      setCurrentKeys(defaultSelectedKeys)
-      setFocusKey([...defaultSelectedKeys].pop())
-    }
-    if (selectedKeys) {
-      setCurrentKeys(selectedKeys)
-      setFocusKey([...selectedKeys].pop())
-    }
-  }, [selectedKeys])
+  // React.useEffect(() => {
+  //   if (!selectedKeys && defaultSelectedKeys) {
+  //     setCurrentKeys(defaultSelectedKeys)
+  //     setFocusKey([...defaultSelectedKeys].pop())
+  //   } else if (selectedKeys) {
+  //     setCurrentKeys(selectedKeys)
+  //     setFocusKey([...selectedKeys].pop())
+  //   }
+  // }, [])
 
   React.useEffect(() => {
     if (!isOpen && defaultOpen) {

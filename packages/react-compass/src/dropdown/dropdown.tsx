@@ -16,6 +16,7 @@ import ListBox from './list-box'
 import Popover from './popover'
 import {
   DropdownBase,
+  getDefaulValue,
   Icon,
   ListKeyboardDelegate,
   pickChilds,
@@ -25,7 +26,6 @@ import {
 interface Props extends DropdownBase {
   selectedKey?: React.Key
   defaultSelectedKey?: React.Key
-  flagKeyType?: 'alpha-2' | 'alpha-3' | 'name' | 'country-code'
   onSelectionChange?: (key: React.Key) => void
   type?: 'select' | 'combobox' | 'flag'
 }
@@ -58,10 +58,10 @@ const Select = React.forwardRef<HTMLElement, DropdownProps>((props, ref) => {
   const [isSearching, setIsSearching] = React.useState(false)
   const [open, setOpen] = React.useState<boolean>(defaultOpen)
   const [currentKey, setCurrentKey] = React.useState<React.Key | undefined>(
-    defaultSelectedKey,
+    getDefaulValue(defaultSelectedKey, selectedKey),
   )
   const [focusKey, setFocusKey] = React.useState<React.Key | undefined>(
-    defaultSelectedKey,
+    getDefaulValue(defaultSelectedKey, selectedKey),
   )
 
   // ====================================== REF ======================================
@@ -79,6 +79,7 @@ const Select = React.forwardRef<HTMLElement, DropdownProps>((props, ref) => {
     [children],
   )
 
+  // Filter collection by search text, works with combobox
   const collection = React.useMemo(() => {
     if (!isSearching) return rawCollection
     if (search === '') {
@@ -115,35 +116,29 @@ const Select = React.forwardRef<HTMLElement, DropdownProps>((props, ref) => {
   }, [search])
 
   // ====================================== EFFECT ======================================
-  React.useEffect(() => {
-    if (choosenFlag?.['phone-code']) {
-      props.onFlagChange?.(choosenFlag['phone-code'])
-    }
-  }, [choosenFlag])
-
+  // map default value
   React.useEffect(() => {
     const getTextFromKey = (key: React.Key) => {
       const selected = rawCollection.find((item) => {
         return item.key === key
       })
       if (selected) {
-        const text = textContent(selected)
+        const text =
+          selected?.props.textValue && selected?.props.textValue !== ''
+            ? selected?.props.textValue
+            : textContent(selected)
         return text
       }
       return ''
     }
 
     if (!selectedKey && defaultSelectedKey) {
-      setCurrentKey(defaultSelectedKey)
-      setFocusKey(defaultSelectedKey)
       setSearch(getTextFromKey(defaultSelectedKey))
     }
     if (selectedKey) {
-      setCurrentKey(selectedKey)
-      setFocusKey(selectedKey)
       setSearch(getTextFromKey(selectedKey))
     }
-  }, [selectedKey])
+  }, [selectedKey, defaultSelectedKey])
 
   React.useEffect(() => {
     if (!isOpen && defaultOpen) {
@@ -161,13 +156,15 @@ const Select = React.forwardRef<HTMLElement, DropdownProps>((props, ref) => {
   React.useEffect(() => {
     if (currentKey !== undefined) {
       setFocusKey(currentKey)
-      const text = textContent(selectedItem as React.ReactElement)
+      const text =
+        selectedItem?.props.textValue && selectedItem?.props.textValue !== ''
+          ? selectedItem?.props.textValue
+          : textContent(selectedItem as React.ReactElement)
       setSearch(text ?? '')
       props.onSelectionChange?.(currentKey)
     }
   }, [currentKey])
 
-  console.log(search)
   // ====================================== CALLBACK ======================================
   const handleKeyDown = (e: KeyboardEvent) => {
     switch (e.key) {

@@ -2,8 +2,8 @@ import React, {Key, RefObject} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {DropdownItemBase, DropdownItemProps} from './item'
 
-export const POPOVER_Z_INDEX = 2147483640
-export const LISTBOX_Z_INDEX = 2147483640
+export const POPOVER_Z_INDEX = 2147483600
+export const LISTBOX_Z_INDEX = 2147483641
 
 export const Icon = () => (
   <svg width='16' height='16' viewBox='0 0 16 16' fill='none'>
@@ -89,17 +89,10 @@ export interface DropdownBase extends StyledComponentProps {
   icon?: React.ReactNode
   children?: React.ReactNode
   description?: React.ReactNode
-  // selectedKey?: React.Key
-  // defaultSelectedKey?: React.Key
   disabledKeys?: React.Key[]
-  // flagKeyType?: 'alpha-2' | 'alpha-3' | 'name' | 'country-code'
   onLoadMore?: () => void
-  onFlagChange?: (p: string) => void
   headerOnClick?: (e: unknown) => void
   onOpenChange?: (isOpen: boolean) => void
-  // onSelectionChange?: (key: React.Key) => void
-
-  // type?: 'select' | 'combobox' | 'flag'
 }
 
 export class ListKeyboardDelegate implements KeyboardDelegate {
@@ -200,4 +193,15 @@ export function textContent(elem: React.ReactElement | string): string {
   }
   // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   return textContent(children)
+}
+
+export function getDefaulValue(
+  defaulValue: React.Key | undefined,
+  value: React.Key | undefined,
+): React.Key | undefined {
+  let res = defaulValue
+  if (value !== undefined && value !== null) {
+    res = value
+  }
+  return res
 }

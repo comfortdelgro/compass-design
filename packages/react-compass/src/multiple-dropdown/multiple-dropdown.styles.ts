@@ -95,6 +95,7 @@ export const StyledSelectedItemWrapper = styled('div', {
   gap: '$2_5',
   flexWrap: 'wrap',
   p: {
+    color: '#B4B4B4',
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
     overflow: 'hidden',
@@ -121,7 +122,7 @@ export const StyledSelectedItem = styled('div', {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  zIndex: 2147483641,
+  zIndex: 2147483640,
   gap: '$2',
   div: {
     width: 'fit-content',
