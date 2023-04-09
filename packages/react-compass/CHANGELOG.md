@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 0.33.3
+
+### Patch Changes
+
+- 15d1c951: Chore: add type to button in quantity toggle
+
 ## 0.33.2
 
 ### Patch Changes
