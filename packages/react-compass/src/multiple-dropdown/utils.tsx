@@ -19,17 +19,28 @@ export const XIcon = () => (
 export function getDefaulValues(
   defaulValue: React.Key[] | undefined,
   value: React.Key[] | undefined,
+  disabledKeys: React.Key[] | undefined,
 ): React.Key[] {
-  let res: React.Key[] = []
-  if (
+  if (value !== undefined && value !== null && value.length > 0) {
+    const res: React.Key[] = []
+    for (const key of value) {
+      if (!disabledKeys?.includes(key)) {
+        res.push(key)
+      }
+    }
+    return res
+  } else if (
     defaulValue !== undefined &&
     defaulValue !== null &&
     defaulValue.length > 0
   ) {
-    res = defaulValue
+    const res: React.Key[] = []
+    for (const key of defaulValue) {
+      if (!disabledKeys?.includes(key)) {
+        res.push(key)
+      }
+    }
+    return res
   }
-  if (value !== undefined && value !== null && value.length > 0) {
-    res = value
-  }
-  return res
+  return []
 }

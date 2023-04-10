@@ -198,10 +198,18 @@ export function textContent(elem: React.ReactElement | string): string {
 export function getDefaulValue(
   defaulValue: React.Key | undefined,
   value: React.Key | undefined,
+  disabledKeys: React.Key[],
 ): React.Key | undefined {
-  let res = defaulValue
+  let res = undefined
+  if (defaulValue !== undefined && defaulValue !== null) {
+    if (!disabledKeys.includes(defaulValue)) {
+      res = value
+    }
+  }
   if (value !== undefined && value !== null) {
-    res = value
+    if (!disabledKeys.includes(value)) {
+      res = value
+    }
   }
   return res
 }

@@ -32,7 +32,7 @@ export const Default: React.FC = () => {
       <MultipleDropdown
         label='Favorite Animal'
         disabledKeys={['snake']}
-        defaultSelectedKeys={['dog']}
+        defaultSelectedKeys={['snake']}
         placeholder='Choose an animal'
       >
         <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>

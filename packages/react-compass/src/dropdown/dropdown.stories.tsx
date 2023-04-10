@@ -58,7 +58,7 @@ export const Select: React.FC = () => {
       <Dropdown.Select
         label='Favorite Animal'
         placeholder='Choose an animal'
-        defaultSelectedKey={'cat'}
+        defaultSelectedKey={'dog'}
         disabledKeys={['dog']}
       >
         <Dropdown.Item

@@ -59,7 +59,7 @@ const MultipleDropdown = React.forwardRef<
   const [search, setSearch] = React.useState('')
   const [isSearching, setIsSearching] = React.useState(false)
   const [currentKeys, setCurrentKeys] = React.useState<React.Key[]>(
-    getDefaulValues(defaultSelectedKeys, selectedKeys),
+    getDefaulValues(defaultSelectedKeys, selectedKeys, disabledKeys),
   )
   const [focusKey, setFocusKey] = React.useState<React.Key | undefined>()
 
@@ -115,16 +115,6 @@ const MultipleDropdown = React.forwardRef<
       props.onSelectionChange?.(currentKeys)
     }
   }, [currentKeys])
-
-  // React.useEffect(() => {
-  //   if (!selectedKeys && defaultSelectedKeys) {
-  //     setCurrentKeys(defaultSelectedKeys)
-  //     setFocusKey([...defaultSelectedKeys].pop())
-  //   } else if (selectedKeys) {
-  //     setCurrentKeys(selectedKeys)
-  //     setFocusKey([...selectedKeys].pop())
-  //   }
-  // }, [])
 
   React.useEffect(() => {
     if (!isOpen && defaultOpen) {
