@@ -2,9 +2,6 @@ import DropdownComboBox from './dropdown.combobox'
 import DropdownFlag from './dropdown.flag'
 import DropdownSelect from './dropdown.select'
 import DropdownItem from './item'
-
-// export type {DropdownProps} from './dropdown.combobox'
-
 interface ComposableDropdown {
   ComboBox: typeof DropdownComboBox
   Flag: typeof DropdownFlag
