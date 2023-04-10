@@ -122,7 +122,6 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       keyof Props
     >
 
-    const inputId = id
     const textfieldRef = useDOMRef<HTMLInputElement>(ref)
     const [isPassWordVisible, setIsPassWordVisible] = React.useState(false)
 
@@ -141,10 +140,17 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       return null
     }
 
+    const labelOnClick = () => {
+      textfieldRef.current?.focus()
+    }
+
     return (
       <StyledTextFieldWrapper css={css} {...htmlProps}>
         {label && (
-          <StyledTextFieldLabel htmlFor={inputId} isDisabled={!!isDisabled}>
+          <StyledTextFieldLabel
+            onClick={labelOnClick}
+            isDisabled={!!isDisabled}
+          >
             {label}
             {isRequired && <span>*</span>}
           </StyledTextFieldLabel>
@@ -155,7 +161,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
           <StyledTextField
             css={css}
             ref={textfieldRef}
-            id={inputId}
+            id={id}
             autoFocus={autoFocus}
             autoCapitalize={autoCapitalize}
             readOnly={isReadOnly}

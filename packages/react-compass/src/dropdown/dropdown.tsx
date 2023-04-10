@@ -226,11 +226,16 @@ const Select = React.forwardRef<HTMLElement, DropdownProps>((props, ref) => {
     setOpen(true)
   }
 
+  const labelClick = () => {
+    selectRef.current?.click()
+    inputRef.current?.focus()
+    buttonRef.current?.click()
+  }
   // ====================================== RENDER ======================================
   return (
     <StyledDropdownWrapper css={css}>
       {props.label && (
-        <label>
+        <label onClick={labelClick}>
           {props.label}
           {isRequired && <span>*</span>}
         </label>
