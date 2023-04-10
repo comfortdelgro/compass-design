@@ -1,4 +1,4 @@
-import toast from "react-hot-toast"
+import toast from 'react-hot-toast'
 
 interface Props {
   component: React.ReactDOM
@@ -8,12 +8,12 @@ interface Props {
 const IconBox: React.FC<Props> = ({name, component}) => {
   return (
     <div
-      className="scale"
+      className='scale'
       style={{
         width: '6rem',
         padding: '0.5rem',
-        fontSize: "0.75rem",
-        lineHeight: "1rem",
+        fontSize: '0.75rem',
+        lineHeight: '1rem',
         fontWeight: 600,
         display: 'flex',
         flexDirection: 'column',
@@ -26,7 +26,14 @@ const IconBox: React.FC<Props> = ({name, component}) => {
         transitionDuration: '150ms',
       }}
       onClick={() => {
-        navigator && navigator.clipboard.writeText(name.replace(/\.?([A-Z])/g, function (x,y){return "-" + y.toLowerCase()}).replace(/^-/, ""))
+        navigator &&
+          navigator.clipboard.writeText(
+            name
+              .replace(/\.?([A-Z])/g, function (x, y) {
+                return '-' + y.toLowerCase()
+              })
+              .replace(/^-/, ''),
+          )
 
         toast.success('Copied to clipboard')
       }}
@@ -34,8 +41,8 @@ const IconBox: React.FC<Props> = ({name, component}) => {
       <div>{component}</div>
       <div
         style={{
-          wordBreak: "break-all",
-          textAlign: "center"
+          wordBreak: 'break-all',
+          textAlign: 'center',
         }}
       >
         {name}
