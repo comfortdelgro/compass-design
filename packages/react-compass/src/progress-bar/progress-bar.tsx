@@ -1,14 +1,17 @@
-import {AriaProgressBarProps, useProgressBar} from '@react-aria/progress'
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {ProgressBarVariantProps, StyledProgressBar} from './progress-bar.styles'
 
-interface Props extends AriaProgressBarProps, StyledComponentProps {
+interface Props extends StyledComponentProps {
   rightLabel?: string
   size?: 'sm' | 'md' | 'lg' | 'xl'
   color?: 'green' | 'blue'
   variant?: 'normal' | 'rounded'
+  label?: ''
+  value: number
+  minValue: number
+  maxValue: number
 }
 
 export type ProgressBarProps = Props & ProgressBarVariantProps
@@ -32,7 +35,13 @@ const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
 
     const variantProps = {} as ProgressBarVariantProps
     const linkRef = useDOMRef<HTMLDivElement>(ref)
-    const {labelProps} = useProgressBar(props)
+    const labelProps = {
+      role: 'progressbar',
+      'aria-label': label ?? '',
+      'aria-valuemin': minValue,
+      'aria-valuenow': value,
+      'aria-valuemax': maxValue,
+    }
 
     const percentage = (value - minValue) / (maxValue - minValue)
     const barWidth = `${Math.round(percentage * 100)}%`
