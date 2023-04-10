@@ -1,9 +1,10 @@
 import {CSSProperties} from '@stitches/react'
 import React from 'react'
+import RadioGroup from './radio-group'
 import {StyledRadio, StyledRadioInput} from './radio.styles'
 import Tooltip from './tooltip'
 
-type RadioProps = {
+export type RadioProps = {
   title: string
   description: string
   rightLabel: string
@@ -47,4 +48,4 @@ export const Radio: React.FC<RadioProps> = ({
     </StyledRadio>
   )
 }
-export default Radio
+export default Radio as typeof Radio & {Group: typeof RadioGroup}

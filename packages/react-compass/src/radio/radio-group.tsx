@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 import {RadioProps} from '.'
 import {StyledRadioGroup} from './radio-group.styles'
 
-type RadioGroupProps = {
+export type RadioGroupProps = {
   children: Array<React.ReactElement<RadioProps>>
   orientation?: 'vertical' | 'horizontal'
   name: string
