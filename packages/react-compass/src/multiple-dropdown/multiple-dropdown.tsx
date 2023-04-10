@@ -1,111 +1,169 @@
-import {useFilter} from '@react-aria/i18n'
-import {AriaListBoxOptions, useListBox} from '@react-aria/listbox'
-import {ListCollection, ListProps, useListState} from '@react-stately/list'
-import type {Collection, Node} from '@react-types/shared'
 import React, {Key} from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import {
+  StyledHelperText,
+  StyledListBoxWrapper,
+} from '../dropdown/dropdown.styles'
+import DropdownItem from '../dropdown/item'
+import Popover from '../dropdown/popover'
+import {
+  DropdownBase,
+  Icon,
+  ListKeyboardDelegate,
+  pickChilds,
+  textContent,
+} from '../dropdown/utils'
 import {useDOMRef} from '../utils/use-dom-ref'
-import Header from './header'
-import MultipleDropdownItem from './item'
+import {DropdownItemProps} from './item'
+import ListBox from './list-box'
 import {
   DropdownVariantProps,
   StyledDropdown,
   StyledDropdownWrapper,
-  StyledHelperText,
-  StyledLoading,
-  StyledPopoverWrapper,
   StyledSelectedItem,
   StyledSelectedItemWrapper,
 } from './multiple-dropdown.styles'
-import Option from './options'
-import Popover from './popover'
-import {Icon, XIcon} from './utils'
+import {getDefaulValues, XIcon} from './utils'
 
-interface Props<T>
-  extends ListProps<T>,
-    AriaListBoxOptions<T>,
-    StyledComponentProps {
-  isLoading?: boolean
-  icon?: React.ReactNode
-  placeholder?: string
-  headerTitle?: string
-  isDisabled?: boolean
-  isRequired?: boolean
-  isErrored?: boolean
-  errorMessage?: string
-  helperText?: string
-  headerOnClick?: (e: unknown) => void
+interface Props extends DropdownBase {
+  selectedKeys?: React.Key[]
+  defaultSelectedKeys?: React.Key[]
+  onSelectionChange?: (key: React.Key[]) => void
 }
 
-export type MultipleDropdownProps<T = object> = Props<T> & DropdownVariantProps
+export type MultipleDropdownProps = Props & DropdownVariantProps
 
 const MultipleDropdown = React.forwardRef<
   HTMLDivElement,
   MultipleDropdownProps
 >((props, r) => {
   const {
-    // StyledComponentProps
     css = {},
-    icon = <Icon />,
+    isOpen,
+    children,
     isErrored,
     isDisabled,
     isRequired,
-    errorMessage,
     helperText,
-    // AriaDropdownProps
+    defaultOpen,
+    errorMessage,
+    selectedKeys,
+    icon = <Icon />,
+    disabledKeys = [],
+    defaultSelectedKeys = [],
+    onLoadMore = () => {
+      //Load more
+    },
   } = props
-  const [isOpen, setIsOpen] = React.useState(false)
+  // ====================================== STATE ======================================
+  const [open, setOpen] = React.useState(false)
   const [search, setSearch] = React.useState('')
-  const [collection, setCollection] = React.useState<
-    Collection<Node<object>> | undefined
-  >()
-  const filter = useFilter({sensitivity: 'base'})
-  const contains = (string: string, substring: string) =>
-    filter.contains(string, substring)
-  const state = useListState(props)
+  const [isSearching, setIsSearching] = React.useState(false)
+  const [currentKeys, setCurrentKeys] = React.useState<React.Key[]>(
+    getDefaulValues(defaultSelectedKeys, selectedKeys, disabledKeys),
+  )
+  const [focusKey, setFocusKey] = React.useState<React.Key | undefined>()
+
+  // ====================================== REF ======================================
   const ref = useDOMRef<HTMLDivElement>(r)
-  const {listBoxProps, labelProps} = useListBox(props, state, ref)
   const wrapperRef = useDOMRef<HTMLDivElement>(null)
   const popoverRef = useDOMRef<HTMLDivElement>(null)
   const inputRef = useDOMRef<HTMLInputElement>(null)
-  const collapseState = {
-    isOpen: isOpen,
-    setOpen: (v: boolean) => setIsOpen(v),
-    toggle: () =>
-      setIsOpen((v) => {
-        if (!isDisabled) {
-          if (v && inputRef.current?.value !== '') {
-            return true
-          }
-          return !v
-        }
-        return v
-      }),
-    close: () => setIsOpen(false),
-    open: () => setIsOpen(true),
-  }
+  const listBoxRef = React.useRef<HTMLUListElement>(null)
+
+  // ====================================== CONST ======================================
+  const rawCollection = React.useMemo(
+    () => pickChilds<DropdownItemProps>(children, DropdownItem),
+    [children],
+  )
+
+  const collection = React.useMemo(() => {
+    if (!isSearching) return rawCollection
+    if (search === '') {
+      return rawCollection
+    } else {
+      return rawCollection.filter((item) => {
+        const text = textContent(item)
+        return text?.toLowerCase().includes(search.toLowerCase())
+      })
+    }
+  }, [rawCollection, search, isSearching])
+
+  const delegate = React.useMemo(
+    () => new ListKeyboardDelegate(rawCollection, disabledKeys),
+    [rawCollection, disabledKeys],
+  )
+
   const selectedNode = React.useMemo(() => {
     const t: Array<{
       key: Key
       rendered: React.ReactNode
     }> = []
-    if ([...state.collection].length > 0) {
-      state.selectionManager.selectedKeys.forEach((selectedKey) => {
-        const item = state.collection.getItem(selectedKey)
-        t.push({key: selectedKey, rendered: item.rendered})
+    if (rawCollection.length > 0 && currentKeys && currentKeys.length > 0) {
+      currentKeys.forEach((selectedKey) => {
+        const item = rawCollection.find((item) => {
+          return item.key === selectedKey
+        })
+        t.push({key: selectedKey, rendered: item?.props.children})
       })
     }
     return t
-  }, [state])
+  }, [currentKeys, rawCollection])
 
+  // ====================================== EFFECT ======================================
+  React.useEffect(() => {
+    if (currentKeys.length > 0) {
+      props.onSelectionChange?.(currentKeys)
+    }
+  }, [currentKeys])
+
+  React.useEffect(() => {
+    if (!isOpen && defaultOpen) {
+      setOpen(defaultOpen)
+    }
+    if (isOpen) {
+      setOpen(isOpen)
+    }
+  }, [isOpen])
+
+  React.useEffect(() => {
+    setFocusKey([...currentKeys].pop())
+    props.onOpenChange?.(open)
+  }, [open])
+
+  React.useEffect(() => {
+    if (open) {
+      inputRef.current?.focus()
+      if (wrapperRef.current) {
+        wrapperRef.current.style.outlineColor = isErrored
+          ? '#A4262C'
+          : '-webkit-focus-ring-color'
+        wrapperRef.current.style.outlineStyle = 'auto'
+      }
+    } else {
+      inputRef.current?.blur()
+      if (wrapperRef.current) {
+        wrapperRef.current.style.outlineColor = isErrored
+          ? '#A4262C'
+          : 'inherit'
+        wrapperRef.current.style.outlineColor = 'inherit'
+        wrapperRef.current.style.outlineStyle = 'inherit'
+      }
+    }
+  }, [open])
+
+  // ====================================== CALLBACK ======================================
   const removeItem = (key: Key) => {
-    state.selectionManager.toggleSelection(key)
-    collapseState.toggle()
+    const v = new Set(currentKeys)
+    if (currentKeys.includes(key)) {
+      v.delete(key)
+      setCurrentKeys([...v])
+    }
   }
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (wrapperRef.current) {
       const string = e.target.value
+      setIsSearching(true)
       setSearch(string)
       if (string !== '') {
         const fakeEle = document.createElement('div')
@@ -129,58 +187,91 @@ const MultipleDropdown = React.forwardRef<
     }
   }
 
-  React.useEffect(() => {
-    if (isOpen) {
-      inputRef.current?.focus()
-      if (wrapperRef.current) {
-        wrapperRef.current.style.outlineColor = isErrored
-          ? '#A4262C'
-          : '-webkit-focus-ring-color'
-        wrapperRef.current.style.outlineStyle = 'auto'
+  const handleKeyDown = (e: KeyboardEvent) => {
+    switch (e.key) {
+      case 'ArrowUp':
+      case 'ArrowLeft': {
+        e.preventDefault()
+        const key =
+          focusKey != undefined && focusKey != -1
+            ? delegate.getKeyAbove(focusKey)
+            : delegate.getFirstKey()
+        if (key) setFocusKey(key)
+        break
       }
-    } else {
-      inputRef.current?.blur()
-      if (wrapperRef.current) {
-        wrapperRef.current.style.outlineColor = isErrored
-          ? '#A4262C'
-          : 'inherit'
-        wrapperRef.current.style.outlineColor = 'inherit'
-        wrapperRef.current.style.outlineStyle = 'inherit'
+      case 'ArrowDown':
+      case 'ArrowRight': {
+        e.preventDefault()
+        const key =
+          focusKey != undefined && focusKey != -1
+            ? delegate.getKeyBelow(focusKey)
+            : delegate.getFirstKey()
+        if (key) setFocusKey(key)
+        break
+      }
+      case 'Enter': {
+        e.preventDefault()
+        if (focusKey) {
+          onSelect(focusKey)
+          setOpen(false)
+        }
+        break
+      }
+      case 'Escape': {
+        e.preventDefault()
+        setOpen(false)
+        break
       }
     }
-  }, [isOpen])
+  }
 
-  React.useEffect(() => {
-    setCollection(state.collection)
-  }, [state.collection])
+  const close = () => {
+    setIsSearching(false)
+    setOpen(false)
+  }
 
-  React.useEffect(() => {
-    const c = filterCollection(state.collection, search, contains)
-    setCollection(c)
-  }, [search, selectedNode.length])
+  const onSelect = (key: React.Key) => {
+    const v = new Set(currentKeys)
+    if (currentKeys.includes(key)) {
+      v.delete(key)
+    } else {
+      v.add(key)
+    }
+    setCurrentKeys([...v])
+    setFocusKey(key)
+  }
 
+  const onHover = (key: React.Key | null) => {
+    if (key) {
+      setFocusKey(key)
+    }
+  }
+
+  // ====================================== RENDER ======================================
   return (
     <StyledDropdownWrapper css={css} ref={ref}>
       {props.label && (
-        <label {...labelProps}>
+        <label onClick={() => setOpen(true)}>
           {props.label}
           {isRequired && <span>*</span>}
         </label>
       )}
       <StyledDropdown
-        onClick={collapseState.toggle}
+        onClick={() => setOpen(true)}
         ref={wrapperRef}
         isErrored={!!isErrored}
         isDisabled={!!isDisabled}
       >
         <StyledSelectedItemWrapper>
-          {selectedNode.length === 0 && !isOpen && <p>{props.placeholder}</p>}
+          {selectedNode.length === 0 && !open && <p>{props.placeholder}</p>}
           {selectedNode.length > 0 &&
             selectedNode.map((item) => (
               <StyledSelectedItem key={item.key}>
                 <div>{item.rendered}</div>
                 <div
-                  style={{cursor: isDisabled ? 'default' : 'pointer'}}
+                  style={{
+                    cursor: isDisabled ? 'default' : 'pointer',
+                  }}
                   onClick={() => {
                     if (!isDisabled) {
                       removeItem(item.key)
@@ -192,46 +283,40 @@ const MultipleDropdown = React.forwardRef<
               </StyledSelectedItem>
             ))}
           {!isDisabled && (
-            <input type='text' ref={inputRef} onChange={onInputChange} />
+            <input
+              type='text'
+              ref={inputRef}
+              value={search}
+              onChange={onInputChange}
+            />
           )}
         </StyledSelectedItemWrapper>
         <div className='dropdown-icon'>{icon}</div>
       </StyledDropdown>
-      <StyledPopoverWrapper>
-        {collection && [...collection].length > 0 && collapseState.isOpen && (
+      <StyledListBoxWrapper>
+        {collection && collection.length > 0 && open && (
           <Popover
-            collapseState={collapseState}
-            triggerRef={wrapperRef}
             popoverRef={popoverRef}
-            placement='bottom start'
+            close={close}
+            triggerRef={wrapperRef}
+            handleKeyDown={handleKeyDown}
           >
-            {props.isLoading ? (
-              <StyledLoading>
-                <div className='spinner'>
-                  <div className='spinner-1' />
-                  <div className='spinner-2' />
-                  <div className='spinner-3' />
-                  <div />
-                </div>
-              </StyledLoading>
-            ) : (
-              <>
-                {props.headerTitle && (
-                  <Header
-                    title={props.headerTitle}
-                    onPress={(e) => props?.headerOnClick?.(e)}
-                  />
-                )}
-                <ul {...listBoxProps}>
-                  {[...collection].map((item) => (
-                    <Option key={item.key} item={item} state={state} />
-                  ))}
-                </ul>
-              </>
-            )}
+            <ListBox
+              listBoxRef={listBoxRef}
+              focusKey={focusKey}
+              currentKeys={currentKeys}
+              collection={collection}
+              disabledKeys={disabledKeys}
+              isLoading={!!props.isLoading}
+              headerTitle={props.headerTitle}
+              onHover={onHover}
+              onSelect={onSelect}
+              onLoadMore={onLoadMore}
+              headerOnClick={(e) => props?.headerOnClick?.(e)}
+            />
           </Popover>
         )}
-      </StyledPopoverWrapper>
+      </StyledListBoxWrapper>
       {errorMessage && (
         <StyledHelperText error={!!isErrored}>{errorMessage}</StyledHelperText>
       )}
@@ -241,33 +326,5 @@ const MultipleDropdown = React.forwardRef<
 })
 
 export default MultipleDropdown as typeof MultipleDropdown & {
-  Item: typeof MultipleDropdownItem
-}
-type FilterFn = (textValue: string, inputValue: string) => boolean
-
-function filterCollection<T extends object>(
-  collection: Collection<Node<T>>,
-  inputValue: string,
-  filter: FilterFn,
-): Collection<Node<T>> {
-  return new ListCollection(filterNodes(collection, inputValue, filter))
-}
-
-function filterNodes<T>(
-  nodes: Iterable<Node<T>>,
-  inputValue: string,
-  filter: FilterFn,
-): Iterable<Node<T>> {
-  const filteredNode = []
-  for (const node of nodes) {
-    if (node.type === 'section' && node.hasChildNodes) {
-      const filtered = filterNodes(node.childNodes, inputValue, filter)
-      if ([...filtered].length > 0) {
-        filteredNode.push({...node, childNodes: filtered})
-      }
-    } else if (node.type !== 'section' && filter(node.textValue, inputValue)) {
-      filteredNode.push({...node})
-    }
-  }
-  return filteredNode
+  Item: typeof DropdownItem
 }

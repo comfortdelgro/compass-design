@@ -113,10 +113,17 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       onChangeEvent?.(event)
     }
 
+    const labelOnClick = () => {
+      textareaRef.current?.focus()
+    }
+
     return (
       <StyledTextareaWrapper css={css}>
         {label && (
-          <StyledTextFieldLabel htmlFor={textareaId} isDisabled={!!isDisabled}>
+          <StyledTextFieldLabel
+            onClick={labelOnClick}
+            isDisabled={!!isDisabled}
+          >
             {label}
             {isRequired && <span>*</span>}
           </StyledTextFieldLabel>
