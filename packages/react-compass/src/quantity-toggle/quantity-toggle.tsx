@@ -207,6 +207,7 @@ const QuantityToggle = React.forwardRef<HTMLInputElement, QuantityToggleProps>(
             disabled={isDisabled}
             onClick={decrease}
             style={{borderRight: 'none', borderRadius: '4px 0 0 4px'}}
+            type='button'
           >
             -
           </button>
@@ -229,6 +230,7 @@ const QuantityToggle = React.forwardRef<HTMLInputElement, QuantityToggleProps>(
               borderLeft: 'none',
               borderRadius: '0 4px 4px 0',
             }}
+            type='button'
           >
             +
           </button>
