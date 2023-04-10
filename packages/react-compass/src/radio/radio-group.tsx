@@ -1,35 +1,65 @@
-import {AriaRadioGroupProps, useRadioGroup} from '@react-aria/radio'
-import {useRadioGroupState} from '@react-stately/radio'
-import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {useDOMRef} from '../utils/use-dom-ref'
-import {RadioGroupVariantProps, StyledRadioGroup} from './radio-group.styles'
+import {CSSProperties} from '@stitches/react'
+import React, {useState} from 'react'
+import {RadioProps} from '.'
+import {StyledRadioGroup} from './radio-group.styles'
 
-export const RadioContext = React.createContext<RadioGroupProps | null>(null)
-
-interface Props extends AriaRadioGroupProps, StyledComponentProps {
-  children?: React.ReactNode
+type RadioGroupProps = {
+  children: Array<React.ReactElement<RadioProps>>
+  orientation?: 'vertical' | 'horizontal'
+  name: string
+  value?: string
+  defaultValue?: string
+  onChange?: (value: string) => void
+  isDisabled?: boolean
+  isReadOnly?: boolean
+  css?: CSSProperties
 }
 
-export type RadioGroupProps = Props & RadioGroupVariantProps
+export const RadioGroup: React.FC<RadioGroupProps> = ({
+  children,
+  name,
+  defaultValue,
+  onChange,
+  isDisabled = false,
+  isReadOnly = false,
+  css,
+}) => {
+  const [selectedValue, setSelectedValue] = useState(defaultValue || '')
 
-const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
-  (props, ref) => {
-    const {children, orientation = 'vertical'} = props
-    const state = useRadioGroupState(props)
-    const {radioGroupProps} = useRadioGroup(props, state)
-    const groupRef = useDOMRef<HTMLDivElement>(ref)
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
 
-    return (
-      <StyledRadioGroup
-        ref={groupRef}
-        orientation={orientation}
-        {...radioGroupProps}
-      >
-        <RadioContext.Provider value={state}>{children}</RadioContext.Provider>
-      </StyledRadioGroup>
-    )
-  },
-)
+    setSelectedValue(value)
+
+    if (onChange) {
+      onChange(value)
+    }
+  }
+
+  return (
+    <StyledRadioGroup style={css} role='radiogroup'>
+      {React.Children.map(children, (child) => {
+        if (typeof child === 'string' || typeof child === 'number') {
+          return child
+        }
+
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const childElement = child as React.ReactElement<any>
+        if (!childElement.props) {
+          return child
+        }
+
+        return React.cloneElement(childElement, {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          checked: childElement.props.value === selectedValue,
+          onChange: handleChange,
+          name,
+          isDisabled,
+          isReadOnly,
+        })
+      })}
+    </StyledRadioGroup>
+  )
+}
 
 export default RadioGroup
