@@ -1,4 +1,3 @@
-import React from 'react'
 import SubBanner from './index'
 
 const horizontalBackgroundSrc =

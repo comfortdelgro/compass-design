@@ -1,4 +1,3 @@
-import React from 'react'
 import Button from '../button'
 import Dropdown from '../dropdown'
 import TextField from '../textfield'

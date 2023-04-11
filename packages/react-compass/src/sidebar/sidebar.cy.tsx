@@ -1,4 +1,3 @@
-import React from 'react'
 import {Default as Sidebar} from './sidebar.stories'
 
 describe('sidebar.cy.ts', () => {

@@ -1,6 +1,5 @@
 import {faXmark} from '@fortawesome/free-solid-svg-icons'
 import type {Placement} from '@react-types/overlays'
-import React from 'react'
 import Button from '../button'
 import Icon from '../icon'
 import TextField from '../textfield'

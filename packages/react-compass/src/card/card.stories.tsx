@@ -1,5 +1,4 @@
 import {StoryDecorator} from '@ladle/react'
-import React from 'react'
 import Button from '../button/button'
 import {Column} from '../utils/components'
 import Card from './index'
