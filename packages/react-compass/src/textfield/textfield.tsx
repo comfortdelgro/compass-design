@@ -93,7 +93,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       css = {},
       // ComponentProps
       label,
-      id,
+      id = `cdg-element-${Math.random().toString(36).substring(2)}`,
       name,
       value,
       type,
@@ -140,17 +140,10 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       return null
     }
 
-    const labelOnClick = () => {
-      textfieldRef.current?.focus()
-    }
-
     return (
       <StyledTextFieldWrapper css={css} {...htmlProps}>
         {label && (
-          <StyledTextFieldLabel
-            onClick={labelOnClick}
-            isDisabled={!!isDisabled}
-          >
+          <StyledTextFieldLabel htmlFor={id} isDisabled={!!isDisabled}>
             {label}
             {isRequired && <span>*</span>}
           </StyledTextFieldLabel>

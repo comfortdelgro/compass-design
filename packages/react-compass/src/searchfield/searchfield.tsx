@@ -67,7 +67,7 @@ const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
     const {
       // StyledComponentProps
       css = {},
-      id,
+      id = `cdg-element-${Math.random().toString(36).substring(2)}`,
       value = '',
       isErrored = false,
       isReadOnly = false,

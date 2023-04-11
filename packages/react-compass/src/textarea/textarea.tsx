@@ -84,7 +84,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       css = {},
       // ComponentProps
       label,
-      id,
+      id = `cdg-element-${Math.random().toString(36).substring(2)}`,
       name,
       value,
       cols,
@@ -112,18 +112,10 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       onChange?.(event.target.value)
       onChangeEvent?.(event)
     }
-
-    const labelOnClick = () => {
-      textareaRef.current?.focus()
-    }
-
     return (
       <StyledTextareaWrapper css={css}>
         {label && (
-          <StyledTextFieldLabel
-            onClick={labelOnClick}
-            isDisabled={!!isDisabled}
-          >
+          <StyledTextFieldLabel htmlFor={textareaId} isDisabled={!!isDisabled}>
             {label}
             {isRequired && <span>*</span>}
           </StyledTextFieldLabel>
