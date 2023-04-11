@@ -203,7 +203,7 @@ export function getDefaulValue(
   let res = undefined
   if (defaulValue !== undefined && defaulValue !== null) {
     if (!disabledKeys.includes(defaulValue)) {
-      res = value
+      res = defaulValue
     }
   }
   if (value !== undefined && value !== null) {
