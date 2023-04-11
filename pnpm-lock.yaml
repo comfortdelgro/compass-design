@@ -37,8 +37,8 @@ importers:
       '@react-aria/i18n': ^3.6.2
       '@react-aria/ssr': ^3.5.0
       '@types/node': ^18.11.0
-      '@types/react': ^17.0.39
-      '@types/react-dom': ^17.0.11
+      '@types/react': ^18.0.21
+      '@types/react-dom': ^18.0.11
       autoprefixer: ^10.4.12
       clsx: ^1.2.1
       eslint: ^8.25.0
@@ -69,8 +69,8 @@ importers:
       react-hot-toast: 2.4.0_owo25xnefcwdq3zjgtohz6dbju
     devDependencies:
       '@types/node': 18.13.0
-      '@types/react': 17.0.53
-      '@types/react-dom': 17.0.19
+      '@types/react': 18.0.21
+      '@types/react-dom': 18.0.11
       autoprefixer: 10.4.13_postcss@8.4.21
       eslint: 8.34.0
       eslint-config-next: 12.2.6_7kw3g6rralp5ps6mg3uyzz6azm
@@ -84,8 +84,8 @@ importers:
       '@svgr/core': ^6.5.1
       '@swc/cli': ^0.1.57
       '@swc/core': ^1.3.10
-      '@types/react': ^17.0.39
-      '@types/react-dom': ^17.0.11
+      '@types/react': ^18.0.21
+      '@types/react-dom': ^18.0.11
       execa: ^6.1.0
       react: ^18.2.0
       react-dom: ^18.2.0
@@ -102,8 +102,8 @@ importers:
       '@svgr/core': 6.5.1
       '@swc/cli': 0.1.61_@swc+core@1.3.35
       '@swc/core': 1.3.35
-      '@types/react': 17.0.53
-      '@types/react-dom': 17.0.19
+      '@types/react': 18.0.21
+      '@types/react-dom': 18.0.11
       execa: 6.1.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -298,7 +298,7 @@ importers:
       '@swc/core': 1.3.35
       '@types/listr': 0.14.4
       '@types/node': 18.13.0
-      '@types/react': 17.0.53
+      '@types/react': 17.0.57
       '@vitejs/plugin-react': 2.2.0_vite@3.2.5
       chalk: 5.2.0
       cypress: 12.5.1
@@ -1735,7 +1735,7 @@ packages:
       react: '>=16'
     dependencies:
       '@types/mdx': 2.0.3
-      '@types/react': 17.0.53
+      '@types/react': 17.0.57
       react: 18.2.0
 
   /@mole-inc/bin-wrapper/8.0.1:
@@ -3890,6 +3890,10 @@ packages:
     resolution: {integrity: sha512-DUlIj2nk0YnJdlWgsFuVKcX27MLW0KbKmGVoUHmFr+74FYYNUDAaj9ZqTADvsbE8rfxuVmSFc7KczYn5Y09ozg==}
     dev: false
 
+  /@types/katex/0.16.0:
+    resolution: {integrity: sha512-hz+S3nV6Mym5xPbT9fnO8dDhBFQguMYpY0Ipxv06JMi1ORgnEM4M1ymWDUhUNer3ElLmT583opRo4RzxKmh9jw==}
+    dev: false
+
   /@types/keyv/3.1.4:
     resolution: {integrity: sha512-BQ5aZNSCpj7D6K2ksrRCTmKRLEpnPvWDiLPfoGyhZ++8YtiK9d/3DBKPJgry359X/P1PfruyYwvnvwFjuEiEIg==}
     dependencies:
@@ -3952,18 +3956,26 @@ packages:
   /@types/prop-types/15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
 
-  /@types/react-dom/17.0.19:
-    resolution: {integrity: sha512-PiYG40pnQRdPHnlf7tZnp0aQ6q9tspYr72vD61saO6zFCybLfMqwUCN0va1/P+86DXn18ZWeW30Bk7xlC5eEAQ==}
+  /@types/react-dom/18.0.11:
+    resolution: {integrity: sha512-O38bPbI2CWtgw/OoQoY+BRelw7uysmXbWvw3nLWO21H1HSh+GOlqPuXshJfjmpNlKiiSDG9cc1JZAaMmVdcTlw==}
     dependencies:
-      '@types/react': 17.0.53
+      '@types/react': 18.0.21
     dev: true
 
-  /@types/react/17.0.53:
-    resolution: {integrity: sha512-1yIpQR2zdYu1Z/dc1OxC+MA6GR240u3gcnP4l6mvj/PJiVaqHsQPmWttsvHsfnhfPbU2FuGmo0wSITPygjBmsw==}
+  /@types/react/17.0.57:
+    resolution: {integrity: sha512-e4msYpu5QDxzNrXDHunU/VPyv2M1XemGG/p7kfCjUiPtlLDCWLGQfgAMng6YyisWYxZ09mYdQlmMnyS0NfZdEg==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
       csstype: 3.1.1
+
+  /@types/react/18.0.21:
+    resolution: {integrity: sha512-7QUCOxvFgnD5Jk8ZKlUAhVcRj7GuJRjnjjiY/IUBWKgOlnvDvTMLD4RTF7NPyVmbRhNrbomZiOepg7M/2Kj1mA==}
+    dependencies:
+      '@types/prop-types': 15.7.5
+      '@types/scheduler': 0.16.2
+      csstype: 3.1.1
+    dev: true
 
   /@types/responselike/1.0.0:
     resolution: {integrity: sha512-85Y2BjiufFzaMIlvJDvTTB8Fxl2xfLo4HgmHzVBz08w4wDePCTjYw66PdrolO0kzli3yam/YCgRufyo1DdQVTA==}
@@ -5014,8 +5026,8 @@ packages:
     engines: {node: '>=4.0.0'}
     dev: true
 
-  /compute-scroll-into-view/3.0.0:
-    resolution: {integrity: sha512-Yk1An4qzo5++Cu6peT9PsmRKIU8tALpmdoE09n//AfGQFcPfx21/tMGMsmKYmLJWaBJrGOJ5Jz5hoU+7cZZUWQ==}
+  /compute-scroll-into-view/3.0.2:
+    resolution: {integrity: sha512-UCXenIpZspASrI2Jsk/eUoa7zpFaD20xIqnC85c1rRIBVS3mOzPKF72QPZYmtcw24ZGqtyiFceBN/JKKVV4ALg==}
     dev: false
 
   /concat-map/0.0.1:
@@ -7772,13 +7784,6 @@ packages:
       object.assign: 4.1.4
     dev: true
 
-  /katex/0.13.24:
-    resolution: {integrity: sha512-jZxYuKCma3VS5UuxOx/rFV1QyGSl3Uy/i0kTJF3HgQ5xMinCQVF8Zd4bMY/9aI9b9A2pjIBOsjSSm68ykTAr8w==}
-    hasBin: true
-    dependencies:
-      commander: 8.3.0
-    dev: false
-
   /katex/0.15.6:
     resolution: {integrity: sha512-UpzJy4yrnqnhXvRPhjEuLA4lcPn6eRngixW7Q3TJErjg3Aw2PuLFBzTkdUb89UtumxjhHTqL3a5GDGETMSwgJA==}
     hasBin: true
@@ -8422,11 +8427,11 @@ packages:
       micromark-util-combine-extensions: 1.0.0
       micromark-util-types: 1.0.2
 
-  /micromark-extension-math/2.0.2:
-    resolution: {integrity: sha512-cFv2B/E4pFPBBFuGgLHkkNiFAIQv08iDgPH2HCuR2z3AUgMLecES5Cq7AVtwOtZeRrbA80QgMUk8VVW0Z+D2FA==}
+  /micromark-extension-math/2.1.0:
+    resolution: {integrity: sha512-WH+fJkveMvM3ZN+deb/jT3UW623x8xO9ycfJNDC+UQXX+V72RO6hT9KqxA7c8XFwozAFJ7tufOeG+x/CVSXHUw==}
     dependencies:
-      '@types/katex': 0.11.1
-      katex: 0.13.24
+      '@types/katex': 0.16.0
+      katex: 0.16.4
       micromark-factory-space: 1.0.0
       micromark-util-character: 1.1.0
       micromark-util-symbol: 1.0.1
@@ -8914,7 +8919,7 @@ packages:
       nextra: 2.2.20_azq6kxkn3od7qdylwkyksrwopy
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      scroll-into-view-if-needed: 3.0.6
+      scroll-into-view-if-needed: 3.0.9
       zod: 3.21.4
     dev: false
 
@@ -9843,7 +9848,7 @@ packages:
     dependencies:
       '@types/mdast': 3.0.10
       mdast-util-math: 2.0.2
-      micromark-extension-math: 2.0.2
+      micromark-extension-math: 2.1.0
       unified: 10.1.2
     dev: false
 
@@ -10039,10 +10044,10 @@ packages:
     dependencies:
       loose-envify: 1.4.0
 
-  /scroll-into-view-if-needed/3.0.6:
-    resolution: {integrity: sha512-x+CW0kOzlFNOnseF0DBr0AJ5m+TgGmSOdEZwyiZW0gV87XBvxQKw5A8DvFFgabznA68XqLgVX+PwPX8OzsFvRA==}
+  /scroll-into-view-if-needed/3.0.9:
+    resolution: {integrity: sha512-El9s4RTy0DVX4sBHSt2BnyXVw40zQ7V7jG3NDWoLdTWlrEnc7RCjajwQy+ufd/ptGmY2zxh2l7Y1o8nq0CAovQ==}
     dependencies:
-      compute-scroll-into-view: 3.0.0
+      compute-scroll-into-view: 3.0.2
     dev: false
 
   /section-matter/1.0.0:

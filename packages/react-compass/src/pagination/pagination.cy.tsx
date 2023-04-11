@@ -1,3 +1,4 @@
+import React from 'react'
 import Pagination from './index'
 
 describe('pagination.cy.ts', () => {

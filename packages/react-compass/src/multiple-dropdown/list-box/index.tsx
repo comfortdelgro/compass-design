@@ -1,24 +1,37 @@
-import {AriaListBoxOptions, useListBox} from '@react-aria/listbox'
-import {SelectState} from '@react-stately/select'
 import React from 'react'
-import {StyledLoading} from '../dropdown.styles'
-import Header from '../header'
-import Option from '../option/select'
-import {getDistanceBetweenElements, useIsInViewport} from '../utils'
+import Header from '../../dropdown/header'
+import {DropdownItemProps} from '../../dropdown/item'
+import {StyledLoading} from '../../dropdown/list-box/index.styles'
+import {getDistanceBetweenElements, useIsInViewport} from '../../dropdown/utils'
+import Option from '../option'
 
-interface Props<T = unknown> extends AriaListBoxOptions<T> {
-  state: SelectState<T>
+interface Props {
+  collection: Array<
+    React.DetailedReactHTMLElement<DropdownItemProps, HTMLElement>
+  >
+  disabledKeys: React.Key[]
+  focusKey: React.Key | undefined
+  currentKeys: React.Key[]
   headerTitle: string | undefined
   isLoading: boolean
-  headerOnClick: (e: unknown) => void
   onLoadMore: () => void
+  onHover: (key: React.Key | null) => void
+  onSelect: (key: React.Key) => void
+  headerOnClick: (e: unknown) => void
   listBoxRef: React.RefObject<HTMLUListElement>
 }
 
 function ListBox(props: Props) {
   const ref = React.useRef(null)
-  const {listBoxRef = ref, state} = props
-  const {listBoxProps} = useListBox(props, state, listBoxRef)
+  const {
+    listBoxRef = ref,
+    collection,
+    currentKeys,
+    focusKey,
+    disabledKeys,
+    onHover,
+    onSelect,
+  } = props
 
   const lastEl = React.useRef<HTMLDivElement | null>(null)
   const standEl = React.useRef<HTMLDivElement | null>(null)
@@ -40,7 +53,7 @@ function ListBox(props: Props) {
       {props.headerTitle && (
         <Header title={props.headerTitle} onPress={props?.headerOnClick} />
       )}
-      <ul {...listBoxProps} ref={listBoxRef}>
+      <ul ref={listBoxRef}>
         {props.isLoading ? (
           <StyledLoading>
             <div className='spinner'>
@@ -52,10 +65,18 @@ function ListBox(props: Props) {
           </StyledLoading>
         ) : (
           <>
-            {[...state.collection].map((item) => (
-              <Option key={item.key} item={item} state={state} />
+            {[...collection].map((item) => (
+              <Option
+                key={item.key}
+                item={item}
+                disabledKeys={disabledKeys}
+                currentKeys={currentKeys}
+                focusKey={focusKey}
+                onHover={onHover}
+                onSelect={onSelect}
+              />
             ))}
-            {[...state.collection].length > 0 && (
+            {[...collection].length > 0 && (
               <div style={{height: 1}} ref={lastEl} />
             )}
           </>

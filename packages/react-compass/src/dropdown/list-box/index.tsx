@@ -1,24 +1,39 @@
-import {AriaListBoxOptions, useListBox} from '@react-aria/listbox'
-import {ComboBoxState} from '@react-stately/combobox'
 import React from 'react'
-import {StyledLoading} from '../dropdown.styles'
 import Header from '../header'
-import Option from '../option/combobox'
+import {DropdownItemProps} from '../item'
+import Option from '../option'
 import {getDistanceBetweenElements, useIsInViewport} from '../utils'
+import {StyledLoading} from './index.styles'
 
-interface Props<T = unknown> extends AriaListBoxOptions<T> {
-  state: ComboBoxState<T>
-  headerTitle: string | undefined
+interface Props {
   isLoading: boolean
-  headerOnClick: (e: unknown) => void
-  onLoadMore: () => void
+  disabledKeys: React.Key[]
+  focusKey: React.Key | undefined
+  headerTitle: string | undefined
+  currentKey: React.Key | undefined
+  dropdownType: 'select' | 'combobox' | 'flag'
   listBoxRef: React.RefObject<HTMLUListElement>
+  collection: Array<
+    React.DetailedReactHTMLElement<DropdownItemProps, HTMLElement>
+  >
+  onLoadMore: () => void
+  onHover: (key: React.Key | null) => void
+  onSelect: (key: React.Key) => void
+  headerOnClick: (e: unknown) => void
 }
 
 function ListBox(props: Props) {
   const ref = React.useRef(null)
-  const {listBoxRef = ref, state} = props
-  const {listBoxProps} = useListBox(props, state, listBoxRef)
+  const {
+    listBoxRef = ref,
+    collection,
+    currentKey,
+    focusKey,
+    disabledKeys,
+    dropdownType,
+    onHover,
+    onSelect,
+  } = props
 
   const lastEl = React.useRef<HTMLDivElement | null>(null)
   const standEl = React.useRef<HTMLDivElement | null>(null)
@@ -40,7 +55,7 @@ function ListBox(props: Props) {
       {props.headerTitle && (
         <Header title={props.headerTitle} onPress={props?.headerOnClick} />
       )}
-      <ul {...listBoxProps} ref={listBoxRef}>
+      <ul ref={listBoxRef}>
         {props.isLoading ? (
           <StyledLoading>
             <div className='spinner'>
@@ -52,10 +67,19 @@ function ListBox(props: Props) {
           </StyledLoading>
         ) : (
           <>
-            {[...state.collection].map((item) => (
-              <Option key={item.key} item={item} state={state} />
+            {[...collection].map((item) => (
+              <Option
+                key={item.key}
+                item={item}
+                disabledKeys={disabledKeys}
+                currentKey={currentKey}
+                focusKey={focusKey}
+                dropdownType={dropdownType}
+                onHover={onHover}
+                onSelect={onSelect}
+              />
             ))}
-            {[...state.collection].length > 0 && (
+            {[...collection].length > 0 && (
               <div style={{height: 1}} ref={lastEl} />
             )}
           </>

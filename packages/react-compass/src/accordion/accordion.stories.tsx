@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import React, {useState} from 'react'
 import {Column} from '../utils/components'
 import Accordion from './index'
 

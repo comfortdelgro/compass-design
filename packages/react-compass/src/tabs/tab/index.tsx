@@ -1,50 +1,65 @@
-import {AriaTabProps, useTab} from '@react-aria/tabs'
-import {TabListState} from '@react-stately/tabs'
 import React from 'react'
 import {useDOMRef} from '../../utils/use-dom-ref'
-import {Icon, Node, Variant} from '../types'
+import {TabItemProps} from '../item'
+import {Icon, Variant} from '../utils'
 import {StyledTab} from './index.styles'
 
-interface TabProps<T> extends AriaTabProps {
-  item: Node<T>
-  variant: Variant | undefined
-  icon: Icon | undefined
-  state: TabListState<T>
+interface TabProps {
   textColor: string
+  isDisabled: boolean
+  key: React.Key | null
   indicatorColor: string
+  icon: Icon | undefined
+  disabledKeys: React.Key[]
+  variant: Variant | undefined
+  currentKey: React.Key | undefined
+  item: React.DetailedReactHTMLElement<TabItemProps, HTMLElement>
+  onSelect: (key: React.Key) => void
 }
 
-const Tab = React.forwardRef<HTMLDivElement, TabProps<object>>(
+const Tab = React.forwardRef<HTMLDivElement, TabProps>(
   (
     {
       item,
-      state,
       isDisabled,
       textColor,
+      currentKey,
       indicatorColor,
+      disabledKeys,
       variant = 'rounded',
       icon = 'none',
+      onSelect,
     },
     ref,
   ) => {
-    const {key, rendered} = item
+    const {title} = item.props
     const tabRef = useDOMRef<HTMLDivElement>(ref)
-    const {tabProps} = useTab({key}, state, tabRef)
+    const isSelected = React.useMemo(
+      () => currentKey === item.key,
+      [currentKey],
+    )
+    const isDisabledItem = React.useMemo(
+      () => (item.key ? [...disabledKeys].includes(item.key) : false),
+      [disabledKeys],
+    )
+    const disabledState = isDisabled || isDisabledItem
 
-    const disabledState = isDisabled || state?.disabledKeys?.has(key)
+    const handleSelect = () => {
+      if (item.key && !disabledState) onSelect(item.key)
+    }
 
     return (
       <StyledTab
-        {...tabProps}
-        ref={tabRef}
         icon={icon}
-        disabled={!!disabledState}
-        active={state.selectedItem?.key === key}
+        ref={tabRef}
         variant={variant}
+        active={isSelected}
+        disabled={!!disabledState}
         className='tab-item-wrapper'
         css={{$$textColor: textColor, $$indicatorColor: indicatorColor}}
+        onClick={handleSelect}
       >
-        {rendered}
+        {title}
         {icon !== 'none' && (
           <div className='icon'>
             {disabledState ? <DisableIcon /> : <TickIcon />}
