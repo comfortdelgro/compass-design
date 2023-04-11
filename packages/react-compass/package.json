@@ -96,9 +96,9 @@
     "@react-types/select": "^3.7.0",
     "@stitches/react": "^1.2.8",
     "@tanstack/react-table": "^8.7.6",
-    "chart.js": "3.9.1",
+    "chart.js": "^4.1.2",
     "html-react-parser": "^3.0.7",
-    "react-chartjs-2": "4.3.1"
+    "react-chartjs-2": "^5.2.0"
   },
   "devDependencies": {
     "@comfortdelgro/eslint-config": "^1.0.2",
