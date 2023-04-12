@@ -1,5 +1,5 @@
 ---
-'@comfortdelgro/react-compass': '0.33.3-test.0'
+'@comfortdelgro/react-compass': patch
 ---
 
 Feature/rich-text-editor
