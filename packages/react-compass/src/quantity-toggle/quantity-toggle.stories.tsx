@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import React, {useState} from 'react'
 import {Column} from '../utils/components'
 import QuantityToggle from './index'
 
@@ -8,26 +8,41 @@ export const Variants: React.FC = () => {
     <Column>
       <h3>Controlled</h3>
       <QuantityToggle
+        label='Potato price'
         placeholder='Price'
+        onChange={(v) => console.log(v)}
         formatOptions={{
-          style: 'currency',
-          currency: 'USD',
+          prefix: '$',
+          toFixed: 2,
         }}
       />
       <h3>Un Controlled</h3>
       <QuantityToggle
+        label='Potato price'
+        isRequired
         placeholder='Price'
         value={value}
         onChange={(e) => setValue(e)}
         formatOptions={{
-          style: 'currency',
-          currency: 'USD',
+          prefix: '$',
+          // toFixed: 2,
         }}
       />
       <h3>Disabled</h3>
-      <QuantityToggle defaultValue={2} isDisabled helperText='Bla Bla Bla' />
+      <QuantityToggle
+        label='Potato price'
+        defaultValue={2}
+        isDisabled
+        helperText='This is helper text'
+      />
       <h3>Errored</h3>
-      <QuantityToggle defaultValue={2} isErrored helperText='Bla Bla Bla' />
+      <QuantityToggle
+        label='Potato price'
+        defaultValue={2}
+        isErrored
+        helperText='This is helper text'
+        errorMessage='This is error message'
+      />
     </Column>
   )
 }

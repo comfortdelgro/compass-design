@@ -41,6 +41,33 @@ export const ServerInteraction: React.FC = () => {
   )
 }
 
+export const Paneless: React.FC = () => {
+  const [value, setValue] = React.useState<React.Key>('1')
+  const items = [
+    {key: '1', title: 'Founding of Rome'},
+    {key: '2', title: 'Monarchy and Republic'},
+    {key: '3', title: 'Empire'},
+  ]
+  return (
+    <Column>
+      <h3>Paneless</h3>
+      <Row>
+        <div style={{width: '100%', display: 'flex', flexDirection: 'column'}}>
+          <Tabs.Paneless
+            variant='simple'
+            items={items}
+            selectedKey={value}
+            onSelectionChange={(v: React.Key) => setValue(v)}
+          />
+          {value === '1' && <FetchList id='1' />}
+          {value === '2' && <FetchList id='2' />}
+          {value === '3' && <FetchList id='3' />}
+        </div>
+      </Row>
+    </Column>
+  )
+}
+
 export const Icon: React.FC = () => (
   <Column>
     <h3>With left icon</h3>

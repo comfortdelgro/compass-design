@@ -68,7 +68,7 @@ const Upload2 = React.forwardRef<HTMLDivElement, Upload2Props>((props, ref) => {
     customDescription,
     customError,
     onFileChange,
-    placeholder,
+    placeholder = 'No file choosen',
 
     // htmldiv props
     ...delegated

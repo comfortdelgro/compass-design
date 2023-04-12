@@ -7,12 +7,30 @@ const FontWeights: React.FC = () => {
   }
 
   return (
-    <div className='flex flex-row mt-5 gap-2 flex-wrap'>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        marginTop: '1.25rem',
+        gap: '0.5rem',
+        flexWrap: 'wrap',
+      }}
+    >
       {Object.entries(weights).map(([name, weight]) => (
         <div
           key={name}
-          className='border-2 border-solid border-gray-200 flex-shrink-0 w-36 h-24 font-poppins flex flex-col items-center justify-end p-3'
-          style={{fontWeight: weight}}
+          style={{
+            border: '2px solid rgb(229 231 235)',
+            flexShrink: 0,
+            width: '9rem',
+            height: '6rem',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'flex-end',
+            padding: '0.75rem',
+            fontWeight: weight,
+          }}
         >
           <div className='text-2xl text-[#080C4E]'>Aa</div>
           <div className='h-2'></div>

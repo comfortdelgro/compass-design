@@ -97,8 +97,23 @@ const ColorBox: React.FC<Props> = ({color, gradient = false}) => {
   console.log(color.value, gradient)
   return (
     <div
-      className='w-36 h-24 p-2 font-mono text-xs font-semibold flex flex-col items-start justify-between cursor-copy flex-shrink-0 transition-all hover:scale-105'
+      className='scale'
       style={{
+        width: '9rem',
+        height: '6rem',
+        padding: '0.5rem',
+        fontSize: '0.75rem',
+        lineHeight: '1rem',
+        fontWeight: 600,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'start',
+        justifyContent: 'space-between',
+        cursor: 'copy',
+        flexShrink: 0,
+        transitionProperty: 'all',
+        transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+        transitionDuration: '150ms',
         backgroundColor: !gradient ? color.value : 'transparent',
         backgroundImage: gradient
           ? `linear-gradient(to right, ${color.value})`

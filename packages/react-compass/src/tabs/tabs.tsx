@@ -6,7 +6,8 @@ import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import Tab from './tab'
 import TabPanel from './tab-panel'
-import {StyledTabs} from './tabs.styles'
+import TabsPaneless from './tabs-paneless'
+import {StyledTabs, StyledWrapper} from './tabs.styles'
 import {Icon, Variant} from './types'
 
 interface Props<T = object>
@@ -15,19 +16,21 @@ interface Props<T = object>
     StyledComponentProps {
   variant?: Variant
   icon?: Icon
+  textColor?: string
+  indicatorColor?: string
 }
 
 export type TabsProps<T = object> = Props<T>
 
 const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
-  const {css = {}} = props
+  const {textColor = '#0142AF', indicatorColor = '#0142AF', css = {}} = props
 
   const tabRef = useDOMRef<HTMLDivElement>(ref)
   const state = useTabListState(props)
   const {tabListProps} = useTabList(props, state, tabRef)
 
   return (
-    <div>
+    <StyledWrapper>
       <StyledTabs
         ref={tabRef}
         {...tabListProps}
@@ -42,12 +45,17 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
             state={state}
             icon={props.icon}
             variant={props.variant}
+            textColor={textColor}
+            indicatorColor={indicatorColor}
           />
         ))}
       </StyledTabs>
       <TabPanel key={state.selectedItem?.key} state={state} />
-    </div>
+    </StyledWrapper>
   )
 })
 
-export default Tabs as typeof Tabs & {Item: typeof CollectionItem}
+export default Tabs as typeof Tabs & {
+  Item: typeof CollectionItem
+  Paneless: typeof TabsPaneless
+}

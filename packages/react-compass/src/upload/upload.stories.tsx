@@ -1,3 +1,4 @@
+import React from 'react'
 import {Column} from '../utils/components'
 import Upload from './index'
 
@@ -29,14 +30,14 @@ export const Variants: React.FC = () => {
       <Upload
         getFile={getFileFunc}
         accept='image/*, .docs, .docx'
-        // fileSizeLimit={30000}
+        fileSizeLimit={30000}
       />
 
       <h3>Allow multiple uploaded file</h3>
       <Upload
         getFile={getFileFunc}
         accept='image/*, .docs, .docx'
-        // fileSizeLimit={30000}
+        fileSizeLimit={30000}
         multiple
       />
 

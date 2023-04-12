@@ -1,17 +1,10 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 
-import {DocsThemeConfig, useConfig} from 'nextra-theme-docs'
+import {DocsThemeConfig} from 'nextra-theme-docs/.'
 
 const githubUrl = 'https://github.com/comfortdelgro/compass-design'
 
-const nextraResets = {
-  chat: false,
-  footer: false,
-  unstable_faviconGlyph: '✦',
-}
-
 const nextraConfig: DocsThemeConfig = {
-  ...(nextraResets as Record<string, unknown>),
   banner: {
     key: 'work-in-progress',
     text: 'This site is a heavy work in progress. Expect bugs & changes.',
@@ -24,27 +17,32 @@ const nextraConfig: DocsThemeConfig = {
     text: 'Edit this page on GitHub',
   },
   logo: () => (
-    <div className='flex flex-row items-center space-x-2'>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+      }}
+    >
       <div
-        className='w-7 aspect-square bg-no-repeat bg-cover'
         style={{
           backgroundImage: 'url(/compass-design/logo.svg)',
+          width: '1.75rem',
+          aspectRatio: '1 / 1',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
         }}
       />
-      <div className='font-bold'>Compass Design</div>
+      <div style={{fontWeight: 700}}>Compass Design</div>
     </div>
   ),
-  getNextSeoProps: () => {
-    const {frontMatter} = useConfig()
+  useNextSeoProps: () => {
     return {
-      description:
-        frontMatter.description || "Comfortdelgro's Compass Design System",
+      description: "Comfortdelgro's Compass Design System",
       openGraph: {
         images: [
           {
-            url:
-              frontMatter.image ||
-              'https://comfortdelgro.github.io/compass-design/banner.png',
+            url: 'https://comfortdelgro.github.io/compass-design/banner.png',
           },
         ],
       },

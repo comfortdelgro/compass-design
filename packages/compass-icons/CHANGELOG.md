@@ -1,5 +1,11 @@
 # @comfortdelgro/compass-icons
 
+## 1.0.0
+
+### Major Changes
+
+- 28f6b70: Restructure folder structure
+
 ## 0.12.0
 
 ## 0.11.0
