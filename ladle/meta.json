@@ -295,16 +295,6 @@
       "filePath": "src/checkbox/checkbox.stories.tsx",
       "meta": {}
     },
-    "dashboard-sidecard--default": {
-      "name": "Default",
-      "levels": [
-        "Dashboard sidecard"
-      ],
-      "locStart": 7,
-      "locEnd": 59,
-      "filePath": "src/dashboard-sidecard/dashboardSidecard.stories.tsx",
-      "meta": {}
-    },
     "date-picker--variants": {
       "name": "Variants",
       "levels": [
@@ -323,6 +313,16 @@
       "locStart": 50,
       "locEnd": 73,
       "filePath": "src/date-picker/date-picker.stories.tsx",
+      "meta": {}
+    },
+    "dashboard-sidecard--default": {
+      "name": "Default",
+      "levels": [
+        "Dashboard sidecard"
+      ],
+      "locStart": 7,
+      "locEnd": 59,
+      "filePath": "src/dashboard-sidecard/dashboardSidecard.stories.tsx",
       "meta": {}
     },
     "date-range-picker--variants": {
