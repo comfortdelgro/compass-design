@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 0.33.4
+
+### Patch Changes
+
+- 156dbf07: Feature/rich-text-editor
+
 ## 0.33.3
 
 ### Patch Changes
