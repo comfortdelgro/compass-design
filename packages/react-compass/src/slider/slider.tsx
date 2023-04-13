@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react'
-import './styles.css'
+import {RangeSlider, RangeSliderContainer, Thumb} from './slider.styles'
 
 interface SliderProps {
   isDisabled?: boolean
@@ -15,7 +15,7 @@ interface SliderProps {
 
 const Slider: React.FC<SliderProps> = ({
   isDisabled = false,
-  tooltip = false,
+  tooltip = true,
   onChange,
   minValue = 0,
   maxValue = 100,
@@ -112,15 +112,16 @@ const Slider: React.FC<SliderProps> = ({
   }, [isDisabled, minValue, maxValue, step, onChange, defaultValue])
 
   return (
-    <div
+    <RangeSliderContainer
       className={`cdg-range-slider ${className}`}
       tabIndex={0}
       ref={sliderRef}
+      style={{pointerEvents: `${isDisabled ? 'none' : 'auto'}`}}
     >
-      <div className='range-slider'>
-        <div className='thumb' />
-      </div>
-    </div>
+      <RangeSlider className='range-slider'>
+        <Thumb className={`thumb ${tooltip ? `thumb-tooltips` : ''}`} />
+      </RangeSlider>
+    </RangeSliderContainer>
   )
 }
 
