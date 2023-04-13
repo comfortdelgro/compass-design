@@ -111,11 +111,13 @@ export type {LinkProps} from './link'
 export {
   default as List,
   DragAndDropList,
+  DragAndDropListV2,
   InteractiveList,
   ListCard,
 } from './list'
 export type {
   DragAndDropListProps,
+  DragAndDropListV2Props,
   InteractiveListProps,
   ListCardDetailProps,
   ListCardProps,

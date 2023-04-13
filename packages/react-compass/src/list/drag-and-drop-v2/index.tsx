@@ -4,11 +4,11 @@ import {StyledComponentProps} from '../../utils/stitches.types'
 import DragAndDropListItem from './dnd-list-item'
 import {StyledDragAndDrop} from './index.styles'
 
-export interface DragAndDropListProps<T = object> extends StyledComponentProps {
+export interface DragAndDropListV2Props extends StyledComponentProps {
   children: React.ReactNode
 }
 
-const DragAndDropListV2 = ({children}: DragAndDropListProps) => {
+const DragAndDropListV2 = ({children}: DragAndDropListV2Props) => {
   const ref = React.useRef(null)
   const [startPosition, setStartPosition] = useState<number>(-1)
   const [dragOverPosition, setDragOverPosition] = useState<number>(-1)
