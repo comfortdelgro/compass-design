@@ -1,12 +1,11 @@
-import React, {useState} from 'react'
+import React from 'react'
 import Slider from './slider'
 
 export const Sliders: React.FC = () => {
-  const [value, setValue] = useState<number>(20)
   return (
     <div style={{width: `250px`}}>
       <div></div>
-      <Slider></Slider>
+      <Slider step={1} defaultValue={250} minValue={0} maxValue={250}></Slider>
     </div>
   )
 }
