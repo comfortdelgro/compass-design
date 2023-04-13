@@ -1,45 +1,66 @@
-import React, {useState} from 'react'
+import React, {useEffect, useRef} from 'react'
 import './styles.css'
+const Slider: React.FC = () => {
+  const sliderRef = useRef<HTMLDivElement>(null)
 
-interface SliderProps {
-  color: string
-  min: number
-  max: number
-  value?: number
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-}
+  useEffect(() => {
+    const slider = sliderRef.current
+    if (slider) {
+      const thumb = slider.querySelector('.thumb') as HTMLElement
+      const sliderProgess = slider.querySelector('.range-slider') as HTMLElement
+      let isDragging = false
+      let prevX = 0
 
-const Slider: React.FunctionComponent<SliderProps> = ({
-  color,
-  min,
-  max,
-  value,
-  onChange,
-}) => {
-  const [background, setBackground] = useState(
-    `linear-gradient(to right, ${color} 0%, ${color} ${value}%, #fff ${value}%, white 100%)`,
-  )
+      const handleMouseDown = (event: MouseEvent) => {
+        isDragging = true
+        prevX = event.clientX
+      }
 
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = e.target.value
-    const valBg = ((Number(val) - min) / (max - min)) * 100
-    setBackground(
-      `linear-gradient(to right, ${color} 0%, ${color} ${valBg}%, #fff ${valBg}%, white 100%)`,
-    )
-    onChange(e)
-  }
+      const handleMouseUp = () => {
+        isDragging = false
+      }
+
+      const handleMouseMove = (event: MouseEvent) => {
+        if (!isDragging) return
+        const deltaX = event.clientX - prevX
+        prevX = event.clientX
+        const newLeft = thumb.offsetLeft + deltaX
+        const sliderWidth = slider.offsetWidth
+        const thumbWidth = thumb.offsetWidth
+        thumb.style.left = `${Math.max(
+          0 - thumbWidth,
+          Math.min(newLeft, sliderWidth - thumbWidth),
+        )}px`
+        const sliderProgressWidth = thumb.offsetLeft + thumbWidth // Update the progress track width based on thumb position and thumb width
+        sliderProgess.style.width = `${sliderProgressWidth}px`
+        // Update the value attribute based on the thumb position
+        const minValue = 0
+        const maxValue = 100
+        const value =
+          Math.round(
+            (sliderProgressWidth / sliderWidth) * (maxValue - minValue),
+          ) + minValue
+        thumb.setAttribute('value', value.toString())
+      }
+
+      thumb.addEventListener('mousedown', handleMouseDown)
+      document.addEventListener('mouseup', handleMouseUp)
+      document.addEventListener('mousemove', handleMouseMove)
+
+      return () => {
+        thumb.removeEventListener('mousedown', handleMouseDown)
+        document.removeEventListener('mouseup', handleMouseUp)
+        document.removeEventListener('mousemove', handleMouseMove)
+      }
+    }
+  }, [])
 
   return (
-    <input
-      type='range'
-      min={min}
-      max={max}
-      value={value}
-      data-color={color}
-      className='range-slider'
-      onChange={handleOnChange}
-      style={{background}}
-    />
+    <div className='cdg-range-slider' tabIndex={0} ref={sliderRef}>
+      <div className='range-slider'>
+        <div className='thumb' />
+      </div>
+    </div>
   )
 }
 
