@@ -5,7 +5,7 @@ export const RangeSliderContainer = styled('div', {
   display: 'flex',
   width: '100%',
   height: '0.25rem',
-  background: '#e6ecf7',
+  background: '$cdgBlue10',
   borderRadius: '6.25rem',
   position: ' relative',
   cursor: 'pointer',
@@ -13,9 +13,9 @@ export const RangeSliderContainer = styled('div', {
     content: 'attr(value)',
     position: 'absolute',
     backgroundColor: '#201f1e',
-    width: '3.125rem',
-    height: '3.125rem',
-    color: '#fff',
+    width: '$12_5',
+    height: '$12_5',
+    color: '$whiteText',
     padding: '0.2rem',
     borderRadius: '0.2rem',
     pointerEvents: 'none',
@@ -24,7 +24,7 @@ export const RangeSliderContainer = styled('div', {
     transform: 'translateX(-35%)',
     fontFamily: 'Poppins',
     fontStyle: 'normal',
-    fontWeight: 'var(--bold)',
+    fontWeight: '$bold',
     fontSize: '1.25rem',
     lineHeight: '3.125rem',
     textAlign: 'center',
@@ -42,7 +42,7 @@ export const RangeSliderContainer = styled('div', {
 })
 
 export const RangeSlider = styled('div', {
-  background: '#0142af',
+  background: '$cdgBlue100',
   height: '100%',
   position: 'relative',
 })
@@ -50,10 +50,10 @@ export const RangeSlider = styled('div', {
 export const Thumb = styled('div', {
   right: '0',
   boxSizing: 'border-box',
-  width: '1rem',
-  height: '1rem',
+  width: '$4',
+  height: '$4',
   borderRadius: '50%',
-  background: '#ffffff',
+  background: '$background',
   border: '1px solid #e6ecf7',
   boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.16)',
   position: 'absolute',

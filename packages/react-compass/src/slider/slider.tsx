@@ -1,7 +1,12 @@
 import React, {useEffect, useRef, useState} from 'react'
-import {RangeSlider, RangeSliderContainer, Thumb} from './slider.styles'
+import {
+  RangeSlider,
+  RangeSliderContainer,
+  SliderVariantProps,
+  Thumb,
+} from './slider.styles'
 
-interface SliderProps {
+interface Props {
   isDisabled?: boolean
   tooltip?: boolean
   onChange?: (value: number) => void
@@ -13,6 +18,8 @@ interface SliderProps {
   defaultValue?: number
   className?: string
 }
+
+export type SliderProps = Props & SliderVariantProps
 
 const Slider: React.FC<SliderProps> = ({
   isDisabled = false,
