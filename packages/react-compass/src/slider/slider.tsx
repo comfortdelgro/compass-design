@@ -5,6 +5,7 @@ interface SliderProps {
   isDisabled?: boolean
   tooltip?: boolean
   onChange?: (value: number) => void
+  onChangeEnd?: (value: number) => void
   minValue?: number
   maxValue?: number
   step?: number
@@ -17,6 +18,7 @@ const Slider: React.FC<SliderProps> = ({
   isDisabled = false,
   tooltip = true,
   onChange,
+  onChangeEnd,
   minValue = 0,
   maxValue = 100,
   step = 1,
@@ -28,6 +30,12 @@ const Slider: React.FC<SliderProps> = ({
   const [currentValue, setCurrentValue] = useState<number | undefined>(
     defaultValue,
   )
+  const [dragging, setDragging] = useState(false)
+  useEffect(() => {
+    if (onChangeEnd && currentValue !== undefined && !dragging) {
+      onChangeEnd(currentValue)
+    }
+  }, [dragging])
 
   useEffect(() => {
     const slider = sliderRef.current
@@ -43,11 +51,13 @@ const Slider: React.FC<SliderProps> = ({
         if (isDisabled) return
         isDragging = true
         prevX = event.clientX
+        setDragging(true)
       }
 
       const handleMouseUp = () => {
         if (isDisabled) return
         isDragging = false
+        setDragging(false)
       }
 
       const handleMouseMove = (event: MouseEvent) => {
