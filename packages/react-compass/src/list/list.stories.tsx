@@ -8,7 +8,6 @@ import Badge from '../badge'
 import Icon from '../icon'
 import {Column} from '../utils/components'
 import DragAndDropList from './drag-and-drop'
-import DragAndDropListV2 from './drag-and-drop-v2'
 import InteractiveList from './interactive-list'
 import List from './list'
 import ListCard from './list-card'
@@ -738,27 +737,14 @@ export const InteractiveLists: React.FC = () => {
 
 export const DragAndDrop: React.FC = () => {
   const [arr, setArr] = React.useState<Key[]>(['red', 'green', 'blue'])
-  const onReorderByKeys = (keys: Key[]) => {
-    setArr([...keys])
-  }
   return (
-    <DragAndDropList onReorderByKeys={onReorderByKeys}>
+    <DragAndDropList>
       {arr.map((a) => (
         <DragAndDropList.Item key={a}>
           <div>{a}</div>
         </DragAndDropList.Item>
       ))}
     </DragAndDropList>
-  )
-}
-export const DragAndDropV2: React.FC = () => {
-  const [arr, setArr] = React.useState<Key[]>(['red', 'green', 'blue'])
-  return (
-    <DragAndDropListV2>
-      {arr.map((a) => (
-        <DragAndDropListV2.Item key={a}>{a}</DragAndDropListV2.Item>
-      ))}
-    </DragAndDropListV2>
   )
 }
 
