@@ -13,6 +13,7 @@ import {useDOMRef} from '../utils/use-dom-ref'
 import CalendarGrid from './calendar-grid'
 import CalendarHeader from './calendar-header'
 import {StyledCalendar} from './calendar.style'
+import {useCalendarState2} from './hooks/useCalendarState'
 interface Props extends StyledComponentProps, SpectrumCalendarProps<DateValue> {
   children?: React.ReactNode
   state?: DatePickerState
@@ -43,6 +44,7 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     locale,
     createCalendar,
   })
+  const state2 = useCalendarState2({locale: locale})
 
   const {calendarProps, prevButtonProps, nextButtonProps} = useCalendar(
     delegated,
@@ -55,22 +57,33 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   }
 
   return (
-    <StyledCalendar ref={calendarRef} css={css}>
-      <CalendarHeader
-        state={state}
-        calendarProps={calendarProps}
-        prevButtonProps={prevButtonProps}
-        nextButtonProps={nextButtonProps}
-      />
-      <CalendarGrid state={state} maxValue={maxValue} />
-      {hasFooter && (
-        <div className='calendar-footer'>
-          <Button variant='ghost' onPress={handleCancelButtonClick}>
-            Cancel
-          </Button>
-        </div>
-      )}
-    </StyledCalendar>
+    <>
+      <StyledCalendar ref={calendarRef} css={css}>
+        <CalendarHeader
+          state={state}
+          calendarProps={calendarProps}
+          prevButtonProps={prevButtonProps}
+          nextButtonProps={nextButtonProps}
+        />
+        <CalendarGrid state={state} maxValue={maxValue} />
+        {hasFooter && (
+          <div className='calendar-footer'>
+            <Button variant='ghost' onPress={handleCancelButtonClick}>
+              Cancel
+            </Button>
+          </div>
+        )}
+      </StyledCalendar>
+      <StyledCalendar ref={calendarRef} css={css}>
+        <CalendarHeader
+          state={state2}
+          calendarProps={calendarProps}
+          prevButtonProps={prevButtonProps}
+          nextButtonProps={nextButtonProps}
+        />
+        <CalendarGrid state={state} maxValue={maxValue} />
+      </StyledCalendar>
+    </>
   )
 })
 

@@ -5,13 +5,13 @@ import {
   getWeeksInMonth,
   parseDate,
 } from '@internationalized/date'
-import {useCalendarGrid} from '@react-aria/calendar'
 import {useLocale} from '@react-aria/i18n'
 import {CalendarState, RangeCalendarState} from '@react-stately/calendar'
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import CalendarCell from './calendar-cell'
 import {StyledCalendarGrid} from './calendar-grid.style'
+import {useCalendarGrid2} from './hooks/useCalendarGrid'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
@@ -39,15 +39,14 @@ const CalendarGrid = (props: Props) => {
   const startDate = state.visibleRange.start.add(offset)
   const endDate = endOfMonth(startDate)
 
-  const {gridProps, headerProps} = useCalendarGrid(
+  // eslint-disable-next-line
+  const {gridProps, headerProps, weekDays} = useCalendarGrid2(
     {
       startDate,
       endDate,
     },
     state,
   )
-
-  const weekDays = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
 
   const weeksInMonth = getWeeksInMonth(startDate, locale)
 

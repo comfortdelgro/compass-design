@@ -7,14 +7,14 @@ import {
   isToday as isTodayFunction,
   parseDate,
 } from '@internationalized/date'
-import {useCalendarCell} from '@react-aria/calendar'
+// import {useCalendarCell} from '@react-aria/calendar'
 import {useFocusRing} from '@react-aria/focus'
-import {mergeProps} from '@react-aria/utils'
 import {CalendarState, RangeCalendarState} from '@react-stately/calendar'
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {StyledCalendarCell} from './calendar-cell.style'
+import {useCalendarCell} from './hooks/useCalendarCell'
 
 interface Props extends StyledComponentProps {
   state: CalendarState | RangeCalendarState
@@ -30,15 +30,15 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
       date,
       currentMonth,
       css = {},
-      //maxValue = today(getLocalTimeZone()),
       maxValue = parseDate('2099-02-17'),
     } = props
 
     const cellRef = useDOMRef(ref)
 
     const {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       cellProps,
-      buttonProps,
+      // buttonProps,
       isSelected,
 
       isUnavailable,
@@ -109,7 +109,7 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
             {...cellProps}
             css={css}
             className={classNameCombine()}
-            {...mergeProps(buttonProps, focusProps)}
+            // {...mergeProps(buttonProps, focusProps)}
           >
             <div
               ref={cellRef}
