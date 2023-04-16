@@ -1,5 +1,4 @@
 import {parseDate} from '@internationalized/date'
-import React from 'react'
 import Calendar from './index'
 
 const centerDateString = `2022-05-15`

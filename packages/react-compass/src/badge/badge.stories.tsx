@@ -1,5 +1,4 @@
 import {faThumbsUp, faVirus} from '@fortawesome/free-solid-svg-icons'
-import React from 'react'
 import {Column, Row} from '../utils/components'
 import Badge from './index'
 

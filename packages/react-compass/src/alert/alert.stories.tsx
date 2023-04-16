@@ -1,6 +1,6 @@
 import {faChessKing} from '@fortawesome/free-solid-svg-icons'
 import {AnimatePresence, motion} from 'framer-motion'
-import React, {useState} from 'react'
+import {useState} from 'react'
 import Link from '../link/link' // import the component directly
 import {Column} from '../utils/components'
 import Alert from './index'

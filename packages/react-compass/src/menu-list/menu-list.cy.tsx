@@ -1,5 +1,4 @@
 import {faUser} from '@fortawesome/free-solid-svg-icons'
-import React from 'react'
 import MenuList, {MenuListDropdown} from './index'
 
 describe('menu-list.cy.ts', () => {

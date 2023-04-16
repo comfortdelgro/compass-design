@@ -1,4 +1,3 @@
-import React from 'react'
 import SubHeader from './index'
 
 describe('sub-header.cy.ts', () => {

@@ -1,5 +1,5 @@
 import type {Placement} from '@react-types/overlays'
-import React, {useState} from 'react'
+import {useState} from 'react'
 import Button from '../button'
 import {Column, Row} from '../utils/components'
 import {Tooltip, TooltipTrigger} from './index'

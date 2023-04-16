@@ -1,4 +1,3 @@
-import React from 'react'
 import Badge from './index'
 
 describe('badge.cy.ts', () => {

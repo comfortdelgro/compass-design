@@ -1,4 +1,3 @@
-import React from 'react'
 import Alert from './index'
 
 const lorem = `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi,

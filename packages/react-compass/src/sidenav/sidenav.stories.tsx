@@ -6,7 +6,7 @@ import {
   faPlane,
   faTractor,
 } from '@fortawesome/free-solid-svg-icons'
-import React, {useState} from 'react'
+import {useState} from 'react'
 import Avatar from '../avatar'
 import Icon from '../icon'
 import {Row} from '../utils/components'
