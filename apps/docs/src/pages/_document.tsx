@@ -1,4 +1,3 @@
-import Preflight from '@comfortdelgro/react-compass/preflight'
 import {SSRProvider} from '@react-aria/ssr'
 import Document, {
   DocumentContext,
@@ -21,14 +20,8 @@ class MyDocument extends Document {
     return (
       <SSRProvider>
         <Html>
-          <Head>
-            <link
-              href='https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap'
-              rel='stylesheet'
-            />
-            {Preflight.flush()}
-          </Head>
-          <body className='subpixel-antialiased font-poppins'>
+          <Head>{/* {Preflight.flush()} */}</Head>
+          <body>
             <Main />
             <NextScript />
           </body>

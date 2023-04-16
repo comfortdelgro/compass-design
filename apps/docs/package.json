@@ -9,20 +9,23 @@
     "lint": "next lint",
     "start": "next start"
   },
+  "resolutions": {
+    "@internationalized/date": "3.1.0"
+  },
   "dependencies": {
-    "@comfortdelgro/compass-icons": "workspace:^0.10.0",
+    "@comfortdelgro/compass-icons": "workspace:*",
     "@comfortdelgro/react-compass": "workspace:*",
     "@fortawesome/free-brands-svg-icons": "^6.2.1",
     "@fortawesome/free-regular-svg-icons": "^6.2.0",
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
-    "@internationalized/date": "^3.0.1",
+    "@iconify/react": "^4.0.1",
+    "@internationalized/date": "3.1.0",
     "@react-aria/i18n": "^3.6.2",
     "@react-aria/ssr": "^3.5.0",
-    "@iconify/react": "^4.0.1",
     "clsx": "^1.2.1",
     "next": "12.3.1",
-    "nextra": "2.0.0-beta.41",
-    "nextra-theme-docs": "2.0.0-beta.41",
+    "nextra": "2.2.20",
+    "nextra-theme-docs": "2.2.20",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.0"
@@ -34,8 +37,6 @@
     "autoprefixer": "^10.4.12",
     "eslint": "^8.25.0",
     "eslint-config-next": "12.2.6",
-    "postcss": "^8.4.18",
-    "tailwindcss": "^3.2.1",
     "typescript": "^4.8.4"
   }
 }

@@ -81,7 +81,7 @@ export const StyledDropdown = styled('div', {
     },
     isErrored: {
       true: {
-        borderWidth: 2,
+        borderWidth: 1,
         borderColor: '$danger',
         '&:focus': {
           borderColor: '$danger',

@@ -40,8 +40,9 @@ const UploadDragAndDrop = React.forwardRef<
     // VariantProps
     variant = 'field',
     // Component props
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    getFile = () => {},
+    getFile = () => {
+      // Default
+    },
     accept = DEFAULT_FILE_ACCEPT,
     fileSizeLimit = DEFAULT_FILE_LIMIT,
     multiple = false,
@@ -51,71 +52,85 @@ const UploadDragAndDrop = React.forwardRef<
 
   const uploadRef = useDOMRef<HTMLDivElement>(ref)
   const uploadInputRef = React.useRef<HTMLInputElement>(null)
-  const [selectedFiles, setSelectedFiles] = React.useState<File[]>([])
-  const [error, setError] = React.useState<false | string>(false)
+  const [error, setError] = React.useState<undefined | string>()
+
+  const filesValidator = (files: FileList) => {
+    if (files && files?.length > 0) {
+      const isInvalidFileSize = Array.from(files).some(
+        (file) => file.size > fileSizeLimit,
+      )
+      if (isInvalidFileSize) {
+        setError('Sorry, your file exceeds our size limit.')
+      } else {
+        setError(undefined)
+        getFile(Array.from(files))
+      }
+    }
+  }
 
   // hanlder functions
   const hanldeDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLDivElement
+    target.removeAttribute('style')
     e.preventDefault()
     e.stopPropagation()
     const dt = e.dataTransfer
     if (!dt) return
     const files = dt.files as unknown as FileList
-    if (multiple) setSelectedFiles([...selectedFiles, files[0] as File])
-    if (!multiple) setSelectedFiles([files[0] as File])
+    filesValidator(files)
   }
 
   // hanlder functions
   const hanldeDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLDivElement
+    if (target.tagName !== 'LABEL') {
+      console.log([e.target])
+      target.style.border = '1px dashed #0142AF'
+      target.style.backgroundColor = '#E6ECF7'
+    }
     e.preventDefault()
     e.stopPropagation()
   }
 
-  const handleFileFieldChange = (event: MouseEvent) => {
+  const hanldeDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLDivElement
+    target.removeAttribute('style')
+  }
+
+  const handleFileFieldChange = (event: React.FormEvent<HTMLInputElement>) => {
     event.preventDefault()
     const target = event.target as HTMLInputElement
-    const file =
-      target?.files !== null && (target?.files as unknown as FileList)[0]
-    if (file) {
-      if (file.size > fileSizeLimit) {
-        setError('Sorry, your file exceeds our size limit.')
-      } else {
-        if (multiple) setSelectedFiles([...selectedFiles, file])
-        if (!multiple) setSelectedFiles([file])
-      }
-    }
+    const files = target?.files as unknown as FileList
+    filesValidator(files)
   }
 
   const onLableClick = () => uploadInputRef.current?.click()
 
-  React.useEffect(() => {
-    if (selectedFiles) {
-      getFile(selectedFiles)
-    }
-  }, [selectedFiles])
-
   return (
-    <StyledUploadWrapper
-      variant={variant}
-      css={css}
-      ref={uploadRef}
-      onDrop={hanldeDrop}
-      onDragOver={hanldeDragOver}
-      {...delegated}
-    >
-      <StyledUploadContainer variant={variant}>
+    <StyledUploadWrapper variant={variant} css={css} {...delegated}>
+      <StyledUploadContainer
+        variant={variant}
+        ref={uploadRef}
+        onDrop={hanldeDrop}
+        onDragOver={hanldeDragOver}
+        onDragLeave={hanldeDragLeave}
+      >
         <input
           ref={uploadInputRef}
           type='file'
           accept={accept}
           multiple={multiple}
-          onChange={(event) => {
-            handleFileFieldChange(event as unknown as MouseEvent)
-          }}
+          onChange={handleFileFieldChange}
         />
         <StyledUploadButton onClick={onLableClick}>
           {variant === 'field' && (
-            <svg width='16' height='16' viewBox='0 0 16 16' fill='none'>
+            <svg
+              width='16'
+              height='16'
+              viewBox='0 0 16 16'
+              fill='none'
+              style={{pointerEvents: 'none'}}
+            >
               <path
                 d='M12.2857 10.6249V12.375C12.2857 12.8581 11.9019 13.25 11.4286 13.25H4.57143C4.09812 13.25 3.71429 12.8581 3.71429 12.375V10.6249C3.71429 10.1418 3.33045 9.74993 2.85714 9.74993C2.38384 9.74993 2 10.1418 2 10.6249V12.375C2 13.8247 3.15125 15 4.57143 15H11.4286C12.8488 15 14 13.8247 14 12.375V10.6249C14 10.1418 13.6162 9.74993 13.1429 9.74993C12.6696 9.74993 12.2857 10.141 12.2857 10.6249ZM7.39464 1.25616L3.96607 4.75621C3.63098 5.09829 3.63152 5.652 3.96607 5.99353C4.30089 6.33533 4.8433 6.33533 5.17813 5.99353L7.14286 3.98852V9.74993C7.14286 10.2336 7.52616 10.6249 8 10.6249C8.47384 10.6249 8.85714 10.2336 8.85714 9.74993V3.98852L10.8227 5.99504C11.1575 6.33684 11.6999 6.33684 12.0347 5.99504C12.3696 5.65323 12.3696 5.09952 12.0347 4.75771L8.60616 1.25767C8.27054 0.914362 7.72946 0.914362 7.39464 1.25616Z'
                 fill='#0142AF'
@@ -123,9 +138,9 @@ const UploadDragAndDrop = React.forwardRef<
             </svg>
           )}
           {variant === 'area' ? (
-            <span>Browse Files</span>
+            <span style={{pointerEvents: 'none'}}>Browse Files</span>
           ) : (
-            <span>Upload files</span>
+            <span style={{pointerEvents: 'none'}}>Upload files</span>
           )}
         </StyledUploadButton>
         {variant === 'area' && <StyledOrLetter>or</StyledOrLetter>}

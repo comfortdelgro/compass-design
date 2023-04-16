@@ -1,6 +1,6 @@
 {
   "name": "@comfortdelgro/react-compass",
-  "version": "0.27.0",
+  "version": "0.33.1",
   "description": "React Compass Design System by ComfortDelGro Corporation",
   "keywords": [
     "design system",
@@ -30,6 +30,9 @@
     "build:ladle": "ladle build",
     "dev:ladle": "ladle dev"
   },
+  "resolutions": {
+    "@internationalized/date": "3.1.0"
+  },
   "dependencies": {
     "@comfortdelgro/compass-icons": "^0.12.0",
     "@contentful/rich-text-html-renderer": "^16.0.2",
@@ -41,7 +44,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.2.0",
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "@internationalized/date": "3.0.2",
+    "@internationalized/date": "3.1.0",
     "@react-aria/breadcrumbs": "^3.3.2",
     "@react-aria/button": "^3.6.2",
     "@react-aria/calendar": "3.0.5",
@@ -64,6 +67,7 @@
     "@react-aria/select": "^3.9.0",
     "@react-aria/selection": "^3.12.1",
     "@react-aria/slider": "^3.2.3",
+    "@react-aria/ssr": "^3.5.0",
     "@react-aria/table": "^3.5.0",
     "@react-aria/tabs": "^3.3.3",
     "@react-aria/textfield": "^3.7.2",
@@ -90,10 +94,24 @@
     "@react-stately/tooltip": "^3.2.3",
     "@react-types/calendar": "^3.0.4",
     "@react-types/combobox": "^3.5.5",
+    "@react-types/select": "^3.7.0",
     "@stitches/react": "^1.2.8",
     "@tanstack/react-table": "^8.7.6",
-    "chart.js": "^3.9.1",
-    "react-chartjs-2": "^4.3.1"
+    "@tiptap/extension-character-count": "2.0.0-beta.220",
+    "@tiptap/extension-color": "2.0.0-beta.220",
+    "@tiptap/extension-image": "2.0.0-beta.220",
+    "@tiptap/extension-link": "2.0.0-beta.220",
+    "@tiptap/extension-subscript": "2.0.0-beta.220",
+    "@tiptap/extension-superscript": "2.0.0-beta.220",
+    "@tiptap/extension-text-align": "2.0.0-beta.220",
+    "@tiptap/extension-text-style": "2.0.0-beta.220",
+    "@tiptap/extension-underline": "2.0.0-beta.220",
+    "@tiptap/pm": "2.0.0-beta.220",
+    "@tiptap/react": "2.0.0-beta.220",
+    "@tiptap/starter-kit": "2.0.0-beta.220",
+    "chart.js": "3.9.1",
+    "html-react-parser": "^3.0.7",
+    "react-chartjs-2": "4.3.1"
   },
   "devDependencies": {
     "@comfortdelgro/eslint-config": "^1.0.2",

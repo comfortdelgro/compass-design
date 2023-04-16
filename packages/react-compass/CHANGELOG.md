@@ -1,5 +1,47 @@
 # @comfortdelgro/react-compass
 
+## 0.33.1
+
+### Patch Changes
+
+- 8dcd877f: Add html element props to new quantity toggle
+
+## 0.33.0
+
+### Minor Changes
+
+- 02219d7c: Turn of scroll on quantity toggle on default
+
+## 0.32.0
+
+### Minor Changes
+
+- 668a13f6: fix bugs in multiple dropdown, file.state now accepts reactnode, tab.paneless now returns value, add default placeholder for dropdown, fix overlap error for dropdown
+
+## 0.31.0
+
+### Minor Changes
+
+- 4bb5289f: hotfix:lock-ver-of-internationalized/date
+
+## 0.30.0
+
+### Minor Changes
+
+- f18958bf: Fix minors bugs on table
+
+## 0.29.0
+
+### Minor Changes
+
+- 7c7bc94: Remove rich text editor
+
+## 0.28.0
+
+### Minor Changes
+
+- f9db587: Fix bugs and add rich text editor
+
 ## 0.27.0
 
 ### Minor Changes

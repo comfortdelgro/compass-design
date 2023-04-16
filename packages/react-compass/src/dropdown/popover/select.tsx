@@ -28,17 +28,30 @@ function Popover({children, state, ...props}: Props) {
     state,
   )
 
+  // React.useEffect(() => {
+  //   const close = () => state.close()
+  //   document.addEventListener('scroll', close, true)
+  //   return () => {
+  //     document.removeEventListener('scroll', close)
+  //   }
+  // }, [])
+
   const styles = props.triggerRef.current?.clientWidth
     ? {
         ...popoverProps.style,
         width: 'fit-content',
         minWidth: props.triggerRef.current.clientWidth + 2,
+        zIndex: 2147483641,
       }
     : {...popoverProps?.style}
 
   return (
     <Overlay>
-      <div {...underlayProps} style={{position: 'fixed', inset: 0}} />
+      <div
+        {...underlayProps}
+        onClick={() => state.close()}
+        style={{position: 'fixed', inset: 0, zIndex: 2147483640}}
+      />
       <StyledPopover {...popoverProps} ref={popoverRef} style={styles}>
         <DismissButton onDismiss={() => state.close()} />
         {children}

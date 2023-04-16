@@ -17,6 +17,10 @@ export const StyledTab = styled('div', {
   alignItems: 'center',
   width: 'max-content',
 
+  '&:focus-visible': {
+    outline: 'none',
+  },
+
   '& .icon': {
     width: '$4',
     height: '$4',
@@ -48,7 +52,7 @@ export const StyledTab = styled('div', {
         padding: '$2 $4',
         background: 'transparent',
         borderRadius: '$full',
-        color: '$cdgBlue120',
+        color: '$$textColor',
         '&:hover': {
           background: '$cdgBlue140',
           color: '$whiteText',
@@ -58,9 +62,9 @@ export const StyledTab = styled('div', {
         background: 'transparent',
         padding: '$2 0',
         '&:hover': {
-          color: '$cdgBlue100',
+          color: '$$textColor',
           '& .icon': {
-            backgroundColor: '$cdgBlue100',
+            backgroundColor: '$$textColor',
             border: 'none',
             '& svg': {
               display: 'block',
@@ -82,7 +86,7 @@ export const StyledTab = styled('div', {
     active: {
       true: {
         color: '$whiteText',
-        background: '$cdgBlue',
+        background: '$$textColor',
       },
     },
     icon: {
@@ -155,9 +159,9 @@ export const StyledTab = styled('div', {
       variant: 'simple',
       active: true,
       css: {
-        color: '$cdgBlue100',
+        color: '$$textColor',
         marginBottom: '-2px',
-        borderBottom: '$cdgBlue 2px solid',
+        borderBottom: '$$indicatorColor 2px solid',
       },
     },
     {
@@ -177,14 +181,14 @@ export const StyledTab = styled('div', {
       active: true,
       css: {
         color: '$whiteText',
-        backgroundColor: '$cdgBlue100',
+        backgroundColor: '$$textColor',
         '& .icon': {
           backgroundColor: '$background',
           border: 'none',
           '& svg': {
             display: 'block',
             '& path': {
-              fill: '$cdgBlue100',
+              fill: '$$textColor',
             },
           },
         },
@@ -196,7 +200,7 @@ export const StyledTab = styled('div', {
       css: {
         backgroundColor: 'transparent',
         '& .icon': {
-          backgroundColor: '$cdgBlue100',
+          backgroundColor: '$$textColor',
           border: 'none',
           '& svg': {
             display: 'block',

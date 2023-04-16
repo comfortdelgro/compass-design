@@ -7,7 +7,7 @@ export const StyledSearchFieldBox = styled('div', {
   fontFamily: '$sans',
   flexDirection: 'row',
   alignItems: 'center',
-  borderWidth: '$medium',
+  borderWidth: '1px',
   borderStyle: 'solid',
   borderColor: '$divider',
   borderRadius: '$md',

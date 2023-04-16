@@ -7,6 +7,7 @@ export const StyledPreview = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
+  overflow: 'hidden',
   variants: {
     imageLoaded: {
       true: {
