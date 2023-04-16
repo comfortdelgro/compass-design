@@ -1,12 +1,12 @@
-import {TooltipTriggerState} from '@react-stately/tooltip'
-import type {PlacementAxis} from '@react-types/overlays'
-import React, {HTMLAttributes, RefObject} from 'react'
+import React, {CSSProperties} from 'react'
+
 interface TooltipContextProps {
-  state?: TooltipTriggerState
-  ref?: RefObject<HTMLDivElement>
-  placement?: PlacementAxis
-  arrowProps?: HTMLAttributes<HTMLElement>
-  style?: React.CSSProperties | undefined
+  tooltipRef?: (node: HTMLElement | null) => void
+  arrowRef?: React.RefObject<HTMLElement>
+  arrowStyle?: CSSProperties
+  tooltipProps?: React.HTMLAttributes<HTMLElement>
+  withArrow?: boolean
+  handleTooltipClose?: () => void
 }
 
 export const TooltipContext = React.createContext<TooltipContextProps>({})

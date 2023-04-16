@@ -1,126 +1,215 @@
-import {useOverlayPosition} from '@react-aria/overlays'
-import {AriaTooltipProps, useTooltipTrigger} from '@react-aria/tooltip'
 import {
-  TooltipTriggerProps as TooltipTriggerAriaProps,
-  useTooltipTriggerState,
-} from '@react-stately/tooltip'
-import type {SpectrumTooltipTriggerProps} from '@react-types/tooltip'
-import React, {useEffect, useRef} from 'react'
+  arrow,
+  autoUpdate,
+  flip,
+  FloatingPortal,
+  offset as offsetMiddleware,
+  Placement,
+  safePolygon,
+  shift,
+  useDismiss,
+  useFloating,
+  useFocus,
+  useHover,
+  useInteractions,
+  useRole,
+} from '@floating-ui/react'
+import {CSSProperties} from '@stitches/react'
+import React, {HTMLAttributes, useRef, useState} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
-import {useDOMRef} from '../utils/use-dom-ref'
 import {TooltipContext} from './tooltip-context'
-import {StyledTooltipTrigger} from './tooltip-trigger.styles'
 
-interface Props extends AriaTooltipProps, StyledComponentProps {
-  children?: React.ReactNode
-  open?: boolean
+type OffsetValue =
+  | number
+  | {
+      /**
+       * The axis that runs along the side of the floating element. Represents
+       * the distance (gutter or margin) between the reference and floating
+       * element.
+       * @default 0
+       */
+      mainAxis?: number
+      /**
+       * The axis that runs along the alignment of the floating element.
+       * Represents the skidding between the reference and floating element.
+       * @default 0
+       */
+      crossAxis?: number
+      /**
+       * The same axis as `crossAxis` but applies only to aligned placements
+       * and inverts the `end` alignment. When set to a number, it overrides the
+       * `crossAxis` value.
+       *
+       * A positive number will move the floating element in the direction of
+       * the opposite edge to the one that is aligned, while a negative number
+       * the reverse.
+       * @default null
+       */
+      alignmentAxis?: number | null
+    }
+
+interface Props extends StyledComponentProps {
+  children: React.ReactNode
+  isOpen?: boolean
   onOpenChange?: (isOpen: boolean) => void
+  placement?: Placement
+  offset?: OffsetValue
+  shouldFlip?: boolean
+  withArrow?: boolean
+  delay?: number
+  disableInteractive?: boolean
+  defaultOpen?: boolean
+  trigger?: 'focus' | null
 }
 
-export type TooltipTriggerProps = Props &
-  TooltipTriggerAriaProps &
-  SpectrumTooltipTriggerProps &
-  Omit<React.HTMLAttributes<HTMLButtonElement>, keyof Props>
+export type TooltipTriggerProps = Props
 
-const DEFAULT_OFFSET = 16
-const DEFAULT_CROSS_OFFSET = 0
-const FALLBACK_CROSS_OFFSET = 16
+const DEFAULT_OFFSET_WITHOUT_ARROW = 10
 
-const TooltipTrigger = React.forwardRef<HTMLButtonElement, TooltipTriggerProps>(
-  (props, ref) => {
+const TooltipTrigger = React.forwardRef<HTMLDivElement, TooltipTriggerProps>(
+  (props, _) => {
     const {
-      // StyledComponentProps
-      css = {},
-      // ComponentProps
       children,
-      open: isOpenProp,
+      isOpen: isOpenProp,
       onOpenChange,
-      // AriaTooltipProps with default value
-      offset = DEFAULT_OFFSET,
-      placement = 'bottom',
-      defaultOpen = false,
+      offset,
       shouldFlip = true,
-      // html button props
-      ...delegated
+      withArrow = true,
+      placement: placementProp = 'bottom',
+      delay = 0,
+      disableInteractive = false,
+      defaultOpen = false,
+      trigger = null,
     } = props
 
-    let {crossOffset = DEFAULT_CROSS_OFFSET} = props
-
-    //set default value for tooltip trigger props
-    const tooltipTriggerStateProps: TooltipTriggerAriaProps = {
-      delay: 0,
-      ...props,
-    }
-
-    if (placement === 'right bottom' || placement === 'left bottom') {
-      crossOffset = DEFAULT_CROSS_OFFSET + FALLBACK_CROSS_OFFSET
-    } else if (placement === 'right top' || placement === 'left top') {
-      crossOffset = DEFAULT_CROSS_OFFSET - FALLBACK_CROSS_OFFSET
-    }
-
-    // tooltip trigger state that will be managed by react-aria
-    const state = useTooltipTriggerState(tooltipTriggerStateProps)
-
-    // call user callback when isOpen state is change
-    useEffect(() => {
-      if (!onOpenChange) return
-      onOpenChange(state.isOpen)
-    }, [state.isOpen])
-
-    // open state is either controlled or uncontrolled
-    const openState = isOpenProp ?? state.isOpen
-
-    const tooltipTriggerRef = useDOMRef<HTMLButtonElement>(ref)
-
-    //a hook that will manage the trigger props and tooltip props
-    const {triggerProps, tooltipProps} = useTooltipTrigger(
-      props,
-      state,
-      tooltipTriggerRef,
-    )
-
-    const overlayRef = useRef<HTMLDivElement>(null)
-
     // seperate children to 2 parts: the trigger and the tooltip
-    const [trigger, tooltip] = React.Children.toArray(children)
+    const [triggerEl, tooltipElement] = React.Children.toArray(children)
 
-    // react-aria custom hook that will calculate the overlay position base on the trigger position
-    const {
-      overlayProps,
-      arrowProps,
-      placement: overlayPlacement,
-    } = useOverlayPosition({
-      placement: placement,
-      targetRef: tooltipTriggerRef,
-      overlayRef,
-      offset,
-      crossOffset,
-      isOpen: openState,
-      shouldFlip: shouldFlip,
+    // uncontrolled state
+    const [isOpen, setIsOpen] = useState(defaultOpen === true ? true : false)
+
+    const tooltipArrow = useRef<HTMLDivElement>(null)
+
+    // Get the width of arrow tooltip
+    const arrowLen = tooltipArrow.current?.offsetWidth
+
+    // modify tooltip offset to make a room for arrow
+    const calculateFloatingOffset = () => {
+      if (withArrow) {
+        return Math.sqrt(2 * (arrowLen === undefined ? 0 : arrowLen) ** 2) / 2
+      } else {
+        return DEFAULT_OFFSET_WITHOUT_ARROW
+      }
+    }
+
+    const {x, y, refs, strategy, context, middlewareData, placement} =
+      useFloating({
+        open: isOpenProp != null ? isOpenProp : isOpen,
+        onOpenChange: onOpenChange ? onOpenChange : setIsOpen,
+        placement: placementProp,
+        // Make sure the tooltip stays on the screen
+        whileElementsMounted: autoUpdate,
+        middleware: [
+          offsetMiddleware(offset ? offset : calculateFloatingOffset()),
+          shouldFlip ? flip() : null,
+          shift(),
+          arrow({
+            element: tooltipArrow,
+          }),
+        ],
+      })
+
+    // Event listeners to change the open state
+    const hover = useHover(context, {
+      move: false,
+      restMs: delay,
+      enabled: trigger === 'focus' ? false : true,
+      handleClose: disableInteractive ? null : safePolygon(),
     })
+    const focus = useFocus(context)
+    const dismiss = useDismiss(context)
+    // Role props for screen readers
+    const role = useRole(context, {role: 'tooltip'})
+
+    // Merge all the interactions into prop getters
+    const {getReferenceProps, getFloatingProps} = useInteractions([
+      hover,
+      focus,
+      dismiss,
+      role,
+    ])
+
+    const getSideFromPlacement = (placement: string) => {
+      const rawPlacement = placement.split('-')[0]
+      return rawPlacement
+    }
+
+    // map the side for arrow position
+    const staticSide = {
+      top: 'bottom',
+      right: 'left',
+      bottom: 'top',
+      left: 'right',
+    }[getSideFromPlacement(placement) as 'bottom' | 'left' | 'top' | 'right']
+
+    // Get x,y position of arrow
+    const arrowPosition = middlewareData.arrow
+    const arrowPositionX = arrowPosition?.x
+    const arrowPositionY = arrowPosition?.y
+
+    const tooltipArrowProps = {
+      left: arrowPositionX != null ? `${arrowPositionX}px` : '',
+      top: arrowPositionY != null ? `${arrowPositionY}px` : '',
+      // Ensure the static side gets unset when
+      // flipping to other placements' axes.
+      right: '',
+      bottom: '',
+      [staticSide]: `${-(arrowLen === undefined ? 0 : arrowLen) / 2}px`,
+    } as CSSProperties
+
+    const tooltipProps: HTMLAttributes<HTMLElement> = {
+      style: {
+        // Positioning styles
+        position: strategy,
+        top: y ?? 0,
+        left: x ?? 0,
+      },
+      ...getFloatingProps(),
+    }
+
+    const handleTooltipClose = () => {
+      setIsOpen(false)
+      onOpenChange?.(false)
+    }
+
+    // clone the trigger element to pass props
+    const clonedTriggerElement = React.cloneElement(
+      triggerEl as React.ReactElement,
+      {
+        ref: refs.setReference,
+        ...getReferenceProps(),
+      },
+    )
 
     return (
       <>
-        <StyledTooltipTrigger
-          css={css}
-          ref={tooltipTriggerRef}
-          {...triggerProps}
-          {...delegated}
-        >
-          {trigger}
-        </StyledTooltipTrigger>
-        <TooltipContext.Provider
-          value={{
-            state,
-            arrowProps,
-            ref: overlayRef,
-            style: overlayProps.style,
-            placement: overlayPlacement,
-            ...tooltipProps,
-          }}
-        >
-          {(openState || defaultOpen) && tooltip}
-        </TooltipContext.Provider>
+        {clonedTriggerElement}
+        <FloatingPortal>
+          {(isOpenProp != null ? isOpenProp : isOpen) && (
+            <TooltipContext.Provider
+              value={{
+                tooltipRef: refs.setFloating,
+                tooltipProps: tooltipProps,
+                arrowRef: tooltipArrow,
+                arrowStyle: tooltipArrowProps,
+                handleTooltipClose: handleTooltipClose,
+                withArrow,
+              }}
+            >
+              {tooltipElement}
+            </TooltipContext.Provider>
+          )}
+        </FloatingPortal>
       </>
     )
   },
