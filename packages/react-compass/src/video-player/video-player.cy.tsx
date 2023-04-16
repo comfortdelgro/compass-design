@@ -1,3 +1,4 @@
+import React from 'react'
 import VideoPlayer from './index'
 
 const src = 'http://techslides.com/demos/sample-videos/small.webm'

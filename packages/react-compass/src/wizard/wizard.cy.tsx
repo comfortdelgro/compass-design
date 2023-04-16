@@ -1,3 +1,4 @@
+import React from 'react'
 import {Variants as Wizard} from './wizard.stories'
 
 describe('wizard.cy.ts', () => {

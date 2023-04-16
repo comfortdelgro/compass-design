@@ -1,3 +1,4 @@
+import React from 'react'
 import Accordion from './index'
 
 const lorem = `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi,

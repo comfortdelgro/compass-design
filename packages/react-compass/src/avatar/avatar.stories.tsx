@@ -2,6 +2,7 @@ import {
   faCircleUser,
   faUser as faRegularUser,
 } from '@fortawesome/free-regular-svg-icons'
+import React from 'react'
 import {Row} from '../utils/components'
 import Avatar from './index'
 

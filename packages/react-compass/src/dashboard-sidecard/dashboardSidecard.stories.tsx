@@ -1,3 +1,4 @@
+import React from 'react'
 import {Group} from '../avatar/avatar.stories'
 import Button from '../button'
 import SearchField from '../searchfield'
