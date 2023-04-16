@@ -4,21 +4,19 @@ import Icon from '../icon'
 import {Column} from '../utils/components'
 import MultipleDropdown from './index'
 
-export const MultipleDropdowns: React.FC = () => {
-  const [value, setValue] = React.useState<'all' | Key[]>(['cat'])
+export const Default: React.FC = () => {
+  const [value, setValue] = React.useState<Key[]>([])
   return (
     <Column>
       <h3>Controlled</h3>
       <MultipleDropdown
         label='Favorite Animal'
-        selectionMode='multiple'
         disabledKeys={['snake']}
         placeholder='Choose an animal'
         selectedKeys={value}
+        defaultSelectedKeys={[]}
         isRequired
-        onSelectionChange={(k: 'all' | Set<Key>) =>
-          setValue(k === 'all' ? k : [...k])
-        }
+        onSelectionChange={(k: Key[]) => setValue(k)}
       >
         <MultipleDropdown.Item key='red panda'>
           <Icon icon={faExclamationTriangle} style={{marginRight: 5}} />
@@ -33,8 +31,8 @@ export const MultipleDropdowns: React.FC = () => {
       <h3>UnControlled</h3>
       <MultipleDropdown
         label='Favorite Animal'
-        selectionMode='multiple'
         disabledKeys={['snake']}
+        defaultSelectedKeys={['snake']}
         placeholder='Choose an animal'
       >
         <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
@@ -47,7 +45,6 @@ export const MultipleDropdowns: React.FC = () => {
       <h3>Error</h3>
       <MultipleDropdown
         label='Favorite Animal'
-        selectionMode='multiple'
         disabledKeys={['snake']}
         placeholder='Choose an animal'
         isErrored
@@ -63,7 +60,6 @@ export const MultipleDropdowns: React.FC = () => {
       </MultipleDropdown>
       <h3>Header</h3>
       <MultipleDropdown
-        selectionMode='multiple'
         disabledKeys={['snake']}
         label='Favorite Animal'
         placeholder='Choose an animal'
@@ -79,7 +75,6 @@ export const MultipleDropdowns: React.FC = () => {
       </MultipleDropdown>
       <h3>Loading</h3>
       <MultipleDropdown
-        selectionMode='multiple'
         label='Favorite Animal'
         placeholder='Choose an animal'
         isLoading
@@ -94,7 +89,6 @@ export const MultipleDropdowns: React.FC = () => {
 
       <h3>Header</h3>
       <MultipleDropdown
-        selectionMode='multiple'
         disabledKeys={['snake']}
         label='Favorite Animal'
         placeholder='Choose an animal'
