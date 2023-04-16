@@ -25,6 +25,7 @@ yarn-error.log*
 coverage
 packages/react-compass/cypress/
 packages/react-compass/cypress/videos/
+packages/react-compass/src/*/__image_snapshots__/
 
 .env.production
 
@@ -49,4 +50,4 @@ packages/compass-icons/react/
 .idea
 
 # cypress snapshot
-_image_snapshots_
+**/_image_snapshots_/

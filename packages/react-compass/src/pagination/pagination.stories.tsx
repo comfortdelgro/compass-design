@@ -1,3 +1,4 @@
+import React from 'react'
 import {Column} from '../utils'
 import Pagination from './index'
 

@@ -1,5 +1,17 @@
 # @comfortdelgro/react-compass
 
+## 0.33.3
+
+### Patch Changes
+
+- 15d1c951: Chore: add type to button in quantity toggle
+
+## 0.33.2
+
+### Patch Changes
+
+- bedbf4e8: Fix unclickable button in upload file component
+
 ## 0.33.1
 
 ### Patch Changes

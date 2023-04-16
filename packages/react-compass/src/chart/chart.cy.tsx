@@ -1,3 +1,4 @@
+import React from 'react'
 import Chart from './index'
 
 const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July']

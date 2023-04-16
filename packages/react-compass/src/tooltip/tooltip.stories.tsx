@@ -1,4 +1,4 @@
-import {Placement} from '@floating-ui/react'
+import type {Placement} from '@react-types/overlays'
 import React, {useState} from 'react'
 import Button from '../button'
 import Tooltip from './tooltip'

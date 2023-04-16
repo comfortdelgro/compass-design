@@ -1,4 +1,5 @@
 import {faChevronRight} from '@fortawesome/free-solid-svg-icons'
+import React from 'react'
 import Avatar from '../avatar'
 import Badge from '../badge'
 import Icon from '../icon'
