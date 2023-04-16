@@ -94,6 +94,18 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       // ComponentProps
       label,
       id = `cdg-element-${Math.random().toString(36).substring(2)}`,
+      name,
+      value,
+      type,
+      isErrored,
+      isReadOnly = false,
+      isRequired = false,
+      helperText,
+      errorMessage,
+      leftIcon,
+      rightIcon,
+      prefix,
+      password,
       maxLength,
       minLength,
       autoCapitalize,
@@ -110,7 +122,6 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       keyof Props
     >
 
-    const inputId = id
     const textfieldRef = useDOMRef<HTMLInputElement>(ref)
     const [isPassWordVisible, setIsPassWordVisible] = React.useState(false)
 

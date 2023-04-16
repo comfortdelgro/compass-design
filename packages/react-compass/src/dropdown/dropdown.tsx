@@ -1,5 +1,8 @@
 import React from 'react'
 import {useDOMRef} from '../utils/use-dom-ref'
+import DropdownComboBox from './dropdown.combobox'
+import DropdownFlag from './dropdown.flag'
+import DropdownSelect from './dropdown.select'
 import {
   DropdownVariantProps,
   StyledComboBox,
@@ -30,9 +33,11 @@ interface Props extends DropdownBase {
   type?: 'select' | 'combobox' | 'flag'
 }
 
-export type DropdownProps = Props & DropdownVariantProps
+export type DropdownProps = Props &
+  DropdownVariantProps &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
-const Select = React.forwardRef<HTMLElement, DropdownProps>((props, ref) => {
+const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   const {
     css = {},
     isOpen,
@@ -342,4 +347,9 @@ const Select = React.forwardRef<HTMLElement, DropdownProps>((props, ref) => {
   )
 })
 
-export default Select
+export default Select as typeof Select & {
+  ComboBox: typeof DropdownComboBox
+  Flag: typeof DropdownFlag
+  Select: typeof DropdownSelect
+  Item: typeof DropdownItem
+}

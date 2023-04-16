@@ -1,13 +1,10 @@
 import React from 'react'
-import { StyledComponentProps } from '../utils/stitches.types'
-import { useDOMRef } from '../utils/use-dom-ref'
+import {StyledComponentProps} from '../utils/stitches.types'
+import {useDOMRef} from '../utils/use-dom-ref'
 import {
-AccordionTitleVariantProps,
-StyledAccordionButton
+  AccordionTitleVariantProps,
+  StyledAccordionButton,
 } from './accordion-button.styles'
-
-
-
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode

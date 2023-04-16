@@ -1,6 +1,6 @@
 import {faClose, faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
-import Button, { ButtonProps } from '../button/button'
+import Button from '../button/button'
 import {Icon} from '../icon'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
