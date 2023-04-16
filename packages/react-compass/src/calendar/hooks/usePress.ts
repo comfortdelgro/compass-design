@@ -49,9 +49,7 @@ function isValidInputKey(target: HTMLInputElement, key: string) {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   return target.type === 'checkbox' || target.type === 'radio'
     ? key === ' '
-    : //
-      //
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+    : // @ts-ignore
       nonTextInputTypes.has(target.type)
 }
 

@@ -1,4 +1,5 @@
 import {RefObject} from 'react'
+import { DOMAttributes } from './calendar.types'
 
 export interface PressHookProps extends PressProps {
   /** A ref to the target element. */
@@ -35,5 +36,5 @@ export type PointerType = 'mouse' | 'pen' | 'touch' | 'keyboard' | 'virtual'
 
 export interface PressResult {
   isPressed: boolean
-  pressProps: any
+  pressProps: DOMAttributes
 }
