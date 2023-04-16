@@ -1,168 +1,97 @@
-import {useComboBox} from '@react-aria/combobox'
-import {useFilter} from '@react-aria/i18n'
-import {Item} from '@react-stately/collections'
-import {ComboBoxStateOptions, useComboBoxState} from '@react-stately/combobox'
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
-import {useDOMRef} from '../utils/use-dom-ref'
-import {
-  DropdownVariantProps,
-  StyledDropdownWrapper,
-  StyledFlag,
-  StyledFlagIcon,
-  StyledLoading,
-  StyledTextFieldHelperText,
-} from './dropdown.styles'
-import ListBox from './list-box/flag'
-import Popover from './popover/combox'
-import {Button, countries, Flag, Icon} from './utils'
+import Dropdown, {DropdownProps} from './dropdown'
+import {DropdownVariantProps} from './dropdown.styles'
+import {countries} from './flags'
+import DropdownItem from './item'
 
-interface P<T = object> extends ComboBoxStateOptions<T>, StyledComponentProps {
-  isLoading?: boolean
-  icon?: React.ReactNode
-  isErrored?: boolean
-  isRequired?: boolean
-  errorMessage?: string
-  headerTitle?: string
-  keyType?: 'alpha-2' | 'alpha-3' | 'name' | 'country-code'
-  onPhoneChange?: (p: string) => void
-  headerOnClick?: (e: unknown) => void
+interface P extends DropdownProps, StyledComponentProps {
+  flagKeyType?: 'alpha-2' | 'alpha-3' | 'name' | 'country-code'
+  selectedCountry?: React.Key
+  defaultSelectedCountry?: React.Key
+  onCountryChange?: (p: string) => void
 }
 
-type Props<T> = Omit<P<T>, 'children'>
+type Props = Omit<P, 'children'>
 
-export type DropdownProps<T = object> = Props<T> & DropdownVariantProps
+export type DropdownFlagProps = Props & DropdownVariantProps
 
-const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
+const DropdownFlag = React.forwardRef<HTMLDivElement, DropdownFlagProps>(
   (props, ref) => {
+    const {
+      flagKeyType = 'alpha-3',
+      selectedCountry,
+      defaultSelectedCountry,
+    } = props
+
+    const [selected, setSelected] = React.useState<React.Key | undefined>(
+      selectedCountry,
+    )
+
+    const [defaultSelected, setDefaultSelected] = React.useState<
+      React.Key | undefined
+    >(defaultSelectedCountry)
+
+    React.useEffect(() => {
+      const getAlpha3FromKey = (key: React.Key) => {
+        const selected = countries.find(
+          (item) =>
+            item.name === key ||
+            item['alpha-2'] === key ||
+            item['alpha-3'] === key ||
+            item['phone-code'] === key ||
+            item['country-code'] === key,
+        )
+        if (selected) {
+          return selected['alpha-3']
+        }
+        return undefined
+      }
+
+      if (!selectedCountry && defaultSelectedCountry) {
+        setDefaultSelected(getAlpha3FromKey(defaultSelectedCountry))
+      }
+      if (selectedCountry) {
+        setSelected(getAlpha3FromKey(selectedCountry))
+      }
+    }, [selectedCountry, defaultSelectedCountry])
+
+    const handleCountryChange = (c: React.Key) => {
+      const country = countries.find((item) => item['alpha-3'] === c)
+      if (country) {
+        props.onCountryChange?.(country[flagKeyType])
+      }
+      props.onSelectionChange?.(c)
+    }
+
+    const valueProps = {
+      ...(selected ? {selectedKey: selected} : {}),
+      ...(defaultSelected ? {defaultSelectedKey: defaultSelected} : {}),
+    }
+
     return (
-      <PreDropdown ref={ref} {...props}>
+      <PreDropdown
+        ref={ref}
+        {...props}
+        {...valueProps}
+        onSelectionChange={handleCountryChange}
+      >
         {countries.map((item) => (
-          <Item key={item[props.keyType ?? 'alpha-3']}>{item.name}</Item>
+          <DropdownItem key={item['alpha-3']}>{item.name}</DropdownItem>
         ))}
       </PreDropdown>
     )
   },
 )
 
-const PreDropdown = React.forwardRef<HTMLDivElement, P>((props, ref) => {
-  const {
-    // StyledComponentProps
-    css = {},
-    icon = <Icon />,
-    isErrored,
-    isRequired,
-    isDisabled,
-    errorMessage,
-    placeholder,
-    onPhoneChange,
-    // AriaDropdownProps
-  } = props
-  const variantProps = {} as DropdownVariantProps
-  const dropdownRef = useDOMRef<HTMLDivElement>(ref)
-  const filter = useFilter({sensitivity: 'base'})
-  const contains = (string: string, substring: string) =>
-    filter.contains(string, substring)
-  const state = useComboBoxState({
-    ...props,
-    defaultFilter: contains,
-  })
+const PreDropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
+  (props, ref) => {
+    return (
+      <Dropdown {...props} ref={ref} type='flag'>
+        {props.children}
+      </Dropdown>
+    )
+  },
+)
 
-  const buttonRef = React.useRef<HTMLButtonElement>(null)
-  const inputRef = React.useRef<HTMLInputElement>(null)
-  const listBoxRef = React.useRef<HTMLUListElement>(null)
-  const popoverRef = React.useRef<HTMLDivElement>(null)
-
-  const {buttonProps, inputProps, listBoxProps, labelProps} = useComboBox(
-    {
-      ...props,
-      inputRef,
-      buttonRef,
-      listBoxRef,
-      popoverRef,
-    },
-    state,
-  )
-
-  const currentState = React.useMemo(
-    () =>
-      countries.find(
-        (item) =>
-          item.name === inputProps.value ||
-          item['alpha-2'] === inputProps.value ||
-          item['alpha-3'] === inputProps.value ||
-          item['phone-code'] === inputProps.value ||
-          item['country-code'] === inputProps.value,
-      ),
-    [inputProps.value],
-  )
-
-  React.useEffect(() => {
-    if (currentState?.['phone-code']) {
-      onPhoneChange?.(currentState['phone-code'])
-    }
-  }, [currentState])
-
-  return (
-    <StyledDropdownWrapper css={css} ref={dropdownRef} {...variantProps}>
-      {props.label && (
-        <label {...labelProps}>
-          {props.label}
-          {isRequired && <span>*</span>}
-        </label>
-      )}
-      <StyledFlag
-        isEmpty={!inputProps.value && !placeholder}
-        isErrored={!!isErrored}
-        isDisabled={!!isDisabled}
-      >
-        {currentState && (
-          <StyledFlagIcon>
-            <Flag iso={currentState['alpha-2']} />
-          </StyledFlagIcon>
-        )}
-        <input {...inputProps} ref={inputRef} />
-        <Button {...buttonProps} ref={buttonRef}>
-          {icon}
-        </Button>
-        {state.isOpen && (
-          <Popover
-            state={state}
-            triggerRef={inputRef}
-            popoverRef={popoverRef}
-            isNonModal
-            placement='bottom start'
-          >
-            {props.isLoading ? (
-              <StyledLoading>
-                <div className='spinner'>
-                  <div className='spinner-1' />
-                  <div className='spinner-2' />
-                  <div className='spinner-3' />
-                  <div />
-                </div>
-              </StyledLoading>
-            ) : (
-              <ListBox
-                {...listBoxProps}
-                shouldFocusOnHover={false}
-                isLoading={!!props.isLoading}
-                headerTitle={props.headerTitle}
-                headerOnClick={(e) => props?.headerOnClick?.(e)}
-                listBoxRef={listBoxRef}
-                state={state}
-              />
-            )}
-          </Popover>
-        )}
-      </StyledFlag>
-      {errorMessage && (
-        <StyledTextFieldHelperText error={!!isErrored}>
-          {errorMessage}
-        </StyledTextFieldHelperText>
-      )}
-    </StyledDropdownWrapper>
-  )
-})
-
-export default Dropdown
+export default DropdownFlag

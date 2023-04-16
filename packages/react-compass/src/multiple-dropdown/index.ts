@@ -1,10 +1,10 @@
-import {Item} from '@react-stately/collections'
+import DropdownItem from '../dropdown/item'
 import MultipleDropdown from './multiple-dropdown'
 
 export type {MultipleDropdownItemProps} from './item'
 export type {MultipleDropdownProps} from './multiple-dropdown'
 
-MultipleDropdown.Item = Item
+MultipleDropdown.Item = DropdownItem
 
 MultipleDropdown.displayName = 'MultipleDropdown'
 

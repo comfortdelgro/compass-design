@@ -1,3 +1,4 @@
+import React from 'react'
 import {Column} from '../utils/components'
 import Wizard from './wizard'
 

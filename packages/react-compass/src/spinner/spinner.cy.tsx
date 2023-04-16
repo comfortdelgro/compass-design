@@ -1,3 +1,4 @@
+import React from 'react'
 import Spinner from './index'
 
 describe('spinner.cy.ts', () => {

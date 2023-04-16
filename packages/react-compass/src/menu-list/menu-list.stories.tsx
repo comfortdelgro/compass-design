@@ -1,4 +1,5 @@
 import {faUser} from '@fortawesome/free-solid-svg-icons'
+import React from 'react'
 import {Column} from '../utils/components'
 import MenuList, {MenuListDropdown} from './index'
 
