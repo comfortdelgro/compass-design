@@ -7,7 +7,6 @@ import {
   isToday as isTodayFunction,
   parseDate,
 } from '@internationalized/date'
-// import {useCalendarCell} from '@react-aria/calendar'
 import {useFocusRing} from '@react-aria/focus'
 import {CalendarState, RangeCalendarState} from '@react-stately/calendar'
 import React from 'react'
@@ -38,12 +37,15 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
     const {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       cellProps,
-      // buttonProps,
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      buttonProps,
       isSelected,
 
       isUnavailable,
       formattedDate,
     } = useCalendarCell({date}, state, cellRef)
+
+    console.log(buttonProps, 'hello2')
 
     let {isDisabled} = useCalendarCell({date}, state, cellRef)
 
@@ -109,7 +111,8 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
             {...cellProps}
             css={css}
             className={classNameCombine()}
-            // {...mergeProps(buttonProps, focusProps)}
+            {...buttonProps}
+            {...focusProps}
           >
             <div
               ref={cellRef}

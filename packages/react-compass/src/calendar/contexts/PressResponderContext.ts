@@ -1,6 +1,6 @@
-import {FocusableElement} from '@react-types/shared'
 import {createContext, MutableRefObject} from 'react'
 import {PressProps} from '../types/press.types'
+import {FocusableElement} from '../types/scroll.types'
 
 interface IPressResponderContext extends PressProps {
   register(): void
