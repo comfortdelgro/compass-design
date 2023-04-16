@@ -1,4 +1,3 @@
-import React from 'react'
 import {Variants} from './range-calendar.stories'
 
 describe('range-calendar.cy.ts', () => {

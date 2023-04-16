@@ -1,4 +1,3 @@
-import React from 'react'
 import {Default as Toast} from './toast.stories'
 
 describe('toast.cy.ts', () => {

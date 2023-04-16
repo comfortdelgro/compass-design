@@ -1,4 +1,3 @@
-import React from 'react'
 import Button from './index'
 type Variant = 'primary' | 'secondary' | 'danger' | 'ghost'
 

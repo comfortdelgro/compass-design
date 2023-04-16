@@ -1,4 +1,3 @@
-import React from 'react'
 import Breadcrumbs from './index'
 
 const isCurrent = (i: number) => {

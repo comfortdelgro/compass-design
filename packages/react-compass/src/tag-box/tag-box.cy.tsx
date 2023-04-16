@@ -1,4 +1,3 @@
-import React from 'react'
 import TagBox from './index'
 
 const items = [

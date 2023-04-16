@@ -1,5 +1,4 @@
 import {faCircleUser} from '@fortawesome/free-regular-svg-icons'
-import React from 'react'
 
 import Avatar from './index'
 

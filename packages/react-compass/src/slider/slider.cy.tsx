@@ -1,4 +1,3 @@
-import React from 'react'
 import Slider from './index'
 
 describe('range-calendar.cy.ts', () => {
