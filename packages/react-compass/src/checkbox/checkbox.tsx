@@ -1,10 +1,5 @@
 import {faCheck, faMinus} from '@fortawesome/free-solid-svg-icons'
-import {useCheckbox} from '@react-aria/checkbox'
-import {useHover, usePress} from '@react-aria/interactions'
-import {mergeProps} from '@react-aria/utils'
-import {useToggleState} from '@react-stately/toggle'
-import type {AriaCheckboxProps} from '@react-types/checkbox'
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {Icon} from '../icon'
 import type {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -18,10 +13,13 @@ import {
   StyledCheckboxWrapper,
 } from './checkbox.styles'
 
-interface Props extends AriaCheckboxProps, StyledComponentProps {
+interface Props extends StyledComponentProps {
   isIndeterminate?: boolean
   children?: React.ReactNode
-
+  onChange?: (isSelected: boolean) => void
+  isDisabled?: boolean
+  defaultSelected?: boolean
+  isSelected?: boolean
   // Variants for children
   variant?: 'default' | 'rounded'
 }
@@ -40,6 +38,9 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       children,
       // VariantProps
       isIndeterminate = false,
+      defaultSelected = false,
+      isSelected,
+      onChange,
       variant = 'default',
       // AriaProps
       ...ariaSafeProps
@@ -50,12 +51,24 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       ...ariaSafeProps,
     }
 
-    const state = useToggleState(ariaProps)
-    const checkboxRef = useDOMRef<HTMLInputElement>(ref)
-    const {inputProps} = useCheckbox(ariaProps, state, checkboxRef)
+    const [checked, setChecked] = useState<boolean>(
+      isSelected || defaultSelected,
+    )
 
-    const {hoverProps} = useHover({isDisabled: inputProps.disabled!})
-    const {pressProps} = usePress({isDisabled: inputProps.disabled!})
+    useEffect(() => {
+      setChecked((isSelected || defaultSelected) ?? false)
+    }, [isSelected])
+
+    const handleCheckboxChange = () => {
+      if (onChange) {
+        onChange(!checked)
+      }
+      if (isSelected !== undefined) return
+
+      setChecked(!checked)
+    }
+    // const state = useToggleState(ariaProps)
+    const checkboxRef = useDOMRef<HTMLInputElement>(ref)
     const htmlProps = {...ariaSafeProps} as Omit<
       React.HTMLAttributes<HTMLDivElement>,
       keyof Props
@@ -63,11 +76,14 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
 
     return (
       <StyledCheckboxWrapper css={css} {...htmlProps}>
-        <StyledCheckboxLabel {...mergeProps(hoverProps, pressProps)}>
+        <StyledCheckboxLabel>
           <StyledCheckboxInput
             type='checkbox'
             ref={checkboxRef}
-            {...inputProps}
+            checked={checked}
+            disabled={isDisabled}
+            onChange={handleCheckboxChange}
+            {...ariaProps}
           />
 
           {/* Checkbox */}
