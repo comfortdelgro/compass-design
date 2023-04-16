@@ -1,4 +1,3 @@
-import {LabelAriaProps, useLabel} from '@react-aria/label'
 import React, {createRef, RefObject} from 'react'
 import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
@@ -26,7 +25,9 @@ type Item = {
   isError?: boolean
 }
 
-interface Props extends LabelAriaProps, StyledComponentProps {
+interface Props extends StyledComponentProps {
+  id?: string
+  label?: React.ReactNode
   items: Item[]
   labelPosition?: 'top' | 'left'
   collaspable?: boolean
@@ -40,6 +41,10 @@ interface Props extends LabelAriaProps, StyledComponentProps {
   onAdd?: (value: string) => void
   onRemove?: (index: string | number) => void
   onEdit?: (index: string | number, value: string) => void
+  'aria-label'?: string
+  'aria-labelledby'?: string
+  'aria-describedby'?: string
+  'aria-details'?: string
 }
 
 export type TagBoxProps = Props & TagBoxVariantProps
@@ -48,6 +53,7 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
   const {
     // StyledComponentProps
     css = {},
+    id,
     labelPosition = 'top',
     collaspable = false,
     typeable = false,
@@ -60,8 +66,6 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
     onRemove,
     onAdd,
     onEdit,
-    // AriaTagBoxProps
-    ...ariaSafeProps
   } = props
 
   const tagBoxRef = useDOMRef<HTMLDivElement>(ref)
@@ -69,7 +73,6 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
     children,
     TagBoxAction,
   )
-  const {labelProps, fieldProps} = useLabel(ariaSafeProps)
   const [remainingCount, setRemainingCount] = React.useState(0)
   const boxContentRef = React.useRef<HTMLDivElement>(null)
   const boxRef = React.useRef<HTMLDivElement>(null)
@@ -131,17 +134,21 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
     <StyledTagBox css={css} ref={tagBoxRef}>
       <StyledBoxWrapper labelPosition={labelPosition}>
         {props.label && (
-          <label {...labelProps}>
+          <label htmlFor={id}>
             {props.label}
             {isRequired && <span>*</span>}
           </label>
         )}
         <div>
           <StyledBox
-            {...fieldProps}
+            id={id}
             ref={boxRef}
             collaspable={collaspable}
             isErrored={!!isErrored}
+            aria-label={props['aria-label']}
+            aria-details={props['aria-details']}
+            aria-labelledby={props['aria-labelledby']}
+            aria-describedby={props['aria-describedby']}
           >
             {props.icon && <StyledIcon>{props.icon}</StyledIcon>}
 

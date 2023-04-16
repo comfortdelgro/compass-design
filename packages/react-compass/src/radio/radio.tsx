@@ -1,56 +1,46 @@
-import {AriaRadioProps, useRadio} from '@react-aria/radio'
-import {RadioGroupState} from '@react-stately/radio'
-import React, {useContext} from 'react'
-import type {StyledComponentProps} from '../utils/stitches.types'
-import RadioGroup, {RadioContext} from './radio-group'
-import {RadioVariantProps, StyledRadio, StyledRadioInput} from './radio.styles'
+import {CSSProperties} from '@stitches/react'
+import React from 'react'
+import RadioGroup from './radio-group'
+import {StyledRadio, StyledRadioInput} from './radio.styles'
 import Tooltip from './tooltip'
 
-interface Props extends AriaRadioProps, StyledComponentProps {
-  className?: string
-  label: string
-  description?: string
-  rightLabel?: string
-  tooltip?: string
-  variant?: 'simple' | 'outlined'
+export type RadioProps = {
+  title: string
+  description: string
+  rightLabel: string
+  tooltip: string
+  value: string
+  isDisabled?: boolean
+  css?: CSSProperties
+  checked?: boolean
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-export type RadioProps = Props & RadioVariantProps
-
-const Radio: React.FC<RadioProps> = (props) => {
-  const {
-    label,
-    description,
-    tooltip,
-    rightLabel,
-    isDisabled = false,
-    variant = 'simple',
-    css = {},
-  } = props
-  const context = useContext(RadioContext)
-  const state = context as RadioGroupState
-  const ref = React.useRef<HTMLInputElement | null>(null)
-  const {inputProps} = useRadio(props, state, ref)
-  const onClick = () => {
-    if (ref.current) ref.current.click()
-  }
+export const Radio: React.FC<RadioProps> = ({
+  title,
+  description,
+  rightLabel,
+  tooltip,
+  value,
+  isDisabled = false,
+  css,
+  checked,
+  onChange,
+}) => {
   return (
-    <StyledRadio
-      disabled={isDisabled}
-      variant={variant}
-      onClick={onClick}
-      css={css}
-    >
-      <input style={{display: 'none'}} {...inputProps} ref={ref} />
+    <StyledRadio style={css}>
       <div className='radio-wrapper'>
         <StyledRadioInput
-          active={!!inputProps?.checked}
+          type='radio'
+          value={value}
+          checked={checked}
+          onChange={onChange}
           disabled={isDisabled}
         />
       </div>
       <div className='radio-content-wrapper'>
         <div className='radio-label'>
-          {label} {!!tooltip && <Tooltip text={tooltip} />}
+          {title} {!!tooltip && <Tooltip text={tooltip} />}
         </div>
         <p className='radio-description'>{description}</p>
       </div>
@@ -58,5 +48,4 @@ const Radio: React.FC<RadioProps> = (props) => {
     </StyledRadio>
   )
 }
-
 export default Radio as typeof Radio & {Group: typeof RadioGroup}
