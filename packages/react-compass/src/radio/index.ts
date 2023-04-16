@@ -6,7 +6,6 @@ export type {RadioGroupProps} from './radio-group'
 
 Radio.Group = RadioGroup
 
-Radio.Group.displayName = 'Radio.Group'
 Radio.displayName = 'Radio'
 
 export default Radio
