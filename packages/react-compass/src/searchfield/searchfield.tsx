@@ -74,6 +74,7 @@ const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
       isRequired = false,
       isDisabled = false,
       autoFocus,
+      placeholder,
       onChangeEvent,
       onChange,
     } = props
@@ -139,6 +140,7 @@ const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
           required={isRequired}
           disabled={isDisabled}
           type='text'
+          placeholder={placeholder}
           value={textValue}
           onCut={props.onCut}
           onCopy={props.onCopy}
