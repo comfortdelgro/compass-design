@@ -107,7 +107,30 @@ Enable a close button in the tooltip
   </TooltipTrigger>
 </ComponentDisplay>
 
-### Custom styling
+### Customization
+
+#### Child element
+
+The tooltip needs to apply DOM event listeners to its child element. If the child is a custom React element, you need to make sure that it spreads its props to the underlying DOM element.
+
+```js
+const MyComponent = React.forwardRef(function MyComponent(props, ref) {
+  //  Spread the props to the underlying DOM element.
+  return (
+    <div {...props} ref={ref}>
+      Custom Component
+    </div>
+  )
+})
+
+// ...
+<TooltipTrigger>
+  <MyComponent/>
+  <Tooltip dismissible>Tooltip</Tooltip>
+</TooltipTrigger>
+```
+
+#### Styling
 
 You can style React Compass's components with the css prop. <br/>
 With css prop, you can basically do anything that css can do.
@@ -146,6 +169,39 @@ With css prop, you can basically do anything that css can do.
   </TooltipTrigger>
 </ComponentDisplay>
 
+#### Max-width
+
+The Tooltip wraps long text by default to make it readable. You can customize it to fit your desire
+
+```js {3}
+<TooltipTrigger>
+  <a href='#'>Hover me</a>
+  <Tooltip title={'Title'} css={{maxWidth: 'none'}}>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae
+    blanditiis laborum commodi mollitia officiis minus ipsum totam fuga odit,
+    dicta magnam numquam reprehenderit et sequi dignissimos iusto deleniti.
+    Quia, modi
+  </Tooltip>
+</TooltipTrigger>
+```
+
+<ComponentDisplay>
+  <TooltipTrigger>
+    <a href='#'>Hover me</a>
+    <Tooltip
+      title={<p style={{fontSize: '20px', margin: 0}}>Title</p>}
+      css={{maxWidth: 'none'}}
+    >
+      <p style={{margin: '16px 0'}}>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae
+        blanditiis laborum commodi mollitia officiis minus ipsum totam fuga
+        odit, dicta magnam numquam reprehenderit et sequi dignissimos iusto
+        deleniti. Quia, modi
+      </p>
+    </Tooltip>
+  </TooltipTrigger>
+</ComponentDisplay>
+
 ### Placement
 
 The Tooltip's placement with respect to its trigger element can be adjusted using the placement prop. See the props table below for a full list of available placement combinations
@@ -169,7 +225,7 @@ The Tooltip's placement with respect to its trigger element can be adjusted usin
 ### Offset
 
 ```js
-<TooltipTrigger>
+<TooltipTrigger offset={50}>
   <a href='#'>Hover me</a>
   <Tooltip>This will shift down.</Tooltip>
 </TooltipTrigger>
@@ -185,14 +241,14 @@ The Tooltip's placement with respect to its trigger element can be adjusted usin
 </ComponentDisplay>
 
 ```js
-<TooltipTrigger>
+<TooltipTrigger offset={{crossAxis: 50}}>
   <a href='#'>Hover me</a>
   <Tooltip>This will shift over to the right.</Tooltip>
 </TooltipTrigger>
 ```
 
 <ComponentDisplay>
-  <TooltipTrigger crossOffset={100}>
+  <TooltipTrigger offset={{crossAxis: 50}}>
     <a href='#'>Hover me</a>
     <Tooltip>
       <p style={{marginTop: 0}}>This will shift over to the right.</p>
@@ -206,25 +262,26 @@ The Tooltip's placement with respect to its trigger element can be adjusted usin
 
 ### TooltipTrigger Props:
 
-| Name         | Type                             | Default  | Description                                                                                                                                        |
-| :----------- | :------------------------------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------- |
-| children\*   | [`ReactElement`, `ReactElement`] | —        | The first child must be a trigger, the second child must be Tooltip component                                                                      |
-| offset       | `number`                         | 16       | The additional offset applied along the main axis between the element and its anchor element.                                                      |
-| crossOffset  | `number`                         | 0        | The additional offset applied along the cross axis between the element and its anchor element.                                                     |
-| delay        | `number`                         | 0        | The delay time for the tooltip to show up                                                                                                          |
-| trigger      | `focus`                          | —        | By default, opens for both focus and hover. Can be made to open only for focus.                                                                    |
-| open         | `boolean`                        | —        | Whether the overlay is open by default (controlled)                                                                                                |
-| defaultOpen  | `boolean`                        | —        | Whether the overlay is open by default (uncontrolled).                                                                                             |
-| placement    | [`Placement`](#placement-prop)   | `bottom` | The placement of the element with respect to its anchor element.                                                                                   |
-| shouldFlip   | `boolean`                        | `true`   | Whether the element should flip its orientation (e.g. top to bottom or left to right) when there is insufficient room for it to render completely. |
-| onOpenChange | `(isOpen: boolean) => void`      | —        | Handler that is called when the overlay's open state changes.                                                                                      |
-| css          | `CSS`                            | —        | The system prop that allows defining system overrides as well as additional CSS styles.                                                            |
+| Name               | Type                                                | Default  | Description                                                                                                                                                                                                                                   |
+| :----------------- | :-------------------------------------------------- | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| children\*         | [`ReactElement`, `ReactElement`]                    | —        | The first child must be a trigger, the second child must be Tooltip component                                                                                                                                                                 |
+| offset             | `number` \| `{mainAxis: number, crossAxis: number}` |          | The additional offset applied along the main axis and(or) cross axis between the element and its anchor element.                                                                                                                              |
+| delay              | `number`                                            | `0`      | The delay time for the tooltip to show up                                                                                                                                                                                                     |
+| trigger            | `'focus'` \| `null`                                 | `null`   | By default, opens for both focus and hover. Can be made to open only for focus.                                                                                                                                                               |
+| isOpen             | `boolean`                                           | —        | Whether the overlay is open by default (controlled)                                                                                                                                                                                           |
+| defaultOpen        | `boolean`                                           | —        | Whether the overlay is open by default (uncontrolled).                                                                                                                                                                                        |
+| placement          | [`Placement`](#placement-prop)                      | `bottom` | The placement of the element with respect to its anchor element.                                                                                                                                                                              |
+| shouldFlip         | `boolean`                                           | `true`   | Whether the element should flip its orientation (e.g. top to bottom or left to right) when there is insufficient room for it to render completely.                                                                                            |
+| withArrow          | `boolean`                                           | `true`   | Whether the element should have an arrow pointed to anchor element                                                                                                                                                                            |
+| disableInteractive | `boolean`                                           | `false`  | Tooltips are interactive by default (to pass WCAG 2.1 success criterion 1.4.13). It won't close when the user hovers over the tooltip. You can disable this behavior (thus failing the success criterion which is required to reach level AA) |
+| onOpenChange       | `(isOpen: boolean) => void`                         | —        | Handler that is called when the overlay's open state changes.                                                                                                                                                                                 |
+| css                | `CSS`                                               | —        | The system prop that allows defining system overrides as well as additional CSS styles.                                                                                                                                                       |
 
 #### Placement Prop
 
-| Name      | Type                                                                                                                                                                                                                                                                                                                   | Default | Description                                                      |
-| :-------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------ | :--------------------------------------------------------------- |
-| placement | `bottom` \| `bottom left` \| `bottom right` \| `bottom start` \| `bottom end` \| `top` \| `top left` \| `top right` \| `top start` \| `top end` \| `left` \| `left top` \| `left bottom` \| `start` \| `start top` \| `start bottom` \| `right` \| `right top` \| `right bottom` \| `end` \| `end top` \| `end bottom` | —       | The placement of the element with respect to its anchor element. |
+| Name      | Type                                                                                                                                                                 | Default  | Description                                                      |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- | :--------------------------------------------------------------- |
+| placement | `bottom`\| ` bottom-end` \| ` bottom-start` \| ` left` \|` left-end` \|` left-start` \|` right` \|` right-end` \|` right-start` \|` top` \|` top-end` \|` top-start` | `bottom` | The placement of the element with respect to its anchor element. |
 
 ### Tooltip Props
 

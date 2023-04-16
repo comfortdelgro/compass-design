@@ -93,19 +93,11 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       css = {},
       // ComponentProps
       label,
-      id,
-      name,
-      value,
-      type,
-      isErrored,
-      isReadOnly = false,
-      isRequired = false,
-      helperText,
-      errorMessage,
-      leftIcon,
-      rightIcon,
-      prefix,
-      password,
+      id = `cdg-element-${Math.random().toString(36).substring(2)}`,
+      maxLength,
+      minLength,
+      autoCapitalize,
+      autoFocus,
       onChangeEvent,
       onChange,
       // AriaTextFieldProps
@@ -140,7 +132,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
     return (
       <StyledTextFieldWrapper css={css} {...htmlProps}>
         {label && (
-          <StyledTextFieldLabel htmlFor={inputId} isDisabled={!!isDisabled}>
+          <StyledTextFieldLabel htmlFor={id} isDisabled={!!isDisabled}>
             {label}
             {isRequired && <span>*</span>}
           </StyledTextFieldLabel>
@@ -151,35 +143,40 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
           <StyledTextField
             css={css}
             ref={textfieldRef}
-            id={inputId}
-            aria-controls={props['aria-controls']}
-            aria-label={props['aria-label']}
-            aria-labelledby={props['aria-labelledby']}
-            aria-describedby={props['aria-describedby']}
-            aria-details={props['aria-details']}
-            aria-errormessage={props['aria-errormessage']}
-            aria-haspopup={props['aria-haspopup']}
-            aria-autocomplete={props['aria-autocomplete']}
-            aria-activedescendant={props['aria-activedescendant']}
-            readOnly={!!isReadOnly}
-            required={!!isRequired}
+            id={id}
+            autoFocus={autoFocus}
+            autoCapitalize={autoCapitalize}
+            readOnly={isReadOnly}
+            required={isRequired}
+            disabled={isDisabled}
+            maxLength={maxLength}
+            minLength={minLength}
             name={name}
             value={value}
-            onChange={handleOnChange}
-            onFocus={props.onFocus}
-            onBlur={props.onBlur}
-            onCopy={props.onCopy}
-            onCut={props.onCut}
-            onPaste={props.onPaste}
-            onCompositionStart={props.onCompositionStart}
-            onCompositionEnd={props.onCompositionEnd}
-            onCompositionUpdate={props.onCompositionUpdate}
-            onSelect={props.onSelect}
-            onBeforeInput={props.onBeforeInput}
-            onInput={props.onInput}
-            onKeyDown={props.onKeyDown}
-            onKeyUp={props.onKeyUp}
             type={determineInputType() || type}
+            onCut={props.onCut}
+            onCopy={props.onCopy}
+            onBlur={props.onBlur}
+            onFocus={props.onFocus}
+            onPaste={props.onPaste}
+            onInput={props.onInput}
+            onKeyUp={props.onKeyUp}
+            onSelect={props.onSelect}
+            onChange={handleOnChange}
+            onKeyDown={props.onKeyDown}
+            onBeforeInput={props.onBeforeInput}
+            onCompositionEnd={props.onCompositionEnd}
+            onCompositionStart={props.onCompositionStart}
+            onCompositionUpdate={props.onCompositionUpdate}
+            aria-label={props['aria-label']}
+            aria-details={props['aria-details']}
+            aria-haspopup={props['aria-haspopup']}
+            aria-controls={props['aria-controls']}
+            aria-labelledby={props['aria-labelledby']}
+            aria-describedby={props['aria-describedby']}
+            aria-errormessage={props['aria-errormessage']}
+            aria-autocomplete={props['aria-autocomplete']}
+            aria-activedescendant={props['aria-activedescendant']}
           />
           {rightIcon ? <div className='right-icon'>{rightIcon}</div> : null}
           {determineInputType() == 'password' ? (
