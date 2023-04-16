@@ -1,323 +1,189 @@
-import type {Placement} from '@react-types/overlays'
-import {useState} from 'react'
+import {Placement} from '@floating-ui/react'
+import React, {useState} from 'react'
 import Button from '../button'
-import {Column, Row} from '../utils/components'
-import {Tooltip, TooltipTrigger} from './index'
-
-export const Positions: React.FC = () => {
-  const rightSides = [
-    {triggerElement: <a href='#'>Right tooltip</a>, placement: 'right'},
-    {
-      triggerElement: <a href='#'>Right-bottom tooltip</a>,
-      placement: 'right bottom',
-    },
-    {triggerElement: <a href='#'>Right-top tooltip</a>, placement: 'right top'},
-  ]
-
-  const leftSides = [
-    {triggerElement: <a href='#'>Left tooltip</a>, placement: 'left'},
-    {
-      triggerElement: <a href='#'>Left-bottom tooltip</a>,
-      placement: 'left bottom',
-    },
-    {triggerElement: <a href='#'>Left-top tooltip</a>, placement: 'left top'},
-  ]
-
-  const topSides = [
-    {triggerElement: <a href='#'>Top tooltip</a>, placement: 'top'},
-    {
-      triggerElement: <a href='#'>Top-left tooltip</a>,
-      placement: 'top left',
-    },
-    {triggerElement: <a href='#'>Top-right tooltip</a>, placement: 'top right'},
-  ]
-
-  const bottomSides = [
-    {triggerElement: <a href='#'>Bottom tooltip</a>, placement: 'bottom'},
-    {
-      triggerElement: <a href='#'>Bottom-left tooltip</a>,
-      placement: 'bottom left',
-    },
-    {
-      triggerElement: <a href='#'>Bottom-right tooltip</a>,
-      placement: 'bottom right',
-    },
-  ]
-
-  return (
-    <Column css={{gap: '40px'}}>
-      <h1>Positions</h1>
-      <h2>Right side</h2>
-      <Row css={{gap: '40px'}}>
-        {rightSides.map((side) => {
-          const placement = side.placement as Placement
-          return (
-            <TooltipTrigger placement={placement}>
-              {side.triggerElement}
-              <Tooltip title='Tooltip' dismissible>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Recusandae blanditiis laborum commodi mollitia officiis minus
-                  ipsum totam fuga odit, dicta magnam numquam reprehenderit et
-                  sequi dignissimos iusto deleniti. Quia, modi
-                </p>
-                <div
-                  style={{
-                    display: 'grid',
-                    gridTemplateColumns: '1fr 1fr',
-                    marginTop: '16px',
-                    gap: '16px',
-                  }}
-                >
-                  <Button fullWidth variant='primary'>
-                    Button
-                  </Button>
-                  <Button
-                    fullWidth
-                    variant='secondary'
-                    css={{backgroundColor: 'white'}}
-                  >
-                    Button
-                  </Button>
-                </div>
-              </Tooltip>
-            </TooltipTrigger>
-          )
-        })}
-      </Row>
-      <h2>Left side</h2>
-      <Row css={{gap: '40px', justifyContent: 'flex-end'}}>
-        {leftSides.map((side) => {
-          const placement = side.placement as Placement
-          return (
-            <TooltipTrigger placement={placement}>
-              {side.triggerElement}
-              <Tooltip title='Tooltip' dismissible>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Recusandae blanditiis laborum commodi mollitia officiis minus
-                  ipsum totam fuga odit, dicta magnam numquam reprehenderit et
-                  sequi dignissimos iusto deleniti. Quia, modi
-                </p>
-                <div
-                  style={{
-                    display: 'grid',
-                    gridTemplateColumns: '1fr 1fr',
-                    marginTop: '16px',
-                    gap: '16px',
-                  }}
-                >
-                  <Button fullWidth variant='primary'>
-                    Button
-                  </Button>
-                  <Button
-                    fullWidth
-                    variant='secondary'
-                    css={{backgroundColor: 'white'}}
-                  >
-                    Button
-                  </Button>
-                </div>
-              </Tooltip>
-            </TooltipTrigger>
-          )
-        })}
-      </Row>
-      <h2>Bottom side</h2>
-      <Row css={{gap: '40px', justifyContent: 'center'}}>
-        {bottomSides.map((side) => {
-          const placement = side.placement as Placement
-          return (
-            <TooltipTrigger placement={placement}>
-              {side.triggerElement}
-              <Tooltip title='Tooltip' dismissible>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Recusandae blanditiis laborum commodi mollitia officiis minus
-                  ipsum totam fuga odit, dicta magnam numquam reprehenderit et
-                  sequi dignissimos iusto deleniti. Quia, modi
-                </p>
-                <div
-                  style={{
-                    display: 'grid',
-                    gridTemplateColumns: '1fr 1fr',
-                    marginTop: '16px',
-                    gap: '16px',
-                  }}
-                >
-                  <Button fullWidth variant='primary'>
-                    Button
-                  </Button>
-                  <Button
-                    fullWidth
-                    variant='secondary'
-                    css={{backgroundColor: 'white'}}
-                  >
-                    Button
-                  </Button>
-                </div>
-              </Tooltip>
-            </TooltipTrigger>
-          )
-        })}
-      </Row>
-      <h2>Top side</h2>
-      <Row css={{gap: '40px', justifyContent: 'center'}}>
-        {topSides.map((side) => {
-          const placement = side.placement as Placement
-          return (
-            <TooltipTrigger placement={placement}>
-              {side.triggerElement}
-              <Tooltip title='Tooltip' dismissible>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Recusandae blanditiis laborum commodi mollitia officiis minus
-                  ipsum totam fuga odit, dicta magnam numquam reprehenderit et
-                  sequi dignissimos iusto deleniti. Quia, modi
-                </p>
-                <div
-                  style={{
-                    display: 'grid',
-                    gridTemplateColumns: '1fr 1fr',
-                    marginTop: '16px',
-                    gap: '16px',
-                  }}
-                >
-                  <Button fullWidth variant='primary'>
-                    Button
-                  </Button>
-                  <Button
-                    fullWidth
-                    variant='secondary'
-                    css={{backgroundColor: 'white'}}
-                  >
-                    Button
-                  </Button>
-                </div>
-              </Tooltip>
-            </TooltipTrigger>
-          )
-        })}
-      </Row>
-    </Column>
-  )
-}
-
-export const Dismissible: React.FC = () => {
-  return (
-    <Column css={{gap: '40px'}}>
-      <div>
-        <h1>Dissmisible</h1>
-        <TooltipTrigger placement={'right'}>
-          <a href='#'>Dissmisible tooltip</a>
-          <Tooltip title='Tooltip' dismissible>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Recusandae blanditiis laborum commodi mollitia officiis minus
-              ipsum totam fuga odit, dicta magnam numquam reprehenderit et sequi
-              dignissimos iusto deleniti. Quia, modi
-            </p>
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-                marginTop: '16px',
-                gap: '16px',
-              }}
-            >
-              <Button fullWidth variant='primary'>
-                Button
-              </Button>
-              <Button
-                fullWidth
-                variant='secondary'
-                css={{backgroundColor: 'white'}}
-              >
-                Button
-              </Button>
-            </div>
-          </Tooltip>
-        </TooltipTrigger>
-      </div>
-
-      <div>
-        <h1>Non-dismissible</h1>
-        <TooltipTrigger placement={'right'}>
-          <a href='#'>Non-Dissmisible tooltip</a>
-          <Tooltip title='Tooltip'>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Recusandae blanditiis laborum commodi mollitia officiis minus
-              ipsum totam fuga odit, dicta magnam numquam reprehenderit et sequi
-              dignissimos iusto deleniti. Quia, modi
-            </p>
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-                marginTop: '16px',
-                gap: '16px',
-              }}
-            >
-              <Button fullWidth variant='primary'>
-                Button
-              </Button>
-              <Button
-                fullWidth
-                variant='secondary'
-                css={{backgroundColor: 'white'}}
-              >
-                Button
-              </Button>
-            </div>
-          </Tooltip>
-        </TooltipTrigger>
-      </div>
-    </Column>
-  )
-}
+import Tooltip from './tooltip'
+import TooltipTrigger from './tooltip-trigger'
 
 export const Controlled: React.FC = () => {
-  const [isOpen, setOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div>
-      <h1>Tooltip is {isOpen ? 'Open' : 'Close'}</h1>
+    <>
+      <h3>Tooltip State: {isOpen ? 'opened' : 'closed'}</h3>
       <TooltipTrigger
-        placement={'bottom'}
-        open={isOpen}
-        onOpenChange={setOpen}
-        id='text'
+        isOpen={isOpen}
+        onOpenChange={(isOpen) => {
+          setIsOpen(isOpen)
+        }}
       >
-        <a href='#'>Controlled tooltip</a>
-        <Tooltip title='Tooltip' dismissible>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae
-            blanditiis laborum commodi mollitia officiis minus ipsum totam fuga
-            odit, dicta magnam numquam reprehenderit et sequi dignissimos iusto
-            deleniti. Quia, modi
-          </p>
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              marginTop: '16px',
-              gap: '16px',
-            }}
-          >
-            <Button fullWidth variant='primary'>
-              Button
-            </Button>
-            <Button
-              fullWidth
-              variant='secondary'
-              css={{backgroundColor: 'white'}}
-            >
-              Button
-            </Button>
-          </div>
+        <Button>Trigger</Button>
+        <Tooltip title='Title' dismissible>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente
+          quam ullam amet est rerum in enim doloribus laborum beatae veniam
+          corrupti blanditiis, neque fuga, ipsam ut consequuntur laboriosam.
+          Tempora, sit?
         </Tooltip>
       </TooltipTrigger>
-    </div>
+    </>
+  )
+}
+
+export const Placements: React.FC = () => {
+  const placements: Placement[] = [
+    'bottom',
+    'bottom-end',
+    'bottom-start',
+    'left',
+    'left-end',
+    'left-start',
+    'right',
+    'right-end',
+    'right-start',
+    'top',
+    'top-end',
+    'top-start',
+  ]
+  const [currentPlacement, setCurrentPlacement] = useState<Placement>('bottom')
+
+  return (
+    <>
+      <h3>Select direction for testing</h3>
+      <select
+        onChange={(e) => {
+          setCurrentPlacement(e.target.value as Placement)
+        }}
+      >
+        {placements.map((placement) => {
+          return (
+            <option key={placement} value={placement}>
+              {placement}
+            </option>
+          )
+        })}
+      </select>
+      <div
+        style={{
+          height: '50%',
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <TooltipTrigger placement={currentPlacement} isOpen={true}>
+          <Button>Bottom</Button>
+          <Tooltip title='Title' dismissible>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente
+            quam ullam amet est rerum in enim doloribus laborum beatae veniam
+            corrupti blanditiis, neque fuga, ipsam ut consequuntur laboriosam.
+            Tempora, sit?
+          </Tooltip>
+        </TooltipTrigger>
+      </div>
+    </>
+  )
+}
+
+export const Offset: React.FC = () => {
+  const [crossAxis, setCrossAxis] = useState(0)
+  const [mainAxis, setMainAxis] = useState(0)
+
+  return (
+    <>
+      <h3>Offset</h3>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          width: '200px',
+          gap: '12px',
+          marginBottom: '24px',
+        }}
+      >
+        <div style={{display: 'flex', flexDirection: 'column', gap: '8px'}}>
+          <label htmlFor='cross-axis'>Cross Axis</label>
+          <input
+            id='cross-axis'
+            type='number'
+            placeholder='Cross Axis'
+            defaultValue={0}
+            onChange={(e) => {
+              setCrossAxis(parseInt(e.target.value))
+            }}
+          ></input>
+        </div>
+        <div style={{display: 'flex', flexDirection: 'column', gap: '8px'}}>
+          <label htmlFor='main-axis'>Main Axis</label>
+          <input
+            id='main-axis'
+            type='number'
+            placeholder='Main Axis'
+            defaultValue={0}
+            onChange={(e) => {
+              setMainAxis(parseInt(e.target.value))
+            }}
+          ></input>
+        </div>
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+      >
+        <TooltipTrigger
+          offset={{crossAxis: crossAxis, mainAxis: mainAxis}}
+          isOpen={true}
+        >
+          <Button>Trigger</Button>
+          <Tooltip title='Title' dismissible>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente
+            quam ullam amet est rerum in enim doloribus laborum beatae veniam
+            corrupti blanditiis, neque fuga, ipsam ut consequuntur laboriosam.
+            Tempora, sit?
+          </Tooltip>
+        </TooltipTrigger>
+      </div>
+    </>
+  )
+}
+
+export const Delay: React.FC = () => {
+  const [delayTime, setDelayTime] = useState(0)
+  return (
+    <>
+      <h3>Delay</h3>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          width: '200px',
+          gap: '12px',
+          marginBottom: '24px',
+        }}
+      >
+        <div style={{display: 'flex', flexDirection: 'column', gap: '8px'}}>
+          <label htmlFor='delay-time'>Delay Time (Ms)</label>
+          <input
+            id='delay-time'
+            type='number'
+            placeholder='Cross Axis'
+            defaultValue={0}
+            onChange={(e) => {
+              setDelayTime(parseInt(e.target.value))
+            }}
+          ></input>
+        </div>
+      </div>
+      <TooltipTrigger delay={delayTime}>
+        <Button>Trigger</Button>
+        <Tooltip title='Title' dismissible>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente
+          quam ullam amet est rerum in enim doloribus laborum beatae veniam
+          corrupti blanditiis, neque fuga, ipsam ut consequuntur laboriosam.
+          Tempora, sit?
+        </Tooltip>
+      </TooltipTrigger>
+    </>
   )
 }
