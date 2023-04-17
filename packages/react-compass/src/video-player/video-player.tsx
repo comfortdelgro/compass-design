@@ -17,7 +17,7 @@ import {
   StyledVideoPlayer,
   StyledVolume,
 } from './video-player.styles'
-import VolumeSlider from './volume-slider'
+import VolumeSlider2 from './volume-slider/volume-slider'
 
 interface Props extends StyledComponentProps {
   src: string
@@ -126,7 +126,7 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
       {controls && (
         <>
           <StyledVolume>
-            <VolumeSlider value={volume} onChange={onToggleVolume} />
+            <VolumeSlider2 value={volume} onChange={onToggleVolume} />
             <div className='slider-bar-volume-icon'>
               <VolumeIcon value={volume} onChange={onToggleVolume} />
             </div>
