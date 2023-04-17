@@ -128,3 +128,21 @@ export function constrainValue(
 
   return date
 }
+
+export function previousAvailableDate(
+  date: CalendarDate,
+  minValue: DateValue,
+  isDateUnavailable?: (date: CalendarDate) => boolean,
+) {
+  if (!isDateUnavailable) {
+    return date
+  }
+
+  while (date.compare(minValue) >= 0 && isDateUnavailable(date)) {
+    date = date.subtract({days: 1})
+  }
+
+  if (date.compare(minValue) >= 0) {
+    return date
+  }
+}

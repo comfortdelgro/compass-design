@@ -1,5 +1,11 @@
-import {CalendarDate} from '@internationalized/date'
+import {
+  CalendarDate,
+  CalendarDateTime,
+  ZonedDateTime,
+} from '@internationalized/date'
 import {AriaRole, CSSProperties} from 'react'
+
+export type DateValue = CalendarDate | CalendarDateTime | ZonedDateTime
 
 export interface AriaCalendarCellProps {
   date: CalendarDate

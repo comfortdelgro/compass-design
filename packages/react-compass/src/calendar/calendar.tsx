@@ -44,7 +44,7 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     locale,
     createCalendar,
   })
-  const state2 = useCalendarState2({locale: locale})
+  const state2 = useCalendarState2({locale: locale, createCalendar})
 
   const {calendarProps, prevButtonProps, nextButtonProps} = useCalendar(
     delegated,
