@@ -5,6 +5,7 @@ import {Column} from '../utils/components'
 import Dropdown from './index'
 
 export const Flag: React.FC = () => {
+  const [value, setValue] = React.useState('BRA')
   return (
     <Column>
       <h3>Flag</h3>
@@ -12,7 +13,9 @@ export const Flag: React.FC = () => {
         isRequired
         label='List of country'
         placeholder='Choose a country'
-        onPhoneChange={(e) => console.log(e)}
+        defaultSelectedCountry='SWZ'
+        selectedKey={value}
+        onCountryChange={(e) => setValue(e)}
       />
     </Column>
   )
@@ -27,7 +30,7 @@ export const Select: React.FC = () => {
         isRequired
         label='Favorite Animal'
         placeholder='Choose an animal'
-        isDisabled
+        // isDisabled
         selectedKey={value}
         onSelectionChange={(k: Key) => setValue(k)}
       >
@@ -42,23 +45,26 @@ export const Select: React.FC = () => {
           leftIcon={<Icon icon={faExclamationTriangle} />}
           type='color'
           rightColor='red'
+          textValue='pandared'
         >
           Cat Red Panda Red Panda Red Panda Red Panda Red Panda
         </Dropdown.Item>
         <Dropdown.Item key='dog'>Dog</Dropdown.Item>
         <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
         <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
-        <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+        <Dropdown.Item key='snakessss'>Snake</Dropdown.Item>
       </Dropdown.Select>
       <h3>UnControlled</h3>
       <Dropdown.Select
         label='Favorite Animal'
         placeholder='Choose an animal'
-        defaultSelectedKey={'cat'}
+        defaultSelectedKey={'dog'}
+        disabledKeys={['dog']}
       >
         <Dropdown.Item
           key='red panda'
           leftIcon={<Icon icon={faExclamationTriangle} />}
+          textValue='pandared'
         >
           Red Panda
         </Dropdown.Item>
@@ -150,7 +156,7 @@ export const ComboBox: React.FC = () => {
           key='red panda'
           leftIcon={<Icon icon={faExclamationTriangle} />}
         >
-          Red Panda
+          Red Panda Red Panda Red Panda Red Panda Red Panda
         </Dropdown.Item>
         <Dropdown.Item key='cat' type='color' rightColor='red'>
           Cat
