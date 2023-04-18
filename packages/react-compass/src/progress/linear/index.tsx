@@ -15,6 +15,7 @@ interface Props extends StyledComponentProps {
   value?: number
   valueBuffer?: number
   variant?: 'buffer' | 'determinate' | 'indeterminate'
+  rounded?: boolean
 }
 
 export type LinearProgressProps = Props
@@ -22,17 +23,19 @@ export type LinearProgressProps = Props
 const LinearProgress = React.forwardRef<HTMLDivElement, LinearProgressProps>(
   (props, ref) => {
     const {
-      variant = 'determinate',
+      css = {},
       value,
       size = 4,
       valueBuffer,
+      rounded = false,
       color = '#0142af',
+      variant = 'indeterminate',
     } = props
 
     const rootRef = useDOMRef<HTMLDivElement>(ref)
 
     const shadeColor = React.useMemo(
-      () => new Color(color).lighten(0.5),
+      () => new Color(color).set('lch.l', 70),
       [color],
     )
 
@@ -70,7 +73,11 @@ const LinearProgress = React.forwardRef<HTMLDivElement, LinearProgressProps>(
       <StyledLinearProgressRoot
         ref={rootRef}
         variant={variant}
-        css={{$$shadeColor: shadeColor, $$color: color, $$size: `${size}px`}}
+        rounded={rounded}
+        css={{
+          ...css,
+          ...{$$shadeColor: shadeColor, $$color: color, $$size: `${size}px`},
+        }}
       >
         {variant === 'buffer' && (
           <StyledLinearProgressDashed
@@ -78,16 +85,19 @@ const LinearProgress = React.forwardRef<HTMLDivElement, LinearProgressProps>(
               $$shadeColor: shadeColor,
               $$color: color,
               $$size: `${size}px`,
+              $$size2x: `${size * 2}px`,
             }}
           />
         )}
         <StyledLinearProgressBar1
           variant={variant}
+          rounded={rounded}
           css={{...bar1Css, ...{$$shadeColor: shadeColor, $$color: color}}}
         />
         {variant !== 'determinate' && (
           <StyledLinearProgressBar2
             variant={variant}
+            rounded={rounded}
             css={{...bar2Css, ...{$$shadeColor: shadeColor, $$color: color}}}
           />
         )}

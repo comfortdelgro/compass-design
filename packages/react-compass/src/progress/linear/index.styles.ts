@@ -5,17 +5,17 @@ import {keyframes} from '../../theme/stitches.config'
 const bufferKeyframe = keyframes({
   '0%': {
     opacity: 1,
-    backgroundPosition: '0 -23px',
+    backgroundPosition: '0 0',
   },
 
   '60%': {
     opacity: 0,
-    backgroundPosition: '0 -23px',
+    backgroundPosition: '0 0',
   },
 
   '100%': {
     opacity: 1,
-    backgroundPosition: '-200px -23px',
+    backgroundPosition: '-200px 0',
   },
 })
 
@@ -53,7 +53,7 @@ export const StyledLinearProgressRoot = styled('div', {
   position: 'relative',
   overflow: 'hidden',
   display: 'block',
-  height: 4,
+  height: '$$size',
   zIndex: 0, // Fix Safari's bug during composition of different paint.
   '@media print': {
     colorAdjust: 'exact',
@@ -91,6 +91,12 @@ export const StyledLinearProgressRoot = styled('div', {
         },
       },
     },
+    rounded: {
+      true: {
+        borderRadius: '$full',
+      },
+      false: {},
+    },
   },
 })
 
@@ -100,9 +106,9 @@ export const StyledLinearProgressDashed = styled('div', {
   height: '100%',
   width: '100%',
   opacity: 0.3,
-  backgroundImage: `radial-gradient($$color 16%, transparent 30%)`,
-  backgroundSize: '10px 10px',
-  backgroundPosition: '0 -23px',
+  backgroundImage: `radial-gradient(circle at center, $$color 40%, transparent 0%)`,
+  backgroundSize: '$$size2x $$size',
+  backgroundPosition: '0 0',
   animation: `${bufferKeyframe} 3s infinite linear`,
 })
 
@@ -129,6 +135,12 @@ export const StyledLinearProgressBar1 = styled('div', {
         animation: `${indeterminate1Keyframe} 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite`,
       },
     },
+    rounded: {
+      true: {
+        borderRadius: '$full',
+      },
+      false: {},
+    },
   },
 })
 
@@ -154,6 +166,12 @@ export const StyledLinearProgressBar2 = styled('div', {
         width: 'auto',
         animation: `2.1s cubic-bezier(0.165, 0.84, 0.44, 1) 1.15s infinite normal none running ${indeterminate2Keyframe}`,
       },
+    },
+    rounded: {
+      true: {
+        borderRadius: '$full',
+      },
+      false: {},
     },
   },
 })

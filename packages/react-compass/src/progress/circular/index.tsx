@@ -26,12 +26,13 @@ const CircularProgress = React.forwardRef<
   CircularProgressProps
 >((props, ref) => {
   const {
-    variant = 'indeterminate',
+    css = {},
     value = 0,
     size = 40,
-    disableShrink = false,
     thickness = 3.6,
     color = '#0142af',
+    disableShrink = false,
+    variant = 'indeterminate',
   } = props
 
   const rootRef = useDOMRef<HTMLDivElement>(ref)
@@ -57,7 +58,7 @@ const CircularProgress = React.forwardRef<
       ref={rootRef}
       variant={variant}
       style={{width: size, height: size, ...rootStyle}}
-      css={{$$color: color}}
+      css={{...css, ...{$$color: color}}}
     >
       <StyledCircularProgressSVG
         viewBox={`${SIZE / 2} ${SIZE / 2} ${SIZE} ${SIZE}`}

@@ -70,6 +70,10 @@ export const Linear: React.FC = () => {
       <Progress.Linear variant='buffer' value={progress} valueBuffer={buffer} />
       <h3>Colorful</h3>
       <Progress.Linear variant='indeterminate' color='red' />
+      <h3>Size</h3>
+      <Progress.Linear variant='indeterminate' size={10} />
+      <h3>Rounded</h3>
+      <Progress.Linear variant='indeterminate' size={10} rounded />
     </Column>
   )
 }
