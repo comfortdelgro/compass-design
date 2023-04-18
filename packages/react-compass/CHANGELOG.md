@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 0.33.5
+
+### Patch Changes
+
+- 1bb3674b: Fix version of @react-aria/i18n and @react-stately/datepicker
+
 ## 0.33.4
 
 ### Patch Changes
