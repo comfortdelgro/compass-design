@@ -23,7 +23,7 @@ const VolumeSlider: React.FC<VerticalSliderProps> = ({value, onChange}) => {
     }
   }, [sliderValue])
 
-  const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseDown = () => {
     document.addEventListener('mousemove', handleMouseMove)
     document.addEventListener('mouseup', handleMouseUp)
   }

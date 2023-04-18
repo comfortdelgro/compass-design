@@ -136,6 +136,9 @@ const Slider: React.FC<SliderProps> = ({
         document.removeEventListener('mousemove', handleMouseMove)
       }
     }
+    return () => {
+      console.log('slider not found!!!')
+    }
   }, [isDisabled, minValue, maxValue, step, onChange, defaultValue, value])
 
   return (
