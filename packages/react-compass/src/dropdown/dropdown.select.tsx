@@ -1,8 +1,13 @@
 import React from 'react'
-import Dropdown, {DropdownProps} from './dropdown'
-
-const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
-  return <Dropdown {...props} ref={ref} type='select' />
-})
+import Dropdown, {DropdownProps} from '.'
+export interface DropdownSelectProps extends DropdownProps {
+  // additional props for ComboBox
+  additionalProp?: boolean // Add an optional property to avoid lint error
+}
+const Select = React.forwardRef<HTMLDivElement, DropdownSelectProps>(
+  (selectProps, ref) => {
+    return <Dropdown {...selectProps} ref={ref} type='select' />
+  },
+)
 
 export default Select

@@ -1,21 +1,18 @@
-import DropdownComboBox from './dropdown.combobox'
+import Dropdown from './dropdown'
+import ComboBox from './dropdown.combobox'
 import DropdownFlag from './dropdown.flag'
-import DropdownSelect from './dropdown.select'
+import Select from './dropdown.select'
 import DropdownItem from './item'
-interface ComposableDropdown {
-  ComboBox: typeof DropdownComboBox
-  Flag: typeof DropdownFlag
-  Select: typeof DropdownSelect
-  Item: typeof DropdownItem
-}
-
-const Dropdown: ComposableDropdown = {
-  Flag: DropdownFlag,
-  ComboBox: DropdownComboBox,
-  Select: DropdownSelect,
-  Item: DropdownItem,
-}
 
 Dropdown.Item = DropdownItem
+Dropdown.ComboBox = ComboBox
+Dropdown.Flag = DropdownFlag
+Dropdown.Select = Select
+
+export type {DropdownProps} from './dropdown'
+export type {DropdownComboBoxProps} from './dropdown.combobox'
+export type {DropdownFlagProps} from './dropdown.flag'
+export type {DropdownSelectProps} from './dropdown.select'
+export type {DropdownItemProps} from './item'
 
 export default Dropdown

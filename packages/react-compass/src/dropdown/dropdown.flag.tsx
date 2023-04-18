@@ -1,6 +1,6 @@
 import React from 'react'
+import Dropdown, {DropdownProps} from '.'
 import {StyledComponentProps} from '../utils/stitches.types'
-import Dropdown, {DropdownProps} from './dropdown'
 import {DropdownVariantProps} from './dropdown.styles'
 import {countries} from './flags'
 import DropdownItem from './item'

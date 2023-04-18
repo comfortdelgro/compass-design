@@ -19,7 +19,6 @@ interface Props extends StyledComponentProps {
       | React.MouseEvent<HTMLButtonElement>
       | React.TouchEvent<HTMLButtonElement>,
   ) => void
-  onMouseDown?: (event: React.MouseEvent<HTMLButtonElement>) => void
   ripple?: boolean
   isDisabled?: boolean
   'aria-controls'?: string
@@ -28,7 +27,6 @@ interface Props extends StyledComponentProps {
   'aria-pressed'?: boolean
   disabled?: boolean
   onBlur?: (e: React.FocusEvent) => void
-  onClick?: (e: React.MouseEvent) => void
   onDragStart?: (e: React.MouseEvent) => void
   onFocus?: (e: React.FocusEvent) => void
   onKeyDown?: (e: React.KeyboardEvent) => void
@@ -58,7 +56,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       size,
       fullWidth,
       loading,
-      onMouseDown,
       onPress,
       ripple = false,
       isDisabled = false,
@@ -93,7 +90,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             <StyledButton
               {...delegateProps}
               ref={buttonRef}
-              onMouseDown={onMouseDown}
               onClick={onPress}
               onTouchEnd={onPress}
               disabled={isDisabled}
@@ -141,7 +137,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           <StyledButton
             {...delegateProps}
             ref={buttonRef}
-            onMouseDown={onMouseDown}
             onClick={onPress}
             onTouchEnd={onPress}
             disabled={isDisabled}
