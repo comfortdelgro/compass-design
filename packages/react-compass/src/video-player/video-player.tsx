@@ -1,4 +1,5 @@
 import React, {SyntheticEvent, useState} from 'react'
+import Slider from '../slider'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
@@ -9,7 +10,6 @@ import {
   SettingIcon,
   VolumeIcon,
 } from './icon'
-import ProgressSlider from './progress-slider'
 import {
   StyledButtonWrapper,
   StyledControllerWrapper,
@@ -17,7 +17,7 @@ import {
   StyledVideoPlayer,
   StyledVolume,
 } from './video-player.styles'
-import VolumeSlider2 from './volume-slider/volume-slider'
+import VolumeSlider from './volume-slider/volume-slider'
 
 interface Props extends StyledComponentProps {
   src: string
@@ -126,7 +126,7 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
       {controls && (
         <>
           <StyledVolume>
-            <VolumeSlider2 value={volume} onChange={onToggleVolume} />
+            <VolumeSlider value={volume} onChange={onToggleVolume} />
             <div className='slider-bar-volume-icon'>
               <VolumeIcon value={volume} onChange={onToggleVolume} />
             </div>
@@ -134,7 +134,7 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
           <StyledControllerWrapper>
             <StyledSlideBarWrapper>
               <span>{formatTime(currentTime)}</span>
-              <ProgressSlider value={progress} onChange={onToggleProgress} />
+              <Slider value={progress} onChange={onToggleProgress} />
               <span>{formatTime(duration)}</span>
             </StyledSlideBarWrapper>
             <StyledButtonWrapper>

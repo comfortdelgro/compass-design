@@ -12,7 +12,7 @@ interface ProgressProps {
 
 type Position = 'absolute' | 'fixed' | 'relative' | 'static' | 'sticky'
 
-const VolumeSlider2: React.FC<VerticalSliderProps> = ({value, onChange}) => {
+const VolumeSlider: React.FC<VerticalSliderProps> = ({value, onChange}) => {
   const [sliderValue, setSliderValue] = useState(value)
   const sliderRef = useRef<HTMLDivElement>(null)
 
@@ -93,4 +93,4 @@ const VolumeSlider2: React.FC<VerticalSliderProps> = ({value, onChange}) => {
   )
 }
 
-export default VolumeSlider2
+export default VolumeSlider
