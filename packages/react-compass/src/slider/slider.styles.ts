@@ -1,78 +1,65 @@
 import {styled} from '../theme'
 import type {VariantProps} from '../utils/stitches.types'
 
-export const StyledSlider = styled('div', {
-  position: 'relative',
-  touchAction: 'none',
-  '.slider-track-wrapper': {
-    position: 'relative',
-    width: '100%',
-    '.slider-rail': {
-      position: 'absolute',
-      backgroundColor: '$cdgBlue10',
-      borderRadius: '$full',
-      height: '$1',
-      width: '100%',
-    },
-    '.slider-filled-rail': {
-      position: 'absolute',
-      backgroundColor: '$cdgBlue100',
-      height: '$1',
-      borderRadius: '$full',
-      left: '0',
-    },
-    '.slider-track': {
-      position: 'relative',
-      height: '$1',
-      width: '100%',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-    },
-  },
-})
-
-export const StyledThumb = styled('div', {
+export const RangeSliderContainer = styled('div', {
   display: 'flex',
-  position: 'absolute',
-  alignItems: 'center',
-  flexDirection: 'column',
-  transform: 'translateX(-50%)',
-  zIndex: 1,
-  '.slider-thumb-handle': {
-    width: '$4',
-    height: '$4',
-    cursor: 'pointer',
-    borderRadius: '50%',
-    boxSizing: 'border-box',
-    border: '2px solid $cdgBlue10',
-    backgroundColor: '$background',
-    boxShadow: '0 0 4px rgba(0, 0, 0, 0.16)',
-  },
-  '.slider-value': {
+  width: '100%',
+  height: '0.25rem',
+  background: '$cdgBlue10',
+  borderRadius: '6.25rem',
+  position: ' relative',
+  cursor: 'pointer',
+  '&:focus .thumb-tooltips::after': {
+    content: 'attr(value)',
     position: 'absolute',
-    width: '$16',
-    height: '$16',
+    backgroundColor: '#201f1e',
+    width: '$12_5',
+    height: '$12_5',
     color: '$whiteText',
-    borderRadius: '$md',
-    backgroundColor: '$gray110',
-    fontSize: '$header4',
+    padding: '0.2rem',
+    borderRadius: '0.2rem',
+    pointerEvents: 'none',
+    whiteSpace: 'nowrap',
+    bottom: '1.688rem',
+    transform: 'translateX(-35%)',
+    fontFamily: 'Poppins',
+    fontStyle: 'normal',
     fontWeight: '$bold',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    bottom: '$6',
-    '&:after': {
-      content: '',
-      position: 'absolute',
-      width: '$4',
-      height: '$4',
-      transform: 'rotate(45deg)',
-      borderRadius: '$md 0',
-      backgroundColor: '$gray110',
-      bottom: '-$2',
-    },
+    fontSize: '1.25rem',
+    lineHeight: '3.125rem',
+    textAlign: 'center',
+  },
+  '&:focus .thumb-tooltips::before': {
+    content: '',
+    position: 'absolute',
+    border: '10px solid transparent',
+    borderTop: '10px solid #201f1e',
+    left: '50%',
+    bottom: '0.5rem',
+    transform: 'translateX(-50%)',
+    zIndex: '1',
   },
 })
 
-export type SliderVariantProps = VariantProps<typeof StyledSlider>
+export const RangeSlider = styled('div', {
+  background: '$cdgBlue100',
+  height: '100%',
+  position: 'relative',
+})
+
+export const Thumb = styled('div', {
+  right: '0',
+  boxSizing: 'border-box',
+  width: '$4',
+  height: '$4',
+  borderRadius: '50%',
+  background: '$background',
+  border: '1px solid #e6ecf7',
+  boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.16)',
+  position: 'absolute',
+  top: '50%',
+  transform: 'translate3d(100%, -50%, 0)',
+  cursor: 'pointer',
+})
+
+export type SliderVariantProps = VariantProps<typeof RangeSliderContainer>
