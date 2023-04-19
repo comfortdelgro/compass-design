@@ -1,11 +1,5 @@
-<<<<<<< HEAD
-import React, {useState} from 'react'
-import {Column, Row} from '../utils/components'
-import Slider from './index'
-=======
 import React from 'react'
 import Slider from './slider'
->>>>>>> f9a8279480ff9c139121ba4c9c1deb08e4f5bd03
 
 export const Sliders: React.FC = () => {
   return (

@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import React from 'react'
-=======
 import React, {useState} from 'react'
->>>>>>> f9a8279480ff9c139121ba4c9c1deb08e4f5bd03
 import {Column, Row} from '../utils/components'
 import Radio from './index'
 import RadioGroup from './radio-group'
