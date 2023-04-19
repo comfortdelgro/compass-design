@@ -8,6 +8,7 @@ import {useEffect, useMemo, useRef, useState} from 'react'
 import {DOMAttributes} from '../types/calendar.types'
 import {PointerType, PressHookProps, PressResult} from '../types/press.types'
 import {FocusableElement} from '../types/scroll.types'
+import {isOverTarget} from '../utils/calendar'
 import {isVirtualPointerEvent} from '../utils/event'
 import {focusWithoutScrolling, isVirtualClick} from '../utils/focus'
 import {disableTextSelection, restoreTextSelection} from '../utils/text'
@@ -519,16 +520,15 @@ export function usePress(props: PressHookProps): PressResult {
           state.isPressed &&
           e.button === 0
         ) {
-          triggerPressEnd(createEvent(state.target, e), state.pointerType)
-          // if (isOverTarget(e, state.target)) {
-          //
-          // } else if (state.isOverTarget) {
-          //   triggerPressEnd(
-          //     createEvent(state.target, e),
-          //     state.pointerType,
-          //     false,
-          //   )
-          // }
+          if (isOverTarget(e, state.target)) {
+            triggerPressEnd(createEvent(state.target, e), state.pointerType)
+          } else if (state.isOverTarget) {
+            triggerPressEnd(
+              createEvent(state.target, e),
+              state.pointerType,
+              false,
+            )
+          }
 
           state.isPressed = false
           state.isOverTarget = false

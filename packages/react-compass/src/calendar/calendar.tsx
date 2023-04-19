@@ -2,7 +2,6 @@ import * as InternationalizedDate from '@internationalized/date'
 import {createCalendar, DateValue, parseDate} from '@internationalized/date'
 import * as i18n from '@react-aria/i18n'
 import {useLocale} from '@react-aria/i18n'
-import {useCalendarState} from '@react-stately/calendar'
 import {DatePickerState} from '@react-stately/datepicker'
 import type {SpectrumCalendarProps} from '@react-types/calendar'
 import React from 'react'
@@ -13,6 +12,7 @@ import CalendarGrid from './calendar-grid'
 import CalendarHeader from './calendar-header'
 import {StyledCalendar} from './calendar.style'
 import {useCalendar} from './hooks/useCalendar'
+import {useCalendarState} from './hooks/useCalendarState'
 interface Props extends StyledComponentProps, SpectrumCalendarProps<DateValue> {
   children?: React.ReactNode
   state?: DatePickerState

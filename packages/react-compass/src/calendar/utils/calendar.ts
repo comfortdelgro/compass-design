@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/restrict-plus-operands */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import {
   CalendarDate,
   DateDuration,
@@ -9,6 +12,7 @@ import {
   startOfYear,
   toCalendarDate,
 } from '@internationalized/date'
+import {EventPoint, Rect} from '../types/calendar.types'
 
 export const alignCenter = (
   focusedDate: CalendarDate,
@@ -145,4 +149,35 @@ export function previousAvailableDate(
   if (date.compare(minValue) >= 0) {
     return date
   }
+}
+
+function getPointClientRect(point: EventPoint): Rect {
+  const offsetX = point.width / 2 || point.radiusX || 0
+  const offsetY = point.height / 2 || point.radiusY || 0
+
+  return {
+    top: point.clientY - offsetY,
+    right: point.clientX + offsetX,
+    bottom: point.clientY + offsetY,
+    left: point.clientX - offsetX,
+  }
+}
+
+function areRectanglesOverlapping(a: Rect, b: Rect) {
+  // check if they cannot overlap on x axis
+  if (a.left > b.right || b.left > a.right) {
+    return false
+  }
+  // check if they cannot overlap on y axis
+  if (a.top > b.bottom || b.top > a.bottom) {
+    return false
+  }
+  return true
+}
+
+export function isOverTarget(point: EventPoint, target: Element | null) {
+  if (!target) return
+  const rect = target.getBoundingClientRect()
+  const pointRect = getPointClientRect(point)
+  return areRectanglesOverlapping(rect, pointRect)
 }

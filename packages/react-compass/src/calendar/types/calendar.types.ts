@@ -83,3 +83,19 @@ export interface CalendarProps {
   /** An error message to display when the selected value is invalid. */
   errorMessage?: ReactNode
 }
+
+export interface EventPoint {
+  clientX: number
+  clientY: number
+  width: number
+  height: number
+  radiusX?: number
+  radiusY?: number
+}
+
+export interface Rect {
+  top: number
+  right: number
+  bottom: number
+  left: number
+}

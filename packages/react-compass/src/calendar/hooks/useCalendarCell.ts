@@ -124,9 +124,9 @@ export function useCalendarCell(
 
   const descriptionProps = useDescription(rangeSelectionPrompt)
 
-  // const isAnchorPressed = useRef(false)
-  // const isRangeBoundaryPressed = useRef(false)
-  // const touchDragTimerRef = useRef(null)
+  const isAnchorPressed = useRef(false)
+  const isRangeBoundaryPressed = useRef(false)
+  const touchDragTimerRef = useRef(null)
   const {pressProps, isPressed} = usePress({
     shouldCancelOnPointerExit: 'anchorDate' in state && !!state.anchorDate,
     preventFocusOnPress: true,
