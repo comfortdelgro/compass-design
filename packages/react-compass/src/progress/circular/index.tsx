@@ -11,7 +11,6 @@ interface Props extends StyledComponentProps {
   size?: number
   color?: string
   value?: number
-  valueBuffer?: number
   thickness?: number
   disableShrink?: boolean
   variant?: 'determinate' | 'indeterminate'
