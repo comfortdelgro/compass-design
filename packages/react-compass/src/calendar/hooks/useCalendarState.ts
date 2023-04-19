@@ -5,6 +5,7 @@ import {
   DateFormatter,
   endOfMonth,
   getDayOfWeek,
+  GregorianCalendar,
   isSameDay,
   startOfMonth,
   startOfWeek,
@@ -60,9 +61,10 @@ interface CalendarStateProps extends ValueBase<DateValue> {
   isReadOnly?: boolean
   isDateUnavailable?: (date: DateValue) => boolean
   validationState?: ValidationState
+  onChange?: (date: DateValue) => void
 }
 
-export const useCalendarState2 = (props: CalendarStateProps) => {
+export const useCalendarState = (props: CalendarStateProps) => {
   const {
     locale,
     createCalendar,
@@ -70,10 +72,8 @@ export const useCalendarState2 = (props: CalendarStateProps) => {
     minValue,
     maxValue,
     isDateUnavailable,
+    onChange,
   } = props
-  const onChangeProp = () => {
-    console.log('on change')
-  }
   const onFocusChangeProp = () => {
     console.log('onFocusChange')
   }
@@ -81,7 +81,7 @@ export const useCalendarState2 = (props: CalendarStateProps) => {
   const [value, setControlledValue] = useControlledState(
     props.value,
     props.defaultValue,
-    onChangeProp,
+    onChange,
   )
 
   const defaultFormatter = useMemo(() => new DateFormatter(locale), [locale])
@@ -206,7 +206,10 @@ export const useCalendarState2 = (props: CalendarStateProps) => {
 
       // The display calendar should not have any effect on the emitted value.
       // Emit dates in the same calendar as the original value, if any, otherwise gregorian.
-      newValue = toCalendar(newValue, value?.calendar as Calendar)
+      newValue = toCalendar(
+        newValue,
+        value?.calendar ?? (new GregorianCalendar() as Calendar),
+      )
 
       // Preserve time if the input value had one.
       if (value && 'hour' in value) {

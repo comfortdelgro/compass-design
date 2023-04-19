@@ -219,6 +219,18 @@ export function usePress(props: PressHookProps): PressResult {
       state.ignoreClickAfterPress = true
       state.didFirePressStart = false
 
+      if (onPress && wasPressed && !isDisabled) {
+        onPress({
+          type: 'press',
+          pointerType,
+          target: originalEvent.currentTarget as Element,
+          shiftKey: originalEvent.shiftKey,
+          metaKey: originalEvent.metaKey,
+          ctrlKey: originalEvent.ctrlKey,
+          altKey: originalEvent.altKey,
+        })
+      }
+
       if (onPressEnd) {
         onPressEnd({
           type: 'pressend',
@@ -236,18 +248,6 @@ export function usePress(props: PressHookProps): PressResult {
       }
 
       setPressed(false)
-
-      if (onPress && wasPressed && !isDisabled) {
-        onPress({
-          type: 'press',
-          pointerType,
-          target: originalEvent.currentTarget as Element,
-          shiftKey: originalEvent.shiftKey,
-          metaKey: originalEvent.metaKey,
-          ctrlKey: originalEvent.ctrlKey,
-          altKey: originalEvent.altKey,
-        })
-      }
     }
 
     const triggerPressUp = (
@@ -519,8 +519,9 @@ export function usePress(props: PressHookProps): PressResult {
           state.isPressed &&
           e.button === 0
         ) {
+          triggerPressEnd(createEvent(state.target, e), state.pointerType)
           // if (isOverTarget(e, state.target)) {
-          //   triggerPressEnd(createEvent(state.target, e), state.pointerType)
+          //
           // } else if (state.isOverTarget) {
           //   triggerPressEnd(
           //     createEvent(state.target, e),

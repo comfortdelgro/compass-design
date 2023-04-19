@@ -316,13 +316,13 @@ export function useCalendarCell(
           state.highlightDate(date)
         }
       },
-      onPointerDown(e: PointerEvent) {
-        if (e.target && 'releasePointerCapture' in e.target) {
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-expect-error
-          e.target.releasePointerCapture(e.pointerId)
-        }
-      },
+      // onPointerDown(e: PointerEvent) {
+      //   if (e.target && 'releasePointerCapture' in e.target) {
+      //     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      //     // @ts-expect-error
+      //     e.target.releasePointerCapture(e.pointerId)
+      //   }
+      // },
       onContextMenu(e: MouseEvent) {
         // Prevent context menu on long press.
         e.preventDefault()

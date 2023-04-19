@@ -14,6 +14,7 @@ import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {StyledCalendarCell} from './calendar-cell.style'
 import {useCalendarCell} from './hooks/useCalendarCell'
+// import {useCalendarCell} from '@react-aria/calendar'
 
 interface Props extends StyledComponentProps {
   state: CalendarState | RangeCalendarState
@@ -37,15 +38,11 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
     const {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       cellProps,
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       buttonProps,
       isSelected,
-
       isUnavailable,
       formattedDate,
     } = useCalendarCell({date}, state, cellRef)
-
-    console.log(buttonProps, 'hello2')
 
     let {isDisabled} = useCalendarCell({date}, state, cellRef)
 
