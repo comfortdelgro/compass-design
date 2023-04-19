@@ -53,6 +53,7 @@ export const StyledLinearProgressRoot = styled('div', {
   position: 'relative',
   overflow: 'hidden',
   display: 'block',
+  width: '100%',
   height: '$$size',
   zIndex: 0, // Fix Safari's bug during composition of different paint.
   '@media print': {
