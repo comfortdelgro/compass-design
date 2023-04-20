@@ -9,7 +9,7 @@ interface Props extends StyledComponentProps {
   absolute?: boolean
   children?: React.ReactNode
   component?: keyof JSX.IntrinsicElements
-  textAlign?: 'center' | 'right' | 'left'
+  textAlign?: 'center' | 'right' | 'left' | 'top' | 'bottom'
   orientation?: 'vertical' | 'horizontal'
   variant?: 'fullWidth' | 'inset' | 'middle'
 }

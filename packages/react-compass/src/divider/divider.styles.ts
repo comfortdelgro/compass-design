@@ -61,6 +61,8 @@ export const StyledDividerRootConfig = {
       center: {},
       left: {},
       right: {},
+      top: {},
+      bottom: {},
     },
   },
   compoundVariants: [
@@ -116,6 +118,30 @@ export const StyledDividerRootConfig = {
         },
         '&::after': {
           width: '90%',
+        },
+      },
+    },
+    {
+      textAlign: 'top',
+      orientation: 'vertical',
+      css: {
+        '&::before': {
+          height: '10%',
+        },
+        '&::after': {
+          height: '90%',
+        },
+      },
+    },
+    {
+      textAlign: 'bottom',
+      orientation: 'vertical',
+      css: {
+        '&::before': {
+          height: '90%',
+        },
+        '&::after': {
+          height: '10%',
         },
       },
     },

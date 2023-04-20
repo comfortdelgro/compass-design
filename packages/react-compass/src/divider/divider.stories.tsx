@@ -20,7 +20,7 @@ export const Default: React.FC = () => (
     </Divider>
     <h3>Orientation vertically</h3>
     <div style={{height: 200}}>
-      <Divider textAlign='left' orientation='vertical'>
+      <Divider textAlign='center' orientation='vertical'>
         <span>Center</span>
       </Divider>
     </div>
