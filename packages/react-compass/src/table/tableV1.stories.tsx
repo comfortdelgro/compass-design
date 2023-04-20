@@ -5,20 +5,66 @@ import {faFile, faFileAlt} from '@fortawesome/free-regular-svg-icons'
 import {
   faBlackboard,
   faDashboard,
+  faEllipsis,
   faFileLines,
   faTrashAlt,
 } from '@fortawesome/free-solid-svg-icons'
-import React, {useState} from 'react'
+import React, {useRef, useState} from 'react'
 import Badge from '../badge/badge'
 import Button from '../button/button'
+import Card from '../card'
 import {Icon} from '../icon'
 import Pagination from '../pagination/pagination'
 import Popover from '../popover'
 import SearchField from '../searchfield/searchfield'
 import {theme} from '../theme'
 import {useAsyncList} from '../utils'
-import {useDOMRef} from '../utils/use-dom-ref'
 import Table from './table'
+
+const PopoverComponent = () => {
+  const [isOpen, setIsOpen] = useState(false)
+
+  const domRef = useRef<HTMLDivElement>(null)
+  return (
+    <div ref={domRef}>
+      <Popover
+        isOpen={isOpen}
+        anchor={
+          <button
+            style={{
+              appearance: 'none',
+              border: 'none',
+              backgroundColor: 'transparent',
+              margin: '0px',
+              padding: '0px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              cursor: 'pointer',
+            }}
+            onClick={(e) => {
+              e.stopPropagation()
+              setIsOpen(true)
+            }}
+          >
+            <Icon icon={faEllipsis} />
+          </button>
+        }
+        attachToElement={domRef.current && domRef.current.parentElement}
+        onClose={() => {
+          setIsOpen(false)
+        }}
+        direction='bottom-right'
+      >
+        <Card>
+          <Card.Body>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit sed
+          </Card.Body>
+        </Card>
+      </Popover>
+    </div>
+  )
+}
 
 export const FullFeatured: React.FC = () => {
   const columns = [
@@ -87,11 +133,6 @@ export const FullFeatured: React.FC = () => {
   }
 
   const [page, setPage] = useState(1)
-  const [isOpen1, setIsOpen1] = useState(false)
-  const openPopover1 = () => {
-    setIsOpen1(true)
-  }
-  const ref = useDOMRef<HTMLDivElement>(null)
 
   const renderCell = (item: (typeof data)[number], key: React.Key) => {
     const text = item[key as keyof typeof item]
@@ -120,52 +161,7 @@ export const FullFeatured: React.FC = () => {
       case 'status':
         return <Badge variant='secondary' label={`${text}`} />
       case 'actions':
-        return (
-          <div
-            ref={ref}
-            className='popover-sample'
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: '0.5rem',
-            }}
-          >
-            <button onClick={() => console.log('Normal button clicked')}>
-              Button
-            </button>
-            <Popover
-              isOpen={isOpen1}
-              anchor={
-                <button
-                  style={{
-                    appearance: 'none',
-                    border: 'none',
-                    backgroundColor: 'transparent',
-                    margin: '0px',
-                    padding: '0px',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    cursor: 'pointer',
-                  }}
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    openPopover1()
-                  }}
-                >
-                  Popover
-                </button>
-              }
-              attachToElement={ref.current && ref.current.parentElement}
-              onClose={() => {
-                setIsOpen1(false)
-              }}
-            >
-              <SamplePopover />
-            </Popover>
-          </div>
-        )
+        return <PopoverComponent />
       case 'fileType':
         if (text === 'docs') {
           return (
