@@ -16,7 +16,7 @@ export const Variants: React.FC = () => {
           toFixed: 2,
         }}
       />
-      <h3>Un Controlled</h3>
+      <h3>Uncontrolled</h3>
       <QuantityToggle
         label='Potato price'
         isRequired

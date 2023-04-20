@@ -3,10 +3,7 @@ import {
   faBell,
   faChevronDown,
   faClose,
-  faDownload,
   faExclamationTriangle,
-  faHamburger,
-  faHeadset,
   faMapMarkerAlt,
   faUserEdit,
 } from '@fortawesome/free-solid-svg-icons'
@@ -15,11 +12,11 @@ import {Icon} from '../icon'
 import {Column, Row} from '../utils/components'
 import Button from './index'
 
-export const Variants: React.FC = () => (
+export const Variations: React.FC = () => (
   <Column>
-    <h3>Basic</h3>
+    <h3>1. Variants</h3>
     <Row>
-      <Button type='submit' variant='primary'>
+      <Button variant='primary' onPress={() => console.log('pressed')}>
         Primary
       </Button>
       <Button variant='secondary'>Secondary</Button>
@@ -27,10 +24,28 @@ export const Variants: React.FC = () => (
       <Button variant='ghost'>Ghost</Button>
       <Button isDisabled>Disabled</Button>
     </Row>
-
-    <h3>With ripple effect when being clicked</h3>
+    <h3>2. Sizes</h3>
     <Row>
-      <Button ripple type='submit' variant='primary'>
+      <Button size='lg'>Large</Button>
+      <Button size='md'>Medium (Default)</Button>
+      <Button size='sm'>Small</Button>
+
+      <div style={{width: '300px', flexShrink: 0}}>
+        <Button size='md' fullWidth>
+          Medium (Block)
+        </Button>
+      </div>
+    </Row>
+
+    <h3>3. Ripple effect when being clicked</h3>
+    <Row>
+      <Button
+        ripple
+        type='submit'
+        variant='primary'
+        onClick={() => console.log('clicked')}
+        onPress={() => console.log('pressed')}
+      >
         Primary
       </Button>
       <Button ripple variant='secondary'>
@@ -44,7 +59,7 @@ export const Variants: React.FC = () => (
       </Button>
     </Row>
 
-    <h3>With Left Icons</h3>
+    <h3>4. Left Icons</h3>
 
     <Row>
       <Button variant='primary' leftIcon={<Icon icon={faChevronDown} />}>
@@ -64,7 +79,7 @@ export const Variants: React.FC = () => (
       </Button>
     </Row>
 
-    <h3>With Right Icons</h3>
+    <h3>5. Right Icons</h3>
     <Row>
       <Button variant='primary' rightIcon={<Icon icon={faChevronDown} />}>
         Primary
@@ -83,7 +98,7 @@ export const Variants: React.FC = () => (
       </Button>
     </Row>
 
-    <h3>With both Left & Right Icons</h3>
+    <h3>6. both Left & Right Icons</h3>
     <Row>
       <Button
         variant='primary'
@@ -122,7 +137,7 @@ export const Variants: React.FC = () => (
       </Button>
     </Row>
 
-    <h3>With only Icons</h3>
+    <h3>7. With only Icons</h3>
     <Row>
       <Button variant='primary'>
         <Icon icon={faBars} />
@@ -141,7 +156,7 @@ export const Variants: React.FC = () => (
       </Button>
     </Row>
 
-    <h3>Loading</h3>
+    <h3>8. Loading</h3>
     <Row>
       <Button loading variant='primary'>
         Primary
@@ -158,45 +173,6 @@ export const Variants: React.FC = () => (
       <Button loading isDisabled>
         Disabled
       </Button>
-    </Row>
-  </Column>
-)
-
-export const Sizes = () => (
-  <Column>
-    <Row>
-      <Button size='lg'>Large</Button>
-      <Button size='md'>Medium (Default)</Button>
-      <Button size='sm'>Small</Button>
-
-      <div style={{width: '300px', flexShrink: 0}}>
-        <Button size='md' fullWidth>
-          Medium (Block)
-        </Button>
-      </div>
-    </Row>
-
-    <h3>With Icons</h3>
-    <Row>
-      <Button size='lg' leftIcon={<Icon icon={faHamburger} />}>
-        Big Mac
-      </Button>
-      <Button size='md' rightIcon={<Icon icon={faDownload} />}>
-        Download
-      </Button>
-      <Button size='sm' rightIcon={<Icon icon={faChevronDown} />}>
-        Dropdown
-      </Button>
-      <div style={{width: '300px', flexShrink: 0}}>
-        <Button
-          size='md'
-          fullWidth
-          leftIcon={<Icon icon={faHeadset} />}
-          rightIcon={<Icon icon={faChevronDown} />}
-        >
-          Contact Support
-        </Button>
-      </div>
     </Row>
   </Column>
 )

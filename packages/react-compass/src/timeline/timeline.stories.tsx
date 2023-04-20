@@ -1,4 +1,5 @@
 import {faCalendarDay} from '@fortawesome/free-solid-svg-icons'
+import React from 'react'
 import {Icon} from '../icon'
 import {Column} from '../utils/components'
 import Timeline from './index'

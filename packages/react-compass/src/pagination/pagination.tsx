@@ -3,9 +3,7 @@ import {
   faAngleRight,
   faAnglesLeft,
   faAnglesRight,
-  faEllipsis,
 } from '@fortawesome/free-solid-svg-icons'
-import {useHover} from '@react-aria/interactions'
 import React, {useCallback, useMemo} from 'react'
 import {Icon} from '../icon'
 import type {StyledComponentProps} from '../utils/stitches.types'
@@ -31,14 +29,13 @@ export type PaginationProps = Props &
 const Ellipsis: React.FC<
   React.ComponentPropsWithoutRef<typeof StyledPagination> & {isBefore: boolean}
 > = ({isBefore, ...props}) => {
-  const {hoverProps, isHovered} = useHover({})
   const icon = useMemo(
-    () => (isHovered ? (isBefore ? faAnglesLeft : faAnglesRight) : faEllipsis),
-    [isBefore, isHovered],
+    () => (isBefore ? faAnglesLeft : faAnglesRight),
+    [isBefore],
   )
 
   return (
-    <StyledPaginationItem {...hoverProps} {...props}>
+    <StyledPaginationItem {...props}>
       <Icon icon={icon} />
     </StyledPaginationItem>
   )

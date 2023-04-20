@@ -1,3 +1,4 @@
+import React from 'react'
 import {Column, Row} from '../utils/components'
 import Spinner from './index'
 

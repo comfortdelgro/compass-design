@@ -80,7 +80,13 @@ export type {
   DialogTriggerProps,
 } from './dialog'
 export {default as Dropdown} from './dropdown'
-export type {DropdownProps} from './dropdown'
+export type {
+  DropdownComboBoxProps,
+  DropdownFlagProps,
+  DropdownItemProps,
+  DropdownProps,
+  DropdownSelectProps,
+} from './dropdown'
 export {default as Error} from './error'
 export type {
   ErrorActionProps,

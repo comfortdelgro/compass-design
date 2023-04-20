@@ -1,36 +1,18 @@
-import {useState} from 'react'
-import {Column, Row} from '../utils/components'
-import Slider from './index'
+import React from 'react'
+import Slider from './slider'
 
 export const Sliders: React.FC = () => {
-  const [value, setValue] = useState<number>(20)
   return (
-    <Column>
-      <h1>Slider</h1>
-      <Row>
-        <div style={{width: '100%', marginBottom: '2rem'}}>
-          <h3>Uncontrolled slider</h3>
-          <Slider />
-        </div>
-      </Row>
-      <Row>
-        <div style={{width: '100%', marginBottom: '2rem'}}>
-          <h3>Controlled slider</h3>
-          <Slider value={value} onChange={(val) => setValue(val)} />
-        </div>
-      </Row>
-      <Row>
-        <div style={{width: '100%', marginBottom: '2rem'}}>
-          <h3>Disabled slider</h3>
-          <Slider isDisabled />
-        </div>
-      </Row>
-      <Row>
-        <div style={{width: '100%', marginBottom: '2rem'}}>
-          <h3>Tooltip disabled</h3>
-          <Slider tooltip={false} />
-        </div>
-      </Row>
-    </Column>
+    <div style={{width: `250px`}}>
+      <div></div>
+      <Slider
+        step={1}
+        defaultValue={250}
+        minValue={0}
+        maxValue={250}
+        onChange={(val) => console.log(val)}
+        onChangeEnd={(val) => console.log('onChangeEnd', val)}
+      ></Slider>
+    </div>
   )
 }
