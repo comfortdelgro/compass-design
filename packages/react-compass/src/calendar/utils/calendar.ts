@@ -175,9 +175,9 @@ function areRectanglesOverlapping(a: Rect, b: Rect) {
   return true
 }
 
-export function isOverTarget(point: EventPoint, target: Element | null) {
+export function isOverTarget(point: EventPoint | MouseEvent, target: Element | null) {
   if (!target) return
   const rect = target.getBoundingClientRect()
-  const pointRect = getPointClientRect(point)
+  const pointRect = getPointClientRect(point as EventPoint)
   return areRectanglesOverlapping(rect, pointRect)
 }
