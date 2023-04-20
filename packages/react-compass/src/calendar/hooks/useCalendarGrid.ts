@@ -1,7 +1,7 @@
 import {CalendarDate} from '@internationalized/date'
 import {useLocale} from '@react-aria/i18n'
 import {CalendarState, RangeCalendarState} from '../types'
-import {hookData} from '../utils/common'
+import {hookData} from '../utils'
 import {useLabels} from './useLabels'
 import {useVisibleRangeDescription} from './useVisibleRangeDescription'
 

@@ -1,6 +1,6 @@
 import {useContext} from 'react'
 import {PressResponderContext} from '../contexts/PressResponderContext'
-import {PressHookProps} from '../types/press.types'
+import {PressHookProps} from '../types'
 import {useSyncRef} from './useSyncRef'
 
 export function usePressResponderContext(

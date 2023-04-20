@@ -5,9 +5,67 @@ import {
 } from '@internationalized/date'
 import {AriaRole, CSSProperties, ReactNode} from 'react'
 
+export type ValidationState = 'valid' | 'invalid'
+
 export type DateValue = CalendarDate | CalendarDateTime | ZonedDateTime
 
-export type ValidationState = 'valid' | 'invalid'
+export interface RangeValue<T> {
+  start: T
+  end: T
+}
+
+interface CalendarStateBase {
+  readonly isDisabled: boolean
+  readonly isReadOnly: boolean
+  readonly visibleRange: RangeValue<CalendarDate>
+  readonly minValue?: DateValue
+  readonly maxValue?: DateValue
+  readonly timeZone: string
+  readonly validationState: ValidationState
+  readonly focusedDate: CalendarDate
+  setFocusedDate(value: CalendarDate): void
+  focusNextDay(): void
+  focusPreviousDay(): void
+  focusNextRow(): void
+  focusPreviousRow(): void
+  focusNextPage(): void
+  focusPreviousPage(): void
+  focusSectionStart(): void
+  focusSectionEnd(): void
+  focusNextSection(larger?: boolean): void
+  focusPreviousSection(larger?: boolean): void
+  selectFocusedDate(): void
+  selectDate(date: CalendarDate): void
+  readonly isFocused: boolean
+  setFocused(value: boolean): void
+  isInvalid(date: CalendarDate): boolean
+  isSelected(date: CalendarDate): boolean
+  isCellFocused(date: CalendarDate): boolean
+  isCellDisabled(date: CalendarDate): boolean
+  isCellUnavailable(date: CalendarDate): boolean
+  isPreviousVisibleRangeInvalid(): boolean
+  isNextVisibleRangeInvalid(): boolean
+  getDatesInWeek(
+    weekIndex: number,
+    startDate?: CalendarDate,
+  ): Array<CalendarDate | null>
+}
+
+export interface CalendarState extends CalendarStateBase {
+  readonly value: CalendarDate
+  setValue(value: CalendarDate): void
+}
+
+export interface RangeCalendarState extends CalendarStateBase {
+  readonly value: RangeValue<DateValue>
+  setValue(value: RangeValue<DateValue>): void
+  highlightDate(date: CalendarDate): void
+  readonly anchorDate: CalendarDate | null
+  setAnchorDate(date: CalendarDate | null): void
+  readonly highlightedRange: RangeValue<CalendarDate>
+  readonly isDragging: boolean
+  setDragging(isDragging: boolean): void
+}
 
 export interface AriaCalendarCellProps {
   date: CalendarDate
@@ -51,51 +109,15 @@ export interface CalendarCellAria {
 }
 
 export interface CalendarProps {
-  /** The minimum allowed date that a user may select. */
   minValue?: DateValue
-  /** The maximum allowed date that a user may select. */
   maxValue?: DateValue
-  /** Callback that is called for each date of the calendar. If it returns true, then the date is unavailable. */
   isDateUnavailable?: (date: DateValue) => boolean
-  /**
-   * Whether the calendar is disabled.
-   * @default false
-   */
   isDisabled?: boolean
-  /**
-   * Whether the calendar value is immutable.
-   * @default false
-   */
   isReadOnly?: boolean
-  /**
-   * Whether to automatically focus the calendar when it mounts.
-   * @default false
-   */
   autoFocus?: boolean
-  /** Controls the currently focused date within the calendar. */
   focusedValue?: DateValue
-  /** The date that is focused when the calendar first mounts (uncountrolled). */
   defaultFocusedValue?: DateValue
-  /** Handler that is called when the focused date changes. */
   onFocusChange?: (date: CalendarDate) => void
-  /** Whether the current selection is valid or invalid according to application logic. */
   validationState?: ValidationState
-  /** An error message to display when the selected value is invalid. */
   errorMessage?: ReactNode
-}
-
-export interface EventPoint {
-  clientX: number
-  clientY: number
-  width: number
-  height: number
-  radiusX?: number
-  radiusY?: number
-}
-
-export interface Rect {
-  top: number
-  right: number
-  bottom: number
-  left: number
 }

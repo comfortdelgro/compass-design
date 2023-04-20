@@ -1,8 +1,7 @@
 import {RefObject} from 'react'
-import { DOMAttributes } from './calendar.types'
+import {DOMAttributes} from './calendar.types'
 
 export interface PressHookProps extends PressProps {
-  /** A ref to the target element. */
   ref?: RefObject<Element>
 }
 

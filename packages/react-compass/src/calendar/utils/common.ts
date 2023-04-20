@@ -1,5 +1,4 @@
-import {CalendarState, HookData, RangeCalendarState} from '../types'
-import {DateValue} from '../types/calendar.types'
+import {CalendarState, DateValue, HookData, RangeCalendarState} from '../types'
 
 export const hookData = new WeakMap<
   CalendarState | RangeCalendarState,

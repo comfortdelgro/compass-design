@@ -1,5 +1,5 @@
 import {createContext, useContext, useRef} from 'react'
-import {SSRContextValue} from '../types/ssr'
+import {SSRContextValue} from '../types'
 
 const defaultContext: SSRContextValue = {
   prefix: String(Math.round(Math.random() * 10000000000)),

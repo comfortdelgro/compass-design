@@ -5,13 +5,21 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import {useEffect, useMemo, useRef, useState} from 'react'
-import {DOMAttributes} from '../types/calendar.types'
-import {PointerType, PressHookProps, PressResult} from '../types/press.types'
-import {FocusableElement} from '../types/scroll.types'
-import {isOverTarget} from '../utils/calendar'
-import {isVirtualPointerEvent} from '../utils/event'
-import {focusWithoutScrolling, isVirtualClick} from '../utils/focus'
-import {disableTextSelection, restoreTextSelection} from '../utils/text'
+import {
+  DOMAttributes,
+  FocusableElement,
+  PointerType,
+  PressHookProps,
+  PressResult,
+} from '../types'
+import {
+  disableTextSelection,
+  focusWithoutScrolling,
+  isOverTarget,
+  isVirtualClick,
+  isVirtualPointerEvent,
+  restoreTextSelection,
+} from '../utils'
 import {useGlobalListeners} from './useGlobalListeners'
 import {usePressResponderContext} from './usePressResponderContext'
 

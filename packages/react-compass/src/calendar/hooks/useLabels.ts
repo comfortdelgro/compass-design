@@ -1,15 +1,5 @@
+import {AriaLabelingProps, DOMProps} from '../types'
 import {useId} from './useId'
-
-export interface DOMProps {
-  id?: string
-}
-
-export interface AriaLabelingProps {
-  'aria-label'?: string | undefined
-  'aria-labelledby'?: string | undefined
-  'aria-describedby'?: string | undefined
-  'aria-details'?: string
-}
 
 export function useLabels(
   props: DOMProps & AriaLabelingProps,

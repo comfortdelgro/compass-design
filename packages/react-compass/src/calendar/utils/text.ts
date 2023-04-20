@@ -1,4 +1,4 @@
-import {FocusableElement} from '../types/scroll.types'
+import {FocusableElement} from '../types'
 import {isIOS} from './platform'
 
 type State = 'default' | 'disabled' | 'restoring'

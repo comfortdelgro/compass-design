@@ -2,11 +2,15 @@
 /* eslint-disable @typescript-eslint/dot-notation */
 import {useRef} from 'react'
 import {CalendarProps} from '../calendar'
-import {CalendarState, RangeCalendarState} from '../types'
-import {CalendarCellAria} from '../types/calendar.types'
-import {hookData} from '../utils/common'
-import {filterDOMProps} from '../utils/dom'
-import {AriaLabelingProps, DOMProps, useLabels} from './useLabels'
+import {
+  AriaLabelingProps,
+  CalendarCellAria,
+  CalendarState,
+  DOMProps,
+  RangeCalendarState,
+} from '../types'
+import {filterDOMProps, hookData} from '../utils'
+import {useLabels} from './useLabels'
 import {useVisibleRangeDescription} from './useVisibleRangeDescription'
 
 export function useCalendar(
@@ -26,7 +30,9 @@ export function useCalendar(
 
   // Pass the label to the child grid elements.
   hookData.set(state, {
+    // @ts-ignore
     ariaLabel: props['aria-label'],
+    // @ts-ignore
     ariaLabelledBy: props['aria-labelledby'],
     errorMessageId: '',
     selectedDateDescription: '',
@@ -34,6 +40,7 @@ export function useCalendar(
 
   // If the next or previous buttons become disabled while they are focused, move focus to the calendar body.
   const nextFocused = useRef(false)
+  // @ts-ignore
   const nextDisabled = props.isDisabled || state.isNextVisibleRangeInvalid()
   if (nextDisabled && nextFocused.current) {
     nextFocused.current = false
@@ -42,6 +49,7 @@ export function useCalendar(
 
   const previousFocused = useRef(false)
   const previousDisabled =
+    // @ts-ignore
     props.isDisabled || state.isPreviousVisibleRangeInvalid()
   if (previousDisabled && previousFocused.current) {
     previousFocused.current = false

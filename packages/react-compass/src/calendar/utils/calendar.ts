@@ -12,7 +12,7 @@ import {
   startOfYear,
   toCalendarDate,
 } from '@internationalized/date'
-import {EventPoint, Rect} from '../types/calendar.types'
+import {EventPoint, Rect} from '../types/common.types'
 
 export const alignCenter = (
   focusedDate: CalendarDate,
@@ -175,7 +175,10 @@ function areRectanglesOverlapping(a: Rect, b: Rect) {
   return true
 }
 
-export function isOverTarget(point: EventPoint | MouseEvent, target: Element | null) {
+export function isOverTarget(
+  point: EventPoint | MouseEvent,
+  target: Element | null,
+) {
   if (!target) return
   const rect = target.getBoundingClientRect()
   const pointRect = getPointClientRect(point as EventPoint)

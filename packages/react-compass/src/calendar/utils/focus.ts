@@ -1,4 +1,4 @@
-import {FocusableElement, ScrollableElement} from '../types/scroll.types'
+import {FocusableElement, ScrollableElement} from '../types'
 import {isAndroid} from './platform'
 
 let supportsPreventScrollCached: boolean | null = null

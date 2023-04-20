@@ -1,5 +1,5 @@
 import {useLayoutEffect, useState} from 'react'
-import {AriaLabelingProps} from './useLabels'
+import {AriaLabelingProps} from '../types'
 
 let descriptionId = 0
 const descriptionNodes = new Map<string, {refCount: number; element: Element}>()
