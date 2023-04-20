@@ -202,6 +202,8 @@ export type {
   SidenavItemProps,
   SidenavProps,
 } from './sidenav'
+export {default as Skeleton} from './skeleton'
+export type {SkeletonProps} from './skeleton'
 export {default as Spinner} from './spinner'
 export type {SpinnerProps} from './spinner'
 export {default as SubHeader} from './sub-header'
