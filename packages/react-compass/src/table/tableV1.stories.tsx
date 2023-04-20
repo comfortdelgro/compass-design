@@ -4,9 +4,7 @@
 import {faFile, faFileAlt} from '@fortawesome/free-regular-svg-icons'
 import {
   faBlackboard,
-  faCaretDown,
   faDashboard,
-  faEllipsis,
   faFileLines,
   faTrashAlt,
 } from '@fortawesome/free-solid-svg-icons'
@@ -15,9 +13,11 @@ import Badge from '../badge/badge'
 import Button from '../button/button'
 import {Icon} from '../icon'
 import Pagination from '../pagination/pagination'
+import Popover from '../popover'
 import SearchField from '../searchfield/searchfield'
 import {theme} from '../theme'
 import {useAsyncList} from '../utils'
+import {useDOMRef} from '../utils/use-dom-ref'
 import Table from './table'
 
 export const FullFeatured: React.FC = () => {
@@ -68,7 +68,30 @@ export const FullFeatured: React.FC = () => {
     },
   ]
 
+  const SamplePopover = () => {
+    return (
+      <div
+        className='popover-content'
+        style={{
+          padding: '10px',
+          background: '#ffffff',
+          boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
+          borderRadius: '5px',
+          width: '300px',
+          height: '200px',
+        }}
+      >
+        My popover
+      </div>
+    )
+  }
+
   const [page, setPage] = useState(1)
+  const [isOpen1, setIsOpen1] = useState(false)
+  const openPopover1 = () => {
+    setIsOpen1(true)
+  }
+  const ref = useDOMRef<HTMLDivElement>(null)
 
   const renderCell = (item: (typeof data)[number], key: React.Key) => {
     const text = item[key as keyof typeof item]
@@ -99,6 +122,8 @@ export const FullFeatured: React.FC = () => {
       case 'actions':
         return (
           <div
+            ref={ref}
+            className='popover-sample'
             style={{
               display: 'flex',
               flexDirection: 'row',
@@ -106,15 +131,39 @@ export const FullFeatured: React.FC = () => {
               gap: '0.5rem',
             }}
           >
-            <Button variant='ghost' size='sm'>
-              <Icon icon={faEllipsis} />
-            </Button>
-            <Button variant='ghost' size='sm'>
-              <Icon icon={faCaretDown} />
-            </Button>
-            <Button size='sm' onPress={() => console.log('Button clicked')}>
-              Action
-            </Button>
+            <button onClick={() => console.log('Normal button clicked')}>
+              Button
+            </button>
+            <Popover
+              isOpen={isOpen1}
+              anchor={
+                <button
+                  style={{
+                    appearance: 'none',
+                    border: 'none',
+                    backgroundColor: 'transparent',
+                    margin: '0px',
+                    padding: '0px',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    cursor: 'pointer',
+                  }}
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    openPopover1()
+                  }}
+                >
+                  Popover
+                </button>
+              }
+              attachToElement={ref.current && ref.current.parentElement}
+              onClose={() => {
+                setIsOpen1(false)
+              }}
+            >
+              <SamplePopover />
+            </Popover>
           </div>
         )
       case 'fileType':
