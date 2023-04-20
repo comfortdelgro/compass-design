@@ -1,71 +1,138 @@
 import {styled} from '../theme'
 
-export const StyledDividerHr = styled('hr', {
-  margin: 0,
-  border: 'none',
-  backgroundColor: '#0000001f',
+export const StyledDividerRootConfig = {
+  margin: 0, // Reset browser default style.
+  width: '100%',
+  flexShrink: 0,
+  borderWidth: 0,
+  borderStyle: 'solid',
+  borderColor: '$$color',
+  borderBottomWidth: 'thin',
   variants: {
+    absolute: {
+      true: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        width: '100%',
+      },
+      false: {},
+    },
+    flexItem: {
+      true: {
+        alignSelf: 'stretch',
+        height: 'auto',
+      },
+      false: {},
+    },
+    hasChildren: {
+      true: {
+        display: 'flex',
+        whiteSpace: 'nowrap',
+        textAlign: 'center',
+        border: 0,
+        '&::before, &::after': {
+          position: 'relative',
+          width: '100%',
+          borderTop: 'thin solid $$color',
+          top: '50%',
+          content: '""',
+          transform: 'translateY(50%)',
+        },
+      },
+      false: {},
+    },
+    variant: {
+      inset: {
+        marginLeft: 72,
+      },
+      middle: {},
+      fullWidth: {},
+    },
     orientation: {
       vertical: {
-        width: '1px',
         height: '100%',
+        borderBottomWidth: 0,
+        borderRightWidth: 'thin',
       },
-      horizontal: {
-        width: '100%',
-        height: '1px',
-      },
+      horizontal: {},
+    },
+    textAlign: {
+      center: {},
+      left: {},
+      right: {},
     },
   },
-})
-
-export const StyledDivider = styled('div', {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  variants: {
-    orientation: {
-      vertical: {
+  compoundVariants: [
+    {
+      variant: 'middle',
+      orientation: 'horizontal',
+      css: {
+        marginLeft: '1rem',
+        marginRight: '1rem',
+      },
+    },
+    {
+      variant: 'middle',
+      orientation: 'vertical',
+      css: {
+        marginTop: '1rem',
+        marginBottom: '1rem',
+      },
+    },
+    {
+      hasChildren: true,
+      orientation: 'vertical',
+      css: {
         flexDirection: 'column',
-        height: '100%',
-        width: 'fit-content',
-      },
-      horizontal: {
-        flexDirection: 'row',
-        width: '100%',
+        '&::before, &::after': {
+          height: '100%',
+          top: '0%',
+          left: '50%',
+          borderTop: 0,
+          borderLeft: 'thin solid $$color',
+          transform: 'translateX(0%)',
+        },
       },
     },
-  },
-})
+    {
+      textAlign: 'right',
+      orientation: 'horizontal',
+      css: {
+        '&::before': {
+          width: '90%',
+        },
+        '&::after': {
+          width: '10%',
+        },
+      },
+    },
+    {
+      textAlign: 'left',
+      orientation: 'horizontal',
+      css: {
+        '&::before': {
+          width: '10%',
+        },
+        '&::after': {
+          width: '90%',
+        },
+      },
+    },
+  ],
+}
 
-export const StyledDividerLine = styled('div', {
-  backgroundColor: '#0000001f',
-  flexShrink: 1,
+export const DividerWrapper = styled('span', {
+  display: 'inline-block',
+  paddingLeft: '0.6rem',
+  paddingRight: '0.6rem',
   variants: {
     orientation: {
       vertical: {
-        height: '50%',
-        width: '1px',
+        paddingTop: '0.6rem',
+        paddingBottom: '0.6rem',
       },
-      horizontal: {
-        height: '1px',
-        width: '50%',
-      },
-    },
-  },
-})
-
-export const StyledDividerContent = styled('div', {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  variants: {
-    orientation: {
-      vertical: {
-        margin: '10px 0',
-      },
-      horizontal: {
-        margin: '0 10px',
-      },
+      horizontal: {},
     },
   },
 })

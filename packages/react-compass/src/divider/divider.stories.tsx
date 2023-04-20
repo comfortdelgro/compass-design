@@ -7,20 +7,20 @@ export const Default: React.FC = () => (
     <h3>Default divider</h3>
     <Divider />
     <h3>Text left divider</h3>
-    <Divider align='left'>
+    <Divider textAlign='left'>
       <span>Left</span>
     </Divider>
     <h3>Text center divider</h3>
-    <Divider align='center'>
+    <Divider textAlign='center'>
       <span>Center</span>
     </Divider>
     <h3>Text right divider</h3>
-    <Divider align='right'>
+    <Divider textAlign='right'>
       <span>Right</span>
     </Divider>
     <h3>Orientation vertically</h3>
     <div style={{height: 200}}>
-      <Divider align='center' orientation='vertical'>
+      <Divider textAlign='left' orientation='vertical'>
         <span>Center</span>
       </Divider>
     </div>
