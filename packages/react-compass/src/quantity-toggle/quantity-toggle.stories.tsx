@@ -12,8 +12,12 @@ export const Variants: React.FC = () => {
         placeholder='Price'
         onChange={(v) => console.log(v)}
         formatOptions={{
-          prefix: '$',
-          toFixed: 2,
+          locale: 'en-US',
+          options: {
+            style: 'currency',
+            currency: 'USD',
+            maximumFractionDigits: 2,
+          },
         }}
       />
       <h3>Un Controlled</h3>
@@ -24,8 +28,12 @@ export const Variants: React.FC = () => {
         value={value}
         onChange={(e) => setValue(e)}
         formatOptions={{
-          prefix: '$',
-          // toFixed: 2,
+          locale: 'en-US',
+          options: {
+            signDisplay: 'exceptZero',
+            minimumFractionDigits: 1,
+            maximumFractionDigits: 2,
+          },
         }}
       />
       <h3>Disabled</h3>

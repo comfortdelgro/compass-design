@@ -22,6 +22,17 @@ export const StyledQuantityToggle = styled('div', {
     'input::placeholder': {
       color: '$gray40',
     },
+    'input::-webkit-outer-spin-button': {
+      '-webkit-appearance': 'none',
+      margin: 0,
+    },
+    'input::-webkit-inner-spin-button': {
+      '-webkit-appearance': 'none',
+      margin: 0,
+    },
+    "input[type='number']": {
+      '-moz-appearance': 'textfield',
+    },
     button: {
       color: '#323130',
       aspectRatio: '1',
