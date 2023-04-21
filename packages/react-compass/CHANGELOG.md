@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 0.33.6
+
+### Patch Changes
+
+- a40d5092: Fix popover cannot close on table v1
+
 ## 0.33.5
 
 ### Patch Changes
