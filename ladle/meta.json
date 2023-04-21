@@ -795,6 +795,16 @@
       "filePath": "src/subBanner/subBanner.stories.tsx",
       "meta": {}
     },
+    "table-v1--full-featured": {
+      "name": "Full featured",
+      "levels": [
+        "Table v1"
+      ],
+      "locStart": 69,
+      "locEnd": 290,
+      "filePath": "src/table/tableV1.stories.tsx",
+      "meta": {}
+    },
     "table-v2--react-table-story": {
       "name": "React table story",
       "levels": [
