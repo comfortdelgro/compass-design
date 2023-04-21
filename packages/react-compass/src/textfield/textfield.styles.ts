@@ -124,6 +124,11 @@ export const StyledTextField = styled('input', {
   '&:disabled': {
     cursor: 'not-allowed',
   },
+  '&::placeholder': {
+    color: '#B4B4B4',
+    fontSize: '$label1',
+    fontWeight: '$semibold',
+  },
 })
 
 export const StyledTextFieldHelperText = styled('div', {
