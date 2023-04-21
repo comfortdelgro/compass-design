@@ -114,24 +114,6 @@ export const FullFeatured: React.FC = () => {
     },
   ]
 
-  const SamplePopover = () => {
-    return (
-      <div
-        className='popover-content'
-        style={{
-          padding: '10px',
-          background: '#ffffff',
-          boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
-          borderRadius: '5px',
-          width: '300px',
-          height: '200px',
-        }}
-      >
-        My popover
-      </div>
-    )
-  }
-
   const [page, setPage] = useState(1)
 
   const renderCell = (item: (typeof data)[number], key: React.Key) => {
