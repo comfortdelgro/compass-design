@@ -3,15 +3,15 @@ import FaceMeh from '@comfortdelgro/compass-icons/react/face-meh'
 import FaceSadTear from '@comfortdelgro/compass-icons/react/face-sad-tear'
 import FaceSmile from '@comfortdelgro/compass-icons/react/face-smile'
 import FaceSmileHeart from '@comfortdelgro/compass-icons/react/face-smile-heart'
-import React, {useState} from 'react'
+import React,{ useState } from 'react'
 import Button from '../button'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {StyledRatingComponent} from './rating.styles'
+import { StyledComponentProps } from '../utils/stitches.types'
+import { StyledRatingComponent } from './rating.styles'
 export interface RatingProps extends StyledComponentProps {
   useIcons?: boolean
   onChange?: (point: number | null) => void
 }
-const RatingComponent = React.forwardRef<HTMLDivElement, RatingProps>(
+const Rating = React.forwardRef<HTMLDivElement, RatingProps>(
   (props, ref) => {
     const {useIcons = false, onChange} = props
     const [activeIndex, setActiveIndex] = useState<number | null>(null)
@@ -80,4 +80,4 @@ const RatingComponent = React.forwardRef<HTMLDivElement, RatingProps>(
   },
 )
 
-export default RatingComponent
+export default Rating

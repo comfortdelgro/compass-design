@@ -1,4 +1,6 @@
-import RatingComponent from "./rating";
+import Rating from './rating'
 
 export type {RatingProps} from './rating'
-export default RatingComponent
+Rating.displayName = 'Rating'
+
+export default Rating
