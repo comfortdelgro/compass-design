@@ -1,9 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-/* eslint-disable @typescript-eslint/prefer-ts-expect-error */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import {useEffect, useMemo, useRef, useState} from 'react'
 import {
   DOMAttributes,
@@ -303,6 +301,8 @@ export function usePress(props: PressHookProps): PressResult {
     }
 
     const pressProps: DOMAttributes = {
+      'aria-label': '',
+      'aria-labelledby': undefined,
       onKeyDown(e: KeyboardEvent) {
         if (
           // @ts-ignore
@@ -721,20 +721,6 @@ export function usePress(props: PressHookProps): PressResult {
         if (!state.isPressed) {
           return
         }
-
-        // const touch = getTouchById(e.nativeEvent, state.activePointerId)
-        // if (touch && isOverTarget(touch, e.currentTarget)) {
-        //   if (!state.isOverTarget) {
-        //     state.isOverTarget = true
-        //     triggerPressStart(e, state.pointerType)
-        //   }
-        // } else if (state.isOverTarget) {
-        //   state.isOverTarget = false
-        //   triggerPressEnd(e, state.pointerType, false)
-        //   if (propsRef.current.shouldCancelOnPointerExit) {
-        //     cancel(e)
-        //   }
-        // }
       }
 
       pressProps.onTouchEnd = (e: TouchEvent) => {
@@ -747,14 +733,6 @@ export function usePress(props: PressHookProps): PressResult {
         if (!state.isPressed) {
           return
         }
-
-        // const touch = getTouchById(e.nativeEvent, state.activePointerId)
-        // if (touch && isOverTarget(touch, e.currentTarget)) {
-        //   triggerPressUp(e, state.pointerType)
-        //   triggerPressEnd(e, state.pointerType)
-        // } else if (state.isOverTarget) {
-        //   triggerPressEnd(e, state.pointerType, false)
-        // }
 
         state.isPressed = false
         state.activePointerId = null

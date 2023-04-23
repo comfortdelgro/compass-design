@@ -1,9 +1,9 @@
 import {useCallback, useRef, useState} from 'react'
 
 export function useControlledState<T>(
-  value: T,
-  defaultValue: T,
-  onChange: (value: T, ...args: any[]) => void,
+  value?: T,
+  defaultValue?: T,
+  onChange?: (value: T, ...args: any[]) => void,
 ): [T, (value: T, ...args: any[]) => void] {
   const [stateValue, setStateValue] = useState(value || defaultValue)
   const ref = useRef(value !== undefined)
@@ -71,6 +71,7 @@ export function useControlledState<T>(
   } else {
     value = stateValue
   }
-
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
   return [value, setValue]
 }

@@ -1,8 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-/* eslint-disable @typescript-eslint/prefer-ts-expect-error */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import {isEqualDay, isSameDay, isToday} from '@internationalized/date'
 import {useDateFormatter} from '@react-aria/i18n'
 import {RefObject, useMemo, useRef} from 'react'
@@ -55,11 +51,10 @@ export function useCalendarCell(
 
   // For performance, reuse the same date object as before if the new date prop is the same.
   // This allows subsequent useMemo results to be reused.
-  const lastDate = useRef(null)
+  const lastDate = useRef()
   if (lastDate.current && isEqualDay(date, lastDate.current)) {
     date = lastDate.current
   }
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-expect-error
   lastDate.current = date
 
@@ -114,7 +109,7 @@ export function useCalendarCell(
   ])
 
   // When a cell is focused and this is a range calendar, add a prompt to help
-  // screenreader users know that they are in a range selection mode.
+  // screen reader users know that they are in a range selection mode.
   let rangeSelectionPrompt = ''
   if ('anchorDate' in state && isFocused && !state.isReadOnly && isSelectable) {
     // If selection has started add "click to finish selecting range"
@@ -151,14 +146,12 @@ export function useCalendarCell(
             state.setAnchorDate(state.highlightedRange.end)
             state.setFocusedDate(date)
             state.setDragging(true)
-            // @ts-ignore
             isRangeBoundaryPressed.current = true
             return
           } else if (isSameDay(date, state.highlightedRange.end)) {
             state.setAnchorDate(state.highlightedRange.start)
             state.setFocusedDate(date)
             state.setDragging(true)
-            // @ts-ignore
             isRangeBoundaryPressed.current = true
             return
           }
@@ -166,12 +159,10 @@ export function useCalendarCell(
 
         const startDragging = () => {
           state.setDragging(true)
-          // @ts-ignore
           touchDragTimerRef.current = null
 
           state.selectDate(date)
           state.setFocusedDate(date)
-          // @ts-ignore
           isAnchorPressed.current = true
         }
 
@@ -186,13 +177,10 @@ export function useCalendarCell(
       }
     },
     onPressEnd() {
-      // @ts-ignore
       isRangeBoundaryPressed.current = false
-      // @ts-ignore
       isAnchorPressed.current = false
       // @ts-ignore
       clearTimeout(touchDragTimerRef.current)
-      // @ts-ignore
       touchDragTimerRef.current = null
     },
     onPress() {
@@ -209,7 +197,6 @@ export function useCalendarCell(
       // If the user tapped quickly, the date won't be selected yet and the
       // timer will still be in progress. In this case, select the date on touch up.
       // Timer is cleared in onPressEnd.
-      // @ts-ignore
       if ('anchorDate' in state && touchDragTimerRef.current) {
         state.selectDate(date)
         state.setFocusedDate(date)
@@ -222,7 +209,6 @@ export function useCalendarCell(
           // start a new selection on press up to also allow dragging the date to
           // change the existing range.
           state.setAnchorDate(date)
-          // @ts-ignore
         } else if (state.anchorDate && !isAnchorPressed.current) {
           // When releasing a drag or pressing the end date of a range, select it.
           state.selectDate(date)
@@ -249,22 +235,10 @@ export function useCalendarCell(
     },
   })
 
-  let tabIndex = null
+  let tabIndex = undefined
   if (!isDisabled) {
     tabIndex = isSameDay(date, state.focusedDate) ? 0 : -1
   }
-
-  // Focus the button in the DOM when the state updates.
-  // useEffect(() => {
-  //   if (isFocused && ref.current) {
-  //     focusWithoutScrolling(ref.current)
-  //     if (getInteractionModality() !== 'pointer') {
-  //       scrollIntoViewport(ref.current, {
-  //         containingElement: getScrollParent(ref.current),
-  //       })
-  //     }
-  //   }
-  // }, [isFocused, ref])
 
   const cellDateFormatter = useDateFormatter({
     day: 'numeric',
@@ -274,7 +248,6 @@ export function useCalendarCell(
 
   const formattedDate = useMemo(
     () =>
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-expect-error
       cellDateFormatter
         .formatToParts(nativeDate)
@@ -289,7 +262,7 @@ export function useCalendarCell(
       'aria-selected': isSelected || null,
       'aria-invalid': isInvalid || null,
     },
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    // @ts-ignore
     buttonProps: {
       ...pressProps,
       onFocus() {
@@ -297,10 +270,10 @@ export function useCalendarCell(
           state.setFocusedDate(date)
         }
       },
-      // @ts-ignore
       tabIndex,
       role: 'button',
-      'aria-disabled': !isSelectable || null,
+      // @ts-ignore
+      'aria-disabled': !isSelectable,
       'aria-label': label,
       'aria-invalid': isInvalid || null,
       'aria-describedby':
@@ -320,15 +293,7 @@ export function useCalendarCell(
           state.highlightDate(date)
         }
       },
-      // onPointerDown(e: PointerEvent) {
-      //   if (e.target && 'releasePointerCapture' in e.target) {
-      //     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      //     // @ts-expect-error
-      //     e.target.releasePointerCapture(e.pointerId)
-      //   }
-      // },
       onContextMenu(e: MouseEvent) {
-        // Prevent context menu on long press.
         e.preventDefault()
       },
     },

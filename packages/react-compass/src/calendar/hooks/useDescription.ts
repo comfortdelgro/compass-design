@@ -1,10 +1,10 @@
 import {useLayoutEffect, useState} from 'react'
-import {AriaLabelingProps} from '../types'
+import {AriaLabeDescriptionProps} from '../types'
 
 let descriptionId = 0
 const descriptionNodes = new Map<string, {refCount: number; element: Element}>()
 
-export function useDescription(description: string): AriaLabelingProps {
+export function useDescription(description: string): AriaLabeDescriptionProps {
   const [id, setId] = useState<string | undefined>(undefined)
 
   useLayoutEffect(() => {

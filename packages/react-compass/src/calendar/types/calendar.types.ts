@@ -4,6 +4,7 @@ import {
   ZonedDateTime,
 } from '@internationalized/date'
 import {AriaRole, CSSProperties, ReactNode} from 'react'
+import {AriaLabelingProps} from './label.types'
 
 export type ValidationState = 'valid' | 'invalid'
 
@@ -72,13 +73,12 @@ export interface AriaCalendarCellProps {
   isDisabled?: boolean
 }
 
-export interface DOMAttributes {
+export interface DOMAttributes extends AriaLabelingProps {
   id?: string | undefined
   role?: AriaRole | undefined
   tabIndex?: number | undefined
   style?: CSSProperties | undefined
   className?: string | undefined
-  'aria-label'?: string
   onKeyDown: (e: KeyboardEvent) => void
   onKeyUp: (e: PointerEvent) => void
   onClick: (e: MouseEvent) => void
@@ -93,10 +93,35 @@ export interface DOMAttributes {
   onTouchMove?: (e: TouchEvent) => void
   onTouchEnd?: (e: TouchEvent) => void
   onTouchCancel?: (e: TouchEvent) => void
+  onFocus?: () => void
+  onPointerEnter?: (e: PointerEvent) => void
+  onContextMenu?: (e: MouseEvent) => void
 }
 
-export interface CalendarCellAria {
-  cellProps: any
+export interface ActionButtonProps {
+  onPress: () => void
+  'aria-label': string
+  isDisabled: boolean
+  onFocus: () => void
+  onBlur: () => void
+}
+
+export interface CalendarAria {
+  title: string
+  calendarProps: CalendarProps
+  nextButtonProps: ActionButtonProps
+  prevButtonProps: ActionButtonProps
+}
+
+export interface CellProps {
+  role: string
+  'aria-disabled': boolean | null
+  'aria-selected': boolean | null
+  'aria-invalid': boolean | null
+}
+
+export interface CalendarCellAria extends CalendarAria {
+  cellProps: CellProps
   buttonProps: DOMAttributes
   isPressed: boolean
   isSelected: boolean
@@ -106,6 +131,8 @@ export interface CalendarCellAria {
   isOutsideVisibleRange: boolean
   isInvalid: boolean
   formattedDate: string
+  calendarProps: CalendarProps
+  title: string
 }
 
 export interface CalendarProps {
@@ -120,4 +147,6 @@ export interface CalendarProps {
   onFocusChange?: (date: CalendarDate) => void
   validationState?: ValidationState
   errorMessage?: ReactNode
+  role?: string
+  ['aria-describedby']: string | undefined
 }

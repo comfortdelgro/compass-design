@@ -25,7 +25,6 @@ export function useCalendarGrid2(
     endDate = state.visibleRange.end,
   } = props
 
-  const {locale} = useLocale()
   const {direction} = useLocale()
 
   const visibleRangeDescription = useVisibleRangeDescription(

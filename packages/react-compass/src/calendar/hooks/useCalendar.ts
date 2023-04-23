@@ -1,10 +1,8 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-/* eslint-disable @typescript-eslint/dot-notation */
 import {useRef} from 'react'
 import {CalendarProps} from '../calendar'
 import {
   AriaLabelingProps,
-  CalendarCellAria,
+  CalendarAria,
   CalendarState,
   DOMProps,
   RangeCalendarState,
@@ -16,7 +14,7 @@ import {useVisibleRangeDescription} from './useVisibleRangeDescription'
 export function useCalendar(
   props: CalendarProps & DOMProps & AriaLabelingProps,
   state: CalendarState | RangeCalendarState,
-): CalendarCellAria {
+): CalendarAria {
   const domProps = filterDOMProps(props)
 
   const title = useVisibleRangeDescription(
@@ -30,9 +28,7 @@ export function useCalendar(
 
   // Pass the label to the child grid elements.
   hookData.set(state, {
-    // @ts-ignore
     ariaLabel: props['aria-label'],
-    // @ts-ignore
     ariaLabelledBy: props['aria-labelledby'],
     errorMessageId: '',
     selectedDateDescription: '',
@@ -40,7 +36,6 @@ export function useCalendar(
 
   // If the next or previous buttons become disabled while they are focused, move focus to the calendar body.
   const nextFocused = useRef(false)
-  // @ts-ignore
   const nextDisabled = props.isDisabled || state.isNextVisibleRangeInvalid()
   if (nextDisabled && nextFocused.current) {
     nextFocused.current = false
@@ -49,16 +44,16 @@ export function useCalendar(
 
   const previousFocused = useRef(false)
   const previousDisabled =
-    // @ts-ignore
     props.isDisabled || state.isPreviousVisibleRangeInvalid()
   if (previousDisabled && previousFocused.current) {
     previousFocused.current = false
     state.setFocused(true)
   }
 
-  // @ts-ignore
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
   const labelProps = useLabels({
-    id: props['id'],
+    id: props.id,
     'aria-label': [props['aria-label'], visibleRangeDescription]
       .filter(Boolean)
       .join(', '),
@@ -66,7 +61,7 @@ export function useCalendar(
   })
 
   return {
-    // @ts-ignore
+    title,
     calendarProps: {
       ...domProps,
       ...labelProps,
@@ -87,6 +82,5 @@ export function useCalendar(
       onFocus: () => (previousFocused.current = true),
       onBlur: () => (previousFocused.current = false),
     },
-    title,
   }
 }
