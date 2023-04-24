@@ -11,10 +11,10 @@ export const Default: React.FC = () => {
       <h3>Controlled</h3>
       <MultipleDropdown
         label='Favorite Animal'
-        disabledKeys={['snake']}
+        disabledKeys={['cat']}
         placeholder='Choose an animal'
         selectedKeys={value}
-        defaultSelectedKeys={[]}
+        defaultSelectedKeys={['cat']}
         isRequired
         onSelectionChange={(k: Key[]) => setValue(k)}
       >
