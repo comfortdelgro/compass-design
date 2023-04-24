@@ -59,7 +59,7 @@ const MultipleDropdown = React.forwardRef<
   const [search, setSearch] = React.useState('')
   const [isSearching, setIsSearching] = React.useState(false)
   const [currentKeys, setCurrentKeys] = React.useState<React.Key[]>(
-    getDefaulValues(defaultSelectedKeys, selectedKeys, disabledKeys),
+    getDefaulValues(defaultSelectedKeys, selectedKeys),
   )
   const [focusKey, setFocusKey] = React.useState<React.Key | undefined>()
 
@@ -273,7 +273,7 @@ const MultipleDropdown = React.forwardRef<
                     cursor: isDisabled ? 'default' : 'pointer',
                   }}
                   onClick={() => {
-                    if (!isDisabled) {
+                    if (!isDisabled && !disabledKeys?.includes(item.key)) {
                       removeItem(item.key)
                     }
                   }}
