@@ -8,41 +8,27 @@ export const Variants: React.FC = () => {
     <Column>
       <h3>Controlled</h3>
       <QuantityToggle
-        label='Potato price'
+        disableScroll
         placeholder='Price'
-        onChange={(v) => console.log(v)}
         formatOptions={{
-          prefix: '$',
-          toFixed: 2,
+          style: 'currency',
+          currency: 'USD',
         }}
       />
       <h3>Un Controlled</h3>
       <QuantityToggle
-        label='Potato price'
-        isRequired
         placeholder='Price'
         value={value}
         onChange={(e) => setValue(e)}
         formatOptions={{
-          prefix: '$',
-          // toFixed: 2,
+          style: 'currency',
+          currency: 'USD',
         }}
       />
       <h3>Disabled</h3>
-      <QuantityToggle
-        label='Potato price'
-        defaultValue={2}
-        isDisabled
-        helperText='This is helper text'
-      />
+      <QuantityToggle defaultValue={2} isDisabled helperText='Bla Bla Bla' />
       <h3>Errored</h3>
-      <QuantityToggle
-        label='Potato price'
-        defaultValue={2}
-        isErrored
-        helperText='This is helper text'
-        errorMessage='This is error message'
-      />
+      <QuantityToggle defaultValue={2} isErrored helperText='Bla Bla Bla' />
     </Column>
   )
 }

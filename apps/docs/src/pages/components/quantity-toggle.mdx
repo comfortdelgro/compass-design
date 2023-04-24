@@ -29,8 +29,8 @@ import QuantityToggle from '@comfortdelgro/react-compass/quantity-toggle'
   <QuantityToggle
     placeholder='Price'
     formatOptions={{
-      prefix: '$',
-      toFixed: 2,
+      style: 'currency',
+      currency: 'USD',
     }}
   />
 </section>
@@ -39,8 +39,8 @@ import QuantityToggle from '@comfortdelgro/react-compass/quantity-toggle'
 <QuantityToggle
   placeholder='Price'
   formatOptions={{
-    prefix: '$',
-    toFixed: 2,
+    style: 'currency',
+    currency: 'USD',
   }}
 />
 ```
@@ -73,6 +73,7 @@ import QuantityToggle from '@comfortdelgro/react-compass/quantity-toggle'
 
 <section className={styles.componentShowcaseContainer}>
   <QuantityToggle
+    disabledScroll
     label='Potato price'
     defaultValue={2}
     isErrored
@@ -83,6 +84,7 @@ import QuantityToggle from '@comfortdelgro/react-compass/quantity-toggle'
 
 ```js
   <QuantityToggle
+    disabledScroll
     label='Potato price'
     defaultValue={2}
     isErrored
@@ -97,7 +99,8 @@ import QuantityToggle from '@comfortdelgro/react-compass/quantity-toggle'
 
 | Name            | Type                           | Default | Description                                                                                                                                               |
 | :-------------- | :----------------------------- | :------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| formatOptions   | `FormatOptions`                | —       | Formatting options for the value displayed in the number field. This also affects what characters are allowed to be typed by the user.                    |
+| formatOptions   | `Intl.FormatOptions`           | —       | Formatting options for the value displayed in the number field. This also affects what characters are allowed to be typed by the user.                    |
+| disabledScroll  | `boolean`                      | `false` | Whether the scroll to change value is disabled.                                                                                                           |
 | isDisabled      | `boolean`                      | `false` | Whether the input is disabled.                                                                                                                            |
 | isErrored       | `boolean`                      | `false` | Whether the input is isErrored.                                                                                                                           |
 | isReadOnly      | `boolean`                      | `false` | Whether the input can be selected but not changed by the user.                                                                                            |
@@ -120,15 +123,6 @@ import QuantityToggle from '@comfortdelgro/react-compass/quantity-toggle'
 | label           | `ReactNode`                    | —       | The content to display as the label.                                                                                                                      |
 | isErrored       | `ReactNode`                    | —       | The amount that the input value changes with each increment or decrement "tick".                                                                          |
 | css             | `CSS`                          | —       | The system prop that allows defining system overrides as well as additional CSS styles.                                                                   |
-
-## FormatOptions:
-
-| Name            | Type     | Default | Description                                                                       |
-| :-------------- | :------- | :------ | :-------------------------------------------------------------------------------- |
-| prefix          | `string` | —       | First character come with value, use for display type of the value                |
-| suffix          | `string` | `false` | Last character come with value, use for display type of the value                 |
-| toFixed         | `number` | `false` | Number of digits after the decimal point. Must be in the range 0 - 20, inclusive. |
-
 ---
 
 <Callout>

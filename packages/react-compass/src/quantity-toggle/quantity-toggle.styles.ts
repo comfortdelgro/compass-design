@@ -5,6 +5,18 @@ export const StyledQuantityToggle = styled('div', {
   width: '100%',
   display: 'flex',
   flexDirection: 'column',
+  label: {
+    fontSize: '$label1',
+    fontWeight: '$medium',
+    lineHeight: '$normal',
+    display: 'block',
+    marginBottom: '$1',
+    color: '$gray90',
+    span: {
+      marginLeft: '$1',
+      color: '$danger',
+    },
+  },
   "div[role='group']": {
     display: 'flex',
     width: '100%',
@@ -31,18 +43,27 @@ export const StyledQuantityToggle = styled('div', {
       border: '1px solid #EDEBE9',
       backgroundColor: '$gray10',
     },
+    'button[aria-label="Decrease"]': {
+      borderRight: 'none',
+      borderRadius: '4px 0 0 4px',
+    },
+    'button[aria-label="Increase"]': {
+      borderLeft: 'none',
+      borderRadius: '0 4px 4px 0',
+    },
   },
-  label: {
+  '.quantity-toggle-label': {
     fontSize: '$label1',
-    fontWeight: '$medium',
-    lineHeight: '$normal',
-    display: 'block',
+    fontWeight: '$semibold',
     marginBottom: '$1',
     color: '$gray90',
-    span: {
-      marginLeft: '$1',
-      color: '$danger',
-    },
+  },
+  '.quantity-toggle-helper-text': {
+    fontSize: '$label3',
+    fontWeight: '$semibold',
+    margin: 0,
+    marginTop: '$1',
+    color: '$gray50',
   },
   variants: {
     isDisabled: {
