@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 0.33.7
+
+### Patch Changes
+
+- ccb66095: Fix bugs in quantity-toggle, pagination and multiple-dropdown
+
 ## 0.33.6
 
 ### Patch Changes
