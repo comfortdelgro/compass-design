@@ -35,7 +35,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     css = {},
     direction = 'bottom-left',
     attachToElement,
-    onClose = () => {},
+    onClose = () => null,
     ...delegated
   } = props
 
@@ -47,6 +47,24 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
   })
   const popoverRef = useDOMRef<HTMLDivElement>(ref)
   const popoverContentRef = useDOMRef<HTMLDivElement>()
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      popoverRef.current &&
+      !popoverRef.current.contains(event.target as Node) &&
+      popoverContentRef.current &&
+      !popoverContentRef.current.contains(event.target as Node)
+    ) {
+      onClose()
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  })
 
   useEffect(() => {
     if (popoverContentRef.current && popoverRef.current) {
@@ -85,61 +103,65 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
       switch (direction) {
         case 'bottom-left':
         default:
-          displayPosition.top =
-            anchorElement.offsetTop + bound.height + offset + 'px'
-          displayPosition.left = anchorElement.offsetLeft + 'px'
+          displayPosition.top = `${
+            anchorElement.offsetTop + bound.height + offset
+          }px`
+          displayPosition.left = `${anchorElement.offsetLeft}px`
           displayPosition.bottom = 'auto'
           displayPosition.right = 'auto'
           break
 
         case 'bottom-center':
-          displayPosition.top =
-            anchorElement.offsetTop + bound.height + offset + 'px'
-          displayPosition.left =
-            anchorElement.offsetLeft + bound.width / 2 + 'px'
+          displayPosition.top = `${
+            anchorElement.offsetTop + bound.height + offset
+          }px`
+          displayPosition.left = `${
+            anchorElement.offsetLeft + bound.width / 2
+          }px`
           displayPosition.bottom = 'auto'
           displayPosition.right = 'auto'
           break
 
         case 'bottom-right':
-          displayPosition.top =
-            anchorElement.offsetTop + bound.height + offset + 'px'
+          displayPosition.top = `${
+            anchorElement.offsetTop + bound.height + offset
+          }px`
           displayPosition.left = 'auto'
           displayPosition.bottom = 'auto'
-          displayPosition.right =
-            offsetParent.clientWidth -
-            anchorElement.offsetLeft -
-            bound.width +
-            'px'
+          displayPosition.right = `${
+            offsetParent.clientWidth - anchorElement.offsetLeft - bound.width
+          }px`
           break
 
         case 'top-left':
           displayPosition.top = 'auto'
-          displayPosition.left = anchorElement.offsetLeft + 'px'
-          displayPosition.bottom =
-            offsetParent.clientHeight - anchorElement.offsetTop + offset + 'px'
+          displayPosition.left = `${anchorElement.offsetLeft}px`
+          displayPosition.bottom = `${
+            offsetParent.clientHeight - anchorElement.offsetTop + offset
+          }px`
           displayPosition.right = 'auto'
           break
 
         case 'top-center':
           displayPosition.top = 'auto'
-          displayPosition.left =
-            anchorElement.offsetLeft + bound.width / 2 + 'px'
-          displayPosition.bottom =
-            offsetParent.clientHeight - anchorElement.offsetTop + offset + 'px'
+          displayPosition.left = `${
+            anchorElement.offsetLeft + bound.width / 2
+          }px`
+          displayPosition.bottom = `${
+            offsetParent.clientHeight - anchorElement.offsetTop + offset
+          }px`
           displayPosition.right = 'auto'
           break
 
         case 'top-right':
           displayPosition.top = 'auto'
           displayPosition.left = 'auto'
-          displayPosition.bottom =
-            offsetParent.clientHeight - anchorElement.offsetTop + offset + 'px'
-          displayPosition.right =
-            offsetParent.clientWidth -
-            anchorElement.offsetLeft -
-            bound.width +
-            'px'
+          displayPosition.bottom = `${
+            offsetParent.clientHeight - anchorElement.offsetTop + offset
+          }px`
+          displayPosition.right = `${
+            offsetParent.clientWidth - anchorElement.offsetLeft - bound.width
+          }px`
           break
       }
 
