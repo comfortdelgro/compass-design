@@ -4,13 +4,12 @@ import {useSSRSafeId} from './useSSRSafeId'
 const idsUpdaterMap = new Map<string, (v: string) => void>()
 
 export function useId(defaultId?: string): string {
-  const [value, setValue] = useState(defaultId)
-  const nextId = useRef(null)
+  const [value, setValue] = useState<unknown>(defaultId)
+  const nextId = useRef<unknown>(null)
 
   const res = useSSRSafeId(value)
 
   const updateValue = useCallback((val) => {
-    // eslint-disable-next-line
     nextId.current = val
   }, [])
 

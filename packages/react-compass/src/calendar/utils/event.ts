@@ -1,10 +1,6 @@
+import {nonTextInputTypes} from '../constants/common'
+
 export function isVirtualPointerEvent(event: PointerEvent) {
-  // If the pointer size is zero, then we assume it's from a screen reader.
-  // Android TalkBack double tap will sometimes return a event with width and height of 1
-  // and pointerType === 'mouse' so we need to check for a specific combination of event attributes.
-  // Cannot use "event.pressure === 0" as the sole check due to Safari pointer events always returning pressure === 0
-  // instead of .5, see https://bugs.webkit.org/show_bug.cgi?id=206216. event.pointerType === 'mouse' is to distingush
-  // Talkback double tap from Windows Firefox touch screen press
   return (
     (event.width === 0 && event.height === 0) ||
     (event.width === 1 &&
@@ -12,5 +8,45 @@ export function isVirtualPointerEvent(event: PointerEvent) {
       event.pressure === 0 &&
       event.detail === 0 &&
       event.pointerType === 'mouse')
+  )
+}
+
+export function isHTMLAnchorLink(target: Element): boolean {
+  return target.tagName === 'A' && target.hasAttribute('href')
+}
+
+export function isValidInputKey(target: HTMLInputElement, key: string) {
+  return target.type === 'checkbox' || target.type === 'radio'
+    ? key === ' '
+    : nonTextInputTypes.has(target.type)
+}
+
+export function isValidKeyboardEvent(
+  event: unknown,
+  currentTarget: unknown,
+): boolean {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
+  const {key, code} = event
+  const element = currentTarget as HTMLElement
+  const role = element.getAttribute('role')
+  // Accessibility for keyboards. Space and Enter only.
+  // "Space bar" is for IE 11
+  return (
+    (key === 'Enter' ||
+      key === ' ' ||
+      key === 'Spacebar' ||
+      code === 'Space') &&
+    !(
+      (element instanceof HTMLInputElement &&
+        !isValidInputKey(element, key as string)) ||
+      element instanceof HTMLTextAreaElement ||
+      element.isContentEditable
+    ) &&
+    // A link with a valid href should be handled natively,
+    // unless it also has role='button' and was triggered using Space.
+    (!isHTMLAnchorLink(element) || (role === 'button' && key !== 'Enter')) &&
+    // An element with role='link' should only trigger with Enter key
+    !(role === 'link' && key !== 'Enter')
   )
 }

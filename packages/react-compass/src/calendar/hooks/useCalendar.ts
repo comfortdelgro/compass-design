@@ -29,7 +29,7 @@ export function useCalendar(
   // Pass the label to the child grid elements.
   hookData.set(state, {
     ariaLabel: props['aria-label'],
-    ariaLabelledBy: props['aria-labelledby'],
+    ariaLabelledBy: props['aria-labelledby'] ?? '',
     errorMessageId: '',
     selectedDateDescription: '',
   })
@@ -51,7 +51,6 @@ export function useCalendar(
   }
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
   const labelProps = useLabels({
     id: props.id,
     'aria-label': [props['aria-label'], visibleRangeDescription]

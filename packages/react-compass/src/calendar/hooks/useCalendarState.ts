@@ -14,7 +14,12 @@ import {
   today,
 } from '@internationalized/date'
 import {useMemo, useRef, useState} from 'react'
-import {DateValue, ValidationState} from '../types'
+import {
+  CalendarState,
+  DateValue,
+  RangeCalendarState,
+  ValidationState,
+} from '../types'
 import {
   alignCenter,
   alignStart,
@@ -63,7 +68,9 @@ interface CalendarStateProps extends ValueBase<DateValue> {
   onChange?: (date: DateValue) => void
 }
 
-export const useCalendarState = (props: CalendarStateProps) => {
+export const useCalendarState = (
+  props: CalendarStateProps,
+): CalendarState | RangeCalendarState => {
   const {
     locale,
     createCalendar,
@@ -143,13 +150,7 @@ export const useCalendarState = (props: CalendarStateProps) => {
   const [isFocused, setFocused] = useState(props.autoFocus || false)
 
   const [startDate, setStartDate] = useState(() => {
-    return alignCenter(
-      focusedDate as CalendarDate,
-      {months: 1},
-      locale,
-      minValue,
-      maxValue,
-    )
+    return alignCenter(focusedDate, {months: 1}, locale, minValue, maxValue)
   })
 
   const endDate = useMemo(() => {
@@ -159,7 +160,7 @@ export const useCalendarState = (props: CalendarStateProps) => {
   }, [startDate])
 
   const lastCalendarIdentifier = useRef(calendar.identifier)
-  if (calendar.identifier !== lastCalendarIdentifier.current && focusedDate) {
+  if (calendar.identifier !== lastCalendarIdentifier.current) {
     const newFocusedDate = toCalendar(focusedDate, calendar)
     setStartDate(
       alignCenter(newFocusedDate, visibleDuration, locale, minValue, maxValue),
@@ -168,12 +169,7 @@ export const useCalendarState = (props: CalendarStateProps) => {
     lastCalendarIdentifier.current = calendar.identifier
   }
 
-  if (
-    focusedDate &&
-    minValue &&
-    maxValue &&
-    isInvalid(focusedDate, minValue, maxValue)
-  ) {
+  if (minValue && maxValue && isInvalid(focusedDate, minValue, maxValue)) {
     // If the focused date was moved to an invalid value, it can't be focused, so constrain it.
     setFocusedDate(constrainValue(focusedDate, minValue, maxValue))
   } else if (focusedDate && focusedDate.compare(startDate) < 0) {
@@ -194,11 +190,7 @@ export const useCalendarState = (props: CalendarStateProps) => {
   function setValue(newValue: CalendarDate) {
     if (!props.isDisabled && !props.isReadOnly) {
       newValue = constrainValue(newValue, minValue, maxValue)
-      newValue = previousAvailableDate(
-        newValue,
-        startDate,
-        isDateUnavailable,
-      ) as CalendarDate
+      newValue = previousAvailableDate(newValue, startDate, isDateUnavailable)!
       if (!newValue) {
         return
       }
@@ -233,11 +225,14 @@ export const useCalendarState = (props: CalendarStateProps) => {
   }, [calendarDateValue, isDateUnavailable, minValue, maxValue])
 
   const validationState =
-    props.validationState || (isUnavailable ? 'invalid' : null)
+    props.validationState ||
+    ((isUnavailable ? 'invalid' : null) as ValidationState)
 
   return {
-    isDisabled: props.isDisabled,
-    isReadOnly: props.isReadOnly,
+    isDisabled: props.isDisabled ?? false,
+    isReadOnly: props.isReadOnly ?? false,
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
     value: calendarDateValue,
     setValue,
     visibleRange: {
@@ -254,27 +249,27 @@ export const useCalendarState = (props: CalendarStateProps) => {
       setFocused(true)
     },
     focusNextDay() {
-      if (focusedDate) focusCell(focusedDate.add({days: 1}))
+      focusCell(focusedDate.add({days: 1}))
     },
     focusPreviousDay() {
-      if (focusedDate) focusCell(focusedDate.subtract({days: 1}))
+      focusCell(focusedDate.subtract({days: 1}))
     },
     focusNextRow() {
-      if (focusedDate) focusCell(focusedDate.add({weeks: 1}))
+      focusCell(focusedDate.add({weeks: 1}))
     },
     focusPreviousRow() {
-      if (focusedDate) focusCell(focusedDate.subtract({weeks: 1}))
+      focusCell(focusedDate.subtract({weeks: 1}))
     },
     focusNextPage() {
       const start = startDate.add(visibleDuration)
-      if (focusedDate)
-        setFocusedDate(
-          constrainValue(focusedDate.add(visibleDuration), minValue, maxValue),
-        )
+      setFocusedDate(
+        constrainValue(focusedDate.add(visibleDuration), minValue, maxValue),
+      )
+
       setStartDate(
         alignStart(
           constrainStart(
-            focusedDate as CalendarDate,
+            focusedDate,
             start,
             visibleDuration,
             locale,
@@ -288,18 +283,18 @@ export const useCalendarState = (props: CalendarStateProps) => {
     },
     focusPreviousPage() {
       const start = startDate.subtract(visibleDuration)
-      if (focusedDate)
-        setFocusedDate(
-          constrainValue(
-            focusedDate.subtract(visibleDuration),
-            minValue,
-            maxValue,
-          ),
-        )
+      setFocusedDate(
+        constrainValue(
+          focusedDate.subtract(visibleDuration),
+          minValue,
+          maxValue,
+        ),
+      )
+
       setStartDate(
         alignStart(
           constrainStart(
-            focusedDate as CalendarDate,
+            focusedDate,
             start,
             visibleDuration,
             locale,
@@ -313,16 +308,15 @@ export const useCalendarState = (props: CalendarStateProps) => {
     },
     focusSectionStart() {
       if (visibleDuration.months) {
-        focusCell(startOfMonth(focusedDate as CalendarDate))
+        focusCell(startOfMonth(focusedDate))
       }
     },
     focusSectionEnd() {
       if (visibleDuration.months) {
-        focusCell(endOfMonth(focusedDate as CalendarDate))
+        focusCell(endOfMonth(focusedDate))
       }
     },
     focusNextSection(larger: boolean) {
-      if (!focusedDate) return
       if (!larger) {
         focusCell(focusedDate.add(unitDuration(visibleDuration)))
         return
@@ -331,7 +325,6 @@ export const useCalendarState = (props: CalendarStateProps) => {
       }
     },
     focusPreviousSection(larger: boolean) {
-      if (!focusedDate) return
       if (!larger) {
         focusCell(focusedDate.subtract(unitDuration(visibleDuration)))
         return
@@ -340,7 +333,7 @@ export const useCalendarState = (props: CalendarStateProps) => {
       }
     },
     selectFocusedDate() {
-      setValue(focusedDate as CalendarDate)
+      setValue(focusedDate)
     },
     selectDate(date: CalendarDate) {
       setValue(date)
@@ -348,7 +341,10 @@ export const useCalendarState = (props: CalendarStateProps) => {
     isFocused,
     setFocused,
     isInvalid(date: CalendarDate) {
-      return isInvalid(date, minValue as DateValue, maxValue as DateValue)
+      return isInvalid(date, minValue!, maxValue!)
+    },
+    isCellUnavailable(date: CalendarDate) {
+      return props.isDateUnavailable?.(date) ?? false
     },
     isSelected(date: CalendarDate) {
       return (
@@ -359,7 +355,7 @@ export const useCalendarState = (props: CalendarStateProps) => {
       )
     },
     isCellFocused(date: CalendarDate) {
-      return isFocused && focusedDate && isSameDay(date, focusedDate)
+      return isFocused && isSameDay(date, focusedDate)
     },
     isCellDisabled(date: CalendarDate) {
       return (
@@ -368,9 +364,6 @@ export const useCalendarState = (props: CalendarStateProps) => {
         date.compare(endDate) > 0 ||
         this.isInvalid(date)
       )
-    },
-    isCellUnavailable(date: CalendarDate) {
-      return props.isDateUnavailable && props.isDateUnavailable(date)
     },
     isPreviousVisibleRangeInvalid() {
       const prev = startDate.subtract({days: 1})

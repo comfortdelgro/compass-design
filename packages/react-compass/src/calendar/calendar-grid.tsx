@@ -6,12 +6,12 @@ import {
   parseDate,
 } from '@internationalized/date'
 import {useLocale} from '@react-aria/i18n'
-import {CalendarState, RangeCalendarState} from '@react-stately/calendar'
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import CalendarCell from './calendar-cell'
 import {StyledCalendarGrid} from './calendar-grid.style'
-import {useCalendarGrid2} from './hooks/useCalendarGrid'
+import {useCalendarGrid} from './hooks/useCalendarGrid'
+import {CalendarState, RangeCalendarState} from './types'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
@@ -40,7 +40,7 @@ const CalendarGrid = (props: Props) => {
   const endDate = endOfMonth(startDate)
 
   // eslint-disable-next-line
-  const {gridProps, headerProps, weekDays} = useCalendarGrid2(
+  const {gridProps, headerProps, weekDays} = useCalendarGrid(
     {
       startDate,
       endDate,

@@ -2,19 +2,23 @@ import {faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons'
 import {DateValue} from '@internationalized/date'
 import {useDateFormatter} from '@react-aria/i18n'
 import {VisuallyHidden} from '@react-aria/visually-hidden'
-import {CalendarState, RangeCalendarState} from '@react-stately/calendar'
 import React from 'react'
 import Button, {ButtonProps} from '../button'
 import Icon from '../icon'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {StyledCalendarHeader} from './calendar-header.style'
-import {DOMAttributes} from './types/calendar.types'
+import {AriaLabelingProps, DOMProps} from './types'
+import {
+  CalendarState,
+  DOMAttributes,
+  RangeCalendarState,
+} from './types/calendar.types'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
   variant?: 'default' | 'range'
   state: CalendarState | RangeCalendarState
-  calendarProps: DOMAttributes
+  calendarProps: DOMProps | AriaLabelingProps | DOMAttributes
   prevButtonProps: ButtonProps
   nextButtonProps: ButtonProps
   maxValue?: DateValue
@@ -44,7 +48,7 @@ const CalendarHeader = (props: Props) => {
        * In addition, VoiceOver on iOS does not announce the aria-label of the grid
        * elements, so the aria-label of the Calendar is included here as well. */}
       <VisuallyHidden>
-        <h2>{calendarProps['aria-label']}</h2>
+        <h2>{(calendarProps as AriaLabelingProps)['aria-label']}</h2>
       </VisuallyHidden>
       <div className='calendar-header-left-side'>
         <Button variant='ghost' {...prevButtonProps}>

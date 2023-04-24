@@ -18,14 +18,12 @@ export function useCounter(isDisabled = false) {
 }
 
 const canUseDOM = Boolean(
-  typeof window !== 'undefined' &&
-    window.document &&
-    window.document['createElement'],
+  typeof window !== 'undefined' && window.document['createElement'],
 )
 
 const SSRContext = createContext<SSRContextValue>(defaultContext)
 
-export function useSSRSafeId(defaultId?: string): string {
+export function useSSRSafeId(defaultId?: unknown): string {
   const ctx = useContext(SSRContext)
 
   if (ctx === defaultContext && !canUseDOM) {
@@ -35,5 +33,5 @@ export function useSSRSafeId(defaultId?: string): string {
   }
 
   const counter = useCounter(!!defaultId)
-  return defaultId || `compass-design${ctx.prefix}-${counter}`
+  return (defaultId as string) ?? `compass-design${ctx.prefix}-${counter}`
 }

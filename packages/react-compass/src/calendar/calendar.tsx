@@ -2,8 +2,6 @@ import * as InternationalizedDate from '@internationalized/date'
 import {createCalendar, DateValue, parseDate} from '@internationalized/date'
 import * as i18n from '@react-aria/i18n'
 import {useLocale} from '@react-aria/i18n'
-import {DatePickerState} from '@react-stately/datepicker'
-import type {SpectrumCalendarProps} from '@react-types/calendar'
 import React from 'react'
 import Button from '../button'
 import {StyledComponentProps} from '../utils/stitches.types'
@@ -13,12 +11,14 @@ import CalendarHeader from './calendar-header'
 import {StyledCalendar} from './calendar.style'
 import {useCalendar} from './hooks/useCalendar'
 import {useCalendarState} from './hooks/useCalendarState'
-interface Props extends StyledComponentProps, SpectrumCalendarProps<DateValue> {
+import {DatePickerState} from './types'
+interface Props extends StyledComponentProps {
   children?: React.ReactNode
   state?: DatePickerState
   hasFooter?: boolean
   onCancelCallback?: (() => void) | undefined
   maxValue?: DateValue
+  isDisabled: boolean
 }
 
 export type CalendarProps = Props & DateValue
@@ -30,6 +30,7 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     hasFooter = false,
     css = {},
     maxValue = parseDate('2999-02-17'),
+    isDisabled = false,
     ...delegated
   } = props
 
@@ -39,12 +40,15 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
 
   const state = useCalendarState({
     locale: locale,
+    isDisabled,
     createCalendar,
     ...delegated,
   })
 
   const {calendarProps, prevButtonProps, nextButtonProps} = useCalendar(
-    delegated,
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    {isDisabled, ...delegated},
     state,
   )
 

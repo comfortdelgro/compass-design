@@ -1,10 +1,21 @@
 import {
   CalendarDate,
   CalendarDateTime,
+  Time,
   ZonedDateTime,
 } from '@internationalized/date'
-import {AriaRole, CSSProperties, ReactNode} from 'react'
-import {AriaLabelingProps} from './label.types'
+import {
+  AriaRole,
+  CSSProperties,
+  DragEvent,
+  KeyboardEvent,
+  MouseEvent,
+  PointerEvent,
+  ReactNode,
+  TouchEvent,
+} from 'react'
+import {AriaLabelingProps, DOMProps} from './label.types'
+import {FocusableElement} from './scroll.types'
 
 export type ValidationState = 'valid' | 'invalid'
 
@@ -66,6 +77,7 @@ export interface RangeCalendarState extends CalendarStateBase {
   readonly highlightedRange: RangeValue<CalendarDate>
   readonly isDragging: boolean
   setDragging(isDragging: boolean): void
+  close: () => void
 }
 
 export interface AriaCalendarCellProps {
@@ -79,23 +91,23 @@ export interface DOMAttributes extends AriaLabelingProps {
   tabIndex?: number | undefined
   style?: CSSProperties | undefined
   className?: string | undefined
-  onKeyDown: (e: KeyboardEvent) => void
-  onKeyUp: (e: PointerEvent) => void
-  onClick: (e: MouseEvent) => void
-  onPointerDown?: (e: PointerEvent) => void
-  onMouseDown?: (e: MouseEvent) => void
-  onPointerUp?: (e: PointerEvent) => void
-  onDragStart?: (e: DragEvent) => void
-  onMouseEnter?: (e: MouseEvent) => void
-  onMouseLeave?: (e: MouseEvent) => void
-  onMouseUp?: (e: MouseEvent) => void
-  onTouchStart?: (e: TouchEvent) => void
-  onTouchMove?: (e: TouchEvent) => void
-  onTouchEnd?: (e: TouchEvent) => void
-  onTouchCancel?: (e: TouchEvent) => void
+  onKeyDown: (e: KeyboardEvent<FocusableElement>) => void
+  onKeyUp: (e: KeyboardEvent<FocusableElement>) => void
+  onClick: (e: MouseEvent<FocusableElement>) => void
+  onPointerDown?: (e: PointerEvent<FocusableElement>) => void
+  onMouseDown?: (e: MouseEvent<FocusableElement>) => void
+  onPointerUp?: (e: PointerEvent<FocusableElement>) => void
+  onDragStart?: (e: DragEvent<FocusableElement>) => void
+  onMouseEnter?: (e: MouseEvent<FocusableElement>) => void
+  onMouseLeave?: (e: MouseEvent<FocusableElement>) => void
+  onMouseUp?: (e: MouseEvent<FocusableElement>) => void
+  onTouchStart?: (e: TouchEvent<FocusableElement>) => void
+  onTouchMove?: (e: TouchEvent<FocusableElement>) => void
+  onTouchEnd?: (e: TouchEvent<FocusableElement>) => void
+  onTouchCancel?: (e: TouchEvent<FocusableElement>) => void
   onFocus?: () => void
-  onPointerEnter?: (e: PointerEvent) => void
-  onContextMenu?: (e: MouseEvent) => void
+  onPointerEnter?: (e: PointerEvent<FocusableElement>) => void
+  onContextMenu?: (e: MouseEvent<FocusableElement>) => void
 }
 
 export interface ActionButtonProps {
@@ -108,19 +120,19 @@ export interface ActionButtonProps {
 
 export interface CalendarAria {
   title: string
-  calendarProps: CalendarProps
+  calendarProps: DOMProps | AriaLabelingProps | DOMAttributes
   nextButtonProps: ActionButtonProps
   prevButtonProps: ActionButtonProps
 }
 
 export interface CellProps {
   role: string
-  'aria-disabled': boolean | null
-  'aria-selected': boolean | null
-  'aria-invalid': boolean | null
+  'aria-disabled': boolean
+  'aria-selected': boolean
+  'aria-invalid': boolean
 }
 
-export interface CalendarCellAria extends CalendarAria {
+export interface CalendarCellAria {
   cellProps: CellProps
   buttonProps: DOMAttributes
   isPressed: boolean
@@ -130,9 +142,11 @@ export interface CalendarCellAria extends CalendarAria {
   isUnavailable: boolean
   isOutsideVisibleRange: boolean
   isInvalid: boolean
-  formattedDate: string
-  calendarProps: CalendarProps
-  title: string
+  formattedDate: string | undefined
+  title?: string
+  calendarProps?: CalendarProps
+  nextButtonProps?: ActionButtonProps
+  prevButtonProps?: ActionButtonProps
 }
 
 export interface CalendarProps {
@@ -148,5 +162,30 @@ export interface CalendarProps {
   validationState?: ValidationState
   errorMessage?: ReactNode
   role?: string
-  ['aria-describedby']: string | undefined
+}
+
+export type TimeValue = Time | CalendarDateTime | ZonedDateTime
+
+export interface OverlayTriggerState {
+  readonly isOpen: boolean
+  setOpen(isOpen: boolean): void
+  open(): void
+  close(): void
+  toggle(): void
+}
+
+export type Granularity = 'day' | 'hour' | 'minute' | 'second'
+
+export interface DatePickerState extends OverlayTriggerState {
+  value: DateValue
+  setValue(value: DateValue): void
+  dateValue: DateValue
+  setDateValue(value: CalendarDate): void
+  timeValue: TimeValue
+  setTimeValue(value: TimeValue): void
+  granularity: Granularity
+  hasTime: boolean
+  isOpen: boolean
+  setOpen(isOpen: boolean): void
+  validationState: ValidationState
 }

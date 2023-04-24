@@ -8,13 +8,12 @@ import {
   parseDate,
 } from '@internationalized/date'
 import {useFocusRing} from '@react-aria/focus'
-import {CalendarState, RangeCalendarState} from '@react-stately/calendar'
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {StyledCalendarCell} from './calendar-cell.style'
 import {useCalendarCell} from './hooks/useCalendarCell'
-// import {useCalendarCell} from '@react-aria/calendar'
+import {CalendarState, RangeCalendarState} from './types'
 
 interface Props extends StyledComponentProps {
   state: CalendarState | RangeCalendarState
@@ -35,14 +34,8 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
 
     const cellRef = useDOMRef(ref)
 
-    const {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      cellProps,
-      buttonProps,
-      isSelected,
-      isUnavailable,
-      formattedDate,
-    } = useCalendarCell({date}, state, cellRef)
+    const {cellProps, buttonProps, isSelected, isUnavailable, formattedDate} =
+      useCalendarCell({date}, state, cellRef)
 
     let {isDisabled} = useCalendarCell({date}, state, cellRef)
 

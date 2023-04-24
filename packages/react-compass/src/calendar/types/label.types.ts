@@ -1,5 +1,5 @@
 export interface DOMProps {
-  id?: string
+  id: string
 }
 
 export interface AriaLabeDescriptionProps {
@@ -10,4 +10,7 @@ export interface AriaLabelingProps extends AriaLabeDescriptionProps {
   'aria-label': string
   'aria-labelledby': string | undefined
   'aria-details'?: string
+  'aria-disabled'?: boolean | undefined
+  'aria-invalid'?: boolean | undefined
+  'aria-selected'?: boolean | undefined
 }

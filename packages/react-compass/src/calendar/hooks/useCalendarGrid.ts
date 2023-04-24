@@ -16,14 +16,11 @@ export interface CalendarGridAria {
   weekDays: string[]
 }
 
-export function useCalendarGrid2(
+export function useCalendarGrid(
   props: AriaCalendarGridProps,
   state: CalendarState | RangeCalendarState,
 ): CalendarGridAria {
-  const {
-    startDate = state.visibleRange.start,
-    endDate = state.visibleRange.end,
-  } = props
+  const {startDate = state.visibleRange.start} = props
 
   const {direction} = useLocale()
 
@@ -38,6 +35,7 @@ export function useCalendarGrid2(
   }
 
   const labelProps = useLabels({
+    id: '',
     'aria-label': [ariaLabel, visibleRangeDescription]
       .filter(Boolean)
       .join(', '),

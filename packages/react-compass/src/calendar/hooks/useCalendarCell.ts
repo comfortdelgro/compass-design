@@ -1,11 +1,17 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-import {isEqualDay, isSameDay, isToday} from '@internationalized/date'
+import {
+  CalendarDate,
+  DateFormatter,
+  isEqualDay,
+  isSameDay,
+  isToday,
+} from '@internationalized/date'
 import {useDateFormatter} from '@react-aria/i18n'
-import {RefObject, useMemo, useRef} from 'react'
+import {MouseEvent, PointerEvent, RefObject, useMemo, useRef} from 'react'
 import {
   AriaCalendarCellProps,
   CalendarCellAria,
   CalendarState,
+  FocusableElement,
   RangeCalendarState,
 } from '../types'
 import {hookData} from '../utils'
@@ -51,11 +57,10 @@ export function useCalendarCell(
 
   // For performance, reuse the same date object as before if the new date prop is the same.
   // This allows subsequent useMemo results to be reused.
-  const lastDate = useRef()
+  const lastDate = useRef<CalendarDate>()
   if (lastDate.current && isEqualDay(date, lastDate.current)) {
     date = lastDate.current
   }
-  // @ts-expect-error
   lastDate.current = date
 
   const nativeDate = useMemo(
@@ -125,7 +130,7 @@ export function useCalendarCell(
 
   const isAnchorPressed = useRef(false)
   const isRangeBoundaryPressed = useRef(false)
-  const touchDragTimerRef = useRef(null)
+  const touchDragTimerRef = useRef<unknown>()
   const {pressProps, isPressed} = usePress({
     shouldCancelOnPointerExit: 'anchorDate' in state && !!state.anchorDate,
     preventFocusOnPress: true,
@@ -169,7 +174,6 @@ export function useCalendarCell(
         // Start selection on mouse/touch down so users can drag to select a range.
         // On touch, delay dragging to determine if the user really meant to scroll.
         if (e.pointerType === 'touch') {
-          // @ts-ignore
           touchDragTimerRef.current = setTimeout(startDragging, 200)
         } else {
           startDragging()
@@ -179,8 +183,7 @@ export function useCalendarCell(
     onPressEnd() {
       isRangeBoundaryPressed.current = false
       isAnchorPressed.current = false
-      // @ts-ignore
-      clearTimeout(touchDragTimerRef.current)
+      clearTimeout(touchDragTimerRef.current as number)
       touchDragTimerRef.current = null
     },
     onPress() {
@@ -203,7 +206,6 @@ export function useCalendarCell(
       }
 
       if ('anchorDate' in state) {
-        // @ts-ignore
         if (isRangeBoundaryPressed.current) {
           // When clicking on the start or end date of an already selected range,
           // start a new selection on press up to also allow dragging the date to
@@ -240,7 +242,7 @@ export function useCalendarCell(
     tabIndex = isSameDay(date, state.focusedDate) ? 0 : -1
   }
 
-  const cellDateFormatter = useDateFormatter({
+  const cellDateFormatter: DateFormatter = useDateFormatter({
     day: 'numeric',
     timeZone: state.timeZone,
     calendar: date.calendar.identifier,
@@ -248,21 +250,19 @@ export function useCalendarCell(
 
   const formattedDate = useMemo(
     () =>
-      // @ts-expect-error
       cellDateFormatter
         .formatToParts(nativeDate)
-        .find((part) => part.type === 'day').value,
+        .find((part) => part.type === 'day')?.value,
     [cellDateFormatter, nativeDate],
   )
 
   return {
     cellProps: {
       role: 'gridcell',
-      'aria-disabled': !isSelectable || null,
-      'aria-selected': isSelected || null,
-      'aria-invalid': isInvalid || null,
+      'aria-disabled': !isSelectable,
+      'aria-selected': isSelected,
+      'aria-invalid': isInvalid,
     },
-    // @ts-ignore
     buttonProps: {
       ...pressProps,
       onFocus() {
@@ -272,10 +272,9 @@ export function useCalendarCell(
       },
       tabIndex,
       role: 'button',
-      // @ts-ignore
       'aria-disabled': !isSelectable,
       'aria-label': label,
-      'aria-invalid': isInvalid || null,
+      'aria-invalid': isInvalid,
       'aria-describedby':
         [
           isInvalid ? errorMessageId : null,
@@ -283,7 +282,7 @@ export function useCalendarCell(
         ]
           .filter(Boolean)
           .join(' ') || undefined,
-      onPointerEnter(e: PointerEvent) {
+      onPointerEnter(e: PointerEvent<FocusableElement>) {
         // Highlight the date on hover or drag over a date when selecting a range.
         if (
           'highlightDate' in state &&
@@ -293,7 +292,7 @@ export function useCalendarCell(
           state.highlightDate(date)
         }
       },
-      onContextMenu(e: MouseEvent) {
+      onContextMenu(e: MouseEvent<FocusableElement>) {
         e.preventDefault()
       },
     },

@@ -5,17 +5,14 @@ export const daysInMonth = {
   leapyear: [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
 }
 
-export const textCalendar = {
-  previous: 'Previous',
-  next: 'Next',
-  selectedDateDescription: 'Selected Date: {date}',
-  selectedRangeDescription: 'Selected Range: {dateRange}',
-  todayDate: 'Today, {date}',
-  todayDateSelected: 'Today, {date} selected',
-  dateSelected: '{date} selected',
-  startRangeSelectionPrompt: 'Click to start selecting date range',
-  finishRangeSelectionPrompt: 'Click to finish selecting date range',
-  minimumDate: 'First available date',
-  maximumDate: 'Last available date',
-  dateRange: '{startDate} to {endDate}',
-}
+export const nonTextInputTypes = new Set([
+  'checkbox',
+  'radio',
+  'range',
+  'color',
+  'file',
+  'image',
+  'button',
+  'submit',
+  'reset',
+])

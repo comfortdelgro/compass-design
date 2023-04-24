@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/restrict-plus-operands */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import {
   CalendarDate,
   DateDuration,
@@ -12,6 +9,8 @@ import {
   startOfYear,
   toCalendarDate,
 } from '@internationalized/date'
+import {MouseEvent} from 'react'
+import {FocusableElement} from '../types'
 import {EventPoint, Rect} from '../types/common.types'
 
 export const alignCenter = (
@@ -176,7 +175,7 @@ function areRectanglesOverlapping(a: Rect, b: Rect) {
 }
 
 export function isOverTarget(
-  point: EventPoint | MouseEvent,
+  point: EventPoint | MouseEvent<FocusableElement>,
   target: Element | null,
 ) {
   if (!target) return
