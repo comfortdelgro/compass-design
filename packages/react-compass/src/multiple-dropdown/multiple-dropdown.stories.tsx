@@ -12,7 +12,7 @@ export const MultipleDropdowns: React.FC = () => {
       <MultipleDropdown
         label='Favorite Animal'
         selectionMode='multiple'
-        disabledKeys={['snake']}
+        disabledKeys={['cat']}
         placeholder='Choose an animal'
         selectedKeys={value}
         isRequired
