@@ -8,8 +8,10 @@ export const Variants: React.FC = () => {
     <Column>
       <h3>Controlled</h3>
       <QuantityToggle
-        disableScroll
+        disableScroll={false}
         placeholder='Price'
+        value={value}
+        onChange={(e) => setValue(e)}
         formatOptions={{
           style: 'currency',
           currency: 'USD',
@@ -18,8 +20,6 @@ export const Variants: React.FC = () => {
       <h3>Un Controlled</h3>
       <QuantityToggle
         placeholder='Price'
-        value={value}
-        onChange={(e) => setValue(e)}
         formatOptions={{
           style: 'currency',
           currency: 'USD',
