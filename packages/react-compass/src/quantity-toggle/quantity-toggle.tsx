@@ -40,7 +40,7 @@ const QuantityToggle = React.forwardRef<HTMLInputElement, QuantityToggleProps>(
       // StyledComponentProps
       css = {},
       isErrored,
-      disableScroll = false,
+      disableScroll = true,
       // AriaQuantityToggleProps
       ...ariaSafeProps
     } = props
