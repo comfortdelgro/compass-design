@@ -52,6 +52,7 @@ const MultipleDropdown = React.forwardRef<
     isRequired,
     errorMessage,
     helperText,
+    disabledKeys = [],
     // AriaDropdownProps
   } = props
   const [isOpen, setIsOpen] = React.useState(false)
@@ -182,7 +183,7 @@ const MultipleDropdown = React.forwardRef<
                 <div
                   style={{cursor: isDisabled ? 'default' : 'pointer'}}
                   onClick={() => {
-                    if (!isDisabled) {
+                    if (!isDisabled && ![...disabledKeys].includes(item.key)) {
                       removeItem(item.key)
                     }
                   }}
