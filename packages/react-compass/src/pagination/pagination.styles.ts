@@ -2,9 +2,8 @@ import {styled} from '../theme'
 import type {VariantProps} from '../utils/stitches.types'
 
 export const StyledPaginationItem = styled('button', {
-  width: '$8',
+  minWidth: '$8',
   height: '$8',
-  aspectRatio: '1 / 1',
   borderRadius: '$full',
   display: 'flex',
   alignItems: 'center',
@@ -43,6 +42,7 @@ export const StyledPagination = styled('nav', {
   alignItems: 'center',
   gap: '$1',
   padding: '$2 0',
+  flexWrap: 'wrap',
 })
 
 export type PaginationVariantProps = VariantProps<typeof StyledPagination>
