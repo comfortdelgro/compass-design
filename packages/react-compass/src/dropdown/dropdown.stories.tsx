@@ -27,7 +27,6 @@ export const Select: React.FC = () => {
         isRequired
         label='Favorite Animal'
         placeholder='Choose an animal'
-        isDisabled
         selectedKey={value}
         onSelectionChange={(k: Key) => setValue(k)}
       >

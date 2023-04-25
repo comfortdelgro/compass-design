@@ -76,7 +76,10 @@ export const StyledDropdown = styled('div', {
     },
     isDisabled: {
       true: {
-        cursor: 'default',
+        cursor: 'not-allowed !important',
+        '& > *': {
+          cursor: 'not-allowed !important',
+        },
       },
     },
     isErrored: {

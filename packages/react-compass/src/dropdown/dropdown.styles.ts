@@ -88,6 +88,9 @@ export const StyledDropdown = styled('div', {
         input: {
           color: '#b7b7b7 !important',
         },
+        '& > *': {
+          cursor: 'not-allowed !important',
+        },
       },
     },
     isErrored: {
@@ -172,6 +175,9 @@ export const StyledFlag = styled('div', {
         input: {
           color: '#b7b7b7 !important',
         },
+        '& > *': {
+          cursor: 'not-allowed !important',
+        },
       },
     },
     isErrored: {
@@ -238,8 +244,8 @@ export const StyledSelect = styled('div', {
     },
     isDisabled: {
       true: {
-        button: {
-          cursor: 'default',
+        '& > *': {
+          cursor: 'not-allowed !important',
         },
       },
     },
