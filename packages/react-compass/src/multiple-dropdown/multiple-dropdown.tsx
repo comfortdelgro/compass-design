@@ -85,7 +85,8 @@ const MultipleDropdown = React.forwardRef<
     close: () => setIsOpen(false),
     open: () => setIsOpen(true),
   }
-  const selectedNode = React.useMemo(() => {
+
+  const getSelectedNode = () => {
     const t: Array<{
       key: Key
       rendered: React.ReactNode
@@ -97,7 +98,9 @@ const MultipleDropdown = React.forwardRef<
       })
     }
     return t
-  }, [state])
+  }
+
+  const selectedNode = getSelectedNode()
 
   const removeItem = (key: Key) => {
     state.selectionManager.toggleSelection(key)
