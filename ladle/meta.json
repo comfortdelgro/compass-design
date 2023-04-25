@@ -105,6 +105,16 @@
       "filePath": "src/banner/banner.stories.tsx",
       "meta": {}
     },
+    "box--default": {
+      "name": "Default",
+      "levels": [
+        "Box"
+      ],
+      "locStart": 4,
+      "locEnd": 13,
+      "filePath": "src/box/box.stories.tsx",
+      "meta": {}
+    },
     "breadcrumbs--default": {
       "name": "Default",
       "levels": [
@@ -123,16 +133,6 @@
       "locStart": 22,
       "locEnd": 30,
       "filePath": "src/breadcrumbs/breadcrumbs.stories.tsx",
-      "meta": {}
-    },
-    "box--default": {
-      "name": "Default",
-      "levels": [
-        "Box"
-      ],
-      "locStart": 4,
-      "locEnd": 13,
-      "filePath": "src/box/box.stories.tsx",
       "meta": {}
     },
     "button--variants": {
