@@ -272,12 +272,14 @@ const MultipleDropdown = React.forwardRef<
           {selectedNode.length === 0 && !open && <p>{props.placeholder}</p>}
           {selectedNode.length > 0 &&
             selectedNode.map((item) => (
-              <StyledSelectedItem key={item.key}>
+              <StyledSelectedItem
+                key={item.key}
+                style={{
+                  cursor: isDisabled ? 'not-allowed' : 'pointer',
+                }}
+              >
                 <div>{item.rendered}</div>
                 <div
-                  style={{
-                    cursor: isDisabled ? 'default' : 'pointer',
-                  }}
                   onClick={() => {
                     if (!isDisabled && !disabledKeys?.includes(item.key)) {
                       removeItem(item.key)
