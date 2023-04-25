@@ -63,10 +63,10 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   const [isSearching, setIsSearching] = React.useState(false)
   const [open, setOpen] = React.useState<boolean>(defaultOpen)
   const [currentKey, setCurrentKey] = React.useState<React.Key | undefined>(
-    getDefaulValue(defaultSelectedKey, selectedKey, disabledKeys),
+    getDefaulValue(defaultSelectedKey, selectedKey),
   )
   const [focusKey, setFocusKey] = React.useState<React.Key | undefined>(
-    getDefaulValue(defaultSelectedKey, selectedKey, disabledKeys),
+    getDefaulValue(defaultSelectedKey, selectedKey),
   )
 
   // ====================================== REF ======================================

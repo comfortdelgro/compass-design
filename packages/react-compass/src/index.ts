@@ -204,6 +204,8 @@ export type {
 } from './sidenav'
 export {default as Skeleton} from './skeleton'
 export type {SkeletonProps} from './skeleton'
+export {default as SpeedDial} from './speed-dial'
+export type {SpeedDialProps} from './speed-dial'
 export {default as Spinner} from './spinner'
 export type {SpinnerProps} from './spinner'
 export {default as SubHeader} from './sub-header'
