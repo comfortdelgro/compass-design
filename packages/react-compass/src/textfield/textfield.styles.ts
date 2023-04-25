@@ -9,7 +9,7 @@ export const StyledTextFieldWrapper = styled('div', {
 
 export const StyledTextFieldLabel = styled('label', {
   fontSize: '$label1',
-  fontWeight: '$medium',
+  fontWeight: '$semibold',
   lineHeight: '$normal',
   display: 'block',
   marginBottom: '$1',
@@ -110,7 +110,7 @@ export const StyledTextFieldBox = styled('div', {
 export const StyledTextField = styled('input', {
   width: '100%',
   fontSize: '$label1',
-  fontWeight: '$medium',
+  fontWeight: '$semibold',
   lineHeight: '$normal',
   padding: '$1_5 $3',
   border: 0,
