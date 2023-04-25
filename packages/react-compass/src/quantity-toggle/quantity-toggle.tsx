@@ -20,6 +20,7 @@ interface Props extends AriaNumberFieldProps, StyledComponentProps {
   placeholder?: string
   helperText?: string
   errorMessage?: string
+  onUpdate?: (value: string | number | readonly string[] | undefined) => void
 }
 
 export type QuantityToggleProps = Props & QuantityToggleVariantProps
@@ -56,6 +57,10 @@ const QuantityToggle = React.forwardRef<HTMLInputElement, QuantityToggleProps>(
       incrementButtonProps,
       decrementButtonProps,
     } = useNumberField(props, state, quantityToggleRef)
+
+    React.useEffect(() => {
+      props.onUpdate?.(inputProps.value)
+    })
 
     return (
       <StyledQuantityToggle
