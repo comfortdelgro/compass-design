@@ -44,13 +44,18 @@ export const StyledSearchFieldBox = styled('div', {
 
 export const StyledSearchFieldInput = styled('input', {
   fontSize: '$label1',
-  fontWeight: '$medium',
+  fontWeight: '$semibold',
   lineHeight: '$normal',
   padding: '$0_5 $2',
   border: 0,
   borderRadius: '$md',
   backgroundColor: 'transparent',
   width: '100%',
+  '&::placeholder': {
+    color: '#B4B4B4',
+    fontSize: '$label1',
+    fontWeight: '$semibold',
+  },
 
   '&:focus': {
     outline: 'none',
