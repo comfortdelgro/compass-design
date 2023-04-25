@@ -381,7 +381,7 @@
         "Dropdown"
       ],
       "locStart": 21,
-      "locEnd": 135,
+      "locEnd": 134,
       "filePath": "src/dropdown/dropdown.stories.tsx",
       "meta": {}
     },
@@ -390,8 +390,8 @@
       "levels": [
         "Dropdown"
       ],
-      "locStart": 137,
-      "locEnd": 241,
+      "locStart": 136,
+      "locEnd": 240,
       "filePath": "src/dropdown/dropdown.stories.tsx",
       "meta": {}
     },
