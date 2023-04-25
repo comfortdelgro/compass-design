@@ -93,7 +93,7 @@ const MultipleDropdown = React.forwardRef<
     [rawCollection, disabledKeys],
   )
 
-  const selectedNode = React.useMemo(() => {
+  const getSelectedNode = () => {
     const t: Array<{
       key: Key
       rendered: React.ReactNode
@@ -107,9 +107,15 @@ const MultipleDropdown = React.forwardRef<
       })
     }
     return t
-  }, [currentKeys, rawCollection])
+  }
+
+  const selectedNode = getSelectedNode()
 
   // ====================================== EFFECT ======================================
+  React.useEffect(() => {
+    if (selectedKeys) setCurrentKeys(selectedKeys)
+  }, [selectedKeys])
+
   React.useEffect(() => {
     if (currentKeys.length > 0) {
       props.onSelectionChange?.(currentKeys)
