@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 0.33.8
+
+### Patch Changes
+
+- 8bdd2e0a: Fix bugs in MultipleDropdown (disabled item should not be able to be deleted on list) and add new api (onUpdate) to quantity-toggle
+
 ## 0.33.7
 
 ### Patch Changes
