@@ -16,8 +16,12 @@ export const Variants: React.FC = () => {
           style: 'currency',
           currency: 'USD',
         }}
+        onUpdate={(value, number) => {
+          console.log('onUpdate value', value)
+          console.log('onUpdate number', number)
+        }}
       />
-      <h3>Un Controlled</h3>
+      <h3>Un-Controlled</h3>
       <QuantityToggle
         placeholder='Price'
         formatOptions={{
