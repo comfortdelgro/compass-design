@@ -79,6 +79,8 @@ export type {
   DialogTitleProps,
   DialogTriggerProps,
 } from './dialog'
+export {default as Divider} from './divider'
+export type {DividerProps} from './divider'
 export {default as Dropdown} from './dropdown'
 export type {
   DropdownComboBoxProps,
@@ -199,7 +201,7 @@ export type {
 } from './sidebar'
 export {default as Sidenav, SidenavContext} from './sidenav'
 export type {
-  DividerProps,
+  DividerProps as SidenavDividerProps,
   SidenavContextValue,
   SidenavItemProps,
   SidenavProps,
