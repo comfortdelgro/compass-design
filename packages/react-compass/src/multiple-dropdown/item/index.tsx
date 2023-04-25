@@ -3,7 +3,7 @@ import React from 'react'
 
 interface Props<T> {
   children: React.ReactNode | string
-  key: string
+  key: React.Key
   title?: React.ReactNode
   textValue?: string
   'aria-label'?: string
