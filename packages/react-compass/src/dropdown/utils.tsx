@@ -89,6 +89,7 @@ export const pickSections = (
 }
 
 export interface ListBoxCollections {
+  id: number
   type: 'component' | 'group'
   title?: React.ReactNode
   children: Array<
@@ -103,9 +104,10 @@ export const getListBoxCollection = (
   >,
 ) => {
   const list: ListBoxCollections[] = []
-  sectionCollection.forEach((i) => {
+  sectionCollection.forEach((i, index) => {
     if (i.title === undefined) {
       list.push({
+        id: index,
         type: 'component',
         children: i.keys
           .map((j) => collection.find((k) => j === k.key))
@@ -114,6 +116,7 @@ export const getListBoxCollection = (
     }
     if (i.title) {
       list.push({
+        id: index,
         type: 'group',
         title: i.title,
         children: i.keys

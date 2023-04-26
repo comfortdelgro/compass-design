@@ -80,7 +80,7 @@ function ListBox(props: Props) {
         ) : (
           <>
             {listBoxCollection.map((item) => (
-              <>
+              <div key={item.id}>
                 {item.title && <StyledSection>{item.title}</StyledSection>}
                 {item.children.map((c) =>
                   c ? (
@@ -96,7 +96,7 @@ function ListBox(props: Props) {
                     />
                   ) : null,
                 )}
-              </>
+              </div>
             ))}
 
             {[...collection].length > 0 && (
