@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 0.33.9
+
+### Patch Changes
+
+- 01ffde2d: Hotfix: consolidate bottom-margin of label in input. And fix issue in quantity-toggle (onUpdate fires too many times)
+
 ## 0.33.8
 
 ### Patch Changes
