@@ -136,6 +136,20 @@ export const Select: React.FC = () => {
         <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
         <Dropdown.Item key='snake'>Snake</Dropdown.Item>
       </Dropdown.Select>
+      <h3>With Section</h3>
+      <Dropdown.Select label='Favorite Animal' placeholder='Choose an animal'>
+        <Dropdown.Item key='fly'>Fly</Dropdown.Item>
+        <Dropdown.Section title='Group 1'>
+          <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
+          <Dropdown.Item key='cat'>Cat</Dropdown.Item>
+          <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+        </Dropdown.Section>
+        <Dropdown.Section title='Group 2'>
+          <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+          <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+          <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+        </Dropdown.Section>
+      </Dropdown.Select>
     </Column>
   )
 }
@@ -241,6 +255,20 @@ export const ComboBox: React.FC = () => {
         <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
         <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
         <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+      </Dropdown.ComboBox>
+      <h3>With Section</h3>
+      <Dropdown.ComboBox label='Favorite Animal' placeholder='Choose an animal'>
+        <Dropdown.Item key='fly'>Fly</Dropdown.Item>
+        <Dropdown.Section title='Group 1'>
+          <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
+          <Dropdown.Item key='cat'>Cat</Dropdown.Item>
+          <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+        </Dropdown.Section>
+        <Dropdown.Section title='Group 2'>
+          <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+          <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+          <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+        </Dropdown.Section>
       </Dropdown.ComboBox>
     </Column>
   )

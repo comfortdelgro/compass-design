@@ -17,12 +17,14 @@ import {countries, Flag} from './flags'
 import DropdownItem, {DropdownItemProps} from './item'
 import ListBox from './list-box'
 import Popover from './popover'
+import DropdownSection from './section'
 import {
   DropdownBase,
   getDefaulValue,
   Icon,
   ListKeyboardDelegate,
   pickChilds,
+  pickSections,
   textContent,
 } from './utils'
 
@@ -81,6 +83,11 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   // ====================================== CONST ======================================
   const rawCollection = React.useMemo(
     () => pickChilds<DropdownItemProps>(children, DropdownItem),
+    [children],
+  )
+
+  const sectionCollection = React.useMemo(
+    () => pickSections(children),
     [children],
   )
 
@@ -327,6 +334,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
               focusKey={focusKey}
               currentKey={currentKey}
               collection={collection}
+              sectionCollection={sectionCollection}
               disabledKeys={disabledKeys}
               isLoading={!!props.isLoading}
               headerTitle={props.headerTitle}
@@ -352,4 +360,5 @@ export default Select as typeof Select & {
   Flag: typeof DropdownFlag
   Select: typeof DropdownSelect
   Item: typeof DropdownItem
+  Section: typeof DropdownSection
 }

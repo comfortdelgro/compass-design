@@ -1,8 +1,16 @@
 import React from 'react'
 import Header from '../../dropdown/header'
 import {DropdownItemProps} from '../../dropdown/item'
-import {StyledLoading} from '../../dropdown/list-box/index.styles'
-import {getDistanceBetweenElements, useIsInViewport} from '../../dropdown/utils'
+import {
+  StyledLoading,
+  StyledSection,
+} from '../../dropdown/list-box/index.styles'
+import {
+  getDistanceBetweenElements,
+  getListBoxCollection,
+  SectionCollection,
+  useIsInViewport,
+} from '../../dropdown/utils'
 import Option from '../option'
 
 interface Props {
@@ -14,6 +22,7 @@ interface Props {
   currentKeys: React.Key[]
   headerTitle: string | undefined
   isLoading: boolean
+  sectionCollection: SectionCollection[]
   onLoadMore: () => void
   onHover: (key: React.Key | null) => void
   onSelect: (key: React.Key) => void
@@ -29,6 +38,7 @@ function ListBox(props: Props) {
     currentKeys,
     focusKey,
     disabledKeys,
+    sectionCollection,
     onHover,
     onSelect,
   } = props
@@ -36,6 +46,11 @@ function ListBox(props: Props) {
   const lastEl = React.useRef<HTMLDivElement | null>(null)
   const standEl = React.useRef<HTMLDivElement | null>(null)
   const isInViewport = useIsInViewport(lastEl)
+  const listBoxCollection = React.useMemo(
+    () => getListBoxCollection(sectionCollection, collection),
+    [sectionCollection, collection],
+  )
+
   React.useEffect(() => {
     if (lastEl.current && standEl.current) {
       const distance = getDistanceBetweenElements(
@@ -65,17 +80,25 @@ function ListBox(props: Props) {
           </StyledLoading>
         ) : (
           <>
-            {[...collection].map((item) => (
-              <Option
-                key={item.key}
-                item={item}
-                disabledKeys={disabledKeys}
-                currentKeys={currentKeys}
-                focusKey={focusKey}
-                onHover={onHover}
-                onSelect={onSelect}
-              />
+            {listBoxCollection.map((item) => (
+              <>
+                {item.title && <StyledSection>{item.title}</StyledSection>}
+                {item.children.map((c) =>
+                  c ? (
+                    <Option
+                      key={c.key}
+                      item={c}
+                      disabledKeys={disabledKeys}
+                      currentKeys={currentKeys}
+                      focusKey={focusKey}
+                      onHover={onHover}
+                      onSelect={onSelect}
+                    />
+                  ) : null,
+                )}
+              </>
             ))}
+
             {[...collection].length > 0 && (
               <div style={{height: 1}} ref={lastEl} />
             )}

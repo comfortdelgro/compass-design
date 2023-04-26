@@ -41,3 +41,11 @@ export const StyledLoading = styled('div', {
     },
   },
 })
+
+export const StyledSection = styled('div', {
+  backgroundColor: '$cdgBlue10',
+  padding: '$2 $4',
+  fontSize: '$label2',
+  fontWeight: '$semibold',
+  color: '#333333',
+})

@@ -5,11 +5,13 @@ import {
 } from '../dropdown/dropdown.styles'
 import DropdownItem from '../dropdown/item'
 import Popover from '../dropdown/popover'
+import DropdownSection from '../dropdown/section'
 import {
   DropdownBase,
   Icon,
   ListKeyboardDelegate,
   pickChilds,
+  pickSections,
   textContent,
 } from '../dropdown/utils'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -73,6 +75,11 @@ const MultipleDropdown = React.forwardRef<
   // ====================================== CONST ======================================
   const rawCollection = React.useMemo(
     () => pickChilds<DropdownItemProps>(children, DropdownItem),
+    [children],
+  )
+
+  const sectionCollection = React.useMemo(
+    () => pickSections(children),
     [children],
   )
 
@@ -312,6 +319,7 @@ const MultipleDropdown = React.forwardRef<
               focusKey={focusKey}
               currentKeys={currentKeys}
               collection={collection}
+              sectionCollection={sectionCollection}
               disabledKeys={disabledKeys}
               isLoading={!!props.isLoading}
               headerTitle={props.headerTitle}
@@ -333,4 +341,5 @@ const MultipleDropdown = React.forwardRef<
 
 export default MultipleDropdown as typeof MultipleDropdown & {
   Item: typeof DropdownItem
+  Section: typeof DropdownSection
 }
