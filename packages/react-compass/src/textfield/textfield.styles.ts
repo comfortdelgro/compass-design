@@ -12,7 +12,7 @@ export const StyledTextFieldLabel = styled('label', {
   fontWeight: '$semibold',
   lineHeight: '$normal',
   display: 'block',
-  marginBottom: '$1',
+  marginBottom: '$2',
   span: {
     marginLeft: '$1',
     color: '$danger',
