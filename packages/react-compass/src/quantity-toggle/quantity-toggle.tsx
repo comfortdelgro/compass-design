@@ -49,6 +49,8 @@ const QuantityToggle = React.forwardRef<HTMLInputElement, QuantityToggleProps>(
       ...ariaSafeProps
     } = props
 
+    const [mounted, setMounted] = React.useState(false)
+
     const variantProps = {} as QuantityToggleVariantProps
     const quantityToggleRef = useDOMRef<HTMLInputElement>(ref)
     const {locale} = useLocale()
@@ -62,9 +64,13 @@ const QuantityToggle = React.forwardRef<HTMLInputElement, QuantityToggleProps>(
     } = useNumberField(props, state, quantityToggleRef)
 
     React.useEffect(() => {
-      const value = inputProps.value as string
-      props.onUpdate?.(value, parseFloat(value?.replace(/[^0-9.-]+/g, '')))
-    })
+      if (mounted) {
+        const value = inputProps.value as string
+        props.onUpdate?.(value, parseFloat(value?.replace(/[^0-9.-]+/g, '')))
+      } else {
+        setMounted(true)
+      }
+    }, [inputProps.value])
 
     return (
       <StyledQuantityToggle
