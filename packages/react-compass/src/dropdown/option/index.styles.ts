@@ -27,26 +27,26 @@ export const StyledOption = styled('li', {
     },
     isDisabled: {
       true: {
-        '&:hover': {
-          backgroundColor: 'transparent',
-        },
+        // '&:hover': {
+        //   backgroundColor: 'transparent',
+        // },
         opacity: 0.4,
         cursor: 'not-allowed',
       },
     },
   },
-  compoundVariants: [
-    {
-      isDisabled: true,
-      isFocused: true,
-      css: {
-        '&:hover': {
-          backgroundColor: 'transparent',
-        },
-        opacity: 0.4,
-      },
-    },
-  ],
+  // compoundVariants: [
+  //   {
+  //     isDisabled: true,
+  //     isFocused: true,
+  //     css: {
+  //       '&:hover': {
+  //         backgroundColor: 'transparent',
+  //       },
+  //       opacity: 0.4,
+  //     },
+  //   },
+  // ],
 })
 
 export const StyledIcon = styled('div', {
