@@ -98,11 +98,43 @@ export const Select: React.FC = () => {
         <Dropdown.Item key='snake'>Snake</Dropdown.Item>
       </Dropdown.Select>
       <h3>With Header</h3>
-      <Dropdown.Select
-        label='Favorite Animal'
-        placeholder='Choose an animal'
-        headerTitle='Filter title'
-      >
+      <Dropdown.Select label='Favorite Animal' placeholder='Choose an animal'>
+        <Dropdown.Header>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              width: '100%',
+              padding: '8px 16px',
+              borderBottom: '2px solid #EDEBE9',
+            }}
+          >
+            <span
+              style={{
+                color: '#323130',
+                fontSize: '12px',
+                fontWeight: 'bold',
+                padding: 0,
+                margin: 0,
+              }}
+            >
+              Filter
+            </span>
+            <button
+              style={{
+                fontSize: '12px',
+                fontWeight: 'bold',
+                color: '#A4262C',
+                border: 0,
+                cursor: 'pointer',
+                backgroundColor: 'transparent',
+              }}
+            >
+              Clear
+            </button>
+          </div>
+        </Dropdown.Header>
         <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
         <Dropdown.Item key='cat'>Cat</Dropdown.Item>
         <Dropdown.Item key='dog'>Dog</Dropdown.Item>
@@ -218,11 +250,43 @@ export const ComboBox: React.FC = () => {
         <Dropdown.Item key='snake'>Snake</Dropdown.Item>
       </Dropdown.ComboBox>
       <h3>With Header</h3>
-      <Dropdown.ComboBox
-        label='Favorite Animal'
-        placeholder='Choose an animal'
-        headerTitle='Filter title'
-      >
+      <Dropdown.ComboBox label='Favorite Animal' placeholder='Choose an animal'>
+        <Dropdown.Header>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              width: '100%',
+              padding: '8px 16px',
+              borderBottom: '2px solid #EDEBE9',
+            }}
+          >
+            <span
+              style={{
+                color: '#323130',
+                fontSize: '12px',
+                fontWeight: 'bold',
+                padding: 0,
+                margin: 0,
+              }}
+            >
+              Filter
+            </span>
+            <button
+              style={{
+                fontSize: '12px',
+                fontWeight: 'bold',
+                color: '#A4262C',
+                border: 0,
+                cursor: 'pointer',
+                backgroundColor: 'transparent',
+              }}
+            >
+              Clear
+            </button>
+          </div>
+        </Dropdown.Header>
         <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
         <Dropdown.Item key='cat'>Cat</Dropdown.Item>
         <Dropdown.Item key='dog'>Dog</Dropdown.Item>

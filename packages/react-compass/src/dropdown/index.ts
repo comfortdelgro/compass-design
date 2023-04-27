@@ -2,11 +2,13 @@ import Dropdown from './dropdown'
 import ComboBox from './dropdown.combobox'
 import DropdownFlag from './dropdown.flag'
 import Select from './dropdown.select'
+import DropdownHeader from './header'
 import DropdownItem from './item'
 import DropdownSection from './section'
 
 Dropdown.Item = DropdownItem
 Dropdown.Section = DropdownSection
+Dropdown.Header = DropdownHeader
 Dropdown.ComboBox = ComboBox
 Dropdown.Flag = DropdownFlag
 Dropdown.Select = Select

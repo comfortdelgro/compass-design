@@ -179,7 +179,6 @@ export interface DropdownBase extends StyledComponentProps {
   helperText?: string
   isDisabled?: boolean
   isReadOnly?: boolean
-  headerTitle?: string
   isRequired?: boolean
   placeholder?: string
   errorMessage?: string
@@ -189,7 +188,6 @@ export interface DropdownBase extends StyledComponentProps {
   description?: React.ReactNode
   disabledKeys?: React.Key[]
   onLoadMore?: () => void
-  headerOnClick?: (e: unknown) => void
   onOpenChange?: (isOpen: boolean) => void
 }
 

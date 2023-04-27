@@ -28,6 +28,7 @@ export const Default: React.FC = () => {
         <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
         <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
       </MultipleDropdown>
+
       <h3>UnControlled</h3>
       <MultipleDropdown
         label='Favorite Animal'
@@ -42,7 +43,8 @@ export const Default: React.FC = () => {
         <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
         <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
       </MultipleDropdown>
-      <h3>Error</h3>
+
+      <h3>Errored</h3>
       <MultipleDropdown
         label='Favorite Animal'
         disabledKeys={['snake']}
@@ -58,21 +60,7 @@ export const Default: React.FC = () => {
         <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
         <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
       </MultipleDropdown>
-      <h3>Header</h3>
-      <MultipleDropdown
-        disabledKeys={['snake']}
-        label='Favorite Animal'
-        placeholder='Choose an animal'
-        headerTitle='Filter title'
-        headerOnClick={() => console.log('clicked')}
-      >
-        <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
-        <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
-        <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
-        <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
-        <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
-        <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
-      </MultipleDropdown>
+
       <h3>Loading</h3>
       <MultipleDropdown
         label='Favorite Animal'
@@ -87,13 +75,61 @@ export const Default: React.FC = () => {
         <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
       </MultipleDropdown>
 
-      <h3>Header</h3>
+      <h3>With Header</h3>
       <MultipleDropdown
         disabledKeys={['snake']}
         label='Favorite Animal'
         placeholder='Choose an animal'
-        headerTitle='Filter title'
-        headerOnClick={() => console.log('clicked')}
+      >
+        <MultipleDropdown.Header>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              width: '100%',
+              padding: '8px 16px',
+              borderBottom: '2px solid #EDEBE9',
+            }}
+          >
+            <span
+              style={{
+                color: '#323130',
+                fontSize: '12px',
+                fontWeight: 'bold',
+                padding: 0,
+                margin: 0,
+              }}
+            >
+              Filter
+            </span>
+            <button
+              style={{
+                fontSize: '12px',
+                fontWeight: 'bold',
+                color: '#A4262C',
+                border: 0,
+                cursor: 'pointer',
+                backgroundColor: 'transparent',
+              }}
+            >
+              Clear
+            </button>
+          </div>
+        </MultipleDropdown.Header>
+        <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
+        <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
+        <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
+        <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
+        <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
+        <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+      </MultipleDropdown>
+
+      <h3>With Icon</h3>
+      <MultipleDropdown
+        label='Favorite Animal'
+        placeholder='Choose an animal'
+        icon={<Icon icon={faExclamationTriangle} />}
       >
         <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
         <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
@@ -103,7 +139,7 @@ export const Default: React.FC = () => {
         <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
       </MultipleDropdown>
 
-      <h3>Header</h3>
+      <h3>With Section</h3>
       <MultipleDropdown label='Favorite Animal' placeholder='Choose an animal'>
         <MultipleDropdown.Item key='fly'>Fly</MultipleDropdown.Item>
         <MultipleDropdown.Section title='Group 1'>

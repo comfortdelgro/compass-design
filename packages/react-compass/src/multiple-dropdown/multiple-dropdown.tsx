@@ -3,6 +3,7 @@ import {
   StyledHelperText,
   StyledListBoxWrapper,
 } from '../dropdown/dropdown.styles'
+import DropdownHeader from '../dropdown/header'
 import DropdownItem from '../dropdown/item'
 import Popover from '../dropdown/popover'
 import DropdownSection from '../dropdown/section'
@@ -45,12 +46,14 @@ const MultipleDropdown = React.forwardRef<
     isErrored,
     isDisabled,
     isRequired,
+    isReadOnly,
     helperText,
     defaultOpen,
     errorMessage,
     selectedKeys,
     icon = <Icon />,
     disabledKeys = [],
+    isLoading = false,
     defaultSelectedKeys = [],
     onLoadMore = () => {
       //Load more
@@ -100,7 +103,7 @@ const MultipleDropdown = React.forwardRef<
     [rawCollection, disabledKeys],
   )
 
-  const getSelectedNode = () => {
+  const selectedNode = React.useMemo(() => {
     const t: Array<{
       key: Key
       rendered: React.ReactNode
@@ -114,9 +117,7 @@ const MultipleDropdown = React.forwardRef<
       })
     }
     return t
-  }
-
-  const selectedNode = getSelectedNode()
+  }, [currentKeys, rawCollection, currentKeys.length])
 
   // ====================================== EFFECT ======================================
   React.useEffect(() => {
@@ -244,14 +245,16 @@ const MultipleDropdown = React.forwardRef<
   }
 
   const onSelect = (key: React.Key) => {
-    const v = new Set(currentKeys)
-    if (currentKeys.includes(key)) {
-      v.delete(key)
-    } else {
-      v.add(key)
+    if (!isReadOnly) {
+      const v = new Set(currentKeys)
+      if (currentKeys.includes(key)) {
+        v.delete(key)
+      } else {
+        v.add(key)
+      }
+      setCurrentKeys([...v])
+      setFocusKey(key)
     }
-    setCurrentKeys([...v])
-    setFocusKey(key)
   }
 
   const onHover = (key: React.Key | null) => {
@@ -315,18 +318,17 @@ const MultipleDropdown = React.forwardRef<
             handleKeyDown={handleKeyDown}
           >
             <ListBox
-              listBoxRef={listBoxRef}
               focusKey={focusKey}
-              currentKeys={currentKeys}
+              isLoading={isLoading}
               collection={collection}
-              sectionCollection={sectionCollection}
+              rootChildren={children}
+              listBoxRef={listBoxRef}
+              currentKeys={currentKeys}
               disabledKeys={disabledKeys}
-              isLoading={!!props.isLoading}
-              headerTitle={props.headerTitle}
+              sectionCollection={sectionCollection}
               onHover={onHover}
               onSelect={onSelect}
               onLoadMore={onLoadMore}
-              headerOnClick={(e) => props?.headerOnClick?.(e)}
             />
           </Popover>
         )}
@@ -341,5 +343,6 @@ const MultipleDropdown = React.forwardRef<
 
 export default MultipleDropdown as typeof MultipleDropdown & {
   Item: typeof DropdownItem
+  Header: typeof DropdownHeader
   Section: typeof DropdownSection
 }

@@ -14,6 +14,7 @@ import {
   StyledSelect,
 } from './dropdown.styles'
 import {countries, Flag} from './flags'
+import DropdownHeader from './header'
 import DropdownItem, {DropdownItemProps} from './item'
 import ListBox from './list-box'
 import Popover from './popover'
@@ -46,12 +47,14 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     children,
     isErrored,
     isRequired,
+    isReadOnly,
     helperText,
     selectedKey,
     placeholder,
     errorMessage,
     icon = <Icon />,
     type = 'select',
+    isLoading = false,
     disabledKeys = [],
     defaultSelectedKey,
     isDisabled = false,
@@ -129,6 +132,12 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
 
   // ====================================== EFFECT ======================================
   // map default value
+  React.useEffect(() => {
+    if (selectedKey) {
+      setCurrentKey(selectedKey)
+    }
+  }, [selectedKey])
+
   React.useEffect(() => {
     const getTextFromKey = (key: React.Key) => {
       const selected = rawCollection.find((item) => {
@@ -228,8 +237,10 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   }
 
   const onSelect = (key: React.Key) => {
-    setCurrentKey(key)
-    setOpen(false)
+    if (!isReadOnly) {
+      setCurrentKey(key)
+      setOpen(false)
+    }
   }
 
   const onSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -330,19 +341,18 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
             handleKeyDown={handleKeyDown}
           >
             <ListBox
-              listBoxRef={listBoxRef}
+              dropdownType={type}
               focusKey={focusKey}
               currentKey={currentKey}
               collection={collection}
-              sectionCollection={sectionCollection}
+              listBoxRef={listBoxRef}
               disabledKeys={disabledKeys}
-              isLoading={!!props.isLoading}
-              headerTitle={props.headerTitle}
-              dropdownType={type}
+              isLoading={isLoading}
+              sectionCollection={sectionCollection}
+              rootChildren={children}
               onHover={onHover}
               onSelect={onSelect}
               onLoadMore={onLoadMore}
-              headerOnClick={(e) => props?.headerOnClick?.(e)}
             />
           </Popover>
         )}
@@ -361,4 +371,5 @@ export default Select as typeof Select & {
   Select: typeof DropdownSelect
   Item: typeof DropdownItem
   Section: typeof DropdownSection
+  Header: typeof DropdownHeader
 }
