@@ -6,6 +6,7 @@ import Dropdown from './index'
 
 export const Flag: React.FC = () => {
   const [value, setValue] = React.useState('BRA')
+  const [value1, setValue1] = React.useState('BRA')
   return (
     <Column>
       <h3>Flag</h3>
@@ -17,12 +18,23 @@ export const Flag: React.FC = () => {
         selectedKey={value}
         onCountryChange={(e) => setValue(e)}
       />
+      <h3>Disabled Flag</h3>
+      <Dropdown.Flag
+        isDisabled
+        isRequired
+        label='List of country'
+        placeholder='Choose a country'
+        defaultSelectedCountry='SWZ'
+        selectedKey={value1}
+        onCountryChange={(e) => setValue1(e)}
+      />
     </Column>
   )
 }
 
 export const Select: React.FC = () => {
   const [value, setValue] = React.useState<Key>('cat')
+  const [value1, setValue1] = React.useState<Key>('cat')
   return (
     <Column>
       <h3>Controlled</h3>
@@ -30,9 +42,66 @@ export const Select: React.FC = () => {
         isRequired
         label='Favorite Animal'
         placeholder='Choose an animal'
-        // isDisabled
         selectedKey={value}
         onSelectionChange={(k: Key) => setValue(k)}
+      >
+        <Dropdown.Item
+          key='red panda'
+          leftIcon={<Icon icon={faExclamationTriangle} />}
+        >
+          Red Panda Red Panda Red Panda Red Panda Red Panda
+        </Dropdown.Item>
+        <Dropdown.Item
+          key='cat'
+          leftIcon={<Icon icon={faExclamationTriangle} />}
+          type='color'
+          rightColor='red'
+          textValue='pandared'
+        >
+          Cat Red Panda Red Panda Red Panda Red Panda Red Panda
+        </Dropdown.Item>
+        <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+        <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+        <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item key='snakessss'>Snake</Dropdown.Item>
+      </Dropdown.Select>
+      <h3>Disable the whole thing</h3>
+      <Dropdown.Select
+        isDisabled
+        isRequired
+        label='Favorite Animal'
+        placeholder='Choose an animal'
+        selectedKey={value1}
+        onSelectionChange={(k: Key) => setValue1(k)}
+      >
+        <Dropdown.Item
+          key='red panda'
+          leftIcon={<Icon icon={faExclamationTriangle} />}
+        >
+          Red Panda Red Panda Red Panda Red Panda Red Panda
+        </Dropdown.Item>
+        <Dropdown.Item
+          key='cat'
+          leftIcon={<Icon icon={faExclamationTriangle} />}
+          type='color'
+          rightColor='red'
+          textValue='pandared'
+        >
+          Cat Red Panda Red Panda Red Panda Red Panda Red Panda
+        </Dropdown.Item>
+        <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+        <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+        <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item key='snakessss'>Snake</Dropdown.Item>
+      </Dropdown.Select>
+      <h3>Disable only one item</h3>
+      <Dropdown.Select
+        isRequired
+        label='Favorite Animal'
+        placeholder='Choose an animal'
+        selectedKey={value1}
+        onSelectionChange={(k: Key) => setValue1(k)}
+        disabledKeys={['dog']}
       >
         <Dropdown.Item
           key='red panda'
@@ -192,6 +261,29 @@ export const ComboBox: React.FC = () => {
     <Column>
       <h3>Controlled</h3>
       <Dropdown.ComboBox
+        isRequired
+        label='Favorite Animal'
+        placeholder='Choose an animal'
+        selectedKey={value}
+        onSelectionChange={(k: Key) => setValue(k)}
+      >
+        <Dropdown.Item
+          key='red panda'
+          leftIcon={<Icon icon={faExclamationTriangle} />}
+        >
+          Red Panda Red Panda Red Panda Red Panda Red Panda
+        </Dropdown.Item>
+        <Dropdown.Item key='cat' type='color' rightColor='red'>
+          Cat
+        </Dropdown.Item>
+        <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+        <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+        <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+      </Dropdown.ComboBox>
+      <h3>Disabled</h3>
+      <Dropdown.ComboBox
+        isDisabled
         isRequired
         label='Favorite Animal'
         placeholder='Choose an animal'
