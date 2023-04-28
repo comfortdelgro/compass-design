@@ -1,5 +1,6 @@
 import {StoryDecorator} from '@ladle/react'
 import React, {useState} from 'react'
+import TextField from '../textfield'
 import {Column} from '../utils'
 import Calendar, {CalendarProps} from './../calendar'
 import DatePicker from './index'
@@ -12,7 +13,7 @@ export const Variants: React.FC = () => {
   return (
     <I18nProvider locale='en-SG'>
       <Column>
-        <h3>Basic</h3>
+        <h3>Readonly</h3>
         <DatePicker
           isReadOnly
           label='Date'
@@ -29,6 +30,8 @@ export const Variants: React.FC = () => {
           isInvalid
           label='Date'
           defaultValue={today(getLocalTimeZone())}
+          isRequired
+          necessityIndicator='icon'
         />
         <h3>MinValue</h3>
         <DatePicker
@@ -59,15 +62,23 @@ export const Controlled: React.FC = () => {
       <p>
         <b>Selected date:</b>
         <span style={{marginLeft: '4px'}}>
-          {formatter.format(date.toDate(getLocalTimeZone()))}
+          {formatter.format(date?.toDate(getLocalTimeZone()))}
         </span>
       </p>
-      <DatePicker
-        label='Date'
-        value={date}
-        defaultValue={today(getLocalTimeZone())}
-        onChange={setDate}
-      />
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'flex-end',
+        }}
+      >
+        <DatePicker
+          label='Date'
+          value={date}
+          defaultValue={today(getLocalTimeZone())}
+          onChange={setDate}
+        />
+        <TextField />
+      </div>
     </I18nProvider>
   )
 }

@@ -9,7 +9,7 @@ import React from 'react'
 import Button from '../../button'
 import Icon from '../../icon'
 import {useDOMRef} from '../../utils/use-dom-ref'
-import {StyledDateField} from './date-field.style'
+import {StyledDateField, StyledLabelNecessity} from './date-field.style'
 import DateSegment from './date-segment'
 
 interface Props extends AriaDateFieldProps<DateValue> {
@@ -47,11 +47,15 @@ const DateField = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   const generateLabeling = () => {
     const necessityIndicator = props.necessityIndicator ?? 'icon'
     if (props.isRequired && necessityIndicator === 'icon') {
-      return '*'
+      return <StyledLabelNecessity isError>*</StyledLabelNecessity>
     } else if (props.isRequired && necessityIndicator === 'label') {
-      return '(required)'
+      return (
+        <StyledLabelNecessity isError isText>
+          (required)
+        </StyledLabelNecessity>
+      )
     } else if (!props.isRequired && necessityIndicator === 'label') {
-      return '(optional)'
+      return <StyledLabelNecessity isText>(optional)</StyledLabelNecessity>
     }
     return ''
   }
