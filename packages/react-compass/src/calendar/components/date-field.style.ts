@@ -55,3 +55,18 @@ export const StyledDateField = styled('div', {
     },
   },
 })
+
+export const StyledLabelNecessity = styled('span', {
+  variants: {
+    isError: {
+      true: {
+        color: '$danger',
+      },
+    },
+    isText: {
+      true: {
+        fontSize: '$label2',
+      },
+    },
+  },
+})
