@@ -1,7 +1,7 @@
 import {styled} from '../theme'
 import type {VariantProps} from '../utils/stitches.types'
 
-export const StyledAvatar = styled('span', {
+export const StyledAvatar = styled('div', {
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
