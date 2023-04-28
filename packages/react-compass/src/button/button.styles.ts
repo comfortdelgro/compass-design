@@ -95,6 +95,10 @@ export const StyledButton = styled('button', {
   [`${StyledButtonContent}`]: {
     visibility: 'visible',
   },
+  '.children > svg': {
+    width: '1.833125rem',
+    height: '1.166875rem',
+  },
 
   '&:disabled': {
     background: '$divider',
