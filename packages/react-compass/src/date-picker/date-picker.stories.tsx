@@ -1,6 +1,5 @@
 import {StoryDecorator} from '@ladle/react'
 import React, {useState} from 'react'
-import TextField from '../textfield'
 import {Column} from '../utils'
 import Calendar, {CalendarProps} from './../calendar'
 import DatePicker from './index'
@@ -65,20 +64,12 @@ export const Controlled: React.FC = () => {
           {formatter.format(date?.toDate(getLocalTimeZone()))}
         </span>
       </p>
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'flex-end',
-        }}
-      >
-        <DatePicker
-          label='Date'
-          value={date}
-          defaultValue={today(getLocalTimeZone())}
-          onChange={setDate}
-        />
-        <TextField />
-      </div>
+      <DatePicker
+        label='Date'
+        value={date}
+        defaultValue={today(getLocalTimeZone())}
+        onChange={setDate}
+      />
     </I18nProvider>
   )
 }
