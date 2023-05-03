@@ -3,13 +3,16 @@ import {
   StyledHelperText,
   StyledListBoxWrapper,
 } from '../dropdown/dropdown.styles'
+import DropdownHeader from '../dropdown/header'
 import DropdownItem from '../dropdown/item'
 import Popover from '../dropdown/popover'
+import DropdownSection from '../dropdown/section'
 import {
   DropdownBase,
   Icon,
   ListKeyboardDelegate,
   pickChilds,
+  pickSections,
   textContent,
 } from '../dropdown/utils'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -43,12 +46,14 @@ const MultipleDropdown = React.forwardRef<
     isErrored,
     isDisabled,
     isRequired,
+    isReadOnly,
     helperText,
     defaultOpen,
     errorMessage,
     selectedKeys,
     icon = <Icon />,
     disabledKeys = [],
+    isLoading = false,
     defaultSelectedKeys = [],
     onLoadMore = () => {
       //Load more
@@ -59,7 +64,7 @@ const MultipleDropdown = React.forwardRef<
   const [search, setSearch] = React.useState('')
   const [isSearching, setIsSearching] = React.useState(false)
   const [currentKeys, setCurrentKeys] = React.useState<React.Key[]>(
-    getDefaulValues(defaultSelectedKeys, selectedKeys, disabledKeys),
+    getDefaulValues(defaultSelectedKeys, selectedKeys),
   )
   const [focusKey, setFocusKey] = React.useState<React.Key | undefined>()
 
@@ -73,6 +78,11 @@ const MultipleDropdown = React.forwardRef<
   // ====================================== CONST ======================================
   const rawCollection = React.useMemo(
     () => pickChilds<DropdownItemProps>(children, DropdownItem),
+    [children],
+  )
+
+  const sectionCollection = React.useMemo(
+    () => pickSections(children),
     [children],
   )
 
@@ -107,9 +117,13 @@ const MultipleDropdown = React.forwardRef<
       })
     }
     return t
-  }, [currentKeys, rawCollection])
+  }, [currentKeys, rawCollection, currentKeys.length])
 
   // ====================================== EFFECT ======================================
+  React.useEffect(() => {
+    if (selectedKeys) setCurrentKeys(selectedKeys)
+  }, [selectedKeys])
+
   React.useEffect(() => {
     if (currentKeys.length > 0) {
       props.onSelectionChange?.(currentKeys)
@@ -231,14 +245,16 @@ const MultipleDropdown = React.forwardRef<
   }
 
   const onSelect = (key: React.Key) => {
-    const v = new Set(currentKeys)
-    if (currentKeys.includes(key)) {
-      v.delete(key)
-    } else {
-      v.add(key)
+    if (!isReadOnly) {
+      const v = new Set(currentKeys)
+      if (currentKeys.includes(key)) {
+        v.delete(key)
+      } else {
+        v.add(key)
+      }
+      setCurrentKeys([...v])
+      setFocusKey(key)
     }
-    setCurrentKeys([...v])
-    setFocusKey(key)
   }
 
   const onHover = (key: React.Key | null) => {
@@ -273,7 +289,7 @@ const MultipleDropdown = React.forwardRef<
                     cursor: isDisabled ? 'default' : 'pointer',
                   }}
                   onClick={() => {
-                    if (!isDisabled) {
+                    if (!isDisabled && !disabledKeys?.includes(item.key)) {
                       removeItem(item.key)
                     }
                   }}
@@ -302,17 +318,17 @@ const MultipleDropdown = React.forwardRef<
             handleKeyDown={handleKeyDown}
           >
             <ListBox
-              listBoxRef={listBoxRef}
               focusKey={focusKey}
-              currentKeys={currentKeys}
+              isLoading={isLoading}
               collection={collection}
+              rootChildren={children}
+              listBoxRef={listBoxRef}
+              currentKeys={currentKeys}
               disabledKeys={disabledKeys}
-              isLoading={!!props.isLoading}
-              headerTitle={props.headerTitle}
+              sectionCollection={sectionCollection}
               onHover={onHover}
               onSelect={onSelect}
               onLoadMore={onLoadMore}
-              headerOnClick={(e) => props?.headerOnClick?.(e)}
             />
           </Popover>
         )}
@@ -327,4 +343,6 @@ const MultipleDropdown = React.forwardRef<
 
 export default MultipleDropdown as typeof MultipleDropdown & {
   Item: typeof DropdownItem
+  Header: typeof DropdownHeader
+  Section: typeof DropdownSection
 }

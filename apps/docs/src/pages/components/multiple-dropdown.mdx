@@ -32,7 +32,7 @@ We recommend the second method to import components for the benefits of [tree sh
   <MultipleDropdown
     label='Favorite Animal'
     selectionMode='multiple'
-    disabledKeys={['snake']}
+    disabledKeys={['cat']}
     placeholder='Choose an animal'
     defaultSelectedKeys={['cat']}
   >
@@ -181,15 +181,44 @@ We recommend the second method to import components for the benefits of [tree sh
     disabledKeys={['snake']}
     label='Favorite Animal'
     placeholder='Choose an animal'
-    headerTitle='Filter title'
-    headerOnClick={() => console.log('clicked')}
   >
-    <MultipleDropdown.Item
-      key='red panda'
-    >
-      <Icon icon={faExclamationTriangle} style={{marginRight: 5}} />
-      Red Panda
-    </MultipleDropdown.Item>
+    <MultipleDropdown.Header>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          width: '100%',
+          padding: '8px 16px',
+          borderBottom: '2px solid #EDEBE9',
+        }}
+      >
+        <span
+          style={{
+            color: '#323130',
+            fontSize: '12px',
+            fontWeight: 'bold',
+            padding: 0,
+            margin: 0,
+          }}
+        >
+          Filter
+        </span>
+        <button
+          style={{
+            fontSize: '12px',
+            fontWeight: 'bold',
+            color: '#A4262C',
+            border: 0,
+            cursor: 'pointer',
+            backgroundColor: 'transparent',
+          }}
+        >
+          Clear
+        </button>
+      </div>
+    </MultipleDropdown.Header>
+    <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
     <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
     <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
     <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
@@ -204,15 +233,44 @@ We recommend the second method to import components for the benefits of [tree sh
     disabledKeys={['snake']}
     label='Favorite Animal'
     placeholder='Choose an animal'
-    headerTitle='Filter title'
-    headerOnClick={() => console.log('clicked')}
   >
-    <MultipleDropdown.Item
-      key='red panda'
-    >
-      <Icon icon={faExclamationTriangle} style={{marginRight: 5}} />
-      Red Panda
-    </MultipleDropdown.Item>
+    <MultipleDropdown.Header>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          width: '100%',
+          padding: '8px 16px',
+          borderBottom: '2px solid #EDEBE9',
+        }}
+      >
+        <span
+          style={{
+            color: '#323130',
+            fontSize: '12px',
+            fontWeight: 'bold',
+            padding: 0,
+            margin: 0,
+          }}
+        >
+          Filter
+        </span>
+        <button
+          style={{
+            fontSize: '12px',
+            fontWeight: 'bold',
+            color: '#A4262C',
+            border: 0,
+            cursor: 'pointer',
+            backgroundColor: 'transparent',
+          }}
+        >
+          Clear
+        </button>
+      </div>
+    </MultipleDropdown.Header>
+    <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
     <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
     <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
     <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
@@ -232,12 +290,7 @@ We recommend the second method to import components for the benefits of [tree sh
     placeholder='Choose an animal'
     isLoading
   >
-    <MultipleDropdown.Item
-      key='red panda'
-    >
-      <Icon icon={faExclamationTriangle} style={{marginRight: 5}} />
-      Red Panda
-    </MultipleDropdown.Item>
+    <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
     <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
     <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
     <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
@@ -253,12 +306,7 @@ We recommend the second method to import components for the benefits of [tree sh
     placeholder='Choose an animal'
     isLoading
   >
-    <MultipleDropdown.Item
-      key='red panda'
-    >
-      <Icon icon={faExclamationTriangle} style={{marginRight: 5}} />
-      Red Panda
-    </MultipleDropdown.Item>
+    <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
     <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
     <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
     <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
@@ -278,13 +326,7 @@ We recommend the second method to import components for the benefits of [tree sh
     placeholder='Choose an animal'
     icon={<Icon icon={faExclamationTriangle} />}
   >
-    
-    <MultipleDropdown.Item
-      key='red panda'
-    >
-      <Icon icon={faExclamationTriangle} style={{marginRight: 5}} />
-      Red Panda
-    </MultipleDropdown.Item>
+    <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
     <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
     <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
     <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
@@ -300,12 +342,7 @@ We recommend the second method to import components for the benefits of [tree sh
     placeholder='Choose an animal'
     icon={<Icon icon={faExclamationTriangle} />}
   >
-    <MultipleDropdown.Item
-      key='red panda'
-    >
-      <Icon icon={faExclamationTriangle} style={{marginRight: 5}} />
-      Red Panda
-    </MultipleDropdown.Item>
+    <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
     <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
     <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
     <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
@@ -314,47 +351,95 @@ We recommend the second method to import components for the benefits of [tree sh
   </MultipleDropdown>
 ```
 
+---
+
+### With Section:
+
+<section className={styles.avatarShowcaseContainer}>
+  <MultipleDropdown
+    label='Favorite Animal'
+    placeholder='Choose an animal'
+  >
+    <MultipleDropdown.Item key='fly'>Fly</MultipleDropdown.Item>
+    <MultipleDropdown.Section title='Group 1'>
+      <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
+      <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
+      <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
+    </MultipleDropdown.Section>
+    <MultipleDropdown.Section title='Group 2'>
+      <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
+      <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
+      <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+    </MultipleDropdown.Section>
+  </MultipleDropdown>
+</section>
+
+```js
+  <MultipleDropdown
+    label='Favorite Animal'
+    placeholder='Choose an animal'
+  >
+    <MultipleDropdown.Item key='fly'>Fly</MultipleDropdown.Item>
+    <MultipleDropdown.Section title='Group 1'>
+      <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
+      <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
+      <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
+    </MultipleDropdown.Section>
+    <MultipleDropdown.Section title='Group 2'>
+      <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
+      <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
+      <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+    </MultipleDropdown.Section>
+  </MultipleDropdown>
+```
+
 
 ---
 ### Props:
 
 #### `<MultipleDropdown/>` :
-| Name                   | Type                           | Default | Description                                                                                                                                                             |
-| :----------------------| :------------------------------| :-------| :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| isLoading              | `boolean`                      | 'false' | Loading effect when list of items is loading by API                                                                                                                     |
-| isErrored              | `boolean`                      | 'false' | Error state when dropdown is isErrored                                                                                                                                    |
-| errorMessage           | `string`                       | -       | Error message for dropdown                                                                                                                                              |
-| icon                   | `React.ReactNode`              | -       | Icon display in right side                                                                                                                                              |
-| headerTitle            | `string`                       | -       | Title display of header inside popover                                                                                                                                  |
-| headerOnClick          | `(e: PressEvent) => void`      | -       | On click of clear button inside popover                                                                                                                                 |
-| isVirtualized          | `boolean`                      | -       | Whether the listbox uses virtual scrolling.                                                                                                                             |
-| keyboardDelegate       | `KeyboardDelegate`             | -       | An optional keyboard delegate implementation for type to select, to override the default.                                                                               |
-| shouldUseVirtualFocus  | `boolean`                      | -       | Whether the listbox items should use virtual focus instead of being focused directly.                                                                                   |
-| shouldSelectOnPressUp  | `boolean`                      | -       | Whether selection should occur on press up instead of press down.                                                                                                       |
-| shouldFocusOnHover     | `boolean`                      | -       | Whether options should be focused when the user hovers over them.                                                                                                       |
-| label                  | `ReactNode`                    | -       | An optional visual label for the listbox.                                                                                                                               |
-| onAction               | `(key: Key) => void`           | -       | Handler that is called when a user performs an action on an item. The exact user event depends on the collection's selectionBehavior prop and the interaction modality. |
-| autoFocus              | `boolean FocusStrategy`        | -       | Whether to auto focus the listbox or an option.                                                                                                                         |
-| shouldFocusWrap        | `boolean`                      | -       | Whether focus should wrap around when the end/start is reached.                                                                                                         |
-| items                  | `Iterable<T>`                  | -       | Item objects in the collection.                                                                                                                                         |
-| disabledKeys           | `Iterable<Key>`                | -       | The item keys that are disabled. These items cannot be selected, focused, or otherwise interacted with.                                                                 |
-| selectionMode          | `SelectionMode`                | -       | The type of selection that is allowed in the collection.                                                                                                                |
-| disallowEmptySelection | `boolean`                      | -       | Whether the collection allows empty selection.                                                                                                                          |
-| selectedKeys           | `'all' Iterable<Key>`          | -       | The currently selected keys in the collection (controlled).                                                                                                             |
-| defaultSelectedKeys    | `'all' Iterable<Key>`          | -       | The initial selected keys in the collection (uncontrolled).                                                                                                             |
-| onSelectionChange      | `(keys: Selection) => any`     | -       | Handler that is called when the selection changes.                                                                                                                      |
-| onFocus                | `(e: FocusEvent) => void`      | -       | Handler that is called when the element receives focus.                                                                                                                 |
-| onBlur                 | `(e: FocusEvent) => void`      | -       | Handler that is called when the element loses focus.                                                                                                                    |
-| onFocusChange          | `(isFocused: boolean) => void` | -       | Handler that is called when the element's focus status changes.                                                                                                         |
-| id                     | `string`                       | -       | The element's unique identifier. See MDN.                                                                                                                               |
+
+| Name                | Type                        | Default | Description                                                                                                                                               |
+| :------------------ | :-------------------------- | :------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| icon                | `ReactNode`                 | -       | Icon display in right side                                                                                                                                |
+| name                | `string`                    | —       | The name of the input element, used when submitting an HTML form. See MDN.                                                                                |
+| label               | `ReactNode`                 | —       | The content to display as the label.                                                                                                                      |
+| isOpen              | `boolean`                   | —       | Open state of the menu.                                                                                                                                   |
+| isLoading           | `boolean`                   | 'false' | Loading effect when list of items is loading by API                                                                                                       |
+| isErrored           | `boolean`                   | 'false' | Error state when dropdown is isErrored                                                                                                                    |
+| isDisabled          | `boolean`                   | —       | Whether the input is disabled.                                                                                                                            |
+| isReadOnly          | `boolean`                   | —       | Whether the input can be selected but not changed by the user.                                                                                            |
+| isRequired          | `boolean`                   | —       | Whether user input is required on the input before form submission. Often paired with the necessityIndicator prop to add a visual indicator to the input. |
+| selectedKeys        | `Iterable<Key>`             | -       | The currently selected keys in the collection (controlled).                                                                                               |
+| description         | `string`                    | —       | A description for the field. Provides a hint such as specific requirements for what to choose.                                                            |
+| placeholder         | `string`                    | —       | Temporary text that occupies the text input when it is empty.                                                                                             |
+| errorMessage        | `string`                    | -       | Error message for dropdown                                                                                                                                |
+| disabledKeys        | `Iterable<Key>`             | —       | The item keys that are disabled. These items cannot be selected, focused, or otherwise interacted with.                                                   |
+| defaultSelectedKeys | `Iterable<Key>`             | —       | The initial selected key in the collection (uncontrolled).                                                                                                |
+| onLoadMore          | `() => void`                | —       | Handler when user scrolls to the end.                                                                                                                     |
+| onSelectionChange   | `(key: Key) => any`         | —       | Handler that is called when the selection changes.                                                                                                        |
+| onOpenChange        | `(isOpen: boolean) => void` | —       | Method that is called when the open state of the menu changes. Returns the new open state and the action that caused the opening of the menu.             |
 
 #### `<MultipleDropdown.Item/>` :
 
-| Name        | Type                               | Default | Description                                                                             |
-| :---------- | :--------------------------------- | :------ | :-------------------------------------------------------------------------------------- |
-| title       | `string`                           | —       | The title of the dropdown.                                                              |
-| key         | `Key`                              | —       | The key of the dropdown.                                                                |
-| children    | `ReactNode` \| `String`            | —       | The content of the dropdown Item                                                        |
+| Name       | Type              | Default | Description                      |
+| :--------- | :---------------- | :------ | :------------------------------- |
+| key        | `Key`             | —       | The key of the dropdown.         |
+| icon       | `icon` \| `color` | —       | The content of the dropdown Item |
+| title      | `string`          | —       | The title of the dropdown.       |
+| children   | `ReactNode`       | —       | The content of the dropdown Item |
+| leftIcon   | `ReactNode`       | -       | Left icon of the dropdown Item   |
+| rightIcon  | `ReactNode`       | -       | Right icon of the dropdown Item  |
+| rightColor | `string`          | -       | Right color of the dropdown Item |
+
+---
+
+#### `<MultipleDropdown.Section/>` :
+
+| Name     | Type        | Default | Description                |
+| :------- | :---------- | :------ | :------------------------- |
+| title    | `ReactNode` | —       | The title of the section.  |
+| children | `ReactNode` | —       | The content of the section |
 
 ---
 

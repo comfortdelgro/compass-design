@@ -79,6 +79,8 @@ export type {
   DialogTitleProps,
   DialogTriggerProps,
 } from './dialog'
+export {default as Divider} from './divider'
+export type {DividerProps} from './divider'
 export {default as Dropdown} from './dropdown'
 export type {
   DropdownComboBoxProps,
@@ -170,6 +172,8 @@ export type {PaginationProps} from './pagination'
 export {default as Popover} from './popover'
 export type {PopoverDirection, PopoverProps} from './popover'
 export {default as Preflight} from './preflight'
+export {default as Progress} from './progress'
+export type {CircularProgressProps, LinearProgressProps} from './progress'
 export {default as ProgressBar} from './progress-bar'
 export type {ProgressBarProps} from './progress-bar'
 export {default as QuantityToggle} from './quantity-toggle'
@@ -178,6 +182,8 @@ export {default as Radio} from './radio'
 export type {RadioGroupProps, RadioProps} from './radio'
 export {default as RangeCalendar} from './range-calendar'
 export type {RangeCalendarProps, RangeValue} from './range-calendar'
+export {default as Rating} from './rating'
+export type {RatingProps} from './rating'
 export {default as RichTextEditor} from './rich-text-editor'
 export type {
   Content,
@@ -197,11 +203,15 @@ export type {
 } from './sidebar'
 export {default as Sidenav, SidenavContext} from './sidenav'
 export type {
-  DividerProps,
+  DividerProps as SidenavDividerProps,
   SidenavContextValue,
   SidenavItemProps,
   SidenavProps,
 } from './sidenav'
+export {default as Skeleton} from './skeleton'
+export type {SkeletonProps} from './skeleton'
+export {default as SpeedDial} from './speed-dial'
+export type {SpeedDialProps} from './speed-dial'
 export {default as Spinner} from './spinner'
 export type {SpinnerProps} from './spinner'
 export {default as SubHeader} from './sub-header'

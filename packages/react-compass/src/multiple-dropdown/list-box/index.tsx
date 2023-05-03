@@ -1,89 +1,61 @@
 import React from 'react'
-import Header from '../../dropdown/header'
-import {DropdownItemProps} from '../../dropdown/item'
-import {StyledLoading} from '../../dropdown/list-box/index.styles'
-import {getDistanceBetweenElements, useIsInViewport} from '../../dropdown/utils'
+import BaseListBox, {BaseListBoxProps} from '../../dropdown/list-box/base'
+import {StyledSection} from '../../dropdown/list-box/index.styles'
 import Option from '../option'
 
-interface Props {
-  collection: Array<
-    React.DetailedReactHTMLElement<DropdownItemProps, HTMLElement>
-  >
+interface Props extends BaseListBoxProps {
+  currentKeys: React.Key[]
   disabledKeys: React.Key[]
   focusKey: React.Key | undefined
-  currentKeys: React.Key[]
-  headerTitle: string | undefined
-  isLoading: boolean
-  onLoadMore: () => void
-  onHover: (key: React.Key | null) => void
   onSelect: (key: React.Key) => void
-  headerOnClick: (e: unknown) => void
-  listBoxRef: React.RefObject<HTMLUListElement>
+  onHover: (key: React.Key | null) => void
 }
 
 function ListBox(props: Props) {
   const ref = React.useRef(null)
   const {
-    listBoxRef = ref,
+    focusKey,
+    isLoading,
     collection,
     currentKeys,
-    focusKey,
     disabledKeys,
+    rootChildren,
+    listBoxRef = ref,
+    sectionCollection,
     onHover,
     onSelect,
+    onLoadMore,
   } = props
 
-  const lastEl = React.useRef<HTMLDivElement | null>(null)
-  const standEl = React.useRef<HTMLDivElement | null>(null)
-  const isInViewport = useIsInViewport(lastEl)
-  React.useEffect(() => {
-    if (lastEl.current && standEl.current) {
-      const distance = getDistanceBetweenElements(
-        lastEl.current,
-        standEl.current,
-      )
-      if (isInViewport && distance > 0 && distance <= 1) {
-        props.onLoadMore()
-      }
-    }
-  }, [isInViewport])
-
   return (
-    <>
-      {props.headerTitle && (
-        <Header title={props.headerTitle} onPress={props?.headerOnClick} />
-      )}
-      <ul ref={listBoxRef}>
-        {props.isLoading ? (
-          <StyledLoading>
-            <div className='spinner'>
-              <div className='spinner-1' />
-              <div className='spinner-2' />
-              <div className='spinner-3' />
-              <div />
-            </div>
-          </StyledLoading>
-        ) : (
-          <>
-            {[...collection].map((item) => (
-              <Option
-                key={item.key}
-                item={item}
-                disabledKeys={disabledKeys}
-                currentKeys={currentKeys}
-                focusKey={focusKey}
-                onHover={onHover}
-                onSelect={onSelect}
-              />
-            ))}
-            {[...collection].length > 0 && (
-              <div style={{height: 1}} ref={lastEl} />
+    <BaseListBox
+      isLoading={isLoading}
+      listBoxRef={listBoxRef}
+      collection={collection}
+      sectionCollection={sectionCollection}
+      rootChildren={rootChildren}
+      onLoadMore={onLoadMore}
+      renderOptions={(l) =>
+        l.map((item) => (
+          <div key={item.id}>
+            {item.title && <StyledSection>{item.title}</StyledSection>}
+            {item.children.map((c) =>
+              c ? (
+                <Option
+                  item={c}
+                  key={c.key}
+                  focusKey={focusKey}
+                  currentKeys={currentKeys}
+                  disabledKeys={disabledKeys}
+                  onHover={onHover}
+                  onSelect={onSelect}
+                />
+              ) : null,
             )}
-          </>
-        )}
-      </ul>
-      <div style={{height: 1}} ref={standEl} />
-    </>
+          </div>
+        ))
+      }
+    />
   )
 }
 

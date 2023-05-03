@@ -14,7 +14,6 @@ export const ElementMapping: React.FC = () => {
       </p>
       <h3>Box as 'div' Element - default option</h3>
       <Box
-        backgroundColor='grey'
         css={{
           backgroundColor: 'grey',
           width: '8rem',
@@ -42,7 +41,6 @@ export const DynamicStyling: React.FC = () => {
         'style' prop.
       </h3>
       <Box
-        backgroundColor='grey'
         css={{
           backgroundColor: 'grey',
           width: '8rem',
@@ -56,11 +54,11 @@ export const DynamicStyling: React.FC = () => {
       </Box>
       <h3>1. Styling with 'style' prop</h3>
       <Box
-        backgroundColor='grey'
         style={{
           backgroundColor: 'grey',
           width: '8rem',
           textAlign: 'center',
+          color: 'red',
         }}
       >
         <p>My box</p>

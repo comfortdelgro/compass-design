@@ -112,6 +112,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       autoFocus,
       onChangeEvent,
       onChange,
+      placeholder,
       // AriaTextFieldProps
       isDisabled,
       ...ariaSafeProps
@@ -156,6 +157,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
             css={css}
             ref={textfieldRef}
             id={id}
+            placeholder={placeholder}
             autoFocus={autoFocus}
             autoCapitalize={autoCapitalize}
             readOnly={isReadOnly}

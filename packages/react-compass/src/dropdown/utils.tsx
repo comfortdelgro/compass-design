@@ -1,6 +1,7 @@
 import React, {Key, RefObject} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
-import {DropdownItemBase, DropdownItemProps} from './item'
+import DropdownItem, {DropdownItemBase, DropdownItemProps} from './item'
+import DropdownSection, {DropdownSectionProps} from './section'
 
 export const POPOVER_Z_INDEX = 2147483600
 export const LISTBOX_Z_INDEX = 2147483641
@@ -13,6 +14,7 @@ export const Icon = () => (
     />
   </svg>
 )
+
 export const pickChilds = <T extends DropdownItemBase>(
   children: React.ReactNode | undefined,
   targetType: React.ElementType,
@@ -23,11 +25,107 @@ export const pickChilds = <T extends DropdownItemBase>(
     if (item.type === targetType) {
       matched.push(item as React.DetailedReactHTMLElement<T, HTMLElement>)
     }
+    if (item.type === DropdownSection) {
+      const child = (item as React.DetailedReactHTMLElement<T, HTMLElement>)
+        .props.children
+      React.Children.forEach(child, (i) => {
+        if (!React.isValidElement(i)) return i
+        if (i.type === targetType) {
+          matched.push(i as React.DetailedReactHTMLElement<T, HTMLElement>)
+        }
+        return i
+      })
+    }
     return item
   })
   const childs = matched.length >= 0 ? matched : []
 
   return childs
+}
+
+export interface SectionCollection {
+  title: React.ReactNode
+  keys: React.Key[]
+}
+
+export const pickSections = (
+  children: React.ReactNode | undefined,
+): SectionCollection[] => {
+  const matched: SectionCollection[] = []
+  React.Children.forEach(children, (item) => {
+    if (!React.isValidElement(item)) return item
+    if (item.type === DropdownSection) {
+      const dSectionItem = React.cloneElement(
+        item as React.ReactElement<DropdownSectionProps>,
+      )
+      const keys: React.Key[] = []
+      React.Children.forEach(dSectionItem.props.children, (j) => {
+        const dItemItem = React.cloneElement(
+          j as React.ReactElement<DropdownItemProps>,
+        )
+        if (dItemItem.key) keys.push(dItemItem.key)
+      })
+      matched.push({
+        title: dSectionItem.props.title,
+        keys: keys,
+      })
+    }
+
+    if (item.type === DropdownItem) {
+      const dItemItem = React.cloneElement(
+        item as React.ReactElement<DropdownItemProps>,
+      )
+      if (dItemItem.key)
+        matched.push({
+          title: undefined,
+          keys: [dItemItem.key],
+        })
+    }
+
+    return item
+  })
+  const sections = matched.length >= 0 ? matched : []
+  return sections
+}
+
+export interface ListBoxCollections {
+  id: number
+  type: 'component' | 'group'
+  title?: React.ReactNode
+  children: Array<
+    React.DetailedReactHTMLElement<DropdownItemProps, HTMLElement> | undefined
+  >
+}
+
+export const getListBoxCollection = (
+  sectionCollection: SectionCollection[],
+  collection: Array<
+    React.DetailedReactHTMLElement<DropdownItemProps, HTMLElement>
+  >,
+) => {
+  const list: ListBoxCollections[] = []
+  sectionCollection.forEach((i, index) => {
+    if (i.title === undefined) {
+      list.push({
+        id: index,
+        type: 'component',
+        children: i.keys
+          .map((j) => collection.find((k) => j === k.key))
+          .filter((v) => v),
+      })
+    }
+    if (i.title) {
+      list.push({
+        id: index,
+        type: 'group',
+        title: i.title,
+        children: i.keys
+          .map((j) => collection.find((k) => j === k.key))
+          .filter((v) => v),
+      })
+    }
+  })
+  return list
 }
 
 export function useIsInViewport(ref: RefObject<Element>) {
@@ -81,7 +179,6 @@ export interface DropdownBase extends StyledComponentProps {
   helperText?: string
   isDisabled?: boolean
   isReadOnly?: boolean
-  headerTitle?: string
   isRequired?: boolean
   placeholder?: string
   errorMessage?: string
@@ -91,7 +188,6 @@ export interface DropdownBase extends StyledComponentProps {
   description?: React.ReactNode
   disabledKeys?: React.Key[]
   onLoadMore?: () => void
-  headerOnClick?: (e: unknown) => void
   onOpenChange?: (isOpen: boolean) => void
 }
 
@@ -198,18 +294,13 @@ export function textContent(elem: React.ReactElement | string): string {
 export function getDefaulValue(
   defaulValue: React.Key | undefined,
   value: React.Key | undefined,
-  disabledKeys: React.Key[],
 ): React.Key | undefined {
   let res = undefined
   if (defaulValue !== undefined && defaulValue !== null) {
-    if (!disabledKeys.includes(defaulValue)) {
-      res = defaulValue
-    }
+    res = defaulValue
   }
   if (value !== undefined && value !== null) {
-    if (!disabledKeys.includes(value)) {
-      res = value
-    }
+    res = value
   }
   return res
 }

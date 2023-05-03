@@ -211,6 +211,7 @@ importers:
       '@vitejs/plugin-react': ^2.2.0
       chalk: ^5.1.2
       chart.js: 3.9.1
+      colorjs.io: ^0.4.3
       cypress: ^12.1.0
       eslint: ^8.25.0
       execa: ^6.1.0
@@ -302,6 +303,7 @@ importers:
       '@tiptap/react': 2.0.0-beta.220_3gpavhzg2mvb4vpkw66uqh52dq
       '@tiptap/starter-kit': 2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220
       chart.js: 3.9.1
+      colorjs.io: 0.4.3
       html-react-parser: 3.0.15_react@18.2.0
       react-chartjs-2: 5.2.0_2unjvz6v6rskedwoxtmbfw2rje
     devDependencies:
@@ -4920,6 +4922,10 @@ packages:
   /colorette/2.0.19:
     resolution: {integrity: sha512-3tlv/dIP7FWvj3BsbHrGLJ6l/oKh1O3TcgBqMn+yyCagOxc23fyzDS6HypQbgxWbkpDnf52p1LuR4eWDQ/K9WQ==}
     dev: true
+
+  /colorjs.io/0.4.3:
+    resolution: {integrity: sha512-Jr6NiWFZCuSECl23Bhe4jvDldQsE0ErnWrdl3xIUFy+Bkp0l8r5qt/iZlNH47/xxGP5izcyC8InjoUoI4Po+Pg==}
+    dev: false
 
   /combined-stream/1.0.8:
     resolution: {integrity: sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==}

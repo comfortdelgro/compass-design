@@ -38,11 +38,19 @@ const Slider: React.FC<SliderProps> = ({
     defaultValue,
   )
   const [dragging, setDragging] = useState(false)
+
   useEffect(() => {
     if (onChangeEnd && currentValue !== undefined && !dragging) {
       onChangeEnd(currentValue)
     }
   }, [dragging])
+
+  // useEffect(() => {
+  //   debugger;
+  //   if (onChangeEnd && currentValue !== undefined && !dragging) {
+  //     setCurrentValue(value)
+  //   }
+  // }, [value])
 
   useEffect(() => {
     const slider = sliderRef.current
@@ -101,13 +109,15 @@ const Slider: React.FC<SliderProps> = ({
       document.addEventListener('mousemove', handleMouseMove)
 
       // Set the initial value and position of the thumb based on defaultValue prop
-      if (defaultValue !== undefined) {
+      if (defaultValue !== undefined || value !== undefined) {
         // Update the thumb's position after defaultValue is available
         const updateThumbPosition = () => {
           const sliderWidth = slider.offsetWidth
           const thumbWidth = thumb.offsetWidth
+          const initValue =
+            value !== undefined ? value : defaultValue || minValue
           const progressWidth =
-            ((defaultValue - minValue) / (maxValue - minValue)) * sliderWidth -
+            ((initValue - minValue) / (maxValue - minValue)) * sliderWidth -
             thumbWidth
           thumb.style.left = `${Math.max(
             0 - thumbWidth,
@@ -115,7 +125,7 @@ const Slider: React.FC<SliderProps> = ({
           )}px`
           sliderProgress.style.width = `${progressWidth}px`
           setCurrentValue(defaultValue)
-          thumb.setAttribute('value', defaultValue.toString())
+          thumb.setAttribute('value', initValue.toString())
         }
         updateThumbPosition()
       }
@@ -126,7 +136,10 @@ const Slider: React.FC<SliderProps> = ({
         document.removeEventListener('mousemove', handleMouseMove)
       }
     }
-  }, [isDisabled, minValue, maxValue, step, onChange, defaultValue])
+    return () => {
+      console.log('slider not found!!!')
+    }
+  }, [isDisabled, minValue, maxValue, step, onChange, defaultValue, value])
 
   return (
     <RangeSliderContainer
