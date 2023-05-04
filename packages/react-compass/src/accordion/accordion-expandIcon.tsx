@@ -5,7 +5,11 @@ import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 
 interface Props extends StyledComponentProps {
-  children: React.ReactNode
+  children?: React.ReactNode
+}
+
+interface CustomComponentProps {
+  className?: string
 }
 
 export type AccordionExpandIconProps = Props &
@@ -19,19 +23,13 @@ const AccordionExpandIcon = React.forwardRef<
 
   const expandRef = useDOMRef<HTMLDivElement>(ref)
 
-  function hasClassNameProperty(
-    element: React.ReactElement<any>,
-  ): element is React.ReactElement<any> & {className?: string} {
-    return 'className' in element.props
-  }
-
   const renderExpandIcon = () => {
-    if (React.isValidElement(children) && hasClassNameProperty(children)) {
+    if (React.isValidElement(children)) {
       return React.cloneElement(children, {
         className: 'accordion-chevron-icon',
         ref: expandRef,
         css: css,
-      })
+      } as CustomComponentProps)
     }
     return <Icon className='accordion-chevron-icon' icon={faChevronDown} />
   }
