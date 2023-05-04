@@ -108,6 +108,30 @@ export const MultipleDropdowns: React.FC = () => {
         <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
         <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
       </MultipleDropdown>
+
+      <h3>Disabled</h3>
+      <MultipleDropdown
+        label='Favorite Animal'
+        selectionMode='multiple'
+        disabledKeys={['cat']}
+        placeholder='Choose an animal'
+        selectedKeys={value}
+        isRequired
+        onSelectionChange={(k: 'all' | Set<Key>) =>
+          setValue(k === 'all' ? k : [...k])
+        }
+        isDisabled
+      >
+        <MultipleDropdown.Item key='red panda'>
+          <Icon icon={faExclamationTriangle} style={{marginRight: 5}} />
+          Red Panda
+        </MultipleDropdown.Item>
+        <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
+        <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
+        <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
+        <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
+        <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+      </MultipleDropdown>
     </Column>
   )
 }
