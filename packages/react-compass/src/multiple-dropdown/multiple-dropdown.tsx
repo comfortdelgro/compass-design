@@ -180,23 +180,34 @@ const MultipleDropdown = React.forwardRef<
         <StyledSelectedItemWrapper>
           {selectedNode.length === 0 && !isOpen && <p>{props.placeholder}</p>}
           {selectedNode.length > 0 &&
-            selectedNode.map((item) => (
-              <StyledSelectedItem
-                key={item.key}
-                style={{cursor: isDisabled ? 'not-allowed' : 'pointer'}}
-              >
-                <div>{item.rendered}</div>
-                <div
-                  onClick={() => {
-                    if (!isDisabled && ![...disabledKeys].includes(item.key)) {
-                      removeItem(item.key)
-                    }
-                  }}
+            selectedNode.map((item) => {
+              const isHideXIcon =
+                isDisabled || (disabledKeys as Key[]).includes(item.key)
+              return (
+                <StyledSelectedItem
+                  key={item.key}
+                  style={{cursor: isDisabled ? 'not-allowed' : 'pointer'}}
                 >
-                  <XIcon />
-                </div>
-              </StyledSelectedItem>
-            ))}
+                  <div>{item.rendered}</div>
+                  {isHideXIcon ? (
+                    <></>
+                  ) : (
+                    <div
+                      onClick={() => {
+                        if (
+                          !isDisabled &&
+                          ![...disabledKeys].includes(item.key)
+                        ) {
+                          removeItem(item.key)
+                        }
+                      }}
+                    >
+                      <XIcon />
+                    </div>
+                  )}
+                </StyledSelectedItem>
+              )
+            })}
           {!isDisabled && (
             <input type='text' ref={inputRef} onChange={onInputChange} />
           )}
