@@ -311,7 +311,7 @@
         "Date picker"
       ],
       "locStart": 10,
-      "locEnd": 48,
+      "locEnd": 50,
       "filePath": "src/date-picker/date-picker.stories.tsx",
       "meta": {}
     },
@@ -320,8 +320,8 @@
       "levels": [
         "Date picker"
       ],
-      "locStart": 50,
-      "locEnd": 73,
+      "locStart": 52,
+      "locEnd": 75,
       "filePath": "src/date-picker/date-picker.stories.tsx",
       "meta": {}
     },
