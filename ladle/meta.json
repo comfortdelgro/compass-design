@@ -10,8 +10,8 @@
       "levels": [
         "Accordion"
       ],
-      "locStart": 10,
-      "locEnd": 104,
+      "locStart": 15,
+      "locEnd": 142,
       "filePath": "src/accordion/accordion.stories.tsx",
       "meta": {}
     },
@@ -20,8 +20,8 @@
       "levels": [
         "Accordion"
       ],
-      "locStart": 106,
-      "locEnd": 140,
+      "locStart": 144,
+      "locEnd": 178,
       "filePath": "src/accordion/accordion.stories.tsx",
       "meta": {}
     },
