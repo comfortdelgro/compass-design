@@ -1,4 +1,9 @@
-import {useState} from 'react'
+import {
+  faAddressBook,
+  faCaretSquareDown,
+} from '@fortawesome/free-regular-svg-icons'
+import React, {useState} from 'react'
+import Icon from '../icon'
 import {Column} from '../utils/components'
 import Accordion from './index'
 
@@ -35,7 +40,7 @@ export const Default: React.FC = () => {
         {lorem}
       </Accordion>
 
-      <h3>Default without icon</h3>
+      <h3>Without left icon</h3>
 
       <Accordion>
         <Accordion.Title icon={false}>Title</Accordion.Title>
@@ -49,7 +54,40 @@ export const Default: React.FC = () => {
         {lorem}
       </Accordion>
 
-      <h3>Customized</h3>
+      <h3>Customize left icon</h3>
+
+      <Accordion>
+        <Accordion.Title icon={faAddressBook}>Title</Accordion.Title>
+        {lorem}
+      </Accordion>
+
+      <h3>Customize expand icon</h3>
+
+      <Accordion>
+        <Accordion.ExpandIcon>
+          <div
+            style={{
+              lineHeight: '1em',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            Show
+          </div>
+        </Accordion.ExpandIcon>
+        <Accordion.Title>Title</Accordion.Title>
+        {lorem}
+      </Accordion>
+
+      <Accordion>
+        <Accordion.ExpandIcon>
+          <Icon icon={faCaretSquareDown} />
+        </Accordion.ExpandIcon>
+        <Accordion.Title>Title</Accordion.Title>
+        {lorem}
+      </Accordion>
+      <h3>Styling</h3>
 
       <Accordion
         defaultExpand={true}
