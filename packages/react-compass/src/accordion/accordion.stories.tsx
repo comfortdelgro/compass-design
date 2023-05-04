@@ -1,4 +1,9 @@
+import {
+  faAddressBook,
+  faCaretSquareDown,
+} from '@fortawesome/free-regular-svg-icons'
 import React, {useState} from 'react'
+import Icon from '../icon'
 import {Column} from '../utils/components'
 import Accordion from './index'
 
@@ -7,27 +12,7 @@ const lorem = `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi,
   iste a consequuntur, adipisci eaque. Nobis voluptates impedit obcaecati
   error optio consequatur.`
 
-export const Basic: React.FC = () => {
-  return (
-    <Column style={{minHeight: '300vh'}}>
-      <h3>Basic Accordion</h3>
-
-      <Accordion>
-        <Accordion.Title>Title</Accordion.Title>
-        {lorem}
-      </Accordion>
-
-      <Accordion>
-        <Accordion.Title>
-          <p>{lorem}</p>
-        </Accordion.Title>
-        {lorem}
-      </Accordion>
-    </Column>
-  )
-}
-
-export const Controlled: React.FC = () => {
+export const Default: React.FC = () => {
   const [expand, setExpand] = useState<string | false>(false)
 
   const handleControlledAccordion = (id: string) => () => {
@@ -40,7 +25,86 @@ export const Controlled: React.FC = () => {
   }
 
   return (
-    <Column style={{minHeight: '300vh'}}>
+    <Column>
+      <h3>Default with icon</h3>
+
+      <Accordion>
+        <Accordion.Title>Title</Accordion.Title>
+        {lorem}
+      </Accordion>
+
+      <Accordion>
+        <Accordion.Title>
+          <p>{lorem}</p>
+        </Accordion.Title>
+        {lorem}
+      </Accordion>
+
+      <h3>Without left icon</h3>
+
+      <Accordion>
+        <Accordion.Title icon={false}>Title</Accordion.Title>
+        {lorem}
+      </Accordion>
+
+      <Accordion>
+        <Accordion.Title icon={false}>
+          <p>{lorem}</p>
+        </Accordion.Title>
+        {lorem}
+      </Accordion>
+
+      <h3>Customize left icon</h3>
+
+      <Accordion>
+        <Accordion.Title icon={faAddressBook}>Title</Accordion.Title>
+        {lorem}
+      </Accordion>
+
+      <h3>Customize expand icon</h3>
+
+      <Accordion>
+        <Accordion.ExpandIcon>
+          <div
+            style={{
+              lineHeight: '1em',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            Show
+          </div>
+        </Accordion.ExpandIcon>
+        <Accordion.Title>Title</Accordion.Title>
+        {lorem}
+      </Accordion>
+
+      <Accordion>
+        <Accordion.ExpandIcon>
+          <Icon icon={faCaretSquareDown} />
+        </Accordion.ExpandIcon>
+        <Accordion.Title>Title</Accordion.Title>
+        {lorem}
+      </Accordion>
+      <h3>Styling</h3>
+
+      <Accordion
+        defaultExpand={true}
+        css={{background: 'Wheat', color: 'SaddleBrown'}}
+      >
+        <Accordion.Title
+          css={{
+            background: 'burlywood',
+            textAlign: 'center',
+            color: 'currentColor',
+          }}
+        >
+          <p>{lorem}</p>
+        </Accordion.Title>
+        {lorem}
+      </Accordion>
+
       <h3>Controlled</h3>
 
       <Accordion
@@ -77,7 +141,7 @@ export const Controlled: React.FC = () => {
   )
 }
 
-export const Uncontrolled: React.FC = () => {
+export const Table: React.FC = () => {
   const data = [
     {id: 1, leftData: 'Job ID', rightData: 'CDG180-1120'},
     {id: 2, leftData: 'Status', rightData: 'Ended'},
@@ -102,62 +166,13 @@ export const Uncontrolled: React.FC = () => {
   }
 
   return (
-    <Column style={{minHeight: '300vh'}}>
-      <h3>1. With icon</h3>
-
-      <Accordion>
-        <Accordion.Title>Title</Accordion.Title>
-        {lorem}
-      </Accordion>
-
-      <Accordion>
-        <Accordion.Title>
-          <p>{lorem}</p>
-        </Accordion.Title>
-        {lorem}
-      </Accordion>
-
-      <h3>2. Without icon</h3>
-
-      <Accordion>
-        <Accordion.Title icon={false}>Title</Accordion.Title>
-        {lorem}
-      </Accordion>
-
-      <Accordion>
-        <Accordion.Title icon={false}>
-          <p>{lorem}</p>
-        </Accordion.Title>
-        {lorem}
-      </Accordion>
-
-      <h3>3. Expand on default</h3>
-
-      <Accordion
-        defaultExpand={true}
-        css={{background: 'Wheat', color: 'SaddleBrown'}}
-      >
-        <Accordion.Title
-          css={{
-            background: 'burlywood',
-            textAlign: 'center',
-            color: 'currentColor',
-          }}
-        >
-          <p>{lorem}</p>
-        </Accordion.Title>
-        {lorem}
-      </Accordion>
-
-      <h3>4. Table in Accordion</h3>
-      <Accordion>
-        <Accordion.Title>
-          <h2>Business Profile</h2>
-        </Accordion.Title>
-        <p>{lorem}</p>
-        <Accordion.Table>{renderAccordionTableItems()}</Accordion.Table>
-        <p>{lorem}</p>
-      </Accordion>
-    </Column>
+    <Accordion>
+      <Accordion.Title>
+        <h2>Business Profile</h2>
+      </Accordion.Title>
+      <p>{lorem}</p>
+      <Accordion.Table>{renderAccordionTableItems()}</Accordion.Table>
+      <p>{lorem}</p>
+    </Accordion>
   )
 }
