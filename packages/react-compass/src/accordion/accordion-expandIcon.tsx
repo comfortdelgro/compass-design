@@ -22,7 +22,7 @@ const AccordionExpandIcon = React.forwardRef<
   function hasClassNameProperty(
     element: React.ReactElement<any>,
   ): element is React.ReactElement<any> & {className?: string} {
-    return true
+    return 'className' in element.props
   }
 
   const renderExpandIcon = () => {
