@@ -54,22 +54,25 @@ const MenuListDropdownHeader = React.forwardRef<
   const renderLeftIcon = () => {
     if (leftIcon === undefined) {
       return (
-        <ChevronIcon
+        <div
           className={`menu-list-dropdown-chevron-down-left-icon ${
             isOpen ? 'rotated-icon' : ''
           }`}
-        />
+        >
+          <ChevronIcon />
+        </div>
       )
     } else if (leftIcon === false) {
       return null
     } else {
       return (
-        <Icon
+        <div
           className={`menu-list-dropdown-chevron-down-left-icon ${
             isOpen ? 'rotated-icon' : ''
           }`}
-          icon={leftIcon}
-        />
+        >
+          <Icon icon={leftIcon} />
+        </div>
       )
     }
   }
@@ -77,22 +80,25 @@ const MenuListDropdownHeader = React.forwardRef<
   const renderRightIcon = () => {
     if (rightIcon === true) {
       return (
-        <ChevronIcon
+        <div
           className={`menu-list-dropdown-chevron-down-right-icon ${
             isOpen ? 'rotated-icon' : ''
           }`}
-        />
+        >
+          <ChevronIcon />
+        </div>
       )
     } else if (rightIcon === undefined) {
       return null
     } else {
       return (
-        <Icon
+        <div
           className={`menu-list-dropdown-chevron-down-right-icon ${
             isOpen ? 'rotated-icon' : ''
           }`}
-          icon={rightIcon}
-        />
+        >
+          <Icon icon={rightIcon} />
+        </div>
       )
     }
   }
@@ -121,7 +127,7 @@ const MenuListDropdownHeader = React.forwardRef<
 export default MenuListDropdownHeader
 
 interface ChevronIconProps {
-  className: string
+  className?: string
 }
 
 const ChevronIcon = (props: ChevronIconProps) => {
