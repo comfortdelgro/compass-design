@@ -5,7 +5,19 @@ export const StyledQuantityToggle = styled('div', {
   width: '100%',
   display: 'flex',
   flexDirection: 'column',
-  "div[role='group']": {
+  label: {
+    fontSize: '$label1',
+    fontWeight: '$medium',
+    lineHeight: '$normal',
+    display: 'block',
+    marginBottom: '$1',
+    color: '$gray90',
+    span: {
+      marginLeft: '$1',
+      color: '$danger',
+    },
+  },
+  div: {
     display: 'flex',
     width: '100%',
     input: {
@@ -31,23 +43,19 @@ export const StyledQuantityToggle = styled('div', {
       border: '1px solid #EDEBE9',
       backgroundColor: '$gray10',
     },
-  },
-  label: {
-    fontSize: '$label1',
-    fontWeight: '$medium',
-    lineHeight: '$normal',
-    display: 'block',
-    marginBottom: '$1',
-    color: '$gray90',
-    span: {
-      marginLeft: '$1',
-      color: '$danger',
+    "button[aria-label='decrease']": {
+      borderRight: 'none',
+      borderRadius: '4px 0 0 4px',
+    },
+    "button[aria-label='increase']": {
+      borderLeft: 'none',
+      borderRadius: '0 4px 4px 0',
     },
   },
   variants: {
     isDisabled: {
       true: {
-        "div[role='group']": {
+        div: {
           input: {
             backgroundColor: '#EDEBE9',
           },
@@ -60,7 +68,7 @@ export const StyledQuantityToggle = styled('div', {
     },
     isErrored: {
       true: {
-        "div[role='group']": {
+        div: {
           input: {
             borderColor: '$danger',
           },

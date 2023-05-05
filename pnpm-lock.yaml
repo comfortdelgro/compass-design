@@ -126,6 +126,7 @@ importers:
       '@fortawesome/react-fontawesome': ^0.2.0
       '@frsource/cypress-plugin-visual-regression-diff': ^3.2.7
       '@internationalized/date': 3.1.0
+      '@internationalized/number': ^3.2.0
       '@ladle/react': ^2.4.5
       '@react-aria/breadcrumbs': ^3.3.2
       '@react-aria/button': ^3.6.2
@@ -211,6 +212,7 @@ importers:
       '@vitejs/plugin-react': ^2.2.0
       chalk: ^5.1.2
       chart.js: 3.9.1
+      clsx: ^1.2.1
       colorjs.io: ^0.4.3
       cypress: ^12.1.0
       eslint: ^8.25.0
@@ -238,6 +240,7 @@ importers:
       '@fortawesome/free-solid-svg-icons': 6.4.0
       '@fortawesome/react-fontawesome': 0.2.0_tumfstpptabomqiydababgzl3q
       '@internationalized/date': 3.1.0
+      '@internationalized/number': 3.2.0
       '@react-aria/breadcrumbs': 3.5.1_react@18.2.0
       '@react-aria/button': 3.7.1_react@18.2.0
       '@react-aria/calendar': 3.0.5_biqbaboplfbrettd7655fr4n2y
@@ -303,6 +306,7 @@ importers:
       '@tiptap/react': 2.0.0-beta.220_3gpavhzg2mvb4vpkw66uqh52dq
       '@tiptap/starter-kit': 2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220
       chart.js: 3.9.1
+      clsx: 1.2.1
       colorjs.io: 0.4.3
       html-react-parser: 3.0.15_react@18.2.0
       react-chartjs-2: 5.2.0_2unjvz6v6rskedwoxtmbfw2rje
@@ -1626,7 +1630,7 @@ packages:
       '@motionone/easing': 10.15.1
       '@motionone/types': 10.15.1
       '@motionone/utils': 10.15.1
-      tslib: 2.4.0
+      tslib: 2.5.0
     dev: true
 
   /@motionone/dom/10.15.5:
@@ -1637,7 +1641,7 @@ packages:
       '@motionone/types': 10.15.1
       '@motionone/utils': 10.15.1
       hey-listen: 1.0.8
-      tslib: 2.4.0
+      tslib: 2.5.0
     dev: true
 
   /@motionone/easing/10.15.1:
@@ -1652,7 +1656,7 @@ packages:
     dependencies:
       '@motionone/types': 10.15.1
       '@motionone/utils': 10.15.1
-      tslib: 2.4.0
+      tslib: 2.5.0
     dev: true
 
   /@motionone/types/10.15.1:
@@ -1664,7 +1668,7 @@ packages:
     dependencies:
       '@motionone/types': 10.15.1
       hey-listen: 1.0.8
-      tslib: 2.4.0
+      tslib: 2.5.0
     dev: true
 
   /@napi-rs/simple-git-android-arm-eabi/0.1.8:
