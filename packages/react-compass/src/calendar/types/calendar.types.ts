@@ -245,3 +245,17 @@ export interface SpectrumDatePickerBase
 export interface SpectrumDatePickerProps<T extends DateValue>
   extends AriaDatePickerProps<T>,
     SpectrumDatePickerBase {}
+
+export interface CalendarPropsBase {
+  minValue?: DateValue
+  maxValue?: DateValue
+  isDateUnavailable?: (date: DateValue) => boolean
+  isDisabled?: boolean
+  isReadOnly?: boolean
+  autoFocus?: boolean
+  focusedValue?: DateValue
+  defaultFocusedValue?: DateValue
+  onFocusChange?: (date: CalendarDate) => void
+  validationState?: ValidationState
+  errorMessage?: ReactNode
+}

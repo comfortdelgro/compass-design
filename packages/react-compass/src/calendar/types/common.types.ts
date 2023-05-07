@@ -40,10 +40,6 @@ export interface HelpTextProps {
   errorMessage?: ReactNode
 }
 
-export interface LabelableProps {
-  label?: ReactNode
-}
-
 export interface KeyboardEvents {
   onKeyDown?: (e: KeyboardEvent) => void
   onKeyUp?: (e: KeyboardEvent) => void

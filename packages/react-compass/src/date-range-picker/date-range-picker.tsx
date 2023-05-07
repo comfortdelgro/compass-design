@@ -1,22 +1,21 @@
 /* eslint-disable @typescript-eslint/unbound-method */
 import {DateValue} from '@internationalized/date'
-import {useDateRangePicker} from '@react-aria/datepicker'
-import {AriaDialogProps} from '@react-aria/dialog'
-import {
-  DateRangePickerState,
-  useDateRangePickerState,
-} from '@react-stately/datepicker'
-import type {DateRange, RangeCalendarProps} from '@react-types/calendar'
-import type {
-  AriaDatePickerProps,
-  SpectrumDateRangePickerProps,
-} from '@react-types/datepicker'
-import type {DOMAttributes} from '@react-types/shared'
 import React from 'react'
 import {ButtonProps} from '../button'
 import {DateField} from '../calendar/components'
 import Dialog from '../calendar/components/dialog'
 import Popover from '../calendar/components/popover'
+import {useDateRangePicker} from '../calendar/hooks/useDateRangePicker'
+import {useDateRangePickerState} from '../calendar/hooks/useDateRangePickerState'
+import {
+  AriaDatePickerProps,
+  AriaDialogProps,
+  DateRange,
+  DateRangePickerState,
+  DOMAttributes,
+  RangeCalendarProps,
+  SpectrumDateRangePickerProps,
+} from '../calendar/types'
 import RangeCalendar from '../range-calendar/range-calendar'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'

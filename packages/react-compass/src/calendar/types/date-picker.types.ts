@@ -47,7 +47,7 @@ interface DateFieldBase<T extends DateValue>
   hideTimeZone?: boolean
 }
 
-interface DatePickerBase<T extends DateValue>
+export interface DatePickerBase<T extends DateValue>
   extends DateFieldBase<T>,
     OverlayTriggerProps {}
 
@@ -109,7 +109,7 @@ export type DateRange = RangeValue<DateValue>
 export type TimeRange = RangeValue<TimeValue>
 
 export interface DateRangePickerState extends OverlayTriggerState {
-  value: DateRange
+  value?: DateRange
   setValue(value: DateRange): void
   dateRange: DateRange
   setDateRange(value: DateRange): void

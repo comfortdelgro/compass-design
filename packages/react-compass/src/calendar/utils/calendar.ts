@@ -18,7 +18,7 @@ import {DateFormatterOptions} from '@react-aria/i18n'
 import {FieldOptions} from '@react-stately/datepicker'
 import {MouseEvent} from 'react'
 import {DEFAULT_FIELD_OPTIONS} from '../constants/field.constant'
-import {FocusableElement, TimeValue} from '../types'
+import {CalendarState, FocusableElement, TimeValue} from '../types'
 import {EventPoint, Rect} from '../types/common.types'
 
 export const alignCenter = (
@@ -252,4 +252,26 @@ export function getFormatOptions(
   }
 
   return opts
+}
+
+export function nextUnavailableDate(
+  anchorDate: CalendarDate,
+  state: CalendarState,
+  dir: number,
+) {
+  let nextDate = anchorDate.add({days: dir})
+  while (
+    (dir < 0
+      ? nextDate.compare(state.visibleRange.start) >= 0
+      : nextDate.compare(state.visibleRange.end) <= 0) &&
+    !state.isCellUnavailable(nextDate)
+  ) {
+    nextDate = nextDate.add({days: dir})
+  }
+
+  if (state.isCellUnavailable(nextDate)) {
+    return nextDate.add({days: -dir})
+  }
+
+  return null
 }

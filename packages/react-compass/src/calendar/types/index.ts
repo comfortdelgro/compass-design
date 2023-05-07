@@ -1,6 +1,7 @@
 export * from './calendar.types'
 export * from './common.types'
 export * from './date-picker.types'
+export * from './date-range-picker.types'
 export * from './element.types'
 export * from './event.types'
 export * from './input.types'
