@@ -8,12 +8,12 @@ interface CreateControlProps {
   icon: React.FC
   label: string
   isActive?: {name: string; attributes?: Record<string, any> | string}
-  onPress: (editor: Editor | null) => () => void
+  onClick: (editor: Editor | null) => () => void
 }
 
 export function createControl({
   isActive,
-  onPress,
+  onClick,
   icon,
   label,
 }: CreateControlProps) {
@@ -28,7 +28,7 @@ export function createControl({
               : false
           }
           ref={ref}
-          onPress={onPress(editor)}
+          onClick={onClick(editor)}
           icon={icon}
           aria-label={label}
           {...props}
