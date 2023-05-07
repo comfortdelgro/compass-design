@@ -1,3 +1,6 @@
+import {FocusEvent, ReactNode} from 'react'
+import {ValidationState} from './calendar.types'
+
 export interface HookData {
   ariaLabel: string
   ariaLabelledBy: string
@@ -19,4 +22,41 @@ export interface Rect {
   right: number
   bottom: number
   left: number
+}
+
+export interface ValueBase<T, C = T> {
+  value?: T
+  defaultValue?: T
+  onChange?: (value: C) => void
+}
+
+export interface Validation {
+  validationState?: ValidationState
+  isRequired?: boolean
+}
+
+export interface HelpTextProps {
+  description?: ReactNode
+  errorMessage?: ReactNode
+}
+
+export interface LabelableProps {
+  label?: ReactNode
+}
+
+export interface KeyboardEvents {
+  onKeyDown?: (e: KeyboardEvent) => void
+  onKeyUp?: (e: KeyboardEvent) => void
+}
+
+export interface FocusEvents<Target = Element> {
+  onFocus?: (e: FocusEvent<Target>) => void
+  onBlur?: (e: FocusEvent<Target>) => void
+  onFocusChange?: (isFocused: boolean) => void
+}
+
+export interface FocusableProps<Target = Element>
+  extends FocusEvents<Target>,
+    KeyboardEvents {
+  autoFocus?: boolean
 }

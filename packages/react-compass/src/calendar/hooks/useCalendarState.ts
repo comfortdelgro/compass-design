@@ -19,6 +19,7 @@ import {
   DateValue,
   RangeCalendarState,
   ValidationState,
+  ValueBase,
 } from '../types'
 import {
   alignCenter,
@@ -44,14 +45,6 @@ function unitDuration(duration: DateDuration) {
   return unit
 }
 
-export interface ValueBase<T, C = T> {
-  /** The current value (controlled). */
-  value?: T
-  /** The default value (uncontrolled). */
-  defaultValue?: T
-  /** Handler that is called when the value changes. */
-  onChange?: (value: C) => void
-}
 interface CalendarStateProps extends ValueBase<DateValue> {
   locale: string
   createCalendar: (name: string) => Calendar

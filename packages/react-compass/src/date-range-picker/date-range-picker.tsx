@@ -6,7 +6,6 @@ import {
   DateRangePickerState,
   useDateRangePickerState,
 } from '@react-stately/datepicker'
-// import type {AriaButtonProps} from '@react-types/button'
 import type {DateRange, RangeCalendarProps} from '@react-types/calendar'
 import type {
   AriaDatePickerProps,
@@ -14,6 +13,7 @@ import type {
 } from '@react-types/datepicker'
 import type {DOMAttributes} from '@react-types/shared'
 import React from 'react'
+import {ButtonProps} from '../button'
 import {DateField} from '../calendar/components'
 import Dialog from '../calendar/components/dialog'
 import Popover from '../calendar/components/popover'
@@ -24,7 +24,6 @@ import {
   StyledDateRangeInputsWrapper,
   StyledRangeDatepicker,
 } from './date-range-picker.style'
-import { ButtonProps } from '../button'
 
 interface Props
   extends StyledComponentProps,

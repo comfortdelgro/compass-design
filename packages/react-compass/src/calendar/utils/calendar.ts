@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/prefer-ts-expect-error */
 import {
   CalendarDate,
   DateDuration,
@@ -7,10 +11,14 @@ import {
   startOfMonth,
   startOfWeek,
   startOfYear,
+  Time,
   toCalendarDate,
 } from '@internationalized/date'
+import {DateFormatterOptions} from '@react-aria/i18n'
+import {FieldOptions} from '@react-stately/datepicker'
 import {MouseEvent} from 'react'
-import {FocusableElement} from '../types'
+import {DEFAULT_FIELD_OPTIONS} from '../constants/field.constant'
+import {FocusableElement, TimeValue} from '../types'
 import {EventPoint, Rect} from '../types/common.types'
 
 export const alignCenter = (
@@ -182,4 +190,66 @@ export function isOverTarget(
   const rect = target.getBoundingClientRect()
   const pointRect = getPointClientRect(point as EventPoint)
   return areRectanglesOverlapping(rect, pointRect)
+}
+
+export function getPlaceholderTime(placeholderValue?: DateValue): TimeValue {
+  if (placeholderValue && 'hour' in placeholderValue) {
+    return placeholderValue
+  }
+
+  return new Time()
+}
+
+export function getFormatOptions(
+  fieldOptions: FieldOptions,
+  options: DateFormatterOptions,
+): Intl.DateTimeFormatOptions {
+  fieldOptions = {...DEFAULT_FIELD_OPTIONS, ...fieldOptions}
+  // @ts-ignore
+  const granularity = options.granularity || 'minute'
+  const keys = Object.keys(fieldOptions)
+  // @ts-ignore
+  let startIdx = keys.indexOf(options.maxGranularity ?? 'year')
+  if (startIdx < 0) {
+    startIdx = 0
+  }
+
+  let endIdx = keys.indexOf(granularity)
+  if (endIdx < 0) {
+    endIdx = 2
+  }
+
+  if (startIdx > endIdx) {
+    throw new Error('maxGranularity must be greater than granularity')
+  }
+
+  const opts: Intl.DateTimeFormatOptions = keys
+    .slice(startIdx, endIdx + 1)
+    .reduce((opts, key) => {
+      // @ts-ignore
+      opts[key] = fieldOptions[key]
+      return opts
+    }, {})
+
+  if (options.hourCycle != null) {
+    // @ts-ignore
+    opts.hour12 = options.hourCycle === 12
+  }
+
+  opts.timeZone = options.timeZone || 'UTC'
+
+  const hasTime =
+    granularity === 'hour' ||
+    granularity === 'minute' ||
+    granularity === 'second'
+  // @ts-ignore
+  if (hasTime && options.timeZone && !options.hideTimeZone) {
+    opts.timeZoneName = 'short'
+  }
+  // @ts-ignore
+  if (options.showEra && startIdx === 0) {
+    opts.era = 'short'
+  }
+
+  return opts
 }

@@ -19,6 +19,11 @@ import {FocusableElement} from './scroll.types'
 
 export type ValidationState = 'valid' | 'invalid'
 
+export type FieldOptions = Pick<
+  Intl.DateTimeFormatOptions,
+  'year' | 'month' | 'day' | 'hour' | 'minute' | 'second'
+>
+
 export type DateValue = CalendarDate | CalendarDateTime | ZonedDateTime
 
 export interface RangeValue<T> {
@@ -175,17 +180,3 @@ export interface OverlayTriggerState {
 }
 
 export type Granularity = 'day' | 'hour' | 'minute' | 'second'
-
-export interface DatePickerState extends OverlayTriggerState {
-  value: DateValue
-  setValue(value: DateValue): void
-  dateValue: DateValue
-  setDateValue(value: CalendarDate): void
-  timeValue: TimeValue
-  setTimeValue(value: TimeValue): void
-  granularity: Granularity
-  hasTime: boolean
-  isOpen: boolean
-  setOpen(isOpen: boolean): void
-  validationState: ValidationState
-}
