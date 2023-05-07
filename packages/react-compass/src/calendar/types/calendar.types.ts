@@ -1,6 +1,8 @@
 import {
+  Calendar,
   CalendarDate,
   CalendarDateTime,
+  DateFormatter,
   Time,
   ZonedDateTime,
 } from '@internationalized/date'
@@ -14,7 +16,13 @@ import {
   ReactNode,
   TouchEvent,
 } from 'react'
-import {AriaLabelingProps, DOMProps} from './label.types'
+import {HelpTextProps} from './common.types'
+import {AriaDatePickerProps} from './date-picker.types'
+import {
+  AriaLabelingProps,
+  DOMProps,
+  SpectrumLabelableProps,
+} from './label.types'
 import {FocusableElement} from './scroll.types'
 
 export type ValidationState = 'valid' | 'invalid'
@@ -23,6 +31,18 @@ export type FieldOptions = Pick<
   Intl.DateTimeFormatOptions,
   'year' | 'month' | 'day' | 'hour' | 'minute' | 'second'
 >
+
+export type SegmentType =
+  | 'era'
+  | 'year'
+  | 'month'
+  | 'day'
+  | 'hour'
+  | 'minute'
+  | 'second'
+  | 'dayPeriod'
+  | 'literal'
+  | 'timeZoneName'
 
 export type DateValue = CalendarDate | CalendarDateTime | ZonedDateTime
 
@@ -180,3 +200,48 @@ export interface OverlayTriggerState {
 }
 
 export type Granularity = 'day' | 'hour' | 'minute' | 'second'
+
+export interface DateFieldState {
+  value: DateValue
+  dateValue: Date
+  calendar: Calendar
+  setValue(value: DateValue): void
+  dateFormatter: DateFormatter
+  validationState: ValidationState
+  granularity: Granularity
+  maxGranularity: 'year' | 'month' | Granularity
+  isDisabled: boolean
+  isReadOnly: boolean
+  isRequired: boolean
+  increment(type: SegmentType): void
+  decrement(type: SegmentType): void
+  incrementPage(type: SegmentType): void
+  decrementPage(type: SegmentType): void
+  setSegment(type: 'era', value: string): void
+  setSegment(type: SegmentType, value: number): void
+  confirmPlaceholder(): void
+  clearSegment(type: SegmentType): void
+  formatValue(fieldOptions: FieldOptions): string
+}
+
+export interface LabelableProps {
+  label?: ReactNode
+}
+
+export interface SpectrumDateFieldBase
+  extends SpectrumLabelableProps,
+    HelpTextProps {
+  isQuiet?: boolean
+  showFormatHelpText?: boolean
+}
+
+export interface SpectrumDatePickerBase
+  extends SpectrumDateFieldBase,
+    SpectrumLabelableProps {
+  maxVisibleMonths?: number
+  shouldFlip?: boolean
+}
+
+export interface SpectrumDatePickerProps<T extends DateValue>
+  extends AriaDatePickerProps<T>,
+    SpectrumDatePickerBase {}

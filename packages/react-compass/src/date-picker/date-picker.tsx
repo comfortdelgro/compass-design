@@ -1,18 +1,20 @@
 /* eslint-disable @typescript-eslint/unbound-method */
 import {DateValue, parseDate} from '@internationalized/date'
-import {AriaDatePickerProps, useDatePicker} from '@react-aria/datepicker'
 import {AriaDialogProps} from '@react-aria/dialog'
-import type {CalendarProps} from '@react-types/calendar'
-import type {SpectrumDatePickerProps} from '@react-types/datepicker'
-import type {DOMAttributes} from '@react-types/shared'
 import React from 'react'
 import {ButtonProps} from '../button'
-import Calendar from '../calendar/calendar'
+import Calendar, {CalendarProps} from '../calendar/calendar'
 import {DateField} from '../calendar/components'
 import Dialog from '../calendar/components/dialog'
 import Popover from '../calendar/components/popover'
+import {useDatePicker} from '../calendar/hooks/useDatePicker'
 import {useDatePickerState} from '../calendar/hooks/useDatePickerState'
-import {DatePickerState} from '../calendar/types'
+import {
+  AriaDatePickerProps,
+  DatePickerState,
+  DOMAttributes,
+  SpectrumDatePickerProps,
+} from '../calendar/types'
 import type {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
@@ -103,7 +105,7 @@ interface DatePickerCalendarWrapperProps {
   state: DatePickerState
   calendarRef: React.RefObject<HTMLDivElement>
   dialogProps: AriaDialogProps
-  calendarProps: CalendarProps<DateValue>
+  calendarProps: CalendarProps
   onCancel?: (() => void) | undefined
   maxValue?: DateValue
 }

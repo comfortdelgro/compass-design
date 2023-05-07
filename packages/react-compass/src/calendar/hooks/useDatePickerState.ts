@@ -6,8 +6,7 @@ import {
   toCalendarDate,
   toCalendarDateTime,
 } from '@internationalized/date'
-import {useOverlayTriggerState} from '@react-stately/overlays'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import {
   DatePickerState,
   DatePickerStateOptions,
@@ -18,6 +17,7 @@ import {
 import {getFormatOptions, getPlaceholderTime, isInvalid} from '../utils'
 import {useControlledState} from './useControlledState'
 import {useDefaultProps} from './useDefaultProps'
+import {useOverlayTriggerState} from './useOverlayTriggerState'
 
 export function useDatePickerState<T extends DateValue = DateValue>(
   props: DatePickerStateOptions<T>,
@@ -41,6 +41,15 @@ export function useDatePickerState<T extends DateValue = DateValue>(
 
   const [selectedDate, setSelectedDate] = useState<DateValue>()
   const [selectedTime, setSelectedTime] = useState<TimeValue>()
+
+  useEffect(() => {
+    if (value) {
+      setSelectedDate(value)
+      if ('hour' in value) {
+        setSelectedTime(value)
+      }
+    }
+  }, [value])
 
   if (v && !(granularity in v)) {
     throw new Error(
@@ -92,6 +101,7 @@ export function useDatePickerState<T extends DateValue = DateValue>(
     }
   }
 
+  // @ts-ignore
   const validationState: ValidationState =
     props.validationState ||
     // @ts-ignore

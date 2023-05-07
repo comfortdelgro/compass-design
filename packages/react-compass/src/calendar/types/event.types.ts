@@ -1,5 +1,6 @@
 import {RefObject} from 'react'
 import {DOMAttributes} from './calendar.types'
+import {FocusableElement} from './scroll.types'
 
 export interface PressHookProps extends PressProps {
   ref?: RefObject<Element>
@@ -36,4 +37,31 @@ export type PointerType = 'mouse' | 'pen' | 'touch' | 'keyboard' | 'virtual'
 export interface PressResult {
   isPressed: boolean
   pressProps: DOMAttributes
+}
+
+export interface FocusManagerOptions {
+  from?: Element
+  tabbable?: boolean
+  wrap?: boolean
+  accept?: (node: Element) => boolean
+}
+
+export interface FocusManager {
+  focusNext(opts?: FocusManagerOptions): FocusableElement
+  focusPrevious(opts?: FocusManagerOptions): FocusableElement
+  focusFirst(opts?: FocusManagerOptions): FocusableElement
+  focusLast(opts?: FocusManagerOptions): FocusableElement
+}
+
+export type ScopeRef = RefObject<Element[]>
+
+export interface FocusWithinProps {
+  isDisabled?: boolean
+  onFocusWithin?: (e: FocusEvent) => void
+  onBlurWithin?: (e: FocusEvent) => void
+  onFocusWithinChange?: (isFocusWithin: boolean) => void
+}
+
+export interface FocusWithinResult {
+  focusWithinProps: DOMAttributes
 }

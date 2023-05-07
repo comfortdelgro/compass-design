@@ -1,7 +1,12 @@
 import {CalendarDate, DateValue} from '@internationalized/date'
+import {ElementType} from 'react'
+import {CalendarProps} from '../calendar'
 import {
+  DOMAttributes,
   FieldOptions,
   Granularity,
+  OverlayTriggerState,
+  RangeValue,
   TimeValue,
   ValidationState,
 } from './calendar.types'
@@ -12,7 +17,13 @@ import {
   Validation,
   ValueBase,
 } from './common.types'
+import {
+  AriaBaseButtonProps,
+  ButtonProps,
+  LinkButtonProps,
+} from './element.types'
 import {InputBase} from './input.types'
+import {AriaLabelingProps, DOMProps} from './label.types'
 
 export interface OverlayTriggerProps {
   isOpen?: boolean
@@ -49,14 +60,6 @@ export interface DatePickerStateOptions<T extends DateValue>
   shouldCloseOnSelect?: boolean | (() => boolean)
 }
 
-export interface OverlayTriggerState {
-  readonly isOpen: boolean
-  setOpen(isOpen: boolean): void
-  open(): void
-  close(): void
-  toggle(): void
-}
-
 export interface DatePickerState extends OverlayTriggerState {
   value: DateValue
   setValue(value: DateValue): void
@@ -70,4 +73,58 @@ export interface DatePickerState extends OverlayTriggerState {
   setOpen(isOpen: boolean): void
   validationState?: ValidationState
   formatValue(locale: string, fieldOptions: FieldOptions): string
+}
+
+export interface AriaDatePickerBaseProps<T extends DateValue>
+  extends DatePickerBase<T>,
+    AriaLabelingProps,
+    DOMProps {}
+
+export interface AriaDatePickerProps<T extends DateValue>
+  extends DatePickerProps<T>,
+    AriaDatePickerBaseProps<T> {}
+
+export interface AriaButtonProps<T extends ElementType = 'button'>
+  extends ButtonProps,
+    LinkButtonProps<T>,
+    AriaBaseButtonProps {}
+
+export interface AriaDialogProps extends DOMProps, AriaLabelingProps {
+  role?: 'dialog' | 'alertdialog'
+}
+
+export interface DatePickerAria {
+  labelProps: DOMAttributes
+  groupProps: DOMAttributes
+  fieldProps: AriaDatePickerProps<DateValue>
+  buttonProps: AriaButtonProps
+  descriptionProps: DOMAttributes
+  errorMessageProps: DOMAttributes
+  dialogProps: AriaDialogProps
+  calendarProps: CalendarProps
+}
+
+export type DateRange = RangeValue<DateValue>
+
+export type TimeRange = RangeValue<TimeValue>
+
+export interface DateRangePickerState extends OverlayTriggerState {
+  value: DateRange
+  setValue(value: DateRange): void
+  dateRange: DateRange
+  setDateRange(value: DateRange): void
+  timeRange: TimeRange
+  setTimeRange(value: TimeRange): void
+  setDate(part: 'start' | 'end', value: DateValue): void
+  setTime(part: 'start' | 'end', value: TimeValue): void
+  setDateTime(part: 'start' | 'end', value: DateValue): void
+  granularity: Granularity
+  hasTime: boolean
+  isOpen: boolean
+  setOpen(isOpen: boolean): void
+  validationState: ValidationState
+  formatValue(
+    locale: string,
+    fieldOptions: FieldOptions,
+  ): {start: string; end: string}
 }
