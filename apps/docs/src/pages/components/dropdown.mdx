@@ -1,118 +1,515 @@
 import {Callout} from 'nextra-theme-docs'
 import styles from '../../styles/Home.module.css'
-import {faThumbsUp, faVirus} from '@fortawesome/free-solid-svg-icons'
-import Divider from '@comfortdelgro/react-compass/divider'
-import {faBug} from '@fortawesome/free-solid-svg-icons'
-import Error from '@comfortdelgro/react-compass/error'
-import Button from '@comfortdelgro/react-compass/button'
+import Dropdown from '@comfortdelgro/react-compass/dropdown'
+import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons'
+import Icon from '@comfortdelgro/react-compass/icon'
+import {ControlledDropdown} from '../../components/ControlledDropdown'
 
-# Error
+# Dropdown
 
-An error displays a short error message.
-
-<Callout>
-  Check out our [ladle](/ladle?story=error--variant) for more info on this
-  component.
-</Callout>
+Dropdown components are used for collecting user provided information from a list of options.
 
 ---
 
 ### Import:
 
 ```js
-import {Error} from '@comfortdelgro/react-compass'
+import {Dropdown} from '@comfortdelgro/react-compass'
 ```
 
 or
 
 ```js
-import Error from '@comfortdelgro/react-compass/error'
+import Dropdown from '@comfortdelgro/react-compass/dropdown'
+```
+
+We recommend the second method to import components for the benefits of [tree shaking](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking).
+
+---
+
+### Select Controlled:
+
+We provide 3 type of dropdown that can be used to select: `Dropdown.Select`, `Dropdown.ComboBox` and `Dropdown.Flag`
+
+### Controlled:
+
+<section className={styles.avatarShowcaseContainer}>
+  <ControlledDropdown />
+</section>
+
+```js
+  const [value, setValue] = React.useState<Key>('cat')
+  <Dropdown.Select
+    isRequired
+    label='Favorite Animal'
+    placeholder='Choose an animal'
+    selectedKey={value}
+    onSelectionChange={(k: React.Key) => setValue(k)}
+  >
+    <Dropdown.Item
+      key='red panda'
+      leftIcon={<Icon icon={faExclamationTriangle} />}
+    >
+      Red Panda Red Panda Red Panda Red Panda Red Panda
+    </Dropdown.Item>
+    <Dropdown.Item
+      key='cat'
+      leftIcon={<Icon icon={faExclamationTriangle} />}
+      type='color'
+      rightColor='red'
+      textValue='pandared'
+    >
+      Cat Red Panda Red Panda Red Panda Red Panda Red Panda
+    </Dropdown.Item>
+    <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+    <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+    <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+    <Dropdown.Item key='snakessss'>Snake</Dropdown.Item>
+  </Dropdown.Select>
+  <Dropdown.ComboBox
+    isRequired
+    label='Favorite Animal'
+    placeholder='Choose an animal'
+    selectedKey={value}
+    onSelectionChange={(k: React.Key) => setValue(k)}
+  >
+    <Dropdown.Item
+      key='red panda'
+      leftIcon={<Icon icon={faExclamationTriangle} />}
+    >
+      Red Panda Red Panda Red Panda Red Panda Red Panda
+    </Dropdown.Item>
+    <Dropdown.Item
+      key='cat'
+      leftIcon={<Icon icon={faExclamationTriangle} />}
+      type='color'
+      rightColor='red'
+      textValue='pandared'
+    >
+      Cat Red Panda Red Panda Red Panda Red Panda Red Panda
+    </Dropdown.Item>
+    <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+    <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+    <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+    <Dropdown.Item key='snakessss'>Snake</Dropdown.Item>
+  </Dropdown.ComboBox>
 ```
 
 ---
 
-### Basic Error:
+### UnControlled:
 
-<section
-  className={styles.avatarShowcaseContainer}
-  style={{flexDirection: 'column'}}
+<section className={styles.avatarShowcaseContainer}>
+  <Dropdown.Select
+    isRequired
+    label='Favorite Animal'
+    placeholder='Choose an animal'
+  >
+    <Dropdown.Item key='red panda'>
+      Red Panda Red Panda Red Panda Red Panda Red Panda
+    </Dropdown.Item>
+    <Dropdown.Item key='cat' type='color' rightColor='red' textValue='pandared'>
+      Cat Red Panda Red Panda Red Panda Red Panda Red Panda
+    </Dropdown.Item>
+    <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+    <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+    <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+    <Dropdown.Item key='snakessss'>Snake</Dropdown.Item>
+  </Dropdown.Select>
+  <Dropdown.ComboBox
+    isRequired
+    label='Favorite Animal'
+    placeholder='Choose an animal'
+  >
+    <Dropdown.Item key='red panda'>
+      Red Panda Red Panda Red Panda Red Panda Red Panda
+    </Dropdown.Item>
+    <Dropdown.Item key='cat' type='color' rightColor='red' textValue='pandared'>
+      Cat Red Panda Red Panda Red Panda Red Panda Red Panda
+    </Dropdown.Item>
+    <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+    <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+    <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+    <Dropdown.Item key='snakessss'>Snake</Dropdown.Item>
+  </Dropdown.ComboBox>
+</section>
+```js
+<Dropdown.Select
+  isRequired
+  label='Favorite Animal'
+  placeholder='Choose an animal'
 >
-  <Error variant='primary'>
-    <Error.Icon>
-      <Icon icon={faBug} />
-    </Error.Icon>
-    <Error.Title>Error: some bugs</Error.Title>
-    <Error.Description>
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. pariatur.'
-    </Error.Description>
-    <Error.Action>
-      <Button
-        onPress={() => {
-          console.log('click ok')
+  <Dropdown.Item key='red panda'>
+    Red Panda Red Panda Red Panda Red Panda Red Panda
+  </Dropdown.Item>
+  <Dropdown.Item key='cat' type='color' rightColor='red' textValue='pandared'>
+    Cat Red Panda Red Panda Red Panda Red Panda Red Panda
+  </Dropdown.Item>
+  <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+  <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+  <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+  <Dropdown.Item key='snakessss'>Snake</Dropdown.Item>
+</Dropdown.Select>
+<Dropdown.ComboBox
+  isRequired
+  label='Favorite Animal'
+  placeholder='Choose an animal'
+>
+  <Dropdown.Item key='red panda'>
+    Red Panda Red Panda Red Panda Red Panda Red Panda
+  </Dropdown.Item>
+  <Dropdown.Item key='cat' type='color' rightColor='red' textValue='pandared'>
+    Cat Red Panda Red Panda Red Panda Red Panda Red Panda
+  </Dropdown.Item>
+  <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+  <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+  <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+  <Dropdown.Item key='snakessss'>Snake</Dropdown.Item>
+</Dropdown.ComboBox>
+```
+
+---
+
+### Error:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Dropdown.Select
+    label='Favorite Animal'
+    placeholder='Choose an animal'
+    isErrored
+    errorMessage='Use Helper Text for Errors'
+  >
+    <Dropdown.Item
+      key='red panda'
+      leftIcon={<Icon icon={faExclamationTriangle} />}
+    >
+      Red Panda
+    </Dropdown.Item>
+    <Dropdown.Item key='cat' type='color' rightColor='red'>
+      Cat
+    </Dropdown.Item>
+    <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+    <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+    <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+    <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+  </Dropdown.Select>
+</section>
+```js
+<Dropdown.Select
+  label='Favorite Animal'
+  placeholder='Choose an animal'
+  isErrored
+  errorMessage='Use Helper Text for Errors'
+>
+  <Dropdown.Item
+    key='red panda'
+    leftIcon={<Icon icon={faExclamationTriangle} />}
+  >
+    Red Panda
+  </Dropdown.Item>
+  <Dropdown.Item key='cat' type='color' rightColor='red'>
+    Cat
+  </Dropdown.Item>
+  <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+  <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+  <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+  <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+</Dropdown.Select>
+```
+
+---
+
+### With Section:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Dropdown.Select label='Favorite Animal' placeholder='Choose an animal'>
+    <Dropdown.Item key='fly'>Fly</Dropdown.Item>
+    <Dropdown.Section title='Group 1'>
+      <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
+      <Dropdown.Item key='cat'>Cat</Dropdown.Item>
+      <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+    </Dropdown.Section>
+    <Dropdown.Section title='Group 2'>
+      <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+      <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+      <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+    </Dropdown.Section>
+  </Dropdown.Select>
+</section>
+```js
+<Dropdown.Select label='Favorite Animal' placeholder='Choose an animal'>
+  <Dropdown.Item key='fly'>Fly</Dropdown.Item>
+  <Dropdown.Section title='Group 1'>
+    <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
+    <Dropdown.Item key='cat'>Cat</Dropdown.Item>
+    <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+  </Dropdown.Section>
+  <Dropdown.Section title='Group 2'>
+    <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+    <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+    <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+  </Dropdown.Section>
+</Dropdown.Select>
+```
+
+---
+
+### With Header:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Dropdown.Select label='Favorite Animal' placeholder='Choose an animal'>
+    <Dropdown.Header>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          width: '100%',
+          padding: '8px 16px',
+          borderBottom: '2px solid #EDEBE9',
         }}
       >
-        OK
-      </Button>
-    </Error.Action>
-  </Error>
+        <span
+          style={{
+            color: '#323130',
+            fontSize: '12px',
+            fontWeight: 'bold',
+            padding: 0,
+            margin: 0,
+          }}
+        >
+          Filter
+        </span>
+        <button
+          style={{
+            fontSize: '12px',
+            fontWeight: 'bold',
+            color: '#A4262C',
+            border: 0,
+            cursor: 'pointer',
+            backgroundColor: 'transparent',
+          }}
+        >
+          Clear
+        </button>
+      </div>
+    </Dropdown.Header>
+    <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
+    <Dropdown.Item key='cat'>Cat</Dropdown.Item>
+    <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+    <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+    <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+    <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+  </Dropdown.Select>
 </section>
 
 ```js
-<Divider />
-<Divider orientation='vertical' />
+<Dropdown.Select label='Favorite Animal' placeholder='Choose an animal'>
+  <Dropdown.Header>
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        width: '100%',
+        padding: '8px 16px',
+        borderBottom: '2px solid #EDEBE9',
+      }}
+    >
+      <span
+        style={{
+          color: '#323130',
+          fontSize: '12px',
+          fontWeight: 'bold',
+          padding: 0,
+          margin: 0,
+        }}
+      >
+        Filter
+      </span>
+      <button
+        style={{
+          fontSize: '12px',
+          fontWeight: 'bold',
+          color: '#A4262C',
+          border: 0,
+          cursor: 'pointer',
+          backgroundColor: 'transparent',
+        }}
+      >
+        Clear
+      </button>
+    </div>
+  </Dropdown.Header>
+  <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
+  <Dropdown.Item key='cat'>Cat</Dropdown.Item>
+  <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+  <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+  <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+  <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+</Dropdown.Select>
 ```
 
 ---
 
-### Align Divider:
+### With Icon:
 
-<section
-  className={styles.avatarShowcaseContainer}
-  style={{flexDirection: 'column'}}
->
-  <Divider textAlign='left'>
-    <span>Left</span>
-  </Divider>
-  <Divider textAlign='center'>
-    <span>Center</span>
-  </Divider>
-  <Divider textAlign='right'>
-    <span>Right</span>
-  </Divider>
+<section className={styles.avatarShowcaseContainer}>
+  <Dropdown.Select
+    label='Favorite Animal'
+    placeholder='Choose an animal'
+    icon={<Icon icon={faExclamationTriangle} />}
+  >
+    <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
+    <Dropdown.Item key='cat'>Cat</Dropdown.Item>
+    <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+    <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+    <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+    <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+  </Dropdown.Select>
 </section>
-
 ```js
-<Divider textAlign='left'>
-  <span>Left</span>
-</Divider>
-<Divider textAlign='center'>
-  <span>Center</span>
-</Divider>
-<Divider textAlign='right'>
-  <span>Right</span>
-</Divider>
+<Dropdown.Select
+  label='Favorite Animal'
+  placeholder='Choose an animal'
+  icon={<Icon icon={faExclamationTriangle} />}
+>
+  <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
+  <Dropdown.Item key='cat'>Cat</Dropdown.Item>
+  <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+  <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+  <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+  <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+</Dropdown.Select>
+```
+
+---
+
+### Loading:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Dropdown.Select
+    label='Favorite Animal'
+    placeholder='Choose an animal'
+    isLoading
+  >
+    <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
+    <Dropdown.Item key='cat'>Cat</Dropdown.Item>
+    <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+    <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+    <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+    <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+  </Dropdown.Select>
+</section>
+```js
+<Dropdown.Select
+  label='Favorite Animal'
+  placeholder='Choose an animal'
+  isLoading
+>
+  <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
+  <Dropdown.Item key='cat'>Cat</Dropdown.Item>
+  <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+  <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+  <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+  <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+</Dropdown.Select>
+```
+
+---
+
+### Flag:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Dropdown.Flag
+    label='List of country'
+    isRequired
+    placeholder='Choose a country'
+    flagKeyType='phone-code'
+  />
+</section>
+```js
+<Dropdown.Flag
+  label='List of country'
+  placeholder='Choose a country'
+  flagKeyType='phone-code'
+/>
 ```
 
 ---
 
 ### Props:
 
-| Name        | Type                                           | Default      | Description                                                                                                                                                                                         |
-| :---------- | :--------------------------------------------- | :----------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| color       | `string`                                       | —            | Color of the line.                                                                                                                                                                                  |
-| flexItem    | `Boolean`                                      | `false`      | If true, a vertical divider will have the correct height when used in flex container. (By default, a vertical divider will have a calculated height of 0px if it is the child of a flex container.) |
-| absolute    | `Boolean`                                      | `false`      | Absolutely position the element.                                                                                                                                                                    |
-| children    | `Node`                                         | —            | The content of the component.                                                                                                                                                                       |
-| component   | `JSX.IntrinsicElements`                        | —            | The component used for the root node. Either a string to use a HTML element or a component.                                                                                                         |
-| textAlign   | `center`\| `right`\| `left`\| `top`\| `bottom` | `center`     | The text alignment.                                                                                                                                                                                 |
-| orientation | `vertical`\| `horizontal`                      | `horizontal` | The component orientation.                                                                                                                                                                          |
-| variant     | `fullWidth`\| `inset`\| `middle`               | `fullWidth`  | The variant to use.                                                                                                                                                                                 |
-| css         | `CSS`                                          | —            |                                                                                                                                                                                                     |
+#### `<Dropdown.Select/>` | `<Dropdown.ComboBox/>` | `<Dropdown.Flag/>` :
+
+| Name               | Type                        | Default | Description                                                                                                                                               |
+| :----------------- | :-------------------------- | :------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| icon               | `ReactNode`                 | -       | Icon display in right side                                                                                                                                |
+| name               | `string`                    | —       | The name of the input element, used when submitting an HTML form. See MDN.                                                                                |
+| label              | `ReactNode`                 | —       | The content to display as the label.                                                                                                                      |
+| isOpen             | `boolean`                   | —       | Open state of the menu.                                                                                                                                   |
+| isLoading          | `boolean`                   | 'false' | Loading effect when list of items is loading by API                                                                                                       |
+| isErrored          | `boolean`                   | 'false' | Error state when dropdown is isErrored                                                                                                                    |
+| isDisabled         | `boolean`                   | —       | Whether the input is disabled.                                                                                                                            |
+| isReadOnly         | `boolean`                   | —       | Whether the input can be selected but not changed by the user.                                                                                            |
+| isRequired         | `boolean`                   | —       | Whether user input is required on the input before form submission. Often paired with the necessityIndicator prop to add a visual indicator to the input. |
+| selectedKey        | `Key`                       | —       | The currently selected key in the collection (controlled).                                                                                                |
+| description        | `string`                    | —       | A description for the field. Provides a hint such as specific requirements for what to choose.                                                            |
+| placeholder        | `string`                    | —       | Temporary text that occupies the text input when it is empty.                                                                                             |
+| errorMessage       | `string`                    | -       | Error message for dropdown                                                                                                                                |
+| disabledKeys       | `Iterable<Key>`             | —       | The item keys that are disabled. These items cannot be selected, focused, or otherwise interacted with.                                                   |
+| defaultSelectedKey | `Key`                       | —       | The initial selected key in the collection (uncontrolled).                                                                                                |
+| onLoadMore         | `() => void`                | —       | Handler when user scrolls to the end.                                                                                                                     |
+| onSelectionChange  | `(key: Key) => any`         | —       | Handler that is called when the selection changes.                                                                                                        |
+| onOpenChange       | `(isOpen: boolean) => void` | —       | Method that is called when the open state of the menu changes. Returns the new open state and the action that caused the opening of the menu.             |
+
+#### `<Dropdown.Flag/>` :
+
+Include all of the props above and have extra new prop
+
+| Name                   | Type                                                               | Default   | Description                                                                                                                                           |
+| :--------------------- | :----------------------------------------------------------------- | :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| flagKeyType            | `alpha-2` \| `alpha-3` \| `name` \| `country-code` \| `phone-code` | `alpha-3` | The value of selectedKey will depends by which type of key                                                                                            |
+| selectedCountry        | `Key`\|`null`                                                      | —         | The currently selected key in the collection (controlled).                                                                                            |
+| onCountryChange        | `(p: string) => void`                                              | —         | Return phone code of selected key. You may need to get phone code from this function, not from the key because some country has duplicated phone code |
+| defaultSelectedCountry | `Key`                                                              | —         | The initial selected key in the collection (uncontrolled).                                                                                            |
+
+Example for key and value
+
+```
+{
+  name: 'Singapore',
+  'alpha-2': 'SG',
+  'alpha-3': 'SGP',
+  'country-code': '702',
+  'phone-code': '+65'
+}
+```
+
+#### `<Dropdown.Item/>` :
+
+| Name       | Type              | Default | Description                      |
+| :--------- | :---------------- | :------ | :------------------------------- |
+| key        | `Key`             | —       | The key of the dropdown.         |
+| icon       | `icon` \| `color` | —       | The content of the dropdown Item |
+| title      | `string`          | —       | The title of the dropdown.       |
+| children   | `ReactNode`       | —       | The content of the dropdown Item |
+| leftIcon   | `ReactNode`       | -       | Left icon of the dropdown Item   |
+| rightIcon  | `ReactNode`       | -       | Right icon of the dropdown Item  |
+| rightColor | `string`          | -       | Right color of the dropdown Item |
+
+---
+
+#### `<Dropdown.Section/>` :
+
+| Name     | Type        | Default | Description                |
+| :------- | :---------- | :------ | :------------------------- |
+| title    | `ReactNode` | —       | The title of the section.  |
+| children | `ReactNode` | —       | The content of the section |
 
 ---
 
 <Callout>
-  Check out our [ladle](/ladle?story=error--variant) for more info on this
+  Check out our [ladle](/ladle?story=dropdown--variants) for more info on this
   component.
 </Callout>
