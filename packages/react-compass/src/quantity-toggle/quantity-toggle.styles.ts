@@ -55,9 +55,11 @@ export const StyledQuantityToggle = styled('div', {
   variants: {
     isDisabled: {
       true: {
+        cursor: 'not-allowed',
         div: {
           input: {
             backgroundColor: '#EDEBE9',
+            cursor: 'not-allowed',
           },
           button: {
             borderColor: '#EDEBE9',

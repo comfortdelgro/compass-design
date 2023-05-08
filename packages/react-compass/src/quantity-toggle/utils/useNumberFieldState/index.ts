@@ -72,7 +72,9 @@ export default function useNumberFieldState(
     () => new NumberFormatter(locale, {...formatOptions, numberingSystem}),
     [locale, formatOptions, numberingSystem],
   )
+
   const intlOptions = useMemo(() => formatter.resolvedOptions(), [formatter])
+
   const format = useCallback(
     (value: number) =>
       isNaN(value) || value === null ? '' : formatter.format(value),
@@ -220,19 +222,19 @@ export default function useNumberFieldState(
     numberParser.isValidPartialNumber(value, minValue, maxValue)
 
   return {
-    validate,
-    increment,
-    incrementToMax,
-    decrement,
-    decrementToMin,
+    inputValue,
     canIncrement,
     canDecrement,
     minValue: minValue ?? -Infinity,
     maxValue: maxValue ?? Infinity,
     numberValue: parsedValue,
-    setInputValue,
-    inputValue,
     commit,
+    validate,
+    increment,
+    decrement,
+    setInputValue,
+    incrementToMax,
+    decrementToMin,
   }
 }
 

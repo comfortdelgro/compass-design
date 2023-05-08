@@ -15,17 +15,9 @@ export function useControlledState<T>(
 ): [T, (value: T, ...args: any[]) => void] {
   const [stateValue, setStateValue] = useState(value ?? defaultValue)
   const ref = useRef(value !== undefined)
-  const wasControlled = ref.current
   const isControlled = value !== undefined
   // Internal state reference for useCallback
   const stateRef = useRef(stateValue)
-  if (wasControlled !== isControlled) {
-    console.warn(
-      `WARN: A component changed from ${
-        wasControlled ? 'controlled' : 'uncontrolled'
-      } to ${isControlled ? 'controlled' : 'uncontrolled'}.`,
-    )
-  }
 
   ref.current = isControlled
 
