@@ -194,6 +194,7 @@ export type {
   DividerProps,
   SidenavContextValue,
   SidenavItemProps,
+  SidenavMenuProps,
   SidenavProps,
 } from './sidenav'
 export {default as Spinner} from './spinner'
