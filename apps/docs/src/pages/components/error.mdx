@@ -1,0 +1,141 @@
+import {Callout} from 'nextra-theme-docs'
+import styles from '../../styles/Home.module.css'
+import {Primary, Secondary, Css} from './../../components/Error'
+
+# Error
+
+An error displays a message that describes an error that occurred
+
+<Callout>
+  Check out our [ladle](/ladle?story=error--default) for more info on this
+  component.
+</Callout>
+
+---
+
+### Import:
+
+```js
+import {Error} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import Error from '@comfortdelgro/react-compass/error'
+```
+
+---
+
+### Default Error is primary variant:
+
+<section
+  className={styles.avatarShowcaseContainer}
+  style={{flexDirection: 'column'}}
+>
+  <Primary />
+</section>
+
+```js
+<Error>
+  <Error.Icon>
+    <Icon icon={faBug} />
+  </Error.Icon>
+  <Error.Title>Error: some bugs</Error.Title>
+  <Error.Description>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. pariatur.
+  </Error.Description>
+  <Error.Action>
+    <Button
+      onPress={() => {
+        console.log('click ok')
+      }}
+    >
+      OK
+    </Button>
+  </Error.Action>
+</Error>
+```
+
+---
+
+### Secondary variant:
+
+<section
+  className={styles.avatarShowcaseContainer}
+  style={{flexDirection: 'column'}}
+>
+  <Secondary />
+</section>
+
+```js
+<Error variantion='secondary'>
+  <Error.Image>
+    <Icon icon={faBug} />
+  </Error.Image>
+  <Error.Title>Error: some bugs</Error.Title>
+  <Error.Description>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. pariatur.
+  </Error.Description>
+  <Error.Action>
+    <Button
+      onPress={() => {
+        console.log('click ok')
+      }}
+    >
+      OK
+    </Button>
+  </Error.Action>
+</Error>
+```
+
+---
+
+### CSS:
+
+<section
+  className={styles.avatarShowcaseContainer}
+  style={{flexDirection: 'column'}}
+>
+  <Css />
+</section>
+
+```js
+<Error variantion='primary'>
+  <Error.Icon>
+    <Icon icon={faBug} />
+  </Error.Icon>
+  <Error.Title>Error: some bugs </Error.Title>
+  <Error.Description css={{color: 'red'}}>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. pariatur.
+  </Error.Description>
+  <Error.Action>
+    <Button
+      onPress={() => {
+        console.log('click ok')
+      }}
+    >
+      OK
+    </Button>
+  </Error.Action>
+</Error>
+```
+
+---
+
+### Props:
+
+| Name    | Type                     | Default | Description                |
+| :------ | :----------------------- | :------ | :------------------------- |
+| variant | `primary` \| 'secondary' | primary | Variants.                  |
+| css     | `CSS`                    | —       | To custom styling of Error |
+
+---
+
+<Callout>
+  Check out our [ladle](/ladle?story=error--default) for more info on this
+  component.
+</Callout>
