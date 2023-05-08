@@ -6,6 +6,11 @@ import {Callout} from 'nextra-theme-docs'
 
 Using to display a video
 
+<Callout>
+  Check out our [ladle](/ladle?story=video-player--default) for more info on
+  this component.
+</Callout>
+
 ---
 
 ### Import
@@ -17,7 +22,9 @@ import {VideoPlayer, VideoPlayerProps} from '@comfortdelgro/react-compass'
 or
 
 ```js
-import VideoPlayer, {VideoPlayerProps} from '@comfortdelgro/react-compass/video-player'
+import VideoPlayer, {
+  VideoPlayerProps,
+} from '@comfortdelgro/react-compass/video-player'
 ```
 
 We recommend the second method to import components for the benefits of [tree shaking](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking).
@@ -27,11 +34,11 @@ We recommend the second method to import components for the benefits of [tree sh
 ### Basic usage
 
 ```js
-<VideoPlayer src="http://techslides.com/demos/sample-videos/small.webm" />
+<VideoPlayer src='http://techslides.com/demos/sample-videos/small.webm' />
 ```
 
 <ComponentDisplay>
-<VideoPlayer src="http://techslides.com/demos/sample-videos/small.webm" />
+  <VideoPlayer src='http://techslides.com/demos/sample-videos/small.webm' />
 </ComponentDisplay>
 ---
 
@@ -40,7 +47,7 @@ We recommend the second method to import components for the benefits of [tree sh
 ### TooltipTrigger Props:
 
 | Name      | Type                           | Default | Description                                                                                           |
-| :---------| :----------------------------- | :-------| :-----------------------------------------------------------------------------------------------------|
+| :-------- | :----------------------------- | :------ | :---------------------------------------------------------------------------------------------------- |
 | src       | `string`                       | -       | Specifies the URL of the video file                                                                   |
 | id        | `string`                       | -       | Unique id of the video                                                                                |
 | loop      | `boolean`                      | false   | Specifies that the video will start over again, every time it is finished                             |
@@ -56,9 +63,9 @@ We recommend the second method to import components for the benefits of [tree sh
 | onSetting | `() => void`                   | -       | Fired when the settings button is clicked                                                             |
 | css?      | `CSS`                          | —       | The system prop that allows defining system overrides as well as additional CSS styles.               |
 
-
 ---
 
 <Callout>
-  Check out our [ladle](/ladle?story=video-player) for more info on this component.
+  Check out our [ladle](/ladle?story=video-player--default) for more info on
+  this component.
 </Callout>

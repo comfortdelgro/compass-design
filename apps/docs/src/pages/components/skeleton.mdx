@@ -7,6 +7,11 @@ import Skeleton from '@comfortdelgro/react-compass/skeleton'
 
 Display a placeholder preview of your content before the data gets loaded to reduce load-time frustration.
 
+<Callout>
+  Check out our [ladle](/ladle?story=skeleton--variants) for more info on this
+  component.
+</Callout>
+
 ---
 
 ### Import:
@@ -25,7 +30,10 @@ import Skeleton from '@comfortdelgro/react-compass/skeleton'
 
 ### Variants:
 
-<section className={styles.avatarShowcaseContainer} style={{flexDirection: 'column'}}>
+<section
+  className={styles.avatarShowcaseContainer}
+  style={{flexDirection: 'column'}}
+>
   <Skeleton variant='text' width={210} />
   <Skeleton variant='circular' width={40} height={40} />
   <Skeleton variant='rectangular' width={210} height={60} />
@@ -49,7 +57,10 @@ import Skeleton from '@comfortdelgro/react-compass/skeleton'
 
 ### Animations:
 
-<section className={styles.avatarShowcaseContainer} style={{flexDirection: 'column'}}>
+<section
+  className={styles.avatarShowcaseContainer}
+  style={{flexDirection: 'column'}}
+>
   <Skeleton width={210} height={60} />
   <Skeleton width={210} height={60} animation='wave' />
   <Skeleton width={210} height={60} animation={false} />
@@ -65,16 +76,16 @@ import Skeleton from '@comfortdelgro/react-compass/skeleton'
 
 ### Props:
 
-| Name       | Type                                               | Default | Description                                                                                                         |
-| :--------- | :------------------------------------------------- | :------ | :------------------------------------------------------------------------------------------------------------------ |
-| color      | `string`                                           | —       | Color for the background                                                                                            |
-| width      | `string` \| `number`                               | —       | Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.               |
-| height     | `string` \| `number`                               | —       | Height of the skeleton. Useful when you don't want to adapt the skeleton to a text element but for instance a card. |
-| children   | `Node`                                             | —       | Optional children to infer width and height from.                                                                   |
-| component  | `JSX.IntrinsicElements`                            | —       | The component used for the root node. Either a string to use a HTML element or a component.                         |
-| animation  | `pulse` \| `wave` \| `false`                       | `pulse` | The animation. If false the animation effect is disabled.                                                           |
-| variant    | `circular` \| `rectangular` \| `rounded` \| `text` | `text`  | The type of content that will be rendered.                                                                          |
-| css        | `CSS`                                              | —       |                                                                                                                     |
+| Name      | Type                                               | Default | Description                                                                                                         |
+| :-------- | :------------------------------------------------- | :------ | :------------------------------------------------------------------------------------------------------------------ |
+| color     | `string`                                           | —       | Color for the background                                                                                            |
+| width     | `string` \| `number`                               | —       | Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.               |
+| height    | `string` \| `number`                               | —       | Height of the skeleton. Useful when you don't want to adapt the skeleton to a text element but for instance a card. |
+| children  | `Node`                                             | —       | Optional children to infer width and height from.                                                                   |
+| component | `JSX.IntrinsicElements`                            | —       | The component used for the root node. Either a string to use a HTML element or a component.                         |
+| animation | `pulse` \| `wave` \| `false`                       | `pulse` | The animation. If false the animation effect is disabled.                                                           |
+| variant   | `circular` \| `rectangular` \| `rounded` \| `text` | `text`  | The type of content that will be rendered.                                                                          |
+| css       | `CSS`                                              | —       |                                                                                                                     |
 
 ---
 

@@ -6,6 +6,11 @@ import SpeedDial from '@comfortdelgro/react-compass/speed-dial'
 
 Provides the behavior and accessibility implementation for a speed-dial component.
 
+<Callout>
+  Check out our [ladle](/ladle?story=speed-dial--default) for more info on this
+  component.
+</Callout>
+
 ---
 
 ### Import:
@@ -24,29 +29,36 @@ import SpeedDial from '@comfortdelgro/react-compass/slider'
 
 ### Basic Usage:
 
-<section className={styles.avatarShowcaseContainer} style={{display: 'flex', flexDirection: 'column', gap: '2rem' }}>
- <div>
-      {/* Render other content */}
-      {/* Render the SpeedDial component with the actions prop */}
-      <h1>Default:</h1>
-      <SpeedDial actions={[
-    {
-      name: 'Action 1',
-      icon: '+',
-      onClick: () => console.log('Action 1 clicked'),
-    },
-    {
-      name: 'Action 2',
-      icon: '-',
-      onClick: () => console.log('Action 2 clicked'),
-    },
-    // Add more actions as needed
-  ]} position='up' />
-    </div>
+<section
+  className={styles.avatarShowcaseContainer}
+  style={{display: 'flex', flexDirection: 'column', gap: '2rem'}}
+>
+  <div>
+    {/* Render other content */}
+    {/* Render the SpeedDial component with the actions prop */}
+    <h1>Default:</h1>
+    <SpeedDial
+      actions={[
+        {
+          name: 'Action 1',
+          icon: '+',
+          onClick: () => console.log('Action 1 clicked'),
+        },
+        {
+          name: 'Action 2',
+          icon: '-',
+          onClick: () => console.log('Action 2 clicked'),
+        },
+        // Add more actions as needed
+      ]}
+      position='up'
+    />
+  </div>
 </section>
 
 ```js
-<SpeedDial actions={[
+<SpeedDial
+  actions={[
     {
       name: 'Action 1',
       icon: '+',
@@ -58,21 +70,23 @@ import SpeedDial from '@comfortdelgro/react-compass/slider'
       onClick: () => console.log('Action 2 clicked'),
     },
     // Add more actions as needed
-  ]} position='up' />
+  ]}
+  position='up'
+/>
 ```
 
 ---
 
 ### Props:
 
-| Name               | Type                       | Default     | Description                                                                                                |
-| :----------------- | :---------------------     | :---------- | :--------------------------------------------------------------------------------------------------------- |
-| actions            | `Array<Object>`            | `{}`        | Array of Object define the actions can show on speed dial.                                                 |
-| position           | `string`                   | `up`        | Define the position where the actions list show                                                            |
+| Name     | Type            | Default | Description                                                |
+| :------- | :-------------- | :------ | :--------------------------------------------------------- |
+| actions  | `Array<Object>` | `{}`    | Array of Object define the actions can show on speed dial. |
+| position | `string`        | `up`    | Define the position where the actions list show            |
 
 ---
 
 <Callout>
-  Check out our [ladle](/ladle?story=speed-dial) for more info on this
+  Check out our [ladle](/ladle?story=speed-dial--default) for more info on this
   component.
 </Callout>

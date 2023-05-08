@@ -2,7 +2,7 @@ import React from 'react'
 import {Column, Row} from '../utils/components'
 import Spinner from './index'
 
-export const Spinners: React.FC = () => (
+export const Variants: React.FC = () => (
   <Column>
     <Row>
       <Spinner size='2xl' />

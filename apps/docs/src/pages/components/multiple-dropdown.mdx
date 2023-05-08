@@ -8,6 +8,11 @@ import Icon from '@comfortdelgro/react-compass/icon'
 
 Provides the behavior and accessibility implementation for a listbox component. A listbox displays a list of options and allows a user to select one or more of them.
 
+<Callout>
+  Check out our [ladle](/ladle?story=multiple-dropdown--default) for more info
+  on this component.
+</Callout>
+
 ---
 
 ### Import:
@@ -36,10 +41,8 @@ We recommend the second method to import components for the benefits of [tree sh
     placeholder='Choose an animal'
     defaultSelectedKeys={['cat']}
   >
-    <MultipleDropdown.Item
-      key='red panda'
-    >
-      <Icon icon={faExclamationTriangle} style={{marginRight: 5}} />
+    <MultipleDropdown.Item key='red panda'>
+        <Icon icon={faExclamationTriangle} style={{marginRight: 5}} />
       Red Panda
     </MultipleDropdown.Item>
     <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
@@ -47,32 +50,31 @@ We recommend the second method to import components for the benefits of [tree sh
     <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
     <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
     <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+
   </MultipleDropdown>
 </section>
 
 ```js
-  <MultipleDropdown
-    label='Favorite Animal'
-    selectionMode='multiple'
-    disabledKeys={['snake']}
-    placeholder='Choose an animal'
-    selectedKeys={value}
-    onSelectionChange={(k: 'all' | Set<Key>) =>
-      setValue(k === 'all' ? k : [...k])
-    }
-  >
-    <MultipleDropdown.Item
-      key='red panda'
-    >
-      <Icon icon={faExclamationTriangle} style={{marginRight: 5}} />
-      Red Panda
-    </MultipleDropdown.Item>
-    <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
-  </MultipleDropdown>
+<MultipleDropdown
+  label='Favorite Animal'
+  selectionMode='multiple'
+  disabledKeys={['snake']}
+  placeholder='Choose an animal'
+  selectedKeys={value}
+  onSelectionChange={(k: 'all' | Set<Key>) =>
+    setValue(k === 'all' ? k : [...k])
+  }
+>
+  <MultipleDropdown.Item key='red panda'>
+    <Icon icon={faExclamationTriangle} style={{marginRight: 5}} />
+    Red Panda
+  </MultipleDropdown.Item>
+  <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
+  <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
+  <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
+  <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
+  <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+</MultipleDropdown>
 ```
 
 ---
@@ -86,9 +88,7 @@ We recommend the second method to import components for the benefits of [tree sh
     disabledKeys={['snake']}
     placeholder='Choose an animal'
   >
-    <MultipleDropdown.Item
-      key='red panda'
-    >
+    <MultipleDropdown.Item key='red panda'>
       <Icon icon={faExclamationTriangle} style={{marginRight: 5}} />
       Red Panda
     </MultipleDropdown.Item>
@@ -101,24 +101,22 @@ We recommend the second method to import components for the benefits of [tree sh
 </section>
 
 ```js
-  <MultipleDropdown
-    label='Favorite Animal'
-    selectionMode='multiple'
-    disabledKeys={['snake']}
-    placeholder='Choose an animal'
-  >
-    <MultipleDropdown.Item
-      key='red panda'
-    >
-      <Icon icon={faExclamationTriangle} style={{marginRight: 5}} />
-      Red Panda
-    </MultipleDropdown.Item>
-    <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
-  </MultipleDropdown>
+<MultipleDropdown
+  label='Favorite Animal'
+  selectionMode='multiple'
+  disabledKeys={['snake']}
+  placeholder='Choose an animal'
+>
+  <MultipleDropdown.Item key='red panda'>
+    <Icon icon={faExclamationTriangle} style={{marginRight: 5}} />
+    Red Panda
+  </MultipleDropdown.Item>
+  <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
+  <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
+  <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
+  <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
+  <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+</MultipleDropdown>
 ```
 
 ---
@@ -134,9 +132,7 @@ We recommend the second method to import components for the benefits of [tree sh
     isErrored
     errorMessage='Use Helper Text for Errors'
   >
-    <MultipleDropdown.Item
-      key='red panda'
-    >
+    <MultipleDropdown.Item key='red panda'>
       <Icon icon={faExclamationTriangle} style={{marginRight: 5}} />
       Red Panda
     </MultipleDropdown.Item>
@@ -149,26 +145,24 @@ We recommend the second method to import components for the benefits of [tree sh
 </section>
 
 ```js
-  <MultipleDropdown
-    label='Favorite Animal'
-    selectionMode='multiple'
-    disabledKeys={['snake']}
-    placeholder='Choose an animal'
-    isErrored
-    errorMessage='Use Helper Text for Errors'
-  >
-    <MultipleDropdown.Item
-      key='red panda'
-    >
-      <Icon icon={faExclamationTriangle} style={{marginRight: 5}} />
-      Red Panda
-    </MultipleDropdown.Item>
-    <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
-  </MultipleDropdown>
+<MultipleDropdown
+  label='Favorite Animal'
+  selectionMode='multiple'
+  disabledKeys={['snake']}
+  placeholder='Choose an animal'
+  isErrored
+  errorMessage='Use Helper Text for Errors'
+>
+  <MultipleDropdown.Item key='red panda'>
+    <Icon icon={faExclamationTriangle} style={{marginRight: 5}} />
+    Red Panda
+  </MultipleDropdown.Item>
+  <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
+  <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
+  <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
+  <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
+  <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+</MultipleDropdown>
 ```
 
 ---
@@ -228,55 +222,55 @@ We recommend the second method to import components for the benefits of [tree sh
 </section>
 
 ```js
-  <MultipleDropdown
-    selectionMode='multiple'
-    disabledKeys={['snake']}
-    label='Favorite Animal'
-    placeholder='Choose an animal'
-  >
-    <MultipleDropdown.Header>
-      <div
+<MultipleDropdown
+  selectionMode='multiple'
+  disabledKeys={['snake']}
+  label='Favorite Animal'
+  placeholder='Choose an animal'
+>
+  <MultipleDropdown.Header>
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        width: '100%',
+        padding: '8px 16px',
+        borderBottom: '2px solid #EDEBE9',
+      }}
+    >
+      <span
         style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          width: '100%',
-          padding: '8px 16px',
-          borderBottom: '2px solid #EDEBE9',
+          color: '#323130',
+          fontSize: '12px',
+          fontWeight: 'bold',
+          padding: 0,
+          margin: 0,
         }}
       >
-        <span
-          style={{
-            color: '#323130',
-            fontSize: '12px',
-            fontWeight: 'bold',
-            padding: 0,
-            margin: 0,
-          }}
-        >
-          Filter
-        </span>
-        <button
-          style={{
-            fontSize: '12px',
-            fontWeight: 'bold',
-            color: '#A4262C',
-            border: 0,
-            cursor: 'pointer',
-            backgroundColor: 'transparent',
-          }}
-        >
-          Clear
-        </button>
-      </div>
-    </MultipleDropdown.Header>
-    <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
-  </MultipleDropdown>
+        Filter
+      </span>
+      <button
+        style={{
+          fontSize: '12px',
+          fontWeight: 'bold',
+          color: '#A4262C',
+          border: 0,
+          cursor: 'pointer',
+          backgroundColor: 'transparent',
+        }}
+      >
+        Clear
+      </button>
+    </div>
+  </MultipleDropdown.Header>
+  <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
+  <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
+  <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
+  <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
+  <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
+  <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+</MultipleDropdown>
 ```
 
 ---
@@ -300,19 +294,19 @@ We recommend the second method to import components for the benefits of [tree sh
 </section>
 
 ```js
-  <MultipleDropdown
-    selectionMode='multiple'
-    label='Favorite Animal'
-    placeholder='Choose an animal'
-    isLoading
-  >
-    <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
-  </MultipleDropdown>
+<MultipleDropdown
+  selectionMode='multiple'
+  label='Favorite Animal'
+  placeholder='Choose an animal'
+  isLoading
+>
+  <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
+  <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
+  <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
+  <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
+  <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
+  <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+</MultipleDropdown>
 ```
 
 ---
@@ -336,19 +330,19 @@ We recommend the second method to import components for the benefits of [tree sh
 </section>
 
 ```js
-  <MultipleDropdown
-    selectionMode='multiple'
-    label='Favorite Animal'
-    placeholder='Choose an animal'
-    icon={<Icon icon={faExclamationTriangle} />}
-  >
-    <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
-  </MultipleDropdown>
+<MultipleDropdown
+  selectionMode='multiple'
+  label='Favorite Animal'
+  placeholder='Choose an animal'
+  icon={<Icon icon={faExclamationTriangle} />}
+>
+  <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
+  <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
+  <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
+  <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
+  <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
+  <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+</MultipleDropdown>
 ```
 
 ---
@@ -356,10 +350,7 @@ We recommend the second method to import components for the benefits of [tree sh
 ### With Section:
 
 <section className={styles.avatarShowcaseContainer}>
-  <MultipleDropdown
-    label='Favorite Animal'
-    placeholder='Choose an animal'
-  >
+  <MultipleDropdown label='Favorite Animal' placeholder='Choose an animal'>
     <MultipleDropdown.Item key='fly'>Fly</MultipleDropdown.Item>
     <MultipleDropdown.Section title='Group 1'>
       <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
@@ -375,26 +366,23 @@ We recommend the second method to import components for the benefits of [tree sh
 </section>
 
 ```js
-  <MultipleDropdown
-    label='Favorite Animal'
-    placeholder='Choose an animal'
-  >
-    <MultipleDropdown.Item key='fly'>Fly</MultipleDropdown.Item>
-    <MultipleDropdown.Section title='Group 1'>
-      <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
-      <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
-      <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
-    </MultipleDropdown.Section>
-    <MultipleDropdown.Section title='Group 2'>
-      <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
-      <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
-      <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
-    </MultipleDropdown.Section>
-  </MultipleDropdown>
+<MultipleDropdown label='Favorite Animal' placeholder='Choose an animal'>
+  <MultipleDropdown.Item key='fly'>Fly</MultipleDropdown.Item>
+  <MultipleDropdown.Section title='Group 1'>
+    <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
+  </MultipleDropdown.Section>
+  <MultipleDropdown.Section title='Group 2'>
+    <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+  </MultipleDropdown.Section>
+</MultipleDropdown>
 ```
 
-
 ---
+
 ### Props:
 
 #### `<MultipleDropdown/>` :
@@ -444,6 +432,6 @@ We recommend the second method to import components for the benefits of [tree sh
 ---
 
 <Callout>
-  Check out our [ladle](/ladle?story=multiple-dropdown--variants) for more info on this
-  component.
+  Check out our [ladle](/ladle?story=multiple-dropdown--default) for more info
+  on this component.
 </Callout>

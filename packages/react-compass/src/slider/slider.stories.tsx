@@ -1,7 +1,7 @@
 import React from 'react'
 import Slider from './slider'
 
-export const Sliders: React.FC = () => {
+export const Default: React.FC = () => {
   return (
     <div style={{width: `250px`}}>
       <div></div>

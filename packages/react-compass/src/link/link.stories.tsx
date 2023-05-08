@@ -1,7 +1,8 @@
+import React from 'react'
 import {Column} from '../utils/components'
 import Link from './index'
 
-export const Links: React.FC = () => (
+export const Default: React.FC = () => (
   <Column>
     <p>
       <h3>Link</h3>

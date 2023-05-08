@@ -22,7 +22,7 @@ export const Variants: React.FC = () => (
       css={{width: '10rem'}}
     />
 
-    <h3>isDissabled</h3>
+    <h3>isDisabled</h3>
     <SearchField
       isDisabled
       placeholder='Search'
