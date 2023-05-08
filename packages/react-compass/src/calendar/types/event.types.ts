@@ -1,5 +1,8 @@
 import {RefObject} from 'react'
 import {DOMAttributes} from './calendar.types'
+import {Validation, ValueBase} from './common.types'
+import {AriaButtonProps} from './date-picker.types'
+import {InputBase, RangeInputBase} from './input.types'
 import {FocusableElement} from './scroll.types'
 
 export interface PressHookProps extends PressProps {
@@ -64,4 +67,24 @@ export interface FocusWithinProps {
 
 export interface FocusWithinResult {
   focusWithinProps: DOMAttributes
+}
+
+export interface SpinButtonProps
+  extends InputBase,
+    Validation,
+    ValueBase<number>,
+    RangeInputBase<number> {
+  textValue?: string
+  onIncrement?: () => void
+  onIncrementPage?: () => void
+  onDecrement?: () => void
+  onDecrementPage?: () => void
+  onDecrementToMin?: () => void
+  onIncrementToMax?: () => void
+}
+
+export interface SpinbuttonAria {
+  spinButtonProps: DOMAttributes
+  incrementButtonProps: AriaButtonProps
+  decrementButtonProps: AriaButtonProps
 }

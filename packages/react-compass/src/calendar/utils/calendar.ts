@@ -2,16 +2,22 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import {
+  Calendar,
   CalendarDate,
   DateDuration,
   DateValue,
+  getMinimumDayInMonth,
+  getMinimumMonthInYear,
   maxDate,
   minDate,
+  now,
   startOfMonth,
   startOfWeek,
   startOfYear,
   Time,
+  toCalendar,
   toCalendarDate,
+  toCalendarDateTime,
 } from '@internationalized/date'
 import {MouseEvent} from 'react'
 import {DEFAULT_FIELD_OPTIONS} from '../constants/field.constant'
@@ -22,6 +28,7 @@ import {
   TimeValue,
 } from '../types'
 import {EventPoint, FormatterOptions, Rect} from '../types/common.types'
+import {convertValue} from './common'
 
 export const alignCenter = (
   focusedDate: CalendarDate,
@@ -271,4 +278,159 @@ export function nextUnavailableDate(
   }
 
   return null
+}
+
+export function createPlaceholderDate(
+  placeholderValue: DateValue | undefined,
+  granularity: string,
+  calendar: Calendar,
+  timeZone: string,
+) {
+  if (placeholderValue) {
+    return convertValue(placeholderValue, calendar)
+  }
+
+  const date = toCalendar(
+    now(timeZone).set({
+      hour: 0,
+      minute: 0,
+      second: 0,
+      millisecond: 0,
+    }),
+    calendar,
+  )
+
+  if (
+    granularity === 'year' ||
+    granularity === 'month' ||
+    granularity === 'day'
+  ) {
+    return toCalendarDate(date)
+  }
+
+  if (!timeZone) {
+    return toCalendarDateTime(date)
+  }
+
+  return date
+}
+
+export function getPlaceholder(field: string, value: string) {
+  const data = {year: 'yyyy', month: 'mm', day: 'dd'}
+  if (field === 'era' || field === 'dayPeriod') {
+    return value
+  }
+
+  if (field === 'year' || field === 'month' || field === 'day') {
+    return data[field]
+  }
+
+  return '––'
+}
+
+export function getSegmentLimits(
+  date: DateValue,
+  type: string,
+  options: Intl.ResolvedDateTimeFormatOptions,
+) {
+  switch (type) {
+    case 'era': {
+      const eras = date.calendar.getEras()
+      return {
+        value: eras.indexOf(date.era),
+        minValue: 0,
+        maxValue: eras.length - 1,
+      }
+    }
+    case 'year':
+      return {
+        value: date.year,
+        minValue: 1,
+        maxValue: date.calendar.getYearsInEra(date),
+      }
+    case 'month':
+      return {
+        value: date.month,
+        minValue: getMinimumMonthInYear(date),
+        maxValue: date.calendar.getMonthsInYear(date),
+      }
+    case 'day':
+      return {
+        value: date.day,
+        minValue: getMinimumDayInMonth(date),
+        maxValue: date.calendar.getDaysInMonth(date),
+      }
+  }
+
+  if ('hour' in date) {
+    switch (type) {
+      case 'dayPeriod':
+        return {
+          value: date.hour >= 12 ? 12 : 0,
+          minValue: 0,
+          maxValue: 12,
+        }
+      case 'hour':
+        if (options.hour12) {
+          const isPM = date.hour >= 12
+          return {
+            value: date.hour,
+            minValue: isPM ? 12 : 0,
+            maxValue: isPM ? 23 : 11,
+          }
+        }
+
+        return {
+          value: date.hour,
+          minValue: 0,
+          maxValue: 23,
+        }
+      case 'minute':
+        return {
+          value: date.minute,
+          minValue: 0,
+          maxValue: 59,
+        }
+      case 'second':
+        return {
+          value: date.second,
+          minValue: 0,
+          maxValue: 59,
+        }
+    }
+  }
+
+  return {}
+}
+
+export function addSegment(
+  value: DateValue,
+  part: string,
+  amount: number,
+  options: Intl.ResolvedDateTimeFormatOptions,
+) {
+  switch (part) {
+    case 'era':
+    case 'year':
+    case 'month':
+    case 'day':
+      return value.cycle(part, amount, {round: part === 'year'})
+  }
+
+  if ('hour' in value) {
+    switch (part) {
+      case 'dayPeriod': {
+        const hours = value.hour
+        const isPM = hours >= 12
+        return value.set({hour: isPM ? hours - 12 : hours + 12})
+      }
+      case 'hour':
+      case 'minute':
+      case 'second':
+        return value.cycle(part, amount, {
+          round: part !== 'hour',
+          hourCycle: options.hour12 ? 12 : 24,
+        })
+    }
+  }
 }

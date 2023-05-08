@@ -202,7 +202,7 @@ export interface OverlayTriggerState {
 export type Granularity = 'day' | 'hour' | 'minute' | 'second'
 
 export interface DateFieldState {
-  value: DateValue
+  value?: DateValue
   dateValue: Date
   calendar: Calendar
   setValue(value: DateValue): void
@@ -210,9 +210,9 @@ export interface DateFieldState {
   validationState: ValidationState
   granularity: Granularity
   maxGranularity: 'year' | 'month' | Granularity
-  isDisabled: boolean
-  isReadOnly: boolean
-  isRequired: boolean
+  isDisabled?: boolean
+  isReadOnly?: boolean
+  isRequired?: boolean
   increment(type: SegmentType): void
   decrement(type: SegmentType): void
   incrementPage(type: SegmentType): void

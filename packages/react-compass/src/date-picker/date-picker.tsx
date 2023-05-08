@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/unbound-method */
 import {DateValue, parseDate} from '@internationalized/date'
-import {AriaDialogProps} from '@react-aria/dialog'
 import React from 'react'
 import {ButtonProps} from '../button'
 import Calendar, {CalendarProps} from '../calendar/calendar'
@@ -11,6 +9,7 @@ import {useDatePicker} from '../calendar/hooks/useDatePicker'
 import {useDatePickerState} from '../calendar/hooks/useDatePickerState'
 import {
   AriaDatePickerProps,
+  AriaDialogProps,
   DatePickerState,
   DOMAttributes,
   SpectrumDatePickerProps,

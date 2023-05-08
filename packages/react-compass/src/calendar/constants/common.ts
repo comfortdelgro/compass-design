@@ -16,3 +16,27 @@ export const nonTextInputTypes = new Set([
   'submit',
   'reset',
 ])
+
+export const EDITABLE_SEGMENTS = {
+  year: true,
+  month: true,
+  day: true,
+  hour: true,
+  minute: true,
+  second: true,
+  dayPeriod: true,
+  era: true,
+}
+
+export const PAGE_STEP = {
+  year: 5,
+  month: 2,
+  day: 7,
+  hour: 2,
+  minute: 15,
+  second: 15,
+}
+
+export const TYPE_MAPPING = {
+  dayperiod: 'dayPeriod',
+}

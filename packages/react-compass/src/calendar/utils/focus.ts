@@ -16,6 +16,7 @@ import {
   Modality,
   ScopeRef,
   ScrollableElement,
+  ScrollIntoViewportOpts,
 } from '../types'
 import {isAndroid} from './platform'
 
@@ -442,4 +443,122 @@ export class SyntheticFocusEvent<Target = Element>
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   persist() {}
+}
+
+export function getScrollParent(node: Element): Element {
+  if (isScrollable(node)) {
+    // @ts-ignore
+    node = node.parentElement
+  }
+
+  while (node && !isScrollable(node)) {
+    // @ts-ignore
+    node = node.parentElement
+  }
+
+  return node || document.scrollingElement || document.documentElement
+}
+
+export function isScrollable(node: Element): boolean {
+  const style = window.getComputedStyle(node)
+  return /(auto|scroll)/.test(
+    style.overflow + style.overflowX + style.overflowY,
+  )
+}
+
+function relativeOffset(
+  ancestor: HTMLElement,
+  child: HTMLElement,
+  axis: 'left' | 'top',
+) {
+  const prop = axis === 'left' ? 'offsetLeft' : 'offsetTop'
+  let sum = 0
+  while (child.offsetParent) {
+    sum += child[prop]
+    if (child.offsetParent === ancestor) {
+      // Stop once we have found the ancestor we are interested in.
+      break
+    } else if (child.offsetParent.contains(ancestor)) {
+      // If the ancestor is not `position:relative`, then we stop at
+      // _its_ offset parent, and we subtract off _its_ offset, so that
+      // we end up with the proper offset from child to ancestor.
+      sum -= ancestor[prop]
+      break
+    }
+    child = child.offsetParent as HTMLElement
+  }
+  return sum
+}
+
+export function scrollIntoView(scrollView: HTMLElement, element: HTMLElement) {
+  const offsetX = relativeOffset(scrollView, element, 'left')
+  const offsetY = relativeOffset(scrollView, element, 'top')
+  const width = element.offsetWidth
+  const height = element.offsetHeight
+  let x = scrollView.scrollLeft
+  let y = scrollView.scrollTop
+
+  // Account for top/left border offsetting the scroll top/Left
+  const {borderTopWidth, borderLeftWidth} = getComputedStyle(scrollView)
+  const borderAdjustedX = scrollView.scrollLeft + parseInt(borderLeftWidth, 10)
+  const borderAdjustedY = scrollView.scrollTop + parseInt(borderTopWidth, 10)
+  // Ignore end/bottom border via clientHeight/Width instead of offsetHeight/Width
+  const maxX = borderAdjustedX + scrollView.clientWidth
+  const maxY = borderAdjustedY + scrollView.clientHeight
+
+  if (offsetX <= x) {
+    x = offsetX - parseInt(borderLeftWidth, 10)
+  } else if (offsetX + width > maxX) {
+    x += offsetX + width - maxX
+  }
+  if (offsetY <= borderAdjustedY) {
+    y = offsetY - parseInt(borderTopWidth, 10)
+  } else if (offsetY + height > maxY) {
+    y += offsetY + height - maxY
+  }
+  scrollView.scrollLeft = x
+  scrollView.scrollTop = y
+}
+
+export function scrollIntoViewport(
+  targetElement: Element,
+  opts?: ScrollIntoViewportOpts,
+) {
+  if (document.contains(targetElement)) {
+    const root = document.scrollingElement || document.documentElement
+    const isScrollPrevented =
+      window.getComputedStyle(root).overflow === 'hidden'
+    if (!isScrollPrevented) {
+      const {left: originalLeft, top: originalTop} =
+        targetElement.getBoundingClientRect()
+
+      targetElement?.scrollIntoView?.({block: 'nearest'})
+      const {left: newLeft, top: newTop} = targetElement.getBoundingClientRect()
+      if (
+        Math.abs(originalLeft - newLeft) > 1 ||
+        Math.abs(originalTop - newTop) > 1
+      ) {
+        opts?.containingElement?.scrollIntoView?.({
+          block: 'center',
+          inline: 'center',
+        })
+        targetElement.scrollIntoView?.({block: 'nearest'})
+      }
+    } else {
+      let scrollParent = getScrollParent(targetElement)
+      while (
+        targetElement &&
+        scrollParent &&
+        targetElement !== root &&
+        scrollParent !== root
+      ) {
+        scrollIntoView(
+          scrollParent as HTMLElement,
+          targetElement as HTMLElement,
+        )
+        targetElement = scrollParent
+        scrollParent = getScrollParent(targetElement)
+      }
+    }
+  }
 }

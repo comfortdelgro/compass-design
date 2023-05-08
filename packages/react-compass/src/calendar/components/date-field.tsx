@@ -1,14 +1,13 @@
 import {faChevronDown} from '@fortawesome/free-solid-svg-icons'
-import {createCalendar} from '@internationalized/date'
-import {AriaDateFieldProps, useDateField} from '@react-aria/datepicker'
+import {createCalendar, DateValue} from '@internationalized/date'
 import {useLocale} from '@react-aria/i18n'
-import {useDateFieldState} from '@react-stately/datepicker'
-// import type {AriaButtonProps} from '@react-types/button'
-import type {DateValue} from '@react-types/datepicker'
 import React from 'react'
 import Button, {ButtonProps} from '../../button'
 import Icon from '../../icon'
 import {useDOMRef} from '../../utils/use-dom-ref'
+import {useDateField} from '../hooks/useDateField'
+import {useDateFieldState} from '../hooks/useDateFieldState'
+import {AriaDateFieldProps} from '../types'
 import {StyledDateField} from './date-field.style'
 import DateSegment from './date-segment'
 
@@ -63,7 +62,6 @@ const DateField = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
       </span>
       <div {...fieldProps} ref={dateFieldRef} className='date-field-input'>
         {state.segments.map((segment, i) => {
-          // synchronize literal('/')'style with other segment
           if (segment.type === 'literal') {
             segment.isPlaceholder =
               state.segments[i - 1]?.isPlaceholder ?? false

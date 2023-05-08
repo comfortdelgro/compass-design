@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 overrides:
   '@internationalized/date': 3.1.0
+  '@internationalized/number': 3.2.0
   '@types/react': ^17.0.39
   '@types/react-dom': ^17.0.11
 
@@ -126,6 +127,7 @@ importers:
       '@fortawesome/react-fontawesome': ^0.2.0
       '@frsource/cypress-plugin-visual-regression-diff': ^3.2.7
       '@internationalized/date': 3.1.0
+      '@internationalized/number': 3.2.0
       '@ladle/react': ^2.4.5
       '@react-aria/breadcrumbs': ^3.3.2
       '@react-aria/button': ^3.6.2
@@ -238,6 +240,7 @@ importers:
       '@fortawesome/free-solid-svg-icons': 6.4.0
       '@fortawesome/react-fontawesome': 0.2.0_tumfstpptabomqiydababgzl3q
       '@internationalized/date': 3.1.0
+      '@internationalized/number': 3.2.0
       '@react-aria/breadcrumbs': 3.5.1_react@18.2.0
       '@react-aria/button': 3.7.1_react@18.2.0
       '@react-aria/calendar': 3.0.5_biqbaboplfbrettd7655fr4n2y
