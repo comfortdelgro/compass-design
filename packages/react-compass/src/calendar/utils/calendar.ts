@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-/* eslint-disable @typescript-eslint/prefer-ts-expect-error */
 import {
   CalendarDate,
   DateDuration,
@@ -14,12 +13,15 @@ import {
   Time,
   toCalendarDate,
 } from '@internationalized/date'
-import {DateFormatterOptions} from '@react-aria/i18n'
-import {FieldOptions} from '@react-stately/datepicker'
 import {MouseEvent} from 'react'
 import {DEFAULT_FIELD_OPTIONS} from '../constants/field.constant'
-import {CalendarState, FocusableElement, TimeValue} from '../types'
-import {EventPoint, Rect} from '../types/common.types'
+import {
+  CalendarState,
+  FieldOptions,
+  FocusableElement,
+  TimeValue,
+} from '../types'
+import {EventPoint, FormatterOptions, Rect} from '../types/common.types'
 
 export const alignCenter = (
   focusedDate: CalendarDate,
@@ -202,13 +204,11 @@ export function getPlaceholderTime(placeholderValue?: DateValue): TimeValue {
 
 export function getFormatOptions(
   fieldOptions: FieldOptions,
-  options: DateFormatterOptions,
+  options: FormatterOptions,
 ): Intl.DateTimeFormatOptions {
   fieldOptions = {...DEFAULT_FIELD_OPTIONS, ...fieldOptions}
-  // @ts-ignore
   const granularity = options.granularity || 'minute'
   const keys = Object.keys(fieldOptions)
-  // @ts-ignore
   let startIdx = keys.indexOf(options.maxGranularity ?? 'year')
   if (startIdx < 0) {
     startIdx = 0
@@ -232,7 +232,6 @@ export function getFormatOptions(
     }, {})
 
   if (options.hourCycle != null) {
-    // @ts-ignore
     opts.hour12 = options.hourCycle === 12
   }
 
@@ -242,11 +241,9 @@ export function getFormatOptions(
     granularity === 'hour' ||
     granularity === 'minute' ||
     granularity === 'second'
-  // @ts-ignore
   if (hasTime && options.timeZone && !options.hideTimeZone) {
     opts.timeZoneName = 'short'
   }
-  // @ts-ignore
   if (options.showEra && startIdx === 0) {
     opts.era = 'short'
   }

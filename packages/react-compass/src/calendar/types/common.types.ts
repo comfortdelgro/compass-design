@@ -1,5 +1,6 @@
 import {FocusEvent, ReactNode} from 'react'
 import {ValidationState} from './calendar.types'
+import {DatePickerProps} from './date-picker.types'
 
 export interface HookData {
   ariaLabel: string
@@ -55,4 +56,13 @@ export interface FocusableProps<Target = Element>
   extends FocusEvents<Target>,
     KeyboardEvents {
   autoFocus?: boolean
+}
+
+export interface FormatterOptions {
+  timeZone?: string
+  hideTimeZone?: boolean
+  granularity?: DatePickerProps<any>['granularity']
+  maxGranularity?: 'year' | 'month' | DatePickerProps<any>['granularity']
+  hourCycle?: 12 | 24
+  showEra?: boolean
 }

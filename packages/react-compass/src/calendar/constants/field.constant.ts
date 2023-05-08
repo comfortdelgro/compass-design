@@ -1,4 +1,4 @@
-import {FieldOptions} from '@react-stately/datepicker'
+import {FieldOptions} from '../types'
 
 export const DEFAULT_FIELD_OPTIONS: FieldOptions = {
   year: 'numeric',
