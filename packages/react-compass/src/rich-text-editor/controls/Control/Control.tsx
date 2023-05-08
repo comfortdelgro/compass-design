@@ -1,18 +1,34 @@
-import {useButton} from '@react-aria/button'
-import type {AriaButtonProps} from '@react-types/button'
 import React from 'react'
 import type {StyledComponentProps} from '../../../utils/stitches.types'
 import {useDOMRef} from '../../../utils/use-dom-ref'
 import {ControlVariantProps, StyledControl} from './Control.styles'
 
-interface Props extends AriaButtonProps, StyledComponentProps {
+interface Props extends StyledComponentProps {
+  active: boolean
   children?: React.ReactNode
   className?: string
-  active: boolean
+  onClick?: (
+    event:
+      | React.MouseEvent<HTMLButtonElement>
+      | React.TouchEvent<HTMLButtonElement>,
+  ) => void
+  ripple?: boolean
+  isDisabled?: boolean
+  'aria-controls'?: string
+  'aria-expanded'?: boolean
+  'aria-haspopup'?: boolean
+  'aria-pressed'?: boolean
+  onBlur?: (e: React.FocusEvent) => void
+  onDragStart?: (e: React.MouseEvent) => void
+  onFocus?: (e: React.FocusEvent) => void
+  onKeyDown?: (e: React.KeyboardEvent) => void
+  onKeyUp?: (e: React.KeyboardEvent) => void
+  onPointerDown?: (e: React.PointerEvent) => void
+  onPointerUp?: (e: React.PointerEvent) => void
+  tabIndex?: number
+  type?: 'button' | 'reset' | 'submit' | undefined
 }
-export interface PremadeControlProps
-  extends AriaButtonProps,
-    StyledComponentProps {
+export interface PremadeControlProps extends StyledComponentProps {
   icon?: React.FC
   controltype?: string
 }
@@ -23,29 +39,47 @@ export type ButtonProps = Props &
 const Control = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
     const {
-      // StyledComponentProps
-      css = {},
-      // ComponentProps
       children,
       className,
-      // AriaButtonProps
+      css = {},
+      onClick,
       ...ariaSafeProps
+      // AriaButtonProps
     } = props
 
+    // const buttonProps = useButton(ariaSafeProps, buttonRef).buttonProps
     const buttonRef = useDOMRef<HTMLButtonElement>(ref)
-
-    const buttonProps = useButton(ariaSafeProps, buttonRef).buttonProps
-
     const componentProps = () => {
       return {
         className,
         css,
-        ...buttonProps,
         ...ariaSafeProps,
       }
     }
     const delegateProps = componentProps()
-    return <StyledControl {...delegateProps}>{children}</StyledControl>
+
+    return (
+      <StyledControl
+        ref={buttonRef}
+        onClick={onClick}
+        onTouchEnd={onClick}
+        aria-controls={props['aria-controls']}
+        aria-expanded={props['aria-expanded']}
+        aria-haspopup={props['aria-haspopup']}
+        aria-pressed={props['aria-pressed']}
+        tabIndex={props.tabIndex}
+        onBlur={props.onBlur}
+        onDragStart={props.onDragStart}
+        onFocus={props.onFocus}
+        onKeyDown={props.onKeyDown}
+        onKeyUp={props.onKeyUp}
+        onPointerDown={props.onPointerDown}
+        onPointerUp={props.onPointerUp}
+        {...delegateProps}
+      >
+        {children}
+      </StyledControl>
+    )
   },
 )
 
