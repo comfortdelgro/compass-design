@@ -55,8 +55,6 @@ export function useCalendarCell(
     isSelected = true
   }
 
-  // For performance, reuse the same date object as before if the new date prop is the same.
-  // This allows subsequent useMemo results to be reused.
   const lastDate = useRef<CalendarDate>()
   if (lastDate.current && isEqualDay(date, lastDate.current)) {
     date = lastDate.current
@@ -68,7 +66,6 @@ export function useCalendarCell(
     [date, state.timeZone],
   )
 
-  // aria-label should be localize Day of week, Month, Day and Year without Time.
   const isDateToday = isToday(date, state.timeZone)
   const label = useMemo(() => {
     let label = ''
@@ -87,7 +84,6 @@ export function useCalendarCell(
       const todayDate = 'I dag, {date}'
       const todayDateSelected = 'I dag, {date} selected'
 
-      // If date is today, set appropriate string depending on selected state:
       label = isSelected
         ? todayDateSelected.replace('{date}', label)
         : todayDate.replace('{date}', label)
@@ -113,14 +109,10 @@ export function useCalendarCell(
     selectedDateDescription,
   ])
 
-  // When a cell is focused and this is a range calendar, add a prompt to help
-  // screen reader users know that they are in a range selection mode.
   let rangeSelectionPrompt = ''
   if ('anchorDate' in state && isFocused && !state.isReadOnly && isSelectable) {
-    // If selection has started add "click to finish selecting range"
     if (state.anchorDate) {
       rangeSelectionPrompt = 'Click to finish selecting date range'
-      // Otherwise, add "click to start selecting range" prompt
     } else {
       rangeSelectionPrompt = 'Click to start selecting date range'
     }

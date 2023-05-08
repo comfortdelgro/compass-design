@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-/* eslint-disable @typescript-eslint/prefer-ts-expect-error */
 import {
   FocusEvent as ReactFocusEvent,
   useCallback,
@@ -14,18 +12,15 @@ export function useSyntheticBlurEvent<Target = Element>(
   const stateRef = useRef({
     isFocused: false,
     onBlur,
-    observer: null as unknown as MutationObserver,
+    observer: null as unknown as MutationObserver | null,
   })
   stateRef.current.onBlur = onBlur
 
-  // Clean up MutationObserver on unmount. See below.
-  // eslint-disable-next-line arrow-body-style
   useLayoutEffect(() => {
     const state = stateRef.current
     return () => {
       if (state.observer) {
         state.observer.disconnect()
-        // @ts-ignore
         state.observer = null
       }
     }
@@ -45,23 +40,23 @@ export function useSyntheticBlurEvent<Target = Element>(
         stateRef.current.isFocused = false
 
         if (target.disabled) {
-          // For backward compatibility, dispatch a (fake) React synthetic event.
           stateRef.current.onBlur?.(new SyntheticFocusEvent('blur', e))
         }
 
-        // We no longer need the MutationObserver once the target is blurred.
         if (stateRef.current.observer) {
           stateRef.current.observer.disconnect()
-          // @ts-ignore
           stateRef.current.observer = null
         }
       }
-      // @ts-ignore
-      target.addEventListener('focusout', onBlurHandler, {once: true})
+      target.addEventListener(
+        'focusout',
+        onBlurHandler as EventListenerOrEventListenerObject,
+        {once: true},
+      )
 
       stateRef.current.observer = new MutationObserver(() => {
         if (stateRef.current.isFocused && target.disabled) {
-          stateRef.current.observer.disconnect()
+          stateRef.current.observer?.disconnect()
           target.dispatchEvent(new FocusEvent('blur'))
           target.dispatchEvent(new FocusEvent('focusout', {bubbles: true}))
         }
