@@ -27,67 +27,67 @@ export const UndoControl = createControl({
 
   icon: () => <Icon icon={faRotateLeft} />,
   isActive: {name: 'undo'},
-  onPress: (editor) => () => editor?.chain().focus().undo().run(),
+  onClick: (editor) => () => editor?.chain().focus().undo().run(),
 })
 export const RedoControl = createControl({
   label: 'redo',
   icon: () => <Icon icon={faRotateRight} />,
   isActive: {name: 'redo'},
-  onPress: (editor) => () => editor?.chain().focus().redo().run(),
+  onClick: (editor) => () => editor?.chain().focus().redo().run(),
 })
 export const BoldControl = createControl({
   label: 'bold',
   icon: () => <Icon icon={faBold} />,
   isActive: {name: 'bold'},
-  onPress: (editor) => () => editor?.chain().focus().toggleBold().run(),
+  onClick: (editor) => () => editor?.chain().focus().toggleBold().run(),
 })
 
 export const ItalicControl = createControl({
   label: 'italic',
   icon: () => <Icon icon={faItalic} />,
   isActive: {name: 'italic'},
-  onPress: (editor) => () => editor?.chain().focus().toggleItalic().run(),
+  onClick: (editor) => () => editor?.chain().focus().toggleItalic().run(),
 })
 
 export const UnderlineControl = createControl({
   label: 'underline',
   icon: () => <Icon icon={faUnderline} />,
   isActive: {name: 'underline'},
-  onPress: (editor) => () => editor?.chain().focus().toggleUnderline().run(),
+  onClick: (editor) => () => editor?.chain().focus().toggleUnderline().run(),
 })
 
 export const StrikeThroughControl = createControl({
   label: 'strike through',
   icon: () => <Icon icon={faStrikethrough} />,
   isActive: {name: 'strike'},
-  onPress: (editor) => () => editor?.chain().focus().toggleStrike().run(),
+  onClick: (editor) => () => editor?.chain().focus().toggleStrike().run(),
 })
 
 export const UnlinkControl = createControl({
   label: 'unset link',
   icon: () => <Icon icon={faUnlink} />,
-  onPress: (editor) => () => editor?.chain().focus().unsetLink().run(),
+  onClick: (editor) => () => editor?.chain().focus().unsetLink().run(),
 })
 
 export const BulletListControl = createControl({
   label: 'bullet list',
   icon: () => <Icon icon={faList} />,
   isActive: {name: 'bulletList'},
-  onPress: (editor) => () => editor?.chain().focus().toggleBulletList().run(),
+  onClick: (editor) => () => editor?.chain().focus().toggleBulletList().run(),
 })
 
 export const OrderedListControl = createControl({
   label: 'ordered list',
   icon: () => <Icon icon={faListNumeric} />,
   isActive: {name: 'orderedList'},
-  onPress: (editor) => () => editor?.chain().focus().toggleOrderedList().run(),
+  onClick: (editor) => () => editor?.chain().focus().toggleOrderedList().run(),
 })
 
 export const H1Control = createControl({
   label: 'H1',
   icon: () => <H1Icon />,
   isActive: {name: 'heading', attributes: {level: 1}},
-  onPress: (editor) => () =>
+  onClick: (editor) => () =>
     editor?.chain().focus().toggleHeading({level: 1}).run(),
 })
 
@@ -96,7 +96,7 @@ export const H2Control = createControl({
 
   icon: () => <H2Icon />,
   isActive: {name: 'heading', attributes: {level: 2}},
-  onPress: (editor) => () =>
+  onClick: (editor) => () =>
     editor?.chain().focus().toggleHeading({level: 2}).run(),
 })
 
@@ -104,7 +104,7 @@ export const H3Control = createControl({
   label: 'H3',
   icon: () => <H3Icon />,
   isActive: {name: 'heading', attributes: {level: 3}},
-  onPress: (editor) => () =>
+  onClick: (editor) => () =>
     editor?.chain().focus().toggleHeading({level: 3}).run(),
 })
 
@@ -112,7 +112,7 @@ export const H4Control = createControl({
   label: 'H4',
   icon: () => <H4Icon />,
   isActive: {name: 'heading', attributes: {level: 4}},
-  onPress: (editor) => () =>
+  onClick: (editor) => () =>
     editor?.chain().focus().toggleHeading({level: 4}).run(),
 })
 
@@ -120,7 +120,7 @@ export const H5Control = createControl({
   label: 'H5',
   icon: () => <H5Icon />,
   isActive: {name: 'heading', attributes: {level: 5}},
-  onPress: (editor) => () =>
+  onClick: (editor) => () =>
     editor?.chain().focus().toggleHeading({level: 5}).run(),
 })
 
@@ -128,7 +128,7 @@ export const H6Control = createControl({
   label: 'H6',
   icon: () => <H6Icon />,
   isActive: {name: 'heading', attributes: {level: 6}},
-  onPress: (editor) => () =>
+  onClick: (editor) => () =>
     editor?.chain().focus().toggleHeading({level: 6}).run(),
 })
 
@@ -136,33 +136,33 @@ export const BlockquoteControl = createControl({
   label: 'blockquote',
   icon: () => <Icon icon={faQuoteLeft} />,
   isActive: {name: 'blockquote'},
-  onPress: (editor) => () => editor?.chain().focus().toggleBlockquote().run(),
+  onClick: (editor) => () => editor?.chain().focus().toggleBlockquote().run(),
 })
 
 export const AlignLeftControl = createControl({
   label: 'left alignment text',
   icon: () => <Icon icon={faAlignLeft} />,
-  onPress: (editor) => () => editor?.chain().focus().setTextAlign('left').run(),
+  onClick: (editor) => () => editor?.chain().focus().setTextAlign('left').run(),
 })
 
 export const AlignRightControl = createControl({
   label: 'right alignment text',
   icon: () => <Icon icon={faAlignRight} />,
-  onPress: (editor) => () =>
+  onClick: (editor) => () =>
     editor?.chain().focus().setTextAlign('right').run(),
 })
 
 export const AlignCenterControl = createControl({
   label: 'center alignment text',
   icon: () => <Icon icon={faAlignCenter} />,
-  onPress: (editor) => () =>
+  onClick: (editor) => () =>
     editor?.chain().focus().setTextAlign('center').run(),
 })
 
 export const AlignJustifyControl = createControl({
   label: 'justify alignment text',
   icon: () => <Icon icon={faAlignJustify} />,
-  onPress: (editor) => () =>
+  onClick: (editor) => () =>
     editor?.chain().focus().setTextAlign('justify').run(),
 })
 
@@ -170,27 +170,27 @@ export const SubscriptControl = createControl({
   label: 'subscript',
   icon: () => <Icon icon={faSubscript} />,
   isActive: {name: 'subscript'},
-  onPress: (editor) => () => editor?.chain().focus().toggleSubscript().run(),
+  onClick: (editor) => () => editor?.chain().focus().toggleSubscript().run(),
 })
 
 export const SuperscriptControl = createControl({
   label: 'superscript',
   icon: () => <Icon icon={faSuperscript} />,
   isActive: {name: 'superscript'},
-  onPress: (editor) => () => editor?.chain().focus().toggleSuperscript().run(),
+  onClick: (editor) => () => editor?.chain().focus().toggleSuperscript().run(),
 })
 
 export const CodeBlockControl = createControl({
   label: 'code block',
   icon: () => <Icon icon={faLaptopCode} />,
   isActive: {name: 'codeBlock'},
-  onPress: (editor) => () => editor?.chain().focus().toggleCodeBlock().run(),
+  onClick: (editor) => () => editor?.chain().focus().toggleCodeBlock().run(),
 })
 
 export const HrControl = createControl({
   label: 'horizontal rule',
   icon: () => <Icon icon={faRulerHorizontal} />,
-  onPress: (editor) => () => editor?.chain().focus().setHorizontalRule().run(),
+  onClick: (editor) => () => editor?.chain().focus().setHorizontalRule().run(),
 })
 
 const H1Icon = () => (

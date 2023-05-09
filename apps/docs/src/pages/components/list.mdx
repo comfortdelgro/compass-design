@@ -16,6 +16,11 @@ import {faAddressBook, faClone} from '@fortawesome/free-regular-svg-icons'
 
 Lists show a large set of items or options to the user.
 
+<Callout>
+  Check out our [ladle](/ladle?story=list--variants) for more info on this
+  component.
+</Callout>
+
 ---
 
 ### Import
@@ -585,13 +590,12 @@ Small size version of the list
 </section>
 
 ```js
-  <DragAndDropList>
-      <DragAndDropList.Item key='1'>Item 1</DragAndDropList.Item>
-      <DragAndDropList.Item key='2'>Item 2</DragAndDropList.Item>
-      <DragAndDropList.Item key='3'>Item 3</DragAndDropList.Item>
-  </DragAndDropList>
+<DragAndDropList>
+  <DragAndDropList.Item key='1'>Item 1</DragAndDropList.Item>
+  <DragAndDropList.Item key='2'>Item 2</DragAndDropList.Item>
+  <DragAndDropList.Item key='3'>Item 3</DragAndDropList.Item>
+</DragAndDropList>
 ```
-
 
 ### Props:
 
@@ -644,19 +648,18 @@ Small size version of the list
 | showIcon   | `boolean`                 | —       | Whether the icon is showed |
 | css        | `CSS`                     | —       |                            |
 
-
 #### DragAndDropList
 
 | Name                     | Type       | Default | Description                                                |
-| :------------------------| :----------| :-------| :----------------------------------------------------------|
+| :----------------------- | :--------- | :------ | :--------------------------------------------------------- |
 | onReorder                | `Function` | —       | Fire when drag and drop an items, returned an event object |
 | onReorderonReorderByKeys | `Function` | —       | Fire when drag and drop an items, returned an array keys   |
 | css                      | `CSS`      | —       |                                                            |
 
-
 #### DragAndDropList.Item
+
 | Name      | Type                  | Default | Description                                                                             |
-| :---------| :---------------------| :-------| :---------------------------------------------------------------------------------------|
+| :-------- | :-------------------- | :------ | :-------------------------------------------------------------------------------------- |
 | title     | `string`              | —       | The title of the tab.                                                                   |
 | key       | `Key`                 | —       | The key of the tab.                                                                     |
 | children  | `ReactNode`\|`String` | —       | The content of the tab Item                                                             |

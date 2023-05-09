@@ -1,7 +1,7 @@
 import React from 'react'
 import SpeedDial from '../speed-dial/speed-dial'
 
-export const SpeedDials: React.FC = () => {
+export const Default: React.FC = () => {
   const actions = [
     {
       name: 'Action 1',

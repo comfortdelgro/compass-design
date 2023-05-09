@@ -19,6 +19,9 @@ export const StyledOtpSingleInput = styled('input', {
   textAlign: 'center',
   borderRadius: '10px',
   border: '1px solid rgba(0, 0, 0, 0.2)',
+  '&:disabled': {
+    cursor: 'not-allowed',
+  },
 })
 
 export const StyledOtpInputContainer = styled('div', {

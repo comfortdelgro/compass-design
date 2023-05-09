@@ -6,6 +6,11 @@ import {Callout} from 'nextra-theme-docs'
 
 Display container for Tooltip content. Has a directional arrow dependent on its placement.
 
+<Callout>
+  Check out our [ladle](/ladle?story=tooltip--controlled) for more info on this
+  component.
+</Callout>
+
 ---
 
 ### Import
@@ -30,13 +35,6 @@ The TooltipTrigger accepts exactly two children: the element which triggers the 
 
 ### Basic tooltip
 
-```js
-<TooltipTrigger>
-  <a href='#'>Hover me</a>
-  <Tooltip>Tooltip</Tooltip>
-</TooltipTrigger>
-```
-
 <ComponentDisplay>
   <TooltipTrigger>
     <a href='#'>Hover me</a>
@@ -44,18 +42,16 @@ The TooltipTrigger accepts exactly two children: the element which triggers the 
   </TooltipTrigger>
 </ComponentDisplay>
 
-### Title
-
-Render title of the tooltip
-
 ```js
 <TooltipTrigger>
   <a href='#'>Hover me</a>
-  <Tooltip title='Title' dismissible>
-    Tooltip
-  </Tooltip>
+  <Tooltip>Tooltip</Tooltip>
 </TooltipTrigger>
 ```
+
+### Title
+
+Render title of the tooltip
 
 <ComponentDisplay>
   <TooltipTrigger>
@@ -69,16 +65,18 @@ Render title of the tooltip
   </TooltipTrigger>
 </ComponentDisplay>
 
+```js
+<TooltipTrigger>
+  <a href='#'>Hover me</a>
+  <Tooltip title='Title' dismissible>
+    Tooltip
+  </Tooltip>
+</TooltipTrigger>
+```
+
 ### Tooltip Delay
 
 Adjust delay of tooltip after hovering the trigger
-
-```js
-<TooltipTrigger delay={1000}>
-  <a href='#'>Hover me</a>
-  <Tooltip>Tooltip</Tooltip>
-</TooltipTrigger>
-```
 
 <ComponentDisplay>
   <TooltipTrigger delay={1000}>
@@ -87,16 +85,16 @@ Adjust delay of tooltip after hovering the trigger
   </TooltipTrigger>
 </ComponentDisplay>
 
+```js
+<TooltipTrigger delay={1000}>
+  <a href='#'>Hover me</a>
+  <Tooltip>Tooltip</Tooltip>
+</TooltipTrigger>
+```
+
 ### Dismissible
 
 Enable a close button in the tooltip
-
-```js
-<TooltipTrigger>
-  <a href='#'>Hover me</a>
-  <Tooltip dismissible>Tooltip</Tooltip>
-</TooltipTrigger>
-```
 
 <ComponentDisplay>
   <TooltipTrigger>
@@ -106,6 +104,13 @@ Enable a close button in the tooltip
     </Tooltip>
   </TooltipTrigger>
 </ComponentDisplay>
+
+```js
+<TooltipTrigger>
+  <a href='#'>Hover me</a>
+  <Tooltip dismissible>Tooltip</Tooltip>
+</TooltipTrigger>
+```
 
 ### Customization
 
@@ -135,22 +140,6 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 You can style React Compass's components with the css prop. <br/>
 With css prop, you can basically do anything that css can do.
 
-```js
-<TooltipTrigger>
-  <a href='#'>Hover me</a>
-  <Tooltip
-    title={<p style={{fontSize: '20px', margin: 0}}>Title</p>}
-    dismissible
-    css={{backgroundColor: 'black'}}
-  >
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae
-    blanditiis laborum commodi mollitia officiis minus ipsum totam fuga odit,
-    dicta magnam numquam reprehenderit et sequi dignissimos iusto deleniti.
-    Quia, modi
-  </Tooltip>
-</TooltipTrigger>
-```
-
 <ComponentDisplay>
   <TooltipTrigger>
     <a href='#'>Hover me</a>
@@ -169,14 +158,14 @@ With css prop, you can basically do anything that css can do.
   </TooltipTrigger>
 </ComponentDisplay>
 
-#### Max-width
-
-The Tooltip wraps long text by default to make it readable. You can customize it to fit your desire
-
-```js {3}
+```js
 <TooltipTrigger>
   <a href='#'>Hover me</a>
-  <Tooltip title={'Title'} css={{maxWidth: 'none'}}>
+  <Tooltip
+    title={<p style={{fontSize: '20px', margin: 0}}>Title</p>}
+    dismissible
+    css={{backgroundColor: 'black'}}
+  >
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae
     blanditiis laborum commodi mollitia officiis minus ipsum totam fuga odit,
     dicta magnam numquam reprehenderit et sequi dignissimos iusto deleniti.
@@ -184,6 +173,10 @@ The Tooltip wraps long text by default to make it readable. You can customize it
   </Tooltip>
 </TooltipTrigger>
 ```
+
+#### Max-width
+
+The Tooltip wraps long text by default to make it readable. You can customize it to fit your desire
 
 <ComponentDisplay>
   <TooltipTrigger>
@@ -202,16 +195,21 @@ The Tooltip wraps long text by default to make it readable. You can customize it
   </TooltipTrigger>
 </ComponentDisplay>
 
+```js {3}
+<TooltipTrigger>
+  <a href='#'>Hover me</a>
+  <Tooltip title={'Title'} css={{maxWidth: 'none'}}>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae
+    blanditiis laborum commodi mollitia officiis minus ipsum totam fuga odit,
+    dicta magnam numquam reprehenderit et sequi dignissimos iusto deleniti.
+    Quia, modi
+  </Tooltip>
+</TooltipTrigger>
+```
+
 ### Placement
 
 The Tooltip's placement with respect to its trigger element can be adjusted using the placement prop. See the props table below for a full list of available placement combinations
-
-```js
-<TooltipTrigger placement='right'>
-  <a href='#'>Hover me</a>
-  <Tooltip>Open on the right</Tooltip>
-</TooltipTrigger>
-```
 
 <ComponentDisplay>
   <TooltipTrigger placement='right'>
@@ -222,14 +220,14 @@ The Tooltip's placement with respect to its trigger element can be adjusted usin
   </TooltipTrigger>
 </ComponentDisplay>
 
-### Offset
-
 ```js
-<TooltipTrigger offset={50}>
+<TooltipTrigger placement='right'>
   <a href='#'>Hover me</a>
-  <Tooltip>This will shift down.</Tooltip>
+  <Tooltip>Open on the right</Tooltip>
 </TooltipTrigger>
 ```
+
+### Offset
 
 <ComponentDisplay>
   <TooltipTrigger offset={50}>
@@ -241,9 +239,9 @@ The Tooltip's placement with respect to its trigger element can be adjusted usin
 </ComponentDisplay>
 
 ```js
-<TooltipTrigger offset={{crossAxis: 50}}>
+<TooltipTrigger offset={50}>
   <a href='#'>Hover me</a>
-  <Tooltip>This will shift over to the right.</Tooltip>
+  <Tooltip>This will shift down.</Tooltip>
 </TooltipTrigger>
 ```
 
@@ -255,6 +253,13 @@ The Tooltip's placement with respect to its trigger element can be adjusted usin
     </Tooltip>
   </TooltipTrigger>
 </ComponentDisplay>
+
+```js
+<TooltipTrigger offset={{crossAxis: 50}}>
+  <a href='#'>Hover me</a>
+  <Tooltip>This will shift over to the right.</Tooltip>
+</TooltipTrigger>
+```
 
 ---
 

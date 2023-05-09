@@ -8,6 +8,11 @@ import {ReactTableStory} from 'components/TableV2'
 
 Table version 2 is a wrapper around the core table logic. Most of its job is related to managing state the "react" way, providing types and the rendering implementation of cell/header/footer templates.
 
+<Callout>
+  Check out our [ladle](/ladle?story=table-v2--full-featured) for more info on
+  this component.
+</Callout>
+
 ---
 
 ### Import:
@@ -107,8 +112,7 @@ const options: ReactTableOptions = {
 }
 ```
 
-
-*then create function and assign to `onManualSorting` props on ReactTable.
+\*then create function and assign to `onManualSorting` props on ReactTable.
 
 Example:
 
@@ -122,16 +126,13 @@ const onSorting = (sortingField: StateSorting) => {
  <ReactTable data={data} columns={columns} options={options} onManualSorting={onSorting}>
 ```
 
-*props `sortingField` contain all informations sorting for your need
-
+\*props `sortingField` contain all informations sorting for your need
 
 ---
 
 - For custom style:
 
-
-*add className to ReactTable
-
+\*add className to ReactTable
 
 ```js
 <ReactTable
@@ -168,7 +169,7 @@ const onSorting = (sortingField: StateSorting) => {
 ---
 
 <Callout>
-  Check out our [ladle](/ladle?story=talbe--react-table) for more info on this
-  component.
+  Check out our [ladle](/ladle?story=table-v2--full-featured) for more info on
+  this component.
 </Callout>
 ```

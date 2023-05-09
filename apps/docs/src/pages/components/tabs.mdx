@@ -7,6 +7,11 @@ import TabPaneless from 'components/TabPaneless'
 
 Provides the behavior and accessibility implementation for a tab list. Tabs organize content into multiple sections and allow users to navigate between them.
 
+<Callout>
+  Check out our [ladle](/ladle?story=tab--variants) for more info on this
+  component.
+</Callout>
+
 ---
 
 ### Import:
@@ -26,21 +31,23 @@ We recommend the second method to import components for the benefits of [tree sh
 ---
 
 <ComponentDisplay>
-    <Tabs>
-        <Tabs.Item key='1' title='Founding of Rome'>
-        Arma virumque cano, Troiae qui primus ab oris.
-        </Tabs.Item>
-        <Tabs.Item key='2' title='Monarchy and Republic'>
-        Senatus Populusque Romanus.
-        </Tabs.Item>
-        <Tabs.Item key='3' title='Empire'>
-        Alea jacta est.
-        </Tabs.Item>
-    </Tabs>
+  <Tabs>
+    <Tabs.Item key='1' title='Founding of Rome'>
+      Arma virumque cano, Troiae qui primus ab oris.
+    </Tabs.Item>
+    <Tabs.Item key='2' title='Monarchy and Republic'>
+      Senatus Populusque Romanus.
+    </Tabs.Item>
+    <Tabs.Item key='3' title='Empire'>
+      Alea jacta est.
+    </Tabs.Item>
+  </Tabs>
 </ComponentDisplay>
 
 ### Variant:
+
 Tab provide 2 style of tab: `simple` and `rounded` as default
+
 ```js
 <Tabs variant='simple' disabledKeys={['1']}>
     <Tabs.Item key='1' title='Founding of Rome'>
@@ -66,42 +73,47 @@ Tab provide 2 style of tab: `simple` and `rounded` as default
     </Tabs.Item>
 </Tabs>
 ```
+
 ---
 
 ### Tab Item Icon:
+
 You can define the position of the icon by props of Tab.Item
 
 <ComponentDisplay>
-    <Tabs icon='left' disabledKeys={['1']}>
-        <Tabs.Item key='1' title='Founding of Rome'>
-            Arma virumque cano, Troiae qui primus ab oris.
-        </Tabs.Item>
-        <Tabs.Item key='2' title='Monarchy and Republic'>
-            Senatus Populusque Romanus.
-        </Tabs.Item>
-        <Tabs.Item key='3' title='Empire'>
-            Alea jacta est.
-        </Tabs.Item>
-    </Tabs>
+  <Tabs icon='left' disabledKeys={['1']}>
+    <Tabs.Item key='1' title='Founding of Rome'>
+      Arma virumque cano, Troiae qui primus ab oris.
+    </Tabs.Item>
+    <Tabs.Item key='2' title='Monarchy and Republic'>
+      Senatus Populusque Romanus.
+    </Tabs.Item>
+    <Tabs.Item key='3' title='Empire'>
+      Alea jacta est.
+    </Tabs.Item>
+  </Tabs>
 </ComponentDisplay>
 
 ```js
 <Tabs icon='left' disabledKeys={['1']}>
-    <Tabs.Item key='1' title='Founding of Rome'>
-        Arma virumque cano, Troiae qui primus ab oris.
-    </Tabs.Item>
-    <Tabs.Item key='2' title='Monarchy and Republic'>
-        Senatus Populusque Romanus.
-    </Tabs.Item>
-    <Tabs.Item key='3' title='Empire'>
-        Alea jacta est.
-    </Tabs.Item>
+  <Tabs.Item key='1' title='Founding of Rome'>
+    Arma virumque cano, Troiae qui primus ab oris.
+  </Tabs.Item>
+  <Tabs.Item key='2' title='Monarchy and Republic'>
+    Senatus Populusque Romanus.
+  </Tabs.Item>
+  <Tabs.Item key='3' title='Empire'>
+    Alea jacta est.
+  </Tabs.Item>
 </Tabs>
 ```
+
 ---
 
 ### Orientation:
+
 Direction of the tab: `vertical` and `horizontal` as default
+
 <ComponentDisplay>
     <Tabs orientation='horizontal' disabledKeys={['1']}>
         <Tabs.Item key='1' title='Founding of Rome'>
@@ -126,6 +138,7 @@ Direction of the tab: `vertical` and `horizontal` as default
             Alea jacta est.
         </Tabs.Item>
     </Tabs>
+
 </ComponentDisplay>
 ```js
 <Tabs orientation='horizontal' disabledKeys={['1']}>
@@ -141,44 +154,46 @@ Direction of the tab: `vertical` and `horizontal` as default
 </Tabs>
 
 <Tabs orientation='vertical' disabledKeys={['1']}>
-    <Tabs.Item key='1' title='Founding of Rome'>
-        Arma virumque cano, Troiae qui primus ab oris.
-    </Tabs.Item>
-    <Tabs.Item key='2' title='Monarchy and Republic'>
-        Senatus Populusque Romanus.
-    </Tabs.Item>
-    <Tabs.Item key='3' title='Empire'>
-        Alea jacta est.
-    </Tabs.Item>
+  <Tabs.Item key='1' title='Founding of Rome'>
+    Arma virumque cano, Troiae qui primus ab oris.
+  </Tabs.Item>
+  <Tabs.Item key='2' title='Monarchy and Republic'>
+    Senatus Populusque Romanus.
+  </Tabs.Item>
+  <Tabs.Item key='3' title='Empire'>
+    Alea jacta est.
+  </Tabs.Item>
 </Tabs>
-```
----
+``` ---
 
 ### Paneless:
+
 You can use Tab.Paneless to display tab without default panel
+
 ```js
-const [value, setValue] = React.useState<React.Key>('1')
+const [value, setValue] = React.useState < React.Key > '1'
 const items = [
-    {key: '1', title: 'Founding of Rome'},
-    {key: '2', title: 'Monarchy and Republic'},
-    {key: '3', title: 'Empire'},
+  {key: '1', title: 'Founding of Rome'},
+  {key: '2', title: 'Monarchy and Republic'},
+  {key: '3', title: 'Empire'},
 ]
 return (
-    <div style={{width: '100%', display: 'flex', flexDirection: 'column'}}>
-        <Tabs.Paneless
-            variant='simple'
-            items={items}
-            selectedKey={value}
-            onSelectionChange={(v: React.Key) => setValue(v)}
-        />
-        {value === '1' && <h1>Arma virumque cano, Troiae qui primus ab oris.</h1>}
-        {value === '2' && <h1>Senatus Populusque Romanus.</h1>}
-        {value === '3' && <h1>Alea jacta est.</h1>}
-    </div>
+  <div style={{width: '100%', display: 'flex', flexDirection: 'column'}}>
+    <Tabs.Paneless
+      variant='simple'
+      items={items}
+      selectedKey={value}
+      onSelectionChange={(v: React.Key) => setValue(v)}
+    />
+    {value === '1' && <h1>Arma virumque cano, Troiae qui primus ab oris.</h1>}
+    {value === '2' && <h1>Senatus Populusque Romanus.</h1>}
+    {value === '3' && <h1>Alea jacta est.</h1>}
+  </div>
 )
 ```
+
 <ComponentDisplay>
-    <TabPaneless />
+  <TabPaneless />
 </ComponentDisplay>
 ---
 
@@ -186,30 +201,31 @@ return (
 
 You can style React Compass's components with the css prop.
 With css prop, you can basically do anything that css can do.
+
 <ComponentDisplay>
-    <Tabs disabledKeys={['1']} css={{ backgroundColor: 'cyan' }}>
-        <Tabs.Item key='1' title='Founding of Rome'>
-            Arma virumque cano, Troiae qui primus ab oris.
-        </Tabs.Item>
-        <Tabs.Item key='2' title='Monarchy and Republic'>
-            Senatus Populusque Romanus.
-        </Tabs.Item>
-        <Tabs.Item key='3' title='Empire'>
-            Alea jacta est.
-        </Tabs.Item>
-    </Tabs>
-</ComponentDisplay>
-```js
-<Tabs disabledKeys={['1']} css={{ backgroundColor: 'cyan' }}>
+  <Tabs disabledKeys={['1']} css={{backgroundColor: 'cyan'}}>
     <Tabs.Item key='1' title='Founding of Rome'>
-        Arma virumque cano, Troiae qui primus ab oris.
+      Arma virumque cano, Troiae qui primus ab oris.
     </Tabs.Item>
     <Tabs.Item key='2' title='Monarchy and Republic'>
-        Senatus Populusque Romanus.
+      Senatus Populusque Romanus.
     </Tabs.Item>
     <Tabs.Item key='3' title='Empire'>
-        Alea jacta est.
+      Alea jacta est.
     </Tabs.Item>
+  </Tabs>
+</ComponentDisplay>
+```js
+<Tabs disabledKeys={['1']} css={{backgroundColor: 'cyan'}}>
+  <Tabs.Item key='1' title='Founding of Rome'>
+    Arma virumque cano, Troiae qui primus ab oris.
+  </Tabs.Item>
+  <Tabs.Item key='2' title='Monarchy and Republic'>
+    Senatus Populusque Romanus.
+  </Tabs.Item>
+  <Tabs.Item key='3' title='Empire'>
+    Alea jacta est.
+  </Tabs.Item>
 </Tabs>
 ```
 
@@ -219,33 +235,36 @@ With css prop, you can basically do anything that css can do.
 
 #### `<Tabs/>` | `<Tabs.Paneless/>`:
 
-| Name               | Type                               | Default     | Description                                                                                              |
-| :----------------- | :---------------------             | :---------- | :------------------------------------------------------------------------------------------------------- |
-| children*          | `ReactNode`                        | —           | The contents of the collection.                                                                          |
-| variant            | `rounded`,`simple`                 | `rounded`   | Style of the tab                                                                                         |
-| orientation        | `horizontal`\|`vertical`           | `horizontal`| Direction of the tab                                                                                     |
-| icon               | `none` \| `left`\| `right`\| `top` | `none`      | Display icon in tab content                                                                              |
-| isDisabled         | `boolean`                          | `false`     | Whether the Tabs are disabled. Shows that a selection exists, but is not available in that circumstance. |
-| disabledKeys       | `Key[]`                            | —           | The item keys that are disabled. These items cannot be selected, focused, or otherwise interacted with.  |
-| defaultSelectedKey | `Key`                              | —           | The currently selected key in the collection (uncontrolled).                                             |
-| selectedKey        | `Key`                              | —           | The currently selected key in the collection (controlled).                                               |
-| onSelectionChange  | `(value) => void`                  | —           | Handler that is called when the selection changes.                                                       |
-| keyboardActivation | `automatic`\|`manual`              | `automatic` | Whether tabs are activated automatically on focus or manually.                                           |
-| textColor          | `String`                           | —           | Color for the active tab.                                                                                |
-| indicatorColor     | `String`                           | —           | Color for the indicator.                                                                                 |
-| className          | `String`                           | —           | Extra class name for tab.                                                                                |
-| css                | `CSS`                              | —           | The system prop that allows defining system overrides as well as additional CSS styles.                  |
+| Name               | Type                               | Default      | Description                                                                                              |
+| :----------------- | :--------------------------------- | :----------- | :------------------------------------------------------------------------------------------------------- |
+| children\*         | `ReactNode`                        | —            | The contents of the collection.                                                                          |
+| variant            | `rounded`,`simple`                 | `rounded`    | Style of the tab                                                                                         |
+| orientation        | `horizontal`\|`vertical`           | `horizontal` | Direction of the tab                                                                                     |
+| icon               | `none` \| `left`\| `right`\| `top` | `none`       | Display icon in tab content                                                                              |
+| isDisabled         | `boolean`                          | `false`      | Whether the Tabs are disabled. Shows that a selection exists, but is not available in that circumstance. |
+| disabledKeys       | `Key[]`                            | —            | The item keys that are disabled. These items cannot be selected, focused, or otherwise interacted with.  |
+| defaultSelectedKey | `Key`                              | —            | The currently selected key in the collection (uncontrolled).                                             |
+| selectedKey        | `Key`                              | —            | The currently selected key in the collection (controlled).                                               |
+| onSelectionChange  | `(value) => void`                  | —            | Handler that is called when the selection changes.                                                       |
+| keyboardActivation | `automatic`\|`manual`              | `automatic`  | Whether tabs are activated automatically on focus or manually.                                           |
+| textColor          | `String`                           | —            | Color for the active tab.                                                                                |
+| indicatorColor     | `String`                           | —            | Color for the indicator.                                                                                 |
+| className          | `String`                           | —            | Extra class name for tab.                                                                                |
+| css                | `CSS`                              | —            | The system prop that allows defining system overrides as well as additional CSS styles.                  |
 
 #### `<Tab.Item/>` :
 
-| Name        | Type                               | Default | Description                                                                             |
-| :---------- | :--------------------------------- | :------ | :-------------------------------------------------------------------------------------- |
-| title       | `string`                           | —       | The title of the tab.                                                                   |
-| key         | `Key`                              | —       | The key of the tab.                                                                     |
-| children    | `ReactNode` \| `String`            | —       | The content of the tab Item                                                             |
-| className   | `String`                           | -       | Extra class name for tab                                                                |
-| css         | `CSS`                              | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
+| Name      | Type                    | Default | Description                                                                             |
+| :-------- | :---------------------- | :------ | :-------------------------------------------------------------------------------------- |
+| title     | `string`                | —       | The title of the tab.                                                                   |
+| key       | `Key`                   | —       | The key of the tab.                                                                     |
+| children  | `ReactNode` \| `String` | —       | The content of the tab Item                                                             |
+| className | `String`                | -       | Extra class name for tab                                                                |
+| css       | `CSS`                   | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
+
 ---
+
 <Callout>
-	Check out our [ladle](/ladle?story=tab--variants) for more info on this component.
+  Check out our [ladle](/ladle?story=tab--variants) for more info on this
+  component.
 </Callout>

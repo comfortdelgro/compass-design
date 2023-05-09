@@ -12,7 +12,7 @@ import Icon from '../icon'
 import {Row} from '../utils/components'
 import Sidenav from './index'
 
-export const Sidenavs: React.FC = () => {
+export const Default: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1)
 
   const items = [

@@ -9,7 +9,8 @@ import {StyledAccordionTitleWrapper} from './accordion-title.styles'
 
 interface Props extends StyledComponentProps {
   icon?: false | IconProp
-  children: string | React.ReactNode
+  children?: string | React.ReactNode
+  expandIcon?: React.ReactNode
 }
 
 export type AccordionTitleProps = Props &
@@ -17,7 +18,7 @@ export type AccordionTitleProps = Props &
 
 const AccordionTitle = React.forwardRef<HTMLButtonElement, AccordionTitleProps>(
   (props: AccordionTitleProps, ref) => {
-    const {icon = faQuestionCircle, children, css = {}} = props
+    const {icon = faQuestionCircle, children, expandIcon, css = {}} = props
 
     const contextValue = useContext(AccordionContext) as AccordionContextType
 
@@ -63,7 +64,11 @@ const AccordionTitle = React.forwardRef<HTMLButtonElement, AccordionTitleProps>(
           {renderLeftIcon()}
           <div className='accordion-title'>{renderTitle()}</div>
           <div className='accordion-chevron-container'>
-            <Icon className='accordion-chevron-icon' icon={faChevronDown} />
+            {expandIcon ? (
+              expandIcon
+            ) : (
+              <Icon className='accordion-chevron-icon' icon={faChevronDown} />
+            )}
           </div>
         </StyledAccordionTitleWrapper>
       </AccordionButton>
