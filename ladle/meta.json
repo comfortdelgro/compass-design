@@ -25,13 +25,13 @@
       "filePath": "src/accordion/accordion.stories.tsx",
       "meta": {}
     },
-    "alert--variants": {
-      "name": "Variants",
+    "alert--basic": {
+      "name": "Basic",
       "levels": [
         "Alert"
       ],
-      "locStart": 14,
-      "locEnd": 46,
+      "locStart": 13,
+      "locEnd": 20,
       "filePath": "src/alert/alert.stories.tsx",
       "meta": {}
     },
@@ -40,38 +40,48 @@
       "levels": [
         "Alert"
       ],
-      "locStart": 50,
-      "locEnd": 81,
+      "locStart": 22,
+      "locEnd": 55,
       "filePath": "src/alert/alert.stories.tsx",
       "meta": {}
     },
-    "avatar--variants": {
-      "name": "Variants",
+    "alert--indismissible": {
+      "name": "Indismissible",
+      "levels": [
+        "Alert"
+      ],
+      "locStart": 57,
+      "locEnd": 88,
+      "filePath": "src/alert/alert.stories.tsx",
+      "meta": {}
+    },
+    "avatar--grouped": {
+      "name": "Grouped",
       "levels": [
         "Avatar"
       ],
-      "locStart": 16,
-      "locEnd": 49,
+      "locStart": 45,
+      "locEnd": 88,
       "filePath": "src/avatar/avatar.stories.tsx",
       "meta": {}
     },
-    "avatar--group": {
-      "name": "Group",
+    "avatar--individual": {
+      "name": "Individual",
       "levels": [
         "Avatar"
       ],
-      "locStart": 51,
-      "locEnd": 66,
+      "locStart": 14,
+      "locEnd": 43,
       "filePath": "src/avatar/avatar.stories.tsx",
       "meta": {}
     },
-    "badge--variants": {
-      "name": "Variants",
+    "badge--basic": {
+      "name": "Basic",
       "levels": [
         "Badge"
       ],
-      "locStart": 5,
-      "locEnd": 21,
+      "locStart": 7,
+      "locEnd": 14,
       "filePath": "src/badge/badge.stories.tsx",
       "meta": {}
     },
@@ -80,18 +90,38 @@
       "levels": [
         "Badge"
       ],
-      "locStart": 23,
-      "locEnd": 58,
+      "locStart": 16,
+      "locEnd": 26,
       "filePath": "src/badge/badge.stories.tsx",
       "meta": {}
     },
-    "banner--default": {
-      "name": "Default",
+    "badge--icons": {
+      "name": "Icons",
+      "levels": [
+        "Badge"
+      ],
+      "locStart": 28,
+      "locEnd": 55,
+      "filePath": "src/badge/badge.stories.tsx",
+      "meta": {}
+    },
+    "badge--variants": {
+      "name": "Variants",
+      "levels": [
+        "Badge"
+      ],
+      "locStart": 57,
+      "locEnd": 67,
+      "filePath": "src/badge/badge.stories.tsx",
+      "meta": {}
+    },
+    "banner--basic": {
+      "name": "Basic",
       "levels": [
         "Banner"
       ],
-      "locStart": 7,
-      "locEnd": 21,
+      "locStart": 8,
+      "locEnd": 22,
       "filePath": "src/banner/banner.stories.tsx",
       "meta": {}
     },
@@ -100,28 +130,38 @@
       "levels": [
         "Banner"
       ],
-      "locStart": 23,
-      "locEnd": 63,
+      "locStart": 24,
+      "locEnd": 64,
       "filePath": "src/banner/banner.stories.tsx",
       "meta": {}
     },
-    "box--default": {
-      "name": "Default",
+    "box--dynamic-styling": {
+      "name": "Dynamic styling",
       "levels": [
         "Box"
       ],
-      "locStart": 4,
-      "locEnd": 13,
+      "locStart": 33,
+      "locEnd": 68,
       "filePath": "src/box/box.stories.tsx",
       "meta": {}
     },
-    "breadcrumbs--default": {
-      "name": "Default",
+    "box--element-mapping": {
+      "name": "Element mapping",
+      "levels": [
+        "Box"
+      ],
+      "locStart": 5,
+      "locEnd": 31,
+      "filePath": "src/box/box.stories.tsx",
+      "meta": {}
+    },
+    "breadcrumbs--basic": {
+      "name": "Basic",
       "levels": [
         "Breadcrumbs"
       ],
-      "locStart": 9,
-      "locEnd": 20,
+      "locStart": 10,
+      "locEnd": 24,
       "filePath": "src/breadcrumbs/breadcrumbs.stories.tsx",
       "meta": {}
     },
@@ -130,28 +170,18 @@
       "levels": [
         "Breadcrumbs"
       ],
-      "locStart": 22,
-      "locEnd": 30,
+      "locStart": 26,
+      "locEnd": 37,
       "filePath": "src/breadcrumbs/breadcrumbs.stories.tsx",
       "meta": {}
     },
-    "button--variants": {
-      "name": "Variants",
+    "button--variations": {
+      "name": "Variations",
       "levels": [
         "Button"
       ],
-      "locStart": 18,
-      "locEnd": 163,
-      "filePath": "src/button/button.stories.tsx",
-      "meta": {}
-    },
-    "button--sizes": {
-      "name": "Sizes",
-      "levels": [
-        "Button"
-      ],
-      "locStart": 165,
-      "locEnd": 202,
+      "locStart": 15,
+      "locEnd": 178,
       "filePath": "src/button/button.stories.tsx",
       "meta": {}
     },
@@ -170,8 +200,8 @@
       "levels": [
         "Card"
       ],
-      "locStart": 12,
-      "locEnd": 71,
+      "locStart": 13,
+      "locEnd": 72,
       "filePath": "src/card/card.stories.tsx",
       "meta": {}
     },
@@ -180,9 +210,39 @@
       "levels": [
         "Card"
       ],
-      "locStart": 73,
-      "locEnd": 106,
+      "locStart": 74,
+      "locEnd": 107,
       "filePath": "src/card/card.stories.tsx",
+      "meta": {}
+    },
+    "carousel-v2--mobile": {
+      "name": "Mobile",
+      "levels": [
+        "Carousel v2"
+      ],
+      "locStart": 197,
+      "locEnd": 234,
+      "filePath": "src/carousel-v2/carouselV2.stories.tsx",
+      "meta": {}
+    },
+    "carousel-v2--promotion": {
+      "name": "Promotion",
+      "levels": [
+        "Carousel v2"
+      ],
+      "locStart": 167,
+      "locEnd": 195,
+      "filePath": "src/carousel-v2/carouselV2.stories.tsx",
+      "meta": {}
+    },
+    "carousel-v2--sliders": {
+      "name": "Sliders",
+      "levels": [
+        "Carousel v2"
+      ],
+      "locStart": 94,
+      "locEnd": 165,
+      "filePath": "src/carousel-v2/carouselV2.stories.tsx",
       "meta": {}
     },
     "carousel--desktop-view": {
@@ -205,63 +265,13 @@
       "filePath": "src/carousel/carousel.stories.tsx",
       "meta": {}
     },
-    "carousel-v2--sliders": {
-      "name": "Sliders",
-      "levels": [
-        "Carousel v2"
-      ],
-      "locStart": 94,
-      "locEnd": 165,
-      "filePath": "src/carousel-v2/carouselV2.stories.tsx",
-      "meta": {}
-    },
-    "carousel-v2--promotion": {
-      "name": "Promotion",
-      "levels": [
-        "Carousel v2"
-      ],
-      "locStart": 167,
-      "locEnd": 195,
-      "filePath": "src/carousel-v2/carouselV2.stories.tsx",
-      "meta": {}
-    },
-    "carousel-v2--mobile": {
-      "name": "Mobile",
-      "levels": [
-        "Carousel v2"
-      ],
-      "locStart": 197,
-      "locEnd": 234,
-      "filePath": "src/carousel-v2/carouselV2.stories.tsx",
-      "meta": {}
-    },
     "chart--areas": {
       "name": "Areas",
       "levels": [
         "Chart"
       ],
-      "locStart": 17,
-      "locEnd": 31,
-      "filePath": "src/chart/chart.stories.tsx",
-      "meta": {}
-    },
-    "chart--columns": {
-      "name": "Columns",
-      "levels": [
-        "Chart"
-      ],
-      "locStart": 33,
-      "locEnd": 52,
-      "filePath": "src/chart/chart.stories.tsx",
-      "meta": {}
-    },
-    "chart--lines": {
-      "name": "Lines",
-      "levels": [
-        "Chart"
-      ],
-      "locStart": 54,
-      "locEnd": 69,
+      "locStart": 18,
+      "locEnd": 32,
       "filePath": "src/chart/chart.stories.tsx",
       "meta": {}
     },
@@ -270,9 +280,49 @@
       "levels": [
         "Chart"
       ],
-      "locStart": 71,
-      "locEnd": 86,
+      "locStart": 72,
+      "locEnd": 87,
       "filePath": "src/chart/chart.stories.tsx",
+      "meta": {}
+    },
+    "chart--columns": {
+      "name": "Columns",
+      "levels": [
+        "Chart"
+      ],
+      "locStart": 34,
+      "locEnd": 53,
+      "filePath": "src/chart/chart.stories.tsx",
+      "meta": {}
+    },
+    "chart--lines": {
+      "name": "Lines",
+      "levels": [
+        "Chart"
+      ],
+      "locStart": 55,
+      "locEnd": 70,
+      "filePath": "src/chart/chart.stories.tsx",
+      "meta": {}
+    },
+    "checkbox--controlled": {
+      "name": "Controlled",
+      "levels": [
+        "Checkbox"
+      ],
+      "locStart": 73,
+      "locEnd": 90,
+      "filePath": "src/checkbox/checkbox.stories.tsx",
+      "meta": {}
+    },
+    "checkbox--uncontrolled": {
+      "name": "Uncontrolled",
+      "levels": [
+        "Checkbox"
+      ],
+      "locStart": 92,
+      "locEnd": 116,
+      "filePath": "src/checkbox/checkbox.stories.tsx",
       "meta": {}
     },
     "checkbox--variants": {
@@ -281,17 +331,7 @@
         "Checkbox"
       ],
       "locStart": 6,
-      "locEnd": 90,
-      "filePath": "src/checkbox/checkbox.stories.tsx",
-      "meta": {}
-    },
-    "checkbox--state": {
-      "name": "State",
-      "levels": [
-        "Checkbox"
-      ],
-      "locStart": 92,
-      "locEnd": 109,
+      "locEnd": 71,
       "filePath": "src/checkbox/checkbox.stories.tsx",
       "meta": {}
     },
@@ -301,18 +341,8 @@
         "Dashboard sidecard"
       ],
       "locStart": 7,
-      "locEnd": 59,
+      "locEnd": 58,
       "filePath": "src/dashboard-sidecard/dashboardSidecard.stories.tsx",
-      "meta": {}
-    },
-    "date-picker--variants": {
-      "name": "Variants",
-      "levels": [
-        "Date picker"
-      ],
-      "locStart": 10,
-      "locEnd": 50,
-      "filePath": "src/date-picker/date-picker.stories.tsx",
       "meta": {}
     },
     "date-picker--controlled": {
@@ -325,14 +355,14 @@
       "filePath": "src/date-picker/date-picker.stories.tsx",
       "meta": {}
     },
-    "date-range-picker--variants": {
+    "date-picker--variants": {
       "name": "Variants",
       "levels": [
-        "Date range picker"
+        "Date picker"
       ],
-      "locStart": 11,
-      "locEnd": 33,
-      "filePath": "src/date-range-picker/date-range-picker.stories.tsx",
+      "locStart": 10,
+      "locEnd": 50,
+      "filePath": "src/date-picker/date-picker.stories.tsx",
       "meta": {}
     },
     "date-range-picker--controlled": {
@@ -342,6 +372,16 @@
       ],
       "locStart": 35,
       "locEnd": 52,
+      "filePath": "src/date-range-picker/date-range-picker.stories.tsx",
+      "meta": {}
+    },
+    "date-range-picker--variants": {
+      "name": "Variants",
+      "levels": [
+        "Date range picker"
+      ],
+      "locStart": 11,
+      "locEnd": 33,
       "filePath": "src/date-range-picker/date-range-picker.stories.tsx",
       "meta": {}
     },
@@ -365,13 +405,33 @@
       "filePath": "src/dialog/dialog.stories.tsx",
       "meta": {}
     },
+    "divider--default": {
+      "name": "Default",
+      "levels": [
+        "Divider"
+      ],
+      "locStart": 5,
+      "locEnd": 28,
+      "filePath": "src/divider/divider.stories.tsx",
+      "meta": {}
+    },
+    "dropdown--combo-box": {
+      "name": "Combo box",
+      "levels": [
+        "Dropdown"
+      ],
+      "locStart": 258,
+      "locEnd": 431,
+      "filePath": "src/dropdown/dropdown.stories.tsx",
+      "meta": {}
+    },
     "dropdown--flag": {
       "name": "Flag",
       "levels": [
         "Dropdown"
       ],
       "locStart": 7,
-      "locEnd": 19,
+      "locEnd": 33,
       "filePath": "src/dropdown/dropdown.stories.tsx",
       "meta": {}
     },
@@ -380,18 +440,8 @@
       "levels": [
         "Dropdown"
       ],
-      "locStart": 21,
-      "locEnd": 134,
-      "filePath": "src/dropdown/dropdown.stories.tsx",
-      "meta": {}
-    },
-    "dropdown--combo-box": {
-      "name": "Combo box",
-      "levels": [
-        "Dropdown"
-      ],
-      "locStart": 136,
-      "locEnd": 240,
+      "locStart": 35,
+      "locEnd": 256,
       "filePath": "src/dropdown/dropdown.stories.tsx",
       "meta": {}
     },
@@ -415,16 +465,6 @@
       "filePath": "src/error/error.stories.tsx",
       "meta": {}
     },
-    "file--states": {
-      "name": "States",
-      "levels": [
-        "File"
-      ],
-      "locStart": 5,
-      "locEnd": 79,
-      "filePath": "src/file/file.stories.tsx",
-      "meta": {}
-    },
     "file--previews": {
       "name": "Previews",
       "levels": [
@@ -432,6 +472,16 @@
       ],
       "locStart": 81,
       "locEnd": 104,
+      "filePath": "src/file/file.stories.tsx",
+      "meta": {}
+    },
+    "file--states": {
+      "name": "States",
+      "levels": [
+        "File"
+      ],
+      "locStart": 5,
+      "locEnd": 79,
       "filePath": "src/file/file.stories.tsx",
       "meta": {}
     },
@@ -450,38 +500,28 @@
       "levels": [
         "Grid"
       ],
-      "locStart": 4,
-      "locEnd": 39,
+      "locStart": 5,
+      "locEnd": 72,
       "filePath": "src/grid/grid.stories.tsx",
       "meta": {}
     },
-    "link--links": {
-      "name": "Links",
+    "link--default": {
+      "name": "Default",
       "levels": [
         "Link"
       ],
-      "locStart": 4,
-      "locEnd": 11,
+      "locStart": 5,
+      "locEnd": 38,
       "filePath": "src/link/link.stories.tsx",
       "meta": {}
     },
-    "list--variants": {
-      "name": "Variants",
+    "list--drag-and-drop": {
+      "name": "Drag and drop",
       "levels": [
         "List"
       ],
-      "locStart": 27,
-      "locEnd": 371,
-      "filePath": "src/list/list.stories.tsx",
-      "meta": {}
-    },
-    "list--list-cards": {
-      "name": "List cards",
-      "levels": [
-        "List"
-      ],
-      "locStart": 373,
-      "locEnd": 573,
+      "locStart": 738,
+      "locEnd": 749,
       "filePath": "src/list/list.stories.tsx",
       "meta": {}
     },
@@ -495,18 +535,28 @@
       "filePath": "src/list/list.stories.tsx",
       "meta": {}
     },
-    "list--drag-and-drop": {
-      "name": "Drag and drop",
+    "list--list-cards": {
+      "name": "List cards",
       "levels": [
         "List"
       ],
-      "locStart": 738,
-      "locEnd": 752,
+      "locStart": 373,
+      "locEnd": 573,
       "filePath": "src/list/list.stories.tsx",
       "meta": {}
     },
-    "menu-list--menu-lists": {
-      "name": "Menu lists",
+    "list--variants": {
+      "name": "Variants",
+      "levels": [
+        "List"
+      ],
+      "locStart": 27,
+      "locEnd": 371,
+      "filePath": "src/list/list.stories.tsx",
+      "meta": {}
+    },
+    "menu-list--default": {
+      "name": "Default",
       "levels": [
         "Menu list"
       ],
@@ -520,8 +570,8 @@
       "levels": [
         "Modal"
       ],
-      "locStart": 11,
-      "locEnd": 90,
+      "locStart": 8,
+      "locEnd": 39,
       "filePath": "src/modal/modal.stories.tsx",
       "meta": {}
     },
@@ -530,18 +580,18 @@
       "levels": [
         "Modal"
       ],
-      "locStart": 92,
-      "locEnd": 174,
+      "locStart": 41,
+      "locEnd": 116,
       "filePath": "src/modal/modal.stories.tsx",
       "meta": {}
     },
-    "multiple-dropdown--multiple-dropdowns": {
-      "name": "Multiple dropdowns",
+    "multiple-dropdown--default": {
+      "name": "Default",
       "levels": [
         "Multiple dropdown"
       ],
       "locStart": 7,
-      "locEnd": 137,
+      "locEnd": 165,
       "filePath": "src/multiple-dropdown/multiple-dropdown.stories.tsx",
       "meta": {}
     },
@@ -561,7 +611,7 @@
         "Otp input"
       ],
       "locStart": 7,
-      "locEnd": 26,
+      "locEnd": 34,
       "filePath": "src/otp-input/otpInput.stories.tsx",
       "meta": {}
     },
@@ -575,28 +625,18 @@
       "filePath": "src/page-header/page-header.stories.tsx",
       "meta": {}
     },
-    "pagination--default": {
-      "name": "Default",
-      "levels": [
-        "Pagination"
-      ],
-      "locStart": 4,
-      "locEnd": 6,
-      "filePath": "src/pagination/pagination.stories.tsx",
-      "meta": {}
-    },
     "pagination--variants": {
       "name": "Variants",
       "levels": [
         "Pagination"
       ],
-      "locStart": 8,
-      "locEnd": 24,
+      "locStart": 5,
+      "locEnd": 21,
       "filePath": "src/pagination/pagination.stories.tsx",
       "meta": {}
     },
-    "popover--popovers": {
-      "name": "Popovers",
+    "popover--variants": {
+      "name": "Variants",
       "levels": [
         "Popover"
       ],
@@ -605,23 +645,23 @@
       "filePath": "src/popover/popover.stories.tsx",
       "meta": {}
     },
-    "progress-bar--size": {
-      "name": "Size",
-      "levels": [
-        "Progress bar"
-      ],
-      "locStart": 4,
-      "locEnd": 19,
-      "filePath": "src/progress-bar/progress-bar.stories.tsx",
-      "meta": {}
-    },
     "progress-bar--color": {
       "name": "Color",
       "levels": [
         "Progress bar"
       ],
-      "locStart": 21,
-      "locEnd": 30,
+      "locStart": 22,
+      "locEnd": 31,
+      "filePath": "src/progress-bar/progress-bar.stories.tsx",
+      "meta": {}
+    },
+    "progress-bar--size": {
+      "name": "Size",
+      "levels": [
+        "Progress bar"
+      ],
+      "locStart": 5,
+      "locEnd": 20,
       "filePath": "src/progress-bar/progress-bar.stories.tsx",
       "meta": {}
     },
@@ -630,9 +670,29 @@
       "levels": [
         "Progress bar"
       ],
-      "locStart": 32,
-      "locEnd": 41,
+      "locStart": 33,
+      "locEnd": 42,
       "filePath": "src/progress-bar/progress-bar.stories.tsx",
+      "meta": {}
+    },
+    "progress--circular": {
+      "name": "Circular",
+      "levels": [
+        "Progress"
+      ],
+      "locStart": 5,
+      "locEnd": 32,
+      "filePath": "src/progress/progress.stories.tsx",
+      "meta": {}
+    },
+    "progress--linear": {
+      "name": "Linear",
+      "levels": [
+        "Progress"
+      ],
+      "locStart": 34,
+      "locEnd": 79,
+      "filePath": "src/progress/progress.stories.tsx",
       "meta": {}
     },
     "quantity-toggle--variants": {
@@ -641,18 +701,8 @@
         "Quantity toggle"
       ],
       "locStart": 5,
-      "locEnd": 38,
+      "locEnd": 81,
       "filePath": "src/quantity-toggle/quantity-toggle.stories.tsx",
-      "meta": {}
-    },
-    "radio--variants": {
-      "name": "Variants",
-      "levels": [
-        "Radio"
-      ],
-      "locStart": 4,
-      "locEnd": 58,
-      "filePath": "src/radio/radio.stories.tsx",
       "meta": {}
     },
     "radio--orientation": {
@@ -660,8 +710,18 @@
       "levels": [
         "Radio"
       ],
-      "locStart": 60,
-      "locEnd": 95,
+      "locStart": 61,
+      "locEnd": 96,
+      "filePath": "src/radio/radio.stories.tsx",
+      "meta": {}
+    },
+    "radio--variants": {
+      "name": "Variants",
+      "levels": [
+        "Radio"
+      ],
+      "locStart": 5,
+      "locEnd": 59,
       "filePath": "src/radio/radio.stories.tsx",
       "meta": {}
     },
@@ -675,14 +735,24 @@
       "filePath": "src/range-calendar/range-calendar.stories.tsx",
       "meta": {}
     },
-    "rich-text-editor--default": {
+    "rating--default": {
       "name": "Default",
       "levels": [
-        "Rich text editor"
+        "Rating"
       ],
       "locStart": 5,
-      "locEnd": 44,
-      "filePath": "src/rich-text-editor/rich-text-editor.stories.tsx",
+      "locEnd": 12,
+      "filePath": "src/rating/rating.stories.tsx",
+      "meta": {}
+    },
+    "rating--using-icons": {
+      "name": "Using icons",
+      "levels": [
+        "Rating"
+      ],
+      "locStart": 13,
+      "locEnd": 20,
+      "filePath": "src/rating/rating.stories.tsx",
       "meta": {}
     },
     "rich-text-editor--cutomized": {
@@ -695,13 +765,23 @@
       "filePath": "src/rich-text-editor/rich-text-editor.stories.tsx",
       "meta": {}
     },
+    "rich-text-editor--default": {
+      "name": "Default",
+      "levels": [
+        "Rich text editor"
+      ],
+      "locStart": 5,
+      "locEnd": 44,
+      "filePath": "src/rich-text-editor/rich-text-editor.stories.tsx",
+      "meta": {}
+    },
     "richtext-render--default": {
       "name": "Default",
       "levels": [
         "Richtext render"
       ],
       "locStart": 62,
-      "locEnd": 68,
+      "locEnd": 73,
       "filePath": "src/richtext-render/richtext-render.stories.tsx",
       "meta": {}
     },
@@ -711,7 +791,7 @@
         "Searchfield"
       ],
       "locStart": 6,
-      "locEnd": 27,
+      "locEnd": 33,
       "filePath": "src/searchfield/searchfield.stories.tsx",
       "meta": {}
     },
@@ -735,8 +815,8 @@
       "filePath": "src/sidebar/sidebar.stories.tsx",
       "meta": {}
     },
-    "sidenav--sidenavs": {
-      "name": "Sidenavs",
+    "sidenav--default": {
+      "name": "Default",
       "levels": [
         "Sidenav"
       ],
@@ -745,23 +825,53 @@
       "filePath": "src/sidenav/sidenav.stories.tsx",
       "meta": {}
     },
-    "slider--sliders": {
-      "name": "Sliders",
+    "skeleton--animations": {
+      "name": "Animations",
+      "levels": [
+        "Skeleton"
+      ],
+      "locStart": 22,
+      "locEnd": 31,
+      "filePath": "src/skeleton/skeleton.stories.tsx",
+      "meta": {}
+    },
+    "skeleton--variants": {
+      "name": "Variants",
+      "levels": [
+        "Skeleton"
+      ],
+      "locStart": 5,
+      "locEnd": 20,
+      "filePath": "src/skeleton/skeleton.stories.tsx",
+      "meta": {}
+    },
+    "slider--default": {
+      "name": "Default",
       "levels": [
         "Slider"
       ],
-      "locStart": 5,
-      "locEnd": 36,
+      "locStart": 4,
+      "locEnd": 18,
       "filePath": "src/slider/slider.stories.tsx",
       "meta": {}
     },
-    "spinner--spinners": {
-      "name": "Spinners",
+    "speed-dial--default": {
+      "name": "Default",
+      "levels": [
+        "Speed dial"
+      ],
+      "locStart": 4,
+      "locEnd": 26,
+      "filePath": "src/speed-dial/speed-dial.stories.tsx",
+      "meta": {}
+    },
+    "spinner--variants": {
+      "name": "Variants",
       "levels": [
         "Spinner"
       ],
-      "locStart": 4,
-      "locEnd": 23,
+      "locStart": 5,
+      "locEnd": 24,
       "filePath": "src/spinner/spinner.stories.tsx",
       "meta": {}
     },
@@ -770,8 +880,8 @@
       "levels": [
         "Sub header"
       ],
-      "locStart": 5,
-      "locEnd": 18,
+      "locStart": 6,
+      "locEnd": 19,
       "filePath": "src/sub-header/sub-header.stories.tsx",
       "meta": {}
     },
@@ -780,8 +890,8 @@
       "levels": [
         "Sub banner"
       ],
-      "locStart": 10,
-      "locEnd": 24,
+      "locStart": 11,
+      "locEnd": 25,
       "filePath": "src/subBanner/subBanner.stories.tsx",
       "meta": {}
     },
@@ -790,9 +900,19 @@
       "levels": [
         "Sub banner"
       ],
-      "locStart": 26,
-      "locEnd": 50,
+      "locStart": 27,
+      "locEnd": 51,
       "filePath": "src/subBanner/subBanner.stories.tsx",
+      "meta": {}
+    },
+    "table-v2--full-featured": {
+      "name": "Full featured",
+      "levels": [
+        "Table v2"
+      ],
+      "locStart": 15,
+      "locEnd": 204,
+      "filePath": "src/table-v2/table-v2.stories.tsx",
       "meta": {}
     },
     "table-v1--full-featured": {
@@ -803,36 +923,6 @@
       "locStart": 69,
       "locEnd": 290,
       "filePath": "src/table/tableV1.stories.tsx",
-      "meta": {}
-    },
-    "table-v2--react-table-story": {
-      "name": "React table story",
-      "levels": [
-        "Table v2"
-      ],
-      "locStart": 15,
-      "locEnd": 204,
-      "filePath": "src/table-v2/table-v2.stories.tsx",
-      "meta": {}
-    },
-    "tab--server-interaction": {
-      "name": "Server interaction",
-      "levels": [
-        "Tab"
-      ],
-      "locStart": 23,
-      "locEnd": 42,
-      "filePath": "src/tabs/tab.stories.tsx",
-      "meta": {}
-    },
-    "tab--paneless": {
-      "name": "Paneless",
-      "levels": [
-        "Tab"
-      ],
-      "locStart": 44,
-      "locEnd": 69,
-      "filePath": "src/tabs/tab.stories.tsx",
       "meta": {}
     },
     "tab--icon": {
@@ -855,6 +945,26 @@
       "filePath": "src/tabs/tab.stories.tsx",
       "meta": {}
     },
+    "tab--paneless": {
+      "name": "Paneless",
+      "levels": [
+        "Tab"
+      ],
+      "locStart": 44,
+      "locEnd": 69,
+      "filePath": "src/tabs/tab.stories.tsx",
+      "meta": {}
+    },
+    "tab--server-interaction": {
+      "name": "Server interaction",
+      "levels": [
+        "Tab"
+      ],
+      "locStart": 23,
+      "locEnd": 42,
+      "filePath": "src/tabs/tab.stories.tsx",
+      "meta": {}
+    },
     "tab--variants": {
       "name": "Variants",
       "levels": [
@@ -865,14 +975,14 @@
       "filePath": "src/tabs/tab.stories.tsx",
       "meta": {}
     },
-    "tag-box--tag-boxs": {
-      "name": "Tag boxs",
+    "tag-box-v2--basic": {
+      "name": "Basic",
       "levels": [
-        "Tag box"
+        "Tag box v2"
       ],
-      "locStart": 26,
-      "locEnd": 95,
-      "filePath": "src/tag-box/tag-box.stories.tsx",
+      "locStart": 5,
+      "locEnd": 48,
+      "filePath": "src/tag-box-v2/tag-box-v2.stories.tsx",
       "meta": {}
     },
     "tag-box--collaspable": {
@@ -882,6 +992,16 @@
       ],
       "locStart": 97,
       "locEnd": 177,
+      "filePath": "src/tag-box/tag-box.stories.tsx",
+      "meta": {}
+    },
+    "tag-box--tag-boxs": {
+      "name": "Tag boxs",
+      "levels": [
+        "Tag box"
+      ],
+      "locStart": 26,
+      "locEnd": 95,
       "filePath": "src/tag-box/tag-box.stories.tsx",
       "meta": {}
     },
@@ -910,8 +1030,8 @@
       "levels": [
         "Timeline"
       ],
-      "locStart": 6,
-      "locEnd": 119,
+      "locStart": 7,
+      "locEnd": 120,
       "filePath": "src/timeline/timeline.stories.tsx",
       "meta": {}
     },
@@ -920,18 +1040,18 @@
       "levels": [
         "Timeline"
       ],
-      "locStart": 121,
-      "locEnd": 1009,
+      "locStart": 122,
+      "locEnd": 1010,
       "filePath": "src/timeline/timeline.stories.tsx",
       "meta": {}
     },
-    "toast--default": {
-      "name": "Default",
+    "toast--auto-close": {
+      "name": "Auto close",
       "levels": [
         "Toast"
       ],
-      "locStart": 8,
-      "locEnd": 34,
+      "locStart": 143,
+      "locEnd": 173,
       "filePath": "src/toast/toast.stories.tsx",
       "meta": {}
     },
@@ -945,13 +1065,13 @@
       "filePath": "src/toast/toast.stories.tsx",
       "meta": {}
     },
-    "toast--auto-close": {
-      "name": "Auto close",
+    "toast--default": {
+      "name": "Default",
       "levels": [
         "Toast"
       ],
-      "locStart": 143,
-      "locEnd": 173,
+      "locStart": 8,
+      "locEnd": 34,
       "filePath": "src/toast/toast.stories.tsx",
       "meta": {}
     },
@@ -960,29 +1080,9 @@
       "levels": [
         "Toggle"
       ],
-      "locStart": 4,
-      "locEnd": 21,
+      "locStart": 5,
+      "locEnd": 22,
       "filePath": "src/toggle/toggle.stories.tsx",
-      "meta": {}
-    },
-    "tooltip--positions": {
-      "name": "Positions",
-      "levels": [
-        "Tooltip"
-      ],
-      "locStart": 7,
-      "locEnd": 204,
-      "filePath": "src/tooltip/tooltip.stories.tsx",
-      "meta": {}
-    },
-    "tooltip--dismissible": {
-      "name": "Dismissible",
-      "levels": [
-        "Tooltip"
-      ],
-      "locStart": 206,
-      "locEnd": 278,
-      "filePath": "src/tooltip/tooltip.stories.tsx",
       "meta": {}
     },
     "tooltip--controlled": {
@@ -990,9 +1090,49 @@
       "levels": [
         "Tooltip"
       ],
-      "locStart": 280,
-      "locEnd": 323,
+      "locStart": 7,
+      "locEnd": 29,
       "filePath": "src/tooltip/tooltip.stories.tsx",
+      "meta": {}
+    },
+    "tooltip--delay": {
+      "name": "Delay",
+      "levels": [
+        "Tooltip"
+      ],
+      "locStart": 151,
+      "locEnd": 189,
+      "filePath": "src/tooltip/tooltip.stories.tsx",
+      "meta": {}
+    },
+    "tooltip--offset": {
+      "name": "Offset",
+      "levels": [
+        "Tooltip"
+      ],
+      "locStart": 87,
+      "locEnd": 149,
+      "filePath": "src/tooltip/tooltip.stories.tsx",
+      "meta": {}
+    },
+    "tooltip--placements": {
+      "name": "Placements",
+      "levels": [
+        "Tooltip"
+      ],
+      "locStart": 31,
+      "locEnd": 85,
+      "filePath": "src/tooltip/tooltip.stories.tsx",
+      "meta": {}
+    },
+    "typography--body": {
+      "name": "Body",
+      "levels": [
+        "Typography"
+      ],
+      "locStart": 26,
+      "locEnd": 50,
+      "filePath": "src/typography/typography.stories.tsx",
       "meta": {}
     },
     "typography--display": {
@@ -1000,8 +1140,8 @@
       "levels": [
         "Typography"
       ],
-      "locStart": 6,
-      "locEnd": 12,
+      "locStart": 7,
+      "locEnd": 13,
       "filePath": "src/typography/typography.stories.tsx",
       "meta": {}
     },
@@ -1010,18 +1150,8 @@
       "levels": [
         "Typography"
       ],
-      "locStart": 14,
-      "locEnd": 23,
-      "filePath": "src/typography/typography.stories.tsx",
-      "meta": {}
-    },
-    "typography--body": {
-      "name": "Body",
-      "levels": [
-        "Typography"
-      ],
-      "locStart": 25,
-      "locEnd": 49,
+      "locStart": 15,
+      "locEnd": 24,
       "filePath": "src/typography/typography.stories.tsx",
       "meta": {}
     },
@@ -1030,8 +1160,8 @@
       "levels": [
         "Typography"
       ],
-      "locStart": 51,
-      "locEnd": 84,
+      "locStart": 52,
+      "locEnd": 85,
       "filePath": "src/typography/typography.stories.tsx",
       "meta": {}
     },
@@ -1040,9 +1170,19 @@
       "levels": [
         "Typography"
       ],
-      "locStart": 86,
-      "locEnd": 95,
+      "locStart": 87,
+      "locEnd": 96,
       "filePath": "src/typography/typography.stories.tsx",
+      "meta": {}
+    },
+    "upload-v2--default": {
+      "name": "Default",
+      "levels": [
+        "Upload v2"
+      ],
+      "locStart": 5,
+      "locEnd": 19,
+      "filePath": "src/upload-v2/uploadV2.stories.tsx",
       "meta": {}
     },
     "upload--default": {
@@ -1065,16 +1205,6 @@
       "filePath": "src/upload/upload.stories.tsx",
       "meta": {}
     },
-    "upload-v2--default": {
-      "name": "Default",
-      "levels": [
-        "Upload v2"
-      ],
-      "locStart": 4,
-      "locEnd": 18,
-      "filePath": "src/upload-v2/uploadV2.stories.tsx",
-      "meta": {}
-    },
     "video-player--default": {
       "name": "Default",
       "levels": [
@@ -1090,8 +1220,8 @@
       "levels": [
         "Wizard"
       ],
-      "locStart": 4,
-      "locEnd": 8,
+      "locStart": 5,
+      "locEnd": 9,
       "filePath": "src/wizard/wizard.stories.tsx",
       "meta": {}
     }
