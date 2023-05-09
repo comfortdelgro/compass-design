@@ -207,6 +207,7 @@ export type {
   DividerProps as SidenavDividerProps,
   SidenavContextValue,
   SidenavItemProps,
+  SidenavMenuProps,
   SidenavProps,
 } from './sidenav'
 export {default as Skeleton} from './skeleton'
