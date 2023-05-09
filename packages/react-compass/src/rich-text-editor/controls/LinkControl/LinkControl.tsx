@@ -40,7 +40,7 @@ export const LinkControl = React.forwardRef<
       active={editor?.isActive('link') ?? false}
       ref={ref}
       icon={() => <Icon icon={faLink} />}
-      onPress={setLink}
+      onClick={setLink}
       className='control'
       {...delegated}
     ></ControlBase>

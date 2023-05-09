@@ -58,7 +58,7 @@ const AccordionTitle = React.forwardRef<HTMLButtonElement, AccordionTitleProps>(
         css={css}
         className={`accordion-title-container ${expand ? 'open' : 'close'}`}
         expand={expand ? 'open' : 'close'}
-        onPress={(e) => handleOnClick(e)}
+        onMouseDown={(e) => handleOnClick(e)}
       >
         <StyledAccordionTitleWrapper expand={expand ? 'open' : 'close'}>
           {renderLeftIcon()}

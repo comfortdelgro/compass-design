@@ -1,3 +1,4 @@
+import React from 'react'
 import {Variants as Toggles} from './toggle.stories'
 
 describe('toggle.cy.ts', () => {

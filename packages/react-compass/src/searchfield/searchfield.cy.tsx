@@ -1,3 +1,4 @@
+import React from 'react'
 import SearchField from './index'
 
 describe('searchfield.cy.ts', () => {

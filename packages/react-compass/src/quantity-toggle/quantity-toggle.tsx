@@ -1,7 +1,3 @@
-import {useButton} from '@react-aria/button'
-import {useLocale} from '@react-aria/i18n'
-import {AriaNumberFieldProps, useNumberField} from '@react-aria/numberfield'
-import {useNumberFieldState} from '@react-stately/numberfield'
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -10,16 +6,19 @@ import {
   StyledHelperText,
   StyledQuantityToggle,
 } from './quantity-toggle.styles'
+import {AriaNumberFieldProps} from './utils/types'
+import useNumberField from './utils/useNumberField'
+import useNumberFieldState from './utils/useNumberFieldState'
 
 interface Props extends AriaNumberFieldProps, StyledComponentProps {
-  disableScroll?: boolean
+  helperText?: string
   isErrored?: boolean
   isReadOnly?: boolean
   isDisabled?: boolean
   isRequired?: boolean
   placeholder?: string
-  helperText?: string
   errorMessage?: string
+  disableScroll?: boolean
   onUpdate?: (
     value: string | number | readonly string[] | undefined,
     number: number,
@@ -28,48 +27,25 @@ interface Props extends AriaNumberFieldProps, StyledComponentProps {
 
 export type QuantityToggleProps = Props & QuantityToggleVariantProps
 
-const Button = (props: {children: string}) => {
-  const ref = useDOMRef<HTMLButtonElement>()
-  const {buttonProps} = useButton(props, ref)
-  return (
-    <button {...buttonProps} ref={ref}>
-      {props.children}
-    </button>
-  )
-}
-
 const QuantityToggle = React.forwardRef<HTMLInputElement, QuantityToggleProps>(
   (props, ref) => {
     const {
-      // StyledComponentProps
       css = {},
-      isErrored,
-      disableScroll = true,
-      // AriaQuantityToggleProps
+      isErrored = false,
+      id = `cdg-element-${Math.random().toString(36).substring(2)}`,
+      onUpdate,
       ...ariaSafeProps
     } = props
 
-    const mountedRef = React.useRef(false)
-    const variantProps = {} as QuantityToggleVariantProps
     const quantityToggleRef = useDOMRef<HTMLInputElement>(ref)
-    const {locale} = useLocale()
-    const state = useNumberFieldState({...ariaSafeProps, locale})
-    const {
-      labelProps,
-      groupProps,
-      inputProps,
-      incrementButtonProps,
-      decrementButtonProps,
-    } = useNumberField(props, state, quantityToggleRef)
+
+    const state = useNumberFieldState(ariaSafeProps)
+    const {inputProps, incrementButtonProps, decrementButtonProps} =
+      useNumberField(props, state, quantityToggleRef)
 
     React.useEffect(() => {
-      if (mountedRef.current) {
-        const value = inputProps.value as string
-        props.onUpdate?.(value, parseFloat(value?.replace(/[^0-9.-]+/g, '')))
-      } else {
-        mountedRef.current = true
-      }
-    }, [inputProps.value])
+      onUpdate?.(state.inputValue, state.numberValue)
+    }, [state.numberValue, state.inputValue])
 
     return (
       <StyledQuantityToggle
@@ -79,29 +55,15 @@ const QuantityToggle = React.forwardRef<HTMLInputElement, QuantityToggleProps>(
         isDisabled={!!inputProps.disabled}
       >
         {props.label && (
-          <label {...labelProps}>
+          <label htmlFor={id}>
             {props.label}
             {props.isRequired && <span>*</span>}
           </label>
         )}
-        <div {...groupProps}>
-          <Button {...decrementButtonProps}>-</Button>
-          {disableScroll && (
-            <input
-              {...inputProps}
-              ref={quantityToggleRef}
-              style={{display: 'none'}}
-            />
-          )}
-          <input
-            {...inputProps}
-            ref={disableScroll ? null : quantityToggleRef}
-            onWheel={(e) => {
-              e.preventDefault()
-              e.stopPropagation()
-            }}
-          />
-          <Button {...incrementButtonProps}>+</Button>
+        <div>
+          <button {...decrementButtonProps}>-</button>
+          <input {...inputProps} id={id} ref={quantityToggleRef} />
+          <button {...incrementButtonProps}>+</button>
         </div>
         {isErrored && props.errorMessage && (
           <StyledHelperText error>{props.errorMessage}</StyledHelperText>

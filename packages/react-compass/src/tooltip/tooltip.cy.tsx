@@ -1,3 +1,4 @@
+import React from 'react'
 import {Controlled as ControlledTooltip} from './tooltip.stories'
 
 describe('toggle.cy.ts', () => {

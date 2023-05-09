@@ -25,7 +25,7 @@ export const ImageControl = React.forwardRef<
       active={editor?.isActive('image') ?? false}
       ref={ref}
       icon={() => <Icon icon={faImage} />}
-      onPress={addImage}
+      onClick={addImage}
       className='control'
       {...delegated}
     ></ControlBase>

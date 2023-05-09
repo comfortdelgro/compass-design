@@ -1,8 +1,17 @@
 import RichTextEditor, {
   JSONContent,
 } from '@comfortdelgro/react-compass/rich-text-editor'
+import {Callout} from 'nextra-theme-docs'
 
 import styles from '../../styles/Home.module.css'
+
+# Rich text editor
+
+<Callout>
+Check out our [ladle](/ladle?story=rich-text-editor--default) for more info on
+this component.
+
+</Callout>
 
 ### Import:
 
@@ -23,7 +32,7 @@ import RichTextEditor, {
       <RichTextEditor.Redo />
     </RichTextEditor.ControlsGroup>
     <RichTextEditor.ControlsGroup>
-      <RichTextEditor.HeadingsControl/>
+      <RichTextEditor.HeadingsControl />
     </RichTextEditor.ControlsGroup>
     <RichTextEditor.ControlsGroup>
       <RichTextEditor.ColorControl />
@@ -51,13 +60,14 @@ import RichTextEditor, {
 </RichTextEditor>
 
 ```js
-const [description, setDescription] = React.useState<string | JSONContent>('')
+const [description, setDescription] =
+  (React.useState < string) | (JSONContent > '')
 
 const handleChange = (content: string | JSONContent) => {
   setDescription(content)
 }
 
-<RichTextEditor characterCount={200} onChange={handleChange}>
+;<RichTextEditor characterCount={200} onChange={handleChange}>
   <RichTextEditor.Toolbar>
     <RichTextEditor.ControlsGroup>
       <RichTextEditor.Undo />
@@ -138,13 +148,13 @@ const handleChange = (content: string | JSONContent) => {
 </RichTextEditor>
 
 ```js
-const [description, setDescription] = React.useState<string | JSONContent>('')
-
+const [description, setDescription] =
+  (React.useState < string) | (JSONContent > '')
 const handleChange = (content: string | JSONContent) => {
   setDescription(content)
 }
 
-<RichTextEditor characterCount={200} onChange={handleChange}>
+;<RichTextEditor characterCount={200} onChange={handleChange}>
   <RichTextEditor.Toolbar>
     <RichTextEditor.ControlsGroup>
       <RichTextEditor.Undo />
@@ -243,3 +253,8 @@ const handleChange = (content: string | JSONContent) => {
 | Name   | Type       | Default            | Description        |
 | :----- | :--------- | :----------------- | :----------------- |
 | levels | `number[]` | [1, 2, 3, 4, 5, 6] | Levels of heading. |
+
+<Callout>
+  Check out our [ladle](/ladle?story=rich-text-editor--default) for more info on
+  this component.
+</Callout>

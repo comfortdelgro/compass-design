@@ -25,7 +25,7 @@ interface ItemType extends ItemBase {
   children?: ItemType[]
 }
 
-export const Sidenavs: React.FC = () => {
+export const Default: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1)
 
   const items: ItemType[] = [

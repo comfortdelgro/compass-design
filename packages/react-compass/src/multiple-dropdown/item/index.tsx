@@ -1,6 +1,8 @@
-import {Item} from '@react-stately/collections'
 import React from 'react'
+import {DropdownItemBase} from '../../dropdown/item'
 
+export type DropdownItemProps = DropdownItemBase
+=======
 interface Props<T> {
   children: React.ReactNode | string
   key: React.Key
@@ -11,11 +13,8 @@ interface Props<T> {
   hasChildItems?: boolean
 }
 
-export type MultipleDropdownItemProps<T = object> = Props<T>
+const DropdownItem: React.FC<DropdownItemProps> = (props) => {
+  return <>{props.children}</>
+}
 
-const MultipleDropdownItem: React.FC<MultipleDropdownItemProps> = ({
-  children,
-  ...props
-}) => <Item {...props}>{children}</Item>
-
-export default MultipleDropdownItem
+export default DropdownItem

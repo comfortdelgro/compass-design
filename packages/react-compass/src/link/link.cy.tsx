@@ -1,3 +1,4 @@
+import React from 'react'
 import Link from './index'
 
 describe('link.cy.ts', () => {

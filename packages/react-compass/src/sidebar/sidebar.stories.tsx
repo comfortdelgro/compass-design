@@ -1,8 +1,8 @@
 import React from 'react'
-import Button from '../button'
 import Dropdown from '../dropdown'
 import TextField from '../textfield'
 import {Column} from '../utils/components'
+import Button from './../button'
 import Sidebar from './index'
 
 export const Default: React.FC = () => {

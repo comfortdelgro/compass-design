@@ -7,11 +7,15 @@ import {faChessKing} from '@fortawesome/free-solid-svg-icons'
 
 Quantity Toggle fields allow users to enter a number, and increment or decrement the value using stepper buttons.
 
+
+<Callout>
+  Check out our [ladle](/ladle?story=quantity-toggle--variants) for more info on
+  this component.
+</Callout>
+
 ## Support
 
 Support for internationalized number formatting and parsing including decimals, percentages, currency values, and units
-
-Support for the Latin, Arabic, and Han positional decimal numbering systems in over 30 locales
 
 Automatically detects the numbering system used and supports parsing numbers not in the default numbering system for the locale
 
@@ -99,26 +103,26 @@ The following example uses the signDisplay option to include the plus sign for p
 
 <section className={styles.componentShowcaseContainer}>
   <QuantityToggle
-    label="Adjust exposure"
+    label='Adjust exposure'
     defaultValue={0}
     formatOptions={{
       signDisplay: 'exceptZero',
       minimumFractionDigits: 1,
-      maximumFractionDigits: 2
+      maximumFractionDigits: 2,
     }}
   />
 </section>
 
 ```js
-  <QuantityToggle
-    label="Adjust exposure"
-    defaultValue={0}
-    formatOptions={{
-      signDisplay: 'exceptZero',
-      minimumFractionDigits: 1,
-      maximumFractionDigits: 2
-    }}
-  />
+<QuantityToggle
+  label='Adjust exposure'
+  defaultValue={0}
+  formatOptions={{
+    signDisplay: 'exceptZero',
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 2,
+  }}
+/>
 ```
 
 ---
@@ -129,22 +133,22 @@ The style: 'percent' option can be passed to the formatOptions prop to treat the
 
 <section className={styles.componentShowcaseContainer}>
   <QuantityToggle
-    label="Sales tax"
+    label='Sales tax'
     defaultValue={0.05}
     formatOptions={{
-      style: 'percent'
+      style: 'percent',
     }}
   />
 </section>
 
 ```js
-  <QuantityToggle
-    label="Sales tax"
-    defaultValue={0.05}
-    formatOptions={{
-      style: 'percent'
-    }}
-  />
+<QuantityToggle
+  label='Sales tax'
+  defaultValue={0.05}
+  formatOptions={{
+    style: 'percent',
+  }}
+/>
 ```
 
 ---
@@ -157,28 +161,28 @@ If you need to allow the user to change the currency, you should include a separ
 
 <section className={styles.componentShowcaseContainer}>
   <QuantityToggle
-    label="Transaction amount"
+    label='Transaction amount'
     defaultValue={45}
     formatOptions={{
       style: 'currency',
       currency: 'EUR',
       currencyDisplay: 'code',
-      currencySign: 'accounting'
+      currencySign: 'accounting',
     }}
   />
 </section>
 
 ```js
-  <QuantityToggle
-    label="Transaction amount"
-    defaultValue={45}
-    formatOptions={{
-      style: 'currency',
-      currency: 'EUR',
-      currencyDisplay: 'code',
-      currencySign: 'accounting'
-    }}
-  />
+<QuantityToggle
+  label='Transaction amount'
+  defaultValue={45}
+  formatOptions={{
+    style: 'currency',
+    currency: 'EUR',
+    currencyDisplay: 'code',
+    currencySign: 'accounting',
+  }}
+/>
 ```
 
 ---
@@ -191,26 +195,26 @@ If you need to allow the user to change the unit, you should include a separate 
 
 <section className={styles.componentShowcaseContainer}>
   <QuantityToggle
-    label="Package width"
+    label='Package width'
     defaultValue={4}
     formatOptions={{
       style: 'unit',
       unit: 'inch',
-      unitDisplay: 'long'
+      unitDisplay: 'long',
     }}
   />
 </section>
 
 ```js
-  <QuantityToggle
-    label="Package width"
-    defaultValue={4}
-    formatOptions={{
-      style: 'unit',
-      unit: 'inch',
-      unitDisplay: 'long'
-    }}
-  />
+<QuantityToggle
+  label='Package width'
+  defaultValue={4}
+  formatOptions={{
+    style: 'unit',
+    unit: 'inch',
+    unitDisplay: 'long',
+  }}
+/>
 ```
 
 ---
@@ -221,21 +225,12 @@ The minValue and maxValue props can be used to limit the entered value to a spec
 
 If a valid range is known ahead of time, it is a good idea to provide it to NumberField so it can optimize the experience. For example, when the minimum value is greater than or equal to zero, it is possible to use a numeric keyboard on iOS rather than a full text keyboard (necessary to enter a minus sign).
 
-
 <section className={styles.componentShowcaseContainer}>
-  <QuantityToggle
-    label="Your math score"
-    minValue={0}
-    maxValue={10}
-  />
+  <QuantityToggle label='Your math score' minValue={0} maxValue={10} />
 </section>
 
 ```js
-  <QuantityToggle
-    label="Your math score"
-    minValue={0}
-    maxValue={10}
-  />
+<QuantityToggle label='Your math score' minValue={0} maxValue={10} />
 ```
 
 ---
@@ -247,17 +242,11 @@ The step prop can be used to snap the value to certain increments. If there is a
 If the user types a value that is between two steps and blurs the input, the value will be snapped to the nearest step. When incrementing or decrementing, the value is snapped to the nearest step that is higher or lower, respectively. When incrementing or decrementing from an empty field, the value starts at the minValue or maxValue, respectively, if defined. Otherwise, the value starts from 0.
 
 <section className={styles.componentShowcaseContainer}>
-  <QuantityToggle
-    label="Step"
-    step={10}
-  />
+  <QuantityToggle label='Step' step={10} />
 </section>
 
 ```js
-  <QuantityToggle
-    label="Step"
-    step={10}
-  />
+<QuantityToggle label='Step' step={10} />
 ```
 
 ---
@@ -267,8 +256,8 @@ If the user types a value that is between two steps and blurs the input, the val
 The isDisabled and isReadOnly props can be used prevent the user from editing the value of the number field. The difference is that isReadOnly still allows the input to be focused, while isDisabled prevents all user interaction.
 
 <section className={styles.componentShowcaseContainer}>
-  <QuantityToggle label="Disabled" isDisabled value={25} />
-  <QuantityToggle label="Read only" isReadOnly value={32} />
+  <QuantityToggle label='Disabled' isDisabled value={25} />
+  <QuantityToggle label='Read only' isReadOnly value={32} />
 </section>
 
 ```js
@@ -306,6 +295,34 @@ The onUpdate is returned when the number field is updated. It's will returned fu
 
 ---
 
+### Enable scroll to increment and decrement:
+
+Using props `disabledScroll` and set it to `false` to enable scroll.
+
+<section className={styles.componentShowcaseContainer}>
+  <QuantityToggle
+    placeholder='Price'
+    disabledScroll={false}
+    formatOptions={{
+      style: 'currency',
+      currency: 'USD',
+    }}
+  />
+</section>
+
+```js
+<QuantityToggle
+  placeholder='Price'
+  disabledScroll={false}
+  formatOptions={{
+    style: 'currency',
+    currency: 'USD',
+  }}
+/>
+```
+
+---
+
 ### Error:
 
 <section className={styles.componentShowcaseContainer}>
@@ -320,51 +337,49 @@ The onUpdate is returned when the number field is updated. It's will returned fu
 </section>
 
 ```js
-  <QuantityToggle
-    disabledScroll
-    label='Potato price'
-    defaultValue={2}
-    isErrored
-    helperText='This is helper text'
-    errorMessage='This is error message'
-  />
+<QuantityToggle
+  label='Potato price'
+  defaultValue={2}
+  isErrored
+  helperText='This is helper text'
+  errorMessage='This is error message'
+/>
 ```
 
 ---
 
 ### Props:
 
-| Name            | Type                           | Default | Description                                                                                                                                               |
-| :-------------- | :----------------------------- | :------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| formatOptions   | `Intl.FormatOptions`           | —       | Formatting options for the value displayed in the number field. This also affects what characters are allowed to be typed by the user.                    |
-| disabledScroll  | `boolean`                      | `false` | Whether the scroll to change value is disabled.                                                                                                           |
-| isDisabled      | `boolean`                      | `false` | Whether the input is disabled.                                                                                                                            |
-| isErrored       | `boolean`                      | `false` | Whether the input is isErrored.                                                                                                                           |
-| isReadOnly      | `boolean`                      | `false` | Whether the input can be selected but not changed by the user.                                                                                            |
-| isRequired      | `boolean`                      | `false` | Whether user input is required on the input before form submission. Often paired with the necessityIndicator prop to add a visual indicator to the input. |
-| validationState | `ValidationState`              | —       | Whether the input should display its "valid" or "invalid" visual styling.                                                                                 |
-| autoFocus       | `boolean`                      | —       | Whether the element should receive focus on render.                                                                                                       |
-| onFocus         | `(e: FocusEvent) => void`      | —       | Handler that is called when the element receives focus.                                                                                                   |
-| onBlur          | `(e: FocusEvent) => void`      | —       | Handler that is called when the element loses focus.                                                                                                      |
-| onFocusChange   | `(isFocused: boolean) => void` | —       | Handler that is called when the element's focus status changes.                                                                                           |
-| onKeyDown       | `(e: FocusEvent) => void`      | —       | Handler that is called when a key is pressed.                                                                                                             |
-| onKeyUp         | `(e: FocusEvent) => void`      | —       | Handler that is called when a key is released.                                                                                                            |
-| placeholder     | `string`                       | —       | Temporary text that occupies the text input when it is empty.                                                                                             |
-| helperText      | `string`                       | —       | The helper text below.                                                                                                                                    |
-| value           | `number`                       | —       | The current value (controlled).                                                                                                                           |
-| defaultValue    | `number`                       | —       | The default value (uncontrolled).                                                                                                                         |
-| onChange        | `(value: T) => void`           | —       | Handler that is called when the value changes.                                                                                                            |
-| onHandle        | `(value: string) => void`      | —       | Handler that is called when the value changes like onChange but it return raw data                                                                        |
-| minValue        | `number`                       | —       | The smallest value allowed for the input.                                                                                                                 |
-| maxValue        | `number`                       | —       | The largest value allowed for the input.                                                                                                                  |
-| step            | `number`                       | —       | The amount that the input value changes with each increment or decrement "tick".                                                                          |
-| label           | `ReactNode`                    | —       | The content to display as the label.                                                                                                                      |
-| isErrored       | `ReactNode`                    | —       | The amount that the input value changes with each increment or decrement "tick".                                                                          |
-| css             | `CSS`                          | —       | The system prop that allows defining system overrides as well as additional CSS styles.                                                                   |
+| Name            | Type                                      | Default | Description                                                                                                                                               |
+| :-------------- | :---------------------------------------- | :------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| step            | `number`                                  | —       | The amount that the input value changes with each increment or decrement "tick".                                                                          |
+| label           | `ReactNode`                               | —       | The content to display as the label.                                                                                                                      |
+| value           | `number`                                  | —       | The current value (controlled).                                                                                                                           |
+| minValue        | `number`                                  | —       | The smallest value allowed for the input.                                                                                                                 |
+| maxValue        | `number`                                  | —       | The largest value allowed for the input.                                                                                                                  |
+| autoFocus       | `boolean`                                 | —       | Whether the element should receive focus on render.                                                                                                       |
+| isErrored       | `boolean`                                 | false   | Whether the input is isErrored.                                                                                                                           |
+| isDisabled      | `boolean`                                 | false   | Whether the input is disabled.                                                                                                                            |
+| isReadOnly      | `boolean`                                 | false   | Whether the input can be selected but not changed by the user.                                                                                            |
+| isRequired      | `boolean`                                 | false   | Whether user input is required on the input before form submission. Often paired with the necessityIndicator prop to add a visual indicator to the input. |
+| helperText      | `string`                                  | —       | The helper text below.                                                                                                                                    |
+| placeholder     | `string`                                  | —       | Temporary text that occupies the text input when it is empty.                                                                                             |
+| defaultValue    | `number`                                  | —       | The default value (uncontrolled).                                                                                                                         |
+| formatOptions   | `Intl.FormatOptions`                      | —       | Formatting options for the value displayed in the number field. This also affects what characters are allowed to be typed by the user.                    |
+| disabledScroll  | `boolean`                                 | true    | Whether the scroll to change value is disabled.                                                                                                           |
+| validationState | `ValidationState`                         | —       | Whether the input should display its "valid" or "invalid" visual styling.                                                                                 |
+| onBlur          | `(e: FocusEvent) => void`                 | —       | Handler that is called when the element loses focus.                                                                                                      |
+| onFocus         | `(e: FocusEvent) => void`                 | —       | Handler that is called when the element receives focus.                                                                                                   |
+| onKeyUp         | `(e: FocusEvent) => void`                 | —       | Handler that is called when a key is released.                                                                                                            |
+| onChange        | `(value: T) => void`                      | —       | Handler that is called when the value changes.                                                                                                            |
+| onKeyDown       | `(e: FocusEvent) => void`                 | —       | Handler that is called when a key is pressed.                                                                                                             |
+| onFocusChange   | `(isFocused: boolean) => void`            | —       | Handler that is called when the element's focus status changes.                                                                                           |
+| onUpdate        | `(textVal: T, numberVal: number) => void` | —       | Handler that is called when the value changes, returned text value and number value                                                                       |
+| css             | `CSS`                                     | —       | The system prop that allows defining system overrides as well as additional CSS styles.                                                                   |
 
 ---
 
 <Callout>
-  Check out our [ladle](/ladle?story=quatity-toggle--variants) for more info on
+  Check out our [ladle](/ladle?story=quantity-toggle--variants) for more info on
   this component.
 </Callout>
