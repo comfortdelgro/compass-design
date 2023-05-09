@@ -1,4 +1,32 @@
-# @comfortdelgro/react-compass
+# @comfortdelgro/react-compass## 0.33.3
+
+## 0.33.10
+
+### Patch Changes
+
+## 0.33.9
+
+### Patch Changes
+
+## 0.33.8
+
+### Patch Changes
+
+## 0.33.7
+
+### Patch Changes
+
+## 0.33.6
+
+### Patch Changes
+
+## 0.33.5
+
+### Patch Changes
+
+## 0.33.4
+
+### Patch Changes
 
 ## 0.33.3
 
