@@ -1,5 +1,5 @@
-import React,{ DragEventHandler } from 'react'
-import { StyledComponentProps } from '../../utils/stitches.types'
+import React, {DragEventHandler} from 'react'
+import {StyledComponentProps} from '../../utils/stitches.types'
 
 export interface DragAndDropListItemProps extends StyledComponentProps {
   onDragStart?: DragEventHandler<HTMLLIElement>
@@ -12,15 +12,15 @@ const DragAndDropListItem = (props: DragAndDropListItemProps) => {
   const {item, onDragStart, onDragEnter, onDragEnd} = props
 
   return (
-      <li
-        onDragStart={onDragStart}
-        onDragEnter={onDragEnter}
-        onDragEnd={onDragEnd}
-        draggable
-        ref={ref}
-      >
-        {(item as React.ReactElement).props.children}
-      </li>
+    <li
+      onDragStart={onDragStart}
+      onDragEnter={onDragEnter}
+      onDragEnd={onDragEnd}
+      draggable
+      ref={ref}
+    >
+      {(item as React.ReactElement).props.children}
+    </li>
   )
 }
 
