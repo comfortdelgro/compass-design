@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 1.0.0-beta.0.0
+
+### Major Changes
+
+- 9c055ae0: Remove react-aria from all components.
+
 ## 0.33.3
 
 ### Patch Changes

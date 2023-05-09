@@ -1,8 +1,8 @@
-import { Item } from '@react-stately/collections'
-import React,{ Children,useState } from 'react'
-import { StyledComponentProps } from '../../utils/stitches.types'
+import {Item} from '@react-stately/collections'
+import React, {Children, useState} from 'react'
+import {StyledComponentProps} from '../../utils/stitches.types'
 import DragAndDropListItem from './dnd-list-item'
-import { StyledDragAndDrop } from './index.styles'
+import {StyledDragAndDrop} from './index.styles'
 
 export interface DragAndDropListProps extends StyledComponentProps {
   children: React.ReactNode
