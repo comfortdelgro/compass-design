@@ -2,4 +2,4 @@
 '@comfortdelgro/react-compass': major
 ---
 
-Remove react-aria from all components
+Remove react-aria from all components.
