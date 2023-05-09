@@ -1,46 +1,96 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {Column, Row} from '../utils/components'
 import Radio from './index'
-import RadioGroup from './radio-group'
 
-export const Variants: React.FC = () => {
-  const [selectedValue, setSelectedValue] = useState('option1')
+export const Variants: React.FC = () => (
+  <Column>
+    <h3>Outlined</h3>
+    <Row>
+      <Radio.Group>
+        <Radio
+          variant='outlined'
+          label='test'
+          description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+          value='1'
+          tooltip='This is tooltip'
+          id='item1'
+        />
+        <Radio
+          variant='outlined'
+          label='test2'
+          description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+          value='2'
+        />
+        <Radio
+          variant='outlined'
+          label='test3'
+          description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+          value='3'
+          isDisabled
+        />
+      </Radio.Group>
+    </Row>
+    <h3>Simple</h3>
+    <Row>
+      <Radio.Group>
+        <Radio
+          variant='simple'
+          label='test'
+          description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+          value='1'
+          tooltip='This is tooltip'
+        />
+        <Radio
+          variant='simple'
+          label='test2'
+          description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+          value='2'
+        />
+        <Radio
+          variant='simple'
+          label='test3'
+          description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+          value='3'
+          isDisabled
+        />
+      </Radio.Group>
+    </Row>
+  </Column>
+)
 
-  const handleRadioChange = (value: string) => {
-    setSelectedValue(value)
-  }
-  return (
-    <Column>
-      <h3>Outlined</h3>
-      <Row>
-        <RadioGroup
-          name='myRadioGroup'
-          value={selectedValue}
-          onChange={handleRadioChange}
-        >
-          <Radio
-            title='Option 1'
-            value='option1'
-            description='Option 1 description'
-            rightLabel='Right label'
-            tooltip='Tooltip 1'
-          />
-          <Radio
-            title='Option 2'
-            value='option2'
-            description='Option 2 description'
-            rightLabel='Right label'
-            tooltip='Tooltip 2'
-          />
-          <Radio
-            title='Option 3'
-            value='option3'
-            description='Option 3 description'
-            rightLabel='Right label'
-            tooltip='Tooltip 3'
-          />
-        </RadioGroup>
-      </Row>
-    </Column>
-  )
-}
+export const Orientation: React.FC = () => (
+  <Column>
+    <h3>Horizontal</h3>
+    <Row>
+      <Radio.Group orientation='horizontal'>
+        <Radio
+          label='test'
+          description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+          value='1'
+          tooltip='This is tooltip'
+        />
+        <Radio
+          label='test2'
+          description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+          value='2'
+        />
+      </Radio.Group>
+    </Row>
+    <h3>Vertical</h3>
+    <Row>
+      <Radio.Group orientation='vertical'>
+        <Radio
+          label='test'
+          description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+          value='1'
+          tooltip='This is tooltip'
+        />
+        <Radio
+          label='test2'
+          description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+          value='2'
+        />
+      </Radio.Group>
+    </Row>
+  </Column>
+)

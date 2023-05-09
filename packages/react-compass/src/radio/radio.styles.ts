@@ -72,7 +72,7 @@ export const StyledRadio = styled('div', {
   },
 })
 
-export const StyledRadioInput = styled('input', {
+export const StyledRadioInput = styled('div', {
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
