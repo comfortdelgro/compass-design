@@ -50,7 +50,6 @@ const QuantityToggle = React.forwardRef<HTMLInputElement, QuantityToggleProps>(
     return (
       <StyledQuantityToggle
         css={css}
-        {...variantProps}
         isErrored={!!isErrored}
         isDisabled={!!inputProps.disabled}
       >

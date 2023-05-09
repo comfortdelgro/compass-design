@@ -65,9 +65,6 @@ export const StyledSelect = styled('div', {
         '& > *': {
           cursor: 'not-allowed !important',
         },
-        '& > *': {
-          cursor: 'not-allowed !important',
-        },
       },
     },
     isErrored: {
