@@ -33,8 +33,8 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
     const [selectedValue, setSelectedValue] = useState(defaultValue)
 
     useEffect(() => {
-      handleChange(selectedValue);
-    }, [selectedValue, onChange]);
+      handleChange(selectedValue)
+    }, [selectedValue, onChange])
 
     const handleChange = useCallback(
       (value: string) => {
