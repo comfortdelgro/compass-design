@@ -3,6 +3,7 @@ import type {StyledComponentProps} from '../../../utils/stitches.types'
 import {useDOMRef} from '../../../utils/use-dom-ref'
 import {ControlVariantProps, StyledControl} from './Control.styles'
 
+
 interface Props extends StyledComponentProps {
   active: boolean
   children?: React.ReactNode

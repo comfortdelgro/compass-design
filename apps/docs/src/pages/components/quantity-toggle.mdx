@@ -7,6 +7,7 @@ import {faChessKing} from '@fortawesome/free-solid-svg-icons'
 
 Quantity Toggle fields allow users to enter a number, and increment or decrement the value using stepper buttons.
 
+
 <Callout>
   Check out our [ladle](/ladle?story=quantity-toggle--variants) for more info on
   this component.
@@ -43,6 +44,10 @@ Exposed to assistive technology as a text field with a custom localized role des
 Follows the spinbutton ARIA pattern
 
 Works around bugs in VoiceOver with the spinbutton role
+
+Uses an ARIA live region to ensure that value changes are announced
+
+Support for description and error message help text linked to the input via ARIA
 
 ---
 
@@ -322,6 +327,7 @@ Using props `disabledScroll` and set it to `false` to enable scroll.
 
 <section className={styles.componentShowcaseContainer}>
   <QuantityToggle
+    disabledScroll
     label='Potato price'
     defaultValue={2}
     isErrored
