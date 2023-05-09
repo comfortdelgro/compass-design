@@ -1,47 +1,5 @@
 # @comfortdelgro/react-compass
 
-## 0.33.10
-
-### Patch Changes
-
-- e4623bc0: Fix bug: make expand icon in accordion customizable, menu list header not left align & chevron icon is pushed away, remove x icon if multiple dropdown is disabled, null value in ladle, improve date segment focus
-
-## 0.33.9
-
-### Patch Changes
-
-- 01ffde2d: Hotfix: consolidate bottom-margin of label in input. And fix issue in quantity-toggle (onUpdate fires too many times)
-
-## 0.33.8
-
-### Patch Changes
-
-- 8bdd2e0a: Fix bugs in MultipleDropdown (disabled item should not be able to be deleted on list) and add new api (onUpdate) to quantity-toggle
-
-## 0.33.7
-
-### Patch Changes
-
-- ccb66095: Fix bugs in quantity-toggle, pagination and multiple-dropdown
-
-## 0.33.6
-
-### Patch Changes
-
-- a40d5092: Fix popover cannot close on table v1
-
-## 0.33.5
-
-### Patch Changes
-
-- 1bb3674b: Fix version of @react-aria/i18n and @react-stately/datepicker
-
-## 0.33.4
-
-### Patch Changes
-
-- 156dbf07: Feature/rich-text-editor
-
 ## 0.33.3
 
 ### Patch Changes
