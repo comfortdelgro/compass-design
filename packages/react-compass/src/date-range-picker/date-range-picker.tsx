@@ -171,8 +171,7 @@ interface DateRangeCalendarWrapperProps {
 }
 
 const DateRangeCalendarWrapper = (props: DateRangeCalendarWrapperProps) => {
-  const {state, calendarRef, dialogProps, calendarProps, onApply, onCancel} =
-    props
+  const {state, calendarRef, calendarProps, onApply, onCancel} = props
 
   return (
     <>
@@ -183,7 +182,7 @@ const DateRangeCalendarWrapper = (props: DateRangeCalendarWrapperProps) => {
           placement='bottom start'
           offset={8}
         >
-          <Dialog {...dialogProps}>
+          <Dialog>
             <RangeCalendar
               state={state}
               hasFooter={true}

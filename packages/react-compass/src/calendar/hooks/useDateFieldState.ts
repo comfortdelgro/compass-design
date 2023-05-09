@@ -209,7 +209,7 @@ export function useDateFieldState<T extends DateValue = DateValue>(
     () => displayValue.toDate(timeZone),
     [displayValue, timeZone],
   )
-  const segments = useMemo(
+  const segments: DateSegment[] = useMemo(
     () =>
       // @ts-ignore
       dateFormatter.formatToParts(dateValue).map((segment) => {
@@ -246,7 +246,7 @@ export function useDateFieldState<T extends DateValue = DateValue>(
       calendar,
       locale,
     ],
-  )
+  ) as unknown as DateSegment[]
 
   if (allSegments.era && validSegments.year && !validSegments.era) {
     validSegments.era = true

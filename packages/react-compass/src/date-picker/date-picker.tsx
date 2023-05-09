@@ -44,8 +44,11 @@ const DatePicker = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
 
   const calendarRef = useDOMRef(ref)
 
-  const {groupProps, fieldProps, buttonProps, dialogProps, calendarProps} =
-    useDatePicker(props, state, calendarRef)
+  const {groupProps, fieldProps, buttonProps, calendarProps} = useDatePicker(
+    props,
+    state,
+    calendarRef,
+  )
 
   const extendedFieldProps = {
     necessityIndicator: props.necessityIndicator,
@@ -68,7 +71,6 @@ const DatePicker = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
         onCancel={props.onCancel}
         calendarProps={calendarProps}
         calendarRef={calendarRef}
-        dialogProps={dialogProps}
       />
     </StyledDatePicker>
   )
@@ -103,7 +105,7 @@ const DatePickerFieldWrapper = React.forwardRef<
 interface DatePickerCalendarWrapperProps {
   state: DatePickerState
   calendarRef: React.RefObject<HTMLDivElement>
-  dialogProps: AriaDialogProps
+  dialogProps?: AriaDialogProps
   calendarProps: CalendarProps
   onCancel?: (() => void) | undefined
   maxValue?: DateValue
@@ -113,7 +115,6 @@ const DatePickerCalendarWrapper = (props: DatePickerCalendarWrapperProps) => {
   const {
     state,
     calendarRef,
-    dialogProps,
     calendarProps,
     onCancel,
     maxValue = parseDate('2999-03-10'),
@@ -128,7 +129,7 @@ const DatePickerCalendarWrapper = (props: DatePickerCalendarWrapperProps) => {
           offset={8}
           placement='bottom start'
         >
-          <Dialog {...dialogProps}>
+          <Dialog>
             <Calendar
               state={state}
               hasFooter={true}

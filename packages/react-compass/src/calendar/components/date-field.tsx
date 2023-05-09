@@ -1,5 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import {faChevronDown} from '@fortawesome/free-solid-svg-icons'
-import {createCalendar, DateValue} from '@internationalized/date'
+import {createCalendar} from '@internationalized/date'
 import {useLocale} from '@react-aria/i18n'
 import React from 'react'
 import Button, {ButtonProps} from '../../button'
@@ -7,15 +11,18 @@ import Icon from '../../icon'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import {useDateField} from '../hooks/useDateField'
 import {useDateFieldState} from '../hooks/useDateFieldState'
-import {AriaDateFieldProps} from '../types'
 import {StyledDateField} from './date-field.style'
 import DateSegment from './date-segment'
 
-interface Props extends AriaDateFieldProps<DateValue> {
+interface Props {
   children?: React.ReactNode
   buttonProps: ButtonProps
   isInvalid?: boolean | undefined
+  label?: string | undefined
   necessityIndicator?: 'icon' | 'label'
+  isDisabled?: boolean
+  isReadOnly?: boolean
+  isRequired?: boolean
 }
 
 const DateField = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
@@ -28,6 +35,8 @@ const DateField = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
 
   const dateFieldRef = useDOMRef(ref)
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const {labelProps, fieldProps} = useDateField(props, state, dateFieldRef)
 
   const isDisabled = props.isDisabled ?? false
@@ -61,13 +70,17 @@ const DateField = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
         {props.label} {generateLabeling()}
       </span>
       <div {...fieldProps} ref={dateFieldRef} className='date-field-input'>
-        {state.segments.map((segment, i) => {
-          if (segment.type === 'literal') {
-            segment.isPlaceholder =
-              state.segments[i - 1]?.isPlaceholder ?? false
-          }
-          return <DateSegment key={i} segment={segment} state={state} />
-        })}
+        {
+          // @ts-ignore
+          state.segments.map((segment, i) => {
+            if (segment.type === 'literal') {
+              // @ts-ignore
+              segment.isPlaceholder =
+                state.segments[i - 1]?.isPlaceholder ?? false
+            }
+            return <DateSegment key={i} segment={segment} state={state} />
+          })
+        }
         <Button
           {...props.buttonProps}
           variant='ghost'
