@@ -8,7 +8,7 @@ export const StyledSidenavItem = styled('div', {
   position: 'relative',
   height: '$10',
   cursor: 'pointer',
-  margin: '0 $4',
+  padding: '0 $4',
   overflow: 'hidden',
 
   '& svg': {
@@ -46,7 +46,7 @@ export const StyledSidenavItem = styled('div', {
         '&:before': {
           content: '',
           position: 'absolute',
-          left: 0,
+          left: '$4',
           top: 0,
           height: '100%',
           width: '3px',
