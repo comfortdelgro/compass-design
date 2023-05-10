@@ -13,6 +13,7 @@ export const RadioContext = React.createContext<RadioGroupContextValue>({
 })
 
 interface Props {
+  value?: string
   children?: React.ReactNode
   defaultValue?: string
   onChange?: (value: string) => void
@@ -26,15 +27,16 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
       children,
       orientation = 'vertical',
       defaultValue = '',
+      value,
       onChange,
     } = props
 
     const groupRef = useDOMRef<HTMLDivElement>(ref)
-    const [selectedValue, setSelectedValue] = useState(defaultValue)
+    const [selectedValue, setSelectedValue] = useState(value || defaultValue)
 
     useEffect(() => {
-      handleChange(selectedValue);
-    }, [selectedValue, onChange]);
+      handleChange(selectedValue)
+    }, [selectedValue, onChange])
 
     const handleChange = useCallback(
       (value: string) => {
