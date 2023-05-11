@@ -30,16 +30,8 @@ interface Props extends StyledComponentProps {
   minLength?: number
   name?: string
   pattern?: string
-  type?: 'text' | 'search' | 'url' | 'tel' | 'email' | 'password'
-  inputMode?:
-    | 'none'
-    | 'text'
-    | 'tel'
-    | 'url'
-    | 'email'
-    | 'numeric'
-    | 'decimal'
-    | 'search'
+  type?: string
+  inputMode?: string
   excludeFromTabOrder?: boolean
   errorMessage?: string
   prefix?: React.ReactNode
