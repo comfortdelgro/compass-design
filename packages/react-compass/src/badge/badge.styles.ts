@@ -13,6 +13,7 @@ export const StyledBadge = styled('div', {
   borderColor: 'transparent',
   borderRadius: '$full',
   height: '$6_5',
+  width: 'fit-content',
   display: 'flex',
   justifyContent: 'space-between',
   alignContent: 'center',
