@@ -44,6 +44,8 @@ export const Select: React.FC = () => {
         placeholder='Choose an animal'
         selectedKey={value}
         onSelectionChange={(k: Key) => setValue(k)}
+        onBlur={() => console.log('blur')}
+        onFocus={() => console.log('focus')}
       >
         <Dropdown.Item
           key='red panda'
@@ -266,6 +268,8 @@ export const ComboBox: React.FC = () => {
         placeholder='Choose an animal'
         selectedKey={value}
         onSelectionChange={(k: Key) => setValue(k)}
+        onBlur={() => console.log('blur')}
+        onFocus={() => console.log('focus')}
       >
         <Dropdown.Item
           key='red panda'
