@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import React, {useCallback, useEffect, useState} from 'react'
+import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {RadioGroupVariantProps, StyledRadioGroup} from './radio-group.styles'
 interface RadioGroupContextValue {
@@ -12,7 +13,7 @@ export const RadioContext = React.createContext<RadioGroupContextValue>({
   setSelectedValue: () => {},
 })
 
-interface Props {
+interface Props extends StyledComponentProps {
   value?: string
   children?: React.ReactNode
   defaultValue?: string
@@ -29,6 +30,7 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
       defaultValue = '',
       value,
       onChange,
+      css = {},
     } = props
 
     const groupRef = useDOMRef<HTMLDivElement>(ref)
@@ -46,7 +48,7 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
       [onChange],
     )
     return (
-      <StyledRadioGroup ref={groupRef} orientation={orientation}>
+      <StyledRadioGroup ref={groupRef} orientation={orientation} css={css}>
         <RadioContext.Provider value={{selectedValue, setSelectedValue}}>
           {children}
         </RadioContext.Provider>
