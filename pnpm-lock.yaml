@@ -225,7 +225,7 @@ importers:
       lodash: ^4.17.21
       prettier: ^2.7.1
       react: ^18.2.0
-      react-chartjs-2: ^5.2.0
+      react-chartjs-2: 4.3.1
       react-dom: ^18.2.0
       rimraf: ^3.0.2
       tsx: ^3.10.4
@@ -314,7 +314,7 @@ importers:
       colorjs.io: 0.4.3
       html-react-parser: 3.0.16_react@18.2.0
       lodash: 4.17.21
-      react-chartjs-2: 5.2.0_2unjvz6v6rskedwoxtmbfw2rje
+      react-chartjs-2: 4.3.1_2unjvz6v6rskedwoxtmbfw2rje
     devDependencies:
       '@comfortdelgro/eslint-config': 1.0.2_7iqwoxykhzwwjazrwn6fti7ari
       '@frsource/cypress-plugin-visual-regression-diff': 3.2.14_cypress@12.11.0
@@ -9878,10 +9878,10 @@ packages:
       strip-json-comments: 2.0.1
     dev: true
 
-  /react-chartjs-2/5.2.0_2unjvz6v6rskedwoxtmbfw2rje:
-    resolution: {integrity: sha512-98iN5aguJyVSxp5U3CblRLH67J8gkfyGNbiK3c+l1QI/G4irHMPQw44aEPmjVag+YKTyQ260NcF82GTQ3bdscA==}
+  /react-chartjs-2/4.3.1_2unjvz6v6rskedwoxtmbfw2rje:
+    resolution: {integrity: sha512-5i3mjP6tU7QSn0jvb8I4hudTzHJqS8l00ORJnVwI2sYu0ihpj83Lv2YzfxunfxTZkscKvZu2F2w9LkwNBhj6xA==}
     peerDependencies:
-      chart.js: ^4.1.1
+      chart.js: ^3.5.0
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
       chart.js: 3.9.1
