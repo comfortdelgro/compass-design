@@ -17,6 +17,8 @@ export const Default: React.FC = () => {
         defaultSelectedKeys={['cat']}
         isRequired
         onSelectionChange={(k: Key[]) => setValue(k)}
+        onBlur={() => console.log('blur')}
+        onFocus={() => console.log('focus')}
       >
         <MultipleDropdown.Item key='red panda'>
           <Icon icon={faExclamationTriangle} style={{marginRight: 5}} />

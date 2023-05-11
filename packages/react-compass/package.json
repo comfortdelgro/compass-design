@@ -116,7 +116,7 @@
     "colorjs.io": "^0.4.3",
     "html-react-parser": "^3.0.7",
     "lodash": "^4.17.21",
-    "react-chartjs-2": "^5.2.0"
+    "react-chartjs-2": "4.3.1"
   },
   "devDependencies": {
     "@comfortdelgro/eslint-config": "^1.0.2",

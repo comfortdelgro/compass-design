@@ -30,16 +30,8 @@ interface Props extends StyledComponentProps {
   minLength?: number
   name?: string
   pattern?: string
-  type?: 'text' | 'search' | 'url' | 'tel' | 'email' | 'password'
-  inputMode?:
-    | 'none'
-    | 'text'
-    | 'tel'
-    | 'url'
-    | 'email'
-    | 'numeric'
-    | 'decimal'
-    | 'search'
+  type?: string
+  inputMode?: string
   excludeFromTabOrder?: boolean
   errorMessage?: string
   prefix?: React.ReactNode
@@ -57,10 +49,10 @@ interface Props extends StyledComponentProps {
   onSelect?: React.ReactEventHandler<HTMLInputElement>
   onBeforeInput?: React.FormEventHandler<HTMLInputElement>
   onInput?: React.FormEventHandler<HTMLInputElement>
-  onFocus?: (e: React.FocusEvent) => void
-  onBlur?: (e: React.FocusEvent) => void
-  onKeyDown?: (e: React.KeyboardEvent) => void
-  onKeyUp?: (e: React.KeyboardEvent) => void
+  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
+  onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void
 
   autoFocus?: boolean
   'aria-activedescendant'?: string
@@ -105,7 +97,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       leftIcon,
       rightIcon,
       prefix,
-      password,
+      password = false,
       maxLength,
       minLength,
       autoCapitalize,
@@ -132,14 +124,14 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       onChangeEvent?.(event)
     }
 
-    const determineInputType = () => {
+    const determineInputType = React.useMemo(() => {
       if (password == true && isPassWordVisible == false) {
         return 'password'
       } else if (password == true && isPassWordVisible == true) {
         return type
       }
       return null
-    }
+    }, [password, isPassWordVisible])
 
     return (
       <StyledTextFieldWrapper css={css} {...htmlProps}>
@@ -166,7 +158,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
             minLength={minLength}
             name={name}
             value={value}
-            type={determineInputType() || type}
+            type={determineInputType ?? type}
             onCut={props.onCut}
             onCopy={props.onCopy}
             onBlur={props.onBlur}
@@ -192,7 +184,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
             aria-activedescendant={props['aria-activedescendant']}
           />
           {rightIcon ? <div className='right-icon'>{rightIcon}</div> : null}
-          {determineInputType() == 'password' ? (
+          {password && determineInputType == 'password' ? (
             <div
               className='password-icon'
               style={{cursor: 'pointer'}}
@@ -201,7 +193,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
               <Icon icon={faEyeSlash} />
             </div>
           ) : null}
-          {determineInputType() == type ? (
+          {password && determineInputType == type ? (
             <div
               className='password-icon'
               style={{cursor: 'pointer'}}

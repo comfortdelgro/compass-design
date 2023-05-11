@@ -69,6 +69,7 @@ const MultipleDropdown = React.forwardRef<
   const [focusKey, setFocusKey] = React.useState<React.Key | undefined>()
 
   // ====================================== REF ======================================
+  const firstBlur = React.useRef(true)
   const ref = useDOMRef<HTMLDivElement>(r)
   const wrapperRef = useDOMRef<HTMLDivElement>(null)
   const popoverRef = useDOMRef<HTMLDivElement>(null)
@@ -142,6 +143,12 @@ const MultipleDropdown = React.forwardRef<
   React.useEffect(() => {
     setFocusKey([...currentKeys].pop())
     props.onOpenChange?.(open)
+    if (open) {
+      props.onFocus?.()
+      firstBlur.current = false
+    } else if (!firstBlur.current) {
+      props.onBlur?.()
+    }
   }, [open])
 
   React.useEffect(() => {
@@ -151,7 +158,8 @@ const MultipleDropdown = React.forwardRef<
         wrapperRef.current.style.outlineColor = isErrored
           ? '#A4262C'
           : '-webkit-focus-ring-color'
-        wrapperRef.current.style.outlineStyle = 'auto'
+        wrapperRef.current.style.outlineStyle = 'solid'
+        wrapperRef.current.style.outlineWidth = '1px'
       }
     } else {
       inputRef.current?.blur()
@@ -161,6 +169,7 @@ const MultipleDropdown = React.forwardRef<
           : 'inherit'
         wrapperRef.current.style.outlineColor = 'inherit'
         wrapperRef.current.style.outlineStyle = 'inherit'
+        wrapperRef.current.style.outlineWidth = 'inherit'
       }
     }
   }, [open])
@@ -263,20 +272,26 @@ const MultipleDropdown = React.forwardRef<
     }
   }
 
+  const handleOpen = () => {
+    if (!isDisabled) {
+      setOpen(true)
+    }
+  }
+
   // ====================================== RENDER ======================================
   return (
     <StyledDropdownWrapper css={css} ref={ref}>
       {props.label && (
-        <label onClick={() => setOpen(true)}>
+        <label onClick={handleOpen}>
           {props.label}
           {isRequired && <span>*</span>}
         </label>
       )}
       <StyledDropdown
-        onClick={() => setOpen(true)}
         ref={wrapperRef}
         isErrored={!!isErrored}
         isDisabled={!!isDisabled}
+        onClick={handleOpen}
       >
         <StyledSelectedItemWrapper>
           {selectedNode.length === 0 && !open && <p>{props.placeholder}</p>}
