@@ -57,10 +57,10 @@ interface Props extends StyledComponentProps {
   onSelect?: React.ReactEventHandler<HTMLInputElement>
   onBeforeInput?: React.FormEventHandler<HTMLInputElement>
   onInput?: React.FormEventHandler<HTMLInputElement>
-  onFocus?: (e: React.FocusEvent) => void
-  onBlur?: (e: React.FocusEvent) => void
-  onKeyDown?: (e: React.KeyboardEvent) => void
-  onKeyUp?: (e: React.KeyboardEvent) => void
+  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
+  onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void
 
   autoFocus?: boolean
   'aria-activedescendant'?: string
