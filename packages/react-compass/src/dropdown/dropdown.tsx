@@ -62,6 +62,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     onLoadMore = () => {
       //Load more
     },
+    ...delegated
   } = props
   // ====================================== STATE ======================================
   const [search, setSearch] = React.useState('')
@@ -278,7 +279,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   }
   // ====================================== RENDER ======================================
   return (
-    <StyledDropdownWrapper css={css}>
+    <StyledDropdownWrapper css={css} {...delegated}>
       {props.label && (
         <label onClick={labelClick}>
           {props.label}
