@@ -1,5 +1,5 @@
 ---
-'@comfortdelgro/react-compass': major
+'@comfortdelgro/react-compass': patch
 ---
 
-Remove react-aria from all components.
+Fix bugs on various components.
