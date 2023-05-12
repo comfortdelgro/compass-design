@@ -71,6 +71,11 @@ export const StyledButtonContent = styled('div', {
     alignItems: 'center',
     justifyContent: 'center',
   },
+  '.children': {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 })
 
 export const StyledButton = styled('button', {

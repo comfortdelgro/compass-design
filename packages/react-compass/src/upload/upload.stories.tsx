@@ -33,6 +33,14 @@ export const Variants: React.FC = () => {
         fileSizeLimit={30000}
       />
 
+      <h3>Custom helper text</h3>
+      <Upload
+        getFile={getFileFunc}
+        accept='image/*, .docs, .docx'
+        fileSizeLimit={30000}
+        helperText={'Custom helper text'}
+      />
+
       <h3>Allow multiple uploaded file</h3>
       <Upload
         getFile={getFileFunc}

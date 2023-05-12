@@ -44,6 +44,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     selectedKey,
     defaultSelectedKey,
     css = {},
+    ...delegated
   } = props
 
   const tabRef = useDOMRef<HTMLDivElement>(ref)
@@ -73,6 +74,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
         css={css}
         orientation={orientation}
         variant={variant}
+        {...delegated}
       >
         {[...collection].map((item) => (
           <Tab
