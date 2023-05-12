@@ -25,6 +25,8 @@ export const StyledCarouselSlider = styled('div', {
       transition: '$default',
       touchAction: 'none',
       minWidth: '0',
+      '-webkit-transform-style': 'preserve-3d',
+      '-webkit-backface-visibility': 'hidden',
     },
     '.slider-slide': {
       position: 'relative',
