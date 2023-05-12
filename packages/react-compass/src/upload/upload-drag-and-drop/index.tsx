@@ -24,6 +24,7 @@ interface Props extends StyledComponentProps {
   accept?: string
   fileSizeLimit?: number
   multiple?: boolean
+  helperText?: string
 }
 
 export type UploadDragAndDropProps = Props &
@@ -46,6 +47,7 @@ const UploadDragAndDrop = React.forwardRef<
     accept = DEFAULT_FILE_ACCEPT,
     fileSizeLimit = DEFAULT_FILE_LIMIT,
     multiple = false,
+    helperText,
     // HTMLDiv Props
     ...delegated
   } = props
@@ -161,7 +163,9 @@ const UploadDragAndDrop = React.forwardRef<
         )}
       </StyledUploadContainer>
       <StyledUploadMaxSize>
-        Maximum size: {convertFileSizeToReadableNumber(fileSizeLimit)}
+        {helperText
+          ? helperText
+          : `Maximum size: ${convertFileSizeToReadableNumber(fileSizeLimit)}`}
       </StyledUploadMaxSize>
       <StyledUploadError>{error}</StyledUploadError>
     </StyledUploadWrapper>

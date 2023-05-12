@@ -9,7 +9,13 @@ interface Props extends StyledComponentProps {
 }
 
 const Link: React.FC<Props> = (props) => {
-  const {css = {}, children, weight = 'none', variant = 'link1'} = props
+  const {
+    css = {},
+    children,
+    weight = 'none',
+    variant = 'link1',
+    ...delegated
+  } = props
 
   const StyledLink = styled('a', {
     width: '100%',
@@ -45,7 +51,7 @@ const Link: React.FC<Props> = (props) => {
   })
 
   return (
-    <StyledLink css={css} variant={variant} weight={weight}>
+    <StyledLink css={css} variant={variant} weight={weight} {...delegated}>
       {children}
     </StyledLink>
   )

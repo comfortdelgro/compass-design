@@ -42,6 +42,7 @@ const Slider: React.FC<SliderProps> = ({
   useEffect(() => {
     if (onChangeEnd && currentValue !== undefined && !dragging) {
       onChangeEnd(currentValue)
+      // setIsClicked(true)
     }
   }, [dragging])
 
@@ -104,6 +105,41 @@ const Slider: React.FC<SliderProps> = ({
         }
       }
 
+      const handleMouseClick = (event: MouseEvent) => {
+        if (isDisabled || isDragging) return
+        const sliderWidth = slider.offsetWidth
+        const thumbWidth = thumb.offsetWidth
+        let clickX = event.clientX - slider.getBoundingClientRect().left
+        if (clickX >= sliderWidth - thumbWidth / 2)
+          clickX = sliderWidth - thumbWidth / 2
+        thumb.style.left = `${Math.max(
+          0 - thumbWidth,
+          Math.min(clickX - (thumbWidth * 3) / 2, sliderWidth - thumbWidth),
+        )}px`
+        if (clickX - thumbWidth <= 0) sliderProgress.style.width = `0px`
+        sliderProgress.style.width = `${clickX - thumbWidth / 2}px`
+        const sliderProgressWidth = thumb.offsetLeft + thumbWidth
+        const newValue =
+          Math.round(
+            ((sliderProgressWidth / (sliderWidth - thumbWidth)) *
+              (maxValue - minValue)) /
+              step,
+          ) *
+            step +
+          minValue
+        setCurrentValue(newValue)
+        thumb.setAttribute('value', newValue.toString())
+
+        if (onChange) {
+          onChange(newValue)
+        }
+
+        if (onChangeEnd) {
+          onChangeEnd(newValue)
+        }
+      }
+
+      slider.addEventListener('click', handleMouseClick)
       thumb.addEventListener('mousedown', handleMouseDown)
       document.addEventListener('mouseup', handleMouseUp)
       document.addEventListener('mousemove', handleMouseMove)
@@ -134,6 +170,7 @@ const Slider: React.FC<SliderProps> = ({
         thumb.removeEventListener('mousedown', handleMouseDown)
         document.removeEventListener('mouseup', handleMouseUp)
         document.removeEventListener('mousemove', handleMouseMove)
+        slider.removeEventListener('click', handleMouseClick)
       }
     }
     return () => {

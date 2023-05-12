@@ -83,7 +83,23 @@ export const StyledSelect = styled('div', {
         },
       },
     },
+    isOpened: {
+      true: {
+        outlineColor: '-webkit-focus-ring-color',
+        outlineStyle: 'solid',
+        outlineWidth: 1,
+      },
+    },
   },
+  compoundVariants: [
+    {
+      isOpened: true,
+      isErrored: true,
+      css: {
+        outlineColor: '$danger',
+      },
+    },
+  ],
 })
 
 export const StyledComboBox = styled('div', {
