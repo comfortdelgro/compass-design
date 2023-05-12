@@ -81,6 +81,18 @@ const RichTextEditor = React.forwardRef<HTMLDivElement, RichTextEditorProps>(
     })
     editor?.setEditable(isEditable)
 
+    interface storageCount {
+      characters: () => number
+    }
+
+    const CharacterCountFunc = () => {
+      if (characterCount) {
+        const StorageCount = editor?.storage['characterCount'] as storageCount
+        return StorageCount?.characters() || 0
+      }
+      return 0
+    }
+
     return (
       <RichTextEditorProvider
         value={{
@@ -94,7 +106,7 @@ const RichTextEditor = React.forwardRef<HTMLDivElement, RichTextEditorProps>(
           </StyledEditorContent>
           {characterCount && (
             <div className='character-count'>
-              {editor?.storage['characterCount']?.characters()}/{characterCount}
+              {CharacterCountFunc()}/{characterCount}
             </div>
           )}
         </StyledRichTextEditor>

@@ -293,6 +293,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           isOpened={open}
         >
           <button
+            type='button'
             ref={selectRef as React.RefObject<HTMLButtonElement>}
             disabled={isDisabled}
             onClick={handleClickIcon}
@@ -324,6 +325,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
             onFocus={hanleInputFocus}
           />
           <button
+            type='button'
             ref={buttonRef}
             disabled={isDisabled}
             onClick={handleClickIcon}
