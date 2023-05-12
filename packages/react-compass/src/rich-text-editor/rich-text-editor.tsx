@@ -8,9 +8,9 @@ import Superscript from '@tiptap/extension-superscript'
 import TextAlign from '@tiptap/extension-text-align'
 import TextStyle from '@tiptap/extension-text-style'
 import Underline from '@tiptap/extension-underline'
-
 import {Content, EditorContent, JSONContent, useEditor} from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
+import isEqual from 'lodash/isEqual'
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import * as controls from './controls'
@@ -41,7 +41,7 @@ const RichTextEditor = React.forwardRef<HTMLDivElement, RichTextEditorProps>(
       children,
       css = {},
       characterCount,
-      outputType,
+      outputType = 'html',
       onChange,
       isEditable = true,
       content = null,
@@ -68,19 +68,23 @@ const RichTextEditor = React.forwardRef<HTMLDivElement, RichTextEditorProps>(
       ],
       injectCSS: false,
 
-      onUpdate: ({editor}) => {
+      onTransaction: ({editor}) => {
         let output
+        let shouldChange
         if (outputType === 'html') {
           output = editor.getHTML()
+          shouldChange = content !== output
         } else {
           output = editor.getJSON()
+          shouldChange = !isEqual(content, output)
         }
         if (!output) return
-        onChange?.(output)
+        if (shouldChange) {
+          onChange?.(output)
+        }
       },
     })
     editor?.setEditable(isEditable)
-
     return (
       <RichTextEditorProvider
         value={{
