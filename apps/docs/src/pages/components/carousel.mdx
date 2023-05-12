@@ -121,7 +121,11 @@ const handleSwitchSlide = (index: number) => {
 }
 
 return (
-  <CarouselSlider onSwitchSlide={handleSwitchSlide}>
+  <CarouselSlider
+    onSwitchSlide={handleSwitchSlide}
+    className='floating-slide'
+    style={{height: '512px'}}
+  >
     {imageUrls.map((imageUrl: string, index: number) => (
       <CarouselSlider.ImageSlide
         key={index}

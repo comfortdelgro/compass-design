@@ -8,6 +8,11 @@ export const StyledCarouselSlider = styled('div', {
   containerName: 'contentSlider',
   minWidth: '0',
   minHeight: '0',
+  '&.floating-slide': {
+    '.content-slider-container': {
+      height: '100%',
+    },
+  },
 
   '&.effect-slide': {
     userSelect: 'none',
@@ -30,7 +35,6 @@ export const StyledCarouselSlider = styled('div', {
   },
 
   '.content-slider-container': {
-    height: '512px',
     minWidth: '0',
     minHeight: '0',
   },
@@ -58,8 +62,7 @@ export const StyledCarouselSlider = styled('div', {
     '.content-slider-bottom-nav': {
       left: '20px',
       right: '20px',
-      bottom: 'auto',
-      top: '384px',
+      bottom: '20px',
     },
     '.slide-mask': {
       display: 'none',
@@ -114,12 +117,34 @@ export const StyledCarouselSliderMobile = styled('div', {
     borderRadius: '0',
     padding: '16px 24px',
   },
-  '.content-slider-container': {
-    height: 'auto',
-  },
   '&.content-slider-mobile-mode .content-slider-bottom-nav': {
-    top: '260px',
-    zIndex: '2',
+    position: 'relative',
+    zIndex: 2,
+    inset: 'unset',
+    bottom: '30px',
+    height: 0,
+    width: '100%',
+    padding: '0 20px',
+    boxSizing: 'border-box',
+  },
+  '&.content-slider-mobile-mode > .slide-body': {
+    display: 'flex',
+    flexDirection: 'column',
+    background: '$cdgBlue100',
+    padding: '24px 16px',
+    overflow: 'hidden',
+    gap: '8px',
+    position: 'static',
+    inset: 'unset',
+    '.content-slider-title': {
+      fontSize: '24px',
+      lineHeight: '30px',
+      margin: '0',
+    },
+    '.content-slider-description': {
+      fontSize: '14px',
+      margin: '0',
+    },
   },
   '&:not(.floating-content) .content-slider': {
     '.slide-body': {
@@ -222,7 +247,6 @@ export const StyledCarouselSliderContentItem = styled('div', {
       inset: 0,
     },
     '.slide-background': {
-      height: '280px',
       flex: 'none',
     },
     '.carousel-mobile-inner-content': {
