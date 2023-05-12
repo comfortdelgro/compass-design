@@ -220,8 +220,8 @@
       "levels": [
         "Carousel v2"
       ],
-      "locStart": 197,
-      "locEnd": 234,
+      "locStart": 201,
+      "locEnd": 238,
       "filePath": "src/carousel-v2/carouselV2.stories.tsx",
       "meta": {}
     },
@@ -230,8 +230,8 @@
       "levels": [
         "Carousel v2"
       ],
-      "locStart": 167,
-      "locEnd": 195,
+      "locStart": 171,
+      "locEnd": 199,
       "filePath": "src/carousel-v2/carouselV2.stories.tsx",
       "meta": {}
     },
@@ -241,7 +241,7 @@
         "Carousel v2"
       ],
       "locStart": 94,
-      "locEnd": 165,
+      "locEnd": 169,
       "filePath": "src/carousel-v2/carouselV2.stories.tsx",
       "meta": {}
     },
@@ -420,8 +420,8 @@
       "levels": [
         "Dropdown"
       ],
-      "locStart": 258,
-      "locEnd": 431,
+      "locStart": 260,
+      "locEnd": 435,
       "filePath": "src/dropdown/dropdown.stories.tsx",
       "meta": {}
     },
@@ -441,7 +441,7 @@
         "Dropdown"
       ],
       "locStart": 35,
-      "locEnd": 256,
+      "locEnd": 258,
       "filePath": "src/dropdown/dropdown.stories.tsx",
       "meta": {}
     },
@@ -591,7 +591,7 @@
         "Multiple dropdown"
       ],
       "locStart": 7,
-      "locEnd": 165,
+      "locEnd": 167,
       "filePath": "src/multiple-dropdown/multiple-dropdown.stories.tsx",
       "meta": {}
     },
@@ -981,7 +981,7 @@
         "Tag box v2"
       ],
       "locStart": 5,
-      "locEnd": 48,
+      "locEnd": 49,
       "filePath": "src/tag-box-v2/tag-box-v2.stories.tsx",
       "meta": {}
     },
@@ -1201,7 +1201,7 @@
         "Upload"
       ],
       "locStart": 26,
-      "locEnd": 62,
+      "locEnd": 70,
       "filePath": "src/upload/upload.stories.tsx",
       "meta": {}
     },
@@ -1221,7 +1221,7 @@
         "Wizard"
       ],
       "locStart": 5,
-      "locEnd": 9,
+      "locEnd": 128,
       "filePath": "src/wizard/wizard.stories.tsx",
       "meta": {}
     }
