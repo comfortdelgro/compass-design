@@ -160,7 +160,11 @@ export const ImageOnlyDemo = () => {
 
   return (
     <div className='content-slider-sample'>
-      <CarouselSlider onSwitchSlide={handleSwitchSlide}>
+      <CarouselSlider
+        onSwitchSlide={handleSwitchSlide}
+        className='floating-slide'
+        style={{height: '512px'}}
+      >
         {imageUrls.map((imageUrl: string, index: number) => (
           <CarouselSlider.ImageSlide
             key={index}
