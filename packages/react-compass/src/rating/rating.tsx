@@ -12,7 +12,7 @@ export interface RatingProps extends StyledComponentProps {
   onChange?: (point: number | null) => void
 }
 const Rating = React.forwardRef<HTMLDivElement, RatingProps>((props, ref) => {
-  const {useIcons = false, onChange, css} = props
+  const {useIcons = false, onChange} = props
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
   const handleRatingBtnPress = (index: number) => () => {
     if (index === activeIndex) {
