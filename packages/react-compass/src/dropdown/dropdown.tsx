@@ -358,6 +358,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
             ref={buttonRef}
             disabled={isDisabled}
             onClick={handleClickIcon}
+            type='button'
           >
             {icon}
           </button>
