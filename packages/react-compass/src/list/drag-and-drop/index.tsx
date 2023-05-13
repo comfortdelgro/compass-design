@@ -1,20 +1,27 @@
-import {Item} from '@react-stately/collections'
-import React, {Children, useState} from 'react'
+import React, {useState} from 'react'
 import {StyledComponentProps} from '../../utils/stitches.types'
-import DragAndDropListItem from './dnd-list-item'
+import {useDOMRef} from '../../utils/use-dom-ref'
 import {StyledDragAndDrop} from './index.styles'
+import DragAndDropListItem from './item'
+import DragAndDropListOutletItem from './item/outlet'
+import {pickChilds} from './utils'
 
 export interface DragAndDropListProps extends StyledComponentProps {
   children: React.ReactNode
+  onReorderByKeys?: (keys: React.Key[]) => void
 }
-
-const DragAndDropList = ({children}: DragAndDropListProps) => {
-  const ref = React.useRef(null)
+const DragAndDropList = React.forwardRef<
+  HTMLUListElement,
+  DragAndDropListProps
+>((props, ref) => {
+  const {css = {}, children, onReorderByKeys} = props
+  const dndRef = useDOMRef<HTMLUListElement>(ref)
   const [startPosition, setStartPosition] = useState<number>(-1)
   const [dragOverPosition, setDragOverPosition] = useState<number>(-1)
 
-  const [listItems, setListItems] = useState<React.ReactChild[]>(
-    Children.toArray(children) as React.ReactChild[],
+  const collection = React.useMemo(
+    () => pickChilds(children, DragAndDropListItem),
+    [children],
   )
 
   const dragStart = (position: number) => {
@@ -26,24 +33,26 @@ const DragAndDropList = ({children}: DragAndDropListProps) => {
   }
 
   const drop = () => {
-    const copyListItems = [...listItems]
-    const dragItemContent = copyListItems[startPosition] as React.ReactChild
-    copyListItems.splice(startPosition, 1)
-    copyListItems.splice(dragOverPosition, 0, dragItemContent)
-    setStartPosition(-1)
-    setDragOverPosition(-1)
-    setListItems(copyListItems)
+    const copyListItems = [...collection]
+    const dragItemContent = copyListItems[startPosition]
+    if (dragItemContent) {
+      copyListItems.splice(startPosition, 1)
+      copyListItems.splice(dragOverPosition, 0, dragItemContent)
+      setStartPosition(-1)
+      setDragOverPosition(-1)
+      onReorderByKeys?.(copyListItems.map((item) => item.key ?? ''))
+    }
   }
 
   return (
-    <StyledDragAndDrop ref={ref}>
-      {listItems.map((child, index) => {
+    <StyledDragAndDrop ref={dndRef} css={css}>
+      {collection.map((child, index) => {
         return (
           <>
             {dragOverPosition === index && startPosition > index && (
               <li className='dnd-list-drop-target'></li>
             )}
-            <DragAndDropListItem
+            <DragAndDropListOutletItem
               item={child}
               onDragStart={() => dragStart(index)}
               onDragEnter={() => dragEnter(index)}
@@ -57,9 +66,8 @@ const DragAndDropList = ({children}: DragAndDropListProps) => {
       })}
     </StyledDragAndDrop>
   )
-}
-DragAndDropList.Item = Item
+})
 
 export default DragAndDropList as typeof DragAndDropList & {
-  Item: typeof Item
+  Item: typeof DragAndDropListItem
 }

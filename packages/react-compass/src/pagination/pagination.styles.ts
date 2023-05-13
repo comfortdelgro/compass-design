@@ -22,6 +22,12 @@ export const StyledPaginationItem = styled('button', {
     background: '$cdgBlue10',
   },
 
+  svg: {
+    height: '1em',
+    overflow: 'visible',
+    verticalAlign: '-0.125em',
+  },
+
   variants: {
     active: {
       true: {

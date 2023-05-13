@@ -62,6 +62,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     onLoadMore = () => {
       //Load more
     },
+    ...delegated
   } = props
   // ====================================== STATE ======================================
   const [search, setSearch] = React.useState('')
@@ -75,6 +76,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   )
 
   // ====================================== REF ======================================
+  const firstBlur = React.useRef(true)
   const popoverRef = React.useRef<HTMLDivElement>(null)
   const listBoxRef = React.useRef<HTMLUListElement>(null)
   // Select ref
@@ -172,6 +174,14 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
 
   React.useEffect(() => {
     props.onOpenChange?.(open)
+    if (type === 'select') {
+      if (open) {
+        props.onFocus?.()
+        firstBlur.current = false
+      } else if (!firstBlur.current) {
+        props.onBlur?.()
+      }
+    }
   }, [open])
 
   React.useEffect(() => {
@@ -254,9 +264,22 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     inputRef.current?.focus()
     buttonRef.current?.click()
   }
+
+  const handleClickIcon = () => {
+    setOpen(true)
+    inputRef.current?.focus()
+  }
+
+  const hanleInputFocus = () => {
+    props.onFocus?.()
+  }
+
+  const handleInputBlur = () => {
+    props.onBlur?.()
+  }
   // ====================================== RENDER ======================================
   return (
-    <StyledDropdownWrapper css={css}>
+    <StyledDropdownWrapper css={css} {...delegated}>
       {props.label && (
         <label onClick={labelClick}>
           {props.label}
@@ -268,11 +291,13 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           isEmpty={!selectedItem}
           isErrored={!!isErrored}
           isDisabled={isDisabled}
+          isOpened={open}
         >
           <button
+            type='button'
             ref={selectRef as React.RefObject<HTMLButtonElement>}
             disabled={isDisabled}
-            onClick={() => setOpen(true)}
+            onClick={handleClickIcon}
           >
             <span>
               {selectedItem
@@ -292,15 +317,19 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           isDisabled={isDisabled}
         >
           <input
-            placeholder={placeholder}
             ref={inputRef}
             value={search}
+            disabled={isDisabled}
+            placeholder={placeholder}
             onChange={onSearch}
+            onBlur={handleInputBlur}
+            onFocus={hanleInputFocus}
           />
           <button
+            type='button'
             ref={buttonRef}
             disabled={isDisabled}
-            onClick={() => setOpen(true)}
+            onClick={handleClickIcon}
           >
             {icon}
           </button>
@@ -318,15 +347,19 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
             </StyledFlagIcon>
           )}
           <input
-            placeholder={placeholder}
             ref={inputRef}
             value={search}
+            disabled={isDisabled}
+            placeholder={placeholder}
             onChange={onSearch}
+            onBlur={handleInputBlur}
+            onFocus={hanleInputFocus}
           />
           <button
             ref={buttonRef}
             disabled={isDisabled}
-            onClick={() => setOpen(true)}
+            onClick={handleClickIcon}
+            type='button'
           >
             {icon}
           </button>

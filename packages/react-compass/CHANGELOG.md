@@ -1,36 +1,4 @@
-## 0.33.10
-
-## 1.0.0-beta.0.0
-
-### Major Changes
-
-- 9375c3d8: Remove react-aria from all components.
-
-### Patch Changes
-
-## 0.33.9
-
-### Patch Changes
-
-## 0.33.8
-
-### Patch Changes
-
-## 0.33.7
-
-### Patch Changes
-
-## 0.33.6
-
-### Patch Changes
-
-## 0.33.5
-
-### Patch Changes
-
-## 0.33.4
-
-### Patch Changes
+# @comfortdelgro/react-compass
 
 ## 0.33.3
 
