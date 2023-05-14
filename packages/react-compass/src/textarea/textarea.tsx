@@ -84,7 +84,11 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       css = {},
       // ComponentProps
       label,
+<<<<<<< HEAD
+      id,
+=======
       id = `cdg-element-${Math.random().toString(36).substring(2)}`,
+>>>>>>> origin
       name,
       value,
       cols,

@@ -28,6 +28,7 @@ const Radio: React.FC<RadioProps> = (props) => {
     isDisabled = false,
     variant = 'simple',
     css = {},
+    ...delegated
   } = props
   // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   const context = React.useContext(RadioContext)
@@ -53,6 +54,7 @@ const Radio: React.FC<RadioProps> = (props) => {
       variant={variant}
       onClick={onClick}
       css={css}
+      {...delegated}
     >
       <input style={{display: 'none'}} ref={ref} />
       <div className='radio-wrapper'>

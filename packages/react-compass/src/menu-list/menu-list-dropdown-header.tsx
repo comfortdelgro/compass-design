@@ -1,10 +1,9 @@
-import React,{ SyntheticEvent,useContext } from 'react'
-import Icon,{ IconProp } from '../icon'
-import { StyledComponentProps } from '../utils/stitches.types'
-import { useDOMRef } from '../utils/use-dom-ref'
-import { MenuListContext } from './menu-list-context'
-import { StyledMenuListDropdownHeader } from './menu-list-dropdown-header.styles'
-
+import React, {SyntheticEvent, useContext} from 'react'
+import Icon, {IconProp} from '../icon'
+import {StyledComponentProps} from '../utils/stitches.types'
+import {useDOMRef} from '../utils/use-dom-ref'
+import {MenuListContext} from './menu-list-context'
+import {StyledMenuListDropdownHeader} from './menu-list-dropdown-header.styles'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode

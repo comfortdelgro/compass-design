@@ -1,4 +1,11 @@
+<<<<<<< HEAD
+import {
+  faCircleUser,
+  faUser as faRegularUser,
+} from '@fortawesome/free-regular-svg-icons'
+=======
 import {faUser as faRegularUser} from '@fortawesome/free-regular-svg-icons'
+>>>>>>> origin
 import React from 'react'
 import {Row} from '../utils/components'
 import Avatar from './index'

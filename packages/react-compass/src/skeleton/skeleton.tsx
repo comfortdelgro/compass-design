@@ -26,6 +26,7 @@ const Skeleton = React.forwardRef<HTMLElement, SkeletonProps>((props, ref) => {
     component = 'span',
     animation = 'pulse',
     color = '#0000001c',
+    ...delegated
   } = props
 
   const skeletonRef = useDOMRef<HTMLElement>(ref)
@@ -128,6 +129,7 @@ const Skeleton = React.forwardRef<HTMLElement, SkeletonProps>((props, ref) => {
       hasWidth={!!width}
       hasHeight={!!height}
       hasChildren={!!children}
+      {...delegated}
     >
       {children}
     </StyledSkeleton>

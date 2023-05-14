@@ -4,21 +4,24 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import get from 'lodash/get'
 import React, {
   forwardRef,
-  Fragment,
   useImperativeHandle,
   useRef,
   useState,
   type AriaAttributes,
-  type CSSProperties,
   type DataHTMLAttributes,
 } from 'react'
 import {theme} from '../theme'
 import {
+  StyledButtonContainer,
   StyledContainer,
   StyledLabel,
   StyledNewTagButton,
   StyledNewTagInput,
   StyledTagBoxV2,
+  StyledTagCloseIcon,
+  StyledTagContainer,
+  StyledTagContent,
+  StyledTagInput,
   TagBoxV2VariantProps,
 } from './tag-box-v2.styles'
 import {CustomTagBoxRef, Tag, TagBoxV2Props} from './types'
@@ -32,15 +35,15 @@ const TagBoxV2 = forwardRef<
 >(
   (
     {
-      required,
+      isRequired,
       tagBoxLabel,
       tags,
       onAddTag,
       onEditTag,
       onRemoveTag,
       isDisabled,
-      editable,
-      isErrored,
+      isEditable,
+      isErrored = false,
 
       customValidationHandler,
       addTagPlaceholder,
@@ -51,6 +54,9 @@ const TagBoxV2 = forwardRef<
   ) => {
     const [isUsingNewTagInput, setIsUsingNewTagInput] = useState(false)
     const [newTagValue, setNewTagValue] = useState('')
+    const [currentlyEditingTag, setCurrentlyEditingTag] = useState<Tag | null>(
+      null,
+    )
 
     const inputRef = useRef<HTMLInputElement | null>(null)
     const tagBoxRef = useRef<HTMLDivElement | null>(null)
@@ -66,10 +72,6 @@ const TagBoxV2 = forwardRef<
       }
     })
 
-    const [currentlyEditingTag, setCurrentlyEditingTag] = useState<Tag | null>(
-      null,
-    )
-
     const checkIfNotEmptyOrWhitespace = (tagValue: string) => {
       return !!tagValue && tagValue.trim() !== ''
     }
@@ -80,67 +82,6 @@ const TagBoxV2 = forwardRef<
       }
       return builtinValidationResult
     }
-
-    const stylesForTagContainer: CSSProperties = {
-      display: 'flex',
-      alignItems: 'center',
-      fontWeight: 'bold',
-      borderRadius: '0.125em',
-      padding: '0.5rem 1rem',
-      margin: '0.5em',
-      backgroundColor: theme.colors.gray30.value,
-    }
-
-    const stylesForTagInput: CSSProperties =
-      (tags ?? []).length === 0
-        ? {
-            color: '#000000',
-            background: 'transparent',
-            border: 'none',
-            outline: 'none',
-            fontWeight: 'bold',
-            padding: 0,
-            margin: 0,
-          }
-        : {
-            color: '#000000',
-            background: 'transparent',
-            border: 'none',
-            outline: 'none',
-            fontWeight: 'bold',
-          }
-    const stylesForTagContent: CSSProperties = {
-      color: '#000000',
-      fontWeight: 'bold',
-    }
-    const stylesForTagCloseButton: CSSProperties = {
-      color: '#000000',
-      cursor: 'pointer',
-      fontWeight: 'bold',
-      padding: '0.125rem 0',
-      marginLeft: '1em',
-    }
-    const stylesForErrorContainer = {
-      borderWidth: '2px',
-      borderStyle: 'solid',
-      borderColor: theme.colors.danger.value,
-    }
-
-    const stylesForNewTagInput: CSSProperties =
-      (tags ?? []).length === 0
-        ? {
-            fontSize: '0.875rem',
-            outline: 'none',
-            resize: 'none',
-            margin: 0,
-            padding: 0,
-          }
-        : {
-            fontSize: '0.875rem',
-            outline: 'none',
-            resize: 'none',
-            margin: '0.5rem 0.75rem',
-          }
 
     const handleClickContainer = () => {
       inputRef.current?.focus()
@@ -211,10 +152,10 @@ const TagBoxV2 = forwardRef<
     }
 
     return (
-      <StyledTagBoxV2 {...props}>
+      <StyledTagBoxV2 {...props} isErrored={isErrored}>
         <StyledLabel aria-label={tagBoxLabel} onClick={handleClickContainer}>
           {tagBoxLabel}{' '}
-          {required && (
+          {isRequired && (
             <span style={{color: theme.colors.danger.value}}>*</span>
           )}
         </StyledLabel>
@@ -277,7 +218,7 @@ const TagBoxV2 = forwardRef<
 
             const handleClickOrDblClickTag = (event: React.MouseEvent) => {
               event.stopPropagation()
-              !isDisabled && editable && setCurrentlyEditingTag(tag)
+              !isDisabled && isEditable && setCurrentlyEditingTag(tag)
             }
 
             const handleClickRemoveIcon = (event: React.MouseEvent) => {
@@ -286,21 +227,18 @@ const TagBoxV2 = forwardRef<
             }
 
             return (
-              <div
+              <StyledTagContainer
                 key={tag.id}
-                style={stylesForTagContainer}
                 onClick={handleClickOrDblClickTag}
                 onDoubleClick={handleClickOrDblClickTag}
               >
-                <div
-                  style={stylesForTagContent}
-                  title={editable ? 'Click to edit' : undefined}
+                <StyledTagContent
+                  title={isEditable ? 'Click to edit' : undefined}
                 >
                   {currentlyEditingTag && currentlyEditingTag.id === tag.id ? (
-                    <input
+                    <StyledTagInput
                       type='text'
                       autoFocus
-                      style={stylesForTagInput}
                       size={
                         // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
                         (get(
@@ -317,19 +255,18 @@ const TagBoxV2 = forwardRef<
                   ) : (
                     tag.value
                   )}
-                </div>
-                {!isDisabled && (
-                  <FontAwesomeIcon
-                    style={stylesForTagCloseButton}
+                </StyledTagContent>
+                {!isDisabled && currentlyEditingTag == null && (
+                  <StyledTagCloseIcon
                     icon={faClose}
                     onClick={handleClickRemoveIcon}
                   />
                 )}
-              </div>
+              </StyledTagContainer>
             )
           })}
           {!isDisabled && (
-            <Fragment>
+            <StyledButtonContainer>
               {!isUsingNewTagInput && (
                 <StyledNewTagButton onClick={handleClickAddNewTag}>
                   <FontAwesomeIcon icon={faPlus} />
@@ -338,10 +275,9 @@ const TagBoxV2 = forwardRef<
               )}
               <StyledNewTagInput
                 type='text'
+                isEmpty={(tags ?? []).length === 0}
                 style={{
-                  ...stylesForNewTagInput,
                   display: isUsingNewTagInput ? 'inline-block' : 'none',
-                  maxWidth: '90%',
                 }}
                 placeholder={addTagPlaceholder}
                 ref={inputRef}
@@ -351,7 +287,7 @@ const TagBoxV2 = forwardRef<
                 onKeyDown={handleKeyDownNewTag}
                 onBlur={handleBlurNewTag}
               />
-            </Fragment>
+            </StyledButtonContainer>
           )}
         </StyledContainer>
       </StyledTagBoxV2>

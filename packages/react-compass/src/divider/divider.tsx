@@ -27,6 +27,7 @@ const Divider = React.forwardRef<HTMLElement, DividerProps>((props, ref) => {
     variant = 'fullWidth',
     orientation = 'horizontal',
     component = children ? 'div' : 'hr',
+    ...delegated
   } = props
 
   const StyledDividerRoot = styled(component, StyledDividerRootConfig)
@@ -41,6 +42,7 @@ const Divider = React.forwardRef<HTMLElement, DividerProps>((props, ref) => {
       flexItem={flexItem}
       textAlign={textAlign}
       hasChildren={!!children}
+      {...delegated}
     >
       {children && (
         <DividerWrapper orientation={orientation}>{children}</DividerWrapper>

@@ -31,6 +31,7 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
       value,
       onChange,
       css = {},
+      ...delegated
     } = props
 
     const groupRef = useDOMRef<HTMLDivElement>(ref)
@@ -48,7 +49,12 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
       [onChange],
     )
     return (
-      <StyledRadioGroup ref={groupRef} orientation={orientation} css={css}>
+      <StyledRadioGroup
+        ref={groupRef}
+        orientation={orientation}
+        css={css}
+        {...delegated}
+      >
         <RadioContext.Provider value={{selectedValue, setSelectedValue}}>
           {children}
         </RadioContext.Provider>

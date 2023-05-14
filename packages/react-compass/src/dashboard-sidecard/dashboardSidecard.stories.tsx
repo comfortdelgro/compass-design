@@ -1,4 +1,8 @@
 import React from 'react'
+<<<<<<< HEAD
+import {Group} from '../avatar/avatar.stories'
+=======
+>>>>>>> origin
 import Button from '../button'
 import SearchField from '../searchfield'
 import {Column} from '../utils/components'

@@ -62,6 +62,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     onLoadMore = () => {
       //Load more
     },
+    ...delegated
   } = props
   // ====================================== STATE ======================================
   const [search, setSearch] = React.useState('')
@@ -278,7 +279,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   }
   // ====================================== RENDER ======================================
   return (
-    <StyledDropdownWrapper css={css}>
+    <StyledDropdownWrapper css={css} {...delegated}>
       {props.label && (
         <label onClick={labelClick}>
           {props.label}
@@ -293,6 +294,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           isOpened={open}
         >
           <button
+            type='button'
             ref={selectRef as React.RefObject<HTMLButtonElement>}
             disabled={isDisabled}
             onClick={handleClickIcon}
@@ -324,6 +326,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
             onFocus={hanleInputFocus}
           />
           <button
+            type='button'
             ref={buttonRef}
             disabled={isDisabled}
             onClick={handleClickIcon}
@@ -356,6 +359,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
             ref={buttonRef}
             disabled={isDisabled}
             onClick={handleClickIcon}
+            type='button'
           >
             {icon}
           </button>

@@ -1,5 +1,11 @@
+<<<<<<< HEAD
+import React, {useState} from 'react'
+import {Column, Row} from '../utils/components'
+import Slider from './index'
+=======
 import React from 'react'
 import Slider from './slider'
+>>>>>>> origin
 
 export const Default: React.FC = () => {
   return (

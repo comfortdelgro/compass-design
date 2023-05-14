@@ -1,5 +1,9 @@
+<<<<<<< HEAD
+import {faThumbsUp, faVirus} from '@fortawesome/free-solid-svg-icons'
+=======
 import {faThumbsUp} from '@fortawesome/free-regular-svg-icons'
 import {faVirus} from '@fortawesome/free-solid-svg-icons'
+>>>>>>> origin
 import React from 'react'
 import {Column, Row} from '../utils/components'
 import Badge from './index'

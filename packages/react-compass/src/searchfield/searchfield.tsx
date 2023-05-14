@@ -67,14 +67,21 @@ const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
     const {
       // StyledComponentProps
       css = {},
+<<<<<<< HEAD
+      id,
+=======
       id = `cdg-element-${Math.random().toString(36).substring(2)}`,
+>>>>>>> origin
       value = '',
       isErrored = false,
       isReadOnly = false,
       isRequired = false,
       isDisabled = false,
       autoFocus,
+<<<<<<< HEAD
+=======
       placeholder,
+>>>>>>> origin
       onChangeEvent,
       onChange,
     } = props
@@ -140,7 +147,10 @@ const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
           required={isRequired}
           disabled={isDisabled}
           type='text'
+<<<<<<< HEAD
+=======
           placeholder={placeholder}
+>>>>>>> origin
           value={textValue}
           onCut={props.onCut}
           onCopy={props.onCopy}

@@ -31,6 +31,9 @@ interface Props extends StyledComponentProps {
   isEditable?: boolean
   content?: Content
 }
+interface storageCount {
+  characters: () => number
+}
 
 export type RichTextEditorProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
@@ -85,6 +88,15 @@ const RichTextEditor = React.forwardRef<HTMLDivElement, RichTextEditorProps>(
       },
     })
     editor?.setEditable(isEditable)
+
+    const CharacterCountFunc = () => {
+      if (characterCount) {
+        const StorageCount = editor?.storage['characterCount'] as storageCount
+        return StorageCount?.characters() || 0
+      }
+      return 0
+    }
+
     return (
       <RichTextEditorProvider
         value={{
@@ -98,7 +110,7 @@ const RichTextEditor = React.forwardRef<HTMLDivElement, RichTextEditorProps>(
           </StyledEditorContent>
           {characterCount && (
             <div className='character-count'>
-              {editor?.storage['characterCount']?.characters()}/{characterCount}
+              {CharacterCountFunc()}/{characterCount}
             </div>
           )}
         </StyledRichTextEditor>

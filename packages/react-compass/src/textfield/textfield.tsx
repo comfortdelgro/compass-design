@@ -30,8 +30,21 @@ interface Props extends StyledComponentProps {
   minLength?: number
   name?: string
   pattern?: string
+<<<<<<< HEAD
+  type?: 'text' | 'search' | 'url' | 'tel' | 'email' | 'password'
+  inputMode?:
+    | 'none'
+    | 'text'
+    | 'tel'
+    | 'url'
+    | 'email'
+    | 'numeric'
+    | 'decimal'
+    | 'search'
+=======
   type?: string
   inputMode?: string
+>>>>>>> origin
   excludeFromTabOrder?: boolean
   errorMessage?: string
   prefix?: React.ReactNode
@@ -49,10 +62,17 @@ interface Props extends StyledComponentProps {
   onSelect?: React.ReactEventHandler<HTMLInputElement>
   onBeforeInput?: React.FormEventHandler<HTMLInputElement>
   onInput?: React.FormEventHandler<HTMLInputElement>
+<<<<<<< HEAD
+  onFocus?: (e: React.FocusEvent) => void
+  onBlur?: (e: React.FocusEvent) => void
+  onKeyDown?: (e: React.KeyboardEvent) => void
+  onKeyUp?: (e: React.KeyboardEvent) => void
+=======
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
   onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void
+>>>>>>> origin
 
   autoFocus?: boolean
   'aria-activedescendant'?: string
@@ -85,7 +105,11 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       css = {},
       // ComponentProps
       label,
+<<<<<<< HEAD
+      id,
+=======
       id = `cdg-element-${Math.random().toString(36).substring(2)}`,
+>>>>>>> origin
       name,
       value,
       type,
@@ -97,14 +121,21 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       leftIcon,
       rightIcon,
       prefix,
+<<<<<<< HEAD
+      password,
+=======
       password = false,
+>>>>>>> origin
       maxLength,
       minLength,
       autoCapitalize,
       autoFocus,
       onChangeEvent,
       onChange,
+<<<<<<< HEAD
+=======
       placeholder,
+>>>>>>> origin
       // AriaTextFieldProps
       isDisabled,
       ...ariaSafeProps
@@ -115,6 +146,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       keyof Props
     >
 
+    const inputId = id
     const textfieldRef = useDOMRef<HTMLInputElement>(ref)
     const [isPassWordVisible, setIsPassWordVisible] = React.useState(false)
 
@@ -136,7 +168,11 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
     return (
       <StyledTextFieldWrapper css={css} {...htmlProps}>
         {label && (
+<<<<<<< HEAD
+          <StyledTextFieldLabel htmlFor={inputId} isDisabled={!!isDisabled}>
+=======
           <StyledTextFieldLabel htmlFor={id} isDisabled={!!isDisabled}>
+>>>>>>> origin
             {label}
             {isRequired && <span>*</span>}
           </StyledTextFieldLabel>
@@ -147,8 +183,12 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
           <StyledTextField
             css={css}
             ref={textfieldRef}
+<<<<<<< HEAD
+            id={inputId}
+=======
             id={id}
             placeholder={placeholder}
+>>>>>>> origin
             autoFocus={autoFocus}
             autoCapitalize={autoCapitalize}
             readOnly={isReadOnly}
@@ -158,7 +198,11 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
             minLength={minLength}
             name={name}
             value={value}
+<<<<<<< HEAD
+            type={determineInputType() || type}
+=======
             type={determineInputType ?? type}
+>>>>>>> origin
             onCut={props.onCut}
             onCopy={props.onCopy}
             onBlur={props.onBlur}
@@ -193,7 +237,11 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
               <Icon icon={faEyeSlash} />
             </div>
           ) : null}
+<<<<<<< HEAD
+          {determineInputType() == type ? (
+=======
           {password && determineInputType == type ? (
+>>>>>>> origin
             <div
               className='password-icon'
               style={{cursor: 'pointer'}}

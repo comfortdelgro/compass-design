@@ -344,6 +344,41 @@ Using props `disabledScroll` and set it to `false` to enable scroll.
 
 ### Props:
 
+<<<<<<< HEAD
+| Name            | Type                           | Default | Description                                                                                                                                               |
+| :-------------- | :----------------------------- | :------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| formatOptions   | `FormatOptions`                | —       | Formatting options for the value displayed in the number field. This also affects what characters are allowed to be typed by the user.                    |
+| isDisabled      | `boolean`                      | `false` | Whether the input is disabled.                                                                                                                            |
+| isErrored       | `boolean`                      | `false` | Whether the input is isErrored.                                                                                                                           |
+| isReadOnly      | `boolean`                      | `false` | Whether the input can be selected but not changed by the user.                                                                                            |
+| isRequired      | `boolean`                      | `false` | Whether user input is required on the input before form submission. Often paired with the necessityIndicator prop to add a visual indicator to the input. |
+| validationState | `ValidationState`              | —       | Whether the input should display its "valid" or "invalid" visual styling.                                                                                 |
+| autoFocus       | `boolean`                      | —       | Whether the element should receive focus on render.                                                                                                       |
+| onFocus         | `(e: FocusEvent) => void`      | —       | Handler that is called when the element receives focus.                                                                                                   |
+| onBlur          | `(e: FocusEvent) => void`      | —       | Handler that is called when the element loses focus.                                                                                                      |
+| onFocusChange   | `(isFocused: boolean) => void` | —       | Handler that is called when the element's focus status changes.                                                                                           |
+| onKeyDown       | `(e: FocusEvent) => void`      | —       | Handler that is called when a key is pressed.                                                                                                             |
+| onKeyUp         | `(e: FocusEvent) => void`      | —       | Handler that is called when a key is released.                                                                                                            |
+| placeholder     | `string`                       | —       | Temporary text that occupies the text input when it is empty.                                                                                             |
+| helperText      | `string`                       | —       | The helper text below.                                                                                                                                    |
+| value           | `number`                       | —       | The current value (controlled).                                                                                                                           |
+| defaultValue    | `number`                       | —       | The default value (uncontrolled).                                                                                                                         |
+| onChange        | `(value: T) => void`           | —       | Handler that is called when the value changes.                                                                                                            |
+| minValue        | `number`                       | —       | The smallest value allowed for the input.                                                                                                                 |
+| maxValue        | `number`                       | —       | The largest value allowed for the input.                                                                                                                  |
+| step            | `number`                       | —       | The amount that the input value changes with each increment or decrement "tick".                                                                          |
+| label           | `ReactNode`                    | —       | The content to display as the label.                                                                                                                      |
+| isErrored       | `ReactNode`                    | —       | The amount that the input value changes with each increment or decrement "tick".                                                                          |
+| css             | `CSS`                          | —       | The system prop that allows defining system overrides as well as additional CSS styles.                                                                   |
+
+## FormatOptions:
+
+| Name            | Type     | Default | Description                                                                       |
+| :-------------- | :------- | :------ | :-------------------------------------------------------------------------------- |
+| prefix          | `string` | —       | First character come with value, use for display type of the value                |
+| suffix          | `string` | `false` | Last character come with value, use for display type of the value                 |
+| toFixed         | `number` | `false` | Number of digits after the decimal point. Must be in the range 0 - 20, inclusive. |
+=======
 | Name            | Type                                      | Default | Description                                                                                                                                               |
 | :-------------- | :---------------------------------------- | :------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | step            | `number`                                  | —       | The amount that the input value changes with each increment or decrement "tick".                                                                          |
@@ -370,6 +405,7 @@ Using props `disabledScroll` and set it to `false` to enable scroll.
 | onFocusChange   | `(isFocused: boolean) => void`            | —       | Handler that is called when the element's focus status changes.                                                                                           |
 | onUpdate        | `(textVal: T, numberVal: number) => void` | —       | Handler that is called when the value changes, returned text value and number value                                                                       |
 | css             | `CSS`                                     | —       | The system prop that allows defining system overrides as well as additional CSS styles.                                                                   |
+>>>>>>> origin
 
 ---
 

@@ -1,7 +1,4 @@
-import {
-  Dropdown,
-  Icon,
-} from '@comfortdelgro/react-compass'
+import {Dropdown, Icon} from '@comfortdelgro/react-compass'
 import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
 

@@ -1,9 +1,13 @@
+<<<<<<< HEAD
+import React, {useState} from 'react'
+=======
 import {
   faAddressBook,
   faCaretSquareDown,
 } from '@fortawesome/free-regular-svg-icons'
 import React, {useState} from 'react'
 import Icon from '../icon'
+>>>>>>> origin
 import {Column} from '../utils/components'
 import Accordion from './index'
 
