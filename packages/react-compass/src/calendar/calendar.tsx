@@ -7,12 +7,13 @@ import {useCalendarState} from '@react-stately/calendar'
 import {DatePickerState} from '@react-stately/datepicker'
 import type {SpectrumCalendarProps} from '@react-types/calendar'
 import React from 'react'
-import Button from '../button'
+import Button, {ButtonProps} from '../button'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import CalendarGrid from './calendar-grid'
 import CalendarHeader from './calendar-header'
 import {StyledCalendar} from './calendar.style'
+
 interface Props extends StyledComponentProps, SpectrumCalendarProps<DateValue> {
   children?: React.ReactNode
   state?: DatePickerState
@@ -59,8 +60,8 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
       <CalendarHeader
         state={state}
         calendarProps={calendarProps}
-        prevButtonProps={prevButtonProps}
-        nextButtonProps={nextButtonProps}
+        prevButtonProps={prevButtonProps as unknown as ButtonProps}
+        nextButtonProps={nextButtonProps as unknown as ButtonProps}
       />
       <CalendarGrid state={state} maxValue={maxValue} />
       {hasFooter && (

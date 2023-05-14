@@ -14,6 +14,11 @@ import {
 
 The Sidenav displays horizontally information and navigation relating to the current screen.
 
+<Callout>
+  Check out our [ladle](/ladle?story=sidebar--default) for more info on this
+  component.
+</Callout>
+
 ---
 
 ### Import
@@ -112,7 +117,8 @@ You can expand the Sidenav without hovering
 
 ### Sidenav Item
 
-Sidenav Item accepts two children. If Sidenav is not in expand mode, only the first child will be rendered
+Sidenav Item accepts three children (Order matters). The first child is for Icon, the second child is the title, the third child is for menu.
+If Sidenav is not in expand mode, only the first child will be rendered
 
 <section className={styles.componentShowcaseContainer}>
   <Sidenav css={{height: '800px'}}>
@@ -128,6 +134,52 @@ Sidenav Item accepts two children. If Sidenav is not in expand mode, only the fi
   <Sidenav.Item isActive>
     <Icon icon={faHelicopter}></Icon>
     <span>Menu</span>
+  </Sidenav.Item>
+</Sidenav>
+```
+
+### Sidenav Menu
+
+Sidenav Menu serves as the popover menu for [Sidenav Item](#sidenav-item). It must be placed as the third child of the [Sidenav Item](#sidenav-item)
+
+<section className={styles.componentShowcaseContainer}>
+  <Sidenav css={{height: '800px'}}>
+    <Sidenav.Item isActive>
+      <Icon icon={faHelicopter}></Icon>
+      <span>Menu</span>
+      <Sidenav.Menu>
+        <Sidenav.Item>
+          <Icon icon={faHelicopter}></Icon>
+          <span>Menu</span>
+          <Sidenav.Menu>
+            <Sidenav.Item>
+              <Icon icon={faHelicopter}></Icon>
+              <span>Menu</span>
+            </Sidenav.Item>
+          </Sidenav.Menu>
+        </Sidenav.Item>
+      </Sidenav.Menu>
+    </Sidenav.Item>
+  </Sidenav>
+</section>
+
+```js {5-16}
+<Sidenav css={{height: '800px'}}>
+  <Sidenav.Item isActive>
+    <Icon icon={faHelicopter}></Icon>
+    <span>Menu</span>
+    <Sidenav.Menu>
+      <Sidenav.Item>
+        <Icon icon={faHelicopter}></Icon>
+        <span>Menu</span>
+        <Sidenav.Menu>
+          <Sidenav.Item>
+            <Icon icon={faHelicopter}></Icon>
+            <span>Menu</span>
+          </Sidenav.Item>
+        </Sidenav.Menu>
+      </Sidenav.Item>
+    </Sidenav.Menu>
   </Sidenav.Item>
 </Sidenav>
 ```
@@ -176,14 +228,30 @@ Sidenav divider provides a horizontal divider to Sidenav
 
 #### Sidenav Item
 
-| Name       | Type              | Default | Description                                    |
-| :--------- | :---------------- | :------ | :--------------------------------------------- |
-| children\* | `React.ReactNode` | —       | Accept only two children                       |
-| isActive   | `boolean`         | false   | Whether the item is currently activated or not |
-| css        | `CSS`             | —       |                                                |
+| Name       | Type              | Default | Description                                                                                                          |
+| :--------- | :---------------- | :------ | :------------------------------------------------------------------------------------------------------------------- |
+| children\* | `React.ReactNode` | —       | Accept only three children. First one should be Icon, second child should be title, the last one is for sidenav menu |
+| isActive   | `boolean`         | false   | Whether the item is currently activated or not                                                                       |
+| css        | `CSS`             | —       |                                                                                                                      |
+
+#### Sidenav Menu
+
+| Name         | Type                              | Default                   | Description                                           |
+| :----------- | :-------------------------------- | :------------------------ | :---------------------------------------------------- |
+| children     | `React.ReactNode`                 | —                         | Should be Sidenav Item                                |
+| isOpen       | `boolean`                         | false                     | Controlled opening state                              |
+| placement    | `Placement`                       | 'right-start'             | Popover placement                                     |
+| delay        | `{open?: number, close?: number}` | `{open: 150, close: 100}` | Delay time before popover appear or disappear         |
+| shouldFlip   | `boolean`                         | true                      | Whether popover should flip side when not enough room |
+| onOpenChange | `(isOpen: boolean) => void`       | —                         | Callback when popover change its opening state        |
 
 #### Sidenav Divider
 
 | Name | Type  | Default | Description |
 | :--- | :---- | :------ | :---------- |
 | css  | `CSS` | —       |             |
+
+<Callout>
+  Check out our [ladle](/ladle?story=sidebar--default) for more info on this
+  component.
+</Callout>

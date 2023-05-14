@@ -1,28 +1,34 @@
 import type {StoryDecorator} from '@ladle/react'
 import React from 'react'
-import {Column, Row} from '../utils/components'
+import {Column} from '../utils/components'
 import SearchField from './index'
 
 export const Variants: React.FC = () => (
   <Column>
-    <Row>
-      <SearchField
-        placeholder='Search'
-        onSubmit={(text) => console.log(text)}
-        value={'asfsf'}
-      />
-      <SearchField
-        placeholder='Search'
-        onSubmit={(text) => console.log(text)}
-        value={'asfsf'}
-        isErrored={true}
-      />
-      <SearchField
-        isDisabled
-        placeholder='Search'
-        onSubmit={(text) => console.log(text)}
-      />
-    </Row>
+    <h3>Basic</h3>
+    <SearchField
+      placeholder='Search'
+      onSubmit={(text) => console.log(text)}
+      value={'Initial value'}
+      css={{width: '10rem'}}
+    />
+
+    <h3>isErrored</h3>
+    <SearchField
+      placeholder='Search'
+      onSubmit={(text) => console.log(text)}
+      value={'Initial value'}
+      isErrored={true}
+      css={{width: '10rem'}}
+    />
+
+    <h3>isDisabled</h3>
+    <SearchField
+      isDisabled
+      placeholder='Search'
+      css={{width: '10rem'}}
+      onSubmit={(text) => console.log(text)}
+    />
   </Column>
 )
 

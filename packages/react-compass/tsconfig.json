@@ -8,6 +8,7 @@
     "exactOptionalPropertyTypes": true,
     "forceConsistentCasingInFileNames": true,
     "importsNotUsedAsValues": "preserve",
+    "ignoreDeprecations": "5.0",
     "jsx": "react",
     "lib": ["dom", "ES2021"],
     "module": "ESNext",

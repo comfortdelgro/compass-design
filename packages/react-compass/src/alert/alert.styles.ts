@@ -7,7 +7,7 @@ export const StyledAlert = styled('div', {
   padding: '$2 $4',
   display: 'flex',
   flexDirection: 'row',
-  alignItems: 'flex-start',
+  alignItems: 'center',
   fontFamily: '$sans',
   fontSize: '$body2',
   lineHeight: '$normal',
@@ -19,7 +19,7 @@ export const StyledAlert = styled('div', {
   '.alert-icon': {
     width: '$4',
     height: '$4',
-    marginTop: '3px',
+    //marginTop: '3px',
     marginRight: '$2',
   },
 

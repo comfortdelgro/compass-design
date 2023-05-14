@@ -26,7 +26,7 @@ export type AvatarProps = Props &
   AvatarVariantProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
-const Avatar = React.forwardRef<HTMLSpanElement, AvatarProps>((props, ref) => {
+const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
   const {
     // StyledComponentProps
     css = {},
@@ -41,7 +41,7 @@ const Avatar = React.forwardRef<HTMLSpanElement, AvatarProps>((props, ref) => {
   } = props
 
   const variantProps = {size} as AvatarVariantProps
-  const avatarRef = useDOMRef<HTMLSpanElement>(ref)
+  const avatarRef = useDOMRef<HTMLDivElement>(ref)
 
   return (
     <StyledAvatar css={css} ref={avatarRef} {...variantProps} {...delegates}>

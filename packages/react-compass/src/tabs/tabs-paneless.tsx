@@ -1,86 +1,32 @@
-import {AriaTabListProps, useTabList} from '@react-aria/tabs'
-import {Item as CollectionItem} from '@react-stately/collections'
-import {TabListProps, useTabListState} from '@react-stately/tabs'
 import React, {Key} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
-import {useDOMRef} from '../utils/use-dom-ref'
-import Tab from './tab'
-import {StyledTabs} from './tabs.styles'
-import {Icon, Variant} from './types'
-
+import TabItem from './item'
+import Tabs, {TabsProps} from './tabs'
 interface ItemProps {
   key: Key
   title: string
 }
 
-type TLProps = Omit<
-  TabListProps<ItemProps>,
-  'selectedKey' | 'onSelectionChange' | 'items' | 'children'
->
+type TProps = Omit<TabsProps, 'children'>
 
-interface Props extends TLProps, StyledComponentProps {
+interface Props extends TProps, StyledComponentProps {
   items: ItemProps[]
-  selectedKey: Key | null
-  onSelectionChange: (key: Key) => void
-  variant?: Variant
-  icon?: Icon
-  textColor?: string
-  indicatorColor?: string
 }
 
-export type TabsProps = Props
+export type TabsPanelessProps = Props
 
-const TabsPaneless = React.forwardRef<HTMLDivElement, TabsProps>(
+const TabsPaneless = React.forwardRef<HTMLDivElement, TabsPanelessProps>(
   (props, ref) => {
     return (
-      <Tabs ref={ref} {...props}>
+      <Tabs ref={ref} {...props} hidePanel>
         {[...props.items].map((item) => (
-          <CollectionItem key={item.key} title={item.title}>
+          <TabItem key={item.key} title={item.title}>
             {item.key}
-          </CollectionItem>
+          </TabItem>
         ))}
       </Tabs>
     )
   },
 )
-
-interface PreTabsProps<T = object>
-  extends TabListProps<T>,
-    AriaTabListProps<T>,
-    StyledComponentProps {
-  variant?: Variant
-  icon?: Icon
-  textColor?: string
-  indicatorColor?: string
-}
-
-const Tabs = React.forwardRef<HTMLDivElement, PreTabsProps>((props, ref) => {
-  const {textColor = '#0142AF', indicatorColor = '#0142AF', css = {}} = props
-  const tabRef = useDOMRef<HTMLDivElement>(ref)
-  const state = useTabListState(props)
-  const {tabListProps} = useTabList(props, state, tabRef)
-
-  return (
-    <StyledTabs
-      ref={tabRef}
-      {...tabListProps}
-      css={css}
-      orientation={props.orientation ?? 'horizontal'}
-      variant={props.variant ?? 'rounded'}
-    >
-      {[...state.collection].map((item) => (
-        <Tab
-          key={item.key}
-          item={item}
-          state={state}
-          icon={props.icon}
-          variant={props.variant}
-          textColor={textColor}
-          indicatorColor={indicatorColor}
-        />
-      ))}
-    </StyledTabs>
-  )
-})
 
 export default TabsPaneless

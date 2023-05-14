@@ -6,7 +6,11 @@ import {
   StyledHelperText,
   StyledQuantityToggle,
 } from './quantity-toggle.styles'
+import {AriaNumberFieldProps} from './utils/types'
+import useNumberField from './utils/useNumberField'
+import useNumberFieldState from './utils/useNumberFieldState'
 
+<<<<<<< HEAD
 type InputHTMLAttributesProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
   'onChange'
@@ -26,24 +30,30 @@ interface Props extends StyledComponentProps, InputHTMLAttributesProps {
     toFixed?: number
   }
   autoComplete?: string
+=======
+interface Props extends AriaNumberFieldProps, StyledComponentProps {
+  helperText?: string
+>>>>>>> origin
   isErrored?: boolean
   isReadOnly?: boolean
   isDisabled?: boolean
   isRequired?: boolean
   placeholder?: string
-  helperText?: string
   errorMessage?: string
+  disableScroll?: boolean
+  onUpdate?: (
+    value: string | number | readonly string[] | undefined,
+    number: number,
+  ) => void
 }
 
 export type QuantityToggleProps = Props & QuantityToggleVariantProps
 
-type Value = number | string
-
 const QuantityToggle = React.forwardRef<HTMLInputElement, QuantityToggleProps>(
   (props, ref) => {
     const {
-      // StyledComponentProps
       css = {},
+<<<<<<< HEAD
       value,
       step = 1,
       max = 999999999999999,
@@ -181,27 +191,37 @@ const QuantityToggle = React.forwardRef<HTMLInputElement, QuantityToggleProps>(
       }
       props.onBlur?.(event)
     }
+=======
+      isErrored = false,
+      id = `cdg-element-${Math.random().toString(36).substring(2)}`,
+      onUpdate,
+      ...ariaSafeProps
+    } = props
+
+    const quantityToggleRef = useDOMRef<HTMLInputElement>(ref)
+
+    const state = useNumberFieldState(ariaSafeProps)
+    const {inputProps, incrementButtonProps, decrementButtonProps} =
+      useNumberField(props, state, quantityToggleRef)
+>>>>>>> origin
 
     React.useEffect(() => {
-      onChange?.(Number(preValue))
-    }, [preValue])
-
-    React.useEffect(() => {
-      quantityToggleRef.current?.setSelectionRange(cursorPos, cursorPos)
-    }, [cursorPos, trueValue])
+      onUpdate?.(state.inputValue, state.numberValue)
+    }, [state.numberValue, state.inputValue])
 
     return (
       <StyledQuantityToggle
         css={css}
         isErrored={!!isErrored}
-        isDisabled={!!isDisabled}
+        isDisabled={!!inputProps.disabled}
       >
         {props.label && (
-          <label>
+          <label htmlFor={id}>
             {props.label}
             {props.isRequired && <span>*</span>}
           </label>
         )}
+<<<<<<< HEAD
         <div role='group'>
           <button
             disabled={isDisabled}
@@ -232,13 +252,19 @@ const QuantityToggle = React.forwardRef<HTMLInputElement, QuantityToggleProps>(
           >
             +
           </button>
+=======
+        <div>
+          <button {...decrementButtonProps}>-</button>
+          <input {...inputProps} id={id} ref={quantityToggleRef} />
+          <button {...incrementButtonProps}>+</button>
+>>>>>>> origin
         </div>
         {isErrored && props.errorMessage && (
           <StyledHelperText error>{props.errorMessage}</StyledHelperText>
         )}
-        {props.helperText ? (
+        {props.helperText && (
           <StyledHelperText>{props.helperText}</StyledHelperText>
-        ) : null}
+        )}
       </StyledQuantityToggle>
     )
   },

@@ -8,40 +8,73 @@ export const Variants: React.FC = () => {
     <Column>
       <h3>Controlled</h3>
       <QuantityToggle
-        label='Potato price'
         placeholder='Price'
-        onChange={(v) => console.log(v)}
-        formatOptions={{
-          prefix: '$',
-          toFixed: 2,
-        }}
-      />
-      <h3>Un Controlled</h3>
-      <QuantityToggle
-        label='Potato price'
-        isRequired
-        placeholder='Price'
+        label='Potato Price'
         value={value}
         onChange={(e) => setValue(e)}
         formatOptions={{
-          prefix: '$',
-          // toFixed: 2,
+          style: 'currency',
+          currency: 'USD',
+        }}
+        onUpdate={(value, number) => {
+          console.log('onUpdate value', value)
+          console.log('onUpdate number', number)
         }}
       />
-      <h3>Disabled</h3>
+      <h3>Un-Controlled</h3>
       <QuantityToggle
-        label='Potato price'
-        defaultValue={2}
-        isDisabled
-        helperText='This is helper text'
+        label='Potato Price'
+        placeholder='Price'
+        formatOptions={{
+          style: 'currency',
+          currency: 'USD',
+        }}
       />
+      <h3>Step values</h3>
+      <QuantityToggle label='Step' step={10} />
+      <QuantityToggle label='Step + minValue' minValue={2} step={3} />
+      <QuantityToggle
+        label='Step + minValue + maxValue'
+        minValue={2}
+        maxValue={21}
+        step={3}
+      />
+      <h3>Units</h3>
+      <QuantityToggle
+        label='Package width'
+        defaultValue={4}
+        formatOptions={{
+          style: 'unit',
+          unit: 'inch',
+          unitDisplay: 'long',
+        }}
+      />
+      <QuantityToggle
+        label='Transaction amount'
+        defaultValue={45}
+        formatOptions={{
+          style: 'currency',
+          currency: 'EUR',
+          currencyDisplay: 'code',
+          currencySign: 'accounting',
+        }}
+      />
+      <h3>Enable Scroll</h3>
+      <QuantityToggle
+        label='Potato Price'
+        placeholder='Price'
+        disableScroll={false}
+      />
+      <h3>Disabled</h3>
+      <QuantityToggle label='Disabled' isDisabled defaultValue={25} />
+      <h3>Read only</h3>
+      <QuantityToggle label='Read only' isReadOnly defaultValue={32} />
       <h3>Errored</h3>
       <QuantityToggle
-        label='Potato price'
+        label='Errored'
         defaultValue={2}
         isErrored
-        helperText='This is helper text'
-        errorMessage='This is error message'
+        helperText='Bla Bla Bla'
       />
     </Column>
   )

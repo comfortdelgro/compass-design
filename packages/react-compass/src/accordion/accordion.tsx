@@ -1,9 +1,13 @@
 import React, {useEffect, useRef, useState} from 'react'
+import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import AccordionContext from './accordion-context'
+import AccordionExpandIcon, {
+  AccordionExpandIconProps,
+} from './accordion-expandIcon'
 import AccordionTable from './accordion-table'
-import AccordionTitle from './accordion-title'
+import AccordionTitle, {AccordionTitleProps} from './accordion-title'
 import {StyledAccordion} from './accordion.styles'
 interface Props extends StyledComponentProps {
   expand?: boolean
@@ -23,7 +27,7 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
       // ComponentProps
       expand: controlledExpand, //map the prop to a different name
       defaultExpand = false,
-      children: childrenProps,
+      children,
       onExpandChange,
       // HTML Div props
       ...delegated
@@ -66,8 +70,27 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
 
     const accordionRef = useDOMRef<HTMLDivElement>(ref)
 
-    //get the first child as an accordion title
-    const [accordionTitle, ...children] = React.Children.toArray(childrenProps)
+    // pick accordion title from children
+    const {child: AccordionTitleElement, rest: NotAccordionaTitleElement} =
+      pickChild<React.ReactElement<AccordionTitleProps>>(
+        children,
+        AccordionTitle,
+      )
+
+    // pick accordion expand icon from NotAccordionaTitleElement
+    const {child: AccordionExpandIconElement, rest: AccordionContent} =
+      pickChild<React.ReactElement<AccordionExpandIconProps>>(
+        NotAccordionaTitleElement,
+        AccordionExpandIcon,
+      )
+
+    // Render the AccordionTitleElement with the AccordionExpandIconElement as its children
+    const AccordionTitleWithIcon =
+      AccordionTitleElement && AccordionExpandIconElement
+        ? React.cloneElement(AccordionTitleElement, {
+            expandIcon: AccordionExpandIconElement,
+          })
+        : AccordionTitleElement
 
     return (
       <StyledAccordion
@@ -77,12 +100,12 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
         ref={accordionRef}
       >
         <AccordionContext.Provider value={contextValue}>
-          {accordionTitle}
+          {AccordionTitleWithIcon}
           <div
             className={`accordion-body ${expand ? 'expanded' : 'collapsed'}`}
             ref={accordionBodyRef}
           >
-            <div className='accordion-body-inner'>{children}</div>
+            <div className='accordion-body-inner'>{AccordionContent}</div>
           </div>
         </AccordionContext.Provider>
       </StyledAccordion>
@@ -93,4 +116,5 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
 export default Accordion as typeof Accordion & {
   Table: typeof AccordionTable
   Title: typeof AccordionTitle
+  ExpandIcon: typeof AccordionExpandIcon
 }

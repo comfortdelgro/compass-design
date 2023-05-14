@@ -1,0 +1,173 @@
+import {Callout} from 'nextra-theme-docs'
+import {SmallModal, MediumModal, LargeModal} from '../../components/Modal'
+import styles from '../../styles/Home.module.css'
+
+# Modal Component
+
+The Modal component is a flexible and customizable modal/dialog that can be used in various use cases like confirmation dialogs, information popups, and more.
+
+<Callout>
+  Check out our [ladle](/ladle?story=modal--default) for more info on this
+  component.
+</Callout>
+
+---
+
+### Import:
+
+```js
+import {Modal} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import Modal from '@comfortdelgro/react-compass/modal'
+```
+
+---
+
+### Small Modal:
+
+<section
+  className={styles.avatarShowcaseContainer}
+  style={{flexDirection: 'column'}}
+>
+    <SmallModal />
+
+</section>
+
+```js
+export const SmallModal: React.FC = () => {
+  const [smallOpen, setSmallOpen] = useState(false)
+  const handleSmallClose = () => {
+    setSmallOpen(false)
+  }
+
+  return (
+    <>
+      <Button onPress={() => setSmallOpen(true)}>Open Small Modal</Button>
+      <Modal.Trigger
+        isOpen={smallOpen}
+        handleClose={handleSmallClose}
+        size='sm'
+      >
+        <Modal>
+          <Modal.Title>My Small Title</Modal.Title>
+          <Modal.CloseIcon>
+            <Icon icon={faXmark} />
+          </Modal.CloseIcon>
+          <Modal.Description>{lorem}</Modal.Description>
+          <Modal.Actions>
+            <Button onPress={handleSmallClose}>Cancel</Button>
+            <Button onPress={handleSmallClose}>Do it</Button>
+          </Modal.Actions>
+        </Modal>
+      </Modal.Trigger>
+    </>
+  )
+}
+```
+
+---
+
+### Medium Modal (Default):
+
+<section
+  className={styles.avatarShowcaseContainer}
+  style={{flexDirection: 'column'}}
+>
+    <MediumModal />
+
+</section>
+
+```js
+export const MediumModal: React.FC = () => {
+  const [mediumOpen, setMediumOpen] = useState(false)
+  const handleMediumClose = () => {
+    setMediumOpen(false)
+  }
+
+  return (
+    <>
+      <Button onPress={() => setMediumOpen(true)}>Open Medium Modal</Button>
+      <Modal.Trigger isOpen={mediumOpen} handleClose={handleMediumClose}>
+        <Modal>
+          <Modal.Title>My Medium Title</Modal.Title>
+          <Modal.CloseIcon>
+            <Icon icon={faXmark} />
+          </Modal.CloseIcon>
+          <Modal.Description>{lorem}</Modal.Description>
+          <Modal.Actions>
+            <Button onPress={handleMediumClose}>Cancel</Button>
+            <Button onPress={handleMediumClose}>Do it</Button>
+          </Modal.Actions>
+        </Modal>
+      </Modal.Trigger>
+    </>
+  )
+}
+```
+
+---
+
+### Large Modal:
+
+<section
+  className={styles.avatarShowcaseContainer}
+  style={{flexDirection: 'column'}}
+>
+    <LargeModal />
+
+</section>
+
+```js
+export const LargeModal: React.FC = () => {
+  const [largeOpen, setLargeOpen] = useState(false)
+  const handleLargeClose = () => {
+    setLargeOpen(false)
+  }
+
+  return (
+    <>
+      <Button onPress={() => setLargeOpen(true)}>Open Large Modal</Button>
+      <Modal.Trigger
+        isOpen={largeOpen}
+        handleClose={handleLargeClose}
+        size='lg'
+      >
+        <Modal>
+          <Modal.Title>My Large Title</Modal.Title>
+          <Modal.CloseIcon>
+            <Icon icon={faXmark} />
+          </Modal.CloseIcon>
+          <Modal.Description>{lorem}</Modal.Description>
+          <Modal.Actions>
+            <Button onPress={handleLargeClose}>Cancel</Button>
+            <Button onPress={handleLargeClose}>Do it</Button>
+          </Modal.Actions>
+        </Modal>
+      </Modal.Trigger>
+    </>
+  )
+}
+```
+
+---
+
+### Props:
+
+| Name            | Type                                                          | Default | Description                                                             |
+| :-------------- | :------------------------------------------------------------ | :------ | :---------------------------------------------------------------------- |
+| isOpen          | `boolean`                                                     | —       | If true, the modal is open.                                             |
+| handleClose     | `() => void`                                                  | —       | Callback fired when the modal needs to be closed.                       |
+| size            | `'sm'` \| `'md'` \| `'lg'`                                    | `md`    | Size of the modal. 'sm' for small, 'md' for medium, and 'lg' for large. |
+| children        | `React.ReactNode`                                             | —       | The content of the component.                                           |
+| disableBackdrop | `boolean`                                                     | `false` | If true, clicking the backdrop will not fire the handleClose callback.  |
+| modalProps      | `React.HTMLAttributes<HTMLDivElement>`                        | —       | Additional props to be spread to the Modal component.                   |
+| backdropProps   | `React.HTMLAttributes<HTMLDivElement>`                        | —       | Additional props to be spread to the backdrop (overlay) component.      |
+| containerProps  | `React.HTMLAttributes<HTMLDivElement> & {className?: string}` | —       | Additional props to be spread to the container component.               |
+
+```
+
+```

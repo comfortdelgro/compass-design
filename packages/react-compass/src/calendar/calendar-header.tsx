@@ -3,10 +3,9 @@ import {DateValue} from '@internationalized/date'
 import {useDateFormatter} from '@react-aria/i18n'
 import {VisuallyHidden} from '@react-aria/visually-hidden'
 import {CalendarState, RangeCalendarState} from '@react-stately/calendar'
-import type {AriaButtonProps} from '@react-types/button'
 import type {DOMAttributes} from '@react-types/shared'
 import React from 'react'
-import Button from '../button'
+import Button, {ButtonProps} from '../button'
 import Icon from '../icon'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {StyledCalendarHeader} from './calendar-header.style'
@@ -16,8 +15,8 @@ interface Props extends StyledComponentProps {
   variant?: 'default' | 'range'
   state: CalendarState | RangeCalendarState
   calendarProps: DOMAttributes
-  prevButtonProps: AriaButtonProps
-  nextButtonProps: AriaButtonProps
+  prevButtonProps: ButtonProps
+  nextButtonProps: ButtonProps
   maxValue?: DateValue
 }
 

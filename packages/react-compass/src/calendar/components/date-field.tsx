@@ -3,18 +3,18 @@ import {createCalendar} from '@internationalized/date'
 import {AriaDateFieldProps, useDateField} from '@react-aria/datepicker'
 import {useLocale} from '@react-aria/i18n'
 import {useDateFieldState} from '@react-stately/datepicker'
-import type {AriaButtonProps} from '@react-types/button'
+// import type {AriaButtonProps} from '@react-types/button'
 import type {DateValue} from '@react-types/datepicker'
 import React from 'react'
-import Button from '../../button'
+import Button, {ButtonProps} from '../../button'
 import Icon from '../../icon'
 import {useDOMRef} from '../../utils/use-dom-ref'
-import {StyledDateField} from './date-field.style'
+import {StyledDateField, StyledLabelNecessity} from './date-field.style'
 import DateSegment from './date-segment'
 
 interface Props extends AriaDateFieldProps<DateValue> {
   children?: React.ReactNode
-  buttonProps: AriaButtonProps
+  buttonProps: ButtonProps
   isInvalid?: boolean | undefined
   necessityIndicator?: 'icon' | 'label'
 }
@@ -47,11 +47,15 @@ const DateField = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   const generateLabeling = () => {
     const necessityIndicator = props.necessityIndicator ?? 'icon'
     if (props.isRequired && necessityIndicator === 'icon') {
-      return '*'
+      return <StyledLabelNecessity isError>*</StyledLabelNecessity>
     } else if (props.isRequired && necessityIndicator === 'label') {
-      return '(required)'
+      return (
+        <StyledLabelNecessity isError isText>
+          (required)
+        </StyledLabelNecessity>
+      )
     } else if (!props.isRequired && necessityIndicator === 'label') {
-      return '(optional)'
+      return <StyledLabelNecessity isText>(optional)</StyledLabelNecessity>
     }
     return ''
   }

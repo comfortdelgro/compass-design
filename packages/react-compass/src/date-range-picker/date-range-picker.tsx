@@ -6,7 +6,7 @@ import {
   DateRangePickerState,
   useDateRangePickerState,
 } from '@react-stately/datepicker'
-import type {AriaButtonProps} from '@react-types/button'
+// import type {AriaButtonProps} from '@react-types/button'
 import type {DateRange, RangeCalendarProps} from '@react-types/calendar'
 import type {
   AriaDatePickerProps,
@@ -14,6 +14,7 @@ import type {
 } from '@react-types/datepicker'
 import type {DOMAttributes} from '@react-types/shared'
 import React from 'react'
+import {ButtonProps} from '../button'
 import {DateField} from '../calendar/components'
 import Dialog from '../calendar/components/dialog'
 import Popover from '../calendar/components/popover'
@@ -90,7 +91,7 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
           groupProps={groupProps}
           startFieldProps={extendedStartFieldProps}
           endFieldProps={extendedEndFieldProps}
-          buttonProps={buttonProps}
+          buttonProps={buttonProps as unknown as ButtonProps}
           startDateLabel={startDateLabel}
           endDateLabel={endDateLabel}
           isInvalid={props.isInvalid}
@@ -115,7 +116,7 @@ interface DateRangeInputsWrapperProps {
   groupProps: DOMAttributes
   startFieldProps: AriaDatePickerProps<DateValue>
   endFieldProps: AriaDatePickerProps<DateValue>
-  buttonProps: AriaButtonProps
+  buttonProps: ButtonProps
   startDateLabel?: string | undefined
   endDateLabel?: string | undefined
   isInvalid?: boolean | undefined

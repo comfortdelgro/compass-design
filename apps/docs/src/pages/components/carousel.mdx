@@ -32,6 +32,11 @@ For next version of carousel, we have `CarouselSlider.Promotion`, this component
 
 The design for mobile mode is too different with desktop mode, we can not handle it by using the same template, so now we have `CarouselSlider.Mobile` component. Otherwise, `CarouselSlider` will have basic responsive layout itself.
 
+<Callout>
+  Check out our [ladle](/ladle?story=carousel-v2--mobile) for more info on this
+  component.
+</Callout>
+
 ---
 
 ### Components:
@@ -116,7 +121,11 @@ const handleSwitchSlide = (index: number) => {
 }
 
 return (
-  <CarouselSlider onSwitchSlide={handleSwitchSlide}>
+  <CarouselSlider
+    onSwitchSlide={handleSwitchSlide}
+    className='floating-slide'
+    style={{height: '512px'}}
+  >
     {imageUrls.map((imageUrl: string, index: number) => (
       <CarouselSlider.ImageSlide
         key={index}
@@ -364,6 +373,6 @@ return (
 ```
 
 <Callout>
-  Check out our [ladle](/ladle?story=badge--variants) for more info on this
+  Check out our [ladle](/ladle?story=carousel-v2--mobile) for more info on this
   component.
 </Callout>

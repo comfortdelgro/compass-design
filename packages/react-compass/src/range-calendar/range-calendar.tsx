@@ -9,12 +9,13 @@ import {useRangeCalendarState} from '@react-stately/calendar'
 import {DateRangePickerState} from '@react-stately/datepicker'
 import type {DateRange, SpectrumRangeCalendarProps} from '@react-types/calendar'
 import React from 'react'
-import Button from '../button'
+import Button, {ButtonProps} from '../button'
 import CalendarGrid from '../calendar/calendar-grid'
 import CalendarHeader from '../calendar/calendar-header'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {StyledRangeCalendar} from './range-calendar.style'
+
 interface Props
   extends StyledComponentProps,
     SpectrumRangeCalendarProps<DateValue> {
@@ -74,8 +75,8 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
           state={state}
           variant='range'
           calendarProps={calendarProps}
-          prevButtonProps={prevButtonProps}
-          nextButtonProps={nextButtonProps}
+          prevButtonProps={prevButtonProps as unknown as ButtonProps}
+          nextButtonProps={nextButtonProps as unknown as ButtonProps}
         />
         <div className='calendar-body'>
           <CalendarGrid state={state} />

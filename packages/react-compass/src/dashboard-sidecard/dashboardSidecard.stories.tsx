@@ -1,5 +1,8 @@
 import React from 'react'
+<<<<<<< HEAD
 import {Group} from '../avatar/avatar.stories'
+=======
+>>>>>>> origin
 import Button from '../button'
 import SearchField from '../searchfield'
 import {Column} from '../utils/components'
@@ -29,7 +32,6 @@ export const Default: React.FC = () => {
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo hic quae,
         adipisci tempore minus beatae itaque tenetur.
       </div>
-      <Group />
     </div>
   )
   return (

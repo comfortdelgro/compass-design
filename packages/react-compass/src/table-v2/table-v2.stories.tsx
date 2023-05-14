@@ -12,7 +12,7 @@ import Pagination from '../pagination'
 import SearchField from '../searchfield'
 import {makeData, Person} from './makeData'
 
-export const ReactTableStory: React.FC = () => {
+export const FullFeatured: React.FC = () => {
   const [page, setPage] = useState(1)
   const [data] = useState(() => makeData(10))
   const options: OptionType = {

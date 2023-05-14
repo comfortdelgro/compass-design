@@ -7,6 +7,43 @@ import {faChessKing} from '@fortawesome/free-solid-svg-icons'
 
 Quantity Toggle fields allow users to enter a number, and increment or decrement the value using stepper buttons.
 
+<Callout>
+  Check out our [ladle](/ladle?story=quantity-toggle--variants) for more info on
+  this component.
+</Callout>
+
+## Support
+
+Support for internationalized number formatting and parsing including decimals, percentages, currency values, and units
+
+Automatically detects the numbering system used and supports parsing numbers not in the default numbering system for the locale
+
+Support for multiple currency formats including symbol, code, and name in standard or accounting notation
+
+Validates keyboard entry as the user types so that only valid numeric input according to the locale and numbering system is accepted
+
+Handles composed input from input method editors, e.g. Pinyin
+
+Automatically selects an appropriate software keyboard for mobile according to the current platform and allowed values
+
+Supports rounding to a configurable number of fraction digits
+
+Support for clamping the value between a configurable minimum and maximum, and snapping to a step value
+
+Support for stepper buttons and arrow keys to increment and decrement the value according to the step value
+
+Supports pressing and holding the stepper buttons to continuously increment or decrement
+
+Handles floating point rounding errors when incrementing, decrementing, and snapping to step
+
+Supports using the scroll wheel to increment and decrement the value
+
+Exposed to assistive technology as a text field with a custom localized role description using ARIA
+
+Follows the spinbutton ARIA pattern
+
+Works around bugs in VoiceOver with the spinbutton role
+
 ---
 
 ### Import:
@@ -25,12 +62,17 @@ import QuantityToggle from '@comfortdelgro/react-compass/quantity-toggle'
 
 ### Basic Quantity Toggle:
 
+By default, NumberField is uncontrolled. However, when using the value prop, it becomes controlled. This allows you to store the current value in your own state, and use it elsewhere.
+
+The onChange event is triggered whenever the number value updates. This happens when the user types a value and blurs the input, or when incrementing or decrementing the value. It does not happen as the user types because partial input may not be parseable to a valid number.
+
 <section className={styles.componentShowcaseContainer}>
   <QuantityToggle
     placeholder='Price'
+    onChange={(v) => console.log(v)}
     formatOptions={{
-      prefix: '$',
-      toFixed: 2,
+      style: 'currency',
+      currency: 'USD',
     }}
   />
 </section>
@@ -38,33 +80,240 @@ import QuantityToggle from '@comfortdelgro/react-compass/quantity-toggle'
 ```js
 <QuantityToggle
   placeholder='Price'
+  onChange={(v) => console.log(v)}
   formatOptions={{
-    prefix: '$',
-    toFixed: 2,
+    style: 'currency',
+    currency: 'USD',
   }}
 />
 ```
 
 ---
 
-### Disabled:
+### Decimals:
+
+The default formatting style for QT is decimal, but you can configure various aspects via the formatOptions prop. All options supported by Intl.NumberFormat are supported, including configuration of minimum and maximum fraction digits, sign display, grouping separators, etc. Currently only standard notation is supported, though scientific, engineering, and compact notation may be supported in the future.
+
+The following example uses the signDisplay option to include the plus sign for positive numbers, for example to display an offset from some value. In addition, it always displays a minimum of 1 digit after the decimal point, and allows up to 2 fraction digits. If the user enters more than 2 fraction digits, the result will be rounded.
 
 <section className={styles.componentShowcaseContainer}>
   <QuantityToggle
-    label='Potato price'
-    defaultValue={2}
-    isDisabled
-    helperText='This is helper text'
+    label='Adjust exposure'
+    defaultValue={0}
+    formatOptions={{
+      signDisplay: 'exceptZero',
+      minimumFractionDigits: 1,
+      maximumFractionDigits: 2,
+    }}
   />
 </section>
 
 ```js
+<QuantityToggle
+  label='Adjust exposure'
+  defaultValue={0}
+  formatOptions={{
+    signDisplay: 'exceptZero',
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 2,
+  }}
+/>
+```
+
+---
+
+### Percentages:
+
+The style: 'percent' option can be passed to the formatOptions prop to treat the value as a percentage. In this mode, the value is multiplied by 100 before it is displayed, i.e. 0.45 is displayed as 45%. The reverse is also true: when the user enters a value, the onChange event will be triggered with the entered value divided by 100. When the percent option is enabled, the default step automatically changes to 0.01 such that incrementing and decrementing occurs by 1%.
+
+<section className={styles.componentShowcaseContainer}>
   <QuantityToggle
-    label='Potato price'
-    defaultValue={2}
-    isDisabled
-    helperText='This is helper text'
+    label='Sales tax'
+    defaultValue={0.05}
+    formatOptions={{
+      style: 'percent',
+    }}
   />
+</section>
+
+```js
+<QuantityToggle
+  label='Sales tax'
+  defaultValue={0.05}
+  formatOptions={{
+    style: 'percent',
+  }}
+/>
+```
+
+---
+
+### Currency values:
+
+The style: 'currency' option can be passed to the formatOptions prop to treat the value as a currency value. The currency option must also be passed to set the currency code (e.g. USD) to use. In addition, the currencyDisplay option can be used to choose whether to display the currency symbol, currency code, or currency name. Finally, the currencySign option can be set to accounting to use accounting notation for negative numbers, which uses parentheses rather than a minus sign in some locales.
+
+If you need to allow the user to change the currency, you should include a separate dropdown next to the number field. The number field itself will not determine the currency from the user input.
+
+<section className={styles.componentShowcaseContainer}>
+  <QuantityToggle
+    label='Transaction amount'
+    defaultValue={45}
+    formatOptions={{
+      style: 'currency',
+      currency: 'EUR',
+      currencyDisplay: 'code',
+      currencySign: 'accounting',
+    }}
+  />
+</section>
+
+```js
+<QuantityToggle
+  label='Transaction amount'
+  defaultValue={45}
+  formatOptions={{
+    style: 'currency',
+    currency: 'EUR',
+    currencyDisplay: 'code',
+    currencySign: 'accounting',
+  }}
+/>
+```
+
+---
+
+### Units:
+
+The style: 'unit' option can be passed to the formatOptions prop to format the value with a unit of measurement. The unit option must also be passed to set which unit to use (e.g. inch). In addition, the unitDisplay option can be used to choose whether to display the unit in long, short, or narrow format.
+
+If you need to allow the user to change the unit, you should include a separate dropdown next to the number field. The number field itself will not determine the unit from the user input.
+
+<section className={styles.componentShowcaseContainer}>
+  <QuantityToggle
+    label='Package width'
+    defaultValue={4}
+    formatOptions={{
+      style: 'unit',
+      unit: 'inch',
+      unitDisplay: 'long',
+    }}
+  />
+</section>
+
+```js
+<QuantityToggle
+  label='Package width'
+  defaultValue={4}
+  formatOptions={{
+    style: 'unit',
+    unit: 'inch',
+    unitDisplay: 'long',
+  }}
+/>
+```
+
+---
+
+### Minimum and maximum values:
+
+The minValue and maxValue props can be used to limit the entered value to a specific range. The value will be clamped when the user blurs the input field. In addition, the increment and decrement buttons will be disabled when the value is within one step value from the bounds (see below for info about steps). Ranges can be open ended by only providing either minValue or maxValue rather than both.
+
+If a valid range is known ahead of time, it is a good idea to provide it to NumberField so it can optimize the experience. For example, when the minimum value is greater than or equal to zero, it is possible to use a numeric keyboard on iOS rather than a full text keyboard (necessary to enter a minus sign).
+
+<section className={styles.componentShowcaseContainer}>
+  <QuantityToggle label='Your math score' minValue={0} maxValue={10} />
+</section>
+
+```js
+<QuantityToggle label='Your math score' minValue={0} maxValue={10} />
+```
+
+---
+
+### Step values:
+
+The step prop can be used to snap the value to certain increments. If there is a minValue defined, the steps are calculated starting from the minimum. For example, if minValue={2}, and step={3}, the valid step values would be 2, 5, 8, 11, etc. If no minValue is defined, the steps are calculated starting from zero and extending in both directions. In other words, such that the values are evenly divisible by the step. If no step is defined, any decimal value may be typed, but incrementing and decrementing snaps the value to an integer.
+
+If the user types a value that is between two steps and blurs the input, the value will be snapped to the nearest step. When incrementing or decrementing, the value is snapped to the nearest step that is higher or lower, respectively. When incrementing or decrementing from an empty field, the value starts at the minValue or maxValue, respectively, if defined. Otherwise, the value starts from 0.
+
+<section className={styles.componentShowcaseContainer}>
+  <QuantityToggle label='Step' step={10} />
+</section>
+
+```js
+<QuantityToggle label='Step' step={10} />
+```
+
+---
+
+### Disabled and read only:
+
+The isDisabled and isReadOnly props can be used prevent the user from editing the value of the number field. The difference is that isReadOnly still allows the input to be focused, while isDisabled prevents all user interaction.
+
+<section className={styles.componentShowcaseContainer}>
+  <QuantityToggle label='Disabled' isDisabled value={25} />
+  <QuantityToggle label='Read only' isReadOnly value={32} />
+</section>
+
+```js
+  <QuantityToggle label="Disabled" isDisabled value={25} />
+  <QuantityToggle label="Read only" isReadOnly value={32} />
+```
+
+---
+
+### Update Event:
+
+The onUpdate is returned when the number field is updated. It's will returned full string of value includes comma separated, dot separated, currency sign, ...
+
+<section className={styles.componentShowcaseContainer}>
+  <QuantityToggle
+    placeholder='Price'
+    onUpdate={(v) => console.log(v)}
+    formatOptions={{
+      style: 'currency',
+      currency: 'USD',
+    }}
+  />
+</section>
+
+```js
+<QuantityToggle
+  placeholder='Price'
+  onUpdate={(v) => console.log(v)}
+  formatOptions={{
+    style: 'currency',
+    currency: 'USD',
+  }}
+/>
+```
+
+---
+
+### Enable scroll to increment and decrement:
+
+Using props `disabledScroll` and set it to `false` to enable scroll.
+
+<section className={styles.componentShowcaseContainer}>
+  <QuantityToggle
+    placeholder='Price'
+    disabledScroll={false}
+    formatOptions={{
+      style: 'currency',
+      currency: 'USD',
+    }}
+  />
+</section>
+
+```js
+<QuantityToggle
+  placeholder='Price'
+  disabledScroll={false}
+  formatOptions={{
+    style: 'currency',
+    currency: 'USD',
+  }}
+/>
 ```
 
 ---
@@ -82,19 +331,20 @@ import QuantityToggle from '@comfortdelgro/react-compass/quantity-toggle'
 </section>
 
 ```js
-  <QuantityToggle
-    label='Potato price'
-    defaultValue={2}
-    isErrored
-    helperText='This is helper text'
-    errorMessage='This is error message'
-  />
+<QuantityToggle
+  label='Potato price'
+  defaultValue={2}
+  isErrored
+  helperText='This is helper text'
+  errorMessage='This is error message'
+/>
 ```
 
 ---
 
 ### Props:
 
+<<<<<<< HEAD
 | Name            | Type                           | Default | Description                                                                                                                                               |
 | :-------------- | :----------------------------- | :------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | formatOptions   | `FormatOptions`                | —       | Formatting options for the value displayed in the number field. This also affects what characters are allowed to be typed by the user.                    |
@@ -128,10 +378,38 @@ import QuantityToggle from '@comfortdelgro/react-compass/quantity-toggle'
 | prefix          | `string` | —       | First character come with value, use for display type of the value                |
 | suffix          | `string` | `false` | Last character come with value, use for display type of the value                 |
 | toFixed         | `number` | `false` | Number of digits after the decimal point. Must be in the range 0 - 20, inclusive. |
+=======
+| Name            | Type                                      | Default | Description                                                                                                                                               |
+| :-------------- | :---------------------------------------- | :------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| step            | `number`                                  | —       | The amount that the input value changes with each increment or decrement "tick".                                                                          |
+| label           | `ReactNode`                               | —       | The content to display as the label.                                                                                                                      |
+| value           | `number`                                  | —       | The current value (controlled).                                                                                                                           |
+| minValue        | `number`                                  | —       | The smallest value allowed for the input.                                                                                                                 |
+| maxValue        | `number`                                  | —       | The largest value allowed for the input.                                                                                                                  |
+| autoFocus       | `boolean`                                 | —       | Whether the element should receive focus on render.                                                                                                       |
+| isErrored       | `boolean`                                 | false   | Whether the input is isErrored.                                                                                                                           |
+| isDisabled      | `boolean`                                 | false   | Whether the input is disabled.                                                                                                                            |
+| isReadOnly      | `boolean`                                 | false   | Whether the input can be selected but not changed by the user.                                                                                            |
+| isRequired      | `boolean`                                 | false   | Whether user input is required on the input before form submission. Often paired with the necessityIndicator prop to add a visual indicator to the input. |
+| helperText      | `string`                                  | —       | The helper text below.                                                                                                                                    |
+| placeholder     | `string`                                  | —       | Temporary text that occupies the text input when it is empty.                                                                                             |
+| defaultValue    | `number`                                  | —       | The default value (uncontrolled).                                                                                                                         |
+| formatOptions   | `Intl.FormatOptions`                      | —       | Formatting options for the value displayed in the number field. This also affects what characters are allowed to be typed by the user.                    |
+| disabledScroll  | `boolean`                                 | true    | Whether the scroll to change value is disabled.                                                                                                           |
+| validationState | `ValidationState`                         | —       | Whether the input should display its "valid" or "invalid" visual styling.                                                                                 |
+| onBlur          | `(e: FocusEvent) => void`                 | —       | Handler that is called when the element loses focus.                                                                                                      |
+| onFocus         | `(e: FocusEvent) => void`                 | —       | Handler that is called when the element receives focus.                                                                                                   |
+| onKeyUp         | `(e: FocusEvent) => void`                 | —       | Handler that is called when a key is released.                                                                                                            |
+| onChange        | `(value: T) => void`                      | —       | Handler that is called when the value changes.                                                                                                            |
+| onKeyDown       | `(e: FocusEvent) => void`                 | —       | Handler that is called when a key is pressed.                                                                                                             |
+| onFocusChange   | `(isFocused: boolean) => void`            | —       | Handler that is called when the element's focus status changes.                                                                                           |
+| onUpdate        | `(textVal: T, numberVal: number) => void` | —       | Handler that is called when the value changes, returned text value and number value                                                                       |
+| css             | `CSS`                                     | —       | The system prop that allows defining system overrides as well as additional CSS styles.                                                                   |
+>>>>>>> origin
 
 ---
 
 <Callout>
-  Check out our [ladle](/ladle?story=quatity-toggle--variants) for more info on
+  Check out our [ladle](/ladle?story=quantity-toggle--variants) for more info on
   this component.
 </Callout>

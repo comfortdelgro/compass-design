@@ -1,15 +1,15 @@
-import {AriaButtonProps, useButton} from '@react-aria/button'
-import type {PressEvent} from '@react-types/shared'
-import React, {useContext} from 'react'
+import React, {SyntheticEvent, useContext} from 'react'
 import Icon, {IconProp} from '../icon'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {MenuListContext} from './menu-list-context'
 import {StyledMenuListDropdownHeader} from './menu-list-dropdown-header.styles'
-interface Props extends AriaButtonProps, StyledComponentProps {
+
+interface Props extends StyledComponentProps {
   children?: React.ReactNode
   leftIcon?: IconProp | false
   rightIcon?: IconProp | true
+  onPress?: (e: SyntheticEvent) => void
 }
 
 export type MenuListDropdownHeaderProps = Props &
@@ -37,7 +37,7 @@ const MenuListDropdownHeader = React.forwardRef<
   const buttonRef = useDOMRef<HTMLButtonElement>(ref)
 
   // toggle menu list when click by mouse or by keyboard
-  const handleOnClick = (e: PressEvent) => {
+  const handleOnClick = (e: SyntheticEvent) => {
     if (onPressProp) {
       onPressProp(e)
     }
@@ -46,30 +46,28 @@ const MenuListDropdownHeader = React.forwardRef<
     }
   }
 
-  const {buttonProps} = useButton(
-    {onPress: handleOnClick, ...ariaSafeProps},
-    buttonRef,
-  )
-
   const renderLeftIcon = () => {
     if (leftIcon === undefined) {
       return (
-        <ChevronIcon
+        <div
           className={`menu-list-dropdown-chevron-down-left-icon ${
             isOpen ? 'rotated-icon' : ''
           }`}
-        />
+        >
+          <ChevronIcon />
+        </div>
       )
     } else if (leftIcon === false) {
       return null
     } else {
       return (
-        <Icon
+        <div
           className={`menu-list-dropdown-chevron-down-left-icon ${
             isOpen ? 'rotated-icon' : ''
           }`}
-          icon={leftIcon}
-        />
+        >
+          <Icon icon={leftIcon} />
+        </div>
       )
     }
   }
@@ -77,22 +75,25 @@ const MenuListDropdownHeader = React.forwardRef<
   const renderRightIcon = () => {
     if (rightIcon === true) {
       return (
-        <ChevronIcon
+        <div
           className={`menu-list-dropdown-chevron-down-right-icon ${
             isOpen ? 'rotated-icon' : ''
           }`}
-        />
+        >
+          <ChevronIcon />
+        </div>
       )
     } else if (rightIcon === undefined) {
       return null
     } else {
       return (
-        <Icon
+        <div
           className={`menu-list-dropdown-chevron-down-right-icon ${
             isOpen ? 'rotated-icon' : ''
           }`}
-          icon={rightIcon}
-        />
+        >
+          <Icon icon={rightIcon} />
+        </div>
       )
     }
   }
@@ -107,9 +108,10 @@ const MenuListDropdownHeader = React.forwardRef<
   return (
     <StyledMenuListDropdownHeader
       className={`${className} menu-list-dropdown-header`}
-      ref={ref}
+      ref={buttonRef}
       css={css}
-      {...buttonProps}
+      onMouseDown={handleOnClick}
+      {...ariaSafeProps}
     >
       {renderLeftIcon()}
       {renderTitle()}
@@ -121,7 +123,7 @@ const MenuListDropdownHeader = React.forwardRef<
 export default MenuListDropdownHeader
 
 interface ChevronIconProps {
-  className: string
+  className?: string
 }
 
 const ChevronIcon = (props: ChevronIconProps) => {

@@ -1,95 +1,195 @@
-import {useNumberFormatter} from '@react-aria/i18n'
-import {AriaSliderProps, useSlider, useSliderThumb} from '@react-aria/slider'
-import {SliderState, useSliderState} from '@react-stately/slider'
-import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {useDOMRef} from '../utils/use-dom-ref'
-import {SliderVariantProps, StyledSlider, StyledThumb} from './slider.styles'
+import React, {useEffect, useRef, useState} from 'react'
+import {
+  RangeSlider,
+  RangeSliderContainer,
+  SliderVariantProps,
+  Thumb,
+} from './slider.styles'
 
-interface Props extends AriaSliderProps<number>, StyledComponentProps {
-  formatOptions?: Intl.NumberFormatOptions
+interface Props {
+  isDisabled?: boolean
   tooltip?: boolean
+  onChange?: (value: number) => void
+  onChangeEnd?: (value: number) => void
+  minValue?: number
+  maxValue?: number
+  step?: number
+  value?: number
+  defaultValue?: number
+  className?: string
 }
 
 export type SliderProps = Props & SliderVariantProps
 
-const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
-  const {
-    // StyledComponentProps
-    css = {},
-    tooltip = true,
-    // ComponentProps
-    ...ariaSafeProps
-  } = props
-
-  const trackRef = React.useRef<HTMLDivElement>(null)
-  const sliderRef = useDOMRef<HTMLDivElement>(ref)
-  const numberFormatter = useNumberFormatter(props.formatOptions)
-
-  const multiProps = {
-    ...ariaSafeProps,
-    onChangeEnd: (v: number | number[]) =>
-      props.onChangeEnd?.(typeof v === 'number' ? v : v[0] ? v[0] : 0),
-    onChange: (v: number | number[]) =>
-      props.onChange?.(typeof v === 'number' ? v : v[0] ? v[0] : 0),
-  }
-
-  const state = useSliderState({
-    ...multiProps,
-    numberFormatter,
-  })
-
-  const {groupProps, trackProps} = useSlider(multiProps, state, trackRef)
-  const value = state.values[0] ?? 0
-  const origin = props.minValue ?? 0
-  return (
-    <StyledSlider {...groupProps} ref={sliderRef} css={css}>
-      <div className='slider-track-wrapper'>
-        <div className='slider-rail' />
-        <div
-          className='slider-filled-rail'
-          style={{
-            left: `${state.getValuePercent(Math.min(value, origin)) * 100}%`,
-            width: `${
-              (state.getValuePercent(Math.max(value, origin)) -
-                state.getValuePercent(Math.min(value, origin))) *
-              100
-            }%`,
-          }}
-        />
-        <div {...trackProps} ref={trackRef} className='slider-track'>
-          <Thumb tooltip={tooltip} state={state} trackRef={trackRef} />
-        </div>
-      </div>
-    </StyledSlider>
+const Slider: React.FC<SliderProps> = ({
+  isDisabled = false,
+  tooltip = true,
+  onChange,
+  onChangeEnd,
+  minValue = 0,
+  maxValue = 100,
+  step = 1,
+  value,
+  defaultValue,
+  className = '',
+}) => {
+  const sliderRef = useRef<HTMLDivElement>(null)
+  const [currentValue, setCurrentValue] = useState<number | undefined>(
+    defaultValue,
   )
-})
+  const [dragging, setDragging] = useState(false)
 
-interface ThumbProps {
-  state: SliderState
-  trackRef: React.RefObject<HTMLDivElement>
-  tooltip: boolean
-}
+  useEffect(() => {
+    if (onChangeEnd && currentValue !== undefined && !dragging) {
+      onChangeEnd(currentValue)
+      // setIsClicked(true)
+    }
+  }, [dragging])
 
-const Thumb = React.forwardRef<HTMLInputElement, ThumbProps>((props, ref) => {
-  const {state, trackRef, tooltip} = props
-  const value = state.values[0] ?? 0
-  const inputRef = useDOMRef<HTMLInputElement>(ref)
-  const opts = {index: 0, trackRef, inputRef}
-  const {thumbProps, inputProps, isDragging} = useSliderThumb(opts, state)
+  // useEffect(() => {
+  //   debugger;
+  //   if (onChangeEnd && currentValue !== undefined && !dragging) {
+  //     setCurrentValue(value)
+  //   }
+  // }, [value])
+
+  useEffect(() => {
+    const slider = sliderRef.current
+    if (slider) {
+      const thumb = slider.querySelector('.thumb') as HTMLElement
+      const sliderProgress = slider.querySelector(
+        '.range-slider',
+      ) as HTMLElement
+      let isDragging = false
+      let prevX = 0
+
+      const handleMouseDown = (event: MouseEvent) => {
+        if (isDisabled) return
+        isDragging = true
+        prevX = event.clientX
+        setDragging(true)
+      }
+
+      const handleMouseUp = () => {
+        if (isDisabled) return
+        isDragging = false
+        setDragging(false)
+      }
+
+      const handleMouseMove = (event: MouseEvent) => {
+        if (!isDragging || isDisabled) return
+        const deltaX = event.clientX - prevX
+        prevX = event.clientX
+        const newLeft = thumb.offsetLeft + deltaX
+        const sliderWidth = slider.offsetWidth
+        const thumbWidth = thumb.offsetWidth
+        thumb.style.left = `${Math.max(
+          0 - thumbWidth,
+          Math.min(newLeft, sliderWidth - thumbWidth * 2),
+        )}px`
+        const sliderProgressWidth = thumb.offsetLeft + thumbWidth
+        sliderProgress.style.width = `${sliderProgressWidth}px`
+
+        const newValue =
+          Math.round(
+            ((sliderProgressWidth / (sliderWidth - thumbWidth)) *
+              (maxValue - minValue)) /
+              step,
+          ) *
+            step +
+          minValue
+        setCurrentValue(newValue)
+        thumb.setAttribute('value', newValue.toString())
+        if (onChange) {
+          onChange(newValue)
+        }
+      }
+
+      const handleMouseClick = (event: MouseEvent) => {
+        if (isDisabled || isDragging) return
+        const sliderWidth = slider.offsetWidth
+        const thumbWidth = thumb.offsetWidth
+        let clickX = event.clientX - slider.getBoundingClientRect().left
+        if (clickX >= sliderWidth - thumbWidth / 2)
+          clickX = sliderWidth - thumbWidth / 2
+        thumb.style.left = `${Math.max(
+          0 - thumbWidth,
+          Math.min(clickX - (thumbWidth * 3) / 2, sliderWidth - thumbWidth),
+        )}px`
+        if (clickX - thumbWidth <= 0) sliderProgress.style.width = `0px`
+        sliderProgress.style.width = `${clickX - thumbWidth / 2}px`
+        const sliderProgressWidth = thumb.offsetLeft + thumbWidth
+        const newValue =
+          Math.round(
+            ((sliderProgressWidth / (sliderWidth - thumbWidth)) *
+              (maxValue - minValue)) /
+              step,
+          ) *
+            step +
+          minValue
+        setCurrentValue(newValue)
+        thumb.setAttribute('value', newValue.toString())
+
+        if (onChange) {
+          onChange(newValue)
+        }
+
+        if (onChangeEnd) {
+          onChangeEnd(newValue)
+        }
+      }
+
+      slider.addEventListener('click', handleMouseClick)
+      thumb.addEventListener('mousedown', handleMouseDown)
+      document.addEventListener('mouseup', handleMouseUp)
+      document.addEventListener('mousemove', handleMouseMove)
+
+      // Set the initial value and position of the thumb based on defaultValue prop
+      if (defaultValue !== undefined || value !== undefined) {
+        // Update the thumb's position after defaultValue is available
+        const updateThumbPosition = () => {
+          const sliderWidth = slider.offsetWidth
+          const thumbWidth = thumb.offsetWidth
+          const initValue =
+            value !== undefined ? value : defaultValue || minValue
+          const progressWidth =
+            ((initValue - minValue) / (maxValue - minValue)) * sliderWidth -
+            thumbWidth
+          thumb.style.left = `${Math.max(
+            0 - thumbWidth,
+            Math.min(progressWidth - thumbWidth, sliderWidth - thumbWidth),
+          )}px`
+          sliderProgress.style.width = `${progressWidth}px`
+          setCurrentValue(defaultValue)
+          thumb.setAttribute('value', initValue.toString())
+        }
+        updateThumbPosition()
+      }
+
+      return () => {
+        thumb.removeEventListener('mousedown', handleMouseDown)
+        document.removeEventListener('mouseup', handleMouseUp)
+        document.removeEventListener('mousemove', handleMouseMove)
+        slider.removeEventListener('click', handleMouseClick)
+      }
+    }
+    return () => {
+      console.log('slider not found!!!')
+    }
+  }, [isDisabled, minValue, maxValue, step, onChange, defaultValue, value])
 
   return (
-    <StyledThumb
-      style={{
-        left: `${state.getThumbPercent(0) * 100}%`,
-      }}
+    <RangeSliderContainer
+      className={`cdg-range-slider ${className}`}
+      tabIndex={0}
+      ref={sliderRef}
+      style={{pointerEvents: `${isDisabled ? 'none' : 'auto'}`}}
     >
-      <div {...thumbProps} className='slider-thumb-handle'>
-        <input ref={inputRef} {...inputProps} style={{display: 'none'}} />
-      </div>
-      {tooltip && isDragging && <div className='slider-value'>{value}</div>}
-    </StyledThumb>
+      <RangeSlider className='range-slider'>
+        <Thumb className={`thumb ${tooltip ? `thumb-tooltips` : ''}`} />
+      </RangeSlider>
+    </RangeSliderContainer>
   )
-})
+}
 
 export default Slider
