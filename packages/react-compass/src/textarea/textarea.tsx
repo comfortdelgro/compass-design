@@ -152,15 +152,6 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           onCompositionEnd={props.onCompositionEnd}
           onCompositionStart={props.onCompositionStart}
           onCompositionUpdate={props.onCompositionUpdate}
-          aria-label={props['aria-label']}
-          aria-details={props['aria-details']}
-          aria-haspopup={props['aria-haspopup']}
-          aria-controls={props['aria-controls']}
-          aria-labelledby={props['aria-labelledby']}
-          aria-describedby={props['aria-describedby']}
-          aria-errormessage={props['aria-errormessage']}
-          aria-autocomplete={props['aria-autocomplete']}
-          aria-activedescendant={props['aria-activedescendant']}
         />
         {wordCount && (
           <StyledTextFieldHelperText className='word-count'>
