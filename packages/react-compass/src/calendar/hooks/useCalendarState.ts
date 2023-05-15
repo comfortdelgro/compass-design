@@ -1,7 +1,6 @@
 import {
   Calendar,
   CalendarDate,
-  DateDuration,
   DateFormatter,
   endOfMonth,
   getDayOfWeek,
@@ -16,6 +15,7 @@ import {
 import {useMemo, useRef, useState} from 'react'
 import {
   CalendarState,
+  DateDuration,
   DateValue,
   RangeCalendarState,
   ValidationState,

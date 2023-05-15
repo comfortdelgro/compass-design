@@ -4,7 +4,6 @@
 import {
   Calendar,
   CalendarDate,
-  DateDuration,
   DateValue,
   getMinimumDayInMonth,
   getMinimumMonthInYear,
@@ -23,6 +22,7 @@ import {MouseEvent} from 'react'
 import {DEFAULT_FIELD_OPTIONS} from '../constants/field.constant'
 import {
   CalendarState,
+  DateDuration,
   FieldOptions,
   FocusableElement,
   TimeValue,

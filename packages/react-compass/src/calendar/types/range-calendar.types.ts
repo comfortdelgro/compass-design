@@ -1,6 +1,7 @@
-import {Calendar, DateDuration, DateValue} from '@internationalized/date'
+import {Calendar, DateValue} from '@internationalized/date'
 import {CalendarPropsBase, RangeValue} from './calendar.types'
 import {ValueBase} from './common.types'
+import {DateDuration} from './internationalized.types'
 import {AriaLabelingProps, DOMProps} from './label.types'
 
 export interface RangeCalendarProps<T extends DateValue>

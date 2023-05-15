@@ -1,5 +1,4 @@
 import {
-  DateDuration,
   DateValue,
   endOfMonth,
   getWeeksInMonth,
@@ -11,7 +10,7 @@ import {StyledComponentProps} from '../utils/stitches.types'
 import CalendarCell from './calendar-cell'
 import {StyledCalendarGrid, StyledTRowPlaceholder} from './calendar-grid.style'
 import {useCalendarGrid} from './hooks/useCalendarGrid'
-import {CalendarState, RangeCalendarState} from './types'
+import {CalendarState, DateDuration, RangeCalendarState} from './types'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
