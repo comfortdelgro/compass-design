@@ -6,13 +6,18 @@ import FaceSmileHeart from '@comfortdelgro/compass-icons/react/face-smile-heart'
 import React, {useState} from 'react'
 import Button from '../button'
 import {StyledComponentProps} from '../utils/stitches.types'
-import {StyledRatingComponent} from './rating.styles'
-export interface RatingProps extends StyledComponentProps {
+import {useDOMRef} from '../utils/use-dom-ref'
+import {RatingVariantProps, StyledRatingComponent} from './rating.styles'
+interface Props extends StyledComponentProps {
   useIcons?: boolean
   onChange?: (point: number | null) => void
 }
+export type RatingProps = Props &
+  RatingVariantProps &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 const Rating = React.forwardRef<HTMLDivElement, RatingProps>((props, ref) => {
-  const {useIcons = false, onChange} = props
+  const {useIcons = false, onChange, css = {}, ...delegated} = props
+  const ratingRef = useDOMRef<HTMLDivElement>(ref)
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
   const handleRatingBtnPress = (index: number) => () => {
     if (index === activeIndex) {
@@ -72,7 +77,7 @@ const Rating = React.forwardRef<HTMLDivElement, RatingProps>((props, ref) => {
     })
   }
   return (
-    <StyledRatingComponent ref={ref}>
+    <StyledRatingComponent ref={ratingRef} css={css} {...delegated}>
       {useIcons ? renderIconButtons() : renderNumberButtons()}
     </StyledRatingComponent>
   )
