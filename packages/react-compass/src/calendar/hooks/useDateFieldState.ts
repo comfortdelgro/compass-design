@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/prefer-ts-expect-error */
 // Reference: https://github.com/adobe/react-spectrum/blob/98cad3f064c5302c04a1140d12a2cacc3ee921a2/packages/%40react-stately/datepicker/src/useDateFieldState.ts
 /* eslint-disable prefer-const */
 import {
@@ -32,54 +35,26 @@ import {useControlledState} from './useControlledState'
 import {useDefaultProps} from './useDefaultProps'
 
 export interface DateFieldState {
-  /** The current field value. */
   value: DateValue
-  /** The current value, converted to a native JavaScript `Date` object.  */
   dateValue: Date
-  /** The calendar system currently in use. */
   calendar: Calendar
-  /** Sets the field's value. */
   setValue(value: DateValue): void
-  /** A list of segments for the current value. */
   segments: DateSegment[]
-  /** A date formatter configured for the current locale and format. */
   dateFormatter: DateFormatter
-  /** The current validation state of the date field, based on the `validationState`, `minValue`, and `maxValue` props. */
   validationState: ValidationState
-  /** The granularity for the field, based on the `granularity` prop and current value. */
   granularity: Granularity
-  /** The maximum date or time unit that is displayed in the field. */
   maxGranularity: 'year' | 'month' | Granularity
-  /** Whether the field is disabled. */
   isDisabled: boolean
-  /** Whether the field is read only. */
   isReadOnly: boolean
-  /** Whether the field is required. */
   isRequired: boolean
-  /** Increments the given segment. Upon reaching the minimum or maximum value, the value wraps around to the opposite limit. */
   increment(type: SegmentType): void
-  /** Decrements the given segment. Upon reaching the minimum or maximum value, the value wraps around to the opposite limit. */
   decrement(type: SegmentType): void
-  /**
-   * Increments the given segment by a larger amount, rounding it to the nearest increment.
-   * The amount to increment by depends on the field, for example 15 minutes, 7 days, and 5 years.
-   * Upon reaching the minimum or maximum value, the value wraps around to the opposite limit.
-   */
   incrementPage(type: SegmentType): void
-  /**
-   * Decrements the given segment by a larger amount, rounding it to the nearest increment.
-   * The amount to decrement by depends on the field, for example 15 minutes, 7 days, and 5 years.
-   * Upon reaching the minimum or maximum value, the value wraps around to the opposite limit.
-   */
   decrementPage(type: SegmentType): void
-  /** Sets the value of the given segment. */
   setSegment(type: 'era', value: string): void
   setSegment(type: SegmentType, value: number): void
-  /** Updates the remaining unfilled segments with the placeholder value. */
   confirmPlaceholder(): void
-  /** Clears the value of the given segment, reverting it to the placeholder. */
   clearSegment(type: SegmentType): void
-  /** Formats the current date value using the given options. */
   formatValue(fieldOptions: FieldOptions): string
 }
 
@@ -109,19 +84,8 @@ const TYPE_MAPPING = {
 
 export interface DateFieldStateOptions<T extends DateValue = DateValue>
   extends DatePickerProps<T> {
-  /**
-   * The maximum unit to display in the date field.
-   * @default 'year'
-   */
   maxGranularity?: 'year' | 'month' | Granularity
-  /** The locale to display and edit the value according to. */
   locale: string
-  /**
-   * A function that creates a [Calendar](../internationalized/date/Calendar.html)
-   * object for a given calendar identifier. Such a function may be imported from the
-   * `@internationalized/date` package, or manually implemented to include support for
-   * only certain calendars.
-   */
   createCalendar: (name: string) => Calendar
 }
 
@@ -140,6 +104,7 @@ export function useDateFieldState<T extends DateValue = DateValue>(
   const v: DateValue | undefined =
     props.value || props.defaultValue || props.placeholderValue
 
+  // @ts-ignore
   const [granularity, defaultTimeZone] = useDefaultProps(v!, props.granularity!)
 
   const timeZone = defaultTimeZone || 'UTC'
@@ -160,11 +125,9 @@ export function useDateFieldState<T extends DateValue = DateValue>(
       return
     }
     if (date?.year && date.year < MIN_YEAR) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment, @typescript-eslint/prefer-ts-expect-error
       //@ts-ignore
       props.onChange(null)
     } else {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment, @typescript-eslint/prefer-ts-expect-error
       //@ts-ignore
       props.onChange(date)
     }

@@ -1,19 +1,12 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import {createCalendar} from '@internationalized/date'
 import {useLocale} from '@react-aria/i18n'
-// import type {AriaButtonProps} from '@react-types/button'
 import React, {useRef} from 'react'
 import {ButtonProps} from '../../button'
 import {Icon} from '../../dropdown/utils'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import {useDateField} from '../hooks/useDateField'
 import {useDateFieldState} from '../hooks/useDateFieldState'
-import {
-  AriaLabelingProps,
-  DateFieldBase,
-  DateFieldProps,
-  DateValue,
-  DOMProps,
-} from '../types'
 import {
   StyledDateField,
   StyledExpandButton,
@@ -22,26 +15,25 @@ import {
 } from './date-field.style'
 import DateSegment from './date-segment'
 
-interface AriaDateFieldBaseProps<T extends DateValue>
-  extends DateFieldBase<T>,
-    AriaLabelingProps,
-    DOMProps {}
-export interface AriaDateFieldProps<T extends DateValue>
-  extends DateFieldProps<T>,
-    AriaDateFieldBaseProps<T> {}
-
-interface Props extends AriaDateFieldProps<DateValue> {
+interface Props {
   children?: React.ReactNode
   buttonProps: ButtonProps
   isInvalid?: boolean | undefined
+  label?: string | undefined
   necessityIndicator?: 'icon' | 'label'
+  isDisabled?: boolean
+  isReadOnly?: boolean
+  isRequired?: boolean
   isMobile?: boolean | undefined
   helperText?: React.ReactNode
+  errorMessage?: React.ReactNode
 }
 
 const DateField = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   const {locale} = useLocale()
   const expandButtonRef = useRef<HTMLButtonElement>(null)
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const state = useDateFieldState({
     ...props,
     isReadOnly: props.isReadOnly ? true : props.isMobile ? true : false,
@@ -52,6 +44,7 @@ const DateField = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   const dateFieldRef = useDOMRef(ref)
 
   const {labelProps, fieldProps} = useDateField(
+    // @ts-ignore
     {
       ...props,
       isReadOnly: props.isReadOnly ? true : props.isMobile ? true : false,

@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/unbound-method */
 import {DateValue, parseDate} from '@internationalized/date'
-// import type {AriaButtonProps} from '@react-types/button'
 import {CSS} from '@stitches/react'
 import React from 'react'
 import {ButtonProps} from '../button'
@@ -83,6 +83,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     return true
   }
 
+  // @ts-ignore
   calendarProps.isReadOnly = checkIfCalendarInMobile()
   return (
     <StyledDatePicker css={css}>
