@@ -34,7 +34,7 @@ export interface DateSegment {
   isEditable: boolean
 }
 
-interface DateFieldBase<T extends DateValue>
+export interface DateFieldBase<T extends DateValue>
   extends InputBase,
     Validation,
     FocusableProps,

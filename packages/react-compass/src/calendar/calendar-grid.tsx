@@ -9,7 +9,7 @@ import {useLocale} from '@react-aria/i18n'
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import CalendarCell from './calendar-cell'
-import {StyledCalendarGrid} from './calendar-grid.style'
+import {StyledCalendarGrid, StyledTRowPlaceholder} from './calendar-grid.style'
 import {useCalendarGrid} from './hooks/useCalendarGrid'
 import {CalendarState, RangeCalendarState} from './types'
 
@@ -50,8 +50,15 @@ const CalendarGrid = (props: Props) => {
 
   const weeksInMonth = getWeeksInMonth(startDate, locale)
 
+  const isFiveWeeks = [...new Array(weeksInMonth).keys()].length === 5
+
   return (
-    <StyledCalendarGrid {...gridProps} css={css} cellPadding='0'>
+    <StyledCalendarGrid
+      {...gridProps}
+      css={css}
+      cellPadding='0'
+      className='cdg-calendar-grid'
+    >
       <thead {...headerProps}>
         <tr>
           {weekDays.map((day, index) => (
@@ -81,6 +88,12 @@ const CalendarGrid = (props: Props) => {
               )}
           </tr>
         ))}
+        {isFiveWeeks && (
+          <StyledTRowPlaceholder
+            aria-hidden
+            className='week-sixth-placeholder'
+          />
+        )}
       </tbody>
     </StyledCalendarGrid>
   )

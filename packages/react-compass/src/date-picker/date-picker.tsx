@@ -1,4 +1,7 @@
+/* eslint-disable @typescript-eslint/unbound-method */
 import {DateValue, parseDate} from '@internationalized/date'
+// import type {AriaButtonProps} from '@react-types/button'
+import {CSS} from '@stitches/react'
 import React from 'react'
 import {ButtonProps} from '../button'
 import Calendar, {CalendarProps} from '../calendar/calendar'
@@ -26,9 +29,12 @@ interface Props
   children?: React.ReactNode
   label?: string
   isInvalid?: boolean
+  isMobile?: boolean
   shouldCloseOnSelect?: boolean
   onCancel?: (() => void) | undefined
   maxValue?: DateValue
+  calendarCSS?: CSS
+  helperText?: React.ReactNode
 }
 
 export type DatePickerProps = Props
@@ -37,6 +43,9 @@ const DatePicker = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   const {css = {}, maxValue = parseDate('2999-03-10')} = props
   const state = useDatePickerState({
     ...props,
+    // mobile styles: prevent date field from user input, click on any place in date field will open calendar
+    // to achieve that, i use isReadonly=true on datefield and isReadonly=false on calendar
+    isReadOnly: props.isReadOnly ? true : props.isMobile ? true : false,
     shouldCloseOnSelect: props.granularity
       ? true
       : props.shouldCloseOnSelect ?? false,
@@ -44,17 +53,37 @@ const DatePicker = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
 
   const calendarRef = useDOMRef(ref)
 
-  const {groupProps, fieldProps, buttonProps, calendarProps} = useDatePicker(
-    props,
-    state,
-    calendarRef,
-  )
+  const {groupProps, fieldProps, buttonProps, dialogProps, calendarProps} =
+    useDatePicker(
+      {
+        ...props,
+        isReadOnly: props.isReadOnly ? true : props.isMobile ? true : false,
+      },
+      state,
+      calendarRef,
+    )
 
   const extendedFieldProps = {
     necessityIndicator: props.necessityIndicator,
     ...fieldProps,
   }
 
+  // if in mobile, allow calendar to select date
+
+  const checkIfCalendarInMobile = () => {
+    if (props.isReadOnly) {
+      return true
+    }
+    if (!props.isReadOnly && !props.isMobile) {
+      return false
+    }
+    if (props.isMobile) {
+      return false
+    }
+    return true
+  }
+
+  calendarProps.isReadOnly = checkIfCalendarInMobile()
   return (
     <StyledDatePicker css={css}>
       <DatePickerFieldWrapper
@@ -63,7 +92,11 @@ const DatePicker = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
         fieldProps={extendedFieldProps}
         buttonProps={buttonProps as unknown as ButtonProps}
         isInvalid={props.isInvalid}
+        isReadOnly={props.isReadOnly}
+        isMobile={props.isMobile}
         label={props.label}
+        errorMessage={props.errorMessage}
+        helperText={props.helperText}
       />
       <DatePickerCalendarWrapper
         maxValue={maxValue}
@@ -71,6 +104,8 @@ const DatePicker = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
         onCancel={props.onCancel}
         calendarProps={calendarProps}
         calendarRef={calendarRef}
+        dialogProps={dialogProps}
+        css={props.calendarCSS}
       />
     </StyledDatePicker>
   )
@@ -82,21 +117,40 @@ interface DatePickerFieldWrapperProps {
   buttonProps: ButtonProps
   label?: string | undefined
   isInvalid?: boolean | undefined
+  isMobile?: boolean | undefined
+  isReadOnly?: boolean | undefined
+  errorMessage?: React.ReactNode
+  helperText?: React.ReactNode
 }
 
 const DatePickerFieldWrapper = React.forwardRef<
   HTMLDivElement,
   DatePickerFieldWrapperProps
 >((props, ref) => {
-  const {groupProps, fieldProps, buttonProps, label, isInvalid} = props
+  const {
+    groupProps,
+    fieldProps,
+    buttonProps,
+    label,
+    isInvalid,
+    isMobile,
+    isReadOnly = false,
+    errorMessage,
+    helperText,
+  } = props
 
   return (
     <StyledDatePickerFieldWrapper {...groupProps} ref={ref}>
       <DateField
         {...fieldProps}
+        aria-describedby={fieldProps['aria-describedby'] ?? ''}
         buttonProps={buttonProps}
         label={label}
         isInvalid={isInvalid}
+        isMobile={isMobile}
+        isReadOnly={isReadOnly}
+        errorMessage={errorMessage}
+        helperText={helperText}
       />
     </StyledDatePickerFieldWrapper>
   )
@@ -105,19 +159,22 @@ const DatePickerFieldWrapper = React.forwardRef<
 interface DatePickerCalendarWrapperProps {
   state: DatePickerState
   calendarRef: React.RefObject<HTMLDivElement>
-  dialogProps?: AriaDialogProps
+  dialogProps: AriaDialogProps
   calendarProps: CalendarProps
   onCancel?: (() => void) | undefined
   maxValue?: DateValue
+  css?: CSS | undefined
 }
 
 const DatePickerCalendarWrapper = (props: DatePickerCalendarWrapperProps) => {
   const {
     state,
     calendarRef,
+    dialogProps,
     calendarProps,
     onCancel,
     maxValue = parseDate('2999-03-10'),
+    css = {},
   } = props
 
   return (
@@ -129,13 +186,19 @@ const DatePickerCalendarWrapper = (props: DatePickerCalendarWrapperProps) => {
           offset={8}
           placement='bottom start'
         >
-          <Dialog>
+          <Dialog
+            {...dialogProps}
+            aria-describedby={dialogProps['aria-describedby'] ?? ''}
+            aria-label={dialogProps['aria-label'] ?? ''}
+            aria-labelledby={dialogProps['aria-labelledby'] ?? ''}
+          >
             <Calendar
               state={state}
               hasFooter={true}
               onCancelCallback={onCancel}
               {...calendarProps}
               maxValue={maxValue}
+              css={css}
             />
           </Dialog>
         </Popover>

@@ -1,43 +1,64 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import {faChevronDown} from '@fortawesome/free-solid-svg-icons'
 import {createCalendar} from '@internationalized/date'
 import {useLocale} from '@react-aria/i18n'
-import React from 'react'
-import Button, {ButtonProps} from '../../button'
-import Icon from '../../icon'
+// import type {AriaButtonProps} from '@react-types/button'
+import React, {useRef} from 'react'
+import {ButtonProps} from '../../button'
+import {Icon} from '../../dropdown/utils'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import {useDateField} from '../hooks/useDateField'
 import {useDateFieldState} from '../hooks/useDateFieldState'
-import {StyledDateField} from './date-field.style'
+import {
+  AriaLabelingProps,
+  DateFieldBase,
+  DateFieldProps,
+  DateValue,
+  DOMProps,
+} from '../types'
+import {
+  StyledDateField,
+  StyledExpandButton,
+  StyledLabelNecessity,
+  StyledTextFieldHelperText,
+} from './date-field.style'
 import DateSegment from './date-segment'
 
-interface Props {
+interface AriaDateFieldBaseProps<T extends DateValue>
+  extends DateFieldBase<T>,
+    AriaLabelingProps,
+    DOMProps {}
+export interface AriaDateFieldProps<T extends DateValue>
+  extends DateFieldProps<T>,
+    AriaDateFieldBaseProps<T> {}
+
+interface Props extends AriaDateFieldProps<DateValue> {
   children?: React.ReactNode
   buttonProps: ButtonProps
   isInvalid?: boolean | undefined
-  label?: string | undefined
   necessityIndicator?: 'icon' | 'label'
-  isDisabled?: boolean
-  isReadOnly?: boolean
-  isRequired?: boolean
+  isMobile?: boolean | undefined
+  helperText?: React.ReactNode
 }
 
 const DateField = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   const {locale} = useLocale()
+  const expandButtonRef = useRef<HTMLButtonElement>(null)
   const state = useDateFieldState({
     ...props,
+    isReadOnly: props.isReadOnly ? true : props.isMobile ? true : false,
     locale,
     createCalendar,
   })
 
   const dateFieldRef = useDOMRef(ref)
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  const {labelProps, fieldProps} = useDateField(props, state, dateFieldRef)
+  const {labelProps, fieldProps} = useDateField(
+    {
+      ...props,
+      isReadOnly: props.isReadOnly ? true : props.isMobile ? true : false,
+    },
+    state,
+    dateFieldRef,
+  )
 
   const isDisabled = props.isDisabled ?? false
 
@@ -55,42 +76,79 @@ const DateField = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   const generateLabeling = () => {
     const necessityIndicator = props.necessityIndicator ?? 'icon'
     if (props.isRequired && necessityIndicator === 'icon') {
-      return '*'
+      return <StyledLabelNecessity isError>*</StyledLabelNecessity>
     } else if (props.isRequired && necessityIndicator === 'label') {
-      return '(required)'
+      return (
+        <StyledLabelNecessity isError isText>
+          (required)
+        </StyledLabelNecessity>
+      )
     } else if (!props.isRequired && necessityIndicator === 'label') {
-      return '(optional)'
+      return <StyledLabelNecessity isText>(optional)</StyledLabelNecessity>
     }
     return ''
   }
 
+  const {onPress, ...buttonProps} = props.buttonProps
+
   return (
-    <StyledDateField isDisabled={isDisabled} isInvalid={isInvalid}>
-      <span {...labelProps} className='date-field-label'>
-        {props.label} {generateLabeling()}
-      </span>
-      <div {...fieldProps} ref={dateFieldRef} className='date-field-input'>
-        {
-          // @ts-ignore
-          state.segments.map((segment, i) => {
+    <div>
+      <StyledDateField
+        className='cdg-date-field'
+        isDisabled={isDisabled}
+        isInvalid={isInvalid}
+      >
+        <span {...labelProps} className='date-field-label'>
+          {props.label} {generateLabeling()}
+        </span>
+        <div
+          {...fieldProps}
+          ref={dateFieldRef}
+          className={`date-field-input ${
+            isDisabled || isReadOnly ? '' : props.isMobile ? 'mobile' : ''
+          }`}
+          onClick={() => {
+            if (isDisabled || isReadOnly) {
+              return
+            }
+
+            props.isMobile && expandButtonRef.current?.click()
+          }}
+        >
+          {state.segments.map((segment, i) => {
+            // synchronize literal('/')'style with other segment
             if (segment.type === 'literal') {
-              // @ts-ignore
               segment.isPlaceholder =
                 state.segments[i - 1]?.isPlaceholder ?? false
             }
             return <DateSegment key={i} segment={segment} state={state} />
-          })
-        }
-        <Button
-          {...props.buttonProps}
-          variant='ghost'
-          isDisabled={isDisabled || isReadOnly}
-          className='toggle-calendar-button'
-        >
-          <Icon className='toggle-calendar-icon' icon={faChevronDown} />
-        </Button>
-      </div>
-    </StyledDateField>
+          })}
+
+          <StyledExpandButton
+            {...buttonProps}
+            ref={expandButtonRef}
+            onClick={(e) => {
+              onPress?.(e)
+            }}
+            type='button'
+            disabled={isDisabled || isReadOnly}
+            className='toggle-calendar-button'
+          >
+            <Icon />
+          </StyledExpandButton>
+        </div>
+      </StyledDateField>
+      {props.isInvalid && props.errorMessage && (
+        <StyledTextFieldHelperText className='cdg-date-field-error' error>
+          {props.errorMessage}
+        </StyledTextFieldHelperText>
+      )}
+      {props.helperText ? (
+        <StyledTextFieldHelperText className='cdg-date-field-helper'>
+          {props.helperText}
+        </StyledTextFieldHelperText>
+      ) : null}
+    </div>
   )
 })
 
