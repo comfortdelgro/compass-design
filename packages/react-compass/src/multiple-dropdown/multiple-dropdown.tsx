@@ -154,23 +154,8 @@ const MultipleDropdown = React.forwardRef<
   React.useEffect(() => {
     if (open) {
       inputRef.current?.focus()
-      if (wrapperRef.current) {
-        wrapperRef.current.style.outlineColor = isErrored
-          ? '#A4262C'
-          : '-webkit-focus-ring-color'
-        wrapperRef.current.style.outlineStyle = 'solid'
-        wrapperRef.current.style.outlineWidth = '1px'
-      }
     } else {
       inputRef.current?.blur()
-      if (wrapperRef.current) {
-        wrapperRef.current.style.outlineColor = isErrored
-          ? '#A4262C'
-          : 'inherit'
-        wrapperRef.current.style.outlineColor = 'inherit'
-        wrapperRef.current.style.outlineStyle = 'inherit'
-        wrapperRef.current.style.outlineWidth = 'inherit'
-      }
     }
   }, [open])
 
@@ -294,7 +279,9 @@ const MultipleDropdown = React.forwardRef<
         onClick={handleOpen}
       >
         <StyledSelectedItemWrapper>
-          {selectedNode.length === 0 && !open && <p>{props.placeholder}</p>}
+          {selectedNode.length === 0 && search === '' && !open && (
+            <p>{props.placeholder}</p>
+          )}
           {selectedNode.length > 0 &&
             selectedNode.map((item) => {
               const isHideXIcon = isDisabled || disabledKeys.includes(item.key)
