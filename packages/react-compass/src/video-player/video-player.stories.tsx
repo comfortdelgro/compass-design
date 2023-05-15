@@ -3,7 +3,7 @@ import {Column} from '../utils/components'
 import VideoPlayer from './index'
 
 export const Default: React.FC = () => {
-  const src = 'http://techslides.com/demos/sample-videos/small.webm'
+  const src = 'http://techslidesghjghjghj.com/demos/sample-videos/small.webm'
 
   return (
     <Column>
