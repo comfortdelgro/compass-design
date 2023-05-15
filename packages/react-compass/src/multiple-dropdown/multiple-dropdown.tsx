@@ -335,11 +335,12 @@ const MultipleDropdown = React.forwardRef<
         <div className='dropdown-icon'>{icon}</div>
       </StyledDropdown>
       <StyledListBoxWrapper>
-        {collection && collection.length > 0 && open && (
+        {collection && open && (
           <Popover
             popoverRef={popoverRef}
-            close={close}
             triggerRef={wrapperRef}
+            isEmpty={collection.length === 0}
+            close={close}
             handleKeyDown={handleKeyDown}
           >
             <ListBox

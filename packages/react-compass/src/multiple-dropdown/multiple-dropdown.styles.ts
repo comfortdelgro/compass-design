@@ -18,12 +18,13 @@ export const StyledDropdownWrapper = styled('div', {
 
 export const StyledDropdown = styled('div', {
   width: '100%',
+  height: '$11',
   border: '1px solid #E6E6E6',
   borderRadius: '$md',
   cursor: 'text',
   display: 'flex',
   alignItems: 'center',
-  padding: '$3 $4',
+  padding: '$2 $4',
   gap: '$1',
   backgroundColor: '#FFFFFF',
   '.dropdown-icon': {

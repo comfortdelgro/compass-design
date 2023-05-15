@@ -6,6 +6,7 @@ interface Props {
   triggerRef: React.RefObject<HTMLDivElement>
   popoverRef: React.RefObject<HTMLDivElement>
   children: React.ReactNode
+  isEmpty?: boolean
   close: () => void
   handleKeyDown: (e: KeyboardEvent) => void
 }
@@ -18,7 +19,7 @@ function Popover({
   ...props
 }: Props) {
   const ref = React.useRef(null)
-  const {popoverRef = ref} = props
+  const {popoverRef = ref, isEmpty = false} = props
 
   React.useEffect(() => {
     const rect = popoverRef.current?.getBoundingClientRect()
@@ -58,6 +59,7 @@ function Popover({
           minWidth: triggerRef.current?.clientWidth
             ? triggerRef.current.clientWidth + 2
             : '100%',
+          display: isEmpty ? 'none' : '',
         }}
         css={{$$zIndex: LISTBOX_Z_INDEX}}
       >
