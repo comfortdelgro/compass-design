@@ -291,7 +291,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           isEmpty={!selectedItem}
           isErrored={!!isErrored}
           isDisabled={isDisabled}
-          isOpened={open}
         >
           <button
             type='button'

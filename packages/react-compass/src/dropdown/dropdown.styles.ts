@@ -18,11 +18,18 @@ export const StyledDropdownWrapper = styled('div', {
 
 export const StyledSelect = styled('div', {
   width: '100%',
-  border: '1px solid #E6E6E6',
   background: '#FFFFFF',
   overflow: 'hidden',
   borderRadius: '$md',
   zIndex: 1,
+  transition: '$default',
+  borderWidth: '1px',
+  borderStyle: 'solid',
+  borderColor: '#E6E6E6',
+  '&:focus-within': {
+    borderColor: '$cdgBlue',
+  },
+
   button: {
     padding: '$3 $4',
     width: '100%',
@@ -70,36 +77,12 @@ export const StyledSelect = styled('div', {
     isErrored: {
       true: {
         borderColor: '$danger',
-        borderWidth: 1,
-        button: {
-          '&:focus': {
-            borderColor: '$danger',
-            outlineColor: '$danger',
-          },
-          '&:focus-within': {
-            borderColor: '$danger',
-            outlineColor: '$danger',
-          },
+        '&:focus-within': {
+          borderColor: '$danger',
         },
       },
     },
-    isOpened: {
-      true: {
-        outlineColor: '-webkit-focus-ring-color',
-        outlineStyle: 'solid',
-        outlineWidth: 1,
-      },
-    },
   },
-  compoundVariants: [
-    {
-      isOpened: true,
-      isErrored: true,
-      css: {
-        outlineColor: '$danger',
-      },
-    },
-  ],
 })
 
 export const StyledComboBox = styled('div', {
@@ -112,6 +95,13 @@ export const StyledComboBox = styled('div', {
   display: 'flex',
   alignItems: 'center',
   zIndex: 1,
+  transition: '$default',
+  borderWidth: '1px',
+  borderStyle: 'solid',
+  borderColor: '#E6E6E6',
+  '&:focus-within': {
+    borderColor: '$cdgBlue',
+  },
   input: {
     boxSizing: 'border-box',
     background: '#FFFFFF',
@@ -126,6 +116,9 @@ export const StyledComboBox = styled('div', {
     border: 'none',
     padding: '$3 $11 $3 $4',
     margin: 0,
+    '&:focus': {
+      outline: 'none',
+    },
   },
   button: {
     position: 'absolute',
@@ -173,16 +166,8 @@ export const StyledComboBox = styled('div', {
     isErrored: {
       true: {
         borderColor: '$danger',
-        borderWidth: 1,
-        input: {
-          '&:focus': {
-            borderColor: '$danger',
-            outlineColor: '$danger',
-          },
-          '&:focus-within': {
-            borderColor: '$danger',
-            outlineColor: '$danger',
-          },
+        '&:focus-within': {
+          borderColor: '$danger',
         },
       },
     },
@@ -199,6 +184,13 @@ export const StyledFlag = styled('div', {
   display: 'flex',
   alignItems: 'center',
   zIndex: 1,
+  transition: '$default',
+  borderWidth: '1px',
+  borderStyle: 'solid',
+  borderColor: '#E6E6E6',
+  '&:focus-within': {
+    borderColor: '$cdgBlue',
+  },
   input: {
     boxSizing: 'border-box',
     background: '#FFFFFF',
@@ -213,6 +205,9 @@ export const StyledFlag = styled('div', {
     border: 'none',
     padding: '$3 $11 $3 $12',
     margin: 0,
+    '&:focus': {
+      outline: 'none',
+    },
   },
   button: {
     position: 'absolute',
@@ -261,16 +256,8 @@ export const StyledFlag = styled('div', {
     isErrored: {
       true: {
         borderColor: '$danger',
-        borderWidth: 1,
-        input: {
-          '&:focus': {
-            borderColor: '$danger',
-            outlineColor: '$danger',
-          },
-          '&:focus-within': {
-            borderColor: '$danger',
-            outlineColor: '$danger',
-          },
+        '&:focus-within': {
+          borderColor: '$danger',
         },
       },
     },
