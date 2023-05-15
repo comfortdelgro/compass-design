@@ -15,9 +15,12 @@ export const StyledCheckboxWrapper = styled('div', {
 export const StyledCheckboxInput = styled('input', {
   position: 'absolute',
   opacity: 0,
-  height: 0,
-  width: 0,
   cursor: 'pointer',
+  width: '15px',
+  height: '15px',
+  top: 0,
+  left: 0,
+  zIndex: 1,
 })
 
 //mark for merging point
