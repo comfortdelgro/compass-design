@@ -1,18 +1,19 @@
-/* eslint-disable @typescript-eslint/unbound-method */
 import {DateValue, parseDate} from '@internationalized/date'
-import {AriaDatePickerProps, useDatePicker} from '@react-aria/datepicker'
-import {AriaDialogProps} from '@react-aria/dialog'
-import {DatePickerState, useDatePickerState} from '@react-stately/datepicker'
-// import type {AriaButtonProps} from '@react-types/button'
-import type {CalendarProps} from '@react-types/calendar'
-import type {SpectrumDatePickerProps} from '@react-types/datepicker'
-import type {DOMAttributes} from '@react-types/shared'
 import React from 'react'
 import {ButtonProps} from '../button'
-import Calendar from '../calendar/calendar'
+import Calendar, {CalendarProps} from '../calendar/calendar'
 import {DateField} from '../calendar/components'
 import Dialog from '../calendar/components/dialog'
 import Popover from '../calendar/components/popover'
+import {useDatePicker} from '../calendar/hooks/useDatePicker'
+import {useDatePickerState} from '../calendar/hooks/useDatePickerState'
+import {
+  AriaDatePickerProps,
+  AriaDialogProps,
+  DatePickerState,
+  DOMAttributes,
+  SpectrumDatePickerProps,
+} from '../calendar/types'
 import type {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
@@ -43,8 +44,11 @@ const DatePicker = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
 
   const calendarRef = useDOMRef(ref)
 
-  const {groupProps, fieldProps, buttonProps, dialogProps, calendarProps} =
-    useDatePicker(props, state, calendarRef)
+  const {groupProps, fieldProps, buttonProps, calendarProps} = useDatePicker(
+    props,
+    state,
+    calendarRef,
+  )
 
   const extendedFieldProps = {
     necessityIndicator: props.necessityIndicator,
@@ -67,7 +71,6 @@ const DatePicker = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
         onCancel={props.onCancel}
         calendarProps={calendarProps}
         calendarRef={calendarRef}
-        dialogProps={dialogProps}
       />
     </StyledDatePicker>
   )
@@ -102,8 +105,8 @@ const DatePickerFieldWrapper = React.forwardRef<
 interface DatePickerCalendarWrapperProps {
   state: DatePickerState
   calendarRef: React.RefObject<HTMLDivElement>
-  dialogProps: AriaDialogProps
-  calendarProps: CalendarProps<DateValue>
+  dialogProps?: AriaDialogProps
+  calendarProps: CalendarProps
   onCancel?: (() => void) | undefined
   maxValue?: DateValue
 }
@@ -112,7 +115,6 @@ const DatePickerCalendarWrapper = (props: DatePickerCalendarWrapperProps) => {
   const {
     state,
     calendarRef,
-    dialogProps,
     calendarProps,
     onCancel,
     maxValue = parseDate('2999-03-10'),
@@ -127,7 +129,7 @@ const DatePickerCalendarWrapper = (props: DatePickerCalendarWrapperProps) => {
           offset={8}
           placement='bottom start'
         >
-          <Dialog {...dialogProps}>
+          <Dialog>
             <Calendar
               state={state}
               hasFooter={true}

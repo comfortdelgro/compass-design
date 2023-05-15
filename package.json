@@ -20,7 +20,8 @@
   },
   "prettier": "@comfortdelgro/prettier-config",
   "resolutions": {
-    "@internationalized/date": "3.1.0",
+    "@internationalized/date": "3.2.0",
+    "@internationalized/number": "3.2.0",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.11"
   },
