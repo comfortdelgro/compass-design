@@ -128,6 +128,7 @@ importers:
       '@frsource/cypress-plugin-visual-regression-diff': ^3.2.7
       '@internationalized/date': 3.2.0
       '@internationalized/number': 3.2.0
+      '@internationalized/string': ^3.1.0
       '@ladle/react': ^2.4.5
       '@react-aria/breadcrumbs': ^3.3.2
       '@react-aria/button': ^3.6.2
@@ -245,6 +246,7 @@ importers:
       '@fortawesome/react-fontawesome': 0.2.0_tumfstpptabomqiydababgzl3q
       '@internationalized/date': 3.2.0
       '@internationalized/number': 3.2.0
+      '@internationalized/string': 3.1.0
       '@react-aria/breadcrumbs': 3.5.1_react@18.2.0
       '@react-aria/button': 3.7.1_react@18.2.0
       '@react-aria/calendar': 3.0.5_biqbaboplfbrettd7655fr4n2y

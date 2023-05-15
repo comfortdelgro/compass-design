@@ -5,6 +5,8 @@ export const daysInMonth = {
   leapyear: [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
 }
 
+export const MIN_YEAR = 1900
+
 export const nonTextInputTypes = new Set([
   'checkbox',
   'radio',
@@ -39,4 +41,36 @@ export const PAGE_STEP = {
 
 export const TYPE_MAPPING = {
   dayperiod: 'dayPeriod',
+}
+
+export const intlMessage = {
+  'en-US': {
+    previous: 'Previous',
+    next: 'Next',
+    selectedDateDescription: 'Selected Date: {date}',
+    selectedRangeDescription: 'Selected Range: {dateRange}',
+    todayDate: 'Today, {date}',
+    todayDateSelected: 'Today, {date} selected',
+    dateSelected: '{date} selected',
+    startRangeSelectionPrompt: 'Click to start selecting date range',
+    finishRangeSelectionPrompt: 'Click to finish selecting date range',
+    calendar: 'Calendar',
+    minimumDate: 'First available date',
+    maximumDate: 'Last available date',
+    dateRange: '{startDate} to {endDate}',
+    era: 'era',
+    year: 'year',
+    month: 'month',
+    day: 'day',
+    hour: 'hour',
+    minute: 'minute',
+    second: 'second',
+    dayPeriod: 'AM/PM',
+    startDate: 'Start Date',
+    endDate: 'End Date',
+    weekday: 'day of the week',
+    timeZoneName: 'time zone',
+    selectedTimeDescription: 'Selected Time: {time}',
+    Empty: 'Empty',
+  },
 }
