@@ -75,7 +75,7 @@ interface Props extends StyledComponentProps {
 
 export type TextareaProps = Props &
   TextareaVariantProps &
-  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
+  Omit<React.HTMLAttributes<HTMLTextAreaElement>, keyof Props>
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   (props, ref) => {
@@ -123,6 +123,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         <StyledTextarea
           id={textareaId}
           ref={textareaRef}
+          {...props}
           cols={cols}
           rows={rows}
           wrap={wrap}
