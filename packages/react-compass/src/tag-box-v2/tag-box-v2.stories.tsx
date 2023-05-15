@@ -33,8 +33,8 @@ export const Basic: React.FC = () => {
         tagBoxLabel='Attribute values'
         addTagPlaceholder='Please enter to add tag'
         tags={tags}
-        isErrored
-        editable
+        isErrored='false'
+        isEditable
         onAddTag={handleAddTag}
         onRemoveTag={(tagToBeRemoved) =>
           handleRemoveTag(tagToBeRemoved.id as number)
@@ -42,6 +42,7 @@ export const Basic: React.FC = () => {
         onEditTag={(tagToBeEdited) =>
           handleEditTag(tagToBeEdited.id as number, tagToBeEdited.value)
         }
+        css={{width: '70%'}}
       />
     </Column>
   )

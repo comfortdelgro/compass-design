@@ -1,0 +1,12 @@
+{
+  "mode": "pre",
+  "tag": "beta.0",
+  "initialVersions": {
+    "@comfortdelgro/compass-design-website": "0.1.0",
+    "@comfortdelgro/compass-icons": "1.0.0",
+    "@comfortdelgro/react-compass": "0.33.10"
+  },
+  "changesets": [
+    "empty-maps-matter"
+  ]
+}

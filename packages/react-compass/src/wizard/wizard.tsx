@@ -26,6 +26,7 @@ const Wizard = React.forwardRef<HTMLDivElement, WizardProps>((props, ref) => {
     currentStep = 1,
     children,
     items,
+    ...delegated
   } = props
 
   const wizardRef = useDOMRef<HTMLDivElement>(ref)
@@ -46,6 +47,7 @@ const Wizard = React.forwardRef<HTMLDivElement, WizardProps>((props, ref) => {
         ...css,
       }}
       ref={wizardRef}
+      {...delegated}
     >
       <div className='wizard-progress-wrapper'>
         {!isControlled &&

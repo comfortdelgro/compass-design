@@ -43,7 +43,7 @@ function useFocusableContext(
   useSyncRef(context, ref)
 
   // eslint-disable-next-line
-  let {ref: _, ...otherProps} = context;
+  let {ref: _, ...otherProps} = context
   return otherProps
 }
 

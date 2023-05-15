@@ -10,7 +10,13 @@ interface Props extends StyledComponentProps {
 }
 
 const Display: React.FC<Props> = (props) => {
-  const {css = {}, children, variant = 'display1', component} = props
+  const {
+    css = {},
+    children,
+    variant = 'display1',
+    component,
+    ...delegated
+  } = props
   const tag = React.useMemo(() => {
     if (component) return component
     switch (variant) {
@@ -49,7 +55,7 @@ const Display: React.FC<Props> = (props) => {
   })
 
   return (
-    <StyledDisplay css={css} variant={variant}>
+    <StyledDisplay css={css} variant={variant} {...delegated}>
       {children}
     </StyledDisplay>
   )

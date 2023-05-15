@@ -1,4 +1,5 @@
 import React from 'react'
+import {StyledHelperText} from '../dropdown/dropdown.styles'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
@@ -12,7 +13,6 @@ import {
   StyledUploadContainer,
   StyledUploadContent,
   StyledUploadError,
-  StyledUploadMaxSize,
   StyledUploadWrapper,
   UploadVariantProps,
 } from './upload.styles'
@@ -25,6 +25,7 @@ interface Props extends StyledComponentProps {
   fileSizeLimit?: number
   multiple?: boolean
   placeholder?: string
+  helperText?: string
 }
 
 export type UploadProps = Props &
@@ -43,6 +44,7 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
     fileSizeLimit = DEFAULT_FILE_LIMIT,
     multiple = false,
     placeholder = 'No file chosen',
+    helperText,
     // HTMLDiv Props
     ...delegated
   } = props
@@ -98,13 +100,16 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
           )}
         </StyledUploadContent>
       </StyledUploadContainer>
-
-      <StyledUploadMaxSize>
-        Maximum size: {convertFileSizeToReadableNumber(fileSizeLimit)}
-      </StyledUploadMaxSize>
+      <StyledHelperText>
+        {helperText
+          ? helperText
+          : `Maximum size: ${convertFileSizeToReadableNumber(fileSizeLimit)}`}
+      </StyledHelperText>
       <StyledUploadError>{error}</StyledUploadError>
     </StyledUploadWrapper>
   )
 })
 
-export default Upload as typeof Upload & {DragAndDrop: typeof UploadDragAndDrop}
+export default Upload as typeof Upload & {
+  DragAndDrop: typeof UploadDragAndDrop
+}

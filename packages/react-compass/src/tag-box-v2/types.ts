@@ -1,4 +1,5 @@
 import {IconDefinition} from '@fortawesome/free-solid-svg-icons'
+import {CSS} from '@stitches/react'
 
 export interface Tag {
   id: string | number
@@ -10,17 +11,17 @@ export interface TagBoxV2Props {
   /**
    * @description Default to false. If true, then there will be a red (sync with theme) asterisk (*) next to the label
    */
-  required?: boolean
+  isRequired?: boolean
   tagBoxLabel?: string
   error?: boolean
   /**
-   * @description Default to false. If true, then it won't allow add/remove/edit tag. "disabled" has higher precendence than "editable"
+   * @description Default to false. If true, then it won't allow add/remove/edit tag. "disabled" has higher precendence than "isEditable"
    */
   isDisabled?: boolean
   /**
    * @description Default to false. If true, then it will allow editing tag in place
    */
-  editable?: boolean
+  isEditable?: boolean
   tags?: Tag[]
   /**
    * @description Default to undefined. Placeholder text for add new tag input.
@@ -39,6 +40,9 @@ export interface TagBoxV2Props {
    * @returns {boolean} Return true means pass
    */
   customValidationHandler?: (tagValue: string) => boolean
+
+  // css
+  css?: CSS
 }
 
 export interface CustomTagBoxRef {

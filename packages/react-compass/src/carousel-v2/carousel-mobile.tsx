@@ -57,6 +57,14 @@ const CarouselMobile = React.forwardRef<HTMLDivElement, CarouselMobileProps>(
       return data[activeIndex]?.buttons?.length || 0
     }
 
+    const slideTitle = () => {
+      return data[activeIndex]?.title || ''
+    }
+
+    const slideDescription = () => {
+      return data[activeIndex]?.description || ''
+    }
+
     return (
       <StyledCarouselSliderMobile
         ref={carouselRef}
@@ -95,22 +103,39 @@ const CarouselMobile = React.forwardRef<HTMLDivElement, CarouselMobileProps>(
                   src={dataItem.image}
                   draggable={false}
                 />
-                <StyledSlideBody
-                  className={`slide-body ${
-                    floatingContent ? dataItem.alignment || '' : ''
-                  }`}
-                >
-                  <StyledSlideTitle className='content-slider-title'>
-                    {dataItem.title}
-                  </StyledSlideTitle>
-                  <StyledSlideDescription className='content-slider-description'>
-                    {dataItem.description}
-                  </StyledSlideDescription>
-                </StyledSlideBody>
+                {floatingContent ? (
+                  <StyledSlideBody
+                    className={`slide-body ${
+                      floatingContent ? dataItem.alignment || '' : ''
+                    }`}
+                  >
+                    <StyledSlideTitle className='content-slider-title'>
+                      {dataItem.title}
+                    </StyledSlideTitle>
+                    <StyledSlideDescription className='content-slider-description'>
+                      {dataItem.description}
+                    </StyledSlideDescription>
+                  </StyledSlideBody>
+                ) : (
+                  ''
+                )}
               </div>
             </StyledCarouselSliderContentItem>
           ))}
         </CarouselSlider>
+
+        {!floatingContent ? (
+          <StyledSlideBody className={`slide-body`}>
+            <StyledSlideTitle className='content-slider-title'>
+              {slideTitle()}
+            </StyledSlideTitle>
+            <StyledSlideDescription className='content-slider-description'>
+              {slideDescription()}
+            </StyledSlideDescription>
+          </StyledSlideBody>
+        ) : (
+          ''
+        )}
         {buttons && (
           <StyledSlideButtonRow className='slide-mobile-buttons'>
             {buttons.map((button, index) => {

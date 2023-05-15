@@ -37,7 +37,7 @@ const CarouselPromotion = React.forwardRef<
     useNavigation = true,
     autoSwitch = true,
     navigationButtonType = 'icon',
-    effect = 'fade',
+    effect = 'slide',
     css = {},
     onSwitchSlide = () => {},
     ...delegated
