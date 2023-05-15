@@ -16,13 +16,7 @@ interface Props extends StyledComponentProps {
 }
 
 const Header: React.FC<Props> = (props) => {
-  const {
-    css = {},
-    children,
-    variant = 'header1',
-    component,
-    ...delegated
-  } = props
+  const {css = {}, children, variant = 'header1', component} = props
   const tag = React.useMemo(() => {
     if (component) return component
     switch (variant) {
@@ -84,7 +78,7 @@ const Header: React.FC<Props> = (props) => {
   })
 
   return (
-    <StyledHeader css={css} variant={variant} {...delegated}>
+    <StyledHeader css={css} variant={variant}>
       {children}
     </StyledHeader>
   )

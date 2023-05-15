@@ -1,4 +1,5 @@
-// import type { AriaBreadcrumbItemProps } from '@react-types/breadcrumbs'
+import {useBreadcrumbItem} from '@react-aria/breadcrumbs'
+import type {AriaBreadcrumbItemProps} from '@react-types/breadcrumbs'
 import React, {useMemo} from 'react'
 import type {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -7,24 +8,9 @@ import {
   StyledBreadcrumbItem,
 } from './breadcrumb-item.styles'
 
-interface Props extends StyledComponentProps {
+interface Props extends AriaBreadcrumbItemProps, StyledComponentProps {
   href?: string
   target?: string
-  isCurrent?: boolean
-  isDisabled?: boolean
-  children?: React.ReactNode
-
-  'aria-disabled'?: boolean
-  onBlur?: () => void
-  onClick?: () => void
-  onDragStart?: () => void
-  onFocus?: () => void
-  onKeyDown?: () => void
-  onKeyUp?: () => void
-  onMouseDown?: () => void
-  onPointerDown?: () => void
-  onPointerUp?: () => void
-  tabIndex?: number
 }
 
 export type BreadcrumbItemProps = Props & BreadcrumbItemVariantProps
@@ -37,8 +23,8 @@ const BreadcrumbItem = React.forwardRef<HTMLAnchorElement, BreadcrumbItemProps>(
       // ComponentProps
       href,
       target,
-      isCurrent = false,
-      isDisabled = false,
+      isCurrent,
+      isDisabled,
       // AriaBreadcrumbItemProps
       ...ariaSafeProps
     } = props
@@ -51,6 +37,10 @@ const BreadcrumbItem = React.forwardRef<HTMLAnchorElement, BreadcrumbItemProps>(
     )
 
     const linkRef = useDOMRef<HTMLAnchorElement>(ref)
+    const {itemProps} = useBreadcrumbItem(
+      {...ariaSafeProps, elementType},
+      linkRef,
+    )
 
     return (
       <li>
@@ -61,23 +51,12 @@ const BreadcrumbItem = React.forwardRef<HTMLAnchorElement, BreadcrumbItemProps>(
           // component props
           href={href}
           target={target}
+          // aria props
           className={isCurrent ? 'active' : ''}
+          {...itemProps}
           // variants
           active={!!isCurrent}
           disabled={!!isDisabled}
-          // aria props
-          aria-disabled={props['aria-disabled']}
-          onBlur={props.onBlur}
-          onClick={props.onClick}
-          onDragStart={props.onDragStart}
-          onFocus={props.onFocus}
-          onKeyDown={props.onKeyDown}
-          onKeyUp={props.onKeyUp}
-          onMouseDown={props.onMouseDown}
-          onPointerDown={props.onPointerDown}
-          onPointerUp={props.onPointerUp}
-          tabIndex={props.tabIndex}
-          {...ariaSafeProps}
         >
           {children}
         </StyledBreadcrumbItem>

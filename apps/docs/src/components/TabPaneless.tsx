@@ -4,7 +4,6 @@ import React from 'react'
 const TabPaneless: React.FC = () => {
   const [value, setValue] = React.useState<React.Key>('1')
   return (
-<<<<<<< HEAD
     <div style={{ width: '100%', display: 'flex', flexDirection: 'column' }}>
       <Tabs.Paneless
         variant='simple'
@@ -12,15 +11,6 @@ const TabPaneless: React.FC = () => {
           { key: '1', title: 'Founding of Rome' },
           { key: '2', title: 'Monarchy and Republic' },
           { key: '3', title: 'Empire' },
-=======
-    <div style={{width: '100%', display: 'flex', flexDirection: 'column'}}>
-      <Tabs.Paneless
-        variant='simple'
-        items={[
-          {key: '1', title: 'Founding of Rome'},
-          {key: '2', title: 'Monarchy and Republic'},
-          {key: '3', title: 'Empire'},
->>>>>>> origin
         ]}
         selectedKey={value}
         onSelectionChange={(v: React.Key) => setValue(v)}
@@ -33,7 +23,4 @@ const TabPaneless: React.FC = () => {
 }
 
 export default TabPaneless
-<<<<<<< HEAD
 
-=======
->>>>>>> origin

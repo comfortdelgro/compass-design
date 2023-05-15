@@ -15,7 +15,7 @@ export type BadgeProps = Omit<Props, 'children'> &
   BadgeVariantProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
-const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
+const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
   const {
     // StyledComponentProps
     css = {},
@@ -29,19 +29,17 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
   } = props
 
   const variantProps = {variant, color} as BadgeVariantProps
-  const badgeRef = useDOMRef<HTMLDivElement>(ref)
+  const badgeRef = useDOMRef<HTMLSpanElement>(ref)
 
   return (
     <StyledBadge css={css} ref={badgeRef} {...variantProps} {...delegates}>
       {icon ? (
-        <div className='icon'>
-          <Icon
-            icon={typeof icon === 'boolean' ? getIconFromColor(color) : icon}
-          />
-        </div>
+        <Icon
+          className='icon'
+          icon={typeof icon === 'boolean' ? getIconFromColor(color) : icon}
+        />
       ) : null}
-
-      <div className='label'>{label}</div>
+      <span>{label}</span>
     </StyledBadge>
   )
 })

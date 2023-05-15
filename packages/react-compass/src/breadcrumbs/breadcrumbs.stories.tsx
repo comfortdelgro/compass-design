@@ -7,31 +7,25 @@ const isCurrent = (i: number) => {
   return false
 }
 
-export const Basic: React.FC = () => {
+export const Default: React.FC = () => {
   return (
-    <>
-      <h3>Basic</h3>
-      <Breadcrumbs isCurrent={isCurrent}>
-        <Breadcrumbs.Item href='#0'>Home</Breadcrumbs.Item>
-        <Breadcrumbs.Item href='#1'>Library</Breadcrumbs.Item>
-        <Breadcrumbs.Item href='#2' isDisabled>
-          Disabled
-        </Breadcrumbs.Item>
-        <Breadcrumbs.Item href='#3'>Data</Breadcrumbs.Item>
-      </Breadcrumbs>
-    </>
+    <Breadcrumbs isCurrent={isCurrent}>
+      <Breadcrumbs.Item href='#0'>Home</Breadcrumbs.Item>
+      <Breadcrumbs.Item href='#1'>Library</Breadcrumbs.Item>
+      <Breadcrumbs.Item href='#2' isDisabled>
+        Disabled
+      </Breadcrumbs.Item>
+      <Breadcrumbs.Item href='#3'>Data</Breadcrumbs.Item>
+    </Breadcrumbs>
   )
 }
 
 export const CustomDivider: React.FC = () => {
   return (
-    <>
-      <h3>Custom Divider</h3>
-      <Breadcrumbs dividerIcon={faLocationArrow} isCurrent={isCurrent}>
-        <Breadcrumbs.Item href='#0'>Home</Breadcrumbs.Item>
-        <Breadcrumbs.Item href='#1'>Library</Breadcrumbs.Item>
-        <Breadcrumbs.Item href='#2'>Data</Breadcrumbs.Item>
-      </Breadcrumbs>
-    </>
+    <Breadcrumbs dividerIcon={faLocationArrow} isCurrent={isCurrent}>
+      <Breadcrumbs.Item href='#0'>Home</Breadcrumbs.Item>
+      <Breadcrumbs.Item href='#1'>Library</Breadcrumbs.Item>
+      <Breadcrumbs.Item href='#2'>Data</Breadcrumbs.Item>
+    </Breadcrumbs>
   )
 }

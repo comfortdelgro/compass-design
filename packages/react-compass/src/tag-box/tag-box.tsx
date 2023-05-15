@@ -66,10 +66,6 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
     onRemove,
     onAdd,
     onEdit,
-<<<<<<< HEAD
-=======
-    ...delegated
->>>>>>> origin
   } = props
 
   const tagBoxRef = useDOMRef<HTMLDivElement>(ref)
@@ -135,7 +131,7 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
   }, [elRefs, isOpen, collaspable])
 
   return (
-    <StyledTagBox css={css} ref={tagBoxRef} {...delegated}>
+    <StyledTagBox css={css} ref={tagBoxRef}>
       <StyledBoxWrapper labelPosition={labelPosition}>
         {props.label && (
           <label htmlFor={id}>

@@ -2,16 +2,11 @@ import {Callout} from 'nextra-theme-docs'
 import styles from '../../styles/Home.module.css'
 import {faThumbsUp, faVirus} from '@fortawesome/free-solid-svg-icons'
 import {Default, Variants} from '../../components/Dialog'
-import Button from '@comfortdelgro/react-compass/button'
+import {Column, Row, Button} from '@comfortdelgro/react-compass'
 
 # Dialog
 
 These <b>Dialog</b> boxes can be used to raise and alert, or to get confirmation on any input or to have a kind of input from the users. Here we will discuss each dialog box one by one.
-
-<Callout>
-  Check out our [ladle](/ladle?story=dialog--default) for more info on this
-  component.
-</Callout>
 
 ---
 
@@ -36,30 +31,33 @@ import Dialog from '@comfortdelgro/react-compass/dialog'
 </section>
 
 ```js
-<Button
-  css={{width: '7.8rem'}}
-  onPress={() => setDefaultOpen(true)}
-  variant='secondary'
->
-  Open Dialog
-</Button>
-<Dialog.Trigger
-  isOpen={defaultOpen}
-  handleClose={() => setDefaultOpen(false)}
->
-  <Dialog>
-    <Dialog.Title>My title</Dialog.Title>
-    <Dialog.Description>{lorem}</Dialog.Description>
-    <Dialog.Actions>
-      <Button onPress={() => setDefaultOpen(false)} variant='secondary'>
-        Cancel
-      </Button>
-      <Button onPress={() => setDefaultOpen(false)} variant='secondary'>
-        Do it
-      </Button>
-    </Dialog.Actions>
-  </Dialog>
-</Dialog.Trigger>
+<Column>
+  <h3>Default dialog is confirmation variant</h3>
+  <Button
+    css={{width: '7.8rem'}}
+    onPress={() => setDefaultOpen(true)}
+    variant='secondary'
+  >
+    Open Dialog
+  </Button>
+  <Dialog.Trigger
+    isOpen={defaultOpen}
+    handleClose={() => setDefaultOpen(false)}
+  >
+    <Dialog>
+      <Dialog.Title>My title</Dialog.Title>
+      <Dialog.Description>{lorem}</Dialog.Description>
+      <Dialog.Actions>
+        <Button onPress={() => setDefaultOpen(false)} variant='secondary'>
+          Cancel
+        </Button>
+        <Button onPress={() => setDefaultOpen(false)} variant='secondary'>
+          Do it
+        </Button>
+      </Dialog.Actions>
+    </Dialog>
+  </Dialog.Trigger>
+</Column>
 ```
 
 ---
@@ -71,55 +69,59 @@ import Dialog from '@comfortdelgro/react-compass/dialog'
 </section>
 
 ```js
-<Button
+<Column>
+  <h3>Confirmation dialog</h3>
+  <Button
     css={{width: '7.8rem'}}
     onPress={() => setConfirmationOpen(true)}
     variant='secondary'
->
-  Open Dialog
-</Button>
-<Dialog.Trigger
-  isOpen={confirmationOpen}
-  handleClose={() => setConfirmationOpen(false)}
-  variant='confirmation'
->
-  <Dialog>
-    <Dialog.Title>My title</Dialog.Title>
-    <Dialog.Description>{lorem}</Dialog.Description>
-    <Dialog.Actions>
-      <Button onPress={() => setConfirmationOpen(false)} variant='secondary'>
-        Cancel
-      </Button>
-      <Button onPress={() => setConfirmationOpen(false)} variant='secondary'>
-        Do it
-      </Button>
-    </Dialog.Actions>
-  </Dialog>
-</Dialog.Trigger>
+  >
+    Open Dialog
+  </Button>
+  <Dialog.Trigger
+    isOpen={confirmationOpen}
+    handleClose={() => setConfirmationOpen(false)}
+    variant='confirmation'
+  >
+    <Dialog>
+      <Dialog.Title>My title</Dialog.Title>
+      <Dialog.Description>{lorem}</Dialog.Description>
+      <Dialog.Actions>
+        <Button onPress={() => setConfirmationOpen(false)} variant='secondary'>
+          Cancel
+        </Button>
+        <Button onPress={() => setConfirmationOpen(false)} variant='secondary'>
+          Do it
+        </Button>
+      </Dialog.Actions>
+    </Dialog>
+  </Dialog.Trigger>
 
-<Button
-  css={{width: '7.8rem'}}
-  onPress={() => setAlertOpen(true)}
-  variant='danger'
->
-  Open Dialog
-</Button>
-<Dialog.Trigger
-  isOpen={alertOpen}
-  handleClose={() => setAlertOpen(false)}
-  variant='alert'
->
-  <Dialog>
-    <Dialog.Title>My title</Dialog.Title>
-    <Dialog.Description>{lorem}</Dialog.Description>
-    <Dialog.Actions>
-      <Button onPress={() => setAlertOpen(false)}>Ok</Button>
-    </Dialog.Actions>
-    <Dialog.Icon>
-      <Icon icon={faBug} />
-    </Dialog.Icon>
-  </Dialog>
-</Dialog.Trigger>
+  <h3>Alert dialog</h3>
+  <Button
+    css={{width: '7.8rem'}}
+    onPress={() => setAlertOpen(true)}
+    variant='danger'
+  >
+    Open Dialog
+  </Button>
+  <Dialog.Trigger
+    isOpen={alertOpen}
+    handleClose={() => setAlertOpen(false)}
+    variant='alert'
+  >
+    <Dialog>
+      <Dialog.Title>My title</Dialog.Title>
+      <Dialog.Description>{lorem}</Dialog.Description>
+      <Dialog.Actions>
+        <Button onPress={() => setAlertOpen(false)}>Ok</Button>
+      </Dialog.Actions>
+      <Dialog.Icon>
+        <Icon icon={faBug} />
+      </Dialog.Icon>
+    </Dialog>
+  </Dialog.Trigger>
+</Column>
 ```
 
 ---
@@ -135,6 +137,6 @@ import Dialog from '@comfortdelgro/react-compass/dialog'
 ---
 
 <Callout>
-  Check out our [ladle](/ladle?story=dialog--default) for more info on this
+  Check out our [ladle](/ladle?story=dialog--variants) for more info on this
   component.
 </Callout>

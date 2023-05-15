@@ -10,14 +10,42 @@ const AlertContent: React.FC = () => (
     A simple alert text. We can have a <Link href='#'>link</Link>.
   </>
 )
-export const Basic: React.FC = () => (
+
+export const Variants: React.FC = () => (
   <Column>
-    <h3>Basic Alert</h3>
-    <Alert>
+    <Alert color='info'>
+      <AlertContent />
+    </Alert>
+
+    <Alert color='success'>
+      <AlertContent />
+    </Alert>
+
+    <Alert color='danger'>
+      <AlertContent />
+    </Alert>
+
+    <Alert color='warning'>
+      <AlertContent />
+    </Alert>
+
+    <h3>Without Icons</h3>
+
+    <Alert color='info'>
+      <AlertContent />
+      <br />
+      <AlertContent />
+    </Alert>
+
+    <h3>With Custom Icons</h3>
+
+    <Alert color='success' icon={faChessKing}>
       <AlertContent />
     </Alert>
   </Column>
 )
+
+const MotionAlert = motion(Alert)
 
 export const Dismissible: React.FC = () => {
   const [alerts, setAlerts] = useState([
@@ -25,14 +53,12 @@ export const Dismissible: React.FC = () => {
     {color: 'success' as const, key: 'success'},
     {color: 'danger' as const, key: 'danger'},
   ])
-  const MotionAlert = motion(Alert)
 
   const removeAlert = (key: string) =>
     setAlerts((alerts) => alerts.filter((alert) => alert.key !== key))
 
   return (
     <Column>
-      <h3>Dimissible Alert</h3>
       <AnimatePresence mode='popLayout'>
         {alerts.map((alert) => (
           <MotionAlert
@@ -53,36 +79,3 @@ export const Dismissible: React.FC = () => {
     </Column>
   )
 }
-
-export const Indismissible: React.FC = () => (
-  <Column>
-    <h3>1. Colors</h3>
-    <Alert color='info'>
-      <AlertContent />
-    </Alert>
-
-    <Alert color='success'>
-      <AlertContent />
-    </Alert>
-
-    <Alert color='danger'>
-      <AlertContent />
-    </Alert>
-
-    <Alert color='warning'>
-      <AlertContent />
-    </Alert>
-
-    <h3>2. Without Icons</h3>
-
-    <Alert icon={false}>
-      <AlertContent />
-    </Alert>
-
-    <h3>3. Custom Icons</h3>
-
-    <Alert color='success' icon={faChessKing}>
-      <AlertContent />
-    </Alert>
-  </Column>
-)

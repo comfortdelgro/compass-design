@@ -3,7 +3,7 @@ import React from 'react'
 import {Column} from '../utils/components'
 import MenuList, {MenuListDropdown} from './index'
 
-export const Default: React.FC = () => {
+export const MenuLists: React.FC = () => {
   return (
     <Column>
       <MenuList css={{height: '800px'}}>

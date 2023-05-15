@@ -1,22 +1,25 @@
+import {Item} from '@react-stately/collections'
 import React from 'react'
 import {StyledComponentProps} from '../../utils/stitches.types'
-export interface DropdownItemBase extends StyledComponentProps {
-  key: React.Key
-  textValue?: string
-  children: React.ReactNode
-  'aria-label'?: string
-}
-interface Props extends DropdownItemBase {
-  rightColor?: string
+
+interface Props<T> extends StyledComponentProps {
   type?: 'icon' | 'color'
+  rightColor?: string
   leftIcon?: React.ReactNode
   rightIcon?: React.ReactNode
+  children: React.ReactNode | string
+  key: string
+  title?: React.ReactNode
+  textValue?: string
+  'aria-label'?: string
+  childItems?: Iterable<T>
+  hasChildItems?: boolean
 }
 
-export type DropdownItemProps = Props
+export type DropdownItemProps<T = object> = Props<T>
 
-const DropdownItem: React.FC<DropdownItemProps> = (props) => {
-  return <>{props.children}</>
-}
+const DropdownItem: React.FC<DropdownItemProps> = ({children, ...props}) => (
+  <Item {...props}>{children}</Item>
+)
 
 export default DropdownItem

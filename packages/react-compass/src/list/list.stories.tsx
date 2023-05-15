@@ -737,8 +737,11 @@ export const InteractiveLists: React.FC = () => {
 
 export const DragAndDrop: React.FC = () => {
   const [arr, setArr] = React.useState<Key[]>(['red', 'green', 'blue'])
+  const onReorderByKeys = (keys: Key[]) => {
+    setArr([...keys])
+  }
   return (
-    <DragAndDropList onReorderByKeys={(a) => setArr(a)}>
+    <DragAndDropList onReorderByKeys={onReorderByKeys}>
       {arr.map((a) => (
         <DragAndDropList.Item key={a}>
           <div>{a}</div>

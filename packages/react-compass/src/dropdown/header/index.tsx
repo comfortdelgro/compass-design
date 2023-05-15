@@ -1,12 +1,22 @@
+import {useButton} from '@react-aria/button'
+import type {AriaButtonProps} from '@react-types/button'
 import React from 'react'
-interface Props {
-  children: React.ReactNode
+import {StyledHeaderList} from '../dropdown.styles'
+
+interface Props extends AriaButtonProps {
+  title: string
 }
 
-export type DropdownHeaderProps = Props
+const Header: React.FC<Props> = ({title, ...props}) => {
+  const buttonRef = React.useRef<HTMLButtonElement>(null)
+  const {buttonProps} = useButton(props, buttonRef)
 
-const DropdownHeader: React.FC<DropdownHeaderProps> = (props) => {
-  return <>{props.children}</>
+  return (
+    <StyledHeaderList>
+      <span>{title}</span>
+      <button {...buttonProps}>Clear</button>
+    </StyledHeaderList>
+  )
 }
 
-export default DropdownHeader
+export default Header

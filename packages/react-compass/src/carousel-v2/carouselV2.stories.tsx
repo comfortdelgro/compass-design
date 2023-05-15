@@ -117,8 +117,6 @@ export const Sliders = () => {
         <CarouselSlider
           onSwitchSlide={handleSwitchSlide1}
           useDotIndicator={false}
-          className='floating-slide'
-          style={{height: '512px'}}
         >
           {imageUrls.map((imageUrl: string, index: number) => (
             <StyledCarouselSliderImageItem
@@ -137,8 +135,6 @@ export const Sliders = () => {
         <CarouselSlider
           onSwitchSlide={handleSwitchSlide}
           navigationButtonType='text'
-          className='floating-slide'
-          style={{height: '300px'}}
         >
           <CarouselSlide active={activeIndex === 0}>
             First slide
@@ -245,5 +241,5 @@ const StyledSampleAnyCarouselSlider = styled('div', {
 })
 
 const StyledSampleMobileCarouselSlider = styled('div', {
-  width: '100%',
+  width: '480px',
 })

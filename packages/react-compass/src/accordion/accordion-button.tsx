@@ -1,3 +1,5 @@
+import {useButton} from '@react-aria/button'
+import type {AriaButtonProps} from '@react-types/button'
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -6,10 +8,9 @@ import {
   StyledAccordionButton,
 } from './accordion-button.styles'
 
-interface Props extends StyledComponentProps {
+interface Props extends AriaButtonProps, StyledComponentProps {
   children?: React.ReactNode
   className?: string
-  onMouseDown?: (event: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 export type ButtonProps = Props & AccordionTitleVariantProps
@@ -21,11 +22,11 @@ const AccordionButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
       expand = 'close',
       className,
       css = {},
-      onMouseDown,
       ...ariaSafeProps
     } = props
 
     const buttonRef = useDOMRef<HTMLButtonElement>(ref)
+    const {buttonProps} = useButton(ariaSafeProps, buttonRef)
 
     return (
       <StyledAccordionButton
@@ -33,8 +34,7 @@ const AccordionButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={buttonRef}
         className={className}
         css={css}
-        onMouseDown={onMouseDown}
-        {...ariaSafeProps}
+        {...buttonProps}
       >
         {children}
       </StyledAccordionButton>

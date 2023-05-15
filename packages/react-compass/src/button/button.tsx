@@ -1,3 +1,5 @@
+import {useButton} from '@react-aria/button'
+import type {AriaButtonProps} from '@react-types/button'
 import React from 'react'
 import type {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -9,32 +11,13 @@ import {
 } from './button.styles'
 import Ripple from './ripple'
 
-interface Props extends StyledComponentProps {
+interface Props extends AriaButtonProps, StyledComponentProps {
   children?: React.ReactNode
   className?: string
   leftIcon?: React.ReactNode
   rightIcon?: React.ReactNode
-  onPress?: (
-    event:
-      | React.MouseEvent<HTMLButtonElement>
-      | React.TouchEvent<HTMLButtonElement>,
-  ) => void
+  onMouseDown?: (event: React.MouseEvent<HTMLButtonElement>) => void
   ripple?: boolean
-  isDisabled?: boolean
-  'aria-controls'?: string
-  'aria-expanded'?: boolean
-  'aria-haspopup'?: boolean
-  'aria-pressed'?: boolean
-  disabled?: boolean
-  onBlur?: (e: React.FocusEvent) => void
-  onDragStart?: (e: React.MouseEvent) => void
-  onFocus?: (e: React.FocusEvent) => void
-  onKeyDown?: (e: React.KeyboardEvent) => void
-  onKeyUp?: (e: React.KeyboardEvent) => void
-  onPointerDown?: (e: React.PointerEvent) => void
-  onPointerUp?: (e: React.PointerEvent) => void
-  tabIndex?: number
-  type?: 'button' | 'reset' | 'submit' | undefined
 }
 
 export type ButtonProps = Props &
@@ -56,14 +39,15 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       size,
       fullWidth,
       loading,
-      onPress,
+      onMouseDown,
       ripple = false,
-      isDisabled = false,
       // AriaButtonProps
       ...ariaSafeProps
     } = props
 
     const buttonRef = useDOMRef<HTMLButtonElement>(ref)
+
+    const buttonProps = useButton(ariaSafeProps, buttonRef).buttonProps
 
     const variantProps = {
       variant,
@@ -77,6 +61,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       return {
         className,
         css,
+        ...buttonProps,
         ...ariaSafeProps,
         ...variantProps,
       }
@@ -90,21 +75,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             <StyledButton
               {...delegateProps}
               ref={buttonRef}
-              onClick={onPress}
-              onTouchEnd={onPress}
-              disabled={isDisabled}
-              aria-controls={props['aria-controls']}
-              aria-expanded={props['aria-expanded']}
-              aria-haspopup={props['aria-haspopup']}
-              aria-pressed={props['aria-pressed']}
-              tabIndex={props.tabIndex}
-              onBlur={props.onBlur}
-              onDragStart={props.onDragStart}
-              onFocus={props.onFocus}
-              onKeyDown={props.onKeyDown}
-              onKeyUp={props.onKeyUp}
-              onPointerDown={props.onPointerDown}
-              onPointerUp={props.onPointerUp}
+              onMouseDown={onMouseDown}
             >
               {loading ? (
                 <StyledLoading
@@ -137,21 +108,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           <StyledButton
             {...delegateProps}
             ref={buttonRef}
-            onClick={onPress}
-            onTouchEnd={onPress}
-            disabled={isDisabled}
-            aria-controls={props['aria-controls']}
-            aria-expanded={props['aria-expanded']}
-            aria-haspopup={props['aria-haspopup']}
-            aria-pressed={props['aria-pressed']}
-            tabIndex={props.tabIndex}
-            onBlur={props.onBlur}
-            onDragStart={props.onDragStart}
-            onFocus={props.onFocus}
-            onKeyDown={props.onKeyDown}
-            onKeyUp={props.onKeyUp}
-            onPointerDown={props.onPointerDown}
-            onPointerUp={props.onPointerUp}
+            onMouseDown={onMouseDown}
           >
             {loading ? (
               <StyledLoading
@@ -173,7 +130,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               {leftIcon || (fullWidth && rightIcon) ? (
                 <div className='icon left'>{leftIcon}</div>
               ) : null}
-              <div className='children'>{children}</div>
+              <span className='children'>{children}</span>
               {rightIcon || (fullWidth && leftIcon) ? (
                 <div className='icon right'>{rightIcon}</div>
               ) : null}

@@ -6,11 +6,10 @@ export const StyledDateSegment = styled('div', {
   fontWeight: '$semibold',
   textTransform: 'uppercase',
   letterSpacing: '1px',
+
   '&:focus-visible': {
-    padding: '$0_5 0',
-    outline: 'none',
-    color: '$whiteText !important',
-    backgroundColor: '$cdgBlue',
+    padding: '$0_5 $1_5',
+    outline: '$cdgBlue solid 2px',
   },
 
   '&.number': {

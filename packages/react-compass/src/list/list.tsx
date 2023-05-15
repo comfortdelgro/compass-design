@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import {usePress} from '@react-aria/interactions'
+import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import ListImage from './list-image'
 import {ListVariantProps, StyledList} from './list.styles'
@@ -30,14 +31,16 @@ const List = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
     ...delegated
   } = props
 
-  const [isPressed, setPressed] = useState(false)
+  const {pressProps, isPressed} = usePress({
+    onPress: (e) => {
+      if (isDisabled) return
+      const event = e as unknown as React.MouseEvent<HTMLDivElement, MouseEvent>
+      if (props.onClick) props.onClick(event)
+    },
+  })
+
   const variantProps = {isDisabled, size, variant}
-  const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    if (isDisabled) return
-    if (props.onClick) {
-      props.onClick(e)
-    }
-  }
+
   return (
     <StyledList
       ref={ref}
@@ -47,11 +50,9 @@ const List = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
       className={`${className} ${isPressed ? 'pressed' : ''} ${
         isDisabled ? 'disabled' : ''
       } ${variant === 'interactive' ? 'interactive' : 'item'}`}
-      onClick={handleClick}
-      onMouseDown={() => setPressed(true)}
-      onMouseUp={() => setPressed(false)}
       {...variantProps}
       {...delegated}
+      {...pressProps}
     >
       <div className='list-left-side'>
         {leftInfo && <div className='list-left-info'>{leftInfo}</div>}

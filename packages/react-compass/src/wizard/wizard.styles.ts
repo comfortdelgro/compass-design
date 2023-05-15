@@ -14,7 +14,7 @@ export const StyledWizard = styled('div', {
       justifyContent: 'center',
     },
   },
-  '& .wizard-title-wrapper': {
+  '& .wizard-content-wrapper': {
     marginTop: '$2',
     width: '100%',
     display: 'flex',
@@ -108,7 +108,7 @@ export const StyledItem = styled('span', {
   },
 })
 
-export const StyledTitle = styled('span', {
+export const StyledContent = styled('div', {
   width: 'calc(100% / $$itemsLength)',
   display: 'flex',
   alignItems: 'center',

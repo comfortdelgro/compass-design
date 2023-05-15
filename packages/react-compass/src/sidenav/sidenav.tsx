@@ -3,7 +3,6 @@ import {StyledComponentProps} from '../utils/stitches.types'
 import Divider from './divider'
 import {SidenavContext} from './sidenav-context'
 import SidenavItem from './sidenav-item'
-import SidenavMenu from './sidenav-menu'
 import {StyledSidenav} from './sidenav.styles'
 
 interface Props extends StyledComponentProps {
@@ -65,5 +64,4 @@ const Sidenav = React.forwardRef<HTMLDivElement, SidenavProps>((props, ref) => {
 export default Sidenav as typeof Sidenav & {
   Item: typeof SidenavItem
   Divider: typeof Divider
-  Menu: typeof SidenavMenu
 }

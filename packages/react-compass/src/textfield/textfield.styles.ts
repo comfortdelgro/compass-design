@@ -9,10 +9,11 @@ export const StyledTextFieldWrapper = styled('div', {
 
 export const StyledTextFieldLabel = styled('label', {
   fontSize: '$label1',
-  fontWeight: '$semibold',
+  fontWeight: '$medium',
   lineHeight: '$normal',
   display: 'block',
-  marginBottom: '$2',
+  marginBottom: '$1',
+  color: '$gray90',
   span: {
     marginLeft: '$1',
     color: '$danger',
@@ -109,7 +110,7 @@ export const StyledTextFieldBox = styled('div', {
 export const StyledTextField = styled('input', {
   width: '100%',
   fontSize: '$label1',
-  fontWeight: '$semibold',
+  fontWeight: '$medium',
   lineHeight: '$normal',
   padding: '$1_5 $3',
   border: 0,
@@ -122,11 +123,6 @@ export const StyledTextField = styled('input', {
 
   '&:disabled': {
     cursor: 'not-allowed',
-  },
-  '&::placeholder': {
-    color: '#B4B4B4',
-    fontSize: '$label1',
-    fontWeight: '$semibold',
   },
 })
 

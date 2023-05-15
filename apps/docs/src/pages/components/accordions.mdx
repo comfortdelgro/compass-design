@@ -4,28 +4,9 @@ import {Accordion} from '@comfortdelgro/react-compass'
 
 # Accordions
 
-The accordion component allows the user to show and hide sections of related content on a page.
+Build vertically collapsing accordions in combination with the Collapse component
 
-<Callout>
-  You can see how this component is implemented on
-  [ladle](https://comfortdelgro.github.io/compass-design/ladle/?story=accordion--basic)
-</Callout>
-
----
-
-### Import:
-
-```js
-import {Accordion} from '@comfortdelgro/react-compass'
-```
-
-or
-
-```js
-import Accordion from '@comfortdelgro/react-compass/accordion'
-```
-
----
+## Example
 
 ### Basic Example
 
@@ -144,9 +125,7 @@ function ExpandDefault() {
     <Accordion.Title>
       <h1 style={{fontSize: '32px', fontWeight: 'bold'}}>Title</h1>
     </Accordion.Title>
-    <p>
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi, officiis
-    </p>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi, officiis</p>
   </Accordion>
 </ComponentDisplay>
 
@@ -156,7 +135,7 @@ function ExpandDefault() {
 import {Accordion} from '@comfortdelgro/react-compass'
 
 function TableAccordion() {
-  const data = [
+   const data = [
     {id: 1, leftData: 'Job ID', rightData: 'CDG180-1120'},
     {id: 2, leftData: 'Status', rightData: 'Ended'},
     {id: 3, leftData: 'Job Title', rightData: 'Demo 8'},
@@ -245,21 +224,15 @@ function CustomizedColors() {
         textAlign: 'center',
       }}
     >
-      <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi,
-        officiis Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-        Quasi, officiis
-      </p>
+      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi, officiis Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi, officiis</p>
     </Accordion.Title>
-    <p>
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi, officiis
-    </p>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi, officiis</p>
   </Accordion>
 </ComponentDisplay>
 
 ## Props
 
-### Accordion
+### Accordion 
 
 | Name           | Type        | Default | Description                                                                                                  |
 | :------------- | :---------- | :------ | :----------------------------------------------------------------------------------------------------------- |

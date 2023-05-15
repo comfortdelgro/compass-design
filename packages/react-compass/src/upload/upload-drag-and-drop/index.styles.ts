@@ -35,7 +35,6 @@ export const StyledOrLetter = styled('a', {
   display: 'flex',
   justifyContent: 'center',
   justifyItems: 'center',
-  pointerEvents: 'none',
 })
 
 export const StyledUploadError = styled('a', {
@@ -133,7 +132,6 @@ export const StyledUploadContent = styled('div', {
   alignItems: 'center',
   fontSize: '$body3',
   fontWeight: '$semibold',
-  pointerEvents: 'none',
 })
 
 export const StyledUploadButton = styled('label', {
@@ -177,6 +175,9 @@ export const StyledUploadContainer = styled('div', {
   display: 'flex',
   alignItems: 'center',
   gap: '$2',
+  '*': {
+    pointerEvents: 'none',
+  },
 
   variants: {
     variant: {

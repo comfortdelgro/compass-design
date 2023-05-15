@@ -7,10 +7,9 @@ export const StyledMenuListDropdownHeader = styled('button', {
   flexDirection: 'row',
   alignItems: 'center',
   cursor: 'pointer',
-  minHeight: '$10',
+  height: '$10',
   backgroundColor: 'inherit',
   padding: '$1_5',
-  textAlign: 'left',
 
   '&:focus-visible': {
     outline: '#678ECF solid 2px',

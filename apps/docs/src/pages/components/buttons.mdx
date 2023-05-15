@@ -4,16 +4,13 @@ import {faThumbsUp, faVirus} from '@fortawesome/free-solid-svg-icons'
 import Button from '@comfortdelgro/react-compass/button'
 import Icon from '@comfortdelgro/react-compass/icon'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {SSRProvider} from '@comfortdelgro/react-compass'
+import {
+  SSRProvider
+} from '@comfortdelgro/react-compass'
 
 # Button
 
 Buttons allow users to take actions, and make choices, with a single tap.
-
-<Callout>
-  Check out our [ladle](/ladle?story=button--variants) for more info on this
-  component.
-</Callout>
 
 ---
 
@@ -31,58 +28,7 @@ import Button from '@comfortdelgro/react-compass/button'
 
 ---
 
-### Button Sizes:
-
-<section className={styles.avatarShowcaseContainer}>
-  <Button size='lg'>Large</Button>
-  <Button size='md'>Medium (Default)</Button>
-  <Button size='sm'>Small</Button>
-</section>
-
-```js
-<Button size='lg'>Large</Button>
-<Button size='md'>Medium (Default)</Button>
-<Button size='sm'>Small</Button>
-```
-
----
-
-### Button with ripple effect:
-
-<section className={styles.avatarShowcaseContainer}>
-  <Button variant='primary' ripple>
-    Primary
-  </Button>
-  <Button variant='secondary' ripple>
-    Secondary
-  </Button>
-  <Button variant='danger' ripple>
-    Danger
-  </Button>
-  <Button variant='ghost' ripple>
-    Ghost
-  </Button>
-</section>
-
-```js
-<Button variant='primary' ripple>
-  Primary
-</Button>
-<Button variant='secondary' ripple>
-  Secondary
-</Button>
-<Button variant='danger' ripple>
-  Danger
-</Button>
-<Button variant='ghost' ripple>
-  Ghost
-</Button>
-```
-
----
-
 ### Button Variants:
-
 <section className={styles.avatarShowcaseContainer}>
   <Button variant='primary'>Primary</Button>
   <Button variant='secondary'>Secondary</Button>
@@ -159,25 +105,13 @@ import Button from '@comfortdelgro/react-compass/button'
 ### Buttons with both left and right icons :
 
 <section className={styles.avatarShowcaseContainer}>
-  <Button
-    variant='secondary'
-    rightIcon={<Icon icon={faThumbsUp} />}
-    leftIcon={<Icon icon={faVirus} />}
-  >
+  <Button variant='secondary' rightIcon={<Icon icon={faThumbsUp} />} leftIcon={<Icon icon={faVirus} />}>
     Secondary
   </Button>
-  <Button
-    variant='danger'
-    rightIcon={<Icon icon={faThumbsUp} />}
-    leftIcon={<Icon icon={faVirus} />}
-  >
+  <Button variant='danger' rightIcon={<Icon icon={faThumbsUp} />} leftIcon={<Icon icon={faVirus} />}>
     Danger
   </Button>
-  <Button
-    variant='ghost'
-    rightIcon={<Icon icon={faThumbsUp} />}
-    leftIcon={<Icon icon={faVirus} />}
-  >
+  <Button variant='ghost' rightIcon={<Icon icon={faThumbsUp} />} leftIcon={<Icon icon={faVirus} />}>
     Ghost
   </Button>
 </section>
@@ -200,27 +134,27 @@ import Button from '@comfortdelgro/react-compass/button'
 
 <section className={styles.avatarShowcaseContainer}>
   <Button variant='secondary'>
-    <Icon icon={faVirus} />
+    <FontAwesomeIcon icon={<Icon icon={faVirus} />} />
   </Button>
   <Button variant='danger'>
-    <Icon icon={faVirus} />
+    <FontAwesomeIcon icon={<Icon icon={faVirus} />} />
   </Button>
   <Button variant='ghost'>
-    <Icon icon={faVirus} />
+    <FontAwesomeIcon icon={<Icon icon={faVirus} />} />
   </Button>
 </section>
 
 ```js
-import Icon from '@comfortdelgro/react-compass/icon'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 
 <Button variant='secondary'>
-  <Icon icon={faVirus} />
+  <FontAwesomeIcon icon={<Icon icon={faVirus} />} />
 </Button>
 <Button variant='danger'>
-  <Icon icon={faVirus} />
+  <FontAwesomeIcon icon={<Icon icon={faVirus} />} />
 </Button>
 <Button variant='ghost'>
-  <Icon icon={faVirus} />
+  <FontAwesomeIcon icon={<Icon icon={faVirus} />} />
 </Button>
 ```
 

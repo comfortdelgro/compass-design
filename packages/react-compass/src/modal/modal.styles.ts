@@ -84,12 +84,12 @@ export const StyledModalWrapper = styled('div', {
   margin: '0px',
   background: '#00000066',
 
-  // backdrop styling
-  position: 'fixed',
+  // wrapper styling
+  position: 'absolute',
   top: '0',
   left: '0',
-  width: '100vw',
-  height: '100vh',
+  width: '100%',
+  height: '100%',
   zIndex: '49',
 })
 

@@ -5,7 +5,6 @@ import Checkbox from './index'
 
 export const Variants: Story<{onChange: () => void}> = () => (
   <Column>
-    <h3>1. Default</h3>
     <Column>
       <Checkbox isSelected={false}>Unselected</Checkbox>
       <Checkbox isSelected>Selected</Checkbox>
@@ -21,7 +20,7 @@ export const Variants: Story<{onChange: () => void}> = () => (
       </Checkbox>
     </Column>
 
-    <h3>2. Rounded</h3>
+    <h3>Rounded</h3>
     <Column>
       <Checkbox variant='rounded' isSelected={false}>
         Unselected
@@ -43,7 +42,27 @@ export const Variants: Story<{onChange: () => void}> = () => (
       </Checkbox>
     </Column>
 
-    <h3>3. Without Labels</h3>
+    <h3>Uncontrolled</h3>
+    <Column>
+      <Checkbox variant='rounded'>Unselected</Checkbox>
+      <Checkbox variant='rounded' defaultSelected>
+        Selected
+      </Checkbox>
+      <Checkbox variant='rounded' isDisabled>
+        Unselected (disabled)
+      </Checkbox>
+      <Checkbox variant='rounded' defaultSelected isDisabled>
+        Selected (disabled)
+      </Checkbox>
+      <Checkbox variant='rounded' isIndeterminate defaultSelected>
+        Indeterminate
+      </Checkbox>
+      <Checkbox variant='rounded' isIndeterminate isDisabled defaultSelected>
+        Indeterminate (disabled)
+      </Checkbox>
+    </Column>
+
+    <h3>Without Labels</h3>
     <Column>
       <Row>
         <Checkbox />
@@ -70,12 +89,12 @@ export const Variants: Story<{onChange: () => void}> = () => (
   </Column>
 )
 
-export const Controlled: Story<{onChange: () => void}> = () => {
+export const State: Story<{onChange: () => void}> = () => {
   const [isSelected, setIsSelected] = useState(false)
 
   return (
     <Column>
-      <h3>Controlled</h3>
+      <h3>Usage with state management</h3>
 
       <Column>
         <Checkbox
@@ -89,28 +108,8 @@ export const Controlled: Story<{onChange: () => void}> = () => {
   )
 }
 
-export const Uncontrolled: Story<{onChange: () => void}> = () => {
-  return (
-    <Column>
-      <h3>Uncontrolled</h3>
-      <Column>
-        <Checkbox variant='rounded'>Unselected</Checkbox>
-        <Checkbox variant='rounded' defaultSelected>
-          Selected
-        </Checkbox>
-        <Checkbox variant='rounded' isDisabled>
-          Unselected (disabled)
-        </Checkbox>
-        <Checkbox variant='rounded' defaultSelected isDisabled>
-          Selected (disabled)
-        </Checkbox>
-        <Checkbox variant='rounded' isIndeterminate defaultSelected>
-          Indeterminate
-        </Checkbox>
-        <Checkbox variant='rounded' isIndeterminate isDisabled defaultSelected>
-          Indeterminate (disabled)
-        </Checkbox>
-      </Column>
-    </Column>
-  )
+State.argTypes = {
+  onChange: {
+    action: 'changed',
+  },
 }

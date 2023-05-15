@@ -1,63 +1,32 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-import React, {useCallback, useEffect, useState} from 'react'
+import {AriaRadioGroupProps, useRadioGroup} from '@react-aria/radio'
+import {useRadioGroupState} from '@react-stately/radio'
+import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {RadioGroupVariantProps, StyledRadioGroup} from './radio-group.styles'
-interface RadioGroupContextValue {
-  selectedValue: string
-  setSelectedValue: (value: string) => void
-}
 
-export const RadioContext = React.createContext<RadioGroupContextValue>({
-  selectedValue: '',
-  setSelectedValue: () => {},
-})
+export const RadioContext = React.createContext<RadioGroupProps | null>(null)
 
-interface Props extends StyledComponentProps {
-  value?: string
+interface Props extends AriaRadioGroupProps, StyledComponentProps {
   children?: React.ReactNode
-  defaultValue?: string
-  onChange?: (value: string) => void
 }
 
 export type RadioGroupProps = Props & RadioGroupVariantProps
 
 const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
   (props, ref) => {
-    const {
-      children,
-      orientation = 'vertical',
-      defaultValue = '',
-      value,
-      onChange,
-      css = {},
-      ...delegated
-    } = props
-
+    const {children, orientation = 'vertical'} = props
+    const state = useRadioGroupState(props)
+    const {radioGroupProps} = useRadioGroup(props, state)
     const groupRef = useDOMRef<HTMLDivElement>(ref)
-    const [selectedValue, setSelectedValue] = useState(value || defaultValue)
 
-    useEffect(() => {
-      handleChange(selectedValue)
-    }, [selectedValue, onChange])
-
-    const handleChange = useCallback(
-      (value: string) => {
-        setSelectedValue(value)
-        onChange && onChange(value)
-      },
-      [onChange],
-    )
     return (
       <StyledRadioGroup
         ref={groupRef}
         orientation={orientation}
-        css={css}
-        {...delegated}
+        {...radioGroupProps}
       >
-        <RadioContext.Provider value={{selectedValue, setSelectedValue}}>
-          {children}
-        </RadioContext.Provider>
+        <RadioContext.Provider value={state}>{children}</RadioContext.Provider>
       </StyledRadioGroup>
     )
   },

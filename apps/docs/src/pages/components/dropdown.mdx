@@ -3,16 +3,10 @@ import styles from '../../styles/Home.module.css'
 import Dropdown from '@comfortdelgro/react-compass/dropdown'
 import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons'
 import Icon from '@comfortdelgro/react-compass/icon'
-import {ControlledDropdown} from '../../components/ControlledDropdown'
 
 # Dropdown
 
-Dropdown components are used for collecting user provided information from a list of options.
-
-<Callout>
-  Check out our [ladle](/ladle?story=dropdown--combo-box) for more info on this
-  component.
-</Callout>
+Provides the behavior and accessibility implementation for a combo box component. A combo box combines a text input with a listbox, allowing users to filter a list of options to items matching a query.
 
 ---
 
@@ -34,148 +28,95 @@ We recommend the second method to import components for the benefits of [tree sh
 
 ### Select Controlled:
 
-We provide 3 type of dropdown that can be used to select: `Dropdown.Select`, `Dropdown.ComboBox` and `Dropdown.Flag`
-
-### Controlled:
-
 <section className={styles.avatarShowcaseContainer}>
-  <ControlledDropdown />
+  <Dropdown.Select
+    label='Favorite Animal'
+    placeholder='Choose an animal'
+    defaultSelectedKey='cat'
+  >
+    <Dropdown.Item
+      key='red panda'
+      leftIcon={<Icon icon={faExclamationTriangle} />}
+    >
+      Red Panda
+    </Dropdown.Item>
+    <Dropdown.Item key='cat' type='color' rightColor='red'>
+      Cat
+    </Dropdown.Item>
+    <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+    <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+    <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+    <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+  </Dropdown.Select>
 </section>
 
 ```js
   const [value, setValue] = React.useState<Key>('cat')
   <Dropdown.Select
-    isRequired
     label='Favorite Animal'
     placeholder='Choose an animal'
     selectedKey={value}
-    onSelectionChange={(k: React.Key) => setValue(k)}
+    onSelectionChange={(k: Key) => setValue(k)}
   >
     <Dropdown.Item
       key='red panda'
       leftIcon={<Icon icon={faExclamationTriangle} />}
     >
-      Red Panda Red Panda Red Panda Red Panda Red Panda
+      Red Panda
     </Dropdown.Item>
-    <Dropdown.Item
-      key='cat'
-      leftIcon={<Icon icon={faExclamationTriangle} />}
-      type='color'
-      rightColor='red'
-      textValue='pandared'
-    >
-      Cat Red Panda Red Panda Red Panda Red Panda Red Panda
+    <Dropdown.Item key='cat' type='color' rightColor='red'>
+      Cat
     </Dropdown.Item>
     <Dropdown.Item key='dog'>Dog</Dropdown.Item>
     <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
     <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
-    <Dropdown.Item key='snakessss'>Snake</Dropdown.Item>
+    <Dropdown.Item key='snake'>Snake</Dropdown.Item>
   </Dropdown.Select>
-  <Dropdown.ComboBox
-    isRequired
-    label='Favorite Animal'
-    placeholder='Choose an animal'
-    selectedKey={value}
-    onSelectionChange={(k: React.Key) => setValue(k)}
-  >
-    <Dropdown.Item
-      key='red panda'
-      leftIcon={<Icon icon={faExclamationTriangle} />}
-    >
-      Red Panda Red Panda Red Panda Red Panda Red Panda
-    </Dropdown.Item>
-    <Dropdown.Item
-      key='cat'
-      leftIcon={<Icon icon={faExclamationTriangle} />}
-      type='color'
-      rightColor='red'
-      textValue='pandared'
-    >
-      Cat Red Panda Red Panda Red Panda Red Panda Red Panda
-    </Dropdown.Item>
-    <Dropdown.Item key='dog'>Dog</Dropdown.Item>
-    <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
-    <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
-    <Dropdown.Item key='snakessss'>Snake</Dropdown.Item>
-  </Dropdown.ComboBox>
 ```
 
 ---
 
-### UnControlled:
+### Select UnControlled:
 
 <section className={styles.avatarShowcaseContainer}>
-  <Dropdown.Select
-    isRequired
-    label='Favorite Animal'
-    placeholder='Choose an animal'
-  >
-    <Dropdown.Item key='red panda'>
-      Red Panda Red Panda Red Panda Red Panda Red Panda
+  <Dropdown.Select label='Favorite Animal' placeholder='Choose an animal'>
+    <Dropdown.Item
+      key='red panda'
+      leftIcon={<Icon icon={faExclamationTriangle} />}
+    >
+      Red Panda
     </Dropdown.Item>
-    <Dropdown.Item key='cat' type='color' rightColor='red' textValue='pandared'>
-      Cat Red Panda Red Panda Red Panda Red Panda Red Panda
+    <Dropdown.Item key='cat' type='color' rightColor='red'>
+      Cat
     </Dropdown.Item>
     <Dropdown.Item key='dog'>Dog</Dropdown.Item>
     <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
     <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
-    <Dropdown.Item key='snakessss'>Snake</Dropdown.Item>
+    <Dropdown.Item key='snake'>Snake</Dropdown.Item>
   </Dropdown.Select>
-  <Dropdown.ComboBox
-    isRequired
-    label='Favorite Animal'
-    placeholder='Choose an animal'
-  >
-    <Dropdown.Item key='red panda'>
-      Red Panda Red Panda Red Panda Red Panda Red Panda
-    </Dropdown.Item>
-    <Dropdown.Item key='cat' type='color' rightColor='red' textValue='pandared'>
-      Cat Red Panda Red Panda Red Panda Red Panda Red Panda
-    </Dropdown.Item>
-    <Dropdown.Item key='dog'>Dog</Dropdown.Item>
-    <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
-    <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
-    <Dropdown.Item key='snakessss'>Snake</Dropdown.Item>
-  </Dropdown.ComboBox>
 </section>
+
 ```js
-<Dropdown.Select
-  isRequired
-  label='Favorite Animal'
-  placeholder='Choose an animal'
->
-  <Dropdown.Item key='red panda'>
-    Red Panda Red Panda Red Panda Red Panda Red Panda
+<Dropdown.Select label='Favorite Animal' placeholder='Choose an animal'>
+  <Dropdown.Item
+    key='red panda'
+    leftIcon={<Icon icon={faExclamationTriangle} />}
+  >
+    Red Panda
   </Dropdown.Item>
-  <Dropdown.Item key='cat' type='color' rightColor='red' textValue='pandared'>
-    Cat Red Panda Red Panda Red Panda Red Panda Red Panda
+  <Dropdown.Item key='cat' type='color' rightColor='red'>
+    Cat
   </Dropdown.Item>
   <Dropdown.Item key='dog'>Dog</Dropdown.Item>
   <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
   <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
-  <Dropdown.Item key='snakessss'>Snake</Dropdown.Item>
+  <Dropdown.Item key='snake'>Snake</Dropdown.Item>
 </Dropdown.Select>
-<Dropdown.ComboBox
-  isRequired
-  label='Favorite Animal'
-  placeholder='Choose an animal'
->
-  <Dropdown.Item key='red panda'>
-    Red Panda Red Panda Red Panda Red Panda Red Panda
-  </Dropdown.Item>
-  <Dropdown.Item key='cat' type='color' rightColor='red' textValue='pandared'>
-    Cat Red Panda Red Panda Red Panda Red Panda Red Panda
-  </Dropdown.Item>
-  <Dropdown.Item key='dog'>Dog</Dropdown.Item>
-  <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
-  <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
-  <Dropdown.Item key='snakessss'>Snake</Dropdown.Item>
-</Dropdown.ComboBox>
 ```
 
 ---
 
-### Error:
+### Select Error:
 
 <section className={styles.avatarShowcaseContainer}>
   <Dropdown.Select
@@ -199,6 +140,7 @@ We provide 3 type of dropdown that can be used to select: `Dropdown.Select`, `Dr
     <Dropdown.Item key='snake'>Snake</Dropdown.Item>
   </Dropdown.Select>
 </section>
+
 ```js
 <Dropdown.Select
   label='Favorite Animal'
@@ -224,146 +166,13 @@ We provide 3 type of dropdown that can be used to select: `Dropdown.Select`, `Dr
 
 ---
 
-### With Section:
-
-<section className={styles.avatarShowcaseContainer}>
-  <Dropdown.Select label='Favorite Animal' placeholder='Choose an animal'>
-    <Dropdown.Item key='fly'>Fly</Dropdown.Item>
-    <Dropdown.Section title='Group 1'>
-      <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
-      <Dropdown.Item key='cat'>Cat</Dropdown.Item>
-      <Dropdown.Item key='dog'>Dog</Dropdown.Item>
-    </Dropdown.Section>
-    <Dropdown.Section title='Group 2'>
-      <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
-      <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
-      <Dropdown.Item key='snake'>Snake</Dropdown.Item>
-    </Dropdown.Section>
-  </Dropdown.Select>
-</section>
-```js
-<Dropdown.Select label='Favorite Animal' placeholder='Choose an animal'>
-  <Dropdown.Item key='fly'>Fly</Dropdown.Item>
-  <Dropdown.Section title='Group 1'>
-    <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
-    <Dropdown.Item key='cat'>Cat</Dropdown.Item>
-    <Dropdown.Item key='dog'>Dog</Dropdown.Item>
-  </Dropdown.Section>
-  <Dropdown.Section title='Group 2'>
-    <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
-    <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
-    <Dropdown.Item key='snake'>Snake</Dropdown.Item>
-  </Dropdown.Section>
-</Dropdown.Select>
-```
-
----
-
-### With Header:
-
-<section className={styles.avatarShowcaseContainer}>
-  <Dropdown.Select label='Favorite Animal' placeholder='Choose an animal'>
-    <Dropdown.Header>
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          width: '100%',
-          padding: '8px 16px',
-          borderBottom: '2px solid #EDEBE9',
-        }}
-      >
-        <span
-          style={{
-            color: '#323130',
-            fontSize: '12px',
-            fontWeight: 'bold',
-            padding: 0,
-            margin: 0,
-          }}
-        >
-          Filter
-        </span>
-        <button
-          style={{
-            fontSize: '12px',
-            fontWeight: 'bold',
-            color: '#A4262C',
-            border: 0,
-            cursor: 'pointer',
-            backgroundColor: 'transparent',
-          }}
-        >
-          Clear
-        </button>
-      </div>
-    </Dropdown.Header>
-    <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
-    <Dropdown.Item key='cat'>Cat</Dropdown.Item>
-    <Dropdown.Item key='dog'>Dog</Dropdown.Item>
-    <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
-    <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
-    <Dropdown.Item key='snake'>Snake</Dropdown.Item>
-  </Dropdown.Select>
-</section>
-
-```js
-<Dropdown.Select label='Favorite Animal' placeholder='Choose an animal'>
-  <Dropdown.Header>
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        width: '100%',
-        padding: '8px 16px',
-        borderBottom: '2px solid #EDEBE9',
-      }}
-    >
-      <span
-        style={{
-          color: '#323130',
-          fontSize: '12px',
-          fontWeight: 'bold',
-          padding: 0,
-          margin: 0,
-        }}
-      >
-        Filter
-      </span>
-      <button
-        style={{
-          fontSize: '12px',
-          fontWeight: 'bold',
-          color: '#A4262C',
-          border: 0,
-          cursor: 'pointer',
-          backgroundColor: 'transparent',
-        }}
-      >
-        Clear
-      </button>
-    </div>
-  </Dropdown.Header>
-  <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
-  <Dropdown.Item key='cat'>Cat</Dropdown.Item>
-  <Dropdown.Item key='dog'>Dog</Dropdown.Item>
-  <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
-  <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
-  <Dropdown.Item key='snake'>Snake</Dropdown.Item>
-</Dropdown.Select>
-```
-
----
-
-### With Icon:
+### Select With Header:
 
 <section className={styles.avatarShowcaseContainer}>
   <Dropdown.Select
     label='Favorite Animal'
     placeholder='Choose an animal'
-    icon={<Icon icon={faExclamationTriangle} />}
+    headerTitle='Filter title'
   >
     <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
     <Dropdown.Item key='cat'>Cat</Dropdown.Item>
@@ -373,11 +182,12 @@ We provide 3 type of dropdown that can be used to select: `Dropdown.Select`, `Dr
     <Dropdown.Item key='snake'>Snake</Dropdown.Item>
   </Dropdown.Select>
 </section>
+
 ```js
 <Dropdown.Select
   label='Favorite Animal'
   placeholder='Choose an animal'
-  icon={<Icon icon={faExclamationTriangle} />}
+  headerTitle='Filter title'
 >
   <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
   <Dropdown.Item key='cat'>Cat</Dropdown.Item>
@@ -390,7 +200,7 @@ We provide 3 type of dropdown that can be used to select: `Dropdown.Select`, `Dr
 
 ---
 
-### Loading:
+### Select Loading:
 
 <section className={styles.avatarShowcaseContainer}>
   <Dropdown.Select
@@ -406,6 +216,7 @@ We provide 3 type of dropdown that can be used to select: `Dropdown.Select`, `Dr
     <Dropdown.Item key='snake'>Snake</Dropdown.Item>
   </Dropdown.Select>
 </section>
+
 ```js
 <Dropdown.Select
   label='Favorite Animal'
@@ -423,6 +234,282 @@ We provide 3 type of dropdown that can be used to select: `Dropdown.Select`, `Dr
 
 ---
 
+### Select With Icon:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Dropdown.Select
+    label='Favorite Animal'
+    placeholder='Choose an animal'
+    icon={<Icon icon={faExclamationTriangle} />}
+  >
+    <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
+    <Dropdown.Item key='cat'>Cat</Dropdown.Item>
+    <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+    <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+    <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+    <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+  </Dropdown.Select>
+</section>
+
+```js
+<Dropdown.Select
+  label='Favorite Animal'
+  placeholder='Choose an animal'
+  icon={<Icon icon={faExclamationTriangle} />}
+>
+  <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
+  <Dropdown.Item key='cat'>Cat</Dropdown.Item>
+  <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+  <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+  <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+  <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+</Dropdown.Select>
+```
+
+---
+
+### ComboBox Controlled:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Dropdown.ComboBox
+    label='Favorite Animal'
+    placeholder='Choose an animal'
+    defaultSelectedKey='cat'
+  >
+    <Dropdown.Item
+      key='red panda'
+      leftIcon={<Icon icon={faExclamationTriangle} />}
+    >
+      Red Panda
+    </Dropdown.Item>
+    <Dropdown.Item key='cat' type='color' rightColor='red'>
+      Cat
+    </Dropdown.Item>
+    <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+    <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+    <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+    <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+  </Dropdown.ComboBox>
+</section>
+
+```js
+  const [value, setValue] = React.useState<Key>('cat')
+  <Dropdown.ComboBox
+    label='Favorite Animal'
+    placeholder='Choose an animal'
+    selectedKey={value}
+    onSelectionChange={(k: Key) => setValue(k)}
+  >
+    <Dropdown.Item
+      key='red panda'
+      leftIcon={<Icon icon={faExclamationTriangle} />}
+    >
+      Red Panda
+    </Dropdown.Item>
+    <Dropdown.Item key='cat' type='color' rightColor='red'>
+      Cat
+    </Dropdown.Item>
+    <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+    <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+    <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+    <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+  </Dropdown.ComboBox>
+```
+
+---
+
+### ComboBox UnControlled:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Dropdown.ComboBox label='Favorite Animal' placeholder='Choose an animal'>
+    <Dropdown.Item
+      key='red panda'
+      leftIcon={<Icon icon={faExclamationTriangle} />}
+    >
+      Red Panda
+    </Dropdown.Item>
+    <Dropdown.Item key='cat' type='color' rightColor='red'>
+      Cat
+    </Dropdown.Item>
+    <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+    <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+    <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+    <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+  </Dropdown.ComboBox>
+</section>
+
+```js
+<Dropdown.ComboBox label='Favorite Animal' placeholder='Choose an animal'>
+  <Dropdown.Item
+    key='red panda'
+    leftIcon={<Icon icon={faExclamationTriangle} />}
+  >
+    Red Panda
+  </Dropdown.Item>
+  <Dropdown.Item key='cat' type='color' rightColor='red'>
+    Cat
+  </Dropdown.Item>
+  <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+  <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+  <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+  <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+</Dropdown.ComboBox>
+```
+
+---
+
+### ComboBox Error:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Dropdown.ComboBox
+    label='Favorite Animal'
+    placeholder='Choose an animal'
+    isErrored
+    errorMessage='Use Helper Text for Errors'
+  >
+    <Dropdown.Item
+      key='red panda'
+      leftIcon={<Icon icon={faExclamationTriangle} />}
+    >
+      Red Panda
+    </Dropdown.Item>
+    <Dropdown.Item key='cat' type='color' rightColor='red'>
+      Cat
+    </Dropdown.Item>
+    <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+    <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+    <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+    <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+  </Dropdown.ComboBox>
+</section>
+
+```js
+<Dropdown.ComboBox
+  label='Favorite Animal'
+  placeholder='Choose an animal'
+  isErrored
+  errorMessage='Use Helper Text for Errors'
+>
+  <Dropdown.Item
+    key='red panda'
+    leftIcon={<Icon icon={faExclamationTriangle} />}
+  >
+    Red Panda
+  </Dropdown.Item>
+  <Dropdown.Item key='cat' type='color' rightColor='red'>
+    Cat
+  </Dropdown.Item>
+  <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+  <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+  <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+  <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+</Dropdown.ComboBox>
+```
+
+---
+
+### ComboBox With Header:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Dropdown.ComboBox
+    label='Favorite Animal'
+    placeholder='Choose an animal'
+    headerTitle='Filter title'
+  >
+    <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
+    <Dropdown.Item key='cat'>Cat</Dropdown.Item>
+    <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+    <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+    <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+    <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+  </Dropdown.ComboBox>
+</section>
+
+```js
+<Dropdown.ComboBox
+  label='Favorite Animal'
+  placeholder='Choose an animal'
+  headerTitle='Filter title'
+>
+  <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
+  <Dropdown.Item key='cat'>Cat</Dropdown.Item>
+  <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+  <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+  <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+  <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+</Dropdown.ComboBox>
+```
+
+---
+
+### ComboBox Loading:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Dropdown.ComboBox
+    label='Favorite Animal'
+    placeholder='Choose an animal'
+    isLoading
+  >
+    <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
+    <Dropdown.Item key='cat'>Cat</Dropdown.Item>
+    <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+    <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+    <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+    <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+  </Dropdown.ComboBox>
+</section>
+
+```js
+<Dropdown.Select
+  label='Favorite Animal'
+  placeholder='Choose an animal'
+  isLoading
+>
+  <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
+  <Dropdown.Item key='cat'>Cat</Dropdown.Item>
+  <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+  <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+  <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+  <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+</Dropdown.Select>
+```
+
+---
+
+### ComboBox With Icon:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Dropdown.ComboBox
+    label='Favorite Animal'
+    placeholder='Choose an animal'
+    icon={<Icon icon={faExclamationTriangle} />}
+  >
+    <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
+    <Dropdown.Item key='cat'>Cat</Dropdown.Item>
+    <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+    <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+    <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+    <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+  </Dropdown.ComboBox>
+</section>
+
+```js
+<Dropdown.ComboBox
+  label='Favorite Animal'
+  placeholder='Choose an animal'
+  icon={<Icon icon={faExclamationTriangle} />}
+>
+  <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
+  <Dropdown.Item key='cat'>Cat</Dropdown.Item>
+  <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+  <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+  <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+  <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+</Dropdown.ComboBox>
+```
+
+---
+
 ### Flag:
 
 <section className={styles.avatarShowcaseContainer}>
@@ -430,14 +517,15 @@ We provide 3 type of dropdown that can be used to select: `Dropdown.Select`, `Dr
     label='List of country'
     isRequired
     placeholder='Choose a country'
-    flagKeyType='phone-code'
+    keyType='phone-code'
   />
 </section>
+
 ```js
 <Dropdown.Flag
   label='List of country'
   placeholder='Choose a country'
-  flagKeyType='phone-code'
+  keyType='phone-code'
 />
 ```
 
@@ -447,37 +535,51 @@ We provide 3 type of dropdown that can be used to select: `Dropdown.Select`, `Dr
 
 #### `<Dropdown.Select/>` | `<Dropdown.ComboBox/>` | `<Dropdown.Flag/>` :
 
-| Name               | Type                        | Default | Description                                                                                                                                               |
-| :----------------- | :-------------------------- | :------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| icon               | `ReactNode`                 | -       | Icon display in right side                                                                                                                                |
-| name               | `string`                    | —       | The name of the input element, used when submitting an HTML form. See MDN.                                                                                |
-| label              | `ReactNode`                 | —       | The content to display as the label.                                                                                                                      |
-| isOpen             | `boolean`                   | —       | Open state of the menu.                                                                                                                                   |
-| isLoading          | `boolean`                   | 'false' | Loading effect when list of items is loading by API                                                                                                       |
-| isErrored          | `boolean`                   | 'false' | Error state when dropdown is isErrored                                                                                                                    |
-| isDisabled         | `boolean`                   | —       | Whether the input is disabled.                                                                                                                            |
-| isReadOnly         | `boolean`                   | —       | Whether the input can be selected but not changed by the user.                                                                                            |
-| isRequired         | `boolean`                   | —       | Whether user input is required on the input before form submission. Often paired with the necessityIndicator prop to add a visual indicator to the input. |
-| selectedKey        | `Key`                       | —       | The currently selected key in the collection (controlled).                                                                                                |
-| description        | `string`                    | —       | A description for the field. Provides a hint such as specific requirements for what to choose.                                                            |
-| placeholder        | `string`                    | —       | Temporary text that occupies the text input when it is empty.                                                                                             |
-| errorMessage       | `string`                    | -       | Error message for dropdown                                                                                                                                |
-| disabledKeys       | `Iterable<Key>`             | —       | The item keys that are disabled. These items cannot be selected, focused, or otherwise interacted with.                                                   |
-| defaultSelectedKey | `Key`                       | —       | The initial selected key in the collection (uncontrolled).                                                                                                |
-| onLoadMore         | `() => void`                | —       | Handler when user scrolls to the end.                                                                                                                     |
-| onSelectionChange  | `(key: Key) => any`         | —       | Handler that is called when the selection changes.                                                                                                        |
-| onOpenChange       | `(isOpen: boolean) => void` | —       | Method that is called when the open state of the menu changes. Returns the new open state and the action that caused the opening of the menu.             |
+| Name               | Type                                                         | Default | Description                                                                                                                                               |
+| :----------------- | :----------------------------------------------------------- | :------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| isLoading          | `boolean`                                                    | 'false' | Loading effect when list of items is loading by API                                                                                                       |
+| isErrored          | `boolean`                                                    | 'false' | Error state when dropdown is isErrored                                                                                                                    |
+| errorMessage       | `string`                                                     | -       | Error message for dropdown                                                                                                                                |
+| icon               | `React.ReactNode`                                            | -       | Icon display in right side                                                                                                                                |
+| headerTitle        | `string`                                                     | -       | Title display of header inside popover                                                                                                                    |
+| headerOnClick      | `(e: PressEvent) => void`                                    | -       | On click of clear button inside popover                                                                                                                   |
+| keyboardDelegate   | `KeyboardDelegate`                                           | —       | An optional keyboard delegate implementation, to override the default.                                                                                    |
+| shouldFocusWrap    | `boolean`                                                    | —       | Whether keyboard navigation is circular.                                                                                                                  |
+| defaultItems       | `Iterable`                                                   | —       | The list of ComboBox items (uncontrolled).                                                                                                                |
+| items              | `Iterable`                                                   | —       | The list of ComboBox items (controlled).                                                                                                                  |
+| onOpenChange       | `(isOpen: boolean, menuTrigger?: MenuTriggerAction) => void` | —       | Method that is called when the open state of the menu changes. Returns the new open state and the action that caused the opening of the menu.             |
+| inputValue         | `string`                                                     | —       | The value of the ComboBox input (controlled).                                                                                                             |
+| defaultInputValue  | `string`                                                     | —       | The default value of the ComboBox input (uncontrolled).                                                                                                   |
+| onInputChange      | `(value: string) => void`                                    | —       | Handler that is called when the ComboBox input value changes.                                                                                             |
+| allowsCustomValue  | `boolean`                                                    | —       | Whether the ComboBox allows a non-item matching input value to be set.                                                                                    |
+| menuTrigger        | `MenuTriggerAction`                                          | 'input' | The interaction required to display the ComboBox menu.                                                                                                    |
+| name               | `string`                                                     | —       | The name of the input element, used when submitting an HTML form. See MDN.                                                                                |
+| disabledKeys       | `Iterable`                                                   | —       | The item keys that are disabled. These items cannot be selected, focused, or otherwise interacted with.                                                   |
+| selectedKey        | `Key`\|`null`                                                | —       | The currently selected key in the collection (controlled).                                                                                                |
+| defaultSelectedKey | `Key`                                                        | —       | The initial selected key in the collection (uncontrolled).                                                                                                |
+| onSelectionChange  | `(key: Key) => any`                                          | —       | Handler that is called when the selection changes.                                                                                                        |
+| isDisabled         | `boolean`                                                    | —       | Whether the input is disabled.                                                                                                                            |
+| isReadOnly         | `boolean`                                                    | —       | Whether the input can be selected but not changed by the user.                                                                                            |
+| placeholder        | `string`                                                     | —       | Temporary text that occupies the text input when it is empty.                                                                                             |
+| validationState    | `ValidationState`                                            | —       | Whether the input should display its "valid" or "invalid" visual styling.                                                                                 |
+| isRequired         | `boolean`                                                    | —       | Whether user input is required on the input before form submission. Often paired with the necessityIndicator prop to add a visual indicator to the input. |
+| autoFocus          | `boolean`                                                    | —       | Whether the element should receive focus on render.                                                                                                       |
+| onFocus            | `(e: FocusEvent) => void`                                    | —       | Handler that is called when the element receives focus.                                                                                                   |
+| onBlur             | `(e: FocusEvent) => void`                                    | —       | Handler that is called when the element loses focus.                                                                                                      |
+| onFocusChange      | `(isFocused: boolean) => void`                               | —       | Handler that is called when the element's focus status changes.                                                                                           |
+| onKeyDown          | `(e: KeyboardEvent) => void`                                 | —       | Handler that is called when a key is pressed.                                                                                                             |
+| onKeyUp            | `(e: KeyboardEvent) => void`                                 | —       | Handler that is called when a key is released.                                                                                                            |
+| label              | `ReactNode`                                                  | —       | The content to display as the label.                                                                                                                      |
+| description        | `ReactNode`                                                  | —       | A description for the field. Provides a hint such as specific requirements for what to choose.                                                            |
 
 #### `<Dropdown.Flag/>` :
 
 Include all of the props above and have extra new prop
 
-| Name                   | Type                                                               | Default   | Description                                                                                                                                           |
-| :--------------------- | :----------------------------------------------------------------- | :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| flagKeyType            | `alpha-2` \| `alpha-3` \| `name` \| `country-code` \| `phone-code` | `alpha-3` | The value of selectedKey will depends by which type of key                                                                                            |
-| selectedCountry        | `Key`\|`null`                                                      | —         | The currently selected key in the collection (controlled).                                                                                            |
-| onCountryChange        | `(p: string) => void`                                              | —         | Return phone code of selected key. You may need to get phone code from this function, not from the key because some country has duplicated phone code |
-| defaultSelectedCountry | `Key`                                                              | —         | The initial selected key in the collection (uncontrolled).                                                                                            |
+| Name          | Type                                                               | Default   | Description                                                                                                                                           |
+| :------------ | :----------------------------------------------------------------- | :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| keyType       | `alpha-2` \| `alpha-3` \| `name` \| `country-code` \| `phone-code` | `alpha-3` | The value of selectedKey will depends by which type of key                                                                                            |
+| onPhoneChange | `(p: string) => void`                                              | —         | Return phone code of selected key. You may need to get phone code from this function, not from the key because some country has duplicated phone code |
 
 Example for key and value
 
@@ -493,28 +595,19 @@ Example for key and value
 
 #### `<Dropdown.Item/>` :
 
-| Name       | Type              | Default | Description                      |
-| :--------- | :---------------- | :------ | :------------------------------- |
-| key        | `Key`             | —       | The key of the dropdown.         |
-| icon       | `icon` \| `color` | —       | The content of the dropdown Item |
-| title      | `string`          | —       | The title of the dropdown.       |
-| children   | `ReactNode`       | —       | The content of the dropdown Item |
-| leftIcon   | `ReactNode`       | -       | Left icon of the dropdown Item   |
-| rightIcon  | `ReactNode`       | -       | Right icon of the dropdown Item  |
-| rightColor | `string`          | -       | Right color of the dropdown Item |
-
----
-
-#### `<Dropdown.Section/>` :
-
-| Name     | Type        | Default | Description                |
-| :------- | :---------- | :------ | :------------------------- |
-| title    | `ReactNode` | —       | The title of the section.  |
-| children | `ReactNode` | —       | The content of the section |
+| Name       | Type                    | Default | Description                      |
+| :--------- | :---------------------- | :------ | :------------------------------- |
+| title      | `string`                | —       | The title of the dropdown.       |
+| key        | `Key`                   | —       | The key of the dropdown.         |
+| children   | `ReactNode` \| `String` | —       | The content of the dropdown Item |
+| icon       | `icon` \| `color`       | —       | The content of the dropdown Item |
+| leftIcon   | `ReactNode`             | -       | Left icon of the dropdown Item   |
+| rightIcon  | `ReactNode`             | -       | Right icon of the dropdown Item  |
+| rightColor | `string`                | -       | Right color of the dropdown Item |
 
 ---
 
 <Callout>
-  Check out our [ladle](/ladle?story=dropdown--combo-box) for more info on this
+  Check out our [ladle](/ladle?story=dropdown--variants) for more info on this
   component.
 </Callout>

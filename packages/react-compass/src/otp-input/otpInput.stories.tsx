@@ -21,14 +21,6 @@ export const Variants: React.FC = () => {
         length={4}
         onChangeOTP={(otp) => console.log('String OTP: ', otp)}
       />
-
-      <h2>Disabled</h2>
-      <OTPInput
-        autoFocus
-        disabled
-        length={4}
-        onChangeOTP={(otp) => console.log('String OTP: ', otp)}
-      />
     </Column>
   )
 }

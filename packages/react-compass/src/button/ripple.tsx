@@ -31,7 +31,7 @@ const Ripple: React.FC<Props> = ({children}: Props) => {
   }
 
   return React.cloneElement(children as React.ReactElement, {
-    onMouseDown: createRipple,
+    onClick: createRipple,
     style: {overflow: 'hidden', position: 'relative'},
   })
 }

@@ -21,7 +21,7 @@ const SamplePopover = () => {
   )
 }
 
-export const Variants = () => {
+export const Popovers = () => {
   const [isOpen1, setIsOpen1] = useState(false)
   const [isOpen2, setIsOpen2] = useState(false)
   const [isOpen3, setIsOpen3] = useState(false)

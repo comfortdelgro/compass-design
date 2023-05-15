@@ -3,12 +3,11 @@ import {DateValue, parseDate} from '@internationalized/date'
 import {AriaDatePickerProps, useDatePicker} from '@react-aria/datepicker'
 import {AriaDialogProps} from '@react-aria/dialog'
 import {DatePickerState, useDatePickerState} from '@react-stately/datepicker'
-// import type {AriaButtonProps} from '@react-types/button'
+import type {AriaButtonProps} from '@react-types/button'
 import type {CalendarProps} from '@react-types/calendar'
 import type {SpectrumDatePickerProps} from '@react-types/datepicker'
 import type {DOMAttributes} from '@react-types/shared'
 import React from 'react'
-import {ButtonProps} from '../button'
 import Calendar from '../calendar/calendar'
 import {DateField} from '../calendar/components'
 import Dialog from '../calendar/components/dialog'
@@ -57,7 +56,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
         ref={calendarRef}
         groupProps={groupProps}
         fieldProps={extendedFieldProps}
-        buttonProps={buttonProps as unknown as ButtonProps}
+        buttonProps={buttonProps}
         isInvalid={props.isInvalid}
         label={props.label}
       />
@@ -76,7 +75,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
 interface DatePickerFieldWrapperProps {
   groupProps: DOMAttributes
   fieldProps: AriaDatePickerProps<DateValue>
-  buttonProps: ButtonProps
+  buttonProps: AriaButtonProps
   label?: string | undefined
   isInvalid?: boolean | undefined
 }

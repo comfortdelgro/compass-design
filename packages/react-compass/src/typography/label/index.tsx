@@ -17,7 +17,6 @@ const Label: React.FC<Props> = (props) => {
     variant = 'label1',
     weight = 'none',
     component,
-    ...delegated
   } = props
   const tag = React.useMemo(() => {
     if (component) return component
@@ -59,7 +58,7 @@ const Label: React.FC<Props> = (props) => {
   })
 
   return (
-    <StyledLabel css={css} variant={variant} weight={weight} {...delegated}>
+    <StyledLabel css={css} variant={variant} weight={weight}>
       {children}
     </StyledLabel>
   )

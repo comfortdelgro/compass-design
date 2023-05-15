@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 
-import {DocsThemeConfig} from 'nextra-theme-docs/.'
+import { DocsThemeConfig } from 'nextra-theme-docs/.'
+import React from 'react'
 
 const githubUrl = 'https://github.com/comfortdelgro/compass-design'
 
@@ -30,7 +31,7 @@ const nextraConfig: DocsThemeConfig = {
           width: '1.75rem',
           aspectRatio: '1 / 1',
           backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
+          backgroundSize: 'cover'
         }}
       />
       <div style={{fontWeight: 700}}>Compass Design</div>
@@ -38,7 +39,8 @@ const nextraConfig: DocsThemeConfig = {
   ),
   useNextSeoProps: () => {
     return {
-      description: "Comfortdelgro's Compass Design System",
+      description:
+        "Comfortdelgro's Compass Design System",
       openGraph: {
         images: [
           {

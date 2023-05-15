@@ -6,11 +6,6 @@ import ProgressBar from '@comfortdelgro/react-compass/progress-bar'
 
 Provides the accessibility implementation for a progress bar component. Progress bars show either determinate or indeterminate progress of an operation over time.
 
-<Callout>
-  Check out our [ladle](/ladle?story=progress-bar--variant) for more info on
-  this component.
-</Callout>
-
 ---
 
 ### Import:
@@ -30,7 +25,7 @@ import ProgressBar from '@comfortdelgro/react-compass/progress-bar'
 ### Basic Usage:
 
 <section className={styles.avatarShowcaseContainer}>
-  <ProgressBar value={20} label='Label Left' rightLabel='Label Right' />
+    <ProgressBar value={20} label='Label Left' rightLabel='Label Right' />
 </section>
 
 ```js
@@ -41,10 +36,7 @@ import ProgressBar from '@comfortdelgro/react-compass/progress-bar'
 
 ### Size:
 
-<section
-  className={styles.avatarShowcaseContainer}
-  style={{flexDirection: 'column'}}
->
+<section className={styles.avatarShowcaseContainer} style={{flexDirection: 'column'}}>
   <div style={{width: '100%', marginBottom: '10px'}}>
     <ProgressBar value={20} size='sm' label='sm' />
   </div>
@@ -52,10 +44,10 @@ import ProgressBar from '@comfortdelgro/react-compass/progress-bar'
     <ProgressBar value={20} size='md' label='md' />
   </div>
   <div style={{width: '100%', marginBottom: '10px'}}>
-    <ProgressBar value={20} size='lg' label='lg' />
+    <ProgressBar value={20} size='lg' label='lg'/>
   </div>
   <div style={{width: '100%', marginBottom: '10px'}}>
-    <ProgressBar value={20} size='xl' label='xl' />
+    <ProgressBar value={20} size='xl' label='xl'/>
   </div>
 </section>
 
@@ -70,10 +62,7 @@ import ProgressBar from '@comfortdelgro/react-compass/progress-bar'
 
 ### Color:
 
-<section
-  className={styles.avatarShowcaseContainer}
-  style={{flexDirection: 'column'}}
->
+<section className={styles.avatarShowcaseContainer} style={{flexDirection: 'column'}}>
   <div style={{width: '100%', marginBottom: '10px'}}>
     <ProgressBar value={20} color='blue' label='blue' />
   </div>
@@ -91,10 +80,7 @@ import ProgressBar from '@comfortdelgro/react-compass/progress-bar'
 
 ### Variant:
 
-<section
-  className={styles.avatarShowcaseContainer}
-  style={{flexDirection: 'column'}}
->
+<section className={styles.avatarShowcaseContainer} style={{flexDirection: 'column'}}>
   <div style={{width: '100%', marginBottom: '10px'}}>
     <ProgressBar value={20} variant='normal' label='normal' />
   </div>
@@ -116,11 +102,11 @@ You can style React Compass's components with the css prop. <br/>
 With css prop, you can basically do anything that css can do.
 
 <section className={styles.avatarShowcaseContainer}>
-  <ProgressBar value={20} css={{'.progress-bar': {backgroundColor: 'red'}}} />
+  <ProgressBar value={20} css={{ '.progress-bar': {backgroundColor: 'red'} }} />
 </section>
 
 ```js
-<ProgressBar value={20} css={{'.progress-bar': {backgroundColor: 'red'}}} />
+  <ProgressBar value={20} css={{ '.progress-bar': {backgroundColor: 'red'} }} />
 ```
 
 ---
@@ -128,7 +114,7 @@ With css prop, you can basically do anything that css can do.
 ### Props:
 
 | Name            | Type      | Default | Description                                                      |
-| :-------------- | :-------- | :------ | :--------------------------------------------------------------- |
+|:----------------|:----------|:--------|:-----------------------------------------------------------------|
 | isIndeterminate | `boolean` | -       | Whether presentation is indeterminate when progress isn't known. |
 | label           | `boolean` | `false` | The content to display as the left label.                        |
 | rightLabel      | `boolean` | `false` | The content to display as the right label.                       |
@@ -141,6 +127,6 @@ With css prop, you can basically do anything that css can do.
 ---
 
 <Callout>
-  Check out our [ladle](/ladle?story=progress-bar--variant) for more info on
-  this component.
+  Check out our [ladle](/ladle?story=progress-bar--variants) for more info on this
+  component.
 </Callout>

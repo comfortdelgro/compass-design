@@ -17,7 +17,6 @@ const Body: React.FC<Props> = (props) => {
     variant = 'body1',
     weight = 'none',
     component,
-    ...delegated
   } = props
   const tag = React.useMemo(() => {
     if (component) return component
@@ -56,7 +55,7 @@ const Body: React.FC<Props> = (props) => {
   })
 
   return (
-    <StyledHeader css={css} variant={variant} weight={weight} {...delegated}>
+    <StyledHeader css={css} variant={variant} weight={weight}>
       {children}
     </StyledHeader>
   )

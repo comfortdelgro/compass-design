@@ -1,6 +1,6 @@
-import {ExtendedRefs, ReferenceType} from '@floating-ui/react'
-import React, {useState} from 'react'
+import React, {useContext} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
+import {SidenavContext} from './sidenav-context'
 import {StyledSidenavItem} from './sidenav-item.styles'
 
 interface Props extends StyledComponentProps {
@@ -24,60 +24,20 @@ const SidenavItem = React.forwardRef<HTMLDivElement, SidenavItemProps>(
       ...delegated
     } = props
 
-    const [menuParenProps, setMenuParentProps] = useState<{
-      ref: ExtendedRefs<ReferenceType>
-      getReferenceProps: (
-        userProps?: React.HTMLProps<Element> | undefined,
-      ) => Record<string, unknown>
-    } | null>(null)
+    const {isExpand} = useContext(SidenavContext)
 
-    const [isOpenMenu, setOpenMenu] = useState(false)
-
-    const [icon, title, menu] = React.Children.toArray(children)
-
-    const setMenuParent = (
-      ref: ExtendedRefs<ReferenceType>,
-      getReferenceProps: (
-        userProps?: React.HTMLProps<Element> | undefined,
-      ) => Record<string, unknown>,
-    ) => {
-      setMenuParentProps({ref, getReferenceProps})
-    }
-
-    const clonedMenu = menu ? (
-      React.cloneElement(menu as JSX.Element, {
-        setMenuParentProps: setMenuParent,
-        isOpenMenu: isOpenMenu,
-      })
-    ) : (
-      <></>
-    )
-
-    const mergeRefs = (el: HTMLDivElement | null) => {
-      // tooltipContext.tooltipRef?.(el)
-      menuParenProps?.ref.setReference(el)
-      if (typeof ref === 'function') {
-        ref(el)
-      } else if (ref != null) {
-        ref.current = el
-      }
-    }
+    const [icon, title] = React.Children.toArray(children)
 
     return (
       <StyledSidenavItem
-        ref={mergeRefs}
+        ref={ref}
         css={css}
         className={`${className} ${isActive ? 'sidenav-item-active' : ''}`}
         active={isActive ? 'active' : 'default'}
-        onMouseEnter={() => {
-          setOpenMenu(true)
-        }}
         {...delegated}
-        {...menuParenProps?.getReferenceProps()}
       >
-        <div>{icon}</div>
-        <div className='sidenav-item-title'>{title}</div>
-        {clonedMenu}
+        {icon}
+        {isExpand && <div className='sidenav-item-title'>{title}</div>}
       </StyledSidenavItem>
     )
   },

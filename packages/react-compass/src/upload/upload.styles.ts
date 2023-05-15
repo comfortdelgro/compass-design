@@ -21,7 +21,7 @@ export const StyledUploadError = styled('a', {
   color: '#E31617',
 })
 
-export const StyledHelperText = styled('div', {
+export const StyledUploadMaxSize = styled('a', {
   // reset
   appearance: 'none',
   border: 'none',

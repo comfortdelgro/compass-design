@@ -1,5 +1,7 @@
 import type {IconProp} from '@fortawesome/fontawesome-svg-core'
 import {faChevronRight} from '@fortawesome/free-solid-svg-icons'
+import {useBreadcrumbs} from '@react-aria/breadcrumbs'
+import type {AriaBreadcrumbsProps} from '@react-types/breadcrumbs'
 import React from 'react'
 import {Icon} from '../icon'
 import {StyledComponentProps} from '../utils/stitches.types'
@@ -7,7 +9,7 @@ import {useDOMRef} from '../utils/use-dom-ref'
 import type BreadcrumbItem from './breadcrumb-item'
 import {BreadcrumbsVariantProps, StyledBreadcrumbs} from './breadcrumbs.styles'
 
-interface Props extends StyledComponentProps {
+interface Props extends AriaBreadcrumbsProps, StyledComponentProps {
   children?: React.ReactNode
   dividerIcon?: IconProp
   isCurrent?: (item: number) => boolean
@@ -32,6 +34,7 @@ const Breadcrumbs = React.forwardRef<HTMLDivElement, BreadcrumbsProps>(
     const {children} = ariaSafeProps
 
     const breadcrumbsRef = useDOMRef<HTMLDivElement>(ref)
+    const {navProps} = useBreadcrumbs(ariaSafeProps)
     const items = React.Children.toArray(children)
 
     const htmlProps = {...ariaSafeProps} as Omit<
@@ -43,8 +46,8 @@ const Breadcrumbs = React.forwardRef<HTMLDivElement, BreadcrumbsProps>(
       <StyledBreadcrumbs
         css={css}
         ref={breadcrumbsRef}
+        {...navProps}
         {...htmlProps}
-        aria-label={'Breadcrumbs'}
       >
         <ol>
           {items.map((item, i) => (

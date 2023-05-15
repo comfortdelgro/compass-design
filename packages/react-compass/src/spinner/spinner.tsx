@@ -17,8 +17,6 @@ const Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>((props, ref) => {
     label = true,
     // VariantProps
     size = 'md',
-
-    ...delegated
   } = props
 
   const variantProps = {size} as SpinnerVariantProps
@@ -27,7 +25,7 @@ const Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>((props, ref) => {
     typeof label === 'boolean' ? (label ? 'Loading...' : null) : label
 
   return (
-    <StyledSpinner css={css} ref={spinnerRef} {...variantProps} {...delegated}>
+    <StyledSpinner css={css} ref={spinnerRef} {...variantProps}>
       <div className='ring'>
         <div className='bg' />
         <div className='segment' />

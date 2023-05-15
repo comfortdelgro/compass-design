@@ -1,104 +1,61 @@
+import {AriaTabListProps, useTabList} from '@react-aria/tabs'
+import {Item as CollectionItem} from '@react-stately/collections'
+import {TabListProps, useTabListState} from '@react-stately/tabs'
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
-import TabItem from './item'
 import Tab from './tab'
 import TabPanel from './tab-panel'
 import TabsPaneless from './tabs-paneless'
 import {StyledTabs, StyledWrapper} from './tabs.styles'
-import {Icon, useTab, Variant} from './utils'
+import {Icon, Variant} from './types'
 
-interface Props extends StyledComponentProps {
-  id?: string
-  icon?: Icon
+interface Props<T = object>
+  extends TabListProps<T>,
+    AriaTabListProps<T>,
+    StyledComponentProps {
   variant?: Variant
+  icon?: Icon
   textColor?: string
-  hidePanel?: boolean
-  isDisabled?: boolean
   indicatorColor?: string
-  selectedKey?: React.Key
-  disabledKeys?: React.Key[]
-  children: React.ReactNode[]
-  defaultSelectedKey?: React.Key
-  orientation?: 'horizontal' | 'vertical'
-  keyboardActivation?: 'automatic' | 'manual'
-  onSelectionChange?: (key: React.Key) => void
-  'aria-label'?: string
-  'aria-labelledby'?: string
-  'aria-describedby'?: string
-  'aria-details'?: string
 }
 
-export type TabsProps = Props
+export type TabsProps<T = object> = Props<T>
 
 const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
-  const {
-    textColor = '#0142AF',
-    indicatorColor = '#0142AF',
-    orientation = 'horizontal',
-    variant = 'rounded',
-    children,
-    isDisabled = false,
-    hidePanel = false,
-    disabledKeys = [],
-    selectedKey,
-    defaultSelectedKey,
-    css = {},
-    ...delegated
-  } = props
+  const {textColor = '#0142AF', indicatorColor = '#0142AF', css = {}} = props
 
   const tabRef = useDOMRef<HTMLDivElement>(ref)
-  const {collection, currentKey, setCurrentKey} = useTab(
-    children,
-    defaultSelectedKey,
-    selectedKey,
-    disabledKeys,
-  )
-
-  const selectedItem = collection.find((item) => {
-    return item.key === currentKey
-  })
-
-  const onSelect = (key: React.Key) => {
-    setCurrentKey(key)
-  }
-
-  React.useEffect(() => {
-    if (currentKey) props.onSelectionChange?.(currentKey)
-  }, [currentKey])
+  const state = useTabListState(props)
+  const {tabListProps} = useTabList(props, state, tabRef)
 
   return (
     <StyledWrapper>
       <StyledTabs
         ref={tabRef}
+        {...tabListProps}
         css={css}
-        orientation={orientation}
-        variant={variant}
-        {...delegated}
+        orientation={props.orientation ?? 'horizontal'}
+        variant={props.variant ?? 'rounded'}
       >
-        {[...collection].map((item) => (
+        {[...state.collection].map((item) => (
           <Tab
             key={item.key}
+            item={item}
+            state={state}
             icon={props.icon}
             variant={props.variant}
-            disabledKeys={disabledKeys}
-            currentKey={currentKey}
             textColor={textColor}
             indicatorColor={indicatorColor}
-            item={item}
-            isDisabled={isDisabled}
-            onSelect={onSelect}
           />
         ))}
       </StyledTabs>
-      {!hidePanel && (
-        <TabPanel key={selectedItem?.key} selectedItem={selectedItem} />
-      )}
+      <TabPanel key={state.selectedItem?.key} state={state} />
     </StyledWrapper>
   )
 })
 
 export default Tabs as typeof Tabs & {
-  Item: typeof TabItem
+  Item: typeof CollectionItem
   Paneless: typeof TabsPaneless
 }

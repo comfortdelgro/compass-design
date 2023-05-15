@@ -17,23 +17,6 @@ export const StyledBannerImage = styled('img', {
   zIndex: -1,
 })
 
-export const StyledBannerImageFallback = styled('div', {
-  // reset
-  appearance: 'none',
-  border: 'none',
-  boxSizing: 'border-box',
-  margin: '0px',
-  //padding: '0px',
-
-  // img
-  width: '100%',
-  height: '100%',
-  position: 'absolute',
-  zIndex: -1,
-  backgroundColor: 'grey',
-  padding: '1rem',
-})
-
 export const StyledBannerTitle = styled('h1', {
   // reset
   appearance: 'none',
