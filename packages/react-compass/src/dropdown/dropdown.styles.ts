@@ -55,6 +55,9 @@ export const StyledSelect = styled('div', {
       flexGrow: 1,
       textAlign: 'start',
     },
+    '&:focus': {
+      outline: 'none',
+    },
   },
   variants: {
     isEmpty: {
