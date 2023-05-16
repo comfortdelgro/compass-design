@@ -1,4 +1,4 @@
-import {faChessKing} from '@fortawesome/free-solid-svg-icons'
+import BugIcon from '@comfortdelgro/compass-icons/react/bug'
 import {AnimatePresence, motion} from 'framer-motion'
 import React, {useState} from 'react'
 import Link from '../link/link' // import the component directly
@@ -81,7 +81,7 @@ export const Indismissible: React.FC = () => (
 
     <h3>3. Custom Icons</h3>
 
-    <Alert color='success' icon={faChessKing}>
+    <Alert color='success' icon={<BugIcon />}>
       <AlertContent />
     </Alert>
   </Column>

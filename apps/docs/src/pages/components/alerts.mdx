@@ -1,7 +1,7 @@
 import {Callout} from 'nextra-theme-docs'
 import Alert from '@comfortdelgro/react-compass/alert'
 import styles from '../../styles/Home.module.css'
-import {faChessKing} from '@fortawesome/free-solid-svg-icons'
+import BugIcon from '@comfortdelgro/compass-icons/react/bug'
 
 # Alerts
 
@@ -115,12 +115,12 @@ export const Dismissible: React.FC = () => {
 The `icon` prop allows you to add an icon to the beginning of the alert component. This will override the default icon for the specified severity.
 
 <section className={styles.componentShowcaseContainer}>
-  <Alert color='success' icon={faChessKing}>
+  <Alert color='success' icon={<BugIcon />}>
     This is a success alert — check it out!
   </Alert>
 </section>
 ```js
-<Alert color='success' icon={faChessKing}>
+<Alert color='success' icon={<BugIcon />}>
   This is a success alert — check it out!
 </Alert>
 ```
