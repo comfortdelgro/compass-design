@@ -365,11 +365,12 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         </StyledFlag>
       )}
       <StyledListBoxWrapper>
-        {collection && collection.length > 0 && open && (
+        {collection && open && (
           <Popover
             popoverRef={popoverRef}
-            close={close}
+            isEmpty={collection.length === 0}
             triggerRef={selectRef as React.RefObject<HTMLDivElement>}
+            close={close}
             handleKeyDown={handleKeyDown}
           >
             <ListBox
