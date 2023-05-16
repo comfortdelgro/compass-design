@@ -284,7 +284,6 @@ export const StyledFlagIcon = styled('div', {
 })
 
 export const StyledListBoxWrapper = styled('div', {
-  marginTop: '$2',
   position: 'relative',
   minWidth: '100%',
 })

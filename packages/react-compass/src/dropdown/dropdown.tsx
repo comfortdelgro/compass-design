@@ -367,8 +367,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           </button>
         </StyledFlag>
       )}
-      <StyledListBoxWrapper>
-        {collection && open && (
+      {collection && open && (
+        <StyledListBoxWrapper>
           <Popover
             popoverRef={popoverRef}
             isEmpty={collection.length === 0}
@@ -391,8 +391,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
               onLoadMore={onLoadMore}
             />
           </Popover>
-        )}
-      </StyledListBoxWrapper>
+        </StyledListBoxWrapper>
+      )}
       {errorMessage && (
         <StyledHelperText error={!!isErrored}>{errorMessage}</StyledHelperText>
       )}

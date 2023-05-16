@@ -321,8 +321,8 @@ const MultipleDropdown = React.forwardRef<
         </StyledSelectedItemWrapper>
         <div className='dropdown-icon'>{icon}</div>
       </StyledDropdown>
-      <StyledListBoxWrapper>
-        {collection && open && (
+      {collection && open && (
+        <StyledListBoxWrapper>
           <Popover
             popoverRef={popoverRef}
             triggerRef={wrapperRef}
@@ -344,8 +344,8 @@ const MultipleDropdown = React.forwardRef<
               onLoadMore={onLoadMore}
             />
           </Popover>
-        )}
-      </StyledListBoxWrapper>
+        </StyledListBoxWrapper>
+      )}
       {errorMessage && (
         <StyledHelperText error={!!isErrored}>{errorMessage}</StyledHelperText>
       )}
