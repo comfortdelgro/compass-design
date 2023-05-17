@@ -4,6 +4,12 @@
 
 ### Patch Changes
 
+- fe66c530: add vanilla-js calendar, range-calendar, date-picker and range-datepicker
+
+## 1.0.0-beta.0.1
+
+### Patch Changes
+
 - d41399b0: Fix bugs
 
 ### Major Changes
