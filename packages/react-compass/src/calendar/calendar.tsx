@@ -19,6 +19,7 @@ interface Props extends StyledComponentProps, ValueBase<DateValue> {
   onCancelCallback?: (() => void) | undefined
   maxValue?: DateValue
   isDisabled?: boolean
+  isDateUnavailable?: (date: DateValue) => boolean
 }
 
 export type CalendarProps = Props & DateValue

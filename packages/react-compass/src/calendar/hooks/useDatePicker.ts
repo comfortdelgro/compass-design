@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/unbound-method */
 /* eslint-disable @typescript-eslint/prefer-ts-expect-error */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import {DateValue} from '@internationalized/date'
@@ -136,7 +137,7 @@ export function useDatePicker<T extends DateValue>(
     calendarProps: {
       autoFocus: true,
       value: state.dateValue,
-      // eslint-disable-next-line @typescript-eslint/unbound-method
+      // @ts-ignore
       onChange: state.setDateValue,
       minValue: props.minValue,
       maxValue: props.maxValue,
