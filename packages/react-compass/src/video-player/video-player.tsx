@@ -11,6 +11,7 @@ import {
   VolumeIcon,
 } from './icon'
 import {
+  ErrorVariantProps,
   StyledButtonWrapper,
   StyledControllerWrapper,
   StyledSlideBarWrapper,
@@ -34,13 +35,15 @@ interface Props extends StyledComponentProps {
   'aria-labelledby'?: string
   'aria-describedby'?: string
   'aria-details'?: string
-
+  className?: string
   onNext?: () => void
   onPrev?: () => void
   onSetting?: () => void
 }
 
-export type VideoPlayerProps = Props
+export type VideoPlayerProps = Props &
+  ErrorVariantProps &
+  Omit<React.ButtonHTMLAttributes<HTMLVideoElement>, keyof Props>
 
 const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
   const {
@@ -57,10 +60,12 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
     loop = false,
     muted = false,
     controls = true,
-
+    className,
     onNext,
     onPrev,
     onSetting,
+    // AriaButtonProps
+    ...ariaSafeProps
   } = props
 
   const videoRef = useDOMRef<HTMLVideoElement>(ref)
@@ -112,6 +117,16 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
     setLoadError(true)
   }
 
+  const componentProps = () => {
+    return {
+      className,
+      css,
+      ...ariaSafeProps,
+    }
+  }
+
+  const delegateProps = componentProps()
+
   return (
     <StyledVideoPlayer css={css} id={id}>
       {loadError && (
@@ -135,6 +150,7 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
         </div>
       )}
       <video
+        {...delegateProps}
         src={src}
         ref={videoRef}
         loop={loop}
