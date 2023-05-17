@@ -6,12 +6,18 @@ import CalendarGrid from '../calendar/calendar-grid'
 import CalendarHeader from '../calendar/calendar-header'
 import {useRangeCalendar} from '../calendar/hooks/useRangeCalendar'
 import {useRangeCalendarState} from '../calendar/hooks/useRangeCalendarState'
-import {DateRange, DateRangePickerState} from '../calendar/types'
+import {
+  DateRange,
+  DateRangePickerState,
+  DateValue,
+  RangeValue,
+} from '../calendar/types'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {StyledRangeCalendar} from './range-calendar.style'
 
 interface Props extends StyledComponentProps {
+  value?: RangeValue<DateValue>
   children?: React.ReactNode
   state?: DateRangePickerState
   hasFooter?: boolean
