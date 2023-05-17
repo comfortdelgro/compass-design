@@ -6,7 +6,5 @@
     "@comfortdelgro/compass-icons": "1.0.0",
     "@comfortdelgro/react-compass": "0.33.10"
   },
-  "changesets": [
-    "empty-maps-matter"
-  ]
+  "changesets": ["swift-glasses-cry"]
 }
