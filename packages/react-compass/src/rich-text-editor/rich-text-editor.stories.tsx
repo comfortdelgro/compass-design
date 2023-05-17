@@ -48,7 +48,7 @@ export const Cutomized: React.FC = () => {
     <Column>
       <h3>Cutomized Rich Text Editor</h3>
       <RichTextEditor characterCount={200}>
-        <RichTextEditor.Toolbar inline={false}>
+        <RichTextEditor.Toolbar>
           <RichTextEditor.ControlsGroup>
             <RichTextEditor.H1 />
             <RichTextEditor.H2 />
