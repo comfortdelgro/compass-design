@@ -1,4 +1,5 @@
 import {faCheck, faMinus} from '@fortawesome/free-solid-svg-icons'
+import {CSS} from '@stitches/react'
 import React, {useEffect, useState} from 'react'
 import {Icon} from '../icon'
 import type {StyledComponentProps} from '../utils/stitches.types'
@@ -20,6 +21,7 @@ interface Props extends StyledComponentProps {
   isDisabled?: boolean
   defaultSelected?: boolean
   isSelected?: boolean
+  cssCheckBoxInput?: CSS
   // Variants for children
   variant?: 'default' | 'rounded'
 }
@@ -41,6 +43,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       defaultSelected = false,
       isSelected,
       onChange,
+      cssCheckBoxInput = {},
       variant = 'default',
       // AriaProps
       ...ariaSafeProps
@@ -83,6 +86,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
             checked={checked}
             disabled={isDisabled}
             onChange={handleCheckboxChange}
+            css={cssCheckBoxInput}
             {...ariaProps}
           />
 
