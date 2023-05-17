@@ -27,6 +27,11 @@ interface Props extends StyledComponentProps {
   'aria-pressed'?: boolean
   disabled?: boolean
   onBlur?: (e: React.FocusEvent) => void
+  onClick?: (
+    e:
+      | React.MouseEvent<HTMLButtonElement>
+      | React.TouchEvent<HTMLButtonElement>,
+  ) => void
   onDragStart?: (e: React.MouseEvent) => void
   onFocus?: (e: React.FocusEvent) => void
   onKeyDown?: (e: React.KeyboardEvent) => void
@@ -57,8 +62,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       fullWidth,
       loading,
       onPress,
+      onClick,
       ripple = false,
       isDisabled = false,
+      type = 'button',
       // AriaButtonProps
       ...ariaSafeProps
     } = props
@@ -90,8 +97,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             <StyledButton
               {...delegateProps}
               ref={buttonRef}
-              onClick={onPress}
-              onTouchEnd={onPress}
+              onClick={onClick ?? onPress}
+              onTouchEnd={onClick ?? onPress}
               disabled={isDisabled}
               aria-controls={props['aria-controls']}
               aria-expanded={props['aria-expanded']}
@@ -105,6 +112,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               onKeyUp={props.onKeyUp}
               onPointerDown={props.onPointerDown}
               onPointerUp={props.onPointerUp}
+              type={type}
             >
               {loading ? (
                 <StyledLoading
@@ -137,8 +145,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           <StyledButton
             {...delegateProps}
             ref={buttonRef}
-            onClick={onPress}
-            onTouchEnd={onPress}
+            onClick={onClick ?? onPress}
+            onTouchEnd={onClick ?? onPress}
             disabled={isDisabled}
             aria-controls={props['aria-controls']}
             aria-expanded={props['aria-expanded']}
@@ -152,6 +160,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             onKeyUp={props.onKeyUp}
             onPointerDown={props.onPointerDown}
             onPointerUp={props.onPointerUp}
+            type={type}
           >
             {loading ? (
               <StyledLoading

@@ -1,5 +1,4 @@
-import {faThumbsUp} from '@fortawesome/free-regular-svg-icons'
-import {faVirus} from '@fortawesome/free-solid-svg-icons'
+import BugIcon from '@comfortdelgro/compass-icons/react/bug'
 import React from 'react'
 import {Column, Row} from '../utils/components'
 import Badge from './index'
@@ -42,13 +41,13 @@ export const Icons: React.FC = () => (
         label='LGTM'
         color='success'
         variant='secondary'
-        icon={faThumbsUp}
+        icon={<BugIcon />}
       />
       <Badge
         label='Practice Social Distancing'
         color='danger'
         variant='outline'
-        icon={faVirus}
+        icon={<BugIcon />}
       />
     </Row>
   </Column>

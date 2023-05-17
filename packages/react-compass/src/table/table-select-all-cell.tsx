@@ -25,6 +25,14 @@ const TableSelectAllCell = React.forwardRef<HTMLTableCellElement, Props>(
     )
     const {checkboxProps} = useTableSelectAllCheckbox(state)
 
+    const onPointerDown = (e: PointerEvent) => {
+      e.stopPropagation()
+    }
+
+    const onPointerUp = (e: PointerEvent) => {
+      e.stopPropagation()
+    }
+
     return (
       <StyledTableSelectAllCell ref={tableRowRef} {...columnHeaderProps}>
         {state.selectionManager.selectionMode === 'single' ? (
@@ -34,7 +42,19 @@ const TableSelectAllCell = React.forwardRef<HTMLTableCellElement, Props>(
             }
           </VisuallyHidden>
         ) : (
-          <Checkbox {...checkboxProps} isIndeterminate />
+          <Checkbox
+            {...checkboxProps}
+            isIndeterminate
+            cssCheckBoxInput={{
+              width: '15px',
+              height: '15px',
+              top: 0,
+              left: 0,
+              zIndex: 1,
+            }}
+            onPointerDown={(e) => onPointerDown(e as unknown as PointerEvent)}
+            onPointerUp={(e) => onPointerUp(e as unknown as PointerEvent)}
+          />
         )}
       </StyledTableSelectAllCell>
     )

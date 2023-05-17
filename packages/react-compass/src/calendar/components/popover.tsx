@@ -5,9 +5,9 @@ import {
   Overlay,
   usePopover,
 } from '@react-aria/overlays'
-import {OverlayTriggerState} from '@react-stately/overlays'
 import React from 'react'
 import {useDOMRef} from '../../utils/use-dom-ref'
+import {OverlayTriggerState} from '../types'
 
 interface Props {
   children?: React.ReactNode

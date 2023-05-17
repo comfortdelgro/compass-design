@@ -1,25 +1,25 @@
 import * as InternationalizedDate from '@internationalized/date'
 import {createCalendar, DateValue, parseDate} from '@internationalized/date'
-import {useCalendar} from '@react-aria/calendar'
 import * as i18n from '@react-aria/i18n'
 import {useLocale} from '@react-aria/i18n'
-import {useCalendarState} from '@react-stately/calendar'
-import {DatePickerState} from '@react-stately/datepicker'
-import type {SpectrumCalendarProps} from '@react-types/calendar'
 import React from 'react'
-import Button, {ButtonProps} from '../button'
+import Button from '../button'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import CalendarGrid from './calendar-grid'
 import CalendarHeader from './calendar-header'
 import {StyledCalendar} from './calendar.style'
-
-interface Props extends StyledComponentProps, SpectrumCalendarProps<DateValue> {
+import {useCalendar} from './hooks/useCalendar'
+import {useCalendarState} from './hooks/useCalendarState'
+import {DatePickerState, ValueBase} from './types'
+interface Props extends StyledComponentProps, ValueBase<DateValue> {
   children?: React.ReactNode
   state?: DatePickerState
   hasFooter?: boolean
   onCancelCallback?: (() => void) | undefined
   maxValue?: DateValue
+  isDisabled?: boolean
+  isDateUnavailable?: (date: DateValue) => boolean
 }
 
 export type CalendarProps = Props & DateValue
@@ -31,6 +31,7 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     hasFooter = false,
     css = {},
     maxValue = parseDate('2999-02-17'),
+    isDisabled = false,
     ...delegated
   } = props
 
@@ -39,14 +40,16 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   const calendarRef = useDOMRef(ref)
 
   const state = useCalendarState({
-    ...delegated,
-    visibleDuration: {months: 1},
-    locale,
+    locale: locale,
+    isDisabled,
     createCalendar,
+    ...delegated,
   })
 
   const {calendarProps, prevButtonProps, nextButtonProps} = useCalendar(
-    delegated,
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    {isDisabled, ...delegated},
     state,
   )
 
@@ -56,22 +59,24 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   }
 
   return (
-    <StyledCalendar ref={calendarRef} css={css}>
-      <CalendarHeader
-        state={state}
-        calendarProps={calendarProps}
-        prevButtonProps={prevButtonProps as unknown as ButtonProps}
-        nextButtonProps={nextButtonProps as unknown as ButtonProps}
-      />
-      <CalendarGrid state={state} maxValue={maxValue} />
-      {hasFooter && (
-        <div className='calendar-footer'>
-          <Button variant='ghost' onPress={handleCancelButtonClick}>
-            Cancel
-          </Button>
-        </div>
-      )}
-    </StyledCalendar>
+    <>
+      <StyledCalendar ref={calendarRef} css={css}>
+        <CalendarHeader
+          state={state}
+          calendarProps={calendarProps}
+          prevButtonProps={prevButtonProps}
+          nextButtonProps={nextButtonProps}
+        />
+        <CalendarGrid state={state} maxValue={maxValue} />
+        {hasFooter && (
+          <div className='calendar-footer'>
+            <Button variant='ghost' onPress={handleCancelButtonClick}>
+              Cancel
+            </Button>
+          </div>
+        )}
+      </StyledCalendar>
+    </>
   )
 })
 

@@ -1,4 +1,5 @@
 import {faCheck, faMinus} from '@fortawesome/free-solid-svg-icons'
+import {CSS} from '@stitches/react'
 import React, {useEffect, useState} from 'react'
 import {Icon} from '../icon'
 import type {StyledComponentProps} from '../utils/stitches.types'
@@ -14,19 +15,41 @@ import {
 } from './checkbox.styles'
 
 interface Props extends StyledComponentProps {
+  id?: string
+  name?: string
   isIndeterminate?: boolean
   children?: React.ReactNode
-  onChange?: (isSelected: boolean) => void
   isDisabled?: boolean
   defaultSelected?: boolean
   isSelected?: boolean
+  cssCheckBoxInput?: CSS
   // Variants for children
   variant?: 'default' | 'rounded'
+  onChange?: (isSelected: boolean) => void
+
+  autoFocus?: boolean
+  'aria-activedescendant'?: string
+  'aria-autocomplete'?: 'none' | 'inline' | 'list' | 'both'
+  'aria-haspopup'?:
+    | boolean
+    | 'false'
+    | 'true'
+    | 'menu'
+    | 'listbox'
+    | 'tree'
+    | 'grid'
+    | 'dialog'
+  'aria-controls'?: string
+  'aria-label'?: string
+  'aria-labelledby'?: string
+  'aria-describedby'?: string
+  'aria-details'?: string
+  'aria-errormessage'?: string
 }
 
 export type CheckboxProps = Props &
   CheckboxVariantProps &
-  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
+  Omit<React.HTMLAttributes<HTMLInputElement>, keyof Props>
 
 const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   (props, ref) => {
@@ -41,6 +64,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       defaultSelected = false,
       isSelected,
       onChange,
+      cssCheckBoxInput = {},
       variant = 'default',
       // AriaProps
       ...ariaSafeProps
@@ -80,10 +104,11 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           <StyledCheckboxInput
             type='checkbox'
             ref={checkboxRef}
+            {...ariaProps}
             checked={checked}
             disabled={isDisabled}
             onChange={handleCheckboxChange}
-            {...ariaProps}
+            css={cssCheckBoxInput}
           />
 
           {/* Checkbox */}

@@ -18,14 +18,18 @@ export const StyledDropdownWrapper = styled('div', {
 
 export const StyledDropdown = styled('div', {
   width: '100%',
-  border: '1px solid #E6E6E6',
+  height: '$11',
   borderRadius: '$md',
   cursor: 'text',
   display: 'flex',
   alignItems: 'center',
-  padding: '$3 $4',
+  padding: '$2 $4',
   gap: '$1',
   backgroundColor: '#FFFFFF',
+  transition: '$default',
+  borderWidth: '1px',
+  borderStyle: 'solid',
+  borderColor: '#E6E6E6',
   '.dropdown-icon': {
     cursor: 'pointer',
     flexShrink: 0,
@@ -41,6 +45,9 @@ export const StyledDropdown = styled('div', {
       width: '$4',
       height: '$4',
     },
+  },
+  '&:focus-within': {
+    borderColor: '$cdgBlue',
   },
   input: {
     height: '$6_5',
@@ -75,15 +82,9 @@ export const StyledDropdown = styled('div', {
     },
     isErrored: {
       true: {
-        borderWidth: 1,
         borderColor: '$danger',
-        '&:focus': {
-          borderColor: '$danger',
-          outlineColor: '$danger',
-        },
         '&:focus-within': {
           borderColor: '$danger',
-          outlineColor: '$danger',
         },
       },
     },

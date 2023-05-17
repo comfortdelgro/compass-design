@@ -8,20 +8,22 @@ import Superscript from '@tiptap/extension-superscript'
 import TextAlign from '@tiptap/extension-text-align'
 import TextStyle from '@tiptap/extension-text-style'
 import Underline from '@tiptap/extension-underline'
-
-import {Content, EditorContent, JSONContent, useEditor} from '@tiptap/react'
+import { Content,EditorContent,JSONContent,useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
+import isEqual from 'lodash/isEqual'
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import { StyledComponentProps } from '../utils/stitches.types'
 import * as controls from './controls'
 import Control from './controls/Control/Control'
 import ControlsGroup from './controls/ControlsGroup/ControlsGroup'
-import {RichTextEditorProvider} from './rich-text-editor.context'
+import { RichTextEditorProvider } from './rich-text-editor.context'
 import {
-  StyledEditorContent,
-  StyledRichTextEditor,
+StyledEditorContent,
+StyledRichTextEditor
 } from './rich-text-editor.styles'
 import Toolbar from './toolbar/Toolbar'
+
+
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
@@ -30,6 +32,9 @@ interface Props extends StyledComponentProps {
   onChange?: (html: string | JSONContent) => void
   isEditable?: boolean
   content?: Content
+}
+interface StorageCount {
+  characters: () => number
 }
 
 export type RichTextEditorProps = Props &
@@ -41,7 +46,7 @@ const RichTextEditor = React.forwardRef<HTMLDivElement, RichTextEditorProps>(
       children,
       css = {},
       characterCount,
-      outputType,
+      outputType = 'html',
       onChange,
       isEditable = true,
       content = null,
@@ -68,27 +73,28 @@ const RichTextEditor = React.forwardRef<HTMLDivElement, RichTextEditorProps>(
       ],
       injectCSS: false,
 
-      onUpdate: ({editor}) => {
+      onTransaction: ({editor}) => {
         let output
+        let shouldChange
         if (outputType === 'html') {
           output = editor.getHTML()
+          shouldChange = content !== output
         } else {
           output = editor.getJSON()
+          shouldChange = !isEqual(content, output)
         }
         if (!output) return
-        onChange?.(output)
+        if (shouldChange) {
+          onChange?.(output)
+        }
       },
     })
     editor?.setEditable(isEditable)
 
-    interface storageCount {
-      characters: () => number
-    }
-
     const CharacterCountFunc = () => {
       if (characterCount) {
-        const StorageCount = editor?.storage['characterCount'] as storageCount
-        return StorageCount?.characters() || 0
+        const storageCount = editor?.storage['characterCount'] as StorageCount
+        return storageCount?.characters() || 0
       }
       return 0
     }

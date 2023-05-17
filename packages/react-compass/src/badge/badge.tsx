@@ -1,6 +1,4 @@
-import type {IconProp} from '@fortawesome/fontawesome-svg-core'
 import React from 'react'
-import {Icon} from '../icon'
 import {getIconFromColor} from '../utils/get-icon-from-color'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -8,7 +6,7 @@ import {BadgeVariantProps, StyledBadge} from './badge.styles'
 
 interface Props extends StyledComponentProps {
   label?: string
-  icon?: boolean | IconProp
+  icon?: boolean | React.ReactNode
 }
 
 export type BadgeProps = Omit<Props, 'children'> &
@@ -35,9 +33,7 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
     <StyledBadge css={css} ref={badgeRef} {...variantProps} {...delegates}>
       {icon ? (
         <div className='icon'>
-          <Icon
-            icon={typeof icon === 'boolean' ? getIconFromColor(color) : icon}
-          />
+          {typeof icon === 'boolean' ? getIconFromColor(color) : icon}
         </div>
       ) : null}
 
