@@ -69,6 +69,7 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
   const [currentTime, setCurrentTime] = useState(0)
   const [progress, setProgress] = useState(0)
   const [volume, setVolume] = useState(muted ? 0 : 100)
+  const [loadError, setLoadError] = useState(false)
 
   function play() {
     if (videoRef.current?.paused) {
@@ -106,8 +107,33 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
       setProgress(value)
     }
   }
+
+  const handleError = () => {
+    setLoadError(true)
+  }
+
   return (
     <StyledVideoPlayer css={css} id={id}>
+      {loadError && (
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            background: 'rgba(0, 0, 0, 0.5)',
+            color: '#fff',
+            fontSize: '24px',
+            fontWeight: 'bold',
+          }}
+        >
+          Sorry, the video failed to load. Please try again later.
+        </div>
+      )}
       <video
         src={src}
         ref={videoRef}
@@ -122,6 +148,7 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
         onLoadedData={onLoadedData}
         onTimeUpdate={onTimeUpdate}
         onClick={play}
+        onError={handleError}
       />
       {controls && (
         <>
