@@ -275,12 +275,12 @@ export function nextUnavailableDate(
     (dir < 0
       ? nextDate.compare(state.visibleRange.start) >= 0
       : nextDate.compare(state.visibleRange.end) <= 0) &&
-    !state.isCellUnavailable(nextDate)
+    !state.isCellUnavailable?.(nextDate)
   ) {
     nextDate = nextDate.add({days: dir})
   }
 
-  if (state.isCellUnavailable(nextDate)) {
+  if (state.isCellUnavailable?.(nextDate)) {
     return nextDate.add({days: -dir})
   }
 
