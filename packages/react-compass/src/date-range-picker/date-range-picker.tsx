@@ -15,6 +15,7 @@ import {
   DateRangePickerState,
   DOMAttributes,
   RangeCalendarProps,
+  RangeValue,
   SpectrumDateRangePickerProps,
 } from '../calendar/types'
 import RangeCalendar from '../range-calendar/range-calendar'
@@ -232,6 +233,12 @@ const DateRangeCalendarWrapper = (props: DateRangeCalendarWrapperProps) => {
     onCancel,
   } = props
 
+  const {value, onChange, ...resCalendarProps} = calendarProps
+
+  const onChangeRangeCalendar = (e: unknown) => {
+    onChange && onChange(e as RangeValue<DateValue>)
+  }
+
   return (
     <>
       {state.isOpen && (
@@ -255,7 +262,9 @@ const DateRangeCalendarWrapper = (props: DateRangeCalendarWrapperProps) => {
               onCancelCallback={onCancel}
               aria-label=''
               aria-labelledby=''
-              {...calendarProps}
+              {...(value ? {value} : {})}
+              onChange={onChangeRangeCalendar}
+              {...resCalendarProps}
             />
           </Dialog>
         </Popover>
