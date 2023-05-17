@@ -76,12 +76,11 @@ export function useDateField<T extends DateValue>(
   )
   // @ts-ignore
   hookData.set(state, {
-    ariaLabel: undefined,
+    ariaLabel: '',
     ariaLabelledBy:
-      [props['aria-labelledby'], labelProps.id].filter(Boolean).join(' ') ||
-      undefined,
-    ariaDescribedBy: describedBy,
-    focusManager,
+      [props['aria-labelledby'], labelProps.id].filter(Boolean).join(' ') || '',
+    //ariaDescribedBy: describedBy,
+    //focusManager,
   })
 
   const autoFocusRef = useRef(props.autoFocus)

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
+import {CalendarDate} from '@internationalized/date'
 import {useRef} from 'react'
 import {CalendarProps} from '../calendar'
 import {
@@ -18,11 +20,11 @@ export function useCalendar(
   const domProps = filterDOMProps(props)
 
   const title = useVisibleRangeDescription(
-    state.visibleRange.start,
+    state.visibleRange?.start as CalendarDate,
     state.timeZone,
   )
   const visibleRangeDescription = useVisibleRangeDescription(
-    state.visibleRange.end,
+    state.visibleRange?.end as CalendarDate,
     state.timeZone,
   )
 
@@ -52,7 +54,7 @@ export function useCalendar(
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   const labelProps = useLabels({
-    id: props.id,
+    id: props.id as string,
     'aria-label': [props['aria-label'], visibleRangeDescription]
       .filter(Boolean)
       .join(', '),

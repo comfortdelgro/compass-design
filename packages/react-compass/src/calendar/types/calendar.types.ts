@@ -52,14 +52,14 @@ export interface RangeValue<T> {
 }
 
 interface CalendarStateBase {
-  readonly isDisabled: boolean
-  readonly isReadOnly: boolean
-  readonly visibleRange: RangeValue<CalendarDate>
+  readonly isDisabled?: boolean
+  readonly isReadOnly?: boolean
+  readonly visibleRange?: RangeValue<CalendarDate>
   readonly minValue?: DateValue
   readonly maxValue?: DateValue
   readonly timeZone: string
-  readonly validationState: ValidationState
-  readonly focusedDate: CalendarDate
+  readonly validationState?: ValidationState
+  readonly focusedDate?: CalendarDate
   setFocusedDate(value: CalendarDate): void
   focusNextDay(): void
   focusPreviousDay(): void
@@ -104,6 +104,30 @@ export interface RangeCalendarState extends CalendarStateBase {
   setDragging(isDragging: boolean): void
   close: () => void
 }
+
+// export interface DateFieldState {
+//   [x: string]: any
+//   value?: DateValue
+//   dateValue: Date
+//   calendar: Calendar
+//   setValue(value: DateValue): void
+//   dateFormatter: DateFormatter
+//   validationState: ValidationState
+//   granularity: Granularity
+//   maxGranularity: 'year' | 'month' | Granularity
+//   isDisabled?: boolean
+//   isReadOnly?: boolean
+//   isRequired?: boolean
+//   increment(type: SegmentType): void
+//   decrement(type: SegmentType): void
+//   incrementPage(type: SegmentType): void
+//   decrementPage(type: SegmentType): void
+//   setSegment(type: 'era', value: string): void
+//   setSegment(type: SegmentType, value: number): void
+//   confirmPlaceholder(): void
+//   clearSegment(type: SegmentType): void
+//   formatValue(fieldOptions: FieldOptions): string
+// }
 
 export interface AriaCalendarCellProps {
   date: CalendarDate
@@ -201,7 +225,7 @@ export interface OverlayTriggerState {
 
 export type Granularity = 'day' | 'hour' | 'minute' | 'second'
 
-export interface DateFieldState {
+export interface DateFieldState extends CalendarStateBase {
   [x: string]: any
   value?: DateValue
   dateValue: Date

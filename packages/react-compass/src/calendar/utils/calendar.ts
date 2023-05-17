@@ -165,6 +165,8 @@ export function previousAvailableDate(
   if (date.compare(minValue) >= 0) {
     return date
   }
+
+  return null
 }
 
 function getPointClientRect(point: EventPoint): Rect {
@@ -233,7 +235,7 @@ export function getFormatOptions(
   const opts: Intl.DateTimeFormatOptions = keys
     .slice(startIdx, endIdx + 1)
     .reduce((opts, key) => {
-      // @ts-ignore
+      // @ts-expect-error
       opts[key] = fieldOptions[key]
       return opts
     }, {})
@@ -263,6 +265,11 @@ export function nextUnavailableDate(
   state: CalendarState,
   dir: number,
 ) {
+  if (!state.visibleRange) {
+    // handle or throw an error when visibleRange is not defined
+    throw new Error('visibleRange is not defined on state')
+  }
+
   let nextDate = anchorDate.add({days: dir})
   while (
     (dir < 0
@@ -433,4 +440,5 @@ export function addSegment(
         })
     }
   }
+  return null
 }

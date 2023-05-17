@@ -20,6 +20,8 @@ export function useCalendarBase(
 ): CalendarAria {
   const domProps = filterDOMProps(props)
 
+  if (state.visibleRange == undefined) return {} as CalendarAria
+
   const title = useVisibleRangeDescription(
     state.visibleRange.start,
     state.timeZone,
@@ -59,7 +61,7 @@ export function useCalendarBase(
   }
 
   const labelProps = useLabels({
-    id: props['id'],
+    id: props.id!,
     'aria-label': [props['aria-label'], visibleRangeDescription]
       .filter(Boolean)
       .join(', '),

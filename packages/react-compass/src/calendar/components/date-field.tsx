@@ -7,6 +7,7 @@ import {Icon} from '../../dropdown/utils'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import {useDateField} from '../hooks/useDateField'
 import {useDateFieldState} from '../hooks/useDateFieldState'
+import {DateFieldState} from '../types'
 import {
   StyledDateField,
   StyledExpandButton,
@@ -114,7 +115,13 @@ const DateField = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
               segment.isPlaceholder =
                 state.segments[i - 1]?.isPlaceholder ?? false
             }
-            return <DateSegment key={i} segment={segment} state={state} />
+            return (
+              <DateSegment
+                key={i}
+                segment={segment}
+                state={state as unknown as DateFieldState}
+              />
+            )
           })}
 
           <StyledExpandButton

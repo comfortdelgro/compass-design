@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 // Reference: https://github.com/adobe/react-spectrum/blob/98cad3f064c5302c04a1140d12a2cacc3ee921a2/packages/%40react-aria/datepicker/src/useDateSegment.ts
 /* eslint-disable prefer-const */
 import {CalendarDate, toCalendar} from '@internationalized/date'
@@ -397,8 +400,9 @@ export function useDateSegment(
       : {}
 
   const firstSegment = useMemo(
-    () => state.segments.find((s) => s.isEditable),
-    [state.segments],
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+    () => state?.['segments']?.find((s: any) => s.isEditable),
+    [state['segments']],
   )
   if (segment !== firstSegment && state.validationState !== 'invalid') {
     ariaDescribedBy = ''

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
 import {CalendarDate} from '@internationalized/date'
 import {useLocale} from '@react-aria/i18n'
 import {CalendarState, RangeCalendarState} from '../types'
@@ -20,12 +21,12 @@ export function useCalendarGrid(
   props: AriaCalendarGridProps,
   state: CalendarState | RangeCalendarState,
 ): CalendarGridAria {
-  const {startDate = state.visibleRange.start} = props
+  const {startDate = state.visibleRange?.start} = props
 
   const {direction} = useLocale()
 
   const visibleRangeDescription = useVisibleRangeDescription(
-    startDate,
+    startDate as CalendarDate,
     state.timeZone,
   )
 

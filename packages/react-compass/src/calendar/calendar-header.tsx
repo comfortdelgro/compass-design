@@ -64,7 +64,7 @@ const CalendarHeader = (props: Props) => {
           aria-hidden
         >
           {monthDateFormatter.format(
-            state.visibleRange.start.toDate(state.timeZone),
+            state?.visibleRange?.start.toDate(state.timeZone) as Date,
           )}
         </h2>
         {variant === 'default' && (
@@ -80,7 +80,9 @@ const CalendarHeader = (props: Props) => {
         <div className='calendar-header-right-side'>
           <h2 aria-hidden>
             {monthDateFormatter.format(
-              state.visibleRange.start.add({months: 1}).toDate(state.timeZone),
+              state?.visibleRange?.start
+                .add({months: 1})
+                .toDate(state.timeZone) as Date,
             )}
           </h2>
           <Button variant='ghost' {...nextButtonProps}>

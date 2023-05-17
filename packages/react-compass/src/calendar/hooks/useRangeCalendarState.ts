@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/prefer-ts-expect-error */
@@ -109,8 +110,14 @@ export function useRangeCalendarState<T extends DateValue = DateValue>(
   // If the visible range changes, we need to update the available range.
   const lastVisibleRange = useRef(calendar.visibleRange)
   if (
-    !isEqualDay(calendar.visibleRange.start, lastVisibleRange.current.start) ||
-    !isEqualDay(calendar.visibleRange.end, lastVisibleRange.current.end)
+    !isEqualDay(
+      calendar.visibleRange?.start as CalendarDate,
+      lastVisibleRange.current?.start as CalendarDate,
+    ) ||
+    !isEqualDay(
+      calendar.visibleRange?.end as CalendarDate,
+      lastVisibleRange.current?.end as CalendarDate,
+    )
   ) {
     updateAvailableRange(anchorDate)
     lastVisibleRange.current = calendar.visibleRange
@@ -128,7 +135,7 @@ export function useRangeCalendarState<T extends DateValue = DateValue>(
   }
 
   const highlightedRange = anchorDate
-    ? makeRange(anchorDate, calendar.focusedDate)
+    ? makeRange(anchorDate, calendar.focusedDate as CalendarDate)
     : value && makeRange(value.start, value.end)
   const selectDate = (date: CalendarDate) => {
     if (props.isReadOnly) {
@@ -139,7 +146,7 @@ export function useRangeCalendarState<T extends DateValue = DateValue>(
     // @ts-ignore
     date = previousAvailableDate(
       date,
-      calendar.visibleRange.start,
+      calendar.visibleRange?.start as CalendarDate,
       props.isDateUnavailable,
     )
     if (!date) {
@@ -200,7 +207,7 @@ export function useRangeCalendarState<T extends DateValue = DateValue>(
     // @ts-ignore
     validationState,
     selectFocusedDate() {
-      selectDate(calendar.focusedDate)
+      selectDate(calendar.focusedDate as CalendarDate)
     },
     selectDate,
     highlightDate(date) {

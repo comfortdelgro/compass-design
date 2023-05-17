@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
 import {
   CalendarDate,
   DateFormatter,
@@ -125,7 +127,7 @@ export function useCalendarCell(
   const {pressProps, isPressed} = usePress({
     shouldCancelOnPointerExit: 'anchorDate' in state && !!state.anchorDate,
     preventFocusOnPress: true,
-    isDisabled: !isSelectable || state.isReadOnly,
+    isDisabled: !isSelectable || (state.isReadOnly as boolean),
     onPressStart(e) {
       if (state.isReadOnly) {
         state.setFocusedDate(date)
@@ -230,7 +232,7 @@ export function useCalendarCell(
 
   let tabIndex = undefined
   if (!isDisabled) {
-    tabIndex = isSameDay(date, state.focusedDate) ? 0 : -1
+    tabIndex = isSameDay(date, state.focusedDate as CalendarDate) ? 0 : -1
   }
 
   const cellDateFormatter: DateFormatter = useDateFormatter({
@@ -293,8 +295,8 @@ export function useCalendarCell(
     isDisabled,
     isUnavailable,
     isOutsideVisibleRange:
-      date.compare(state.visibleRange.start) < 0 ||
-      date.compare(state.visibleRange.end) > 0,
+      date.compare(state?.visibleRange?.start as CalendarDate) < 0 ||
+      date.compare(state?.visibleRange?.end as CalendarDate) > 0,
     isInvalid,
     formattedDate,
   }

@@ -6,7 +6,7 @@ export type Alignment = 'start' | 'end'
 export type NecessityIndicator = 'icon' | 'label'
 
 export interface DOMProps {
-  id: string
+  id?: string
 }
 
 export interface AriaLabeDescriptionProps {
