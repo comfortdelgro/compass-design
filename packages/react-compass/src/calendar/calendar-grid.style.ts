@@ -23,3 +23,7 @@ export const StyledCalendarGrid = styled('table', {
     justifyContent: 'center',
   },
 })
+
+export const StyledTRowPlaceholder = styled('tr', {
+  height: '$8',
+})

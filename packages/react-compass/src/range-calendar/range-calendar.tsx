@@ -1,24 +1,17 @@
-import {
-  createCalendar,
-  DateValue,
-  getLocalTimeZone,
-} from '@internationalized/date'
-import {useRangeCalendar} from '@react-aria/calendar'
+import {createCalendar, getLocalTimeZone} from '@internationalized/date'
 import {useDateFormatter, useLocale} from '@react-aria/i18n'
-import {useRangeCalendarState} from '@react-stately/calendar'
-import {DateRangePickerState} from '@react-stately/datepicker'
-import type {DateRange, SpectrumRangeCalendarProps} from '@react-types/calendar'
 import React from 'react'
 import Button, {ButtonProps} from '../button'
 import CalendarGrid from '../calendar/calendar-grid'
 import CalendarHeader from '../calendar/calendar-header'
+import {useRangeCalendar} from '../calendar/hooks/useRangeCalendar'
+import {useRangeCalendarState} from '../calendar/hooks/useRangeCalendarState'
+import {DateRange, DateRangePickerState} from '../calendar/types'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {StyledRangeCalendar} from './range-calendar.style'
 
-interface Props
-  extends StyledComponentProps,
-    SpectrumRangeCalendarProps<DateValue> {
+interface Props extends StyledComponentProps {
   children?: React.ReactNode
   state?: DateRangePickerState
   hasFooter?: boolean
@@ -50,6 +43,8 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
     const rangeCalendarRef = useDOMRef(ref)
 
     const {calendarProps, prevButtonProps, nextButtonProps} = useRangeCalendar(
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       delegated,
       state,
       rangeCalendarRef,

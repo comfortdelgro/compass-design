@@ -1,17 +1,16 @@
 import {
-  DateDuration,
   DateValue,
   endOfMonth,
   getWeeksInMonth,
   parseDate,
 } from '@internationalized/date'
-import {useCalendarGrid} from '@react-aria/calendar'
 import {useLocale} from '@react-aria/i18n'
-import {CalendarState, RangeCalendarState} from '@react-stately/calendar'
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import CalendarCell from './calendar-cell'
-import {StyledCalendarGrid} from './calendar-grid.style'
+import {StyledCalendarGrid, StyledTRowPlaceholder} from './calendar-grid.style'
+import {useCalendarGrid} from './hooks/useCalendarGrid'
+import {CalendarState, DateDuration, RangeCalendarState} from './types'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
@@ -39,7 +38,8 @@ const CalendarGrid = (props: Props) => {
   const startDate = state.visibleRange.start.add(offset)
   const endDate = endOfMonth(startDate)
 
-  const {gridProps, headerProps} = useCalendarGrid(
+  // eslint-disable-next-line
+  const {gridProps, headerProps, weekDays} = useCalendarGrid(
     {
       startDate,
       endDate,
@@ -47,12 +47,17 @@ const CalendarGrid = (props: Props) => {
     state,
   )
 
-  const weekDays = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
-
   const weeksInMonth = getWeeksInMonth(startDate, locale)
 
+  const isFiveWeeks = [...new Array(weeksInMonth).keys()].length === 5
+
   return (
-    <StyledCalendarGrid {...gridProps} css={css} cellPadding='0'>
+    <StyledCalendarGrid
+      {...gridProps}
+      css={css}
+      cellPadding='0'
+      className='cdg-calendar-grid'
+    >
       <thead {...headerProps}>
         <tr>
           {weekDays.map((day, index) => (
@@ -82,6 +87,12 @@ const CalendarGrid = (props: Props) => {
               )}
           </tr>
         ))}
+        {isFiveWeeks && (
+          <StyledTRowPlaceholder
+            aria-hidden
+            className='week-sixth-placeholder'
+          />
+        )}
       </tbody>
     </StyledCalendarGrid>
   )
