@@ -178,8 +178,12 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       if (open) {
         props.onFocus?.()
         firstBlur.current = false
+        selectRef.current?.focus()
+        inputRef.current?.focus()
       } else if (!firstBlur.current) {
         props.onBlur?.()
+        selectRef.current?.blur()
+        inputRef.current?.blur()
       }
     }
   }, [open])
@@ -261,7 +265,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
 
   const labelClick = () => {
     selectRef.current?.click()
-    inputRef.current?.focus()
     buttonRef.current?.click()
   }
 
@@ -291,7 +294,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           isEmpty={!selectedItem}
           isErrored={!!isErrored}
           isDisabled={isDisabled}
-          isOpened={open}
         >
           <button
             type='button'
@@ -365,12 +367,13 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           </button>
         </StyledFlag>
       )}
-      <StyledListBoxWrapper>
-        {collection && collection.length > 0 && open && (
+      {collection && open && (
+        <StyledListBoxWrapper>
           <Popover
             popoverRef={popoverRef}
-            close={close}
+            isEmpty={collection.length === 0}
             triggerRef={selectRef as React.RefObject<HTMLDivElement>}
+            close={close}
             handleKeyDown={handleKeyDown}
           >
             <ListBox
@@ -388,8 +391,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
               onLoadMore={onLoadMore}
             />
           </Popover>
-        )}
-      </StyledListBoxWrapper>
+        </StyledListBoxWrapper>
+      )}
       {errorMessage && (
         <StyledHelperText error={!!isErrored}>{errorMessage}</StyledHelperText>
       )}

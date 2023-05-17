@@ -1,5 +1,5 @@
-import {Dropdown, Icon} from '@comfortdelgro/react-compass'
-import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons'
+import {Dropdown} from '@comfortdelgro/react-compass'
+import BugIcon from '@comfortdelgro/compass-icons/react/bug'
 import React from 'react'
 
 export const ControlledDropdown = () => {
@@ -15,13 +15,13 @@ export const ControlledDropdown = () => {
       >
         <Dropdown.Item
           key='red panda'
-          leftIcon={<Icon icon={faExclamationTriangle} />}
+          leftIcon={<BugIcon />}
         >
           Red Panda Red Panda Red Panda Red Panda Red Panda
         </Dropdown.Item>
         <Dropdown.Item
           key='cat'
-          leftIcon={<Icon icon={faExclamationTriangle} />}
+          leftIcon={<BugIcon />}
           type='color'
           rightColor='red'
           textValue='pandared'
@@ -42,13 +42,13 @@ export const ControlledDropdown = () => {
       >
         <Dropdown.Item
           key='red panda'
-          leftIcon={<Icon icon={faExclamationTriangle} />}
+          leftIcon={<BugIcon />}
         >
           Red Panda Red Panda Red Panda Red Panda Red Panda
         </Dropdown.Item>
         <Dropdown.Item
           key='cat'
-          leftIcon={<Icon icon={faExclamationTriangle} />}
+          leftIcon={<BugIcon />}
           type='color'
           rightColor='red'
           textValue='pandared'

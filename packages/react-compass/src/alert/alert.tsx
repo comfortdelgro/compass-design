@@ -1,7 +1,5 @@
-import {faClose} from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
 import Button from '../button/button'
-import {Icon, IconProp} from '../icon'
 import {getIconFromColor} from '../utils/get-icon-from-color'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -9,7 +7,7 @@ import {AlertVariantProps, StyledAlert} from './alert.styles'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
-  icon?: false | IconProp
+  icon?: false | React.ReactNode
   dismissible?: boolean
   onDismiss?: () => void
 }
@@ -35,7 +33,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
   const variantProps = {color} as AlertVariantProps
   const alertRef = useDOMRef<HTMLDivElement>(ref)
 
-  const faIcon =
+  const displayedIcon =
     typeof icon === 'undefined'
       ? getIconFromColor(color)
       : icon === false
@@ -44,7 +42,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
 
   return (
     <StyledAlert css={css} ref={alertRef} {...variantProps} {...delegates}>
-      {faIcon ? <Icon icon={faIcon} className='alert-icon' /> : null}
+      {displayedIcon}
       <div className='alert-content'>{children}</div>
       {dismissible && (
         <Button
@@ -53,7 +51,12 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
           className='alert-dismiss-button'
           onPress={() => onDismiss?.()}
         >
-          <Icon className='alert-close-icon' icon={faClose} />
+          <svg className='alert-close-icon' viewBox='0 0 384 512'>
+            <path
+              fill='currentColor'
+              d='M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z'
+            ></path>
+          </svg>
         </Button>
       )}
     </StyledAlert>
