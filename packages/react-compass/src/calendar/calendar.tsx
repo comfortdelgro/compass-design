@@ -11,8 +11,8 @@ import CalendarHeader from './calendar-header'
 import {StyledCalendar} from './calendar.style'
 import {useCalendar} from './hooks/useCalendar'
 import {useCalendarState} from './hooks/useCalendarState'
-import {DatePickerState} from './types'
-interface Props extends StyledComponentProps {
+import {DatePickerState, ValueBase} from './types'
+interface Props extends StyledComponentProps, ValueBase<DateValue> {
   children?: React.ReactNode
   state?: DatePickerState
   hasFooter?: boolean
