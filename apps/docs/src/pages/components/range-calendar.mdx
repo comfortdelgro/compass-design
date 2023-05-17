@@ -91,47 +91,7 @@ function ControlledRangeCalendar() {
 }
 ```
 
-### Validation
-
-Range Calendar supports marking certain dates as unavailable. These dates cannot be selected by the user and are displayed with a crossed out appearance. The isDateUnavailable prop accepts a callback that is called to evaluate whether each visible date is unavailable.
-
-These examples prevent selecting weekends.
-
-#### Contiguous ranges
-
-<section className={styles.componentShowcaseContainer}>
-  <ValidatedRangeCalendar />
-</section>
-
-```js
-function ValidatedRangeCalendar() {
-  const {locale} = useLocale()
-  return <RangeCalendar isDateUnavailable={(date) => isWeekend(date, locale)} />
-}
-```
-
-#### Non-contiguous ranges
-
-The `allowsNonContiguousRanges` prop enables a range to be selected even if there are unavailable dates in the middle.
-The value emitted in the onChange event will still be a single range with a start and end property,
-but unavailable dates will not be displayed as selected.
-It is up to applications to split the full selected range into multiple as needed for business logic.
-
-<section className={styles.componentShowcaseContainer}>
-  <ValidatedRangeCalendar contiguos={true} />
-</section>
-
-```js
-function ValidatedRangeCalendar() {
-  const {locale} = useLocale()
-  return (
-    <RangeCalendar
-      isDateUnavailable={(date) => isWeekend(date, locale)}
-      allowsNonContiguousRanges
-    />
-  )
-}
-```
+````
 
 ### Disabled
 
@@ -141,7 +101,7 @@ function ValidatedRangeCalendar() {
 
 ```js
 <RangeCalendar aria-label='Event date' isDisabled />
-```
+````
 
 ### Read-only
 
