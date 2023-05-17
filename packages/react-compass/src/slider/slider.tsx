@@ -1,4 +1,6 @@
-import React, {useEffect, useRef, useState} from 'react'
+import React, {useEffect, useState} from 'react'
+import {StyledComponentProps} from '../utils/stitches.types'
+import {useDOMRef} from '../utils/use-dom-ref'
 import {
   RangeSlider,
   RangeSliderContainer,
@@ -6,7 +8,7 @@ import {
   Thumb,
 } from './slider.styles'
 
-interface Props {
+interface Props extends StyledComponentProps {
   isDisabled?: boolean
   tooltip?: boolean
   onChange?: (value: number) => void
@@ -19,21 +21,26 @@ interface Props {
   className?: string
 }
 
-export type SliderProps = Props & SliderVariantProps
+export type SliderProps = Props &
+  SliderVariantProps &
+  Omit<React.ButtonHTMLAttributes<HTMLDivElement>, keyof Props>
 
-const Slider: React.FC<SliderProps> = ({
-  isDisabled = false,
-  tooltip = true,
-  onChange,
-  onChangeEnd,
-  minValue = 0,
-  maxValue = 100,
-  step = 1,
-  value,
-  defaultValue,
-  className = '',
-}) => {
-  const sliderRef = useRef<HTMLDivElement>(null)
+const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
+  const {
+    isDisabled = false,
+    tooltip = true,
+    onChange,
+    onChangeEnd,
+    minValue = 0,
+    maxValue = 100,
+    step = 1,
+    value,
+    defaultValue,
+    className = '',
+    css = {},
+    ...ariaSafeProps
+  } = props
+  const sliderRef = useDOMRef<HTMLDivElement>(ref)
   const [currentValue, setCurrentValue] = useState<number | undefined>(
     defaultValue,
   )
@@ -178,8 +185,19 @@ const Slider: React.FC<SliderProps> = ({
     }
   }, [isDisabled, minValue, maxValue, step, onChange, defaultValue, value])
 
+  const componentProps = () => {
+    return {
+      className,
+      css,
+      ...ariaSafeProps,
+    }
+  }
+
+  const delegateProps = componentProps()
+
   return (
     <RangeSliderContainer
+      {...delegateProps}
       className={`cdg-range-slider ${className}`}
       tabIndex={0}
       ref={sliderRef}
@@ -190,6 +208,5 @@ const Slider: React.FC<SliderProps> = ({
       </RangeSlider>
     </RangeSliderContainer>
   )
-}
-
+})
 export default Slider
