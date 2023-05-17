@@ -202,6 +202,7 @@ export interface OverlayTriggerState {
 export type Granularity = 'day' | 'hour' | 'minute' | 'second'
 
 export interface DateFieldState {
+  [x: string]: any
   value?: DateValue
   dateValue: Date
   calendar: Calendar

@@ -1,6 +1,5 @@
 import {ElementType, LabelHTMLAttributes, ReactNode} from 'react'
-import {DOMAttributes} from './calendar.types'
-import {LabelableProps} from './common.types'
+import {DOMAttributes, LabelableProps} from './calendar.types'
 
 export type LabelPosition = 'top' | 'side'
 export type Alignment = 'start' | 'end'

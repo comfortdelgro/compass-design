@@ -86,9 +86,9 @@ export function useDateSegment(
     textValue,
     minValue: segment.minValue!,
     maxValue: segment.maxValue!,
-    isDisabled: state.isDisabled,
+    isDisabled: !!state.isDisabled,
     isReadOnly: state.isReadOnly || !segment.isEditable,
-    isRequired: state.isRequired,
+    isRequired: !!state.isRequired,
     onIncrement: () => {
       enteredKeys.current = ''
       state.increment(segment.type)

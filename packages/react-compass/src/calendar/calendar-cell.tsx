@@ -35,9 +35,9 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
     const cellRef = useDOMRef(ref)
 
     const {cellProps, buttonProps, isSelected, isUnavailable, formattedDate} =
-      useCalendarCell({date}, state, cellRef)
+      useCalendarCell({date}, state)
 
-    let {isDisabled} = useCalendarCell({date}, state, cellRef)
+    let {isDisabled} = useCalendarCell({date}, state)
 
     const isOutsideMonth = !isSameMonth(currentMonth, date)
 

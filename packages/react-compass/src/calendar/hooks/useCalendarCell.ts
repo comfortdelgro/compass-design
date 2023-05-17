@@ -6,7 +6,7 @@ import {
   isToday,
 } from '@internationalized/date'
 import {useDateFormatter} from '@react-aria/i18n'
-import {MouseEvent, PointerEvent, RefObject, useMemo, useRef} from 'react'
+import {MouseEvent, PointerEvent, useMemo, useRef} from 'react'
 import {
   AriaCalendarCellProps,
   CalendarCellAria,
@@ -21,7 +21,6 @@ import {usePress} from './usePress'
 export function useCalendarCell(
   props: AriaCalendarCellProps,
   state: CalendarState | RangeCalendarState,
-  ref: RefObject<HTMLElement>,
 ): CalendarCellAria {
   let {date, isDisabled} = props
   const {errorMessageId, selectedDateDescription} = hookData.get(state) ?? {
