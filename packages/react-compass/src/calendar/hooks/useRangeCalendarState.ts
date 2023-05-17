@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
 /* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
@@ -212,7 +213,7 @@ export function useRangeCalendarState<T extends DateValue = DateValue>(
     selectDate,
     highlightDate(date) {
       if (anchorDate) {
-        calendar.setFocusedDate(date)
+        calendar.setFocusedDate?.(date)
       }
     },
     // @ts-ignore
@@ -221,13 +222,13 @@ export function useRangeCalendarState<T extends DateValue = DateValue>(
         highlightedRange &&
         date.compare(highlightedRange.start) >= 0 &&
         date.compare(highlightedRange.end) <= 0 &&
-        !calendar.isCellDisabled(date) &&
-        !calendar.isCellUnavailable(date)
+        !calendar.isCellDisabled?.(date) &&
+        !calendar.isCellUnavailable?.(date)
       )
     },
     isInvalid(date) {
       return (
-        calendar.isInvalid(date) ||
+        calendar.isInvalid?.(date) ||
         isInvalid(
           date,
           // @ts-ignore

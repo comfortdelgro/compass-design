@@ -72,7 +72,7 @@ const CalendarGrid = (props: Props) => {
         {[...new Array(weeksInMonth).keys()].map((weekIndex) => (
           <tr key={weekIndex}>
             {state
-              .getDatesInWeek(weekIndex, startDate)
+              .getDatesInWeek?.(weekIndex, startDate)
               .map((date, i) =>
                 date ? (
                   <CalendarCell

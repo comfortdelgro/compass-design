@@ -64,7 +64,7 @@ const CalendarHeader = (props: Props) => {
           aria-hidden
         >
           {monthDateFormatter.format(
-            state?.visibleRange?.start.toDate(state.timeZone) as Date,
+            state?.visibleRange?.start.toDate(state.timeZone ?? 'UTC') as Date,
           )}
         </h2>
         {variant === 'default' && (
@@ -82,7 +82,7 @@ const CalendarHeader = (props: Props) => {
             {monthDateFormatter.format(
               state?.visibleRange?.start
                 .add({months: 1})
-                .toDate(state.timeZone) as Date,
+                .toDate(state.timeZone ?? 'UTC') as Date,
             )}
           </h2>
           <Button variant='ghost' {...nextButtonProps}>

@@ -19,7 +19,10 @@ export const Variants: React.FC = () => {
           range.start.toDate(getLocalTimeZone()),
           range.end.toDate(getLocalTimeZone()),
         )}
-      <RangeCalendar value={range} onChange={(e) => setRange(e)} />
+      <RangeCalendar
+        value={range}
+        onChange={(e) => setRange(e as RangeValue<DateValue>)}
+      />
     </Column>
   )
 }

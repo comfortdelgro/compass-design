@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/prefer-ts-expect-error */
 import {useRef} from 'react'
@@ -24,11 +25,11 @@ export function useCalendarBase(
 
   const title = useVisibleRangeDescription(
     state.visibleRange.start,
-    state.timeZone,
+    state.timeZone ?? 'UTC',
   )
   const visibleRangeDescription = useVisibleRangeDescription(
     state.visibleRange.start,
-    state.timeZone,
+    state.timeZone ?? 'UTC',
   )
 
   const errorMessageId = useSlotId([
@@ -38,7 +39,7 @@ export function useCalendarBase(
 
   // Pass the label to the child grid elements.
   hookData.set(state, {
-    ariaLabel: props['aria-label'],
+    ariaLabel: props['aria-label'] ?? '',
     // @ts-ignore
     ariaLabelledBy: props['aria-labelledby'],
     errorMessageId,
@@ -46,18 +47,18 @@ export function useCalendarBase(
 
   // If the next or previous buttons become disabled while they are focused, move focus to the calendar body.
   const nextFocused = useRef(false)
-  const nextDisabled = props.isDisabled || state.isNextVisibleRangeInvalid()
+  const nextDisabled = props.isDisabled || state.isNextVisibleRangeInvalid?.()
   if (nextDisabled && nextFocused.current) {
     nextFocused.current = false
-    state.setFocused(true)
+    state.setFocused?.(true)
   }
 
   const previousFocused = useRef(false)
   const previousDisabled =
-    props.isDisabled || state.isPreviousVisibleRangeInvalid()
+    props.isDisabled || state.isPreviousVisibleRangeInvalid?.()
   if (previousDisabled && previousFocused.current) {
     previousFocused.current = false
-    state.setFocused(true)
+    state.setFocused?.(true)
   }
 
   const labelProps = useLabels({
@@ -78,16 +79,16 @@ export function useCalendarBase(
       },
     },
     nextButtonProps: {
-      onPress: () => state.focusNextPage(),
+      onPress: () => state.focusNextPage?.(),
       'aria-label': 'next',
-      isDisabled: nextDisabled,
+      isDisabled: nextDisabled as boolean,
       onFocus: () => (nextFocused.current = true),
       onBlur: () => (nextFocused.current = false),
     },
     prevButtonProps: {
-      onPress: () => state.focusPreviousPage(),
+      onPress: () => state.focusPreviousPage?.(),
       'aria-label': 'previous',
-      isDisabled: previousDisabled,
+      isDisabled: previousDisabled as boolean,
       onFocus: () => (previousFocused.current = true),
       onBlur: () => (previousFocused.current = false),
     },

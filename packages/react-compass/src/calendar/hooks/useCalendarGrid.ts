@@ -27,7 +27,7 @@ export function useCalendarGrid(
 
   const visibleRangeDescription = useVisibleRangeDescription(
     startDate as CalendarDate,
-    state.timeZone,
+    state.timeZone ?? 'UTC',
   )
 
   const {ariaLabel, ariaLabelledBy} = hookData.get(state) ?? {
@@ -50,55 +50,55 @@ export function useCalendarGrid(
       case 'Enter':
       case ' ':
         e.preventDefault()
-        state.selectFocusedDate()
+        state.selectFocusedDate?.()
         break
       case 'PageUp':
         e.preventDefault()
         e.stopPropagation()
-        state.focusPreviousSection(e.shiftKey)
+        state.focusPreviousSection?.(e.shiftKey)
         break
       case 'PageDown':
         e.preventDefault()
         e.stopPropagation()
-        state.focusNextSection(e.shiftKey)
+        state.focusNextSection?.(e.shiftKey)
         break
       case 'End':
         e.preventDefault()
         e.stopPropagation()
-        state.focusSectionEnd()
+        state.focusSectionEnd?.()
         break
       case 'Home':
         e.preventDefault()
         e.stopPropagation()
-        state.focusSectionStart()
+        state.focusSectionStart?.()
         break
       case 'ArrowLeft':
         e.preventDefault()
         e.stopPropagation()
         if (direction === 'rtl') {
-          state.focusNextDay()
+          state.focusNextDay?.()
         } else {
-          state.focusPreviousDay()
+          state.focusPreviousDay?.()
         }
         break
       case 'ArrowUp':
         e.preventDefault()
         e.stopPropagation()
-        state.focusPreviousRow()
+        state.focusPreviousRow?.()
         break
       case 'ArrowRight':
         e.preventDefault()
         e.stopPropagation()
         if (direction === 'rtl') {
-          state.focusPreviousDay()
+          state.focusPreviousDay?.()
         } else {
-          state.focusNextDay()
+          state.focusNextDay?.()
         }
         break
       case 'ArrowDown':
         e.preventDefault()
         e.stopPropagation()
-        state.focusNextRow()
+        state.focusNextRow?.()
         break
       case 'Escape':
         // Cancel the selection.
@@ -118,8 +118,8 @@ export function useCalendarGrid(
       'aria-disabled': state.isDisabled || null,
       'aria-multiselectable': 'highlightedRange' in state || undefined,
       onKeyDown,
-      onFocus: () => state.setFocused(true),
-      onBlur: () => state.setFocused(false),
+      onFocus: () => state.setFocused?.(true),
+      onBlur: () => state.setFocused?.(false),
     },
     headerProps: {
       'aria-hidden': true,

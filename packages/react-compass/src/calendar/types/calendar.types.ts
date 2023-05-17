@@ -57,32 +57,32 @@ interface CalendarStateBase {
   readonly visibleRange?: RangeValue<CalendarDate>
   readonly minValue?: DateValue
   readonly maxValue?: DateValue
-  readonly timeZone: string
+  readonly timeZone?: string
   readonly validationState?: ValidationState
   readonly focusedDate?: CalendarDate
-  setFocusedDate(value: CalendarDate): void
-  focusNextDay(): void
-  focusPreviousDay(): void
-  focusNextRow(): void
-  focusPreviousRow(): void
-  focusNextPage(): void
-  focusPreviousPage(): void
-  focusSectionStart(): void
-  focusSectionEnd(): void
-  focusNextSection(larger?: boolean): void
-  focusPreviousSection(larger?: boolean): void
-  selectFocusedDate(): void
-  selectDate(date: CalendarDate): void
-  readonly isFocused: boolean
-  setFocused(value: boolean): void
-  isInvalid(date: CalendarDate): boolean
-  isSelected(date: CalendarDate): boolean
-  isCellFocused(date: CalendarDate): boolean
-  isCellDisabled(date: CalendarDate): boolean
-  isCellUnavailable(date: CalendarDate): boolean
-  isPreviousVisibleRangeInvalid(): boolean
-  isNextVisibleRangeInvalid(): boolean
-  getDatesInWeek(
+  setFocusedDate?(value: CalendarDate): void
+  focusNextDay?(): void
+  focusPreviousDay?(): void
+  focusNextRow?(): void
+  focusPreviousRow?(): void
+  focusNextPage?(): void
+  focusPreviousPage?(): void
+  focusSectionStart?(): void
+  focusSectionEnd?(): void
+  focusNextSection?(larger?: boolean): void
+  focusPreviousSection?(larger?: boolean): void
+  selectFocusedDate?(): void
+  selectDate?(date: CalendarDate): void
+  readonly isFocused?: boolean
+  setFocused?(value: boolean): void
+  isInvalid?(date: CalendarDate): boolean
+  isSelected?(date: CalendarDate): boolean
+  isCellFocused?(date: CalendarDate): boolean
+  isCellDisabled?(date: CalendarDate): boolean
+  isCellUnavailable?(date: CalendarDate): boolean
+  isPreviousVisibleRangeInvalid?(): boolean
+  isNextVisibleRangeInvalid?(): boolean
+  getDatesInWeek?(
     weekIndex: number,
     startDate?: CalendarDate,
   ): Array<CalendarDate | null>
