@@ -280,7 +280,7 @@ export function usePress(props: PressHookProps): PressResult {
           e.stopPropagation()
         }
       },
-      onKeyUp(e: PointerEvent<FocusableElement>) {
+      onKeyUp(e: KeyboardEvent<FocusableElement>) {
         triggerPressUp(createEvent(state.target, e), 'keyboard')
         if (
           isValidKeyboardEvent(e.nativeEvent, e.currentTarget) &&

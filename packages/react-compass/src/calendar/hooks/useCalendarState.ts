@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
 import {
   Calendar,
   CalendarDate,
@@ -343,8 +344,8 @@ export const useCalendarState = (
       return (
         calendarDateValue != null &&
         isSameDay(date, calendarDateValue) &&
-        !this.isCellDisabled(date) &&
-        !this.isCellUnavailable(date)
+        !this.isCellDisabled?.(date) &&
+        !this.isCellUnavailable?.(date)
       )
     },
     isCellFocused(date: CalendarDate) {
@@ -355,18 +356,18 @@ export const useCalendarState = (
         props.isDisabled ||
         date.compare(startDate) < 0 ||
         date.compare(endDate) > 0 ||
-        this.isInvalid(date)
+        (this.isInvalid?.(date) as boolean)
       )
     },
     isPreviousVisibleRangeInvalid() {
       const prev = startDate.subtract({days: 1})
-      return isSameDay(prev, startDate) || this.isInvalid(prev)
+      return isSameDay(prev, startDate) || (this.isInvalid?.(prev) as boolean)
     },
     isNextVisibleRangeInvalid() {
       // Adding may return the same date if we reached the end of time
       // according to the calendar system (e.g. 9999-12-31).
       const next = endDate.add({days: 1})
-      return isSameDay(next, endDate) || this.isInvalid(next)
+      return isSameDay(next, endDate) || (this.isInvalid?.(next) as boolean)
     },
     getDatesInWeek(weekIndex: number, from = startDate) {
       // let date = startOfWeek(from, locale);

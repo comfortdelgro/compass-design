@@ -1,8 +1,4 @@
-import {
-  DatePicker,
-  DateRangePicker,
-  RangeValue,
-} from '@comfortdelgro/react-compass'
+import {DatePicker, DateRangePicker} from '@comfortdelgro/react-compass'
 import {
   DateValue,
   getLocalTimeZone,
@@ -49,23 +45,23 @@ export function ValidatedDatePickers() {
   )
 }
 
-export function ControlledDateRangePicker() {
-  const [range, setRange] = useState<RangeValue<DateValue>>({
-    start: parseDate('2020-02-03'),
-    end: parseDate('2020-02-08'),
-  })
-  const formatter = useDateFormatter({dateStyle: 'long'})
-  return (
-    <I18nProvider locale='en-SG'>
-      {range &&
-        formatter.formatRange(
-          range.start.toDate(getLocalTimeZone()),
-          range.end.toDate(getLocalTimeZone()),
-        )}
-      <DateRangePicker value={range} onChange={setRange} />
-    </I18nProvider>
-  )
-}
+// export function ControlledDateRangePicker() {
+//   const [range, setRange] = useState<RangeValue<DateValue>>({
+//     start: parseDate('2020-02-03'),
+//     end: parseDate('2020-02-08'),
+//   })
+//   const formatter = useDateFormatter({dateStyle: 'long'})
+//   return (
+//     <I18nProvider locale='en-SG'>
+//       {range &&
+//         formatter.formatRange(
+//           range.start.toDate(getLocalTimeZone()),
+//           range.end.toDate(getLocalTimeZone()),
+//         )}
+//       <DateRangePicker value={range} onChange={setRange} />
+//     </I18nProvider>
+//   )
+// }
 
 export function ValidatedDateRangePickers({
   contiguos = false,

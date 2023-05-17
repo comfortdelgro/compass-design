@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
+/* eslint-disable @typescript-eslint/consistent-generic-constructors */
 /* eslint-disable @typescript-eslint/prefer-ts-expect-error */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import {FocusableElement} from '../types/scroll.types'
@@ -63,7 +65,8 @@ export class Tree {
         // @ts-ignore
         node.scopeRef.current &&
         // @ts-ignore
-        isElementInScope(current.nodeToRestore, node.scopeRef.current)
+        isElementInScope(current.nodeToRestore, node.scopeRef.current) &&
+        node !== undefined
       ) {
         current.nodeToRestore = node.nodeToRestore
       }
@@ -72,7 +75,7 @@ export class Tree {
     const children = node.children
     // @ts-ignore
     parentNode.removeChild(node)
-    if (children.size > 0) {
+    if (children.size > 0 && parentNode !== undefined) {
       children.forEach((child) => parentNode.addChild(child))
     }
     // @ts-ignore
@@ -94,6 +97,7 @@ export class Tree {
   clone(): Tree {
     const newTree = new Tree()
     for (const node of this.traverse()) {
+      if (node.parent == undefined) return newTree
       newTree.addTreeNode(
         node.scopeRef,
         node.parent.scopeRef,
@@ -106,8 +110,8 @@ export class Tree {
 
 class TreeNode {
   public scopeRef: ScopeRef
-  public nodeToRestore: FocusableElement
-  public parent: TreeNode
+  public nodeToRestore: FocusableElement | undefined
+  public parent: TreeNode | undefined
   public children: Set<TreeNode> = new Set()
   public contain = false
 

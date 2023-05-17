@@ -44,6 +44,7 @@ export function useSpinButton(props: SpinButtonProps): SpinbuttonAria {
     }
 
     switch (e.key) {
+      // fall through!
       case 'PageUp':
         if (onIncrementPage) {
           // @ts-ignore
@@ -51,7 +52,8 @@ export function useSpinButton(props: SpinButtonProps): SpinbuttonAria {
           onIncrementPage()
           break
         }
-      // fallthrough!
+        break
+      // fall through!
       case 'ArrowUp':
       case 'Up':
         if (onIncrement) {
@@ -59,12 +61,14 @@ export function useSpinButton(props: SpinButtonProps): SpinbuttonAria {
           onIncrement()
         }
         break
+      // fall through!
       case 'PageDown':
         if (onDecrementPage) {
           e.preventDefault()
           onDecrementPage()
           break
         }
+        break
       // fallthrough
       case 'ArrowDown':
       case 'Down':
@@ -86,6 +90,8 @@ export function useSpinButton(props: SpinButtonProps): SpinbuttonAria {
         }
         break
     }
+
+    return null
   }
 
   let isFocused = useRef(false)

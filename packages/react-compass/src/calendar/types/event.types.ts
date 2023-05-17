@@ -13,7 +13,7 @@ export interface PressProps extends PressEvents {
   isPressed?: boolean
   isDisabled?: boolean
   preventFocusOnPress?: boolean
-  shouldCancelOnPointerExit: boolean
+  shouldCancelOnPointerExit?: boolean
   allowTextSelectionOnPress?: boolean
 }
 

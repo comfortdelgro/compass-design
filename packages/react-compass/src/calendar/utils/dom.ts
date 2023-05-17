@@ -41,5 +41,5 @@ export function filterDOMProps(
     }
   }
 
-  return filteredProps
+  return filteredProps as DOMProps & AriaLabelingProps
 }

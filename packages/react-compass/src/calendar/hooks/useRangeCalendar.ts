@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/prefer-optional-chain */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
@@ -47,7 +48,7 @@ export function useRangeCalendar<T extends DateValue>(
       body.contains(document.activeElement) &&
       (!body.contains(target) || !target.closest('button, [role="button"]'))
     ) {
-      state.selectFocusedDate()
+      state.selectFocusedDate?.()
     }
   }
 
@@ -61,7 +62,7 @@ export function useRangeCalendar<T extends DateValue>(
       (!e.relatedTarget || !ref.current.contains(e.relatedTarget)) &&
       state.anchorDate
     ) {
-      state.selectFocusedDate()
+      state.selectFocusedDate?.()
     }
   }
 

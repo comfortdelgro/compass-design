@@ -1,13 +1,12 @@
 import {ElementType, LabelHTMLAttributes, ReactNode} from 'react'
-import {DOMAttributes} from './calendar.types'
-import {LabelableProps} from './common.types'
+import {DOMAttributes, LabelableProps} from './calendar.types'
 
 export type LabelPosition = 'top' | 'side'
 export type Alignment = 'start' | 'end'
 export type NecessityIndicator = 'icon' | 'label'
 
 export interface DOMProps {
-  id: string
+  id?: string
 }
 
 export interface AriaLabeDescriptionProps {
@@ -15,8 +14,8 @@ export interface AriaLabeDescriptionProps {
 }
 
 export interface AriaLabelingProps extends AriaLabeDescriptionProps {
-  'aria-label': string
-  'aria-labelledby': string | undefined
+  'aria-label'?: string
+  'aria-labelledby'?: string | undefined
   'aria-details'?: string
   'aria-disabled'?: boolean | undefined
   'aria-invalid'?: boolean | undefined
