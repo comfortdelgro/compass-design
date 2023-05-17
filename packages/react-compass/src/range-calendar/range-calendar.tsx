@@ -23,6 +23,7 @@ interface Props extends StyledComponentProps {
   hasFooter?: boolean
   onCancelCallback?: (() => void) | undefined
   onApplyCallback?: ((e?: DateRange) => void) | undefined
+  onChange?: (e: unknown) => void
 }
 
 export type RangeCalendarProps = Props
