@@ -60,7 +60,9 @@ interface Props extends StyledComponentProps {
   'aria-errormessage'?: string
 }
 
-export type SearchFieldProps = Props & SearchFieldVariantProps
+export type SearchFieldProps = Props &
+  SearchFieldVariantProps &
+  Omit<React.HTMLAttributes<HTMLInputElement>, keyof Props>
 
 const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
   (props, ref) => {
@@ -75,8 +77,10 @@ const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
       isDisabled = false,
       autoFocus,
       placeholder,
-      onChangeEvent,
+      onSubmit,
       onChange,
+      onChangeEvent,
+      ...safeProps
     } = props
 
     const [textValue, setTextValue] = React.useState<string>(value)
@@ -106,7 +110,7 @@ const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
       }
 
       if (key === 'Enter' && target.value != '') {
-        props.onSubmit?.(target.value)
+        onSubmit?.(target.value)
       }
 
       if (key === 'Escape') {
@@ -135,6 +139,7 @@ const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
         <StyledSearchFieldInput
           ref={searchFieldRef}
           id={id}
+          {...safeProps}
           autoFocus={autoFocus}
           readOnly={isReadOnly}
           required={isRequired}
@@ -156,15 +161,6 @@ const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
           onCompositionEnd={props.onCompositionEnd}
           onCompositionStart={props.onCompositionStart}
           onCompositionUpdate={props.onCompositionUpdate}
-          aria-label={props['aria-label']}
-          aria-details={props['aria-details']}
-          aria-haspopup={props['aria-haspopup']}
-          aria-controls={props['aria-controls']}
-          aria-labelledby={props['aria-labelledby']}
-          aria-describedby={props['aria-describedby']}
-          aria-errormessage={props['aria-errormessage']}
-          aria-autocomplete={props['aria-autocomplete']}
-          aria-activedescendant={props['aria-activedescendant']}
         />
         {textValue !== '' ? (
           <Button size='sm' variant='ghost' onPress={onClearButtonClick}>

@@ -264,7 +264,7 @@ export type {
 export {default as Toggle} from './toggle'
 export type {ToggleProps} from './toggle'
 export {Tooltip, TooltipTrigger} from './tooltip'
-export type {TooltipProps, TooltipTriggerProps} from './tooltip'
+export type {Placement, TooltipProps, TooltipTriggerProps} from './tooltip'
 export {default as Typography} from './typography'
 export {default as Upload} from './upload'
 export type {UploadDragAndDropProps, UploadProps} from './upload'

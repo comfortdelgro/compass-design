@@ -4,6 +4,7 @@ import type {VariantProps} from '../utils/stitches.types'
 
 export const StyledSearchFieldBox = styled('div', {
   display: 'flex',
+  height: '$11',
   fontFamily: '$sans',
   flexDirection: 'row',
   alignItems: 'center',
@@ -43,14 +44,14 @@ export const StyledSearchFieldBox = styled('div', {
 })
 
 export const StyledSearchFieldInput = styled('input', {
+  width: '100%',
   fontSize: '$label1',
   fontWeight: '$semibold',
   lineHeight: '$normal',
-  padding: '$0_5 $2',
+  padding: '$1_5 $3',
   border: 0,
   borderRadius: '$md',
   backgroundColor: 'transparent',
-  width: '100%',
   '&::placeholder': {
     color: '#B4B4B4',
     fontSize: '$label1',
