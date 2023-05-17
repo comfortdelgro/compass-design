@@ -7,6 +7,7 @@
     "@comfortdelgro/react-compass": "0.33.10"
   },
   "changesets": [
-    "empty-maps-matter"
+    "empty-maps-matter",
+    "swift-glasses-cry"
   ]
 }
