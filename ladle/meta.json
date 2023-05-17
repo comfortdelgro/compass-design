@@ -80,8 +80,8 @@
       "levels": [
         "Badge"
       ],
-      "locStart": 7,
-      "locEnd": 14,
+      "locStart": 6,
+      "locEnd": 13,
       "filePath": "src/badge/badge.stories.tsx",
       "meta": {}
     },
@@ -90,8 +90,8 @@
       "levels": [
         "Badge"
       ],
-      "locStart": 16,
-      "locEnd": 26,
+      "locStart": 15,
+      "locEnd": 25,
       "filePath": "src/badge/badge.stories.tsx",
       "meta": {}
     },
@@ -100,8 +100,8 @@
       "levels": [
         "Badge"
       ],
-      "locStart": 28,
-      "locEnd": 55,
+      "locStart": 27,
+      "locEnd": 54,
       "filePath": "src/badge/badge.stories.tsx",
       "meta": {}
     },
@@ -110,8 +110,8 @@
       "levels": [
         "Badge"
       ],
-      "locStart": 57,
-      "locEnd": 67,
+      "locStart": 56,
+      "locEnd": 66,
       "filePath": "src/badge/badge.stories.tsx",
       "meta": {}
     },
@@ -370,8 +370,8 @@
       "levels": [
         "Date range picker"
       ],
-      "locStart": 35,
-      "locEnd": 52,
+      "locStart": 36,
+      "locEnd": 56,
       "filePath": "src/date-range-picker/date-range-picker.stories.tsx",
       "meta": {}
     },
@@ -380,8 +380,8 @@
       "levels": [
         "Date range picker"
       ],
-      "locStart": 11,
-      "locEnd": 33,
+      "locStart": 12,
+      "locEnd": 34,
       "filePath": "src/date-range-picker/date-range-picker.stories.tsx",
       "meta": {}
     },
@@ -420,8 +420,8 @@
       "levels": [
         "Dropdown"
       ],
-      "locStart": 260,
-      "locEnd": 435,
+      "locStart": 247,
+      "locEnd": 410,
       "filePath": "src/dropdown/dropdown.stories.tsx",
       "meta": {}
     },
@@ -430,8 +430,8 @@
       "levels": [
         "Dropdown"
       ],
-      "locStart": 7,
-      "locEnd": 33,
+      "locStart": 6,
+      "locEnd": 32,
       "filePath": "src/dropdown/dropdown.stories.tsx",
       "meta": {}
     },
@@ -440,8 +440,8 @@
       "levels": [
         "Dropdown"
       ],
-      "locStart": 35,
-      "locEnd": 258,
+      "locStart": 34,
+      "locEnd": 245,
       "filePath": "src/dropdown/dropdown.stories.tsx",
       "meta": {}
     },
@@ -590,8 +590,8 @@
       "levels": [
         "Multiple dropdown"
       ],
-      "locStart": 7,
-      "locEnd": 167,
+      "locStart": 6,
+      "locEnd": 166,
       "filePath": "src/multiple-dropdown/multiple-dropdown.stories.tsx",
       "meta": {}
     },
@@ -731,7 +731,7 @@
         "Range calendar"
       ],
       "locStart": 9,
-      "locEnd": 25,
+      "locEnd": 28,
       "filePath": "src/range-calendar/range-calendar.stories.tsx",
       "meta": {}
     },
