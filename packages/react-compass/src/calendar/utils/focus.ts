@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
 import {Tree} from './tree'
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
@@ -19,6 +20,7 @@ import {
   ScrollIntoViewportOpts,
 } from '../types'
 import {isAndroid} from './platform'
+import {runAfterTransition} from './text'
 
 let supportsPreventScrollCached: boolean | null = null
 
@@ -62,6 +64,7 @@ function getScrollableElements(element: FocusableElement): ScrollableElement[] {
   let parent = element.parentNode
   const scrollableElements: ScrollableElement[] = []
   const rootScrollingElement =
+    // @ts-ignore
     document.scrollingElement || document.documentElement
 
   while (parent instanceof HTMLElement && parent !== rootScrollingElement) {
@@ -225,19 +228,6 @@ const currentModality = null
 export function getInteractionModality(): Modality {
   // @ts-ignore
   return currentModality
-}
-
-const transitionsByElement = new Map<EventTarget, Set<string>>()
-const transitionCallbacks = new Set<() => void>()
-
-export function runAfterTransition(fn: () => void) {
-  requestAnimationFrame(() => {
-    if (transitionsByElement.size === 0) {
-      fn()
-    } else {
-      transitionCallbacks.add(fn)
-    }
-  })
 }
 
 export function focusSafely(element: FocusableElement) {

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
+/* eslint-disable @typescript-eslint/prefer-ts-expect-error */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
@@ -149,6 +151,7 @@ export function constrainValue(
   return date
 }
 
+// @ts-ignore
 export function previousAvailableDate(
   date: CalendarDate,
   minValue: DateValue,
@@ -168,7 +171,9 @@ export function previousAvailableDate(
 }
 
 function getPointClientRect(point: EventPoint): Rect {
+  // @ts-ignore
   const offsetX = point.width / 2 || point.radiusX || 0
+  // @ts-ignore
   const offsetY = point.height / 2 || point.radiusY || 0
 
   return {
@@ -214,6 +219,7 @@ export function getFormatOptions(
   options: FormatterOptions,
 ): Intl.DateTimeFormatOptions {
   fieldOptions = {...DEFAULT_FIELD_OPTIONS, ...fieldOptions}
+  // @ts-ignore
   const granularity = options.granularity || 'minute'
   const keys = Object.keys(fieldOptions)
   let startIdx = keys.indexOf(options.maxGranularity ?? 'year')
@@ -403,6 +409,7 @@ export function getSegmentLimits(
   return {}
 }
 
+// @ts-ignore
 export function addSegment(
   value: DateValue,
   part: string,

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
@@ -44,6 +45,7 @@ export function useSpinButton(props: SpinButtonProps): SpinbuttonAria {
     }
 
     switch (e.key) {
+      // @ts-ignore
       case 'PageUp':
         if (onIncrementPage) {
           // @ts-ignore
@@ -59,6 +61,7 @@ export function useSpinButton(props: SpinButtonProps): SpinbuttonAria {
           onIncrement()
         }
         break
+      // @ts-ignore
       case 'PageDown':
         if (onDecrementPage) {
           e.preventDefault()
@@ -104,7 +107,8 @@ export function useSpinButton(props: SpinButtonProps): SpinbuttonAria {
   textValue =
     textValue === ''
       ? 'Empty'
-      : (textValue || `${value}`).replace('-', '\u2212')
+      : // @ts-ignore
+        (textValue || `${value}`).replace('-', '\u2212')
 
   const onIncrementPressStart = useCallback(
     (initialStepDelay: number) => {

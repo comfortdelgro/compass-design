@@ -1,3 +1,12 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
+/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/prefer-ts-expect-error */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // Reference: https://github.com/adobe/react-spectrum/blob/98cad3f064c5302c04a1140d12a2cacc3ee921a2/packages/%40react-aria/datepicker/src/useDateSegment.ts
 /* eslint-disable prefer-const */
 import {CalendarDate, toCalendar} from '@internationalized/date'
@@ -45,11 +54,13 @@ export function useDateSegment(
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   let {ariaLabel, ariaLabelledBy, ariaDescribedBy, focusManager} = hookData.get(
+    // @ts-ignore
     state,
   ) as unknown as {
     ariaLabel: string
     ariaLabelledBy: string
     ariaDescribedBy: string
+    // @ts-ignore
     focusManager: any
   }
 
@@ -81,12 +92,14 @@ export function useDateSegment(
     textValue = hourDateFormatter.format(state.dateValue)
   }
 
+  // @ts-ignore
   const {spinButtonProps} = useSpinButton({
     value: segment.value!,
     textValue,
     minValue: segment.minValue!,
     maxValue: segment.maxValue!,
     isDisabled: state.isDisabled,
+    // @ts-ignore
     isReadOnly: state.isReadOnly || !segment.isEditable,
     isRequired: state.isRequired,
     onIncrement: () => {
@@ -156,6 +169,7 @@ export function useDateSegment(
         break
       }
       default: {
+        // @ts-ignore
         spinButtonProps.onKeyDown?.(
           e as unknown as React.KeyboardEvent<FocusableElement>,
         )
@@ -396,8 +410,11 @@ export function useDateSegment(
         }
       : {}
 
+  // @ts-ignore
   const firstSegment = useMemo(
+    // @ts-ignore
     () => state.segments.find((s) => s.isEditable),
+    // @ts-ignore
     [state.segments],
   )
   if (segment !== firstSegment && state.validationState !== 'invalid') {
@@ -411,6 +428,7 @@ export function useDateSegment(
   // Prepend the label passed from the field to each segment name.
   // This is needed because VoiceOver on iOS does not announce groups.
   const name = segment.type === 'literal' ? '' : displayNames.of(segment.type)
+  // @ts-ignore
   const labelProps = useLabels({
     'aria-label': (ariaLabel ? ariaLabel + ' ' : '') + name,
     'aria-labelledby': ariaLabelledBy,

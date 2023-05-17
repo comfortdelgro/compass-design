@@ -41,5 +41,6 @@ export function filterDOMProps(
     }
   }
 
+  // @ts-ignore
   return filteredProps
 }

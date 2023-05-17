@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
+/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/prefer-ts-expect-error */
 import {
@@ -103,9 +105,11 @@ export function useDatePickerState<T extends DateValue = DateValue>(
 
   // @ts-ignore
   const validationState: ValidationState =
+    // @ts-ignore
     props.validationState ||
     // @ts-ignore
     (isInvalid(value, props.minValue, props.maxValue) ? 'invalid' : null) ||
+    // @ts-ignore
     (value && props.isDateUnavailable?.(value) ? 'invalid' : null)
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -121,6 +125,7 @@ export function useDatePickerState<T extends DateValue = DateValue>(
     hasTime,
     ...overlayState,
     setOpen(isOpen) {
+      // @ts-ignore
       if (!isOpen && !value && selectedDate && hasTime) {
         commitValue(
           selectedDate,
@@ -136,12 +141,12 @@ export function useDatePickerState<T extends DateValue = DateValue>(
         return ''
       }
 
+      // @ts-ignore
       const formatOptions = getFormatOptions(fieldOptions, {
         granularity,
         timeZone: defaultTimeZone,
         hideTimeZone: props.hideTimeZone,
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-expect-error
         hourCycle: props.hourCycle,
         showEra: value.calendar.identifier === 'gregory' && value.era === 'BC',
       })

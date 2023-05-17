@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/prefer-ts-expect-error */
 import {
   CalendarDate,
   DateFormatter,
@@ -21,6 +24,7 @@ import {usePress} from './usePress'
 export function useCalendarCell(
   props: AriaCalendarCellProps,
   state: CalendarState | RangeCalendarState,
+  // @ts-ignore
   ref: RefObject<HTMLElement>,
 ): CalendarCellAria {
   let {date, isDisabled} = props

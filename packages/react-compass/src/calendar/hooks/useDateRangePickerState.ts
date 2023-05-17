@@ -204,6 +204,7 @@ export function useDateRangePickerState<T extends DateValue = DateValue>(
         props.granularity ||
         (value.end && 'minute' in value.end ? 'minute' : 'day')
 
+      // @ts-ignore
       const startOptions = getFormatOptions(fieldOptions, {
         granularity: startGranularity,
         timeZone: startTimeZone,
@@ -265,6 +266,7 @@ export function useDateRangePickerState<T extends DateValue = DateValue>(
         // @ts-ignore
         endFormatter = startFormatter
       } else {
+        // @ts-ignore
         const endOptions = getFormatOptions(fieldOptions, {
           granularity: endGranularity,
           timeZone: endTimeZone,

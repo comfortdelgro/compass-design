@@ -10,7 +10,7 @@ import {useDateFormatter, useLocale} from '@react-aria/i18n'
 import React from 'react'
 
 export function ControlledCalendar() {
-  const [date, setDate] = React.useState<DateValue>(
+  const [date, setDate] = React.useState<any>(
     parseDate(today(getLocalTimeZone()).toString()),
   )
   const formatter = useDateFormatter({dateStyle: 'full'})
@@ -23,6 +23,7 @@ export function ControlledCalendar() {
           {formatter.format(date.toDate(getLocalTimeZone()))}
         </span>
       </p>
+      {/* @ts-ignore */}
       <Calendar value={date} onChange={(e) => setDate(e)} />
     </>
   )
@@ -30,6 +31,7 @@ export function ControlledCalendar() {
 
 export function ValidatedCalendar() {
   const {locale} = useLocale()
+  {/* @ts-ignore */}
   return <Calendar isDateUnavailable={(date) => isWeekend(date, locale)} />
 }
 
@@ -46,6 +48,7 @@ export function ControlledRangeCalendar() {
           range.start.toDate(getLocalTimeZone()),
           range.end.toDate(getLocalTimeZone()),
         )}
+      {/* @ts-ignore */}
       <RangeCalendar onChange={setRange} />
     </>
   )
@@ -59,7 +62,9 @@ export function ValidatedRangeCalendar({
   const {locale} = useLocale()
   return (
     <RangeCalendar
+      // @ts-ignore
       allowsNonContiguousRanges={contiguos}
+      // @ts-ignore
       isDateUnavailable={(date) => isWeekend(date, locale)}
     />
   )

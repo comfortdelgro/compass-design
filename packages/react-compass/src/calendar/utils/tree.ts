@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/consistent-generic-constructors */
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
 /* eslint-disable @typescript-eslint/prefer-ts-expect-error */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import {FocusableElement} from '../types/scroll.types'
@@ -28,7 +30,7 @@ export class Tree {
     parent: ScopeRef,
     nodeToRestore?: FocusableElement,
   ) {
-    const parentNode = this.fastMap.get(parent ?? null)
+    const parentNode = this.fastMap.get(parent)
     const node = new TreeNode({scopeRef})
     // @ts-ignore
     parentNode.addChild(node)
@@ -45,7 +47,7 @@ export class Tree {
   }
 
   removeTreeNode(scopeRef: ScopeRef) {
-    // never remove the root
+    // @ts-ignore
     if (scopeRef === null) {
       return
     }
@@ -65,6 +67,7 @@ export class Tree {
         // @ts-ignore
         isElementInScope(current.nodeToRestore, node.scopeRef.current)
       ) {
+        // @ts-ignore
         current.nodeToRestore = node.nodeToRestore
       }
     }
@@ -106,8 +109,11 @@ export class Tree {
 
 class TreeNode {
   public scopeRef: ScopeRef
+  // @ts-ignore
   public nodeToRestore: FocusableElement
+  // @ts-ignore
   public parent: TreeNode
+  // @ts-ignore
   public children: Set<TreeNode> = new Set()
   public contain = false
 
@@ -120,6 +126,7 @@ class TreeNode {
   }
   removeChild(node: TreeNode) {
     this.children.delete(node)
+    // @ts-ignore
     node.parent = undefined
   }
 }

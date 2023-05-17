@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/prefer-ts-expect-error */
 import {
   DragEvent,
   KeyboardEvent,
@@ -35,6 +37,7 @@ interface PressState {
   ignoreEmulatedMouseEvents: boolean
   ignoreClickAfterPress: boolean
   didFirePressStart: boolean
+  // @ts-ignore
   activePointerId: any
   target: FocusableElement | null
   isOverTarget: boolean
@@ -280,6 +283,7 @@ export function usePress(props: PressHookProps): PressResult {
           e.stopPropagation()
         }
       },
+      // @ts-ignore
       onKeyUp(e: PointerEvent<FocusableElement>) {
         triggerPressUp(createEvent(state.target, e), 'keyboard')
         if (

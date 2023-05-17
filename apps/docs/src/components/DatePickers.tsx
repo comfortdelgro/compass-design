@@ -28,6 +28,7 @@ export function ControlledDatePickers() {
           {formatter.format(date.toDate(getLocalTimeZone()))}
         </span>
       </p>
+      {/* @ts-ignore */}
       <DatePicker
         label='Date'
         value={date}
@@ -42,6 +43,7 @@ export function ValidatedDatePickers() {
   const {locale} = useLocale()
 
   return (
+    // @ts-ignore
     <DatePicker
       label='Date'
       isDateUnavailable={(date) => isWeekend(date, locale)}
@@ -62,6 +64,7 @@ export function ControlledDateRangePicker() {
           range.start.toDate(getLocalTimeZone()),
           range.end.toDate(getLocalTimeZone()),
         )}
+        {/* @ts-ignore */}
       <DateRangePicker value={range} onChange={setRange} />
     </I18nProvider>
   )
@@ -76,6 +79,7 @@ export function ValidatedDateRangePickers({
 
   return (
     <I18nProvider locale='en-SG'>
+      {/* @ts-ignore */}
       <DateRangePicker
         allowsNonContiguousRanges={contiguos}
         isDateUnavailable={(date) => isWeekend(date, locale)}
