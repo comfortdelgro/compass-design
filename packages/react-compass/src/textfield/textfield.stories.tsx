@@ -1,8 +1,6 @@
-import {faUser} from '@fortawesome/free-regular-svg-icons'
-import {faChevronDown} from '@fortawesome/free-solid-svg-icons'
+import BugIcon from '@comfortdelgro/compass-icons/react/bug'
 import type {StoryDecorator} from '@ladle/react'
 import React from 'react'
-import Icon from '../icon'
 import {Column, Row} from '../utils/components'
 import Textfield from './index'
 
@@ -37,7 +35,15 @@ export const Variants: React.FC = () => (
 
     <h3>With Label</h3>
     <Row>
-      <Textfield label='Name' placeholder='Enter your name' isRequired />
+      <Textfield
+        label={
+          <>
+            Name <BugIcon />
+          </>
+        }
+        placeholder='Enter your name'
+        isRequired
+      />
     </Row>
 
     <h3>With Helper Text</h3>
@@ -65,18 +71,18 @@ export const Variants: React.FC = () => (
     <Row>
       <Textfield
         label='Name'
-        leftIcon={<Icon icon={faUser} />}
+        leftIcon={<BugIcon />}
         placeholder='Enter your name'
       />
       <Textfield
         label='Name'
-        rightIcon={<Icon icon={faChevronDown} />}
+        rightIcon={<BugIcon />}
         placeholder='Enter your name'
       />
       <Textfield
         label='Name'
-        leftIcon={<Icon icon={faUser} />}
-        rightIcon={<Icon icon={faChevronDown} />}
+        leftIcon={<BugIcon />}
+        rightIcon={<BugIcon />}
         placeholder='Enter your name'
       />
     </Row>
@@ -86,20 +92,20 @@ export const Variants: React.FC = () => (
       <Textfield label='Name' placeholder='Enter your name' isDisabled />
       <Textfield
         label='Name'
-        leftIcon={<Icon icon={faUser} />}
+        leftIcon={<BugIcon />}
         placeholder='Enter your name'
         isDisabled
       />
       <Textfield
         label='Name'
-        rightIcon={<Icon icon={faChevronDown} />}
+        rightIcon={<BugIcon />}
         placeholder='Enter your name'
         isDisabled
       />
       <Textfield
         label='Name'
-        leftIcon={<Icon icon={faUser} />}
-        rightIcon={<Icon icon={faChevronDown} />}
+        leftIcon={<BugIcon />}
+        rightIcon={<BugIcon />}
         placeholder='Enter your name'
         isDisabled
       />
