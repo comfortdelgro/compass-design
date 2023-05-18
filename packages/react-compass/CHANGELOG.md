@@ -1,5 +1,11 @@
 ## 1.0.0-next.2
 
+## 1.0.0-next.3
+
+### Minor Changes
+
+- 31c4a08f: Fix bugs
+
 ## 1.0.0-next.1
 
 ## 1.0.0-beta.0.1
