@@ -54,7 +54,7 @@ export const StyledAvatar = styled('div', {
       lg: {
         width: '$12',
 
-        '.icon-wrapper > .icon': {
+        '.icon-wrapper > svg': {
           width: '$6',
           height: '$6',
         },
@@ -62,7 +62,7 @@ export const StyledAvatar = styled('div', {
       md: {
         width: '$10',
 
-        '.icon-wrapper > .icon': {
+        '.icon-wrapper > svg': {
           width: '$6',
           height: '$6',
         },
@@ -70,7 +70,7 @@ export const StyledAvatar = styled('div', {
       sm: {
         width: '$8',
 
-        '.icon-wrapper > .icon': {
+        '.icon-wrapper > svg': {
           width: '$4',
           height: '$4',
         },
@@ -78,7 +78,7 @@ export const StyledAvatar = styled('div', {
       xs: {
         width: '$6',
 
-        '.icon-wrapper > .icon': {
+        '.icon-wrapper > svg': {
           width: '$4',
           height: '$4',
         },
