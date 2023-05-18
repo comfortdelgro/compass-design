@@ -1,7 +1,7 @@
 import {useCallback, useRef, useState} from 'react'
 
 export function useControlledState<T>(
-  value?: T,
+  value?: T | null,
   defaultValue?: T,
   onChange?: (value: T, ...args: any[]) => void,
 ): [T, (value: T, ...args: any[]) => void] {
@@ -9,7 +9,7 @@ export function useControlledState<T>(
   const ref = useRef(value !== undefined)
   const wasControlled = ref.current
   const isControlled = value !== undefined
-  const stateRef = useRef(stateValue)
+  const stateRef = useRef<T | undefined | null>(stateValue)
   if (wasControlled !== isControlled) {
     console.warn(
       `WARN: A component changed from ${

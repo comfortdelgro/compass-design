@@ -377,7 +377,7 @@ export function useDateFieldState<T extends DateValue = DateValue>(
   function checkValidSegments() {
     const validSegmentValues = Object.values(validSegments)
     const allSegmentValues = Object.values(allSegments)
-    if (validSegmentValues.length === 0 && !isRequired) {
+    if (validSegmentValues.length === 0) {
       return true
     }
     // if valid segment object is missing attributes -> the missing one is the invalid
