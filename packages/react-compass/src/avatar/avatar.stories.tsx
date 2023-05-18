@@ -1,4 +1,4 @@
-import {faUser as faRegularUser} from '@fortawesome/free-regular-svg-icons'
+import BugIcon from '@comfortdelgro/compass-icons/react/bug'
 import React from 'react'
 import {Row} from '../utils/components'
 import Avatar from './index'
@@ -34,10 +34,10 @@ export const Individual = () => (
     <h3>3. Icon Avatar</h3>
 
     <Row>
-      <Avatar icon={faRegularUser} size='lg' />
-      <Avatar icon={faRegularUser} size='md' />
-      <Avatar icon={faRegularUser} size='sm' />
-      <Avatar icon={faRegularUser} size='xs' />
+      <Avatar icon={<BugIcon />} size='lg' />
+      <Avatar icon={<BugIcon />} size='md' />
+      <Avatar icon={<BugIcon />} size='sm' />
+      <Avatar icon={<BugIcon />} size='xs' />
     </Row>
   </>
 )

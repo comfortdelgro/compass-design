@@ -1,7 +1,6 @@
 import {Callout} from 'nextra-theme-docs'
 import styles from '../../styles/Home.module.css'
-import {faThumbsUp, faVirus} from '@fortawesome/free-solid-svg-icons'
-import {Icon} from '@iconify/react'
+import BugIcon from '@comfortdelgro/compass-icons/react/bug'
 import Textfield from '@comfortdelgro/react-compass/textfield'
 
 # Text Field
@@ -44,7 +43,14 @@ import Textfield from '@comfortdelgro/react-compass/textfield'
 ### Text field with label:
 
 <section className={styles.avatarShowcaseContainer}>
-  <Textfield label='Name' placeholder='Enter your name' />
+  <Textfield 
+    label={
+      <>
+        Text Label <BugIcon />
+      </>
+    }
+    placeholder='Enter your name' 
+  />
 </section>
 
 ```js
@@ -102,21 +108,21 @@ import Textfield from '@comfortdelgro/react-compass/textfield'
 <section className={styles.avatarShowcaseContainer}>
   <Textfield
     label='Name'
-    leftIcon={<Icon icon={faThumbsUp} />}
+    leftIcon={<BugIcon />}
     placeholder='Enter your name'
   />
   <Textfield
     label='Name'
-    rightIcon={<Icon icon={faThumbsUp} />}
+    rightIcon={<BugIcon />}
     placeholder='Enter your name'
   />
 </section>
 
 ```js
-<Textfield label='Name' leftIcon={<Icon icon={faThumbsUp} />} placeholder='Enter your name' />
+<Textfield label='Name' leftIcon={<BugIcon />} placeholder='Enter your name' />
 <Textfield
   label='Name'
-  rightIcon={<Icon icon={faThumbsUp} />}
+  rightIcon={<BugIcon />}
   placeholder='Enter your name'
 />
 ```
