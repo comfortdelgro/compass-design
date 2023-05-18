@@ -6,7 +6,10 @@ export function useSyncRef(context: any, ref: any) {
     if (context?.ref && ref) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
       context.ref.current = ref.current
-      return () => {
+    }
+    return () => {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      if (context?.ref && ref) {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         context.ref.current = null
       }

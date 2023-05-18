@@ -1,4 +1,5 @@
 import {
+  CalendarDate,
   DateValue,
   endOfMonth,
   getWeeksInMonth,
@@ -35,7 +36,7 @@ const CalendarGrid = (props: Props) => {
   } = props
 
   const {locale} = useLocale()
-  const startDate = state.visibleRange.start.add(offset)
+  const startDate = state?.visibleRange?.start.add(offset) as CalendarDate
   const endDate = endOfMonth(startDate)
 
   // eslint-disable-next-line
@@ -71,7 +72,7 @@ const CalendarGrid = (props: Props) => {
         {[...new Array(weeksInMonth).keys()].map((weekIndex) => (
           <tr key={weekIndex}>
             {state
-              .getDatesInWeek(weekIndex, startDate)
+              .getDatesInWeek?.(weekIndex, startDate)
               .map((date, i) =>
                 date ? (
                   <CalendarCell

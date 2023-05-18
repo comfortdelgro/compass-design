@@ -5,6 +5,7 @@ import {
   DOMAttributes,
   FieldOptions,
   Granularity,
+  LabelableProps,
   OverlayTriggerState,
   RangeValue,
   TimeValue,
@@ -13,7 +14,6 @@ import {
 import {
   FocusableProps,
   HelpTextProps,
-  LabelableProps,
   Validation,
   ValueBase,
 } from './common.types'

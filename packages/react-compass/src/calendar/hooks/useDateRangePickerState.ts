@@ -206,10 +206,9 @@ export function useDateRangePickerState<T extends DateValue = DateValue>(
 
       const startOptions = getFormatOptions(fieldOptions, {
         granularity: startGranularity,
-        timeZone: startTimeZone,
-        hideTimeZone: props.hideTimeZone,
-        // @ts-ignore
-        hourCycle: props.hourCycle,
+        timeZone: startTimeZone ?? 'UTC',
+        hideTimeZone: !!props.hideTimeZone,
+        hourCycle: props.hourCycle ?? 24,
         showEra:
           (value.start.calendar.identifier === 'gregory' &&
             value.start.era === 'BC') ||
@@ -267,10 +266,9 @@ export function useDateRangePickerState<T extends DateValue = DateValue>(
       } else {
         const endOptions = getFormatOptions(fieldOptions, {
           granularity: endGranularity,
-          timeZone: endTimeZone,
-          hideTimeZone: props.hideTimeZone,
-          // @ts-ignore
-          hourCycle: props.hourCycle,
+          timeZone: endTimeZone ?? 'UTC',
+          hideTimeZone: !!props.hideTimeZone,
+          hourCycle: props.hourCycle ?? 24,
         })
         // @ts-ignore
         endFormatter = new DateFormatter(locale, endOptions)

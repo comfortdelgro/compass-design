@@ -1,9 +1,15 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import {Calendar, toCalendar} from '@internationalized/date'
-import {CalendarState, DateValue, HookData, RangeCalendarState} from '../types'
+import {
+  CalendarState,
+  DateFieldState,
+  DateValue,
+  HookData,
+  RangeCalendarState,
+} from '../types'
 
 export const hookData = new WeakMap<
-  CalendarState | RangeCalendarState,
+  CalendarState | RangeCalendarState | DateFieldState,
   HookData
 >()
 

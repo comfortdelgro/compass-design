@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
 import {
   CalendarDate,
   DateFormatter,
@@ -6,7 +8,7 @@ import {
   isToday,
 } from '@internationalized/date'
 import {useDateFormatter} from '@react-aria/i18n'
-import {MouseEvent, PointerEvent, RefObject, useMemo, useRef} from 'react'
+import {MouseEvent, PointerEvent, useMemo, useRef} from 'react'
 import {
   AriaCalendarCellProps,
   CalendarCellAria,
@@ -21,7 +23,6 @@ import {usePress} from './usePress'
 export function useCalendarCell(
   props: AriaCalendarCellProps,
   state: CalendarState | RangeCalendarState,
-  ref: RefObject<HTMLElement>,
 ): CalendarCellAria {
   let {date, isDisabled} = props
   const {errorMessageId, selectedDateDescription} = hookData.get(state) ?? {
@@ -37,10 +38,10 @@ export function useCalendarCell(
     era: undefined,
     timeZone: state.timeZone,
   })
-  let isSelected = state.isSelected(date)
-  const isFocused = state.isCellFocused(date)
-  isDisabled = isDisabled || state.isCellDisabled(date)
-  const isUnavailable = state.isCellUnavailable(date)
+  let isSelected = state.isSelected?.(date) as boolean
+  const isFocused = state.isCellFocused?.(date) as boolean
+  isDisabled = isDisabled || (state.isCellDisabled?.(date) as boolean)
+  const isUnavailable = state.isCellUnavailable?.(date) as boolean
   const isSelectable = !isDisabled && !isUnavailable
   const isInvalid =
     state.validationState === 'invalid' &&
@@ -62,11 +63,11 @@ export function useCalendarCell(
   lastDate.current = date
 
   const nativeDate = useMemo(
-    () => date.toDate(state.timeZone),
+    () => date.toDate(state.timeZone ?? 'UTC'),
     [date, state.timeZone],
   )
 
-  const isDateToday = isToday(date, state.timeZone)
+  const isDateToday = isToday(date, state.timeZone ?? 'UTC')
   const label = useMemo(() => {
     let label = ''
 
@@ -126,10 +127,10 @@ export function useCalendarCell(
   const {pressProps, isPressed} = usePress({
     shouldCancelOnPointerExit: 'anchorDate' in state && !!state.anchorDate,
     preventFocusOnPress: true,
-    isDisabled: !isSelectable || state.isReadOnly,
+    isDisabled: !isSelectable || (state.isReadOnly as boolean),
     onPressStart(e) {
       if (state.isReadOnly) {
-        state.setFocusedDate(date)
+        state.setFocusedDate?.(date)
         return
       }
 
@@ -141,13 +142,13 @@ export function useCalendarCell(
         if (state.highlightedRange && !isInvalid) {
           if (isSameDay(date, state.highlightedRange.start)) {
             state.setAnchorDate(state.highlightedRange.end)
-            state.setFocusedDate(date)
+            state.setFocusedDate?.(date)
             state.setDragging(true)
             isRangeBoundaryPressed.current = true
             return
           } else if (isSameDay(date, state.highlightedRange.end)) {
             state.setAnchorDate(state.highlightedRange.start)
-            state.setFocusedDate(date)
+            state.setFocusedDate?.(date)
             state.setDragging(true)
             isRangeBoundaryPressed.current = true
             return
@@ -158,8 +159,8 @@ export function useCalendarCell(
           state.setDragging(true)
           touchDragTimerRef.current = null
 
-          state.selectDate(date)
-          state.setFocusedDate(date)
+          state.selectDate?.(date)
+          state.setFocusedDate?.(date)
           isAnchorPressed.current = true
         }
 
@@ -180,8 +181,8 @@ export function useCalendarCell(
     },
     onPress() {
       if (!('anchorDate' in state) && !state.isReadOnly) {
-        state.selectDate(date)
-        state.setFocusedDate(date)
+        state.selectDate?.(date)
+        state.setFocusedDate?.(date)
       }
     },
     onPressUp(e) {
@@ -193,8 +194,8 @@ export function useCalendarCell(
       // timer will still be in progress. In this case, select the date on touch up.
       // Timer is cleared in onPressEnd.
       if ('anchorDate' in state && touchDragTimerRef.current) {
-        state.selectDate(date)
-        state.setFocusedDate(date)
+        state.selectDate?.(date)
+        state.setFocusedDate?.(date)
       }
 
       if ('anchorDate' in state) {
@@ -205,25 +206,25 @@ export function useCalendarCell(
           state.setAnchorDate(date)
         } else if (state.anchorDate && !isAnchorPressed.current) {
           // When releasing a drag or pressing the end date of a range, select it.
-          state.selectDate(date)
-          state.setFocusedDate(date)
+          state.selectDate?.(date)
+          state.setFocusedDate?.(date)
         } else if (e.pointerType === 'keyboard' && !state.anchorDate) {
           // For range selection, auto-advance the focused date by one if using keyboard.
           // This gives an indication that you're selecting a range rather than a single date.
           // For mouse, this is unnecessary because users will see the indication on hover. For screen readers,
           // there will be an announcement to "click to finish selecting range" (above).
-          state.selectDate(date)
+          state.selectDate?.(date)
           let nextDay = date.add({days: 1})
-          if (state.isInvalid(nextDay)) {
+          if (state.isInvalid?.(nextDay)) {
             nextDay = date.subtract({days: 1})
           }
-          if (!state.isInvalid(nextDay)) {
-            state.setFocusedDate(nextDay)
+          if (!state.isInvalid?.(nextDay)) {
+            state.setFocusedDate?.(nextDay)
           }
         } else if (e.pointerType === 'virtual') {
           // For screen readers, just select the date on click.
-          state.selectDate(date)
-          state.setFocusedDate(date)
+          state.selectDate?.(date)
+          state.setFocusedDate?.(date)
         }
       }
     },
@@ -231,7 +232,7 @@ export function useCalendarCell(
 
   let tabIndex = undefined
   if (!isDisabled) {
-    tabIndex = isSameDay(date, state.focusedDate) ? 0 : -1
+    tabIndex = isSameDay(date, state.focusedDate as CalendarDate) ? 0 : -1
   }
 
   const cellDateFormatter: DateFormatter = useDateFormatter({
@@ -259,7 +260,7 @@ export function useCalendarCell(
       ...pressProps,
       onFocus() {
         if (!isDisabled) {
-          state.setFocusedDate(date)
+          state.setFocusedDate?.(date)
         }
       },
       tabIndex,
@@ -294,8 +295,8 @@ export function useCalendarCell(
     isDisabled,
     isUnavailable,
     isOutsideVisibleRange:
-      date.compare(state.visibleRange.start) < 0 ||
-      date.compare(state.visibleRange.end) > 0,
+      date.compare(state?.visibleRange?.start as CalendarDate) < 0 ||
+      date.compare(state?.visibleRange?.end as CalendarDate) > 0,
     isInvalid,
     formattedDate,
   }

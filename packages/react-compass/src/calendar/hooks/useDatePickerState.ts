@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/prefer-ts-expect-error */
 import {
@@ -139,10 +140,8 @@ export function useDatePickerState<T extends DateValue = DateValue>(
       const formatOptions = getFormatOptions(fieldOptions, {
         granularity,
         timeZone: defaultTimeZone,
-        hideTimeZone: props.hideTimeZone,
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-expect-error
-        hourCycle: props.hourCycle,
+        hideTimeZone: !!props.hideTimeZone,
+        hourCycle: props.hourCycle ?? 24,
         showEra: value.calendar.identifier === 'gregory' && value.era === 'BC',
       })
 

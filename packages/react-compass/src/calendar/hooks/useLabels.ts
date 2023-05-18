@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
 import {AriaLabelingProps, DOMProps, LabelAria, LabelAriaProps} from '../types'
 import {useId} from './useId'
 
@@ -21,7 +22,7 @@ export function useLabels(
 
   return {
     id,
-    'aria-label': label,
+    'aria-label': label as string,
     'aria-labelledby': labelledBy,
   }
 }
@@ -47,7 +48,7 @@ export function useLabel(props: LabelAriaProps): LabelAria {
 
   const fieldProps = useLabels({
     id,
-    'aria-label': ariaLabel,
+    'aria-label': ariaLabel as string,
     'aria-labelledby': ariaLabelledby,
   })
 

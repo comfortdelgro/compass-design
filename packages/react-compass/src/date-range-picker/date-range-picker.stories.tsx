@@ -1,6 +1,7 @@
 import {StoryDecorator} from '@ladle/react'
 import type {RangeValue} from '@react-types/shared'
 import React from 'react'
+import {DateValue} from '../calendar/types'
 import {Column} from '../utils'
 import Calendar, {CalendarProps} from './../calendar'
 import DateRangePicker from './date-range-picker'
@@ -46,7 +47,10 @@ export const Controlled: React.FC = () => {
           range.start.toDate(getLocalTimeZone()),
           range.end.toDate(getLocalTimeZone()),
         )}
-      <DateRangePicker value={range} onChange={setRange} />
+      <DateRangePicker
+        value={range}
+        onChange={(e) => setRange(e as RangeValue<DateValue>)}
+      />
     </I18nProvider>
   )
 }
