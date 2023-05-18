@@ -125,11 +125,11 @@ const MultipleDropdown = React.forwardRef<
     if (selectedKeys) setCurrentKeys(selectedKeys)
   }, [selectedKeys])
 
-  React.useEffect(() => {
-    if (currentKeys.length > 0) {
-      props.onSelectionChange?.(currentKeys)
-    }
-  }, [currentKeys])
+  // React.useEffect(() => {
+  //   if (currentKeys.length > 0) {
+  //     props.onSelectionChange?.(currentKeys)
+  //   }
+  // }, [currentKeys])
 
   React.useEffect(() => {
     if (!isOpen && defaultOpen) {
@@ -165,6 +165,7 @@ const MultipleDropdown = React.forwardRef<
     if (currentKeys.includes(key)) {
       v.delete(key)
       setCurrentKeys([...v])
+      props.onSelectionChange?.([...v])
     }
   }
 
@@ -247,6 +248,7 @@ const MultipleDropdown = React.forwardRef<
         v.add(key)
       }
       setCurrentKeys([...v])
+      props.onSelectionChange?.([...v])
       setFocusKey(key)
     }
   }
