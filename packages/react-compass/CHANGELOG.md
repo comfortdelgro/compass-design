@@ -1,5 +1,11 @@
 ## 1.0.0-beta.0.0
 
+## 1.0.0-next.2
+
+### Minor Changes
+
+- c251fe81: Fix date.compare() in Calendar and label prop in textfield
+
 ## 1.0.0-next.1
 
 ### Patch Changes
