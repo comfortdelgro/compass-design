@@ -74,6 +74,10 @@ export const Controlled: React.FC = () => {
   )
 }
 
+export const Default: React.FC = () => {
+  return <DatePicker label='Date' isRequired />
+}
+
 export default {
   decorators: [
     (Component) => (

@@ -135,10 +135,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   // ====================================== EFFECT ======================================
   // map default value
   React.useEffect(() => {
-    if (selectedKey) {
-      setCurrentKey(selectedKey)
-    }
-  }, [selectedKey])
+    setCurrentKey(getDefaulValue(defaultSelectedKey, selectedKey))
+  }, [selectedKey, defaultSelectedKey])
 
   React.useEffect(() => {
     const getTextFromKey = (key: React.Key) => {

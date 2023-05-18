@@ -26,7 +26,7 @@ export interface Rect {
 }
 
 export interface ValueBase<T, C = T> {
-  value?: T
+  value?: T | null
   defaultValue?: T
   onChange?: (value: C) => void
 }

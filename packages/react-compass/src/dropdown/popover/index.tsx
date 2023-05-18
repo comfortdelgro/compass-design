@@ -34,8 +34,10 @@ function Popover({
 
       if (!isInViewport && popoverRef.current) {
         popoverRef.current.style.bottom = `${
-          (triggerRef.current?.clientHeight ?? 42) + 18
+          (triggerRef.current?.clientHeight ?? 42) + 10
         }px`
+      } else if (popoverRef.current) {
+        popoverRef.current.style.top = '8px'
       }
     }
   }, [])
