@@ -745,26 +745,6 @@
       "filePath": "src/range-calendar/range-calendar.stories.tsx",
       "meta": {}
     },
-    "rating--default": {
-      "name": "Default",
-      "levels": [
-        "Rating"
-      ],
-      "locStart": 5,
-      "locEnd": 12,
-      "filePath": "src/rating/rating.stories.tsx",
-      "meta": {}
-    },
-    "rating--using-icons": {
-      "name": "Using icons",
-      "levels": [
-        "Rating"
-      ],
-      "locStart": 13,
-      "locEnd": 20,
-      "filePath": "src/rating/rating.stories.tsx",
-      "meta": {}
-    },
     "rich-text-editor--cutomized": {
       "name": "Cutomized",
       "levels": [
