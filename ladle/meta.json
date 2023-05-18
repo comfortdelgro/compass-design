@@ -355,6 +355,16 @@
       "filePath": "src/date-picker/date-picker.stories.tsx",
       "meta": {}
     },
+    "date-picker--default": {
+      "name": "Default",
+      "levels": [
+        "Date picker"
+      ],
+      "locStart": 77,
+      "locEnd": 79,
+      "filePath": "src/date-picker/date-picker.stories.tsx",
+      "meta": {}
+    },
     "date-picker--variants": {
       "name": "Variants",
       "levels": [
