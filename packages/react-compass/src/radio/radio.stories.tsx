@@ -1,3 +1,4 @@
+import BugIcon from '@comfortdelgro/compass-icons/react/bug'
 import React from 'react'
 import {Column, Row} from '../utils/components'
 import Radio from './index'
@@ -9,7 +10,11 @@ export const Variants: React.FC = () => (
       <Radio.Group>
         <Radio
           variant='outlined'
-          label='test'
+          label={
+            <>
+              test <BugIcon />
+            </>
+          }
           description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
           value='1'
           tooltip='This is tooltip'

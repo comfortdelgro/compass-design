@@ -6,7 +6,7 @@ import Tooltip from './tooltip'
 
 interface Props extends StyledComponentProps {
   className?: string
-  label: string
+  label: React.ReactNode
   description?: string
   rightLabel?: string
   tooltip?: string
