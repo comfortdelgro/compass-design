@@ -13,7 +13,7 @@ import {
 
 interface Props extends StyledComponentProps {
   id?: string
-  label?: string
+  label?: React.ReactNode
   cols?: number
   rows?: number
   tabIndex?: number

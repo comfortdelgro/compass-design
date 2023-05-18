@@ -1,5 +1,4 @@
 import React from 'react'
-import {Icon, IconProp} from '../icon'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import type AvatarGroup from './avatar-group'
@@ -18,7 +17,7 @@ const calculateInitials = (name: string, size: AvatarVariantProps['size']) => {
 
 interface Props extends StyledComponentProps {
   label?: string
-  icon?: IconProp
+  icon?: React.ReactNode
   image?: string
 }
 
@@ -48,11 +47,7 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
       {label ? (
         <span className='initials'>{calculateInitials(label, size)}</span>
       ) : null}
-      {icon ? (
-        <div className='icon-wrapper'>
-          <Icon className='icon' icon={icon} />
-        </div>
-      ) : null}
+      {icon ? <div className='icon-wrapper'>{icon}</div> : null}
       {image ? (
         <img className='image' src={image} alt={label || 'Avatar'} />
       ) : null}

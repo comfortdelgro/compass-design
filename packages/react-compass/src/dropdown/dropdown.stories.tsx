@@ -11,7 +11,11 @@ export const Flag: React.FC = () => {
       <h3>Flag</h3>
       <Dropdown.Flag
         isRequired
-        label='List of country'
+        label={
+          <>
+            List of country <BugIcon />
+          </>
+        }
         placeholder='Choose a country'
         defaultSelectedCountry='SWZ'
         selectedKey={value}
@@ -39,7 +43,11 @@ export const Select: React.FC = () => {
       <h3>Controlled</h3>
       <Dropdown.Select
         isRequired
-        label='Favorite Animal'
+        label={
+          <>
+            Favorite Animal <BugIcon />
+          </>
+        }
         placeholder='Choose an animal'
         selectedKey={value}
         onSelectionChange={(k: Key) => setValue(k)}
@@ -251,7 +259,11 @@ export const ComboBox: React.FC = () => {
       <h3>Controlled</h3>
       <Dropdown.ComboBox
         isRequired
-        label='Favorite Animal'
+        label={
+          <>
+            Favorite Animal <BugIcon />
+          </>
+        }
         placeholder='Choose an animal'
         selectedKey={value}
         onSelectionChange={(k: Key) => setValue(k)}

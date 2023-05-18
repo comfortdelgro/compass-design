@@ -1,3 +1,4 @@
+import BugIcon from '@comfortdelgro/compass-icons/react/bug'
 import type {StoryDecorator} from '@ladle/react'
 import React, {useState} from 'react'
 import {Column} from '../utils/components'
@@ -10,7 +11,11 @@ export const Variants: React.FC = () => {
     <Column>
       <Textarea placeholder='Enter your message' />
       <Textarea
-        label='Text Label'
+        label={
+          <>
+            Text Label <BugIcon />
+          </>
+        }
         placeholder='Enter your message'
         isRequired
       />

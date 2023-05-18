@@ -14,7 +14,7 @@ import {
 
 interface Props extends StyledComponentProps {
   id?: string
-  label?: string
+  label?: React.ReactNode
   isErrored?: boolean
   isRequired?: boolean
   isDisabled?: boolean

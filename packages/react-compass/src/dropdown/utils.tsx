@@ -171,7 +171,7 @@ export interface KeyboardDelegate {
   getLastKey?(key?: Key, global?: boolean): Key | null
 }
 export interface DropdownBase extends StyledComponentProps {
-  label?: string
+  label?: React.ReactNode
   isOpen?: boolean
   isLoading?: boolean
   autoFocus?: boolean
