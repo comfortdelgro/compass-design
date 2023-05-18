@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/dot-notation */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unnecessary-condition */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
@@ -303,7 +305,7 @@ export function useDateSegment(
           enteredKeys.current = ''
           if (shouldSetValue) {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-            focusManager.focusNext()
+            focusManager?.focusNext()
           }
         } else {
           enteredKeys.current = newValue
