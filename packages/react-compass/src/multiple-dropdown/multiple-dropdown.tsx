@@ -122,8 +122,8 @@ const MultipleDropdown = React.forwardRef<
 
   // ====================================== EFFECT ======================================
   React.useEffect(() => {
-    if (selectedKeys) setCurrentKeys(selectedKeys)
-  }, [selectedKeys])
+    setCurrentKeys(getDefaulValues(defaultSelectedKeys, selectedKeys))
+  }, [selectedKeys, defaultSelectedKeys])
 
   // React.useEffect(() => {
   //   if (currentKeys.length > 0) {
