@@ -4,7 +4,6 @@ export const StyledPopover = styled('div', {
   position: 'absolute',
   zIndex: '$$zIndex',
   margin: 0,
-  top: '$2',
   padding: '$2 0',
   borderRadius: '$md',
   width: 'fit-content',
