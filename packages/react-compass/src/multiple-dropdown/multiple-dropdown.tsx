@@ -149,6 +149,9 @@ const MultipleDropdown = React.forwardRef<
       firstBlur.current = false
     } else if (!firstBlur.current) {
       props.onBlur?.()
+    }
+  }, [open])
+
     } else {
       inputRef.current?.blur()
     }

@@ -84,3 +84,4 @@ const Rating = React.forwardRef<HTMLDivElement, RatingProps>((props, ref) => {
 })
 
 export default Rating
+
