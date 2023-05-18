@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/prefer-ts-expect-error */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import {Calendar, toCalendar} from '@internationalized/date'
 import {
@@ -18,6 +19,9 @@ export function isInvalid(
   minValue: DateValue,
   maxValue: DateValue,
 ) {
+  if (date == null) {
+    return false
+  }
   return (
     (minValue != null && date.compare(minValue) < 0) ||
     (maxValue != null && date.compare(maxValue) > 0)
