@@ -6,7 +6,8 @@ interface Props {
   triggerRef: React.RefObject<HTMLDivElement>
   popoverRef: React.RefObject<HTMLDivElement>
   children: React.ReactNode
-  isEmpty?: boolean
+  maxULHeight: number | undefined
+  isEmpty: boolean
   close: () => void
   handleKeyDown: (e: KeyboardEvent) => void
 }
@@ -14,6 +15,7 @@ interface Props {
 function Popover({
   children,
   triggerRef,
+  maxULHeight,
   close,
   handleKeyDown,
   ...props
@@ -63,7 +65,10 @@ function Popover({
             : '100%',
           display: isEmpty ? 'none' : '',
         }}
-        css={{$$zIndex: LISTBOX_Z_INDEX}}
+        css={{
+          $$zIndex: LISTBOX_Z_INDEX,
+          ul: {maxHeight: maxULHeight ? `${maxULHeight}px` : '16rem'},
+        }}
       >
         {children}
       </StyledPopover>

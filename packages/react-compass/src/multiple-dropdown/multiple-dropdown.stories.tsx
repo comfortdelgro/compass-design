@@ -140,6 +140,20 @@ export const Default: React.FC = () => {
         <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
       </MultipleDropdown>
 
+      <h3>Number of rows</h3>
+      <MultipleDropdown
+        label='Favorite Animal'
+        placeholder='Choose an animal'
+        numberOfRows={4}
+      >
+        <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
+        <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
+        <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
+        <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
+        <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
+        <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+      </MultipleDropdown>
+
       <h3>Disabled</h3>
       <MultipleDropdown
         label='Favorite Animal'
