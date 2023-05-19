@@ -35,6 +35,10 @@ export const StyledRatingComponent = styled('div', {
       display: 'flex',
       alignItems: 'center',
     },
+    '.children > .emo-icons': {
+      width: '2rem',
+      height: '2rem',
+    },
   },
 })
 export type RatingVariantProps = VariantProps<typeof StyledRatingComponent>
