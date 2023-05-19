@@ -101,8 +101,18 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
             {...cellProps}
             css={css}
             className={classNameCombine()}
-            {...buttonProps}
+            aria-label={buttonProps['aria-label']}
+            aria-disabled={buttonProps['aria-disabled']}
+            aria-invalid={buttonProps['aria-invalid']}
+            role={buttonProps['role']}
+            tabIndex={buttonProps['tabIndex']}
             {...focusProps}
+            onClick={(e) => {
+              buttonProps.onMouseDown?.(e)
+            }}
+            onMouseDown={(e) => {
+              buttonProps.onMouseDown?.(e)
+            }}
           >
             <div
               ref={cellRef}
