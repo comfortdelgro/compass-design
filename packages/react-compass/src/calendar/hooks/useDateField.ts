@@ -80,7 +80,7 @@ export function useDateField<T extends DateValue>(
     ariaLabelledBy:
       [props['aria-labelledby'], labelProps.id].filter(Boolean).join(' ') || '',
     //ariaDescribedBy: describedBy,
-    //focusManager,
+    focusManager,
   })
 
   const autoFocusRef = useRef(props.autoFocus)
