@@ -19,7 +19,7 @@ interface Props extends StyledComponentProps {
   state: CalendarState | RangeCalendarState
   date: CalendarDate
   currentMonth: CalendarDate
-  maxValue?: DateValue
+  maxValue?: DateValue | null | undefined
 }
 
 const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
@@ -69,7 +69,7 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
     }
 
     const maxValueClassFunc = () => {
-      if (date > maxValue) {
+      if (maxValue && date > maxValue) {
         isDisabled = true
       }
       return
