@@ -7,6 +7,7 @@
  * This source code is licensed under the Apache License, Version 2.0
  * found in the LICENSE.txt file at the root directory of this source tree.
  */
+
 import {LocalizedString} from './LocalizedStringFormatter'
 
 export type LocalizedStrings<K extends string, T extends LocalizedString> = {
