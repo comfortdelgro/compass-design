@@ -18,7 +18,7 @@ export const StyledDropdownWrapper = styled('div', {
 
 export const StyledDropdown = styled('div', {
   width: '100%',
-  height: '$11',
+  minHeight: '$11',
   borderRadius: '$md',
   cursor: 'text',
   display: 'flex',
