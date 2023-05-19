@@ -14,6 +14,7 @@ interface Props extends StyledComponentProps {
   items?: string[]
   currentStep?: number
   children?: React.ReactNode
+  onStepClick?: (index: number) => void
 }
 
 export type WizardProps = Props & WizardVariantProps
@@ -26,6 +27,7 @@ const Wizard = React.forwardRef<HTMLDivElement, WizardProps>((props, ref) => {
     currentStep = 1,
     children,
     items,
+    onStepClick,
     ...delegated
   } = props
 
@@ -60,6 +62,8 @@ const Wizard = React.forwardRef<HTMLDivElement, WizardProps>((props, ref) => {
               />
               <StyledItem
                 active={currentStep > index + 1 || index + 1 === currentStep}
+                onClick={() => onStepClick?.(index + 1)}
+                css={{cursor: onStepClick ? 'pointer' : ''}}
               >
                 {currentStep > index + 1 ? <TickIcon /> : index + 1}
               </StyledItem>
