@@ -75,7 +75,7 @@ export const useCalendarState = (
     onChange,
   } = props
   const onFocusChangeProp = () => {
-    console.log('onFocusChange')
+    //
   }
 
   const [value, setControlledValue] = useControlledState(
