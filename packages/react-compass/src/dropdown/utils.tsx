@@ -183,10 +183,11 @@ export interface DropdownBase extends StyledComponentProps {
   placeholder?: string
   errorMessage?: string
   defaultOpen?: boolean
+  numberOfRows?: number
   icon?: React.ReactNode
+  disabledKeys?: React.Key[]
   children?: React.ReactNode
   description?: React.ReactNode
-  disabledKeys?: React.Key[]
   onBlur?: () => void
   onFocus?: () => void
   onLoadMore?: () => void
