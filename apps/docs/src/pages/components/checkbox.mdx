@@ -33,6 +33,7 @@ import Checkbox from '@comfortdelgro/react-compass/checkbox'
 
 <section className={styles.avatarShowcaseContainer}>
  <Column>
+    <h3>Default</h3>
     <Column>
       <Checkbox isSelected={false}>Unselected</Checkbox>
       <Checkbox isSelected>Selected</Checkbox>
@@ -45,6 +46,9 @@ import Checkbox from '@comfortdelgro/react-compass/checkbox'
       </Checkbox>
       <Checkbox isIndeterminate isDisabled isSelected>
         Indeterminate (disabled)
+      </Checkbox>
+      <Checkbox isSelected isReadOnly>
+        Read ony
       </Checkbox>
     </Column>
 
@@ -67,6 +71,9 @@ import Checkbox from '@comfortdelgro/react-compass/checkbox'
       </Checkbox>
       <Checkbox variant='rounded' isIndeterminate isDisabled isSelected>
         Indeterminate (disabled)
+      </Checkbox>
+      <Checkbox isSelected isReadOnly>
+        Read ony
       </Checkbox>
     </Column>
 
@@ -112,6 +119,15 @@ import Checkbox from '@comfortdelgro/react-compass/checkbox'
           isDisabled
           defaultSelected
         />
+      </Row>
+    </Column>
+
+    <h3>4. HTML forms</h3>
+    <Column>
+      <Row>
+        <Checkbox name='newsletter' value='subscribe'>
+          Subscribe
+        </Checkbox>
       </Row>
     </Column>
 
@@ -196,6 +212,15 @@ import Checkbox from '@comfortdelgro/react-compass/checkbox'
       <Checkbox variant='rounded' isIndeterminate isDisabled defaultSelected />
     </Row>
   </Column>
+
+  <h3>4. HTML forms</h3>
+    <Column>
+      <Row>
+        <Checkbox name='newsletter' value='subscribe'>
+          Subscribe
+        </Checkbox>
+      </Row>
+    </Column>
 </Column>
 ```
 
