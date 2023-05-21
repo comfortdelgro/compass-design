@@ -38,8 +38,8 @@ interface DateFieldBase<T extends DateValue>
     LabelableProps,
     HelpTextProps,
     OverlayTriggerProps {
-  minValue?: DateValue
-  maxValue?: DateValue
+  minValue?: DateValue | null | undefined
+  maxValue?: DateValue | null | undefined
   isDateUnavailable?: (date: DateValue) => boolean
   placeholderValue?: T
   hourCycle?: 12 | 24

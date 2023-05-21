@@ -32,7 +32,7 @@ interface Props
   isMobile?: boolean
   shouldCloseOnSelect?: boolean
   onCancel?: (() => void) | undefined
-  maxValue?: DateValue
+  maxValue?: DateValue | null | undefined
   calendarCSS?: CSS
   helperText?: React.ReactNode
 }
@@ -163,7 +163,7 @@ interface DatePickerCalendarWrapperProps {
   dialogProps: AriaDialogProps
   calendarProps: CalendarProps
   onCancel?: (() => void) | undefined
-  maxValue?: DateValue
+  maxValue?: DateValue | null | undefined
   css?: CSS | undefined
 }
 

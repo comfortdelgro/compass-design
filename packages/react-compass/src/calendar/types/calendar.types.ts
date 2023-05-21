@@ -272,8 +272,8 @@ export interface SpectrumDatePickerProps<T extends DateValue>
     SpectrumDatePickerBase {}
 
 export interface CalendarPropsBase {
-  minValue?: DateValue
-  maxValue?: DateValue
+  minValue?: DateValue | null | undefined
+  maxValue?: DateValue | null | undefined
   isDateUnavailable?: (date: DateValue) => boolean
   isDisabled?: boolean
   isReadOnly?: boolean
