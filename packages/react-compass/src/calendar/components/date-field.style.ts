@@ -18,10 +18,14 @@ export const StyledDateField = styled('div', {
     height: '$11',
     display: 'flex',
     alignItems: 'center',
-    padding: '0 $4',
+    padding: '0 0 0 $4',
     backgroundColor: '$background',
-    border: '2px solid $gray30',
+    border: '1px solid $gray30',
     borderRadius: '$md',
+  },
+
+  '& .date-field-input.mobile:active': {
+    backgroundColor: '$gray60',
   },
 
   '& .toggle-calendar-button': {
@@ -66,6 +70,46 @@ export const StyledLabelNecessity = styled('span', {
     isText: {
       true: {
         fontSize: '$label2',
+      },
+    },
+  },
+})
+
+export const StyledExpandButton = styled('button', {
+  border: 'none',
+  margin: '0',
+  width: 'auto',
+  overflow: 'visible',
+  background: 'transparent',
+  color: 'inherit',
+  font: 'inherit',
+  lineHeight: 'normal',
+  WebkitFontSmoothing: 'inherit',
+  MozOsxFontSmoothing: 'inherit',
+  WebkitAppearance: 'none',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  cursor: 'pointer',
+  padding: '$2 $4',
+
+  '&:focus-visible': {
+    outline: '2px solid $cdgBlue80',
+    borderRadius: '2px',
+  },
+})
+
+export const StyledTextFieldHelperText = styled('div', {
+  fontSize: '$label2',
+  fontWeight: '$medium',
+  transition: '$default',
+  marginTop: '$1',
+  color: '$gray70',
+
+  variants: {
+    error: {
+      true: {
+        color: '$danger',
       },
     },
   },

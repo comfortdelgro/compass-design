@@ -6,6 +6,8 @@ interface Props {
   triggerRef: React.RefObject<HTMLDivElement>
   popoverRef: React.RefObject<HTMLDivElement>
   children: React.ReactNode
+  maxULHeight: number | undefined
+  isEmpty: boolean
   close: () => void
   handleKeyDown: (e: KeyboardEvent) => void
 }
@@ -13,12 +15,13 @@ interface Props {
 function Popover({
   children,
   triggerRef,
+  maxULHeight,
   close,
   handleKeyDown,
   ...props
 }: Props) {
   const ref = React.useRef(null)
-  const {popoverRef = ref} = props
+  const {popoverRef = ref, isEmpty = false} = props
 
   React.useEffect(() => {
     const rect = popoverRef.current?.getBoundingClientRect()
@@ -33,8 +36,10 @@ function Popover({
 
       if (!isInViewport && popoverRef.current) {
         popoverRef.current.style.bottom = `${
-          (triggerRef.current?.clientHeight ?? 42) + 18
+          (triggerRef.current?.clientHeight ?? 42) + 10
         }px`
+      } else if (popoverRef.current) {
+        popoverRef.current.style.top = '8px'
       }
     }
   }, [])
@@ -58,8 +63,12 @@ function Popover({
           minWidth: triggerRef.current?.clientWidth
             ? triggerRef.current.clientWidth + 2
             : '100%',
+          display: isEmpty ? 'none' : '',
         }}
-        css={{$$zIndex: LISTBOX_Z_INDEX}}
+        css={{
+          $$zIndex: LISTBOX_Z_INDEX,
+          ul: {maxHeight: maxULHeight ? `${maxULHeight}px` : '16rem'},
+        }}
       >
         {children}
       </StyledPopover>

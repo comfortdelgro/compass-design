@@ -1,6 +1,5 @@
-import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons'
+import BugIcon from '@comfortdelgro/compass-icons/react/bug'
 import React, {Key} from 'react'
-import Icon from '../icon'
 import {Column} from '../utils/components'
 import MultipleDropdown from './index'
 
@@ -21,7 +20,7 @@ export const Default: React.FC = () => {
         onFocus={() => console.log('focus')}
       >
         <MultipleDropdown.Item key='red panda'>
-          <Icon icon={faExclamationTriangle} style={{marginRight: 5}} />
+          <BugIcon style={{marginRight: 5}} />
           Red Panda
         </MultipleDropdown.Item>
         <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
@@ -131,7 +130,21 @@ export const Default: React.FC = () => {
       <MultipleDropdown
         label='Favorite Animal'
         placeholder='Choose an animal'
-        icon={<Icon icon={faExclamationTriangle} />}
+        icon={<BugIcon />}
+      >
+        <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
+        <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
+        <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
+        <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
+        <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
+        <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+      </MultipleDropdown>
+
+      <h3>Number of rows</h3>
+      <MultipleDropdown
+        label='Favorite Animal'
+        placeholder='Choose an animal'
+        numberOfRows={4}
       >
         <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
         <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
@@ -153,7 +166,7 @@ export const Default: React.FC = () => {
         isDisabled
       >
         <MultipleDropdown.Item key='red panda'>
-          <Icon icon={faExclamationTriangle} style={{marginRight: 5}} />
+          <BugIcon style={{marginRight: 5}} />
           Red Panda
         </MultipleDropdown.Item>
         <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>

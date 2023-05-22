@@ -1,3 +1,13 @@
+/**
+ * This file contains code adapted from the React Spectrum project.
+ *
+ * Copyright (c) [year(s)], Adobe Inc. and other contributors.
+ * All rights reserved.
+ *
+ * This source code is licensed under the Apache License, Version 2.0
+ * found in the LICENSE.txt file at the root directory of this source tree.
+ */
+
 /* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
@@ -144,6 +154,7 @@ export default function useNumberField(
 
   const incrementButtonProps = {
     'aria-label': 'increase',
+    type: 'button',
     disabled: !state.canIncrement,
     onClick: () => {
       onButtonPressStart()
@@ -154,6 +165,7 @@ export default function useNumberField(
 
   const decrementButtonProps = {
     'aria-label': 'decrease',
+    type: 'button',
     disabled: !state.canDecrement,
     onClick: () => {
       onButtonPressStart()

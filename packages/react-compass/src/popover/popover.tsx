@@ -61,8 +61,14 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside)
+    document.querySelectorAll('[role="rowgroup"]').forEach(function (el) {
+      el.addEventListener('click', handleClickOutside as EventListener)
+    })
     return () => {
       document.removeEventListener('mousedown', handleClickOutside)
+      document.querySelectorAll('[role="rowgroup"]').forEach(function (el) {
+        el.removeEventListener('click', handleClickOutside as EventListener)
+      })
     }
   })
 

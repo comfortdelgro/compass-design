@@ -7,20 +7,19 @@ import {
   isToday as isTodayFunction,
   parseDate,
 } from '@internationalized/date'
-import {useCalendarCell} from '@react-aria/calendar'
 import {useFocusRing} from '@react-aria/focus'
-import {mergeProps} from '@react-aria/utils'
-import {CalendarState, RangeCalendarState} from '@react-stately/calendar'
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {StyledCalendarCell} from './calendar-cell.style'
+import {useCalendarCell} from './hooks/useCalendarCell'
+import {CalendarState, RangeCalendarState} from './types'
 
 interface Props extends StyledComponentProps {
   state: CalendarState | RangeCalendarState
   date: CalendarDate
   currentMonth: CalendarDate
-  maxValue?: DateValue
+  maxValue?: DateValue | null | undefined
 }
 
 const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
@@ -30,22 +29,15 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
       date,
       currentMonth,
       css = {},
-      //maxValue = today(getLocalTimeZone()),
       maxValue = parseDate('2099-02-17'),
     } = props
 
     const cellRef = useDOMRef(ref)
 
-    const {
-      cellProps,
-      buttonProps,
-      isSelected,
+    const {cellProps, buttonProps, isSelected, isUnavailable, formattedDate} =
+      useCalendarCell({date}, state)
 
-      isUnavailable,
-      formattedDate,
-    } = useCalendarCell({date}, state, cellRef)
-
-    let {isDisabled} = useCalendarCell({date}, state, cellRef)
+    let {isDisabled} = useCalendarCell({date}, state)
 
     const isOutsideMonth = !isSameMonth(currentMonth, date)
 
@@ -77,7 +69,7 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
     }
 
     const maxValueClassFunc = () => {
-      if (date > maxValue) {
+      if (maxValue && date > maxValue) {
         isDisabled = true
       }
       return
@@ -109,7 +101,18 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
             {...cellProps}
             css={css}
             className={classNameCombine()}
-            {...mergeProps(buttonProps, focusProps)}
+            aria-label={buttonProps['aria-label']}
+            aria-disabled={buttonProps['aria-disabled']}
+            aria-invalid={buttonProps['aria-invalid']}
+            role={buttonProps['role']}
+            tabIndex={buttonProps['tabIndex']}
+            {...focusProps}
+            onClick={(e) => {
+              buttonProps.onMouseDown?.(e)
+            }}
+            onMouseDown={(e) => {
+              buttonProps.onMouseDown?.(e)
+            }}
           >
             <div
               ref={cellRef}

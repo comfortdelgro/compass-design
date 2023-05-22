@@ -1,6 +1,5 @@
-import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons'
+import BugIcon from '@comfortdelgro/compass-icons/react/bug'
 import React, {Key} from 'react'
-import Icon from '../icon'
 import {Column} from '../utils/components'
 import Dropdown from './index'
 
@@ -12,7 +11,11 @@ export const Flag: React.FC = () => {
       <h3>Flag</h3>
       <Dropdown.Flag
         isRequired
-        label='List of country'
+        label={
+          <>
+            List of country <BugIcon />
+          </>
+        }
         placeholder='Choose a country'
         defaultSelectedCountry='SWZ'
         selectedKey={value}
@@ -40,22 +43,23 @@ export const Select: React.FC = () => {
       <h3>Controlled</h3>
       <Dropdown.Select
         isRequired
-        label='Favorite Animal'
+        label={
+          <>
+            Favorite Animal <BugIcon />
+          </>
+        }
         placeholder='Choose an animal'
         selectedKey={value}
         onSelectionChange={(k: Key) => setValue(k)}
         onBlur={() => console.log('blur')}
         onFocus={() => console.log('focus')}
       >
-        <Dropdown.Item
-          key='red panda'
-          leftIcon={<Icon icon={faExclamationTriangle} />}
-        >
+        <Dropdown.Item key='red panda' leftIcon={<BugIcon />}>
           Red Panda Red Panda Red Panda Red Panda Red Panda
         </Dropdown.Item>
         <Dropdown.Item
           key='cat'
-          leftIcon={<Icon icon={faExclamationTriangle} />}
+          leftIcon={<BugIcon />}
           type='color'
           rightColor='red'
           textValue='pandared'
@@ -76,15 +80,12 @@ export const Select: React.FC = () => {
         selectedKey={value1}
         onSelectionChange={(k: Key) => setValue1(k)}
       >
-        <Dropdown.Item
-          key='red panda'
-          leftIcon={<Icon icon={faExclamationTriangle} />}
-        >
+        <Dropdown.Item key='red panda' leftIcon={<BugIcon />}>
           Red Panda Red Panda Red Panda Red Panda Red Panda
         </Dropdown.Item>
         <Dropdown.Item
           key='cat'
-          leftIcon={<Icon icon={faExclamationTriangle} />}
+          leftIcon={<BugIcon />}
           type='color'
           rightColor='red'
           textValue='pandared'
@@ -105,15 +106,12 @@ export const Select: React.FC = () => {
         onSelectionChange={(k: Key) => setValue1(k)}
         disabledKeys={['dog']}
       >
-        <Dropdown.Item
-          key='red panda'
-          leftIcon={<Icon icon={faExclamationTriangle} />}
-        >
+        <Dropdown.Item key='red panda' leftIcon={<BugIcon />}>
           Red Panda Red Panda Red Panda Red Panda Red Panda
         </Dropdown.Item>
         <Dropdown.Item
           key='cat'
-          leftIcon={<Icon icon={faExclamationTriangle} />}
+          leftIcon={<BugIcon />}
           type='color'
           rightColor='red'
           textValue='pandared'
@@ -134,7 +132,7 @@ export const Select: React.FC = () => {
       >
         <Dropdown.Item
           key='red panda'
-          leftIcon={<Icon icon={faExclamationTriangle} />}
+          leftIcon={<BugIcon />}
           textValue='pandared'
         >
           Red Panda
@@ -154,10 +152,7 @@ export const Select: React.FC = () => {
         isErrored
         errorMessage='Error Message'
       >
-        <Dropdown.Item
-          key='red panda'
-          leftIcon={<Icon icon={faExclamationTriangle} />}
-        >
+        <Dropdown.Item key='red panda' leftIcon={<BugIcon />}>
           Red Panda
         </Dropdown.Item>
         <Dropdown.Item key='cat' type='color' rightColor='red'>
@@ -230,7 +225,20 @@ export const Select: React.FC = () => {
       <Dropdown.Select
         label='Favorite Animal'
         placeholder='Choose an animal'
-        icon={<Icon icon={faExclamationTriangle} />}
+        icon={<BugIcon />}
+      >
+        <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
+        <Dropdown.Item key='cat'>Cat</Dropdown.Item>
+        <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+        <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+        <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+      </Dropdown.Select>
+      <h3>Number of rows</h3>
+      <Dropdown.Select
+        label='Favorite Animal'
+        placeholder='Choose an animal'
+        numberOfRows={4}
       >
         <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
         <Dropdown.Item key='cat'>Cat</Dropdown.Item>
@@ -264,17 +272,18 @@ export const ComboBox: React.FC = () => {
       <h3>Controlled</h3>
       <Dropdown.ComboBox
         isRequired
-        label='Favorite Animal'
+        label={
+          <>
+            Favorite Animal <BugIcon />
+          </>
+        }
         placeholder='Choose an animal'
         selectedKey={value}
         onSelectionChange={(k: Key) => setValue(k)}
         onBlur={() => console.log('blur')}
         onFocus={() => console.log('focus')}
       >
-        <Dropdown.Item
-          key='red panda'
-          leftIcon={<Icon icon={faExclamationTriangle} />}
-        >
+        <Dropdown.Item key='red panda' leftIcon={<BugIcon />}>
           Red Panda Red Panda Red Panda Red Panda Red Panda
         </Dropdown.Item>
         <Dropdown.Item key='cat' type='color' rightColor='red'>
@@ -294,10 +303,7 @@ export const ComboBox: React.FC = () => {
         selectedKey={value}
         onSelectionChange={(k: Key) => setValue(k)}
       >
-        <Dropdown.Item
-          key='red panda'
-          leftIcon={<Icon icon={faExclamationTriangle} />}
-        >
+        <Dropdown.Item key='red panda' leftIcon={<BugIcon />}>
           Red Panda Red Panda Red Panda Red Panda Red Panda
         </Dropdown.Item>
         <Dropdown.Item key='cat' type='color' rightColor='red'>
@@ -310,10 +316,7 @@ export const ComboBox: React.FC = () => {
       </Dropdown.ComboBox>
       <h3>UnControlled</h3>
       <Dropdown.ComboBox label='Favorite Animal' placeholder='Choose an animal'>
-        <Dropdown.Item
-          key='red panda'
-          leftIcon={<Icon icon={faExclamationTriangle} />}
-        >
+        <Dropdown.Item key='red panda' leftIcon={<BugIcon />}>
           Red Panda
         </Dropdown.Item>
         <Dropdown.Item key='cat' type='color' rightColor='red'>
@@ -331,10 +334,7 @@ export const ComboBox: React.FC = () => {
         isErrored
         errorMessage='Error Message'
       >
-        <Dropdown.Item
-          key='red panda'
-          leftIcon={<Icon icon={faExclamationTriangle} />}
-        >
+        <Dropdown.Item key='red panda' leftIcon={<BugIcon />}>
           Red Panda
         </Dropdown.Item>
         <Dropdown.Item key='cat' type='color' rightColor='red'>
@@ -407,7 +407,20 @@ export const ComboBox: React.FC = () => {
       <Dropdown.ComboBox
         label='Favorite Animal'
         placeholder='Choose an animal'
-        icon={<Icon icon={faExclamationTriangle} />}
+        icon={<BugIcon />}
+      >
+        <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
+        <Dropdown.Item key='cat'>Cat</Dropdown.Item>
+        <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+        <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+        <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+      </Dropdown.ComboBox>
+      <h3>Number of rows</h3>
+      <Dropdown.ComboBox
+        label='Favorite Animal'
+        placeholder='Choose an animal'
+        numberOfRows={4}
       >
         <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
         <Dropdown.Item key='cat'>Cat</Dropdown.Item>

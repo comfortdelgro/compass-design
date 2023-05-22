@@ -11,6 +11,7 @@ import {
   VolumeIcon,
 } from './icon'
 import {
+  ErrorVariantProps,
   StyledButtonWrapper,
   StyledControllerWrapper,
   StyledSlideBarWrapper,
@@ -34,13 +35,15 @@ interface Props extends StyledComponentProps {
   'aria-labelledby'?: string
   'aria-describedby'?: string
   'aria-details'?: string
-
+  className?: string
   onNext?: () => void
   onPrev?: () => void
   onSetting?: () => void
 }
 
-export type VideoPlayerProps = Props
+export type VideoPlayerProps = Props &
+  ErrorVariantProps &
+  Omit<React.ButtonHTMLAttributes<HTMLVideoElement>, keyof Props>
 
 const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
   const {
@@ -57,10 +60,12 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
     loop = false,
     muted = false,
     controls = true,
-
+    className,
     onNext,
     onPrev,
     onSetting,
+    // AriaButtonProps
+    ...ariaSafeProps
   } = props
 
   const videoRef = useDOMRef<HTMLVideoElement>(ref)
@@ -69,6 +74,7 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
   const [currentTime, setCurrentTime] = useState(0)
   const [progress, setProgress] = useState(0)
   const [volume, setVolume] = useState(muted ? 0 : 100)
+  const [loadError, setLoadError] = useState(false)
 
   function play() {
     if (videoRef.current?.paused) {
@@ -106,9 +112,45 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
       setProgress(value)
     }
   }
+
+  const handleError = () => {
+    setLoadError(true)
+  }
+
+  const componentProps = () => {
+    return {
+      className,
+      css,
+      ...ariaSafeProps,
+    }
+  }
+
+  const delegateProps = componentProps()
+
   return (
     <StyledVideoPlayer css={css} id={id}>
+      {loadError && (
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            background: 'rgba(0, 0, 0, 0.5)',
+            color: '#fff',
+            fontSize: '24px',
+            fontWeight: 'bold',
+          }}
+        >
+          Sorry, the video failed to load. Please try again later.
+        </div>
+      )}
       <video
+        {...delegateProps}
         src={src}
         ref={videoRef}
         loop={loop}
@@ -122,6 +164,7 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
         onLoadedData={onLoadedData}
         onTimeUpdate={onTimeUpdate}
         onClick={play}
+        onError={handleError}
       />
       {controls && (
         <>

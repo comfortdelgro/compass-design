@@ -14,7 +14,7 @@ import {
 
 interface Props extends StyledComponentProps {
   id?: string
-  label?: string
+  label?: React.ReactNode
   isErrored?: boolean
   isRequired?: boolean
   isDisabled?: boolean
@@ -31,7 +31,16 @@ interface Props extends StyledComponentProps {
   name?: string
   pattern?: string
   type?: string
-  inputMode?: string
+  inputMode?:
+    | 'none'
+    | 'text'
+    | 'search'
+    | 'tel'
+    | 'url'
+    | 'email'
+    | 'numeric'
+    | 'decimal'
+    | undefined
   excludeFromTabOrder?: boolean
   errorMessage?: string
   prefix?: React.ReactNode
@@ -76,7 +85,7 @@ interface Props extends StyledComponentProps {
 
 export type TextFieldProps = Props &
   TextFieldVariantProps &
-  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
+  Omit<React.HTMLAttributes<HTMLInputElement>, keyof Props>
 
 const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
   (props, ref) => {
@@ -148,6 +157,8 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
             css={css}
             ref={textfieldRef}
             id={id}
+            {...props}
+            prefix=''
             placeholder={placeholder}
             autoFocus={autoFocus}
             autoCapitalize={autoCapitalize}
@@ -173,15 +184,6 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
             onCompositionEnd={props.onCompositionEnd}
             onCompositionStart={props.onCompositionStart}
             onCompositionUpdate={props.onCompositionUpdate}
-            aria-label={props['aria-label']}
-            aria-details={props['aria-details']}
-            aria-haspopup={props['aria-haspopup']}
-            aria-controls={props['aria-controls']}
-            aria-labelledby={props['aria-labelledby']}
-            aria-describedby={props['aria-describedby']}
-            aria-errormessage={props['aria-errormessage']}
-            aria-autocomplete={props['aria-autocomplete']}
-            aria-activedescendant={props['aria-activedescendant']}
           />
           {rightIcon ? <div className='right-icon'>{rightIcon}</div> : null}
           {password && determineInputType == 'password' ? (

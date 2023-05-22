@@ -1,8 +1,7 @@
 import {Callout} from 'nextra-theme-docs'
 import styles from '../../styles/Home.module.css'
 import MultipleDropdown from '@comfortdelgro/react-compass/multiple-dropdown'
-import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons'
-import Icon from '@comfortdelgro/react-compass/icon'
+import BugIcon from '@comfortdelgro/compass-icons/react/bug'
 
 # Multiple Dropdown
 
@@ -33,7 +32,7 @@ We recommend the second method to import components for the benefits of [tree sh
 
 ### Controlled:
 
-<section className={styles.avatarShowcaseContainer}>
+<section className={styles.componentDisplayVertical}>
   <MultipleDropdown
     label='Favorite Animal'
     selectionMode='multiple'
@@ -42,8 +41,7 @@ We recommend the second method to import components for the benefits of [tree sh
     defaultSelectedKeys={['cat']}
   >
     <MultipleDropdown.Item key='red panda'>
-        <Icon icon={faExclamationTriangle} style={{marginRight: 5}} />
-      Red Panda
+      <BugIcon /> Red Panda
     </MultipleDropdown.Item>
     <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
     <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
@@ -66,8 +64,7 @@ We recommend the second method to import components for the benefits of [tree sh
   }
 >
   <MultipleDropdown.Item key='red panda'>
-    <Icon icon={faExclamationTriangle} style={{marginRight: 5}} />
-    Red Panda
+    <BugIcon /> Red Panda
   </MultipleDropdown.Item>
   <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
   <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
@@ -81,7 +78,7 @@ We recommend the second method to import components for the benefits of [tree sh
 
 ### UnControlled:
 
-<section className={styles.avatarShowcaseContainer}>
+<section className={styles.componentDisplayVertical}>
   <MultipleDropdown
     label='Favorite Animal'
     selectionMode='multiple'
@@ -89,8 +86,7 @@ We recommend the second method to import components for the benefits of [tree sh
     placeholder='Choose an animal'
   >
     <MultipleDropdown.Item key='red panda'>
-      <Icon icon={faExclamationTriangle} style={{marginRight: 5}} />
-      Red Panda
+      <BugIcon /> Red Panda
     </MultipleDropdown.Item>
     <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
     <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
@@ -108,8 +104,7 @@ We recommend the second method to import components for the benefits of [tree sh
   placeholder='Choose an animal'
 >
   <MultipleDropdown.Item key='red panda'>
-    <Icon icon={faExclamationTriangle} style={{marginRight: 5}} />
-    Red Panda
+    <BugIcon /> Red Panda
   </MultipleDropdown.Item>
   <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
   <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
@@ -123,7 +118,7 @@ We recommend the second method to import components for the benefits of [tree sh
 
 ### Error:
 
-<section className={styles.avatarShowcaseContainer}>
+<section className={styles.componentDisplayVertical}>
   <MultipleDropdown
     label='Favorite Animal'
     selectionMode='multiple'
@@ -133,8 +128,7 @@ We recommend the second method to import components for the benefits of [tree sh
     errorMessage='Use Helper Text for Errors'
   >
     <MultipleDropdown.Item key='red panda'>
-      <Icon icon={faExclamationTriangle} style={{marginRight: 5}} />
-      Red Panda
+      <BugIcon /> Red Panda
     </MultipleDropdown.Item>
     <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
     <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
@@ -154,8 +148,7 @@ We recommend the second method to import components for the benefits of [tree sh
   errorMessage='Use Helper Text for Errors'
 >
   <MultipleDropdown.Item key='red panda'>
-    <Icon icon={faExclamationTriangle} style={{marginRight: 5}} />
-    Red Panda
+    <BugIcon /> Red Panda
   </MultipleDropdown.Item>
   <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
   <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
@@ -169,7 +162,7 @@ We recommend the second method to import components for the benefits of [tree sh
 
 ### With Header:
 
-<section className={styles.avatarShowcaseContainer}>
+<section className={styles.componentDisplayVertical}>
   <MultipleDropdown
     selectionMode='multiple'
     disabledKeys={['snake']}
@@ -277,7 +270,7 @@ We recommend the second method to import components for the benefits of [tree sh
 
 ### Loading:
 
-<section className={styles.avatarShowcaseContainer}>
+<section className={styles.componentDisplayVertical}>
   <MultipleDropdown
     selectionMode='multiple'
     label='Favorite Animal'
@@ -313,12 +306,12 @@ We recommend the second method to import components for the benefits of [tree sh
 
 ### With Icon:
 
-<section className={styles.avatarShowcaseContainer}>
+<section className={styles.componentDisplayVertical}>
   <MultipleDropdown
     selectionMode='multiple'
     label='Favorite Animal'
     placeholder='Choose an animal'
-    icon={<Icon icon={faExclamationTriangle} />}
+    icon={<BugIcon />}
   >
     <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
     <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
@@ -334,7 +327,7 @@ We recommend the second method to import components for the benefits of [tree sh
   selectionMode='multiple'
   label='Favorite Animal'
   placeholder='Choose an animal'
-  icon={<Icon icon={faExclamationTriangle} />}
+  icon={<BugIcon />}
 >
   <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
   <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
@@ -349,7 +342,7 @@ We recommend the second method to import components for the benefits of [tree sh
 
 ### With Section:
 
-<section className={styles.avatarShowcaseContainer}>
+<section className={styles.componentDisplayVertical}>
   <MultipleDropdown label='Favorite Animal' placeholder='Choose an animal'>
     <MultipleDropdown.Item key='fly'>Fly</MultipleDropdown.Item>
     <MultipleDropdown.Section title='Group 1'>
@@ -403,6 +396,7 @@ We recommend the second method to import components for the benefits of [tree sh
 | placeholder         | `string`                    | —       | Temporary text that occupies the text input when it is empty.                                                                                             |
 | errorMessage        | `string`                    | -       | Error message for dropdown                                                                                                                                |
 | disabledKeys        | `Iterable<Key>`             | —       | The item keys that are disabled. These items cannot be selected, focused, or otherwise interacted with.                                                   |
+| numberOfRows        | `number`                    | —       | Number of items displayed in Popover.                                                                                                                     |
 | defaultSelectedKeys | `Iterable<Key>`             | —       | The initial selected key in the collection (uncontrolled).                                                                                                |
 | onLoadMore          | `() => void`                | —       | Handler when user scrolls to the end.                                                                                                                     |
 | onSelectionChange   | `(key: Key) => any`         | —       | Handler that is called when the selection changes.                                                                                                        |
@@ -414,7 +408,7 @@ We recommend the second method to import components for the benefits of [tree sh
 | :--------- | :---------------- | :------ | :------------------------------- |
 | key        | `Key`             | —       | The key of the dropdown.         |
 | icon       | `icon` \| `color` | —       | The content of the dropdown Item |
-| title      | `string`          | —       | The title of the dropdown.       |
+| title      | `ReactNode`          | —       | The title of the dropdown.       |
 | children   | `ReactNode`       | —       | The content of the dropdown Item |
 | leftIcon   | `ReactNode`       | -       | Left icon of the dropdown Item   |
 | rightIcon  | `ReactNode`       | -       | Right icon of the dropdown Item  |

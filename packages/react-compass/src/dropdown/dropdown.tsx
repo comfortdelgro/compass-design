@@ -18,6 +18,7 @@ import DropdownHeader from './header'
 import DropdownItem, {DropdownItemProps} from './item'
 import ListBox from './list-box'
 import Popover from './popover'
+import RowCalculator from './rowCalculator'
 import DropdownSection from './section'
 import {
   DropdownBase,
@@ -52,6 +53,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     selectedKey,
     placeholder,
     errorMessage,
+    numberOfRows,
     icon = <Icon />,
     type = 'select',
     isLoading = false,
@@ -79,6 +81,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   const firstBlur = React.useRef(true)
   const popoverRef = React.useRef<HTMLDivElement>(null)
   const listBoxRef = React.useRef<HTMLUListElement>(null)
+  const visualizeList = React.useRef<HTMLDivElement>(null)
   // Select ref
   const selectRef = useDOMRef<HTMLElement>(ref)
   // Combobox ref
@@ -135,10 +138,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   // ====================================== EFFECT ======================================
   // map default value
   React.useEffect(() => {
-    if (selectedKey) {
-      setCurrentKey(selectedKey)
-    }
-  }, [selectedKey])
+    setCurrentKey(getDefaulValue(defaultSelectedKey, selectedKey))
+  }, [selectedKey, defaultSelectedKey])
 
   React.useEffect(() => {
     const getTextFromKey = (key: React.Key) => {
@@ -178,8 +179,12 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       if (open) {
         props.onFocus?.()
         firstBlur.current = false
+        selectRef.current?.focus()
+        inputRef.current?.focus()
       } else if (!firstBlur.current) {
         props.onBlur?.()
+        selectRef.current?.blur()
+        inputRef.current?.blur()
       }
     }
   }, [open])
@@ -261,7 +266,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
 
   const labelClick = () => {
     selectRef.current?.click()
-    inputRef.current?.focus()
     buttonRef.current?.click()
   }
 
@@ -291,7 +295,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           isEmpty={!selectedItem}
           isErrored={!!isErrored}
           isDisabled={isDisabled}
-          isOpened={open}
         >
           <button
             type='button'
@@ -365,12 +368,14 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           </button>
         </StyledFlag>
       )}
-      <StyledListBoxWrapper>
-        {collection && collection.length > 0 && open && (
+      {collection && open && (
+        <StyledListBoxWrapper>
           <Popover
             popoverRef={popoverRef}
-            close={close}
+            isEmpty={collection.length === 0}
+            maxULHeight={visualizeList.current?.clientHeight}
             triggerRef={selectRef as React.RefObject<HTMLDivElement>}
+            close={close}
             handleKeyDown={handleKeyDown}
           >
             <ListBox
@@ -388,8 +393,14 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
               onLoadMore={onLoadMore}
             />
           </Popover>
-        )}
-      </StyledListBoxWrapper>
+        </StyledListBoxWrapper>
+      )}
+      <RowCalculator
+        type={type}
+        ref={visualizeList}
+        collection={rawCollection}
+        numberOfRows={numberOfRows}
+      />
       {errorMessage && (
         <StyledHelperText error={!!isErrored}>{errorMessage}</StyledHelperText>
       )}

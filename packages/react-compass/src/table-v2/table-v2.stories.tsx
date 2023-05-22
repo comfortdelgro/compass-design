@@ -26,12 +26,10 @@ export const FullFeatured: React.FC = () => {
     ],
   }
 
-  const onSorting = (sortingField: StateSorting) => {
-    console.log('stateSorting', sortingField)
-  }
-  const onChangeRowSelection = (rowSelection: any) => {
-    console.log('stateSelectedRows', rowSelection)
-  }
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  const onSorting = (sortingField: StateSorting) => {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  const onChangeRowSelection = (rowSelection: any) => {}
 
   const columns = React.useMemo<Array<ColumnConfig<Person>>>(
     () => [

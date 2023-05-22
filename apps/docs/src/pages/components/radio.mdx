@@ -1,4 +1,5 @@
 import ComponentDisplay from '../../components/ComponentDisplay'
+import BugIcon from '@comfortdelgro/compass-icons/react/bug'
 import {Radio} from '@comfortdelgro/react-compass'
 import {Callout} from 'nextra-theme-docs'
 
@@ -41,7 +42,11 @@ Outlined style
 <Radio.Group>
   <Radio
     variant='outlined'
-    label='test'
+    label={
+      <>
+        test <BugIcon />
+      </>
+    }
     description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
     value='1'
     tooltip='This is tooltip'
@@ -66,7 +71,11 @@ Outlined style
   <Radio.Group>
     <Radio
       variant='outlined'
-      label='test'
+      label={
+        <>
+          test <BugIcon />
+        </>
+      }
       description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
       value='1'
       tooltip='This is tooltip'
@@ -232,7 +241,7 @@ Orientation vertical as default
 | :---------- | :-------- | :------ | :--------------------------------------------------------------------------------------------------------------------- |
 | title       | `string`  | —       | Display title for radio                                                                                                |
 | description | `string`  | —       | Display description for radio                                                                                          |
-| rightLabel  | `string`  | —       | Display rightLabel for radio                                                                                           |
+| rightLabel  | `ReactNode`| —       | Display rightLabel for radio                                                                                           |
 | tooltip     | `string`  | —       | Display tooltip for radio                                                                                              |
 | value       | `string`  | -       | The value of the radio button, used when submitting an HTML form.                                                      |
 | isDisabled  | `boolean` | false   | Whether the radio button is disabled or not. Shows that a selection exists, but is not available in that circumstance. |

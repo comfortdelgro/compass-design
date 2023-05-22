@@ -1,4 +1,5 @@
 import {faCheck, faMinus} from '@fortawesome/free-solid-svg-icons'
+import {CSS} from '@stitches/react'
 import React, {useEffect, useState} from 'react'
 import {Icon} from '../icon'
 import type {StyledComponentProps} from '../utils/stitches.types'
@@ -14,19 +15,45 @@ import {
 } from './checkbox.styles'
 
 interface Props extends StyledComponentProps {
+  id?: string
+  name?: string
+  value?: string
   isIndeterminate?: boolean
+  isReadOnly?: boolean
   children?: React.ReactNode
-  onChange?: (isSelected: boolean) => void
   isDisabled?: boolean
   defaultSelected?: boolean
   isSelected?: boolean
+  cssCheckBoxInput?: CSS
   // Variants for children
   variant?: 'default' | 'rounded'
+  validationState?: 'valid' | 'invalid'
+  onChange?: (isSelected: boolean) => void
+
+  autoFocus?: boolean
+  'aria-activedescendant'?: string
+  'aria-autocomplete'?: 'none' | 'inline' | 'list' | 'both'
+  'aria-haspopup'?:
+    | boolean
+    | 'false'
+    | 'true'
+    | 'menu'
+    | 'listbox'
+    | 'tree'
+    | 'grid'
+    | 'dialog'
+  'aria-controls'?: string
+  'aria-label'?: string
+  'aria-labelledby'?: string
+  'aria-describedby'?: string
+  'aria-details'?: string
+  'aria-errormessage'?: string
+  'aria-invalid'?: boolean
 }
 
 export type CheckboxProps = Props &
   CheckboxVariantProps &
-  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
+  Omit<React.HTMLAttributes<HTMLInputElement>, keyof Props>
 
 const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   (props, ref) => {
@@ -41,7 +68,10 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       defaultSelected = false,
       isSelected,
       onChange,
+      cssCheckBoxInput = {},
       variant = 'default',
+      isReadOnly = false,
+      validationState,
       // AriaProps
       ...ariaSafeProps
     } = props
@@ -80,10 +110,14 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           <StyledCheckboxInput
             type='checkbox'
             ref={checkboxRef}
+            {...ariaProps}
             checked={checked}
             disabled={isDisabled}
-            onChange={handleCheckboxChange}
-            {...ariaProps}
+            onChange={!isReadOnly ? handleCheckboxChange : undefined}
+            css={cssCheckBoxInput}
+            readOnly={isReadOnly}
+            aria-invalid={validationState === 'invalid' ? 'true' : undefined}
+            aria-readonly={isReadOnly === true ? 'true' : undefined}
           />
 
           {/* Checkbox */}

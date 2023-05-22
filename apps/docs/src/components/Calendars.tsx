@@ -46,21 +46,21 @@ export function ControlledRangeCalendar() {
           range.start.toDate(getLocalTimeZone()),
           range.end.toDate(getLocalTimeZone()),
         )}
-      <RangeCalendar onChange={setRange} />
+      <RangeCalendar onChange={(e) => setRange(e as RangeValue<DateValue>)} />
     </>
   )
 }
 
-export function ValidatedRangeCalendar({
-  contiguos = false,
-}: {
-  contiguos?: boolean
-}) {
-  const {locale} = useLocale()
-  return (
-    <RangeCalendar
-      allowsNonContiguousRanges={contiguos}
-      isDateUnavailable={(date) => isWeekend(date, locale)}
-    />
-  )
-}
+// export function ValidatedRangeCalendar({
+//   contiguos = false,
+// }: {
+//   contiguos?: boolean
+// }) {
+//   const {locale} = useLocale()
+//   return (
+//     <RangeCalendar
+//       allowsNonContiguousRanges={contiguos}
+//       isDateUnavailable={(date) => isWeekend(date, locale)}
+//     />
+//   )
+// }

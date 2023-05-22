@@ -50,6 +50,7 @@ const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
             {title ? renderTitle() : <></>}
             {dismissible && (
               <button
+                type='button'
                 className='tootip-close-button'
                 onClick={tooltipContext.handleTooltipClose}
               >

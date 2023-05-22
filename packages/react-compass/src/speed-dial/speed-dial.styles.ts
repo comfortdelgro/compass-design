@@ -117,4 +117,4 @@ export const SpeedDialName = styled('span', {
   display: 'none',
 })
 
-export type SliderVariantProps = VariantProps<typeof StyledSpeedDial>
+export type SpeedDialVariantProps = VariantProps<typeof StyledSpeedDial>

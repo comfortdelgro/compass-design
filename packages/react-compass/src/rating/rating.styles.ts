@@ -1,4 +1,5 @@
-import {styled} from '../theme'
+import { styled } from '../theme'
+import { VariantProps } from '../utils/stitches.types'
 
 export const StyledRatingComponent = styled('div', {
   display: 'inline-flex',
@@ -34,5 +35,10 @@ export const StyledRatingComponent = styled('div', {
       display: 'flex',
       alignItems: 'center',
     },
+    '.children > .emo-icons': {
+      width: '2rem',
+      height: '2rem',
+    },
   },
 })
+export type RatingVariantProps = VariantProps<typeof StyledRatingComponent>

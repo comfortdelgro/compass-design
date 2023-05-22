@@ -20,9 +20,21 @@ const TableCheckboxCell = React.forwardRef<HTMLTableCellElement, Props>(
       state,
     )
 
+    const onPointerDown = (e: PointerEvent) => {
+      e.stopPropagation()
+    }
+
+    const onPointerUp = (e: PointerEvent) => {
+      e.stopPropagation()
+    }
+
     return (
       <StyledTableCheckboxCell ref={tableRowRef} {...gridCellProps}>
-        <Checkbox {...checkboxProps} />
+        <Checkbox
+          {...checkboxProps}
+          onPointerDown={(e) => onPointerDown(e as unknown as PointerEvent)}
+          onPointerUp={(e) => onPointerUp(e as unknown as PointerEvent)}
+        />
       </StyledTableCheckboxCell>
     )
   },

@@ -1,15 +1,8 @@
-import {useDateSegment} from '@react-aria/datepicker'
-import type {
-  DateFieldState,
-  DateSegment as IDateSegment,
-} from '@react-stately/datepicker'
 import React from 'react'
 import {useDOMRef} from '../../utils/use-dom-ref'
+import {useDateSegment} from '../hooks/useDateSegment'
+import {DateFieldState, DateSegment as IDateSegment} from '../types'
 import {StyledDateSegment} from './date-segment.style'
-
-/**
- * DateSegment is the digit or the literal (example: "/") in the DateField
- */
 
 interface Props {
   segment: IDateSegment

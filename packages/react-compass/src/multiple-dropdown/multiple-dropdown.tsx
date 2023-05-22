@@ -25,6 +25,7 @@ import {
   StyledSelectedItem,
   StyledSelectedItemWrapper,
 } from './multiple-dropdown.styles'
+import RowCalculator from './rowCalculator'
 import {getDefaulValues, XIcon} from './utils'
 
 interface Props extends DropdownBase {
@@ -51,6 +52,7 @@ const MultipleDropdown = React.forwardRef<
     defaultOpen,
     errorMessage,
     selectedKeys,
+    numberOfRows,
     icon = <Icon />,
     disabledKeys = [],
     isLoading = false,
@@ -75,6 +77,7 @@ const MultipleDropdown = React.forwardRef<
   const popoverRef = useDOMRef<HTMLDivElement>(null)
   const inputRef = useDOMRef<HTMLInputElement>(null)
   const listBoxRef = React.useRef<HTMLUListElement>(null)
+  const visualizeList = React.useRef<HTMLDivElement>(null)
 
   // ====================================== CONST ======================================
   const rawCollection = React.useMemo(
@@ -122,14 +125,24 @@ const MultipleDropdown = React.forwardRef<
 
   // ====================================== EFFECT ======================================
   React.useEffect(() => {
-    if (selectedKeys) setCurrentKeys(selectedKeys)
-  }, [selectedKeys])
+    setCurrentKeys(getDefaulValues(defaultSelectedKeys, selectedKeys))
+    // if (
+    //   defaultSelectedKeys &&
+    //   !selectedKeys &&
+    //   defaultSelectedKeys.length > 0
+    // ) {
+    //   setCurrentKeys(defaultSelectedKeys)
+    // }
+    // if (selectedKeys && selectedKeys.length > 0) {
+    //   setCurrentKeys(selectedKeys)
+    // }
+  }, [JSON.stringify(selectedKeys), JSON.stringify(defaultSelectedKeys)])
 
-  React.useEffect(() => {
-    if (currentKeys.length > 0) {
-      props.onSelectionChange?.(currentKeys)
-    }
-  }, [currentKeys])
+  // React.useEffect(() => {
+  //   if (currentKeys.length > 0) {
+  //     props.onSelectionChange?.(currentKeys)
+  //   }
+  // }, [currentKeys])
 
   React.useEffect(() => {
     if (!isOpen && defaultOpen) {
@@ -145,32 +158,12 @@ const MultipleDropdown = React.forwardRef<
     props.onOpenChange?.(open)
     if (open) {
       props.onFocus?.()
+      inputRef.current?.focus()
       firstBlur.current = false
     } else if (!firstBlur.current) {
       props.onBlur?.()
-    }
-  }, [open])
-
-  React.useEffect(() => {
-    if (open) {
-      inputRef.current?.focus()
-      if (wrapperRef.current) {
-        wrapperRef.current.style.outlineColor = isErrored
-          ? '#A4262C'
-          : '-webkit-focus-ring-color'
-        wrapperRef.current.style.outlineStyle = 'solid'
-        wrapperRef.current.style.outlineWidth = '1px'
-      }
     } else {
       inputRef.current?.blur()
-      if (wrapperRef.current) {
-        wrapperRef.current.style.outlineColor = isErrored
-          ? '#A4262C'
-          : 'inherit'
-        wrapperRef.current.style.outlineColor = 'inherit'
-        wrapperRef.current.style.outlineStyle = 'inherit'
-        wrapperRef.current.style.outlineWidth = 'inherit'
-      }
     }
   }, [open])
 
@@ -180,6 +173,7 @@ const MultipleDropdown = React.forwardRef<
     if (currentKeys.includes(key)) {
       v.delete(key)
       setCurrentKeys([...v])
+      props.onSelectionChange?.([...v])
     }
   }
 
@@ -262,6 +256,7 @@ const MultipleDropdown = React.forwardRef<
         v.add(key)
       }
       setCurrentKeys([...v])
+      props.onSelectionChange?.([...v])
       setFocusKey(key)
     }
   }
@@ -294,7 +289,9 @@ const MultipleDropdown = React.forwardRef<
         onClick={handleOpen}
       >
         <StyledSelectedItemWrapper>
-          {selectedNode.length === 0 && !open && <p>{props.placeholder}</p>}
+          {selectedNode.length === 0 && search === '' && !open && (
+            <p>{props.placeholder}</p>
+          )}
           {selectedNode.length > 0 &&
             selectedNode.map((item) => {
               const isHideXIcon = isDisabled || disabledKeys.includes(item.key)
@@ -334,12 +331,14 @@ const MultipleDropdown = React.forwardRef<
         </StyledSelectedItemWrapper>
         <div className='dropdown-icon'>{icon}</div>
       </StyledDropdown>
-      <StyledListBoxWrapper>
-        {collection && collection.length > 0 && open && (
+      {collection && open && (
+        <StyledListBoxWrapper>
           <Popover
             popoverRef={popoverRef}
-            close={close}
             triggerRef={wrapperRef}
+            isEmpty={collection.length === 0}
+            maxULHeight={visualizeList.current?.clientHeight}
+            close={close}
             handleKeyDown={handleKeyDown}
           >
             <ListBox
@@ -356,8 +355,13 @@ const MultipleDropdown = React.forwardRef<
               onLoadMore={onLoadMore}
             />
           </Popover>
-        )}
-      </StyledListBoxWrapper>
+        </StyledListBoxWrapper>
+      )}
+      <RowCalculator
+        ref={visualizeList}
+        collection={rawCollection}
+        numberOfRows={numberOfRows}
+      />
       {errorMessage && (
         <StyledHelperText error={!!isErrored}>{errorMessage}</StyledHelperText>
       )}

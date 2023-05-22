@@ -1,6 +1,6 @@
-import type {Placement} from '@react-types/overlays'
 import React, {useState} from 'react'
 import Button from '../button'
+import {Placement} from './index'
 import Tooltip from './tooltip'
 import TooltipTrigger from './tooltip-trigger'
 

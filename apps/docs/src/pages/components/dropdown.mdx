@@ -1,8 +1,7 @@
 import {Callout} from 'nextra-theme-docs'
 import styles from '../../styles/Home.module.css'
 import Dropdown from '@comfortdelgro/react-compass/dropdown'
-import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons'
-import Icon from '@comfortdelgro/react-compass/icon'
+import BugIcon from '@comfortdelgro/compass-icons/react/bug'
 import {ControlledDropdown} from '../../components/ControlledDropdown'
 
 # Dropdown
@@ -38,7 +37,7 @@ We provide 3 type of dropdown that can be used to select: `Dropdown.Select`, `Dr
 
 ### Controlled:
 
-<section className={styles.avatarShowcaseContainer}>
+<section className={styles.componentDisplayVertical}>
   <ControlledDropdown />
 </section>
 
@@ -53,13 +52,13 @@ We provide 3 type of dropdown that can be used to select: `Dropdown.Select`, `Dr
   >
     <Dropdown.Item
       key='red panda'
-      leftIcon={<Icon icon={faExclamationTriangle} />}
+      leftIcon={<BugIcon />}
     >
       Red Panda Red Panda Red Panda Red Panda Red Panda
     </Dropdown.Item>
     <Dropdown.Item
       key='cat'
-      leftIcon={<Icon icon={faExclamationTriangle} />}
+      leftIcon={<BugIcon />}
       type='color'
       rightColor='red'
       textValue='pandared'
@@ -80,13 +79,13 @@ We provide 3 type of dropdown that can be used to select: `Dropdown.Select`, `Dr
   >
     <Dropdown.Item
       key='red panda'
-      leftIcon={<Icon icon={faExclamationTriangle} />}
+      leftIcon={<BugIcon />}
     >
       Red Panda Red Panda Red Panda Red Panda Red Panda
     </Dropdown.Item>
     <Dropdown.Item
       key='cat'
-      leftIcon={<Icon icon={faExclamationTriangle} />}
+      leftIcon={<BugIcon />}
       type='color'
       rightColor='red'
       textValue='pandared'
@@ -104,7 +103,7 @@ We provide 3 type of dropdown that can be used to select: `Dropdown.Select`, `Dr
 
 ### UnControlled:
 
-<section className={styles.avatarShowcaseContainer}>
+<section className={styles.componentDisplayVertical}>
   <Dropdown.Select
     isRequired
     label='Favorite Animal'
@@ -177,7 +176,7 @@ We provide 3 type of dropdown that can be used to select: `Dropdown.Select`, `Dr
 
 ### Error:
 
-<section className={styles.avatarShowcaseContainer}>
+<section className={styles.componentDisplayVertical}>
   <Dropdown.Select
     label='Favorite Animal'
     placeholder='Choose an animal'
@@ -186,7 +185,7 @@ We provide 3 type of dropdown that can be used to select: `Dropdown.Select`, `Dr
   >
     <Dropdown.Item
       key='red panda'
-      leftIcon={<Icon icon={faExclamationTriangle} />}
+      leftIcon={<BugIcon />}
     >
       Red Panda
     </Dropdown.Item>
@@ -208,7 +207,7 @@ We provide 3 type of dropdown that can be used to select: `Dropdown.Select`, `Dr
 >
   <Dropdown.Item
     key='red panda'
-    leftIcon={<Icon icon={faExclamationTriangle} />}
+    leftIcon={<BugIcon />}
   >
     Red Panda
   </Dropdown.Item>
@@ -226,7 +225,7 @@ We provide 3 type of dropdown that can be used to select: `Dropdown.Select`, `Dr
 
 ### With Section:
 
-<section className={styles.avatarShowcaseContainer}>
+<section className={styles.componentDisplayVertical}>
   <Dropdown.Select label='Favorite Animal' placeholder='Choose an animal'>
     <Dropdown.Item key='fly'>Fly</Dropdown.Item>
     <Dropdown.Section title='Group 1'>
@@ -261,7 +260,7 @@ We provide 3 type of dropdown that can be used to select: `Dropdown.Select`, `Dr
 
 ### With Header:
 
-<section className={styles.avatarShowcaseContainer}>
+<section className={styles.componentDisplayVertical}>
   <Dropdown.Select label='Favorite Animal' placeholder='Choose an animal'>
     <Dropdown.Header>
       <div
@@ -359,11 +358,11 @@ We provide 3 type of dropdown that can be used to select: `Dropdown.Select`, `Dr
 
 ### With Icon:
 
-<section className={styles.avatarShowcaseContainer}>
+<section className={styles.componentDisplayVertical}>
   <Dropdown.Select
     label='Favorite Animal'
     placeholder='Choose an animal'
-    icon={<Icon icon={faExclamationTriangle} />}
+    icon={<BugIcon />}
   >
     <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
     <Dropdown.Item key='cat'>Cat</Dropdown.Item>
@@ -377,7 +376,7 @@ We provide 3 type of dropdown that can be used to select: `Dropdown.Select`, `Dr
 <Dropdown.Select
   label='Favorite Animal'
   placeholder='Choose an animal'
-  icon={<Icon icon={faExclamationTriangle} />}
+  icon={<BugIcon />}
 >
   <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
   <Dropdown.Item key='cat'>Cat</Dropdown.Item>
@@ -392,7 +391,7 @@ We provide 3 type of dropdown that can be used to select: `Dropdown.Select`, `Dr
 
 ### Loading:
 
-<section className={styles.avatarShowcaseContainer}>
+<section className={styles.componentDisplayVertical}>
   <Dropdown.Select
     label='Favorite Animal'
     placeholder='Choose an animal'
@@ -425,7 +424,7 @@ We provide 3 type of dropdown that can be used to select: `Dropdown.Select`, `Dr
 
 ### Flag:
 
-<section className={styles.avatarShowcaseContainer}>
+<section className={styles.componentDisplayVertical}>
   <Dropdown.Flag
     label='List of country'
     isRequired
@@ -463,6 +462,7 @@ We provide 3 type of dropdown that can be used to select: `Dropdown.Select`, `Dr
 | placeholder        | `string`                    | —       | Temporary text that occupies the text input when it is empty.                                                                                             |
 | errorMessage       | `string`                    | -       | Error message for dropdown                                                                                                                                |
 | disabledKeys       | `Iterable<Key>`             | —       | The item keys that are disabled. These items cannot be selected, focused, or otherwise interacted with.                                                   |
+| numberOfRows       | `number`                    | —       | Number of items displayed in Popover.                                                                                                                     |
 | defaultSelectedKey | `Key`                       | —       | The initial selected key in the collection (uncontrolled).                                                                                                |
 | onLoadMore         | `() => void`                | —       | Handler when user scrolls to the end.                                                                                                                     |
 | onSelectionChange  | `(key: Key) => any`         | —       | Handler that is called when the selection changes.                                                                                                        |

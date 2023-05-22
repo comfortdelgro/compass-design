@@ -31,10 +31,10 @@
     "dev:ladle": "ladle dev"
   },
   "resolutions": {
-    "@internationalized/date": "3.1.0"
+    "@internationalized/date": "3.2.0"
   },
   "dependencies": {
-    "@comfortdelgro/compass-icons": "^0.12.0",
+    "@comfortdelgro/compass-icons": "*",
     "@contentful/rich-text-html-renderer": "^16.0.2",
     "@contentful/rich-text-react-renderer": "^15.16.2",
     "@contentful/rich-text-types": "^16.0.2",
@@ -44,8 +44,9 @@
     "@fortawesome/free-regular-svg-icons": "^6.2.0",
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "@internationalized/date": "3.1.0",
+    "@internationalized/date": "3.2.0",
     "@internationalized/number": "^3.2.0",
+    "@internationalized/string": "^3.1.0",
     "@react-aria/breadcrumbs": "^3.3.2",
     "@react-aria/button": "^3.6.2",
     "@react-aria/calendar": "3.0.5",

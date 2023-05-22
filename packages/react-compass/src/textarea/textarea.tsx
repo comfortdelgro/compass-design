@@ -13,7 +13,7 @@ import {
 
 interface Props extends StyledComponentProps {
   id?: string
-  label?: string
+  label?: React.ReactNode
   cols?: number
   rows?: number
   tabIndex?: number
@@ -75,7 +75,7 @@ interface Props extends StyledComponentProps {
 
 export type TextareaProps = Props &
   TextareaVariantProps &
-  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
+  Omit<React.HTMLAttributes<HTMLTextAreaElement>, keyof Props>
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   (props, ref) => {
@@ -123,6 +123,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         <StyledTextarea
           id={textareaId}
           ref={textareaRef}
+          {...props}
           cols={cols}
           rows={rows}
           wrap={wrap}
@@ -151,15 +152,6 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           onCompositionEnd={props.onCompositionEnd}
           onCompositionStart={props.onCompositionStart}
           onCompositionUpdate={props.onCompositionUpdate}
-          aria-label={props['aria-label']}
-          aria-details={props['aria-details']}
-          aria-haspopup={props['aria-haspopup']}
-          aria-controls={props['aria-controls']}
-          aria-labelledby={props['aria-labelledby']}
-          aria-describedby={props['aria-describedby']}
-          aria-errormessage={props['aria-errormessage']}
-          aria-autocomplete={props['aria-autocomplete']}
-          aria-activedescendant={props['aria-activedescendant']}
         />
         {wordCount && (
           <StyledTextFieldHelperText className='word-count'>

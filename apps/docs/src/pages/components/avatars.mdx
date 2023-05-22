@@ -1,10 +1,7 @@
 import {Callout} from 'nextra-theme-docs'
 import styles from '../../styles/Home.module.css'
 import Avatar from '@comfortdelgro/react-compass/avatar'
-import {
-  faCircleUser,
-  faUser as faRegularUser,
-} from '@fortawesome/free-regular-svg-icons'
+import BugIcon from '@comfortdelgro/compass-icons/react/bug'
 
 # Avatar
 
@@ -148,11 +145,11 @@ import Avatar from '@comfortdelgro/react-compass/avatar'
 ### Icon avatars:
 
 <section className={styles.avatarShowcaseContainer}>
-  <Avatar label='Albert Einstein' icon={faRegularUser} size='lg' />
+  <Avatar label='Albert Einstein' icon={<BugIcon />} size='lg' />
 </section>
 
 ```js
-<Avatar label='Albert Einstein' icon={faRegularUser} size='lg' />
+<Avatar label='Albert Einstein' icon={<BugIcon />} size='lg' />
 ```
 
 ---
@@ -255,7 +252,7 @@ With css prop, you can basically do anything that css can do.
 | label | `String`                     | —       | The label, used as fallback for image. The avatars would show the initials of the labels.            |
 | image | `String `                    | —       | Image of the avatars takes the highest priority. We pass the image's address as string to this prop. |
 | size  | `xs`\|`sm`\|`md`\|`lg`       | —       | Sizes of the avatars.                                                                                |
-| icon  | `IconProp`\|`false`\| `true` | false   | The icon of the alerts. It'd disappear if the value is false.                                        |
+| icon  | `ReactNode`\|`false`\| `true`| false   | The icon of the alerts. It'd disappear if the value is false.                                        |
 | css   | `CSS`                        | —       | The system prop that allows defining system overrides as well as additional CSS styles.              |
 
 #### `<Avatar.Group/>` :
