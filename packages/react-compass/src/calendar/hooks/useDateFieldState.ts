@@ -1,3 +1,13 @@
+/**
+ * This file contains code adapted from the React Spectrum project.
+ *
+ * Copyright (c) 2018, Adobe Inc. and other contributors.
+ * All rights reserved.
+ *
+ * This source code is licensed under the Apache License, Version 2.0
+ * found in the LICENSE.txt file at the root directory of this source tree.
+ */
+
 /* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/prefer-ts-expect-error */
@@ -247,6 +257,7 @@ export function useDateFieldState<T extends DateValue = DateValue>(
   ) {
     validSegments = {}
     setValidSegments(validSegments)
+
     setPlaceholderDate(
       createPlaceholderDate(
         props.placeholderValue!,
@@ -267,15 +278,13 @@ export function useDateFieldState<T extends DateValue = DateValue>(
     if (props.isDisabled || props.isReadOnly) {
       return
     }
-
     if (Object.keys(validSegments).length >= Object.keys(allSegments).length) {
       // The display calendar should not have any effect on the emitted value.
       // Emit dates in the same calendar as the original value, if any, otherwise gregorian.
       newValue = toCalendar(newValue, v?.calendar || new GregorianCalendar())
       setDate(newValue)
-    } else {
-      setPlaceholderDate(newValue)
     }
+    setPlaceholderDate(newValue)
   }
 
   const dateValue = useMemo(
@@ -481,7 +490,9 @@ export function useDateFieldState<T extends DateValue = DateValue>(
       }
     },
     clearSegment(part) {
-      setValidFake(false)
+      if (part === 'year') {
+        setValidFake(false)
+      }
       delete validSegments[part as keyof typeof validSegments]
       setValidSegments({...validSegments})
 

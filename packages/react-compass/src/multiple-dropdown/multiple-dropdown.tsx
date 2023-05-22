@@ -25,6 +25,7 @@ import {
   StyledSelectedItem,
   StyledSelectedItemWrapper,
 } from './multiple-dropdown.styles'
+import RowCalculator from './rowCalculator'
 import {getDefaulValues, XIcon} from './utils'
 
 interface Props extends DropdownBase {
@@ -51,6 +52,7 @@ const MultipleDropdown = React.forwardRef<
     defaultOpen,
     errorMessage,
     selectedKeys,
+    numberOfRows,
     icon = <Icon />,
     disabledKeys = [],
     isLoading = false,
@@ -75,6 +77,7 @@ const MultipleDropdown = React.forwardRef<
   const popoverRef = useDOMRef<HTMLDivElement>(null)
   const inputRef = useDOMRef<HTMLInputElement>(null)
   const listBoxRef = React.useRef<HTMLUListElement>(null)
+  const visualizeList = React.useRef<HTMLDivElement>(null)
 
   // ====================================== CONST ======================================
   const rawCollection = React.useMemo(
@@ -334,6 +337,7 @@ const MultipleDropdown = React.forwardRef<
             popoverRef={popoverRef}
             triggerRef={wrapperRef}
             isEmpty={collection.length === 0}
+            maxULHeight={visualizeList.current?.clientHeight}
             close={close}
             handleKeyDown={handleKeyDown}
           >
@@ -353,6 +357,11 @@ const MultipleDropdown = React.forwardRef<
           </Popover>
         </StyledListBoxWrapper>
       )}
+      <RowCalculator
+        ref={visualizeList}
+        collection={rawCollection}
+        numberOfRows={numberOfRows}
+      />
       {errorMessage && (
         <StyledHelperText error={!!isErrored}>{errorMessage}</StyledHelperText>
       )}

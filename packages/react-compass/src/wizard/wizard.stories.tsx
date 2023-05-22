@@ -5,7 +5,11 @@ import Wizard from './index'
 export const Variants: React.FC = () => (
   <Column>
     <h3>Default with items</h3>
-    <Wizard items={['Value1', 'Value2', 'Value3', 'Value4']} currentStep={3} />
+    <Wizard
+      items={['Value1', 'Value2', 'Value3', 'Value4']}
+      currentStep={3}
+      onStepClick={(n) => console.log(n)}
+    />
     <h3>With customize items css</h3>
     <Wizard currentStep={5}>
       <Wizard.Item title='Value1'>

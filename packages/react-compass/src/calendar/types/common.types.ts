@@ -7,6 +7,7 @@ export interface HookData {
   ariaLabelledBy: string
   errorMessageId: string
   selectedDateDescription: string
+  focusManager?: unknown
 }
 
 export interface EventPoint {
