@@ -1,4 +1,4 @@
-import {NumberFormatOptions, NumberFormatter} from '../../../@internationalized/number'
+import {NumberFormatOptions, NumberFormatter} from '@internationalized/number'
 import {useMemo} from 'react'
 
 export function useNumberFormatter(

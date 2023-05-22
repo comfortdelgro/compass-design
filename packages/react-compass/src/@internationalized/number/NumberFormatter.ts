@@ -83,13 +83,11 @@ export class NumberFormatter implements Intl.NumberFormat {
 
     if (this.options.style === 'unit' && !supportsUnit) {
       const resolvedOptions = this.resolvedOptions()
-      const unit = resolvedOptions.unit as 'degree'
-      const unitDisplay = resolvedOptions.unitDisplay as 'narrow'
-      const locale = resolvedOptions.locale as
-        | 'default'
-        | 'ja-JP'
-        | 'zh-TW'
-        | 'sl-SI'
+      const unit = resolvedOptions.unit as keyof typeof UNITS
+      const unitDisplay =
+        (resolvedOptions.unitDisplay as keyof typeof UNITS.degree) ?? 'short'
+      const locale =
+        resolvedOptions.locale as keyof typeof UNITS.degree.narrow
       let values = UNITS[unit]?.[unitDisplay]
       res += values[locale] || values.default
     }
@@ -156,8 +154,8 @@ export class NumberFormatter implements Intl.NumberFormat {
       options = {
         ...options,
         style: 'unit',
-        unit: this.options.unit as string,
-        unitDisplay: this.options.unitDisplay as 'short' | 'long' | 'narrow',
+        unit: this.options.unit as keyof typeof UNITS,
+        unitDisplay: this.options.unitDisplay as keyof typeof UNITS.degree,
       }
     }
 
@@ -176,9 +174,9 @@ function getCachedNumberFormatter(
 
   if (options.style === 'unit' && !supportsUnit) {
     // let {unit, unitDisplay = 'short'} = options
-    const unit = options.unit as 'degree'
-    const unitDisplay = options.unitDisplay as 'narrow'
-
+    const unit = options.unit as keyof typeof UNITS
+    const unitDisplay =
+      (options.unitDisplay as keyof typeof UNITS.degree) ?? 'short'
     if (!unit) {
       throw new Error('unit option must be provided with style: "unit"')
     }

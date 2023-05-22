@@ -251,7 +251,7 @@ function getSymbols(
   let singularParts = formatter.formatToParts(1)
 
   let minusSign = allParts.find((p) => p.type === 'minusSign')?.value ?? '-'
-  let plusSign = posAllParts.find((p) => p.type === 'plusSign')?.value ?? ''
+  let plusSign = posAllParts.find((p) => p.type === 'plusSign')?.value as string
 
   // Safari does not support the signDisplay option, but our number parser polyfills it.
   // If no plus sign was returned, but the original options contained signDisplay, default to the '+' character.
@@ -264,8 +264,8 @@ function getSymbols(
     plusSign = '+'
   }
 
-  let decimal = allParts.find((p) => p.type === 'decimal')?.value ?? ''
-  let group = allParts.find((p) => p.type === 'group')?.value ?? ''
+  let decimal = allParts.find((p) => p.type === 'decimal')?.value as string
+  let group = allParts.find((p) => p.type === 'group')?.value as string
 
   // this set is also for a regex, it's all literals that might be in the string we want to eventually parse that
   // don't contribute to the numerical value
