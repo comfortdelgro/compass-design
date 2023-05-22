@@ -40,6 +40,7 @@ export interface Props<T> extends StyledComponentProps {
   options: OptionType
   onManualSorting?: (sortingField: SortingState) => void
   onChangeRowSelection?: (selectionRows: T[]) => void
+  onUpdateData?: (newData: object) => void
   children: React.ReactNode
 }
 
@@ -59,6 +60,7 @@ const DataGrid = React.forwardRef<HTMLTableElement, DataGridProps>(
       options,
       onManualSorting,
       onChangeRowSelection,
+      onUpdateData,
       children,
       // HTMLDiv Props
       ...delegated
@@ -119,6 +121,7 @@ const DataGrid = React.forwardRef<HTMLTableElement, DataGridProps>(
                       <DataGridColumnHeader
                         key={header.id}
                         headerProps={header}
+                        tableOption={table}
                       />
                     )
                   })}
@@ -140,7 +143,14 @@ const DataGrid = React.forwardRef<HTMLTableElement, DataGridProps>(
                         isSelected={row.getIsSelected()}
                       >
                         {row.getVisibleCells().map((cell) => {
-                          return <DataGridCell key={cell.id} cell={cell} />
+                          return (
+                            <DataGridCell
+                              key={cell.id}
+                              cell={cell}
+                              // eslint-disable-next-line @typescript-eslint/no-empty-function
+                              onChangeCell={onUpdateData || (() => {})}
+                            />
+                          )
                         })}
                       </DataGridRow>
                     )

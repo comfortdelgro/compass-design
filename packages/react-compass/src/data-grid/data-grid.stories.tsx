@@ -10,6 +10,8 @@ import Button from '../button'
 import {Icon} from '../icon'
 import Pagination from '../pagination'
 import SearchField from '../searchfield'
+import ProgressPercentage from './data-grid-progress'
+import StatusComponent from './for story/person-status'
 import {makeData, Person} from './makeData'
 
 export const DataGridStory: React.FC = () => {
@@ -114,12 +116,21 @@ export const DataGridStory: React.FC = () => {
           {
             accessorKey: 'status',
             header: 'Status',
+            cell: (info) => (
+              <StatusComponent
+                status={info.getValue<string>()}
+              ></StatusComponent>
+            ),
             footer: (info) => info.column.id,
           },
           {
             accessorKey: 'progress',
             header: 'Profile Progress',
-            cell: (info) => info.getValue<string>(),
+            cell: (info) => (
+              <ProgressPercentage
+                progress={Number(info.getValue<string>())}
+              ></ProgressPercentage>
+            ),
             footer: (info) => info.column.id,
           },
         ],

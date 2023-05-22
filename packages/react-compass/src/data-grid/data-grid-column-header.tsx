@@ -1,6 +1,7 @@
-import {flexRender, Header} from '@tanstack/react-table'
-import React from 'react'
+import {flexRender, Header, Table} from '@tanstack/react-table'
+import React, {useState} from 'react'
 import {useDOMRef} from '../utils/use-dom-ref'
+import Filter from './data-grid-column-header-filter'
 import {
   StyledDataGridColumnHeader,
   StyledDataGridSortingIndicator,
@@ -9,13 +10,17 @@ import DataGridResizer from './data-grid-resizer'
 
 interface Props {
   headerProps: Header<any, unknown>
+  tableOption: Table<any>
 }
 
 const DataGridColumnHeader = React.forwardRef<HTMLTableCellElement, Props>(
-  ({headerProps}, ref) => {
+  ({headerProps, tableOption}, ref) => {
     const enableResizing = headerProps?.column?.columnDef?.enableResizing
     const tableRowRef = useDOMRef<HTMLTableCellElement>(ref)
-
+    const [isFiltering, setIsFiltering] = useState(false)
+    const handleClickOrTouchFilter = () => {
+      setIsFiltering(!isFiltering)
+    }
     return (
       <StyledDataGridColumnHeader
         ref={tableRowRef}
@@ -93,6 +98,32 @@ const DataGridColumnHeader = React.forwardRef<HTMLTableCellElement, Props>(
                   </StyledDataGridSortingIndicator>
                 ),
               }[headerProps.column.getIsSorted() as string] ?? null}
+              {headerProps.column.getCanFilter() ? (
+                <div>
+                  <svg
+                    onClick={handleClickOrTouchFilter}
+                    onTouchStart={handleClickOrTouchFilter}
+                    width='24'
+                    height='26'
+                    viewBox='0 0 28 23'
+                    fill='#A19F9D'
+                  >
+                    <path d='M4.25 5.61C6.27 8.2 10 13 10 13v6c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-6s3.72-4.8 5.74-7.39c.51-.66.04-1.61-.79-1.61H5.04c-.83 0-1.3.95-.79 1.61z'></path>
+                  </svg>
+                  <div
+                    style={{
+                      display: isFiltering ? 'block' : 'none',
+                      position: 'relative',
+                    }}
+                  >
+                    <Filter
+                      column={headerProps.column}
+                      table={tableOption}
+                      setFiltering={setIsFiltering}
+                    />
+                  </div>
+                </div>
+              ) : null}
             </div>
           )}
           {enableResizing && <DataGridResizer headerProps={headerProps} />}

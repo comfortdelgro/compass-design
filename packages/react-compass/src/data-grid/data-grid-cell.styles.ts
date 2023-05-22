@@ -1,6 +1,7 @@
 import {styled} from '../theme'
 
 export const StyledDataGridCell = styled('td', {
+  position: 'relative',
   textAlign: 'left',
   fontSize: '$label1',
   padding: '$3_5 $3',
