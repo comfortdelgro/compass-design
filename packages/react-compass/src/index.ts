@@ -2,12 +2,12 @@ export {SSRProvider} from '@react-aria/ssr'
 export {
   LocalizedStringDictionary,
   LocalizedStringFormatter,
-} from './@internationalized/string'
+} from '@internationalized/string'
 export type {
   LocalizedString,
   LocalizedStrings,
   Variables,
-} from './@internationalized/string'
+} from '@internationalized/string'
 export {default as Accordion} from './accordion'
 export type {
   AccordionExpandIconProps,

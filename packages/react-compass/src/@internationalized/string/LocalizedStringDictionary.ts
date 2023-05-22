@@ -8,7 +8,7 @@
  * found in the LICENSE.txt file at the root directory of this source tree.
  */
 
-import {LocalizedString} from './LocalizedStringFormatter'
+import type {LocalizedString} from './LocalizedStringFormatter'
 
 export type LocalizedStrings<K extends string, T extends LocalizedString> = {
   [lang: string]: Record<K, T>
@@ -36,15 +36,17 @@ export class LocalizedStringDictionary<
 
   /** Returns a localized string for the given key and locale. */
   getStringForLocale(key: K, locale: string): T {
-    let strings = this.strings[locale]
+    let strings = this.strings[locale] as Record<K, T>
     if (!strings) {
-      strings = getStringsForLocale(locale, this.strings, this.defaultLocale)
-      if (strings !== undefined) {
-        this.strings[locale] = strings
-      }
+      strings = getStringsForLocale(
+        locale,
+        this.strings,
+        this.defaultLocale,
+      ) as Record<K, T>
+      this.strings[locale] = strings
     }
 
-    let string = strings?.[key]
+    let string = strings[key]
     if (!string) {
       throw new Error(`Could not find intl message ${key} in ${locale} locale`)
     }
@@ -68,8 +70,8 @@ function getStringsForLocale<K extends string, T extends LocalizedString>(
   // an fr-FR (France) set of strings, use that.
   // This could be replaced with Intl.LocaleMatcher once it is supported.
   // https://github.com/tc39/proposal-intl-localematcher
-  let language = getLanguage(locale)
-  if (language !== undefined && strings[language]) {
+  let language = getLanguage(locale) as string
+  if (strings[language]) {
     return strings[language]
   }
 
