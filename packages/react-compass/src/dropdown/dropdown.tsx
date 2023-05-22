@@ -374,7 +374,9 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
             popoverRef={popoverRef}
             isEmpty={collection.length === 0}
             maxULHeight={visualizeList.current?.clientHeight}
-            triggerRef={selectRef as React.RefObject<HTMLDivElement>}
+            triggerRef={
+              (selectRef as React.RefObject<HTMLDivElement>) || inputRef
+            }
             close={close}
             handleKeyDown={handleKeyDown}
           >

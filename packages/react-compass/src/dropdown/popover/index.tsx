@@ -23,26 +23,17 @@ function Popover({
   const ref = React.useRef(null)
   const {popoverRef = ref, isEmpty = false} = props
 
-  React.useEffect(() => {
+  const elementIsVisibleInViewport = () => {
     const rect = popoverRef.current?.getBoundingClientRect()
     if (rect) {
-      const isInViewport =
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <=
-          (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <=
-          (window.innerWidth || document.documentElement.clientWidth)
-
-      if (!isInViewport && popoverRef.current) {
-        popoverRef.current.style.bottom = `${
-          (triggerRef.current?.clientHeight ?? 42) + 10
-        }px`
-      } else if (popoverRef.current) {
-        popoverRef.current.style.top = '8px'
-      }
+      const {top, left, bottom, right} = rect
+      const {innerHeight, innerWidth} = window
+      return (
+        top >= 0 && left >= 0 && bottom <= innerHeight && right <= innerWidth
+      )
     }
-  }, [])
+    return true
+  }
 
   React.useEffect(() => {
     document.addEventListener('keydown', handleKeyDown)
@@ -64,6 +55,13 @@ function Popover({
             ? triggerRef.current.clientWidth + 2
             : '100%',
           display: isEmpty ? 'none' : '',
+          ...(elementIsVisibleInViewport()
+            ? {
+                bottom: `${(triggerRef.current?.clientHeight ?? 42) + 10}px`,
+              }
+            : {
+                top: '8px',
+              }),
         }}
         css={{
           $$zIndex: LISTBOX_Z_INDEX,
