@@ -1,8 +1,10 @@
-import React from 'react'
+import React, {useState} from 'react'
+import TextField from '../textfield'
 import {Column} from '../utils/components'
 import Box from './index'
 
 export const ElementMapping: React.FC = () => {
+  const [inputValue, setInputValue] = useState<string | number>('')
   return (
     <Column>
       <p>
@@ -20,7 +22,10 @@ export const ElementMapping: React.FC = () => {
           textAlign: 'center',
         }}
       >
-        <p>My 'div' box</p>
+        <TextField
+          value={inputValue}
+          onChange={(value) => setInputValue(value)}
+        />
       </Box>
       <h3>Box as 'h2' Element</h3>
       <Box as='h2' color='red'>

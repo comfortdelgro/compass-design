@@ -91,6 +91,9 @@ export const StyledModalWrapper = styled('div', {
   width: '100vw',
   height: '100vh',
   zIndex: '49',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
 })
 
 export const StyledModalCloseIcon = styled('div', {
@@ -133,11 +136,11 @@ export const StyledModal = styled('div', {
 
   borderRadius: '$lg',
   overflow: 'clip',
-  position: 'fixed',
-  top: '50%',
-  left: '50%',
+  // position: 'absolute',
+  // top: '50%',
+  // left: '50%',
   /* bring your own prefixes */
-  transform: `translate(-50%, -50%)`,
+  //transform: `translate(-50%, -50%)`,
 
   variants: {
     size: {
