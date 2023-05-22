@@ -1,5 +1,11 @@
 ## 1.0.0-next.2
 
+## 1.0.0-next.4
+
+### Minor Changes
+
+- c11c0167: Fix bugs
+
 ## 1.0.0-next.3
 
 ### Minor Changes
