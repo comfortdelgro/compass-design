@@ -11,7 +11,6 @@ import {useDateRangePickerState} from '../calendar/hooks/useDateRangePickerState
 import {
   AriaDatePickerProps,
   AriaDialogProps,
-  DateRange,
   DateRangePickerState,
   DOMAttributes,
   RangeCalendarProps,
@@ -35,8 +34,6 @@ interface Props
   startDateLabel?: string
   endDateLabel?: string
   shouldCloseOnSelect?: boolean
-  onApply?: (e?: DateRange) => void
-  onCancel?: () => void
   isMobile?: boolean
   calendarCSS?: CSS
   helperText?: React.ReactNode
@@ -51,8 +48,6 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
       endDateLabel,
       shouldCloseOnSelect = false,
       css = {},
-      onApply,
-      onCancel,
       errorMessage,
       helperText,
       ...delegated
@@ -63,7 +58,7 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
       isReadOnly: props.isReadOnly ? true : props.isMobile ? true : false,
       shouldCloseOnSelect: props.granularity
         ? true
-        : props.shouldCloseOnSelect ?? false,
+        : shouldCloseOnSelect ?? false,
     })
 
     const calendarRef = useDOMRef(ref)
@@ -132,8 +127,6 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
         />
         <DateRangeCalendarWrapper
           state={state}
-          onApply={onApply}
-          onCancel={onCancel}
           calendarRef={calendarRef}
           dialogProps={dialogProps}
           calendarProps={calendarProps}
@@ -217,21 +210,11 @@ interface DateRangeCalendarWrapperProps {
   calendarRef: React.RefObject<HTMLDivElement>
   dialogProps: AriaDialogProps
   calendarProps: RangeCalendarProps<DateValue>
-  onApply: ((e?: DateRange) => void) | undefined
-  onCancel: (() => void) | undefined
   css?: CSS | undefined
 }
 
 const DateRangeCalendarWrapper = (props: DateRangeCalendarWrapperProps) => {
-  const {
-    state,
-    calendarRef,
-    dialogProps,
-    calendarProps,
-    css = {},
-    onApply,
-    onCancel,
-  } = props
+  const {state, calendarRef, dialogProps, calendarProps, css = {}} = props
 
   const {value, onChange, ...resCalendarProps} = calendarProps
 
@@ -258,8 +241,6 @@ const DateRangeCalendarWrapper = (props: DateRangeCalendarWrapperProps) => {
               css={css}
               state={state}
               hasFooter={true}
-              onApplyCallback={onApply}
-              onCancelCallback={onCancel}
               aria-label=''
               aria-labelledby=''
               {...(value ? {value} : {})}

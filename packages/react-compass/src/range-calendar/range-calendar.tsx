@@ -7,12 +7,7 @@ import CalendarGrid from '../calendar/calendar-grid'
 import CalendarHeader from '../calendar/calendar-header'
 import {useRangeCalendar} from '../calendar/hooks/useRangeCalendar'
 import {useRangeCalendarState} from '../calendar/hooks/useRangeCalendarState'
-import {
-  DateRange,
-  DateRangePickerState,
-  DateValue,
-  RangeValue,
-} from '../calendar/types'
+import {DateRangePickerState, DateValue, RangeValue} from '../calendar/types'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {StyledRangeCalendar} from './range-calendar.style'
@@ -22,8 +17,6 @@ interface Props extends StyledComponentProps {
   children?: React.ReactNode
   state?: DateRangePickerState
   hasFooter?: boolean
-  onCancelCallback?: (() => void) | undefined
-  onApplyCallback?: ((e?: DateRange) => void) | undefined
   onChange?: (e: unknown) => void
 }
 
@@ -31,14 +24,7 @@ export type RangeCalendarProps = Props
 
 const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
   (props, ref) => {
-    const {
-      state: pickerState,
-      hasFooter,
-      css = {},
-      onCancelCallback,
-      onApplyCallback,
-      ...delegated
-    } = props
+    const {state: pickerState, hasFooter, css = {}, ...delegated} = props
 
     const {locale} = useLocale()
     const state = useRangeCalendarState({
