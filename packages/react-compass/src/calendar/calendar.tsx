@@ -16,7 +16,6 @@ interface Props extends StyledComponentProps, ValueBase<DateValue> {
   children?: React.ReactNode
   state?: DatePickerState
   hasFooter?: boolean
-  onCancelCallback?: (() => void) | undefined
   maxValue?: DateValue | null | undefined
   isDisabled?: boolean
   isDateUnavailable?: (date: DateValue) => boolean
@@ -27,7 +26,6 @@ export type CalendarProps = Props & DateValue
 const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   const {
     state: pickerState,
-    onCancelCallback,
     hasFooter = false,
     css = {},
     maxValue = parseDate('2999-02-17'),
@@ -53,9 +51,20 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     state,
   )
 
-  const handleCancelButtonClick = () => {
-    onCancelCallback?.()
-    pickerState?.close()
+  const handleClearButtonClick = () => {
+    pickerState?.setDateValue(
+      null as unknown as InternationalizedDate.CalendarDate,
+    )
+  }
+
+  const handleTodayButtonClick = () => {
+    const today = InternationalizedDate.today(
+      InternationalizedDate.getLocalTimeZone(),
+    )
+
+    pickerState?.setDateValue(today)
+
+    state.setFocusedDate?.(today)
   }
 
   return (
@@ -70,9 +79,10 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
         <CalendarGrid state={state} maxValue={maxValue} />
         {hasFooter && (
           <div className='calendar-footer'>
-            <Button variant='ghost' onPress={handleCancelButtonClick}>
-              Cancel
+            <Button variant='ghost' onPress={handleClearButtonClick}>
+              Clear
             </Button>
+            <Button onPress={handleTodayButtonClick}>Today</Button>
           </div>
         )}
       </StyledCalendar>
