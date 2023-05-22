@@ -17,7 +17,9 @@ import {
 interface Props extends StyledComponentProps {
   id?: string
   name?: string
+  value?: string
   isIndeterminate?: boolean
+  isReadOnly?: boolean
   children?: React.ReactNode
   isDisabled?: boolean
   defaultSelected?: boolean
@@ -25,6 +27,7 @@ interface Props extends StyledComponentProps {
   cssCheckBoxInput?: CSS
   // Variants for children
   variant?: 'default' | 'rounded'
+  validationState?: 'valid' | 'invalid'
   onChange?: (isSelected: boolean) => void
 
   autoFocus?: boolean
@@ -45,6 +48,7 @@ interface Props extends StyledComponentProps {
   'aria-describedby'?: string
   'aria-details'?: string
   'aria-errormessage'?: string
+  'aria-invalid'?: boolean
 }
 
 export type CheckboxProps = Props &
@@ -66,6 +70,8 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       onChange,
       cssCheckBoxInput = {},
       variant = 'default',
+      isReadOnly = false,
+      validationState,
       // AriaProps
       ...ariaSafeProps
     } = props
@@ -107,8 +113,11 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
             {...ariaProps}
             checked={checked}
             disabled={isDisabled}
-            onChange={handleCheckboxChange}
+            onChange={!isReadOnly ? handleCheckboxChange : undefined}
             css={cssCheckBoxInput}
+            readOnly={isReadOnly}
+            aria-invalid={validationState === 'invalid' ? 'true' : undefined}
+            aria-readonly={isReadOnly === true ? 'true' : undefined}
           />
 
           {/* Checkbox */}

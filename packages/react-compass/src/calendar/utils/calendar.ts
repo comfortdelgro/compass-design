@@ -34,8 +34,8 @@ export const alignCenter = (
   focusedDate: CalendarDate,
   visibleDuration: DateDuration,
   locale: string,
-  minValue?: DateValue,
-  maxValue?: DateValue,
+  minValue?: DateValue | null | undefined,
+  maxValue?: DateValue | undefined | null,
 ) => {
   const halfDuration = {months: 0}
 
@@ -84,8 +84,8 @@ export function constrainStart(
   aligned: CalendarDate,
   visibleDuration: DateDuration,
   locale: string,
-  minValue?: DateValue,
-  maxValue?: DateValue,
+  minValue?: DateValue | null | undefined,
+  maxValue?: DateValue | null | undefined,
 ) {
   if (minValue && focusedDate.compare(minValue) >= 0) {
     aligned = maxDate(
@@ -108,8 +108,8 @@ export function alignEnd(
   focusedDate: CalendarDate,
   duration: DateDuration,
   locale: string,
-  minValue?: DateValue,
-  maxValue?: DateValue,
+  minValue?: DateValue | null | undefined,
+  maxValue?: DateValue | null | undefined,
 ) {
   const d: DateDuration = {...duration}
   if (d.days) {
@@ -135,8 +135,8 @@ export function alignEnd(
 
 export function constrainValue(
   date: CalendarDate,
-  minValue?: DateValue,
-  maxValue?: DateValue,
+  minValue?: DateValue | null | undefined,
+  maxValue?: DateValue | null | undefined,
 ) {
   if (minValue) {
     date = maxDate(date, toCalendarDate(minValue))
@@ -151,9 +151,12 @@ export function constrainValue(
 
 export function previousAvailableDate(
   date: CalendarDate,
-  minValue: DateValue,
+  minValue: DateValue | null | undefined,
   isDateUnavailable?: (date: CalendarDate) => boolean,
 ) {
+  if (!minValue) {
+    return null
+  }
   if (!isDateUnavailable) {
     return date
   }

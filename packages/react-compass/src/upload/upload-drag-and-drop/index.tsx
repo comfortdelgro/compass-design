@@ -86,7 +86,6 @@ const UploadDragAndDrop = React.forwardRef<
   const hanldeDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     const target = e.target as HTMLDivElement
     if (target.tagName !== 'LABEL') {
-      console.log([e.target])
       target.style.border = '1px dashed #0142AF'
       target.style.backgroundColor = '#E6ECF7'
     }

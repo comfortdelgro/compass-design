@@ -92,7 +92,15 @@ interface Props extends StyledComponentProps {
   lineHeight?: string
   textAlign?: string
 }
-
+const StyledBox = styled('div', {
+  // reset
+  appearance: 'none',
+  border: 'none',
+  backgroundColor: 'transparent',
+  boxSizing: 'border-box',
+  margin: '0px',
+  padding: '0px',
+})
 const Box = React.forwardRef<HTMLDivElement, BoxProps>((props, ref) => {
   const {
     // children props
@@ -185,21 +193,13 @@ const Box = React.forwardRef<HTMLDivElement, BoxProps>((props, ref) => {
     ...delegated
   } = props
 
-  const StyledComponent = styled(asProp, {
-    // reset
-    appearance: 'none',
-    border: 'none',
-    backgroundColor: 'transparent',
-    boxSizing: 'border-box',
-    margin: '0px',
-    padding: '0px',
-  })
   const BoxRef = useDOMRef<HTMLDivElement>(ref)
 
   return (
-    <StyledComponent
+    <StyledBox
       {...delegated}
       ref={BoxRef}
+      as={asProp}
       css={{
         border,
         borderBottom,
@@ -286,7 +286,7 @@ const Box = React.forwardRef<HTMLDivElement, BoxProps>((props, ref) => {
       }}
     >
       {children}
-    </StyledComponent>
+    </StyledBox>
   )
 })
 
