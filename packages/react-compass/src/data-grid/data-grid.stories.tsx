@@ -58,6 +58,7 @@ export const DataGridStory: React.FC = () => {
             </div>
           )
         },
+        enableGrouping: false,
         cell: ({row}) => (
           <div
             style={{
@@ -80,6 +81,7 @@ export const DataGridStory: React.FC = () => {
         id: 'name',
         header: () => <div style={{textAlign: 'center'}}>Name</div>,
         footer: (props) => props.column.id,
+        enableGrouping: false,
         columns: [
           {
             accessorKey: 'firstName',
@@ -102,6 +104,7 @@ export const DataGridStory: React.FC = () => {
         id: 'otherInfo',
         header: () => <div style={{textAlign: 'center'}}>Other info</div>,
         footer: (props) => props.column.id,
+        enableGrouping: false,
         columns: [
           {
             accessorKey: 'age',

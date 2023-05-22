@@ -1,8 +1,11 @@
 import {
   ColumnDef,
   getCoreRowModel,
+  getExpandedRowModel,
   getFilteredRowModel,
+  getGroupedRowModel,
   getSortedRowModel,
+  GroupingState,
   SortingState,
   useReactTable,
 } from '@tanstack/react-table'
@@ -51,6 +54,7 @@ const DataGrid = React.forwardRef<HTMLTableElement, DataGridProps>(
   (props, ref) => {
     const [sorting, setSorting] = useState<SortingState>([])
     const [rowSelection, setRowSelection] = useState({})
+    const [grouping, setGrouping] = React.useState<GroupingState>([])
 
     const {
       // StyledComponentProps
@@ -79,9 +83,13 @@ const DataGrid = React.forwardRef<HTMLTableElement, DataGridProps>(
 
     const table = useReactTable({
       state: {
+        grouping,
         rowSelection,
         sorting: options.initialSortBy ? options.initialSortBy : sorting,
       },
+      onGroupingChange: setGrouping,
+      getExpandedRowModel: getExpandedRowModel(),
+      getGroupedRowModel: getGroupedRowModel(),
       onSortingChange: setSorting,
       getCoreRowModel: getCoreRowModel(),
       getSortedRowModel: getSortedRowModel(),
@@ -147,6 +155,7 @@ const DataGrid = React.forwardRef<HTMLTableElement, DataGridProps>(
                             <DataGridCell
                               key={cell.id}
                               cell={cell}
+                              row={row}
                               // eslint-disable-next-line @typescript-eslint/no-empty-function
                               onChangeCell={onUpdateData || (() => {})}
                             />

@@ -54,10 +54,19 @@ const DataGridColumnHeader = React.forwardRef<HTMLTableCellElement, Props>(
                   : {}
               }
             >
-              {flexRender(
-                headerProps.column.columnDef.header,
-                headerProps.getContext(),
-              )}
+              {
+                <div onClick={headerProps.column.getToggleGroupingHandler()}>
+                  {headerProps.column.getIsGrouped() ? (
+                    <span>({headerProps.column.getGroupedIndex()})</span>
+                  ) : (
+                    <></>
+                  )}
+                  {flexRender(
+                    headerProps.column.columnDef.header,
+                    headerProps.getContext(),
+                  )}
+                </div>
+              }
               {{
                 asc: (
                   <StyledDataGridSortingIndicator
