@@ -1,7 +1,6 @@
 import {
   autoUpdate,
   flip,
-  FloatingFocusManager,
   offset,
   useDismiss,
   useFloating,
@@ -391,45 +390,43 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         </StyledFlag>
       )}
       {collection && open && (
-        <FloatingFocusManager context={context} modal={false}>
-          <div
-            className='Popover'
-            ref={refs.setFloating}
-            style={{
-              ...floatingStyles,
-              ...{
-                zIndex: 3,
-              },
-            }}
-            {...getFloatingProps}
+        <div
+          className='Popover'
+          ref={refs.setFloating}
+          style={{
+            ...floatingStyles,
+            ...{
+              zIndex: 3,
+            },
+          }}
+          {...getFloatingProps}
+        >
+          <Popover
+            isEmpty={collection.length === 0}
+            visualizeRef={visualizeULList}
+            triggerRef={
+              type == 'select'
+                ? (selectRef as React.RefObject<HTMLDivElement>)
+                : inputRef
+            }
+            handleKeyDown={handleKeyDown}
           >
-            <Popover
-              isEmpty={collection.length === 0}
-              visualizeRef={visualizeULList}
-              triggerRef={
-                type == 'select'
-                  ? (selectRef as React.RefObject<HTMLDivElement>)
-                  : inputRef
-              }
-              handleKeyDown={handleKeyDown}
-            >
-              <ListBox
-                dropdownType={type}
-                focusKey={focusKey}
-                currentKey={currentKey}
-                collection={collection}
-                listBoxRef={listBoxRef}
-                disabledKeys={disabledKeys}
-                isLoading={isLoading}
-                sectionCollection={sectionCollection}
-                rootChildren={children}
-                onHover={onHover}
-                onSelect={onSelect}
-                onLoadMore={onLoadMore}
-              />
-            </Popover>
-          </div>
-        </FloatingFocusManager>
+            <ListBox
+              dropdownType={type}
+              focusKey={focusKey}
+              currentKey={currentKey}
+              collection={collection}
+              listBoxRef={listBoxRef}
+              disabledKeys={disabledKeys}
+              isLoading={isLoading}
+              sectionCollection={sectionCollection}
+              rootChildren={children}
+              onHover={onHover}
+              onSelect={onSelect}
+              onLoadMore={onLoadMore}
+            />
+          </Popover>
+        </div>
       )}
       <RowCalculator
         ref={visualizeList}

@@ -1,7 +1,6 @@
 import {
   autoUpdate,
   flip,
-  FloatingFocusManager,
   offset,
   useDismiss,
   useFloating,
@@ -351,40 +350,38 @@ const MultipleDropdown = React.forwardRef<
       </div>
 
       {collection && open && (
-        <FloatingFocusManager context={context} modal={false}>
-          <div
-            className='Popover'
-            ref={refs.setFloating}
-            style={{
-              ...floatingStyles,
-              ...{
-                zIndex: 3,
-              },
-            }}
-            {...getFloatingProps}
+        <div
+          className='Popover'
+          ref={refs.setFloating}
+          style={{
+            ...floatingStyles,
+            ...{
+              zIndex: 3,
+            },
+          }}
+          {...getFloatingProps}
+        >
+          <Popover
+            isEmpty={collection.length === 0}
+            visualizeRef={visualizeULList}
+            triggerRef={wrapperRef}
+            handleKeyDown={handleKeyDown}
           >
-            <Popover
-              isEmpty={collection.length === 0}
-              visualizeRef={visualizeULList}
-              triggerRef={wrapperRef}
-              handleKeyDown={handleKeyDown}
-            >
-              <ListBox
-                focusKey={focusKey}
-                isLoading={isLoading}
-                collection={collection}
-                rootChildren={children}
-                listBoxRef={listBoxRef}
-                currentKeys={currentKeys}
-                disabledKeys={disabledKeys}
-                sectionCollection={sectionCollection}
-                onHover={onHover}
-                onSelect={onSelect}
-                onLoadMore={onLoadMore}
-              />
-            </Popover>
-          </div>
-        </FloatingFocusManager>
+            <ListBox
+              focusKey={focusKey}
+              isLoading={isLoading}
+              collection={collection}
+              rootChildren={children}
+              listBoxRef={listBoxRef}
+              currentKeys={currentKeys}
+              disabledKeys={disabledKeys}
+              sectionCollection={sectionCollection}
+              onHover={onHover}
+              onSelect={onSelect}
+              onLoadMore={onLoadMore}
+            />
+          </Popover>
+        </div>
       )}
       <RowCalculator
         ref={visualizeList}
