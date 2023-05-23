@@ -310,8 +310,8 @@
       "levels": [
         "Checkbox"
       ],
-      "locStart": 85,
-      "locEnd": 102,
+      "locStart": 87,
+      "locEnd": 104,
       "filePath": "src/checkbox/checkbox.stories.tsx",
       "meta": {}
     },
@@ -320,8 +320,8 @@
       "levels": [
         "Checkbox"
       ],
-      "locStart": 104,
-      "locEnd": 128,
+      "locStart": 106,
+      "locEnd": 130,
       "filePath": "src/checkbox/checkbox.stories.tsx",
       "meta": {}
     },
@@ -330,8 +330,8 @@
       "levels": [
         "Checkbox"
       ],
-      "locStart": 6,
-      "locEnd": 83,
+      "locStart": 8,
+      "locEnd": 85,
       "filePath": "src/checkbox/checkbox.stories.tsx",
       "meta": {}
     },
@@ -581,7 +581,7 @@
         "Modal"
       ],
       "locStart": 8,
-      "locEnd": 39,
+      "locEnd": 40,
       "filePath": "src/modal/modal.stories.tsx",
       "meta": {}
     },
@@ -590,8 +590,8 @@
       "levels": [
         "Modal"
       ],
-      "locStart": 41,
-      "locEnd": 116,
+      "locStart": 42,
+      "locEnd": 117,
       "filePath": "src/modal/modal.stories.tsx",
       "meta": {}
     },
