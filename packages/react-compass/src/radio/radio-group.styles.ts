@@ -17,6 +17,9 @@ export const StyledRadioGroup = styled('div', {
       },
     },
   },
+  '&:focus': {
+    outline: 'none',
+  },
 })
 
 export type RadioGroupVariantProps = VariantProps<typeof StyledRadioGroup>

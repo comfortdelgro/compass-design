@@ -183,6 +183,7 @@ const MultipleDropdown = React.forwardRef<
     } else {
       setIsSearching(false)
       inputRef.current?.blur()
+      setIsSearching(false)
     }
   }, [open])
 
