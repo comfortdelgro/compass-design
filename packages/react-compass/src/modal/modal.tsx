@@ -15,7 +15,9 @@ interface Props extends StyledComponentProps {
   size?: 'sm' | 'md' | 'lg'
 }
 
-export type ModalProps = Props & ModalVariantProps
+export type ModalProps = Props &
+  ModalVariantProps &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
   const {

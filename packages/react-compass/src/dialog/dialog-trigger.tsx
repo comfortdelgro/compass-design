@@ -46,6 +46,7 @@ const DialogTrigger = React.forwardRef<HTMLDivElement, DialogTriggerProps>(
           !dialogRef?.current?.contains(event.target as Node)
         ) {
           event.preventDefault()
+          event.stopPropagation()
           handleClose?.()
         }
       }

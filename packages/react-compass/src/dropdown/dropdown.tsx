@@ -1,3 +1,11 @@
+import {
+  autoUpdate,
+  flip,
+  offset,
+  useDismiss,
+  useFloating,
+  useInteractions,
+} from '@floating-ui/react'
 import React from 'react'
 import {useDOMRef} from '../utils/use-dom-ref'
 import DropdownComboBox from './dropdown.combobox'
@@ -10,7 +18,6 @@ import {
   StyledFlag,
   StyledFlagIcon,
   StyledHelperText,
-  StyledListBoxWrapper,
   StyledSelect,
 } from './dropdown.styles'
 import {countries, Flag} from './flags'
@@ -64,6 +71,12 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     onLoadMore = () => {
       //Load more
     },
+    onBlur = () => {
+      //
+    },
+    onFocus = () => {
+      //
+    },
     ...delegated
   } = props
   // ====================================== STATE ======================================
@@ -78,15 +91,26 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   )
 
   // ====================================== REF ======================================
-  const firstBlur = React.useRef(true)
-  const popoverRef = React.useRef<HTMLDivElement>(null)
   const listBoxRef = React.useRef<HTMLUListElement>(null)
   const visualizeList = React.useRef<HTMLDivElement>(null)
+  const visualizeULList = React.useRef<HTMLUListElement>(null)
   // Select ref
   const selectRef = useDOMRef<HTMLElement>(ref)
   // Combobox ref
   const inputRef = React.useRef<HTMLInputElement>(null)
   const buttonRef = React.useRef<HTMLButtonElement>(null)
+
+  // ====================================== FLOATING ======================================
+  const {refs, floatingStyles, context} = useFloating({
+    open: open,
+    onOpenChange: setOpen,
+    middleware: [offset(8), flip()],
+    whileElementsMounted: autoUpdate,
+  })
+
+  const dismiss = useDismiss(context)
+
+  const {getReferenceProps, getFloatingProps} = useInteractions([dismiss])
 
   // ====================================== CONST ======================================
   const rawCollection = React.useMemo(
@@ -177,12 +201,10 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     props.onOpenChange?.(open)
     if (type === 'select') {
       if (open) {
-        props.onFocus?.()
-        firstBlur.current = false
         selectRef.current?.focus()
         inputRef.current?.focus()
-      } else if (!firstBlur.current) {
-        props.onBlur?.()
+      } else {
+        setIsSearching(false)
         selectRef.current?.blur()
         inputRef.current?.blur()
       }
@@ -198,6 +220,9 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           : textContent(selectedItem as React.ReactElement)
       setSearch(text ?? '')
       props.onSelectionChange?.(currentKey)
+    } else {
+      setSearch('')
+      props.onSelectionChange?.('')
     }
   }, [currentKey])
 
@@ -240,11 +265,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     }
   }
 
-  const close = () => {
-    setIsSearching(false)
-    setOpen(false)
-  }
-
   const onHover = (key: React.Key | null) => {
     if (key) {
       setFocusKey(key)
@@ -253,7 +273,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
 
   const onSelect = (key: React.Key) => {
     if (!isReadOnly) {
-      setCurrentKey(key)
+      setCurrentKey((ck) => (ck === key ? undefined : key))
       setOpen(false)
     }
   }
@@ -274,13 +294,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     inputRef.current?.focus()
   }
 
-  const hanleInputFocus = () => {
-    props.onFocus?.()
-  }
-
-  const handleInputBlur = () => {
-    props.onBlur?.()
-  }
   // ====================================== RENDER ======================================
   return (
     <StyledDropdownWrapper css={css} {...delegated}>
@@ -295,6 +308,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           isEmpty={!selectedItem}
           isErrored={!!isErrored}
           isDisabled={isDisabled}
+          ref={refs.setReference}
+          {...getReferenceProps}
         >
           <button
             type='button'
@@ -318,6 +333,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           isEmpty={!selectedItem}
           isErrored={!!isErrored}
           isDisabled={isDisabled}
+          ref={refs.setReference}
+          {...getReferenceProps}
         >
           <input
             ref={inputRef}
@@ -325,8 +342,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
             disabled={isDisabled}
             placeholder={placeholder}
             onChange={onSearch}
-            onBlur={handleInputBlur}
-            onFocus={hanleInputFocus}
+            onBlur={onBlur}
+            onFocus={onFocus}
           />
           <button
             type='button'
@@ -343,6 +360,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           isEmpty={!choosenFlag}
           isErrored={!!isErrored}
           isDisabled={isDisabled}
+          ref={refs.setReference}
+          {...getReferenceProps}
         >
           {choosenFlag && (
             <StyledFlagIcon>
@@ -355,8 +374,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
             disabled={isDisabled}
             placeholder={placeholder}
             onChange={onSearch}
-            onBlur={handleInputBlur}
-            onFocus={hanleInputFocus}
+            onBlur={onBlur}
+            onFocus={onFocus}
           />
           <button
             ref={buttonRef}
@@ -369,13 +388,39 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         </StyledFlag>
       )}
       {collection && open && (
-        <StyledListBoxWrapper>
+        <div
+          className='Popover'
+          ref={refs.setFloating}
+          style={{
+            ...floatingStyles,
+            ...{
+              zIndex: 3,
+            },
+          }}
+          {...getFloatingProps}
+        >
           <Popover
-            popoverRef={popoverRef}
             isEmpty={collection.length === 0}
-            maxULHeight={visualizeList.current?.clientHeight}
-            triggerRef={selectRef as React.RefObject<HTMLDivElement>}
-            close={close}
+            visualizeRef={visualizeULList}
+            triggerRef={
+              type == 'select'
+                ? (selectRef as React.RefObject<HTMLDivElement>)
+                : inputRef
+            }
+            onBlur={
+              type == 'select'
+                ? onBlur
+                : () => {
+                    //
+                  }
+            }
+            onFocus={
+              type == 'select'
+                ? onFocus
+                : () => {
+                    //
+                  }
+            }
             handleKeyDown={handleKeyDown}
           >
             <ListBox
@@ -393,13 +438,20 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
               onLoadMore={onLoadMore}
             />
           </Popover>
-        </StyledListBoxWrapper>
+        </div>
       )}
       <RowCalculator
-        type={type}
         ref={visualizeList}
+        dropdownType={type}
+        isLoading={isLoading}
         collection={rawCollection}
+        listBoxRef={visualizeULList}
+        rootChildren={children}
         numberOfRows={numberOfRows}
+        sectionCollection={sectionCollection}
+        onLoadMore={() => {
+          //
+        }}
       />
       {errorMessage && (
         <StyledHelperText error={!!isErrored}>{errorMessage}</StyledHelperText>
