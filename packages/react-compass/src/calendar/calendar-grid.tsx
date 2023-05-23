@@ -17,7 +17,7 @@ interface Props extends StyledComponentProps {
   children?: React.ReactNode
   state: CalendarState | RangeCalendarState
   offset?: DateDuration
-  maxValue?: DateValue
+  maxValue?: DateValue | null | undefined
 }
 
 const DEFAULT_OFFSET: DateDuration = {

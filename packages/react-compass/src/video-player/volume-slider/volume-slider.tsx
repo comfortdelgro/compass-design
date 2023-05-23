@@ -19,7 +19,6 @@ const VolumeSlider: React.FC<VerticalSliderProps> = ({value, onChange}) => {
   useEffect(() => {
     if (sliderRef.current) {
       sliderRef.current.style.setProperty('--slider-value', String(sliderValue))
-      console.log('value', sliderValue)
     }
   }, [sliderValue])
 

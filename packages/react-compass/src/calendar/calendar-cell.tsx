@@ -19,7 +19,7 @@ interface Props extends StyledComponentProps {
   state: CalendarState | RangeCalendarState
   date: CalendarDate
   currentMonth: CalendarDate
-  maxValue?: DateValue
+  maxValue?: DateValue | null | undefined
 }
 
 const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
@@ -69,7 +69,7 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
     }
 
     const maxValueClassFunc = () => {
-      if (date > maxValue) {
+      if (maxValue && date > maxValue) {
         isDisabled = true
       }
       return
@@ -101,8 +101,18 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
             {...cellProps}
             css={css}
             className={classNameCombine()}
-            {...buttonProps}
+            aria-label={buttonProps['aria-label']}
+            aria-disabled={buttonProps['aria-disabled']}
+            aria-invalid={buttonProps['aria-invalid']}
+            role={buttonProps['role']}
+            tabIndex={buttonProps['tabIndex']}
             {...focusProps}
+            onClick={(e) => {
+              buttonProps.onMouseDown?.(e)
+            }}
+            onMouseDown={(e) => {
+              buttonProps.onMouseDown?.(e)
+            }}
           >
             <div
               ref={cellRef}

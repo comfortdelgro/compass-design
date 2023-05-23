@@ -79,7 +79,6 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
     // To update slider width based on the time sliderRef.current is available
     useEffect(() => {
       if (sliderRef && sliderRef.current) {
-        // console.log(sliderRef.current.clientWidth)
         setViewWidth(sliderRef.current.clientWidth * children.length)
       }
     }, [sliderRef])

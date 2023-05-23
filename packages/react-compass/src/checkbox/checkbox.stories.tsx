@@ -1,7 +1,9 @@
-import {Story} from '@ladle/react'
-import React, {useState} from 'react'
-import {Column, Row} from '../utils/components'
+import { Story } from '@ladle/react'
+import React,{ useState } from 'react'
+import { Column,Row } from '../utils/components'
 import Checkbox from './index'
+
+
 
 export const Variants: Story<{onChange: () => void}> = () => (
   <Column>
@@ -18,6 +20,9 @@ export const Variants: Story<{onChange: () => void}> = () => (
       </Checkbox>
       <Checkbox isIndeterminate isDisabled isSelected>
         Indeterminate (disabled)
+      </Checkbox>
+      <Checkbox isSelected isReadOnly>
+        Read ony
       </Checkbox>
     </Column>
 
@@ -65,6 +70,15 @@ export const Variants: Story<{onChange: () => void}> = () => (
           isDisabled
           defaultSelected
         />
+      </Row>
+    </Column>
+
+    <h3>4. HTML forms</h3>
+    <Column>
+      <Row>
+        <Checkbox name='newsletter' value='subscribe'>
+          Subscribe
+        </Checkbox>
       </Row>
     </Column>
   </Column>
