@@ -1,8 +1,13 @@
-import React, {Key} from 'react'
 import {
-  StyledHelperText,
-  StyledListBoxWrapper,
-} from '../dropdown/dropdown.styles'
+  autoUpdate,
+  flip,
+  offset,
+  useDismiss,
+  useFloating,
+  useInteractions,
+} from '@floating-ui/react'
+import React, {Key} from 'react'
+import {StyledHelperText} from '../dropdown/dropdown.styles'
 import DropdownHeader from '../dropdown/header'
 import DropdownItem from '../dropdown/item'
 import Popover from '../dropdown/popover'
@@ -74,10 +79,22 @@ const MultipleDropdown = React.forwardRef<
   const firstBlur = React.useRef(true)
   const ref = useDOMRef<HTMLDivElement>(r)
   const wrapperRef = useDOMRef<HTMLDivElement>(null)
-  const popoverRef = useDOMRef<HTMLDivElement>(null)
   const inputRef = useDOMRef<HTMLInputElement>(null)
   const listBoxRef = React.useRef<HTMLUListElement>(null)
   const visualizeList = React.useRef<HTMLDivElement>(null)
+  const visualizeULList = React.useRef<HTMLUListElement>(null)
+
+  // ====================================== FLOATING ======================================
+  const {refs, floatingStyles, context} = useFloating({
+    open: open,
+    onOpenChange: setOpen,
+    middleware: [offset(8), flip()],
+    whileElementsMounted: autoUpdate,
+  })
+
+  const dismiss = useDismiss(context)
+
+  const {getReferenceProps, getFloatingProps} = useInteractions([dismiss])
 
   // ====================================== CONST ======================================
   const rawCollection = React.useMemo(
@@ -162,8 +179,10 @@ const MultipleDropdown = React.forwardRef<
       firstBlur.current = false
     } else if (!firstBlur.current) {
       props.onBlur?.()
+      setIsSearching(false)
     } else {
       inputRef.current?.blur()
+      setIsSearching(false)
     }
   }, [open])
 
@@ -242,11 +261,6 @@ const MultipleDropdown = React.forwardRef<
     }
   }
 
-  const close = () => {
-    setIsSearching(false)
-    setOpen(false)
-  }
-
   const onSelect = (key: React.Key) => {
     if (!isReadOnly) {
       const v = new Set(currentKeys)
@@ -282,63 +296,75 @@ const MultipleDropdown = React.forwardRef<
           {isRequired && <span>*</span>}
         </label>
       )}
-      <StyledDropdown
-        ref={wrapperRef}
-        isErrored={!!isErrored}
-        isDisabled={!!isDisabled}
-        onClick={handleOpen}
-      >
-        <StyledSelectedItemWrapper>
-          {selectedNode.length === 0 && search === '' && !open && (
-            <p>{props.placeholder}</p>
-          )}
-          {selectedNode.length > 0 &&
-            selectedNode.map((item) => {
-              const isHideXIcon = isDisabled || disabledKeys.includes(item.key)
-              return (
-                <StyledSelectedItem
-                  key={item.key}
-                  style={{cursor: isDisabled ? 'not-allowed' : 'pointer'}}
-                >
-                  <div>{item.rendered}</div>
-                  {isHideXIcon ? (
-                    <></>
-                  ) : (
-                    <div
-                      onClick={() => {
-                        if (
-                          !isDisabled &&
-                          ![...disabledKeys].includes(item.key)
-                        ) {
-                          removeItem(item.key)
-                        }
-                      }}
-                    >
-                      <XIcon />
-                    </div>
-                  )}
-                </StyledSelectedItem>
-              )
-            })}
-          {!isDisabled && (
-            <input
-              type='text'
-              ref={inputRef}
-              value={search}
-              onChange={onInputChange}
-            />
-          )}
-        </StyledSelectedItemWrapper>
-        <div className='dropdown-icon'>{icon}</div>
-      </StyledDropdown>
+      <div ref={refs.setReference} {...getReferenceProps}>
+        <StyledDropdown
+          ref={wrapperRef}
+          isErrored={!!isErrored}
+          isDisabled={!!isDisabled}
+          onClick={handleOpen}
+        >
+          <StyledSelectedItemWrapper>
+            {selectedNode.length === 0 && search === '' && !open && (
+              <p>{props.placeholder}</p>
+            )}
+            {selectedNode.length > 0 &&
+              selectedNode.map((item) => {
+                const isHideXIcon =
+                  isDisabled || disabledKeys.includes(item.key)
+                return (
+                  <StyledSelectedItem
+                    key={item.key}
+                    style={{cursor: isDisabled ? 'not-allowed' : 'pointer'}}
+                  >
+                    <div>{item.rendered}</div>
+                    {isHideXIcon ? (
+                      <></>
+                    ) : (
+                      <div
+                        onClick={() => {
+                          if (
+                            !isDisabled &&
+                            ![...disabledKeys].includes(item.key)
+                          ) {
+                            removeItem(item.key)
+                          }
+                        }}
+                      >
+                        <XIcon />
+                      </div>
+                    )}
+                  </StyledSelectedItem>
+                )
+              })}
+            {!isDisabled && (
+              <input
+                type='text'
+                ref={inputRef}
+                value={search}
+                onChange={onInputChange}
+              />
+            )}
+          </StyledSelectedItemWrapper>
+          <div className='dropdown-icon'>{icon}</div>
+        </StyledDropdown>
+      </div>
+
       {collection && open && (
-        <StyledListBoxWrapper>
+        <div
+          className='Popover'
+          ref={refs.setFloating}
+          style={{
+            ...floatingStyles,
+            ...{
+              zIndex: 3,
+            },
+          }}
+          {...getFloatingProps}
+        >
           <Popover
-            popoverRef={popoverRef}
-            triggerRef={wrapperRef}
             isEmpty={collection.length === 0}
-            maxULHeight={visualizeList.current?.clientHeight}
-            close={close}
+            visualizeRef={visualizeULList}
+            triggerRef={wrapperRef}
             handleKeyDown={handleKeyDown}
           >
             <ListBox
@@ -355,12 +381,19 @@ const MultipleDropdown = React.forwardRef<
               onLoadMore={onLoadMore}
             />
           </Popover>
-        </StyledListBoxWrapper>
+        </div>
       )}
       <RowCalculator
         ref={visualizeList}
+        isLoading={isLoading}
         collection={rawCollection}
+        listBoxRef={visualizeULList}
+        rootChildren={children}
         numberOfRows={numberOfRows}
+        sectionCollection={sectionCollection}
+        onLoadMore={() => {
+          //
+        }}
       />
       {errorMessage && (
         <StyledHelperText error={!!isErrored}>{errorMessage}</StyledHelperText>

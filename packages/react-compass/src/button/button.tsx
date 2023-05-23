@@ -38,6 +38,7 @@ interface Props extends StyledComponentProps {
   onKeyUp?: (e: React.KeyboardEvent) => void
   onPointerDown?: (e: React.PointerEvent) => void
   onPointerUp?: (e: React.PointerEvent) => void
+  onTouchEnd?: (e: React.TouchEvent<HTMLButtonElement>) => void
   tabIndex?: number
   type?: 'button' | 'reset' | 'submit' | undefined
 }
@@ -98,7 +99,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               {...delegateProps}
               ref={buttonRef}
               onClick={onClick ?? onPress}
-              onTouchEnd={onClick ?? onPress}
+              onTouchEnd={props.onTouchEnd}
               disabled={isDisabled}
               aria-controls={props['aria-controls']}
               aria-expanded={props['aria-expanded']}
@@ -146,7 +147,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             {...delegateProps}
             ref={buttonRef}
             onClick={onClick ?? onPress}
-            onTouchEnd={onClick ?? onPress}
+            onTouchEnd={props.onTouchEnd}
             disabled={isDisabled}
             aria-controls={props['aria-controls']}
             aria-expanded={props['aria-expanded']}
