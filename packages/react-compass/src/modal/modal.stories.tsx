@@ -21,8 +21,9 @@ export const Default: React.FC = () => {
       <Modal.Trigger
         isOpen={defaultOpen}
         handleClose={() => handleDefaultClose?.()}
+        className='my-modal-trigger'
       >
-        <Modal>
+        <Modal className='my-modal'>
           <Modal.Title>My small title</Modal.Title>
           <Modal.CloseIcon>
             <Icon icon={faXmark} />
