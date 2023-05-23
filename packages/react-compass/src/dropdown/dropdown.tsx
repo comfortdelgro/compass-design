@@ -218,6 +218,9 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           : textContent(selectedItem as React.ReactElement)
       setSearch(text ?? '')
       props.onSelectionChange?.(currentKey)
+    } else {
+      setSearch('')
+      props.onSelectionChange?.('')
     }
   }, [currentKey])
 
@@ -268,7 +271,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
 
   const onSelect = (key: React.Key) => {
     if (!isReadOnly) {
-      setCurrentKey(key)
+      setCurrentKey((ck) => (ck === key ? undefined : key))
       setOpen(false)
     }
   }
