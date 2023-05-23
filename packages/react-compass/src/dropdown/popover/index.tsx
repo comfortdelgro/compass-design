@@ -7,6 +7,8 @@ interface Props {
   visualizeRef: React.RefObject<HTMLUListElement> | undefined
   isEmpty: boolean
   handleKeyDown: (e: KeyboardEvent) => void
+  onFocus: () => void
+  onBlur: () => void
 }
 
 function Popover({
@@ -14,21 +16,25 @@ function Popover({
   triggerRef,
   visualizeRef,
   handleKeyDown,
+  onFocus,
+  onBlur,
   ...props
 }: Props) {
   const {isEmpty = false} = props
 
   React.useEffect(() => {
     document.addEventListener('keydown', handleKeyDown)
+    onFocus()
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
+      onBlur()
     }
-  })
+  }, [])
 
   return (
     <StyledPopover
       style={{
-        minWidth: triggerRef?.current
+        width: triggerRef?.current
           ? triggerRef?.current.clientWidth + 2
           : '100%',
         display: isEmpty ? 'none' : '',
