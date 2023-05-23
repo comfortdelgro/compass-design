@@ -65,6 +65,12 @@ const MultipleDropdown = React.forwardRef<
     onLoadMore = () => {
       //Load more
     },
+    onBlur = () => {
+      //
+    },
+    onFocus = () => {
+      //
+    },
   } = props
   // ====================================== STATE ======================================
   const [open, setOpen] = React.useState(false)
@@ -76,7 +82,6 @@ const MultipleDropdown = React.forwardRef<
   const [focusKey, setFocusKey] = React.useState<React.Key | undefined>()
 
   // ====================================== REF ======================================
-  const firstBlur = React.useRef(true)
   const ref = useDOMRef<HTMLDivElement>(r)
   const wrapperRef = useDOMRef<HTMLDivElement>(null)
   const inputRef = useDOMRef<HTMLInputElement>(null)
@@ -174,15 +179,10 @@ const MultipleDropdown = React.forwardRef<
     setFocusKey([...currentKeys].pop())
     props.onOpenChange?.(open)
     if (open) {
-      props.onFocus?.()
       inputRef.current?.focus()
-      firstBlur.current = false
-    } else if (!firstBlur.current) {
-      props.onBlur?.()
-      setIsSearching(false)
     } else {
-      inputRef.current?.blur()
       setIsSearching(false)
+      inputRef.current?.blur()
     }
   }, [open])
 
@@ -365,6 +365,8 @@ const MultipleDropdown = React.forwardRef<
             isEmpty={collection.length === 0}
             visualizeRef={visualizeULList}
             triggerRef={wrapperRef}
+            onBlur={onBlur}
+            onFocus={onFocus}
             handleKeyDown={handleKeyDown}
           >
             <ListBox
