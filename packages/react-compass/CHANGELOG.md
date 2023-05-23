@@ -1,5 +1,11 @@
 ## 1.0.0-next.2
 
+## 1.0.0-next.5
+
+### Minor Changes
+
+- 277e8359: Fix bugs in Calendar range and modal/dialog
+
 ## 1.0.0-next.4
 
 ### Minor Changes
