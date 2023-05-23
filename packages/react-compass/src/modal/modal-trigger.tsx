@@ -27,6 +27,7 @@ const ModalTrigger = React.forwardRef<HTMLDivElement, ModalTriggerProps>(
       isOpen = false,
       handleClose,
       size = 'md',
+      ...delegated
     } = props
 
     const modalRef = useDOMRef<HTMLDivElement>(ref)
@@ -60,7 +61,7 @@ const ModalTrigger = React.forwardRef<HTMLDivElement, ModalTriggerProps>(
     return (
       <>
         {isOpen && (
-          <StyledModalWrapper css={css}>
+          <StyledModalWrapper css={css} {...delegated}>
             {ModalElement &&
               React.cloneElement(ModalElement as unknown as JSX.Element, {
                 onClose: () => handleClose?.(),
