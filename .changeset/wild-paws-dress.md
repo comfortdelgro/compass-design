@@ -2,4 +2,4 @@
 '@comfortdelgro/react-compass': minor
 ---
 
-Fix bugs
+Fix bugs in Calendar range and modal/dialog
