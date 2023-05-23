@@ -126,7 +126,6 @@ export const StyledSelectedItem = styled('div', {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  zIndex: 2147483640,
   gap: '$2',
   div: {
     width: 'fit-content',
