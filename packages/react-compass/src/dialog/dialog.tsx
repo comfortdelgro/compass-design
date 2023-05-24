@@ -15,7 +15,9 @@ interface Props extends StyledComponentProps {
   variant?: 'confirmation' | 'alert'
 }
 
-export type DialogProps = Props & DialogVariantProps
+export type DialogProps = Props &
+  DialogVariantProps &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
   const {
