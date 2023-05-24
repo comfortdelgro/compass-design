@@ -1,5 +1,6 @@
 import {faCamera, faGlobe} from '@fortawesome/free-solid-svg-icons'
 import {StoryDecorator} from '@ladle/react'
+import React from 'react'
 import Button from '../button'
 import Icon from '../icon'
 import Link from '../link'

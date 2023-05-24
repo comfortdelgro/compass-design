@@ -5,12 +5,17 @@ export const StyledDateField = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'flex-end',
-  gap: '$1',
 
   '& .date-field-label': {
-    fontSize: '$body3',
+    fontSize: '$label1',
     fontWeight: '$semibold',
-    color: '$gray90',
+    marginBottom: '$2',
+    display: 'inline-block',
+    width: '100%',
+    span: {
+      marginLeft: '$1',
+      color: '$danger',
+    },
   },
 
   '& .date-field-input': {
@@ -40,12 +45,15 @@ export const StyledDateField = styled('div', {
   variants: {
     isDisabled: {
       true: {
-        cursor: 'not-allowed',
         '& .date-field-input': {
-          backgroundColor: '$divider',
+          backgroundColor: '$gray20',
+        },
+        '*': {
+          color: '$disabledText',
+          cursor: 'not-allowed !important',
         },
         [`& ${StyledDateSegment}`]: {
-          color: '$gray60',
+          color: '$disabledText',
         },
       },
     },
