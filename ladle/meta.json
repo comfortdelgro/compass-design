@@ -310,8 +310,8 @@
       "levels": [
         "Checkbox"
       ],
-      "locStart": 85,
-      "locEnd": 102,
+      "locStart": 87,
+      "locEnd": 104,
       "filePath": "src/checkbox/checkbox.stories.tsx",
       "meta": {}
     },
@@ -320,8 +320,8 @@
       "levels": [
         "Checkbox"
       ],
-      "locStart": 104,
-      "locEnd": 128,
+      "locStart": 106,
+      "locEnd": 130,
       "filePath": "src/checkbox/checkbox.stories.tsx",
       "meta": {}
     },
@@ -330,8 +330,8 @@
       "levels": [
         "Checkbox"
       ],
-      "locStart": 6,
-      "locEnd": 83,
+      "locStart": 8,
+      "locEnd": 85,
       "filePath": "src/checkbox/checkbox.stories.tsx",
       "meta": {}
     },
@@ -720,8 +720,8 @@
       "levels": [
         "Radio"
       ],
-      "locStart": 66,
-      "locEnd": 101,
+      "locStart": 103,
+      "locEnd": 138,
       "filePath": "src/radio/radio.stories.tsx",
       "meta": {}
     },
@@ -731,7 +731,7 @@
         "Radio"
       ],
       "locStart": 6,
-      "locEnd": 64,
+      "locEnd": 101,
       "filePath": "src/radio/radio.stories.tsx",
       "meta": {}
     },
