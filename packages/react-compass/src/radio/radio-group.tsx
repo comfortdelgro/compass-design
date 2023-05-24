@@ -10,7 +10,7 @@ interface RadioGroupContextValue {
 
 export const RadioContext = React.createContext<RadioGroupContextValue>({
   value: '',
-  handleOnClickRadionButton: (clickedValue: string) => {},
+  handleOnClickRadionButton: () => {},
 })
 
 interface Props extends StyledComponentProps {
