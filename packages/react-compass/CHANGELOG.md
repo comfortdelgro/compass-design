@@ -1,5 +1,11 @@
 ## 1.0.0-next.2
 
+## 1.0.0-next.7
+
+### Minor Changes
+
+- e56ff40a: Fix radio looping
+
 ## 1.0.0-next.6
 
 ### Minor Changes
