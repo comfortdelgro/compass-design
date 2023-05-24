@@ -1,4 +1,5 @@
-import BugIcon from '@comfortdelgro/compass-icons/react/bug'
+import {faBug} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import type {StoryDecorator} from '@ladle/react'
 import React from 'react'
 import {Column, Row} from '../utils/components'
@@ -38,7 +39,7 @@ export const Variants: React.FC = () => (
       <Textfield
         label={
           <>
-            Name <BugIcon />
+            Name <FontAwesomeIcon icon={faBug} />
           </>
         }
         placeholder='Enter your name'
@@ -71,18 +72,18 @@ export const Variants: React.FC = () => (
     <Row>
       <Textfield
         label='Name'
-        leftIcon={<BugIcon />}
+        leftIcon={<FontAwesomeIcon icon={faBug} />}
         placeholder='Enter your name'
       />
       <Textfield
         label='Name'
-        rightIcon={<BugIcon />}
+        rightIcon={<FontAwesomeIcon icon={faBug} />}
         placeholder='Enter your name'
       />
       <Textfield
         label='Name'
-        leftIcon={<BugIcon />}
-        rightIcon={<BugIcon />}
+        leftIcon={<FontAwesomeIcon icon={faBug} />}
+        rightIcon={<FontAwesomeIcon icon={faBug} />}
         placeholder='Enter your name'
       />
     </Row>
@@ -92,20 +93,20 @@ export const Variants: React.FC = () => (
       <Textfield label='Name' placeholder='Enter your name' isDisabled />
       <Textfield
         label='Name'
-        leftIcon={<BugIcon />}
+        leftIcon={<FontAwesomeIcon icon={faBug} />}
         placeholder='Enter your name'
         isDisabled
       />
       <Textfield
         label='Name'
-        rightIcon={<BugIcon />}
+        rightIcon={<FontAwesomeIcon icon={faBug} />}
         placeholder='Enter your name'
         isDisabled
       />
       <Textfield
         label='Name'
-        leftIcon={<BugIcon />}
-        rightIcon={<BugIcon />}
+        leftIcon={<FontAwesomeIcon icon={faBug} />}
+        rightIcon={<FontAwesomeIcon icon={faBug} />}
         placeholder='Enter your name'
         isDisabled
       />

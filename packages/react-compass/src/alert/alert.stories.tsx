@@ -1,4 +1,5 @@
-import BugIcon from '@comfortdelgro/compass-icons/react/bug'
+import {faBug} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {AnimatePresence, motion} from 'framer-motion'
 import React, {useState} from 'react'
 import Link from '../link/link' // import the component directly
@@ -81,7 +82,7 @@ export const Indismissible: React.FC = () => (
 
     <h3>3. Custom Icons</h3>
 
-    <Alert color='success' icon={<BugIcon />}>
+    <Alert color='success' icon={<FontAwesomeIcon icon={faBug} />}>
       <AlertContent />
     </Alert>
   </Column>

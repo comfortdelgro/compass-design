@@ -1,4 +1,5 @@
-import BugIcon from '@comfortdelgro/compass-icons/react/bug'
+import {faBug} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React, {useState} from 'react'
 import {Column, Row} from '../utils/components'
 import Radio from './index'
@@ -14,7 +15,7 @@ export const Variants: React.FC = () => {
             variant='outlined'
             label={
               <>
-                test <BugIcon />
+                test <FontAwesomeIcon icon={faBug} />
               </>
             }
             description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
