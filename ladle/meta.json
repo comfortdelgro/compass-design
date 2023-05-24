@@ -310,8 +310,8 @@
       "levels": [
         "Checkbox"
       ],
-      "locStart": 87,
-      "locEnd": 104,
+      "locStart": 85,
+      "locEnd": 102,
       "filePath": "src/checkbox/checkbox.stories.tsx",
       "meta": {}
     },
@@ -320,8 +320,8 @@
       "levels": [
         "Checkbox"
       ],
-      "locStart": 106,
-      "locEnd": 130,
+      "locStart": 104,
+      "locEnd": 128,
       "filePath": "src/checkbox/checkbox.stories.tsx",
       "meta": {}
     },
@@ -330,8 +330,8 @@
       "levels": [
         "Checkbox"
       ],
-      "locStart": 8,
-      "locEnd": 85,
+      "locStart": 6,
+      "locEnd": 83,
       "filePath": "src/checkbox/checkbox.stories.tsx",
       "meta": {}
     },
