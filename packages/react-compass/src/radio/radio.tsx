@@ -38,9 +38,7 @@ const Radio: React.FC<RadioProps> = (props) => {
 
   const ref = React.useRef<HTMLInputElement | null>(null)
   const onClick = () => {
-    console.log('radion button clicked', value)
     if (!isDisabled) {
-      if (ref.current) ref.current.click()
       state.handleOnClickRadionButton(value) // clicked value
     }
   }

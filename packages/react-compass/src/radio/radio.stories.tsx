@@ -70,9 +70,9 @@ export const Variants: React.FC = () => {
           onChange={(value) => {
             setValue(value)
           }}
-          // onBlur={() => {
-          //   alert('onBlur triggered!!')
-          // }}
+          onBlur={() => {
+            alert('onBlur triggered!!')
+          }}
         >
           <Radio
             variant='simple'

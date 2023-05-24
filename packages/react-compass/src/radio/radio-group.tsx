@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import React, {useEffect, useState} from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {RadioGroupVariantProps, StyledRadioGroup} from './radio-group.styles'
@@ -36,14 +36,13 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
     } = props
 
     const groupRef = useDOMRef<HTMLDivElement>(ref)
-    const [selectedValue, setSelectedValue] = useState<string | null>(value) // Sẽ được load từ onClick vào nếu new value
+    const [selectedValue, setSelectedValue] = useState<string | null>(value)
 
-    // const handleBlur = useCallback(() => {
-    //   onBlur && onBlur()
-    // }, [onBlur])
+    const handleBlur = useCallback(() => {
+      onBlur && onBlur()
+    }, [onBlur])
 
     const handleOnClickRadionButton = (clickedValue: string) => {
-      //console.log('radio button clicked', clickedValue)
       if (clickedValue !== selectedValue) {
         setSelectedValue(clickedValue)
       }
@@ -67,6 +66,7 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
         ref={groupRef}
         orientation={orientation}
         css={css}
+        onBlur={handleBlur}
         {...delegated}
         tabIndex={0}
       >
