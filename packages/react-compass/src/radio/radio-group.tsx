@@ -50,10 +50,10 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
     }, [selectedValue, onChange])
 
     const handleChange = useCallback(
-      (value: string) => {
-        if (value !== selectedValue) {
-          setSelectedValue(value)
-          onChange && onChange(value)
+      (newValue: string) => {
+        if (newValue !== value) {
+          setSelectedValue(newValue)
+          onChange && onChange(newValue)
         }
       },
       [selectedValue, onChange],
