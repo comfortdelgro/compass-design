@@ -1,5 +1,11 @@
 ## 1.0.0-next.2
 
+## 1.0.0-next.6
+
+### Minor Changes
+
+- f8fc8ab2: Fix onChange looping on Radio.Group
+
 ## 1.0.0-next.5
 
 ### Minor Changes
