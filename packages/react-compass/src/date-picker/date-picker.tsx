@@ -27,7 +27,7 @@ interface Props
   extends StyledComponentProps,
     SpectrumDatePickerProps<DateValue> {
   children?: React.ReactNode
-  label?: string
+  label?: string | React.ReactNode
   isInvalid?: boolean
   isMobile?: boolean
   shouldCloseOnSelect?: boolean
@@ -116,7 +116,7 @@ interface DatePickerFieldWrapperProps {
   groupProps: DOMAttributes
   fieldProps: AriaDatePickerProps<DateValue>
   buttonProps: ButtonProps
-  label?: string | undefined
+  label?: string | React.ReactNode | undefined
   isInvalid?: boolean | undefined
   isMobile?: boolean | undefined
   isReadOnly?: boolean | undefined
