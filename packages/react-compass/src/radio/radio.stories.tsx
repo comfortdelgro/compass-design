@@ -4,7 +4,7 @@ import {Column, Row} from '../utils/components'
 import Radio from './index'
 
 export const Variants: React.FC = () => {
-  const [value, setValue] = useState('')
+  const [value, setValue] = useState('1')
   return (
     <Column>
       <h3>Outlined</h3>
@@ -66,6 +66,7 @@ export const Variants: React.FC = () => {
       <h4>Selected Value: {value}</h4>
       <Row>
         <Radio.Group
+          value={value}
           onChange={(value) => {
             setValue(value)
           }}
