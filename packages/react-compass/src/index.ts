@@ -67,6 +67,11 @@ export type {
   DashboardSidecardHeaderProps,
   DashboardSidecardProps,
 } from './dashboard-sidecard'
+export {
+  DataGridProps,
+  default as DataGrid,
+  OptionType as DataGridOptions,
+} from './data-grid'
 export {default as DatePicker} from './date-picker'
 export type {DatePickerProps} from './date-picker'
 export {default as DateRangePicker} from './date-range-picker'

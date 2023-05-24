@@ -1,0 +1,174 @@
+import {Callout} from 'nextra-theme-docs'
+import styles from '../../styles/Home.module.css'
+import {faThumbsUp, faVirus} from '@fortawesome/free-solid-svg-icons'
+import {ReactTableStory} from 'components/TableV2'
+
+# Data Grid
+
+Data-grid would be a component displaying tabular data, just like a table. However, it is more advanced and has more features. For example, you can even draw chart within data-grid cell.
+
+<Callout>
+  Check out our [ladle](/ladle?story=dta-grid--full-featured) for more info on
+  this component.
+</Callout>
+
+---
+
+### Import:
+
+```js
+import {DataGrid} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import DataGrid from '@comfortdelgro/react-compass/data-grid'
+```
+
+---
+
+### Basic data-grid:
+
+<section className={styles.textAreaShowcaseContainer}>
+  <ReactTableStory />
+</section>
+
+```js
+<DataGrid data={data} columns={columns} options={options}>
+  <DataGrid.Toolbar
+    css={{
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+    }}
+  >
+    <SearchField placeholder='Search' />
+
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: '0.5rem',
+      }}
+    >
+      <Button variant='primary'>Button</Button>
+      <Button variant='secondary'>Button</Button>
+      <Button variant='ghost'>
+        <Icon icon={faTrashAlt} />
+      </Button>
+      <Button variant='ghost'>
+        <Icon icon={faDashboard} />
+      </Button>
+      <Button variant='ghost'>
+        <Icon icon={faFileLines} />
+      </Button>
+    </div>
+  </DataGrid.Toolbar>
+  <DataGrid.Footer
+    css={{
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+    }}
+  >
+    <div>{/* Todo: Dropdown */}</div>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: '0.5rem',
+      }}
+    >
+      <div
+        style={{
+          fontWeight: '600',
+        }}
+      >
+        {(page - 1) * 10 + 1} - {(page - 1) * 10 + 10} of 100
+      </div>
+      <Pagination page={page} onChange={(page) => setPage(page)} total={10} />
+    </div>
+  </DataGrid.Footer>
+</DataGrid>
+```
+
+---
+
+### Usage:
+
+- For server sorting:
+  \*if user want to custom sort. Add `manualSorting: true` to ReactTableOptions.
+
+```js
+const options: ReactTableOptions = {
+  enableSorting: true,
+  enableMultiSort: true,
+  columnResizeMode: 'onChange',
+  manualSorting: true,
+}
+```
+
+\*then create function and assign to `onManualSorting` props on DataGrid.
+
+Example:
+
+```js
+const onSorting = (sortingField: StateSorting) => {
+  console.log('stateSorting', sortingField)
+}
+```
+
+```js
+ <DataGrid data={data} columns={columns} options={options} onManualSorting={onSorting}>
+```
+
+\*props `sortingField` contain all informations sorting for your need
+
+---
+
+- For custom style:
+
+\*add className to DataGrid
+
+```js
+<DataGrid
+        data={data}
+        columns={columns}
+        options={options}
+        onManualSorting={onSorting}
+        className='someClassName'
+      >
+```
+
+- options property of data-grid:
+
+```js
+  const options: OptionType = {
+        enableSorting?: boolean
+        enableMultiSort?: boolean
+        manualSorting?: boolean
+        columnResizeMode?: 'onChange' | 'onEnd'
+  }
+```
+
+### Props:
+
+| Name         | Type                  | Default | Description                 |
+| :----------- | :-------------------- | :------ | :-------------------------- |
+| `data`       | Array                 | `[]`    | `Data for show `            |
+| `columns`    | `Array<ColumnDef<T>>` | `[]`    | `column with custom config` |
+| `options`    | OptionType            | {}      | `Table option`              |
+| `children`   | React.ReactNode       | —       | `child element`             |
+| `css`        | `CSS`                 | —       | ``                          |
+| `delegated ` | `CSS`                 | —       |                             |
+
+---
+
+<Callout>
+  Check out our [ladle](/ladle?story=data-grid--full-featured) for more info on
+  this component.
+</Callout>
+```

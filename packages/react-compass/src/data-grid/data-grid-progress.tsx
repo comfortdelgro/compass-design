@@ -11,7 +11,7 @@ interface Props extends StyledComponentProps {
   progress: number
 }
 
-type ProgressPercentageProps = Props &
+export type ProgressPercentageProps = Props &
   DataGridProgressBarVariantProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 

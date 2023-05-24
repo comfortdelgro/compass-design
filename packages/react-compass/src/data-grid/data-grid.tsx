@@ -20,6 +20,7 @@ import DataGridColumnHeader from './data-grid-column-header'
 import DataGridFooter from './data-grid-footer'
 import DataGridHeaderRow from './data-grid-header-row'
 import {NoDataComponent} from './data-grid-nodata'
+import ProgressPercentage from './data-grid-progress'
 import DataGridRow from './data-grid-row'
 import DataGridRowGroup from './data-grid-row-group'
 import {
@@ -180,4 +181,5 @@ export default DataGrid as typeof DataGrid & {
   Footer: typeof DataGridFooter
   Checkbox: typeof DataGridCheckbox
   CheckboxCell: typeof DataGridCheckboxCell
+  ProgressPercentage: typeof ProgressPercentage
 }
