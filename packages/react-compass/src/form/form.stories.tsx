@@ -6,26 +6,66 @@ import Dropdown from '../dropdown'
 import MultipleDropdown from '../multiple-dropdown'
 import Textarea from '../textarea'
 import Textfield from '../textfield'
+import Toggle from '../toggle'
 import {Column, Row} from '../utils'
 
 const {getLocalTimeZone, today} = Calendar.InternationalizedDate
 
 export const Variants: React.FC = () => {
+  const [isDisabled, setIsDisabled] = React.useState(false)
+  const [isRequired, setIsRequired] = React.useState(false)
+  const [isErrored, setIsErrored] = React.useState(false)
   return (
     <Column>
+      <h4>State Controller</h4>
+
+      <Column>
+        <div style={{display: 'flex', alignItems: 'center', gap: 20}}>
+          <span>isDisabled</span>
+          <Toggle
+            size='sm'
+            value={isDisabled.toString()}
+            onChange={setIsDisabled}
+          />
+        </div>
+        <div style={{display: 'flex', alignItems: 'center', gap: 20}}>
+          <span>isRequired</span>
+          <Toggle
+            size='sm'
+            value={isRequired.toString()}
+            onChange={setIsRequired}
+          />
+        </div>
+        <div style={{display: 'flex', alignItems: 'center', gap: 20}}>
+          <span>isErrored</span>
+          <Toggle
+            size='sm'
+            value={isErrored.toString()}
+            onChange={setIsErrored}
+          />
+        </div>
+      </Column>
+
       <Row>
         <Textfield
           label='Textfield'
           placeholder='Enter your name'
           // isErrored
           // helperText='my helper text'
-          errorMessage='my error message'
+          isErrored={isErrored}
+          isRequired={isRequired}
+          isDisabled={isDisabled}
+          errorMessage={'My error message'}
           onChange={(e) => console.log('onChange', e)}
           onChangeEvent={(e) => console.log('onChangeEvent', e)}
         />
         <Dropdown.Select
           label='Dropdown.Select'
           placeholder='Choose an animal'
+          isErrored={isErrored}
+          isRequired={isRequired}
+          isDisabled={isDisabled}
+          errorMessage={'My error message'}
           onBlur={() => console.log('onBlur')}
           onFocus={() => console.log('onFocus')}
         >
@@ -45,10 +85,15 @@ export const Variants: React.FC = () => {
           <Dropdown.Item key='snake'>Snake</Dropdown.Item>
         </Dropdown.Select>
       </Row>
+
       <Row>
         <MultipleDropdown
           label='MultipleDropdown'
           placeholder='Choose an animal'
+          isErrored={isErrored}
+          isRequired={isRequired}
+          isDisabled={isDisabled}
+          errorMessage={'My error message'}
           onBlur={() => console.log('')}
         >
           <MultipleDropdown.Item key='red panda'>
@@ -63,6 +108,10 @@ export const Variants: React.FC = () => {
         <Dropdown.ComboBox
           label='Dropdown.ComboBox'
           placeholder='Choose an animal'
+          isErrored={isErrored}
+          isRequired={isRequired}
+          isDisabled={isDisabled}
+          errorMessage={'My error message'}
           onBlur={() => console.log('onBlur')}
           onFocus={() => console.log('onFocus')}
         >
@@ -82,14 +131,22 @@ export const Variants: React.FC = () => {
           <Dropdown.Item key='snake'>Snake</Dropdown.Item>
         </Dropdown.ComboBox>
       </Row>
+
       <Row>
         <Textarea
           label='Textarea'
           placeholder='Enter your message'
-          isRequired
+          isErrored={isErrored}
+          isRequired={isRequired}
+          isDisabled={isDisabled}
+          errorMessage={'My error message'}
         />
         <DatePicker
           label='DatePicker'
+          // isErrored={isErrored}
+          isRequired={isRequired}
+          isDisabled={isDisabled}
+          errorMessage={'My error message'}
           defaultValue={today(getLocalTimeZone())}
         />
       </Row>

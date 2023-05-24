@@ -398,7 +398,7 @@ const MultipleDropdown = React.forwardRef<
           //
         }}
       />
-      {errorMessage && (
+      {isErrored && errorMessage && (
         <StyledHelperText error={!!isErrored}>{errorMessage}</StyledHelperText>
       )}
       {helperText && <StyledHelperText>{helperText}</StyledHelperText>}

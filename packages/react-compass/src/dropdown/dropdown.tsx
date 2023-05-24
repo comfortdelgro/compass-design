@@ -220,9 +220,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           : textContent(selectedItem as React.ReactElement)
       setSearch(text ?? '')
       props.onSelectionChange?.(currentKey)
-    } else {
-      setSearch('')
-      props.onSelectionChange?.('')
     }
   }, [currentKey])
 
@@ -273,7 +270,12 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
 
   const onSelect = (key: React.Key) => {
     if (!isReadOnly) {
-      setCurrentKey((ck) => (ck === key ? undefined : key))
+      if (currentKey === key) {
+        setCurrentKey(undefined)
+        props.onSelectionChange?.('')
+      } else {
+        setCurrentKey(key)
+      }
       setOpen(false)
     }
   }
@@ -453,7 +455,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           //
         }}
       />
-      {errorMessage && (
+      {isErrored && errorMessage && (
         <StyledHelperText error={!!isErrored}>{errorMessage}</StyledHelperText>
       )}
       {helperText && <StyledHelperText>{helperText}</StyledHelperText>}

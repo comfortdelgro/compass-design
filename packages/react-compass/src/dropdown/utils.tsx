@@ -1,3 +1,4 @@
+import isEmpty from 'lodash/isEmpty'
 import React, {Key, RefObject} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import DropdownItem, {DropdownItemBase, DropdownItemProps} from './item'
@@ -299,10 +300,19 @@ export function getDefaulValue(
   value: React.Key | undefined,
 ): React.Key | undefined {
   let res = undefined
-  if (defaulValue !== undefined && defaulValue !== null) {
+  if (
+    defaulValue !== undefined &&
+    defaulValue !== null &&
+    !isEmpty(defaulValue)
+  ) {
     res = defaulValue
   }
-  if (value !== undefined && value !== null) {
+  if (
+    value !== undefined &&
+    value !== null &&
+    defaulValue &&
+    !isEmpty(defaulValue)
+  ) {
     res = value
   }
   return res

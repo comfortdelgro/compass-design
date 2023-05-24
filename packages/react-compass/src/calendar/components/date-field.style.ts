@@ -47,10 +47,11 @@ export const StyledDateField = styled('div', {
       true: {
         '& .date-field-input': {
           backgroundColor: '$gray20',
-        },
-        '*': {
-          color: '$disabledText',
           cursor: 'not-allowed !important',
+          '*': {
+            color: '$disabledText',
+            cursor: 'not-allowed !important',
+          },
         },
         [`& ${StyledDateSegment}`]: {
           color: '$disabledText',

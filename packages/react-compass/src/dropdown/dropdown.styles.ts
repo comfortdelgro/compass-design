@@ -159,12 +159,13 @@ export const StyledComboBox = styled('div', {
     },
     isDisabled: {
       true: {
-        color: '#b7b7b7 !important',
+        color: '$disabledText',
         input: {
-          color: '#b7b7b7 !important',
+          backgroundColor: '$gray20',
         },
         cursor: 'not-allowed !important',
-        '& > *': {
+        '*': {
+          color: '$disabledText',
           cursor: 'not-allowed !important',
         },
       },
