@@ -20,7 +20,7 @@ interface Props {
   children?: React.ReactNode
   buttonProps: ButtonProps
   isInvalid?: boolean | undefined
-  label?: string | undefined
+  label?: string | React.ReactNode | undefined
   necessityIndicator?: 'icon' | 'label'
   isDisabled?: boolean
   isReadOnly?: boolean
@@ -92,9 +92,13 @@ const DateField = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
         isDisabled={isDisabled}
         isInvalid={isInvalid}
       >
-        <span {...labelProps} className='date-field-label'>
-          {props.label} {generateLabeling()}
-        </span>
+        {typeof props.label === 'string' ? (
+          <span {...labelProps} className='date-field-label'>
+            {props.label} {generateLabeling()}
+          </span>
+        ) : (
+          props.label
+        )}
         <div
           {...fieldProps}
           ref={dateFieldRef}
