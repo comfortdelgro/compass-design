@@ -8,14 +8,14 @@ interface Props extends StyledComponentProps {
 }
 
 export type ErrorDescriptionProps = Props &
-  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
+  Omit<React.HTMLAttributes<HTMLParagraphElement>, keyof Props>
 
 const ErrorDescription = React.forwardRef<
-  HTMLDivElement,
+  HTMLParagraphElement,
   ErrorDescriptionProps
 >((props, ref) => {
   const {children, css = {}, ...delegated} = props
-  const errorDescriptionRef = useDOMRef<HTMLDivElement>(ref)
+  const errorDescriptionRef = useDOMRef<HTMLParagraphElement>(ref)
   return (
     <StyledErrorDescription css={css} ref={errorDescriptionRef} {...delegated}>
       {children}

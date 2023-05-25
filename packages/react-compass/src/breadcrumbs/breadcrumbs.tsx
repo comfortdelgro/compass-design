@@ -25,26 +25,20 @@ const Breadcrumbs = React.forwardRef<HTMLDivElement, BreadcrumbsProps>(
       // ComponentProps
       dividerIcon = faChevronRight,
       isCurrent,
+      children,
       // AriaBreadcrumbsProps
-      ...ariaSafeProps
+      ...delegated
     } = props
-
-    const {children} = ariaSafeProps
 
     const breadcrumbsRef = useDOMRef<HTMLDivElement>(ref)
     const items = React.Children.toArray(children)
-
-    const htmlProps = {...ariaSafeProps} as Omit<
-      React.HTMLAttributes<HTMLDivElement>,
-      keyof Props
-    >
 
     return (
       <StyledBreadcrumbs
         css={css}
         ref={breadcrumbsRef}
-        {...htmlProps}
         aria-label={'Breadcrumbs'}
+        {...delegated}
       >
         <ol>
           {items.map((item, i) => (

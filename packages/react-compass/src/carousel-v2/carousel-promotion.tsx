@@ -39,7 +39,7 @@ const CarouselPromotion = React.forwardRef<
     navigationButtonType = 'icon',
     effect = 'slide',
     css = {},
-    onSwitchSlide = () => {},
+    onSwitchSlide = () => null,
     ...delegated
   } = props
   const carouselRef = useDOMRef<HTMLDivElement>(ref)
