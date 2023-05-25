@@ -1,4 +1,5 @@
-import BugIcon from '@comfortdelgro/compass-icons/react/bug'
+import {faBug} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React from 'react'
 import {Row} from '../utils/components'
 import Avatar from './index'
@@ -34,10 +35,10 @@ export const Individual = () => (
     <h3>3. Icon Avatar</h3>
 
     <Row>
-      <Avatar icon={<BugIcon />} size='lg' />
-      <Avatar icon={<BugIcon />} size='md' />
-      <Avatar icon={<BugIcon />} size='sm' />
-      <Avatar icon={<BugIcon />} size='xs' />
+      <Avatar icon={<FontAwesomeIcon icon={faBug} />} size='lg' />
+      <Avatar icon={<FontAwesomeIcon icon={faBug} />} size='md' />
+      <Avatar icon={<FontAwesomeIcon icon={faBug} />} size='sm' />
+      <Avatar icon={<FontAwesomeIcon icon={faBug} />} size='xs' />
     </Row>
   </>
 )
