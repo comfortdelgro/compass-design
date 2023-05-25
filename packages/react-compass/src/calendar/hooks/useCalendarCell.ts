@@ -144,11 +144,6 @@ export function useCalendarCell(
         return
       }
 
-      if (!('highlightedRange' in state)) {
-        state.selectDate?.(date)
-        state.setFocusedDate?.(date)
-      }
-
       if (
         'highlightedRange' in state &&
         !state.anchorDate &&
