@@ -307,12 +307,7 @@ export function getDefaulValue(
   ) {
     res = defaulValue
   }
-  if (
-    value !== undefined &&
-    value !== null &&
-    defaulValue &&
-    !isEmpty(defaulValue)
-  ) {
+  if (value !== undefined && value !== null && !isEmpty(value)) {
     res = value
   }
   return res

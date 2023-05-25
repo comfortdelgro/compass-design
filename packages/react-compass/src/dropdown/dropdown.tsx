@@ -272,6 +272,9 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     if (!isReadOnly) {
       if (currentKey === key) {
         setCurrentKey(undefined)
+        setFocusKey(undefined)
+        setSearch('')
+        setIsSearching(false)
         props.onSelectionChange?.('')
       } else {
         setCurrentKey(key)
