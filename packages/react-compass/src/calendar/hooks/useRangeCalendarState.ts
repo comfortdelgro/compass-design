@@ -266,7 +266,7 @@ function makeRange(start: DateValue, end: DateValue): RangeValue<CalendarDate> {
 }
 
 function convertValue(newValue: CalendarDate, oldValue: DateValue) {
-  newValue = toCalendar(newValue, oldValue.calendar || new GregorianCalendar())
+  newValue = toCalendar(newValue, oldValue?.calendar || new GregorianCalendar())
 
   if (oldValue && 'hour' in oldValue) {
     return oldValue.set(newValue)
