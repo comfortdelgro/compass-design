@@ -1,4 +1,5 @@
-import BugIcon from '@comfortdelgro/compass-icons/react/bug'
+import {faBug} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import type {StoryDecorator} from '@ladle/react'
 import React, {useState} from 'react'
 import {Column} from '../utils/components'
@@ -13,7 +14,7 @@ export const Variants: React.FC = () => {
       <Textarea
         label={
           <>
-            Text Label <BugIcon />
+            Text Label <FontAwesomeIcon icon={faBug} />
           </>
         }
         placeholder='Enter your message'

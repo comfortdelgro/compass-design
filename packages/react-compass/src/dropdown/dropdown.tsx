@@ -71,6 +71,12 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     onLoadMore = () => {
       //Load more
     },
+    onBlur = () => {
+      //
+    },
+    onFocus = () => {
+      //
+    },
     ...delegated
   } = props
   // ====================================== STATE ======================================
@@ -85,7 +91,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   )
 
   // ====================================== REF ======================================
-  const firstBlur = React.useRef(true)
   const listBoxRef = React.useRef<HTMLUListElement>(null)
   const visualizeList = React.useRef<HTMLDivElement>(null)
   const visualizeULList = React.useRef<HTMLUListElement>(null)
@@ -196,12 +201,9 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     props.onOpenChange?.(open)
     if (type === 'select') {
       if (open) {
-        props.onFocus?.()
-        firstBlur.current = false
         selectRef.current?.focus()
         inputRef.current?.focus()
-      } else if (!firstBlur.current) {
-        props.onBlur?.()
+      } else {
         setIsSearching(false)
         selectRef.current?.blur()
         inputRef.current?.blur()
@@ -268,7 +270,15 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
 
   const onSelect = (key: React.Key) => {
     if (!isReadOnly) {
-      setCurrentKey(key)
+      if (currentKey === key) {
+        setCurrentKey(undefined)
+        setFocusKey(undefined)
+        setSearch('')
+        setIsSearching(false)
+        props.onSelectionChange?.('')
+      } else {
+        setCurrentKey(key)
+      }
       setOpen(false)
     }
   }
@@ -289,13 +299,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     inputRef.current?.focus()
   }
 
-  const hanleInputFocus = () => {
-    props.onFocus?.()
-  }
-
-  const handleInputBlur = () => {
-    props.onBlur?.()
-  }
   // ====================================== RENDER ======================================
   return (
     <StyledDropdownWrapper css={css} {...delegated}>
@@ -344,8 +347,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
             disabled={isDisabled}
             placeholder={placeholder}
             onChange={onSearch}
-            onBlur={handleInputBlur}
-            onFocus={hanleInputFocus}
+            onBlur={onBlur}
+            onFocus={onFocus}
           />
           <button
             type='button'
@@ -376,8 +379,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
             disabled={isDisabled}
             placeholder={placeholder}
             onChange={onSearch}
-            onBlur={handleInputBlur}
-            onFocus={hanleInputFocus}
+            onBlur={onBlur}
+            onFocus={onFocus}
           />
           <button
             ref={buttonRef}
@@ -408,6 +411,20 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
               type == 'select'
                 ? (selectRef as React.RefObject<HTMLDivElement>)
                 : inputRef
+            }
+            onBlur={
+              type == 'select'
+                ? onBlur
+                : () => {
+                    //
+                  }
+            }
+            onFocus={
+              type == 'select'
+                ? onFocus
+                : () => {
+                    //
+                  }
             }
             handleKeyDown={handleKeyDown}
           >
@@ -441,7 +458,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           //
         }}
       />
-      {errorMessage && (
+      {isErrored && errorMessage && (
         <StyledHelperText error={!!isErrored}>{errorMessage}</StyledHelperText>
       )}
       {helperText && <StyledHelperText>{helperText}</StyledHelperText>}

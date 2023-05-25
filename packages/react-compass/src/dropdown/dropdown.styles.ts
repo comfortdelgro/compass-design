@@ -18,6 +18,7 @@ export const StyledDropdownWrapper = styled('div', {
 
 export const StyledSelect = styled('div', {
   width: '100%',
+  height: '$11',
   background: '#FFFFFF',
   overflow: 'hidden',
   borderRadius: '$md',
@@ -33,7 +34,7 @@ export const StyledSelect = styled('div', {
   button: {
     padding: '$3 $4',
     width: '100%',
-    height: '$11',
+    height: '100%',
     cursor: 'pointer',
     display: 'flex',
     justifyContent: 'center',
@@ -71,8 +72,9 @@ export const StyledSelect = styled('div', {
     },
     isDisabled: {
       true: {
-        cursor: 'not-allowed !important',
-        '& > *': {
+        backgroundColor: '$gray20',
+        '*': {
+          color: '$disabledText',
           cursor: 'not-allowed !important',
         },
       },
@@ -90,6 +92,7 @@ export const StyledSelect = styled('div', {
 
 export const StyledComboBox = styled('div', {
   width: '100%',
+  height: '$11',
   border: '1px solid #E6E6E6',
   background: '#FFFFFF',
   overflow: 'hidden',
@@ -114,7 +117,7 @@ export const StyledComboBox = styled('div', {
     fontSize: '$label1',
     fontWeight: '$semibold',
     width: '100%',
-    height: '$11',
+    height: '100%',
     flexGrow: 1,
     border: 'none',
     padding: '$3 $11 $3 $4',
@@ -156,12 +159,13 @@ export const StyledComboBox = styled('div', {
     },
     isDisabled: {
       true: {
-        color: '#b7b7b7 !important',
+        color: '$disabledText',
         input: {
-          color: '#b7b7b7 !important',
+          backgroundColor: '$gray20',
         },
         cursor: 'not-allowed !important',
-        '& > *': {
+        '*': {
+          color: '$disabledText',
           cursor: 'not-allowed !important',
         },
       },

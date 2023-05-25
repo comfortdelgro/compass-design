@@ -23,7 +23,7 @@ export const StyledDropdown = styled('div', {
   cursor: 'text',
   display: 'flex',
   alignItems: 'center',
-  padding: '$2 $4',
+  padding: '$1_5 $4',
   gap: '$1',
   backgroundColor: '#FFFFFF',
   transition: '$default',
@@ -74,8 +74,9 @@ export const StyledDropdown = styled('div', {
     },
     isDisabled: {
       true: {
-        cursor: 'not-allowed !important',
-        '& > *': {
+        backgroundColor: '$gray20',
+        '*': {
+          color: '$disabledText',
           cursor: 'not-allowed !important',
         },
       },
@@ -117,7 +118,7 @@ export const StyledSelectedItemWrapper = styled('div', {
 })
 
 export const StyledSelectedItem = styled('div', {
-  border: '1px solid #EDEBE9',
+  border: '1px solid #E6E6E6',
   borderRadius: '$full',
   padding: '$1 $3',
   fontSize: '$label1',

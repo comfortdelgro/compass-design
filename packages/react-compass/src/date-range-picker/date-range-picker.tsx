@@ -30,10 +30,10 @@ interface Props
   extends StyledComponentProps,
     SpectrumDateRangePickerProps<DateValue> {
   children?: React.ReactNode
-  label?: string
+  label?: string | React.ReactNode
   isInvalid?: boolean
-  startDateLabel?: string
-  endDateLabel?: string
+  startDateLabel?: string | React.ReactNode
+  endDateLabel?: string | React.ReactNode
   shouldCloseOnSelect?: boolean
   onApply?: (e?: DateRange) => void
   onCancel?: () => void
@@ -146,14 +146,14 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
 
 interface DateRangeInputsWrapperProps {
   state: DateRangePickerState
-  label?: string | undefined
+  label?: string | React.ReactNode | undefined
   labelProps: DOMAttributes
   groupProps: DOMAttributes
   startFieldProps: AriaDatePickerProps<DateValue>
   endFieldProps: AriaDatePickerProps<DateValue>
   buttonProps: ButtonProps
-  startDateLabel?: string | undefined
-  endDateLabel?: string | undefined
+  startDateLabel?: string | React.ReactNode | undefined
+  endDateLabel?: string | React.ReactNode | undefined
   isInvalid?: boolean | undefined
   isMobile?: boolean | undefined
   isReadOnly?: boolean | undefined
