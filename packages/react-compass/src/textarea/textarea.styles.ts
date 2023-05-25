@@ -17,12 +17,13 @@ export const StyledTextareaWrapper = styled('div', {
 
 export const StyledTextarea = styled('textarea', {
   fontSize: '$label1',
+  minHeight: '$11',
   fontWeight: '$medium',
   lineHeight: '$normal',
   padding: '$1_5 $3',
   borderWidth: '1px',
   borderStyle: 'solid',
-  borderColor: 'transparent',
+  borderColor: '$divider',
   borderRadius: '$md',
   color: '$typeHeading',
   backgroundColor: '$whiteText',
@@ -34,7 +35,12 @@ export const StyledTextarea = styled('textarea', {
   },
 
   '&:disabled': {
-    cursor: 'not-allowed',
+    cursor: 'not-allowed !important',
+    backgroundColor: '$gray20',
+    '*': {
+      color: '$disabledText',
+      cursor: 'not-allowed !important',
+    },
   },
 
   variants: {

@@ -191,7 +191,7 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
               </StyledIcon>
             )}
           </StyledBox>
-          {errorMessage && (
+          {isErrored && errorMessage && (
             <StyledHelperText error={!!isErrored}>
               {errorMessage}
             </StyledHelperText>

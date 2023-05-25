@@ -115,7 +115,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     return (
       <StyledTextareaWrapper css={css}>
         {label && (
-          <StyledTextFieldLabel htmlFor={textareaId} isDisabled={!!isDisabled}>
+          <StyledTextFieldLabel htmlFor={textareaId}>
             {label}
             {isRequired && <span>*</span>}
           </StyledTextFieldLabel>
