@@ -1,9 +1,9 @@
 import {createStitches} from '@stitches/react'
 import breakpoints from './breakpoints'
-import themeConfig from './theme'
+import {lightTheme} from './theme'
 
 const stitches = createStitches({
-  theme: themeConfig,
+  theme: lightTheme,
   media: breakpoints,
 })
 

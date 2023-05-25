@@ -33,6 +33,7 @@ const Display: React.FC<Props> = (props) => {
     width: '100%',
     padding: 0,
     margin: 0,
+    color: '$primaryText',
     variants: {
       variant: {
         display1: {

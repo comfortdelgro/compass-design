@@ -1,4 +1,5 @@
-import type {StitchesTheme} from '../utils/stitches.types'
+import {createTheme} from '@stitches/react'
+import {StitchesTheme} from '../utils/stitches.types'
 
 const defineTheme = <T extends StitchesTheme>(theme: T) => theme
 
@@ -78,54 +79,77 @@ const spacings = {
   328: '82rem', // 1312px
 } as const
 
-export default defineTheme({
-  fonts: {
-    sans: 'Poppins, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
-    serif: 'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
-    mono: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
-  },
-  fontSizes: {
-    display1: '3.5rem', //56px
-    display2: '3rem', //48px
-    display3: '2.5rem', //40px
+const fonts = {
+  sans: 'Poppins, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+  serif: 'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
+  mono: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+}
 
-    header0: '2.5rem', //40px
-    header1: '2rem', //32px
-    header2: '1.75rem', //28px
-    header3: '1.5rem', //24px
-    header4: '1.25rem', //20px
-    header5: '1rem', //16px
+const fontSizes = {
+  display1: '3.5rem', //56px
+  display2: '3rem', //48px
+  display3: '2.5rem', //40px
 
-    body1: '1.25rem', //20px
-    body2: '1rem', //16px
-    body3: '0.875rem', //14px
+  header0: '2.5rem', //40px
+  header1: '2rem', //32px
+  header2: '1.75rem', //28px
+  header3: '1.5rem', //24px
+  header4: '1.25rem', //20px
+  header5: '1rem', //16px
 
-    label1: '0.875rem', //14px
-    label2: '0.75rem', //12px
-    label3: '0.625rem', //10px
+  body1: '1.25rem', //20px
+  body2: '1rem', //16px
+  body3: '0.875rem', //14px
 
-    link1: '1.25rem', //20px
-    link2: '1rem', //16px
-    link3: '0.875rem', //14px
-  },
-  lineHeights: {
-    tight: 1.25,
-    snug: 1.375,
-    normal: 1.5,
-    relaxed: 1.625,
-    loose: 2,
-  },
-  fontWeights: {
-    thin: 100,
-    extralight: 200,
-    light: 300,
-    normal: 400,
-    medium: 500,
-    semibold: 600,
-    bold: 700,
-    extrabold: 800,
-    black: 900,
-  },
+  label1: '0.875rem', //14px
+  label2: '0.75rem', //12px
+  label3: '0.625rem', //10px
+
+  link1: '1.25rem', //20px
+  link2: '1rem', //16px
+  link3: '0.875rem', //14px
+}
+
+const lineHeights = {
+  tight: 1.25,
+  snug: 1.375,
+  normal: 1.5,
+  relaxed: 1.625,
+  loose: 2,
+}
+
+const fontWeights = {
+  thin: 100,
+  extralight: 200,
+  light: 300,
+  normal: 400,
+  medium: 500,
+  semibold: 600,
+  bold: 700,
+  extrabold: 800,
+  black: 900,
+}
+
+const borderWidths = {
+  light: '1px',
+  medium: '2px',
+  thick: '3px',
+}
+
+const radius = {
+  md: '4px',
+  lg: '8px',
+  xl: '16px',
+  full: '9999px',
+}
+
+const transitions = {
+  default: 'all 250ms ease',
+  button:
+    'background 0.25s ease 0s, color 0.25s ease 0s, border-color 0.25s ease 0s, transform 0.25s ease 0s, opacity 0.25s ease 0s',
+}
+
+export const lightTheme = defineTheme({
   colors: {
     // Primary
 
@@ -194,22 +218,94 @@ export default defineTheme({
     gradientRainbow: '#0163AE, #D80837, #53AF35',
     gradientOrangeBlue: '#D2132A, #0597DB',
   },
-  borderWidths: {
-    light: '1px',
-    medium: '2px',
-    thick: '3px',
-  },
-  radii: {
-    md: '4px',
-    lg: '8px',
-    xl: '16px',
-    full: '9999px',
-  },
+  fonts,
+  fontSizes,
+  lineHeights,
+  fontWeights,
+
+  borderWidths,
+  radii: radius,
   space: spacings,
   sizes: spacings,
-  transitions: {
-    default: 'all 250ms ease',
-    button:
-      'background 0.25s ease 0s, color 0.25s ease 0s, border-color 0.25s ease 0s, transform 0.25s ease 0s, opacity 0.25s ease 0s',
+  transitions,
+})
+
+export const darkTheme = createTheme('dark-theme', {
+  colors: {
+    // Primary
+
+    cdgBlue: '$cdgBlue100',
+    typeHeading: '$gray100',
+    background: '#000000',
+    black: '#323130',
+
+    primaryText: '$gray10',
+    secondaryText: '$gray80',
+    disabledText: '$gray70',
+    whiteText: '#000000',
+
+    divider: '$gray30',
+    border: '#8A8886',
+    activeBorder: '$gray100',
+
+    // Secondary
+
+    infoBg: '#E3F3FF',
+    info: '#0078D4',
+
+    dangerBg: '#EFD9DB',
+    danger: '#A4262C',
+
+    successBg: '#D1E8CF',
+    success: '#107C10',
+
+    severeWarningBg: '#F0CBBE',
+    severeWarning: '#D83B01',
+
+    warningBg: '#F1E6C0',
+    warning: '#835C00',
+
+    // Shades and Tints
+
+    cdgBlue10: '#E6ECF7',
+    cdgBlue20: '#CCD9EF',
+    cdgBlue40: '#99B3DF',
+    cdgBlue60: '#678ECF',
+    cdgBlue80: '#3468BF',
+    cdgBlue100: '#0142AF',
+    cdgBlue120: '#012158',
+    cdgBlue140: '#001232',
+
+    overlayLight: 'rgba(255, 255, 255, 0.4)',
+    overlayDark: 'rgba(0, 0, 0, 0.4)',
+
+    gray10: '#FAF9F8',
+    gray20: '#F3F2F1',
+    gray30: '#EDEBE9',
+    gray40: '#E1DFDD',
+    gray50: '#D2D0CE',
+    gray60: '#C8C6C4',
+    gray70: '#A19F9D',
+    gray80: '#605E5C',
+    gray90: '#3A3B39',
+    gray100: '#323130',
+    gray110: '#201F1E',
+
+    primaryBg: '#F5F5F6',
+    secondaryBg: '#F0F0F0',
+    darkerBg: '#EAEBEB',
+
+    gradientOrange: '#F02627, #EA8816',
+    gradientRainbow: '#0163AE, #D80837, #53AF35',
+    gradientOrangeBlue: '#D2132A, #0597DB',
   },
-} as const)
+  fonts,
+  fontSizes,
+  lineHeights,
+  fontWeights,
+  borderWidths,
+  radii: radius,
+  space: spacings,
+  sizes: spacings,
+  transitions,
+})
