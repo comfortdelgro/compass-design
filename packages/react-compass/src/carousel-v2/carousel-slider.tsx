@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import {faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons'
 import React, {useEffect, useState} from 'react'
 import Icon from '../icon'
@@ -50,7 +53,7 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
       className,
       effect = 'fade',
       css = {},
-      onSwitchSlide = () => {},
+      onSwitchSlide = () => null,
       ...delegated
     } = props
 

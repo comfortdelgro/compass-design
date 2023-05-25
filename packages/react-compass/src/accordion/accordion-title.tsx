@@ -18,7 +18,13 @@ export type AccordionTitleProps = Props &
 
 const AccordionTitle = React.forwardRef<HTMLButtonElement, AccordionTitleProps>(
   (props: AccordionTitleProps, ref) => {
-    const {icon = faQuestionCircle, children, expandIcon, css = {}} = props
+    const {
+      icon = faQuestionCircle,
+      children,
+      expandIcon,
+      css = {},
+      ...delegated
+    } = props
 
     const contextValue = useContext(AccordionContext) as AccordionContextType
 
@@ -60,7 +66,10 @@ const AccordionTitle = React.forwardRef<HTMLButtonElement, AccordionTitleProps>(
         expand={expand ? 'open' : 'close'}
         onMouseDown={(e) => handleOnClick(e)}
       >
-        <StyledAccordionTitleWrapper expand={expand ? 'open' : 'close'}>
+        <StyledAccordionTitleWrapper
+          expand={expand ? 'open' : 'close'}
+          {...delegated}
+        >
           {renderLeftIcon()}
           <div className='accordion-title'>{renderTitle()}</div>
           <div className='accordion-chevron-container'>

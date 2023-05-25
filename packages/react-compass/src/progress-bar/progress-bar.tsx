@@ -14,7 +14,9 @@ interface Props extends StyledComponentProps {
   maxValue: number
 }
 
-export type ProgressBarProps = Props & ProgressBarVariantProps
+export type ProgressBarProps = Props &
+  ProgressBarVariantProps &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
   (props, ref) => {
@@ -30,7 +32,8 @@ const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
       value = 0,
       minValue = 0,
       maxValue = 100,
-      // AriaLinkProps
+      // html props
+      ...delegated
     } = props
 
     const variantProps = {} as ProgressBarVariantProps
@@ -54,6 +57,7 @@ const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
         variant={variant}
         {...labelProps}
         {...variantProps}
+        {...delegated}
       >
         {(!!label || !!rightLabel) && (
           <div className='progress-bar-label'>

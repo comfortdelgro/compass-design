@@ -29,7 +29,8 @@ interface Props extends StyledComponentProps {
   'aria-details'?: string
 }
 
-export type TabsProps = Props
+export type TabsProps = Props &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   const {

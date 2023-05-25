@@ -7,7 +7,9 @@ interface Props extends StyledComponentProps {
   label?: boolean | string
 }
 
-export type SpinnerProps = Props & SpinnerVariantProps
+export type SpinnerProps = Props &
+  SpinnerVariantProps &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>((props, ref) => {
   const {

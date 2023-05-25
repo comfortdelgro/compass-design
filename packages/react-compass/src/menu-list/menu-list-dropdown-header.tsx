@@ -28,8 +28,8 @@ const MenuListDropdownHeader = React.forwardRef<
     className = '',
     // StyledComponentProps
     css = {},
-    // AriaButtonProps
-    ...ariaSafeProps
+    // Html props
+    ...delegated
   } = props
 
   const {isOpen, toggleOpen} = useContext(MenuListContext)
@@ -111,7 +111,7 @@ const MenuListDropdownHeader = React.forwardRef<
       ref={buttonRef}
       css={css}
       onMouseDown={handleOnClick}
-      {...ariaSafeProps}
+      {...delegated}
     >
       {renderLeftIcon()}
       {renderTitle()}
