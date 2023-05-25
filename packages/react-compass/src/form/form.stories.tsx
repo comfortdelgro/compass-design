@@ -15,13 +15,14 @@ export const Variants: React.FC = () => {
   const [isDisabled, setIsDisabled] = React.useState(false)
   const [isRequired, setIsRequired] = React.useState(false)
   const [isErrored, setIsErrored] = React.useState(false)
+  const [isReadonly, setIsReadonly] = React.useState(false)
   return (
     <Column>
       <h4>State Controller</h4>
 
-      <Column>
+      <Column css={{marginBottom: 50}}>
         <div style={{display: 'flex', alignItems: 'center', gap: 20}}>
-          <span>isDisabled</span>
+          <span style={{width: 100}}>isDisabled</span>
           <Toggle
             size='sm'
             value={isDisabled.toString()}
@@ -29,7 +30,7 @@ export const Variants: React.FC = () => {
           />
         </div>
         <div style={{display: 'flex', alignItems: 'center', gap: 20}}>
-          <span>isRequired</span>
+          <span style={{width: 100}}>isRequired</span>
           <Toggle
             size='sm'
             value={isRequired.toString()}
@@ -37,24 +38,31 @@ export const Variants: React.FC = () => {
           />
         </div>
         <div style={{display: 'flex', alignItems: 'center', gap: 20}}>
-          <span>isErrored</span>
+          <span style={{width: 100}}>isErrored</span>
           <Toggle
             size='sm'
             value={isErrored.toString()}
             onChange={setIsErrored}
           />
         </div>
+        <div style={{display: 'flex', alignItems: 'center', gap: 20}}>
+          <span style={{width: 100}}>isReadonly</span>
+          <Toggle
+            size='sm'
+            value={isReadonly.toString()}
+            onChange={setIsReadonly}
+          />
+        </div>
       </Column>
 
-      <Row>
+      <Row css={{alignItems: 'start'}}>
         <Textfield
           label='Textfield'
           placeholder='Enter your name'
-          // isErrored
-          // helperText='my helper text'
           isErrored={isErrored}
           isRequired={isRequired}
           isDisabled={isDisabled}
+          isReadOnly={isReadonly}
           errorMessage={'My error message'}
           onChange={(e) => console.log('onChange', e)}
           onChangeEvent={(e) => console.log('onChangeEvent', e)}
@@ -65,6 +73,7 @@ export const Variants: React.FC = () => {
           isErrored={isErrored}
           isRequired={isRequired}
           isDisabled={isDisabled}
+          isReadOnly={isReadonly}
           errorMessage={'My error message'}
           onBlur={() => console.log('onBlur')}
           onFocus={() => console.log('onFocus')}
@@ -86,13 +95,14 @@ export const Variants: React.FC = () => {
         </Dropdown.Select>
       </Row>
 
-      <Row>
+      <Row css={{alignItems: 'start'}}>
         <MultipleDropdown
           label='MultipleDropdown'
           placeholder='Choose an animal'
           isErrored={isErrored}
           isRequired={isRequired}
           isDisabled={isDisabled}
+          isReadOnly={isReadonly}
           errorMessage={'My error message'}
           onBlur={() => console.log('')}
         >
@@ -111,6 +121,7 @@ export const Variants: React.FC = () => {
           isErrored={isErrored}
           isRequired={isRequired}
           isDisabled={isDisabled}
+          isReadOnly={isReadonly}
           errorMessage={'My error message'}
           onBlur={() => console.log('onBlur')}
           onFocus={() => console.log('onFocus')}
@@ -132,22 +143,30 @@ export const Variants: React.FC = () => {
         </Dropdown.ComboBox>
       </Row>
 
-      <Row>
+      <Row css={{alignItems: 'start'}}>
         <Textarea
           label='Textarea'
           placeholder='Enter your message'
           isErrored={isErrored}
           isRequired={isRequired}
           isDisabled={isDisabled}
+          isReadOnly={isReadonly}
           errorMessage={'My error message'}
+          css={{
+            width: '100%',
+          }}
         />
         <DatePicker
           label='DatePicker'
           // isErrored={isErrored}
           isRequired={isRequired}
           isDisabled={isDisabled}
+          isReadOnly={isReadonly}
           errorMessage={'My error message'}
           defaultValue={today(getLocalTimeZone())}
+          css={{
+            width: '100%',
+          }}
         />
       </Row>
     </Column>
