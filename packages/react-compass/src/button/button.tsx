@@ -68,7 +68,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       isDisabled = false,
       type = 'button',
       // AriaButtonProps
-      ...delegated
+      ...ariaSafeProps
     } = props
 
     const buttonRef = useDOMRef<HTMLButtonElement>(ref)
@@ -85,7 +85,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       return {
         className,
         css,
-        ...delegated,
+        ...ariaSafeProps,
         ...variantProps,
       }
     }
