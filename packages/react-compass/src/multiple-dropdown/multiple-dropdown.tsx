@@ -357,7 +357,7 @@ const MultipleDropdown = React.forwardRef<
           style={{
             ...floatingStyles,
             ...{
-              zIndex: 3,
+              zIndex: 60,
             },
           }}
           {...getFloatingProps}

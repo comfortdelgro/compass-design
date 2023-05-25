@@ -399,7 +399,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           style={{
             ...floatingStyles,
             ...{
-              zIndex: 3,
+              zIndex: 60,
             },
           }}
           {...getFloatingProps}

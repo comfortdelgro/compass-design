@@ -16,7 +16,7 @@ export const StyledBreadcrumbs = styled('nav', {
     color: '$typeHeading',
     padding: '0 $2',
 
-    '.divider-icon': {
+    svg: {
       width: '$3_5',
       height: '$3_5',
     },

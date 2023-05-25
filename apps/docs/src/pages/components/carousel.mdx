@@ -1,12 +1,7 @@
 import {Callout} from 'nextra-theme-docs'
 import styles from '../../styles/Home.module.css'
 import Badge from '@comfortdelgro/react-compass/badge'
-import {
-  faThumbsUp,
-  faVirus,
-  faChevronLeft,
-  faChevronRight,
-} from '@fortawesome/free-solid-svg-icons'
+import BugIcon from '@comfortdelgro/compass-icons/react/bug'
 
 import {
   SampleCarouselSlider,
@@ -288,19 +283,15 @@ const slideData: CarouselSliderItem[] = [
 </section>
 
 ```js
-import {
-  faPinterest,
-  faTelegram,
-  faTiktok,
-} from '@fortawesome/free-brands-svg-icons'
+import BugIcon from '@comfortdelgro/compass-icons/react/bug'
 
 const socials: SocicalIcon[] = [
   {
-    icon: faPinterest,
+    icon: <BugIcon />,
     url: 'https://www.pinterest.com.au/',
   },
-  {icon: faTiktok, url: 'https://www.tiktok.com/'},
-  {icon: faTelegram, url: 'https://telegram.org/'},
+  {icon: <BugIcon />, url: 'https://www.tiktok.com/'},
+  {icon: <BugIcon />, url: 'https://telegram.org/'},
 ]
 
 export const PromotionSliderWithSocials = () => {
