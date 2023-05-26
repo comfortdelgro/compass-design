@@ -1,9 +1,5 @@
 import Breadcrumbs from '@comfortdelgro/react-compass/breadcrumbs'
-import {faVirus} from '@fortawesome/free-solid-svg-icons'
-// const isCurrent = (i: number) => {
-//   if (window && window.location) return window.location.hash === `#${i}`
-//   return false
-// }
+import BugIcon from '@comfortdelgro/compass-icons/react/bug'
 
 export function BasicBreadcrumb() {
   return (
@@ -21,7 +17,7 @@ export function BasicBreadcrumb() {
 
 export function CustomDividerBreadcrumb() {
   return (
-    <Breadcrumbs dividerIcon={faVirus} isCurrent={() => false}>
+    <Breadcrumbs dividerIcon={<BugIcon />} isCurrent={() => false}>
       <Breadcrumbs.Item href='#0'>Home</Breadcrumbs.Item>
       <Breadcrumbs.Item href='#1'>Library</Breadcrumbs.Item>
       <Breadcrumbs.Item href='#2'>Data</Breadcrumbs.Item>
