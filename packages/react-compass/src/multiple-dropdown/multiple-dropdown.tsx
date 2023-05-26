@@ -279,12 +279,6 @@ const MultipleDropdown = React.forwardRef<
     }
   }
 
-  const onHover = (key: React.Key | null) => {
-    if (key) {
-      setFocusKey(key)
-    }
-  }
-
   const handleOpen = () => {
     if (!isDisabled) {
       setOpen(true)
@@ -382,7 +376,6 @@ const MultipleDropdown = React.forwardRef<
               currentKeys={currentKeys}
               disabledKeys={disabledKeys}
               sectionCollection={sectionCollection}
-              onHover={onHover}
               onSelect={onSelect}
               onLoadMore={onLoadMore}
             />
