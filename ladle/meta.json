@@ -30,8 +30,8 @@
       "levels": [
         "Alert"
       ],
-      "locStart": 13,
-      "locEnd": 20,
+      "locStart": 14,
+      "locEnd": 21,
       "filePath": "src/alert/alert.stories.tsx",
       "meta": {}
     },
@@ -40,8 +40,8 @@
       "levels": [
         "Alert"
       ],
-      "locStart": 22,
-      "locEnd": 55,
+      "locStart": 23,
+      "locEnd": 56,
       "filePath": "src/alert/alert.stories.tsx",
       "meta": {}
     },
@@ -50,8 +50,8 @@
       "levels": [
         "Alert"
       ],
-      "locStart": 57,
-      "locEnd": 88,
+      "locStart": 58,
+      "locEnd": 89,
       "filePath": "src/alert/alert.stories.tsx",
       "meta": {}
     },
@@ -60,8 +60,8 @@
       "levels": [
         "Avatar"
       ],
-      "locStart": 45,
-      "locEnd": 88,
+      "locStart": 46,
+      "locEnd": 89,
       "filePath": "src/avatar/avatar.stories.tsx",
       "meta": {}
     },
@@ -70,8 +70,8 @@
       "levels": [
         "Avatar"
       ],
-      "locStart": 14,
-      "locEnd": 43,
+      "locStart": 15,
+      "locEnd": 44,
       "filePath": "src/avatar/avatar.stories.tsx",
       "meta": {}
     },
@@ -80,8 +80,8 @@
       "levels": [
         "Badge"
       ],
-      "locStart": 6,
-      "locEnd": 13,
+      "locStart": 7,
+      "locEnd": 14,
       "filePath": "src/badge/badge.stories.tsx",
       "meta": {}
     },
@@ -90,8 +90,8 @@
       "levels": [
         "Badge"
       ],
-      "locStart": 15,
-      "locEnd": 25,
+      "locStart": 16,
+      "locEnd": 26,
       "filePath": "src/badge/badge.stories.tsx",
       "meta": {}
     },
@@ -100,8 +100,8 @@
       "levels": [
         "Badge"
       ],
-      "locStart": 27,
-      "locEnd": 54,
+      "locStart": 28,
+      "locEnd": 55,
       "filePath": "src/badge/badge.stories.tsx",
       "meta": {}
     },
@@ -110,8 +110,8 @@
       "levels": [
         "Badge"
       ],
-      "locStart": 56,
-      "locEnd": 66,
+      "locStart": 57,
+      "locEnd": 67,
       "filePath": "src/badge/badge.stories.tsx",
       "meta": {}
     },
@@ -160,8 +160,8 @@
       "levels": [
         "Breadcrumbs"
       ],
-      "locStart": 10,
-      "locEnd": 24,
+      "locStart": 11,
+      "locEnd": 25,
       "filePath": "src/breadcrumbs/breadcrumbs.stories.tsx",
       "meta": {}
     },
@@ -170,8 +170,8 @@
       "levels": [
         "Breadcrumbs"
       ],
-      "locStart": 26,
-      "locEnd": 37,
+      "locStart": 27,
+      "locEnd": 41,
       "filePath": "src/breadcrumbs/breadcrumbs.stories.tsx",
       "meta": {}
     },
@@ -220,8 +220,8 @@
       "levels": [
         "Carousel v2"
       ],
-      "locStart": 201,
-      "locEnd": 238,
+      "locStart": 208,
+      "locEnd": 245,
       "filePath": "src/carousel-v2/carouselV2.stories.tsx",
       "meta": {}
     },
@@ -230,8 +230,8 @@
       "levels": [
         "Carousel v2"
       ],
-      "locStart": 171,
-      "locEnd": 199,
+      "locStart": 178,
+      "locEnd": 206,
       "filePath": "src/carousel-v2/carouselV2.stories.tsx",
       "meta": {}
     },
@@ -240,8 +240,8 @@
       "levels": [
         "Carousel v2"
       ],
-      "locStart": 94,
-      "locEnd": 169,
+      "locStart": 101,
+      "locEnd": 176,
       "filePath": "src/carousel-v2/carouselV2.stories.tsx",
       "meta": {}
     },
@@ -250,8 +250,8 @@
       "levels": [
         "Carousel"
       ],
-      "locStart": 72,
-      "locEnd": 162,
+      "locStart": 81,
+      "locEnd": 171,
       "filePath": "src/carousel/carousel.stories.tsx",
       "meta": {}
     },
@@ -260,8 +260,8 @@
       "levels": [
         "Carousel"
       ],
-      "locStart": 164,
-      "locEnd": 187,
+      "locStart": 173,
+      "locEnd": 196,
       "filePath": "src/carousel/carousel.stories.tsx",
       "meta": {}
     },
@@ -430,8 +430,8 @@
       "levels": [
         "Dropdown"
       ],
-      "locStart": 268,
-      "locEnd": 448,
+      "locStart": 281,
+      "locEnd": 473,
       "filePath": "src/dropdown/dropdown.stories.tsx",
       "meta": {}
     },
@@ -440,8 +440,8 @@
       "levels": [
         "Dropdown"
       ],
-      "locStart": 6,
-      "locEnd": 36,
+      "locStart": 7,
+      "locEnd": 37,
       "filePath": "src/dropdown/dropdown.stories.tsx",
       "meta": {}
     },
@@ -450,8 +450,8 @@
       "levels": [
         "Dropdown"
       ],
-      "locStart": 38,
-      "locEnd": 266,
+      "locStart": 39,
+      "locEnd": 279,
       "filePath": "src/dropdown/dropdown.stories.tsx",
       "meta": {}
     },
@@ -500,9 +500,19 @@
       "levels": [
         "Footer"
       ],
-      "locStart": 15,
-      "locEnd": 341,
+      "locStart": 16,
+      "locEnd": 351,
       "filePath": "src/footer/footer.stories.tsx",
+      "meta": {}
+    },
+    "form--variants": {
+      "name": "Variants",
+      "levels": [
+        "Form"
+      ],
+      "locStart": 14,
+      "locEnd": 188,
+      "filePath": "src/form/form.stories.tsx",
       "meta": {}
     },
     "grid--default": {
@@ -530,8 +540,8 @@
       "levels": [
         "List"
       ],
-      "locStart": 738,
-      "locEnd": 749,
+      "locStart": 768,
+      "locEnd": 779,
       "filePath": "src/list/list.stories.tsx",
       "meta": {}
     },
@@ -540,8 +550,8 @@
       "levels": [
         "List"
       ],
-      "locStart": 575,
-      "locEnd": 736,
+      "locStart": 605,
+      "locEnd": 766,
       "filePath": "src/list/list.stories.tsx",
       "meta": {}
     },
@@ -550,8 +560,8 @@
       "levels": [
         "List"
       ],
-      "locStart": 373,
-      "locEnd": 573,
+      "locStart": 403,
+      "locEnd": 603,
       "filePath": "src/list/list.stories.tsx",
       "meta": {}
     },
@@ -561,7 +571,7 @@
         "List"
       ],
       "locStart": 27,
-      "locEnd": 371,
+      "locEnd": 401,
       "filePath": "src/list/list.stories.tsx",
       "meta": {}
     },
@@ -600,8 +610,8 @@
       "levels": [
         "Multiple dropdown"
       ],
-      "locStart": 6,
-      "locEnd": 180,
+      "locStart": 7,
+      "locEnd": 181,
       "filePath": "src/multiple-dropdown/multiple-dropdown.stories.tsx",
       "meta": {}
     },
@@ -720,8 +730,8 @@
       "levels": [
         "Radio"
       ],
-      "locStart": 103,
-      "locEnd": 138,
+      "locStart": 104,
+      "locEnd": 139,
       "filePath": "src/radio/radio.stories.tsx",
       "meta": {}
     },
@@ -730,8 +740,8 @@
       "levels": [
         "Radio"
       ],
-      "locStart": 6,
-      "locEnd": 101,
+      "locStart": 7,
+      "locEnd": 102,
       "filePath": "src/radio/radio.stories.tsx",
       "meta": {}
     },
@@ -1020,8 +1030,8 @@
       "levels": [
         "Textarea"
       ],
-      "locStart": 7,
-      "locEnd": 52,
+      "locStart": 8,
+      "locEnd": 53,
       "filePath": "src/textarea/textarea.stories.tsx",
       "meta": {}
     },
@@ -1030,8 +1040,8 @@
       "levels": [
         "Textfield"
       ],
-      "locStart": 23,
-      "locEnd": 130,
+      "locStart": 24,
+      "locEnd": 131,
       "filePath": "src/textfield/textfield.stories.tsx",
       "meta": {}
     },
@@ -1140,8 +1150,8 @@
       "levels": [
         "Typography"
       ],
-      "locStart": 26,
-      "locEnd": 50,
+      "locStart": 30,
+      "locEnd": 56,
       "filePath": "src/typography/typography.stories.tsx",
       "meta": {}
     },
@@ -1151,7 +1161,7 @@
         "Typography"
       ],
       "locStart": 7,
-      "locEnd": 13,
+      "locEnd": 15,
       "filePath": "src/typography/typography.stories.tsx",
       "meta": {}
     },
@@ -1160,8 +1170,8 @@
       "levels": [
         "Typography"
       ],
-      "locStart": 15,
-      "locEnd": 24,
+      "locStart": 17,
+      "locEnd": 28,
       "filePath": "src/typography/typography.stories.tsx",
       "meta": {}
     },
@@ -1170,8 +1180,8 @@
       "levels": [
         "Typography"
       ],
-      "locStart": 52,
-      "locEnd": 85,
+      "locStart": 58,
+      "locEnd": 93,
       "filePath": "src/typography/typography.stories.tsx",
       "meta": {}
     },
@@ -1180,19 +1190,29 @@
       "levels": [
         "Typography"
       ],
-      "locStart": 87,
-      "locEnd": 96,
+      "locStart": 95,
+      "locEnd": 106,
       "filePath": "src/typography/typography.stories.tsx",
       "meta": {}
     },
-    "upload-v2--default": {
-      "name": "Default",
+    "upload-v2--variants": {
+      "name": "Variants",
       "levels": [
         "Upload v2"
       ],
       "locStart": 5,
-      "locEnd": 19,
+      "locEnd": 52,
       "filePath": "src/upload-v2/uploadV2.stories.tsx",
+      "meta": {}
+    },
+    "upload--click-to-upload": {
+      "name": "Click to upload",
+      "levels": [
+        "Upload"
+      ],
+      "locStart": 26,
+      "locEnd": 87,
+      "filePath": "src/upload/upload.stories.tsx",
       "meta": {}
     },
     "upload--default": {
@@ -1205,13 +1225,13 @@
       "filePath": "src/upload/upload.stories.tsx",
       "meta": {}
     },
-    "upload--variants": {
-      "name": "Variants",
+    "upload--drag-and-drop": {
+      "name": "Drag and drop",
       "levels": [
         "Upload"
       ],
-      "locStart": 26,
-      "locEnd": 70,
+      "locStart": 89,
+      "locEnd": 147,
       "filePath": "src/upload/upload.stories.tsx",
       "meta": {}
     },

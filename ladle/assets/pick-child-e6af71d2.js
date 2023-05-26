@@ -1,0 +1,1 @@
+import{R as t}from"./index-e285302b.js";const d=(c,e)=>{const n=[],l=t.Children.map(c,r=>t.isValidElement(r)&&r.type===e?(n.push(r),null):r);return{child:n.length>=0?n[0]:void 0,rest:l}};export{d as p};
