@@ -16,6 +16,7 @@ export const Variants: React.FC = () => {
   const [isRequired, setIsRequired] = React.useState(false)
   const [isErrored, setIsErrored] = React.useState(false)
   const [isReadonly, setIsReadonly] = React.useState(false)
+  const [value, setValue] = React.useState<React.Key>('cat')
   return (
     <Column>
       <h4>State Controller</h4>
@@ -68,6 +69,7 @@ export const Variants: React.FC = () => {
           onChangeEvent={(e) => console.log('onChangeEvent', e)}
         />
         <Dropdown.Select
+          selectedKey={value}
           label='Dropdown.Select'
           placeholder='Choose an animal'
           isErrored={isErrored}
@@ -77,6 +79,10 @@ export const Variants: React.FC = () => {
           errorMessage={'My error message'}
           onBlur={() => console.log('onBlur')}
           onFocus={() => console.log('onFocus')}
+          onSelectionChange={(e) => {
+            setValue(e)
+            console.log('onChange Dropdown.Select', e)
+          }}
         >
           <Dropdown.Item
             key='red panda'
@@ -105,6 +111,7 @@ export const Variants: React.FC = () => {
           isReadOnly={isReadonly}
           errorMessage={'My error message'}
           onBlur={() => console.log('')}
+          onSelectionChange={(e) => console.log('onChange', e)}
         >
           <MultipleDropdown.Item key='red panda'>
             Red Panda
@@ -116,6 +123,7 @@ export const Variants: React.FC = () => {
           <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
         </MultipleDropdown>
         <Dropdown.ComboBox
+          selectedKey={value}
           label='Dropdown.ComboBox'
           placeholder='Choose an animal'
           isErrored={isErrored}
@@ -125,6 +133,10 @@ export const Variants: React.FC = () => {
           errorMessage={'My error message'}
           onBlur={() => console.log('onBlur')}
           onFocus={() => console.log('onFocus')}
+          onSelectionChange={(e) => {
+            setValue(e)
+            console.log('onChange Dropdown.ComboBox', e)
+          }}
         >
           <Dropdown.Item
             key='red panda'
@@ -152,6 +164,7 @@ export const Variants: React.FC = () => {
           isDisabled={isDisabled}
           isReadOnly={isReadonly}
           errorMessage={'My error message'}
+          onChange={(e) => console.log('onChange', e)}
           css={{
             width: '100%',
           }}
@@ -164,6 +177,7 @@ export const Variants: React.FC = () => {
           isReadOnly={isReadonly}
           errorMessage={'My error message'}
           defaultValue={today(getLocalTimeZone())}
+          onChange={(e) => console.log('onChange', e)}
           css={{
             width: '100%',
           }}

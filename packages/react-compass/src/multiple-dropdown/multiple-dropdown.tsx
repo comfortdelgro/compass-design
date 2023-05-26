@@ -39,7 +39,9 @@ interface Props extends DropdownBase {
   onSelectionChange?: (key: React.Key[]) => void
 }
 
-export type MultipleDropdownProps = Props & DropdownVariantProps
+export type MultipleDropdownProps = Props &
+  DropdownVariantProps &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const MultipleDropdown = React.forwardRef<
   HTMLDivElement,
@@ -71,6 +73,7 @@ const MultipleDropdown = React.forwardRef<
     onFocus = () => {
       //
     },
+    ...delegated
   } = props
   // ====================================== STATE ======================================
   const [open, setOpen] = React.useState(false)
@@ -290,7 +293,7 @@ const MultipleDropdown = React.forwardRef<
 
   // ====================================== RENDER ======================================
   return (
-    <StyledDropdownWrapper css={css} ref={ref}>
+    <StyledDropdownWrapper css={css} ref={ref} {...delegated}>
       {props.label && (
         <label onClick={handleOpen}>
           {props.label}
@@ -357,7 +360,7 @@ const MultipleDropdown = React.forwardRef<
           style={{
             ...floatingStyles,
             ...{
-              zIndex: 3,
+              zIndex: 60,
             },
           }}
           {...getFloatingProps}

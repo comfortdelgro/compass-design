@@ -41,7 +41,7 @@ const CarouselMobile = React.forwardRef<HTMLDivElement, CarouselMobileProps>(
       useDotIndicator = true,
       navigationButtonType = 'icon',
       css = {},
-      onSwitchSlide = () => {},
+      onSwitchSlide = () => null,
       ...delegated
     } = props
     const carouselRef = useDOMRef<HTMLDivElement>(ref)

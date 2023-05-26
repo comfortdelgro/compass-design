@@ -29,7 +29,7 @@ const SingleOTPInputComponent = React.forwardRef<
     }
   }, [autoFocus, focus, prevFocus])
 
-  return <StyledOtpSingleInput ref={inputRef} {...delegated} />
+  return <StyledOtpSingleInput ref={inputRef} css={css} {...delegated} />
 })
 
 const SingleOTPInput = memo(SingleOTPInputComponent)

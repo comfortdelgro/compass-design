@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/restrict-plus-operands */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -17,7 +20,13 @@ export type CarouselDotProps = Props &
 
 const CarouselSliderDots = React.forwardRef<HTMLDivElement, CarouselDotProps>(
   (props, ref) => {
-    const {length, current, css = {}, dotClick = () => {}, ...delegated} = props
+    const {
+      length,
+      current,
+      css = {},
+      dotClick = () => null,
+      ...delegated
+    } = props
     const dotRef = useDOMRef<HTMLDivElement>(ref)
     return (
       <StyledCarouselSliderDots

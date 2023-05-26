@@ -219,7 +219,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           ? selectedItem?.props.textValue
           : textContent(selectedItem as React.ReactElement)
       setSearch(text ?? '')
-      props.onSelectionChange?.(currentKey)
     }
   }, [currentKey])
 
@@ -249,8 +248,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       case 'Enter': {
         e.preventDefault()
         if (focusKey) {
-          setCurrentKey(focusKey)
-          setOpen(false)
+          onSelect(focusKey)
         }
         break
       }
@@ -278,6 +276,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         props.onSelectionChange?.('')
       } else {
         setCurrentKey(key)
+        props.onSelectionChange?.(key)
       }
       setOpen(false)
     }
@@ -399,7 +398,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           style={{
             ...floatingStyles,
             ...{
-              zIndex: 3,
+              zIndex: 60,
             },
           }}
           {...getFloatingProps}

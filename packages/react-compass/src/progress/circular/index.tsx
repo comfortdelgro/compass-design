@@ -16,7 +16,8 @@ interface Props extends StyledComponentProps {
   variant?: 'determinate' | 'indeterminate'
 }
 
-export type CircularProgressProps = Props
+export type CircularProgressProps = Props &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const SIZE = 44
 
@@ -32,6 +33,7 @@ const CircularProgress = React.forwardRef<
     color = '#0142af',
     disableShrink = false,
     variant = 'indeterminate',
+    ...delegated
   } = props
 
   const rootRef = useDOMRef<HTMLDivElement>(ref)
@@ -58,6 +60,7 @@ const CircularProgress = React.forwardRef<
       variant={variant}
       style={{width: size, height: size, ...rootStyle}}
       css={{...css, ...{$$color: color}}}
+      {...delegated}
     >
       <StyledCircularProgressSVG
         viewBox={`${SIZE / 2} ${SIZE / 2} ${SIZE} ${SIZE}`}

@@ -8,7 +8,6 @@ export const StyledCalc = styled('div', {
   overflow: 'hidden',
   visibility: 'hidden',
   whiteSpace: 'nowrap',
-  zIndex: -99999999,
   // background: 'red',
   ul: {
     overscrollBehavior: 'contain',

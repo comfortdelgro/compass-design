@@ -11,7 +11,9 @@ interface Props extends StyledComponentProps {
   disabledAnimation?: boolean
 }
 
-export type AvatarGroupProps = Props & AvatarGroupVariantProps
+export type AvatarGroupProps = Props &
+  AvatarGroupVariantProps &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
   (props, ref) => {
@@ -23,6 +25,7 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
       children,
       size = 'md',
       disabledAnimation = false,
+      ...delegated
     } = props
 
     const avatarGroupRef = useDOMRef<HTMLDivElement>(ref)
@@ -41,6 +44,7 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
         css={css}
         ref={avatarGroupRef}
         disabledAnimation={disabledAnimation}
+        {...delegated}
       >
         {avatars.slice(0, display).map((avatar) => avatar)}
         {display < avatars.length && (

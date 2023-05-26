@@ -15,7 +15,10 @@ interface Props extends StyledComponentProps {
   children: React.ReactNode
 }
 
-const Header: React.FC<Props> = (props) => {
+export type headerTypographyProps = Props &
+  Omit<React.HTMLAttributes<HTMLHeadingElement>, keyof Props>
+
+const Header: React.FC<headerTypographyProps> = (props) => {
   const {
     css = {},
     children,

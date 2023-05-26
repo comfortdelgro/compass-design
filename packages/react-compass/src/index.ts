@@ -217,6 +217,8 @@ export type {
 } from './sidenav'
 export {default as Skeleton} from './skeleton'
 export type {SkeletonProps} from './skeleton'
+export {default as Slider} from './slider'
+export type {SliderProps} from './slider'
 export {default as SpeedDial} from './speed-dial'
 export type {SpeedDialProps} from './speed-dial'
 export {default as Spinner} from './spinner'
@@ -241,7 +243,14 @@ export type {TableProps} from './table'
 export {
   default as ReactTable,
   OptionType as ReactTableOptions,
+} from './table-v2'
+export type {
+  AccessorColumnConfig,
+  ColumnConfig,
+  DisplayColumnConfig,
+  GroupColumnConfig,
   ReactTableProps,
+  StateSorting,
 } from './table-v2'
 export {default as Tabs} from './tabs'
 export type {TabsProps} from './tabs'

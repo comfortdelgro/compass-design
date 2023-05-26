@@ -63,7 +63,8 @@ interface Props extends StyledComponentProps {
   trigger?: 'focus' | null
 }
 
-export type TooltipTriggerProps = Props
+export type TooltipTriggerProps = Props &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const DEFAULT_OFFSET_WITHOUT_ARROW = 10
 
