@@ -162,7 +162,12 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   // ====================================== EFFECT ======================================
   // map default value
   React.useEffect(() => {
-    setCurrentKey(getDefaulValue(defaultSelectedKey, selectedKey))
+    const newValue = getDefaulValue(defaultSelectedKey, selectedKey)
+    setCurrentKey(newValue)
+    setFocusKey(newValue)
+    if (newValue === undefined) {
+      setSearch('')
+    }
   }, [selectedKey, defaultSelectedKey])
 
   React.useEffect(() => {
