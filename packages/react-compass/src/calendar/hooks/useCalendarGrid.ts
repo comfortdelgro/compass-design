@@ -9,8 +9,14 @@
  */
 
 /* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
-import {CalendarDate} from '@internationalized/date'
-import {useLocale} from '@react-aria/i18n'
+import {
+  CalendarDate,
+  getLocalTimeZone,
+  startOfWeek,
+  today,
+} from '@internationalized/date'
+import {useDateFormatter, useLocale} from '@react-aria/i18n'
+import {useMemo} from 'react'
 import {CalendarState, RangeCalendarState} from '../types'
 import {hookData} from '../utils'
 import {useLabels} from './useLabels'
@@ -19,6 +25,7 @@ import {useVisibleRangeDescription} from './useVisibleRangeDescription'
 export interface AriaCalendarGridProps {
   startDate?: CalendarDate
   endDate?: CalendarDate
+  weekdayStyle?: 'narrow' | 'short' | 'long'
 }
 
 export interface CalendarGridAria {
@@ -53,7 +60,25 @@ export function useCalendarGrid(
     'aria-labelledby': ariaLabelledBy,
   })
 
-  const weekDays = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
+  const {locale} = useLocale()
+
+  const dayFormatter = useDateFormatter({
+    weekday: props.weekdayStyle ?? 'short',
+    timeZone: state.timeZone,
+  })
+
+  const weekDays = useMemo(() => {
+    const weekStart = startOfWeek(
+      today(state.timeZone ?? getLocalTimeZone()),
+      locale,
+    )
+
+    return [...new Array(7).keys()].map((index) => {
+      const date = weekStart.add({days: index})
+      const dateDay = date.toDate(state.timeZone ?? getLocalTimeZone())
+      return dayFormatter.format(dateDay)
+    })
+  }, [])
 
   const onKeyDown = (e: KeyboardEvent) => {
     switch (e.key) {

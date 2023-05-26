@@ -94,7 +94,6 @@ const ColorBox: React.FC<Props> = ({color, gradient = false}) => {
     }
   }, [color.value, gradient, resolvedColorOpacity])
 
-  console.log(color.value, gradient)
   return (
     <div
       className='scale'

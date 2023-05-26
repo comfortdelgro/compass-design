@@ -4,7 +4,7 @@
   "initialVersions": {
     "@comfortdelgro/compass-design-website": "0.1.0",
     "@comfortdelgro/compass-icons": "1.0.0",
-    "@comfortdelgro/react-compass": "1.0.0-next.7"
+    "@comfortdelgro/react-compass": "1.0.0-next.8"
   },
   "changesets": [
     "fluffy-zoos-sit"

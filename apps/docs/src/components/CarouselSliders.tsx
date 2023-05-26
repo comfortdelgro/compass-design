@@ -6,21 +6,17 @@ import {
   NinePartAlignment,
   SocicalIcon,
 } from '@comfortdelgro/react-compass'
-import {
-  faPinterest,
-  faTelegram,
-  faTiktok,
-} from '@fortawesome/free-brands-svg-icons'
+import BugIcon from '@comfortdelgro/compass-icons/react/bug'
 import Image from 'next/image'
 import {useState} from 'react'
 
 const socials: SocicalIcon[] = [
   {
-    icon: faPinterest,
+    icon: <BugIcon />,
     url: 'https://www.pinterest.com.au/',
   },
-  {icon: faTiktok, url: 'https://www.tiktok.com/'},
-  {icon: faTelegram, url: 'https://telegram.org/'},
+  {icon: <BugIcon />, url: 'https://www.tiktok.com/'},
+  {icon: <BugIcon />, url: 'https://telegram.org/'},
 ]
 
 const slideData: CarouselSliderItem[] = [

@@ -91,9 +91,7 @@ export const ReactTableStory: React.FC = () => {
     columnResizeMode: 'onChange',
     manualSorting: true,
   }
-  const onSorting = (sortingField: StateSorting) => {
-    console.log('stateSorting', sortingField)
-  }
+  const onSorting = (sortingField: StateSorting) => {}
 
   const TableHeader = ({table}: any) => {
     return (

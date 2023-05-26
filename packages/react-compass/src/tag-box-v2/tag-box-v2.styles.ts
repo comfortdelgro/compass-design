@@ -157,7 +157,7 @@ export const StyledLabel = styled('div', {
   // styling
   cursor: 'pointer',
   fontWeight: '$semibold',
-  textAlign: 'center',
+  textAlign: 'left',
   fontSize: '$lable1',
   lineHeight: '$normal',
 })
