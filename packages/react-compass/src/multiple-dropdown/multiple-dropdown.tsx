@@ -151,23 +151,7 @@ const MultipleDropdown = React.forwardRef<
   // ====================================== EFFECT ======================================
   React.useEffect(() => {
     setCurrentKeys(getDefaulValues(defaultSelectedKeys, selectedKeys))
-    // if (
-    //   defaultSelectedKeys &&
-    //   !selectedKeys &&
-    //   defaultSelectedKeys.length > 0
-    // ) {
-    //   setCurrentKeys(defaultSelectedKeys)
-    // }
-    // if (selectedKeys && selectedKeys.length > 0) {
-    //   setCurrentKeys(selectedKeys)
-    // }
   }, [JSON.stringify(selectedKeys), JSON.stringify(defaultSelectedKeys)])
-
-  // React.useEffect(() => {
-  //   if (currentKeys.length > 0) {
-  //     props.onSelectionChange?.(currentKeys)
-  //   }
-  // }, [currentKeys])
 
   React.useEffect(() => {
     if (!isOpen && defaultOpen) {
@@ -253,7 +237,6 @@ const MultipleDropdown = React.forwardRef<
         e.preventDefault()
         if (focusKey) {
           onSelect(focusKey)
-          setOpen(false)
         }
         break
       }
@@ -275,12 +258,6 @@ const MultipleDropdown = React.forwardRef<
       }
       setCurrentKeys([...v])
       props.onSelectionChange?.([...v])
-      setFocusKey(key)
-    }
-  }
-
-  const onHover = (key: React.Key | null) => {
-    if (key) {
       setFocusKey(key)
     }
   }
@@ -382,7 +359,6 @@ const MultipleDropdown = React.forwardRef<
               currentKeys={currentKeys}
               disabledKeys={disabledKeys}
               sectionCollection={sectionCollection}
-              onHover={onHover}
               onSelect={onSelect}
               onLoadMore={onLoadMore}
             />

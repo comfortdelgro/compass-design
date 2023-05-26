@@ -42,9 +42,6 @@ const RowCalculator = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
                     focusKey={undefined}
                     currentKeys={[]}
                     disabledKeys={[]}
-                    onHover={() => {
-                      //
-                    }}
                     onSelect={() => {
                       //
                     }}

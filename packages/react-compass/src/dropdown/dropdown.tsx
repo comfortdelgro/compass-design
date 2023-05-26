@@ -265,12 +265,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     }
   }
 
-  const onHover = (key: React.Key | null) => {
-    if (key) {
-      setFocusKey(key)
-    }
-  }
-
   const onSelect = (key: React.Key) => {
     if (!isReadOnly) {
       if (currentKey === key) {
@@ -301,6 +295,20 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   const handleClickIcon = () => {
     setOpen(true)
     inputRef.current?.focus()
+  }
+
+  const handleBlur = () => {
+    if (type == 'select') {
+      onBlur()
+    }
+    setFocusKey(currentKey)
+  }
+
+  const handleFocus = () => {
+    if (type == 'select') {
+      onFocus()
+    }
+    setFocusKey(currentKey)
   }
 
   // ====================================== RENDER ======================================
@@ -416,20 +424,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
                 ? (selectRef as React.RefObject<HTMLDivElement>)
                 : inputRef
             }
-            onBlur={
-              type == 'select'
-                ? onBlur
-                : () => {
-                    //
-                  }
-            }
-            onFocus={
-              type == 'select'
-                ? onFocus
-                : () => {
-                    //
-                  }
-            }
+            onBlur={handleBlur}
+            onFocus={handleFocus}
             handleKeyDown={handleKeyDown}
           >
             <ListBox
@@ -442,7 +438,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
               isLoading={isLoading}
               sectionCollection={sectionCollection}
               rootChildren={children}
-              onHover={onHover}
               onSelect={onSelect}
               onLoadMore={onLoadMore}
             />

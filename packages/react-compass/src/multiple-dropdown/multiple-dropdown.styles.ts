@@ -33,8 +33,8 @@ export const StyledDropdown = styled('div', {
   '.dropdown-icon': {
     cursor: 'pointer',
     flexShrink: 0,
-    width: '$6',
-    height: '$6',
+    // width: '$6',
+    // height: '$6',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
