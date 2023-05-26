@@ -7,6 +7,7 @@ import {
   DEFAULT_FILE_LIMIT,
 } from '../common'
 import {
+  StyledLabel,
   StyledOrLetter,
   StyledUploadButton,
   StyledUploadContainer,
@@ -19,12 +20,14 @@ import {
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
-  isDisabled?: boolean
   getFile?: (selectedFiles: File[]) => void
   accept?: string
   fileSizeLimit?: number
   multiple?: boolean
-  helperText?: string
+  helperText?: React.ReactNode
+  isRequired?: boolean
+  label?: string
+  isDisabled?: boolean
 }
 
 export type UploadDragAndDropProps = Props &
@@ -48,6 +51,9 @@ const UploadDragAndDrop = React.forwardRef<
     fileSizeLimit = DEFAULT_FILE_LIMIT,
     multiple = false,
     helperText,
+    label,
+    isRequired = false,
+    isDisabled = false,
     // HTMLDiv Props
     ...delegated
   } = props
@@ -107,10 +113,26 @@ const UploadDragAndDrop = React.forwardRef<
 
   const onLableClick = () => uploadInputRef.current?.click()
 
+  const iconFillColor = () => {
+    if (!isDisabled) return '#0142AF'
+    return '#A19F9D'
+  }
+
   return (
     <StyledUploadWrapper variant={variant} css={css} {...delegated}>
+      {label && (
+        <>
+          <StyledLabel>
+            <span className='cdg-label'> {label}</span>
+            <span className='cdg-isRequired-Sign'>
+              {isRequired ? ' *' : ''}
+            </span>
+          </StyledLabel>
+        </>
+      )}
       <StyledUploadContainer
         variant={variant}
+        isDisabled={isDisabled}
         ref={uploadRef}
         onDrop={hanldeDrop}
         onDragOver={hanldeDragOver}
@@ -123,7 +145,7 @@ const UploadDragAndDrop = React.forwardRef<
           multiple={multiple}
           onChange={handleFileFieldChange}
         />
-        <StyledUploadButton onClick={onLableClick}>
+        <StyledUploadButton onClick={onLableClick} disabled={isDisabled}>
           {variant === 'field' && (
             <svg
               width='16'
@@ -134,7 +156,7 @@ const UploadDragAndDrop = React.forwardRef<
             >
               <path
                 d='M12.2857 10.6249V12.375C12.2857 12.8581 11.9019 13.25 11.4286 13.25H4.57143C4.09812 13.25 3.71429 12.8581 3.71429 12.375V10.6249C3.71429 10.1418 3.33045 9.74993 2.85714 9.74993C2.38384 9.74993 2 10.1418 2 10.6249V12.375C2 13.8247 3.15125 15 4.57143 15H11.4286C12.8488 15 14 13.8247 14 12.375V10.6249C14 10.1418 13.6162 9.74993 13.1429 9.74993C12.6696 9.74993 12.2857 10.141 12.2857 10.6249ZM7.39464 1.25616L3.96607 4.75621C3.63098 5.09829 3.63152 5.652 3.96607 5.99353C4.30089 6.33533 4.8433 6.33533 5.17813 5.99353L7.14286 3.98852V9.74993C7.14286 10.2336 7.52616 10.6249 8 10.6249C8.47384 10.6249 8.85714 10.2336 8.85714 9.74993V3.98852L10.8227 5.99504C11.1575 6.33684 11.6999 6.33684 12.0347 5.99504C12.3696 5.65323 12.3696 5.09952 12.0347 4.75771L8.60616 1.25767C8.27054 0.914362 7.72946 0.914362 7.39464 1.25616Z'
-                fill='#0142AF'
+                fill={iconFillColor()}
               />
             </svg>
           )}
