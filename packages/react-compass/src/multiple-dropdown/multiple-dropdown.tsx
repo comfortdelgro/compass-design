@@ -39,7 +39,9 @@ interface Props extends DropdownBase {
   onSelectionChange?: (key: React.Key[]) => void
 }
 
-export type MultipleDropdownProps = Props & DropdownVariantProps
+export type MultipleDropdownProps = Props &
+  DropdownVariantProps &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const MultipleDropdown = React.forwardRef<
   HTMLDivElement,
@@ -71,6 +73,7 @@ const MultipleDropdown = React.forwardRef<
     onFocus = () => {
       //
     },
+    ...delegated
   } = props
   // ====================================== STATE ======================================
   const [open, setOpen] = React.useState(false)
@@ -148,23 +151,7 @@ const MultipleDropdown = React.forwardRef<
   // ====================================== EFFECT ======================================
   React.useEffect(() => {
     setCurrentKeys(getDefaulValues(defaultSelectedKeys, selectedKeys))
-    // if (
-    //   defaultSelectedKeys &&
-    //   !selectedKeys &&
-    //   defaultSelectedKeys.length > 0
-    // ) {
-    //   setCurrentKeys(defaultSelectedKeys)
-    // }
-    // if (selectedKeys && selectedKeys.length > 0) {
-    //   setCurrentKeys(selectedKeys)
-    // }
   }, [JSON.stringify(selectedKeys), JSON.stringify(defaultSelectedKeys)])
-
-  // React.useEffect(() => {
-  //   if (currentKeys.length > 0) {
-  //     props.onSelectionChange?.(currentKeys)
-  //   }
-  // }, [currentKeys])
 
   React.useEffect(() => {
     if (!isOpen && defaultOpen) {
@@ -250,7 +237,6 @@ const MultipleDropdown = React.forwardRef<
         e.preventDefault()
         if (focusKey) {
           onSelect(focusKey)
-          setOpen(false)
         }
         break
       }
@@ -276,12 +262,6 @@ const MultipleDropdown = React.forwardRef<
     }
   }
 
-  const onHover = (key: React.Key | null) => {
-    if (key) {
-      setFocusKey(key)
-    }
-  }
-
   const handleOpen = () => {
     if (!isDisabled) {
       setOpen(true)
@@ -290,7 +270,7 @@ const MultipleDropdown = React.forwardRef<
 
   // ====================================== RENDER ======================================
   return (
-    <StyledDropdownWrapper css={css} ref={ref}>
+    <StyledDropdownWrapper css={css} ref={ref} {...delegated}>
       {props.label && (
         <label onClick={handleOpen}>
           {props.label}
@@ -357,7 +337,7 @@ const MultipleDropdown = React.forwardRef<
           style={{
             ...floatingStyles,
             ...{
-              zIndex: 3,
+              zIndex: 60,
             },
           }}
           {...getFloatingProps}
@@ -379,7 +359,6 @@ const MultipleDropdown = React.forwardRef<
               currentKeys={currentKeys}
               disabledKeys={disabledKeys}
               sectionCollection={sectionCollection}
-              onHover={onHover}
               onSelect={onSelect}
               onLoadMore={onLoadMore}
             />
@@ -398,7 +377,7 @@ const MultipleDropdown = React.forwardRef<
           //
         }}
       />
-      {errorMessage && (
+      {isErrored && errorMessage && (
         <StyledHelperText error={!!isErrored}>{errorMessage}</StyledHelperText>
       )}
       {helperText && <StyledHelperText>{helperText}</StyledHelperText>}

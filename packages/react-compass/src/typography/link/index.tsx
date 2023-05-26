@@ -8,7 +8,10 @@ interface Props extends StyledComponentProps {
   children: React.ReactNode
 }
 
-const Link: React.FC<Props> = (props) => {
+export type linkTypographyProps = Props &
+  Omit<React.HTMLAttributes<HTMLAnchorElement>, keyof Props>
+
+const Link: React.FC<linkTypographyProps> = (props) => {
   const {
     css = {},
     children,

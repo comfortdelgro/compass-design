@@ -1,4 +1,5 @@
-import BugIcon from '@comfortdelgro/compass-icons/react/bug'
+import {faBug} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React from 'react'
 import {Column, Row} from '../utils/components'
 import Badge from './index'
@@ -41,13 +42,13 @@ export const Icons: React.FC = () => (
         label='LGTM'
         color='success'
         variant='secondary'
-        icon={<BugIcon />}
+        icon={<FontAwesomeIcon icon={faBug} />}
       />
       <Badge
         label='Practice Social Distancing'
         color='danger'
         variant='outline'
-        icon={<BugIcon />}
+        icon={<FontAwesomeIcon icon={faBug} />}
       />
     </Row>
   </Column>

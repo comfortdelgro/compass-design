@@ -1,6 +1,8 @@
-import {faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons'
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-empty-function */
 import React, {useEffect, useState} from 'react'
-import Icon from '../icon'
 import {Pointer, Position} from '../utils/pointer'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -50,7 +52,7 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
       className,
       effect = 'fade',
       css = {},
-      onSwitchSlide = () => {},
+      onSwitchSlide = () => null,
       ...delegated
     } = props
 
@@ -190,7 +192,12 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
               className={navigationButtonType}
             >
               {navigationButtonType === 'icon' ? (
-                <Icon icon={faChevronLeft} />
+                <svg viewBox='0 0 320 512'>
+                  <path
+                    fill='currentColor'
+                    d='M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z'
+                  ></path>
+                </svg>
               ) : (
                 'Prev'
               )}
@@ -200,7 +207,12 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
               className={navigationButtonType}
             >
               {navigationButtonType === 'icon' ? (
-                <Icon icon={faChevronRight} />
+                <svg viewBox='0 0 320 512'>
+                  <path
+                    fill='currentColor'
+                    d='M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z'
+                  ></path>
+                </svg>
               ) : (
                 'Next'
               )}
@@ -223,11 +235,9 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
             <StyledSliderSocials>
               {socials.map((social, index) => {
                 return (
-                  <Icon
-                    icon={social.icon}
-                    onClick={() => window.open(social.url, '_blank')}
-                    key={index}
-                  />
+                  <a href={social.url} target='_blank' key={index}>
+                    {social.icon}
+                  </a>
                 )
               })}
             </StyledSliderSocials>

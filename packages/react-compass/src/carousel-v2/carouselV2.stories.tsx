@@ -3,6 +3,7 @@ import {
   faTelegram,
   faTiktok,
 } from '@fortawesome/free-brands-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React, {useState} from 'react'
 import {styled} from '../theme'
 import CarouselMobile from './carousel-mobile'
@@ -18,11 +19,17 @@ import {
 
 const socials: SocicalIcon[] = [
   {
-    icon: faPinterest,
+    icon: <FontAwesomeIcon icon={faPinterest} />,
     url: 'https://www.pinterest.com.au/',
   },
-  {icon: faTiktok, url: 'https://www.tiktok.com/'},
-  {icon: faTelegram, url: 'https://telegram.org/'},
+  {
+    icon: <FontAwesomeIcon icon={faTiktok} />,
+    url: 'https://www.tiktok.com/',
+  },
+  {
+    icon: <FontAwesomeIcon icon={faTelegram} />,
+    url: 'https://telegram.org/',
+  },
 ]
 
 const buttons: CarouselSliderButton[] = [

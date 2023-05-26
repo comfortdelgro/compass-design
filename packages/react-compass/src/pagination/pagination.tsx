@@ -55,7 +55,8 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
       total = 1,
       initialPage = 1,
       onChange,
-      // VariantProps
+      // html props
+      ...delegated
     } = props
 
     const paginationRef = useDOMRef<HTMLDivElement>(ref)
@@ -100,7 +101,7 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
     )
 
     return (
-      <StyledPagination css={css} ref={paginationRef}>
+      <StyledPagination css={css} ref={paginationRef} {...delegated}>
         <StyledPaginationItem onClick={previous}>
           <svg viewBox='0 0 320 512'>
             <path

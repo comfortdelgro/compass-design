@@ -1,7 +1,7 @@
 import {faXmark} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React from 'react'
 import Button from '../button'
-import Icon from '../icon'
 import {Column} from '../utils/components'
 import Modal from './index'
 
@@ -26,7 +26,7 @@ export const Default: React.FC = () => {
         <Modal className='my-modal'>
           <Modal.Title>My small title</Modal.Title>
           <Modal.CloseIcon>
-            <Icon icon={faXmark} />
+            <FontAwesomeIcon icon={faXmark} />
           </Modal.CloseIcon>
           <Modal.Description>{lorem}</Modal.Description>
           <Modal.Actions>

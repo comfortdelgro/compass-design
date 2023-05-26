@@ -107,9 +107,9 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
     }, [sorting])
 
     return (
-      <StyledReactTableWrapper css={css}>
+      <StyledReactTableWrapper css={css} {...delegated}>
         {toolbar && <>{toolbar}</>}
-        <StyledReactTable {...delegated}>
+        <StyledReactTable>
           <table ref={tableRef}>
             <ReactTableRowGroup as='thead'>
               {table.getHeaderGroups().map((headerGroup) => (
