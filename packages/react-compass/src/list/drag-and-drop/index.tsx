@@ -6,15 +6,19 @@ import DragAndDropListItem from './item'
 import DragAndDropListOutletItem from './item/outlet'
 import {pickChilds} from './utils'
 
-export interface DragAndDropListProps extends StyledComponentProps {
+export interface Props extends StyledComponentProps {
   children: React.ReactNode
   onReorderByKeys?: (keys: React.Key[]) => void
 }
+
+export type DragAndDropListProps = Props &
+  Omit<React.HTMLAttributes<HTMLUListElement>, keyof Props>
+
 const DragAndDropList = React.forwardRef<
   HTMLUListElement,
   DragAndDropListProps
 >((props, ref) => {
-  const {css = {}, children, onReorderByKeys} = props
+  const {css = {}, children, onReorderByKeys, ...delegated} = props
   const dndRef = useDOMRef<HTMLUListElement>(ref)
   const [startPosition, setStartPosition] = useState<number>(-1)
   const [dragOverPosition, setDragOverPosition] = useState<number>(-1)
@@ -45,7 +49,7 @@ const DragAndDropList = React.forwardRef<
   }
 
   return (
-    <StyledDragAndDrop ref={dndRef} css={css}>
+    <StyledDragAndDrop ref={dndRef} css={css} {...delegated}>
       {collection.map((child, index) => {
         return (
           <>

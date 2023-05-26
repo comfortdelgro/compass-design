@@ -18,7 +18,7 @@ export const StyledMenuListDropdownItem = styled('div', {
     outline: '#678ECF solid 2px',
   },
 
-  '& .menu-list-dropdown-item-icon': {
+  '& svg': {
     marginRight: '$2',
     width: '$4',
     height: '$4',
@@ -34,7 +34,7 @@ export const StyledMenuListDropdownItem = styled('div', {
     disabled: {
       true: {
         color: '$gray50',
-        '& .menu-list-dropdown-item-icon': {
+        '& svg': {
           color: '$gray50',
         },
         '&:hover': {

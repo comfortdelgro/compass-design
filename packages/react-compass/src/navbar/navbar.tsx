@@ -33,10 +33,10 @@ const Navbar = React.forwardRef<HTMLDivElement, NavbarProps>((props, ref) => {
   return (
     <StyledNavbar
       className={`${className} navbar-${color}`}
-      {...delegated}
-      {...variantProps}
       css={css}
       ref={ref}
+      {...variantProps}
+      {...delegated}
     >
       {children}
     </StyledNavbar>

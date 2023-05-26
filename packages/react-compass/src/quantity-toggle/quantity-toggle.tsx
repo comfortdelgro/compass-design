@@ -19,6 +19,7 @@ interface Props extends AriaNumberFieldProps, StyledComponentProps {
   placeholder?: string
   errorMessage?: string
   disableScroll?: boolean
+  className?: string
   onUpdate?: (
     value: string | number | readonly string[] | undefined,
     number: number,
@@ -34,6 +35,7 @@ const QuantityToggle = React.forwardRef<HTMLInputElement, QuantityToggleProps>(
       isErrored = false,
       id = `cdg-element-${Math.random().toString(36).substring(2)}`,
       onUpdate,
+      className,
       ...ariaSafeProps
     } = props
 
@@ -52,6 +54,7 @@ const QuantityToggle = React.forwardRef<HTMLInputElement, QuantityToggleProps>(
         css={css}
         isErrored={!!isErrored}
         isDisabled={!!inputProps.disabled}
+        className={className}
       >
         {props.label && (
           <label htmlFor={id}>
