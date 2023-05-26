@@ -15,7 +15,6 @@ import {
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
-  onClose?: () => void
 }
 
 export type ErrorProps = Props &
@@ -28,8 +27,6 @@ const Error = React.forwardRef<HTMLDivElement, ErrorProps>((props, ref) => {
     css = {},
     // children
     children,
-    // ComponentProps
-    onClose,
     // VariantProps
     variant = 'primary',
     // HTMLDiv Props

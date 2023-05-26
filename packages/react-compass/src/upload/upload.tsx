@@ -10,6 +10,7 @@ import {
 import UploadDragAndDrop from './upload-drag-and-drop'
 import {
   StyledBrowseFile,
+  StyledLabel,
   StyledUploadContainer,
   StyledUploadContent,
   StyledUploadError,
@@ -25,7 +26,9 @@ interface Props extends StyledComponentProps {
   fileSizeLimit?: number
   multiple?: boolean
   placeholder?: string
-  helperText?: string
+  helperText?: React.ReactNode
+  isRequired?: boolean
+  label?: string
 }
 
 export type UploadProps = Props &
@@ -45,6 +48,9 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
     multiple = false,
     placeholder = 'No file chosen',
     helperText,
+    label,
+    isRequired = false,
+    isDisabled = false,
     // HTMLDiv Props
     ...delegated
   } = props
@@ -77,10 +83,25 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
     filesValidator(files)
   }
 
-  const onLableClick = () => uploadInputRef.current?.click()
+  const onLableClick = () => !isDisabled && uploadInputRef.current?.click()
 
   return (
-    <StyledUploadWrapper css={css} ref={uploadRef} {...delegated}>
+    <StyledUploadWrapper
+      css={css}
+      ref={uploadRef}
+      isDisabled={isDisabled}
+      {...delegated}
+    >
+      {label && (
+        <>
+          <StyledLabel>
+            <span className='cdg-label'> {label}</span>
+            <span className='cdg-isRequired-Sign'>
+              {isRequired ? ' *' : ''}
+            </span>
+          </StyledLabel>
+        </>
+      )}
       <StyledUploadContainer>
         <input
           ref={uploadInputRef}

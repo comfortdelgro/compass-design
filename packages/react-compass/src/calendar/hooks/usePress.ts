@@ -95,6 +95,21 @@ function getTouchFromEvent(event: TouchEvent): Touch | null {
   return null
 }
 
+function getTouchById(
+  event: TouchEvent,
+  pointerId: null | number,
+): null | Touch {
+  const changedTouches = event.changedTouches
+  // eslint-disable-next-line @typescript-eslint/prefer-for-of
+  for (let i = 0; i < changedTouches.length; i++) {
+    const touch = changedTouches[i]
+    if (touch?.identifier === pointerId) {
+      return touch as Touch
+    }
+  }
+  return null
+}
+
 export function usePress(props: PressHookProps): PressResult {
   const {
     onPress,
@@ -645,10 +660,26 @@ export function usePress(props: PressHookProps): PressResult {
         if (!e.currentTarget.contains(e.target as Element)) {
           return
         }
-
         e.stopPropagation()
         if (!state.isPressed) {
           return
+        }
+
+        const touch = getTouchById(
+          e.nativeEvent as unknown as TouchEvent,
+          state.activePointerId as number,
+        )
+        if (
+          touch &&
+          isOverTarget(
+            touch as unknown as MouseEvent<FocusableElement>,
+            e.currentTarget,
+          )
+        ) {
+          triggerPressUp(e, state.pointerType)
+          triggerPressEnd(e, state.pointerType)
+        } else if (state.isOverTarget) {
+          triggerPressEnd(e, state.pointerType, false)
         }
 
         state.isPressed = false

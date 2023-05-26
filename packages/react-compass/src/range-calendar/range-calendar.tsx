@@ -1,4 +1,8 @@
-import {createCalendar, getLocalTimeZone} from '@internationalized/date'
+import {
+  createCalendar,
+  getLocalTimeZone,
+  parseDate,
+} from '@internationalized/date'
 import {useDateFormatter, useLocale} from '@react-aria/i18n'
 import React from 'react'
 import Button, {ButtonProps} from '../button'
@@ -21,6 +25,7 @@ interface Props extends StyledComponentProps {
   children?: React.ReactNode
   state?: DateRangePickerState
   hasFooter?: boolean
+  maxValue?: DateValue | null | undefined
   onCancelCallback?: (() => void) | undefined
   onApplyCallback?: ((e?: DateRange) => void) | undefined
   onChange?: (e: unknown) => void
@@ -36,6 +41,7 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
       css = {},
       onCancelCallback,
       onApplyCallback,
+      maxValue = parseDate('2999-02-17'),
       ...delegated
     } = props
 
@@ -81,8 +87,12 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
           nextButtonProps={nextButtonProps as unknown as ButtonProps}
         />
         <div className='calendar-body'>
-          <CalendarGrid state={state} />
-          <CalendarGrid state={state} offset={{months: 1}} />
+          <CalendarGrid state={state} maxValue={maxValue} />
+          <CalendarGrid
+            state={state}
+            offset={{months: 1}}
+            maxValue={maxValue}
+          />
         </div>
         {hasFooter && (
           <div className='calendar-footer'>

@@ -21,7 +21,9 @@ interface Props extends StyledComponentProps {
   onBlur?: () => void
 }
 
-export type RadioGroupProps = Props & RadioGroupVariantProps
+export type RadioGroupProps = Props &
+  RadioGroupVariantProps &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
   (props, ref) => {

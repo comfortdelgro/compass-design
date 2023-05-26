@@ -52,7 +52,7 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
       className,
       effect = 'fade',
       css = {},
-      onSwitchSlide = () => {},
+      onSwitchSlide = () => null,
       ...delegated
     } = props
 

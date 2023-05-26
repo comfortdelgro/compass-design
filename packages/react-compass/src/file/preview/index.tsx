@@ -12,7 +12,9 @@ interface Props extends StyledComponentProps {
   children?: React.ReactNode
 }
 
-export type FilePreviewProps = Props & PreviewVariantProps
+export type FilePreviewProps = Props &
+  PreviewVariantProps &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const FilePreview = React.forwardRef<HTMLDivElement, FilePreviewProps>(
   (props, ref) => {
@@ -21,6 +23,7 @@ const FilePreview = React.forwardRef<HTMLDivElement, FilePreviewProps>(
       css = {},
       imageSrc,
       children,
+      ...delegated
     } = props
     const PreviewRef = useDOMRef<HTMLDivElement>(ref)
     const [failed, setFailed] = React.useState(false)
@@ -30,6 +33,7 @@ const FilePreview = React.forwardRef<HTMLDivElement, FilePreviewProps>(
         ref={PreviewRef}
         css={css}
         imageLoaded={!!imageSrc && !failed}
+        {...delegated}
       >
         <StyledImagePreview>
           {imageSrc && !failed ? (

@@ -9,7 +9,7 @@ import SingleInput from './SingleInput'
 
 export interface Props extends StyledComponentProps {
   length: number
-  onChangeOTP: (otp: string) => any
+  onChangeOTP: (otp: string) => unknown
   autoFocus?: boolean
   isNumberInput?: boolean
   disabled?: boolean

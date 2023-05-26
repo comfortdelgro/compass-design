@@ -12,7 +12,9 @@ interface Props extends StyledComponentProps {
   onMouseDown?: (event: React.MouseEvent<HTMLButtonElement>) => void
 }
 
-export type ButtonProps = Props & AccordionTitleVariantProps
+export type ButtonProps = Props &
+  AccordionTitleVariantProps &
+  Omit<React.HTMLAttributes<HTMLButtonElement>, keyof Props>
 
 const AccordionButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
@@ -22,7 +24,7 @@ const AccordionButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
       className,
       css = {},
       onMouseDown,
-      ...ariaSafeProps
+      ...delegated
     } = props
 
     const buttonRef = useDOMRef<HTMLButtonElement>(ref)
@@ -34,7 +36,7 @@ const AccordionButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
         className={className}
         css={css}
         onMouseDown={onMouseDown}
-        {...ariaSafeProps}
+        {...delegated}
       >
         {children}
       </StyledAccordionButton>

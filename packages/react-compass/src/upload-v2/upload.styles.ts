@@ -107,6 +107,9 @@ export const StyledUploadTitle = styled('div', {
   fontSize: '$label1',
   lineHeight: '$normal',
   color: '#3e3e3e',
+  '& .cdg-isRequired-Sign': {
+    color: '#A4262C',
+  },
 })
 
 export const StyledUploadWrapper = styled('div', {
