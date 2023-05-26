@@ -1,5 +1,11 @@
 ## 1.0.0-next.2
 
+## 1.0.0-next.9
+
+### Minor Changes
+
+- 0426e766: Fix dropdown, tagboxv2 label and calendar
+
 ## 1.0.0-next.8
 
 ### Minor Changes
