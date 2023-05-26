@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/unbound-method */
-import {DateValue} from '@internationalized/date'
+import {DateValue, parseDate} from '@internationalized/date'
 import {CSS} from '@stitches/react'
 import React from 'react'
 import {ButtonProps} from '../button'
@@ -40,6 +40,7 @@ interface Props
   isMobile?: boolean
   calendarCSS?: CSS
   helperText?: React.ReactNode
+  maxValue?: DateValue | null | undefined
 }
 
 export type DateRangePickerProps = Props
@@ -55,6 +56,7 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
       onCancel,
       errorMessage,
       helperText,
+      maxValue,
       ...delegated
     } = props
 
@@ -131,6 +133,7 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
           helperText={helperText}
         />
         <DateRangeCalendarWrapper
+          maxValue={maxValue}
           state={state}
           onApply={onApply}
           onCancel={onCancel}
@@ -217,6 +220,7 @@ interface DateRangeCalendarWrapperProps {
   calendarRef: React.RefObject<HTMLDivElement>
   dialogProps: AriaDialogProps
   calendarProps: RangeCalendarProps<DateValue>
+  maxValue?: DateValue | null | undefined
   onApply: ((e?: DateRange) => void) | undefined
   onCancel: (() => void) | undefined
   css?: CSS | undefined
@@ -229,6 +233,7 @@ const DateRangeCalendarWrapper = (props: DateRangeCalendarWrapperProps) => {
     dialogProps,
     calendarProps,
     css = {},
+    maxValue = parseDate('2999-03-10'),
     onApply,
     onCancel,
   } = props
@@ -265,6 +270,7 @@ const DateRangeCalendarWrapper = (props: DateRangeCalendarWrapperProps) => {
               {...(value ? {value} : {})}
               onChange={onChangeRangeCalendar}
               {...resCalendarProps}
+              maxValue={maxValue}
             />
           </Dialog>
         </Popover>
