@@ -24,9 +24,14 @@ function Popover({
 
   React.useEffect(() => {
     document.addEventListener('keydown', handleKeyDown)
-    onFocus()
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
+    }
+  })
+
+  React.useEffect(() => {
+    onFocus()
+    return () => {
       onBlur()
     }
   }, [])

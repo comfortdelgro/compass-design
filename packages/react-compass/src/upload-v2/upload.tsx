@@ -23,7 +23,7 @@ interface Props {
   title?: string
   value?: string | File
   fileValueName?: string
-  customDescription?: string
+  customDescription?: React.ReactNode
   customError?: string
   onFileChange?: (data: File | null, error?: string) => void
   placeholder?: string
@@ -43,11 +43,13 @@ interface Props {
   title?: string
   value?: string | File
   fileValueName?: string
-  customDescription?: string
+  customDescription?: React.ReactNode
   customError?: string
   onFileChange?: (data: File | null, error?: string) => void
   placeholder?: string
   css?: CSS
+  helperText?: React.ReactNode
+  isRequired?: boolean
 }
 
 export type Upload2Props = Props &
@@ -69,6 +71,9 @@ const Upload2 = React.forwardRef<HTMLDivElement, Upload2Props>((props, ref) => {
     customError,
     onFileChange,
     placeholder = 'No file choosen',
+    // helperText,
+    isRequired = false,
+    // isDisabled = false,
 
     // htmldiv props
     ...delegated
@@ -139,7 +144,12 @@ const Upload2 = React.forwardRef<HTMLDivElement, Upload2Props>((props, ref) => {
 
   return (
     <StyledUploadWrapper css={css} ref={uploadRef} {...delegated}>
-      {title ? <StyledUploadTitle>{title}</StyledUploadTitle> : null}
+      {title ? (
+        <StyledUploadTitle>
+          {title}
+          <span className='cdg-isRequired-Sign'>{isRequired ? ' *' : ''}</span>
+        </StyledUploadTitle>
+      ) : null}
       <StyledUploadInput data-invalid={!!fileError || !!customError}>
         <span>Browse file</span>
         <span data-file={!!fileName}>{fileName ? fileName : placeholder}</span>

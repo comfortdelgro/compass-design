@@ -9,14 +9,14 @@ interface Props extends StyledComponentProps {
 }
 
 export type BannerDescriptionProps = Props &
-  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
+  Omit<React.HTMLAttributes<HTMLParagraphElement>, keyof Props>
 
 const BannerDescription = React.forwardRef<
   HTMLDivElement,
   BannerDescriptionProps
 >((props, ref) => {
   const {children, css = {}, ...delegated} = props
-  const bannerDescriptionRef = useDOMRef<HTMLDivElement>(ref)
+  const bannerDescriptionRef = useDOMRef<HTMLParagraphElement>(ref)
   return (
     <StyledBannerDescription
       css={css}

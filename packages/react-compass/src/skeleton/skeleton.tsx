@@ -14,7 +14,8 @@ interface Props extends StyledComponentProps {
   variant?: 'circular' | 'rectangular' | 'rounded' | 'text'
 }
 
-export type SkeletonProps = Props
+export type SkeletonProps = Props &
+  Omit<React.HTMLAttributes<HTMLElement>, keyof Props>
 
 const Skeleton = React.forwardRef<HTMLElement, SkeletonProps>((props, ref) => {
   const {

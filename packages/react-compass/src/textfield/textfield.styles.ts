@@ -10,20 +10,12 @@ export const StyledTextFieldWrapper = styled('div', {
 export const StyledTextFieldLabel = styled('label', {
   fontSize: '$label1',
   fontWeight: '$semibold',
-  lineHeight: '$normal',
-  display: 'block',
   marginBottom: '$2',
+  display: 'inline-block',
+  width: '100%',
   span: {
     marginLeft: '$1',
     color: '$danger',
-  },
-
-  variants: {
-    isDisabled: {
-      true: {
-        color: '$disabledText',
-      },
-    },
   },
 })
 
@@ -86,11 +78,10 @@ export const StyledTextFieldBox = styled('div', {
   variants: {
     isDisabled: {
       true: {
-        color: '$disabledText',
         backgroundColor: '$gray20',
-
-        '.left-icon, .right-icon': {
+        '*': {
           color: '$disabledText',
+          cursor: 'not-allowed !important',
         },
       },
     },
@@ -120,9 +111,6 @@ export const StyledTextField = styled('input', {
     outline: 'none',
   },
 
-  '&:disabled': {
-    cursor: 'not-allowed',
-  },
   '&::placeholder': {
     color: '#B4B4B4',
     fontSize: '$label1',

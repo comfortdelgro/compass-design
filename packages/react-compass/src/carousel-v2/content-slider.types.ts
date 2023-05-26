@@ -1,4 +1,3 @@
-import {IconDefinition} from '@fortawesome/free-regular-svg-icons'
 import {StyledComponentProps} from '../utils/stitches.types'
 
 export type NinePartAlignment =
@@ -34,7 +33,7 @@ export interface CarouselSliderItem {
 }
 
 export interface SocicalIcon {
-  icon: IconDefinition
+  icon: React.ReactNode
   url: string
 }
 

@@ -1,4 +1,5 @@
-import BugIcon from '@comfortdelgro/compass-icons/react/bug'
+import {faBug} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React, {Key} from 'react'
 import {Column} from '../utils/components'
 import MultipleDropdown from './index'
@@ -20,7 +21,7 @@ export const Default: React.FC = () => {
         onFocus={() => console.log('focus')}
       >
         <MultipleDropdown.Item key='red panda'>
-          <BugIcon style={{marginRight: 5}} />
+          <FontAwesomeIcon icon={faBug} style={{marginRight: 5}} />
           Red Panda
         </MultipleDropdown.Item>
         <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
@@ -130,7 +131,7 @@ export const Default: React.FC = () => {
       <MultipleDropdown
         label='Favorite Animal'
         placeholder='Choose an animal'
-        icon={<BugIcon />}
+        icon={<FontAwesomeIcon icon={faBug} />}
       >
         <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
         <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
@@ -166,7 +167,7 @@ export const Default: React.FC = () => {
         isDisabled
       >
         <MultipleDropdown.Item key='red panda'>
-          <BugIcon style={{marginRight: 5}} />
+          <FontAwesomeIcon icon={faBug} style={{marginRight: 5}} />
           Red Panda
         </MultipleDropdown.Item>
         <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>

@@ -47,7 +47,9 @@ interface Props extends StyledComponentProps {
   'aria-details'?: string
 }
 
-export type TagBoxProps = Props & TagBoxVariantProps
+export type TagBoxProps = Props &
+  TagBoxVariantProps &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
   const {
@@ -191,7 +193,7 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
               </StyledIcon>
             )}
           </StyledBox>
-          {errorMessage && (
+          {isErrored && errorMessage && (
             <StyledHelperText error={!!isErrored}>
               {errorMessage}
             </StyledHelperText>

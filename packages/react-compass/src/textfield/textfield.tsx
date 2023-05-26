@@ -145,7 +145,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
     return (
       <StyledTextFieldWrapper css={css} {...htmlProps}>
         {label && (
-          <StyledTextFieldLabel htmlFor={id} isDisabled={!!isDisabled}>
+          <StyledTextFieldLabel htmlFor={id}>
             {label}
             {isRequired && <span>*</span>}
           </StyledTextFieldLabel>

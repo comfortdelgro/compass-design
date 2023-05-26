@@ -1,4 +1,5 @@
-import BugIcon from '@comfortdelgro/compass-icons/react/bug'
+import {faBug} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React, {Key} from 'react'
 import {Column} from '../utils/components'
 import Dropdown from './index'
@@ -13,7 +14,7 @@ export const Flag: React.FC = () => {
         isRequired
         label={
           <>
-            List of country <BugIcon />
+            List of country <FontAwesomeIcon icon={faBug} />
           </>
         }
         placeholder='Choose a country'
@@ -45,7 +46,7 @@ export const Select: React.FC = () => {
         isRequired
         label={
           <>
-            Favorite Animal <BugIcon />
+            Favorite Animal <FontAwesomeIcon icon={faBug} />
           </>
         }
         placeholder='Choose an animal'
@@ -54,12 +55,15 @@ export const Select: React.FC = () => {
         onBlur={() => console.log('blur')}
         onFocus={() => console.log('focus')}
       >
-        <Dropdown.Item key='red panda' leftIcon={<BugIcon />}>
+        <Dropdown.Item
+          key='red panda'
+          leftIcon={<FontAwesomeIcon icon={faBug} />}
+        >
           Red Panda Red Panda Red Panda Red Panda Red Panda
         </Dropdown.Item>
         <Dropdown.Item
           key='cat'
-          leftIcon={<BugIcon />}
+          leftIcon={<FontAwesomeIcon icon={faBug} />}
           type='color'
           rightColor='red'
           textValue='pandared'
@@ -80,12 +84,15 @@ export const Select: React.FC = () => {
         selectedKey={value1}
         onSelectionChange={(k: Key) => setValue1(k)}
       >
-        <Dropdown.Item key='red panda' leftIcon={<BugIcon />}>
+        <Dropdown.Item
+          key='red panda'
+          leftIcon={<FontAwesomeIcon icon={faBug} />}
+        >
           Red Panda Red Panda Red Panda Red Panda Red Panda
         </Dropdown.Item>
         <Dropdown.Item
           key='cat'
-          leftIcon={<BugIcon />}
+          leftIcon={<FontAwesomeIcon icon={faBug} />}
           type='color'
           rightColor='red'
           textValue='pandared'
@@ -106,12 +113,15 @@ export const Select: React.FC = () => {
         onSelectionChange={(k: Key) => setValue1(k)}
         disabledKeys={['dog']}
       >
-        <Dropdown.Item key='red panda' leftIcon={<BugIcon />}>
+        <Dropdown.Item
+          key='red panda'
+          leftIcon={<FontAwesomeIcon icon={faBug} />}
+        >
           Red Panda Red Panda Red Panda Red Panda Red Panda
         </Dropdown.Item>
         <Dropdown.Item
           key='cat'
-          leftIcon={<BugIcon />}
+          leftIcon={<FontAwesomeIcon icon={faBug} />}
           type='color'
           rightColor='red'
           textValue='pandared'
@@ -132,7 +142,7 @@ export const Select: React.FC = () => {
       >
         <Dropdown.Item
           key='red panda'
-          leftIcon={<BugIcon />}
+          leftIcon={<FontAwesomeIcon icon={faBug} />}
           textValue='pandared'
         >
           Red Panda
@@ -152,7 +162,10 @@ export const Select: React.FC = () => {
         isErrored
         errorMessage='Error Message'
       >
-        <Dropdown.Item key='red panda' leftIcon={<BugIcon />}>
+        <Dropdown.Item
+          key='red panda'
+          leftIcon={<FontAwesomeIcon icon={faBug} />}
+        >
           Red Panda
         </Dropdown.Item>
         <Dropdown.Item key='cat' type='color' rightColor='red'>
@@ -225,7 +238,7 @@ export const Select: React.FC = () => {
       <Dropdown.Select
         label='Favorite Animal'
         placeholder='Choose an animal'
-        icon={<BugIcon />}
+        icon={<FontAwesomeIcon icon={faBug} />}
       >
         <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
         <Dropdown.Item key='cat'>Cat</Dropdown.Item>
@@ -274,7 +287,7 @@ export const ComboBox: React.FC = () => {
         isRequired
         label={
           <>
-            Favorite Animal <BugIcon />
+            Favorite Animal <FontAwesomeIcon icon={faBug} />
           </>
         }
         placeholder='Choose an animal'
@@ -283,7 +296,10 @@ export const ComboBox: React.FC = () => {
         onBlur={() => console.log('blur')}
         onFocus={() => console.log('focus')}
       >
-        <Dropdown.Item key='red panda' leftIcon={<BugIcon />}>
+        <Dropdown.Item
+          key='red panda'
+          leftIcon={<FontAwesomeIcon icon={faBug} />}
+        >
           Red Panda Red Panda Red Panda Red Panda Red Panda
         </Dropdown.Item>
         <Dropdown.Item key='cat' type='color' rightColor='red'>
@@ -303,7 +319,10 @@ export const ComboBox: React.FC = () => {
         selectedKey={value}
         onSelectionChange={(k: Key) => setValue(k)}
       >
-        <Dropdown.Item key='red panda' leftIcon={<BugIcon />}>
+        <Dropdown.Item
+          key='red panda'
+          leftIcon={<FontAwesomeIcon icon={faBug} />}
+        >
           Red Panda Red Panda Red Panda Red Panda Red Panda
         </Dropdown.Item>
         <Dropdown.Item key='cat' type='color' rightColor='red'>
@@ -316,7 +335,10 @@ export const ComboBox: React.FC = () => {
       </Dropdown.ComboBox>
       <h3>UnControlled</h3>
       <Dropdown.ComboBox label='Favorite Animal' placeholder='Choose an animal'>
-        <Dropdown.Item key='red panda' leftIcon={<BugIcon />}>
+        <Dropdown.Item
+          key='red panda'
+          leftIcon={<FontAwesomeIcon icon={faBug} />}
+        >
           Red Panda
         </Dropdown.Item>
         <Dropdown.Item key='cat' type='color' rightColor='red'>
@@ -334,7 +356,10 @@ export const ComboBox: React.FC = () => {
         isErrored
         errorMessage='Error Message'
       >
-        <Dropdown.Item key='red panda' leftIcon={<BugIcon />}>
+        <Dropdown.Item
+          key='red panda'
+          leftIcon={<FontAwesomeIcon icon={faBug} />}
+        >
           Red Panda
         </Dropdown.Item>
         <Dropdown.Item key='cat' type='color' rightColor='red'>
@@ -407,7 +432,7 @@ export const ComboBox: React.FC = () => {
       <Dropdown.ComboBox
         label='Favorite Animal'
         placeholder='Choose an animal'
-        icon={<BugIcon />}
+        icon={<FontAwesomeIcon icon={faBug} />}
       >
         <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
         <Dropdown.Item key='cat'>Cat</Dropdown.Item>

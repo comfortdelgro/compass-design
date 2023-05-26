@@ -162,7 +162,12 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   // ====================================== EFFECT ======================================
   // map default value
   React.useEffect(() => {
-    setCurrentKey(getDefaulValue(defaultSelectedKey, selectedKey))
+    const newValue = getDefaulValue(defaultSelectedKey, selectedKey)
+    setCurrentKey(newValue)
+    setFocusKey(newValue)
+    if (newValue === undefined) {
+      setSearch('')
+    }
   }, [selectedKey, defaultSelectedKey])
 
   React.useEffect(() => {
@@ -219,10 +224,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           ? selectedItem?.props.textValue
           : textContent(selectedItem as React.ReactElement)
       setSearch(text ?? '')
-      props.onSelectionChange?.(currentKey)
-    } else {
-      setSearch('')
-      props.onSelectionChange?.('')
     }
   }, [currentKey])
 
@@ -252,8 +253,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       case 'Enter': {
         e.preventDefault()
         if (focusKey) {
-          setCurrentKey(focusKey)
-          setOpen(false)
+          onSelect(focusKey)
         }
         break
       }
@@ -265,15 +265,18 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     }
   }
 
-  const onHover = (key: React.Key | null) => {
-    if (key) {
-      setFocusKey(key)
-    }
-  }
-
   const onSelect = (key: React.Key) => {
     if (!isReadOnly) {
-      setCurrentKey((ck) => (ck === key ? undefined : key))
+      if (currentKey === key) {
+        setCurrentKey(undefined)
+        setFocusKey(undefined)
+        setSearch('')
+        setIsSearching(false)
+        props.onSelectionChange?.('')
+      } else {
+        setCurrentKey(key)
+        props.onSelectionChange?.(key)
+      }
       setOpen(false)
     }
   }
@@ -292,6 +295,20 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   const handleClickIcon = () => {
     setOpen(true)
     inputRef.current?.focus()
+  }
+
+  const handleBlur = () => {
+    if (type == 'select') {
+      onBlur()
+    }
+    setFocusKey(currentKey)
+  }
+
+  const handleFocus = () => {
+    if (type == 'select') {
+      onFocus()
+    }
+    setFocusKey(currentKey)
   }
 
   // ====================================== RENDER ======================================
@@ -394,7 +411,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           style={{
             ...floatingStyles,
             ...{
-              zIndex: 3,
+              zIndex: 60,
             },
           }}
           {...getFloatingProps}
@@ -407,20 +424,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
                 ? (selectRef as React.RefObject<HTMLDivElement>)
                 : inputRef
             }
-            onBlur={
-              type == 'select'
-                ? onBlur
-                : () => {
-                    //
-                  }
-            }
-            onFocus={
-              type == 'select'
-                ? onFocus
-                : () => {
-                    //
-                  }
-            }
+            onBlur={handleBlur}
+            onFocus={handleFocus}
             handleKeyDown={handleKeyDown}
           >
             <ListBox
@@ -433,7 +438,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
               isLoading={isLoading}
               sectionCollection={sectionCollection}
               rootChildren={children}
-              onHover={onHover}
               onSelect={onSelect}
               onLoadMore={onLoadMore}
             />
@@ -453,7 +457,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           //
         }}
       />
-      {errorMessage && (
+      {isErrored && errorMessage && (
         <StyledHelperText error={!!isErrored}>{errorMessage}</StyledHelperText>
       )}
       {helperText && <StyledHelperText>{helperText}</StyledHelperText>}

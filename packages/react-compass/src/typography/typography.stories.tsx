@@ -6,7 +6,9 @@ const text = 'The quick fox'
 
 export const Display: React.FC = () => (
   <Column>
-    <Typography.Display variant='display1'>{text}</Typography.Display>
+    <Typography.Display variant='display1' title='display'>
+      {text}
+    </Typography.Display>
     <Typography.Display variant='display2'>{text}</Typography.Display>
     <Typography.Display variant='display3'>{text}</Typography.Display>
   </Column>
@@ -14,7 +16,9 @@ export const Display: React.FC = () => (
 
 export const Header: React.FC = () => (
   <Column>
-    <Typography.Header variant='header0'>{text}</Typography.Header>
+    <Typography.Header variant='header0' title='header'>
+      {text}
+    </Typography.Header>
     <Typography.Header variant='header1'>{text}</Typography.Header>
     <Typography.Header variant='header2'>{text}</Typography.Header>
     <Typography.Header variant='header3'>{text}</Typography.Header>
@@ -25,7 +29,9 @@ export const Header: React.FC = () => (
 
 export const Body: React.FC = () => (
   <Column>
-    <Typography.Body variant='body1'>{text}</Typography.Body>
+    <Typography.Body variant='body1' title='body1'>
+      {text}
+    </Typography.Body>
     <Typography.Body variant='body1' weight='semibold'>
       {text}
     </Typography.Body>
@@ -51,7 +57,9 @@ export const Body: React.FC = () => (
 
 export const Label: React.FC = () => (
   <Column>
-    <Typography.Label variant='label1'>{text}</Typography.Label>
+    <Typography.Label variant='label1' title='label'>
+      {text}
+    </Typography.Label>
     <Typography.Label variant='label1' weight='semibold'>
       {text}
     </Typography.Label>
@@ -86,7 +94,9 @@ export const Label: React.FC = () => (
 
 export const Link: React.FC = () => (
   <Column>
-    <Typography.Link variant='link1'>{text}</Typography.Link>
+    <Typography.Link variant='link1' title='label'>
+      {text}
+    </Typography.Link>
     <Typography.Link variant='link2'>{text}</Typography.Link>
     <Typography.Link variant='link3'>{text}</Typography.Link>
     <Typography.Link variant='link3' weight='semibold'>

@@ -34,20 +34,19 @@ const Radio: React.FC<RadioProps> = (props) => {
   const context = React.useContext(RadioContext)
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const state = context
-  const [isChecked, setIsChecked] = useState(state.selectedValue === value)
-
-  useEffect(() => {
-    setIsChecked(state.selectedValue === value)
-  }, [state.selectedValue, value])
+  const [isChecked, setIsChecked] = useState(state.value === value)
 
   const ref = React.useRef<HTMLInputElement | null>(null)
   const onClick = () => {
     if (!isDisabled) {
-      if (ref.current) ref.current.click()
-      setIsChecked(true)
-      state.setSelectedValue(value)
+      state.handleOnClickRadionButton(value) // clicked value
     }
   }
+
+  useEffect(() => {
+    setIsChecked(state.value === value)
+  }, [state.value])
+
   return (
     <StyledRadio
       disabled={isDisabled}
@@ -58,7 +57,7 @@ const Radio: React.FC<RadioProps> = (props) => {
     >
       <input style={{display: 'none'}} ref={ref} />
       <div className='radio-wrapper'>
-        <StyledRadioInput active={!!isChecked} disabled={isDisabled} />
+        <StyledRadioInput active={isChecked} disabled={isDisabled} />
       </div>
       <div className='radio-content-wrapper'>
         <div className='radio-label'>

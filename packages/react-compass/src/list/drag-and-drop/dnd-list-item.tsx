@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import React, {DragEventHandler} from 'react'
 import {StyledComponentProps} from '../../utils/stitches.types'
 
