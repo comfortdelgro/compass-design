@@ -9,7 +9,6 @@ interface Props extends BaseListBoxProps {
   currentKey: React.Key | undefined
   dropdownType: 'select' | 'combobox' | 'flag'
   onSelect: (key: React.Key) => void
-  onHover: (key: React.Key | null) => void
 }
 
 function ListBox(props: Props) {
@@ -24,7 +23,6 @@ function ListBox(props: Props) {
     rootChildren,
     listBoxRef = ref,
     sectionCollection,
-    onHover,
     onSelect,
     onLoadMore,
   } = props
@@ -50,7 +48,6 @@ function ListBox(props: Props) {
                   currentKey={currentKey}
                   dropdownType={dropdownType}
                   disabledKeys={disabledKeys}
-                  onHover={onHover}
                   onSelect={onSelect}
                 />
               ) : null,

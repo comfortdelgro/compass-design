@@ -159,14 +159,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     return null
   }, [search])
 
-  // ====================================== EFFECT ======================================
-  // map default value
-  React.useEffect(() => {
-    setCurrentKey(getDefaulValue(defaultSelectedKey, selectedKey))
-  }, [selectedKey, defaultSelectedKey])
-
-  React.useEffect(() => {
-    const getTextFromKey = (key: React.Key) => {
+  const getTextFromKey = React.useCallback(
+    (key: React.Key) => {
       const selected = rawCollection.find((item) => {
         return item.key === key
       })
@@ -178,15 +172,22 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         return text
       }
       return ''
-    }
+    },
+    [rawCollection],
+  )
 
-    if (!selectedKey && defaultSelectedKey) {
-      setSearch(getTextFromKey(defaultSelectedKey))
+  // ====================================== EFFECT ======================================
+  // map default value
+  React.useEffect(() => {
+    const newValue = getDefaulValue(defaultSelectedKey, selectedKey)
+    setCurrentKey(newValue)
+    setFocusKey(newValue)
+    if (newValue === undefined) {
+      setSearch('')
+    } else {
+      setSearch(getTextFromKey(newValue))
     }
-    if (selectedKey) {
-      setSearch(getTextFromKey(selectedKey))
-    }
-  }, [selectedKey, defaultSelectedKey])
+  }, [selectedKey, defaultSelectedKey, getTextFromKey])
 
   React.useEffect(() => {
     if (!isOpen && defaultOpen) {
@@ -214,13 +215,9 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   React.useEffect(() => {
     if (currentKey !== undefined) {
       setFocusKey(currentKey)
-      const text =
-        selectedItem?.props.textValue && selectedItem?.props.textValue !== ''
-          ? selectedItem?.props.textValue
-          : textContent(selectedItem as React.ReactElement)
-      setSearch(text ?? '')
+      setSearch(getTextFromKey(currentKey))
     }
-  }, [currentKey])
+  }, [currentKey, getTextFromKey])
 
   // ====================================== CALLBACK ======================================
   const handleKeyDown = (e: KeyboardEvent) => {
@@ -260,30 +257,26 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     }
   }
 
-  const onHover = (key: React.Key | null) => {
-    if (key) {
-      setFocusKey(key)
-    }
-  }
-
   const onSelect = (key: React.Key) => {
     if (!isReadOnly) {
-      if (currentKey === key) {
-        setCurrentKey(undefined)
-        setFocusKey(undefined)
-        setSearch('')
-        setIsSearching(false)
-        props.onSelectionChange?.('')
-      } else {
-        setCurrentKey(key)
-        props.onSelectionChange?.(key)
-      }
+      setCurrentKey(key)
+      props.onSelectionChange?.(key)
       setOpen(false)
     }
   }
 
   const onSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(event.target.value)
+    if (event.target.value === '') {
+      if (!isReadOnly) {
+        setCurrentKey(undefined)
+        setFocusKey(undefined)
+        setSearch('')
+        setIsSearching(false)
+        props.onSelectionChange?.('')
+      }
+    } else {
+      setSearch(event.target.value)
+    }
     setIsSearching(true)
     setOpen(true)
   }
@@ -294,8 +287,22 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   }
 
   const handleClickIcon = () => {
-    setOpen(true)
+    setOpen((v) => !v)
     inputRef.current?.focus()
+  }
+
+  const handleBlur = () => {
+    if (type == 'select') {
+      onBlur()
+    }
+    setFocusKey(currentKey)
+  }
+
+  const handleFocus = () => {
+    if (type == 'select') {
+      onFocus()
+    }
+    setFocusKey(currentKey)
   }
 
   // ====================================== RENDER ======================================
@@ -411,20 +418,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
                 ? (selectRef as React.RefObject<HTMLDivElement>)
                 : inputRef
             }
-            onBlur={
-              type == 'select'
-                ? onBlur
-                : () => {
-                    //
-                  }
-            }
-            onFocus={
-              type == 'select'
-                ? onFocus
-                : () => {
-                    //
-                  }
-            }
+            onBlur={handleBlur}
+            onFocus={handleFocus}
             handleKeyDown={handleKeyDown}
           >
             <ListBox
@@ -437,7 +432,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
               isLoading={isLoading}
               sectionCollection={sectionCollection}
               rootChildren={children}
-              onHover={onHover}
               onSelect={onSelect}
               onLoadMore={onLoadMore}
             />
