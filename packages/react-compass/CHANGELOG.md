@@ -1,5 +1,11 @@
 ## 1.0.0-next.2
 
+## 1.0.0-next.8
+
+### Minor Changes
+
+- 4858eaf5: Fix bugs in calendar, date picker, dropdown, modal and add html props to typography.
+
 ## 1.0.0-next.7
 
 ### Minor Changes
