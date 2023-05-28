@@ -309,3 +309,5 @@ export const darkTheme = createTheme('dark-theme', {
   sizes: spacings,
   transitions,
 })
+
+export default createTheme
