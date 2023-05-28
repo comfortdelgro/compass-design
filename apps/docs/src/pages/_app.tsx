@@ -32,9 +32,9 @@ const App: React.FC<AppProps> = ({Component, pageProps}) => {
       <ThemeProvider
         changeBy={changeBy}
         // @ts-ignore
-        lightThemeCustom={lightThemeCustom}
-        // @ts-ignore
-        darkThemeCustom={darkThemeCustom}
+        // lightThemeCustom={lightThemeCustom}
+        // // @ts-ignore
+        // darkThemeCustom={darkThemeCustom}
       >
         <Preflight />
         <Toaster position='bottom-right' />

@@ -27,8 +27,9 @@ export const ColourModeContext = createContext<ProviderType>({
 
 const saveColorMode = (newMode: ColourMode) => {
   try {
-    if (typeof newMode === 'string')
+    if (typeof newMode === 'string' && typeof window !== 'undefined') {
       window.localStorage.setItem('color-mode', newMode)
+    }
   } catch (e) {
     console.warn(e)
   }
@@ -36,8 +37,10 @@ const saveColorMode = (newMode: ColourMode) => {
 
 const getSavedColorModePreference = (): ETheme => {
   try {
-    const savedMode = window.localStorage.getItem('color-mode')
-    if (typeof savedMode === 'string') return savedMode as ETheme
+    if (typeof window !== 'undefined') {
+      const savedMode = window.localStorage.getItem('color-mode')
+      if (typeof savedMode === 'string') return savedMode as ETheme
+    }
   } catch (e) {
     console.warn(e)
     return ETheme.Light
@@ -72,7 +75,6 @@ function useColorMode({
       lightThemeCustom?.className &&
         body?.classList.remove(lightThemeCustom?.className)
     }
-
     setColorMode(newMode)
     saveColorMode(newMode)
   }
@@ -88,7 +90,7 @@ function useColorMode({
     if (!!changeBy && (changeBy === ETheme.Light || changeBy === ETheme.Dark)) {
       applyColorMode(changeBy as ETheme)
     }
-  }, [changeBy])
+  }, [changeBy, body])
 
   return [colorMode, applyColorMode]
 }

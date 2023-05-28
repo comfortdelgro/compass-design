@@ -22,9 +22,9 @@ export const Provider: GlobalProvider = ({children, globalState}) => {
       <ThemeProvider
         changeBy={globalState.theme}
         // @ts-ignore
-        lightThemeCustom={lightThemeCustom}
-        // @ts-ignore
-        darkThemeCustom={darkThemeCustom}
+        // lightThemeCustom={lightThemeCustom}
+        // // @ts-ignore
+        // darkThemeCustom={darkThemeCustom}
         isCSR={true}
       >
         <Preflight />
