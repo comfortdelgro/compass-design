@@ -14,7 +14,7 @@ export const Default: React.FC = () => {
         disabledKeys={['cat']}
         placeholder='Choose an animal'
         selectedKeys={value}
-        defaultSelectedKeys={['cat']}
+        defaultSelectedKeys={['dog']}
         isRequired
         onSelectionChange={(k: Key[]) => setValue(k)}
         onBlur={() => console.log('blur')}

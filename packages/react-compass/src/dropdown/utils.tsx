@@ -304,13 +304,13 @@ export function getDefaulValue(
   if (
     defaulValue !== undefined &&
     defaulValue !== null &&
-    !isEmpty(defaulValue) &&
+    !isEmpty(defaulValue.toString()) &&
     value !== '' &&
     !disableDefault
   ) {
     res = defaulValue
   }
-  if (value !== undefined && value !== null && !isEmpty(value)) {
+  if (value !== undefined && value !== null && !isEmpty(value.toString())) {
     res = value
   }
   return res

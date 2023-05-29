@@ -138,7 +138,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   }, [rawCollection, search, isSearching])
 
   const selectedItem = rawCollection.find((item) => {
-    return item.key === currentKey
+    return item.key == currentKey
   })
 
   const delegate = React.useMemo(
@@ -163,7 +163,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   const getTextFromKey = React.useCallback(
     (key: React.Key) => {
       const selected = rawCollection.find((item) => {
-        return item.key === key
+        return item.key == key
       })
       if (selected) {
         const text =

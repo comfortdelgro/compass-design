@@ -30,8 +30,8 @@ function Option({
 }: Props) {
   const ref = React.useRef(null)
   const {type = 'icon', leftIcon, rightIcon, rightColor, children} = item.props
-  const isSelected = React.useMemo(() => currentKey === item.key, [currentKey])
-  const isFocused = React.useMemo(() => focusKey === item.key, [focusKey])
+  const isSelected = React.useMemo(() => currentKey == item.key, [currentKey])
+  const isFocused = React.useMemo(() => focusKey == item.key, [focusKey])
   const isDisabled = React.useMemo(
     () => (item.key ? [...disabledKeys].includes(item.key) : false),
     [disabledKeys],
