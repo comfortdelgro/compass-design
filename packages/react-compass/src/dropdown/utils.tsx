@@ -298,12 +298,15 @@ export function textContent(elem: React.ReactElement | string): string {
 export function getDefaulValue(
   defaulValue: React.Key | undefined,
   value: React.Key | undefined,
+  disableDefault?: boolean,
 ): React.Key | undefined {
   let res = undefined
   if (
     defaulValue !== undefined &&
     defaulValue !== null &&
-    !isEmpty(defaulValue)
+    !isEmpty(defaulValue) &&
+    value !== '' &&
+    !disableDefault
   ) {
     res = defaulValue
   }

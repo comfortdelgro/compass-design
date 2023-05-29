@@ -6,6 +6,7 @@ import {
   useFloating,
   useInteractions,
 } from '@floating-ui/react'
+import isEmpty from 'lodash/isEmpty'
 import React from 'react'
 import {useDOMRef} from '../utils/use-dom-ref'
 import DropdownComboBox from './dropdown.combobox'
@@ -179,7 +180,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   // ====================================== EFFECT ======================================
   // map default value
   React.useEffect(() => {
-    const newValue = getDefaulValue(defaultSelectedKey, selectedKey)
+    const newValue = getDefaulValue(defaultSelectedKey, selectedKey, true)
     setCurrentKey(newValue)
     setFocusKey(newValue)
     if (newValue === undefined) {
@@ -187,7 +188,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     } else {
       setSearch(getTextFromKey(newValue))
     }
-  }, [selectedKey, defaultSelectedKey, getTextFromKey])
+  }, [selectedKey, getTextFromKey])
 
   React.useEffect(() => {
     if (!isOpen && defaultOpen) {
@@ -260,17 +261,21 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   const onSelect = (key: React.Key) => {
     if (!isReadOnly) {
       setCurrentKey(key)
+      setIsSearching(false)
       props.onSelectionChange?.(key)
       setOpen(false)
     }
   }
 
   const onSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.value === '') {
+    if (
+      event.target.value === '' ||
+      isEmpty(event.target.value.replaceAll(' ', ''))
+    ) {
       if (!isReadOnly) {
         setCurrentKey(undefined)
         setFocusKey(undefined)
-        setSearch('')
+        setSearch(event.target.value)
         setIsSearching(false)
         props.onSelectionChange?.('')
       }
