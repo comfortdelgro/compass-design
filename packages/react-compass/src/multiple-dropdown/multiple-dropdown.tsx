@@ -140,9 +140,9 @@ const MultipleDropdown = React.forwardRef<
     if (rawCollection.length > 0 && currentKeys && currentKeys.length > 0) {
       currentKeys.forEach((selectedKey) => {
         const item = rawCollection.find((item) => {
-          return item.key === selectedKey
+          return item.key == selectedKey
         })
-        t.push({key: selectedKey, rendered: item?.props.children})
+        if (item) t.push({key: selectedKey, rendered: item?.props.children})
       })
     }
     return t
@@ -150,8 +150,8 @@ const MultipleDropdown = React.forwardRef<
 
   // ====================================== EFFECT ======================================
   React.useEffect(() => {
-    setCurrentKeys(getDefaulValues(defaultSelectedKeys, selectedKeys))
-  }, [JSON.stringify(selectedKeys), JSON.stringify(defaultSelectedKeys)])
+    setCurrentKeys(getDefaulValues(defaultSelectedKeys, selectedKeys, true))
+  }, [JSON.stringify(selectedKeys), rawCollection])
 
   React.useEffect(() => {
     if (!isOpen && defaultOpen) {
@@ -175,15 +175,6 @@ const MultipleDropdown = React.forwardRef<
   }, [open])
 
   // ====================================== CALLBACK ======================================
-  const removeItem = (key: Key) => {
-    const v = new Set(currentKeys)
-    if (currentKeys.includes(key)) {
-      v.delete(key)
-      setCurrentKeys([...v])
-      props.onSelectionChange?.([...v])
-    }
-  }
-
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (wrapperRef.current) {
       const string = e.target.value
@@ -251,20 +242,32 @@ const MultipleDropdown = React.forwardRef<
   const onSelect = (key: React.Key) => {
     if (!isReadOnly) {
       const v = new Set(currentKeys)
-      if (currentKeys.includes(key)) {
-        v.delete(key)
+      const clickedItem = currentKeys.find((v) => v == key)
+      if (clickedItem) {
+        v.delete(clickedItem)
       } else {
         v.add(key)
       }
       setCurrentKeys([...v])
       props.onSelectionChange?.([...v])
+      inputRef.current?.focus()
       setFocusKey(key)
+    }
+  }
+
+  const removeItem = (key: Key) => {
+    const v = new Set(currentKeys)
+    if (currentKeys.some((v) => v == key)) {
+      v.delete(key)
+      setCurrentKeys([...v])
+      props.onSelectionChange?.([...v])
     }
   }
 
   const handleOpen = () => {
     if (!isDisabled) {
       setOpen(true)
+      inputRef.current?.focus()
     }
   }
 

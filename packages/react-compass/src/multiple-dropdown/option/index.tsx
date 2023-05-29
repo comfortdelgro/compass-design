@@ -19,10 +19,10 @@ interface Props extends OptionVariantProps {
 function Option({item, currentKeys, focusKey, disabledKeys, onSelect}: Props) {
   const ref = React.useRef(null)
   const isSelected = React.useMemo(
-    () => (item.key ? currentKeys.includes(item.key) : false),
+    () => (item.key ? currentKeys.some((v) => v == item.key) : false),
     [currentKeys],
   )
-  const isFocused = React.useMemo(() => focusKey === item.key, [focusKey])
+  const isFocused = React.useMemo(() => focusKey == item.key, [focusKey])
   const isDisabled = React.useMemo(
     () => (item.key ? disabledKeys.includes(item.key) : false),
     [disabledKeys],
