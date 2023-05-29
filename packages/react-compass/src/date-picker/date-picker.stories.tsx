@@ -58,16 +58,16 @@ export const Controlled: React.FC = () => {
 
   return (
     <I18nProvider locale='en-SG'>
-      {date ? (
-        <p>
-          <b>Selected date:</b>
-          <span style={{marginLeft: '4px'}}>
-            {formatter.format(date?.toDate(getLocalTimeZone()))}
-          </span>
-        </p>
-      ) : (
-        <></>
-      )}
+      <p>
+        <b>Selected date:</b>
+        <span style={{marginLeft: '4px'}}>
+          {date ? (
+            formatter.format(date?.toDate(getLocalTimeZone()))
+          ) : (
+            <span style={{marginLeft: '4px'}}>Invalid Date</span>
+          )}
+        </span>
+      </p>
       <DatePicker
         label='Date'
         value={date}

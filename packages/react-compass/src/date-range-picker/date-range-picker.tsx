@@ -17,6 +17,7 @@ import {
   RangeValue,
   SpectrumDateRangePickerProps,
 } from '../calendar/types'
+import DatePickerProvider from '../date-picker/date-picker-context'
 import RangeCalendar from '../range-calendar/range-calendar'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -111,30 +112,32 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
 
     return (
       <StyledRangeDatepicker ref={calendarRef} css={css}>
-        <DateRangeInputsWrapper
-          state={state}
-          label={props.label}
-          labelProps={labelProps}
-          groupProps={groupProps}
-          startFieldProps={extendedStartFieldProps}
-          endFieldProps={extendedEndFieldProps}
-          buttonProps={buttonProps as unknown as ButtonProps}
-          startDateLabel={startDateLabel}
-          endDateLabel={endDateLabel}
-          isInvalid={props.isInvalid}
-          isReadOnly={props.isReadOnly}
-          isMobile={props.isMobile}
-          errorMessage={errorMessage}
-          helperText={helperText}
-        />
-        <DateRangeCalendarWrapper
-          maxValue={maxValue}
-          state={state}
-          calendarRef={calendarRef}
-          dialogProps={dialogProps}
-          calendarProps={calendarProps}
-          css={props.calendarCSS}
-        />
+        <DatePickerProvider>
+          <DateRangeInputsWrapper
+            state={state}
+            label={props.label}
+            labelProps={labelProps}
+            groupProps={groupProps}
+            startFieldProps={extendedStartFieldProps}
+            endFieldProps={extendedEndFieldProps}
+            buttonProps={buttonProps as unknown as ButtonProps}
+            startDateLabel={startDateLabel}
+            endDateLabel={endDateLabel}
+            isInvalid={props.isInvalid}
+            isReadOnly={props.isReadOnly}
+            isMobile={props.isMobile}
+            errorMessage={errorMessage}
+            helperText={helperText}
+          />
+          <DateRangeCalendarWrapper
+            maxValue={maxValue}
+            state={state}
+            calendarRef={calendarRef}
+            dialogProps={dialogProps}
+            calendarProps={calendarProps}
+            css={props.calendarCSS}
+          />
+        </DatePickerProvider>
       </StyledRangeDatepicker>
     )
   },

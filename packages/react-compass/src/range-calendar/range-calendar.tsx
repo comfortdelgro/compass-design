@@ -12,6 +12,7 @@ import CalendarHeader from '../calendar/calendar-header'
 import {useRangeCalendar} from '../calendar/hooks/useRangeCalendar'
 import {useRangeCalendarState} from '../calendar/hooks/useRangeCalendarState'
 import {DateRangePickerState, DateValue, RangeValue} from '../calendar/types'
+import {useDatePickerContext} from '../date-picker/date-picker-context'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {StyledRangeCalendar} from './range-calendar.style'
@@ -57,11 +58,15 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
 
     const formatter = useDateFormatter({})
 
+    const {setIsReset} = useDatePickerContext()
+
     const handleClearButtonClick = () => {
       props.onChange?.({
         start: null as unknown as DateValue,
         end: null as unknown as DateValue,
       })
+
+      setIsReset?.(true)
     }
 
     const handleTodayButtonClick = () => {

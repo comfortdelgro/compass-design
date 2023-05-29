@@ -4,6 +4,7 @@ import * as i18n from '@react-aria/i18n'
 import {useLocale} from '@react-aria/i18n'
 import React from 'react'
 import Button from '../button'
+import {useDatePickerContext} from '../date-picker/date-picker-context'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import CalendarGrid from './calendar-grid'
@@ -51,10 +52,10 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     state,
   )
 
+  const {setIsReset} = useDatePickerContext()
+
   const handleClearButtonClick = () => {
-    pickerState?.setDateValue(
-      null as unknown as InternationalizedDate.CalendarDate,
-    )
+    setIsReset?.(true)
   }
 
   const handleTodayButtonClick = () => {

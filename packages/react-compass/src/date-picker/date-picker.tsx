@@ -19,6 +19,7 @@ import {
 } from '../calendar/types'
 import type {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
+import DatePickerProvider from './date-picker-context'
 import {
   StyledDatePicker,
   StyledDatePickerFieldWrapper,
@@ -86,26 +87,28 @@ const DatePicker = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   calendarProps.isReadOnly = checkIfCalendarInMobile()
   return (
     <StyledDatePicker css={css}>
-      <DatePickerFieldWrapper
-        ref={calendarRef}
-        groupProps={groupProps}
-        fieldProps={extendedFieldProps}
-        buttonProps={buttonProps as unknown as ButtonProps}
-        isInvalid={props.isInvalid}
-        isReadOnly={props.isReadOnly}
-        isMobile={props.isMobile}
-        label={props.label}
-        errorMessage={props.errorMessage}
-        helperText={props.helperText}
-      />
-      <DatePickerCalendarWrapper
-        maxValue={maxValue}
-        state={state}
-        calendarProps={calendarProps}
-        calendarRef={calendarRef}
-        dialogProps={dialogProps}
-        css={props.calendarCSS}
-      />
+      <DatePickerProvider>
+        <DatePickerFieldWrapper
+          ref={calendarRef}
+          groupProps={groupProps}
+          fieldProps={extendedFieldProps}
+          buttonProps={buttonProps as unknown as ButtonProps}
+          isInvalid={props.isInvalid}
+          isReadOnly={props.isReadOnly}
+          isMobile={props.isMobile}
+          label={props.label}
+          errorMessage={props.errorMessage}
+          helperText={props.helperText}
+        />
+        <DatePickerCalendarWrapper
+          maxValue={maxValue}
+          state={state}
+          calendarProps={calendarProps}
+          calendarRef={calendarRef}
+          dialogProps={dialogProps}
+          css={props.calendarCSS}
+        />
+      </DatePickerProvider>
     </StyledDatePicker>
   )
 })
