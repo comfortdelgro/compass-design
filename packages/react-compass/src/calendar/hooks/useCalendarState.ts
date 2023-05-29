@@ -203,6 +203,7 @@ export const useCalendarState = (
       // Emit dates in the same calendar as the original value, if any, otherwise gregorian.
       newValue = toCalendar(
         newValue,
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
         value?.calendar ?? (new GregorianCalendar() as Calendar),
       )
 

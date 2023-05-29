@@ -108,7 +108,8 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
             </Button>
             <div className='calendar-footer-right-side'>
               <p className='preview-date'>
-                {state.value &&
+                {state.value?.start &&
+                  state.value?.end &&
                   formatter.formatRange(
                     state.value.start.toDate(getLocalTimeZone()),
                     state.value.end.toDate(getLocalTimeZone()),

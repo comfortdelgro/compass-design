@@ -55,6 +55,9 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   const {setIsReset} = useDatePickerContext()
 
   const handleClearButtonClick = () => {
+    if (!setIsReset) {
+      props.onChange?.(null as unknown as DateValue)
+    }
     setIsReset?.(true)
   }
 

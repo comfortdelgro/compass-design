@@ -50,7 +50,7 @@ export const Variants: React.FC = () => {
 }
 
 export const Controlled: React.FC = () => {
-  const [date, setDate] = useState<CalendarProps>(
+  const [date, setDate] = useState<CalendarProps | null>(
     parseDate(today(getLocalTimeZone()).toString()),
   )
 
@@ -76,6 +76,13 @@ export const Controlled: React.FC = () => {
           setDate(date)
         }}
       />
+      <button
+        onClick={() => {
+          setDate(null)
+        }}
+      >
+        Reset
+      </button>
     </I18nProvider>
   )
 }
