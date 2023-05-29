@@ -4,13 +4,13 @@ import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {RadioGroupVariantProps, StyledRadioGroup} from './radio-group.styles'
 interface RadioGroupContextValue {
-  selectedValue: string
-  setSelectedValue: (value: string) => void
+  value: string | null
+  handleOnClickRadionButton: (value: string) => void
 }
 
 export const RadioContext = React.createContext<RadioGroupContextValue>({
-  selectedValue: '',
-  setSelectedValue: () => {},
+  value: '',
+  handleOnClickRadionButton: () => {},
 })
 
 interface Props extends StyledComponentProps {
@@ -18,44 +18,63 @@ interface Props extends StyledComponentProps {
   children?: React.ReactNode
   defaultValue?: string
   onChange?: (value: string) => void
+  onBlur?: () => void
 }
 
-export type RadioGroupProps = Props & RadioGroupVariantProps
+export type RadioGroupProps = Props &
+  RadioGroupVariantProps &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
   (props, ref) => {
     const {
       children,
       orientation = 'vertical',
-      defaultValue = '',
-      value,
+      value = null,
       onChange,
+      onBlur,
       css = {},
       ...delegated
     } = props
 
     const groupRef = useDOMRef<HTMLDivElement>(ref)
-    const [selectedValue, setSelectedValue] = useState(value || defaultValue)
+    const [selectedValue, setSelectedValue] = useState<string | null>(value)
+
+    const handleBlur = useCallback(() => {
+      onBlur && onBlur()
+    }, [onBlur])
+
+    const handleOnClickRadionButton = (clickedValue: string) => {
+      if (clickedValue !== selectedValue) {
+        setSelectedValue(clickedValue)
+      }
+      return
+    }
+
+    const handleControl = () => {
+      if (value == null) {
+        return selectedValue
+      }
+      return value
+    }
 
     useEffect(() => {
-      handleChange(selectedValue)
-    }, [selectedValue, onChange])
+      if (!selectedValue) return
+      onChange && onChange(selectedValue)
+    }, [selectedValue])
 
-    const handleChange = useCallback(
-      (value: string) => {
-        setSelectedValue(value)
-        onChange && onChange(value)
-      },
-      [onChange],
-    )
     return (
       <StyledRadioGroup
         ref={groupRef}
         orientation={orientation}
         css={css}
+        onBlur={handleBlur}
         {...delegated}
+        tabIndex={0}
       >
-        <RadioContext.Provider value={{selectedValue, setSelectedValue}}>
+        <RadioContext.Provider
+          value={{value: handleControl(), handleOnClickRadionButton}}
+        >
           {children}
         </RadioContext.Provider>
       </StyledRadioGroup>

@@ -1,12 +1,11 @@
 import React from 'react'
-import Icon, {IconProp} from '../icon'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {StyledMenuListDropdownItem} from './menu-list-dropdown-item.styles'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
   isActive?: boolean
-  icon?: IconProp
+  icon?: React.ReactNode
   isNested?: boolean
   isDisabled?: boolean
 }
@@ -43,7 +42,7 @@ const MenuListDropdownItem = React.forwardRef<
       tabIndex={isDisabled ? 1 : 0}
       {...delegated}
     >
-      {icon && <Icon icon={icon} className='menu-list-dropdown-item-icon' />}
+      {icon}
       {children}
     </StyledMenuListDropdownItem>
   )

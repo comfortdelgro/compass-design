@@ -183,7 +183,7 @@ export function useDateFieldState<T extends DateValue = DateValue>(
       showEra,
     ],
   )
-  const [isValidFake, setValidFake] = useState(false)
+  const [isValidFake, setValidFake] = useState<boolean | undefined>(undefined)
 
   const opts = useMemo(
     () => getFormatOptions({}, formatOpts as FormatterOptions),
@@ -253,7 +253,7 @@ export function useDateFieldState<T extends DateValue = DateValue>(
   if (
     value == null &&
     Object.keys(validSegments).length === Object.keys(allSegments).length &&
-    !isValidFake
+    isValidFake === false
   ) {
     validSegments = {}
     setValidSegments(validSegments)
@@ -266,6 +266,8 @@ export function useDateFieldState<T extends DateValue = DateValue>(
         defaultTimeZone,
       ),
     )
+
+    setValidFake(undefined)
   }
 
   let displayValue =
@@ -491,7 +493,7 @@ export function useDateFieldState<T extends DateValue = DateValue>(
     },
     clearSegment(part) {
       if (part === 'year') {
-        setValidFake(false)
+        setValidFake(undefined)
       }
       delete validSegments[part as keyof typeof validSegments]
       setValidSegments({...validSegments})

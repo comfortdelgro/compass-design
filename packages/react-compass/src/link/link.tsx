@@ -10,7 +10,9 @@ interface Props extends StyledComponentProps {
   children?: React.ReactNode
 }
 
-export type LinkProps = Props & LinkVariantProps
+export type LinkProps = Props &
+  LinkVariantProps &
+  Omit<React.HTMLAttributes<HTMLAnchorElement>, keyof Props>
 
 const Link = React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
   const {
@@ -21,8 +23,8 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
     target,
     external,
     children,
-    // AriaLinkProps
-    ...ariaSafeProps
+    // html props
+    ...delegated
   } = props
 
   const variantProps = {} as LinkVariantProps
@@ -35,8 +37,8 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
       href={href}
       target={target || (external ? '_blank' : undefined)}
       rel={target === '_blank' || external ? 'noopener noreferrer' : undefined}
-      {...ariaSafeProps}
       {...variantProps}
+      {...delegated}
     >
       {children}
     </StyledLink>

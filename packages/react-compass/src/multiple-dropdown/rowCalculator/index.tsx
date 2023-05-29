@@ -1,47 +1,59 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
+import BaseListBox, {BaseListBoxProps} from '../../dropdown/list-box/base'
+import {StyledSection} from '../../dropdown/list-box/index.styles'
+import {StyledCalc} from '../../dropdown/rowCalculator/index.styles'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import Option from '../option'
 
-interface Props {
-  collection: Array<React.DetailedReactHTMLElement<any, HTMLElement>>
+interface Props extends BaseListBoxProps {
   numberOfRows: number | undefined
 }
 
 const RowCalculator = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
-  const {collection, numberOfRows} = props
+  const {
+    collection,
+    rootChildren,
+    sectionCollection,
+    listBoxRef,
+    isLoading,
+    numberOfRows,
+    onLoadMore,
+  } = props
   const visualizeList = useDOMRef<HTMLDivElement>(ref)
+
   return numberOfRows && numberOfRows >= 0 ? (
-    <div
-      ref={visualizeList}
-      style={{
-        position: 'absolute',
-        top: 0,
-        left: '-9999px',
-        overflow: 'hidden',
-        visibility: 'hidden',
-        whiteSpace: 'nowrap',
-        zIndex: -99999999,
-      }}
-    >
-      {collection
-        .slice(0, Math.min(numberOfRows, collection.length))
-        .map((c) => (
-          <Option
-            item={c}
-            key={c.key}
-            focusKey={undefined}
-            currentKeys={[]}
-            disabledKeys={[]}
-            onHover={() => {
-              //
-            }}
-            onSelect={() => {
-              //
-            }}
-          />
-        ))}
-    </div>
+    <StyledCalc ref={visualizeList}>
+      <BaseListBox
+        isLoading={isLoading}
+        collection={collection}
+        listBoxRef={listBoxRef}
+        rootChildren={rootChildren}
+        sectionCollection={sectionCollection}
+        renderOptions={(l) =>
+          l.slice(0, Math.min(numberOfRows, collection.length)).map((item) => (
+            <div key={item.id}>
+              {item.title && <StyledSection>{item.title}</StyledSection>}
+              {item.children.map((c) =>
+                c ? (
+                  <Option
+                    item={c}
+                    key={c.key}
+                    focusKey={undefined}
+                    currentKeys={[]}
+                    disabledKeys={[]}
+                    onSelect={() => {
+                      //
+                    }}
+                  />
+                ) : null,
+              )}
+            </div>
+          ))
+        }
+        onLoadMore={onLoadMore}
+      />
+    </StyledCalc>
   ) : null
 })
 

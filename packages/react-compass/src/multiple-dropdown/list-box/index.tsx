@@ -8,7 +8,6 @@ interface Props extends BaseListBoxProps {
   disabledKeys: React.Key[]
   focusKey: React.Key | undefined
   onSelect: (key: React.Key) => void
-  onHover: (key: React.Key | null) => void
 }
 
 function ListBox(props: Props) {
@@ -22,7 +21,6 @@ function ListBox(props: Props) {
     rootChildren,
     listBoxRef = ref,
     sectionCollection,
-    onHover,
     onSelect,
     onLoadMore,
   } = props
@@ -47,7 +45,6 @@ function ListBox(props: Props) {
                   focusKey={focusKey}
                   currentKeys={currentKeys}
                   disabledKeys={disabledKeys}
-                  onHover={onHover}
                   onSelect={onSelect}
                 />
               ) : null,

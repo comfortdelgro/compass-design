@@ -1,15 +1,14 @@
 import {styled} from '../../theme'
 
-export const StyledPopover = styled('div', {
-  margin: 0,
+export const StyledCalc = styled('div', {
   padding: '$2 0',
-  borderRadius: '$md',
-  width: 'fit-content',
-  height: 'fit-content',
-  minWidth: '100%',
-  background: '#FFFFFF',
-  boxShadow:
-    '0px 0.6px 1.8px rgba(0, 0, 0, 0.1), 0px 3.2px 7.2px rgba(0, 0, 0, 0.13)',
+  position: 'absolute',
+  top: 0,
+  left: '-9999px',
+  overflow: 'hidden',
+  visibility: 'hidden',
+  whiteSpace: 'nowrap',
+  // background: 'red',
   ul: {
     overscrollBehavior: 'contain',
     maxHeight: '$64',

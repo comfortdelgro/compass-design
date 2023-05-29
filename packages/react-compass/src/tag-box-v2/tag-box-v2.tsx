@@ -151,20 +151,25 @@ const TagBoxV2 = forwardRef<
       setIsUsingNewTagInput(false)
     }
 
+    // jsx
     return (
       <StyledTagBoxV2 {...props} isErrored={isErrored}>
+        {/**************  Label  *************/}
         <StyledLabel aria-label={tagBoxLabel} onClick={handleClickContainer}>
-          {tagBoxLabel}{' '}
+          {tagBoxLabel}
           {isRequired && (
             <span style={{color: theme.colors.danger.value}}>*</span>
           )}
         </StyledLabel>
+
+        {/**************  The main box  *************/}
         <StyledContainer
           ref={tagBoxRef}
           onClick={handleClickContainer}
           onFocus={handleFocusNewTag}
           onBlur={handleBlurNewTag}
         >
+          {/**** This is to loop and create tags ****/}
           {(tags ?? []).map((tag) => {
             const handleChangeTagInput = (
               event: React.ChangeEvent<HTMLInputElement>,
@@ -234,6 +239,7 @@ const TagBoxV2 = forwardRef<
               >
                 <StyledTagContent
                   title={isEditable ? 'Click to edit' : undefined}
+                  className='tag-content'
                 >
                   {currentlyEditingTag && currentlyEditingTag.id === tag.id ? (
                     <StyledTagInput
@@ -256,15 +262,23 @@ const TagBoxV2 = forwardRef<
                     tag.value
                   )}
                 </StyledTagContent>
-                {!isDisabled && currentlyEditingTag == null && (
+                {!isDisabled && (
                   <StyledTagCloseIcon
                     icon={faClose}
                     onClick={handleClickRemoveIcon}
+                    style={{
+                      display:
+                        currentlyEditingTag && currentlyEditingTag.id === tag.id
+                          ? 'none'
+                          : 'inline-block',
+                    }}
                   />
                 )}
               </StyledTagContainer>
             )
           })}
+
+          {/**** add new button ****/}
           {!isDisabled && (
             <StyledButtonContainer>
               {!isUsingNewTagInput && (

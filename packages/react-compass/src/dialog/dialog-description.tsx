@@ -8,14 +8,14 @@ interface Props extends StyledComponentProps {
 }
 
 export type DialogDescriptionProps = Props &
-  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
+  Omit<React.HTMLAttributes<HTMLParagraphElement>, keyof Props>
 
 const DialogDescription = React.forwardRef<
-  HTMLDivElement,
+  HTMLParagraphElement,
   DialogDescriptionProps
 >((props, ref) => {
   const {children, css = {}, ...delegated} = props
-  const dialogDescriptionRef = useDOMRef<HTMLDivElement>(ref)
+  const dialogDescriptionRef = useDOMRef<HTMLParagraphElement>(ref)
   return (
     <StyledDialogDescription
       css={css}

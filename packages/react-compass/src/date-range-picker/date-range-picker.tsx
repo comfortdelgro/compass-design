@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/unbound-method */
-import {DateValue} from '@internationalized/date'
+import {DateValue, parseDate} from '@internationalized/date'
 import {CSS} from '@stitches/react'
 import React from 'react'
 import {ButtonProps} from '../button'
@@ -29,14 +29,15 @@ interface Props
   extends StyledComponentProps,
     SpectrumDateRangePickerProps<DateValue> {
   children?: React.ReactNode
-  label?: string
+  label?: string | React.ReactNode
   isInvalid?: boolean
-  startDateLabel?: string
-  endDateLabel?: string
+  startDateLabel?: string | React.ReactNode
+  endDateLabel?: string | React.ReactNode
   shouldCloseOnSelect?: boolean
   isMobile?: boolean
   calendarCSS?: CSS
   helperText?: React.ReactNode
+  maxValue?: DateValue | null | undefined
 }
 
 export type DateRangePickerProps = Props
@@ -50,6 +51,7 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
       css = {},
       errorMessage,
       helperText,
+      maxValue,
       ...delegated
     } = props
 
@@ -126,6 +128,7 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
           helperText={helperText}
         />
         <DateRangeCalendarWrapper
+          maxValue={maxValue}
           state={state}
           calendarRef={calendarRef}
           dialogProps={dialogProps}
@@ -139,14 +142,14 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
 
 interface DateRangeInputsWrapperProps {
   state: DateRangePickerState
-  label?: string | undefined
+  label?: string | React.ReactNode | undefined
   labelProps: DOMAttributes
   groupProps: DOMAttributes
   startFieldProps: AriaDatePickerProps<DateValue>
   endFieldProps: AriaDatePickerProps<DateValue>
   buttonProps: ButtonProps
-  startDateLabel?: string | undefined
-  endDateLabel?: string | undefined
+  startDateLabel?: string | React.ReactNode | undefined
+  endDateLabel?: string | React.ReactNode | undefined
   isInvalid?: boolean | undefined
   isMobile?: boolean | undefined
   isReadOnly?: boolean | undefined
@@ -210,11 +213,19 @@ interface DateRangeCalendarWrapperProps {
   calendarRef: React.RefObject<HTMLDivElement>
   dialogProps: AriaDialogProps
   calendarProps: RangeCalendarProps<DateValue>
+  maxValue?: DateValue | null | undefined
   css?: CSS | undefined
 }
 
 const DateRangeCalendarWrapper = (props: DateRangeCalendarWrapperProps) => {
-  const {state, calendarRef, dialogProps, calendarProps, css = {}} = props
+  const {
+    state,
+    calendarRef,
+    dialogProps,
+    calendarProps,
+    css = {},
+    maxValue = parseDate('2999-03-10'),
+  } = props
 
   const {value, onChange, ...resCalendarProps} = calendarProps
 
@@ -246,6 +257,7 @@ const DateRangeCalendarWrapper = (props: DateRangeCalendarWrapperProps) => {
               {...(value ? {value} : {})}
               onChange={onChangeRangeCalendar}
               {...resCalendarProps}
+              maxValue={maxValue}
             />
           </Dialog>
         </Popover>

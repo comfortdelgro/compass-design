@@ -1,4 +1,3 @@
-import type {IconProp} from '@fortawesome/fontawesome-svg-core'
 import {
   faPinterest,
   faTelegram,
@@ -8,15 +7,25 @@ import {
   faChevronCircleLeft,
   faChevronCircleRight,
 } from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React from 'react'
 import Button from '../button'
 import {Column} from '../utils/components'
 import Carousel from './index'
 
 const socialIcons = [
-  {icon: faPinterest as IconProp, target: 'https://www.pinterest.com.au/'},
-  {icon: faTiktok as IconProp, target: 'https://www.tiktok.com/'},
-  {icon: faTelegram as IconProp, target: 'https://telegram.org/'},
+  {
+    icon: <FontAwesomeIcon icon={faPinterest} />,
+    target: 'https://www.pinterest.com.au/',
+  },
+  {
+    icon: <FontAwesomeIcon icon={faTiktok} />,
+    target: 'https://www.tiktok.com/',
+  },
+  {
+    icon: <FontAwesomeIcon icon={faTelegram} />,
+    target: 'https://telegram.org/',
+  },
 ]
 
 const firstButtonCss = {
@@ -137,8 +146,8 @@ export const DesktopView: React.FC = () => {
         count={3}
         size='lg'
         socialIcons={socialIcons}
-        prevIcon={faChevronCircleLeft}
-        nextIcon={faChevronCircleRight}
+        prevIcon={<FontAwesomeIcon icon={faChevronCircleLeft} />}
+        nextIcon={<FontAwesomeIcon icon={faChevronCircleRight} />}
       >
         <Carousel.Image addresses={backgroundSrc} />
         <Carousel.Title titles={titles} />

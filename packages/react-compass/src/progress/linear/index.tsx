@@ -18,7 +18,8 @@ interface Props extends StyledComponentProps {
   rounded?: boolean
 }
 
-export type LinearProgressProps = Props
+export type LinearProgressProps = Props &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const LinearProgress = React.forwardRef<HTMLDivElement, LinearProgressProps>(
   (props, ref) => {
@@ -30,6 +31,7 @@ const LinearProgress = React.forwardRef<HTMLDivElement, LinearProgressProps>(
       rounded = false,
       color = '#0142af',
       variant = 'indeterminate',
+      ...delegated
     } = props
 
     const rootRef = useDOMRef<HTMLDivElement>(ref)
@@ -78,6 +80,7 @@ const LinearProgress = React.forwardRef<HTMLDivElement, LinearProgressProps>(
           ...css,
           ...{$$shadeColor: shadeColor, $$color: color, $$size: `${size}px`},
         }}
+        {...delegated}
       >
         {variant === 'buffer' && (
           <StyledLinearProgressDashed

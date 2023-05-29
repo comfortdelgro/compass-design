@@ -1,4 +1,3 @@
-// import type { AriaBreadcrumbItemProps } from '@react-types/breadcrumbs'
 import React, {useMemo} from 'react'
 import type {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -27,7 +26,9 @@ interface Props extends StyledComponentProps {
   tabIndex?: number
 }
 
-export type BreadcrumbItemProps = Props & BreadcrumbItemVariantProps
+export type BreadcrumbItemProps = Props &
+  BreadcrumbItemVariantProps &
+  Omit<React.HTMLAttributes<HTMLAnchorElement>, keyof Props>
 
 const BreadcrumbItem = React.forwardRef<HTMLAnchorElement, BreadcrumbItemProps>(
   (props, ref) => {
@@ -39,11 +40,10 @@ const BreadcrumbItem = React.forwardRef<HTMLAnchorElement, BreadcrumbItemProps>(
       target,
       isCurrent = false,
       isDisabled = false,
-      // AriaBreadcrumbItemProps
-      ...ariaSafeProps
+      children,
+      // htlm element props
+      ...delegated
     } = props
-
-    const {children} = ariaSafeProps
 
     const elementType = useMemo(
       () => (isCurrent || isDisabled ? 'span' : 'a'),
@@ -77,7 +77,7 @@ const BreadcrumbItem = React.forwardRef<HTMLAnchorElement, BreadcrumbItemProps>(
           onPointerDown={props.onPointerDown}
           onPointerUp={props.onPointerUp}
           tabIndex={props.tabIndex}
-          {...ariaSafeProps}
+          {...delegated}
         >
           {children}
         </StyledBreadcrumbItem>

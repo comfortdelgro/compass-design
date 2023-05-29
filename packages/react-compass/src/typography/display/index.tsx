@@ -9,7 +9,10 @@ interface Props extends StyledComponentProps {
   children: React.ReactNode
 }
 
-const Display: React.FC<Props> = (props) => {
+export type displayTypographyProps = Props &
+  Omit<React.HTMLAttributes<HTMLElement>, keyof Props>
+
+const Display: React.FC<displayTypographyProps> = (props) => {
   const {
     css = {},
     children,

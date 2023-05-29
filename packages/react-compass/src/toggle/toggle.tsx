@@ -29,6 +29,7 @@ interface Props extends StyledComponentProps {
   'aria-describedby'?: string
   'aria-details'?: string
   'aria-errormessage'?: string
+  className?: string
 }
 
 export type ToggleProps = Props & ToggleVariantProps
@@ -41,6 +42,7 @@ const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>((props, ref) => {
     isReadOnly = false,
     isRequired = false,
     css = {},
+    className,
   } = props
   const [isSelectedState, setIsSelectedState] = React.useState(isSelected)
   const toggleRef = useDOMRef<HTMLInputElement>(ref)
@@ -66,6 +68,7 @@ const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>((props, ref) => {
       active={isSelectedState}
       disabled={!!props.isDisabled}
       onClick={onClick}
+      className={className}
     >
       <input
         aria-controls={props['aria-controls']}
