@@ -12,7 +12,7 @@ interface Inputs {
 }
 export const DropdownsForm: React.FC = () => {
   const inputsScheme = yup.object().shape({
-    gender: yup.string().defined().required(),
+    gender: yup.string().required(),
     nationality: yup.string().required(),
     skill: yup.string().required(),
     hobbies: yup.array(yup.string().required()).min(1).required(),
