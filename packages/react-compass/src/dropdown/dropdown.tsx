@@ -371,10 +371,10 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           />
           <button
             type='button'
+            tabIndex={-1}
             ref={buttonRef}
             disabled={isDisabled}
             onClick={handleClickIcon}
-            tabIndex={-1}
           >
             {icon}
           </button>
@@ -405,6 +405,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           />
           <button
             ref={buttonRef}
+            tabIndex={-1}
             disabled={isDisabled}
             onClick={handleClickIcon}
             type='button'
