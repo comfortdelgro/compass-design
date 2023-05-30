@@ -23,15 +23,15 @@ export const DropdownsForm: React.FC = () => {
 
   const {control, handleSubmit, formState, setValue} = useForm<PersonInfo>({
     resolver: yupResolver(inputsScheme),
-    defaultValues: {},
+    defaultValues: {...personInfo},
     reValidateMode: 'onChange',
   })
 
   const handleValid = (data: PersonInfo) => {
     setPersonInfoValue(data)
   }
-  const [hobbiesData, setHobbies] = useState<string[]>([])
-
+  const [drinksList, setDrinksList] = useState([])
+  const [currentDrinksList, setCurrentDrinksList] = useState([])
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
@@ -41,10 +41,23 @@ export const DropdownsForm: React.FC = () => {
       return json
     }
     fetchData().then((res) => {
-      setHobbies(res.drinks)
+      setDrinksList(res.drinks)
+      setCurrentDrinksList(res.drinks.slice(0, 10))
     })
   }, [])
 
+  const handleLoadMore = () => {
+    console.log('loading')
+
+    const newItems = drinksList.slice(
+      currentDrinksList.length - 1,
+      currentDrinksList.length + 9,
+    )
+
+    if (newItems.length) {
+      setCurrentDrinksList((prev) => [...prev, ...newItems])
+    }
+  }
   return (
     <form
       onSubmit={handleSubmit(handleValid)}
@@ -71,6 +84,7 @@ export const DropdownsForm: React.FC = () => {
                   setValue('gender', String(key), {shouldValidate: true})
                 }}
                 isErrored={Boolean(fieldState.error)}
+                description={'Gender'}
               >
                 <Dropdown.Item key='male'>Male</Dropdown.Item>
                 <Dropdown.Item key='female'>Female</Dropdown.Item>
@@ -138,7 +152,6 @@ export const DropdownsForm: React.FC = () => {
             <Fragment>
               <MultipleDropdown
                 label={'Drinks'}
-                // selectionMode='multiple'
                 placeholder='Select'
                 selectedKeys={field.value}
                 onSelectionChange={(keys) => {
@@ -148,8 +161,9 @@ export const DropdownsForm: React.FC = () => {
                 }}
                 isRequired
                 isErrored={Boolean(fieldState.error)}
+                onLoadMore={handleLoadMore}
               >
-                {hobbiesData.map((item: any) => {
+                {currentDrinksList.map((item: any) => {
                   return (
                     <Dropdown.Item key={String(item.strDrink)}>
                       {item.strDrink}
