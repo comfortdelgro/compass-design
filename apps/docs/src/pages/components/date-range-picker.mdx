@@ -64,15 +64,16 @@ import {DateValue, getLocalTimeZone, parseDate} from '@internationalized/date'
 import {I18nProvider, useDateFormatter} from '@react-aria/i18n'
 
 function ControlledDateRangePicker() {
-  const [range, setRange] =
-    useState <
-    RangeValue <
-    DateValue >>
-      {
-        start: parseDate('2020-02-03'),
-        end: parseDate('2020-02-08'),
-      }
+  const [range, setRange] = useState<RangeValue<DateValue>>({
+    start: parseDate('2020-02-03'),
+    end: parseDate('2020-02-08'),
+  })
   const formatter = useDateFormatter({dateStyle: 'long'})
+
+  const onChangeDateRangePicker = (value: RangeValue<DateValue> | null) => {
+    setRange(value as RangeValue<DateValue>)
+  }
+
   return (
     <I18nProvider locale='en-SG'>
       {range &&
@@ -80,7 +81,7 @@ function ControlledDateRangePicker() {
           range.start.toDate(getLocalTimeZone()),
           range.end.toDate(getLocalTimeZone()),
         )}
-      <DateRangePicker value={range} onChange={setRange} />
+      <DateRangePicker value={range} onChange={onChangeDateRangePicker} />
     </I18nProvider>
   )
 }
@@ -162,7 +163,7 @@ but unavailable dates will not be displayed as selected.
 It is up to applications to split the full selected range into multiple as needed for business logic.
 
 <section className={styles.componentShowcaseContainer}>
-  <ValidatedDateRangePickers contiguos={true} />
+  <ValidatedDateRangePickers contiguous={true} />
 </section>
 
 ```js
