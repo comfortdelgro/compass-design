@@ -41,6 +41,9 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
     const {locale} = useLocale()
     const state = useRangeCalendarState({
       ...delegated,
+      value: props.state
+        ? (props.state?.value as RangeValue<DateValue>)
+        : (props.value as RangeValue<DateValue>),
       visibleDuration: {months: 2},
       locale,
       createCalendar,

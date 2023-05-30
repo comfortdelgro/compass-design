@@ -76,13 +76,6 @@ export const Controlled: React.FC = () => {
           setDate(date)
         }}
       />
-      <button
-        onClick={() => {
-          setDate(null)
-        }}
-      >
-        Reset
-      </button>
     </I18nProvider>
   )
 }

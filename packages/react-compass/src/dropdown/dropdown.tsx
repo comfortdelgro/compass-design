@@ -256,6 +256,10 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         setOpen(false)
         break
       }
+      case 'Tab': {
+        setOpen(false)
+        break
+      }
     }
   }
 
@@ -367,6 +371,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           />
           <button
             type='button'
+            tabIndex={-1}
             ref={buttonRef}
             disabled={isDisabled}
             onClick={handleClickIcon}
@@ -400,6 +405,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           />
           <button
             ref={buttonRef}
+            tabIndex={-1}
             disabled={isDisabled}
             onClick={handleClickIcon}
             type='button'
@@ -421,7 +427,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           {...getFloatingProps}
         >
           <Popover
-            isEmpty={collection.length === 0}
+            isEmpty={!isLoading ? collection.length === 0 : false}
             visualizeRef={visualizeULList}
             triggerRef={
               type == 'select'
