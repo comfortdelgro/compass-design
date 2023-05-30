@@ -3,6 +3,7 @@ import styles from '../../styles/Home.module.css'
 import Dropdown from '@comfortdelgro/react-compass/dropdown'
 import BugIcon from '@comfortdelgro/compass-icons/react/bug'
 import {ControlledDropdown} from '../../components/ControlledDropdown'
+import {DropdownsForm} from '../../components/DropdownsForm'
 
 # Dropdown
 
@@ -183,10 +184,7 @@ We provide 3 type of dropdown that can be used to select: `Dropdown.Select`, `Dr
     isErrored
     errorMessage='Use Helper Text for Errors'
   >
-    <Dropdown.Item
-      key='red panda'
-      leftIcon={<BugIcon />}
-    >
+    <Dropdown.Item key='red panda' leftIcon={<BugIcon />}>
       Red Panda
     </Dropdown.Item>
     <Dropdown.Item key='cat' type='color' rightColor='red'>
@@ -205,10 +203,7 @@ We provide 3 type of dropdown that can be used to select: `Dropdown.Select`, `Dr
   isErrored
   errorMessage='Use Helper Text for Errors'
 >
-  <Dropdown.Item
-    key='red panda'
-    leftIcon={<BugIcon />}
-  >
+  <Dropdown.Item key='red panda' leftIcon={<BugIcon />}>
     Red Panda
   </Dropdown.Item>
   <Dropdown.Item key='cat' type='color' rightColor='red'>
@@ -438,6 +433,118 @@ We provide 3 type of dropdown that can be used to select: `Dropdown.Select`, `Dr
   placeholder='Choose a country'
   flagKeyType='phone-code'
 />
+```
+
+---
+
+### Integrated with react-hook-form:
+
+<section className={styles.componentDisplayVertical}>
+  <DropdownsForm />
+</section>
+
+```js
+  interface Inputs {
+  gender: string
+  nationality: string
+  hobbies: string[]
+}
+export const DropdownsForm: React.FC = () => {
+  const inputsScheme = yup.object().shape({
+    gender: yup.string().required(),
+    nationality: yup.string().required(),
+    hobbies: yup.array().required(),
+  })
+
+  const {control, handleSubmit, formState, setValue} = useForm<Inputs>({
+    resolver: yupResolver(inputsScheme),
+    defaultValues: {gender: 'male', nationality: 'SGP', hobbies: ['dancing']},
+    reValidateMode: 'onChange',
+  })
+
+  const handleValid = (data: Inputs) => {
+    console.log(data)
+  }
+
+  return (
+    <form onSubmit={handleSubmit(handleValid)}>
+      <Controller
+        control={control}
+        name='gender'
+        render={({field, fieldState}) => {
+          return (
+            <Fragment>
+              <Dropdown.Select
+                label='Gender'
+                placeholder='Select'
+                selectedKey={String(field.value)}
+                isRequired
+                onSelectionChange={(key) => {
+                  //   setIndividualInfoFieldValue('fullNameTitle', key)
+                  setValue('gender', String(key), {shouldValidate: true})
+                }}
+                isErrored={Boolean(fieldState.error)}
+              >
+                <Dropdown.Item key='male'>Male</Dropdown.Item>
+                <Dropdown.Item key='female'>Female</Dropdown.Item>
+              </Dropdown.Select>
+            </Fragment>
+          )
+        }}
+      />
+      <Controller
+        control={control}
+        name='nationality'
+        render={({field, fieldState}) => {
+          return (
+            <Fragment>
+              <Dropdown.Flag
+                isRequired
+                label='List of country'
+                placeholder='Choose a country'
+                defaultSelectedCountry='SGP'
+                selectedKey={field.value}
+                onCountryChange={(key) =>
+                  setValue('nationality', String(key), {shouldValidate: true})
+                }
+                isErrored={Boolean(fieldState.error)}
+              />
+            </Fragment>
+          )
+        }}
+      />
+      <Controller
+        control={control}
+        name='hobbies'
+        render={({field, fieldState}) => {
+          return (
+            <Fragment>
+              <MultipleDropdown
+                label='Hobbies'
+                // selectionMode='multiple'
+                placeholder='Select'
+                selectedKeys={field.value}
+                onSelectionChange={(keys) => {
+                  setValue(
+                    'hobbies',
+                    [...keys].map((item) => String(item)),
+                    {shouldValidate: true},
+                  )
+                }}
+                isRequired
+                isErrored={Boolean(fieldState.error)}
+              >
+                <MultipleDropdown.Item key='male'>Male</MultipleDropdown.Item>
+                <MultipleDropdown.Item key='female'>
+                  Female
+                </MultipleDropdown.Item>
+              </MultipleDropdown>
+            </Fragment>
+          )
+        }}
+      />
+    </form>
+  )}
 ```
 
 ---
