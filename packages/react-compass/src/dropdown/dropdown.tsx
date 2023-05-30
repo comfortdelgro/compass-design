@@ -51,6 +51,7 @@ export type DropdownProps = Props &
 
 const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   const {
+    id = `cdg-element-${Math.random().toString(36).substring(2)}`,
     css = {},
     isOpen,
     children,
@@ -287,6 +288,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   }
 
   const labelClick = () => {
+    document.getElementById(id)?.click()
     selectRef.current?.click()
     buttonRef.current?.click()
   }
@@ -314,7 +316,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   return (
     <StyledDropdownWrapper css={css} {...delegated}>
       {props.label && (
-        <label onClick={labelClick}>
+        <label onClick={labelClick} htmlFor={id}>
           {props.label}
           {isRequired && <span>*</span>}
         </label>
@@ -328,6 +330,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           {...getReferenceProps}
         >
           <button
+            id={id}
             type='button'
             ref={selectRef as React.RefObject<HTMLButtonElement>}
             disabled={isDisabled}
@@ -353,6 +356,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           {...getReferenceProps}
         >
           <input
+            id={id}
             ref={inputRef}
             value={search}
             disabled={isDisabled}
@@ -385,6 +389,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
             </StyledFlagIcon>
           )}
           <input
+            id={id}
             ref={inputRef}
             value={search}
             disabled={isDisabled}
