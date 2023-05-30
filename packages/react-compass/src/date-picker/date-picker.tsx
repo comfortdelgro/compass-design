@@ -19,6 +19,7 @@ import {
 } from '../calendar/types'
 import type {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
+import DatePickerProvider from './date-picker-context'
 import {
   StyledDatePicker,
   StyledDatePickerFieldWrapper,
@@ -31,7 +32,6 @@ interface Props
   isInvalid?: boolean
   isMobile?: boolean
   shouldCloseOnSelect?: boolean
-  onCancel?: (() => void) | undefined
   maxValue?: DateValue | null | undefined
   calendarCSS?: CSS
   helperText?: React.ReactNode
@@ -87,27 +87,28 @@ const DatePicker = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   calendarProps.isReadOnly = checkIfCalendarInMobile()
   return (
     <StyledDatePicker css={css}>
-      <DatePickerFieldWrapper
-        ref={calendarRef}
-        groupProps={groupProps}
-        fieldProps={extendedFieldProps}
-        buttonProps={buttonProps as unknown as ButtonProps}
-        isInvalid={props.isInvalid}
-        isReadOnly={props.isReadOnly}
-        isMobile={props.isMobile}
-        label={props.label}
-        errorMessage={props.errorMessage}
-        helperText={props.helperText}
-      />
-      <DatePickerCalendarWrapper
-        maxValue={maxValue}
-        state={state}
-        onCancel={props.onCancel}
-        calendarProps={calendarProps}
-        calendarRef={calendarRef}
-        dialogProps={dialogProps}
-        css={props.calendarCSS}
-      />
+      <DatePickerProvider>
+        <DatePickerFieldWrapper
+          ref={calendarRef}
+          groupProps={groupProps}
+          fieldProps={extendedFieldProps}
+          buttonProps={buttonProps as unknown as ButtonProps}
+          isInvalid={props.isInvalid}
+          isReadOnly={props.isReadOnly}
+          isMobile={props.isMobile}
+          label={props.label}
+          errorMessage={props.errorMessage}
+          helperText={props.helperText}
+        />
+        <DatePickerCalendarWrapper
+          maxValue={maxValue}
+          state={state}
+          calendarProps={calendarProps}
+          calendarRef={calendarRef}
+          dialogProps={dialogProps}
+          css={props.calendarCSS}
+        />
+      </DatePickerProvider>
     </StyledDatePicker>
   )
 })
@@ -173,7 +174,6 @@ const DatePickerCalendarWrapper = (props: DatePickerCalendarWrapperProps) => {
     calendarRef,
     dialogProps,
     calendarProps,
-    onCancel,
     maxValue = parseDate('2999-03-10'),
     css = {},
   } = props
@@ -196,7 +196,6 @@ const DatePickerCalendarWrapper = (props: DatePickerCalendarWrapperProps) => {
             <Calendar
               state={state}
               hasFooter={true}
-              onCancelCallback={onCancel}
               {...calendarProps}
               maxValue={maxValue}
               css={css}

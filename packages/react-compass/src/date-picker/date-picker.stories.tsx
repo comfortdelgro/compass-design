@@ -50,7 +50,7 @@ export const Variants: React.FC = () => {
 }
 
 export const Controlled: React.FC = () => {
-  const [date, setDate] = useState<CalendarProps>(
+  const [date, setDate] = useState<CalendarProps | null>(
     parseDate(today(getLocalTimeZone()).toString()),
   )
 
@@ -58,16 +58,16 @@ export const Controlled: React.FC = () => {
 
   return (
     <I18nProvider locale='en-SG'>
-      {date ? (
-        <p>
-          <b>Selected date:</b>
-          <span style={{marginLeft: '4px'}}>
-            {formatter.format(date?.toDate(getLocalTimeZone()))}
-          </span>
-        </p>
-      ) : (
-        <></>
-      )}
+      <p>
+        <b>Selected date:</b>
+        <span style={{marginLeft: '4px'}}>
+          {date ? (
+            formatter.format(date?.toDate(getLocalTimeZone()))
+          ) : (
+            <span style={{marginLeft: '4px'}}>Invalid Date</span>
+          )}
+        </span>
+      </p>
       <DatePicker
         label='Date'
         value={date}
@@ -76,6 +76,13 @@ export const Controlled: React.FC = () => {
           setDate(date)
         }}
       />
+      <button
+        onClick={() => {
+          setDate(null)
+        }}
+      >
+        Reset
+      </button>
     </I18nProvider>
   )
 }

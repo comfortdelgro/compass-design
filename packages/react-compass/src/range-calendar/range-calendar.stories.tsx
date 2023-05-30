@@ -14,14 +14,18 @@ export const Variants: React.FC = () => {
   const formatter = useDateFormatter({dateStyle: 'long'})
   return (
     <Column>
-      {range &&
+      {range.start &&
+        range.end &&
         formatter.formatRange(
           range.start.toDate(getLocalTimeZone()),
           range.end.toDate(getLocalTimeZone()),
         )}
       <RangeCalendar
         value={range}
-        onChange={(e) => setRange(e as RangeValue<DateValue>)}
+        onChange={(e) => {
+          setRange(e as RangeValue<DateValue>)
+        }}
+        hasFooter
       />
     </Column>
   )
