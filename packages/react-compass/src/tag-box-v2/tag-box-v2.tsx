@@ -41,7 +41,7 @@ const TagBoxV2 = forwardRef<
       onAddTag,
       onEditTag,
       onRemoveTag,
-      isDisabled,
+      isDisabled = false,
       isEditable,
       isErrored = false,
 
