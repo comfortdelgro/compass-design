@@ -78,6 +78,7 @@ const MultipleDropdown = React.forwardRef<
   } = props
   // ====================================== STATE ======================================
   const [open, setOpen] = React.useState(false)
+  const [focused, setFocused] = React.useState(false)
   const [search, setSearch] = React.useState('')
   // const [isSearching, setIsSearching] = React.useState(false)
   const [currentKeys, setCurrentKeys] = React.useState<React.Key[]>(
@@ -180,6 +181,7 @@ const MultipleDropdown = React.forwardRef<
       const string = e.target.value
       // setIsSearching(true)
       setSearch(string)
+      setOpen(true)
       if (string !== '') {
         const fakeEle = document.createElement('div')
         fakeEle.style.position = 'absolute'
@@ -233,6 +235,10 @@ const MultipleDropdown = React.forwardRef<
       }
       case 'Escape': {
         e.preventDefault()
+        setOpen(false)
+        break
+      }
+      case 'Tab': {
         setOpen(false)
         break
       }
@@ -294,9 +300,10 @@ const MultipleDropdown = React.forwardRef<
           onClick={handleOpen}
         >
           <StyledSelectedItemWrapper>
-            {selectedNode.length === 0 && search === '' && !open && (
-              <p>{props.placeholder}</p>
-            )}
+            {selectedNode.length === 0 &&
+              search === '' &&
+              !open &&
+              !focused && <p>{props.placeholder}</p>}
             {selectedNode.length > 0 &&
               selectedNode.map((item) => {
                 const isHideXIcon =
@@ -333,6 +340,8 @@ const MultipleDropdown = React.forwardRef<
                 ref={inputRef}
                 value={search}
                 onChange={onInputChange}
+                onBlur={() => setFocused(false)}
+                onFocus={() => setFocused(true)}
               />
             )}
           </StyledSelectedItemWrapper>
@@ -353,7 +362,7 @@ const MultipleDropdown = React.forwardRef<
           {...getFloatingProps}
         >
           <Popover
-            isEmpty={collection.length === 0}
+            isEmpty={!isLoading ? collection.length === 0 : false}
             visualizeRef={visualizeULList}
             triggerRef={wrapperRef}
             onBlur={onBlur}
