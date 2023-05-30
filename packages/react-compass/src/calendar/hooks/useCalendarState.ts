@@ -158,7 +158,12 @@ export const useCalendarState = (
   })
 
   const endDate = useMemo(() => {
-    const duration = {...visibleDuration}
+    const duration: {months?: number; days?: number} = {...visibleDuration}
+    if (duration.days) {
+      duration.days--
+    } else {
+      duration.days = -1
+    }
 
     return startDate.add(duration)
   }, [startDate])
