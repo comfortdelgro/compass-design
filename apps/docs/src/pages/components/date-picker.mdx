@@ -1,0 +1,200 @@
+import {DatePicker} from '@comfortdelgro/react-compass'
+import styles from '../../styles/Home.module.css'
+import {
+  ControlledDatePickers,
+  ValidatedDatePickers,
+} from '../../components/DatePickers'
+
+# DatePicker
+
+DatePickers combine input and a Calendar popover to allow users to enter or select a date
+
+### Pre-Install
+
+Install these packages to use their utilities
+
+import {Tabs, Tab, Callout} from 'nextra-theme-docs'
+
+<Tabs items={['npm', 'yarn', 'pnpm']} defaultIndex={0}>
+  <Tab>```bash npm i @react-aria/i18n @internationalized/date ```</Tab>
+  <Tab>``` bash yarn add @react-aria/i18n @internationalized/date ```</Tab>
+  <Tab>``` bash pnpm add @react-aria/i18n @internationalized/date ```</Tab>
+</Tabs>
+
+---
+
+### Import
+
+```js
+import {DatePicker} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import DatePicker from '@comfortdelgro/react-compass/date-picker'
+```
+
+---
+
+### I18nProvider
+
+I18nProvider allows you to override the default locale as determined by the browser/system setting with a locale defined by your application (e.g. application setting).
+In this docs, we will use English(Singapore) `en-SG` as default locale
+
+### Basic
+
+<section className={styles.componentShowcaseContainer}>
+  <DatePicker label='Date' />
+</section>
+
+```js
+<DatePicker label='Date' />
+```
+
+### Controlled
+
+<section className={styles.componentShowcaseContainer}>
+  <ControlledDatePickers />
+</section>
+
+```js
+import {DatePicker} from '@comfortdelgro/react-compass'
+import {
+  DateValue,
+  getLocalTimeZone,
+  parseDate,
+  today,
+} from '@internationalized/date'
+import {I18nProvider, useDateFormatter} from '@react-aria/i18n'
+
+export function ControlledDatePickers() {
+  const [date, setDate] = useState<DateValue>(
+    parseDate(today(getLocalTimeZone()).toString()),
+  )
+
+  const formatter = useDateFormatter({dateStyle: 'full'})
+
+  return (
+    <I18nProvider locale='en-SG'>
+      <p>
+        <b>Selected date:</b>
+        <span style={{marginLeft: '4px'}}>
+          {formatter.format(date.toDate(getLocalTimeZone()))}
+        </span>
+      </p>
+      <DatePicker
+        label='Date'
+        value={date}
+        defaultValue={today(getLocalTimeZone())}
+        onChange={setDate}
+      />
+    </I18nProvider>
+  )
+}
+```
+
+### Granularity
+
+The granularity prop allows you to control the smallest unit that is displayed by a DatePicker.
+
+<section className={styles.componentShowcaseContainer}>
+  <DatePicker label='Date' granularity='second' />
+</section>
+
+```js
+<DatePicker label='Date' granularity='second' />
+```
+
+### Labeling
+
+A visual label should be provided for the DatePicker using the label prop. If the DatePicker is required, the isRequired and necessityIndicator props can be used to show a required state.
+
+<section className={styles.componentShowcaseContainer}>
+  <DatePicker label='Date' />
+  <DatePicker label='Date' isRequired necessityIndicator='icon' />
+  <DatePicker label='Date' isRequired necessityIndicator='label' />
+  <DatePicker label='Date' necessityIndicator='label' />
+</section>
+
+```js
+<DatePicker label='Date'/>
+<DatePicker label='Date' isRequired necessityIndicator="icon"/>
+<DatePicker label='Date' isRequired necessityIndicator="label"/>
+<DatePicker label="Date" necessityIndicator="label" />
+```
+
+### Validation
+
+<section className={styles.componentShowcaseContainer}>
+  <ValidatedDatePickers />
+</section>
+
+```js
+function ValidatedDatePickers() {
+  const {locale} = useLocale()
+
+  return (
+    <DatePicker
+      label='Date'
+      isDateUnavailable={(date) => isWeekend(date, locale)}
+    />
+  )
+}
+```
+
+### Disabled
+
+<section className={styles.componentShowcaseContainer}>
+  <DatePicker isDisabled />
+</section>
+
+```js
+<DatePicker isDisabled />
+```
+
+### Read only
+
+<section className={styles.componentShowcaseContainer}>
+  <DatePicker isReadOnly />
+</section>
+
+```js
+<DatePicker isReadOnly />
+```
+
+### Invalid
+
+<section className={styles.componentShowcaseContainer}>
+  <DatePicker isInvalid />
+</section>
+
+```js
+<DatePicker isInvalid />
+```
+
+### Props
+
+| Name                | Type                                             | Default | Description                                                                                                                                         |
+| :------------------ | :----------------------------------------------- | :------ | :-------------------------------------------------------------------------------------------------------------------------------------------------- |
+| minValue            | `DateValue`                                      |         | The minimum allowed date that a user may select.                                                                                                    |
+| maxValue            | `DateValue`                                      |         | The maximum allowed date that a user may select.                                                                                                    |
+| granularity         | `'day' \| 'hour' \| 'minute' \| 'second'`        |         | Determines the smallest unit that is displayed in the date picker. By default, this is "day" for dates, and "minute" for times.                     |
+| isReadOnly          | `boolean`                                        | false   | Whether the calendar value is immutable.                                                                                                            |
+| isDisabled          | `boolean`                                        | false   | Whether the calendar is disabled.                                                                                                                   |
+| value               | `DateValue`                                      |         | The current value (controlled).                                                                                                                     |
+| defaultValue        | `DateValue`                                      |         | The default value (uncontrolled).                                                                                                                   |
+| hourCycle           | `12                                       \| 24` |         | Whether to display the time in 12 or 24 hour format. By default, this is determined by the user's locale.                                           |
+| label               | `string`                                         |         | The content to display as the label.                                                                                                                |
+| necessityIndicator  | `'icon' \| 'label'`                              |         | Whether the required state should be shown as an icon or text.                                                                                      |
+| shouldCloseOnSelect | `boolean`                                        | false   | Whether the overlay will close after selected. If `granularity` is selected, `shouldCloseOnSelect` will be set to `true` due to core library issues |
+| isOpen              | `boolean`                                        | false   | Whether the overlay is open by default (controlled).                                                                                                |
+| defaultOpen         | `boolean`                                        | false   | Whether the overlay is open by default (uncontrolled).                                                                                              |
+| onChange            | `(e: DateValue) => void`                         |         | The default value (uncontrolled).                                                                                                                   |
+| onCancel            | `() => void`                                     |         | Callback that is called when the cancel button is triggered                                                                                         |
+| isDateUnavailable   | `(date: DateValue) => boolean`                   |         | Callback that is called for each date of the calendar. If it returns true, then the date is unavailable.                                            |
+
+<Callout>
+  Check out our [ladle](/ladle?story=date-picker--variants) for more info on
+  this component.
+</Callout>
