@@ -23,6 +23,7 @@ import {
   toCalendar,
 } from '@internationalized/date'
 import {useEffect, useMemo, useRef, useState} from 'react'
+import {useDatePickerContext} from '../../date-picker/date-picker-context'
 import {MIN_YEAR} from '../constants/common'
 import {
   DatePickerProps,
@@ -212,6 +213,24 @@ export function useDateFieldState<T extends DateValue = DateValue>(
   )
   const [isValidFake, setValidFake] = useState<boolean | undefined>(undefined)
 
+  // handle reset date field
+  const {isReset, setIsReset} = useDatePickerContext()
+
+  const reset = () => {
+    setDate(null)
+    validSegments = {}
+    setValidSegments(validSegments)
+    setValidFake(undefined)
+  }
+
+  useEffect(() => {
+    if (isReset === true) {
+      reset()
+      setIsReset?.(false)
+    }
+  }, [isReset])
+  //
+
   const opts = useMemo(
     () => getFormatOptions({}, formatOpts as FormatterOptions),
     [formatOpts],
@@ -280,7 +299,8 @@ export function useDateFieldState<T extends DateValue = DateValue>(
   if (
     value == null &&
     Object.keys(validSegments).length === Object.keys(allSegments).length &&
-    isValidFake === false
+    isValidFake === false &&
+    !isReset
   ) {
     validSegments = {}
     setValidSegments(validSegments)
@@ -415,6 +435,9 @@ export function useDateFieldState<T extends DateValue = DateValue>(
   function checkValidSegments() {
     const validSegmentValues = Object.values(validSegments)
     const allSegmentValues = Object.values(allSegments)
+    if (value) {
+      return true
+    }
     if (validSegmentValues.length === 0) {
       return true
     }
@@ -439,7 +462,10 @@ export function useDateFieldState<T extends DateValue = DateValue>(
       (isInvalid(calendarValue!, props.minValue!, props.maxValue!)
         ? 'invalid'
         : null) ||
-      (!value && placeholderDate?.year && placeholderDate.year < MIN_YEAR) ||
+      (!value &&
+        placeholderDate?.year &&
+        placeholderDate.year < MIN_YEAR &&
+        isValidFake !== undefined) ||
       !checkValidSegments()
     ) {
       return 'invalid'

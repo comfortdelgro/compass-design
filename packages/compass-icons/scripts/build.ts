@@ -147,7 +147,7 @@ async function buildIcons(
     const svg = `<svg width="1em" height="1em" viewBox="0 0 ${des.width} ${des.height}">${icon.body}</svg>`
     const tsCode = await transform(
       svg,
-      {icon: true, typescript: true},
+      {icon: true, typescript: true, ref: true},
       {componentName: toPascalCase(iconName)},
     )
 
