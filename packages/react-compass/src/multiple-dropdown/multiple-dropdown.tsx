@@ -48,6 +48,7 @@ const MultipleDropdown = React.forwardRef<
   MultipleDropdownProps
 >((props, r) => {
   const {
+    id = `cdg-element-${Math.random().toString(36).substring(2)}`,
     css = {},
     isOpen,
     children,
@@ -275,7 +276,7 @@ const MultipleDropdown = React.forwardRef<
   return (
     <StyledDropdownWrapper css={css} ref={ref} {...delegated}>
       {props.label && (
-        <label onClick={handleOpen}>
+        <label onClick={handleOpen} htmlFor={id}>
           {props.label}
           {isRequired && <span>*</span>}
         </label>
@@ -322,6 +323,7 @@ const MultipleDropdown = React.forwardRef<
               })}
             {!isDisabled && (
               <input
+                id={id}
                 type='text'
                 ref={inputRef}
                 value={search}
