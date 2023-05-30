@@ -1,32 +1,49 @@
 import Inspect from '@comfortdelgro/compass-icons/react/inspect'
 import {Button, Dropdown, MultipleDropdown} from '@comfortdelgro/react-compass'
 import {yupResolver} from '@hookform/resolvers/yup'
-import {Fragment} from 'react'
+import {PersonInfo, useCreatePersonStore} from 'hooks/useDropdownsForm'
+import {Fragment, useEffect, useState} from 'react'
 import {Controller, useForm} from 'react-hook-form'
 import * as yup from 'yup'
-interface Inputs {
-  gender: string
-  nationality: string
-  skill: string
-  hobbies: string[]
-}
 export const DropdownsForm: React.FC = () => {
   const inputsScheme = yup.object().shape({
     gender: yup.string().required(),
     nationality: yup.string().required(),
     skill: yup.string().required(),
-    hobbies: yup.array(yup.string().required()).min(1).required(),
+    drinks: yup.array(yup.string().required()).min(1).required(),
+    animal: yup.string().required(),
   })
 
-  const {control, handleSubmit, formState, setValue} = useForm<Inputs>({
+  const {
+    personInfo,
+    setPersonInfoFieldValue,
+    setPersonInfoValue,
+    // setPersonInfoErrorState,
+  } = useCreatePersonStore()
+
+  const {control, handleSubmit, formState, setValue} = useForm<PersonInfo>({
     resolver: yupResolver(inputsScheme),
     defaultValues: {},
     reValidateMode: 'onChange',
   })
 
-  const handleValid = (data: Inputs) => {
-    console.log(data)
+  const handleValid = (data: PersonInfo) => {
+    setPersonInfoValue(data)
   }
+  const [hobbiesData, setHobbies] = useState<string[]>([])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(
+        'https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail&i=gin',
+      )
+      const json = await response.json()
+      return json
+    }
+    fetchData().then((res) => {
+      setHobbies(res.drinks)
+    })
+  }, [])
 
   return (
     <form
@@ -50,7 +67,7 @@ export const DropdownsForm: React.FC = () => {
                 selectedKey={field.value}
                 isRequired
                 onSelectionChange={(key) => {
-                  //   setIndividualInfoFieldValue('fullNameTitle', key)
+                  setPersonInfoFieldValue('gender', String(key))
                   setValue('gender', String(key), {shouldValidate: true})
                 }}
                 isErrored={Boolean(fieldState.error)}
@@ -73,9 +90,10 @@ export const DropdownsForm: React.FC = () => {
                 label='List of country'
                 placeholder='Choose a country'
                 selectedKey={field.value}
-                onCountryChange={(key) =>
+                onCountryChange={(key) => {
+                  setPersonInfoFieldValue('nationality', String(key))
                   setValue('nationality', String(key), {shouldValidate: true})
-                }
+                }}
                 isErrored={Boolean(fieldState.error)}
               />
             </Fragment>
@@ -94,7 +112,7 @@ export const DropdownsForm: React.FC = () => {
                 selectedKey={field.value}
                 isRequired
                 onSelectionChange={(key) => {
-                  //   setIndividualInfoFieldValue('fullNameTitle', key)
+                  setPersonInfoFieldValue('skill', String(key))
                   setValue('skill', String(key), {shouldValidate: true})
                 }}
                 isErrored={Boolean(fieldState.error)}
@@ -114,41 +132,63 @@ export const DropdownsForm: React.FC = () => {
       />
       <Controller
         control={control}
-        name='hobbies'
+        name='drinks'
         render={({field, fieldState}) => {
           return (
             <Fragment>
               <MultipleDropdown
-                label={'Hobbies'}
+                label={'Drinks'}
                 // selectionMode='multiple'
                 placeholder='Select'
                 selectedKeys={field.value}
                 onSelectionChange={(keys) => {
-                  setValue(
-                    'hobbies',
-                    [...keys].map((item) => String(item)),
-                    {shouldValidate: true},
-                  )
+                  const keysValue = [...keys].map((item) => String(item))
+                  setPersonInfoFieldValue('drinks', keysValue)
+                  setValue('drinks', keysValue, {shouldValidate: true})
                 }}
                 isRequired
                 isErrored={Boolean(fieldState.error)}
               >
-                <MultipleDropdown.Item key='dancing'>
-                  Dancing
-                </MultipleDropdown.Item>
-                <MultipleDropdown.Item key='coffee'>
-                  Coffee
-                </MultipleDropdown.Item>
-                <MultipleDropdown.Item key='badminton'>
-                  Badminton
-                </MultipleDropdown.Item>
-                <MultipleDropdown.Item key='movies'>
-                  Movies
-                </MultipleDropdown.Item>
-                <MultipleDropdown.Item key='fooball'>
-                  Fooball
-                </MultipleDropdown.Item>
+                {hobbiesData.map((item: any) => {
+                  return (
+                    <Dropdown.Item key={String(item.strDrink)}>
+                      {item.strDrink}
+                    </Dropdown.Item>
+                  )
+                })}
               </MultipleDropdown>
+            </Fragment>
+          )
+        }}
+      />
+      <Controller
+        control={control}
+        name='animal'
+        render={({field, fieldState}) => {
+          return (
+            <Fragment>
+              <Dropdown.ComboBox
+                label='Favorite Animal'
+                placeholder='Choose an animal'
+                selectedKey={field.value}
+                onSelectionChange={(key) => {
+                  setPersonInfoFieldValue('animal', String(key))
+                  setValue('animal', String(key), {shouldValidate: true})
+                }}
+                isRequired
+                isErrored={Boolean(fieldState.error)}
+              >
+                <Dropdown.Section title='Birds'>
+                  <Dropdown.Item key='red panda'>Eagle</Dropdown.Item>
+                  <Dropdown.Item key='cat'>Pigeon</Dropdown.Item>
+                  <Dropdown.Item key='dog'>Parrot</Dropdown.Item>
+                </Dropdown.Section>
+                <Dropdown.Section title='Mammal'>
+                  <Dropdown.Item key='aardvark'>Bear</Dropdown.Item>
+                  <Dropdown.Item key='kangaroo'>Lion</Dropdown.Item>
+                  <Dropdown.Item key='snake'>Whale</Dropdown.Item>
+                </Dropdown.Section>
+              </Dropdown.ComboBox>
             </Fragment>
           )
         }}
