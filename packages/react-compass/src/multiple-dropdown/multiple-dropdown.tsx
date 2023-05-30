@@ -79,7 +79,7 @@ const MultipleDropdown = React.forwardRef<
   // ====================================== STATE ======================================
   const [open, setOpen] = React.useState(false)
   const [search, setSearch] = React.useState('')
-  const [isSearching, setIsSearching] = React.useState(false)
+  // const [isSearching, setIsSearching] = React.useState(false)
   const [currentKeys, setCurrentKeys] = React.useState<React.Key[]>(
     getDefaulValues(defaultSelectedKeys, selectedKeys),
   )
@@ -117,7 +117,7 @@ const MultipleDropdown = React.forwardRef<
   )
 
   const collection = React.useMemo(() => {
-    if (!isSearching) return rawCollection
+    // if (!isSearching) return rawCollection
     if (search === '') {
       return rawCollection
     } else {
@@ -126,7 +126,7 @@ const MultipleDropdown = React.forwardRef<
         return text?.toLowerCase().includes(search.toLowerCase())
       })
     }
-  }, [rawCollection, search, isSearching])
+  }, [rawCollection, search])
 
   const delegate = React.useMemo(
     () => new ListKeyboardDelegate(rawCollection, disabledKeys),
@@ -169,9 +169,8 @@ const MultipleDropdown = React.forwardRef<
     if (open) {
       inputRef.current?.focus()
     } else {
-      setIsSearching(false)
       inputRef.current?.blur()
-      setIsSearching(false)
+      // setIsSearching(false)
     }
   }, [open])
 
@@ -179,7 +178,7 @@ const MultipleDropdown = React.forwardRef<
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (wrapperRef.current) {
       const string = e.target.value
-      setIsSearching(true)
+      // setIsSearching(true)
       setSearch(string)
       if (string !== '') {
         const fakeEle = document.createElement('div')
@@ -240,29 +239,35 @@ const MultipleDropdown = React.forwardRef<
     }
   }
 
-  const onSelect = (key: React.Key) => {
+  const onSelect = (key: React.Key, removeOnly = false) => {
     if (!isReadOnly) {
       const v = new Set(currentKeys)
       const clickedItem = currentKeys.find((v) => v == key)
       if (clickedItem) {
         v.delete(clickedItem)
-      } else {
+        if (clickedItem == focusKey) {
+          setFocusKey(Array.from(v).pop() ?? undefined)
+        }
+      } else if (!removeOnly) {
         v.add(key)
+        setFocusKey(key)
       }
       setCurrentKeys([...v])
       props.onSelectionChange?.([...v])
       inputRef.current?.focus()
-      setFocusKey(key)
     }
   }
 
   const removeItem = (key: Key) => {
-    const v = new Set(currentKeys)
-    if (currentKeys.some((v) => v == key)) {
-      v.delete(key)
-      setCurrentKeys([...v])
-      props.onSelectionChange?.([...v])
-    }
+    // const v = new Set(currentKeys)
+    // const clickedItem = currentKeys.find((v) => v == key)
+    // if (clickedItem) {
+    // if (currentKeys.some((v) => v == key)) {
+    //   v.delete(key)
+    //   setCurrentKeys([...v])
+    //   props.onSelectionChange?.([...v])
+    // }
+    onSelect(key, true)
   }
 
   const handleOpen = () => {
