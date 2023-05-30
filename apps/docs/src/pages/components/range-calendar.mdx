@@ -1,6 +1,9 @@
 import RangeCalendar from '@comfortdelgro/react-compass/range-calendar'
 import styles from '../../styles/Home.module.css'
-import {ControlledRangeCalendar} from '../../components/Calendars'
+import {
+  ControlledRangeCalendar,
+  ValidatedRangeCalendar,
+} from '../../components/Calendars'
 
 # Range Calendar
 
@@ -83,4 +86,24 @@ export function ControlledRangeCalendar() {
     </>
   )
 }
+```
+
+### Disabled
+
+<section className={styles.componentShowcaseContainer}>
+  <RangeCalendar isDisabled />
+</section>
+
+```js
+<RangeCalendar isDisabled />
+```
+
+### Read only
+
+<section className={styles.componentShowcaseContainer}>
+  <RangeCalendar isReadOnly />
+</section>
+
+```js
+<RangeCalendar isReadOnly />
 ```

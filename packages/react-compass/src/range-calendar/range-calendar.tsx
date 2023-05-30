@@ -26,6 +26,8 @@ interface Props extends StyledComponentProps {
   onChange?: (e: unknown) => void
   allowsNonContiguousRanges?: boolean
   isDateUnavailable?: (date: DateValue) => boolean
+  isDisabled?: boolean
+  isReadOnly?: boolean
 }
 
 export type RangeCalendarProps = Props
