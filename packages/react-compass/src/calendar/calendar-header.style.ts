@@ -11,6 +11,18 @@ export const StyledCalendarHeader = styled('div', {
     flex: 1,
   },
 
+  '& .calendar-header-middle': {
+    fontWeight: '$semibold',
+    fontSize: '$body3',
+    color: '$cdgBlue100',
+    margin: 0,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    backgroundColor: 'transparent',
+    border: 'none',
+    cursor: 'pointer',
+  },
+
   '& h2': {
     fontWeight: '$semibold',
     fontSize: '$body3',

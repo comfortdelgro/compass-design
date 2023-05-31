@@ -4,6 +4,13 @@ export const StyledCalendarGrid = styled('table', {
   marginTop: '$2',
   borderCollapse: 'collapse',
 
+  '& tbody:before': {
+    content: '@',
+    display: 'block',
+    lineHeight: '12px',
+    textIndent: '-99999px',
+  },
+
   '& .calendar-weekday': {
     fontSize: '$label2',
     fontWeight: '$semibold',
