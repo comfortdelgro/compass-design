@@ -175,6 +175,7 @@ const TooltipTrigger = React.forwardRef<HTMLDivElement, TooltipTriggerProps>(
         position: strategy,
         top: y ?? 0,
         left: x ?? 0,
+        zIndex: 61,
       },
       ...getFloatingProps(),
     }
