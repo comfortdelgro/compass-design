@@ -657,9 +657,7 @@ Include all of the props above and have extra new prop
 | Name                   | Type                                                               | Default   | Description                                                                                                                                           |
 | :--------------------- | :----------------------------------------------------------------- | :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | flagKeyType            | `alpha-2` \| `alpha-3` \| `name` \| `country-code` \| `phone-code` | `alpha-3` | The value of selectedKey will depends by which type of key                                                                                            |
-| selectedCountry        | `Key`\|`null`                                                      | —         | The currently selected key in the collection (controlled).                                                                                            |
-| onCountryChange        | `(p: string) => void`                                              | —         | Return phone code of selected key. You may need to get phone code from this function, not from the key because some country has duplicated phone code |
-| defaultSelectedCountry | `Key`                                                              | —         | The initial selected key in the collection (uncontrolled).                                                                                            |
+| onCountryChange        | `(p: Country) => void`                                             | —         | Return phone code of selected key. You may need to get phone code from this function, not from the key because some country has duplicated phone code |
 
 Example for key and value
 

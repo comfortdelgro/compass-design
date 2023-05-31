@@ -104,7 +104,7 @@ export const DropdownsForm: React.FC = () => {
                 label='List of country'
                 placeholder='Choose a country'
                 selectedKey={field.value}
-                onCountryChange={(key) => {
+                onSelectionChange={(key) => {
                   setPersonInfoFieldValue('nationality', String(key))
                   setValue('nationality', String(key), {shouldValidate: true})
                 }}

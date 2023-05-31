@@ -5,8 +5,7 @@ import {Column} from '../utils/components'
 import Dropdown from './index'
 
 export const Flag: React.FC = () => {
-  const [value, setValue] = React.useState('BRA')
-  const [value1, setValue1] = React.useState('BRA')
+  const [value, setValue] = React.useState<React.Key>('')
   return (
     <Column>
       <h3>Flag</h3>
@@ -17,10 +16,11 @@ export const Flag: React.FC = () => {
             List of country <FontAwesomeIcon icon={faBug} />
           </>
         }
+        flagKeyType='country-code'
         placeholder='Choose a country'
-        defaultSelectedCountry='SWZ'
         selectedKey={value}
-        onCountryChange={(e) => setValue(e)}
+        onSelectionChange={(e) => setValue(e)}
+        onCountryChange={(e) => console.log(e)}
       />
       <h3>Disabled Flag</h3>
       <Dropdown.Flag
@@ -28,9 +28,6 @@ export const Flag: React.FC = () => {
         isRequired
         label='List of country'
         placeholder='Choose a country'
-        defaultSelectedCountry='SWZ'
-        selectedKey={value1}
-        onCountryChange={(e) => setValue1(e)}
       />
     </Column>
   )
