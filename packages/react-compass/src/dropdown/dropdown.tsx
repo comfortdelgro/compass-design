@@ -184,9 +184,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     const newValue = getDefaulValue(defaultSelectedKey, selectedKey, true)
     setCurrentKey(newValue)
     setFocusKey(newValue)
-    if (newValue === undefined) {
-      setSearch('')
-    } else {
+    if (newValue) {
       setSearch(getTextFromKey(newValue))
     }
   }, [selectedKey, getTextFromKey])
