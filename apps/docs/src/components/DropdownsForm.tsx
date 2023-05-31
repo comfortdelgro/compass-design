@@ -25,7 +25,6 @@ export const DropdownsForm: React.FC = () => {
     personInfo,
     setPersonInfoFieldValue,
     setPersonInfoValue,
-    // setPersonInfoErrorState,
   } = useCreatePersonStore()
 
   const {control, handleSubmit, formState, setValue} = useForm<PersonInfo>({
