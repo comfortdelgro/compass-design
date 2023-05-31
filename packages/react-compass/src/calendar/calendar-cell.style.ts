@@ -48,5 +48,6 @@ export const StyledCalendarCell = styled('td', {
   '& .calendar-cell-value.disabled': {
     cursor: 'not-allowed',
     color: '$gray50',
+    background: '$background',
   },
 })

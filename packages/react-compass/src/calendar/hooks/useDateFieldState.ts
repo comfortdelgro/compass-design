@@ -150,6 +150,33 @@ export function useDateFieldState<T extends DateValue = DateValue>(
     onChange as () => void,
   )
 
+  const oldValueRef = useRef(value)
+
+  useEffect(() => {
+    if (oldValueRef.current !== value) {
+      if (
+        value === null &&
+        Object.keys(validSegments).length === Object.keys(allSegments).length &&
+        isValidFake === undefined
+      ) {
+        validSegments = {}
+        setValidSegments(validSegments)
+
+        setPlaceholderDate(
+          createPlaceholderDate(
+            props.placeholderValue!,
+            granularity,
+            calendar,
+            defaultTimeZone,
+          ),
+        )
+
+        setValidFake(undefined)
+      }
+      oldValueRef.current = value
+    }
+  }, [value])
+
   const calendarValue = useMemo(
     () => convertValue(value!, calendar),
     [value, calendar],

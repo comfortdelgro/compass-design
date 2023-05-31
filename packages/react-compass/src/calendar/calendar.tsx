@@ -43,6 +43,7 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     isDisabled,
     createCalendar,
     ...delegated,
+    value: props.state ? props.state?.value : (props.value as DateValue),
   })
 
   const {calendarProps, prevButtonProps, nextButtonProps} = useCalendar(
