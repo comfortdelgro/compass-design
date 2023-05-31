@@ -445,7 +445,12 @@ We provide 3 type of dropdown that can be used to select: `Dropdown.Select`, `Dr
 
 ```js
 import Inspect from '@comfortdelgro/compass-icons/react/inspect'
-import { Button,Dropdown,MultipleDropdown } from '@comfortdelgro/react-compass'
+import {
+Button,
+Dropdown,
+MultipleDropdown,
+TextField
+} from '@comfortdelgro/react-compass'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { PersonInfo,useCreatePersonStore } from 'hooks/useDropdownsForm'
 import { Fragment,useEffect,useState } from 'react'
@@ -457,26 +462,30 @@ export const DropdownsForm: React.FC = () => {
     nationality: yup.string().required(),
     skill: yup.string().required(),
     drinks: yup.array(yup.string().required()).min(1).required(),
+    animal: yup.string().required(),
+    phoneCode: yup.string().required(),
+    phoneNumber: yup.string().required(),
   })
 
   const {
     personInfo,
     setPersonInfoFieldValue,
     setPersonInfoValue,
-    // setPersonInfoErrorState,
   } = useCreatePersonStore()
 
   const {control, handleSubmit, formState, setValue} = useForm<PersonInfo>({
     resolver: yupResolver(inputsScheme),
-    defaultValues: {},
+    defaultValues: {...personInfo},
     reValidateMode: 'onChange',
   })
 
   const handleValid = (data: PersonInfo) => {
+    console.log(data)
+
     setPersonInfoValue(data)
   }
-  const [hobbiesData, setHobbies] = useState<string[]>([])
-
+  const [drinksList, setDrinksList] = useState([])
+  const [currentDrinksList, setCurrentDrinksList] = useState([])
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
@@ -486,12 +495,16 @@ export const DropdownsForm: React.FC = () => {
       return json
     }
     fetchData().then((res) => {
-        setHobbies(res.drinks)
+      setDrinksList(res.drinks)
+      setCurrentDrinksList(res.drinks.slice(0, 10))
     })
   }, [])
 
+  const handleLoadMore = () => {
+  }
   return (
     <form
+      noValidate
       onSubmit={handleSubmit(handleValid)}
       style={{
         width: '100%',
@@ -516,6 +529,7 @@ export const DropdownsForm: React.FC = () => {
                   setValue('gender', String(key), {shouldValidate: true})
                 }}
                 isErrored={Boolean(fieldState.error)}
+                description={'Gender'}
               >
                 <Dropdown.Item key='male'>Male</Dropdown.Item>
                 <Dropdown.Item key='female'>Female</Dropdown.Item>
@@ -545,6 +559,51 @@ export const DropdownsForm: React.FC = () => {
           )
         }}
       />
+
+      <Controller
+        control={control}
+        name='phoneCode'
+        render={({field, fieldState}) => {
+          return (
+            <Fragment>
+              <Dropdown.Flag
+                isRequired
+                flagKeyType={'country-code'}
+                label='List of phone code'
+                placeholder='Choose a country'
+                selectedKey={field.value}
+                onCountryChange={(key) => {
+                  setPersonInfoFieldValue('phoneCode', String(key))
+                  setValue('phoneCode', String(key), {shouldValidate: true})
+                }}
+                isErrored={Boolean(fieldState.error)}
+              />
+            </Fragment>
+          )
+        }}
+      />
+      <Controller
+        control={control}
+        name='phoneNumber'
+        render={({field, fieldState}) => {
+          return (
+            <Fragment>
+              <TextField
+                isRequired
+                label='Phone Number'
+                placeholder='Enter your phone'
+                isErrored={Boolean(fieldState.error)}
+                value={field.value}
+                onChange={(value) => {
+                  setPersonInfoFieldValue('phoneNumber', String(value))
+                  setValue('phoneNumber', String(value), {shouldValidate: true})
+                }}
+              />
+            </Fragment>
+          )
+        }}
+      />
+
       <Controller
         control={control}
         name='skill'
@@ -583,7 +642,6 @@ export const DropdownsForm: React.FC = () => {
             <Fragment>
               <MultipleDropdown
                 label={'Drinks'}
-                // selectionMode='multiple'
                 placeholder='Select'
                 selectedKeys={field.value}
                 onSelectionChange={(keys) => {
@@ -593,8 +651,9 @@ export const DropdownsForm: React.FC = () => {
                 }}
                 isRequired
                 isErrored={Boolean(fieldState.error)}
+                onLoadMore={handleLoadMore}
               >
-                {hobbiesData.map((item: any) => {
+                {currentDrinksList.map((item: any) => {
                   return (
                     <Dropdown.Item key={String(item.strDrink)}>
                       {item.strDrink}
@@ -602,6 +661,38 @@ export const DropdownsForm: React.FC = () => {
                   )
                 })}
               </MultipleDropdown>
+            </Fragment>
+          )
+        }}
+      />
+      <Controller
+        control={control}
+        name='animal'
+        render={({field, fieldState}) => {
+          return (
+            <Fragment>
+              <Dropdown.ComboBox
+                label='Favorite Animal'
+                placeholder='Choose an animal'
+                selectedKey={field.value}
+                onSelectionChange={(key) => {
+                  setPersonInfoFieldValue('animal', String(key))
+                  setValue('animal', String(key), {shouldValidate: true})
+                }}
+                isRequired
+                isErrored={Boolean(fieldState.error)}
+              >
+                <Dropdown.Section title='Birds'>
+                  <Dropdown.Item key='red panda'>Eagle</Dropdown.Item>
+                  <Dropdown.Item key='cat'>Pigeon</Dropdown.Item>
+                  <Dropdown.Item key='dog'>Parrot</Dropdown.Item>
+                </Dropdown.Section>
+                <Dropdown.Section title='Mammal'>
+                  <Dropdown.Item key='aardvark'>Bear</Dropdown.Item>
+                  <Dropdown.Item key='kangaroo'>Lion</Dropdown.Item>
+                  <Dropdown.Item key='snake'>Whale</Dropdown.Item>
+                </Dropdown.Section>
+              </Dropdown.ComboBox>
             </Fragment>
           )
         }}
@@ -620,7 +711,71 @@ export const DropdownsForm: React.FC = () => {
 }
 
 ```
+```js
+import { create } from 'zustand'
+export interface PersonInfo {
+  gender: string
+  nationality: string
+  skill: string
+  drinks: string[]
+  animal: string
+  phoneCode: string
+  phoneNumber: string
+}
+interface ICreatePersonInfoStore {
+  personInfo: PersonInfo | {}
+  personInfoErrorState: any
 
+  setPersonInfoFieldValue<TField extends keyof PersonInfo = keyof PersonInfo>(
+    field: TField,
+    value: PersonInfo[TField],
+  ): void
+  setPersonInfoValue(value: PersonInfo): void
+
+  setPersonInfoErrorState(field: string, message: string | undefined): void
+
+  clearResponse(): void
+}
+const personInfoStore = () => {
+  const storageName = 'create-person-info'
+  return create<ICreatePersonInfoStore>()((set, get) => {
+    return {
+      personInfo: {},
+      personInfoErrorState: {},
+      setPersonInfoFieldValue(field, value) {
+        const {personInfo} = get()
+        set({
+          personInfo: {
+            ...personInfo,
+            [field]: value,
+          },
+        })
+      },
+      setPersonInfoValue(value) {
+        set({
+          personInfo: value,
+        })
+      },
+      setPersonInfoErrorState(field: string, message: string) {
+        const {personInfoErrorState} = get()
+        set({
+          personInfoErrorState: {
+            ...personInfoErrorState,
+            [field]: message,
+          },
+        })
+      },
+      clearResponse: () =>
+        set({
+          personInfo: undefined,
+        }),
+    }
+  })
+}
+
+export const useCreatePersonStore = personInfoStore()
+
+```
 ---
 
 ### Props:
