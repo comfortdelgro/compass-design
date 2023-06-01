@@ -130,8 +130,8 @@ const MultipleDropdown = React.forwardRef<
   }, [rawCollection, search])
 
   const delegate = React.useMemo(
-    () => new ListKeyboardDelegate(rawCollection, disabledKeys),
-    [rawCollection, disabledKeys],
+    () => new ListKeyboardDelegate(collection, disabledKeys),
+    [collection, disabledKeys],
   )
 
   const selectedNode = React.useMemo(() => {

@@ -145,8 +145,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   })
 
   const delegate = React.useMemo(
-    () => new ListKeyboardDelegate(rawCollection, disabledKeys),
-    [rawCollection, disabledKeys],
+    () => new ListKeyboardDelegate(collection, disabledKeys),
+    [collection, disabledKeys],
   )
 
   const choosenFlag = React.useMemo(() => {

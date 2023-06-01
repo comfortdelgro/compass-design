@@ -17,7 +17,7 @@ interface Props extends OptionVariantProps {
 }
 
 function Option({item, currentKeys, focusKey, disabledKeys, onSelect}: Props) {
-  const ref = React.useRef(null)
+  const ref = React.useRef<HTMLLIElement>(null)
   const isSelected = React.useMemo(
     () => (item.key ? currentKeys.some((v) => v == item.key) : false),
     [currentKeys],
@@ -31,6 +31,12 @@ function Option({item, currentKeys, focusKey, disabledKeys, onSelect}: Props) {
   const handleSelect = () => {
     if (item.key && !isDisabled) onSelect(item.key)
   }
+
+  React.useEffect(() => {
+    if (isFocused) {
+      ref.current?.scrollIntoView({block: 'nearest'})
+    }
+  }, [isFocused])
 
   return (
     <StyledOption
