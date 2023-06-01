@@ -1,5 +1,11 @@
 # @comfortdelgro/compass-icons
 
+## 1.1.0
+
+### Minor Changes
+
+- b78f8872: compass-icons: add ref props to react icon component; react-compass: fix bugs in dropdown, calendar, upload and tagbox
+
 ## 1.0.0
 
 ### Major Changes
