@@ -8,9 +8,10 @@
  * found in the LICENSE.txt file at the root directory of this source tree.
  */
 
-import {CalendarDate} from '../CalendarDate'
-import {AnyCalendarDate, Calendar} from '../types'
-import {mod, Mutable} from '../utils'
+import { CalendarDate } from '../CalendarDate'
+import { AnyCalendarDate,Calendar } from '../types'
+import { mod,Mutable } from '../utils'
+
 
 const EPOCH = 1721426 // 001/01/03 Julian C.E.
 export function gregorianToJulianDay(
@@ -112,6 +113,7 @@ export class GregorianCalendar implements Calendar {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // @ts-ignore
   getMonthsInYear(date: AnyCalendarDate): number {
     return 12
   }
@@ -121,6 +123,7 @@ export class GregorianCalendar implements Calendar {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // @ts-ignore
   getYearsInEra(date: AnyCalendarDate): number {
     return 9999
   }

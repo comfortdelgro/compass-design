@@ -84,6 +84,8 @@ function getYearType(year: number) {
     case 355:
       return 2 // complete
   }
+
+  return
 }
 
 function getDaysInMonth(year: number, month: number): number {
