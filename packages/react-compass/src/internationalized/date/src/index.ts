@@ -43,7 +43,7 @@ export {
   getLocalTimeZone,
   startOfMonth,
   startOfWeek,
-//   startOfYear,
+  startOfYear,
   endOfMonth,
 //   endOfWeek,
 //   endOfYear,
@@ -55,6 +55,8 @@ export {
   isWeekend,
 //   isWeekday
 } from './queries';
+
+export type {DateValue} from './queries'
 export {
   parseDate,
 //   parseDateTime,

@@ -8,7 +8,7 @@
  * found in the LICENSE.txt file at the root directory of this source tree.
  */
 
-import {DateFormatter} from '@internationalized/date'
+import {DateFormatter} from '../../date'
 import {useMemo, useRef} from 'react'
 import {useLocale} from './context'
 

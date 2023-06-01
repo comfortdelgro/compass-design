@@ -8,13 +8,13 @@
  * found in the LICENSE.txt file at the root directory of this source tree.
  */
 
-import {CalendarDate, CalendarDateTime, ZonedDateTime} from './CalendarDate'
-import {fromAbsolute, toCalendar, toCalendarDate} from './conversion'
-import {AnyCalendarDate, AnyTime} from './types'
-import {weekStartData} from './weekStartData'
+import { CalendarDate,CalendarDateTime,ZonedDateTime } from './CalendarDate'
+import { fromAbsolute,toCalendar,toCalendarDate } from './conversion'
+import { AnyCalendarDate,AnyTime } from './types'
+import { weekStartData } from './weekStartData'
 
 let localTimeZone: string | null = null
-type DateValue = CalendarDate | CalendarDateTime | ZonedDateTime
+export type DateValue = CalendarDate | CalendarDateTime | ZonedDateTime
 
 const WEEKEND_DATA = {
   AF: [4, 5],
@@ -147,6 +147,15 @@ export function endOfMonth(date: CalendarDate): CalendarDate
 export function endOfMonth(date: DateValue): DateValue
 export function endOfMonth(date: DateValue): DateValue {
   return date.add({days: date.calendar.getDaysInMonth(date) - date.day})
+}
+
+/** Returns the first day of the year for the given date. */
+export function startOfYear(date: ZonedDateTime): ZonedDateTime
+export function startOfYear(date: CalendarDateTime): CalendarDateTime
+export function startOfYear(date: CalendarDate): CalendarDate
+export function startOfYear(date: DateValue): DateValue
+export function startOfYear(date: DateValue): DateValue {
+  return startOfMonth(date.subtract({months: date.month - 1}))
 }
 
 /** Returns whether the date is today in the given time zone. */
