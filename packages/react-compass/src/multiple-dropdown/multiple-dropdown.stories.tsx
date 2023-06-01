@@ -14,7 +14,7 @@ export const Default: React.FC = () => {
         disabledKeys={['cat']}
         placeholder='Choose an animal'
         selectedKeys={value}
-        defaultSelectedKeys={['cat']}
+        defaultSelectedKeys={['dog']}
         isRequired
         onSelectionChange={(k: Key[]) => setValue(k)}
         onBlur={() => console.log('blur')}
@@ -153,6 +153,23 @@ export const Default: React.FC = () => {
         <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
         <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
         <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+      </MultipleDropdown>
+
+      <h3>With Section</h3>
+      <MultipleDropdown label='Favorite Animal' placeholder='Choose an animal'>
+        <MultipleDropdown.Item key='fly'>Fly</MultipleDropdown.Item>
+        <MultipleDropdown.Section title='Group 1'>
+          <MultipleDropdown.Item key='red panda'>
+            Red Panda
+          </MultipleDropdown.Item>
+          <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
+          <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
+        </MultipleDropdown.Section>
+        <MultipleDropdown.Section title='Group 2'>
+          <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
+          <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
+          <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+        </MultipleDropdown.Section>
       </MultipleDropdown>
 
       <h3>Disabled</h3>

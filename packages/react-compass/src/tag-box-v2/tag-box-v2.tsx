@@ -41,7 +41,7 @@ const TagBoxV2 = forwardRef<
       onAddTag,
       onEditTag,
       onRemoveTag,
-      isDisabled,
+      isDisabled = false,
       isEditable,
       isErrored = false,
 
@@ -153,7 +153,7 @@ const TagBoxV2 = forwardRef<
 
     // jsx
     return (
-      <StyledTagBoxV2 {...props} isErrored={isErrored}>
+      <StyledTagBoxV2 {...props} isErrored={isErrored} isDisabled={isDisabled}>
         {/**************  Label  *************/}
         <StyledLabel aria-label={tagBoxLabel} onClick={handleClickContainer}>
           {tagBoxLabel}

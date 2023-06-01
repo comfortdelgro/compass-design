@@ -120,7 +120,7 @@ export const StyledNewTagInput = styled('input', {
   border: 'none',
   boxSizing: 'border-box',
   margin: '0px',
-  padding: '0px',
+  padding: '0px 5px',
   overflow: 'hidden',
   background: 'transparent',
 
@@ -144,7 +144,7 @@ export const StyledNewTagInput = styled('input', {
   },
 })
 
-export const StyledLabel = styled('div', {
+export const StyledLabel = styled('label', {
   // reset
   appearance: 'none',
   border: 'none',
@@ -158,8 +158,8 @@ export const StyledLabel = styled('div', {
   cursor: 'pointer',
   fontWeight: '$semibold',
   textAlign: 'left',
-  fontSize: '$lable1',
-  lineHeight: '$normal',
+  fontSize: '$label1', //14px
+  lineHeight: '$normal', //21px
 })
 
 export const StyledContainer = styled('div', {
@@ -206,7 +206,7 @@ export const StyledTagBoxV2 = styled('div', {
         [`${StyledContainer}`]: {
           opacity: 0.5,
           pointerEvents: 'none',
-          backgroundColor: 'lightgray',
+          backgroundColor: '$gray20',
         },
       },
       false: {},

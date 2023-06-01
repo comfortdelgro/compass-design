@@ -15,12 +15,17 @@ export const StyledRangeCalendar = styled('div', {
 
   '& .calendar-footer': {
     display: 'flex',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    gap: '$2',
     marginTop: '$6',
     paddingTop: '$6',
     borderTop: '1px solid $gray40',
+  },
+
+  '& .calendar-footer .calendar-footer-right-side': {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '$4',
   },
 
   '& .calendar-footer .preview-date': {

@@ -59,7 +59,7 @@ export function useDateRangePickerState<T extends DateValue = DateValue>(
   const setValue = (value: DateRange) => {
     // @ts-ignore
     setPlaceholderValue(value)
-    if (value?.start && value.end) {
+    if (value.start && value.end) {
       // @ts-ignore
       setControlledValue(value)
     } else {
@@ -67,7 +67,7 @@ export function useDateRangePickerState<T extends DateValue = DateValue>(
     }
   }
 
-  const v = value?.start || value?.end || props.placeholderValue
+  const v = value.start || value.end || props.placeholderValue
   // @ts-ignore
   const [granularity] = useDefaultProps(v, props.granularity)
   const hasTime =
@@ -108,10 +108,11 @@ export function useDateRangePickerState<T extends DateValue = DateValue>(
       typeof shouldCloseOnSelect === 'function'
         ? shouldCloseOnSelect()
         : shouldCloseOnSelect
+
     if (hasTime) {
       if (
         shouldClose ||
-        (range.start && range.end && timeRange?.start && timeRange?.end)
+        (range.start && range.end && timeRange?.start && timeRange.end)
       ) {
         commitValue(range, {
           start: timeRange?.start || getPlaceholderTime(props.placeholderValue),
@@ -123,7 +124,12 @@ export function useDateRangePickerState<T extends DateValue = DateValue>(
     } else if (range.start && range.end) {
       setValue(range)
     } else {
-      setSelectedDateRange(range)
+      if (!range.start || !range.end) {
+        setControlledValue(null)
+        setSelectedDateRange(null)
+      } else {
+        setSelectedDateRange(range)
+      }
     }
 
     if (shouldClose) {
@@ -132,7 +138,7 @@ export function useDateRangePickerState<T extends DateValue = DateValue>(
   }
 
   const setTimeRange = (range: TimeRange) => {
-    if (dateRange?.start && dateRange?.end && range.start && range.end) {
+    if (dateRange?.start && dateRange.end && range.start && range.end) {
       commitValue(dateRange, range)
     } else {
       setSelectedTimeRange(range)
@@ -150,8 +156,8 @@ export function useDateRangePickerState<T extends DateValue = DateValue>(
       (value.end != null &&
         value.start != null &&
         value.end.compare(value.start) < 0) ||
-      (value?.start && props.isDateUnavailable?.(value.start)) ||
-      (value?.end && props.isDateUnavailable?.(value.end)))
+      (value.start && props.isDateUnavailable?.(value.start)) ||
+      (value.end && props.isDateUnavailable?.(value.end)))
       ? 'invalid'
       : null)
 
@@ -183,9 +189,9 @@ export function useDateRangePickerState<T extends DateValue = DateValue>(
     setOpen(isOpen) {
       if (
         !isOpen &&
-        !(value?.start && value?.end) &&
+        !(value.start && value.end) &&
         dateRange?.start &&
-        dateRange?.end &&
+        dateRange.end &&
         hasTime
       ) {
         commitValue(dateRange, {
