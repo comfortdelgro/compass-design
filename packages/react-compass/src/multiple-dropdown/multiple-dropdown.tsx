@@ -48,6 +48,7 @@ const MultipleDropdown = React.forwardRef<
   MultipleDropdownProps
 >((props, r) => {
   const {
+    id = `cdg-element-${Math.random().toString(36).substring(2)}`,
     css = {},
     isOpen,
     children,
@@ -77,8 +78,9 @@ const MultipleDropdown = React.forwardRef<
   } = props
   // ====================================== STATE ======================================
   const [open, setOpen] = React.useState(false)
+  const [focused, setFocused] = React.useState(false)
   const [search, setSearch] = React.useState('')
-  const [isSearching, setIsSearching] = React.useState(false)
+  // const [isSearching, setIsSearching] = React.useState(false)
   const [currentKeys, setCurrentKeys] = React.useState<React.Key[]>(
     getDefaulValues(defaultSelectedKeys, selectedKeys),
   )
@@ -116,7 +118,7 @@ const MultipleDropdown = React.forwardRef<
   )
 
   const collection = React.useMemo(() => {
-    if (!isSearching) return rawCollection
+    // if (!isSearching) return rawCollection
     if (search === '') {
       return rawCollection
     } else {
@@ -125,7 +127,7 @@ const MultipleDropdown = React.forwardRef<
         return text?.toLowerCase().includes(search.toLowerCase())
       })
     }
-  }, [rawCollection, search, isSearching])
+  }, [rawCollection, search])
 
   const delegate = React.useMemo(
     () => new ListKeyboardDelegate(rawCollection, disabledKeys),
@@ -140,9 +142,9 @@ const MultipleDropdown = React.forwardRef<
     if (rawCollection.length > 0 && currentKeys && currentKeys.length > 0) {
       currentKeys.forEach((selectedKey) => {
         const item = rawCollection.find((item) => {
-          return item.key === selectedKey
+          return item.key == selectedKey
         })
-        t.push({key: selectedKey, rendered: item?.props.children})
+        if (item) t.push({key: selectedKey, rendered: item?.props.children})
       })
     }
     return t
@@ -150,8 +152,8 @@ const MultipleDropdown = React.forwardRef<
 
   // ====================================== EFFECT ======================================
   React.useEffect(() => {
-    setCurrentKeys(getDefaulValues(defaultSelectedKeys, selectedKeys))
-  }, [JSON.stringify(selectedKeys), JSON.stringify(defaultSelectedKeys)])
+    setCurrentKeys(getDefaulValues(defaultSelectedKeys, selectedKeys, true))
+  }, [JSON.stringify(selectedKeys), rawCollection])
 
   React.useEffect(() => {
     if (!isOpen && defaultOpen) {
@@ -168,27 +170,18 @@ const MultipleDropdown = React.forwardRef<
     if (open) {
       inputRef.current?.focus()
     } else {
-      setIsSearching(false)
       inputRef.current?.blur()
-      setIsSearching(false)
+      // setIsSearching(false)
     }
   }, [open])
 
   // ====================================== CALLBACK ======================================
-  const removeItem = (key: Key) => {
-    const v = new Set(currentKeys)
-    if (currentKeys.includes(key)) {
-      v.delete(key)
-      setCurrentKeys([...v])
-      props.onSelectionChange?.([...v])
-    }
-  }
-
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (wrapperRef.current) {
       const string = e.target.value
-      setIsSearching(true)
+      // setIsSearching(true)
       setSearch(string)
+      setOpen(true)
       if (string !== '') {
         const fakeEle = document.createElement('div')
         fakeEle.style.position = 'absolute'
@@ -245,26 +238,48 @@ const MultipleDropdown = React.forwardRef<
         setOpen(false)
         break
       }
+      case 'Tab': {
+        setOpen(false)
+        break
+      }
     }
   }
 
-  const onSelect = (key: React.Key) => {
+  const onSelect = (key: React.Key, removeOnly = false) => {
     if (!isReadOnly) {
       const v = new Set(currentKeys)
-      if (currentKeys.includes(key)) {
-        v.delete(key)
-      } else {
+      const clickedItem = currentKeys.find((v) => v == key)
+      if (clickedItem) {
+        v.delete(clickedItem)
+        if (clickedItem == focusKey) {
+          setFocusKey(Array.from(v).pop() ?? undefined)
+        }
+      } else if (!removeOnly) {
         v.add(key)
+        setFocusKey(key)
       }
       setCurrentKeys([...v])
       props.onSelectionChange?.([...v])
-      setFocusKey(key)
+      inputRef.current?.focus()
     }
+  }
+
+  const removeItem = (key: Key) => {
+    // const v = new Set(currentKeys)
+    // const clickedItem = currentKeys.find((v) => v == key)
+    // if (clickedItem) {
+    // if (currentKeys.some((v) => v == key)) {
+    //   v.delete(key)
+    //   setCurrentKeys([...v])
+    //   props.onSelectionChange?.([...v])
+    // }
+    onSelect(key, true)
   }
 
   const handleOpen = () => {
     if (!isDisabled) {
       setOpen(true)
+      inputRef.current?.focus()
     }
   }
 
@@ -272,7 +287,7 @@ const MultipleDropdown = React.forwardRef<
   return (
     <StyledDropdownWrapper css={css} ref={ref} {...delegated}>
       {props.label && (
-        <label onClick={handleOpen}>
+        <label onClick={handleOpen} htmlFor={id}>
           {props.label}
           {isRequired && <span>*</span>}
         </label>
@@ -285,9 +300,10 @@ const MultipleDropdown = React.forwardRef<
           onClick={handleOpen}
         >
           <StyledSelectedItemWrapper>
-            {selectedNode.length === 0 && search === '' && !open && (
-              <p>{props.placeholder}</p>
-            )}
+            {selectedNode.length === 0 &&
+              search === '' &&
+              !open &&
+              !focused && <p>{props.placeholder}</p>}
             {selectedNode.length > 0 &&
               selectedNode.map((item) => {
                 const isHideXIcon =
@@ -319,10 +335,13 @@ const MultipleDropdown = React.forwardRef<
               })}
             {!isDisabled && (
               <input
+                id={id}
                 type='text'
                 ref={inputRef}
                 value={search}
                 onChange={onInputChange}
+                onBlur={() => setFocused(false)}
+                onFocus={() => setFocused(true)}
               />
             )}
           </StyledSelectedItemWrapper>
@@ -343,7 +362,7 @@ const MultipleDropdown = React.forwardRef<
           {...getFloatingProps}
         >
           <Popover
-            isEmpty={collection.length === 0}
+            isEmpty={!isLoading ? collection.length === 0 : false}
             visualizeRef={visualizeULList}
             triggerRef={wrapperRef}
             onBlur={onBlur}

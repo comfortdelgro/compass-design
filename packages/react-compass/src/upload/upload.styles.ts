@@ -81,27 +81,6 @@ export const StyledUploadContent = styled('div', {
   },
 })
 
-// export const StyledUploadButton = styled('div', {
-//   // reset
-//   appearance: 'none',
-//   border: 'none',
-//   boxSizing: 'border-box',
-//   margin: '0px',
-//   padding: '0px',
-//   background: 'transparent',
-
-//   // upload button styling
-//   width: '30.275%',
-//   height: '100%',
-//   // borderRadius: '4px 0px 0px 4px',
-//   backgroundColor: '#F7F8F9',
-//   fontFamily: '$sans',
-//   display: 'flex',
-//   justifyContent: 'center',
-//   alignItems: 'center',
-//   boxShadow: '1px 0 0 0 #E6E6E6',
-// })
-
 export const StyledUploadContainer = styled('div', {
   // reset
   appearance: 'none',

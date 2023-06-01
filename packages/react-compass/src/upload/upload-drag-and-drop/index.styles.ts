@@ -158,6 +158,7 @@ export const StyledUploadButton = styled('button', {
   alignItems: 'center',
   gap: '$2_5',
   cursor: 'pointer',
+  type: 'button',
 })
 
 export const StyledUploadContainer = styled('div', {
