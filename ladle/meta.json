@@ -191,7 +191,7 @@
         "Calendar"
       ],
       "locStart": 9,
-      "locEnd": 31,
+      "locEnd": 36,
       "filePath": "src/calendar/calendar.stories.tsx",
       "meta": {}
     },
@@ -381,7 +381,7 @@
         "Date range picker"
       ],
       "locStart": 36,
-      "locEnd": 56,
+      "locEnd": 57,
       "filePath": "src/date-range-picker/date-range-picker.stories.tsx",
       "meta": {}
     },
@@ -430,8 +430,8 @@
       "levels": [
         "Dropdown"
       ],
-      "locStart": 281,
-      "locEnd": 473,
+      "locStart": 278,
+      "locEnd": 470,
       "filePath": "src/dropdown/dropdown.stories.tsx",
       "meta": {}
     },
@@ -441,7 +441,7 @@
         "Dropdown"
       ],
       "locStart": 7,
-      "locEnd": 37,
+      "locEnd": 34,
       "filePath": "src/dropdown/dropdown.stories.tsx",
       "meta": {}
     },
@@ -450,8 +450,8 @@
       "levels": [
         "Dropdown"
       ],
-      "locStart": 39,
-      "locEnd": 279,
+      "locStart": 36,
+      "locEnd": 276,
       "filePath": "src/dropdown/dropdown.stories.tsx",
       "meta": {}
     },
@@ -611,7 +611,7 @@
         "Multiple dropdown"
       ],
       "locStart": 7,
-      "locEnd": 181,
+      "locEnd": 198,
       "filePath": "src/multiple-dropdown/multiple-dropdown.stories.tsx",
       "meta": {}
     },
@@ -751,7 +751,7 @@
         "Range calendar"
       ],
       "locStart": 9,
-      "locEnd": 28,
+      "locEnd": 32,
       "filePath": "src/range-calendar/range-calendar.stories.tsx",
       "meta": {}
     },
