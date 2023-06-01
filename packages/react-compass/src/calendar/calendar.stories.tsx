@@ -17,14 +17,19 @@ export const Variants: React.FC = () => {
       <p>
         <b>Selected date:</b>
         <span style={{marginLeft: '4px'}}>
-          {formatter.format(date.toDate(getLocalTimeZone()))}
+          {date
+            ? formatter.format(date.toDate(getLocalTimeZone()))
+            : 'Invalid date'}
         </span>
       </p>
       <Calendar
         value={date}
         maxValue={today(getLocalTimeZone())}
         //minValue={today(getLocalTimeZone())}
-        onChange={(e) => setDate(e)}
+        onChange={(e) => {
+          setDate(e)
+        }}
+        hasFooter
       />
     </Column>
   )

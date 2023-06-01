@@ -19,8 +19,9 @@ export const XIcon = () => (
 export function getDefaulValues(
   defaulValue: React.Key[] | undefined,
   value: React.Key[] | undefined,
+  disableDefault?: boolean,
 ): React.Key[] {
-  if (value !== undefined && value !== null && value.length > 0) {
+  if (value !== undefined && value !== null && value.length >= 0) {
     const res: React.Key[] = []
     for (const key of value) {
       res.push(key)
@@ -29,7 +30,8 @@ export function getDefaulValues(
   } else if (
     defaulValue !== undefined &&
     defaulValue !== null &&
-    defaulValue.length > 0
+    defaulValue.length > 0 &&
+    !!disableDefault
   ) {
     const res: React.Key[] = []
     for (const key of defaulValue) {

@@ -22,7 +22,7 @@ export const StyledSelect = styled('div', {
   background: '#FFFFFF',
   overflow: 'hidden',
   borderRadius: '$md',
-  zIndex: 1,
+  zIndex: 0,
   transition: '$default',
   borderWidth: '1px',
   borderStyle: 'solid',
@@ -100,7 +100,7 @@ export const StyledComboBox = styled('div', {
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
-  zIndex: 1,
+  zIndex: 0,
   transition: '$default',
   borderWidth: '1px',
   borderStyle: 'solid',
@@ -190,7 +190,7 @@ export const StyledFlag = styled('div', {
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
-  zIndex: 1,
+  zIndex: 0,
   transition: '$default',
   borderWidth: '1px',
   borderStyle: 'solid',
@@ -294,7 +294,7 @@ export const StyledListBoxWrapper = styled('div', {
 
 export const StyledPopoverWrapper = styled('div', {
   position: 'relative',
-  zIndex: 2,
+  zIndex: 1,
   marginTop: '$1',
 })
 

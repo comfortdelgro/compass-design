@@ -42,11 +42,12 @@ export const Controlled: React.FC = () => {
   return (
     <I18nProvider locale='en-SG'>
       <h3>Controlled</h3>
-      {range &&
-        formatter.formatRange(
-          range.start.toDate(getLocalTimeZone()),
-          range.end.toDate(getLocalTimeZone()),
-        )}
+      {range
+        ? formatter.formatRange(
+            range.start.toDate(getLocalTimeZone()),
+            range.end.toDate(getLocalTimeZone()),
+          )
+        : 'Invalid range of dates'}
       <DateRangePicker
         value={range}
         onChange={(e) => setRange(e as RangeValue<DateValue>)}
