@@ -214,8 +214,23 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         inputRef.current?.blur()
       }
     } else if (type === 'combobox') {
-      if (!open && !currentKey && !allowsCustomValue) {
-        setSearch('')
+      if (!open) {
+        if (!allowsCustomValue) {
+          if (currentKey) {
+            setSearch(getTextFromKey(currentKey))
+            setIsSearching(false)
+          } else {
+            setSearch('')
+          }
+        } else {
+          if (currentKey && search) {
+            const originalText = getTextFromKey(currentKey)
+            if (originalText) {
+              setCurrentKey(undefined)
+              props.onSelectionChange?.('')
+            }
+          }
+        }
       }
     }
   }, [open])
