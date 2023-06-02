@@ -43,12 +43,14 @@ const CalendarHeader = (props: Props) => {
     timeZone: state.timeZone,
   })
 
+  const months = middleButtonProps?.months ?? null
+
   const renderMiddleButtonContent = (formatedDate: string) => {
     switch (middleButtonProps?.currentState) {
       case MONTH_YEAR_STATE.DATE:
         return formatedDate
       case MONTH_YEAR_STATE.MONTH:
-        return 'Jan-Dec'
+        return months ? `${months[0]}-${months[months.length - 1]}` : 'Jan-Dec'
       case MONTH_YEAR_STATE.YEAR:
         return `${middleButtonProps.endStartYears.start}-${middleButtonProps.endStartYears.end}`
       default:

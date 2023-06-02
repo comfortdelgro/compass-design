@@ -7,21 +7,6 @@ import {
 import {MONTH_YEAR_STATE, useMonthYearCalendar} from './hooks/useMonthYearState'
 import {CalendarState, DateValue, RangeCalendarState} from './types'
 
-const MONTHS = [
-  'Jan',
-  'Feb',
-  'Mar',
-  'Apr',
-  'May',
-  'Jun',
-  'Jul',
-  'Aug',
-  'Sep',
-  'Oct',
-  'Nov',
-  'Dec',
-]
-
 interface Props {
   state: CalendarState | RangeCalendarState
   maxValue?: DateValue | null | undefined
@@ -29,7 +14,9 @@ interface Props {
 }
 
 const CalendarMonthGrid = (props: Props) => {
-  const {state, monthYearState, maxValue} = props
+  const {state, monthYearState} = props
+
+  const months = monthYearState?.months ?? []
 
   const handleMonthClick = (month: string) => {
     const focusedDate = state.focusedDate
@@ -38,7 +25,7 @@ const CalendarMonthGrid = (props: Props) => {
       state.setFocusedDate?.(
         new CalendarDate(
           focusedDate?.year ?? new Date().getFullYear(),
-          MONTHS.indexOf(month) + 1,
+          months.indexOf(month) + 1,
           1,
         ),
       )
@@ -48,7 +35,7 @@ const CalendarMonthGrid = (props: Props) => {
 
   return (
     <StyledCalendarMonthGrid>
-      {MONTHS.map((month) => {
+      {months.map((month) => {
         return (
           <StyledCalendarMonthYearCell
             type='button'

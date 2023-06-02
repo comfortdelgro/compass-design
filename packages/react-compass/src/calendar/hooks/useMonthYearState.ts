@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-condition */
 import {CalendarDate} from '@internationalized/date'
-import {useEffect, useState} from 'react'
+import {useDateFormatter, useLocale} from '@react-aria/i18n'
+import {useEffect, useMemo, useState} from 'react'
 import {ButtonProps} from '../../button'
 import {MAX_YEAR, MIN_YEAR} from '../constants/common'
 import {CalendarState, DateValue, RangeCalendarState} from '../types'
@@ -19,6 +20,7 @@ interface Props {
 export type StateType = 0 | 1 | 2 | MONTH_YEAR_STATE
 
 export interface MonthYearState {
+  months: string[]
   currentState: StateType
   renderedYears: number[]
   endStartYears: {
@@ -38,6 +40,25 @@ export const useMonthYearCalendar = (props: Props): MonthYearState => {
   const [currentState, setCurrentState] = useState<StateType>(
     MONTH_YEAR_STATE.DATE,
   )
+
+  const dayFormatter = useDateFormatter({
+    month: 'short',
+    timeZone: state.timeZone,
+  })
+
+  const {locale} = useLocale()
+
+  const months = useMemo(() => {
+    const dayOfEachMonths = []
+    for (let month = 0; month < 12; month++) {
+      const date = new Date(new Date().getFullYear(), month, 1)
+      dayOfEachMonths.push(date)
+    }
+
+    return dayOfEachMonths.map((day) => {
+      return dayFormatter.format(day)
+    })
+  }, [locale])
 
   const generateYears = (
     year: number,
@@ -124,6 +145,7 @@ export const useMonthYearCalendar = (props: Props): MonthYearState => {
   }
 
   return {
+    months,
     currentState,
     renderedYears,
     endStartYears,
