@@ -158,7 +158,12 @@ export const useCalendarState = (
   })
 
   const endDate = useMemo(() => {
-    const duration = {...visibleDuration}
+    const duration: {months?: number; days?: number} = {...visibleDuration}
+    if (duration.days) {
+      duration.days--
+    } else {
+      duration.days = -1
+    }
 
     return startDate.add(duration)
   }, [startDate])
@@ -203,6 +208,7 @@ export const useCalendarState = (
       // Emit dates in the same calendar as the original value, if any, otherwise gregorian.
       newValue = toCalendar(
         newValue,
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
         value?.calendar ?? (new GregorianCalendar() as Calendar),
       )
 

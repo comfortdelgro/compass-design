@@ -17,7 +17,6 @@ interface Props extends OptionVariantProps {
   currentKey: React.Key | undefined
   dropdownType: 'select' | 'combobox' | 'flag'
   item: React.DetailedReactHTMLElement<DropdownItemProps, HTMLElement>
-  onHover: (key: React.Key | null) => void
   onSelect: (key: React.Key) => void
 }
 
@@ -27,13 +26,12 @@ function Option({
   focusKey,
   disabledKeys,
   dropdownType,
-  onHover,
   onSelect,
 }: Props) {
   const ref = React.useRef(null)
   const {type = 'icon', leftIcon, rightIcon, rightColor, children} = item.props
-  const isSelected = React.useMemo(() => currentKey === item.key, [currentKey])
-  const isFocused = React.useMemo(() => focusKey === item.key, [focusKey])
+  const isSelected = React.useMemo(() => currentKey == item.key, [currentKey])
+  const isFocused = React.useMemo(() => focusKey == item.key, [focusKey])
   const isDisabled = React.useMemo(
     () => (item.key ? [...disabledKeys].includes(item.key) : false),
     [disabledKeys],
@@ -56,8 +54,6 @@ function Option({
       isFocused={isFocused}
       isSelected={isSelected}
       onClick={handleSelect}
-      onMouseOver={() => onHover(item.key)}
-      onMouseOut={() => onHover(-1)}
       isDisabled={isDisabled}
     >
       {flag && (

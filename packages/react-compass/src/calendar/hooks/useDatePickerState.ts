@@ -100,7 +100,9 @@ export function useDatePickerState<T extends DateValue = DateValue>(
     }
 
     if (shouldClose) {
-      overlayState.setOpen(false)
+      setTimeout(() => {
+        overlayState.setOpen(false)
+      }, 0)
     }
   }
 

@@ -10,7 +10,10 @@ interface Props extends StyledComponentProps {
   children: React.ReactNode
 }
 
-const Label: React.FC<Props> = (props) => {
+export type labelTypographyProps = Props &
+  Omit<React.HTMLAttributes<HTMLElement>, keyof Props>
+
+const Label: React.FC<labelTypographyProps> = (props) => {
   const {
     css = {},
     children,
@@ -21,7 +24,7 @@ const Label: React.FC<Props> = (props) => {
   } = props
   const tag = React.useMemo(() => {
     if (component) return component
-    return 'p'
+    return 'label'
   }, [variant])
 
   const StyledLabel = styled(tag, {

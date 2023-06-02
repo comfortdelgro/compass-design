@@ -62,14 +62,15 @@ export const StyledTagContainer = styled('div', {
   background: 'transparent',
 
   // button styling
-  display: 'flex',
+  display: 'inline-flex',
   alignItems: 'center',
   fontWeight: 'bold',
-  borderRadius: '$md',
+  borderRadius: '$lg',
   padding: '0.5rem 1rem',
   margin: '0.5em',
   backgroundColor: 'rgba(0,0,0,.045)',
   width: 'fit-content',
+  height: '2rem',
 })
 
 // create StyledButtonContainer to center button horizontally
@@ -84,9 +85,9 @@ export const StyledButtonContainer = styled('div', {
   background: 'transparent',
 
   // styling
-  width: '100%',
+  width: 'fit-content',
   height: 'fit-content',
-  display: 'flex',
+  display: 'inline-flex',
   justifyContent: 'center',
 })
 
@@ -105,10 +106,11 @@ export const StyledNewTagButton = styled('button', {
   border: '1px dashed #605E5C',
   margin: '0.5em',
   padding: '0.5rem 1rem',
-  height: '2.5rem',
   borderRadius: '$lg',
   fontSize: '1em',
   fontWeight: '500',
+  display: 'inline-block',
+  height: '2rem',
 })
 
 export const StyledNewTagInput = styled('input', {
@@ -118,7 +120,7 @@ export const StyledNewTagInput = styled('input', {
   border: 'none',
   boxSizing: 'border-box',
   margin: '0px',
-  padding: '0px',
+  padding: '0px 5px',
   overflow: 'hidden',
   background: 'transparent',
 
@@ -127,7 +129,6 @@ export const StyledNewTagInput = styled('input', {
   maxWidth: '90%',
   '&::placeholder': {
     color: 'rgb(210, 208, 206)',
-    paddingLeft: '3px',
   },
   '&:focus': {
     border: '2px solid #0142AF',
@@ -137,15 +138,13 @@ export const StyledNewTagInput = styled('input', {
   resize: 'none',
   variants: {
     isEmpty: {
-      false: {
-        margin: '0.5rem 0.75rem',
-      },
+      false: {},
       true: {},
     },
   },
 })
 
-export const StyledLabel = styled('div', {
+export const StyledLabel = styled('label', {
   // reset
   appearance: 'none',
   border: 'none',
@@ -158,9 +157,9 @@ export const StyledLabel = styled('div', {
   // styling
   cursor: 'pointer',
   fontWeight: '$semibold',
-  textAlign: 'center',
-  fontSize: '$lable1',
-  lineHeight: '$normal',
+  textAlign: 'left',
+  fontSize: '$label1', //14px
+  lineHeight: '$normal', //21px
 })
 
 export const StyledContainer = styled('div', {
@@ -207,7 +206,7 @@ export const StyledTagBoxV2 = styled('div', {
         [`${StyledContainer}`]: {
           opacity: 0.5,
           pointerEvents: 'none',
-          backgroundColor: 'lightgray',
+          backgroundColor: '$gray20',
         },
       },
       false: {},

@@ -1,11 +1,11 @@
 import {faAddressBook, faClone} from '@fortawesome/free-regular-svg-icons'
 import {faChevronRight} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {StoryDecorator} from '@ladle/react'
 import React, {Key} from 'react'
 import Avatar from '../avatar'
 import AvatarGroup from '../avatar/avatar-group'
 import Badge from '../badge'
-import Icon from '../icon'
 import {Column} from '../utils/components'
 import {DragAndDropList} from './index'
 import InteractiveList from './interactive-list'
@@ -33,13 +33,16 @@ export const Variants: React.FC = () => {
             title='Title'
             description='Line 1'
             leftInfo={<Avatar label='A' />}
-            rightInfo={{text: 'Details', icon: <Icon icon={faChevronRight} />}}
+            rightInfo={{
+              text: 'Details',
+              icon: <FontAwesomeIcon icon={faChevronRight} />,
+            }}
           />
           <List
             title='Title'
             description='Line 1'
             leftInfo={<Avatar label='A' />}
-            rightInfo={{icon: <Icon icon={faChevronRight} />}}
+            rightInfo={{icon: <FontAwesomeIcon icon={faChevronRight} />}}
           />
           <List
             title='Title'
@@ -65,13 +68,16 @@ export const Variants: React.FC = () => {
             title='Title'
             description='Line 1'
             leftInfo={<ListImage src={imgSrc} alt='singapore' />}
-            rightInfo={{text: 'Details', icon: <Icon icon={faChevronRight} />}}
+            rightInfo={{
+              text: 'Details',
+              icon: <FontAwesomeIcon icon={faChevronRight} />,
+            }}
           />
           <List
             title='Title'
             description='Line 1'
             leftInfo={<ListImage src={imgSrc} alt='singapore' />}
-            rightInfo={{icon: <Icon icon={faChevronRight} />}}
+            rightInfo={{icon: <FontAwesomeIcon icon={faChevronRight} />}}
           />
           <List
             title='Title'
@@ -96,31 +102,34 @@ export const Variants: React.FC = () => {
           <List
             title='Title'
             description='Line 1'
-            leftInfo={<Icon icon={faAddressBook} />}
-            rightInfo={{text: 'Details', icon: <Icon icon={faChevronRight} />}}
+            leftInfo={<FontAwesomeIcon icon={faAddressBook} />}
+            rightInfo={{
+              text: 'Details',
+              icon: <FontAwesomeIcon icon={faChevronRight} />,
+            }}
           />
           <List
             title='Title'
             description='Line 1'
-            leftInfo={<Icon icon={faAddressBook} />}
-            rightInfo={{icon: <Icon icon={faChevronRight} />}}
+            leftInfo={<FontAwesomeIcon icon={faAddressBook} />}
+            rightInfo={{icon: <FontAwesomeIcon icon={faChevronRight} />}}
           />
           <List
             title='Title'
             description='Line 1'
-            leftInfo={<Icon icon={faAddressBook} />}
+            leftInfo={<FontAwesomeIcon icon={faAddressBook} />}
             rightInfo={{icon: <Badge color='danger' label='+99' />}}
           />
           <List
             title='Title'
             description='Line 1'
-            leftInfo={<Icon icon={faAddressBook} />}
+            leftInfo={<FontAwesomeIcon icon={faAddressBook} />}
             rightInfo={{text: 'Details'}}
           />
           <List
             title='Title'
             description='Line 1'
-            leftInfo={<Icon icon={faAddressBook} />}
+            leftInfo={<FontAwesomeIcon icon={faAddressBook} />}
           />
         </Column>
 
@@ -128,12 +137,15 @@ export const Variants: React.FC = () => {
           <List
             title='Title'
             description='Line 1'
-            rightInfo={{text: 'Details', icon: <Icon icon={faChevronRight} />}}
+            rightInfo={{
+              text: 'Details',
+              icon: <FontAwesomeIcon icon={faChevronRight} />,
+            }}
           />
           <List
             title='Title'
             description='Line 1'
-            rightInfo={{icon: <Icon icon={faChevronRight} />}}
+            rightInfo={{icon: <FontAwesomeIcon icon={faChevronRight} />}}
           />
           <List
             title='Title'
@@ -153,13 +165,16 @@ export const Variants: React.FC = () => {
             isDisabled
             title='Title'
             description='Line 1'
-            rightInfo={{text: 'Details', icon: <Icon icon={faChevronRight} />}}
+            rightInfo={{
+              text: 'Details',
+              icon: <FontAwesomeIcon icon={faChevronRight} />,
+            }}
           />
           <List
             isDisabled
             title='Title'
             description='Line 1'
-            rightInfo={{icon: <Icon icon={faChevronRight} />}}
+            rightInfo={{icon: <FontAwesomeIcon icon={faChevronRight} />}}
           />
           <List
             isDisabled
@@ -179,7 +194,7 @@ export const Variants: React.FC = () => {
         <Column>
           <List
             size='sm'
-            leftInfo={<Icon icon={faClone} />}
+            leftInfo={<FontAwesomeIcon icon={faClone} />}
             title='Title'
             description='Lorem Ipsum'
             css={{maxWidth: '198px'}}
@@ -187,7 +202,7 @@ export const Variants: React.FC = () => {
           <List
             size='sm'
             isDisabled
-            leftInfo={<Icon icon={faClone} />}
+            leftInfo={<FontAwesomeIcon icon={faClone} />}
             title='Title'
             description='Lorem Ipsum'
             css={{maxWidth: '198px'}}
@@ -201,14 +216,17 @@ export const Variants: React.FC = () => {
             variant='item'
             description='Line 1'
             leftInfo={<Avatar label='A' />}
-            rightInfo={{text: 'Details', icon: <Icon icon={faChevronRight} />}}
+            rightInfo={{
+              text: 'Details',
+              icon: <FontAwesomeIcon icon={faChevronRight} />,
+            }}
           />
           <List
             title='Title'
             variant='item'
             description='Line 1'
             leftInfo={<Avatar label='A' />}
-            rightInfo={{icon: <Icon icon={faChevronRight} />}}
+            rightInfo={{icon: <FontAwesomeIcon icon={faChevronRight} />}}
           />
           <List
             title='Title'
@@ -238,14 +256,17 @@ export const Variants: React.FC = () => {
             title='Title'
             description='Line 1'
             leftInfo={<ListImage src={imgSrc} alt='singapore' />}
-            rightInfo={{text: 'Details', icon: <Icon icon={faChevronRight} />}}
+            rightInfo={{
+              text: 'Details',
+              icon: <FontAwesomeIcon icon={faChevronRight} />,
+            }}
           />
           <List
             variant='item'
             title='Title'
             description='Line 1'
             leftInfo={<ListImage src={imgSrc} alt='singapore' />}
-            rightInfo={{icon: <Icon icon={faChevronRight} />}}
+            rightInfo={{icon: <FontAwesomeIcon icon={faChevronRight} />}}
           />
           <List
             variant='item'
@@ -274,35 +295,38 @@ export const Variants: React.FC = () => {
             title='Title'
             variant='item'
             description='Line 1'
-            leftInfo={<Icon icon={faAddressBook} />}
-            rightInfo={{text: 'Details', icon: <Icon icon={faChevronRight} />}}
+            leftInfo={<FontAwesomeIcon icon={faAddressBook} />}
+            rightInfo={{
+              text: 'Details',
+              icon: <FontAwesomeIcon icon={faChevronRight} />,
+            }}
           />
           <List
             title='Title'
             variant='item'
             description='Line 1'
-            leftInfo={<Icon icon={faAddressBook} />}
-            rightInfo={{icon: <Icon icon={faChevronRight} />}}
+            leftInfo={<FontAwesomeIcon icon={faAddressBook} />}
+            rightInfo={{icon: <FontAwesomeIcon icon={faChevronRight} />}}
           />
           <List
             title='Title'
             variant='item'
             description='Line 1'
-            leftInfo={<Icon icon={faAddressBook} />}
+            leftInfo={<FontAwesomeIcon icon={faAddressBook} />}
             rightInfo={{icon: <Badge color='danger' label='+99' />}}
           />
           <List
             title='Title'
             variant='item'
             description='Line 1'
-            leftInfo={<Icon icon={faAddressBook} />}
+            leftInfo={<FontAwesomeIcon icon={faAddressBook} />}
             rightInfo={{text: 'Details'}}
           />
           <List
             title='Title'
             variant='item'
             description='Line 1'
-            leftInfo={<Icon icon={faAddressBook} />}
+            leftInfo={<FontAwesomeIcon icon={faAddressBook} />}
           />
         </Column>
 
@@ -311,13 +335,16 @@ export const Variants: React.FC = () => {
             title='Title'
             variant='item'
             description='Line 1'
-            rightInfo={{text: 'Details', icon: <Icon icon={faChevronRight} />}}
+            rightInfo={{
+              text: 'Details',
+              icon: <FontAwesomeIcon icon={faChevronRight} />,
+            }}
           />
           <List
             title='Title'
             variant='item'
             description='Line 1'
-            rightInfo={{icon: <Icon icon={faChevronRight} />}}
+            rightInfo={{icon: <FontAwesomeIcon icon={faChevronRight} />}}
           />
           <List
             title='Title'
@@ -340,14 +367,17 @@ export const Variants: React.FC = () => {
             variant='item'
             title='Title'
             description='Line 1'
-            rightInfo={{text: 'Details', icon: <Icon icon={faChevronRight} />}}
+            rightInfo={{
+              text: 'Details',
+              icon: <FontAwesomeIcon icon={faChevronRight} />,
+            }}
           />
           <List
             isDisabled
             variant='item'
             title='Title'
             description='Line 1'
-            rightInfo={{icon: <Icon icon={faChevronRight} />}}
+            rightInfo={{icon: <FontAwesomeIcon icon={faChevronRight} />}}
           />
           <List
             isDisabled

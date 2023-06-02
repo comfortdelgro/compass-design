@@ -1,4 +1,9 @@
-import {createCalendar, getLocalTimeZone} from '@internationalized/date'
+import * as InternationalizedDate from '@internationalized/date'
+import {
+  createCalendar,
+  getLocalTimeZone,
+  parseDate,
+} from '@internationalized/date'
 import {useDateFormatter, useLocale} from '@react-aria/i18n'
 import React from 'react'
 import Button, {ButtonProps} from '../button'
@@ -6,12 +11,8 @@ import CalendarGrid from '../calendar/calendar-grid'
 import CalendarHeader from '../calendar/calendar-header'
 import {useRangeCalendar} from '../calendar/hooks/useRangeCalendar'
 import {useRangeCalendarState} from '../calendar/hooks/useRangeCalendarState'
-import {
-  DateRange,
-  DateRangePickerState,
-  DateValue,
-  RangeValue,
-} from '../calendar/types'
+import {DateRangePickerState, DateValue, RangeValue} from '../calendar/types'
+import {useDatePickerContext} from '../date-picker/date-picker-context'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {StyledRangeCalendar} from './range-calendar.style'
@@ -21,8 +22,7 @@ interface Props extends StyledComponentProps {
   children?: React.ReactNode
   state?: DateRangePickerState
   hasFooter?: boolean
-  onCancelCallback?: (() => void) | undefined
-  onApplyCallback?: ((e?: DateRange) => void) | undefined
+  maxValue?: DateValue | null | undefined
   onChange?: (e: unknown) => void
 }
 
@@ -34,14 +34,16 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
       state: pickerState,
       hasFooter,
       css = {},
-      onCancelCallback,
-      onApplyCallback,
+      maxValue = parseDate('2999-02-17'),
       ...delegated
     } = props
 
     const {locale} = useLocale()
     const state = useRangeCalendarState({
       ...delegated,
+      value: props.state
+        ? (props.state?.value as RangeValue<DateValue>)
+        : (props.value as RangeValue<DateValue>),
       visibleDuration: {months: 2},
       locale,
       createCalendar,
@@ -59,16 +61,30 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
 
     const formatter = useDateFormatter({})
 
-    const handleCancelButtonClick = () => {
-      onCancelCallback?.()
-      pickerState?.close()
-      return
+    const {setIsReset} = useDatePickerContext()
+
+    const handleClearButtonClick = () => {
+      props.onChange?.({
+        start: null as unknown as DateValue,
+        end: null as unknown as DateValue,
+      })
+
+      setIsReset?.(true)
     }
 
-    const handleApplyButtonClick = () => {
-      if (pickerState) onApplyCallback?.(pickerState.value)
-      pickerState?.close()
-      return
+    const handleTodayButtonClick = () => {
+      pickerState?.setDateRange({
+        start: InternationalizedDate.today(
+          InternationalizedDate.getLocalTimeZone(),
+        ),
+        end: InternationalizedDate.today(
+          InternationalizedDate.getLocalTimeZone(),
+        ),
+      })
+
+      state.setFocusedDate?.(
+        InternationalizedDate.today(InternationalizedDate.getLocalTimeZone()),
+      )
     }
 
     return (
@@ -81,24 +97,31 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
           nextButtonProps={nextButtonProps as unknown as ButtonProps}
         />
         <div className='calendar-body'>
-          <CalendarGrid state={state} />
-          <CalendarGrid state={state} offset={{months: 1}} />
+          <CalendarGrid state={state} maxValue={maxValue} />
+          <CalendarGrid
+            state={state}
+            offset={{months: 1}}
+            maxValue={maxValue}
+          />
         </div>
         {hasFooter && (
           <div className='calendar-footer'>
-            <p className='preview-date'>
-              {state.value &&
-                formatter.formatRange(
-                  state.value.start.toDate(getLocalTimeZone()),
-                  state.value.end.toDate(getLocalTimeZone()),
-                )}
-            </p>
-            <Button variant='ghost' onPress={handleCancelButtonClick}>
-              Cancel
+            <Button variant='ghost' onPress={handleClearButtonClick}>
+              Clear
             </Button>
-            <Button variant='primary' onPress={handleApplyButtonClick}>
-              Apply
-            </Button>
+            <div className='calendar-footer-right-side'>
+              <p className='preview-date'>
+                {state.value?.start &&
+                  state.value?.end &&
+                  formatter.formatRange(
+                    state.value.start.toDate(getLocalTimeZone()),
+                    state.value.end.toDate(getLocalTimeZone()),
+                  )}
+              </p>
+              <Button variant='primary' onPress={handleTodayButtonClick}>
+                Today
+              </Button>
+            </div>
           </div>
         )}
       </StyledRangeCalendar>

@@ -6,6 +6,7 @@ import {
   useFloating,
   useInteractions,
 } from '@floating-ui/react'
+import isEmpty from 'lodash/isEmpty'
 import React from 'react'
 import {useDOMRef} from '../utils/use-dom-ref'
 import DropdownComboBox from './dropdown.combobox'
@@ -40,6 +41,7 @@ import {
 interface Props extends DropdownBase {
   selectedKey?: React.Key
   defaultSelectedKey?: React.Key
+  shouldDeselect?: boolean
   onSelectionChange?: (key: React.Key) => void
   type?: 'select' | 'combobox' | 'flag'
 }
@@ -50,6 +52,7 @@ export type DropdownProps = Props &
 
 const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   const {
+    id = `cdg-element-${Math.random().toString(36).substring(2)}`,
     css = {},
     isOpen,
     children,
@@ -68,6 +71,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     defaultSelectedKey,
     isDisabled = false,
     defaultOpen = false,
+    shouldDeselect = false,
     onLoadMore = () => {
       //Load more
     },
@@ -137,7 +141,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   }, [rawCollection, search, isSearching])
 
   const selectedItem = rawCollection.find((item) => {
-    return item.key === currentKey
+    return item.key == currentKey
   })
 
   const delegate = React.useMemo(
@@ -159,16 +163,10 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     return null
   }, [search])
 
-  // ====================================== EFFECT ======================================
-  // map default value
-  React.useEffect(() => {
-    setCurrentKey(getDefaulValue(defaultSelectedKey, selectedKey))
-  }, [selectedKey, defaultSelectedKey])
-
-  React.useEffect(() => {
-    const getTextFromKey = (key: React.Key) => {
+  const getTextFromKey = React.useCallback(
+    (key: React.Key) => {
       const selected = rawCollection.find((item) => {
-        return item.key === key
+        return item.key == key
       })
       if (selected) {
         const text =
@@ -178,15 +176,20 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         return text
       }
       return ''
-    }
+    },
+    [rawCollection],
+  )
 
-    if (!selectedKey && defaultSelectedKey) {
-      setSearch(getTextFromKey(defaultSelectedKey))
+  // ====================================== EFFECT ======================================
+  // map default value
+  React.useEffect(() => {
+    const newValue = getDefaulValue(defaultSelectedKey, selectedKey, true)
+    setCurrentKey(newValue)
+    setFocusKey(newValue)
+    if (newValue) {
+      setSearch(getTextFromKey(newValue))
     }
-    if (selectedKey) {
-      setSearch(getTextFromKey(selectedKey))
-    }
-  }, [selectedKey, defaultSelectedKey])
+  }, [selectedKey, getTextFromKey])
 
   React.useEffect(() => {
     if (!isOpen && defaultOpen) {
@@ -214,14 +217,9 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   React.useEffect(() => {
     if (currentKey !== undefined) {
       setFocusKey(currentKey)
-      const text =
-        selectedItem?.props.textValue && selectedItem?.props.textValue !== ''
-          ? selectedItem?.props.textValue
-          : textContent(selectedItem as React.ReactElement)
-      setSearch(text ?? '')
-      props.onSelectionChange?.(currentKey)
+      setSearch(getTextFromKey(currentKey))
     }
-  }, [currentKey])
+  }, [currentKey, getTextFromKey])
 
   // ====================================== CALLBACK ======================================
   const handleKeyDown = (e: KeyboardEvent) => {
@@ -249,8 +247,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       case 'Enter': {
         e.preventDefault()
         if (focusKey) {
-          setCurrentKey(focusKey)
-          setOpen(false)
+          onSelect(focusKey)
         }
         break
       }
@@ -259,51 +256,76 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         setOpen(false)
         break
       }
-    }
-  }
-
-  const onHover = (key: React.Key | null) => {
-    if (key) {
-      setFocusKey(key)
+      case 'Tab': {
+        setOpen(false)
+        break
+      }
     }
   }
 
   const onSelect = (key: React.Key) => {
     if (!isReadOnly) {
-      if (currentKey === key) {
+      if (currentKey === key && shouldDeselect) {
         setCurrentKey(undefined)
-        setFocusKey(undefined)
-        setSearch('')
-        setIsSearching(false)
         props.onSelectionChange?.('')
       } else {
         setCurrentKey(key)
+        props.onSelectionChange?.(key)
       }
+      setIsSearching(false)
       setOpen(false)
     }
   }
 
   const onSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(event.target.value)
+    if (
+      event.target.value === '' ||
+      isEmpty(event.target.value.replaceAll(' ', ''))
+    ) {
+      if (!isReadOnly) {
+        setCurrentKey(undefined)
+        setFocusKey(undefined)
+        setSearch(event.target.value)
+        setIsSearching(false)
+        props.onSelectionChange?.('')
+      }
+    } else {
+      setSearch(event.target.value)
+    }
     setIsSearching(true)
     setOpen(true)
   }
 
   const labelClick = () => {
+    document.getElementById(id)?.click()
     selectRef.current?.click()
     buttonRef.current?.click()
   }
 
   const handleClickIcon = () => {
-    setOpen(true)
+    setOpen((v) => !v)
     inputRef.current?.focus()
+  }
+
+  const handleBlur = () => {
+    if (type == 'select') {
+      onBlur()
+    }
+    setFocusKey(currentKey)
+  }
+
+  const handleFocus = () => {
+    if (type == 'select') {
+      onFocus()
+    }
+    setFocusKey(currentKey)
   }
 
   // ====================================== RENDER ======================================
   return (
     <StyledDropdownWrapper css={css} {...delegated}>
       {props.label && (
-        <label onClick={labelClick}>
+        <label onClick={labelClick} htmlFor={id}>
           {props.label}
           {isRequired && <span>*</span>}
         </label>
@@ -317,6 +339,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           {...getReferenceProps}
         >
           <button
+            id={id}
             type='button'
             ref={selectRef as React.RefObject<HTMLButtonElement>}
             disabled={isDisabled}
@@ -342,6 +365,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           {...getReferenceProps}
         >
           <input
+            id={id}
             ref={inputRef}
             value={search}
             disabled={isDisabled}
@@ -352,6 +376,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           />
           <button
             type='button'
+            tabIndex={-1}
             ref={buttonRef}
             disabled={isDisabled}
             onClick={handleClickIcon}
@@ -374,6 +399,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
             </StyledFlagIcon>
           )}
           <input
+            id={id}
             ref={inputRef}
             value={search}
             disabled={isDisabled}
@@ -384,6 +410,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           />
           <button
             ref={buttonRef}
+            tabIndex={-1}
             disabled={isDisabled}
             onClick={handleClickIcon}
             type='button'
@@ -399,33 +426,21 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           style={{
             ...floatingStyles,
             ...{
-              zIndex: 3,
+              zIndex: 60,
             },
           }}
           {...getFloatingProps}
         >
           <Popover
-            isEmpty={collection.length === 0}
+            isEmpty={!isLoading ? collection.length === 0 : false}
             visualizeRef={visualizeULList}
             triggerRef={
               type == 'select'
                 ? (selectRef as React.RefObject<HTMLDivElement>)
                 : inputRef
             }
-            onBlur={
-              type == 'select'
-                ? onBlur
-                : () => {
-                    //
-                  }
-            }
-            onFocus={
-              type == 'select'
-                ? onFocus
-                : () => {
-                    //
-                  }
-            }
+            onBlur={handleBlur}
+            onFocus={handleFocus}
             handleKeyDown={handleKeyDown}
           >
             <ListBox
@@ -438,7 +453,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
               isLoading={isLoading}
               sectionCollection={sectionCollection}
               rootChildren={children}
-              onHover={onHover}
               onSelect={onSelect}
               onLoadMore={onLoadMore}
             />

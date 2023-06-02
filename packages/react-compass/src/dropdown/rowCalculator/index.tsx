@@ -45,9 +45,6 @@ const RowCalculator = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
                     currentKey={undefined}
                     dropdownType={dropdownType}
                     disabledKeys={[]}
-                    onHover={() => {
-                      //
-                    }}
                     onSelect={() => {
                       //
                     }}

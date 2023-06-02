@@ -7,9 +7,13 @@ import DropdownItem from './item'
 
 interface P extends DropdownProps, StyledComponentProps {
   flagKeyType?: 'alpha-2' | 'alpha-3' | 'name' | 'country-code'
-  selectedCountry?: React.Key
-  defaultSelectedCountry?: React.Key
-  onCountryChange?: (p: string) => void
+  onCountryChange?: (p: {
+    name: string
+    'alpha-2': string
+    'alpha-3': string
+    'country-code': string
+    'phone-code': string
+  }) => void
 }
 
 type Props = Omit<P, 'children'>
@@ -18,19 +22,11 @@ export type DropdownFlagProps = Props & DropdownVariantProps
 
 const DropdownFlag = React.forwardRef<HTMLDivElement, DropdownFlagProps>(
   (props, ref) => {
-    const {
-      flagKeyType = 'alpha-3',
-      selectedCountry,
-      defaultSelectedCountry,
-    } = props
+    const {flagKeyType = 'alpha-3', selectedKey, defaultSelectedKey} = props
 
     const [selected, setSelected] = React.useState<React.Key | undefined>(
-      selectedCountry,
+      defaultSelectedKey,
     )
-
-    const [defaultSelected, setDefaultSelected] = React.useState<
-      React.Key | undefined
-    >(defaultSelectedCountry)
 
     React.useEffect(() => {
       const getAlpha3FromKey = (key: React.Key) => {
@@ -48,25 +44,21 @@ const DropdownFlag = React.forwardRef<HTMLDivElement, DropdownFlagProps>(
         return undefined
       }
 
-      if (!selectedCountry && defaultSelectedCountry) {
-        setDefaultSelected(getAlpha3FromKey(defaultSelectedCountry))
+      if (selectedKey) {
+        setSelected(getAlpha3FromKey(selectedKey))
       }
-      if (selectedCountry) {
-        setSelected(getAlpha3FromKey(selectedCountry))
-      }
-    }, [selectedCountry, defaultSelectedCountry])
+    }, [selectedKey])
 
     const handleCountryChange = (c: React.Key) => {
       const country = countries.find((item) => item['alpha-3'] === c)
       if (country) {
-        props.onCountryChange?.(country[flagKeyType])
+        props.onSelectionChange?.(country[flagKeyType])
+        props.onCountryChange?.(country)
       }
-      props.onSelectionChange?.(c)
     }
 
     const valueProps = {
       ...(selected ? {selectedKey: selected} : {}),
-      ...(defaultSelected ? {defaultSelectedKey: defaultSelected} : {}),
     }
 
     return (

@@ -136,7 +136,7 @@ export const StyledUploadContent = styled('div', {
   pointerEvents: 'none',
 })
 
-export const StyledUploadButton = styled('label', {
+export const StyledUploadButton = styled('button', {
   // reset
   appearance: 'none',
   boxSizing: 'border-box',
@@ -158,6 +158,7 @@ export const StyledUploadButton = styled('label', {
   alignItems: 'center',
   gap: '$2_5',
   cursor: 'pointer',
+  type: 'button',
 })
 
 export const StyledUploadContainer = styled('div', {
@@ -185,6 +186,41 @@ export const StyledUploadContainer = styled('div', {
         flexDirection: 'column-reverse',
       },
     },
+    isDisabled: {
+      true: {
+        cursor: 'not-allowed',
+        backgroundColor: '$gray20',
+        [`& ${StyledUploadContent}`]: {
+          color: '$gray70',
+        },
+        [`& ${StyledUploadButton}`]: {
+          cursor: 'not-allowed',
+          backgroundColor: '$gray30',
+          borderColor: '$gray40',
+          color: '$gray70',
+        },
+      },
+    },
+  },
+})
+
+export const StyledLabel = styled('label', {
+  // reset
+  appearance: 'none',
+  border: 'none',
+  boxSizing: 'border-box',
+  margin: '0px',
+  background: 'transparent',
+
+  //styling
+  width: '100%',
+  height: '$4_5',
+  fontFamily: '$sans',
+  fontSize: '$label2',
+  lineHeight: '$normal',
+  fontWeight: '$semibold',
+  '& .cdg-isRequired-Sign': {
+    color: '#A4262C',
   },
 })
 

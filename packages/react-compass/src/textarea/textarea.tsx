@@ -103,6 +103,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       autoFocus,
       onChange,
       onChangeEvent,
+      className,
     } = props
 
     const textareaId = id
@@ -113,7 +114,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       onChangeEvent?.(event)
     }
     return (
-      <StyledTextareaWrapper css={css}>
+      <StyledTextareaWrapper css={css} className={className}>
         {label && (
           <StyledTextFieldLabel htmlFor={textareaId}>
             {label}

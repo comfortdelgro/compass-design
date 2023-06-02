@@ -63,7 +63,8 @@ interface Props extends StyledComponentProps {
   trigger?: 'focus' | null
 }
 
-export type TooltipTriggerProps = Props
+export type TooltipTriggerProps = Props &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const DEFAULT_OFFSET_WITHOUT_ARROW = 10
 
@@ -174,6 +175,7 @@ const TooltipTrigger = React.forwardRef<HTMLDivElement, TooltipTriggerProps>(
         position: strategy,
         top: y ?? 0,
         left: x ?? 0,
+        zIndex: 61,
       },
       ...getFloatingProps(),
     }

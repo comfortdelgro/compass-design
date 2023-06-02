@@ -4,6 +4,7 @@ import * as i18n from '@react-aria/i18n'
 import {useLocale} from '@react-aria/i18n'
 import React from 'react'
 import Button from '../button'
+import {useDatePickerContext} from '../date-picker/date-picker-context'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import CalendarGrid from './calendar-grid'
@@ -16,7 +17,6 @@ interface Props extends StyledComponentProps, ValueBase<DateValue> {
   children?: React.ReactNode
   state?: DatePickerState
   hasFooter?: boolean
-  onCancelCallback?: (() => void) | undefined
   maxValue?: DateValue | null | undefined
   isDisabled?: boolean
   isDateUnavailable?: (date: DateValue) => boolean
@@ -27,7 +27,6 @@ export type CalendarProps = Props & DateValue
 const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   const {
     state: pickerState,
-    onCancelCallback,
     hasFooter = false,
     css = {},
     maxValue = parseDate('2999-02-17'),
@@ -44,6 +43,7 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     isDisabled,
     createCalendar,
     ...delegated,
+    value: props.state ? props.state?.value : (props.value as DateValue),
   })
 
   const {calendarProps, prevButtonProps, nextButtonProps} = useCalendar(
@@ -53,9 +53,23 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     state,
   )
 
-  const handleCancelButtonClick = () => {
-    onCancelCallback?.()
-    pickerState?.close()
+  const {setIsReset} = useDatePickerContext()
+
+  const handleClearButtonClick = () => {
+    if (!setIsReset) {
+      props.onChange?.(null as unknown as DateValue)
+    }
+    setIsReset?.(true)
+  }
+
+  const handleTodayButtonClick = () => {
+    const today = InternationalizedDate.today(
+      InternationalizedDate.getLocalTimeZone(),
+    )
+
+    pickerState?.setDateValue(today)
+
+    state.setFocusedDate?.(today)
   }
 
   return (
@@ -70,9 +84,10 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
         <CalendarGrid state={state} maxValue={maxValue} />
         {hasFooter && (
           <div className='calendar-footer'>
-            <Button variant='ghost' onPress={handleCancelButtonClick}>
-              Cancel
+            <Button variant='ghost' onPress={handleClearButtonClick}>
+              Clear
             </Button>
+            <Button onPress={handleTodayButtonClick}>Today</Button>
           </div>
         )}
       </StyledCalendar>

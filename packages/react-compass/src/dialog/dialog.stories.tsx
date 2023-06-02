@@ -1,7 +1,7 @@
 import {faBug} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React from 'react'
 import Button from '../button'
-import {Icon} from '../icon'
 import {Column} from '../utils/components'
 import Dialog from './index'
 
@@ -76,7 +76,7 @@ export const Variants: React.FC = () => {
             <Button onPress={() => setAlertOpen(false)}>Ok</Button>
           </Dialog.Actions>
           <Dialog.Icon>
-            <Icon icon={faBug} />
+            <FontAwesomeIcon icon={faBug} />
           </Dialog.Icon>
         </Dialog>
       </Dialog.Trigger>

@@ -1,8 +1,8 @@
 import {faCamera, faGlobe} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {StoryDecorator} from '@ladle/react'
 import React from 'react'
 import Button from '../button'
-import Icon from '../icon'
 import Link from '../link'
 import {Column, Row} from '../utils'
 import Footer from './footer'
@@ -94,7 +94,10 @@ export const Variants: React.FC = () => {
         >
           <h1 className='logo'>zig</h1>
           <p>
-            <Icon icon={faGlobe} style={{marginRight: '8px'}}></Icon>
+            <FontAwesomeIcon
+              icon={faGlobe}
+              style={{marginRight: '8px'}}
+            ></FontAwesomeIcon>
             English
           </p>
         </FooterHeader>
@@ -129,9 +132,9 @@ export const Variants: React.FC = () => {
         >
           <div>
             <FooterInfoSocial>
-              <Icon icon={faCamera} />
-              <Icon icon={faCamera} />
-              <Icon icon={faCamera} />
+              <FontAwesomeIcon icon={faCamera} />
+              <FontAwesomeIcon icon={faCamera} />
+              <FontAwesomeIcon icon={faCamera} />
             </FooterInfoSocial>
             <span>383 Sin Ming Dr</span>
             <br />
@@ -183,7 +186,10 @@ export const Variants: React.FC = () => {
         >
           <h1 className='logo'>zig</h1>
           <p>
-            <Icon icon={faGlobe} style={{marginRight: '8px'}}></Icon>
+            <FontAwesomeIcon
+              icon={faGlobe}
+              style={{marginRight: '8px'}}
+            ></FontAwesomeIcon>
             English
           </p>
         </FooterHeader>
@@ -218,9 +224,9 @@ export const Variants: React.FC = () => {
         >
           <div>
             <FooterInfoSocial>
-              <Icon icon={faCamera} />
-              <Icon icon={faCamera} />
-              <Icon icon={faCamera} />
+              <FontAwesomeIcon icon={faCamera} />
+              <FontAwesomeIcon icon={faCamera} />
+              <FontAwesomeIcon icon={faCamera} />
             </FooterInfoSocial>
             <span>383 Sin Ming Dr</span>
             <br />
@@ -272,7 +278,10 @@ export const Variants: React.FC = () => {
         >
           <h1 className='logo'>zig</h1>
           <p>
-            <Icon icon={faGlobe} style={{marginRight: '8px'}}></Icon>
+            <FontAwesomeIcon
+              icon={faGlobe}
+              style={{marginRight: '8px'}}
+            ></FontAwesomeIcon>
             English
           </p>
         </FooterHeader>
@@ -307,9 +316,9 @@ export const Variants: React.FC = () => {
         >
           <div>
             <FooterInfoSocial>
-              <Icon icon={faCamera} />
-              <Icon icon={faCamera} />
-              <Icon icon={faCamera} />
+              <FontAwesomeIcon icon={faCamera} />
+              <FontAwesomeIcon icon={faCamera} />
+              <FontAwesomeIcon icon={faCamera} />
             </FooterInfoSocial>
             <span>383 Sin Ming Dr</span>
             <br />

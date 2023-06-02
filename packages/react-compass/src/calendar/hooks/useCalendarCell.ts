@@ -83,7 +83,8 @@ export function useCalendarCell(
 
     if (
       'highlightedRange' in state &&
-      state.value &&
+      state.value?.end &&
+      state.value?.start &&
       !state.anchorDate &&
       (isSameDay(date, state.value.start) || isSameDay(date, state.value.end))
     ) {
@@ -142,11 +143,6 @@ export function useCalendarCell(
       if (state.isReadOnly) {
         state.setFocusedDate?.(date)
         return
-      }
-
-      if (!('highlightedRange' in state)) {
-        state.selectDate?.(date)
-        state.setFocusedDate?.(date)
       }
 
       if (

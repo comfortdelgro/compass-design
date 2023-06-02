@@ -81,27 +81,6 @@ export const StyledUploadContent = styled('div', {
   },
 })
 
-export const StyledUploadButton = styled('div', {
-  // reset
-  appearance: 'none',
-  border: 'none',
-  boxSizing: 'border-box',
-  margin: '0px',
-  padding: '0px',
-  background: 'transparent',
-
-  // upload button styling
-  width: '30.275%',
-  height: '100%',
-  // borderRadius: '4px 0px 0px 4px',
-  backgroundColor: '#F7F8F9',
-  fontFamily: '$sans',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  boxShadow: '1px 0 0 0 #E6E6E6',
-})
-
 export const StyledUploadContainer = styled('div', {
   // reset
   appearance: 'none',
@@ -121,7 +100,7 @@ export const StyledUploadContainer = styled('div', {
   gap: '0px',
 })
 
-export const StyledBrowseFile = styled('label', {
+export const StyledBrowseFile = styled('div', {
   // reset
   appearance: 'none',
   //border: 'none',
@@ -150,6 +129,26 @@ export const StyledBrowseFile = styled('label', {
   },
 })
 
+export const StyledLabel = styled('label', {
+  // reset
+  appearance: 'none',
+  border: 'none',
+  boxSizing: 'border-box',
+  margin: '0px',
+  background: 'transparent',
+
+  //styling
+  width: '100%',
+  height: '$4_5',
+  fontFamily: '$sans',
+  fontSize: '$label2',
+  lineHeight: '$normal',
+  fontWeight: '$semibold',
+  '& .cdg-isRequired-Sign': {
+    color: '#A4262C',
+  },
+})
+
 export const StyledUploadWrapper = styled('div', {
   // reset
   appearance: 'none',
@@ -168,6 +167,24 @@ export const StyledUploadWrapper = styled('div', {
   gap: '$2',
   '& input': {
     display: 'none',
+  },
+  variants: {
+    isDisabled: {
+      true: {
+        [`${StyledBrowseFile}`]: {
+          backgroundColor: '$gray40',
+          color: '$gray70',
+          cursor: 'not-allowed',
+          border: 'none',
+        },
+        [`${StyledUploadContent}`]: {
+          backgroundColor: '$gray20',
+          color: '$gray40',
+          cursor: 'not-allowed',
+          border: 'none',
+        },
+      },
+    },
   },
 })
 

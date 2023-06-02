@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/unbound-method */
-import {DateValue} from '@internationalized/date'
+import {DateValue, parseDate} from '@internationalized/date'
 import {CSS} from '@stitches/react'
 import React from 'react'
 import {ButtonProps} from '../button'
@@ -11,13 +11,13 @@ import {useDateRangePickerState} from '../calendar/hooks/useDateRangePickerState
 import {
   AriaDatePickerProps,
   AriaDialogProps,
-  DateRange,
   DateRangePickerState,
   DOMAttributes,
   RangeCalendarProps,
   RangeValue,
   SpectrumDateRangePickerProps,
 } from '../calendar/types'
+import DatePickerProvider from '../date-picker/date-picker-context'
 import RangeCalendar from '../range-calendar/range-calendar'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -35,11 +35,10 @@ interface Props
   startDateLabel?: string | React.ReactNode
   endDateLabel?: string | React.ReactNode
   shouldCloseOnSelect?: boolean
-  onApply?: (e?: DateRange) => void
-  onCancel?: () => void
   isMobile?: boolean
   calendarCSS?: CSS
   helperText?: React.ReactNode
+  maxValue?: DateValue | null | undefined
 }
 
 export type DateRangePickerProps = Props
@@ -51,10 +50,9 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
       endDateLabel,
       shouldCloseOnSelect = false,
       css = {},
-      onApply,
-      onCancel,
       errorMessage,
       helperText,
+      maxValue,
       ...delegated
     } = props
 
@@ -63,7 +61,7 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
       isReadOnly: props.isReadOnly ? true : props.isMobile ? true : false,
       shouldCloseOnSelect: props.granularity
         ? true
-        : props.shouldCloseOnSelect ?? false,
+        : shouldCloseOnSelect ?? false,
     })
 
     const calendarRef = useDOMRef(ref)
@@ -114,31 +112,32 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
 
     return (
       <StyledRangeDatepicker ref={calendarRef} css={css}>
-        <DateRangeInputsWrapper
-          state={state}
-          label={props.label}
-          labelProps={labelProps}
-          groupProps={groupProps}
-          startFieldProps={extendedStartFieldProps}
-          endFieldProps={extendedEndFieldProps}
-          buttonProps={buttonProps as unknown as ButtonProps}
-          startDateLabel={startDateLabel}
-          endDateLabel={endDateLabel}
-          isInvalid={props.isInvalid}
-          isReadOnly={props.isReadOnly}
-          isMobile={props.isMobile}
-          errorMessage={errorMessage}
-          helperText={helperText}
-        />
-        <DateRangeCalendarWrapper
-          state={state}
-          onApply={onApply}
-          onCancel={onCancel}
-          calendarRef={calendarRef}
-          dialogProps={dialogProps}
-          calendarProps={calendarProps}
-          css={props.calendarCSS}
-        />
+        <DatePickerProvider>
+          <DateRangeInputsWrapper
+            state={state}
+            label={props.label}
+            labelProps={labelProps}
+            groupProps={groupProps}
+            startFieldProps={extendedStartFieldProps}
+            endFieldProps={extendedEndFieldProps}
+            buttonProps={buttonProps as unknown as ButtonProps}
+            startDateLabel={startDateLabel}
+            endDateLabel={endDateLabel}
+            isInvalid={props.isInvalid}
+            isReadOnly={props.isReadOnly}
+            isMobile={props.isMobile}
+            errorMessage={errorMessage}
+            helperText={helperText}
+          />
+          <DateRangeCalendarWrapper
+            maxValue={maxValue}
+            state={state}
+            calendarRef={calendarRef}
+            dialogProps={dialogProps}
+            calendarProps={calendarProps}
+            css={props.calendarCSS}
+          />
+        </DatePickerProvider>
       </StyledRangeDatepicker>
     )
   },
@@ -217,8 +216,7 @@ interface DateRangeCalendarWrapperProps {
   calendarRef: React.RefObject<HTMLDivElement>
   dialogProps: AriaDialogProps
   calendarProps: RangeCalendarProps<DateValue>
-  onApply: ((e?: DateRange) => void) | undefined
-  onCancel: (() => void) | undefined
+  maxValue?: DateValue | null | undefined
   css?: CSS | undefined
 }
 
@@ -229,8 +227,7 @@ const DateRangeCalendarWrapper = (props: DateRangeCalendarWrapperProps) => {
     dialogProps,
     calendarProps,
     css = {},
-    onApply,
-    onCancel,
+    maxValue = parseDate('2999-03-10'),
   } = props
 
   const {value, onChange, ...resCalendarProps} = calendarProps
@@ -258,13 +255,12 @@ const DateRangeCalendarWrapper = (props: DateRangeCalendarWrapperProps) => {
               css={css}
               state={state}
               hasFooter={true}
-              onApplyCallback={onApply}
-              onCancelCallback={onCancel}
               aria-label=''
               aria-labelledby=''
               {...(value ? {value} : {})}
               onChange={onChangeRangeCalendar}
               {...resCalendarProps}
+              maxValue={maxValue}
             />
           </Dialog>
         </Popover>
