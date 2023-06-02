@@ -57,7 +57,9 @@ export const Default: React.FC = () => {
       <h3>Customize left icon</h3>
 
       <Accordion>
-        <Accordion.Title icon={faAddressBook}>Title</Accordion.Title>
+        <Accordion.Title icon={<Icon icon={faAddressBook} />}>
+          Title
+        </Accordion.Title>
         {lorem}
       </Accordion>
 
