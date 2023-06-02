@@ -19,6 +19,9 @@ export const StyledDropdownButton = styled('button', {
   '&:hover': {
     backgroundColor: '#E1DFDD',
   },
+  svg: {
+    height: '1em',
+  },
   backgroundColor: '#f3f2f1',
   alignItems: 'center',
   gap: 16,
