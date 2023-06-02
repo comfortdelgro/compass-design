@@ -7,4 +7,5 @@ const stitches = createStitches({
   media: breakpoints,
 })
 
-export const {styled, globalCss, getCssText, theme, keyframes} = stitches
+export const {styled, globalCss, getCssText, config, theme, keyframes} =
+  stitches
