@@ -218,19 +218,19 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         if (!allowsCustomValue) {
           if (currentKey) {
             setSearch(getTextFromKey(currentKey))
-            setIsSearching(false)
           } else {
             setSearch('')
           }
         } else {
           if (currentKey && search) {
             const originalText = getTextFromKey(currentKey)
-            if (originalText) {
+            if (originalText !== search && isSearching) {
               setCurrentKey(undefined)
               props.onSelectionChange?.('')
             }
           }
         }
+        setIsSearching(false)
       }
     }
   }, [open])
