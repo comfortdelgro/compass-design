@@ -36,6 +36,7 @@ import {getDefaulValues, XIcon} from './utils'
 interface Props extends DropdownBase {
   selectedKeys?: React.Key[]
   defaultSelectedKeys?: React.Key[]
+  customDisplayValue?: React.ReactNode
   onSelectionChange?: (key: React.Key[]) => void
 }
 
@@ -64,6 +65,7 @@ const MultipleDropdown = React.forwardRef<
     icon = <Icon />,
     disabledKeys = [],
     isLoading = false,
+    customDisplayValue,
     defaultSelectedKeys = [],
     onLoadMore = () => {
       //Load more
@@ -304,7 +306,8 @@ const MultipleDropdown = React.forwardRef<
               search === '' &&
               !open &&
               !focused && <p>{props.placeholder}</p>}
-            {selectedNode.length > 0 &&
+            {!customDisplayValue &&
+              selectedNode.length > 0 &&
               selectedNode.map((item) => {
                 const isHideXIcon =
                   isDisabled || disabledKeys.includes(item.key)
@@ -335,6 +338,9 @@ const MultipleDropdown = React.forwardRef<
                   </StyledSelectedItem>
                 )
               })}
+            {!!customDisplayValue && selectedNode.length > 0
+              ? customDisplayValue
+              : null}
             {!isDisabled && (
               <input
                 id={id}

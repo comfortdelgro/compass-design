@@ -3,6 +3,7 @@ import {StyledComponentProps} from '../../utils/stitches.types'
 export interface DropdownItemBase extends StyledComponentProps {
   key: React.Key
   textValue?: string
+  variant?: 'none' | 'checkbox' | 'tick'
   children: React.ReactNode
   'aria-label'?: string
 }

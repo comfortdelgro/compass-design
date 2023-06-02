@@ -7,16 +7,6 @@ export const StyledRightIcon = styled('div', {
   flexShrink: 0,
   width: '$6',
   height: '$6',
-  div: {
-    border: '1px solid #323130',
-    borderRadius: '3px',
-    width: '$4',
-    height: '$4',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    background: '#FFFFFF',
-  },
   variants: {
     isSelected: {
       true: {
@@ -29,12 +19,26 @@ export const StyledRightIcon = styled('div', {
         },
       },
       false: {
-        div: {
-          svg: {
-            display: 'none',
-          },
+        svg: {
+          display: 'none',
         },
       },
+    },
+    variant: {
+      checkbox: {
+        div: {
+          border: '1px solid #323130',
+          borderRadius: '3px',
+          width: '$4',
+          height: '$4',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: '#FFFFFF',
+        },
+      },
+      none: {},
+      tick: {},
     },
   },
 })
