@@ -1,5 +1,11 @@
 # @comfortdelgro/compass-icons
 
+## 1.1.1
+
+### Patch Changes
+
+- 205b0867: Allow icon component to accept ref as prop
+
 ## 1.1.0
 
 ### Minor Changes
