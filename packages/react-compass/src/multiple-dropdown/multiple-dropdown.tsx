@@ -312,12 +312,14 @@ const MultipleDropdown = React.forwardRef<
                   <StyledSelectedItem
                     key={item.key}
                     style={{cursor: isDisabled ? 'not-allowed' : 'pointer'}}
+                    className='multiple-dropdown-chip'
                   >
                     <div>{item.rendered}</div>
                     {isHideXIcon ? (
                       <></>
                     ) : (
                       <div
+                        className='multiple-dropdown-chip-icon'
                         onClick={() => {
                           if (
                             !isDisabled &&
