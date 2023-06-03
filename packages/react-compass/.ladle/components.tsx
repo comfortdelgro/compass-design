@@ -2,7 +2,7 @@ import {GlobalProvider} from '@ladle/react'
 import {createTheme} from '@stitches/react'
 import React from 'react'
 import Preflight from '../src/preflight'
-import ThemeProvider from '../src/theme/ThemeProvider'
+import {ThemeProvider} from '../src/theme'
 
 const lightThemeCustom = createTheme('light-theme-custom', {
   colors: {

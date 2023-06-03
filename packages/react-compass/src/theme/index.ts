@@ -1,3 +1,3 @@
 export {globalCss, styled, theme} from './stitches.config'
 export {darkTheme} from './theme'
-export * from './ThemeProvider'
+export {default as ThemeProvider} from './ThemeProvider'

@@ -1,6 +1,5 @@
-import {Box, Radio} from '@comfortdelgro/react-compass'
+import {Box, Radio, ThemeProvider} from '@comfortdelgro/react-compass'
 import createTheme from '@comfortdelgro/react-compass/theme/theme'
-import ThemeProvider from '@comfortdelgro/react-compass/theme/ThemeProvider'
 import type {AppProps} from 'next/app'
 import {useState} from 'react'
 import '../styles/globals.css'

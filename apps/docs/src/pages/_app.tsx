@@ -1,11 +1,10 @@
+import {ThemeProvider} from '@comfortdelgro/react-compass'
 import Preflight from '@comfortdelgro/react-compass/preflight'
-import ThemeProvider from '@comfortdelgro/react-compass/theme/ThemeProvider'
 import {SSRProvider} from '@react-aria/ssr'
 import {AppProps} from 'next/app'
 import {useEffect, useState} from 'react'
 import {Toaster} from 'react-hot-toast'
 import 'styles/global.css'
-import {darkThemeCustom, lightThemeCustom} from 'theme/custom-theme'
 
 const App: React.FC<AppProps> = ({Component, pageProps}) => {
   const [changeBy, setChangeBy] = useState('light')
