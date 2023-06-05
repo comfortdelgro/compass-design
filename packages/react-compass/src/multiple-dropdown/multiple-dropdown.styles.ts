@@ -1,21 +1,6 @@
 import {styled} from '../theme'
 import type {VariantProps} from '../utils/stitches.types'
 
-export const StyledDropdownWrapper = styled('div', {
-  width: '100%',
-  label: {
-    fontSize: '$label1',
-    fontWeight: '$semibold',
-    marginBottom: '$2',
-    display: 'inline-block',
-    width: '100%',
-    span: {
-      marginLeft: '$1',
-      color: '$danger',
-    },
-  },
-})
-
 export const StyledDropdown = styled('div', {
   width: '100%',
   minHeight: '$11',
@@ -99,7 +84,7 @@ export const StyledSelectedItemWrapper = styled('div', {
   display: 'flex',
   gap: '$2_5',
   flexWrap: 'wrap',
-  p: {
+  '.placeholder': {
     color: '#B4B4B4',
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
@@ -111,7 +96,7 @@ export const StyledSelectedItemWrapper = styled('div', {
     alignItems: 'center',
     flexGrow: 1,
     border: 'none',
-    textAlign: 'start',
+    textAlign: 'left',
     padding: 0,
     margin: 0,
   },
@@ -131,6 +116,37 @@ export const StyledSelectedItem = styled('div', {
   div: {
     width: 'fit-content',
     height: 'fit-content',
+  },
+})
+
+export const StyledDropdownWrapper = styled('div', {
+  width: '100%',
+  label: {
+    fontSize: '$label1',
+    fontWeight: '$semibold',
+    marginBottom: '$2',
+    display: 'inline-block',
+    width: '100%',
+    span: {
+      marginLeft: '$1',
+      color: '$danger',
+    },
+  },
+  variants: {
+    variant: {
+      chip: {},
+      string: {
+        [`${StyledSelectedItemWrapper}`]: {
+          flexWrap: 'nowrap',
+          justifyContent: 'flex-start',
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          height: '$6',
+          width: '10px',
+        },
+      },
+    },
   },
 })
 

@@ -38,6 +38,7 @@ interface Props extends DropdownBase {
   defaultSelectedKeys?: React.Key[]
   customDisplayValue?: React.ReactNode
   onSelectionChange?: (key: React.Key[]) => void
+  variant?: 'chip' | 'string'
 }
 
 export type MultipleDropdownProps = Props &
@@ -62,6 +63,7 @@ const MultipleDropdown = React.forwardRef<
     errorMessage,
     selectedKeys,
     numberOfRows,
+    variant = 'chip',
     icon = <Icon />,
     disabledKeys = [],
     isLoading = false,
@@ -285,9 +287,17 @@ const MultipleDropdown = React.forwardRef<
     }
   }
 
+  const convertSelectedNodeToString = () => {
+    const array = selectedNode.map((v) => v.rendered)
+    if (array.length > 0) {
+      return <>{array.join(', ')}</>
+    }
+    return ''
+  }
+
   // ====================================== RENDER ======================================
   return (
-    <StyledDropdownWrapper css={css} ref={ref} {...delegated}>
+    <StyledDropdownWrapper css={css} ref={ref} {...delegated} variant={variant}>
       {props.label && (
         <label onClick={handleOpen} htmlFor={id}>
           {props.label}
@@ -301,12 +311,12 @@ const MultipleDropdown = React.forwardRef<
           isDisabled={!!isDisabled}
           onClick={handleOpen}
         >
-          <StyledSelectedItemWrapper>
+          <StyledSelectedItemWrapper className='selectedItemWrapper'>
             {selectedNode.length === 0 &&
               search === '' &&
               !open &&
-              !focused && <p>{props.placeholder}</p>}
-            {!customDisplayValue &&
+              !focused && <p className='placeholder'>{props.placeholder}</p>}
+            {variant == 'chip' &&
               selectedNode.length > 0 &&
               selectedNode.map((item) => {
                 const isHideXIcon =
@@ -338,9 +348,17 @@ const MultipleDropdown = React.forwardRef<
                   </StyledSelectedItem>
                 )
               })}
-            {!!customDisplayValue && selectedNode.length > 0
-              ? customDisplayValue
-              : null}
+            {variant == 'string' &&
+            !!customDisplayValue &&
+            selectedNode.length > 0 ? (
+              customDisplayValue
+            ) : variant == 'string' &&
+              !customDisplayValue &&
+              selectedNode.length > 0 ? (
+              <div className='itemListString'>
+                {convertSelectedNodeToString()}
+              </div>
+            ) : null}
             {!isDisabled && (
               <input
                 id={id}

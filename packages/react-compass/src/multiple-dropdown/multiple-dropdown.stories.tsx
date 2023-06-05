@@ -66,9 +66,11 @@ export const Default: React.FC = () => {
       <h3>Custom Display value</h3>
       <MultipleDropdown
         label='Favorite Animal'
-        customDisplayValue='Favorite Animal Selected'
+        variant='string'
+        //customDisplayValue='Favorite Animal Selected'
         defaultSelectedKeys={['snake']}
         placeholder='Choose an animal'
+        css={{width: '200px'}}
       >
         <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
         <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
