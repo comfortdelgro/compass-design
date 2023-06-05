@@ -77,14 +77,20 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
     }
 
     const handleTodayButtonClick = () => {
-      pickerState?.setDateRange({
+      const todayRange = {
         start: InternationalizedDate.today(
           InternationalizedDate.getLocalTimeZone(),
         ),
         end: InternationalizedDate.today(
           InternationalizedDate.getLocalTimeZone(),
         ),
-      })
+      }
+
+      if (pickerState) {
+        pickerState?.setDateRange(todayRange)
+      } else {
+        state.setValue(todayRange)
+      }
 
       state.setFocusedDate?.(
         InternationalizedDate.today(InternationalizedDate.getLocalTimeZone()),
