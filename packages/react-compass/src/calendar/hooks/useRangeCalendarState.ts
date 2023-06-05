@@ -56,7 +56,9 @@ export function useRangeCalendarState<T extends DateValue = DateValue>(
     onChange,
   )
 
-  const [anchorDate, setAnchorDateState] = useState(null)
+  const [anchorDate, setAnchorDateState] = useState<CalendarDate | null>(
+    value?.start && !value.end ? (value?.start as CalendarDate) : null,
+  )
   let alignment: 'center' | 'start' = 'center'
   if (value && value.start && value.end) {
     const start = alignCenter(
@@ -147,7 +149,7 @@ export function useRangeCalendarState<T extends DateValue = DateValue>(
 
   const highlightedRange = anchorDate
     ? makeRange(anchorDate, calendar.focusedDate as CalendarDate)
-    : value && makeRange(value.start, value.end)
+    : value && makeRange(value.start!, value.end!)
   const selectDate = (date: CalendarDate) => {
     if (props.isReadOnly) {
       return
@@ -166,16 +168,25 @@ export function useRangeCalendarState<T extends DateValue = DateValue>(
 
     if (!anchorDate) {
       setAnchorDate(date)
-    } else {
-      const range = makeRange(anchorDate, date)
-      setValue({
-        // @ts-ignore
-        start: convertValue(range.start, value?.start),
-        // @ts-ignore
-        end: convertValue(range.end, value?.end),
-      })
       // @ts-ignore
-      setAnchorDate(null)
+      onChange?.({start: date, end: null as unknown as DateValue})
+    } else {
+      if (anchorDate.compare(date) > 0) {
+        setAnchorDate(date)
+        // @ts-ignore
+        onChange?.({start: date, end: null as unknown as DateValue})
+        //
+      } else {
+        const range = makeRange(anchorDate, date)
+        setValue({
+          // @ts-ignore
+          start: convertValue(range.start, value?.start),
+          // @ts-ignore
+          end: convertValue(range.end, value?.end),
+        })
+        // @ts-ignore
+        setAnchorDate(null)
+      }
     }
   }
 
@@ -189,7 +200,7 @@ export function useRangeCalendarState<T extends DateValue = DateValue>(
 
     if (
       isDateUnavailable &&
-      (isDateUnavailable(value.start) || isDateUnavailable(value.end))
+      (isDateUnavailable(value.start!) || isDateUnavailable(value.end!))
     ) {
       return true
     }
@@ -230,8 +241,8 @@ export function useRangeCalendarState<T extends DateValue = DateValue>(
     isSelected(date) {
       return (
         highlightedRange &&
-        date.compare(highlightedRange.start) >= 0 &&
-        date.compare(highlightedRange.end) <= 0 &&
+        date.compare(highlightedRange.start!) >= 0 &&
+        date.compare(highlightedRange.end!) <= 0 &&
         !calendar.isCellDisabled?.(date) &&
         !calendar.isCellUnavailable?.(date)
       )

@@ -59,7 +59,7 @@ export function useDateRangePickerState<T extends DateValue = DateValue>(
   const setValue = (value: DateRange) => {
     // @ts-ignore
     setPlaceholderValue(value)
-    if (value.start && value.end) {
+    if (value.start || value.end) {
       // @ts-ignore
       setControlledValue(value)
     } else {
@@ -90,13 +90,13 @@ export function useDateRangePickerState<T extends DateValue = DateValue>(
   const commitValue = (dateRange: DateRange, timeRange: TimeRange) => {
     setValue({
       start:
-        'timeZone' in timeRange.start
-          ? timeRange.start.set(toCalendarDate(dateRange.start))
-          : toCalendarDateTime(dateRange.start, timeRange.start),
+        'timeZone' in timeRange.start!
+          ? timeRange.start.set(toCalendarDate(dateRange.start!))
+          : toCalendarDateTime(dateRange.start!, timeRange.start!),
       end:
-        'timeZone' in timeRange.end
-          ? timeRange.end.set(toCalendarDate(dateRange.end))
-          : toCalendarDateTime(dateRange.end, timeRange.end),
+        'timeZone' in timeRange.end!
+          ? timeRange.end.set(toCalendarDate(dateRange.end!))
+          : toCalendarDateTime(dateRange.end!, timeRange.end!),
     })
     setSelectedDateRange(null)
     setSelectedTimeRange(null)
@@ -121,11 +121,12 @@ export function useDateRangePickerState<T extends DateValue = DateValue>(
       } else {
         setSelectedDateRange(range)
       }
-    } else if (range.start && range.end) {
+    } else if (range.start || range.end) {
       setValue(range)
     } else {
       if (!range.start || !range.end) {
-        setControlledValue(null)
+        // @ts-ignore
+        setControlledValue({start: null, end: null})
         setSelectedDateRange(null)
       } else {
         setSelectedDateRange(range)

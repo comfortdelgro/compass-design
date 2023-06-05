@@ -47,8 +47,8 @@ export type SegmentType =
 export type DateValue = CalendarDate | CalendarDateTime | ZonedDateTime
 
 export interface RangeValue<T> {
-  start: T
-  end: T
+  start: T | null
+  end: T | null
 }
 
 interface CalendarStateBase {

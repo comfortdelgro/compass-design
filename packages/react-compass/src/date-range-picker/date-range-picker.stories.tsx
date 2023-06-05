@@ -34,20 +34,26 @@ export const Variants: React.FC = () => {
 }
 
 export const Controlled: React.FC = () => {
-  const [range, setRange] = React.useState<RangeValue<CalendarProps>>({
+  const [range, setRange] = React.useState<RangeValue<CalendarProps | null>>({
     start: parseDate('2020-02-03'),
     end: parseDate('2020-02-08'),
   })
   const formatter = useDateFormatter({dateStyle: 'long'})
+
   return (
     <I18nProvider locale='en-SG'>
       <h3>Controlled</h3>
-      {range
+      {range.start && range.end
         ? formatter.formatRange(
             range.start.toDate(getLocalTimeZone()),
             range.end.toDate(getLocalTimeZone()),
           )
-        : 'Invalid range of dates'}
+        : `${
+            range.start &&
+            formatter.format(range.start.toDate(getLocalTimeZone()))
+          } - ${
+            range.end && formatter.format(range.end.toDate(getLocalTimeZone()))
+          }`}
       <DateRangePicker
         value={range}
         onChange={(e) => setRange(e as RangeValue<DateValue>)}
