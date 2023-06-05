@@ -6,6 +6,7 @@ import MultipleDropdown from './index'
 
 export const Default: React.FC = () => {
   const [value, setValue] = React.useState<Key[]>([])
+  const [value2, setValue2] = React.useState<Key[]>(['snake', 'cat', 'snake'])
   return (
     <Column>
       <h3>Controlled</h3>
@@ -19,6 +20,7 @@ export const Default: React.FC = () => {
         onSelectionChange={(k: Key[]) => setValue(k)}
         onBlur={() => console.log('blur')}
         onFocus={() => console.log('focus')}
+        css={{width: '50%'}}
       >
         <MultipleDropdown.Item key='red panda'>
           <FontAwesomeIcon icon={faBug} style={{marginRight: 5}} />
@@ -61,6 +63,70 @@ export const Default: React.FC = () => {
         <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
         <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
         <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+      </MultipleDropdown>
+
+      <h3>Variant: String</h3>
+      <MultipleDropdown
+        label='Favorite Animal'
+        variant='string'
+        defaultSelectedKeys={['snake', 'cat', 'snake']}
+        placeholder='Choosesss an animal sadfsa sadfasdfsd asfdsfasdf asdfdsfsddf asdfsdf asdfsdf grfgasd asfasdfasdf á  '
+        css={{width: '200px'}}
+      >
+        <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
+        <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
+        <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
+        <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
+        <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
+        <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+      </MultipleDropdown>
+
+      <h3>
+        Custom display value (only effective when using with variant string)
+      </h3>
+      <MultipleDropdown
+        label='Favorite Animal'
+        variant='string'
+        customDisplayValue={`${value2.length} animals selected`}
+        placeholder='Choosesss an animal sadfsa sadfasdfsd asfdsfasdf asdfdsfsddf asdfsdf asdfsdf grfgasd asfasdfasdf á  '
+        css={{width: '290px'}}
+        selectedKeys={value2}
+        onSelectionChange={(k: Key[]) => setValue2(k)}
+      >
+        <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
+        <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
+        <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
+        <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
+        <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
+        <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+      </MultipleDropdown>
+
+      <h3>Checkmark types</h3>
+      <MultipleDropdown
+        label='Favorite Animal'
+        variant='string'
+        defaultSelectedKeys={['snake', 'cat', 'snake']}
+        placeholder='Choosesss an animal sadfsa sadfasdfsd asfdsfasdf asdfdsfsddf asdfsdf asdfsdf grfgasd asfasdfasdf á  '
+        css={{width: '200px'}}
+      >
+        <MultipleDropdown.Item key='red panda' checkmark='tick'>
+          Red Panda
+        </MultipleDropdown.Item>
+        <MultipleDropdown.Item key='cat' checkmark='tick'>
+          Cat
+        </MultipleDropdown.Item>
+        <MultipleDropdown.Item key='dog' checkmark='tick'>
+          Dog
+        </MultipleDropdown.Item>
+        <MultipleDropdown.Item key='aardvark' checkmark='tick'>
+          Aardvark
+        </MultipleDropdown.Item>
+        <MultipleDropdown.Item key='kangaroo' checkmark='tick'>
+          Kangaroo
+        </MultipleDropdown.Item>
+        <MultipleDropdown.Item key='snake' checkmark='tick'>
+          Snake
+        </MultipleDropdown.Item>
       </MultipleDropdown>
 
       <h3>Loading</h3>
