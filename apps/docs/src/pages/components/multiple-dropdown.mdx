@@ -172,7 +172,7 @@ We recommend the second method to import components for the benefits of [tree sh
   >
     <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
     <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='dog' variant='tick'>
+    <MultipleDropdown.Item key='dog' checkmark='tick'>
       Dog
     </MultipleDropdown.Item>
     <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
@@ -182,21 +182,21 @@ We recommend the second method to import components for the benefits of [tree sh
 </section>
 
 ```js
-  <MultipleDropdown
-    label='Favorite Animal'
-    defaultSelectedKeys={['snake']}
-    customDisplayValue='Favorite Animal Selected'
-    placeholder='Choose an animal'
-  >
-    <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='dog' variant='tick'>
-      Dog
-    </MultipleDropdown.Item>
-    <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
-  </MultipleDropdown>
+<MultipleDropdown
+  label='Favorite Animal'
+  defaultSelectedKeys={['snake']}
+  customDisplayValue='Favorite Animal Selected'
+  placeholder='Choose an animal'
+>
+  <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
+  <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
+  <MultipleDropdown.Item key='dog' checkmark='tick'>
+    Dog
+  </MultipleDropdown.Item>
+  <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
+  <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
+  <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+</MultipleDropdown>
 ```
 
 ---
@@ -446,13 +446,13 @@ We recommend the second method to import components for the benefits of [tree sh
 
 #### `<MultipleDropdown.Item/>` :
 
-| Name       | Type              | Default | Description                      |
-| :--------- | :---------------- | :------ | :------------------------------- |
-| key        | `Key`             | —       | The key of the dropdown.         |
-| icon       | `icon` \| `color` | —       | The content of the dropdown Item |
-| title      | `ReactNode`       | —       | The title of the dropdown.       |
-| children   | `ReactNode`       | —       | The content of the dropdown Item |
-| variant    | `none` \| `checkbox` \| `tick`  | -       | Variant for the selected   |
+| Name      | Type                           | Default | Description                      |
+| :-------- | :----------------------------- | :------ | :------------------------------- |
+| key       | `Key`                          | —       | The key of the dropdown.         |
+| icon      | `icon` \| `color`              | —       | The content of the dropdown Item |
+| title     | `ReactNode`                    | —       | The title of the dropdown.       |
+| children  | `ReactNode`                    | —       | The content of the dropdown Item |
+| checkmark | `none` \| `checkbox` \| `tick` | -       | Variant for the selected         |
 
 ---
 

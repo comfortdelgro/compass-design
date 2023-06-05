@@ -24,7 +24,7 @@ export const StyledRightIcon = styled('div', {
         },
       },
     },
-    variant: {
+    checkmark: {
       checkbox: {
         div: {
           border: '1px solid #323130',

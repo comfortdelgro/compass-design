@@ -306,6 +306,7 @@ const MultipleDropdown = React.forwardRef<
       )}
       <div ref={refs.setReference} {...getReferenceProps}>
         <StyledDropdown
+          className='dropdownContainer'
           ref={wrapperRef}
           isErrored={!!isErrored}
           isDisabled={!!isDisabled}
@@ -351,7 +352,7 @@ const MultipleDropdown = React.forwardRef<
             {variant == 'string' &&
             !!customDisplayValue &&
             selectedNode.length > 0 ? (
-              customDisplayValue
+              <div className='itemListString'>{customDisplayValue}</div>
             ) : variant == 'string' &&
               !customDisplayValue &&
               selectedNode.length > 0 ? (

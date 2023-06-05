@@ -18,7 +18,7 @@ interface Props extends OptionVariantProps {
 
 function Option({item, currentKeys, focusKey, disabledKeys, onSelect}: Props) {
   const ref = React.useRef<HTMLLIElement>(null)
-  const {variant = 'checkbox'} = item.props
+  const {checkmark = 'checkbox'} = item.props
   const isSelected = React.useMemo(
     () => (item.key ? currentKeys.some((v) => v == item.key) : false),
     [currentKeys],
@@ -48,12 +48,12 @@ function Option({item, currentKeys, focusKey, disabledKeys, onSelect}: Props) {
       isDisabled={isDisabled}
     >
       <StyledContent>{item.props.children}</StyledContent>
-      <StyledRightIcon isSelected={isSelected} variant={variant}>
-        {variant === 'checkbox' ? (
+      <StyledRightIcon isSelected={isSelected} checkmark={checkmark}>
+        {checkmark === 'checkbox' ? (
           <div>
             <Tick />
           </div>
-        ) : variant === 'tick' ? (
+        ) : checkmark === 'tick' ? (
           <BlueTick />
         ) : null}
       </StyledRightIcon>
