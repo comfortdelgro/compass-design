@@ -1,7 +1,6 @@
-import {Item} from '@react-stately/collections'
 import React from 'react'
-import {useRichTextEditorContext} from '../../../rich-text-editor.context'
-import {HeadingSelector} from './HeadingSelector'
+import {useRichTextEditorContext} from '../../rich-text-editor.context'
+import Select from '../../select'
 export type HeadingsControlProps = {
   levels?: number[]
 }
@@ -31,18 +30,23 @@ export const HeadingsControl = ({
   )
 
   return (
-    <HeadingSelector
+    <Select
       onSelectionChange={handleSelectionChange}
       selectedKey={selectedHeadingLevel}
+      css={{
+        width: '140px',
+        height: '28px',
+        float: 'left',
+      }}
     >
       {[...levelsSet].map((level) => {
         const levelName = level === 0 ? 'Normal Text' : `Heading ${level}`
         return (
-          <Item key={level} textValue={levelName}>
+          <Select.Item key={level} textValue={levelName}>
             {levelName}
-          </Item>
+          </Select.Item>
         )
       })}
-    </HeadingSelector>
+    </Select>
   )
 }

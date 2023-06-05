@@ -1,8 +1,7 @@
-import {Item} from '@react-stately/collections'
 import React from 'react'
-import {useRichTextEditorContext} from '../../../rich-text-editor.context'
-import {StyledColorItem} from '../../../rich-text-editor.styles'
-import {ColorSelector} from './ColorSelector'
+import {useRichTextEditorContext} from '../../rich-text-editor.context'
+import {StyledColorItem} from '../../rich-text-editor.styles'
+import Select from '../../select'
 
 export type ColorControlProps = {
   colors?: string[]
@@ -37,18 +36,23 @@ export const ColorControl = ({colors = defaultColors}: ColorControlProps) => {
       .run()
   }
   return (
-    <ColorSelector
-      onSelectionChange={handleSelectionChange}
+    <Select
       defaultSelectedKey={[...colorSet][0] as React.Key}
+      onSelectionChange={handleSelectionChange}
+      css={{
+        width: '70px',
+        height: '28px',
+        float: 'left',
+      }}
     >
       {[...colorSet].map((color) => (
-        <Item key={color} textValue={color}>
+        <Select.Item key={color} textValue={color}>
           <StyledColorItem
             style={{backgroundColor: color}}
             active={editor?.isActive('color', color) ?? false}
           ></StyledColorItem>
-        </Item>
+        </Select.Item>
       ))}
-    </ColorSelector>
+    </Select>
   )
 }

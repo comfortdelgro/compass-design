@@ -1,4 +1,4 @@
-import {faCircleUser} from '@fortawesome/free-regular-svg-icons'
+import {faBug} from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
 
 import Avatar from './index'
@@ -14,9 +14,7 @@ describe('avatar.cy.ts', () => {
   })
 
   it('C02: Able to see image and icon', () => {
-    const avatar = (
-      <Avatar icon={faCircleUser} label='Albert Einstein' size='lg' />
-    )
+    const avatar = <Avatar icon={faBug} label='Albert Einstein' size='lg' />
 
     cy.mount(avatar)
     cy.get('.icon-wrapper').should('be.visible')

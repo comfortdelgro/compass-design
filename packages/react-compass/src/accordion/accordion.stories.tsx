@@ -1,7 +1,4 @@
-import {
-  faAddressBook,
-  faCaretSquareDown,
-} from '@fortawesome/free-regular-svg-icons'
+import {faBug} from '@fortawesome/free-solid-svg-icons'
 import React, {useState} from 'react'
 import Icon from '../icon'
 import {Column} from '../utils/components'
@@ -57,9 +54,7 @@ export const Default: React.FC = () => {
       <h3>Customize left icon</h3>
 
       <Accordion>
-        <Accordion.Title icon={<Icon icon={faAddressBook} />}>
-          Title
-        </Accordion.Title>
+        <Accordion.Title icon={<Icon icon={faBug} />}>Title</Accordion.Title>
         {lorem}
       </Accordion>
 
@@ -84,7 +79,7 @@ export const Default: React.FC = () => {
 
       <Accordion>
         <Accordion.ExpandIcon>
-          <Icon icon={faCaretSquareDown} />
+          <Icon icon={faBug} />
         </Accordion.ExpandIcon>
         <Accordion.Title>Title</Accordion.Title>
         {lorem}

@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
 /* eslint-disable @typescript-eslint/unbound-method */
 
-import {faFile, faFileAlt} from '@fortawesome/free-regular-svg-icons'
 import {
   faBlackboard,
+  faBug,
   faDashboard,
   faEllipsis,
   faFileLines,
@@ -147,10 +147,7 @@ export const FullFeatured: React.FC = () => {
       case 'fileType':
         if (text === 'docs') {
           return (
-            <Icon
-              icon={faFileAlt}
-              style={{color: theme.colors.cdgBlue.value}}
-            />
+            <Icon icon={faBug} style={{color: theme.colors.cdgBlue.value}} />
           )
         } else if (text === 'presentation') {
           return (
@@ -161,7 +158,7 @@ export const FullFeatured: React.FC = () => {
           )
         }
 
-        return <Icon icon={faFile} />
+        return <Icon icon={faBug} />
       default:
         return null
     }
@@ -231,7 +228,7 @@ export const FullFeatured: React.FC = () => {
             if (column.id === 'fileType')
               return (
                 <Table.Column key={column.id}>
-                  <Icon icon={faFile} />
+                  <Icon icon={faBug} />
                 </Table.Column>
               )
 

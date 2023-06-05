@@ -1,9 +1,5 @@
 import {
-  faPinterest,
-  faTelegram,
-  faTiktok,
-} from '@fortawesome/free-brands-svg-icons'
-import {
+  faBug,
   faChevronCircleLeft,
   faChevronCircleRight,
 } from '@fortawesome/free-solid-svg-icons'
@@ -15,15 +11,15 @@ import Carousel from './index'
 
 const socialIcons = [
   {
-    icon: <FontAwesomeIcon icon={faPinterest} />,
+    icon: <FontAwesomeIcon icon={faBug} />,
     target: 'https://www.pinterest.com.au/',
   },
   {
-    icon: <FontAwesomeIcon icon={faTiktok} />,
+    icon: <FontAwesomeIcon icon={faBug} />,
     target: 'https://www.tiktok.com/',
   },
   {
-    icon: <FontAwesomeIcon icon={faTelegram} />,
+    icon: <FontAwesomeIcon icon={faBug} />,
     target: 'https://telegram.org/',
   },
 ]
