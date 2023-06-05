@@ -34,7 +34,7 @@ export const StyledAccordionTitleWrapper = styled('div', {
     marginRight: '$6',
   },
 
-  '& .accordion-left-icon': {
+  '& svg': {
     width: '$5',
     height: '$5',
     marginTop: '12px',

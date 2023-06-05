@@ -5,6 +5,8 @@ export interface PersonInfo {
   skill: string
   drinks: string[]
   animal: string
+  phoneCode: string
+  phoneNumber: string
 }
 interface ICreatePersonInfoStore {
   personInfo: PersonInfo | {}

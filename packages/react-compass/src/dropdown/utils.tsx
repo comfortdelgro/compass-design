@@ -154,16 +154,13 @@ export const getDistanceBetweenElements = (
   a: HTMLDivElement,
   b: HTMLDivElement,
 ) => {
-  const getPositionAtCenter = (element: Element) => {
-    const {top, left, width, height} = element.getBoundingClientRect()
-    return {
-      x: left + width / 2,
-      y: top + height / 2,
-    }
+  const getTop = (element: Element) => {
+    const {top} = element.getBoundingClientRect()
+    return top
   }
-  const aPosition = getPositionAtCenter(a)
-  const bPosition = getPositionAtCenter(b)
-  return Math.hypot(aPosition.x - bPosition.x, aPosition.y - bPosition.y)
+  const aPosition = getTop(a)
+  const bPosition = getTop(b)
+  return Math.hypot(aPosition - bPosition)
 }
 export interface KeyboardDelegate {
   getKeyBelow?(key: Key): Key | null

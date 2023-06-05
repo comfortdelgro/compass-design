@@ -1,12 +1,5 @@
-import {
-  faAlignCenter,
-  faAlignJustify,
-  faAlignLeft,
-  faAlignRight,
-} from '@fortawesome/free-solid-svg-icons'
 import {Item} from '@react-stately/collections'
 import React from 'react'
-import Icon from '../../../../icon'
 import {useRichTextEditorContext} from '../../../rich-text-editor.context'
 import {TextAlignmentSelector} from './TextAlignmentSelector'
 
@@ -25,16 +18,56 @@ export const TextAlignmentSelectorControl = () => {
       defaultSelectedKey={'left'}
     >
       <Item key={'left'} textValue='left'>
-        <Icon className='dropdown-button-icon' icon={faAlignLeft} /> left
+        <svg
+          className='dropdown-button-icon'
+          viewBox='0 0 448 512'
+          style={{height: 18}}
+        >
+          <path
+            fill='currentColor'
+            d='M288 64c0 17.7-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32H256c17.7 0 32 14.3 32 32zm0 256c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H256c17.7 0 32 14.3 32 32zM0 192c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 448c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z'
+          />
+        </svg>
+        left
       </Item>
       <Item key={'center'} textValue='center'>
-        <Icon className='dropdown-button-icon' icon={faAlignCenter} /> center
+        <svg
+          className='dropdown-button-icon'
+          viewBox='0 0 448 512'
+          style={{height: 18}}
+        >
+          <path
+            fill='currentColor'
+            d='M352 64c0-17.7-14.3-32-32-32H128c-17.7 0-32 14.3-32 32s14.3 32 32 32H320c17.7 0 32-14.3 32-32zm96 128c0-17.7-14.3-32-32-32H32c-17.7 0-32 14.3-32 32s14.3 32 32 32H416c17.7 0 32-14.3 32-32zM0 448c0 17.7 14.3 32 32 32H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H32c-17.7 0-32 14.3-32 32zM352 320c0-17.7-14.3-32-32-32H128c-17.7 0-32 14.3-32 32s14.3 32 32 32H320c17.7 0 32-14.3 32-32z'
+          />
+        </svg>
+        center
       </Item>
       <Item key={'right'} textValue='right'>
-        <Icon className='dropdown-button-icon' icon={faAlignRight} /> right
+        <svg
+          className='dropdown-button-icon'
+          viewBox='0 0 448 512'
+          style={{height: 18}}
+        >
+          <path
+            fill='currentColor'
+            d='M448 64c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32zm0 256c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32zM0 192c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 448c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z'
+          />
+        </svg>
+        right
       </Item>
       <Item key={'justify'} textValue='justify'>
-        <Icon className='dropdown-button-icon' icon={faAlignJustify} /> justify
+        <svg
+          className='dropdown-button-icon'
+          viewBox='0 0 448 512'
+          style={{height: 18}}
+        >
+          <path
+            fill='currentColor'
+            d='M448 64c0-17.7-14.3-32-32-32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32zm0 256c0-17.7-14.3-32-32-32H32c-17.7 0-32 14.3-32 32s14.3 32 32 32H416c17.7 0 32-14.3 32-32zM0 192c0 17.7 14.3 32 32 32H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H32c-17.7 0-32 14.3-32 32zM448 448c0-17.7-14.3-32-32-32H32c-17.7 0-32 14.3-32 32s14.3 32 32 32H416c17.7 0 32-14.3 32-32z'
+          />
+        </svg>
+        justify
       </Item>
     </TextAlignmentSelector>
   )

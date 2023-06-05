@@ -41,6 +41,7 @@ import {
 interface Props extends DropdownBase {
   selectedKey?: React.Key
   defaultSelectedKey?: React.Key
+  shouldDeselect?: boolean
   onSelectionChange?: (key: React.Key) => void
   type?: 'select' | 'combobox' | 'flag'
 }
@@ -70,6 +71,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     defaultSelectedKey,
     isDisabled = false,
     defaultOpen = false,
+    shouldDeselect = false,
     onLoadMore = () => {
       //Load more
     },
@@ -184,9 +186,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     const newValue = getDefaulValue(defaultSelectedKey, selectedKey, true)
     setCurrentKey(newValue)
     setFocusKey(newValue)
-    if (newValue === undefined) {
-      setSearch('')
-    } else {
+    if (newValue) {
       setSearch(getTextFromKey(newValue))
     }
   }, [selectedKey, getTextFromKey])
@@ -265,9 +265,14 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
 
   const onSelect = (key: React.Key) => {
     if (!isReadOnly) {
-      setCurrentKey(key)
+      if (currentKey === key && shouldDeselect) {
+        setCurrentKey(undefined)
+        props.onSelectionChange?.('')
+      } else {
+        setCurrentKey(key)
+        props.onSelectionChange?.(key)
+      }
       setIsSearching(false)
-      props.onSelectionChange?.(key)
       setOpen(false)
     }
   }
