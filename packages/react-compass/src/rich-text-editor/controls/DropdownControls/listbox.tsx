@@ -1,11 +1,9 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 // import {CheckIcon} from '@heroicons/react/solid'
-import {faCheck} from '@fortawesome/free-solid-svg-icons'
 import {AriaListBoxOptions, useListBox, useOption} from '@react-aria/listbox'
 import type {ListState} from '@react-stately/list'
 import type {Node} from '@react-types/shared'
 import React from 'react'
-import {Icon} from '../../../icon'
 
 import {Grid, ItemContent, List, ListItem} from '../../rich-text-editor.styles'
 
@@ -21,9 +19,9 @@ interface OptionProps {
 }
 
 export function ListBox(props: ListBoxProps) {
-  let ref = React.useRef<HTMLUListElement>(null)
-  let {listBoxRef = ref, state} = props
-  let {listBoxProps} = useListBox(props, state, listBoxRef)
+  const ref = React.useRef<HTMLUListElement>(null)
+  const {listBoxRef = ref, state} = props
+  const {listBoxProps} = useListBox(props, state, listBoxRef)
 
   return (
     <List {...listBoxProps} ref={listBoxRef}>
@@ -34,9 +32,9 @@ export function ListBox(props: ListBoxProps) {
   )
 }
 export function GridBox(props: ListBoxProps) {
-  let ref = React.useRef<HTMLUListElement>(null)
-  let {listBoxRef = ref, state} = props
-  let {listBoxProps} = useListBox(props, state, listBoxRef)
+  const ref = React.useRef<HTMLUListElement>(null)
+  const {listBoxRef = ref, state} = props
+  const {listBoxProps} = useListBox(props, state, listBoxRef)
 
   return (
     <Grid {...listBoxProps} ref={listBoxRef}>
@@ -58,8 +56,8 @@ const OptionContext = React.createContext<OptionContextValue>({
 })
 
 function Option({item, state, iconOverlapped}: OptionProps) {
-  let ref = React.useRef<HTMLLIElement>(null)
-  let {optionProps, labelProps, descriptionProps, isSelected, isFocused} =
+  const ref = React.useRef<HTMLLIElement>(null)
+  const {optionProps, labelProps, descriptionProps, isSelected, isFocused} =
     useOption(
       {
         key: item.key,
@@ -81,10 +79,15 @@ function Option({item, state, iconOverlapped}: OptionProps) {
         </OptionContext.Provider>
       </ItemContent>
       {isSelected && (
-        <Icon
+        <svg
           className={`check-icon ${iconOverlapped ? 'overlapped-icon' : ''}`}
-          icon={faCheck}
-        />
+          viewBox='0 0 448 512'
+        >
+          <path
+            fill='currentColor'
+            d='M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z'
+          ></path>
+        </svg>
       )}
     </ListItem>
   )

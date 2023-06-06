@@ -1,5 +1,4 @@
 import React, {SyntheticEvent, useContext} from 'react'
-import Icon, {IconProp} from '../icon'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {MenuListContext} from './menu-list-context'
@@ -7,8 +6,8 @@ import {StyledMenuListDropdownHeader} from './menu-list-dropdown-header.styles'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
-  leftIcon?: IconProp | false
-  rightIcon?: IconProp | true
+  leftIcon?: React.ReactNode | false
+  rightIcon?: React.ReactNode | true
   onPress?: (e: SyntheticEvent) => void
 }
 
@@ -66,7 +65,7 @@ const MenuListDropdownHeader = React.forwardRef<
             isOpen ? 'rotated-icon' : ''
           }`}
         >
-          <Icon icon={leftIcon} />
+          {leftIcon}
         </div>
       )
     }
@@ -92,7 +91,7 @@ const MenuListDropdownHeader = React.forwardRef<
             isOpen ? 'rotated-icon' : ''
           }`}
         >
-          <Icon icon={rightIcon} />
+          {rightIcon}
         </div>
       )
     }

@@ -4,6 +4,7 @@ import {
   faChartGantt,
   faQuestionCircle,
 } from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React from 'react'
 import Avatar from '../avatar'
 import Button from '../button'
@@ -20,7 +21,16 @@ describe('navbar.cy.ts', () => {
     const navbar = (
       <Navbar id='navbar'>
         <a href='#'>
-          <Navbar.Icon icon={faBars} />
+          <FontAwesomeIcon
+            icon={faBars}
+            style={{
+              color: '#FFF',
+              width: '$5',
+              height: '$5',
+
+              cursor: 'pointer',
+            }}
+          />
         </a>
         <Navbar.Brand>Workbench Title</Navbar.Brand>
         <SearchField placeholder='Search' />
@@ -44,9 +54,36 @@ describe('navbar.cy.ts', () => {
             alignItems: 'center',
           }}
         >
-          <Navbar.Icon icon={faQuestionCircle} />
-          <Navbar.Icon icon={faBell} />
-          <Navbar.Icon icon={faChartGantt} />
+          <FontAwesomeIcon
+            icon={faQuestionCircle}
+            style={{
+              color: '#FFF',
+              width: '$5',
+              height: '$5',
+
+              cursor: 'pointer',
+            }}
+          />
+          <FontAwesomeIcon
+            icon={faBell}
+            style={{
+              color: '#FFF',
+              width: '$5',
+              height: '$5',
+
+              cursor: 'pointer',
+            }}
+          />
+          <FontAwesomeIcon
+            icon={faChartGantt}
+            style={{
+              color: '#FFF',
+              width: '$5',
+              height: '$5',
+
+              cursor: 'pointer',
+            }}
+          />
           <Avatar label='H' size='xs' image={imageSrc} />
         </div>
       </Navbar>

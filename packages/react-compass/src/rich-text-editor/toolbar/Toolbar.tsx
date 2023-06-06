@@ -1,6 +1,4 @@
-import {faEllipsis} from '@fortawesome/free-solid-svg-icons'
 import React, {useEffect, useState} from 'react'
-import Icon from '../../icon'
 import {StyledComponentProps} from '../../utils/stitches.types'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import {StyledDropdownButton} from '../controls/DropdownControls/menu-bar-select-button.styles'
@@ -71,7 +69,12 @@ const Toolbar = React.forwardRef<HTMLDivElement, ToolbarProps>((props, ref) => {
             onClick={handleMoreBtnClick}
             id='more-button'
           >
-            <Icon className='accordion-chevron-icon' icon={faEllipsis} />
+            <svg className='accordion-chevron-icon' viewBox='0 0 448 512'>
+              <path
+                fill='currentColor'
+                d='M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z'
+              />
+            </svg>
           </StyledDropdownButton>
         )}
       </StyledToolbar>
