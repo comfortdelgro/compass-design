@@ -1,22 +1,16 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/unbound-method */
-import {
-  autoUpdate,
-  flip,
-  offset,
-  useDismiss,
-  useFloating,
-  useInteractions,
-} from '@floating-ui/react'
 import {DateValue, parseDate} from '@internationalized/date'
 import {CSS} from '@stitches/react'
 import React from 'react'
 import {ButtonProps} from '../button'
 import {DateField} from '../calendar/components'
+import Dialog from '../calendar/components/dialog'
+import Popover from '../calendar/components/popover'
 import {useDateRangePicker} from '../calendar/hooks/useDateRangePicker'
 import {useDateRangePickerState} from '../calendar/hooks/useDateRangePickerState'
 import {
   AriaDatePickerProps,
+  AriaDialogProps,
   DateRangePickerState,
   DOMAttributes,
   RangeCalendarProps,
@@ -78,6 +72,7 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
       startFieldProps,
       endFieldProps,
       buttonProps,
+      dialogProps,
       calendarProps,
     } = useDateRangePicker(
       {
@@ -115,26 +110,10 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
 
     calendarProps.isReadOnly = checkIfCalendarInMobile()
 
-    // ====================================== FLOATING ======================================
-    const {refs, floatingStyles, context} = useFloating({
-      open: state.isOpen,
-      onOpenChange: state.setOpen,
-      placement: 'bottom-start',
-      middleware: [offset(8), flip()],
-      whileElementsMounted: autoUpdate,
-    })
-
-    const dismiss = useDismiss(context)
-
-    const {getReferenceProps, getFloatingProps} = useInteractions([dismiss])
-    // ====================================== CONST ======================================
-
     return (
       <StyledRangeDatepicker ref={calendarRef} css={css}>
         <DatePickerProvider>
           <DateRangeInputsWrapper
-            {...getReferenceProps}
-            setReference={refs.setReference}
             state={state}
             label={props.label}
             labelProps={labelProps}
@@ -150,26 +129,14 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
             errorMessage={errorMessage}
             helperText={helperText}
           />
-          {state.isOpen && (
-            <div
-              className='Popover'
-              ref={refs.setFloating}
-              style={{
-                ...floatingStyles,
-                ...{
-                  zIndex: 60,
-                },
-              }}
-              {...getFloatingProps}
-            >
-              <DateRangeCalendarWrapper
-                maxValue={maxValue}
-                state={state}
-                calendarProps={calendarProps}
-                css={props.calendarCSS}
-              />
-            </div>
-          )}
+          <DateRangeCalendarWrapper
+            maxValue={maxValue}
+            state={state}
+            calendarRef={calendarRef}
+            dialogProps={dialogProps}
+            calendarProps={calendarProps}
+            css={props.calendarCSS}
+          />
         </DatePickerProvider>
       </StyledRangeDatepicker>
     )
@@ -178,7 +145,6 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
 
 interface DateRangeInputsWrapperProps {
   state: DateRangePickerState
-  setReference: (r: any) => void
   label?: string | React.ReactNode | undefined
   labelProps: DOMAttributes
   groupProps: DOMAttributes
@@ -202,7 +168,6 @@ const DateRangeInputsWrapper = React.forwardRef<
     label,
     labelProps,
     groupProps,
-    setReference,
     startFieldProps,
     endFieldProps,
     buttonProps,
@@ -224,7 +189,6 @@ const DateRangeInputsWrapper = React.forwardRef<
         <div className='date-range-fields'>
           <DateField
             {...startFieldProps}
-            ref={setReference}
             label={startDateLabel}
             buttonProps={buttonProps}
             isInvalid={isInvalid}
@@ -249,6 +213,8 @@ const DateRangeInputsWrapper = React.forwardRef<
 
 interface DateRangeCalendarWrapperProps {
   state: DateRangePickerState
+  calendarRef: React.RefObject<HTMLDivElement>
+  dialogProps: AriaDialogProps
   calendarProps: RangeCalendarProps<DateValue>
   maxValue?: DateValue | null | undefined
   css?: CSS | undefined
@@ -257,6 +223,8 @@ interface DateRangeCalendarWrapperProps {
 const DateRangeCalendarWrapper = (props: DateRangeCalendarWrapperProps) => {
   const {
     state,
+    calendarRef,
+    dialogProps,
     calendarProps,
     css = {},
     maxValue = parseDate('2999-03-10'),
@@ -269,17 +237,35 @@ const DateRangeCalendarWrapper = (props: DateRangeCalendarWrapperProps) => {
   }
 
   return (
-    <RangeCalendar
-      css={css}
-      state={state}
-      hasFooter={true}
-      aria-label=''
-      aria-labelledby=''
-      {...(value ? {value} : {})}
-      onChange={onChangeRangeCalendar}
-      {...resCalendarProps}
-      maxValue={maxValue}
-    />
+    <>
+      {state.isOpen && (
+        <Popover
+          state={state}
+          triggerRef={calendarRef}
+          placement='bottom start'
+          offset={8}
+        >
+          <Dialog
+            {...dialogProps}
+            aria-describedby={dialogProps['aria-describedby'] ?? ''}
+            aria-label={dialogProps['aria-label'] ?? ''}
+            aria-labelledby={dialogProps['aria-labelledby'] ?? ''}
+          >
+            <RangeCalendar
+              css={css}
+              state={state}
+              hasFooter={true}
+              aria-label=''
+              aria-labelledby=''
+              {...(value ? {value} : {})}
+              onChange={onChangeRangeCalendar}
+              {...resCalendarProps}
+              maxValue={maxValue}
+            />
+          </Dialog>
+        </Popover>
+      )}
+    </>
   )
 }
 

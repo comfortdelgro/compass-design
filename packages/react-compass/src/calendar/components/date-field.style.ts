@@ -35,9 +35,6 @@ export const StyledDateField = styled('div', {
 
   '& .toggle-calendar-button': {
     marginLeft: 'auto',
-    '&:focus': {
-      outline: 'none',
-    },
   },
 
   '& .toggle-calendar-button .toggle-calendar-icon': {
