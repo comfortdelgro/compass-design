@@ -1,5 +1,11 @@
 ## 1.0.0-next.2
 
+## 1.1.0
+
+### Minor Changes
+
+- 3e34ac6f: Add new variants to multi-dropdown and add month selection to date-picker
+
 ## 1.0.0
 
 ### Major Changes

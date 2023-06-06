@@ -1,5 +1,5 @@
-import {Dropdown} from '@comfortdelgro/react-compass'
 import BugIcon from '@comfortdelgro/compass-icons/react/bug'
+import {Dropdown} from '@comfortdelgro/react-compass'
 import React from 'react'
 
 export const ControlledDropdown = () => {
@@ -13,10 +13,7 @@ export const ControlledDropdown = () => {
         selectedKey={value}
         onSelectionChange={(k: React.Key) => setValue(k)}
       >
-        <Dropdown.Item
-          key='red panda'
-          leftIcon={<BugIcon />}
-        >
+        <Dropdown.Item key='red panda' leftIcon={<BugIcon />}>
           Red Panda Red Panda Red Panda Red Panda Red Panda
         </Dropdown.Item>
         <Dropdown.Item
@@ -40,10 +37,7 @@ export const ControlledDropdown = () => {
         selectedKey={value}
         onSelectionChange={(k: React.Key) => setValue(k)}
       >
-        <Dropdown.Item
-          key='red panda'
-          leftIcon={<BugIcon />}
-        >
+        <Dropdown.Item key='red panda' leftIcon={<BugIcon />}>
           Red Panda Red Panda Red Panda Red Panda Red Panda
         </Dropdown.Item>
         <Dropdown.Item
