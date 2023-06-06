@@ -1,0 +1,123 @@
+import RangeCalendar from '@comfortdelgro/react-compass/range-calendar'
+import styles from '../../styles/Home.module.css'
+import {
+  ControlledRangeCalendar,
+  ValidatedRangeCalendar,
+} from '../../components/Calendars'
+
+# Range Calendar
+
+RangeCalendars display a grid of days in one or more months and allow users to select a contiguous range of dates.
+
+<Callout>
+  Check out our [ladle](/ladle?story=range-calendar--variants) for more info on
+  this component.
+</Callout>
+
+### Pre-Install
+
+Install these packages to use their utilities
+
+import {Tabs, Tab, Callout} from 'nextra-theme-docs'
+
+<Tabs items={['npm', 'yarn', 'pnpm']} defaultIndex={0}>
+  <Tab>```bash npm i @react-aria/i18n @internationalized/date ```</Tab>
+  <Tab>``` bash yarn add @react-aria/i18n @internationalized/date ```</Tab>
+  <Tab>``` bash pnpm add @react-aria/i18n @internationalized/date ```</Tab>
+</Tabs>
+
+---
+
+### Import
+
+```js
+import {RangeCalendar} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import RangeCalendar from '@comfortdelgro/react-compass/range-calendar'
+```
+
+---
+
+### Basic
+
+<section className={styles.componentShowcaseContainer}>
+  <RangeCalendar />
+</section>
+
+```js
+<RangeCalendar />
+```
+
+### Controlled
+
+<section className={styles.componentShowcaseContainer}>
+  <ControlledRangeCalendar />
+</section>
+
+```js
+import {Calendar, RangeCalendar, RangeValue} from '@comfortdelgro/react-compass'
+import {
+  DateValue,
+  getLocalTimeZone,
+  isWeekend,
+  parseDate,
+  today,
+} from '@internationalized/date'
+import {useDateFormatter, useLocale} from '@react-aria/i18n'
+
+export function ControlledRangeCalendar() {
+  const [range, setRange] = React.useState<RangeValue<DateValue>>({
+    start: parseDate('2020-02-03'),
+    end: parseDate('2020-02-08'),
+  })
+  const formatter = useDateFormatter({dateStyle: 'long'})
+  return (
+    <>
+      {range &&
+        formatter.formatRange(
+          range.start.toDate(getLocalTimeZone()),
+          range.end.toDate(getLocalTimeZone()),
+        )}
+      <RangeCalendar onChange={(e) => setRange(e as RangeValue<DateValue>)} />
+    </>
+  )
+}
+```
+
+### Disabled
+
+<section className={styles.componentShowcaseContainer}>
+  <RangeCalendar isDisabled />
+</section>
+
+```js
+<RangeCalendar isDisabled />
+```
+
+### Read only
+
+<section className={styles.componentShowcaseContainer}>
+  <RangeCalendar isReadOnly />
+</section>
+
+```js
+<RangeCalendar isReadOnly />
+```
+
+### Props
+
+| Name              | Type                                           | Default | Description                                                                                              |
+| :---------------- | :--------------------------------------------- | :------ | :------------------------------------------------------------------------------------------------------- |
+| minValue          | `DateValue`                                    |         | The minimum allowed date that a user may select.                                                         |
+| maxValue          | `DateValue`                                    |         | The maximum allowed date that a user may select.                                                         |
+| isReadOnly        | `boolean`                                      | false   | Whether the calendar value is immutable.                                                                 |
+| isDisabled        | `boolean`                                      | false   | Whether the calendar is disabled.                                                                        |
+| hasFooter         | `boolean`                                      | false   | Whether the calendar footer is shown.                                                                    |
+| value             | `RangeValue<DateValue \|\| null>`             |         | The current value (controlled).                                                                          |
+| defaultValue      | `RangeValue<DateValue>`                        |         | The default value (uncontrolled).                                                                        |
+| onChange          | `(e: RangeValue<DateValue \|\| null>) => void` |         | The default value (uncontrolled).                                                                        |
+| isDateUnavailable | `(date: DateValue) => boolean`                 |         | Callback that is called for each date of the calendar. If it returns true, then the date is unavailable. |

@@ -129,6 +129,9 @@ export const ListItem = styled('li', {
   color: '#333',
   position: 'relative',
   gap: 8,
+  svg: {
+    height: '1em',
+  },
   '.overlapped-icon': {
     position: 'absolute',
     zIndex: 1,

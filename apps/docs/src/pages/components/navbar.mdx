@@ -3,7 +3,7 @@ import styles from '../../styles/Home.module.css'
 import Navbar from '@comfortdelgro/react-compass/navbar'
 import Button from '@comfortdelgro/react-compass/button'
 import Avatar from '@comfortdelgro/react-compass/avatar'
-import {faSearch} from '@fortawesome/free-solid-svg-icons'
+import BugIcon from '@comfortdelgro/compass-icons/react/bug'
 
 # Navbar
 
@@ -74,13 +74,27 @@ Navbar Icon renders Icon that adapt to the current [color](#colors) of the Navba
 
 <section className={styles.componentShowcaseContainer}>
   <Navbar>
-    <Navbar.Icon icon={faSearch} />
+    <BugIcon 
+      style={{
+        color: '#FFF',
+        width: '$5',
+        height: '$5',
+        cursor: 'pointer',
+      }}
+    />
   </Navbar>
 </section>
 
 ```js
 <Navbar>
-  <Navbar.Icon icon={faSearch} />
+  <BugIcon 
+    style={{
+      color: '#FFF',
+      width: '$5',
+      height: '$5',
+      cursor: 'pointer',
+    }}
+  />
 </Navbar>
 ```
 
@@ -214,7 +228,7 @@ Navbar Icon renders Icon that adapt to the current [color](#colors) of the Navba
 
 | Name | Type       | Default | Description |
 | :--- | :--------- | :------ | :---------- |
-| icon | `IconProp` | —       |             |
+| icon | `ReactNode` | —       |             |
 | css  | `CSS`      | —       |             |
 
 <Callout>

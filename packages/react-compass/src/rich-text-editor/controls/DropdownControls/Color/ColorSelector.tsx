@@ -6,21 +6,19 @@ import * as React from 'react'
 import {GridBox} from '../listbox'
 import {Popover} from '../popover'
 
-import {faChevronDown} from '@fortawesome/free-solid-svg-icons'
 import {useButton} from '@react-aria/button'
-import Icon from '../../../../icon'
 import {StyledDropdownButton} from '../menu-bar-select-button.styles'
 
 export function ColorSelector<T extends object>(props: AriaSelectProps<T>) {
   // Create state based on the incoming props
-  let state = useSelectState(props)
+  const state = useSelectState(props)
 
   // Get props for child elements from useSelect
-  let ref = React.useRef(null)
-  let {triggerProps, valueProps, menuProps} = useSelect(props, state, ref)
+  const ref = React.useRef(null)
+  const {triggerProps, valueProps, menuProps} = useSelect(props, state, ref)
 
   // Get props for the button based on the trigger props from useSelect
-  let {buttonProps} = useButton(triggerProps, ref)
+  const {buttonProps} = useButton(triggerProps, ref)
 
   return (
     <>
@@ -36,7 +34,12 @@ export function ColorSelector<T extends object>(props: AriaSelectProps<T>) {
             ? state.selectedItem.rendered
             : 'Select an option'}
         </span>
-        <Icon className='accordion-chevron-icon' icon={faChevronDown} />
+        <svg className='accordion-chevron-icon' viewBox='0 0 512 512'>
+          <path
+            fill='currentColor'
+            d='M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z'
+          />
+        </svg>
       </StyledDropdownButton>
       {state.isOpen && (
         <Popover state={state} triggerRef={ref} placement='bottom start'>
