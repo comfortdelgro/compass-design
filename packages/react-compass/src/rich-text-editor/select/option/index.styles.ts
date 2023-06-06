@@ -1,5 +1,5 @@
-import {styled} from '../../../theme'
-import type {VariantProps} from '../../../utils/stitches.types'
+import { styled } from '../../../theme'
+import type { VariantProps } from '../../../utils/stitches.types'
 
 export const StyledOption = styled('li', {
   fontSize: '$label1',
@@ -31,6 +31,13 @@ export const StyledOption = styled('li', {
         cursor: 'not-allowed',
       },
     },
+    type: {
+      color: {
+        position: 'relative',
+      },
+      heading: {},
+      alignment: {},
+    },
   },
 })
 
@@ -50,6 +57,13 @@ export const StyledRightIcon = styled('div', {
         },
       },
     },
+    type: {
+      color: {
+        position: 'absolute'
+      },
+      heading: {},
+      alignment: {}
+    }
   },
 })
 
