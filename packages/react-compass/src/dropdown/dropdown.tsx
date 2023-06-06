@@ -42,6 +42,7 @@ interface Props extends DropdownBase {
   selectedKey?: React.Key
   defaultSelectedKey?: React.Key
   shouldDeselect?: boolean
+  allowsCustomValue?: boolean
   onSelectionChange?: (key: React.Key) => void
   type?: 'select' | 'combobox' | 'flag'
 }
@@ -72,6 +73,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     isDisabled = false,
     defaultOpen = false,
     shouldDeselect = false,
+    allowsCustomValue = false,
     onLoadMore = () => {
       //Load more
     },
@@ -145,8 +147,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   })
 
   const delegate = React.useMemo(
-    () => new ListKeyboardDelegate(rawCollection, disabledKeys),
-    [rawCollection, disabledKeys],
+    () => new ListKeyboardDelegate(collection, disabledKeys),
+    [collection, disabledKeys],
   )
 
   const choosenFlag = React.useMemo(() => {
@@ -210,6 +212,25 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         setIsSearching(false)
         selectRef.current?.blur()
         inputRef.current?.blur()
+      }
+    } else if (type === 'combobox') {
+      if (!open) {
+        if (!allowsCustomValue) {
+          if (currentKey) {
+            setSearch(getTextFromKey(currentKey))
+          } else {
+            setSearch('')
+          }
+        } else {
+          if (currentKey && search) {
+            const originalText = getTextFromKey(currentKey)
+            if (originalText !== search && isSearching) {
+              setCurrentKey(undefined)
+              props.onSelectionChange?.('')
+            }
+          }
+        }
+        setIsSearching(false)
       }
     }
   }, [open])

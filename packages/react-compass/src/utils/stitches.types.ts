@@ -1,8 +1,9 @@
 import type {
   createStitches,
-  CSS,
+  CSS as StitchesCSS,
   VariantProps as StitchesVariantProps,
 } from '@stitches/react'
+import {config} from '../theme/stitches.config'
 import type {Primitive} from './types'
 
 export type StitchesTheme = NonNullable<
@@ -20,3 +21,5 @@ export type VariantProps<
 export interface StyledComponentProps {
   css?: CSS
 }
+
+export type CSS = StitchesCSS<typeof config>

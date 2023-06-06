@@ -24,6 +24,10 @@ interface Props extends StyledComponentProps {
   hasFooter?: boolean
   maxValue?: DateValue | null | undefined
   onChange?: (e: unknown) => void
+  allowsNonContiguousRanges?: boolean
+  isDateUnavailable?: (date: DateValue) => boolean
+  isDisabled?: boolean
+  isReadOnly?: boolean
 }
 
 export type RangeCalendarProps = Props
@@ -75,14 +79,20 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
     }
 
     const handleTodayButtonClick = () => {
-      pickerState?.setDateRange({
+      const todayRange = {
         start: InternationalizedDate.today(
           InternationalizedDate.getLocalTimeZone(),
         ),
         end: InternationalizedDate.today(
           InternationalizedDate.getLocalTimeZone(),
         ),
-      })
+      }
+
+      if (pickerState) {
+        pickerState?.setDateRange(todayRange)
+      } else {
+        state.setValue(todayRange)
+      }
 
       if (!pickerState) {
         state.setValue({

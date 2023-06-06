@@ -1,7 +1,5 @@
-import {faEllipsisVertical} from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
 import Button from '../button'
-import Icon from '../icon'
 import {StyledComponentProps} from '../utils/stitches.types'
 import ListCardDetail, {ListCardDetailProps} from './list-card-detail'
 import {ListCardVariantProps, StyledListCard} from './list-card.styles'
@@ -47,10 +45,12 @@ const ListCard = React.forwardRef<HTMLDivElement, ListCardProps>(
             {badge ? badge : <></>}
             {!children && showActionButton ? (
               <Button isDisabled={!!isDisabled} variant='ghost'>
-                <Icon
-                  icon={faEllipsisVertical}
-                  className='list-card-ellipsis-icon'
-                />
+                <svg className='list-card-ellipsis-icon' viewBox='0 0 128 512'>
+                  <path
+                    fill='currentColor'
+                    d='M64 360a56 56 0 1 0 0 112 56 56 0 1 0 0-112zm0-160a56 56 0 1 0 0 112 56 56 0 1 0 0-112zM120 96A56 56 0 1 0 8 96a56 56 0 1 0 112 0z'
+                  />
+                </svg>
               </Button>
             ) : (
               <></>
@@ -70,10 +70,12 @@ const ListCard = React.forwardRef<HTMLDivElement, ListCardProps>(
               variant='ghost'
               css={{marginTop: '$4'}}
             >
-              <Icon
-                icon={faEllipsisVertical}
-                className='list-card-ellipsis-icon'
-              />
+              <svg className='list-card-ellipsis-icon' viewBox='0 0 128 512'>
+                <path
+                  fill='currentColor'
+                  d='M64 360a56 56 0 1 0 0 112 56 56 0 1 0 0-112zm0-160a56 56 0 1 0 0 112 56 56 0 1 0 0-112zM120 96A56 56 0 1 0 8 96a56 56 0 1 0 112 0z'
+                />
+              </svg>
             </Button>
           ) : (
             <></>

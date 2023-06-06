@@ -23,6 +23,9 @@ export const StyledControl = styled('button', {
     backgroundColor: '#E1DFDD !important',
     color: '#000000',
   },
+  svg: {
+    height: '18px',
+  },
   '&:disabled': {
     backgroundColor: '$divider',
     color: '$disabledText',
