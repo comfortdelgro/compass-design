@@ -1,18 +1,24 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/unbound-method */
+import {
+  autoUpdate,
+  flip,
+  offset,
+  useDismiss,
+  useFloating,
+  useInteractions,
+  useMergeRefs,
+} from '@floating-ui/react'
 import {DateValue, parseDate} from '@internationalized/date'
 import {CSS} from '@stitches/react'
 import React from 'react'
 import {ButtonProps} from '../button'
 import Calendar, {CalendarProps} from '../calendar/calendar'
 import {DateField} from '../calendar/components'
-import Dialog from '../calendar/components/dialog'
-import Popover from '../calendar/components/popover'
 import {useDatePicker} from '../calendar/hooks/useDatePicker'
 import {useDatePickerState} from '../calendar/hooks/useDatePickerState'
 import {
   AriaDatePickerProps,
-  AriaDialogProps,
   DatePickerState,
   DOMAttributes,
   SpectrumDatePickerProps,
@@ -53,15 +59,14 @@ const DatePicker = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
 
   const calendarRef = useDOMRef(ref)
 
-  const {groupProps, fieldProps, buttonProps, dialogProps, calendarProps} =
-    useDatePicker(
-      {
-        ...props,
-        isReadOnly: props.isReadOnly ? true : props.isMobile ? true : false,
-      },
-      state,
-      calendarRef,
-    )
+  const {groupProps, fieldProps, buttonProps, calendarProps} = useDatePicker(
+    {
+      ...props,
+      isReadOnly: props.isReadOnly ? true : props.isMobile ? true : false,
+    },
+    state,
+    calendarRef,
+  )
 
   const extendedFieldProps = {
     necessityIndicator: props.necessityIndicator,
@@ -85,11 +90,29 @@ const DatePicker = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
 
   // @ts-ignore
   calendarProps.isReadOnly = checkIfCalendarInMobile()
+
+  // ====================================== FLOATING ======================================
+  const {refs, floatingStyles, context} = useFloating({
+    open: state.isOpen,
+    onOpenChange: state.setOpen,
+    placement: 'bottom-start',
+    middleware: [offset(8), flip()],
+    whileElementsMounted: autoUpdate,
+  })
+
+  const dismiss = useDismiss(context)
+
+  const {getReferenceProps, getFloatingProps} = useInteractions([dismiss])
+
+  const mergedCalendarRef = useMergeRefs([calendarRef, refs.setReference])
+  // ====================================== CONST ======================================
+
   return (
     <StyledDatePicker css={css}>
       <DatePickerProvider>
         <DatePickerFieldWrapper
-          ref={calendarRef}
+          {...getReferenceProps}
+          ref={mergedCalendarRef}
           groupProps={groupProps}
           fieldProps={extendedFieldProps}
           buttonProps={buttonProps as unknown as ButtonProps}
@@ -100,14 +123,26 @@ const DatePicker = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
           errorMessage={props.errorMessage}
           helperText={props.helperText}
         />
-        <DatePickerCalendarWrapper
-          maxValue={maxValue}
-          state={state}
-          calendarProps={calendarProps}
-          calendarRef={calendarRef}
-          dialogProps={dialogProps}
-          css={props.calendarCSS}
-        />
+        {state.isOpen && (
+          <div
+            className='Popover'
+            ref={refs.setFloating}
+            style={{
+              ...floatingStyles,
+              ...{
+                zIndex: 60,
+              },
+            }}
+            {...getFloatingProps}
+          >
+            <DatePickerCalendarWrapper
+              maxValue={maxValue}
+              state={state}
+              calendarProps={calendarProps}
+              css={props.calendarCSS}
+            />
+          </div>
+        )}
       </DatePickerProvider>
     </StyledDatePicker>
   )
@@ -142,9 +177,10 @@ const DatePickerFieldWrapper = React.forwardRef<
   } = props
 
   return (
-    <StyledDatePickerFieldWrapper {...groupProps} ref={ref}>
+    <StyledDatePickerFieldWrapper {...groupProps}>
       <DateField
         {...fieldProps}
+        ref={ref}
         aria-describedby={fieldProps['aria-describedby'] ?? ''}
         buttonProps={buttonProps}
         label={label}
@@ -160,8 +196,6 @@ const DatePickerFieldWrapper = React.forwardRef<
 
 interface DatePickerCalendarWrapperProps {
   state: DatePickerState
-  calendarRef: React.RefObject<HTMLDivElement>
-  dialogProps: AriaDialogProps
   calendarProps: CalendarProps
   onCancel?: (() => void) | undefined
   maxValue?: DateValue | null | undefined
@@ -171,39 +205,19 @@ interface DatePickerCalendarWrapperProps {
 const DatePickerCalendarWrapper = (props: DatePickerCalendarWrapperProps) => {
   const {
     state,
-    calendarRef,
-    dialogProps,
     calendarProps,
     maxValue = parseDate('2999-03-10'),
     css = {},
   } = props
 
   return (
-    <>
-      {state.isOpen && (
-        <Popover
-          state={state}
-          triggerRef={calendarRef}
-          offset={8}
-          placement='bottom start'
-        >
-          <Dialog
-            {...dialogProps}
-            aria-describedby={dialogProps['aria-describedby'] ?? ''}
-            aria-label={dialogProps['aria-label'] ?? ''}
-            aria-labelledby={dialogProps['aria-labelledby'] ?? ''}
-          >
-            <Calendar
-              state={state}
-              hasFooter={true}
-              {...calendarProps}
-              maxValue={maxValue}
-              css={css}
-            />
-          </Dialog>
-        </Popover>
-      )}
-    </>
+    <Calendar
+      state={state}
+      hasFooter={true}
+      {...calendarProps}
+      maxValue={maxValue}
+      css={css}
+    />
   )
 }
 

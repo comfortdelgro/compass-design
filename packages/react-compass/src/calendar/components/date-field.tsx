@@ -134,6 +134,7 @@ const DateField = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
             onClick={(e) => {
               onPress?.(e)
             }}
+            tabIndex={-1}
             type='button'
             disabled={isDisabled || isReadOnly}
             className='toggle-calendar-button'
