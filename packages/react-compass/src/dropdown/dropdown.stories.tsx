@@ -152,6 +152,29 @@ export const Select: React.FC = () => {
         <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
         <Dropdown.Item key='snake'>Snake</Dropdown.Item>
       </Dropdown.Select>
+      <h3>Allow deselect with double click</h3>
+      <Dropdown.Select
+        label='Favorite Animal'
+        placeholder='Choose an animal'
+        defaultSelectedKey={'dog'}
+        disabledKeys={['dog']}
+        shouldDeselect
+      >
+        <Dropdown.Item
+          key='red panda'
+          leftIcon={<FontAwesomeIcon icon={faBug} />}
+          textValue='pandared'
+        >
+          Red Panda
+        </Dropdown.Item>
+        <Dropdown.Item key='cat' type='color' rightColor='red'>
+          Cat
+        </Dropdown.Item>
+        <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+        <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+        <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+      </Dropdown.Select>
       <h3>Erorr</h3>
       <Dropdown.Select
         label='Favorite Animal'
@@ -307,6 +330,28 @@ export const ComboBox: React.FC = () => {
         <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
         <Dropdown.Item key='snake'>Snake</Dropdown.Item>
       </Dropdown.ComboBox>
+
+      <h3>Allow deselect with double click</h3>
+      <Dropdown.ComboBox
+        label='Favorite Animal'
+        placeholder='Choose an animal'
+        shouldDeselect
+      >
+        <Dropdown.Item
+          key='red panda'
+          leftIcon={<FontAwesomeIcon icon={faBug} />}
+        >
+          Red Panda
+        </Dropdown.Item>
+        <Dropdown.Item key='cat' type='color' rightColor='red'>
+          Cat
+        </Dropdown.Item>
+        <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+        <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+        <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+      </Dropdown.ComboBox>
+
       <h3>Disabled</h3>
       <Dropdown.ComboBox
         isDisabled
