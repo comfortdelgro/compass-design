@@ -138,7 +138,6 @@ importers:
       '@react-aria/i18n': ^3.6.2
       '@react-aria/ssr': ^3.5.0
       '@react-aria/table': ^3.5.0
-      '@react-aria/utils': ^3.14.0
       '@react-aria/visually-hidden': ^3.5.0
       '@react-stately/data': ^3.7.0
       '@react-stately/table': ^3.5.0
@@ -200,7 +199,6 @@ importers:
       '@react-aria/i18n': 3.7.1_react@18.2.0
       '@react-aria/ssr': 3.6.0_react@18.2.0
       '@react-aria/table': 3.9.0_biqbaboplfbrettd7655fr4n2y
-      '@react-aria/utils': 3.16.0_react@18.2.0
       '@react-aria/visually-hidden': 3.8.0_react@18.2.0
       '@react-stately/data': 3.9.1_react@18.2.0
       '@react-stately/table': 3.9.0_react@18.2.0
