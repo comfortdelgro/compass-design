@@ -1,5 +1,4 @@
 import {
-  autoPlacement,
   autoUpdate,
   flip,
   FloatingPortal,
@@ -75,13 +74,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   const {refs, floatingStyles, context} = useFloating({
     open: open,
     onOpenChange: setOpen,
-    middleware: [
-      offset(8),
-      flip(),
-      autoPlacement({
-        allowedPlacements: ['top-start', 'bottom-start'],
-      }),
-    ],
+    placement: 'bottom-start',
+    middleware: [offset(8), flip()],
     whileElementsMounted: autoUpdate,
   })
 
