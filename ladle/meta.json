@@ -11,7 +11,7 @@
         "Accordion"
       ],
       "locStart": 15,
-      "locEnd": 142,
+      "locEnd": 144,
       "filePath": "src/accordion/accordion.stories.tsx",
       "meta": {}
     },
@@ -20,8 +20,8 @@
       "levels": [
         "Accordion"
       ],
-      "locStart": 144,
-      "locEnd": 178,
+      "locStart": 146,
+      "locEnd": 180,
       "filePath": "src/accordion/accordion.stories.tsx",
       "meta": {}
     },
@@ -430,8 +430,8 @@
       "levels": [
         "Dropdown"
       ],
-      "locStart": 278,
-      "locEnd": 470,
+      "locStart": 301,
+      "locEnd": 537,
       "filePath": "src/dropdown/dropdown.stories.tsx",
       "meta": {}
     },
@@ -451,7 +451,7 @@
         "Dropdown"
       ],
       "locStart": 36,
-      "locEnd": 276,
+      "locEnd": 299,
       "filePath": "src/dropdown/dropdown.stories.tsx",
       "meta": {}
     },
@@ -580,8 +580,8 @@
       "levels": [
         "Menu list"
       ],
-      "locStart": 6,
-      "locEnd": 40,
+      "locStart": 7,
+      "locEnd": 55,
       "filePath": "src/menu-list/menu-list.stories.tsx",
       "meta": {}
     },
@@ -611,7 +611,7 @@
         "Multiple dropdown"
       ],
       "locStart": 7,
-      "locEnd": 198,
+      "locEnd": 284,
       "filePath": "src/multiple-dropdown/multiple-dropdown.stories.tsx",
       "meta": {}
     },
@@ -620,8 +620,8 @@
       "levels": [
         "Navbar"
       ],
-      "locStart": 19,
-      "locEnd": 150,
+      "locStart": 20,
+      "locEnd": 225,
       "filePath": "src/navbar/navbar.stories.tsx",
       "meta": {}
     },
