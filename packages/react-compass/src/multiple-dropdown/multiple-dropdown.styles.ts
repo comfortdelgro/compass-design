@@ -133,7 +133,7 @@ export const StyledDropdownWrapper = styled('div', {
     },
   },
   variants: {
-    variant: {
+    displayedValue: {
       chip: {},
       string: {
         [`${StyledSelectedItemWrapper}`]: {
@@ -147,6 +147,14 @@ export const StyledDropdownWrapper = styled('div', {
             overflow: 'hidden',
             textOverflow: 'ellipsis',
           },
+        },
+      },
+    },
+    variant: {
+      combobox: {},
+      select: {
+        [`${StyledDropdown}`]: {
+          cursor: 'pointer',
         },
       },
     },
