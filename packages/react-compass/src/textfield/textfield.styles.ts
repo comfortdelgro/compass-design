@@ -73,6 +73,9 @@ export const StyledTextFieldBox = styled('div', {
     fontSize: '0.8em',
     marginRight: '$2_5',
     marginLeft: '-$1',
+    svg: {
+      height: '1rem',
+    },
   },
 
   variants: {

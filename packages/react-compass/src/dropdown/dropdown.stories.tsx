@@ -367,6 +367,28 @@ export const ComboBox: React.FC = () => {
         <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
         <Dropdown.Item key='snake'>Snake</Dropdown.Item>
       </Dropdown.ComboBox>
+      <h3>with allowsCustomValue</h3>
+      <Dropdown.ComboBox
+        label='Favorite Animal'
+        placeholder='Choose an animal'
+        selectedKey={value}
+        onSelectionChange={(k: Key) => setValue(k)}
+        allowsCustomValue
+      >
+        <Dropdown.Item
+          key='red panda'
+          leftIcon={<FontAwesomeIcon icon={faBug} />}
+        >
+          Red Panda
+        </Dropdown.Item>
+        <Dropdown.Item key='cat' type='color' rightColor='red'>
+          Cat
+        </Dropdown.Item>
+        <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+        <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+        <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+      </Dropdown.ComboBox>
       <h3>With Header</h3>
       <Dropdown.ComboBox label='Favorite Animal' placeholder='Choose an animal'>
         <Dropdown.Header>

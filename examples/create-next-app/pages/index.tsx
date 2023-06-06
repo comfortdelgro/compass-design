@@ -1,6 +1,6 @@
+import {Typography} from '@comfortdelgro/react-compass'
 import type {NextPage} from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
@@ -13,58 +13,59 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href='https://nextjs.org'>Next.js!</a>
-        </h1>
+        <Typography.Header variant='header1' css={{textAlign: 'center'}}>
+          Welcome to Next.js!
+        </Typography.Header>
 
-        <p className={styles.description}>
+        <Typography.Header variant='header3' css={{textAlign: 'center'}}>
           Get started by editing{' '}
           <code className={styles.code}>pages/index.tsx</code>
-        </p>
+        </Typography.Header>
 
         <div className={styles.grid}>
           <a href='https://nextjs.org/docs' className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
+            <Typography.Header variant='header4'>
+              Documentation &rarr;
+            </Typography.Header>
+            <Typography.Label variant='label3'>
+              Find in-depth information about Next.js features and API.
+            </Typography.Label>
           </a>
 
           <a href='https://nextjs.org/learn' className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
+            <Typography.Header variant='header4'>
+              Learn &rarr;
+            </Typography.Header>
+            <Typography.Label variant='label3'>
+              Learn about Next.js in an interactive course with quizzes!
+            </Typography.Label>
           </a>
 
           <a
             href='https://github.com/vercel/next.js/tree/canary/examples'
             className={styles.card}
           >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
+            <Typography.Header variant='header4'>
+              Examples &rarr;
+            </Typography.Header>
+            <Typography.Label variant='label3'>
+              Discover and deploy boilerplate example Next.js projects.
+            </Typography.Label>
           </a>
 
           <a
             href='https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
             className={styles.card}
           >
-            <h2>Deploy &rarr;</h2>
-            <p>
+            <Typography.Header variant='header4'>
+              Deploy &rarr;
+            </Typography.Header>
+            <Typography.Label variant='label3'>
               Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
+            </Typography.Label>
           </a>
         </div>
       </main>
-
-      <footer className={styles.footer}>
-        <a
-          href='https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src='/vercel.svg' alt='Vercel Logo' width={72} height={16} />
-          </span>
-        </a>
-      </footer>
     </div>
   )
 }

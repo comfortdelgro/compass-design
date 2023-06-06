@@ -51,16 +51,16 @@ export function ControlledRangeCalendar() {
   )
 }
 
-// export function ValidatedRangeCalendar({
-//   contiguos = false,
-// }: {
-//   contiguos?: boolean
-// }) {
-//   const {locale} = useLocale()
-//   return (
-//     <RangeCalendar
-//       allowsNonContiguousRanges={contiguos}
-//       isDateUnavailable={(date) => isWeekend(date, locale)}
-//     />
-//   )
-// }
+export function ValidatedRangeCalendar({
+  contiguous = false,
+}: {
+  contiguous?: boolean
+}) {
+  const {locale} = useLocale()
+  return (
+    <RangeCalendar
+      allowsNonContiguousRanges={contiguous}
+      isDateUnavailable={(date) => isWeekend(date, locale)}
+    />
+  )
+}

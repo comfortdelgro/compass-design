@@ -36,7 +36,9 @@ import {getDefaulValues, XIcon} from './utils'
 interface Props extends DropdownBase {
   selectedKeys?: React.Key[]
   defaultSelectedKeys?: React.Key[]
+  customDisplayValue?: React.ReactNode
   onSelectionChange?: (key: React.Key[]) => void
+  variant?: 'chip' | 'string'
 }
 
 export type MultipleDropdownProps = Props &
@@ -61,9 +63,11 @@ const MultipleDropdown = React.forwardRef<
     errorMessage,
     selectedKeys,
     numberOfRows,
+    variant = 'chip',
     icon = <Icon />,
     disabledKeys = [],
     isLoading = false,
+    customDisplayValue,
     defaultSelectedKeys = [],
     onLoadMore = () => {
       //Load more
@@ -130,8 +134,8 @@ const MultipleDropdown = React.forwardRef<
   }, [rawCollection, search])
 
   const delegate = React.useMemo(
-    () => new ListKeyboardDelegate(rawCollection, disabledKeys),
-    [rawCollection, disabledKeys],
+    () => new ListKeyboardDelegate(collection, disabledKeys),
+    [collection, disabledKeys],
   )
 
   const selectedNode = React.useMemo(() => {
@@ -283,9 +287,17 @@ const MultipleDropdown = React.forwardRef<
     }
   }
 
+  const convertSelectedNodeToString = () => {
+    const array = selectedNode.map((v) => v.rendered)
+    if (array.length > 0) {
+      return <>{array.join(', ')}</>
+    }
+    return ''
+  }
+
   // ====================================== RENDER ======================================
   return (
-    <StyledDropdownWrapper css={css} ref={ref} {...delegated}>
+    <StyledDropdownWrapper css={css} ref={ref} {...delegated} variant={variant}>
       {props.label && (
         <label onClick={handleOpen} htmlFor={id}>
           {props.label}
@@ -294,17 +306,19 @@ const MultipleDropdown = React.forwardRef<
       )}
       <div ref={refs.setReference} {...getReferenceProps}>
         <StyledDropdown
+          className='dropdownContainer'
           ref={wrapperRef}
           isErrored={!!isErrored}
           isDisabled={!!isDisabled}
           onClick={handleOpen}
         >
-          <StyledSelectedItemWrapper>
+          <StyledSelectedItemWrapper className='selectedItemWrapper'>
             {selectedNode.length === 0 &&
               search === '' &&
               !open &&
-              !focused && <p>{props.placeholder}</p>}
-            {selectedNode.length > 0 &&
+              !focused && <p className='placeholder'>{props.placeholder}</p>}
+            {variant == 'chip' &&
+              selectedNode.length > 0 &&
               selectedNode.map((item) => {
                 const isHideXIcon =
                   isDisabled || disabledKeys.includes(item.key)
@@ -312,12 +326,14 @@ const MultipleDropdown = React.forwardRef<
                   <StyledSelectedItem
                     key={item.key}
                     style={{cursor: isDisabled ? 'not-allowed' : 'pointer'}}
+                    className='multiple-dropdown-chip'
                   >
                     <div>{item.rendered}</div>
                     {isHideXIcon ? (
                       <></>
                     ) : (
                       <div
+                        className='multiple-dropdown-chip-icon'
                         onClick={() => {
                           if (
                             !isDisabled &&
@@ -333,6 +349,17 @@ const MultipleDropdown = React.forwardRef<
                   </StyledSelectedItem>
                 )
               })}
+            {variant == 'string' &&
+            !!customDisplayValue &&
+            selectedNode.length > 0 ? (
+              <div className='itemListString'>{customDisplayValue}</div>
+            ) : variant == 'string' &&
+              !customDisplayValue &&
+              selectedNode.length > 0 ? (
+              <div className='itemListString'>
+                {convertSelectedNodeToString()}
+              </div>
+            ) : null}
             {!isDisabled && (
               <input
                 id={id}

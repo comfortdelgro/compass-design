@@ -78,7 +78,7 @@ export function useCalendarGrid(
       const dateDay = date.toDate(state.timeZone ?? getLocalTimeZone())
       return dayFormatter.format(dateDay)
     })
-  }, [])
+  }, [locale])
 
   const onKeyDown = (e: KeyboardEvent) => {
     switch (e.key) {
