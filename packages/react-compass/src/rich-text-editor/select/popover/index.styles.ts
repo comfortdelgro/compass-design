@@ -3,7 +3,7 @@ import {styled} from '../../../theme'
 export const StyledPopover = styled('div', {
   margin: 0,
   padding: '4px 0',
-  borderRadius: '$md',
+  borderRadius: '4px',
   width: 'fit-content',
   height: 'fit-content',
   minWidth: '100%',
@@ -22,6 +22,28 @@ export const StyledPopover = styled('div', {
     paddingInlineStart: 0,
     '&:focus': {
       outline: 'none',
+    },
+  },
+  variants: {
+    type: {
+      heading: {
+        ul: {
+          width: '210px',
+        },
+      },
+      color: {
+        width: '238px',
+        padding: '9px',
+        ul: {
+          display: 'flex',
+          gap: '4px',
+          flexWrap: 'wrap',
+          li: {
+            padding: 0,
+          },
+        },
+      },
+      alignment: {},
     },
   },
 })

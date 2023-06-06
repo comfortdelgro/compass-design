@@ -40,6 +40,8 @@ export const StyledSelect = styled('div', {
       overflow: 'hidden',
       flexGrow: 1,
       textAlign: 'start',
+      display: 'flex',
+      alignItems: 'center',
     },
     '&:focus': {
       outline: 'none',

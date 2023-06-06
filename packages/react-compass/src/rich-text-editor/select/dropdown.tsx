@@ -1,4 +1,5 @@
 import {
+  autoPlacement,
   autoUpdate,
   flip,
   FloatingPortal,
@@ -23,6 +24,7 @@ interface Props extends StyledComponentProps {
   isRequired?: boolean
   placeholder?: string
   numberOfRows?: number
+  type?: 'heading' | 'color' | 'alignment'
   disabledKeys?: React.Key[]
   children?: React.ReactNode
   description?: React.ReactNode
@@ -47,6 +49,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     children,
     selectedKey,
     placeholder,
+    type = 'heading',
     disabledKeys = [],
     defaultSelectedKey,
     isDisabled = false,
@@ -72,7 +75,13 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   const {refs, floatingStyles, context} = useFloating({
     open: open,
     onOpenChange: setOpen,
-    middleware: [offset(8), flip()],
+    middleware: [
+      offset(8),
+      flip(),
+      autoPlacement({
+        allowedPlacements: ['top-start', 'bottom-start'],
+      }),
+    ],
     whileElementsMounted: autoUpdate,
   })
 
@@ -200,7 +209,13 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         disabled={isDisabled}
         onClick={handleClickIcon}
       >
-        <span>{selectedItem ? selectedItem.props.children : placeholder}</span>
+        <span>
+          {selectedItem
+            ? selectedItem.props.renderAs
+              ? selectedItem.props.renderAs
+              : selectedItem.props.children
+            : placeholder}
+        </span>
         <Icon />
       </button>
       {collection && open && (
@@ -217,6 +232,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
             {...getFloatingProps}
           >
             <Popover
+              type={type}
               isEmpty={collection.length === 0}
               triggerRef={selectRef as React.RefObject<HTMLDivElement>}
               onBlur={handleBlur}

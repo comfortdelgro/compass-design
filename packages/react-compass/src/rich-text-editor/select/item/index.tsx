@@ -2,7 +2,7 @@ import React from 'react'
 import {StyledComponentProps} from '../../../utils/stitches.types'
 export interface Props extends StyledComponentProps {
   key: React.Key
-  textValue?: string
+  renderAs?: React.ReactNode
   children: React.ReactNode
   'aria-label'?: string
 }

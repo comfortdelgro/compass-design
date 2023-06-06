@@ -39,6 +39,7 @@ export const ColorControl = ({colors = defaultColors}: ColorControlProps) => {
     <Select
       defaultSelectedKey={[...colorSet][0] as React.Key}
       onSelectionChange={handleSelectionChange}
+      type='color'
       css={{
         width: '70px',
         height: '28px',
@@ -46,7 +47,7 @@ export const ColorControl = ({colors = defaultColors}: ColorControlProps) => {
       }}
     >
       {[...colorSet].map((color) => (
-        <Select.Item key={color} textValue={color}>
+        <Select.Item key={color}>
           <StyledColorItem
             style={{backgroundColor: color}}
             active={editor?.isActive('color', color) ?? false}
