@@ -28,7 +28,7 @@ export const StyledPopover = styled('div', {
     type: {
       heading: {
         ul: {
-          width: '210px',
+          width: '230px',
         },
       },
       color: {

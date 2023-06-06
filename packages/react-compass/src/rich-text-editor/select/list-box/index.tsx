@@ -6,6 +6,7 @@ interface Props {
   disabledKeys: React.Key[]
   focusKey: React.Key | undefined
   currentKey: React.Key | undefined
+  type: 'heading' | 'color' | 'alignment'
   listBoxRef: React.RefObject<HTMLUListElement>
   collection: Array<
     React.DetailedReactHTMLElement<DropdownItemProps, HTMLElement>
@@ -30,6 +31,7 @@ function ListBox(props: Props) {
         <Option
           item={item}
           key={item.key}
+          type={props.type}
           focusKey={focusKey}
           currentKey={currentKey}
           disabledKeys={disabledKeys}

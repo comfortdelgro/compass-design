@@ -34,6 +34,25 @@ export const StyledOption = styled('li', {
   },
 })
 
+export const StyledRightIcon = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flexShrink: 0,
+  width: '$6',
+  height: '$6',
+  variants: {
+    isSelected: {
+      true: {},
+      false: {
+        svg: {
+          display: 'none',
+        },
+      },
+    },
+  },
+})
+
 export const StyledContent = styled('div', {
   display: 'flex',
   alignItems: 'center',

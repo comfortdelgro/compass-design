@@ -240,6 +240,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
               handleKeyDown={handleKeyDown}
             >
               <ListBox
+                type={type}
                 focusKey={focusKey}
                 currentKey={currentKey}
                 collection={collection}
