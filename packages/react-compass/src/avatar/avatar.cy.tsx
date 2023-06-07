@@ -1,4 +1,5 @@
 import {faBug} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React from 'react'
 
 import Avatar from './index'
@@ -13,8 +14,14 @@ describe('avatar.cy.ts', () => {
     cy.get('img').should('be.visible')
   })
 
-  it('C02: Able to see image and icon', () => {
-    const avatar = <Avatar icon={faBug} label='Albert Einstein' size='lg' />
+  it('C02: Able to see icon', () => {
+    const avatar = (
+      <Avatar
+        icon={<FontAwesomeIcon icon={faBug} />}
+        label='Albert Einstein'
+        size='lg'
+      />
+    )
 
     cy.mount(avatar)
     cy.get('.icon-wrapper').should('be.visible')
