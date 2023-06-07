@@ -88,18 +88,20 @@ export function useDateRangePickerState<T extends DateValue = DateValue>(
   }
 
   const commitValue = (dateRange: DateRange, timeRange: TimeRange) => {
-    setValue({
-      start:
-        'timeZone' in timeRange.start!
-          ? timeRange.start.set(toCalendarDate(dateRange.start!))
-          : toCalendarDateTime(dateRange.start!, timeRange.start!),
-      end:
-        'timeZone' in timeRange.end!
-          ? timeRange.end.set(toCalendarDate(dateRange.end!))
-          : toCalendarDateTime(dateRange.end!, timeRange.end!),
-    })
-    setSelectedDateRange(null)
-    setSelectedTimeRange(null)
+    if (dateRange.end && dateRange.start && timeRange.end && timeRange.start) {
+      setValue({
+        start:
+          'timeZone' in timeRange.start
+            ? timeRange.start.set(toCalendarDate(dateRange.start))
+            : toCalendarDateTime(dateRange.start, timeRange.start),
+        end:
+          'timeZone' in timeRange.end
+            ? timeRange.end.set(toCalendarDate(dateRange.end))
+            : toCalendarDateTime(dateRange.end, timeRange.end),
+      })
+      setSelectedDateRange(null)
+      setSelectedTimeRange(null)
+    }
   }
 
   // Intercept setValue to make sure the Time section is not changed by date selection in Calendar
@@ -133,7 +135,7 @@ export function useDateRangePickerState<T extends DateValue = DateValue>(
       }
     }
 
-    if (shouldClose) {
+    if (shouldClose && range.start && range.end) {
       overlayState.setOpen(false)
     }
   }

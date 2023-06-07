@@ -22,9 +22,24 @@ export const Variants: React.FC = () => {
           startDateLabel='Start date'
           endDateLabel='End date'
         />
+        <h3>Read only</h3>
+        <DateRangePicker
+          isReadOnly
+          startDateLabel='Start date'
+          endDateLabel='End date'
+        />
         <h3>Invalid</h3>
         <DateRangePicker
           isInvalid
+          startDateLabel='Start date'
+          endDateLabel='End date'
+        />
+        <h3>Helper texts</h3>
+        <DateRangePicker
+          isInvalid
+          isRequired
+          helperText='Weekend is excluded'
+          errorMessage='Must not include weekend'
           startDateLabel='Start date'
           endDateLabel='End date'
         />
@@ -56,6 +71,7 @@ export const Controlled: React.FC = () => {
           }`}
       <DateRangePicker
         value={range}
+        shouldCloseOnSelect
         onChange={(e) => setRange(e as RangeValue<DateValue>)}
       />
     </I18nProvider>
