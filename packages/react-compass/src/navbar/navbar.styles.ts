@@ -1,7 +1,6 @@
 import {styled} from '../theme'
 import {VariantProps} from '../utils/stitches.types'
 import {StyledNavbarBrand} from './navbar-brand.styles'
-import {StyledNavbarIcon} from './navbar-icon.styles'
 
 export const StyledNavbar = styled('div', {
   display: 'flex',
@@ -15,9 +14,6 @@ export const StyledNavbar = styled('div', {
       white: {
         backgroundColor: '#ffffff',
         [`& ${StyledNavbarBrand}`]: {
-          color: '$gray100',
-        },
-        [`& ${StyledNavbarIcon}`]: {
           color: '$gray100',
         },
       },
