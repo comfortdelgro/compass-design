@@ -50,10 +50,10 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
 
     if (isRangeCalendar) {
       isSelectionStart = state.highlightedRange
-        ? isSameDay(date, state.highlightedRange.start)
+        ? isSameDay(date, state.highlightedRange.start!)
         : isSelected
       isSelectionEnd = state.highlightedRange
-        ? isSameDay(date, state.highlightedRange.end)
+        ? isSameDay(date, state.highlightedRange.end!)
         : isSelected
 
       isDisabled = date.month !== currentMonth.month

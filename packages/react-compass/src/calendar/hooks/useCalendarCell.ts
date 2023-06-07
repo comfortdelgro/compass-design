@@ -72,8 +72,8 @@ export function useCalendarCell(
     ('highlightedRange' in state
       ? !state.anchorDate &&
         state.highlightedRange &&
-        date.compare(state.highlightedRange.start) >= 0 &&
-        date.compare(state.highlightedRange.end) <= 0
+        date.compare(state.highlightedRange.start!) >= 0 &&
+        date.compare(state.highlightedRange.end!) <= 0
       : state.value && isSameDay(state.value, date))
 
   if (isInvalid) {
@@ -165,13 +165,13 @@ export function useCalendarCell(
         (e.pointerType === 'mouse' || e.pointerType === 'touch')
       ) {
         if (state.highlightedRange && !isInvalid) {
-          if (isSameDay(date, state.highlightedRange.start)) {
+          if (isSameDay(date, state.highlightedRange.start!)) {
             state.setAnchorDate(state.highlightedRange.end)
             state.setFocusedDate?.(date)
             state.setDragging(true)
             isRangeBoundaryPressed.current = true
             return
-          } else if (isSameDay(date, state.highlightedRange.end)) {
+          } else if (isSameDay(date, state.highlightedRange.end!)) {
             state.setAnchorDate(state.highlightedRange.start)
             state.setFocusedDate?.(date)
             state.setDragging(true)
