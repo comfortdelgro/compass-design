@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -35,7 +35,7 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
 
     const [uncontrolledExpand, setUncontrolledExpand] = useState(defaultExpand)
 
-    const accordionBodyRef = useRef<HTMLDivElement>(null)
+    const accordionBodyRef = useDOMRef<HTMLDivElement>(null)
 
     // Component expansion state managed by its own or by user
     const expand: boolean = (() => {
@@ -93,12 +93,7 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
         : AccordionTitleElement
 
     return (
-      <StyledAccordion
-        {...delegated}
-        // expand={expand ? 'open' : 'close'}
-        css={css}
-        ref={accordionRef}
-      >
+      <StyledAccordion {...delegated} css={css} ref={accordionRef}>
         <AccordionContext.Provider value={contextValue}>
           {AccordionTitleWithIcon}
           <div

@@ -4,7 +4,7 @@ import Link from './index'
 
 export const Default: React.FC = () => (
   <Column>
-    <p>
+    <section>
       <h3>Link</h3>
       The Link component is a TypeScript React component that renders a link to
       an external or internal URL.
@@ -28,7 +28,7 @@ export const Default: React.FC = () => (
           in a new window or tab.
         </li>
       </ol>
-    </p>
+    </section>
     <h3>Example: </h3>
     <Link href='/#page'>Go to another page</Link>
     <Link href='https://google.com' external>

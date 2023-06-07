@@ -14,8 +14,17 @@ interface Props {
 }
 
 const TagBoxItem = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
-  const {isDisabled, isError, icon, value, id, wrapperRef, onRemove, onEdit} =
-    props
+  const {
+    isDisabled = false,
+    isError,
+    icon,
+    value,
+    id,
+    wrapperRef,
+    onRemove,
+    onEdit,
+    ...delegated
+  } = props
   const [editable, setEditable] = React.useState(false)
   const [inputValue, setInputValue] = React.useState(value)
   const inputRef = React.useRef<HTMLInputElement>(null)
@@ -98,7 +107,12 @@ const TagBoxItem = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   }
 
   return (
-    <StyledItem isDisabled={isDisabled} isError={isError} ref={tagItemRef}>
+    <StyledItem
+      isDisabled={isDisabled}
+      isError={isError}
+      ref={tagItemRef}
+      {...delegated}
+    >
       {icon}
       <input
         ref={inputRef}

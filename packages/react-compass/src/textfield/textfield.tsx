@@ -150,7 +150,7 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
         {label && (
           <StyledTextFieldLabel htmlFor={id}>
             {label}
-            {isRequired && <span>*</span>}
+            {isRequired && <span className='asterisk'>*</span>}
           </StyledTextFieldLabel>
         )}
         <StyledTextFieldBox isDisabled={!!isDisabled} isErrored={!!isErrored}>

@@ -9,13 +9,27 @@ interface Props extends StyledComponentProps {
 }
 
 const TagBoxInput = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
+  const {
+    // StyledComponentProps
+    css = {},
+    children,
+    onFocus = () => {
+      // do nothing
+    },
+    onBlur = () => {
+      // do nothing
+    },
+    ...delegated
+  } = props
+
   const tagBoxInputRef = useDOMRef<HTMLInputElement>(ref)
+
   return (
     <input
       ref={tagBoxInputRef}
       type='text'
-      onFocus={props.onFocus}
-      onBlur={props.onBlur}
+      onFocus={onFocus}
+      onBlur={onBlur}
       onKeyDown={(e: KeyboardEvent<HTMLInputElement>) => {
         const value = (e.target as HTMLInputElement).value
         if (value !== '' && e.key === 'Enter') {
@@ -23,6 +37,7 @@ const TagBoxInput = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
           if (tagBoxInputRef.current) tagBoxInputRef.current.value = ''
         }
       }}
+      {...delegated}
     />
   )
 })

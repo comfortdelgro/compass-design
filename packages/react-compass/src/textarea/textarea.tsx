@@ -1,12 +1,10 @@
 import React from 'react'
-import {
-  StyledTextFieldHelperText,
-  StyledTextFieldLabel,
-} from '../textfield/textfield.styles'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
   StyledTextarea,
+  StyledTextAreaHelperText,
+  StyledTextAreaLabel,
   StyledTextareaWrapper,
   TextareaVariantProps,
 } from './textarea.styles'
@@ -102,6 +100,7 @@ const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
       autoCapitalize,
       autoFocus,
       className,
+      placeholder,
       onChange,
       onChangeEvent,
       onCut = () => null,
@@ -128,13 +127,12 @@ const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
     const handleOnChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
       onChange?.(event.target.value)
       onChangeEvent?.(event)
+      setWordCountValue(event.target.value.length)
     }
 
     React.useEffect(() => {
-      if (textareaRef.current) {
-        setWordCountValue(textareaRef.current.value.length ?? 0)
-      }
-    }, [textareaRef?.current?.value?.length])
+      setWordCountValue(value?.length || 0) // word count on mount
+    }, [])
     return (
       <StyledTextareaWrapper
         css={css}
@@ -143,10 +141,10 @@ const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
         {...delegated}
       >
         {label && (
-          <StyledTextFieldLabel htmlFor={textareaId}>
+          <StyledTextAreaLabel htmlFor={textareaId}>
             {label}
-            {isRequired && <span>*</span>}
-          </StyledTextFieldLabel>
+            {isRequired && <span className='asterisk'>*</span>}
+          </StyledTextAreaLabel>
         )}
         <StyledTextarea
           ref={textareaRef}
@@ -165,6 +163,7 @@ const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
           disabled={isDisabled}
           maxLength={maxLength}
           minLength={minLength}
+          placeholder={placeholder}
           onCut={onCut}
           onCopy={onCopy}
           onBlur={onBlur}
@@ -181,15 +180,15 @@ const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
           onCompositionUpdate={onCompositionUpdate}
         />
         {wordCount && (
-          <StyledTextFieldHelperText className='word-count'>
+          <StyledTextAreaHelperText className='word-count'>
             {wordCountValue}
             {maxLength ? `/${maxLength}` : null}
-          </StyledTextFieldHelperText>
+          </StyledTextAreaHelperText>
         )}
         {isErrored && errorMessage && (
-          <StyledTextFieldHelperText error>
+          <StyledTextAreaHelperText error>
             {errorMessage}
-          </StyledTextFieldHelperText>
+          </StyledTextAreaHelperText>
         )}
       </StyledTextareaWrapper>
     )

@@ -7,13 +7,13 @@ export const ElementMapping: React.FC = () => {
   const [inputValue, setInputValue] = useState<string | number>('')
   return (
     <Column>
-      <p>
+      <section>
         <h3>'as' prop</h3>
         The 'as' prop refers to the HTML element that the Box component should
         render as. By default, the Box component will render as a div element,
         but if you pass a different value to the as prop, it will render as that
         element instead.
-      </p>
+      </section>
       <h3>Box as 'div' Element - default option</h3>
       <Box
         css={{

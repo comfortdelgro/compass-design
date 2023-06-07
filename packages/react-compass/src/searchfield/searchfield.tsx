@@ -60,9 +60,9 @@ interface Props extends StyledComponentProps {
 
 export type SearchFieldProps = Props &
   SearchFieldVariantProps &
-  Omit<React.HTMLAttributes<HTMLInputElement>, keyof Props>
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
-const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
+const SearchField = React.forwardRef<HTMLDivElement, SearchFieldProps>(
   (props, ref) => {
     const {
       // StyledComponentProps
@@ -73,16 +73,63 @@ const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
       isReadOnly = false,
       isRequired = false,
       isDisabled = false,
-      autoFocus,
-      placeholder,
-      onSubmit,
-      onChange,
-      onChangeEvent,
-      ...safeProps
+      autoFocus = false,
+      placeholder = '',
+      onSubmit = () => {
+        /* empty */
+      },
+      onChange = () => {
+        /* empty */
+      },
+      onChangeEvent = () => {
+        /* empty */
+      },
+      onCut = () => {
+        /* empty */
+      },
+      onCopy = () => {
+        /* empty */
+      },
+      onBlur = () => {
+        /* empty */
+      },
+      onPaste = () => {
+        /* empty */
+      },
+      onInput = () => {
+        /* empty */
+      },
+      onKeyUp = () => {
+        /* empty */
+      },
+      onSelect = () => {
+        /* empty */
+      },
+
+      onKeyDown = () => {
+        /* empty */
+      },
+      onBeforeInput = () => {
+        /* empty */
+      },
+      onCompositionEnd = () => {
+        /* empty */
+      },
+      onCompositionStart = () => {
+        /* empty */
+      },
+      onCompositionUpdate = () => {
+        /* empty */
+      },
+      onFocus = () => {
+        /* empty */
+      },
+      ...delegated
     } = props
 
     const [textValue, setTextValue] = React.useState<string>(value)
-    const searchFieldRef = useDOMRef<HTMLInputElement>(ref)
+    const searchFieldRef = useDOMRef<HTMLInputElement>(null)
+    const wrapperRef = useDOMRef<HTMLDivElement>(ref)
 
     React.useEffect(() => {
       setTextValue(value)
@@ -115,7 +162,7 @@ const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
         setTextValue('')
         props.onClear?.()
       }
-      props.onKeyDown?.(e)
+      onKeyDown?.(e)
     }
 
     const onClearButtonClick = () => {
@@ -133,11 +180,12 @@ const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
         disabled={isDisabled}
         css={css}
         isErrored={isErrored}
+        ref={wrapperRef}
+        {...delegated}
       >
         <StyledSearchFieldInput
           ref={searchFieldRef}
           id={id}
-          {...safeProps}
           autoFocus={autoFocus}
           readOnly={isReadOnly}
           required={isRequired}
@@ -145,20 +193,20 @@ const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
           type='text'
           placeholder={placeholder}
           value={textValue}
-          onCut={props.onCut}
-          onCopy={props.onCopy}
-          onBlur={props.onBlur}
-          onFocus={props.onFocus}
-          onPaste={props.onPaste}
-          onInput={props.onInput}
-          onKeyUp={props.onKeyUp}
-          onSelect={props.onSelect}
+          onCut={onCut}
+          onCopy={onCopy}
+          onBlur={onBlur}
+          onFocus={onFocus}
+          onPaste={onPaste}
+          onInput={onInput}
+          onKeyUp={onKeyUp}
+          onSelect={onSelect}
           onChange={handleOnChange}
           onKeyDown={handleOnKeyDown}
-          onBeforeInput={props.onBeforeInput}
-          onCompositionEnd={props.onCompositionEnd}
-          onCompositionStart={props.onCompositionStart}
-          onCompositionUpdate={props.onCompositionUpdate}
+          onBeforeInput={onBeforeInput}
+          onCompositionEnd={onCompositionEnd}
+          onCompositionStart={onCompositionStart}
+          onCompositionUpdate={onCompositionUpdate}
         />
         {textValue !== '' ? (
           <Button size='sm' variant='ghost' onPress={onClearButtonClick}>

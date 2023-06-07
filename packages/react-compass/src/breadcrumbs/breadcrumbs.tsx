@@ -12,9 +12,9 @@ interface Props extends StyledComponentProps {
 
 export type BreadcrumbsProps = Props &
   BreadcrumbsVariantProps &
-  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
+  Omit<React.HTMLAttributes<HTMLElement>, keyof Props>
 
-const Breadcrumbs = React.forwardRef<HTMLDivElement, BreadcrumbsProps>(
+const Breadcrumbs = React.forwardRef<HTMLElement, BreadcrumbsProps>(
   (props, ref) => {
     const {
       // StyledComponentProps
@@ -34,7 +34,7 @@ const Breadcrumbs = React.forwardRef<HTMLDivElement, BreadcrumbsProps>(
       ...delegated
     } = props
 
-    const breadcrumbsRef = useDOMRef<HTMLDivElement>(ref)
+    const breadcrumbsRef = useDOMRef<HTMLElement>(ref)
     const items = React.Children.toArray(children)
 
     return (
