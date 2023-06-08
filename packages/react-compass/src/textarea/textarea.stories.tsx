@@ -1,4 +1,4 @@
-import {faBug} from '@fortawesome/free-solid-svg-icons'
+import {faBook} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import type {StoryDecorator} from '@ladle/react'
 import React, {useState} from 'react'
@@ -6,35 +6,38 @@ import {Column} from '../utils/components'
 import Textarea from './index'
 
 export const Variants: React.FC = () => {
-  const [value, setValue] = useState('Lorem ipsum dolor sit amet.')
+  const [value, setValue] = useState('My initial value')
 
   return (
     <Column>
+      <h3> Simple textarea</h3>
       <Textarea placeholder='Enter your message' />
+      <br />
+      <h3> Textarea with label and isRequired</h3>
       <Textarea
         label={
           <>
-            Text Label <FontAwesomeIcon icon={faBug} />
+            My custom label &nbsp;
+            <FontAwesomeIcon icon={faBook} style={{fontSize: '0.9em'}} />
           </>
         }
         placeholder='Enter your message'
         isRequired
       />
-      <Textarea
-        label='Text Label'
-        placeholder='Enter your message'
-        wordCount
-        value='Lorem ipsum dolor sit amet.'
-        isRequired
-      />
+      <br />
+      <h3> Textarea with word count and max length</h3>
+      <Textarea label='Text Label' placeholder='Enter your message' wordCount />
       <Textarea
         label='Text Label'
         placeholder='Enter your message'
         wordCount
         maxLength={50}
-        value={value}
-        onChange={setValue}
       />
+      <br />
+      <h3>
+        Textarea with isErrored and error message (error message is only visible
+        when isErrored == true)
+      </h3>
       <Textarea
         label='Text Label'
         placeholder='Enter your message'
@@ -43,11 +46,23 @@ export const Variants: React.FC = () => {
         isErrored
         errorMessage='Error Message'
       />
+      <br />
+      <h3> Textarea with isDisabled</h3>
       <Textarea
         label='Disabled Text Label'
         placeholder='Enter your message'
-        isDisabled={true}
+        isDisabled
       />
+      <br />
+      <h3> Controlled Textarea</h3>
+      <Textarea
+        label='Controlled Text Label'
+        placeholder='Enter your message'
+        value={value}
+        onChange={(value) => setValue(value)}
+      />
+      <br />
+      <br />
     </Column>
   )
 }

@@ -83,9 +83,9 @@ interface Props extends StyledComponentProps {
 
 export type TextFieldProps = Props &
   TextFieldVariantProps &
-  Omit<React.HTMLAttributes<HTMLInputElement>, keyof Props>
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
-const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
+const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
   (props, ref) => {
     const {
       // StyledComponentProps
@@ -122,7 +122,12 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       keyof Props
     >
 
-    const textfieldRef = useDOMRef<HTMLInputElement>(ref)
+    const inputProps = {...ariaSafeProps} as Omit<
+      React.HTMLAttributes<HTMLInputElement>,
+      keyof Props
+    >
+
+    const textfieldRef = useDOMRef<HTMLDivElement>(ref)
     const [isPassWordVisible, setIsPassWordVisible] = React.useState(false)
 
     const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -141,11 +146,11 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
     }, [password, isPassWordVisible])
 
     return (
-      <StyledTextFieldWrapper css={css} {...htmlProps}>
+      <StyledTextFieldWrapper css={css} {...htmlProps} ref={textfieldRef}>
         {label && (
           <StyledTextFieldLabel htmlFor={id}>
             {label}
-            {isRequired && <span>*</span>}
+            {isRequired && <span className='asterisk'>*</span>}
           </StyledTextFieldLabel>
         )}
         <StyledTextFieldBox isDisabled={!!isDisabled} isErrored={!!isErrored}>
@@ -153,9 +158,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
           {prefix ? <div className='prefix'>{prefix}</div> : null}
           <StyledTextField
             css={css}
-            ref={textfieldRef}
             id={id}
-            {...props}
             prefix=''
             placeholder={placeholder}
             autoFocus={autoFocus}
@@ -182,6 +185,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
             onCompositionEnd={props.onCompositionEnd}
             onCompositionStart={props.onCompositionStart}
             onCompositionUpdate={props.onCompositionUpdate}
+            {...inputProps}
           />
           {rightIcon ? <div className='right-icon'>{rightIcon}</div> : null}
           {password && determineInputType == 'password' ? (

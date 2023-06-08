@@ -15,12 +15,13 @@ const TagBoxAction = React.forwardRef<HTMLDivElement, TagBoxActionProps>(
       // StyledComponentProps
       css = {},
       children,
+      ...delegated
     } = props
 
     const tagBoxActionRef = useDOMRef<HTMLDivElement>(ref)
 
     return (
-      <StyledTagBoxAction css={css} ref={tagBoxActionRef}>
+      <StyledTagBoxAction css={css} ref={tagBoxActionRef} {...delegated}>
         {children}
       </StyledTagBoxAction>
     )

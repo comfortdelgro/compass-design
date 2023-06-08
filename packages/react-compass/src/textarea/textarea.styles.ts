@@ -15,6 +15,33 @@ export const StyledTextareaWrapper = styled('div', {
   },
 })
 
+export const StyledTextAreaHelperText = styled('div', {
+  fontSize: '$label2',
+  fontWeight: '$medium',
+  transition: '$default',
+  marginTop: '$1',
+  color: '$gray70',
+
+  variants: {
+    error: {
+      true: {
+        color: '$danger',
+      },
+    },
+  },
+})
+export const StyledTextAreaLabel = styled('label', {
+  fontSize: '$label1',
+  fontWeight: '$semibold',
+  marginBottom: '$2',
+  display: 'inline-block',
+  width: '100%',
+  '.asterisk': {
+    marginLeft: '$1',
+    color: '$danger',
+  },
+})
+
 export const StyledTextarea = styled('textarea', {
   fontSize: '$label1',
   minHeight: '$11',

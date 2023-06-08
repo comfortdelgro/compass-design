@@ -83,6 +83,9 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     onFocus = () => {
       //
     },
+    onSelectionChange = () => {
+      //
+    },
     ...delegated
   } = props
   // ====================================== STATE ======================================
@@ -226,7 +229,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
             const originalText = getTextFromKey(currentKey)
             if (originalText !== search && isSearching) {
               setCurrentKey(undefined)
-              props.onSelectionChange?.('')
+              onSelectionChange?.('')
             }
           }
         }
@@ -288,10 +291,10 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     if (!isReadOnly) {
       if (currentKey === key && shouldDeselect) {
         setCurrentKey(undefined)
-        props.onSelectionChange?.('')
+        onSelectionChange?.('')
       } else {
         setCurrentKey(key)
-        props.onSelectionChange?.(key)
+        onSelectionChange?.(key)
       }
       setIsSearching(false)
       setOpen(false)
@@ -308,7 +311,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         setFocusKey(undefined)
         setSearch(event.target.value)
         setIsSearching(false)
-        props.onSelectionChange?.('')
+        onSelectionChange?.('')
       }
     } else {
       setSearch(event.target.value)

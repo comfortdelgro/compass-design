@@ -65,6 +65,7 @@ const Rating = React.forwardRef<HTMLDivElement, RatingProps>((props, ref) => {
         <Button
           className={`rating ${activeIndex === index ? 'active' : ''}`}
           onPress={handleRatingBtnPress(index)}
+          key={index}
         >
           {item}
         </Button>
