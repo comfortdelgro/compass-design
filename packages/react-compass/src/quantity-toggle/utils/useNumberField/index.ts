@@ -179,7 +179,7 @@ export default function useNumberField(
   delete (inputProps as any).isRequired
   delete (inputProps as any).isDisabled
   delete (inputProps as any).helperText
-  delete (inputProps as any).defaultValue
+  delete (inputProps as any).defaultValue // Native props but no needed cuz this comp fully controlled
   delete (inputProps as any).errorMessage
   delete (inputProps as any).validationState
   delete (inputProps as any).onUpdate
