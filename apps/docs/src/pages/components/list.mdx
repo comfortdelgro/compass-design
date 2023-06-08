@@ -1,5 +1,6 @@
 import {Callout} from 'nextra-theme-docs'
 import styles from '../../styles/Home.module.css'
+import {DragAndDrop} from '../../components/DragAndDrop'
 import {
   List,
   ListCard,
@@ -582,11 +583,7 @@ Small size version of the list
 #### DragAndDropList
 
 <section className={styles.componentShowcaseContainer}>
-  <DragAndDropList>
-    <DragAndDropList.Item key='1'>Item 1</DragAndDropList.Item>
-    <DragAndDropList.Item key='2'>Item 2</DragAndDropList.Item>
-    <DragAndDropList.Item key='3'>Item 3</DragAndDropList.Item>
-  </DragAndDropList>
+  <DragAndDrop />
 </section>
 
 ```js
