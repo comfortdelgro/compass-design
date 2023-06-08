@@ -174,6 +174,17 @@ export default function useNumberField(
     onMouseDown: (e: React.MouseEvent<HTMLButtonElement>) => e.preventDefault(),
   }
 
+  delete (inputProps as any).isErrored
+  delete (inputProps as any).isReadOnly
+  delete (inputProps as any).isRequired
+  delete (inputProps as any).isDisabled
+  delete (inputProps as any).helperText
+  delete (inputProps as any).defaultValue
+  delete (inputProps as any).errorMessage
+  delete (inputProps as any).validationState
+  delete (inputProps as any).onUpdate
+  delete (inputProps as any).onFocusChange
+
   return {
     inputProps,
     incrementButtonProps,
