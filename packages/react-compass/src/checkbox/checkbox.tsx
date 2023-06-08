@@ -74,18 +74,15 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       ...ariaSafeProps
     } = props
 
-    const ariaProps = {
-      isDisabled,
-      ...ariaSafeProps,
-    }
-
     const [checked, setChecked] = useState<boolean>(
       isSelected || defaultSelected,
     )
-
-    useEffect(() => {
-      setChecked((isSelected || defaultSelected) ?? false)
-    }, [isSelected])
+    // const state = useToggleState(ariaProps)
+    const checkboxRef = useDOMRef<HTMLInputElement>(ref)
+    const htmlProps = {...ariaSafeProps} as Omit<
+      React.HTMLAttributes<HTMLDivElement>,
+      keyof Props
+    >
 
     const handleCheckboxChange = () => {
       if (onChange) {
@@ -95,12 +92,10 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
 
       setChecked(!checked)
     }
-    // const state = useToggleState(ariaProps)
-    const checkboxRef = useDOMRef<HTMLInputElement>(ref)
-    const htmlProps = {...ariaSafeProps} as Omit<
-      React.HTMLAttributes<HTMLDivElement>,
-      keyof Props
-    >
+
+    useEffect(() => {
+      setChecked((isSelected || defaultSelected) ?? false)
+    }, [isSelected])
 
     return (
       <StyledCheckboxWrapper css={css} {...htmlProps}>
@@ -108,7 +103,6 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           <StyledCheckboxInput
             type='checkbox'
             ref={checkboxRef}
-            {...ariaProps}
             checked={checked}
             disabled={isDisabled}
             onChange={!isReadOnly ? handleCheckboxChange : undefined}

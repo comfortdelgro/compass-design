@@ -1,12 +1,10 @@
 import React from 'react'
-import {
-  StyledTextFieldHelperText,
-  StyledTextFieldLabel,
-} from '../textfield/textfield.styles'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
   StyledTextarea,
+  StyledTextAreaHelperText,
+  StyledTextAreaLabel,
   StyledTextareaWrapper,
   TextareaVariantProps,
 } from './textarea.styles'
@@ -75,9 +73,9 @@ interface Props extends StyledComponentProps {
 
 export type TextareaProps = Props &
   TextareaVariantProps &
-  Omit<React.HTMLAttributes<HTMLTextAreaElement>, keyof Props>
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
-const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
+const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
   (props, ref) => {
     const {
       // StyledComponentProps
@@ -101,30 +99,56 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       minLength,
       autoCapitalize,
       autoFocus,
+      className,
+      placeholder,
       onChange,
       onChangeEvent,
-      className,
+      onCut = () => null,
+      onCopy = () => null,
+      onPaste = () => null,
+      onCompositionStart = () => null,
+      onCompositionEnd = () => null,
+      onCompositionUpdate = () => null,
+      onSelect = () => null,
+      onBeforeInput = () => null,
+      onInput = () => null,
+      onFocus = () => null,
+      onBlur = () => null,
+      onKeyDown = () => null,
+      onKeyUp = () => null,
+      ...delegated
     } = props
 
     const textareaId = id
-    const textareaRef = useDOMRef<HTMLTextAreaElement>(ref)
+    const wrapperRef = useDOMRef<HTMLDivElement>(ref)
+    const textareaRef = useDOMRef<HTMLTextAreaElement>(null)
+    const [wordCountValue, setWordCountValue] = React.useState(0)
 
     const handleOnChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
       onChange?.(event.target.value)
       onChangeEvent?.(event)
+      setWordCountValue(event.target.value.length)
     }
+
+    React.useEffect(() => {
+      setWordCountValue(value?.length || 0) // word count on mount
+    }, [])
     return (
-      <StyledTextareaWrapper css={css} className={className}>
+      <StyledTextareaWrapper
+        css={css}
+        className={className}
+        ref={wrapperRef}
+        {...delegated}
+      >
         {label && (
-          <StyledTextFieldLabel htmlFor={textareaId}>
+          <StyledTextAreaLabel htmlFor={textareaId}>
             {label}
-            {isRequired && <span>*</span>}
-          </StyledTextFieldLabel>
+            {isRequired && <span className='asterisk'>*</span>}
+          </StyledTextAreaLabel>
         )}
         <StyledTextarea
-          id={textareaId}
           ref={textareaRef}
-          {...props}
+          id={textareaId}
           cols={cols}
           rows={rows}
           wrap={wrap}
@@ -139,31 +163,32 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           disabled={isDisabled}
           maxLength={maxLength}
           minLength={minLength}
-          onCut={props.onCut}
-          onCopy={props.onCopy}
-          onBlur={props.onBlur}
-          onFocus={props.onFocus}
-          onPaste={props.onPaste}
-          onInput={props.onInput}
-          onKeyUp={props.onKeyUp}
-          onSelect={props.onSelect}
+          placeholder={placeholder}
+          onCut={onCut}
+          onCopy={onCopy}
+          onBlur={onBlur}
+          onFocus={onFocus}
+          onPaste={onPaste}
+          onInput={onInput}
+          onKeyUp={onKeyUp}
+          onSelect={onSelect}
           onChange={handleOnChange}
-          onKeyDown={props.onKeyDown}
-          onBeforeInput={props.onBeforeInput}
-          onCompositionEnd={props.onCompositionEnd}
-          onCompositionStart={props.onCompositionStart}
-          onCompositionUpdate={props.onCompositionUpdate}
+          onKeyDown={onKeyDown}
+          onBeforeInput={onBeforeInput}
+          onCompositionEnd={onCompositionEnd}
+          onCompositionStart={onCompositionStart}
+          onCompositionUpdate={onCompositionUpdate}
         />
         {wordCount && (
-          <StyledTextFieldHelperText className='word-count'>
-            {textareaRef.current?.value?.toString().length ?? '0'}
+          <StyledTextAreaHelperText className='word-count'>
+            {wordCountValue}
             {maxLength ? `/${maxLength}` : null}
-          </StyledTextFieldHelperText>
+          </StyledTextAreaHelperText>
         )}
         {isErrored && errorMessage && (
-          <StyledTextFieldHelperText error>
+          <StyledTextAreaHelperText error>
             {errorMessage}
-          </StyledTextFieldHelperText>
+          </StyledTextAreaHelperText>
         )}
       </StyledTextareaWrapper>
     )

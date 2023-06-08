@@ -71,6 +71,8 @@ const MultipleDropdown = React.forwardRef<
     variant = 'combobox',
     customDisplayValue,
     defaultSelectedKeys = [],
+    label,
+    placeholder,
     onLoadMore = () => {
       //Load more
     },
@@ -78,6 +80,12 @@ const MultipleDropdown = React.forwardRef<
       //
     },
     onFocus = () => {
+      //
+    },
+    onSelectionChange = () => {
+      //
+    },
+    onOpenChange = () => {
       //
     },
     ...delegated
@@ -172,7 +180,7 @@ const MultipleDropdown = React.forwardRef<
 
   React.useEffect(() => {
     setFocusKey([...currentKeys].pop())
-    props.onOpenChange?.(open)
+    onOpenChange?.(open)
     if (open) {
       inputRef.current?.focus()
     } else {
@@ -265,7 +273,7 @@ const MultipleDropdown = React.forwardRef<
         setFocusKey(key)
       }
       setCurrentKeys([...v])
-      props.onSelectionChange?.([...v])
+      onSelectionChange?.([...v])
       inputRef.current?.focus()
     }
   }
@@ -306,7 +314,7 @@ const MultipleDropdown = React.forwardRef<
       displayedValue={displayedValue}
       variant={variant}
     >
-      {props.label && (
+      {label && (
         <label onClick={handleOpen} htmlFor={id}>
           {props.label}
           {isRequired && <span>*</span>}
@@ -324,7 +332,7 @@ const MultipleDropdown = React.forwardRef<
             {selectedNode.length === 0 &&
               search === '' &&
               !open &&
-              !focused && <p className='placeholder'>{props.placeholder}</p>}
+              !focused && <p className='placeholder'>{placeholder}</p>}
             {displayedValue == 'chip' &&
               selectedNode.length > 0 &&
               selectedNode.map((item) => {
