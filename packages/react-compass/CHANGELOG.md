@@ -1,5 +1,11 @@
 ## 1.0.0-next.2
 
+## 1.2.0
+
+### Minor Changes
+
+- fa05d5b7: Fix DOM warnings
+
 ## 1.1.0
 
 ### Minor Changes
