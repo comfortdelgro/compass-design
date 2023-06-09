@@ -811,7 +811,7 @@
         "Searchfield"
       ],
       "locStart": 6,
-      "locEnd": 33,
+      "locEnd": 51,
       "filePath": "src/searchfield/searchfield.stories.tsx",
       "meta": {}
     },
@@ -1031,7 +1031,7 @@
         "Textarea"
       ],
       "locStart": 8,
-      "locEnd": 53,
+      "locEnd": 68,
       "filePath": "src/textarea/textarea.stories.tsx",
       "meta": {}
     },
@@ -1040,8 +1040,8 @@
       "levels": [
         "Textfield"
       ],
-      "locStart": 24,
-      "locEnd": 131,
+      "locStart": 27,
+      "locEnd": 134,
       "filePath": "src/textfield/textfield.stories.tsx",
       "meta": {}
     },
