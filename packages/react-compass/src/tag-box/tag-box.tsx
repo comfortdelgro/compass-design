@@ -68,6 +68,8 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
     onRemove,
     onAdd,
     onEdit,
+    label,
+    icon,
     ...delegated
   } = props
 
@@ -136,9 +138,9 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
   return (
     <StyledTagBox css={css} ref={tagBoxRef} {...delegated}>
       <StyledBoxWrapper labelPosition={labelPosition}>
-        {props.label && (
+        {label && (
           <label htmlFor={id}>
-            {props.label}
+            {label}
             {isRequired && <span>*</span>}
           </label>
         )}
@@ -153,7 +155,7 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
             aria-labelledby={props['aria-labelledby']}
             aria-describedby={props['aria-describedby']}
           >
-            {props.icon && <StyledIcon>{props.icon}</StyledIcon>}
+            {icon && <StyledIcon>{icon}</StyledIcon>}
 
             <StyledBoxContent ref={boxContentRef}>
               {items.map((item, index) => (

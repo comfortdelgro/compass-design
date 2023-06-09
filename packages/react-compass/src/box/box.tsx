@@ -5,7 +5,7 @@ import {useDOMRef} from '../utils/use-dom-ref'
 //import {BoxVariantProps, StyledBox, StyledContentContainer} from './Box.styles'
 
 export type BoxProps = Props &
-  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
+  Omit<React.HTMLAttributes<HTMLElement>, keyof Props>
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
@@ -101,7 +101,7 @@ const StyledBox = styled('div', {
   margin: '0px',
   padding: '0px',
 })
-const Box = React.forwardRef<HTMLDivElement, BoxProps>((props, ref) => {
+const Box = React.forwardRef<HTMLElement, BoxProps>((props, ref) => {
   const {
     // children props
     children,
@@ -193,7 +193,7 @@ const Box = React.forwardRef<HTMLDivElement, BoxProps>((props, ref) => {
     ...delegated
   } = props
 
-  const BoxRef = useDOMRef<HTMLDivElement>(ref)
+  const BoxRef = useDOMRef<HTMLElement>(ref)
 
   return (
     <StyledBox

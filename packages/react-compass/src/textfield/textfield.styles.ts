@@ -13,7 +13,7 @@ export const StyledTextFieldLabel = styled('label', {
   marginBottom: '$2',
   display: 'inline-block',
   width: '100%',
-  span: {
+  '.asterisk': {
     marginLeft: '$1',
     color: '$danger',
   },

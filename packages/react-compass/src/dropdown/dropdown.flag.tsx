@@ -22,7 +22,18 @@ export type DropdownFlagProps = Props & DropdownVariantProps
 
 const DropdownFlag = React.forwardRef<HTMLDivElement, DropdownFlagProps>(
   (props, ref) => {
-    const {flagKeyType = 'alpha-3', selectedKey, defaultSelectedKey} = props
+    const {
+      flagKeyType = 'alpha-3',
+      selectedKey,
+      defaultSelectedKey,
+      onSelectionChange = () => {
+        /**/
+      },
+      onCountryChange = () => {
+        /**/
+      },
+      ...delegated
+    } = props
 
     const [selected, setSelected] = React.useState<React.Key | undefined>(
       defaultSelectedKey,
@@ -52,8 +63,8 @@ const DropdownFlag = React.forwardRef<HTMLDivElement, DropdownFlagProps>(
     const handleCountryChange = (c: React.Key) => {
       const country = countries.find((item) => item['alpha-3'] === c)
       if (country) {
-        props.onSelectionChange?.(country[flagKeyType])
-        props.onCountryChange?.(country)
+        onSelectionChange?.(country[flagKeyType])
+        onCountryChange?.(country)
       }
     }
 
@@ -64,7 +75,7 @@ const DropdownFlag = React.forwardRef<HTMLDivElement, DropdownFlagProps>(
     return (
       <PreDropdown
         ref={ref}
-        {...props}
+        {...delegated}
         {...valueProps}
         onSelectionChange={handleCountryChange}
       >

@@ -9,6 +9,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@comfortdelgro/compass-icons": "workspace:*",
     "@comfortdelgro/react-compass": "workspace:*",
     "next": "12.3.1",
     "react": "^18.2.0",

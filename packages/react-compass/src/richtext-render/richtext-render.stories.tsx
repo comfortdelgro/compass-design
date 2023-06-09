@@ -61,10 +61,10 @@ const richTextDoc = {
 
 export const Default: React.FC = () => (
   <Column>
-    <p>
+    <section>
       <h3>Richtext renderer</h3>
       This component converts rich text content from Contentful into HTML.
-    </p>
+    </section>
     <h3>Example: </h3>
     <Row>
       <RichTextRender document={richTextDoc as Document} />
