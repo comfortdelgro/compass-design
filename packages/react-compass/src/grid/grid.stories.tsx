@@ -20,7 +20,7 @@ export const Default: React.FC = () => {
   )
   return (
     <Column>
-      <p>
+      <section>
         <h3>Fluid grids</h3>
         Fluid grids use columns that scale and resize content. A fluid grid's
         layout can use breakpoints to determine if the layout needs to change
@@ -51,7 +51,7 @@ export const Default: React.FC = () => {
           <li>lg, large: 1200px</li>
           <li>xl, extra-large: 1536px</li>
         </ol>
-      </p>
+      </section>
       <h3>Example: </h3>
       <Grid spacing='sm' alignItems='center' style={{height: '100%'}}>
         <Grid.Item xs={12} sm={6} md={4} lg={3} xl={3}>
