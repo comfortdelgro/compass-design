@@ -8,7 +8,7 @@ describe('sidebar.cy.ts', () => {
 
   it('C01: confirm sidebar popup when button is clicked', () => {
     cy.mount(<Sidebar />)
-    cy.get('.c-jdhZyR').click()
+    cy.get('.children').click()
     cy.get('.c-jWPZdY-iPJLV-css > .c-jWPZdY').should('have.text', 'My title')
   })
 })
