@@ -28,6 +28,9 @@ export const TimePickerDropdownWrapper = styled('div', {
   border: '1px solid #e6e6e6',
   borderRadius: '4px',
   zIndex: 9999,
+  '&:hover .time-picker-dropdown-control': {
+    overflowY: 'auto',
+  },
 })
 export const TimePickerDropdownContent = styled('div', {
   display: 'flex',
@@ -38,7 +41,7 @@ export const TimePickerDropdownContent = styled('div', {
 })
 export const TimePickerDropdownControl = styled('div', {
   padding: '4px',
-  overflowY: 'auto',
+  overflowY: 'hidden',
   height: '100%',
   position: 'relative',
 
@@ -80,6 +83,12 @@ export const TimePickerDropdownFooter = styled('div', {
     fontSize: '$body3',
     lineHeight: '$5_25',
   },
+})
+export const TimeFieldWrapper = styled('div', {
+  display: 'flex',
+})
+export const TimeSegmentStyle = styled('div', {
+  whiteSpace: 'break-spaces',
 })
 
 export type ButtonVariantProps = VariantProps<typeof StyledTextField>

@@ -1,5 +1,6 @@
 import React, {useEffect, useMemo, useRef, useState} from 'react'
 import Button from '../button'
+import {ViewType} from './time-picker'
 import {
   TimePickerDropdownContent,
   TimePickerDropdownControl,
@@ -15,6 +16,7 @@ interface TimePickerDropdownProps {
   hourStep?: number
   minuteStep?: number
   hasFooter?: boolean
+  views?: ViewType[]
   onItemClick?: (value: string) => void
   onOkClick?: (selectedValue: string) => void
 }
@@ -45,6 +47,7 @@ function TimePickerDropdown(props: TimePickerDropdownProps) {
     hasFooter = true,
     onItemClick,
     onOkClick,
+    views = [],
   } = props
   const [hourList, setHourList] = useState<number[]>([])
   const [minuteList, setMinuteList] = useState<number[]>([])
@@ -287,7 +290,7 @@ function TimePickerDropdown(props: TimePickerDropdownProps) {
       <TimePickerDropdownWrapper>
         <TimePickerDropdownContent>
           <TimePickerDropdownControl
-            className='border-right'
+            className='border-right time-picker-dropdown-control'
             ref={hourContainerRef}
           >
             {hourList.map((hour) => (
@@ -301,7 +304,7 @@ function TimePickerDropdown(props: TimePickerDropdownProps) {
             ))}
           </TimePickerDropdownControl>
           <TimePickerDropdownControl
-            className='border-right'
+            className='border-right time-picker-dropdown-control'
             ref={minuteContainerRef}
           >
             {minuteList.map((minute) => (
@@ -314,7 +317,10 @@ function TimePickerDropdown(props: TimePickerDropdownProps) {
               </TimePickerDropdownItem>
             ))}
           </TimePickerDropdownControl>
-          <TimePickerDropdownControl ref={secondContainerRef}>
+          <TimePickerDropdownControl
+            ref={secondContainerRef}
+            className='time-picker-dropdown-control'
+          >
             {secondList.map((second) => (
               <TimePickerDropdownItem
                 key={second}

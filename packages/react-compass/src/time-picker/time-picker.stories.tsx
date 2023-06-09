@@ -2,7 +2,7 @@ import React from 'react'
 import {Column, Row} from '../utils/components'
 import TimePicker from './index'
 
-export const Variations: React.FC = () => (
+export const Default: React.FC = () => (
   <>
     <Column>
       <h3>With HALF_FORMAT</h3>
@@ -18,7 +18,7 @@ export const Variations: React.FC = () => (
       <h3>With FULL_FORMAT</h3>
       <Row>
         <TimePicker
-          format='FULL_FORMAT'
+          format='HALF_FORMAT'
           onTimeChange={(value: string) => {
             console.log(value)
           }}
@@ -27,7 +27,19 @@ export const Variations: React.FC = () => (
       <h3>Without footer</h3>
       <Row>
         <TimePicker
+          format='FULL_FORMAT'
+          formatTime='hh:mm:ss'
+          hasFooter={false}
+          onTimeChange={(value: string) => {
+            console.log(value)
+          }}
+        />
+      </Row>
+      <h3>Format: mm:ss</h3>
+      <Row>
+        <TimePicker
           format='HALF_FORMAT'
+          formatTime='mm:ss'
           hasFooter={false}
           onTimeChange={(value: string) => {
             console.log(value)
