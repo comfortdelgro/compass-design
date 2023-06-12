@@ -96,6 +96,7 @@ function splitTimeFormat(format: string) {
 
   if (format.includes('AA')) {
     splitFormat.second = {
+      ...emptyFormat,
       start: format.indexOf('AA'),
       end: format.indexOf('AA') + 2,
       format: 'AA',
@@ -105,7 +106,7 @@ function splitTimeFormat(format: string) {
   return splitFormat
 }
 
-function setSelectionOnFocus(format: string, focusIndex: number) {
+function getSelectionOnFocus(format: string, focusIndex: number) {
   const splitFormat = splitTimeFormat(format)
   const selection = emptyFormat
 
@@ -226,7 +227,7 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
           setSelectedValue('')
         }
         isClosePopover && setIsOpen(false)
-        setSelectedSelectionInput({start: 0, end: 0, format: ''})
+        setSelectedSelectionInput(emptyFormat)
       }
 
     const handleInputChange = () => {
@@ -262,7 +263,7 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             timePickerInputRef.current.value = formatTime
           }
           const selectionIndex = timePickerInputRef.current.selectionStart ?? 0
-          const selectTime = setSelectionOnFocus(formatTime, selectionIndex)
+          const selectTime = getSelectionOnFocus(formatTime, selectionIndex)
           setSelectedSelectionInput(selectTime)
           timePickerInputRef.current?.setSelectionRange(
             selectTime.start,
@@ -318,7 +319,7 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
           if (selectedSelectionInput.end - 3 <= 0) {
             return
           } else {
-            const selectTime = setSelectionOnFocus(
+            const selectTime = getSelectionOnFocus(
               formatTime,
               selectedSelectionInput.end - 3,
             )
@@ -333,7 +334,7 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
           if (selectedSelectionInput.end + 2 > formatTime.length) {
             return
           } else {
-            const selectTime = setSelectionOnFocus(
+            const selectTime = getSelectionOnFocus(
               formatTime,
               selectedSelectionInput.end + 2,
             )
@@ -384,6 +385,8 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
           } else {
             isNumber = /\d/.test(event.key)
             if (isNumber) {
+              let replaceText = ''
+              let selectTime = selectedSelectionInput
               if (
                 Number(
                   `${currentValueArr[selectedSelectionInput.start]}${
@@ -391,40 +394,46 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
                   }${event.key}`,
                 ) < selectedSelectionInput.max
               ) {
-                currentValueArr[selectedSelectionInput.start] =
+                // currentValueArr[selectedSelectionInput.start] =
+                //   currentValueArr[selectedSelectionInput.end - 1] ?? '0'
+                // currentValueArr[selectedSelectionInput.end - 1] = event.key
+                replaceText = `${
                   currentValueArr[selectedSelectionInput.end - 1] ?? '0'
-                currentValueArr[selectedSelectionInput.end - 1] = event.key
-                const selectTime = setSelectionOnFocus(
+                }${event.key}`
+                selectTime = getSelectionOnFocus(
                   formatTime,
                   selectedSelectionInput.end + 2,
                 )
-                timePickerInputRef.current.value = currentValueArr.join('')
                 setSelectedSelectionInput(selectTime)
-                timePickerInputRef.current?.setSelectionRange(
-                  selectTime.start,
-                  selectTime.end,
-                )
+                // timePickerInputRef.current.value = currentValueArr.join('')
+                // timePickerInputRef.current?.setSelectionRange(
+                //   selectTime.start,
+                //   selectTime.end,
+                // )
               } else {
-                currentValueArr[selectedSelectionInput.start] = '0'
-                currentValueArr[selectedSelectionInput.end - 1] = event.key
-                timePickerInputRef.current.value = currentValueArr.join('')
-                let selectTime = selectedSelectionInput
+                // currentValueArr[selectedSelectionInput.start] = '0'
+                // currentValueArr[selectedSelectionInput.end - 1] = event.key
+                // timePickerInputRef.current.value = currentValueArr.join('')
+                replaceText = `0${event.key}`
                 if (
                   Number(
                     `${currentValueArr[selectedSelectionInput.end - 1]}0`,
                   ) >= selectedSelectionInput.max
                 ) {
-                  selectTime = setSelectionOnFocus(
+                  selectTime = getSelectionOnFocus(
                     formatTime,
                     selectedSelectionInput.end + 2,
                   )
                 }
                 setSelectedSelectionInput(selectTime)
-                timePickerInputRef.current.setSelectionRange(
-                  selectTime.start,
-                  selectTime.end,
-                )
+                // timePickerInputRef.current.setSelectionRange(
+                //   selectTime.start,
+                //   selectTime.end,
+                // )
               }
+              console.log(currentValue, replaceText)
+
+              setNewValueForInput(currentValue, replaceText, selectTime)
             }
           }
           break
@@ -485,10 +494,12 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
         selectTime.start,
         selectTime.end,
       )
-      timePickerInputRef.current.setSelectionRange(
-        selectTime.start,
-        selectTime.end,
-      )
+      setTimeout(() => {
+        timePickerInputRef.current.setSelectionRange(
+          selectTime.start,
+          selectTime.end,
+        )
+      })
     }
 
     const handleIconClockClick = () => {
