@@ -10,8 +10,7 @@ import {
   Icon,
   Badge,
 } from '@comfortdelgro/react-compass'
-import {faChevronRight} from '@fortawesome/free-solid-svg-icons'
-import {faAddressBook, faClone} from '@fortawesome/free-regular-svg-icons'
+import {faChevronRight, faBug} from '@fortawesome/free-solid-svg-icons'
 
 # List
 
@@ -66,7 +65,7 @@ import List, {
   <List
     title='Title'
     description='Line 1'
-    leftInfo={<Icon icon={faAddressBook} />}
+    leftInfo={<Icon icon={faBug} />}
     rightInfo={{text: 'Details', icon: <Icon icon={faChevronRight} />}}
   />
 </section>
@@ -87,7 +86,7 @@ import List, {
  <List
   title='Title'
   description='Line 1'
-  leftInfo={<Icon icon={faAddressBook} />}
+  leftInfo={<Icon icon={faBug} />}
   rightInfo={{text: 'Details', icon: <Icon icon={faChevronRight} />}}
 />
 ```
@@ -123,7 +122,7 @@ Small size version of the list
 <section className={styles.componentShowcaseContainer}>
   <List
     size='sm'
-    leftInfo={<Icon icon={faClone} />}
+    leftInfo={<Icon icon={faBug} />}
     title='Title'
     description='Lorem Ipsum'
     css={{maxWidth: '198px'}}
@@ -131,7 +130,7 @@ Small size version of the list
   <List
     size='sm'
     isDisabled
-    leftInfo={<Icon icon={faClone} />}
+    leftInfo={<Icon icon={faBug} />}
     title='Title'
     description='Lorem Ipsum'
     css={{maxWidth: '198px'}}
@@ -141,7 +140,7 @@ Small size version of the list
 ```js {2, 9}
 <List
   size='sm'
-  leftInfo={<Icon icon={faClone} />}
+  leftInfo={<Icon icon={faBug} />}
   title='Title'
   description='Lorem Ipsum'
   css={{maxWidth: '198px'}}
@@ -149,7 +148,7 @@ Small size version of the list
 <List
   size='sm'
   isDisabled
-  leftInfo={<Icon icon={faClone} />}
+  leftInfo={<Icon icon={faBug} />}
   title='Title'
   description='Lorem Ipsum'
   css={{maxWidth: '198px'}}
@@ -184,7 +183,7 @@ Small size version of the list
     title='Title'
     variant='item'
     description='Line 1'
-    leftInfo={<Icon icon={faAddressBook} />}
+    leftInfo={<Icon icon={faBug} />}
     rightInfo={{text: 'Details', icon: <Icon icon={faChevronRight} />}}
   />
 </section>
@@ -215,7 +214,7 @@ Small size version of the list
   title='Title'
   variant='item'
   description='Line 1'
-  leftInfo={<Icon icon={faAddressBook} />}
+  leftInfo={<Icon icon={faBug} />}
   rightInfo={{text: 'Details', icon: <Icon icon={faChevronRight} />}}
 />
 ```

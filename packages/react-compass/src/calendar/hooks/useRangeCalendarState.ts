@@ -56,7 +56,13 @@ export function useRangeCalendarState<T extends DateValue = DateValue>(
     onChange,
   )
 
+<<<<<<< HEAD
   const [anchorDate, setAnchorDateState] = useState(null)
+=======
+  const [anchorDate, setAnchorDateState] = useState<CalendarDate | null>(
+    value?.start && !value.end ? (value?.start as CalendarDate) : null,
+  )
+>>>>>>> 913f5fae78ec68d42aa8153bbf1195d022375f8a
   let alignment: 'center' | 'start' = 'center'
   if (value && value.start && value.end) {
     const start = alignCenter(
@@ -147,7 +153,11 @@ export function useRangeCalendarState<T extends DateValue = DateValue>(
 
   const highlightedRange = anchorDate
     ? makeRange(anchorDate, calendar.focusedDate as CalendarDate)
+<<<<<<< HEAD
     : value && makeRange(value.start, value.end)
+=======
+    : value && makeRange(value.start!, value.end!)
+>>>>>>> 913f5fae78ec68d42aa8153bbf1195d022375f8a
   const selectDate = (date: CalendarDate) => {
     if (props.isReadOnly) {
       return
@@ -166,6 +176,7 @@ export function useRangeCalendarState<T extends DateValue = DateValue>(
 
     if (!anchorDate) {
       setAnchorDate(date)
+<<<<<<< HEAD
     } else {
       const range = makeRange(anchorDate, date)
       setValue({
@@ -176,6 +187,27 @@ export function useRangeCalendarState<T extends DateValue = DateValue>(
       })
       // @ts-ignore
       setAnchorDate(null)
+=======
+      // @ts-ignore
+      onChange?.({start: date, end: null as unknown as DateValue})
+    } else {
+      if (anchorDate.compare(date) > 0) {
+        setAnchorDate(date)
+        // @ts-ignore
+        onChange?.({start: date, end: null as unknown as DateValue})
+        //
+      } else {
+        const range = makeRange(anchorDate, date)
+        setValue({
+          // @ts-ignore
+          start: convertValue(range.start, value?.start),
+          // @ts-ignore
+          end: convertValue(range.end, value?.end),
+        })
+        // @ts-ignore
+        setAnchorDate(null)
+      }
+>>>>>>> 913f5fae78ec68d42aa8153bbf1195d022375f8a
     }
   }
 
@@ -189,7 +221,11 @@ export function useRangeCalendarState<T extends DateValue = DateValue>(
 
     if (
       isDateUnavailable &&
+<<<<<<< HEAD
       (isDateUnavailable(value.start) || isDateUnavailable(value.end))
+=======
+      (isDateUnavailable(value.start!) || isDateUnavailable(value.end!))
+>>>>>>> 913f5fae78ec68d42aa8153bbf1195d022375f8a
     ) {
       return true
     }
@@ -230,8 +266,13 @@ export function useRangeCalendarState<T extends DateValue = DateValue>(
     isSelected(date) {
       return (
         highlightedRange &&
+<<<<<<< HEAD
         date.compare(highlightedRange.start) >= 0 &&
         date.compare(highlightedRange.end) <= 0 &&
+=======
+        date.compare(highlightedRange.start!) >= 0 &&
+        date.compare(highlightedRange.end!) <= 0 &&
+>>>>>>> 913f5fae78ec68d42aa8153bbf1195d022375f8a
         !calendar.isCellDisabled?.(date) &&
         !calendar.isCellUnavailable?.(date)
       )

@@ -1,9 +1,13 @@
+<<<<<<< HEAD
 import {
   faPinterest,
   faTelegram,
   faTiktok,
 } from '@fortawesome/free-brands-svg-icons'
+=======
+>>>>>>> 913f5fae78ec68d42aa8153bbf1195d022375f8a
 import {
+  faBug,
   faChevronCircleLeft,
   faChevronCircleRight,
 } from '@fortawesome/free-solid-svg-icons'
@@ -15,6 +19,7 @@ import Carousel from './index'
 
 const socialIcons = [
   {
+<<<<<<< HEAD
     icon: <FontAwesomeIcon icon={faPinterest} />,
     target: 'https://www.pinterest.com.au/',
   },
@@ -24,6 +29,17 @@ const socialIcons = [
   },
   {
     icon: <FontAwesomeIcon icon={faTelegram} />,
+=======
+    icon: <FontAwesomeIcon icon={faBug} />,
+    target: 'https://www.pinterest.com.au/',
+  },
+  {
+    icon: <FontAwesomeIcon icon={faBug} />,
+    target: 'https://www.tiktok.com/',
+  },
+  {
+    icon: <FontAwesomeIcon icon={faBug} />,
+>>>>>>> 913f5fae78ec68d42aa8153bbf1195d022375f8a
     target: 'https://telegram.org/',
   },
 ]

@@ -36,7 +36,11 @@ const CalendarGrid = (props: Props) => {
   } = props
 
   const {locale} = useLocale()
+<<<<<<< HEAD
   const startDate = state?.visibleRange?.start.add(offset) as CalendarDate
+=======
+  const startDate = state?.visibleRange?.start?.add(offset) as CalendarDate
+>>>>>>> 913f5fae78ec68d42aa8153bbf1195d022375f8a
   const endDate = endOfMonth(startDate)
 
   // eslint-disable-next-line

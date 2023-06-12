@@ -3,23 +3,40 @@ import {StoryDecorator} from '@ladle/react'
 import {useDateFormatter} from '@react-aria/i18n'
 import type {RangeValue} from '@react-types/shared'
 import React from 'react'
+import {CalendarProps} from '../calendar'
 import {Column} from '../utils'
 import RangeCalendar from './range-calendar'
 
 export const Variants: React.FC = () => {
-  const [range, setRange] = React.useState<RangeValue<DateValue>>({
+  const [range, setRange] = React.useState<RangeValue<CalendarProps | null>>({
     start: parseDate('2020-02-03'),
     end: parseDate('2020-02-08'),
   })
   const formatter = useDateFormatter({dateStyle: 'long'})
   return (
     <Column>
+<<<<<<< HEAD
       {range.start &&
         range.end &&
         formatter.formatRange(
           range.start.toDate(getLocalTimeZone()),
           range.end.toDate(getLocalTimeZone()),
         )}
+=======
+      {range.start && range.end
+        ? formatter.formatRange(
+            range.start.toDate(getLocalTimeZone()),
+            range.end.toDate(getLocalTimeZone()),
+          )
+        : `${
+            range.start &&
+            formatter.format(range.start.toDate(getLocalTimeZone()))
+          } - ${
+            range.end && formatter.format(range.end.toDate(getLocalTimeZone()))
+          }`}
+      {}
+
+>>>>>>> 913f5fae78ec68d42aa8153bbf1195d022375f8a
       <RangeCalendar
         value={range}
         onChange={(e) => {

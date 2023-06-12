@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import {styled} from '../theme'
 import {VariantProps} from '../utils/stitches.types'
+=======
+import { styled } from '../theme'
+import { VariantProps } from '../utils/stitches.types'
+>>>>>>> 913f5fae78ec68d42aa8153bbf1195d022375f8a
 
 export const StyledRatingComponent = styled('div', {
   display: 'inline-flex',

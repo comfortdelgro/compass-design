@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 import {
   faPinterest,
   faTelegram,
   faTiktok,
 } from '@fortawesome/free-brands-svg-icons'
+=======
+import {faBug} from '@fortawesome/free-solid-svg-icons'
+>>>>>>> 913f5fae78ec68d42aa8153bbf1195d022375f8a
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React, {useState} from 'react'
 import {styled} from '../theme'
@@ -19,6 +23,7 @@ import {
 
 const socials: SocicalIcon[] = [
   {
+<<<<<<< HEAD
     icon: <FontAwesomeIcon icon={faPinterest} />,
     url: 'https://www.pinterest.com.au/',
   },
@@ -28,6 +33,17 @@ const socials: SocicalIcon[] = [
   },
   {
     icon: <FontAwesomeIcon icon={faTelegram} />,
+=======
+    icon: <FontAwesomeIcon icon={faBug} />,
+    url: 'https://www.pinterest.com.au/',
+  },
+  {
+    icon: <FontAwesomeIcon icon={faBug} />,
+    url: 'https://www.tiktok.com/',
+  },
+  {
+    icon: <FontAwesomeIcon icon={faBug} />,
+>>>>>>> 913f5fae78ec68d42aa8153bbf1195d022375f8a
     url: 'https://telegram.org/',
   },
 ]

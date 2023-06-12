@@ -5,6 +5,14 @@ export const StyledDateField = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'flex-end',
+<<<<<<< HEAD
+=======
+
+  '& .date-field-input:focus-within': {
+    border: '1px solid $cdgBlue100',
+    borderRadius: '$md',
+  },
+>>>>>>> 913f5fae78ec68d42aa8153bbf1195d022375f8a
 
   '& .date-field-label': {
     fontSize: '$label1',

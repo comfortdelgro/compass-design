@@ -50,19 +50,19 @@ export function ValidatedDatePickers() {
 }
 
 export function ControlledDateRangePicker() {
-  const [range, setRange] = useState<RangeValue<DateValue>>({
+  const [range, setRange] = useState<RangeValue<DateValue | null> | null>({
     start: parseDate('2020-02-03'),
     end: parseDate('2020-02-08'),
   })
   const formatter = useDateFormatter({dateStyle: 'long'})
 
-  const onChangeDateRangePicker = (value: RangeValue<DateValue> | null) => {
-    setRange(value as RangeValue<DateValue>)
+  const onChangeDateRangePicker = (value: RangeValue<DateValue | null> | null) => {
+    setRange(value)
   }
 
   return (
     <I18nProvider locale='en-SG'>
-      {range &&
+      { range && range.start && range.end &&
         formatter.formatRange(
           range.start.toDate(getLocalTimeZone()),
           range.end.toDate(getLocalTimeZone()),

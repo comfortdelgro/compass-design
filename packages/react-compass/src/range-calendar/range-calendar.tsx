@@ -73,6 +73,11 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
         end: null as unknown as DateValue,
       })
 
+<<<<<<< HEAD
+=======
+      state.setAnchorDate(null)
+
+>>>>>>> 913f5fae78ec68d42aa8153bbf1195d022375f8a
       setIsReset?.(true)
     }
 
@@ -92,6 +97,22 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
         state.setValue(todayRange)
       }
 
+<<<<<<< HEAD
+=======
+      if (!pickerState) {
+        state.setValue({
+          start: InternationalizedDate.today(
+            InternationalizedDate.getLocalTimeZone(),
+          ),
+          end: InternationalizedDate.today(
+            InternationalizedDate.getLocalTimeZone(),
+          ),
+        })
+      }
+
+      state.setAnchorDate(null)
+
+>>>>>>> 913f5fae78ec68d42aa8153bbf1195d022375f8a
       state.setFocusedDate?.(
         InternationalizedDate.today(InternationalizedDate.getLocalTimeZone()),
       )
@@ -121,12 +142,33 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
             </Button>
             <div className='calendar-footer-right-side'>
               <p className='preview-date'>
+<<<<<<< HEAD
                 {state.value?.start &&
                   state.value?.end &&
                   formatter.formatRange(
                     state.value.start.toDate(getLocalTimeZone()),
                     state.value.end.toDate(getLocalTimeZone()),
                   )}
+=======
+                {state.value?.start && state.value?.end
+                  ? formatter.formatRange(
+                      state.value.start.toDate(getLocalTimeZone()),
+                      state.value.end.toDate(getLocalTimeZone()),
+                    )
+                  : `${
+                      state.value.start
+                        ? formatter.format(
+                            state.value.start.toDate(getLocalTimeZone()),
+                          )
+                        : ''
+                    } - ${
+                      state.value.end
+                        ? formatter.format(
+                            state.value.end.toDate(getLocalTimeZone()),
+                          )
+                        : ''
+                    }`}
+>>>>>>> 913f5fae78ec68d42aa8153bbf1195d022375f8a
               </p>
               <Button variant='primary' onPress={handleTodayButtonClick}>
                 Today

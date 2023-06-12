@@ -34,11 +34,19 @@ export function useCalendarBase(
   if (state.visibleRange == undefined) return {} as CalendarAria
 
   const title = useVisibleRangeDescription(
+<<<<<<< HEAD
     state.visibleRange.start,
     state.timeZone ?? 'UTC',
   )
   const visibleRangeDescription = useVisibleRangeDescription(
     state.visibleRange.start,
+=======
+    state.visibleRange.start!,
+    state.timeZone ?? 'UTC',
+  )
+  const visibleRangeDescription = useVisibleRangeDescription(
+    state.visibleRange.start!,
+>>>>>>> 913f5fae78ec68d42aa8153bbf1195d022375f8a
     state.timeZone ?? 'UTC',
   )
 

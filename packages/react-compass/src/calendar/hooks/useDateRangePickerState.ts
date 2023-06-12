@@ -59,7 +59,11 @@ export function useDateRangePickerState<T extends DateValue = DateValue>(
   const setValue = (value: DateRange) => {
     // @ts-ignore
     setPlaceholderValue(value)
+<<<<<<< HEAD
     if (value.start && value.end) {
+=======
+    if (value.start || value.end) {
+>>>>>>> 913f5fae78ec68d42aa8153bbf1195d022375f8a
       // @ts-ignore
       setControlledValue(value)
     } else {
@@ -88,6 +92,7 @@ export function useDateRangePickerState<T extends DateValue = DateValue>(
   }
 
   const commitValue = (dateRange: DateRange, timeRange: TimeRange) => {
+<<<<<<< HEAD
     setValue({
       start:
         'timeZone' in timeRange.start
@@ -100,6 +105,22 @@ export function useDateRangePickerState<T extends DateValue = DateValue>(
     })
     setSelectedDateRange(null)
     setSelectedTimeRange(null)
+=======
+    if (dateRange.end && dateRange.start && timeRange.end && timeRange.start) {
+      setValue({
+        start:
+          'timeZone' in timeRange.start
+            ? timeRange.start.set(toCalendarDate(dateRange.start))
+            : toCalendarDateTime(dateRange.start, timeRange.start),
+        end:
+          'timeZone' in timeRange.end
+            ? timeRange.end.set(toCalendarDate(dateRange.end))
+            : toCalendarDateTime(dateRange.end, timeRange.end),
+      })
+      setSelectedDateRange(null)
+      setSelectedTimeRange(null)
+    }
+>>>>>>> 913f5fae78ec68d42aa8153bbf1195d022375f8a
   }
 
   // Intercept setValue to make sure the Time section is not changed by date selection in Calendar
@@ -121,18 +142,31 @@ export function useDateRangePickerState<T extends DateValue = DateValue>(
       } else {
         setSelectedDateRange(range)
       }
+<<<<<<< HEAD
     } else if (range.start && range.end) {
       setValue(range)
     } else {
       if (!range.start || !range.end) {
         setControlledValue(null)
+=======
+    } else if (range.start || range.end) {
+      setValue(range)
+    } else {
+      if (!range.start || !range.end) {
+        // @ts-ignore
+        setControlledValue({start: null, end: null})
+>>>>>>> 913f5fae78ec68d42aa8153bbf1195d022375f8a
         setSelectedDateRange(null)
       } else {
         setSelectedDateRange(range)
       }
     }
 
+<<<<<<< HEAD
     if (shouldClose) {
+=======
+    if (shouldClose && range.start && range.end) {
+>>>>>>> 913f5fae78ec68d42aa8153bbf1195d022375f8a
       overlayState.setOpen(false)
     }
   }

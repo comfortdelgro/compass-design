@@ -22,9 +22,24 @@ export const Variants: React.FC = () => {
           startDateLabel='Start date'
           endDateLabel='End date'
         />
+        <h3>Read only</h3>
+        <DateRangePicker
+          isReadOnly
+          startDateLabel='Start date'
+          endDateLabel='End date'
+        />
         <h3>Invalid</h3>
         <DateRangePicker
           isInvalid
+          startDateLabel='Start date'
+          endDateLabel='End date'
+        />
+        <h3>Helper texts</h3>
+        <DateRangePicker
+          isInvalid
+          isRequired
+          helperText='Weekend is excluded'
+          errorMessage='Must not include weekend'
           startDateLabel='Start date'
           endDateLabel='End date'
         />
@@ -34,22 +49,39 @@ export const Variants: React.FC = () => {
 }
 
 export const Controlled: React.FC = () => {
-  const [range, setRange] = React.useState<RangeValue<CalendarProps>>({
+  const [range, setRange] = React.useState<RangeValue<CalendarProps | null>>({
     start: parseDate('2020-02-03'),
     end: parseDate('2020-02-08'),
   })
   const formatter = useDateFormatter({dateStyle: 'long'})
+
   return (
     <I18nProvider locale='en-SG'>
       <h3>Controlled</h3>
+<<<<<<< HEAD
       {range
+=======
+      {range.start && range.end
+>>>>>>> 913f5fae78ec68d42aa8153bbf1195d022375f8a
         ? formatter.formatRange(
             range.start.toDate(getLocalTimeZone()),
             range.end.toDate(getLocalTimeZone()),
           )
+<<<<<<< HEAD
         : 'Invalid range of dates'}
       <DateRangePicker
         value={range}
+=======
+        : `${
+            range.start &&
+            formatter.format(range.start.toDate(getLocalTimeZone()))
+          } - ${
+            range.end && formatter.format(range.end.toDate(getLocalTimeZone()))
+          }`}
+      <DateRangePicker
+        value={range}
+        shouldCloseOnSelect
+>>>>>>> 913f5fae78ec68d42aa8153bbf1195d022375f8a
         onChange={(e) => setRange(e as RangeValue<DateValue>)}
       />
     </I18nProvider>

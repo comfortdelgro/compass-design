@@ -50,4 +50,4 @@ packages/compass-icons/react/
 .idea
 
 # cypress snapshot
-**/_image_snapshots_/
+**/__image_snapshots__/
