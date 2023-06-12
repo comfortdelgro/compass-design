@@ -276,8 +276,8 @@ export function nextUnavailableDate(
   let nextDate = anchorDate.add({days: dir})
   while (
     (dir < 0
-      ? nextDate.compare(state.visibleRange.start) >= 0
-      : nextDate.compare(state.visibleRange.end) <= 0) &&
+      ? nextDate.compare(state.visibleRange.start!) >= 0
+      : nextDate.compare(state.visibleRange.end!) <= 0) &&
     !state.isCellUnavailable?.(nextDate)
   ) {
     nextDate = nextDate.add({days: dir})

@@ -13,6 +13,7 @@ import StarterKit from '@tiptap/starter-kit'
 import isEqual from 'lodash/isEqual'
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
+import {useDOMRef} from '../utils/use-dom-ref'
 import * as controls from './controls'
 import Control from './controls/Control/Control'
 import ControlsGroup from './controls/ControlsGroup/ControlsGroup'
@@ -97,13 +98,15 @@ const RichTextEditor = React.forwardRef<HTMLDivElement, RichTextEditorProps>(
       return 0
     }
 
+    const textEditorRef = useDOMRef<HTMLDivElement>(ref)
+
     return (
       <RichTextEditorProvider
         value={{
           editor,
         }}
       >
-        <StyledRichTextEditor ref={ref} css={css} {...delegated}>
+        <StyledRichTextEditor ref={textEditorRef} css={css} {...delegated}>
           {children}
           <StyledEditorContent>
             <EditorContent editor={editor} />

@@ -93,59 +93,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <>
-        {ripple ? (
-          <Ripple>
-            <StyledButton
-              {...delegateProps}
-              ref={buttonRef}
-              onClick={onClick ?? onPress}
-              onTouchEnd={props.onTouchEnd}
-              disabled={isDisabled}
-              aria-controls={props['aria-controls']}
-              aria-expanded={props['aria-expanded']}
-              aria-haspopup={props['aria-haspopup']}
-              aria-pressed={props['aria-pressed']}
-              tabIndex={props.tabIndex}
-              onBlur={props.onBlur}
-              onDragStart={props.onDragStart}
-              onFocus={props.onFocus}
-              onKeyDown={props.onKeyDown}
-              onKeyUp={props.onKeyUp}
-              onPointerDown={props.onPointerDown}
-              onPointerUp={props.onPointerUp}
-              type={type}
-            >
-              {loading ? (
-                <StyledLoading
-                  // make sure the loading indicator isn't visible to screen readers
-                  hidden={!loading}
-                  aria-hidden={!loading}
-                >
-                  <div className='dots'>
-                    <i />
-                    <i />
-                    <i />
-                  </div>
-                </StyledLoading>
-              ) : (
-                <></>
-              )}
-
-              <StyledButtonContent>
-                {leftIcon || (fullWidth && rightIcon) ? (
-                  <div className='icon left'>{leftIcon}</div>
-                ) : null}
-                <span className='children'>{children}</span>
-                {rightIcon || (fullWidth && leftIcon) ? (
-                  <div className='icon right'>{rightIcon}</div>
-                ) : null}
-              </StyledButtonContent>
-            </StyledButton>
-          </Ripple>
-        ) : (
+        <Ripple isEnabled={ripple}>
           <StyledButton
             {...delegateProps}
             ref={buttonRef}
+            // only allow onClick and onTouchEnd to be passed to the button
+            // reserve onMouseDown and onTouchStart for ripple effect
             onClick={onClick ?? onPress}
             onTouchEnd={props.onTouchEnd}
             disabled={isDisabled}
@@ -170,9 +123,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 aria-hidden={!loading}
               >
                 <div className='dots'>
-                  <i />
-                  <i />
-                  <i />
+                  <span />
+                  <span />
+                  <span />
                 </div>
               </StyledLoading>
             ) : (
@@ -183,13 +136,13 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               {leftIcon || (fullWidth && rightIcon) ? (
                 <div className='icon left'>{leftIcon}</div>
               ) : null}
-              <div className='children'>{children}</div>
+              <span className='children'>{children}</span>
               {rightIcon || (fullWidth && leftIcon) ? (
                 <div className='icon right'>{rightIcon}</div>
               ) : null}
             </StyledButtonContent>
           </StyledButton>
-        )}
+        </Ripple>
       </>
     )
   },

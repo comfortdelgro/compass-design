@@ -1,7 +1,7 @@
 import React from 'react'
 import Slider from './index'
 
-describe('range-calendar.cy.ts', () => {
+describe('slider.cy.ts', () => {
   beforeEach(() => {
     cy.viewport(1280, 720)
   })
@@ -14,31 +14,8 @@ describe('range-calendar.cy.ts', () => {
 
   const slider = <Slider value={value} onChange={setValFunc} />
 
-  it('C01: confirm date selected', () => {
+  it('C01: Value should be equal to default', () => {
     cy.mount(slider)
-    cy.get('.slider-filled-rail')
-      .should('have.attr', 'style')
-      .and('include', `width: ${value}%`)
-  })
-})
-
-describe('range-calendar.cy.ts', () => {
-  beforeEach(() => {
-    cy.viewport(1280, 720)
-  })
-
-  let value = 20
-
-  const setValFunc = (val: number) => {
-    value = val
-  }
-
-  const slider = <Slider value={value} onChange={setValFunc} />
-
-  it('C01: confirm date selected', () => {
-    cy.mount(slider)
-    cy.get('.slider-filled-rail')
-      .should('have.attr', 'style')
-      .and('include', `width: ${value}%`)
+    cy.get('.thumb-tooltips').should('have.attr', 'value', 20)
   })
 })

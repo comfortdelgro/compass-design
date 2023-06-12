@@ -1,8 +1,4 @@
-import {
-  faPinterest,
-  faTelegram,
-  faTiktok,
-} from '@fortawesome/free-brands-svg-icons'
+import {faBug} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React, {useState} from 'react'
 import {styled} from '../theme'
@@ -19,15 +15,15 @@ import {
 
 const socials: SocicalIcon[] = [
   {
-    icon: <FontAwesomeIcon icon={faPinterest} />,
+    icon: <FontAwesomeIcon icon={faBug} />,
     url: 'https://www.pinterest.com.au/',
   },
   {
-    icon: <FontAwesomeIcon icon={faTiktok} />,
+    icon: <FontAwesomeIcon icon={faBug} />,
     url: 'https://www.tiktok.com/',
   },
   {
-    icon: <FontAwesomeIcon icon={faTelegram} />,
+    icon: <FontAwesomeIcon icon={faBug} />,
     url: 'https://telegram.org/',
   },
 ]

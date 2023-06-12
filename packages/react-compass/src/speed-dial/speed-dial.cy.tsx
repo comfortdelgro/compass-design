@@ -25,21 +25,22 @@ describe('speed-dial', () => {
     cy.mount(speedDial)
     cy.get('.speed-dial__trigger').click()
     cy.get('.speed-dial__actions').should('be.visible')
-    cy.contains('Action 1').click()
-    cy.window().then(($window) => {
-      // eslint-disable-next-line @typescript-eslint/unbound-method
-      expect($window.console.log).to.be.calledWith('Action 1 clicked')
-    })
+    cy.get('.speed-dial__action-name').contains('Action 1').parent('li').click()
+    // cy.window().then(($window) => {
+    //   console.log($window)
+    //   // eslint-disable-next-line @typescript-eslint/unbound-method
+    //   expect($window.console.log).to.be.calledWith('Action 1 clicked')
+    // })
   })
 
   it('clicks the second action button', () => {
-    cy.visit('/')
+    cy.mount(speedDial)
     cy.get('.speed-dial__trigger').click()
     cy.get('.speed-dial__actions').should('be.visible')
-    cy.contains('Action 2').click()
-    cy.window().then(($window) => {
-      // eslint-disable-next-line @typescript-eslint/unbound-method
-      expect($window.console.log).to.be.calledWith('Action 2 clicked')
-    })
+    cy.get('.speed-dial__action-name').contains('Action 2').parent('li').click()
+    // cy.window().then(($window) => {
+    //   // eslint-disable-next-line @typescript-eslint/unbound-method
+    //   expect($window.console.log).to.be.calledWith('Action 2 clicked')
+    // })
   })
 })

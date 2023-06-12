@@ -38,7 +38,8 @@ interface Props extends DropdownBase {
   defaultSelectedKeys?: React.Key[]
   customDisplayValue?: React.ReactNode
   onSelectionChange?: (key: React.Key[]) => void
-  variant?: 'chip' | 'string'
+  displayedValue?: 'chip' | 'string'
+  variant?: 'combobox' | 'select'
 }
 
 export type MultipleDropdownProps = Props &
@@ -63,12 +64,15 @@ const MultipleDropdown = React.forwardRef<
     errorMessage,
     selectedKeys,
     numberOfRows,
-    variant = 'chip',
+    displayedValue = 'chip',
     icon = <Icon />,
     disabledKeys = [],
     isLoading = false,
+    variant = 'combobox',
     customDisplayValue,
     defaultSelectedKeys = [],
+    label,
+    placeholder,
     onLoadMore = () => {
       //Load more
     },
@@ -76,6 +80,12 @@ const MultipleDropdown = React.forwardRef<
       //
     },
     onFocus = () => {
+      //
+    },
+    onSelectionChange = () => {
+      //
+    },
+    onOpenChange = () => {
       //
     },
     ...delegated
@@ -170,7 +180,7 @@ const MultipleDropdown = React.forwardRef<
 
   React.useEffect(() => {
     setFocusKey([...currentKeys].pop())
-    props.onOpenChange?.(open)
+    onOpenChange?.(open)
     if (open) {
       inputRef.current?.focus()
     } else {
@@ -263,7 +273,7 @@ const MultipleDropdown = React.forwardRef<
         setFocusKey(key)
       }
       setCurrentKeys([...v])
-      props.onSelectionChange?.([...v])
+      onSelectionChange?.([...v])
       inputRef.current?.focus()
     }
   }
@@ -297,8 +307,14 @@ const MultipleDropdown = React.forwardRef<
 
   // ====================================== RENDER ======================================
   return (
-    <StyledDropdownWrapper css={css} ref={ref} {...delegated} variant={variant}>
-      {props.label && (
+    <StyledDropdownWrapper
+      css={css}
+      ref={ref}
+      {...delegated}
+      displayedValue={displayedValue}
+      variant={variant}
+    >
+      {label && (
         <label onClick={handleOpen} htmlFor={id}>
           {props.label}
           {isRequired && <span>*</span>}
@@ -316,8 +332,8 @@ const MultipleDropdown = React.forwardRef<
             {selectedNode.length === 0 &&
               search === '' &&
               !open &&
-              !focused && <p className='placeholder'>{props.placeholder}</p>}
-            {variant == 'chip' &&
+              !focused && <p className='placeholder'>{placeholder}</p>}
+            {displayedValue == 'chip' &&
               selectedNode.length > 0 &&
               selectedNode.map((item) => {
                 const isHideXIcon =
@@ -349,18 +365,18 @@ const MultipleDropdown = React.forwardRef<
                   </StyledSelectedItem>
                 )
               })}
-            {variant == 'string' &&
+            {displayedValue == 'string' &&
             !!customDisplayValue &&
             selectedNode.length > 0 ? (
               <div className='itemListString'>{customDisplayValue}</div>
-            ) : variant == 'string' &&
+            ) : displayedValue == 'string' &&
               !customDisplayValue &&
               selectedNode.length > 0 ? (
               <div className='itemListString'>
                 {convertSelectedNodeToString()}
               </div>
             ) : null}
-            {!isDisabled && (
+            {!isDisabled && variant == 'combobox' && (
               <input
                 id={id}
                 type='text'
