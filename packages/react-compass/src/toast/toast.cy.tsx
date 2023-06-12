@@ -8,12 +8,9 @@ describe('toast.cy.ts', () => {
 
   it('C01: confirm toast popups when button is clicked', () => {
     cy.mount(<Toast />)
-    cy.get('.c-jdhZyR').click()
-    cy.get('.c-liZfNc').should(
-      'have.text',
-      'Lorem ipsum dolor, sit amet consectetur.',
-    )
+    cy.get('button').click()
+    cy.get('p').should('have.text', 'Lorem ipsum dolor, sit amet consectetur.')
     cy.get('[data-icon="xmark"]').click()
-    cy.get('.c-enSzkB').should('not.exist')
+    cy.get('p').should('not.exist')
   })
 })

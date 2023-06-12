@@ -6,14 +6,14 @@ describe('badge.cy.ts', () => {
     const badge = <Badge label='Primary' color='info' variant='primary' />
 
     cy.mount(badge)
-    cy.get('span').should('be.visible')
+    cy.get('.label').should('be.visible')
   })
 
   it('C02: Able to see content and icon', () => {
     const badge = <Badge label='Primary' color='info' variant='primary' icon />
 
     cy.mount(badge)
-    cy.get('span').should('be.visible')
-    cy.get('path').should('be.visible')
+    cy.get('.icon').should('be.visible')
+    cy.get('.label').should('be.visible')
   })
 })

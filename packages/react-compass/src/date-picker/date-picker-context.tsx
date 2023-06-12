@@ -9,7 +9,12 @@ const DatePickerProvider = ({children}: {children: React.ReactNode}) => {
   const [isReset, setIsReset] = useState(false)
 
   return (
-    <DatePickerContext.Provider value={{isReset, setIsReset}}>
+    <DatePickerContext.Provider
+      value={{
+        isReset,
+        setIsReset,
+      }}
+    >
       {children}
     </DatePickerContext.Provider>
   )
