@@ -75,6 +75,7 @@ export const StyledButtonContent = styled('div', {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    margin: 'auto',
   },
 })
 
