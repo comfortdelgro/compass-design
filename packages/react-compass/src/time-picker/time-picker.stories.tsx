@@ -5,20 +5,20 @@ import TimePicker from './index'
 export const Default: React.FC = () => (
   <>
     <Column>
-      <h3>With HALF_FORMAT</h3>
+      <h3>With 12-hours</h3>
       <Row>
         <TimePicker
-          format='HALF_FORMAT'
+          formatTime='hh:mm:ss AA'
+          views={['hours12', 'minutes', 'seconds', 'sessions']}
           hasFooter={false}
-          onTimeChange={(value: string) => {
-            console.log(value)
-          }}
+          // onTimeChange={(value: string) => {
+          //   console.log(value)
+          // }}
         />
       </Row>
-      <h3>With FULL_FORMAT</h3>
+      {/* <h3>With 24-hours</h3>
       <Row>
         <TimePicker
-          format='HALF_FORMAT'
           onTimeChange={(value: string) => {
             console.log(value)
           }}
@@ -27,8 +27,8 @@ export const Default: React.FC = () => (
       <h3>Without footer</h3>
       <Row>
         <TimePicker
-          format='FULL_FORMAT'
           formatTime='hh:mm:ss'
+          views={['hours12', 'minutes', 'seconds']}
           hasFooter={false}
           onTimeChange={(value: string) => {
             console.log(value)
@@ -38,14 +38,14 @@ export const Default: React.FC = () => (
       <h3>Format: mm:ss</h3>
       <Row>
         <TimePicker
-          format='HALF_FORMAT'
           formatTime='mm:ss'
+          views={['minutes', 'seconds']}
           hasFooter={false}
           onTimeChange={(value: string) => {
             console.log(value)
           }}
         />
-      </Row>
+      </Row> */}
     </Column>
   </>
 )

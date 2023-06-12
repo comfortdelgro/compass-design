@@ -1,27 +1,19 @@
 import {faClock} from '@fortawesome/free-regular-svg-icons'
-import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react'
+import {cloneDeep} from 'lodash'
+import React, {useCallback, useEffect, useRef, useState} from 'react'
 import Icon from '../icon'
 import Popover from '../popover'
 import TextField, {TextFieldProps} from '../textfield'
 import type {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
-import TimePickerDropdown, {
-  FULL_TIME_REGEX,
-  HALF_TIME_REGEX,
-} from './time-picker-dropdown'
+import {
+  EMPTY_DISPLAY_TIME_DROPDOWN_LIST,
+  EMPTY_TIME_PICKER_FORMAT,
+} from './constant'
+import TimePickerDropdown from './time-picker-dropdown'
 import {TimePickerContainer} from './time-picker.styles'
-
-export const HALF_FORMAT = 'HALF_FORMAT'
-export const FULL_FORMAT = 'FULL_FORMAT'
-
-export type FormatTimePicker = typeof HALF_FORMAT | typeof FULL_FORMAT
-
-export type ViewType =
-  | 'hours12'
-  | 'hours24'
-  | 'minutes'
-  | 'seconds'
-  | 'sessions'
+import {SelectedKey, TimePickerFormat, ViewType} from './types'
+import {getSelectionOnFocus, replaceBetween, splitTimeFormat} from './utils'
 
 interface Props extends StyledComponentProps {
   className?: string
@@ -29,7 +21,6 @@ interface Props extends StyledComponentProps {
   isReadOnly?: boolean
   isRequired?: boolean
   isDisabled?: boolean
-  format: FormatTimePicker
   formatTime?: string
   hourStep?: number
   minuteStep?: number
@@ -37,97 +28,6 @@ interface Props extends StyledComponentProps {
   hasFooter?: boolean
   views?: ViewType[]
   onTimeChange?: (time: string) => void
-}
-
-interface EmptyFormat {
-  start: number
-  end: number
-  format: string
-  min: number
-  max: number
-}
-
-const emptyFormat: EmptyFormat = {start: 0, end: 0, format: '', max: 0, min: 0}
-
-function splitTimeFormat(format: string) {
-  const splitFormat = {
-    hour: emptyFormat,
-    minute: emptyFormat,
-    second: emptyFormat,
-  }
-
-  if (format.includes('HH')) {
-    splitFormat.hour = {
-      start: format.indexOf('HH'),
-      end: format.indexOf('HH') + 2,
-      format: 'HH',
-      min: 0,
-      max: 23,
-    }
-  } else if (format.includes('hh')) {
-    splitFormat.hour = {
-      start: format.indexOf('hh'),
-      end: format.indexOf('hh') + 2,
-      format: 'hh',
-      min: 1,
-      max: 12,
-    }
-  }
-
-  if (format.includes('mm')) {
-    splitFormat.minute = {
-      start: format.indexOf('mm'),
-      end: format.indexOf('mm') + 2,
-      format: 'mm',
-      min: 0,
-      max: 59,
-    }
-  }
-
-  if (format.includes('ss')) {
-    splitFormat.second = {
-      start: format.indexOf('ss'),
-      end: format.indexOf('ss') + 2,
-      format: 'ss',
-      min: 0,
-      max: 59,
-    }
-  }
-
-  if (format.includes('AA')) {
-    splitFormat.second = {
-      ...emptyFormat,
-      start: format.indexOf('AA'),
-      end: format.indexOf('AA') + 2,
-      format: 'AA',
-    }
-  }
-
-  return splitFormat
-}
-
-function getSelectionOnFocus(format: string, focusIndex: number) {
-  const splitFormat = splitTimeFormat(format)
-  const selection = emptyFormat
-
-  for (const component in splitFormat) {
-    const {start, end, format, max, min} =
-      splitFormat[component as keyof typeof splitFormat]
-
-    if (focusIndex >= start && focusIndex <= end) {
-      selection.start = start
-      selection.end = end
-      selection.format = format
-      selection.min = min ?? 0
-      selection.max = max ?? 0
-      break
-    }
-  }
-
-  return selection
-}
-function replaceBetween(str: string, what: string, start: number, end: number) {
-  return str.substring(0, start) + what + str.substring(end)
 }
 
 export type TimePickerProps = Props &
@@ -144,7 +44,6 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
       id = `cdg-element-${Math.random().toString(36).substring(2)}`,
       name,
       value,
-      format,
       hourStep = 1,
       minuteStep = 1,
       hasFooter = true,
@@ -156,17 +55,15 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
 
     const [isOpen, setIsOpen] = useState(false)
     const [selectedValue, setSelectedValue] = useState(value || '')
+    const [selectedSelectionInput, setSelectedSelectionInput] = useState(
+      EMPTY_TIME_PICKER_FORMAT,
+    )
+    const [selectedDropdownValue, setSelectedDropdownValue] = useState<
+      Record<SelectedKey, string | number | null>
+    >(EMPTY_DISPLAY_TIME_DROPDOWN_LIST)
 
     const timePickerInputRef = useRef<HTMLInputElement>(null)
     const containerRef = useDOMRef<HTMLElement>(ref)
-
-    // isFull = true if format = 'FULL_FORMAT'
-    const isFull = useMemo(() => format === FULL_FORMAT, [format])
-    // Regex for each format
-    const regexTime: RegExp = useMemo(
-      () => (isFull ? FULL_TIME_REGEX : HALF_TIME_REGEX),
-      [isFull],
-    )
 
     useEffect(() => {
       setSelectedValue(value || '')
@@ -176,12 +73,16 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
     }, [value])
 
     const handleItemClick = useCallback(
-      (value: string) => {
-        setSelectedValue(value)
-        onTimeChange && onTimeChange(value)
+      (value: Record<SelectedKey, string | number | null>) => {
+        setSelectedDropdownValue(value)
         if (timePickerInputRef.current) {
-          // Set display text for input
-          timePickerInputRef.current.value = value
+          timePickerInputRef.current.value = formatTime
+            .replace('hh', String(value.hour).padStart(2, '0'))
+            .replace('HH', String(value.hour).padStart(2, '0'))
+            .replace('mm', String(value.minute).padStart(2, '0'))
+            .replace('ss', String(value.second).padStart(2, '0'))
+            .replace('AA', String(value.session))
+          onTimeChange && onTimeChange(timePickerInputRef.current.value)
         }
       },
       [hasFooter],
@@ -202,24 +103,8 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
           timePickerInputRef.current?.value &&
           timePickerInputRef.current?.value !== formatTime
         ) {
-          // // Blur without clicking button OK (onChan = true) then reverts value
-          // if (
-          //   !selectedValue ||
-          //   (selectedValue &&
-          //     selectedValue !== timePickerInputRef.current.value)
-          // ) {
-          //   timePickerInputRef.current.value = selectedValue
-          //   return
-          // }
-          // const isValidTime = regexTime.test(timePickerInputRef.current.value)
-          // if (!isValidTime) {
-          //   // Inputed value is not valid then reverts value
-          //   timePickerInputRef.current.value = selectedValue
-          // } else {
-          //   timePickerInputRef.current.value =
-          //     timePickerInputRef.current.value.toUpperCase()
-          //   setSelectedValue(timePickerInputRef.current.value)
-          // }
+          onTimeChange &&
+            onTimeChange(timePickerInputRef.current.value.toUpperCase() || '')
         } else {
           if (timePickerInputRef.current) {
             timePickerInputRef.current.value = ''
@@ -227,7 +112,7 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
           setSelectedValue('')
         }
         isClosePopover && setIsOpen(false)
-        setSelectedSelectionInput(emptyFormat)
+        setSelectedSelectionInput(EMPTY_TIME_PICKER_FORMAT)
       }
 
     const handleInputChange = () => {
@@ -236,21 +121,17 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
         setSelectedValue('')
         onTimeChange && onTimeChange('')
       } else {
-        const isValidTime = regexTime.test(
-          timePickerInputRef.current.value || '',
-        )
-        if (isValidTime) {
-          setSelectedValue(timePickerInputRef.current.value.toUpperCase() || '')
-          onTimeChange &&
-            onTimeChange(timePickerInputRef.current.value.toUpperCase() || '')
-        }
+        onTimeChange &&
+          onTimeChange(timePickerInputRef.current.value.toUpperCase() || '')
       }
     }
 
-    const [selectedSelectionInput, setSelectedSelectionInput] =
-      useState(emptyFormat)
-
     const handleFocusInput = (event: React.FocusEvent<HTMLInputElement>) => {
+      event.preventDefault()
+      setSelectionInput()
+    }
+
+    const handleInputClick = (event: React.MouseEvent<HTMLInputElement>) => {
       event.preventDefault()
       setSelectionInput()
     }
@@ -264,8 +145,9 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
           }
           const selectionIndex = timePickerInputRef.current.selectionStart ?? 0
           const selectTime = getSelectionOnFocus(formatTime, selectionIndex)
+
           setSelectedSelectionInput(selectTime)
-          timePickerInputRef.current?.setSelectionRange(
+          timePickerInputRef.current.setSelectionRange(
             selectTime.start,
             selectTime.end,
           )
@@ -373,20 +255,25 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
               event.key.toLowerCase() === 'a' ||
               event.key.toLowerCase() === 'p'
             ) {
-              currentValueArr[selectedSelectionInput.start] =
-                event.key.toUpperCase()
-              currentValueArr[selectedSelectionInput.end - 1] = 'M'
-              timePickerInputRef.current.value = currentValueArr.join('')
-              timePickerInputRef.current.setSelectionRange(
-                selectedSelectionInput.start,
-                selectedSelectionInput.end,
+              setNewValueForInput(
+                currentValue,
+                `${event.key.toUpperCase()}M`,
+                {
+                  start: selectedSelectionInput.start,
+                  end: selectedSelectionInput.end,
+                },
+                selectedSelectionInput,
               )
             }
           } else {
             isNumber = /\d/.test(event.key)
             if (isNumber) {
               let replaceText = ''
+              const selectedSelectionInputCore = cloneDeep(
+                selectedSelectionInput,
+              )
               let selectTime = selectedSelectionInput
+
               if (
                 Number(
                   `${currentValueArr[selectedSelectionInput.start]}${
@@ -394,26 +281,16 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
                   }${event.key}`,
                 ) < selectedSelectionInput.max
               ) {
-                // currentValueArr[selectedSelectionInput.start] =
-                //   currentValueArr[selectedSelectionInput.end - 1] ?? '0'
-                // currentValueArr[selectedSelectionInput.end - 1] = event.key
                 replaceText = `${
                   currentValueArr[selectedSelectionInput.end - 1] ?? '0'
                 }${event.key}`
+
                 selectTime = getSelectionOnFocus(
                   formatTime,
                   selectedSelectionInput.end + 2,
                 )
                 setSelectedSelectionInput(selectTime)
-                // timePickerInputRef.current.value = currentValueArr.join('')
-                // timePickerInputRef.current?.setSelectionRange(
-                //   selectTime.start,
-                //   selectTime.end,
-                // )
               } else {
-                // currentValueArr[selectedSelectionInput.start] = '0'
-                // currentValueArr[selectedSelectionInput.end - 1] = event.key
-                // timePickerInputRef.current.value = currentValueArr.join('')
                 replaceText = `0${event.key}`
                 if (
                   Number(
@@ -424,16 +301,18 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
                     formatTime,
                     selectedSelectionInput.end + 2,
                   )
+                  setSelectedSelectionInput(selectTime)
                 }
-                setSelectedSelectionInput(selectTime)
-                // timePickerInputRef.current.setSelectionRange(
-                //   selectTime.start,
-                //   selectTime.end,
-                // )
               }
-              console.log(currentValue, replaceText)
-
-              setNewValueForInput(currentValue, replaceText, selectTime)
+              setNewValueForInput(
+                currentValue,
+                replaceText,
+                {
+                  start: selectedSelectionInputCore.start,
+                  end: selectedSelectionInputCore.end,
+                },
+                selectTime,
+              )
             }
           }
           break
@@ -479,27 +358,51 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
           }
         }
       }
-      setNewValueForInput(currentValue, replaceText, selectedSelectionInput)
+      setNewValueForInput(
+        currentValue,
+        replaceText,
+        {start: selectedSelectionInput.start, end: selectedSelectionInput.end},
+        selectedSelectionInput,
+      )
     }
 
     const setNewValueForInput = (
       currentValue: string,
       replaceText: string,
-      selectTime: EmptyFormat,
+      replacePosition: {start: number; end: number},
+      selectTime: TimePickerFormat,
     ) => {
       if (!timePickerInputRef.current) return
       timePickerInputRef.current.value = replaceBetween(
         currentValue,
         replaceText,
+        replacePosition.start,
+        replacePosition.end,
+      )
+      const splittedTimeFormat = splitTimeFormat(formatTime)
+      setSelectedDropdownValue({
+        hour: timePickerInputRef.current.value.substring(
+          splittedTimeFormat.hour.start,
+          splittedTimeFormat.hour.end,
+        ),
+        minute: timePickerInputRef.current.value.substring(
+          splittedTimeFormat.minute.start,
+          splittedTimeFormat.minute.end,
+        ),
+        second: timePickerInputRef.current.value.substring(
+          splittedTimeFormat.second.start,
+          splittedTimeFormat.second.end,
+        ),
+        session: timePickerInputRef.current.value.substring(
+          splittedTimeFormat.session.start,
+          splittedTimeFormat.session.end,
+        ),
+      })
+
+      timePickerInputRef.current.setSelectionRange(
         selectTime.start,
         selectTime.end,
       )
-      setTimeout(() => {
-        timePickerInputRef.current.setSelectionRange(
-          selectTime.start,
-          selectTime.end,
-        )
-      })
     }
 
     const handleIconClockClick = () => {
@@ -517,17 +420,16 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
           anchor={
             <TextField
               rightIcon={<Icon icon={faClock} onClick={handleIconClockClick} />}
-              ref={timePickerInputRef}
+              inputRef={timePickerInputRef}
               name={name}
               onFocus={handleFocusInput}
               onBlur={handlePopoverClose()}
               onChange={handleInputChange}
-              onClick={setSelectionInput}
+              onClick={handleInputClick}
               onKeyDown={handleKeyDown}
               placeholder={formatTime}
               {...options}
             />
-            // <TimeField />
           }
           attachToElement={
             containerRef.current && containerRef.current.parentElement
@@ -537,9 +439,9 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
           onClose={handlePopoverClose(true)}
         >
           <TimePickerDropdown
+            views={views}
             isOpen={isOpen}
-            isFull={isFull}
-            value={selectedValue}
+            value={selectedDropdownValue}
             onItemClick={handleItemClick}
             onOkClick={handleOkClick}
             hourStep={hourStep}

@@ -28,9 +28,6 @@ export const TimePickerDropdownWrapper = styled('div', {
   border: '1px solid #e6e6e6',
   borderRadius: '4px',
   zIndex: 9999,
-  '&:hover .time-picker-dropdown-control': {
-    overflowY: 'auto',
-  },
 })
 export const TimePickerDropdownContent = styled('div', {
   display: 'flex',
@@ -45,11 +42,15 @@ export const TimePickerDropdownControl = styled('div', {
   height: '100%',
   position: 'relative',
 
-  '&.border-right': {
+  '&:hover': {
+    overflowY: 'auto',
+  },
+
+  '&:not(:last-child)': {
     borderRight: '1px solid #e6e6e6',
   },
 })
-export const TimePickerDropdownItem = styled('button', {
+export const TimePickerDropdownItemStyle = styled('button', {
   backgroundColor: '$background',
   border: 'none',
   display: 'flex',

@@ -45,6 +45,7 @@ interface Props extends StyledComponentProps {
   leftIcon?: React.ReactNode
   rightIcon?: React.ReactNode
   password?: boolean
+  inputRef?: React.RefObject<HTMLInputElement>
   onChangeEvent?: (event: React.ChangeEvent<HTMLInputElement>) => void
   onChange?: (value: string | number) => void
   onCopy?: React.ClipboardEventHandler<HTMLInputElement>
@@ -114,6 +115,7 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
       placeholder,
       // AriaTextFieldProps
       isDisabled,
+      inputRef,
       ...ariaSafeProps
     } = props
 
@@ -128,6 +130,7 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
     >
 
     const textfieldRef = useDOMRef<HTMLDivElement>(ref)
+    const inputfieldRef = useDOMRef<HTMLInputElement>(inputRef)
     const [isPassWordVisible, setIsPassWordVisible] = React.useState(false)
 
     const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -185,6 +188,7 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
             onCompositionEnd={props.onCompositionEnd}
             onCompositionStart={props.onCompositionStart}
             onCompositionUpdate={props.onCompositionUpdate}
+            ref={inputfieldRef}
             {...inputProps}
           />
           {rightIcon ? <div className='right-icon'>{rightIcon}</div> : null}
