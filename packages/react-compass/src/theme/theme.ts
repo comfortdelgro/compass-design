@@ -170,20 +170,20 @@ export const lightTheme = defineTheme({
 
     // Secondary
 
-    infoBg: '#E3F3FF',
-    info: '#0078D4',
+    infoBg: '#CCECF8', // completed
+    info: '#009EDA', // completed
 
-    dangerBg: '#EFD9DB',
-    danger: '#A4262C',
+    dangerBg: '#EFD9DB', // completed
+    danger: '#A4262C', // completed
 
-    successBg: '#D1E8CF',
-    success: '#107C10',
+    successBg: '#D1E8CF', // completed
+    success: '#107C10', // completed
 
-    severeWarningBg: '#F0CBBE',
-    severeWarning: '#D83B01',
+    severeWarningBg: '#F0CBBE', // completed
+    severeWarning: '#D83B01', // completed
 
-    warningBg: '#F1E6C0',
-    warning: '#835C00',
+    warningBg: '#F8DB96', // completed
+    warning: '#EFB01D', // completed
 
     // Shades and Tints
 
@@ -244,7 +244,7 @@ export const darkTheme = createTheme('dark-theme', {
     secondaryText: '#E4E2E6', // completed
     disabledText: '#7B7D89', // completed
     tertiaryText: 'C5C6CF',
-    whiteText: '#000000', // completed
+    whiteText: '#FFFFFF', // completed
 
     divider: '$gray30',
     border: '#8A8886',
@@ -252,46 +252,46 @@ export const darkTheme = createTheme('dark-theme', {
 
     // Secondary
 
-    infoBg: '#E3F3FF',
-    info: '#0078D4',
+    infoBg: '#78D5E8', // completed
+    info: '#1F4E57', // completed
 
-    dangerBg: '#EFD9DB',
-    danger: '#A4262C',
+    dangerBg: '#F4B7AE', // completed
+    danger: '#861913', // completed
 
-    successBg: '#D1E8CF',
-    success: '#107C10',
+    successBg: '#87DD63', // completed
+    success: '#235213', // completed
 
-    severeWarningBg: '#F0CBBE',
-    severeWarning: '#D83B01',
+    severeWarningBg: '#F9DCD3', // completed
+    severeWarning: '#7C2A10', // completed
 
-    warningBg: '#F1E6C0',
-    warning: '#835C00',
+    warningBg: '#F1BF41', // completed
+    warning: '#574412', // completed
 
     // Shades and Tints
 
-    cdgBlue10: '#001232',
-    cdgBlue20: '#012158',
-    cdgBlue40: '#0142AF',
-    cdgBlue60: '#3468BF',
-    cdgBlue80: '#678ECF',
-    cdgBlue100: '#99B3DF',
-    cdgBlue120: '#CCD9EF',
-    cdgBlue140: '#E6ECF7',
+    cdgBlue10: '#051649',
+    cdgBlue20: '#0D2874',
+    cdgBlue40: '#163CA3',
+    cdgBlue60: '#2B53CA',
+    cdgBlue80: '#6B89F7',
+    cdgBlue100: '#91A7F9',
+    cdgBlue120: '#B7C4FA',
+    cdgBlue140: '#DCE1FC',
 
     overlayLight: 'rgba(255, 255, 255, 0.4)',
-    overlayDark: 'rgba(0, 0, 0, 0.4)',
+    overlayDark: 'rgba(18, 18, 18, 0.7);', // completed
 
-    gray10: '#323130',
-    gray20: '#3A3B39',
-    gray30: '#605E5C',
-    gray40: '#C8C6C4',
-    gray50: '#D2D0CE',
-    gray60: '#A19F9D',
-    gray70: '#E1DFDD',
-    gray80: '#EDEBE9',
-    gray90: '#F3F2F1',
-    gray100: '#FAF9F8',
-    gray110: '#201F1E',
+    gray10: '#2B3041',
+    gray20: '#363B4C',
+    gray30: '#424657',
+    gray40: '#4D5263',
+    gray50: '#595E70',
+    gray60: '#727689',
+    gray70: '#8C90A3',
+    gray80: '#A6AABF',
+    gray90: '##C2C6DB',
+    gray100: '#DEE1F7',
+    gray110: '#161B2B',
 
     primaryBg: '#F5F5F6',
     secondaryBg: '#F0F0F0',
