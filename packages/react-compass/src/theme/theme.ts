@@ -153,15 +153,16 @@ export const lightTheme = defineTheme({
   colors: {
     // Primary
 
-    cdgBlue: '$cdgBlue100',
-    typeHeading: '$gray100',
+    cdgBlue: '#0142AF', // completed
+    typeHeading: '#323130',
     background: '#FFFFFF',
     black: '#323130',
 
-    primaryText: '$gray100',
-    secondaryText: '$gray80',
-    disabledText: '$gray70',
-    whiteText: '#FFFFFF',
+    primaryText: '#323130', // completed
+    secondaryText: '#605E5C', // completed
+    disabledText: '#A19F9D', // completed
+    tertiaryText: '#C5C6CF',
+    whiteText: '#FFFFFF', // completed
 
     divider: '$gray30',
     border: '#8A8886',
@@ -234,15 +235,16 @@ export const darkTheme = createTheme('dark-theme', {
   colors: {
     // Primary
 
-    cdgBlue: '$cdgBlue100',
-    typeHeading: '$gray100',
-    background: '#000000',
-    black: '#323130',
+    cdgBlue: '#014AC8', // completed
+    typeHeading: '#FDFDFD', // completed
+    background: '#1B1B1F', // completed
+    black: '#FFFFFF',
 
-    primaryText: '$gray10',
-    secondaryText: '$gray80',
-    disabledText: '$gray70',
-    whiteText: '#000000',
+    primaryText: '#FDFDFD', // completed
+    secondaryText: '#E4E2E6', // completed
+    disabledText: '#7B7D89', // completed
+    tertiaryText: 'C5C6CF',
+    whiteText: '#000000', // completed
 
     divider: '$gray30',
     border: '#8A8886',
@@ -267,28 +269,28 @@ export const darkTheme = createTheme('dark-theme', {
 
     // Shades and Tints
 
-    cdgBlue10: '#E6ECF7',
-    cdgBlue20: '#CCD9EF',
-    cdgBlue40: '#99B3DF',
-    cdgBlue60: '#678ECF',
-    cdgBlue80: '#3468BF',
-    cdgBlue100: '#0142AF',
-    cdgBlue120: '#012158',
-    cdgBlue140: '#001232',
+    cdgBlue10: '#001232',
+    cdgBlue20: '#012158',
+    cdgBlue40: '#0142AF',
+    cdgBlue60: '#3468BF',
+    cdgBlue80: '#678ECF',
+    cdgBlue100: '#99B3DF',
+    cdgBlue120: '#CCD9EF',
+    cdgBlue140: '#E6ECF7',
 
     overlayLight: 'rgba(255, 255, 255, 0.4)',
     overlayDark: 'rgba(0, 0, 0, 0.4)',
 
-    gray10: '#FAF9F8',
-    gray20: '#F3F2F1',
-    gray30: '#EDEBE9',
-    gray40: '#E1DFDD',
+    gray10: '#323130',
+    gray20: '#3A3B39',
+    gray30: '#605E5C',
+    gray40: '#C8C6C4',
     gray50: '#D2D0CE',
-    gray60: '#C8C6C4',
-    gray70: '#A19F9D',
-    gray80: '#605E5C',
-    gray90: '#3A3B39',
-    gray100: '#323130',
+    gray60: '#A19F9D',
+    gray70: '#E1DFDD',
+    gray80: '#EDEBE9',
+    gray90: '#F3F2F1',
+    gray100: '#FAF9F8',
     gray110: '#201F1E',
 
     primaryBg: '#F5F5F6',
