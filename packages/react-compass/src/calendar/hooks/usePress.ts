@@ -306,7 +306,6 @@ export function usePress(props: PressHookProps): PressResult {
         }
       },
       onKeyUp(e: KeyboardEvent<FocusableElement>) {
-        triggerPressUp(createEvent(state.target, e), 'keyboard')
         if (
           isValidKeyboardEvent(e.nativeEvent, e.currentTarget) &&
           e.currentTarget.contains(e.target as Element)

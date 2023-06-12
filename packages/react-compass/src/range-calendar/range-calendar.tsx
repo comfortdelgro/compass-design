@@ -73,6 +73,8 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
         end: null as unknown as DateValue,
       })
 
+      state.setAnchorDate(null)
+
       setIsReset?.(true)
     }
 
@@ -91,6 +93,19 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
       } else {
         state.setValue(todayRange)
       }
+
+      if (!pickerState) {
+        state.setValue({
+          start: InternationalizedDate.today(
+            InternationalizedDate.getLocalTimeZone(),
+          ),
+          end: InternationalizedDate.today(
+            InternationalizedDate.getLocalTimeZone(),
+          ),
+        })
+      }
+
+      state.setAnchorDate(null)
 
       state.setFocusedDate?.(
         InternationalizedDate.today(InternationalizedDate.getLocalTimeZone()),
@@ -121,12 +136,24 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
             </Button>
             <div className='calendar-footer-right-side'>
               <p className='preview-date'>
-                {state.value?.start &&
-                  state.value?.end &&
-                  formatter.formatRange(
-                    state.value.start.toDate(getLocalTimeZone()),
-                    state.value.end.toDate(getLocalTimeZone()),
-                  )}
+                {state.value?.start && state.value?.end
+                  ? formatter.formatRange(
+                      state.value.start.toDate(getLocalTimeZone()),
+                      state.value.end.toDate(getLocalTimeZone()),
+                    )
+                  : `${
+                      state.value.start
+                        ? formatter.format(
+                            state.value.start.toDate(getLocalTimeZone()),
+                          )
+                        : ''
+                    } - ${
+                      state.value.end
+                        ? formatter.format(
+                            state.value.end.toDate(getLocalTimeZone()),
+                          )
+                        : ''
+                    }`}
               </p>
               <Button variant='primary' onPress={handleTodayButtonClick}>
                 Today
