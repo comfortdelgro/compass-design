@@ -31,6 +31,7 @@ const Label: React.FC<labelTypographyProps> = (props) => {
     width: '100%',
     padding: 0,
     margin: 0,
+    color: '$primaryText',
     variants: {
       weight: {
         none: {},

@@ -36,6 +36,8 @@ const QuantityToggle = React.forwardRef<HTMLInputElement, QuantityToggleProps>(
       id = `cdg-element-${Math.random().toString(36).substring(2)}`,
       onUpdate,
       className,
+      label,
+      isRequired,
       ...ariaSafeProps
     } = props
 
@@ -58,8 +60,8 @@ const QuantityToggle = React.forwardRef<HTMLInputElement, QuantityToggleProps>(
       >
         {props.label && (
           <label htmlFor={id}>
-            {props.label}
-            {props.isRequired && <span>*</span>}
+            {label}
+            {isRequired && <span>*</span>}
           </label>
         )}
         <div>

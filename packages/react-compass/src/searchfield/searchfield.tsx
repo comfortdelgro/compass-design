@@ -1,7 +1,5 @@
-import {faClose, faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
 import Button from '../button/button'
-import {Icon} from '../icon'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
@@ -62,9 +60,9 @@ interface Props extends StyledComponentProps {
 
 export type SearchFieldProps = Props &
   SearchFieldVariantProps &
-  Omit<React.HTMLAttributes<HTMLInputElement>, keyof Props>
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
-const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
+const SearchField = React.forwardRef<HTMLDivElement, SearchFieldProps>(
   (props, ref) => {
     const {
       // StyledComponentProps
@@ -75,16 +73,63 @@ const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
       isReadOnly = false,
       isRequired = false,
       isDisabled = false,
-      autoFocus,
-      placeholder,
-      onSubmit,
-      onChange,
-      onChangeEvent,
-      ...safeProps
+      autoFocus = false,
+      placeholder = '',
+      onSubmit = () => {
+        /* empty */
+      },
+      onChange = () => {
+        /* empty */
+      },
+      onChangeEvent = () => {
+        /* empty */
+      },
+      onCut = () => {
+        /* empty */
+      },
+      onCopy = () => {
+        /* empty */
+      },
+      onBlur = () => {
+        /* empty */
+      },
+      onPaste = () => {
+        /* empty */
+      },
+      onInput = () => {
+        /* empty */
+      },
+      onKeyUp = () => {
+        /* empty */
+      },
+      onSelect = () => {
+        /* empty */
+      },
+
+      onKeyDown = () => {
+        /* empty */
+      },
+      onBeforeInput = () => {
+        /* empty */
+      },
+      onCompositionEnd = () => {
+        /* empty */
+      },
+      onCompositionStart = () => {
+        /* empty */
+      },
+      onCompositionUpdate = () => {
+        /* empty */
+      },
+      onFocus = () => {
+        /* empty */
+      },
+      ...delegated
     } = props
 
     const [textValue, setTextValue] = React.useState<string>(value)
-    const searchFieldRef = useDOMRef<HTMLInputElement>(ref)
+    const searchFieldRef = useDOMRef<HTMLInputElement>(null)
+    const wrapperRef = useDOMRef<HTMLDivElement>(ref)
 
     React.useEffect(() => {
       setTextValue(value)
@@ -117,7 +162,7 @@ const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
         setTextValue('')
         props.onClear?.()
       }
-      props.onKeyDown?.(e)
+      onKeyDown?.(e)
     }
 
     const onClearButtonClick = () => {
@@ -135,11 +180,12 @@ const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
         disabled={isDisabled}
         css={css}
         isErrored={isErrored}
+        ref={wrapperRef}
+        {...delegated}
       >
         <StyledSearchFieldInput
           ref={searchFieldRef}
           id={id}
-          {...safeProps}
           autoFocus={autoFocus}
           readOnly={isReadOnly}
           required={isRequired}
@@ -147,24 +193,29 @@ const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
           type='text'
           placeholder={placeholder}
           value={textValue}
-          onCut={props.onCut}
-          onCopy={props.onCopy}
-          onBlur={props.onBlur}
-          onFocus={props.onFocus}
-          onPaste={props.onPaste}
-          onInput={props.onInput}
-          onKeyUp={props.onKeyUp}
-          onSelect={props.onSelect}
+          onCut={onCut}
+          onCopy={onCopy}
+          onBlur={onBlur}
+          onFocus={onFocus}
+          onPaste={onPaste}
+          onInput={onInput}
+          onKeyUp={onKeyUp}
+          onSelect={onSelect}
           onChange={handleOnChange}
           onKeyDown={handleOnKeyDown}
-          onBeforeInput={props.onBeforeInput}
-          onCompositionEnd={props.onCompositionEnd}
-          onCompositionStart={props.onCompositionStart}
-          onCompositionUpdate={props.onCompositionUpdate}
+          onBeforeInput={onBeforeInput}
+          onCompositionEnd={onCompositionEnd}
+          onCompositionStart={onCompositionStart}
+          onCompositionUpdate={onCompositionUpdate}
         />
         {textValue !== '' ? (
           <Button size='sm' variant='ghost' onPress={onClearButtonClick}>
-            <Icon className='icon' icon={faClose} />
+            <svg className='icon' viewBox='0 0 384 512'>
+              <path
+                fill='currentColor'
+                d='M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z'
+              />
+            </svg>
           </Button>
         ) : (
           <Button
@@ -173,7 +224,12 @@ const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
             size='sm'
             variant='ghost'
           >
-            <Icon className='icon' icon={faMagnifyingGlass} />
+            <svg className='icon' viewBox='0 0 512 512'>
+              <path
+                fill='currentColor'
+                d='M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z'
+              />
+            </svg>
           </Button>
         )}
       </StyledSearchFieldBox>

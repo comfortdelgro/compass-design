@@ -64,15 +64,16 @@ import {DateValue, getLocalTimeZone, parseDate} from '@internationalized/date'
 import {I18nProvider, useDateFormatter} from '@react-aria/i18n'
 
 function ControlledDateRangePicker() {
-  const [range, setRange] =
-    useState <
-    RangeValue <
-    DateValue >>
-      {
-        start: parseDate('2020-02-03'),
-        end: parseDate('2020-02-08'),
-      }
+  const [range, setRange] = useState<RangeValue<DateValue>>({
+    start: parseDate('2020-02-03'),
+    end: parseDate('2020-02-08'),
+  })
   const formatter = useDateFormatter({dateStyle: 'long'})
+
+  const onChangeDateRangePicker = (value: RangeValue<DateValue> | null) => {
+    setRange(value as RangeValue<DateValue>)
+  }
+
   return (
     <I18nProvider locale='en-SG'>
       {range &&
@@ -80,7 +81,7 @@ function ControlledDateRangePicker() {
           range.start.toDate(getLocalTimeZone()),
           range.end.toDate(getLocalTimeZone()),
         )}
-      <DateRangePicker value={range} onChange={setRange} />
+      <DateRangePicker value={range} onChange={onChangeDateRangePicker} />
     </I18nProvider>
   )
 }
@@ -162,7 +163,11 @@ but unavailable dates will not be displayed as selected.
 It is up to applications to split the full selected range into multiple as needed for business logic.
 
 <section className={styles.componentShowcaseContainer}>
+<<<<<<< HEAD
   <ValidatedDateRangePickers contiguos={true} />
+=======
+  <ValidatedDateRangePickers contiguous={true} />
+>>>>>>> 913f5fae78ec68d42aa8153bbf1195d022375f8a
 </section>
 
 ```js
@@ -209,6 +214,10 @@ function ValidatedDateRangePickers() {
 
 | Name                      | Type                                                  | Default | Description                                                                                                                                |
 | :------------------------ | :---------------------------------------------------- | :------ | :----------------------------------------------------------------------------------------------------------------------------------------- |
+<<<<<<< HEAD
+=======
+| calendarCSS               | `CSS`                                                 |         | Style for calendar                                                                                                                         |
+>>>>>>> 913f5fae78ec68d42aa8153bbf1195d022375f8a
 | allowsNonContiguousRanges | `boolean`                                             |         | When combined with isDateUnavailable, determines whether non-contiguous ranges, i.e. ranges containing unavailable dates, may be selected. |
 | minValue                  | `DateValue`                                           |         | The minimum allowed date that a user may select.                                                                                           |
 | maxValue                  | `DateValue`                                           |         | The maximum allowed date that a user may select.                                                                                           |
@@ -218,9 +227,18 @@ function ValidatedDateRangePickers() {
 | value                     | `RangeValue<DateValue>`                               |         | The current value (controlled).                                                                                                            |
 | defaultValue              | `RangeValue<DateValue>`                               |         | The default value (uncontrolled).                                                                                                          |
 | hourCycle                 | `12                                       \| 24`      |         | Whether to display the time in 12 or 24 hour format. By default, this is determined by the user's locale.                                  |
+<<<<<<< HEAD
 | label                     | `string`                                              |         | The content to display as the label.                                                                                                       |
 | necessityIndicator        | `'icon' \| 'label'`                                   |         | Whether the required state should be shown as an icon or text.                                                                             |
 | shouldCloseOnSelect       | `boolean`                                             | false   | Whether the overlay will close after selected.                                                                                             |
+=======
+| startDateLabel            | `React.ReactNode`                                     |         | The content to display as the label.                                                                                                       |
+| endDateLabel              | `React.ReactNode`                                     |         | The content to display as the label.                                                                                                       |
+| helperText                | `React.ReactNode`                                     |         | The content to display as helper text                                                                                                      |
+| necessityIndicator        | `'icon' \| 'label'`                                   |         | Whether the required state should be shown as an icon or text.                                                                             |
+| shouldCloseOnSelect       | `boolean`                                             | false   | Whether the overlay will close after selected.                                                                                             |
+| isMobile                  | `boolean`                                             | false   | Whether the overlay is in mobile variant.                                                                                                  |
+>>>>>>> 913f5fae78ec68d42aa8153bbf1195d022375f8a
 | isOpen                    | `boolean`                                             | false   | Whether the overlay is open by default (controlled).                                                                                       |
 | defaultOpen               | `boolean`                                             | false   | Whether the overlay is open by default (uncontrolled).                                                                                     |
 | onChange                  | `(e: RangeValue<MappedDateValue<DateValue>>) => void` |         | The default value (uncontrolled).                                                                                                          |

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import {createCalendar} from '@internationalized/date'
 import {useLocale} from '@react-aria/i18n'
-import React, {useRef} from 'react'
+import React from 'react'
 import {ButtonProps} from '../../button'
 import {Icon} from '../../dropdown/utils'
 import {useDOMRef} from '../../utils/use-dom-ref'
@@ -32,7 +32,7 @@ interface Props {
 
 const DateField = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   const {locale} = useLocale()
-  const expandButtonRef = useRef<HTMLButtonElement>(null)
+  const expandButtonRef = useDOMRef<HTMLButtonElement>(null)
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   const state = useDateFieldState({

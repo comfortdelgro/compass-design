@@ -1,11 +1,9 @@
-import {faCheck, faMinus} from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
 import {
   StyledCheckboxCheckmark,
   StyledCheckboxLabel,
   StyledTableCheckboxBox,
 } from '../checkbox/checkbox.styles'
-import Icon from '../icon'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {StyledReactCheckboxInput} from './react-table-checkbox.styles'
 
@@ -40,7 +38,21 @@ const ReactTableCheckbox = ({
       />
       <StyledTableCheckboxBox disabled={false} rounded={false}>
         <StyledCheckboxCheckmark>
-          <Icon icon={indeterminate ? faMinus : faCheck} className='icon' />
+          {indeterminate ? (
+            <svg className='icon' viewBox='0 0 448 512'>
+              <path
+                fill='currentColor'
+                d='M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z'
+              />
+            </svg>
+          ) : (
+            <svg className='icon' viewBox='0 0 448 512'>
+              <path
+                fill='currentColor'
+                d='M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z'
+              />
+            </svg>
+          )}
         </StyledCheckboxCheckmark>
       </StyledTableCheckboxBox>
     </StyledCheckboxLabel>

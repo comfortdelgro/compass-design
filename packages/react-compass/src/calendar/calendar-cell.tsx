@@ -35,9 +35,9 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
     const cellRef = useDOMRef(ref)
 
     const {cellProps, buttonProps, isSelected, isUnavailable, formattedDate} =
-      useCalendarCell({date}, state)
+      useCalendarCell({date}, state, cellRef)
 
-    let {isDisabled} = useCalendarCell({date}, state)
+    let {isDisabled} = useCalendarCell({date}, state, cellRef)
 
     const isOutsideMonth = !isSameMonth(currentMonth, date)
 
@@ -50,11 +50,13 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
 
     if (isRangeCalendar) {
       isSelectionStart = state.highlightedRange
-        ? isSameDay(date, state.highlightedRange.start)
+        ? isSameDay(date, state.highlightedRange.start!)
         : isSelected
       isSelectionEnd = state.highlightedRange
-        ? isSameDay(date, state.highlightedRange.end)
+        ? isSameDay(date, state.highlightedRange.end!)
         : isSelected
+
+      isDisabled = date.month !== currentMonth.month
     }
 
     const classNameCombine = () => {
@@ -101,20 +103,20 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
             {...cellProps}
             css={css}
             className={classNameCombine()}
-            aria-label={buttonProps['aria-label']}
-            aria-disabled={buttonProps['aria-disabled']}
-            aria-invalid={buttonProps['aria-invalid']}
-            role={buttonProps['role']}
-            tabIndex={buttonProps['tabIndex']}
-            {...focusProps}
-            {...buttonProps}
           >
             <div
+              aria-label={buttonProps['aria-label']}
+              aria-disabled={buttonProps['aria-disabled']}
+              aria-invalid={buttonProps['aria-invalid']}
+              role={buttonProps['role']}
               ref={cellRef}
               hidden={isOutsideMonth}
               className={`calendar-cell-value  ${
                 isDisabled ? 'disabled' : ''
               } ${isSelected ? 'selected' : ''}`}
+              {...focusProps}
+              {...buttonProps}
+              tabIndex={buttonProps['tabIndex']}
             >
               {formattedDate}
             </div>

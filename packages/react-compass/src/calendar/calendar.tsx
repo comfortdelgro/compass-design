@@ -9,9 +9,12 @@ import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import CalendarGrid from './calendar-grid'
 import CalendarHeader from './calendar-header'
+import CalendarMonthGrid from './calendar-month-grid'
+import CalendarYearGrid from './calendar-year-grid'
 import {StyledCalendar} from './calendar.style'
 import {useCalendar} from './hooks/useCalendar'
 import {useCalendarState} from './hooks/useCalendarState'
+import {MONTH_YEAR_STATE, useMonthYearCalendar} from './hooks/useMonthYearState'
 import {DatePickerState, ValueBase} from './types'
 interface Props extends StyledComponentProps, ValueBase<DateValue> {
   children?: React.ReactNode
@@ -43,7 +46,10 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     isDisabled,
     createCalendar,
     ...delegated,
+    value: props.state ? props.state?.value : (props.value as DateValue),
   })
+
+  const monthYearState = useMonthYearCalendar({state, maxValue})
 
   const {calendarProps, prevButtonProps, nextButtonProps} = useCalendar(
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -65,10 +71,37 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     const today = InternationalizedDate.today(
       InternationalizedDate.getLocalTimeZone(),
     )
-
-    pickerState?.setDateValue(today)
-
+    if (pickerState) {
+      pickerState?.setDateValue(today)
+    } else {
+      state.selectDate?.(today)
+    }
     state.setFocusedDate?.(today)
+  }
+
+  const renderBody = () => {
+    switch (monthYearState.currentState) {
+      case MONTH_YEAR_STATE.DATE:
+        return <CalendarGrid state={state} maxValue={maxValue} />
+      case MONTH_YEAR_STATE.MONTH:
+        return (
+          <CalendarMonthGrid
+            state={state}
+            monthYearState={monthYearState}
+            maxValue={maxValue}
+          />
+        )
+      case MONTH_YEAR_STATE.YEAR:
+        return (
+          <CalendarYearGrid
+            state={state}
+            monthYearState={monthYearState}
+            maxValue={maxValue}
+          />
+        )
+      default:
+        return <CalendarGrid state={state} maxValue={maxValue} />
+    }
   }
 
   return (
@@ -79,14 +112,28 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
           calendarProps={calendarProps}
           prevButtonProps={prevButtonProps}
           nextButtonProps={nextButtonProps}
+          middleButtonProps={monthYearState}
         />
-        <CalendarGrid state={state} maxValue={maxValue} />
+        {renderBody()}
         {hasFooter && (
           <div className='calendar-footer'>
-            <Button variant='ghost' onPress={handleClearButtonClick}>
+            <Button
+              variant='ghost'
+              onPress={() => {
+                monthYearState.setMonthYearState(MONTH_YEAR_STATE.DATE)
+                handleClearButtonClick()
+              }}
+            >
               Clear
             </Button>
-            <Button onPress={handleTodayButtonClick}>Today</Button>
+            <Button
+              onPress={() => {
+                monthYearState.setMonthYearState(MONTH_YEAR_STATE.DATE)
+                handleTodayButtonClick()
+              }}
+            >
+              Today
+            </Button>
           </div>
         )}
       </StyledCalendar>

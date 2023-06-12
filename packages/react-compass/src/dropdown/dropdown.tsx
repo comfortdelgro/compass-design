@@ -41,6 +41,8 @@ import {
 interface Props extends DropdownBase {
   selectedKey?: React.Key
   defaultSelectedKey?: React.Key
+  shouldDeselect?: boolean
+  allowsCustomValue?: boolean
   onSelectionChange?: (key: React.Key) => void
   type?: 'select' | 'combobox' | 'flag'
 }
@@ -70,6 +72,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     defaultSelectedKey,
     isDisabled = false,
     defaultOpen = false,
+    shouldDeselect = false,
+    allowsCustomValue = false,
     onLoadMore = () => {
       //Load more
     },
@@ -77,6 +81,9 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       //
     },
     onFocus = () => {
+      //
+    },
+    onSelectionChange = () => {
       //
     },
     ...delegated
@@ -143,8 +150,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   })
 
   const delegate = React.useMemo(
-    () => new ListKeyboardDelegate(rawCollection, disabledKeys),
-    [rawCollection, disabledKeys],
+    () => new ListKeyboardDelegate(collection, disabledKeys),
+    [collection, disabledKeys],
   )
 
   const choosenFlag = React.useMemo(() => {
@@ -184,9 +191,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     const newValue = getDefaulValue(defaultSelectedKey, selectedKey, true)
     setCurrentKey(newValue)
     setFocusKey(newValue)
-    if (newValue === undefined) {
-      setSearch('')
-    } else {
+    if (newValue) {
       setSearch(getTextFromKey(newValue))
     }
   }, [selectedKey, getTextFromKey])
@@ -210,6 +215,25 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         setIsSearching(false)
         selectRef.current?.blur()
         inputRef.current?.blur()
+      }
+    } else if (type === 'combobox') {
+      if (!open) {
+        if (!allowsCustomValue) {
+          if (currentKey) {
+            setSearch(getTextFromKey(currentKey))
+          } else {
+            setSearch('')
+          }
+        } else {
+          if (currentKey && search) {
+            const originalText = getTextFromKey(currentKey)
+            if (originalText !== search && isSearching) {
+              setCurrentKey(undefined)
+              onSelectionChange?.('')
+            }
+          }
+        }
+        setIsSearching(false)
       }
     }
   }, [open])
@@ -256,14 +280,23 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         setOpen(false)
         break
       }
+      case 'Tab': {
+        setOpen(false)
+        break
+      }
     }
   }
 
   const onSelect = (key: React.Key) => {
     if (!isReadOnly) {
-      setCurrentKey(key)
+      if (currentKey === key && shouldDeselect) {
+        setCurrentKey(undefined)
+        onSelectionChange?.('')
+      } else {
+        setCurrentKey(key)
+        onSelectionChange?.(key)
+      }
       setIsSearching(false)
-      props.onSelectionChange?.(key)
       setOpen(false)
     }
   }
@@ -278,7 +311,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         setFocusKey(undefined)
         setSearch(event.target.value)
         setIsSearching(false)
-        props.onSelectionChange?.('')
+        onSelectionChange?.('')
       }
     } else {
       setSearch(event.target.value)
@@ -367,6 +400,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           />
           <button
             type='button'
+            tabIndex={-1}
             ref={buttonRef}
             disabled={isDisabled}
             onClick={handleClickIcon}
@@ -400,6 +434,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           />
           <button
             ref={buttonRef}
+            tabIndex={-1}
             disabled={isDisabled}
             onClick={handleClickIcon}
             type='button'
@@ -421,7 +456,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           {...getFloatingProps}
         >
           <Popover
-            isEmpty={collection.length === 0}
+            isEmpty={!isLoading ? collection.length === 0 : false}
             visualizeRef={visualizeULList}
             triggerRef={
               type == 'select'
