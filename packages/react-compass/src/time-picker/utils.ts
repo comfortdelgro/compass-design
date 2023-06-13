@@ -1,11 +1,12 @@
+import {cloneDeep} from 'lodash'
 import {EMPTY_TIME_PICKER_FORMAT} from './constant'
 
 export function splitTimeFormat(format: string) {
   const splitFormat = {
-    hour: EMPTY_TIME_PICKER_FORMAT,
-    minute: EMPTY_TIME_PICKER_FORMAT,
-    second: EMPTY_TIME_PICKER_FORMAT,
-    session: EMPTY_TIME_PICKER_FORMAT,
+    hour: cloneDeep(EMPTY_TIME_PICKER_FORMAT),
+    minute: cloneDeep(EMPTY_TIME_PICKER_FORMAT),
+    second: cloneDeep(EMPTY_TIME_PICKER_FORMAT),
+    session: cloneDeep(EMPTY_TIME_PICKER_FORMAT),
   }
 
   if (format.includes('HH')) {
@@ -46,9 +47,10 @@ export function splitTimeFormat(format: string) {
     }
   }
 
+  format.includes('AA')
   if (format.includes('AA')) {
     splitFormat.session = {
-      ...EMPTY_TIME_PICKER_FORMAT,
+      ...cloneDeep(EMPTY_TIME_PICKER_FORMAT),
       start: format.indexOf('AA'),
       end: format.indexOf('AA') + 2,
       format: 'AA',
@@ -60,7 +62,7 @@ export function splitTimeFormat(format: string) {
 
 export function getSelectionOnFocus(format: string, focusIndex: number) {
   const splitFormat = splitTimeFormat(format)
-  const selection = EMPTY_TIME_PICKER_FORMAT
+  const selection = cloneDeep(EMPTY_TIME_PICKER_FORMAT)
   for (const component in splitFormat) {
     const {start, end, format, max, min} =
       splitFormat[component as keyof typeof splitFormat]

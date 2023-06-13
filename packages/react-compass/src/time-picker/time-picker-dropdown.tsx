@@ -40,7 +40,7 @@ function TimePickerDropdown(props: TimePickerDropdownProps) {
     isOpen = true,
     hourStep = 1,
     minuteStep = 1,
-    value = '',
+    value = EMPTY_DISPLAY_TIME_DROPDOWN_LIST,
     hasFooter = true,
     onItemClick,
     onOkClick,
