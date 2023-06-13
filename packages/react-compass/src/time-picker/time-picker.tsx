@@ -481,6 +481,7 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
      * Emits when clicking Icon Lock button at the right
      */
     const handleIconClockClick = () => {
+      if (options.isReadOnly || options.isDisabled) return
       setIsOpen(true)
     }
 
