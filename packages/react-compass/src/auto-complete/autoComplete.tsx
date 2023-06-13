@@ -8,7 +8,7 @@ import {
   StyledEmptyMessage,
   StyledOption,
   StyledPopover,
-} from './autoComplte.styles'
+} from './autoComplete.styles'
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
   options?: string[]
