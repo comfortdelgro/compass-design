@@ -1,9 +1,10 @@
 import React, {useEffect, useRef} from 'react'
+import {TIME_PICKER_MARGIN_TOP} from './constant'
 import {TimePickerDropdownItemStyle} from './time-picker.styles'
-import {SelectedKey} from './types'
+import {SelectedKey, TimePickerDropdownSelectedDisplayList} from './types'
 
 interface TimePickerDropdownItemProps {
-  selectedDisplayList: Record<SelectedKey, string | number | null>
+  selectedDisplayList: TimePickerDropdownSelectedDisplayList
   selectedTime: string | number | null
   time: string
   isOpen?: boolean
@@ -11,45 +12,41 @@ interface TimePickerDropdownItemProps {
   onClickItem: (time: string, type: SelectedKey) => () => void
 }
 
-const MARGIN_TOP = 4
-
-export default function TimePickerDropdownItem(
-  props: TimePickerDropdownItemProps,
-) {
+function TimePickerDropdownItem(props: TimePickerDropdownItemProps) {
   const {selectedTime, time, onClickItem, displayDataType, isOpen} = props
   const ref = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
-    if (isOpen) {
-      if (selectedTime === time) {
-        setTimeout(() => {
-          if (ref.current) {
-            ref.current.parentElement?.scroll({
-              top: ref.current.offsetTop - MARGIN_TOP,
-              behavior: 'auto',
-            })
-          }
-        }, 0)
-      }
+    if (isOpen && selectedTime === time) {
+      setTimeout(() => {
+        scrollToSelectedItem('auto')
+      }, 0)
     }
   }, [isOpen])
 
   useEffect(() => {
     if (selectedTime === time && ref.current) {
-      ref.current.parentElement?.scroll({
-        top: ref.current.offsetTop - MARGIN_TOP,
-        behavior: 'smooth',
-      })
+      scrollToSelectedItem('smooth')
     }
   }, [selectedTime, time])
+
+  const scrollToSelectedItem = (behavior: ScrollBehavior) => {
+    if (ref.current) {
+      ref.current.parentElement?.scroll({
+        top: ref.current.offsetTop - TIME_PICKER_MARGIN_TOP,
+        behavior,
+      })
+    }
+  }
 
   return (
     <TimePickerDropdownItemStyle
       ref={ref}
       className={selectedTime === time ? 'active' : ''}
-      onClick={onClickItem(time.toString().padStart(2, '0'), displayDataType)}
+      onClick={onClickItem(time, displayDataType)}
     >
       {time}
     </TimePickerDropdownItemStyle>
   )
 }
+export default React.memo(TimePickerDropdownItem)

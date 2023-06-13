@@ -9,6 +9,10 @@ export const Default: React.FC = () => {
   return (
     <>
       <Column>
+        <h3>Default (format: hh:mm AA)</h3>
+        <Row>
+          <TimePicker defaultValue={'12:00 PM'} />
+        </Row>
         <h3>With 12-hours uncontrolled</h3>
         <Row>
           <TimePicker

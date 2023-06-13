@@ -1,6 +1,10 @@
 import {cloneDeep} from 'lodash'
 import {EMPTY_TIME_PICKER_FORMAT} from './constant'
 
+/**
+ * Slit format string for object with position, min, max, format value
+ * @param format string
+ */
 export function splitTimeFormat(format: string) {
   const splitFormat = {
     hour: cloneDeep(EMPTY_TIME_PICKER_FORMAT),
@@ -60,6 +64,12 @@ export function splitTimeFormat(format: string) {
   return splitFormat
 }
 
+/**
+ * Get Range of current selection position
+ * @param format format of display time
+ * @param focusIndex current selection position
+ * @returns TimePickerFormat
+ */
 export function getSelectionOnFocus(format: string, focusIndex: number) {
   const splitFormat = splitTimeFormat(format)
   const selection = cloneDeep(EMPTY_TIME_PICKER_FORMAT)
@@ -80,6 +90,14 @@ export function getSelectionOnFocus(format: string, focusIndex: number) {
   return selection
 }
 
+/**
+ * Replace in the position want to replace
+ * @param str root string
+ * @param what text what want to replace
+ * @param start start position
+ * @param end end position
+ * @returns string
+ */
 export function replaceBetween(
   str: string,
   what: string,
@@ -87,4 +105,13 @@ export function replaceBetween(
   end: number,
 ) {
   return str.substring(0, start) + what + str.substring(end)
+}
+
+export const createDropdownList = (min: number, max: number, step = 1) => {
+  const arr = []
+  while (min <= max) {
+    arr.push(min)
+    min = min + step
+  }
+  return arr
 }

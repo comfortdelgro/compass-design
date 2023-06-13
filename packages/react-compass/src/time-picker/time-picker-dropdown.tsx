@@ -1,7 +1,12 @@
 import {cloneDeep} from 'lodash'
 import React, {useEffect, useState} from 'react'
 import Button from '../button'
-import {EMPTY_DISPLAY_TIME_DROPDOWN_LIST} from './constant'
+import {
+  DEFAULT_VIEWS,
+  EMPTY_DISPLAY_TIME_DROPDOWN_LIST,
+  HALF_TIME_AM,
+  HALF_TIME_LIST,
+} from './constant'
 import TimePickerDropdownItem from './time-picker-dropdown-item'
 import {
   TimePickerDropdownContent,
@@ -9,30 +14,23 @@ import {
   TimePickerDropdownFooter,
   TimePickerDropdownWrapper,
 } from './time-picker.styles'
-import {SelectedKey, ViewType} from './types'
+import {
+  SelectedKey,
+  TimePickerDropdownDisplayList,
+  TimePickerDropdownSelectedDisplayList,
+  ViewType,
+} from './types'
+import {createDropdownList} from './utils'
 
 interface TimePickerDropdownProps {
   isOpen?: boolean
-  value?: Record<SelectedKey, string | number | null>
+  value?: TimePickerDropdownSelectedDisplayList
   hourStep?: number
   minuteStep?: number
   hasFooter?: boolean
   views?: ViewType[]
-  onItemClick: (value: Record<SelectedKey, string | number | null>) => void
+  onItemClick: (value: TimePickerDropdownSelectedDisplayList) => void
   onOkClick?: () => void
-}
-
-const HALF_TIME_AM = 'AM'
-const HALF_TIME_PM = 'PM'
-const HALF_TIME_LIST = [HALF_TIME_AM, HALF_TIME_PM]
-
-const createDropdownList = (min: number, max: number, step = 1) => {
-  const arr = []
-  while (min <= max) {
-    arr.push(min)
-    min = min + step
-  }
-  return arr
 }
 
 function TimePickerDropdown(props: TimePickerDropdownProps) {
@@ -44,28 +42,21 @@ function TimePickerDropdown(props: TimePickerDropdownProps) {
     hasFooter = true,
     onItemClick,
     onOkClick,
-    views = ['hours24', 'minutes', 'sessions'],
+    views = DEFAULT_VIEWS,
   } = props
-  const [displayList, setDisplayList] = useState<
-    Array<{
-      items: Array<string | number>
-      type: SelectedKey
-      default: string
-    }>
-  >([])
-  const [selectedDisplayList, setSelectedDisplayList] = useState<
-    Record<SelectedKey, string | number | null>
-  >(EMPTY_DISPLAY_TIME_DROPDOWN_LIST)
+  const [displayList, setDisplayList] = useState<TimePickerDropdownDisplayList>(
+    [],
+  )
+  const [selectedDisplayList, setSelectedDisplayList] =
+    useState<TimePickerDropdownSelectedDisplayList>(
+      EMPTY_DISPLAY_TIME_DROPDOWN_LIST,
+    )
 
   /**
    * Create arrays to display data
    */
   useEffect(() => {
-    const newDisplayList: Array<{
-      items: Array<string | number>
-      type: SelectedKey
-      default: string
-    }> = []
+    const newDisplayList: TimePickerDropdownDisplayList = []
 
     views.forEach((view) => {
       switch (view) {

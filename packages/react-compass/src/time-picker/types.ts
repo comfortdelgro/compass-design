@@ -14,3 +14,13 @@ export interface TimePickerFormat {
   min: number
   max: number
 }
+export type TimePickerDropdownDisplayList = Array<{
+  items: Array<string | number>
+  type: SelectedKey
+  default: string
+}>
+
+export type TimePickerDropdownSelectedDisplayList = Record<
+  SelectedKey,
+  string | number | null
+>
