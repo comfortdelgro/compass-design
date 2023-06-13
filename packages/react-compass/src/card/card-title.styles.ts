@@ -10,5 +10,5 @@ export const StyledCardTitle = styled('h1', {
   fontSize: '$header5',
   margin: 0,
   fontWeight: '$semibold',
-  color: '#333333',
+  color: '$primaryText',
 })
