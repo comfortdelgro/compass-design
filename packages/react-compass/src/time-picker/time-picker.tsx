@@ -47,7 +47,6 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
       css = {},
       // ComponentProps
       className,
-      name,
       value,
       hourStep = 1,
       minuteStep = 1,
@@ -56,7 +55,7 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
       views = DEFAULT_VIEWS,
       defaultValue,
       onTimeChange,
-      ...options
+      ...delegated
     } = props
 
     const [isOpen, setIsOpen] = useState(false)
@@ -151,7 +150,7 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
     }
 
     const setSelectionPositionToInput = () => {
-      if (options.isReadOnly || options.isDisabled) return
+      if (delegated.isReadOnly || delegated.isDisabled) return
       // Waiting for cursor select on input
       setTimeout(() => {
         if (timePickerInputRef.current) {
@@ -481,7 +480,7 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
      * Emits when clicking Icon Lock button at the right
      */
     const handleIconClockClick = () => {
-      if (options.isReadOnly || options.isDisabled) return
+      if (delegated.isReadOnly || delegated.isDisabled) return
       setIsOpen(true)
     }
 
@@ -503,13 +502,12 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             <TextField
               rightIcon={<Icon icon={faClock} onClick={handleIconClockClick} />}
               inputRef={timePickerInputRef}
-              name={name}
               onFocus={handleFocusInput}
               onBlur={handlePopoverClose()}
               onClick={handleInputClick}
               onKeyDown={handleKeyDown}
               placeholder={formatTime}
-              {...options}
+              {...delegated}
             />
           }
           attachToElement={

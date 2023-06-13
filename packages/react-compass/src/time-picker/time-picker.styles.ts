@@ -26,18 +26,18 @@ export const TimePickerContainer = styled('div', {})
 export const TimePickerDropdownWrapper = styled('div', {
   background: '$background',
   border: '1px solid #e6e6e6',
-  borderRadius: '4px',
+  borderRadius: '$md',
   zIndex: 9999,
 })
 export const TimePickerDropdownContent = styled('div', {
   display: 'flex',
-  height: '320px',
+  height: '$80',
   width: '100%',
   overflowY: 'hidden',
-  marginTop: '4px',
+  marginTop: '$1',
 })
 export const TimePickerDropdownControl = styled('div', {
-  padding: '4px',
+  padding: '$1',
   overflowY: 'hidden',
   height: '100%',
   position: 'relative',
@@ -56,10 +56,10 @@ export const TimePickerDropdownItemStyle = styled('button', {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  padding: '12px',
-  borderRadius: '4px',
-  width: '42px',
-  height: '42px',
+  padding: '$3',
+  borderRadius: '$md',
+  width: '$10_5',
+  height: '$10_5',
   cursor: 'pointer',
   fontWeight: 500,
   boxSizing: 'border-box',
@@ -75,7 +75,7 @@ export const TimePickerDropdownItemStyle = styled('button', {
   },
 })
 export const TimePickerDropdownFooter = styled('div', {
-  padding: '8px',
+  padding: '$2',
   display: 'flex',
   justifyContent: 'flex-end',
   borderTop: '1px solid #e6e6e6',
