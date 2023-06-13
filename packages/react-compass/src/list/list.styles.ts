@@ -1,5 +1,7 @@
-import {styled} from '../theme'
-import {VariantProps} from '../utils/stitches.types'
+import { styled } from '../theme'
+import { VariantProps } from '../utils/stitches.types'
+
+
 
 export const StyledList = styled('div', {
   display: 'flex',
@@ -95,7 +97,7 @@ export const StyledList = styled('div', {
         },
       },
       interactive: {
-        backgroundColor: 'white',
+        backgroundColor: '$background',
 
         '&:hover': {
           backgroundColor: '$cdgBlue10',
@@ -106,11 +108,11 @@ export const StyledList = styled('div', {
         },
 
         '& .list-text-title': {
-          color: '#3B3A39',
+          color: '$primaryText',
         },
 
         '&.pressed .list-text-title': {
-          color: '$whiteText',
+          color: '$primaryText',
         },
 
         '& .list-text-description': {
@@ -118,23 +120,23 @@ export const StyledList = styled('div', {
         },
 
         '&.pressed .list-text-description': {
-          color: '$whiteText',
+          color: '$primaryText',
         },
 
         '& .list-right-side-text': {
-          color: '#3B3A39',
+          color: '$primaryText',
         },
 
         '&.pressed .list-right-side-text': {
-          color: '$whiteText',
+          color: '$primaryText',
         },
 
         '&.pressed .list-right-side svg': {
-          color: '$whiteText',
+          color: '$primaryText',
         },
 
         '&.pressed .list-left-info svg': {
-          color: '$whiteText',
+          color: '$primaryText',
         },
       },
     },
@@ -156,13 +158,13 @@ export const StyledList = styled('div', {
           backgroundColor: '#E6E6E6',
         },
         '&.interactive.pressed .list-text-title': {
-          color: '#3B3A39',
+          color: '#333333',
         },
         '&.interactive.pressed .list-text-description': {
           color: '$gray80',
         },
         '&.interactive.pressed .list-right-side svg': {
-          color: '#3B3A39',
+          color: '#333333',
         },
         '&.interactive.pressed .list-right-side-text': {
           color: '$gray90 !important',
@@ -218,7 +220,7 @@ export const StyledList = styled('div', {
         },
 
         '&:hover .list-left-info svg': {
-          color: '$whiteText',
+          color: '$primaryText',
         },
 
         '&:hover .list-text-title': {
@@ -236,7 +238,7 @@ export const StyledList = styled('div', {
         },
 
         '&.pressed .list-text-title': {
-          color: '$whiteText',
+          color: '$primaryText',
         },
 
         //disabled

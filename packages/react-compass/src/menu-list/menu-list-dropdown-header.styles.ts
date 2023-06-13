@@ -1,4 +1,7 @@
-import {styled} from '../theme'
+import { styled } from '../theme'
+
+
+
 
 export const StyledMenuListDropdownHeader = styled('button', {
   border: 0,
@@ -13,7 +16,7 @@ export const StyledMenuListDropdownHeader = styled('button', {
   textAlign: 'left',
 
   '&:focus-visible': {
-    outline: '#678ECF solid 2px',
+    outline: '$cdgBlue80 solid 2px',
   },
 
   '& .menu-list-dropdown-title': {
@@ -34,5 +37,9 @@ export const StyledMenuListDropdownHeader = styled('button', {
   [`& .menu-list-dropdown-chevron-down-left-icon.rotated-icon,
    & .menu-list-dropdown-chevron-down-right-icon.rotated-icon`]: {
     transform: 'rotate(180deg)',
+  },
+
+  '& svg': {
+    color: '$gray80',
   },
 })
