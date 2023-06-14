@@ -1,3 +1,4 @@
+import {config} from '../../theme'
 import {LegendPosition} from './type'
 
 export const colorsDefault = [
@@ -52,6 +53,7 @@ export const colorsDefault = [
 ]
 
 export const DEFAULT_PLUGINS = (
+  theme: typeof config.theme.colors,
   legendPosition: LegendPosition,
   title?: string,
 ) => {
@@ -61,7 +63,7 @@ export const DEFAULT_PLUGINS = (
       align: legendPosition === 'top' ? ('end' as const) : ('center' as const),
       labels: {
         usePointStyle: true,
-        color: '#201F1E',
+        color: theme.primaryText,
         font: {
           size: 12,
           weight: '600',
@@ -72,7 +74,7 @@ export const DEFAULT_PLUGINS = (
       display: !!title,
       padding: 24,
       align: 'start' as const,
-      color: '#201F1E',
+      color: theme.primaryText,
       font: {
         size: 24,
         weight: '600',
@@ -90,6 +92,7 @@ export const DEFAULT_LAYOUT = {
 }
 
 export const DEFAULT_VERTICAL_OPTIONS = (
+  theme: typeof config.theme.colors,
   legendPosition: LegendPosition,
   title?: string,
   unit?: string,
@@ -101,15 +104,15 @@ export const DEFAULT_VERTICAL_OPTIONS = (
       x: {
         beginAtZero: true,
         ticks: {
-          color: '#009EDA',
+          color: theme.info,
           font: {
             size: 12,
-            weight: '400',
+            weight: '600',
           },
           padding: 8,
         },
         grid: {
-          borderColor: '#D2D0CE',
+          borderColor: theme.gray60,
           display: false,
         },
       },
@@ -118,7 +121,7 @@ export const DEFAULT_VERTICAL_OPTIONS = (
         title: {
           display: !!unit,
           title: true,
-          color: '#A19F9D',
+          color: theme.primaryText,
           text: unit,
           font: {
             size: 12,
@@ -126,7 +129,7 @@ export const DEFAULT_VERTICAL_OPTIONS = (
           },
         },
         ticks: {
-          color: '#A19F9D',
+          color: theme.primaryText,
           padding: 8,
           font: {
             size: 12,
@@ -134,18 +137,20 @@ export const DEFAULT_VERTICAL_OPTIONS = (
           },
         },
         grid: {
-          tickColor: '#ffffff',
-          borderColor: '#ffffff',
+          tickColor: 'transparent',
+          borderColor: 'transparent',
+          color: theme.gray60,
           borderDash: [4, 4],
           borderWidth: 1,
         },
       },
     },
-    plugins: DEFAULT_PLUGINS(legendPosition, title),
+    plugins: DEFAULT_PLUGINS(theme, legendPosition, title),
   }
 }
 
 export const DEFAULT_HORIZONTAL_OPTIONS = (
+  theme: typeof config.theme.colors,
   legendPosition: LegendPosition,
   title?: string,
   unit?: string,
@@ -158,16 +163,16 @@ export const DEFAULT_HORIZONTAL_OPTIONS = (
       y: {
         beginAtZero: true,
         ticks: {
-          color: '#A19F9D',
+          color: theme.primaryText,
           font: {
             size: 12,
-            weight: '400',
+            weight: '600',
           },
           padding: 8,
         },
         grid: {
           display: false,
-          borderColor: '#D2D0CE',
+          borderColor: theme.gray60,
         },
       },
       x: {
@@ -175,7 +180,7 @@ export const DEFAULT_HORIZONTAL_OPTIONS = (
         title: {
           display: !!unit,
           title: true,
-          color: '#A19F9D',
+          color: theme.primaryText,
           text: unit,
           font: {
             size: 12,
@@ -183,7 +188,7 @@ export const DEFAULT_HORIZONTAL_OPTIONS = (
           },
         },
         ticks: {
-          color: '#009EDA',
+          color: theme.info,
           padding: 8,
           font: {
             size: 12,
@@ -191,13 +196,14 @@ export const DEFAULT_HORIZONTAL_OPTIONS = (
           },
         },
         grid: {
-          tickColor: '#ffffff',
-          borderColor: '#ffffff',
+          tickColor: 'transparent',
+          borderColor: 'transparent',
+          color: theme.gray60,
           borderDash: [4, 4],
           borderWidth: 1,
         },
       },
     },
-    plugins: DEFAULT_PLUGINS(legendPosition, title),
+    plugins: DEFAULT_PLUGINS(theme, legendPosition, title),
   }
 }
