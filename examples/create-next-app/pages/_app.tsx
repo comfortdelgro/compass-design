@@ -1,4 +1,5 @@
-import {Box, Radio, ThemeProvider} from '@comfortdelgro/react-compass'
+import {Box, Button, Radio, ThemeProvider} from '@comfortdelgro/react-compass'
+import {theme} from '@comfortdelgro/react-compass/theme'
 import createTheme from '@comfortdelgro/react-compass/theme/theme'
 import type {AppProps} from 'next/app'
 import {useState} from 'react'
@@ -56,6 +57,7 @@ function MyApp({Component, pageProps}: AppProps) {
               <Radio label='Dark theme' value={ETheme.Dark} />
             </Radio.Group>
           </Box>
+          <Button onClick={() => console.log(theme)}>Test</Button>
           <Component {...pageProps} />
         </Box>
       </ThemeProvider>
