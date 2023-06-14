@@ -58,7 +58,7 @@ export const darkThemeCustom = createTheme('dark-theme-custom', {
 This component takes a theme prop and applies it to the entire React tree that it is wrapping around. It should preferably be used at _the root of your component tree_.
 
 ```js
-import ThemeProvider from '@comfortdelgro/react-compass'
+import {ThemeProvider} from '@comfortdelgro/react-compass'
 ```
 
 **Props:**
@@ -133,6 +133,28 @@ function MyApp({Component, pageProps}: AppProps) {
         </Box>
       </ThemeProvider>
     </>
+  )
+}
+```
+
+### Using color with hooks
+
+We can get the color code using the hook `useColors`
+
+Example:
+
+```js
+export const Demo: React.FC = () => {
+  const colors = useColors()
+  return (
+    <Button
+      css={{
+        backgroundColor: colors.cdgBlue140,
+        color: colors.whiteText,
+      }}
+    >
+      Button
+    </Button>
   )
 }
 ```
