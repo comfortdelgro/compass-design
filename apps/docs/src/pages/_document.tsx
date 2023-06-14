@@ -1,3 +1,4 @@
+import Preflight from '@comfortdelgro/react-compass/preflight'
 import {SSRProvider} from '@react-aria/ssr'
 import Document, {
   DocumentContext,
@@ -20,7 +21,7 @@ class MyDocument extends Document {
     return (
       <SSRProvider>
         <Html>
-          <Head>{/* {Preflight.flush()} */}</Head>
+          <Head>{Preflight.flush()}</Head>
           <body>
             <Main />
             <NextScript />

@@ -1,4 +1,6 @@
 export {SSRProvider} from '@react-aria/ssr'
+export * from './internationalized/number'
+export * from './internationalized/string'
 export {default as Accordion} from './accordion'
 export type {
   AccordionExpandIconProps,
@@ -8,6 +10,8 @@ export type {
 } from './accordion'
 export {default as Alert} from './alert'
 export type {AlertProps} from './alert'
+export {default as AutoComplete} from './auto-complete'
+export type {AutoCompleteProps} from './auto-complete'
 export {default as Avatar} from './avatar'
 export type {AvatarGroupProps, AvatarProps} from './avatar'
 export {default as Badge} from './badge'
@@ -284,3 +288,5 @@ export {default as VideoPlayer} from './video-player'
 export type {VideoPlayerProps} from './video-player'
 export {default as Wizard} from './wizard'
 export type {WizardProps} from './wizard'
+export * from './internationalized/i18n'
+export * from './internationalized/date'
