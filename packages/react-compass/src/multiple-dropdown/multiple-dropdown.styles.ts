@@ -2,6 +2,7 @@ import { styled } from '../theme'
 import type { VariantProps } from '../utils/stitches.types'
 
 
+
 export const StyledDropdown = styled('div', {
   maxWidth: '100%',
   minHeight: '$11',
@@ -107,9 +108,13 @@ export const StyledSelectedItemWrapper = styled('div', {
 
   '.multiple-dropdown-chip-icon': {
     svg: {
-      color: '$gray110',
+      color: '$primaryText',
     },
   },
+
+  // '.itemListString': {
+
+  // }
 })
 
 export const StyledSelectedItem = styled('div', {
@@ -123,6 +128,7 @@ export const StyledSelectedItem = styled('div', {
   justifyContent: 'center',
   alignItems: 'center',
   gap: '$2',
+  color: '$primaryText',
   div: {
     width: 'fit-content',
     height: 'fit-content',
@@ -156,6 +162,7 @@ export const StyledDropdownWrapper = styled('div', {
             whiteSpace: 'nowrap',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
+            color: '$primaryText'
           },
         },
       },
