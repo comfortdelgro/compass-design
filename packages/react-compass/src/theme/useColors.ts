@@ -21,7 +21,5 @@ export function useColors() {
 
   mutationObserver.observe(document.body, {attributes: true})
 
-  console.log(colorsConfig)
-
   return colorsConfig as unknown as typeof config.theme.colors
 }
