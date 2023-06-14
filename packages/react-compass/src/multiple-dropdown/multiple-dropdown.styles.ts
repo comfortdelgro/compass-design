@@ -32,7 +32,7 @@ export const StyledDropdown = styled('div', {
     svg: {
       width: '$4',
       height: '$4',
-      color: '$gray110',
+      color: '$primaryText',
     },
   },
   '&:focus-within': {
@@ -44,7 +44,7 @@ export const StyledDropdown = styled('div', {
     padding: 0,
     margin: 0,
     border: 'none',
-    backgroundColor: "$background",
+    backgroundColor: '$background',
     color: '$primaryText',
     '&:focus': {
       outline: 'none',
