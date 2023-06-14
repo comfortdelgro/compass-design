@@ -1,6 +1,4 @@
 export {SSRProvider} from '@react-aria/ssr'
-export * from './internationalized/number'
-export * from './internationalized/string'
 export {default as Accordion} from './accordion'
 export type {
   AccordionExpandIconProps,
@@ -117,6 +115,10 @@ export {default as Grid} from './grid'
 export type {GridContainerProps, GridItemProps} from './grid'
 export {default as Icon} from './icon'
 export type {IconProp} from './icon'
+export * from './internationalized/date'
+export * from './internationalized/i18n'
+export * from './internationalized/number'
+export * from './internationalized/string'
 export {default as Link} from './link'
 export type {LinkProps} from './link'
 export {
@@ -286,5 +288,3 @@ export {default as VideoPlayer} from './video-player'
 export type {VideoPlayerProps} from './video-player'
 export {default as Wizard} from './wizard'
 export type {WizardProps} from './wizard'
-export * from './internationalized/i18n'
-export * from './internationalized/date'
