@@ -129,7 +129,7 @@ export const DEFAULT_VERTICAL_OPTIONS = (
           },
         },
         ticks: {
-          color: theme.primaryText,
+          color: theme.gray70,
           padding: 8,
           font: {
             size: 12,
@@ -163,7 +163,7 @@ export const DEFAULT_HORIZONTAL_OPTIONS = (
       y: {
         beginAtZero: true,
         ticks: {
-          color: theme.primaryText,
+          color: theme.gray70,
           font: {
             size: 12,
             weight: '600',
