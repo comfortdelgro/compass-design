@@ -19,6 +19,7 @@ import {
 } from '../calendar/types'
 import DatePickerProvider from '../date-picker/date-picker-context'
 import RangeCalendar from '../range-calendar/range-calendar'
+import {CustomShortcutsProps} from '../range-calendar/range-calendar-shortcuts'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
@@ -39,6 +40,14 @@ interface Props
   calendarCSS?: CSS
   helperText?: React.ReactNode
   maxValue?: DateValue | null | undefined
+  hasShortcuts?: boolean
+  ctaButtonRender?: React.ReactNode
+  onSearchButtonClick?: (
+    e:
+      | React.MouseEvent<HTMLButtonElement, MouseEvent>
+      | React.TouchEvent<HTMLButtonElement>,
+  ) => void
+  customShortcuts?: CustomShortcutsProps
 }
 
 export type DateRangePickerProps = Props
@@ -53,6 +62,10 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
       errorMessage,
       helperText,
       maxValue,
+      hasShortcuts,
+      ctaButtonRender,
+      onSearchButtonClick,
+      customShortcuts,
       ...delegated
     } = props
 
@@ -135,6 +148,10 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
             calendarRef={calendarRef}
             dialogProps={dialogProps}
             calendarProps={calendarProps}
+            hasShortcuts={hasShortcuts}
+            ctaButtonRender={ctaButtonRender}
+            onSearchButtonClick={onSearchButtonClick}
+            customShortcuts={customShortcuts}
             css={props.calendarCSS}
           />
         </DatePickerProvider>
@@ -215,9 +232,19 @@ interface DateRangeCalendarWrapperProps {
   state: DateRangePickerState
   calendarRef: React.RefObject<HTMLDivElement>
   dialogProps: AriaDialogProps
-  calendarProps: RangeCalendarProps<DateValue>
+  calendarProps: RangeCalendarProps<DateValue | null>
   maxValue?: DateValue | null | undefined
   css?: CSS | undefined
+  hasShortcuts?: boolean | undefined
+  ctaButtonRender?: React.ReactNode | undefined
+  onSearchButtonClick?:
+    | ((
+        e:
+          | React.MouseEvent<HTMLButtonElement, MouseEvent>
+          | React.TouchEvent<HTMLButtonElement>,
+      ) => void)
+    | undefined
+  customShortcuts?: CustomShortcutsProps
 }
 
 const DateRangeCalendarWrapper = (props: DateRangeCalendarWrapperProps) => {
@@ -227,7 +254,11 @@ const DateRangeCalendarWrapper = (props: DateRangeCalendarWrapperProps) => {
     dialogProps,
     calendarProps,
     css = {},
+    hasShortcuts = false,
     maxValue = parseDate('2999-03-10'),
+    ctaButtonRender,
+    onSearchButtonClick,
+    customShortcuts,
   } = props
 
   const {value, onChange, ...resCalendarProps} = calendarProps
@@ -261,6 +292,10 @@ const DateRangeCalendarWrapper = (props: DateRangeCalendarWrapperProps) => {
               onChange={onChangeRangeCalendar}
               {...resCalendarProps}
               maxValue={maxValue}
+              hasShortcuts={hasShortcuts}
+              ctaButtonRender={ctaButtonRender}
+              onSearchButtonClick={onSearchButtonClick}
+              customShortcuts={customShortcuts}
             />
           </Dialog>
         </Popover>
