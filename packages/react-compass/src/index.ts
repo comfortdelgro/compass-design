@@ -164,6 +164,7 @@ export type {
 } from './multiple-dropdown'
 export {default as Navbar} from './navbar'
 export type {NavbarBrandProps, NavbarProps} from './navbar'
+export {default as NoSsr} from './nossr'
 export {default as OTPInput} from './otp-input'
 export type {OTPInputProps} from './otp-input'
 export {default as PageHeader} from './page-header'
