@@ -1,14 +1,13 @@
+import {noop} from 'lodash'
 import * as React from 'react'
+import Button from '../button'
 import * as constants from './constants'
-import Icon, {ActionType} from './Icon'
+import {ActionType} from './Icon'
+import {StyledImageViewerWrap} from './image-viewer.styles'
 import ViewerCanvas from './ViewerCanvas'
 import ViewerNav from './ViewerNav'
 import ViewerProps, {ImageDecorator, ToolbarConfig} from './ViewerProps'
 import ViewerToolbar, {defaultToolbars} from './ViewerToolbar'
-
-function noop() {}
-
-// const transitionDuration = 300;
 
 const ACTION_TYPES = {
   setVisible: 'setVisible',
@@ -675,8 +674,7 @@ export default (props: ViewerProps) => {
   }
 
   return (
-    <>
-      <div>hello</div>
+    <StyledImageViewerWrap>
       <div
         className={className}
         style={viewerStryle}
@@ -693,15 +691,17 @@ export default (props: ViewerProps) => {
       >
         <div className={`${prefixCls}-mask`} style={{zIndex: zIndex}} />
         {props.noClose || (
-          <div
-            className={`${prefixCls}-close ${prefixCls}-btn`}
-            onClick={() => {
-              onClose()
+          <Button
+            css={{
+              left: 0,
+              top: 0,
+              position: 'absolute',
+              zIndex: 60,
             }}
-            style={{zIndex: zIndex + 10}}
+            onClick={onClose}
           >
-            <Icon type={ActionType.close} />
-          </div>
+            X
+          </Button>
         )}
         <ViewerCanvas
           prefixCls={prefixCls}
@@ -760,6 +760,6 @@ export default (props: ViewerProps) => {
           </div>
         )}
       </div>
-    </>
+    </StyledImageViewerWrap>
   )
 }

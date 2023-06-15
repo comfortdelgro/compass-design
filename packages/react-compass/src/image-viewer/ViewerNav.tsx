@@ -1,4 +1,5 @@
 import * as React from 'react'
+import {StyledNavbar, StyledNavbarItem} from './image-viewer.styles'
 import {ImageDecorator} from './ViewerProps'
 
 export interface ViewerNavProps {
@@ -24,23 +25,21 @@ export default function ViewerNav(props: ViewerNavProps) {
   }
 
   return (
-    <div className={`${props.prefixCls}-navbar`}>
-      <ul
-        className={`${props.prefixCls}-list ${props.prefixCls}-list-transition`}
-        style={listStyle}
-      >
-        {props.images.map((item, index) => (
-          <li
-            key={index}
+    <StyledNavbar>
+      {props.images.map((item, index) => (
+        <StyledNavbarItem
+          key={index}
+          onClick={() => {
+            handleChangeImg(index)
+          }}
+        >
+          <img
             className={index === activeIndex ? 'active' : ''}
-            onClick={() => {
-              handleChangeImg(index)
-            }}
-          >
-            <img src={item.src} alt={item.alt} />
-          </li>
-        ))}
-      </ul>
-    </div>
+            src={item.src}
+            alt={item.alt}
+          />
+        </StyledNavbarItem>
+      ))}
+    </StyledNavbar>
   )
 }

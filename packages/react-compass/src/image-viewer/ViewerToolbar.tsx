@@ -1,5 +1,8 @@
 import * as React from 'react'
+import Button from '../button'
+import Typography from '../typography'
 import Icon, {ActionType} from './Icon'
+import {StyledToolbar, StyledToolbarWrap} from './image-viewer.styles'
 import {ToolbarConfig} from './ViewerProps'
 
 export interface ViewerToolbarProps {
@@ -89,16 +92,15 @@ export default function ViewerToolbar(props: ViewerToolbarProps) {
       content = config.render
     }
     return (
-      <li
+      <Button
         key={config.key}
-        className={`${props.prefixCls}-btn`}
         onClick={() => {
           handleAction(config)
         }}
         data-key={config.key}
       >
-        {content}
-      </li>
+        {config.key}
+      </Button>
     )
   }
   const attributeNode = props.attribute ? (
@@ -133,13 +135,15 @@ export default function ViewerToolbar(props: ViewerToolbarProps) {
     toolbars = deleteToolbarFromKey(toolbars, ['download'])
   }
   return (
-    <div>
-      {attributeNode}
-      <ul className={`${props.prefixCls}-toolbar`}>
+    <StyledToolbarWrap>
+      <Typography.Label css={{textAlign: 'center'}} variant='label1'>
+        {attributeNode}
+      </Typography.Label>
+      <StyledToolbar>
         {toolbars.map((item) => {
           return renderAction(item)
         })}
-      </ul>
-    </div>
+      </StyledToolbar>
+    </StyledToolbarWrap>
   )
 }
