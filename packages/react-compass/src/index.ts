@@ -188,7 +188,11 @@ export type {QuantityToggleProps} from './quantity-toggle'
 export {default as Radio} from './radio'
 export type {RadioGroupProps, RadioProps} from './radio'
 export {default as RangeCalendar} from './range-calendar'
-export type {RangeCalendarProps, RangeValue} from './range-calendar'
+export type {
+  RangeCalendarProps,
+  RangeCalendarShorcutItem,
+  RangeValue,
+} from './range-calendar'
 export {default as Rating} from './rating'
 export type {RatingProps} from './rating'
 export {default as RichTextEditor} from './rich-text-editor'
