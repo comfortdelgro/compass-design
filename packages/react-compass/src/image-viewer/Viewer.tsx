@@ -1,31 +1,15 @@
 import * as React from 'react'
-import ViewerProps from './types'
+import {IViewerProps} from './types'
 import ViewerCore from './ViewerCore'
 
-export default (props: ViewerProps) => {
-  const defaultContainer = React.useRef(
-    typeof document !== 'undefined' ? document.createElement('div') : null,
-  )
-  const [container, setContainer] = React.useState(props.container)
+export default (props: IViewerProps) => {
   const [init, setInit] = React.useState(false)
-
-  React.useEffect(() => {
-    document.body.appendChild(defaultContainer.current)
-  }, [])
 
   React.useEffect(() => {
     if (props.visible && !init) {
       setInit(true)
     }
   }, [props.visible, init])
-
-  React.useEffect(() => {
-    if (props.container) {
-      setContainer(props.container)
-    } else {
-      setContainer(defaultContainer.current)
-    }
-  }, [props.container])
 
   if (!init) {
     return null

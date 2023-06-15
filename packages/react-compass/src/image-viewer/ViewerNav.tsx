@@ -3,7 +3,6 @@ import {StyledNavbar, StyledNavbarItem} from './image-viewer.styles'
 import {ImageDecorator} from './types'
 
 export interface ViewerNavProps {
-  prefixCls: string
   images: ImageDecorator[]
   activeIndex: number
   onChangeImg: (index: number) => void
@@ -17,11 +16,6 @@ export default function ViewerNav(props: ViewerNavProps) {
       return
     }
     props.onChangeImg(newIndex)
-  }
-
-  const marginLeft = `calc(50% - ${activeIndex + 1} * 31px)`
-  const listStyle = {
-    marginLeft: marginLeft,
   }
 
   return (

@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import * as React from 'react'
 import Loading from './Loading'
 
 export interface ViewerCanvasProps {
-  prefixCls: string
   imgSrc: string
   visible: boolean
   width: number
@@ -63,7 +64,7 @@ export default function ViewerCanvas(props: ViewerCanvasProps) {
       bindEvent()
     }
     if (!props.visible && props.drag) {
-      handleMouseUp({})
+      handleMouseUp()
     }
     return () => {
       bindEvent(true)
@@ -85,16 +86,16 @@ export default function ViewerCanvas(props: ViewerCanvasProps) {
     )
   }, [position])
 
-  function handleResize(e) {
+  function handleResize() {
     props.onResize()
   }
 
-  function handleCanvasMouseDown(e) {
+  function handleCanvasMouseDown(e: React.MouseEvent<HTMLDivElement>) {
     props.onCanvasMouseDown(e)
     handleMouseDown(e)
   }
 
-  function handleMouseDown(e) {
+  function handleMouseDown(e: React.MouseEvent<HTMLDivElement>) {
     if (e.button !== 0) {
       return
     }
@@ -110,7 +111,7 @@ export default function ViewerCanvas(props: ViewerCanvasProps) {
     }
   }
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (isMouseDown.current) {
       setPosition({
         x: e.clientX,
@@ -119,7 +120,8 @@ export default function ViewerCanvas(props: ViewerCanvasProps) {
     }
   }
 
-  function handleMouseUp(e) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  function handleMouseUp() {
     isMouseDown.current = false
   }
 
@@ -128,6 +130,7 @@ export default function ViewerCanvas(props: ViewerCanvasProps) {
     if (remove) {
       funcName = 'removeEventListener'
     }
+    // @ts-ignore
     window[funcName]('resize', handleResize, false)
   }
 
@@ -136,25 +139,20 @@ export default function ViewerCanvas(props: ViewerCanvasProps) {
     if (remove) {
       funcName = 'removeEventListener'
     }
-
+    // @ts-ignore
     document[funcName]('click', handleMouseUp, false)
+    // @ts-ignore
     document[funcName]('mousemove', handleMouseMove, false)
   }
 
-  let imgStyle: React.CSSProperties = {
+  const imgStyle: React.CSSProperties = {
     width: `${props.width}px`,
     height: `${props.height}px`,
-    transform: `
-translateX(${props.left !== null ? props.left + 'px' : 'aoto'}) translateY(${
-      props.top
-    }px)
+    transform: `translateX(${
+      props.left !== null ? `${props.left}px` : 'aoto'
+    }) translateY(${props.top}px)
     rotate(${props.rotate}deg) scaleX(${props.scaleX}) scaleY(${props.scaleY})`,
   }
-
-  const imgClass = `${props.prefixCls}-image ${
-    !isMouseDown.current &&
-    `${props.prefixCls}-image-transition ${props.drag && 'drag'}`
-  }`
 
   const style = {
     zIndex: props.zIndex,
@@ -163,12 +161,7 @@ translateX(${props.left !== null ? props.left + 'px' : 'aoto'}) translateY(${
   let imgNode = null
   if (props.imgSrc !== '') {
     imgNode = (
-      <img
-        className={imgClass}
-        src={props.imgSrc}
-        style={imgStyle}
-        onMouseDown={handleMouseDown}
-      />
+      <img src={props.imgSrc} style={imgStyle} onMouseDown={handleMouseDown} />
     )
   }
   if (props.loading) {
@@ -187,11 +180,7 @@ translateX(${props.left !== null ? props.left + 'px' : 'aoto'}) translateY(${
   }
 
   return (
-    <div
-      className={`${props.prefixCls}-canvas`}
-      onMouseDown={handleCanvasMouseDown}
-      style={style}
-    >
+    <div onMouseDown={handleCanvasMouseDown} style={style}>
       {imgNode}
     </div>
   )

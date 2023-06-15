@@ -6,7 +6,6 @@ import {StyledToolbar, StyledToolbarWrap} from './image-viewer.styles'
 import {ToolbarConfig} from './types'
 
 export interface ViewerToolbarProps {
-  prefixCls: string
   onAction: (config: ToolbarConfig) => void
   alt: string
   width: number
@@ -85,7 +84,7 @@ export default function ViewerToolbar(props: ViewerToolbarProps) {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     if (typeof ActionType[config.actionType] !== 'undefined') {
-      content = <Icon type={config.actionType as ActionType} />
+      content = <Icon type={config.actionType} />
     }
     // extra toolbar
     if (config.render) {
@@ -104,15 +103,13 @@ export default function ViewerToolbar(props: ViewerToolbarProps) {
     )
   }
   const attributeNode = props.attribute ? (
-    <p className={`${props.prefixCls}-attribute`}>
+    <p>
       {props.alt && `${props.alt}`}
       {props.noImgDetails || (
-        <span className={`${props.prefixCls}-img-details`}>
-          {`(${props.width} x ${props.height})`}
-        </span>
+        <span>{`(${props.width} x ${props.height})`}</span>
       )}
       {props.showTotal && (
-        <span className={`${props.prefixCls}-showTotal`}>
+        <span>
           {`${props.activeIndex + 1} ${props.totalName} ${props.count}`}
         </span>
       )}

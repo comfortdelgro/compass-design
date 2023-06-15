@@ -1,4 +1,7 @@
+import {ActionType} from './Icon'
+
 export interface IViewerCoreState {
+  index: number
   visible: boolean
   visibleStart: boolean
   transitionEnd: boolean
@@ -43,7 +46,7 @@ export interface ImageDecorator {
 
 export interface ToolbarConfig {
   key: string
-  actionType?: number
+  actionType: ActionType
   render?: React.ReactNode
   onClick?: (activeImage: ImageDecorator) => void
 }
@@ -54,7 +57,8 @@ export interface ViewerDefaultImg {
   height?: number
 }
 
-interface ViewerProps {
+export interface IViewerProps {
+  index?: number
   visible?: boolean
   onClose?: () => void
   images?: ImageDecorator[]
@@ -121,5 +125,3 @@ interface ViewerProps {
   // min scale
   minScale?: number
 }
-
-export default ViewerProps

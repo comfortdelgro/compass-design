@@ -4,11 +4,12 @@ import Button from '../button'
 import * as constants from './constants'
 import {ActionType} from './Icon'
 import {StyledImageViewerWrap} from './image-viewer.styles'
-import ViewerProps, {
+import {
   ActionTypeEnum,
   IAction,
   ImageDecorator,
   IViewerCoreState,
+  IViewerProps,
   ToolbarConfig,
 } from './types'
 import ViewerCanvas from './ViewerCanvas'
@@ -25,7 +26,7 @@ function createAction(
   }
 }
 
-export default (props: ViewerProps) => {
+export default (props: IViewerProps) => {
   const {
     visible = false,
     onClose = noop,
@@ -56,6 +57,7 @@ export default (props: ViewerProps) => {
   } = props
 
   const initialState: IViewerCoreState = {
+    index: 0,
     visible: false,
     visibleStart: false,
     transitionEnd: false,
@@ -93,12 +95,12 @@ export default (props: ViewerProps) => {
       case ActionTypeEnum.setVisible:
         return {
           ...s,
-          visible: action.payload.visible,
+          visible: Boolean(action.payload.visible),
         }
       case ActionTypeEnum.setActiveIndex:
         return {
           ...s,
-          activeIndex: action.payload.index,
+          activeIndex: Number(action.payload.index),
           startLoading: true,
         }
       case ActionTypeEnum.update:
@@ -350,7 +352,7 @@ export default (props: ViewerProps) => {
     )
   }
 
-  function getActiveImage(activeIndex2 = undefined) {
+  function getActiveImage(activeIndex2?: number) {
     let activeImg2: ImageDecorator = {
       src: '',
       alt: '',
@@ -364,7 +366,7 @@ export default (props: ViewerProps) => {
       realActiveIndex = state.activeIndex
     }
     if (images.length > 0 && realActiveIndex >= 0) {
-      activeImg2 = images[realActiveIndex]
+      activeImg2 = images[realActiveIndex] as ImageDecorator
     }
 
     return activeImg2
@@ -414,10 +416,12 @@ export default (props: ViewerProps) => {
         handleChangeImg(state.activeIndex + 1)
         break
       case ActionType.zoomIn:
+        // eslint-disable-next-line no-case-declarations
         const imgCenterXY = getImageCenterXY()
         handleZoom(imgCenterXY.x, imgCenterXY.y, 1, zoomSpeed)
         break
       case ActionType.zoomOut:
+        // eslint-disable-next-line no-case-declarations
         const imgCenterXY2 = getImageCenterXY()
         handleZoom(imgCenterXY2.x, imgCenterXY2.y, -1, zoomSpeed)
         break
@@ -484,7 +488,7 @@ export default (props: ViewerProps) => {
     }
   }
 
-  function handleCanvasMouseDown(e) {
+  function handleCanvasMouseDown(e: React.MouseEvent<HTMLDivElement>) {
     onMaskClick(e)
   }
 
@@ -494,14 +498,20 @@ export default (props: ViewerProps) => {
       funcName = 'removeEventListener'
     }
     if (!disableKeyboardSupport) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
       document[funcName]('keydown', handleKeydown, true)
     }
     if (viewerCore.current) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
       viewerCore.current[funcName]('wheel', handleMouseScroll, false)
     }
   }
 
-  function handleKeydown(e) {
+  function handleKeydown(e: KeyboardEvent) {
     const keyCode = e.keyCode || e.which || e.charCode
     let isFeatrue = false
     switch (keyCode) {
@@ -554,7 +564,7 @@ export default (props: ViewerProps) => {
     }
   }
 
-  function handleMouseScroll(e) {
+  function handleMouseScroll(e: WheelEvent) {
     if (disableMouseZoom) {
       return
     }
@@ -588,7 +598,12 @@ export default (props: ViewerProps) => {
     }
   }
 
-  function handleZoom(targetX, targetY, direct, scale) {
+  function handleZoom(
+    targetX: number,
+    targetY: number,
+    direct: number,
+    scale: number,
+  ) {
     const imgCenterXY = getImageCenterXY()
     const diffX = targetX - imgCenterXY.x
     const diffY = targetY - imgCenterXY.y
@@ -645,17 +660,7 @@ export default (props: ViewerProps) => {
     )
   }
 
-  const prefixCls = 'react-viewer'
-
-  const className = React.useMemo(() => {
-    let classElement = `${prefixCls}`
-    classElement += ` ${prefixCls}-transition`
-    if (props.container) classElement += ` ${prefixCls}-inline`
-    if (props.className) classElement += ` ${props.className}`
-    return classElement
-  }, [])
-
-  const viewerStryle: React.CSSProperties = {
+  const viewerStyle: React.CSSProperties = {
     opacity: visible && state.visible ? 1 : 0,
     display: visible || state.visible ? 'block' : 'none',
   }
@@ -678,8 +683,7 @@ export default (props: ViewerProps) => {
   return (
     <StyledImageViewerWrap>
       <div
-        className={className}
-        style={viewerStryle}
+        style={viewerStyle}
         onTransitionEnd={() => {
           if (!visible) {
             dispatch(
@@ -691,7 +695,7 @@ export default (props: ViewerProps) => {
         }}
         ref={viewerCore}
       >
-        <div className={`${prefixCls}-mask`} style={{zIndex: zIndex}} />
+        <div style={{zIndex: zIndex}} />
         {props.noClose || (
           <Button
             css={{
@@ -706,10 +710,9 @@ export default (props: ViewerProps) => {
           </Button>
         )}
         <ViewerCanvas
-          prefixCls={prefixCls}
           imgSrc={
             state.loadFailed
-              ? props.defaultImg.src || activeImg.src
+              ? props?.defaultImg?.src || activeImg.src
               : activeImg.src
           }
           visible={visible}
@@ -725,16 +728,15 @@ export default (props: ViewerProps) => {
           scaleY={state.scaleY}
           loading={state.loading}
           drag={drag}
-          container={props.container}
+          container={props.container as HTMLElement}
           onCanvasMouseDown={handleCanvasMouseDown}
         />
         {props.noFooter || (
-          <div className={`${prefixCls}-footer`} style={{zIndex: zIndex + 5}}>
+          <div style={{zIndex: zIndex + 5}}>
             {noToolbar || (
               <ViewerToolbar
-                prefixCls={prefixCls}
                 onAction={handleAction}
-                alt={activeImg.alt}
+                alt={activeImg.alt ?? ''}
                 width={state.imageWidth}
                 height={state.imageHeight}
                 attribute={attribute}
@@ -753,8 +755,7 @@ export default (props: ViewerProps) => {
             )}
             {props.noNavbar || (
               <ViewerNav
-                prefixCls={prefixCls}
-                images={props.images}
+                images={props.images as ImageDecorator[]}
                 activeIndex={state.activeIndex}
                 onChangeImg={handleChangeImg}
               />
