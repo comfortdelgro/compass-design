@@ -1,0 +1,131 @@
+import {Callout} from 'nextra-theme-docs'
+import MyAutoComplete from '../../components/AutoComplete'
+import styles from '../../styles/Home.module.css'
+
+# Auto-complete
+
+Auto-complete is a text input with a list of suggestions that users can select from.
+
+<Callout>
+  You can see how this component is implemented on
+  [ladle](https://comfortdelgro.github.io/compass-design/ladle/?story=auto-complete--full-featured)
+</Callout>
+
+---
+
+### Import:
+
+```js
+import {AutoComplete} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import AutoComplete from '@comfortdelgro/react-compass/auto-complete'
+```
+
+---
+
+### Basic alerts:
+
+<section className={styles.componentShowcaseContainer}>
+  <MyAutoComplete />
+</section>
+
+```js
+import AutoComplete from '@comfortdelgro/react-compass/auto-complete'
+import SearchField from '@comfortdelgro/react-compass/searchfield'
+import React from 'react'
+
+const MyAutoComplete: React.FC = () => {
+  const [inputValue, setInputValue] = React.useState('')
+  const [searchResults, setSearchResults] = React.useState<string[]>([])
+
+  const onSearchHandler = async (value: string): Promise<void> => {
+    try {
+      // Simulating API call with a delay
+      await new Promise((resolve) => setTimeout(resolve, 100)) // Delay of 1 second (adjust as needed)
+
+      // Simulating API response
+      const Animals = [
+        'Lion',
+        'Giraffe',
+        'Elephant',
+        'Penguin',
+        'Dolphin',
+        'Koala',
+        'Cheetah',
+        'Kangaroo',
+        'Octopus',
+        'Gorilla',
+        'Tiger',
+        'Zebra',
+        'Hippopotamus',
+        'Panda',
+        'Snake',
+      ]
+      const filteredAnimals = Animals.filter((animal) =>
+        animal.toLowerCase().includes(value.toLowerCase()),
+      )
+      setSearchResults([...filteredAnimals])
+      console.log('API call successful: ', filteredAnimals)
+    } catch (error) {
+      console.error('Error during API call:', error)
+    }
+  }
+
+  const onSelectHandler = (value: string): void => {
+    setInputValue(value)
+    // You can do anything you want with the selected value here
+    console.log('Selected value: ', value)
+  }
+
+  return (
+    <div>
+      <h3>Full-featured Example: Auto Complete</h3>
+      <br />
+      <AutoComplete
+        searchedValue={inputValue} // This is the value that will be passed to the onSearch callback with a debounce (delay)
+        debounce={300} // Fire onSearch after 300ms of user inactivity
+        onSearch={(value) => onSearchHandler(value)} // This is where you would make your API call
+        options={searchResults} // This is the list of options that will be displayed in the dropdown
+        onSelect={(value) => onSelectHandler(value)} // This is the callback that will be called when user selects an option from the dropdown
+      >
+        {/* You can put our own input element here instead of using our SearchField component */}
+        <SearchField
+          placeholder='Search'
+          onChange={(newValue) => setInputValue(newValue)}
+          value={inputValue}
+          css={{width: '10rem'}}
+        />
+      </AutoComplete>
+    </div>
+  )
+}
+
+export default MyAutoComplete
+
+```
+
+---
+
+### Props:
+
+| Name            | Type                   | Default            | Description                                                                             |
+| :-------------- | :--------------------- | :----------------- | :-------------------------------------------------------------------------------------- |
+| children        | `ReactNode` \|`String` | —                  | The input field for the auto-complete dropdown to be attached to                        |
+| options         | `string[]`             | -                  | Array of options to be displayed in the dropdown                                        |
+| onSearch        | `function`             | —                  | This function will fire with delay after the user types in new value                    |
+| onSelect        | `function`             | —                  | This function will fire when user selects an option on the dropdown                     |
+| searchedValue   | `string`               | —                  | This is the value to be searched with                                                   |
+| debounce        | `number`               | —                  | The delay time for onSearch function. This will help reduce excessive api calling       |
+| notFoundContent | `string`               | 'No Results Found' | Content to be displayed when the options are empty                                      |
+| css             | `CSS`                  | —                  | The system prop that allows defining system overrides as well as additional CSS styles. |
+
+---
+
+<Callout>
+  Check out our [ladle](/ladle?story=auto-complete--full-featured) for more info
+  on this component.
+</Callout>
