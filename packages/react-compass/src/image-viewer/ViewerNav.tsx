@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {StyledNavbar, StyledNavbarItem} from './image-viewer.styles'
-import {ImageDecorator} from './ViewerProps'
+import {ImageDecorator} from './types'
 
 export interface ViewerNavProps {
   prefixCls: string

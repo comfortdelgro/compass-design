@@ -4,42 +4,25 @@ import Button from '../button'
 import * as constants from './constants'
 import {ActionType} from './Icon'
 import {StyledImageViewerWrap} from './image-viewer.styles'
+import ViewerProps, {
+  ActionTypeEnum,
+  IAction,
+  ImageDecorator,
+  IViewerCoreState,
+  ToolbarConfig,
+} from './types'
 import ViewerCanvas from './ViewerCanvas'
 import ViewerNav from './ViewerNav'
-import ViewerProps, {ImageDecorator, ToolbarConfig} from './ViewerProps'
 import ViewerToolbar, {defaultToolbars} from './ViewerToolbar'
 
-const ACTION_TYPES = {
-  setVisible: 'setVisible',
-  setActiveIndex: 'setActiveIndex',
-  update: 'update',
-  clear: 'clear',
-}
-
-function createAction(type, payload) {
+function createAction(
+  type: ActionTypeEnum,
+  payload: Partial<IViewerCoreState>,
+) {
   return {
     type,
     payload: payload || {},
   }
-}
-
-export interface ViewerCoreState {
-  visible?: boolean
-  visibleStart?: boolean
-  transitionEnd?: boolean
-  activeIndex?: number
-  width?: number
-  height?: number
-  top?: number
-  left?: number
-  rotate?: number
-  imageWidth?: number
-  imageHeight?: number
-  scaleX?: number
-  scaleY?: number
-  loading?: boolean
-  loadFailed?: boolean
-  startLoading: boolean
 }
 
 export default (props: ViewerProps) => {
@@ -72,15 +55,15 @@ export default (props: ViewerProps) => {
     minScale = 0.1,
   } = props
 
-  const initialState: ViewerCoreState = {
+  const initialState: IViewerCoreState = {
     visible: false,
     visibleStart: false,
     transitionEnd: false,
-    activeIndex: props.activeIndex,
+    activeIndex: props.activeIndex ?? 0,
     width: 0,
     height: 0,
     top: 15,
-    left: null,
+    left: 0,
     rotate: 0,
     imageWidth: 0,
     imageHeight: 0,
@@ -104,25 +87,26 @@ export default (props: ViewerProps) => {
   }
   const containerSize = React.useRef(setContainerWidthHeight())
   const footerHeight = constants.FOOTER_HEIGHT
-  function reducer(s: ViewerCoreState, action): typeof initialState {
+
+  function reducer(s: IViewerCoreState, action: IAction): typeof initialState {
     switch (action.type) {
-      case ACTION_TYPES.setVisible:
+      case ActionTypeEnum.setVisible:
         return {
           ...s,
           visible: action.payload.visible,
         }
-      case ACTION_TYPES.setActiveIndex:
+      case ActionTypeEnum.setActiveIndex:
         return {
           ...s,
           activeIndex: action.payload.index,
           startLoading: true,
         }
-      case ACTION_TYPES.update:
+      case ActionTypeEnum.update:
         return {
           ...s,
           ...action.payload,
         }
-      case ACTION_TYPES.clear:
+      case ActionTypeEnum.clear:
         return {
           ...s,
           width: 0,
@@ -146,8 +130,9 @@ export default (props: ViewerProps) => {
   const viewerCore = React.useRef<HTMLDivElement>(null)
   const init = React.useRef(false)
   const currentLoadIndex = React.useRef(0)
+
   const [state, dispatch] = React.useReducer<
-    (s: any, a: any) => ViewerCoreState
+    (s: IViewerCoreState, a: any) => IViewerCoreState
   >(reducer, initialState)
 
   React.useEffect(() => {
@@ -166,7 +151,7 @@ export default (props: ViewerProps) => {
     if (visible) {
       if (init.current) {
         dispatch(
-          createAction(ACTION_TYPES.setVisible, {
+          createAction(ActionTypeEnum.setVisible, {
             visible: true,
           }),
         )
@@ -191,7 +176,7 @@ export default (props: ViewerProps) => {
         }
       }
     } else {
-      dispatch(createAction(ACTION_TYPES.clear, {}))
+      dispatch(createAction(ActionTypeEnum.clear, {}))
     }
 
     return () => {
@@ -203,26 +188,30 @@ export default (props: ViewerProps) => {
   React.useEffect(() => {
     if (visible) {
       dispatch(
-        createAction(ACTION_TYPES.setActiveIndex, {
+        createAction(ActionTypeEnum.setActiveIndex, {
           index: activeIndex,
         }),
       )
     }
   }, [activeIndex, visible, images])
 
-  function loadImg(currentActiveIndex, isReset = false) {
+  function loadImg(currentActiveIndex: number, isReset = false) {
     dispatch(
-      createAction(ACTION_TYPES.update, {
+      createAction(ActionTypeEnum.update, {
         loading: true,
         loadFailed: false,
       }),
     )
-    let activeImage: ImageDecorator = null
+    let activeImage: ImageDecorator = {
+      src: '',
+      alt: '',
+      downloadUrl: '',
+    }
     if (images.length > 0) {
-      activeImage = images[currentActiveIndex]
+      activeImage = images[currentActiveIndex] as ImageDecorator
     }
     let loadComplete = false
-    let img = new Image()
+    const img = new Image()
     img.onload = () => {
       if (!init.current) {
         return
@@ -237,7 +226,7 @@ export default (props: ViewerProps) => {
       }
       if (props.defaultImg) {
         dispatch(
-          createAction(ACTION_TYPES.update, {
+          createAction(ActionTypeEnum.update, {
             loading: false,
             loadFailed: true,
             startLoading: false,
@@ -250,7 +239,7 @@ export default (props: ViewerProps) => {
         loadImgSuccess(deafultImgWidth, defaultImgHeight, false)
       } else {
         dispatch(
-          createAction(ACTION_TYPES.update, {
+          createAction(ActionTypeEnum.update, {
             loading: false,
             loadFailed: false,
             startLoading: false,
@@ -263,7 +252,11 @@ export default (props: ViewerProps) => {
       loadComplete = true
       loadImgSuccess(img.width, img.height, true)
     }
-    function loadImgSuccess(imgWidth, imgHeight, success) {
+    function loadImgSuccess(
+      imgWidth: number,
+      imgHeight: number,
+      success: boolean,
+    ) {
       if (currentActiveIndex !== currentLoadIndex.current) {
         return
       }
@@ -277,9 +270,9 @@ export default (props: ViewerProps) => {
         realImgWidth = activeImage.defaultSize.width
         realImgHeight = activeImage.defaultSize.height
       }
-      let [width, height] = getImgWidthHeight(realImgWidth, realImgHeight)
-      let left = (containerSize.current.width - width) / 2
-      let top = (containerSize.current.height - height - footerHeight) / 2
+      const [width, height] = getImgWidthHeight(realImgWidth, realImgHeight)
+      const left = (containerSize.current.width - width) / 2
+      const top = (containerSize.current.height - height - footerHeight) / 2
       let scaleX = defaultScale
       let scaleY = defaultScale
       if (noResetZoomAfterChange && !isReset) {
@@ -287,7 +280,7 @@ export default (props: ViewerProps) => {
         scaleY = state.scaleY
       }
       dispatch(
-        createAction(ACTION_TYPES.update, {
+        createAction(ActionTypeEnum.update, {
           width: width,
           height: height,
           left: left,
@@ -312,11 +305,14 @@ export default (props: ViewerProps) => {
     }
   }, [state.startLoading, state.activeIndex])
 
-  function getImgWidthHeight(imgWidth, imgHeight) {
+  function getImgWidthHeight(
+    imgWidth: number,
+    imgHeight: number,
+  ): [number, number] {
     let width = 0
     let height = 0
-    let maxWidth = containerSize.current.width * 0.8
-    let maxHeight = (containerSize.current.height - footerHeight) * 0.8
+    const maxWidth = containerSize.current.width * 0.8
+    const maxHeight = (containerSize.current.height - footerHeight) * 0.8
     width = Math.min(maxWidth, imgWidth)
     height = (width / imgWidth) * imgHeight
     if (height > maxHeight) {
@@ -348,7 +344,7 @@ export default (props: ViewerProps) => {
       props.onChange(activeImage, newIndex)
     }
     dispatch(
-      createAction(ACTION_TYPES.setActiveIndex, {
+      createAction(ActionTypeEnum.setActiveIndex, {
         index: newIndex,
       }),
     )
@@ -387,7 +383,7 @@ export default (props: ViewerProps) => {
 
   function handleScaleX(newScale: 1 | -1) {
     dispatch(
-      createAction(ACTION_TYPES.update, {
+      createAction(ActionTypeEnum.update, {
         scaleX: state.scaleX * newScale,
       }),
     )
@@ -395,15 +391,15 @@ export default (props: ViewerProps) => {
 
   function handleScaleY(newScale: 1 | -1) {
     dispatch(
-      createAction(ACTION_TYPES.update, {
+      createAction(ActionTypeEnum.update, {
         scaleY: state.scaleY * newScale,
       }),
     )
   }
 
-  function handleRotate(isRight: boolean = false) {
+  function handleRotate(isRight = false) {
     dispatch(
-      createAction(ACTION_TYPES.update, {
+      createAction(ActionTypeEnum.update, {
         rotate: state.rotate + 90 * (isRight ? 1 : -1),
       }),
     )
@@ -418,11 +414,11 @@ export default (props: ViewerProps) => {
         handleChangeImg(state.activeIndex + 1)
         break
       case ActionType.zoomIn:
-        let imgCenterXY = getImageCenterXY()
+        const imgCenterXY = getImageCenterXY()
         handleZoom(imgCenterXY.x, imgCenterXY.y, 1, zoomSpeed)
         break
       case ActionType.zoomOut:
-        let imgCenterXY2 = getImageCenterXY()
+        const imgCenterXY2 = getImageCenterXY()
         handleZoom(imgCenterXY2.x, imgCenterXY2.y, -1, zoomSpeed)
         break
       case ActionType.rotateLeft:
@@ -457,9 +453,14 @@ export default (props: ViewerProps) => {
     }
   }
 
-  function handleChangeImgState(width, height, top, left) {
+  function handleChangeImgState(
+    width: number,
+    height: number,
+    top: number,
+    left: number,
+  ) {
     dispatch(
-      createAction(ACTION_TYPES.update, {
+      createAction(ActionTypeEnum.update, {
         width: width,
         height: height,
         top: top,
@@ -471,10 +472,11 @@ export default (props: ViewerProps) => {
   function handleResize() {
     containerSize.current = setContainerWidthHeight()
     if (visible) {
-      let left = (containerSize.current.width - state.width) / 2
-      let top = (containerSize.current.height - state.height - footerHeight) / 2
+      const left = (containerSize.current.width - state.width) / 2
+      const top =
+        (containerSize.current.height - state.height - footerHeight) / 2
       dispatch(
-        createAction(ACTION_TYPES.update, {
+        createAction(ActionTypeEnum.update, {
           left: left,
           top: top,
         }),
@@ -486,7 +488,7 @@ export default (props: ViewerProps) => {
     onMaskClick(e)
   }
 
-  function bindEvent(remove: boolean = false) {
+  function bindEvent(remove = false) {
     let funcName = 'addEventListener'
     if (remove) {
       funcName = 'removeEventListener'
@@ -500,7 +502,7 @@ export default (props: ViewerProps) => {
   }
 
   function handleKeydown(e) {
-    let keyCode = e.keyCode || e.which || e.charCode
+    const keyCode = e.keyCode || e.which || e.charCode
     let isFeatrue = false
     switch (keyCode) {
       // key: esc
@@ -587,9 +589,9 @@ export default (props: ViewerProps) => {
   }
 
   function handleZoom(targetX, targetY, direct, scale) {
-    let imgCenterXY = getImageCenterXY()
-    let diffX = targetX - imgCenterXY.x
-    let diffY = targetY - imgCenterXY.y
+    const imgCenterXY = getImageCenterXY()
+    const diffX = targetX - imgCenterXY.x
+    const diffY = targetY - imgCenterXY.y
     let top = 0
     let left = 0
     let width = 0
@@ -607,8 +609,8 @@ export default (props: ViewerProps) => {
       height = state.height + imgHeight
       scaleX = scaleY = 1
     } else {
-      let directX = state.scaleX > 0 ? 1 : -1
-      let directY = state.scaleY > 0 ? 1 : -1
+      const directX = state.scaleX > 0 ? 1 : -1
+      const directY = state.scaleY > 0 ? 1 : -1
       scaleX = state.scaleX + scale * direct * directX
       scaleY = state.scaleY + scale * direct * directY
       if (typeof props.maxScale !== 'undefined') {
@@ -631,7 +633,7 @@ export default (props: ViewerProps) => {
       height = state.height
     }
     dispatch(
-      createAction(ACTION_TYPES.update, {
+      createAction(ActionTypeEnum.update, {
         width: width,
         scaleX: scaleX,
         scaleY: scaleY,
@@ -681,7 +683,7 @@ export default (props: ViewerProps) => {
         onTransitionEnd={() => {
           if (!visible) {
             dispatch(
-              createAction(ACTION_TYPES.setVisible, {
+              createAction(ActionTypeEnum.setVisible, {
                 visible: false,
               }),
             )

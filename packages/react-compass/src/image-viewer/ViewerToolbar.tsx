@@ -3,7 +3,7 @@ import Button from '../button'
 import Typography from '../typography'
 import Icon, {ActionType} from './Icon'
 import {StyledToolbar, StyledToolbarWrap} from './image-viewer.styles'
-import {ToolbarConfig} from './ViewerProps'
+import {ToolbarConfig} from './types'
 
 export interface ViewerToolbarProps {
   prefixCls: string

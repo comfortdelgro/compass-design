@@ -1,6 +1,6 @@
 import * as React from 'react'
+import ViewerProps from './types'
 import ViewerCore from './ViewerCore'
-import ViewerProps from './ViewerProps'
 
 export default (props: ViewerProps) => {
   const defaultContainer = React.useRef(

@@ -1,3 +1,34 @@
+export interface IViewerCoreState {
+  visible: boolean
+  visibleStart: boolean
+  transitionEnd: boolean
+  activeIndex: number
+  width: number
+  height: number
+  top: number
+  left: number
+  rotate: number
+  imageWidth: number
+  imageHeight: number
+  scaleX: number
+  scaleY: number
+  loading: boolean
+  loadFailed: boolean
+  startLoading: boolean
+}
+
+export enum ActionTypeEnum {
+  setVisible = 'setVisible',
+  setActiveIndex = 'setActiveIndex',
+  update = 'update',
+  clear = 'clear',
+}
+
+export interface IAction {
+  type: ActionTypeEnum
+  payload: Partial<IViewerCoreState>
+}
+
 export interface ViewerImageSize {
   width: number
   height: number
