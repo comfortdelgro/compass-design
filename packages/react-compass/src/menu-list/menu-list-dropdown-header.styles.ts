@@ -3,6 +3,9 @@ import { styled } from '../theme'
 
 
 
+
+
+
 export const StyledMenuListDropdownHeader = styled('button', {
   border: 0,
   margin: 0,
@@ -20,7 +23,7 @@ export const StyledMenuListDropdownHeader = styled('button', {
   },
 
   '& .menu-list-dropdown-title': {
-    color: '$gray100',
+    color: '$primaryText',
     fontSize: '$3_5',
     fontWeight: '$semibold',
     margin: 0,
@@ -40,6 +43,6 @@ export const StyledMenuListDropdownHeader = styled('button', {
   },
 
   '& svg': {
-    color: '$gray80',
+    color: '$secondaryText',
   },
 })
