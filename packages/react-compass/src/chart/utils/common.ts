@@ -38,6 +38,11 @@ export function buildData(labels: string[], data: Dataset[], type: ChartType) {
         case 'column':
           backgroundColor = item.backgroundColor ?? colorsDefault[index]
           break
+        case 'doughnut':
+          backgroundColor = item.backgroundColor
+            ? [...item.backgroundColor, ...colorsDefault]
+            : colorsDefault
+          break
         default:
           backgroundColor = colorsDefault[index]
       }

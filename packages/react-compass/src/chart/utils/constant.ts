@@ -207,3 +207,20 @@ export const DEFAULT_HORIZONTAL_OPTIONS = (
     plugins: DEFAULT_PLUGINS(theme, legendPosition, title),
   }
 }
+
+export const DEFAULT_CIRCULAR_OPTIONS = (
+  theme: typeof config.theme.colors,
+  legendPosition: LegendPosition,
+  title?: string,
+) => {
+  return {
+    responsive: true,
+    layout: DEFAULT_LAYOUT,
+    elements: {
+      arc: {
+        borderWidth: 0,
+      },
+    },
+    plugins: DEFAULT_PLUGINS(theme, legendPosition, title),
+  }
+}
