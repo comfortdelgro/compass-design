@@ -1,13 +1,16 @@
 import {
   DatePicker,
   DateRangePicker,
+  RangeCalendarShorcutItem,
   RangeValue,
 } from '@comfortdelgro/react-compass'
 import {
   DateValue,
+  endOfWeek,
   getLocalTimeZone,
   isWeekend,
   parseDate,
+  startOfWeek,
   today,
 } from '@internationalized/date'
 import {I18nProvider, useDateFormatter, useLocale} from '@react-aria/i18n'
@@ -56,13 +59,17 @@ export function ControlledDateRangePicker() {
   })
   const formatter = useDateFormatter({dateStyle: 'long'})
 
-  const onChangeDateRangePicker = (value: RangeValue<DateValue | null> | null) => {
+  const onChangeDateRangePicker = (
+    value: RangeValue<DateValue | null> | null,
+  ) => {
     setRange(value)
   }
 
   return (
     <I18nProvider locale='en-SG'>
-      { range && range.start && range.end &&
+      {range &&
+        range.start &&
+        range.end &&
         formatter.formatRange(
           range.start.toDate(getLocalTimeZone()),
           range.end.toDate(getLocalTimeZone()),
@@ -83,8 +90,43 @@ export function ValidatedDateRangePickers({
     <I18nProvider locale='en-SG'>
       <DateRangePicker
         allowsNonContiguousRanges={contiguous}
-        isDateUnavailable={(date) => isWeekend(date, locale)}
+        isDateUnavailable={(date) => {
+          if (!date) {
+            return true
+          } else {
+            return isWeekend(date, locale)
+          }
+        }}
       />
     </I18nProvider>
+  )
+}
+
+export function DateRangePickerWithShortcuts() {
+  const {locale} = useLocale()
+
+  const dayOfTwoWeeksAgo = today(getLocalTimeZone()).subtract({
+    weeks: 2,
+  })
+  const startOfTwoWeeksAgo = startOfWeek(dayOfTwoWeeksAgo, locale)
+  const endOfTwoWeeksAgo = endOfWeek(dayOfTwoWeeksAgo, locale)
+
+  return (
+    <DateRangePicker
+      hasShortcuts
+      customShortcuts={(defaultShortcuts, isInvalid) => {
+        const customShortcuts: RangeCalendarShorcutItem[] = [
+          {
+            label: 'Custom Shortcut (Two weeks ago)',
+            isDisable:
+              isInvalid(startOfTwoWeeksAgo) || isInvalid(endOfTwoWeeksAgo),
+            getValue: () => {
+              return {start: startOfTwoWeeksAgo, end: endOfTwoWeeksAgo}
+            },
+          },
+        ]
+        return [...defaultShortcuts, ...customShortcuts]
+      }}
+    />
   )
 }

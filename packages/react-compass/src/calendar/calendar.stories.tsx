@@ -24,8 +24,8 @@ export const Variants: React.FC = () => {
       </p>
       <Calendar
         value={date}
-        maxValue={today(getLocalTimeZone())}
-        //minValue={today(getLocalTimeZone())}
+        // maxValue={today(getLocalTimeZone())}
+        minValue={today(getLocalTimeZone())}
         onChange={(e) => {
           setDate(e)
         }}

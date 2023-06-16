@@ -1,9 +1,16 @@
-import {Calendar, RangeCalendar, RangeValue} from '@comfortdelgro/react-compass'
+import {
+  Calendar,
+  RangeCalendar,
+  RangeCalendarShorcutItem,
+  RangeValue,
+} from '@comfortdelgro/react-compass'
 import {
   DateValue,
+  endOfWeek,
   getLocalTimeZone,
   isWeekend,
   parseDate,
+  startOfWeek,
   today,
 } from '@internationalized/date'
 import {useDateFormatter, useLocale} from '@react-aria/i18n'
@@ -61,6 +68,35 @@ export function ValidatedRangeCalendar({
     <RangeCalendar
       allowsNonContiguousRanges={contiguous}
       isDateUnavailable={(date) => isWeekend(date, locale)}
+    />
+  )
+}
+
+export function CustomizeShorcutsRangeCalendar() {
+  const {locale} = useLocale()
+
+  const dayOfTwoWeeksAgo = today(getLocalTimeZone()).subtract({
+    weeks: 2,
+  })
+  const startOfTwoWeeksAgo = startOfWeek(dayOfTwoWeeksAgo, locale)
+  const endOfTwoWeeksAgo = endOfWeek(dayOfTwoWeeksAgo, locale)
+
+  return (
+    <RangeCalendar
+      hasShortcuts
+      customShortcuts={(defaultShortcuts, isInvalid) => {
+        const customShortcuts: RangeCalendarShorcutItem[] = [
+          {
+            label: 'Custom Shortcut (Two weeks ago)',
+            isDisable:
+              isInvalid(startOfTwoWeeksAgo) || isInvalid(endOfTwoWeeksAgo),
+            getValue: () => {
+              return {start: startOfTwoWeeksAgo, end: endOfTwoWeeksAgo}
+            },
+          },
+        ]
+        return [...defaultShortcuts, ...customShortcuts]
+      }}
     />
   )
 }

@@ -153,37 +153,38 @@ export const lightTheme = defineTheme({
   colors: {
     // Primary
 
-    cdgBlue: '#0142AF', // completed
+    cdgBlue: '#0142AF',
     typeHeading: '#323130',
     background: '#FFFFFF',
-    black: '#323130',
+    black: '#000000',
+    white: '#FFFFFF',
 
-    primaryText: '#323130', // completed
-    secondaryText: '#605E5C', // completed
-    disabledText: '#A19F9D', // completed
+    primaryText: '#323130',
+    secondaryText: '#605E5C',
+    disabledText: '#A19F9D',
     tertiaryText: '#C5C6CF',
-    whiteText: '#FFFFFF', // completed
+    whiteText: '#FFFFFF',
 
-    divider: '$gray30',
-    border: '#8A8886',
-    activeBorder: '$gray100',
+    divider: '#EDEBE9', // Body Divider
+    border: '#8A8886', // Input Border
+    activeBorder: '#323130', // Input-Hover Border
 
     // Secondary
 
-    infoBg: '#CCECF8', // completed
-    info: '#009EDA', // completed
+    infoBg: '#CCECF8',
+    info: '#009EDA',
 
-    dangerBg: '#EFD9DB', // completed
-    danger: '#A4262C', // completed
+    dangerBg: '#EFD9DB',
+    danger: '#A4262C',
 
-    successBg: '#D1E8CF', // completed
-    success: '#107C10', // completed
+    successBg: '#D1E8CF',
+    success: '#107C10',
 
-    severeWarningBg: '#F0CBBE', // completed
-    severeWarning: '#D83B01', // completed
+    severeWarningBg: '#F0CBBE',
+    severeWarning: '#D83B01',
 
-    warningBg: '#F8DB96', // completed
-    warning: '#EFB01D', // completed
+    warningBg: '#F8DB96',
+    warning: '#EFB01D',
 
     // Shades and Tints
 
@@ -214,6 +215,7 @@ export const lightTheme = defineTheme({
     primaryBg: '#F5F5F6',
     secondaryBg: '#F0F0F0',
     darkerBg: '#EAEBEB',
+    brighterBG: '#484D65',
 
     gradientOrange: '#F02627, #EA8816',
     gradientRainbow: '#0163AE, #D80837, #53AF35',
@@ -235,71 +237,73 @@ export const darkTheme = createTheme('dark-theme', {
   colors: {
     // Primary
 
-    cdgBlue: '#014AC8', // completed
-    typeHeading: '#FDFDFD', // completed
-    background: '#1B1B1F', // completed
-    black: '#FFFFFF',
+    cdgBlue: '#014AC8',
+    typeHeading: '#FDFDFD',
+    background: '#1B1B1F',
+    black: '#000000',
+    white: '#FFFFFF',
 
-    primaryText: '#FDFDFD', // completed
-    secondaryText: '#E4E2E6', // completed
-    disabledText: '#7B7D89', // completed
+    primaryText: '#FDFDFD',
+    secondaryText: '#E4E2E6',
+    disabledText: '#7B7D89',
     tertiaryText: 'C5C6CF',
-    whiteText: '#FFFFFF', // completed
+    whiteText: '#FFFFFF',
 
-    divider: '$gray30',
-    border: '#8A8886',
-    activeBorder: '$gray100',
+    divider: '#45464E', // Body Divider
+    border: '#8A8886', // Input Border
+    activeBorder: '#323130', // Input-Hover Border
 
     // Secondary
 
-    infoBg: '#78D5E8', // completed
-    info: '#1F4E57', // completed
+    infoBg: '#78D5E8',
+    info: '#1F4E57',
 
-    dangerBg: '#F4B7AE', // completed
-    danger: '#861913', // completed
+    dangerBg: '#F4B7AE',
+    danger: '#861913',
 
-    successBg: '#87DD63', // completed
-    success: '#235213', // completed
+    successBg: '#87DD63',
+    success: '#235213',
 
-    severeWarningBg: '#F9DCD3', // completed
-    severeWarning: '#7C2A10', // completed
+    severeWarningBg: '#F9DCD3',
+    severeWarning: '#7C2A10',
 
-    warningBg: '#F1BF41', // completed
-    warning: '#574412', // completed
+    warningBg: '#F1BF41',
+    warning: '#574412',
 
     // Shades and Tints
 
-    cdgBlue10: '#051649',
-    cdgBlue20: '#0D2874',
-    cdgBlue40: '#163CA3',
-    cdgBlue60: '#2B53CA',
-    cdgBlue80: '#6B89F7',
-    cdgBlue100: '#91A7F9',
-    cdgBlue120: '#B7C4FA',
-    cdgBlue140: '#DCE1FC',
+    cdgBlue10: '#DCE1FC',
+    cdgBlue20: '#B7C4FA',
+    cdgBlue40: '#91A7F9',
+    cdgBlue60: '#6B89F7',
+    cdgBlue80: '#2B53CA',
+    cdgBlue100: '#163CA3',
+    cdgBlue120: '#0D2874',
+    cdgBlue140: '#051649',
 
     overlayLight: 'rgba(255, 255, 255, 0.4)',
-    overlayDark: 'rgba(18, 18, 18, 0.7);', // completed
+    overlayDark: 'rgba(18, 18, 18, 0.7);',
 
-    gray10: '#2B3041',
-    gray20: '#363B4C',
-    gray30: '#424657',
-    gray40: '#4D5263',
-    gray50: '#595E70',
-    gray60: '#727689',
-    gray70: '#8C90A3',
-    gray80: '#A6AABF',
-    gray90: '##C2C6DB',
-    gray100: '#DEE1F7',
+    gray10: '#DEE1F7',
+    gray20: '#C2C6DB',
+    gray30: '#A6AABF',
+    gray40: '#8C90A3',
+    gray50: '#727689',
+    gray60: '#595E70',
+    gray70: '#4D5263',
+    gray80: '#424657',
+    gray90: '#363B4C',
+    gray100: '#2B3041',
     gray110: '#161B2B',
 
-    primaryBg: '#F5F5F6',
-    secondaryBg: '#F0F0F0',
+    primaryBg: '#1B1B1F',
+    secondaryBg: '#2C3041',
     darkerBg: '#EAEBEB',
+    brighterBG: '#484D65',
 
-    gradientOrange: '#F02627, #EA8816',
-    gradientRainbow: '#0163AE, #D80837, #53AF35',
-    gradientOrangeBlue: '#D2132A, #0597DB',
+    gradientOrange: '#CC1E1F, #D37C16',
+    gradientRainbow: '#025493, #A51C2E, #46932D',
+    gradientOrangeBlue: '#AA1022, #027FB9',
   },
   fonts,
   fontSizes,

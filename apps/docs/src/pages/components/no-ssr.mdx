@@ -1,0 +1,87 @@
+import {Callout} from 'nextra-theme-docs'
+import NoSsr from '../../components/NoSsr'
+import styles from '../../styles/Home.module.css'
+
+# NoSsr
+
+The No-SSR component defers the rendering of children components from the server to the client.
+
+<Callout>
+  Check out our [ladle](/ladle?story=nossr--basic) for more info on this
+  component.
+</Callout>
+
+---
+
+### Import:
+
+```js
+import OTPInput from '@comfortdelgro/react-compass/otpinput'
+```
+
+---
+
+### 1. No-SSR is a component that prevents rendering its children on the server. It has various uses:
+
+- It is helpful when dealing with dependencies that do not support server-side rendering (SSR).
+- It improves the initial loading time by only rendering the visible content.
+- It reduces server rendering workload and can improve performance.
+- It allows for service degradation during heavy server load.
+- With the defer option, it prioritizes essential content for quicker interactivity.
+
+### 2. Delay client-side rendering
+
+No-SSR can be used to delay rendering certain components on the client side. This is useful when you want the rest of the application to load before dealing with complex or data-heavy components.
+
+<section
+  className={styles.avatarShowcaseContainer}
+  style={{flexDirection: 'column'}}
+>
+  <NoSsr />
+</section>
+
+```jsx
+<section
+  className={styles.avatarShowcaseContainer}
+  style={{flexDirection: 'column'}}
+>
+  <h2>Number OTP</h2>
+  <OTPInput
+    length={4}
+    isNumberInput
+    autoFocus
+    onChangeOTP={(otp) => console.log('Number OTP: ', otp)}
+  />
+
+  <h2>String OTP</h2>
+  <OTPInput
+    autoFocus
+    length={4}
+    onChangeOTP={(otp) => console.log('String OTP: ', otp)}
+  />
+
+  <h2>Disabled</h2>
+  <OTPInput
+    autoFocus
+    disabled
+    length={4}
+    onChangeOTP={(otp) => console.log('String OTP: ', otp)}
+  />
+</section>
+```
+
+---
+
+### Props:
+
+| Name  | Type      | Default | Description                                                                                                                                         |
+| :---- | :-------- | :------ | :-------------------------------------------------------------------------------------------------------------------------------------------------- |
+| defer | `boolean` | false   | If true, the component will not only prevent server-side rendering. It will also defer the rendering of the children into a different screen frame. |
+
+###### The component cannot hold a ref.
+
+<Callout>
+  Check out our [ladle](/ladle?story=nossr--basic) for more info on this
+  component.
+</Callout>
+```
