@@ -79,6 +79,9 @@ export const StyledButtonContent = styled('div', {
 })
 
 export const StyledButton = styled('button', {
+  backgroundColor: 'transparent',
+  color: '$cdgBlue',
+  borderColor: '$cdgBlue',
   position: 'relative',
   flexShrink: 0,
 
@@ -116,13 +119,14 @@ export const StyledButton = styled('button', {
     boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;',
   },
 
-  '& .ripple': {
+  '&.ripple': {
     position: 'absolute',
     borderRadius: '50%',
     transform: `scale(0)`,
     animation: `${ripple} 600ms linear`,
     backgroundColor: 'rgba(255, 255, 255, 0.7)',
   },
+  /* Variant styles */
   variants: {
     size: {
       lg: {
@@ -214,6 +218,63 @@ export const StyledButton = styled('button', {
     },
   },
   compoundVariants: [
+    {
+      variant: 'primary',
+      css: {
+        '&.variant-button': {
+          backgroundColor: '$cdgBlue',
+          color: '$whiteText',
+          borderColor: '$cdgBlue',
+          '&:hover:enabled': {
+            backgroundColor: '$cdgBlue120',
+            borderColor: '$cdgBlue120',
+          },
+        },
+      },
+    },
+    {
+      variant: 'secondary',
+      css: {
+        '&.variant-button': {
+          backgroundColor: 'transparent',
+          color: '$cdgBlue',
+          borderColor: '$cdgBlue',
+          '&:hover:enabled': {
+            color: '$cdgBlue100',
+            backgroundColor: '$cdgBlue10',
+            borderColor: '$cdgBlue120',
+          },
+        },
+      },
+    },
+    {
+      variant: 'danger',
+      css: {
+        '&.variant-button': {
+          backgroundColor: 'transparent',
+          color: '$danger',
+          borderColor: '$danger',
+          '&:hover:enabled': {
+            backgroundColor: '$dangerBg',
+            borderColor: '$dangerBg',
+          },
+        },
+      },
+    },
+    {
+      variant: 'ghost',
+      css: {
+        '&.variant-button': {
+          backgroundColor: 'transparent',
+          color: '$typeHeading',
+          borderColor: 'transparent',
+          '&:hover:enabled': {
+            color: '$cdgBlue',
+            backgroundColor: '$cdgBlue10',
+          },
+        },
+      },
+    },
     {
       size: 'lg',
       iconOnly: true,
