@@ -2,6 +2,12 @@ import {styled} from '../theme'
 import type {VariantProps} from '../utils/stitches.types'
 import {StyledAvatar} from './avatar.styles'
 
+export const StyledRing = styled('div', {
+  transition: '$default',
+  border: '2px solid $whiteText',
+  borderRadius: '$full',
+})
+
 export const StyledAvatarGroup = styled('div', {
   display: 'flex',
   flexDirection: 'row',
@@ -9,19 +15,29 @@ export const StyledAvatarGroup = styled('div', {
   justifyContent: 'center',
   width: 'fit-content',
 
-  [`& ${StyledAvatar}`]: {
-    marginRight: '-$2',
-    '&:hover': {
-      marginTop: '-$4',
-    },
-  },
-
   variants: {
+    variant: {
+      contained: {
+        [`& ${StyledAvatar}`]: {
+          marginRight: '-$2',
+          '&:hover': {
+            marginTop: '-$4',
+          },
+        },
+      },
+      outlined: {
+        [`& ${StyledRing}`]: {
+          marginRight: '-$2',
+          '&:hover': {
+            marginTop: '-$4',
+          },
+        },
+      },
+    },
     disabledAnimation: {
       false: {},
       true: {
         [`& ${StyledAvatar}`]: {
-          marginRight: '-$2',
           '&:hover': {
             marginTop: '0px',
           },

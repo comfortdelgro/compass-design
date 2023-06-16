@@ -1,13 +1,18 @@
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {AvatarGroupVariantProps, StyledAvatarGroup} from './avatar-group.styles'
+import {
+  AvatarGroupVariantProps,
+  StyledAvatarGroup,
+  StyledRing,
+} from './avatar-group.styles'
 import {StyledAvatar} from './avatar.styles'
 
 interface Props extends StyledComponentProps {
   display?: number
   children?: React.ReactNode
   size?: 'lg' | 'md' | 'sm' | 'xs'
+  variant?: 'contained' | 'outlined'
   disabledAnimation?: boolean
 }
 
@@ -24,6 +29,7 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
       display = 4,
       children,
       size = 'md',
+      variant = 'outlined',
       disabledAnimation = false,
       ...delegated
     } = props
@@ -43,14 +49,47 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
       <StyledAvatarGroup
         css={css}
         ref={avatarGroupRef}
+        variant={variant}
         disabledAnimation={disabledAnimation}
         {...delegated}
       >
-        {avatars.slice(0, display).map((avatar) => avatar)}
-        {display < avatars.length && (
+        {avatars.slice(0, display).map((avatar, index) => {
+          return variant === 'outlined' ? (
+            <StyledRing
+              css={{
+                zIndex: index,
+              }}
+            >
+              {avatar}
+            </StyledRing>
+          ) : (
+            avatar
+          )
+        })}
+        {display < avatars.length && variant === 'outlined' ? (
+          <StyledRing
+            css={{
+              zIndex: display,
+            }}
+          >
+            <StyledAvatar
+              size={size}
+              css={{
+                '.initials': {fontSize: determineFontSize()},
+                zIndex: display,
+              }}
+            >
+              <span className='initials count'>
+                +{avatars.length - display}
+              </span>
+            </StyledAvatar>
+          </StyledRing>
+        ) : (
           <StyledAvatar
             size={size}
-            css={{'.initials': {fontSize: determineFontSize()}}}
+            css={{
+              '.initials': {fontSize: determineFontSize()},
+            }}
           >
             <span className='initials count'>+{avatars.length - display}</span>
           </StyledAvatar>
