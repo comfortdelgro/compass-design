@@ -7,7 +7,7 @@ export const StyledPopover = styled('div', {
   width: 'fit-content',
   height: 'fit-content',
   minWidth: '100%',
-  background: '#FFFFFF',
+  background: '$white',
   boxShadow:
     '0px 0.6px 1.8px rgba(0, 0, 0, 0.1), 0px 3.2px 7.2px rgba(0, 0, 0, 0.13)',
   ul: {

@@ -20,6 +20,7 @@ export const StyledRangeCalendar = styled('div', {
     marginTop: '$6',
     paddingTop: '$6',
     borderTop: '1px solid $gray40',
+    color: '$primaryText'
   },
 
   '& .calendar-footer .calendar-footer-right-side': {

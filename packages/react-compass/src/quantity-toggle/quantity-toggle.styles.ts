@@ -1,5 +1,11 @@
-import {styled} from '../theme'
-import type {VariantProps} from '../utils/stitches.types'
+import { styled } from '../theme'
+import type { VariantProps } from '../utils/stitches.types'
+
+
+
+
+
+
 
 export const StyledQuantityToggle = styled('div', {
   width: '100%',
@@ -22,10 +28,10 @@ export const StyledQuantityToggle = styled('div', {
     width: '100%',
     input: {
       flex: 1,
-      color: '#323130',
+      color: '$gray100',
       padding: '$3 $4',
       textAlign: 'center',
-      border: '1px solid #EDEBE9',
+      border: '1px solid $gray30',
       borderRadius: '0',
       backgroundColor: '$white',
       fontSize: '$label1',
@@ -35,12 +41,12 @@ export const StyledQuantityToggle = styled('div', {
       color: '$gray40',
     },
     button: {
-      color: '#323130',
+      color: '$gray100',
       aspectRatio: '1',
       width: '$14',
       cursor: 'pointer',
       fontWeight: '$bold',
-      border: '1px solid #EDEBE9',
+      border: '1px solid $gray30',
       backgroundColor: '$gray10',
     },
     "button[aria-label='decrease']": {
@@ -58,11 +64,11 @@ export const StyledQuantityToggle = styled('div', {
         cursor: 'not-allowed',
         div: {
           input: {
-            backgroundColor: '#EDEBE9',
+            backgroundColor: '$gray30',
             cursor: 'not-allowed',
           },
           button: {
-            borderColor: '#EDEBE9',
+            borderColor: '$gray30',
             cursor: 'not-allowed',
           },
         },
