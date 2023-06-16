@@ -102,6 +102,10 @@ export const StyledExpandButton = styled('button', {
   cursor: 'pointer',
   padding: '$2 $4',
 
+  '&:focus': {
+    boxShadow: 'none',
+  },
+
   '&:focus-visible': {
     outline: '2px solid $cdgBlue80',
     borderRadius: '2px',
