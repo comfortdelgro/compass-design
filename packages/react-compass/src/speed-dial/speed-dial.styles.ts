@@ -46,6 +46,13 @@ export const StyledSpeedDialTrigger = styled('div', {
     },
   },
 })
+
+export const StyledSpeedDialTriggerContent = styled('span', {
+  display: 'inline-block',
+  width: '24px',
+  height: '27px',
+})
+
 export const StyledSpeedDialActions = styled('ul', {
   alignItems: 'center',
   justifyContent: 'center',

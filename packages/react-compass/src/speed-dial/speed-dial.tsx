@@ -11,6 +11,7 @@ import {
   StyledSpeedDial,
   StyledSpeedDialActions,
   StyledSpeedDialTrigger,
+  StyledSpeedDialTriggerContent,
 } from './speed-dial.styles'
 
 interface Props extends StyledComponentProps {
@@ -72,15 +73,9 @@ const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
           className={`speed-dial__trigger ${isOpen ? 'open' : ''}`}
           onMouseEnter={handleMouseEnter}
         >
-          <span
-            style={{
-              display: 'inline-block',
-              width: '24px',
-              height: '27.43px',
-            }}
-          >
+          <StyledSpeedDialTriggerContent>
             <FontAwesomeIcon icon={faPlus} />
-          </span>
+          </StyledSpeedDialTriggerContent>
         </StyledSpeedDialTrigger>
         <StyledSpeedDialActions
           className={`speed-dial__actions speed-dial__actions--${
