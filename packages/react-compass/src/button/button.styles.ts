@@ -119,7 +119,7 @@ export const StyledButton = styled('button', {
     boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;',
   },
 
-  '&.ripple': {
+  '&. ripple': {
     position: 'absolute',
     borderRadius: '50%',
     transform: `scale(0)`,
