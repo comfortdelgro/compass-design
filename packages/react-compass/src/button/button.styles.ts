@@ -49,7 +49,7 @@ export const StyledLoading = styled('span', {
 export const StyledButtonContent = styled('div', {
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'center',
+  justifyContent: 'space-between',
   flexWrap: 'nowrap',
   flexShrink: 0,
 
@@ -61,18 +61,22 @@ export const StyledButtonContent = styled('div', {
   '.icon.left': {
     marginRight: '$2',
     display: 'flex',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'center',
   },
 
   '.icon.right': {
     marginLeft: '$2',
     display: 'flex',
-    alignItems: 'center',
+    alignItems: 'flex-end',
     justifyContent: 'center',
   },
+  '.center-wrapper': {
+    flexGrow: '1',
+    textAlign: 'center',
+  },
   '.children': {
-    display: 'flex',
+    display: 'inline-block',
     alignItems: 'center',
     justifyContent: 'center',
     margin: 'auto',
@@ -122,7 +126,7 @@ export const StyledButton = styled('button', {
     borderRadius: '50%',
     transform: `scale(0)`,
     animation: `${ripple} 600ms linear`,
-    backgroundColor: 'rgba(255, 255, 255, 0.7)',
+    background: 'rgba(255, 255, 255, 0.7)',
   },
   variants: {
     size: {
