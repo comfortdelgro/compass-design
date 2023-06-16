@@ -29,7 +29,7 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
       display = 4,
       children,
       size = 'md',
-      variant = 'outlined',
+      variant = 'contained',
       disabledAnimation = false,
       ...delegated
     } = props

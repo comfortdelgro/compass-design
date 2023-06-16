@@ -27,6 +27,50 @@ import Avatar from '@comfortdelgro/react-compass/avatar'
 
 ---
 
+### Avatar Indicator:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Avatar
+    label='Albert Einstein'
+    image='https://i.pravatar.cc/150?img=60'
+    size='lg'
+    indicator={
+      <svg viewBox='0 0 12 12'>
+        <circle
+          cx='6'
+          cy='6'
+          r='5'
+          fill='#107C10'
+          stroke='white'
+          stroke-width='2'
+        />
+      </svg>
+    }
+  />
+</section>
+
+```js
+<Avatar
+  label='Albert Einstein'
+    image='https://i.pravatar.cc/150?img=60'
+  size='lg'
+  indicator={
+    <svg viewBox='0 0 12 12'>
+      <circle
+        cx='6'
+        cy='6'
+        r='5'
+        fill='#107C10'
+        stroke='white'
+        stroke-width='2'
+      />
+    </svg>
+  }
+/>
+```
+
+---
+
 ### Image avatars:
 
 <section className={styles.avatarShowcaseContainer}>
@@ -218,6 +262,84 @@ import Avatar from '@comfortdelgro/react-compass/avatar'
 
 ---
 
+### Grouped Outlined
+
+<section className={styles.avatarShowcaseContainer}>
+  <Avatar.Group display={3} size='lg' variant='outlined'>
+    <Avatar
+      label='Albert Einstein'
+      image='https://i.pravatar.cc/150?u=a042581f4e29026704d'
+      size='lg'
+    />
+    <Avatar
+      label='Albert Einstein'
+      image='https://i.pravatar.cc/150?u=a0581f4e29d026704d'
+      size='lg'
+    />
+    <Avatar
+      label='Albert Einstein'
+      image='https://i.pravatar.cc/150?u=a042581f4e429026704d'
+      size='lg'
+    />
+    <Avatar
+      label='Albert Einstein'
+      image='https://i.pravatar.cc/150?u=a042581f4e42239026704d'
+      size='lg'
+    />
+    <Avatar
+      label='Albert Einstein'
+      image='https://i.pravatar.cc/150?u=a0425e81f4234e429026704d'
+      size='lg'
+    />
+  </Avatar.Group>
+</section>
+
+```js
+<Avatar.Group display={3}>
+  <Avatar
+    label='Albert Einstein'
+    image='https://i.pravatar.cc/150?u=a042581f4e29026704d'
+    size='lg'
+  />
+  <Avatar
+    label='Albert Einstein'
+    image='https://i.pravatar.cc/150?u=a0581f4e29d026704d'
+    size='lg'
+  />
+  <Avatar
+    label='Albert Einstein'
+    image='https://i.pravatar.cc/150?u=a042581f4e429026704d'
+    size='lg'
+  />
+  <Avatar
+    label='Albert Einstein'
+    image='https://i.pravatar.cc/150?u=a042581f4e42239026704d'
+    size='lg'
+  />
+  <Avatar
+    label='Albert Einstein'
+    image='https://i.pravatar.cc/150?u=a0425e81f4234e429026704d'
+    size='lg'
+  />
+</Avatar.Group>
+```
+
+---
+
+### Add:
+
+Using for add new user or members
+
+<section className={styles.avatarShowcaseContainer}>
+  <Avatar.Add size='lg'/>
+</section>
+
+```js
+<Avatar.Add size='lg'/>
+```
+
+---
+
 ### Custom styling:
 
 You can style React Compass's components with the css prop. <br/>
@@ -253,6 +375,7 @@ With css prop, you can basically do anything that css can do.
 | image | `String `                    | —       | Image of the avatars takes the highest priority. We pass the image's address as string to this prop. |
 | size  | `xs`\|`sm`\|`md`\|`lg`       | —       | Sizes of the avatars.                                                                                |
 | icon  | `ReactNode`\|`false`\| `true`| false   | The icon of the alerts. It'd disappear if the value is false.                                        |
+| indicator | `Indicator`              | —       | Indicator status of the avatar.                                                                      |
 | css   | `CSS`                        | —       | The system prop that allows defining system overrides as well as additional CSS styles.              |
 
 #### `<Avatar.Group/>` :
@@ -260,8 +383,20 @@ With css prop, you can basically do anything that css can do.
 | Name     | Type                    | Default | Description                                                                             |
 | :------- | :---------------------- | :------ | :-------------------------------------------------------------------------------------- |
 | children | `ReactNode` \| `String` | —       | We pass our avatars as children props to Avatar.Group.                                  |
+| size     | `xs`\|`sm`\|`md`\|`lg`  | —       | Sizes of the group.                                                                     |
 | display  | `Number`                | —       | Display prop determines the number of avatar displayed.                                 |
+| variant  | `contained`\|`outline`  | —       | Variant of the avatar on group.                                                         |
 | css      | `CSS`                   | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
+
+#### `<Avatar.Add/>` :
+
+Extended all props of the Button
+
+| Name  | Type                         | Default | Description                                                                                          |
+| :---- | :--------------------------- | :------ | :--------------------------------------------------------------------------------------------------- |
+| size  | `xs`\|`sm`\|`md`\|`lg`       | —       | Sizes of the button.                                                                                 |
+| isDisabled | `boolean`               | —       | Whether the button is disabled                                                                       |
+| css   | `CSS`                        | —       | The system prop that allows defining system overrides as well as additional CSS styles.              |
 
 ---
 

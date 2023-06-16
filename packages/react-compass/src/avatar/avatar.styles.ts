@@ -8,7 +8,6 @@ export const StyledAvatar = styled('div', {
   justifyContent: 'center',
   aspectRatio: '1 / 1',
   borderRadius: '$full',
-  overflow: 'hidden',
   userSelect: 'none',
   color: '$info',
   transition: '$default',
@@ -19,6 +18,7 @@ export const StyledAvatar = styled('div', {
     height: '100%',
     position: 'absolute',
     background: '$infoBg',
+    borderRadius: '$full',
     top: 0,
     left: 0,
   },
@@ -90,6 +90,44 @@ export const StyledAvatar = styled('div', {
   },
   defaultVariants: {
     size: 'md',
+  },
+})
+
+export const StyledIndicator = styled('div', {
+  position: 'absolute',
+  aspectRatio: '1 / 1',
+  borderRadius: '$full',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  zIndex: 5,
+  variants: {
+    size: {
+      lg: {
+        width: '$4',
+        height: '$4',
+        bottom: -2,
+        right: -2,
+      },
+      md: {
+        width: '$4',
+        height: '$4',
+        bottom: -2,
+        right: -2,
+      },
+      sm: {
+        width: '$3',
+        height: '$3',
+        bottom: -2,
+        right: -2,
+      },
+      xs: {
+        width: '$2',
+        height: '$2',
+        bottom: -1,
+        right: -1,
+      },
+    },
   },
 })
 

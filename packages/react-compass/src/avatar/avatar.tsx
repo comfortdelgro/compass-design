@@ -1,8 +1,13 @@
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
+import type AvatarAdd from './avatar-add'
 import type AvatarGroup from './avatar-group'
-import {AvatarVariantProps, StyledAvatar} from './avatar.styles'
+import {
+  AvatarVariantProps,
+  StyledAvatar,
+  StyledIndicator,
+} from './avatar.styles'
 
 const calculateInitials = (name: string, size: AvatarVariantProps['size']) => {
   const initials = name
@@ -19,6 +24,7 @@ interface Props extends StyledComponentProps {
   label?: string
   icon?: React.ReactNode
   image?: string
+  indicator?: React.ReactNode
 }
 
 export type AvatarProps = Props &
@@ -35,6 +41,7 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
     image,
     // VariantProps
     size = 'md',
+    indicator,
     // html attribute
     ...delegates
   } = props
@@ -51,8 +58,12 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
       {image ? (
         <img className='image' src={image} alt={label || 'Avatar'} />
       ) : null}
+      {indicator && <StyledIndicator size={size}>{indicator}</StyledIndicator>}
     </StyledAvatar>
   )
 })
 
-export default Avatar as typeof Avatar & {Group: typeof AvatarGroup}
+export default Avatar as typeof Avatar & {
+  Group: typeof AvatarGroup
+  Add: typeof AvatarAdd
+}
