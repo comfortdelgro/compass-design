@@ -1,4 +1,3 @@
-import {StoryDecorator} from '@ladle/react'
 import type {RangeValue} from '@react-types/shared'
 import React from 'react'
 import {DateValue} from '../calendar/types'
@@ -76,19 +75,4 @@ export const Controlled: React.FC = () => {
       />
     </I18nProvider>
   )
-}
-
-export default {
-  decorators: [
-    (Component) => (
-      <div>
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `.ladle-main { background: #eee; }`,
-          }}
-        ></style>
-        <Component />
-      </div>
-    ),
-  ] as StoryDecorator[],
 }

@@ -14,7 +14,7 @@ export const StyledPreview = styled('div', {
         backgroundColor: '$primaryBg',
       },
       false: {
-        backgroundColor: '#CCECF8',
+        backgroundColor: '$infoBg',
       },
     },
   },

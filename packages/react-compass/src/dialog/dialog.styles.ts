@@ -34,7 +34,7 @@ export const StyledDialogTitle = styled('h3', {
   fontWeight: '$semibold',
   fontSize: '$header3',
   lineHeight: '$normal',
-  color: '$black',
+  color: '$primaryText',
 })
 
 export const StyledDialogDescription = styled('p', {
@@ -77,7 +77,7 @@ export const StyledDialogWrapper = styled('div', {
   border: 'none',
   boxSizing: 'border-box',
   margin: '0px',
-  background: '#00000066',
+  background: '$overlayDark',
 
   // backdrop styling
   position: 'fixed',

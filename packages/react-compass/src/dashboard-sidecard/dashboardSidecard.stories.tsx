@@ -1,4 +1,5 @@
 import React from 'react'
+import Box from '../box'
 import Button from '../button'
 import SearchField from '../searchfield'
 import {Column} from '../utils/components'
@@ -6,9 +7,10 @@ import DashboardSidecard from './index'
 
 export const Default: React.FC = () => {
   const Card = (
-    <div
-      style={{
-        backgroundColor: 'white',
+    <Box
+      css={{
+        backgroundColor: '$background',
+        color: '$primaryText',
         borderRadius: '8px',
         width: '100%',
         height: '11rem',
@@ -28,7 +30,7 @@ export const Default: React.FC = () => {
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo hic quae,
         adipisci tempore minus beatae itaque tenetur.
       </div>
-    </div>
+    </Box>
   )
   return (
     <Column>
