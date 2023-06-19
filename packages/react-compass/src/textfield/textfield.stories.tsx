@@ -32,9 +32,10 @@ export const Variants: React.FC = () => (
         isErrored
         helperText='my helper text'
         errorMessage='my error message'
-        onChange={(e) => console.log('onChange', e)}
-        onChangeEvent={(e) => console.log('onChangeEvent', e)}
+        // onChange={(e) => console.log('onChange', e)}
+        // onChangeEvent={(e) => console.log('onChangeEvent', e)}
         className='my-class'
+        onKeyDown={(e) => console.log('onKeyDownTest', e)}
       />
     </Row>
 
