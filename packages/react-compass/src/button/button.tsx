@@ -99,7 +99,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             ref={buttonRef}
             // only allow onClick and onTouchEnd to be passed to the button
             // reserve onMouseDown and onTouchStart for ripple effect
-            className='variant-button'
             onClick={onClick ?? onPress}
             onTouchEnd={props.onTouchEnd}
             disabled={isDisabled}
