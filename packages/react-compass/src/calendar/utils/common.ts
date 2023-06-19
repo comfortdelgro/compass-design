@@ -15,9 +15,9 @@ export const hookData = new WeakMap<
 >()
 
 export function isInvalid(
-  date: DateValue,
-  minValue: DateValue,
-  maxValue: DateValue,
+  date: DateValue | null | undefined,
+  minValue: DateValue | null | undefined,
+  maxValue: DateValue | null | undefined,
 ) {
   if (date == null) {
     return false

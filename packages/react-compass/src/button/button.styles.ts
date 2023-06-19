@@ -49,7 +49,7 @@ export const StyledLoading = styled('span', {
 export const StyledButtonContent = styled('div', {
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'center',
+  justifyContent: 'space-between',
   flexWrap: 'nowrap',
   flexShrink: 0,
 

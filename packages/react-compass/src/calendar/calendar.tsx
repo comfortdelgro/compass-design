@@ -21,6 +21,7 @@ interface Props extends StyledComponentProps, ValueBase<DateValue> {
   state?: DatePickerState
   hasFooter?: boolean
   maxValue?: DateValue | null | undefined
+  minValue?: DateValue | null | undefined
   isDisabled?: boolean
   isDateUnavailable?: (date: DateValue) => boolean
 }
