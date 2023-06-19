@@ -116,16 +116,24 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
       // AriaTextFieldProps
       isDisabled,
       inputRef,
+      onCut,
+      onCopy,
+      onBlur,
+      onFocus,
+      onPaste,
+      onInput,
+      onKeyUp,
+      onSelect,
+      onKeyDown,
+      onBeforeInput,
+      onCompositionEnd,
+      onCompositionStart,
+      onCompositionUpdate,
       ...ariaSafeProps
     } = props
 
     const htmlProps = {...ariaSafeProps} as Omit<
       React.HTMLAttributes<HTMLDivElement>,
-      keyof Props
-    >
-
-    const inputProps = {...ariaSafeProps} as Omit<
-      React.HTMLAttributes<HTMLInputElement>,
       keyof Props
     >
 
@@ -149,17 +157,7 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
     }, [password, isPassWordVisible])
 
     return (
-      <StyledTextFieldWrapper
-        css={css}
-        {...htmlProps}
-        ref={textfieldRef}
-        onKeyDown={(e) => {
-          e.preventDefault()
-        }}
-        onKeyUp={(e) => {
-          e.preventDefault()
-        }}
-      >
+      <StyledTextFieldWrapper css={css} {...htmlProps} ref={textfieldRef}>
         {label && (
           <StyledTextFieldLabel htmlFor={id}>
             {label}
@@ -184,22 +182,21 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
             name={name}
             value={value}
             type={determineInputType ?? type}
-            onCut={props.onCut}
-            onCopy={props.onCopy}
-            onBlur={props.onBlur}
-            onFocus={props.onFocus}
-            onPaste={props.onPaste}
-            onInput={props.onInput}
-            onKeyUp={props.onKeyUp}
-            onSelect={props.onSelect}
+            onCut={onCut}
+            onCopy={onCopy}
+            onBlur={onBlur}
+            onFocus={onFocus}
+            onPaste={onPaste}
+            onInput={onInput}
+            onKeyUp={onKeyUp}
+            onSelect={onSelect}
             onChange={handleOnChange}
-            onKeyDown={props.onKeyDown}
-            onBeforeInput={props.onBeforeInput}
-            onCompositionEnd={props.onCompositionEnd}
-            onCompositionStart={props.onCompositionStart}
-            onCompositionUpdate={props.onCompositionUpdate}
+            onKeyDown={onKeyDown}
+            onBeforeInput={onBeforeInput}
+            onCompositionEnd={onCompositionEnd}
+            onCompositionStart={onCompositionStart}
+            onCompositionUpdate={onCompositionUpdate}
             ref={inputfieldRef}
-            {...inputProps}
           />
           {rightIcon ? <div className='right-icon'>{rightIcon}</div> : null}
           {password && determineInputType == 'password' ? (
