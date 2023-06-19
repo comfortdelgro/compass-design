@@ -18,6 +18,7 @@ export const StyledImageViewerWrap = styled('div', {
 export const StyledToolbarWrap = styled('div', {
   zIndex: '52',
   position: 'fixed',
+  marginBottom: 20,
   bottom: 50,
   left: 0,
   display: 'flex',
@@ -43,19 +44,23 @@ export const StyledNavbar = styled('div', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  backgroundColor: 'rgba(0, 0, 0, 0.4)',
   width: '100vw',
 })
 
 export const StyledNavbarItem = styled('div', {
   zIndex: 53,
   height: 50,
+  marginBottom: 10,
   img: {
     width: '60px',
     height: '50px',
     opacity: 0.5,
+    marginRight: 2,
+    marginLeft: 2,
+    borderRadius: 4,
   },
   '.active': {
     opacity: 1,
+    border: '2px solid $cdgBlue80',
   },
 })

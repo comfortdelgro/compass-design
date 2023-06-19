@@ -668,7 +668,7 @@ export default (props: IViewerProps) => {
               }}
               onClick={onClose}
             >
-              <Icon icon={faXmark} color='white' scale={2} />
+              <Icon icon={faXmark} color='white' />
             </Button>
           )}
           <Box

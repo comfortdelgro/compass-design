@@ -1,5 +1,11 @@
+import {
+  faMagnifyingGlass,
+  faMagnifyingGlassMinus,
+  faMagnifyingGlassPlus,
+} from '@fortawesome/free-solid-svg-icons'
 import * as React from 'react'
 import Button from '../button'
+import Icon from '../icon'
 import Typography from '../typography'
 import {ActionType} from './Icon'
 import {StyledToolbar, StyledToolbarWrap} from './image-viewer.styles'
@@ -28,43 +34,52 @@ export const defaultToolbars: ToolbarConfig[] = [
   {
     key: 'zoomIn',
     actionType: ActionType.zoomIn,
-  },
-  {
-    key: 'zoomOut',
-    actionType: ActionType.zoomOut,
-  },
-  {
-    key: 'prev',
-    actionType: ActionType.prev,
+    icon: faMagnifyingGlassPlus,
   },
   {
     key: 'reset',
     actionType: ActionType.reset,
+    icon: faMagnifyingGlass,
   },
   {
-    key: 'next',
-    actionType: ActionType.next,
+    key: 'zoomOut',
+    actionType: ActionType.zoomOut,
+    icon: faMagnifyingGlassMinus,
   },
-  {
-    key: 'rotateLeft',
-    actionType: ActionType.rotateLeft,
-  },
-  {
-    key: 'rotateRight',
-    actionType: ActionType.rotateRight,
-  },
-  {
-    key: 'scaleX',
-    actionType: ActionType.scaleX,
-  },
-  {
-    key: 'scaleY',
-    actionType: ActionType.scaleY,
-  },
-  {
-    key: 'download',
-    actionType: ActionType.download,
-  },
+  // {
+  //   key: 'prev',
+  //   actionType: ActionType.prev,
+  //   icon: faBackward,
+  // },
+  // {
+  //   key: 'next',
+  //   actionType: ActionType.next,
+  //   icon: faForward,
+  // },
+  // {
+  //   key: 'rotateLeft',
+  //   actionType: ActionType.rotateLeft,
+  //   icon: faRotateLeft,
+  // },
+  // {
+  //   key: 'rotateRight',
+  //   actionType: ActionType.rotateRight,
+  //   icon: faRotateRight,
+  // },
+  // {
+  //   key: 'scaleX',
+  //   actionType: ActionType.scaleX,
+  //   icon: faLeftRight,
+  // },
+  // {
+  //   key: 'scaleY',
+  //   actionType: ActionType.scaleY,
+  //   icon: faUpDown,
+  // },
+  // {
+  //   key: 'download',
+  //   actionType: ActionType.download,
+  // },
 ]
 
 function deleteToolbarFromKey(toolbars: ToolbarConfig[], keys: string[]) {
@@ -81,13 +96,18 @@ export default function ViewerToolbar(props: ViewerToolbarProps) {
   function renderAction(config: ToolbarConfig) {
     return (
       <Button
+        variant='ghost'
         key={config.key}
         onClick={() => {
           handleAction(config)
         }}
         data-key={config.key}
       >
-        {config.key}
+        {config.icon ? (
+          <Icon icon={config.icon} color='white' />
+        ) : (
+          <>{config.key}</>
+        )}
       </Button>
     )
   }

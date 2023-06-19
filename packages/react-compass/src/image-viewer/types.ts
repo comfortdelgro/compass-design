@@ -1,3 +1,4 @@
+import {IconDefinition} from '@fortawesome/fontawesome-svg-core'
 import {ActionType} from './Icon'
 
 export interface IViewerCoreState {
@@ -47,6 +48,7 @@ export interface ImageDecorator {
 export interface ToolbarConfig {
   key: string
   actionType: ActionType
+  icon?: IconDefinition
   render?: React.ReactNode
   onClick?: (activeImage: ImageDecorator) => void
 }
