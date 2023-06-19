@@ -17,15 +17,18 @@ export const AddButton = () => (
     <h3>Add Avatar</h3>
 
     <Row>
-      <Avatar.Add size='lg' />
-      <Avatar.Add size='md' />
-      <Avatar.Add size='sm' />
-      <Avatar.Add size='xs' />
+      <Avatar.Add
+        size='lg'
+        tooltip='Add user Add user Add user Add user Add user  Add user Add user Add user Add user'
+      />
+      <Avatar.Add size='md' tooltip='Add user' />
+      <Avatar.Add size='sm' tooltip='Add user' />
+      <Avatar.Add size='xs' tooltip='Add user' />
     </Row>
 
     <h3>Disabled</h3>
     <Row>
-      <Avatar.Add size='lg' isDisabled />
+      <Avatar.Add size='lg' isDisabled tooltip='Add user' />
     </Row>
   </>
 )

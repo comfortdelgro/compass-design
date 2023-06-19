@@ -2,6 +2,7 @@ import {styled} from '../theme'
 import type {VariantProps} from '../utils/stitches.types'
 
 export const StyledAvatarAdd = styled('button', {
+  position: 'relative',
   aspectRatio: '1 / 1',
   borderRadius: '$full',
   border: '1px dashed $gray70',
@@ -21,18 +22,32 @@ export const StyledAvatarAdd = styled('button', {
     zIndex: -1,
   },
 
+  '&:hover': {
+    '.avatar-add-tooltip': {
+      visibility: 'visible',
+    },
+    '&::before': {
+      backgroundColor: '$divider',
+    },
+  },
+
+  '&:focus': {
+    boxShadow: '0px 0px 0px 2px #7095D2',
+  },
+
   variants: {
     disabled: {
       true: {
         '&::before': {
           backgroundColor: '#BCBCBC',
         },
-      },
-      false: {
         '&:hover': {
-          boxShadow: '0px 0px 0px 2px #7095D2',
+          '&::before': {
+            backgroundColor: '#BCBCBC',
+          },
         },
       },
+      false: {},
     },
     size: {
       lg: {

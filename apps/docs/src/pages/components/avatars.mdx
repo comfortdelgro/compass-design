@@ -331,11 +331,11 @@ import Avatar from '@comfortdelgro/react-compass/avatar'
 Using for add new user or members
 
 <section className={styles.avatarShowcaseContainer}>
-  <Avatar.Add size='lg'/>
+  <Avatar.Add size='lg' tooltip='Add user' />
 </section>
 
 ```js
-<Avatar.Add size='lg'/>
+<Avatar.Add size='lg' tooltip='Add user' />
 ```
 
 ---
@@ -395,6 +395,7 @@ Extended all props of the Button
 | Name  | Type                         | Default | Description                                                                                          |
 | :---- | :--------------------------- | :------ | :--------------------------------------------------------------------------------------------------- |
 | size  | `xs`\|`sm`\|`md`\|`lg`       | —       | Sizes of the button.                                                                                 |
+| tooltip | `ReactNode`                | —       | Tooltip to describe the button                                                                       |
 | isDisabled | `boolean`               | —       | Whether the button is disabled                                                                       |
 | css   | `CSS`                        | —       | The system prop that allows defining system overrides as well as additional CSS styles.              |
 
