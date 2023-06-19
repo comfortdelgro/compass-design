@@ -1,4 +1,3 @@
-import {today} from '@internationalized/date'
 import {StoryDecorator} from '@ladle/react'
 import type {RangeValue} from '@react-types/shared'
 import React from 'react'
@@ -51,7 +50,6 @@ export const Variants: React.FC = () => {
           startDateLabel='Start date'
           endDateLabel='End date'
           hasShortcuts
-          minValue={today(getLocalTimeZone())}
           customShortcuts={(shortcuts) => {
             const customShortcuts: RangeCalendarShorcutItem[] = [
               {
