@@ -1,7 +1,9 @@
+import {faXmark} from '@fortawesome/free-solid-svg-icons'
 import {noop} from 'lodash'
 import * as React from 'react'
 import Box from '../box'
 import Button from '../button'
+import Icon from '../icon'
 import * as constants from './constants'
 import {ActionType} from './Icon'
 import {StyledImageViewerWrap} from './image-viewer.styles'
@@ -163,30 +165,24 @@ export default (props: IViewerProps) => {
   }, [visible])
 
   React.useEffect(() => {
-    bindEvent()
+    if (!disableKeyboardSupport) {
+      document.addEventListener('keydown', handleKeydown, true)
+    }
+    if (viewerCore.current) {
+      viewerCore.current.addEventListener('wheel', handleMouseScroll, false)
+    }
 
     return () => {
-      bindEvent(true)
+      document.removeEventListener('keydown', handleKeydown, true)
+      if (viewerCore.current) {
+        viewerCore.current.removeEventListener(
+          'wheel',
+          handleMouseScroll,
+          false,
+        )
+      }
     }
   })
-
-  React.useEffect(() => {
-    if (visible) {
-      if (!props.container) {
-        document.body.style.overflow = 'hidden'
-        if (document.body.scrollHeight > document.body.clientHeight) {
-          document.body.style.paddingRight = '15px'
-        }
-      }
-    } else {
-      dispatch(createAction(ActionTypeEnum.clear, {}))
-    }
-
-    return () => {
-      document.body.style.overflow = ''
-      document.body.style.paddingRight = ''
-    }
-  }, [state.visible])
 
   React.useEffect(() => {
     if (visible) {
@@ -235,11 +231,11 @@ export default (props: IViewerProps) => {
             startLoading: false,
           }),
         )
-        const deafaultImgWidth =
+        const defaultImgWidth =
           props.defaultImg.width || containerSize.current.width * 0.5
         const defaultImgHeight =
           props.defaultImg.height || containerSize.current.height * 0.5
-        loadImgSuccess(deafaultImgWidth, defaultImgHeight, false)
+        loadImgSuccess(defaultImgWidth, defaultImgHeight, false)
       } else {
         dispatch(
           createAction(ActionTypeEnum.update, {
@@ -493,33 +489,14 @@ export default (props: IViewerProps) => {
     onMaskClick(e)
   }
 
-  function bindEvent(remove = false) {
-    let funcName = 'addEventListener'
-    if (remove) {
-      funcName = 'removeEventListener'
-    }
-    if (!disableKeyboardSupport) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-      document[funcName]('keydown', handleKeydown, true)
-    }
-    if (viewerCore.current) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-      viewerCore.current[funcName]('wheel', handleMouseScroll, false)
-    }
-  }
-
   function handleKeydown(e: KeyboardEvent) {
     const keyCode = e.keyCode || e.which || e.charCode
-    let isFeatrue = false
+    let isFeature = false
     switch (keyCode) {
       // key: esc
       case 27:
         onClose()
-        isFeatrue = true
+        isFeature = true
         break
       // key: ←
       case 37:
@@ -528,7 +505,7 @@ export default (props: IViewerProps) => {
         } else {
           handleDefaultAction(ActionType.prev)
         }
-        isFeatrue = true
+        isFeature = true
         break
       // key: →
       case 39:
@@ -537,29 +514,29 @@ export default (props: IViewerProps) => {
         } else {
           handleDefaultAction(ActionType.next)
         }
-        isFeatrue = true
+        isFeature = true
         break
       // key: ↑
       case 38:
         handleDefaultAction(ActionType.zoomIn)
-        isFeatrue = true
+        isFeature = true
         break
       // key: ↓
       case 40:
         handleDefaultAction(ActionType.zoomOut)
-        isFeatrue = true
+        isFeature = true
         break
       // key: Ctrl + 1
       case 49:
         if (e.ctrlKey) {
           loadImg(state.activeIndex)
-          isFeatrue = true
+          isFeature = true
         }
         break
       default:
         break
     }
-    if (isFeatrue) {
+    if (isFeature) {
       e.preventDefault()
       e.stopPropagation()
     }
@@ -661,11 +638,6 @@ export default (props: IViewerProps) => {
     )
   }
 
-  const viewerStyle: React.CSSProperties = {
-    opacity: visible && state.visible ? 1 : 0,
-    display: visible || state.visible ? 'block' : 'none',
-  }
-
   let activeImg: ImageDecorator = {
     src: '',
     alt: '',
@@ -682,88 +654,93 @@ export default (props: IViewerProps) => {
   }
 
   return (
-    <StyledImageViewerWrap>
-      <div
-        style={viewerStyle}
-        onTransitionEnd={() => {
-          if (!visible) {
-            dispatch(
-              createAction(ActionTypeEnum.setVisible, {
-                visible: false,
-              }),
-            )
-          }
-        }}
-        ref={viewerCore}
-      >
-        <Box css={{zIndex: zIndex}} />
-        {props.noClose || (
-          <Button
-            css={{
-              left: 0,
-              top: 0,
-              position: 'absolute',
-              zIndex: 60,
+    <>
+      {visible && (
+        <StyledImageViewerWrap>
+          {props.noClose || (
+            <Button
+              variant='ghost'
+              css={{
+                right: 0,
+                top: 0,
+                position: 'absolute',
+                zIndex: 60,
+              }}
+              onClick={onClose}
+            >
+              <Icon icon={faXmark} color='white' scale={2} />
+            </Button>
+          )}
+          <Box
+            onTransitionEnd={() => {
+              if (!visible) {
+                dispatch(
+                  createAction(ActionTypeEnum.setVisible, {
+                    visible: false,
+                  }),
+                )
+              }
             }}
-            onClick={onClose}
+            ref={viewerCore}
           >
-            X
-          </Button>
-        )}
-        <ViewerCanvas
-          imgSrc={
-            state.loadFailed
-              ? props?.defaultImg?.src || activeImg.src
-              : activeImg.src
-          }
-          visible={visible}
-          width={state.width}
-          height={state.height}
-          top={state.top}
-          left={state.left}
-          rotate={state.rotate}
-          onChangeImgState={handleChangeImgState}
-          onResize={handleResize}
-          zIndex={zIndex + 5}
-          scaleX={state.scaleX}
-          scaleY={state.scaleY}
-          loading={state.loading}
-          drag={drag}
-          container={props.container as HTMLElement}
-          onCanvasMouseDown={handleCanvasMouseDown}
-        />
-        {props.noFooter || (
-          <Box css={{zIndex: zIndex + 5}}>
-            {noToolbar || (
-              <ViewerToolbar
-                onAction={handleAction}
-                alt={activeImg.alt ?? ''}
-                width={state.imageWidth}
-                height={state.imageHeight}
-                attribute={attribute}
-                zoomable={zoomable}
-                rotatable={rotatable}
-                scalable={scalable}
-                changeable={changeable}
-                downloadable={downloadable}
-                noImgDetails={noImgDetails}
-                toolbars={customToolbar(defaultToolbars)}
-                activeIndex={state.activeIndex}
-                count={images.length}
-                showTotal={showTotal}
-                totalName={totalName}
-              />
-            )}
-            {props.noNavbar || (
-              <ViewerNav
-                images={props.images as ImageDecorator[]}
-                activeIndex={state.activeIndex}
-                onChangeImg={handleChangeImg}
-              />
+            <Box css={{zIndex: zIndex}} />
+
+            <ViewerCanvas
+              imgSrc={
+                state.loadFailed
+                  ? props?.defaultImg?.src || activeImg.src
+                  : activeImg.src
+              }
+              visible={visible}
+              width={state.width}
+              height={state.height}
+              top={state.top}
+              left={state.left}
+              rotate={state.rotate}
+              onChangeImgState={handleChangeImgState}
+              onResize={handleResize}
+              zIndex={zIndex + 5}
+              scaleX={state.scaleX}
+              scaleY={state.scaleY}
+              loading={state.loading}
+              drag={drag}
+              container={props.container as HTMLElement}
+              onCanvasMouseDown={handleCanvasMouseDown}
+            />
+            {props.noFooter || (
+              <Box css={{zIndex: zIndex + 5}}>
+                {noToolbar || (
+                  <ViewerToolbar
+                    onAction={handleAction}
+                    alt={activeImg.alt ?? ''}
+                    width={state.imageWidth}
+                    height={state.imageHeight}
+                    attribute={attribute}
+                    zoomable={zoomable}
+                    rotatable={rotatable}
+                    scalable={scalable}
+                    changeable={changeable}
+                    downloadable={downloadable}
+                    noImgDetails={noImgDetails}
+                    toolbars={customToolbar(defaultToolbars)}
+                    activeIndex={state.activeIndex}
+                    count={images.length}
+                    showTotal={showTotal}
+                    totalName={totalName}
+                  />
+                )}
+                {props.noNavbar || (
+                  <ViewerNav
+                    images={props.images as ImageDecorator[]}
+                    activeIndex={state.activeIndex}
+                    onChangeImg={handleChangeImg}
+                  />
+                )}
+              </Box>
             )}
           </Box>
-        )}
-      </div>
-    </StyledImageViewerWrap>
+        </StyledImageViewerWrap>
+      )}
+    </>
   )
 }

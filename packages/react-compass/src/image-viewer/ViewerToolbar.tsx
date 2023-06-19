@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Button from '../button'
 import Typography from '../typography'
-import Icon, {ActionType} from './Icon'
+import {ActionType} from './Icon'
 import {StyledToolbar, StyledToolbarWrap} from './image-viewer.styles'
 import {ToolbarConfig} from './types'
 
@@ -79,17 +79,6 @@ export default function ViewerToolbar(props: ViewerToolbarProps) {
   }
 
   function renderAction(config: ToolbarConfig) {
-    let content = null
-    // default toolbar
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    if (typeof ActionType[config.actionType] !== 'undefined') {
-      content = <Icon type={config.actionType} />
-    }
-    // extra toolbar
-    if (config.render) {
-      content = config.render
-    }
     return (
       <Button
         key={config.key}
