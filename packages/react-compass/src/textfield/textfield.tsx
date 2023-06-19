@@ -149,7 +149,17 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
     }, [password, isPassWordVisible])
 
     return (
-      <StyledTextFieldWrapper css={css} {...htmlProps} ref={textfieldRef}>
+      <StyledTextFieldWrapper
+        css={css}
+        {...htmlProps}
+        ref={textfieldRef}
+        onKeyDown={(e) => {
+          e.preventDefault()
+        }}
+        onKeyUp={(e) => {
+          e.preventDefault()
+        }}
+      >
         {label && (
           <StyledTextFieldLabel htmlFor={id}>
             {label}
