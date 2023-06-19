@@ -8,10 +8,9 @@
  * found in the LICENSE.txt file at the root directory of this source tree.
  */
 
-import { CalendarDate } from '../CalendarDate'
-import { AnyCalendarDate,Calendar } from '../types'
-import { mod,Mutable } from '../utils'
-
+import {CalendarDate} from '../CalendarDate'
+import {AnyCalendarDate, Calendar} from '../types'
+import {mod, Mutable} from '../utils'
 
 const EPOCH = 1721426 // 001/01/03 Julian C.E.
 export function gregorianToJulianDay(

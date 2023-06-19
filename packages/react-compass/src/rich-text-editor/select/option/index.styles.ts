@@ -1,5 +1,5 @@
-import { styled } from '../../../theme'
-import type { VariantProps } from '../../../utils/stitches.types'
+import {styled} from '../../../theme'
+import type {VariantProps} from '../../../utils/stitches.types'
 
 export const StyledOption = styled('li', {
   fontSize: '$label1',
@@ -59,11 +59,11 @@ export const StyledRightIcon = styled('div', {
     },
     type: {
       color: {
-        position: 'absolute'
+        position: 'absolute',
       },
       heading: {},
-      alignment: {}
-    }
+      alignment: {},
+    },
   },
 })
 
