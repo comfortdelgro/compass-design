@@ -104,10 +104,7 @@ export const Variations: React.FC = () => (
         variant='primary'
         leftIcon={<Icon icon={faChevronDown} />}
         rightIcon={<Icon icon={faMapMarkerAlt} />}
-<<<<<<< HEAD
-=======
         css={{width: '350px'}}
->>>>>>> parent of ba232931 ([yagin][fix comment PR])
       >
         Primary
       </Button>
