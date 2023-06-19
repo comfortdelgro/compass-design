@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import * as React from 'react'
-import Loading from './Loading'
+import Box from '../box'
+import Spinner from '../spinner'
 
 export interface ViewerCanvasProps {
   imgSrc: string
@@ -120,7 +121,6 @@ export default function ViewerCanvas(props: ViewerCanvasProps) {
     }
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   function handleMouseUp() {
     isMouseDown.current = false
   }
@@ -154,10 +154,6 @@ export default function ViewerCanvas(props: ViewerCanvasProps) {
     rotate(${props.rotate}deg) scaleX(${props.scaleX}) scaleY(${props.scaleY})`,
   }
 
-  const style = {
-    zIndex: props.zIndex,
-  }
-
   let imgNode = null
   if (props.imgSrc !== '') {
     imgNode = (
@@ -166,22 +162,22 @@ export default function ViewerCanvas(props: ViewerCanvasProps) {
   }
   if (props.loading) {
     imgNode = (
-      <div
-        style={{
+      <Box
+        css={{
           display: 'flex',
           height: `${window.innerHeight - 84}px`,
           justifyContent: 'center',
           alignItems: 'center',
         }}
       >
-        <Loading />
-      </div>
+        <Spinner size='2xl' />
+      </Box>
     )
   }
 
   return (
-    <div onMouseDown={handleCanvasMouseDown} style={style}>
+    <Box onMouseDown={handleCanvasMouseDown} css={{zIndex: props.zIndex}}>
       {imgNode}
-    </div>
+    </Box>
   )
 }

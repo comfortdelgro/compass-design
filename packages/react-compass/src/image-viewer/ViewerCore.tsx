@@ -1,5 +1,6 @@
 import {noop} from 'lodash'
 import * as React from 'react'
+import Box from '../box'
 import Button from '../button'
 import * as constants from './constants'
 import {ActionType} from './Icon'
@@ -234,11 +235,11 @@ export default (props: IViewerProps) => {
             startLoading: false,
           }),
         )
-        const deafultImgWidth =
+        const deafaultImgWidth =
           props.defaultImg.width || containerSize.current.width * 0.5
         const defaultImgHeight =
           props.defaultImg.height || containerSize.current.height * 0.5
-        loadImgSuccess(deafultImgWidth, defaultImgHeight, false)
+        loadImgSuccess(deafaultImgWidth, defaultImgHeight, false)
       } else {
         dispatch(
           createAction(ActionTypeEnum.update, {
@@ -695,7 +696,7 @@ export default (props: IViewerProps) => {
         }}
         ref={viewerCore}
       >
-        <div style={{zIndex: zIndex}} />
+        <Box css={{zIndex: zIndex}} />
         {props.noClose || (
           <Button
             css={{
@@ -732,7 +733,7 @@ export default (props: IViewerProps) => {
           onCanvasMouseDown={handleCanvasMouseDown}
         />
         {props.noFooter || (
-          <div style={{zIndex: zIndex + 5}}>
+          <Box css={{zIndex: zIndex + 5}}>
             {noToolbar || (
               <ViewerToolbar
                 onAction={handleAction}
@@ -760,7 +761,7 @@ export default (props: IViewerProps) => {
                 onChangeImg={handleChangeImg}
               />
             )}
-          </div>
+          </Box>
         )}
       </div>
     </StyledImageViewerWrap>
