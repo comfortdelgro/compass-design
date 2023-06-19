@@ -10,7 +10,7 @@ import {
   TextFieldVariantProps,
 } from './textfield.styles'
 
-interface Props extends StyledComponentProps {
+export interface Props extends StyledComponentProps {
   id?: string
   label?: React.ReactNode
   isErrored?: boolean
