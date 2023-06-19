@@ -79,7 +79,6 @@ export const StyledButtonContent = styled('div', {
     display: 'inline-block',
     alignItems: 'center',
     justifyContent: 'center',
-    margin: 'auto',
   },
 })
 
