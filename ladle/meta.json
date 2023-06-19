@@ -10,8 +10,8 @@
       "levels": [
         "Accordion"
       ],
-      "locStart": 15,
-      "locEnd": 144,
+      "locStart": 12,
+      "locEnd": 139,
       "filePath": "src/accordion/accordion.stories.tsx",
       "meta": {}
     },
@@ -20,8 +20,8 @@
       "levels": [
         "Accordion"
       ],
-      "locStart": 146,
-      "locEnd": 180,
+      "locStart": 141,
+      "locEnd": 175,
       "filePath": "src/accordion/accordion.stories.tsx",
       "meta": {}
     },
@@ -53,6 +53,16 @@
       "locStart": 58,
       "locEnd": 89,
       "filePath": "src/alert/alert.stories.tsx",
+      "meta": {}
+    },
+    "auto-complete--full-featured": {
+      "name": "Full featured",
+      "levels": [
+        "Auto complete"
+      ],
+      "locStart": 6,
+      "locEnd": 70,
+      "filePath": "src/auto-complete/autoComplete.stories.tsx",
       "meta": {}
     },
     "avatar--grouped": {
@@ -181,7 +191,7 @@
         "Button"
       ],
       "locStart": 15,
-      "locEnd": 178,
+      "locEnd": 179,
       "filePath": "src/button/button.stories.tsx",
       "meta": {}
     },
@@ -220,8 +230,8 @@
       "levels": [
         "Carousel v2"
       ],
-      "locStart": 208,
-      "locEnd": 245,
+      "locStart": 204,
+      "locEnd": 241,
       "filePath": "src/carousel-v2/carouselV2.stories.tsx",
       "meta": {}
     },
@@ -230,8 +240,8 @@
       "levels": [
         "Carousel v2"
       ],
-      "locStart": 178,
-      "locEnd": 206,
+      "locStart": 174,
+      "locEnd": 202,
       "filePath": "src/carousel-v2/carouselV2.stories.tsx",
       "meta": {}
     },
@@ -240,8 +250,8 @@
       "levels": [
         "Carousel v2"
       ],
-      "locStart": 101,
-      "locEnd": 176,
+      "locStart": 97,
+      "locEnd": 172,
       "filePath": "src/carousel-v2/carouselV2.stories.tsx",
       "meta": {}
     },
@@ -250,8 +260,8 @@
       "levels": [
         "Carousel"
       ],
-      "locStart": 81,
-      "locEnd": 171,
+      "locStart": 77,
+      "locEnd": 167,
       "filePath": "src/carousel/carousel.stories.tsx",
       "meta": {}
     },
@@ -260,8 +270,8 @@
       "levels": [
         "Carousel"
       ],
-      "locStart": 173,
-      "locEnd": 196,
+      "locStart": 169,
+      "locEnd": 192,
       "filePath": "src/carousel/carousel.stories.tsx",
       "meta": {}
     },
@@ -380,8 +390,8 @@
       "levels": [
         "Date range picker"
       ],
-      "locStart": 36,
-      "locEnd": 57,
+      "locStart": 79,
+      "locEnd": 107,
       "filePath": "src/date-range-picker/date-range-picker.stories.tsx",
       "meta": {}
     },
@@ -390,8 +400,8 @@
       "levels": [
         "Date range picker"
       ],
-      "locStart": 12,
-      "locEnd": 34,
+      "locStart": 14,
+      "locEnd": 77,
       "filePath": "src/date-range-picker/date-range-picker.stories.tsx",
       "meta": {}
     },
@@ -540,8 +550,8 @@
       "levels": [
         "List"
       ],
-      "locStart": 768,
-      "locEnd": 779,
+      "locStart": 767,
+      "locEnd": 778,
       "filePath": "src/list/list.stories.tsx",
       "meta": {}
     },
@@ -550,8 +560,8 @@
       "levels": [
         "List"
       ],
-      "locStart": 605,
-      "locEnd": 766,
+      "locStart": 604,
+      "locEnd": 765,
       "filePath": "src/list/list.stories.tsx",
       "meta": {}
     },
@@ -560,8 +570,8 @@
       "levels": [
         "List"
       ],
-      "locStart": 403,
-      "locEnd": 603,
+      "locStart": 402,
+      "locEnd": 602,
       "filePath": "src/list/list.stories.tsx",
       "meta": {}
     },
@@ -570,8 +580,8 @@
       "levels": [
         "List"
       ],
-      "locStart": 27,
-      "locEnd": 401,
+      "locStart": 26,
+      "locEnd": 400,
       "filePath": "src/list/list.stories.tsx",
       "meta": {}
     },
@@ -623,6 +633,16 @@
       "locStart": 20,
       "locEnd": 225,
       "filePath": "src/navbar/navbar.stories.tsx",
+      "meta": {}
+    },
+    "nossr--basic": {
+      "name": "Basic",
+      "levels": [
+        "Nossr"
+      ],
+      "locStart": 6,
+      "locEnd": 96,
+      "filePath": "src/nossr/nossr.stories.tsx",
       "meta": {}
     },
     "otp-input--variants": {
@@ -745,13 +765,23 @@
       "filePath": "src/radio/radio.stories.tsx",
       "meta": {}
     },
+    "range-calendar--controlled": {
+      "name": "Controlled",
+      "levels": [
+        "Range calendar"
+      ],
+      "locStart": 19,
+      "locEnd": 49,
+      "filePath": "src/range-calendar/range-calendar.stories.tsx",
+      "meta": {}
+    },
     "range-calendar--variants": {
       "name": "Variants",
       "levels": [
         "Range calendar"
       ],
-      "locStart": 9,
-      "locEnd": 32,
+      "locStart": 51,
+      "locEnd": 101,
       "filePath": "src/range-calendar/range-calendar.stories.tsx",
       "meta": {}
     },
@@ -941,7 +971,7 @@
         "Table v1"
       ],
       "locStart": 69,
-      "locEnd": 290,
+      "locEnd": 287,
       "filePath": "src/table/tableV1.stories.tsx",
       "meta": {}
     },
@@ -1041,8 +1071,18 @@
         "Textfield"
       ],
       "locStart": 27,
-      "locEnd": 134,
+      "locEnd": 135,
       "filePath": "src/textfield/textfield.stories.tsx",
+      "meta": {}
+    },
+    "time-picker--default": {
+      "name": "Default",
+      "levels": [
+        "Time picker"
+      ],
+      "locStart": 5,
+      "locEnd": 69,
+      "filePath": "src/time-picker/time-picker.stories.tsx",
       "meta": {}
     },
     "timeline--default": {
@@ -1143,6 +1183,16 @@
       "locStart": 31,
       "locEnd": 85,
       "filePath": "src/tooltip/tooltip.stories.tsx",
+      "meta": {}
+    },
+    "transitions--variants": {
+      "name": "Variants",
+      "levels": [
+        "Transitions"
+      ],
+      "locStart": 7,
+      "locEnd": 183,
+      "filePath": "src/transitions/transitions.stories.tsx",
       "meta": {}
     },
     "typography--body": {
