@@ -28,6 +28,10 @@ export const TimePickerContainer = styled('div', {
   '.time-picker-input-icon': {
     display: 'flex',
     cursor: 'pointer',
+    borderRadius: '$full',
+  },
+  '.time-picker-input-icon:active': {
+    backgroundColor: '$gray20',
   },
   '.time-picker-input-icon svg': {
     width: '$6',
