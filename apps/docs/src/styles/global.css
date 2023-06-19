@@ -11,3 +11,10 @@ table {
 .scale:hover {
   transform: scale(1.1);
 }
+
+/* override button-primary styling nextra */
+.c-hKssGC-hYGuEl-variant-primary {
+  background: var(--colors-cdgBlue) !important;
+  color: var(--colors-whiteText) !important;
+  border-color: var(--colors-cdgBlue) !important;
+}
