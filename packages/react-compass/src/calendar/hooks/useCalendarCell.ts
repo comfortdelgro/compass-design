@@ -18,7 +18,14 @@ import {
   isToday,
 } from '@internationalized/date'
 import {useDateFormatter} from '@react-aria/i18n'
-import {MouseEvent, PointerEvent, useMemo, useRef} from 'react'
+import {
+  MouseEvent,
+  PointerEvent,
+  RefObject,
+  useEffect,
+  useMemo,
+  useRef,
+} from 'react'
 import {
   AriaCalendarCellProps,
   CalendarCellAria,
@@ -26,13 +33,20 @@ import {
   FocusableElement,
   RangeCalendarState,
 } from '../types'
-import {hookData} from '../utils'
+import {
+  focusWithoutScrolling,
+  getInteractionModality,
+  getScrollParent,
+  hookData,
+  scrollIntoViewport,
+} from '../utils'
 import {useDescription} from './useDescription'
 import {usePress} from './usePress'
 
 export function useCalendarCell(
   props: AriaCalendarCellProps,
   state: CalendarState | RangeCalendarState,
+  ref: RefObject<HTMLElement>,
 ): CalendarCellAria {
   let {date, isDisabled} = props
   const {errorMessageId, selectedDateDescription} = hookData.get(state) ?? {
@@ -58,8 +72,8 @@ export function useCalendarCell(
     ('highlightedRange' in state
       ? !state.anchorDate &&
         state.highlightedRange &&
-        date.compare(state.highlightedRange.start) >= 0 &&
-        date.compare(state.highlightedRange.end) <= 0
+        date.compare(state.highlightedRange.start!) >= 0 &&
+        date.compare(state.highlightedRange.end!) <= 0
       : state.value && isSameDay(state.value, date))
 
   if (isInvalid) {
@@ -151,13 +165,13 @@ export function useCalendarCell(
         (e.pointerType === 'mouse' || e.pointerType === 'touch')
       ) {
         if (state.highlightedRange && !isInvalid) {
-          if (isSameDay(date, state.highlightedRange.start)) {
+          if (isSameDay(date, state.highlightedRange.start!)) {
             state.setAnchorDate(state.highlightedRange.end)
             state.setFocusedDate?.(date)
             state.setDragging(true)
             isRangeBoundaryPressed.current = true
             return
-          } else if (isSameDay(date, state.highlightedRange.end)) {
+          } else if (isSameDay(date, state.highlightedRange.end!)) {
             state.setAnchorDate(state.highlightedRange.start)
             state.setFocusedDate?.(date)
             state.setDragging(true)
@@ -245,6 +259,23 @@ export function useCalendarCell(
   if (!isDisabled) {
     tabIndex = isSameDay(date, state.focusedDate as CalendarDate) ? 0 : -1
   }
+
+  // Focus the button in the DOM when the state updates.
+  useEffect(() => {
+    if (isFocused && ref.current) {
+      focusWithoutScrolling(ref.current)
+
+      // Scroll into view if navigating with a keyboard, otherwise
+      // try not to shift the view under the user's mouse/finger.
+      // If in a overlay, scrollIntoViewport will only cause scrolling
+      // up to the overlay scroll body to prevent overlay shifting
+      if (getInteractionModality() !== 'pointer') {
+        scrollIntoViewport(ref.current, {
+          containingElement: getScrollParent(ref.current),
+        })
+      }
+    }
+  }, [isFocused, ref])
 
   const cellDateFormatter: DateFormatter = useDateFormatter({
     day: 'numeric',

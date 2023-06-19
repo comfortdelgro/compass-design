@@ -117,7 +117,7 @@ const CalendarHeader = (props: Props) => {
           >
             {renderMiddleButtonContent(
               monthDateFormatter.format(
-                state?.visibleRange?.start.toDate(
+                state?.visibleRange?.start?.toDate(
                   state.timeZone ?? 'UTC',
                 ) as Date,
               ),
@@ -127,7 +127,7 @@ const CalendarHeader = (props: Props) => {
           <h2>
             {renderMiddleButtonContent(
               monthDateFormatter.format(
-                state?.visibleRange?.start.toDate(
+                state?.visibleRange?.start?.toDate(
                   state.timeZone ?? 'UTC',
                 ) as Date,
               ),
@@ -154,7 +154,7 @@ const CalendarHeader = (props: Props) => {
             {renderMiddleButtonContent(
               monthDateFormatter.format(
                 state?.visibleRange?.start
-                  .add({months: 1})
+                  ?.add({months: 1})
                   .toDate(state.timeZone ?? 'UTC') as Date,
               ),
             )}

@@ -1,7 +1,9 @@
 import {StoryDecorator} from '@ladle/react'
 import type {RangeValue} from '@react-types/shared'
 import React from 'react'
+import Button from '../button'
 import {DateValue} from '../calendar/types'
+import {RangeCalendarShorcutItem} from '../range-calendar/range-calendar-shortcuts'
 import {Column} from '../utils'
 import Calendar, {CalendarProps} from './../calendar'
 import DateRangePicker from './date-range-picker'
@@ -22,11 +24,52 @@ export const Variants: React.FC = () => {
           startDateLabel='Start date'
           endDateLabel='End date'
         />
+        <h3>Read only</h3>
+        <DateRangePicker
+          isReadOnly
+          startDateLabel='Start date'
+          endDateLabel='End date'
+        />
         <h3>Invalid</h3>
         <DateRangePicker
           isInvalid
           startDateLabel='Start date'
           endDateLabel='End date'
+        />
+        <h3>Helper texts</h3>
+        <DateRangePicker
+          isInvalid
+          isRequired
+          helperText='Weekend is excluded'
+          errorMessage='Must not include weekend'
+          startDateLabel='Start date'
+          endDateLabel='End date'
+        />
+        <h3>Extended Range Calendar</h3>
+        <DateRangePicker
+          startDateLabel='Start date'
+          endDateLabel='End date'
+          hasShortcuts
+          customShortcuts={(shortcuts) => {
+            const customShortcuts: RangeCalendarShorcutItem[] = [
+              {
+                label: 'Custom Shortcut',
+                getValue: () => {
+                  return {start: null, end: null}
+                },
+              },
+            ]
+            return [...shortcuts, ...customShortcuts]
+          }}
+          ctaButtonRender={
+            <Button
+              onPress={() => {
+                alert('Custom callback')
+              }}
+            >
+              Custom Button
+            </Button>
+          }
         />
       </Column>
     </I18nProvider>
@@ -34,22 +77,29 @@ export const Variants: React.FC = () => {
 }
 
 export const Controlled: React.FC = () => {
-  const [range, setRange] = React.useState<RangeValue<CalendarProps>>({
+  const [range, setRange] = React.useState<RangeValue<CalendarProps | null>>({
     start: parseDate('2020-02-03'),
     end: parseDate('2020-02-08'),
   })
   const formatter = useDateFormatter({dateStyle: 'long'})
+
   return (
     <I18nProvider locale='en-SG'>
       <h3>Controlled</h3>
-      {range
+      {range.start && range.end
         ? formatter.formatRange(
             range.start.toDate(getLocalTimeZone()),
             range.end.toDate(getLocalTimeZone()),
           )
-        : 'Invalid range of dates'}
+        : `${
+            range.start &&
+            formatter.format(range.start.toDate(getLocalTimeZone()))
+          } - ${
+            range.end && formatter.format(range.end.toDate(getLocalTimeZone()))
+          }`}
       <DateRangePicker
         value={range}
+        shouldCloseOnSelect
         onChange={(e) => setRange(e as RangeValue<DateValue>)}
       />
     </I18nProvider>

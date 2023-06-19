@@ -60,6 +60,7 @@ export const StyledSearchFieldInput = styled('input', {
 
   '&:focus': {
     outline: 'none',
+    boxShadow: 'none',
   },
 
   '&:disabled': {
