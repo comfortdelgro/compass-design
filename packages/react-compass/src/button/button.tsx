@@ -136,9 +136,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               {leftIcon || (fullWidth && rightIcon) ? (
                 <div className='icon left'>{leftIcon}</div>
               ) : null}
-              <div className='center-wrapper'>
-                <span className='children'>{children}</span>
-              </div>
+              <span className='children'>{children}</span>
               {rightIcon || (fullWidth && leftIcon) ? (
                 <div className='icon right'>{rightIcon}</div>
               ) : null}
