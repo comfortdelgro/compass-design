@@ -13,8 +13,11 @@ table {
 }
 
 /* override button-primary styling nextra */
-.c-hKssGC-hYGuEl-variant-primary {
-  background: var(--colors-cdgBlue) !important;
-  color: var(--colors-whiteText) !important;
-  border-color: var(--colors-cdgBlue) !important;
+button.c-hKssGC-hYGuEl-variant-primary,
+[type="button"].c-hKssGC-hYGuEl-variant-primary,
+[type="reset"].c-hKssGC-hYGuEl-variant-primary,
+[type="submit"].c-hKssGC-hYGuEl-variant-primary {
+  background: var(--colors-cdgBlue);
+  color: var(--colors-whiteText);
+  border-color: var(--colors-cdgBlue);
 }
