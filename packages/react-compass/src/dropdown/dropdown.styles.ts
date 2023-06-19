@@ -50,12 +50,12 @@ export const StyledSelect = styled('div', {
       height: '$4',
     },
     span: {
-      color: '$primaryText',
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis',
       overflow: 'hidden',
       flexGrow: 1,
       textAlign: 'start',
+      color: '$primaryText',
     },
     '&:focus': {
       outline: 'none',
@@ -66,7 +66,7 @@ export const StyledSelect = styled('div', {
       true: {
         button: {
           span: {
-            color: '$gray50',
+            color: '$disabledText',
           },
         },
       },
@@ -152,7 +152,7 @@ export const StyledComboBox = styled('div', {
       true: {
         input: {
           '&::placeholder': {
-            color: '$gray50',
+            color: '$gray40',
             fontSize: '$label1',
             fontWeight: '$semibold',
           },
@@ -163,7 +163,6 @@ export const StyledComboBox = styled('div', {
       true: {
         color: '$disabledText',
         input: {
-          color: '$disabledText',
           backgroundColor: '$gray20',
         },
         cursor: 'not-allowed !important',
@@ -202,6 +201,7 @@ export const StyledFlag = styled('div', {
     borderColor: '$cdgBlue',
   },
   input: {
+    color: '$primaryText',
     boxSizing: 'border-box',
     background: '$background',
     whiteSpace: 'nowrap',
@@ -244,7 +244,7 @@ export const StyledFlag = styled('div', {
         input: {
           padding: '$3 $11 $3 $4',
           '&::placeholder': {
-            color: '$gray50',
+            color: '$gray40',
             fontSize: '$label1',
             fontWeight: '$semibold',
           },
@@ -253,9 +253,10 @@ export const StyledFlag = styled('div', {
     },
     isDisabled: {
       true: {
-        color: '$gray20 !important',
+        color: '$disabledText',
         input: {
-          color: '$gray20 !important',
+          backgroundColor: '$gray20',
+          color: '$disabledText !important',
         },
         cursor: 'not-allowed !important',
         '& > *': {

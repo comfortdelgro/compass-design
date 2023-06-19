@@ -8,6 +8,7 @@ export const StyledPreview = styled('div', {
   flexDirection: 'column',
   justifyContent: 'center',
   overflow: 'hidden',
+  color: '$primaryText',
   variants: {
     imageLoaded: {
       true: {

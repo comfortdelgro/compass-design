@@ -10,6 +10,7 @@ export const StyledState = styled('div', {
   borderRadius: '$md',
   padding: '$2_5 $3',
   gap: '$2',
+  color: '$primaryText',
 })
 
 export const StyledFileNameWrapper = styled('div', {
