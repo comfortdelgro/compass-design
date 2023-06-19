@@ -31,6 +31,9 @@ export const StyledQuantityToggle = styled('div', {
       fontSize: '$label1',
       fontWeight: '$semibold',
     },
+    'input:focus-visible': {
+      boxShadow: 'none',
+    },
     'input::placeholder': {
       color: '$gray40',
     },

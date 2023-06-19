@@ -104,7 +104,7 @@ export interface DatePickerAria {
   calendarProps: CalendarProps
 }
 
-export type DateRange = RangeValue<DateValue>
+export type DateRange = RangeValue<DateValue | null>
 
 export type TimeRange = RangeValue<TimeValue>
 
