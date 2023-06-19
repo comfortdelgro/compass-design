@@ -1,5 +1,4 @@
 import {styled} from '../theme'
-import type {VariantProps} from '../utils/stitches.types'
 
 export const StyledTextField = styled('input', {
   width: '100%',
@@ -21,7 +20,20 @@ export const StyledTextField = styled('input', {
     fontWeight: '$semibold',
   },
 })
-export const TimePickerContainer = styled('div', {})
+export const TimePickerContainer = styled('div', {
+  '.time-picker-input .right-icon': {
+    width: '$6',
+    height: '$6',
+  },
+  '.time-picker-input-icon': {
+    display: 'flex',
+    cursor: 'pointer',
+  },
+  '.time-picker-input-icon svg': {
+    width: '$6',
+    height: '$6',
+  },
+})
 
 export const TimePickerDropdownWrapper = styled('div', {
   background: '$background',
@@ -39,7 +51,9 @@ export const TimePickerDropdownContent = styled('div', {
 export const TimePickerDropdownControl = styled('div', {
   padding: '$1',
   overflowY: 'hidden',
+  overflowX: 'hidden',
   height: '100%',
+  width: '$12_5',
   position: 'relative',
 
   '&:hover': {
@@ -91,5 +105,3 @@ export const TimeFieldWrapper = styled('div', {
 export const TimeSegmentStyle = styled('div', {
   whiteSpace: 'break-spaces',
 })
-
-export type ButtonVariantProps = VariantProps<typeof StyledTextField>

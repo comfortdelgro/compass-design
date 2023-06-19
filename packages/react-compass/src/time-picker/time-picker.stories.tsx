@@ -13,6 +13,14 @@ export const Default: React.FC = () => {
         <Row>
           <TimePicker defaultValue={'12:00 PM'} />
         </Row>
+        <h3>Disable</h3>
+        <Row>
+          <TimePicker defaultValue={'12:00 PM'} isDisabled />
+        </Row>
+        <h3>Readonly</h3>
+        <Row>
+          <TimePicker defaultValue={'12:00 PM'} isReadOnly />
+        </Row>
         <h3>With 12-hours uncontrolled</h3>
         <Row>
           <TimePicker

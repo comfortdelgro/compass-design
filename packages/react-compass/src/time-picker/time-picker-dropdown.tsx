@@ -28,6 +28,7 @@ interface TimePickerDropdownProps {
   hourStep?: number
   minuteStep?: number
   hasFooter?: boolean
+  isReadOnly?: boolean
   views?: ViewType[]
   onItemClick: (value: TimePickerDropdownSelectedDisplayList) => void
   onOkClick?: () => void
@@ -43,6 +44,7 @@ function TimePickerDropdown(props: TimePickerDropdownProps) {
     onItemClick,
     onOkClick,
     views = DEFAULT_VIEWS,
+    isReadOnly,
   } = props
   const [displayList, setDisplayList] = useState<TimePickerDropdownDisplayList>(
     [],
@@ -108,6 +110,7 @@ function TimePickerDropdown(props: TimePickerDropdownProps) {
 
   const handleTimeItemClick =
     (value: number | string, type: SelectedKey) => () => {
+      if (isReadOnly) return
       const newSelectedDisplayList = cloneDeep(selectedDisplayList)
       newSelectedDisplayList[type] = value
       // Set default data for others empty

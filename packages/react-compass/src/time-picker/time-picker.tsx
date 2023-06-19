@@ -1,7 +1,5 @@
-import {faClock} from '@fortawesome/free-regular-svg-icons'
 import {cloneDeep} from 'lodash'
 import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react'
-import Icon from '../icon'
 import Popover from '../popover'
 import TextField, {TextFieldProps} from '../textfield'
 import type {StyledComponentProps} from '../utils/stitches.types'
@@ -179,7 +177,12 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
      * Limit keys down from users
      */
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-      if (!timePickerInputRef.current || event.code === 'Tab') {
+      if (
+        !timePickerInputRef.current ||
+        event.code === 'Tab' ||
+        delegated.isReadOnly ||
+        delegated.isDisabled
+      ) {
         return
       }
       event.preventDefault()
@@ -480,7 +483,7 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
      * Emits when clicking Icon Lock button at the right
      */
     const handleIconClockClick = () => {
-      if (delegated.isReadOnly || delegated.isDisabled) return
+      if (delegated.isDisabled) return
       setIsOpen(true)
     }
 
@@ -500,13 +503,26 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
         <Popover
           anchor={
             <TextField
-              rightIcon={<Icon icon={faClock} onClick={handleIconClockClick} />}
               inputRef={timePickerInputRef}
               onFocus={handleFocusInput}
               onBlur={handlePopoverClose()}
               onClick={handleInputClick}
               onKeyDown={handleKeyDown}
               placeholder={formatTime}
+              className='time-picker-input'
+              rightIcon={
+                <div
+                  onClick={handleIconClockClick}
+                  className='time-picker-input-icon'
+                >
+                  <svg viewBox='0 0 24 24'>
+                    <path
+                      d='M11.3438 8.28125C11.3438 7.91758 11.6363 7.625 12 7.625C12.3637 7.625 12.6562 7.91758 12.6562 8.28125V11.65L14.9887 13.2031C15.2895 13.4055 15.3715 13.8129 15.1473 14.1137C14.9695 14.4145 14.5621 14.4965 14.2613 14.2723L11.6363 12.5223C11.4531 12.4238 11.3438 12.2188 11.3438 11.9754V8.28125ZM12 5C15.8664 5 19 8.13359 19 12C19 15.8664 15.8664 19 12 19C8.13359 19 5 15.8664 5 12C5 8.13359 8.13359 5 12 5ZM6.3125 12C6.3125 15.1418 8.8582 17.6875 12 17.6875C15.1418 17.6875 17.6875 15.1418 17.6875 12C17.6875 8.8582 15.1418 6.3125 12 6.3125C8.8582 6.3125 6.3125 8.8582 6.3125 12Z'
+                      fill='currentColor'
+                    />
+                  </svg>
+                </div>
+              }
               {...delegated}
             />
           }
@@ -526,6 +542,7 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             hourStep={hourStep}
             minuteStep={minuteStep}
             hasFooter={hasFooter}
+            isReadOnly={!!delegated.isReadOnly}
           />
         </Popover>
       </TimePickerContainer>
