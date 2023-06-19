@@ -1,5 +1,6 @@
-import {styled} from '../theme'
-import type {VariantProps} from '../utils/stitches.types'
+import { styled } from '../theme'
+import type { VariantProps } from '../utils/stitches.types'
+
 
 export const StyledErrorImage = styled('div', {
   // reset
@@ -117,11 +118,14 @@ export const StyledErrorContainer = styled('div', {
   flexDirection: 'collumn',
   justifyContent: 'flex-start',
   gap: '$4',
+  '@mobile': {
+    gap: '$2',
+  },
   borderRadius: '$1',
   variants: {
     variant: {
       primary: {
-        width: '$138',
+        maxWidth: '$138',
         boxShadow:
           '0px 0.6px 1.8px rgba(0, 0, 0, 0.1), 0px 3.2px 7.2px rgba(0, 0, 0, 0.13)',
         display: 'flex',
@@ -129,24 +133,36 @@ export const StyledErrorContainer = styled('div', {
         backgroundColor: '$background',
       },
       secondary: {
-        width: '$127_25',
+        maxWidth: '$127_25',
         height: '$181',
+
         padding: '$8',
         backgroundColor: '#F6F7F8',
         borderRadius: '0px 4px 4px 0px',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
+        '@mobile': {
+          height: '$96',
+          padding: '$4',
+        },
         [`${StyledErrorImage}`]: {
           height: '66%',
+          '@mobile': {
+            fontSize: '$header3',
+            height: '44%',
+          },
         },
         [`${StyledErrorTitle}`]: {
           height: '$12',
           fontSize: '$header1',
           justifyContent: 'center',
+          '@mobile': {
+            fontSize: '$header3',
+          },
         },
         [`${StyledErrorDescription}`]: {
-          height: '$12',
+          height: '$18',
           fontSize: '$body3',
           color: 'gray80',
           justifyContent: 'center',
