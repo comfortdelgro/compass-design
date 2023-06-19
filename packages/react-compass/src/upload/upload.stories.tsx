@@ -93,7 +93,7 @@ export const DragAndDrop: React.FC = () => {
       <Upload.DragAndDrop
         getFile={getFileFunc}
         accept='image/*, .docs, .docx'
-        fileSizeLimit={30000}
+        fileSizeLimit={30000000000000000000000000}
         multiple
       />
 

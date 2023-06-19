@@ -145,7 +145,11 @@ const UploadDragAndDrop = React.forwardRef<
           multiple={multiple}
           onChange={handleFileFieldChange}
         />
-        <StyledUploadButton onClick={onLableClick} disabled={isDisabled}>
+        <StyledUploadButton
+          onClick={onLableClick}
+          disabled={isDisabled}
+          type='button'
+        >
           {variant === 'field' && (
             <svg
               width='16'
