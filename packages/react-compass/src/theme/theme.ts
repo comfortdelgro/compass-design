@@ -153,24 +153,26 @@ export const lightTheme = defineTheme({
   colors: {
     // Primary
 
-    cdgBlue: '$cdgBlue100',
-    typeHeading: '$gray100',
+    cdgBlue: '#0142AF',
+    typeHeading: '#323130',
     background: '#FFFFFF',
-    black: '#323130',
+    black: '#000000',
+    white: '#FFFFFF',
 
-    primaryText: '$gray100',
-    secondaryText: '$gray80',
-    disabledText: '$gray70',
+    primaryText: '#323130',
+    secondaryText: '#605E5C',
+    disabledText: '#A19F9D',
+    tertiaryText: '#C5C6CF',
     whiteText: '#FFFFFF',
 
-    divider: '$gray30',
-    border: '#8A8886',
-    activeBorder: '$gray100',
+    divider: '#EDEBE9', // Body Divider
+    border: '#8A8886', // Input Border
+    activeBorder: '#323130', // Input-Hover Border
 
     // Secondary
 
-    infoBg: '#E3F3FF',
-    info: '#0078D4',
+    infoBg: '#CCECF8',
+    info: '#009EDA',
 
     dangerBg: '#EFD9DB',
     danger: '#A4262C',
@@ -181,8 +183,8 @@ export const lightTheme = defineTheme({
     severeWarningBg: '#F0CBBE',
     severeWarning: '#D83B01',
 
-    warningBg: '#F1E6C0',
-    warning: '#835C00',
+    warningBg: '#F8DB96',
+    warning: '#EFB01D',
 
     // Shades and Tints
 
@@ -213,6 +215,7 @@ export const lightTheme = defineTheme({
     primaryBg: '#F5F5F6',
     secondaryBg: '#F0F0F0',
     darkerBg: '#EAEBEB',
+    brighterBG: '#484D65',
 
     gradientOrange: '#F02627, #EA8816',
     gradientRainbow: '#0163AE, #D80837, #53AF35',
@@ -234,70 +237,73 @@ export const darkTheme = createTheme('dark-theme', {
   colors: {
     // Primary
 
-    cdgBlue: '$cdgBlue100',
-    typeHeading: '$gray100',
-    background: '#000000',
-    black: '#323130',
+    cdgBlue: '#014AC8',
+    typeHeading: '#FDFDFD',
+    background: '#1B1B1F',
+    black: '#000000',
+    white: '#FFFFFF',
 
-    primaryText: '$gray10',
-    secondaryText: '$gray80',
-    disabledText: '$gray70',
-    whiteText: '#000000',
+    primaryText: '#FDFDFD',
+    secondaryText: '#E4E2E6',
+    disabledText: '#7B7D89',
+    tertiaryText: 'C5C6CF',
+    whiteText: '#FFFFFF',
 
-    divider: '$gray30',
-    border: '#8A8886',
-    activeBorder: '$gray100',
+    divider: '#45464E', // Body Divider
+    border: '#8A8886', // Input Border
+    activeBorder: '#323130', // Input-Hover Border
 
     // Secondary
 
-    infoBg: '#E3F3FF',
-    info: '#0078D4',
+    infoBg: '#78D5E8',
+    info: '#1F4E57',
 
-    dangerBg: '#EFD9DB',
-    danger: '#A4262C',
+    dangerBg: '#F4B7AE',
+    danger: '#861913',
 
-    successBg: '#D1E8CF',
-    success: '#107C10',
+    successBg: '#87DD63',
+    success: '#235213',
 
-    severeWarningBg: '#F0CBBE',
-    severeWarning: '#D83B01',
+    severeWarningBg: '#F9DCD3',
+    severeWarning: '#7C2A10',
 
-    warningBg: '#F1E6C0',
-    warning: '#835C00',
+    warningBg: '#F1BF41',
+    warning: '#574412',
 
     // Shades and Tints
 
-    cdgBlue10: '#E6ECF7',
-    cdgBlue20: '#CCD9EF',
-    cdgBlue40: '#99B3DF',
-    cdgBlue60: '#678ECF',
-    cdgBlue80: '#3468BF',
-    cdgBlue100: '#0142AF',
-    cdgBlue120: '#012158',
-    cdgBlue140: '#001232',
+    cdgBlue10: '#DCE1FC',
+    cdgBlue20: '#B7C4FA',
+    cdgBlue40: '#91A7F9',
+    cdgBlue60: '#6B89F7',
+    cdgBlue80: '#2B53CA',
+    cdgBlue100: '#163CA3',
+    cdgBlue120: '#0D2874',
+    cdgBlue140: '#051649',
 
     overlayLight: 'rgba(255, 255, 255, 0.4)',
-    overlayDark: 'rgba(0, 0, 0, 0.4)',
+    overlayDark: 'rgba(18, 18, 18, 0.7);',
 
-    gray10: '#FAF9F8',
-    gray20: '#F3F2F1',
-    gray30: '#EDEBE9',
-    gray40: '#E1DFDD',
-    gray50: '#D2D0CE',
-    gray60: '#C8C6C4',
-    gray70: '#A19F9D',
-    gray80: '#605E5C',
-    gray90: '#3A3B39',
-    gray100: '#323130',
-    gray110: '#201F1E',
+    gray10: '#DEE1F7',
+    gray20: '#C2C6DB',
+    gray30: '#A6AABF',
+    gray40: '#8C90A3',
+    gray50: '#727689',
+    gray60: '#595E70',
+    gray70: '#4D5263',
+    gray80: '#424657',
+    gray90: '#363B4C',
+    gray100: '#2B3041',
+    gray110: '#161B2B',
 
-    primaryBg: '#F5F5F6',
-    secondaryBg: '#F0F0F0',
+    primaryBg: '#1B1B1F',
+    secondaryBg: '#2C3041',
     darkerBg: '#EAEBEB',
+    brighterBG: '#484D65',
 
-    gradientOrange: '#F02627, #EA8816',
-    gradientRainbow: '#0163AE, #D80837, #53AF35',
-    gradientOrangeBlue: '#D2132A, #0597DB',
+    gradientOrange: '#CC1E1F, #D37C16',
+    gradientRainbow: '#025493, #A51C2E, #46932D',
+    gradientOrangeBlue: '#AA1022, #027FB9',
   },
   fonts,
   fontSizes,

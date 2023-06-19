@@ -112,6 +112,7 @@ export const StyledTextField = styled('input', {
 
   '&:focus': {
     outline: 'none',
+    boxShadow: 'none',
   },
 
   '&::placeholder': {

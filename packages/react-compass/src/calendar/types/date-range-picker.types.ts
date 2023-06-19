@@ -30,7 +30,7 @@ export interface AriaDateRangePickerProps<T extends DateValue>
   extends AriaDatePickerBaseProps<T>,
     DateRangePickerProps<T> {}
 
-export interface RangeCalendarProps<T extends DateValue>
+export interface RangeCalendarProps<T extends DateValue | null>
   extends CalendarPropsBase,
     ValueBase<RangeValue<T> | null> {
   allowsNonContiguousRanges?: boolean
@@ -45,7 +45,7 @@ export interface DateRangePickerAria {
   descriptionProps: DOMAttributes
   errorMessageProps: DOMAttributes
   dialogProps: AriaDialogProps
-  calendarProps: RangeCalendarProps<DateValue>
+  calendarProps: RangeCalendarProps<DateValue | null>
 }
 
 export interface SpectrumDateRangePickerProps<T extends DateValue>
