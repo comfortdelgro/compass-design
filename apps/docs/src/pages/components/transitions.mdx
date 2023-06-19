@@ -1,0 +1,258 @@
+import {Callout} from 'nextra-theme-docs'
+import styles from '../../styles/Home.module.css'
+import {Collapse, Fade, Zoom, Slide} from '../../components/Transitions'
+import Toggle from '@comfortdelgro/react-compass/toggle'
+
+# Transitions
+
+The Transitions component provides you various transition effects.
+
+<Callout>
+  You can see how this component is implemented on
+  [ladle](https://comfortdelgro.github.io/compass-design/ladle/?story=transitions--variants)
+</Callout>
+---
+
+### Import:
+
+```js
+import {Transitions} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import Transitions from '@comfortdelgro/react-compass/transitions'
+```
+
+---
+
+### Fade:
+
+<section>
+  <Fade />
+</section>
+
+```js
+export const Fade: React.FC = () => {
+  const [show, setShow] = React.useState(false)
+
+  const Style = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '10rem',
+    width: '10rem',
+    backgroundColor: '#ADD8E6',
+    borderRadius: '0.5rem',
+    border: '1px solid black',
+    color: 'black',
+    fontWeight: '600',
+  }
+  return (
+    <div style={{display: 'flex', justifyContent: 'start', gap: '30%'}}>
+      <div
+        style={{
+          display: 'flex',
+          gap: '1rem',
+          height: 'fit-content',
+          alignItems: 'center',
+          marginTop: '6rem',
+        }}
+      >
+        <span style={{fontSize: '13px'}}>Click here:</span>
+        <Toggle size='sm' onChange={(status) => setShow(status)} />
+      </div>
+
+      <div style={{padding: '5px'}}>
+        <div
+          style={{
+            marginBottom: '5px',
+            marginTop: '5px',
+            height: '165px',
+            width: '165px',
+          }}
+        >
+          <Transitions effect='fade' show={show}>
+            <div style={{...Style}}>Basic</div>
+          </Transitions>
+        </div>
+        <div style={{marginBottom: '5px', height: '165px', width: '165px'}}>
+          <Transitions effect='fade' show={show} speed={2}>
+            <div style={{...Style}}>Custom Speed: 2s</div>
+          </Transitions>
+        </div>
+      </div>
+    </div>
+  )
+}
+```
+
+---
+
+### Collapse:
+
+<section>
+  <Collapse />
+</section>
+
+```js
+export const Collapse: React.FC = () => {
+  const [show, setShow] = React.useState(false)
+
+  const Style = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '10rem',
+    width: '10rem',
+    backgroundColor: '#ADD8E6',
+    borderRadius: '0.5rem',
+    border: '1px solid black',
+    color: 'black',
+    fontWeight: '600',
+  }
+  return (
+    <div style={{display: 'flex', justifyContent: 'start', gap: '30%'}}>
+      <div
+        style={{
+          display: 'flex',
+          gap: '1rem',
+          height: 'fit-content',
+          alignItems: 'center',
+          marginTop: '6rem',
+        }}
+      >
+        <span style={{fontSize: '13px'}}>Click here:</span>
+        <Toggle size='sm' onChange={(status) => setShow(status)} />
+      </div>
+
+      <div style={{padding: '5px'}}>
+        <div
+          style={{
+            marginBottom: '5px',
+            marginTop: '5px',
+            height: '165px',
+            width: '165px',
+          }}
+        >
+          <Transitions effect='collapse' show={show}>
+            <div style={{...Style}}>Basic</div>
+          </Transitions>
+        </div>
+        <div style={{marginBottom: '5px', height: '165px', width: '165px'}}>
+          <Transitions effect='collapse' show={show} speed={2}>
+            <div style={{...Style}}>Custom Speed: 2s</div>
+          </Transitions>
+        </div>
+        <div style={{marginBottom: '5px', height: '165px', width: '165px'}}>
+          <Transitions effect='collapse' show={show} collapsedSize='100px'>
+            <div
+              style={{
+                ...Style,
+                textAlign: 'center',
+                alignItems: 'start',
+                padding: '3px',
+              }}
+            >
+              Custom Collapsed Size: 100px. Default is 1000px
+            </div>
+          </Transitions>
+        </div>
+        <div style={{marginBottom: '5px', height: '165px', width: '165px'}}>
+          <Transitions effect='collapse' show={show} orientation='horizontal'>
+            <div style={{...Style}}>Horizontal</div>
+          </Transitions>
+        </div>
+      </div>
+    </div>
+  )
+}
+```
+
+---
+
+### Zoom:
+
+<section>
+  <Zoom />
+</section>
+
+```js
+export const Zoom: React.FC = () => {
+  const [show, setShow] = React.useState(false)
+
+  const Style = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '10rem',
+    width: '10rem',
+    backgroundColor: '#ADD8E6',
+    borderRadius: '0.5rem',
+    border: '1px solid black',
+    color: 'black',
+    fontWeight: '600',
+  }
+  return (
+    <div style={{display: 'flex', justifyContent: 'start', gap: '30%'}}>
+      <div
+        style={{
+          display: 'flex',
+          gap: '1rem',
+          height: 'fit-content',
+          alignItems: 'center',
+          marginTop: '6rem',
+        }}
+      >
+        <span style={{fontSize: '13px'}}>Click here:</span>
+        <Toggle size='sm' onChange={(status) => setShow(status)} />
+      </div>
+
+      <div style={{padding: '5px'}}>
+        <div
+          style={{
+            marginBottom: '5px',
+            marginTop: '5px',
+            height: '165px',
+            width: '165px',
+          }}
+        >
+          <Transitions effect='zoom' show={show}>
+            <div style={{...Style}}>Basic</div>
+          </Transitions>
+        </div>
+        <div style={{marginBottom: '5px', height: '165px', width: '165px'}}>
+          <Transitions effect='zoom' show={show} speed={2}>
+            <div style={{...Style}}>Custom Speed: 2s</div>
+          </Transitions>
+        </div>
+      </div>
+    </div>
+  )
+}
+```
+
+---
+
+### System props you can pass the Box component:
+
+| Name           | Type                                        | Default      | Description                                                                                                             |
+| :------------- | :------------------------------------------ | :----------- | :---------------------------------------------------------------------------------------------------------------------- |
+| effect         | `'collapse' \| 'fade' \| 'zoom' \| 'slide'` | -            | The type of transition effect to apply to the child component.                                                          |
+| show           | `boolean`                                   | -            | Determines whether the child component should be shown or hidden with the specified transition effect.                  |
+| speed          | `number`                                    | -            | The speed of the transition effect in seconds.                                                                          |
+| collapsedSize  | `string`                                    | `'1000px'`   | The size of the child component when it is collapsed or hidden.                                                         |
+| orientation    | `'vertical' \| 'horizontal'`                | `'vertical'` | The direction of the collapse animation for the `'collapse'` effect.                                                    |
+| slideDirection | `'top' \| 'bottom' \| 'left' \| 'right'`    | `'bottom'`   | The direction of the slide animation for the `'slide'` effect.                                                          |
+| css            | `CSS`                                       | -            | The system prop that allows defining system overrides as well as additional CSS styles for the `Transitions` component. |
+
+Please note that the `CSS` type refers to an object representing CSS properties and values.
+
+---
+
+<Callout>
+  Check out our
+  [ladle](https://comfortdelgro.github.io/compass-design/ladle/?story=box--transitions--variants)
+  for more info on this component.
+</Callout>

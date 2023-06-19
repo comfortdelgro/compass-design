@@ -28,6 +28,8 @@ export const StyledAccordionButton = styled('button', {
       },
       open: {
         backgroundColor: '$gray20',
+        borderBottomLeftRadius: 0,
+        borderBottomRightRadius: 0,
         '& .accordion-chevron-icon': {
           transform: 'rotate(180deg)',
         },

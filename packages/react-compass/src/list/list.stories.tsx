@@ -1,5 +1,4 @@
-import {faAddressBook, faClone} from '@fortawesome/free-regular-svg-icons'
-import {faChevronRight} from '@fortawesome/free-solid-svg-icons'
+import {faBug, faChevronRight} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {StoryDecorator} from '@ladle/react'
 import React, {Key} from 'react'
@@ -102,7 +101,7 @@ export const Variants: React.FC = () => {
           <List
             title='Title'
             description='Line 1'
-            leftInfo={<FontAwesomeIcon icon={faAddressBook} />}
+            leftInfo={<FontAwesomeIcon icon={faBug} />}
             rightInfo={{
               text: 'Details',
               icon: <FontAwesomeIcon icon={faChevronRight} />,
@@ -111,25 +110,25 @@ export const Variants: React.FC = () => {
           <List
             title='Title'
             description='Line 1'
-            leftInfo={<FontAwesomeIcon icon={faAddressBook} />}
+            leftInfo={<FontAwesomeIcon icon={faBug} />}
             rightInfo={{icon: <FontAwesomeIcon icon={faChevronRight} />}}
           />
           <List
             title='Title'
             description='Line 1'
-            leftInfo={<FontAwesomeIcon icon={faAddressBook} />}
+            leftInfo={<FontAwesomeIcon icon={faBug} />}
             rightInfo={{icon: <Badge color='danger' label='+99' />}}
           />
           <List
             title='Title'
             description='Line 1'
-            leftInfo={<FontAwesomeIcon icon={faAddressBook} />}
+            leftInfo={<FontAwesomeIcon icon={faBug} />}
             rightInfo={{text: 'Details'}}
           />
           <List
             title='Title'
             description='Line 1'
-            leftInfo={<FontAwesomeIcon icon={faAddressBook} />}
+            leftInfo={<FontAwesomeIcon icon={faBug} />}
           />
         </Column>
 
@@ -194,7 +193,7 @@ export const Variants: React.FC = () => {
         <Column>
           <List
             size='sm'
-            leftInfo={<FontAwesomeIcon icon={faClone} />}
+            leftInfo={<FontAwesomeIcon icon={faBug} />}
             title='Title'
             description='Lorem Ipsum'
             css={{maxWidth: '198px'}}
@@ -202,7 +201,7 @@ export const Variants: React.FC = () => {
           <List
             size='sm'
             isDisabled
-            leftInfo={<FontAwesomeIcon icon={faClone} />}
+            leftInfo={<FontAwesomeIcon icon={faBug} />}
             title='Title'
             description='Lorem Ipsum'
             css={{maxWidth: '198px'}}
@@ -295,7 +294,7 @@ export const Variants: React.FC = () => {
             title='Title'
             variant='item'
             description='Line 1'
-            leftInfo={<FontAwesomeIcon icon={faAddressBook} />}
+            leftInfo={<FontAwesomeIcon icon={faBug} />}
             rightInfo={{
               text: 'Details',
               icon: <FontAwesomeIcon icon={faChevronRight} />,
@@ -305,28 +304,28 @@ export const Variants: React.FC = () => {
             title='Title'
             variant='item'
             description='Line 1'
-            leftInfo={<FontAwesomeIcon icon={faAddressBook} />}
+            leftInfo={<FontAwesomeIcon icon={faBug} />}
             rightInfo={{icon: <FontAwesomeIcon icon={faChevronRight} />}}
           />
           <List
             title='Title'
             variant='item'
             description='Line 1'
-            leftInfo={<FontAwesomeIcon icon={faAddressBook} />}
+            leftInfo={<FontAwesomeIcon icon={faBug} />}
             rightInfo={{icon: <Badge color='danger' label='+99' />}}
           />
           <List
             title='Title'
             variant='item'
             description='Line 1'
-            leftInfo={<FontAwesomeIcon icon={faAddressBook} />}
+            leftInfo={<FontAwesomeIcon icon={faBug} />}
             rightInfo={{text: 'Details'}}
           />
           <List
             title='Title'
             variant='item'
             description='Line 1'
-            leftInfo={<FontAwesomeIcon icon={faAddressBook} />}
+            leftInfo={<FontAwesomeIcon icon={faBug} />}
           />
         </Column>
 

@@ -1,9 +1,9 @@
 import {useFocusRing} from '@react-aria/focus'
 import {useTableCell} from '@react-aria/table'
-import {mergeProps} from '@react-aria/utils'
 import {TableState} from '@react-stately/table'
 import type {GridNode} from '@react-types/grid'
 import React from 'react'
+import mergeProps from '../utils/mergeProps'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {StyledTableCell} from './table-cell.styles'
 

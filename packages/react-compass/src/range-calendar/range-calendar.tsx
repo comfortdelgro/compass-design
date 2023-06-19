@@ -5,7 +5,8 @@ import {
   parseDate,
 } from '@internationalized/date'
 import {useDateFormatter, useLocale} from '@react-aria/i18n'
-import React from 'react'
+import React, {useCallback} from 'react'
+import Box from '../box'
 import Button, {ButtonProps} from '../button'
 import CalendarGrid from '../calendar/calendar-grid'
 import CalendarHeader from '../calendar/calendar-header'
@@ -15,19 +16,33 @@ import {DateRangePickerState, DateValue, RangeValue} from '../calendar/types'
 import {useDatePickerContext} from '../date-picker/date-picker-context'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
+import RangeCalendarShorcuts, {
+  CustomShortcutsProps,
+} from './range-calendar-shortcuts'
 import {StyledRangeCalendar} from './range-calendar.style'
 
 interface Props extends StyledComponentProps {
-  value?: RangeValue<DateValue>
+  value?: RangeValue<DateValue | null>
   children?: React.ReactNode
   state?: DateRangePickerState
   hasFooter?: boolean
+  minValue?: DateValue | null | undefined
   maxValue?: DateValue | null | undefined
   onChange?: (e: unknown) => void
   allowsNonContiguousRanges?: boolean
   isDateUnavailable?: (date: DateValue) => boolean
   isDisabled?: boolean
   isReadOnly?: boolean
+  hasShortcuts?: boolean
+  ctaButtonRender?: React.ReactNode
+  onSearchButtonClick?:
+    | ((
+        e:
+          | React.MouseEvent<HTMLButtonElement, MouseEvent>
+          | React.TouchEvent<HTMLButtonElement>,
+      ) => void)
+    | undefined
+  customShortcuts?: CustomShortcutsProps
 }
 
 export type RangeCalendarProps = Props
@@ -39,6 +54,10 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
       hasFooter,
       css = {},
       maxValue = parseDate('2999-02-17'),
+      hasShortcuts = false,
+      ctaButtonRender,
+      onSearchButtonClick,
+      customShortcuts,
       ...delegated
     } = props
 
@@ -68,10 +87,9 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
     const {setIsReset} = useDatePickerContext()
 
     const handleClearButtonClick = () => {
-      props.onChange?.({
-        start: null as unknown as DateValue,
-        end: null as unknown as DateValue,
-      })
+      state.setValue({start: null, end: null})
+
+      state.setAnchorDate(null)
 
       setIsReset?.(true)
     }
@@ -92,48 +110,95 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
         state.setValue(todayRange)
       }
 
+      state.setAnchorDate(null)
+
       state.setFocusedDate?.(
         InternationalizedDate.today(InternationalizedDate.getLocalTimeZone()),
       )
     }
 
-    return (
-      <StyledRangeCalendar ref={rangeCalendarRef} css={css}>
-        <CalendarHeader
-          state={state}
-          variant='range'
-          calendarProps={calendarProps}
-          prevButtonProps={prevButtonProps as unknown as ButtonProps}
-          nextButtonProps={nextButtonProps as unknown as ButtonProps}
-        />
-        <div className='calendar-body'>
-          <CalendarGrid state={state} maxValue={maxValue} />
-          <CalendarGrid
-            state={state}
-            offset={{months: 1}}
-            maxValue={maxValue}
-          />
-        </div>
-        {hasFooter && (
-          <div className='calendar-footer'>
-            <Button variant='ghost' onPress={handleClearButtonClick}>
-              Clear
+    const renderCTAButton = useCallback(() => {
+      if (ctaButtonRender) {
+        return ctaButtonRender
+      } else {
+        if (hasShortcuts) {
+          return (
+            <Button variant='primary' onPress={(e) => onSearchButtonClick?.(e)}>
+              Search
             </Button>
-            <div className='calendar-footer-right-side'>
-              <p className='preview-date'>
-                {state.value?.start &&
-                  state.value?.end &&
-                  formatter.formatRange(
-                    state.value.start.toDate(getLocalTimeZone()),
-                    state.value.end.toDate(getLocalTimeZone()),
-                  )}
-              </p>
-              <Button variant='primary' onPress={handleTodayButtonClick}>
-                Today
-              </Button>
-            </div>
-          </div>
+          )
+        } else {
+          return (
+            <Button variant='primary' onPress={handleTodayButtonClick}>
+              Today
+            </Button>
+          )
+        }
+      }
+    }, [ctaButtonRender, hasShortcuts])
+
+    return (
+      <StyledRangeCalendar
+        ref={rangeCalendarRef}
+        css={css}
+        variants={hasShortcuts ? 'extend' : 'basic'}
+      >
+        {hasShortcuts ? (
+          <RangeCalendarShorcuts
+            state={state}
+            pickerState={pickerState}
+            customShortcuts={customShortcuts}
+          />
+        ) : (
+          <></>
         )}
+        <Box>
+          <CalendarHeader
+            state={state}
+            variant='range'
+            calendarProps={calendarProps}
+            prevButtonProps={prevButtonProps as unknown as ButtonProps}
+            nextButtonProps={nextButtonProps as unknown as ButtonProps}
+          />
+          <div className='calendar-body'>
+            <CalendarGrid state={state} maxValue={maxValue} />
+            <CalendarGrid
+              state={state}
+              offset={{months: 1}}
+              maxValue={maxValue}
+            />
+          </div>
+          {hasFooter && (
+            <div className='calendar-footer'>
+              <Button variant='ghost' onPress={handleClearButtonClick}>
+                Clear
+              </Button>
+              <div className='calendar-footer-right-side'>
+                <p className='preview-date'>
+                  {state?.value?.start && state?.value?.end
+                    ? formatter.formatRange(
+                        state.value.start.toDate(getLocalTimeZone()),
+                        state.value.end.toDate(getLocalTimeZone()),
+                      )
+                    : `${
+                        state?.value?.start
+                          ? formatter.format(
+                              state.value.start.toDate(getLocalTimeZone()),
+                            )
+                          : ''
+                      } - ${
+                        state?.value?.end
+                          ? formatter.format(
+                              state.value.end.toDate(getLocalTimeZone()),
+                            )
+                          : ''
+                      }`}
+                </p>
+                {renderCTAButton()}
+              </div>
+            </div>
+          )}
+        </Box>
       </StyledRangeCalendar>
     )
   },
