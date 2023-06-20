@@ -104,6 +104,7 @@ export const Variations: React.FC = () => (
         variant='primary'
         leftIcon={<Icon icon={faChevronDown} />}
         rightIcon={<Icon icon={faMapMarkerAlt} />}
+        css={{width: '350px'}}
       >
         Primary
       </Button>

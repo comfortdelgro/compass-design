@@ -1,4 +1,3 @@
-import {StoryDecorator} from '@ladle/react'
 import React from 'react'
 import {Column} from '../utils'
 import Calendar, {CalendarProps} from './index'
@@ -24,8 +23,8 @@ export const Variants: React.FC = () => {
       </p>
       <Calendar
         value={date}
-        maxValue={today(getLocalTimeZone())}
-        //minValue={today(getLocalTimeZone())}
+        // maxValue={today(getLocalTimeZone())}
+        minValue={today(getLocalTimeZone())}
         onChange={(e) => {
           setDate(e)
         }}
@@ -33,19 +32,4 @@ export const Variants: React.FC = () => {
       />
     </Column>
   )
-}
-
-export default {
-  decorators: [
-    (Component) => (
-      <div>
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `.ladle-main { background: #eee; }`,
-          }}
-        ></style>
-        <Component />
-      </div>
-    ),
-  ] as StoryDecorator[],
 }

@@ -1,3 +1,5 @@
+import {faPlus} from '@fortawesome/free-solid-svg-icons/faPlus'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React, {useState} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -9,6 +11,7 @@ import {
   StyledSpeedDial,
   StyledSpeedDialActions,
   StyledSpeedDialTrigger,
+  StyledSpeedDialTriggerContent,
 } from './speed-dial.styles'
 
 interface Props extends StyledComponentProps {
@@ -59,7 +62,6 @@ const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
     }
 
     const delegateProps = componentProps()
-
     return (
       <StyledSpeedDial
         {...delegateProps}
@@ -71,12 +73,15 @@ const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
           className={`speed-dial__trigger ${isOpen ? 'open' : ''}`}
           onMouseEnter={handleMouseEnter}
         >
-          <span>{/* <Icon icon={faPlus}></Icon> */}+</span>
+          <StyledSpeedDialTriggerContent>
+            <FontAwesomeIcon icon={faPlus} />
+          </StyledSpeedDialTriggerContent>
         </StyledSpeedDialTrigger>
         <StyledSpeedDialActions
           className={`speed-dial__actions speed-dial__actions--${
             position || 'up'
           } ${isOpen ? 'open' : ''}`}
+          isOpenAction={isOpen}
         >
           {actions.map(({name, icon, onClick}, index) => (
             <SpeedDialAction

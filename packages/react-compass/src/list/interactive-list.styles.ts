@@ -57,7 +57,7 @@ export const StyledInteractiveList = styled('div', {
   '& .interactive-list-chevron-icon': {
     width: '$4',
     height: '$6_5',
-    color: 'black',
+    color: '$primaryText',
   },
 
   variants: {

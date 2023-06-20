@@ -41,6 +41,16 @@
   gap: 1rem;
 }
 
+.gutterShowcaseContainer {
+  padding: 0 10px;
+  margin: 0;
+  margin-top: 1rem;
+  border: 1px solid rgb(231, 228, 228);
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
 .textAreaShowcaseContainer {
   margin: 0;
   padding: 0;

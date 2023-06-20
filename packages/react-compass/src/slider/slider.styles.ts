@@ -22,7 +22,7 @@ export const RangeSliderContainer = styled('div', {
     whiteSpace: 'nowrap',
     bottom: '1.688rem',
     transform: 'translateX(-35%)',
-    fontFamily: 'Poppins',
+    fontFamily: 'inherit',
     fontStyle: 'normal',
     fontWeight: '$bold',
     fontSize: '1.25rem',

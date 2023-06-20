@@ -46,8 +46,14 @@ export const StyledSpeedDialTrigger = styled('div', {
     },
   },
 })
+
+export const StyledSpeedDialTriggerContent = styled('span', {
+  display: 'inline-block',
+  width: '24px',
+  height: '27px',
+})
+
 export const StyledSpeedDialActions = styled('ul', {
-  display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   padding: '0',
@@ -70,6 +76,16 @@ export const StyledSpeedDialActions = styled('ul', {
   },
   '&.speed-dial__actions--right': {
     flexDirection: 'row',
+  },
+  variants: {
+    isOpenAction: {
+      true: {
+        display: 'flex',
+      },
+      false: {
+        display: 'none',
+      },
+    },
   },
 })
 export const SpeedDialAction = styled('li', {

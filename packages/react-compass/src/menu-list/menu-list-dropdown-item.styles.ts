@@ -1,5 +1,8 @@
-import {styled} from '../theme'
-import {StyledMenuListDropdownHeader} from './menu-list-dropdown-header.styles'
+import { styled } from '../theme'
+import { StyledMenuListDropdownHeader } from './menu-list-dropdown-header.styles'
+
+
+
 
 export const StyledMenuListDropdownItem = styled('div', {
   minHeight: '$10',
@@ -15,7 +18,7 @@ export const StyledMenuListDropdownItem = styled('div', {
   },
 
   '&:focus-visible': {
-    outline: '#678ECF solid 2px',
+    outline: '$cdgBlue80 solid 2px',
   },
 
   '& svg': {

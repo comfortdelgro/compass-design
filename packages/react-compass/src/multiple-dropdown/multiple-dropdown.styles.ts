@@ -1,5 +1,7 @@
-import {styled} from '../theme'
-import type {VariantProps} from '../utils/stitches.types'
+import { styled } from '../theme'
+import type { VariantProps } from '../utils/stitches.types'
+
+
 
 export const StyledDropdown = styled('div', {
   maxWidth: '100%',
@@ -11,7 +13,7 @@ export const StyledDropdown = styled('div', {
   alignItems: 'center',
   padding: '$1_5 $4',
   gap: '$1',
-  backgroundColor: '#FFFFFF',
+  backgroundColor: '$background',
   transition: '$default',
   borderWidth: '1px',
   borderStyle: 'solid',
@@ -30,6 +32,7 @@ export const StyledDropdown = styled('div', {
     svg: {
       width: '$4',
       height: '$4',
+      color: '$primaryText',
     },
   },
   '&:focus-within': {
@@ -41,6 +44,8 @@ export const StyledDropdown = styled('div', {
     padding: 0,
     margin: 0,
     border: 'none',
+    backgroundColor: '$background',
+    color: '$primaryText',
     '&:focus': {
       outline: 'none',
     },
@@ -100,6 +105,16 @@ export const StyledSelectedItemWrapper = styled('div', {
     padding: 0,
     margin: 0,
   },
+
+  '.multiple-dropdown-chip-icon': {
+    svg: {
+      color: '$primaryText',
+    },
+  },
+
+  // '.itemListString': {
+
+  // }
 })
 
 export const StyledSelectedItem = styled('div', {
@@ -113,6 +128,7 @@ export const StyledSelectedItem = styled('div', {
   justifyContent: 'center',
   alignItems: 'center',
   gap: '$2',
+  color: '$primaryText',
   div: {
     width: 'fit-content',
     height: 'fit-content',
@@ -146,6 +162,7 @@ export const StyledDropdownWrapper = styled('div', {
             whiteSpace: 'nowrap',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
+            color: '$primaryText'
           },
         },
       },
