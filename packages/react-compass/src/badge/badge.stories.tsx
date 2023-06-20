@@ -35,7 +35,15 @@ export const Icons: React.FC = () => (
       <Badge label='Danger' color='danger' icon />
       <Badge label='Warning' color='warning' icon />
     </Row>
-    <h3>2. Custom Icons</h3>
+    <h3>2. Secondary Icons</h3>
+
+    <Row>
+      <Badge label='Info' color='info' icon variant='secondary' />
+      <Badge label='Success' color='success' icon variant='secondary' />
+      <Badge label='Danger' color='danger' icon variant='secondary' />
+      <Badge label='Warning' color='warning' icon variant='secondary' />
+    </Row>
+    <h3>3. Custom Icons</h3>
 
     <Row>
       <Badge

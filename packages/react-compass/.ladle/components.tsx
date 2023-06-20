@@ -28,7 +28,9 @@ export const Provider: GlobalProvider = ({children, globalState}) => {
         isCSR={true}
       >
         <Preflight />
-        {children}
+        <div style={{color: globalState.theme === 'dark' ? 'white' : 'black'}}>
+          {children}
+        </div>
       </ThemeProvider>
     </React.Fragment>
   )

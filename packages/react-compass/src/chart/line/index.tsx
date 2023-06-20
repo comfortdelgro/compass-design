@@ -10,6 +10,7 @@ import {
 } from 'chart.js'
 import React, {useMemo} from 'react'
 import {Line} from 'react-chartjs-2'
+import {useColors} from '../../theme'
 import {buildData, Chart, DEFAULT_VERTICAL_OPTIONS} from '../utils'
 
 ChartJS.register(
@@ -27,12 +28,14 @@ export type LineChartProps = Chart
 const LineChart: React.FC<LineChartProps> = (props) => {
   const {data = [], labels = [], unit, title, legendPosition = 'top'} = props
 
+  const theme = useColors()
+
   const mappedData = useMemo(
     () => buildData(labels, data, 'line'),
     [data, labels],
   )
 
-  const options = DEFAULT_VERTICAL_OPTIONS(legendPosition, title, unit)
+  const options = DEFAULT_VERTICAL_OPTIONS(theme, legendPosition, title, unit)
 
   return <Line options={options} data={mappedData} />
 }

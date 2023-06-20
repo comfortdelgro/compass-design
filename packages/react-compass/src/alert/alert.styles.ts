@@ -14,6 +14,7 @@ export const StyledAlert = styled('div', {
   borderWidth: '$light',
   borderStyle: 'solid',
   borderRadius: '$md',
+  color: '$primaryText',
   borderColor: 'transparent',
 
   svg: {
@@ -37,12 +38,18 @@ export const StyledAlert = styled('div', {
         '& svg': {
           color: '$info',
         },
+        '.alert-close-icon': {
+          color: '$primaryText',
+        },
       },
       success: {
         background: '$successBg',
         borderColor: '$successBg',
         '& svg': {
           color: '$success',
+        },
+        '.alert-close-icon': {
+          color: '$primaryText',
         },
       },
       warning: {
@@ -51,12 +58,18 @@ export const StyledAlert = styled('div', {
         '& svg': {
           color: '$warning',
         },
+        '.alert-close-icon': {
+          color: '$primaryText',
+        },
       },
       danger: {
         background: '$dangerBg',
         borderColor: '$dangerBg',
         '& svg': {
           color: '$danger',
+        },
+        '.alert-close-icon': {
+          color: '$primaryText',
         },
       },
     },
