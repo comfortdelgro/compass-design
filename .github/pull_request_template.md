@@ -28,7 +28,7 @@
 - [X] 1. Did you start and verify your changes?
 - [X] 2. Did you run build to make sure that your changes can be built successfully?
 - [X] 3. No !important flag, inline style in css
-- [X] 4. No bolerplate codes (1)
+- [X] 4. No boilerplate codes (1)
 - [X] 5. No duplicate code that exist in common functions?
 - [X] 6. All of defined variables should have default value, check null and undefined?
 - [X] 7. Use meaningful name for variables, no suffix 1,2,... Describes reference information for easier to understand what's inside. (2)
