@@ -70,10 +70,22 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
       let isDragging = false
       let prevX = 0
 
-      const handleMouseDown = (event: MouseEvent) => {
+      const handleMouseDown = (event: MouseEvent | TouchEvent) => {
         if (isDisabled) return
+
         isDragging = true
-        prevX = event.clientX
+
+        if (event instanceof MouseEvent) {
+          prevX = event.clientX
+        } else if (event instanceof TouchEvent) {
+          const touch = event.touches[0]
+          if (touch) {
+            prevX = touch.clientX
+          } else {
+            return
+          }
+        }
+
         setDragging(true)
       }
 
@@ -83,10 +95,24 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
         setDragging(false)
       }
 
-      const handleMouseMove = (event: MouseEvent) => {
+      const handleMouseMove = (event: MouseEvent | TouchEvent) => {
         if (!isDragging || isDisabled) return
-        const deltaX = event.clientX - prevX
-        prevX = event.clientX
+
+        let clientX: number
+
+        if (event instanceof MouseEvent) {
+          clientX = event.clientX
+        } else if (event instanceof TouchEvent) {
+          const touch = event.touches[0]
+          if (!touch) return
+          clientX = touch.clientX
+        } else {
+          return
+        }
+
+        const deltaX = clientX - prevX
+        prevX = clientX
+
         const newLeft = thumb.offsetLeft + deltaX
         const sliderWidth = slider.offsetWidth
         const thumbWidth = thumb.offsetWidth
@@ -94,6 +120,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
           0 - thumbWidth,
           Math.min(newLeft, sliderWidth - thumbWidth * 2),
         )}px`
+
         const sliderProgressWidth = thumb.offsetLeft + thumbWidth
         sliderProgress.style.width = `${sliderProgressWidth}px`
 
@@ -105,8 +132,10 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
           ) *
             step +
           minValue
+
         setCurrentValue(newValue)
         thumb.setAttribute('value', newValue.toString())
+
         if (onChange) {
           onChange(newValue)
         }
@@ -147,9 +176,12 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
       }
 
       slider.addEventListener('click', handleMouseClick)
+      thumb.addEventListener('touchstart', handleMouseDown)
       thumb.addEventListener('mousedown', handleMouseDown)
       document.addEventListener('mouseup', handleMouseUp)
       document.addEventListener('mousemove', handleMouseMove)
+      document.addEventListener('touchend', handleMouseUp)
+      document.addEventListener('touchmove', handleMouseMove)
 
       // Set the initial value and position of the thumb based on defaultValue prop
       if (defaultValue !== undefined || value !== undefined) {
@@ -175,6 +207,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
 
       return () => {
         thumb.removeEventListener('mousedown', handleMouseDown)
+        thumb.removeEventListener('touchstart', handleMouseDown)
         document.removeEventListener('mouseup', handleMouseUp)
         document.removeEventListener('mousemove', handleMouseMove)
         slider.removeEventListener('click', handleMouseClick)
