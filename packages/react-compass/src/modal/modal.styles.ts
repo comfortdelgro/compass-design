@@ -1,5 +1,6 @@
-import {styled} from '../theme'
-import type {VariantProps} from '../utils/stitches.types'
+import { styled } from '../theme'
+import type { VariantProps } from '../utils/stitches.types'
+
 
 export const StyledModalHeader = styled('div', {
   // reset
@@ -35,7 +36,7 @@ export const StyledModalTitle = styled('h3', {
   fontWeight: '$semibold',
   fontSize: '$header3',
   lineHeight: '$normal',
-  color: '$black',
+  color: '$primaryText',
 })
 
 export const StyledModalDescription = styled('div', {
@@ -112,6 +113,7 @@ export const StyledModalCloseIcon = styled('div', {
   justifyContent: 'center',
   alignItems: 'center',
   cursor: 'pointer',
+  color: '$primaryText',
   '& *': {
     width: '100%',
     height: '100%',

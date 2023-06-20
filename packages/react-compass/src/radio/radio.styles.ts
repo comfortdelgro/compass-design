@@ -1,5 +1,6 @@
-import {styled} from '../theme'
-import type {VariantProps} from '../utils/stitches.types'
+import { styled } from '../theme'
+import type { VariantProps } from '../utils/stitches.types'
+
 
 export const StyledRadio = styled('div', {
   position: 'relative',
@@ -27,13 +28,14 @@ export const StyledRadio = styled('div', {
       fontSize: '$header5',
       display: 'flex',
       alignItems: 'center',
+      color: '$primaryText',
     },
     '.radio-description': {
       padding: 0,
       margin: 0,
       fontWeight: '$normal',
       fontSize: '$header5',
-      color: '#757575',
+      color: '$secondaryText',
     },
   },
   '.radio-right-label': {

@@ -210,10 +210,8 @@ export const Variants: React.FC = () => {
             <FontAwesomeIcon
               icon={faSearch}
               style={{
-                color: '#FFF',
                 width: '$5',
                 height: '$5',
-
                 cursor: 'pointer',
               }}
             />

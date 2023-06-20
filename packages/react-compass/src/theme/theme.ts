@@ -1,5 +1,6 @@
-import {createTheme} from '@stitches/react'
-import {StitchesTheme} from '../utils/stitches.types'
+import { createTheme } from '@stitches/react'
+import { StitchesTheme } from '../utils/stitches.types'
+
 
 const defineTheme = <T extends StitchesTheme>(theme: T) => theme
 
@@ -26,6 +27,7 @@ const spacings = {
   9: '2.25rem', // 36px
   '9_25': '2.3125rem', //37px
   10: '2.5rem', // 40px
+  '10_5': '2.625rem', // 42px
   11: '2.75rem', // 44px
   12: '3rem', // 48px
   '12_5': '3.125rem', // 50px
@@ -148,7 +150,6 @@ const transitions = {
   button:
     'background 0.25s ease 0s, color 0.25s ease 0s, border-color 0.25s ease 0s, transform 0.25s ease 0s, opacity 0.25s ease 0s',
 }
-
 export const lightTheme = defineTheme({
   colors: {
     // Primary
@@ -315,5 +316,6 @@ export const darkTheme = createTheme('dark-theme', {
   sizes: spacings,
   transitions,
 })
+
 
 export default createTheme

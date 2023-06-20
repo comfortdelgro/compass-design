@@ -20,6 +20,7 @@ export const StyledRangeCalendar = styled('div', {
     marginTop: '$6',
     paddingTop: '$6',
     borderTop: '1px solid $gray40',
+    color: '$primaryText'
   },
 
   '& .calendar-footer .calendar-footer-right-side': {
@@ -38,4 +39,27 @@ export const StyledRangeCalendar = styled('div', {
     height: '$8',
     fontSize: '$label2',
   },
+
+  variants: {
+    variants: {
+      extend: {
+        display: 'flex',
+        flexDirection: 'row',
+        padding: 0,
+        '& > div:nth-child(2)': {
+          padding: '$4',
+        },
+      },
+      basic: {},
+    },
+  },
+
+  defaultVariants: {
+    variants: 'basic',
+  },
+})
+
+export const StyledExtendRangeCalendar = styled('div', {
+  display: 'flex',
+  flexDirection: 'row',
 })

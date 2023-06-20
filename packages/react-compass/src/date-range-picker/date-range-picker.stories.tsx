@@ -1,6 +1,8 @@
 import type {RangeValue} from '@react-types/shared'
 import React from 'react'
+import Button from '../button'
 import {DateValue} from '../calendar/types'
+import {RangeCalendarShorcutItem} from '../range-calendar/range-calendar-shortcuts'
 import {Column} from '../utils'
 import Calendar, {CalendarProps} from './../calendar'
 import DateRangePicker from './date-range-picker'
@@ -41,6 +43,32 @@ export const Variants: React.FC = () => {
           errorMessage='Must not include weekend'
           startDateLabel='Start date'
           endDateLabel='End date'
+        />
+        <h3>Extended Range Calendar</h3>
+        <DateRangePicker
+          startDateLabel='Start date'
+          endDateLabel='End date'
+          hasShortcuts
+          customShortcuts={(shortcuts) => {
+            const customShortcuts: RangeCalendarShorcutItem[] = [
+              {
+                label: 'Custom Shortcut',
+                getValue: () => {
+                  return {start: null, end: null}
+                },
+              },
+            ]
+            return [...shortcuts, ...customShortcuts]
+          }}
+          ctaButtonRender={
+            <Button
+              onPress={() => {
+                alert('Custom callback')
+              }}
+            >
+              Custom Button
+            </Button>
+          }
         />
       </Column>
     </I18nProvider>
