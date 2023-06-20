@@ -1,5 +1,5 @@
 import React from 'react'
-import {useRichTextEditorContext} from '../../rich-text-editor.context'
+import { useRichTextEditorContext } from '../../rich-text-editor.context'
 import Select from '../../select'
 export type HeadingsControlProps = {
   levels?: number[]
@@ -92,6 +92,9 @@ export const HeadingsControl = () => {
         width: '124px',
         height: '28px',
         float: 'left',
+        button: {
+          color: '$gray110',
+        },
       }}
     >
       {heading.map((h) => (

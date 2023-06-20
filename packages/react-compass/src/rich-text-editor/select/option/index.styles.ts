@@ -1,6 +1,7 @@
 import { styled } from '../../../theme'
 import type { VariantProps } from '../../../utils/stitches.types'
 
+
 export const StyledOption = styled('li', {
   fontSize: '$label1',
   fontWeight: '$medium',
@@ -10,19 +11,19 @@ export const StyledOption = styled('li', {
   display: 'flex',
   alignItems: 'center',
   gap: '$2',
-  color: '333333',
+  color: '$gray100',
   '&:hover': {
-    backgroundColor: '#F3F2F1',
+    backgroundColor: '$gray20',
   },
   variants: {
     isFocused: {
       true: {
-        backgroundColor: '#F3F2F1',
+        backgroundColor: '$gray20',
       },
     },
     isSelected: {
       true: {
-        backgroundColor: '#F3F2F1',
+        backgroundColor: '$gray20',
       },
     },
     isDisabled: {
@@ -59,11 +60,14 @@ export const StyledRightIcon = styled('div', {
     },
     type: {
       color: {
-        position: 'absolute'
+        position: 'absolute',
+        color: '$whiteText',
       },
-      heading: {},
-      alignment: {}
-    }
+      heading: {
+        color: '$cdgBlue',
+      },
+      alignment: {},
+    },
   },
 })
 

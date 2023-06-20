@@ -1,0 +1,164 @@
+import {
+  Box,
+  Gutter,
+  GutterContent,
+  GutterResizer,
+} from '@comfortdelgro/react-compass'
+import {Callout} from 'nextra-theme-docs'
+import styles from '../../styles/Home.module.css'
+
+# Gutter Component
+
+This gutter control will align with parent element, it will update directly to parent element size.
+To implement it, just place it into the element that you want to resize.
+
+<Callout>
+  Check out our [ladle](/ladle?story=gutter--default) for more info on this
+  component.
+</Callout>
+
+---
+
+### Import:
+
+```js
+import {Grid, GutterContent, GutterResizer} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import Gutter, {
+  GutterContent,
+  GutterResizer,
+} from '@comfortdelgro/react-compass/gutter'
+```
+
+---
+
+### Basic Gutter:
+
+<section className={styles.gutterShowcaseContainer}>
+  <Box css={{display: 'flex', height: '100%', flex: 1}}>
+    <Gutter>
+      <GutterContent>Sidenav</GutterContent>
+      <GutterResizer />
+    </Gutter>
+    <Box>Content</Box>
+  </Box>
+</section>
+
+```jsx
+<Box css={{display: 'flex'}}>
+  <Gutter>
+    <GutterContent>Sidenav</GutterContent>
+    <GutterResizer />
+  </Gutter>
+  <Box>Content</Box>
+</Box>
+```
+
+### Left Side Gutter
+
+<section className={styles.gutterShowcaseContainer}>
+  <Box css={{display: 'flex', height: '100%', flex: 1}}>
+    <Box css={{flex: 1}}>Content</Box>
+    <Gutter>
+      <GutterResizer />
+      <GutterContent>Sidenav</GutterContent>
+    </Gutter>
+  </Box>
+</section>
+
+```jsx
+<Box css={{display: 'flex'}}>
+  <Box css={{flex: 1}}>Content</Box>
+  <Gutter>
+    <GutterResizer />
+    <GutterContent>Sidenav</GutterContent>
+  </Gutter>
+</Box>
+```
+
+### Both Side Gutter
+
+<section className={styles.gutterShowcaseContainer}>
+  <Box css={{display: 'flex', height: '100%', flex: 1}}>
+    <Gutter hasBothSides>
+      <GutterContent>Sidenav</GutterContent>
+      <GutterResizer />
+    </Gutter>
+    <Box css={{flex: 1}}>Content</Box>
+    <Gutter hasBothSides>
+      <GutterResizer />
+      <GutterContent>Sidenav</GutterContent>
+    </Gutter>
+  </Box>
+</section>
+
+```jsx {2, 7}
+<Box css={{display: 'flex'}}>
+  <Gutter hasBothSides>
+    <GutterContent>Sidenav</GutterContent>
+    <GutterResizer />
+  </Gutter>
+  <Box css={{flex: 1}}>Content</Box>
+  <Gutter hasBothSides>
+    <GutterResizer />
+    <GutterContent>Sidenav</GutterContent>
+  </Gutter>
+</Box>
+```
+
+### Collapsible Button
+
+<section className={styles.gutterShowcaseContainer}>
+  <Box css={{display: 'flex', height: '100%', flex: 1}}>
+    <Gutter>
+      <GutterContent>Sidenav</GutterContent>
+      <GutterResizer showCollapseButton />
+    </Gutter>
+    <Box>Content</Box>
+  </Box>
+</section>
+
+```jsx
+<Box css={{display: 'flex'}}>
+  <Gutter>
+    <GutterContent>Sidenav</GutterContent>
+    <GutterResizer showCollapseButton />
+  </Gutter>
+  <Box>Content</Box>
+</Box>
+```
+
+### Props
+
+#### Gutter
+
+| Name         | Type               | Default | Description                                                  |
+| :----------- | :----------------- | :------ | :----------------------------------------------------------- |
+| children     | `React.ReactNode`  | —       |                                                              |
+| css          | `CSS`              | —       |                                                              |
+| width        | `CSS['width']`     | —       | initial width of gutter                                      |
+| minWidth     | `CSS['min-width']` | —       | the minimum width when resizing                              |
+| maxWidth     | `CSS['max-width']` | —       | the maximum width when resizing                              |
+| hasBothSides | `boolean`          | `false` | a prop that helps us detect if there are two sides of gutter |
+
+#### Gutter Resizer
+
+| Name               | Type                             | Default | Description                                     |
+| :----------------- | :------------------------------- | :------ | :---------------------------------------------- |
+| css                | `CSS`                            | —       |                                                 |
+| showCollapseButton | `boolean`                        | `false` | show collapse button                            |
+| isCollapsed        | `boolean`                        | —       | controlled state                                |
+| minCollapseWidth   | `CSS['min-width']`               | —       | the minimum width when trigger collapse button  |
+| maxCollapseWidth   | `CSS['max-width']`               | —       | the maximum width when trigger collapse button  |
+| onCollapseChange   | `(isCollapsed: boolean) => void` | —       | a callback that fire when collapse state change |
+
+#### Gutter Content
+
+| Name     | Type              | Default | Description |
+| :------- | :---------------- | :------ | :---------- |
+| children | `React.ReactNode` | —       |             |
+| css      | `CSS`             | —       |             |

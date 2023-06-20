@@ -22,7 +22,7 @@ const Divider = React.forwardRef<HTMLElement, DividerProps>((props, ref) => {
     css = {},
     absolute = false,
     flexItem = false,
-    color = '#0000001f',
+    color = '$colors-divider',
     textAlign = 'center',
     variant = 'fullWidth',
     orientation = 'horizontal',

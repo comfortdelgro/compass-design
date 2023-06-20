@@ -60,8 +60,8 @@ interface CalendarStateProps extends ValueBase<DateValue> {
   locale: string
   createCalendar: (name: string) => Calendar
   visibleDuration?: VisibleDuration
-  minValue?: DateValue
-  maxValue?: DateValue
+  minValue?: DateValue | null | undefined
+  maxValue?: DateValue | null | undefined
   focusedValue?: DateValue
   defaultFocusedValue?: DateValue
   autoFocus?: boolean
@@ -351,7 +351,7 @@ export const useCalendarState = (
     isFocused,
     setFocused,
     isInvalid(date: CalendarDate) {
-      return isInvalid(date, minValue!, maxValue!)
+      return isInvalid(date, minValue, maxValue)
     },
     isCellUnavailable(date: CalendarDate) {
       return props.isDateUnavailable?.(date) ?? false

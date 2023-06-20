@@ -56,7 +56,7 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
         ? isSameDay(date, state.highlightedRange.end!)
         : isSelected
 
-      isDisabled = date.month !== currentMonth.month
+      isDisabled = isDisabled ? isDisabled : date.month !== currentMonth.month
     }
 
     const classNameCombine = () => {

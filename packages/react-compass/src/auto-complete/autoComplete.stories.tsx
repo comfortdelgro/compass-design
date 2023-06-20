@@ -55,6 +55,7 @@ export const FullFeatured: React.FC = () => {
         onSearch={(value) => onSearchHandler(value)} // This is where you would make your API call
         options={searchResults} // This is the list of options that will be displayed in the dropdown
         onSelect={(value) => onSelectHandler(value)} // This is the callback that will be called when user selects an option from the dropdown
+        notFoundContent='No data found' // This is the message that will be displayed when no options are found
       >
         {/* You can put our own input element here instead of using our SearchField component */}
         <SearchField

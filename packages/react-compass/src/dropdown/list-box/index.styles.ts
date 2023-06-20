@@ -25,10 +25,10 @@ export const StyledLoading = styled('div', {
       position: 'absolute',
       width: '$4',
       height: '$4',
-      border: '2px solid #757575',
+      border: '2px solid $divider',
       borderRadius: '50%',
       animation: `${spin} 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite`,
-      borderColor: '#757575 transparent transparent transparent',
+      borderColor: '$divider transparent transparent transparent',
     },
     '.spinner-1': {
       animationDelay: '-0.45s',
@@ -47,5 +47,5 @@ export const StyledSection = styled('div', {
   padding: '$2 $4',
   fontSize: '$label2',
   fontWeight: '$semibold',
-  color: '#333333',
+  color: '$gray100',
 })

@@ -43,13 +43,13 @@ import Textfield from '@comfortdelgro/react-compass/textfield'
 ### Text field with label:
 
 <section className={styles.avatarShowcaseContainer}>
-  <Textfield 
+  <Textfield
     label={
       <>
         Text Label <BugIcon />
       </>
     }
-    placeholder='Enter your name' 
+    placeholder='Enter your name'
   />
 </section>
 
@@ -184,17 +184,18 @@ With css prop, you can basically do anything that css can do.
 
 ### Props:
 
-| Name          | Type               | Default | Description                                       |
-| :------------ | :----------------- | :------ | :------------------------------------------------ |
-| `placeholder` | `string` \| `null` | `null`  | `Placeholder of the text field`                   |
-| `label`       | `string` \| `null` | `null`  | `Label of the text field`                         |
-| `helperText`  | `string` \| `null` | —       |                                                   |
-| `isErrored`   | `true` \| `false`  | `false` | `Throw error when input value is wrong`           |
-| `value`       | `string`           | —       | `Input value`                                     |
-| `rightIcon`   | `ReactNode`        | -       | `Icon placed on the right side of the text field` |
-| `leftIcon`    | `ReactNode`        | -       | `Icon placed on the left side of the text field`  |
-| `isDisabled`  | `false`\| `true`   | `false` | `Disable the text field when true`                |
-| `css `        | `CSS`              | —       |                                                   |
+| Name          | Type                                | Default | Description                                                  |
+| :------------ | :---------------------------------- | :------ | :----------------------------------------------------------- |
+| `placeholder` | `string` \| `null`                  | `null`  | `Placeholder of the text field`                              |
+| `label`       | `string` \| `null`                  | `null`  | `Label of the text field`                                    |
+| `helperText`  | `string` \| `null`                  | —       |                                                              |
+| `isErrored`   | `true` \| `false`                   | `false` | `Throw error when input value is wrong`                      |
+| `value`       | `string`                            | —       | `Input value`                                                |
+| `rightIcon`   | `ReactNode`                         | -       | `Icon placed on the right side of the text field`            |
+| `leftIcon`    | `ReactNode`                         | -       | `Icon placed on the left side of the text field`             |
+| `isDisabled`  | `false`\| `true`                    | `false` | `Disable the text field when true`                           |
+| `css `        | `CSS`                               | —       |                                                              |
+| `inputRef `   | `React.RefObject<HTMLInputElement>` | —       | `Use useRef to control input tag inside TextField component` |
 
 ---
 

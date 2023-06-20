@@ -1,5 +1,8 @@
-import {styled} from '../theme'
-import type {VariantProps} from '../utils/stitches.types'
+import { styled } from '../theme'
+import type { VariantProps } from '../utils/stitches.types'
+
+
+
 
 export const StyledEditorContent = styled('div', {
   // reset
@@ -7,6 +10,8 @@ export const StyledEditorContent = styled('div', {
   border: 'none',
   boxSizing: 'border-box',
   margin: '0px',
+  backgroundColor: '$background',
+  color: '$primaryText',
   // styling
 })
 
@@ -21,23 +26,20 @@ export const StyledRichTextEditor = styled('div', {
   // Styling for ProposeMirror
   '& .ProseMirror': {
     padding: '10px',
-    borderTop: '1px solid #E9ECEF',
-    background: 'white',
-    borderRadius: '0 0 5px 5px',
     minHeight: '100px',
     outline: 'none',
   },
   '& .ProseMirror blockquote': {
-    borderLeft: '3px solid #0d0d0d1a',
+    borderLeft: '3px solid $border',
     paddingLeft: '1rem',
   },
   '& .ProseMirror code': {
     marginTop: '0.75em',
   },
   '& .ProseMirror pre': {
-    background: '#0d0d0d',
+    background: '$black',
     borderRadius: '0.5rem',
-    color: '#fff',
+    color: '$white',
     padding: '0.75rem 1rem',
     code: {
       background: 'none',
@@ -49,117 +51,79 @@ export const StyledRichTextEditor = styled('div', {
   '& .ProseMirror sup': {
     top: '-0.5em',
   },
+  '& .ProseMirror a': {
+    color: '$info',
+    textDecoration: 'underline',
+    transition: '$default',
+  },
+  h1: {
+    display: 'block',
+    fontSize: '2em',
+    fontWeight: 'bold',
+  },
+  h2: {
+    display: 'block',
+    fontSize: '1.5em',
+    fontWeight: 'bold',
+  },
+  h3: {
+    display: 'block',
+    fontSize: '1.17em',
+    fontWeight: 'bold',
+  },
+  h4: {
+    display: 'block',
+    fontSize: '1em',
+    fontWeight: 'bold',
+  },
+  h5: {
+    display: 'block',
+    fontSize: '0.83em',
+    fontWeight: 'bold',
+  },
+  h6: {
+    display: 'block',
+    fontSize: '0.67em',
+    fontWeight: 'bold',
+  },
+  ul: {
+    display: 'block',
+    listStyle: 'disc',
+    margin: 'unset',
+    paddingLeft: '20px',
+  },
+  ol: {
+    display: 'block',
+    listStyle: 'decimal',
+    margin: 'unset',
+    paddingLeft: '20px',
+  },
 
   // Styling menubar and content container
 
   borderRadius: '5px',
-  border: '1px solid #E9ECEF',
+  border: '1px solid $gray40',
   overflow: 'clip',
 
   // styling character count
   '.character-count': {
-    color: '#868e96',
-    marginTop: '1rem',
-    marginLeft: '1rem',
-    marginBottom: '1rem',
+    color: '$secondaryText',
+    paddingTop: '1rem',
+    paddingLeft: '1rem',
+    paddingBottom: '1rem',
+    backgroundColor: '$background',
   },
 })
 
-export const StyledMenuBlock = styled('div', {
-  display: 'flex',
-  alignItems: 'center',
-  gap: '8px',
-})
-export const StyledMenuItem = styled('div', {
-  borderRadius: '2px',
-  fontSize: '18px',
-  outline: 'none',
-  border: 'none',
-  background: 'none',
-  color: 'rgb(70, 70, 70)',
-  cursor: 'pointer',
-  padding: '10px',
-  '&.is_active': {
-    background: 'rgb(197, 197, 197)',
-  },
-})
 export const StyledColorItem = styled('div', {
   borderRadius: 4,
   width: 24,
   height: 24,
   variants: {
     active: {
-      true: {
-        background: 'red',
-      },
+      true: {},
     },
   },
-})
-
-export const List = styled('ul', {
-  maxHeight: '300px',
-  overflow: 'auto',
-  listStyle: 'none',
-  padding: 0,
-  margin: '4px 0',
-  outline: 'none',
-  width: '100%',
-})
-export const Grid = styled('ul', {
-  maxHeight: '300px',
-  padding: 9,
-  overflow: 'auto',
-  listStyle: 'none',
-  margin: '4px 0',
-  outline: 'none',
-  width: '100%',
-  display: 'grid',
-  gridTemplateColumns: 'auto auto auto auto auto auto auto auto',
-})
-
-export const ListItem = styled('li', {
-  fontSize: '14px',
-  background: 'none',
-  padding: '8px',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  cursor: 'pointer',
-  outline: 'none',
-  color: '#333',
-  position: 'relative',
-  gap: 8,
-  svg: {
-    height: '1em',
-  },
-  '.overlapped-icon': {
-    position: 'absolute',
-    zIndex: 1,
-    color: '#FFFFFF !important',
-    left: '35%',
-    top: '32%',
-  },
-  variants: {
-    isFocused: {
-      true: {
-        background: '#F3F2F1',
-      },
-    },
-    isSelected: {
-      true: {
-        background: '#F3F2F1',
-        '.check-icon': {
-          color: '#0142AF',
-        },
-      },
-    },
-  },
-})
-
-export const ItemContent = styled('div', {
-  display: 'flex',
-  alignItems: 'center',
-  gap: 5,
 })
 
 export type MenuBarVariantProps = VariantProps<typeof StyledRichTextEditor>
