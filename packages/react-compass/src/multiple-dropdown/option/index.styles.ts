@@ -1,4 +1,6 @@
-import {styled} from '../../theme'
+import { styled } from '../../theme'
+
+
 
 export const StyledRightIcon = styled('div', {
   display: 'flex',
@@ -27,18 +29,26 @@ export const StyledRightIcon = styled('div', {
     checkmark: {
       checkbox: {
         div: {
-          border: '1px solid #323130',
+          border: '1px solid $black',
           borderRadius: '3px',
           width: '$4',
           height: '$4',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: '#FFFFFF',
+          background: '$background',
+        },
+
+        svg: {
+          color: '$whiteText',
         },
       },
       none: {},
-      tick: {},
+      tick: {
+        svg: {
+          color: '$cdgBlue',
+        },
+      },
     },
   },
 })

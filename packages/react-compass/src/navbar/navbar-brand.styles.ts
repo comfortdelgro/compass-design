@@ -1,7 +1,8 @@
-import {styled} from '../theme'
+import { styled } from '../theme'
+
 
 export const StyledNavbarBrand = styled('div', {
-  color: '#FFFFFF',
+  color: '$whiteText',
   '& .navbar-brand-title': {
     fontSize: '$4',
     fontWeight: '$semibold',
