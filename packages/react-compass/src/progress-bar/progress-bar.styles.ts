@@ -1,5 +1,8 @@
-import {styled} from '../theme'
-import type {VariantProps} from '../utils/stitches.types'
+import { styled } from '../theme'
+import type { VariantProps } from '../utils/stitches.types'
+
+
+
 
 export const StyledProgressBar = styled('div', {
   width: '100%',
@@ -16,7 +19,7 @@ export const StyledProgressBar = styled('div', {
     backgroundColor: '$gray30',
     '& div': {
       height: '100%',
-      backgroundColor: '#009EDA',
+      backgroundColor: '$info',
     },
   },
   variants: {
@@ -35,7 +38,7 @@ export const StyledProgressBar = styled('div', {
       blue: {
         '.progress-bar': {
           '& div': {
-            backgroundColor: '#009EDA',
+            backgroundColor: '$info',
           },
         },
       },
