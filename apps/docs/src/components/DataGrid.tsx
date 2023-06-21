@@ -14,7 +14,7 @@ import {
 } from '@comfortdelgro/react-compass'
 import {ColumnConfig, StateSorting} from '@comfortdelgro/react-compass/table-v2'
 import React, {useState} from 'react'
-import StatusComponent from './for demo/person-status'
+import StatusComponent from './person-status'
 
 export type Person = {
   firstName: string

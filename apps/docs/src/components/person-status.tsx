@@ -1,6 +1,5 @@
-import { Icon } from '@comfortdelgro/react-compass'
+import {Icon} from '@comfortdelgro/react-compass'
 import {faHeart, faHeartBroken, faUser} from '@fortawesome/free-solid-svg-icons'
-import React from 'react'
 
 interface StatusComponentProps {
   status: string
@@ -21,8 +20,8 @@ const StatusComponent = ({status}: StatusComponentProps) => {
   }
 
   return (
-    <div>
-      <span style={{paddingRight: '5px'}}>{renderIcon()}</span>
+    <div style={{display: 'flex'}}>
+      <span style={{paddingRight: '5px', width: '24px'}}>{renderIcon()}</span>
       <span>{status}</span>
     </div>
   )
