@@ -1,0 +1,291 @@
+import {DateRangePicker} from '@comfortdelgro/react-compass'
+import styles from '../../styles/Home.module.css'
+import {
+  ControlledDateRangePicker,
+  ValidatedDateRangePickers,
+  DateRangePickerWithShortcuts,
+} from '../../components/DatePickers'
+
+# DateRangePicker
+
+DateRangePickers combine two inpui fields and a RangeCalendar popover to allow users to enter or select a date and time range.
+
+### Pre-Install
+
+Install these packages to use their utilities
+
+import {Tabs, Tab, Callout} from 'nextra-theme-docs'
+
+<Tabs items={['npm', 'yarn', 'pnpm']} defaultIndex={0}>
+  <Tab>```bash npm i @react-aria/i18n @internationalized/date ```</Tab>
+  <Tab>``` bash yarn add @react-aria/i18n @internationalized/date ```</Tab>
+  <Tab>``` bash pnpm add @react-aria/i18n @internationalized/date ```</Tab>
+</Tabs>
+
+---
+
+### Import
+
+```js
+import {DateRangePicker} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import DateRangePicker from '@comfortdelgro/react-compass/date-range-picker'
+```
+
+---
+
+### I18nProvider
+
+I18nProvider allows you to override the default locale as determined by the browser/system setting with a locale defined by your application (e.g. application setting).
+In this docs, we will use English(Singapore) `en-SG` as default locale
+
+### Basic
+
+<section className={styles.componentShowcaseContainer}>
+  <DateRangePicker startDateLabel='Start Date' endDateLabel='End Date' />
+</section>
+
+```js
+<DateRangePicker startDateLabel='Start Date' endDateLabel='End Date' />
+```
+
+### Controlled
+
+<section className={styles.componentShowcaseContainer}>
+  <ControlledDateRangePicker />
+</section>
+
+```js
+import {DateRangePicker, RangeValue} from '@comfortdelgro/react-compass'
+import {DateValue, getLocalTimeZone, parseDate} from '@internationalized/date'
+import {I18nProvider, useDateFormatter} from '@react-aria/i18n'
+
+function ControlledDateRangePicker() {
+  const [range, setRange] = useState<RangeValue<DateValue>>({
+    start: parseDate('2020-02-03'),
+    end: parseDate('2020-02-08'),
+  })
+  const formatter = useDateFormatter({dateStyle: 'long'})
+
+  const onChangeDateRangePicker = (value: RangeValue<DateValue> | null) => {
+    setRange(value as RangeValue<DateValue>)
+  }
+
+  return (
+    <I18nProvider locale='en-SG'>
+      {range &&
+        formatter.formatRange(
+          range.start.toDate(getLocalTimeZone()),
+          range.end.toDate(getLocalTimeZone()),
+        )}
+      <DateRangePicker value={range} onChange={onChangeDateRangePicker} />
+    </I18nProvider>
+  )
+}
+```
+
+### Granularity
+
+The granularity prop allows you to control the smallest unit that is displayed by a DateRangePicker.
+
+<section className={styles.componentShowcaseContainer}>
+  <DateRangePicker granularity='second' />
+</section>
+
+```js
+<DateRangePicker granularity='second' />
+```
+
+### Labeling
+
+DateRangePicker component receives two props `startDateLabel` and `endDateLabel`
+
+A visual label should be provided for the DatePicker using the label prop. If the DateRangePicker is required, the isRequired and necessityIndicator props can be used to show a required state.
+
+<section className={styles.componentShowcaseContainer}>
+  <DateRangePicker startDateLabel='Start Date' endDateLabel='End Date' />
+  <DateRangePicker
+    startDateLabel='Start Date'
+    endDateLabel='End Date'
+    isRequired
+    necessityIndicator='icon'
+  />
+  <DateRangePicker
+    startDateLabel='Start Date'
+    endDateLabel='End Date'
+    isRequired
+    necessityIndicator='label'
+  />
+  <DateRangePicker
+    startDateLabel='Start Date'
+    endDateLabel='End Date'
+    necessityIndicator='label'
+  />
+</section>
+
+```js
+<DateRangePicker startDateLabel='Start Date'/>
+<DateRangePicker startDateLabel='Start Date' endDateLabel="End Date" isRequired necessityIndicator="icon" />
+<DateRangePicker startDateLabel='Start Date' endDateLabel="End Date" isRequired necessityIndicator="label" />
+<DateRangePicker startDateLabel="Start Date" endDateLabel="End Date" necessityIndicator="label" />
+```
+
+### Validation
+
+Date Range Picker supports marking certain dates as unavailable. These dates cannot be selected by the user and are displayed with a crossed out appearance. The isDateUnavailable prop accepts a callback that is called to evaluate whether each visible date is unavailable.
+
+These examples prevent selecting weekends.
+
+#### Contiguous ranges
+
+<section className={styles.componentShowcaseContainer}>
+  <ValidatedDateRangePickers />
+</section>
+
+```js
+function ValidatedDateRangePickers() {
+  const {locale} = useLocale()
+
+  return (
+    <DateRangePicker isDateUnavailable={(date) => isWeekend(date, locale)} />
+  )
+}
+```
+
+#### Non-contiguous ranges
+
+The `allowsNonContiguousRanges` prop enables a range to be selected even if there are unavailable dates in the middle.
+The value emitted in the onChange event will still be a single range with a start and end property,
+but unavailable dates will not be displayed as selected.
+It is up to applications to split the full selected range into multiple as needed for business logic.
+
+<section className={styles.componentShowcaseContainer}>
+  <ValidatedDateRangePickers contiguous={true} />
+</section>
+
+```js
+function ValidatedDateRangePickers() {
+  const {locale} = useLocale()
+
+  return (
+    <DateRangePicker isDateUnavailable={(date) => isWeekend(date, locale)} />
+  )
+}
+```
+
+### Shorcuts
+
+<section className={styles.componentShowcaseContainer}>
+  <DateRangePicker hasShortcuts />
+</section>
+
+```js
+<DateRangePicker hasShortcuts />
+```
+
+You can create customized shorcuts
+
+<section className={styles.componentShowcaseContainer}>
+  <DateRangePickerWithShortcuts />
+</section>
+
+```js {13-25}
+export function DateRangePickerWithShortcuts() {
+  const {locale} = useLocale()
+
+  const dayOfTwoWeeksAgo = today(getLocalTimeZone()).subtract({
+    weeks: 2,
+  })
+  const startOfTwoWeeksAgo = startOfWeek(dayOfTwoWeeksAgo, locale)
+  const endOfTwoWeeksAgo = endOfWeek(dayOfTwoWeeksAgo, locale)
+
+  return (
+    <DateRangePicker
+      hasShortcuts
+      customShortcuts={(defaultShortcuts, isInvalid) => {
+        const customShortcuts: RangeCalendarShorcutItem[] = [
+          {
+            label: 'Custom Shortcut (Two weeks ago)',
+            isDisable:
+              isInvalid(startOfTwoWeeksAgo) || isInvalid(endOfTwoWeeksAgo),
+            getValue: () => {
+              return {start: startOfTwoWeeksAgo, end: endOfTwoWeeksAgo}
+            },
+          },
+        ]
+        return [...defaultShortcuts, ...customShortcuts]
+      }}
+    />
+  )
+}
+```
+
+### Disabled
+
+<section className={styles.componentShowcaseContainer}>
+  <DateRangePicker isDisabled />
+</section>
+
+```js
+<DateRangePicker isDisabled />
+```
+
+### Read only
+
+<section className={styles.componentShowcaseContainer}>
+  <DateRangePicker isReadOnly />
+</section>
+
+```js
+<DateRangePicker isReadOnly />
+```
+
+### Invalid
+
+<section className={styles.componentShowcaseContainer}>
+  <DateRangePicker isInvalid />
+</section>
+
+```js
+<DateRangePicker isInvalid />
+```
+
+### Props
+
+| Name                      | Type                                                                                                                   | Default | Description                                                                                                                                |
+| :------------------------ | :--------------------------------------------------------------------------------------------------------------------- | :------ | :----------------------------------------------------------------------------------------------------------------------------------------- |
+| calendarCSS               | `CSS`                                                                                                                  |         | Style for calendar                                                                                                                         |
+| allowsNonContiguousRanges | `boolean`                                                                                                              |         | When combined with isDateUnavailable, determines whether non-contiguous ranges, i.e. ranges containing unavailable dates, may be selected. |
+| minValue                  | `DateValue`                                                                                                            |         | The minimum allowed date that a user may select.                                                                                           |
+| maxValue                  | `DateValue`                                                                                                            |         | The maximum allowed date that a user may select.                                                                                           |
+| granularity               | `'day' \| 'hour' \| 'minute' \| 'second'`                                                                              |         | Determines the smallest unit that is displayed in the date picker. By default, this is "day" for dates, and "minute" for times.            |
+| isReadOnly                | `boolean`                                                                                                              | false   | Whether the calendar value is immutable.                                                                                                   |
+| isDisabled                | `boolean`                                                                                                              | false   | Whether the calendar is disabled.                                                                                                          |
+| value                     | `RangeValue<DateValue>`                                                                                                |         | The current value (controlled).                                                                                                            |
+| defaultValue              | `RangeValue<DateValue>`                                                                                                |         | The default value (uncontrolled).                                                                                                          |
+| hourCycle                 | `12                                       \| 24`                                                                       |         | Whether to display the time in 12 or 24 hour format. By default, this is determined by the user's locale.                                  |
+| startDateLabel            | `React.ReactNode`                                                                                                      |         | The content to display as the label.                                                                                                       |
+| endDateLabel              | `React.ReactNode`                                                                                                      |         | The content to display as the label.                                                                                                       |
+| helperText                | `React.ReactNode`                                                                                                      |         | The content to display as helper text                                                                                                      |
+| necessityIndicator        | `'icon' \| 'label'`                                                                                                    |         | Whether the required state should be shown as an icon or text.                                                                             |
+| shouldCloseOnSelect       | `boolean`                                                                                                              | false   | Whether the overlay will close after selected.                                                                                             |
+| isMobile                  | `boolean`                                                                                                              | false   | Whether the overlay is in mobile variant.                                                                                                  |
+| isOpen                    | `boolean`                                                                                                              | false   | Whether the overlay is open by default (controlled).                                                                                       |
+| defaultOpen               | `boolean`                                                                                                              | false   | Whether the overlay is open by default (uncontrolled).                                                                                     |
+| hasShortcuts              | `boolean`                                                                                                              | false   | Whether the calendar shorcuts is shown.                                                                                                    |
+| onSearchButtonClick       | `(e: MouseEvent) => void`                                                                                              |         | Callback fired when the Search Button in the footer is clicked.                                                                            |
+| ctaButtonRender           | `React.ReactNode`                                                                                                      |         | To render custom CTA Button in the footer                                                                                                  |
+| customShortcuts           | `(defaultShortcuts: RangeCalendarShorcutItem[], isValid: (value: DateValue) => boolean) => RangeCalendarShorcutItem[]` |         | This callback function is to render custom shortcuts. It has two params: `defaultShortcuts` and `isInvalid` for user to use                |
+| onChange                  | `(e: RangeValue<MappedDateValue<DateValue>>) => void`                                                                  |         | The default value (uncontrolled).                                                                                                          |
+| onCancel                  | `() => void`                                                                                                           |         | Callback that is called when the cancel button is triggered                                                                                |
+| onApply                   | `(e: RangeValue<MappedDateValue<DateValue>>) => void`                                                                  |         | Callback that is called when the apply button is triggered                                                                                 |
+| isDateUnavailable         | `(date: DateValue) => boolean`                                                                                         |         | Callback that is called for each date of the calendar. If it returns true, then the date is unavailable.                                   |
+
+<Callout>
+  Check out our [ladle](/ladle?story=date-range-picker--variants) for more info
+  on this component.
+</Callout>

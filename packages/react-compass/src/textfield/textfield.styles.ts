@@ -13,7 +13,7 @@ export const StyledTextFieldLabel = styled('label', {
   marginBottom: '$2',
   display: 'inline-block',
   width: '100%',
-  span: {
+  '.asterisk': {
     marginLeft: '$1',
     color: '$danger',
   },
@@ -73,6 +73,9 @@ export const StyledTextFieldBox = styled('div', {
     fontSize: '0.8em',
     marginRight: '$2_5',
     marginLeft: '-$1',
+    svg: {
+      height: '1rem',
+    },
   },
 
   variants: {
@@ -109,6 +112,7 @@ export const StyledTextField = styled('input', {
 
   '&:focus': {
     outline: 'none',
+    boxShadow: 'none',
   },
 
   '&::placeholder': {

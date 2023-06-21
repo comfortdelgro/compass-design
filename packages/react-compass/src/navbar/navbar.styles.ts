@@ -1,7 +1,7 @@
-import {styled} from '../theme'
-import {VariantProps} from '../utils/stitches.types'
-import {StyledNavbarBrand} from './navbar-brand.styles'
-import {StyledNavbarIcon} from './navbar-icon.styles'
+import { styled } from '../theme'
+import { VariantProps } from '../utils/stitches.types'
+import { StyledNavbarBrand } from './navbar-brand.styles'
+
 
 export const StyledNavbar = styled('div', {
   display: 'flex',
@@ -13,11 +13,8 @@ export const StyledNavbar = styled('div', {
   variants: {
     color: {
       white: {
-        backgroundColor: '#ffffff',
+        backgroundColor: '$background',
         [`& ${StyledNavbarBrand}`]: {
-          color: '$gray100',
-        },
-        [`& ${StyledNavbarIcon}`]: {
           color: '$gray100',
         },
       },

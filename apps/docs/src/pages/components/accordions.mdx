@@ -130,10 +130,7 @@ function ExpandDefault() {
   return (
     <Accordion defaultExpand={true}>
       <Accordion.Title>Title</Accordion.Title>
-      <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi,
-        officiis
-      </p>
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi, officiis
     </Accordion>
   )
 }
@@ -144,9 +141,7 @@ function ExpandDefault() {
     <Accordion.Title>
       <h1 style={{fontSize: '32px', fontWeight: 'bold'}}>Title</h1>
     </Accordion.Title>
-    <p>
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi, officiis
-    </p>
+    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi, officiis
   </Accordion>
 </ComponentDisplay>
 
@@ -218,16 +213,12 @@ function CustomizedColors() {
           color: 'currentColor',
         }}
       >
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi,
-          officiis Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-          Quasi, officiis
-        </p>
-      </Accordion.Title>
-      <p>
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi,
-        officiis
-      </p>
+        officiis Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+        Quasi, officiis
+      </Accordion.Title>
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi,
+      officiis
     </Accordion>
   )
 }
@@ -245,15 +236,11 @@ function CustomizedColors() {
         textAlign: 'center',
       }}
     >
-      <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi,
-        officiis Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-        Quasi, officiis
-      </p>
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi,
+      officiis Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+      Quasi, officiis
     </Accordion.Title>
-    <p>
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi, officiis
-    </p>
+    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi, officiis
   </Accordion>
 </ComponentDisplay>
 
@@ -274,7 +261,7 @@ function CustomizedColors() {
 | Name     | Type                    | Default | Description                                                                                                       |
 | :------- | :---------------------- | :------ | :---------------------------------------------------------------------------------------------------------------- |
 | children | `ReactNode` \| `string` | —       | The content to display in the accordion title. If you pass children as a string, it will be render as `h1`        |
-| icon     | `IconProp` \| `false`   | —       | The icon of accordion title. By default it is a circle question mark. You can disable the icon by passing `false` |
+| icon     | `ReactNode` \| `false`   | —       | The icon of accordion title. By default it is a circle question mark. You can disable the icon by passing `false` |
 | css      | `CSS`                   | —       | The system prop that allows defining system overrides as well as additional CSS styles.                           |
 
 ### Accordion.Table

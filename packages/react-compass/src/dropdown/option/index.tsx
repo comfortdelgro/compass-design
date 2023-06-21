@@ -28,10 +28,10 @@ function Option({
   dropdownType,
   onSelect,
 }: Props) {
-  const ref = React.useRef(null)
+  const ref = React.useRef<HTMLLIElement>(null)
   const {type = 'icon', leftIcon, rightIcon, rightColor, children} = item.props
-  const isSelected = React.useMemo(() => currentKey === item.key, [currentKey])
-  const isFocused = React.useMemo(() => focusKey === item.key, [focusKey])
+  const isSelected = React.useMemo(() => currentKey == item.key, [currentKey])
+  const isFocused = React.useMemo(() => focusKey == item.key, [focusKey])
   const isDisabled = React.useMemo(
     () => (item.key ? [...disabledKeys].includes(item.key) : false),
     [disabledKeys],
@@ -47,6 +47,18 @@ function Option({
     }
     return null
   }, [dropdownType])
+
+  React.useEffect(() => {
+    if (isFocused) {
+      ref.current?.scrollIntoView({block: 'nearest'})
+    }
+  }, [isFocused])
+
+  React.useEffect(() => {
+    if (isSelected) {
+      ref.current?.scrollIntoView({block: 'center'})
+    }
+  }, [isSelected])
 
   return (
     <StyledOption

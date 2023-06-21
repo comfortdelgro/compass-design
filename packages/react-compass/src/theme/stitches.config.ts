@@ -1,10 +1,11 @@
 import {createStitches} from '@stitches/react'
 import breakpoints from './breakpoints'
-import themeConfig from './theme'
+import {lightTheme} from './theme'
 
 const stitches = createStitches({
-  theme: themeConfig,
+  theme: lightTheme,
   media: breakpoints,
 })
 
-export const {styled, globalCss, getCssText, theme, keyframes} = stitches
+export const {styled, globalCss, getCssText, config, theme, keyframes} =
+  stitches

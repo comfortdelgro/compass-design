@@ -15,6 +15,13 @@ const data = [
   },
 ]
 
+const data2 = [
+  {
+    label: 'Dataset 1',
+    data: labels.map(() => Math.floor(Math.random() * 1000)),
+  },
+]
+
 export const Areas: React.FC = () => (
   <Column>
     <h3>Basic usage</h3>
@@ -47,6 +54,20 @@ export const Columns: React.FC = () => (
       labels={labels}
       data={data}
       title='Column Chart'
+      legendPosition='bottom'
+    />
+  </Column>
+)
+
+export const Doughnut: React.FC = () => (
+  <Column>
+    <h3>Basic usage</h3>
+    <Chart.Doughnut labels={labels} data={data2} title='Doughnut Chart' />
+    <h3>Positioned legends</h3>
+    <Chart.Doughnut
+      labels={labels}
+      data={data2}
+      title='Area Chart'
       legendPosition='bottom'
     />
   </Column>

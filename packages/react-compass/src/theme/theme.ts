@@ -1,4 +1,5 @@
-import type {StitchesTheme} from '../utils/stitches.types'
+import {createTheme} from '@stitches/react'
+import {StitchesTheme} from '../utils/stitches.types'
 
 const defineTheme = <T extends StitchesTheme>(theme: T) => theme
 
@@ -25,6 +26,7 @@ const spacings = {
   9: '2.25rem', // 36px
   '9_25': '2.3125rem', //37px
   10: '2.5rem', // 40px
+  '10_5': '2.625rem', // 42px
   11: '2.75rem', // 44px
   12: '3rem', // 48px
   '12_5': '3.125rem', // 50px
@@ -78,75 +80,99 @@ const spacings = {
   328: '82rem', // 1312px
 } as const
 
-export default defineTheme({
-  fonts: {
-    sans: 'Poppins, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
-    serif: 'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
-    mono: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
-  },
-  fontSizes: {
-    display1: '3.5rem', //56px
-    display2: '3rem', //48px
-    display3: '2.5rem', //40px
+const fonts = {
+  sans: 'Poppins, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+  serif: 'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
+  mono: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+}
 
-    header0: '2.5rem', //40px
-    header1: '2rem', //32px
-    header2: '1.75rem', //28px
-    header3: '1.5rem', //24px
-    header4: '1.25rem', //20px
-    header5: '1rem', //16px
+const fontSizes = {
+  display1: '3.5rem', //56px
+  display2: '3rem', //48px
+  display3: '2.5rem', //40px
 
-    body1: '1.25rem', //20px
-    body2: '1rem', //16px
-    body3: '0.875rem', //14px
+  header0: '2.5rem', //40px
+  header1: '2rem', //32px
+  header2: '1.75rem', //28px
+  header3: '1.5rem', //24px
+  header4: '1.25rem', //20px
+  header5: '1rem', //16px
 
-    label1: '0.875rem', //14px
-    label2: '0.75rem', //12px
-    label3: '0.625rem', //10px
+  body1: '1.25rem', //20px
+  body2: '1rem', //16px
+  body3: '0.875rem', //14px
 
-    link1: '1.25rem', //20px
-    link2: '1rem', //16px
-    link3: '0.875rem', //14px
-  },
-  lineHeights: {
-    tight: 1.25,
-    snug: 1.375,
-    normal: 1.5,
-    relaxed: 1.625,
-    loose: 2,
-  },
-  fontWeights: {
-    thin: 100,
-    extralight: 200,
-    light: 300,
-    normal: 400,
-    medium: 500,
-    semibold: 600,
-    bold: 700,
-    extrabold: 800,
-    black: 900,
-  },
+  label1: '0.875rem', //14px
+  label2: '0.75rem', //12px
+  label3: '0.625rem', //10px
+
+  link1: '1.25rem', //20px
+  link2: '1rem', //16px
+  link3: '0.875rem', //14px
+}
+
+const lineHeights = {
+  tight: 1.25,
+  snug: 1.375,
+  normal: 1.5,
+  relaxed: 1.625,
+  loose: 2,
+}
+
+const fontWeights = {
+  thin: 100,
+  extralight: 200,
+  light: 300,
+  normal: 400,
+  medium: 500,
+  semibold: 600,
+  bold: 700,
+  extrabold: 800,
+  black: 900,
+}
+
+const borderWidths = {
+  light: '1px',
+  medium: '2px',
+  thick: '3px',
+}
+
+const radius = {
+  md: '4px',
+  lg: '8px',
+  xl: '16px',
+  full: '9999px',
+}
+
+const transitions = {
+  default: 'all 250ms ease',
+  button:
+    'background 0.25s ease 0s, color 0.25s ease 0s, border-color 0.25s ease 0s, transform 0.25s ease 0s, opacity 0.25s ease 0s',
+}
+export const lightTheme = defineTheme({
   colors: {
     // Primary
 
-    cdgBlue: '$cdgBlue100',
-    typeHeading: '$gray100',
+    cdgBlue: '#0142AF',
+    typeHeading: '#323130',
     background: '#FFFFFF',
-    black: '#323130',
+    black: '#000000',
+    white: '#FFFFFF',
 
-    primaryText: '$gray100',
-    secondaryText: '$gray80',
-    disabledText: '$gray70',
+    primaryText: '#323130',
+    secondaryText: '#605E5C',
+    disabledText: '#A19F9D',
+    tertiaryText: '#C5C6CF',
     whiteText: '#FFFFFF',
 
-    divider: '$gray30',
-    border: '#8A8886',
-    activeBorder: '$gray100',
+    divider: '#EDEBE9', // Body Divider
+    border: '#8A8886', // Input Border
+    activeBorder: '#323130', // Input-Hover Border
 
     // Secondary
 
-    infoBg: '#E3F3FF',
-    info: '#0078D4',
+    infoBg: '#CCECF8',
+    info: '#009EDA',
 
     dangerBg: '#EFD9DB',
     danger: '#A4262C',
@@ -157,8 +183,8 @@ export default defineTheme({
     severeWarningBg: '#F0CBBE',
     severeWarning: '#D83B01',
 
-    warningBg: '#F1E6C0',
-    warning: '#835C00',
+    warningBg: '#F8DB96',
+    warning: '#EFB01D',
 
     // Shades and Tints
 
@@ -189,27 +215,105 @@ export default defineTheme({
     primaryBg: '#F5F5F6',
     secondaryBg: '#F0F0F0',
     darkerBg: '#EAEBEB',
+    brighterBG: '#484D65',
 
     gradientOrange: '#F02627, #EA8816',
     gradientRainbow: '#0163AE, #D80837, #53AF35',
     gradientOrangeBlue: '#D2132A, #0597DB',
   },
-  borderWidths: {
-    light: '1px',
-    medium: '2px',
-    thick: '3px',
-  },
-  radii: {
-    md: '4px',
-    lg: '8px',
-    xl: '16px',
-    full: '9999px',
-  },
+  fonts,
+  fontSizes,
+  lineHeights,
+  fontWeights,
+
+  borderWidths,
+  radii: radius,
   space: spacings,
   sizes: spacings,
-  transitions: {
-    default: 'all 250ms ease',
-    button:
-      'background 0.25s ease 0s, color 0.25s ease 0s, border-color 0.25s ease 0s, transform 0.25s ease 0s, opacity 0.25s ease 0s',
+  transitions,
+})
+
+export const darkTheme = createTheme('dark-theme', {
+  colors: {
+    // Primary
+
+    cdgBlue: '#014AC8',
+    typeHeading: '#FDFDFD',
+    background: '#1B1B1F',
+    black: '#000000',
+    white: '#FFFFFF',
+
+    primaryText: '#FDFDFD',
+    secondaryText: '#E4E2E6',
+    disabledText: '#7B7D89',
+    tertiaryText: 'C5C6CF',
+    whiteText: '#FFFFFF',
+
+    divider: '#45464E', // Body Divider
+    border: '#8A8886', // Input Border
+    activeBorder: '#323130', // Input-Hover Border
+
+    // Secondary
+
+    infoBg: '#1F4E57',
+    info: '#78D5E8',
+
+    dangerBg: '#F4B7AE',
+    danger: '#861913',
+
+    successBg: '#87DD63',
+    success: '#235213',
+
+    severeWarningBg: '#F9DCD3',
+    severeWarning: '#7C2A10',
+
+    warningBg: '#F1BF41',
+    warning: '#574412',
+
+    // Shades and Tints
+
+    cdgBlue10: '#051649',
+    cdgBlue20: '#0D2874',
+    cdgBlue40: '#163CA3',
+    cdgBlue60: '#2B53CA',
+    cdgBlue80: '#6B89F7',
+    cdgBlue100: '#91A7F9',
+    cdgBlue120: '#B7C4FA',
+    cdgBlue140: '#DCE1FC',
+
+    overlayLight: 'rgba(255, 255, 255, 0.4)',
+    overlayDark: 'rgba(18, 18, 18, 0.7);',
+
+    gray10: '#161B2B',
+    gray20: '#2B3041',
+    gray30: '#363B4C',
+    gray40: '#424657',
+    gray50: '#4D5263',
+    gray60: '#595E70',
+    gray70: '#727689',
+    gray80: '#8C90A3',
+    gray90: '#A6AABF',
+    gray100: '#C2C6DB',
+    gray110: '#DEE1F7',
+
+    primaryBg: '#1B1B1F',
+    secondaryBg: '#2C3041',
+    darkerBg: '#EAEBEB',
+    brighterBG: '#484D65',
+
+    gradientOrange: '#CC1E1F, #D37C16',
+    gradientRainbow: '#025493, #A51C2E, #46932D',
+    gradientOrangeBlue: '#AA1022, #027FB9',
   },
-} as const)
+  fonts,
+  fontSizes,
+  lineHeights,
+  fontWeights,
+  borderWidths,
+  radii: radius,
+  space: spacings,
+  sizes: spacings,
+  transitions,
+})
+
+export default createTheme

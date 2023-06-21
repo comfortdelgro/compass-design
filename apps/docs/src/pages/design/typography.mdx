@@ -2,7 +2,7 @@ import {Callout} from 'nextra-theme-docs'
 import {theme} from '@comfortdelgro/react-compass/theme'
 import ColorBox from 'components/ColorBox'
 import FontWeights from 'components/FontWeights'
-import FontDisplay from 'components/FontDisplay'
+import {Typography} from '@comfortdelgro/react-compass'
 
 # Typography
 
@@ -38,9 +38,9 @@ The choice of font weight is also based on the principles of order, stability, a
 #### Display
 
 <div style={{marginTop: '0.5rem'}}>
-  <FontDisplay size={theme.fontSizes.display1} weight='bold' />
-  <FontDisplay size={theme.fontSizes.display2} weight='bold' />
-  <FontDisplay size={theme.fontSizes.display3} weight='bold' />
+  <Typography.Display variant='display1'>The quick brown</Typography.Display>
+  <Typography.Display variant='display2'>The quick brown</Typography.Display>
+  <Typography.Display variant='display3'>The quick brown</Typography.Display>
 </div>
 
 ```js
@@ -52,11 +52,12 @@ The choice of font weight is also based on the principles of order, stability, a
 #### Header
 
 <div style={{marginTop: '0.5rem'}}>
-  <FontDisplay size={theme.fontSizes.header1} weight='bold' />
-  <FontDisplay size={theme.fontSizes.header2} weight='bold' />
-  <FontDisplay size={theme.fontSizes.header3} weight='bold' />
-  <FontDisplay size={theme.fontSizes.header4} weight='bold' />
-  <FontDisplay size={theme.fontSizes.header5} weight='bold' />
+  <Typography.Header variant='header0'>The quick brown</Typography.Header>
+  <Typography.Header variant='header1'>The quick brown</Typography.Header>
+  <Typography.Header variant='header2'>The quick brown</Typography.Header>
+  <Typography.Header variant='header3'>The quick brown</Typography.Header>
+  <Typography.Header variant='header4'>The quick brown</Typography.Header>
+  <Typography.Header variant='header5'>The quick brown</Typography.Header>
 </div>
 
 ```js
@@ -73,9 +74,9 @@ The choice of font weight is also based on the principles of order, stability, a
 You can use `semibold` and `bold` font weights on these font sizes for semiboldes.
 
 <div style={{marginTop: '0.5rem'}}>
-  <FontDisplay size={theme.fontSizes.body1} weight='normal' />
-  <FontDisplay size={theme.fontSizes.body2} weight='normal' />
-  <FontDisplay size={theme.fontSizes.body3} weight='normal' />
+  <Typography.Body variant='body1'>The quick brown</Typography.Body>
+  <Typography.Body variant='body2'>The quick brown</Typography.Body>
+  <Typography.Body variant='body3'>The quick brown</Typography.Body>
 </div>
 
 ```js
@@ -89,9 +90,9 @@ You can use `semibold` and `bold` font weights on these font sizes for semibolde
 You can use `light`, `semibold` and `bold` font weights on these font sizes for semiboldes.
 
 <div style={{marginTop: '0.5rem'}}>
-  <FontDisplay size={theme.fontSizes.label1} weight='normal' />
-  <FontDisplay size={theme.fontSizes.label2} weight='normal' />
-  <FontDisplay size={theme.fontSizes.label3} weight='normal' />
+  <Typography.Label variant='label1'>The quick brown</Typography.Label>
+  <Typography.Label variant='label2'>The quick brown</Typography.Label>
+  <Typography.Label variant='label3'>The quick brown</Typography.Label>
 </div>
 
 ```js
@@ -105,9 +106,9 @@ You can use `light`, `semibold` and `bold` font weights on these font sizes for 
 You can use `semibold` font weight on these font sizes for semiboldes.
 
 <div style={{marginTop: '0.5rem'}}>
-  <FontDisplay size={theme.fontSizes.link1} weight='semibold' color='#009EDA' />
-  <FontDisplay size={theme.fontSizes.link2} weight='medium' color='#009EDA' />
-  <FontDisplay size={theme.fontSizes.link3} weight='medium' color='#009EDA' />
+  <Typography.Link variant='link1'>The quick brown</Typography.Link>
+  <Typography.Link variant='link2'>The quick brown</Typography.Link>
+  <Typography.Link variant='link3'>The quick brown</Typography.Link>
 </div>
 
 ```js
@@ -120,56 +121,57 @@ You can use `semibold` font weight on these font sizes for semiboldes.
 
 ### Props Body:
 
-| Name     | Type             | Default | Description                        |
-| :------- | :--------------- | :------ | :--------------------------------- |
-| variant  | `body1`\|`body2`\|`body3` | `body1` | Font size of text |
-| component  | `Component` | - |Displayed as specific tag |
-| weight  | `none`\|`bold`\|`semibold` | `none` | Font weight of text |
-| css      | `CSS`            | —       |                                    |
+| Name      | Type                       | Default | Description               |
+| :-------- | :------------------------- | :------ | :------------------------ |
+| variant   | `body1`\|`body2`\|`body3`  | `body1` | Font size of text         |
+| component | `Component`                | -       | Displayed as specific tag |
+| weight    | `none`\|`bold`\|`semibold` | `none`  | Font weight of text       |
+| css       | `CSS`                      | —       |                           |
 
 ---
 
 ### Props Display:
 
-| Name     | Type             | Default | Description                        |
-| :------- | :--------------- | :------ | :--------------------------------- |
-| variant  | `display1`\|`display2`\|`display3` | `display1` | Font size of text |
-| component  | `Component` | - |Displayed as specific tag |
-| css      | `CSS`            | —       |                                    |
+| Name      | Type                               | Default    | Description               |
+| :-------- | :--------------------------------- | :--------- | :------------------------ |
+| variant   | `display1`\|`display2`\|`display3` | `display1` | Font size of text         |
+| component | `Component`                        | -          | Displayed as specific tag |
+| css       | `CSS`                              | —          |                           |
 
 ---
 
 ### Props Header:
 
-| Name     | Type             | Default | Description                        |
-| :------- | :--------------- | :------ | :--------------------------------- |
-| variant  | `header0`\|`header1`\|`header2`\|`header3`\|`header4`\|`header5` | `header1` | Font size of text |
-| component  | `Component` | - |Displayed as specific tag |
-| css      | `CSS`            | —       |                                    |
+| Name      | Type                                                             | Default   | Description               |
+| :-------- | :--------------------------------------------------------------- | :-------- | :------------------------ |
+| variant   | `header0`\|`header1`\|`header2`\|`header3`\|`header4`\|`header5` | `header1` | Font size of text         |
+| component | `Component`                                                      | -         | Displayed as specific tag |
+| css       | `CSS`                                                            | —         |                           |
 
 ---
 
 ### Props Label:
 
-| Name     | Type             | Default | Description                        |
-| :------- | :--------------- | :------ | :--------------------------------- |
-| variant  | `label1`\|`label2`\|`label3` | `label1` | Font size of text |
-| component  | `Component` | - |Displayed as specific tag |
-| weight  | `none`\|`bold`\|`semibold`\|`light` | `none` | Font weight of text |
-| css      | `CSS`            | —       |                                    |
+| Name      | Type                                | Default  | Description               |
+| :-------- | :---------------------------------- | :------- | :------------------------ |
+| variant   | `label1`\|`label2`\|`label3`        | `label1` | Font size of text         |
+| component | `Component`                         | -        | Displayed as specific tag |
+| weight    | `none`\|`bold`\|`semibold`\|`light` | `none`   | Font weight of text       |
+| css       | `CSS`                               | —        |                           |
 
 ---
 
 ### Props Link:
 
-| Name     | Type             | Default | Description                        |
-| :------- | :--------------- | :------ | :--------------------------------- |
-| variant  | `link1`\|`link2`\|`link3` | `link1` | Font size of text |
-| component  | `Component` | - |Displayed as specific tag |
-| weight  | `none`\|`semibold` | `none` | Font weight of text |
-| css      | `CSS`            | —       |                                    |
+| Name      | Type                      | Default | Description               |
+| :-------- | :------------------------ | :------ | :------------------------ |
+| variant   | `link1`\|`link2`\|`link3` | `link1` | Font size of text         |
+| component | `Component`               | -       | Displayed as specific tag |
+| weight    | `none`\|`semibold`        | `none`  | Font weight of text       |
+| css       | `CSS`                     | —       |                           |
 
 ### Component
+
 Component type equals: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "label" | "p" | "span"
 
 ---
@@ -178,4 +180,3 @@ Component type equals: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "label" | "p" |
   Check out our [ladle](/ladle?story=typography--body) for more info on this
   component.
 </Callout>
-

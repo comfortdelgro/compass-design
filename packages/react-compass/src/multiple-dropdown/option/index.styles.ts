@@ -1,4 +1,6 @@
-import {styled} from '../../theme'
+import { styled } from '../../theme'
+
+
 
 export const StyledRightIcon = styled('div', {
   display: 'flex',
@@ -7,16 +9,6 @@ export const StyledRightIcon = styled('div', {
   flexShrink: 0,
   width: '$6',
   height: '$6',
-  div: {
-    border: '1px solid #323130',
-    borderRadius: '3px',
-    width: '$4',
-    height: '$4',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    background: '#FFFFFF',
-  },
   variants: {
     isSelected: {
       true: {
@@ -29,10 +21,32 @@ export const StyledRightIcon = styled('div', {
         },
       },
       false: {
+        svg: {
+          display: 'none',
+        },
+      },
+    },
+    checkmark: {
+      checkbox: {
         div: {
-          svg: {
-            display: 'none',
-          },
+          border: '1px solid $black',
+          borderRadius: '3px',
+          width: '$4',
+          height: '$4',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: '$background',
+        },
+
+        svg: {
+          color: '$whiteText',
+        },
+      },
+      none: {},
+      tick: {
+        svg: {
+          color: '$cdgBlue',
         },
       },
     },

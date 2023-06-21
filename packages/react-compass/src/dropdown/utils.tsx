@@ -1,5 +1,6 @@
 import isEmpty from 'lodash/isEmpty'
 import React, {Key, RefObject} from 'react'
+import {styled} from '../theme'
 import {StyledComponentProps} from '../utils/stitches.types'
 import DropdownItem, {DropdownItemBase, DropdownItemProps} from './item'
 import DropdownSection, {DropdownSectionProps} from './section'
@@ -7,13 +8,17 @@ import DropdownSection, {DropdownSectionProps} from './section'
 export const POPOVER_Z_INDEX = 2147483600
 export const LISTBOX_Z_INDEX = 2147483641
 
+const StyledIcon = styled('svg', {
+  color: '$primaryText',
+})
+
 export const Icon = () => (
-  <svg width='16' height='16' viewBox='0 0 16 16'>
+  <StyledIcon width='16' height='16' viewBox='0 0 16 16'>
     <path
       d='M8.33276 12.3334C8.02004 12.3334 7.70717 12.2125 7.46885 11.9707L1.35805 5.78022C0.880649 5.29658 0.880649 4.5131 1.35805 4.02947C1.83546 3.54584 2.60886 3.54584 3.08626 4.02947L8.33276 9.34651L13.5804 4.03044C14.0578 3.54681 14.8312 3.54681 15.3086 4.03044C15.786 4.51407 15.786 5.29755 15.3086 5.78118L9.19782 11.9717C8.95912 12.2135 8.64594 12.3334 8.33276 12.3334Z'
       fill='currentColor'
     />
-  </svg>
+  </StyledIcon>
 )
 
 export const pickChilds = <T extends DropdownItemBase>(
@@ -154,16 +159,13 @@ export const getDistanceBetweenElements = (
   a: HTMLDivElement,
   b: HTMLDivElement,
 ) => {
-  const getPositionAtCenter = (element: Element) => {
-    const {top, left, width, height} = element.getBoundingClientRect()
-    return {
-      x: left + width / 2,
-      y: top + height / 2,
-    }
+  const getTop = (element: Element) => {
+    const {top} = element.getBoundingClientRect()
+    return top
   }
-  const aPosition = getPositionAtCenter(a)
-  const bPosition = getPositionAtCenter(b)
-  return Math.hypot(aPosition.x - bPosition.x, aPosition.y - bPosition.y)
+  const aPosition = getTop(a)
+  const bPosition = getTop(b)
+  return Math.hypot(aPosition - bPosition)
 }
 export interface KeyboardDelegate {
   getKeyBelow?(key: Key): Key | null
@@ -298,16 +300,19 @@ export function textContent(elem: React.ReactElement | string): string {
 export function getDefaulValue(
   defaulValue: React.Key | undefined,
   value: React.Key | undefined,
+  disableDefault?: boolean,
 ): React.Key | undefined {
   let res = undefined
   if (
     defaulValue !== undefined &&
     defaulValue !== null &&
-    !isEmpty(defaulValue)
+    !isEmpty(defaulValue.toString()) &&
+    value !== '' &&
+    !disableDefault
   ) {
     res = defaulValue
   }
-  if (value !== undefined && value !== null && !isEmpty(value)) {
+  if (value !== undefined && value !== null && !isEmpty(value.toString())) {
     res = value
   }
   return res

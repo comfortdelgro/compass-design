@@ -1,5 +1,5 @@
-import {styled} from '../../../theme'
-import {VariantProps} from '../../../utils/stitches.types'
+import { styled } from '../../../theme'
+import { VariantProps } from '../../../utils/stitches.types'
 
 export const StyledControl = styled('button', {
   position: 'relative',
@@ -10,18 +10,22 @@ export const StyledControl = styled('button', {
   border: 'none',
   borderRadius: 4,
   cursor: 'pointer',
-  backgroundColor: '#f3f2f1 !important',
+  backgroundColor: 'transparent',
   display: 'inline-flex',
   alignItems: 'center',
   width: 28,
   height: 28,
   justifyContent: 'center',
   padding: 0,
-  margin: '0 8px',
+  margin: '0 8px 4px 8px',
   float: 'left',
+  color: '$gray110',
   '&:hover': {
-    backgroundColor: '#E1DFDD !important',
-    color: '#000000',
+    backgroundColor: '$gray40',
+    color: '$gray110',
+  },
+  svg: {
+    height: '18px',
   },
   '&:disabled': {
     backgroundColor: '$divider',
@@ -32,11 +36,11 @@ export const StyledControl = styled('button', {
   variants: {
     active: {
       true: {
-        backgroundColor: '#605E5C !important',
-        color: '#FFFFFF',
+        backgroundColor: '$gray80',
+        color: '$white',
         '&:hover': {
-          backgroundColor: '#605E5C !important',
-          color: '#FFFFFF',
+          backgroundColor: '$gray80',
+          color: '$white',
         },
       },
     },

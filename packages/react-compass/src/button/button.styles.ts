@@ -31,7 +31,7 @@ export const StyledLoading = styled('span', {
     gap: '2px',
   },
 
-  '.dots i': {
+  '.dots span': {
     display: 'inline-block',
     flexShrink: 0,
     width: '.375em',
@@ -41,15 +41,15 @@ export const StyledLoading = styled('span', {
     animation: `${blink} 1.4s infinite both`,
   },
 
-  '.dots i:nth-child(1)': {animationDelay: '0s'},
-  '.dots i:nth-child(2)': {animationDelay: '0.2s'},
-  '.dots i:nth-child(3)': {animationDelay: '0.4s'},
+  '.dots span:nth-child(1)': {animationDelay: '0s'},
+  '.dots span:nth-child(2)': {animationDelay: '0.2s'},
+  '.dots span:nth-child(3)': {animationDelay: '0.4s'},
 })
 
 export const StyledButtonContent = styled('div', {
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'center',
+  justifyContent: 'space-between',
   flexWrap: 'nowrap',
   flexShrink: 0,
 

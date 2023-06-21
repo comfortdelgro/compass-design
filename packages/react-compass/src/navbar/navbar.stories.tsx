@@ -5,6 +5,7 @@ import {
   faQuestionCircle,
   faSearch,
 } from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {StoryDecorator} from '@ladle/react'
 import React from 'react'
 import Avatar from '../avatar'
@@ -23,7 +24,15 @@ export const Variants: React.FC = () => {
       <h3>Blue color</h3>
       <Navbar>
         <a href='#'>
-          <Navbar.Icon icon={faBars} />
+          <FontAwesomeIcon
+            icon={faBars}
+            style={{
+              color: '#FFF',
+              width: '$5',
+              height: '$5',
+              cursor: 'pointer',
+            }}
+          />
         </a>
         <Navbar.Brand>Workbench Title</Navbar.Brand>
         <SearchField placeholder='Search' />
@@ -47,16 +56,40 @@ export const Variants: React.FC = () => {
             alignItems: 'center',
           }}
         >
-          <Navbar.Icon icon={faQuestionCircle} />
-          <Navbar.Icon icon={faBell} />
-          <Navbar.Icon icon={faChartGantt} />
+          <FontAwesomeIcon
+            icon={faQuestionCircle}
+            style={{
+              color: '#FFF',
+              width: '$5',
+              height: '$5',
+              cursor: 'pointer',
+            }}
+          />
+          <FontAwesomeIcon
+            icon={faBell}
+            style={{
+              color: '#FFF',
+              width: '$5',
+              height: '$5',
+              cursor: 'pointer',
+            }}
+          />
+          <FontAwesomeIcon
+            icon={faChartGantt}
+            style={{
+              color: '#FFF',
+              width: '$5',
+              height: '$5',
+              cursor: 'pointer',
+            }}
+          />
           <Avatar label='H' size='xs' image={imageSrc} />
         </div>
       </Navbar>
       <h3>White color</h3>
       <Navbar color='white'>
         <a href='#'>
-          <Navbar.Icon icon={faBars} />
+          <FontAwesomeIcon icon={faBars} />
         </a>
         <Navbar.Brand>Workbench Title</Navbar.Brand>
         <SearchField placeholder='Search' />
@@ -80,9 +113,33 @@ export const Variants: React.FC = () => {
             alignItems: 'center',
           }}
         >
-          <Navbar.Icon icon={faQuestionCircle} />
-          <Navbar.Icon icon={faBell} />
-          <Navbar.Icon icon={faChartGantt} />
+          <FontAwesomeIcon
+            icon={faQuestionCircle}
+            style={{
+              color: '#FFF',
+              width: '$5',
+              height: '$5',
+              cursor: 'pointer',
+            }}
+          />
+          <FontAwesomeIcon
+            icon={faBell}
+            style={{
+              color: '#FFF',
+              width: '$5',
+              height: '$5',
+              cursor: 'pointer',
+            }}
+          />
+          <FontAwesomeIcon
+            icon={faChartGantt}
+            style={{
+              color: '#FFF',
+              width: '$5',
+              height: '$5',
+              cursor: 'pointer',
+            }}
+          />
           <Avatar label='H' size='xs' image={imageSrc} />
         </div>
       </Navbar>
@@ -112,7 +169,16 @@ export const Variants: React.FC = () => {
           </a>
           <TextField placeholder='search' />
           <Button variant='ghost'>
-            <Navbar.Icon icon={faSearch} />
+            <FontAwesomeIcon
+              icon={faSearch}
+              style={{
+                color: '#FFF',
+                width: '$5',
+                height: '$5',
+
+                cursor: 'pointer',
+              }}
+            />
           </Button>
         </div>
       </Navbar>
@@ -141,7 +207,14 @@ export const Variants: React.FC = () => {
           </a>
           <TextField placeholder='search' />
           <Button variant='ghost'>
-            <Navbar.Icon icon={faSearch} />
+            <FontAwesomeIcon
+              icon={faSearch}
+              style={{
+                width: '$5',
+                height: '$5',
+                cursor: 'pointer',
+              }}
+            />
           </Button>
         </div>
       </Navbar>

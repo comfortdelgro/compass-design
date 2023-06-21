@@ -9,7 +9,7 @@ export const StyledCalendar = styled('div', {
 
   '& .calendar-footer': {
     display: 'flex',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
     alignItems: 'center',
     gap: '$2',
     paddingTop: '$6',

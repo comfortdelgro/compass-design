@@ -8,6 +8,9 @@ import Textfield from './index'
 const Select = (
   <input
     value={'+64'}
+    onChange={() => {
+      /* do nothing */
+    }}
     style={{
       fontSize: '0.8em',
       lineHeight: '1em',
@@ -29,8 +32,10 @@ export const Variants: React.FC = () => (
         isErrored
         helperText='my helper text'
         errorMessage='my error message'
-        onChange={(e) => console.log('onChange', e)}
-        onChangeEvent={(e) => console.log('onChangeEvent', e)}
+        // onChange={(e) => console.log('onChange', e)}
+        // onChangeEvent={(e) => console.log('onChangeEvent', e)}
+        className='my-class'
+        onKeyDown={(e) => console.log('onKeyDownTest', e)}
       />
     </Row>
 
@@ -60,7 +65,6 @@ export const Variants: React.FC = () => (
     <Row>
       <Textfield
         isErrored
-        value='Wrong Value'
         label='Name'
         placeholder='Enter your name'
         helperText='This is helpers text'

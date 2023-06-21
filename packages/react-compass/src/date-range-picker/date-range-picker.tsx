@@ -11,14 +11,15 @@ import {useDateRangePickerState} from '../calendar/hooks/useDateRangePickerState
 import {
   AriaDatePickerProps,
   AriaDialogProps,
-  DateRange,
   DateRangePickerState,
   DOMAttributes,
   RangeCalendarProps,
   RangeValue,
   SpectrumDateRangePickerProps,
 } from '../calendar/types'
+import DatePickerProvider from '../date-picker/date-picker-context'
 import RangeCalendar from '../range-calendar/range-calendar'
+import {CustomShortcutsProps} from '../range-calendar/range-calendar-shortcuts'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
@@ -35,12 +36,18 @@ interface Props
   startDateLabel?: string | React.ReactNode
   endDateLabel?: string | React.ReactNode
   shouldCloseOnSelect?: boolean
-  onApply?: (e?: DateRange) => void
-  onCancel?: () => void
   isMobile?: boolean
   calendarCSS?: CSS
   helperText?: React.ReactNode
   maxValue?: DateValue | null | undefined
+  hasShortcuts?: boolean
+  ctaButtonRender?: React.ReactNode
+  onSearchButtonClick?: (
+    e:
+      | React.MouseEvent<HTMLButtonElement, MouseEvent>
+      | React.TouchEvent<HTMLButtonElement>,
+  ) => void
+  customShortcuts?: CustomShortcutsProps
 }
 
 export type DateRangePickerProps = Props
@@ -52,11 +59,13 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
       endDateLabel,
       shouldCloseOnSelect = false,
       css = {},
-      onApply,
-      onCancel,
       errorMessage,
       helperText,
       maxValue,
+      hasShortcuts,
+      ctaButtonRender,
+      onSearchButtonClick,
+      customShortcuts,
       ...delegated
     } = props
 
@@ -65,7 +74,7 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
       isReadOnly: props.isReadOnly ? true : props.isMobile ? true : false,
       shouldCloseOnSelect: props.granularity
         ? true
-        : props.shouldCloseOnSelect ?? false,
+        : shouldCloseOnSelect ?? false,
     })
 
     const calendarRef = useDOMRef(ref)
@@ -116,32 +125,36 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
 
     return (
       <StyledRangeDatepicker ref={calendarRef} css={css}>
-        <DateRangeInputsWrapper
-          state={state}
-          label={props.label}
-          labelProps={labelProps}
-          groupProps={groupProps}
-          startFieldProps={extendedStartFieldProps}
-          endFieldProps={extendedEndFieldProps}
-          buttonProps={buttonProps as unknown as ButtonProps}
-          startDateLabel={startDateLabel}
-          endDateLabel={endDateLabel}
-          isInvalid={props.isInvalid}
-          isReadOnly={props.isReadOnly}
-          isMobile={props.isMobile}
-          errorMessage={errorMessage}
-          helperText={helperText}
-        />
-        <DateRangeCalendarWrapper
-          maxValue={maxValue}
-          state={state}
-          onApply={onApply}
-          onCancel={onCancel}
-          calendarRef={calendarRef}
-          dialogProps={dialogProps}
-          calendarProps={calendarProps}
-          css={props.calendarCSS}
-        />
+        <DatePickerProvider>
+          <DateRangeInputsWrapper
+            state={state}
+            label={props.label}
+            labelProps={labelProps}
+            groupProps={groupProps}
+            startFieldProps={extendedStartFieldProps}
+            endFieldProps={extendedEndFieldProps}
+            buttonProps={buttonProps as unknown as ButtonProps}
+            startDateLabel={startDateLabel}
+            endDateLabel={endDateLabel}
+            isInvalid={props.isInvalid}
+            isReadOnly={props.isReadOnly}
+            isMobile={props.isMobile}
+            errorMessage={errorMessage}
+            helperText={helperText}
+          />
+          <DateRangeCalendarWrapper
+            maxValue={maxValue}
+            state={state}
+            calendarRef={calendarRef}
+            dialogProps={dialogProps}
+            calendarProps={calendarProps}
+            hasShortcuts={hasShortcuts}
+            ctaButtonRender={ctaButtonRender}
+            onSearchButtonClick={onSearchButtonClick}
+            customShortcuts={customShortcuts}
+            css={props.calendarCSS}
+          />
+        </DatePickerProvider>
       </StyledRangeDatepicker>
     )
   },
@@ -219,11 +232,19 @@ interface DateRangeCalendarWrapperProps {
   state: DateRangePickerState
   calendarRef: React.RefObject<HTMLDivElement>
   dialogProps: AriaDialogProps
-  calendarProps: RangeCalendarProps<DateValue>
+  calendarProps: RangeCalendarProps<DateValue | null>
   maxValue?: DateValue | null | undefined
-  onApply: ((e?: DateRange) => void) | undefined
-  onCancel: (() => void) | undefined
   css?: CSS | undefined
+  hasShortcuts?: boolean | undefined
+  ctaButtonRender?: React.ReactNode | undefined
+  onSearchButtonClick?:
+    | ((
+        e:
+          | React.MouseEvent<HTMLButtonElement, MouseEvent>
+          | React.TouchEvent<HTMLButtonElement>,
+      ) => void)
+    | undefined
+  customShortcuts?: CustomShortcutsProps
 }
 
 const DateRangeCalendarWrapper = (props: DateRangeCalendarWrapperProps) => {
@@ -233,9 +254,11 @@ const DateRangeCalendarWrapper = (props: DateRangeCalendarWrapperProps) => {
     dialogProps,
     calendarProps,
     css = {},
+    hasShortcuts = false,
     maxValue = parseDate('2999-03-10'),
-    onApply,
-    onCancel,
+    ctaButtonRender,
+    onSearchButtonClick,
+    customShortcuts,
   } = props
 
   const {value, onChange, ...resCalendarProps} = calendarProps
@@ -263,14 +286,16 @@ const DateRangeCalendarWrapper = (props: DateRangeCalendarWrapperProps) => {
               css={css}
               state={state}
               hasFooter={true}
-              onApplyCallback={onApply}
-              onCancelCallback={onCancel}
               aria-label=''
               aria-labelledby=''
               {...(value ? {value} : {})}
               onChange={onChangeRangeCalendar}
               {...resCalendarProps}
               maxValue={maxValue}
+              hasShortcuts={hasShortcuts}
+              ctaButtonRender={ctaButtonRender}
+              onSearchButtonClick={onSearchButtonClick}
+              customShortcuts={customShortcuts}
             />
           </Dialog>
         </Popover>

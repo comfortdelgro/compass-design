@@ -15,7 +15,6 @@ describe('alert.cy.ts', () => {
     const alert = <Alert color='info'>{lorem}</Alert>
 
     cy.mount(alert)
-    cy.get('.c-gVtBjx').should('be.visible')
-    cy.get('.c-gVtBjx').should('have.text', lorem)
+    cy.get('.alert-content').should('be.visible').should('have.text', lorem)
   })
 })

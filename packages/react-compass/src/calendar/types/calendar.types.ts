@@ -47,16 +47,16 @@ export type SegmentType =
 export type DateValue = CalendarDate | CalendarDateTime | ZonedDateTime
 
 export interface RangeValue<T> {
-  start: T
-  end: T
+  start: T | null
+  end: T | null
 }
 
 interface CalendarStateBase {
   readonly isDisabled?: boolean
   readonly isReadOnly?: boolean
   readonly visibleRange?: RangeValue<CalendarDate>
-  readonly minValue?: DateValue
-  readonly maxValue?: DateValue
+  readonly minValue?: DateValue | null
+  readonly maxValue?: DateValue | null
   readonly timeZone?: string
   readonly validationState?: ValidationState
   readonly focusedDate?: CalendarDate
@@ -94,8 +94,8 @@ export interface CalendarState extends CalendarStateBase {
 }
 
 export interface RangeCalendarState extends CalendarStateBase {
-  readonly value: RangeValue<DateValue>
-  setValue(value: RangeValue<DateValue>): void
+  readonly value: RangeValue<DateValue | null>
+  setValue(value: RangeValue<DateValue | null>): void
   highlightDate(date: CalendarDate): void
   readonly anchorDate: CalendarDate | null
   setAnchorDate(date: CalendarDate | null): void

@@ -10,6 +10,7 @@ export const StyledCheckboxWrapper = styled('div', {
   margin: '0px',
   padding: '0px',
   lineHeight: 1.15,
+  color: '$primaryText',
 })
 
 export const StyledCheckboxInput = styled('input', {

@@ -1,4 +1,3 @@
-import {StoryDecorator} from '@ladle/react'
 import React, {useState} from 'react'
 import {Column} from '../utils'
 import Calendar, {CalendarProps} from './../calendar'
@@ -50,7 +49,7 @@ export const Variants: React.FC = () => {
 }
 
 export const Controlled: React.FC = () => {
-  const [date, setDate] = useState<CalendarProps>(
+  const [date, setDate] = useState<CalendarProps | null>(
     parseDate(today(getLocalTimeZone()).toString()),
   )
 
@@ -58,16 +57,16 @@ export const Controlled: React.FC = () => {
 
   return (
     <I18nProvider locale='en-SG'>
-      {date ? (
-        <p>
-          <b>Selected date:</b>
-          <span style={{marginLeft: '4px'}}>
-            {formatter.format(date?.toDate(getLocalTimeZone()))}
-          </span>
-        </p>
-      ) : (
-        <></>
-      )}
+      <p>
+        <b>Selected date:</b>
+        <span style={{marginLeft: '4px'}}>
+          {date ? (
+            formatter.format(date?.toDate(getLocalTimeZone()))
+          ) : (
+            <span style={{marginLeft: '4px'}}>Invalid Date</span>
+          )}
+        </span>
+      </p>
       <DatePicker
         label='Date'
         value={date}
@@ -82,19 +81,4 @@ export const Controlled: React.FC = () => {
 
 export const Default: React.FC = () => {
   return <DatePicker label='Date' isRequired />
-}
-
-export default {
-  decorators: [
-    (Component) => (
-      <div>
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `.ladle-main { background: #eee; }`,
-          }}
-        ></style>
-        <Component />
-      </div>
-    ),
-  ] as StoryDecorator[],
 }

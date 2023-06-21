@@ -59,7 +59,7 @@ export function useDateRangePickerState<T extends DateValue = DateValue>(
   const setValue = (value: DateRange) => {
     // @ts-ignore
     setPlaceholderValue(value)
-    if (value?.start && value.end) {
+    if (value.start || value.end) {
       // @ts-ignore
       setControlledValue(value)
     } else {
@@ -67,7 +67,7 @@ export function useDateRangePickerState<T extends DateValue = DateValue>(
     }
   }
 
-  const v = value?.start || value?.end || props.placeholderValue
+  const v = value.start || value.end || props.placeholderValue
   // @ts-ignore
   const [granularity] = useDefaultProps(v, props.granularity)
   const hasTime =
@@ -88,18 +88,20 @@ export function useDateRangePickerState<T extends DateValue = DateValue>(
   }
 
   const commitValue = (dateRange: DateRange, timeRange: TimeRange) => {
-    setValue({
-      start:
-        'timeZone' in timeRange.start
-          ? timeRange.start.set(toCalendarDate(dateRange.start))
-          : toCalendarDateTime(dateRange.start, timeRange.start),
-      end:
-        'timeZone' in timeRange.end
-          ? timeRange.end.set(toCalendarDate(dateRange.end))
-          : toCalendarDateTime(dateRange.end, timeRange.end),
-    })
-    setSelectedDateRange(null)
-    setSelectedTimeRange(null)
+    if (dateRange.end && dateRange.start && timeRange.end && timeRange.start) {
+      setValue({
+        start:
+          'timeZone' in timeRange.start
+            ? timeRange.start.set(toCalendarDate(dateRange.start))
+            : toCalendarDateTime(dateRange.start, timeRange.start),
+        end:
+          'timeZone' in timeRange.end
+            ? timeRange.end.set(toCalendarDate(dateRange.end))
+            : toCalendarDateTime(dateRange.end, timeRange.end),
+      })
+      setSelectedDateRange(null)
+      setSelectedTimeRange(null)
+    }
   }
 
   // Intercept setValue to make sure the Time section is not changed by date selection in Calendar
@@ -108,10 +110,11 @@ export function useDateRangePickerState<T extends DateValue = DateValue>(
       typeof shouldCloseOnSelect === 'function'
         ? shouldCloseOnSelect()
         : shouldCloseOnSelect
+
     if (hasTime) {
       if (
         shouldClose ||
-        (range.start && range.end && timeRange?.start && timeRange?.end)
+        (range.start && range.end && timeRange?.start && timeRange.end)
       ) {
         commitValue(range, {
           start: timeRange?.start || getPlaceholderTime(props.placeholderValue),
@@ -120,19 +123,25 @@ export function useDateRangePickerState<T extends DateValue = DateValue>(
       } else {
         setSelectedDateRange(range)
       }
-    } else if (range.start && range.end) {
+    } else if (range.start || range.end) {
       setValue(range)
     } else {
-      setSelectedDateRange(range)
+      if (!range.start || !range.end) {
+        // @ts-ignore
+        setControlledValue({start: null, end: null})
+        setSelectedDateRange(null)
+      } else {
+        setSelectedDateRange(range)
+      }
     }
 
-    if (shouldClose) {
+    if (shouldClose && range.start && range.end) {
       overlayState.setOpen(false)
     }
   }
 
   const setTimeRange = (range: TimeRange) => {
-    if (dateRange?.start && dateRange?.end && range.start && range.end) {
+    if (dateRange?.start && dateRange.end && range.start && range.end) {
       commitValue(dateRange, range)
     } else {
       setSelectedTimeRange(range)
@@ -150,8 +159,8 @@ export function useDateRangePickerState<T extends DateValue = DateValue>(
       (value.end != null &&
         value.start != null &&
         value.end.compare(value.start) < 0) ||
-      (value?.start && props.isDateUnavailable?.(value.start)) ||
-      (value?.end && props.isDateUnavailable?.(value.end)))
+      (value.start && props.isDateUnavailable?.(value.start)) ||
+      (value.end && props.isDateUnavailable?.(value.end)))
       ? 'invalid'
       : null)
 
@@ -183,9 +192,9 @@ export function useDateRangePickerState<T extends DateValue = DateValue>(
     setOpen(isOpen) {
       if (
         !isOpen &&
-        !(value?.start && value?.end) &&
+        !(value.start && value.end) &&
         dateRange?.start &&
-        dateRange?.end &&
+        dateRange.end &&
         hasTime
       ) {
         commitValue(dateRange, {

@@ -52,7 +52,7 @@ const DragAndDropList = React.forwardRef<
     <StyledDragAndDrop ref={dndRef} css={css} {...delegated}>
       {collection.map((child, index) => {
         return (
-          <>
+          <React.Fragment key={index}>
             {dragOverPosition === index && startPosition > index && (
               <li className='dnd-list-drop-target'></li>
             )}
@@ -65,7 +65,7 @@ const DragAndDropList = React.forwardRef<
             {dragOverPosition === index && startPosition < index && (
               <li className='dnd-list-drop-target'></li>
             )}
-          </>
+          </React.Fragment>
         )
       })}
     </StyledDragAndDrop>

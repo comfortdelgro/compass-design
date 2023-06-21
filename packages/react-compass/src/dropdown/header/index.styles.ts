@@ -6,9 +6,9 @@ export const StyledHeaderList = styled('div', {
   justifyContent: 'space-between',
   width: '100%',
   padding: '$2 $4',
-  borderBottom: '2px solid #EDEBE9',
+  borderBottom: '2px solid $gray30',
   span: {
-    color: '#323130',
+    color: '$primaryText',
     fontSize: '$label2',
     fontWeight: '$bold',
     padding: 0,
@@ -17,7 +17,7 @@ export const StyledHeaderList = styled('div', {
   button: {
     fontSize: '$label2',
     fontWeight: '$bold',
-    color: '#A4262C',
+    color: '$danger',
     border: 0,
     cursor: 'pointer',
     backgroundColor: 'transparent',
