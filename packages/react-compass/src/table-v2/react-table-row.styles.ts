@@ -8,12 +8,4 @@ export const StyledReactTableRow = styled('tr', {
   borderLeftColor: 'transparent',
   borderWidth: `$borderWidths.light`,
   transition: '$default',
-  variants: {
-    disabled: {
-      true: {
-        backgroundColor: '$whiteText',
-        borderColor: '$gray50',
-      },
-    },
-  },
 })
