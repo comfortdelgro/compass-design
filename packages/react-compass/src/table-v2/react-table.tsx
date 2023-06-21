@@ -3,6 +3,7 @@ import {
   getCoreRowModel,
   getFilteredRowModel,
   getSortedRowModel,
+  Row,
   SortingState,
   useReactTable,
 } from '@tanstack/react-table'
@@ -25,19 +26,20 @@ import {
 } from './react-table-toolbar'
 import {StyledReactTable, StyledReactTableWrapper} from './react-table.styles'
 
-export interface Options {
+export interface Options<TData> {
   enableSorting?: boolean
   enableMultiSort?: boolean
   manualSorting?: boolean
   columnResizeMode?: 'onChange' | 'onEnd'
   initialSortBy?: SortingState
+  enableRowSelection?: boolean | ((row: Row<TData>) => boolean)
 }
 
-export type OptionType = Options
+export type OptionType<TData> = Options<TData>
 export interface Props<T> extends StyledComponentProps {
   data: T[]
   columns: Array<ColumnDef<T>>
-  options: OptionType
+  options: OptionType<T>
   onManualSorting?: (sortingField: SortingState) => void
   onChangeRowSelection?: (selectionRows: T[]) => void
   children: React.ReactNode
