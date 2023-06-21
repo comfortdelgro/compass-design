@@ -2,6 +2,7 @@ import {faBug} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React from 'react'
 import Button from '../button'
+import RichTextEditor from '../rich-text-editor'
 import {Column} from '../utils/components'
 import Dialog from './index'
 
@@ -38,6 +39,7 @@ export const Variants: React.FC = () => {
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. pariatur.'
   const [confirmationOpen, setConfirmationOpen] = React.useState(false)
   const [alertOpen, setAlertOpen] = React.useState(false)
+  const [customOpen, setCustomOpen] = React.useState(false)
 
   return (
     <Column>
@@ -73,6 +75,63 @@ export const Variants: React.FC = () => {
           <Dialog.Title>My title</Dialog.Title>
           <Dialog.Description>{lorem}</Dialog.Description>
           <Dialog.Actions>
+            <Button onPress={() => setAlertOpen(false)}>Ok</Button>
+          </Dialog.Actions>
+          <Dialog.Icon>
+            <FontAwesomeIcon icon={faBug} />
+          </Dialog.Icon>
+        </Dialog>
+      </Dialog.Trigger>
+
+      <h3>Custom dialog</h3>
+      <Button css={{width: '7.8rem'}} onPress={() => setCustomOpen(true)}>
+        Open Dialog
+      </Button>
+      <Dialog.Trigger
+        isOpen={customOpen}
+        handleClose={() => setCustomOpen(false)}
+      >
+        <Dialog>
+          <Dialog.Title>My title</Dialog.Title>
+          <Dialog.Description>
+            <RichTextEditor characterCount={200}>
+              <RichTextEditor.Toolbar>
+                <RichTextEditor.ControlsGroup>
+                  <RichTextEditor.Undo />
+                  <RichTextEditor.Redo />
+                </RichTextEditor.ControlsGroup>
+                <RichTextEditor.ControlsGroup>
+                  <RichTextEditor.HeadingsControl />
+                </RichTextEditor.ControlsGroup>
+                <RichTextEditor.ControlsGroup>
+                  <RichTextEditor.ColorControl />
+                </RichTextEditor.ControlsGroup>
+                <RichTextEditor.ControlsGroup>
+                  <RichTextEditor.TextAlginmentSelector />
+                </RichTextEditor.ControlsGroup>
+                <RichTextEditor.ControlsGroup>
+                  <RichTextEditor.Bold />
+                  <RichTextEditor.Italic />
+                  <RichTextEditor.Underline />
+                  <RichTextEditor.Strikethrough />
+                </RichTextEditor.ControlsGroup>
+                <RichTextEditor.BulletList />
+                <RichTextEditor.OrderedList />
+                <RichTextEditor.Link />
+                <RichTextEditor.Unlink />
+                <RichTextEditor.Image />
+                <RichTextEditor.Superscript />
+                <RichTextEditor.Subscript />
+                <RichTextEditor.Hr />
+                <RichTextEditor.CodeBlock />
+                <RichTextEditor.Blockquote />
+              </RichTextEditor.Toolbar>
+            </RichTextEditor>
+          </Dialog.Description>
+          <Dialog.Actions isMobile>
+            <Button onPress={() => setAlertOpen(false)} variant='ghost'>
+              Cancel
+            </Button>
             <Button onPress={() => setAlertOpen(false)}>Ok</Button>
           </Dialog.Actions>
           <Dialog.Icon>
