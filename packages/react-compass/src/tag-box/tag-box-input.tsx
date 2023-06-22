@@ -5,8 +5,6 @@ import {useDOMRef} from '../utils/use-dom-ref'
 interface Props extends StyledComponentProps {
   wrapperRef: React.RefObject<HTMLDivElement>
   onEnter: (value: string) => void
-  onFocus: () => void
-  onBlur: () => void
 }
 
 const TagBoxInput = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
@@ -16,12 +14,6 @@ const TagBoxInput = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
     // children,
     wrapperRef,
     onEnter = () => {
-      // do nothing
-    },
-    onFocus = () => {
-      // do nothing
-    },
-    onBlur = () => {
       // do nothing
     },
     ...delegated
@@ -61,8 +53,6 @@ const TagBoxInput = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
     <input
       ref={tagBoxInputRef}
       type='text'
-      onFocus={onFocus}
-      onBlur={onBlur}
       onChange={onInputChange}
       onKeyDown={(e: KeyboardEvent<HTMLInputElement>) => {
         const value = (e.target as HTMLInputElement).value
