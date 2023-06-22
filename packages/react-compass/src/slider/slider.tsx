@@ -23,7 +23,7 @@ interface Props extends StyledComponentProps {
 
 export type SliderProps = Props &
   SliderVariantProps &
-  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
+  Omit<React.ButtonHTMLAttributes<HTMLDivElement>, keyof Props>
 
 const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
   const {
@@ -63,27 +63,17 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
   useEffect(() => {
     const slider = sliderRef.current
     if (slider) {
-      const thumb = slider.querySelector('.cdg-thumb') as HTMLElement
-      const sliderProgress = slider.querySelector('.cdg-track') as HTMLElement
+      const thumb = slider.querySelector('.thumb') as HTMLElement
+      const sliderProgress = slider.querySelector(
+        '.range-slider',
+      ) as HTMLElement
       let isDragging = false
       let prevX = 0
 
-      const handleMouseDown = (event: MouseEvent | TouchEvent) => {
+      const handleMouseDown = (event: MouseEvent) => {
         if (isDisabled) return
-
         isDragging = true
-
-        if (event instanceof MouseEvent) {
-          prevX = event.clientX
-        } else if (event instanceof TouchEvent) {
-          const touch = event.touches[0]
-          if (touch) {
-            prevX = touch.clientX
-          } else {
-            return
-          }
-        }
-
+        prevX = event.clientX
         setDragging(true)
       }
 
@@ -93,24 +83,10 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
         setDragging(false)
       }
 
-      const handleMouseMove = (event: MouseEvent | TouchEvent) => {
+      const handleMouseMove = (event: MouseEvent) => {
         if (!isDragging || isDisabled) return
-
-        let clientX: number
-
-        if (event instanceof MouseEvent) {
-          clientX = event.clientX
-        } else if (event instanceof TouchEvent) {
-          const touch = event.touches[0]
-          if (!touch) return
-          clientX = touch.clientX
-        } else {
-          return
-        }
-
-        const deltaX = clientX - prevX
-        prevX = clientX
-
+        const deltaX = event.clientX - prevX
+        prevX = event.clientX
         const newLeft = thumb.offsetLeft + deltaX
         const sliderWidth = slider.offsetWidth
         const thumbWidth = thumb.offsetWidth
@@ -118,7 +94,6 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
           0 - thumbWidth,
           Math.min(newLeft, sliderWidth - thumbWidth * 2),
         )}px`
-
         const sliderProgressWidth = thumb.offsetLeft + thumbWidth
         sliderProgress.style.width = `${sliderProgressWidth}px`
 
@@ -130,10 +105,8 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
           ) *
             step +
           minValue
-
         setCurrentValue(newValue)
         thumb.setAttribute('value', newValue.toString())
-
         if (onChange) {
           onChange(newValue)
         }
@@ -174,12 +147,9 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
       }
 
       slider.addEventListener('click', handleMouseClick)
-      thumb.addEventListener('touchstart', handleMouseDown)
       thumb.addEventListener('mousedown', handleMouseDown)
       document.addEventListener('mouseup', handleMouseUp)
       document.addEventListener('mousemove', handleMouseMove)
-      document.addEventListener('touchend', handleMouseUp)
-      document.addEventListener('touchmove', handleMouseMove)
 
       // Set the initial value and position of the thumb based on defaultValue prop
       if (defaultValue !== undefined || value !== undefined) {
@@ -205,11 +175,8 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
 
       return () => {
         thumb.removeEventListener('mousedown', handleMouseDown)
-        thumb.removeEventListener('touchstart', handleMouseDown)
         document.removeEventListener('mouseup', handleMouseUp)
         document.removeEventListener('mousemove', handleMouseMove)
-        document.removeEventListener('touchend', handleMouseUp)
-        document.removeEventListener('touchmove', handleMouseMove)
         slider.removeEventListener('click', handleMouseClick)
       }
     }
@@ -234,10 +201,10 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
       className={`cdg-range-slider ${className}`}
       tabIndex={0}
       ref={sliderRef}
-      disabled={isDisabled}
+      style={{pointerEvents: `${isDisabled ? 'none' : 'auto'}`}}
     >
-      <RangeSlider className='cdg-track'>
-        <Thumb className={`cdg-thumb ${tooltip ? `cdg-thumb-tooltips` : ''}`} />
+      <RangeSlider className='range-slider'>
+        <Thumb className={`thumb ${tooltip ? `thumb-tooltips` : ''}`} />
       </RangeSlider>
     </RangeSliderContainer>
   )
