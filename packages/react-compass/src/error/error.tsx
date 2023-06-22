@@ -74,14 +74,14 @@ const Error = React.forwardRef<HTMLDivElement, ErrorProps>((props, ref) => {
       {...variantProps}
       {...delegated}
     >
-      {variant == 'primary' && (
+      {variant === 'primary' && (
         <StyledErrorHeader>
           {ErrorIconElement}
           {ErrorTitleElement}
         </StyledErrorHeader>
       )}
 
-      {variant == 'secondary' && (
+      {variant === 'secondary' && (
         <>
           {ErrorImageElement}
           {ErrorTitleElement}
