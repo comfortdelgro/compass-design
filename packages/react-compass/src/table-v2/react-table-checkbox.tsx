@@ -11,6 +11,7 @@ interface Props extends StyledComponentProps {
   children?: React.ReactNode
   indeterminate: boolean | undefined
   className: string
+  disabled: boolean | undefined
 }
 
 export type ReactTableCheckboxProps = Props
@@ -18,8 +19,11 @@ export type ReactTableCheckboxProps = Props
 const ReactTableCheckbox = ({
   indeterminate,
   className = '',
+  disabled,
   ...rest
-}: {indeterminate: boolean | undefined} & {className: string}) => {
+}: {indeterminate: boolean | undefined; disabled: boolean | undefined} & {
+  className: string
+}) => {
   const ref = React.useRef<HTMLInputElement>(null!)
 
   React.useEffect(() => {
@@ -36,7 +40,7 @@ const ReactTableCheckbox = ({
         className={className + ' cursor-pointer'}
         {...rest}
       />
-      <StyledTableCheckboxBox disabled={false} rounded={false}>
+      <StyledTableCheckboxBox disabled={disabled || false} rounded={false}>
         <StyledCheckboxCheckmark>
           {indeterminate ? (
             <svg className='icon' viewBox='0 0 448 512'>

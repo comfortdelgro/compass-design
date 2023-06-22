@@ -6,17 +6,23 @@ interface Props extends StyledComponentProps {
   children?: React.ReactNode
   indeterminate: boolean | undefined
   className: string
+  isDisabled: boolean
 }
 
 export type ReactTableCheckboxCellProps = Props
 
 const ReactTableCheckboxCell = ({
+  isDisabled,
   indeterminate,
   className = '',
   ...rest
-}: {indeterminate?: boolean} & HTMLProps<HTMLInputElement>) => {
+}: {
+  indeterminate?: boolean
+  isDisabled?: boolean
+} & HTMLProps<HTMLInputElement>) => {
   return (
     <ReactTableCheckbox
+      disabled={isDisabled}
       indeterminate={indeterminate}
       type='checkbox'
       className={className + ' cursor-pointer'}
