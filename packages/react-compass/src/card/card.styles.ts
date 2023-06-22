@@ -6,7 +6,7 @@ import {StyledCardTitle} from './card-title.styles'
 export const StyledCard = styled('div', {
   width: '100%',
   position: 'relative',
-  backgroundColor: '$secondaryBg',
+  backgroundColor: '$background',
   boxShadow:
     '0px 0.3px 0.9px rgba(0, 0, 0, 0.1), 0px 1.6px 3.6px rgba(0, 0, 0, 0.13)',
   borderRadius: '$md',
@@ -29,6 +29,12 @@ export const StyledCard = styled('div', {
   },
 
   variants: {
+    isDarkTheme: {
+      true: {
+        backgroundColor: '$secondaryBg',
+      },
+      false: {},
+    },
     isDisabled: {
       true: {
         backgroundColor: '$gray20',

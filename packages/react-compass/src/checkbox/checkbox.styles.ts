@@ -36,6 +36,16 @@ export const StyledCheckboxBox = styled('span', {
   transition: '$button',
 
   variants: {
+    isDarkTheme: {
+      true: {
+        backgroundColor: '$gray20',
+        '&:hover': {
+          backgroundColor: '$gray50',
+        },
+      },
+      false: {},
+    },
+
     rounded: {
       true: {
         borderRadius: '$full',
@@ -49,6 +59,18 @@ export const StyledCheckboxBox = styled('span', {
       },
     },
   },
+  compoundVariants: [
+    {
+      disabled: true,
+      isDarkTheme: true,
+      css: {
+        backgroundColor: '$gray10',
+        '&:hover': {
+          backgroundColor: '$gray10',
+        },
+      },
+    },
+  ],
 })
 
 //add a different styles for checkbox table
@@ -141,12 +163,6 @@ export const StyledCheckboxLabel = styled('label', {
         },
         [`${StyledCheckboxCheckmark}`]: {
           color: '#0D2972',
-        },
-        [`${StyledCheckboxBox}`]: {
-          backgroundColor: '$gray20',
-          '&:hover': {
-            backgroundColor: '$gray50',
-          },
         },
       },
       false: {},

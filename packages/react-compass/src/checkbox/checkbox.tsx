@@ -100,7 +100,6 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       setChecked((isSelected || defaultSelected) ?? false)
     }, [isSelected])
 
-    console.log(isDarkTheme)
     return (
       <StyledCheckboxWrapper css={css} {...htmlProps}>
         <StyledCheckboxLabel isDarkTheme={isDarkTheme}>
@@ -120,6 +119,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           <StyledCheckboxBox
             disabled={!!isDisabled}
             rounded={variant === 'rounded'}
+            isDarkTheme={isDarkTheme}
           >
             <StyledCheckboxCheckmark>
               {isIndeterminate ? (
