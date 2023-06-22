@@ -9,7 +9,7 @@ export const RangeSliderContainer = styled('div', {
   borderRadius: '6.25rem',
   position: ' relative',
   cursor: 'pointer',
-  '&:focus .thumb-tooltips::after': {
+  '&:focus .cdg-thumb-tooltips::after': {
     content: 'attr(value)',
     position: 'absolute',
     backgroundColor: '$gray110',
@@ -29,7 +29,7 @@ export const RangeSliderContainer = styled('div', {
     lineHeight: '3.125rem',
     textAlign: 'center',
   },
-  '&:focus .thumb-tooltips::before': {
+  '&:focus .cdg-thumb-tooltips::before': {
     content: '',
     position: 'absolute',
     border: '10px solid transparent',
@@ -38,6 +38,16 @@ export const RangeSliderContainer = styled('div', {
     bottom: '0.5rem',
     transform: 'translateX(-50%)',
     zIndex: '1',
+  },
+  variants: {
+    disabled: {
+      true: {
+        pointerEvents: 'none',
+      },
+      false: {
+        pointerEvents: 'auto',
+      },
+    },
   },
 })
 

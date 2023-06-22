@@ -23,7 +23,7 @@ interface Props extends StyledComponentProps {
 
 export type SliderProps = Props &
   SliderVariantProps &
-  Omit<React.ButtonHTMLAttributes<HTMLDivElement>, keyof Props>
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
   const {
@@ -63,10 +63,8 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
   useEffect(() => {
     const slider = sliderRef.current
     if (slider) {
-      const thumb = slider.querySelector('.thumb') as HTMLElement
-      const sliderProgress = slider.querySelector(
-        '.range-slider',
-      ) as HTMLElement
+      const thumb = slider.querySelector('.cdg-thumb') as HTMLElement
+      const sliderProgress = slider.querySelector('.cdg-track') as HTMLElement
       let isDragging = false
       let prevX = 0
 
@@ -210,6 +208,8 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
         thumb.removeEventListener('touchstart', handleMouseDown)
         document.removeEventListener('mouseup', handleMouseUp)
         document.removeEventListener('mousemove', handleMouseMove)
+        document.removeEventListener('touchend', handleMouseUp)
+        document.removeEventListener('touchmove', handleMouseMove)
         slider.removeEventListener('click', handleMouseClick)
       }
     }
@@ -234,10 +234,10 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
       className={`cdg-range-slider ${className}`}
       tabIndex={0}
       ref={sliderRef}
-      style={{pointerEvents: `${isDisabled ? 'none' : 'auto'}`}}
+      disabled={isDisabled}
     >
-      <RangeSlider className='range-slider'>
-        <Thumb className={`thumb ${tooltip ? `thumb-tooltips` : ''}`} />
+      <RangeSlider className='cdg-track'>
+        <Thumb className={`cdg-thumb ${tooltip ? `cdg-thumb-tooltips` : ''}`} />
       </RangeSlider>
     </RangeSliderContainer>
   )
