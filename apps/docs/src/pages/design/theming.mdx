@@ -137,7 +137,7 @@ function MyApp({Component, pageProps}: AppProps) {
 }
 ```
 
-### Using color with hooks
+### Hooks
 
 We can get the color code using the hook `useColors`
 
@@ -155,6 +155,31 @@ export const Demo: React.FC = () => {
     >
       Button
     </Button>
+  )
+}
+```
+
+We can get the current theme using the hook `useCurrentTheme` and we also can using `useIsLightTheme` or `useIsDarkTheme`
+
+Example:
+
+```js
+export const Demo: React.FC = () => {
+  const currentTheme = useCurrentTheme()
+  const isLightTheme = useIsLightTheme()
+  const isDarkTheme = useIsDarkTheme()
+  return (
+    <>
+      <Typography.Header variant='header4'>
+        Current theme: {currentTheme}
+      </Typography.Header>
+      <Typography.Header variant='header4'>
+        Is light theme: {String(isLightTheme)}
+      </Typography.Header>
+      <Typography.Header variant='header4'>
+        Is dark theme: {String(isDarkTheme)}
+      </Typography.Header>
+    </>
   )
 }
 ```
