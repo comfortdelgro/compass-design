@@ -3,20 +3,46 @@ import React from 'react'
 import Button from '../button/button'
 import {Icon} from '../icon'
 import {Column} from '../utils/components'
+import {useToast} from './hooks/useToast'
 import Toast from './index'
-import ToastContainer from './toast-container'
-import useToastService from './toast-service'
+import {ToastContextProvider} from './service/toast-context'
 
+const SubService1 = () => {
+  const toast = useToast()
+  return (
+    <>
+      <Button
+        css={{width: '8rem'}}
+        onClick={() => toast.success('Success toast notification 111')}
+      >
+        Open toast
+      </Button>
+    </>
+  )
+}
+const SubService2 = () => {
+  const toast = useToast()
+  return (
+    <>
+      <Button
+        css={{width: '8rem'}}
+        onClick={() => toast.success('Success toast notification 222')}
+      >
+        Open toast
+      </Button>
+    </>
+  )
+}
 export const Service: React.FC = () => {
-  const {showToast, removeToast, toasts} = useToastService()
-
   return (
     <Column>
       <h3>Toast as a service</h3>
-      <Button css={{width: '8rem'}} onClick={() => showToast('Test')}>
-        Open toast
-      </Button>
-      <ToastContainer toasts={toasts} onRemoveToast={removeToast} />
+      <ToastContextProvider>
+        <>
+          <SubService1 />
+          <SubService2 />
+        </>
+      </ToastContextProvider>
     </Column>
   )
 }
