@@ -15,11 +15,11 @@ export function useColors() {
     setColorsConfig(configs)
   }
 
-  useEffect(() => updateColorsConfig(), [])
-
-  const mutationObserver = new MutationObserver(updateColorsConfig)
-
-  mutationObserver.observe(document.body, {attributes: true})
+  useEffect(() => {
+    updateColorsConfig()
+    const mutationObserver = new MutationObserver(updateColorsConfig)
+    mutationObserver.observe(document.body, {attributes: true})
+  }, [])
 
   return colorsConfig as unknown as typeof config.theme.colors
 }

@@ -1,7 +1,5 @@
-import { styled } from '../theme'
-import type { VariantProps } from '../utils/stitches.types'
-
-
+import {styled} from '../theme'
+import type {VariantProps} from '../utils/stitches.types'
 
 export const StyledErrorImage = styled('div', {
   // reset
@@ -36,7 +34,7 @@ export const StyledErrorAction = styled('div', {
   width: '100%',
   display: 'flex',
   justifyContent: 'flex-end',
-  gap: '$4'
+  gap: '$4',
 })
 
 export const StyledErrorDescription = styled('p', {
@@ -133,12 +131,13 @@ export const StyledErrorContainer = styled('div', {
         display: 'flex',
         flexDirection: 'column',
         backgroundColor: '$background',
+        color: '$primaryText',
       },
       secondary: {
         maxWidth: '$127_25',
         minHeight: '$96',
         padding: '$8',
-        backgroundColor: '#F6F7F8',
+        backgroundColor: '$secondaryBg',
         borderRadius: '0px 4px 4px 0px',
         display: 'flex',
         flexDirection: 'column',
@@ -158,15 +157,16 @@ export const StyledErrorContainer = styled('div', {
           minHeight: '$12',
           display: 'block',
           fontSize: '$header1',
-          textAlign: 'center',
           '@mobile': {
             fontSize: '$header3',
           },
+          justifyContent: 'center',
+          color: '$primaryText',
         },
         [`${StyledErrorDescription}`]: {
           fontSize: '$body3',
-          color: 'gray80',
-          textAlign: 'center',
+          color: '$gray80',
+          justifyContent: 'center',
         },
         [`${StyledErrorAction}`]: {
           justifyContent: 'center',

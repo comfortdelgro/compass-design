@@ -149,7 +149,6 @@ const transitions = {
   button:
     'background 0.25s ease 0s, color 0.25s ease 0s, border-color 0.25s ease 0s, transform 0.25s ease 0s, opacity 0.25s ease 0s',
 }
-
 export const lightTheme = defineTheme({
   colors: {
     // Primary
@@ -256,8 +255,8 @@ export const darkTheme = createTheme('dark-theme', {
 
     // Secondary
 
-    infoBg: '#78D5E8',
-    info: '#1F4E57',
+    infoBg: '#1F4E57',
+    info: '#78D5E8',
 
     dangerBg: '#F4B7AE',
     danger: '#861913',
@@ -273,29 +272,29 @@ export const darkTheme = createTheme('dark-theme', {
 
     // Shades and Tints
 
-    cdgBlue10: '#DCE1FC',
-    cdgBlue20: '#B7C4FA',
-    cdgBlue40: '#91A7F9',
-    cdgBlue60: '#6B89F7',
-    cdgBlue80: '#2B53CA',
-    cdgBlue100: '#163CA3',
-    cdgBlue120: '#0D2874',
-    cdgBlue140: '#051649',
+    cdgBlue10: '#051649',
+    cdgBlue20: '#0D2874',
+    cdgBlue40: '#163CA3',
+    cdgBlue60: '#2B53CA',
+    cdgBlue80: '#6B89F7',
+    cdgBlue100: '#91A7F9',
+    cdgBlue120: '#B7C4FA',
+    cdgBlue140: '#DCE1FC',
 
     overlayLight: 'rgba(255, 255, 255, 0.4)',
     overlayDark: 'rgba(18, 18, 18, 0.7);',
 
-    gray10: '#DEE1F7',
-    gray20: '#C2C6DB',
-    gray30: '#A6AABF',
-    gray40: '#8C90A3',
-    gray50: '#727689',
+    gray10: '#161B2B',
+    gray20: '#2B3041',
+    gray30: '#363B4C',
+    gray40: '#424657',
+    gray50: '#4D5263',
     gray60: '#595E70',
-    gray70: '#4D5263',
-    gray80: '#424657',
-    gray90: '#363B4C',
-    gray100: '#2B3041',
-    gray110: '#161B2B',
+    gray70: '#727689',
+    gray80: '#8C90A3',
+    gray90: '#A6AABF',
+    gray100: '#C2C6DB',
+    gray110: '#DEE1F7',
 
     primaryBg: '#1B1B1F',
     secondaryBg: '#2C3041',

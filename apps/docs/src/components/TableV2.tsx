@@ -85,11 +85,12 @@ export function makeData(...lens: number[]) {
 export const ReactTableStory: React.FC = () => {
   const [page, setPage] = useState(1)
   const [data] = React.useState(() => makeData(10))
-  const options: ReactTableOptions = {
+  const options: ReactTableOptions<Person> = {
     enableSorting: true,
     enableMultiSort: true,
     columnResizeMode: 'onChange',
     manualSorting: true,
+    enableRowSelection: (row:any) => row.original.age > 30,
   }
   const onSorting = (sortingField: StateSorting) => {}
 
@@ -106,10 +107,12 @@ export const ReactTableStory: React.FC = () => {
   }
 
   const TableHeaderCell = ({row}: any) => {
+    console.log("=========",row.getCanSelect())
     return (
       <div className='px-1'>
         <ReactTable.CheckboxCell
           {...{
+            disabled: !row.getCanSelect(),
             checked: row.getIsSelected(),
             indeterminate: row.getIsSomeSelected(),
             onChange: row.getToggleSelectedHandler(),
@@ -182,7 +185,7 @@ export const ReactTableStory: React.FC = () => {
   return (
     <div>
       <ReactTable
-        data={[]}
+        data={data}
         columns={columns}
         options={options}
         onManualSorting={onSorting}

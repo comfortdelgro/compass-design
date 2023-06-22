@@ -1,5 +1,3 @@
-import {today} from '@internationalized/date'
-import {StoryDecorator} from '@ladle/react'
 import type {RangeValue} from '@react-types/shared'
 import React from 'react'
 import Button from '../button'
@@ -51,7 +49,6 @@ export const Variants: React.FC = () => {
           startDateLabel='Start date'
           endDateLabel='End date'
           hasShortcuts
-          minValue={today(getLocalTimeZone())}
           customShortcuts={(shortcuts) => {
             const customShortcuts: RangeCalendarShorcutItem[] = [
               {
@@ -106,19 +103,4 @@ export const Controlled: React.FC = () => {
       />
     </I18nProvider>
   )
-}
-
-export default {
-  decorators: [
-    (Component) => (
-      <div>
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `.ladle-main { background: #eee; }`,
-          }}
-        ></style>
-        <Component />
-      </div>
-    ),
-  ] as StoryDecorator[],
 }

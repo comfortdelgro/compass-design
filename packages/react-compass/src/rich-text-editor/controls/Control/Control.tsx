@@ -7,11 +7,7 @@ interface Props extends StyledComponentProps {
   active: boolean
   children?: React.ReactNode
   className?: string
-  onClick?: (
-    event:
-      | React.MouseEvent<HTMLButtonElement>
-      | React.TouchEvent<HTMLButtonElement>,
-  ) => void
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
   ripple?: boolean
   isDisabled?: boolean
   'aria-controls'?: string
@@ -25,6 +21,7 @@ interface Props extends StyledComponentProps {
   onKeyUp?: (e: React.KeyboardEvent) => void
   onPointerDown?: (e: React.PointerEvent) => void
   onPointerUp?: (e: React.PointerEvent) => void
+  onTouchEnd?: (e: React.TouchEvent<HTMLButtonElement>) => void
   tabIndex?: number
   type?: 'button' | 'reset' | 'submit' | undefined
 }
@@ -62,7 +59,6 @@ const Control = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <StyledControl
         ref={buttonRef}
         onClick={onClick}
-        onTouchEnd={onClick}
         aria-controls={props['aria-controls']}
         aria-expanded={props['aria-expanded']}
         aria-haspopup={props['aria-haspopup']}
@@ -75,6 +71,7 @@ const Control = React.forwardRef<HTMLButtonElement, ButtonProps>(
         onKeyUp={props.onKeyUp}
         onPointerDown={props.onPointerDown}
         onPointerUp={props.onPointerUp}
+        onTouchEnd={props.onTouchEnd}
         {...delegateProps}
       >
         {children}
