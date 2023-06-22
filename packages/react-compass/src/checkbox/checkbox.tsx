@@ -1,5 +1,6 @@
 import {CSS} from '@stitches/react'
 import React, {useEffect, useState} from 'react'
+import {useIsDarkTheme} from '../theme'
 import type {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
@@ -74,6 +75,8 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       ...ariaSafeProps
     } = props
 
+    const isDarkTheme = useIsDarkTheme()
+
     const [checked, setChecked] = useState<boolean>(
       isSelected || defaultSelected,
     )
@@ -97,9 +100,10 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       setChecked((isSelected || defaultSelected) ?? false)
     }, [isSelected])
 
+    console.log(isDarkTheme)
     return (
       <StyledCheckboxWrapper css={css} {...htmlProps}>
-        <StyledCheckboxLabel>
+        <StyledCheckboxLabel isDarkTheme={isDarkTheme}>
           <StyledCheckboxInput
             type='checkbox'
             ref={checkboxRef}

@@ -131,6 +131,27 @@ export const StyledCheckboxLabel = styled('label', {
     borderColor: '$gray50',
     backgroundColor: '$gray50',
   },
+
+  variants: {
+    isDarkTheme: {
+      true: {
+        [`${StyledCheckboxInput}:checked ~ ${StyledCheckboxBox}`]: {
+          borderColor: '$cdgBlue120',
+          backgroundColor: '$cdgBlue120',
+        },
+        [`${StyledCheckboxCheckmark}`]: {
+          color: '#0D2972',
+        },
+        [`${StyledCheckboxBox}`]: {
+          backgroundColor: '$gray20',
+          '&:hover': {
+            backgroundColor: '$gray50',
+          },
+        },
+      },
+      false: {},
+    },
+  },
 })
 
 export type CheckboxVariantProps = VariantProps<typeof StyledCheckboxLabel>
