@@ -4,6 +4,22 @@ import Button from '../button/button'
 import {Icon} from '../icon'
 import {Column} from '../utils/components'
 import Toast from './index'
+import ToastContainer from './toast-container'
+import useToastService from './toast-service'
+
+export const Service: React.FC = () => {
+  const {showToast, removeToast, toasts} = useToastService()
+
+  return (
+    <Column>
+      <h3>Toast as a service</h3>
+      <Button css={{width: '8rem'}} onClick={() => showToast('Test')}>
+        Open toast
+      </Button>
+      <ToastContainer toasts={toasts} onRemoveToast={removeToast} />
+    </Column>
+  )
+}
 
 export const Default: React.FC = () => {
   const [isDefaultOpen, setIsDefaultOpen] = React.useState(false)
