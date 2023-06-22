@@ -41,6 +41,7 @@ export const StyledIcon = styled('div', {
   width: '$6',
   height: '$6',
   display: 'flex',
+  flexShrink: 0,
   justifyContent: 'center',
   alignItems: 'center',
   userSelect: 'none',
@@ -88,8 +89,8 @@ export const StyledBoxContent = styled('div', {
     border: 'none',
     background: 'transparent',
     outline: 'none',
-    width: '25%',
-    height: '$7_5',
+    width: 4,
+    height: '$6_5',
     padding: 0,
   },
 })

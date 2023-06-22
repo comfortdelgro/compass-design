@@ -73,6 +73,7 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
     ...delegated
   } = props
 
+  const inputRef = useDOMRef<HTMLInputElement>(null)
   const tagBoxRef = useDOMRef<HTMLDivElement>(ref)
   const {child: TagBoxActionElement} = pickChild<typeof TagBoxAction>(
     children,
@@ -137,7 +138,10 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
 
   return (
     <StyledTagBox css={css} ref={tagBoxRef} {...delegated}>
-      <StyledBoxWrapper labelPosition={labelPosition}>
+      <StyledBoxWrapper
+        labelPosition={labelPosition}
+        onClick={() => inputRef.current?.focus()}
+      >
         {label && (
           <label htmlFor={id}>
             {label}
@@ -180,6 +184,8 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
               {((!collaspable && typeable) ||
                 (collaspable && typeable && isOpen)) && (
                 <TagBoxInput
+                  ref={inputRef}
+                  wrapperRef={boxContentRef}
                   onFocus={onFocus}
                   onBlur={onBlur}
                   onEnter={(v) => onAdd?.(v)}
