@@ -206,6 +206,7 @@ await buildIcons('./svgs/', './iconify/', './react/')
 await buildIcons('./svgs/colorful/', './iconify/colorful/', './react/colorful/')
 await buildIcons('./svgs/country/', './iconify/country/', './react/country/')
 await buildIcons('./svgs/duotone/', './iconify/duotone/', './react/duotone/')
+await buildIcons('./svgs/file/', './iconify/file/', './react/file/')
 await buildIcons('./svgs/filled/', './iconify/filled/', './react/filled/')
 await buildIcons('./svgs/outlined/', './iconify/outlined/', './react/outlined/')
 

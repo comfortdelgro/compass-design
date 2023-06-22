@@ -1,0 +1,7 @@
+import {styled} from '../theme'
+
+export const StyledDataGridCheckboxCell = styled('span', {
+  textAlign: 'left',
+  fontSize: '$label1',
+  padding: '$3_5 $3',
+})
