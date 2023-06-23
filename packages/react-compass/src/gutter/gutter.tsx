@@ -1,71 +1,76 @@
-import React, {Children, useState} from 'react'
-import {CSS, StyledComponentProps} from '../utils/stitches.types'
+import {faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons'
+import React, {CSSProperties, useEffect} from 'react'
+import Icon, {IconProp} from '../icon'
+import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
-import GutterContent from './gutter-content'
-import {GutterContext} from './gutter-context'
-import GutterResizer from './gutter-resizer'
-import {StyledGutter} from './gutter.styles'
+import {StyledGutter, StyledGutterCollapseButton} from './gutter.styles'
+import useGutter from './useGutter'
 
-interface Props extends StyledComponentProps {
-  children?: React.ReactNode
-  maxWidth?: CSS['maxWidth']
-  minWidth?: CSS['minWidth']
-  width?: CSS['width']
-  hasBothSides?: boolean
+export enum GutterSide {
+  RIGHT = 'right',
+  LEFT = 'left',
 }
 
-export type GutterProps = Props &
-  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
+const iconStyles: CSSProperties = {
+  width: '14px',
+  height: '14px',
+}
+
+export interface GutterProps extends StyledComponentProps {
+  parentRef?: React.RefObject<HTMLDivElement> | null
+  side?: 'left' | 'right'
+  isExpand?: boolean
+  hasExpandButton?: boolean
+  minCollapse?: CSSProperties['width']
+  maxExpand?: CSSProperties['width']
+  onChange?: (width: CSSProperties['width']) => void
+}
 
 const Gutter = React.forwardRef<HTMLDivElement, GutterProps>((props, ref) => {
-  const {
-    children,
-    maxWidth,
-    minWidth,
-    hasBothSides = false,
-    width = undefined,
-    css = {},
-  } = props
-  const [gutterWidth, setGutterWidth] = useState<CSS['width']>(width)
-  const [isResizing, setIsResizing] = useState(false)
-  const domRef = useDOMRef(ref)
+  const {onChange, hasExpandButton, side = GutterSide.RIGHT, css = {}} = props
+  const domRef = useDOMRef<HTMLDivElement>(ref)
+  const {width, isExpand, toggleExpand, handlePointerDown} = useGutter(
+    props,
+    domRef,
+  )
 
-  const [leftComponent, rightComponent] = Children.toArray(children)
+  useEffect(() => {
+    onChange?.(width)
+  }, [width])
 
-  const isGutterLeftSide =
-    (leftComponent as React.ReactElement).type === GutterResizer
+  const renderCollapseSymbol = () => {
+    let icon: IconProp = faChevronLeft
+    if (side === GutterSide.RIGHT) {
+      icon = isExpand ? faChevronLeft : faChevronRight
+    } else {
+      icon = isExpand ? faChevronRight : faChevronLeft
+    }
+
+    return <Icon icon={icon} style={iconStyles} />
+  }
 
   return (
-    <GutterContext.Provider
-      value={{
-        gutterRef: domRef,
-        isGutterLeftSide,
-        isResizing,
-        gutterWidth,
-        minWidth,
-        maxWidth,
-        hasBothSides,
-        setGutterWidth,
-        setIsResizing,
-      }}
+    <StyledGutter
+      css={css}
+      ref={domRef}
+      onPointerDown={handlePointerDown}
+      side={side}
     >
-      <StyledGutter
-        ref={domRef}
-        css={{
-          width: gutterWidth,
-          maxWidth: maxWidth,
-          minWidth: minWidth,
-          ...css,
-        }}
-      >
-        {leftComponent}
-        {rightComponent}
-      </StyledGutter>
-    </GutterContext.Provider>
+      {hasExpandButton ? (
+        <StyledGutterCollapseButton
+          onClick={(e) => {
+            e.stopPropagation()
+            toggleExpand()
+          }}
+          type='button'
+        >
+          {renderCollapseSymbol()}
+        </StyledGutterCollapseButton>
+      ) : (
+        <></>
+      )}
+    </StyledGutter>
   )
 })
 
-export default Gutter as typeof Gutter & {
-  Resizer: typeof GutterResizer
-  Content: typeof GutterContent
-}
+export default Gutter
