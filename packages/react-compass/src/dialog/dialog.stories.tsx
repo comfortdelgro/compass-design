@@ -2,7 +2,11 @@ import {faBug} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React from 'react'
 import Button from '../button'
-import RichTextEditor from '../rich-text-editor'
+import Checkbox from '../checkbox'
+import DatePicker from '../date-picker'
+import Textarea from '../textarea'
+import TextField from '../textfield'
+import Typography from '../typography'
 import {Column} from '../utils/components'
 import Dialog from './index'
 
@@ -94,39 +98,46 @@ export const Variants: React.FC = () => {
         <Dialog>
           <Dialog.Title>My title</Dialog.Title>
           <Dialog.Description>
-            <RichTextEditor characterCount={200}>
-              <RichTextEditor.Toolbar>
-                <RichTextEditor.ControlsGroup>
-                  <RichTextEditor.Undo />
-                  <RichTextEditor.Redo />
-                </RichTextEditor.ControlsGroup>
-                <RichTextEditor.ControlsGroup>
-                  <RichTextEditor.HeadingsControl />
-                </RichTextEditor.ControlsGroup>
-                <RichTextEditor.ControlsGroup>
-                  <RichTextEditor.ColorControl />
-                </RichTextEditor.ControlsGroup>
-                <RichTextEditor.ControlsGroup>
-                  <RichTextEditor.TextAlginmentSelector />
-                </RichTextEditor.ControlsGroup>
-                <RichTextEditor.ControlsGroup>
-                  <RichTextEditor.Bold />
-                  <RichTextEditor.Italic />
-                  <RichTextEditor.Underline />
-                  <RichTextEditor.Strikethrough />
-                </RichTextEditor.ControlsGroup>
-                <RichTextEditor.BulletList />
-                <RichTextEditor.OrderedList />
-                <RichTextEditor.Link />
-                <RichTextEditor.Unlink />
-                <RichTextEditor.Image />
-                <RichTextEditor.Superscript />
-                <RichTextEditor.Subscript />
-                <RichTextEditor.Hr />
-                <RichTextEditor.CodeBlock />
-                <RichTextEditor.Blockquote />
-              </RichTextEditor.Toolbar>
-            </RichTextEditor>
+            <Column css={{gap: '$4'}}>
+              <DatePicker css={{width: '100%'}} label='Date picker' />
+              <TextField label='Text field' />
+              <Textarea
+                css={{
+                  width: '100%',
+                  textarea: {width: '100%', minHeight: '120px'},
+                }}
+                label='Text area'
+              />
+              <Checkbox>I agree to this term and condition</Checkbox>
+              <Typography.Label>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+                Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
+                aut fugit
+              </Typography.Label>
+              <Typography.Label>
+                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
+                quae ab illo inventore veritatis et quasi architecto beatae
+                vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia
+                voluptas sit aspernatur aut odit aut fugit, sed quia
+                consequuntur magni dolores eos qui ratione voluptatem sequi
+                nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor
+                sit amet, consectetur, adipisci velit, sed quia non numquam eius
+                modi tempora incidunt ut labore et dolore magnam aliquam quaerat
+                voluptatem. Ut enim ad minima veniam, quis nostrum
+                exercitationem ullam corporis suscipit laboriosam, nisi ut
+                aliquid ex ea commodi consequatur? Quis autem vel eum iure
+                reprehenderit qui in ea voluptate velit esse quam nihil
+                molestiae consequatur, vel illum qui dolorem eum fugiat quo
+                voluptas nulla pariatur?
+              </Typography.Label>
+            </Column>
           </Dialog.Description>
           <Dialog.Actions isMobile>
             <Button onPress={() => setAlertOpen(false)} variant='ghost'>
