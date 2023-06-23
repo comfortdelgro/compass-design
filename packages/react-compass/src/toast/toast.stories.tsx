@@ -13,7 +13,12 @@ const SubService1 = () => {
     <>
       <Button
         css={{width: '8rem'}}
-        onClick={() => toast.success('Success toast notification 111')}
+        onClick={() =>
+          toast.show({
+            content: 'Show toast notification 1: ' + Date.now().toString(),
+            autoClose: 1000,
+          })
+        }
       >
         Open toast
       </Button>
@@ -26,14 +31,18 @@ const SubService2 = () => {
     <>
       <Button
         css={{width: '8rem'}}
-        onClick={() => toast.success('Success toast notification 222')}
+        onClick={() =>
+          toast.show({
+            content: 'Show toast notification 2: ' + Date.now().toString(),
+          })
+        }
       >
         Open toast
       </Button>
     </>
   )
 }
-export const Service: React.FC = () => {
+export const Multiple: React.FC = () => {
   return (
     <Column>
       <h3>Toast as a service</h3>

@@ -1,18 +1,10 @@
 import React, {createContext, ReactNode, useReducer} from 'react'
 import ToastsContainer from './toast-container'
 import {toastReducer} from './toast-reducer'
+import {ToastItemType} from './types'
 
 export const ToastContext = createContext<ToastContextValue>({
-  success: () => {
-    //
-  },
-  warning: () => {
-    //
-  },
-  info: () => {
-    //
-  },
-  error: () => {
+  show: () => {
     //
   },
   remove: () => {
@@ -29,42 +21,30 @@ interface ToastContextProviderProps {
 }
 
 export interface ToastContextValue {
-  success: (message: string) => void
-  warning: (message: string) => void
-  info: (message: string) => void
-  error: (message: string) => void
+  show: (item: ToastItemType) => void
   remove: (id: number) => void
 }
 
 export const ToastContextProvider = ({children}: ToastContextProviderProps) => {
   const [state, dispatch] = useReducer(toastReducer, initialState)
   // rest of the code
-  const addToast = (type: string, message: string) => {
-    const id = Math.floor(Math.random() * 10000000)
-    dispatch({type: 'ADD_TOAST', payload: {id, message, type}})
+  const addToast = (item: ToastItemType) => {
+    const id = Date.now()
+    dispatch({
+      type: 'ADD_TOAST',
+      payload: {...item, id, hasCloseIcon: item.hasCloseIcon ?? true},
+    })
   }
 
-  const success = (message: string) => {
-    addToast('success', message)
-  }
-
-  const warning = (message: string) => {
-    addToast('warning', message)
-  }
-
-  const info = (message: string) => {
-    addToast('info', message)
-  }
-
-  const error = (message: string) => {
-    addToast('error', message)
+  const show = (item: ToastItemType) => {
+    addToast(item)
   }
 
   const remove = (id: number) => {
     dispatch({type: 'DELETE_TOAST', payload: id})
   }
 
-  const value: ToastContextValue = {success, warning, info, error, remove}
+  const value: ToastContextValue = {show, remove}
 
   return (
     <ToastContext.Provider value={value}>

@@ -5,7 +5,7 @@ export const toastReducer = (state: ToastState, action: ToastActions) => {
     case 'ADD_TOAST':
       return {
         ...state,
-        toasts: [...state.toasts, action.payload],
+        toasts: [action.payload, ...state.toasts],
       }
     case 'DELETE_TOAST':
       return {

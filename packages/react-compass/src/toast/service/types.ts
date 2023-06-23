@@ -1,7 +1,10 @@
+import {ReactNode} from 'react'
+
 export interface ToastItemType {
-  message: string
-  type: string
-  id: number
+  id?: number
+  content: ReactNode
+  hasCloseIcon?: boolean
+  autoClose?: false | number
 }
 
 export interface ToastState {
