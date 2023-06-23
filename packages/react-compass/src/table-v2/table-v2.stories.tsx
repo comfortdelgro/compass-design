@@ -19,11 +19,11 @@ export const FullFeatured: React.FC = () => {
     enableSorting: true,
     enableMultiSort: true,
     columnResizeMode: 'onChange',
-    manualSorting: true,
-    // initialSortBy: [
-    //   {id: 'firstName', desc: true},
-    //   {id: 'lastName', desc: false},
-    // ],
+    manualSorting: false,
+    initialSortBy: [
+      {id: 'firstName', desc: true},
+      {id: 'lastName', desc: false},
+    ],
     enableRowSelection: (row) => row.original.age > 30,
   }
 
