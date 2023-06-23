@@ -19,10 +19,21 @@ export const StyledToolbarWrap = styled('div', {
   zIndex: '52',
   position: 'fixed',
   marginBottom: 20,
-  bottom: 50,
+  top: 20,
   left: 0,
   display: 'flex',
-  flexDirection: 'column',
+  flexDirection: 'row',
+  width: '100vw',
+  alignItems: 'center',
+  justifyContent: 'center',
+})
+
+export const StyledImageInformationWrap = styled('div', {
+  zIndex: '52',
+  position: 'fixed',
+  bottom: 60,
+  left: 0,
+  display: 'flex',
   width: '100vw',
   alignItems: 'center',
   justifyContent: 'center',
