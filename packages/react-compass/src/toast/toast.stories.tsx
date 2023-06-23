@@ -12,15 +12,26 @@ const SubService1 = () => {
   return (
     <>
       <Button
-        css={{width: '8rem'}}
+        css={{width: 'fit-content'}}
         onClick={() =>
           toast.show({
-            content: 'Show toast notification 1: ' + Date.now().toString(),
-            autoClose: 1000,
+            color: 'informative',
+            title: 'Lorem ipsum dolor, sit amet consectetur',
           })
         }
       >
         Open toast
+      </Button>
+      <Button
+        css={{width: 'fit-content'}}
+        onClick={() =>
+          toast.show({
+            title: 'Lorem ipsum dolor, sit amet consectetur',
+            hasCloseIcon: false,
+          })
+        }
+      >
+        Open toast without close button
       </Button>
     </>
   )
@@ -30,14 +41,27 @@ const SubService2 = () => {
   return (
     <>
       <Button
-        css={{width: '8rem'}}
+        css={{width: 'fit-content'}}
         onClick={() =>
           toast.show({
-            content: 'Show toast notification 2: ' + Date.now().toString(),
+            autoClose: false,
+            message: 'Lorem ipsum dolor, sit amet consectetur.',
+            icon: <Icon icon={faImage} />,
+            title: 'My Title',
+            actions: (
+              <>
+                <Button>Take action</Button>
+                <Button>Take action</Button>
+              </>
+            ),
+            label: 'a few minutes ago',
           })
         }
       >
-        Open toast
+        Open toast autoClose: false
+      </Button>
+      <Button css={{width: 'fit-content'}} onClick={() => toast.clearAll()}>
+        Clear all toasts
       </Button>
     </>
   )

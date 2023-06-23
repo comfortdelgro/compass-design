@@ -12,6 +12,9 @@ export const StyledToastContainer = styled('div', {
   overflowX: 'hidden',
   overflowY: 'auto',
   zIndex: 61,
+  '&.cdg-toast-container-hidden': {
+    display: 'none',
+  },
 })
 
 export const StyledToastItem = styled('div', {

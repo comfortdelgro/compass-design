@@ -38,6 +38,11 @@ export const StyledToastMessage = styled('p', {
 })
 
 export const StyledToastCloseIcon = styled('div', {
+  position: 'absolute',
+  right: '0',
+  top: '50%',
+  transform: 'translateY(-50%)',
+
   // reset
   appearance: 'none',
   border: 'none',
@@ -71,6 +76,7 @@ export const StyledToastLabel = styled('div', {
   padding: '0px',
 
   // styling
+  marginRight: '$5',
   width: 'fit-content',
   minHeight: '$4_5',
   fontWeight: '$normal',
@@ -136,6 +142,7 @@ export const StyledToastHeaderLeft = styled('div', {
   padding: '0px',
 
   // styling
+  marginRight: '$5',
   minHeight: '$5_25',
   display: 'flex',
   justifyContent: 'flex-start',
@@ -153,6 +160,7 @@ export const StyledToastHeaderRight = styled('div', {
   padding: '0px',
 
   // styling
+  position: 'relative',
   minHeight: '$5_25',
   display: 'flex',
   justifyContent: 'flex-end',

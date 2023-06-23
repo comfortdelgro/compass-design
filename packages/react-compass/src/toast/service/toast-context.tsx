@@ -10,6 +10,9 @@ export const ToastContext = createContext<ToastContextValue>({
   remove: () => {
     //
   },
+  clearAll: () => {
+    //
+  },
 })
 
 const initialState = {
@@ -23,6 +26,7 @@ interface ToastContextProviderProps {
 export interface ToastContextValue {
   show: (item: ToastItemType) => void
   remove: (id: number) => void
+  clearAll: () => void
 }
 
 export const ToastContextProvider = ({children}: ToastContextProviderProps) => {
@@ -44,7 +48,11 @@ export const ToastContextProvider = ({children}: ToastContextProviderProps) => {
     dispatch({type: 'DELETE_TOAST', payload: id})
   }
 
-  const value: ToastContextValue = {show, remove}
+  const clearAll = () => {
+    dispatch({type: 'CLEAR_TOAST'})
+  }
+
+  const value: ToastContextValue = {show, remove, clearAll}
 
   return (
     <ToastContext.Provider value={value}>

@@ -23,11 +23,18 @@ const ToastsContainer = (props: ToastsContainerProps) => {
     toasts,
     toastItemClassName,
     // HTMLDiv Props
+    className,
     ...delegated
   } = props
 
   return (
-    <StyledToastContainer css={css} {...delegated}>
+    <StyledToastContainer
+      css={css}
+      {...delegated}
+      className={`${toasts.length > 0 ? '' : 'cdg-toast-container-hidden'} ${
+        className ?? ''
+      }`}
+    >
       {toasts.map((toast) => (
         <ToastItem
           key={toast.id}

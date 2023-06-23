@@ -12,6 +12,11 @@ export const toastReducer = (state: ToastState, action: ToastActions) => {
         ...state,
         toasts: state.toasts.filter((toast) => toast.id !== action.payload),
       }
+    case 'CLEAR_TOAST':
+      return {
+        ...state,
+        toasts: [],
+      }
     default:
       return state
   }

@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react'
+import React, {useRef} from 'react'
 import {useToast} from '../hooks/useToast'
 import Toast from '../toast'
 import {StyledToastItem} from './toast-item.styles'
@@ -8,13 +8,19 @@ export type ToastItemProps = ToastItemType & {
   toastItemClassName?: string
 }
 const ANIMATION_TIME = 300
+const CLOSE_TIME = 1000
 
 const ToastItem = ({
   id,
-  content,
+  message,
   toastItemClassName,
   autoClose,
   hasCloseIcon,
+  actions,
+  icon,
+  title,
+  label,
+  color,
 }: ToastItemProps) => {
   const toast = useToast() // call useToast
 
@@ -29,17 +35,14 @@ const ToastItem = ({
     }
   }
 
-  useEffect(() => {
-    console.log(content)
-  }, [content])
-
   return (
     <StyledToastItem ref={toastItemRef}>
       <Toast
         isOpen
         handleClose={handleDismiss}
         className={toastItemClassName}
-        autoClose={autoClose ?? false}
+        autoClose={autoClose ?? CLOSE_TIME}
+        color={color ?? 'neutral'}
       >
         {hasCloseIcon && (
           <Toast.CloseIcon>
@@ -52,11 +55,11 @@ const ToastItem = ({
           </Toast.CloseIcon>
         )}
 
-        {typeof content === 'string' ? (
-          <Toast.Message>{content}</Toast.Message>
-        ) : (
-          {content}
-        )}
+        {message && <Toast.Message>{message}</Toast.Message>}
+        {icon && <Toast.Icon>{icon}</Toast.Icon>}
+        {title && <Toast.Title>{title}</Toast.Title>}
+        {label && <Toast.Label>{label}</Toast.Label>}
+        {actions && <Toast.Actions>{actions}</Toast.Actions>}
       </Toast>
     </StyledToastItem>
   )

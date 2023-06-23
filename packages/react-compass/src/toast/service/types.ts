@@ -2,9 +2,14 @@ import {ReactNode} from 'react'
 
 export interface ToastItemType {
   id?: number
-  content: ReactNode
+  message?: ReactNode
+  title?: ReactNode
+  actions?: ReactNode
+  icon?: ReactNode
+  label?: ReactNode
   hasCloseIcon?: boolean
   autoClose?: false | number
+  color?: 'informative' | 'neutral' | 'negative' | 'positive'
 }
 
 export interface ToastState {
@@ -19,4 +24,7 @@ export type ToastActions =
   | {
       type: 'DELETE_TOAST'
       payload: number
+    }
+  | {
+      type: 'CLEAR_TOAST'
     }
