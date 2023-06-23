@@ -1,5 +1,5 @@
 import {Callout} from 'nextra-theme-docs'
-import Toast from '../../components/Toast'
+import Toast, {ToastService} from '../../components/Toast'
 
 # Toast
 
@@ -231,6 +231,95 @@ import Sidebar from '@comfortdelgro/react-compass/sidebar'
 
 ---
 
+### Use ToastContextProvider
+
+<ToastService />
+
+```js
+const SubService1 = () => {
+  const toast = useToast()
+  return (
+    <>
+      <Button
+        variant='primary'
+        css={{width: 'fit-content', color: 'black'}}
+        onClick={() =>
+          toast.show({
+            color: 'informative',
+            title: 'Lorem ipsum dolor, sit amet consectetur',
+          })
+        }
+      >
+        Open toast
+      </Button>
+      <Button
+        variant='primary'
+        css={{width: 'fit-content', color: 'black'}}
+        onClick={() =>
+          toast.show({
+            title: 'Lorem ipsum dolor, sit amet consectetur',
+            hasCloseIcon: false,
+          })
+        }
+      >
+        Open toast without close button
+      </Button>
+    </>
+  )
+}
+const SubService2 = () => {
+  const toast = useToast()
+  return (
+    <>
+      <Button
+        variant='primary'
+        css={{width: 'fit-content', color: 'black'}}
+        onClick={() =>
+          toast.show({
+            autoClose: false,
+            message: 'Lorem ipsum dolor, sit amet consectetur.',
+            icon: <Icon icon={faImage} />,
+            title: 'My Title',
+            actions: (
+              <>
+                <Button css={{width: 'fit-content', color: 'black'}}>
+                  Take action
+                </Button>
+                <Button css={{width: 'fit-content', color: 'black'}}>
+                  Take action
+                </Button>
+              </>
+            ),
+            label: 'a few minutes ago',
+          })
+        }
+      >
+        Open toast autoClose: false
+      </Button>
+      <Button
+        variant='primary'
+        css={{width: 'fit-content', color: 'black'}}
+        onClick={() => toast.clearAll()}
+      >
+        Clear all toasts
+      </Button>
+    </>
+  )
+}
+export const ToastService = () => {
+  return (
+    <ToastContextProvider>
+      <>
+        <SubService1 />
+        <SubService2 />
+      </>
+    </ToastContextProvider>
+  )
+}
+```
+
+---
+
 ## Props
 
 | Name        | Type                                                   | Default   | Description                                                                             |
@@ -240,6 +329,16 @@ import Sidebar from '@comfortdelgro/react-compass/sidebar'
 | isOpen      | `boolean`                                              | false     | The toast is visible when true.                                                         |
 | autoClose   | `false` \| `number`                                    | false     | Number of miliseconds to auto close.                                                    |
 | css         | `CSS`                                                  | —         | The system prop that allows defining system overrides as well as additional CSS styles. |
+
+---
+
+## Props for useToast
+
+| Name     | Type       | Default | Description                                  |
+| :------- | :--------- | :------ | :------------------------------------------- |
+| show     | `Function` | -       | Call to add toast to show in ToastContainer. |
+| remove   | `Function` | -       | Call to remove toast from ToastContext.      |
+| clearAll | `Function` | —       | Call to remove all toasts from ToastContext. |
 
 ---
 

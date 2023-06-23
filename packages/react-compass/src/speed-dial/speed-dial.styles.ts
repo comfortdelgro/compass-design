@@ -26,10 +26,10 @@ export const StyledSpeedDialTrigger = styled('div', {
   justifyContent: 'center',
   width: '60px',
   height: '60px',
-  backgroundColor: '#007bff',
+  backgroundColor: '$cdgBlue100',
   boxShadow:
     '0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12)',
-  color: '#fff',
+  color: '$background',
   border: 'none',
   borderRadius: '50%',
   fontSize: '$header3',
@@ -40,7 +40,7 @@ export const StyledSpeedDialTrigger = styled('div', {
     transition: 'all 0.3s ease',
   },
   '&.open': {
-    backgroundColor: '#dc3545',
+    backgroundColor: '$cdgBlue120',
     '& > span': {
       transform: 'rotate(45deg)',
     },
@@ -94,8 +94,8 @@ export const SpeedDialAction = styled('li', {
   justifyContent: 'center',
   width: '50px',
   height: '50px',
-  backgroundColor: '#007bff',
-  color: '#fff',
+  backgroundColor: '$cdgBlue100',
+  color: '$background',
   border: 'none',
   borderRadius: '50%',
   fontSize: '24px',
@@ -105,7 +105,7 @@ export const SpeedDialAction = styled('li', {
     '0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12)',
 
   '&:hover': {
-    backgroundColor: '#dc3545',
+    backgroundColor: '$cdgBlue120',
   },
 
   '&.speed-dial__action--up': {
