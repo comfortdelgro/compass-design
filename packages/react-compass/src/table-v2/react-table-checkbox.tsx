@@ -9,9 +9,9 @@ import {StyledReactCheckboxInput} from './react-table-checkbox.styles'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
-  indeterminate: boolean | undefined
+  indeterminate?: boolean
   className: string
-  disabled: boolean | undefined
+  disabled?: boolean
 }
 
 export type ReactTableCheckboxProps = Props

@@ -4,26 +4,28 @@ import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {StyledReactTableCell} from './react-table-cell.styles'
 
-export interface Props extends StyledComponentProps {
-  cell: Cell<any, unknown>
+export interface Props<TData, TValue> extends StyledComponentProps {
+  cell: Cell<TData, TValue>
 }
 
-export type ReactTableCellProps = Props
+export type ReactTableCellProps<TData = any, TValue = unknown> = Props<
+  TData,
+  TValue
+> &
+  Omit<React.HTMLAttributes<HTMLTableCellElement>, keyof Props<TData, TValue>>
 
 const ReactTableCell = React.forwardRef<
   HTMLTableCellElement,
   ReactTableCellProps
 >(({cell}, ref) => {
-  const tableRowRef = useDOMRef<HTMLTableCellElement>(ref)
+  const tableCellRef = useDOMRef<HTMLTableCellElement>(ref)
 
   return (
     <StyledReactTableCell
-      ref={tableRowRef}
-      {...{
-        key: cell.id,
-        style: {
-          width: cell.column.getSize(),
-        },
+      ref={tableCellRef}
+      key={cell.id}
+      css={{
+        width: cell.column.getSize(),
       }}
     >
       {flexRender(cell.column.columnDef.cell, cell.getContext())}

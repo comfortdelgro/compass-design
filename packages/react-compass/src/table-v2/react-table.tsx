@@ -108,6 +108,8 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
       onManualSorting?.(sorting)
     }, [sorting])
 
+    const tableRows = table.getRowModel().rows ?? []
+
     return (
       <StyledReactTableWrapper css={css} {...delegated}>
         {toolbar && <>{toolbar}</>}
@@ -129,13 +131,8 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
             </ReactTableRowGroup>
             {
               <ReactTableRowGroup as='tbody'>
-                {table.getRowModel().rows.length === 0 ||
-                table.getRowModel().rows === undefined ? (
-                  <NoDataComponent
-                    colSpan={table.getAllLeafColumns()?.length}
-                  ></NoDataComponent>
-                ) : (
-                  table.getRowModel().rows.map((row) => {
+                {tableRows.length ? (
+                  tableRows.map((row) => {
                     return (
                       <ReactTableRow
                         key={row.id}
@@ -147,6 +144,10 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
                       </ReactTableRow>
                     )
                   })
+                ) : (
+                  <NoDataComponent
+                    colSpan={table.getAllLeafColumns()?.length}
+                  ></NoDataComponent>
                 )}
               </ReactTableRowGroup>
             }

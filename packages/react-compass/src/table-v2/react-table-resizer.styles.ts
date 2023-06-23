@@ -10,4 +10,7 @@ export const StyledReactTableResizer = styled('div', {
   cursor: 'col-resize',
   opacity: 0,
   '&:hover': {opacity: 1},
+  '&:active': {
+    userSelect: 'none',
+  },
 })

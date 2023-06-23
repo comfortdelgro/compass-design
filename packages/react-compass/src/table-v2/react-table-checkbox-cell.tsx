@@ -1,31 +1,28 @@
-import React, {HTMLProps} from 'react'
+import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import ReactTableCheckbox from './react-table-checkbox'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
-  indeterminate: boolean | undefined
-  className: string
-  isDisabled: boolean
+  indeterminate?: boolean
+  className?: string
+  disabled?: boolean
 }
 
-export type ReactTableCheckboxCellProps = Props
+export type ReactTableCheckboxCellProps = Props &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const ReactTableCheckboxCell = ({
-  isDisabled,
+  disabled,
   indeterminate,
   className = '',
   ...rest
-}: {
-  indeterminate?: boolean
-  isDisabled?: boolean
-} & HTMLProps<HTMLInputElement>) => {
+}: ReactTableCheckboxCellProps) => {
   return (
     <ReactTableCheckbox
-      disabled={isDisabled}
+      disabled={disabled}
       indeterminate={indeterminate}
-      type='checkbox'
-      className={className + ' cursor-pointer'}
+      className={className}
       {...rest}
     />
   )
