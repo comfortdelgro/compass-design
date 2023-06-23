@@ -291,6 +291,12 @@ export type {
   ToastProps,
   ToastTitleProps,
 } from './toast'
+export {ToastContextProvider, useToast} from './toast/service'
+export type {
+  ToastItemType,
+  ToastsContainerProps,
+  ToastState,
+} from './toast/service'
 export {default as Toggle} from './toggle'
 export type {ToggleProps} from './toggle'
 export {Tooltip, TooltipTrigger} from './tooltip'
