@@ -4,10 +4,10 @@ import {VariantProps} from '../../utils/stitches.types'
 
 export const StyledToastContainer = styled('div', {
   position: 'fixed',
-  padding: '4px 20px',
+  padding: '$1 $5',
   right: 0,
   display: 'flex',
-  gap: '24px',
+  gap: '$6',
   flexDirection: 'column',
   overflowX: 'hidden',
   overflowY: 'auto',
@@ -29,8 +29,8 @@ export const StyledToastItem = styled('div', {
     left: 'unset',
   },
   '.cdg-toast-item-close-icon': {
-    width: 16,
-    height: 16,
+    width: '$4',
+    height: '$4',
   },
 })
 
