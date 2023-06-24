@@ -48,4 +48,35 @@ export const StyledSection = styled('div', {
   fontSize: '$label2',
   fontWeight: '$semibold',
   color: '$gray100',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  variants: {
+    isClickable: {
+      true: {
+        cursor: 'pointer',
+        '&:hover': {
+          backgroundColor: '$cdgBlue20',
+        },
+      },
+    },
+  },
+})
+
+export const StyledRightIcon = styled('div', {
+  //reset
+  boxSizing: 'border-box',
+  margin: 0,
+  padding: 0,
+  border: 'none',
+  outline: 'none',
+  // custom
+  display: 'flex',
+  alignItems: 'center',
+  width: '1.5rem',
+  height: '1.5rem',
+  justifyContent: 'center',
+  color: '#0142af',
+  fontSize: '0.875rem',
+  overflow: 'hidden',
 })

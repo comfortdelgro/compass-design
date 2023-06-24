@@ -7,6 +7,19 @@ import MultipleDropdown from './index'
 export const Default: React.FC = () => {
   const [value, setValue] = React.useState<Key[]>([])
   const [value2, setValue2] = React.useState<Key[]>(['snake', 'cat', 'snake'])
+  const [isChecked, setIsChecked] = React.useState(false)
+  const [sectionSelected, setSectionSelected] = React.useState<
+    React.ReactNode[]
+  >([])
+
+  React.useEffect(() => {
+    if (isChecked && sectionSelected.includes('Group 1')) {
+      setValue(['red panda', 'cat', 'dog', 'aardvark', 'kangaroo', 'snake'])
+    }
+    if (!isChecked) {
+      setValue([])
+    }
+  }, [isChecked])
   return (
     <Column>
       <h3>Controlled</h3>
@@ -32,7 +45,6 @@ export const Default: React.FC = () => {
         <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
         <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
       </MultipleDropdown>
-
       <h3>UnControlled</h3>
       <MultipleDropdown
         label='Favorite Animal'
@@ -47,7 +59,6 @@ export const Default: React.FC = () => {
         <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
         <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
       </MultipleDropdown>
-
       <h3>Errored</h3>
       <MultipleDropdown
         label='Favorite Animal'
@@ -64,7 +75,6 @@ export const Default: React.FC = () => {
         <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
         <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
       </MultipleDropdown>
-
       <h3>displayedValue: String</h3>
       <MultipleDropdown
         label='Favorite Animal'
@@ -80,7 +90,6 @@ export const Default: React.FC = () => {
         <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
         <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
       </MultipleDropdown>
-
       <h3>
         Custom display value (only effective when using with displayedValue
         string)
@@ -101,7 +110,6 @@ export const Default: React.FC = () => {
         <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
         <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
       </MultipleDropdown>
-
       <h3>Checkmark types</h3>
       <MultipleDropdown
         label='Favorite Animal'
@@ -129,7 +137,6 @@ export const Default: React.FC = () => {
           Snake
         </MultipleDropdown.Item>
       </MultipleDropdown>
-
       <h3>Loading</h3>
       <MultipleDropdown
         label='Favorite Animal'
@@ -143,7 +150,6 @@ export const Default: React.FC = () => {
         <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
         <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
       </MultipleDropdown>
-
       <h3>With Header</h3>
       <MultipleDropdown
         disabledKeys={['snake']}
@@ -193,7 +199,6 @@ export const Default: React.FC = () => {
         <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
         <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
       </MultipleDropdown>
-
       <h3>With Icon</h3>
       <MultipleDropdown
         label='Favorite Animal'
@@ -207,7 +212,6 @@ export const Default: React.FC = () => {
         <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
         <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
       </MultipleDropdown>
-
       <h3>Number of rows</h3>
       <MultipleDropdown
         label='Favorite Animal'
@@ -221,7 +225,6 @@ export const Default: React.FC = () => {
         <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
         <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
       </MultipleDropdown>
-
       <h3>With Section</h3>
       <MultipleDropdown label='Favorite Animal' placeholder='Choose an animal'>
         <MultipleDropdown.Item key='fly'>Fly</MultipleDropdown.Item>
@@ -238,7 +241,48 @@ export const Default: React.FC = () => {
           <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
         </MultipleDropdown.Section>
       </MultipleDropdown>
-
+      <h3>Handle Section Click</h3>
+      <MultipleDropdown
+        label='Favorite Animal'
+        placeholder='Choose an animal'
+        selectedKeys={value}
+        defaultSelectedKeys={['dog']}
+        isRequired
+        onSelectionChange={(k: Key[]) => setValue(k)}
+        css={{width: '80%'}}
+      >
+        <MultipleDropdown.Section
+          title='Group 1'
+          isClickable
+          checkmark='tick'
+          isChecked={isChecked}
+          onClick={(title: React.ReactNode) => {
+            setIsChecked(!isChecked)
+            const newSectionSelected = [...sectionSelected]
+            newSectionSelected.push(title)
+            setSectionSelected(newSectionSelected)
+          }}
+        >
+          <MultipleDropdown.Item key='red panda' checkmark='tick'>
+            Red Panda
+          </MultipleDropdown.Item>
+          <MultipleDropdown.Item key='cat' checkmark='tick'>
+            Cat
+          </MultipleDropdown.Item>
+          <MultipleDropdown.Item key='dog' checkmark='tick'>
+            Dog
+          </MultipleDropdown.Item>
+          <MultipleDropdown.Item key='aardvark' checkmark='tick'>
+            Aardvark
+          </MultipleDropdown.Item>
+          <MultipleDropdown.Item key='kangaroo' checkmark='tick'>
+            Kangaroo
+          </MultipleDropdown.Item>
+          <MultipleDropdown.Item key='snake' checkmark='tick'>
+            Snake
+          </MultipleDropdown.Item>
+        </MultipleDropdown.Section>
+      </MultipleDropdown>
       <h3>Disabled</h3>
       <MultipleDropdown
         label='Favorite Animal'
@@ -260,7 +304,6 @@ export const Default: React.FC = () => {
         <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
         <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
       </MultipleDropdown>
-
       <h3>Variant: select</h3>
       <MultipleDropdown
         label='Favorite Animal'
@@ -279,6 +322,7 @@ export const Default: React.FC = () => {
         <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
         <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
       </MultipleDropdown>
+      <div style={{height: '20rem'}} />
     </Column>
   )
 }
