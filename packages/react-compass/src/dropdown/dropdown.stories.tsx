@@ -2,6 +2,9 @@ import {faBug} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React, {Key} from 'react'
 import {Column} from '../utils/components'
+import ADFlag from './flags/ad'
+import AEFlag from './flags/ae'
+import AFFlag from './flags/af'
 import Dropdown from './index'
 
 export const Flag: React.FC = () => {
@@ -36,6 +39,20 @@ export const Flag: React.FC = () => {
 export const Select: React.FC = () => {
   const [value, setValue] = React.useState<Key>('cat')
   const [value1, setValue1] = React.useState<Key>('cat')
+
+  const handlePrefix = (key: Key) => {
+    if (key === 'afghanistan') {
+      return <ADFlag />
+    }
+    if (key === 'albania') {
+      return <AEFlag />
+    }
+    if (key === 'algeria') {
+      return <AFFlag />
+    }
+    return null
+  }
+
   return (
     <Column>
       <h3>Controlled</h3>
@@ -71,6 +88,30 @@ export const Select: React.FC = () => {
         <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
         <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
         <Dropdown.Item key='snakessss'>Snake</Dropdown.Item>
+      </Dropdown.Select>
+      <h3>Prefix</h3>
+      <Dropdown.Select
+        isRequired
+        label={<>Phone Code Select</>}
+        placeholder='Choose an animal'
+        selectedKey={value}
+        onSelectionChange={(k: Key) => setValue(k)}
+        prefix={
+          <div
+            style={{
+              marginRight: '0.7rem',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            {handlePrefix(value)}
+          </div>
+        }
+      >
+        <Dropdown.Item key='afghanistan'>Afghanistan (+93)</Dropdown.Item>
+        <Dropdown.Item key='albania'>Albania (+355)</Dropdown.Item>
+        <Dropdown.Item key='algeria'>Algeria (+213)</Dropdown.Item>
       </Dropdown.Select>
       <h3>Disable the whole thing</h3>
       <Dropdown.Select

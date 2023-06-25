@@ -19,14 +19,14 @@ export const StyledDropdownWrapper = styled('div', {
 export const StyledSelect = styled('div', {
   width: '100%',
   height: '$11',
-  background: '#FFFFFF',
+  background: '$background',
   overflow: 'hidden',
   borderRadius: '$md',
   zIndex: 0,
   transition: '$default',
   borderWidth: '1px',
   borderStyle: 'solid',
-  borderColor: '#E6E6E6',
+  borderColor: '$divider',
   '&:focus-within': {
     borderColor: '$cdgBlue',
   },
@@ -55,6 +55,7 @@ export const StyledSelect = styled('div', {
       overflow: 'hidden',
       flexGrow: 1,
       textAlign: 'start',
+      color: '$primaryText',
     },
     '&:focus': {
       outline: 'none',
@@ -65,7 +66,7 @@ export const StyledSelect = styled('div', {
       true: {
         button: {
           span: {
-            color: '#B4B4B4',
+            color: '$disabledText',
           },
         },
       },
@@ -93,8 +94,8 @@ export const StyledSelect = styled('div', {
 export const StyledComboBox = styled('div', {
   width: '100%',
   height: '$11',
-  border: '1px solid #E6E6E6',
-  background: '#FFFFFF',
+  border: '1px solid $divider',
+  background: '$background',
   overflow: 'hidden',
   borderRadius: '$md',
   position: 'relative',
@@ -104,13 +105,14 @@ export const StyledComboBox = styled('div', {
   transition: '$default',
   borderWidth: '1px',
   borderStyle: 'solid',
-  borderColor: '#E6E6E6',
+  borderColor: '$divider',
   '&:focus-within': {
     borderColor: '$cdgBlue',
   },
   input: {
+    color: '$primaryText',
     boxSizing: 'border-box',
-    background: '#FFFFFF',
+    background: '$background',
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
     overflow: 'hidden',
@@ -150,7 +152,7 @@ export const StyledComboBox = styled('div', {
       true: {
         input: {
           '&::placeholder': {
-            color: '#B4B4B4',
+            color: '$gray40',
             fontSize: '$label1',
             fontWeight: '$semibold',
           },
@@ -183,8 +185,8 @@ export const StyledComboBox = styled('div', {
 
 export const StyledFlag = styled('div', {
   width: '100%',
-  border: '1px solid #E6E6E6',
-  background: '#FFFFFF',
+  border: '1px solid $divider',
+  background: '$background',
   overflow: 'hidden',
   borderRadius: '$md',
   position: 'relative',
@@ -194,13 +196,14 @@ export const StyledFlag = styled('div', {
   transition: '$default',
   borderWidth: '1px',
   borderStyle: 'solid',
-  borderColor: '#E6E6E6',
+  borderColor: '$divider',
   '&:focus-within': {
     borderColor: '$cdgBlue',
   },
   input: {
+    color: '$primaryText',
     boxSizing: 'border-box',
-    background: '#FFFFFF',
+    background: '$background',
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
     overflow: 'hidden',
@@ -241,7 +244,7 @@ export const StyledFlag = styled('div', {
         input: {
           padding: '$3 $11 $3 $4',
           '&::placeholder': {
-            color: '#B4B4B4',
+            color: '$gray40',
             fontSize: '$label1',
             fontWeight: '$semibold',
           },
@@ -250,9 +253,10 @@ export const StyledFlag = styled('div', {
     },
     isDisabled: {
       true: {
-        color: '#b7b7b7 !important',
+        color: '$disabledText',
         input: {
-          color: '#b7b7b7 !important',
+          backgroundColor: '$gray20',
+          color: '$disabledText !important',
         },
         cursor: 'not-allowed !important',
         '& > *': {

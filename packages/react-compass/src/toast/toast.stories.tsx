@@ -3,7 +3,82 @@ import React from 'react'
 import Button from '../button/button'
 import {Icon} from '../icon'
 import {Column} from '../utils/components'
+import {useToast} from './hooks/useToast'
 import Toast from './index'
+import {ToastContextProvider} from './service/toast-context'
+
+const SubService1 = () => {
+  const toast = useToast()
+  return (
+    <>
+      <Button
+        css={{width: 'fit-content'}}
+        onClick={() =>
+          toast.show({
+            color: 'informative',
+            title: 'Lorem ipsum dolor, sit amet consectetur',
+          })
+        }
+      >
+        Open toast
+      </Button>
+      <Button
+        css={{width: 'fit-content'}}
+        onClick={() =>
+          toast.show({
+            title: 'Lorem ipsum dolor, sit amet consectetur',
+            hasCloseIcon: false,
+          })
+        }
+      >
+        Open toast without close button
+      </Button>
+    </>
+  )
+}
+const SubService2 = () => {
+  const toast = useToast()
+  return (
+    <>
+      <Button
+        css={{width: 'fit-content'}}
+        onClick={() =>
+          toast.show({
+            autoClose: false,
+            message: 'Lorem ipsum dolor, sit amet consectetur.',
+            icon: <Icon icon={faImage} />,
+            title: 'My Title',
+            actions: (
+              <>
+                <Button>Take action</Button>
+                <Button>Take action</Button>
+              </>
+            ),
+            label: 'a few minutes ago',
+          })
+        }
+      >
+        Open toast autoClose: false
+      </Button>
+      <Button css={{width: 'fit-content'}} onClick={() => toast.clearAll()}>
+        Clear all toasts
+      </Button>
+    </>
+  )
+}
+export const Multiple: React.FC = () => {
+  return (
+    <Column>
+      <h3>Toast as a service</h3>
+      <ToastContextProvider>
+        <>
+          <SubService1 />
+          <SubService2 />
+        </>
+      </ToastContextProvider>
+    </Column>
+  )
+}
 
 export const Default: React.FC = () => {
   const [isDefaultOpen, setIsDefaultOpen] = React.useState(false)

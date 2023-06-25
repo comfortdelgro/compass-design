@@ -1,12 +1,12 @@
-export type ChartType = 'area' | 'line' | 'bar' | 'column'
+export type ChartType = 'area' | 'line' | 'bar' | 'column' | 'doughnut'
 
 export type LegendPosition = 'top' | 'bottom' | 'right' | 'left'
 
 export interface Dataset {
   label: string
   data: number[]
-  backgroundColor?: string
-  borderColor?: string
+  backgroundColor?: string | string[]
+  borderColor?: string | string[]
 }
 
 export interface Chart {

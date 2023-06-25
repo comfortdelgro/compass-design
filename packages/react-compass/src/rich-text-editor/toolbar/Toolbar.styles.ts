@@ -9,7 +9,7 @@ export const StyledToolbar = styled('div', {
   margin: '0px',
   // Styling
   padding: '5px 20px',
-  backgroundColor: '#F3F2F1',
+  backgroundColor: '$gray20',
   overflow: 'hidden',
   maxHeight: 38,
   position: 'relative',

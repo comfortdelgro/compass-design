@@ -9,6 +9,7 @@ import {
 } from 'chart.js'
 import React, {useMemo} from 'react'
 import {Bar} from 'react-chartjs-2'
+import {useColors} from '../../theme'
 import {buildData, Chart, DEFAULT_HORIZONTAL_OPTIONS} from '../utils'
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
@@ -18,12 +19,14 @@ export type BarChartProps = Chart
 const BarChart: React.FC<BarChartProps> = (props) => {
   const {data = [], labels = [], unit, title, legendPosition = 'top'} = props
 
+  const theme = useColors()
+
   const mappedData = useMemo(
     () => buildData(labels, data, 'bar'),
     [data, labels],
   )
 
-  const options = DEFAULT_HORIZONTAL_OPTIONS(legendPosition, title, unit)
+  const options = DEFAULT_HORIZONTAL_OPTIONS(theme, legendPosition, title, unit)
 
   return <Bar options={options} data={mappedData} />
 }

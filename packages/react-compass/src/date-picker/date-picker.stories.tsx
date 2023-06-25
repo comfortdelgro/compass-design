@@ -1,4 +1,3 @@
-import {StoryDecorator} from '@ladle/react'
 import React, {useState} from 'react'
 import {Column} from '../utils'
 import Calendar, {CalendarProps} from './../calendar'
@@ -82,19 +81,4 @@ export const Controlled: React.FC = () => {
 
 export const Default: React.FC = () => {
   return <DatePicker label='Date' isRequired />
-}
-
-export default {
-  decorators: [
-    (Component) => (
-      <div>
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `.ladle-main { background: #eee; }`,
-          }}
-        ></style>
-        <Component />
-      </div>
-    ),
-  ] as StoryDecorator[],
 }

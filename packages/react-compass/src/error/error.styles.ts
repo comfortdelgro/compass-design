@@ -34,6 +34,7 @@ export const StyledErrorAction = styled('div', {
   width: '100%',
   display: 'flex',
   justifyContent: 'flex-end',
+  gap: '$4',
 })
 
 export const StyledErrorDescription = styled('p', {
@@ -117,40 +118,58 @@ export const StyledErrorContainer = styled('div', {
   flexDirection: 'collumn',
   justifyContent: 'flex-start',
   gap: '$4',
+  '@mobile': {
+    gap: '$2',
+  },
   borderRadius: '$1',
   variants: {
     variant: {
       primary: {
-        width: '$138',
+        maxWidth: '$138',
         boxShadow:
           '0px 0.6px 1.8px rgba(0, 0, 0, 0.1), 0px 3.2px 7.2px rgba(0, 0, 0, 0.13)',
         display: 'flex',
         flexDirection: 'column',
         backgroundColor: '$background',
+        color: '$primaryText',
       },
       secondary: {
-        width: '$127_25',
-        height: '$181',
+        maxWidth: '$127_25',
+        minHeight: '$96',
         padding: '$8',
-        backgroundColor: '#F6F7F8',
+        backgroundColor: '$secondaryBg',
         borderRadius: '0px 4px 4px 0px',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
+        alignItems: 'center',
+        '@mobile': {
+          padding: '$4',
+        },
         [`${StyledErrorImage}`]: {
           height: '66%',
+          '@mobile': {
+            fontSize: '$header3',
+            height: '44%',
+          },
         },
         [`${StyledErrorTitle}`]: {
-          height: '$12',
+          minHeight: '$12',
+          display: 'block',
           fontSize: '$header1',
+          '@mobile': {
+            fontSize: '$header3',
+          },
           justifyContent: 'center',
+          color: '$primaryText',
         },
         [`${StyledErrorDescription}`]: {
-          height: '$12',
           fontSize: '$body3',
-          color: 'gray80',
+          color: '$gray80',
           justifyContent: 'center',
-          textAlign: 'center',
+        },
+        [`${StyledErrorAction}`]: {
+          justifyContent: 'center',
         },
       },
     },
