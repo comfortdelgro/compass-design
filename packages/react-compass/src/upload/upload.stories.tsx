@@ -24,13 +24,14 @@ export const Default: React.FC = () => {
 }
 
 export const ClickToUpload: React.FC = () => {
+  const [customError, setCustomError] = React.useState<string>('')
   return (
     <Column>
       <h3>Click-to-upload</h3>
       <Upload
         getFile={getFileFunc}
         accept='image/*, .docs, .docx'
-        fileSizeLimit={30000}
+        fileSizeLimit={999999999999999}
       />
 
       <h3>Custom helper text</h3>
@@ -49,7 +50,14 @@ export const ClickToUpload: React.FC = () => {
           </>
         }
       />
-
+      <h3>Custom error message</h3>
+      <Upload
+        getFile={getFileFunc}
+        accept='image/*, .docs, .docx'
+        fileSizeLimit={30000}
+        onError={(error) => setCustomError(error)}
+        customErrorMessages={<span>No no no! You have a {customError}</span>}
+      />
       <h3>Add label</h3>
       <Upload
         getFile={getFileFunc}
@@ -79,7 +87,7 @@ export const ClickToUpload: React.FC = () => {
       <Upload
         getFile={getFileFunc}
         accept='image/*, .docs, .docx'
-        fileSizeLimit={30000}
+        fileSizeLimit={9990000}
         multiple
       />
     </Column>
@@ -87,6 +95,7 @@ export const ClickToUpload: React.FC = () => {
 }
 
 export const DragAndDrop: React.FC = () => {
+  const [customError, setCustomError] = React.useState<string>('')
   return (
     <Column>
       <h3>Primary drag-and-drop</h3>
@@ -115,6 +124,16 @@ export const DragAndDrop: React.FC = () => {
         helperText='Custom helper text'
       />
 
+      <h3> drag-and-drop with custom error message</h3>
+      <Upload.DragAndDrop
+        getFile={getFileFunc}
+        accept='image/*, .docs, .docx'
+        fileSizeLimit={300000}
+        multiple
+        onError={(error) => setCustomError(error)}
+        customErrorMessages={<span>No no no! You have a {customError}</span>}
+      />
+
       <h3>drag-and-drop with custom label</h3>
       <Upload.DragAndDrop
         getFile={getFileFunc}
@@ -137,7 +156,7 @@ export const DragAndDrop: React.FC = () => {
       <Upload.DragAndDrop
         getFile={getFileFunc}
         accept='image/*, .docs, .docx'
-        fileSizeLimit={30000}
+        fileSizeLimit={9990000}
         multiple
         label='Custom label'
         isDisabled
