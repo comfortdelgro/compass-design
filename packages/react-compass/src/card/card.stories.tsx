@@ -1,4 +1,3 @@
-import {StoryDecorator} from '@ladle/react'
 import React from 'react'
 import Button from '../button/button'
 import {Column} from '../utils/components'
@@ -104,19 +103,4 @@ export const Variants: React.FC = () => {
       </Card>
     </Column>
   )
-}
-
-export default {
-  decorators: [
-    (Component) => (
-      <div>
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `.ladle-main { background: #eee; }`,
-          }}
-        ></style>
-        <Component />
-      </div>
-    ),
-  ] as StoryDecorator[],
 }

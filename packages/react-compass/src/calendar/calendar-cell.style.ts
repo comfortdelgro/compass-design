@@ -42,7 +42,7 @@ export const StyledCalendarCell = styled('td', {
     alignItems: 'center',
     height: '100%',
     fontSize: '$body3',
-    color: '$gray100',
+    color: '$primaryText',
   },
 
   '& .calendar-cell-value.disabled': {

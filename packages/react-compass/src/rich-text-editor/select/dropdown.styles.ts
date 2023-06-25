@@ -1,5 +1,7 @@
-import {styled} from '../../theme'
-import type {VariantProps} from '../../utils/stitches.types'
+import { styled } from '../../theme'
+import type { VariantProps } from '../../utils/stitches.types'
+
+
 
 export const StyledSelect = styled('div', {
   overflow: 'hidden',
@@ -7,15 +9,8 @@ export const StyledSelect = styled('div', {
   zIndex: 0,
   transition: '$default',
   '&:hover': {
-    backgroundColor: '#e1dfdd',
+    backgroundColor: '$gray40',
   },
-  // borderWidth: '1px',
-  // borderStyle: 'solid',
-  // borderColor: '#E6E6E6',
-  // '&:focus-within': {
-  //   borderColor: '$cdgBlue',
-  // },
-
   button: {
     padding: '4px 8px',
     width: '100%',
@@ -52,7 +47,7 @@ export const StyledSelect = styled('div', {
       true: {
         button: {
           span: {
-            color: '#B4B4B4',
+            color: '$gray30',
           },
         },
       },
@@ -69,15 +64,5 @@ export const StyledSelect = styled('div', {
   },
 })
 
-export const StyledListBoxWrapper = styled('div', {
-  position: 'relative',
-  minWidth: '100%',
-})
-
-export const StyledPopoverWrapper = styled('div', {
-  position: 'relative',
-  zIndex: 1,
-  marginTop: '$1',
-})
 
 export type DropdownVariantProps = VariantProps<typeof StyledSelect>

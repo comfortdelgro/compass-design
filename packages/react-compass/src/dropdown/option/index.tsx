@@ -50,15 +50,20 @@ function Option({
 
   React.useEffect(() => {
     if (isFocused) {
-      ref.current?.scrollIntoView({block: 'nearest'})
+      setTimeout(() => {
+        if (ref.current) {
+          ref.current.scrollIntoView({block: 'nearest'})
+        }
+      }, 0)
     }
-  }, [isFocused])
-
-  React.useEffect(() => {
     if (isSelected) {
-      ref.current?.scrollIntoView({block: 'center'})
+      setTimeout(() => {
+        if (ref.current) {
+          ref.current.scrollIntoView({block: 'center'})
+        }
+      }, 0)
     }
-  }, [isSelected])
+  }, [isFocused, isSelected, ref.current])
 
   return (
     <StyledOption

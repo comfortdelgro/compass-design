@@ -25,10 +25,10 @@ export const StyledLoading = styled('div', {
       position: 'absolute',
       width: '$4',
       height: '$4',
-      border: '2px solid #757575',
+      border: '2px solid $divider',
       borderRadius: '50%',
       animation: `${spin} 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite`,
-      borderColor: '#757575 transparent transparent transparent',
+      borderColor: '$divider transparent transparent transparent',
     },
     '.spinner-1': {
       animationDelay: '-0.45s',
@@ -47,5 +47,36 @@ export const StyledSection = styled('div', {
   padding: '$2 $4',
   fontSize: '$label2',
   fontWeight: '$semibold',
-  color: '#333333',
+  color: '$gray100',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  variants: {
+    isClickable: {
+      true: {
+        cursor: 'pointer',
+        '&:hover': {
+          backgroundColor: '$cdgBlue20',
+        },
+      },
+    },
+  },
+})
+
+export const StyledRightIcon = styled('div', {
+  //reset
+  boxSizing: 'border-box',
+  margin: 0,
+  padding: 0,
+  border: 'none',
+  outline: 'none',
+  // custom
+  display: 'flex',
+  alignItems: 'center',
+  width: '1.5rem',
+  height: '1.5rem',
+  justifyContent: 'center',
+  color: '#0142af',
+  fontSize: '0.875rem',
+  overflow: 'hidden',
 })

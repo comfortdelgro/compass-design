@@ -15,7 +15,7 @@ import {makeData, Person} from './makeData'
 export const FullFeatured: React.FC = () => {
   const [page, setPage] = useState(1)
   const [data] = useState(() => makeData(10))
-  const options: OptionType = {
+  const options: OptionType<Person> = {
     enableSorting: true,
     enableMultiSort: true,
     columnResizeMode: 'onChange',
@@ -24,6 +24,7 @@ export const FullFeatured: React.FC = () => {
       {id: 'firstName', desc: true},
       {id: 'lastName', desc: false},
     ],
+    enableRowSelection: (row) => row.original.age > 30,
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -64,6 +65,7 @@ export const FullFeatured: React.FC = () => {
           >
             <ReactTable.CheckboxCell
               {...{
+                disabled: !row.getCanSelect(),
                 checked: row.getIsSelected(),
                 indeterminate: row.getIsSomeSelected(),
                 onChange: row.getToggleSelectedHandler(),

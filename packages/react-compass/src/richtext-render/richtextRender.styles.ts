@@ -10,6 +10,7 @@ export const StyledRichTextRenderContainer = styled('div', {
   margin: '0px',
   padding: '0px',
   lineHeight: '1em',
+  color: "$primaryText"
 })
 
 export type StyledRichTextRenderContainerProps = VariantProps<

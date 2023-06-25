@@ -14,10 +14,11 @@ export const StyledCalendarMonthYearCell = styled('button', {
   borderRadius: '$md',
   cursor: 'pointer',
   fontSize: '$link3',
+  color: '$primaryText',
 
   '&:hover, &:focus-visible': {
     backgroundColor: '$cdgBlue100',
-    color: 'white !important',
+    color: '$primaryText !important',
     fontWeight: 'normal !important',
     outline: 'none',
   },

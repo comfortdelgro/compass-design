@@ -10,19 +10,19 @@ export const StyledOption = styled('li', {
   display: 'flex',
   alignItems: 'center',
   gap: '$2',
-  color: '333333',
+  color: '$primaryText',
   '&:hover': {
-    backgroundColor: '#F3F2F1',
+    backgroundColor: '$gray20',
   },
   variants: {
     isFocused: {
       true: {
-        backgroundColor: '#F3F2F1',
+        backgroundColor: '$gray20',
       },
     },
     isSelected: {
       true: {
-        backgroundColor: '#F3F2F1',
+        backgroundColor: '$gray20',
       },
     },
     isDisabled: {

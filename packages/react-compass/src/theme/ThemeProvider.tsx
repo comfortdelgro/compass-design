@@ -2,7 +2,7 @@ import React, {createContext, useEffect, useState} from 'react'
 import {theme} from './stitches.config'
 import {darkTheme} from './theme'
 
-enum ETheme {
+export enum ETheme {
   Light = 'light',
   Dark = 'dark',
 }

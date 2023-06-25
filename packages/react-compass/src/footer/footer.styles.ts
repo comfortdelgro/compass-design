@@ -3,7 +3,7 @@ import {VariantProps} from '../utils/stitches.types'
 
 export const StyledFooter = styled('div', {
   width: '100%',
-  backgroundColor: '#FFFFFF',
+  backgroundColor: '$background',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',

@@ -29,6 +29,12 @@ export const StyledCard = styled('div', {
   },
 
   variants: {
+    isDarkTheme: {
+      true: {
+        backgroundColor: '$secondaryBg',
+      },
+      false: {},
+    },
     isDisabled: {
       true: {
         backgroundColor: '$gray20',

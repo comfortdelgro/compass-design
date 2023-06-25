@@ -44,6 +44,9 @@ export const ColorControl = ({colors = defaultColors}: ColorControlProps) => {
         width: '70px',
         height: '28px',
         float: 'left',
+        button: {
+          color: '$gray110'
+        }
       }}
     >
       {[...colorSet].map((color) => (

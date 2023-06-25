@@ -1,4 +1,5 @@
 import React from 'react'
+import {useIsDarkTheme} from '../theme'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import CardAction from './card-action'
@@ -29,6 +30,8 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
     ...delegated
   } = props
 
+  const isDarkTheme = useIsDarkTheme()
+
   const cardRef = useDOMRef<HTMLDivElement>(ref)
 
   const variantProps = {
@@ -45,6 +48,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
       size={size}
       css={css}
       ref={cardRef}
+      isDarkTheme={isDarkTheme}
       {...buttonProps}
       {...delegated}
     >

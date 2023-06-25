@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {StyledComponentProps} from '../../utils/stitches.types'
 import {useDOMRef} from '../../utils/use-dom-ref'
-import {StyledDropdownButton} from '../controls/DropdownControls/menu-bar-select-button.styles'
+import Control from '../controls/Control/Control'
 import {StyledToolbar, StyledToolbarProps} from './Toolbar.styles'
 
 export type ToolbarProps = StyledComponentProps &
@@ -56,18 +56,16 @@ const Toolbar = React.forwardRef<HTMLDivElement, ToolbarProps>((props, ref) => {
       >
         {children}
         {isOverflow && (
-          <StyledDropdownButton
+          <Control
             css={{
               position: 'absolute',
               right: 0,
               width: 28,
               borderRadius: 0,
-              '&:hover': {
-                backgroundColor: '#f3f2f1',
-              },
             }}
             onClick={handleMoreBtnClick}
             id='more-button'
+            active={false}
           >
             <svg className='accordion-chevron-icon' viewBox='0 0 448 512'>
               <path
@@ -75,7 +73,7 @@ const Toolbar = React.forwardRef<HTMLDivElement, ToolbarProps>((props, ref) => {
                 d='M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z'
               />
             </svg>
-          </StyledDropdownButton>
+          </Control>
         )}
       </StyledToolbar>
     </>
