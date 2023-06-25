@@ -1,8 +1,5 @@
-import { styled } from '../theme'
-import { StyledMenuListDropdownHeader } from './menu-list-dropdown-header.styles'
-
-
-
+import {styled} from '../theme'
+import {StyledMenuListDropdownHeader} from './menu-list-dropdown-header.styles'
 
 export const StyledMenuListDropdownItem = styled('div', {
   minHeight: '$10',

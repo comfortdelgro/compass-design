@@ -1,7 +1,5 @@
-import { styled } from '../theme'
-import type { VariantProps } from '../utils/stitches.types'
-
-
+import {styled} from '../theme'
+import type {VariantProps} from '../utils/stitches.types'
 
 export const StyledDropdown = styled('div', {
   maxWidth: '100%',
@@ -162,7 +160,7 @@ export const StyledDropdownWrapper = styled('div', {
             whiteSpace: 'nowrap',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
-            color: '$primaryText'
+            color: '$primaryText',
           },
         },
       },

@@ -1,7 +1,6 @@
-import { styled } from '../theme'
-import { VariantProps } from '../utils/stitches.types'
-import { StyledNavbarBrand } from './navbar-brand.styles'
-
+import {styled} from '../theme'
+import {VariantProps} from '../utils/stitches.types'
+import {StyledNavbarBrand} from './navbar-brand.styles'
 
 export const StyledNavbar = styled('div', {
   display: 'flex',

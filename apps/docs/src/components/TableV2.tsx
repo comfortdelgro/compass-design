@@ -90,7 +90,7 @@ export const ReactTableStory: React.FC = () => {
     enableMultiSort: true,
     columnResizeMode: 'onChange',
     manualSorting: true,
-    enableRowSelection: (row:any) => row.original.age > 30,
+    enableRowSelection: (row: any) => row.original.age > 30,
   }
   const onSorting = (sortingField: StateSorting) => {}
 
@@ -107,7 +107,7 @@ export const ReactTableStory: React.FC = () => {
   }
 
   const TableHeaderCell = ({row}: any) => {
-    console.log("=========",row.getCanSelect())
+    console.log('=========', row.getCanSelect())
     return (
       <div className='px-1'>
         <ReactTable.CheckboxCell
