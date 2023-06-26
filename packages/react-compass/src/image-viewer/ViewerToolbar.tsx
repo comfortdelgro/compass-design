@@ -1,4 +1,6 @@
 import {
+  faBackward,
+  faForward,
   faMagnifyingGlass,
   faMagnifyingGlassMinus,
   faMagnifyingGlassPlus,
@@ -6,28 +8,17 @@ import {
 import * as React from 'react'
 import Button from '../button'
 import Icon from '../icon'
-import Typography from '../typography'
 import {ActionType} from './Icon'
 import {StyledToolbar, StyledToolbarWrap} from './image-viewer.styles'
 import {ToolbarConfig} from './types'
 
 export interface ViewerToolbarProps {
   onAction: (config: ToolbarConfig) => void
-  alt: string
-  width: number
-  height: number
-  attribute: boolean
   zoomable: boolean
   rotatable: boolean
   scalable: boolean
   changeable: boolean
-  downloadable: boolean
-  noImgDetails: boolean
   toolbars: ToolbarConfig[]
-  activeIndex: number
-  count: number
-  showTotal: boolean
-  totalName: string
 }
 
 export const defaultToolbars: ToolbarConfig[] = [
@@ -46,16 +37,16 @@ export const defaultToolbars: ToolbarConfig[] = [
     actionType: ActionType.zoomOut,
     icon: faMagnifyingGlassMinus,
   },
-  // {
-  //   key: 'prev',
-  //   actionType: ActionType.prev,
-  //   icon: faBackward,
-  // },
-  // {
-  //   key: 'next',
-  //   actionType: ActionType.next,
-  //   icon: faForward,
-  // },
+  {
+    key: 'prev',
+    actionType: ActionType.prev,
+    icon: faBackward,
+  },
+  {
+    key: 'next',
+    actionType: ActionType.next,
+    icon: faForward,
+  },
   // {
   //   key: 'rotateLeft',
   //   actionType: ActionType.rotateLeft,
@@ -75,10 +66,6 @@ export const defaultToolbars: ToolbarConfig[] = [
   //   key: 'scaleY',
   //   actionType: ActionType.scaleY,
   //   icon: faUpDown,
-  // },
-  // {
-  //   key: 'download',
-  //   actionType: ActionType.download,
   // },
 ]
 
@@ -111,19 +98,6 @@ export default function ViewerToolbar(props: ViewerToolbarProps) {
       </Button>
     )
   }
-  const attributeNode = props.attribute ? (
-    <p>
-      {props.alt && `${props.alt}`}
-      {props.noImgDetails || (
-        <span>{`(${props.width} x ${props.height})`}</span>
-      )}
-      {props.showTotal && (
-        <span>
-          {`${props.activeIndex + 1} ${props.totalName} ${props.count}`}
-        </span>
-      )}
-    </p>
-  ) : null
   let toolbars = props.toolbars
   if (!props.zoomable) {
     toolbars = deleteToolbarFromKey(toolbars, ['zoomIn', 'zoomOut'])
@@ -137,14 +111,8 @@ export default function ViewerToolbar(props: ViewerToolbarProps) {
   if (!props.scalable) {
     toolbars = deleteToolbarFromKey(toolbars, ['scaleX', 'scaleY'])
   }
-  if (!props.downloadable) {
-    toolbars = deleteToolbarFromKey(toolbars, ['download'])
-  }
   return (
     <StyledToolbarWrap>
-      <Typography.Label css={{textAlign: 'center'}} variant='label1'>
-        {attributeNode}
-      </Typography.Label>
       <StyledToolbar>
         {toolbars.map((item) => {
           return renderAction(item)

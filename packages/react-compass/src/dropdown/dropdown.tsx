@@ -45,6 +45,7 @@ interface Props extends DropdownBase {
   allowsCustomValue?: boolean
   onSelectionChange?: (key: React.Key) => void
   type?: 'select' | 'combobox' | 'flag'
+  prefix?: React.ReactNode
 }
 
 export type DropdownProps = Props &
@@ -74,6 +75,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     defaultOpen = false,
     shouldDeselect = false,
     allowsCustomValue = false,
+    prefix = null,
     onLoadMore = () => {
       //Load more
     },
@@ -369,6 +371,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
             disabled={isDisabled}
             onClick={handleClickIcon}
           >
+            {prefix}
             <span>
               {selectedItem
                 ? selectedItem.props.textValue

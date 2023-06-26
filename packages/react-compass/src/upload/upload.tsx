@@ -29,6 +29,8 @@ interface Props extends StyledComponentProps {
   helperText?: React.ReactNode
   isRequired?: boolean
   label?: string
+  onError?: (error: string) => void
+  customErrorMessages?: React.ReactNode
 }
 
 export type UploadProps = Props &
@@ -51,6 +53,8 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
     label,
     isRequired = false,
     isDisabled = false,
+    onError,
+    customErrorMessages,
     // HTMLDiv Props
     ...delegated
   } = props
@@ -58,16 +62,50 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
   const uploadRef = useDOMRef<HTMLDivElement>(ref)
   const uploadInputRef = React.useRef<HTMLInputElement>(null)
   const [selectedFiles, setSelectedFiles] = React.useState<File[]>([])
-  const [error, setError] = React.useState<undefined | string>()
+  const [error, setError] = React.useState<undefined | string>(undefined)
   // hanlder functions
 
   const filesValidator = (files: FileList) => {
-    if (files && files?.length > 0) {
+    if (files && files.length > 0) {
+      console.log(files)
       const isInvalidFileSize = Array.from(files).some(
         (file) => file.size > fileSizeLimit,
       )
+
+      const acceptedTypes = accept.split(',').map((type) => type.trim())
+
+      const invalidFileTypeFiles = Array.from(files).filter((file) => {
+        const fileExtension = file.name.split('.').pop() || ''
+        const fileType = file.type
+
+        // Check if the file type matches any accepted types or wildcard MIME types
+        return !acceptedTypes.some((acceptedType) => {
+          if (acceptedType.endsWith('/*')) {
+            // Check if the file type starts with the accepted type prefix (e.g., 'image/', 'video/')
+            const acceptedTypePrefix = acceptedType.substring(
+              0,
+              acceptedType.length - 2,
+            )
+            return fileType.startsWith(acceptedTypePrefix)
+          } else {
+            // Check if the file extension matches the accepted type
+            const acceptedExtension = acceptedType.split('.').pop() || ''
+            return acceptedExtension === fileExtension
+          }
+        })
+      })
+
       if (isInvalidFileSize) {
         setError('Sorry, your file exceeds our size limit.')
+        onError && onError('file size error')
+      } else if (invalidFileTypeFiles.length > 0) {
+        const invalidFileNames = invalidFileTypeFiles
+          .map((file) => file.name)
+          .join(', ')
+        setError(
+          `Sorry, the following file(s) have an invalid file type: ${invalidFileNames}`,
+        )
+        onError && onError('file type error')
       } else {
         setError(undefined)
         setSelectedFiles(Array.from(files))
@@ -84,6 +122,13 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
   }
 
   const onLableClick = () => !isDisabled && uploadInputRef.current?.click()
+
+  const handleErrorMessage = (error: string | undefined) => {
+    if (!customErrorMessages || !error) {
+      return error
+    }
+    return customErrorMessages
+  }
 
   return (
     <StyledUploadWrapper
@@ -126,7 +171,7 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
           ? helperText
           : `Maximum size: ${convertFileSizeToReadableNumber(fileSizeLimit)}`}
       </StyledHelperText>
-      <StyledUploadError>{error}</StyledUploadError>
+      <StyledUploadError>{handleErrorMessage(error)}</StyledUploadError>
     </StyledUploadWrapper>
   )
 })

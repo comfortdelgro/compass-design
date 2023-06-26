@@ -1,6 +1,4 @@
-import { styled } from '../../theme'
-
-
+import {styled} from '../../theme'
 
 export const StyledRightIcon = styled('div', {
   display: 'flex',
