@@ -14,10 +14,6 @@ export const StyledCard = styled('div', {
   flexDirection: 'column',
   transition: 'box-shadow 0.3s ease-in-out',
 
-  '& button+button': {
-    marginLeft: '$3',
-  },
-
   '&:focus-visible': {
     outline: '$cdgBlue60 solid 2px',
   },
