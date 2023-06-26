@@ -5,6 +5,7 @@ import Box from '../box'
 import Button from '../button'
 import Icon from '../icon'
 import * as constants from './constants'
+import {Z_INDEX} from './constants'
 import {ActionType} from './Icon'
 import {StyledImageViewerWrap} from './image-viewer.styles'
 import ImageInformation from './ImageInformation'
@@ -36,7 +37,6 @@ export default (props: IViewerProps) => {
     onClose = noop,
     images = [],
     activeIndex = 0,
-    zIndex = 55,
     drag = true,
     zoomable = true,
     rotatable = true,
@@ -77,6 +77,7 @@ export default (props: IViewerProps) => {
     loadFailed: false,
     startLoading: false,
   }
+
   function setContainerWidthHeight() {
     let width = window.innerWidth
     let height = window.innerHeight
@@ -642,12 +643,16 @@ export default (props: IViewerProps) => {
         <StyledImageViewerWrap>
           {props.noClose || (
             <Button
-              variant='ghost'
+              variant='primary'
               css={{
-                right: 0,
-                top: 0,
+                right: 15,
+                top: 10,
+                width: 32,
+                display: 'flex',
+                padding: '5px 0',
+                borderRadius: 16,
                 position: 'absolute',
-                zIndex: 60,
+                zIndex: Z_INDEX + 5,
               }}
               onClick={onClose}
             >
@@ -666,7 +671,7 @@ export default (props: IViewerProps) => {
             }}
             ref={viewerCore}
           >
-            <Box css={{zIndex: zIndex}} />
+            <Box css={{zIndex: Z_INDEX}} />
 
             <ViewerCanvas
               imgSrc={
@@ -682,7 +687,7 @@ export default (props: IViewerProps) => {
               rotate={state.rotate}
               onChangeImgState={handleChangeImgState}
               onResize={handleResize}
-              zIndex={zIndex + 5}
+              zIndex={Z_INDEX + 5}
               scaleX={state.scaleX}
               scaleY={state.scaleY}
               loading={state.loading}
@@ -690,7 +695,7 @@ export default (props: IViewerProps) => {
               container={props.container as HTMLElement}
               onCanvasMouseDown={handleCanvasMouseDown}
             />
-            <Box css={{zIndex: zIndex + 5}}>
+            <Box css={{zIndex: Z_INDEX + 5}}>
               {isShowToolbar && (
                 <ViewerToolbar
                   onAction={handleAction}
