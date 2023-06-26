@@ -64,7 +64,6 @@ export interface IViewerProps {
   onClose?: () => void
   images?: ImageDecorator[]
   activeIndex?: number
-  zIndex?: number
   container?: HTMLElement
   drag?: boolean
   zoomable?: boolean
