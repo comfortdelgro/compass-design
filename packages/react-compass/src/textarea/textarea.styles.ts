@@ -52,13 +52,13 @@ export const StyledTextarea = styled('textarea', {
   borderStyle: 'solid',
   borderColor: '$divider',
   borderRadius: '$md',
-  color: '$typeHeading',
-  backgroundColor: '$whiteText',
+  color: '$tertiaryText',
+  backgroundColor: '$gray20',
   transition: 'border-color 250ms ease 0s',
 
   '&:focus': {
     outline: 'none',
-    borderColor: '$cdgBlue',
+    borderColor: '$cdgBlue120',
   },
 
   '&:disabled': {

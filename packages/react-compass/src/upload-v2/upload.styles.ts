@@ -15,7 +15,7 @@ export const StyledUploadError = styled('div', {
   fontWeight: '$medium',
   fontSize: '$label2',
   lineHeight: '$normal',
-  color: '#e31617',
+  color: '$danger',
   marginTop: '$1',
 })
 
@@ -32,7 +32,7 @@ export const StyledUploadSize = styled('div', {
   fontWeight: '$medium',
   fontSize: '$label2',
   lineHeight: '',
-  color: '#b4b4b4',
+  color: '$tertiaryText',
 })
 
 export const StyledUploadInput = styled('div', {
@@ -47,7 +47,7 @@ export const StyledUploadInput = styled('div', {
   // title styling
   position: 'relative',
   display: 'flex',
-  border: '1px solid #e6e6e6',
+  border: '1px solid $divider',
   borderRadius: '$lg',
   overflow: 'hidden',
   alignItems: 'center',
@@ -65,15 +65,16 @@ export const StyledUploadInput = styled('div', {
   '& span:nth-child(1)': {
     display: 'flex',
     padding: '$3',
-    borderRight: '1px solid #e6e6e6',
+    borderRight: '1px solid $divider',
     fontWeight: '$medium',
     fontSize: '$label1',
     lineHeight: '$normal',
-    backgroundColor: '#f7f8f9',
+    backgroundColor: '$cdgBlue120',
+    color: '$cdgBlue40',
   },
   '& span:nth-child(2)': {
     padding: '12px 16px',
-    color: '#b4b4b4',
+    color: '$tertiaryText',
     fontWeight: '$medium',
     fontSize: '$label1',
     lineHeight: '$normal',
@@ -84,13 +85,13 @@ export const StyledUploadInput = styled('div', {
     textOverflow: 'ellipsis',
   },
   '& span:nth-child(2)[data-file="true"]': {
-    color: '#333333',
+    color: '$tertiaryText',
   },
   '& [data-invalid="true"]': {
-    borderColor: 'red',
+    borderColor: '$danger',
   },
   '& [data-invalid="true"] span:nth-child(1)': {
-    borderColor: 'red',
+    borderColor: '$danger',
   },
 })
 export const StyledUploadTitle = styled('div', {
@@ -106,9 +107,9 @@ export const StyledUploadTitle = styled('div', {
   fontWeight: '$medium',
   fontSize: '$label1',
   lineHeight: '$normal',
-  color: '#3e3e3e',
+  color: '$tertiaryText',
   '& .cdg-isRequired-Sign': {
-    color: '#A4262C',
+    color: '$danger',
   },
 })
 

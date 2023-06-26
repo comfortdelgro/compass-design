@@ -29,19 +29,19 @@ export const StyledTextFieldBox = styled('div', {
   borderStyle: 'solid',
   borderColor: '$divider',
   borderRadius: '$md',
-  color: '$typeHeading',
+  color: '$tertiaryText',
   backgroundColor: '$whiteText',
   transition: '$default',
 
   '&:focus-within': {
-    borderColor: '$cdgBlue',
+    borderColor: '$cdgBlue120',
     '.left-icon': {
       color: '$cdgBlue',
     },
   },
 
   '.left-icon, .right-icon': {
-    color: '$typeHeading',
+    color: '$tertiaryText',
     transition: '$default',
   },
 
@@ -116,7 +116,7 @@ export const StyledTextField = styled('input', {
   },
 
   '&::placeholder': {
-    color: '#B4B4B4',
+    color: '$tertiaryText',
     fontSize: '$label1',
     fontWeight: '$semibold',
   },
