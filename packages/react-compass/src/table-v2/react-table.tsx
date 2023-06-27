@@ -8,23 +8,21 @@ import {
   useReactTable,
 } from '@tanstack/react-table'
 import React, {useEffect, useState} from 'react'
+import DataGridCell from '../data-grid/data-grid-cell'
+import DataGridColumnHeader from '../data-grid/data-grid-column-header'
+import DataGridHeaderRow from '../data-grid/data-grid-header-row'
+import {NoDataComponent} from '../data-grid/data-grid-nodata'
+import DataGridRow from '../data-grid/data-grid-row'
+import DataGridRowGroup from '../data-grid/data-grid-row-group'
+import {StyledDataGrid} from '../data-grid/data-grid.styles'
 import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
-import ReactTableCell from './react-table-cell'
 import ReactTableCheckbox from './react-table-checkbox'
 import ReactTableCheckboxCell from './react-table-checkbox-cell'
-import ReactTableColumnHeader from './react-table-column-header'
 import ReactTableFooter from './react-table-footer'
-import ReactTableHeaderRow from './react-table-header-row'
-import {NoDataComponent} from './react-table-nodata'
-import ReactTableRow from './react-table-row'
-import ReactTableRowGroup from './react-table-row-group'
-import {
-  default as ReactTableToolbar,
-  default as TableToolbar,
-} from './react-table-toolbar'
-import {StyledReactTable, StyledReactTableWrapper} from './react-table.styles'
+import ReactTableToolbar, {default as TableToolbar} from './react-table-toolbar'
+import {StyledReactTableWrapper} from './react-table.styles'
 
 export interface Options<TData> {
   enableSorting?: boolean
@@ -113,35 +111,38 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
     return (
       <StyledReactTableWrapper css={css} {...delegated}>
         {toolbar && <>{toolbar}</>}
-        <StyledReactTable>
+        <StyledDataGrid>
           <table ref={tableRef}>
-            <ReactTableRowGroup as='thead'>
+            <DataGridRowGroup as='thead'>
               {table.getHeaderGroups().map((headerGroup) => (
-                <ReactTableHeaderRow key={headerGroup.id}>
+                <DataGridHeaderRow key={headerGroup.id}>
                   {headerGroup.headers.map((header) => {
                     return (
-                      <ReactTableColumnHeader
+                      <DataGridColumnHeader
                         key={header.id}
                         headerProps={header}
+                        tableOption={table}
                       />
                     )
                   })}
-                </ReactTableHeaderRow>
+                </DataGridHeaderRow>
               ))}
-            </ReactTableRowGroup>
+            </DataGridRowGroup>
             {
-              <ReactTableRowGroup as='tbody'>
+              <DataGridRowGroup as='tbody'>
                 {tableRows.length ? (
                   tableRows.map((row) => {
                     return (
-                      <ReactTableRow
+                      <DataGridRow
                         key={row.id}
                         isSelected={row.getIsSelected()}
                       >
                         {row.getVisibleCells().map((cell) => {
-                          return <ReactTableCell key={cell.id} cell={cell} />
+                          return (
+                            <DataGridCell key={cell.id} cell={cell} row={row} />
+                          )
                         })}
-                      </ReactTableRow>
+                      </DataGridRow>
                     )
                   })
                 ) : (
@@ -149,10 +150,10 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
                     colSpan={table.getAllLeafColumns()?.length}
                   ></NoDataComponent>
                 )}
-              </ReactTableRowGroup>
+              </DataGridRowGroup>
             }
           </table>
-        </StyledReactTable>
+        </StyledDataGrid>
         {footer && <>{footer}</>}
       </StyledReactTableWrapper>
     )

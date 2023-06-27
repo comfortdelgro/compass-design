@@ -1,5 +1,6 @@
 import {flexRender, Header, SortDirection, Table} from '@tanstack/react-table'
 import React, {useState} from 'react'
+import {CSS} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import Filter from './data-grid-column-header-filter'
 import {
@@ -12,10 +13,11 @@ import DataGridResizer from './data-grid-resizer'
 interface Props {
   headerProps: Header<any, unknown>
   tableOption: Table<any>
+  css?: CSS
 }
 
 const DataGridColumnHeader = React.forwardRef<HTMLTableCellElement, Props>(
-  ({headerProps, tableOption}, ref) => {
+  ({headerProps, tableOption, css = {}}, ref) => {
     const enableResizing = headerProps?.column?.columnDef?.enableResizing
     const tableRowRef = useDOMRef<HTMLTableCellElement>(ref)
     const [isFiltering, setIsFiltering] = useState(false)
@@ -34,6 +36,7 @@ const DataGridColumnHeader = React.forwardRef<HTMLTableCellElement, Props>(
         onClick={headerProps.column.getToggleSortingHandler()}
         css={{
           width: headerProps.getSize(),
+          ...css,
         }}
       >
         {headerProps.isPlaceholder ? null : (

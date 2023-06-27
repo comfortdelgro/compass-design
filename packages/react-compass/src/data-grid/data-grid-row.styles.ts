@@ -10,8 +10,7 @@ export const StyledDataGridRow = styled('tr', {
     isSelected: {
       true: {
         backgroundColor: '$cdgBlue10',
-        borderLeftColor: '$cdgBlue',
-        borderLeftStyle: 'solid',
+        borderLeft: '1px solid $cdgBlue',
       },
     },
   },

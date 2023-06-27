@@ -5,14 +5,7 @@ export const StyledDataGridCell = styled('td', {
   textAlign: 'left',
   fontSize: '$label1',
   padding: '$3_5 $3',
-  border: '3px solid gray',
-  zIndex: '10',
   color: '$primaryText',
-  backgroundColor: '$background',
-  '&:hover': {
-    backgroundColor: '#F7F8F9',
-    border: '3px solid black',
-  },
   variants: {
     isGrouped: {
       true: {

@@ -1,5 +1,5 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import {CSS, StyledComponentProps} from '../utils/stitches.types'
 import DataGridCheckbox from './data-grid-checkbox'
 
 interface Props extends StyledComponentProps {
@@ -7,6 +7,7 @@ interface Props extends StyledComponentProps {
   indeterminate?: boolean
   className?: string
   disabled?: boolean
+  css?: CSS
 }
 
 export type DataGridCheckboxCellProps = Props &
@@ -16,6 +17,7 @@ const DataGridCheckboxCell = ({
   indeterminate = false,
   className = '',
   disabled = false,
+  css = {},
   ...rest
 }: DataGridCheckboxCellProps) => {
   return (
@@ -23,6 +25,7 @@ const DataGridCheckboxCell = ({
       disabled={disabled}
       indeterminate={indeterminate}
       className={className}
+      css={css}
       {...rest}
     />
   )

@@ -12,7 +12,7 @@ export const StyledDataGridColumnHeader = styled('th', {
   fontWeight: '$semibold',
   padding: '$3_5 $3',
   position: 'relative',
-  border: '3px solid gray',
+  // border: '1px solid $gray100',
 })
 
 export const StyledDataGridColumnHeaderContent = styled('div', {

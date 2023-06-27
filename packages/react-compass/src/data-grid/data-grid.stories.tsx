@@ -11,7 +11,6 @@ import {Icon} from '../icon'
 import Pagination from '../pagination'
 import SearchField from '../searchfield'
 import ProgressPercentage from './data-grid-progress'
-import {EditableCell} from './editable/editable-cell'
 import StatusComponent from './for story/person-status'
 import {makeData, Person} from './makeData'
 
@@ -87,7 +86,7 @@ export const DataGridStory: React.FC = () => {
         columns: [
           {
             accessorKey: 'firstName',
-            cell: EditableCell,
+            cell: (info) => info.getValue<string>(),
             footer: (props) => props.column.id,
             enableResizing: false,
             sortDescriptor: 'asc',

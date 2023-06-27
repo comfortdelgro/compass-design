@@ -46,11 +46,9 @@ export const FullFeatured: React.FC = () => {
               }}
             >
               <ReactTable.CheckboxCell
-                {...{
-                  checked: table.getIsAllRowsSelected(),
-                  indeterminate: table.getIsSomeRowsSelected(),
-                  onChange: table.getToggleAllRowsSelectedHandler(),
-                }}
+                checked={table.getIsAllRowsSelected()}
+                indeterminate={table.getIsSomeRowsSelected()}
+                onChange={table.getToggleAllRowsSelectedHandler()}
               />
             </div>
           )
@@ -64,12 +62,10 @@ export const FullFeatured: React.FC = () => {
             }}
           >
             <ReactTable.CheckboxCell
-              {...{
-                disabled: !row.getCanSelect(),
-                checked: row.getIsSelected(),
-                indeterminate: row.getIsSomeSelected(),
-                onChange: row.getToggleSelectedHandler(),
-              }}
+              disabled={!row.getCanSelect()}
+              checked={row.getIsSelected()}
+              indeterminate={row.getIsSomeSelected()}
+              onChange={row.getToggleSelectedHandler()}
             />
           </div>
         ),
@@ -78,12 +74,14 @@ export const FullFeatured: React.FC = () => {
         id: 'name',
         header: () => <div style={{textAlign: 'center'}}>Name</div>,
         footer: (props) => props.column.id,
+        enableGrouping: false,
         columns: [
           {
             accessorKey: 'firstName',
             cell: (info) => info.getValue<string>(),
             footer: (props) => props.column.id,
             enableResizing: false,
+            enableGrouping: false,
             sortDescriptor: 'asc',
           },
           {
@@ -92,6 +90,8 @@ export const FullFeatured: React.FC = () => {
             cell: (info) => info.getValue<string>(),
             header: () => <span>Last Name</span>,
             footer: (props) => props.column.id,
+            enableColumnFilter: false,
+            enableGrouping: false,
             enableResizing: true,
           },
         ],
@@ -100,26 +100,35 @@ export const FullFeatured: React.FC = () => {
         id: 'otherInfo',
         header: () => <div style={{textAlign: 'center'}}>Other info</div>,
         footer: (props) => props.column.id,
+        enableGrouping: false,
         columns: [
           {
             accessorKey: 'age',
             header: () => 'Age',
+            enableColumnFilter: false,
+            enableGrouping: false,
             footer: (info) => info.column.id,
           },
           {
             accessorKey: 'visits',
             header: () => <span>Visits</span>,
+            enableColumnFilter: false,
+            enableGrouping: false,
             footer: (info) => info.column.id,
           },
           {
             accessorKey: 'status',
             header: 'Status',
+            enableColumnFilter: false,
+            enableGrouping: false,
             footer: (info) => info.column.id,
           },
           {
             accessorKey: 'progress',
             header: 'Profile Progress',
             cell: (info) => info.getValue<string>(),
+            enableColumnFilter: false,
+            enableGrouping: false,
             footer: (info) => info.column.id,
           },
         ],
