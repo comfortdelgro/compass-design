@@ -9,17 +9,17 @@ export const StyledDataGridCell = styled('td', {
   variants: {
     isGrouped: {
       true: {
-        backgroundColor: '#0aff0082',
+        backgroundColor: '$successBg',
       },
     },
     isAggregated: {
       true: {
-        backgroundColor: '#ffa50078',
+        backgroundColor: '$warningBg',
       },
     },
     isPlaceholder: {
       true: {
-        backgroundColor: '#ff000042',
+        backgroundColor: '$severeWarningBg',
       },
     },
   },

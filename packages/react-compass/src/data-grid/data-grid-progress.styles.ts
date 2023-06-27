@@ -4,7 +4,7 @@ import type {VariantProps} from '../utils/stitches.types'
 export const StyledDataGridProgressBar = styled('div', {
   width: '200px',
   height: '20px',
-  backgroundColor: '#f0f0f0',
+  backgroundColor: '$secondaryBg',
   borderRadius: '10px',
   position: 'relative',
 })
