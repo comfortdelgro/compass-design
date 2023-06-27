@@ -2,13 +2,13 @@ import {Cell, flexRender, Row} from '@tanstack/react-table'
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {UpdatedCellData} from './data-grid'
 import {StyledDataGridCell} from './data-grid-cell.styles'
+import {EditableCell} from './editable/editable-cell'
 
 export interface Props extends StyledComponentProps {
   cell: Cell<any, unknown>
   row: Row<any>
-  onChangeCell?: (newData: UpdatedCellData) => void
+  onChangeCell?: (newData: object) => void
 }
 
 export type DataGridCellProps = Props
@@ -16,7 +16,12 @@ export type DataGridCellProps = Props
 const DataGridCell = React.forwardRef<HTMLTableCellElement, DataGridCellProps>(
   ({cell, row}, ref) => {
     const dataGridCellRef = useDOMRef<HTMLTableCellElement>(ref)
-
+    const {
+      getValue,
+      row: {index},
+      column: {id},
+    } = cell
+    const isCellEditable = cell.column.columnDef.meta?.editable
     return (
       <StyledDataGridCell
         ref={dataGridCellRef}
@@ -28,7 +33,9 @@ const DataGridCell = React.forwardRef<HTMLTableCellElement, DataGridCellProps>(
           width: cell.column.getSize(),
         }}
       >
-        {cell.getIsGrouped() ? (
+        {isCellEditable ? (
+          <EditableCell getValue={getValue} row={index} column={id} />
+        ) : cell.getIsGrouped() ? (
           // If it's a grouped cell, add an expander and row count
           <>
             <button

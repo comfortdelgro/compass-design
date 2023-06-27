@@ -31,7 +31,7 @@ export const DataGridStory: React.FC = () => {
   const onSorting = (sortingField: StateSorting) => {
     console.log('stateSorting', sortingField)
   }
-  const onChangeRowSelection = (rowSelection: any) => {
+  const onChangeRowSelection = (rowSelection: Person[]) => {
     console.log('stateSelectedRows', rowSelection)
   }
 
@@ -89,6 +89,7 @@ export const DataGridStory: React.FC = () => {
             cell: (info) => info.getValue<string>(),
             footer: (props) => props.column.id,
             enableResizing: false,
+            editable: true,
             sortDescriptor: 'asc',
           },
           {

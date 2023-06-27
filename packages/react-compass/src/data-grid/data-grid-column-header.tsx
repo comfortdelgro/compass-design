@@ -1,4 +1,4 @@
-import {flexRender, Header, SortDirection, Table} from '@tanstack/react-table'
+import {flexRender, Header, Table} from '@tanstack/react-table'
 import React from 'react'
 import {CSS} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -20,7 +20,7 @@ const DataGridColumnHeader = React.forwardRef<HTMLTableCellElement, Props>(
   ({headerProps, tableOption, css = {}}, ref) => {
     const enableResizing = headerProps?.column?.columnDef?.enableResizing
     const tableRowRef = useDOMRef<HTMLTableCellElement>(ref)
-
+    const sortDirection = headerProps.column.getIsSorted()
     const directions = {
       asc: <ArrowUpIcon />,
       desc: <ArrowDownIcon />,
@@ -53,8 +53,7 @@ const DataGridColumnHeader = React.forwardRef<HTMLTableCellElement, Props>(
                 )}
               </div>
             }
-            {directions[headerProps.column.getIsSorted() as SortDirection] ??
-              null}
+            {sortDirection && directions[sortDirection]}
             {headerProps.column.getCanFilter() ? (
               <Filter column={headerProps.column} table={tableOption} />
             ) : null}

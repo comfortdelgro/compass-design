@@ -41,18 +41,13 @@ export type OptionType = Options
 
 export type GridColumnDef<T> = ColumnDef<T> & {editable?: boolean}
 
-export interface UpdatedCellData {
-  column: string
-  row: number
-  value: any
-}
 export interface Props<T> extends StyledComponentProps {
   data: T[]
   columns: Array<GridColumnDef<T>>
   options: OptionType
   onManualSorting?: (sortingField: SortingState) => void
   onChangeRowSelection?: (selectionRows: T[]) => void
-  onUpdateData?: (newData: UpdatedCellData) => void
+  onUpdateData?: (newData: object) => void
   children: React.ReactNode
 }
 
@@ -162,7 +157,7 @@ const DataGrid = React.forwardRef<HTMLTableElement, DataGridProps>(
                               key={cell.id}
                               cell={cell}
                               row={row}
-                              onChangeCell={(newData: UpdatedCellData) =>
+                              onChangeCell={(newData) =>
                                 onUpdateData?.(newData)
                               }
                             />
