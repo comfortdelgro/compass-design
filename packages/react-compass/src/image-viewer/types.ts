@@ -41,7 +41,6 @@ export interface ViewerImageSize {
 export interface ImageDecorator {
   src: string
   alt?: string
-  downloadUrl?: string
   defaultSize?: ViewerImageSize
 }
 
@@ -65,21 +64,17 @@ export interface IViewerProps {
   onClose?: () => void
   images?: ImageDecorator[]
   activeIndex?: number
-  zIndex?: number
   container?: HTMLElement
   drag?: boolean
-  attribute?: boolean
   zoomable?: boolean
   rotatable?: boolean
   scalable?: boolean
   onMaskClick?: (e: React.MouseEvent<HTMLDivElement>) => void
-  downloadable?: boolean
   loop?: boolean
   noClose?: boolean
-  noImgDetails?: boolean
-  noNavbar?: boolean
-  noToolbar?: boolean
-  noFooter?: boolean
+  isShowImageInformation?: boolean
+  isShowPreview?: boolean
+  isShowToolbar?: boolean
   changeable?: boolean
   customToolbar?: (toolbars: ToolbarConfig[]) => ToolbarConfig[]
 
@@ -109,14 +104,6 @@ export interface IViewerProps {
 
   // disable mouse zoom
   disableMouseZoom?: boolean
-
-  // whether to download in a new window
-  downloadInNewWindow?: boolean
-
-  className?: string
-
-  // whether to display the total number and range
-  showTotal?: boolean
 
   // total indicator name.
   totalName?: string

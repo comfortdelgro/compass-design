@@ -18,6 +18,6 @@ export const StyledDateSegment = styled('div', {
   },
 
   '&.number': {
-    color: '$black',
+    color: '$primaryText',
   },
 })

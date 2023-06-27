@@ -9,10 +9,10 @@ export const RangeSliderContainer = styled('div', {
   borderRadius: '6.25rem',
   position: ' relative',
   cursor: 'pointer',
-  '&:focus .thumb-tooltips::after': {
+  '&:focus .cdg-thumb-tooltips::after': {
     content: 'attr(value)',
     position: 'absolute',
-    backgroundColor: '#201f1e',
+    backgroundColor: '$gray110',
     width: '$12_5',
     height: '$12_5',
     color: '$whiteText',
@@ -29,15 +29,25 @@ export const RangeSliderContainer = styled('div', {
     lineHeight: '3.125rem',
     textAlign: 'center',
   },
-  '&:focus .thumb-tooltips::before': {
+  '&:focus .cdg-thumb-tooltips::before': {
     content: '',
     position: 'absolute',
     border: '10px solid transparent',
-    borderTop: '10px solid #201f1e',
+    borderTop: '10px solid $gray110',
     left: '50%',
     bottom: '0.5rem',
     transform: 'translateX(-50%)',
     zIndex: '1',
+  },
+  variants: {
+    disabled: {
+      true: {
+        pointerEvents: 'none',
+      },
+      false: {
+        pointerEvents: 'auto',
+      },
+    },
   },
 })
 
@@ -54,8 +64,8 @@ export const Thumb = styled('div', {
   height: '$4',
   borderRadius: '50%',
   background: '$background',
-  border: '1px solid #e6ecf7',
-  boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.16)',
+  border: '1px solid $cdgBlue10',
+  boxShadow: '0px 2px 4px $overlayDark',
   position: 'absolute',
   top: '50%',
   transform: 'translate3d(100%, -50%, 0)',

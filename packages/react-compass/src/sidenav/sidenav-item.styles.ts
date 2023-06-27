@@ -23,7 +23,7 @@ export const StyledSidenavItem = styled('div', {
 
   '& .sidenav-item-title': {
     fontSize: '$body3',
-    fontWeight: '#semibold',
+    fontWeight: '$semibold',
     marginLeft: '$2_5',
     whiteSpace: 'nowrap',
     overflow: 'hidden',

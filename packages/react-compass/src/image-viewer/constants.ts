@@ -1,3 +1,2 @@
-const FOOTER_HEIGHT = 84
-
-export {FOOTER_HEIGHT}
+export const FOOTER_HEIGHT = 84
+export const Z_INDEX = 55
