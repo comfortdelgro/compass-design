@@ -38,13 +38,21 @@ export interface Options {
 }
 
 export type OptionType = Options
+
+export type GridColumnDef<T> = ColumnDef<T> & {editable?: boolean}
+
+export interface UpdatedCellData {
+  column: string
+  row: number
+  value: any
+}
 export interface Props<T> extends StyledComponentProps {
   data: T[]
-  columns: Array<ColumnDef<T>>
+  columns: Array<GridColumnDef<T>>
   options: OptionType
   onManualSorting?: (sortingField: SortingState) => void
   onChangeRowSelection?: (selectionRows: T[]) => void
-  onUpdateData?: (newData: object) => void
+  onUpdateData?: (newData: UpdatedCellData) => void
   children: React.ReactNode
 }
 
@@ -117,6 +125,8 @@ const DataGrid = React.forwardRef<HTMLTableElement, DataGridProps>(
       onManualSorting?.(sorting)
     }, [sorting])
 
+    const dataGridRows = table.getRowModel().rows ?? []
+
     return (
       <StyledDataGridWrapper css={css}>
         {toolbar && <>{toolbar}</>}
@@ -139,13 +149,8 @@ const DataGrid = React.forwardRef<HTMLTableElement, DataGridProps>(
             </DataGridRowGroup>
             {
               <DataGridRowGroup as='tbody'>
-                {table.getRowModel().rows.length === 0 ||
-                table.getRowModel().rows === undefined ? (
-                  <NoDataComponent
-                    colSpan={table.getAllLeafColumns()?.length}
-                  ></NoDataComponent>
-                ) : (
-                  table.getRowModel().rows.map((row) => {
+                {dataGridRows.length ? (
+                  dataGridRows.map((row) => {
                     return (
                       <DataGridRow
                         key={row.id}
@@ -157,14 +162,19 @@ const DataGrid = React.forwardRef<HTMLTableElement, DataGridProps>(
                               key={cell.id}
                               cell={cell}
                               row={row}
-                              // eslint-disable-next-line @typescript-eslint/no-empty-function
-                              onChangeCell={onUpdateData || (() => {})}
+                              onChangeCell={(newData: UpdatedCellData) =>
+                                onUpdateData?.(newData)
+                              }
                             />
                           )
                         })}
                       </DataGridRow>
                     )
                   })
+                ) : (
+                  <NoDataComponent
+                    colSpan={table.getAllLeafColumns()?.length}
+                  ></NoDataComponent>
                 )}
               </DataGridRowGroup>
             }

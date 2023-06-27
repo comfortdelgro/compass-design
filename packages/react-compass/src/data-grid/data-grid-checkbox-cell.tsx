@@ -1,25 +1,28 @@
-import React, {HTMLProps} from 'react'
+import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import DataGridCheckbox from './data-grid-checkbox'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
-  indeterminate: boolean | undefined
-  className: string
+  indeterminate?: boolean
+  className?: string
+  disabled?: boolean
 }
 
-export type DataGridCheckboxCellProps = Props
+export type DataGridCheckboxCellProps = Props &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const DataGridCheckboxCell = ({
-  indeterminate,
+  indeterminate = false,
   className = '',
+  disabled = false,
   ...rest
-}: {indeterminate?: boolean} & HTMLProps<HTMLInputElement>) => {
+}: DataGridCheckboxCellProps) => {
   return (
     <DataGridCheckbox
+      disabled={disabled}
       indeterminate={indeterminate}
-      type='checkbox'
-      className={className + ' cursor-pointer'}
+      className={className}
       {...rest}
     />
   )

@@ -4,6 +4,7 @@ import {useDOMRef} from '../utils/use-dom-ref'
 import {
   StyledReactTableColumnHeader,
   StyledReactTableColumnHeaderContent,
+  StyledReactTableSortingIndicator,
 } from './react-table-column-header.styles'
 import ReactTableResizer from './react-table-resizer'
 interface Props<TData, TValue> {
@@ -22,7 +23,10 @@ const ReactTableColumnHeader = React.forwardRef<
 >(({headerProps}, ref) => {
   const enableResizing = headerProps?.column?.columnDef?.enableResizing
   const tableRowRef = useDOMRef<HTMLTableCellElement>(ref)
-
+  const directions = {
+    asc: <ArrowUpIcon />,
+    desc: <ArrowDownIcon />,
+  }
   return (
     <StyledReactTableColumnHeader
       ref={tableRowRef}
@@ -41,10 +45,8 @@ const ReactTableColumnHeader = React.forwardRef<
             headerProps.column.columnDef.header,
             headerProps.getContext(),
           )}
-          {{
-            asc: <ArrowUpIcon />,
-            desc: <ArrowDownIcon />,
-          }[headerProps.column.getIsSorted() as SortDirection] ?? null}
+          {directions[headerProps.column.getIsSorted() as SortDirection] ??
+            null}
         </StyledReactTableColumnHeaderContent>
       )}
       {enableResizing && (
@@ -55,17 +57,31 @@ const ReactTableColumnHeader = React.forwardRef<
 })
 
 const ArrowDownIcon = () => (
-  <svg width='12' height='13' viewBox='0 0 32 32'>
-    <g fill='currentColor'>
-      <path d='M15.9989 24C15.3734 24 14.7477 23.7582 14.271 23.2746L2.04944 10.8936C1.09463 9.92634 1.09463 8.35938 2.04944 7.39211C3.00425 6.42485 4.55105 6.42485 5.50586 7.39211L15.9989 18.0262L26.4941 7.39405C27.449 6.42679 28.9957 6.42679 29.9506 7.39405C30.9054 8.36131 30.9054 9.92827 29.9506 10.8955L17.729 23.2765C17.2516 23.7601 16.6252 24 15.9989 24Z'></path>
-    </g>
-  </svg>
+  <StyledReactTableSortingIndicator aria-hidden='true'>
+    <svg width='24' height='26' viewBox='0 0 24 26' fill='none'>
+      <path
+        d='M12.8476 4.34166C12.379 3.88611 11.6181 3.88611 11.1495 4.34166L6.35152 9.00651C6.00666 9.34179 5.90546 9.84108 6.09288 10.2784C6.2803 10.7157 6.71512 11 7.20242 11H16.7984C17.282 11 17.7205 10.7157 17.908 10.2784C18.0954 9.84108 17.9904 9.34179 17.6493 9.00651L12.8513 4.34166H12.8476Z'
+        fill={'#EDEBE9'}
+      />
+      <path
+        d='M11.1524 21.3277C11.621 21.7834 12.3819 21.7834 12.8505 21.3277L17.6485 16.661C17.9933 16.3256 18.0945 15.8261 17.9071 15.3886C17.7197 14.9511 17.2849 14.6667 16.7976 14.6667L7.20159 14.6704C6.71804 14.6704 6.27947 14.9548 6.09205 15.3923C5.90463 15.8298 6.00958 16.3292 6.35069 16.6647L11.1487 21.3313L11.1524 21.3277Z'
+        fill={'#A19F9D'}
+      />
+    </svg>
+  </StyledReactTableSortingIndicator>
 )
 const ArrowUpIcon = () => (
-  <svg width='12' height='13' viewBox='0 0 32 32'>
-    <g fill='currentColor'>
-      <path d='M16.0011 6.66667C16.6266 6.66667 17.2523 6.90849 17.729 7.39212L29.9506 19.7731C30.9054 20.7403 30.9054 22.3073 29.9506 23.2746C28.9957 24.2418 27.4489 24.2418 26.4941 23.2746L16.0011 12.6405L5.50586 23.2726C4.55104 24.2399 3.00425 24.2399 2.04944 23.2726C1.09463 22.3054 1.09463 20.7384 2.04944 19.7711L14.271 7.39018C14.7484 6.90655 15.3748 6.66667 16.0011 6.66667Z'></path>
-    </g>
-  </svg>
+  <StyledReactTableSortingIndicator aria-hidden='true'>
+    <svg width='24' height='26' viewBox='0 0 24 26' fill='none'>
+      <path
+        d='M12.8476 4.34166C12.379 3.88611 11.6181 3.88611 11.1495 4.34166L6.35152 9.00651C6.00666 9.34179 5.90546 9.84108 6.09288 10.2784C6.2803 10.7157 6.71512 11 7.20242 11H16.7984C17.282 11 17.7205 10.7157 17.908 10.2784C18.0954 9.84108 17.9904 9.34179 17.6493 9.00651L12.8513 4.34166H12.8476Z'
+        fill={'#A19F9D'}
+      />
+      <path
+        d='M11.1524 21.3277C11.621 21.7834 12.3819 21.7834 12.8505 21.3277L17.6485 16.661C17.9933 16.3256 18.0945 15.8261 17.9071 15.3886C17.7197 14.9511 17.2849 14.6667 16.7976 14.6667L7.20159 14.6704C6.71804 14.6704 6.27947 14.9548 6.09205 15.3923C5.90463 15.8298 6.00958 16.3292 6.35069 16.6647L11.1487 21.3313L11.1524 21.3277Z'
+        fill={'#EDEBE9'}
+      />
+    </svg>
+  </StyledReactTableSortingIndicator>
 )
 export default ReactTableColumnHeader

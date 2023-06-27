@@ -11,12 +11,13 @@ import {Icon} from '../icon'
 import Pagination from '../pagination'
 import SearchField from '../searchfield'
 import ProgressPercentage from './data-grid-progress'
+import {EditableCell} from './editable/editable-cell'
 import StatusComponent from './for story/person-status'
 import {makeData, Person} from './makeData'
 
 export const DataGridStory: React.FC = () => {
   const [page, setPage] = useState(1)
-  const [data] = useState(() => makeData(10))
+  const [data] = useState<Person[]>(() => makeData(10))
   const options: OptionType = {
     enableSorting: true,
     enableMultiSort: true,
@@ -69,6 +70,7 @@ export const DataGridStory: React.FC = () => {
           >
             <DataGrid.CheckboxCell
               {...{
+                disabled: !row.getCanSelect(),
                 checked: row.getIsSelected(),
                 indeterminate: row.getIsSomeSelected(),
                 onChange: row.getToggleSelectedHandler(),
@@ -85,7 +87,7 @@ export const DataGridStory: React.FC = () => {
         columns: [
           {
             accessorKey: 'firstName',
-            cell: (info) => info.getValue<string>(),
+            cell: EditableCell,
             footer: (props) => props.column.id,
             enableResizing: false,
             sortDescriptor: 'asc',
@@ -150,7 +152,6 @@ export const DataGridStory: React.FC = () => {
         options={options}
         onManualSorting={onSorting}
         onChangeRowSelection={onChangeRowSelection}
-        className='yagin'
       >
         <DataGrid.Toolbar
           css={{

@@ -12,13 +12,7 @@ const DataGridRow = React.forwardRef<HTMLTableRowElement, Props>(
     const tableRowRef = useDOMRef<HTMLTableRowElement>(ref)
 
     return (
-      <StyledDataGridRow
-        css={{
-          backgroundColor: isSelected ? '$cdgBlue10' : 'unset',
-          borderLeftColor: isSelected ? '$cdgBlue' : 'inherit',
-        }}
-        ref={tableRowRef}
-      >
+      <StyledDataGridRow isSelected={isSelected} ref={tableRowRef}>
         {children}
       </StyledDataGridRow>
     )
