@@ -21,7 +21,7 @@ export type DataGridCheckboxProps = Props
 const DataGridCheckbox = ({
   indeterminate,
   className = '',
-  disabled,
+  disabled = false,
   ...rest
 }: DataGridCheckboxProps) => {
   const ref = React.useRef<HTMLInputElement>(null!)
@@ -41,7 +41,7 @@ const DataGridCheckbox = ({
         className={className + ' cursor-pointer'}
         {...rest}
       />
-      <StyledTableCheckboxBox disabled={false} rounded={false}>
+      <StyledTableCheckboxBox disabled={disabled} rounded={false}>
         <StyledCheckboxCheckmark>
           <Icon icon={indeterminate ? faMinus : faCheck} className='icon' />
         </StyledCheckboxCheckmark>

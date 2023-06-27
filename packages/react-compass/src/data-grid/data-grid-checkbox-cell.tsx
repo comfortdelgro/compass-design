@@ -7,6 +7,7 @@ interface Props extends StyledComponentProps {
   indeterminate?: boolean
   className?: string
   disabled?: boolean
+  checked?: boolean
   css?: CSS
 }
 

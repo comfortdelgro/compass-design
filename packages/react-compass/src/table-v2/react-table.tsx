@@ -9,19 +9,22 @@ import {
 } from '@tanstack/react-table'
 import React, {useEffect, useState} from 'react'
 import DataGridCell from '../data-grid/data-grid-cell'
+import DataGridCheckbox from '../data-grid/data-grid-checkbox'
+import DataGridCheckboxCell from '../data-grid/data-grid-checkbox-cell'
 import DataGridColumnHeader from '../data-grid/data-grid-column-header'
+import DataGridFooter from '../data-grid/data-grid-footer'
 import DataGridHeaderRow from '../data-grid/data-grid-header-row'
 import {NoDataComponent} from '../data-grid/data-grid-nodata'
 import DataGridRow from '../data-grid/data-grid-row'
 import DataGridRowGroup from '../data-grid/data-grid-row-group'
+import {
+  default as DataGridToolbar,
+  default as TableToolbar,
+} from '../data-grid/data-grid-toolbar'
 import {StyledDataGrid} from '../data-grid/data-grid.styles'
 import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
-import ReactTableCheckbox from './react-table-checkbox'
-import ReactTableCheckboxCell from './react-table-checkbox-cell'
-import ReactTableFooter from './react-table-footer'
-import ReactTableToolbar, {default as TableToolbar} from './react-table-toolbar'
 import {StyledReactTableWrapper} from './react-table.styles'
 
 export interface Options<TData> {
@@ -68,9 +71,9 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
       typeof TableToolbar
     >(children, TableToolbar)
 
-    const {child: footer} = pickChild<typeof ReactTableFooter>(
+    const {child: footer} = pickChild<typeof DataGridFooter>(
       childrenWithoutToolbar,
-      ReactTableFooter,
+      DataGridFooter,
     )
 
     const tableRef = useDOMRef<HTMLTableElement>(ref)
@@ -161,8 +164,8 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
 )
 
 export default ReactTable as typeof ReactTable & {
-  Toolbar: typeof ReactTableToolbar
-  Footer: typeof ReactTableFooter
-  Checkbox: typeof ReactTableCheckbox
-  CheckboxCell: typeof ReactTableCheckboxCell
+  Toolbar: typeof DataGridToolbar
+  Footer: typeof DataGridFooter
+  Checkbox: typeof DataGridCheckbox
+  CheckboxCell: typeof DataGridCheckboxCell
 }
