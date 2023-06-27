@@ -9,6 +9,7 @@ import {
 import {isEmpty} from 'lodash'
 import React, {useCallback, useEffect, useMemo, useRef} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
+import {DropdownContext} from './dropdown-new-context'
 import DropdownNewItem from './dropdown-new-item'
 import DropdownNewList from './dropdown-new-list'
 import {
@@ -95,6 +96,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   const [currentKey, setCurrentKey] = React.useState<React.Key | undefined>(
     selectedKey || defaultSelectedKey,
   )
+  const [selectedKeys, setSelectedKeys] = React.useState<string[]>([])
 
   const buttonSelectRef = useRef<HTMLButtonElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
@@ -244,31 +246,42 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     }
   }, [type, open])
 
+  const handleDropdownItemClick = (key: React.Key) => {
+    console.log('handleDropdownItemClick: ', key)
+  }
+
   return (
     <StyledDropdownWrapper className={`${open ? 'cdg-dropdown-opening' : ''}`}>
-      {headerElement}
-      {open && (
-        <div
-          className='Popover'
-          ref={refs.setFloating}
-          style={{
-            ...floatingStyles,
-            ...{
-              zIndex: 60,
-            },
-          }}
-          {...getFloatingProps}
-        >
-          <StyledPopover
+      <DropdownContext.Provider
+        value={{
+          selectedKeys,
+          setSelectedKeys,
+          onItemClick: handleDropdownItemClick,
+        }}
+      >
+        {headerElement}
+        {open && (
+          <div
+            className='Popover'
+            ref={refs.setFloating}
             style={{
-              width: triggetWidth,
-              //   display: isEmpty(currentKey) ? 'none' : '',
+              ...floatingStyles,
+              ...{
+                zIndex: 60,
+              },
             }}
+            {...getFloatingProps}
           >
-            <DropdownNewList>{children}</DropdownNewList>
-          </StyledPopover>
-        </div>
-      )}
+            <StyledPopover
+              style={{
+                width: triggetWidth,
+              }}
+            >
+              <DropdownNewList>{children}</DropdownNewList>
+            </StyledPopover>
+          </div>
+        )}
+      </DropdownContext.Provider>
     </StyledDropdownWrapper>
   )
 })

@@ -1,5 +1,6 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
+import {DropdownContext} from './dropdown-new-context'
 import {StyledOption} from './dropdown-new.styles'
 
 interface Props extends StyledComponentProps {
@@ -7,11 +8,10 @@ interface Props extends StyledComponentProps {
   type?: 'icon' | 'color'
   leftIcon?: React.ReactNode
   rightIcon?: React.ReactNode
-  key: React.Key
+  value: string | number
   textValue?: string
   checkmark?: 'none' | 'checkbox' | 'tick'
   children: React.ReactNode
-  'aria-label'?: string
 }
 
 export type DropdownItemProps = Props
@@ -19,7 +19,15 @@ export type DropdownItemProps = Props
 const DropdownNewItem: React.FC<DropdownItemProps> = (
   props: DropdownItemProps,
 ) => {
-  return <StyledOption>{props.children}</StyledOption>
+  const {children, value} = props
+
+  const {onItemClick} = useContext(DropdownContext)
+
+  const handleItemClick = () => {
+    onItemClick(value.toString())
+  }
+
+  return <StyledOption onClick={handleItemClick}>{children}</StyledOption>
 }
 
 export default DropdownNewItem

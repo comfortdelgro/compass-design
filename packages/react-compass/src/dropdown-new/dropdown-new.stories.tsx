@@ -8,12 +8,20 @@ export const Default: React.FC = () => {
     <Column>
       <h3>Default</h3>
       <DropdownNew placeholder='Choose an animal'>
-        <DropdownNew.Item key='dog'>Dog</DropdownNew.Item>
-        <DropdownNew.Item key='aardvark'>Aardvark</DropdownNew.Item>
-        <DropdownNew.Item key='kangaroo'>Kangaroo</DropdownNew.Item>
-        <DropdownNew.Item key='snakessss'>Snake</DropdownNew.Item>
+        <DropdownNew.Item key='dog' value='dog'>
+          Dog
+        </DropdownNew.Item>
+        <DropdownNew.Item key='aardvark' value='aardvark'>
+          Aardvark
+        </DropdownNew.Item>
+        <DropdownNew.Item key='kangaroo' value='kangaroo'>
+          Kangaroo
+        </DropdownNew.Item>
+        <DropdownNew.Item key='snakessss' value='snakessss'>
+          Snake
+        </DropdownNew.Item>
       </DropdownNew>
-      <h3>Combobox</h3>
+      {/* <h3>Combobox</h3>
       <DropdownNew type='combobox'>
         <DropdownNew.Item key='dog'>Dog</DropdownNew.Item>
         <DropdownNew.Item key='aardvark'>Aardvark</DropdownNew.Item>
@@ -26,7 +34,7 @@ export const Default: React.FC = () => {
         <DropdownNew.Item key='aardvark'>Aardvark</DropdownNew.Item>
         <DropdownNew.Item key='kangaroo'>Kangaroo</DropdownNew.Item>
         <DropdownNew.Item key='snakessss'>Snake</DropdownNew.Item>
-      </DropdownNew>
+      </DropdownNew> */}
     </Column>
   )
 }

@@ -11,7 +11,9 @@ export type DropdownItemListProps = Props
 const DropdownNewList: React.FC<DropdownItemListProps> = (
   props: DropdownItemListProps,
 ) => {
-  return <StyledDropdownList>{props.children}</StyledDropdownList>
+  const {children} = props
+
+  return <StyledDropdownList>{children}</StyledDropdownList>
 }
 
 export default DropdownNewList
