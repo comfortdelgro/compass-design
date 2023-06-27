@@ -84,7 +84,7 @@ export const StyledTextFieldBox = styled('div', {
         backgroundColor: '$gray20',
         '*': {
           color: '$disabledText',
-          cursor: 'not-allowed !important',
+          cursor: 'not-allowed',
         },
       },
     },
