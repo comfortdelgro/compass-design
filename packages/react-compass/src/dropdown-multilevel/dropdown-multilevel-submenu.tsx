@@ -4,40 +4,36 @@ import {useDOMRef} from '../utils/use-dom-ref'
 import DropdownMultilevelContext, {
   DropdownMultilevelContextType,
 } from './dropdown-multilevel-context'
-import {StyledDropdownMultilevelToggle} from './dropdown-multilevel.styles'
+import {StyledDropdownMultilevelSubmenu} from './dropdown-multilevel.styles'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
 }
 
-export type DropdownMultilevelToggleProps = Props &
+export type DropdownMultilevelSubmenuProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
-const DropdownMultilevelToggle = React.forwardRef<
+const DropdownMultilevelSubmenu = React.forwardRef<
   HTMLDivElement,
-  DropdownMultilevelToggleProps
+  DropdownMultilevelSubmenuProps
 >((props, ref) => {
   const {children, css = {}, ...delegated} = props
-  const DropdownMultilevelToggleRef = useDOMRef<HTMLDivElement>(ref)
+  const DropdownMultilevelSubmenuRef = useDOMRef<HTMLDivElement>(ref)
 
   const contextValue = useContext(
     DropdownMultilevelContext,
   ) as DropdownMultilevelContextType
 
-  const handleButonClick = () => {
-    contextValue.setOpen(!contextValue.open)
-  }
-
   return (
-    <StyledDropdownMultilevelToggle
+    <StyledDropdownMultilevelSubmenu
       css={css}
-      ref={DropdownMultilevelToggleRef}
-      onClick={handleButonClick}
+      ref={DropdownMultilevelSubmenuRef}
       {...delegated}
+      className='cdg-dropdown-multilevel-submenu'
     >
       {children}
-    </StyledDropdownMultilevelToggle>
+    </StyledDropdownMultilevelSubmenu>
   )
 })
 
-export default DropdownMultilevelToggle
+export default DropdownMultilevelSubmenu
