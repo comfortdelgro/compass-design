@@ -31,6 +31,17 @@ const MenuListDropdownItem = React.forwardRef<
     ...delegated
   } = props
 
+  const tabIndex = () => {
+    if (isDisabled) {
+      return -1
+    }
+    if (isNested) {
+      return -1
+    }
+
+    return 0
+  }
+
   return (
     <StyledMenuListDropdownItem
       className={`${className} menu-list-dropdown-item`}
@@ -39,7 +50,7 @@ const MenuListDropdownItem = React.forwardRef<
       disabled={!!isDisabled}
       ref={ref}
       css={css}
-      tabIndex={isDisabled ? 1 : 0}
+      tabIndex={tabIndex()}
       {...delegated}
     >
       {icon}

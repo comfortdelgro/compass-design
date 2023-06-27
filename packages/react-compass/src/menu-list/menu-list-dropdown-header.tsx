@@ -109,7 +109,7 @@ const MenuListDropdownHeader = React.forwardRef<
       className={`${className} menu-list-dropdown-header`}
       ref={buttonRef}
       css={css}
-      onMouseDown={handleOnClick}
+      onClick={handleOnClick}
       {...delegated}
     >
       {renderLeftIcon()}

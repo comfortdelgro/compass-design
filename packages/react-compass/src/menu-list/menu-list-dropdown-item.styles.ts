@@ -1,8 +1,5 @@
-import { styled } from '../theme'
-import { StyledMenuListDropdownHeader } from './menu-list-dropdown-header.styles'
-
-
-
+import {styled} from '../theme'
+import {StyledMenuListDropdownHeader} from './menu-list-dropdown-header.styles'
 
 export const StyledMenuListDropdownItem = styled('div', {
   minHeight: '$10',
@@ -21,7 +18,7 @@ export const StyledMenuListDropdownItem = styled('div', {
     outline: '$cdgBlue80 solid 2px',
   },
 
-  '& svg': {
+  '& > svg': {
     marginRight: '$2',
     width: '$4',
     height: '$4',

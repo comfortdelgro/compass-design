@@ -3,7 +3,10 @@ import {StyledComponentProps} from '../utils/stitches.types'
 import {MenuListContext} from './menu-list-context'
 import MenuListDropdownHeader from './menu-list-dropdown-header'
 import MenuListDropdownItem from './menu-list-dropdown-item'
-import {StyledMenuListDropdown} from './menu-list-dropdown.styles'
+import {
+  StyledMenuListDropdown,
+  StyledMenuListDropdownBody,
+} from './menu-list-dropdown.styles'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
@@ -57,7 +60,11 @@ const MenuListDropdown = React.forwardRef<
         value={{isOpen: isControlled ? isOpenProp : isOpen, toggleOpen}}
       >
         {title}
-        {(isControlled ? isOpenProp : isOpen) && body}
+        <StyledMenuListDropdownBody
+          isOpen={(isControlled ? isOpenProp : isOpen) ? 'true' : 'false'}
+        >
+          {body}
+        </StyledMenuListDropdownBody>
       </MenuListContext.Provider>
     </StyledMenuListDropdown>
   )
