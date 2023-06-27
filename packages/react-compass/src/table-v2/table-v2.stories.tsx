@@ -10,11 +10,11 @@ import Button from '../button'
 import {Icon} from '../icon'
 import Pagination from '../pagination'
 import SearchField from '../searchfield'
-import {makeData, Person} from './makeData'
+import {Person} from './makeData'
 
 export const FullFeatured: React.FC = () => {
   const [page, setPage] = useState(1)
-  const [data] = useState(() => makeData(10))
+  const [data] = useState([])
   const options: OptionType<Person> = {
     enableSorting: true,
     enableMultiSort: true,
@@ -79,6 +79,7 @@ export const FullFeatured: React.FC = () => {
           {
             accessorKey: 'firstName',
             cell: (info) => info.getValue<string>(),
+            header: () => <span>First Name</span>,
             footer: (props) => props.column.id,
             enableResizing: false,
             enableGrouping: false,
