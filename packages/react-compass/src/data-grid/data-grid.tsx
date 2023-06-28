@@ -39,11 +39,9 @@ export interface Options {
 
 export type OptionType = Options
 
-export type GridColumnDef<T> = ColumnDef<T> & {editable?: boolean}
-
 export interface Props<T> extends StyledComponentProps {
   data: T[]
-  columns: Array<GridColumnDef<T>>
+  columns: Array<ColumnDef<T>>
   options: OptionType
   onManualSorting?: (sortingField: SortingState) => void
   onChangeRowSelection?: (selectionRows: T[]) => void

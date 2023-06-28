@@ -5,13 +5,17 @@ import {useDOMRef} from '../utils/use-dom-ref'
 import {StyledDataGridCell} from './data-grid-cell.styles'
 import {EditableCell} from './editable/editable-cell'
 
-export interface Props extends StyledComponentProps {
-  cell: Cell<any, unknown>
-  row: Row<any>
+export interface Props<TData, TValue> extends StyledComponentProps {
+  cell: Cell<TData, TValue>
+  row: Row<TData>
   onChangeCell?: (newData: object) => void
 }
 
-export type DataGridCellProps = Props
+export type DataGridCellProps<TData = any, TValue = unknown> = Props<
+  TData,
+  TValue
+> &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props<TData, TValue>>
 
 const DataGridCell = React.forwardRef<HTMLTableCellElement, DataGridCellProps>(
   ({cell, row}, ref) => {

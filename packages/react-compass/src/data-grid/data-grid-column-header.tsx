@@ -1,8 +1,8 @@
 import {flexRender, Header, Table} from '@tanstack/react-table'
 import React from 'react'
-import {CSS} from '../utils/stitches.types'
+import {CSS, StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
-import Filter from './data-grid-column-header-filter'
+import HeaderColumnFilter from './data-grid-column-header-filter'
 import {
   StyledDataGridColumnHeader,
   StyledDataGridColumnHeaderContent,
@@ -10,62 +10,71 @@ import {
 } from './data-grid-column-header.styles'
 import DataGridResizer from './data-grid-resizer'
 
-interface Props {
-  headerProps: Header<any, unknown>
-  tableOption: Table<any>
+interface Props<TData, TValue> extends StyledComponentProps {
+  headerProps: Header<TData, TValue>
+  tableOption: Table<TData>
   css?: CSS
 }
+export type DataGridColumnHeaderProps<TData = any, TValue = unknown> = Props<
+  TData,
+  TValue
+> &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props<TData, TValue>>
 
-const DataGridColumnHeader = React.forwardRef<HTMLTableCellElement, Props>(
-  ({headerProps, tableOption, css = {}}, ref) => {
-    const enableResizing = headerProps?.column?.columnDef?.enableResizing
-    const tableRowRef = useDOMRef<HTMLTableCellElement>(ref)
-    const sortDirection = headerProps.column.getIsSorted()
-    const directions = {
-      asc: <ArrowUpIcon />,
-      desc: <ArrowDownIcon />,
-    }
-    return (
-      <StyledDataGridColumnHeader
-        ref={tableRowRef}
-        key={headerProps.id}
-        colSpan={headerProps.colSpan}
-        onClick={headerProps.column.getToggleSortingHandler()}
-        css={{
-          width: headerProps.getSize(),
-          ...css,
-        }}
-      >
-        {headerProps.isPlaceholder ? null : (
-          <StyledDataGridColumnHeaderContent
-            canSort={headerProps.column.getCanSort()}
-          >
-            {
-              <div onClick={headerProps.column.getToggleGroupingHandler()}>
-                {headerProps.column.getIsGrouped() ? (
-                  <span>({headerProps.column.getGroupedIndex()})</span>
-                ) : (
-                  <></>
-                )}
-                {flexRender(
-                  headerProps.column.columnDef.header,
-                  headerProps.getContext(),
-                )}
-              </div>
-            }
-            {sortDirection && directions[sortDirection]}
-            {headerProps.column.getCanFilter() ? (
-              <Filter column={headerProps.column} table={tableOption} />
-            ) : null}
-          </StyledDataGridColumnHeaderContent>
-        )}
-        {enableResizing && (
-          <DataGridResizer resizeHandler={headerProps.getResizeHandler()} />
-        )}
-      </StyledDataGridColumnHeader>
-    )
-  },
-)
+const DataGridColumnHeader = React.forwardRef<
+  HTMLTableCellElement,
+  DataGridColumnHeaderProps
+>(({headerProps, tableOption, css = {}}, ref) => {
+  const enableResizing = headerProps?.column?.columnDef?.enableResizing
+  const tableRowRef = useDOMRef<HTMLTableCellElement>(ref)
+  const sortDirection = headerProps.column.getIsSorted()
+  const directions = {
+    asc: <ArrowUpIcon />,
+    desc: <ArrowDownIcon />,
+  }
+  return (
+    <StyledDataGridColumnHeader
+      ref={tableRowRef}
+      key={headerProps.id}
+      colSpan={headerProps.colSpan}
+      onClick={headerProps.column.getToggleSortingHandler()}
+      css={{
+        width: headerProps.getSize(),
+        ...css,
+      }}
+    >
+      {headerProps.isPlaceholder ? null : (
+        <StyledDataGridColumnHeaderContent
+          canSort={headerProps.column.getCanSort()}
+        >
+          {
+            <div onClick={headerProps.column.getToggleGroupingHandler()}>
+              {headerProps.column.getIsGrouped() ? (
+                <span>({headerProps.column.getGroupedIndex()})</span>
+              ) : (
+                <></>
+              )}
+              {flexRender(
+                headerProps.column.columnDef.header,
+                headerProps.getContext(),
+              )}
+            </div>
+          }
+          {sortDirection && directions[sortDirection]}
+          {headerProps.column.getCanFilter() ? (
+            <HeaderColumnFilter
+              column={headerProps.column}
+              table={tableOption}
+            />
+          ) : null}
+        </StyledDataGridColumnHeaderContent>
+      )}
+      {enableResizing && (
+        <DataGridResizer resizeHandler={headerProps.getResizeHandler()} />
+      )}
+    </StyledDataGridColumnHeader>
+  )
+})
 const ArrowDownIcon = () => (
   <StyledDataGridSortingIndicator aria-hidden='true'>
     <svg width='24' height='26' viewBox='0 0 24 26' fill='none'>

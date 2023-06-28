@@ -1,16 +1,26 @@
 import {Column, Table} from '@tanstack/react-table'
 import React, {forwardRef, useState} from 'react'
+import {StyledComponentProps} from '../utils/stitches.types'
 import {
   StyledFilter,
   StyledFilterInput,
 } from './data-grid-column-header-filter.styles'
 
-interface Props {
-  column: Column<any, any>
-  table: Table<any>
+interface Props<TData, TValue> extends StyledComponentProps {
+  column: Column<TData, TValue>
+  table: Table<TData>
 }
 
-const Filter = forwardRef<HTMLInputElement, Props>(({column, table}, ref) => {
+export type HeaderColumnFilterProps<TData = any, TValue = unknown> = Props<
+  TData,
+  TValue
+> &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props<TData, TValue>>
+
+const HeaderColumnFilter = forwardRef<
+  HTMLInputElement,
+  HeaderColumnFilterProps
+>(({column, table}, ref) => {
   const [isFiltering, setIsFiltering] = useState(false)
   const handleClickOrTouchFilter = () => {
     setIsFiltering(!isFiltering)
@@ -79,4 +89,4 @@ const Filter = forwardRef<HTMLInputElement, Props>(({column, table}, ref) => {
   )
 })
 
-export default Filter
+export default HeaderColumnFilter
