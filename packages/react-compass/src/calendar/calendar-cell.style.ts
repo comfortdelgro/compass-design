@@ -33,7 +33,7 @@ export const StyledCalendarCell = styled('td', {
   },
 
   '&.highlighted .calendar-cell-value': {
-    color: '$primaryText',
+    color: '$whiteText',
   },
 
   '& .calendar-cell-value': {

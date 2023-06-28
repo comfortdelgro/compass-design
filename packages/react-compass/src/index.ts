@@ -117,12 +117,8 @@ export type {
 } from './footer'
 export {default as Grid} from './grid'
 export type {GridContainerProps, GridItemProps} from './grid'
-export {default as Gutter, GutterContent, GutterResizer} from './gutter'
-export type {
-  GutterContentProps,
-  GutterProps,
-  GutterResizerProps,
-} from './gutter'
+export {default as Gutter} from './gutter'
+export type {GutterProps} from './gutter'
 export {default as Icon} from './icon'
 export type {IconProp} from './icon'
 export * from './internationalized/date'
@@ -291,6 +287,12 @@ export type {
   ToastProps,
   ToastTitleProps,
 } from './toast'
+export {ToastContextProvider, useToast} from './toast/service'
+export type {
+  ToastItemType,
+  ToastsContainerProps,
+  ToastState,
+} from './toast/service'
 export {default as Toggle} from './toggle'
 export type {ToggleProps} from './toggle'
 export {Tooltip, TooltipTrigger} from './tooltip'

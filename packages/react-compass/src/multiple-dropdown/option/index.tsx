@@ -1,12 +1,11 @@
-import React,{ Key } from 'react'
-import { DropdownItemProps } from '../../dropdown/item'
+import React, {Key} from 'react'
+import {DropdownItemProps} from '../../dropdown/item'
 import {
-OptionVariantProps,
-StyledContent,
-StyledOption
+  OptionVariantProps,
+  StyledContent,
+  StyledOption,
 } from '../../dropdown/option/index.styles'
-import { StyledRightIcon } from './index.styles'
-
+import {StyledRightIcon} from './index.styles'
 
 interface Props extends OptionVariantProps {
   key: Key | null
