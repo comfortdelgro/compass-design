@@ -15,6 +15,7 @@ const ToastTestComponent: React.FC<props> = ({
   return (
     <>
       <Button
+        className='c-hKssGC-hYGuEl-variant-primary'
         css={{width: '8rem', color: 'black'}}
         onPress={() => setIsOpen(true)}
       >
@@ -36,8 +37,18 @@ const ToastTestComponent: React.FC<props> = ({
         </Toast.CloseIcon>
         <Toast.Message>Lorem ipsum dolor, sit amet consectetur.</Toast.Message>
         <Toast.Actions>
-          <Button css={{color: 'black'}}>Take action</Button>
-          <Button css={{color: 'black'}}>Take action</Button>
+          <Button
+            className='c-hKssGC-hYGuEl-variant-primary'
+            css={{color: 'black'}}
+          >
+            Take action
+          </Button>
+          <Button
+            className='c-hKssGC-hYGuEl-variant-primary'
+            css={{color: 'black'}}
+          >
+            Take action
+          </Button>
         </Toast.Actions>
       </Toast>
     </>

@@ -6,6 +6,7 @@ export function PrimarySidebar() {
   return (
     <>
       <Button
+        className='c-hKssGC-hYGuEl-variant-primary'
         css={{width: '9rem', height: '3.5rem', fontSize: '1em', color: 'black'}}
         onPress={() => setIsPrimaryOpen(true)}
       >
@@ -18,10 +19,16 @@ export function PrimarySidebar() {
         <Sidebar.Title>My title</Sidebar.Title>
         <Sidebar.Content>My content</Sidebar.Content>
         <Sidebar.Actions>
-          <Button css={{width: '45%', height: '100%', fontSize: '1em'}}>
+          <Button
+            className='c-hKssGC-hYGuEl-variant-primary'
+            css={{width: '45%', height: '100%', fontSize: '1em'}}
+          >
             Action
           </Button>
-          <Button css={{width: '45%', height: '100%', fontSize: '1em'}}>
+          <Button
+            className='c-hKssGC-hYGuEl-variant-primary'
+            css={{width: '45%', height: '100%', fontSize: '1em'}}
+          >
             Action
           </Button>
         </Sidebar.Actions>
@@ -35,6 +42,7 @@ export function SecondarySidebar() {
   return (
     <>
       <Button
+        className='c-hKssGC-hYGuEl-variant-primary'
         css={{width: '9rem', height: '3.5rem', fontSize: '1em', color: 'black'}}
         onPress={() => setIsPrimaryOpen(true)}
       >
@@ -48,10 +56,16 @@ export function SecondarySidebar() {
         <Sidebar.Title>My title</Sidebar.Title>
         <Sidebar.Content>My content</Sidebar.Content>
         <Sidebar.Actions>
-          <Button css={{width: '45%', height: '100%', fontSize: '1em'}}>
+          <Button
+            className='c-hKssGC-hYGuEl-variant-primary'
+            css={{width: '45%', height: '100%', fontSize: '1em'}}
+          >
             Action
           </Button>
-          <Button css={{width: '45%', height: '100%', fontSize: '1em'}}>
+          <Button
+            className='c-hKssGC-hYGuEl-variant-primary'
+            css={{width: '45%', height: '100%', fontSize: '1em'}}
+          >
             Action
           </Button>
         </Sidebar.Actions>

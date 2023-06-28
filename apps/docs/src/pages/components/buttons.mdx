@@ -34,9 +34,15 @@ import Button from '@comfortdelgro/react-compass/button'
 ### Button Sizes:
 
 <section className={styles.avatarShowcaseContainer}>
-  <Button size='lg'>Large</Button>
-  <Button size='md'>Medium (Default)</Button>
-  <Button size='sm'>Small</Button>
+  <Button className='c-hKssGC-hYGuEl-variant-primary' size='lg'>
+    Large
+  </Button>
+  <Button className='c-hKssGC-hYGuEl-variant-primary' size='md'>
+    Medium (Default)
+  </Button>
+  <Button className='c-hKssGC-hYGuEl-variant-primary' size='sm'>
+    Small
+  </Button>
 </section>
 
 ```js
@@ -50,7 +56,7 @@ import Button from '@comfortdelgro/react-compass/button'
 ### Button with ripple effect:
 
 <section className={styles.avatarShowcaseContainer}>
-  <Button variant='primary' ripple>
+  <Button className='c-hKssGC-hYGuEl-variant-primary' variant='primary' ripple>
     Primary
   </Button>
   <Button variant='secondary' ripple>
@@ -84,7 +90,9 @@ import Button from '@comfortdelgro/react-compass/button'
 ### Button Variants:
 
 <section className={styles.avatarShowcaseContainer}>
-  <Button variant='primary'>Primary</Button>
+  <Button className='c-hKssGC-hYGuEl-variant-primary' variant='primary'>
+    Primary
+  </Button>
   <Button variant='secondary'>Secondary</Button>
   <Button variant='danger'>Danger</Button>
   <Button variant='ghost'>Ghost</Button>
@@ -286,8 +294,8 @@ With css prop, you can basically do anything that css can do.
 | Name       | Type                                            | Default | Description |
 | :--------- | :---------------------------------------------- | :------ | :---------- |
 | color      | `info` \| `success` \| `warning` \| `danger`    |         |             |
-| rightIcon  | `ReactNode`\|`false`\| `true`                    | —       |             |
-| leftIcon   | `ReactNode`\|`false`\| `true`                    |         |             |
+| rightIcon  | `ReactNode`\|`false`\| `true`                   | —       |             |
+| leftIcon   | `ReactNode`\|`false`\| `true`                   |         |             |
 | variant    | `primary` \| `secondary` \| `danger` \| `ghost` |         |             |
 | css        | `CSS`                                           | —       |             |
 | isDisabled |                                                 |         |             |
