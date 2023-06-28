@@ -26,7 +26,6 @@ const DataGridCell = React.forwardRef<HTMLTableCellElement, DataGridCellProps>(
       column: {id},
     } = cell
 
-    // @ts-ignore
     const isCellEditable = cell.column.columnDef.meta?.editable
     return (
       <StyledDataGridCell
@@ -40,7 +39,12 @@ const DataGridCell = React.forwardRef<HTMLTableCellElement, DataGridCellProps>(
         }}
       >
         {isCellEditable ? (
-          <EditableCell getValue={getValue} row={index} column={id} />
+          <EditableCell
+            cell={cell}
+            getValue={getValue}
+            row={index}
+            column={id}
+          />
         ) : cell.getIsGrouped() ? (
           // If it's a grouped cell, add an expander and row count
           <>

@@ -14,7 +14,7 @@ import {makeData, Person} from './makeData'
 
 export const FullFeatured: React.FC = () => {
   const [page, setPage] = useState(1)
-  const [data] = useState(() => makeData(10))
+  const [data, setData] = useState<Person[]>(() => makeData(10))
   const options: OptionType<Person> = {
     enableSorting: true,
     enableMultiSort: true,
@@ -86,6 +86,19 @@ export const FullFeatured: React.FC = () => {
             sortDescriptor: 'asc',
             meta: {
               editable: true,
+              updateData: (rowIndex: number, id: string, value: any) => {
+                setData((old: Person[]) =>
+                  old.map((row, index) => {
+                    if (index === rowIndex) {
+                      return {
+                        ...old[rowIndex],
+                        [id]: value,
+                      } as Person
+                    }
+                    return row
+                  }),
+                )
+              },
             },
           },
           {

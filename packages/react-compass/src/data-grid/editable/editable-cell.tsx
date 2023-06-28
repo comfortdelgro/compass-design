@@ -1,9 +1,11 @@
+import {Cell} from '@tanstack/react-table'
 import React, {SetStateAction, useEffect} from 'react'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import {StyledEditableCell} from './editable-cell.styles'
 
 interface CellProps {
   getValue: () => any
+  cell: Cell<any, unknown>
   row: number
   column: string
 }
@@ -14,12 +16,12 @@ export type EditableCellProps = CellProps &
 export const EditableCell = React.forwardRef<
   HTMLTableCellElement,
   EditableCellProps
->(({getValue}: EditableCellProps) => {
+>(({getValue, cell, row, column}: EditableCellProps) => {
   const initialValue = getValue()
   const inputRef = useDOMRef<HTMLInputElement>(null)
   const [editing, setEditing] = React.useState(false)
   const [value, setValue] = React.useState(initialValue)
-
+  const tableMeta = cell.column.columnDef.meta
   useEffect(() => {
     setValue(initialValue)
   }, [initialValue])
@@ -31,13 +33,13 @@ export const EditableCell = React.forwardRef<
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       setEditing(false)
-      // tableMeta?.updateData(row.index, column.id, value)
+      tableMeta?.updateData?.(row, column, value)
     }
   }
 
   const handleBlur = () => {
     setEditing(false)
-    // tableMeta?.updateData(row.index, column.id, value)
+    tableMeta?.updateData?.(row, column, value)
   }
 
   const handleDoubleClick = () => {
