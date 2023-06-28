@@ -23,6 +23,7 @@ import {
 } from './dropdown-new.styles'
 
 interface Props extends StyledComponentProps {
+  isMultiple?: boolean
   defaultOpen?: boolean
   selectedKey?: React.Key
   defaultSelectedKey?: React.Key
@@ -74,9 +75,11 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     type = 'select',
     icon = <Icon />,
     placeholder,
-    isErrored,
-    isRequired,
-    isReadOnly,
+    isMultiple = false,
+    isErrored = false,
+    isRequired = false,
+    isReadOnly = false,
+    isLoading = false,
     helperText,
     selectedKey,
     errorMessage,
@@ -84,7 +87,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     disabledKeys = [],
     defaultSelectedKey,
     defaultOpen = false,
-    isLoading = false,
     isDisabled = false,
     shouldDeselect = false,
     allowsCustomValue = false,
@@ -246,8 +248,18 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     }
   }, [type, open])
 
-  const handleDropdownItemClick = (key: React.Key) => {
-    console.log('handleDropdownItemClick: ', key)
+  const handleDropdownItemClick = (key: string) => {
+    setSelectedKeys([key])
+    setOpen(false)
+    // setSelectedKeys((oldSelectedKeys) => {
+    //   const currentIndex = oldSelectedKeys.findIndex((item) => item === key)
+    //   if (currentIndex === -1) {
+    //     oldSelectedKeys.push(key)
+    //   } else {
+    //     oldSelectedKeys.splice(currentIndex, 1)
+    //   }
+    //   return oldSelectedKeys
+    // })
   }
 
   return (

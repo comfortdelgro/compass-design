@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext, useMemo} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {DropdownContext} from './dropdown-new-context'
 import {StyledOption} from './dropdown-new.styles'
@@ -21,13 +21,22 @@ const DropdownNewItem: React.FC<DropdownItemProps> = (
 ) => {
   const {children, value} = props
 
-  const {onItemClick} = useContext(DropdownContext)
+  const {selectedKeys, onItemClick} = useContext(DropdownContext)
+
+  const isSeleted = useMemo(
+    () => selectedKeys.includes(value.toString()),
+    [selectedKeys, value],
+  )
 
   const handleItemClick = () => {
     onItemClick(value.toString())
   }
 
-  return <StyledOption onClick={handleItemClick}>{children}</StyledOption>
+  return (
+    <StyledOption isSelected={isSeleted} onClick={handleItemClick}>
+      {children}
+    </StyledOption>
+  )
 }
 
 export default DropdownNewItem
