@@ -19,7 +19,7 @@ const SubService1 = () => {
     <>
       <Button
         variant='primary'
-        css={{width: 'fit-content', color: 'black'}}
+        css={{width: 'fit-content'}}
         onClick={() =>
           toast.show({
             color: 'informative',
@@ -31,7 +31,7 @@ const SubService1 = () => {
       </Button>
       <Button
         variant='primary'
-        css={{width: 'fit-content', color: 'black'}}
+        css={{width: 'fit-content'}}
         onClick={() =>
           toast.show({
             title: 'Lorem ipsum dolor, sit amet consectetur',
@@ -50,7 +50,7 @@ const SubService2 = () => {
     <>
       <Button
         variant='primary'
-        css={{width: 'fit-content', color: 'black'}}
+        css={{width: 'fit-content'}}
         onClick={() =>
           toast.show({
             autoClose: false,
@@ -59,10 +59,10 @@ const SubService2 = () => {
             title: 'My Title',
             actions: (
               <>
-                <Button css={{width: 'fit-content', color: 'black'}}>
+                <Button css={{width: 'fit-content'}}>
                   Take action
                 </Button>
-                <Button css={{width: 'fit-content', color: 'black'}}>
+                <Button css={{width: 'fit-content'}}>
                   Take action
                 </Button>
               </>
@@ -75,7 +75,7 @@ const SubService2 = () => {
       </Button>
       <Button
         variant='primary'
-        css={{width: 'fit-content', color: 'black'}}
+        css={{width: 'fit-content'}}
         onClick={() => toast.clearAll()}
       >
         Clear all toasts
@@ -103,7 +103,7 @@ const ToastTestComponent: React.FC<props> = ({
     <>
       <Button
         className='c-hKssGC-hYGuEl-variant-primary'
-        css={{width: '8rem', color: 'black'}}
+        css={{width: '8rem'}}
         onPress={() => setIsOpen(true)}
       >
         Open toast
@@ -126,13 +126,11 @@ const ToastTestComponent: React.FC<props> = ({
         <Toast.Actions>
           <Button
             className='c-hKssGC-hYGuEl-variant-primary'
-            css={{color: 'black'}}
           >
             Take action
           </Button>
           <Button
             className='c-hKssGC-hYGuEl-variant-primary'
-            css={{color: 'black'}}
           >
             Take action
           </Button>
