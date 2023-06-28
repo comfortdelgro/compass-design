@@ -21,6 +21,8 @@ const DataGridCell = React.forwardRef<HTMLTableCellElement, DataGridCellProps>(
       row: {index},
       column: {id},
     } = cell
+
+    // @ts-ignore
     const isCellEditable = cell.column.columnDef.meta?.editable
     return (
       <StyledDataGridCell
