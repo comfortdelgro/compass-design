@@ -69,7 +69,7 @@ function useColorMode({
         body?.classList.remove(darkThemeCustom?.className)
       body?.classList.remove(darkTheme.className)
     } else {
-      body?.classList.add(darkTheme.className)
+      body?.classList.add(darkTheme.className) //
       darkThemeCustom?.className &&
         body?.classList.add(darkThemeCustom?.className)
       lightThemeCustom?.className &&
