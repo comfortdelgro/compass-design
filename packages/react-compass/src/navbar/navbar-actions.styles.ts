@@ -4,17 +4,12 @@ export const StyledNavbarActions = styled('div', {
   display: 'flex',
   alignItems: 'center',
 
-  '& .default-navbar-actions svg': {
-    margin: '0 $4',
-  },
-
-  '& .default-navbar-actions > div': {
-    margin: '0 $4',
-  },
-
   '& .default-navbar-actions': {
     display: 'flex',
     alignItems: 'center',
+    flexDirection: 'row',
+    gap: '$8',
+    margin: '0 $4',
   },
 
   '& .has-alternative': {
