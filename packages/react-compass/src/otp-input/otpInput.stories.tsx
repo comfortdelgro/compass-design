@@ -15,6 +15,14 @@ export const Variants: React.FC = () => {
         onChangeOTP={(otp) => console.log('Number OTP: ', otp)}
       />
 
+      <h2>6 Numbers</h2>
+      <OTPInput
+        length={6}
+        isNumberInput
+        autoFocus
+        onChangeOTP={(otp) => console.log('Number OTP: ', otp)}
+      />
+
       <h2>String OTP</h2>
       <OTPInput
         autoFocus
