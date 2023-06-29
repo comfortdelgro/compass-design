@@ -7,7 +7,7 @@ import BugIcon from '@comfortdelgro/compass-icons/react/bug'
 import QuestionIcon from '@comfortdelgro/compass-icons/react/outlined/question-outlined'
 import NotificationIcon from '@comfortdelgro/compass-icons/react/filled/notification-filled'
 import OrgChatIcon from '@comfortdelgro/compass-icons/react/duotone/org-chart-duotone'
-import DocumentIcon from '@comfortdelgro/compass-icons/react/document'
+import MenuIcon from '@comfortdelgro/compass-icons/react/menu'
 import Workbench from '@comfortdelgro/compass-icons/react/colorful/workbench'
 
 # Navbar
@@ -141,7 +141,7 @@ Navbar Separator helps separate the left side and the right side of the navbar
 
 ### Actions
 
-Navbar Actions helps organize action buttons. The prop `alternativeElement` provides the alternate action button when the screen size is small
+Navbar Actions helps organize action buttons. The prop `alternativeElement` provides the alternate action button when the screen size is small (less than 768px)
 
 <section className={styles.componentShowcaseContainer}>
   <Navbar>
@@ -158,7 +158,7 @@ Navbar Actions helps organize action buttons. The prop `alternativeElement` prov
       </a>
     </Navbar.Links>
     <Navbar.Separator></Navbar.Separator>
-    <Navbar.Actions alternativeElement={<DocumentIcon color='white' />}>
+    <Navbar.Actions alternativeElement={<MenuIcon color='white' />}>
       <QuestionIcon color='white'></QuestionIcon>
       <NotificationIcon color='white'></NotificationIcon>
       <OrgChatIcon color='white'></OrgChatIcon>
@@ -182,7 +182,7 @@ Navbar Actions helps organize action buttons. The prop `alternativeElement` prov
     </a>
   </Navbar.Links>
   <Navbar.Separator></Navbar.Separator>
-  <Navbar.Actions alternativeElement={<DocumentIcon color='white' />}>
+  <Navbar.Actions alternativeElement={<MenuIcon color='white' />}>
     <QuestionIcon color='white'></QuestionIcon>
     <NotificationIcon color='white'></NotificationIcon>
     <OrgChatIcon color='white'></OrgChatIcon>
