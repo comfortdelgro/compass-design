@@ -78,8 +78,15 @@ export const MiniPageHeader = ({
         <PageHeader.Title>Title</PageHeader.Title>
         <PageHeader.Subtitle>This is subtitle</PageHeader.Subtitle>
         <Badge label='Processing' variant='outline' />
-        <Button css={{marginLeft: 'auto'}}>Call to action</Button>
-        <Button>Call to action</Button>
+        <Button
+          className='c-hKssGC-hYGuEl-variant-primary'
+          css={{marginLeft: 'auto'}}
+        >
+          Call to action
+        </Button>
+        <Button className='c-hKssGC-hYGuEl-variant-primary'>
+          Call to action
+        </Button>
       </PageHeader.Header>
     </PageHeader>
   )
