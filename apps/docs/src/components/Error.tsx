@@ -16,6 +16,7 @@ export const Primary = () => {
       </Error.Description>
       <Error.Action>
         <Button
+          className='c-hKssGC-hYGuEl-variant-primary'
           onPress={() => {
             console.log('click ok')
           }}
@@ -40,6 +41,7 @@ export const Secondary = () => {
       </Error.Description>
       <Error.Action>
         <Button
+          className='c-hKssGC-hYGuEl-variant-primary'
           onPress={() => {
             console.log('click ok')
           }}
@@ -64,6 +66,7 @@ export const Css = () => {
       </Error.Description>
       <Error.Action>
         <Button
+          className='c-hKssGC-hYGuEl-variant-primary'
           onPress={() => {
             console.log('click ok')
           }}
