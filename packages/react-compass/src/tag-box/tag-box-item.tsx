@@ -10,6 +10,7 @@ interface Props extends StyledComponentProps {
   value: string
   id: string | number
   wrapperRef: React.RefObject<HTMLDivElement>
+  calculateRemainingItems: () => void
   onRemove: ((index: string | number) => void) | undefined
   onEdit: ((index: string | number, value: string) => void) | undefined
 }
@@ -28,6 +29,7 @@ const TagBoxItem = React.forwardRef<HTMLDivElement, BannerProps>(
       wrapperRef,
       onRemove,
       onEdit,
+      calculateRemainingItems,
       ...delegated
     } = props
     const [editable, setEditable] = React.useState(false)
@@ -66,6 +68,7 @@ const TagBoxItem = React.forwardRef<HTMLDivElement, BannerProps>(
     const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const string = e.target.value
       setInputValue(string)
+      calculateRemainingItems()
       if (string !== '') {
         caculateWidth(string, (w: number) => {
           e.target.focus()

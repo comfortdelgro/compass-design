@@ -41,6 +41,7 @@ export const StyledIcon = styled('div', {
   width: '$6',
   height: '$6',
   display: 'flex',
+  flexShrink: 0,
   justifyContent: 'center',
   alignItems: 'center',
   userSelect: 'none',
@@ -53,11 +54,21 @@ export const StyledIcon = styled('div', {
 export const StyledBox = styled('div', {
   flexGrow: 1,
   backgroundColor: '$background',
-  border: '1px solid #EDEBE9',
+  borderWidth: '1px',
+  borderStyle: 'solid',
+  borderColor: '$divider',
   padding: '$2 $4',
   borderRadius: '$md',
   display: 'flex',
   gap: '$4',
+
+  '&:focus-within': {
+    borderColor: '$cdgBlue',
+    '.left-icon': {
+      color: '$cdgBlue',
+    },
+  },
+
   variants: {
     collaspable: {
       true: {
@@ -70,7 +81,10 @@ export const StyledBox = styled('div', {
     isErrored: {
       true: {
         borderColor: '$danger',
-        borderWidth: 1,
+
+        '&:focus-within': {
+          borderColor: '$danger',
+        },
       },
     },
   },
@@ -88,8 +102,8 @@ export const StyledBoxContent = styled('div', {
     border: 'none',
     background: 'transparent',
     outline: 'none',
-    width: '25%',
-    height: '$7_5',
+    width: 4,
+    height: '$6_5',
     padding: 0,
   },
 })
