@@ -1,17 +1,32 @@
-import {createContext} from 'react'
+import {createContext, ReactNode} from 'react'
+
+export interface SelectedItemDropdown {
+  value: string
+  displayValue: ReactNode
+}
 
 export interface DropdownContextType {
-  onItemClick: (key: string) => void
-  selectedKeys: string[]
-  setSelectedKeys: React.Dispatch<React.SetStateAction<string[]>>
+  open: boolean
+  searchValue: string
+  disabledKeys?: Array<string | number>
+  selectedKeys: SelectedItemDropdown[]
+  selectedKey?: string | number
+  defaultSelectedKey?: string | number
+  setSelectedKeys: React.Dispatch<React.SetStateAction<SelectedItemDropdown[]>>
+  onItemClick: (item: SelectedItemDropdown) => void
 }
 
 export const DropdownContext = createContext<DropdownContextType>({
-  onItemClick: () => {
+  open: false,
+  searchValue: '',
+  selectedKeys: [],
+  disabledKeys: [],
+  selectedKey: '',
+  defaultSelectedKey: '',
+  setSelectedKeys: () => {
     //
   },
-  selectedKeys: [],
-  setSelectedKeys: () => {
+  onItemClick: () => {
     //
   },
 })

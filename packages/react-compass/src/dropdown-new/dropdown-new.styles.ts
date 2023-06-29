@@ -1,14 +1,36 @@
 import {styled} from '../theme'
+import {keyframes} from '../theme/stitches.config'
 import {VariantProps} from '../utils/stitches.types'
 
+const spin = keyframes({
+  '0%': {
+    transform: 'rotate(0deg)',
+  },
+  '100%': {
+    transform: 'rotate(360deg)',
+  },
+})
+
 export const StyledDropdownWrapper = styled('div', {
+  width: '100%',
+  label: {
+    fontSize: '$label1',
+    fontWeight: '$semibold',
+    marginBottom: '$2',
+    display: 'inline-block',
+    width: '100%',
+    span: {
+      marginLeft: '$1',
+      color: '$danger',
+    },
+  },
   '&.cdg-dropdown-opening .cdg-dropdown-input svg': {
     transform: 'rotate(180deg)',
     transition: 'transform 0.3s linear',
   },
 })
 
-export const StyledDropdownList = styled('div', {})
+export const StyledDropdownList = styled('ul', {})
 
 export const StyledPopover = styled('div', {
   margin: 0,
@@ -22,7 +44,6 @@ export const StyledPopover = styled('div', {
     '0px 0.6px 1.8px rgba(0, 0, 0, 0.1), 0px 3.2px 7.2px rgba(0, 0, 0, 0.13)',
   ul: {
     overscrollBehavior: 'contain',
-    maxHeight: '$64',
     overflowY: 'auto',
     listStyle: 'none',
     marginBlockStart: 0,
@@ -324,9 +345,9 @@ export const StyledOption = styled('li', {
     },
     isDisabled: {
       true: {
-        // '&:hover': {
-        //   backgroundColor: 'transparent',
-        // },
+        '&:hover': {
+          backgroundColor: 'transparent',
+        },
         opacity: 0.4,
         cursor: 'not-allowed',
       },
@@ -346,8 +367,66 @@ export const StyledOption = styled('li', {
   // ],
 })
 
+export const StyledHelperText = styled('div', {
+  fontSize: '$label2',
+  fontWeight: '$medium',
+  transition: '$default',
+  marginTop: '$1',
+  color: '$gray70',
+
+  variants: {
+    error: {
+      true: {
+        color: '$danger',
+      },
+      false: {
+        color: '$gray70',
+      },
+    },
+  },
+})
+
+export const StyledEmptyData = styled('div', {
+  fontSize: '$label1',
+  fontWeight: '$medium',
+  color: '$disabledText',
+  padding: '$2 $4',
+})
+
 export const StyledIcon = styled('svg', {
   color: '$primaryText',
+})
+
+export const StyledLoading = styled('div', {
+  display: 'flex',
+  justifyContent: 'center',
+  margin: '$4 auto',
+  '.spinner': {
+    display: 'inline-block',
+    position: 'relative',
+    width: '$4',
+    height: '$4',
+    div: {
+      boxSizing: 'border-box',
+      display: 'block',
+      position: 'absolute',
+      width: '$4',
+      height: '$4',
+      border: '2px solid $divider',
+      borderRadius: '50%',
+      animation: `${spin} 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite`,
+      borderColor: '$divider transparent transparent transparent',
+    },
+    '.spinner-1': {
+      animationDelay: '-0.45s',
+    },
+    '.spinner-2': {
+      animationDelay: '-0.3s',
+    },
+    '.spinner-3': {
+      animationDelay: '-0.15s',
+    },
+  },
 })
 
 export type DropdownVariantProps = VariantProps<typeof StyledDropdownWrapper>

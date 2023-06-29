@@ -370,6 +370,10 @@ export const ComboBox: React.FC = () => {
         <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
         <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
         <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+        <Dropdown.Item key='dog1'>Dog</Dropdown.Item>
+        <Dropdown.Item key='aardvark1'>Aardvark</Dropdown.Item>
+        <Dropdown.Item key='kangaroo1'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item key='snake1'>Snake</Dropdown.Item>
       </Dropdown.ComboBox>
 
       <h3>Allow deselect with double click</h3>

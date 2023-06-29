@@ -1,8 +1,15 @@
-import React from 'react'
+import React, {useContext, useMemo} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
-import {StyledDropdownList} from './dropdown-new.styles'
+import {DropdownContext} from './dropdown-new-context'
+import {
+  StyledDropdownList,
+  StyledEmptyData,
+  StyledLoading,
+} from './dropdown-new.styles'
+import {textContent} from './utils'
 
 interface Props extends StyledComponentProps {
+  isLoading?: boolean
   children?: React.ReactNode
 }
 
@@ -11,9 +18,42 @@ export type DropdownItemListProps = Props
 const DropdownNewList: React.FC<DropdownItemListProps> = (
   props: DropdownItemListProps,
 ) => {
-  const {children} = props
+  const {children, isLoading, css = {}} = props
 
-  return <StyledDropdownList>{children}</StyledDropdownList>
+  const {searchValue} = useContext(DropdownContext)
+
+  const displayedItemsCount = useMemo(() => {
+    let currentCount = 0
+    React.Children.map(children, (child) => {
+      if (
+        textContent(child as React.ReactElement)
+          .toLocaleLowerCase()
+          .includes(searchValue.toLocaleLowerCase())
+      ) {
+        currentCount++
+      }
+    })
+    return currentCount
+  }, [children, searchValue])
+
+  return (
+    <StyledDropdownList css={css}>
+      {isLoading ? (
+        <StyledLoading>
+          <div className='spinner'>
+            <div className='spinner-1' />
+            <div className='spinner-2' />
+            <div className='spinner-3' />
+            <div />
+          </div>
+        </StyledLoading>
+      ) : displayedItemsCount === 0 ? (
+        <StyledEmptyData>No data</StyledEmptyData>
+      ) : (
+        children
+      )}
+    </StyledDropdownList>
+  )
 }
 
 export default DropdownNewList

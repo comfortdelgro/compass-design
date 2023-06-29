@@ -6,10 +6,10 @@ import {
   useFloating,
   useInteractions,
 } from '@floating-ui/react'
-import {isEmpty} from 'lodash'
-import React, {useCallback, useEffect, useMemo, useRef} from 'react'
+import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
-import {DropdownContext} from './dropdown-new-context'
+import {useDOMRef} from '../utils/use-dom-ref'
+import {DropdownContext, SelectedItemDropdown} from './dropdown-new-context'
 import DropdownNewItem from './dropdown-new-item'
 import DropdownNewList from './dropdown-new-list'
 import {
@@ -17,16 +17,18 @@ import {
   StyledComboBox,
   StyledDropdownWrapper,
   StyledFlag,
+  StyledHelperText,
   StyledIcon,
   StyledPopover,
   StyledSelect,
 } from './dropdown-new.styles'
+import {textContent} from './utils'
 
 interface Props extends StyledComponentProps {
   isMultiple?: boolean
   defaultOpen?: boolean
-  selectedKey?: React.Key
-  defaultSelectedKey?: React.Key
+  selectedKey?: string | number
+  defaultSelectedKey?: string | number
   shouldDeselect?: boolean
   allowsCustomValue?: boolean
   type?: 'select' | 'combobox' | 'flag'
@@ -43,14 +45,14 @@ interface Props extends StyledComponentProps {
   placeholder?: string
   errorMessage?: string
   numberOfRows?: number
-  disabledKeys?: React.Key[]
+  disabledKeys?: Array<string | number>
   children?: React.ReactNode
   description?: React.ReactNode
   onBlur?: () => void
   onFocus?: () => void
   onLoadMore?: () => void
   onOpenChange?: (isOpen: boolean) => void
-  onSelectionChange?: (key: React.Key) => void
+  onSelectionChange?: (key: string | number) => void
 }
 
 export const Icon = () => (
@@ -66,11 +68,13 @@ export type DropdownProps = Props &
   DropdownVariantProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
+const ITEM_HEIGHT = 32
+
 const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   // ====================================== Define ======================================
   const {
     id = `cdg-element-${Math.random().toString(36).substring(2)}`,
-    css,
+    css = {},
     children,
     type = 'select',
     icon = <Icon />,
@@ -81,25 +85,30 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     isReadOnly = false,
     isLoading = false,
     helperText,
-    selectedKey,
+    selectedKey = '',
     errorMessage,
     numberOfRows,
     disabledKeys = [],
-    defaultSelectedKey,
+    defaultSelectedKey = '',
     defaultOpen = false,
     isDisabled = false,
     shouldDeselect = false,
     allowsCustomValue = false,
     prefix = null,
+    onSelectionChange,
+    onFocus,
+    onBlur,
     ...delegated
   } = props
 
   const [open, setOpen] = React.useState<boolean>(defaultOpen)
-  const [currentKey, setCurrentKey] = React.useState<React.Key | undefined>(
-    selectedKey || defaultSelectedKey,
-  )
-  const [selectedKeys, setSelectedKeys] = React.useState<string[]>([])
+  const [selectedKeys, setSelectedKeys] = React.useState<
+    SelectedItemDropdown[]
+  >([])
+  const [searchValue, setSearchValue] = useState<string>('')
 
+  // Select ref
+  const selectRef = useDOMRef<HTMLElement>(ref)
   const buttonSelectRef = useRef<HTMLButtonElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -132,7 +141,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     }
   }, [open, handleKeyDown])
 
-  const handleClickIcon = useCallback(() => {
+  const handleDropdownToggle = useCallback(() => {
     setOpen((v) => !v)
     inputRef.current?.focus()
   }, [])
@@ -141,14 +150,35 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     setOpen(true)
   }, [])
 
+  const handleInputChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setOpen(true)
+      setSearchValue(event.target.value ?? '')
+    },
+    [],
+  )
+
+  useEffect(() => {
+    if (!open && type === 'combobox' && inputRef.current) {
+      if (selectedKeys && selectedKeys.length > 0) {
+        inputRef.current.value =
+          textContent(selectedKeys[0]?.displayValue as React.ReactElement) ?? ''
+      } else {
+        inputRef.current.value = ''
+      }
+      setSearchValue('')
+    }
+  }, [open, selectedKeys])
+
   const headerElement = useMemo(() => {
     switch (type) {
       case 'select':
         return (
           <StyledSelect
             ref={refs.setReference}
-            isEmpty={isEmpty(currentKey)}
+            isEmpty={selectedKeys.length === 0}
             className='cdg-dropdown-input'
+            isErrored={!!isErrored}
             {...getReferenceProps}
           >
             <button
@@ -156,10 +186,16 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
               type='button'
               ref={buttonSelectRef}
               disabled={isDisabled}
-              onClick={handleClickIcon}
+              onClick={handleDropdownToggle}
+              onBlur={onBlur}
+              onFocus={onFocus}
             >
               {prefix}
-              <span>{placeholder}</span>
+              <span>
+                {selectedKeys && selectedKeys.length
+                  ? selectedKeys[0]?.displayValue ?? placeholder
+                  : placeholder}
+              </span>
               {icon}
             </button>
           </StyledSelect>
@@ -167,25 +203,28 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       case 'combobox':
         return (
           <StyledComboBox
-            isEmpty={isEmpty(currentKey)}
+            isEmpty={selectedKeys.length === 0}
             ref={refs.setReference}
             className='cdg-dropdown-input'
+            isErrored={!!isErrored}
             {...getReferenceProps}
           >
             <input
               id={id}
               ref={inputRef}
+              readOnly={isReadOnly}
               disabled={isDisabled}
               placeholder={placeholder}
-              //   onChange={onSearch}
-              //   onBlur={onBlur}
-              onClick={handleClickIcon}
+              onChange={handleInputChange}
+              onBlur={onBlur}
+              onFocus={onFocus}
+              onClick={handleDropdownToggle}
             />
             <button
               type='button'
               tabIndex={-1}
               disabled={isDisabled}
-              onClick={handleClickIcon}
+              onClick={handleDropdownToggle}
             >
               {icon}
             </button>
@@ -195,8 +234,9 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         return (
           <StyledFlag
             ref={refs.setReference}
-            isEmpty={isEmpty(currentKey)}
+            isEmpty={selectedKeys.length === 0}
             className='cdg-dropdown-input'
+            isErrored={!!isErrored}
             {...getReferenceProps}
           >
             {/* {choosenFlag && (
@@ -207,18 +247,18 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
             <input
               id={id}
               ref={inputRef}
+              readOnly={isReadOnly}
               disabled={isDisabled}
               placeholder={placeholder}
-              //   onChange={onSearch}
-              //   onBlur={onBlur}
-              //   onFocus={onFocus}
-              onClick={handleClickIcon}
+              onChange={handleInputChange}
+              onBlur={onBlur}
+              onFocus={onFocus}
+              onClick={handleDropdownToggle}
             />
             <button
-              //   ref={buttonRef}
               tabIndex={-1}
-              //   disabled={isDisabled}
-              onClick={handleClickIcon}
+              disabled={isDisabled}
+              onClick={handleDropdownToggle}
               type='button'
             >
               {icon}
@@ -226,15 +266,23 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           </StyledFlag>
         )
       default:
-        return (
-          <StyledSelect ref={refs.setReference} {...getReferenceProps}>
-            <button ref={buttonSelectRef} onClick={handleClickIcon}>
-              Test
-            </button>
-          </StyledSelect>
-        )
+        return null
     }
-  }, [open, type, id, handleClickIcon, handleInputFocus])
+  }, [
+    open,
+    type,
+    id,
+    placeholder,
+    selectedKeys,
+    isErrored,
+    isDisabled,
+    isReadOnly,
+    onBlur,
+    onFocus,
+    handleDropdownToggle,
+    handleInputFocus,
+    handleInputChange,
+  ])
 
   const triggetWidth = useMemo(() => {
     switch (type) {
@@ -248,24 +296,75 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     }
   }, [type, open])
 
-  const handleDropdownItemClick = (key: string) => {
-    setSelectedKeys([key])
+  const handleDropdownItemClick = (selectedItem: SelectedItemDropdown) => {
+    if (isReadOnly) {
+      return
+    }
     setOpen(false)
-    // setSelectedKeys((oldSelectedKeys) => {
-    //   const currentIndex = oldSelectedKeys.findIndex((item) => item === key)
-    //   if (currentIndex === -1) {
-    //     oldSelectedKeys.push(key)
-    //   } else {
-    //     oldSelectedKeys.splice(currentIndex, 1)
-    //   }
-    //   return oldSelectedKeys
-    // })
+    if (
+      shouldDeselect &&
+      selectedKeys.findIndex((item) => item.value === selectedItem.value) !== -1
+    ) {
+      setSelectedKeys([])
+      onSelectionChange?.('')
+      return
+    }
+    if (!selectedItem.value) {
+      setSelectedKeys([])
+      onSelectionChange?.('')
+      return
+    }
+    if (isMultiple) {
+      setSelectedKeys((oldSelectedKeys) => {
+        const currentIndex = oldSelectedKeys.findIndex(
+          (item) => item.value === selectedItem.value,
+        )
+        if (currentIndex === -1) {
+          oldSelectedKeys.push(selectedItem)
+        } else {
+          oldSelectedKeys.splice(currentIndex, 1)
+        }
+        return oldSelectedKeys
+      })
+    } else {
+      if (
+        selectedKeys.findIndex((item) => item.value === selectedItem.value) ===
+        -1
+      ) {
+        onSelectionChange?.(selectedItem.value)
+      }
+      setSelectedKeys([selectedItem])
+      if (type === 'combobox') {
+        if (inputRef.current) {
+          inputRef.current.value =
+            textContent(selectedItem.displayValue as React.ReactElement) ?? ''
+        }
+        setSearchValue(
+          textContent(selectedItem.displayValue as React.ReactElement) ?? '',
+        )
+      }
+    }
   }
 
   return (
-    <StyledDropdownWrapper className={`${open ? 'cdg-dropdown-opening' : ''}`}>
+    <StyledDropdownWrapper
+      className={`${open ? 'cdg-dropdown-opening' : ''}`}
+      css={css}
+      {...delegated}
+    >
+      {props.label && (
+        <label htmlFor={id}>
+          {props.label}
+          {isRequired && <span>*</span>}
+        </label>
+      )}
       <DropdownContext.Provider
         value={{
+          open,
+          selectedKey,
+          defaultSelectedKey,
+          disabledKeys,
+          searchValue,
           selectedKeys,
           setSelectedKeys,
           onItemClick: handleDropdownItemClick,
@@ -289,11 +388,24 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
                 width: triggetWidth,
               }}
             >
-              <DropdownNewList>{children}</DropdownNewList>
+              <DropdownNewList
+                isLoading={isLoading}
+                css={{
+                  maxHeight: numberOfRows
+                    ? `${numberOfRows * ITEM_HEIGHT}px`
+                    : '16rem',
+                }}
+              >
+                {children}
+              </DropdownNewList>
             </StyledPopover>
           </div>
         )}
       </DropdownContext.Provider>
+      {isErrored && errorMessage && (
+        <StyledHelperText error={!!isErrored}>{errorMessage}</StyledHelperText>
+      )}
+      {helperText && <StyledHelperText>{helperText}</StyledHelperText>}
     </StyledDropdownWrapper>
   )
 })
