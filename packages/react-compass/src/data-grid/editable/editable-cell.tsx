@@ -1,4 +1,4 @@
-import {Cell} from '@tanstack/react-table'
+import {Cell, ColumnMeta, RowData} from '@tanstack/react-table'
 import React, {SetStateAction, useEffect} from 'react'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import {StyledEditableCell} from './editable-cell.styles'
@@ -8,6 +8,13 @@ interface CellProps {
   cell: Cell<any, unknown>
   row: number
   column: string
+}
+
+export interface CellMetaProps<TData extends RowData, TValue>
+  extends ColumnMeta<TData, TValue> {
+  editable?: boolean
+  template?: React.ReactNode
+  updateData?: (index: number, id: string, value: any) => void
 }
 
 export type EditableCellProps = CellProps &
@@ -21,7 +28,7 @@ export const EditableCell = React.forwardRef<
   const inputRef = useDOMRef<HTMLInputElement>(null)
   const [editing, setEditing] = React.useState(false)
   const [value, setValue] = React.useState(initialValue)
-  const tableMeta = cell.column.columnDef.meta
+  const tableMeta = cell.column.columnDef.meta as CellMetaProps<any, unknown>
   useEffect(() => {
     setValue(initialValue)
   }, [initialValue])
@@ -58,6 +65,7 @@ export const EditableCell = React.forwardRef<
     <StyledEditableCell onClick={handleDoubleClick}>
       {editing ? (
         <input
+          aria-label='cell-input'
           ref={inputRef}
           type='text'
           value={value}
