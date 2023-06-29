@@ -32,6 +32,13 @@ export function ControlledDatePickers() {
         </span>
       </p>
       <DatePicker
+        calendarCSS={{
+          '& .calendar-footer button:nth-child(2)': {
+            background: 'var(--colors-cdgBlue)',
+            color: 'var(--colors-whiteText)',
+            borderColor: 'var(--colors-cdgBlue)',
+          },
+        }}
         label='Date'
         value={date}
         defaultValue={today(getLocalTimeZone())}
@@ -46,8 +53,178 @@ export function ValidatedDatePickers() {
 
   return (
     <DatePicker
+      calendarCSS={{
+        '& .calendar-footer button:nth-child(2)': {
+          background: 'var(--colors-cdgBlue)',
+          color: 'var(--colors-whiteText)',
+          borderColor: 'var(--colors-cdgBlue)',
+        },
+      }}
       label='Date'
       isDateUnavailable={(date) => isWeekend(date, locale)}
+    />
+  )
+}
+
+export function GranularityDateRangePicker(props: any) {
+  if (props.type !== 'range')
+    return (
+      <DatePicker
+        calendarCSS={{
+          '& .calendar-footer button:nth-child(2)': {
+            background: 'var(--colors-cdgBlue)',
+            color: 'var(--colors-whiteText)',
+            borderColor: 'var(--colors-cdgBlue)',
+          },
+        }}
+        label='Date'
+        granularity='second'
+      />
+    )
+  return (
+    <DateRangePicker
+      calendarCSS={{
+        '& .calendar-footer button:nth-child(2)': {
+          background: 'var(--colors-cdgBlue)',
+          color: 'var(--colors-whiteText)',
+          borderColor: 'var(--colors-cdgBlue)',
+        },
+      }}
+      granularity='second'
+    />
+  )
+}
+
+export function LabelingDateRangePicker(props: any) {
+  if (props.type !== 'range')
+    return (
+      <>
+        <DatePicker
+          calendarCSS={{
+            '& .calendar-footer button:nth-child(2)': {
+              background: 'var(--colors-cdgBlue)',
+              color: 'var(--colors-whiteText)',
+              borderColor: 'var(--colors-cdgBlue)',
+            },
+          }}
+          label='Date'
+        />
+        <DatePicker
+          calendarCSS={{
+            '& .calendar-footer button:nth-child(2)': {
+              background: 'var(--colors-cdgBlue)',
+              color: 'var(--colors-whiteText)',
+              borderColor: 'var(--colors-cdgBlue)',
+            },
+          }}
+          label='Date'
+          isRequired
+          necessityIndicator='icon'
+        />
+        <DatePicker
+          calendarCSS={{
+            '& .calendar-footer button:nth-child(2)': {
+              background: 'var(--colors-cdgBlue)',
+              color: 'var(--colors-whiteText)',
+              borderColor: 'var(--colors-cdgBlue)',
+            },
+          }}
+          label='Date'
+          isRequired
+          necessityIndicator='label'
+        />
+        <DatePicker
+          calendarCSS={{
+            '& .calendar-footer button:nth-child(2)': {
+              background: 'var(--colors-cdgBlue)',
+              color: 'var(--colors-whiteText)',
+              borderColor: 'var(--colors-cdgBlue)',
+            },
+          }}
+          label='Date'
+          necessityIndicator='label'
+        />
+      </>
+    )
+  return (
+    <>
+      <DateRangePicker
+        calendarCSS={{
+          '& .calendar-footer button:nth-child(2)': {
+            background: 'var(--colors-cdgBlue)',
+            color: 'var(--colors-whiteText)',
+            borderColor: 'var(--colors-cdgBlue)',
+          },
+        }}
+        startDateLabel='Start Date'
+        endDateLabel='End Date'
+      />
+      <DateRangePicker
+        calendarCSS={{
+          '& .calendar-footer button:nth-child(2)': {
+            background: 'var(--colors-cdgBlue)',
+            color: 'var(--colors-whiteText)',
+            borderColor: 'var(--colors-cdgBlue)',
+          },
+        }}
+        startDateLabel='Start Date'
+        endDateLabel='End Date'
+        isRequired
+        necessityIndicator='icon'
+      />
+      <DateRangePicker
+        calendarCSS={{
+          '& .calendar-footer button:nth-child(2)': {
+            background: 'var(--colors-cdgBlue)',
+            color: 'var(--colors-whiteText)',
+            borderColor: 'var(--colors-cdgBlue)',
+          },
+        }}
+        startDateLabel='Start Date'
+        endDateLabel='End Date'
+        isRequired
+        necessityIndicator='label'
+      />
+      <DateRangePicker
+        calendarCSS={{
+          '& .calendar-footer button:nth-child(2)': {
+            background: 'var(--colors-cdgBlue)',
+            color: 'var(--colors-whiteText)',
+            borderColor: 'var(--colors-cdgBlue)',
+          },
+        }}
+        startDateLabel='Start Date'
+        endDateLabel='End Date'
+        necessityIndicator='label'
+      />
+    </>
+  )
+}
+
+export function InvalidDateRangePicker(props: any) {
+  if (props.type !== 'range')
+    return (
+      <DatePicker
+        calendarCSS={{
+          '& .calendar-footer button:nth-child(2)': {
+            background: 'var(--colors-cdgBlue)',
+            color: 'var(--colors-whiteText)',
+            borderColor: 'var(--colors-cdgBlue)',
+          },
+        }}
+        isInvalid
+      />
+    )
+  return (
+    <DateRangePicker
+      calendarCSS={{
+        '& .calendar-footer button:nth-child(2)': {
+          background: 'var(--colors-cdgBlue)',
+          color: 'var(--colors-whiteText)',
+          borderColor: 'var(--colors-cdgBlue)',
+        },
+      }}
+      isInvalid
     />
   )
 }
@@ -74,8 +251,62 @@ export function ControlledDateRangePicker() {
           range.start.toDate(getLocalTimeZone()),
           range.end.toDate(getLocalTimeZone()),
         )}
-      <DateRangePicker value={range} onChange={onChangeDateRangePicker} />
+      <DateRangePicker
+        calendarCSS={{
+          '& .calendar-footer button:nth-child(2)': {
+            background: 'var(--colors-cdgBlue)',
+            color: 'var(--colors-whiteText)',
+            borderColor: 'var(--colors-cdgBlue)',
+          },
+        }}
+        value={range}
+        onChange={onChangeDateRangePicker}
+      />
     </I18nProvider>
+  )
+}
+
+export function ShorcutsDateRangePicker() {
+  return (
+    <DateRangePicker
+      calendarCSS={{
+        '& .calendar-footer button:nth-child(2)': {
+          background: 'var(--colors-cdgBlue)',
+          color: 'var(--colors-whiteText)',
+          borderColor: 'var(--colors-cdgBlue)',
+        },
+      }}
+      hasShortcuts
+    />
+  )
+}
+
+export function CustomDateRangePicker(props: any) {
+  if (props.type !== 'range')
+    return (
+      <DatePicker
+        label='Date'
+        calendarCSS={{
+          '& .calendar-footer button:nth-child(2)': {
+            background: 'var(--colors-cdgBlue)',
+            color: 'var(--colors-whiteText)',
+            borderColor: 'var(--colors-cdgBlue)',
+          },
+        }}
+      />
+    )
+  return (
+    <DateRangePicker
+      startDateLabel='Start Date'
+      endDateLabel='End Date'
+      calendarCSS={{
+        '& .calendar-footer button:nth-child(2)': {
+          background: 'var(--colors-cdgBlue)',
+          color: 'var(--colors-whiteText)',
+          borderColor: 'var(--colors-cdgBlue)',
+        },
+      }}
+    />
   )
 }
 
@@ -89,6 +320,13 @@ export function ValidatedDateRangePickers({
   return (
     <I18nProvider locale='en-SG'>
       <DateRangePicker
+        calendarCSS={{
+          '& .calendar-footer button:nth-child(2)': {
+            background: 'var(--colors-cdgBlue)',
+            color: 'var(--colors-whiteText)',
+            borderColor: 'var(--colors-cdgBlue)',
+          },
+        }}
         allowsNonContiguousRanges={contiguous}
         isDateUnavailable={(date) => {
           if (!date) {
@@ -113,6 +351,13 @@ export function DateRangePickerWithShortcuts() {
 
   return (
     <DateRangePicker
+      calendarCSS={{
+        '& .calendar-footer button:nth-child(2)': {
+          background: 'var(--colors-cdgBlue)',
+          color: 'var(--colors-whiteText)',
+          borderColor: 'var(--colors-cdgBlue)',
+        },
+      }}
       hasShortcuts
       customShortcuts={(defaultShortcuts, isInvalid) => {
         const customShortcuts: RangeCalendarShorcutItem[] = [
