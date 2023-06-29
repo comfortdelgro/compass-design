@@ -1,15 +1,17 @@
 import React, {useState} from 'react'
 import Button from '../button'
+import {useIsDarkTheme} from '../theme'
 import {useDOMRef} from '../utils/use-dom-ref'
 import Popover from './popover'
 
 const SamplePopover = () => {
+  const isDarkTheme = useIsDarkTheme()
   return (
     <div
       className='popover-content'
       style={{
         padding: '10px',
-        background: '#ffffff',
+        background: `${isDarkTheme ? '#424657' : '#ffffff'}`,
         boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
         borderRadius: '5px',
         width: '300px',
