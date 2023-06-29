@@ -4,7 +4,7 @@ import type {VariantProps} from '../utils/stitches.types'
 export const StyledDataGridProgressBar = styled('div', {
   width: '200px',
   height: '20px',
-  backgroundColor: '#f0f0f0',
+  backgroundColor: '$secondaryBg',
   borderRadius: '10px',
   position: 'relative',
 })
@@ -13,13 +13,13 @@ export const StyledDataGridProgress = styled('div', {
   borderRadius: '10px',
   transition: `width 0.5s ease-in-out`,
   '&.low': {
-    backgroundColor: '#f44336',
+    backgroundColor: '$danger',
   },
   '&.average': {
-    backgroundColor: '#ffc107',
+    backgroundColor: '$warning',
   },
   '&.high': {
-    backgroundColor: '#4caf50',
+    backgroundColor: '$success',
   },
 })
 export const StyledDataGridProgressLabel = styled('span', {
@@ -27,7 +27,7 @@ export const StyledDataGridProgressLabel = styled('span', {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  color: '#000',
+  color: '$primaryText',
 })
 
 export type DataGridProgressBarVariantProps = VariantProps<
