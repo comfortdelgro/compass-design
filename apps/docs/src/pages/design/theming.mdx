@@ -104,6 +104,11 @@ Compass Design comes with two palette modes: light (the default) and dark.
 </Callout>
 
 ```js
+enum ETheme {
+  Light = 'light',
+  Dark = 'dark',
+}
+
 function MyApp({Component, pageProps}: AppProps) {
   const [isDarkTheme, setIsDarkTheme] = useState<ETheme>(ETheme.Light)
   const handleOnChangeTheme = (value: string) => {
