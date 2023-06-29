@@ -18,7 +18,7 @@ export const StyledUploadError = styled('a', {
   display: 'flex',
   justifyContent: 'left',
   alignItems: 'center',
-  color: '#E31617',
+  color: '$tertiaryText',
 })
 
 export const StyledHelperText = styled('div', {
@@ -38,7 +38,7 @@ export const StyledHelperText = styled('div', {
   display: 'flex',
   justifyContent: 'left',
   alignItems: 'center',
-  color: '#B4B4B4',
+  color: '$tertiaryText',
 })
 
 export const StyledUploadContent = styled('div', {
@@ -47,14 +47,14 @@ export const StyledUploadContent = styled('div', {
   border: 'none',
   boxSizing: 'border-box',
   margin: '0px',
-  background: 'transparent',
+  background: '$gray20',
 
   //upload button styling
   flexGrow: 1,
   height: '100%',
   display: 'flex',
   alignItems: 'center',
-  borderLeft: '1px solid #E6E6E6',
+  borderLeft: '1px solid $divider',
   padding: '0 $4',
   fontSize: '$body2',
   fontWeight: '$semibold',
@@ -72,10 +72,10 @@ export const StyledUploadContent = styled('div', {
   variants: {
     fileSelected: {
       true: {
-        color: '#333333',
+        color: '$tertiaryText',
       },
       false: {
-        color: '#B4B4B4',
+        color: '$danger',
       },
     },
   },
@@ -93,7 +93,7 @@ export const StyledUploadContainer = styled('div', {
   //container styling
   width: '100%',
   height: '$11',
-  border: '1px solid #E6E6E6',
+  border: '1px solid $divider',
   overflow: 'hidden',
   borderRadius: '$lg',
   display: 'flex',
@@ -106,7 +106,6 @@ export const StyledBrowseFile = styled('div', {
   //border: 'none',
   boxSizing: 'border-box',
   margin: '0px',
-  background: 'transparent',
 
   //container styling
   width: 'min-content',
@@ -120,7 +119,8 @@ export const StyledBrowseFile = styled('div', {
   fontWeight: '$semibold',
   lineHeight: '$normal',
   cursor: 'pointer',
-  backgroundColor: '$gray10',
+  backgroundColor: '$cdgBlue120',
+  color: '$cdgBlue40',
   span: {
     width: 'max-content',
   },
@@ -145,7 +145,7 @@ export const StyledLabel = styled('label', {
   lineHeight: '$normal',
   fontWeight: '$semibold',
   '& .cdg-isRequired-Sign': {
-    color: '#A4262C',
+    color: '$danger',
   },
 })
 
@@ -157,7 +157,7 @@ export const StyledUploadWrapper = styled('div', {
   margin: '0px',
   padding: '0px',
   background: 'transparent',
-  boxShadow: '1px solid #E6E6E6',
+  boxShadow: '1px solid $divider',
   minWidth: '$96',
 
   // wrapper styling

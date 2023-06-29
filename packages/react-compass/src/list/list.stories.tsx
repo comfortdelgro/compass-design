@@ -5,6 +5,7 @@ import React, {Key} from 'react'
 import Avatar from '../avatar'
 import AvatarGroup from '../avatar/avatar-group'
 import Badge from '../badge'
+import {useIsDarkTheme} from '../theme'
 import {Column} from '../utils/components'
 import {DragAndDropList} from './index'
 import InteractiveList from './interactive-list'
@@ -779,15 +780,20 @@ export const DragAndDrop: React.FC = () => {
 
 export default {
   decorators: [
-    (Component) => (
-      <div>
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `.ladle-main { background: #eee; }`,
-          }}
-        ></style>
-        <Component />
-      </div>
-    ),
+    (Component) => {
+      const isDarkTheme = useIsDarkTheme()
+      return (
+        <div>
+          <style
+            dangerouslySetInnerHTML={{
+              __html: `${
+                !isDarkTheme ? `.ladle-main { background: #eee; }` : ``
+              }`,
+            }}
+          ></style>
+          <Component />
+        </div>
+      )
+    },
   ] as StoryDecorator[],
 }

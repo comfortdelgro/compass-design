@@ -111,7 +111,7 @@ export const StyledBoxContent = styled('div', {
 export const StyledItem = styled('div', {
   fontSize: '$label2',
   fontWeight: '$semibold',
-  backgroundColor: '#F5F5F6',
+  backgroundColor: '$primaryBg',
   padding: '$2',
   gap: '$3',
   height: 'min-content',
@@ -124,7 +124,8 @@ export const StyledItem = styled('div', {
     height: '$3',
   },
   '&:hover': {
-    backgroundColor: '#EAEBEB',
+    backgroundColor: '$darkerBg',
+    color: '$black',
   },
   input: {
     fontSize: '$label2',
@@ -136,7 +137,7 @@ export const StyledItem = styled('div', {
   variants: {
     isDisabled: {
       true: {
-        background: '#F0F0F0',
+        background: '$secondaryBg',
         cursor: 'not-allowed',
         opacity: 0.4,
       },
@@ -148,7 +149,7 @@ export const StyledItem = styled('div', {
     },
     isError: {
       true: {
-        border: '1px solid #A4262C',
+        border: '1px solid $danger',
       },
     },
   },

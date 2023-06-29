@@ -18,7 +18,7 @@ export const StyledSearchFieldBox = styled('div', {
   minWidth: '$48',
 
   '&:focus-within': {
-    borderColor: '$cdgBlue',
+    borderColor: '$cdgBlue120',
   },
 
   [`${StyledButton}`]: {
@@ -59,12 +59,21 @@ export const StyledSearchFieldInput = styled('input', {
   },
 
   '&:focus': {
+    borderColor: 'cdgBlue120',
     outline: 'none',
     boxShadow: 'none',
   },
 
   '&:disabled': {
     cursor: 'not-allowed',
+  },
+  variants: {
+    isDarkTheme: {
+      true: {
+        color: '$tertiaryText',
+      },
+      false: {},
+    },
   },
 })
 
