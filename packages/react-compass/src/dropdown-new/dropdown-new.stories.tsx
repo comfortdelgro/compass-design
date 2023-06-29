@@ -3,16 +3,21 @@ import {Column} from '../utils'
 import DropdownNew from './'
 
 export const Default: React.FC = () => {
-  const [value, setValue] = React.useState<React.Key>('')
+  const [value, setValue] = React.useState<React.Key>('dog')
+
+  // useEffect(() => {
+  //   console.log('Dropdown changed: ', value)
+  // }, [value])
+
   return (
     <Column>
-      <h3>Default</h3>
+      {/* <h3>Default</h3>
       <DropdownNew
         placeholder='Choose an animal'
         label='Test'
-        defaultSelectedKey='aardvark1'
+        selectedKey={value}
         numberOfRows={4}
-        onSelectionChange={(value) => console.log(value)}
+        onSelectionChange={(value) => setValue(value)}
       >
         <DropdownNew.Item key='dog' value='dog'>
           Dog
@@ -38,7 +43,7 @@ export const Default: React.FC = () => {
         <DropdownNew.Item key='snakessss1' value='snakessss1'>
           Snake 1
         </DropdownNew.Item>
-      </DropdownNew>
+      </DropdownNew> */}
       <h3>Combobox</h3>
       <DropdownNew
         type='combobox'
@@ -71,13 +76,8 @@ export const Default: React.FC = () => {
           Snake 1
         </DropdownNew.Item>
       </DropdownNew>
-      {/* <h3>Flag</h3>
-      <DropdownNew type='flag'>
-        <DropdownNew.Item key='dog'>Dog</DropdownNew.Item>
-        <DropdownNew.Item key='aardvark'>Aardvark</DropdownNew.Item>
-        <DropdownNew.Item key='kangaroo'>Kangaroo</DropdownNew.Item>
-        <DropdownNew.Item key='snakessss'>Snake</DropdownNew.Item>
-      </DropdownNew> */}
+      <h3>Flag</h3>
+      <DropdownNew type='flag' />
     </Column>
   )
 }

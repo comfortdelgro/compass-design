@@ -24,7 +24,7 @@ export const StyledDropdownWrapper = styled('div', {
       color: '$danger',
     },
   },
-  '&.cdg-dropdown-opening .cdg-dropdown-input svg': {
+  '&.cdg-dropdown-opening .cdg-dropdown-input .cdg-dropdown-button svg': {
     transform: 'rotate(180deg)',
     transition: 'transform 0.3s linear',
   },
@@ -426,6 +426,36 @@ export const StyledLoading = styled('div', {
     '.spinner-3': {
       animationDelay: '-0.15s',
     },
+  },
+})
+
+export const StyledFlagItem = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flexShrink: 0,
+  width: '$6',
+  height: '$6',
+  overflow: 'hidden',
+  svg: {
+    width: '$6',
+    height: '$6',
+  },
+})
+
+export const StyledFlagIcon = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  left: '$3',
+  flexShrink: 0,
+  width: '$6',
+  height: '$6',
+  overflow: 'hidden',
+  position: 'absolute',
+  svg: {
+    width: '$6',
+    height: '$6',
   },
 })
 

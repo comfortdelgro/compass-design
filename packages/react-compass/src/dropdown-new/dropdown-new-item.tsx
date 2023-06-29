@@ -1,7 +1,8 @@
 import React, {useContext, useEffect, useMemo, useRef} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {DropdownContext} from './dropdown-new-context'
-import {StyledOption} from './dropdown-new.styles'
+import {StyledFlagItem, StyledOption} from './dropdown-new.styles'
+import {Flag} from './flags'
 import {textContent} from './utils'
 
 interface Props extends StyledComponentProps {
@@ -12,6 +13,7 @@ interface Props extends StyledComponentProps {
   value: string | number
   textValue?: string
   checkmark?: 'none' | 'checkbox' | 'tick'
+  flagName?: string
   children: React.ReactNode
 }
 
@@ -20,7 +22,7 @@ export type DropdownItemProps = Props
 const DropdownNewItem: React.FC<DropdownItemProps> = (
   props: DropdownItemProps,
 ) => {
-  const {children, value} = props
+  const {children, value, flagName} = props
   const {
     selectedKeys,
     disabledKeys = [],
@@ -28,7 +30,6 @@ const DropdownNewItem: React.FC<DropdownItemProps> = (
     open,
     selectedKey,
     setSelectedKeys,
-    defaultSelectedKey,
     onItemClick,
   } = useContext(DropdownContext)
 
@@ -48,14 +49,14 @@ const DropdownNewItem: React.FC<DropdownItemProps> = (
     [disabledKeys, value],
   )
 
-  const canDisplayed = useMemo(
-    () =>
+  const canDisplayed = useMemo(() => {
+    return (
       !searchValue ||
       textContent(children as React.ReactElement)
         .toLocaleLowerCase()
-        .includes(searchValue.toLocaleLowerCase()),
-    [searchValue, children],
-  )
+        .includes(searchValue.toLocaleLowerCase())
+    )
+  }, [searchValue, children])
 
   useEffect(() => {
     if (selectedKey && selectedKey.toString() === value.toString()) {
@@ -67,18 +68,6 @@ const DropdownNewItem: React.FC<DropdownItemProps> = (
   }, [selectedKey, value])
 
   useEffect(() => {
-    if (
-      defaultSelectedKey &&
-      defaultSelectedKey.toString() === value.toString()
-    ) {
-      setSelectedKeys([{value: value.toString(), displayValue: children}])
-      if (ref.current) {
-        ref.current.scrollIntoView({inline: 'end'})
-      }
-    }
-  }, [defaultSelectedKey, value])
-
-  useEffect(() => {
     if (open && isSeleted && ref.current) {
       ref.current.scrollIntoView({inline: 'end'})
     }
@@ -88,7 +77,11 @@ const DropdownNewItem: React.FC<DropdownItemProps> = (
     if (isDisabled) {
       return
     }
-    onItemClick({value: value.toString(), displayValue: children})
+    onItemClick({
+      value: value.toString(),
+      displayValue: children,
+      flagName: flagName ?? '',
+    })
   }
 
   return canDisplayed ? (
@@ -98,6 +91,11 @@ const DropdownNewItem: React.FC<DropdownItemProps> = (
       onClick={handleItemClick}
       ref={ref}
     >
+      {flagName && (
+        <StyledFlagItem>
+          <Flag iso={flagName} />
+        </StyledFlagItem>
+      )}
       {children}
     </StyledOption>
   ) : null

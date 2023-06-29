@@ -10,13 +10,13 @@ import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {DropdownContext, SelectedItemDropdown} from './dropdown-new-context'
-import DropdownNewItem from './dropdown-new-item'
+import DropdownNewFlagItems from './dropdown-new-flag-items'
+import DropdownNewItem, {DropdownItemProps} from './dropdown-new-item'
 import DropdownNewList from './dropdown-new-list'
 import {
   DropdownVariantProps,
   StyledComboBox,
   StyledDropdownWrapper,
-  StyledFlag,
   StyledHelperText,
   StyledIcon,
   StyledPopover,
@@ -112,6 +112,11 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   const buttonSelectRef = useRef<HTMLButtonElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
+  const displayedChildren = useMemo(
+    () => (type === 'flag' ? <DropdownNewFlagItems /> : children),
+    [type, children],
+  )
+
   // ====================================== FLOATING ======================================
   const {refs, floatingStyles, context} = useFloating({
     open: open,
@@ -146,10 +151,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     inputRef.current?.focus()
   }, [])
 
-  const handleInputFocus = useCallback(() => {
-    setOpen(true)
-  }, [])
-
   const handleInputChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       setOpen(true)
@@ -159,7 +160,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   )
 
   useEffect(() => {
-    if (!open && type === 'combobox' && inputRef.current) {
+    if (!open && ['combobox', 'flag'].includes(type) && inputRef.current) {
       if (selectedKeys && selectedKeys.length > 0) {
         inputRef.current.value =
           textContent(selectedKeys[0]?.displayValue as React.ReactElement) ?? ''
@@ -169,6 +170,30 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       setSearchValue('')
     }
   }, [open, selectedKeys])
+
+  useEffect(() => {
+    if (selectedKeys.length || !(selectedKey || defaultSelectedKey)) return
+
+    const currentSelectedKey = selectedKey || defaultSelectedKey
+    // Find the item with the specified value
+    const item = React.Children.toArray(displayedChildren).find(
+      (child) =>
+        (child as React.ReactElement<DropdownItemProps>).props.value ===
+        currentSelectedKey,
+    )
+
+    if (item) {
+      setSelectedKeys([
+        {
+          value: currentSelectedKey.toString(),
+          displayValue: item as React.ReactNode,
+        },
+      ])
+      if (inputRef.current) {
+        inputRef.current.value = textContent(item as React.ReactElement) ?? ''
+      }
+    }
+  }, [displayedChildren, selectedKey, defaultSelectedKey, selectedKeys])
 
   const headerElement = useMemo(() => {
     switch (type) {
@@ -189,6 +214,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
               onClick={handleDropdownToggle}
               onBlur={onBlur}
               onFocus={onFocus}
+              className='cdg-dropdown-button'
             >
               {prefix}
               <span>
@@ -201,6 +227,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           </StyledSelect>
         )
       case 'combobox':
+      case 'flag':
         return (
           <StyledComboBox
             isEmpty={selectedKeys.length === 0}
@@ -225,46 +252,48 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
               tabIndex={-1}
               disabled={isDisabled}
               onClick={handleDropdownToggle}
+              className='cdg-dropdown-button'
             >
               {icon}
             </button>
           </StyledComboBox>
         )
-      case 'flag':
-        return (
-          <StyledFlag
-            ref={refs.setReference}
-            isEmpty={selectedKeys.length === 0}
-            className='cdg-dropdown-input'
-            isErrored={!!isErrored}
-            {...getReferenceProps}
-          >
-            {/* {choosenFlag && (
-              <StyledFlagIcon>
-                <Flag iso={choosenFlag['alpha-2']} />
-              </StyledFlagIcon>
-            )} */}
-            <input
-              id={id}
-              ref={inputRef}
-              readOnly={isReadOnly}
-              disabled={isDisabled}
-              placeholder={placeholder}
-              onChange={handleInputChange}
-              onBlur={onBlur}
-              onFocus={onFocus}
-              onClick={handleDropdownToggle}
-            />
-            <button
-              tabIndex={-1}
-              disabled={isDisabled}
-              onClick={handleDropdownToggle}
-              type='button'
-            >
-              {icon}
-            </button>
-          </StyledFlag>
-        )
+      //   case 'flag':
+      //     return (
+      //       <StyledFlag
+      //         ref={refs.setReference}
+      //         isEmpty={selectedKeys.length === 0}
+      //         className='cdg-dropdown-input'
+      //         isErrored={!!isErrored}
+      //         {...getReferenceProps}
+      //       >
+      //         {selectedKeys && selectedKeys[0]?.flagName ? (
+      //           <StyledFlagIcon>
+      //             <Flag iso={selectedKeys[0].flagName} />
+      //           </StyledFlagIcon>
+      //         ) : null}
+      //         <input
+      //           id={id}
+      //           ref={inputRef}
+      //           readOnly={isReadOnly}
+      //           disabled={isDisabled}
+      //           placeholder={placeholder}
+      //           onChange={handleInputChange}
+      //           onBlur={onBlur}
+      //           onFocus={onFocus}
+      //           onClick={handleDropdownToggle}
+      //         />
+      //         <button
+      //           tabIndex={-1}
+      //           disabled={isDisabled}
+      //           onClick={handleDropdownToggle}
+      //           type='button'
+      //           className='cdg-dropdown-button'
+      //         >
+      //           {icon}
+      //         </button>
+      //       </StyledFlag>
+      //     )
       default:
         return null
     }
@@ -280,7 +309,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     onBlur,
     onFocus,
     handleDropdownToggle,
-    handleInputFocus,
     handleInputChange,
   ])
 
@@ -301,6 +329,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       return
     }
     setOpen(false)
+    // Deselect item
     if (
       shouldDeselect &&
       selectedKeys.findIndex((item) => item.value === selectedItem.value) !== -1
@@ -309,6 +338,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       onSelectionChange?.('')
       return
     }
+    // Select clear item
     if (!selectedItem.value) {
       setSelectedKeys([])
       onSelectionChange?.('')
@@ -334,7 +364,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         onSelectionChange?.(selectedItem.value)
       }
       setSelectedKeys([selectedItem])
-      if (type === 'combobox') {
+      if (['combobox', 'flag'].includes(type)) {
         if (inputRef.current) {
           inputRef.current.value =
             textContent(selectedItem.displayValue as React.ReactElement) ?? ''
@@ -396,7 +426,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
                     : '16rem',
                 }}
               >
-                {children}
+                {displayedChildren}
               </DropdownNewList>
             </StyledPopover>
           </div>

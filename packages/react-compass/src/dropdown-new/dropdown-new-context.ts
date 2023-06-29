@@ -3,6 +3,7 @@ import {createContext, ReactNode} from 'react'
 export interface SelectedItemDropdown {
   value: string
   displayValue: ReactNode
+  flagName?: string
 }
 
 export interface DropdownContextType {
