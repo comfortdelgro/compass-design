@@ -3,7 +3,7 @@ import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {StyledDataGridCell} from './data-grid-cell.styles'
-import {EditableCell} from './editable/editable-cell'
+import {CellMetaProps, EditableCell} from './editable/editable-cell'
 
 export interface Props<TData, TValue> extends StyledComponentProps {
   cell: Cell<TData, TValue>
@@ -25,8 +25,8 @@ const DataGridCell = React.forwardRef<HTMLTableCellElement, DataGridCellProps>(
       row: {index},
       column: {id},
     } = cell
-
-    const isCellEditable = cell.column.columnDef.meta?.editable
+    const tableMeta = cell.column.columnDef.meta as CellMetaProps<any, unknown>
+    const isCellEditable = tableMeta?.editable
     return (
       <StyledDataGridCell
         ref={dataGridCellRef}
