@@ -178,10 +178,6 @@ export const ReactTableFullFeature: React.FC = () => {
   }
 
   const TableHeaderCell = ({row}: any) => {
-<<<<<<< HEAD
-=======
-    console.log('=========', row.getCanSelect())
->>>>>>> 846528b55396063c451d67867d9fffa6ac7ae824
     return (
       <div className='px-1'>
         <ReactTable.CheckboxCell
