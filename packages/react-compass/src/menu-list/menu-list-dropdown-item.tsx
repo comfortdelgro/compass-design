@@ -53,7 +53,7 @@ const MenuListDropdownItem = React.forwardRef<
       tabIndex={tabIndex()}
       {...delegated}
     >
-      {icon}
+      {icon ? <div className='cdg-menu-list-dropdown-icon'>{icon}</div> : <></>}
       {children}
     </StyledMenuListDropdownItem>
   )
