@@ -84,21 +84,23 @@ const DropdownNewItem: React.FC<DropdownItemProps> = (
     })
   }
 
-  return canDisplayed ? (
-    <StyledOption
-      isSelected={isSeleted}
-      isDisabled={isDisabled}
-      onClick={handleItemClick}
-      ref={ref}
-    >
-      {flagName && (
-        <StyledFlagItem>
-          <Flag iso={flagName} />
-        </StyledFlagItem>
-      )}
-      {children}
-    </StyledOption>
-  ) : null
+  return useMemo(() => {
+    return canDisplayed ? (
+      <StyledOption
+        isSelected={isSeleted}
+        isDisabled={isDisabled}
+        onClick={handleItemClick}
+        ref={ref}
+      >
+        {flagName && (
+          <StyledFlagItem>
+            <Flag iso={flagName} />
+          </StyledFlagItem>
+        )}
+        {children}
+      </StyledOption>
+    ) : null
+  }, [isSeleted, canDisplayed, isDisabled, flagName, children])
 }
 
 export default DropdownNewItem

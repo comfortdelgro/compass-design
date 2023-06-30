@@ -44,7 +44,7 @@ export const Default: React.FC = () => {
           Snake 1
         </DropdownNew.Item>
       </DropdownNew> */}
-      <h3>Combobox</h3>
+      {/* <h3>Combobox</h3>
       <DropdownNew
         type='combobox'
         placeholder='Choose an animal'
@@ -75,9 +75,9 @@ export const Default: React.FC = () => {
         <DropdownNew.Item key='snakessss1' value='snakessss1'>
           Snake 1
         </DropdownNew.Item>
-      </DropdownNew>
+      </DropdownNew> */}
       <h3>Flag</h3>
-      <DropdownNew type='flag' />
+      <DropdownNew.Flag type='flag' />
     </Column>
   )
 }

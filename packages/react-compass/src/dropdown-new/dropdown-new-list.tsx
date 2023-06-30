@@ -9,6 +9,7 @@ import {
 import {textContent} from './utils'
 
 interface Props extends StyledComponentProps {
+  searchValue?: string
   isLoading?: boolean
   children?: React.ReactNode
 }
@@ -36,23 +37,26 @@ const DropdownNewList: React.FC<DropdownItemListProps> = (
     return currentCount
   }, [children, searchValue])
 
-  return (
-    <StyledDropdownList css={css}>
-      {isLoading ? (
-        <StyledLoading>
-          <div className='spinner'>
-            <div className='spinner-1' />
-            <div className='spinner-2' />
-            <div className='spinner-3' />
-            <div />
-          </div>
-        </StyledLoading>
-      ) : displayedItemsCount === 0 ? (
-        <StyledEmptyData>No data</StyledEmptyData>
-      ) : (
-        children
-      )}
-    </StyledDropdownList>
+  return useMemo(
+    () => (
+      <StyledDropdownList css={css}>
+        {isLoading ? (
+          <StyledLoading>
+            <div className='spinner'>
+              <div className='spinner-1' />
+              <div className='spinner-2' />
+              <div className='spinner-3' />
+              <div />
+            </div>
+          </StyledLoading>
+        ) : displayedItemsCount === 0 ? (
+          <StyledEmptyData>No data</StyledEmptyData>
+        ) : (
+          children
+        )}
+      </StyledDropdownList>
+    ),
+    [css, isLoading, displayedItemsCount, children],
   )
 }
 

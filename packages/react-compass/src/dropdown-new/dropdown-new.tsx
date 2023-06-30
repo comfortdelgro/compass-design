@@ -10,18 +10,21 @@ import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {DropdownContext, SelectedItemDropdown} from './dropdown-new-context'
-import DropdownNewFlagItems from './dropdown-new-flag-items'
+import DropdownFlag from './dropdown-new-flag'
 import DropdownNewItem, {DropdownItemProps} from './dropdown-new-item'
 import DropdownNewList from './dropdown-new-list'
 import {
   DropdownVariantProps,
   StyledComboBox,
   StyledDropdownWrapper,
+  StyledFlag,
+  StyledFlagIcon,
   StyledHelperText,
   StyledIcon,
   StyledPopover,
   StyledSelect,
 } from './dropdown-new.styles'
+import {Flag} from './flags'
 import {textContent} from './utils'
 
 interface Props extends StyledComponentProps {
@@ -105,17 +108,15 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   const [selectedKeys, setSelectedKeys] = React.useState<
     SelectedItemDropdown[]
   >([])
+  const [selectedKeysBackup, setSelectedKeysBackup] = React.useState<
+    SelectedItemDropdown[]
+  >([])
   const [searchValue, setSearchValue] = useState<string>('')
 
   // Select ref
   const selectRef = useDOMRef<HTMLElement>(ref)
   const buttonSelectRef = useRef<HTMLButtonElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
-
-  const displayedChildren = useMemo(
-    () => (type === 'flag' ? <DropdownNewFlagItems /> : children),
-    [type, children],
-  )
 
   // ====================================== FLOATING ======================================
   const {refs, floatingStyles, context} = useFloating({
@@ -155,12 +156,24 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     (event: React.ChangeEvent<HTMLInputElement>) => {
       setOpen(true)
       setSearchValue(event.target.value ?? '')
+      if (type === 'flag') {
+        if (selectedKeys.length && !selectedKeysBackup.length) {
+          setSelectedKeysBackup(selectedKeys)
+        }
+        setSelectedKeys([])
+      }
     },
-    [],
+    [type, selectedKeys, selectedKeysBackup],
   )
 
   useEffect(() => {
     if (!open && ['combobox', 'flag'].includes(type) && inputRef.current) {
+      if (type === 'flag' && selectedKeysBackup.length) {
+        setSelectedKeys(selectedKeysBackup)
+        setSelectedKeysBackup([])
+        return
+      }
+
       if (selectedKeys && selectedKeys.length > 0) {
         inputRef.current.value =
           textContent(selectedKeys[0]?.displayValue as React.ReactElement) ?? ''
@@ -169,14 +182,14 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       }
       setSearchValue('')
     }
-  }, [open, selectedKeys])
+  }, [open, selectedKeys, selectedKeysBackup])
 
   useEffect(() => {
     if (selectedKeys.length || !(selectedKey || defaultSelectedKey)) return
 
     const currentSelectedKey = selectedKey || defaultSelectedKey
     // Find the item with the specified value
-    const item = React.Children.toArray(displayedChildren).find(
+    const item = React.Children.toArray(children).find(
       (child) =>
         (child as React.ReactElement<DropdownItemProps>).props.value ===
         currentSelectedKey,
@@ -193,7 +206,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         inputRef.current.value = textContent(item as React.ReactElement) ?? ''
       }
     }
-  }, [displayedChildren, selectedKey, defaultSelectedKey, selectedKeys])
+  }, [children, selectedKey, defaultSelectedKey, selectedKeys])
 
   const headerElement = useMemo(() => {
     switch (type) {
@@ -227,7 +240,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           </StyledSelect>
         )
       case 'combobox':
-      case 'flag':
         return (
           <StyledComboBox
             isEmpty={selectedKeys.length === 0}
@@ -258,42 +270,42 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
             </button>
           </StyledComboBox>
         )
-      //   case 'flag':
-      //     return (
-      //       <StyledFlag
-      //         ref={refs.setReference}
-      //         isEmpty={selectedKeys.length === 0}
-      //         className='cdg-dropdown-input'
-      //         isErrored={!!isErrored}
-      //         {...getReferenceProps}
-      //       >
-      //         {selectedKeys && selectedKeys[0]?.flagName ? (
-      //           <StyledFlagIcon>
-      //             <Flag iso={selectedKeys[0].flagName} />
-      //           </StyledFlagIcon>
-      //         ) : null}
-      //         <input
-      //           id={id}
-      //           ref={inputRef}
-      //           readOnly={isReadOnly}
-      //           disabled={isDisabled}
-      //           placeholder={placeholder}
-      //           onChange={handleInputChange}
-      //           onBlur={onBlur}
-      //           onFocus={onFocus}
-      //           onClick={handleDropdownToggle}
-      //         />
-      //         <button
-      //           tabIndex={-1}
-      //           disabled={isDisabled}
-      //           onClick={handleDropdownToggle}
-      //           type='button'
-      //           className='cdg-dropdown-button'
-      //         >
-      //           {icon}
-      //         </button>
-      //       </StyledFlag>
-      //     )
+      case 'flag':
+        return (
+          <StyledFlag
+            ref={refs.setReference}
+            isEmpty={selectedKeys.length === 0}
+            className='cdg-dropdown-input'
+            isErrored={!!isErrored}
+            {...getReferenceProps}
+          >
+            {selectedKeys && selectedKeys[0]?.flagName ? (
+              <StyledFlagIcon>
+                <Flag iso={selectedKeys[0].flagName} />
+              </StyledFlagIcon>
+            ) : null}
+            <input
+              id={id}
+              ref={inputRef}
+              readOnly={isReadOnly}
+              disabled={isDisabled}
+              placeholder={placeholder}
+              onChange={handleInputChange}
+              onBlur={onBlur}
+              onFocus={onFocus}
+              onClick={handleDropdownToggle}
+            />
+            <button
+              tabIndex={-1}
+              disabled={isDisabled}
+              onClick={handleDropdownToggle}
+              type='button'
+              className='cdg-dropdown-button'
+            >
+              {icon}
+            </button>
+          </StyledFlag>
+        )
       default:
         return null
     }
@@ -364,6 +376,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         onSelectionChange?.(selectedItem.value)
       }
       setSelectedKeys([selectedItem])
+      setSelectedKeysBackup([selectedItem])
       if (['combobox', 'flag'].includes(type)) {
         if (inputRef.current) {
           inputRef.current.value =
@@ -419,6 +432,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
               }}
             >
               <DropdownNewList
+                searchValue={searchValue}
                 isLoading={isLoading}
                 css={{
                   maxHeight: numberOfRows
@@ -426,7 +440,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
                     : '16rem',
                 }}
               >
-                {displayedChildren}
+                {children}
               </DropdownNewList>
             </StyledPopover>
           </div>
@@ -442,7 +456,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
 
 export default Select as typeof Select & {
   //   ComboBox: typeof DropdownComboBox
-  //   Flag: typeof DropdownFlag
+  Flag: typeof DropdownFlag
   //   Select: typeof DropdownSelect
   Item: typeof DropdownNewItem
   //   Section: typeof DropdownSection
