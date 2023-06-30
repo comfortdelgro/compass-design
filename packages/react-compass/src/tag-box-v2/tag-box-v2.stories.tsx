@@ -33,7 +33,7 @@ export const Basic: React.FC = () => {
         tagBoxLabel='Attribute values'
         addTagPlaceholder='Please enter to add tag'
         tags={tags}
-        isErrored='false'
+        isErrored={false}
         isEditable
         onAddTag={handleAddTag}
         onRemoveTag={(tagToBeRemoved) =>

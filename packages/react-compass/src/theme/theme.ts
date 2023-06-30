@@ -246,7 +246,7 @@ export const darkTheme = createTheme('dark-theme', {
     primaryText: '#FDFDFD',
     secondaryText: '#E4E2E6',
     disabledText: '#7B7D89',
-    tertiaryText: 'C5C6CF',
+    tertiaryText: '#C5C6CF',
     whiteText: '#FFFFFF',
 
     divider: '#45464E', // Body Divider

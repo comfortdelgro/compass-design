@@ -88,7 +88,7 @@ export const StyledSidebarHeader = styled('div', {
   margin: '0px',
   padding: '0px',
   background: 'transparent',
-  borderBottom: '0.5px solid #C8C6C4',
+  borderBottom: '0.5px solid $gray60',
 
   // header style
   width: '100%',
@@ -109,10 +109,10 @@ export const StyledSidebarWrapper = styled('div', {
   boxSizing: 'border-box',
   margin: '0px',
   padding: '0px',
-  background: 'rgba(0, 0, 0, 0.4)',
+  background: '$overlayDark',
 
   // wrapper styling
-  position: 'absolute',
+  position: 'fixed',
   top: '0',
   left: '0',
   width: '100%',

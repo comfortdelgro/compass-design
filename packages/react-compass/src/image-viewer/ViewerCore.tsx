@@ -5,8 +5,10 @@ import Box from '../box'
 import Button from '../button'
 import Icon from '../icon'
 import * as constants from './constants'
+import {Z_INDEX} from './constants'
 import {ActionType} from './Icon'
 import {StyledImageViewerWrap} from './image-viewer.styles'
+import ImageInformation from './ImageInformation'
 import {
   ActionTypeEnum,
   IAction,
@@ -35,9 +37,7 @@ export default (props: IViewerProps) => {
     onClose = noop,
     images = [],
     activeIndex = 0,
-    zIndex = 1000,
     drag = true,
-    attribute = true,
     zoomable = true,
     rotatable = true,
     scalable = true,
@@ -51,10 +51,9 @@ export default (props: IViewerProps) => {
     defaultScale = 1,
     loop = true,
     disableMouseZoom = false,
-    downloadable = false,
-    noImgDetails = false,
-    noToolbar = false,
-    showTotal = true,
+    isShowImageInformation = true,
+    isShowToolbar = true,
+    isShowPreview = true,
     totalName = 'of',
     minScale = 0.1,
   } = props
@@ -78,6 +77,7 @@ export default (props: IViewerProps) => {
     loadFailed: false,
     startLoading: false,
   }
+
   function setContainerWidthHeight() {
     let width = window.innerWidth
     let height = window.innerHeight
@@ -204,7 +204,6 @@ export default (props: IViewerProps) => {
     let activeImage: ImageDecorator = {
       src: '',
       alt: '',
-      downloadUrl: '',
     }
     if (images.length > 0) {
       activeImage = images[currentActiveIndex] as ImageDecorator
@@ -353,7 +352,6 @@ export default (props: IViewerProps) => {
     let activeImg2: ImageDecorator = {
       src: '',
       alt: '',
-      downloadUrl: '',
     }
 
     let realActiveIndex = null
@@ -367,17 +365,6 @@ export default (props: IViewerProps) => {
     }
 
     return activeImg2
-  }
-
-  function handleDownload() {
-    const activeImage = getActiveImage()
-    if (activeImage.downloadUrl) {
-      if (props.downloadInNewWindow) {
-        window.open(activeImage.downloadUrl, '_blank')
-      } else {
-        location.href = activeImage.downloadUrl
-      }
-    }
   }
 
   function handleScaleX(newScale: 1 | -1) {
@@ -436,9 +423,6 @@ export default (props: IViewerProps) => {
         break
       case ActionType.scaleY:
         handleScaleY(-1)
-        break
-      case ActionType.download:
-        handleDownload()
         break
       default:
         break
@@ -659,12 +643,16 @@ export default (props: IViewerProps) => {
         <StyledImageViewerWrap>
           {props.noClose || (
             <Button
-              variant='ghost'
+              variant='primary'
               css={{
-                right: 0,
-                top: 0,
+                right: 15,
+                top: 10,
+                width: 32,
+                display: 'flex',
+                padding: '5px 0',
+                borderRadius: 16,
                 position: 'absolute',
-                zIndex: 60,
+                zIndex: Z_INDEX + 5,
               }}
               onClick={onClose}
             >
@@ -683,7 +671,7 @@ export default (props: IViewerProps) => {
             }}
             ref={viewerCore}
           >
-            <Box css={{zIndex: zIndex}} />
+            <Box css={{zIndex: Z_INDEX}} />
 
             <ViewerCanvas
               imgSrc={
@@ -699,7 +687,7 @@ export default (props: IViewerProps) => {
               rotate={state.rotate}
               onChangeImgState={handleChangeImgState}
               onResize={handleResize}
-              zIndex={zIndex + 5}
+              zIndex={Z_INDEX + 5}
               scaleX={state.scaleX}
               scaleY={state.scaleY}
               loading={state.loading}
@@ -707,37 +695,36 @@ export default (props: IViewerProps) => {
               container={props.container as HTMLElement}
               onCanvasMouseDown={handleCanvasMouseDown}
             />
-            {props.noFooter || (
-              <Box css={{zIndex: zIndex + 5}}>
-                {noToolbar || (
-                  <ViewerToolbar
-                    onAction={handleAction}
-                    alt={activeImg.alt ?? ''}
-                    width={state.imageWidth}
-                    height={state.imageHeight}
-                    attribute={attribute}
-                    zoomable={zoomable}
-                    rotatable={rotatable}
-                    scalable={scalable}
-                    changeable={changeable}
-                    downloadable={downloadable}
-                    noImgDetails={noImgDetails}
-                    toolbars={customToolbar(defaultToolbars)}
-                    activeIndex={state.activeIndex}
-                    count={images.length}
-                    showTotal={showTotal}
-                    totalName={totalName}
-                  />
-                )}
-                {props.noNavbar || (
-                  <ViewerNav
-                    images={props.images as ImageDecorator[]}
-                    activeIndex={state.activeIndex}
-                    onChangeImg={handleChangeImg}
-                  />
-                )}
-              </Box>
-            )}
+            <Box css={{zIndex: Z_INDEX + 5}}>
+              {isShowToolbar && (
+                <ViewerToolbar
+                  onAction={handleAction}
+                  zoomable={zoomable}
+                  rotatable={rotatable}
+                  scalable={scalable}
+                  changeable={changeable}
+                  toolbars={customToolbar(defaultToolbars)}
+                />
+              )}
+              {isShowImageInformation && (
+                <ImageInformation
+                  onAction={handleAction}
+                  alt={activeImg.alt ?? ''}
+                  width={state.imageWidth}
+                  height={state.imageHeight}
+                  activeIndex={state.activeIndex}
+                  count={images.length}
+                  totalName={totalName}
+                />
+              )}
+              {isShowPreview && (
+                <ViewerNav
+                  images={props.images as ImageDecorator[]}
+                  activeIndex={state.activeIndex}
+                  onChangeImg={handleChangeImg}
+                />
+              )}
+            </Box>
           </Box>
         </StyledImageViewerWrap>
       )}

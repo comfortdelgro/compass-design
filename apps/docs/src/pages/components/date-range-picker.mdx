@@ -4,6 +4,11 @@ import {
   ControlledDateRangePicker,
   ValidatedDateRangePickers,
   DateRangePickerWithShortcuts,
+  GranularityDateRangePicker,
+  LabelingDateRangePicker,
+  ShorcutsDateRangePicker,
+  InvalidDateRangePicker,
+  CustomDateRangePicker,
 } from '../../components/DatePickers'
 
 # DateRangePicker
@@ -46,7 +51,7 @@ In this docs, we will use English(Singapore) `en-SG` as default locale
 ### Basic
 
 <section className={styles.componentShowcaseContainer}>
-  <DateRangePicker startDateLabel='Start Date' endDateLabel='End Date' />
+  <CustomDateRangePicker type='range' />
 </section>
 
 ```js
@@ -93,7 +98,7 @@ function ControlledDateRangePicker() {
 The granularity prop allows you to control the smallest unit that is displayed by a DateRangePicker.
 
 <section className={styles.componentShowcaseContainer}>
-  <DateRangePicker granularity='second' />
+  <GranularityDateRangePicker type='range' />
 </section>
 
 ```js
@@ -107,24 +112,7 @@ DateRangePicker component receives two props `startDateLabel` and `endDateLabel`
 A visual label should be provided for the DatePicker using the label prop. If the DateRangePicker is required, the isRequired and necessityIndicator props can be used to show a required state.
 
 <section className={styles.componentShowcaseContainer}>
-  <DateRangePicker startDateLabel='Start Date' endDateLabel='End Date' />
-  <DateRangePicker
-    startDateLabel='Start Date'
-    endDateLabel='End Date'
-    isRequired
-    necessityIndicator='icon'
-  />
-  <DateRangePicker
-    startDateLabel='Start Date'
-    endDateLabel='End Date'
-    isRequired
-    necessityIndicator='label'
-  />
-  <DateRangePicker
-    startDateLabel='Start Date'
-    endDateLabel='End Date'
-    necessityIndicator='label'
-  />
+  <LabelingDateRangePicker type='range'/>
 </section>
 
 ```js
@@ -180,7 +168,7 @@ function ValidatedDateRangePickers() {
 ### Shorcuts
 
 <section className={styles.componentShowcaseContainer}>
-  <DateRangePicker hasShortcuts />
+  <ShorcutsDateRangePicker type='range'/>
 </section>
 
 ```js
@@ -247,7 +235,7 @@ export function DateRangePickerWithShortcuts() {
 ### Invalid
 
 <section className={styles.componentShowcaseContainer}>
-  <DateRangePicker isInvalid />
+  <InvalidDateRangePicker type='range'/>
 </section>
 
 ```js
