@@ -26,12 +26,19 @@ const DataGridColumnHeader = React.forwardRef<
   DataGridColumnHeaderProps
 >(({headerProps, tableOption, css = {}}, ref) => {
   const enableResizing = headerProps?.column?.columnDef?.enableResizing
+  const isFilterableColumn =
+    headerProps.column.columnDef.enableColumnFilter === true &&
+    headerProps.column.getCanFilter()
+  const isGroupedColumn =
+    headerProps.column.columnDef.enableGrouping === true &&
+    headerProps.column.getIsGrouped()
   const tableRowRef = useDOMRef<HTMLTableCellElement>(ref)
   const sortDirection = headerProps.column.getIsSorted()
   const directions = {
     asc: <ArrowUpIcon />,
     desc: <ArrowDownIcon />,
   }
+
   return (
     <StyledDataGridColumnHeader
       ref={tableRowRef}
@@ -49,7 +56,7 @@ const DataGridColumnHeader = React.forwardRef<
         >
           {
             <div onClick={headerProps.column.getToggleGroupingHandler()}>
-              {headerProps.column.getIsGrouped() ? (
+              {isGroupedColumn ? (
                 <span>({headerProps.column.getGroupedIndex()})</span>
               ) : (
                 <></>
@@ -61,7 +68,7 @@ const DataGridColumnHeader = React.forwardRef<
             </div>
           }
           {sortDirection && directions[sortDirection]}
-          {headerProps.column.getCanFilter() ? (
+          {isFilterableColumn ? (
             <HeaderColumnFilter
               column={headerProps.column}
               table={tableOption}
