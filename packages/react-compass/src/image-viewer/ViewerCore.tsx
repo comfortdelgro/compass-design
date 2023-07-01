@@ -61,8 +61,6 @@ export default (props: IViewerProps) => {
   const initialState: IViewerCoreState = {
     index: 0,
     visible: false,
-    visibleStart: false,
-    transitionEnd: false,
     activeIndex: props.activeIndex ?? 0,
     width: 0,
     height: 0,

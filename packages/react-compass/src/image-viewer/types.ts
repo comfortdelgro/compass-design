@@ -4,8 +4,6 @@ import {ActionType} from './Icon'
 export interface IViewerCoreState {
   index: number
   visible: boolean
-  visibleStart: boolean
-  transitionEnd: boolean
   activeIndex: number
   width: number
   height: number
