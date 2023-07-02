@@ -3,6 +3,10 @@ import styles from '../../styles/Home.module.css'
 import {
   ControlledDatePickers,
   ValidatedDatePickers,
+  GranularityDateRangePicker,
+  LabelingDateRangePicker,
+  InvalidDateRangePicker,
+  CustomDateRangePicker,
 } from '../../components/DatePickers'
 
 # DatePicker
@@ -45,7 +49,7 @@ In this docs, we will use English(Singapore) `en-SG` as default locale
 ### Basic
 
 <section className={styles.componentShowcaseContainer}>
-  <DatePicker label='Date' />
+  <CustomDateRangePicker type='date' />
 </section>
 
 ```js
@@ -99,7 +103,7 @@ export function ControlledDatePickers() {
 The granularity prop allows you to control the smallest unit that is displayed by a DatePicker.
 
 <section className={styles.componentShowcaseContainer}>
-  <DatePicker label='Date' granularity='second' />
+  <GranularityDateRangePicker type='date' />
 </section>
 
 ```js
@@ -111,10 +115,7 @@ The granularity prop allows you to control the smallest unit that is displayed b
 A visual label should be provided for the DatePicker using the label prop. If the DatePicker is required, the isRequired and necessityIndicator props can be used to show a required state.
 
 <section className={styles.componentShowcaseContainer}>
-  <DatePicker label='Date' />
-  <DatePicker label='Date' isRequired necessityIndicator='icon' />
-  <DatePicker label='Date' isRequired necessityIndicator='label' />
-  <DatePicker label='Date' necessityIndicator='label' />
+  <LabelingDateRangePicker type='date' />
 </section>
 
 ```js
@@ -166,7 +167,7 @@ function ValidatedDatePickers() {
 ### Invalid
 
 <section className={styles.componentShowcaseContainer}>
-  <DatePicker isInvalid />
+  <InvalidDateRangePicker type={'date'} />
 </section>
 
 ```js

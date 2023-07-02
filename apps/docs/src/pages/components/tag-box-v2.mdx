@@ -1,0 +1,160 @@
+import ComponentDisplay from 'components/ComponentDisplay'
+import {Callout} from 'nextra-theme-docs'
+import styles from '../../styles/Home.module.css'
+import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons'
+import Icon from '@comfortdelgro/react-compass/icon'
+import {BasicTagBox} from '../../components/TagBoxV2'
+
+# Tag Box V2
+
+The Tag Box component is a versatile and interactive user interface element designed to display and manage tags or labels within a digital application or website. It provides a visually appealing and user-friendly way to organize and categorize information, enabling users to easily add, remove, and select tags as needed.
+
+<Callout>
+  Check out our [ladle](/ladle?story=tag-box-v2) for more info on this
+  component.
+</Callout>
+
+---
+
+### Import:
+
+```js
+import {TagBoxV2} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import TagBoxV2 from '@comfortdelgro/react-compass/tag-box-v2'
+```
+
+---
+
+## Example
+
+### Basic Example
+
+<section className={styles.avatarShowcaseContainer}>
+  <BasicTagBox />
+</section>
+
+```js
+ <TagBoxV2
+        tagBoxLabel='Attribute values'
+        addTagPlaceholder='Please enter to add tag'
+        tags={[
+      {id: 1, value: 'Item 1', icon: <Icon icon={faExclamationTriangle} />},
+      {id: 2, value: 'Item 2', isDisabled: true},
+      {id: 3, value: 'Item 3', icon: <Icon icon={faExclamationTriangle} />},
+      {id: 4, value: 'Item 4', isDisabled: true},
+      {
+        id: 5,
+        value: 'Item 5',
+        icon: <Icon icon={faExclamationTriangle} />,
+        isError: true,
+      },
+      {id: 6, value: 'Item 6', isDisabled: true},
+      {id: 7, value: 'Item 7', icon: <Icon icon={faExclamationTriangle} />},
+      {id: 8, value: 'Item 8', isDisabled: true},
+      {id: 9, value: 'Item 9', icon: <Icon icon={faExclamationTriangle} />},
+      {id: 10, value: 'Item 10', isDisabled: true},
+    ]}
+        isErrored={false}
+        onAddTag={(e) => console.log(e)}
+        onRemoveTag={(tagToBeRemoved) =>
+          console.log(tagToBeRemoved.id as number)
+        }
+        onEditTag={(tagToBeEdited) =>
+          console.log(tagToBeEdited.id as number, tagToBeEdited.value)
+        }
+        css={{width: '70%'}}
+      />
+```
+
+### Error
+<section className={styles.avatarShowcaseContainer}>
+  <BasicTagBox isErrored={true} />
+</section>
+```
+<TagBoxV2
+    tagBoxLabel='Attribute values'
+    addTagPlaceholder='Please enter to add tag'
+    tags={tags}
+    isErrored={true}
+    isEditable
+    onAddTag={handleAddTag}
+    onRemoveTag={(tagToBeRemoved) =>
+      handleRemoveTag(tagToBeRemoved.id as number)
+    }
+    onEditTag={(tagToBeEdited) =>
+      handleEditTag(tagToBeEdited.id as number, tagToBeEdited.value)
+    }
+    css={BasicTagBoxStyles}
+  />
+```
+
+### Editable
+<section className={styles.avatarShowcaseContainer}>
+  <BasicTagBox isEditable={false} />
+</section>
+```
+<TagBoxV2
+    tagBoxLabel='Attribute values'
+    addTagPlaceholder='Please enter to add tag'
+    tags={tags}
+    isErrored={true}
+    isEditable
+    onAddTag={handleAddTag}
+    onRemoveTag={(tagToBeRemoved) =>
+      handleRemoveTag(tagToBeRemoved.id as number)
+    }
+    onEditTag={(tagToBeEdited) =>
+      handleEditTag(tagToBeEdited.id as number, tagToBeEdited.value)
+    }
+    css={BasicTagBoxStyles}
+  />
+```
+
+---
+
+## Props
+
+### TagBox
+
+| Name                             | Type         | Default | Description                                                                                                     |
+| :------------                    | :----------- | :------ | :-------------------------------------------------------------------------------------------------------------- |
+| isRequired                       | `boolean`    | —       | A boolean indicating whether the TagBoxV2 component is required or not.                                         |
+| isErrored                        | `boolean`    | 'false' | A boolean indicating whether the TagBoxV2 component has an error or not.                                        |
+| tagBoxLabel                      | `string`     | -       | A string representing the label or title for the TagBoxV2 component.                                            |
+| tags                             |  `Array`     | -       | An array of objects representing the tags to be displayed in the TagBoxV2 component                             |
+| onAddTag                         | `function`   | -       | A callback function triggered when a new tag is added. It receives the event object as an argument.             |
+| onEditTag                        | `function`   | -       | A callback function triggered when a tag is edited. It receives the tag object.                                 |
+| onRemoveTag                      | `function`   | -       | A callback function triggered when a tag is removed. It receives the tag object .                               |
+| isDisabled                       | `boolean`    | false   | A boolean indicating whether the TagBoxV2 component is disabled or not.                                         |
+| isEditable                       | `boolean`    | false   | (Optional) A boolean indicating whether the tags are editable or not.                                           |
+| customValidationHandler          | `function`   | —       | (Optional) A custom validation handler function to perform additional validation on the tags.                   |
+| addTagPlaceholder                | `function`   | —       | The placeholder text for the input field to add new tags.                                                       |
+| canRemoveOnDeleteAndBackspaceKey | `boolean`    | —       | (Optional) A boolean indicating whether tags can be removed using the delete and backspace keys.                |
+| css                              | `CSS`        | —       | The system prop that allows defining system overrides as well as additional CSS styles.                         |
+
+### Item
+
+| Name       | Type        | Default | Description                          |
+| :--------- | :---------- | :------ | :----------------------------------- |
+| id         | `ReactNode` | —       | Unique Id                            |
+| value      | `string`    | -       | Value to display in the item content |
+| icon       | `ReactNode` | -       | Display icon in the left side        |
+| isDisabled | `boolean`   | -       | Disable state.                       |
+| isError    | `boolean`   | -       | Error state.                         |
+
+### TagBox.Action
+
+| Name     | Type        | Default | Description                                                                             |
+| :------- | :---------- | :------ | :-------------------------------------------------------------------------------------- |
+| children | `ReactNode` | —       | The content to display in the tag box action.                                           |
+| css      | `CSS`       | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
+
+<Callout>
+  Check out our [ladle](/ladle?story=tag-box-v2-tag-boxs) for more info on this
+  component.
+</Callout>

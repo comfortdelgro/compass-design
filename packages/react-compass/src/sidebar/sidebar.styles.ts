@@ -112,7 +112,7 @@ export const StyledSidebarWrapper = styled('div', {
   background: '$overlayDark',
 
   // wrapper styling
-  position: 'absolute',
+  position: 'fixed',
   top: '0',
   left: '0',
   width: '100%',

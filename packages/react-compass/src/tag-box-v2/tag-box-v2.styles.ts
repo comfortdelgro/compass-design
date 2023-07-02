@@ -213,6 +213,22 @@ export const StyledTagBoxV2 = styled('div', {
       },
       false: {},
     },
+    focused: {
+      true: {
+        [`${StyledContainer}`]: {
+          borderWidth: '2px',
+          borderStyle: 'solid',
+          borderColor: '$cdgBlue100',
+        },
+      },
+      false: {
+        [`${StyledContainer}`]: {
+          borderWidth: '2px',
+          borderStyle: 'solid',
+          borderColor: '$gray30',
+        },
+      },
+    },
   },
 })
 
