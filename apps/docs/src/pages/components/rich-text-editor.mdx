@@ -1,6 +1,10 @@
-import RichTextEditor, {
-  JSONContent,
-} from '@comfortdelgro/react-compass/rich-text-editor'
+import {
+  Default,
+  WithContent,
+  WithPlaceholder,
+  Readonly,
+  LimitCharacters,
+} from '../../components/RichTextEditor'
 import {Callout} from 'nextra-theme-docs'
 
 import styles from '../../styles/Home.module.css'
@@ -24,8 +28,19 @@ import RichTextEditor, {
 
 ### Default
 
-<br />
-<RichTextEditor characterCount={200}>
+<section className={styles.bannerShowcaseContainer}>
+  <Default />
+</section>
+```js
+
+const [description, setDescription] =
+(React.useState < string) | (JSONContent > '')
+
+const handleChange = (content: string | JSONContent) => {
+setDescription(content)
+}
+
+<RichTextEditor onChange={handleChange}>
   <RichTextEditor.Toolbar>
     <RichTextEditor.ControlsGroup>
       <RichTextEditor.Undo />
@@ -58,142 +73,28 @@ import RichTextEditor, {
     <RichTextEditor.Blockquote />
   </RichTextEditor.Toolbar>
 </RichTextEditor>
-
-```js
-const [description, setDescription] =
-  (React.useState < string) | (JSONContent > '')
-
-const handleChange = (content: string | JSONContent) => {
-  setDescription(content)
-}
-
-;<RichTextEditor characterCount={200} onChange={handleChange}>
-  <RichTextEditor.Toolbar>
-    <RichTextEditor.ControlsGroup>
-      <RichTextEditor.Undo />
-      <RichTextEditor.Redo />
-    </RichTextEditor.ControlsGroup>
-    <RichTextEditor.ControlsGroup>
-      <RichTextEditor.H1 />
-      <RichTextEditor.H2 />
-      <RichTextEditor.H3 />
-      <RichTextEditor.H4 />
-    </RichTextEditor.ControlsGroup>
-    <RichTextEditor.ControlsGroup>
-      <RichTextEditor.ColorControl />
-    </RichTextEditor.ControlsGroup>
-    <RichTextEditor.ControlsGroup>
-      <RichTextEditor.TextAlginmentSelector />
-    </RichTextEditor.ControlsGroup>
-    <RichTextEditor.ControlsGroup>
-      <RichTextEditor.Bold />
-      <RichTextEditor.Italic />
-      <RichTextEditor.Underline />
-      <RichTextEditor.Strikethrough />
-    </RichTextEditor.ControlsGroup>
-    <RichTextEditor.BulletList />
-    <RichTextEditor.OrderedList />
-    <RichTextEditor.Link />
-    <RichTextEditor.Unlink />
-    <RichTextEditor.Image />
-    <RichTextEditor.Superscript />
-    <RichTextEditor.Subscript />
-    <RichTextEditor.Hr />
-    <RichTextEditor.CodeBlock />
-    <RichTextEditor.Blockquote />
-  </RichTextEditor.Toolbar>
-</RichTextEditor>
 ```
 
-### Customized
+### With Content
 
-<br />
-<RichTextEditor characterCount={200}>
-  <RichTextEditor.Toolbar>
-    <RichTextEditor.ControlsGroup>
-      <RichTextEditor.Undo />
-      <RichTextEditor.Redo />
-    </RichTextEditor.ControlsGroup>
-    <RichTextEditor.ControlsGroup>
-      <RichTextEditor.H1 />
-      <RichTextEditor.H2 />
-      <RichTextEditor.H3 />
-      <RichTextEditor.H4 />
-    </RichTextEditor.ControlsGroup>
-    <RichTextEditor.ControlsGroup>
-      <RichTextEditor.ColorControl />
-    </RichTextEditor.ControlsGroup>
-    <RichTextEditor.ControlsGroup>
-      <RichTextEditor.AlignLeft />
-      <RichTextEditor.AlignCenter />
-      <RichTextEditor.AlignRight />
-      <RichTextEditor.AlignJustify />
-    </RichTextEditor.ControlsGroup>
-    <RichTextEditor.ControlsGroup>
-      <RichTextEditor.Bold />
-      <RichTextEditor.Italic />
-      <RichTextEditor.Underline />
-      <RichTextEditor.Strikethrough />
-    </RichTextEditor.ControlsGroup>
-    <RichTextEditor.BulletList />
-    <RichTextEditor.OrderedList />
-    <RichTextEditor.Link />
-    <RichTextEditor.Unlink />
-    <RichTextEditor.Image />
-    <RichTextEditor.Superscript />
-    <RichTextEditor.Subscript />
-    <RichTextEditor.Hr />
-    <RichTextEditor.CodeBlock />
-  </RichTextEditor.Toolbar>
-</RichTextEditor>
+<section className={styles.bannerShowcaseContainer}>
+  <WithContent />
+</section>
+### With Placeholder
 
-```js
-const [description, setDescription] =
-  (React.useState < string) | (JSONContent > '')
+<section className={styles.bannerShowcaseContainer}>
+  <WithPlaceholder />
+</section>
+### Readonly
 
-const handleChange = (content: string | JSONContent) => {
-  setDescription(content)
-}
+<section className={styles.bannerShowcaseContainer}>
+  <Readonly />
+</section>
+### Limit Characters Count
 
-;<RichTextEditor characterCount={200} onChange={handleChange}>
-  <RichTextEditor.Toolbar>
-    <RichTextEditor.ControlsGroup>
-      <RichTextEditor.Undo />
-      <RichTextEditor.Redo />
-    </RichTextEditor.ControlsGroup>
-    <RichTextEditor.ControlsGroup>
-      <RichTextEditor.H1 />
-      <RichTextEditor.H2 />
-      <RichTextEditor.H3 />
-      <RichTextEditor.H4 />
-    </RichTextEditor.ControlsGroup>
-    <RichTextEditor.ControlsGroup>
-      <RichTextEditor.ColorControl />
-    </RichTextEditor.ControlsGroup>
-    <RichTextEditor.ControlsGroup>
-      <RichTextEditor.AlignLeft />
-      <RichTextEditor.AlignCenter />
-      <RichTextEditor.AlignRight />
-      <RichTextEditor.AlignJustify />
-    </RichTextEditor.ControlsGroup>
-    <RichTextEditor.ControlsGroup>
-      <RichTextEditor.Bold />
-      <RichTextEditor.Italic />
-      <RichTextEditor.Underline />
-      <RichTextEditor.Strikethrough />
-    </RichTextEditor.ControlsGroup>
-    <RichTextEditor.BulletList />
-    <RichTextEditor.OrderedList />
-    <RichTextEditor.Link />
-    <RichTextEditor.Unlink />
-    <RichTextEditor.Image />
-    <RichTextEditor.Superscript />
-    <RichTextEditor.Subscript />
-    <RichTextEditor.Hr />
-    <RichTextEditor.CodeBlock />
-  </RichTextEditor.Toolbar>
-</RichTextEditor>
-```
+<section className={styles.bannerShowcaseContainer}>
+  <LimitCharacters />
+</section>
 
 ---
 
