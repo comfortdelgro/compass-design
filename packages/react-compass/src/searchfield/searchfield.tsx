@@ -128,7 +128,6 @@ const SearchField = React.forwardRef<HTMLDivElement, SearchFieldProps>(
       ...delegated
     } = props
     const isDarkTheme = useIsDarkTheme()
-    console.log('===', isDarkTheme)
     const [textValue, setTextValue] = React.useState<string>(value)
     const searchFieldRef = useDOMRef<HTMLInputElement>(null)
     const wrapperRef = useDOMRef<HTMLDivElement>(ref)
@@ -184,6 +183,7 @@ const SearchField = React.forwardRef<HTMLDivElement, SearchFieldProps>(
         isErrored={isErrored}
         ref={wrapperRef}
         {...delegated}
+        isDarkTheme={isDarkTheme}
       >
         <StyledSearchFieldInput
           ref={searchFieldRef}
@@ -209,7 +209,6 @@ const SearchField = React.forwardRef<HTMLDivElement, SearchFieldProps>(
           onCompositionEnd={onCompositionEnd}
           onCompositionStart={onCompositionStart}
           onCompositionUpdate={onCompositionUpdate}
-          isDarkTheme={isDarkTheme}
         />
         {textValue !== '' ? (
           <Button size='sm' variant='ghost' onPress={onClearButtonClick}>

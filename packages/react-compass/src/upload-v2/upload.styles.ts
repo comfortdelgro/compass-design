@@ -15,7 +15,7 @@ export const StyledUploadError = styled('div', {
   fontWeight: '$medium',
   fontSize: '$label2',
   lineHeight: '$normal',
-  color: '$danger',
+  color: '#e31617',
   marginTop: '$1',
 })
 
@@ -32,7 +32,7 @@ export const StyledUploadSize = styled('div', {
   fontWeight: '$medium',
   fontSize: '$label2',
   lineHeight: '',
-  color: '$tertiaryText',
+  color: '#b4b4b4',
 })
 
 export const StyledUploadInput = styled('div', {
@@ -69,12 +69,10 @@ export const StyledUploadInput = styled('div', {
     fontWeight: '$medium',
     fontSize: '$label1',
     lineHeight: '$normal',
-    backgroundColor: '$cdgBlue120',
-    color: '$cdgBlue40',
   },
   '& span:nth-child(2)': {
     padding: '12px 16px',
-    color: '$tertiaryText',
+    color: '#b4b4b4',
     fontWeight: '$medium',
     fontSize: '$label1',
     lineHeight: '$normal',
@@ -85,7 +83,7 @@ export const StyledUploadInput = styled('div', {
     textOverflow: 'ellipsis',
   },
   '& span:nth-child(2)[data-file="true"]': {
-    color: '$tertiaryText',
+    color: '#333333',
   },
   '& [data-invalid="true"]': {
     borderColor: '$danger',
@@ -107,10 +105,6 @@ export const StyledUploadTitle = styled('div', {
   fontWeight: '$medium',
   fontSize: '$label1',
   lineHeight: '$normal',
-  color: '$tertiaryText',
-  '& .cdg-isRequired-Sign': {
-    color: '$danger',
-  },
 })
 
 export const StyledUploadWrapper = styled('div', {
@@ -126,6 +120,35 @@ export const StyledUploadWrapper = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   width: '100%',
+  variants: {
+    isDarkTheme: {
+      true: {
+        [`${StyledUploadInput}`]: {
+          '& span:nth-child(1)': {
+            backgroundColor: '$cdgBlue120',
+            color: '$cdgBlue40',
+          },
+        },
+        [`${StyledUploadTitle}`]: {
+          color: '$tertiaryText',
+        },
+      },
+      false: {
+        [`${StyledUploadInput}`]: {
+          backgroundColor: '$gray10',
+          '& span:nth-child(1)': {
+            backgroundColor: '#f7f8f9',
+          },
+        },
+        [`${StyledUploadTitle}`]: {
+          color: '$#3e3e3e',
+          '& .cdg-isRequired-Sign': {
+            color: '$danger',
+          },
+        },
+      },
+    },
+  },
 })
 
 export type UploadVariantProps = VariantProps<typeof StyledUploadWrapper>
