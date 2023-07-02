@@ -1,30 +1,27 @@
 import {
+  Calendar,
+  CalendarProps,
   DatePicker,
   DateRangePicker,
   RangeCalendarShorcutItem,
   RangeValue,
 } from '@comfortdelgro/react-compass'
-import {
-  DateValue,
-  endOfWeek,
-  getLocalTimeZone,
-  isWeekend,
-  parseDate,
-  startOfWeek,
-  today,
-} from '@internationalized/date'
-import {I18nProvider, useDateFormatter, useLocale} from '@react-aria/i18n'
+
 import {useState} from 'react'
 
+const {useDateFormatter, useLocale} = Calendar.I18N
+const {endOfWeek, getLocalTimeZone, isWeekend, parseDate, startOfWeek, today} =
+  Calendar.InternationalizedDate
+
 export function ControlledDatePickers() {
-  const [date, setDate] = useState<DateValue>(
+  const [date, setDate] = useState<CalendarProps>(
     parseDate(today(getLocalTimeZone()).toString()),
   )
 
   const formatter = useDateFormatter({dateStyle: 'full'})
 
   return (
-    <I18nProvider locale='en-SG'>
+    <>
       <p>
         <b>Selected date:</b>
         <span style={{marginLeft: '4px'}}>
@@ -44,7 +41,7 @@ export function ControlledDatePickers() {
         defaultValue={today(getLocalTimeZone())}
         onChange={setDate}
       />
-    </I18nProvider>
+    </>
   )
 }
 
@@ -230,20 +227,20 @@ export function InvalidDateRangePicker(props: any) {
 }
 
 export function ControlledDateRangePicker() {
-  const [range, setRange] = useState<RangeValue<DateValue | null> | null>({
+  const [range, setRange] = useState<RangeValue<CalendarProps | null> | null>({
     start: parseDate('2020-02-03'),
     end: parseDate('2020-02-08'),
   })
   const formatter = useDateFormatter({dateStyle: 'long'})
 
   const onChangeDateRangePicker = (
-    value: RangeValue<DateValue | null> | null,
+    value: RangeValue<CalendarProps | null> | null,
   ) => {
     setRange(value)
   }
 
   return (
-    <I18nProvider locale='en-SG'>
+    <>
       {range &&
         range.start &&
         range.end &&
@@ -262,7 +259,7 @@ export function ControlledDateRangePicker() {
         value={range}
         onChange={onChangeDateRangePicker}
       />
-    </I18nProvider>
+    </>
   )
 }
 
@@ -318,7 +315,7 @@ export function ValidatedDateRangePickers({
   const {locale} = useLocale()
 
   return (
-    <I18nProvider locale='en-SG'>
+    <>
       <DateRangePicker
         calendarCSS={{
           '& .calendar-footer button:nth-child(2)': {
@@ -336,7 +333,7 @@ export function ValidatedDateRangePickers({
           }
         }}
       />
-    </I18nProvider>
+    </>
   )
 }
 

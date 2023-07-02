@@ -1,4 +1,4 @@
-import {ThemeProvider} from '@comfortdelgro/react-compass'
+import {Calendar, ThemeProvider} from '@comfortdelgro/react-compass'
 import Preflight from '@comfortdelgro/react-compass/preflight'
 import {SSRProvider} from '@react-aria/ssr'
 import {AppProps} from 'next/app'
@@ -35,9 +35,11 @@ const App: React.FC<AppProps> = ({Component, pageProps}) => {
         // // @ts-ignore
         // darkThemeCustom={darkThemeCustom}
       >
-        <Preflight />
-        <Toaster position='bottom-right' />
-        <Component {...pageProps} />
+        <Calendar.I18N.I18nProvider locale='en-SG'>
+          <Preflight />
+          <Toaster position='bottom-right' />
+          <Component {...pageProps} />
+        </Calendar.I18N.I18nProvider>
       </ThemeProvider>
     </SSRProvider>
   )

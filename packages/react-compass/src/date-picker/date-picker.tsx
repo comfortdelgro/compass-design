@@ -35,12 +35,13 @@ interface Props
   maxValue?: DateValue | null | undefined
   calendarCSS?: CSS
   helperText?: React.ReactNode
+  ctaButtonRender?: React.ReactNode
 }
 
 export type DatePickerProps = Props
 
 const DatePicker = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
-  const {css = {}, maxValue = parseDate('2999-03-10')} = props
+  const {css = {}, maxValue = parseDate('2999-03-10'), ctaButtonRender} = props
   const state = useDatePickerState({
     ...props,
     // mobile styles: prevent date field from user input, click on any place in date field will open calendar
@@ -107,6 +108,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
           calendarRef={calendarRef}
           dialogProps={dialogProps}
           css={props.calendarCSS}
+          ctaButtonRender={ctaButtonRender}
         />
       </DatePickerProvider>
     </StyledDatePicker>
@@ -165,6 +167,7 @@ interface DatePickerCalendarWrapperProps {
   calendarProps: CalendarProps
   onCancel?: (() => void) | undefined
   maxValue?: DateValue | null | undefined
+  ctaButtonRender?: React.ReactNode
   css?: CSS | undefined
 }
 
@@ -175,6 +178,7 @@ const DatePickerCalendarWrapper = (props: DatePickerCalendarWrapperProps) => {
     dialogProps,
     calendarProps,
     maxValue = parseDate('2999-03-10'),
+    ctaButtonRender,
     css = {},
   } = props
 
@@ -199,6 +203,7 @@ const DatePickerCalendarWrapper = (props: DatePickerCalendarWrapperProps) => {
               {...calendarProps}
               maxValue={maxValue}
               css={css}
+              ctaButtonRender={ctaButtonRender}
             />
           </Dialog>
         </Popover>
