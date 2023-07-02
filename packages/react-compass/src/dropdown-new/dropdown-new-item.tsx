@@ -28,6 +28,7 @@ const DropdownNewItem: React.FC<DropdownItemProps> = (
     disabledKeys = [],
     searchValue,
     open,
+    focusKey,
     selectedKey,
     setSelectedKeys,
     onItemClick,
@@ -39,6 +40,11 @@ const DropdownNewItem: React.FC<DropdownItemProps> = (
     () =>
       selectedKeys.findIndex((item) => item.value === value.toString()) !== -1,
     [selectedKeys, value],
+  )
+
+  const isFocused = useMemo(
+    () => focusKey === value.toString(),
+    [focusKey, value],
   )
 
   const isDisabled = useMemo(
@@ -57,6 +63,14 @@ const DropdownNewItem: React.FC<DropdownItemProps> = (
         .includes(searchValue.toLocaleLowerCase())
     )
   }, [searchValue, children])
+
+  useEffect(() => {
+    if (focusKey && focusKey.toString() === value.toString()) {
+      if (ref.current) {
+        ref.current.scrollIntoView({inline: 'end'})
+      }
+    }
+  }, [focusKey, value])
 
   useEffect(() => {
     if (selectedKey && selectedKey.toString() === value.toString()) {
@@ -84,23 +98,22 @@ const DropdownNewItem: React.FC<DropdownItemProps> = (
     })
   }
 
-  return useMemo(() => {
-    return canDisplayed ? (
-      <StyledOption
-        isSelected={isSeleted}
-        isDisabled={isDisabled}
-        onClick={handleItemClick}
-        ref={ref}
-      >
-        {flagName && (
-          <StyledFlagItem>
-            <Flag iso={flagName} />
-          </StyledFlagItem>
-        )}
-        {children}
-      </StyledOption>
-    ) : null
-  }, [isSeleted, canDisplayed, isDisabled, flagName, children])
+  return canDisplayed ? (
+    <StyledOption
+      isFocused={isFocused}
+      isSelected={isSeleted}
+      isDisabled={isDisabled}
+      onClick={handleItemClick}
+      ref={ref}
+    >
+      {flagName && (
+        <StyledFlagItem>
+          <Flag iso={flagName} />
+        </StyledFlagItem>
+      )}
+      {children}
+    </StyledOption>
+  ) : null
 }
 
 export default DropdownNewItem

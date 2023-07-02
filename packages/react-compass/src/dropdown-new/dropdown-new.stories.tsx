@@ -1,21 +1,22 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {Column} from '../utils'
 import DropdownNew from './'
 
 export const Default: React.FC = () => {
   const [value, setValue] = React.useState<React.Key>('dog')
 
-  // useEffect(() => {
-  //   console.log('Dropdown changed: ', value)
-  // }, [value])
+  useEffect(() => {
+    console.log('Dropdown changed: ', value)
+  }, [value])
 
   return (
     <Column>
-      {/* <h3>Default</h3>
+      <h3>Default</h3>
       <DropdownNew
         placeholder='Choose an animal'
         label='Test'
         selectedKey={value}
+        shouldDeselect
         numberOfRows={4}
         onSelectionChange={(value) => setValue(value)}
       >
@@ -43,8 +44,8 @@ export const Default: React.FC = () => {
         <DropdownNew.Item key='snakessss1' value='snakessss1'>
           Snake 1
         </DropdownNew.Item>
-      </DropdownNew> */}
-      {/* <h3>Combobox</h3>
+      </DropdownNew>
+      <h3>Combobox</h3>
       <DropdownNew
         type='combobox'
         placeholder='Choose an animal'
@@ -75,7 +76,7 @@ export const Default: React.FC = () => {
         <DropdownNew.Item key='snakessss1' value='snakessss1'>
           Snake 1
         </DropdownNew.Item>
-      </DropdownNew> */}
+      </DropdownNew>
       <h3>Flag</h3>
       <DropdownNew.Flag type='flag' />
     </Column>

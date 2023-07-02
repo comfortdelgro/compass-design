@@ -11,6 +11,7 @@ export interface DropdownContextType {
   searchValue: string
   disabledKeys?: Array<string | number>
   selectedKeys: SelectedItemDropdown[]
+  focusKey?: string | number
   selectedKey?: string | number
   defaultSelectedKey?: string | number
   setSelectedKeys: React.Dispatch<React.SetStateAction<SelectedItemDropdown[]>>

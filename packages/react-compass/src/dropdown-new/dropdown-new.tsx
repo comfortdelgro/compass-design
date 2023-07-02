@@ -25,7 +25,13 @@ import {
   StyledSelect,
 } from './dropdown-new.styles'
 import {Flag} from './flags'
-import {textContent} from './utils'
+import {
+  getFirstItem,
+  getItemAbove,
+  getItemBelow,
+  getItemByKey,
+  textContent,
+} from './utils'
 
 interface Props extends StyledComponentProps {
   isMultiple?: boolean
@@ -111,10 +117,13 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   const [selectedKeysBackup, setSelectedKeysBackup] = React.useState<
     SelectedItemDropdown[]
   >([])
+  const [focusKey, setFocusKey] = React.useState<string | number | undefined>(
+    selectedKey || defaultSelectedKey,
+  )
   const [searchValue, setSearchValue] = useState<string>('')
 
   // Select ref
-  const selectRef = useDOMRef<HTMLElement>(ref)
+  const selectRef = useDOMRef<HTMLDivElement>(ref)
   const buttonSelectRef = useRef<HTMLButtonElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -132,9 +141,71 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
 
   // ====================================== Logic ======================================
 
-  const handleKeyDown = useCallback(() => {
-    // Todo
-  }, [])
+  const handleKeyDown = useCallback(
+    (event: KeyboardEvent) => {
+      switch (event.key) {
+        case 'ArrowUp':
+        case 'ArrowLeft':
+          event.preventDefault()
+          if (focusKey) {
+            const nextKey = getItemAbove(focusKey, children, disabledKeys)
+            if (nextKey !== null) {
+              setFocusKey(nextKey.props.value.toString() ?? '')
+            }
+          } else {
+            setFocusKey(getFirstItem(children)?.props.value.toString() ?? '')
+          }
+          break
+        case 'ArrowDown':
+        case 'ArrowRight':
+          event.preventDefault()
+          if (focusKey) {
+            const prevKey = getItemBelow(focusKey, children, disabledKeys)
+            if (prevKey !== null) {
+              setFocusKey(prevKey.props.value.toString() ?? '')
+            }
+          } else {
+            setFocusKey(getFirstItem(children)?.props.value.toString() ?? '')
+          }
+          break
+        case 'Enter':
+          event.preventDefault()
+          if (focusKey) {
+            const focusedItem = getItemByKey(focusKey, children)
+            if (focusedItem) {
+              setOpen(false)
+              // Deselect item
+              if (
+                shouldDeselect &&
+                selectedKeys.findIndex(
+                  (item) => item.value === focusedItem.props.value,
+                ) !== -1
+              ) {
+                setSelectedKeys([])
+                onSelectionChange?.('')
+                return
+              }
+              setSelectedKeys([
+                {
+                  value: focusedItem.props.value.toString(),
+                  displayValue: focusedItem.props.children,
+                  flagName: focusedItem.props.flagName ?? '',
+                },
+              ])
+              onSelectionChange?.(focusedItem.props.value)
+            }
+          }
+
+          break
+        case 'Escape':
+        case 'Tab':
+          event.preventDefault()
+          setOpen(false)
+          break
+      }
+    },
+    [focusKey, children, disabledKeys, selectedKeys],
+  )
 
   useEffect(() => {
     if (open) {
@@ -393,6 +464,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     <StyledDropdownWrapper
       className={`${open ? 'cdg-dropdown-opening' : ''}`}
       css={css}
+      ref={selectRef}
       {...delegated}
     >
       {props.label && (
@@ -404,6 +476,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       <DropdownContext.Provider
         value={{
           open,
+          focusKey: focusKey ?? '',
           selectedKey,
           defaultSelectedKey,
           disabledKeys,
