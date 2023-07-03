@@ -126,6 +126,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     selectedKey || defaultSelectedKey,
   )
   const [searchValue, setSearchValue] = useState<string>('')
+  const [dropdownItems, setDropdownItems] = useState<Array<string | number>>([])
 
   // Select ref
   const selectRef = useDOMRef<HTMLDivElement>(ref)
@@ -520,6 +521,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           searchValue,
           selectedKeys,
           setSelectedKeys,
+          dropdownItems,
+          setDropdownItems,
           onItemClick: handleDropdownItemClick,
         }}
       >

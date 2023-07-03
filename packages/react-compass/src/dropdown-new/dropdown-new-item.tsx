@@ -31,6 +31,7 @@ const DropdownNewItem: React.FC<DropdownItemProps> = (
     focusKey,
     selectedKey,
     setSelectedKeys,
+    setDropdownItems,
     onItemClick,
   } = useContext(DropdownContext)
 
