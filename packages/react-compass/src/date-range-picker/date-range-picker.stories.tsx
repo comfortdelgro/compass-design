@@ -1,3 +1,4 @@
+import {today} from '@internationalized/date'
 import type {RangeValue} from '@react-types/shared'
 import React from 'react'
 import Button from '../button'
@@ -35,6 +36,19 @@ export const Variants: React.FC = () => {
           startDateLabel='Start date'
           endDateLabel='End date'
         />
+        <h3>Min & Max</h3>
+        <DateRangePicker
+          startDateLabel='Start date'
+          endDateLabel='End date'
+          minValue={today(getLocalTimeZone())}
+          maxValue={today(getLocalTimeZone()).add({days: 7})}
+        />
+        <h3>Is Mobile</h3>
+        <DateRangePicker
+          startDateLabel='Start date'
+          endDateLabel='End date'
+          isMobile
+        />
         <h3>Helper texts</h3>
         <DateRangePicker
           isInvalid
@@ -44,7 +58,13 @@ export const Variants: React.FC = () => {
           startDateLabel='Start date'
           endDateLabel='End date'
         />
-        <h3>Extended Range Calendar</h3>
+        <h3>Shortcuts</h3>
+        <DateRangePicker
+          startDateLabel='Start date'
+          endDateLabel='End date'
+          hasShortcuts
+        />
+        <h3>Custom Shortcuts Range Calendar</h3>
         <DateRangePicker
           startDateLabel='Start date'
           endDateLabel='End date'
@@ -103,4 +123,8 @@ export const Controlled: React.FC = () => {
       />
     </I18nProvider>
   )
+}
+
+export const Default: React.FC = () => {
+  return <DateRangePicker />
 }
