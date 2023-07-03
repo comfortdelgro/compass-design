@@ -353,18 +353,6 @@ export const StyledOption = styled('li', {
       },
     },
   },
-  // compoundVariants: [
-  //   {
-  //     isDisabled: true,
-  //     isFocused: true,
-  //     css: {
-  //       '&:hover': {
-  //         backgroundColor: 'transparent',
-  //       },
-  //       opacity: 0.4,
-  //     },
-  //   },
-  // ],
 })
 
 export const StyledHelperText = styled('div', {
@@ -458,5 +446,40 @@ export const StyledFlagIcon = styled('div', {
     height: '$6',
   },
 })
+
+export const StyledDropdownSection = styled('div', {
+  // reset
+  appearance: 'none',
+  border: 'none',
+  backgroundColor: 'transparent',
+  boxSizing: 'border-box',
+  margin: '0px',
+  padding: '0px',
+})
+
+export const StyledSectionContent = styled('div', {
+  backgroundColor: '$cdgBlue10',
+  padding: '$2 $4',
+  fontSize: '$label2',
+  fontWeight: '$semibold',
+  color: '$gray100',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  variants: {
+    isClickable: {
+      true: {
+        cursor: 'pointer',
+        '&:hover': {
+          backgroundColor: '$cdgBlue20',
+        },
+      },
+    },
+  },
+})
+
+export type DropdownItemVariantProps = VariantProps<
+  typeof StyledDropdownSection
+>
 
 export type DropdownVariantProps = VariantProps<typeof StyledDropdownWrapper>

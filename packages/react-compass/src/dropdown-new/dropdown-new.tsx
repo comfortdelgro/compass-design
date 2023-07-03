@@ -13,6 +13,10 @@ import {DropdownContext, SelectedItemDropdown} from './dropdown-new-context'
 import DropdownFlag from './dropdown-new-flag'
 import DropdownNewItem, {DropdownItemProps} from './dropdown-new-item'
 import DropdownNewList from './dropdown-new-list'
+import DropdownComboBox from './dropdown-new.combobox'
+import DropdownHeader from './dropdown-new.header'
+import DropdownSection from './dropdown-new.section'
+import DropdownSelect from './dropdown-new.select'
 import {
   DropdownVariantProps,
   StyledComboBox,
@@ -26,6 +30,7 @@ import {
 } from './dropdown-new.styles'
 import {Flag} from './flags'
 import {
+  findItemByValue,
   getFirstItem,
   getItemAbove,
   getItemBelow,
@@ -141,15 +146,36 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
 
   // ====================================== Logic ======================================
 
+  const mounted = useRef(false)
+
+  /**
+   * Reset focus key when closes popover
+   */
+  useEffect(() => {
+    if (!mounted.current) {
+      mounted.current = true
+    } else {
+      if (!open) {
+        setFocusKey('')
+      }
+    }
+  }, [open])
+
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
+      const currentFocusKey =
+        (focusKey || selectedKeys[0]?.value.toString()) ?? ''
       switch (event.key) {
         case 'ArrowUp':
         case 'ArrowLeft':
           event.preventDefault()
-          if (focusKey) {
-            const nextKey = getItemAbove(focusKey, children, disabledKeys)
-            if (nextKey !== null) {
+          if (currentFocusKey) {
+            const nextKey = getItemAbove(
+              currentFocusKey,
+              children,
+              disabledKeys,
+            )
+            if (nextKey?.props?.value) {
               setFocusKey(nextKey.props.value.toString() ?? '')
             }
           } else {
@@ -159,9 +185,13 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         case 'ArrowDown':
         case 'ArrowRight':
           event.preventDefault()
-          if (focusKey) {
-            const prevKey = getItemBelow(focusKey, children, disabledKeys)
-            if (prevKey !== null) {
+          if (currentFocusKey) {
+            const prevKey = getItemBelow(
+              currentFocusKey,
+              children,
+              disabledKeys,
+            )
+            if (prevKey?.props?.value) {
               setFocusKey(prevKey.props.value.toString() ?? '')
             }
           } else {
@@ -170,8 +200,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           break
         case 'Enter':
           event.preventDefault()
-          if (focusKey) {
-            const focusedItem = getItemByKey(focusKey, children)
+          if (currentFocusKey) {
+            const focusedItem = getItemByKey(currentFocusKey, children)
             if (focusedItem) {
               setOpen(false)
               // Deselect item
@@ -246,8 +276,9 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       }
 
       if (selectedKeys && selectedKeys.length > 0) {
-        inputRef.current.value =
-          textContent(selectedKeys[0]?.displayValue as React.ReactElement) ?? ''
+        inputRef.current.value = textContent(
+          selectedKeys[0]?.displayValue as React.ReactElement,
+        )
       } else {
         inputRef.current.value = ''
       }
@@ -259,11 +290,13 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     if (selectedKeys.length || !(selectedKey || defaultSelectedKey)) return
 
     const currentSelectedKey = selectedKey || defaultSelectedKey
+
     // Find the item with the specified value
-    const item = React.Children.toArray(children).find(
-      (child) =>
-        (child as React.ReactElement<DropdownItemProps>).props.value ===
-        currentSelectedKey,
+    const item = findItemByValue(
+      React.Children.toArray(children) as Array<
+        React.ReactElement<DropdownItemProps>
+      >,
+      currentSelectedKey,
     )
 
     if (item) {
@@ -273,13 +306,14 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           displayValue: item as React.ReactNode,
         },
       ])
+      setFocusKey(currentSelectedKey.toString())
       if (inputRef.current) {
-        inputRef.current.value = textContent(item as React.ReactElement) ?? ''
+        inputRef.current.value = textContent(item as React.ReactElement)
       }
     }
   }, [children, selectedKey, defaultSelectedKey, selectedKeys])
 
-  const headerElement = useMemo(() => {
+  const contentElement = useMemo(() => {
     switch (type) {
       case 'select':
         return (
@@ -303,7 +337,9 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
               {prefix}
               <span>
                 {selectedKeys && selectedKeys.length
-                  ? selectedKeys[0]?.displayValue ?? placeholder
+                  ? textContent(
+                      selectedKeys[0]?.displayValue as React.ReactElement,
+                    )
                   : placeholder}
               </span>
               {icon}
@@ -450,11 +486,12 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       setSelectedKeysBackup([selectedItem])
       if (['combobox', 'flag'].includes(type)) {
         if (inputRef.current) {
-          inputRef.current.value =
-            textContent(selectedItem.displayValue as React.ReactElement) ?? ''
+          inputRef.current.value = textContent(
+            selectedItem.displayValue as React.ReactElement,
+          )
         }
         setSearchValue(
-          textContent(selectedItem.displayValue as React.ReactElement) ?? '',
+          textContent(selectedItem.displayValue as React.ReactElement),
         )
       }
     }
@@ -486,7 +523,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           onItemClick: handleDropdownItemClick,
         }}
       >
-        {headerElement}
+        {contentElement}
         {open && (
           <div
             className='Popover'
@@ -528,10 +565,10 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
 })
 
 export default Select as typeof Select & {
-  //   ComboBox: typeof DropdownComboBox
+  ComboBox: typeof DropdownComboBox
   Flag: typeof DropdownFlag
-  //   Select: typeof DropdownSelect
+  Select: typeof DropdownSelect
   Item: typeof DropdownNewItem
-  //   Section: typeof DropdownSection
-  //   Header: typeof DropdownHeader
+  Section: typeof DropdownSection
+  Header: typeof DropdownHeader
 }
