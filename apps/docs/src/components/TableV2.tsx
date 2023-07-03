@@ -84,13 +84,13 @@ export function makeData(...lens: number[]) {
 
 export const ReactTableStory: React.FC = () => {
   const [page, setPage] = useState(1)
-  const [data] = React.useState(() => makeData(10))
+  const [data, setData] = React.useState(() => makeData(10))
   const options: ReactTableOptions<Person> = {
     enableSorting: true,
     enableMultiSort: true,
     columnResizeMode: 'onChange',
     manualSorting: true,
-    enableRowSelection: (row:any) => row.original.age > 30,
+    enableRowSelection: (row: any) => row.original.age > 30,
   }
   const onSorting = (sortingField: StateSorting) => {}
 
@@ -107,7 +107,6 @@ export const ReactTableStory: React.FC = () => {
   }
 
   const TableHeaderCell = ({row}: any) => {
-    console.log("=========",row.getCanSelect())
     return (
       <div className='px-1'>
         <ReactTable.CheckboxCell
@@ -126,19 +125,70 @@ export const ReactTableStory: React.FC = () => {
     () => [
       {
         id: 'select',
-        header: ({table}) => <TableHeader table={table} />,
-        cell: ({row}) => <TableHeaderCell row={row} />,
+        header: ({table}) => {
+          return (
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <ReactTable.CheckboxCell
+                checked={table.getIsAllRowsSelected()}
+                indeterminate={table.getIsSomeRowsSelected()}
+                onChange={table.getToggleAllRowsSelectedHandler()}
+              />
+            </div>
+          )
+        },
+        cell: ({row}) => (
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <ReactTable.CheckboxCell
+              disabled={!row.getCanSelect()}
+              checked={row.getIsSelected()}
+              indeterminate={row.getIsSomeSelected()}
+              onChange={row.getToggleSelectedHandler()}
+            />
+          </div>
+        ),
       },
       {
         id: 'name',
         header: () => <div style={{textAlign: 'center'}}>Name</div>,
         footer: (props) => props.column.id,
+        enableGrouping: false,
         columns: [
           {
             accessorKey: 'firstName',
             cell: (info) => info.getValue<string>(),
+            header: () => <span>First Name</span>,
             footer: (props) => props.column.id,
-            enableResizing: false,
+            enableResizing: true,
+            enableGrouping: false,
+            sortDescriptor: 'asc',
+            meta: {
+              editable: true,
+              updateData: (rowIndex: number, id: string, value: any) => {
+                setData((old: Person[]) =>
+                  old.map((row, index) => {
+                    if (index === rowIndex) {
+                      return {
+                        ...old[rowIndex],
+                        [id]: value,
+                      } as Person
+                    }
+                    return row
+                  }),
+                )
+              },
+            },
           },
           {
             accessorFn: (row) => row.lastName,
@@ -154,6 +204,7 @@ export const ReactTableStory: React.FC = () => {
         id: 'otherInfo',
         header: () => <div style={{textAlign: 'center'}}>Other info</div>,
         footer: (props) => props.column.id,
+        enableGrouping: false,
         columns: [
           {
             accessorKey: 'age',

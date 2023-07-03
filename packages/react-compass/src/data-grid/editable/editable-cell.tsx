@@ -1,5 +1,6 @@
-import {Cell, ColumnMeta, RowData} from '@tanstack/react-table'
+import {Cell, ColumnMeta, flexRender, RowData} from '@tanstack/react-table'
 import React, {SetStateAction, useEffect} from 'react'
+import {createSafeContext} from '../../utils/create-safe-context'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import {StyledEditableCell} from './editable-cell.styles'
 
@@ -15,10 +16,14 @@ export interface CellMetaProps<TData extends RowData, TValue>
   editable?: boolean
   template?: React.ReactNode
   updateData?: (index: number, id: string, value: any) => void
+  revertData?: (rowIndex: number) => void
 }
 
 export type EditableCellProps = CellProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof CellProps>
+
+export const [EditableCellContextProvider, useEditableCellContext] =
+  createSafeContext<any>('EditableCell was not found in tree')
 
 export const EditableCell = React.forwardRef<
   HTMLTableCellElement,
@@ -29,6 +34,7 @@ export const EditableCell = React.forwardRef<
   const [editing, setEditing] = React.useState(false)
   const [value, setValue] = React.useState(initialValue)
   const tableMeta = cell.column.columnDef.meta as CellMetaProps<any, unknown>
+
   useEffect(() => {
     setValue(initialValue)
   }, [initialValue])
@@ -39,17 +45,16 @@ export const EditableCell = React.forwardRef<
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
-      setEditing(false)
-      tableMeta?.updateData?.(row, column, value)
+      finishTemplateEditing(value)
     }
   }
 
   const handleBlur = () => {
-    setEditing(false)
-    tableMeta?.updateData?.(row, column, value)
+    cancelTemplateEditing()
   }
 
-  const handleDoubleClick = () => {
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation()
     const newValue = getValue()
     setValue(newValue as SetStateAction<string>)
     setEditing(true)
@@ -61,20 +66,44 @@ export const EditableCell = React.forwardRef<
     }
   }, [editing])
 
+  const finishTemplateEditing = (data: any) => {
+    setEditing(false)
+    tableMeta?.updateData?.(row, column, data)
+  }
+  const cancelTemplateEditing = () => {
+    setEditing(false)
+    tableMeta?.revertData?.(row)
+  }
+
   return (
-    <StyledEditableCell onClick={handleDoubleClick}>
+    <StyledEditableCell onClick={handleClick}>
       {editing ? (
-        <input
-          aria-label='cell-input'
-          ref={inputRef}
-          type='text'
-          value={value}
-          onChange={handleChange}
-          onKeyDown={handleKeyDown}
-          onBlur={handleBlur}
-        />
+        tableMeta.template ? (
+          <EditableCellContextProvider
+            value={{
+              finishTemplateEditing,
+              cancelTemplateEditing,
+              initialValue,
+              cell,
+              row,
+              column,
+            }}
+          >
+            {tableMeta.template}
+          </EditableCellContextProvider>
+        ) : (
+          <input
+            aria-label='cell-input'
+            ref={inputRef}
+            type='text'
+            value={value}
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
+            onBlur={handleBlur}
+          />
+        )
       ) : (
-        <p>{value}</p>
+        <p>{flexRender(cell.column.columnDef.cell, cell.getContext())}</p>
       )}
     </StyledEditableCell>
   )
