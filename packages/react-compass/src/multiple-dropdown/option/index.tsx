@@ -23,7 +23,7 @@ function Option({item, currentKeys, focusKey, disabledKeys, onSelect}: Props) {
     () => (item.key ? currentKeys.some((v) => v == item.key) : false),
     [currentKeys],
   )
-  console.log(isSelected, item, currentKeys, focusKey, disabledKeys)
+
   const isFocused = React.useMemo(() => focusKey == item.key, [focusKey])
   const isDisabled = React.useMemo(
     () => (item.key ? disabledKeys.includes(item.key) : false),
