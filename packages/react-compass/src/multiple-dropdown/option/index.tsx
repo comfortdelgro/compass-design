@@ -23,6 +23,7 @@ function Option({item, currentKeys, focusKey, disabledKeys, onSelect}: Props) {
     () => (item.key ? currentKeys.some((v) => v == item.key) : false),
     [currentKeys],
   )
+  console.log(isSelected, item, currentKeys, focusKey, disabledKeys)
   const isFocused = React.useMemo(() => focusKey == item.key, [focusKey])
   const isDisabled = React.useMemo(
     () => (item.key ? disabledKeys.includes(item.key) : false),
@@ -35,9 +36,13 @@ function Option({item, currentKeys, focusKey, disabledKeys, onSelect}: Props) {
 
   React.useEffect(() => {
     if (isFocused) {
-      ref.current?.scrollIntoView({block: 'nearest'})
+      setTimeout(() => {
+        if (ref.current) {
+          ref.current.scrollIntoView({block: 'nearest'})
+        }
+      }, 0)
     }
-  }, [isFocused])
+  }, [isFocused, ref.current])
 
   return (
     <StyledOption

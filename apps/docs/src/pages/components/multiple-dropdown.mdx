@@ -160,6 +160,44 @@ We recommend the second method to import components for the benefits of [tree sh
 
 ---
 
+### Error Keys:
+
+<section className={styles.componentDisplayVertical}>
+  <MultipleDropdown
+    label='Favorite Animal'
+    defaultSelectedKeys={['red panda', 'cat']}
+    erroredKeys={['red panda']}
+    isErrored
+    errorMessage='Red panda is not available'
+  >
+    <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+  </MultipleDropdown>
+</section>
+
+```js
+  <MultipleDropdown
+    label='Favorite Animal'
+    defaultSelectedKeys={['red panda', 'cat']}
+    erroredKeys={['red panda']}
+    isErrored
+    errorMessage='Red panda is not available'
+  >
+    <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
+    <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+  </MultipleDropdown>
+```
+
+---
+
 ### Custom Display value:
 
 <section className={styles.componentDisplayVertical}>
