@@ -1,5 +1,6 @@
 import React from 'react'
 import {StyledHelperText} from '../dropdown/dropdown.styles'
+import {useIsDarkTheme} from '../theme'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
@@ -58,7 +59,7 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
     // HTMLDiv Props
     ...delegated
   } = props
-
+  const isDarkTheme = useIsDarkTheme()
   const uploadRef = useDOMRef<HTMLDivElement>(ref)
   const uploadInputRef = React.useRef<HTMLInputElement>(null)
   const [selectedFiles, setSelectedFiles] = React.useState<File[]>([])
@@ -135,6 +136,7 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
       css={css}
       ref={uploadRef}
       isDisabled={isDisabled}
+      isDarkTheme={isDarkTheme}
       {...delegated}
     >
       {label && (
@@ -158,7 +160,9 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
         <StyledBrowseFile onClick={onLableClick}>
           <span>Browse file</span>
         </StyledBrowseFile>
-        <StyledUploadContent fileSelected={selectedFiles.length > 0}>
+        <StyledUploadContent
+          fileSelected={selectedFiles.length > 0}
+        >
           {selectedFiles.length > 0 ? (
             <p>{selectedFiles.map((file) => file.name).join(', ')}</p>
           ) : (
