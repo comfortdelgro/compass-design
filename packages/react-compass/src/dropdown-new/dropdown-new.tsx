@@ -290,17 +290,18 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
 
   const fillTextForInput = useCallback(() => {
     if (['combobox', 'flag'].includes(type) && inputRef.current) {
-      if (
-        type === 'flag' &&
-        selectedKeysBackup.length &&
-        !selectedKeys.length
-      ) {
-        setSelectedKeys(selectedKeysBackup)
-        setSelectedKeysBackup([])
-        return
-      }
+      // wait for document move cursor
       setTimeout(() => {
         if (document.activeElement === inputRef.current) {
+          return
+        }
+        if (
+          type === 'flag' &&
+          selectedKeysBackup.length &&
+          !selectedKeys.length
+        ) {
+          setSelectedKeys(selectedKeysBackup)
+          setSelectedKeysBackup([])
           return
         }
         if (inputRef.current) {
