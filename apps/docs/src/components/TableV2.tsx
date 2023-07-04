@@ -258,7 +258,12 @@ export const ReactTableStory: React.FC = () => {
               gap: '0.5rem',
             }}
           >
-            <Button variant='primary'>Button</Button>
+            <Button
+              variant='primary'
+              className='c-hKssGC-hYGuEl-variant-primary'
+            >
+              Button
+            </Button>
             <Button variant='secondary'>Button</Button>
             <Button variant='ghost'>
               <Icon icon={faTrashAlt} />

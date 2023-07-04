@@ -1,4 +1,5 @@
 import React from 'react'
+import {useIsDarkTheme} from '../theme'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
@@ -118,7 +119,7 @@ const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
       onKeyUp = () => null,
       ...delegated
     } = props
-
+    const isDarkTheme = useIsDarkTheme()
     const textareaId = id
     const wrapperRef = useDOMRef<HTMLDivElement>(ref)
     const textareaRef = useDOMRef<HTMLTextAreaElement>(null)
@@ -139,6 +140,7 @@ const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
         className={className}
         ref={wrapperRef}
         {...delegated}
+        isDarkTheme={isDarkTheme}
       >
         {label && (
           <StyledTextAreaLabel htmlFor={textareaId}>

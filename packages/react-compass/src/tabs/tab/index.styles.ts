@@ -29,7 +29,7 @@ export const StyledTab = styled('div', {
     alignItems: 'center',
     border: 'black thin solid',
     borderRadius: '$full',
-    backgroundColor: '$background',
+    backgroundColor: '$cdgBlue120',
     '& svg': {
       display: 'none',
     },

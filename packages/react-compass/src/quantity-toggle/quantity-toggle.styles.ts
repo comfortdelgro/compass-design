@@ -1,11 +1,5 @@
-import { styled } from '../theme'
-import type { VariantProps } from '../utils/stitches.types'
-
-
-
-
-
-
+import {styled} from '../theme'
+import type {VariantProps} from '../utils/stitches.types'
 
 export const StyledQuantityToggle = styled('div', {
   width: '100%',
@@ -31,17 +25,18 @@ export const StyledQuantityToggle = styled('div', {
       color: '$gray100',
       padding: '$3 $4',
       textAlign: 'center',
-      border: '1px solid $gray30',
+      border: '1px solid $divider',
       borderRadius: '0',
       backgroundColor: '$white',
       fontSize: '$label1',
       fontWeight: '$semibold',
     },
     'input:focus-visible': {
-      boxShadow: 'none',
+      outline: 'none',
+      border: '1px solid $cdgBlue120',
     },
     'input::placeholder': {
-      color: '$gray40',
+      color: '$tertiaryText',
     },
     button: {
       color: '$gray100',
@@ -49,7 +44,7 @@ export const StyledQuantityToggle = styled('div', {
       width: '$14',
       cursor: 'pointer',
       fontWeight: '$bold',
-      border: '1px solid $gray30',
+      border: '1px solid $divider',
       backgroundColor: '$gray10',
     },
     "button[aria-label='decrease']": {

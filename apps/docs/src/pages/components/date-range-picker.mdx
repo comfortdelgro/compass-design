@@ -4,25 +4,17 @@ import {
   ControlledDateRangePicker,
   ValidatedDateRangePickers,
   DateRangePickerWithShortcuts,
+  GranularityDateRangePicker,
+  LabelingDateRangePicker,
+  ShorcutsDateRangePicker,
+  InvalidDateRangePicker,
+  CustomDateRangePicker,
 } from '../../components/DatePickers'
+import {Callout} from 'nextra-theme-docs'
 
 # DateRangePicker
 
 DateRangePickers combine two inpui fields and a RangeCalendar popover to allow users to enter or select a date and time range.
-
-### Pre-Install
-
-Install these packages to use their utilities
-
-import {Tabs, Tab, Callout} from 'nextra-theme-docs'
-
-<Tabs items={['npm', 'yarn', 'pnpm']} defaultIndex={0}>
-  <Tab>```bash npm i @react-aria/i18n @internationalized/date ```</Tab>
-  <Tab>``` bash yarn add @react-aria/i18n @internationalized/date ```</Tab>
-  <Tab>``` bash pnpm add @react-aria/i18n @internationalized/date ```</Tab>
-</Tabs>
-
----
 
 ### Import
 
@@ -38,15 +30,46 @@ import DateRangePicker from '@comfortdelgro/react-compass/date-range-picker'
 
 ---
 
+### I18n
+
+React Compass use [React Aria I18N](https://react-spectrum.adobe.com/react-aria/internationalization.html) and [React Aria Internationalized](https://react-spectrum.adobe.com/internationalized/index.html) to deal with i18n.
+
+
+How to use
+
+```js
+import Calendar from '@comfortdelgro/react-compass/calendar'
+
+const {
+  /** any function in react aria i18n */
+} = Calendar.I18N
+const {
+  /** any function in react aria internationalized */
+} = Calendar.InternationalizedDate
+```
+
 ### I18nProvider
 
 I18nProvider allows you to override the default locale as determined by the browser/system setting with a locale defined by your application (e.g. application setting).
 In this docs, we will use English(Singapore) `en-SG` as default locale
 
+```js
+import Calendar from '@comfortdelgro/react-compass/calendar'
+
+const {
+  I18nProvider
+} = Calendar.I18N
+
+<I18nProvider locale="en-SG">
+  <App/>
+</I18nProvider>
+
+```
+
 ### Basic
 
 <section className={styles.componentShowcaseContainer}>
-  <DateRangePicker startDateLabel='Start Date' endDateLabel='End Date' />
+  <CustomDateRangePicker type='range' />
 </section>
 
 ```js
@@ -60,30 +83,33 @@ In this docs, we will use English(Singapore) `en-SG` as default locale
 </section>
 
 ```js
-import {DateRangePicker, RangeValue} from '@comfortdelgro/react-compass'
-import {DateValue, getLocalTimeZone, parseDate} from '@internationalized/date'
-import {I18nProvider, useDateFormatter} from '@react-aria/i18n'
+import {DateRangePicker, RangeValue, CalendarProps, Calendar} from '@comfortdelgro/react-compass'
+
+const {getLocalTimeZone, parseDate} =
+  Calendar.InternationalizedDate
 
 function ControlledDateRangePicker() {
-  const [range, setRange] = useState<RangeValue<DateValue>>({
+  const [range, setRange] = useState<RangeValue<CalendarProps | null> | null>({
     start: parseDate('2020-02-03'),
     end: parseDate('2020-02-08'),
   })
   const formatter = useDateFormatter({dateStyle: 'long'})
 
-  const onChangeDateRangePicker = (value: RangeValue<DateValue> | null) => {
-    setRange(value as RangeValue<DateValue>)
+  const onChangeDateRangePicker = (value: RangeValue<CalendarProps | null> | null) => {
+    setRange(value as RangeValue<CalendarProps>)
   }
 
   return (
-    <I18nProvider locale='en-SG'>
+    <>
       {range &&
+        range.start &&
+        range.end &&
         formatter.formatRange(
           range.start.toDate(getLocalTimeZone()),
           range.end.toDate(getLocalTimeZone()),
         )}
       <DateRangePicker value={range} onChange={onChangeDateRangePicker} />
-    </I18nProvider>
+    </>
   )
 }
 ```
@@ -93,7 +119,7 @@ function ControlledDateRangePicker() {
 The granularity prop allows you to control the smallest unit that is displayed by a DateRangePicker.
 
 <section className={styles.componentShowcaseContainer}>
-  <DateRangePicker granularity='second' />
+  <GranularityDateRangePicker type='range' />
 </section>
 
 ```js
@@ -107,24 +133,7 @@ DateRangePicker component receives two props `startDateLabel` and `endDateLabel`
 A visual label should be provided for the DatePicker using the label prop. If the DateRangePicker is required, the isRequired and necessityIndicator props can be used to show a required state.
 
 <section className={styles.componentShowcaseContainer}>
-  <DateRangePicker startDateLabel='Start Date' endDateLabel='End Date' />
-  <DateRangePicker
-    startDateLabel='Start Date'
-    endDateLabel='End Date'
-    isRequired
-    necessityIndicator='icon'
-  />
-  <DateRangePicker
-    startDateLabel='Start Date'
-    endDateLabel='End Date'
-    isRequired
-    necessityIndicator='label'
-  />
-  <DateRangePicker
-    startDateLabel='Start Date'
-    endDateLabel='End Date'
-    necessityIndicator='label'
-  />
+  <LabelingDateRangePicker type='range' />
 </section>
 
 ```js
@@ -168,6 +177,10 @@ It is up to applications to split the full selected range into multiple as neede
 </section>
 
 ```js
+
+const {isWeekend} =
+  Calendar.InternationalizedDate
+
 function ValidatedDateRangePickers() {
   const {locale} = useLocale()
 
@@ -180,7 +193,7 @@ function ValidatedDateRangePickers() {
 ### Shorcuts
 
 <section className={styles.componentShowcaseContainer}>
-  <DateRangePicker hasShortcuts />
+  <ShorcutsDateRangePicker type='range' />
 </section>
 
 ```js
@@ -247,12 +260,18 @@ export function DateRangePickerWithShortcuts() {
 ### Invalid
 
 <section className={styles.componentShowcaseContainer}>
-  <DateRangePicker isInvalid />
+  <InvalidDateRangePicker type='range' />
 </section>
 
 ```js
 <DateRangePicker isInvalid />
 ```
+
+### Mobile
+
+<section className={styles.componentShowcaseContainer}>
+  <DateRangePicker isMobile shouldCloseOnSelect />
+</section>
 
 ### Props
 

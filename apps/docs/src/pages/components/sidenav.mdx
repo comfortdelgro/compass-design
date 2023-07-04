@@ -115,6 +115,28 @@ You can expand the Sidenav without hovering
 </Sidenav>
 ```
 
+### Delay
+
+Delay the expansion of Sidenav
+
+<section className={styles.componentShowcaseContainer}>
+  <Sidenav css={{height: '800px'}} delay={1000}>
+    <Sidenav.Item isActive>
+      <Icon icon={faHelicopter}></Icon>
+      <span>Menu</span>
+    </Sidenav.Item>
+  </Sidenav>
+</section>
+
+```js {1}
+<Sidenav css={{height: '800px'}} delay={1000}>
+  <Sidenav.Item isActive>
+    <Icon icon={faHelicopter}></Icon>
+    <span>Menu</span>
+  </Sidenav.Item>
+</Sidenav>
+```
+
 ### Sidenav Item
 
 Sidenav Item accepts three children (Order matters). The first child is for Icon, the second child is the title, the third child is for menu.
@@ -220,11 +242,12 @@ Sidenav divider provides a horizontal divider to Sidenav
 
 #### Sidenav
 
-| Name     | Type              | Default | Description                                                     |
-| :------- | :---------------- | :------ | :-------------------------------------------------------------- |
-| children | `React.ReactNode` | —       |                                                                 |
-| expand   | `boolean`         | false   | Whether the Sidenav is expanded by default or expanded by hover |
-| css      | `CSS`             | —       |                                                                 |
+| Name     | Type              | Default | Description                                                      |
+| :------- | :---------------- | :------ | :--------------------------------------------------------------- |
+| children | `React.ReactNode` | —       |                                                                  |
+| expand   | `boolean`         | false   | Whether the Sidenav is expanded by default or expanded by hover. |
+| delay    | `number`          | 0       | The number of milliseconds to wait before expanding the sidenav. |
+| css      | `CSS`             | —       |                                                                  |
 
 #### Sidenav Item
 
