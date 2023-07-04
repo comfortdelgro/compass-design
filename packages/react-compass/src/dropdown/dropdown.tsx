@@ -74,6 +74,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     isDisabled = false,
     defaultOpen = false,
     shouldDeselect = false,
+    disableClearable = false,
     allowsCustomValue = false,
     prefix = null,
     onLoadMore = () => {
@@ -309,11 +310,13 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       isEmpty(event.target.value.replaceAll(' ', ''))
     ) {
       if (!isReadOnly) {
-        setCurrentKey(undefined)
-        setFocusKey(undefined)
+        if (!disableClearable) {
+          setCurrentKey(undefined)
+          setFocusKey(undefined)
+          onSelectionChange?.('')
+        }
         setSearch(event.target.value)
         setIsSearching(false)
-        onSelectionChange?.('')
       }
     } else {
       setSearch(event.target.value)
