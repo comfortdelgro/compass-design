@@ -55,7 +55,7 @@ export const StyledControllerWrapper = styled('div', {
   bottom: 0,
   width: '100%',
   padding: '$2_5 $3_5 $5 $2_5',
-  background: 'linear-gradient(0deg, #000000 0%, rgba(0, 0, 0, 0) 100%)',
+  background: 'linear-gradient(0deg, $black 0%, rgba(0, 0, 0, 0) 100%)',
   '.video-player-slide-bar': {
     width: '100%',
   },
@@ -70,7 +70,7 @@ export const StyledSlideBarWrapper = styled('div', {
   span: {
     fontSize: '$label2',
     fontWeight: '$semibold',
-    color: '#FFFFFF',
+    color: '$white',
   },
 })
 

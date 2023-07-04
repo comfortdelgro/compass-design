@@ -41,19 +41,30 @@ export function ValidatedCalendar() {
 }
 
 export function ControlledRangeCalendar() {
-  const [range, setRange] = React.useState<RangeValue<DateValue>>({
+  const [range, setRange] = React.useState<RangeValue<DateValue | null>>({
     start: parseDate('2020-02-03'),
     end: parseDate('2020-02-08'),
   })
   const formatter = useDateFormatter({dateStyle: 'long'})
   return (
     <>
-      {range &&
-        formatter.formatRange(
-          range.start.toDate(getLocalTimeZone()),
-          range.end.toDate(getLocalTimeZone()),
-        )}
-      <RangeCalendar onChange={(e) => setRange(e as RangeValue<DateValue>)} />
+      {range.start && range.end
+        ? formatter.formatRange(
+            range.start.toDate(getLocalTimeZone()),
+            range.end.toDate(getLocalTimeZone()),
+          )
+        : `${
+            range.start &&
+            formatter.format(range.start.toDate(getLocalTimeZone()))
+          } - ${
+            range.end && formatter.format(range.end.toDate(getLocalTimeZone()))
+          }`}
+
+      <RangeCalendar
+        onChange={(e) => {
+          setRange(e as RangeValue<DateValue>)
+        }}
+      />
     </>
   )
 }

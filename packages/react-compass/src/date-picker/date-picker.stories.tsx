@@ -43,6 +43,15 @@ export const Variants: React.FC = () => {
           defaultValue={today(getLocalTimeZone())}
           maxValue={today(getLocalTimeZone())}
         />
+        <h3>Mobile version</h3>
+        <DatePicker label='Date' isMobile />
+        <h3>Helper texts</h3>
+        <DatePicker
+          label='Date'
+          helperText='Helper text'
+          errorMessage='Error message'
+          isInvalid
+        />
       </Column>
     </I18nProvider>
   )

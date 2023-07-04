@@ -1,3 +1,3 @@
-import Viewer from './Viewer'
+import ImageViewer from './Viewer'
 
-export default Viewer
+export default ImageViewer

@@ -563,6 +563,21 @@ export const ComboBox: React.FC = () => {
         <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
         <Dropdown.Item key='snake'>Snake</Dropdown.Item>
       </Dropdown.ComboBox>
+
+      <h3>Disabled Clearable</h3>
+      <Dropdown.ComboBox
+        label='Favorite Animal'
+        placeholder='Choose an animal'
+        disableClearable
+      >
+        <Dropdown.Item key='red panda'>Red Panda</Dropdown.Item>
+        <Dropdown.Item key='cat'>Cat</Dropdown.Item>
+        <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+        <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+        <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item key='snake'>Snake</Dropdown.Item>
+      </Dropdown.ComboBox>
+
       <h3>With Section</h3>
       <Dropdown.ComboBox label='Favorite Animal' placeholder='Choose an animal'>
         <Dropdown.Item key='fly'>Fly</Dropdown.Item>

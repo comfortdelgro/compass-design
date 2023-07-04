@@ -112,6 +112,7 @@ export const Default: React.FC = () => {
       <Sidenav
         css={{height: '800px', position: 'absolute', top: '0px', zIndex: 2}}
         expand={false}
+        delay={200}
       >
         <Sidenav.Item>
           <div style={{width: '40px'}}>

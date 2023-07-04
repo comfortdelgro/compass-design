@@ -13,7 +13,7 @@ export const StyledTagCloseIcon = styled(FontAwesomeIcon, {
   background: 'transparent',
 
   //styling
-  color: '#000000',
+  color: '$black',
   cursor: 'pointer',
   fontWeight: 'bold',
   padding: '0.125rem 0',
@@ -31,8 +31,8 @@ export const StyledTagContent = styled('div', {
   background: 'transparent',
 
   //styling
-  color: '#000000',
   fontWeight: '$bold',
+  color: '$primaryText',
 })
 
 export const StyledTagInput = styled('input', {
@@ -47,7 +47,7 @@ export const StyledTagInput = styled('input', {
   background: 'transparent',
 
   //styling
-  color: '#000000',
+  color: '$black',
   fontWeight: '$bold',
 })
 
@@ -68,7 +68,7 @@ export const StyledTagContainer = styled('div', {
   borderRadius: '$lg',
   padding: '0.5rem 1rem',
   margin: '0.5em',
-  backgroundColor: 'rgba(0,0,0,.045)',
+  backgroundColor: '$divider',
   width: 'fit-content',
   height: '2rem',
 })
@@ -103,7 +103,7 @@ export const StyledNewTagButton = styled('button', {
 
   // button styling
   backgroundColor: '$background',
-  border: '1px dashed #605E5C',
+  border: '1px dashed $divider',
   margin: '0.5em',
   padding: '0.5rem 1rem',
   borderRadius: '$lg',
@@ -111,6 +111,7 @@ export const StyledNewTagButton = styled('button', {
   fontWeight: '500',
   display: 'inline-block',
   height: '2rem',
+  color: '$primaryText',
 })
 
 export const StyledNewTagInput = styled('input', {
@@ -128,11 +129,12 @@ export const StyledNewTagInput = styled('input', {
   height: '2rem',
   maxWidth: '90%',
   '&::placeholder': {
-    color: 'rgb(210, 208, 206)',
+    color: '$primaryBg',
   },
   '&:focus': {
-    border: '2px solid #0142AF',
+    border: '2px solid $cdgblue120',
     borderRadius: '$md',
+    color: '$typeHeading',
   },
   fontSize: '0.875rem',
   resize: 'none',
@@ -179,7 +181,7 @@ export const StyledContainer = styled('div', {
   padding: '0.5em 1em',
   borderWidth: '1px',
   borderStyle: 'solid',
-  borderColor: 'rgb(237, 235, 233)',
+  borderColor: '$divider',
   minHeight: '7.75rem',
 })
 
@@ -210,6 +212,22 @@ export const StyledTagBoxV2 = styled('div', {
         },
       },
       false: {},
+    },
+    focused: {
+      true: {
+        [`${StyledContainer}`]: {
+          borderWidth: '2px',
+          borderStyle: 'solid',
+          borderColor: '$cdgBlue100',
+        },
+      },
+      false: {
+        [`${StyledContainer}`]: {
+          borderWidth: '2px',
+          borderStyle: 'solid',
+          borderColor: '$gray30',
+        },
+      },
     },
   },
 })

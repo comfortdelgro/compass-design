@@ -16,7 +16,12 @@ export const SmallModal: React.FC = () => {
 
   return (
     <>
-      <Button onPress={() => setSmallOpen(true)}>Open Small Modal</Button>
+      <Button
+        className='c-hKssGC-hYGuEl-variant-primary'
+        onPress={() => setSmallOpen(true)}
+      >
+        Open Small Modal
+      </Button>
       <Modal.Trigger
         isOpen={smallOpen}
         handleClose={handleSmallClose}
@@ -29,8 +34,18 @@ export const SmallModal: React.FC = () => {
           </Modal.CloseIcon>
           <Modal.Description>{lorem}</Modal.Description>
           <Modal.Actions>
-            <Button onPress={handleSmallClose}>Cancel</Button>
-            <Button onPress={handleSmallClose}>Do it</Button>
+            <Button
+              className='c-hKssGC-hYGuEl-variant-primary'
+              onPress={handleSmallClose}
+            >
+              Cancel
+            </Button>
+            <Button
+              className='c-hKssGC-hYGuEl-variant-primary'
+              onPress={handleSmallClose}
+            >
+              Do it
+            </Button>
           </Modal.Actions>
         </Modal>
       </Modal.Trigger>
@@ -46,7 +61,12 @@ export const MediumModal: React.FC = () => {
 
   return (
     <>
-      <Button onPress={() => setMediumOpen(true)}>Open Medium Modal</Button>
+      <Button
+        className='c-hKssGC-hYGuEl-variant-primary'
+        onPress={() => setMediumOpen(true)}
+      >
+        Open Medium Modal
+      </Button>
       <Modal.Trigger isOpen={mediumOpen} handleClose={handleMediumClose}>
         <Modal>
           <Modal.Title>My Medium Title</Modal.Title>
@@ -55,8 +75,18 @@ export const MediumModal: React.FC = () => {
           </Modal.CloseIcon>
           <Modal.Description>{lorem}</Modal.Description>
           <Modal.Actions>
-            <Button onPress={handleMediumClose}>Cancel</Button>
-            <Button onPress={handleMediumClose}>Do it</Button>
+            <Button
+              className='c-hKssGC-hYGuEl-variant-primary'
+              onPress={handleMediumClose}
+            >
+              Cancel
+            </Button>
+            <Button
+              className='c-hKssGC-hYGuEl-variant-primary'
+              onPress={handleMediumClose}
+            >
+              Do it
+            </Button>
           </Modal.Actions>
         </Modal>
       </Modal.Trigger>
@@ -72,7 +102,12 @@ export const LargeModal: React.FC = () => {
 
   return (
     <>
-      <Button onPress={() => setLargeOpen(true)}>Open Large Modal</Button>
+      <Button
+        className='c-hKssGC-hYGuEl-variant-primary'
+        onPress={() => setLargeOpen(true)}
+      >
+        Open Large Modal
+      </Button>
       <Modal.Trigger
         isOpen={largeOpen}
         handleClose={handleLargeClose}
@@ -85,8 +120,18 @@ export const LargeModal: React.FC = () => {
           </Modal.CloseIcon>
           <Modal.Description>{lorem}</Modal.Description>
           <Modal.Actions>
-            <Button onPress={handleLargeClose}>Cancel</Button>
-            <Button onPress={handleLargeClose}>Do it</Button>
+            <Button
+              className='c-hKssGC-hYGuEl-variant-primary'
+              onPress={handleLargeClose}
+            >
+              Cancel
+            </Button>
+            <Button
+              className='c-hKssGC-hYGuEl-variant-primary'
+              onPress={handleLargeClose}
+            >
+              Do it
+            </Button>
           </Modal.Actions>
         </Modal>
       </Modal.Trigger>

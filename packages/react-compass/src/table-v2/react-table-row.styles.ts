@@ -1,7 +1,7 @@
 import {styled} from '../theme'
 
 export const StyledReactTableRow = styled('tr', {
-  background: '$whiteText',
+  background: '$secondaryBg',
   backgroundColor: 'transparent',
   borderLeftWidth: '$medium',
   borderLeftStyle: 'solid',
