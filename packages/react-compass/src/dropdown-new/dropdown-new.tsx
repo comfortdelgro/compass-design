@@ -238,8 +238,12 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
                   flagName: focusedItem.props.flagName ?? '',
                 },
               ])
+              if (inputRef.current) {
+                inputRef.current.value = textContent(
+                  focusedItem.props.children as React.ReactElement,
+                )
+              }
               onSelectionChange?.(focusedItem.props.value)
-              inputRef.current?.blur()
             }
           }
 
@@ -284,27 +288,40 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     [type, selectedKeys, selectedKeysBackup],
   )
 
-  useEffect(() => {
-    if (!open && ['combobox', 'flag'].includes(type) && inputRef.current) {
-      if (document.activeElement === inputRef.current) {
-        return
-      }
-
-      if (type === 'flag' && selectedKeysBackup.length) {
+  const fillTextForInput = useCallback(() => {
+    if (['combobox', 'flag'].includes(type) && inputRef.current) {
+      if (
+        type === 'flag' &&
+        selectedKeysBackup.length &&
+        !selectedKeys.length
+      ) {
         setSelectedKeys(selectedKeysBackup)
         setSelectedKeysBackup([])
         return
       }
-      if (selectedKeys && selectedKeys.length > 0) {
-        inputRef.current.value = textContent(
-          selectedKeys[0]?.displayValue as React.ReactElement,
-        )
-      } else {
-        inputRef.current.value = ''
-      }
-      setSearchValue('')
+      setTimeout(() => {
+        if (document.activeElement === inputRef.current) {
+          return
+        }
+        if (inputRef.current) {
+          if (selectedKeys && selectedKeys.length > 0) {
+            inputRef.current.value = textContent(
+              selectedKeys[0]?.displayValue as React.ReactElement,
+            )
+          } else {
+            inputRef.current.value = ''
+          }
+          setSearchValue('')
+        }
+      })
     }
-  }, [open, selectedKeys, selectedKeysBackup])
+  }, [type, selectedKeysBackup, selectedKeys])
+
+  useEffect(() => {
+    if (!open && ['combobox', 'flag'].includes(type) && inputRef.current) {
+      fillTextForInput()
+    }
+  }, [open, fillTextForInput])
 
   useEffect(() => {
     if (selectedKeys.length || !(selectedKey || defaultSelectedKey)) return
@@ -332,6 +349,11 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       }
     }
   }, [children, selectedKey, defaultSelectedKey, selectedKeys])
+
+  const handleInputBlur = useCallback(() => {
+    onBlur?.()
+    fillTextForInput()
+  }, [fillTextForInput])
 
   const contentElement = useMemo(() => {
     switch (type) {
@@ -382,7 +404,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
               disabled={isDisabled}
               placeholder={placeholder}
               onChange={handleInputChange}
-              onBlur={onBlur}
+              onBlur={handleInputBlur}
               onFocus={onFocus}
               onClick={handleDropdownToggle}
             />
@@ -418,7 +440,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
               disabled={isDisabled}
               placeholder={placeholder}
               onChange={handleInputChange}
-              onBlur={onBlur}
+              onBlur={handleInputBlur}
               onFocus={onFocus}
               onClick={handleDropdownToggle}
             />
@@ -449,9 +471,10 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     onFocus,
     handleDropdownToggle,
     handleInputChange,
+    handleInputBlur,
   ])
 
-  const triggetWidth = useMemo(() => {
+  const triggeElWidth = useMemo(() => {
     switch (type) {
       case 'select':
         return buttonSelectRef?.current?.clientWidth ?? '100%'
@@ -561,7 +584,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           >
             <StyledPopover
               style={{
-                width: triggetWidth,
+                width: triggeElWidth,
               }}
             >
               <DropdownNewList
