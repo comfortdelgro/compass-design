@@ -6,6 +6,11 @@ export interface SelectedItemDropdown {
   flagName?: string
 }
 
+export interface DropdownItemKey {
+  value: string | number
+  visibility: boolean
+}
+
 export interface DropdownContextType {
   open: boolean
   searchValue: string
@@ -14,10 +19,9 @@ export interface DropdownContextType {
   focusKey?: string | number
   selectedKey?: string | number
   defaultSelectedKey?: string | number
-  dropdownItems?: Array<string | number>
-  setDropdownItems?: React.Dispatch<
-    React.SetStateAction<Array<string | number>>
-  >
+  dropdownItemKeys?: DropdownItemKey[]
+  setDropdownItemKeys?: React.Dispatch<React.SetStateAction<DropdownItemKey[]>>
+
   setSelectedKeys: React.Dispatch<React.SetStateAction<SelectedItemDropdown[]>>
   onItemClick: (item: SelectedItemDropdown) => void
 }

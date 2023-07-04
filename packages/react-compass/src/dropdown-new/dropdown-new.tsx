@@ -9,7 +9,11 @@ import {
 import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {DropdownContext, SelectedItemDropdown} from './dropdown-new-context'
+import {
+  DropdownContext,
+  DropdownItemKey,
+  SelectedItemDropdown,
+} from './dropdown-new-context'
 import DropdownFlag from './dropdown-new-flag'
 import DropdownNewItem, {DropdownItemProps} from './dropdown-new-item'
 import DropdownNewList from './dropdown-new-list'
@@ -35,6 +39,7 @@ import {
   getItemAbove,
   getItemBelow,
   getItemByKey,
+  getLastItem,
   textContent,
 } from './utils'
 
@@ -126,7 +131,9 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     selectedKey || defaultSelectedKey,
   )
   const [searchValue, setSearchValue] = useState<string>('')
-  const [dropdownItems, setDropdownItems] = useState<Array<string | number>>([])
+  const [dropdownItemKeys, setDropdownItemKeys] = useState<DropdownItemKey[]>(
+    [],
+  )
 
   // Select ref
   const selectRef = useDOMRef<HTMLDivElement>(ref)
@@ -174,13 +181,16 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
             const nextKey = getItemAbove(
               currentFocusKey,
               children,
-              disabledKeys,
+              dropdownItemKeys,
             )
             if (nextKey?.props?.value) {
               setFocusKey(nextKey.props.value.toString() ?? '')
             }
           } else {
-            setFocusKey(getFirstItem(children)?.props.value.toString() ?? '')
+            setFocusKey(
+              getLastItem(children, dropdownItemKeys)?.props.value.toString() ??
+                '',
+            )
           }
           break
         case 'ArrowDown':
@@ -190,13 +200,18 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
             const prevKey = getItemBelow(
               currentFocusKey,
               children,
-              disabledKeys,
+              dropdownItemKeys,
             )
             if (prevKey?.props?.value) {
               setFocusKey(prevKey.props.value.toString() ?? '')
             }
           } else {
-            setFocusKey(getFirstItem(children)?.props.value.toString() ?? '')
+            setFocusKey(
+              getFirstItem(
+                children,
+                dropdownItemKeys,
+              )?.props.value.toString() ?? '',
+            )
           }
           break
         case 'Enter':
@@ -235,7 +250,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           break
       }
     },
-    [focusKey, children, disabledKeys, selectedKeys],
+    [focusKey, children, selectedKeys, dropdownItemKeys],
   )
 
   useEffect(() => {
@@ -521,8 +536,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           searchValue,
           selectedKeys,
           setSelectedKeys,
-          dropdownItems,
-          setDropdownItems,
+          dropdownItemKeys,
+          setDropdownItemKeys,
           onItemClick: handleDropdownItemClick,
         }}
       >

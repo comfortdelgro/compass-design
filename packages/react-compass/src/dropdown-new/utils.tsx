@@ -1,9 +1,12 @@
 import React from 'react'
 import {pickChild} from '../utils/pick-child'
+import {DropdownItemKey} from './dropdown-new-context'
 import {DropdownItemProps} from './dropdown-new-item'
 import DropdownHeader from './dropdown-new.header'
 
-export function textContent(elem: React.ReactElement | string): string {
+export function textContent(
+  elem: React.ReactElement<DropdownItemProps> | string,
+): string {
   if (!elem) {
     return ''
   }
@@ -11,13 +14,11 @@ export function textContent(elem: React.ReactElement | string): string {
     return elem
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-  const children = elem.props && elem.props.children
+  const children = elem.props?.children
   if (children instanceof Array) {
     return children.map(textContent).join(' ')
   }
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-  return textContent(children)
+  return textContent(children as React.ReactElement<DropdownItemProps>)
 }
 
 export const findItemByValue = (
@@ -53,61 +54,94 @@ export const findItemByValue = (
 export const getItemAbove = (
   key: string | number,
   children?: React.ReactNode,
-  disabledKeys?: Array<string | number>,
+  dropdownItemKeys: DropdownItemKey[] = [],
 ) => {
-  const {rest: dropdownItems} = pickChild<typeof DropdownHeader>(
-    children,
-    DropdownHeader,
+  if (!dropdownItemKeys.length) return null
+
+  const lastItem = getLastItem(children, dropdownItemKeys)
+
+  const visibleDropdownItems = dropdownItemKeys.filter(
+    (item) => item.visibility,
   )
-  const childrenArr = React.Children.toArray(dropdownItems)
 
-  if (!childrenArr?.length) return null
-
-  const lastItem = getLastItem(children)
-
-  const dropdownItemIndex = childrenArr.findIndex((child) => {
-    const dropdownItem = child as React.ReactElement<DropdownItemProps>
-    return (
-      dropdownItem.props.value === key &&
-      !disabledKeys?.includes(dropdownItem.props.value)
-    )
-  })
-
-  const selectItem = childrenArr[
-    dropdownItemIndex - 1
-  ] as React.ReactElement<DropdownItemProps>
-
-  return selectItem ?? lastItem ?? null
+  if (visibleDropdownItems.length) {
+    const index = visibleDropdownItems.findIndex((item) => item.value === key)
+    if (index !== -1) {
+      const nextKey =
+        visibleDropdownItems[index - 1] ??
+        visibleDropdownItems[visibleDropdownItems.length - 1]
+      if (nextKey) {
+        const nextItem = getItemByKey(nextKey.value, children)
+        return nextItem
+      }
+    }
+  }
+  return lastItem
 }
 
 export const getItemBelow = (
   key: string | number,
   children?: React.ReactNode,
-  disabledKeys?: Array<string | number>,
+  dropdownItemKeys: DropdownItemKey[] = [],
 ) => {
-  const {rest: dropdownItems} = pickChild<typeof DropdownHeader>(
-    children,
-    DropdownHeader,
+  if (!dropdownItemKeys.length) return null
+
+  const firstItem = getFirstItem(children, dropdownItemKeys)
+
+  const visibleDropdownItems = dropdownItemKeys.filter(
+    (item) => item.visibility,
   )
-  const childrenArr = React.Children.toArray(dropdownItems)
+  if (visibleDropdownItems.length) {
+    const index = visibleDropdownItems.findIndex((item) => item.value === key)
+    if (index !== -1) {
+      const nextKey = visibleDropdownItems[index + 1] ?? visibleDropdownItems[0]
+      if (nextKey) {
+        const nextItem = getItemByKey(nextKey.value, children)
+        return nextItem
+      }
+    }
+  }
+  return firstItem
+}
 
-  if (!childrenArr?.length) return null
+export const getFirstItem = (
+  children?: React.ReactNode,
+  dropdownItemKeys: DropdownItemKey[] = [],
+) => {
+  if (!dropdownItemKeys?.length) return null
 
-  const firstItem = getFirstItem(children)
+  let selectItem: React.ReactElement<DropdownItemProps> | null = null
 
-  const dropdownItemIndex = childrenArr.findIndex((child) => {
-    const dropdownItem = child as React.ReactElement<DropdownItemProps>
-    return (
-      dropdownItem.props.value === key &&
-      !disabledKeys?.includes(dropdownItem.props.value)
-    )
-  })
+  for (let index = 0; index < dropdownItemKeys.length; index++) {
+    const dropdownItemKey = dropdownItemKeys[index]
+    // Last item without disabled
+    if (dropdownItemKey?.visibility) {
+      selectItem = getItemByKey(dropdownItemKey.value, children)
+      break
+    }
+  }
 
-  const selectItem = childrenArr[
-    dropdownItemIndex + 1
-  ] as React.ReactElement<DropdownItemProps>
+  return selectItem
+}
 
-  return selectItem ?? firstItem ?? null
+export const getLastItem = (
+  children?: React.ReactNode,
+  dropdownItemKeys: DropdownItemKey[] = [],
+) => {
+  if (!dropdownItemKeys?.length) return null
+
+  let selectItem: React.ReactElement<DropdownItemProps> | null = null
+
+  for (let index = dropdownItemKeys.length - 1; index >= 0; index--) {
+    const dropdownItemKey = dropdownItemKeys[index]
+    // Last item without disabled
+    if (dropdownItemKey?.visibility) {
+      selectItem = getItemByKey(dropdownItemKey.value, children)
+      break
+    }
+  }
+
+  return selectItem
 }
 
 export const getItemByKey = (
@@ -128,56 +162,4 @@ export const getItemByKey = (
   )
 
   return selectItem ?? null
-}
-
-export const getFirstItem = (
-  children?: React.ReactNode,
-  disabledKeys: Array<string | number> = [],
-) => {
-  const {rest: dropdownItems} = pickChild<typeof DropdownHeader>(
-    children,
-    DropdownHeader,
-  )
-  const childrenArr = React.Children.toArray(dropdownItems)
-
-  if (!childrenArr?.length) return null
-
-  let selectItem: React.ReactElement<DropdownItemProps> | null = null
-
-  for (let index = 0; index < childrenArr.length; index++) {
-    const child = childrenArr[index] as React.ReactElement<DropdownItemProps>
-    // First item without disabled
-    if (!disabledKeys.includes(child.props.value)) {
-      selectItem = child
-      break
-    }
-  }
-
-  return selectItem
-}
-
-export const getLastItem = (
-  children?: React.ReactNode,
-  disabledKeys: Array<string | number> = [],
-) => {
-  const {rest: dropdownItems} = pickChild<typeof DropdownHeader>(
-    children,
-    DropdownHeader,
-  )
-  const childrenArr = React.Children.toArray(dropdownItems)
-
-  if (!childrenArr?.length) return null
-
-  let selectItem: React.ReactElement<DropdownItemProps> | null = null
-
-  for (let index = childrenArr.length - 1; index >= 0; index--) {
-    const child = childrenArr[index] as React.ReactElement<DropdownItemProps>
-    // Last item without disabled
-    if (!disabledKeys.includes(child.props.value)) {
-      selectItem = child
-      break
-    }
-  }
-
-  return selectItem
 }

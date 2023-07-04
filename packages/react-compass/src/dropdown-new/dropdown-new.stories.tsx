@@ -7,7 +7,7 @@ export const Default: React.FC = () => {
 
   return (
     <Column>
-      {/* <h3>Default</h3>
+      <h3>Default</h3>
       <DropdownNew.Select
         placeholder='Choose an animal'
         label='Test'
@@ -76,14 +76,15 @@ export const Default: React.FC = () => {
         <DropdownNew.Item key='snakessss1' value='snakessss1'>
           Snake 1
         </DropdownNew.Item>
-      </DropdownNew.Select> */}
+      </DropdownNew.Select>
       <h3>Section</h3>
       <DropdownNew.Select
         placeholder='Choose an animal'
         label='Test'
         shouldDeselect
         numberOfRows={4}
-        defaultSelectedKey='kangaroo'
+        defaultSelectedKey='dog1'
+        disabledKeys={['aardvark', 'snakessss']}
       >
         <DropdownNew.Section title='Group 1'>
           <DropdownNew.Item key='dog' value='dog'>
@@ -114,7 +115,7 @@ export const Default: React.FC = () => {
           </DropdownNew.Item>
         </DropdownNew.Section>
       </DropdownNew.Select>
-      {/* <h3>Combobox</h3>
+      <h3>Combobox</h3>
       <DropdownNew.ComboBox
         placeholder='Choose an animal'
         numberOfRows={4}
@@ -146,7 +147,7 @@ export const Default: React.FC = () => {
         </DropdownNew.Item>
       </DropdownNew.ComboBox>
       <h3>Flag</h3>
-      <DropdownNew.Flag type='flag' /> */}
+      <DropdownNew.Flag type='flag' />
     </Column>
   )
 }

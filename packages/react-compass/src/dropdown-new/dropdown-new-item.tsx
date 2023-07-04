@@ -31,7 +31,7 @@ const DropdownNewItem: React.FC<DropdownItemProps> = (
     focusKey,
     selectedKey,
     setSelectedKeys,
-    setDropdownItems,
+    setDropdownItemKeys,
     onItemClick,
   } = useContext(DropdownContext)
 
@@ -64,6 +64,24 @@ const DropdownNewItem: React.FC<DropdownItemProps> = (
         .includes(searchValue.toLocaleLowerCase())
     )
   }, [searchValue, children])
+
+  useEffect(() => {
+    if (!isDisabled) {
+      setDropdownItemKeys?.((keys) => {
+        const index = keys.findIndex((keyItem) => keyItem.value === value)
+        if (index === -1) {
+          keys.push({value, visibility: true})
+        } else {
+          keys[index] = {
+            value,
+            visibility: canDisplayed,
+          }
+        }
+
+        return keys
+      })
+    }
+  }, [value, isDisabled, canDisplayed])
 
   useEffect(() => {
     if (focusKey && focusKey.toString() === value.toString()) {
