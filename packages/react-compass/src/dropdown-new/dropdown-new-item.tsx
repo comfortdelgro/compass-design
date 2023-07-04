@@ -1,7 +1,13 @@
 import React, {useContext, useEffect, useMemo, useRef} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {DropdownContext} from './dropdown-new-context'
-import {StyledFlagItem, StyledOption} from './dropdown-new.styles'
+import {
+  StyledColor,
+  StyledContent,
+  StyledFlagItem,
+  StyledItemIcon,
+  StyledOption,
+} from './dropdown-new.styles'
 import {Flag} from './flags'
 import {textContent} from './utils'
 
@@ -22,7 +28,8 @@ export type DropdownItemProps = Props
 const DropdownNewItem: React.FC<DropdownItemProps> = (
   props: DropdownItemProps,
 ) => {
-  const {children, value, flagName} = props
+  const {children, value, flagName, type, rightIcon, leftIcon, rightColor} =
+    props
   const {
     selectedKeys,
     disabledKeys = [],
@@ -130,7 +137,14 @@ const DropdownNewItem: React.FC<DropdownItemProps> = (
           <Flag iso={flagName} />
         </StyledFlagItem>
       )}
-      {children}
+      {leftIcon && <StyledItemIcon>{leftIcon}</StyledItemIcon>}
+      <StyledContent>{children}</StyledContent>
+      {type === 'icon' && rightIcon && (
+        <StyledItemIcon>{rightIcon}</StyledItemIcon>
+      )}
+      {type === 'color' && rightColor && (
+        <StyledColor css={{$$bg: rightColor}} />
+      )}
     </StyledOption>
   ) : null
 }

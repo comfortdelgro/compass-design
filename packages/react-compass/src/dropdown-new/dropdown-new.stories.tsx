@@ -52,7 +52,7 @@ export const Default: React.FC = () => {
             </button>
           </div>
         </DropdownNew.Header>
-        <DropdownNew.Item key='dog' value='dog'>
+        <DropdownNew.Item key='dog' value='dog' type='color' rightColor='red'>
           Dog
         </DropdownNew.Item>
         <DropdownNew.Item key='aardvark' value='aardvark'>

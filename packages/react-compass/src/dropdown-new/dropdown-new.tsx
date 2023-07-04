@@ -15,7 +15,7 @@ import {
   SelectedItemDropdown,
 } from './dropdown-new-context'
 import DropdownFlag from './dropdown-new-flag'
-import DropdownNewItem, {DropdownItemProps} from './dropdown-new-item'
+import DropdownNewItem from './dropdown-new-item'
 import DropdownNewList from './dropdown-new-list'
 import DropdownComboBox from './dropdown-new.combobox'
 import DropdownHeader from './dropdown-new.header'
@@ -34,7 +34,6 @@ import {
 } from './dropdown-new.styles'
 import {Flag} from './flags'
 import {
-  findItemByValue,
   getFirstItem,
   getItemAbove,
   getItemBelow,
@@ -177,6 +176,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         case 'ArrowUp':
         case 'ArrowLeft':
           event.preventDefault()
+          // Check if focus key exists
           if (currentFocusKey) {
             const nextKey = getItemAbove(
               currentFocusKey,
@@ -278,7 +278,9 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     (event: React.ChangeEvent<HTMLInputElement>) => {
       setOpen(true)
       setSearchValue(event.target.value ?? '')
+      // Reset current selected item and set to backup item
       if (type === 'flag') {
+        // Check if selectedKeysBackup exists
         if (selectedKeys.length && !selectedKeysBackup.length) {
           setSelectedKeysBackup(selectedKeys)
         }
@@ -292,9 +294,11 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     if (['combobox', 'flag'].includes(type) && inputRef.current) {
       // wait for document move cursor
       setTimeout(() => {
+        // Check if click into content of Dropdown
         if (document.activeElement === inputRef.current) {
           return
         }
+        // Check if there is a backup item but no new item is selected then rollback backup item
         if (
           type === 'flag' &&
           selectedKeysBackup.length &&
@@ -305,6 +309,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           return
         }
         if (inputRef.current) {
+          // Check if there is selected item then set text for input
           if (selectedKeys && selectedKeys.length > 0) {
             inputRef.current.value = textContent(
               selectedKeys[0]?.displayValue as React.ReactElement,
@@ -330,12 +335,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     const currentSelectedKey = selectedKey || defaultSelectedKey
 
     // Find the item with the specified value
-    const item = findItemByValue(
-      React.Children.toArray(children) as Array<
-        React.ReactElement<DropdownItemProps>
-      >,
-      currentSelectedKey,
-    )
+    const item = getItemByKey(currentSelectedKey, children)
 
     if (item) {
       setSelectedKeys([
@@ -492,17 +492,17 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       return
     }
     setOpen(false)
+    // Select clear item
+    if (!selectedItem.value) {
+      setSelectedKeys([])
+      onSelectionChange?.('')
+      return
+    }
     // Deselect item
     if (
       shouldDeselect &&
       selectedKeys.findIndex((item) => item.value === selectedItem.value) !== -1
     ) {
-      setSelectedKeys([])
-      onSelectionChange?.('')
-      return
-    }
-    // Select clear item
-    if (!selectedItem.value) {
       setSelectedKeys([])
       onSelectionChange?.('')
       return

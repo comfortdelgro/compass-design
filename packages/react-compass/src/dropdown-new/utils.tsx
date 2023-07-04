@@ -4,6 +4,11 @@ import {DropdownItemKey} from './dropdown-new-context'
 import {DropdownItemProps} from './dropdown-new-item'
 import DropdownHeader from './dropdown-new.header'
 
+/**
+ * Get text in Element
+ * @param elem React.ReactElement
+ * @returns string
+ */
 export function textContent(
   elem: React.ReactElement<DropdownItemProps> | string,
 ): string {
@@ -21,7 +26,7 @@ export function textContent(
   return textContent(children as React.ReactElement<DropdownItemProps>)
 }
 
-export const findItemByValue = (
+const findItemByValue = (
   items: Array<React.ReactElement<DropdownItemProps>>,
   value: string | number,
   disabledKeys: Array<string | number> = [],
@@ -51,6 +56,12 @@ export const findItemByValue = (
   return null
 }
 
+/**
+ * Get previous dropdown item
+ * @param key current key
+ * @param children All Dropdown.Item elements
+ * @param dropdownItemKeys All keys of Dropdown.Item elements
+ */
 export const getItemAbove = (
   key: string | number,
   children?: React.ReactNode,
@@ -58,8 +69,7 @@ export const getItemAbove = (
 ) => {
   if (!dropdownItemKeys.length) return null
 
-  const lastItem = getLastItem(children, dropdownItemKeys)
-
+  // Get the currently displayed items
   const visibleDropdownItems = dropdownItemKeys.filter(
     (item) => item.visibility,
   )
@@ -67,6 +77,7 @@ export const getItemAbove = (
   if (visibleDropdownItems.length) {
     const index = visibleDropdownItems.findIndex((item) => item.value === key)
     if (index !== -1) {
+      // Get prev item or last item(when we are at first index)
       const nextKey =
         visibleDropdownItems[index - 1] ??
         visibleDropdownItems[visibleDropdownItems.length - 1]
@@ -76,9 +87,17 @@ export const getItemAbove = (
       }
     }
   }
+
+  const lastItem = getLastItem(children, dropdownItemKeys)
   return lastItem
 }
 
+/**
+ * Get next dropdown item
+ * @param key current key
+ * @param children All Dropdown.Item elements
+ * @param dropdownItemKeys All keys of Dropdown.Item elements
+ */
 export const getItemBelow = (
   key: string | number,
   children?: React.ReactNode,
@@ -86,12 +105,12 @@ export const getItemBelow = (
 ) => {
   if (!dropdownItemKeys.length) return null
 
-  const firstItem = getFirstItem(children, dropdownItemKeys)
-
+  // Get the currently displayed items
   const visibleDropdownItems = dropdownItemKeys.filter(
     (item) => item.visibility,
   )
   if (visibleDropdownItems.length) {
+    // Get next item or first item(when we are at last index)
     const index = visibleDropdownItems.findIndex((item) => item.value === key)
     if (index !== -1) {
       const nextKey = visibleDropdownItems[index + 1] ?? visibleDropdownItems[0]
@@ -101,9 +120,16 @@ export const getItemBelow = (
       }
     }
   }
+
+  const firstItem = getFirstItem(children, dropdownItemKeys)
   return firstItem
 }
 
+/**
+ * Get first Dropdown.Item in children
+ * @param children All Dropdown.Item elements
+ * @param dropdownItemKeys All keys of Dropdown.Item elements
+ */
 export const getFirstItem = (
   children?: React.ReactNode,
   dropdownItemKeys: DropdownItemKey[] = [],
@@ -114,7 +140,7 @@ export const getFirstItem = (
 
   for (let index = 0; index < dropdownItemKeys.length; index++) {
     const dropdownItemKey = dropdownItemKeys[index]
-    // Last item without disabled
+    // The first item is being displayed
     if (dropdownItemKey?.visibility) {
       selectItem = getItemByKey(dropdownItemKey.value, children)
       break
@@ -124,6 +150,11 @@ export const getFirstItem = (
   return selectItem
 }
 
+/**
+ * Get last Dropdown.Item in children
+ * @param children All Dropdown.Item elements
+ * @param dropdownItemKeys All keys of Dropdown.Item elements
+ */
 export const getLastItem = (
   children?: React.ReactNode,
   dropdownItemKeys: DropdownItemKey[] = [],
@@ -134,7 +165,7 @@ export const getLastItem = (
 
   for (let index = dropdownItemKeys.length - 1; index >= 0; index--) {
     const dropdownItemKey = dropdownItemKeys[index]
-    // Last item without disabled
+    // The last item is being displayed
     if (dropdownItemKey?.visibility) {
       selectItem = getItemByKey(dropdownItemKey.value, children)
       break
@@ -144,10 +175,16 @@ export const getLastItem = (
   return selectItem
 }
 
+/**
+ * Get Dropdown.Item element in children by key
+ * @param key current key
+ * @param children All Dropdown.Item elements
+ */
 export const getItemByKey = (
   key: string | number,
   children?: React.ReactNode,
 ) => {
+  // Pick Dropdown.Item in children except for DropdownHeader
   const {rest: dropdownItems} = pickChild<typeof DropdownHeader>(
     children,
     DropdownHeader,

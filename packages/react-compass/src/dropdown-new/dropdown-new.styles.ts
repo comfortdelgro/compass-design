@@ -478,6 +478,33 @@ export const StyledSectionContent = styled('div', {
   },
 })
 
+export const StyledItemIcon = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flexShrink: 0,
+  width: '$4',
+  height: '$4',
+  overflow: 'hidden',
+})
+
+export const StyledColor = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flexShrink: 0,
+  width: '$6',
+  height: '$6',
+  borderRadius: '$md',
+  background: '$$bg',
+})
+
+export const StyledContent = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  flexGrow: 1,
+})
+
 export type DropdownItemVariantProps = VariantProps<
   typeof StyledDropdownSection
 >
