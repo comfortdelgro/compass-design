@@ -46,6 +46,8 @@ export const EditableCell = React.forwardRef<
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       finishTemplateEditing(value)
+    } else if (event.key === 'Escape') {
+      cancelTemplateEditing()
     }
   }
 

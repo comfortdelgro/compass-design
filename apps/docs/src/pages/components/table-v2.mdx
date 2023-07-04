@@ -1,7 +1,11 @@
 import {Callout} from 'nextra-theme-docs'
 import styles from '../../styles/Home.module.css'
 import {faThumbsUp, faVirus} from '@fortawesome/free-solid-svg-icons'
-import {ReactTableFullFeature, ReactTableBasic} from 'components/TableV2'
+import {
+  ReactTableFullFeature,
+  ReactTableBasic,
+  EditableCellTable,
+} from 'components/TableV2'
 
 # Table-v2
 
@@ -450,21 +454,32 @@ Column definitions are plain objects with the following options:
 
 ##### Enable Resizing
 
-| Name             | Type    | Default | Description                |
-| :--------------- | :------ | :------ | :------------------------- |
-| `enableResizing` | boolean | `true`  | `Set enable column resize` |
+| Name             | Type    | Default | Description            |
+| :--------------- | :------ | :------ | :--------------------- |
+| `enableResizing` | boolean | `false` | `Enable column resize` |
 
 ##### Enable column filter
 
-| Name                 | Type    | Default | Description                |
-| :------------------- | :------ | :------ | :------------------------- |
-| `enableColumnFilter` | boolean | `true`  | `Set enable column filter` |
+| Name                 | Type    | Default | Description            |
+| :------------------- | :------ | :------ | :--------------------- |
+| `enableColumnFilter` | boolean | `false` | `Enable column filter` |
 
 ##### Enable Grouping
 
-| Name             | Type    | Default | Description                  |
-| :--------------- | :------ | :------ | :--------------------------- |
-| `enableGrouping` | boolean | `true`  | `Set enable column grouping` |
+| Name             | Type    | Default | Description              |
+| :--------------- | :------ | :------ | :----------------------- |
+| `enableGrouping` | boolean | `false` | `Enable column grouping` |
+
+##### Meta
+
+Define further information about the column. Now `meta` is used to define `editable` columns.
+
+| Name         | Type                                                            | Default     | Description                         |
+| :----------- | :-------------------------------------------------------------- | :---------- | :---------------------------------- |
+| `editable`   | boolean \| undefined                                            | `undefined` | `Enable rendering editable column`  |
+| `template`   | JSX Element \| undefined                                        | `undefined` | `Enable rendering editable column`  |
+| `updateData` | (rowIndex: number, id: string, value: any) => void \| undefined | `undefined` | `Callback to update table data`     |
+| `revertData` | (rowIndex: number) => void \| undefined                         | `undefined` | `Callback to revert the table data` |
 
 ##### Example
 
@@ -475,9 +490,60 @@ Column definitions are plain objects with the following options:
     cell: (info) => info.getValue<string>(),
     header: () => <span>Last Name</span>,
     footer: (props) => props.column.id,
-    enableResizing: false,
-    enableColumnFilter: false,
-    enableGrouping: false,
+    enableResizing: true,
+    enableColumnFilter: true,
+    enableGrouping: true,
+  },
+```
+
+#### Editable cell
+
+Press `ENTER` to finish editing the firstName cell, `Esc` to quit editing.
+
+<section className={styles.componentShowcaseContainer}>
+  <EditableCellTable />
+</section>
+
+Enable rendering customized template on top of the column cell.
+Users can decide what to do with the template and update the table data.
+To use this functionality:
+
+- In the template component, use the hook `useEditableCellContext` that provides:
+
+| Name                     | Type                  | Default | Description                                         |
+| :----------------------- | :-------------------- | :------ | :-------------------------------------------------- |
+| `cell`                   | `Cell<TData, TValue>` |         | `Cell object `                                      |
+| `row`                    | `number`              |         | `row index`                                         |
+| `column`                 | `string`              |         | `column name`                                       |
+| `initialValue`           | `any`                 | —       | `cell initial value`                                |
+| `finishTemplateEditing`  | `(data) => void`      | —       | `notify the table to call the update data function` |
+| `cancelTemplateEditing ` | `(data) => void`      | —       | `notify the table to call the revert data function` |
+
+- In the ColumnConfig object, define `editable = true` and `updateData` callback. If `template` is not defined, the default input will render.
+
+```tsx
+{
+    accessorFn: (row) => row.lastName,
+    id: 'lastName',
+    cell: (info) => info.getValue<string>(),
+    header: () => <span>Last Name</span>,
+    footer: (props) => props.column.id,
+    meta: {
+      editable: true,
+      updateData: (rowIndex: number, id: string, value: any) => {
+        setData((old: Person[]) =>
+          old.map((row, index) => {
+            if (index === rowIndex) {
+              return {
+                ...old[rowIndex],
+                [id]: value,
+              } as Person
+            }
+            return row
+          }),
+        )
+      },
+    },
   },
 ```
 

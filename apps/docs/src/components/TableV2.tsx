@@ -466,3 +466,97 @@ export const ReactTableBasic: React.FC = () => {
     </div>
   )
 }
+
+export const EditableCellTable: React.FC = () => {
+  const [data, setData] = React.useState(() => makeData(10))
+  const options: ReactTableOptions<Person> = {
+    enableSorting: true,
+    enableMultiSort: true,
+    columnResizeMode: 'onChange',
+    manualSorting: true,
+    enableRowSelection: (row: any) => row.original.age > 30,
+  }
+  const onSorting = (sortingField: StateSorting) => {}
+
+  const columns = React.useMemo<Array<ColumnConfig<Person>>>(
+    () => [
+      {
+        id: 'name',
+        header: () => <div style={{textAlign: 'center'}}>Name</div>,
+        footer: (props) => props.column.id,
+        columns: [
+          {
+            accessorKey: 'firstName',
+            cell: (info) => info.getValue<string>(),
+            footer: (props) => props.column.id,
+            enableResizing: false,
+            meta: {
+              editable: true,
+              updateData: (rowIndex: number, id: string, value: any) => {
+                setData((old: Person[]) =>
+                  old.map((row, index) => {
+                    if (index === rowIndex) {
+                      return {
+                        ...old[rowIndex],
+                        [id]: value,
+                      } as Person
+                    }
+                    return row
+                  }),
+                )
+              },
+            },
+          },
+          {
+            accessorFn: (row) => row.lastName,
+            id: 'lastName',
+            cell: (info) => info.getValue<string>(),
+            header: () => <span>Last Name</span>,
+            footer: (props) => props.column.id,
+            enableResizing: true,
+          },
+        ],
+      },
+      {
+        id: 'otherInfo',
+        header: () => <div style={{textAlign: 'center'}}>Other info</div>,
+        footer: (props) => props.column.id,
+        columns: [
+          {
+            accessorKey: 'age',
+            header: () => 'Age',
+            footer: (info) => info.column.id,
+          },
+          {
+            accessorKey: 'visits',
+            header: () => <span>Visits</span>,
+            footer: (info) => info.column.id,
+          },
+          {
+            accessorKey: 'status',
+            header: 'Status',
+            footer: (info) => info.column.id,
+          },
+          {
+            accessorKey: 'progress',
+            header: 'Profile Progress',
+            cell: (info) => info.getValue<string>(),
+            footer: (info) => info.column.id,
+          },
+        ],
+      },
+    ],
+    [],
+  )
+
+  return (
+    <div>
+      <ReactTable
+        data={data}
+        columns={columns}
+        options={options}
+        onManualSorting={onSorting}
+      />
+    </div>
+  )
+}
