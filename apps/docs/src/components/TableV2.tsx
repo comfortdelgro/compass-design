@@ -556,7 +556,43 @@ export const EditableCellTable: React.FC = () => {
         columns={columns}
         options={options}
         onManualSorting={onSorting}
-      />
+      >
+        <ReactTable.Toolbar
+          css={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}
+        >
+          <SearchField placeholder='Search' />
+
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: '0.5rem',
+            }}
+          >
+            <Button
+              variant='primary'
+              className='c-hKssGC-hYGuEl-variant-primary'
+            >
+              Button
+            </Button>
+            <Button variant='secondary'>Button</Button>
+            <Button variant='ghost'>
+              <Icon icon={faTrashAlt} />
+            </Button>
+            <Button variant='ghost'>
+              <Icon icon={faDashboard} />
+            </Button>
+            <Button variant='ghost'>
+              <Icon icon={faFileLines} />
+            </Button>
+          </div>
+        </ReactTable.Toolbar>
+      </ReactTable>
     </div>
   )
 }
