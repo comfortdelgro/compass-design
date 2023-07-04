@@ -8,6 +8,7 @@ import {ReactTableFullFeature, ReactTableBasic} from 'components/TableV2'
 Table version 2 is a wrapper around the core table logic. Most of its job is related to managing state the "react" way, providing types and the rendering implementation of cell/header/footer templates.
 
 Provided appears to be a React component called ReactTable which is a table component built base on the @tanstack/react-table library. It accepts various props to customize its behavior and rendering.
+
 <Callout>
   Check out our [ladle](/ladle?story=table-v2--full-featured) for more info on
   this component.
@@ -31,72 +32,72 @@ import ReactTable from '@comfortdelgro/react-compass/table-v2'
 
 ### Basic table v2
 
-<section className={styles.textAreaShowcaseContainer}>
+<section className={styles.componentShowcaseContainer}>
   <ReactTableBasic />
 </section>
 
 ```tsx
 const columns = React.useMemo<Array<ColumnConfig<Person>>>(
-    () => [
-      {
-        id: 'name',
-        header: () => <div style={{textAlign: 'center'}}>Name</div>,
-        footer: (props) => props.column.id,
-        columns: [
-          {
-            accessorKey: 'firstName',
-            cell: (info) => info.getValue<string>(),
-            footer: (props) => props.column.id,
-            enableResizing: false,
-            enableColumnFilter: false,
-          },
-          {
-            accessorFn: (row) => row.lastName,
-            id: 'lastName',
-            cell: (info) => info.getValue<string>(),
-            header: () => <span>Last Name</span>,
-            footer: (props) => props.column.id,
-            enableResizing: false,
-            enableColumnFilter: false,
-            enableGrouping: false,
-          },
-        ],
-      },
-      {
-        id: 'otherInfo',
-        header: () => <div style={{textAlign: 'center'}}>Other info</div>,
-        footer: (props) => props.column.id,
-        columns: [
-          {
-            accessorKey: 'age',
-            header: () => 'Age',
-            footer: (info) => info.column.id,
-            enableColumnFilter: false,
-          },
-          {
-            accessorKey: 'visits',
-            header: () => <span>Visits</span>,
-            footer: (info) => info.column.id,
-            enableColumnFilter: false,
-          },
-          {
-            accessorKey: 'status',
-            header: 'Status',
-            footer: (info) => info.column.id,
-            enableColumnFilter: false,
-          },
-          {
-            accessorKey: 'progress',
-            header: 'Profile Progress',
-            cell: (info) => info.getValue<string>(),
-            footer: (info) => info.column.id,
-            enableColumnFilter: false,
-          },
-        ],
-      },
-    ],
-    [],
-  )
+  () => [
+    {
+      id: 'name',
+      header: () => <div style={{textAlign: 'center'}}>Name</div>,
+      footer: (props) => props.column.id,
+      columns: [
+        {
+          accessorKey: 'firstName',
+          cell: (info) => info.getValue<string>(),
+          footer: (props) => props.column.id,
+          enableResizing: false,
+          enableColumnFilter: false,
+        },
+        {
+          accessorFn: (row) => row.lastName,
+          id: 'lastName',
+          cell: (info) => info.getValue<string>(),
+          header: () => <span>Last Name</span>,
+          footer: (props) => props.column.id,
+          enableResizing: false,
+          enableColumnFilter: false,
+          enableGrouping: false,
+        },
+      ],
+    },
+    {
+      id: 'otherInfo',
+      header: () => <div style={{textAlign: 'center'}}>Other info</div>,
+      footer: (props) => props.column.id,
+      columns: [
+        {
+          accessorKey: 'age',
+          header: () => 'Age',
+          footer: (info) => info.column.id,
+          enableColumnFilter: false,
+        },
+        {
+          accessorKey: 'visits',
+          header: () => <span>Visits</span>,
+          footer: (info) => info.column.id,
+          enableColumnFilter: false,
+        },
+        {
+          accessorKey: 'status',
+          header: 'Status',
+          footer: (info) => info.column.id,
+          enableColumnFilter: false,
+        },
+        {
+          accessorKey: 'progress',
+          header: 'Profile Progress',
+          cell: (info) => info.getValue<string>(),
+          footer: (info) => info.column.id,
+          enableColumnFilter: false,
+        },
+      ],
+    },
+  ],
+  [],
+)
 ```
 
 ```js
@@ -159,18 +160,19 @@ const columns = React.useMemo<Array<ColumnConfig<Person>>>(
   </ReactTable.Footer>
 </ReactTable>
 ```
+
 ### Data
 
 #### data: TData[]
 
-The data for the table to display. This array should match the type you provided to `table.setRowType<...>`, but in theory could be an array of anything. 
+The data for the table to display. This array should match the type you provided to `table.setRowType<...>`, but in theory could be an array of anything.
 It's common for each item in the array to be an object of key/values but this is not required. Columns can access this data via string/index or a functional accessor to return anything they want.
 
-When the data option changes reference (compared via Object.is), the table will reprocess the data. 
+When the data option changes reference (compared via Object.is), the table will reprocess the data.
 Any other data processing that relies on the core data model (such as grouping, sorting, filtering, etc) will also be reprocessed.
 
-Make sure your data option is only changing when you want the table to reprocess. 
-Providing an inline [] or constructing the data array as a new object every time you want to render the table will result in a lot of unnecessary re-processing. 
+Make sure your data option is only changing when you want the table to reprocess.
+Providing an inline [] or constructing the data array as a new object every time you want to render the table will result in a lot of unnecessary re-processing.
 This can easily go unnoticed in smaller tables, but you will likely notice it in larger tables.
 
 ### Options Interface
@@ -229,70 +231,70 @@ interface Options<TData> {
 
 ### Full features
 
-<section className={styles.textAreaShowcaseContainer}>
+<section className={styles.componentShowcaseContainer}>
   <ReactTableFullFeature />
 </section>
 
 ```tsx
 const columns = React.useMemo<Array<ColumnConfig<Person>>>(
-    () => [
-      {
-        id: 'select',
-        header: ({table}) => <TableHeader table={table} />,
-        cell: ({row}) => <TableHeaderCell row={row} />,
-      },
-      {
-        id: 'name',
-        header: () => <div style={{textAlign: 'center'}}>Name</div>,
-        footer: (props) => props.column.id,
-        columns: [
-          {
-            accessorKey: 'firstName',
-            cell: (info) => info.getValue<string>(),
-            footer: (props) => props.column.id,
-            enableResizing: false,
-          },
-          {
-            accessorFn: (row) => row.lastName,
-            id: 'lastName',
-            cell: (info) => info.getValue<string>(),
-            header: () => <span>Last Name</span>,
-            footer: (props) => props.column.id,
-            enableResizing: true,
-          },
-        ],
-      },
-      {
-        id: 'otherInfo',
-        header: () => <div style={{textAlign: 'center'}}>Other info</div>,
-        footer: (props) => props.column.id,
-        columns: [
-          {
-            accessorKey: 'age',
-            header: () => 'Age',
-            footer: (info) => info.column.id,
-          },
-          {
-            accessorKey: 'visits',
-            header: () => <span>Visits</span>,
-            footer: (info) => info.column.id,
-          },
-          {
-            accessorKey: 'status',
-            header: 'Status',
-            footer: (info) => info.column.id,
-          },
-          {
-            accessorKey: 'progress',
-            header: 'Profile Progress',
-            cell: (info) => info.getValue<string>(),
-            footer: (info) => info.column.id,
-          },
-        ],
-      },
-    ],
-    [],
-  )
+  () => [
+    {
+      id: 'select',
+      header: ({table}) => <TableHeader table={table} />,
+      cell: ({row}) => <TableHeaderCell row={row} />,
+    },
+    {
+      id: 'name',
+      header: () => <div style={{textAlign: 'center'}}>Name</div>,
+      footer: (props) => props.column.id,
+      columns: [
+        {
+          accessorKey: 'firstName',
+          cell: (info) => info.getValue<string>(),
+          footer: (props) => props.column.id,
+          enableResizing: false,
+        },
+        {
+          accessorFn: (row) => row.lastName,
+          id: 'lastName',
+          cell: (info) => info.getValue<string>(),
+          header: () => <span>Last Name</span>,
+          footer: (props) => props.column.id,
+          enableResizing: true,
+        },
+      ],
+    },
+    {
+      id: 'otherInfo',
+      header: () => <div style={{textAlign: 'center'}}>Other info</div>,
+      footer: (props) => props.column.id,
+      columns: [
+        {
+          accessorKey: 'age',
+          header: () => 'Age',
+          footer: (info) => info.column.id,
+        },
+        {
+          accessorKey: 'visits',
+          header: () => <span>Visits</span>,
+          footer: (info) => info.column.id,
+        },
+        {
+          accessorKey: 'status',
+          header: 'Status',
+          footer: (info) => info.column.id,
+        },
+        {
+          accessorKey: 'progress',
+          header: 'Profile Progress',
+          cell: (info) => info.getValue<string>(),
+          footer: (info) => info.column.id,
+        },
+      ],
+    },
+  ],
+  [],
+)
 ```
 
 ```js
@@ -393,14 +395,14 @@ const onSorting = (sortingField: StateSorting) => {
 
 #### For rows Selection
 
-The `enableRowSelection` property determines whether row selection is enabled within a component or functionality. 
+The `enableRowSelection` property determines whether row selection is enabled within a component or functionality.
 It can be assigned a boolean value or a function that takes a `Row` object representing a specific row and returns a boolean value indicating whether the row is selectable.
 
 - When set to `true`, row selection is enabled for all rows within the component or functionality.
 - When set to `false`, row selection is disabled for all rows.
 
-Alternatively, you can provide a custom function to control row selection on a per-row basis. 
-The function receives a `Row` object as its argument, allowing you to define custom logic to determine if a specific row should be selectable. 
+Alternatively, you can provide a custom function to control row selection on a per-row basis.
+The function receives a `Row` object as its argument, allowing you to define custom logic to determine if a specific row should be selectable.
 The function should return `true` if the row is selectable and `false` if it's not.
 
 ##### Type Definition

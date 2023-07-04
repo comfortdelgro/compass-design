@@ -4,9 +4,9 @@ export const StyledEditableCell = styled('div', {
   cursor: 'text',
   position: 'absolute',
   inset: 0,
-
   p: {
     padding: '0 1em',
+    margin: '1em 0',
   },
   input: {
     padding: '0 1em',
