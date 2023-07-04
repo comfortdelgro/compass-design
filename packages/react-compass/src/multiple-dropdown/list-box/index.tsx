@@ -10,12 +10,14 @@ interface Props extends BaseListBoxProps {
   currentKeys: React.Key[]
   disabledKeys: React.Key[]
   focusKey: React.Key | undefined
+  listRef: React.MutableRefObject<Array<HTMLLIElement | null>>
   onSelect: (key: React.Key) => void
 }
 
 function ListBox(props: Props) {
   const ref = React.useRef(null)
   const {
+    listRef,
     focusKey,
     isLoading,
     collection,
@@ -78,7 +80,7 @@ function ListBox(props: Props) {
       rootChildren={rootChildren}
       onLoadMore={onLoadMore}
       renderOptions={(l) =>
-        l.map((item) => (
+        l.map((item, index) => (
           <div key={item.id}>
             {item.title && (
               <StyledSection
@@ -98,6 +100,9 @@ function ListBox(props: Props) {
             {item.children.map((c) =>
               c ? (
                 <Option
+                  ref={(node) => {
+                    listRef.current[index] = node
+                  }}
                   item={c}
                   key={c.key}
                   focusKey={focusKey}
