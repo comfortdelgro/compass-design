@@ -20,3 +20,26 @@ export const Variants: React.FC = () => (
     </Row>
   </Column>
 )
+
+export const State: React.FC = () => {
+  const [value, setValue] = React.useState<boolean>(true)
+
+  return (
+    <Column>
+      <h3>Controlled</h3>
+      <Toggle size='lg' isSelected={value} onChange={setValue} />
+
+      <h3>UnControlled</h3>
+      <Toggle size='lg' defaultSelected={true} />
+
+      <h3>Disabled</h3>
+      <Toggle size='lg' isDisabled />
+
+      <h3>ReadOnly</h3>
+      <Toggle size='lg' isReadOnly />
+
+      <h3>Required</h3>
+      <Toggle size='lg' isRequired />
+    </Column>
+  )
+}
