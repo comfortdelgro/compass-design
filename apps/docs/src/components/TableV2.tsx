@@ -470,11 +470,10 @@ export const ReactTableBasic: React.FC = () => {
 export const EditableCellTable: React.FC = () => {
   const [data, setData] = React.useState(() => makeData(10))
   const options: ReactTableOptions<Person> = {
-    enableSorting: true,
-    enableMultiSort: true,
+    enableSorting: false,
+    enableMultiSort: false,
     columnResizeMode: 'onChange',
-    manualSorting: true,
-    enableRowSelection: (row: any) => row.original.age > 30,
+    manualSorting: false,
   }
   const onSorting = (sortingField: StateSorting) => {}
 
