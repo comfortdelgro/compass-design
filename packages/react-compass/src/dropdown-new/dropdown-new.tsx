@@ -239,6 +239,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
                 },
               ])
               onSelectionChange?.(focusedItem.props.value)
+              inputRef.current?.blur()
             }
           }
 
@@ -285,12 +286,15 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
 
   useEffect(() => {
     if (!open && ['combobox', 'flag'].includes(type) && inputRef.current) {
+      if (document.activeElement === inputRef.current) {
+        return
+      }
+
       if (type === 'flag' && selectedKeysBackup.length) {
         setSelectedKeys(selectedKeysBackup)
         setSelectedKeysBackup([])
         return
       }
-
       if (selectedKeys && selectedKeys.length > 0) {
         inputRef.current.value = textContent(
           selectedKeys[0]?.displayValue as React.ReactElement,
@@ -505,6 +509,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           inputRef.current.value = textContent(
             selectedItem.displayValue as React.ReactElement,
           )
+          inputRef.current.blur()
         }
         setSearchValue(
           textContent(selectedItem.displayValue as React.ReactElement),
