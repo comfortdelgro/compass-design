@@ -1,0 +1,314 @@
+import {Callout} from 'nextra-theme-docs'
+import {Default, ClickToUpload, DragAndDrop} from '../../components/Upload'
+
+# Upload
+
+The upload component allows users to upload files of various types and sizes.
+
+<Callout>
+  Check out our [ladle](/ladle?story=timeline--default) for more info on this
+  component.
+</Callout>
+
+---
+
+### Upload
+
+```js
+import {Upload} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import Upload from '@comfortdelgro/react-compass/upload'
+```
+
+We recommend the second method to import components for the benefits of [tree shaking](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking).
+
+---
+
+### Default Upload
+
+<br />
+<div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
+  <Default />
+</div>
+
+```js
+const getFileFunc = (file: File[]) => {
+  if (file.length < 1) return
+  console.log(file)
+}
+
+return (
+  <div>
+    <Upload
+      getFile={getFileFunc}
+      accept='image/*, .docs, .docx'
+      fileSizeLimit={30000}
+    />
+  </div>
+)
+```
+
+---
+
+### Click to Upload
+
+<br />
+<div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
+  <ClickToUpload />
+</div>
+
+```js
+export const ClickToUpload: React.FC = () => {
+  const [customError, setCustomError] = React.useState < string > ''
+  const getFileFunc = (file: File[]) => {
+    if (file.length < 1) return
+    console.log(file)
+  }
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        gap: '2rem',
+      }}
+    >
+      <div>
+        <h3 style={{marginBottom: '0.8rem'}}>Click-to-upload</h3>
+        <Upload
+          getFile={getFileFunc}
+          accept='image/*, .docs, .docx'
+          fileSizeLimit={999999999999999}
+        />
+      </div>
+
+      <div>
+        <h3 style={{marginBottom: '0.8rem'}}>Custom helper text</h3>
+        <Upload
+          getFile={getFileFunc}
+          accept='image/*, .docs, .docx'
+          fileSizeLimit={30000}
+          helperText={
+            <>
+              <span>
+                Only files with the following extensions are allowed: pdf, image
+                extension, excel, word, powerpoint
+              </span>
+              <br />
+              <span>Maximum file size is 30MB</span>
+            </>
+          }
+        />
+      </div>
+      <div>
+        <h3 style={{marginBottom: '0.8rem'}}>Custom error message</h3>
+        <Upload
+          getFile={getFileFunc}
+          accept='image/*, .docs, .docx'
+          fileSizeLimit={30000}
+          onError={(error) => setCustomError(error)}
+          customErrorMessages={<span>No no no! You have a {customError}</span>}
+        />
+      </div>
+      <div>
+        <h3 style={{marginBottom: '0.8rem'}}>Add label</h3>
+        <Upload
+          getFile={getFileFunc}
+          accept='image/*, .docs, .docx'
+          fileSizeLimit={30000}
+          helperText={'Custom helper text'}
+          label='Upload label'
+        />
+      </div>
+      <div>
+        <h3 style={{marginBottom: '0.8rem'}}>isRequired</h3>
+        <Upload
+          getFile={getFileFunc}
+          accept='image/*, .docs, .docx'
+          fileSizeLimit={30000}
+          isRequired
+          label='Upload label'
+        />
+      </div>
+      <div>
+        <h3 style={{marginBottom: '0.8rem'}}>isDisabled</h3>
+        <Upload
+          getFile={getFileFunc}
+          accept='image/*, .docs, .docx'
+          fileSizeLimit={30000}
+          isDisabled
+        />
+      </div>
+
+      <div>
+        <h3 style={{marginBottom: '0.8rem'}}>Allow multiple uploaded file</h3>
+        <Upload
+          getFile={getFileFunc}
+          accept='image/*, .docs, .docx'
+          fileSizeLimit={9990000}
+          multiple
+        />
+      </div>
+    </div>
+  )
+}
+```
+
+---
+
+### Drag-and-Drop Upload
+
+<br />
+<div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
+  <DragAndDrop />
+</div>
+
+```js
+export const ClickToUpload: React.FC = () => {
+  const [customError, setCustomError] = React.useState < string > ''
+  const getFileFunc = (file: File[]) => {
+    if (file.length < 1) return
+    console.log(file)
+  }
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        gap: '2rem',
+      }}
+    >
+      <div>
+        <h3 style={{marginBottom: '0.8rem'}}>Primary drag-and-drop</h3>
+        <Upload.DragAndDrop
+          getFile={getFileFunc}
+          accept='image/*, .docs, .docx'
+          fileSizeLimit={30000000000000000000000000}
+          multiple
+        />
+      </div>
+      <div>
+        <h3 style={{marginBottom: '0.8rem'}}>Secondary drag-and-drop</h3>
+        <Upload.DragAndDrop
+          getFile={getFileFunc}
+          accept='image/*, .docs, .docx'
+          fileSizeLimit={30000}
+          variant='area'
+          multiple={true}
+        />
+      </div>
+
+      <div>
+        <h3 style={{marginBottom: '0.8rem'}}>
+          drag-and-drop with custom helper text
+        </h3>
+        <Upload.DragAndDrop
+          getFile={getFileFunc}
+          accept='image/*, .docs, .docx'
+          fileSizeLimit={30000}
+          multiple
+          helperText='Custom helper text'
+        />
+      </div>
+
+      <div>
+        <h3 style={{marginBottom: '0.8rem'}}>
+          drag-and-drop with custom error message
+        </h3>
+        <Upload.DragAndDrop
+          getFile={getFileFunc}
+          accept='image/*, .docs, .docx'
+          fileSizeLimit={300000}
+          multiple
+          onError={(error) => setCustomError(error)}
+          customErrorMessages={<span>No no no! You have a {customError}</span>}
+        />
+      </div>
+
+      <div>
+        <h3 style={{marginBottom: '0.8rem'}}>
+          drag-and-drop with custom label
+        </h3>
+        <Upload.DragAndDrop
+          getFile={getFileFunc}
+          accept='image/*, .docs, .docx'
+          fileSizeLimit={30000}
+          multiple
+          label='Custom label'
+        />
+      </div>
+      <div>
+        <h3 style={{marginBottom: '0.8rem'}}>drag-and-drop with isRequired</h3>
+        <Upload.DragAndDrop
+          getFile={getFileFunc}
+          accept='image/*, .docs, .docx'
+          fileSizeLimit={30000}
+          multiple
+          label='Custom label'
+          isRequired
+        />
+      </div>
+      <div>
+        <h3 style={{marginBottom: '0.8rem'}}>drag-and-drop with isDisabled</h3>
+        <Upload.DragAndDrop
+          getFile={getFileFunc}
+          accept='image/*, .docs, .docx'
+          fileSizeLimit={9990000}
+          multiple
+          label='Custom label'
+          isDisabled
+        />
+      </div>
+    </div>
+  )
+}
+```
+
+---
+
+## Props of Timeline
+
+Sure! Here are the updated tables with the `css` prop included:
+
+| Name                | Type                     | Default | Description                                                                                             |
+| ------------------- | ------------------------ | ------- | ------------------------------------------------------------------------------------------------------- |
+| getFile             | `(file: File[]) => any`  | —       | A callback function that receives the selected file(s) as an array of `File` objects.                   |
+| accept              | string                   | —       | A string specifying the file types that are accepted. It follows the format: `'image/*, .docs, .docx'`. |
+| fileSizeLimit       | number                   | —       | The maximum file size limit in bytes.                                                                   |
+| onError             | `(error: string) => any` | —       | A callback function that receives an error message if an error occurs during file upload.               |
+| customErrorMessages | React.ReactNode          | —       | Custom error message to display when an error occurs during file upload.                                |
+| helperText          | React.ReactNode          | —       | Helper text to display instructions or limitations to the user.                                         |
+| label               | string                   | —       | A label to provide a descriptive name for the file upload field.                                        |
+| isRequired          | boolean                  | `false` | Indicates whether the file upload is required.                                                          |
+| isDisabled          | boolean                  | `false` | Indicates whether the file upload is disabled and cannot be interacted with.                            |
+| css                 | `CSS`                    | —       | The system prop that allows defining system overrides as well as additional CSS styles.                 |
+
+## Props of Upload.DragAndDrop
+
+| Name                | Type                     | Default | Description                                                                                             |
+| ------------------- | ------------------------ | ------- | ------------------------------------------------------------------------------------------------------- |
+| getFile             | `(file: File[]) => any`  | —       | A callback function that receives the selected file(s) as an array of `File` objects.                   |
+| accept              | string                   | —       | A string specifying the file types that are accepted. It follows the format: `'image/*, .docs, .docx'`. |
+| fileSizeLimit       | number                   | —       | The maximum file size limit in bytes.                                                                   |
+| onError             | `(error: string) => any` | —       | A callback function that receives an error message if an error occurs during file upload.               |
+| customErrorMessages | React.ReactNode          | —       | Custom error message to display when an error occurs during file upload.                                |
+| helperText          | React.ReactNode          | —       | Helper text to display instructions or limitations to the user.                                         |
+| label               | string                   | —       | A label to provide a descriptive name for the file upload field.                                        |
+| isRequired          | boolean                  | `false` | Indicates whether the file upload is required.                                                          |
+| isDisabled          | boolean                  | `false` | Indicates whether the file upload is disabled and cannot be interacted with.                            |
+| variant             | string                   | —       | Determines the variant of the drag-and-drop area. Possible values: "primary" or "secondary".            |
+| multiple            | boolean                  | `false` | Indicates whether multiple files can be selected for upload.                                            |
+| css                 | `CSS`                    | —       | The system prop that allows defining system overrides as well as additional CSS styles.                 |
+
+---
+
+<Callout>
+  Check out our [ladle](/ladle?story=upload--default) for more info on this
+  component.
+</Callout>
+```
