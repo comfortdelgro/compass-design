@@ -120,7 +120,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   const [open, setOpen] = React.useState<boolean>(defaultOpen)
   const [selectedItem, setSelectedItem] =
     React.useState<SelectedItemDropdown | null>(null)
-  const [selectedKeysBackup, setSelectedKeysBackup] =
+  const [selectedItemBackup, setSelectedItemBackup] =
     React.useState<SelectedItemDropdown | null>(null)
   const [focusKey, setFocusKey] = React.useState<string | number | undefined>(
     selectedKey || defaultSelectedKey,
@@ -271,14 +271,14 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       setSearchValue(event.target.value ?? '')
       // Reset current selected item and set to backup item
       if (type === 'flag') {
-        // Check if selectedKeysBackup exists
-        if (selectedItem && !selectedKeysBackup) {
-          setSelectedKeysBackup(selectedItem)
+        // Check if selectedItemBackup exists
+        if (selectedItem && !selectedItemBackup) {
+          setSelectedItemBackup(selectedItem)
         }
         setSelectedItem(null)
       }
     },
-    [type, selectedItem, selectedKeysBackup],
+    [type, selectedItem, selectedItemBackup],
   )
 
   const fillTextForInput = useCallback(() => {
@@ -290,9 +290,9 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           return
         }
         // Check if there is a backup item but no new item is selected then rollback backup item
-        if (type === 'flag' && selectedKeysBackup && !selectedItem) {
-          setSelectedItem(selectedKeysBackup)
-          setSelectedKeysBackup(null)
+        if (type === 'flag' && selectedItemBackup && !selectedItem) {
+          setSelectedItem(selectedItemBackup)
+          setSelectedItemBackup(null)
           return
         }
         if (inputRef.current) {
@@ -308,7 +308,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         }
       })
     }
-  }, [type, selectedKeysBackup, selectedItem])
+  }, [type, selectedItemBackup, selectedItem])
 
   useEffect(() => {
     if (!open && ['combobox', 'flag'].includes(type) && inputRef.current) {
@@ -494,7 +494,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       onSelectionChange?.(selectedItem.value)
     }
     setSelectedItem(selectedItem)
-    setSelectedKeysBackup(selectedItem)
+    setSelectedItemBackup(selectedItem)
     if (['combobox', 'flag'].includes(type)) {
       if (inputRef.current) {
         inputRef.current.value = textContent(
