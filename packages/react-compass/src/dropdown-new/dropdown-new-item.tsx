@@ -31,13 +31,13 @@ const DropdownNewItem: React.FC<DropdownItemProps> = (
   const {children, value, flagName, type, rightIcon, leftIcon, rightColor} =
     props
   const {
-    selectedKeys,
+    selectedItem,
     disabledKeys = [],
     searchValue,
     open,
     focusKey,
     selectedKey,
-    setSelectedKeys,
+    setSelectedItem,
     setDropdownItemKeys,
     onItemClick,
   } = useContext(DropdownContext)
@@ -45,9 +45,8 @@ const DropdownNewItem: React.FC<DropdownItemProps> = (
   const ref = useRef<HTMLLIElement>(null)
 
   const isSeleted = useMemo(
-    () =>
-      selectedKeys.findIndex((item) => item.value === value.toString()) !== -1,
-    [selectedKeys, value],
+    () => selectedItem?.value === value,
+    [selectedItem, value],
   )
 
   const isFocused = useMemo(
@@ -100,7 +99,7 @@ const DropdownNewItem: React.FC<DropdownItemProps> = (
 
   useEffect(() => {
     if (selectedKey && selectedKey.toString() === value.toString()) {
-      setSelectedKeys([{value: value.toString(), displayValue: children}])
+      setSelectedItem({value: value.toString(), displayValue: children})
       if (ref.current) {
         ref.current.scrollIntoView({inline: 'end'})
       }

@@ -15,25 +15,26 @@ export interface DropdownContextType {
   open: boolean
   searchValue: string
   disabledKeys?: Array<string | number>
-  selectedKeys: SelectedItemDropdown[]
+  selectedItem: SelectedItemDropdown | null
   focusKey?: string | number
   selectedKey?: string | number
   defaultSelectedKey?: string | number
   dropdownItemKeys?: DropdownItemKey[]
   setDropdownItemKeys?: React.Dispatch<React.SetStateAction<DropdownItemKey[]>>
-
-  setSelectedKeys: React.Dispatch<React.SetStateAction<SelectedItemDropdown[]>>
+  setSelectedItem: React.Dispatch<
+    React.SetStateAction<SelectedItemDropdown | null>
+  >
   onItemClick: (item: SelectedItemDropdown) => void
 }
 
 export const DropdownContext = createContext<DropdownContextType>({
   open: false,
   searchValue: '',
-  selectedKeys: [],
+  selectedItem: null,
   disabledKeys: [],
   selectedKey: '',
   defaultSelectedKey: '',
-  setSelectedKeys: () => {
+  setSelectedItem: () => {
     //
   },
   onItemClick: () => {
