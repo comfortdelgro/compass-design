@@ -9,11 +9,11 @@ export const StyledMenuListDropdown = styled('div', {
 
 export const StyledMenuListDropdownBody = styled('div', {
   variants: {
-    isOpen: {
-      true: {
+    openState: {
+      open: {
         display: 'block',
       },
-      false: {
+      close: {
         display: 'none',
       },
     },
