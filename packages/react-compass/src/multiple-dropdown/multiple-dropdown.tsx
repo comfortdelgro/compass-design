@@ -109,6 +109,7 @@ const MultipleDropdown = React.forwardRef<
   const listBoxRef = React.useRef<HTMLUListElement>(null)
   const visualizeList = React.useRef<HTMLDivElement>(null)
   const visualizeULList = React.useRef<HTMLUListElement>(null)
+  const listRef = React.useRef<Array<HTMLLIElement | null>>([])
 
   // ====================================== FLOATING ======================================
   const {refs, floatingStyles, context} = useFloating({
@@ -221,6 +222,12 @@ const MultipleDropdown = React.forwardRef<
   }
 
   const handleKeyDown = (e: KeyboardEvent) => {
+    const moveToFocusItem = (key: React.Key) => {
+      const idx = delegate.getKeyIndex(key)
+      if (idx != null) {
+        listRef.current[idx]?.scrollIntoView({block: 'nearest'})
+      }
+    }
     switch (e.key) {
       case 'ArrowUp':
       case 'ArrowLeft': {
@@ -229,7 +236,10 @@ const MultipleDropdown = React.forwardRef<
           focusKey != undefined && focusKey != -1
             ? delegate.getKeyAbove(focusKey)
             : delegate.getFirstKey()
-        if (key) setFocusKey(key)
+        if (key) {
+          setFocusKey(key)
+          moveToFocusItem(key)
+        }
         break
       }
       case 'ArrowDown':
@@ -239,7 +249,10 @@ const MultipleDropdown = React.forwardRef<
           focusKey != undefined && focusKey != -1
             ? delegate.getKeyBelow(focusKey)
             : delegate.getFirstKey()
-        if (key) setFocusKey(key)
+        if (key) {
+          setFocusKey(key)
+          moveToFocusItem(key)
+        }
         break
       }
       case 'Enter': {
@@ -417,6 +430,7 @@ const MultipleDropdown = React.forwardRef<
             handleKeyDown={handleKeyDown}
           >
             <ListBox
+              listRef={listRef}
               focusKey={focusKey}
               isLoading={isLoading}
               collection={collection}
