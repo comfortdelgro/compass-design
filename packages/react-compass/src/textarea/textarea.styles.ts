@@ -1,20 +1,6 @@
 import {styled} from '../theme'
 import type {VariantProps} from '../utils/stitches.types'
 
-export const StyledTextareaWrapper = styled('div', {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'flex-start',
-  fontFamily: '$sans',
-  width: 'fit-content',
-
-  '.word-count': {
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'flex-end',
-  },
-})
-
 export const StyledTextAreaHelperText = styled('div', {
   fontSize: '$label2',
   fontWeight: '$medium',
@@ -52,14 +38,9 @@ export const StyledTextarea = styled('textarea', {
   borderStyle: 'solid',
   borderColor: '$divider',
   borderRadius: '$md',
-  color: '$typeHeading',
-  backgroundColor: '$whiteText',
+  color: '$tertiaryText',
+  backgroundColor: '$gray20',
   transition: 'border-color 250ms ease 0s',
-
-  '&:focus': {
-    outline: 'none',
-    borderColor: '$cdgBlue',
-  },
 
   '&:disabled': {
     cursor: 'not-allowed !important',
@@ -83,6 +64,40 @@ export const StyledTextarea = styled('textarea', {
 
   defaultVariants: {
     isErrored: false,
+  },
+})
+
+export const StyledTextareaWrapper = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'flex-start',
+  fontFamily: '$sans',
+  width: 'fit-content',
+
+  '.word-count': {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'flex-end',
+  },
+  variants: {
+    isDarkTheme: {
+      true: {
+        [`${StyledTextarea}`]: {
+          '&:focus': {
+            outline: 'none',
+            borderColor: '$cdgBlue120',
+          },
+        },
+      },
+      false: {
+        [`${StyledTextarea}`]: {
+          '&:focus': {
+            outline: 'none',
+            borderColor: '$cdgBlue',
+          },
+        },
+      },
+    },
   },
 })
 

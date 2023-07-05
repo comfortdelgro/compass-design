@@ -36,15 +36,7 @@ export type {
   CardProps,
   CardTitleProps,
 } from './card'
-export {default as Carousel} from './carousel'
-export type {
-  CarouselButtonsProps,
-  CarouselDescriptionProps,
-  CarouselImageProps,
-  CarouselProps,
-  CarouselTitleProps,
-} from './carousel'
-export {default as CarouselSlider} from './carousel-v2'
+export {default as CarouselSlider} from './carousel'
 export type {
   ButtonType,
   CarouselOptions,
@@ -53,7 +45,7 @@ export type {
   NavigationButtonType,
   NinePartAlignment,
   SocicalIcon,
-} from './carousel-v2'
+} from './carousel'
 export {default as Chart} from './chart'
 export type {
   AreaChartProps,
@@ -121,6 +113,7 @@ export {default as Gutter} from './gutter'
 export type {GutterProps} from './gutter'
 export {default as Icon} from './icon'
 export type {IconProp} from './icon'
+export {default as ImageViewer} from './image-viewer'
 export * from './internationalized/date'
 export * from './internationalized/i18n'
 export * from './internationalized/number'
@@ -266,7 +259,7 @@ export {default as Tabs} from './tabs'
 export type {TabsProps} from './tabs'
 export {default as TagBox} from './tag-box'
 export type {TagBoxActionProps, TagBoxProps} from './tag-box'
-export {default as TagBox2} from './tag-box-v2'
+export {default as TagBoxV2} from './tag-box-v2'
 export type {Tag, TagBoxV2Props} from './tag-box-v2'
 export {default as Textarea} from './textarea'
 export type {TextareaProps} from './textarea'

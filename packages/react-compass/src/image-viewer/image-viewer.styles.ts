@@ -6,7 +6,7 @@ export const StyledImageViewerWrap = styled('div', {
   boxSizing: 'border-box',
   margin: '0px',
   zIndex: '51',
-  backgroundColor: 'rgba(0, 0, 0, 0.4)',
+  backgroundColor: 'rgba(0, 0, 0, 0.6)',
   position: 'fixed',
   top: 0,
   left: 0,

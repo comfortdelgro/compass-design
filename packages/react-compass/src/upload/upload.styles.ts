@@ -47,14 +47,13 @@ export const StyledUploadContent = styled('div', {
   border: 'none',
   boxSizing: 'border-box',
   margin: '0px',
-  background: 'transparent',
 
   //upload button styling
   flexGrow: 1,
   height: '100%',
   display: 'flex',
   alignItems: 'center',
-  borderLeft: '1px solid #E6E6E6',
+  borderLeft: '1px solid $divider',
   padding: '0 $4',
   fontSize: '$body2',
   fontWeight: '$semibold',
@@ -93,7 +92,7 @@ export const StyledUploadContainer = styled('div', {
   //container styling
   width: '100%',
   height: '$11',
-  border: '1px solid #E6E6E6',
+  border: '1px solid $divider',
   overflow: 'hidden',
   borderRadius: '$lg',
   display: 'flex',
@@ -106,7 +105,6 @@ export const StyledBrowseFile = styled('div', {
   //border: 'none',
   boxSizing: 'border-box',
   margin: '0px',
-  background: 'transparent',
 
   //container styling
   width: 'min-content',
@@ -120,12 +118,8 @@ export const StyledBrowseFile = styled('div', {
   fontWeight: '$semibold',
   lineHeight: '$normal',
   cursor: 'pointer',
-  backgroundColor: '$gray10',
   span: {
     width: 'max-content',
-  },
-  '&:hover': {
-    backgroundColor: '$gray20',
   },
 })
 
@@ -157,7 +151,7 @@ export const StyledUploadWrapper = styled('div', {
   margin: '0px',
   padding: '0px',
   background: 'transparent',
-  boxShadow: '1px solid #E6E6E6',
+  boxShadow: '1px solid $divider',
   minWidth: '$96',
 
   // wrapper styling
@@ -182,6 +176,28 @@ export const StyledUploadWrapper = styled('div', {
           color: '$gray40',
           cursor: 'not-allowed',
           border: 'none',
+        },
+      },
+    },
+    isDarkTheme: {
+      true: {
+        [`${StyledBrowseFile}`]: {
+          backgroundColor: '$cdgBlue120',
+          color: '$cdgBlue40',
+        },
+        [`${StyledUploadContent}`]: {
+          background: '$gray20',
+        },
+      },
+      false: {
+        [`${StyledBrowseFile}`]: {
+          backgroundColor: '$gray10',
+          '&:hover': {
+            backgroundColor: '$gray20',
+          },
+        },
+        [`${StyledUploadContent}`]: {
+          background: 'transparent',
         },
       },
     },

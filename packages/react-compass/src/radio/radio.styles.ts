@@ -1,13 +1,13 @@
-import {styled} from '../theme'
-import type {VariantProps} from '../utils/stitches.types'
+import { styled } from '../theme'
+import type { VariantProps } from '../utils/stitches.types'
+
 
 export const StyledRadio = styled('div', {
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
   cursor: 'pointer',
-  minWidth: '$96',
-  width: 'min-content',
+  width: 'fit-content',
   '.radio-wrapper': {
     width: '16px !important',
     display: 'flex !important',
@@ -19,7 +19,6 @@ export const StyledRadio = styled('div', {
     marginLeft: '$4',
     display: 'grid',
     gap: '$2',
-    width: 'max-content',
     '.radio-label': {
       padding: 0,
       margin: 0,

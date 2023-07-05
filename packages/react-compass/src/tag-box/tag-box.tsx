@@ -73,6 +73,7 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
     ...delegated
   } = props
 
+  const inputRef = useDOMRef<HTMLInputElement>(null)
   const tagBoxRef = useDOMRef<HTMLDivElement>(ref)
   const {child: TagBoxActionElement} = pickChild<typeof TagBoxAction>(
     children,
@@ -86,21 +87,6 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
   )
   const [isOpen, setIsOpen] = React.useState(false)
 
-  const onFocus = () => {
-    if (boxRef.current) {
-      boxRef.current.style.outlineColor = isErrored
-        ? '#A4262C'
-        : '-webkit-focus-ring-color'
-      boxRef.current.style.outlineStyle = 'auto'
-    }
-  }
-
-  const onBlur = () => {
-    if (boxRef.current) {
-      boxRef.current.style.outline = 'none'
-    }
-  }
-
   React.useEffect(() => {
     // add or remove refs
     setElRefs((elRefs) =>
@@ -110,34 +96,58 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
     )
   }, [items])
 
-  React.useEffect(() => {
-    if (collaspable && !isOpen) {
-      let total = boxContentRef.current?.clientWidth ?? 0
-      let count = 0
-      for (const i of elRefs) {
-        const w = i.current?.clientWidth
-        if (w) {
-          const t = total - w - 16
-          if (t > 37) {
-            total = t
-          } else {
-            i.current.style.display = 'none'
-            count++
-          }
+  const calculateRemainingItems = () => {
+    let total = boxContentRef.current?.clientWidth ?? 0
+    let count = 0
+    for (const i of elRefs) {
+      if (i.current) i.current.removeAttribute('style')
+    }
+    for (const i of elRefs) {
+      const w = i.current?.clientWidth
+      if (w) {
+        const t = total - w - 16
+        if (t > 37) {
+          total = t
+        } else {
+          i.current.style.display = 'none'
+          count++
         }
       }
-      setRemainingCount(Math.min(count, 99))
+    }
+    setRemainingCount(Math.min(count, 99))
+  }
+
+  React.useEffect(() => {
+    if (collaspable && !isOpen) {
+      calculateRemainingItems()
     } else {
       for (const i of elRefs) {
-        if (i.current) i.current.style.display = 'flex'
+        if (i.current) i.current.removeAttribute('style')
       }
       setRemainingCount(0)
     }
   }, [elRefs, isOpen, collaspable])
 
+  React.useEffect(() => {
+    const element = boxContentRef.current
+    if (!element) return
+    const observer = new ResizeObserver(() => {
+      if (!isOpen) {
+        calculateRemainingItems()
+      }
+    })
+    observer.observe(element)
+    return () => {
+      observer.disconnect()
+    }
+  }, [boxContentRef.current, isOpen])
+
   return (
     <StyledTagBox css={css} ref={tagBoxRef} {...delegated}>
-      <StyledBoxWrapper labelPosition={labelPosition}>
+      <StyledBoxWrapper
+        labelPosition={labelPosition}
+        onClick={() => inputRef.current?.focus()}
+      >
         {label && (
           <label htmlFor={id}>
             {label}
@@ -168,8 +178,9 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
                   icon={item.icon}
                   value={item.value}
                   id={item.id}
-                  onRemove={onRemove}
                   onEdit={onEdit}
+                  onRemove={onRemove}
+                  calculateRemainingItems={calculateRemainingItems}
                 />
               ))}
               {remainingCount > 0 && (
@@ -180,8 +191,8 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
               {((!collaspable && typeable) ||
                 (collaspable && typeable && isOpen)) && (
                 <TagBoxInput
-                  onFocus={onFocus}
-                  onBlur={onBlur}
+                  ref={inputRef}
+                  wrapperRef={boxContentRef}
                   onEnter={(v) => onAdd?.(v)}
                 />
               )}

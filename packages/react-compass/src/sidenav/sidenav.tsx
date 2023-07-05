@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useRef, useState} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import Divider from './divider'
 import {SidenavContext} from './sidenav-context'
@@ -9,6 +9,7 @@ import {StyledSidenav} from './sidenav.styles'
 interface Props extends StyledComponentProps {
   children: React.ReactNode
   expand?: boolean
+  delay?: number
 }
 
 export type SidenavProps = Props &
@@ -21,23 +22,34 @@ const Sidenav = React.forwardRef<HTMLDivElement, SidenavProps>((props, ref) => {
     children,
     expand = false,
     className = '',
+    delay = 0,
     // StyledComponentProps
     css = {},
     // HTML Div props
     ...delegated
   } = props
 
+  const expandTimeout = useRef<NodeJS.Timeout | null>(null)
+
   // if component is controlled -> return
   // if hover -> set expandOnHover state = true
   const handleMouseOver = () => {
     if (expand) return
-    setExpandOnHover(true)
+    if (!expandTimeout.current) {
+      expandTimeout.current = setTimeout(() => {
+        setExpandOnHover(true)
+      }, delay)
+    }
   }
 
   // if component is controlled -> return
   // if hover -> set expandOnHover state = false
   const handleMouseLeave = () => {
     if (expand) return
+    if (expandTimeout.current) {
+      clearTimeout(expandTimeout.current)
+      expandTimeout.current = null
+    }
     setExpandOnHover(false)
   }
 
@@ -47,7 +59,7 @@ const Sidenav = React.forwardRef<HTMLDivElement, SidenavProps>((props, ref) => {
 
   return (
     <StyledSidenav
-      css={css}
+      css={{...css}}
       ref={ref}
       className={`${className} ${expandOnHover ? 'sidenav-expanded' : ''}`}
       size={isExpand ? 'full' : 'default'}

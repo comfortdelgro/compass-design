@@ -47,7 +47,7 @@ export const StyledUploadInput = styled('div', {
   // title styling
   position: 'relative',
   display: 'flex',
-  border: '1px solid #e6e6e6',
+  border: '1px solid $divider',
   borderRadius: '$lg',
   overflow: 'hidden',
   alignItems: 'center',
@@ -65,11 +65,10 @@ export const StyledUploadInput = styled('div', {
   '& span:nth-child(1)': {
     display: 'flex',
     padding: '$3',
-    borderRight: '1px solid #e6e6e6',
+    borderRight: '1px solid $divider',
     fontWeight: '$medium',
     fontSize: '$label1',
     lineHeight: '$normal',
-    backgroundColor: '#f7f8f9',
   },
   '& span:nth-child(2)': {
     padding: '12px 16px',
@@ -87,10 +86,10 @@ export const StyledUploadInput = styled('div', {
     color: '#333333',
   },
   '& [data-invalid="true"]': {
-    borderColor: 'red',
+    borderColor: '$danger',
   },
   '& [data-invalid="true"] span:nth-child(1)': {
-    borderColor: 'red',
+    borderColor: '$danger',
   },
 })
 export const StyledUploadTitle = styled('div', {
@@ -106,10 +105,6 @@ export const StyledUploadTitle = styled('div', {
   fontWeight: '$medium',
   fontSize: '$label1',
   lineHeight: '$normal',
-  color: '#3e3e3e',
-  '& .cdg-isRequired-Sign': {
-    color: '#A4262C',
-  },
 })
 
 export const StyledUploadWrapper = styled('div', {
@@ -125,6 +120,35 @@ export const StyledUploadWrapper = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   width: '100%',
+  variants: {
+    isDarkTheme: {
+      true: {
+        [`${StyledUploadInput}`]: {
+          '& span:nth-child(1)': {
+            backgroundColor: '$cdgBlue120',
+            color: '$cdgBlue40',
+          },
+        },
+        [`${StyledUploadTitle}`]: {
+          color: '$tertiaryText',
+        },
+      },
+      false: {
+        [`${StyledUploadInput}`]: {
+          backgroundColor: '$gray10',
+          '& span:nth-child(1)': {
+            backgroundColor: '#f7f8f9',
+          },
+        },
+        [`${StyledUploadTitle}`]: {
+          color: '$#3e3e3e',
+          '& .cdg-isRequired-Sign': {
+            color: '$danger',
+          },
+        },
+      },
+    },
+  },
 })
 
 export type UploadVariantProps = VariantProps<typeof StyledUploadWrapper>

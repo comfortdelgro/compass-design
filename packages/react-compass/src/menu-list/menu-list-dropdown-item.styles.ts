@@ -18,7 +18,7 @@ export const StyledMenuListDropdownItem = styled('div', {
     outline: '$cdgBlue80 solid 2px',
   },
 
-  '& svg': {
+  '& .cdg-menu-list-dropdown-icon': {
     marginRight: '$2',
     width: '$4',
     height: '$4',

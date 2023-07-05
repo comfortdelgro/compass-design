@@ -1,5 +1,6 @@
-import {styled} from '../theme'
-import type {VariantProps} from '../utils/stitches.types'
+import { styled } from '../theme'
+import type { VariantProps } from '../utils/stitches.types'
+
 
 export const StyledEditorContent = styled('div', {
   // reset
@@ -9,6 +10,8 @@ export const StyledEditorContent = styled('div', {
   margin: '0px',
   backgroundColor: '$background',
   color: '$primaryText',
+  height: '$125',
+  overflow: 'scroll',
   // styling
 })
 
@@ -52,6 +55,14 @@ export const StyledRichTextEditor = styled('div', {
     color: '$info',
     textDecoration: 'underline',
     transition: '$default',
+  },
+
+  '& .ProseMirror p.is-editor-empty:first-child::before': {
+    color: '$tertiaryText',
+    content: 'attr(data-placeholder)',
+    float: 'left',
+    height: 0,
+    pointerEvents: 'none',
   },
   h1: {
     display: 'block',

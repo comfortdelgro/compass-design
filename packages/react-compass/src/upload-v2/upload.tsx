@@ -1,5 +1,6 @@
 import {CSS} from '@stitches/react'
 import React, {ChangeEvent, useEffect, useRef, useState} from 'react'
+import {useIsDarkTheme} from '../theme'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {SizeUnit} from './constant'
 import {
@@ -78,6 +79,8 @@ const Upload2 = React.forwardRef<HTMLDivElement, Upload2Props>((props, ref) => {
     // htmldiv props
     ...delegated
   } = props
+
+  const isDarkTheme = useIsDarkTheme()
   const [fileError, setFileError] = useState<string>()
   const [fileName, setFileName] = useState<string>()
   const inputRef = useRef<HTMLInputElement>(null)
@@ -143,7 +146,12 @@ const Upload2 = React.forwardRef<HTMLDivElement, Upload2Props>((props, ref) => {
   }, [customError])
 
   return (
-    <StyledUploadWrapper css={css} ref={uploadRef} {...delegated}>
+    <StyledUploadWrapper
+      css={css}
+      ref={uploadRef}
+      {...delegated}
+      isDarkTheme={isDarkTheme}
+    >
       {title ? (
         <StyledUploadTitle>
           {title}

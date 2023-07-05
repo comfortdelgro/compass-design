@@ -1,5 +1,6 @@
 import React from 'react'
 import Button from '../button/button'
+import {useIsDarkTheme} from '../theme'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
@@ -126,7 +127,7 @@ const SearchField = React.forwardRef<HTMLDivElement, SearchFieldProps>(
       },
       ...delegated
     } = props
-
+    const isDarkTheme = useIsDarkTheme()
     const [textValue, setTextValue] = React.useState<string>(value)
     const searchFieldRef = useDOMRef<HTMLInputElement>(null)
     const wrapperRef = useDOMRef<HTMLDivElement>(ref)
@@ -182,6 +183,7 @@ const SearchField = React.forwardRef<HTMLDivElement, SearchFieldProps>(
         isErrored={isErrored}
         ref={wrapperRef}
         {...delegated}
+        isDarkTheme={isDarkTheme}
       >
         <StyledSearchFieldInput
           ref={searchFieldRef}
