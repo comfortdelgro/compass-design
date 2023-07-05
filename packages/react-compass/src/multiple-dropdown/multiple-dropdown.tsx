@@ -222,7 +222,9 @@ const MultipleDropdown = React.forwardRef<
   const handleKeyDown = (e: KeyboardEvent) => {
     const moveToFocusItem = (key: React.Key) => {
       const idx = delegate.getKeyIndex(key)
-      if (idx != null) listRef.current[idx]?.scrollIntoView({block: 'nearest'})
+      if (idx != null) {
+        listRef.current[idx]?.scrollIntoView({block: 'nearest'})
+      }
     }
     switch (e.key) {
       case 'ArrowUp':

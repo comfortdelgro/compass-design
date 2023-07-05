@@ -20,7 +20,10 @@ const Option = React.forwardRef<HTMLLIElement, Props>(
   ({item, currentKeys, focusKey, disabledKeys, onSelect}, ref) => {
     const {checkmark = 'checkbox'} = item.props
     const isSelected = React.useMemo(
-      () => (item.key ? currentKeys.some((v) => v == item.key) : false),
+      () =>
+        item.key
+          ? currentKeys.some((currentKey) => currentKey == item.key)
+          : false,
       [currentKeys],
     )
     const isFocused = React.useMemo(() => focusKey == item.key, [focusKey])

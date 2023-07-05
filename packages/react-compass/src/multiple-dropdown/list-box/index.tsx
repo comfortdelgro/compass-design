@@ -79,8 +79,8 @@ function ListBox(props: Props) {
       sectionCollection={sectionCollection}
       rootChildren={rootChildren}
       onLoadMore={onLoadMore}
-      renderOptions={(l) =>
-        l.map((item, index) => (
+      renderOptions={(list) =>
+        list.map((item, index) => (
           <div key={item.id}>
             {item.title && (
               <StyledSection
@@ -97,14 +97,14 @@ function ListBox(props: Props) {
                 </StyledRightIcon>
               </StyledSection>
             )}
-            {item.children.map((c) =>
-              c ? (
+            {item.children.map((option) =>
+              option ? (
                 <Option
                   ref={(node) => {
                     listRef.current[index] = node
                   }}
-                  item={c}
-                  key={c.key}
+                  item={option}
+                  key={option.key}
                   focusKey={focusKey}
                   currentKeys={currentKeys}
                   disabledKeys={disabledKeys}
