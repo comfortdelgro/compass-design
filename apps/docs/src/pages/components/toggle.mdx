@@ -26,19 +26,53 @@ import Toggle from '@comfortdelgro/react-compass/toggle'
 
 ---
 
-### Basic Usage:
+### Controlled:
 
 ```js
-<Toggle />
-<Toggle isDisabled />
-<Toggle isDisabled isSelected />
+  const [value, setValue] = React.useState<boolean>(true)
+  <Toggle size='lg' isSelected={value} onChange={setValue} />
 ```
 
 <section className={styles.avatarShowcaseContainer}>
-  <Toggle />
-  <Toggle isDisabled />
-  <Toggle isDisabled isSelected />
+  <Toggle size='lg' defaultSelected={true} />
 </section>
+
+---
+
+### UnControlled:
+
+```js
+  <Toggle size='lg' defaultSelected={true} />
+```
+
+<section className={styles.avatarShowcaseContainer}>
+  <Toggle size='lg' defaultSelected={true} />
+</section>
+
+---
+
+### Disabled:
+
+```js
+<Toggle size='lg' isDisabled />
+```
+
+<section className={styles.avatarShowcaseContainer}>
+  <Toggle size='lg' isDisabled />
+</section>
+
+---
+
+### ReadOnly:
+
+```js
+<Toggle size='lg' isReadOnly />
+```
+
+<section className={styles.avatarShowcaseContainer}>
+  <Toggle size='lg' isReadOnly />
+</section>
+
 ---
 
 ### Size:
