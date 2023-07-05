@@ -34,6 +34,7 @@ import RowCalculator from './rowCalculator'
 import {getDefaulValues, XIcon} from './utils'
 
 interface Props extends DropdownBase {
+  erroredKeys?: React.Key[]
   selectedKeys?: React.Key[]
   defaultSelectedKeys?: React.Key[]
   customDisplayValue?: React.ReactNode
@@ -66,6 +67,7 @@ const MultipleDropdown = React.forwardRef<
     numberOfRows,
     displayedValue = 'chip',
     icon = <Icon />,
+    erroredKeys = [],
     disabledKeys = [],
     isLoading = false,
     variant = 'combobox',
@@ -351,9 +353,11 @@ const MultipleDropdown = React.forwardRef<
               selectedNode.map((item) => {
                 const isHideXIcon =
                   isDisabled || disabledKeys.includes(item.key)
+                const isErrored = erroredKeys.some((v) => v == item.key)
                 return (
                   <StyledSelectedItem
                     key={item.key}
+                    isErrored={isErrored}
                     style={{cursor: isDisabled ? 'not-allowed' : 'pointer'}}
                     className='multiple-dropdown-chip'
                   >

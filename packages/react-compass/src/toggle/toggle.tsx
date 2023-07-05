@@ -41,6 +41,7 @@ const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>((props, ref) => {
     isSelected = !!props.defaultSelected,
     isReadOnly = false,
     isRequired = false,
+    isDisabled = false,
     css = {},
     className,
   } = props
@@ -52,7 +53,7 @@ const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>((props, ref) => {
   }
 
   const onClick = () => {
-    if (!props.isDisabled) {
+    if (!isDisabled && !isReadOnly) {
       setIsSelectedState((s) => !s)
     }
   }
@@ -60,6 +61,10 @@ const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>((props, ref) => {
   React.useEffect(() => {
     props.onChange?.(isSelectedState)
   }, [isSelectedState])
+
+  React.useEffect(() => {
+    setIsSelectedState(isSelected)
+  }, [isSelected])
 
   return (
     <StyledToggle

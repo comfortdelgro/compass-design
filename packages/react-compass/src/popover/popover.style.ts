@@ -1,33 +1,25 @@
 import {styled} from '../theme'
 
-export const StyledPopover = styled('div', {
-  display: 'inline-block',
+export const StyledPopoverWrapper = styled('div', {
+  // Reset
+  appearance: 'none',
+  border: 'none',
+  boxSizing: 'border-box',
+  margin: '0px',
+  padding: '0px',
+  background: 'transparent',
+  width: 'fit-content',
+  height: 'fit-content',
 })
 
-export const StyledPopoverContent = styled('div', {
-  display: 'block',
-  position: 'absolute',
-  zIndex: '60',
-  // '&.bottom-right': {
-  //   top: '100%',
-  //   left: '0',
-  // },
-  // '&.bottom-left': {
-  //   top: '100%',
-  //   right: '0',
-  // },
-  // '&.top-left': {
-  //   bottom: '100%',
-  //   right: '0',
-  // },
-  // '&.top-right': {
-  //   bottom: '100%',
-  //   left: '0',
-  // },
-  '&.bottom-center': {
-    transform: 'translateX(-50%)',
-  },
-  '&.top-center': {
-    transform: 'translateX(-50%)',
-  },
+export const StyledAnchorWrapper = styled('div', {
+  // Reset
+  appearance: 'none',
+  border: 'none',
+  boxSizing: 'border-box',
+  margin: '0px',
+  padding: '0px',
+  background: 'transparent',
+  width: 'fit-content',
+  height: 'fit-content',
 })
