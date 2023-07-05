@@ -42,6 +42,7 @@ export const StyledVolume = styled('div', {
     cursor: 'pointer',
   },
   '@mobile': {
+    top: '35%',
     padding: '$2 $1 $1 $1',
     '.slider-bar-volume-icon': {
       width: '$4',
