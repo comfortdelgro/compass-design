@@ -6,4 +6,9 @@ export const StyledNoData = styled('div', {
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
+
+  '.empty-description': {
+    color: '$tertiaryText',
+    marginTop: '1em',
+  },
 })
