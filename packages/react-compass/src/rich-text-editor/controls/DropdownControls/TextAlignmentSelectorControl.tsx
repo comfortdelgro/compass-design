@@ -1,5 +1,5 @@
 import React from 'react'
-import { useRichTextEditorContext } from '../../rich-text-editor.context'
+import {useRichTextEditorContext} from '../../rich-text-editor.context'
 import Select from '../../select'
 
 export const TextAlignmentSelectorControl = () => {
