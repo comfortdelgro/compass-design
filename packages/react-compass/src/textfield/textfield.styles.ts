@@ -73,6 +73,9 @@ export const StyledTextFieldBox = styled('div', {
           color: '$disabledText',
           cursor: 'not-allowed',
         },
+        input: {
+          backgroundColor: '$gray20',
+        },
       },
     },
     isErrored: {
@@ -95,7 +98,7 @@ export const StyledTextField = styled('input', {
   padding: '$1_5 $3',
   border: 0,
   borderRadius: '$md',
-  backgroundColor: 'transparent',
+  backgroundColor: '$whiteText',
 
   '&:focus': {
     outline: 'none',
