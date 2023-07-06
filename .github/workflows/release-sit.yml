@@ -1,15 +1,15 @@
-name: Beta Release
+name: SIT Release
 
 on:
   push:
     branches:
-      - beta
+      - sit
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   release:
-    name: Beta Release
+    name: SIT Release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
