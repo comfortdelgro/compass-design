@@ -1,5 +1,11 @@
 ## 1.0.0-next.2
 
+## 2.3.0
+
+### Minor Changes
+
+- 62936776: Fix minor bugs in breakpoints and textfield
+
 ## 2.2.0
 
 ### Minor Changes
