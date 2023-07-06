@@ -29,6 +29,7 @@ export const Default: React.FC = () => {
         placeholder='Choose an animal'
         selectedKeys={value}
         defaultSelectedKeys={['dog']}
+        erroredKeys={['red panda']}
         isRequired
         onSelectionChange={(k: Key[]) => setValue(k)}
         onBlur={() => console.log('blur')}
@@ -316,6 +317,21 @@ export const Default: React.FC = () => {
           <FontAwesomeIcon icon={faBug} style={{marginRight: 5}} />
           Red Panda
         </MultipleDropdown.Item>
+        <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
+        <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
+        <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
+        <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
+        <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+      </MultipleDropdown>
+      <h3>Errored keys</h3>
+      <MultipleDropdown
+        label='Favorite Animal'
+        defaultSelectedKeys={['red panda', 'cat']}
+        erroredKeys={['red panda']}
+        isErrored
+        errorMessage='Red panda is not available'
+      >
+        <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
         <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
         <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
         <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>

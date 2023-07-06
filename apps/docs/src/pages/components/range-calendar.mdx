@@ -92,7 +92,7 @@ export function ControlledRangeCalendar() {
 ### Footer
 
 <section className={styles.componentShowcaseContainer}>
-  <RangeCalendar hasFooter />
+  <RangeCalendar hasFooter ctaButtonRender={<Button className='c-hKssGC-hYGuEl-variant-primary'>Today</Button>} />
 </section>
 
 ```js
@@ -102,7 +102,7 @@ export function ControlledRangeCalendar() {
 You can customize the CTA Button in the footer
 
 <section className={styles.componentShowcaseContainer}>
-  <RangeCalendar hasFooter ctaButtonRender={<Button>Custom Button</Button>} />
+  <RangeCalendar hasFooter ctaButtonRender={<Button className='c-hKssGC-hYGuEl-variant-primary'>Custom Button</Button>} />
 </section>
 
 ```js

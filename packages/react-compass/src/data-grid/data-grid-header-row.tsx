@@ -8,10 +8,10 @@ interface Props {
 
 const DataGridHeaderRow = React.forwardRef<HTMLTableRowElement, Props>(
   ({children}, ref) => {
-    const tableRowRef = useDOMRef<HTMLTableRowElement>(ref)
+    const dataGridHeaderRowRef = useDOMRef<HTMLTableRowElement>(ref)
 
     return (
-      <StyledDataGridHeaderRow ref={tableRowRef}>
+      <StyledDataGridHeaderRow ref={dataGridHeaderRowRef}>
         {children}
       </StyledDataGridHeaderRow>
     )

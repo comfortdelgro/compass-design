@@ -112,3 +112,37 @@
   flex-direction: column;
   gap: 2rem;
 }
+
+/* Remove nextra unwanted boxshadow, but only in showcase container, not all over pages */
+.componentShowcaseContainer a:focus-visible,
+.componentShowcaseContainer sumary:focus-visible,
+.componentShowcaseContainer button:focus-visible,
+.componentShowcaseContainer input:focus-visible,
+.componentShowcaseContainer [tabindex]:not([tabindex='-1']):focus-visible,
+.componentDisplayVertical a:focus-visible,
+.componentDisplayVertical sumary:focus-visible,
+.componentDisplayVertical button:focus-visible,
+.componentDisplayVertical input:focus-visible,
+.componentDisplayVertical [tabindex]:not([tabindex='-1']):focus-visible,
+.avatarShowcaseContainer a:focus-visible,
+.avatarShowcaseContainer sumary:focus-visible,
+.avatarShowcaseContainer button:focus-visible,
+.avatarShowcaseContainer input:focus-visible,
+.avatarShowcaseContainer [tabindex]:not([tabindex='-1']):focus-visible,
+.gutterShowcaseContainer a:focus-visible,
+.gutterShowcaseContainer sumary:focus-visible,
+.gutterShowcaseContainer button:focus-visible,
+.gutterShowcaseContainer input:focus-visible,
+.gutterShowcaseContainer [tabindex]:not([tabindex='-1']):focus-visible,
+.textAreaShowcaseContainer a:focus-visible,
+.textAreaShowcaseContainer sumary:focus-visible,
+.textAreaShowcaseContainer button:focus-visible,
+.textAreaShowcaseContainer input:focus-visible,
+.textAreaShowcaseContainer [tabindex]:not([tabindex='-1']):focus-visible,
+.bannerShowcaseContainer a:focus-visible,
+.bannerShowcaseContainer sumary:focus-visible,
+.bannerShowcaseContainer button:focus-visible,
+.bannerShowcaseContainer input:focus-visible,
+.bannerShowcaseContainer [tabindex]:not([tabindex='-1']):focus-visible {
+  box-shadow: none;
+}

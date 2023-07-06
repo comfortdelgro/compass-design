@@ -6,8 +6,11 @@ export const StyledNavbar = styled('div', {
   display: 'flex',
   flexDirection: 'row',
   alignItems: 'center',
+  flexWrap: 'wrap',
   padding: '$2 $4',
   gap: '$4',
+  containerName: 'navbar',
+  containerType: 'inline-size',
 
   variants: {
     color: {
@@ -25,6 +28,12 @@ export const StyledNavbar = styled('div', {
       website: {
         minHeight: '$22',
         padding: '$4 $16',
+        '@media screen and (max-width: 768px)': {
+          padding: '$4 $12',
+        },
+        '@media screen and (max-width: 428px)': {
+          padding: '$4 $4',
+        },
       },
       portal: {},
     },

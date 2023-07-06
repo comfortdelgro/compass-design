@@ -5,6 +5,7 @@ import {StyledDialogActionsContainer} from './dialog.styles'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
+  isMobile?: boolean
 }
 
 export type DialogActionsProps = Props &
@@ -12,12 +13,13 @@ export type DialogActionsProps = Props &
 
 const DialogActions = React.forwardRef<HTMLDivElement, DialogActionsProps>(
   (props, ref) => {
-    const {children, css = {}, ...delegated} = props
+    const {children, css = {}, isMobile, ...delegated} = props
     const dialogActionRef = useDOMRef<HTMLDivElement>(ref)
     return (
       <StyledDialogActionsContainer
         css={css}
         ref={dialogActionRef}
+        responsive={isMobile ? 'true' : 'false'}
         {...delegated}
       >
         {children}

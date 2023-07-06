@@ -215,6 +215,7 @@ export interface DropdownBase extends StyledComponentProps {
   numberOfRows?: number
   icon?: React.ReactNode
   disabledKeys?: React.Key[]
+  disableClearable?: boolean
   children?: React.ReactNode
   description?: React.ReactNode
   onBlur?: () => void
@@ -239,7 +240,7 @@ export class ListKeyboardDelegate implements KeyboardDelegate {
     this.disabledKeys = disabledKeys
   }
 
-  private getKeyIndex = (key: Key) => {
+  getKeyIndex = (key: Key) => {
     const index = this.collection.findIndex((item) => item.key === key)
     if (index !== -1) return index
     return null

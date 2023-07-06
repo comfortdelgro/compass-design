@@ -2,7 +2,7 @@ import * as InternationalizedDate from '@internationalized/date'
 import {createCalendar, DateValue, parseDate} from '@internationalized/date'
 import * as i18n from '@react-aria/i18n'
 import {useLocale} from '@react-aria/i18n'
-import React from 'react'
+import React, {useCallback} from 'react'
 import Button from '../button'
 import {useDatePickerContext} from '../date-picker/date-picker-context'
 import {StyledComponentProps} from '../utils/stitches.types'
@@ -23,6 +23,7 @@ interface Props extends StyledComponentProps, ValueBase<DateValue> {
   maxValue?: DateValue | null | undefined
   minValue?: DateValue | null | undefined
   isDisabled?: boolean
+  ctaButtonRender?: React.ReactNode
   isDateUnavailable?: (date: DateValue) => boolean
 }
 
@@ -35,6 +36,7 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     css = {},
     maxValue = parseDate('2999-02-17'),
     isDisabled = false,
+    ctaButtonRender,
     ...delegated
   } = props
 
@@ -105,6 +107,24 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     }
   }
 
+  const renderCTAButton = useCallback(() => {
+    if (ctaButtonRender) {
+      return ctaButtonRender
+    } else {
+      return (
+        <Button
+          className='cdg-calendar-today-btn'
+          onPress={() => {
+            monthYearState.setMonthYearState(MONTH_YEAR_STATE.DATE)
+            handleTodayButtonClick()
+          }}
+        >
+          Today
+        </Button>
+      )
+    }
+  }, [ctaButtonRender])
+
   return (
     <>
       <StyledCalendar ref={calendarRef} css={css}>
@@ -119,6 +139,7 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
         {hasFooter && (
           <div className='calendar-footer'>
             <Button
+              className='cdg-calendar-clear-btn'
               variant='ghost'
               onPress={() => {
                 monthYearState.setMonthYearState(MONTH_YEAR_STATE.DATE)
@@ -127,14 +148,7 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
             >
               Clear
             </Button>
-            <Button
-              onPress={() => {
-                monthYearState.setMonthYearState(MONTH_YEAR_STATE.DATE)
-                handleTodayButtonClick()
-              }}
-            >
-              Today
-            </Button>
+            {renderCTAButton()}
           </div>
         )}
       </StyledCalendar>

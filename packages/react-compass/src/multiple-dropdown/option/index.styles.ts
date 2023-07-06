@@ -49,4 +49,15 @@ export const StyledRightIcon = styled('div', {
       },
     },
   },
+  compoundVariants: [
+    {
+      isSelected: true,
+      checkmark: 'checkbox',
+      css: {
+        div: {
+          background: '$cdgBlue100',
+        },
+      },
+    },
+  ],
 })

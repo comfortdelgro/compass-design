@@ -1,4 +1,5 @@
 import React from 'react'
+import {useIsDarkTheme} from '../theme'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
@@ -131,7 +132,7 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
       onCompositionUpdate,
       ...ariaSafeProps
     } = props
-
+    const isDarkTheme = useIsDarkTheme()
     const htmlProps = {...ariaSafeProps} as Omit<
       React.HTMLAttributes<HTMLDivElement>,
       keyof Props
@@ -157,7 +158,12 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
     }, [password, isPassWordVisible])
 
     return (
-      <StyledTextFieldWrapper css={css} {...htmlProps} ref={textfieldRef}>
+      <StyledTextFieldWrapper
+        css={css}
+        {...htmlProps}
+        ref={textfieldRef}
+        isDarkTheme={isDarkTheme}
+      >
         {label && (
           <StyledTextFieldLabel htmlFor={id}>
             {label}

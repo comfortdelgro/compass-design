@@ -11,8 +11,9 @@ import {StyledReactCheckboxInput} from './data-grid-checkbox.styles'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
-  indeterminate: boolean | undefined
+  indeterminate?: boolean
   className: string
+  disabled?: boolean
 }
 
 export type DataGridCheckboxProps = Props
@@ -20,8 +21,9 @@ export type DataGridCheckboxProps = Props
 const DataGridCheckbox = ({
   indeterminate,
   className = '',
+  disabled = false,
   ...rest
-}: {indeterminate: boolean | undefined} & {className: string}) => {
+}: DataGridCheckboxProps) => {
   const ref = React.useRef<HTMLInputElement>(null!)
 
   React.useEffect(() => {
@@ -35,10 +37,11 @@ const DataGridCheckbox = ({
       <StyledReactCheckboxInput
         type='checkbox'
         ref={ref}
+        disabled={disabled}
         className={className + ' cursor-pointer'}
         {...rest}
       />
-      <StyledTableCheckboxBox disabled={false} rounded={false}>
+      <StyledTableCheckboxBox disabled={disabled} rounded={false}>
         <StyledCheckboxCheckmark>
           <Icon icon={indeterminate ? faMinus : faCheck} className='icon' />
         </StyledCheckboxCheckmark>

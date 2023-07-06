@@ -8,10 +8,10 @@
  * found in the LICENSE.txt file at the root directory of this source tree.
  */
 
-import {CalendarDate, CalendarDateTime, ZonedDateTime} from './CalendarDate'
-import {fromAbsolute, toCalendar, toCalendarDate} from './conversion'
-import {AnyCalendarDate, AnyTime} from './types'
-import {weekStartData} from './weekStartData'
+import { CalendarDate,CalendarDateTime,ZonedDateTime } from './CalendarDate'
+import { fromAbsolute,toCalendar,toCalendarDate } from './conversion'
+import { AnyCalendarDate,AnyTime } from './types'
+import { weekStartData } from './weekStartData'
 
 let localTimeZone: string | null = null
 export type DateValue = CalendarDate | CalendarDateTime | ZonedDateTime

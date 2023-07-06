@@ -4,8 +4,13 @@ import {faThumbsUp, faVirus} from '@fortawesome/free-solid-svg-icons'
 import {DataGridStory} from 'components/DataGrid'
 
 # Data Grid
-
+The Data Grid component offers various features that enhance data visualization and user experience. 
+It enables sorting, filtering, and grouping of data, making it easier for users to find and analyze specific information within large datasets. 
+Users can click on column headers to sort the data in ascending or descending order, and they can apply filters to display only the relevant data based on specific criteria.
 Data-grid would be a component displaying tabular data, just like a table. However, it is more advanced and has more features. For example, you can even draw chart within data-grid cell.
+
+Provided appears to be a React component called DataGrid which is a table component built base on the @tanstack/react-table library. 
+It accepts various props to customize its behavior and rendering.
 
 <Callout>
   Check out our [ladle](/ladle?story=dta-grid--full-featured) for more info on
@@ -28,11 +33,73 @@ import DataGrid from '@comfortdelgro/react-compass/data-grid'
 
 ---
 
-### Basic data-grid:
+### Full features data-grid:
 
 <section className={styles.textAreaShowcaseContainer}>
   <DataGridStory />
 </section>
+
+```js
+const columns = React.useMemo<Array<ColumnConfig<Person>>>(
+    () => [
+      {
+        id: 'select',
+        header: ({table}) => <GridHeader table={table} />,
+        cell: ({row}) => <GridHeaderCell row={row} />,
+      },
+      {
+        id: 'name',
+        header: () => <div style={{textAlign: 'center'}}>Name</div>,
+        footer: (props) => props.column.id,
+        columns: [
+          {
+            accessorKey: 'firstName',
+            cell: (info) => info.getValue<string>(),
+            footer: (props) => props.column.id,
+            enableResizing: true,
+          },
+          {
+            accessorFn: (row) => row.lastName,
+            id: 'lastName',
+            cell: (info) => info.getValue<string>(),
+            header: () => <span>Last Name</span>,
+            footer: (props) => props.column.id,
+            enableResizing: true,
+          },
+        ],
+      },
+      {
+        id: 'otherInfo',
+        header: () => <div style={{textAlign: 'center'}}>Other info</div>,
+        footer: (props) => props.column.id,
+        columns: [
+          {
+            accessorKey: 'age',
+            header: () => 'Age',
+            footer: (info) => info.column.id,
+          },
+          {
+            accessorKey: 'visits',
+            header: () => <span>Visits</span>,
+            footer: (info) => info.column.id,
+          },
+          {
+            accessorKey: 'status',
+            header: 'Status',
+            footer: (info) => info.column.id,
+          },
+          {
+            accessorKey: 'progress',
+            header: 'Profile Progress',
+            cell: (info) => info.getValue<string>(),
+            footer: (info) => info.column.id,
+          },
+        ],
+      },
+    ],
+    [],
+  )
+```
 
 ```js
 <DataGrid data={data} columns={columns} options={options}>
@@ -94,7 +161,73 @@ import DataGrid from '@comfortdelgro/react-compass/data-grid'
   </DataGrid.Footer>
 </DataGrid>
 ```
+### Data
 
+#### data: TData[]
+
+The data for the data grid to display. This array should match the type you provided to `table.setRowType<...>`, but in theory could be an array of anything. 
+It's common for each item in the array to be an object of key/values but this is not required. Columns can access this data via string/index or a functional accessor to return anything they want.
+
+When the data option changes reference (compared via Object.is), the data grid will reprocess the data. 
+Any other data processing that relies on the core data model (such as grouping, sorting, filtering, etc) will also be reprocessed.
+
+Make sure your data option is only changing when you want the data grid to reprocess. 
+Providing an inline [] or constructing the data array as a new object every time you want to render the data grid will result in a lot of unnecessary re-processing. 
+This can easily go unnoticed in smaller data grids, but you will likely notice it in larger data grids.
+
+### Options Interface
+
+The `Options` interface represents the configuration options for a particular functionality or component.
+
+#### Properties
+
+| Property             | Type                                      | Description                                                                                                 |
+| -------------------- | ----------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `enableSorting`      | `boolean`                                 | A boolean value indicating whether sorting is enabled. Defaults to `false` if not provided.                 |
+| `enableMultiSort`    | `boolean`                                 | A boolean value indicating whether multiple column sorting is enabled. Defaults to `false` if not provided. |
+| `manualSorting`      | `boolean`                                 | A boolean value indicating whether manual sorting is enabled. Defaults to `false` if not provided.          |
+| `columnResizeMode`   | `'onChange' \| 'onEnd'`                   | A string value specifying the column resize mode.                                                           |
+| `initialSortBy`      | `SortingState`                            | A `SortingState` object representing the initial sorting configuration.                                     |
+| `enableRowSelection` | `boolean \| (row: Row<TData>) => boolean` | A boolean value or a function determining whether row selection is enabled.                                 |
+
+#### SortingState
+
+The `SortingState` interface represents the sorting configuration.
+
+##### Properties
+
+| Property    | Type              | Description                                   |
+| ----------- | ----------------- | --------------------------------------------- |
+| `column`    | `string`          | The column to sort by.                        |
+| `direction` | `'asc' \| 'desc'` | The sort direction (ascending or descending). |
+
+#### `Row<TData>`
+
+The `Row` interface represents a specific row.
+
+##### Properties
+
+#### Example Usage
+
+```tsx
+interface SortingState {
+  column: string
+  direction: 'asc' | 'desc'
+}
+
+interface Row<TData> {
+  // Properties of a row
+}
+
+interface Options<TData> {
+  enableSorting?: boolean
+  enableMultiSort?: boolean
+  manualSorting?: boolean
+  columnResizeMode?: 'onChange' | 'onEnd'
+  initialSortBy?: SortingState
+  enableRowSelection?: boolean | ((row: Row<TData>) => boolean)
+}
+```
 ---
 
 ### Usage:
@@ -160,7 +293,7 @@ const onSorting = (sortingField: StateSorting) => {
 | :----------- | :-------------------- | :------ | :-------------------------- |
 | `data`       | Array                 | `[]`    | `Data for show `            |
 | `columns`    | `Array<ColumnDef<T>>` | `[]`    | `column with custom config` |
-| `options`    | OptionType            | {}      | `Table option`              |
+| `options`    | OptionType            | {}      | `Data Grid option`          |
 | `children`   | React.ReactNode       | —       | `child element`             |
 | `css`        | `CSS`                 | —       | ``                          |
 | `delegated ` | `CSS`                 | —       |                             |

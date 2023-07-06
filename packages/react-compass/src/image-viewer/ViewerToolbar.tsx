@@ -1,13 +1,18 @@
 import {
   faBackward,
   faForward,
+  faLeftRight,
   faMagnifyingGlass,
   faMagnifyingGlassMinus,
   faMagnifyingGlassPlus,
+  faRotateLeft,
+  faRotateRight,
+  faUpDown,
 } from '@fortawesome/free-solid-svg-icons'
 import * as React from 'react'
 import Button from '../button'
 import Icon from '../icon'
+import {useColors} from '../theme'
 import {ActionType} from './Icon'
 import {StyledToolbar, StyledToolbarWrap} from './image-viewer.styles'
 import {ToolbarConfig} from './types'
@@ -47,26 +52,26 @@ export const defaultToolbars: ToolbarConfig[] = [
     actionType: ActionType.next,
     icon: faForward,
   },
-  // {
-  //   key: 'rotateLeft',
-  //   actionType: ActionType.rotateLeft,
-  //   icon: faRotateLeft,
-  // },
-  // {
-  //   key: 'rotateRight',
-  //   actionType: ActionType.rotateRight,
-  //   icon: faRotateRight,
-  // },
-  // {
-  //   key: 'scaleX',
-  //   actionType: ActionType.scaleX,
-  //   icon: faLeftRight,
-  // },
-  // {
-  //   key: 'scaleY',
-  //   actionType: ActionType.scaleY,
-  //   icon: faUpDown,
-  // },
+  {
+    key: 'rotateLeft',
+    actionType: ActionType.rotateLeft,
+    icon: faRotateLeft,
+  },
+  {
+    key: 'rotateRight',
+    actionType: ActionType.rotateRight,
+    icon: faRotateRight,
+  },
+  {
+    key: 'scaleX',
+    actionType: ActionType.scaleX,
+    icon: faLeftRight,
+  },
+  {
+    key: 'scaleY',
+    actionType: ActionType.scaleY,
+    icon: faUpDown,
+  },
 ]
 
 function deleteToolbarFromKey(toolbars: ToolbarConfig[], keys: string[]) {
@@ -80,6 +85,8 @@ export default function ViewerToolbar(props: ViewerToolbarProps) {
     props.onAction(config)
   }
 
+  const colors = useColors()
+
   function renderAction(config: ToolbarConfig) {
     return (
       <Button
@@ -91,7 +98,7 @@ export default function ViewerToolbar(props: ViewerToolbarProps) {
         data-key={config.key}
       >
         {config.icon ? (
-          <Icon icon={config.icon} color='white' />
+          <Icon icon={config.icon} color={colors.cdgBlue40} />
         ) : (
           <>{config.key}</>
         )}
@@ -100,7 +107,7 @@ export default function ViewerToolbar(props: ViewerToolbarProps) {
   }
   let toolbars = props.toolbars
   if (!props.zoomable) {
-    toolbars = deleteToolbarFromKey(toolbars, ['zoomIn', 'zoomOut'])
+    toolbars = deleteToolbarFromKey(toolbars, ['zoomIn', 'zoomOut', 'reset'])
   }
   if (!props.changeable) {
     toolbars = deleteToolbarFromKey(toolbars, ['prev', 'next'])

@@ -8,4 +8,21 @@ export const StyledNavbarBrand = styled('div', {
     color: 'inherit',
     margin: 0,
   },
+
+  variants: {
+    hiddenOnMobile: {
+      true: {
+        '&': {
+          '@media screen and (max-width: 1199px)': {
+            display: 'none',
+          },
+        },
+      },
+      false: {},
+    },
+  },
+
+  defaultVariants: {
+    hiddenOnMobile: 'false',
+  },
 })

@@ -3,12 +3,12 @@ import {faPlus} from '@fortawesome/free-solid-svg-icons/faPlus'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import get from 'lodash/get'
 import React, {
+  AriaAttributes,
+  DataHTMLAttributes,
   forwardRef,
   useImperativeHandle,
   useRef,
   useState,
-  type AriaAttributes,
-  type DataHTMLAttributes,
 } from 'react'
 import {theme} from '../theme'
 import {
@@ -44,7 +44,6 @@ const TagBoxV2 = forwardRef<
       isDisabled = false,
       isEditable,
       isErrored = false,
-
       customValidationHandler,
       addTagPlaceholder,
       canRemoveOnDeleteAndBackspaceKey,
@@ -53,6 +52,7 @@ const TagBoxV2 = forwardRef<
     ref,
   ) => {
     const [isUsingNewTagInput, setIsUsingNewTagInput] = useState(false)
+    const [focused, setFocused] = useState(false)
     const [newTagValue, setNewTagValue] = useState('')
     const [currentlyEditingTag, setCurrentlyEditingTag] = useState<Tag | null>(
       null,
@@ -75,6 +75,7 @@ const TagBoxV2 = forwardRef<
     const checkIfNotEmptyOrWhitespace = (tagValue: string) => {
       return !!tagValue && tagValue.trim() !== ''
     }
+
     const handleValidation = (tagValue: string) => {
       const builtinValidationResult = checkIfNotEmptyOrWhitespace(tagValue)
       if (customValidationHandler) {
@@ -94,19 +95,14 @@ const TagBoxV2 = forwardRef<
 
     const handleFocusNewTag = () => {
       if (tagBoxRef.current) {
-        if (isErrored) {
-          Object.assign(tagBoxRef.current.style, {})
-        } else {
-          Object.assign(tagBoxRef.current.style, {
-            borderWidth: '2px',
-            borderStyle: 'solid',
-            borderColor: theme.colors.cdgBlue100.value,
-          })
-        }
+        !isErrored && setFocused(true)
       }
     }
-    const handleChangeNewTag = (event: React.ChangeEvent<HTMLInputElement>) =>
+
+    const handleChangeNewTag = (event: React.ChangeEvent<HTMLInputElement>) => {
       setNewTagValue(event.target.value)
+    }
+
     const handleKeyDownNewTag = (
       event: React.KeyboardEvent<HTMLInputElement>,
     ) => {
@@ -132,17 +128,10 @@ const TagBoxV2 = forwardRef<
         }
       }
     }
+
     const handleBlurNewTag = (event: React.FocusEvent<HTMLInputElement>) => {
       if (tagBoxRef.current) {
-        if (isErrored) {
-          Object.assign(tagBoxRef.current.style, {})
-        } else {
-          Object.assign(tagBoxRef.current.style, {
-            borderWidth: '2px',
-            borderStyle: 'solid',
-            borderColor: theme.colors.gray30.value,
-          })
-        }
+        !isErrored && setFocused(false)
       }
       if (handleValidation(event.currentTarget.value)) {
         onAddTag?.(event.currentTarget.value.trim())
@@ -151,9 +140,78 @@ const TagBoxV2 = forwardRef<
       setIsUsingNewTagInput(false)
     }
 
-    // jsx
+    const handleChangeTagInput = (
+      event: React.ChangeEvent<HTMLInputElement>,
+      tag: Tag,
+    ) => {
+      setCurrentlyEditingTag({id: tag.id, value: event.target.value})
+    }
+
+    const handleBlurTagInput = (
+      event: React.FocusEvent<HTMLInputElement>,
+      tag: Tag,
+    ) => {
+      event.preventDefault()
+      if (handleValidation(event.currentTarget.value)) {
+        onEditTag?.({
+          id: tag.id,
+          value: event.currentTarget.value.trim(),
+        })
+        setCurrentlyEditingTag(null)
+      } else {
+        onRemoveTag?.(tag)
+      }
+    }
+
+    const handleKeyDownTagInput = (
+      event: React.KeyboardEvent<HTMLInputElement>,
+      tag: Tag,
+    ) => {
+      switch (event.key) {
+        case 'Enter': {
+          event.preventDefault()
+          if (handleValidation(event.currentTarget.value)) {
+            onEditTag?.({
+              id: tag.id,
+              value: event.currentTarget.value.trim(),
+            })
+            setCurrentlyEditingTag(null)
+          }
+          break
+        }
+        case 'Escape': {
+          event.preventDefault()
+          if (handleValidation(event.currentTarget.value)) {
+            onEditTag?.({
+              id: tag.id,
+              value: event.currentTarget.value.trim(),
+            })
+            setCurrentlyEditingTag(null)
+          } else {
+            onRemoveTag?.(tag)
+          }
+          break
+        }
+      }
+    }
+
+    const handleClickOrDblClickTag = (event: React.MouseEvent, tag: Tag) => {
+      event.stopPropagation()
+      !isDisabled && isEditable && setCurrentlyEditingTag(tag)
+    }
+
+    const handleClickRemoveIcon = (event: React.MouseEvent, tag: Tag) => {
+      event.stopPropagation()
+      onRemoveTag?.(tag)
+    }
+
     return (
-      <StyledTagBoxV2 {...props} isErrored={isErrored} isDisabled={isDisabled}>
+      <StyledTagBoxV2
+        {...props}
+        isErrored={isErrored}
+        isDisabled={isDisabled}
+        focused={focused}
+      >
         {/**************  Label  *************/}
         <StyledLabel aria-label={tagBoxLabel} onClick={handleClickContainer}>
           {tagBoxLabel}
@@ -170,113 +228,44 @@ const TagBoxV2 = forwardRef<
           onBlur={handleBlurNewTag}
         >
           {/**** This is to loop and create tags ****/}
-          {(tags ?? []).map((tag) => {
-            const handleChangeTagInput = (
-              event: React.ChangeEvent<HTMLInputElement>,
-            ) => setCurrentlyEditingTag({id: tag.id, value: event.target.value})
-
-            const handleBlurTagInput = (
-              event: React.FocusEvent<HTMLInputElement, Element>,
-            ) => {
-              event.preventDefault()
-              if (handleValidation(event.currentTarget.value)) {
-                onEditTag?.({
-                  id: tag.id,
-                  value: event.currentTarget.value.trim(),
-                })
-                setCurrentlyEditingTag(null)
-              } else {
-                onRemoveTag?.(tag)
-              }
-            }
-
-            const handleKeyDownTagInput = (
-              event: React.KeyboardEvent<HTMLInputElement>,
-            ) => {
-              switch (event.key) {
-                case 'Enter': {
-                  event.preventDefault()
-                  if (handleValidation(event.currentTarget.value)) {
-                    onEditTag?.({
-                      id: tag.id,
-                      value: event.currentTarget.value.trim(),
-                    })
-                    setCurrentlyEditingTag(null)
-                  }
-                  break
-                }
-                case 'Escape': {
-                  event.preventDefault()
-                  if (handleValidation(event.currentTarget.value)) {
-                    onEditTag?.({
-                      id: tag.id,
-                      value: event.currentTarget.value.trim(),
-                    })
-                    setCurrentlyEditingTag(null)
-                  } else {
-                    onRemoveTag?.(tag)
-                  }
-                  break
-                }
-              }
-            }
-
-            const handleClickOrDblClickTag = (event: React.MouseEvent) => {
-              event.stopPropagation()
-              !isDisabled && isEditable && setCurrentlyEditingTag(tag)
-            }
-
-            const handleClickRemoveIcon = (event: React.MouseEvent) => {
-              event.stopPropagation()
-              onRemoveTag?.(tag)
-            }
-
-            return (
-              <StyledTagContainer
-                key={tag.id}
-                onClick={handleClickOrDblClickTag}
-                onDoubleClick={handleClickOrDblClickTag}
+          {(tags ?? []).map((tag) => (
+            <StyledTagContainer
+              key={tag.id}
+              onClick={(event) => handleClickOrDblClickTag(event, tag)}
+              onDoubleClick={(event) => handleClickOrDblClickTag(event, tag)}
+            >
+              <StyledTagContent
+                title={isEditable ? 'Click to edit' : undefined}
+                className='tag-content'
               >
-                <StyledTagContent
-                  title={isEditable ? 'Click to edit' : undefined}
-                  className='tag-content'
-                >
-                  {currentlyEditingTag && currentlyEditingTag.id === tag.id ? (
-                    <StyledTagInput
-                      type='text'
-                      autoFocus
-                      size={
-                        // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
-                        (get(
-                          currentlyEditingTag,
-                          'value.length',
-                          0,
-                        ) as number) + 1
-                      }
-                      value={currentlyEditingTag.value}
-                      onChange={handleChangeTagInput}
-                      onBlur={handleBlurTagInput}
-                      onKeyDown={handleKeyDownTagInput}
-                    />
-                  ) : (
-                    tag.value
-                  )}
-                </StyledTagContent>
-                {!isDisabled && (
-                  <StyledTagCloseIcon
-                    icon={faClose}
-                    onClick={handleClickRemoveIcon}
-                    style={{
-                      display:
-                        currentlyEditingTag && currentlyEditingTag.id === tag.id
-                          ? 'none'
-                          : 'inline-block',
-                    }}
+                {currentlyEditingTag && currentlyEditingTag.id === tag.id ? (
+                  <StyledTagInput
+                    type='text'
+                    autoFocus
+                    size={get(currentlyEditingTag, 'value.length', 0) + 1}
+                    value={currentlyEditingTag.value}
+                    onChange={(event) => handleChangeTagInput(event, tag)}
+                    onBlur={(event) => handleBlurTagInput(event, tag)}
+                    onKeyDown={(event) => handleKeyDownTagInput(event, tag)}
                   />
+                ) : (
+                  tag.value
                 )}
-              </StyledTagContainer>
-            )
-          })}
+              </StyledTagContent>
+              {!isDisabled && (
+                <StyledTagCloseIcon
+                  icon={faClose}
+                  onClick={(event) => handleClickRemoveIcon(event, tag)}
+                  style={{
+                    display:
+                      currentlyEditingTag && currentlyEditingTag.id === tag.id
+                        ? 'none'
+                        : 'inline-block',
+                  }}
+                />
+              )}
+            </StyledTagContainer>
+          ))}
 
           {/**** add new button ****/}
           {!isDisabled && (
