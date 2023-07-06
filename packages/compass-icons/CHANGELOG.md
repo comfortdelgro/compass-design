@@ -4,6 +4,12 @@
 
 ### Major Changes
 
+- 2c17077c: first release
+
+## 1.0.0
+
+### Major Changes
+
 - 28f6b70: Restructure folder structure
 
 ## 0.12.0
