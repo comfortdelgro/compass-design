@@ -1,5 +1,11 @@
 ## 1.0.0-beta.0.0
 
+## 2.0.0-beta.0.0
+
+### Major Changes
+
+- 873d788b: Second release
+
 ## 1.0.0-beta.0.1
 
 ### Patch Changes

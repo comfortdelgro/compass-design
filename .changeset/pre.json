@@ -4,9 +4,12 @@
   "initialVersions": {
     "@comfortdelgro/compass-design-website": "0.1.0",
     "@comfortdelgro/compass-icons": "1.0.0",
-    "@comfortdelgro/react-compass": "0.33.10"
+    "@comfortdelgro/react-compass": "0.33.10",
+    "@comfortdelgro/compass-icons-testing": "1.0.1",
+    "@comfortdelgro/react-compass-testing": "1.0.1"
   },
   "changesets": [
-    "empty-maps-matter"
+    "empty-maps-matter",
+    "shiny-swans-bathe"
   ]
 }
