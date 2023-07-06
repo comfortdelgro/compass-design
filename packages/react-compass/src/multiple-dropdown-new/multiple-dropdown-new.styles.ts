@@ -236,7 +236,7 @@ export const StyledRightIcon = styled('div', {
       true: {
         div: {
           border: 0,
-          background: '$cdgBlue100',
+          background: '$cdgBlue100 !important',
           svg: {
             display: 'block',
           },

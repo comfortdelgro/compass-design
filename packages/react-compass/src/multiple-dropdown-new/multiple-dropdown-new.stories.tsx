@@ -1,14 +1,21 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {Column} from '../utils'
 import MultipleDropdown from './'
 
 export const Default: React.FC = () => {
   const [value2, setValue2] = React.useState([1])
+
+  useEffect(() => {
+    console.log(value2)
+  }, [value2])
+
   return (
     <Column>
       <MultipleDropdown
         placeholder='MultipleDropdown'
         defaultSelectedKeys={[1, 2]}
+        variant='select'
+        displayedValue='string'
       >
         <MultipleDropdown.Item value={1}>Item 1</MultipleDropdown.Item>
         <MultipleDropdown.Item value={2}>Item 2</MultipleDropdown.Item>
@@ -24,6 +31,7 @@ export const Default: React.FC = () => {
         placeholder='MultipleDropdown'
         displayedValue='string'
         customDisplayValue={`${value2.length} animals selected`}
+        selectedKeys={value2}
         onSelectionChange={(values) =>
           setValue2(values.map((item) => Number(item)))
         }

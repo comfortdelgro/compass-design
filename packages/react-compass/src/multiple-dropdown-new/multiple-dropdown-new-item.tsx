@@ -9,14 +9,9 @@ import {
 import {textContent} from './utils'
 
 interface Props extends StyledComponentProps {
-  rightColor?: string
-  type?: 'icon' | 'color'
-  leftIcon?: React.ReactNode
-  rightIcon?: React.ReactNode
   value: string | number
   textValue?: string
   checkmark?: 'none' | 'checkbox' | 'tick'
-  flagName?: string
   children: React.ReactNode
 }
 
@@ -25,26 +20,14 @@ export type MultipleDropdownItemProps = Props
 const MultipleDropdownNewItem: React.FC<MultipleDropdownItemProps> = (
   props: MultipleDropdownItemProps,
 ) => {
+  const {children, value, checkmark = 'checkbox'} = props
   const {
-    children,
-    value,
-    flagName,
-    type,
-    rightIcon,
-    leftIcon,
-    rightColor,
-    checkmark = 'checkbox',
-  } = props
-  const {
-    selectedItems,
     disabledKeys = [],
     searchValue,
     open,
     focusKey,
-    selectedKeys,
-    // setSelectedItem,
+    selectedItems,
     setDropdownItemKeys,
-    // onItemClick,
     onItemClick,
   } = React.useContext(MultipleDropdownContext)
 
@@ -52,7 +35,9 @@ const MultipleDropdownNewItem: React.FC<MultipleDropdownItemProps> = (
 
   const isSelected = React.useMemo(() => {
     return (
-      selectedItems?.findIndex((item) => item.value === value.toString()) !== -1
+      selectedItems?.findIndex(
+        (selectedItem) => selectedItem.value.toString() === value.toString(),
+      ) !== -1
     )
   }, [selectedItems, value])
 
@@ -81,7 +66,9 @@ const MultipleDropdownNewItem: React.FC<MultipleDropdownItemProps> = (
   React.useEffect(() => {
     if (!isDisabled) {
       setDropdownItemKeys?.((keys) => {
-        const index = keys.findIndex((keyItem) => keyItem.value === value)
+        const index = keys.findIndex(
+          (keyItem) => keyItem.value.toString() === value.toString(),
+        )
         if (index === -1) {
           keys.push({value, visibility: true})
         } else {
@@ -104,15 +91,6 @@ const MultipleDropdownNewItem: React.FC<MultipleDropdownItemProps> = (
     }
   }, [focusKey, value])
 
-  React.useEffect(() => {
-    if (selectedKeys?.findIndex((key) => key.toString() === value.toString())) {
-      // setSelectedItem({value: value.toString(), displayValue: children})
-      if (ref.current) {
-        ref.current.scrollIntoView({inline: 'end'})
-      }
-    }
-  }, [selectedKeys, value])
-
   const handleItemClick = () => {
     if (isDisabled) {
       return
@@ -120,7 +98,6 @@ const MultipleDropdownNewItem: React.FC<MultipleDropdownItemProps> = (
     onItemClick({
       value: value.toString(),
       displayValue: children,
-      flagName: flagName ?? '',
     })
   }
 
@@ -158,13 +135,7 @@ const Tick = () => (
 )
 
 const BlueTick = () => (
-  <svg
-    width='16'
-    height='17'
-    viewBox='0 0 16 17'
-    fill='none'
-    xmlns='http://www.w3.org/2000/svg'
-  >
+  <svg width='16' height='17' viewBox='0 0 16 17' fill='none'>
     <path
       d='M15.0265 3.47966C15.4357 3.89637 15.4357 4.56978 15.0265 4.98649L6.64506 13.5208C6.23581 13.9375 5.57446 13.9375 5.16521 13.5208L0.973587 9.25363C0.564469 8.83691 0.564469 8.16351 0.973587 7.74679C1.38277 7.33008 2.04608 7.33008 2.45533 7.74679L5.87567 11.2572L13.5466 3.47966C13.9559 3.06228 14.6172 3.06228 15.0265 3.47966Z'
       fill='currentColor'

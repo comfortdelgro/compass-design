@@ -96,7 +96,7 @@ const MultipleDropdown = React.forwardRef<
     helperText,
     defaultOpen,
     errorMessage,
-    selectedKeys,
+    selectedKeys = [],
     numberOfRows,
     displayedValue = 'chip',
     icon = <Icon />,
@@ -104,7 +104,7 @@ const MultipleDropdown = React.forwardRef<
     isLoading = false,
     variant = 'combobox',
     customDisplayValue,
-    defaultSelectedKeys = [],
+    defaultSelectedKeys,
     label,
     placeholder,
     onLoadMore = () => {
@@ -163,20 +163,60 @@ const MultipleDropdown = React.forwardRef<
     setOpen(!!isOpen)
   }, [isOpen])
 
+  React.useEffect(() => {
+    console.log(selectedItems, selectedKeys)
+  }, [open])
+
+  React.useEffect(() => {
+    if (
+      selectedItems.length > 0 ||
+      !(
+        selectedKeys?.length > 0 ||
+        (defaultSelectedKeys && defaultSelectedKeys.length > 0)
+      )
+    )
+      return
+
+    const currentSelectedKeys = selectedKeys || defaultSelectedKeys
+
+    let currentFocusKey = ''
+
+    // Find the item with the specified value
+    for (const currentSelectedKey of currentSelectedKeys) {
+      const item = getItemByKey(currentSelectedKey, children)
+
+      if (item) {
+        console.log('setSelectedItems')
+        setSelectedItems((items) => {
+          items.push({
+            value: currentSelectedKey.toString(),
+            displayValue: item as React.ReactNode,
+          })
+          return items
+        })
+        if (!currentFocusKey) {
+          currentFocusKey = currentSelectedKey.toString()
+        }
+      }
+    }
+    setFocusKey(currentFocusKey)
+  }, [children, selectedKeys, defaultSelectedKeys, selectedItems])
+
   const handleDropdownItemClick = React.useCallback(
     (item: SelectedItemDropdown) => {
       if (!isReadOnly) {
         setSelectedItems((currentItems) => {
           const itemIndex = currentItems.findIndex(
-            (currentItem) => currentItem.value.toString() === item.value,
+            (currentItem) =>
+              currentItem.value.toString() === item.value.toString(),
           )
           if (itemIndex === -1) {
             currentItems.push(item)
           } else {
             currentItems.splice(itemIndex, 1)
           }
-          onSelectionChange?.(currentItems.map((item) => item.value))
 
+          onSelectionChange?.(currentItems.map((item) => item.value))
           return [...currentItems]
         })
         inputRef.current?.focus()
@@ -245,16 +285,15 @@ const MultipleDropdown = React.forwardRef<
               handleDropdownItemClick({
                 value: focusedItem.props.value.toString(),
                 displayValue: focusedItem.props.children,
-                flagName: focusedItem.props.flagName ?? '',
               })
             }
           }
-
           break
         case 'Escape':
         case 'Tab':
           event.preventDefault()
           setOpen(false)
+          onOpenChange(false)
           break
       }
     },
@@ -281,6 +320,7 @@ const MultipleDropdown = React.forwardRef<
   const handleOpen = () => {
     if (!isDisabled) {
       setOpen(true)
+      onOpenChange(true)
       inputRef.current?.focus()
     }
   }
@@ -290,6 +330,7 @@ const MultipleDropdown = React.forwardRef<
       const value = event.target.value
       setSearch(value)
       setOpen(true)
+      onOpenChange(true)
       if (value !== '') {
         const fakeEle = document.createElement('div')
         fakeEle.style.position = 'absolute'
@@ -335,7 +376,7 @@ const MultipleDropdown = React.forwardRef<
           open,
           focusKey: focusKey ?? '',
           selectedKeys: selectedKeys ?? [],
-          defaultSelectedKeys,
+          defaultSelectedKeys: defaultSelectedKeys ?? [],
           disabledKeys,
           searchValue: search,
           selectedItems,

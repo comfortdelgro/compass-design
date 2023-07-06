@@ -74,8 +74,6 @@ export const getItemAbove = (
     (item) => item.visibility,
   )
 
-  console.log(visibleDropdownItems)
-
   if (visibleDropdownItems.length) {
     const index = visibleDropdownItems.findIndex(
       (item) => item.value.toString() === key.toString(),
