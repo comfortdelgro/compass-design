@@ -7,6 +7,7 @@ import {
   useInteractions,
 } from '@floating-ui/react'
 import React from 'react'
+import Chip from '../chip'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
@@ -21,10 +22,19 @@ import {
   DropdownVariantProps,
   StyledDropdown,
   StyledDropdownWrapper,
+  StyledHelperText,
   StyledIcon,
   StyledPopover,
   StyledSelectedItemWrapper,
 } from './multiple-dropdown-new.styles'
+import {
+  getFirstItem,
+  getItemAbove,
+  getItemBelow,
+  getItemByKey,
+  getLastItem,
+  textContent,
+} from './utils'
 
 interface Props extends StyledComponentProps {
   selectedKeys?: Array<string | number>
@@ -115,7 +125,7 @@ const MultipleDropdown = React.forwardRef<
     ...delegated
   } = props
   // ====================================== STATE ======================================
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = React.useState(isOpen ?? defaultOpen ?? false)
   const [focused, setFocused] = React.useState(false)
   const [search, setSearch] = React.useState('')
   const [focusKey, setFocusKey] = React.useState<string | number | undefined>()
@@ -125,6 +135,8 @@ const MultipleDropdown = React.forwardRef<
   const [dropdownItemKeys, setDropdownItemKeys] = React.useState<
     DropdownItemKey[]
   >([])
+
+  const mounted = React.useRef(false)
 
   // ====================================== REF ======================================
   const refDOM = useDOMRef<HTMLDivElement>(ref)
@@ -142,6 +154,129 @@ const MultipleDropdown = React.forwardRef<
   const dismiss = useDismiss(context)
 
   const {getReferenceProps, getFloatingProps} = useInteractions([dismiss])
+
+  React.useEffect(() => {
+    if (!mounted.current) {
+      mounted.current = true
+      return
+    }
+    setOpen(!!isOpen)
+  }, [isOpen])
+
+  const handleDropdownItemClick = React.useCallback(
+    (item: SelectedItemDropdown) => {
+      if (!isReadOnly) {
+        setSelectedItems((currentItems) => {
+          const itemIndex = currentItems.findIndex(
+            (currentItem) => currentItem.value.toString() === item.value,
+          )
+          if (itemIndex === -1) {
+            currentItems.push(item)
+          } else {
+            currentItems.splice(itemIndex, 1)
+          }
+          onSelectionChange?.(currentItems.map((item) => item.value))
+
+          return [...currentItems]
+        })
+        inputRef.current?.focus()
+      }
+    },
+    [isReadOnly],
+  )
+
+  const handleKeyDown = React.useCallback(
+    (event: KeyboardEvent) => {
+      const currentFocusKey =
+        (focusKey
+          ? focusKey
+          : selectedItems.length
+          ? selectedItems[0]?.value
+          : '') ?? ''
+
+      switch (event.key) {
+        case 'ArrowUp':
+        case 'ArrowLeft':
+          event.preventDefault()
+
+          // Check if focus key exists
+          if (currentFocusKey) {
+            const nextKey = getItemAbove(
+              currentFocusKey,
+              children,
+              dropdownItemKeys,
+            )
+            if (nextKey?.props?.value) {
+              setFocusKey(nextKey.props.value.toString() ?? '')
+            }
+          } else {
+            setFocusKey(
+              getLastItem(children, dropdownItemKeys)?.props.value.toString() ??
+                '',
+            )
+          }
+          break
+        case 'ArrowDown':
+        case 'ArrowRight':
+          event.preventDefault()
+          if (currentFocusKey) {
+            const prevKey = getItemBelow(
+              currentFocusKey,
+              children,
+              dropdownItemKeys,
+            )
+            if (prevKey?.props?.value) {
+              setFocusKey(prevKey.props.value.toString() ?? '')
+            }
+          } else {
+            setFocusKey(
+              getFirstItem(
+                children,
+                dropdownItemKeys,
+              )?.props.value.toString() ?? '',
+            )
+          }
+          break
+        case 'Enter':
+          event.preventDefault()
+          if (currentFocusKey) {
+            const focusedItem = getItemByKey(currentFocusKey, children)
+            if (focusedItem) {
+              handleDropdownItemClick({
+                value: focusedItem.props.value.toString(),
+                displayValue: focusedItem.props.children,
+                flagName: focusedItem.props.flagName ?? '',
+              })
+            }
+          }
+
+          break
+        case 'Escape':
+        case 'Tab':
+          event.preventDefault()
+          setOpen(false)
+          break
+      }
+    },
+    [
+      focusKey,
+      children,
+      selectedItems,
+      dropdownItemKeys,
+      handleDropdownItemClick,
+    ],
+  )
+
+  React.useEffect(() => {
+    if (open) {
+      document.addEventListener('keydown', handleKeyDown)
+    } else {
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [open, handleKeyDown])
 
   const handleOpen = () => {
     if (!isDisabled) {
@@ -177,35 +312,14 @@ const MultipleDropdown = React.forwardRef<
     }
   }
 
-  const handleDropdownItemClick = (item: SelectedItemDropdown) => {
-    if (!isReadOnly) {
-      setSelectedItems((currentItems) => {
-        const itemIndex = currentItems.findIndex(
-          (currentItem) => currentItem.value.toString() === item.value,
-        )
-        if (itemIndex === -1) {
-          currentItems.push(item)
-        } else {
-          currentItems.splice(itemIndex, 1)
-        }
-
-        return [...currentItems]
-      })
-
-      // const clickedItem = currentKeys.find((v) => v == key)
-      // if (clickedItem) {
-      //   v.delete(clickedItem)
-      //   if (clickedItem == focusKey) {
-      //     setFocusKey(Array.from(v).pop() ?? undefined)
-      //   }
-      // } else if (!removeOnly) {
-      //   v.add(key)
-      //   setFocusKey(key)
-      // }
-      // setCurrentKeys([...v])
-      // onSelectionChange?.([...v])
-      // inputRef.current?.focus()
+  const convertSelectedNodeToString = () => {
+    const array = selectedItems.map((v) =>
+      textContent(v.displayValue as React.ReactElement),
+    )
+    if (array.length > 0) {
+      return <>{array.join(', ')}</>
     }
+    return ''
   }
 
   return (
@@ -247,11 +361,35 @@ const MultipleDropdown = React.forwardRef<
             onClick={handleOpen}
           >
             <StyledSelectedItemWrapper className='selectedItemWrapper'>
-              {/* {selectedNode.length === 0 &&
-              search === '' &&
-              !open &&
-              !focused && <p className='placeholder'>{placeholder}</p>} */}
-              {!isDisabled && variant == 'combobox' && (
+              {selectedItems.length === 0 &&
+                search === '' &&
+                !open &&
+                !focused && <p className='placeholder'>{placeholder}</p>}
+              {displayedValue === 'chip' &&
+                selectedItems.length > 0 &&
+                selectedItems.map((selectedItem) => (
+                  <Chip
+                    key={selectedItem.value}
+                    hasCloseButton
+                    onCloseClick={() => {
+                      handleDropdownItemClick(selectedItem)
+                    }}
+                  >
+                    {textContent(
+                      selectedItem.displayValue as React.ReactElement,
+                    )}
+                  </Chip>
+                ))}
+              {displayedValue === 'string' && selectedItems.length > 0 ? (
+                customDisplayValue ? (
+                  <div className='itemListString'>{customDisplayValue}</div>
+                ) : (
+                  <div className='itemListString'>
+                    {convertSelectedNodeToString()}
+                  </div>
+                )
+              ) : null}
+              {!isDisabled && variant === 'combobox' && (
                 <input
                   id={id}
                   type='text'
@@ -297,6 +435,10 @@ const MultipleDropdown = React.forwardRef<
           </div>
         )}
       </MultipleDropdownContext.Provider>
+      {isErrored && errorMessage && (
+        <StyledHelperText error={!!isErrored}>{errorMessage}</StyledHelperText>
+      )}
+      {helperText && <StyledHelperText>{helperText}</StyledHelperText>}
     </StyledDropdownWrapper>
   )
 })

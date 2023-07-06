@@ -130,10 +130,6 @@ export const StyledSelectedItemWrapper = styled('div', {
       color: '$primaryText',
     },
   },
-
-  // '.itemListString': {
-
-  // }
 })
 
 export const StyledSelectedItem = styled('div', {
@@ -305,26 +301,11 @@ export const StyledOption = styled('li', {
     },
     isDisabled: {
       true: {
-        // '&:hover': {
-        //   backgroundColor: 'transparent',
-        // },
         opacity: 0.4,
         cursor: 'not-allowed',
       },
     },
   },
-  // compoundVariants: [
-  //   {
-  //     isDisabled: true,
-  //     isFocused: true,
-  //     css: {
-  //       '&:hover': {
-  //         backgroundColor: 'transparent',
-  //       },
-  //       opacity: 0.4,
-  //     },
-  //   },
-  // ],
 })
 
 export const StyledContent = styled('div', {
@@ -370,6 +351,25 @@ export const StyledEmptyData = styled('div', {
   fontWeight: '$medium',
   color: '$disabledText',
   padding: '$2 $4',
+})
+
+export const StyledHelperText = styled('div', {
+  fontSize: '$label2',
+  fontWeight: '$medium',
+  transition: '$default',
+  marginTop: '$1',
+  color: '$gray70',
+
+  variants: {
+    error: {
+      true: {
+        color: '$danger',
+      },
+      false: {
+        color: '$gray70',
+      },
+    },
+  },
 })
 
 export type DropdownVariantProps = VariantProps<typeof StyledDropdownWrapper>

@@ -96,28 +96,22 @@ const MultipleDropdownNewItem: React.FC<MultipleDropdownItemProps> = (
     }
   }, [value, isDisabled, canDisplayed])
 
-  // useEffect(() => {
-  //   if (focusKey && focusKey.toString() === value.toString()) {
-  //     if (ref.current) {
-  //       ref.current.scrollIntoView({inline: 'end'})
-  //     }
-  //   }
-  // }, [focusKey, value])
+  React.useEffect(() => {
+    if (focusKey && focusKey.toString() === value.toString()) {
+      if (ref.current) {
+        ref.current.scrollIntoView({inline: 'end'})
+      }
+    }
+  }, [focusKey, value])
 
-  // useEffect(() => {
-  //   if (selectedKey && selectedKey.toString() === value.toString()) {
-  //     setSelectedItem({value: value.toString(), displayValue: children})
-  //     if (ref.current) {
-  //       ref.current.scrollIntoView({inline: 'end'})
-  //     }
-  //   }
-  // }, [selectedKey, value])
-
-  // useEffect(() => {
-  //   if (open && isSeleted && ref.current) {
-  //     ref.current.scrollIntoView({inline: 'end'})
-  //   }
-  // }, [open, isSeleted])
+  React.useEffect(() => {
+    if (selectedKeys?.findIndex((key) => key.toString() === value.toString())) {
+      // setSelectedItem({value: value.toString(), displayValue: children})
+      if (ref.current) {
+        ref.current.scrollIntoView({inline: 'end'})
+      }
+    }
+  }, [selectedKeys, value])
 
   const handleItemClick = () => {
     if (isDisabled) {
