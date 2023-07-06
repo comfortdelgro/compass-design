@@ -3,4 +3,4 @@
 '@comfortdelgro/react-compass-testing': major
 ---
 
-Second release
+Second Release
