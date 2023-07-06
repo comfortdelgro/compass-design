@@ -1,10 +1,10 @@
 const breakpoints = {
   // Primary breakpoints
-  xs: '(min-width: 0px) and (max-width: 600px)',
-  sm: '(min-width: 600px) and (max-width: 900px)',
-  md: '(min-width: 900px) and (max-width: 1200px)',
-  lg: '(min-width: 1200px) and (max-width: 1536px)',
-  xl: '(min-width: 1536px) and (max-width: 1920px)',
+  xs: '(min-width: 0px)',
+  sm: '(min-width: 600px)',
+  md: '(min-width: 900px)',
+  lg: '(min-width: 1200px)',
+  xl: '(min-width: 1536px)',
 
   // Secondary breakpoints
   tablet: '(max-width: 768px)',
