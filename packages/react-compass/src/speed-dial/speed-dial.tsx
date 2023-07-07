@@ -75,7 +75,7 @@ const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
     const {onKeyDown, nextFocus, prevFocus, resetFocus} =
       useKeyboardNavigation()
 
-    const handleKeyDown = onKeyDown?.({
+    const handleKeyDown = onKeyDown?.<HTMLDivElement>({
       ArrowUp: (e) => {
         e.preventDefault()
         nextFocus?.()

@@ -13,15 +13,15 @@ export const KeyboardNavigationContext = React.createContext<
     prevFocus?: () => void
     resetFocus?: () => void
     getNode?: (index: number) => HTMLElement | undefined
-    onKeyDown?: (
-      callbacks?: OnKeyDownCallback,
-    ) => (e: React.KeyboardEvent<HTMLElement>) => void
+    onKeyDown?: <T extends HTMLElement = HTMLElement>(
+      callbacks?: OnKeyDownCallback<T> | undefined,
+    ) => (e: React.KeyboardEvent<T>) => void
     onMouseMove?: (index: number) => () => void
   }
 >({})
 
-export type OnKeyDownCallback = {
-  [key in EKeyboardKey]?: (e: React.KeyboardEvent<HTMLElement>) => void
+export type OnKeyDownCallback<T extends HTMLElement = HTMLElement> = {
+  [key in EKeyboardKey]?: (e: React.KeyboardEvent<T>) => void
 }
 
 export interface KeyboardNavigationProviderProps extends SelectType {
@@ -60,7 +60,7 @@ export const KeyboardNavigationProvider = (
   }
 
   const onKeyDown = <T extends HTMLElement = HTMLElement>(
-    callbacks?: OnKeyDownCallback,
+    callbacks?: OnKeyDownCallback<T>,
   ) => {
     return (e: React.KeyboardEvent<T>) => {
       const key = e.key as EKeyboardKey
