@@ -29,7 +29,6 @@ export const StyledTab = styled('div', {
     alignItems: 'center',
     border: 'black thin solid',
     borderRadius: '$full',
-    backgroundColor: '$cdgBlue120',
     '& svg': {
       display: 'none',
     },
@@ -83,6 +82,10 @@ export const StyledTab = styled('div', {
         cursor: 'not-allowed',
       },
     },
+    isFocused: {
+      true: {},
+      false: {},
+    },
     active: {
       true: {
         color: '$whiteText',
@@ -122,6 +125,40 @@ export const StyledTab = styled('div', {
     },
   },
   compoundVariants: [
+    {
+      variant: 'simple',
+      isFocused: true,
+      active: false,
+      css: {
+        background: 'transparent',
+        color: '$$textColor',
+        '& .icon': {
+          backgroundColor: '$$textColor',
+          border: 'none',
+          '& svg': {
+            display: 'block',
+            '& path': {
+              fill: '$whiteText',
+            },
+          },
+        },
+      },
+    },
+    {
+      variant: 'rounded',
+      isFocused: true,
+      active: false,
+      css: {
+        background: '$cdgBlue140',
+        color: '$whiteText',
+        '& .icon': {
+          backgroundColor: '$background',
+          '& path': {
+            fill: '$cdgBlue140',
+          },
+        },
+      },
+    },
     {
       variant: 'simple',
       disabled: true,

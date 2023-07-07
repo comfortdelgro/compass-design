@@ -12,6 +12,7 @@ interface TabProps {
   icon: Icon | undefined
   disabledKeys: React.Key[]
   variant: Variant | undefined
+  focusKey: React.Key | undefined
   currentKey: React.Key | undefined
   item: React.DetailedReactHTMLElement<TabItemProps, HTMLElement>
   onSelect: (key: React.Key) => void
@@ -23,6 +24,7 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>(
       item,
       isDisabled,
       textColor,
+      focusKey,
       currentKey,
       indicatorColor,
       disabledKeys,
@@ -38,6 +40,7 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>(
       () => currentKey === item.key,
       [currentKey],
     )
+    const isFocused = React.useMemo(() => focusKey == item.key, [focusKey])
     const isDisabledItem = React.useMemo(
       () => (item.key ? [...disabledKeys].includes(item.key) : false),
       [disabledKeys],
@@ -54,6 +57,7 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>(
         ref={tabRef}
         variant={variant}
         active={isSelected}
+        isFocused={isFocused}
         disabled={!!disabledState}
         className='tab-item-wrapper'
         css={{$$textColor: textColor, $$indicatorColor: indicatorColor}}
