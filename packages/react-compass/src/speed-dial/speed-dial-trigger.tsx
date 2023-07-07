@@ -1,6 +1,7 @@
 import {useMergeRefs} from '@floating-ui/react'
 import React from 'react'
-import {useDescendant} from './speed-dial'
+import {useKeyboardNavigation, useKeyboardNavigationState} from '../utils/hooks'
+import {useDOMRef} from '../utils/use-dom-ref'
 import {StyledSpeedDialTrigger} from './speed-dial.styles'
 
 interface Props {
@@ -15,12 +16,20 @@ export const SpeedDialTrigger = React.forwardRef<
   SpeedDialTriggerProps
 >((props, ref) => {
   const {children, ...delegated} = props
-  const {register} = useDescendant()
+  const {useDescendant} = useKeyboardNavigationState()
+  const {onMouseMove} = useKeyboardNavigation()
+  const {register, index} = useDescendant()
+  const domRef = useDOMRef()
 
-  const mergeRef = useMergeRefs([ref, register])
+  const mergeRef = useMergeRefs([ref, register, domRef])
 
   return (
-    <StyledSpeedDialTrigger ref={mergeRef} {...delegated}>
+    <StyledSpeedDialTrigger
+      ref={mergeRef}
+      type='button'
+      onMouseMove={onMouseMove?.(index)}
+      {...delegated}
+    >
       {children}
     </StyledSpeedDialTrigger>
   )

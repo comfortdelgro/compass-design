@@ -1,7 +1,8 @@
 import {useMergeRefs} from '@floating-ui/react'
 import React from 'react'
+import {useKeyboardNavigation, useKeyboardNavigationState} from '../utils/hooks'
 import {StyledComponentProps} from '../utils/stitches.types'
-import {SpeedDialContext, useDescendant} from './speed-dial'
+import {useDOMRef} from '../utils/use-dom-ref'
 import {
   SpeedDialAction as StyledSpeedDialAction,
   SpeedDialIcon,
@@ -22,21 +23,25 @@ export const SpeedDialAction = React.forwardRef<
   SpeedDialActionProps
 >((props, ref) => {
   const {...delegated} = props
-  const {selected, setSelected} = React.useContext(SpeedDialContext)
+  const {useDescendant} = useKeyboardNavigationState()
+  const {selected, onMouseMove} = useKeyboardNavigation()
   const {icon, name, position} = props
   const {index, register} = useDescendant()
+  const domRef = useDOMRef<HTMLButtonElement>()
 
   const isSelected = index === selected
 
-  const mergeRef = useMergeRefs([ref, register])
+  const mergeRef = useMergeRefs([ref, domRef, register])
 
   return (
     <StyledSpeedDialAction
       className={`speed-dial__action speed-dial__action--${position}`}
       ref={mergeRef}
       aria-selected={isSelected}
-      onMouseMove={() => setSelected?.(index)}
+      onMouseMove={onMouseMove?.(index)}
       tabIndex={-1}
+      type='button'
+      role='menuitem'
       {...delegated}
     >
       <SpeedDialIcon className='speed-dial__action-icon'>{icon}</SpeedDialIcon>
