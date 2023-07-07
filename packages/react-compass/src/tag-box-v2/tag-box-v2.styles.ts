@@ -71,6 +71,13 @@ export const StyledTagContainer = styled('div', {
   backgroundColor: '$divider',
   width: 'fit-content',
   height: '2rem',
+  variants: {
+    isErrored: {
+      true: {
+        border: '1px solid $danger',
+      },
+    },
+  },
 })
 
 // create StyledButtonContainer to center button horizontally
