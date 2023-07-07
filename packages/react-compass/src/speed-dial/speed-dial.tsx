@@ -87,6 +87,9 @@ const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
       Tab: () => {
         handleClose()
       },
+      Escape: () => {
+        handleClose()
+      },
     })
 
     const delegateProps = componentProps()

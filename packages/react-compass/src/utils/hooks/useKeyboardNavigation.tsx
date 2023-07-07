@@ -61,20 +61,10 @@ export const KeyboardNavigationProvider = (
 
   const onKeyDown = (callbacks?: OnKeyDownCallback) => {
     return (e: React.KeyboardEvent<HTMLElement>) => {
-      const key = e.key
-
-      switch (key) {
-        case EKeyboardKey.ArrowUp:
-          callbacks?.ArrowUp?.(e)
-          break
-        case EKeyboardKey.ArrowDown:
-          callbacks?.ArrowDown?.(e)
-          break
-        case EKeyboardKey.Tab:
-          callbacks?.Tab?.(e)
-          break
-        default:
-          break
+      const key = e.key as EKeyboardKey
+      if (callbacks) {
+        const callback = callbacks[key]
+        callback?.(e)
       }
     }
   }
