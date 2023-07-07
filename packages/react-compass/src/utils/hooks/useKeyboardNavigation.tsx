@@ -59,8 +59,10 @@ export const KeyboardNavigationProvider = (
     setSelected(0)
   }
 
-  const onKeyDown = (callbacks?: OnKeyDownCallback) => {
-    return (e: React.KeyboardEvent<HTMLElement>) => {
+  const onKeyDown = <T extends HTMLElement = HTMLElement>(
+    callbacks?: OnKeyDownCallback,
+  ) => {
+    return (e: React.KeyboardEvent<T>) => {
       const key = e.key as EKeyboardKey
       if (callbacks) {
         const callback = callbacks[key]
