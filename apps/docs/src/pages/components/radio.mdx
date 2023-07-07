@@ -34,6 +34,126 @@ We recommend the second method to import components for the benefits of [tree sh
 
 ---
 
+### Basic Radio
+
+<Radio.Group>
+  <Radio value='1' />
+  <Radio value='2' />
+</Radio.Group>
+
+```js
+<Radio.Group>
+  <Radio value='1' />
+  <Radio value='2' />
+</Radio.Group>
+```
+
+#### With label
+
+<Radio.Group>
+  <Radio value='1' label='male' />
+  <Radio value='2' label='female' />
+</Radio.Group>
+
+```js
+<Radio.Group>
+  <Radio value='1' label='male' />
+  <Radio value='2' label='female' />
+</Radio.Group>
+```
+
+#### With label and description:
+
+<Radio.Group>
+  <Radio value='1' label='Option 1' description='Description of Option 1' />
+  <Radio value='2' label='Option 2' description='Description of Option 2' />
+</Radio.Group>
+
+```js
+<Radio.Group>
+  <Radio value='1' label='Option 1' description='Description of Option 1' />
+  <Radio value='2' label='Option 2' description='Description of Option 2' />
+</Radio.Group>
+```
+
+#### Add tooltip:
+
+Tooltips will display on the radio next to label as a icon
+
+<Radio.Group>
+  <Radio
+    value='1'
+    label='Option 1'
+    description='Description of Option 1'
+    tooltip='This is tooltip 1'
+  />
+  <Radio
+    value='2'
+    label='Option 2'
+    description='Description of Option 2'
+    tooltip='This is tooltip 2'
+  />
+  <Radio
+    value='3'
+    label='Option 3'
+    description='Description of Option 3'
+    tooltip='This is tooltip 3'
+  />
+  <Radio
+    value='4'
+    label='Option 4'
+    description='Description of Option 4'
+    tooltip='This is tooltip 4'
+  />
+</Radio.Group>
+
+```js
+<Radio.Group>
+  <Radio
+    value='1'
+    label='Option 1'
+    description='Description of Option 1'
+    tooltip='This is tooltip 1'
+  />
+  <Radio
+    value='2'
+    label='Option 2'
+    description='Description of Option 2'
+    tooltip='This is tooltip 2'
+  />
+  <Radio
+    value='3'
+    label='Option 3'
+    description='Description of Option 3'
+    tooltip='This is tooltip 3'
+  />
+  <Radio
+    value='4'
+    label='Option 4'
+    description='Description of Option 4'
+    tooltip='This is tooltip 4'
+  />
+</Radio.Group>
+```
+
+#### Disabled radio button:
+
+<Radio.Group>
+  <Radio value='1' label='Option 1' />
+  <Radio value='2' label='Option 2' isDisabled />
+  <Radio value='3' label='Option 3' />
+  <Radio value='4' label='Option 4' isDisabled />
+</Radio.Group>
+
+```js
+<Radio.Group>
+  <Radio value='1' label='Option 1' />
+  <Radio value='2' label='Option 2' isDisabled />
+  <Radio value='3' label='Option 3' />
+  <Radio value='4' label='Option 4' isDisabled />
+</Radio.Group>
+```
+
 ### Variants
 
 Outlined style
@@ -238,15 +358,15 @@ Orientation vertical as default
 
 ### Radio Props
 
-| Name        | Type      | Default | Description                                                                                                            |
-| :---------- | :-------- | :------ | :--------------------------------------------------------------------------------------------------------------------- |
-| title       | `string`  | —       | Display title for radio                                                                                                |
-| description | `string`  | —       | Display description for radio                                                                                          |
-| rightLabel  | `ReactNode`| —       | Display rightLabel for radio                                                                                           |
-| tooltip     | `string`  | —       | Display tooltip for radio                                                                                              |
-| value       | `string`  | -       | The value of the radio button, used when submitting an HTML form.                                                      |
-| isDisabled  | `boolean` | false   | Whether the radio button is disabled or not. Shows that a selection exists, but is not available in that circumstance. |
-| css         | `CSS`     | —       | The system prop that allows defining system overrides as well as additional CSS styles.                                |
+| Name        | Type        | Default | Description                                                                                                            |
+| :---------- | :---------- | :------ | :--------------------------------------------------------------------------------------------------------------------- |
+| title       | `string`    | —       | Display title for radio                                                                                                |
+| description | `string`    | —       | Display description for radio                                                                                          |
+| rightLabel  | `ReactNode` | —       | Display rightLabel for radio                                                                                           |
+| tooltip     | `string`    | —       | Display tooltip for radio                                                                                              |
+| value       | `string`    | -       | The value of the radio button, used when submitting an HTML form.                                                      |
+| isDisabled  | `boolean`   | false   | Whether the radio button is disabled or not. Shows that a selection exists, but is not available in that circumstance. |
+| css         | `CSS`       | —       | The system prop that allows defining system overrides as well as additional CSS styles.                                |
 
 ---
 

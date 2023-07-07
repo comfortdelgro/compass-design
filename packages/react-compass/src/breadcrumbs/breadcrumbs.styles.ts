@@ -7,6 +7,8 @@ export const StyledBreadcrumbs = styled('nav', {
   ol: {
     padding: 0,
     display: 'flex',
+    flexWrap: 'wrap',
+    gap: '$2',
     flexDirection: 'row',
     alignItems: 'center',
     listStyle: 'none',
@@ -14,7 +16,7 @@ export const StyledBreadcrumbs = styled('nav', {
 
   '.divider': {
     color: '$primaryText',
-    padding: '0 $2',
+    // padding: '0 $2',
 
     svg: {
       width: '$3_5',

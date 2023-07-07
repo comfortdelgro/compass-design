@@ -3,7 +3,7 @@ import Button from '../button/button'
 import {getIconFromColor} from '../utils/get-icon-from-color'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {AlertVariantProps, StyledAlert} from './alert.styles'
+import {AlertVariantProps, StyledAlert, StyledIcon} from './alert.styles'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
@@ -42,7 +42,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
 
   return (
     <StyledAlert css={css} ref={alertRef} {...variantProps} {...delegates}>
-      {displayedIcon}
+      <StyledIcon>{displayedIcon}</StyledIcon>
       <div className='alert-content'>{children}</div>
       {dismissible && (
         <Button

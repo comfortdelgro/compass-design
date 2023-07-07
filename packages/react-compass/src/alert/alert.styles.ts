@@ -6,6 +6,7 @@ export const StyledAlert = styled('div', {
   position: 'relative',
   padding: '$2 $4',
   display: 'flex',
+  gap: '$2',
   flexDirection: 'row',
   alignItems: 'center',
   fontFamily: '$sans',
@@ -20,14 +21,14 @@ export const StyledAlert = styled('div', {
   svg: {
     width: '$4',
     height: '$4',
-    marginRight: '$2',
   },
 
   '.alert-dismiss-button': {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    margin: '7px 7px 0 0',
+    padding: '0',
+  },
+
+  '.alert-content': {
+    flexGrow: 1,
   },
 
   variants: {
@@ -74,6 +75,14 @@ export const StyledAlert = styled('div', {
       },
     },
   },
+})
+
+export const StyledIcon = styled('div', {
+  flexShrink: 1,
+  display: 'flex',
+  alignItems: 'center',
+  width: 'fit-content',
+  height: 'fit-content',
 })
 
 export type AlertVariantProps = VariantProps<typeof StyledAlert>

@@ -63,7 +63,7 @@ const Radio: React.FC<RadioProps> = (props) => {
         <div className='radio-label'>
           {label} {!!tooltip && <Tooltip text={tooltip} />}
         </div>
-        <p className='radio-description'>{description}</p>
+        {description && <p className='radio-description'>{description}</p>}
       </div>
       <p className='radio-right-label'>{rightLabel}</p>
     </StyledRadio>

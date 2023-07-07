@@ -1,119 +1,50 @@
 import {Cell, flexRender, Row} from '@tanstack/react-table'
-import React, {SetStateAction, useEffect, useRef, useState} from 'react'
+import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {StyledDataGridCell} from './data-grid-cell.styles'
+import {CellMetaProps, EditableCell} from './editable/editable-cell'
 
-export interface Props extends StyledComponentProps {
-  cell: Cell<any, unknown>
-  row: Row<any>
+export interface Props<TData, TValue> extends StyledComponentProps {
+  cell: Cell<TData, TValue>
+  row: Row<TData>
   onChangeCell?: (newData: object) => void
 }
 
-export type DataGridCellProps = Props
+export type DataGridCellProps<TData = any, TValue = unknown> = Props<
+  TData,
+  TValue
+> &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props<TData, TValue>>
 
 const DataGridCell = React.forwardRef<HTMLTableCellElement, DataGridCellProps>(
-  ({cell, row, onChangeCell}, ref) => {
-    const tableCellRef = useDOMRef<HTMLTableCellElement>(ref)
+  ({cell, row}, ref) => {
+    const dataGridCellRef = useDOMRef<HTMLTableCellElement>(ref)
     const {
       getValue,
       row: {index},
       column: {id},
     } = cell
-    const [editing, setEditing] = useState(false)
-    const [value, setValue] = useState('')
-    const inputRef = useRef<HTMLInputElement>(null)
-    const handleDoubleClick = () => {
-      const newValue = getValue()
-      setValue(newValue as SetStateAction<string>)
-      setEditing(true)
-    }
-
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setValue(event.target.value)
-    }
-
-    const handleBlur = () => {
-      setEditing(false)
-      if (onChangeCell) {
-        onChangeCell({
-          value: value,
-          row: {index},
-          column: {id},
-        })
-      }
-      // cell.updateValue(value)
-    }
-
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-      if (event.key === 'Enter') {
-        setEditing(false)
-        if (onChangeCell) {
-          onChangeCell({
-            value: value,
-            row: {index},
-            column: {id},
-          })
-        }
-      }
-    }
-
-    useEffect(() => {
-      const handleClickOutside = (event: MouseEvent) => {
-        if (
-          editing &&
-          inputRef.current &&
-          !inputRef.current.contains(event.target as Node)
-        ) {
-          handleBlur()
-        }
-      }
-
-      document.addEventListener('mousedown', handleClickOutside)
-
-      return () => {
-        document.removeEventListener('mousedown', handleClickOutside)
-      }
-    }, [editing])
-
+    const tableMeta = cell.column.columnDef.meta as CellMetaProps<any, unknown>
+    const isCellEditable = tableMeta?.editable
     return (
       <StyledDataGridCell
-        ref={tableCellRef}
-        {...{
-          key: cell.id,
-          style: {
-            width: cell.column.getSize(),
-            background: cell.getIsGrouped()
-              ? '#0aff0082'
-              : cell.getIsAggregated()
-              ? '#ffa50078'
-              : cell.getIsPlaceholder()
-              ? '#ff000042'
-              : 'white',
-          },
-          onDoubleClick: handleDoubleClick,
-          onBlur: handleBlur,
+        ref={dataGridCellRef}
+        key={cell.id}
+        isGrouped={cell.getIsGrouped()}
+        isAggregated={cell.getIsAggregated()}
+        isPlaceholder={cell.getIsPlaceholder()}
+        css={{
+          width: cell.column.getSize(),
         }}
       >
-        {editing ? (
-          <div
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-            }}
-          >
-            <input
-              style={{width: '100%', height: '100%', boxSizing: 'border-box'}}
-              ref={inputRef}
-              type='text'
-              value={value}
-              onChange={handleChange}
-              onKeyDown={handleKeyDown}
-            />
-          </div>
+        {isCellEditable ? (
+          <EditableCell
+            cell={cell}
+            getValue={getValue}
+            row={index}
+            column={id}
+          />
         ) : cell.getIsGrouped() ? (
           // If it's a grouped cell, add an expander and row count
           <>

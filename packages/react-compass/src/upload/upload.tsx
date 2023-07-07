@@ -68,7 +68,6 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
 
   const filesValidator = (files: FileList) => {
     if (files && files.length > 0) {
-      console.log(files)
       const isInvalidFileSize = Array.from(files).some(
         (file) => file.size > fileSizeLimit,
       )
@@ -160,9 +159,7 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
         <StyledBrowseFile onClick={onLableClick}>
           <span>Browse file</span>
         </StyledBrowseFile>
-        <StyledUploadContent
-          fileSelected={selectedFiles.length > 0}
-        >
+        <StyledUploadContent fileSelected={selectedFiles.length > 0}>
           {selectedFiles.length > 0 ? (
             <p>{selectedFiles.map((file) => file.name).join(', ')}</p>
           ) : (

@@ -240,7 +240,7 @@ export class ListKeyboardDelegate implements KeyboardDelegate {
     this.disabledKeys = disabledKeys
   }
 
-  private getKeyIndex = (key: Key) => {
+  getKeyIndex = (key: Key) => {
     const index = this.collection.findIndex((item) => item.key === key)
     if (index !== -1) return index
     return null

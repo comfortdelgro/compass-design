@@ -18,10 +18,10 @@ const DataGridFooter = React.forwardRef<HTMLDivElement, DataGridFooterProps>(
       children,
     } = props
 
-    const DataGridFooterRef = useDOMRef<HTMLDivElement>(ref)
+    const dataGridFooterRef = useDOMRef<HTMLDivElement>(ref)
 
     return (
-      <StyledDataGridFooter css={css} ref={DataGridFooterRef}>
+      <StyledDataGridFooter css={css} ref={dataGridFooterRef}>
         {children}
       </StyledDataGridFooter>
     )

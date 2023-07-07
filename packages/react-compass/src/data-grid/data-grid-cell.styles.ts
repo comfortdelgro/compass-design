@@ -5,10 +5,22 @@ export const StyledDataGridCell = styled('td', {
   textAlign: 'left',
   fontSize: '$label1',
   padding: '$3_5 $3',
-  border: '3px solid gray',
-  zIndex: '10',
-  '&:hover': {
-    backgroundColor: '#F7F8F9',
-    border: '3px solid black',
+  color: '$primaryText',
+  variants: {
+    isGrouped: {
+      true: {
+        backgroundColor: '$successBg',
+      },
+    },
+    isAggregated: {
+      true: {
+        backgroundColor: '$warningBg',
+      },
+    },
+    isPlaceholder: {
+      true: {
+        backgroundColor: '$severeWarningBg',
+      },
+    },
   },
 })

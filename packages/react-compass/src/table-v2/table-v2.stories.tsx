@@ -14,7 +14,7 @@ import {makeData, Person} from './makeData'
 
 export const FullFeatured: React.FC = () => {
   const [page, setPage] = useState(1)
-  const [data] = useState(() => makeData(10))
+  const [data, setData] = useState<Person[]>(() => makeData(10))
   const options: OptionType<Person> = {
     enableSorting: true,
     enableMultiSort: true,
@@ -46,11 +46,9 @@ export const FullFeatured: React.FC = () => {
               }}
             >
               <ReactTable.CheckboxCell
-                {...{
-                  checked: table.getIsAllRowsSelected(),
-                  indeterminate: table.getIsSomeRowsSelected(),
-                  onChange: table.getToggleAllRowsSelectedHandler(),
-                }}
+                checked={table.getIsAllRowsSelected()}
+                indeterminate={table.getIsSomeRowsSelected()}
+                onChange={table.getToggleAllRowsSelectedHandler()}
               />
             </div>
           )
@@ -64,12 +62,10 @@ export const FullFeatured: React.FC = () => {
             }}
           >
             <ReactTable.CheckboxCell
-              {...{
-                disabled: !row.getCanSelect(),
-                checked: row.getIsSelected(),
-                indeterminate: row.getIsSomeSelected(),
-                onChange: row.getToggleSelectedHandler(),
-              }}
+              disabled={!row.getCanSelect()}
+              checked={row.getIsSelected()}
+              indeterminate={row.getIsSomeSelected()}
+              onChange={row.getToggleSelectedHandler()}
             />
           </div>
         ),
@@ -78,13 +74,32 @@ export const FullFeatured: React.FC = () => {
         id: 'name',
         header: () => <div style={{textAlign: 'center'}}>Name</div>,
         footer: (props) => props.column.id,
+        enableGrouping: false,
         columns: [
           {
             accessorKey: 'firstName',
             cell: (info) => info.getValue<string>(),
+            header: () => <span>First Name</span>,
             footer: (props) => props.column.id,
             enableResizing: false,
+            enableGrouping: false,
             sortDescriptor: 'asc',
+            meta: {
+              editable: true,
+              updateData: (rowIndex: number, id: string, value: any) => {
+                setData((old: Person[]) =>
+                  old.map((row, index) => {
+                    if (index === rowIndex) {
+                      return {
+                        ...old[rowIndex],
+                        [id]: value,
+                      } as Person
+                    }
+                    return row
+                  }),
+                )
+              },
+            },
           },
           {
             accessorFn: (row) => row.lastName,
@@ -92,6 +107,8 @@ export const FullFeatured: React.FC = () => {
             cell: (info) => info.getValue<string>(),
             header: () => <span>Last Name</span>,
             footer: (props) => props.column.id,
+            enableColumnFilter: false,
+            enableGrouping: false,
             enableResizing: true,
           },
         ],
@@ -100,26 +117,35 @@ export const FullFeatured: React.FC = () => {
         id: 'otherInfo',
         header: () => <div style={{textAlign: 'center'}}>Other info</div>,
         footer: (props) => props.column.id,
+        enableGrouping: false,
         columns: [
           {
             accessorKey: 'age',
             header: () => 'Age',
+            enableColumnFilter: false,
+            enableGrouping: false,
             footer: (info) => info.column.id,
           },
           {
             accessorKey: 'visits',
             header: () => <span>Visits</span>,
+            enableColumnFilter: false,
+            enableGrouping: false,
             footer: (info) => info.column.id,
           },
           {
             accessorKey: 'status',
             header: 'Status',
+            enableColumnFilter: false,
+            enableGrouping: false,
             footer: (info) => info.column.id,
           },
           {
             accessorKey: 'progress',
             header: 'Profile Progress',
             cell: (info) => info.getValue<string>(),
+            enableColumnFilter: false,
+            enableGrouping: false,
             footer: (info) => info.column.id,
           },
         ],
@@ -136,7 +162,6 @@ export const FullFeatured: React.FC = () => {
         options={options}
         onManualSorting={onSorting}
         onChangeRowSelection={onChangeRowSelection}
-        className='yagin'
       >
         <ReactTable.Toolbar
           css={{
