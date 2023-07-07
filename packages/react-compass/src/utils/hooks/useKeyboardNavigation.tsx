@@ -36,7 +36,7 @@ export const KeyboardNavigationProvider = (
   const {DescendantsProvider} = useKeyboardNavigationState()
 
   const nextFocus = () => {
-    const next = descendants.next(selected)
+    const next = descendants.nextEnabled(selected)
     if (next) {
       next.node.focus()
       setSelected(next.index)
@@ -44,7 +44,7 @@ export const KeyboardNavigationProvider = (
   }
 
   const prevFocus = () => {
-    const prev = descendants.prev(selected)
+    const prev = descendants.prevEnabled(selected)
     if (prev) {
       prev.node.focus()
       setSelected(prev.index)
