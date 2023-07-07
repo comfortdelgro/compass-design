@@ -233,6 +233,7 @@ const TagBoxV2 = forwardRef<
               key={tag.id}
               onClick={(event) => handleClickOrDblClickTag(event, tag)}
               onDoubleClick={(event) => handleClickOrDblClickTag(event, tag)}
+              isErrored={!!tag.isErrored}
             >
               <StyledTagContent
                 title={isEditable ? 'Click to edit' : undefined}

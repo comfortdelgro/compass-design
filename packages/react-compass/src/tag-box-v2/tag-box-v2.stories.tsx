@@ -7,7 +7,7 @@ export const Basic: React.FC = () => {
 
   const handleAddTag = (newTagValue: string) => {
     const newTagObject: Tag = {
-      id: Math.random(),
+      id: `cdg-id-${Math.random().toString(36).substring(2)}`,
       value: newTagValue.trim(),
     }
     setTags([...tags, newTagObject])
