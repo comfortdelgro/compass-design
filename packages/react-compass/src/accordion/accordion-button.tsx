@@ -36,6 +36,7 @@ const AccordionButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
         className={className}
         css={css}
         onMouseDown={onMouseDown}
+        type='button'
         {...delegated}
       >
         {children}

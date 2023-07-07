@@ -4,6 +4,7 @@ import {StyledNavbarBrand} from './navbar-brand.styles'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
+  hiddenOnMobile?: boolean
 }
 
 export type NavbarBrandProps = Props &
@@ -17,6 +18,7 @@ const NavbarBrand = React.forwardRef<HTMLDivElement, NavbarBrandProps>(
       className = '',
       // StyledComponentProps
       css = {},
+      hiddenOnMobile = false,
       // HTMLDiv props
       ...delegated
     } = props
@@ -34,6 +36,7 @@ const NavbarBrand = React.forwardRef<HTMLDivElement, NavbarBrandProps>(
         className={`${className} navbar-brand`}
         css={css}
         ref={ref}
+        hiddenOnMobile={hiddenOnMobile ? 'true' : 'false'}
         {...delegated}
       >
         {renderChildren()}

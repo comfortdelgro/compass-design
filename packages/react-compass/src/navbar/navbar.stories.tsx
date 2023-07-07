@@ -1,3 +1,4 @@
+import Workbench from '@comfortdelgro/compass-icons/react/colorful/workbench'
 import {
   faBars,
   faBell,
@@ -10,11 +11,13 @@ import {StoryDecorator} from '@ladle/react'
 import React from 'react'
 import Avatar from '../avatar'
 import Button from '../button'
+import Icon from '../icon'
 import SearchField from '../searchfield'
-import TextField from '../textfield'
 import {Column} from '../utils/components'
 import Navbar from './index'
-
+import NavbarActions from './navbar-actions'
+import {NavbarLinks} from './navbar-links.styles'
+import {NavbarSeperator} from './navbar-seperator.style'
 const imageSrc = 'https://i.pravatar.cc/150?img=32'
 
 export const Variants: React.FC = () => {
@@ -35,8 +38,8 @@ export const Variants: React.FC = () => {
           />
         </a>
         <Navbar.Brand>Workbench Title</Navbar.Brand>
-        <SearchField placeholder='Search' />
-        <div>
+        <SearchField placeholder='Search' css={{minWidth: 'unset'}} />
+        <NavbarLinks>
           <a href='#'>
             <Button>Home</Button>
           </a>
@@ -46,16 +49,9 @@ export const Variants: React.FC = () => {
           <a href='#'>
             <Button>Products</Button>
           </a>
-        </div>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'flex-end',
-            flexGrow: 1,
-            gap: '24px',
-            alignItems: 'center',
-          }}
-        >
+        </NavbarLinks>
+        <NavbarSeperator />
+        <NavbarActions>
           <FontAwesomeIcon
             icon={faQuestionCircle}
             style={{
@@ -84,7 +80,7 @@ export const Variants: React.FC = () => {
             }}
           />
           <Avatar label='H' size='xs' image={imageSrc} />
-        </div>
+        </NavbarActions>
       </Navbar>
       <h3>White color</h3>
       <Navbar color='white'>
@@ -92,8 +88,8 @@ export const Variants: React.FC = () => {
           <FontAwesomeIcon icon={faBars} />
         </a>
         <Navbar.Brand>Workbench Title</Navbar.Brand>
-        <SearchField placeholder='Search' />
-        <div>
+        <SearchField placeholder='Search' css={{minWidth: 'unset'}} />
+        <NavbarLinks>
           <a href='#'>
             <Button variant='ghost'>Home</Button>
           </a>
@@ -103,20 +99,13 @@ export const Variants: React.FC = () => {
           <a href='#'>
             <Button variant='ghost'>Products</Button>
           </a>
-        </div>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'flex-end',
-            flexGrow: 1,
-            gap: '24px',
-            alignItems: 'center',
-          }}
-        >
+        </NavbarLinks>
+        <NavbarSeperator />
+        <NavbarActions>
           <FontAwesomeIcon
             icon={faQuestionCircle}
             style={{
-              color: '#FFF',
+              color: 'black',
               width: '$5',
               height: '$5',
               cursor: 'pointer',
@@ -125,7 +114,7 @@ export const Variants: React.FC = () => {
           <FontAwesomeIcon
             icon={faBell}
             style={{
-              color: '#FFF',
+              color: 'black',
               width: '$5',
               height: '$5',
               cursor: 'pointer',
@@ -134,89 +123,30 @@ export const Variants: React.FC = () => {
           <FontAwesomeIcon
             icon={faChartGantt}
             style={{
-              color: '#FFF',
+              color: 'black',
               width: '$5',
               height: '$5',
               cursor: 'pointer',
             }}
           />
           <Avatar label='H' size='xs' image={imageSrc} />
-        </div>
+        </NavbarActions>
       </Navbar>
       <h2>Website Navbar</h2>
-      <h3>Blue color</h3>
-      <Navbar color='blue' variant='website'>
-        <a href='#'>
-          <Avatar label='C' size='lg' />
-        </a>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'flex-end',
-            flexGrow: 1,
-            gap: '12px',
-            alignItems: 'center',
-          }}
-        >
-          <a href='#'>
-            <Button variant='primary'>Home</Button>
-          </a>
-          <a href='#'>
-            <Button variant='primary'>Services</Button>
-          </a>
-          <a href='#'>
-            <Button variant='primary'>Products</Button>
-          </a>
-          <TextField placeholder='search' />
-          <Button variant='ghost'>
-            <FontAwesomeIcon
-              icon={faSearch}
-              style={{
-                color: '#FFF',
-                width: '$5',
-                height: '$5',
-
-                cursor: 'pointer',
-              }}
-            />
-          </Button>
-        </div>
-      </Navbar>
-      <h3>White color</h3>
       <Navbar color='white' variant='website'>
-        <a href='#'>
-          <Avatar label='C' size='lg' />
-        </a>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'flex-end',
-            flexGrow: 1,
-            gap: '12px',
-            alignItems: 'center',
-          }}
-        >
-          <a href='#'>
-            <Button variant='ghost'>Home</Button>
-          </a>
-          <a href='#'>
+        <Workbench width={'40px'} height={'40px'} />
+        <NavbarSeperator />
+        <NavbarActions alternativeElement={<Icon icon={faBars} />}>
+          <NavbarLinks>
+            <Button variant='primary'>Home</Button>
             <Button variant='ghost'>Services</Button>
-          </a>
-          <a href='#'>
-            <Button variant='ghost'>Products</Button>
-          </a>
-          <TextField placeholder='search' />
-          <Button variant='ghost'>
-            <FontAwesomeIcon
-              icon={faSearch}
-              style={{
-                width: '$5',
-                height: '$5',
-                cursor: 'pointer',
-              }}
-            />
-          </Button>
-        </div>
+            <Button variant='ghost'>Feedback</Button>
+            <Button variant='ghost' isDisabled>
+              Feedback
+            </Button>
+          </NavbarLinks>
+          <Icon icon={faSearch} size='lg' />
+        </NavbarActions>
       </Navbar>
     </Column>
   )
@@ -228,7 +158,7 @@ export default {
       <div>
         <style
           dangerouslySetInnerHTML={{
-            __html: `.ladle-main { background: #eee; }`,
+            __html: `.ladle-main { background: var(--colors-gray30); }`,
           }}
         ></style>
         <Component />

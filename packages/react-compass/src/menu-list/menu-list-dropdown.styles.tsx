@@ -6,3 +6,16 @@ export const StyledMenuListDropdown = styled('div', {
   color: '$gray100',
   width: '100%',
 })
+
+export const StyledMenuListDropdownBody = styled('div', {
+  variants: {
+    openState: {
+      open: {
+        display: 'block',
+      },
+      close: {
+        display: 'none',
+      },
+    },
+  },
+})

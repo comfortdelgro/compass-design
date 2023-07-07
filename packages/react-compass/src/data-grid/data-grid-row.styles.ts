@@ -4,8 +4,14 @@ export const StyledDataGridRow = styled('tr', {
   background: '$whiteText',
   backgroundColor: 'transparent',
   borderLeftWidth: '$medium',
-  borderLeftStyle: 'solid',
-  borderLeftColor: 'transparent',
   borderWidth: `$borderWidths.light`,
   transition: '$default',
+  variants: {
+    isSelected: {
+      true: {
+        backgroundColor: '$cdgBlue10',
+        borderLeft: '1px solid $cdgBlue',
+      },
+    },
+  },
 })

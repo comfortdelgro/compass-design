@@ -31,7 +31,7 @@ const ProgressPercentage: React.FC<ProgressPercentageProps> = ({
     <StyledDataGridProgressBar className='progress-bar'>
       <StyledDataGridProgress
         className={`progress ${status}`}
-        style={{width: `${progress}%`}}
+        css={{width: `${progress}%`}}
       ></StyledDataGridProgress>
       <StyledDataGridProgressLabel className='progress-label'>{`${progress}%`}</StyledDataGridProgressLabel>
     </StyledDataGridProgressBar>

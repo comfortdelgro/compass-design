@@ -1,7 +1,5 @@
-import { styled } from '../theme'
-import type { VariantProps } from '../utils/stitches.types'
-
-
+import {styled} from '../theme'
+import type {VariantProps} from '../utils/stitches.types'
 
 export const StyledDropdown = styled('div', {
   maxWidth: '100%',
@@ -118,7 +116,9 @@ export const StyledSelectedItemWrapper = styled('div', {
 })
 
 export const StyledSelectedItem = styled('div', {
-  border: '1px solid #E6E6E6',
+  borderWidth: '1px',
+  borderStyle: 'solid',
+  borderColor: '#E6E6E6',
   borderRadius: '$full',
   padding: '$1 $3',
   fontSize: '$label1',
@@ -132,6 +132,15 @@ export const StyledSelectedItem = styled('div', {
   div: {
     width: 'fit-content',
     height: 'fit-content',
+  },
+  variants: {
+    isErrored: {
+      true: {
+        borderColor: '$danger',
+        backgroundColor: '$dangerBg',
+      },
+      false: {},
+    },
   },
 })
 
@@ -162,7 +171,7 @@ export const StyledDropdownWrapper = styled('div', {
             whiteSpace: 'nowrap',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
-            color: '$primaryText'
+            color: '$primaryText',
           },
         },
       },

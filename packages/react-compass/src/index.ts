@@ -36,15 +36,7 @@ export type {
   CardProps,
   CardTitleProps,
 } from './card'
-export {default as Carousel} from './carousel'
-export type {
-  CarouselButtonsProps,
-  CarouselDescriptionProps,
-  CarouselImageProps,
-  CarouselProps,
-  CarouselTitleProps,
-} from './carousel'
-export {default as CarouselSlider} from './carousel-v2'
+export {default as CarouselSlider} from './carousel'
 export type {
   ButtonType,
   CarouselOptions,
@@ -53,7 +45,7 @@ export type {
   NavigationButtonType,
   NinePartAlignment,
   SocicalIcon,
-} from './carousel-v2'
+} from './carousel'
 export {default as Chart} from './chart'
 export type {
   AreaChartProps,

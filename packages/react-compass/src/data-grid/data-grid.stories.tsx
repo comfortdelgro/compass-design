@@ -16,7 +16,7 @@ import {makeData, Person} from './makeData'
 
 export const DataGridStory: React.FC = () => {
   const [page, setPage] = useState(1)
-  const [data] = useState(() => makeData(10))
+  const [data] = useState<Person[]>(() => makeData(10))
   const options: OptionType = {
     enableSorting: true,
     enableMultiSort: true,
@@ -31,7 +31,7 @@ export const DataGridStory: React.FC = () => {
   const onSorting = (sortingField: StateSorting) => {
     console.log('stateSorting', sortingField)
   }
-  const onChangeRowSelection = (rowSelection: any) => {
+  const onChangeRowSelection = (rowSelection: Person[]) => {
     console.log('stateSelectedRows', rowSelection)
   }
 
@@ -69,6 +69,7 @@ export const DataGridStory: React.FC = () => {
           >
             <DataGrid.CheckboxCell
               {...{
+                disabled: !row.getCanSelect(),
                 checked: row.getIsSelected(),
                 indeterminate: row.getIsSomeSelected(),
                 onChange: row.getToggleSelectedHandler(),
@@ -88,6 +89,7 @@ export const DataGridStory: React.FC = () => {
             cell: (info) => info.getValue<string>(),
             footer: (props) => props.column.id,
             enableResizing: false,
+            editable: true,
             sortDescriptor: 'asc',
           },
           {
@@ -150,7 +152,6 @@ export const DataGridStory: React.FC = () => {
         options={options}
         onManualSorting={onSorting}
         onChangeRowSelection={onChangeRowSelection}
-        className='yagin'
       >
         <DataGrid.Toolbar
           css={{

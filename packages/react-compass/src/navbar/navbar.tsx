@@ -1,6 +1,9 @@
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
+import NavbarActions from './navbar-actions'
 import NavbarBrand from './navbar-brand'
+import {NavbarLinks} from './navbar-links.styles'
+import {NavbarSeperator} from './navbar-seperator.style'
 import {NavbarVariantProps, StyledNavbar} from './navbar.styles'
 
 interface Props extends StyledComponentProps {
@@ -44,4 +47,7 @@ const Navbar = React.forwardRef<HTMLDivElement, NavbarProps>((props, ref) => {
 
 export default Navbar as typeof Navbar & {
   Brand: typeof NavbarBrand
+  Actions: typeof NavbarActions
+  Links: typeof NavbarLinks
+  Separator: typeof NavbarSeperator
 }
