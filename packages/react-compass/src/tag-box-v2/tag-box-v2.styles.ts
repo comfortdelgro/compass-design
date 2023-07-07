@@ -201,6 +201,7 @@ export const StyledTagBoxV2 = styled('div', {
   padding: '0px',
   overflow: 'hidden',
   background: 'transparent',
+
   variants: {
     isErrored: {
       true: {
@@ -226,13 +227,6 @@ export const StyledTagBoxV2 = styled('div', {
           borderWidth: '2px',
           borderStyle: 'solid',
           borderColor: '$cdgBlue100',
-        },
-      },
-      false: {
-        [`${StyledContainer}`]: {
-          borderWidth: '2px',
-          borderStyle: 'solid',
-          borderColor: '$gray30',
         },
       },
     },
