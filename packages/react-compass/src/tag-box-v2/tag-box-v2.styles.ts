@@ -206,7 +206,7 @@ export const StyledTagBoxV2 = styled('div', {
     isErrored: {
       true: {
         [`${StyledContainer}`]: {
-          borderColor: 'red',
+          borderColor: '$danger',
         },
       },
       false: {},
