@@ -6,7 +6,7 @@ import {
   useFloating,
   useInteractions,
 } from '@floating-ui/react'
-import React from 'react'
+import React, {useCallback} from 'react'
 import Chip from '../chip'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -37,6 +37,7 @@ import {
 } from './utils'
 
 interface Props extends StyledComponentProps {
+  erroredKeys?: Array<string | number>
   selectedKeys?: Array<string | number>
   defaultSelectedKeys?: Array<string | number>
   customDisplayValue?: React.ReactNode
@@ -107,6 +108,7 @@ const MultipleDropdown = React.forwardRef<
     defaultSelectedKeys,
     label,
     placeholder,
+    erroredKeys,
     onLoadMore = () => {
       //Load more
     },
@@ -161,12 +163,20 @@ const MultipleDropdown = React.forwardRef<
       return
     }
     setOpen(!!isOpen)
+    if (!isOpen) {
+      setFocusKey('')
+    }
   }, [isOpen])
 
   React.useEffect(() => {
-    console.log(selectedItems, selectedKeys)
+    if (!isOpen) {
+      setFocusKey('')
+    }
   }, [open])
 
+  /**
+   * Fill selected data and run only on component initialization
+   */
   React.useEffect(() => {
     if (
       selectedItems.length > 0 ||
@@ -186,7 +196,6 @@ const MultipleDropdown = React.forwardRef<
       const item = getItemByKey(currentSelectedKey, children)
 
       if (item) {
-        console.log('setSelectedItems')
         setSelectedItems((items) => {
           items.push({
             value: currentSelectedKey.toString(),
@@ -200,7 +209,7 @@ const MultipleDropdown = React.forwardRef<
       }
     }
     setFocusKey(currentFocusKey)
-  }, [children, selectedKeys, defaultSelectedKeys, selectedItems])
+  }, [])
 
   const handleDropdownItemClick = React.useCallback(
     (item: SelectedItemDropdown) => {
@@ -363,6 +372,22 @@ const MultipleDropdown = React.forwardRef<
     return ''
   }
 
+  const handleCloseChipClick = useCallback(
+    (selectedItem: SelectedItemDropdown) => () => {
+      handleDropdownItemClick(selectedItem)
+    },
+    [handleDropdownItemClick],
+  )
+
+  const checkIsError = useCallback(
+    (value: string) => {
+      return !!erroredKeys?.some(
+        (erroredKey) => erroredKey.toString() === value,
+      )
+    },
+    [erroredKeys],
+  )
+
   return (
     <StyledDropdownWrapper
       css={css}
@@ -400,6 +425,8 @@ const MultipleDropdown = React.forwardRef<
             isErrored={!!isErrored}
             isDisabled={!!isDisabled}
             onClick={handleOpen}
+            onBlur={onBlur}
+            onFocus={onFocus}
           >
             <StyledSelectedItemWrapper className='selectedItemWrapper'>
               {selectedItems.length === 0 &&
@@ -412,9 +439,8 @@ const MultipleDropdown = React.forwardRef<
                   <Chip
                     key={selectedItem.value}
                     hasCloseButton
-                    onCloseClick={() => {
-                      handleDropdownItemClick(selectedItem)
-                    }}
+                    onCloseClick={handleCloseChipClick(selectedItem)}
+                    isErrored={checkIsError(selectedItem.value.toString())}
                   >
                     {textContent(
                       selectedItem.displayValue as React.ReactElement,
@@ -422,13 +448,9 @@ const MultipleDropdown = React.forwardRef<
                   </Chip>
                 ))}
               {displayedValue === 'string' && selectedItems.length > 0 ? (
-                customDisplayValue ? (
-                  <div className='itemListString'>{customDisplayValue}</div>
-                ) : (
-                  <div className='itemListString'>
-                    {convertSelectedNodeToString()}
-                  </div>
-                )
+                <div className='itemListString'>
+                  {customDisplayValue ?? convertSelectedNodeToString()}
+                </div>
               ) : null}
               {!isDisabled && variant === 'combobox' && (
                 <input

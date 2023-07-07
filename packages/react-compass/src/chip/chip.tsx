@@ -9,6 +9,7 @@ export type BoxProps = Props &
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
   hasCloseButton?: boolean
+  isErrored?: boolean
   onCloseClick?: () => void
 }
 
@@ -36,6 +37,7 @@ const Chip = React.forwardRef<HTMLDivElement, BoxProps>((props, ref) => {
     css = {},
     // custom props
     hasCloseButton = false,
+    isErrored = false,
     onCloseClick,
     ...delegated
   } = props
@@ -43,7 +45,7 @@ const Chip = React.forwardRef<HTMLDivElement, BoxProps>((props, ref) => {
   const chipRef = useDOMRef<HTMLDivElement>(ref)
 
   return (
-    <StyledBox {...delegated} ref={chipRef} css={css}>
+    <StyledBox {...delegated} ref={chipRef} css={css} isErrored={isErrored}>
       {children}
       {hasCloseButton && (
         <div className='multiple-dropdown-chip-icon' onClick={onCloseClick}>

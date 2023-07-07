@@ -29,13 +29,11 @@ export const Default: React.FC = () => {
       </MultipleDropdown>
       <MultipleDropdown
         placeholder='MultipleDropdown'
-        displayedValue='string'
-        customDisplayValue={`${value2.length} animals selected`}
         selectedKeys={value2}
+        erroredKeys={[11, 22]}
         onSelectionChange={(values) =>
           setValue2(values.map((item) => Number(item)))
         }
-        css={{width: '250px'}}
       >
         <MultipleDropdown.Item value={1}>Item 1</MultipleDropdown.Item>
         <MultipleDropdown.Item value={2}>Item 2</MultipleDropdown.Item>

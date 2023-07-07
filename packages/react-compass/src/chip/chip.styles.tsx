@@ -20,4 +20,12 @@ export const StyledBox = styled('div', {
       color: '$primaryText',
     },
   },
+  variants: {
+    isErrored: {
+      true: {
+        borderColor: '$danger',
+        backgroundColor: '$dangerBg',
+      },
+    },
+  },
 })
