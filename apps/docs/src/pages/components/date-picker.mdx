@@ -8,22 +8,11 @@ import {
   InvalidDateRangePicker,
   CustomDateRangePicker,
 } from '../../components/DatePickers'
+import {Callout} from 'nextra-theme-docs'
 
 # DatePicker
 
 DatePickers combine input and a Calendar popover to allow users to enter or select a date
-
-### Pre-Install
-
-Install these packages to use their utilities
-
-import {Tabs, Tab, Callout} from 'nextra-theme-docs'
-
-<Tabs items={['npm', 'yarn', 'pnpm']} defaultIndex={0}>
-  <Tab>```bash npm i @react-aria/i18n @internationalized/date ```</Tab>
-  <Tab>``` bash yarn add @react-aria/i18n @internationalized/date ```</Tab>
-  <Tab>``` bash pnpm add @react-aria/i18n @internationalized/date ```</Tab>
-</Tabs>
 
 ---
 
@@ -41,10 +30,40 @@ import DatePicker from '@comfortdelgro/react-compass/date-picker'
 
 ---
 
+### I18n
+
+React Compass use [React Aria I18N](https://react-spectrum.adobe.com/react-aria/internationalization.html) and [React Aria Internationalized](https://react-spectrum.adobe.com/internationalized/index.html) to deal with i18n.
+
+How to use
+
+```js
+import Calendar from '@comfortdelgro/react-compass/calendar'
+
+const {
+  /** any function in react aria i18n */
+} = Calendar.I18N
+const {
+  /** any function in react aria internationalized */
+} = Calendar.InternationalizedDate
+```
+
 ### I18nProvider
 
 I18nProvider allows you to override the default locale as determined by the browser/system setting with a locale defined by your application (e.g. application setting).
 In this docs, we will use English(Singapore) `en-SG` as default locale
+
+```js
+import Calendar from '@comfortdelgro/react-compass/calendar'
+
+const {
+  I18nProvider
+} = Calendar.I18N
+
+<I18nProvider locale="en-SG">
+  <App/>
+</I18nProvider>
+
+```
 
 ### Basic
 
@@ -63,24 +82,20 @@ In this docs, we will use English(Singapore) `en-SG` as default locale
 </section>
 
 ```js
-import {DatePicker} from '@comfortdelgro/react-compass'
-import {
-  DateValue,
-  getLocalTimeZone,
-  parseDate,
-  today,
-} from '@internationalized/date'
-import {I18nProvider, useDateFormatter} from '@react-aria/i18n'
+import {DatePicker, Calendar} from '@comfortdelgro/react-compass'
+
+const {getLocalTimeZone, today} =
+  Calendar.InternationalizedDate
 
 export function ControlledDatePickers() {
-  const [date, setDate] = useState<DateValue>(
+  const [date, setDate] = useState<CalendarProps>(
     parseDate(today(getLocalTimeZone()).toString()),
   )
 
   const formatter = useDateFormatter({dateStyle: 'full'})
 
   return (
-    <I18nProvider locale='en-SG'>
+    <>
       <p>
         <b>Selected date:</b>
         <span style={{marginLeft: '4px'}}>
@@ -88,12 +103,19 @@ export function ControlledDatePickers() {
         </span>
       </p>
       <DatePicker
+        calendarCSS={{
+          '.cdg-calendar-today-btn': {
+            background: 'var(--colors-cdgBlue)',
+            color: 'var(--colors-whiteText)',
+            borderColor: 'var(--colors-cdgBlue)',
+          },
+        }}
         label='Date'
         value={date}
         defaultValue={today(getLocalTimeZone())}
         onChange={setDate}
       />
-    </I18nProvider>
+    </>
   )
 }
 ```
@@ -172,6 +194,27 @@ function ValidatedDatePickers() {
 
 ```js
 <DatePicker isInvalid />
+```
+
+### Is Mobile
+
+Mobile variant of date picker will remove the ability of inputing values by hand, instead it will open calendar by default
+
+<section className={styles.componentShowcaseContainer}>
+  <DatePicker
+    isMobile
+    calendarCSS={{
+      '.cdg-calendar-today-btn': {
+        background: 'var(--colors-cdgBlue)',
+        color: 'var(--colors-whiteText)',
+        borderColor: 'var(--colors-cdgBlue)',
+      },
+    }}
+  />
+</section>
+
+```js
+<DatePicker isMobile />
 ```
 
 ### Props

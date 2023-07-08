@@ -23,12 +23,7 @@ export const NoDataComponent = ({colSpan}: {colSpan: number}) => {
               </g>
             </g>
           </svg>
-          <div
-            className='empty-description'
-            style={{color: 'rgba(0, 0, 0, 0.25)'}}
-          >
-            No data
-          </div>
+          <div className='empty-description'>No data.</div>
         </StyledNoData>
       </td>
     </tr>

@@ -1,66 +1,65 @@
 import {styled} from '../theme'
 import {VariantProps} from '../utils/stitches.types'
 
-const calculateCols = (size: string) => {
-  const breakpoint = '@' + size
+const calculateCols = (breakpoint: string) => {
   const cols = {
     1: {
-      [breakpoint]: {
+      [`@media ${breakpoint}`]: {
         flexBasis: `${(1 / 12) * 100}%`,
       },
     },
     2: {
-      [breakpoint]: {
+      [`@media ${breakpoint}`]: {
         flexBasis: `${(2 / 12) * 100}%`,
       },
     },
     3: {
-      [breakpoint]: {
+      [`@media ${breakpoint}`]: {
         flexBasis: `${(3 / 12) * 100}%`,
       },
     },
     4: {
-      [breakpoint]: {
+      [`@media ${breakpoint}`]: {
         flexBasis: `${(4 / 12) * 100}%`,
       },
     },
     5: {
-      [breakpoint]: {
+      [`@media ${breakpoint}`]: {
         flexBasis: `${(5 / 12) * 100}%`,
       },
     },
     6: {
-      [breakpoint]: {
+      [`@media ${breakpoint}`]: {
         flexBasis: `${(6 / 12) * 100}%`,
       },
     },
     7: {
-      [breakpoint]: {
+      [`@media ${breakpoint}`]: {
         flexBasis: `${(7 / 12) * 100}%`,
       },
     },
     8: {
-      [breakpoint]: {
+      [`@media ${breakpoint}`]: {
         flexBasis: `${(8 / 12) * 100}%`,
       },
     },
     9: {
-      [breakpoint]: {
+      [`@media ${breakpoint}`]: {
         flexBasis: `${(9 / 12) * 100}%`,
       },
     },
     10: {
-      [breakpoint]: {
+      [`@media ${breakpoint}`]: {
         flexBasis: `${(10 / 12) * 100}%`,
       },
     },
     11: {
-      [breakpoint]: {
+      [`@media ${breakpoint}`]: {
         flexBasis: `${(11 / 12) * 100}%`,
       },
     },
     12: {
-      [breakpoint]: {
+      [`@media ${breakpoint}`]: {
         flexBasis: `${(12 / 12) * 100}%`,
       },
     },
@@ -80,11 +79,11 @@ export const StyledGridItem = styled('div', {
   // styling
   display: 'block',
   variants: {
-    xs: {...calculateCols('xs')},
-    sm: {...calculateCols('sm')},
-    md: {...calculateCols('md')},
-    lg: {...calculateCols('lg')},
-    xl: {...calculateCols('xl')},
+    xs: {...calculateCols('(min-width: 0px) and (max-width: 600px)')},
+    sm: {...calculateCols('(min-width: 600px) and (max-width: 900px)')},
+    md: {...calculateCols('(min-width: 900px) and (max-width: 1200px)')},
+    lg: {...calculateCols('(min-width: 1200px) and (max-width: 1536px)')},
+    xl: {...calculateCols('(min-width: 1536px) and (max-width: 1920px)')},
   },
 })
 

@@ -7,8 +7,7 @@ export const StyledRadio = styled('div', {
   display: 'flex',
   alignItems: 'center',
   cursor: 'pointer',
-  minWidth: '$96',
-  width: 'min-content',
+  width: 'fit-content',
   '.radio-wrapper': {
     width: '16px !important',
     display: 'flex !important',
@@ -20,7 +19,6 @@ export const StyledRadio = styled('div', {
     marginLeft: '$4',
     display: 'grid',
     gap: '$2',
-    width: 'max-content',
     '.radio-label': {
       padding: 0,
       margin: 0,

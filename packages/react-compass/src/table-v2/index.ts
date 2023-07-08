@@ -5,22 +5,24 @@ import {
   GroupColumnDef,
   SortingState,
 } from '@tanstack/react-table'
+import DataGridCheckbox from '../data-grid/data-grid-checkbox'
+import DataGridCheckboxCell from '../data-grid/data-grid-checkbox-cell'
+import DataGridFooter from '../data-grid/data-grid-footer'
+import DataGridToolbar from '../data-grid/data-grid-toolbar'
 import ReactTable from './react-table'
-import ReactTableCheckbox from './react-table-checkbox'
-import ReactTableCheckboxCell from './react-table-checkbox-cell'
-import ReactTableFooter from './react-table-footer'
-import ReactTableToolbar from './react-table-toolbar'
 
+export type {
+  DataGridCheckboxCellProps as ReactTableCheckboxCellProps,
+  DataGridCheckboxProps as ReactTableCheckboxProps,
+  DataGridFooterProps as ReactTableFooterProps,
+  DataGridToolbarProps as ReactTableToolbarProps,
+} from '../data-grid'
 export type {OptionType, ReactTableProps} from './react-table'
-export type {ReactTableCheckboxProps} from './react-table-checkbox'
-export type {ReactTableCheckboxCellProps} from './react-table-checkbox-cell'
-export type {ReactTableFooterProps} from './react-table-footer'
-export type {ReactTableToolbarProps} from './react-table-toolbar'
 
-ReactTable.Toolbar = ReactTableToolbar
-ReactTable.Footer = ReactTableFooter
-ReactTable.Checkbox = ReactTableCheckbox
-ReactTable.CheckboxCell = ReactTableCheckboxCell
+ReactTable.Toolbar = DataGridToolbar
+ReactTable.Footer = DataGridFooter
+ReactTable.Checkbox = DataGridCheckbox
+ReactTable.CheckboxCell = DataGridCheckboxCell
 
 ReactTable.Toolbar.displayName = 'Card.Body'
 ReactTable.Footer.displayName = 'Card.Image'

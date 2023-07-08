@@ -1,5 +1,4 @@
-import { styled } from '../theme'
-
+import {styled} from '../theme'
 
 export const StyledMenuList = styled('div', {
   width: '$48',

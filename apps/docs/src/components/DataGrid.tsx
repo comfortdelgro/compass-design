@@ -12,7 +12,7 @@ import {
   Pagination,
   SearchField,
 } from '@comfortdelgro/react-compass'
-import {ColumnConfig, StateSorting} from '@comfortdelgro/react-compass/table-v2'
+import {ColumnConfig, StateSorting} from '@comfortdelgro/react-compass'
 import React, {useState} from 'react'
 import StatusComponent from './person-status'
 
@@ -34,16 +34,78 @@ const range = (len: number) => {
   }
   return arr
 }
-const makeid = (length: number) => {
-  let result = ''
-  const characters =
-    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-  const charactersLength = characters.length
-  for (let i = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength))
-  }
-  return result
+
+function generateFullName(type: string) {
+  const firstNames = [
+    'James',
+    'Mary',
+    'John',
+    'Patricia',
+    'Robert',
+    'Jennifer',
+    'Michael',
+    'Linda',
+    'William',
+    'Elizabeth',
+    'David',
+    'Susan',
+    'Joseph',
+    'Jessica',
+    'Charles',
+    'Sarah',
+    'Thomas',
+    'Karen',
+    'Daniel',
+    'Nancy',
+    'Matthew',
+    'Lisa',
+    'Anthony',
+    'Margaret',
+    'Donald',
+    'Betty',
+    'Steven',
+    'Sandra',
+    'Paul',
+    'Ashley',
+  ]
+
+  const lastNames = [
+    'Smith',
+    'Johnson',
+    'Williams',
+    'Jones',
+    'Brown',
+    'Davis',
+    'Miller',
+    'Wilson',
+    'Moore',
+    'Taylor',
+    'Anderson',
+    'Thomas',
+    'Jackson',
+    'White',
+    'Harris',
+    'Martin',
+    'Thompson',
+    'Garcia',
+    'Martinez',
+    'Robinson',
+    'Clark',
+    'Rodriguez',
+    'Lewis',
+    'Lee',
+    'Walker',
+    'Hall',
+    'Allen',
+    'Young',
+    'King',
+  ]
+  if (type === 'firstName')
+    return `${firstNames[Math.floor(Math.random() * firstNames.length)]}`
+
+  return `${lastNames[Math.floor(Math.random() * lastNames.length)]}`
 }
+
 const getRandomDate = (startDate: Date, endDate: Date) => {
   const minValue = startDate.getTime()
   const maxValue = endDate.getTime()
@@ -55,8 +117,8 @@ const getRandomDate = (startDate: Date, endDate: Date) => {
 
 const newPerson = (): Person => {
   return {
-    firstName: makeid(5),
-    lastName: makeid(5),
+    firstName: generateFullName('firstName'),
+    lastName: generateFullName('lastName'),
     age: Math.floor(Math.random() * 40),
     visits: Math.floor(Math.random() * 1000),
     progress: Math.floor(Math.random() * 100),
@@ -94,7 +156,7 @@ export const DataGridStory: React.FC = () => {
   }
   const onSorting = (sortingField: StateSorting) => {}
 
-  const TableHeader = ({table}: any) => {
+  const GridHeader = ({table}: any) => {
     return (
       <DataGrid.CheckboxCell
         {...{
@@ -106,7 +168,7 @@ export const DataGridStory: React.FC = () => {
     )
   }
 
-  const TableHeaderCell = ({row}: any) => {
+  const GridHeaderCell = ({row}: any) => {
     return (
       <div className='px-1'>
         <DataGrid.CheckboxCell
@@ -124,8 +186,8 @@ export const DataGridStory: React.FC = () => {
     () => [
       {
         id: 'select',
-        header: ({table}) => <TableHeader table={table} />,
-        cell: ({row}) => <TableHeaderCell row={row} />,
+        header: ({table}) => <GridHeader table={table} />,
+        cell: ({row}) => <GridHeaderCell row={row} />,
       },
       {
         id: 'name',
