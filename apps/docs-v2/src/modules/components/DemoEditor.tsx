@@ -1,8 +1,8 @@
-import prism from '@comfortdelgro/markdown'
+import prism from '@comfortdelgro/markdown/prism'
 import Box from '@mui/material/Box'
 import {styled, useTheme} from '@mui/material/styles'
-import {blueDark} from 'docs/src/modules/brandingTheme'
 
+import {blueDark} from 'docs/src/modules/brandingTheme'
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement'
 import {useCodeCopy} from 'docs/src/modules/utils/CodeCopy'
 import {useTranslate} from 'docs/src/modules/utils/i18n'
@@ -88,10 +88,6 @@ export default function DemoEditor(props: DemoEditorProps) {
   const enterRef = React.useRef<HTMLElement | null>(null)
   const handlers = useCodeCopy()
 
-  React.useEffect(() => {
-    wrapperRef.current!.querySelector('textarea')!.tabIndex = -1
-  }, [])
-
   return (
     <StyledMarkdownElement
       ref={wrapperRef}
@@ -119,7 +115,6 @@ export default function DemoEditor(props: DemoEditorProps) {
       <div className='MuiCode-root' {...handlers}>
         <div className='scrollContainer'>
           <StyledSimpleCodeEditor
-            padding={contextTheme.spacing(2)}
             highlight={(code: any) =>
               `<code class="language-${language}">${prism(
                 code,
