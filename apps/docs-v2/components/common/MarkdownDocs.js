@@ -4,8 +4,6 @@ import {
 } from '@mui/joy/styles'
 import {useTheme} from '@mui/system'
 import {exactProp} from '@mui/utils'
-import Ad from 'components/common/Ad'
-import AdGuest from 'components/common/AdGuest'
 import AppLayoutDocs from 'components/common/AppLayoutDocs'
 import Demo from 'components/common/Demo'
 import HighlightedCodeWithTabs from 'components/common/HighlightedCodeWithTabs'
@@ -73,13 +71,6 @@ export default function MarkdownDocs(props) {
       title={title}
       toc={toc}
     >
-      {disableAd ? null : (
-        <BrandingProvider>
-          <AdGuest>
-            <Ad />
-          </AdGuest>
-        </BrandingProvider>
-      )}
       <CssVarsProvider>
         {isJoy && <JoyModeObserver mode={theme.palette.mode} />}
         {rendered.map((renderedMarkdownOrDemo, index) => {

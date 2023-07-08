@@ -5,7 +5,6 @@ import NoSsr from '@mui/material/NoSsr'
 import {alpha, styled} from '@mui/material/styles'
 import {debounce} from '@mui/material/utils'
 import {unstable_useId as useId} from '@mui/utils'
-import {AdCarbonInline} from 'components/common/AdCarbon'
 import DemoEditor from 'components/common/DemoEditor'
 import DemoEditorError from 'components/common/DemoEditorError'
 import DemoSandbox from 'components/common/DemoSandbox'
@@ -620,7 +619,6 @@ export default function Demo(props) {
             </DemoEditor>
           )}
         </Collapse>
-        {adVisibility ? <AdCarbonInline /> : null}
       </BrandingProvider>
     </Root>
   )

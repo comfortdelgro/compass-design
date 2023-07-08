@@ -2,7 +2,6 @@ import GlobalStyles from '@mui/material/GlobalStyles'
 import NoSsr from '@mui/material/NoSsr'
 import {styled} from '@mui/material/styles'
 import {exactProp} from '@mui/utils'
-import AdManager from 'components/common/AdManager'
 import AppContainer from 'components/common/AppContainer'
 import AppFrame from 'components/common/AppFrame'
 import AppLayoutDocsFooter from 'components/common/AppLayoutDocsFooter'
@@ -129,30 +128,28 @@ export default function AppLayoutDocs(props) {
           },
         }}
       />
-      <AdManager {...(hasTabs && {classSelector: '.component-tabs'})}>
-        <Head
-          title={`${title} - ${productName}`}
-          description={description}
-          largeCard={false}
-          card='https://mui.com/static/logo.png'
-        />
-        <Main disableToc={disableToc}>
-          {/*
+      <Head
+        title={`${title} - ${productName}`}
+        description={description}
+        largeCard={false}
+        card='https://mui.com/static/logo.png'
+      />
+      <Main disableToc={disableToc}>
+        {/*
             Render the TOCs first to avoid layout shift when the HTML is streamed.
             See https://jakearchibald.com/2014/dont-use-flexbox-for-page-layout/ for more details.
           */}
-          <StyledAppContainer disableAd={disableAd} hasTabs={hasTabs}>
-            <ActionsDiv>
-              <EditPage sourceLocation={location} />
-            </ActionsDiv>
-            {children}
-            <NoSsr>
-              <AppLayoutDocsFooter tableOfContents={toc} />
-            </NoSsr>
-          </StyledAppContainer>
-          {disableToc ? null : <AppTableOfContents toc={toc} />}
-        </Main>
-      </AdManager>
+        <StyledAppContainer disableAd={disableAd} hasTabs={hasTabs}>
+          <ActionsDiv>
+            <EditPage sourceLocation={location} />
+          </ActionsDiv>
+          {children}
+          <NoSsr>
+            <AppLayoutDocsFooter tableOfContents={toc} />
+          </NoSsr>
+        </StyledAppContainer>
+        {disableToc ? null : <AppTableOfContents toc={toc} />}
+      </Main>
       <BackToTop />
     </Layout>
   )

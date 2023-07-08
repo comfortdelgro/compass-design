@@ -1,6 +1,5 @@
 import 'components/common/bootstrap'
 // --- Post bootstrap -----
-import GoogleAnalytics from 'components/common/GoogleAnalytics'
 import PageContext from 'components/common/PageContext'
 import {ThemeProvider} from 'components/common/ThemeContext'
 import routes from 'constants/routes'
@@ -197,7 +196,6 @@ function AppWrapper(props) {
                 <ThemeProvider>
                   <DocsStyledEngineProvider cacheLtr={emotionCache}>
                     {children}
-                    <GoogleAnalytics />
                   </DocsStyledEngineProvider>
                 </ThemeProvider>
               </PageContext.Provider>
