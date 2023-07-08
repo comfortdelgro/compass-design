@@ -57,11 +57,6 @@ const UList = styled('ul')({
 
 const PRODUCTS = [
   {
-    name: 'Design kits',
-    description: 'Our components available in your favorite design tool.',
-    href: ROUTES.productDesignKits,
-  },
-  {
     name: 'MUI Toolpad',
     description: 'Low-code admin builder.',
     href: ROUTES.productToolpad,
