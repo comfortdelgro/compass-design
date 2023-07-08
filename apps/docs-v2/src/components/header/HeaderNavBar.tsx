@@ -326,11 +326,6 @@ export default function HeaderNavBar() {
           </Popper>
         </li>
         <li role='none'>
-          <Link role='menuitem' href={ROUTES.pricing}>
-            Pricing
-          </Link>
-        </li>
-        <li role='none'>
           <Link role='menuitem' href={ROUTES.about}>
             About us
           </Link>

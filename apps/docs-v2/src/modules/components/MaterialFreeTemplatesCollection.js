@@ -1,15 +1,14 @@
-import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
-import { alpha } from '@mui/material/styles';
+import Button from '@mui/material/Button'
+import Card from '@mui/material/Card'
+import CardActions from '@mui/material/CardActions'
+import CardContent from '@mui/material/CardContent'
+import CardMedia from '@mui/material/CardMedia'
+import Grid from '@mui/material/Grid'
+import {alpha} from '@mui/material/styles'
+import Typography from '@mui/material/Typography'
+import {useTranslate} from 'docs/src/modules/utils/i18n'
 
-const sourcePrefix = `${process.env.SOURCE_CODE_REPO}/tree/v${process.env.LIB_VERSION}`;
+const sourcePrefix = `${process.env.SOURCE_CODE_REPO}/tree/v${process.env.LIB_VERSION}`
 
 function layouts(t) {
   return [
@@ -63,29 +62,22 @@ function layouts(t) {
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/album`,
     },
     {
-      title: t('pricingTitle'),
-      description: t('pricingDescr'),
-      src: '/static/images/templates/pricing.png',
-      href: '/material-ui/getting-started/templates/pricing/',
-      source: `${sourcePrefix}/docs/data/material/getting-started/templates/pricing`,
-    },
-    {
       title: t('stickyFooterTitle'),
       description: t('stickyFooterDescr'),
       src: '/static/images/templates/sticky-footer.png',
       href: '/material-ui/getting-started/templates/sticky-footer/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/sticky-footer`,
     },
-  ];
+  ]
 }
 
 function Templates() {
-  const t = useTranslate();
+  const t = useTranslate()
 
   return (
-    <Grid container spacing={2} sx={{ pt: 2, pb: 4 }}>
+    <Grid container spacing={2} sx={{pt: 2, pb: 4}}>
       {layouts(t).map((layout) => (
-        <Grid item xs={12} sm={4} sx={{ flexGrow: 1 }} key={layout.title}>
+        <Grid item xs={12} sm={4} sx={{flexGrow: 1}} key={layout.title}>
           <Card
             sx={(theme) => ({
               height: '100%',
@@ -99,19 +91,22 @@ function Templates() {
               backgroundColor: `${alpha(theme.palette.grey[50], 0.4)}`,
               borderColor: 'divider',
               ...theme.applyDarkStyles({
-                backgroundColor: `${alpha(theme.palette.primaryDark[700], 0.3)}`,
+                backgroundColor: `${alpha(
+                  theme.palette.primaryDark[700],
+                  0.3,
+                )}`,
                 borderColor: 'divider',
               }),
             })}
-            variant="outlined"
+            variant='outlined'
           >
             <CardMedia
-              component="a"
+              component='a'
               href={layout.href}
               image={layout.src}
               title={layout.title}
-              rel="nofollow"
-              target="_blank"
+              rel='nofollow'
+              target='_blank'
               sx={(theme) => ({
                 height: 0,
                 pt: '65%',
@@ -126,16 +121,21 @@ function Templates() {
                 }),
               })}
             />
-            <CardContent sx={{ flexGrow: 1, p: 0 }}>
-              <Typography component="h2" variant="h6" fontWeight={600} gutterBottom>
+            <CardContent sx={{flexGrow: 1, p: 0}}>
+              <Typography
+                component='h2'
+                variant='h6'
+                fontWeight={600}
+                gutterBottom
+              >
                 {layout.title}
               </Typography>
-              <Typography component="p" variant="body2" color="text.secondary">
+              <Typography component='p' variant='body2' color='text.secondary'>
                 {layout.description}
               </Typography>
             </CardContent>
-            <CardActions sx={{ p: 0, ml: -1 }}>
-              <Button component="a" href={layout.source} size="small">
+            <CardActions sx={{p: 0, ml: -1}}>
+              <Button component='a' href={layout.source} size='small'>
                 {t('sourceCode')}
               </Button>
             </CardActions>
@@ -143,7 +143,7 @@ function Templates() {
         </Grid>
       ))}
     </Grid>
-  );
+  )
 }
 
-export default Templates;
+export default Templates

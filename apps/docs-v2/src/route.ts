@@ -9,7 +9,8 @@ const ROUTES = {
   pricing: '/pricing/',
   about: '/about/',
   rssFeed: '/feed/blog/rss.xml',
-  handbook: 'https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b',
+  handbook:
+    'https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b',
   baseDocs: '/base-ui/getting-started/',
   materialDocs: '/material-ui/getting-started/',
   joyDocs: '/joy-ui/getting-started/',
@@ -34,7 +35,8 @@ const ROUTES = {
   dataGridSpace: '/x/react-data-grid/getting-started/',
   dataGridDocs: '/x/react-data-grid/getting-started/',
   dataGridFeatures: '/x/react-data-grid/#features',
-  dataGridFeaturesComparison: '/x/react-data-grid/getting-started/#feature-comparison',
-};
+  dataGridFeaturesComparison:
+    '/x/react-data-grid/getting-started/#feature-comparison',
+}
 
-export default ROUTES;
+export default ROUTES

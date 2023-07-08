@@ -222,11 +222,6 @@ export default function HeaderNavDropdown() {
                 </Collapse>
               </li>
               <li>
-                <Anchor href={ROUTES.pricing} as={Link} noLinkStyle>
-                  Pricing
-                </Anchor>
-              </li>
-              <li>
                 <Anchor href={ROUTES.about} as={Link} noLinkStyle>
                   About us
                 </Anchor>
