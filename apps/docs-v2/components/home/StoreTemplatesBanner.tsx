@@ -29,10 +29,6 @@ const Image = styled('img')(({theme}) => ({
   borderRadius: (theme.vars || theme).shape.borderRadius,
   objectFit: 'cover',
   boxShadow: '0px 4px 20px rgba(61, 71, 82, 0.25)',
-  ...theme.applyDarkStyles({
-    borderColor: (theme.vars || theme).palette.grey[800],
-    boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.6)',
-  }),
 }))
 
 const Anchor = styled('a')({
@@ -108,13 +104,6 @@ const StoreTemplateImage = React.forwardRef<
         Object.keys(linkMapping).indexOf(brand) + 1
       }light.jpg`}
       alt=''
-      sx={(theme) =>
-        theme.applyDarkStyles({
-          content: `url(/static/branding/store-templates/template-${
-            Object.keys(linkMapping).indexOf(brand) + 1
-          }dark.jpg)`,
-        })
-      }
       {...props}
     />
   )
@@ -243,14 +232,6 @@ export default function StoreTemplatesBanner() {
             (theme.vars || theme).palette.grey[50]
           } 100%)`,
           zIndex: 2,
-          ...theme.applyDarkStyles({
-            background: `linear-gradient(to bottom, ${
-              (theme.vars || theme).palette.primaryDark[900]
-            } 0%, ${alpha(theme.palette.primaryDark[900], 0)} 30%, ${alpha(
-              theme.palette.primaryDark[900],
-              0,
-            )} 70%, ${(theme.vars || theme).palette.primaryDark[900]} 100%)`,
-          }),
         })}
       />
       <Box
@@ -289,11 +270,6 @@ export default function StoreTemplatesBanner() {
           background: `linear-gradient(to right, ${
             (theme.vars || theme).palette.grey[50]
           }, ${transparent})`,
-          ...theme.applyDarkStyles({
-            background: `linear-gradient(to right, ${
-              (theme.vars || theme).palette.primaryDark[900]
-            }, ${alpha(theme.palette.primaryDark[900], 0)})`,
-          }),
         })}
       />
     </Box>

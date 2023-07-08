@@ -7,7 +7,7 @@ import Drawer from '@mui/material/Drawer'
 import List from '@mui/material/List'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
-import {alpha, styled} from '@mui/material/styles'
+import {styled} from '@mui/material/styles'
 import SwipeableDrawer from '@mui/material/SwipeableDrawer'
 import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'
@@ -57,9 +57,6 @@ function ProductDrawerButton(props) {
           '& > span': {
             ml: '4px',
           },
-          ...theme.applyDarkStyles({
-            color: (theme.vars || theme).palette.primary[300],
-          }),
         })}
       >
         {props.productName}
@@ -350,9 +347,6 @@ export default function AppNavDrawer(props) {
                   width: 18,
                   height: 18,
                 },
-                ...theme.applyDarkStyles({
-                  color: (theme.vars || theme).palette.primary[300],
-                }),
               }),
               ...(Array.isArray(sx) ? sx : [sx]),
             ]}
@@ -419,9 +413,6 @@ export default function AppNavDrawer(props) {
                 mr: '4px',
                 borderRight: '1px solid',
                 borderColor: (theme.vars || theme).palette.grey[200],
-                ...theme.applyDarkStyles({
-                  borderColor: alpha(theme.palette.primary[100], 0.08),
-                }),
               })}
             >
               <SvgMuiLogomark width={30} />
@@ -436,9 +427,6 @@ export default function AppNavDrawer(props) {
         <Divider
           sx={(theme) => ({
             borderColor: (theme.vars || theme).palette.grey[100],
-            ...theme.applyDarkStyles({
-              borderColor: alpha(theme.palette.primary[100], 0.08),
-            }),
           })}
         />
         {navItems}

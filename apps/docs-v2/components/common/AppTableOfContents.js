@@ -81,17 +81,6 @@ const NavItem = styled(Link, {
       ...(active && activeStyles),
       '&:active': activeStyles,
     },
-    theme.applyDarkStyles({
-      '&:hover': {
-        borderLeftColor: (theme.vars || theme).palette.grey[600],
-        color: (theme.vars || theme).palette.grey[200],
-      },
-      ...(!active && {
-        color: (theme.vars || theme).palette.grey[500],
-      }),
-      ...(active && activeDarkStyles),
-      '&:active': activeDarkStyles,
-    }),
   ]
 })
 
@@ -258,14 +247,6 @@ export default function AppTableOfContents(props) {
                   borderColor: (theme.vars || theme).palette.primary[200],
                 },
               }),
-              (theme) =>
-                theme.applyDarkStyles({
-                  backgroundColor: alpha(theme.palette.primary[900], 0.2),
-                  borderColor: (theme.vars || theme).palette.primaryDark[700],
-                  '&:hover, &:focus-visible': {
-                    borderColor: (theme.vars || theme).palette.primaryDark[500],
-                  },
-                }),
             ]}
           >
             <Typography
@@ -310,14 +291,6 @@ export default function AppTableOfContents(props) {
                   borderColor: (theme.vars || theme).palette.primary[200],
                 },
               }),
-              (theme) =>
-                theme.applyDarkStyles({
-                  backgroundColor: alpha(theme.palette.primary[900], 0.2),
-                  borderColor: (theme.vars || theme).palette.primaryDark[700],
-                  '&:hover, &:focus-visible': {
-                    borderColor: (theme.vars || theme).palette.primaryDark[500],
-                  },
-                }),
             ]}
           >
             <Typography

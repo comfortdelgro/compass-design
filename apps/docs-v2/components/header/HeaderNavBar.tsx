@@ -2,7 +2,7 @@ import Box from '@mui/material/Box'
 import Fade from '@mui/material/Fade'
 import Paper from '@mui/material/Paper'
 import Popper from '@mui/material/Popper'
-import {alpha, styled} from '@mui/material/styles'
+import {styled} from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import {unstable_debounce as debounce} from '@mui/utils'
 import Link from 'next/link'
@@ -46,20 +46,6 @@ const Navigation = styled('nav')(({theme}) => [
       },
     },
   },
-  theme.applyDarkStyles({
-    '& li': {
-      '& > a, & > div': {
-        '&:hover': {
-          backgroundColor: (theme.vars || theme).palette.primaryDark[700],
-          color: (theme.vars || theme).palette.primaryDark[200],
-        },
-        '&:focus-visible': {
-          backgroundColor: (theme.vars || theme).palette.primaryDark[600],
-          color: (theme.vars || theme).palette.primaryDark[100],
-        },
-      },
-    },
-  }),
 ])
 
 const PRODUCT_IDS = [
@@ -103,12 +89,6 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
               },
             },
           }),
-          (theme) =>
-            theme.applyDarkStyles({
-              '&:hover, &:focus': {
-                backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
-              },
-            }),
         ]}
         {...props}
       >
@@ -120,12 +100,6 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
                 fill: (theme.vars || theme).palette.grey[100],
               },
             }),
-            (theme) =>
-              theme.applyDarkStyles({
-                '& circle': {
-                  fill: (theme.vars || theme).palette.primaryDark[700],
-                },
-              }),
           ]}
         >
           {icon}
@@ -301,14 +275,6 @@ export default function HeaderNavBar() {
                     borderColor: 'grey.200',
                     bgcolor: 'background.paper',
                     boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
-                    ...theme.applyDarkStyles({
-                      borderColor: 'primaryDark.700',
-                      bgcolor: 'primaryDark.900',
-                      boxShadow: `0px 4px 20px ${alpha(
-                        theme.palette.background.paper,
-                        0.72,
-                      )}`,
-                    }),
                     '& ul': {
                       margin: 0,
                       padding: 0,

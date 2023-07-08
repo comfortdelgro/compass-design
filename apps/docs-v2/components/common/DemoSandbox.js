@@ -8,8 +8,6 @@ import {
 } from '@mui/material/styles'
 import {jssPreset, StylesProvider} from '@mui/styles'
 import DemoErrorBoundary from 'components/common/DemoErrorBoundary'
-import {highDensity} from 'components/common/ThemeContext'
-import {getDesignTokens} from 'docs/src/modules/brandingTheme'
 import {create} from 'jss'
 import rtl from 'jss-rtl'
 import {useRouter} from 'next/router'
@@ -138,11 +136,7 @@ DemoIframe.propTypes = {
 
 // Use the default MUI theme for the demos
 function getTheme(outerTheme) {
-  const brandingDesignTokens = getDesignTokens(outerTheme.palette.mode)
-  const isCustomized =
-    outerTheme.palette.primary?.main &&
-    outerTheme.palette.primary.main !==
-      brandingDesignTokens.palette.primary.main
+  const isCustomized = outerTheme.palette.primary?.main
   const resultTheme = createTheme(
     {
       palette: {
@@ -157,7 +151,7 @@ function getTheme(outerTheme) {
     // To make DensityTool playground works
     // check from MuiFormControl because brandingTheme does not customize this component
     outerTheme.components?.MuiFormControl?.defaultProps?.margin === 'dense'
-      ? highDensity
+      ? {}
       : {},
   )
   if (outerTheme.direction) {

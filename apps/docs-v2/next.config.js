@@ -1,7 +1,7 @@
 const path = require('path')
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer')
 const withDocsInfra = require('./nextConfigDocsInfra')
-const {findPages} = require('./src/modules/utils/find')
+const {findPages} = require('./utils/find')
 const {
   LANGUAGES,
   LANGUAGES_SSR,
@@ -116,45 +116,6 @@ module.exports = withDocsInfra({
               },
             ],
           },
-          // transpile 3rd party packages with dependencies in this repository
-          // {
-          //   test: /\.(js|mjs|jsx)$/,
-          //   resourceQuery: {not: [/raw/]},
-          //   include:
-          //     /node_modules(\/|\\)(notistack|@mui(\/|\\)x-data-grid|@mui(\/|\\)x-data-grid-pro|@mui(\/|\\)x-license-pro|@mui(\/|\\)x-data-grid-generator|@mui(\/|\\)x-date-pickers-pro|@mui(\/|\\)x-date-pickers)/,
-          //   use: {
-          //     loader: 'babel-loader',
-          //     options: {
-          //       // on the server we use the transpiled commonJS build, on client ES6 modules
-          //       // babel needs to figure out in what context to parse the file
-          //       sourceType: 'unambiguous',
-          //       plugins: [
-          //         [
-          //           'babel-plugin-module-resolver',
-          //           {
-          //             alias: {
-          //               // all packages in this monorepo
-          //               '@mui/material': '@mui/material',
-          //               '@mui/docs': '@mui/docs',
-          //               '@mui/icons-material': '@mui/icons-material',
-          //               '@mui/lab': '@mui/lab',
-          //               '@mui/styled-engine': '@mui/styled-engine',
-          //               '@mui/styles': '@mui/styles',
-          //               '@mui/system': '@mui/system',
-          //               '@mui/private-theming': '@mui/private-theming',
-          //               '@mui/utils': '@mui/utils',
-          //               '@mui/base': '@mui/base',
-          //               '@mui/material-next': '@mui/material-next',
-          //               '@mui/joy': '@mui/joy',
-          //             },
-          //             // transformFunctions: ['require'],
-          //           },
-          //         ],
-          //       ],
-          //     },
-          //   },
-          // },
-          // required to transpile ../packages/
           {
             test: /\.(js|mjs|tsx|ts)$/,
             resourceQuery: {not: [/raw/]},

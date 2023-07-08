@@ -1,6 +1,6 @@
 import Divider from '@mui/material/Divider'
 import Head from 'components/common/Head'
-import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider'
+import BrandingCssVarsProvider from 'components/layouts/BrandingCssVarsProvider'
 import Hero from '../components/home/Hero'
 import HeroEnd from '../components/home/HeroEnd'
 import ProductSuite from '../components/home/ProductSuite'

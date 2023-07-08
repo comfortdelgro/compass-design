@@ -36,16 +36,6 @@ const Anchor = styled('a')<{
       },
     },
   },
-  theme.applyDarkStyles({
-    color: '#fff',
-    '&:hover, &:focus-visible': {
-      backgroundColor: (theme.vars || theme).palette.primaryDark[700],
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
-      },
-    },
-  }),
 ])
 
 const UList = styled('ul')({
@@ -111,9 +101,6 @@ export default function HeaderNavDropdown() {
             left: 0,
             right: 0,
             boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
-            ...theme.applyDarkStyles({
-              boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.5)',
-            }),
           })}
         >
           <Box
@@ -129,9 +116,6 @@ export default function HeaderNavDropdown() {
                 '& ul': {
                   borderLeft: '1px solid',
                   borderColor: 'grey.100',
-                  ...theme.applyDarkStyles({
-                    borderColor: 'primaryDark.700',
-                  }),
                   pl: 1,
                   pb: 1,
                   ml: 1,

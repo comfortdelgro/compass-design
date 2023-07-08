@@ -51,14 +51,6 @@ const SearchButton = styled('button')(({theme}) => [
       borderColor: (theme.vars || theme).palette.grey[300],
     },
   },
-  theme.applyDarkStyles({
-    backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
-    borderColor: (theme.vars || theme).palette.primaryDark[700],
-    '&:hover': {
-      background: (theme.vars || theme).palette.primaryDark[700],
-      borderColor: (theme.vars || theme).palette.primaryDark[600],
-    },
-  }),
 ])
 
 const SearchLabel = styled('span')(({theme}) => {
@@ -78,10 +70,6 @@ const Shortcut = styled('div')(({theme}) => {
     backgroundColor: '#FFF',
     padding: theme.spacing(0, 0.5),
     borderRadius: 7,
-    ...theme.applyDarkStyles({
-      borderColor: (theme.vars || theme).palette.primaryDark[600],
-      backgroundColor: (theme.vars || theme).palette.primaryDark[800],
-    }),
   }
 })
 
@@ -336,9 +324,6 @@ export default function AppSearch(props) {
           fontSize='small'
           sx={(theme) => ({
             color: 'primary.500',
-            ...theme.applyDarkStyles({
-              color: 'primary.300',
-            }),
           })}
         />
         <SearchLabel>{search}</SearchLabel>

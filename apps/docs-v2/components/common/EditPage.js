@@ -44,9 +44,6 @@ export default function EditPage(props) {
           width: 14,
           height: 14,
         },
-        ...theme.applyDarkStyles({
-          color: 'primary.300',
-        }),
       })}
     >
       {t('editPage')}

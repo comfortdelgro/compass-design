@@ -3,7 +3,6 @@ import Box from '@mui/material/Box'
 import {styled, useTheme} from '@mui/material/styles'
 
 import MarkdownElement from 'components/common/MarkdownElement'
-import {blueDark} from 'docs/src/modules/brandingTheme'
 import * as React from 'react'
 import SimpleCodeEditor from 'react-simple-code-editor'
 import {useCodeCopy} from 'utils/CodeCopy'
@@ -14,7 +13,7 @@ const StyledMarkdownElement = styled(MarkdownElement)(({theme}) => [
     '& .scrollContainer': {
       maxHeight: 'min(68vh, 1000px)',
       overflow: 'auto',
-      backgroundColor: blueDark[800],
+      backgroundColor: 'blueDark[800]',
       marginTop: -1,
       border: `1px solid ${(theme.vars || theme).palette.divider}`,
       colorScheme: 'dark',
@@ -30,25 +29,11 @@ const StyledMarkdownElement = styled(MarkdownElement)(({theme}) => [
     },
     '& pre': {
       // The scroll container needs to be the parent of the editor, overriding:
-      // https://github.com/mui/material-ui/blob/269c1d0c7572fcb6ae3b270a2622d16c7e40c848/components/common/MarkdownElement.js#L27-L26
+      // https://github.com/mui/material-ui/blob/269c1d0c7572fcb6ae3b270a2622d16c7e40c848/docs/src/modules/components/MarkdownElement.js#L27-L26
       maxWidth: 'initial',
       maxHeight: 'initial',
     },
   },
-  theme.applyDarkStyles({
-    '& .scrollContainer': {
-      '&:hover': {
-        boxShadow: `0 0 0 3px ${
-          (theme.vars || theme).palette.primaryDark[300]
-        }`,
-      },
-      '&:focus-within': {
-        boxShadow: `0 0 0 2px ${
-          (theme.vars || theme).palette.primaryDark[400]
-        }`,
-      },
-    },
-  }),
 ]) as any
 
 const StyledSimpleCodeEditor = styled(SimpleCodeEditor)(({theme}) => ({
@@ -137,8 +122,8 @@ export default function DemoEditor(props: DemoEditorProps) {
             outline: 0,
             left: '50%',
             border: '1px solid',
-            borderColor: blueDark[600],
-            backgroundColor: blueDark[700],
+            borderColor: 'blueDark[600]',
+            backgroundColor: 'blueDark[700]',
             color: '#FFF',
             transform: 'translateX(-50%)',
             borderRadius: '6px',
@@ -152,11 +137,11 @@ export default function DemoEditor(props: DemoEditorProps) {
             },
             '> kbd': {
               padding: theme.spacing(0.2, 0.4),
-              backgroundColor: blueDark[500],
+              backgroundColor: 'blueDark[500]',
               fontSize: theme.typography.pxToRem(11),
               borderRadius: '6px',
               border: '1px solid',
-              borderColor: blueDark[400],
+              borderColor: 'blueDark[400]',
             },
           })}
           dangerouslySetInnerHTML={{

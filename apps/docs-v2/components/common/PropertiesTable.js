@@ -31,13 +31,6 @@ const Table = styled('table')(({theme}) => {
     // as a workaround, use negative margin with overflow `hidden` on the parent
     marginLeft: -1,
     marginRight: -1,
-    ...theme.applyDarkStyles({
-      background: `
-      linear-gradient(to right, ${contentColorDark} 5%, ${contentColorTransparentDark}),
-      linear-gradient(to right, ${contentColorTransparentDark}, ${contentColorDark} 100%) 100%,
-      linear-gradient(to right, ${shadowColorDark}, rgba(0, 0, 0, 0) 5%),
-      linear-gradient(to left, ${shadowColorDark}, rgba(0, 0, 0, 0) 5%)`,
-    }),
   }
 })
 

@@ -51,9 +51,6 @@ export default function HeroContainer({
                   overflow: 'hidden',
                 },
                 (theme) =>
-                  theme.applyDarkStyles({
-                    bgcolor: 'primaryDark.900',
-                  }),
                 ...(Array.isArray(rightSx) ? rightSx : [rightSx]),
               ]}
             >

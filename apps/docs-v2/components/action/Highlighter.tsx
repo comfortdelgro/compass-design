@@ -64,25 +64,6 @@ export default function Highlighter({
               },
             },
           }),
-          ...theme.applyDarkStyles({
-            color: 'primary.800',
-            ...((!disableBorder || selected) && {
-              borderColor: 'primaryDark.500',
-            }),
-            ...(selected && {
-              bgcolor: 'primaryDark.700',
-              borderColor: 'primaryDark.300',
-              color: 'primary.300',
-            }),
-            ...(!selected && {
-              '&:hover, &:focus': {
-                bgcolor: 'primaryDark.800',
-                '@media (hover: none)': {
-                  bgcolor: 'transparent',
-                },
-              },
-            }),
-          }),
           '&.Mui-disabled': {
             opacity: 0.4,
           },

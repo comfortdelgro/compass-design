@@ -118,115 +118,88 @@ const AuthorsContainer = styled('div')(({theme}) => ({
   },
 }))
 
-const Root = styled('div')(
-  ({theme}) => ({
-    flexGrow: 1,
-    background: `linear-gradient(180deg, ${
-      (theme.vars || theme).palette.grey[50]
-    } 0%, #FFFFFF 100%)`,
-    backgroundSize: '100% 300px',
-    backgroundRepeat: 'no-repeat',
-    [`& .${classes.back}`]: {
-      display: 'flex',
-      alignItems: 'center',
-      marginBottom: theme.spacing(2),
-      marginLeft: theme.spacing(-1),
+const Root = styled('div')(({theme}) => ({
+  flexGrow: 1,
+  background: `linear-gradient(180deg, ${
+    (theme.vars || theme).palette.grey[50]
+  } 0%, #FFFFFF 100%)`,
+  backgroundSize: '100% 300px',
+  backgroundRepeat: 'no-repeat',
+  [`& .${classes.back}`]: {
+    display: 'flex',
+    alignItems: 'center',
+    marginBottom: theme.spacing(2),
+    marginLeft: theme.spacing(-1),
+  },
+  [`& .${classes.container}`]: {
+    paddingTop: 60 + 20,
+    marginBottom: theme.spacing(12),
+    maxWidth: `calc(${BLOG_MAX_WIDTH}px + ${theme.spacing(2 * 2)})`,
+    [theme.breakpoints.up('md')]: {
+      maxWidth: `calc(${BLOG_MAX_WIDTH}px + ${theme.spacing(3 * 2)})`,
     },
-    [`& .${classes.container}`]: {
-      paddingTop: 60 + 20,
-      marginBottom: theme.spacing(12),
-      maxWidth: `calc(${BLOG_MAX_WIDTH}px + ${theme.spacing(2 * 2)})`,
-      [theme.breakpoints.up('md')]: {
-        maxWidth: `calc(${BLOG_MAX_WIDTH}px + ${theme.spacing(3 * 2)})`,
-      },
-      [theme.breakpoints.up('lg')]: {
-        maxWidth: `calc(${BLOG_MAX_WIDTH}px + ${theme.spacing(8 * 2)})`,
-      },
-      '& h1': {
-        marginBottom: theme.spacing(3),
-      },
-      '& .markdown-body': {
-        lineHeight: 1.7,
-      },
-      '& img, & video': {
-        borderRadius: 4,
-        display: 'block',
-        margin: 'auto',
-      },
-      '& strong': {
-        color: (theme.vars || theme).palette.grey[900],
-      },
-      '& summary': {
-        padding: 8,
-        fontSize: theme.typography.pxToRem(14),
-        fontWeight: theme.typography.fontWeightMedium,
-        color: (theme.vars || theme).palette.grey[900],
-      },
-      '& details': {
-        paddingLeft: 16,
-        paddingRight: 16,
-        background: alpha(theme.palette.grey[50], 0.5),
-        border: '1px solid',
-        borderRadius: 10,
-        borderColor: (theme.vars || theme).palette.grey[200],
-        transitionProperty: 'all',
-        transitionTiming: 'cubic-bezier(0.4, 0, 0.2, 1)',
-        transitionDuration: '200ms',
-        '&:hover, &:focus-visible': {
-          background: (theme.vars || theme).palette.grey[50],
-          borderColor: (theme.vars || theme).palette.grey[300],
-        },
-      },
-      '& th': {
-        textAlign: 'left',
-        borderBottom: `3px solid rgba(62, 80, 96, 0.2) !important`,
-      },
-      '& .blog-description': {
-        fontSize: theme.typography.pxToRem(13),
-        marginTop: 8,
-        textAlign: 'center',
-        color: (theme.vars || theme).palette.grey[700],
-        '& a': {
-          color: 'inherit',
-          textDecoration: 'underline',
-        },
-      },
-      '& .MuiCode-root + .blog-description': {
-        marginTop: -20 + 8,
+    [theme.breakpoints.up('lg')]: {
+      maxWidth: `calc(${BLOG_MAX_WIDTH}px + ${theme.spacing(8 * 2)})`,
+    },
+    '& h1': {
+      marginBottom: theme.spacing(3),
+    },
+    '& .markdown-body': {
+      lineHeight: 1.7,
+    },
+    '& img, & video': {
+      borderRadius: 4,
+      display: 'block',
+      margin: 'auto',
+    },
+    '& strong': {
+      color: (theme.vars || theme).palette.grey[900],
+    },
+    '& summary': {
+      padding: 8,
+      fontSize: theme.typography.pxToRem(14),
+      fontWeight: theme.typography.fontWeightMedium,
+      color: (theme.vars || theme).palette.grey[900],
+    },
+    '& details': {
+      paddingLeft: 16,
+      paddingRight: 16,
+      background: alpha(theme.palette.grey[50], 0.5),
+      border: '1px solid',
+      borderRadius: 10,
+      borderColor: (theme.vars || theme).palette.grey[200],
+      transitionProperty: 'all',
+      transitionTiming: 'cubic-bezier(0.4, 0, 0.2, 1)',
+      transitionDuration: '200ms',
+      '&:hover, &:focus-visible': {
+        background: (theme.vars || theme).palette.grey[50],
+        borderColor: (theme.vars || theme).palette.grey[300],
       },
     },
-    [`& .${classes.time}`]: {
-      color: (theme.vars || theme).palette.text.secondary,
-      ...theme.typography.caption,
-      fontWeight: 500,
+    '& th': {
+      textAlign: 'left',
+      borderBottom: `3px solid rgba(62, 80, 96, 0.2) !important`,
     },
-  }),
-  ({theme}) =>
-    theme.applyDarkStyles({
-      background: `linear-gradient(180deg, ${
-        (theme.vars || theme).palette.primaryDark[900]
-      } 0%, #001E3C 100%)`,
-      [`& .${classes.container}`]: {
-        '& strong': {
-          color: (theme.vars || theme).palette.grey[100],
-        },
-        '& summary': {
-          color: (theme.vars || theme).palette.grey[300],
-        },
-        '& details': {
-          background: alpha(theme.palette.primary[900], 0.3),
-          borderColor: (theme.vars || theme).palette.primaryDark[700],
-          '&:hover, &:focus-visible': {
-            background: alpha(theme.palette.primary[900], 0.4),
-            borderColor: (theme.vars || theme).palette.primaryDark[500],
-          },
-        },
-        '& .blog-description': {
-          color: (theme.vars || theme).palette.grey[500],
-        },
+    '& .blog-description': {
+      fontSize: theme.typography.pxToRem(13),
+      marginTop: 8,
+      textAlign: 'center',
+      color: (theme.vars || theme).palette.grey[700],
+      '& a': {
+        color: 'inherit',
+        textDecoration: 'underline',
       },
-    }),
-)
+    },
+    '& .MuiCode-root + .blog-description': {
+      marginTop: -20 + 8,
+    },
+  },
+  [`& .${classes.time}`]: {
+    color: (theme.vars || theme).palette.text.secondary,
+    ...theme.typography.caption,
+    fontWeight: 500,
+  },
+}))
 
 function TopLayoutBlog(props) {
   const {className, docs} = props

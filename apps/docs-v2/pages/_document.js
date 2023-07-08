@@ -4,7 +4,6 @@ import GlobalStyles from '@mui/material/GlobalStyles'
 import {getInitColorSchemeScript as getMuiInitColorSchemeScript} from '@mui/material/styles'
 import {ServerStyleSheets as JSSServerStyleSheets} from '@mui/styles'
 import createEmotionCache from 'docs/src/createEmotionCache'
-import {getMetaThemeColor} from 'docs/src/modules/brandingTheme'
 import Document, {Head, Html, Main, NextScript} from 'next/document'
 import Script from 'next/script'
 import * as React from 'react'
@@ -55,12 +54,12 @@ export default class MyDocument extends Document {
           {/* PWA primary color */}
           <meta
             name='theme-color'
-            content={getMetaThemeColor('light')}
+            content='light'
             media='(prefers-color-scheme: light)'
           />
           <meta
             name='theme-color'
-            content={getMetaThemeColor('dark')}
+            content='dark'
             media='(prefers-color-scheme: dark)'
           />
           <link rel='shortcut icon' href='/static/favicon.ico' />

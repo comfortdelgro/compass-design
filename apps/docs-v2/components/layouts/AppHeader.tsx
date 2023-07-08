@@ -4,11 +4,10 @@ import Container from '@mui/material/Container'
 import GlobalStyles from '@mui/material/GlobalStyles'
 import IconButton from '@mui/material/IconButton'
 import Stack from '@mui/material/Stack'
-import {alpha, styled} from '@mui/material/styles'
+import {styled} from '@mui/material/styles'
 import Tooltip from '@mui/material/Tooltip'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import {DeferredAppSearch} from 'components/common/AppFrame'
-import {useChangeTheme} from 'components/common/ThemeContext'
 import HeaderNavBar from 'components/header/HeaderNavBar'
 import HeaderNavDropdown from 'components/header/HeaderNavDropdown'
 import ThemeModeToggle from 'components/header/ThemeModeToggle'
@@ -24,15 +23,9 @@ const Header = styled('header')(({theme}) => [
     transition: theme.transitions.create('top'),
     zIndex: theme.zIndex.appBar,
     backdropFilter: 'blur(8px)',
-    boxShadow: `inset 0px -1px 1px ${(theme.vars || theme).palette.grey[100]}`,
+    boxShadow: `inset 0px -1px 1px palette.grey[100]`,
     backgroundColor: 'rgba(255,255,255,0.8)',
   },
-  theme.applyDarkStyles({
-    boxShadow: `inset 0px -1px 1px ${
-      (theme.vars || theme).palette.primaryDark[700]
-    }`,
-    backgroundColor: alpha(theme.palette.primaryDark[900], 0.7),
-  }),
 ])
 
 const HEIGHT = 56
@@ -43,7 +36,6 @@ interface AppHeaderProps {
 
 export default function AppHeader(props: AppHeaderProps) {
   const {gitHubRepository = 'https://github.com/mui'} = props
-  const changeTheme = useChangeTheme()
   const [mode, setMode] = React.useState<string | null>(null)
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
 
@@ -68,7 +60,7 @@ export default function AppHeader(props: AppHeaderProps) {
     } catch (error) {
       // do nothing
     }
-    changeTheme({paletteMode})
+    // changeTheme({paletteMode})
   }
 
   return (

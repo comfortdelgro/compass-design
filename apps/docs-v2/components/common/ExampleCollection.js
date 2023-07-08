@@ -1,12 +1,12 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Unstable_Grid2';
-import Card from '@mui/material/Card';
-import Avatar from '@mui/material/Avatar';
-import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
-import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
-import FilterDramaIcon from '@mui/icons-material/FilterDrama';
+import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded'
+import FilterDramaIcon from '@mui/icons-material/FilterDrama'
+import Avatar from '@mui/material/Avatar'
+import Box from '@mui/material/Box'
+import Card from '@mui/material/Card'
+import Link from '@mui/material/Link'
+import Typography from '@mui/material/Typography'
+import Grid from '@mui/material/Unstable_Grid2'
+import * as React from 'react'
 
 const examples = [
   {
@@ -14,7 +14,8 @@ const examples = [
     label: 'View JS example',
     tsLabel: 'View TS example',
     link: 'https://github.com/mui/material-ui/tree/master/examples/material-next',
-    tsLink: 'https://github.com/mui/material-ui/tree/master/examples/material-next-ts',
+    tsLink:
+      'https://github.com/mui/material-ui/tree/master/examples/material-next-ts',
     src: '/static/images/examples/next.svg',
   },
   {
@@ -22,7 +23,8 @@ const examples = [
     label: 'View JS example',
     tsLabel: 'View TS example',
     link: 'https://github.com/mui/material-ui/tree/master/examples/material-cra',
-    tsLink: 'https://github.com/mui/material-ui/tree/master/examples/material-cra-ts',
+    tsLink:
+      'https://github.com/mui/material-ui/tree/master/examples/material-cra-ts',
     src: '/static/images/examples/cra.svg',
   },
   {
@@ -77,7 +79,7 @@ const examples = [
     link: 'https://github.com/mui/material-ui/tree/master/examples/material-express-ssr',
     src: '/static/images/examples/express.png',
   },
-];
+]
 
 export default function ExampleCollection() {
   return (
@@ -99,11 +101,6 @@ export default function ExampleCollection() {
                 borderColor: 'grey.200',
                 boxShadow: 'none',
               },
-              (theme) =>
-                theme.applyDarkStyles({
-                  bgcolor: 'transparent',
-                  borderColor: 'primaryDark.700',
-                }),
             ]}
           >
             <Avatar
@@ -113,12 +110,12 @@ export default function ExampleCollection() {
                 loading: 'lazy',
               }}
               {...(typeof example.src === 'string'
-                ? { src: example.src }
-                : { children: example.src })}
+                ? {src: example.src}
+                : {children: example.src})}
               alt={example.name}
             />
             <div>
-              <Typography variant="body" fontWeight="semiBold">
+              <Typography variant='body' fontWeight='semiBold'>
                 {example.name}
               </Typography>
               <Box
@@ -130,7 +127,7 @@ export default function ExampleCollection() {
               >
                 <Link
                   href={example.link}
-                  variant="body2"
+                  variant='body2'
                   sx={{
                     fontWeight: 500,
                     display: 'flex',
@@ -139,14 +136,14 @@ export default function ExampleCollection() {
                   }}
                 >
                   {example.label}
-                  <ChevronRightRoundedIcon fontSize="small" />
+                  <ChevronRightRoundedIcon fontSize='small' />
                 </Link>
                 {!!example.tsLink && (
                   <React.Fragment>
                     <Typography
-                      variant="caption"
+                      variant='caption'
                       sx={{
-                        display: { xs: 'none', sm: 'block' },
+                        display: {xs: 'none', sm: 'block'},
                         opacity: 0.2,
                         mr: 0.75,
                       }}
@@ -155,7 +152,7 @@ export default function ExampleCollection() {
                     </Typography>
                     <Link
                       href={example.tsLink}
-                      variant="body2"
+                      variant='body2'
                       sx={{
                         fontWeight: 500,
                         display: 'flex',
@@ -163,7 +160,7 @@ export default function ExampleCollection() {
                       }}
                     >
                       {example.tsLabel}
-                      <ChevronRightRoundedIcon fontSize="small" />
+                      <ChevronRightRoundedIcon fontSize='small' />
                     </Link>
                   </React.Fragment>
                 )}
@@ -173,5 +170,5 @@ export default function ExampleCollection() {
         </Grid>
       ))}
     </Grid>
-  );
+  )
 }

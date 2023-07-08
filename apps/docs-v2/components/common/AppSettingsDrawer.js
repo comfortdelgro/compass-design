@@ -9,12 +9,11 @@ import Button from '@mui/material/Button'
 import Divider from '@mui/material/Divider'
 import Drawer from '@mui/material/Drawer'
 import IconButton from '@mui/material/IconButton'
-import {alpha, styled, useTheme} from '@mui/material/styles'
+import {styled, useTheme} from '@mui/material/styles'
 import ToggleButton from '@mui/material/ToggleButton'
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
 import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'
-import {useChangeTheme} from 'components/common/ThemeContext'
 import PropTypes from 'prop-types'
 import * as React from 'react'
 import {useTranslate} from 'utils/i18n'
@@ -41,7 +40,6 @@ function AppSettingsDrawer(props) {
   const {onClose, open = false, ...other} = props
   const t = useTranslate()
   const upperTheme = useTheme()
-  const changeTheme = useChangeTheme()
   const [mode, setMode] = React.useState(null)
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
   const preferredMode = prefersDarkMode ? 'dark' : 'light'
@@ -70,14 +68,14 @@ function AppSettingsDrawer(props) {
       } catch (error) {
         // thrown when cookies are disabled.
       }
-      changeTheme({paletteMode: preferredMode})
+      // changeTheme({paletteMode: preferredMode})
     } else {
       try {
         localStorage.setItem('mui-mode', paletteMode) // syncing with homepage, can be removed once all pages are migrated to CSS variables
       } catch (error) {
         // thrown when cookies are disabled.
       }
-      changeTheme({paletteMode})
+      // changeTheme({paletteMode})
     }
   }
 
@@ -86,7 +84,7 @@ function AppSettingsDrawer(props) {
       direction = upperTheme.direction
     }
 
-    changeTheme({direction})
+    // changeTheme({direction})
   }
 
   return (
@@ -208,15 +206,6 @@ function AppSettingsDrawer(props) {
                 background: 'grey.50',
               },
             },
-            (theme) =>
-              theme.applyDarkStyles({
-                borderColor: 'primaryDark.700',
-                color: 'primary.300',
-                '&:hover': {
-                  borderColor: 'primaryDark.600',
-                  background: alpha(theme.palette.primaryDark[700], 0.4),
-                },
-              }),
           ]}
         >
           {t('settings.editWebsiteColors')}

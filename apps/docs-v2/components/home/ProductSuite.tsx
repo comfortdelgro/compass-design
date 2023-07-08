@@ -19,9 +19,6 @@ function createLoading(sx: BoxProps['sx']) {
           (theme) => ({
             borderRadius: 1,
             bgcolor: 'grey.100',
-            ...theme.applyDarkStyles({
-              bgcolor: 'primaryDark.800',
-            }),
           }),
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}
@@ -50,9 +47,6 @@ function ProductSuite() {
         bgcolor: 'grey.50',
         py: {xs: 4, sm: 6, md: 8},
         overflow: 'hidden',
-        ...theme.applyDarkStyles({
-          bgcolor: 'primaryDark.900',
-        }),
       })}
     >
       <Container>

@@ -7,7 +7,7 @@ import CssBaseline from '@mui/material/CssBaseline'
 import GlobalStyles from '@mui/material/GlobalStyles'
 import IconButton from '@mui/material/IconButton'
 import Stack from '@mui/material/Stack'
-import {alpha, styled} from '@mui/material/styles'
+import {styled} from '@mui/material/styles'
 import Toolbar from '@mui/material/Toolbar'
 import Tooltip from '@mui/material/Tooltip'
 import {debounce} from '@mui/material/utils'
@@ -88,10 +88,6 @@ export function DeferredAppSearch() {
 const RootDiv = styled('div')(({theme}) => {
   return {
     display: 'flex',
-    ...theme.applyDarkStyles({
-      background: (theme.vars || theme).palette.primaryDark[900],
-    }),
-    // TODO: Should be handled by the main component
   }
 })
 
@@ -117,11 +113,6 @@ const StyledAppBar = styled(AppBar, {
     borderBottomWidth: 'thin',
     backgroundColor: 'rgba(255,255,255,0.9)',
     color: (theme.vars || theme).palette.grey[800],
-    ...theme.applyDarkStyles({
-      borderColor: alpha(theme.palette.primary[100], 0.08),
-      backgroundColor: alpha(theme.palette.primaryDark[900], 0.8),
-      color: (theme.vars || theme).palette.grey[500],
-    }),
   }
 })
 

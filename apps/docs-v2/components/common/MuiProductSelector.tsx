@@ -1,7 +1,6 @@
 import Box, {BoxProps} from '@mui/material/Box'
 import Chip from '@mui/material/Chip'
 import Stack from '@mui/material/Stack'
-import {alpha} from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import ROUTES from 'docs/src/route'
 import Link from 'next/link'
@@ -37,12 +36,6 @@ function ProductSubMenu(props: ProductSubMenuProp) {
               fill: (theme.vars || theme).palette.grey[100],
             },
           }),
-          (theme) =>
-            theme.applyDarkStyles({
-              '& circle': {
-                fill: (theme.vars || theme).palette.primaryDark[700],
-              },
-            }),
         ]}
       >
         {icon}
@@ -81,9 +74,6 @@ export default function MuiProductSelector() {
           pr: 3,
           borderBottom: '1px solid',
           borderColor: 'grey.100',
-          ...theme.applyDarkStyles({
-            borderColor: alpha(theme.palette.primary[100], 0.08),
-          }),
         })}
       >
         <Box sx={{ml: '36px', pl: 2, pt: 1.5, position: 'relative'}}>

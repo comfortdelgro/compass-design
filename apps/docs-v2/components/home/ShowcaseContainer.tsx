@@ -1,8 +1,8 @@
-import * as React from 'react';
-import Box, { BoxProps } from '@mui/material/Box';
-import Fade from '@mui/material/Fade';
-import NoSsr from '@mui/material/NoSsr';
-import Paper, { PaperProps } from '@mui/material/Paper';
+import Box, {BoxProps} from '@mui/material/Box'
+import Fade from '@mui/material/Fade'
+import NoSsr from '@mui/material/NoSsr'
+import Paper, {PaperProps} from '@mui/material/Paper'
+import * as React from 'react'
 
 export default function ShowcaseContainer({
   preview,
@@ -11,11 +11,11 @@ export default function ShowcaseContainer({
   codeSx,
   sx,
 }: {
-  preview?: React.ReactNode;
-  previewSx?: PaperProps['sx'];
-  code?: React.ReactNode;
-  codeSx?: BoxProps['sx'];
-  sx?: BoxProps['sx'];
+  preview?: React.ReactNode
+  previewSx?: PaperProps['sx']
+  code?: React.ReactNode
+  codeSx?: BoxProps['sx']
+  sx?: BoxProps['sx']
 }) {
   return (
     <Fade in timeout={700}>
@@ -28,7 +28,7 @@ export default function ShowcaseContainer({
         }}
       >
         <Paper
-          variant="outlined"
+          variant='outlined'
           sx={[
             {
               display: 'flex',
@@ -42,12 +42,6 @@ export default function ShowcaseContainer({
               borderBottomLeftRadius: 0,
               borderBottomRightRadius: 0,
             },
-            (theme) =>
-              theme.applyDarkStyles({
-                bgcolor: 'primaryDark.700',
-                borderColor: 'primaryDark.600',
-              }),
-            ...(Array.isArray(previewSx) ? previewSx : [previewSx]),
           ]}
         >
           {preview}
@@ -68,16 +62,11 @@ export default function ShowcaseContainer({
               borderBottomLeftRadius: 10,
               borderBottomRightRadius: 10,
             },
-            (theme) =>
-              theme.applyDarkStyles({
-                borderColor: 'primaryDark.700',
-              }),
-            ...(Array.isArray(codeSx) ? codeSx : [codeSx]),
           ]}
         >
           <NoSsr>{code}</NoSsr>
         </Box>
       </Box>
     </Fade>
-  );
+  )
 }

@@ -90,13 +90,6 @@ function Templates() {
               borderRadius: 1,
               backgroundColor: `${alpha(theme.palette.grey[50], 0.4)}`,
               borderColor: 'divider',
-              ...theme.applyDarkStyles({
-                backgroundColor: `${alpha(
-                  theme.palette.primaryDark[700],
-                  0.3,
-                )}`,
-                borderColor: 'divider',
-              }),
             })}
             variant='outlined'
           >
@@ -115,10 +108,6 @@ function Templates() {
                 border: '1px solid',
                 borderColor: 'grey.100',
                 color: 'grey.100',
-                ...theme.applyDarkStyles({
-                  borderColor: 'grey.900',
-                  color: 'primaryDark.900',
-                }),
               })}
             />
             <CardContent sx={{flexGrow: 1, p: 0}}>

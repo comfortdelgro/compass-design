@@ -20,14 +20,6 @@ const StyledTab = styled(Tab)(({theme}) => ({
   '&:hover': {
     background: (theme.vars || theme).palette.grey[50],
   },
-  ...theme.applyDarkStyles({
-    '&:hover': {
-      background: (theme.vars || theme).palette.primaryDark[700],
-    },
-    '&.Mui-selected': {
-      color: (theme.vars || theme).palette.primary[300],
-    },
-  }),
 }))
 
 export default function ComponentPageTabs(props) {

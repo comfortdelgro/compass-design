@@ -1,30 +1,30 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import ButtonBase, { ButtonBaseProps } from '@mui/material/ButtonBase';
-import Typography from '@mui/material/Typography';
-import AddCircleOutlineRounded from '@mui/icons-material/AddCircleOutlineRounded';
-import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
+import AddCircleOutlineRounded from '@mui/icons-material/AddCircleOutlineRounded'
+import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded'
+import Box from '@mui/material/Box'
+import ButtonBase, {ButtonBaseProps} from '@mui/material/ButtonBase'
+import Typography from '@mui/material/Typography'
+import * as React from 'react'
 
 export default (function More(props: ButtonBaseProps) {
-  const ref = React.useRef<null | HTMLButtonElement>(null);
+  const ref = React.useRef<null | HTMLButtonElement>(null)
   return (
     <ButtonBase
       ref={ref}
       {...props}
       onClick={(event) => {
         if (ref.current) {
-          ref.current.scrollIntoView({ block: 'nearest' });
+          ref.current.scrollIntoView({block: 'nearest'})
         }
         if (props.onClick) {
-          props.onClick(event);
+          props.onClick(event)
         }
       }}
       onFocusVisible={(event) => {
         if (ref.current) {
-          ref.current.scrollIntoView({ block: 'nearest' });
+          ref.current.scrollIntoView({block: 'nearest'})
         }
         if (props.onFocusVisible) {
-          props.onFocusVisible(event);
+          props.onFocusVisible(event)
         }
       }}
       sx={[
@@ -48,27 +48,25 @@ export default (function More(props: ButtonBaseProps) {
             },
           },
         },
-        (theme) =>
-          theme.applyDarkStyles({
-            borderColor: 'primaryDark.500',
-            '&:hover, &:focus': {
-              bgcolor: 'primaryDark.700',
-            },
-          }),
         ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
       ]}
     >
-      <Box component="span" sx={{ mr: 1, px: '3px', lineHeight: 0 }}>
-        <AddCircleOutlineRounded color="primary" fontSize="small" />
+      <Box component='span' sx={{mr: 1, px: '3px', lineHeight: 0}}>
+        <AddCircleOutlineRounded color='primary' fontSize='small' />
       </Box>
-      <Typography component="span" color="primary.main" variant="body2" fontWeight="bold">
+      <Typography
+        component='span'
+        color='primary.main'
+        variant='body2'
+        fontWeight='bold'
+      >
         Much more{' '}
         <KeyboardArrowRightRounded
-          color="primary"
-          fontSize="small"
-          sx={{ verticalAlign: 'middle' }}
+          color='primary'
+          fontSize='small'
+          sx={{verticalAlign: 'middle'}}
         />
       </Typography>
     </ButtonBase>
-  );
-} as typeof ButtonBase);
+  )
+} as typeof ButtonBase)

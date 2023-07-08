@@ -1,40 +1,25 @@
-import * as React from 'react';
-import Typography from '@mui/material/Typography';
+import Typography from '@mui/material/Typography'
+import * as React from 'react'
 
 interface SectionHeadlineProps {
-  description?: React.ReactNode;
-  id?: string;
-  overline: React.ReactNode;
-  title: React.ReactNode;
+  description?: React.ReactNode
+  id?: string
+  overline: React.ReactNode
+  title: React.ReactNode
 }
 
 export default function SectionHeadline(props: SectionHeadlineProps) {
-  const { description, id, overline, title } = props;
+  const {description, id, overline, title} = props
   return (
     <React.Fragment>
-      <Typography
-        id={id}
-        component="h2"
-        fontWeight="bold"
-        variant="body2"
-        sx={(theme) => ({
-          mb: 1,
-          color: 'primary.600',
-          ...theme.applyDarkStyles({
-            color: 'primary.300',
-          }),
-        })}
-      >
+      <Typography id={id} component='h2' fontWeight='bold' variant='body2'>
         {overline}
       </Typography>
       {typeof title === 'string' ? (
         <Typography
-          variant="h2"
+          variant='h2'
           sx={(theme) => ({
             color: 'primaryDark.900',
-            ...theme.applyDarkStyles({
-              color: 'grey.100',
-            }),
           })}
         >
           {title}
@@ -49,14 +34,11 @@ export default function SectionHeadline(props: SectionHeadlineProps) {
             mb: 2,
             maxWidth: 450,
             color: 'grey.800',
-            ...theme.applyDarkStyles({
-              color: 'grey.500',
-            }),
           })}
         >
           {description}
         </Typography>
       )}
     </React.Fragment>
-  );
+  )
 }

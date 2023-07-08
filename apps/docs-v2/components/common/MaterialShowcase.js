@@ -537,13 +537,6 @@ export default function Showcase() {
                   borderRadius: 1,
                   backgroundColor: `${alpha(theme.palette.grey[50], 0.4)}`,
                   borderColor: 'divider',
-                  ...theme.applyDarkStyles({
-                    backgroundColor: `${alpha(
-                      theme.palette.primaryDark[700],
-                      0.3,
-                    )}`,
-                    borderColor: 'divider',
-                  }),
                 })}
               >
                 <Box
@@ -566,10 +559,6 @@ export default function Showcase() {
                       border: '1px solid',
                       borderColor: 'grey.100',
                       color: 'grey.100',
-                      ...theme.applyDarkStyles({
-                        borderColor: 'grey.700',
-                        color: 'primaryDark.900',
-                      }),
                     })}
                   />
                 </Box>

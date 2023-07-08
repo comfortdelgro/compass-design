@@ -121,23 +121,6 @@ const Item = styled(
         },
       },
     },
-    theme.applyDarkStyles({
-      ...color,
-      '&.app-drawer-active': {
-        color: (theme.vars || theme).palette.primary[300],
-        backgroundColor: (theme.vars || theme).palette.primaryDark[700],
-      },
-      ...(!subheader && {
-        '&:hover': {
-          color: '#fff',
-          backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
-          '@media (hover: none)': {
-            color: color.color,
-            backgroundColor: 'transparent',
-          },
-        },
-      }),
-    }),
   ]
 })
 
@@ -174,15 +157,6 @@ export const sxChip = (color) => [
       px: 0.6,
     },
   }),
-  (theme) =>
-    theme.applyDarkStyles({
-      borderColor: alpha(theme.palette[color][800], 0.5),
-      bgcolor: alpha(theme.palette[color][900], 0.5),
-      color: (theme.vars || theme).palette[color][300],
-      '&:hover': {
-        bgcolor: alpha(theme.palette[color][900], 0.5),
-      },
-    }),
 ]
 
 function DeadLink(props) {

@@ -63,14 +63,6 @@ const Root = styled('div', {
       color: (theme.vars || theme).palette.grey[800],
     },
   },
-  theme.applyDarkStyles({
-    [theme.breakpoints.up('sm')]: {
-      backgroundColor: alpha(theme.palette.primaryDark[800], 0.2),
-    },
-    '& .MuiSvgIcon-root': {
-      color: (theme.vars || theme).palette.grey[400],
-    },
-  }),
 ])
 
 function DemoTooltip(props) {
@@ -158,12 +150,6 @@ const Button = styled(MDButton)(({theme}) => ({
           ),
     },
   },
-  ...theme.applyDarkStyles({
-    color: theme.palette.primaryDark[200],
-    '& svg': {
-      fill: theme.palette.primaryDark[200],
-    },
-  }),
 }))
 
 const MenuItem = styled(MDMenuItem)(({theme}) => ({
@@ -198,9 +184,6 @@ const ToggleButton = styled(MDToggleButton)(({theme}) => [
             ),
       },
     },
-  }),
-  theme.applyDarkStyles({
-    borderColor: theme.palette.primaryDark[700],
   }),
 ])
 

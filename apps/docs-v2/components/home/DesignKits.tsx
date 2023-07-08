@@ -1,6 +1,6 @@
 import Avatar, {AvatarProps} from '@mui/material/Avatar'
 import Box, {BoxProps} from '@mui/material/Box'
-import {alpha, styled} from '@mui/material/styles'
+import {styled} from '@mui/material/styles'
 import * as React from 'react'
 import FadeDelay from '../animation/FadeDelay'
 import Slide from '../animation/Slide'
@@ -30,10 +30,6 @@ const Image = styled('img')(({theme}) => ({
   transitionProperty: 'all',
   transitionDuration: '150ms',
   boxShadow: '0px 4px 20px rgba(61, 71, 82, 0.25)',
-  ...theme.applyDarkStyles({
-    borderColor: (theme.vars || theme).palette.grey[800],
-    boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.6)',
-  }),
 }))
 
 const Anchor = styled('a')(({theme}) => [
@@ -47,11 +43,6 @@ const Anchor = styled('a')(({theme}) => [
       boxShadow: '0 6px 20px 0 rgba(0,0,0,0.2)',
     },
   },
-  theme.applyDarkStyles({
-    '&:hover, &:focus': {
-      boxShadow: `0 6px 20px 0 ${alpha(theme.palette.primaryDark[100], 0.5)}`,
-    },
-  }),
 ])
 
 const DesignToolLink = React.forwardRef<
@@ -92,11 +83,6 @@ const DesignToolLogo = React.forwardRef<
       sx={[
         (theme) => ({
           boxShadow: `0px 3.57436px 44.6795px ${'rgba(90, 105, 120, 0.36)'}`,
-          ...theme.applyDarkStyles({
-            boxShadow: `0px 3.57436px 44.6795px ${
-              (theme.vars || theme).palette.primaryDark[900]
-            }`,
-          }),
         }),
         ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
       ]}
@@ -282,9 +268,6 @@ export default function DesignKits() {
           bgcolor: 'grey.50',
           opacity: 0.6,
           zIndex: 1,
-          ...theme.applyDarkStyles({
-            bgcolor: 'primaryDark.900',
-          }),
         })}
       />
       <Box
@@ -301,14 +284,6 @@ export default function DesignKits() {
             (theme.vars || theme).palette.grey[50]
           } 100%)`,
           zIndex: 2,
-          ...theme.applyDarkStyles({
-            background: `linear-gradient(to bottom, ${
-              (theme.vars || theme).palette.primaryDark[900]
-            } 0%, ${alpha(theme.palette.primaryDark[900], 0)} 30%, ${alpha(
-              theme.palette.primaryDark[900],
-              0,
-            )} 70%, ${(theme.vars || theme).palette.primaryDark[900]} 100%)`,
-          }),
         })}
       />
       <Box
@@ -323,11 +298,6 @@ export default function DesignKits() {
             (theme.vars || theme).palette.grey[50]
           }, ${transparent})`,
           zIndex: 2,
-          ...theme.applyDarkStyles({
-            background: `linear-gradient(to right, ${
-              (theme.vars || theme).palette.primaryDark[900]
-            }, ${alpha(theme.palette.primaryDark[900], 0)})`,
-          }),
         })}
       />
       <DesignKitTools

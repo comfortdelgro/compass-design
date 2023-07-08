@@ -64,19 +64,6 @@ export default function BackToTop() {
                   boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.6)`,
                 },
               }),
-              (theme) =>
-                theme.applyDarkStyles({
-                  backgroundColor: (theme.vars || theme).palette
-                    .primaryDark[400],
-                  boxShadow: `0px 4px 20px rgba(0, 0, 0, 0.5)`,
-                  '&:hover': {
-                    backgroundColor: (theme.vars || theme).palette
-                      .primaryDark[500],
-                  },
-                  '&:active': {
-                    boxShadow: `0px 4px 20px rgba(0, 0, 0, 0.7)`,
-                  },
-                }),
             ]}
             size='small'
             aria-label={t('backToTop')}
@@ -87,9 +74,6 @@ export default function BackToTop() {
             <KeyboardArrowUpRoundedIcon
               sx={(theme: Theme) => ({
                 color: (theme.vars || theme).palette.primary[800],
-                ...theme.applyDarkStyles({
-                  color: (theme.vars || theme).palette.primary[200],
-                }),
               })}
             />
           </Fab>

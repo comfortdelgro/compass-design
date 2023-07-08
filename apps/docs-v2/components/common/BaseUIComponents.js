@@ -139,13 +139,6 @@ export default function BaseUIComponents() {
               flexDirection: 'column',
               borderRadius: 1,
               borderColor: 'divider',
-              ...theme.applyDarkStyles({
-                backgroundColor: `${alpha(
-                  theme.palette.primaryDark[700],
-                  0.3,
-                )}`,
-                borderColor: 'divider',
-              }),
             })}
           >
             <CardMedia
@@ -160,14 +153,6 @@ export default function BaseUIComponents() {
                 )} 20%, #FFF 100%)`,
                 borderBottom: '1px solid',
                 borderColor: 'divider',
-                ...theme.applyDarkStyles({
-                  content: `url(${component.srcDark})`,
-                  background: `linear-gradient(180deg, ${alpha(
-                    theme.palette.primaryDark[800],
-                    0.5,
-                  )} 20%, ${theme.palette.primaryDark[900]} 100%)`,
-                  borderColor: 'divider',
-                }),
               })}
             />
             <Typography
