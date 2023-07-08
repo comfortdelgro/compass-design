@@ -1,5 +1,5 @@
 import standardNavIcons from 'components/common/AppNavIcons'
-import {MuiPage} from 'docs/src/MuiPage'
+import {MuiPage} from 'types/MuiPage'
 
 const pages: MuiPage[] = [
   {
@@ -67,8 +67,7 @@ const pages: MuiPage[] = [
     ],
   },
   {
-    pathname:
-      'https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=sidenav',
+    pathname: 'https://google.com',
     title: 'Other size',
     icon: standardNavIcons.ReaderIcon,
   },

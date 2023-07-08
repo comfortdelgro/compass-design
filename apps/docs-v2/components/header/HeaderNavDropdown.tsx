@@ -60,21 +60,6 @@ const DOCS = [
     description: "React components that implement Google's Material Design.",
     href: ROUTES.materialDocs,
   },
-  {
-    name: 'Joy UI',
-    description: 'React components for building your design system.',
-    href: ROUTES.joyDocs,
-  },
-  {
-    name: 'Base UI',
-    description: 'Unstyled React components and low-level hooks.',
-    href: ROUTES.baseDocs,
-  },
-  {
-    name: 'MUI System',
-    description: 'CSS utilities for rapidly laying out custom designs.',
-    href: ROUTES.systemDocs,
-  },
 ]
 
 export default function HeaderNavDropdown() {

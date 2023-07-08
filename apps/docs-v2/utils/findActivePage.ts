@@ -1,54 +1,55 @@
-import { MuiPage } from 'docs/src/pages';
+import {MuiPage} from 'types/MuiPage'
 
 export default function findActivePage(
   currentPages: MuiPage[],
   currentPathname: string,
-): { activePage: MuiPage | null; activePageParents: MuiPage[] } {
-  const map: Record<string, MuiPage> = {};
-  const mapParent: Record<string, MuiPage> = {};
+): {activePage: MuiPage | null; activePageParents: MuiPage[]} {
+  const map: Record<string, MuiPage> = {}
+  const mapParent: Record<string, MuiPage> = {}
 
   const pathname = currentPathname
     .replace('/[docsTab]', '')
     .replace('components-api', '')
-    .replace('hooks-api', '');
+    .replace('hooks-api', '')
 
   const traverse = (parent: MuiPage) => {
-    (parent.children || []).forEach((child) => {
+    ;(parent.children || []).forEach((child) => {
       const childPathname = child.pathname
         .replace('/[docsTab]', '')
         .replace('components-api', '')
-        .replace('hooks-api', '');
+        .replace('hooks-api', '')
 
-      map[childPathname] = child;
+      map[childPathname] = child
 
       const isChildApiPathname =
-        child.pathname.indexOf('components-api') >= 0 || child.pathname.indexOf('hooks-api') >= 0;
+        child.pathname.indexOf('components-api') >= 0 ||
+        child.pathname.indexOf('hooks-api') >= 0
 
       if (!isChildApiPathname && mapParent[childPathname]) {
-        throw new Error(`Duplicated pathname ${child.pathname} in pages`);
+        throw new Error(`Duplicated pathname ${child.pathname} in pages`)
       }
 
       if (!isChildApiPathname) {
-        mapParent[childPathname] = parent;
+        mapParent[childPathname] = parent
       }
-      traverse(child);
-    });
-  };
+      traverse(child)
+    })
+  }
 
-  traverse({ pathname: '/', children: currentPages });
+  traverse({pathname: '/', children: currentPages})
 
-  const activePage = map[pathname] || null;
+  const activePage = map[pathname] || null
 
-  const activePageParents = [];
-  let traversePage = activePage;
+  const activePageParents = []
+  let traversePage = activePage
   while (traversePage && traversePage.pathname !== '/') {
-    const parent = mapParent[traversePage.pathname];
-    activePageParents.push(parent);
-    traversePage = parent;
+    const parent = mapParent[traversePage.pathname]
+    activePageParents.push(parent)
+    traversePage = parent
   }
 
   return {
     activePage,
     activePageParents,
-  };
+  }
 }

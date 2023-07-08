@@ -3,9 +3,8 @@ import 'components/common/bootstrap'
 import GoogleAnalytics from 'components/common/GoogleAnalytics'
 import PageContext from 'components/common/PageContext'
 import {ThemeProvider} from 'components/common/ThemeContext'
-import materialPages from 'docs/data/material/pages'
+import routes from 'constants/routes'
 import createEmotionCache from 'docs/src/createEmotionCache'
-import generalPages from 'docs/src/pages'
 import {loadCSS} from 'fg-loadcss/src/loadCSS'
 import NextHead from 'next/head'
 import {useRouter} from 'next/router'
@@ -15,7 +14,6 @@ import {CodeCopyProvider} from 'utils/CodeCopy'
 import {CodeStylingProvider} from 'utils/codeStylingSolution'
 import {CodeVariantProvider} from 'utils/codeVariant'
 import findActivePage from 'utils/findActivePage'
-import getProductInfoFromUrl from 'utils/getProductInfoFromUrl'
 import {pathnameToLanguage} from 'utils/helpers'
 import {UserLanguageProvider} from 'utils/i18n'
 import DocsStyledEngineProvider from 'utils/StyledEngineProvider'
@@ -110,15 +108,7 @@ if (typeof window !== 'undefined' && process.env.NODE_ENV === 'production') {
   // eslint-disable-next-line no-console
   console.log(
     `%c
-
-███╗   ███╗ ██╗   ██╗ ██████╗
-████╗ ████║ ██║   ██║   ██╔═╝
-██╔████╔██║ ██║   ██║   ██║
-██║╚██╔╝██║ ██║   ██║   ██║
-██║ ╚═╝ ██║ ╚██████╔╝ ██████╗
-╚═╝     ╚═╝  ╚═════╝  ╚═════╝
-
-Tip: you can access the documentation \`theme\` object directly in the console.
+    Tip: you can access the documentation \`theme\` object directly in the console.
 `,
     'font-family:monospace;color:#1976d2;font-size:12px;',
   )
@@ -127,10 +117,9 @@ function AppWrapper(props) {
   const {children, emotionCache, pageProps} = props
 
   const router = useRouter()
-  // TODO move productId & productCategoryId resolution to page layout.
-  // We should use the productId field from the markdown and fallback to getProductInfoFromUrl()
-  // if not present
-  const {productId, productCategoryId} = getProductInfoFromUrl(router.asPath)
+
+  const productId = 'material-ui'
+  const productCategoryId = 'core'
 
   React.useEffect(() => {
     loadDependencies()
@@ -164,78 +153,10 @@ function AppWrapper(props) {
         ],
       }
     }
-
-    if (productId === 'joy-ui') {
-      return {
-        metadata: 'MUI Core',
-        name: 'Joy UI',
-        versions: [{text: `v0.01`, current: true}],
-      }
-    }
-
-    if (productId === 'system') {
-      return {
-        metadata: 'MUI Core',
-        name: 'MUI System',
-        versions: [
-          {text: `v0.01`, current: true},
-          {
-            text: 'v4',
-            href: `https://v4.mui.com${languagePrefix}/system/basics/`,
-          },
-          {
-            text: 'View all versions',
-            href: `https://mui.com${languagePrefix}/versions/`,
-          },
-        ],
-      }
-    }
-
-    if (productId === 'base-ui') {
-      return {
-        metadata: 'MUI Core',
-        name: 'Base UI',
-        versions: [{text: `v0.01`, current: true}],
-      }
-    }
-
-    if (productId === 'core') {
-      return {
-        metadata: '',
-        name: 'MUI Core',
-        versions: [
-          {text: `v${materialPkgJson.version}`, current: true},
-          {
-            text: 'View all versions',
-            href: `https://mui.com${languagePrefix}/versions/`,
-          },
-        ],
-      }
-    }
-
-    return {
-      metadata: '',
-      name: 'Docs-infra',
-      versions: [
-        {
-          text: 'v0.0.0',
-          href: `https://mui.com${languagePrefix}/versions/`,
-        },
-      ],
-    }
   }, [pageProps.userLanguage, productId])
 
   const pageContextValue = React.useMemo(() => {
-    let pages = generalPages
-    if (productId === 'base-ui') {
-      pages = basePages
-    } else if (productId === 'material-ui') {
-      pages = materialPages
-    } else if (productId === 'joy-ui') {
-      pages = joyPages
-    } else if (productId === 'system') {
-      pages = systemPages
-    }
+    const pages = routes
 
     const {activePage, activePageParents} = findActivePage(
       pages,

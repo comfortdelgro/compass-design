@@ -57,7 +57,6 @@ export default function MarkdownDocs(props) {
   const userLanguage = useUserLanguage()
   const t = useTranslate()
 
-  console.log('hello', docs)
   const localizedDoc = docs[userLanguage] || docs.en
   const {description, location, rendered, title, toc} = localizedDoc
 

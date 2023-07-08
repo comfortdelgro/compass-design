@@ -66,21 +66,6 @@ const products = [
     href: ROUTES.materialDocs,
     id: 'material-ui',
   },
-  {
-    name: 'Joy UI',
-    href: ROUTES.joyDocs,
-    id: 'joy-ui',
-  },
-  {
-    name: 'Base UI',
-    href: ROUTES.baseDocs,
-    id: 'base-ui',
-  },
-  {
-    name: 'MUI System',
-    href: ROUTES.systemDocs,
-    id: 'system',
-  },
 ]
 
 export default function MuiProductSelector() {

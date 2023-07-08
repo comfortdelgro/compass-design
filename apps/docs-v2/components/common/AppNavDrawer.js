@@ -216,10 +216,6 @@ function renderNavItems(options) {
   )
 }
 
-/**
- * @param {object} context
- * @param {import('docs/src/pages').MuiPage} context.page
- */
 function reduceChildRoutes(context) {
   const {onClose, activePageParents, items, depth, t} = context
   let {page} = context

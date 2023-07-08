@@ -13,6 +13,7 @@ const alias = {
   components: './components',
   constants: './constants',
   utils: './utils',
+  types: './types',
 }
 
 const {version: transformRuntimeVersion} = fse.readJSONSync(

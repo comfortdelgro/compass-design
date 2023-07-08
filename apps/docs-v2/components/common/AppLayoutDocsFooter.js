@@ -49,16 +49,6 @@ const FeedbackGrid = styled(Grid)(({theme}) => {
   }
 })
 
-/**
- * @typedef {import('docs/src/pages').MuiPage} MuiPage
- * @typedef {import('docs/src/pages').OrderedMuiPage} OrderedMuiPage
- */
-
-/**
- * @param {MuiPage[]} pages
- * @param {MuiPage[]} [current]
- * @returns {OrderedMuiPage[]}
- */
 function orderedPages(pages, current = []) {
   return pages
     .reduce((items, item) => {
