@@ -1,4 +1,3 @@
-import pagesApi from 'docs/data/material/pagesApi'
 import standardNavIcons from 'docs/src/modules/components/AppNavIcons'
 import {MuiPage} from 'docs/src/MuiPage'
 
@@ -36,12 +35,6 @@ const pages: MuiPage[] = [
         children: [{pathname: '/material-ui/react-avatar'}],
       },
     ],
-  },
-  {
-    title: 'Component API',
-    pathname: '/material-ui/api',
-    icon: standardNavIcons.CodeIcon,
-    children: pagesApi,
   },
   {
     pathname: '/material-ui/customization',
