@@ -1,5 +1,4 @@
 import prism from '@comfortdelgro/markdown'
-import NoSsr from '@mui/base/NoSsr'
 import Box from '@mui/material/Box'
 import {styled, useTheme} from '@mui/material/styles'
 import {blueDark} from 'docs/src/modules/brandingTheme'
@@ -169,9 +168,9 @@ export default function DemoEditor(props: DemoEditorProps) {
             __html: t('editorHint'),
           }}
         />
-        <NoSsr>
+        {/* <NoSsr>
           <CodeCopyButton {...copyButtonProps} code={value} />
-        </NoSsr>
+        </NoSsr> */}
         {children}
       </div>
     </StyledMarkdownElement>
