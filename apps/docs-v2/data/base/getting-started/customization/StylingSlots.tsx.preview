@@ -1,0 +1,1 @@
+<Switch slots={{ root: Root, thumb: Thumb, input: Input }} />
