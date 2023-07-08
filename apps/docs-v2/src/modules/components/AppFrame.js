@@ -1,77 +1,77 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import { useRouter } from 'next/router';
-import GlobalStyles from '@mui/material/GlobalStyles';
-import { styled, alpha } from '@mui/material/styles';
-import NProgress from 'nprogress';
-import CssBaseline from '@mui/material/CssBaseline';
-import AppBar from '@mui/material/AppBar';
-import Stack from '@mui/material/Stack';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import SvgHamburgerMenu from 'docs/src/icons/SvgHamburgerMenu';
-import Tooltip from '@mui/material/Tooltip';
-import Box from '@mui/material/Box';
-import SettingsIcon from '@mui/icons-material/SettingsOutlined';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import NProgressBar from '@mui/docs/NProgressBar';
-import AppNavDrawer from 'docs/src/modules/components/AppNavDrawer';
-import AppSettingsDrawer from 'docs/src/modules/components/AppSettingsDrawer';
-import Notifications from 'docs/src/modules/components/Notifications';
-import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
-import SkipLink from 'docs/src/modules/components/SkipLink';
-import PageContext from 'docs/src/modules/components/PageContext';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
-import { debounce } from '@mui/material/utils';
-import NextLink from 'next/link';
-import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
-import AppFrameBanner from 'docs/src/components/banner/AppFrameBanner';
+import NProgressBar from '@mui/docs/NProgressBar'
+import GitHubIcon from '@mui/icons-material/GitHub'
+import SettingsIcon from '@mui/icons-material/SettingsOutlined'
+import AppBar from '@mui/material/AppBar'
+import Box from '@mui/material/Box'
+import CssBaseline from '@mui/material/CssBaseline'
+import GlobalStyles from '@mui/material/GlobalStyles'
+import IconButton from '@mui/material/IconButton'
+import Stack from '@mui/material/Stack'
+import {alpha, styled} from '@mui/material/styles'
+import Toolbar from '@mui/material/Toolbar'
+import Tooltip from '@mui/material/Tooltip'
+import {debounce} from '@mui/material/utils'
+import SvgHamburgerMenu from 'docs/src/icons/SvgHamburgerMenu'
+import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark'
+import AppNavDrawer from 'docs/src/modules/components/AppNavDrawer'
+import AppSettingsDrawer from 'docs/src/modules/components/AppSettingsDrawer'
+import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks'
+import PageContext from 'docs/src/modules/components/PageContext'
+import SkipLink from 'docs/src/modules/components/SkipLink'
+import {useTranslate} from 'docs/src/modules/utils/i18n'
+import NextLink from 'next/link'
+import {useRouter} from 'next/router'
+import NProgress from 'nprogress'
+import PropTypes from 'prop-types'
+import * as React from 'react'
 
 const nProgressStart = debounce(() => {
-  NProgress.start();
-}, 200);
+  NProgress.start()
+}, 200)
 
 const nProgressDone = () => {
-  nProgressStart.clear();
-  NProgress.done();
-};
-
-export function NextNProgressBar() {
-  const router = useRouter();
-  React.useEffect(() => {
-    const handleRouteChangeStart = (url, { shallow }) => {
-      if (!shallow) {
-        nProgressStart();
-      }
-    };
-
-    const handleRouteChangeDone = (url, { shallow }) => {
-      if (!shallow) {
-        nProgressDone();
-      }
-    };
-
-    router.events.on('routeChangeStart', handleRouteChangeStart);
-    router.events.on('routeChangeComplete', handleRouteChangeDone);
-    router.events.on('routeChangeError', handleRouteChangeDone);
-    return () => {
-      router.events.off('routeChangeStart', handleRouteChangeStart);
-      router.events.off('routeChangeComplete', handleRouteChangeDone);
-      router.events.off('routeChangeError', handleRouteChangeDone);
-    };
-  }, [router]);
-
-  return <NProgressBar />;
+  nProgressStart.clear()
+  NProgress.done()
 }
 
-const sx = { minWidth: { sm: 160 } };
-
-const AppSearch = React.lazy(() => import('docs/src/modules/components/AppSearch'));
-export function DeferredAppSearch() {
-  const [mounted, setMounted] = React.useState(false);
+export function NextNProgressBar() {
+  const router = useRouter()
   React.useEffect(() => {
-    setMounted(true);
-  }, []);
+    const handleRouteChangeStart = (url, {shallow}) => {
+      if (!shallow) {
+        nProgressStart()
+      }
+    }
+
+    const handleRouteChangeDone = (url, {shallow}) => {
+      if (!shallow) {
+        nProgressDone()
+      }
+    }
+
+    router.events.on('routeChangeStart', handleRouteChangeStart)
+    router.events.on('routeChangeComplete', handleRouteChangeDone)
+    router.events.on('routeChangeError', handleRouteChangeDone)
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChangeStart)
+      router.events.off('routeChangeComplete', handleRouteChangeDone)
+      router.events.off('routeChangeError', handleRouteChangeDone)
+    }
+  }, [router])
+
+  return <NProgressBar />
+}
+
+const sx = {minWidth: {sm: 160}}
+
+const AppSearch = React.lazy(() =>
+  import('docs/src/modules/components/AppSearch'),
+)
+export function DeferredAppSearch() {
+  const [mounted, setMounted] = React.useState(false)
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
 
   return (
     <React.Fragment>
@@ -84,22 +84,22 @@ export function DeferredAppSearch() {
         <Box sx={sx} />
       )}
     </React.Fragment>
-  );
+  )
 }
 
-const RootDiv = styled('div')(({ theme }) => {
+const RootDiv = styled('div')(({theme}) => {
   return {
     display: 'flex',
     ...theme.applyDarkStyles({
       background: (theme.vars || theme).palette.primaryDark[900],
     }),
     // TODO: Should be handled by the main component
-  };
-});
+  }
+})
 
 const StyledAppBar = styled(AppBar, {
   shouldForwardProp: (prop) => prop !== 'disablePermanent',
-})(({ disablePermanent, theme }) => {
+})(({disablePermanent, theme}) => {
   return {
     padding: theme.spacing(1, 2),
     transition: theme.transitions.create('width'),
@@ -124,50 +124,51 @@ const StyledAppBar = styled(AppBar, {
       backgroundColor: alpha(theme.palette.primaryDark[900], 0.8),
       color: (theme.vars || theme).palette.grey[500],
     }),
-  };
-});
+  }
+})
 
 const GrowingDiv = styled('div')({
   flex: '1 1 auto',
-});
+})
 
 const NavIconButton = styled(IconButton, {
   shouldForwardProp: (prop) => prop !== 'disablePermanent',
-})(({ disablePermanent, theme }) => {
+})(({disablePermanent, theme}) => {
   if (disablePermanent) {
-    return {};
+    return {}
   }
   return {
     [theme.breakpoints.up('lg')]: {
       display: 'none',
     },
-  };
-});
+  }
+})
 
-const StyledAppNavDrawer = styled(AppNavDrawer)(({ disablePermanent, theme }) => {
+const StyledAppNavDrawer = styled(AppNavDrawer)(({disablePermanent, theme}) => {
   if (disablePermanent) {
-    return {};
+    return {}
   }
   return {
     [theme.breakpoints.up('lg')]: {
       flexShrink: 0,
       width: 'var(--MuiDocs-navDrawer-width)',
     },
-  };
-});
+  }
+})
 
-export const HEIGHT = 64;
+export const HEIGHT = 64
 
 export default function AppFrame(props) {
-  const { children, disableDrawer = false, className, BannerComponent = AppFrameBanner } = props;
-  const t = useTranslate();
+  const {children, disableDrawer = false, className} = props
+  const t = useTranslate()
 
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [settingsOpen, setSettingsOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = React.useState(false)
+  const [settingsOpen, setSettingsOpen] = React.useState(false)
 
-  const { activePage } = React.useContext(PageContext);
+  const {activePage} = React.useContext(PageContext)
 
-  const disablePermanent = activePage?.disableDrawer === true || disableDrawer === true;
+  const disablePermanent =
+    activePage?.disableDrawer === true || disableDrawer === true
 
   return (
     <RootDiv className={className}>
@@ -183,45 +184,47 @@ export default function AppFrame(props) {
             },
           }}
         />
-        <Toolbar variant="dense" disableGutters>
+        <Toolbar variant='dense' disableGutters>
           <NavIconButton
-            edge="start"
-            color="primary"
+            edge='start'
+            color='primary'
             aria-label={t('appFrame.openDrawer')}
             disablePermanent={disablePermanent}
             onClick={() => setMobileOpen(true)}
-            sx={{ ml: '1px' }}
+            sx={{ml: '1px'}}
           >
             <SvgHamburgerMenu />
           </NavIconButton>
-          <NextLink href="/" passHref /* onClick={onClose} */ legacyBehavior>
+          <NextLink href='/' passHref /* onClick={onClose} */ legacyBehavior>
             <Box
-              component="a"
+              component='a'
               aria-label={t('goToHome')}
-              sx={{ display: { md: 'flex', lg: 'none' }, ml: 2 }}
+              sx={{display: {md: 'flex', lg: 'none'}, ml: 2}}
             >
               <SvgMuiLogomark width={30} />
             </Box>
           </NextLink>
           <GrowingDiv />
-          <Stack direction="row" spacing="10px">
-            <BannerComponent />
+          <Stack direction='row' spacing='10px'>
             <DeferredAppSearch />
             <Tooltip title={t('appFrame.github')} enterDelay={300}>
               <IconButton
-                component="a"
-                color="primary"
+                component='a'
+                color='primary'
                 href={process.env.SOURCE_CODE_REPO}
-                data-ga-event-category="header"
-                data-ga-event-action="github"
+                data-ga-event-category='header'
+                data-ga-event-action='github'
               >
-                <GitHubIcon fontSize="small" />
+                <GitHubIcon fontSize='small' />
               </IconButton>
             </Tooltip>
-            <Notifications />
             <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
-              <IconButton color="primary" onClick={() => setSettingsOpen(true)} sx={{ px: '8px' }}>
-                <SettingsIcon fontSize="small" />
+              <IconButton
+                color='primary'
+                onClick={() => setSettingsOpen(true)}
+                sx={{px: '8px'}}
+              >
+                <SettingsIcon fontSize='small' />
               </IconButton>
             </Tooltip>
           </Stack>
@@ -234,14 +237,16 @@ export default function AppFrame(props) {
         mobileOpen={mobileOpen}
       />
       {children}
-      <AppSettingsDrawer onClose={() => setSettingsOpen(false)} open={settingsOpen} />
+      <AppSettingsDrawer
+        onClose={() => setSettingsOpen(false)}
+        open={settingsOpen}
+      />
     </RootDiv>
-  );
+  )
 }
 
 AppFrame.propTypes = {
-  BannerComponent: PropTypes.elementType,
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   disableDrawer: PropTypes.bool,
-};
+}
