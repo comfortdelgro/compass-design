@@ -57,11 +57,6 @@ const UList = styled('ul')({
 
 const PRODUCTS = [
   {
-    name: 'MUI X',
-    description: 'Advanced and powerful components for complex use-cases.',
-    href: ROUTES.productAdvanced,
-  },
-  {
     name: 'Templates',
     description: 'Fully built, out-of-the-box, templates for your application.',
     href: ROUTES.productTemplates,
@@ -99,11 +94,6 @@ const DOCS = [
     name: 'MUI System',
     description: 'CSS utilities for rapidly laying out custom designs.',
     href: ROUTES.systemDocs,
-  },
-  {
-    name: 'MUI X',
-    description: 'Advanced and powerful components for complex use cases.',
-    href: ROUTES.advancedComponents,
   },
   {
     name: 'MUI Toolpad',

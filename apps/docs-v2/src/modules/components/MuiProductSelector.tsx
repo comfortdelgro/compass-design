@@ -139,37 +139,6 @@ export default function MuiProductSelector() {
       </Box>
       <li role='none'>
         <Link
-          href={ROUTES.advancedComponents}
-          sx={[
-            {
-              p: 2,
-              pr: 3,
-              borderBottom: '1px solid',
-              borderColor: 'grey.100',
-              width: '100%',
-              '&:hover': {
-                backgroundColor: 'grey.50',
-              },
-            },
-            (theme) =>
-              theme.applyDarkStyles({
-                borderColor: alpha(theme.palette.primary[100], 0.08),
-                '&:hover': {
-                  backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
-                },
-              }),
-          ]}
-        >
-          <ProductSubMenu
-            role='menuitem'
-            icon={<IconImage name='product-advanced' />}
-            name='MUI X'
-            description='Advanced and powerful components for complex use cases.'
-          />
-        </Link>
-      </li>
-      <li role='none'>
-        <Link
           href={ROUTES.toolpadDocs}
           sx={[
             {
