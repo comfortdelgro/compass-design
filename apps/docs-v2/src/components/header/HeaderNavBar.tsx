@@ -7,7 +7,6 @@ import Typography from '@mui/material/Typography'
 import {unstable_debounce as debounce} from '@mui/utils'
 import Link from 'docs/src/modules/components/Link'
 import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector'
-import ROUTES from 'docs/src/route'
 import * as React from 'react'
 
 const Navigation = styled('nav')(({theme}) => [
@@ -324,16 +323,6 @@ export default function HeaderNavBar() {
               </Fade>
             )}
           </Popper>
-        </li>
-        <li role='none'>
-          <Link role='menuitem' href={ROUTES.about}>
-            About us
-          </Link>
-        </li>
-        <li role='none'>
-          <Link role='menuitem' href={ROUTES.blog}>
-            Blog
-          </Link>
         </li>
       </ul>
     </Navigation>

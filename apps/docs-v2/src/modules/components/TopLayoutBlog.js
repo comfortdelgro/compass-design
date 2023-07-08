@@ -1,22 +1,20 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import { styled, alpha } from '@mui/material/styles';
-import { useRouter } from 'next/router';
-import { exactProp } from '@mui/utils';
-import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
-import Divider from '@mui/material/Divider';
-import Typography from '@mui/material/Typography';
-import Avatar from '@mui/material/Avatar';
-import Head from 'docs/src/modules/components/Head';
-import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
-import AppHeader from 'docs/src/layouts/AppHeader';
-import AppContainer from 'docs/src/modules/components/AppContainer';
-import AppFooter from 'docs/src/layouts/AppFooter';
-import HeroEnd from 'docs/src/components/home/HeroEnd';
-import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
-import ROUTES from 'docs/src/route';
-import Link from 'docs/src/modules/components/Link';
+import Avatar from '@mui/material/Avatar'
+import Divider from '@mui/material/Divider'
+import {alpha, styled} from '@mui/material/styles'
+import Typography from '@mui/material/Typography'
+import {exactProp} from '@mui/utils'
+import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider'
+import HeroEnd from 'docs/src/components/home/HeroEnd'
+import AppFooter from 'docs/src/layouts/AppFooter'
+import AppHeader from 'docs/src/layouts/AppHeader'
+import AppContainer from 'docs/src/modules/components/AppContainer'
+import Head from 'docs/src/modules/components/Head'
+import Link from 'docs/src/modules/components/Link'
+import MarkdownElement from 'docs/src/modules/components/MarkdownElement'
+import {pathnameToLanguage} from 'docs/src/modules/utils/helpers'
+import {useRouter} from 'next/router'
+import PropTypes from 'prop-types'
+import * as React from 'react'
 
 export const authors = {
   oliviertassinari: {
@@ -94,18 +92,18 @@ export const authors = {
     avatar: 'https://avatars.githubusercontent.com/u/76401606',
     github: 'mikailaread',
   },
-};
+}
 
 const classes = {
   back: 'TopLayoutBlog-back',
   time: 'TopLayoutBlog-time',
   container: 'TopLayoutBlog-container',
-};
+}
 
 // Replicate the value used by https://medium.com/, a trusted reference.
-const BLOG_MAX_WIDTH = 692;
+const BLOG_MAX_WIDTH = 692
 
-const AuthorsContainer = styled('div')(({ theme }) => ({
+const AuthorsContainer = styled('div')(({theme}) => ({
   display: 'flex',
   flexWrap: 'wrap',
   marginBottom: theme.spacing(2),
@@ -118,10 +116,10 @@ const AuthorsContainer = styled('div')(({ theme }) => ({
       marginRight: theme.spacing(1),
     },
   },
-}));
+}))
 
 const Root = styled('div')(
-  ({ theme }) => ({
+  ({theme}) => ({
     flexGrow: 1,
     background: `linear-gradient(180deg, ${
       (theme.vars || theme).palette.grey[50]
@@ -203,7 +201,7 @@ const Root = styled('div')(
       fontWeight: 500,
     },
   }),
-  ({ theme }) =>
+  ({theme}) =>
     theme.applyDarkStyles({
       background: `linear-gradient(180deg, ${
         (theme.vars || theme).palette.primaryDark[900]
@@ -228,19 +226,19 @@ const Root = styled('div')(
         },
       },
     }),
-);
+)
 
 function TopLayoutBlog(props) {
-  const { className, docs } = props;
-  const { description, rendered, title, headers } = docs.en;
-  const finalTitle = title || headers.title;
-  const router = useRouter();
-  const slug = router.pathname.replace(/\/blog\//, '');
-  const { canonicalAsServer } = pathnameToLanguage(router.asPath);
+  const {className, docs} = props
+  const {description, rendered, title, headers} = docs.en
+  const finalTitle = title || headers.title
+  const router = useRouter()
+  const slug = router.pathname.replace(/\/blog\//, '')
+  const {canonicalAsServer} = pathnameToLanguage(router.asPath)
   const card =
     headers.card === 'true'
       ? `https://mui.com/static/blog/${slug}/card.png`
-      : 'https://mui.com/static/logo.png';
+      : 'https://mui.com/static/logo.png'
 
   return (
     <BrandingCssVarsProvider>
@@ -251,12 +249,15 @@ function TopLayoutBlog(props) {
         largeCard={headers.card === 'true'}
         disableAlternateLocale
         card={card}
-        type="article"
+        type='article'
       >
-        <meta name="author" content={headers.authors.map((key) => authors[key].name).join(', ')} />
-        <meta property="article:published_time" content={headers.date} />
+        <meta
+          name='author'
+          content={headers.authors.map((key) => authors[key].name).join(', ')}
+        />
+        <meta property='article:published_time' content={headers.date} />
         <script
-          type="application/ld+json"
+          type='application/ld+json'
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
@@ -280,7 +281,9 @@ function TopLayoutBlog(props) {
                   width: 250,
                   height: 250,
                 },
-                sameAs: [`https://github.com/${authors[headers.authors[0]].github}`],
+                sameAs: [
+                  `https://github.com/${authors[headers.authors[0]].github}`,
+                ],
               },
               headline: finalTitle,
               url: `https://mui.com${canonicalAsServer}`,
@@ -303,20 +306,7 @@ function TopLayoutBlog(props) {
         />
       </Head>
       <Root className={className}>
-        <AppContainer component="main" className={classes.container}>
-          <Link
-            href={ROUTES.blog}
-            {...(ROUTES.blog.startsWith('http') && {
-              rel: 'nofollow',
-            })}
-            color="primary"
-            variant="body2"
-            className={classes.back}
-          >
-            <ChevronLeftRoundedIcon fontSize="small" sx={{ mr: 0.5 }} />
-            {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-            {'Back to blog'}
-          </Link>
+        <AppContainer component='main' className={classes.container}>
           {headers.title ? (
             <React.Fragment>
               <time dateTime={headers.date} className={classes.time}>
@@ -332,24 +322,24 @@ function TopLayoutBlog(props) {
               </MarkdownElement>
               <AuthorsContainer>
                 {headers.authors.map((author) => (
-                  <div key={author} className="author">
+                  <div key={author} className='author'>
                     <Avatar
-                      sx={{ width: 36, height: 36 }}
-                      alt=""
+                      sx={{width: 36, height: 36}}
+                      alt=''
                       src={`${authors[author].avatar}?s=${36}`}
                       srcSet={`${authors[author].avatar}?s=${36 * 2} 2x`}
                     />
                     <div>
-                      <Typography variant="body2" fontWeight="500">
+                      <Typography variant='body2' fontWeight='500'>
                         {authors[author].name}
                       </Typography>
                       <Link
                         href={`https://github.com/${authors[author].github}`}
-                        target="_blank"
-                        rel="noreferrer noopener"
-                        color="primary"
-                        variant="body2"
-                        sx={{ fontWeight: 500 }}
+                        target='_blank'
+                        rel='noreferrer noopener'
+                        color='primary'
+                        variant='body2'
+                        sx={{fontWeight: 500}}
                       >
                         @{authors[author].github}
                       </Link>
@@ -360,7 +350,7 @@ function TopLayoutBlog(props) {
             </React.Fragment>
           ) : null}
           {rendered.map((chunk, index) => {
-            return <MarkdownElement key={index} renderedMarkdown={chunk} />;
+            return <MarkdownElement key={index} renderedMarkdown={chunk} />
           })}
         </AppContainer>
         <HeroEnd />
@@ -368,16 +358,16 @@ function TopLayoutBlog(props) {
         <AppFooter />
       </Root>
     </BrandingCssVarsProvider>
-  );
+  )
 }
 
 TopLayoutBlog.propTypes = {
   className: PropTypes.string,
   docs: PropTypes.object.isRequired,
-};
-
-if (process.env.NODE_ENV !== 'production') {
-  TopLayoutBlog.propTypes = exactProp(TopLayoutBlog.propTypes);
 }
 
-export default TopLayoutBlog;
+if (process.env.NODE_ENV !== 'production') {
+  TopLayoutBlog.propTypes = exactProp(TopLayoutBlog.propTypes)
+}
+
+export default TopLayoutBlog
