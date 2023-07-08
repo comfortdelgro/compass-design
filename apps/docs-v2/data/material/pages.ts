@@ -12,7 +12,6 @@ const pages: MuiPage[] = [
       {pathname: '/material-ui/getting-started/installation'},
       {pathname: '/material-ui/getting-started/usage'},
       {pathname: '/material-ui/getting-started/example-projects'},
-      {pathname: '/material-ui/getting-started/templates'},
       {pathname: '/material-ui/getting-started/learn'},
       {pathname: '/material-ui/getting-started/design-resources'},
       {pathname: '/material-ui/getting-started/faq', title: 'FAQs'},
@@ -195,7 +194,6 @@ const pages: MuiPage[] = [
           {pathname: '/material-ui/customization/typography'},
           {pathname: '/material-ui/customization/spacing'},
           {pathname: '/material-ui/customization/breakpoints'},
-          {pathname: '/material-ui/customization/density'},
           {pathname: '/material-ui/customization/z-index', title: 'z-index'},
           {pathname: '/material-ui/customization/transitions'},
           {
