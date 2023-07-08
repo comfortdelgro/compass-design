@@ -1,16 +1,16 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Unstable_Grid2';
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import Link from 'docs/src/modules/components/Link';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
-import { alpha } from '@mui/material/styles';
+import GitHubIcon from '@mui/icons-material/GitHub'
+import Box from '@mui/material/Box'
+import Card from '@mui/material/Card'
+import CardMedia from '@mui/material/CardMedia'
+import IconButton from '@mui/material/IconButton'
+import {alpha} from '@mui/material/styles'
+import ToggleButton from '@mui/material/ToggleButton'
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
+import Typography from '@mui/material/Typography'
+import Grid from '@mui/material/Unstable_Grid2'
+import {useTranslate} from 'docs/src/modules/utils/i18n'
+import Link from 'next/link'
+import * as React from 'react'
 
 /**
  * The app structure:
@@ -116,7 +116,8 @@ const appList = [
   },
   {
     title: 'EQ3',
-    description: 'Modern Furniture & Accessories, designed in Canada, for everyday living.',
+    description:
+      'Modern Furniture & Accessories, designed in Canada, for everyday living.',
     image: 'eq3.jpg',
     link: 'https://www.eq3.com/ca/en',
     similarWebVisits: 256,
@@ -196,7 +197,8 @@ const appList = [
   },
   {
     title: 'LessWrong',
-    description: 'LessWrong is a community blog devoted to the art of human rationality.',
+    description:
+      'LessWrong is a community blog devoted to the art of human rationality.',
     image: 'lesswrong.jpg',
     link: 'https://www.lesswrong.com/',
     similarWebVisits: 1000,
@@ -317,14 +319,16 @@ const appList = [
   },
   {
     title: 'SlidesUp',
-    description: 'SlidesUp is a platform to help conference organizers plan their events.',
+    description:
+      'SlidesUp is a platform to help conference organizers plan their events.',
     image: 'slidesup.jpg',
     link: 'https://slidesup.com/',
     dateAdded: '2018-01-03',
   },
   {
     title: 'Typekev',
-    description: 'The personal site of Kevin Gonzalez, featuring his witty chatbot.',
+    description:
+      'The personal site of Kevin Gonzalez, featuring his witty chatbot.',
     image: 'typekev.jpg',
     link: 'https://typekev.com/',
     source: 'https://github.com/typekev/typekev-site',
@@ -383,7 +387,8 @@ const appList = [
   },
   {
     title: 'FANSPO',
-    description: 'NBA trade machine and social analysis tools for the basketball community.',
+    description:
+      'NBA trade machine and social analysis tools for the basketball community.',
     image: 'tradenba.jpg',
     link: 'https://fanspo.com/',
     similarWebVisits: 417,
@@ -391,7 +396,8 @@ const appList = [
   },
   {
     title: 'Backstage',
-    description: 'Backstage is an open platform by Spotify for building developer portals.',
+    description:
+      'Backstage is an open platform by Spotify for building developer portals.',
     image: 'backstage.jpg',
     link: 'https://backstage.io',
     source: 'https://github.com/backstage/backstage',
@@ -416,7 +422,8 @@ const appList = [
   },
   {
     title: 'Saleor Store Dashboard',
-    description: 'Dashboard application for Saleor headless e-commerce platform',
+    description:
+      'Dashboard application for Saleor headless e-commerce platform',
     image: 'saleor.jpg',
     link: 'https://demo.saleor.io/dashboard/',
     source: 'https://github.com/saleor/saleor-dashboard',
@@ -441,69 +448,76 @@ const appList = [
     description: 'A full-featured Admin panel app',
     image: 'refine-finefoods.png',
     link: 'https://example.mui.admin.refine.dev/',
-    source: 'https://github.com/pankod/refine/tree/next/examples/fineFoods/admin/mui',
+    source:
+      'https://github.com/pankod/refine/tree/next/examples/fineFoods/admin/mui',
     stars: 2415,
     dateAdded: '2022-06-21',
   },
-];
+]
 
 function stableSort(array, cmp) {
-  const stabilizedThis = array.map((el, index) => [el, index]);
+  const stabilizedThis = array.map((el, index) => [el, index])
   stabilizedThis.sort((a, b) => {
-    const order = cmp(a[0], b[0]);
+    const order = cmp(a[0], b[0])
     if (order !== 0) {
-      return order;
+      return order
     }
-    return a[1] - b[1];
-  });
-  return stabilizedThis.map((el) => el[0]);
+    return a[1] - b[1]
+  })
+  return stabilizedThis.map((el) => el[0])
 }
 
 // Returns a function that sorts reverse numerically by value of `key`
 function sortFactory(key) {
   return function sortNumeric(a, b) {
     if (b[key] < a[key]) {
-      return -1;
+      return -1
     }
     if (b[key] > a[key]) {
-      return 1;
+      return 1
     }
-    return 0;
-  };
+    return 0
+  }
 }
 
 const sortFunctions = {
   dateAdded: sortFactory('dateAdded'),
   similarWebVisits: sortFactory('similarWebVisits'),
   stars: sortFactory('stars'),
-};
+}
 
 export default function Showcase() {
-  const [sortFunctionName, setSortFunctionName] = React.useState('similarWebVisits');
-  const sortFunction = sortFunctions[sortFunctionName];
-  const t = useTranslate();
+  const [sortFunctionName, setSortFunctionName] =
+    React.useState('similarWebVisits')
+  const sortFunction = sortFunctions[sortFunctionName]
+  const t = useTranslate()
 
   const handleChangeSort = (event) => {
-    setSortFunctionName(event.target.value);
-  };
+    setSortFunctionName(event.target.value)
+  }
 
   return (
     <React.Fragment>
       <ToggleButtonGroup
-        size="small"
-        color="primary"
+        size='small'
+        color='primary'
         value={sortFunctionName}
         onChange={handleChangeSort}
         exclusive
-        sx={{ mb: 3, display: 'flex', alignItems: 'center' }}
+        sx={{mb: 3, display: 'flex', alignItems: 'center'}}
       >
-        <Typography variant="body2" color="text.secondary" fontWeight={600} sx={{ mr: 1 }}>
+        <Typography
+          variant='body2'
+          color='text.secondary'
+          fontWeight={600}
+          sx={{mr: 1}}
+        >
           {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
           {'Sort by:'}
         </Typography>
-        <ToggleButton value="similarWebVisits">{t('traffic')}</ToggleButton>
-        <ToggleButton value="dateAdded">{t('newest')}</ToggleButton>
-        <ToggleButton value="stars">{t('stars')}</ToggleButton>
+        <ToggleButton value='similarWebVisits'>{t('traffic')}</ToggleButton>
+        <ToggleButton value='dateAdded'>{t('newest')}</ToggleButton>
+        <ToggleButton value='stars'>{t('stars')}</ToggleButton>
       </ToggleButtonGroup>
       <Grid container spacing={3}>
         {stableSort(
@@ -513,7 +527,7 @@ export default function Showcase() {
           <Grid key={app.title} item xs={12} sm={6}>
             {app.image ? (
               <Card
-                variant="outlined"
+                variant='outlined'
                 sx={(theme) => ({
                   height: '100%',
                   display: 'flex',
@@ -524,17 +538,25 @@ export default function Showcase() {
                   backgroundColor: `${alpha(theme.palette.grey[50], 0.4)}`,
                   borderColor: 'divider',
                   ...theme.applyDarkStyles({
-                    backgroundColor: `${alpha(theme.palette.primaryDark[700], 0.3)}`,
+                    backgroundColor: `${alpha(
+                      theme.palette.primaryDark[700],
+                      0.3,
+                    )}`,
                     borderColor: 'divider',
                   }),
                 })}
               >
-                <Box component="a" href={app.link} rel="noopener nofollow" target="_blank">
+                <Box
+                  component='a'
+                  href={app.link}
+                  rel='noopener nofollow'
+                  target='_blank'
+                >
                   <CardMedia
-                    component="img"
-                    loading="lazy"
-                    width="600"
-                    height="450"
+                    component='img'
+                    loading='lazy'
+                    width='600'
+                    height='450'
                     src={`/static/images/showcase/${app.image}`}
                     title={app.title}
                     sx={(theme) => ({
@@ -551,37 +573,45 @@ export default function Showcase() {
                     })}
                   />
                 </Box>
-                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
+                <Box sx={{display: 'flex', flexDirection: 'column', gap: 0.5}}>
                   <Typography
-                    component="h2"
-                    variant="h6"
+                    component='h2'
+                    variant='h6'
                     fontWeight={600}
-                    sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                    }}
                   >
                     <span>{app.title}</span>
                     {app.source ? (
                       <IconButton
                         href={app.source}
-                        target="_blank"
+                        target='_blank'
                         aria-label={`${app.title} ${t('sourceCode')}`}
                       >
-                        <GitHubIcon fontSize="small" />
+                        <GitHubIcon fontSize='small' />
                       </IconButton>
                     ) : null}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography variant='body2' color='text.secondary'>
                     {app.description}
                   </Typography>
-                  <Typography variant="caption" display="block" color="text.secondary">
+                  <Typography
+                    variant='caption'
+                    display='block'
+                    color='text.secondary'
+                  >
                     {app.dateAdded}
                   </Typography>
                 </Box>
               </Card>
             ) : (
               <Link
-                variant="body2"
-                target="_blank"
-                rel="noopener nofollow"
+                variant='body2'
+                target='_blank'
+                rel='noopener nofollow'
                 href={app.link}
                 gutterBottom
               >
@@ -592,5 +622,5 @@ export default function Showcase() {
         ))}
       </Grid>
     </React.Fragment>
-  );
+  )
 }

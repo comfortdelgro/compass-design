@@ -1,36 +1,36 @@
-import * as React from 'react';
-import { alpha } from '@mui/material/styles';
-import Box, { BoxProps } from '@mui/material/Box';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import KeyboardArrowUpRounded from '@mui/icons-material/KeyboardArrowUpRounded';
-import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRounded';
-import Link from 'docs/src/modules/components/Link';
-import ROUTES from 'docs/src/route';
+import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRounded'
+import KeyboardArrowUpRounded from '@mui/icons-material/KeyboardArrowUpRounded'
+import Box, {BoxProps} from '@mui/material/Box'
+import IconButton from '@mui/material/IconButton'
+import {alpha} from '@mui/material/styles'
+import Typography from '@mui/material/Typography'
+import ROUTES from 'docs/src/route'
+import Link from 'next/link'
+import * as React from 'react'
 
 export default function StylingInfo({
   appeared,
   stylingContent,
   ...props
-}: { appeared: boolean; stylingContent?: React.ReactElement } & BoxProps) {
-  const [hidden, setHidden] = React.useState(false);
+}: {appeared: boolean; stylingContent?: React.ReactElement} & BoxProps) {
+  const [hidden, setHidden] = React.useState(false)
   const defaultContent = (
     <React.Fragment>
-      <Typography fontWeight="bold" color="#fff" variant="body2">
+      <Typography fontWeight='bold' color='#fff' variant='body2'>
         Own the styling!
       </Typography>
-      <Typography color="grey.400" variant="body2">
+      <Typography color='grey.400' variant='body2'>
         Build your own design system using the{' '}
-        <Link href={ROUTES.theming} sx={{ color: 'primary.300' }}>
+        <Link href={ROUTES.theming} sx={{color: 'primary.300'}}>
           sophisticated theming features
         </Link>
         . You can also start by using Google&apos;s Material Design.
       </Typography>
     </React.Fragment>
-  );
+  )
   return (
     <Box
-      data-mui-color-scheme="dark"
+      data-mui-color-scheme='dark'
       {...props}
       sx={{
         position: 'absolute',
@@ -42,7 +42,7 @@ export default function StylingInfo({
         px: 2,
         pt: 1,
         pb: 2,
-        bgcolor: ({ palette }) => alpha(palette.primaryDark[700], 0.5),
+        bgcolor: ({palette}) => alpha(palette.primaryDark[700], 0.5),
         backdropFilter: 'blur(8px)',
         zIndex: 1,
         borderTop: '1px solid',
@@ -60,7 +60,8 @@ export default function StylingInfo({
           transition: '0.3s',
           right: 10,
           bottom: '100%',
-          transform: hidden || !appeared ? 'translateY(-10px)' : 'translateY(50%)',
+          transform:
+            hidden || !appeared ? 'translateY(-10px)' : 'translateY(50%)',
           opacity: appeared ? 1 : 0,
           bgcolor: 'primaryDark.500',
           '&:hover, &.Mui-focused': {
@@ -69,12 +70,12 @@ export default function StylingInfo({
         }}
       >
         {hidden ? (
-          <KeyboardArrowUpRounded fontSize="small" />
+          <KeyboardArrowUpRounded fontSize='small' />
         ) : (
-          <KeyboardArrowDownRounded fontSize="small" />
+          <KeyboardArrowDownRounded fontSize='small' />
         )}
       </IconButton>
       {stylingContent || defaultContent}
     </Box>
-  );
+  )
 }

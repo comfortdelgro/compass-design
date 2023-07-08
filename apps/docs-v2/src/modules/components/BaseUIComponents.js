@@ -1,10 +1,9 @@
-import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-import { alpha } from '@mui/material/styles';
-import Link from 'docs/src/modules/components/Link';
+import Card from '@mui/material/Card'
+import CardMedia from '@mui/material/CardMedia'
+import Grid from '@mui/material/Grid'
+import {alpha} from '@mui/material/styles'
+import Typography from '@mui/material/Typography'
+import Link from 'next/link'
 
 function components() {
   return [
@@ -122,18 +121,18 @@ function components() {
       srcDark: '/static/base-ui/react-components/textarea-dark.png',
       href: '/base-ui/react-textarea-autosize/',
     },
-  ];
+  ]
 }
 
 export default function BaseUIComponents() {
   return (
-    <Grid container spacing={2} sx={{ pt: 2, pb: 4 }}>
+    <Grid container spacing={2} sx={{pt: 2, pb: 4}}>
       {components().map((component) => (
-        <Grid item xs={12} sm={4} sx={{ flexGrow: 1 }} key={component.title}>
+        <Grid item xs={12} sm={4} sx={{flexGrow: 1}} key={component.title}>
           <Card
             component={Link}
             noLinkStyle
-            variant="outlined"
+            variant='outlined'
             href={component.href}
             sx={(theme) => ({
               height: '100%',
@@ -142,14 +141,17 @@ export default function BaseUIComponents() {
               borderRadius: 1,
               borderColor: 'divider',
               ...theme.applyDarkStyles({
-                backgroundColor: `${alpha(theme.palette.primaryDark[700], 0.3)}`,
+                backgroundColor: `${alpha(
+                  theme.palette.primaryDark[700],
+                  0.3,
+                )}`,
                 borderColor: 'divider',
               }),
             })}
           >
             <CardMedia
-              component="img"
-              alt=""
+              component='img'
+              alt=''
               image={component.srcLight}
               sx={(theme) => ({
                 aspectRatio: '16 / 9',
@@ -170,10 +172,10 @@ export default function BaseUIComponents() {
               })}
             />
             <Typography
-              component="h2"
-              variant="body2"
-              fontWeight="semiBold"
-              sx={{ px: 2, py: 1.5 }}
+              component='h2'
+              variant='body2'
+              fontWeight='semiBold'
+              sx={{px: 2, py: 1.5}}
             >
               {component.title}
             </Typography>
@@ -181,5 +183,5 @@ export default function BaseUIComponents() {
         </Grid>
       ))}
     </Grid>
-  );
+  )
 }

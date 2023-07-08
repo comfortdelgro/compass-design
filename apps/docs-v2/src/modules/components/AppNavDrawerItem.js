@@ -1,22 +1,23 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import Box from '@mui/material/Box';
-import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
-import { alpha, styled } from '@mui/material/styles';
-import Collapse from '@mui/material/Collapse';
-import Chip from '@mui/material/Chip';
-import { shouldHandleLinkClick } from 'docs/src/modules/components/MarkdownLinks';
-import Link from 'docs/src/modules/components/Link';
-import standardNavIcons from './AppNavIcons';
+import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded'
+import Box from '@mui/material/Box'
+import Chip from '@mui/material/Chip'
+import Collapse from '@mui/material/Collapse'
+import {alpha, styled} from '@mui/material/styles'
+import {shouldHandleLinkClick} from 'docs/src/modules/components/MarkdownLinks'
+import Link from 'next/link'
+import PropTypes from 'prop-types'
+import * as React from 'react'
+import standardNavIcons from './AppNavIcons'
 
 const Item = styled(
-  function Item({ component: Component = 'div', ...props }) {
-    return <Component {...props} />;
+  function Item({component: Component = 'div', ...props}) {
+    return <Component {...props} />
   },
   {
-    shouldForwardProp: (prop) => prop !== 'depth' && prop !== 'hasIcon' && prop !== 'subheader',
+    shouldForwardProp: (prop) =>
+      prop !== 'depth' && prop !== 'hasIcon' && prop !== 'subheader',
   },
-)(({ theme, hasIcon, depth, subheader }) => {
+)(({theme, hasIcon, depth, subheader}) => {
   const color = {
     color: (theme.vars || theme).palette.text.secondary,
     ...(depth === 0 && {
@@ -25,7 +26,7 @@ const Item = styled(
     ...(subheader && {
       color: (theme.vars || theme).palette.grey[600],
     }),
-  };
+  }
 
   return [
     {
@@ -66,12 +67,16 @@ const Item = styled(
             ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
             : alpha(
                 theme.palette.primary.main,
-                theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+                theme.palette.action.selectedOpacity +
+                  theme.palette.action.hoverOpacity,
               ),
           '@media (hover: none)': {
             backgroundColor: theme.vars
               ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-              : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+              : alpha(
+                  theme.palette.primary.main,
+                  theme.palette.action.selectedOpacity,
+                ),
           },
         },
         '&.Mui-focusVisible': {
@@ -79,7 +84,8 @@ const Item = styled(
             ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
             : alpha(
                 theme.palette.primary.main,
-                theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+                theme.palette.action.selectedOpacity +
+                  theme.palette.action.focusOpacity,
               ),
         },
       },
@@ -132,22 +138,22 @@ const Item = styled(
         },
       }),
     }),
-  ];
-});
+  ]
+})
 
 const ItemButtonIcon = styled(KeyboardArrowRightRoundedIcon, {
   shouldForwardProp: (prop) => prop !== 'open',
-})(({ open }) => ({
+})(({open}) => ({
   fontSize: '1rem',
   transform: open && 'rotate(90deg)',
-}));
+}))
 
-const StyledLi = styled('li', { shouldForwardProp: (prop) => prop !== 'depth' })(
-  ({ theme, depth }) => ({
+const StyledLi = styled('li', {shouldForwardProp: (prop) => prop !== 'depth'})(
+  ({theme, depth}) => ({
     display: 'block',
     padding: depth === 0 ? theme.spacing(1, '10px', 0, '10px') : '2px 0',
   }),
-);
+)
 
 export const sxChip = (color) => [
   (theme) => ({
@@ -177,11 +183,11 @@ export const sxChip = (color) => [
         bgcolor: alpha(theme.palette[color][900], 0.5),
       },
     }),
-];
+]
 
 function DeadLink(props) {
-  const { activeClassName, href, noLinkStyle, prefetch, ...other } = props;
-  return <div {...other} />;
+  const {activeClassName, href, noLinkStyle, prefetch, ...other} = props
+  return <div {...other} />
 }
 
 DeadLink.propTypes = {
@@ -189,7 +195,7 @@ DeadLink.propTypes = {
   href: PropTypes.any,
   noLinkStyle: PropTypes.any,
   prefetch: PropTypes.any,
-};
+}
 
 export default function AppNavDrawerItem(props) {
   const {
@@ -208,32 +214,32 @@ export default function AppNavDrawerItem(props) {
     title,
     topLevel = false,
     ...other
-  } = props;
-  const expandable = openImmediately != null;
-  const [open, setOpen] = React.useState(openImmediately);
+  } = props
+  const expandable = openImmediately != null
+  const [open, setOpen] = React.useState(openImmediately)
   const handleClick = (event) => {
     // Ignore the action if opening the link in a new tab
     if (shouldHandleLinkClick(event)) {
-      return;
+      return
     }
 
     if (onClick) {
-      onClick(event);
+      onClick(event)
     }
 
     if (expandable && !subheader) {
-      event.preventDefault();
-      setOpen((oldOpen) => !oldOpen);
+      event.preventDefault()
+      setOpen((oldOpen) => !oldOpen)
     }
-  };
+  }
 
-  const hasIcon = icon && (typeof icon !== 'string' || !!standardNavIcons[icon]);
-  const IconComponent = typeof icon === 'string' ? standardNavIcons[icon] : icon;
+  const hasIcon = icon && (typeof icon !== 'string' || !!standardNavIcons[icon])
+  const IconComponent = typeof icon === 'string' ? standardNavIcons[icon] : icon
   const iconElement = hasIcon ? (
     <Box
-      component="span"
+      component='span'
       sx={{
-        '& svg': { fontSize: (theme) => theme.typography.pxToRem(16.5) },
+        '& svg': {fontSize: (theme) => theme.typography.pxToRem(16.5)},
         display: 'flex',
         alignItems: 'center',
         height: '100%',
@@ -241,9 +247,9 @@ export default function AppNavDrawerItem(props) {
         py: '2px',
       }}
     >
-      <IconComponent fontSize="small" color="primary" />
+      <IconComponent fontSize='small' color='primary' />
     </Box>
-  ) : null;
+  ) : null
 
   return (
     <StyledLi {...other} depth={depth}>
@@ -262,22 +268,26 @@ export default function AppNavDrawerItem(props) {
       >
         {iconElement}
         {title}
-        {plan === 'pro' && <span className="plan-pro" title="Pro plan" />}
-        {plan === 'premium' && <span className="plan-premium" title="Premium plan" />}
-        {legacy && <Chip label="Legacy" sx={sxChip('warning')} />}
-        {newFeature && <Chip label="New" sx={sxChip('success')} />}
-        {comingSoon && <Chip label="Coming soon" sx={sxChip('grey')} />}
-        {expandable && !subheader && <ItemButtonIcon className="ItemButtonIcon" open={open} />}
+        {plan === 'pro' && <span className='plan-pro' title='Pro plan' />}
+        {plan === 'premium' && (
+          <span className='plan-premium' title='Premium plan' />
+        )}
+        {legacy && <Chip label='Legacy' sx={sxChip('warning')} />}
+        {newFeature && <Chip label='New' sx={sxChip('success')} />}
+        {comingSoon && <Chip label='Coming soon' sx={sxChip('grey')} />}
+        {expandable && !subheader && (
+          <ItemButtonIcon className='ItemButtonIcon' open={open} />
+        )}
       </Item>
       {expandable ? (
-        <Collapse in={open} timeout="auto" unmountOnExit>
+        <Collapse in={open} timeout='auto' unmountOnExit>
           {children}
         </Collapse>
       ) : (
         children
       )}
     </StyledLi>
-  );
+  )
 }
 
 AppNavDrawerItem.propTypes = {
@@ -295,4 +305,4 @@ AppNavDrawerItem.propTypes = {
   subheader: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
   topLevel: PropTypes.bool,
-};
+}

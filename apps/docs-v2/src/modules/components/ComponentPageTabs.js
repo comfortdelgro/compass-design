@@ -1,16 +1,15 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import { useRouter } from 'next/router';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Tabs, { tabsClasses } from '@mui/material/Tabs';
-import Tab, { tabClasses } from '@mui/material/Tab';
-import Link from 'docs/src/modules/components/Link';
+import Box from '@mui/material/Box'
+import {styled} from '@mui/material/styles'
+import Tab, {tabClasses} from '@mui/material/Tab'
+import Tabs, {tabsClasses} from '@mui/material/Tabs'
+import {useTranslate} from 'docs/src/modules/utils/i18n'
+import Link from 'next/link'
+import {useRouter} from 'next/router'
+import PropTypes from 'prop-types'
 
-export const HEIGHT = 50;
+export const HEIGHT = 50
 
-const StyledTab = styled(Tab)(({ theme }) => ({
+const StyledTab = styled(Tab)(({theme}) => ({
   padding: theme.spacing(1),
   marginBottom: theme.spacing(1),
   marginRight: theme.spacing(1),
@@ -29,26 +28,26 @@ const StyledTab = styled(Tab)(({ theme }) => ({
       color: (theme.vars || theme).palette.primary[300],
     },
   }),
-}));
+}))
 
 export default function ComponentPageTabs(props) {
   const {
     activeTab,
     children,
-    markdown: { headers },
-  } = props;
-  const router = useRouter();
-  const t = useTranslate();
+    markdown: {headers},
+  } = props
+  const router = useRouter()
+  const t = useTranslate()
 
   const demosHref = router.pathname.endsWith('[docsTab]')
     ? router.pathname.replace('[docsTab]', '')
-    : router.pathname;
-  const apiPathname = `${demosHref.endsWith('/') ? demosHref : `${demosHref}/`}`;
-  const componentsHref = `${apiPathname}components-api`;
-  const hooksHref = `${apiPathname}hooks-api`;
+    : router.pathname
+  const apiPathname = `${demosHref.endsWith('/') ? demosHref : `${demosHref}/`}`
+  const componentsHref = `${apiPathname}components-api`
+  const hooksHref = `${apiPathname}hooks-api`
 
   return (
-    <Box className="component-tabs" sx={{ display: 'inline' }}>
+    <Box className='component-tabs' sx={{display: 'inline'}}>
       <Tabs
         value={activeTab}
         sx={{
@@ -65,7 +64,9 @@ export default function ComponentPageTabs(props) {
             sm: 0,
           },
           backgroundColor: (theme) =>
-            theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : 'rgba(255,255,255)',
+            theme.palette.mode === 'dark'
+              ? theme.palette.primaryDark[900]
+              : 'rgba(255,255,255)',
           borderBottom: 1,
           borderColor: 'divider',
           zIndex: 1000,
@@ -88,34 +89,34 @@ export default function ComponentPageTabs(props) {
           scroll
           href={demosHref}
           label={t('api-docs.demos')}
-          value=""
+          value=''
         />
         {headers.components?.length > 0 && (
           <StyledTab
-            className="skip-algolia-crawler" // For more details, see https://github.com/mui/material-ui/pull/37539.
+            className='skip-algolia-crawler' // For more details, see https://github.com/mui/material-ui/pull/37539.
             component={Link}
             shallow
             scroll
             href={componentsHref}
             label={t('api-docs.componentsApi')}
-            value="components-api"
+            value='components-api'
           />
         )}
         {headers.hooks && headers.hooks.length > 0 && (
           <StyledTab
-            className="skip-algolia-crawler" // For more details, see https://github.com/mui/material-ui/pull/37539.
+            className='skip-algolia-crawler' // For more details, see https://github.com/mui/material-ui/pull/37539.
             component={Link}
             shallow
             scroll
             href={hooksHref}
             label={t('api-docs.hooksApi')}
-            value="hooks-api"
+            value='hooks-api'
           />
         )}
       </Tabs>
       {children}
     </Box>
-  );
+  )
 }
 
 ComponentPageTabs.propTypes = {
@@ -127,4 +128,4 @@ ComponentPageTabs.propTypes = {
       hooks: PropTypes.array,
     }),
   }),
-};
+}

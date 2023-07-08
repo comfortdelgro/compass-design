@@ -12,9 +12,9 @@ import HeaderNavDropdown from 'components/header/HeaderNavDropdown'
 import ThemeModeToggle from 'components/header/ThemeModeToggle'
 import SvgMuiLogomark from 'components/icons/SvgMuiLogomark'
 import {DeferredAppSearch} from 'docs/src/modules/components/AppFrame'
-import Link from 'docs/src/modules/components/Link'
 import {useChangeTheme} from 'docs/src/modules/components/ThemeContext'
 import {useTranslate} from 'docs/src/modules/utils/i18n'
+import Link from 'next/link'
 import * as React from 'react'
 
 const Header = styled('header')(({theme}) => [

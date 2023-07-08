@@ -1,27 +1,26 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
-import * as ReactDOMServer from 'react-dom/server';
-import PropTypes from 'prop-types';
-import NextLink from 'next/link';
-import { useRouter } from 'next/router';
-import { DocSearchModal, useDocSearchKeyboardEvents } from '@docsearch/react';
-import Chip from '@mui/material/Chip';
-import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
-import ToggleOffRoundedIcon from '@mui/icons-material/ToggleOffRounded';
-import EditRoundedIcon from '@mui/icons-material/EditRounded';
-import HandymanRoundedIcon from '@mui/icons-material/HandymanRounded';
-import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
-import SearchIcon from '@mui/icons-material/Search';
-import GlobalStyles from '@mui/material/GlobalStyles';
-import { alpha, styled } from '@mui/material/styles';
-import { LANGUAGES_SSR } from 'docs/config';
-import Link from 'docs/src/modules/components/Link';
-import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
-import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
-import PageContext from 'docs/src/modules/components/PageContext';
+import {DocSearchModal, useDocSearchKeyboardEvents} from '@docsearch/react'
+import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded'
+import EditRoundedIcon from '@mui/icons-material/EditRounded'
+import HandymanRoundedIcon from '@mui/icons-material/HandymanRounded'
+import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded'
+import SearchIcon from '@mui/icons-material/Search'
+import ToggleOffRoundedIcon from '@mui/icons-material/ToggleOffRounded'
+import Chip from '@mui/material/Chip'
+import GlobalStyles from '@mui/material/GlobalStyles'
+import {alpha, styled} from '@mui/material/styles'
+import {LANGUAGES_SSR} from 'docs/config'
+import PageContext from 'docs/src/modules/components/PageContext'
+import {pathnameToLanguage} from 'docs/src/modules/utils/helpers'
+import {useTranslate, useUserLanguage} from 'docs/src/modules/utils/i18n'
+import useLazyCSS from 'docs/src/modules/utils/useLazyCSS'
+import {default as Link, default as NextLink} from 'next/link'
+import {useRouter} from 'next/router'
+import PropTypes from 'prop-types'
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
+import * as ReactDOMServer from 'react-dom/server'
 
-const SearchButton = styled('button')(({ theme }) => [
+const SearchButton = styled('button')(({theme}) => [
   {
     minHeight: 34,
     display: 'flex',
@@ -60,16 +59,16 @@ const SearchButton = styled('button')(({ theme }) => [
       borderColor: (theme.vars || theme).palette.primaryDark[600],
     },
   }),
-]);
+])
 
-const SearchLabel = styled('span')(({ theme }) => {
+const SearchLabel = styled('span')(({theme}) => {
   return {
     marginLeft: theme.spacing(1),
     marginRight: 'auto',
-  };
-});
+  }
+})
 
-const Shortcut = styled('div')(({ theme }) => {
+const Shortcut = styled('div')(({theme}) => {
   return {
     fontSize: theme.typography.pxToRem(12),
     fontWeight: 700,
@@ -83,74 +82,93 @@ const Shortcut = styled('div')(({ theme }) => {
       borderColor: (theme.vars || theme).palette.primaryDark[600],
       backgroundColor: (theme.vars || theme).palette.primaryDark[800],
     }),
-  };
-});
+  }
+})
 
 function NewStartScreen() {
   const startScreenOptions = [
     {
       category: {
         name: 'Getting started',
-        icon: <ArticleRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        icon: (
+          <ArticleRoundedIcon className='DocSearch-NewStartScreenTitleIcon' />
+        ),
       },
       items: [
-        { name: 'Installation', href: '/material-ui/getting-started/installation/' },
-        { name: 'Usage', href: '/material-ui/getting-started/usage/' },
-        { name: 'Learn', href: '/material-ui/getting-started/learn/' },
+        {
+          name: 'Installation',
+          href: '/material-ui/getting-started/installation/',
+        },
+        {name: 'Usage', href: '/material-ui/getting-started/usage/'},
+        {name: 'Learn', href: '/material-ui/getting-started/learn/'},
       ],
     },
     {
       category: {
         name: 'Popular searches',
-        icon: <ToggleOffRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        icon: (
+          <ToggleOffRoundedIcon className='DocSearch-NewStartScreenTitleIcon' />
+        ),
       },
       items: [
-        { name: 'Material Icons', href: '/material-ui/material-icons/' },
-        { name: 'Text Field', href: '/material-ui/react-text-field/' },
-        { name: 'Button', href: '/material-ui/react-button/' },
+        {name: 'Material Icons', href: '/material-ui/material-icons/'},
+        {name: 'Text Field', href: '/material-ui/react-text-field/'},
+        {name: 'Button', href: '/material-ui/react-button/'},
       ],
     },
     {
       category: {
         name: 'Customization',
-        icon: <EditRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        icon: <EditRoundedIcon className='DocSearch-NewStartScreenTitleIcon' />,
       },
       items: [
-        { name: 'How to customize', href: '/material-ui/customization/how-to-customize/' },
-        { name: 'Theming', href: '/material-ui/customization/theming/' },
-        { name: 'Default theme', href: '/material-ui/customization/default-theme/' },
+        {
+          name: 'How to customize',
+          href: '/material-ui/customization/how-to-customize/',
+        },
+        {name: 'Theming', href: '/material-ui/customization/theming/'},
+        {
+          name: 'Default theme',
+          href: '/material-ui/customization/default-theme/',
+        },
       ],
     },
     {
       category: {
         name: 'System',
-        icon: <HandymanRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        icon: (
+          <HandymanRoundedIcon className='DocSearch-NewStartScreenTitleIcon' />
+        ),
       },
       items: [
-        { name: 'Overview', href: '/system/getting-started/' },
-        { name: 'Properties', href: '/system/properties/' },
-        { name: 'The sx prop', href: '/system/getting-started/the-sx-prop/' },
+        {name: 'Overview', href: '/system/getting-started/'},
+        {name: 'Properties', href: '/system/properties/'},
+        {name: 'The sx prop', href: '/system/getting-started/the-sx-prop/'},
       ],
     },
-  ];
+  ]
   return (
-    <div className="DocSearch-NewStartScreen">
-      {startScreenOptions.map(({ category, items }) => (
-        <div key={category.name} className="DocSearch-NewStartScreenCategory">
-          <div className="DocSearch-NewStartScreenTitle">
+    <div className='DocSearch-NewStartScreen'>
+      {startScreenOptions.map(({category, items}) => (
+        <div key={category.name} className='DocSearch-NewStartScreenCategory'>
+          <div className='DocSearch-NewStartScreenTitle'>
             {category.icon}
             {category.name}
           </div>
-          {items.map(({ name, href }) => (
-            <NextLink key={name} href={href} className="DocSearch-NewStartScreenItem">
+          {items.map(({name, href}) => (
+            <NextLink
+              key={name}
+              href={href}
+              className='DocSearch-NewStartScreenItem'
+            >
               {name}
-              <KeyboardArrowRightRounded className="DocSearch-NewStartScreenItemIcon" />
+              <KeyboardArrowRightRounded className='DocSearch-NewStartScreenItemIcon' />
             </NextLink>
           ))}
         </div>
       ))}
     </div>
-  );
+  )
 }
 
 const displayTagProductId = {
@@ -160,100 +178,108 @@ const displayTagProductId = {
   x: 'MUI X',
   system: 'MUI System',
   toolpad: 'Toolpad',
-};
+}
 
 function getDisplayTag(hit) {
   if (hit.productId === undefined || hit.productCategoryId === undefined) {
-    return null;
+    return null
   }
 
   const productInfo = {
     productId: hit.productId,
     productCategoryId: hit.productCategoryId,
-  };
+  }
 
   const displayTag =
     displayTagProductId[productInfo.productId] ||
-    displayTagProductId[productInfo.productCategoryId];
+    displayTagProductId[productInfo.productCategoryId]
 
   if (!displayTag) {
     console.error(
       `getDisplayTag missing mapping for productId: ${productInfo.productId}, pathname: ${hit.pathname}.`,
-    );
+    )
   }
 
-  return <Chip label={displayTag} size="small" variant="outlined" sx={{ mr: 1 }} />;
+  return (
+    <Chip label={displayTag} size='small' variant='outlined' sx={{mr: 1}} />
+  )
 }
 
 function DocSearchHit(props) {
-  const { children, hit } = props;
+  const {children, hit} = props
 
   if (hit.pathname) {
     return (
       <Link
         href={hit.pathname}
         as={hit.as}
-        sx={{ display: 'flex !important', '& .DocSearch-Hit-Container': { flex: 1, minWidth: 0 } }}
+        sx={{
+          display: 'flex !important',
+          '& .DocSearch-Hit-Container': {flex: 1, minWidth: 0},
+        }}
       >
         {children}
         {getDisplayTag(hit)}
       </Link>
-    );
+    )
   }
 
   // DocSearch stores the old results in its cache
   // hit.pathname won't be defined for them.
-  return <Link href={hit.url}>{children}</Link>;
+  return <Link href={hit.url}>{children}</Link>
 }
 
 DocSearchHit.propTypes = {
   children: PropTypes.node,
   hit: PropTypes.object.isRequired,
-};
+}
 
 export default function AppSearch(props) {
   useLazyCSS(
     'https://cdn.jsdelivr.net/npm/@docsearch/css@3.0.0-alpha.40/dist/style.min.css',
     '#app-search',
-  );
-  const FADE_DURATION = 100; // ms
-  const t = useTranslate();
-  const userLanguage = useUserLanguage();
-  const searchButtonRef = React.useRef(null);
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [initialQuery, setInitialQuery] = React.useState(undefined);
+  )
+  const FADE_DURATION = 100 // ms
+  const t = useTranslate()
+  const userLanguage = useUserLanguage()
+  const searchButtonRef = React.useRef(null)
+  const [isOpen, setIsOpen] = React.useState(false)
+  const [initialQuery, setInitialQuery] = React.useState(undefined)
   const facetFilterLanguage =
-    LANGUAGES_SSR.indexOf(userLanguage) !== -1 ? `language:${userLanguage}` : `language:en`;
-  const macOS = window.navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+    LANGUAGES_SSR.indexOf(userLanguage) !== -1
+      ? `language:${userLanguage}`
+      : `language:en`
+  const macOS = window.navigator.platform.toUpperCase().indexOf('MAC') >= 0
   const onOpen = React.useCallback(() => {
-    setIsOpen(true);
-  }, [setIsOpen]);
-  const router = useRouter();
-  const pageContext = React.useContext(PageContext);
+    setIsOpen(true)
+  }, [setIsOpen])
+  const router = useRouter()
+  const pageContext = React.useContext(PageContext)
 
   const keyboardNavigator = {
-    navigate({ item }) {
-      const as = item.userLanguage !== 'en' ? `/${item.userLanguage}${item.as}` : item.as;
-      router.push(item.pathname, as);
+    navigate({item}) {
+      const as =
+        item.userLanguage !== 'en' ? `/${item.userLanguage}${item.as}` : item.as
+      router.push(item.pathname, as)
     },
-  };
+  }
 
   const onClose = React.useCallback(() => {
-    const modal = document.querySelector('.DocSearch-Container');
+    const modal = document.querySelector('.DocSearch-Container')
     if (modal) {
       // fade out transition
-      modal.style.opacity = 0;
+      modal.style.opacity = 0
     }
-    setIsOpen(false); // DO NOT call setIsOpen inside a timeout (it causes scroll issue).
-  }, [setIsOpen]);
+    setIsOpen(false) // DO NOT call setIsOpen inside a timeout (it causes scroll issue).
+  }, [setIsOpen])
 
   const onInput = React.useCallback(
     (event) => {
-      setIsOpen(true);
-      setInitialQuery(event.key);
+      setIsOpen(true)
+      setInitialQuery(event.key)
     },
     [setIsOpen, setInitialQuery],
-  );
+  )
 
   useDocSearchKeyboardEvents({
     isOpen,
@@ -261,50 +287,53 @@ export default function AppSearch(props) {
     onClose,
     onInput,
     searchButtonRef,
-  });
+  })
 
   React.useEffect(() => {
     const addStartScreen = () => {
-      const dropDown = document.querySelector('.DocSearch-Dropdown');
-      const isExisting = document.querySelector('.DocSearch-NewStartScreen');
+      const dropDown = document.querySelector('.DocSearch-Dropdown')
+      const isExisting = document.querySelector('.DocSearch-NewStartScreen')
       if (dropDown && !isExisting) {
         dropDown.insertAdjacentHTML(
           'beforeend',
           ReactDOMServer.renderToStaticMarkup(<NewStartScreen />),
-        );
+        )
       }
-    };
+    }
     // add transition to Modal
     if (isOpen) {
-      const modal = document.querySelector('.DocSearch-Container');
-      const searchInput = document.querySelector('.DocSearch-Input');
+      const modal = document.querySelector('.DocSearch-Container')
+      const searchInput = document.querySelector('.DocSearch-Input')
       if (modal) {
-        modal.style.opacity = 1;
-        addStartScreen();
+        modal.style.opacity = 1
+        addStartScreen()
       }
       if (searchInput) {
         const handleInput = (event) => {
-          const newStartScreen = document.querySelector('.DocSearch-NewStartScreen');
+          const newStartScreen = document.querySelector(
+            '.DocSearch-NewStartScreen',
+          )
           if (newStartScreen) {
-            newStartScreen.style.display = event.target.value !== '' ? 'none' : 'grid';
+            newStartScreen.style.display =
+              event.target.value !== '' ? 'none' : 'grid'
           }
-        };
-        searchInput.addEventListener('input', handleInput);
+        }
+        searchInput.addEventListener('input', handleInput)
         return () => {
-          searchInput.removeEventListener('input', handleInput);
-        };
+          searchInput.removeEventListener('input', handleInput)
+        }
       }
     }
-    return () => {};
-  }, [isOpen]);
+    return () => {}
+  }, [isOpen])
 
-  const search = `${t('algoliaSearch')}…`;
+  const search = `${t('algoliaSearch')}…`
 
   return (
     <React.Fragment>
       <SearchButton ref={searchButtonRef} onClick={onOpen} {...props}>
         <SearchIcon
-          fontSize="small"
+          fontSize='small'
           sx={(theme) => ({
             color: 'primary.500',
             ...theme.applyDarkStyles({
@@ -322,9 +351,9 @@ export default function AppSearch(props) {
         ReactDOM.createPortal(
           <DocSearchModal
             initialQuery={initialQuery}
-            appId="TZGZ85B9TB"
-            apiKey="8177dfb3e2be72b241ffb8c5abafa899"
-            indexName="material-ui"
+            appId='TZGZ85B9TB'
+            apiKey='8177dfb3e2be72b241ffb8c5abafa899'
+            indexName='material-ui'
             searchParameters={{
               facetFilters: ['version:master', facetFilterLanguage],
               optionalFilters: [`productId:${pageContext.productId}`],
@@ -344,7 +373,10 @@ export default function AppSearch(props) {
                 'productId',
                 'productCategoryId',
               ],
-              analyticsTags: [facetFilterLanguage, `product:${pageContext.productId}`],
+              analyticsTags: [
+                facetFilterLanguage,
+                `product:${pageContext.productId}`,
+              ],
               hitsPerPage: 40,
             }}
             placeholder={search}
@@ -352,23 +384,25 @@ export default function AppSearch(props) {
               return items.map((item) => {
                 // `url` contains the domain
                 // but we want to link to the current domain e.g. deploy-preview-1--material-ui.netlify.app
-                const parseUrl = document.createElement('a');
-                parseUrl.href = item.url;
+                const parseUrl = document.createElement('a')
+                parseUrl.href = item.url
 
-                const { canonicalAs, canonicalPathname } = pathnameToLanguage(
+                const {canonicalAs, canonicalPathname} = pathnameToLanguage(
                   `${parseUrl.pathname}${parseUrl.hash}`,
-                );
+                )
 
                 return {
                   ...item,
                   pathname: canonicalPathname,
                   as: canonicalAs,
                   userLanguage,
-                };
-              });
+                }
+              })
             }}
             hitComponent={DocSearchHit}
-            initialScrollY={typeof window !== 'undefined' ? window.scrollY : undefined}
+            initialScrollY={
+              typeof window !== 'undefined' ? window.scrollY : undefined
+            }
             onClose={onClose}
             navigator={keyboardNavigator}
           />,
@@ -378,18 +412,23 @@ export default function AppSearch(props) {
         styles={(theme) => ({
           html: {
             ':root': {
-              '--docsearch-primary-color': (theme.vars || theme).palette.primary[500],
-              '--docsearch-text-color': (theme.vars || theme).palette.text.primary,
-              '--docsearch-muted-color': (theme.vars || theme).palette.grey[600],
+              '--docsearch-primary-color': (theme.vars || theme).palette
+                .primary[500],
+              '--docsearch-text-color': (theme.vars || theme).palette.text
+                .primary,
+              '--docsearch-muted-color': (theme.vars || theme).palette
+                .grey[600],
               '--docsearch-searchbox-shadow': 0,
               '--docsearch-hit-shadow': 0,
               '--docsearch-footer-shadow': 0,
               '--docsearch-spacing': theme.spacing(1.5),
-              '--docsearch-hit-active-color': (theme.vars || theme).palette.primary[600],
+              '--docsearch-hit-active-color': (theme.vars || theme).palette
+                .primary[600],
               '--docsearch-logo-color': (theme.vars || theme).palette.grey[600],
               '--docsearch-searchbox-focus-background': 'unset',
               '--docsearch-footer-background': 'unset',
-              '--docsearch-modal-background': (theme.vars || theme).palette.background.paper,
+              '--docsearch-modal-background': (theme.vars || theme).palette
+                .background.paper,
             },
           },
           body: {
@@ -562,57 +601,68 @@ export default function AppSearch(props) {
       <GlobalStyles
         styles={(theme) => [
           {
-            [theme.vars ? '[data-mui-color-scheme="dark"]:root' : '.mode-dark']: {
-              '--docsearch-primary-color': (theme.vars || theme).palette.primaryDark[300],
-              '--docsearch-hit-active-color': (theme.vars || theme).palette.primary[300],
-            },
+            [theme.vars ? '[data-mui-color-scheme="dark"]:root' : '.mode-dark']:
+              {
+                '--docsearch-primary-color': (theme.vars || theme).palette
+                  .primaryDark[300],
+                '--docsearch-hit-active-color': (theme.vars || theme).palette
+                  .primary[300],
+              },
           },
           {
-            [theme.vars ? '[data-mui-color-scheme="dark"] body' : '.mode-dark']: {
-              '.DocSearch-Container': {
-                backgroundColor: alpha(theme.palette.grey[900], 0.7),
-              },
-              '& .DocSearch-NewStartScreenTitleIcon': {
-                color: (theme.vars || theme).palette.primaryDark[300],
-              },
-              '& .DocSearch-NewStartScreenItem': {
-                color: (theme.vars || theme).palette.primaryDark[300],
-              },
-              '& .DocSearch-Modal': {
-                boxShadow: `0px 4px 20px ${alpha(theme.palette.background.paper, 0.7)}`,
-                border: '1px solid',
-                borderColor: (theme.vars || theme).palette.primaryDark[700],
-              },
-              '& .DocSearch-SearchBar': {
-                borderColor: (theme.vars || theme).palette.primaryDark[700],
-              },
-              '& .DocSearch-Cancel': {
-                backgroundColor: (theme.vars || theme).palette.primaryDark[800],
-                borderColor: (theme.vars || theme).palette.primaryDark[600],
-              },
-              '& .DocSearch-Dropdown': {
-                '&::-webkit-scrollbar-thumb': {
-                  borderColor: (theme.vars || theme).palette.primaryDark[900],
-                  backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+            [theme.vars ? '[data-mui-color-scheme="dark"] body' : '.mode-dark']:
+              {
+                '.DocSearch-Container': {
+                  backgroundColor: alpha(theme.palette.grey[900], 0.7),
+                },
+                '& .DocSearch-NewStartScreenTitleIcon': {
+                  color: (theme.vars || theme).palette.primaryDark[300],
+                },
+                '& .DocSearch-NewStartScreenItem': {
+                  color: (theme.vars || theme).palette.primaryDark[300],
+                },
+                '& .DocSearch-Modal': {
+                  boxShadow: `0px 4px 20px ${alpha(
+                    theme.palette.background.paper,
+                    0.7,
+                  )}`,
+                  border: '1px solid',
+                  borderColor: (theme.vars || theme).palette.primaryDark[700],
+                },
+                '& .DocSearch-SearchBar': {
+                  borderColor: (theme.vars || theme).palette.primaryDark[700],
+                },
+                '& .DocSearch-Cancel': {
+                  backgroundColor: (theme.vars || theme).palette
+                    .primaryDark[800],
+                  borderColor: (theme.vars || theme).palette.primaryDark[600],
+                },
+                '& .DocSearch-Dropdown': {
+                  '&::-webkit-scrollbar-thumb': {
+                    borderColor: (theme.vars || theme).palette.primaryDark[900],
+                    backgroundColor: (theme.vars || theme).palette
+                      .primaryDark[700],
+                  },
+                },
+                '& .DocSearch-Hit a': {
+                  borderBottomColor: (theme.vars || theme).palette
+                    .primaryDark[700],
+                },
+                '& .DocSearch-Hit[aria-selected="true"] a': {
+                  backgroundColor: (theme.vars || theme).palette
+                    .primaryDark[800],
+                  borderColor: (theme.vars || theme).palette.primaryDark[400],
+                },
+                '& .DocSearch-Hit-action, & .DocSearch-Hits mark': {
+                  color: (theme.vars || theme).palette.primary[400],
+                },
+                '& .DocSearch-Footer': {
+                  borderColor: (theme.vars || theme).palette.primaryDark[700],
                 },
               },
-              '& .DocSearch-Hit a': {
-                borderBottomColor: (theme.vars || theme).palette.primaryDark[700],
-              },
-              '& .DocSearch-Hit[aria-selected="true"] a': {
-                backgroundColor: (theme.vars || theme).palette.primaryDark[800],
-                borderColor: (theme.vars || theme).palette.primaryDark[400],
-              },
-              '& .DocSearch-Hit-action, & .DocSearch-Hits mark': {
-                color: (theme.vars || theme).palette.primary[400],
-              },
-              '& .DocSearch-Footer': {
-                borderColor: (theme.vars || theme).palette.primaryDark[700],
-              },
-            },
           },
         ]}
       />
     </React.Fragment>
-  );
+  )
 }

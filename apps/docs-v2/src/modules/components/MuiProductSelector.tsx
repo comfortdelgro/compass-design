@@ -3,9 +3,9 @@ import Chip from '@mui/material/Chip'
 import Stack from '@mui/material/Stack'
 import {alpha} from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
-import Link from 'docs/src/modules/components/Link'
 import PageContext from 'docs/src/modules/components/PageContext'
 import ROUTES from 'docs/src/route'
+import Link from 'next/link'
 import * as React from 'react'
 
 interface ProductSubMenuProp extends BoxProps {

@@ -9,7 +9,7 @@ import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import SvgMuiLogotype from 'components/icons/SvgMuiLogotype'
 import SvgStackOverflow from 'components/icons/SvgStackOverflow'
-import Link from 'docs/src/modules/components/Link'
+import Link from 'next/link'
 
 interface AppFooterProps {
   stackOverflowUrl?: string
