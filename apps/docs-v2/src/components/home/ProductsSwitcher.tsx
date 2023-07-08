@@ -5,7 +5,6 @@ import {Theme} from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import Highlighter from 'docs/src/components/action/Highlighter'
-import IconImage from 'docs/src/components/icon/IconImage'
 import Link from 'docs/src/modules/components/Link'
 import ROUTES from 'docs/src/route'
 import dynamic from 'next/dynamic'
@@ -17,13 +16,11 @@ const SwipeableViews = dynamic(() => import('react-swipeable-views'), {
 
 function ProductItem({
   'aria-label': label,
-  icon,
   name,
   description,
   href,
 }: {
   'aria-label': string
-  icon: React.ReactNode
   name: React.ReactNode
   description: React.ReactNode
   href: string
@@ -38,9 +35,6 @@ function ProductItem({
         alignItems: {md: 'center'},
       }}
     >
-      <Box component='span' sx={{mr: 2, mb: {xs: 1, md: 0}}}>
-        {icon}
-      </Box>
       <span>
         <Typography
           component='span'
@@ -104,21 +98,18 @@ function ProductsSwitcher({
   const productElements = [
     <ProductItem
       aria-label='Go to core components page'
-      icon={<IconImage name='product-core' />}
       name='MUI Core'
       description='Foundational components for shipping features faster. Includes Material UI.'
       href={ROUTES.productCore}
     />,
     <ProductItem
       aria-label='Go to templates page'
-      icon={<IconImage name='product-templates' />}
       name='Templates'
       description='Professionally designed UI layouts to jumpstart your next project.'
       href={ROUTES.productTemplates}
     />,
     <ProductItem
       aria-label='Go to design-kits page'
-      icon={<IconImage name='product-designkits' />}
       name='Design kits'
       description='Bring our components to your favorite design tool.'
       href={ROUTES.productDesignKits}

@@ -1,6 +1,5 @@
 import Divider from '@mui/material/Divider'
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider'
-import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner'
 import Hero from 'docs/src/components/home/Hero'
 import HeroEnd from 'docs/src/components/home/HeroEnd'
 import ProductSuite from 'docs/src/components/home/ProductSuite'
@@ -15,7 +14,6 @@ export default function Home() {
         title='Compass Design: The React component library you always wanted'
         description='Compass Design: The React component library you always wanted'
       ></Head>
-      <AppHeaderBanner />
       <AppHeader />
       <main id='main-content'>
         <Hero />
