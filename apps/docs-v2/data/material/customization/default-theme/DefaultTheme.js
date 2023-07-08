@@ -6,7 +6,7 @@ import Switch from '@mui/material/Switch';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import ThemeViewer, {
   useNodeIdsLazy,
-} from 'docs/src/modules/components/ThemeViewer';
+} from 'components/common/ThemeViewer';
 
 function DefaultTheme() {
   const [checked, setChecked] = React.useState(false);

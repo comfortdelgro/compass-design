@@ -12,7 +12,7 @@ import Button from '@mui/material/Button';
 import CheckIcon from '@mui/icons-material/Check';
 import Slider from '@mui/material/Slider';
 import { capitalize } from '@mui/material/utils';
-import { DispatchContext } from 'docs/src/modules/components/ThemeContext';
+import { DispatchContext } from 'components/common/ThemeContext';
 import ColorDemo from './ColorDemo';
 
 const defaults = {

@@ -5,9 +5,9 @@ import Popper from '@mui/material/Popper'
 import {alpha, styled} from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import {unstable_debounce as debounce} from '@mui/utils'
-import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector'
 import Link from 'next/link'
 import * as React from 'react'
+import MuiProductSelector from '../common/MuiProductSelector'
 
 const Navigation = styled('nav')(({theme}) => [
   {

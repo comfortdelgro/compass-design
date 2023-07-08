@@ -1,24 +1,31 @@
-import * as React from 'react';
-import { deepmerge } from '@mui/utils';
+import CssBaseline from '@mui/material/CssBaseline'
 import {
   Experimental_CssVarsProvider as CssVarsProvider,
   experimental_extendTheme as extendTheme,
   PaletteColorOptions,
-} from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import { NextNProgressBar } from 'docs/src/modules/components/AppFrame';
-import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';
-import SkipLink from 'docs/src/modules/components/SkipLink';
-import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
+} from '@mui/material/styles'
+import {deepmerge} from '@mui/utils'
+import {NextNProgressBar} from 'components/common/AppFrame'
+import MarkdownLinks from 'components/common/MarkdownLinks'
+import SkipLink from 'components/common/SkipLink'
+import {
+  getDesignTokens,
+  getThemedComponents,
+} from 'docs/src/modules/brandingTheme'
+import * as React from 'react'
 
 declare module '@mui/material/styles' {
   interface PaletteOptions {
-    primaryDark?: PaletteColorOptions;
+    primaryDark?: PaletteColorOptions
   }
 }
 
-const { palette: lightPalette, typography, ...designTokens } = getDesignTokens('light');
-const { palette: darkPalette } = getDesignTokens('dark');
+const {
+  palette: lightPalette,
+  typography,
+  ...designTokens
+} = getDesignTokens('light')
+const {palette: darkPalette} = getDesignTokens('dark')
 
 const theme = extendTheme({
   cssVarPrefix: 'muidocs',
@@ -49,17 +56,23 @@ const theme = extendTheme({
     },
   }),
   ...getThemedComponents(),
-});
+})
 
-export default function BrandingCssVarsProvider(props: { children: React.ReactNode }) {
-  const { children } = props;
+export default function BrandingCssVarsProvider(props: {
+  children: React.ReactNode
+}) {
+  const {children} = props
   return (
-    <CssVarsProvider theme={theme} defaultMode="system" disableTransitionOnChange>
+    <CssVarsProvider
+      theme={theme}
+      defaultMode='system'
+      disableTransitionOnChange
+    >
       <NextNProgressBar />
       <CssBaseline />
       <SkipLink />
       <MarkdownLinks />
       {children}
     </CssVarsProvider>
-  );
+  )
 }

@@ -13,7 +13,6 @@ import SvgHamburgerMenu from '../icons/SvgHamburgerMenu'
 
 const Anchor = styled('a')<{
   component?: React.ElementType
-  noLinkStyle?: boolean
 }>(({theme}) => [
   {
     ...theme.typography.body2,
@@ -192,7 +191,6 @@ export default function HeaderNavDropdown() {
                         <Anchor
                           href={item.href}
                           as={Link}
-                          noLinkStyle
                           sx={{flexDirection: 'column', alignItems: 'initial'}}
                         >
                           <Box

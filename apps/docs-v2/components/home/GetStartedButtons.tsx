@@ -41,7 +41,6 @@ export default function GetStartedButtons(props: GetStartedButtonsProps) {
       <Button
         href={to}
         component={Link}
-        noLinkStyle
         size='large'
         variant='contained'
         endIcon={<KeyboardArrowRightRounded />}

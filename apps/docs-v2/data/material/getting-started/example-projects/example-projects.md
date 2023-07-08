@@ -8,7 +8,7 @@ You can find some example projects in the [GitHub repository](https://github.com
 
 <!-- #default-branch-switch -->
 
-{{"component": "docs/src/modules/components/ExampleCollection.js"}}
+{{"component": "components/common/ExampleCollection.js"}}
 
 <br />
 

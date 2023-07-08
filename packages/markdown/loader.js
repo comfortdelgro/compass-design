@@ -400,7 +400,7 @@ module.exports = async function demoLoader() {
 
   componentNames.forEach((componentName) => {
     const moduleID = path
-      .join(this.rootContext, 'src', componentName.replace(/^docs\/src/, ''))
+      .join(this.rootContext, componentName.replace(/^docs\/src/, ''))
       .replace(/\\/g, '/')
 
     components[moduleID] = componentName

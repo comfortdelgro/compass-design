@@ -1,4 +1,4 @@
-import standardNavIcons from 'docs/src/modules/components/AppNavIcons'
+import standardNavIcons from 'components/common/AppNavIcons'
 import {MuiPage} from 'docs/src/MuiPage'
 
 const pages: MuiPage[] = [

@@ -1,12 +1,5 @@
 {
-  "include": [
-    "next-env.d.ts",
-    "types",
-    "src",
-    "pages",
-    "data",
-    "components/layouts"
-  ],
+  "include": ["next-env.d.ts", "types", "src", "pages", "data", "components"],
   "compilerOptions": {
     "module": "esnext",
     "target": "es5",
