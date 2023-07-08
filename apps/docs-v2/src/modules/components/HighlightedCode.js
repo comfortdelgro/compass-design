@@ -1,6 +1,7 @@
 import prism from '@comfortdelgro/markdown/prism'
 import NoSsr from '@mui/base/NoSsr'
 
+import CodeCopyButton from 'docs/src/modules/components/CodeCopyButton'
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement'
 import {useCodeCopy} from 'docs/src/modules/utils/CodeCopy'
 import PropTypes from 'prop-types'
