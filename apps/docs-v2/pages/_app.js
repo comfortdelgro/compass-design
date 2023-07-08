@@ -1,9 +1,6 @@
 import 'docs/src/modules/components/bootstrap'
 // --- Post bootstrap -----
-import basePages from 'docs/data/base/pages'
-import joyPages from 'docs/data/joy/pages'
 import materialPages from 'docs/data/material/pages'
-import systemPages from 'docs/data/system/pages'
 import createEmotionCache from 'docs/src/createEmotionCache'
 import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics'
 import PageContext from 'docs/src/modules/components/PageContext'

@@ -11,127 +11,142 @@
  */
 const ignoreList = [
   '/pages.ts',
-  'docs/data/joy/getting-started/templates',
   'docs/data/base/components/select/UnstyledSelectIntroduction.tsx',
-];
+]
 
-const fse = require('fs-extra');
-const path = require('path');
-const babel = require('@babel/core');
-const prettier = require('prettier');
-const typescriptToProptypes = require('typescript-to-proptypes');
-const yargs = require('yargs');
-const { fixBabelGeneratorIssues, fixLineEndings } = require('@mui-internal/docs-utilities');
+const fse = require('fs-extra')
+const path = require('path')
+const babel = require('@babel/core')
+const prettier = require('prettier')
+const typescriptToProptypes = require('typescript-to-proptypes')
+const yargs = require('yargs')
+const {
+  fixBabelGeneratorIssues,
+  fixLineEndings,
+} = require('@mui-internal/docs-utilities')
 
-const tsConfig = typescriptToProptypes.loadConfig(path.resolve(__dirname, '../tsconfig.json'));
+const tsConfig = typescriptToProptypes.loadConfig(
+  path.resolve(__dirname, '../tsconfig.json'),
+)
 
 const babelConfig = {
   presets: ['@babel/preset-typescript'],
   plugins: [],
-  generatorOpts: { retainLines: true },
+  generatorOpts: {retainLines: true},
   babelrc: false,
   configFile: false,
-  shouldPrintComment: (comment) => !comment.startsWith(' @babel-ignore-comment-in-output'),
-};
+  shouldPrintComment: (comment) =>
+    !comment.startsWith(' @babel-ignore-comment-in-output'),
+}
 
-const workspaceRoot = path.join(__dirname, '../../');
+const workspaceRoot = path.join(__dirname, '../../')
 
 async function getFiles(root) {
-  const files = [];
+  const files = []
 
   try {
     await Promise.all(
       (
         await fse.readdir(root)
       ).map(async (name) => {
-        const filePath = path.join(root, name);
-        const stat = await fse.stat(filePath);
+        const filePath = path.join(root, name)
+        const stat = await fse.stat(filePath)
 
         if (
           stat.isDirectory() &&
           !ignoreList.some((ignorePath) =>
-            filePath.startsWith(path.normalize(`${workspaceRoot}/${ignorePath}`)),
+            filePath.startsWith(
+              path.normalize(`${workspaceRoot}/${ignorePath}`),
+            ),
           )
         ) {
-          files.push(...(await getFiles(filePath)));
+          files.push(...(await getFiles(filePath)))
         } else if (
           stat.isFile() &&
           /\.tsx?$/.test(filePath) &&
           !filePath.endsWith('.d.ts') &&
-          !ignoreList.some((ignorePath) => filePath.endsWith(path.normalize(ignorePath)))
+          !ignoreList.some((ignorePath) =>
+            filePath.endsWith(path.normalize(ignorePath)),
+          )
         ) {
-          files.push(filePath);
+          files.push(filePath)
         }
       }),
-    );
+    )
   } catch (error) {
     if (error.message?.includes('no such file or directory')) {
-      return [];
+      return []
     }
-    throw error;
+    throw error
   }
 
-  return files;
+  return files
 }
 
 const TranspileResult = {
   Success: 0,
   Failed: 1,
-};
+}
 
 async function transpileFile(tsxPath, program) {
-  const jsPath = tsxPath.replace(/\.tsx?$/, '.js');
+  const jsPath = tsxPath.replace(/\.tsx?$/, '.js')
   try {
-    const source = await fse.readFile(tsxPath, 'utf8');
+    const source = await fse.readFile(tsxPath, 'utf8')
 
-    const transformOptions = { ...babelConfig, filename: tsxPath };
-    const enableJSXPreview = !tsxPath.includes(path.join('pages', 'premium-themes'));
+    const transformOptions = {...babelConfig, filename: tsxPath}
+    const enableJSXPreview = !tsxPath.includes(
+      path.join('pages', 'premium-themes'),
+    )
     if (enableJSXPreview) {
       transformOptions.plugins = transformOptions.plugins.concat([
         [
           require.resolve('docs/src/modules/utils/babel-plugin-jsx-preview'),
-          { maxLines: 16, outputFilename: `${tsxPath}.preview` },
+          {maxLines: 16, outputFilename: `${tsxPath}.preview`},
         ],
-      ]);
+      ])
     }
-    const { code } = await babel.transformAsync(source, transformOptions);
+    const {code} = await babel.transformAsync(source, transformOptions)
 
     if (/import \w* from 'prop-types'/.test(code)) {
-      throw new Error('TypeScript demo contains prop-types, please remove them');
+      throw new Error('TypeScript demo contains prop-types, please remove them')
     }
 
-    const propTypesAST = typescriptToProptypes.parseFromProgram(tsxPath, program, {
-      shouldResolveObject: ({ name }) => {
-        if (name === 'classes' || name === 'ownerState') {
-          return false;
-        }
+    const propTypesAST = typescriptToProptypes.parseFromProgram(
+      tsxPath,
+      program,
+      {
+        shouldResolveObject: ({name}) => {
+          if (name === 'classes' || name === 'ownerState') {
+            return false
+          }
 
-        return undefined;
+          return undefined
+        },
       },
-    });
-    const codeWithPropTypes = typescriptToProptypes.inject(propTypesAST, code);
+    )
+    const codeWithPropTypes = typescriptToProptypes.inject(propTypesAST, code)
 
     const prettierConfig = prettier.resolveConfig.sync(jsPath, {
       config: path.join(workspaceRoot, 'prettier.config.js'),
-    });
+    })
     const prettierFormat = (jsSource) =>
-      prettier.format(jsSource, { ...prettierConfig, filepath: jsPath });
+      prettier.format(jsSource, {...prettierConfig, filepath: jsPath})
 
-    const prettified = prettierFormat(codeWithPropTypes);
-    const formatted = fixBabelGeneratorIssues(prettified);
-    const correctedLineEndings = fixLineEndings(source, formatted);
+    const prettified = prettierFormat(codeWithPropTypes)
+    const formatted = fixBabelGeneratorIssues(prettified)
+    const correctedLineEndings = fixLineEndings(source, formatted)
 
     // removed blank lines change potential formatting
-    await fse.writeFile(jsPath, prettierFormat(correctedLineEndings));
-    return TranspileResult.Success;
+    await fse.writeFile(jsPath, prettierFormat(correctedLineEndings))
+    return TranspileResult.Success
   } catch (err) {
-    console.error('Something went wrong transpiling %s\n%s\n', tsxPath, err);
-    return TranspileResult.Failed;
+    console.error('Something went wrong transpiling %s\n%s\n', tsxPath, err)
+    return TranspileResult.Failed
   }
 }
 
 async function main(argv) {
-  const { watch: watchMode, disableCache, pattern } = argv;
+  const {watch: watchMode, disableCache, pattern} = argv
 
   // TODO: Remove at some point.
   // Though not too soon so that it isn't disruptive.
@@ -139,40 +154,42 @@ async function main(argv) {
   if (disableCache !== undefined) {
     console.warn(
       '--disable-cache does not have any effect since it is the default. In the future passing this flag will throw.',
-    );
+    )
   }
 
-  const filePattern = new RegExp(pattern);
+  const filePattern = new RegExp(pattern)
   if (pattern.length > 0) {
-    console.log(`Only considering demos matching ${filePattern}`);
+    console.log(`Only considering demos matching ${filePattern}`)
   }
 
   const tsxFiles = [
     ...(await getFiles(path.join(workspaceRoot, 'docs/src/pages'))), // old structure
     ...(await getFiles(path.join(workspaceRoot, 'docs/data'))), // new structure
   ].filter((fileName) => {
-    return filePattern.test(fileName);
-  });
+    return filePattern.test(fileName)
+  })
 
-  const program = typescriptToProptypes.createTSProgram(tsxFiles, tsConfig);
+  const program = typescriptToProptypes.createTSProgram(tsxFiles, tsConfig)
 
-  let successful = 0;
-  let failed = 0;
-  (await Promise.all(tsxFiles.map((file) => transpileFile(file, program)))).forEach((result) => {
+  let successful = 0
+  let failed = 0
+  ;(
+    await Promise.all(tsxFiles.map((file) => transpileFile(file, program)))
+  ).forEach((result) => {
     switch (result) {
       case TranspileResult.Success: {
-        successful += 1;
-        break;
+        successful += 1
+        break
       }
       case TranspileResult.Failed: {
-        failed += 1;
-        break;
+        failed += 1
+        break
       }
       default: {
-        throw new Error(`No handler for ${result}`);
+        throw new Error(`No handler for ${result}`)
       }
     }
-  });
+  })
 
   console.log(
     [
@@ -182,24 +199,24 @@ async function main(argv) {
     ].join('\n'),
     successful,
     failed,
-  );
+  )
 
   if (!watchMode) {
     if (failed > 0) {
-      process.exit(1);
+      process.exit(1)
     }
-    return;
+    return
   }
 
   tsxFiles.forEach((filePath) => {
-    fse.watchFile(filePath, { interval: 500 }, async () => {
+    fse.watchFile(filePath, {interval: 500}, async () => {
       if ((await transpileFile(filePath, program, true)) === 0) {
-        console.log('Success - %s', filePath);
+        console.log('Success - %s', filePath)
       }
-    });
-  });
+    })
+  })
 
-  console.log('\nWatching for file changes...');
+  console.log('\nWatching for file changes...')
 }
 
 yargs
@@ -222,11 +239,11 @@ yargs
           description:
             'Transpiles only the TypeScript demos whose filename matches the given pattern.',
           type: 'string',
-        });
+        })
     },
     handler: main,
   })
   .help()
   .strict(true)
   .version(false)
-  .parse();
+  .parse()
