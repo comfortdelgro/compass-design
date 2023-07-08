@@ -35,15 +35,15 @@ export default function Hero() {
   }, [isMdUp])
   return (
     <Container>
-      <Box sx={{textAlign: {xs: 'center', md: 'left'}}}>
-        <Typography variant='h1' sx={{my: 2, maxWidth: 500}}>
+      <Box sx={{textAlign: 'center'}}>
+        <Typography variant='h1' sx={{mt: 8, mb: 4}}>
           <GradientText>Move faster</GradientText> with intuitive React UI tools
         </Typography>
-        <Typography color='text.secondary' sx={{mb: 3, maxWidth: 500}}>
-          MUI offers a comprehensive suite of UI tools to help you ship new
-          features faster. Start with Material UI, our fully-loaded component
-          library, or bring your own design system to our production-ready
-          components.
+        <Typography color='text.secondary' sx={{mb: 3}}>
+          React Compass offers a comprehensive suite of UI tools to help you
+          ship new features faster. Start with React Compass, our fully-loaded
+          component library, or bring your own design system to our
+          production-ready components.
         </Typography>
         <GetStartedButtons />
       </Box>

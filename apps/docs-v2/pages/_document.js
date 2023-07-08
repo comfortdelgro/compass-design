@@ -1,3 +1,4 @@
+import Preflight from '@comfortdelgro/react-compass/preflight'
 import createEmotionServer from '@emotion/server/create-instance'
 import {getInitColorSchemeScript as getJoyInitColorSchemeScript} from '@mui/joy/styles'
 import GlobalStyles from '@mui/material/GlobalStyles'
@@ -46,10 +47,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang={userLanguage}>
         <Head>
-          {/*
-            manifest.json provides metadata used when your web app is added to the
-            homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
-          */}
+          {Preflight.flush()}
           <link rel='manifest' href='/static/manifest.json' />
           {/* PWA primary color */}
           <meta

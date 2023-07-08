@@ -1,5 +1,6 @@
 import 'components/common/bootstrap'
 // --- Post bootstrap -----
+import Preflight from '@comfortdelgro/react-compass/preflight'
 import PageContext from 'components/common/PageContext'
 import {ThemeProvider} from 'components/common/ThemeContext'
 import routes from 'constants/routes'
@@ -195,6 +196,7 @@ function AppWrapper(props) {
               <PageContext.Provider value={pageContextValue}>
                 <ThemeProvider>
                   <DocsStyledEngineProvider cacheLtr={emotionCache}>
+                    <Preflight />
                     {children}
                   </DocsStyledEngineProvider>
                 </ThemeProvider>

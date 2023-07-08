@@ -4,7 +4,6 @@ import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRou
 import Box, {BoxProps} from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import copy from 'clipboard-copy'
-import ROUTES from 'docs/src/route'
 import Link from 'next/link'
 import * as React from 'react'
 
@@ -16,8 +15,8 @@ interface GetStartedButtonsProps extends BoxProps {
 export default function GetStartedButtons(props: GetStartedButtonsProps) {
   const [copied, setCopied] = React.useState(false)
   const {
-    installation = 'npm install @mui/material @emotion/react @emotion/styled',
-    to = ROUTES.documentation,
+    installation = 'npm install @comfortdelgro/react-compass',
+    to = '/getting-started/',
     ...other
   } = props
   const handleCopy = () => {

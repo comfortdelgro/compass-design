@@ -35,7 +35,7 @@ The ripple effect is exclusively coming from the `BaseButton` component.
 You can disable the ripple effect globally by providing the following in your theme:
 
 ```js
-import { createTheme } from '@mui/material';
+import {createTheme} from '@mui/material'
 
 const theme = createTheme({
   components: {
@@ -47,7 +47,7 @@ const theme = createTheme({
       },
     },
   },
-});
+})
 ```
 
 ## How can I disable transitions globally?
@@ -56,14 +56,14 @@ Material UI uses the same theme helper for creating all its transitions.
 Therefore you can disable all transitions by overriding the helper in your theme:
 
 ```js
-import { createTheme } from '@mui/material';
+import {createTheme} from '@mui/material'
 
 const theme = createTheme({
   transitions: {
     // So we have `transition: none;` everywhere
     create: () => 'none',
   },
-});
+})
 ```
 
 It can be useful to disable transitions during visual testing or to improve performance on low-end devices.
@@ -71,7 +71,7 @@ It can be useful to disable transitions during visual testing or to improve perf
 You can go one step further by disabling all transitions and animations effects:
 
 ```js
-import { createTheme } from '@mui/material';
+import {createTheme} from '@mui/material'
 
 const theme = createTheme({
   components: {
@@ -85,7 +85,7 @@ const theme = createTheme({
       },
     },
   },
-});
+})
 ```
 
 Notice that the usage of `CssBaseline` is required for the above approach to work.
@@ -132,11 +132,11 @@ by reading the ref attached to Material UI components:
 
 ```jsx
 // or a ref setter function
-const ref = React.createRef();
+const ref = React.createRef()
 // render
-<Button ref={ref} />;
+;<Button ref={ref} />
 // usage
-const element = ref.current;
+const element = ref.current
 ```
 
 If you're not sure if the Material UI component in question forwards its ref you
@@ -172,16 +172,16 @@ This works in a simple scenario:
 
 ```jsx
 function App() {
-  const container = React.useRef(null);
+  const container = React.useRef(null)
 
   return (
-    <div className="App">
+    <div className='App'>
       <Portal container={container}>
         <span>portaled children</span>
       </Portal>
       <div ref={container} />
     </div>
-  );
+  )
 }
 ```
 
@@ -189,17 +189,17 @@ where `Portal` would only mount the children into the container when `container.
 Here is a naive implementation of Portal:
 
 ```jsx
-function Portal({ children, container }) {
-  const [node, setNode] = React.useState(null);
+function Portal({children, container}) {
+  const [node, setNode] = React.useState(null)
 
   React.useEffect(() => {
-    setNode(container.current);
-  }, [container]);
+    setNode(container.current)
+  }, [container])
 
   if (node === null) {
-    return null;
+    return null
   }
-  return ReactDOM.createPortal(children, node);
+  return ReactDOM.createPortal(children, node)
 }
 ```
 
@@ -214,20 +214,20 @@ This is why we require a prop with the actual DOM node so that React can take ca
 
 ```jsx
 function App() {
-  const [container, setContainer] = React.useState(null);
+  const [container, setContainer] = React.useState(null)
   const handleRef = React.useCallback(
     (instance) => setContainer(instance),
     [setContainer],
-  );
+  )
 
   return (
-    <div className="App">
+    <div className='App'>
       <Portal container={container}>
         <span>Portaled</span>
       </Portal>
       <div ref={handleRef} />
     </div>
-  );
+  )
 }
 ```
 
@@ -246,13 +246,13 @@ return (
       selected ? 'Mui-selected' : ''
     }`}
   />
-);
+)
 ```
 
 you can do:
 
 ```jsx
-import clsx from 'clsx';
+import clsx from 'clsx'
 
 return (
   <div
@@ -261,7 +261,7 @@ return (
       'Mui-selected': selected,
     })}
   />
-);
+)
 ```
 
 ## I cannot use components as selectors in the styled() utility. What should I do?
