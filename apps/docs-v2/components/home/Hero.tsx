@@ -3,9 +3,9 @@ import Box from '@mui/material/Box'
 import {useTheme} from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'
-import GetStartedButtons from 'docs/src/components/home/GetStartedButtons'
-import GradientText from 'docs/src/components/typography/GradientText'
 import * as React from 'react'
+import GradientText from '../typography/GradientText'
+import GetStartedButtons from './GetStartedButtons'
 
 export default function Hero() {
   const frame = React.useRef<null | HTMLDivElement>(null)

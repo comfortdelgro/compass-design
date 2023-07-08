@@ -1,17 +1,17 @@
-import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
-import Avatar, { AvatarProps } from '@mui/material/Avatar';
-import Box, { BoxProps } from '@mui/material/Box';
-import Slide from 'docs/src/components/animation/Slide';
-import FadeDelay from 'docs/src/components/animation/FadeDelay';
+import Avatar, {AvatarProps} from '@mui/material/Avatar'
+import Box, {BoxProps} from '@mui/material/Box'
+import {alpha, styled} from '@mui/material/styles'
+import * as React from 'react'
+import FadeDelay from '../animation/FadeDelay'
+import Slide from '../animation/Slide'
 
-const ratio = 900 / 494;
+const ratio = 900 / 494
 
 // 'transparent' is interpreted as transparent black in Safari
 // See https://css-tricks.com/thing-know-gradients-transparent-black/
-const transparent = 'rgba(255,255,255,0)';
+const transparent = 'rgba(255,255,255,0)'
 
-const Image = styled('img')(({ theme }) => ({
+const Image = styled('img')(({theme}) => ({
   display: 'block',
   width: 200,
   height: 200 / ratio,
@@ -34,9 +34,9 @@ const Image = styled('img')(({ theme }) => ({
     borderColor: (theme.vars || theme).palette.grey[800],
     boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.6)',
   }),
-}));
+}))
 
-const Anchor = styled('a')(({ theme }) => [
+const Anchor = styled('a')(({theme}) => [
   {
     display: 'inline-block',
     position: 'relative',
@@ -52,16 +52,16 @@ const Anchor = styled('a')(({ theme }) => [
       boxShadow: `0 6px 20px 0 ${alpha(theme.palette.primaryDark[100], 0.5)}`,
     },
   }),
-]);
+])
 
 const DesignToolLink = React.forwardRef<
   HTMLAnchorElement,
-  React.PropsWithChildren<{ brand: 'figma' | 'sketch' | 'xd' }>
->(function DesignToolLink({ brand, ...props }, ref) {
+  React.PropsWithChildren<{brand: 'figma' | 'sketch' | 'xd'}>
+>(function DesignToolLink({brand, ...props}, ref) {
   return (
     <Anchor
       ref={ref}
-      aria-label="Go to MUI Store"
+      aria-label='Go to MUI Store'
       href={
         {
           figma:
@@ -71,36 +71,38 @@ const DesignToolLink = React.forwardRef<
           xd: 'https://mui.com/store/items/adobe-xd-react/?utm_source=marketing&utm_medium=referral&utm_campaign=home-products',
         }[brand]
       }
-      target="_blank"
+      target='_blank'
       {...props}
     >
       {props.children}
     </Anchor>
-  );
-});
+  )
+})
 
 const DesignToolLogo = React.forwardRef<
   HTMLImageElement,
-  { brand: 'figma' | 'sketch' | 'xd' } & AvatarProps
->(function DesignToolLogo({ brand, ...props }, ref) {
+  {brand: 'figma' | 'sketch' | 'xd'} & AvatarProps
+>(function DesignToolLogo({brand, ...props}, ref) {
   return (
     <Avatar
       ref={ref}
       src={`/static/branding/design-kits/designkits-${brand}.png`}
-      alt=""
+      alt=''
       {...props}
       sx={[
         (theme) => ({
           boxShadow: `0px 3.57436px 44.6795px ${'rgba(90, 105, 120, 0.36)'}`,
           ...theme.applyDarkStyles({
-            boxShadow: `0px 3.57436px 44.6795px ${(theme.vars || theme).palette.primaryDark[900]}`,
+            boxShadow: `0px 3.57436px 44.6795px ${
+              (theme.vars || theme).palette.primaryDark[900]
+            }`,
           }),
         }),
         ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
       ]}
     />
-  );
-});
+  )
+})
 
 export function PrefetchDesignKitImages() {
   return (
@@ -116,17 +118,53 @@ export function PrefetchDesignKitImages() {
         },
       }}
     >
-      <img src="/static/branding/design-kits/designkits1.jpeg" alt="" loading="lazy" />
-      <img src="/static/branding/design-kits/designkits2.jpeg" alt="" loading="lazy" />
-      <img src="/static/branding/design-kits/designkits3.jpeg" alt="" loading="lazy" />
-      <img src="/static/branding/design-kits/designkits4.jpeg" alt="" loading="lazy" />
-      <img src="/static/branding/design-kits/designkits5.jpeg" alt="" loading="lazy" />
-      <img src="/static/branding/design-kits/designkits6.jpeg" alt="" loading="lazy" />
-      <img src="/static/branding/design-kits/designkits-figma.png" alt="" loading="lazy" />
-      <img src="/static/branding/design-kits/designkits-sketch.png" alt="" loading="lazy" />
-      <img src="/static/branding/design-kits/designkits-xd.png" alt="" loading="lazy" />
+      <img
+        src='/static/branding/design-kits/designkits1.jpeg'
+        alt=''
+        loading='lazy'
+      />
+      <img
+        src='/static/branding/design-kits/designkits2.jpeg'
+        alt=''
+        loading='lazy'
+      />
+      <img
+        src='/static/branding/design-kits/designkits3.jpeg'
+        alt=''
+        loading='lazy'
+      />
+      <img
+        src='/static/branding/design-kits/designkits4.jpeg'
+        alt=''
+        loading='lazy'
+      />
+      <img
+        src='/static/branding/design-kits/designkits5.jpeg'
+        alt=''
+        loading='lazy'
+      />
+      <img
+        src='/static/branding/design-kits/designkits6.jpeg'
+        alt=''
+        loading='lazy'
+      />
+      <img
+        src='/static/branding/design-kits/designkits-figma.png'
+        alt=''
+        loading='lazy'
+      />
+      <img
+        src='/static/branding/design-kits/designkits-sketch.png'
+        alt=''
+        loading='lazy'
+      />
+      <img
+        src='/static/branding/design-kits/designkits-xd.png'
+        alt=''
+        loading='lazy'
+      />
     </Box>
-  );
+  )
 }
 
 const defaultSlideUp = {
@@ -136,24 +174,24 @@ const defaultSlideUp = {
   '100%': {
     transform: 'translateY(-20px)',
   },
-};
+}
 export function DesignKitImagesSet1({
   keyframes = defaultSlideUp,
   ...props
-}: BoxProps & { keyframes?: Record<string, object> }) {
+}: BoxProps & {keyframes?: Record<string, object>}) {
   return (
-    <Slide animationName="designkit-slideup" {...props} keyframes={keyframes}>
+    <Slide animationName='designkit-slideup' {...props} keyframes={keyframes}>
       <FadeDelay delay={400}>
-        <Image src="/static/branding/design-kits/designkits1.jpeg" alt="" />
+        <Image src='/static/branding/design-kits/designkits1.jpeg' alt='' />
       </FadeDelay>
       <FadeDelay delay={200}>
-        <Image src="/static/branding/design-kits/designkits3.jpeg" alt="" />
+        <Image src='/static/branding/design-kits/designkits3.jpeg' alt='' />
       </FadeDelay>
       <FadeDelay delay={0}>
-        <Image src="/static/branding/design-kits/designkits5.jpeg" alt="" />
+        <Image src='/static/branding/design-kits/designkits5.jpeg' alt='' />
       </FadeDelay>
     </Slide>
-  );
+  )
 }
 
 const defaultSlideDown = {
@@ -163,36 +201,39 @@ const defaultSlideDown = {
   '100%': {
     transform: 'translateY(-80px)',
   },
-};
+}
 export function DesignKitImagesSet2({
   keyframes = defaultSlideDown,
   ...props
-}: BoxProps & { keyframes?: Record<string, object> }) {
+}: BoxProps & {keyframes?: Record<string, object>}) {
   return (
-    <Slide animationName="designkit-slidedown" {...props} keyframes={keyframes}>
+    <Slide animationName='designkit-slidedown' {...props} keyframes={keyframes}>
       <FadeDelay delay={100}>
-        <Image src="/static/branding/design-kits/designkits2.jpeg" alt="" />
+        <Image src='/static/branding/design-kits/designkits2.jpeg' alt='' />
       </FadeDelay>
       <FadeDelay delay={300}>
-        <Image src="/static/branding/design-kits/designkits4.jpeg" alt="" />
+        <Image src='/static/branding/design-kits/designkits4.jpeg' alt='' />
       </FadeDelay>
       <FadeDelay delay={500}>
-        <Image src="/static/branding/design-kits/designkits6.jpeg" alt="" />
+        <Image src='/static/branding/design-kits/designkits6.jpeg' alt='' />
       </FadeDelay>
     </Slide>
-  );
+  )
 }
 
-export function DesignKitTools({ disableLink, ...props }: { disableLink?: boolean } & BoxProps) {
+export function DesignKitTools({
+  disableLink,
+  ...props
+}: {disableLink?: boolean} & BoxProps) {
   function renderTool(brand: 'figma' | 'sketch' | 'xd') {
     if (disableLink) {
-      return <DesignToolLogo brand={brand} />;
+      return <DesignToolLogo brand={brand} />
     }
     return (
       <DesignToolLink brand={brand}>
         <DesignToolLogo brand={brand} />
       </DesignToolLink>
-    );
+    )
   }
   return (
     <Box
@@ -204,12 +245,12 @@ export function DesignKitTools({ disableLink, ...props }: { disableLink?: boolea
         transform: 'translate(-50%, -50%)',
         zIndex: 10,
         display: 'grid',
-        gap: { xs: 3, lg: 6 },
+        gap: {xs: 3, lg: 6},
         py: 4,
         gridTemplateColumns: '1fr 1fr 1fr',
         '& .MuiAvatar-root': {
-          width: { xs: 80, sm: 100 },
-          height: { xs: 80, sm: 100 },
+          width: {xs: 80, sm: 100},
+          height: {xs: 80, sm: 100},
         },
         ...props.sx,
       }}
@@ -218,19 +259,19 @@ export function DesignKitTools({ disableLink, ...props }: { disableLink?: boolea
       <FadeDelay delay={400}>{renderTool('sketch')}</FadeDelay>
       <FadeDelay delay={600}>{renderTool('xd')}</FadeDelay>
     </Box>
-  );
+  )
 }
 
 export default function DesignKits() {
   return (
     <Box
       sx={{
-        mx: { xs: -2, sm: -3, md: 0 },
-        my: { md: -8 },
-        height: { xs: 300, sm: 360, md: 'calc(100% + 160px)' },
+        mx: {xs: -2, sm: -3, md: 0},
+        my: {md: -8},
+        height: {xs: 300, sm: 360, md: 'calc(100% + 160px)'},
         overflow: 'hidden',
         position: 'relative',
-        width: { xs: '100vw', md: '50vw' },
+        width: {xs: '100vw', md: '50vw'},
       }}
     >
       <Box
@@ -248,7 +289,7 @@ export default function DesignKits() {
       />
       <Box
         sx={(theme) => ({
-          display: { xs: 'block', md: 'none' },
+          display: {xs: 'block', md: 'none'},
           position: 'absolute',
           top: 0,
           left: 0,
@@ -272,7 +313,7 @@ export default function DesignKits() {
       />
       <Box
         sx={(theme) => ({
-          display: { xs: 'none', md: 'block' },
+          display: {xs: 'none', md: 'block'},
           position: 'absolute',
           top: 0,
           left: 0,
@@ -291,9 +332,9 @@ export default function DesignKits() {
       />
       <DesignKitTools
         sx={{
-          top: { xs: '50%', md: 'calc(50% + 80px)', xl: '50%' },
-          transform: { xs: 'translate(-50%, -50%)' },
-          left: { xs: 'min(50%, 500px)' },
+          top: {xs: '50%', md: 'calc(50% + 80px)', xl: '50%'},
+          transform: {xs: 'translate(-50%, -50%)'},
+          left: {xs: 'min(50%, 500px)'},
         }}
       />
       <Box
@@ -309,14 +350,15 @@ export default function DesignKits() {
             left: '36%',
             position: 'absolute',
             display: 'flex',
-            transform: 'translateX(-40%) rotateZ(30deg) rotateX(8deg) rotateY(-8deg)',
+            transform:
+              'translateX(-40%) rotateZ(30deg) rotateX(8deg) rotateY(-8deg)',
             transformOrigin: 'center center',
           }}
         >
           <DesignKitImagesSet1 />
-          <DesignKitImagesSet2 sx={{ ml: { xs: 2, sm: 4, md: 8 } }} />
+          <DesignKitImagesSet2 sx={{ml: {xs: 2, sm: 4, md: 8}}} />
         </Box>
       </Box>
     </Box>
-  );
+  )
 }

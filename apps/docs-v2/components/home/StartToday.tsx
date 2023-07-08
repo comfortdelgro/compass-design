@@ -1,8 +1,8 @@
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
-import GetStartedButtons from 'docs/src/components/home/GetStartedButtons'
-import GradientText from 'docs/src/components/typography/GradientText'
-import SectionHeadline from 'docs/src/components/typography/SectionHeadline'
+import GradientText from '../typography/GradientText'
+import SectionHeadline from '../typography/SectionHeadline'
+import GetStartedButtons from './GetStartedButtons'
 
 export default function StartToday() {
   return (

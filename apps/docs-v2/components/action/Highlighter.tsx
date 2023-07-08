@@ -1,5 +1,5 @@
-import * as React from 'react';
-import ButtonBase, { ButtonBaseProps } from '@mui/material/ButtonBase';
+import ButtonBase, {ButtonBaseProps} from '@mui/material/ButtonBase'
+import * as React from 'react'
 
 export default function Highlighter({
   disableBorder = false,
@@ -8,33 +8,33 @@ export default function Highlighter({
   sx,
   ...props
 }: {
-  disableBorder?: boolean;
-  selectedBg?: 'white' | 'comfort';
-  selected?: boolean;
+  disableBorder?: boolean
+  selectedBg?: 'white' | 'comfort'
+  selected?: boolean
 } & ButtonBaseProps) {
   const lightSelectedBg = {
     white: '#fff',
     comfort: 'grey.50',
-  };
-  const ref = React.useRef<null | HTMLButtonElement>(null);
+  }
+  const ref = React.useRef<null | HTMLButtonElement>(null)
   return (
     <ButtonBase
       ref={ref}
       {...props}
       onClick={(event) => {
         if (ref.current) {
-          ref.current.scrollIntoView({ block: 'nearest' });
+          ref.current.scrollIntoView({block: 'nearest'})
         }
         if (props.onClick) {
-          props.onClick(event);
+          props.onClick(event)
         }
       }}
       onFocusVisible={(event) => {
         if (ref.current) {
-          ref.current.scrollIntoView({ block: 'nearest' });
+          ref.current.scrollIntoView({block: 'nearest'})
         }
         if (props.onFocusVisible) {
-          props.onFocusVisible(event);
+          props.onFocusVisible(event)
         }
       }}
       sx={[
@@ -90,5 +90,5 @@ export default function Highlighter({
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     />
-  );
+  )
 }

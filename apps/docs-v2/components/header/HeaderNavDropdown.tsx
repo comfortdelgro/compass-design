@@ -6,10 +6,10 @@ import Collapse from '@mui/material/Collapse'
 import IconButton from '@mui/material/IconButton'
 import {styled} from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
-import SvgHamburgerMenu from 'docs/src/icons/SvgHamburgerMenu'
 import Link from 'docs/src/modules/components/Link'
 import ROUTES from 'docs/src/route'
 import * as React from 'react'
+import SvgHamburgerMenu from '../icons/SvgHamburgerMenu'
 
 const Anchor = styled('a')<{
   component?: React.ElementType

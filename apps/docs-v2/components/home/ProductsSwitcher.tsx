@@ -4,11 +4,11 @@ import Stack from '@mui/material/Stack'
 import {Theme} from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'
-import Highlighter from 'docs/src/components/action/Highlighter'
 import Link from 'docs/src/modules/components/Link'
 import ROUTES from 'docs/src/route'
 import dynamic from 'next/dynamic'
 import * as React from 'react'
+import Highlighter from '../action/Highlighter'
 
 const SwipeableViews = dynamic(() => import('react-swipeable-views'), {
   ssr: false,
