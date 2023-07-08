@@ -31,21 +31,21 @@ By default, the component accepts the following options structures:
 
 ```ts
 interface AutocompleteOption {
-  label: string;
+  label: string
 }
 // or
-type AutocompleteOption = string;
+type AutocompleteOption = string
 ```
 
 for instance:
 
 ```js
 const options = [
-  { label: 'The Godfather', id: 1 },
-  { label: 'Pulp Fiction', id: 2 },
-];
+  {label: 'The Godfather', id: 1},
+  {label: 'Pulp Fiction', id: 2},
+]
 // or
-const options = ['The Godfather', 'Pulp Fiction'];
+const options = ['The Godfather', 'Pulp Fiction']
 ```
 
 However, you can use different structures by providing a `getOptionLabel` prop.
@@ -136,13 +136,13 @@ related to the rendering of JSX.
 The Autocomplete component is built on this hook.
 
 ```tsx
-import useAutocomplete from '@mui/base/useAutocomplete';
+
 ```
 
 The `useAutocomplete` hook is also reexported from @mui/material for convenience and backward compatibility.
 
 ```tsx
-import useAutocomplete from '@mui/material/useAutocomplete';
+
 ```
 
 - 📦 [4.5 kB gzipped](/size-snapshot/).
@@ -255,7 +255,7 @@ The component exposes a factory to create a filter method that can be provided t
 You can use it to change the default option filter behavior.
 
 ```js
-import { createFilterOptions } from '@mui/material/Autocomplete';
+import {createFilterOptions} from '@mui/material/Autocomplete'
 ```
 
 ### `createFilterOptions(config) => filterOptions`
@@ -281,9 +281,9 @@ In the following demo, the options need to start with the query prefix:
 const filterOptions = createFilterOptions({
   matchFrom: 'start',
   stringify: (option) => option.title,
-});
+})
 
-<Autocomplete filterOptions={filterOptions} />;
+;<Autocomplete filterOptions={filterOptions} />
 ```
 
 {{"demo": "Filter.js", "defaultCodeOpen": false}}
@@ -293,11 +293,12 @@ const filterOptions = createFilterOptions({
 For richer filtering mechanisms, like fuzzy matching, it's recommended to look at [match-sorter](https://github.com/kentcdodds/match-sorter). For instance:
 
 ```jsx
-import { matchSorter } from 'match-sorter';
+import {matchSorter} from 'match-sorter'
 
-const filterOptions = (options, { inputValue }) => matchSorter(options, inputValue);
+const filterOptions = (options, {inputValue}) =>
+  matchSorter(options, inputValue)
 
-<Autocomplete filterOptions={filterOptions} />;
+;<Autocomplete filterOptions={filterOptions} />
 ```
 
 ## Virtualization
@@ -315,7 +316,7 @@ If you would like to prevent the default key handler behavior, you can set the e
   onKeyDown={(event) => {
     if (event.key === 'Enter') {
       // Prevent's default 'Enter' behavior.
-      event.defaultMuiPrevented = true;
+      event.defaultMuiPrevented = true
       // your handler code
     }
   }}
