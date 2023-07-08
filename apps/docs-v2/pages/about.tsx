@@ -1,73 +1,72 @@
-import * as React from 'react';
-import Head from 'docs/src/modules/components/Head';
-import Avatar from '@mui/material/Avatar';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import Grid from '@mui/material/Grid';
-import Paper, { PaperProps } from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
-import Tooltip from '@mui/material/Tooltip';
-import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import Link from 'docs/src/modules/components/Link';
-import AppHeader from 'docs/src/layouts/AppHeader';
-import References, { CORE_CUSTOMERS } from 'docs/src/components/home/References';
-import HeroEnd from 'docs/src/components/home/HeroEnd';
-import AppFooter from 'docs/src/layouts/AppFooter';
-import MuiStatistics from 'docs/src/components/home/MuiStatistics';
-import GradientText from 'docs/src/components/typography/GradientText';
-import ROUTES from 'docs/src/route';
-import IconImage from 'docs/src/components/icon/IconImage';
-import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
-import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
-import LocalAtmRoundedIcon from '@mui/icons-material/LocalAtmRounded';
-import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
-import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
+import ForumRoundedIcon from '@mui/icons-material/ForumRounded'
+import GitHubIcon from '@mui/icons-material/GitHub'
+import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded'
+import LocalAtmRoundedIcon from '@mui/icons-material/LocalAtmRounded'
+import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded'
+import TwitterIcon from '@mui/icons-material/Twitter'
+import Avatar from '@mui/material/Avatar'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Container from '@mui/material/Container'
+import Divider from '@mui/material/Divider'
+import Grid from '@mui/material/Grid'
+import IconButton from '@mui/material/IconButton'
+import Paper, {PaperProps} from '@mui/material/Paper'
+import Tooltip from '@mui/material/Tooltip'
+import Typography from '@mui/material/Typography'
+import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider'
+import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner'
+import HeroEnd from 'docs/src/components/home/HeroEnd'
+import MuiStatistics from 'docs/src/components/home/MuiStatistics'
+import IconImage from 'docs/src/components/icon/IconImage'
+import GradientText from 'docs/src/components/typography/GradientText'
+import AppFooter from 'docs/src/layouts/AppFooter'
+import AppHeader from 'docs/src/layouts/AppHeader'
+import Head from 'docs/src/modules/components/Head'
+import Link from 'docs/src/modules/components/Link'
+import ROUTES from 'docs/src/route'
+import * as React from 'react'
 
 interface Profile {
-  name: string;
+  name: string
   /**
    * Role, what are you working on?
    */
-  title: string;
+  title: string
   /**
    * Country where you live in, ISO 3166-1.
    */
-  locationCountry: string; // https://flagpedia.net/download/api
+  locationCountry: string // https://flagpedia.net/download/api
   /**
    * Image URL.
    */
-  src?: string;
+  src?: string
   /**
    * Lives in.
    */
-  location?: string;
+  location?: string
   /**
    * Short summary about you.
    */
-  about?: string;
-  github?: string;
-  twitter?: string;
+  about?: string
+  github?: string
+  twitter?: string
 }
 
-function Person(props: Profile & { sx?: PaperProps['sx'] }) {
+function Person(props: Profile & {sx?: PaperProps['sx']}) {
   return (
-    <Paper variant="outlined" sx={{ p: 2, height: '100%', ...props.sx }}>
+    <Paper variant='outlined' sx={{p: 2, height: '100%', ...props.sx}}>
       <Box
         sx={{
           display: 'flex',
           alignItems: 'flex-start',
           flexWrap: 'wrap',
-          '& > div': { minWidth: 'clamp(0px, (150px - 100%) * 999 ,100%)' },
+          '& > div': {minWidth: 'clamp(0px, (150px - 100%) * 999 ,100%)'},
         }}
       >
         <Tooltip
           title={props.location || false}
-          placement="right-end"
+          placement='right-end'
           PopperProps={{
             popperOptions: {
               modifiers: [
@@ -81,9 +80,9 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
             },
           }}
         >
-          <Box sx={{ position: 'relative', display: 'inline-block' }}>
+          <Box sx={{position: 'relative', display: 'inline-block'}}>
             <Avatar
-              variant="rounded"
+              variant='rounded'
               imgProps={{
                 width: '70',
                 height: '70',
@@ -91,7 +90,9 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
               }}
               src={props.src}
               alt={props.name}
-              {...(props.src?.startsWith('https://avatars.githubusercontent.com') && {
+              {...(props.src?.startsWith(
+                'https://avatars.githubusercontent.com',
+              ) && {
                 src: `${props.src}?s=70`,
                 srcSet: `${props.src}?s=140 2x`,
               })}
@@ -123,44 +124,44 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
               }}
             >
               <img
-                loading="lazy"
-                height="20"
+                loading='lazy'
+                height='20'
                 src={`https://flagcdn.com/${props.locationCountry}.svg`}
-                alt=""
+                alt=''
               />
             </Box>
           </Box>
         </Tooltip>
-        <Box mx="auto" height={15} />
-        <Box sx={{ mt: -0.5, mr: -0.5 }}>
+        <Box mx='auto' height={15} />
+        <Box sx={{mt: -0.5, mr: -0.5}}>
           {props.github && (
             <IconButton
               aria-label={`${props.name} github`}
-              component="a"
+              component='a'
               href={`https://github.com/${props.github}`}
-              target="_blank"
-              rel="noreferrer noopener"
+              target='_blank'
+              rel='noreferrer noopener'
             >
-              <GitHubIcon fontSize="small" sx={{ color: 'grey.500' }} />
+              <GitHubIcon fontSize='small' sx={{color: 'grey.500'}} />
             </IconButton>
           )}
           {props.twitter && (
             <IconButton
               aria-label={`${props.name} twitter`}
-              component="a"
+              component='a'
               href={`https://twitter.com/${props.twitter}`}
-              target="_blank"
-              rel="noreferrer noopener"
+              target='_blank'
+              rel='noreferrer noopener'
             >
-              <TwitterIcon fontSize="small" sx={{ color: 'grey.500' }} />
+              <TwitterIcon fontSize='small' sx={{color: 'grey.500'}} />
             </IconButton>
           )}
         </Box>
       </Box>
-      <Typography variant="body2" fontWeight="bold" sx={{ mt: 2, mb: 0.5 }}>
+      <Typography variant='body2' fontWeight='bold' sx={{mt: 2, mb: 0.5}}>
         {props.name}
       </Typography>
-      <Typography variant="body2" color="text.secondary">
+      <Typography variant='body2' color='text.secondary'>
         {props.title}
       </Typography>
       {props.about && (
@@ -175,12 +176,12 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
         />
       )}
       {props.about && (
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant='body2' color='text.secondary'>
           {props.about}
         </Typography>
       )}
     </Paper>
-  );
+  )
 }
 
 function Widget({
@@ -188,21 +189,33 @@ function Widget({
   title,
   icon,
 }: {
-  children: React.ReactNode;
-  title: string;
-  icon: React.ReactElement;
+  children: React.ReactNode
+  title: string
+  icon: React.ReactElement
 }) {
   return (
-    <Paper variant="outlined" sx={{ height: '100%', px: 2, pt: 2, pb: 1.5 }}>
-      <Typography component="div" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
-        <Box sx={{ display: 'inline-block', lineHeight: 0, verticalAlign: 'bottom', mr: 1 }}>
+    <Paper variant='outlined' sx={{height: '100%', px: 2, pt: 2, pb: 1.5}}>
+      <Typography
+        component='div'
+        variant='body2'
+        fontWeight='bold'
+        sx={{mb: 1}}
+      >
+        <Box
+          sx={{
+            display: 'inline-block',
+            lineHeight: 0,
+            verticalAlign: 'bottom',
+            mr: 1,
+          }}
+        >
           {icon}
         </Box>
         {title}
       </Typography>
       {children}
     </Paper>
-  );
+  )
 }
 
 const teamMembers: Array<Profile> = [
@@ -500,7 +513,7 @@ const teamMembers: Array<Profile> = [
     about: 'Volleyball, Cycling, Parenting, Movies',
     github: 'DavidCnoops',
   },
-];
+]
 
 const contributors = [
   {
@@ -544,7 +557,7 @@ const contributors = [
     locationCountry: 'ie',
     src: 'https://avatars.githubusercontent.com/u/12678455',
   },
-];
+]
 
 const emeriti = [
   {
@@ -635,7 +648,7 @@ const emeriti = [
     locationCountry: 'gb',
     src: 'https://avatars.githubusercontent.com/u/12938082',
   },
-];
+]
 
 function AboutContent() {
   return (
@@ -654,26 +667,25 @@ function AboutContent() {
             textAlign: 'center',
           }}
         >
-          <Typography variant="body2" color="primary.600" fontWeight="bold">
+          <Typography variant='body2' color='primary.600' fontWeight='bold'>
             About us
           </Typography>
-          <Typography component="h1" variant="h2" sx={{ my: 1 }}>
+          <Typography component='h1' variant='h2' sx={{my: 1}}>
             We&apos;re on a mission to make <br /> building UIs more{' '}
             <GradientText>accessible</GradientText>
           </Typography>
           <Typography
-            color="text.secondary"
-            textAlign="center"
+            color='text.secondary'
+            textAlign='center'
             sx={{
-              maxWidth: { md: 500 },
+              maxWidth: {md: 500},
               minHeight: 48, // a hack to reduce CLS (layout shift)
             }}
           >
-            Our mission is to empower anyone to build UIs, faster. We&apos;re reducing the entry
-            barrier, making design skills accessible.
+            Our mission is to empower anyone to build UIs, faster. We&apos;re
+            reducing the entry barrier, making design skills accessible.
           </Typography>
         </Box>
-        <References companies={CORE_CUSTOMERS} />
       </Container>
       <Box
         sx={(theme) => ({
@@ -683,19 +695,20 @@ function AboutContent() {
           }),
         })}
       >
-        <Container sx={{ py: { xs: 4, md: 8 } }}>
-          <Grid container alignItems="center" spacing={4}>
+        <Container sx={{py: {xs: 4, md: 8}}}>
+          <Grid container alignItems='center' spacing={4}>
             <Grid item xs={12} md={6}>
-              <Typography variant="h2" sx={{ my: 1 }}>
+              <Typography variant='h2' sx={{my: 1}}>
                 Our ultimate goal
               </Typography>
-              <Typography color="text.secondary" sx={{ mb: 1, maxWidth: 450 }}>
-                We aim high trying to design the most effective and efficient tool for building UIs,
-                for developers and designers. MUI started back in 2014, to unify React and Material
-                Design. Since then, we&apos;ve become a community of over 2M developers from every
+              <Typography color='text.secondary' sx={{mb: 1, maxWidth: 450}}>
+                We aim high trying to design the most effective and efficient
+                tool for building UIs, for developers and designers. MUI started
+                back in 2014, to unify React and Material Design. Since then,
+                we&apos;ve become a community of over 2M developers from every
                 corner of the world.
               </Typography>
-              <Typography color="text.secondary" sx={{ mb: 2 }}>
+              <Typography color='text.secondary' sx={{mb: 2}}>
                 We plan on doing all that cultivating our values:
               </Typography>
               {[
@@ -705,9 +718,17 @@ function AboutContent() {
                 'Autonomy. We want to create a safe, high-trust team.',
                 "Excellence. We're aiming high, and we know it.",
               ].map((text) => (
-                <Box key={text} sx={{ display: 'flex', alignItems: 'flex-start', mt: 1 }}>
-                  <IconImage name="yes" />
-                  <Typography variant="body2" color="text.primary" fontWeight={700} sx={{ ml: 1 }}>
+                <Box
+                  key={text}
+                  sx={{display: 'flex', alignItems: 'flex-start', mt: 1}}
+                >
+                  <IconImage name='yes' />
+                  <Typography
+                    variant='body2'
+                    color='text.primary'
+                    fontWeight={700}
+                    sx={{ml: 1}}
+                  >
                     {text}
                   </Typography>
                 </Box>
@@ -717,44 +738,51 @@ function AboutContent() {
           </Grid>
         </Container>
       </Box>
-      <Container sx={{ py: { xs: 4, md: 8 } }}>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <Container sx={{py: {xs: 4, md: 8}}}>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
           <div>
-            <Typography variant="h2" sx={{ my: 1 }}>
+            <Typography variant='h2' sx={{my: 1}}>
               Team
             </Typography>
-            <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 450 }}>
-              MUI is maintained by a group of invaluable core contributors, with the massive support
-              and involvement of the community.
+            <Typography color='text.secondary' sx={{mb: 2, maxWidth: 450}}>
+              MUI is maintained by a group of invaluable core contributors, with
+              the massive support and involvement of the community.
             </Typography>
             <Button
               component={Link}
               noLinkStyle
               href={ROUTES.careers}
-              endIcon={<KeyboardArrowRightRounded fontSize="small" />}
-              variant="contained"
-              size="large"
-              sx={{ width: { xs: '100%', sm: 'auto' } }}
+              endIcon={<KeyboardArrowRightRounded fontSize='small' />}
+              variant='contained'
+              size='large'
+              sx={{width: {xs: '100%', sm: 'auto'}}}
             >
               See open roles
             </Button>
           </div>
         </Box>
-        <Divider sx={{ my: { xs: 2, sm: 4 } }} />
+        <Divider sx={{my: {xs: 2, sm: 4}}} />
         <Typography
-          component="h3"
-          variant="h5"
-          color="primary"
-          fontWeight="extraBold"
-          sx={{ mb: 1 }}
-          id="company"
+          component='h3'
+          variant='h5'
+          color='primary'
+          fontWeight='extraBold'
+          sx={{mb: 1}}
+          id='company'
         >
           Company
         </Typography>
-        <Typography color="text.secondary" sx={{ maxWidth: { md: 500 } }}>
-          The development of the project and its ecosystem is guided by an international team.
+        <Typography color='text.secondary' sx={{maxWidth: {md: 500}}}>
+          The development of the project and its ecosystem is guided by an
+          international team.
         </Typography>
-        <Box sx={{ pt: 2 }}>
+        <Box sx={{pt: 2}}>
           <Grid container spacing={2}>
             {teamMembers.map((profile) => (
               <Grid key={profile.name} item xs={12} sm={6} md={3}>
@@ -764,76 +792,79 @@ function AboutContent() {
           </Grid>
         </Box>
       </Container>
-      <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'primaryDark.700' }}>
-        <Container sx={{ py: { xs: 4, sm: 8 } }}>
+      <Box data-mui-color-scheme='dark' sx={{bgcolor: 'primaryDark.700'}}>
+        <Container sx={{py: {xs: 4, sm: 8}}}>
           <Typography
-            component="h3"
-            variant="h5"
-            color="primary.400"
-            fontWeight="extraBold"
-            sx={{ mb: 1 }}
+            component='h3'
+            variant='h5'
+            color='primary.400'
+            fontWeight='extraBold'
+            sx={{mb: 1}}
           >
             Community contributors
           </Typography>
-          <Typography color="text.secondary" sx={{ maxWidth: { md: 500 } }}>
-            Some members of the community have so enriched it, that they deserve special mention.
+          <Typography color='text.secondary' sx={{maxWidth: {md: 500}}}>
+            Some members of the community have so enriched it, that they deserve
+            special mention.
           </Typography>
-          <Box sx={{ pt: 2, pb: { xs: 4, sm: 8 } }}>
+          <Box sx={{pt: 2, pb: {xs: 4, sm: 8}}}>
             <Grid container spacing={2}>
               {contributors.map((profile) => (
                 <Grid key={profile.name} item xs={12} sm={6} md={3}>
-                  <Person {...profile} sx={{ bgcolor: 'primaryDark.600' }} />
+                  <Person {...profile} sx={{bgcolor: 'primaryDark.600'}} />
                 </Grid>
               ))}
             </Grid>
           </Box>
           <Typography
-            component="h3"
-            variant="h5"
-            color="warning.500"
-            fontWeight="extraBold"
-            sx={{ mb: 1 }}
+            component='h3'
+            variant='h5'
+            color='warning.500'
+            fontWeight='extraBold'
+            sx={{mb: 1}}
           >
             Community emeriti
           </Typography>
-          <Typography color="text.secondary" sx={{ maxWidth: { md: 500 } }}>
-            We honor some no-longer-active core team members who have made valuable contributions in
-            the past. They advise us from time to time.
+          <Typography color='text.secondary' sx={{maxWidth: {md: 500}}}>
+            We honor some no-longer-active core team members who have made
+            valuable contributions in the past. They advise us from time to
+            time.
           </Typography>
-          <Box sx={{ pt: 2 }}>
+          <Box sx={{pt: 2}}>
             <Grid container spacing={2}>
               {emeriti.map((profile) => (
                 <Grid key={profile.name} item xs={12} sm={6} md={3}>
-                  <Person {...profile} sx={{ bgcolor: 'primaryDark.600' }} />
+                  <Person {...profile} sx={{bgcolor: 'primaryDark.600'}} />
                 </Grid>
               ))}
             </Grid>
           </Box>
         </Container>
       </Box>
-      <Container sx={{ py: { xs: 4, md: 8 } }}>
-        <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 } }}>
+      <Container sx={{py: {xs: 4, md: 8}}}>
+        <Typography variant='h2' sx={{mt: 1, mb: {xs: 2, sm: 4}}}>
           How can you support us?
         </Typography>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6} md={4}>
             <Widget
-              icon={<ForumRoundedIcon fontSize="small" color="primary" />}
-              title="Give feedback"
+              icon={<ForumRoundedIcon fontSize='small' color='primary' />}
+              title='Give feedback'
             >
-              <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                Tell us what and where we can improve or share your happy moments with us! You can
-                also up or downvote any page on our documentation. <br />
-                <br /> And lastly, from time to time, we send our community a survey for more
-                structured feedback, you&apos;re always invited to participate to share your
-                thoughts.
+              <Typography variant='body2' color='text.secondary' sx={{mb: 1}}>
+                Tell us what and where we can improve or share your happy
+                moments with us! You can also up or downvote any page on our
+                documentation. <br />
+                <br /> And lastly, from time to time, we send our community a
+                survey for more structured feedback, you&apos;re always invited
+                to participate to share your thoughts.
               </Typography>
               <Button
-                component="a"
+                component='a'
                 // @ts-expect-error
-                variant="link"
-                size="small"
-                href="https://github.com/mui/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc"
+                variant='link'
+                size='small'
+                href='https://github.com/mui/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc'
                 endIcon={<KeyboardArrowRightRounded />}
               >
                 Leave your feedback{' '}
@@ -842,14 +873,15 @@ function AboutContent() {
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
             <Widget
-              icon={<PeopleRoundedIcon fontSize="small" color="primary" />}
-              title="Join the community"
+              icon={<PeopleRoundedIcon fontSize='small' color='primary' />}
+              title='Join the community'
             >
-              <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                Become a member of a huge community of developers supporting MUI. You can:
+              <Typography variant='body2' color='text.secondary' sx={{mb: 1}}>
+                Become a member of a huge community of developers supporting
+                MUI. You can:
               </Typography>
               <Box
-                component="ul"
+                component='ul'
                 sx={{
                   typography: 'body2',
                   color: 'text.secondary',
@@ -858,38 +890,50 @@ function AboutContent() {
               >
                 <li>
                   Add new features by{' '}
-                  <Link href="https://github.com/mui/material-ui/blob/HEAD/CONTRIBUTING.md#your-first-pull-request">
+                  <Link href='https://github.com/mui/material-ui/blob/HEAD/CONTRIBUTING.md#your-first-pull-request'>
                     submitting a pull request
                   </Link>
                   .
                 </li>
                 <li>
                   Fix bugs or{' '}
-                  <Link href="https://github.com/mui/material-ui/tree/HEAD/docs">
+                  <Link href='https://github.com/mui/material-ui/tree/HEAD/docs'>
                     improve our documentation
                   </Link>
                   .
                 </li>
                 <li>
                   Help others by reviewing and commenting on existing{' '}
-                  <Link href="https://github.com/mui/material-ui/pulls">PRs</Link> and{' '}
-                  <Link href="https://github.com/mui/material-ui/issues">issues</Link>.
+                  <Link href='https://github.com/mui/material-ui/pulls'>
+                    PRs
+                  </Link>{' '}
+                  and{' '}
+                  <Link href='https://github.com/mui/material-ui/issues'>
+                    issues
+                  </Link>
+                  .
                 </li>
                 <li>
-                  Help <Link href="https://crowdin.com/project/material-ui-docs">translate</Link>{' '}
+                  Help{' '}
+                  <Link href='https://crowdin.com/project/material-ui-docs'>
+                    translate
+                  </Link>{' '}
                   the documentation.
                 </li>
                 <li>
                   Answer questions on{' '}
-                  <Link href="https://stackoverflow.com/questions/tagged/mui">Stack Overflow</Link>.
+                  <Link href='https://stackoverflow.com/questions/tagged/mui'>
+                    Stack Overflow
+                  </Link>
+                  .
                 </li>
               </Box>
               <Button
-                component="a"
+                component='a'
                 // @ts-expect-error
-                variant="link"
-                size="small"
-                href="https://github.com/mui/material-ui"
+                variant='link'
+                size='small'
+                href='https://github.com/mui/material-ui'
                 endIcon={<KeyboardArrowRightRounded />}
               >
                 See the repository
@@ -898,24 +942,25 @@ function AboutContent() {
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
             <Widget
-              icon={<LocalAtmRoundedIcon fontSize="small" color="primary" />}
-              title="Support us financially"
+              icon={<LocalAtmRoundedIcon fontSize='small' color='primary' />}
+              title='Support us financially'
             >
-              <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                If you use MUI in a commercial project and would like to support its continued
-                development by becoming a Sponsor, or in a side or hobby project and would like to
-                become a Backer, you can do so through OpenCollective.
+              <Typography variant='body2' color='text.secondary' sx={{mb: 1}}>
+                If you use MUI in a commercial project and would like to support
+                its continued development by becoming a Sponsor, or in a side or
+                hobby project and would like to become a Backer, you can do so
+                through OpenCollective.
                 <br />
                 <br />
-                All funds donated are managed transparently, and Sponsors receive recognition in the
-                README and on the MUI home page.
+                All funds donated are managed transparently, and Sponsors
+                receive recognition in the README and on the MUI home page.
               </Typography>
               <Button
-                component="a"
+                component='a'
                 // @ts-expect-error
-                variant="link"
-                size="small"
-                href="https://opencollective.com/mui"
+                variant='link'
+                size='small'
+                href='https://opencollective.com/mui'
                 endIcon={<KeyboardArrowRightRounded />}
               >
                 See Open Collective{' '}
@@ -927,22 +972,22 @@ function AboutContent() {
       <HeroEnd />
       <Divider />
     </React.Fragment>
-  );
+  )
 }
 
 export default function About() {
   return (
     <BrandingCssVarsProvider>
       <Head
-        title="About us - MUI"
+        title='About us - MUI'
         description="Our mission is to empower anyone to build UIs, faster. We're reducing the entry barrier, making design skills accessible."
       />
       <AppHeaderBanner />
       <AppHeader />
-      <main id="main-content">
+      <main id='main-content'>
         <AboutContent />
       </main>
       <AppFooter />
     </BrandingCssVarsProvider>
-  );
+  )
 }

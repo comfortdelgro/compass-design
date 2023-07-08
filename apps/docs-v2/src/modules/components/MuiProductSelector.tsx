@@ -1,23 +1,23 @@
-import * as React from 'react';
-import { alpha } from '@mui/material/styles';
-import Box, { BoxProps } from '@mui/material/Box';
-import Chip from '@mui/material/Chip';
-import Typography from '@mui/material/Typography';
-import Stack from '@mui/material/Stack';
-import IconImage from 'docs/src/components/icon/IconImage';
-import ROUTES from 'docs/src/route';
-import Link from 'docs/src/modules/components/Link';
-import PageContext from 'docs/src/modules/components/PageContext';
+import Box, {BoxProps} from '@mui/material/Box'
+import Chip from '@mui/material/Chip'
+import Stack from '@mui/material/Stack'
+import {alpha} from '@mui/material/styles'
+import Typography from '@mui/material/Typography'
+import IconImage from 'docs/src/components/icon/IconImage'
+import Link from 'docs/src/modules/components/Link'
+import PageContext from 'docs/src/modules/components/PageContext'
+import ROUTES from 'docs/src/route'
+import * as React from 'react'
 
 interface ProductSubMenuProp extends BoxProps {
-  icon: React.ReactNode;
-  name: React.ReactNode;
-  description: React.ReactNode;
-  chip?: React.ReactNode;
+  icon: React.ReactNode
+  name: React.ReactNode
+  description: React.ReactNode
+  chip?: React.ReactNode
 }
 
 function ProductSubMenu(props: ProductSubMenuProp) {
-  const { icon, name, description, chip, sx = [], ...other } = props;
+  const {icon, name, description, chip, sx = [], ...other} = props
   return (
     <Box
       {...other}
@@ -48,17 +48,17 @@ function ProductSubMenu(props: ProductSubMenuProp) {
       >
         {icon}
       </Box>
-      <Box sx={{ flexGrow: 1 }}>
-        <Typography color="text.primary" variant="body2" fontWeight="700">
+      <Box sx={{flexGrow: 1}}>
+        <Typography color='text.primary' variant='body2' fontWeight='700'>
           {name}
         </Typography>
-        <Typography color="text.secondary" variant="body2">
+        <Typography color='text.secondary' variant='body2'>
           {description}
         </Typography>
       </Box>
       {chip}
     </Box>
-  );
+  )
 }
 
 const products = [
@@ -82,16 +82,16 @@ const products = [
     href: ROUTES.systemDocs,
     id: 'system',
   },
-];
+]
 
 export default function MuiProductSelector() {
-  const pageContext = React.useContext(PageContext);
+  const pageContext = React.useContext(PageContext)
 
   return (
     <React.Fragment>
       <Box
-        component="li"
-        role="none"
+        component='li'
+        role='none'
         sx={(theme) => ({
           p: 2,
           pr: 3,
@@ -102,16 +102,10 @@ export default function MuiProductSelector() {
           }),
         })}
       >
-        <ProductSubMenu
-          role="menuitem"
-          icon={<IconImage name="product-core" />}
-          name="MUI Core"
-          description="Ready-to-use foundational React components, free forever."
-        />
-        <Box sx={{ ml: '36px', pl: 2, pt: 1.5, position: 'relative' }}>
+        <Box sx={{ml: '36px', pl: 2, pt: 1.5, position: 'relative'}}>
           <Stack
-            direction={{ xs: 'column', sm: 'row' }}
-            alignItems="flex-start"
+            direction={{xs: 'column', sm: 'row'}}
+            alignItems='flex-start'
             spacing={1}
             sx={{
               '& > .MuiChip-root': {
@@ -127,19 +121,23 @@ export default function MuiProductSelector() {
             {products.map((product) => (
               <Chip
                 key={product.name}
-                color={pageContext.productId === product.id ? 'default' : undefined}
-                variant={pageContext.productId === product.id ? 'filled' : 'outlined'}
+                color={
+                  pageContext.productId === product.id ? 'default' : undefined
+                }
+                variant={
+                  pageContext.productId === product.id ? 'filled' : 'outlined'
+                }
                 component={Link}
                 href={product.href}
                 label={product.name}
                 clickable
-                size="small"
+                size='small'
               />
             ))}
           </Stack>
         </Box>
       </Box>
-      <li role="none">
+      <li role='none'>
         <Link
           href={ROUTES.advancedComponents}
           sx={[
@@ -163,14 +161,14 @@ export default function MuiProductSelector() {
           ]}
         >
           <ProductSubMenu
-            role="menuitem"
-            icon={<IconImage name="product-advanced" />}
-            name="MUI X"
-            description="Advanced and powerful components for complex use cases."
+            role='menuitem'
+            icon={<IconImage name='product-advanced' />}
+            name='MUI X'
+            description='Advanced and powerful components for complex use cases.'
           />
         </Link>
       </li>
-      <li role="none">
+      <li role='none'>
         <Link
           href={ROUTES.toolpadDocs}
           sx={[
@@ -194,14 +192,21 @@ export default function MuiProductSelector() {
           ]}
         >
           <ProductSubMenu
-            role="menuitem"
-            icon={<IconImage name="product-toolpad" />}
-            name="MUI Toolpad"
-            description="Low-code admin builder."
-            chip={<Chip size="small" label="Beta" color="primary" variant="outlined" />}
+            role='menuitem'
+            icon={<IconImage name='product-toolpad' />}
+            name='MUI Toolpad'
+            description='Low-code admin builder.'
+            chip={
+              <Chip
+                size='small'
+                label='Beta'
+                color='primary'
+                variant='outlined'
+              />
+            }
           />
         </Link>
       </li>
     </React.Fragment>
-  );
+  )
 }

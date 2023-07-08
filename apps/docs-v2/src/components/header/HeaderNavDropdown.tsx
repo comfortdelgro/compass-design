@@ -1,65 +1,61 @@
-import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Collapse from '@mui/material/Collapse';
-import Chip from '@mui/material/Chip';
-import ClickAwayListener from '@mui/base/ClickAwayListener';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRounded';
-import SvgHamburgerMenu from 'docs/src/icons/SvgHamburgerMenu';
-import Link from 'docs/src/modules/components/Link';
-import ROUTES from 'docs/src/route';
+import ClickAwayListener from '@mui/base/ClickAwayListener'
+import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRounded'
+import Box from '@mui/material/Box'
+import Chip from '@mui/material/Chip'
+import Collapse from '@mui/material/Collapse'
+import IconButton from '@mui/material/IconButton'
+import {styled} from '@mui/material/styles'
+import Typography from '@mui/material/Typography'
+import SvgHamburgerMenu from 'docs/src/icons/SvgHamburgerMenu'
+import Link from 'docs/src/modules/components/Link'
+import ROUTES from 'docs/src/route'
+import * as React from 'react'
 
-const Anchor = styled('a')<{ component?: React.ElementType; noLinkStyle?: boolean }>(
-  ({ theme }) => [
-    {
-      ...theme.typography.body2,
-      fontWeight: theme.typography.fontWeightBold,
-      textDecoration: 'none',
-      border: 'none',
-      width: '100%',
-      backgroundColor: 'transparent',
-      color: (theme.vars || theme).palette.text.secondary,
-      cursor: 'pointer',
-      display: 'flex',
-      alignItems: 'center',
-      padding: theme.spacing(1),
-      borderRadius: theme.spacing(1),
-      transition: theme.transitions.create('background'),
-      '&:hover, &:focus-visible': {
-        backgroundColor: (theme.vars || theme).palette.grey[100],
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          backgroundColor: 'transparent',
-        },
+const Anchor = styled('a')<{
+  component?: React.ElementType
+  noLinkStyle?: boolean
+}>(({theme}) => [
+  {
+    ...theme.typography.body2,
+    fontWeight: theme.typography.fontWeightBold,
+    textDecoration: 'none',
+    border: 'none',
+    width: '100%',
+    backgroundColor: 'transparent',
+    color: (theme.vars || theme).palette.text.secondary,
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    padding: theme.spacing(1),
+    borderRadius: theme.spacing(1),
+    transition: theme.transitions.create('background'),
+    '&:hover, &:focus-visible': {
+      backgroundColor: (theme.vars || theme).palette.grey[100],
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
       },
     },
-    theme.applyDarkStyles({
-      color: '#fff',
-      '&:hover, &:focus-visible': {
-        backgroundColor: (theme.vars || theme).palette.primaryDark[700],
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          backgroundColor: 'transparent',
-        },
+  },
+  theme.applyDarkStyles({
+    color: '#fff',
+    '&:hover, &:focus-visible': {
+      backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
       },
-    }),
-  ],
-);
+    },
+  }),
+])
 
 const UList = styled('ul')({
   listStyleType: 'none',
   padding: 0,
   margin: 0,
-});
+})
 
 const PRODUCTS = [
-  {
-    name: 'MUI Core',
-    description: 'Ready-to-use foundational React components, free forever.',
-    href: ROUTES.productCore,
-  },
   {
     name: 'MUI X',
     description: 'Advanced and powerful components for complex use-cases.',
@@ -81,7 +77,7 @@ const PRODUCTS = [
     href: ROUTES.productToolpad,
     chip: 'Alpha',
   },
-];
+]
 
 const DOCS = [
   {
@@ -115,18 +111,18 @@ const DOCS = [
     href: ROUTES.toolpadDocs,
     chip: 'Alpha',
   },
-];
+]
 
 export default function HeaderNavDropdown() {
-  const [open, setOpen] = React.useState(false);
-  const [productsOpen, setProductsOpen] = React.useState(true);
-  const [docsOpen, setDocsOpen] = React.useState(false);
-  const hambugerRef = React.useRef<HTMLButtonElement | null>(null);
+  const [open, setOpen] = React.useState(false)
+  const [productsOpen, setProductsOpen] = React.useState(true)
+  const [docsOpen, setDocsOpen] = React.useState(false)
+  const hambugerRef = React.useRef<HTMLButtonElement | null>(null)
   return (
     <React.Fragment>
       <IconButton
-        color="primary"
-        aria-label="Menu"
+        color='primary'
+        aria-label='Menu'
         ref={hambugerRef}
         disableRipple
         onClick={() => setOpen((value) => !value)}
@@ -150,8 +146,11 @@ export default function HeaderNavDropdown() {
       </IconButton>
       <ClickAwayListener
         onClickAway={(event) => {
-          if (hambugerRef.current && !hambugerRef.current.contains(event.target as Node)) {
-            setOpen(false);
+          if (
+            hambugerRef.current &&
+            !hambugerRef.current.contains(event.target as Node)
+          ) {
+            setOpen(false)
           }
         }}
       >
@@ -192,13 +191,13 @@ export default function HeaderNavDropdown() {
             >
               <li>
                 <Anchor
-                  as="button"
+                  as='button'
                   onClick={() => setProductsOpen((bool) => !bool)}
-                  sx={{ justifyContent: 'space-between' }}
+                  sx={{justifyContent: 'space-between'}}
                 >
                   Products
                   <KeyboardArrowDownRounded
-                    color="primary"
+                    color='primary'
                     sx={{
                       transition: '0.3s',
                       transform: productsOpen ? 'rotate(-180deg)' : 'rotate(0)',
@@ -213,7 +212,7 @@ export default function HeaderNavDropdown() {
                           href={item.href}
                           as={Link}
                           noLinkStyle
-                          sx={{ flexDirection: 'column', alignItems: 'initial' }}
+                          sx={{flexDirection: 'column', alignItems: 'initial'}}
                         >
                           <Box
                             sx={{
@@ -225,14 +224,14 @@ export default function HeaderNavDropdown() {
                             {item.name}
                             {item.chip ? (
                               <Chip
-                                size="small"
+                                size='small'
                                 label={item.chip}
-                                color="primary"
-                                variant="outlined"
+                                color='primary'
+                                variant='outlined'
                               />
                             ) : null}
                           </Box>
-                          <Typography variant="body2" color="text.secondary">
+                          <Typography variant='body2' color='text.secondary'>
                             {item.description}
                           </Typography>
                         </Anchor>
@@ -243,13 +242,13 @@ export default function HeaderNavDropdown() {
               </li>
               <li>
                 <Anchor
-                  as="button"
+                  as='button'
                   onClick={() => setDocsOpen((bool) => !bool)}
-                  sx={{ justifyContent: 'space-between' }}
+                  sx={{justifyContent: 'space-between'}}
                 >
                   Docs
                   <KeyboardArrowDownRounded
-                    color="primary"
+                    color='primary'
                     sx={{
                       transition: '0.3s',
                       transform: docsOpen ? 'rotate(-180deg)' : 'rotate(0)',
@@ -264,7 +263,7 @@ export default function HeaderNavDropdown() {
                           href={item.href}
                           as={Link}
                           noLinkStyle
-                          sx={{ flexDirection: 'column', alignItems: 'initial' }}
+                          sx={{flexDirection: 'column', alignItems: 'initial'}}
                         >
                           <Box
                             sx={{
@@ -276,14 +275,14 @@ export default function HeaderNavDropdown() {
                             {item.name}
                             {item.chip ? (
                               <Chip
-                                size="small"
+                                size='small'
                                 label={item.chip}
-                                color="primary"
-                                variant="outlined"
+                                color='primary'
+                                variant='outlined'
                               />
                             ) : null}
                           </Box>
-                          <Typography variant="body2" color="text.secondary">
+                          <Typography variant='body2' color='text.secondary'>
                             {item.description}
                           </Typography>
                         </Anchor>
@@ -312,5 +311,5 @@ export default function HeaderNavDropdown() {
         </Collapse>
       </ClickAwayListener>
     </React.Fragment>
-  );
+  )
 }
