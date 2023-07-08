@@ -55,15 +55,6 @@ const UList = styled('ul')({
   margin: 0,
 })
 
-const PRODUCTS = [
-  {
-    name: 'MUI Toolpad',
-    description: 'Low-code admin builder.',
-    href: ROUTES.productToolpad,
-    chip: 'Alpha',
-  },
-]
-
 const DOCS = [
   {
     name: 'Material UI',
@@ -84,12 +75,6 @@ const DOCS = [
     name: 'MUI System',
     description: 'CSS utilities for rapidly laying out custom designs.',
     href: ROUTES.systemDocs,
-  },
-  {
-    name: 'MUI Toolpad',
-    description: 'Low-code admin builder.',
-    href: ROUTES.toolpadDocs,
-    chip: 'Alpha',
   },
 ]
 
@@ -184,41 +169,6 @@ export default function HeaderNavDropdown() {
                     }}
                   />
                 </Anchor>
-                <Collapse in={productsOpen}>
-                  <UList>
-                    {PRODUCTS.map((item) => (
-                      <li key={item.name}>
-                        <Anchor
-                          href={item.href}
-                          as={Link}
-                          noLinkStyle
-                          sx={{flexDirection: 'column', alignItems: 'initial'}}
-                        >
-                          <Box
-                            sx={{
-                              display: 'flex',
-                              flexDirection: 'row',
-                              justifyContent: 'space-between',
-                            }}
-                          >
-                            {item.name}
-                            {item.chip ? (
-                              <Chip
-                                size='small'
-                                label={item.chip}
-                                color='primary'
-                                variant='outlined'
-                              />
-                            ) : null}
-                          </Box>
-                          <Typography variant='body2' color='text.secondary'>
-                            {item.description}
-                          </Typography>
-                        </Anchor>
-                      </li>
-                    ))}
-                  </UList>
-                </Collapse>
               </li>
               <li>
                 <Anchor

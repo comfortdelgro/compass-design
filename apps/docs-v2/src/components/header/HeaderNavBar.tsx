@@ -1,12 +1,10 @@
 import Box from '@mui/material/Box'
-import Chip from '@mui/material/Chip'
 import Fade from '@mui/material/Fade'
 import Paper from '@mui/material/Paper'
 import Popper from '@mui/material/Popper'
 import {alpha, styled} from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import {unstable_debounce as debounce} from '@mui/utils'
-import IconImage from 'docs/src/components/icon/IconImage'
 import Link from 'docs/src/modules/components/Link'
 import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector'
 import ROUTES from 'docs/src/route'
@@ -268,97 +266,6 @@ export default function HeaderNavBar() {
   return (
     <Navigation>
       <ul ref={navRef} role='menubar' onKeyDown={handleLeftRightArrow}>
-        <li
-          role='none'
-          onMouseEnter={() => setSubMenuOpenUndebounce('products')}
-          onFocus={() => setSubMenuOpenUndebounce('products')}
-          onMouseLeave={() => setSubMenuOpenDebounced(null)}
-          onBlur={() => setSubMenuOpenUndebounce(null)}
-        >
-          <div
-            role='menuitem'
-            tabIndex={0}
-            ref={productsMenuRef}
-            aria-haspopup
-            aria-expanded={subMenuOpen === 'products' ? 'true' : 'false'}
-            onKeyDown={handleKeyDown}
-          >
-            Products
-          </div>
-          <Popper
-            open={subMenuOpen === 'products'}
-            anchorEl={productsMenuRef.current}
-            transition
-            placement='bottom-start'
-            style={{
-              zIndex: 1200,
-              pointerEvents: subMenuOpen === 'products' ? undefined : 'none',
-            }}
-          >
-            {({TransitionProps}) => (
-              <Fade {...TransitionProps} timeout={350}>
-                <Paper
-                  variant='outlined'
-                  sx={[
-                    (theme) => ({
-                      minWidth: 498,
-                      overflow: 'hidden',
-                      borderColor: 'grey.200',
-                      bgcolor: 'background.paper',
-                      boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
-                      ...theme.applyDarkStyles({
-                        borderColor: 'primaryDark.700',
-                        bgcolor: 'primaryDark.900',
-                        boxShadow: `0px 4px 20px ${alpha(
-                          theme.palette.background.paper,
-                          0.72,
-                        )}`,
-                      }),
-                      '& ul': {
-                        margin: 0,
-                        padding: 0,
-                        listStyle: 'none',
-                      },
-                      '& li:not(:last-of-type)': {
-                        borderBottom: '1px solid',
-                        borderColor: 'grey.100',
-                      },
-                      '& a': {textDecoration: 'none'},
-                    }),
-                    (theme) =>
-                      theme.applyDarkStyles({
-                        '& li:not(:last-of-type)': {
-                          borderColor: 'primaryDark.700',
-                        },
-                      }),
-                  ]}
-                >
-                  <ul role='menu'>
-                    <li role='none'>
-                      <ProductSubMenu
-                        id={PRODUCT_IDS[4]}
-                        role='menuitem'
-                        href={ROUTES.productToolpad}
-                        icon={<IconImage name='product-toolpad' />}
-                        name='MUI Toolpad'
-                        chip={
-                          <Chip
-                            label='Beta'
-                            size='small'
-                            color='primary'
-                            variant='outlined'
-                          />
-                        }
-                        description='Low-code admin builder.'
-                        onKeyDown={handleKeyDown}
-                      />
-                    </li>
-                  </ul>
-                </Paper>
-              </Fade>
-            )}
-          </Popper>
-        </li>
         <li
           role='none'
           onMouseEnter={() => setSubMenuOpenUndebounce('docs')}

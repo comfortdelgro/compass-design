@@ -3,7 +3,6 @@ import Chip from '@mui/material/Chip'
 import Stack from '@mui/material/Stack'
 import {alpha} from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
-import IconImage from 'docs/src/components/icon/IconImage'
 import Link from 'docs/src/modules/components/Link'
 import PageContext from 'docs/src/modules/components/PageContext'
 import ROUTES from 'docs/src/route'
@@ -137,45 +136,6 @@ export default function MuiProductSelector() {
           </Stack>
         </Box>
       </Box>
-      <li role='none'>
-        <Link
-          href={ROUTES.toolpadDocs}
-          sx={[
-            {
-              p: 2,
-              pr: 3,
-              borderBottom: '1px solid',
-              borderColor: 'grey.100',
-              width: '100%',
-              '&:hover': {
-                backgroundColor: 'grey.50',
-              },
-            },
-            (theme) =>
-              theme.applyDarkStyles({
-                borderColor: alpha(theme.palette.primary[100], 0.08),
-                '&:hover': {
-                  backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
-                },
-              }),
-          ]}
-        >
-          <ProductSubMenu
-            role='menuitem'
-            icon={<IconImage name='product-toolpad' />}
-            name='MUI Toolpad'
-            description='Low-code admin builder.'
-            chip={
-              <Chip
-                size='small'
-                label='Beta'
-                color='primary'
-                variant='outlined'
-              />
-            }
-          />
-        </Link>
-      </li>
     </React.Fragment>
   )
 }
