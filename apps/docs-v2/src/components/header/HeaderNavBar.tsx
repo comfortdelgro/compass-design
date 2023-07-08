@@ -336,17 +336,6 @@ export default function HeaderNavBar() {
                   <ul role='menu'>
                     <li role='none'>
                       <ProductSubMenu
-                        id={PRODUCT_IDS[2]}
-                        role='menuitem'
-                        href={ROUTES.productTemplates}
-                        icon={<IconImage name='product-templates' />}
-                        name='Templates'
-                        description='Fully built, out-of-the-box, templates for your application.'
-                        onKeyDown={handleKeyDown}
-                      />
-                    </li>
-                    <li role='none'>
-                      <ProductSubMenu
                         id={PRODUCT_IDS[3]}
                         role='menuitem'
                         href={ROUTES.productDesignKits}

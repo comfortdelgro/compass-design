@@ -57,11 +57,6 @@ const UList = styled('ul')({
 
 const PRODUCTS = [
   {
-    name: 'Templates',
-    description: 'Fully built, out-of-the-box, templates for your application.',
-    href: ROUTES.productTemplates,
-  },
-  {
     name: 'Design kits',
     description: 'Our components available in your favorite design tool.',
     href: ROUTES.productDesignKits,

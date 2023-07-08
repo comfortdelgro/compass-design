@@ -2,7 +2,6 @@ import Divider from '@mui/material/Divider'
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider'
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner'
 import HeroEnd from 'docs/src/components/home/HeroEnd'
-import Testimonials from 'docs/src/components/home/Testimonials'
 import DesignKitDemo from 'docs/src/components/productDesignKit/DesignKitDemo'
 import DesignKitFAQ from 'docs/src/components/productDesignKit/DesignKitFAQ'
 import DesignKitHero from 'docs/src/components/productDesignKit/DesignKitHero'
@@ -26,7 +25,6 @@ export default function DesignKits() {
         <DesignKitValues />
         <DesignKitDemo />
         <DesignKitFAQ />
-        <Testimonials />
         <HeroEnd />
       </main>
       <Divider />
