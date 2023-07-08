@@ -7,8 +7,8 @@ import Container from '@mui/material/Container'
 import IconButton from '@mui/material/IconButton'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
-import SvgMuiLogotype from 'docs/src/icons/SvgMuiLogotype'
-import SvgStackOverflow from 'docs/src/icons/SvgStackOverflow'
+import SvgMuiLogotype from 'components/icons/SvgMuiLogotype'
+import SvgStackOverflow from 'components/icons/SvgStackOverflow'
 import Link from 'docs/src/modules/components/Link'
 
 interface AppFooterProps {
