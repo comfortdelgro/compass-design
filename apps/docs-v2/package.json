@@ -7,7 +7,6 @@
     "build": "cross-env NODE_ENV=production NODE_OPTIONS=--max_old_space_size=4096 next build --profile",
     "build-sw": "node ./scripts/buildServiceWorker.js",
     "build:clean": "rimraf .next && yarn build",
-    "deploy": "git push material-ui-docs master:latest",
     "dev": "next dev",
     "export": "rimraf docs/export && next export --threads=3 -o export && yarn build-sw",
     "start": "next start",

@@ -1,37 +1,30 @@
-/**
- * See the docs of the Netlify environment variables:
- * https://docs.netlify.com/configure-builds/environment-variables/#build-metadata.
- *
- * A few comments:
- * - process.env.CONTEXT === 'production' means that the branch in Netlify was configured as production.
- *   For example, the `master` branch of the Core team is considered a `production` build on Netlify based
- *   on https://app.netlify.com/sites/material-ui/settings/deploys#branches.
- * - Each team has different site https://app.netlify.com/teams/mui/sites.
- *   The following logic must be compatible with all of them.
- */
-let DEPLOY_ENV = 'development';
+let DEPLOY_ENV = 'development'
 
 // Same as process.env.PULL_REQUEST_ID
 if (process.env.CONTEXT === 'deploy-preview') {
-  DEPLOY_ENV = 'pull-request';
+  DEPLOY_ENV = 'pull-request'
 }
 
-if (process.env.CONTEXT === 'production' || process.env.CONTEXT === 'branch-deploy') {
-  DEPLOY_ENV = 'production';
+if (
+  process.env.CONTEXT === 'production' ||
+  process.env.CONTEXT === 'branch-deploy'
+) {
+  DEPLOY_ENV = 'production'
 }
 
 // The 'master' and 'next' branches are NEVER a production environment. We use these branches for staging.
 if (
-  (process.env.CONTEXT === 'production' || process.env.CONTEXT === 'branch-deploy') &&
+  (process.env.CONTEXT === 'production' ||
+    process.env.CONTEXT === 'branch-deploy') &&
   (process.env.HEAD === 'master' || process.env.HEAD === 'next')
 ) {
-  DEPLOY_ENV = 'staging';
+  DEPLOY_ENV = 'staging'
 }
 /**
  * ====================================================================================
  */
 
-process.env.DEPLOY_ENV = DEPLOY_ENV;
+process.env.DEPLOY_ENV = DEPLOY_ENV
 
 function withDocsInfra(nextConfig) {
   return {
@@ -55,7 +48,6 @@ function withDocsInfra(nextConfig) {
       // URL representing the unique URL for an individual deploy, e.g.
       // https://5b243e66dd6a547b4fee73ae--petsof.netlify.app
       NETLIFY_DEPLOY_URL: process.env.DEPLOY_URL,
-      // Name of the site, its Netlify subdomain; for example, material-ui-docs
       NETLIFY_SITE_NAME: process.env.SITE_NAME,
     },
     experimental: {
@@ -72,7 +64,7 @@ function withDocsInfra(nextConfig) {
       ignoreBuildErrors: true,
       ...nextConfig.typescript,
     },
-  };
+  }
 }
 
-module.exports = withDocsInfra;
+module.exports = withDocsInfra

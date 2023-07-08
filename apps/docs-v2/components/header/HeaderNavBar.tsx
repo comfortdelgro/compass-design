@@ -1,11 +1,8 @@
-import Box from '@mui/material/Box'
 import Fade from '@mui/material/Fade'
 import Paper from '@mui/material/Paper'
 import Popper from '@mui/material/Popper'
 import {styled} from '@mui/material/styles'
-import Typography from '@mui/material/Typography'
 import {unstable_debounce as debounce} from '@mui/utils'
-import Link from 'next/link'
 import * as React from 'react'
 import MuiProductSelector from '../common/MuiProductSelector'
 
@@ -55,68 +52,6 @@ const PRODUCT_IDS = [
   'product-design',
   'product-toolpad',
 ]
-
-type ProductSubMenuProps = {
-  icon: React.ReactElement
-  name: React.ReactNode
-  description: React.ReactNode
-  chip?: React.ReactNode
-  href: string
-} & Omit<JSX.IntrinsicElements['a'], 'ref'>
-
-const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
-  function ProductSubMenu(
-    {icon, name, description, chip, href, ...props},
-    ref,
-  ) {
-    return (
-      <Box
-        component={Link}
-        href={href}
-        ref={ref}
-        sx={[
-          (theme) => ({
-            display: 'flex',
-            alignItems: 'center',
-            py: 2,
-            pr: 3,
-            '&:hover, &:focus': {
-              backgroundColor: (theme.vars || theme).palette.grey[50],
-              outline: 0,
-              '@media (hover: none)': {
-                backgroundColor: 'initial',
-                outline: 'initial',
-              },
-            },
-          }),
-        ]}
-        {...props}
-      >
-        <Box
-          sx={[
-            (theme) => ({
-              px: 2,
-              '& circle': {
-                fill: (theme.vars || theme).palette.grey[100],
-              },
-            }),
-          ]}
-        >
-          {icon}
-        </Box>
-        <Box sx={{flexGrow: 1}}>
-          <Typography color='text.primary' variant='body2' fontWeight='bold'>
-            {name}
-          </Typography>
-          <Typography color='text.secondary' variant='body2'>
-            {description}
-          </Typography>
-        </Box>
-        {chip}
-      </Box>
-    )
-  },
-)
 
 function getNextIndex(
   eventKey: KeyboardEvent['key'],
@@ -168,52 +103,6 @@ export default function HeaderNavBar() {
           i += 1
         }
       }
-    }
-  }
-  function handleKeyDown(event: React.KeyboardEvent) {
-    if (event.key === 'Tab' && !event.shiftKey) {
-      event.preventDefault()
-      handleLeftRightArrow(
-        new KeyboardEvent('keydown', {
-          key: 'ArrowRight',
-        }) as unknown as React.KeyboardEvent,
-        productsMenuRef.current?.parentElement,
-      )
-    }
-    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
-      event.preventDefault()
-      handleLeftRightArrow(event, productsMenuRef.current?.parentElement)
-    }
-    if (event.key === 'ArrowDown') {
-      event.preventDefault()
-      if (event.target === productsMenuRef.current) {
-        setSubMenuOpen('products')
-      }
-      setSubMenuIndex((prevValue) => {
-        if (prevValue === null) {
-          return 0
-        }
-        if (prevValue === PRODUCT_IDS.length - 1) {
-          return 0
-        }
-        return prevValue + 1
-      })
-    }
-    if (event.key === 'ArrowUp') {
-      event.preventDefault()
-      setSubMenuIndex((prevValue) => {
-        if (prevValue === null) {
-          return 0
-        }
-        if (prevValue === 0) {
-          return PRODUCT_IDS.length - 1
-        }
-        return prevValue - 1
-      })
-    }
-    if (event.key === 'Escape') {
-      setSubMenuOpen(null)
-      setSubMenuIndex(null)
     }
   }
 

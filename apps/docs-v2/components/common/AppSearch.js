@@ -85,10 +85,10 @@ function NewStartScreen() {
       items: [
         {
           name: 'Installation',
-          href: '/material-ui/getting-started/installation/',
+          href: '/getting-started/installation/',
         },
-        {name: 'Usage', href: '/material-ui/getting-started/usage/'},
-        {name: 'Learn', href: '/material-ui/getting-started/learn/'},
+        {name: 'Usage', href: '/getting-started/usage/'},
+        {name: 'Learn', href: '/getting-started/learn/'},
       ],
     },
     {
@@ -99,9 +99,9 @@ function NewStartScreen() {
         ),
       },
       items: [
-        {name: 'Material Icons', href: '/material-ui/material-icons/'},
-        {name: 'Text Field', href: '/material-ui/react-text-field/'},
-        {name: 'Button', href: '/material-ui/react-button/'},
+        {name: 'Material Icons', href: '/material-icons/'},
+        {name: 'Text Field', href: '/react-text-field/'},
+        {name: 'Button', href: '/react-button/'},
       ],
     },
     {
@@ -112,12 +112,12 @@ function NewStartScreen() {
       items: [
         {
           name: 'How to customize',
-          href: '/material-ui/customization/how-to-customize/',
+          href: '/customization/how-to-customize/',
         },
-        {name: 'Theming', href: '/material-ui/customization/theming/'},
+        {name: 'Theming', href: '/customization/theming/'},
         {
           name: 'Default theme',
-          href: '/material-ui/customization/default-theme/',
+          href: '/customization/default-theme/',
         },
       ],
     },
@@ -161,11 +161,6 @@ function NewStartScreen() {
 
 const displayTagProductId = {
   'material-ui': 'Material UI',
-  'joy-ui': 'Joy UI',
-  'base-ui': 'Base UI',
-  x: 'MUI X',
-  system: 'MUI System',
-  toolpad: 'Toolpad',
 }
 
 function getDisplayTag(hit) {
