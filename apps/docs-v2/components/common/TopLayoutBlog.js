@@ -10,11 +10,11 @@ import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider'
 import HeroEnd from 'docs/src/components/home/HeroEnd'
 import AppFooter from 'docs/src/layouts/AppFooter'
 import AppHeader from 'docs/src/layouts/AppHeader'
-import {pathnameToLanguage} from 'docs/src/modules/utils/helpers'
 import Link from 'next/link'
 import {useRouter} from 'next/router'
 import PropTypes from 'prop-types'
 import * as React from 'react'
+import {pathnameToLanguage} from 'utils/helpers'
 
 export const authors = {
   oliviertassinari: {

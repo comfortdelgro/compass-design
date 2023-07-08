@@ -16,11 +16,11 @@ import AppNavDrawerItem from 'components/common/AppNavDrawerItem'
 import MuiProductSelector from 'components/common/MuiProductSelector'
 import PageContext from 'components/common/PageContext'
 import SvgMuiLogomark from 'components/icons/SvgMuiLogomark'
-import {pageToTitleI18n} from 'docs/src/modules/utils/helpers'
-import {useTranslate} from 'docs/src/modules/utils/i18n'
 import NextLink from 'next/link'
 import PropTypes from 'prop-types'
 import * as React from 'react'
+import {pageToTitleI18n} from 'utils/helpers'
+import {useTranslate} from 'utils/i18n'
 
 const savedScrollTop = {}
 

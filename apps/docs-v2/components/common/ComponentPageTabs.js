@@ -2,10 +2,10 @@ import Box from '@mui/material/Box'
 import {styled} from '@mui/material/styles'
 import Tab, {tabClasses} from '@mui/material/Tab'
 import Tabs, {tabsClasses} from '@mui/material/Tabs'
-import {useTranslate} from 'docs/src/modules/utils/i18n'
 import Link from 'next/link'
 import {useRouter} from 'next/router'
 import PropTypes from 'prop-types'
+import {useTranslate} from 'utils/i18n'
 
 export const HEIGHT = 50
 

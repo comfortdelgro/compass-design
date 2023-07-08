@@ -1,8 +1,8 @@
 import Demo from 'components/common/Demo'
 import MarkdownElement from 'components/common/MarkdownElement'
-import {useTranslate, useUserLanguage} from 'docs/src/modules/utils/i18n'
 import path from 'path'
 import PropTypes from 'prop-types'
+import {useTranslate, useUserLanguage} from 'utils/i18n'
 
 function noComponent(moduleID) {
   return function NoComponent() {

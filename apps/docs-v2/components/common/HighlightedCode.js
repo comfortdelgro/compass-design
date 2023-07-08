@@ -3,9 +3,9 @@ import NoSsr from '@mui/base/NoSsr'
 
 import CodeCopyButton from 'components/common/CodeCopyButton'
 import MarkdownElement from 'components/common/MarkdownElement'
-import {useCodeCopy} from 'docs/src/modules/utils/CodeCopy'
 import PropTypes from 'prop-types'
 import * as React from 'react'
+import {useCodeCopy} from 'utils/CodeCopy'
 
 const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
   const {

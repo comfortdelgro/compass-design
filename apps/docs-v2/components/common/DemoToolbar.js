@@ -23,17 +23,14 @@ import Tooltip from '@mui/material/Tooltip'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import copy from 'clipboard-copy'
 import {CODE_STYLING, CODE_VARIANTS} from 'constants'
-import {
-  useCodeStyling,
-  useSetCodeStyling,
-} from 'docs/src/modules/utils/codeStylingSolution'
-import {useSetCodeVariant} from 'docs/src/modules/utils/codeVariant'
-import {getCookie} from 'docs/src/modules/utils/helpers'
-import {useTranslate} from 'docs/src/modules/utils/i18n'
-import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMapping'
 import {useRouter} from 'next/router'
 import PropTypes from 'prop-types'
 import * as React from 'react'
+import {useCodeStyling, useSetCodeStyling} from 'utils/codeStylingSolution'
+import {useSetCodeVariant} from 'utils/codeVariant'
+import {getCookie} from 'utils/helpers'
+import {useTranslate} from 'utils/i18n'
+import stylingSolutionMapping from 'utils/stylingSolutionMapping'
 import codeSandbox from '../sandbox/CodeSandbox'
 import stackBlitz from '../sandbox/StackBlitz'
 

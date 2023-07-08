@@ -1,5 +1,5 @@
 import {CODE_VARIANTS} from 'constants'
-import addHiddenInput from 'docs/src/modules/utils/addHiddenInput'
+import addHiddenInput from 'utils/addHiddenInput'
 import * as CRA from './CreateReactApp'
 import SandboxDependencies from './Dependencies'
 import getFileExtension from './FileExtension'

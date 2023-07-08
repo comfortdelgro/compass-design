@@ -14,12 +14,12 @@ import ComponentsApiContent from 'components/common/ComponentsApiContent'
 import HooksApiContent from 'components/common/HooksApiContent'
 import MarkdownElement from 'components/common/MarkdownElementV2'
 import BrandingProvider from 'docs/src/BrandingProvider'
-import {pathnameToLanguage} from 'docs/src/modules/utils/helpers'
-import {useTranslate, useUserLanguage} from 'docs/src/modules/utils/i18n'
 import kebabCase from 'lodash/kebabCase'
 import {useRouter} from 'next/router'
 import PropTypes from 'prop-types'
 import * as React from 'react'
+import {pathnameToLanguage} from 'utils/helpers'
+import {useTranslate, useUserLanguage} from 'utils/i18n'
 
 function JoyModeObserver({mode}) {
   const {setMode} = useColorScheme()

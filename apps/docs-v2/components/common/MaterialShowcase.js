@@ -8,9 +8,9 @@ import ToggleButton from '@mui/material/ToggleButton'
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
 import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Unstable_Grid2'
-import {useTranslate} from 'docs/src/modules/utils/i18n'
 import Link from 'next/link'
 import * as React from 'react'
+import {useTranslate} from 'utils/i18n'
 
 /**
  * The app structure:

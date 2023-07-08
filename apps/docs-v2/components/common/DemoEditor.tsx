@@ -4,10 +4,10 @@ import {styled, useTheme} from '@mui/material/styles'
 
 import MarkdownElement from 'components/common/MarkdownElement'
 import {blueDark} from 'docs/src/modules/brandingTheme'
-import {useCodeCopy} from 'docs/src/modules/utils/CodeCopy'
-import {useTranslate} from 'docs/src/modules/utils/i18n'
 import * as React from 'react'
 import SimpleCodeEditor from 'react-simple-code-editor'
+import {useCodeCopy} from 'utils/CodeCopy'
+import {useTranslate} from 'utils/i18n'
 
 const StyledMarkdownElement = styled(MarkdownElement)(({theme}) => [
   {

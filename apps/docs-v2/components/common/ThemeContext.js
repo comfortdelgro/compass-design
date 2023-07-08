@@ -1,27 +1,27 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
+import {enUS, ptBR, zhCN} from '@mui/material/locale'
 import {
-  ThemeProvider as MdThemeProvider,
   createTheme as createMdTheme,
-} from '@mui/material/styles';
-import { deepmerge } from '@mui/utils';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { enUS, zhCN, ptBR } from '@mui/material/locale';
-import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material/utils';
-import { getCookie } from 'docs/src/modules/utils/helpers';
-import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
-import { useUserLanguage } from 'docs/src/modules/utils/i18n';
+  ThemeProvider as MdThemeProvider,
+} from '@mui/material/styles'
+import useMediaQuery from '@mui/material/useMediaQuery'
+import {unstable_useEnhancedEffect as useEnhancedEffect} from '@mui/material/utils'
+import {deepmerge} from '@mui/utils'
 import {
   getDesignTokens,
-  getThemedComponents,
   getMetaThemeColor,
-} from 'docs/src/modules/brandingTheme';
+  getThemedComponents,
+} from 'docs/src/modules/brandingTheme'
+import PropTypes from 'prop-types'
+import * as React from 'react'
+import {getCookie} from 'utils/helpers'
+import {useUserLanguage} from 'utils/i18n'
+import useLazyCSS from 'utils/useLazyCSS'
 
 const languageMap = {
   en: enUS,
   zh: zhCN,
   pt: ptBR,
-};
+}
 
 const themeInitialOptions = {
   dense: false,
@@ -29,7 +29,7 @@ const themeInitialOptions = {
   paletteColors: {},
   spacing: 8, // spacing unit
   paletteMode: 'light',
-};
+}
 
 export const highDensity = {
   components: {
@@ -99,20 +99,22 @@ export const highDensity = {
       },
     },
   },
-};
+}
 
 export const DispatchContext = React.createContext(() => {
-  throw new Error('Forgot to wrap component in `ThemeProvider`');
-});
+  throw new Error('Forgot to wrap component in `ThemeProvider`')
+})
 
 if (process.env.NODE_ENV !== 'production') {
-  DispatchContext.displayName = 'ThemeDispatchContext';
+  DispatchContext.displayName = 'ThemeDispatchContext'
 }
 
 export function ThemeProvider(props) {
-  const { children } = props;
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)', { noSsr: true });
-  const preferredMode = prefersDarkMode ? 'dark' : 'light';
+  const {children} = props
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)', {
+    noSsr: true,
+  })
+  const preferredMode = prefersDarkMode ? 'dark' : 'light'
 
   const [themeOptions, dispatch] = React.useReducer(
     (state, action) => {
@@ -121,96 +123,96 @@ export function ThemeProvider(props) {
           return {
             ...state,
             spacing: action.payload,
-          };
+          }
         case 'INCREASE_SPACING': {
           return {
             ...state,
             spacing: state.spacing + 1,
-          };
+          }
         }
         case 'DECREASE_SPACING': {
           return {
             ...state,
             spacing: state.spacing - 1,
-          };
+          }
         }
         case 'SET_DENSE':
           return {
             ...state,
             dense: action.payload,
-          };
+          }
         case 'RESET_DENSITY':
           return {
             ...state,
             dense: themeInitialOptions.dense,
             spacing: themeInitialOptions.spacing,
-          };
+          }
         case 'RESET_COLORS':
           return {
             ...state,
             paletteColors: themeInitialOptions.paletteColors,
-          };
+          }
         case 'CHANGE':
           return {
             ...state,
             paletteMode: action.payload.paletteMode || state.paletteMode,
             direction: action.payload.direction || state.direction,
             paletteColors: action.payload.paletteColors || state.paletteColors,
-          };
+          }
         default:
-          throw new Error(`Unrecognized type ${action.type}`);
+          throw new Error(`Unrecognized type ${action.type}`)
       }
     },
-    { ...themeInitialOptions, paletteMode: 'light' },
-  );
+    {...themeInitialOptions, paletteMode: 'light'},
+  )
 
-  const userLanguage = useUserLanguage();
-  const { dense, direction, paletteColors, paletteMode, spacing } = themeOptions;
+  const userLanguage = useUserLanguage()
+  const {dense, direction, paletteColors, paletteMode, spacing} = themeOptions
 
-  useLazyCSS('/static/styles/prism-okaidia.css', '#prismjs');
+  useLazyCSS('/static/styles/prism-okaidia.css', '#prismjs')
 
   useEnhancedEffect(() => {
-    const nextPaletteColors = JSON.parse(getCookie('paletteColors') || 'null');
-    let nextPaletteMode = preferredMode; // syncing with homepage, can be removed once all pages are migrated to CSS variables
+    const nextPaletteColors = JSON.parse(getCookie('paletteColors') || 'null')
+    let nextPaletteMode = preferredMode // syncing with homepage, can be removed once all pages are migrated to CSS variables
     try {
-      nextPaletteMode = localStorage.getItem('mui-mode') ?? preferredMode;
+      nextPaletteMode = localStorage.getItem('mui-mode') ?? preferredMode
     } catch (error) {
       // mainly thrown when cookies are disabled.
     }
 
     if (nextPaletteMode === 'system') {
-      nextPaletteMode = preferredMode;
+      nextPaletteMode = preferredMode
     }
 
     dispatch({
       type: 'CHANGE',
-      payload: { paletteColors: nextPaletteColors, paletteMode: nextPaletteMode },
-    });
-  }, [preferredMode]);
+      payload: {paletteColors: nextPaletteColors, paletteMode: nextPaletteMode},
+    })
+  }, [preferredMode])
 
   useEnhancedEffect(() => {
-    document.body.dir = direction;
-  }, [direction]);
+    document.body.dir = direction
+  }, [direction])
 
   useEnhancedEffect(() => {
     // To support light and dark mode images in the docs
     if (paletteMode === 'dark') {
-      document.body.classList.remove('mode-light');
-      document.body.classList.add('mode-dark');
+      document.body.classList.remove('mode-light')
+      document.body.classList.add('mode-dark')
     } else {
-      document.body.classList.remove('mode-dark');
-      document.body.classList.add('mode-light');
+      document.body.classList.remove('mode-dark')
+      document.body.classList.add('mode-light')
     }
 
-    const metas = document.querySelectorAll('meta[name="theme-color"]');
+    const metas = document.querySelectorAll('meta[name="theme-color"]')
     metas.forEach((meta) => {
-      meta.setAttribute('content', getMetaThemeColor(paletteMode));
-    });
-  }, [paletteMode]);
+      meta.setAttribute('content', getMetaThemeColor(paletteMode))
+    })
+  }, [paletteMode])
 
   const theme = React.useMemo(() => {
-    const brandingDesignTokens = getDesignTokens(paletteMode);
-    const nextPalette = deepmerge(brandingDesignTokens.palette, paletteColors);
+    const brandingDesignTokens = getDesignTokens(paletteMode)
+    const nextPalette = deepmerge(brandingDesignTokens.palette, paletteColors)
     let nextTheme = createMdTheme(
       {
         direction,
@@ -239,35 +241,40 @@ export function ThemeProvider(props) {
         },
       },
       languageMap[userLanguage],
-    );
+    )
 
-    nextTheme = deepmerge(nextTheme, getThemedComponents(nextTheme));
+    nextTheme = deepmerge(nextTheme, getThemedComponents(nextTheme))
 
-    return nextTheme;
-  }, [dense, direction, paletteColors, paletteMode, spacing, userLanguage]);
+    return nextTheme
+  }, [dense, direction, paletteColors, paletteMode, spacing, userLanguage])
 
   React.useEffect(() => {
     // Expose the theme as a global variable so people can play with it.
-    window.theme = theme;
-    window.createTheme = createMdTheme;
-  }, [theme]);
+    window.theme = theme
+    window.createTheme = createMdTheme
+  }, [theme])
 
   // TODO: remove MdThemeProvider, top level layout should render the default theme.
   return (
     <MdThemeProvider theme={theme}>
-      <DispatchContext.Provider value={dispatch}>{children}</DispatchContext.Provider>
+      <DispatchContext.Provider value={dispatch}>
+        {children}
+      </DispatchContext.Provider>
     </MdThemeProvider>
-  );
+  )
 }
 
 ThemeProvider.propTypes = {
   children: PropTypes.node,
-};
+}
 
 /**
  * @returns {(nextOptions: Partial<typeof themeInitialOptions>) => void}
  */
 export function useChangeTheme() {
-  const dispatch = React.useContext(DispatchContext);
-  return React.useCallback((options) => dispatch({ type: 'CHANGE', payload: options }), [dispatch]);
+  const dispatch = React.useContext(DispatchContext)
+  return React.useCallback(
+    (options) => dispatch({type: 'CHANGE', payload: options}),
+    [dispatch],
+  )
 }

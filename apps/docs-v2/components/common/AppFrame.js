@@ -11,19 +11,19 @@ import {alpha, styled} from '@mui/material/styles'
 import Toolbar from '@mui/material/Toolbar'
 import Tooltip from '@mui/material/Tooltip'
 import {debounce} from '@mui/material/utils'
-import SvgHamburgerMenu from 'components/icons/SvgHamburgerMenu'
-import SvgMuiLogomark from 'components/icons/SvgMuiLogomark'
 import AppNavDrawer from 'components/common/AppNavDrawer'
 import AppSettingsDrawer from 'components/common/AppSettingsDrawer'
 import MarkdownLinks from 'components/common/MarkdownLinks'
 import PageContext from 'components/common/PageContext'
 import SkipLink from 'components/common/SkipLink'
-import {useTranslate} from 'docs/src/modules/utils/i18n'
+import SvgHamburgerMenu from 'components/icons/SvgHamburgerMenu'
+import SvgMuiLogomark from 'components/icons/SvgMuiLogomark'
 import NextLink from 'next/link'
 import {useRouter} from 'next/router'
 import NProgress from 'nprogress'
 import PropTypes from 'prop-types'
 import * as React from 'react'
+import {useTranslate} from 'utils/i18n'
 
 const nProgressStart = debounce(() => {
   NProgress.start()
@@ -64,9 +64,7 @@ export function NextNProgressBar() {
 
 const sx = {minWidth: {sm: 160}}
 
-const AppSearch = React.lazy(() =>
-  import('components/common/AppSearch'),
-)
+const AppSearch = React.lazy(() => import('components/common/AppSearch'))
 export function DeferredAppSearch() {
   const [mounted, setMounted] = React.useState(false)
   React.useEffect(() => {

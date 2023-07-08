@@ -11,12 +11,12 @@ import Demo from 'components/common/Demo'
 import HighlightedCodeWithTabs from 'components/common/HighlightedCodeWithTabs'
 import MarkdownElement from 'components/common/MarkdownElement'
 import BrandingProvider from 'docs/src/BrandingProvider'
-import {pathnameToLanguage} from 'docs/src/modules/utils/helpers'
-import {useTranslate, useUserLanguage} from 'docs/src/modules/utils/i18n'
 import {useRouter} from 'next/router'
 import path from 'path'
 import PropTypes from 'prop-types'
 import * as React from 'react'
+import {pathnameToLanguage} from 'utils/helpers'
+import {useTranslate, useUserLanguage} from 'utils/i18n'
 
 function noComponent(moduleID) {
   return function NoComponent() {

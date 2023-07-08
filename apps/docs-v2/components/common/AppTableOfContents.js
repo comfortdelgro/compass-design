@@ -4,11 +4,11 @@ import {alpha, styled} from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import {shouldHandleLinkClick} from 'components/common/MarkdownLinks'
 import featureToggle from 'docs/src/featureToggle'
-import {useTranslate} from 'docs/src/modules/utils/i18n'
 import throttle from 'lodash/throttle'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
 import * as React from 'react'
+import {useTranslate} from 'utils/i18n'
 
 const Nav = styled('nav')(({theme}) => ({
   top: 'var(--MuiDocs-header-height)',

@@ -10,15 +10,15 @@ import GlobalStyles from '@mui/material/GlobalStyles'
 import {alpha, styled} from '@mui/material/styles'
 import PageContext from 'components/common/PageContext'
 import {LANGUAGES_SSR} from 'docs/config'
-import {pathnameToLanguage} from 'docs/src/modules/utils/helpers'
-import {useTranslate, useUserLanguage} from 'docs/src/modules/utils/i18n'
-import useLazyCSS from 'docs/src/modules/utils/useLazyCSS'
 import {default as Link, default as NextLink} from 'next/link'
 import {useRouter} from 'next/router'
 import PropTypes from 'prop-types'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import * as ReactDOMServer from 'react-dom/server'
+import {pathnameToLanguage} from 'utils/helpers'
+import {useTranslate, useUserLanguage} from 'utils/i18n'
+import useLazyCSS from 'utils/useLazyCSS'
 
 const SearchButton = styled('button')(({theme}) => [
   {

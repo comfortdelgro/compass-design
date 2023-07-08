@@ -13,9 +13,9 @@ import HeaderNavBar from 'components/header/HeaderNavBar'
 import HeaderNavDropdown from 'components/header/HeaderNavDropdown'
 import ThemeModeToggle from 'components/header/ThemeModeToggle'
 import SvgMuiLogomark from 'components/icons/SvgMuiLogomark'
-import {useTranslate} from 'docs/src/modules/utils/i18n'
 import Link from 'next/link'
 import * as React from 'react'
+import {useTranslate} from 'utils/i18n'
 
 const Header = styled('header')(({theme}) => [
   {

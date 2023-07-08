@@ -4,10 +4,10 @@ import Divider from 'components/common/ApiDivider'
 import HighlightedCode from 'components/common/HighlightedCode'
 import MarkdownElement from 'components/common/MarkdownElement'
 import PropertiesTable from 'components/common/PropertiesTable'
-import {useTranslate, useUserLanguage} from 'docs/src/modules/utils/i18n'
 import kebabCase from 'lodash/kebabCase'
 import PropTypes from 'prop-types'
 import * as React from 'react'
+import {useTranslate, useUserLanguage} from 'utils/i18n'
 
 function getTranslatedHeader(t, header, text) {
   const translations = {

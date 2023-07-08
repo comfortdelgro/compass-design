@@ -16,11 +16,11 @@ import TextField from '@mui/material/TextField'
 import Tooltip from '@mui/material/Tooltip'
 import Typography from '@mui/material/Typography'
 import PageContext from 'components/common/PageContext'
-import {getCookie, pageToTitleI18n} from 'docs/src/modules/utils/helpers'
-import {useTranslate, useUserLanguage} from 'docs/src/modules/utils/i18n'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
 import * as React from 'react'
+import {getCookie, pageToTitleI18n} from 'utils/helpers'
+import {useTranslate, useUserLanguage} from 'utils/i18n'
 
 const PaginationDiv = styled('div')(({theme}) => {
   return {

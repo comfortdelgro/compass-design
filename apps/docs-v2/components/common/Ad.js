@@ -4,9 +4,9 @@ import Typography from '@mui/material/Typography'
 import AdCarbon from 'components/common/AdCarbon'
 import AdInHouse from 'components/common/AdInHouse'
 import {AdContext, adShape} from 'components/common/AdManager'
-import {useTranslate} from 'docs/src/modules/utils/i18n'
 import PropTypes from 'prop-types'
 import * as React from 'react'
+import {useTranslate} from 'utils/i18n'
 
 function PleaseDisableAdblock(props) {
   const t = useTranslate()

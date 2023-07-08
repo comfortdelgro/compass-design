@@ -6,7 +6,7 @@ import CardMedia from '@mui/material/CardMedia'
 import Grid from '@mui/material/Grid'
 import {alpha} from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
-import {useTranslate} from 'docs/src/modules/utils/i18n'
+import {useTranslate} from 'utils/i18n'
 
 const sourcePrefix = `${process.env.SOURCE_CODE_REPO}/tree/v${process.env.LIB_VERSION}`
 

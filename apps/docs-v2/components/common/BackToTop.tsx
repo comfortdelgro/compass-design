@@ -1,43 +1,50 @@
-import * as React from 'react';
-import useScrollTrigger from '@mui/material/useScrollTrigger';
-import Fab from '@mui/material/Fab';
-import Box from '@mui/material/Box';
-import Tooltip from '@mui/material/Tooltip';
-import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
-import Fade from '@mui/material/Fade';
-import { Theme } from '@mui/material/styles';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded'
+import Box from '@mui/material/Box'
+import Fab from '@mui/material/Fab'
+import Fade from '@mui/material/Fade'
+import {Theme} from '@mui/material/styles'
+import Tooltip from '@mui/material/Tooltip'
+import useScrollTrigger from '@mui/material/useScrollTrigger'
+import * as React from 'react'
+import {useTranslate} from 'utils/i18n'
 
 export default function BackToTop() {
-  const t = useTranslate();
-  const [open, setOpen] = React.useState(false);
+  const t = useTranslate()
+  const [open, setOpen] = React.useState(false)
 
   const handleClose = () => {
-    setOpen(false);
-  };
+    setOpen(false)
+  }
 
   const handleOpen = () => {
-    setOpen(true);
-  };
+    setOpen(true)
+  }
 
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 200,
-  });
+  })
 
   const handleClick = () => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const behavior = prefersReducedMotion.matches ? 'auto' : 'smooth';
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)',
+    )
+    const behavior = prefersReducedMotion.matches ? 'auto' : 'smooth'
 
-    window.scrollTo({ top: 0, behavior });
-    setOpen(false);
-  };
+    window.scrollTo({top: 0, behavior})
+    setOpen(false)
+  }
 
   return (
     <Fade in={trigger}>
-      <Tooltip title="Scroll to top" open={open} onClose={handleClose} onOpen={handleOpen}>
+      <Tooltip
+        title='Scroll to top'
+        open={open}
+        onClose={handleClose}
+        onOpen={handleOpen}
+      >
         <Box
-          className="mui-fixed"
+          className='mui-fixed'
           sx={{
             position: 'fixed',
             bottom: 24,
@@ -59,21 +66,23 @@ export default function BackToTop() {
               }),
               (theme) =>
                 theme.applyDarkStyles({
-                  backgroundColor: (theme.vars || theme).palette.primaryDark[400],
+                  backgroundColor: (theme.vars || theme).palette
+                    .primaryDark[400],
                   boxShadow: `0px 4px 20px rgba(0, 0, 0, 0.5)`,
                   '&:hover': {
-                    backgroundColor: (theme.vars || theme).palette.primaryDark[500],
+                    backgroundColor: (theme.vars || theme).palette
+                      .primaryDark[500],
                   },
                   '&:active': {
                     boxShadow: `0px 4px 20px rgba(0, 0, 0, 0.7)`,
                   },
                 }),
             ]}
-            size="small"
+            size='small'
             aria-label={t('backToTop')}
             onClick={handleClick}
-            data-ga-event-category="docs"
-            data-ga-event-action="click-back-to-top"
+            data-ga-event-category='docs'
+            data-ga-event-action='click-back-to-top'
           >
             <KeyboardArrowUpRoundedIcon
               sx={(theme: Theme) => ({
@@ -87,5 +96,5 @@ export default function BackToTop() {
         </Box>
       </Tooltip>
     </Fade>
-  );
+  )
 }

@@ -15,9 +15,9 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
 import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import {useChangeTheme} from 'components/common/ThemeContext'
-import {useTranslate} from 'docs/src/modules/utils/i18n'
 import PropTypes from 'prop-types'
 import * as React from 'react'
+import {useTranslate} from 'utils/i18n'
 
 const Heading = styled(Typography)(({theme}) => ({
   margin: '20px 0 10px',

@@ -1,7 +1,7 @@
 import {styled} from '@mui/material/styles'
 import {adStylesObject} from 'components/common/ad.styles'
 import AdDisplay from 'components/common/AdDisplay'
-import loadScript from 'docs/src/modules/utils/loadScript'
+import loadScript from 'utils/loadScript'
 import * as React from 'react'
 
 const CarbonRoot = styled('span')(({theme}) => {

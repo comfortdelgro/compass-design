@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import { createTheme } from '@mui/material/styles';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from 'utils/i18n';
 import ThemeViewer, {
   useNodeIdsLazy,
 } from 'components/common/ThemeViewer';

@@ -10,10 +10,10 @@ import AppTableOfContents from 'components/common/AppTableOfContents'
 import BackToTop from 'components/common/BackToTop'
 import EditPage from 'components/common/EditPage'
 import Head from 'components/common/Head'
-import {pathnameToLanguage} from 'docs/src/modules/utils/helpers'
 import {useRouter} from 'next/router'
 import PropTypes from 'prop-types'
 import * as React from 'react'
+import {pathnameToLanguage} from 'utils/helpers'
 
 const Main = styled('main', {
   shouldForwardProp: (prop) => prop !== 'disableToc',

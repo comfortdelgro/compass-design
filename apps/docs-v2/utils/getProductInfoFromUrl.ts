@@ -1,4 +1,4 @@
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
+import {pathnameToLanguage} from 'utils/helpers'
 
 export type MuiProductId =
   | 'null'
@@ -8,26 +8,26 @@ export type MuiProductId =
   | 'system'
   | 'x-data-grid'
   | 'x-date-pickers'
-  | 'x-charts';
+  | 'x-charts'
 
-type MuiProductCategoryId = 'null' | 'core' | 'x';
+type MuiProductCategoryId = 'null' | 'core' | 'x'
 
 interface MuiProductInfo {
-  productId: MuiProductId;
-  productCategoryId: MuiProductCategoryId;
+  productId: MuiProductId
+  productCategoryId: MuiProductCategoryId
 }
 
 // This is a fallback logic to define the productId and productCategoryId of the page.
 // Markdown pages can override this value when the URL patterns they follow are a bit strange,
 // which should stay the rare exception.
 export default function getProductInfoFromUrl(asPath: string): MuiProductInfo {
-  const asPathWithoutLang = pathnameToLanguage(asPath).canonicalAsServer;
-  const firstFolder = asPathWithoutLang.replace(/^\/+([^/]+)\/.*/, '$1');
+  const asPathWithoutLang = pathnameToLanguage(asPath).canonicalAsServer
+  const firstFolder = asPathWithoutLang.replace(/^\/+([^/]+)\/.*/, '$1')
 
   // When serialized undefined/null are the same, so we encode null as 'null' to be
   // able to differentiate when the value isn't set vs. set to the right null value.
-  let productCategoryId = 'null';
-  let productId = 'null';
+  let productCategoryId = 'null'
+  let productId = 'null'
 
   if (
     firstFolder === 'material-ui' ||
@@ -35,26 +35,28 @@ export default function getProductInfoFromUrl(asPath: string): MuiProductInfo {
     firstFolder === 'base-ui' ||
     firstFolder === 'system'
   ) {
-    productCategoryId = 'core';
-    productId = firstFolder;
+    productCategoryId = 'core'
+    productId = firstFolder
   }
 
   if (firstFolder === 'x') {
-    productCategoryId = 'x';
-    productId = `x-${asPathWithoutLang.replace('/x/react-', '').replace(/\/.*/, '')}`;
+    productCategoryId = 'x'
+    productId = `x-${asPathWithoutLang
+      .replace('/x/react-', '')
+      .replace(/\/.*/, '')}`
 
     // No match, give up on it.
     if (productId === 'x-') {
-      productId = 'null';
+      productId = 'null'
     }
   }
 
   if (firstFolder === 'toolpad') {
-    productId = 'toolpad';
+    productId = 'toolpad'
   }
 
   return {
     productCategoryId,
     productId,
-  } as MuiProductInfo;
+  } as MuiProductInfo
 }

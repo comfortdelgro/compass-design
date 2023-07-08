@@ -1,49 +1,51 @@
 // @ts-ignore
-import LZString from 'lz-string';
-import addHiddenInput from 'docs/src/modules/utils/addHiddenInput';
-import SandboxDependencies from './Dependencies';
-import * as CRA from './CreateReactApp';
-import getFileExtension from './FileExtension';
-import { CodeVariant, Product, CodeStyling } from './types';
+import LZString from 'lz-string'
+import addHiddenInput from 'utils/addHiddenInput'
+import * as CRA from './CreateReactApp'
+import SandboxDependencies from './Dependencies'
+import getFileExtension from './FileExtension'
+import {CodeStyling, CodeVariant, Product} from './types'
 
 function compress(object: any) {
   return LZString.compressToBase64(JSON.stringify(object))
     .replace(/\+/g, '-') // Convert '+' to '-'
     .replace(/\//g, '_') // Convert '/' to '_'
-    .replace(/=+$/, ''); // Remove ending '='
+    .replace(/=+$/, '') // Remove ending '='
 }
 
-function openSandbox({ files, codeVariant, initialFile = '/App' }: any) {
-  const extension = codeVariant === 'TS' ? '.tsx' : '.js';
-  const parameters = compress({ files });
+function openSandbox({files, codeVariant, initialFile = '/App'}: any) {
+  const extension = codeVariant === 'TS' ? '.tsx' : '.js'
+  const parameters = compress({files})
 
   // ref: https://codesandbox.io/docs/api/#define-api
-  const form = document.createElement('form');
-  form.method = 'POST';
-  form.target = '_blank';
-  form.action = 'https://codesandbox.io/api/v1/sandboxes/define';
-  addHiddenInput(form, 'parameters', parameters);
+  const form = document.createElement('form')
+  form.method = 'POST'
+  form.target = '_blank'
+  form.action = 'https://codesandbox.io/api/v1/sandboxes/define'
+  addHiddenInput(form, 'parameters', parameters)
   addHiddenInput(
     form,
     'query',
-    `file=${initialFile}${initialFile.match(/(\.tsx|\.ts|\.js)$/) ? '' : extension}`,
-  );
-  document.body.appendChild(form);
-  form.submit();
-  document.body.removeChild(form);
+    `file=${initialFile}${
+      initialFile.match(/(\.tsx|\.ts|\.js)$/) ? '' : extension
+    }`,
+  )
+  document.body.appendChild(form)
+  form.submit()
+  document.body.removeChild(form)
 }
 
 const createReactApp = (demo: {
-  title: string;
-  language: string;
-  raw: string;
-  codeVariant: CodeVariant;
-  githubLocation: string;
-  productId?: Product;
-  codeStyling: CodeStyling;
+  title: string
+  language: string
+  raw: string
+  codeVariant: CodeVariant
+  githubLocation: string
+  productId?: Product
+  codeStyling: CodeStyling
 }) => {
-  const ext = getFileExtension(demo.codeVariant);
-  const { title, githubLocation: description } = demo;
+  const ext = getFileExtension(demo.codeVariant)
+  const {title, githubLocation: description} = demo
 
   const files: Record<string, object> = {
     'public/index.html': {
@@ -60,11 +62,11 @@ const createReactApp = (demo: {
         content: CRA.getTsconfig(),
       },
     }),
-  };
+  }
 
-  const { dependencies, devDependencies } = SandboxDependencies(demo, {
+  const {dependencies, devDependencies} = SandboxDependencies(demo, {
     commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
-  });
+  })
 
   files['package.json'] = {
     content: {
@@ -78,7 +80,7 @@ const createReactApp = (demo: {
         },
       }),
     },
-  };
+  }
 
   return {
     title,
@@ -92,19 +94,19 @@ const createReactApp = (demo: {
      * it will be appended based on the code variant.
      */
     openSandbox: (initialFile?: string) =>
-      openSandbox({ files, codeVariant: demo.codeVariant, initialFile }),
-  };
-};
+      openSandbox({files, codeVariant: demo.codeVariant, initialFile}),
+  }
+}
 
 const createJoyTemplate = (demo: {
-  title: string;
-  files: Record<string, string>;
-  githubLocation: string;
-  codeVariant: 'TS' | 'JS';
-  codeStyling?: 'Tailwind' | 'MUI System';
+  title: string
+  files: Record<string, string>
+  githubLocation: string
+  codeVariant: 'TS' | 'JS'
+  codeStyling?: 'Tailwind' | 'MUI System'
 }) => {
-  const ext = getFileExtension(demo.codeVariant);
-  const { title, githubLocation: description } = demo;
+  const ext = getFileExtension(demo.codeVariant)
+  const {title, githubLocation: description} = demo
 
   const files: Record<string, object> = {
     'public/index.html': {
@@ -142,18 +144,23 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
         content: CRA.getTsconfig(),
       },
     }),
-  };
+  }
 
-  const { dependencies, devDependencies } = SandboxDependencies(
+  const {dependencies, devDependencies} = SandboxDependencies(
     {
       codeVariant: demo.codeVariant,
-      raw: Object.entries(demo.files).reduce((prev, curr) => `${prev}\n${curr}`, ''),
+      raw: Object.entries(demo.files).reduce(
+        (prev, curr) => `${prev}\n${curr}`,
+        '',
+      ),
       productId: 'joy-ui',
     },
     {
-      commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
+      commitRef: process.env.PULL_REQUEST_ID
+        ? process.env.COMMIT_REF
+        : undefined,
     },
-  );
+  )
 
   files['package.json'] = {
     content: {
@@ -167,7 +174,7 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
         },
       }),
     },
-  };
+  }
 
   return {
     title,
@@ -175,11 +182,11 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
     dependencies,
     devDependencies,
     openSandbox: (initialFile?: string) =>
-      openSandbox({ files, codeVariant: demo.codeVariant, initialFile }),
-  };
-};
+      openSandbox({files, codeVariant: demo.codeVariant, initialFile}),
+  }
+}
 
 export default {
   createReactApp,
   createJoyTemplate,
-};
+}

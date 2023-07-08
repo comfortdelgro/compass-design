@@ -10,8 +10,6 @@ import {jssPreset, StylesProvider} from '@mui/styles'
 import DemoErrorBoundary from 'components/common/DemoErrorBoundary'
 import {highDensity} from 'components/common/ThemeContext'
 import {getDesignTokens} from 'docs/src/modules/brandingTheme'
-import {pathnameToLanguage} from 'docs/src/modules/utils/helpers'
-import {useTranslate} from 'docs/src/modules/utils/i18n'
 import {create} from 'jss'
 import rtl from 'jss-rtl'
 import {useRouter} from 'next/router'
@@ -22,6 +20,8 @@ import {StyleSheetManager} from 'styled-components'
 import {prefixer} from 'stylis'
 import rtlPlugin from 'stylis-plugin-rtl'
 import rtlPluginSc from 'stylis-plugin-rtl-sc'
+import {pathnameToLanguage} from 'utils/helpers'
+import {useTranslate} from 'utils/i18n'
 
 function FramedDemo(props) {
   const {children, document} = props

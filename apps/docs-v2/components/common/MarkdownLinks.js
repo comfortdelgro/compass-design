@@ -1,6 +1,6 @@
-import * as React from 'react';
-import Router from 'next/router';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
+import Router from 'next/router'
+import * as React from 'react'
+import {pathnameToLanguage} from 'utils/helpers'
 
 export function shouldHandleLinkClick(event) {
   if (
@@ -11,18 +11,21 @@ export function shouldHandleLinkClick(event) {
     event.altKey ||
     event.shiftKey
   ) {
-    return true;
+    return true
   }
-  return false;
+  return false
 }
 
 /**
  * @param {MouseEvent} event
  */
 function handleClick(event) {
-  let activeElement = event.target;
-  while (activeElement?.nodeType === Node.ELEMENT_NODE && activeElement.nodeName !== 'A') {
-    activeElement = activeElement.parentElement;
+  let activeElement = event.target
+  while (
+    activeElement?.nodeType === Node.ELEMENT_NODE &&
+    activeElement.nodeName !== 'A'
+  ) {
+    activeElement = activeElement.parentElement
   }
 
   // Ignore non internal link clicks
@@ -33,27 +36,27 @@ function handleClick(event) {
     activeElement.getAttribute('data-no-markdown-link') === 'true' ||
     activeElement.getAttribute('href').indexOf('/') !== 0
   ) {
-    return;
+    return
   }
 
   // Ignore click meant for native link handling, e.g. open in new tab
   if (shouldHandleLinkClick(event)) {
-    return;
+    return
   }
 
-  event.preventDefault();
-  const as = activeElement.getAttribute('href');
-  const canonicalPathname = pathnameToLanguage(as).canonicalPathname;
-  Router.push(canonicalPathname, as);
+  event.preventDefault()
+  const as = activeElement.getAttribute('href')
+  const canonicalPathname = pathnameToLanguage(as).canonicalPathname
+  Router.push(canonicalPathname, as)
 }
 
 export default function MarkdownLinks() {
   React.useEffect(() => {
-    document.addEventListener('click', handleClick);
+    document.addEventListener('click', handleClick)
     return () => {
-      document.addEventListener('click', handleClick);
-    };
-  }, []);
+      document.addEventListener('click', handleClick)
+    }
+  }, [])
 
-  return null;
+  return null
 }

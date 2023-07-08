@@ -1,9 +1,8 @@
-import * as React from 'react';
-import MuiLink from '@mui/material/Link';
-import { styled } from '@mui/material/styles';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import MuiLink from '@mui/material/Link'
+import {styled} from '@mui/material/styles'
+import {useTranslate} from 'utils/i18n'
 
-const StyledLink = styled(MuiLink)(({ theme }) => ({
+const StyledLink = styled(MuiLink)(({theme}) => ({
   position: 'fixed',
   padding: theme.spacing(1),
   background: (theme.vars || theme).palette.background.paper,
@@ -24,14 +23,14 @@ const StyledLink = styled(MuiLink)(({ theme }) => ({
   '@media print': {
     display: 'none',
   },
-}));
+}))
 
 export default function SkipLink() {
-  const t = useTranslate();
+  const t = useTranslate()
 
   return (
-    <StyledLink color="secondary" href="#main-content">
+    <StyledLink color='secondary' href='#main-content'>
       {t('appFrame.skipToContent')}
     </StyledLink>
-  );
+  )
 }

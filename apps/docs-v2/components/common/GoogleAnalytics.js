@@ -1,11 +1,11 @@
-import * as React from 'react';
-import loadScript from 'docs/src/modules/utils/loadScript';
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { useNoSsrCodeVariant } from 'docs/src/modules/utils/codeVariant';
-import { useUserLanguage } from 'docs/src/modules/utils/i18n';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
-import { useRouter } from 'next/router';
+import {useTheme} from '@mui/material/styles'
+import useMediaQuery from '@mui/material/useMediaQuery'
+import {useRouter} from 'next/router'
+import * as React from 'react'
+import {useNoSsrCodeVariant} from 'utils/codeVariant'
+import {pathnameToLanguage} from 'utils/helpers'
+import {useUserLanguage} from 'utils/i18n'
+import loadScript from 'utils/loadScript'
 
 // So we can write code like:
 //
@@ -16,17 +16,17 @@ import { useRouter } from 'next/router';
 //   Foo
 // </Button>
 function handleClick(event) {
-  let element = event.target;
+  let element = event.target
 
   while (element && element !== document) {
-    const category = element.getAttribute('data-ga-event-category');
+    const category = element.getAttribute('data-ga-event-category')
 
     // We reach a tracking element, no need to look higher in the dom tree.
     if (category) {
-      const split = parseFloat(element.getAttribute('data-ga-event-split'));
+      const split = parseFloat(element.getAttribute('data-ga-event-split'))
 
       if (split && split < Math.random()) {
-        return;
+        return
       }
 
       window.ga('send', {
@@ -34,19 +34,19 @@ function handleClick(event) {
         eventCategory: category,
         eventAction: element.getAttribute('data-ga-event-action'),
         eventLabel: element.getAttribute('data-ga-event-label'),
-      });
+      })
       window.gtag('event', category, {
         eventAction: element.getAttribute('data-ga-event-action'),
         eventLabel: element.getAttribute('data-ga-event-label'),
-      });
-      break;
+      })
+      break
     }
 
-    element = element.parentElement;
+    element = element.parentElement
   }
 }
 
-let boundDataGaListener = false;
+let boundDataGaListener = false
 
 /**
  * basically just a `useAnalytics` hook.
@@ -55,51 +55,56 @@ let boundDataGaListener = false;
  */
 function GoogleAnalytics() {
   React.useEffect(() => {
-    loadScript('https://www.google-analytics.com/analytics.js', document.querySelector('head'));
+    loadScript(
+      'https://www.google-analytics.com/analytics.js',
+      document.querySelector('head'),
+    )
 
     if (!boundDataGaListener) {
-      boundDataGaListener = true;
-      document.addEventListener('click', handleClick);
+      boundDataGaListener = true
+      document.addEventListener('click', handleClick)
     }
-  }, []);
+  }, [])
 
-  const router = useRouter();
-  const timeout = React.useRef();
+  const router = useRouter()
+  const timeout = React.useRef()
 
   React.useEffect(() => {
     // Wait for the title to be updated.
     // React fires useEffect twice in dev mode
-    clearTimeout(timeout.current);
+    clearTimeout(timeout.current)
     timeout.current = setTimeout(() => {
-      const { canonicalAsServer } = pathnameToLanguage(window.location.pathname);
-      window.ga('set', { page: canonicalAsServer });
-      window.ga('send', { hitType: 'pageview' });
+      const {canonicalAsServer} = pathnameToLanguage(window.location.pathname)
+      window.ga('set', {page: canonicalAsServer})
+      window.ga('send', {hitType: 'pageview'})
 
       // https://developers.google.com/analytics/devguides/collection/ga4/views?client_type=gtag
       window.gtag('event', 'page_view', {
         page_title: document.title,
         page_location: canonicalAsServer,
         productId: document.querySelector('meta[name="mui:productId"]').content,
-        productCategoryId: document.querySelector('meta[name="mui:productCategoryId"]').content,
-      });
-    });
-  }, [router.route]);
+        productCategoryId: document.querySelector(
+          'meta[name="mui:productCategoryId"]',
+        ).content,
+      })
+    })
+  }, [router.route])
 
-  const codeVariant = useNoSsrCodeVariant();
+  const codeVariant = useNoSsrCodeVariant()
   React.useEffect(() => {
-    window.ga('set', 'dimension1', codeVariant);
+    window.ga('set', 'dimension1', codeVariant)
     window.gtag('set', 'user_properties', {
       codeVariant,
-    });
-  }, [codeVariant]);
+    })
+  }, [codeVariant])
 
-  const userLanguage = useUserLanguage();
+  const userLanguage = useUserLanguage()
   React.useEffect(() => {
-    window.ga('set', 'dimension2', userLanguage);
+    window.ga('set', 'dimension2', userLanguage)
     window.gtag('set', 'user_properties', {
       userLanguage,
-    });
-  }, [userLanguage]);
+    })
+  }, [userLanguage])
 
   React.useEffect(() => {
     /**
@@ -107,47 +112,51 @@ function GoogleAnalytics() {
      * Adjusted to track 3 or more different ratios
      */
     function trackDevicePixelRation() {
-      const devicePixelRatio = Math.round(window.devicePixelRatio * 10) / 10;
-      window.ga('set', 'dimension3', devicePixelRatio);
+      const devicePixelRatio = Math.round(window.devicePixelRatio * 10) / 10
+      window.ga('set', 'dimension3', devicePixelRatio)
       window.gtag('set', 'user_properties', {
         devicePixelRatio,
-      });
+      })
     }
 
-    trackDevicePixelRation();
+    trackDevicePixelRation()
 
     /**
      * @type {MediaQueryList}
      */
-    const matchMedia = window.matchMedia(`(resolution: ${window.devicePixelRatio}dppx)`);
+    const matchMedia = window.matchMedia(
+      `(resolution: ${window.devicePixelRatio}dppx)`,
+    )
     // Intentionally use deprecated listener methods to support iOS & old browsers
-    matchMedia.addListener(trackDevicePixelRation);
+    matchMedia.addListener(trackDevicePixelRation)
     return () => {
-      matchMedia.removeListener(trackDevicePixelRation);
-    };
-  }, []);
+      matchMedia.removeListener(trackDevicePixelRation)
+    }
+  }, [])
 
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)', { noSsr: true });
-  const colorSchemeOS = prefersDarkMode ? 'dark' : 'light';
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)', {
+    noSsr: true,
+  })
+  const colorSchemeOS = prefersDarkMode ? 'dark' : 'light'
 
-  const theme = useTheme();
-  const colorScheme = theme.palette.mode;
+  const theme = useTheme()
+  const colorScheme = theme.palette.mode
 
   React.useEffect(() => {
-    window.ga('set', 'dimension4', colorSchemeOS);
+    window.ga('set', 'dimension4', colorSchemeOS)
     window.gtag('set', 'user_properties', {
       colorSchemeOS,
-    });
-  }, [colorSchemeOS]);
+    })
+  }, [colorSchemeOS])
 
   React.useEffect(() => {
-    window.ga('set', 'dimension5', colorScheme);
+    window.ga('set', 'dimension5', colorScheme)
     window.gtag('set', 'user_properties', {
       colorScheme,
-    });
-  }, [colorScheme]);
+    })
+  }, [colorScheme])
 
-  return null;
+  return null
 }
 
-export default React.memo(GoogleAnalytics);
+export default React.memo(GoogleAnalytics)
