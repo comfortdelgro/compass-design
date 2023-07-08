@@ -10,7 +10,7 @@ import {
   getDesignTokens,
   getMetaThemeColor,
   getThemedComponents,
-} from 'docs/src/modules/brandingTheme'
+} from 'docs/src/brandingTheme'
 import PropTypes from 'prop-types'
 import * as React from 'react'
 import {getCookie} from 'utils/helpers'

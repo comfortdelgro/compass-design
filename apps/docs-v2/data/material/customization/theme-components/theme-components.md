@@ -21,7 +21,7 @@ const theme = createTheme({
       },
     },
   },
-});
+})
 ```
 
 {{"demo": "DefaultProps.js"}}
@@ -47,7 +47,7 @@ const theme = createTheme({
       },
     },
   },
-});
+})
 ```
 
 {{"demo": "GlobalThemeOverride.js"}}
@@ -61,7 +61,7 @@ const theme = createTheme({
   components: {
     MuiButton: {
       styleOverrides: {
-        root: ({ ownerState }) => ({
+        root: ({ownerState}) => ({
           ...(ownerState.variant === 'contained' &&
             ownerState.color === 'primary' && {
               backgroundColor: '#202020',
@@ -71,7 +71,7 @@ const theme = createTheme({
       },
     },
   },
-});
+})
 ```
 
 ### Overrides based on props
@@ -85,7 +85,7 @@ const finalTheme = createTheme({
   components: {
     MuiSlider: {
       styleOverrides: {
-        valueLabel: ({ ownerState, theme }) => ({
+        valueLabel: ({ownerState, theme}) => ({
           ...(ownerState.orientation === 'vertical' && {
             backgroundColor: 'transparent',
             color: theme.palette.grey[500],
@@ -94,7 +94,7 @@ const finalTheme = createTheme({
       },
     },
   },
-});
+})
 ```
 
 {{"demo": "GlobalThemeOverrideCallback.js"}}
@@ -119,7 +119,7 @@ const finalTheme = createTheme({
   components: {
     MuiChip: {
       styleOverrides: {
-        root: ({ theme }) =>
+        root: ({theme}) =>
           theme.unstable_sx({
             px: 1,
             py: 0.25,
@@ -128,7 +128,7 @@ const finalTheme = createTheme({
         label: {
           padding: 'initial',
         },
-        icon: ({ theme }) =>
+        icon: ({theme}) =>
           theme.unstable_sx({
             mr: 0.5,
             ml: '-2px',
@@ -136,7 +136,7 @@ const finalTheme = createTheme({
       },
     },
   },
-});
+})
 ```
 
 ### Specificity
@@ -155,14 +155,14 @@ const theme = createTheme({
     MuiButton: {
       variants: [
         {
-          props: { variant: 'dashed' },
+          props: {variant: 'dashed'},
           style: {
             textTransform: 'none',
-            border: `2px dashed ${blue[500]}`,
+            border: `2px dashed '#007FFF'`,
           },
         },
         {
-          props: { variant: 'dashed', color: 'secondary' },
+          props: {variant: 'dashed', color: 'secondary'},
           style: {
             border: `4px dashed ${red[500]}`,
           },
@@ -170,7 +170,7 @@ const theme = createTheme({
       ],
     },
   },
-});
+})
 ```
 
 If you're using TypeScript, you'll need to specify your new variants/colors, using [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
@@ -180,7 +180,7 @@ If you're using TypeScript, you'll need to specify your new variants/colors, usi
 ```tsx
 declare module '@mui/material/Button' {
   interface ButtonPropsVariantOverrides {
-    dashed: true;
+    dashed: true
   }
 }
 ```
@@ -198,7 +198,7 @@ const theme = createTheme({
       fontSize: '1rem',
     },
   },
-});
+})
 ```
 
 {{"demo": "ThemeVariables.js"}}

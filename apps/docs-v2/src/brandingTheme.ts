@@ -1,58 +1,58 @@
-import { CSSObject } from '@mui/system';
-import type {} from '@mui/material/themeCssVarsAugmentation';
-import ArrowDropDownRounded from '@mui/icons-material/ArrowDropDownRounded';
-import { createTheme, ThemeOptions, Theme, alpha } from '@mui/material/styles';
+import ArrowDropDownRounded from '@mui/icons-material/ArrowDropDownRounded'
+import {alpha, createTheme, Theme, ThemeOptions} from '@mui/material/styles'
+import type {} from '@mui/material/themeCssVarsAugmentation'
+import {CSSObject} from '@mui/system'
 
 interface ApplyDarkStyles {
-  (scheme: CSSObject): CSSObject;
+  (scheme: CSSObject): CSSObject
 }
 
 declare module '@mui/material/styles' {
   interface Theme {
-    applyDarkStyles: ApplyDarkStyles;
+    applyDarkStyles: ApplyDarkStyles
   }
 }
 
 declare module '@mui/material/styles/createPalette' {
   interface ColorRange {
-    50: string;
-    100: string;
-    200: string;
-    300: string;
-    400: string;
-    500: string;
-    600: string;
-    700: string;
-    800: string;
-    900: string;
+    50: string
+    100: string
+    200: string
+    300: string
+    400: string
+    500: string
+    600: string
+    700: string
+    800: string
+    900: string
   }
 
   interface PaletteColor extends ColorRange {}
 
   interface Palette {
-    primaryDark: PaletteColor;
+    primaryDark: PaletteColor
   }
 }
 
 declare module '@mui/material/styles/createTypography' {
   interface TypographyOptions {
-    fontWeightSemiBold?: number;
-    fontWeightExtraBold?: number;
-    fontFamilyCode?: string;
-    fontFamilySystem?: string;
+    fontWeightSemiBold?: number
+    fontWeightExtraBold?: number
+    fontFamilyCode?: string
+    fontFamilySystem?: string
   }
 
   interface Typography {
-    fontWeightSemiBold: number;
-    fontWeightExtraBold: number;
-    fontFamilyCode: string;
-    fontFamilySystem: string;
+    fontWeightSemiBold: number
+    fontWeightExtraBold: number
+    fontFamilyCode: string
+    fontFamilySystem: string
   }
 }
 
 declare module '@mui/material/Chip' {
   interface ChipPropsColorOverrides {
-    grey: true;
+    grey: true
   }
 }
 
@@ -63,7 +63,7 @@ declare module '@mui/material/Chip' {
 //   }
 // }
 
-const defaultTheme = createTheme();
+const defaultTheme = createTheme()
 
 export const blue = {
   50: '#F0F7FF',
@@ -77,7 +77,7 @@ export const blue = {
   700: '#0059B2',
   800: '#004C99',
   900: '#003A75',
-};
+}
 export const blueDark = {
   50: '#E2EDF8',
   100: '#CEE0F3',
@@ -90,7 +90,7 @@ export const blueDark = {
   700: '#132F4C', // contrast 13.64:1
   800: '#001E3C',
   900: '#0A1929',
-};
+}
 export const grey = {
   50: '#F3F6F9',
   100: '#E7EBF0',
@@ -102,7 +102,7 @@ export const grey = {
   700: '#3E5060', // vs white bg: WCAG 8.3 AAA, APCA 88.7 Best for text
   800: '#2D3843', // vs white bg: WCAG 11.9 AAA, APCA 97.3 Best for text
   900: '#1A2027',
-};
+}
 export const error = {
   50: '#FFF0F1',
   100: '#FFDBDE',
@@ -115,7 +115,7 @@ export const error = {
   700: '#C70011',
   800: '#94000D',
   900: '#570007',
-};
+}
 export const success = {
   50: '#E9FBF0',
   100: '#C6F6D9',
@@ -127,7 +127,7 @@ export const success = {
   700: '#1AA251',
   800: '#178D46',
   900: '#0F5C2E',
-};
+}
 export const warning = {
   50: '#FFF9EB',
   100: '#FFF3C1',
@@ -140,7 +140,7 @@ export const warning = {
   700: '#AB6800', // vs white bg: WCAG 4.4 AA large, APCA 71 Ok for text
   800: '#8C5800', // vs white bg: WCAG 5.9 AAA large, APCA 80 Best for text
   900: '#5A3600', // vs white bg: WCAG 10.7 AAA, APCA 95 Best for text
-};
+}
 // context on the Advanced Perceptual Contrast Algorithm (APCA) used above here: https://github.com/w3c/wcag/issues/695
 
 const systemFont = [
@@ -154,15 +154,15 @@ const systemFont = [
   '"Apple Color Emoji"',
   '"Segoe UI Emoji"',
   '"Segoe UI Symbol"',
-];
+]
 
 export const getMetaThemeColor = (mode: 'light' | 'dark') => {
   const themeColor = {
     light: grey[50],
     dark: blueDark[800],
-  };
-  return themeColor[mode];
-};
+  }
+  return themeColor[mode]
+}
 
 export const getDesignTokens = (mode: 'light' | 'dark') =>
   ({
@@ -170,10 +170,10 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
       primary: {
         ...blue,
         ...(mode === 'dark' && {
-          main: blue[400],
+          main: '#3399FF',
         }),
       },
-      divider: mode === 'dark' ? alpha(blue[100], 0.08) : grey[100],
+      divider: mode === 'dark' ? alpha('#C2E0FF', 0.08) : grey[100],
       primaryDark: blueDark,
       mode,
       ...(mode === 'dark' && {
@@ -233,7 +233,9 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         '"Droid Sans Mono"', // Linux
         'monospace', // fallback
       ].join(','),
-      fontFamilyTagline: ['"PlusJakartaSans-ExtraBold"', ...systemFont].join(','),
+      fontFamilyTagline: ['"PlusJakartaSans-ExtraBold"', ...systemFont].join(
+        ',',
+      ),
       fontFamilySystem: systemFont.join(','),
       fontWeightSemiBold: 600,
       fontWeightExtraBold: 800,
@@ -308,77 +310,24 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         scrollMarginTop: 'calc(var(--MuiDocs-header-height) + 32px)',
       },
     },
-    /**
-     * This utility exists to help transitioning to CSS variables page by page (prevent dark mode flicker).
-     * It will use the proper styling method based on the theme because the component might be on the page that does not support CSS variables yet.
-     *
-     * 😓 Without this utility:
-     * {
-     *   ...theme.vars ? {
-     *     color: theme.vars.palette.primary.main,
-     *     [theme.getColorScheme('dark')]: {
-     *       color: '#fff',
-     *     }
-     *   } : {
-     *     color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary.main,
-     *   }
-     * }
-     *
-     * 🤩 Using the utility:
-     * {
-     *   color: (theme.vars || theme).palette.primary.main,
-     *   ...theme.applyDarkStyles({
-     *     color: '#fff',
-     *   }),
-     * }
-     *
-     * -------------------------------------------------------------------------------------------------
-     * 💡 This util should be used in an array if the styles contain pseudo classes or nested selectors:
-     *
-     * ❌ There is a chance that the upper selectors could be overridden
-     * {
-     *    // the whole selector could be overridden
-     *   '&::before': {
-     *     color: ...
-     *   },
-     *   ...theme.applyDarkStyles({
-     *      '&::before': {
-     *        color: ...
-     *      }
-     *   })
-     * }
-     *
-     * ✅ use an array (supports in both emotion and styled-components)
-     * Only the `color` will be overridden in dark mode.
-     *  [
-     *    '&::before': {
-     *      color: ...
-     *    },
-     *    theme.applyDarkStyles({
-     *      '&::before': {
-     *        color: ...
-     *      }
-     *    })
-     *  ]
-     */
     applyDarkStyles(css: Parameters<ApplyDarkStyles>[0]) {
       if ((this as Theme).vars) {
         // If CssVarsProvider is used as a provider,
         // returns ':where([data-mui-color-scheme="light|dark"]) &'
         const selector = (this as Theme)
           .getColorSchemeSelector('dark')
-          .replace(/(\[[^\]]+\])/, ':where($1)');
+          .replace(/(\[[^\]]+\])/, ':where($1)')
         return {
           [selector]: css,
-        };
+        }
       }
       if ((this as Theme).palette.mode === 'dark') {
-        return css;
+        return css
       }
 
-      return undefined;
+      return undefined
     },
-  } as ThemeOptions);
+  } as ThemeOptions)
 
 export function getThemedComponents(): ThemeOptions {
   return {
@@ -393,7 +342,7 @@ export function getThemedComponents(): ThemeOptions {
           disableElevation: true,
         },
         styleOverrides: {
-          root: ({ theme, ownerState }) => ({
+          root: ({theme, ownerState}) => ({
             ...(ownerState.size === 'large' && {
               padding: '0.875rem 1rem',
               ...theme.typography.body1,
@@ -413,8 +362,8 @@ export function getThemedComponents(): ThemeOptions {
         variants: [
           {
             // @ts-ignore internal repo module augmentation issue
-            props: { variant: 'code' },
-            style: ({ theme }) => [
+            props: {variant: 'code'},
+            style: ({theme}) => [
               {
                 border: '1px solid',
                 color: (theme.vars || theme).palette.grey[800],
@@ -449,7 +398,8 @@ export function getThemedComponents(): ThemeOptions {
                 borderColor: (theme.vars || theme).palette.primaryDark[400],
                 backgroundColor: (theme.vars || theme).palette.primaryDark[700],
                 '&:hover, &.Mui-focusVisible': {
-                  backgroundColor: (theme.vars || theme).palette.primaryDark[600],
+                  backgroundColor: (theme.vars || theme).palette
+                    .primaryDark[600],
                   '& .MuiButton-endIcon': {
                     color: (theme.vars || theme).palette.primary[300],
                   },
@@ -462,8 +412,8 @@ export function getThemedComponents(): ThemeOptions {
           },
           {
             // @ts-ignore internal repo module augmentation issue
-            props: { variant: 'link' },
-            style: ({ theme }) => ({
+            props: {variant: 'link'},
+            style: ({theme}) => ({
               fontSize: theme.typography.pxToRem(14),
               fontWeight: 700,
               color: (theme.vars || theme).palette.primary[600],
@@ -481,8 +431,8 @@ export function getThemedComponents(): ThemeOptions {
       MuiIconButton: {
         variants: [
           {
-            props: { color: 'primary' },
-            style: ({ theme }) => [
+            props: {color: 'primary'},
+            style: ({theme}) => [
               {
                 height: 34,
                 width: 34,
@@ -509,7 +459,7 @@ export function getThemedComponents(): ThemeOptions {
       },
       MuiMenu: {
         styleOverrides: {
-          paper: ({ theme }) => [
+          paper: ({theme}) => [
             {
               minWidth: 160,
               color: (theme.vars || theme).palette.text.secondary,
@@ -539,7 +489,8 @@ export function getThemedComponents(): ThemeOptions {
                 },
                 '&.Mui-selected': {
                   color: (theme.vars || theme).palette.primary[300],
-                  backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+                  backgroundColor: (theme.vars || theme).palette
+                    .primaryDark[700],
                 },
               },
             }),
@@ -548,7 +499,7 @@ export function getThemedComponents(): ThemeOptions {
       },
       MuiPopover: {
         styleOverrides: {
-          paper: ({ theme }) => ({
+          paper: ({theme}) => ({
             boxShadow: '0px 4px 20px rgba(170, 180, 190, 0.3)',
             ...theme.applyDarkStyles({
               boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.5)',
@@ -558,7 +509,7 @@ export function getThemedComponents(): ThemeOptions {
       },
       MuiDivider: {
         styleOverrides: {
-          root: ({ theme }) => ({
+          root: ({theme}) => ({
             borderColor: (theme.vars || theme).palette.grey[100],
             ...theme.applyDarkStyles({
               borderColor: alpha(theme.palette.primary[100], 0.08),
@@ -585,8 +536,8 @@ export function getThemedComponents(): ThemeOptions {
         },
         variants: [
           {
-            props: { color: 'primary' },
-            style: ({ theme }) => [
+            props: {color: 'primary'},
+            style: ({theme}) => [
               {
                 color: (theme.vars || theme).palette.primary[600],
                 '&:hover': {
@@ -605,7 +556,7 @@ export function getThemedComponents(): ThemeOptions {
       },
       MuiChip: {
         styleOverrides: {
-          root: ({ ownerState: { color, variant }, theme }) => ({
+          root: ({ownerState: {color, variant}, theme}) => ({
             fontWeight: 500,
             ...(variant === 'outlined' &&
               color === 'default' && {
@@ -644,7 +595,8 @@ export function getThemedComponents(): ThemeOptions {
                   color: '#fff',
                   backgroundColor: alpha(theme.palette.primaryDark[500], 0.8),
                   '&:hover': {
-                    backgroundColor: (theme.vars || theme).palette.primaryDark[600],
+                    backgroundColor: (theme.vars || theme).palette
+                      .primaryDark[600],
                   },
                 }),
               }),
@@ -688,7 +640,7 @@ export function getThemedComponents(): ThemeOptions {
       },
       MuiListItemButton: {
         styleOverrides: {
-          root: ({ theme }) => [
+          root: ({theme}) => [
             {
               padding: '8px',
               textTransform: 'none',
@@ -703,7 +655,9 @@ export function getThemedComponents(): ThemeOptions {
                 borderRadius: 10,
                 border: '1px solid',
                 color: (theme.vars || theme).palette.primary[500],
-                borderColor: `${(theme.vars || theme).palette.primary[500]} !important`,
+                borderColor: `${
+                  (theme.vars || theme).palette.primary[500]
+                } !important`,
                 backgroundColor: (theme.vars || theme).palette.primary[50],
                 '&:hover': {
                   backgroundColor: (theme.vars || theme).palette.primary[100],
@@ -717,10 +671,13 @@ export function getThemedComponents(): ThemeOptions {
               },
               '&.Mui-selected': {
                 color: '#fff',
-                borderColor: `${(theme.vars || theme).palette.primary[700]} !important`,
+                borderColor: `${
+                  (theme.vars || theme).palette.primary[700]
+                } !important`,
                 backgroundColor: (theme.vars || theme).palette.primaryDark[700],
                 '&:hover': {
-                  backgroundColor: (theme.vars || theme).palette.primaryDark[600],
+                  backgroundColor: (theme.vars || theme).palette
+                    .primaryDark[600],
                 },
               },
             }),
@@ -744,7 +701,7 @@ export function getThemedComponents(): ThemeOptions {
       },
       MuiPaper: {
         styleOverrides: {
-          root: ({ theme, ownerState }) => [
+          root: ({theme, ownerState}) => [
             {
               backgroundImage: 'none',
               backgroundColor: '#fff',
@@ -778,7 +735,7 @@ export function getThemedComponents(): ThemeOptions {
       },
       MuiTableCell: {
         styleOverrides: {
-          root: ({ theme, ownerState }) => ({
+          root: ({theme, ownerState}) => ({
             padding: theme.spacing(1, 2),
             borderColor: (theme.vars || theme).palette.divider,
             ...(ownerState.variant === 'head' && {
@@ -793,7 +750,7 @@ export function getThemedComponents(): ThemeOptions {
       },
       MuiToggleButtonGroup: {
         styleOverrides: {
-          root: ({ theme }) => ({
+          root: ({theme}) => ({
             backgroundColor: '#fff',
             ...theme.applyDarkStyles({
               backgroundColor: (theme.vars || theme).palette.primaryDark[900],
@@ -803,7 +760,7 @@ export function getThemedComponents(): ThemeOptions {
       },
       MuiToggleButton: {
         styleOverrides: {
-          root: ({ theme, ownerState }) => [
+          root: ({theme, ownerState}) => [
             {
               textTransform: 'none',
               fontWeight: 500,
@@ -814,7 +771,9 @@ export function getThemedComponents(): ThemeOptions {
               }),
               '&.Mui-selected': {
                 color: (theme.vars || theme).palette.primary[500],
-                borderColor: `${(theme.vars || theme).palette.primary[500]} !important`,
+                borderColor: `${
+                  (theme.vars || theme).palette.primary[500]
+                } !important`,
                 backgroundColor: (theme.vars || theme).palette.primary[50],
               },
             },
@@ -823,10 +782,13 @@ export function getThemedComponents(): ThemeOptions {
               borderColor: theme.palette.primaryDark[500],
               '&.Mui-selected': {
                 color: '#fff',
-                borderColor: `${(theme.vars || theme).palette.primary[700]} !important`,
+                borderColor: `${
+                  (theme.vars || theme).palette.primary[700]
+                } !important`,
                 backgroundColor: (theme.vars || theme).palette.primaryDark[700],
                 '&:hover': {
-                  backgroundColor: (theme.vars || theme).palette.primaryDark[600],
+                  backgroundColor: (theme.vars || theme).palette
+                    .primaryDark[600],
                 },
               },
             }),
@@ -862,7 +824,7 @@ export function getThemedComponents(): ThemeOptions {
               opacity: 1,
             },
           },
-          track: ({ theme }) => ({
+          track: ({theme}) => ({
             opacity: 1,
             borderRadius: 32,
             backgroundColor: theme.palette.grey[400],
@@ -879,7 +841,7 @@ export function getThemedComponents(): ThemeOptions {
       },
       MuiPaginationItem: {
         styleOverrides: {
-          root: ({ theme }) => [
+          root: ({theme}) => [
             {
               textTransform: 'none',
               fontWeight: 700,
@@ -887,7 +849,9 @@ export function getThemedComponents(): ThemeOptions {
               borderColor: theme.palette.grey[200],
               '&.Mui-selected': {
                 color: (theme.vars || theme).palette.primary[500],
-                borderColor: `${(theme.vars || theme).palette.primary[500]} !important`,
+                borderColor: `${
+                  (theme.vars || theme).palette.primary[500]
+                } !important`,
                 backgroundColor: (theme.vars || theme).palette.primary[50],
                 '&:hover': {
                   backgroundColor: (theme.vars || theme).palette.primary[100],
@@ -899,10 +863,13 @@ export function getThemedComponents(): ThemeOptions {
               borderColor: theme.palette.primaryDark[500],
               '&.Mui-selected': {
                 color: '#fff',
-                borderColor: `${(theme.vars || theme).palette.primary[700]} !important`,
+                borderColor: `${
+                  (theme.vars || theme).palette.primary[700]
+                } !important`,
                 backgroundColor: (theme.vars || theme).palette.primaryDark[700],
                 '&:hover': {
-                  backgroundColor: (theme.vars || theme).palette.primaryDark[600],
+                  backgroundColor: (theme.vars || theme).palette
+                    .primaryDark[600],
                 },
               },
             }),
@@ -915,15 +882,15 @@ export function getThemedComponents(): ThemeOptions {
         },
       },
     },
-  };
+  }
 }
 
 export const brandingDarkTheme = createTheme({
   ...getDesignTokens('dark'),
   ...getThemedComponents(),
-});
+})
 
 export const brandingLightTheme = createTheme({
   ...getDesignTokens('light'),
   ...getThemedComponents(),
-});
+})

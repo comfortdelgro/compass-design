@@ -1,14 +1,14 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import { alpha, darken, styled } from '@mui/material/styles';
+import {alpha, darken, styled} from '@mui/material/styles'
+import clsx from 'clsx'
 import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
-} from 'docs/src/modules/brandingTheme';
+} from 'docs/src/brandingTheme'
+import PropTypes from 'prop-types'
+import * as React from 'react'
 
 const Root = styled('div')(
-  ({ theme }) => ({
+  ({theme}) => ({
     ...lightTheme.typography.body1,
     lineHeight: 1.5625, // Increased compared to the 1.5 default to make the docs easier to read.
     color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
@@ -168,7 +168,7 @@ const Root = styled('div')(
           verticalAlign: 'middle',
         },
         '&:hover': {
-          '&>svg': { opacity: 1 },
+          '&>svg': {opacity: 1},
         },
       },
     },
@@ -400,9 +400,12 @@ const Root = styled('div')(
       backgroundColor: 'transparent',
       color: '#FFF',
       opacity: 0.6,
-      transition: theme.transitions.create(['background', 'borderColor', 'display'], {
-        duration: theme.transitions.duration.shortest,
-      }),
+      transition: theme.transitions.create(
+        ['background', 'borderColor', 'display'],
+        {
+          duration: theme.transitions.duration.shortest,
+        },
+      ),
       '& svg': {
         userSelect: 'none',
         width: theme.typography.pxToRem(16),
@@ -471,8 +474,10 @@ const Root = styled('div')(
       },
     },
   }),
-  ({ theme }) => ({
-    [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
+  ({theme}) => ({
+    [`:where(${
+      theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'
+    }) &`]: {
       color: 'rgb(255, 255, 255)',
       '& :not(pre) > code': {
         // inline code block
@@ -603,24 +608,31 @@ const Root = styled('div')(
       },
     },
   }),
-);
+)
 
 const MarkdownElement = React.forwardRef(function MarkdownElement(props, ref) {
-  const { className, renderedMarkdown, ...other } = props;
-  const more = {};
+  const {className, renderedMarkdown, ...other} = props
+  const more = {}
 
   if (typeof renderedMarkdown === 'string') {
     // workaround for https://github.com/facebook/react/issues/17170
     // otherwise we could just set `dangerouslySetInnerHTML={undefined}`
-    more.dangerouslySetInnerHTML = { __html: renderedMarkdown };
+    more.dangerouslySetInnerHTML = {__html: renderedMarkdown}
   }
 
-  return <Root className={clsx('markdown-body', className)} {...more} {...other} ref={ref} />;
-});
+  return (
+    <Root
+      className={clsx('markdown-body', className)}
+      {...more}
+      {...other}
+      ref={ref}
+    />
+  )
+})
 
 MarkdownElement.propTypes = {
   className: PropTypes.string,
   renderedMarkdown: PropTypes.string,
-};
+}
 
-export default MarkdownElement;
+export default MarkdownElement
