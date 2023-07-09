@@ -3,13 +3,13 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import YouTubeIcon from '@mui/icons-material/YouTube'
 import Box from '@mui/material/Box'
-import Container from '@mui/material/Container'
 import IconButton from '@mui/material/IconButton'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import SvgMuiLogotype from 'components/icons/SvgMuiLogotype'
 import SvgStackOverflow from 'components/icons/SvgStackOverflow'
 import Link from 'next/link'
+import Container from './Container'
 
 interface AppFooterProps {
   stackOverflowUrl?: string
@@ -19,7 +19,7 @@ export default function AppFooter(props: AppFooterProps) {
   const {stackOverflowUrl} = props
 
   return (
-    <Container component='footer'>
+    <Container>
       <Box
         sx={{
           my: 3,
