@@ -135,10 +135,6 @@ export default function AppLayoutDocs(props) {
         card='https://mui.com/static/logo.png'
       />
       <Main disableToc={disableToc}>
-        {/*
-            Render the TOCs first to avoid layout shift when the HTML is streamed.
-            See https://jakearchibald.com/2014/dont-use-flexbox-for-page-layout/ for more details.
-          */}
         <StyledAppContainer disableAd={disableAd} hasTabs={hasTabs}>
           <ActionsDiv>
             <EditPage sourceLocation={location} />
