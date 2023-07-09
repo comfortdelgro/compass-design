@@ -10,7 +10,6 @@ const pages: MuiPage[] = [
       {pathname: '/getting-started', title: 'Overview'},
       {pathname: '/getting-started/installation'},
       {pathname: '/getting-started/usage'},
-      {pathname: '/getting-started/example-projects'},
       {pathname: '/getting-started/learn'},
       {pathname: '/getting-started/design-resources'},
       {pathname: '/getting-started/faq', title: 'FAQs'},

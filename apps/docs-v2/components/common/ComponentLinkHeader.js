@@ -2,7 +2,6 @@ import ChatRounded from '@mui/icons-material/ChatRounded'
 import Chip from '@mui/material/Chip'
 import {styled} from '@mui/material/styles'
 import FigmaIcon from 'components/common/FigmaIcon'
-import PropTypes from 'prop-types'
 import * as React from 'react'
 
 const Root = styled('ul')({
@@ -69,11 +68,4 @@ export default function ComponentLinkHeader(props) {
       ) : null}
     </Root>
   )
-}
-
-ComponentLinkHeader.propTypes = {
-  design: PropTypes.bool,
-  markdown: PropTypes.shape({
-    headers: PropTypes.object.isRequired,
-  }).isRequired,
 }

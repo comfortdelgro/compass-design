@@ -3,7 +3,6 @@ import NoSsr from '@mui/base/NoSsr'
 
 import CodeCopyButton from 'components/common/CodeCopyButton'
 import MarkdownElement from 'components/common/MarkdownElement'
-import PropTypes from 'prop-types'
 import * as React from 'react'
 import {useCodeCopy} from 'utils/CodeCopy'
 
@@ -40,14 +39,5 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
     </Component>
   )
 })
-
-HighlightedCode.propTypes = {
-  code: PropTypes.string.isRequired,
-  component: PropTypes.elementType,
-  copyButtonHidden: PropTypes.bool,
-  copyButtonProps: PropTypes.object,
-  language: PropTypes.string.isRequired,
-  sx: PropTypes.object,
-}
 
 export default HighlightedCode
