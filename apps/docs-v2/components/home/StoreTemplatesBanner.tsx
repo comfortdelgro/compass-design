@@ -8,8 +8,6 @@ import Slide from '../animation/Slide'
 
 const ratio = 900 / 494
 
-// 'transparent' is interpreted as transparent black in Safari
-// See https://css-tricks.com/thing-know-gradients-transparent-black/
 const transparent = 'rgba(255,255,255,0)'
 
 const Image = styled('img')(({theme}) => ({
