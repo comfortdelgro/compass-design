@@ -38,13 +38,13 @@ const StyledTab = styled(Tab)<{ownerState: {mounted: boolean}}>(
       color: 'rgba(255 255 255 / 0.6)',
       fontSize: '0.75rem',
       fontWeight: 'semiBold',
-      fontFamily: theme.typography.fontFamilyCode,
+      fontFamily: 'Menlo, Consolas, Droid Sans Mono, monospace',
       outline: 'none',
       minWidth: 80,
       cursor: 'pointer',
       '&:first-child /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */':
         {
-          borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
+          borderTopLeftRadius: 12,
         },
       '&:not(:first-child)': {
         marginLeft: '1px',
