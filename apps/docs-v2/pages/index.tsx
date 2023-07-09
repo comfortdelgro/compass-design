@@ -1,6 +1,5 @@
 import Divider from '@mui/material/Divider'
 import Head from 'components/common/Head'
-import DesignKits from 'components/home/DesignKits'
 import Templates from 'components/home/Templates'
 import BrandingCssVarsProvider from 'components/layouts/BrandingCssVarsProvider'
 import Hero from '../components/home/Hero'
@@ -20,7 +19,6 @@ export default function Home() {
         <Hero />
         <Templates />
         <ReactCompass />
-        <DesignKits />
         <Divider />
       </main>
       <AppFooter />

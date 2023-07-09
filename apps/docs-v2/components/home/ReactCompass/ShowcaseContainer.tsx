@@ -1,72 +1,57 @@
-import Box, {BoxProps} from '@mui/material/Box'
-import Fade from '@mui/material/Fade'
-import NoSsr from '@mui/material/NoSsr'
-import Paper, {PaperProps} from '@mui/material/Paper'
+import {Box} from '@comfortdelgro/react-compass'
 import * as React from 'react'
 
 export default function ShowcaseContainer({
   preview,
-  previewSx,
   code,
-  codeSx,
-  sx,
 }: {
   preview?: React.ReactNode
-  previewSx?: PaperProps['sx']
   code?: React.ReactNode
-  codeSx?: BoxProps['sx']
-  sx?: BoxProps['sx']
 }) {
   return (
-    <Fade in timeout={700}>
+    <Box>
       <Box
-        sx={{
+        css={{
           display: 'flex',
           flexDirection: 'column',
           height: '100%',
-          ...sx,
         }}
       >
-        <Paper
-          variant='outlined'
-          sx={[
-            {
-              display: 'flex',
-              position: 'relative',
-              minHeight: 220,
-              justifyContent: 'center',
-              alignItems: 'center',
-              p: 2,
-              bgcolor: 'grey.100',
-              borderColor: 'grey.300',
-              borderBottomLeftRadius: 0,
-              borderBottomRightRadius: 0,
-            },
-          ]}
+        <Box
+          css={{
+            display: 'flex',
+            position: 'relative',
+            minHeight: 220,
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRadius: 20,
+            backgroundColor: '$gray40',
+            borderColor: '$gray50',
+            borderBottomLeftRadius: 0,
+            borderBottomRightRadius: 0,
+          }}
         >
           {preview}
-        </Paper>
+        </Box>
         <Box
-          sx={[
-            {
-              flexGrow: 0,
-              display: 'flex',
-              flexDirection: 'column',
-              maxWidth: '100%',
-              position: 'relative',
-              minHeight: 200,
-              borderWidth: '0 1px 1px 1px',
-              borderStyle: 'solid',
-              borderColor: 'primaryDark.900',
-              bgcolor: 'primaryDark.800',
-              borderBottomLeftRadius: 10,
-              borderBottomRightRadius: 10,
-            },
-          ]}
+          css={{
+            flexGrow: 0,
+            display: 'flex',
+            flexDirection: 'column',
+            maxWidth: '100%',
+            position: 'relative',
+            minHeight: 200,
+            borderWidth: '0 1px 1px 1px',
+            borderStyle: 'solid',
+            borderColor: '$gray100',
+            backgroundColor: '$gray110',
+            borderBottomLeftRadius: 20,
+            borderBottomRightRadius: 20,
+          }}
         >
-          <NoSsr>{code}</NoSsr>
+          {code}
         </Box>
       </Box>
-    </Fade>
+    </Box>
   )
 }
