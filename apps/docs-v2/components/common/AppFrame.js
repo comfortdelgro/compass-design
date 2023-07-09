@@ -1,6 +1,5 @@
 import NProgressBar from '@mui/docs/NProgressBar'
 import GitHubIcon from '@mui/icons-material/GitHub'
-import SettingsIcon from '@mui/icons-material/SettingsOutlined'
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import CssBaseline from '@mui/material/CssBaseline'
@@ -12,13 +11,9 @@ import Toolbar from '@mui/material/Toolbar'
 import Tooltip from '@mui/material/Tooltip'
 import {debounce} from '@mui/material/utils'
 import AppNavDrawer from 'components/common/AppNavDrawer'
-import AppSettingsDrawer from 'components/common/AppSettingsDrawer'
 import MarkdownLinks from 'components/common/MarkdownLinks'
 import PageContext from 'components/common/PageContext'
 import SkipLink from 'components/common/SkipLink'
-import SvgHamburgerMenu from 'components/icons/SvgHamburgerMenu'
-import SvgMuiLogomark from 'components/icons/SvgMuiLogomark'
-import NextLink from 'next/link'
 import {useRouter} from 'next/router'
 import NProgress from 'nprogress'
 import PropTypes from 'prop-types'
@@ -62,8 +57,6 @@ export function NextNProgressBar() {
   return <NProgressBar />
 }
 
-const sx = {minWidth: {sm: 160}}
-
 const AppSearch = React.lazy(() => import('components/common/AppSearch'))
 export function DeferredAppSearch() {
   const [mounted, setMounted] = React.useState(false)
@@ -73,13 +66,12 @@ export function DeferredAppSearch() {
 
   return (
     <React.Fragment>
-      {/* Suspense isn't supported for SSR yet */}
       {mounted ? (
-        <React.Suspense fallback={<Box sx={sx} />}>
-          <AppSearch sx={sx} />
+        <React.Suspense fallback={<Box />}>
+          <AppSearch />
         </React.Suspense>
       ) : (
-        <Box sx={sx} />
+        <Box />
       )}
     </React.Fragment>
   )
@@ -116,23 +108,6 @@ const StyledAppBar = styled(AppBar, {
   }
 })
 
-const GrowingDiv = styled('div')({
-  flex: '1 1 auto',
-})
-
-const NavIconButton = styled(IconButton, {
-  shouldForwardProp: (prop) => prop !== 'disablePermanent',
-})(({disablePermanent, theme}) => {
-  if (disablePermanent) {
-    return {}
-  }
-  return {
-    [theme.breakpoints.up('lg')]: {
-      display: 'none',
-    },
-  }
-})
-
 const StyledAppNavDrawer = styled(AppNavDrawer)(({disablePermanent, theme}) => {
   if (disablePermanent) {
     return {}
@@ -152,7 +127,6 @@ export default function AppFrame(props) {
   const t = useTranslate()
 
   const [mobileOpen, setMobileOpen] = React.useState(false)
-  const [settingsOpen, setSettingsOpen] = React.useState(false)
 
   const {activePage} = React.useContext(PageContext)
 
@@ -174,26 +148,6 @@ export default function AppFrame(props) {
           }}
         />
         <Toolbar variant='dense' disableGutters>
-          <NavIconButton
-            edge='start'
-            color='primary'
-            aria-label={t('appFrame.openDrawer')}
-            disablePermanent={disablePermanent}
-            onClick={() => setMobileOpen(true)}
-            sx={{ml: '1px'}}
-          >
-            <SvgHamburgerMenu />
-          </NavIconButton>
-          <NextLink href='/' passHref /* onClick={onClose} */ legacyBehavior>
-            <Box
-              component='a'
-              aria-label={t('goToHome')}
-              sx={{display: {md: 'flex', lg: 'none'}, ml: 2}}
-            >
-              <SvgMuiLogomark width={30} />
-            </Box>
-          </NextLink>
-          <GrowingDiv />
           <Stack direction='row' spacing='10px'>
             <DeferredAppSearch />
             <Tooltip title={t('appFrame.github')} enterDelay={300}>
@@ -207,15 +161,6 @@ export default function AppFrame(props) {
                 <GitHubIcon fontSize='small' />
               </IconButton>
             </Tooltip>
-            <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
-              <IconButton
-                color='primary'
-                onClick={() => setSettingsOpen(true)}
-                sx={{px: '8px'}}
-              >
-                <SettingsIcon fontSize='small' />
-              </IconButton>
-            </Tooltip>
           </Stack>
         </Toolbar>
       </StyledAppBar>
@@ -226,10 +171,6 @@ export default function AppFrame(props) {
         mobileOpen={mobileOpen}
       />
       {children}
-      <AppSettingsDrawer
-        onClose={() => setSettingsOpen(false)}
-        open={settingsOpen}
-      />
     </RootDiv>
   )
 }
