@@ -21,11 +21,6 @@ import {pathnameToLanguage} from 'utils/helpers'
 import {useTranslate, useUserLanguage} from 'utils/i18n'
 import stylingSolutionMapping from 'utils/stylingSolutionMapping'
 
-/**
- * Removes leading spaces (indentation) present in the `.tsx` previews
- * to be able to replace the existing code with the incoming dynamic code
- * @param {string} input
- */
 function trimLeadingSpaces(input = '') {
   return input.replace(/^\s+/gm, '')
 }

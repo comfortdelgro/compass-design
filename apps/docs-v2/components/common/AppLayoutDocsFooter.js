@@ -12,7 +12,7 @@ import * as React from 'react'
 
 const PaginationDiv = styled('div')(({theme}) => {
   return {
-    margin: theme.spacing(3, 0, 4),
+    margin: 4,
     display: 'flex',
     justifyContent: 'space-between',
   }
@@ -60,7 +60,6 @@ function usePageNeighbours() {
 
 export default function AppLayoutDocsFooter(props) {
   const {tableOfContents = []} = props
-
   const {nextPage, prevPage} = usePageNeighbours()
 
   return (

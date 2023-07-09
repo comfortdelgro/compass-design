@@ -86,8 +86,6 @@ export default function AppLayoutDocs(props) {
     children,
     description,
     disableAd = false,
-    // TODO, disableLayout should be the default, retaining the layout between pages
-    // improves the UX. It's faster to transition, and you don't lose UI states, like scroll.
     disableLayout = false,
     disableToc = false,
     hasTabs = false,
