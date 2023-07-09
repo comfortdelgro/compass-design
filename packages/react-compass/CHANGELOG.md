@@ -1,5 +1,11 @@
 ## 1.0.0-next.2
 
+## 2.4.0
+
+### Minor Changes
+
+- 338562ae: Add isErrored to tag item in tag box v2
+
 ## 2.3.0
 
 ### Minor Changes
