@@ -132,29 +132,6 @@ function AppWrapper(props) {
     }
   }, [])
 
-  const productIdentifier = React.useMemo(() => {
-    const languagePrefix =
-      pageProps.userLanguage === 'en' ? '' : `/${pageProps.userLanguage}`
-
-    if (productId === 'material-ui') {
-      return {
-        metadata: 'MUI Core',
-        name: 'Material UI',
-        versions: [
-          {text: `v0.01`, current: true},
-          {
-            text: 'v4',
-            href: `https://v4.mui.com${languagePrefix}/getting-started/installation/`,
-          },
-          {
-            text: 'View all versions',
-            href: `https://mui.com${languagePrefix}/versions/`,
-          },
-        ],
-      }
-    }
-  }, [pageProps.userLanguage, productId])
-
   const pageContextValue = React.useMemo(() => {
     const pages = routes
 
@@ -167,10 +144,9 @@ function AppWrapper(props) {
       activePage,
       activePageParents,
       pages,
-      productIdentifier,
       productId,
     }
-  }, [productId, productIdentifier, router.pathname])
+  }, [productId, router.pathname])
 
   let fonts = []
   if (pathnameToLanguage(router.asPath).canonicalAs.match(/onepirate/)) {
@@ -254,21 +230,4 @@ export function reportWebVitals({id, name, label, delta, value}) {
   if (disableWebVitalsReporting) {
     return
   }
-
-  window.ga('send', 'event', {
-    eventCategory:
-      label === 'web-vital' ? 'Web Vitals' : 'Next.js custom metric',
-    eventAction: name,
-    eventValue: Math.round(name === 'CLS' ? value * 1000 : value), // values must be integers
-    eventLabel: id, // id unique to current page load
-    nonInteraction: true, // avoids affecting bounce rate.
-  })
-  window.gtag('event', name, {
-    value: delta,
-    metric_label:
-      label === 'web-vital' ? 'Web Vitals' : 'Next.js custom metric',
-    metric_value: value,
-    metric_delta: delta,
-    metric_id: id, // id unique to current page load
-  })
 }

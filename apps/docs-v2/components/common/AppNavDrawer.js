@@ -9,7 +9,6 @@ import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import {styled} from '@mui/material/styles'
 import SwipeableDrawer from '@mui/material/SwipeableDrawer'
-import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import {unstable_useEnhancedEffect as useEnhancedEffect} from '@mui/utils'
 import AppNavDrawerItem from 'components/common/AppNavDrawerItem'
@@ -66,36 +65,6 @@ function ProductDrawerButton(props) {
 
 ProductDrawerButton.propTypes = {
   productName: PropTypes.string,
-}
-
-function ProductIdentifier(props) {
-  const {name, metadata, versionSelector} = props
-  return (
-    <Box sx={{flexGrow: 1}}>
-      <Typography
-        sx={(theme) => ({
-          ml: 1,
-          color: (theme.vars || theme).palette.grey[600],
-          fontSize: theme.typography.pxToRem(11),
-          fontWeight: 700,
-          textTransform: 'uppercase',
-          letterSpacing: '.08rem',
-        })}
-      >
-        {metadata}
-      </Typography>
-      <Box sx={{display: 'flex'}}>
-        <ProductDrawerButton productName={name} />
-        {versionSelector}
-      </Box>
-    </Box>
-  )
-}
-
-ProductIdentifier.propTypes = {
-  metadata: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  versionSelector: PropTypes.element.isRequired,
 }
 
 // To match scrollMarginBottom
@@ -284,8 +253,7 @@ const iOS =
 
 export default function AppNavDrawer(props) {
   const {className, disablePermanent, mobileOpen, onClose, onOpen} = props
-  const {activePageParents, pages, productIdentifier} =
-    React.useContext(PageContext)
+  const {activePageParents, pages} = React.useContext(PageContext)
   const [anchorEl, setAnchorEl] = React.useState(null)
   const t = useTranslate()
   const mobile = useMediaQuery((theme) => theme.breakpoints.down('lg'))
@@ -401,11 +369,6 @@ export default function AppNavDrawer(props) {
               <SvgMuiLogomark width={30} />
             </Box>
           </NextLink>
-          <ProductIdentifier
-            name={productIdentifier.name}
-            metadata={productIdentifier.metadata}
-            versionSelector={renderVersionSelector(productIdentifier.versions)}
-          />
         </ToolbarDiv>
         <Divider
           sx={(theme) => ({
@@ -415,18 +378,7 @@ export default function AppNavDrawer(props) {
         {navItems}
       </React.Fragment>
     )
-  }, [onClose, pages, activePageParents, t, productIdentifier, anchorEl])
-
-  if (process.env.NODE_ENV !== 'production') {
-    if (!productIdentifier) {
-      throw new Error('docs-infra: missing productIdentifier in PageContext')
-    }
-    if (!productIdentifier.versions) {
-      throw new Error(
-        'docs-infra: missing productIdentifier.versions in PageContext',
-      )
-    }
-  }
+  }, [onClose, pages, activePageParents, t, anchorEl])
 
   return (
     <nav className={className} aria-label={t('mainNavigation')}>
