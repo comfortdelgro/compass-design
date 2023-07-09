@@ -196,15 +196,11 @@ function DemoSandbox(props) {
 
   return (
     <DemoErrorBoundary name={name} onResetDemoClick={onResetDemoClick} t={t}>
-      {canonicalAs.startsWith('/joy-ui/') ? (
-        children
-      ) : (
-        <StylesProvider jss={jss}>
-          <ThemeProvider theme={(outerTheme) => getTheme(outerTheme)}>
-            {children}
-          </ThemeProvider>
-        </StylesProvider>
-      )}
+      <StylesProvider jss={jss}>
+        <ThemeProvider theme={(outerTheme) => getTheme(outerTheme)}>
+          {children}
+        </ThemeProvider>
+      </StylesProvider>
     </DemoErrorBoundary>
   )
 }

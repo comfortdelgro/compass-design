@@ -66,7 +66,7 @@ export default function MarkdownDocs(props) {
         }
         if (renderedMarkdownOrDemo.type === 'codeblock') {
           return (
-            <Wrapper key={index} {...(isJoy && {mode: theme.palette.mode})}>
+            <Wrapper key={index}>
               <HighlightedCodeWithTabs
                 tabs={renderedMarkdownOrDemo.data}
                 storageKey={

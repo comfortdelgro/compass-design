@@ -1,6 +1,5 @@
 import Preflight from '@comfortdelgro/react-compass/preflight'
 import createEmotionServer from '@emotion/server/create-instance'
-import {getInitColorSchemeScript as getJoyInitColorSchemeScript} from '@mui/joy/styles'
 import GlobalStyles from '@mui/material/GlobalStyles'
 import {getInitColorSchemeScript as getMuiInitColorSchemeScript} from '@mui/material/styles'
 import {ServerStyleSheets as JSSServerStyleSheets} from '@mui/styles'
@@ -142,7 +141,6 @@ export default class MyDocument extends Document {
         </Head>
         <body>
           {getMuiInitColorSchemeScript({defaultMode: 'system'})}
-          {getJoyInitColorSchemeScript({defaultMode: 'system'})}
           <Main />
           <NextScript />
         </body>
