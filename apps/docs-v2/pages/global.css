@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@keyframes template-slidedown {
+  0% {
+    transform: translateY(-300px);
+  }
+  ,
+  100% {
+    transform: translateY(-60px);
+  }
+}
+
+@keyframes template-slideup {
+  0% {
+    transform: translateY(150px);
+  }
+  ,
+  100% {
+    transform: translateY(-20px);
+  }
+}

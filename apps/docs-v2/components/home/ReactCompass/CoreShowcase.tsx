@@ -5,12 +5,12 @@ import {createTheme, ThemeProvider, useTheme} from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import HighlightedCode from 'components/common/HighlightedCode'
 import * as React from 'react'
-import StylingInfo from '../action/StylingInfo'
-import FlashCode from '../animation/FlashCode'
-import PointerContainer, {Data} from '../home/ElementPointer'
-import MaterialDesignDemo, {componentCode} from '../home/MaterialDesignDemo'
-import ShowcaseContainer from '../home/ShowcaseContainer'
-import MarkdownElement from '../markdown/MarkdownElement'
+import StylingInfo from '../../action/StylingInfo'
+import FlashCode from '../../animation/FlashCode'
+import MarkdownElement from '../../markdown/MarkdownElement'
+import PointerContainer, {Data} from '../ElementPointer'
+import MaterialDesignDemo, {componentCode} from '../MaterialDesignDemo'
+import ShowcaseContainer from './ShowcaseContainer'
 
 const lineMapping: Record<string, number | number[]> = {
   avatar: 2,

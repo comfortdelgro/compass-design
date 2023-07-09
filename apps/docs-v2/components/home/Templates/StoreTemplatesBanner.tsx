@@ -1,35 +1,21 @@
-import LaunchRounded from '@mui/icons-material/LaunchRounded'
-import Box, {BoxProps} from '@mui/material/Box'
-import {alpha, styled} from '@mui/material/styles'
-import Typography from '@mui/material/Typography'
+import {Box, styled, Typography} from '@comfortdelgro/react-compass'
 import * as React from 'react'
-import FadeDelay from '../animation/FadeDelay'
-import Slide from '../animation/Slide'
+import Slide from '../../animation/Slide'
 
 const ratio = 900 / 494
 
-const transparent = 'rgba(255,255,255,0)'
-
-const Image = styled('img')(({theme}) => ({
+const Image = styled('img', {
   display: 'block',
-  width: 200,
-  height: 200 / ratio,
-  [theme.breakpoints.up('sm')]: {
-    width: 300,
-    height: 300 / ratio,
-  },
-  [theme.breakpoints.up('md')]: {
-    width: 450,
-    height: 450 / ratio,
-  },
+  width: 450,
+  height: 450 / ratio,
   border: '6px solid',
-  borderColor: (theme.vars || theme).palette.grey[400],
-  borderRadius: (theme.vars || theme).shape.borderRadius,
+  borderColor: '$gray50',
+  borderRadius: '12px',
   objectFit: 'cover',
   boxShadow: '0px 4px 20px rgba(61, 71, 82, 0.25)',
-}))
+})
 
-const Anchor = styled('a')({
+const Anchor = styled('a', {
   display: 'inline-block',
   position: 'relative',
   transition: '0.3s',
@@ -59,16 +45,10 @@ const StoreTemplateLink = React.forwardRef<
   }>
 >(function StoreTemplateLink({brand, ...props}, ref) {
   return (
-    <Anchor
-      ref={ref}
-      aria-label='Go to MUI Store'
-      href={`${linkMapping[brand]}?utm_source=marketing&utm_medium=referral&utm_campaign=home-cta`}
-      target='_blank'
-      {...props}
-    >
+    <Anchor ref={ref} href={linkMapping[brand]} target='_blank' {...props}>
       {props.children}
       <Box
-        sx={{
+        css={{
           transition: '0.3s',
           borderRadius: 1,
           position: 'absolute',
@@ -77,15 +57,15 @@ const StoreTemplateLink = React.forwardRef<
           opacity: 0,
           top: 0,
           left: 0,
-          bgcolor: (theme) => alpha(theme.palette.primaryDark[500], 0.8),
-          color: '#fff',
+          bgcolor: '#3468bfba',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
         }}
       >
-        <Typography fontWeight='bold'>Go to store</Typography>
-        <LaunchRounded fontSize='small' sx={{ml: 1}} />
+        <Typography.Link css={{textAlign: 'center', color: 'white'}}>
+          Go to link
+        </Typography.Link>
       </Box>
     </Anchor>
   )
@@ -118,7 +98,7 @@ export function PrefetchStoreTemplateImages() {
   }
   return (
     <Box
-      sx={{
+      css={{
         width: 0,
         height: 0,
         position: 'fixed',
@@ -139,19 +119,7 @@ export function PrefetchStoreTemplateImages() {
   )
 }
 
-const defaultSlideDown = {
-  '0%': {
-    transform: 'translateY(-300px)',
-  },
-  '100%': {
-    transform: 'translateY(-60px)',
-  },
-}
-export function StoreTemplatesSet1({
-  keyframes = defaultSlideDown,
-  disableLink,
-  ...props
-}: {disableLink?: boolean; keyframes?: Record<string, object>} & BoxProps) {
+export function StoreTemplatesSet1({disableLink}: {disableLink?: boolean}) {
   function renderTemplate(brand: TemplateBrand) {
     if (disableLink) {
       return <StoreTemplateImage brand={brand} />
@@ -163,27 +131,20 @@ export function StoreTemplatesSet1({
     )
   }
   return (
-    <Slide animationName='template-slidedown' {...props} keyframes={keyframes}>
-      <FadeDelay delay={400}>{renderTemplate(brands[4])}</FadeDelay>
-      <FadeDelay delay={200}>{renderTemplate(brands[2])}</FadeDelay>
-      <FadeDelay delay={0}>{renderTemplate(brands[0])}</FadeDelay>
+    <Slide animationName='template-slidedown'>
+      <Box>{renderTemplate(brands[4])}</Box>
+      <Box>{renderTemplate(brands[2])}</Box>
+      <Box>{renderTemplate(brands[0])}</Box>
     </Slide>
   )
 }
 
-const defaultSlideUp = {
-  '0%': {
-    transform: 'translateY(150px)',
-  },
-  '100%': {
-    transform: 'translateY(-20px)',
-  },
-}
 export function StoreTemplatesSet2({
-  keyframes = defaultSlideUp,
   disableLink,
-  ...props
-}: {disableLink?: boolean; keyframes?: Record<string, object>} & BoxProps) {
+}: {
+  disableLink?: boolean
+  keyframes?: string
+}) {
   function renderTemplate(brand: TemplateBrand) {
     if (disableLink) {
       return <StoreTemplateImage brand={brand} />
@@ -195,10 +156,10 @@ export function StoreTemplatesSet2({
     )
   }
   return (
-    <Slide animationName='template-slidedup' {...props} keyframes={keyframes}>
-      <FadeDelay delay={100}>{renderTemplate(brands[1])}</FadeDelay>
-      <FadeDelay delay={300}>{renderTemplate(brands[3])}</FadeDelay>
-      <FadeDelay delay={500}>{renderTemplate(brands[5])}</FadeDelay>
+    <Slide animationName='template-slideup'>
+      <Box>{renderTemplate(brands[1])}</Box>
+      <Box>{renderTemplate(brands[3])}</Box>
+      <Box>{renderTemplate(brands[5])}</Box>
     </Slide>
   )
 }
@@ -206,43 +167,24 @@ export function StoreTemplatesSet2({
 export default function StoreTemplatesBanner() {
   return (
     <Box
-      sx={{
-        mx: {xs: -2, sm: -3, md: 0},
-        my: {md: -8},
-        height: {xs: 300, sm: 360, md: 'calc(100% + 160px)'},
+      css={{
+        mx: 0,
+        my: 0,
+        height: 500,
         overflow: 'hidden',
         position: 'relative',
-        width: {xs: '100vw', md: '50vw'},
       }}
     >
       <Box
-        sx={(theme) => ({
-          display: {xs: 'block', md: 'none'},
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          pointerEvents: 'none',
-          background: `linear-gradient(to bottom, ${
-            (theme.vars || theme).palette.grey[50]
-          } 0%, ${transparent} 30%, ${transparent} 70%, ${
-            (theme.vars || theme).palette.grey[50]
-          } 100%)`,
-          zIndex: 2,
-        })}
-      />
-      <Box
-        sx={{
-          // need perspective on this wrapper to work in Safari
+        css={{
           height: '100%',
           position: 'relative',
           perspective: '1000px',
         }}
       >
         <Box
-          sx={{
-            left: {xs: '45%', md: '40%'},
+          css={{
+            left: '40%',
             position: 'absolute',
             zIndex: -1,
             display: 'flex',
@@ -252,24 +194,9 @@ export default function StoreTemplatesBanner() {
           }}
         >
           <StoreTemplatesSet1 />
-          <StoreTemplatesSet2 sx={{ml: {xs: 2, sm: 4, md: 8}}} />
+          <StoreTemplatesSet2 />
         </Box>
       </Box>
-      <Box
-        sx={(theme) => ({
-          display: {xs: 'none', md: 'block'},
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: 400,
-          height: '150%',
-          pointerEvents: 'none',
-          zIndex: 10,
-          background: `linear-gradient(to right, ${
-            (theme.vars || theme).palette.grey[50]
-          }, ${transparent})`,
-        })}
-      />
     </Box>
   )
 }

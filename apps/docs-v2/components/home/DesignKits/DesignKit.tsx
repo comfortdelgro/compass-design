@@ -2,8 +2,7 @@ import Avatar, {AvatarProps} from '@mui/material/Avatar'
 import Box, {BoxProps} from '@mui/material/Box'
 import {styled} from '@mui/material/styles'
 import * as React from 'react'
-import FadeDelay from '../animation/FadeDelay'
-import Slide from '../animation/Slide'
+import Slide from '../../animation/Slide'
 
 const ratio = 900 / 494
 
@@ -167,15 +166,15 @@ export function DesignKitImagesSet1({
 }: BoxProps & {keyframes?: Record<string, object>}) {
   return (
     <Slide animationName='designkit-slideup' {...props} keyframes={keyframes}>
-      <FadeDelay delay={400}>
+      <Box>
         <Image src='/static/branding/design-kits/designkits1.jpeg' alt='' />
-      </FadeDelay>
-      <FadeDelay delay={200}>
+      </Box>
+      <Box>
         <Image src='/static/branding/design-kits/designkits3.jpeg' alt='' />
-      </FadeDelay>
-      <FadeDelay delay={0}>
+      </Box>
+      <Box>
         <Image src='/static/branding/design-kits/designkits5.jpeg' alt='' />
-      </FadeDelay>
+      </Box>
     </Slide>
   )
 }
@@ -194,15 +193,15 @@ export function DesignKitImagesSet2({
 }: BoxProps & {keyframes?: Record<string, object>}) {
   return (
     <Slide animationName='designkit-slidedown' {...props} keyframes={keyframes}>
-      <FadeDelay delay={100}>
+      <Box>
         <Image src='/static/branding/design-kits/designkits2.jpeg' alt='' />
-      </FadeDelay>
-      <FadeDelay delay={300}>
+      </Box>
+      <Box>
         <Image src='/static/branding/design-kits/designkits4.jpeg' alt='' />
-      </FadeDelay>
-      <FadeDelay delay={500}>
+      </Box>
+      <Box>
         <Image src='/static/branding/design-kits/designkits6.jpeg' alt='' />
-      </FadeDelay>
+      </Box>
     </Slide>
   )
 }
@@ -241,14 +240,14 @@ export function DesignKitTools({
         ...props.sx,
       }}
     >
-      <FadeDelay delay={200}>{renderTool('figma')}</FadeDelay>
-      <FadeDelay delay={400}>{renderTool('sketch')}</FadeDelay>
-      <FadeDelay delay={600}>{renderTool('xd')}</FadeDelay>
+      <Box>{renderTool('figma')}</Box>
+      <Box>{renderTool('sketch')}</Box>
+      <Box>{renderTool('xd')}</Box>
     </Box>
   )
 }
 
-export default function DesignKits() {
+export default function DesignKit() {
   return (
     <Box
       sx={{

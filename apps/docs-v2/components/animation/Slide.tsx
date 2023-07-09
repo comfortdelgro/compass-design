@@ -1,28 +1,27 @@
-import * as React from 'react';
-import Box, { BoxProps } from '@mui/material/Box';
+import {Box} from '@comfortdelgro/react-compass'
 
 export default function Slide({
   animationName,
-  keyframes,
-  ...props
-}: BoxProps & { animationName: string; keyframes: Record<string, object> }) {
+  children,
+}: {
+  animationName: string
+  children: React.ReactNode
+}) {
   return (
     <Box
-      {...props}
-      sx={{
+      css={{
         display: 'grid',
         gridTemplateRows: 'min-content',
-        gap: { xs: 2, sm: 4, md: 8 },
+        gap: 8,
         width: 'min-content',
         animation: `${animationName} 30s ease-out forwards`,
+        marginLeft: '20px',
         '@media (prefers-reduced-motion)': {
           animation: 'none',
         },
-        [`@keyframes ${animationName}`]: {
-          ...keyframes,
-        },
-        ...props.sx,
       }}
-    />
-  );
+    >
+      {children}
+    </Box>
+  )
 }

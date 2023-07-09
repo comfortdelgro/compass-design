@@ -1,8 +1,10 @@
 import Divider from '@mui/material/Divider'
 import Head from 'components/common/Head'
+import DesignKits from 'components/home/DesignKits'
+import Templates from 'components/home/Templates'
 import BrandingCssVarsProvider from 'components/layouts/BrandingCssVarsProvider'
 import Hero from '../components/home/Hero'
-import ProductSuite from '../components/home/ProductSuite'
+import ReactCompass from '../components/home/ReactCompass'
 import AppFooter from '../components/layouts/AppFooter'
 import AppHeader from '../components/layouts/AppHeader'
 
@@ -16,7 +18,9 @@ export default function Home() {
       <AppHeader />
       <main id='main-content'>
         <Hero />
-        <ProductSuite />
+        <Templates />
+        <ReactCompass />
+        <DesignKits />
         <Divider />
       </main>
       <AppFooter />
