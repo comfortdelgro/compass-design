@@ -16,9 +16,6 @@ export function shouldHandleLinkClick(event) {
   return false
 }
 
-/**
- * @param {MouseEvent} event
- */
 function handleClick(event) {
   let activeElement = event.target
   while (

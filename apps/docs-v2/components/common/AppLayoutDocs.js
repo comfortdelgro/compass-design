@@ -101,20 +101,7 @@ export default function AppLayoutDocs(props) {
   }
 
   const {canonicalAs} = pathnameToLanguage(router.asPath)
-  let productName = 'MUI'
-  if (canonicalAs.startsWith('/material-ui/')) {
-    productName = 'Material UI'
-  } else if (canonicalAs.startsWith('/base-ui/')) {
-    productName = 'Base UI'
-  } else if (canonicalAs.startsWith('/x/')) {
-    productName = 'MUI X'
-  } else if (canonicalAs.startsWith('/system/')) {
-    productName = 'MUI System'
-  } else if (canonicalAs.startsWith('/toolpad/')) {
-    productName = 'MUI Toolpad'
-  } else if (canonicalAs.startsWith('/joy-ui/')) {
-    productName = 'Joy UI'
-  }
+  let productName = 'React Compass'
 
   const Layout = disableLayout ? React.Fragment : AppFrame
   const layoutProps = disableLayout ? {} : {BannerComponent}
@@ -132,7 +119,7 @@ export default function AppLayoutDocs(props) {
         title={`${title} - ${productName}`}
         description={description}
         largeCard={false}
-        card='https://mui.com/static/logo.png'
+        card='https://github.com/comfortdelgro/compass-design'
       />
       <Main disableToc={disableToc}>
         <StyledAppContainer disableAd={disableAd} hasTabs={hasTabs}>
