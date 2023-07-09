@@ -13,7 +13,6 @@ import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import {unstable_useEnhancedEffect as useEnhancedEffect} from '@mui/utils'
 import AppNavDrawerItem from 'components/common/AppNavDrawerItem'
-import MuiProductSelector from 'components/common/MuiProductSelector'
 import PageContext from 'components/common/PageContext'
 import SvgMuiLogomark from 'components/icons/SvgMuiLogomark'
 import NextLink from 'next/link'
@@ -61,22 +60,6 @@ function ProductDrawerButton(props) {
       >
         {props.productName}
       </Button>
-      <Menu
-        id='mui-product-menu'
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        MenuListProps={{
-          'aria-labelledby': 'mui-product-selector',
-        }}
-        PaperProps={{
-          sx: {
-            width: {xs: 340, sm: 'auto'},
-          },
-        }}
-      >
-        <MuiProductSelector />
-      </Menu>
     </React.Fragment>
   )
 }
