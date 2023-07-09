@@ -338,7 +338,6 @@ export default function AppSearch(props) {
               facetFilters: ['version:master', facetFilterLanguage],
               optionalFilters: [`productId:${pageContext.productId}`],
               attributesToRetrieve: [
-                // Copied from https://github.com/algolia/docsearch/blob/ce0c865cd8767e961ce3088b3155fc982d4c2e2e/packages/docsearch-react/src/DocSearchModal.tsx#L231
                 'hierarchy.lvl0',
                 'hierarchy.lvl1',
                 'hierarchy.lvl2',

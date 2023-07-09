@@ -1,10 +1,9 @@
-import {Button, Navbar} from '@comfortdelgro/react-compass'
+import Compass from '@comfortdelgro/compass-icons/react/colorful/compass'
+import Github from '@comfortdelgro/compass-icons/react/github'
+import {Box, Button, Navbar, Typography} from '@comfortdelgro/react-compass'
 import NavbarActions from '@comfortdelgro/react-compass/navbar/navbar-actions'
 import {NavbarLinks} from '@comfortdelgro/react-compass/navbar/navbar-links.styles'
 import {NavbarSeperator} from '@comfortdelgro/react-compass/navbar/navbar-seperator.style'
-import GitHubIcon from '@mui/icons-material/GitHub'
-import IconButton from '@mui/material/IconButton'
-import Tooltip from '@mui/material/Tooltip'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import {DeferredAppSearch} from 'components/common/AppFrame'
 import ThemeModeToggle from 'components/header/ThemeModeToggle'
@@ -15,26 +14,17 @@ interface AppHeaderProps {
 }
 
 export default function AppHeader(props: AppHeaderProps) {
-  const {gitHubRepository = 'https://github.com/mui'} = props
+  const {gitHubRepository = 'https://github.com/comfortdelgro/compass-design'} =
+    props
   const [mode, setMode] = React.useState<string | null>(null)
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
-
-  React.useEffect(() => {
-    let initialMode = 'system'
-    try {
-      initialMode = localStorage.getItem('mui-mode') || initialMode
-    } catch (error) {
-      // do nothing
-    }
-    setMode(initialMode)
-  }, [])
 
   const handleChangeThemeMode = (checked: boolean) => {
     const paletteMode = checked ? 'dark' : 'light'
     setMode(paletteMode)
 
     try {
-      localStorage.setItem('mui-mode', paletteMode) // syncing with homepage, can be removed once all pages are migrated to CSS variables
+      localStorage.setItem('mui-mode', paletteMode)
     } catch (error) {
       // do nothing
     }
@@ -44,7 +34,15 @@ export default function AppHeader(props: AppHeaderProps) {
   return (
     <Navbar>
       <Navbar.Brand>
-        <b>REACT COMPASS</b>
+        <Box css={{display: 'flex', alignItems: 'center'}}>
+          <Compass width={'35px'} height={'35px'} />
+          <Typography.Header
+            variant='header4'
+            css={{color: 'white', marginLeft: 10, fontWeight: 'bold'}}
+          >
+            REACT COMPASS
+          </Typography.Header>
+        </Box>
       </Navbar.Brand>
       <NavbarLinks>
         <a href='/getting-started/'>
@@ -52,21 +50,32 @@ export default function AppHeader(props: AppHeaderProps) {
         </a>
       </NavbarLinks>
       <NavbarSeperator />
-      <NavbarActions>
+      <NavbarActions
+        css={{
+          '.default-navbar-actions': {
+            gap: 10,
+          },
+        }}
+      >
         <DeferredAppSearch />
-        <Tooltip title='Github' enterDelay={300}>
-          <IconButton
-            component='a'
-            color='primary'
-            href={gitHubRepository}
-            target='_blank'
-            rel='noopener'
-            data-ga-event-category='header'
-            data-ga-event-action='github'
-          >
-            <GitHubIcon fontSize='small' />
-          </IconButton>
-        </Tooltip>
+        <a href={gitHubRepository} target='_blank'>
+          <Button
+            variant='primary'
+            leftIcon={<Github />}
+            css={{
+              border: '1px solid white',
+              height: 34,
+              width: 34,
+              borderRadius: 10,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              '.left': {
+                marginRight: '0 !important',
+              },
+            }}
+          ></Button>
+        </a>
         <ThemeModeToggle
           checked={mode === 'system' ? prefersDarkMode : mode === 'dark'}
           onChange={handleChangeThemeMode}
