@@ -1150,8 +1150,18 @@
       "levels": [
         "Tag box v2"
       ],
-      "locStart": 5,
-      "locEnd": 49,
+      "locStart": 73,
+      "locEnd": 117,
+      "filePath": "src/tag-box-v2/tag-box-v2.stories.tsx",
+      "meta": {}
+    },
+    "tag-box-v2--with-errored-items": {
+      "name": "With errored items",
+      "levels": [
+        "Tag box v2"
+      ],
+      "locStart": 45,
+      "locEnd": 71,
       "filePath": "src/tag-box-v2/tag-box-v2.stories.tsx",
       "meta": {}
     },
@@ -1160,8 +1170,8 @@
       "levels": [
         "Tag box"
       ],
-      "locStart": 97,
-      "locEnd": 177,
+      "locStart": 133,
+      "locEnd": 213,
       "filePath": "src/tag-box/tag-box.stories.tsx",
       "meta": {}
     },
@@ -1170,8 +1180,8 @@
       "levels": [
         "Tag box"
       ],
-      "locStart": 26,
-      "locEnd": 95,
+      "locStart": 62,
+      "locEnd": 131,
       "filePath": "src/tag-box/tag-box.stories.tsx",
       "meta": {}
     },

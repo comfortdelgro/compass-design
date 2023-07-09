@@ -1,0 +1,1 @@
+import{k as t}from"./index-4c46b99a.js";const r=t({"0%":{transform:"rotate(0deg)"},"100%":{transform:"rotate(360deg)"}}),s=t({"0%":{transform:"translate3d(100%, 0, 0)"},"100%":{transform:"rotate(360deg)"}}),e=t({"0%":{transform:"rotate(0deg)"},"100%":{transform:"translate3d(100%, 0, 0)"}});export{e as a,s as f,r as s};
