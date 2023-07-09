@@ -27,12 +27,12 @@ const Anchor = styled('a', {
 })
 
 const linkMapping = {
-  minimal: 'https://mui.com/store/items/minimal-dashboard/',
-  theFront: 'https://mui.com/store/items/the-front-landing-page/',
-  miro: 'https://mui.com/store/items/mira-pro-react-material-admin-dashboard/',
-  flexy: 'https://mui.com/store/items/flexy-react-admin-dashboard/',
-  berry: 'https://mui.com/store/items/berry-react-material-admin/',
-  webbee: 'https://mui.com/store/items/webbee-landing-page/',
+  '1': 'https://github.com/comfortdelgro/compass-design',
+  '2': 'https://github.com/comfortdelgro/compass-design',
+  '3': 'https://github.com/comfortdelgro/compass-design',
+  '4': 'https://github.com/comfortdelgro/compass-design',
+  '5': 'https://github.com/comfortdelgro/compass-design',
+  '6': 'https://github.com/comfortdelgro/compass-design',
 }
 const brands = Object.keys(linkMapping) as Array<keyof typeof linkMapping>
 
@@ -63,9 +63,9 @@ const StoreTemplateLink = React.forwardRef<
           justifyContent: 'center',
         }}
       >
-        <Typography.Link css={{textAlign: 'center', color: 'white'}}>
+        <Typography.Label css={{textAlign: 'center', color: 'white'}}>
           Go to link
-        </Typography.Link>
+        </Typography.Label>
       </Box>
     </Anchor>
   )
@@ -78,9 +78,9 @@ const StoreTemplateImage = React.forwardRef<
   return (
     <Image
       ref={ref}
-      src={`/static/branding/store-templates/template-${
+      src={`/static/templates/${
         Object.keys(linkMapping).indexOf(brand) + 1
-      }light.jpg`}
+      }.png`}
       alt=''
       {...props}
     />
@@ -93,7 +93,7 @@ export function PrefetchStoreTemplateImages() {
       loading: 'lazy' as const,
       width: '900',
       height: '494',
-      src: `/static/branding/store-templates/template-${num}${mode}.jpg`,
+      src: `/static/templates/${num}.jpg`,
     }
   }
   return (
