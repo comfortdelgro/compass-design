@@ -6,21 +6,57 @@ import {Column} from '../utils/components'
 import TagBox from './index'
 
 const items = [
-  {id: 1, value: 'Item 1', icon: <Icon icon={faExclamationTriangle} />},
-  {id: 2, value: 'Item 2', isDisabled: true},
-  {id: 3, value: 'Item 3', icon: <Icon icon={faExclamationTriangle} />},
-  {id: 4, value: 'Item 4', isDisabled: true},
   {
-    id: 5,
+    id: `cdg-id-${Math.random().toString(36).substring(2)}`,
+    value: 'Item 1',
+    icon: <Icon icon={faExclamationTriangle} />,
+  },
+  {
+    id: `cdg-id-${Math.random().toString(36).substring(2)}`,
+    value: 'Item 2',
+    isDisabled: true,
+  },
+  {
+    id: `cdg-id-${Math.random().toString(36).substring(2)}`,
+    value: 'Item 3',
+    icon: <Icon icon={faExclamationTriangle} />,
+  },
+  {
+    id: `cdg-id-${Math.random().toString(36).substring(2)}`,
+    value: 'Item 4',
+    isDisabled: true,
+  },
+  {
+    id: `cdg-id-${Math.random().toString(36).substring(2)}`,
     value: 'Item 5',
     icon: <Icon icon={faExclamationTriangle} />,
     isError: true,
   },
-  {id: 6, value: 'Item 6', isDisabled: true},
-  {id: 7, value: 'Item 7', icon: <Icon icon={faExclamationTriangle} />},
-  {id: 8, value: 'Item 8', isDisabled: true},
-  {id: 9, value: 'Item 9', icon: <Icon icon={faExclamationTriangle} />},
-  {id: 10, value: 'Item 10', isDisabled: true},
+  {
+    id: `cdg-id-${Math.random().toString(36).substring(2)}`,
+    value: 'Item 6',
+    isDisabled: true,
+  },
+  {
+    id: `cdg-id-${Math.random().toString(36).substring(2)}`,
+    value: 'Item 7',
+    icon: <Icon icon={faExclamationTriangle} />,
+  },
+  {
+    id: `cdg-id-${Math.random().toString(36).substring(2)}`,
+    value: 'Item 8',
+    isDisabled: true,
+  },
+  {
+    id: `cdg-id-${Math.random().toString(36).substring(2)}`,
+    value: 'Item 9',
+    icon: <Icon icon={faExclamationTriangle} />,
+  },
+  {
+    id: `cdg-id-${Math.random().toString(36).substring(2)}`,
+    value: 'Item 10',
+    isDisabled: true,
+  },
 ]
 
 export const TagBoxs: React.FC = () => (
