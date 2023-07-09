@@ -67,7 +67,10 @@ export function GutterBothSide() {
         }}
       >
         <div style={{overflow: 'hidden'}}>Right side</div>
-        <Gutter parentRef={rightGutterRef} onChange={setRightGutterWidth} />
+        <Gutter
+          parentRef={rightGutterRef}
+          onChange={setRightGutterWidth}
+        />
       </div>
       <div style={{flex: 1}}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
