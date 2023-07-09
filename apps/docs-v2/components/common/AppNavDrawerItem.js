@@ -226,7 +226,6 @@ export default function AppNavDrawerItem(props) {
 
   return (
     <StyledLi {...other} depth={depth}>
-      {/* Fix overloading with prefetch={false}, only prefetch on hover */}
       <Item
         component={subheader ? DeadLink : Link}
         depth={depth}
@@ -261,21 +260,4 @@ export default function AppNavDrawerItem(props) {
       )}
     </StyledLi>
   )
-}
-
-AppNavDrawerItem.propTypes = {
-  children: PropTypes.node,
-  comingSoon: PropTypes.bool,
-  depth: PropTypes.number.isRequired,
-  href: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  icon: PropTypes.elementType,
-  legacy: PropTypes.bool,
-  linkProps: PropTypes.object,
-  newFeature: PropTypes.bool,
-  onClick: PropTypes.func,
-  openImmediately: PropTypes.bool,
-  plan: PropTypes.oneOf(['community', 'pro', 'premium']),
-  subheader: PropTypes.bool.isRequired,
-  title: PropTypes.string.isRequired,
-  topLevel: PropTypes.bool,
 }

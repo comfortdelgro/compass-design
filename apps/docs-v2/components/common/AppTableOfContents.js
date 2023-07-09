@@ -1,29 +1,13 @@
 /* eslint-disable react/no-danger */
-import NoSsr from '@mui/material/NoSsr'
-import {alpha, styled} from '@mui/material/styles'
+import {Box} from '@comfortdelgro/react-compass'
+import {styled} from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import {shouldHandleLinkClick} from 'components/common/MarkdownLinks'
 import featureToggle from 'docs/src/featureToggle'
 import throttle from 'lodash/throttle'
 import Link from 'next/link'
-import PropTypes from 'prop-types'
 import * as React from 'react'
 import {useTranslate} from 'utils/i18n'
-
-const Nav = styled('nav')(({theme}) => ({
-  top: 'var(--MuiDocs-header-height)',
-  paddingLeft: 2, // Fix truncated focus outline style
-  position: 'sticky',
-  height: 'calc(100vh - var(--MuiDocs-header-height))',
-  overflowY: 'auto',
-  paddingTop: theme.spacing(4),
-  paddingBottom: theme.spacing(4),
-  paddingRight: theme.spacing(4), // We can't use `padding` as stylis-plugin-rtl doesn't swap it
-  display: 'none',
-  [theme.breakpoints.up('md')]: {
-    display: 'block',
-  },
-}))
 
 const NavLabel = styled(Typography)(({theme}) => ({
   marginTop: theme.spacing(2),
@@ -223,102 +207,12 @@ export default function AppTableOfContents(props) {
   )
 
   return (
-    <Nav aria-label={t('pageTOC')}>
-      <NoSsr>
-        {showSurveyBanner && (
-          <Link
-            href='https://www.surveymonkey.com/r/mui-developer-survey-2022?source=docs'
-            target='_blank'
-            sx={[
-              (theme) => ({
-                mb: 2,
-                p: 1,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'flex-start',
-                backgroundColor: alpha(theme.palette.grey[50], 0.4),
-                border: '1px solid',
-                borderColor: (theme.vars || theme).palette.grey[200],
-                borderRadius: 1,
-                transitionProperty: 'all',
-                transitionTiming: 'cubic-bezier(0.4, 0, 0.2, 1)',
-                transitionDuration: '150ms',
-                '&:hover, &:focus-visible': {
-                  borderColor: (theme.vars || theme).palette.primary[200],
-                },
-              }),
-            ]}
-          >
-            <Typography
-              component='span'
-              variant='button'
-              fontWeight='500'
-              color='text.primary'
-            >
-              {'📫 MUI Developer survey 2022 is live!'}
-            </Typography>
-            <Typography
-              component='span'
-              variant='caption'
-              fontWeight='normal'
-              color='text.secondary'
-              sx={{mt: 0.5}}
-            >
-              {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-              {'Influence the future of MUI. Help define the roadmap for 2023!'}
-            </Typography>
-          </Link>
-        )}
-        {!showSurveyBanner && showJobAd && (
-          <Link
-            href='https://jobs.ashbyhq.com/MUI?utm_source=2vOWXNv1PE'
-            target='_blank'
-            sx={[
-              (theme) => ({
-                mb: 2,
-                p: 1,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'flex-start',
-                backgroundColor: alpha(theme.palette.grey[50], 0.4),
-                border: '1px solid',
-                borderColor: (theme.vars || theme).palette.grey[200],
-                borderRadius: 1,
-                transitionProperty: 'all',
-                transitionTiming: 'cubic-bezier(0.4, 0, 0.2, 1)',
-                transitionDuration: '150ms',
-                '&:hover, &:focus-visible': {
-                  borderColor: (theme.vars || theme).palette.primary[200],
-                },
-              }),
-            ]}
-          >
-            <Typography
-              component='span'
-              variant='button'
-              fontWeight='500'
-              color='text.primary'
-            >
-              {'🚀 Join the MUI team!'}
-            </Typography>
-            <Typography
-              component='span'
-              variant='caption'
-              fontWeight='normal'
-              color='text.secondary'
-              sx={{mt: 0.5}}
-            >
-              {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-              {
-                "We're looking for React Engineers and other amazing roles－come find out more!"
-              }
-            </Typography>
-          </Link>
-        )}
-      </NoSsr>
+    <Box
+      css={{width: 500, maxHeight: 'calc(100vh - 51px)', overflowY: 'scroll'}}
+    >
       {toc.length > 0 ? (
         <React.Fragment>
-          <NavLabel gutterBottom>{t('tableOfContents')}</NavLabel>
+          <NavLabel gutterBottom>Contents</NavLabel>
           <NavList component='ul'>
             {toc.map((item) => (
               <li key={item.text}>
@@ -335,10 +229,6 @@ export default function AppTableOfContents(props) {
           </NavList>
         </React.Fragment>
       ) : null}
-    </Nav>
+    </Box>
   )
-}
-
-AppTableOfContents.propTypes = {
-  toc: PropTypes.array.isRequired,
 }
