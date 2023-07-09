@@ -1,13 +1,8 @@
-import GitHubIcon from '@mui/icons-material/GitHub'
-import LinkedInIcon from '@mui/icons-material/LinkedIn'
-import TwitterIcon from '@mui/icons-material/Twitter'
-import YouTubeIcon from '@mui/icons-material/YouTube'
-import Box from '@mui/material/Box'
-import IconButton from '@mui/material/IconButton'
-import Stack from '@mui/material/Stack'
-import Typography from '@mui/material/Typography'
-import SvgMuiLogotype from 'components/icons/SvgMuiLogotype'
-import SvgStackOverflow from 'components/icons/SvgStackOverflow'
+import Compass from '@comfortdelgro/compass-icons/react/colorful/compass'
+import Facebook from '@comfortdelgro/compass-icons/react/colorful/facebook'
+import Twitter from '@comfortdelgro/compass-icons/react/colorful/twitter'
+import Youtube from '@comfortdelgro/compass-icons/react/colorful/youtube'
+import {Box, Typography} from '@comfortdelgro/react-compass'
 import Link from 'next/link'
 import Container from './Container'
 
@@ -16,81 +11,36 @@ interface AppFooterProps {
 }
 
 export default function AppFooter(props: AppFooterProps) {
-  const {stackOverflowUrl} = props
-
   return (
-    <Container>
-      <Box
-        sx={{
-          my: 3,
-          display: {xs: 'block', sm: 'flex'},
-          alignItems: {sm: 'center'},
-          justifyContent: {sm: 'space-between'},
-        }}
-      >
-        <Link href='/' aria-label='Go to homepage'>
-          <SvgMuiLogotype height={28} width={91} />
-        </Link>
-        <Box sx={{mt: {xs: 3, sm: 0}}}>
-          <Stack spacing={2} direction='row'>
-            <IconButton
-              target='_blank'
-              rel='noopener noreferrer'
-              href=''
-              aria-label='github'
-              title='GitHub'
-              size='small'
-            >
-              <GitHubIcon fontSize='small' />
-            </IconButton>
-            <IconButton
-              target='_blank'
-              rel='noopener noreferrer'
-              href=''
-              aria-label='twitter'
-              title='Twitter'
-              size='small'
-            >
-              <TwitterIcon fontSize='small' />
-            </IconButton>
-            <IconButton
-              target='_blank'
-              rel='noopener noreferrer'
-              href=''
-              aria-label='linkedin'
-              title='LinkedIn'
-              size='small'
-            >
-              <LinkedInIcon fontSize='small' />
-            </IconButton>
-            <IconButton
-              target='_blank'
-              rel='noopener noreferrer'
-              href=''
-              aria-label='YouTube'
-              title='YouTube'
-              size='small'
-            >
-              <YouTubeIcon fontSize='small' />
-            </IconButton>
-            {stackOverflowUrl ? (
-              <IconButton
-                target='_blank'
-                rel='noopener noreferrer'
-                href={stackOverflowUrl}
-                aria-label='Stack Overflow'
-                title='Stack Overflow'
-                size='small'
-              >
-                <SvgStackOverflow fontSize='small' />
-              </IconButton>
-            ) : null}
-          </Stack>
+    <Box css={{padding: '$8 0'}}>
+      <Container>
+        <Box
+          css={{
+            display: 'flex',
+          }}
+        >
+          <Link href='/'>
+            <Compass width={40} height={40} />
+          </Link>
+          <Typography.Header css={{marginLeft: 5}} variant='header3'>
+            React Compass
+          </Typography.Header>
+          <Box css={{display: 'flex'}}>
+            <Box css={{padding: '0 $1'}}>
+              <Facebook />
+            </Box>
+            <Box css={{padding: '0 $1'}}>
+              <Youtube />
+            </Box>
+            <Box css={{padding: '0 $1'}}>
+              <Twitter />
+            </Box>
+          </Box>
         </Box>
-      </Box>
-      <Typography color='text.secondary' variant='body2' sx={{mb: 4}}>
-        Copyright © {new Date().getFullYear()}
-      </Typography>
-    </Container>
+        <Typography.Label variant='label2'>
+          Copyright © {new Date().getFullYear()}
+        </Typography.Label>
+      </Container>
+    </Box>
   )
 }

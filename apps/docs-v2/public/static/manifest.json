@@ -1,7 +1,7 @@
 {
-  "name": "MUI",
-  "short_name": "MUI",
-  "display": "minimal-ui",
+  "name": "React compass",
+  "short_name": "React compass",
+  "display": "React compass",
   "start_url": "/",
   "theme_color": "#007FFF",
   "background_color": "#ffffff",
