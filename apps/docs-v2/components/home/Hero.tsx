@@ -1,50 +1,26 @@
-import {Container} from '@mui/material'
-import Box from '@mui/material/Box'
-import {useTheme} from '@mui/material/styles'
-import Typography from '@mui/material/Typography'
-import useMediaQuery from '@mui/material/useMediaQuery'
-import * as React from 'react'
+import {Box, Typography} from '@comfortdelgro/react-compass'
+import Container from 'components/layouts/Container'
 import GradientText from '../typography/GradientText'
 import GetStartedButtons from './GetStartedButtons'
 
 export default function Hero() {
-  const frame = React.useRef<null | HTMLDivElement>(null)
-  const globalTheme = useTheme()
-  const isMdUp = useMediaQuery(globalTheme.breakpoints.up('md'))
-  React.useEffect(() => {
-    let obs: undefined | MutationObserver
-    function suppressTabIndex() {
-      if (frame.current && isMdUp) {
-        const elements = frame.current.querySelectorAll(
-          'a, button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])',
-        )
-        elements.forEach((elm) => {
-          elm.setAttribute('tabindex', '-1')
-        })
-      }
-    }
-    if (typeof MutationObserver !== 'undefined' && frame.current) {
-      obs = new MutationObserver(suppressTabIndex)
-      obs.observe(frame.current, {childList: true, subtree: true})
-    }
-    return () => {
-      if (obs) {
-        obs.disconnect()
-      }
-    }
-  }, [isMdUp])
   return (
     <Container>
-      <Box sx={{textAlign: 'center'}}>
-        <Typography variant='h1' sx={{mt: 8, mb: 4}}>
+      <Box css={{textAlign: 'center', padding: '4rem 0'}}>
+        <Typography.Header
+          variant='header1'
+          css={{fontSize: '4rem', fontWeight: 'bold'}}
+        >
           <GradientText>Move faster</GradientText> with intuitive React UI tools
-        </Typography>
-        <Typography color='text.secondary' sx={{mb: 3}}>
-          React Compass offers a comprehensive suite of UI tools to help you
-          ship new features faster. Start with React Compass, our fully-loaded
-          component library, or bring your own design system to our
-          production-ready components.
-        </Typography>
+        </Typography.Header>
+        <Box css={{padding: '2rem'}}>
+          <Typography.Body variant='body1'>
+            React Compass offers a comprehensive suite of UI tools to help you
+            ship new features faster. Start with React Compass, our fully-loaded
+            component library, or bring your own design system to our
+            production-ready components.
+          </Typography.Body>
+        </Box>
         <GetStartedButtons />
       </Box>
     </Container>

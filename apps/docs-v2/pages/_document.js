@@ -6,39 +6,20 @@ import {getInitColorSchemeScript as getMuiInitColorSchemeScript} from '@mui/mate
 import {ServerStyleSheets as JSSServerStyleSheets} from '@mui/styles'
 import createEmotionCache from 'docs/src/createEmotionCache'
 import Document, {Head, Html, Main, NextScript} from 'next/document'
-import Script from 'next/script'
 import * as React from 'react'
 import {ServerStyleSheet} from 'styled-components'
 import {pathnameToLanguage} from 'utils/helpers'
 
-// You can find a benchmark of the available CSS minifiers under
-// https://github.com/GoalSmashers/css-minification-benchmark
-// We have found that clean-css is faster than cssnano but the output is larger.
-// Waiting for https://github.com/cssinjs/jss/issues/279
-// 4% slower but 12% smaller output than doing it in a single step.
-//
-// It's using .browserslistrc
 let prefixer
 let cleanCSS
 if (process.env.NODE_ENV === 'production') {
-  /* eslint-disable global-require */
   const postcss = require('postcss')
   const autoprefixer = require('autoprefixer')
   const CleanCSS = require('clean-css')
-  /* eslint-enable global-require */
 
   prefixer = postcss([autoprefixer])
   cleanCSS = new CleanCSS()
 }
-
-const PRODUCTION_GA =
-  process.env.DEPLOY_ENV === 'production' ||
-  process.env.DEPLOY_ENV === 'staging'
-
-// TODO remove https://support.google.com/analytics/answer/11986666
-const GOOGLE_ANALYTICS_ID = PRODUCTION_GA ? 'UA-106598593-2' : 'UA-106598593-3'
-
-const GOOGLE_ANALYTICS_ID_V4 = PRODUCTION_GA ? 'G-5NXDQLC2ZK' : 'G-XJ83JQEK7J'
 
 export default class MyDocument extends Document {
   render() {
@@ -163,33 +144,6 @@ export default class MyDocument extends Document {
           {getMuiInitColorSchemeScript({defaultMode: 'system'})}
           {getJoyInitColorSchemeScript({defaultMode: 'system'})}
           <Main />
-          <script
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{
-              __html: `
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-window.ga('create','${GOOGLE_ANALYTICS_ID}',{
-  sampleRate: ${PRODUCTION_GA ? 80 : 100},
-});
-
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-window.gtag = gtag;
-gtag('js', new Date());
-gtag('config', '${GOOGLE_ANALYTICS_ID_V4}', {
-  send_page_view: false,
-});
-`,
-            }}
-          />
-          {/**
-           * A better alternative to <script async>, to delay its execution
-           * https://developer.chrome.com/blog/script-component/
-           */}
-          <Script
-            strategy='afterInteractive'
-            src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID_V4}`}
-          />
           <NextScript />
         </body>
       </Html>

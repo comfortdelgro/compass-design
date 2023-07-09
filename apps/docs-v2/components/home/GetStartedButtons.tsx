@@ -1,24 +1,14 @@
-import CheckRounded from '@mui/icons-material/CheckRounded'
-import ContentCopyRounded from '@mui/icons-material/ContentCopyRounded'
-import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded'
-import Box, {BoxProps} from '@mui/material/Box'
-import Button from '@mui/material/Button'
+import {Box, Button} from '@comfortdelgro/react-compass'
 import copy from 'clipboard-copy'
-import Link from 'next/link'
 import * as React from 'react'
 
-interface GetStartedButtonsProps extends BoxProps {
-  installation?: string
-  to?: string
-}
+import Copy from '@comfortdelgro/compass-icons/react/copy'
+import ArrowRightFilled from '@comfortdelgro/compass-icons/react/filled/arrow-right-filled'
+import Tick from '@comfortdelgro/compass-icons/react/tick'
 
-export default function GetStartedButtons(props: GetStartedButtonsProps) {
+export default function GetStartedButtons() {
   const [copied, setCopied] = React.useState(false)
-  const {
-    installation = 'npm install @comfortdelgro/react-compass',
-    to = '/getting-started/',
-    ...other
-  } = props
+  const installation = 'npm install @comfortdelgro/react-compass'
   const handleCopy = () => {
     setCopied(true)
     copy(installation).then(() => {
@@ -26,48 +16,26 @@ export default function GetStartedButtons(props: GetStartedButtonsProps) {
     })
   }
   return (
-    <Box
-      {...other}
-      sx={{
-        display: 'flex',
-        flexWrap: {xs: 'wrap', md: 'nowrap'},
-        '&& > *': {
-          minWidth: {xs: '100%', md: '0%'},
-        },
-        ...other.sx,
-      }}
-    >
-      <Button
-        href={to}
-        component={Link}
-        size='large'
-        variant='contained'
-        endIcon={<KeyboardArrowRightRounded />}
-        sx={{
-          flexShrink: 0,
-          mr: {xs: 0, md: 2},
-          mb: {xs: 2, md: 0},
-        }}
-      >
+    <Box>
+      <Button size='lg' variant='primary' rightIcon={<ArrowRightFilled />}>
         Get started
       </Button>
       <Button
-        size='large'
-        // @ts-expect-error
-        variant='code'
-        endIcon={
-          copied ? <CheckRounded color='primary' /> : <ContentCopyRounded />
-        }
+        size='lg'
+        variant='secondary'
+        rightIcon={copied ? <Tick color='primary' /> : <Copy />}
         onClick={handleCopy}
-        sx={{
-          maxWidth: '324px',
+        css={{
           display: 'inline-block',
           justifyContent: 'start',
           overflowX: 'hidden',
           whiteSpace: 'nowrap',
           textOverflow: 'ellipsis',
           position: 'relative',
-          pr: 5,
+          background: '#f4f6f9',
+          color: '#2d3843',
+          fontWeight: 400,
+          marginLeft: 10,
         }}
       >
         {installation}

@@ -1,13 +1,9 @@
-import {styled} from '@mui/material/styles'
+import {styled} from '@comfortdelgro/react-compass'
 
-const GradientText = styled('span')<{
-  color?: 'primary' | 'error' | 'success' | 'warning'
-}>(({theme, color = 'primary'}) => ({
-  background: `linear-gradient(to right, ${
-    (theme.vars || theme).palette[color].main
-  }, ${(theme.vars || theme).palette[color][700]})`,
+const GradientText = styled('span', {
+  background: 'linear-gradient(to right, #007FFF, #0059B2)',
   WebkitBackgroundClip: 'text',
   WebkitTextFillColor: 'transparent',
-}))
+})
 
 export default GradientText
