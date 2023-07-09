@@ -2,7 +2,7 @@ import Router from 'next/router'
 import * as React from 'react'
 import {pathnameToLanguage} from 'utils/helpers'
 
-export function shouldHandleLinkClick(event) {
+export function shouldHandleLinkClick(event: MouseEvent) {
   if (
     event.defaultPrevented ||
     event.button !== 0 || // ignore everything but left-click
@@ -16,7 +16,7 @@ export function shouldHandleLinkClick(event) {
   return false
 }
 
-function handleClick(event) {
+function handleClick(event: any) {
   let activeElement = event.target
   while (
     activeElement?.nodeType === Node.ELEMENT_NODE &&
