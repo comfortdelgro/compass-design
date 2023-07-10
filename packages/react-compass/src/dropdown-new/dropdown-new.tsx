@@ -6,7 +6,14 @@ import {
   useFloating,
   useInteractions,
 } from '@floating-ui/react'
-import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react'
+import React, {
+  Key,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
@@ -14,10 +21,10 @@ import {
   DropdownItemKey,
   SelectedItemDropdown,
 } from './dropdown-new-context'
-import DropdownFlag from './dropdown-new-flag'
 import DropdownNewItem from './dropdown-new-item'
 import DropdownNewList from './dropdown-new-list'
 import DropdownComboBox from './dropdown-new.combobox'
+import DropdownFlag from './dropdown-new.flag'
 import DropdownHeader from './dropdown-new.header'
 import DropdownSection from './dropdown-new.section'
 import DropdownSelect from './dropdown-new.select'
@@ -44,8 +51,8 @@ import {
 
 interface Props extends StyledComponentProps {
   defaultOpen?: boolean
-  selectedKey?: string | number
-  defaultSelectedKey?: string | number
+  selectedKey?: Key
+  defaultSelectedKey?: Key
   shouldDeselect?: boolean
   allowsCustomValue?: boolean
   type?: 'select' | 'combobox' | 'flag'
@@ -62,14 +69,15 @@ interface Props extends StyledComponentProps {
   placeholder?: string
   errorMessage?: string
   numberOfRows?: number
-  disabledKeys?: Array<string | number>
+  disabledKeys?: Key[]
   children?: React.ReactNode
   description?: React.ReactNode
+  disableClearable?: boolean
   onBlur?: () => void
   onFocus?: () => void
   onLoadMore?: () => void
   onOpenChange?: (isOpen: boolean) => void
-  onSelectionChange?: (key: string | number) => void
+  onSelectionChange?: (key: Key) => void
 }
 
 export const Icon = () => (
@@ -110,6 +118,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     isDisabled = false,
     shouldDeselect = false,
     allowsCustomValue = false,
+    disableClearable = false,
     prefix = null,
     onSelectionChange,
     onFocus,
@@ -122,7 +131,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     React.useState<SelectedItemDropdown | null>(null)
   const [selectedItemBackup, setSelectedItemBackup] =
     React.useState<SelectedItemDropdown | null>(null)
-  const [focusKey, setFocusKey] = React.useState<string | number | undefined>(
+  const [focusKey, setFocusKey] = React.useState<Key | undefined>(
     selectedKey || defaultSelectedKey,
   )
   const [searchValue, setSearchValue] = useState<string>('')
@@ -217,6 +226,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
               setOpen(false)
               // Deselect item
               if (
+                !disableClearable &&
                 shouldDeselect &&
                 selectedItem?.value === focusedItem.props.value
               ) {
@@ -246,7 +256,14 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           break
       }
     },
-    [focusKey, children, selectedItem, dropdownItemKeys],
+    [
+      disableClearable,
+      shouldDeselect,
+      focusKey,
+      children,
+      selectedItem,
+      dropdownItemKeys,
+    ],
   )
 
   useEffect(() => {
@@ -472,38 +489,42 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     }
   }, [type, open])
 
-  const handleDropdownItemClick = (selectedItem: SelectedItemDropdown) => {
+  const handleDropdownItemClick = (currentItem: SelectedItemDropdown) => {
     if (isReadOnly) {
       return
     }
     setOpen(false)
     // Select clear item
-    if (!selectedItem.value) {
+    if (!disableClearable && !currentItem.value) {
       setSelectedItem(null)
       onSelectionChange?.('')
       return
     }
     // Deselect item
-    if (shouldDeselect && selectedItem.value === selectedItem.value) {
+    if (
+      !disableClearable &&
+      shouldDeselect &&
+      selectedItem?.value === currentItem.value
+    ) {
       setSelectedItem(null)
       onSelectionChange?.('')
       return
     }
 
-    if (selectedItem.value !== selectedItem.value) {
-      onSelectionChange?.(selectedItem.value)
+    if (selectedItem?.value !== currentItem.value) {
+      onSelectionChange?.(currentItem.value)
     }
-    setSelectedItem(selectedItem)
-    setSelectedItemBackup(selectedItem)
+    setSelectedItem(currentItem)
+    setSelectedItemBackup(currentItem)
     if (['combobox', 'flag'].includes(type)) {
       if (inputRef.current) {
         inputRef.current.value = textContent(
-          selectedItem.displayValue as React.ReactElement,
+          currentItem.displayValue as React.ReactElement,
         )
         inputRef.current.blur()
       }
       setSearchValue(
-        textContent(selectedItem.displayValue as React.ReactElement),
+        textContent(currentItem.displayValue as React.ReactElement),
       )
     }
   }
