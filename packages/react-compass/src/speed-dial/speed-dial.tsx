@@ -45,6 +45,10 @@ const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
 
     const [isOpen, setIsOpen] = useState(false)
 
+    const toggleOpen = () => {
+      setIsOpen((prev) => !prev)
+    }
+
     const handleMouseEnter = () => {
       setIsOpen(true)
     }
@@ -107,6 +111,7 @@ const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
           className={`speed-dial__trigger ${isOpen ? 'open' : ''}`}
           onMouseEnter={handleMouseEnter}
           onFocus={handleMouseEnter}
+          onClick={toggleOpen}
           aria-expanded={isOpen}
           aria-haspopup={true}
         >
