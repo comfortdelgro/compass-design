@@ -7,13 +7,23 @@ githubLabel: 'component: avatar'
 
 # Avatar
 
-<p class="description">Avatars are found throughout material design with uses in everything from tables to dialog menus.</p>
+<p class="description">Avatars can be used in everything including a person's profile picture, dialog menu, ext.</p>
 
-{{"component": "components/common/ComponentLinkHeader.js"}}
+{{"component": "components/common/ComponentLinkHeader.tsx"}}
+
+```jsx
+import {Avatar} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```jsx
+import Avatar from '@comfortdelgro/react-compass/avatar'
+```
 
 ## Image avatars
 
-Image avatars can be created by passing standard `img` props `src` or `srcSet` to the component.
+Image avatars can be created by passing standard `image` props to the component.
 
 {{"demo": "ImageAvatars.js"}}
 
