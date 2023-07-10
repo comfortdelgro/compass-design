@@ -22,8 +22,29 @@ export type DropdownFlagProps = Props & DropdownVariantProps
 
 const DropdownFlag = React.forwardRef<HTMLDivElement, DropdownFlagProps>(
   (props, ref) => {
+    const {flagKeyType, onSelectionChange, onCountryChange, ...delegated} =
+      props
+
+    const handleCountryChange = React.useCallback(
+      (c: React.Key) => {
+        const country = countries.find((item) => item['alpha-3'] === c)
+        if (country) {
+          if (flagKeyType) {
+            onSelectionChange?.(country[flagKeyType])
+          }
+          onCountryChange?.(country)
+        }
+      },
+      [flagKeyType, onSelectionChange, onCountryChange],
+    )
+
     return (
-      <DropdownNew {...props} ref={ref} type='flag'>
+      <DropdownNew
+        ref={ref}
+        type='flag'
+        onSelectionChange={handleCountryChange}
+        {...delegated}
+      >
         {countries.map((country) => (
           <DropdownNewItem
             key={country['alpha-3']}

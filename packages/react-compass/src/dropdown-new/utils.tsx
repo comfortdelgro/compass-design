@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Key} from 'react'
 import {pickChild} from '../utils/pick-child'
 import {DropdownItemKey} from './dropdown-new-context'
 import {DropdownItemProps} from './dropdown-new-item'
@@ -28,8 +28,8 @@ export function textContent(
 
 const findItemByValue = (
   items: Array<React.ReactElement<DropdownItemProps>>,
-  value: string | number,
-  disabledKeys: Array<string | number> = [],
+  value: Key,
+  disabledKeys: Array<Key> = [],
 ): React.ReactElement<DropdownItemProps> | null => {
   for (let index = 0; index < items.length; index++) {
     const item = items[index]
@@ -63,7 +63,7 @@ const findItemByValue = (
  * @param dropdownItemKeys All keys of Dropdown.Item elements
  */
 export const getItemAbove = (
-  key: string | number,
+  key: Key,
   children?: React.ReactNode,
   dropdownItemKeys: DropdownItemKey[] = [],
 ) => {
@@ -99,7 +99,7 @@ export const getItemAbove = (
  * @param dropdownItemKeys All keys of Dropdown.Item elements
  */
 export const getItemBelow = (
-  key: string | number,
+  key: Key,
   children?: React.ReactNode,
   dropdownItemKeys: DropdownItemKey[] = [],
 ) => {
@@ -180,10 +180,7 @@ export const getLastItem = (
  * @param key current key
  * @param children All Dropdown.Item elements
  */
-export const getItemByKey = (
-  key: string | number,
-  children?: React.ReactNode,
-) => {
+export const getItemByKey = (key: Key, children?: React.ReactNode) => {
   // Pick Dropdown.Item in children except for DropdownHeader
   const {rest: dropdownItems} = pickChild<typeof DropdownHeader>(
     children,

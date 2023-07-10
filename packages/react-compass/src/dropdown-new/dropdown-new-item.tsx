@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useMemo, useRef} from 'react'
+import React, {Key, useContext, useEffect, useMemo, useRef} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {DropdownContext} from './dropdown-new-context'
 import {
@@ -16,7 +16,7 @@ interface Props extends StyledComponentProps {
   type?: 'icon' | 'color'
   leftIcon?: React.ReactNode
   rightIcon?: React.ReactNode
-  value: string | number
+  value: Key
   textValue?: string
   checkmark?: 'none' | 'checkbox' | 'tick'
   flagName?: string
@@ -92,7 +92,7 @@ const DropdownNewItem: React.FC<DropdownItemProps> = (
   useEffect(() => {
     if (focusKey && focusKey.toString() === value.toString()) {
       if (ref.current) {
-        ref.current.scrollIntoView({inline: 'end'})
+        ref.current.scrollIntoView({block: 'end'})
       }
     }
   }, [focusKey, value])
@@ -101,14 +101,14 @@ const DropdownNewItem: React.FC<DropdownItemProps> = (
     if (selectedKey && selectedKey.toString() === value.toString()) {
       setSelectedItem({value: value.toString(), displayValue: children})
       if (ref.current) {
-        ref.current.scrollIntoView({inline: 'end'})
+        ref.current.scrollIntoView({block: 'end'})
       }
     }
   }, [selectedKey, value])
 
   useEffect(() => {
     if (open && isSeleted && ref.current) {
-      ref.current.scrollIntoView({inline: 'end'})
+      ref.current.scrollIntoView({block: 'end'})
     }
   }, [open, isSeleted])
 
