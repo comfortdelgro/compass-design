@@ -17,7 +17,7 @@ export const FormLayoutRow = React.forwardRef<
   FormLayoutRowProps
 >((props, ref) => {
   const formRef = useDOMRef<HTMLDivElement>(ref)
-  const {children, columns = 3, css = {}, ...delegated} = props
+  const {children, columns = 1, css = {}, ...delegated} = props
 
   return (
     <StyledFormLayoutRow

@@ -1,24 +1,15 @@
-import React from 'react'
-
-import Checkbox from '../checkbox'
-import Divider from '../divider'
-import Dropdown from '../dropdown'
-import Radio from '../radio'
-import TextField from '../textfield'
-import Upload from '../upload'
-import FormLayout from './index'
-
-export const Default: React.FC = () => {
+import {
+  Checkbox,
+  Divider,
+  Dropdown,
+  FormLayout,
+  Radio,
+  TextField,
+  Upload,
+} from '@comfortdelgro/react-compass'
+export const FormLayoutComponent: React.FC = () => {
   return (
     <FormLayout>
-      <FormLayout.Row>
-        <FormLayout.Explaination
-          title={'Create New Time/Date Policy'}
-          description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-        />
-      </FormLayout.Row>
-      <Divider />
       <FormLayout.Row columns={3}>
         <FormLayout.Group>
           <Dropdown.Select label='Salutation'>
@@ -65,7 +56,7 @@ export const Default: React.FC = () => {
           <FormLayout.Explaination
             title={'Create New Time/Date Policy'}
             description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.'
           />
         </FormLayout.Group>
         <FormLayout.Group>
@@ -82,10 +73,12 @@ export const Default: React.FC = () => {
           <FormLayout.Explaination
             title={'Create New Time/Date Policy'}
             description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.'
           />
         </FormLayout.Group>
-        <FormLayout.Group>
+        <FormLayout.Group
+          css={{display: 'flex', flexDirection: 'column', gap: '$4'}}
+        >
           <Checkbox>Unselected</Checkbox>
           <Checkbox>Unselected</Checkbox>
           <Checkbox>Unselected</Checkbox>

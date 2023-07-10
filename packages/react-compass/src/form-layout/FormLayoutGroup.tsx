@@ -6,7 +6,6 @@ import {StyledFormLayoutGroup} from './FormLayout.styles'
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
   css?: CSS
-  columns?: 1 | 2 | 3
 }
 
 export type FormLayoutGroupProps = Props &

@@ -25,6 +25,9 @@ export const StyledFormLayoutRow = styled('div', {
 })
 export const StyledFormLayoutGroup = styled('div', {
   width: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '$4',
 })
 export const StyledFormLayoutExplaination = styled('div', {
   width: '100%',
