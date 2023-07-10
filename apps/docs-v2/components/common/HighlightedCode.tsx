@@ -6,7 +6,10 @@ import MarkdownElement from 'components/common/MarkdownElement'
 import * as React from 'react'
 import {useCodeCopy} from 'utils/CodeCopy'
 
-const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
+const HighlightedCode = React.forwardRef(function HighlightedCode(
+  props: any,
+  ref,
+) {
   const {
     copyButtonHidden = false,
     copyButtonProps,

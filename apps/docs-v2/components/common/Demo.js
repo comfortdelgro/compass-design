@@ -13,7 +13,6 @@ import ReactRunner from 'components/common/ReactRunner'
 import {CODE_STYLING, CODE_VARIANTS} from 'constants'
 import BrandingProvider from 'docs/src/BrandingProvider'
 import {useRouter} from 'next/router'
-import PropTypes from 'prop-types'
 import * as React from 'react'
 import {useCodeStyling} from 'utils/codeStylingSolution'
 import {useCodeVariant} from 'utils/codeVariant'
@@ -617,15 +616,4 @@ export default function Demo(props) {
       </BrandingProvider>
     </Root>
   )
-}
-
-Demo.propTypes = {
-  demo: PropTypes.object.isRequired,
-  /**
-   * The options provided with: {{"demo": "Name.js", …demoOptions}}
-   */
-  demoOptions: PropTypes.object.isRequired,
-  disableAd: PropTypes.bool.isRequired,
-  githubLocation: PropTypes.string.isRequired,
-  mode: PropTypes.string, // temporary, just to make Joy docs work.
 }
