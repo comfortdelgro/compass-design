@@ -12,14 +12,32 @@ export const StyledFormLayoutRow = styled('div', {
   variants: {
     columns: {
       1: {
-        gridTemplateColumns: 'auto',
+        gridTemplateColumns: '1fr',
       },
       2: {
-        gridTemplateColumns: 'auto auto',
+        gridTemplateColumns: '1fr 1fr',
       },
       3: {
-        gridTemplateColumns: 'auto auto auto',
+        gridTemplateColumns: '1fr 1fr 1fr',
       },
     },
   },
+})
+export const StyledFormLayoutGroup = styled('div', {
+  width: '100%',
+})
+export const StyledFormLayoutExplaination = styled('div', {
+  width: '100%',
+})
+export const StyledFormExplainationTitle = styled('div', {
+  fontSize: '16px',
+  fontWeight: 600,
+  lineHeight: '24px',
+  color: '$primaryText',
+})
+export const StyledFormExplainationDescription = styled('div', {
+  fontSize: '14px',
+  fontWeight: 400,
+  lineHeight: '21px',
+  color: '$gray70',
 })

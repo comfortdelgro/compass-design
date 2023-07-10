@@ -2,6 +2,9 @@ import React from 'react'
 import {CSS, StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {StyledFormLayout} from './FormLayout.styles'
+import FormLayoutExplaination from './FormLayoutExplaination'
+import {FormLayoutGroup} from './FormLayoutGroup'
+import {FormLayoutRow} from './FormLayoutRow'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
@@ -23,3 +26,9 @@ export const FormLayout = React.forwardRef<HTMLFormElement, FormLayoutProps>(
     )
   },
 )
+
+export default FormLayout as typeof FormLayout & {
+  Row: typeof FormLayoutRow
+  Group: typeof FormLayoutGroup
+  Explaination: typeof FormLayoutExplaination
+}
