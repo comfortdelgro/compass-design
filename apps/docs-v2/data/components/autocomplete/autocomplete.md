@@ -1,16 +1,24 @@
 ---
 productId: material-ui
 title: React Autocomplete component
-components: TextField, Popper, Autocomplete
-githubLabel: 'component: autocomplete'
-waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
+components: TextField
 ---
 
 # Autocomplete
 
-<p class="description">The autocomplete is a normal text input enhanced by a panel of suggested options.</p>
+<p class="description">Auto-complete is a text input with a list of suggestions that users can select from.</p>
 
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
+
+```jsx
+import {AutoComplete} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```jsx
+import AutoComplete from '@comfortdelgro/react-compass/auto-complete'
+```
 
 ## Combo box
 

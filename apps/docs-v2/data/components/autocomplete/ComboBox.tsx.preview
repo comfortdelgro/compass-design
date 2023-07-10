@@ -1,7 +1,14 @@
-<Autocomplete
-  disablePortal
-  id="combo-box-demo"
-  options={top100Films}
-  sx={{ width: 300 }}
-  renderInput={(params) => <TextField {...params} label="Movie" />}
-/>
+<AutoComplete
+  searchedValue={inputValue}
+  debounce={300}
+  onSearch={(value) => onSearchHandler(value)}
+  options={searchResults}
+  onSelect={(value) => onSelectHandler(value)}
+>
+  <SearchField
+    placeholder='Search'
+    onChange={(newValue) => setInputValue(newValue)}
+    value={inputValue}
+    css={{width: '10rem'}}
+  />
+</AutoComplete>

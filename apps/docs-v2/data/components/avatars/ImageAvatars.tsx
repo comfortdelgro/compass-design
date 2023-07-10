@@ -1,13 +1,23 @@
-import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Stack from '@mui/material/Stack';
+import {Avatar, Flexbox} from '@comfortdelgro/react-compass'
 
 export default function ImageAvatars() {
   return (
-    <Stack direction="row" spacing={2}>
-      <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-      <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
-      <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
-    </Stack>
-  );
+    <Flexbox css={{justifyContent: 'center'}}>
+      <Avatar
+        label='Albert Einstein'
+        image='https://i.pravatar.cc/150?img=32'
+        size='lg'
+      />
+      <Avatar
+        label='Albert Einstein'
+        image='https://i.pravatar.cc/150?img=31'
+        size='lg'
+      />
+      <Avatar
+        label='Albert Einstein'
+        image='https://i.pravatar.cc/150?img=60'
+        size='lg'
+      />
+    </Flexbox>
+  )
 }
