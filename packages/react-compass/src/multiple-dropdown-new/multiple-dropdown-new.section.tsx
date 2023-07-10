@@ -14,12 +14,12 @@ import {
 } from './multiple-dropdown-new.styles'
 
 export interface DropdownSectionBase extends StyledComponentProps {
-  id: number | string
+  id?: number | string
   title?: React.ReactNode
   'aria-label'?: string
   children: React.ReactNode
   isClickable?: boolean
-  onClick?: () => void
+  onClick?: (title: React.ReactNode) => void
   isChecked?: boolean
   checkmark?: 'checkbox' | 'tick'
 }
@@ -33,12 +33,13 @@ const MultipleDropdownSection = React.forwardRef<
   DropdownSectionProps
 >((props, ref) => {
   const {
-    id,
+    id = `cdg-element-${Math.random().toString(36).substring(2)}`,
     children,
     title,
     isClickable,
     css = {},
     checkmark = 'checkbox',
+    isChecked,
     onClick,
   } = props
 
@@ -47,7 +48,7 @@ const MultipleDropdownSection = React.forwardRef<
   )
 
   const [checking, setChecking] = React.useState(
-    selectedSectionIds.includes(id),
+    isChecked ?? selectedSectionIds.includes(id),
   )
 
   const DropdownSectionRef = useDOMRef<HTMLDivElement>(ref)
@@ -56,7 +57,7 @@ const MultipleDropdownSection = React.forwardRef<
     if (!isClickable) {
       return
     }
-    onClick?.()
+    onClick?.(title)
     const itemsInSection: SelectedItemDropdown[] = React.Children.toArray(
       children,
     ).map((child) => {
@@ -81,7 +82,11 @@ const MultipleDropdownSection = React.forwardRef<
           onClick={handleOnClick}
         >
           {title}
-          <StyledRightIcon isSelected={checking} checkmark={checkmark}>
+          <StyledRightIcon
+            isSelected={checking}
+            checkmark={checkmark}
+            className='cdg-multiple-dropdown-section'
+          >
             {checkmark === 'checkbox' ? (
               <div>
                 <Tick />

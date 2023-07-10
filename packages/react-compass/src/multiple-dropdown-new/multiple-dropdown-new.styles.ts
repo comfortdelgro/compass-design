@@ -397,6 +397,11 @@ export const StyledSectionContent = styled('div', {
           backgroundColor: '$cdgBlue20',
         },
       },
+      false: {
+        '.cdg-multiple-dropdown-section': {
+          display: 'none',
+        },
+      },
     },
   },
 })
