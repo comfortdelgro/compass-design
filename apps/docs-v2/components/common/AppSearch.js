@@ -88,7 +88,6 @@ function NewStartScreen() {
           href: '/getting-started/installation/',
         },
         {name: 'Usage', href: '/getting-started/usage/'},
-        {name: 'Learn', href: '/getting-started/learn/'},
       ],
     },
     {
