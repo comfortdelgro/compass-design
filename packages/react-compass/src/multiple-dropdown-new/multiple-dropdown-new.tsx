@@ -18,6 +18,7 @@ import {
 import MultipleDropdownNewItem from './multiple-dropdown-new-item'
 import MultipleDropdownList from './multiple-dropdown-new-list'
 import MultipleDropdownHeader from './multiple-dropdown-new.header'
+import MultipleDropdownSection from './multiple-dropdown-new.section'
 import {
   DropdownVariantProps,
   StyledDropdown,
@@ -131,6 +132,9 @@ const MultipleDropdown = React.forwardRef<
   const [focused, setFocused] = React.useState(false)
   const [search, setSearch] = React.useState('')
   const [focusKey, setFocusKey] = React.useState<string | number | undefined>()
+  const [selectedSectionIds, setSelectedSectionIds] = React.useState<
+    Array<string | number>
+  >([])
   const [selectedItems, setSelectedItems] = React.useState<
     SelectedItemDropdown[]
   >([])
@@ -214,24 +218,22 @@ const MultipleDropdown = React.forwardRef<
   const handleDropdownItemClick = React.useCallback(
     (item: SelectedItemDropdown) => {
       if (!isReadOnly) {
-        setSelectedItems((currentItems) => {
-          const itemIndex = currentItems.findIndex(
-            (currentItem) =>
-              currentItem.value.toString() === item.value.toString(),
-          )
-          if (itemIndex === -1) {
-            currentItems.push(item)
-          } else {
-            currentItems.splice(itemIndex, 1)
-          }
-
-          onSelectionChange?.(currentItems.map((item) => item.value))
-          return [...currentItems]
-        })
+        const newSelectedItems = [...selectedItems]
+        const itemIndex = newSelectedItems.findIndex(
+          (currentItem) =>
+            currentItem.value.toString() === item.value.toString(),
+        )
+        if (itemIndex === -1) {
+          newSelectedItems.push(item)
+        } else {
+          newSelectedItems.splice(itemIndex, 1)
+        }
+        setSelectedItems([...newSelectedItems])
+        onSelectionChange?.(newSelectedItems.map((item) => item.value))
         inputRef.current?.focus()
       }
     },
-    [isReadOnly],
+    [isReadOnly, selectedItems],
   )
 
   const handleKeyDown = React.useCallback(
@@ -388,6 +390,43 @@ const MultipleDropdown = React.forwardRef<
     [erroredKeys],
   )
 
+  const handleDropdownSectionClick = (
+    items: SelectedItemDropdown[],
+    checking: boolean,
+    id: number | string,
+  ) => {
+    const newSelectedItems = [...selectedItems]
+    items.forEach((item) => {
+      if (!isReadOnly) {
+        const itemIndex = newSelectedItems.findIndex(
+          (currentItem) =>
+            currentItem.value.toString() === item.value.toString(),
+        )
+        if (itemIndex === -1) {
+          if (checking) {
+            newSelectedItems.push(item)
+          }
+        } else {
+          if (!checking) {
+            newSelectedItems.splice(itemIndex, 1)
+          }
+        }
+        setSelectedSectionIds((sectionIds) => {
+          const sectionIdsSet = new Set(sectionIds)
+          if (checking) {
+            sectionIdsSet.add(id)
+          } else {
+            sectionIdsSet.delete(id)
+          }
+          return [...sectionIdsSet]
+        })
+        setSelectedItems([...newSelectedItems])
+        onSelectionChange?.(newSelectedItems.map((item) => item.value))
+        inputRef.current?.focus()
+      }
+    })
+  }
+
   return (
     <StyledDropdownWrapper
       css={css}
@@ -408,7 +447,10 @@ const MultipleDropdown = React.forwardRef<
           setSelectedItems,
           dropdownItemKeys,
           setDropdownItemKeys,
+          selectedSectionIds,
+          setSelectedSectionIds,
           onItemClick: handleDropdownItemClick,
+          onSectionClick: handleDropdownSectionClick,
         }}
       >
         {label && (
@@ -509,5 +551,5 @@ const MultipleDropdown = React.forwardRef<
 export default MultipleDropdown as typeof MultipleDropdown & {
   Item: typeof MultipleDropdownNewItem
   Header: typeof MultipleDropdownHeader
-  // Section: typeof DropdownSection
+  Section: typeof MultipleDropdownSection
 }

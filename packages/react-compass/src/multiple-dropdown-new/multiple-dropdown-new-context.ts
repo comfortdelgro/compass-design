@@ -22,6 +22,15 @@ export interface MultipleDropdownContextType {
   setDropdownItemKeys?: React.Dispatch<React.SetStateAction<DropdownItemKey[]>>
   setSelectedItems: React.Dispatch<React.SetStateAction<SelectedItemDropdown[]>>
   onItemClick: (item: SelectedItemDropdown) => void
+  onSectionClick: (
+    items: SelectedItemDropdown[],
+    checking: boolean,
+    id: number | string,
+  ) => void
+  selectedSectionIds: Array<string | number>
+  setSelectedSectionIds: React.Dispatch<
+    React.SetStateAction<Array<string | number>>
+  >
 }
 
 export const MultipleDropdownContext =
@@ -32,10 +41,17 @@ export const MultipleDropdownContext =
     disabledKeys: [],
     selectedKeys: [],
     defaultSelectedKeys: [],
+    selectedSectionIds: [],
+    setSelectedSectionIds: () => {
+      //
+    },
     setSelectedItems: () => {
       //
     },
     onItemClick: () => {
+      //
+    },
+    onSectionClick: () => {
       //
     },
   })

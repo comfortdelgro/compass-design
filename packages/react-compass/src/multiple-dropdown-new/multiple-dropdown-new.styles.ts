@@ -29,8 +29,6 @@ export const StyledDropdown = styled('div', {
   '.dropdown-icon': {
     cursor: 'pointer',
     flexShrink: 0,
-    // width: '$6',
-    // height: '$6',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -371,5 +369,40 @@ export const StyledHelperText = styled('div', {
     },
   },
 })
+
+export const StyledDropdownSection = styled('div', {
+  // reset
+  appearance: 'none',
+  border: 'none',
+  backgroundColor: 'transparent',
+  boxSizing: 'border-box',
+  margin: '0px',
+  padding: '0px',
+})
+
+export const StyledSectionContent = styled('div', {
+  backgroundColor: '$cdgBlue10',
+  padding: '$2 $4',
+  fontSize: '$label2',
+  fontWeight: '$semibold',
+  color: '$gray100',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  variants: {
+    isClickable: {
+      true: {
+        cursor: 'pointer',
+        '&:hover': {
+          backgroundColor: '$cdgBlue20',
+        },
+      },
+    },
+  },
+})
+
+export type DropdownItemVariantProps = VariantProps<
+  typeof StyledDropdownSection
+>
 
 export type DropdownVariantProps = VariantProps<typeof StyledDropdownWrapper>

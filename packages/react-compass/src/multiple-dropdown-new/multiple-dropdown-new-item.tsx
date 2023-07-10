@@ -86,7 +86,7 @@ const MultipleDropdownNewItem: React.FC<MultipleDropdownItemProps> = (
   React.useEffect(() => {
     if (focusKey && focusKey.toString() === value.toString()) {
       if (ref.current) {
-        ref.current.scrollIntoView({inline: 'end'})
+        ref.current.scrollIntoView({block: 'nearest', behavior: 'smooth'})
       }
     }
   }, [focusKey, value])
