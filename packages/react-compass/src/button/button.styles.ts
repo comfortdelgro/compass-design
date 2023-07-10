@@ -79,6 +79,7 @@ export const StyledButtonContent = styled('div', {
 })
 
 export const StyledButton = styled('button', {
+  textDecoration: 'none',
   position: 'relative',
   flexShrink: 0,
 

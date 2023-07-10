@@ -10,6 +10,9 @@ import {
 import Ripple from './ripple'
 
 interface Props extends StyledComponentProps {
+  href?: string
+  hrefTarget?: string
+  hrefRel?: string
   children?: React.ReactNode
   className?: string
   leftIcon?: React.ReactNode
@@ -50,6 +53,10 @@ export type ButtonProps = Props &
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
     const {
+      // Add link redirect
+      href,
+      hrefTarget,
+      hrefRel,
       // StyledComponentProps
       css = {},
       // ComponentProps
@@ -82,6 +89,16 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const componentProps = () => {
       if (loading) return {className, css, ...variantProps}
+      if (href || hrefTarget || hrefRel)
+        return {
+          className,
+          css,
+          ...{as: 'a', ...delegated},
+          ...variantProps,
+          href,
+          target: hrefTarget,
+          rel: hrefRel,
+        }
       return {
         className,
         css,
