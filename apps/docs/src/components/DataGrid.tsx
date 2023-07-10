@@ -6,13 +6,14 @@ import {
 
 import {
   Button,
+  ColumnConfig,
   DataGrid,
   DataGridOptions,
   Icon,
   Pagination,
   SearchField,
+  StateSorting,
 } from '@comfortdelgro/react-compass'
-import {ColumnConfig, StateSorting} from '@comfortdelgro/react-compass'
 import React, {useState} from 'react'
 import StatusComponent from './person-status'
 
@@ -276,7 +277,12 @@ export const DataGridStory: React.FC = () => {
               gap: '0.5rem',
             }}
           >
-            <Button variant='primary' className='c-hKssGC-hYGuEl-variant-primary'>Button</Button>
+            <Button
+              variant='primary'
+              className='c-hKssGC-hYGuEl-variant-primary'
+            >
+              Button
+            </Button>
             <Button variant='secondary'>Button</Button>
             <Button variant='ghost'>
               <Icon icon={faTrashAlt} />
