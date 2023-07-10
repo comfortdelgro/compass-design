@@ -91,7 +91,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       if (loading) return {className, css, ...variantProps}
       if (href || hrefTarget || hrefRel)
         return {
-          className,
+          className: `cdg-link-button ${className ? className : ''}`,
           css,
           ...{as: 'a', ...delegated},
           ...variantProps,

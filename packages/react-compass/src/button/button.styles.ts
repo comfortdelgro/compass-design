@@ -144,7 +144,7 @@ export const StyledButton = styled('button', {
         background: '$cdgBlue',
         color: '$whiteText',
         borderColor: '$cdgBlue',
-        '&:hover': {
+        '&.cdg-link-button:hover': {
           background: '$cdgBlue120',
           borderColor: '$cdgBlue120',
         },
@@ -157,7 +157,7 @@ export const StyledButton = styled('button', {
         background: 'transparent',
         color: '$cdgBlue',
         borderColor: '$cdgBlue',
-        '&:hover': {
+        '&.cdg-link-button:hover': {
           color: '$cdgBlue100',
           background: '$cdgBlue10',
           borderColor: '$cdgBlue120',
@@ -172,7 +172,7 @@ export const StyledButton = styled('button', {
         background: 'transparent',
         color: '$danger',
         borderColor: '$danger',
-        '&:hover': {
+        '&.cdg-link-button:hover': {
           background: '$dangerBg',
           borderColor: '$dangerBg',
         },
@@ -185,7 +185,7 @@ export const StyledButton = styled('button', {
         background: 'transparent',
         color: '$typeHeading',
         borderColor: 'transparent',
-        '&:hover': {
+        '&.cdg-link-button:hover': {
           color: '$cdgBlue',
           background: '$cdgBlue10',
         },
