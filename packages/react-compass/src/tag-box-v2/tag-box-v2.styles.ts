@@ -71,6 +71,13 @@ export const StyledTagContainer = styled('div', {
   backgroundColor: '$divider',
   width: 'fit-content',
   height: '2rem',
+  variants: {
+    isErrored: {
+      true: {
+        border: '1px solid $danger',
+      },
+    },
+  },
 })
 
 // create StyledButtonContainer to center button horizontally
@@ -194,11 +201,12 @@ export const StyledTagBoxV2 = styled('div', {
   padding: '0px',
   overflow: 'hidden',
   background: 'transparent',
+
   variants: {
     isErrored: {
       true: {
         [`${StyledContainer}`]: {
-          borderColor: 'red',
+          borderColor: '$danger',
         },
       },
       false: {},
@@ -219,13 +227,6 @@ export const StyledTagBoxV2 = styled('div', {
           borderWidth: '2px',
           borderStyle: 'solid',
           borderColor: '$cdgBlue100',
-        },
-      },
-      false: {
-        [`${StyledContainer}`]: {
-          borderWidth: '2px',
-          borderStyle: 'solid',
-          borderColor: '$gray30',
         },
       },
     },
