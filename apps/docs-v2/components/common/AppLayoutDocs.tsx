@@ -5,45 +5,30 @@ import AppTableOfContents from 'components/common/AppTableOfContents'
 import BackToTop from 'components/common/BackToTop'
 import EditPage from 'components/common/EditPage'
 import Head from 'components/common/Head'
-import {useRouter} from 'next/router'
-import {pathnameToLanguage} from 'utils/helpers'
 
-export default function AppLayoutDocs(props) {
-  const router = useRouter()
-  const {
-    BannerComponent,
-    children,
-    description,
-    disableAd = false,
-    disableLayout = false,
-    hasTabs = false,
-    location,
-    title,
-    toc,
-  } = props
+export default function AppLayoutDocs(props: any) {
+  const {children, description, location, title, toc} = props
 
   if (description === undefined) {
     throw new Error('Missing description in the page')
   }
 
-  const {canonicalAs} = pathnameToLanguage(router.asPath)
-  let productName = 'React Compass'
-
   return (
     <AppFrame>
       <Head
-        title={`${title} - ${productName}`}
+        title={`${title} - React Compass`}
         description={description}
         largeCard={false}
         card='https://github.com/comfortdelgro/compass-design'
       />
 
-      <Box css={{display: 'flex'}}>
+      <Box css={{display: 'flex', width: '100%'}}>
         <Box
           css={{
             padding: '$5 $16',
             maxHeight: 'calc(100vh - 51px)',
             overflowY: 'scroll',
+            width: '100%',
           }}
         >
           <EditPage sourceLocation={location} />

@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-globals */
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import Box from '@mui/material/Box'
@@ -7,7 +6,6 @@ import Divider from '@mui/material/Divider'
 import {styled} from '@mui/material/styles'
 import PageContext from 'components/common/PageContext'
 import Link from 'next/link'
-import PropTypes from 'prop-types'
 import * as React from 'react'
 
 const PaginationDiv = styled('div')(({theme}) => {
@@ -97,8 +95,4 @@ export default function AppLayoutDocsFooter(props) {
       </Box>
     </>
   )
-}
-
-AppLayoutDocsFooter.propTypes = {
-  tableOfContents: PropTypes.array,
 }

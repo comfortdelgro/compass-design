@@ -30,13 +30,14 @@ export default function AppFrame(props: {children: React.ReactNode}) {
   return (
     <>
       <MarkdownLinks />
-      <Box css={{maxWidth: '100vw'}}>
+      <Box css={{width: '100vw'}}>
         <AppHeader />
         <Box
           css={{
             display: 'flex',
             maxHeight: 'calc(100vh - 51px)',
             overflowY: 'hidden',
+            width: '100vw',
           }}
         >
           <AppNavDrawer />
