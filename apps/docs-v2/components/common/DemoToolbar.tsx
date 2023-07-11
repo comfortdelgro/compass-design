@@ -23,7 +23,6 @@ import Tooltip from '@mui/material/Tooltip'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import copy from 'clipboard-copy'
 import {CODE_STYLING, CODE_VARIANTS} from 'constants'
-import {useRouter} from 'next/router'
 import PropTypes from 'prop-types'
 import * as React from 'react'
 import {useCodeStyling, useSetCodeStyling} from 'utils/codeStylingSolution'
@@ -32,7 +31,6 @@ import {getCookie} from 'utils/helpers'
 import {useTranslate} from 'utils/i18n'
 import stylingSolutionMapping from 'utils/stylingSolutionMapping'
 import codeSandbox from '../sandbox/CodeSandbox'
-import stackBlitz from '../sandbox/StackBlitz'
 
 const Root = styled('div', {
   shouldForwardProp: (prop) =>
@@ -187,12 +185,6 @@ const ToggleButton = styled(MDToggleButton)(({theme}) => [
   }),
 ])
 
-/**
- * @param {React.Ref<HTMLElement>[]} controlRefs
- * @param {object} [options]
- * @param {(index: number) => boolean} [options.isFocusableControl] In case certain controls become unfocusable
- * @param {number} [options.defaultActiveIndex]
- */
 function useToolbar(controlRefs, options = {}) {
   const {defaultActiveIndex = 0, isFocusableControl = alwaysTrue} = options
   const [activeControlIndex, setActiveControlIndex] =
@@ -331,21 +323,15 @@ export default function DemoToolbar(props) {
     onCodeOpenChange,
     onResetDemoClick,
     openDemoSource,
-    showPreview,
   } = props
 
   const setCodeVariant = useSetCodeVariant()
   const styleSolution = useCodeStyling()
   const setCodeStyling = useSetCodeStyling()
   const t = useTranslate()
+  console.log({demo})
 
   const hasTSVariant = demo.rawTS
-  const renderedCodeVariant = () => {
-    if (codeVariant === CODE_VARIANTS.TS && hasTSVariant) {
-      return CODE_VARIANTS.TS
-    }
-    return CODE_VARIANTS.JS
-  }
 
   const handleCodeLanguageClick = (event, clickedCodeVariant) => {
     if (clickedCodeVariant !== null && codeVariant !== clickedCodeVariant) {
@@ -377,20 +363,19 @@ export default function DemoToolbar(props) {
     }
   }
 
-  const createHandleCodeSourceLink =
-    (anchor, codeVariantParam, stylingSolution) => async () => {
-      try {
-        await copy(
-          `${window.location.href.split('#')[0]}#${
-            stylingSolution ? `${stylingSolutionMapping[stylingSolution]}-` : ''
-          }${anchor}${codeVariantParam === CODE_VARIANTS.TS ? '.tsx' : '.js'}`,
-        )
-        setSnackbarMessage(t('copiedSourceLink'))
-        setSnackbarOpen(true)
-      } finally {
-        handleMoreClose()
-      }
+  const createHandleCodeSourceLink = (anchor, stylingSolution) => async () => {
+    try {
+      await copy(
+        `${window.location.href.split('#')[0]}#${
+          stylingSolution ? `${stylingSolutionMapping[stylingSolution]}-` : ''
+        }${anchor}.tsx`,
+      )
+      setSnackbarMessage(t('copiedSourceLink'))
+      setSnackbarOpen(true)
+    } finally {
+      handleMoreClose()
     }
+  }
 
   const [sourceHintSeen, setSourceHintSeen] = React.useState(false)
   React.useEffect(() => {
@@ -410,9 +395,9 @@ export default function DemoToolbar(props) {
 
   let showCodeLabel
   if (codeOpen) {
-    showCodeLabel = showPreview ? t('hideFullSource') : t('hideSource')
+    showCodeLabel = 'Hide the source'
   } else {
-    showCodeLabel = showPreview ? t('showFullSource') : t('showSource')
+    showCodeLabel = 'Show the source'
   }
 
   const controlRefs = [
@@ -436,77 +421,6 @@ export default function DemoToolbar(props) {
     defaultActiveIndex: 0,
     isFocusableControl,
   })
-
-  const devMenuItems = []
-  if (
-    process.env.DEPLOY_ENV === 'staging' ||
-    process.env.DEPLOY_ENV === 'pull-request'
-  ) {
-    /* eslint-disable material-ui/no-hardcoded-labels -- staging only */
-    // eslint-disable-next-line react-hooks/rules-of-hooks -- process.env never changes
-    const router = useRouter()
-
-    if (process.env.PULL_REQUEST_ID) {
-      devMenuItems.push(
-        <MenuItem
-          key='link-deploy-preview'
-          data-ga-event-category='demo'
-          data-ga-event-label={demo.gaLabel}
-          data-ga-event-action='link-deploy-preview'
-          component='a'
-          href={`https://deploy-preview-${process.env.PULL_REQUEST_ID}--${process.env.NETLIFY_SITE_NAME}.netlify.app${router.route}/#${demoName}`}
-          target='_blank'
-          rel='noopener nofollow'
-          onClick={handleMoreClose}
-        >
-          demo on PR #{process.env.PULL_REQUEST_ID}
-        </MenuItem>,
-      )
-    }
-
-    devMenuItems.push(
-      <MenuItem
-        key='link-next'
-        data-ga-event-category='demo'
-        data-ga-event-label={demo.gaLabel}
-        data-ga-event-action='link-next'
-        component='a'
-        href={`https://next--${process.env.NETLIFY_SITE_NAME}.netlify.app${router.route}/#${demoName}`}
-        target='_blank'
-        rel='noopener nofollow'
-        onClick={handleMoreClose}
-      >
-        demo on&#160;<code>next</code>
-      </MenuItem>,
-      <MenuItem
-        key='permalink'
-        data-ga-event-category='demo'
-        data-ga-event-label={demo.gaLabel}
-        data-ga-event-action='permalink'
-        component='a'
-        href={`${process.env.NETLIFY_DEPLOY_URL}${router.route}#${demoName}`}
-        target='_blank'
-        rel='noopener nofollow'
-        onClick={handleMoreClose}
-      >
-        demo permalink
-      </MenuItem>,
-      <MenuItem
-        key='link-master'
-        data-ga-event-category='demo'
-        data-ga-event-label={demo.gaLabel}
-        data-ga-event-action='link-master'
-        component='a'
-        href={`https://master--${process.env.NETLIFY_SITE_NAME}.netlify.app${router.route}/#${demoName}`}
-        target='_blank'
-        rel='noopener nofollow'
-        onClick={handleMoreClose}
-      >
-        demo on&#160;<code>master</code>
-      </MenuItem>,
-    )
-    /* eslint-enable material-ui/no-hardcoded-labels */
-  }
 
   const [stylingAnchorEl, setStylingAnchorEl] = React.useState(null)
   const stylingMenuOpen = Boolean(stylingAnchorEl)
@@ -536,7 +450,7 @@ export default function DemoToolbar(props) {
   }
 
   return (
-    <React.Fragment>
+    <>
       <Root
         aria-label={t('demoToolbarLabel')}
         {...toolbarProps}
@@ -568,7 +482,6 @@ export default function DemoToolbar(props) {
             <ToggleButtonGroup
               sx={{margin: '8px 0'}}
               exclusive
-              value={renderedCodeVariant()}
               onChange={handleCodeLanguageClick}
             >
               <ToggleButton
@@ -583,14 +496,13 @@ export default function DemoToolbar(props) {
               </ToggleButton>
               <ToggleButton
                 value={CODE_VARIANTS.TS}
-                disabled={!hasTSVariant}
                 aria-label={t('showTSSource')}
                 data-ga-event-category='demo'
                 data-ga-event-action='source-ts'
                 data-ga-event-label={demo.gaLabel}
                 {...getControlProps(2)}
               >
-                {t('TS')}
+                Typescript
               </ToggleButton>
             </ToggleButtonGroup>
           </Box>
@@ -615,43 +527,25 @@ export default function DemoToolbar(props) {
               <CodeRoundedIcon />
             </IconButton>
           </ToggleCodeTooltip>
-          {demoOptions.hideEditButton ? null : (
-            <React.Fragment>
-              <DemoTooltip title={t('codesandbox')} placement='bottom'>
-                <IconButton
-                  data-ga-event-category='demo'
-                  data-ga-event-label={demo.gaLabel}
-                  data-ga-event-action='codesandbox'
-                  onClick={() =>
-                    codeSandbox.createReactApp(demoData).openSandbox('/demo')
-                  }
-                  {...getControlProps(4)}
-                  sx={{borderRadius: 1}}
-                >
-                  <SvgIcon viewBox='0 0 1024 1024'>
-                    <path d='M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z' />
-                  </SvgIcon>
-                </IconButton>
-              </DemoTooltip>
-              <DemoTooltip title={t('stackblitz')} placement='bottom'>
-                <IconButton
-                  data-ga-event-category='demo'
-                  data-ga-event-label={demo.gaLabel}
-                  data-ga-event-action='stackblitz'
-                  onClick={() =>
-                    stackBlitz.createReactApp(demoData).openSandbox('demo')
-                  }
-                  {...getControlProps(5)}
-                  sx={{borderRadius: 1}}
-                >
-                  <SvgIcon viewBox='0 0 19 28'>
-                    <path d='M8.13378 16.1087H0L14.8696 0L10.8662 11.1522L19 11.1522L4.13043 27.2609L8.13378 16.1087Z' />
-                  </SvgIcon>
-                </IconButton>
-              </DemoTooltip>
-            </React.Fragment>
-          )}
-          <DemoTooltip title={t('copySource')} placement='bottom'>
+          <React.Fragment>
+            <DemoTooltip title='Edit in code Sandbox' placement='bottom'>
+              <IconButton
+                data-ga-event-category='demo'
+                data-ga-event-label={demo.gaLabel}
+                data-ga-event-action='codesandbox'
+                onClick={() =>
+                  codeSandbox.createReactApp(demoData).openSandbox('/demo')
+                }
+                {...getControlProps(4)}
+                sx={{borderRadius: 1}}
+              >
+                <SvgIcon viewBox='0 0 1024 1024'>
+                  <path d='M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z' />
+                </SvgIcon>
+              </IconButton>
+            </DemoTooltip>
+          </React.Fragment>
+          <DemoTooltip title='Copy the source code' placement='bottom'>
             <IconButton
               data-ga-event-category='demo'
               data-ga-event-label={demo.gaLabel}
@@ -770,11 +664,7 @@ export default function DemoToolbar(props) {
           data-ga-event-category='demo'
           data-ga-event-label={demo.gaLabel}
           data-ga-event-action='copy-js-source-link'
-          onClick={createHandleCodeSourceLink(
-            demoName,
-            CODE_VARIANTS.JS,
-            styleSolution,
-          )}
+          onClick={createHandleCodeSourceLink(demoName, styleSolution)}
         >
           {t('copySourceLinkJS')}
         </MenuItem>
@@ -782,15 +672,10 @@ export default function DemoToolbar(props) {
           data-ga-event-category='demo'
           data-ga-event-label={demo.gaLabel}
           data-ga-event-action='copy-ts-source-link'
-          onClick={createHandleCodeSourceLink(
-            demoName,
-            CODE_VARIANTS.TS,
-            styleSolution,
-          )}
+          onClick={createHandleCodeSourceLink(demoName, styleSolution)}
         >
           {t('copySourceLinkTS')}
         </MenuItem>
-        {devMenuItems}
       </Menu>
       <Snackbar
         open={snackbarOpen}
@@ -798,24 +683,6 @@ export default function DemoToolbar(props) {
         onClose={handleSnackbarClose}
         message={snackbarMessage}
       />
-    </React.Fragment>
+    </>
   )
-}
-
-DemoToolbar.propTypes = {
-  codeOpen: PropTypes.bool.isRequired,
-  codeVariant: PropTypes.string.isRequired,
-  demo: PropTypes.object.isRequired,
-  demoData: PropTypes.object.isRequired,
-  demoHovered: PropTypes.bool.isRequired,
-  demoId: PropTypes.string,
-  demoName: PropTypes.string.isRequired,
-  demoOptions: PropTypes.object.isRequired,
-  demoSourceId: PropTypes.string,
-  hasNonSystemDemos: PropTypes.string,
-  initialFocusRef: PropTypes.shape({current: PropTypes.object}).isRequired,
-  onCodeOpenChange: PropTypes.func.isRequired,
-  onResetDemoClick: PropTypes.func.isRequired,
-  openDemoSource: PropTypes.bool.isRequired,
-  showPreview: PropTypes.bool.isRequired,
 }
