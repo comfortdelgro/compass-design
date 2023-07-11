@@ -1,4 +1,3 @@
-/* eslint-disable react/no-danger */
 import {Box} from '@comfortdelgro/react-compass'
 import {styled} from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
@@ -60,7 +59,6 @@ const NavItem = styled(Link, {
       ...(!active && {
         color: (theme.vars || theme).palette.text.primary,
       }),
-      // TODO: We probably want `aria-current="location"` instead.
       ...(active && activeStyles),
       '&:active': activeStyles,
     },
@@ -196,10 +194,10 @@ export default function AppTableOfContents(props) {
 
   return (
     <Box
-      css={{width: 500, maxHeight: 'calc(100vh - 51px)', overflowY: 'scroll'}}
+      css={{width: 300, maxHeight: 'calc(100vh - 51px)', overflowY: 'scroll'}}
     >
       {toc.length > 0 ? (
-        <React.Fragment>
+        <>
           <NavLabel gutterBottom>Contents</NavLabel>
           <NavList component='ul'>
             {toc.map((item) => (
@@ -215,7 +213,7 @@ export default function AppTableOfContents(props) {
               </li>
             ))}
           </NavList>
-        </React.Fragment>
+        </>
       ) : null}
     </Box>
   )
