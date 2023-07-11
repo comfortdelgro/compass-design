@@ -1,29 +1,23 @@
+import {Box} from '@comfortdelgro/react-compass'
 import {useTheme} from '@mui/system'
-import {exactProp} from '@mui/utils'
 import AppLayoutDocs from 'components/common/AppLayoutDocs'
 import Demo from 'components/common/Demo'
 import HighlightedCodeWithTabs from 'components/common/HighlightedCodeWithTabs'
 import MarkdownElement from 'components/common/MarkdownElement'
-import {useRouter} from 'next/router'
 import path from 'path'
-import PropTypes from 'prop-types'
-import {pathnameToLanguage} from 'utils/helpers'
 import {useTranslate, useUserLanguage} from 'utils/i18n'
 
-function noComponent(moduleID) {
+function noComponent(moduleID: string) {
   return function NoComponent() {
     throw new Error(`No demo component provided for '${moduleID}'`)
   }
 }
 
-export default function MarkdownDocs(props) {
+export default function MarkdownDocs(props: any) {
   const theme = useTheme()
-  const router = useRouter()
-  const {canonicalAs} = pathnameToLanguage(router.asPath)
   const {
     disableAd = false,
     disableToc = false,
-    disableCssVarsProvider = false,
     demos = {},
     docs,
     demoComponents,
@@ -66,7 +60,7 @@ export default function MarkdownDocs(props) {
         }
         if (renderedMarkdownOrDemo.type === 'codeblock') {
           return (
-            <Wrapper key={index}>
+            <Box key={index}>
               <HighlightedCodeWithTabs
                 tabs={renderedMarkdownOrDemo.data}
                 storageKey={
@@ -74,7 +68,7 @@ export default function MarkdownDocs(props) {
                   `codeblock-${renderedMarkdownOrDemo.storageKey}`
                 }
               />
-            </Wrapper>
+            </Box>
           )
         }
 
@@ -89,10 +83,7 @@ export default function MarkdownDocs(props) {
           if (userLanguage === 'en') {
             throw new Error(errorMessage)
           }
-
-          if (process.env.NODE_ENV !== 'production') {
-            console.error(errorMessage)
-          }
+          console.log(errorMessage)
 
           const warnIcon = (
             <span role='img' aria-label={t('emojiWarning')}>
@@ -101,7 +92,6 @@ export default function MarkdownDocs(props) {
           )
           return (
             <div key={index}>
-              {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
               {warnIcon} Missing demo `{name}` {warnIcon}
             </div>
           )
@@ -126,24 +116,10 @@ export default function MarkdownDocs(props) {
             }}
             disableAd={disableAd}
             demoOptions={renderedMarkdownOrDemo}
-            githubLocation={`${process.env.SOURCE_CODE_REPO}/blob/v${process.env.LIB_VERSION}${fileNameWithLocation}`}
+            githubLocation={`${process.env.SOURCE_CODE_REPO}/blob/v1.1.2${fileNameWithLocation}`}
           />
         )
       })}
     </AppLayoutDocs>
   )
-}
-
-MarkdownDocs.propTypes = {
-  demoComponents: PropTypes.object,
-  demos: PropTypes.object,
-  disableAd: PropTypes.bool,
-  disableCssVarsProvider: PropTypes.bool,
-  disableToc: PropTypes.bool,
-  docs: PropTypes.object.isRequired,
-  srcComponents: PropTypes.object,
-}
-
-if (process.env.NODE_ENV !== 'production') {
-  MarkdownDocs.propTypes = exactProp(MarkdownDocs.propTypes)
 }
