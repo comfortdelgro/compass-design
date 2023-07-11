@@ -12,7 +12,7 @@ import Ripple from './ripple'
 interface Props extends StyledComponentProps {
   href?: string
   hrefTarget?: string
-  hrefRel?: string
+  hrefExternal?: boolean
   children?: React.ReactNode
   className?: string
   leftIcon?: React.ReactNode
@@ -56,7 +56,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       // Add link redirect
       href,
       hrefTarget,
-      hrefRel,
+      hrefExternal,
       // StyledComponentProps
       css = {},
       // ComponentProps
@@ -89,15 +89,19 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const componentProps = () => {
       if (loading) return {className, css, ...variantProps}
-      if (href || hrefTarget || hrefRel)
+      if (href || hrefTarget || hrefExternal)
         return {
           className: `cdg-link-button ${className ? className : ''}`,
           css,
           ...{as: 'a', ...delegated},
           ...variantProps,
           href,
-          target: hrefTarget,
-          rel: hrefRel,
+          target: `${hrefTarget || (hrefExternal ? '_blank' : undefined)}`,
+          rel: `${
+            hrefTarget === '_blank' || hrefExternal
+              ? 'noopener noreferrer'
+              : undefined
+          }`,
         }
       return {
         className,
