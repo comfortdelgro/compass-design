@@ -328,16 +328,11 @@ const Root = styled('div')(({theme}) => ({
     color: darken(lightTheme.palette.primary.main, 0.04),
   },
   '& img, & video': {
-    // Use !important so that inline style on <img> or <video> can't win.
-    // This avoid horizontal overflows on mobile.
     maxWidth: '100% !important',
-    // Avoid the image to be fixed height, so it can respect the aspect ratio.
     height: 'auto',
   },
   '& img': {
-    // Avoid layout jump
     display: 'inline-block',
-    // Avoid very sharp edges
     borderRadius: 2,
   },
   '& hr': {

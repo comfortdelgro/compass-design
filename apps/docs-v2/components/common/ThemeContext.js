@@ -6,11 +6,7 @@ import {
 import useMediaQuery from '@mui/material/useMediaQuery'
 import {unstable_useEnhancedEffect as useEnhancedEffect} from '@mui/material/utils'
 import {deepmerge} from '@mui/utils'
-import {
-  getDesignTokens,
-  getMetaThemeColor,
-  getThemedComponents,
-} from 'docs/src/brandingTheme'
+import {getDesignTokens, getMetaThemeColor} from 'docs/src/brandingTheme'
 import PropTypes from 'prop-types'
 import * as React from 'react'
 import {getCookie} from 'utils/helpers'
@@ -242,8 +238,6 @@ export function ThemeProvider(props) {
       },
       languageMap[userLanguage],
     )
-
-    nextTheme = deepmerge(nextTheme, getThemedComponents(nextTheme))
 
     return nextTheme
   }, [dense, direction, paletteColors, paletteMode, spacing, userLanguage])
