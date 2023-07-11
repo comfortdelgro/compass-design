@@ -180,10 +180,10 @@ export const Variations: React.FC = () => (
       <Button href='/#page' variant='primary'>
         Primary
       </Button>
-      <Button href='/#page' variant='secondary'>
-        Secondary
+      <Button href='https://google.com' hrefExternal variant='secondary'>
+        Google
       </Button>
-      <Button href='/#page' variant='danger'>
+      <Button href='/#page' variant='danger' hrefTarget='_blank'>
         Danger
       </Button>
       <Button href='/#page' variant='ghost'>
