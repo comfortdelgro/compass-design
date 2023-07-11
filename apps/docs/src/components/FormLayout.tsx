@@ -124,6 +124,7 @@ export const FormLayoutComponent: React.FC = () => {
         <FormLayout.Group
           css={{
             gridColumnStart: 2,
+            display: 'flex',
             flexDirection: 'row',
             justifyContent: 'center',
           }}
