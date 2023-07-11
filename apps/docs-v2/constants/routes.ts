@@ -1,52 +1,42 @@
-import standardNavIcons from 'components/common/AppNavIcons'
-import {MuiPage} from 'types/MuiPage'
+import {
+  faFile,
+  faSquarePen,
+  faToggleOn,
+} from '@fortawesome/free-solid-svg-icons'
 
-const pages: MuiPage[] = [
+const pages = [
   {
-    pathname: '/getting-started-group',
+    pathname: '/',
     title: 'Getting started',
-    icon: standardNavIcons.DescriptionIcon,
+    icon: faFile,
     children: [
       {pathname: '/getting-started', title: 'Overview'},
-      {pathname: '/getting-started/installation'},
-      {pathname: '/getting-started/usage'},
+      {pathname: '/getting-started/installation', title: 'Installation'},
+      {pathname: '/getting-started/usage', title: 'Usage'},
     ],
   },
   {
-    pathname: '/react-',
+    pathname: '/',
     title: 'Components',
-    icon: standardNavIcons.ToggleOnIcon,
+    icon: faToggleOn,
     children: [
       {
-        pathname: '/components/inputs',
-        subheader: 'inputs',
-        children: [{pathname: '/react-autocomplete'}],
+        title: 'Autocomplete',
+        pathname: '/components/autocomplete',
       },
       {
-        pathname: '/components/data-display',
-        subheader: 'data-display',
-        children: [{pathname: '/react-avatar'}],
+        title: 'Avatar',
+        pathname: '/components/avatar',
       },
     ],
   },
   {
-    pathname: '/customization',
-    icon: standardNavIcons.CreateIcon,
+    pathname: '/',
+    icon: faSquarePen,
     children: [
-      {
-        pathname: '/customization/theme',
-        subheader: '/customization/theme',
-        children: [
-          {pathname: '/customization/theming'},
-          {pathname: '/customization/z-index', title: 'z-index'},
-        ],
-      },
+      {pathname: '/customization/theming', title: 'Theming'},
+      {pathname: '/customization/z-index', title: 'Z-index'},
     ],
-  },
-  {
-    pathname: 'https://github.com/comfortdelgro/compass-design',
-    title: 'Old version',
-    icon: standardNavIcons.ReaderIcon,
   },
 ]
 

@@ -1,5 +1,4 @@
 import {Box} from '@comfortdelgro/react-compass'
-import AppNavDrawer from 'components/common/AppNavDrawer'
 import MarkdownLinks from 'components/common/MarkdownLinks'
 import AppHeader from 'components/layouts/AppHeader'
 import * as React from 'react'
@@ -42,7 +41,6 @@ export default function AppFrame(props: {children: React.ReactNode}) {
               overflowY: 'hidden',
             }}
           >
-            <AppNavDrawer />
             {children}
           </Box>
         </Box>

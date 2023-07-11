@@ -1,5 +1,15 @@
+import ArrowDown from '@comfortdelgro/compass-icons/react/arrow-down'
+import ArrowRight from '@comfortdelgro/compass-icons/react/arrow-right'
 import Compass from '@comfortdelgro/compass-icons/react/colorful/compass'
-import {Flexbox, Icon, Sidenav, Typography} from '@comfortdelgro/react-compass'
+import {
+  Box,
+  Flexbox,
+  Icon,
+  MenuList,
+  MenuListDropdown,
+  Sidenav,
+  Typography,
+} from '@comfortdelgro/react-compass'
 
 import {
   faFile,
@@ -32,27 +42,45 @@ const AppSideNav: React.FC = () => {
     {id: 3, icon: faSquarePen, title: 'Customization'},
   ]
 
-  const handleOnClick = (
-    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
-    id: number,
-  ) => {
-    e.preventDefault()
-    setCurrentPage(id)
-  }
-
-  const CustomSizenavItem = (props: ItemType & {isMenu?: boolean}) => {
-    const {id, icon, title, children, isMenu} = props
+  const CustomSidenavItem = (props: ItemType & {isMenu?: boolean}) => {
+    const {id, icon, title, isMenu} = props
     return (
-      <Sidenav.Item isActive={isMenu ? false : currentPage === id}>
-        {icon ? <Icon icon={icon}></Icon> : <></>}
-        {title ? (
-          <span>
-            {title} {children ? '→' : ''}
-          </span>
-        ) : (
-          <></>
-        )}
-      </Sidenav.Item>
+      <>
+        <Sidenav.Item
+          isActive={isMenu ? false : currentPage === id}
+          css={{marginBottom: '$3 !important', overflow: 'initial'}}
+        >
+          {icon ? <Icon icon={icon}></Icon> : <></>}
+          <Flexbox css={{justifyContent: 'space-between', width: '100%'}}>
+            {title && <span>{title}</span>}
+            {currentPage === id ? (
+              <ArrowDown style={{width: 15, height: 15}} />
+            ) : (
+              <ArrowRight style={{width: 15, height: 15}} />
+            )}
+          </Flexbox>
+        </Sidenav.Item>
+        <Box css={{padding: '0 $4'}}>
+          <MenuList
+            css={{
+              overflow: 'initial',
+              width: '100%',
+              borderRadius: 8,
+              borderRight: 'none',
+            }}
+          >
+            <MenuListDropdown>
+              <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+              <MenuListDropdown.Item isActive>Menu</MenuListDropdown.Item>
+              <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+              <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+              <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+              <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+              <MenuListDropdown.Item>Menu</MenuListDropdown.Item>
+            </MenuListDropdown>
+          </MenuList>
+        </Box>
+      </>
     )
   }
 
@@ -63,30 +91,23 @@ const AppSideNav: React.FC = () => {
         position: 'relative',
         background: '$white',
         width: 312,
+        overflowY: 'scroll',
+        '.sidenav-item-title': {
+          width: '100%',
+        },
       }}
       expand={true}
       delay={200}
     >
-      <Sidenav.Item>
-        <Flexbox css={{alignItems: 'center'}}>
-          <Compass style={{width: 28, height: 28}} />
-          <Typography.Header variant='header3'>React Compass</Typography.Header>
-        </Flexbox>
+      <Sidenav.Item css={{width: '100%', overflow: 'initial'}}>
+        <Compass style={{width: 28, height: 28}} />
+        <Typography.Header variant='header3' css={{marginBottom: 5}}>
+          React Compass
+        </Typography.Header>
       </Sidenav.Item>
       <Sidenav.Divider />
       {items.map((item) => {
-        return (
-          <a
-            onClick={(e) => {
-              handleOnClick(e, item.id)
-            }}
-            key={item.id}
-            href='#'
-            style={{color: 'inherit', textDecoration: 'none'}}
-          >
-            <CustomSizenavItem key={item.id} {...item} />
-          </a>
-        )
+        return <CustomSidenavItem key={item.id} {...item} />
       })}
       <Sidenav.Divider />
     </Sidenav>

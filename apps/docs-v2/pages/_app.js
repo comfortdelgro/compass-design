@@ -1,6 +1,5 @@
-import 'components/common/bootstrap'
-// --- Post bootstrap -----
 import Preflight from '@comfortdelgro/react-compass/preflight'
+import 'components/common/bootstrap'
 import PageContext from 'components/common/PageContext'
 import {ThemeProvider} from 'components/common/ThemeContext'
 import routes from 'constants/routes'
@@ -8,18 +7,15 @@ import createEmotionCache from 'docs/src/createEmotionCache'
 import {loadCSS} from 'fg-loadcss/src/loadCSS'
 import NextHead from 'next/head'
 import {useRouter} from 'next/router'
-import PropTypes from 'prop-types'
 import * as React from 'react'
 import {CodeCopyProvider} from 'utils/CodeCopy'
 import {CodeStylingProvider} from 'utils/codeStylingSolution'
 import {CodeVariantProvider} from 'utils/codeVariant'
-import findActivePage from 'utils/findActivePage'
 import {pathnameToLanguage} from 'utils/helpers'
 import {UserLanguageProvider} from 'utils/i18n'
 import DocsStyledEngineProvider from 'utils/StyledEngineProvider'
 import './global.css'
 
-// Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache()
 
 let reloadInterval
@@ -135,14 +131,7 @@ function AppWrapper(props) {
   const pageContextValue = React.useMemo(() => {
     const pages = routes
 
-    const {activePage, activePageParents} = findActivePage(
-      pages,
-      router.pathname,
-    )
-
     return {
-      activePage,
-      activePageParents,
       pages,
       productId,
     }
@@ -185,12 +174,6 @@ function AppWrapper(props) {
   )
 }
 
-AppWrapper.propTypes = {
-  children: PropTypes.node.isRequired,
-  emotionCache: PropTypes.object.isRequired,
-  pageProps: PropTypes.object.isRequired,
-}
-
 export default function MyApp(props) {
   const {Component, emotionCache = clientSideEmotionCache, pageProps} = props
   const getLayout = Component.getLayout ?? ((page) => page)
@@ -200,11 +183,6 @@ export default function MyApp(props) {
       {getLayout(<Component {...pageProps} />)}
     </AppWrapper>
   )
-}
-MyApp.propTypes = {
-  Component: PropTypes.elementType.isRequired,
-  emotionCache: PropTypes.object,
-  pageProps: PropTypes.object.isRequired,
 }
 
 MyApp.getInitialProps = async ({ctx, Component}) => {
