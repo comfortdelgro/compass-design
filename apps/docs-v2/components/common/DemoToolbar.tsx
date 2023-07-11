@@ -1,12 +1,10 @@
+import {TooltipTrigger} from '@comfortdelgro/react-compass'
 import ResetFocusIcon from '@mui/icons-material/CenterFocusWeak'
-import CheckIcon from '@mui/icons-material/Check'
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded'
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import RefreshRoundedIcon from '@mui/icons-material/RefreshRounded'
 import Box from '@mui/material/Box'
-import MDButton from '@mui/material/Button'
 import Divider from '@mui/material/Divider'
 import Fade from '@mui/material/Fade'
 import IconButton from '@mui/material/IconButton'
@@ -22,46 +20,12 @@ import MDToggleButtonGroup, {
 import Tooltip from '@mui/material/Tooltip'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import copy from 'clipboard-copy'
-import {CODE_STYLING, CODE_VARIANTS} from 'constants'
+import {CODE_VARIANTS} from 'constants'
 import PropTypes from 'prop-types'
 import * as React from 'react'
-import {useCodeStyling, useSetCodeStyling} from 'utils/codeStylingSolution'
 import {useSetCodeVariant} from 'utils/codeVariant'
-import {getCookie} from 'utils/helpers'
 import {useTranslate} from 'utils/i18n'
-import stylingSolutionMapping from 'utils/stylingSolutionMapping'
 import codeSandbox from '../sandbox/CodeSandbox'
-
-const Root = styled('div', {
-  shouldForwardProp: (prop) =>
-    prop !== 'demoOptions' && prop !== 'openDemoSource',
-})(({theme, demoOptions, openDemoSource}) => [
-  {
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      border: `1px solid ${(theme.vars || theme).palette.divider}`,
-      marginTop: demoOptions.bg === 'inline' ? theme.spacing(1) : -1,
-      display: 'flex',
-      top: 0,
-      padding: theme.spacing(0.5, 1),
-      backgroundColor: alpha(theme.palette.grey[50], 0.2),
-      borderRadius: openDemoSource ? 0 : '0 0 12px 12px',
-      transition: theme.transitions.create('border-radius'),
-      ...(theme.direction === 'rtl' && {
-        left: theme.spacing(1),
-      }),
-      ...(theme.direction !== 'rtl' && {
-        right: theme.spacing(1),
-      }),
-    },
-    '& .MuiSvgIcon-root': {
-      fontSize: 16,
-      color: (theme.vars || theme).palette.grey[800],
-    },
-  },
-])
 
 function DemoTooltip(props) {
   return (
@@ -117,38 +81,6 @@ const ToggleButtonGroup = styled(MDToggleButtonGroup)(({theme}) => [
     },
   }),
 ])
-
-const Button = styled(MDButton)(({theme}) => ({
-  height: 24,
-  flexShrink: 0,
-  borderRadius: 999,
-  border: 'none',
-  paddingLeft: theme.spacing(1),
-  paddingRight: theme.spacing(0.5),
-  fontSize: theme.typography.pxToRem(13),
-  fontWeight: theme.typography.fontWeightMedium,
-  color: theme.palette.primary.main,
-  '& svg': {
-    fill: theme.palette.primary.main,
-  },
-  [`:hover`]: {
-    backgroundColor: theme.vars
-      ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-      : alpha(
-          theme.palette.primary.main,
-          theme.palette.action.selectedOpacity +
-            theme.palette.action.hoverOpacity,
-        ),
-    '@media (hover: none)': {
-      backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-        : alpha(
-            theme.palette.primary.main,
-            theme.palette.action.selectedOpacity,
-          ),
-    },
-  },
-}))
 
 const MenuItem = styled(MDMenuItem)(({theme}) => ({
   [`& .${menuItemClasses.selected}`]: {
@@ -299,7 +231,6 @@ function useToolbar(controlRefs, options = {}) {
   return {
     getControlProps,
     toolbarProps: {
-      // TODO: good opportunity to warn on missing `aria-label`
       onFocus: handleToolbarFocus,
       onKeyDown: handleToolbarKeyDown,
       role: 'toolbar',
@@ -316,22 +247,15 @@ export default function DemoToolbar(props) {
     demoData,
     demoId,
     demoHovered,
-    demoName,
-    demoOptions,
-    demoSourceId,
     initialFocusRef,
     onCodeOpenChange,
     onResetDemoClick,
-    openDemoSource,
   } = props
 
   const setCodeVariant = useSetCodeVariant()
-  const styleSolution = useCodeStyling()
-  const setCodeStyling = useSetCodeStyling()
+  const [sourceHintSeen, setSourceHintSeen] = React.useState(false)
   const t = useTranslate()
   console.log({demo})
-
-  const hasTSVariant = demo.rawTS
 
   const handleCodeLanguageClick = (event, clickedCodeVariant) => {
     if (clickedCodeVariant !== null && codeVariant !== clickedCodeVariant) {
@@ -355,7 +279,7 @@ export default function DemoToolbar(props) {
   }
   const handleCopyClick = async () => {
     try {
-      await copy(demoData.raw)
+      await copy(demoData.rawTS)
       setSnackbarMessage(t('copiedSource'))
       setSnackbarOpen(true)
     } finally {
@@ -363,24 +287,6 @@ export default function DemoToolbar(props) {
     }
   }
 
-  const createHandleCodeSourceLink = (anchor, stylingSolution) => async () => {
-    try {
-      await copy(
-        `${window.location.href.split('#')[0]}#${
-          stylingSolution ? `${stylingSolutionMapping[stylingSolution]}-` : ''
-        }${anchor}.tsx`,
-      )
-      setSnackbarMessage(t('copiedSourceLink'))
-      setSnackbarOpen(true)
-    } finally {
-      handleMoreClose()
-    }
-  }
-
-  const [sourceHintSeen, setSourceHintSeen] = React.useState(false)
-  React.useEffect(() => {
-    setSourceHintSeen(getCookie('sourceHintSeen'))
-  }, [])
   const handleCodeOpenClick = () => {
     document.cookie = `sourceHintSeen=true;path=/;max-age=31536000`
     onCodeOpenChange()
@@ -422,54 +328,9 @@ export default function DemoToolbar(props) {
     isFocusableControl,
   })
 
-  const [stylingAnchorEl, setStylingAnchorEl] = React.useState(null)
-  const stylingMenuOpen = Boolean(stylingAnchorEl)
-
-  const handleStylingButtonClose = () => {
-    setStylingAnchorEl(null)
-  }
-
-  const handleStylingSolutionChange = (eventStylingSolution) => {
-    if (
-      eventStylingSolution !== null &&
-      eventStylingSolution !== styleSolution
-    ) {
-      setCodeStyling(eventStylingSolution)
-    }
-    handleStylingButtonClose()
-  }
-
-  const codeStylingLabels = {
-    [CODE_STYLING.SYSTEM]: t('demoStylingSelectSystem'),
-    [CODE_STYLING.TAILWIND]: t('demoStylingSelectTailwind'),
-    [CODE_STYLING.CSS]: t('demoStylingSelectCSS'),
-  }
-
-  const handleStylingButtonClick = (event) => {
-    setStylingAnchorEl(event.currentTarget)
-  }
-
   return (
     <>
-      <Root
-        aria-label={t('demoToolbarLabel')}
-        {...toolbarProps}
-        demoOptions={demoOptions}
-        openDemoSource={openDemoSource}
-      >
-        {hasNonSystemDemos && (
-          <Button
-            id='styling-solution'
-            aria-controls={stylingMenuOpen ? 'demo-styling-menu' : undefined}
-            aria-haspopup='true'
-            aria-expanded={stylingMenuOpen ? 'true' : undefined}
-            onClick={handleStylingButtonClick}
-            {...getControlProps(0)}
-          >
-            {codeStylingLabels[styleSolution]}
-            <ExpandMoreIcon />
-          </Button>
-        )}
+      <Box>
         <Fade in={codeOpen}>
           <Box sx={{display: 'flex', height: 40}}>
             {hasNonSystemDemos && (
@@ -487,9 +348,6 @@ export default function DemoToolbar(props) {
               <ToggleButton
                 value={CODE_VARIANTS.JS}
                 aria-label={t('showJSSource')}
-                data-ga-event-category='demo'
-                data-ga-event-action='source-js'
-                data-ga-event-label={demo.gaLabel}
                 {...getControlProps(1)}
               >
                 {t('JS')}
@@ -497,9 +355,6 @@ export default function DemoToolbar(props) {
               <ToggleButton
                 value={CODE_VARIANTS.TS}
                 aria-label={t('showTSSource')}
-                data-ga-event-category='demo'
-                data-ga-event-action='source-ts'
-                data-ga-event-label={demo.gaLabel}
                 {...getControlProps(2)}
               >
                 Typescript
@@ -515,10 +370,6 @@ export default function DemoToolbar(props) {
             placement='bottom'
           >
             <IconButton
-              aria-controls={openDemoSource ? demoSourceId : null}
-              data-ga-event-category='demo'
-              data-ga-event-label={demo.gaLabel}
-              data-ga-event-action='expand'
               onClick={handleCodeOpenClick}
               color='default'
               {...getControlProps(3)}
@@ -528,11 +379,8 @@ export default function DemoToolbar(props) {
             </IconButton>
           </ToggleCodeTooltip>
           <React.Fragment>
-            <DemoTooltip title='Edit in code Sandbox' placement='bottom'>
+            <TooltipTrigger>
               <IconButton
-                data-ga-event-category='demo'
-                data-ga-event-label={demo.gaLabel}
-                data-ga-event-action='codesandbox'
                 onClick={() =>
                   codeSandbox.createReactApp(demoData).openSandbox('/demo')
                 }
@@ -543,13 +391,13 @@ export default function DemoToolbar(props) {
                   <path d='M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z' />
                 </SvgIcon>
               </IconButton>
-            </DemoTooltip>
+              <Tooltip title='Title' dismissible>
+                Edit in code Sandbox
+              </Tooltip>
+            </TooltipTrigger>
           </React.Fragment>
           <DemoTooltip title='Copy the source code' placement='bottom'>
             <IconButton
-              data-ga-event-category='demo'
-              data-ga-event-label={demo.gaLabel}
-              data-ga-event-action='copy'
               onClick={handleCopyClick}
               {...getControlProps(6)}
               sx={{borderRadius: 1}}
@@ -559,9 +407,6 @@ export default function DemoToolbar(props) {
           </DemoTooltip>
           <DemoTooltip title={t('resetFocus')} placement='bottom'>
             <IconButton
-              data-ga-event-category='demo'
-              data-ga-event-label={demo.gaLabel}
-              data-ga-event-action='reset-focus'
               onClick={handleResetFocusClick}
               {...getControlProps(7)}
               sx={{borderRadius: 1}}
@@ -572,9 +417,6 @@ export default function DemoToolbar(props) {
           <DemoTooltip title={t('resetDemo')} placement='bottom'>
             <IconButton
               aria-controls={demoId}
-              data-ga-event-category='demo'
-              data-ga-event-label={demo.gaLabel}
-              data-ga-event-action='reset'
               onClick={onResetDemoClick}
               {...getControlProps(8)}
               sx={{borderRadius: 1}}
@@ -593,47 +435,7 @@ export default function DemoToolbar(props) {
             <MoreVertIcon />
           </IconButton>
         </Box>
-      </Root>
-      <Menu
-        id='demo-styling-menu'
-        anchorEl={stylingAnchorEl}
-        open={stylingMenuOpen}
-        onClose={handleStylingButtonClose}
-        MenuListProps={{
-          'aria-labelledby': 'basic-button',
-        }}
-      >
-        <MenuItem
-          value={CODE_STYLING.SYSTEM}
-          selected={styleSolution === CODE_STYLING.SYSTEM}
-          onClick={() => handleStylingSolutionChange(CODE_STYLING.SYSTEM)}
-        >
-          {codeStylingLabels[CODE_STYLING.SYSTEM]}
-          {styleSolution === CODE_STYLING.SYSTEM && (
-            <CheckIcon sx={{fontSize: '0.85rem', ml: 2}} />
-          )}
-        </MenuItem>
-        <MenuItem
-          value={CODE_STYLING.TAILWIND}
-          selected={styleSolution === CODE_STYLING.TAILWIND}
-          onClick={() => handleStylingSolutionChange(CODE_STYLING.TAILWIND)}
-        >
-          {codeStylingLabels[CODE_STYLING.TAILWIND]}
-          {styleSolution === CODE_STYLING.TAILWIND && (
-            <CheckIcon sx={{fontSize: '0.85rem', ml: 2}} />
-          )}
-        </MenuItem>
-        <MenuItem
-          value={CODE_STYLING.CSS}
-          selected={styleSolution === CODE_STYLING.CSS}
-          onClick={() => handleStylingSolutionChange(CODE_STYLING.CSS)}
-        >
-          {codeStylingLabels[CODE_STYLING.CSS]}
-          {styleSolution === CODE_STYLING.CSS && (
-            <CheckIcon sx={{fontSize: '0.85rem', ml: 2}} />
-          )}
-        </MenuItem>
-      </Menu>
+      </Box>
       <Menu
         id='demo-menu-more'
         anchorEl={anchorEl}
@@ -649,9 +451,6 @@ export default function DemoToolbar(props) {
         }}
       >
         <MenuItem
-          data-ga-event-category='demo'
-          data-ga-event-label={demo.gaLabel}
-          data-ga-event-action='github'
           component='a'
           href={demoData.githubLocation}
           target='_blank'
@@ -659,22 +458,6 @@ export default function DemoToolbar(props) {
           onClick={handleMoreClose}
         >
           {t('viewGitHub')}
-        </MenuItem>
-        <MenuItem
-          data-ga-event-category='demo'
-          data-ga-event-label={demo.gaLabel}
-          data-ga-event-action='copy-js-source-link'
-          onClick={createHandleCodeSourceLink(demoName, styleSolution)}
-        >
-          {t('copySourceLinkJS')}
-        </MenuItem>
-        <MenuItem
-          data-ga-event-category='demo'
-          data-ga-event-label={demo.gaLabel}
-          data-ga-event-action='copy-ts-source-link'
-          onClick={createHandleCodeSourceLink(demoName, styleSolution)}
-        >
-          {t('copySourceLinkTS')}
         </MenuItem>
       </Menu>
       <Snackbar
