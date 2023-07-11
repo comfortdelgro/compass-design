@@ -111,8 +111,6 @@ function useDemoElement({
     }
   }, [debouncedSetError])
 
-  // Memoize to avoid rendering the demo more than it needs to be.
-  // For example, avoid a render when the demo is hovered.
   const BundledComponent = React.useMemo(
     () => <demoData.Component />,
     [demoData],
@@ -142,17 +140,6 @@ function useDemoElement({
     : LiveComponent
 }
 
-const DemoRootMaterial = styled(
-  'div',
-  {},
-)(() => ({
-  position: 'relative',
-  outline: 0,
-  margin: 'auto',
-  display: 'flex',
-  justifyContent: 'center',
-}))
-
 const DemoCodeViewer = styled(HighlightedCode)(() => ({
   '& pre': {
     margin: 0,
@@ -161,11 +148,6 @@ const DemoCodeViewer = styled(HighlightedCode)(() => ({
     borderRadius: 0,
   },
 }))
-
-const AnchorLink = styled('div')({
-  marginTop: -64,
-  position: 'absolute',
-})
 
 const InitialFocus = styled(IconButton)(({theme}) => ({
   position: 'absolute',
@@ -298,20 +280,22 @@ export default function Demo(props) {
 
   return (
     <Box>
-      <DemoRootMaterial
-        hiddenToolbar={demoOptions.hideToolbar}
-        bg={demoOptions.bg}
-        id={demoId}
+      <Box
+        css={{
+          position: 'relative',
+          outline: 0,
+          margin: 'auto',
+          display: 'flex',
+          justifyContent: 'center',
+        }}
         onMouseEnter={handleDemoHover}
         onMouseLeave={handleDemoHover}
       >
-        <>
-          <InitialFocus
-            aria-label={t('initialFocusLabel')}
-            action={initialFocusRef}
-            tabIndex={-1}
-          />
-        </>
+        <InitialFocus
+          aria-label={t('initialFocusLabel')}
+          action={initialFocusRef}
+          tabIndex={-1}
+        />
         <DemoSandbox
           key={demoKey}
           style={demoSandboxedStyle}
@@ -321,33 +305,31 @@ export default function Demo(props) {
         >
           {demoElement}
         </DemoSandbox>
-      </DemoRootMaterial>
+      </Box>
       <>
-        {demoOptions.hideToolbar ? null : (
-          <NoSsr defer fallback={<DemoToolbarFallback />}>
-            <React.Suspense fallback={<DemoToolbarFallback />}>
-              <DemoToolbar
-                codeOpen={codeOpen}
-                codeVariant={codeVariant}
-                hasNonSystemDemos={hasNonSystemDemos}
-                demo={demo}
-                demoData={demoData}
-                demoHovered={demoHovered}
-                demoId={demoId}
-                demoName={demoName}
-                demoOptions={demoOptions}
-                demoSourceId={demoSourceId}
-                initialFocusRef={initialFocusRef}
-                onCodeOpenChange={() => {
-                  setCodeOpen((open) => !open)
-                }}
-                onResetDemoClick={resetDemo}
-                openDemoSource={openDemoSource}
-                showPreview={showPreview}
-              />
-            </React.Suspense>
-          </NoSsr>
-        )}
+        <NoSsr defer fallback={<DemoToolbarFallback />}>
+          <React.Suspense fallback={<DemoToolbarFallback />}>
+            <DemoToolbar
+              codeOpen={codeOpen}
+              codeVariant={codeVariant}
+              hasNonSystemDemos={hasNonSystemDemos}
+              demo={demo}
+              demoData={demoData}
+              demoHovered={demoHovered}
+              demoId={demoId}
+              demoName={demoName}
+              demoOptions={demoOptions}
+              demoSourceId={demoSourceId}
+              initialFocusRef={initialFocusRef}
+              onCodeOpenChange={() => {
+                setCodeOpen((open) => !open)
+              }}
+              onResetDemoClick={resetDemo}
+              openDemoSource={openDemoSource}
+              showPreview={showPreview}
+            />
+          </React.Suspense>
+        </NoSsr>
         <Collapse in={openDemoSource} unmountOnExit timeout={150}>
           {/* A limitation from https://github.com/nihgwu/react-runner,
             we can't inject the `window` of the iframe so we need a disableLiveEdit option. */}
