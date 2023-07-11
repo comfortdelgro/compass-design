@@ -12,7 +12,7 @@ export interface DropdownSectionBase extends StyledComponentProps {
   'aria-label'?: string
   children: React.ReactNode
   isClickable?: boolean
-  onClick?: (title: React.ReactNode) => void
+  onClick?: () => void
   isChecked?: boolean
   checkmark?: 'checkbox' | 'tick'
 }
@@ -23,7 +23,7 @@ export type DropdownSectionProps = DropdownSectionBase &
 
 const DropdownSection = React.forwardRef<HTMLDivElement, DropdownSectionProps>(
   (props, ref) => {
-    const {children, title, isClickable, css = {}} = props
+    const {children, title, isClickable, css = {}, onClick} = props
 
     const DropdownSectionRef = useDOMRef<HTMLDivElement>(ref)
 
@@ -31,6 +31,7 @@ const DropdownSection = React.forwardRef<HTMLDivElement, DropdownSectionProps>(
       if (!isClickable) {
         return
       }
+      onClick?.()
     }
 
     return (
