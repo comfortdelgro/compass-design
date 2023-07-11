@@ -1,4 +1,5 @@
 import {
+  Button,
   Checkbox,
   Divider,
   Dropdown,
@@ -10,6 +11,14 @@ import {
 export const FormLayoutComponent: React.FC = () => {
   return (
     <FormLayout>
+      <FormLayout.Row>
+        <FormLayout.Explaination
+          title={'Create New Time/Date Policy'}
+          description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+        />
+      </FormLayout.Row>
+      <Divider />
       <FormLayout.Row columns={3}>
         <FormLayout.Group>
           <Dropdown.Select label='Salutation'>
@@ -109,6 +118,19 @@ export const FormLayoutComponent: React.FC = () => {
         </FormLayout.Group>
         <FormLayout.Group>
           <TextField label='Department' />
+        </FormLayout.Group>
+      </FormLayout.Row>
+      <FormLayout.Row columns={3}>
+        <FormLayout.Group
+          css={{
+            gridColumnStart: 2,
+            flexDirection: 'row',
+            justifyContent: 'center',
+          }}
+        >
+          <Button className='c-hKssGC-hYGuEl-variant-primary' type='submit'>
+            Submit
+          </Button>
         </FormLayout.Group>
       </FormLayout.Row>
     </FormLayout>

@@ -1,5 +1,6 @@
 import React from 'react'
 
+import Button from '../button'
 import Checkbox from '../checkbox'
 import Divider from '../divider'
 import Dropdown from '../dropdown'
@@ -116,6 +117,17 @@ export const Default: React.FC = () => {
         </FormLayout.Group>
         <FormLayout.Group>
           <TextField label='Department' />
+        </FormLayout.Group>
+      </FormLayout.Row>
+      <FormLayout.Row columns={3}>
+        <FormLayout.Group
+          css={{
+            gridColumnStart: 2,
+            flexDirection: 'row',
+            justifyContent: 'center',
+          }}
+        >
+          <Button type='submit'>Submit</Button>
         </FormLayout.Group>
       </FormLayout.Row>
     </FormLayout>
