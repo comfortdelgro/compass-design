@@ -94,13 +94,7 @@ function DemoIframe(props) {
 
   React.useEffect(() => {
     const document = frameRef.current.contentDocument
-    // When we hydrate the iframe then the load event is already dispatched
-    // once the iframe markup is parsed (maybe later but the important part is
-    // that it happens before React can attach event listeners).
-    // We need to check the readyState of the document once the iframe is mounted
-    // and "replay" the missed load event.
-    // See https://github.com/facebook/react/pull/13862 for ongoing effort in React
-    // (though not with iframes in mind).
+
     if (
       document != null &&
       document.readyState === 'complete' &&
@@ -203,13 +197,6 @@ function DemoSandbox(props) {
       </StylesProvider>
     </DemoErrorBoundary>
   )
-}
-
-DemoSandbox.propTypes = {
-  children: PropTypes.node.isRequired,
-  iframe: PropTypes.bool,
-  name: PropTypes.string.isRequired,
-  onResetDemoClick: PropTypes.func.isRequired,
 }
 
 export default React.memo(DemoSandbox)
