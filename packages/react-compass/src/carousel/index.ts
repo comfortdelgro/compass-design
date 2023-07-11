@@ -1,24 +1,23 @@
-import Carousel from './carousel'
-import CarouselButtons from './carousel-buttons'
-import CarouselDescription from './carousel-description'
-import CarouselImage from './carousel-image'
-import CarouselTitle from './carousel-title'
+import CarouselImageSlide from './carousel-image-slide'
+import CarouselMobile from './carousel-mobile'
+import CarouselPromotion from './carousel-promotion'
+import CarouselSlide from './carousel-slide'
+import CarouselSlider from './carousel-slider'
 
-export type {CarouselProps} from './carousel'
-export type {CarouselButtonsProps} from './carousel-buttons'
-export type {CarouselDescriptionProps} from './carousel-description'
-export type {CarouselImageProps} from './carousel-image'
-export type {CarouselTitleProps} from './carousel-title'
+CarouselSlider.Slide = CarouselSlide
+CarouselSlider.ImageSlide = CarouselImageSlide
+CarouselSlider.Promotion = CarouselPromotion
+CarouselSlider.Mobile = CarouselMobile
 
-Carousel.Image = CarouselImage
-Carousel.Title = CarouselTitle
-Carousel.Description = CarouselDescription
-Carousel.Buttons = CarouselButtons
+export type {
+  AnimationType,
+  ButtonType,
+  CarouselOptions,
+  CarouselSliderButton,
+  CarouselSliderItem,
+  NavigationButtonType,
+  NinePartAlignment,
+  SocicalIcon,
+} from './content-slider.types'
 
-Carousel.Image.displayName = 'Carousel.Image'
-Carousel.Title.displayName = 'Carousel.Title'
-Carousel.Description.displayName = 'Carousel.Description'
-Carousel.Buttons.displayName = 'Carousel.Buttons'
-Carousel.displayName = 'Carousel'
-
-export default Carousel
+export default CarouselSlider

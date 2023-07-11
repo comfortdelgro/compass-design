@@ -1,5 +1,4 @@
-import { styled } from '../theme'
-
+import {styled} from '../theme'
 
 export const StyledNavbarBrand = styled('div', {
   color: '$whiteText',
@@ -8,5 +7,22 @@ export const StyledNavbarBrand = styled('div', {
     fontWeight: '$semibold',
     color: 'inherit',
     margin: 0,
+  },
+
+  variants: {
+    hiddenOnMobile: {
+      true: {
+        '&': {
+          '@media screen and (max-width: 1199px)': {
+            display: 'none',
+          },
+        },
+      },
+      false: {},
+    },
+  },
+
+  defaultVariants: {
+    hiddenOnMobile: 'false',
   },
 })

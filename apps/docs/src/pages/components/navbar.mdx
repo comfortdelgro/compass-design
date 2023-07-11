@@ -4,6 +4,11 @@ import Navbar from '@comfortdelgro/react-compass/navbar'
 import Button from '@comfortdelgro/react-compass/button'
 import Avatar from '@comfortdelgro/react-compass/avatar'
 import BugIcon from '@comfortdelgro/compass-icons/react/bug'
+import QuestionIcon from '@comfortdelgro/compass-icons/react/outlined/question-outlined'
+import NotificationIcon from '@comfortdelgro/compass-icons/react/filled/notification-filled'
+import OrgChatIcon from '@comfortdelgro/compass-icons/react/duotone/org-chart-duotone'
+import MenuIcon from '@comfortdelgro/compass-icons/react/menu'
+import Workbench from '@comfortdelgro/compass-icons/react/colorful/workbench'
 
 # Navbar
 
@@ -30,28 +35,6 @@ import Navbar from '@comfortdelgro/react-compass/navbar'
 
 ---
 
-### Basic Navbar
-
-<section className={styles.componentShowcaseContainer}>
-  <Navbar>
-    <Avatar size='sm' label='asd' />
-    <Navbar.Brand>Workbench Title</Navbar.Brand>
-    <Button className='c-hKssGC-hYGuEl-variant-primary'>Home</Button>
-    <Button className='c-hKssGC-hYGuEl-variant-primary'>Services</Button>
-    <Button className='c-hKssGC-hYGuEl-variant-primary'>Products</Button>
-  </Navbar>
-</section>
-
-```js
-<Navbar>
-  <Avatar size='sm' label='asd' />
-  <Navbar.Brand>Workbench Title</Navbar.Brand>
-  <Button>Home</Button>
-  <Button>Services</Button>
-  <Button>Products</Button>
-</Navbar>
-```
-
 ### Brand
 
 Navbar Brand renders heading text that adapt to the current [color](#colors) of the Navbar
@@ -68,33 +51,143 @@ Navbar Brand renders heading text that adapt to the current [color](#colors) of 
 </Navbar>
 ```
 
-### Icon
+### Links
 
-Navbar Icon renders Icon that adapt to the current [color](#colors) of the Navbar
+Navbar Links renders buttons or links that help user navigate better
 
 <section className={styles.componentShowcaseContainer}>
   <Navbar>
-    <BugIcon 
-      style={{
-        color: '#FFF',
-        width: '$5',
-        height: '$5',
-        cursor: 'pointer',
-      }}
-    />
+    <Navbar.Brand>Workbench Title</Navbar.Brand>
+    <Navbar.Links>
+      <a href='#'>
+        <Button>Home</Button>
+      </a>
+      <a href='#'>
+        <Button>Services</Button>
+      </a>
+      <a href='#'>
+        <Button>Products</Button>
+      </a>
+    </Navbar.Links>
   </Navbar>
 </section>
 
 ```js
 <Navbar>
-  <BugIcon 
-    style={{
-      color: '#FFF',
-      width: '$5',
-      height: '$5',
-      cursor: 'pointer',
-    }}
-  />
+  <Navbar.Brand>Workbench Title</Navbar.Brand>
+  <Navbar.Links>
+    <a href='#'>
+      <Button>Home</Button>
+    </a>
+    <a href='#'>
+      <Button>Services</Button>
+    </a>
+    <a href='#'>
+      <Button>Products</Button>
+    </a>
+  </Navbar.Links>
+</Navbar>
+```
+
+### Separator
+
+Navbar Separator helps separate the left side and the right side of the navbar
+
+<section className={styles.componentShowcaseContainer}>
+  <Navbar>
+    <Navbar.Brand>Workbench Title</Navbar.Brand>
+    <Navbar.Links>
+      <a href='#'>
+        <Button>Home</Button>
+      </a>
+      <a href='#'>
+        <Button>Services</Button>
+      </a>
+      <a href='#'>
+        <Button>Products</Button>
+      </a>
+    </Navbar.Links>
+    <Navbar.Separator></Navbar.Separator>
+    <Navbar.Links>
+      <a href='#'>
+        <Button>Home</Button>
+      </a>
+    </Navbar.Links>
+  </Navbar>
+</section>
+
+```js
+<Navbar>
+  <Navbar.Brand>Workbench Title</Navbar.Brand>
+  <Navbar.Links>
+    <a href='#'>
+      <Button>Home</Button>
+    </a>
+    <a href='#'>
+      <Button>Services</Button>
+    </a>
+    <a href='#'>
+      <Button>Products</Button>
+    </a>
+  </Navbar.Links>
+  <Navbar.Separator></Navbar.Separator>
+  <Navbar.Links>
+    <a href='#'>
+      <Button>Home</Button>
+    </a>
+  </Navbar.Links>
+</Navbar>
+```
+
+### Actions
+
+Navbar Actions helps organize action buttons. The prop `alternativeElement` provides the alternate action button when the screen size is small (less than 768px)
+
+<section className={styles.componentShowcaseContainer}>
+  <Navbar>
+    <Navbar.Brand>Workbench Title</Navbar.Brand>
+    <Navbar.Links>
+      <a href='#'>
+        <Button>Home</Button>
+      </a>
+      <a href='#'>
+        <Button>Services</Button>
+      </a>
+      <a href='#'>
+        <Button>Products</Button>
+      </a>
+    </Navbar.Links>
+    <Navbar.Separator></Navbar.Separator>
+    <Navbar.Actions alternativeElement={<MenuIcon color='white' />}>
+      <QuestionIcon color='white'></QuestionIcon>
+      <NotificationIcon color='white'></NotificationIcon>
+      <OrgChatIcon color='white'></OrgChatIcon>
+      <Avatar label='Avatar' size='xs' />
+    </Navbar.Actions>
+  </Navbar>
+</section>
+
+```js
+<Navbar>
+  <Navbar.Brand>Workbench Title</Navbar.Brand>
+  <Navbar.Links>
+    <a href='#'>
+      <Button>Home</Button>
+    </a>
+    <a href='#'>
+      <Button>Services</Button>
+    </a>
+    <a href='#'>
+      <Button>Products</Button>
+    </a>
+  </Navbar.Links>
+  <Navbar.Separator></Navbar.Separator>
+  <Navbar.Actions alternativeElement={<MenuIcon color='white' />}>
+    <QuestionIcon color='white'></QuestionIcon>
+    <NotificationIcon color='white'></NotificationIcon>
+    <OrgChatIcon color='white'></OrgChatIcon>
+    <Avatar label='Avatar' size='xs' />
+  </Navbar.Actions>
 </Navbar>
 ```
 
@@ -104,59 +197,59 @@ Navbar Icon renders Icon that adapt to the current [color](#colors) of the Navba
 
 <section className={styles.componentShowcaseContainer}>
   <Navbar variant='portal'>
-    <Avatar size='sm' label='asd' />
-    <Button className='c-hKssGC-hYGuEl-variant-primary'>Home</Button>
-    <Button className='c-hKssGC-hYGuEl-variant-primary'>Services</Button>
-    <Button className='c-hKssGC-hYGuEl-variant-primary'>Products</Button>
+    <Avatar size='sm' label='Avatar' />
+    <Navbar.Links>
+      <a href='#'>
+        <Button>Home</Button>
+      </a>
+      <a href='#'>
+        <Button>Services</Button>
+      </a>
+      <a href='#'>
+        <Button>Products</Button>
+      </a>
+    </Navbar.Links>
   </Navbar>
 </section>
 
 ```js
 <Navbar variant='portal'>
-  <Avatar size='sm' label='asd' />
-  <Button>Home</Button>
-  <Button>Services</Button>
-  <Button>Products</Button>
+  <Avatar size='sm' label='Avatar' />
+  <Navbar.Links>
+    <a href='#'>
+      <Button>Home</Button>
+    </a>
+    <a href='#'>
+      <Button>Services</Button>
+    </a>
+    <a href='#'>
+      <Button>Products</Button>
+    </a>
+  </Navbar.Links>
 </Navbar>
 ```
 
 #### Website Version
 
 <section className={styles.componentShowcaseContainer}>
-  <Navbar variant='website'>
-    <Avatar size='lg' label='asd' />
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'flex-end',
-        flexGrow: 1,
-        gap: '12px',
-        alignItems: 'center',
-      }}
-    >
-      <Button className='c-hKssGC-hYGuEl-variant-primary'>Home</Button>
-      <Button className='c-hKssGC-hYGuEl-variant-primary'>Services</Button>
-      <Button className='c-hKssGC-hYGuEl-variant-primary'>Products</Button>
-    </div>
+  <Navbar variant='website' color='white'>
+    <Workbench width={'40px'} height={'40px'} />
+    <Navbar.Links>
+      <Button variant='ghost'>Home</Button>
+      <Button variant='ghost'>Services</Button>
+      <Button variant='ghost'>Products</Button>
+    </Navbar.Links>
   </Navbar>
 </section>
 
 ```js
-<Navbar variant='website'>
+<Navbar variant='website' color='white'>
   <Avatar size='lg' label='asd' />
-  <div
-    style={{
-      display: 'flex',
-      justifyContent: 'flex-end',
-      flexGrow: 1,
-      gap: '12px',
-      alignItems: 'center',
-    }}
-  >
+  <Navbar.Links>
     <Button>Home</Button>
     <Button>Services</Button>
     <Button>Products</Button>
-  </div>
+  </Navbar.Links>
 </Navbar>
 ```
 
@@ -168,9 +261,11 @@ Navbar Icon renders Icon that adapt to the current [color](#colors) of the Navba
   <Navbar color='blue'>
     <Avatar size='sm' label='asd' />
     <Navbar.Brand>Workbench Title</Navbar.Brand>
-    <Button className='c-hKssGC-hYGuEl-variant-primary'>Home</Button>
-    <Button className='c-hKssGC-hYGuEl-variant-primary'>Services</Button>
-    <Button className='c-hKssGC-hYGuEl-variant-primary'>Products</Button>
+    <Navbar.Links>
+      <Button>Home</Button>
+      <Button>Services</Button>
+      <Button>Products</Button>
+    </Navbar.Links>
   </Navbar>
 </section>
 
@@ -178,9 +273,11 @@ Navbar Icon renders Icon that adapt to the current [color](#colors) of the Navba
 <Navbar color='blue'>
   <Avatar size='sm' label='asd' />
   <Navbar.Brand>Workbench Title</Navbar.Brand>
-  <Button>Home</Button>
-  <Button>Services</Button>
-  <Button>Products</Button>
+  <Navbar.Links>
+    <Button>Home</Button>
+    <Button>Services</Button>
+    <Button>Products</Button>
+  </Navbar.Links>
 </Navbar>
 ```
 
@@ -190,9 +287,11 @@ Navbar Icon renders Icon that adapt to the current [color](#colors) of the Navba
   <Navbar color='white'>
     <Avatar size='sm' label='asd' />
     <Navbar.Brand>Workbench Title</Navbar.Brand>
-    <Button variant='ghost'>Home</Button>
-    <Button variant='ghost'>Services</Button>
-    <Button variant='ghost'>Products</Button>
+    <Navbar.Links>
+      <Button variant='ghost'>Home</Button>
+      <Button variant='ghost'>Services</Button>
+      <Button variant='ghost'>Products</Button>
+    </Navbar.Links>
   </Navbar>
 </section>
 
@@ -200,9 +299,11 @@ Navbar Icon renders Icon that adapt to the current [color](#colors) of the Navba
 <Navbar color='white'>
   <Avatar size='sm' label='asd' />
   <Navbar.Brand>Workbench Title</Navbar.Brand>
-  <Button variant='ghost'>Home</Button>
-  <Button variant='ghost'>Services</Button>
-  <Button variant='ghost'>Products</Button>
+  <Navbar.Links>
+    <Button variant='ghost'>Home</Button>
+    <Button variant='ghost'>Services</Button>
+    <Button variant='ghost'>Products</Button>
+  </Navbar.Links>
 </Navbar>
 ```
 
@@ -219,17 +320,33 @@ Navbar Icon renders Icon that adapt to the current [color](#colors) of the Navba
 
 #### Navbar.Brand
 
+| Name           | Type              | Default | Description                                                   |
+| :------------- | :---------------- | :------ | :------------------------------------------------------------ |
+| children       | `React.ReactNode` | —       |                                                               |
+| hiddenOnMobile | `boolean`         | —       | Brand name will be hidden when screen is resize to small size |
+| css            | `CSS`             | —       |                                                               |
+
+#### Navbar.Links
+
 | Name     | Type              | Default | Description |
 | :------- | :---------------- | :------ | :---------- |
 | children | `React.ReactNode` | —       |             |
 | css      | `CSS`             | —       |             |
 
-#### Navbar.Icon
+#### Navbar.Separator
 
-| Name | Type       | Default | Description |
-| :--- | :--------- | :------ | :---------- |
-| icon | `ReactNode` | —       |             |
-| css  | `CSS`      | —       |             |
+| Name     | Type              | Default | Description |
+| :------- | :---------------- | :------ | :---------- |
+| children | `React.ReactNode` | —       |             |
+| css      | `CSS`             | —       |             |
+
+#### Navbar.Actions
+
+| Name               | Type              | Default | Description                                                         |
+| :----------------- | :---------------- | :------ | :------------------------------------------------------------------ |
+| children           | `React.ReactNode` | —       |                                                                     |
+| alternativeElement | `React.ReactNode` | —       | Alternative element to show when the screen is resize to small size |
+| css                | `CSS`             | —       |                                                                     |
 
 <Callout>
   Check out our [ladle](/ladle?story=navbar--variants) for more info on this

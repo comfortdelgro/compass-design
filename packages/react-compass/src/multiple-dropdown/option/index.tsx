@@ -16,50 +16,48 @@ interface Props extends OptionVariantProps {
   onSelect: (key: React.Key) => void
 }
 
-function Option({item, currentKeys, focusKey, disabledKeys, onSelect}: Props) {
-  const ref = React.useRef<HTMLLIElement>(null)
-  const {checkmark = 'checkbox'} = item.props
-  const isSelected = React.useMemo(
-    () => (item.key ? currentKeys.some((v) => v == item.key) : false),
-    [currentKeys],
-  )
-  const isFocused = React.useMemo(() => focusKey == item.key, [focusKey])
-  const isDisabled = React.useMemo(
-    () => (item.key ? disabledKeys.includes(item.key) : false),
-    [disabledKeys],
-  )
+const Option = React.forwardRef<HTMLLIElement, Props>(
+  ({item, currentKeys, focusKey, disabledKeys, onSelect}, ref) => {
+    const {checkmark = 'checkbox'} = item.props
+    const isSelected = React.useMemo(
+      () =>
+        item.key
+          ? currentKeys.some((currentKey) => currentKey == item.key)
+          : false,
+      [currentKeys],
+    )
+    const isFocused = React.useMemo(() => focusKey == item.key, [focusKey])
+    const isDisabled = React.useMemo(
+      () => (item.key ? disabledKeys.includes(item.key) : false),
+      [disabledKeys],
+    )
 
-  const handleSelect = () => {
-    if (item.key && !isDisabled) onSelect(item.key)
-  }
-
-  React.useEffect(() => {
-    if (isFocused) {
-      ref.current?.scrollIntoView({block: 'nearest'})
+    const handleSelect = () => {
+      if (item.key && !isDisabled) onSelect(item.key)
     }
-  }, [isFocused])
 
-  return (
-    <StyledOption
-      ref={ref}
-      isFocused={isFocused}
-      isSelected={isSelected}
-      onClick={handleSelect}
-      isDisabled={isDisabled}
-    >
-      <StyledContent>{item.props.children}</StyledContent>
-      <StyledRightIcon isSelected={isSelected} checkmark={checkmark}>
-        {checkmark === 'checkbox' ? (
-          <div>
-            <Tick />
-          </div>
-        ) : checkmark === 'tick' ? (
-          <BlueTick />
-        ) : null}
-      </StyledRightIcon>
-    </StyledOption>
-  )
-}
+    return (
+      <StyledOption
+        ref={ref}
+        isFocused={isFocused}
+        isSelected={isSelected}
+        onClick={handleSelect}
+        isDisabled={isDisabled}
+      >
+        <StyledContent>{item.props.children}</StyledContent>
+        <StyledRightIcon isSelected={isSelected} checkmark={checkmark}>
+          {checkmark === 'checkbox' ? (
+            <div>
+              <Tick />
+            </div>
+          ) : checkmark === 'tick' ? (
+            <BlueTick />
+          ) : null}
+        </StyledRightIcon>
+      </StyledOption>
+    )
+  },
+)
 
 export default Option
 
