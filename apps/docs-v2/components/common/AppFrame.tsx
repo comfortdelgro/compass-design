@@ -3,6 +3,7 @@ import AppNavDrawer from 'components/common/AppNavDrawer'
 import MarkdownLinks from 'components/common/MarkdownLinks'
 import AppHeader from 'components/layouts/AppHeader'
 import * as React from 'react'
+import AppSideNav from './AppSlideNav'
 
 const AppSearch = React.lazy(() => import('components/common/AppSearch'))
 export function DeferredAppSearch() {
@@ -30,18 +31,20 @@ export default function AppFrame(props: {children: React.ReactNode}) {
   return (
     <>
       <MarkdownLinks />
-      <Box css={{width: '100vw'}}>
-        <AppHeader />
-        <Box
-          css={{
-            display: 'flex',
-            maxHeight: 'calc(100vh - 51px)',
-            overflowY: 'hidden',
-            width: '100vw',
-          }}
-        >
-          <AppNavDrawer />
-          {children}
+      <Box css={{width: '100vw', display: 'flex'}}>
+        <AppSideNav />
+        <Box css={{width: '100%'}}>
+          <AppHeader />
+          <Box
+            css={{
+              display: 'flex',
+              maxHeight: 'calc(100vh - 51px)',
+              overflowY: 'hidden',
+            }}
+          >
+            <AppNavDrawer />
+            {children}
+          </Box>
         </Box>
       </Box>
     </>

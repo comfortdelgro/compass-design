@@ -37,7 +37,7 @@ function usePageNeighbours() {
   return {prevPage, nextPage}
 }
 
-export default function AppLayoutDocsFooter() {
+export default function AppLayoutDocsFooter(props: any) {
   const {nextPage, prevPage} = usePageNeighbours()
 
   return (
