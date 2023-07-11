@@ -30,10 +30,10 @@ export default function AppFrame(props: {children: React.ReactNode}) {
   return (
     <>
       <MarkdownLinks />
-      <Box css={{width: '100vw', display: 'flex'}}>
-        <AppSideNav />
-        <Box css={{width: '100%'}}>
-          <AppHeader />
+      <Box css={{width: '100vw', height: '100vh', overflow: 'hidden'}}>
+        <AppHeader />
+        <Box css={{width: '100%', display: 'flex'}}>
+          <AppSideNav />
           <Box
             css={{
               display: 'flex',

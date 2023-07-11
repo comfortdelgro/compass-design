@@ -2,11 +2,19 @@ import {
   faFile,
   faSquarePen,
   faToggleOn,
+  IconDefinition,
 } from '@fortawesome/free-solid-svg-icons'
 
-const pages = [
+export type TPage = {
+  pathname: string
+  title: string
+  icon?: IconDefinition
+  children?: TPage[]
+}
+
+const routes: TPage[] = [
   {
-    pathname: '/',
+    pathname: '/getting-started',
     title: 'Getting started',
     icon: faFile,
     children: [
@@ -16,7 +24,7 @@ const pages = [
     ],
   },
   {
-    pathname: '/',
+    pathname: '/components/autocomplete',
     title: 'Components',
     icon: faToggleOn,
     children: [
@@ -31,7 +39,8 @@ const pages = [
     ],
   },
   {
-    pathname: '/',
+    pathname: '/customization/theming',
+    title: 'Customization',
     icon: faSquarePen,
     children: [
       {pathname: '/customization/theming', title: 'Theming'},
@@ -40,4 +49,4 @@ const pages = [
   },
 ]
 
-export default pages
+export default routes
