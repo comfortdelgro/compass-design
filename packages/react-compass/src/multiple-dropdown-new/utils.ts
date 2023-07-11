@@ -204,3 +204,16 @@ export const getItemByKey = (
 
   return selectItem ?? null
 }
+
+export const getDistanceBetweenElements = (
+  a: HTMLDivElement,
+  b: HTMLDivElement,
+) => {
+  const getTop = (element: Element) => {
+    const {top} = element.getBoundingClientRect()
+    return top
+  }
+  const aPosition = getTop(a)
+  const bPosition = getTop(b)
+  return Math.hypot(aPosition - bPosition)
+}

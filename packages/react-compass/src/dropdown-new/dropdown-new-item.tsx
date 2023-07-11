@@ -1,4 +1,11 @@
-import React, {Key, useContext, useEffect, useMemo, useRef} from 'react'
+import React, {
+  Key,
+  Suspense,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {DropdownContext} from './dropdown-new-context'
 import {
@@ -6,9 +13,9 @@ import {
   StyledContent,
   StyledFlagItem,
   StyledItemIcon,
+  StyledLoading,
   StyledOption,
 } from './dropdown-new.styles'
-import {Flag} from './flags'
 import {textContent} from './utils'
 
 interface Props extends StyledComponentProps {
@@ -21,6 +28,21 @@ interface Props extends StyledComponentProps {
   checkmark?: 'none' | 'checkbox' | 'tick'
   flagName?: string
   children: React.ReactNode
+}
+
+const FlagComponent = React.lazy(() => import('./flags'))
+
+const LoadingIcon = () => {
+  return (
+    <StyledLoading>
+      <div className='spinner'>
+        <div className='spinner-1' />
+        <div className='spinner-2' />
+        <div className='spinner-3' />
+        <div />
+      </div>
+    </StyledLoading>
+  )
 }
 
 export type DropdownItemProps = Props
@@ -45,12 +67,12 @@ const DropdownNewItem: React.FC<DropdownItemProps> = (
   const ref = useRef<HTMLLIElement>(null)
 
   const isSeleted = useMemo(
-    () => selectedItem?.value === value,
+    () => selectedItem?.value.toString() === value.toString(),
     [selectedItem, value],
   )
 
   const isFocused = useMemo(
-    () => focusKey === value.toString(),
+    () => focusKey?.toString() === value.toString(),
     [focusKey, value],
   )
 
@@ -74,7 +96,9 @@ const DropdownNewItem: React.FC<DropdownItemProps> = (
   useEffect(() => {
     if (!isDisabled) {
       setDropdownItemKeys?.((keys) => {
-        const index = keys.findIndex((keyItem) => keyItem.value === value)
+        const index = keys.findIndex(
+          (keyItem) => keyItem.value.toString() === value.toString(),
+        )
         if (index === -1) {
           keys.push({value, visibility: true})
         } else {
@@ -92,7 +116,7 @@ const DropdownNewItem: React.FC<DropdownItemProps> = (
   useEffect(() => {
     if (focusKey && focusKey.toString() === value.toString()) {
       if (ref.current) {
-        ref.current.scrollIntoView({block: 'end'})
+        ref.current.scrollIntoView({block: 'nearest'})
       }
     }
   }, [focusKey, value])
@@ -101,14 +125,14 @@ const DropdownNewItem: React.FC<DropdownItemProps> = (
     if (selectedKey && selectedKey.toString() === value.toString()) {
       setSelectedItem({value: value.toString(), displayValue: children})
       if (ref.current) {
-        ref.current.scrollIntoView({block: 'end'})
+        ref.current.scrollIntoView({block: 'nearest'})
       }
     }
   }, [selectedKey, value])
 
   useEffect(() => {
     if (open && isSeleted && ref.current) {
-      ref.current.scrollIntoView({block: 'end'})
+      ref.current.scrollIntoView({block: 'nearest'})
     }
   }, [open, isSeleted])
 
@@ -133,7 +157,9 @@ const DropdownNewItem: React.FC<DropdownItemProps> = (
     >
       {flagName && (
         <StyledFlagItem>
-          <Flag iso={flagName} />
+          <Suspense fallback={<LoadingIcon />}>
+            <FlagComponent iso={flagName} />
+          </Suspense>
         </StyledFlagItem>
       )}
       {leftIcon && <StyledItemIcon>{leftIcon}</StyledItemIcon>}

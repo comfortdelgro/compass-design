@@ -24,7 +24,6 @@ const MultipleDropdownNewItem: React.FC<MultipleDropdownItemProps> = (
   const {
     disabledKeys = [],
     searchValue,
-    open,
     focusKey,
     selectedItems,
     setDropdownItemKeys,

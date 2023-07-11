@@ -7,6 +7,70 @@ import ADFlag from './flags/ad'
 import AEFlag from './flags/ae'
 import AFFlag from './flags/af'
 
+function generateRandomName() {
+  const firstNames = [
+    'Alice',
+    'Bob',
+    'Charlie',
+    'David',
+    'Emily',
+    'Frank',
+    'Gina',
+    'Haley',
+    'Isaac',
+    'John',
+  ]
+  const lastNames = [
+    'Smith',
+    'Johnson',
+    'Williams',
+    'Jones',
+    'Brown',
+    'Davis',
+    'Miller',
+    'Wilson',
+    'Moore',
+    'Taylor',
+  ]
+  const firstName =
+    firstNames[Math.floor(Math.random() * firstNames.length)] ?? ''
+  const lastName = lastNames[Math.floor(Math.random() * lastNames.length)] ?? ''
+  return {name: `${firstName} ${lastName}`, firstName, lastName}
+}
+
+function generateRandomData(numData: number, startNumber = 1): SampleData[] {
+  const data = []
+
+  for (let i = 0; i < numData; i++) {
+    const id = i + startNumber // generate a random ID between 0 and 9999
+    const nameObj = generateRandomName() // generate a random name
+    const name = nameObj.name
+    const firstName = nameObj.firstName
+    const lastName = nameObj.lastName
+    const age = Math.floor(Math.random() * 60 + 5)
+    const gender = Math.floor(Math.random() * 10) % 2 === 1 ? 'Male' : 'Female'
+    data.push({
+      id,
+      name,
+      age,
+      gender,
+      firstName,
+      lastName,
+    }) // add the ID and name to the data array as an object
+  }
+
+  return data
+}
+
+interface SampleData {
+  id: number
+  name: string
+  age: number
+  gender: string
+  firstName: string
+  lastName: string
+}
+
 export const Flag: React.FC = () => {
   const [value, setValue] = React.useState<React.Key>('')
   return (
@@ -38,7 +102,9 @@ export const Flag: React.FC = () => {
 }
 
 export const Select: React.FC = () => {
-  const [value, setValue] = React.useState<Key>('cat')
+  const [value, setValue] = React.useState<Key>('')
+  const [loadMoreValue, setLoadMoreValue] = React.useState<Key>('')
+  const [data, setData] = React.useState<SampleData[]>(generateRandomData(10))
   const [value1, setValue1] = React.useState<Key>('cat')
 
   const handlePrefix = (key: Key) => {
@@ -466,6 +532,25 @@ export const Select: React.FC = () => {
             Snake
           </DropdownNew.Item>
         </DropdownNew.Section>
+      </DropdownNew.Select>
+      <DropdownNew.Select
+        isRequired
+        label='Using load more'
+        placeholder='Select name'
+        selectedKey={loadMoreValue}
+        onSelectionChange={(k: Key) => setLoadMoreValue(k)}
+        onLoadMore={() => {
+          setData((currentData) => [
+            ...currentData,
+            ...generateRandomData(10, currentData.length + 1),
+          ])
+        }}
+      >
+        {data.map((item) => (
+          <DropdownNew.Item value={item.id} key={item.id}>
+            {item.name}
+          </DropdownNew.Item>
+        ))}
       </DropdownNew.Select>
     </Column>
   )

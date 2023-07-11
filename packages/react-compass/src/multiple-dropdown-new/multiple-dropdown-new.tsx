@@ -62,6 +62,7 @@ interface Props extends StyledComponentProps {
   disableClearable?: boolean
   children?: React.ReactNode
   description?: React.ReactNode
+  noDataMessage?: string
   onBlur?: () => void
   onFocus?: () => void
   onLoadMore?: () => void
@@ -110,6 +111,7 @@ const MultipleDropdown = React.forwardRef<
     label,
     placeholder,
     erroredKeys,
+    noDataMessage = '',
     onLoadMore = () => {
       //Load more
     },
@@ -533,6 +535,8 @@ const MultipleDropdown = React.forwardRef<
                 css={{
                   maxHeight: numberOfRows ? `${numberOfRows * 40}px` : '16rem',
                 }}
+                onLoadMore={onLoadMore}
+                noDataMessage={noDataMessage}
               >
                 {children}
               </MultipleDropdownList>

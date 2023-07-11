@@ -39,7 +39,7 @@ import {
   StyledPopover,
   StyledSelect,
 } from './dropdown-new.styles'
-import {Flag} from './flags'
+import Flag from './flags'
 import {
   getFirstItem,
   getItemAbove,
@@ -73,6 +73,7 @@ interface Props extends StyledComponentProps {
   children?: React.ReactNode
   description?: React.ReactNode
   disableClearable?: boolean
+  noDataMessage?: string
   onBlur?: () => void
   onFocus?: () => void
   onLoadMore?: () => void
@@ -94,6 +95,9 @@ export type DropdownProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const ITEM_HEIGHT = 32
+const EMPTY_FUNC = () => {
+  //
+}
 
 const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   // ====================================== Define ======================================
@@ -120,9 +124,11 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     allowsCustomValue = false,
     disableClearable = false,
     prefix = null,
-    onSelectionChange,
-    onFocus,
-    onBlur,
+    noDataMessage = '',
+    onSelectionChange = EMPTY_FUNC,
+    onFocus = EMPTY_FUNC,
+    onBlur = EMPTY_FUNC,
+    onLoadMore = EMPTY_FUNC,
     ...delegated
   } = props
 
@@ -382,6 +388,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
             isEmpty={!selectedItem}
             className='cdg-dropdown-input'
             isErrored={!!isErrored}
+            isDisabled={isDisabled}
             {...getReferenceProps}
           >
             <button
@@ -413,6 +420,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
             ref={refs.setReference}
             className='cdg-dropdown-input'
             isErrored={!!isErrored}
+            isDisabled={isDisabled}
             {...getReferenceProps}
           >
             <input
@@ -444,6 +452,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
             isEmpty={!selectedItem}
             className='cdg-dropdown-input'
             isErrored={!!isErrored}
+            isDisabled={isDisabled}
             {...getReferenceProps}
           >
             {selectedItem && selectedItem?.flagName ? (
@@ -597,6 +606,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
                     ? `${numberOfRows * ITEM_HEIGHT}px`
                     : '16rem',
                 }}
+                onLoadMore={onLoadMore}
+                noDataMessage={noDataMessage}
               >
                 {children}
               </DropdownNewList>

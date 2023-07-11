@@ -1,6 +1,7 @@
 import React, {useMemo} from 'react'
 import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
+import {useIsInViewport} from './hooks/useInViewport'
 import {MultipleDropdownContext} from './multiple-dropdown-new-context'
 import MultipleDropdownHeader from './multiple-dropdown-new.header'
 import {
@@ -8,13 +9,14 @@ import {
   StyledEmptyData,
   StyledLoading,
 } from './multiple-dropdown-new.styles'
-import {textContent} from './utils'
+import {getDistanceBetweenElements, textContent} from './utils'
 
 interface Props extends StyledComponentProps {
   searchValue?: string
   isLoading?: boolean
   children?: React.ReactNode
   noDataMessage?: string
+  onLoadMore?: () => void
 }
 
 export type DropdownItemListProps = Props
@@ -22,8 +24,12 @@ export type DropdownItemListProps = Props
 const MultipleDropdownList: React.FC<DropdownItemListProps> = (
   props: DropdownItemListProps,
 ) => {
-  const {children, isLoading, css = {}, noDataMessage} = props
+  const {children, isLoading, css = {}, noDataMessage, onLoadMore} = props
 
+  const lastEl = React.useRef<HTMLDivElement | null>(null)
+  const standEl = React.useRef<HTMLDivElement | null>(null)
+
+  const isInViewport = useIsInViewport(lastEl)
   const {searchValue} = React.useContext(MultipleDropdownContext)
 
   const {child: DropdownHeaderElement, rest: dropdownItems} = pickChild<
@@ -44,6 +50,18 @@ const MultipleDropdownList: React.FC<DropdownItemListProps> = (
     return currentCount
   }, [dropdownItems, searchValue])
 
+  React.useEffect(() => {
+    if (lastEl.current && standEl.current) {
+      const distance = getDistanceBetweenElements(
+        lastEl.current,
+        standEl.current,
+      )
+      if (isInViewport && distance >= 0 && distance < 4) {
+        onLoadMore?.()
+      }
+    }
+  }, [isInViewport])
+
   return useMemo(
     () => (
       <>
@@ -59,10 +77,14 @@ const MultipleDropdownList: React.FC<DropdownItemListProps> = (
               </div>
             </StyledLoading>
           ) : displayedItemsCount === 0 ? (
-            <StyledEmptyData>{noDataMessage ?? 'No data'}</StyledEmptyData>
+            <StyledEmptyData>{noDataMessage || 'No data'}</StyledEmptyData>
           ) : (
             children
           )}
+          {React.Children.toArray(dropdownItems).length > 0 && (
+            <div style={{height: 1}} ref={lastEl} />
+          )}
+          <div style={{height: 1}} ref={standEl} />
         </StyledDropdownList>
       </>
     ),

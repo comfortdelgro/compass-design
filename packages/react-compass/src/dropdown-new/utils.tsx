@@ -29,13 +29,13 @@ export function textContent(
 const findItemByValue = (
   items: Array<React.ReactElement<DropdownItemProps>>,
   value: Key,
-  disabledKeys: Array<Key> = [],
+  disabledKeys: Key[] = [],
 ): React.ReactElement<DropdownItemProps> | null => {
   for (let index = 0; index < items.length; index++) {
     const item = items[index]
     if (item?.props) {
       if (
-        item.props.value === value &&
+        item.props.value.toString() === value.toString() &&
         !disabledKeys?.includes(item.props.value)
       ) {
         return item
@@ -75,7 +75,9 @@ export const getItemAbove = (
   )
 
   if (visibleDropdownItems.length) {
-    const index = visibleDropdownItems.findIndex((item) => item.value === key)
+    const index = visibleDropdownItems.findIndex(
+      (item) => item.value.toString() === key.toString(),
+    )
     if (index !== -1) {
       // Get prev item or last item(when we are at first index)
       const nextKey =
@@ -109,9 +111,12 @@ export const getItemBelow = (
   const visibleDropdownItems = dropdownItemKeys.filter(
     (item) => item.visibility,
   )
+
   if (visibleDropdownItems.length) {
     // Get next item or first item(when we are at last index)
-    const index = visibleDropdownItems.findIndex((item) => item.value === key)
+    const index = visibleDropdownItems.findIndex(
+      (item) => item.value.toString() === key.toString(),
+    )
     if (index !== -1) {
       const nextKey = visibleDropdownItems[index + 1] ?? visibleDropdownItems[0]
       if (nextKey) {
@@ -196,4 +201,17 @@ export const getItemByKey = (key: Key, children?: React.ReactNode) => {
   )
 
   return selectItem ?? null
+}
+
+export const getDistanceBetweenElements = (
+  a: HTMLDivElement,
+  b: HTMLDivElement,
+) => {
+  const getTop = (element: Element) => {
+    const {top} = element.getBoundingClientRect()
+    return top
+  }
+  const aPosition = getTop(a)
+  const bPosition = getTop(b)
+  return Math.hypot(aPosition - bPosition)
 }
