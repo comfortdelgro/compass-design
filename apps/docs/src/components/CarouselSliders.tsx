@@ -1,3 +1,4 @@
+import BugIcon from '@comfortdelgro/compass-icons/react/bug'
 import {
   CarouselSlider,
   CarouselSliderButton,
@@ -6,7 +7,6 @@ import {
   NinePartAlignment,
   SocicalIcon,
 } from '@comfortdelgro/react-compass'
-import BugIcon from '@comfortdelgro/compass-icons/react/bug'
 import Image from 'next/image'
 import {useState} from 'react'
 

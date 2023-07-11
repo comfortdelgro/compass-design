@@ -1,5 +1,11 @@
 # @comfortdelgro/compass-icons
 
+## 1.1.0
+
+### Minor Changes
+
+- b7b606ea: Second Release
+
 ## 1.0.0
 
 ### Major Changes
