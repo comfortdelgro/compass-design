@@ -1,14 +1,8 @@
-import Button from '@mui/material/Button'
-import Link from '@mui/material/Link'
-import Typography from '@mui/material/Typography'
-import PropTypes from 'prop-types'
+import {Button, Typography} from '@comfortdelgro/react-compass'
+import Link from 'next/link'
 import * as React from 'react'
 
-/**
- * Based on https://github.com/sindresorhus/new-github-issue-url/blob/061fa0ddb7d51f3b96d3a0f6a6bebb196f105a7b/index.js
- * with node 8 + IE11 support i.e. not using URL (URLSearchParams.set replaced with Map.set)
- */
-function newGitHubIssueUrl(options) {
+function newGitHubIssueUrl(options: any) {
   const url = `https://github.com/${options.user}/${options.repo}/issues/new`
 
   const query = Object.keys(options)
@@ -26,12 +20,12 @@ export default class DemoErrorBoundary extends React.Component {
     error: null,
   }
 
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError(error: any) {
     return {error}
   }
 
   render() {
-    const {children, name, onResetDemoClick, t} = this.props
+    const {children, name, onResetDemoClick} = this.props as any
     const {error} = this.state
 
     if (error) {
@@ -67,36 +61,25 @@ export default class DemoErrorBoundary extends React.Component {
       /* eslint-disable material-ui/no-hardcoded-labels */
       return (
         <div>
-          <Typography color='error' component='p' variant='h5' gutterBottom>
+          <Typography.Label color='error'>
             This demo had a runtime error!
-          </Typography>
-          <Typography>
+          </Typography.Label>
+          <Typography.Label>
             We would appreciate it if you{' '}
             <Link href={issueLink} rel='noreferrer' target='_blank'>
               report this error
             </Link>{' '}
             directly in our issue tracker. You will be provided with a prefilled
             description that includes valuable information about this error.
-          </Typography>
-          <pre style={{whiteSpace: 'pre-wrap'}}>{error.toString()}</pre>
-          <Button color='secondary' onClick={onResetDemoClick} variant='text'>
-            {t('resetDemo')}
+          </Typography.Label>
+          <pre style={{whiteSpace: 'pre-wrap'}}>{error}</pre>
+          <Button color='secondary' onClick={onResetDemoClick}>
+            Reset demo
           </Button>
         </div>
       )
-      /* eslint-enable material-ui/no-hardcoded-labels */
     }
 
     return children
   }
-}
-
-DemoErrorBoundary.propTypes = {
-  children: PropTypes.node,
-  name: PropTypes.string.isRequired,
-  onResetDemoClick: PropTypes.func.isRequired,
-  /**
-   * translate function from redux store
-   */
-  t: PropTypes.func.isRequired,
 }

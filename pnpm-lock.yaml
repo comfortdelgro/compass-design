@@ -122,6 +122,7 @@ importers:
       '@types/autosuggest-highlight': ^3.2.0
       '@types/css-mediaquery': ^0.1.1
       '@types/json2mq': ^0.2.0
+      '@types/lodash': ^4.14.194
       '@types/markdown-to-jsx': ^7.0.1
       '@types/marked': ^4.3.1
       '@types/react': ^17.0.39
@@ -282,6 +283,7 @@ importers:
     devDependencies:
       '@babel/plugin-transform-react-constant-elements': 7.22.5_@babel+core@7.22.6
       '@babel/preset-typescript': 7.22.5_@babel+core@7.22.6
+      '@types/lodash': 4.14.194
       '@types/marked': 4.3.1
       '@types/recharts': 2.0.0_v2m5e27vhdewzwhryxwfaorcca
       cross-fetch: 3.1.8
