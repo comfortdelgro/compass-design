@@ -18,10 +18,8 @@ export default function DemoToolbar(props: any) {
     onResetDemoClick,
   } = props
 
-  console.log(demo)
-
   const handleCopyClick = async () => {
-    await copy(demoData.rawTS)
+    await copy(demo.rawTS)
     // TODO: handle toast
   }
 

@@ -1,3 +1,4 @@
+import {Box} from '@comfortdelgro/react-compass'
 import {styled as joyStyled} from '@mui/joy/styles'
 import Collapse from '@mui/material/Collapse'
 import IconButton from '@mui/material/IconButton'
@@ -25,29 +26,9 @@ function trimLeadingSpaces(input = '') {
 }
 
 const DemoToolbar = React.lazy(() => import('./DemoToolbar'))
-// Sync with styles from DemoToolbar
-// Importing the styles results in no bundle size reduction
-const DemoToolbarFallbackRoot = styled('div')(({theme}) => {
-  return {
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'block',
-      height: 40 + 5 * 2 + 1 * 2,
-      marginTop: -1,
-    },
-  }
-})
 
 function DemoToolbarFallback() {
-  const t = useTranslate()
-
-  return (
-    <DemoToolbarFallbackRoot
-      aria-busy
-      aria-label={t('demoToolbarLabel')}
-      role='toolbar'
-    />
-  )
+  return <Box>Loading...</Box>
 }
 
 function getDemoName(location) {
@@ -65,15 +46,8 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
   return React.useMemo(() => {
     let productId
     let name = 'Material UI'
-    if (canonicalAs.startsWith('/joy-ui/')) {
-      productId = 'joy-ui'
-      name = 'Joy UI'
-    } else if (canonicalAs.startsWith('/base-ui/')) {
-      productId = 'base-ui'
-      name = 'Base UI'
-    } else if (canonicalAs.startsWith('/x/')) {
-      name = 'MUI X'
-    }
+
+    console.log({codeStyling})
 
     let codeOptions = {}
 
@@ -92,54 +66,6 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
           githubLocation,
           raw: demo.raw,
           Component: demo.js,
-          sourceLanguage: 'jsx',
-        }
-      }
-    } else if (codeStyling === CODE_STYLING.TAILWIND) {
-      if (codeVariant === CODE_VARIANTS.TS && demo.rawTailwindTS) {
-        codeOptions = {
-          codeVariant: CODE_VARIANTS.TS,
-          githubLocation: githubLocation.replace(
-            /\/system\/index\.js$/,
-            '/tailwind/index.tsx',
-          ),
-          raw: demo.rawTailwindTS,
-          Component: demo.tsxTailwind,
-          sourceLanguage: 'tsx',
-        }
-      } else {
-        codeOptions = {
-          codeVariant: CODE_VARIANTS.JS,
-          githubLocation: githubLocation.replace(
-            /\/system\/index\.js$/,
-            '/tailwind/index.js',
-          ),
-          raw: demo.rawTailwind ?? demo.raw,
-          Component: demo.jsTailwind ?? demo.js,
-          sourceLanguage: 'jsx',
-        }
-      }
-    } else if (codeStyling === CODE_STYLING.CSS) {
-      if (codeVariant === CODE_VARIANTS.TS && demo.rawCSSTS) {
-        codeOptions = {
-          codeVariant: CODE_VARIANTS.TS,
-          githubLocation: githubLocation.replace(
-            /\/system\/index\.js$/,
-            '/css/index.tsx',
-          ),
-          raw: demo.rawCSSTS,
-          Component: demo.tsxCSS,
-          sourceLanguage: 'tsx',
-        }
-      } else {
-        codeOptions = {
-          codeVariant: CODE_VARIANTS.JS,
-          githubLocation: githubLocation.replace(
-            /\/system\/index\.js$/,
-            '/css/index.js',
-          ),
-          raw: demo.rawCSS ?? demo.raw,
-          Component: demo.jsCSS ?? demo.js,
           sourceLanguage: 'jsx',
         }
       }
@@ -218,16 +144,6 @@ function useDemoElement({
     ? BundledComponent
     : LiveComponent
 }
-
-const Root = styled('div')(({theme}) => ({
-  marginBottom: 24,
-  marginLeft: theme.spacing(-2),
-  marginRight: theme.spacing(-2),
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: 0,
-    marginRight: 0,
-  },
-}))
 
 const DemoRootMaterial = styled('div', {
   shouldForwardProp: (prop) => prop !== 'hiddenToolbar' && prop !== 'bg',
@@ -462,7 +378,6 @@ export default function Demo(props) {
   const initialFocusRef = React.useRef(null)
 
   const [showAd, setShowAd] = React.useState(false)
-  const adVisibility = showAd && !disableAd && !demoOptions.disableAd
 
   const DemoRoot =
     demoData.productId === 'joy-ui' ? DemoRootJoy : DemoRootMaterial
@@ -511,7 +426,7 @@ export default function Demo(props) {
   })
 
   return (
-    <Root>
+    <Box>
       <AnchorLink id={demoName} />
       <DemoRoot
         hiddenToolbar={demoOptions.hideToolbar}
@@ -614,6 +529,6 @@ export default function Demo(props) {
           )}
         </Collapse>
       </BrandingProvider>
-    </Root>
+    </Box>
   )
 }
