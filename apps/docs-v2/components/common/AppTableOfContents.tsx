@@ -1,72 +1,12 @@
-import {Box} from '@comfortdelgro/react-compass'
-import {styled} from '@mui/material/styles'
-import Typography from '@mui/material/Typography'
+import {Box, Typography} from '@comfortdelgro/react-compass'
 import {shouldHandleLinkClick} from 'components/common/MarkdownLinks'
 import throttle from 'lodash/throttle'
 import Link from 'next/link'
 import * as React from 'react'
-import {useTranslate} from 'utils/i18n'
-
-const NavLabel = styled(Typography)(({theme}) => ({
-  marginTop: theme.spacing(2),
-  marginBottom: theme.spacing(1),
-  paddingLeft: theme.spacing(1.4),
-  fontSize: theme.typography.pxToRem(11),
-  fontWeight: theme.typography.fontWeightBold,
-  textTransform: 'uppercase',
-  letterSpacing: '.08rem',
-  color: theme.palette.grey[600],
-}))
-
-const NavList = styled(Typography)({
-  padding: 0,
-  margin: 0,
-  listStyle: 'none',
-})
-
-const NavItem = styled(Link, {
-  shouldForwardProp: (prop) => prop !== 'active' && prop !== 'secondary',
-})(({active, secondary, theme}) => {
-  const activeStyles = {
-    borderLeftColor: (theme.vars || theme).palette.primary[200],
-    color: (theme.vars || theme).palette.primary[600],
-    '&:hover': {
-      borderLeftColor: (theme.vars || theme).palette.primary[600],
-      color: (theme.vars || theme).palette.primary[600],
-    },
-  }
-  const activeDarkStyles = {
-    borderLeftColor: (theme.vars || theme).palette.primary[600],
-    color: (theme.vars || theme).palette.primary[300],
-    '&:hover': {
-      borderLeftColor: (theme.vars || theme).palette.primary[400],
-      color: (theme.vars || theme).palette.primary[400],
-    },
-  }
-
-  return [
-    {
-      fontSize: theme.typography.pxToRem(13),
-      padding: theme.spacing(0, 1, 0, secondary ? 2.5 : '10px'),
-      margin: theme.spacing(0.5, 0, 1, 0),
-      borderLeft: `1px solid transparent`,
-      boxSizing: 'border-box',
-      fontWeight: 500,
-      '&:hover': {
-        borderLeftColor: (theme.vars || theme).palette.grey[400],
-        color: (theme.vars || theme).palette.grey[600],
-      },
-      ...(!active && {
-        color: (theme.vars || theme).palette.text.primary,
-      }),
-      ...(active && activeStyles),
-      '&:active': activeStyles,
-    },
-  ]
-})
 
 const noop = () => {}
 
+// @ts-ignore
 function useThrottledOnScroll(callback, delay) {
   const throttledCallback = React.useMemo(
     () => (callback ? throttle(callback, delay) : noop),
@@ -81,19 +21,20 @@ function useThrottledOnScroll(callback, delay) {
     window.addEventListener('scroll', throttledCallback)
     return () => {
       window.removeEventListener('scroll', throttledCallback)
+      // @ts-ignore
       throttledCallback.cancel()
     }
   }, [throttledCallback])
 }
 
-function flatten(headings) {
-  const itemsWithNode = []
+function flatten(headings: any) {
+  const itemsWithNode: any = []
 
-  headings.forEach((item) => {
+  headings.forEach((item: any) => {
     itemsWithNode.push(item)
 
     if (item.children.length > 0) {
-      item.children.forEach((subitem) => {
+      item.children.forEach((subitem: any) => {
         itemsWithNode.push(subitem)
       })
     }
@@ -101,11 +42,8 @@ function flatten(headings) {
   return itemsWithNode
 }
 
-const showSurveyBanner = false
-
-export default function AppTableOfContents(props) {
+export default function AppTableOfContents(props: any) {
   const {toc} = props
-  const t = useTranslate()
 
   const items = React.useMemo(() => flatten(toc), [toc])
   const [activeState, setActiveState] = React.useState(null)
@@ -155,6 +93,7 @@ export default function AppTableOfContents(props) {
   // Corresponds to 10 frames at 60 Hz
   useThrottledOnScroll(items.length > 0 ? findActiveIndex : null, 166)
 
+  // @ts-ignore
   const handleClick = (hash) => (event) => {
     // Ignore click for new tab/new window behavior
     if (shouldHandleLinkClick(event)) {
@@ -163,6 +102,7 @@ export default function AppTableOfContents(props) {
 
     // Used to disable findActiveIndex if the page scrolls due to a click
     clickedRef.current = true
+    // @ts-ignore
     unsetClickedRef.current = setTimeout(() => {
       clickedRef.current = false
     }, 1000)
@@ -174,45 +114,55 @@ export default function AppTableOfContents(props) {
 
   React.useEffect(
     () => () => {
+      // @ts-ignore
       clearTimeout(unsetClickedRef.current)
     },
     [],
   )
 
-  const itemLink = (item, secondary) => (
-    <NavItem
-      display='block'
+  const itemLink = (item: any, secondary = false) => (
+    <Link
       href={`#${item.hash}`}
-      underline='none'
       onClick={handleClick(item.hash)}
-      active={activeState === item.hash}
-      secondary={secondary}
+      // active={activeState === item.hash}
     >
       <span dangerouslySetInnerHTML={{__html: item.text}} />
-    </NavItem>
+    </Link>
   )
 
   return (
     <Box
-      css={{width: 300, maxHeight: 'calc(100vh - 51px)', overflowY: 'scroll'}}
+      css={{
+        width: 300,
+        maxHeight: 'calc(100vh - 51px)',
+        overflowY: 'scroll',
+        padding: '$4',
+      }}
     >
       {toc.length > 0 ? (
         <>
-          <NavLabel gutterBottom>Contents</NavLabel>
-          <NavList component='ul'>
-            {toc.map((item) => (
-              <li key={item.text}>
+          <Typography.Header variant='header4'>Contents</Typography.Header>
+          <Typography.Label>
+            {toc.map((item: any) => (
+              <Box key={item.text}>
                 {itemLink(item)}
                 {item.children.length > 0 ? (
-                  <NavList as='ul'>
-                    {item.children.map((subitem) => (
-                      <li key={subitem.text}>{itemLink(subitem, true)}</li>
+                  <Typography.Label>
+                    {item.children.map((subitem: any) => (
+                      <Box
+                        css={{
+                          paddingLeft: '$5',
+                        }}
+                        key={subitem.text}
+                      >
+                        {itemLink(subitem, true)}
+                      </Box>
                     ))}
-                  </NavList>
+                  </Typography.Label>
                 ) : null}
-              </li>
+              </Box>
             ))}
-          </NavList>
+          </Typography.Label>
         </>
       ) : null}
     </Box>

@@ -39,6 +39,7 @@ export default function AppFrame(props: {children: React.ReactNode}) {
               display: 'flex',
               maxHeight: 'calc(100vh - 51px)',
               overflowY: 'hidden',
+              width: '100%',
             }}
           >
             {children}
