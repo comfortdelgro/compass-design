@@ -1,15 +1,11 @@
-import {alpha, darken, styled} from '@mui/material/styles'
+import {alpha, styled} from '@mui/material/styles'
 import clsx from 'clsx'
 import {brandingLightTheme as lightTheme} from 'docs/src/brandingTheme'
 import * as React from 'react'
 
 const Root = styled('div')(({theme}) => ({
-  ...lightTheme.typography.body1,
   lineHeight: 1.5625, // Increased compared to the 1.5 default to make the docs easier to read.
-  color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
-  '& strong': {
-    color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
-  },
+
   wordBreak: 'break-word',
   '& pre': {
     lineHeight: 1.5, // Developers likes when the code is dense.
@@ -33,22 +29,18 @@ const Root = styled('div')(({theme}) => ({
     },
   },
   '& code': {
-    ...lightTheme.typography.body2,
     fontFamily: lightTheme.typography.fontFamilyCode,
     fontWeight: 400,
     WebkitFontSmoothing: 'subpixel-antialiased',
   },
   '& pre > code': {
-    // Reset for Safari
-    // https://github.com/necolas/normalize.css/blob/master/normalize.css#L102
     fontSize: 'inherit',
   },
-  // inline code block
   '& :not(pre) > code': {
     display: 'inline-block',
     padding: '0 5px',
     color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
-    backgroundColor: alpha(lightTheme.palette.primary.light, 0.15),
+    backgroundColor: '#b1b1b1',
     borderRadius: 5,
     fontSize: lightTheme.typography.pxToRem(13),
     direction: 'ltr /*! @noflip */',
@@ -62,7 +54,6 @@ const Root = styled('div')(({theme}) => ({
     fontWeight: 800,
   },
   '& .description': {
-    ...lightTheme.typography.subtitle1,
     fontWeight: 400,
     margin: '0 0 28px',
   },
@@ -70,28 +61,24 @@ const Root = styled('div')(({theme}) => ({
     margin: '0 0 40px',
   },
   '& h2': {
-    ...lightTheme.typography.h5,
     fontFamily: lightTheme.typography.fontFamilySystem,
     fontWeight: 700,
     color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
     margin: '40px 0 4px',
   },
   '& h3': {
-    ...lightTheme.typography.h6,
     fontFamily: lightTheme.typography.fontFamilySystem,
     fontWeight: lightTheme.typography.fontWeightSemiBold,
     color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
     margin: '24px 0 8px',
   },
   '& h4': {
-    ...lightTheme.typography.subtitle1,
     fontFamily: lightTheme.typography.fontFamilySystem,
     fontWeight: lightTheme.typography.fontWeightSemiBold,
     color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
     margin: '24px 0 8px',
   },
   '& h5': {
-    ...lightTheme.typography.subtitle2,
     fontWeight: lightTheme.typography.fontWeightSemiBold,
     color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
     margin: '20px 0 8px',
@@ -139,7 +126,7 @@ const Root = styled('div')(({theme}) => ({
       cursor: 'pointer',
       display: 'inline-block',
       '&:hover': {
-        backgroundColor: alpha(lightTheme.palette.primary[100], 0.4),
+        backgroundColor: 'red',
         borderColor: `var(--muidocs-palette-primary-100, ${lightTheme.palette.primary[100]})`,
         color: `var(--muidocs-palette-primary-main, ${lightTheme.palette.primary.main})`,
       },
@@ -210,7 +197,6 @@ const Root = styled('div')(({theme}) => ({
     },
   },
   '& td': {
-    ...theme.typography.body2,
     borderBottom: `1px solid var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
     paddingRight: 20,
     paddingTop: 12,
@@ -232,9 +218,7 @@ const Root = styled('div')(({theme}) => ({
     paddingBottom: 12,
   },
   '& blockquote': {
-    borderRadius: `var(--muidocs-shape-borderRadius, ${
-      theme.shape?.borderRadius ?? lightTheme.shape.borderRadius
-    }px)`,
+    borderRadius: 12,
     border: '1px solid',
     borderLeft: '8px solid',
     borderColor: `var(--muidocs-palette-warning-300, ${lightTheme.palette.warning[300]})`,
@@ -250,9 +234,7 @@ const Root = styled('div')(({theme}) => ({
     padding: '16px',
     margin: '16px 0',
     border: '1px solid',
-    borderRadius: `var(--muidocs-shape-borderRadius, ${
-      theme.shape?.borderRadius ?? lightTheme.shape.borderRadius
-    }px)`,
+    borderRadius: 12,
     '& > ul, & > p': {
       '&:last-child': {
         margin: 0,
@@ -270,7 +252,7 @@ const Root = styled('div')(({theme}) => ({
       },
       '& a': {
         color: `var(--muidocs-palette-error-800, ${lightTheme.palette.error[800]})`,
-        textDecorationColor: alpha(lightTheme.palette.error.main, 0.4),
+        textDecorationColor: 'red',
         '&:hover': {
           textDecorationColor: 'inherit',
         },
@@ -293,7 +275,7 @@ const Root = styled('div')(({theme}) => ({
       },
       '& a': {
         color: `var(--muidocs-palette-success-900, ${lightTheme.palette.success[900]})`,
-        textDecorationColor: alpha(lightTheme.palette.success.main, 0.4),
+        textDecorationColor: 'red',
         '&:hover': {
           textDecorationColor: 'inherit',
         },
@@ -319,13 +301,13 @@ const Root = styled('div')(({theme}) => ({
     // Style taken from the Link component
     color: `var(--muidocs-palette-primary-600, ${lightTheme.palette.primary[600]})`,
     textDecoration: 'underline',
-    textDecorationColor: alpha(lightTheme.palette.primary.main, 0.4),
+    textDecorationColor: 'red',
     '&:hover': {
       textDecorationColor: 'inherit',
     },
   },
   '& a code': {
-    color: darken(lightTheme.palette.primary.main, 0.04),
+    color: 'red',
   },
   '& img, & video': {
     maxWidth: '100% !important',
@@ -357,10 +339,10 @@ const Root = styled('div')(({theme}) => ({
     boxShadow: `inset 0 -1px 0 var(--muidocs-palette-grey-300, ${lightTheme.palette.grey[300]})`,
   },
   '& details': {
-    marginBottom: theme.spacing(1.5),
-    padding: theme.spacing(0.5, 0, 0.5, 1),
+    marginBottom: 15,
+    padding: 10,
     '& pre': {
-      marginTop: theme.spacing(1),
+      marginTop: 10,
     },
   },
   '& summary': {
@@ -369,7 +351,6 @@ const Root = styled('div')(({theme}) => ({
   '& .MuiCode-root': {
     direction: 'ltr /*! @noflip */',
     position: 'relative',
-    // Font size reset to fix a bug with Safari 16.0 when letterSpacing is set
     fontSize: 10,
   },
   '& .MuiCode-copy': {

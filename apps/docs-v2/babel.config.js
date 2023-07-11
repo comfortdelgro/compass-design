@@ -1,11 +1,6 @@
 const fse = require('fs-extra')
 const path = require('path')
 
-const errorCodesPath = path.resolve(
-  __dirname,
-  './public/static/error-codes.json',
-)
-
 const alias = {
   docs: './',
   modules: '../modules',

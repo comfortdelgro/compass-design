@@ -1,7 +1,5 @@
 import Preflight from '@comfortdelgro/react-compass/preflight'
 import createEmotionServer from '@emotion/server/create-instance'
-import GlobalStyles from '@mui/material/GlobalStyles'
-import {getInitColorSchemeScript as getMuiInitColorSchemeScript} from '@mui/material/styles'
 import {ServerStyleSheets as JSSServerStyleSheets} from '@mui/styles'
 import createEmotionCache from 'docs/src/createEmotionCache'
 import Document, {Head, Html, Main, NextScript} from 'next/document'
@@ -104,43 +102,8 @@ export default class MyDocument extends Document {
               __html: `@font-face{font-family:'IBM Plex Sans';src:url(/static/fonts/IBMPlexSans-Regular.woff2) format('woff2'),url(/static/fonts/IBMPlexSans-Regular.woff) format('woff'),url(/static/fonts/IBMPlexSans-Regular.ttf) format('truetype');font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:'IBM Plex Sans';src:url(/static/fonts/IBMPlexSans-Medium.woff2) format('woff2'),url(/static/fonts/IBMPlexSans-Medium.woff) format('woff'),url(/static/fonts/IBMPlexSans-Medium.ttf) format('truetype');font-weight:500;font-style:normal;font-display:swap}@font-face{font-family:'IBM Plex Sans';src:url(/static/fonts/IBMPlexSans-SemiBold.woff2) format('woff2'),url(/static/fonts/IBMPlexSans-SemiBold.woff) format('woff'),url(/static/fonts/IBMPlexSans-SemiBold.ttf) format('truetype');font-weight:600;font-style:normal;font-display:swap}@font-face{font-family:'IBM Plex Sans';src:url(/static/fonts/IBMPlexSans-Bold.woff2) format('woff2'),url(/static/fonts/IBMPlexSans-Bold.woff) format('woff'),url(/static/fonts/IBMPlexSans-Bold.ttf) format('truetype');font-weight:700;font-style:normal;font-display:swap}`,
             }}
           />
-          <GlobalStyles
-            styles={{
-              // First SSR paint
-              '.only-light-mode': {
-                display: 'block',
-              },
-              '.only-dark-mode': {
-                display: 'none',
-              },
-              // Post SSR Hydration
-              '.mode-dark .only-light-mode': {
-                display: 'none',
-              },
-              '.mode-dark .only-dark-mode': {
-                display: 'block',
-              },
-              '.plan-pro, .plan-premium': {
-                display: 'inline-block',
-                height: '1em',
-                width: '1em',
-                verticalAlign: 'middle',
-                marginLeft: '0.3em',
-                marginBottom: '0.08em',
-                backgroundSize: 'contain',
-                backgroundRepeat: 'no-repeat',
-              },
-              '.plan-pro': {
-                backgroundImage: 'url(/static/x/pro.svg)',
-              },
-              '.plan-premium': {
-                backgroundImage: 'url(/static/x/premium.svg)',
-              },
-            }}
-          />
         </Head>
         <body>
-          {getMuiInitColorSchemeScript({defaultMode: 'system'})}
           <Main />
           <NextScript />
         </body>

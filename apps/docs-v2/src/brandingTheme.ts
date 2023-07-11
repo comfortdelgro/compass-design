@@ -1,4 +1,4 @@
-import {alpha, createTheme, Theme, ThemeOptions} from '@mui/material/styles'
+import {createTheme, ThemeOptions} from '@mui/material/styles'
 import type {} from '@mui/material/themeCssVarsAugmentation'
 import {CSSObject} from '@mui/system'
 
@@ -142,45 +142,15 @@ export const warning = {
 }
 // context on the Advanced Perceptual Contrast Algorithm (APCA) used above here: https://github.com/w3c/wcag/issues/695
 
-const systemFont = [
-  '-apple-system',
-  'BlinkMacSystemFont',
-  '"Segoe UI"',
-  'Roboto',
-  '"Helvetica Neue"',
-  'Arial',
-  'sans-serif',
-  '"Apple Color Emoji"',
-  '"Segoe UI Emoji"',
-  '"Segoe UI Symbol"',
-]
-
-export const getMetaThemeColor = (mode: 'light' | 'dark') => {
-  const themeColor = {
-    light: grey[50],
-    dark: blueDark[800],
-  }
-  return themeColor[mode]
-}
-
-export const getDesignTokens = (mode: 'light' | 'dark') =>
+export const getDesignTokens = () =>
   ({
     palette: {
       primary: {
         ...blue,
-        ...(mode === 'dark' && {
-          main: '#3399FF',
-        }),
       },
-      divider: mode === 'dark' ? alpha('#C2E0FF', 0.08) : grey[100],
+      divider: grey[100],
       primaryDark: blueDark,
-      mode,
-      ...(mode === 'dark' && {
-        background: {
-          default: blueDark[800],
-          paper: blueDark[900],
-        },
-      }),
+      mode: 'light',
       common: {
         black: '#1D1D1D',
       },
@@ -203,110 +173,16 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
       borderRadius: 10,
     },
     spacing: 10,
-    typography: {
-      fontFamily: ['"IBM Plex Sans"', ...systemFont].join(','),
-      fontFamilyCode: [
-        'Menlo', // macOS
-        'Consolas', // Windows
-        '"Droid Sans Mono"', // Linux
-        'monospace', // fallback
-      ].join(','),
-      fontFamilySystem: systemFont.join(','),
-      fontWeightSemiBold: 600,
-      fontWeightExtraBold: 800,
-      h1: {
-        fontSize: 'clamp(2.625rem, 1.2857rem + 3.5714vw, 4rem)',
-        fontWeight: 800,
-        lineHeight: 78 / 70,
-        ...(mode === 'light' && {
-          color: blueDark[900],
-        }),
-      },
-      h2: {
-        fontFamily: ['"PlusJakartaSans-ExtraBold"', ...systemFont].join(','),
-        fontSize: 'clamp(1.5rem, 0.9643rem + 1.4286vw, 2.25rem)',
-        fontWeight: 800,
-        lineHeight: 44 / 36,
-        color: mode === 'dark' ? grey[100] : blueDark[700],
-      },
-      h3: {
-        fontFamily: ['"PlusJakartaSans-Bold"', ...systemFont].join(','),
-        fontSize: defaultTheme.typography.pxToRem(36),
-        lineHeight: 44 / 36,
-        letterSpacing: 0.2,
-      },
-      h4: {
-        fontFamily: ['"PlusJakartaSans-Bold"', ...systemFont].join(','),
-        fontSize: defaultTheme.typography.pxToRem(28),
-        lineHeight: 42 / 28,
-        letterSpacing: 0.2,
-      },
-      h5: {
-        fontFamily: ['"PlusJakartaSans-Bold"', ...systemFont].join(','),
-        fontSize: defaultTheme.typography.pxToRem(24),
-        lineHeight: 36 / 24,
-        letterSpacing: 0.1,
-        color: mode === 'dark' ? blue[300] : blue.main,
-      },
-      h6: {
-        fontSize: defaultTheme.typography.pxToRem(20),
-        lineHeight: 30 / 20,
-      },
-      button: {
-        textTransform: 'initial',
-        fontWeight: 700,
-        letterSpacing: 0,
-      },
-      subtitle1: {
-        fontSize: defaultTheme.typography.pxToRem(18),
-        lineHeight: 24 / 18,
-        letterSpacing: 0,
-        fontWeight: 500,
-      },
-      body1: {
-        fontSize: defaultTheme.typography.pxToRem(16), // 16px
-        lineHeight: 24 / 16,
-        letterSpacing: 0,
-      },
-      body2: {
-        fontSize: defaultTheme.typography.pxToRem(14), // 14px
-        lineHeight: 21 / 14,
-        letterSpacing: 0,
-      },
-      caption: {
-        display: 'inline-block',
-        fontSize: defaultTheme.typography.pxToRem(12), // 12px
-        lineHeight: 18 / 12,
-        letterSpacing: 0,
-        fontWeight: 700,
-      },
-      allVariants: {
-        scrollMarginTop: 'calc(var(--MuiDocs-header-height) + 32px)',
-      },
-    },
-    applyDarkStyles(css: Parameters<ApplyDarkStyles>[0]) {
-      if ((this as Theme).vars) {
-        // If CssVarsProvider is used as a provider,
-        // returns ':where([data-mui-color-scheme="light|dark"]) &'
-        const selector = (this as Theme)
-          .getColorSchemeSelector('dark')
-          .replace(/(\[[^\]]+\])/, ':where($1)')
-        return {
-          [selector]: css,
-        }
-      }
-      if ((this as Theme).palette.mode === 'dark') {
-        return css
-      }
-
-      return undefined
-    },
   } as ThemeOptions)
 
-export const brandingDarkTheme = createTheme({
-  ...getDesignTokens('dark'),
+export const brandingLightTheme = createTheme({
+  ...getDesignTokens(),
 })
 
-export const brandingLightTheme = createTheme({
-  ...getDesignTokens('light'),
-})
+export const getMetaThemeColor = (mode: 'light' | 'dark') => {
+  const themeColor = {
+    light: grey[50],
+    dark: blueDark[800],
+  }
+  return themeColor[mode]
+}

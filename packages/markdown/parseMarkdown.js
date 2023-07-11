@@ -1,48 +1,48 @@
-const { marked } = require('marked');
-const kebabCase = require('lodash/kebabCase');
-const textToHash = require('./textToHash');
-const prism = require('./prism');
+const {marked} = require('marked')
+const kebabCase = require('lodash/kebabCase')
+const textToHash = require('./textToHash')
+const prism = require('./prism')
 
-const headerRegExp = /---[\r\n]([\s\S]*)[\r\n]---/;
-const titleRegExp = /# (.*)[\r\n]/;
-const descriptionRegExp = /<p class="description">(.*?)<\/p>/s;
-const headerKeyValueRegExp = /(.*?):[\r\n]?\s+(\[[^\]]+\]|.*)/g;
-const emptyRegExp = /^\s*$/;
+const headerRegExp = /---[\r\n]([\s\S]*)[\r\n]---/
+const titleRegExp = /# (.*)[\r\n]/
+const descriptionRegExp = /<p class="description">(.*?)<\/p>/s
+const headerKeyValueRegExp = /(.*?):[\r\n]?\s+(\[[^\]]+\]|.*)/g
+const emptyRegExp = /^\s*$/
 
 /**
  * Same as https://github.com/markedjs/marked/blob/master/src/helpers.js
  * Need to duplicate because `marked` does not export `escape` function
  */
-const escapeTest = /[&<>"']/;
-const escapeReplace = /[&<>"']/g;
-const escapeTestNoEncode = /[<>"']|&(?!#?\w+;)/;
-const escapeReplaceNoEncode = /[<>"']|&(?!#?\w+;)/g;
+const escapeTest = /[&<>"']/
+const escapeReplace = /[&<>"']/g
+const escapeTestNoEncode = /[<>"']|&(?!#?\w+;)/
+const escapeReplaceNoEncode = /[<>"']|&(?!#?\w+;)/g
 const escapeReplacements = {
   '&': '&amp;',
   '<': '&lt;',
   '>': '&gt;',
   '"': '&quot;',
   "'": '&#39;',
-};
-const getEscapeReplacement = (ch) => escapeReplacements[ch];
+}
+const getEscapeReplacement = (ch) => escapeReplacements[ch]
 function escape(html, encode) {
   if (encode) {
     if (escapeTest.test(html)) {
-      return html.replace(escapeReplace, getEscapeReplacement);
+      return html.replace(escapeReplace, getEscapeReplacement)
     }
   } else if (escapeTestNoEncode.test(html)) {
-    return html.replace(escapeReplaceNoEncode, getEscapeReplacement);
+    return html.replace(escapeReplaceNoEncode, getEscapeReplacement)
   }
 
-  return html;
+  return html
 }
 
 function checkUrlHealth(href, linkText, context) {
-  const url = new URL(href, 'https://mui.com/');
+  const url = new URL(href, 'https://mui.com/')
 
   // External links to MUI, ignore
   if (url.host !== 'mui.com') {
-    return;
+    return
   }
 
   /**
@@ -61,11 +61,14 @@ function checkUrlHealth(href, linkText, context) {
         'See https://ahrefs.com/blog/trailing-slash/ for more details.',
         '',
       ].join('\n'),
-    );
+    )
   }
 
   // Relative links
-  if (href[0] !== '#' && !(href.startsWith('https://') || href.startsWith('http://'))) {
+  if (
+    href[0] !== '#' &&
+    !(href.startsWith('https://') || href.startsWith('http://'))
+  ) {
     /**
      * Break for links like:
      * material-ui/customization/theming/
@@ -80,7 +83,7 @@ function checkUrlHealth(href, linkText, context) {
           `[${linkText}](${href}) in ${context.location} is missing a leading slash, please add it.`,
           '',
         ].join('\n'),
-      );
+      )
     }
   }
 }
@@ -100,33 +103,33 @@ function checkUrlHealth(href, linkText, context) {
  * { title: 'Backdrop React Component', components: ['Backdrop'] }
  */
 function getHeaders(markdown) {
-  let header = markdown.match(headerRegExp);
+  let header = markdown.match(headerRegExp)
 
   if (!header) {
     return {
       components: [],
-    };
+    }
   }
 
-  header = header[1];
+  header = header[1]
 
   try {
-    let regexMatches;
-    const headers = {};
+    let regexMatches
+    const headers = {}
 
     // eslint-disable-next-line no-cond-assign
     while ((regexMatches = headerKeyValueRegExp.exec(header)) !== null) {
-      const key = regexMatches[1];
-      let value = regexMatches[2].replace(/(.*)/, '$1');
+      const key = regexMatches[1]
+      let value = regexMatches[2].replace(/(.*)/, '$1')
       if (value[0] === '[') {
         // Need double quotes to JSON parse.
-        value = value.replace(/'/g, '"');
+        value = value.replace(/'/g, '"')
         // Remove the comma after the last value e.g. ["foo", "bar",] -> ["foo", "bar"].
-        value = value.replace(/,\s+\]$/g, ']');
-        headers[key] = JSON.parse(value);
+        value = value.replace(/,\s+\]$/g, ']')
+        headers[key] = JSON.parse(value)
       } else {
         // Remove trailing single quote yml escaping.
-        headers[key] = value.replace(/^'|'$/g, '');
+        headers[key] = value.replace(/^'|'$/g, '')
       }
     }
 
@@ -134,25 +137,25 @@ function getHeaders(markdown) {
       headers.components = headers.components
         .split(',')
         .map((x) => x.trim())
-        .sort();
+        .sort()
     } else {
-      headers.components = [];
+      headers.components = []
     }
 
     if (headers.hooks) {
       headers.hooks = headers.hooks
         .split(',')
         .map((x) => x.trim())
-        .sort();
+        .sort()
     } else {
-      headers.hooks = [];
+      headers.hooks = []
     }
 
-    return headers;
+    return headers
   } catch (err) {
     throw new Error(
       `docs-infra: ${err.message} in getHeader(markdown) with markdown: \n\n${header}\n`,
-    );
+    )
   }
 }
 
@@ -161,34 +164,34 @@ function getContents(markdown) {
     .replace(headerRegExp, '') // Remove header information
     .split(/^{{("(?:demo|component)":.*)}}$/gm) // Split markdown into an array, separating demos
     .flatMap((text) => text.split(/^(<codeblock.*?<\/codeblock>)$/gmsu))
-    .filter((content) => !emptyRegExp.test(content)); // Remove empty lines
-  return rep;
+    .filter((content) => !emptyRegExp.test(content)) // Remove empty lines
+  return rep
 }
 
 function getTitle(markdown) {
-  const matches = markdown.match(titleRegExp);
+  const matches = markdown.match(titleRegExp)
 
   if (matches === null) {
-    return '';
+    return ''
   }
 
-  return matches[1].replace(/`/g, '');
+  return matches[1].replace(/`/g, '')
 }
 
 function getDescription(markdown) {
-  const matches = markdown.match(descriptionRegExp);
+  const matches = markdown.match(descriptionRegExp)
   if (matches === null) {
-    return undefined;
+    return undefined
   }
 
-  return matches[1].trim().replace(/`/g, '');
+  return matches[1].trim().replace(/`/g, '')
 }
 
 /**
  * @param {string} markdown
  */
 function renderInline(markdown) {
-  return marked.parseInline(markdown);
+  return marked.parseInline(markdown)
 }
 
 // Help rank mui.com on component searches first.
@@ -202,7 +205,7 @@ const noSEOadvantage = [
   'https://heroicons.com/',
   'https://react-icons.github.io/',
   'https://fontawesome.com/',
-];
+]
 
 /**
  * Creates a function that MUST be used to render non-inline markdown.
@@ -221,15 +224,15 @@ const noSEOadvantage = [
  * @param {object} context.options
  */
 function createRender(context) {
-  const { headingHashes, toc, userLanguage, options } = context;
-  const headingHashesFallbackTranslated = {};
-  let headingIndex = -1;
+  const {headingHashes, toc, userLanguage, options} = context
+  const headingHashesFallbackTranslated = {}
+  let headingIndex = -1
 
   /**
    * @param {string} markdown
    */
   function render(markdown) {
-    const renderer = new marked.Renderer();
+    const renderer = new marked.Renderer()
     renderer.heading = (headingHtml, level) => {
       // Main title, no need for an anchor.
       // It adds noises to the URL.
@@ -237,22 +240,24 @@ function createRender(context) {
       // Small title, no need for an anchor.
       // It reduces the risk of duplicated id and it's fewer elements in the DOM.
       if (level === 1 || level >= 4) {
-        return `<h${level}>${headingHtml}</h${level}>`;
+        return `<h${level}>${headingHtml}</h${level}>`
       }
 
       // Remove links to avoid nested links in the TOCs
-      const headingText = headingHtml.replace(/<a\b[^>]*>/i, '').replace(/<\/a>/i, '');
+      const headingText = headingHtml
+        .replace(/<a\b[^>]*>/i, '')
+        .replace(/<\/a>/i, '')
 
       // Standardizes the hash from the default location (en) to different locations
       // Need english.md file parsed first
-      let hash;
+      let hash
       if (userLanguage === 'en') {
-        hash = textToHash(headingText, headingHashes);
+        hash = textToHash(headingText, headingHashes)
       } else {
-        headingIndex += 1;
-        hash = Object.keys(headingHashes)[headingIndex];
+        headingIndex += 1
+        hash = Object.keys(headingHashes)[headingIndex]
         if (!hash) {
-          hash = textToHash(headingText, headingHashesFallbackTranslated);
+          hash = textToHash(headingText, headingHashesFallbackTranslated)
         }
       }
 
@@ -260,7 +265,7 @@ function createRender(context) {
       // Closing parens are less interesting since this would only allow breaking one character earlier.
       // Applying the same mechanism would also allow breaking of non-function signatures like "Community help (free)".
       // To detect that we enabled breaking of open/closing parens we'd need a context-sensitive parser.
-      const displayText = headingText.replace(/([^\s]\()/g, '$1&#8203;');
+      const displayText = headingText.replace(/([^\s]\()/g, '$1&#8203;')
 
       // create a nested structure with 2 levels starting with level 2 e.g.
       // [{...level2, children: [level3, level3, level3]}, level2]
@@ -270,17 +275,19 @@ function createRender(context) {
           level,
           hash,
           children: [],
-        });
+        })
       } else if (level === 3) {
         if (!toc[toc.length - 1]) {
-          throw new Error(`docs-infra: Missing parent level for: ${headingText}\n`);
+          throw new Error(
+            `docs-infra: Missing parent level for: ${headingText}\n`,
+          )
         }
 
         toc[toc.length - 1].children.push({
           text: displayText,
           level,
           hash,
-        });
+        })
       }
 
       return [
@@ -293,21 +300,25 @@ function createRender(context) {
         '<svg><use xlink:href="#comment-link-icon" /></svg>',
         `</button>`,
         `</h${level}>`,
-      ].join('');
-    };
+      ].join('')
+    }
     renderer.link = (href, linkTitle, linkText) => {
-      let more = '';
+      let more = ''
 
       if (noSEOadvantage.some((domain) => href.indexOf(domain) !== -1)) {
-        more = ' target="_blank" rel="noopener nofollow"';
+        more = ' target="_blank" rel="noopener nofollow"'
       }
 
-      let finalHref = href;
+      let finalHref = href
 
-      checkUrlHealth(href, linkText, context);
+      checkUrlHealth(href, linkText, context)
 
-      if (userLanguage !== 'en' && href.indexOf('/') === 0 && !options.ignoreLanguagePages(href)) {
-        finalHref = `/${userLanguage}${href}`;
+      if (
+        userLanguage !== 'en' &&
+        href.indexOf('/') === 0 &&
+        !options.ignoreLanguagePages(href)
+      ) {
+        finalHref = `/${userLanguage}${href}`
       }
 
       // This logic turns link like:
@@ -318,37 +329,40 @@ function createRender(context) {
         finalHref = finalHref.replace(
           `${options.env.SOURCE_CODE_REPO}/blob/-/`,
           `${options.env.SOURCE_CODE_REPO}/blob/v${options.env.LIB_VERSION}/`,
-        );
+        )
       }
 
-      return `<a href="${finalHref}"${more}>${linkText}</a>`;
-    };
+      return `<a href="${finalHref}"${more}>${linkText}</a>`
+    }
     renderer.code = (code, infostring, escaped) => {
       // https://github.com/markedjs/marked/blob/30e90e5175700890e6feb1836c57b9404c854466/src/Renderer.js#L15
-      const lang = (infostring || '').match(/\S*/)[0];
-      const out = prism(code, lang);
+      const lang = (infostring || '').match(/\S*/)[0]
+      const out = prism(code, lang)
       if (out != null && out !== code) {
-        escaped = true;
-        code = out;
+        escaped = true
+        code = out
       }
 
-      code = `${code.replace(/\n$/, '')}\n`;
+      code = `${code.replace(/\n$/, '')}\n`
 
       if (!lang) {
-        return `<pre><code>${escaped ? code : escape(code, true)}</code></pre>\n`;
+        return `<pre><code>${
+          escaped ? code : escape(code, true)
+        }</code></pre>\n`
       }
 
-      return `<div class="MuiCode-root"><pre><code class="language-${escape(lang, true)}">${
-        escaped ? code : escape(code, true)
-      }</code></pre>${[
+      return `<div class="MuiCode-root"><pre><code class="language-${escape(
+        lang,
+        true,
+      )}">${escaped ? code : escape(code, true)}</code></pre>${[
         '<button data-ga-event-category="code" data-ga-event-action="copy-click" aria-label="Copy the code" class="MuiCode-copy">',
         '<svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ContentCopyRoundedIcon">',
         '<use class="MuiCode-copy-icon" xlink:href="#copy-icon" />',
         '<use class="MuiCode-copied-icon" xlink:href="#copied-icon" />',
         '</svg>',
         '<span class="MuiCode-copyKeypress"><span>(or</span> $keyC<span>)</span></span></button></div>',
-      ].join('')}\n`;
-    };
+      ].join('')}\n`
+    }
 
     const markedOptions = {
       gfm: true,
@@ -362,7 +376,7 @@ function createRender(context) {
       headerIds: false,
       mangle: false,
       renderer,
-    };
+    }
 
     marked.use({
       extensions: [
@@ -370,13 +384,13 @@ function createRender(context) {
           name: 'callout',
           level: 'block',
           start(src) {
-            const match = src.match(/:::/);
-            return match ? match.index : undefined;
+            const match = src.match(/:::/)
+            return match ? match.index : undefined
           },
           tokenizer(src) {
             const rule =
-              /^ {0,3}(:{3,}(?=[^:\n]*\n)|~{3,})([^\n]*)\n(?:|([\s\S]*?)\n)(?: {0,3}\1[~:]* *(?=\n|$)|$)/;
-            const match = rule.exec(src);
+              /^ {0,3}(:{3,}(?=[^:\n]*\n)|~{3,})([^\n]*)\n(?:|([\s\S]*?)\n)(?: {0,3}\1[~:]* *(?=\n|$)|$)/
+            const match = rule.exec(src)
             if (match) {
               const token = {
                 type: 'callout',
@@ -384,80 +398,55 @@ function createRender(context) {
                 text: match[3].trim(),
                 severity: match[2],
                 tokens: [],
-              };
-              this.lexer.blockTokens(token.text, token.tokens);
-              return token;
+              }
+              this.lexer.blockTokens(token.text, token.tokens)
+              return token
             }
-            return undefined;
+            return undefined
           },
           renderer(token) {
-            return `<aside class="MuiCallout-root MuiCallout-${token.severity}">${this.parser.parse(
-              token.tokens,
-            )}\n</aside>`;
+            return `<aside class="MuiCallout-root MuiCallout-${
+              token.severity
+            }">${this.parser.parse(token.tokens)}\n</aside>`
           },
         },
       ],
-    });
+    })
 
-    return marked(markdown, markedOptions);
+    return marked(markdown, markedOptions)
   }
 
-  return render;
+  return render
 }
 
-const BaseUIReexportedComponents = ['ClickAwayListener', 'NoSsr', 'Portal', 'TextareaAutosize'];
-
-/**
- * @param {string} product
- * @example 'material'
- * @param {string} componentPkg
- * @example 'mui-base'
- * @param {string} component
- * @example 'Button'
- * @returns {string}
- */
-function resolveComponentApiUrl(product, componentPkg, component) {
-  if (!product) {
-    return `/api/${kebabCase(component)}/`;
-  }
-  if (product === 'x-date-pickers') {
-    return `/x/api/date-pickers/${kebabCase(component)}/`;
-  }
-  if (componentPkg === 'mui-base' || BaseUIReexportedComponents.indexOf(component) >= 0) {
-    return `/base-ui/react-${kebabCase(component)}/components-api/#${kebabCase(component)}`;
-  }
-  return `/${product}/api/${kebabCase(component)}/`;
-}
-
-/**
- * @param {object} config
- * @param {Array<{ markdown: string, filename: string, userLanguage: string }>} config.translations - Mapping of locale to its markdown
- * @param {string} config.fileRelativeContext - posix filename relative to repository root directory
- * @param {object} config.options - provided to the webpack loader
- */
 function prepareMarkdown(config) {
-  const { fileRelativeContext, translations, componentPackageMapping = {}, options } = config;
+  const {
+    fileRelativeContext,
+    translations,
+    componentPackageMapping = {},
+    options,
+  } = config
 
-  const demos = {};
+  const demos = {}
   /**
    * @type {Record<string, { rendered: Array<string | { component: string } | { demo:string }> }>}
    */
-  const docs = {};
-  const headingHashes = {};
+  const docs = {}
+  const headingHashes = {}
 
   translations
     // Process the English markdown before the other locales.
     // English ToC anchor links are used in all languages
     .sort((a) => (a.userLanguage === 'en' ? -1 : 1))
     .forEach((translation) => {
-      const { filename, markdown, userLanguage } = translation;
-      const headers = getHeaders(markdown);
-      const location = headers.filename || `/${fileRelativeContext}/${filename}`;
-      const title = headers.title || getTitle(markdown);
-      const description = headers.description || getDescription(markdown);
+      const {filename, markdown, userLanguage} = translation
+      const headers = getHeaders(markdown)
+      const location = headers.filename || `/${fileRelativeContext}/${filename}`
+      const title = headers.title || getTitle(markdown)
+      const description = headers.description || getDescription(markdown)
 
       if (title == null || title === '') {
-        throw new Error(`docs-infra: Missing title in the page: ${location}\n`);
+        throw new Error(`docs-infra: Missing title in the page: ${location}\n`)
       }
 
       if (title.length > 70) {
@@ -468,11 +457,13 @@ function prepareMarkdown(config) {
             'https://developers.google.com/search/docs/advanced/appearance/title-link',
             '',
           ].join('\n'),
-        );
+        )
       }
 
       if (description == null || description === '') {
-        throw new Error(`docs-infra: Missing description in the page: ${location}\n`);
+        throw new Error(
+          `docs-infra: Missing description in the page: ${location}\n`,
+        )
       }
 
       if (description.length > 170) {
@@ -483,10 +474,10 @@ function prepareMarkdown(config) {
             'https://ahrefs.com/blog/meta-description/#4-be-concise',
             '',
           ].join('\n'),
-        );
+        )
       }
 
-      const contents = getContents(markdown);
+      const contents = getContents(markdown)
 
       if (headers.unstyled) {
         contents.push(`
@@ -495,74 +486,49 @@ function prepareMarkdown(config) {
 :::success
 [Base UI](/base-ui/getting-started/) provides a headless ("unstyled") version of this [${title}](${headers.unstyled}). Try it if you need more flexibility in customization and a smaller bundle size.
 :::
-        `);
+        `)
       }
 
-      if (headers.components.length > 0) {
-        contents.push(`
-## API
-
-See the documentation below for a complete reference to all of the props and classes available to the components mentioned here.
-
-${headers.components
-  .map((component) => {
-    const componentPkgMap = componentPackageMapping[headers.productId];
-    const componentPkg = componentPkgMap ? componentPkgMap[component] : null;
-    return `- [\`<${component} />\`](${resolveComponentApiUrl(
-      headers.productId,
-      componentPkg,
-      component,
-    )})`;
-  })
-  .join('\n')}
-${headers.hooks
-  .map((hook) => {
-    const componentPkgMap = componentPackageMapping[headers.productId];
-    const componentPkg = componentPkgMap ? componentPkgMap[hook] : null;
-    return `- [\`${hook}\`](${resolveComponentApiUrl(headers.productId, componentPkg, hook)})`;
-  })
-  .join('\n')}
-  `);
-      }
-
-      const toc = [];
+      const toc = []
       const render = createRender({
         headingHashes,
         toc,
         userLanguage,
         location,
         options,
-      });
+      })
 
       const rendered = contents.map((content) => {
         if (/^"(demo|component)": "(.*)"/.test(content)) {
           try {
-            return JSON.parse(`{${content}}`);
+            return JSON.parse(`{${content}}`)
           } catch (err) {
-            console.error('JSON.parse fails with: ', `{${content}}`);
-            console.error(err);
-            return null;
+            console.error('JSON.parse fails with: ', `{${content}}`)
+            console.error(err)
+            return null
           }
         }
         if (content.startsWith('<codeblock')) {
-          const storageKey = content.match(/^<codeblock [^>]*storageKey=["|'](\S*)["|'].*>/m)?.[1];
-          const blocks = [...content.matchAll(/^```(\S*) (\S*)\n([^`]*)\n```/gmsu)].map(
-            ([, language, tab, code]) => ({ language, tab, code }),
-          );
+          const storageKey = content.match(
+            /^<codeblock [^>]*storageKey=["|'](\S*)["|'].*>/m,
+          )?.[1]
+          const blocks = [
+            ...content.matchAll(/^```(\S*) (\S*)\n([^`]*)\n```/gmsu),
+          ].map(([, language, tab, code]) => ({language, tab, code}))
 
           const blocksData = blocks.filter(
             (block) => block.tab !== undefined && !emptyRegExp.test(block.code),
-          );
+          )
 
           return {
             type: 'codeblock',
             data: blocksData,
             storageKey,
-          };
+          }
         }
 
-        return render(content);
-      });
+        return render(content)
+      })
 
       // fragment link symbol
       rendered.unshift(
@@ -571,7 +537,7 @@ ${headers.hooks
         <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 14v-2.47l6.88-6.88c.2-.2.51-.2.71 0l1.77 1.77c.2.2.2.51 0 .71L8.47 14H6zm12 0h-7.5l2-2H18v2z" />
       </symbol>
       </svg>`,
-      );
+      )
 
       rendered.unshift(
         `<svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
@@ -579,7 +545,7 @@ ${headers.hooks
       <path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z" />
     </symbol>
     </svg>`,
-      );
+      )
 
       rendered.unshift(
         `<svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
@@ -587,14 +553,14 @@ ${headers.hooks
       <path d="M15 20H5V7c0-.55-.45-1-1-1s-1 .45-1 1v13c0 1.1.9 2 2 2h10c.55 0 1-.45 1-1s-.45-1-1-1zm5-4V4c0-1.1-.9-2-2-2H9c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h9c1.1 0 2-.9 2-2zm-2 0H9V4h9v12z" />
       +</symbol>
       </svg>`,
-      );
+      )
 
       rendered.unshift(`
       <svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
       <symbol id="copied-icon" viewBox="0 0 24 24">
         <path d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.24 11.28L9.69 11.2c-.38-.39-.38-1.01 0-1.4.39-.39 1.02-.39 1.41 0l1.36 1.37 4.42-4.46c.39-.39 1.02-.39 1.41 0 .38.39.38 1.01 0 1.4l-5.13 5.17c-.37.4-1.01.4-1.4 0zM3 6c-.55 0-1 .45-1 1v13c0 1.1.9 2 2 2h13c.55 0 1-.45 1-1s-.45-1-1-1H5c-.55 0-1-.45-1-1V7c0-.55-.45-1-1-1z" />
       </symbol>
-      </svg>`);
+      </svg>`)
 
       docs[userLanguage] = {
         description,
@@ -603,10 +569,10 @@ ${headers.hooks
         toc,
         title,
         headers,
-      };
-    });
+      }
+    })
 
-  return { demos, docs };
+  return {demos, docs}
 }
 
 module.exports = {
@@ -617,4 +583,4 @@ module.exports = {
   getTitle,
   prepareMarkdown,
   renderInline,
-};
+}
