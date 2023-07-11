@@ -1,9 +1,8 @@
 import {Box} from '@comfortdelgro/react-compass'
-import {styled as joyStyled} from '@mui/joy/styles'
 import Collapse from '@mui/material/Collapse'
 import IconButton from '@mui/material/IconButton'
 import NoSsr from '@mui/material/NoSsr'
-import {alpha, styled} from '@mui/material/styles'
+import {styled} from '@mui/material/styles'
 import {debounce} from '@mui/material/utils'
 import {unstable_useId as useId} from '@mui/utils'
 import DemoEditor from 'components/common/DemoEditor'
@@ -12,14 +11,12 @@ import DemoSandbox from 'components/common/DemoSandbox'
 import HighlightedCode from 'components/common/HighlightedCode'
 import ReactRunner from 'components/common/ReactRunner'
 import {CODE_STYLING, CODE_VARIANTS} from 'constants'
-import BrandingProvider from 'docs/src/BrandingProvider'
 import {useRouter} from 'next/router'
 import * as React from 'react'
 import {useCodeStyling} from 'utils/codeStylingSolution'
 import {useCodeVariant} from 'utils/codeVariant'
 import {pathnameToLanguage} from 'utils/helpers'
 import {useTranslate, useUserLanguage} from 'utils/i18n'
-import stylingSolutionMapping from 'utils/stylingSolutionMapping'
 
 function trimLeadingSpaces(input = '') {
   return input.replace(/^\s+/gm, '')
@@ -145,123 +142,15 @@ function useDemoElement({
     : LiveComponent
 }
 
-const DemoRootMaterial = styled('div', {
-  shouldForwardProp: (prop) => prop !== 'hiddenToolbar' && prop !== 'bg',
-})(({theme, hiddenToolbar, bg}) => ({
+const DemoRootMaterial = styled(
+  'div',
+  {},
+)(() => ({
   position: 'relative',
   outline: 0,
   margin: 'auto',
   display: 'flex',
   justifyContent: 'center',
-  [theme.breakpoints.up('sm')]: {
-    borderRadius: hiddenToolbar ? 12 : '12px 12px 0 0',
-    ...(bg === 'outlined' && {
-      borderLeftWidth: 1,
-      borderRightWidth: 1,
-    }),
-    /* Make no difference between the demo and the markdown. */
-    ...(bg === 'inline' && {
-      padding: theme.spacing(0),
-    }),
-  },
-  /* Isolate the demo with an outline. */
-  ...(bg === 'outlined' && {
-    padding: theme.spacing(3),
-    backgroundColor: 'palette.background.paper',
-    border: `1px solid palette.divider`,
-    borderLeftWidth: 0,
-    borderRightWidth: 0,
-  }),
-  /* Prepare the background to display an inner elevation. */
-  ...(bg === true && {
-    padding: theme.spacing(3),
-    backgroundColor: 'palette.grey[50]',
-    border: `1px solid palette.divider`,
-  }),
-  /* Mostly meant for introduction demos. */
-  ...(bg === 'gradient' && {
-    padding: theme.spacing(20, 8),
-    border: `1px solid`,
-    borderColor: (theme.vars || theme).palette.divider,
-    overflow: 'hidden',
-    backgroundColor: alpha(theme.palette.primary[50], 0.5),
-    backgroundClip: 'padding-box',
-    backgroundImage: `radial-gradient(at 51% 52%, ${alpha(
-      theme.palette.primary[50],
-      0.5,
-    )} 0px, transparent 50%),
-        radial-gradient(at 80% 0%, #FFFFFF 0px, transparent 20%),
-        radial-gradient(at 0% 95%, ${alpha(
-          theme.palette.primary[100],
-          0.3,
-        )}, transparent 40%),
-        radial-gradient(at 0% 20%, ${
-          (theme.vars || theme).palette.primary[50]
-        } 0px, transparent 50%),
-        radial-gradient(at 93% 85%, ${alpha(
-          theme.palette.primary[100],
-          0.2,
-        )} 0px, transparent 50%);`,
-  }),
-}))
-
-const DemoRootJoy = joyStyled('div', {
-  shouldForwardProp: (prop) => prop !== 'hiddenToolbar' && prop !== 'bg',
-})(({theme, hiddenToolbar, bg}) => ({
-  position: 'relative',
-  outline: 0,
-  margin: 'auto',
-  display: 'flex',
-  justifyContent: 'center',
-  [theme.breakpoints.up('sm')]: {
-    borderRadius: hiddenToolbar ? 12 : '12px 12px 0 0',
-    ...(bg === 'outlined' && {
-      borderLeftWidth: 1,
-      borderRightWidth: 1,
-    }),
-    /* Make no difference between the demo and the markdown. */
-    ...(bg === 'inline' && {
-      padding: theme.spacing(0),
-    }),
-  },
-  /* Isolate the demo with an outline. */
-  ...(bg === 'outlined' && {
-    padding: theme.spacing(3),
-    border: `1px solid`,
-    borderColor: 'grey[100]',
-    borderLeftWidth: 0,
-    borderRightWidth: 0,
-    backgroundColor: alpha('grey[50]', 0.2),
-  }),
-  /* Prepare the background to display an inner elevation. */
-  ...(bg === true && {
-    padding: theme.spacing(3),
-    backgroundColor: theme.vars.palette.background.level2,
-  }),
-  /* Mostly meant for introduction demos. */
-  ...(bg === 'gradient' && {
-    [theme.breakpoints.up('sm')]: {
-      borderRadius: 12,
-    },
-    borderRadius: 0,
-    padding: theme.spacing(0),
-    overflow: 'auto',
-    backgroundColor: alpha('#F0F7FF', 0.5),
-    border: `1px solid`,
-    borderColor: `rgba(${theme.vars.palette.neutral.mainChannel} / 0.1)`,
-    backgroundImage: `radial-gradient(at 51% 52%, ${alpha(
-      '#F0F7FF',
-      0.5,
-    )} 0px, transparent 50%),
-      radial-gradient(at 80% 0%, #FFFFFF 0px, transparent 20%),
-      radial-gradient(at 0% 95%, ${alpha('#C2E0FF', 0.3)}, transparent 40%),
-      radial-gradient(at 0% 20%, '#F0F7FF' 0px, transparent 50%),
-      radial-gradient(at 93% 85%, ${alpha(
-        '#C2E0FF',
-        0.2,
-      )} 0px, transparent 50%),
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23003A75' fill-opacity='0.03'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");`,
-  }),
 }))
 
 const DemoCodeViewer = styled(HighlightedCode)(() => ({
@@ -274,7 +163,7 @@ const DemoCodeViewer = styled(HighlightedCode)(() => ({
 }))
 
 const AnchorLink = styled('div')({
-  marginTop: -64, // height of toolbar
+  marginTop: -64,
   position: 'absolute',
 })
 
@@ -289,17 +178,6 @@ const InitialFocus = styled(IconButton)(({theme}) => ({
 
 export default function Demo(props) {
   const {demo, demoOptions, disableAd, githubLocation, mode} = props
-
-  if (process.env.NODE_ENV !== 'production') {
-    if (demoOptions.hideToolbar === false) {
-      throw new Error(
-        [
-          '"hiddenToolbar": false is already the default.',
-          `Please remove the property in {{"demo": "${demoOptions.demo}", …}}.`,
-        ].join('\n'),
-      )
-    }
-  }
 
   if (
     (demoOptions.demo.endsWith('.ts') || demoOptions.demo.endsWith('.tsx')) &&
@@ -377,13 +255,6 @@ export default function Demo(props) {
 
   const initialFocusRef = React.useRef(null)
 
-  const [showAd, setShowAd] = React.useState(false)
-
-  const DemoRoot =
-    demoData.productId === 'joy-ui' ? DemoRootJoy : DemoRootMaterial
-  const Wrapper =
-    demoData.productId === 'joy-ui' ? BrandingProvider : React.Fragment
-
   const isPreview = !codeOpen && showPreview
 
   const initialEditorCode = isPreview
@@ -427,21 +298,20 @@ export default function Demo(props) {
 
   return (
     <Box>
-      <AnchorLink id={demoName} />
-      <DemoRoot
+      <DemoRootMaterial
         hiddenToolbar={demoOptions.hideToolbar}
         bg={demoOptions.bg}
         id={demoId}
         onMouseEnter={handleDemoHover}
         onMouseLeave={handleDemoHover}
       >
-        <Wrapper {...(demoData.productId === 'joy-ui' && {mode})}>
+        <>
           <InitialFocus
             aria-label={t('initialFocusLabel')}
             action={initialFocusRef}
             tabIndex={-1}
           />
-        </Wrapper>
+        </>
         <DemoSandbox
           key={demoKey}
           style={demoSandboxedStyle}
@@ -451,17 +321,8 @@ export default function Demo(props) {
         >
           {demoElement}
         </DemoSandbox>
-      </DemoRoot>
-      {Object.keys(stylingSolutionMapping).map((key) => (
-        <React.Fragment key={key}>
-          <AnchorLink id={`${stylingSolutionMapping[key]}-${demoName}.js`} />
-          <AnchorLink id={`${stylingSolutionMapping[key]}-${demoName}.tsx`} />
-        </React.Fragment>
-      ))}
-      <AnchorLink id={`${demoName}.js`} />
-      <AnchorLink id={`${demoName}.tsx`} />
-      {/* TODO: BrandingProvider shouldn't be needed, it should already be at the top of the docs page */}
-      <BrandingProvider {...(demoData.productId === 'joy-ui' ? {mode} : {})}>
+      </DemoRootMaterial>
+      <>
         {demoOptions.hideToolbar ? null : (
           <NoSsr defer fallback={<DemoToolbarFallback />}>
             <React.Suspense fallback={<DemoToolbarFallback />}>
@@ -479,7 +340,6 @@ export default function Demo(props) {
                 initialFocusRef={initialFocusRef}
                 onCodeOpenChange={() => {
                   setCodeOpen((open) => !open)
-                  setShowAd(true)
                 }}
                 onResetDemoClick={resetDemo}
                 openDemoSource={openDemoSource}
@@ -528,7 +388,7 @@ export default function Demo(props) {
             </DemoEditor>
           )}
         </Collapse>
-      </BrandingProvider>
+      </>
     </Box>
   )
 }
