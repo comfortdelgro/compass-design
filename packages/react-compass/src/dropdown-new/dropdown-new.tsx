@@ -159,6 +159,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   // ====================================== Logic ======================================
 
   const mounted = useRef(false)
+  const selectedItemInitialRef = useRef(false)
 
   /**
    * Reset focus key when closes popover
@@ -251,7 +252,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           break
         case 'Escape':
         case 'Tab':
-          event.preventDefault()
           setOpen(false)
           break
       }
@@ -294,8 +294,21 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         }
         setSelectedItem(null)
       }
+      // Combobox
+      else if (type === 'combobox') {
+        if (allowsCustomValue) {
+          setSelectedItem(null)
+          onSelectionChange?.('')
+        }
+      }
     },
-    [type, selectedItem, selectedItemBackup],
+    [
+      type,
+      selectedItem,
+      selectedItemBackup,
+      allowsCustomValue,
+      onSelectionChange,
+    ],
   )
 
   const fillTextForInput = useCallback(() => {
@@ -313,28 +326,35 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           return
         }
         if (inputRef.current) {
-          // Check if there is selected item then set text for input
-          if (selectedItem) {
-            inputRef.current.value = textContent(
-              selectedItem?.displayValue as React.ReactElement,
-            )
-          } else {
-            inputRef.current.value = ''
+          if (!allowsCustomValue) {
+            // Check if there is selected item then set text for input
+            if (selectedItem) {
+              inputRef.current.value = textContent(
+                selectedItem?.displayValue as React.ReactElement,
+              )
+            } else {
+              inputRef.current.value = ''
+            }
           }
           setSearchValue('')
         }
       })
     }
-  }, [type, selectedItemBackup, selectedItem])
+  }, [type, selectedItemBackup, selectedItem, allowsCustomValue])
 
   useEffect(() => {
     if (!open && ['combobox', 'flag'].includes(type) && inputRef.current) {
       fillTextForInput()
     }
-  }, [open, fillTextForInput])
+  }, [open, type, fillTextForInput])
 
   useEffect(() => {
-    if (selectedItem || !(selectedKey || defaultSelectedKey)) return
+    // Run set current selectedKey | defaultSelectedKey for first time
+    if (selectedItemInitialRef.current) {
+      return
+    }
+    selectedItemInitialRef.current = true
+    if (!!selectedItem || !(selectedKey || defaultSelectedKey)) return
 
     const currentSelectedKey = selectedKey || defaultSelectedKey
 
@@ -352,11 +372,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       }
     }
   }, [children, selectedKey, defaultSelectedKey, selectedItem])
-
-  const handleInputBlur = useCallback(() => {
-    onBlur?.()
-    fillTextForInput()
-  }, [fillTextForInput])
 
   const contentElement = useMemo(() => {
     switch (type) {
@@ -407,7 +422,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
               disabled={isDisabled}
               placeholder={placeholder}
               onChange={handleInputChange}
-              onBlur={handleInputBlur}
+              onBlur={onBlur}
               onFocus={onFocus}
               onClick={handleDropdownToggle}
             />
@@ -443,7 +458,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
               disabled={isDisabled}
               placeholder={placeholder}
               onChange={handleInputChange}
-              onBlur={handleInputBlur}
+              onBlur={onBlur}
               onFocus={onFocus}
               onClick={handleDropdownToggle}
             />
@@ -474,7 +489,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     onFocus,
     handleDropdownToggle,
     handleInputChange,
-    handleInputBlur,
   ])
 
   const triggeElWidth = useMemo(() => {
