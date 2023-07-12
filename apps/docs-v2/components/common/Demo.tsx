@@ -1,17 +1,15 @@
 import {Box, NoSsr} from '@comfortdelgro/react-compass'
-import Collapse from '@mui/material/Collapse'
 import IconButton from '@mui/material/IconButton'
 import {styled} from '@mui/material/styles'
-import {debounce} from '@mui/material/utils'
 import {unstable_useId as useId} from '@mui/utils'
 import DemoEditor from 'components/common/DemoEditor'
 import DemoEditorError from 'components/common/DemoEditorError'
 import DemoSandbox from 'components/common/DemoSandbox'
 import HighlightedCode from 'components/common/HighlightedCode'
 import ReactRunner from 'components/common/ReactRunner'
-import {CODE_STYLING, CODE_VARIANTS} from 'constants'
+import {CODE_VARIANTS} from 'constants'
+import {debounce} from 'lodash'
 import * as React from 'react'
-import {useCodeStyling} from 'utils/codeStylingSolution'
 import {useCodeVariant} from 'utils/codeVariant'
 
 function trimLeadingSpaces(input = '') {
@@ -31,7 +29,7 @@ function getDemoName(location) {
       location.split('/').pop()
 }
 
-function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
+function useDemoData(codeVariant, demo, githubLocation) {
   const userLanguage = 'en'
 
   return React.useMemo(() => {
@@ -40,32 +38,25 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
 
     let codeOptions = {}
 
-    if (codeStyling === CODE_STYLING.SYSTEM) {
-      if (codeVariant === CODE_VARIANTS.TS && demo.rawTS) {
-        codeOptions = {
-          codeVariant: CODE_VARIANTS.TS,
-          githubLocation: githubLocation.replace(/\.js$/, '.tsx'),
-          raw: demo.rawTS,
-          Component: demo.tsx,
-          sourceLanguage: 'tsx',
-        }
-      } else {
-        codeOptions = {
-          codeVariant: CODE_VARIANTS.JS,
-          githubLocation,
-          raw: demo.raw,
-          Component: demo.js,
-          sourceLanguage: 'jsx',
-        }
+    if (codeVariant === CODE_VARIANTS.TS && demo.rawTS) {
+      codeOptions = {
+        codeVariant: CODE_VARIANTS.TS,
+        githubLocation: githubLocation.replace(/\.js$/, '.tsx'),
+        raw: demo.rawTS,
+        Component: demo.tsx,
+        sourceLanguage: 'tsx',
+      }
+    } else {
+      codeOptions = {
+        codeVariant: CODE_VARIANTS.JS,
+        githubLocation,
+        raw: demo.raw,
+        Component: demo.js,
+        sourceLanguage: 'jsx',
       }
     }
 
     let jsxPreview = demo.jsxPreview
-    if (codeStyling === CODE_STYLING.TAILWIND && demo.tailwindJsxPreview) {
-      jsxPreview = demo.tailwindJsxPreview
-    } else if (codeStyling === CODE_STYLING.CSS && demo.cssJsxPreview) {
-      jsxPreview = demo.cssJsxPreview
-    }
 
     return {
       scope: demo.scope,
@@ -74,9 +65,8 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
       title: `${getDemoName(githubLocation)} demo — ${name}`,
       productId,
       language: userLanguage,
-      codeStyling,
     }
-  }, [codeVariant, demo, githubLocation, userLanguage, codeStyling])
+  }, [codeVariant, demo, githubLocation, userLanguage])
 }
 
 function useDemoElement({
@@ -89,12 +79,6 @@ function useDemoElement({
     () => debounce(setDebouncedError, 300),
     [setDebouncedError],
   )
-
-  React.useEffect(() => {
-    return () => {
-      debouncedSetError.clear()
-    }
-  }, [debouncedSetError])
 
   const BundledComponent = React.useMemo(
     () => <demoData.Component />,
@@ -164,12 +148,8 @@ export default function Demo(props) {
   }
 
   const codeVariant = useCodeVariant()
-  const styleSolution = useCodeStyling()
 
-  const demoData = useDemoData(codeVariant, demo, githubLocation, styleSolution)
-
-  const hasNonSystemDemos =
-    demo.rawTailwind || demo.rawTailwindTS || demo.rawCSS || demo.rawCSSTs
+  const demoData = useDemoData(codeVariant, demo, githubLocation)
 
   const [demoHovered, setDemoHovered] = React.useState(false)
   const handleDemoHover = (event) => {
@@ -225,9 +205,7 @@ export default function Demo(props) {
 
   const initialEditorCode = isPreview
     ? demoData.jsxPreview
-    : // Prettier remove all the leading lines except for the last one, remove it as we don't
-      // need it in the live edit view.
-      demoData.raw.replace(/\n$/, '')
+    : demoData.raw.replace(/\n$/, '')
   const [editorCode, setEditorCode] = React.useState({
     value: initialEditorCode,
     isPreview,
@@ -292,7 +270,6 @@ export default function Demo(props) {
             <DemoToolbar
               codeOpen={codeOpen}
               codeVariant={codeVariant}
-              hasNonSystemDemos={hasNonSystemDemos}
               demo={demo}
               demoData={demoData}
               demoHovered={demoHovered}
@@ -310,9 +287,7 @@ export default function Demo(props) {
             />
           </React.Suspense>
         </React.Suspense>
-        <Collapse in={openDemoSource} unmountOnExit timeout={150}>
-          {/* A limitation from https://github.com/nihgwu/react-runner,
-            we can't inject the `window` of the iframe so we need a disableLiveEdit option. */}
+        <Box>
           {demoOptions.disableLiveEdit ? (
             <DemoCodeViewer
               code={editorCode.value}
@@ -349,7 +324,7 @@ export default function Demo(props) {
               <DemoEditorError>{debouncedError}</DemoEditorError>
             </DemoEditor>
           )}
-        </Collapse>
+        </Box>
       </NoSsr>
     </Box>
   )

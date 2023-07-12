@@ -1,5 +1,4 @@
 import {CODE_STYLING} from 'constants'
-import PropTypes from 'prop-types'
 import * as React from 'react'
 import {getCookie} from 'utils/helpers'
 
@@ -83,14 +82,6 @@ export function CodeStylingProvider(props) {
       {children}
     </CodeStylingContext.Provider>
   )
-}
-
-CodeStylingProvider.propTypes = {
-  children: PropTypes.node.isRequired,
-}
-
-export function useCodeStyling() {
-  return React.useContext(CodeStylingContext).codeStyling
 }
 
 export function useNoSsrCodeStyling() {
