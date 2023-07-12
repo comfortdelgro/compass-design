@@ -1,4 +1,5 @@
 import React from 'react'
+import Portal from '../portal'
 import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -59,19 +60,17 @@ const ModalTrigger = React.forwardRef<HTMLDivElement, ModalTriggerProps>(
     }, [modalRef])
 
     return (
-      <>
-        {isOpen && (
-          <StyledModalWrapper css={css} {...delegated}>
-            {ModalElement &&
-              React.cloneElement(ModalElement as unknown as JSX.Element, {
-                onClose: () => handleClose?.(),
-                ref: modalRef,
-                size: size,
-                handleClose: () => handleClose?.(),
-              })}
-          </StyledModalWrapper>
-        )}
-      </>
+      <Portal open={isOpen}>
+        <StyledModalWrapper css={css} {...delegated}>
+          {ModalElement &&
+            React.cloneElement(ModalElement as unknown as JSX.Element, {
+              onClose: () => handleClose?.(),
+              ref: modalRef,
+              size: size,
+              handleClose: () => handleClose?.(),
+            })}
+        </StyledModalWrapper>
+      </Portal>
     )
   },
 )
