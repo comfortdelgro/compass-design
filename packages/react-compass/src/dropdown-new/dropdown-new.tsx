@@ -371,6 +371,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       setSelectedItem({
         value: currentSelectedKey.toString(),
         displayValue: item as React.ReactNode,
+        flagName: item?.props?.flagName ?? '',
       })
       setFocusKey(currentSelectedKey.toString())
       if (inputRef.current) {

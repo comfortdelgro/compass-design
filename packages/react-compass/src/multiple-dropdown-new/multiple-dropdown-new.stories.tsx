@@ -70,7 +70,7 @@ interface SampleData {
 
 export const Default: React.FC = () => {
   const [value, setValue] = React.useState<Key[]>([])
-  const [value2, setValue2] = React.useState<Key[]>([1])
+  const [value2, setValue2] = React.useState<Key[]>(['snake', 'cat', 'snake'])
   const [isChecked, setIsChecked] = React.useState(true)
   const [sectionSelected, setSectionSelected] = React.useState<
     React.ReactNode[]
@@ -213,7 +213,7 @@ export const Default: React.FC = () => {
           label='Favorite Animal'
           displayedValue='string'
           customDisplayValue={`${value2.length} animals selected`}
-          placeholder='Choosesss an animal sadfsa sadfasdfsd asfdsfasdf asdfdsfsddf asdfsdf asdfsdf grfgasd asfasdfasdf á  '
+          placeholder='Choosesss an animal'
           css={{width: '290px'}}
           selectedKeys={value2}
           onSelectionChange={(k: Key[]) => setValue2(k)}
@@ -583,7 +583,7 @@ export const Default: React.FC = () => {
             Snake
           </MultipleDropdown.Item>
         </MultipleDropdown>
-        <h3>Controlled</h3>
+        <h3>Load more</h3>
         <MultipleDropdown
           label='Using load more'
           placeholder='Select name'

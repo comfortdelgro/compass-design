@@ -94,6 +94,7 @@ export const Flag: React.FC = () => {
       <DropdownNew.Flag
         isDisabled
         isRequired
+        defaultSelectedKey='VNM'
         label='List of country'
         placeholder='Choose a country'
       />
@@ -102,7 +103,7 @@ export const Flag: React.FC = () => {
 }
 
 export const Select: React.FC = () => {
-  const [value, setValue] = React.useState<Key>('')
+  const [value, setValue] = React.useState<Key>('cat')
   const [loadMoreValue, setLoadMoreValue] = React.useState<Key>('')
   const [data, setData] = React.useState<SampleData[]>(generateRandomData(10))
   const [value1, setValue1] = React.useState<Key>('cat')
@@ -278,7 +279,7 @@ export const Select: React.FC = () => {
       <DropdownNew.Select
         label='Favorite Animal'
         placeholder='Choose an animal'
-        defaultSelectedKey={'dog'}
+        defaultSelectedKey={'cat'}
         disabledKeys={['dog']}
       >
         <DropdownNew.Item
@@ -310,7 +311,6 @@ export const Select: React.FC = () => {
         label='Favorite Animal'
         placeholder='Choose an animal'
         defaultSelectedKey={'dog'}
-        disabledKeys={['dog']}
         shouldDeselect
       >
         <DropdownNew.Item
@@ -533,6 +533,7 @@ export const Select: React.FC = () => {
           </DropdownNew.Item>
         </DropdownNew.Section>
       </DropdownNew.Select>
+      <h3>Load more</h3>
       <DropdownNew.Select
         isRequired
         label='Using load more'
@@ -558,6 +559,9 @@ export const Select: React.FC = () => {
 
 export const Combobox: React.FC = () => {
   const [value, setValue] = React.useState<Key>('cat')
+  const [disabledValue] = React.useState<Key>('dog')
+  const [customValue, setCustomValue] = React.useState<Key>('kangaroo')
+
   return (
     <Column>
       <h3>Controlled</h3>
@@ -646,8 +650,7 @@ export const Combobox: React.FC = () => {
         isRequired
         label='Favorite Animal'
         placeholder='Choose an animal'
-        selectedKey={value}
-        onSelectionChange={(k: Key) => setValue(k)}
+        selectedKey={disabledValue}
       >
         <DropdownNew.Item
           key='red panda'
@@ -734,8 +737,8 @@ export const Combobox: React.FC = () => {
       <DropdownNew.ComboBox
         label='Favorite Animal'
         placeholder='Choose an animal'
-        selectedKey={value}
-        onSelectionChange={(k: Key) => setValue(k)}
+        selectedKey={customValue}
+        onSelectionChange={(k: Key) => setCustomValue(k)}
         allowsCustomValue
       >
         <DropdownNew.Item

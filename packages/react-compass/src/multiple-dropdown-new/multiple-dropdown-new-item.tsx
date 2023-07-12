@@ -104,7 +104,7 @@ const MultipleDropdownNewItem: React.FC<MultipleDropdownItemProps> = (
     <StyledOption
       ref={ref}
       isFocused={isFocused}
-      isSelected={isSelected}
+      isSelected={isSelected && !isFocused}
       onClick={handleItemClick}
       isDisabled={isDisabled}
     >

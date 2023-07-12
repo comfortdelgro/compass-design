@@ -18,8 +18,13 @@ export function textContent(
   if (typeof elem === 'string') {
     return elem
   }
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  if (elem.props?.textValue) {
+    return elem.props.textValue
+  }
 
-  const children = elem.props.children
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  const children = elem.props?.children
   if (children instanceof Array) {
     return children.map(textContent).join(' ')
   }
@@ -198,7 +203,9 @@ export const getItemByKey = (
   if (!childrenArr.length) return null
 
   const selectItem = findItemByValue(
-    children as Array<React.ReactElement<MultipleDropdownItemProps>>,
+    React.Children.toArray(children) as Array<
+      React.ReactElement<MultipleDropdownItemProps>
+    >,
     key,
   )
 

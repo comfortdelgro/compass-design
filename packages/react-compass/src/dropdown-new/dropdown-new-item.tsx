@@ -66,7 +66,7 @@ const DropdownNewItem: React.FC<DropdownItemProps> = (
 
   const ref = useRef<HTMLLIElement>(null)
 
-  const isSeleted = useMemo(
+  const isSelected = useMemo(
     () => selectedItem?.value.toString() === value.toString(),
     [selectedItem, value],
   )
@@ -131,10 +131,10 @@ const DropdownNewItem: React.FC<DropdownItemProps> = (
   }, [selectedKey, value])
 
   useEffect(() => {
-    if (open && isSeleted && ref.current) {
+    if (open && isSelected && ref.current) {
       ref.current.scrollIntoView({block: 'nearest'})
     }
-  }, [open, isSeleted])
+  }, [open, isSelected])
 
   const handleItemClick = () => {
     if (isDisabled) {
@@ -150,7 +150,7 @@ const DropdownNewItem: React.FC<DropdownItemProps> = (
   return canDisplayed ? (
     <StyledOption
       isFocused={isFocused}
-      isSelected={isSeleted}
+      isSelected={isSelected && !isFocused}
       isDisabled={isDisabled}
       onClick={handleItemClick}
       ref={ref}

@@ -145,6 +145,7 @@ const MultipleDropdown = React.forwardRef<
   >([])
 
   const mounted = React.useRef(false)
+  const selectedItemInitialRef = React.useRef(false)
 
   // ====================================== REF ======================================
   const refDOM = useDOMRef<HTMLDivElement>(ref)
@@ -184,6 +185,11 @@ const MultipleDropdown = React.forwardRef<
    * Fill selected data and run only on component initialization
    */
   React.useEffect(() => {
+    // Run set current selectedKeys | defaultSelectedKeys for first time
+    if (selectedItemInitialRef.current) {
+      return
+    }
+    selectedItemInitialRef.current = true
     if (
       selectedItems.length > 0 ||
       !(
@@ -193,7 +199,7 @@ const MultipleDropdown = React.forwardRef<
     )
       return
 
-    const currentSelectedKeys = selectedKeys || defaultSelectedKeys
+    const currentSelectedKeys = defaultSelectedKeys || selectedKeys
 
     let currentFocusKey = ''
 
@@ -215,7 +221,7 @@ const MultipleDropdown = React.forwardRef<
       }
     }
     setFocusKey(currentFocusKey)
-  }, [])
+  }, [children, selectedKeys, selectedItems, defaultSelectedKeys])
 
   const handleDropdownItemClick = React.useCallback(
     (item: SelectedItemDropdown) => {
@@ -482,7 +488,12 @@ const MultipleDropdown = React.forwardRef<
                 selectedItems.map((selectedItem) => (
                   <Chip
                     key={selectedItem.value}
-                    hasCloseButton
+                    hasCloseButton={
+                      disabledKeys.findIndex(
+                        (item) =>
+                          item.toString() === selectedItem.value.toString(),
+                      ) === -1
+                    }
                     onCloseClick={handleCloseChipClick(selectedItem)}
                     isErrored={checkIsError(selectedItem.value.toString())}
                   >

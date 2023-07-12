@@ -18,6 +18,9 @@ export function textContent(
   if (typeof elem === 'string') {
     return elem
   }
+  if (elem.props?.textValue) {
+    return elem.props.textValue
+  }
 
   const children = elem.props?.children
   if (children instanceof Array) {
@@ -35,7 +38,8 @@ const findItemByValue = (
     const item = items[index]
     if (item?.props) {
       if (
-        item.props.value.toString() === value.toString() &&
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+        item.props.value?.toString() === value.toString() &&
         !disabledKeys?.includes(item.props.value)
       ) {
         return item
