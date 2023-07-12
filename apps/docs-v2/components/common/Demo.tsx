@@ -16,7 +16,6 @@ import * as React from 'react'
 import {useCodeStyling} from 'utils/codeStylingSolution'
 import {useCodeVariant} from 'utils/codeVariant'
 import {pathnameToLanguage} from 'utils/helpers'
-import {useTranslate, useUserLanguage} from 'utils/i18n'
 
 function trimLeadingSpaces(input = '') {
   return input.replace(/^\s+/gm, '')
@@ -36,7 +35,7 @@ function getDemoName(location) {
 }
 
 function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
-  const userLanguage = useUserLanguage()
+  const userLanguage = 'en'
   const router = useRouter()
   const {canonicalAs} = pathnameToLanguage(router.asPath)
 
@@ -178,7 +177,6 @@ export default function Demo(props) {
     )
   }
 
-  const t = useTranslate()
   const codeVariant = useCodeVariant()
   const styleSolution = useCodeStyling()
 
@@ -291,11 +289,7 @@ export default function Demo(props) {
         onMouseEnter={handleDemoHover}
         onMouseLeave={handleDemoHover}
       >
-        <InitialFocus
-          aria-label={t('initialFocusLabel')}
-          action={initialFocusRef}
-          tabIndex={-1}
-        />
+        <InitialFocus action={initialFocusRef} tabIndex={-1} />
         <DemoSandbox
           key={demoKey}
           style={demoSandboxedStyle}

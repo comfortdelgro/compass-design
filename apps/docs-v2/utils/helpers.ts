@@ -1,55 +1,54 @@
-import upperFirst from 'lodash/upperFirst';
-import camelCase from 'lodash/camelCase';
-import { LANGUAGES } from 'docs/config';
+import {LANGUAGES} from 'docs/config'
+import camelCase from 'lodash/camelCase'
+import upperFirst from 'lodash/upperFirst'
 
 function pascalCase(str: string) {
-  return upperFirst(camelCase(str));
+  return upperFirst(camelCase(str))
 }
 
 function titleize(hyphenedString: string): string {
-  return upperFirst(hyphenedString.split('-').join(' '));
+  return upperFirst(hyphenedString.split('-').join(' '))
 }
 
 export interface Page {
-  pathname: string;
-  query?: object;
-  subheader?: string;
-  title?: string | false;
+  pathname: string
+  query?: object
+  subheader?: string
+  title?: string | false
 }
 
 export function pageToTitle(page: Page): string | null {
   if (page.title === false) {
-    return null;
+    return null
   }
 
   if (page.title) {
-    return page.title;
+    return page.title
   }
 
-  const path = page.subheader || page.pathname;
-  const name = path.replace(/.*\//, '').replace('react-', '').replace(/\..*/, '');
+  const path = page.subheader || page.pathname
+  const name = path
+    .replace(/.*\//, '')
+    .replace('react-', '')
+    .replace(/\..*/, '')
 
   // TODO remove post migration
   if (path.indexOf('/api-docs/') !== -1) {
-    return pascalCase(name);
+    return pascalCase(name)
   }
 
   // TODO support more than React component API (PascalCase)
   if (path.indexOf('/api/') !== -1) {
-    return name.startsWith('use') ? camelCase(name) : pascalCase(name);
+    return name.startsWith('use') ? camelCase(name) : pascalCase(name)
   }
 
-  return titleize(name);
+  return titleize(name)
 }
 
-export type Translate = (id: string, options?: Partial<{ ignoreWarning: boolean }>) => string;
-
-export function pageToTitleI18n(page: Page, t: Translate): string | null {
-  const path = page.subheader || page.pathname;
-  return page.query
-    ? pageToTitle(page)
-    : t(`pages.${path}`, { ignoreWarning: true }) || pageToTitle(page);
-}
+export type Translate = (
+  id: string,
+  options?: Partial<{ignoreWarning: boolean}>,
+) => string
 
 /**
  * Get the value of a cookie
@@ -61,16 +60,16 @@ export function getCookie(name: string): string | undefined {
   if (typeof document === 'undefined') {
     throw new Error(
       'getCookie() is not supported on the server. Fallback to a different value when rendering on the server.',
-    );
+    )
   }
 
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
   if (parts.length === 2) {
-    return parts[1].split(';').shift();
+    return parts[1].split(';').shift()
   }
 
-  return undefined;
+  return undefined
 }
 
 /**
@@ -79,33 +78,35 @@ export function getCookie(name: string): string | undefined {
  * https://nextjs.org/docs/api-reference/next/router
  */
 export function pathnameToLanguage(pathname: string): {
-  userLanguage: string;
-  canonicalAs: string;
-  canonicalAsServer: string;
-  canonicalPathname: string;
+  userLanguage: string
+  canonicalAs: string
+  canonicalAsServer: string
+  canonicalPathname: string
 } {
-  let userLanguage;
-  const userLanguageCandidate = pathname.substring(1, 3);
+  let userLanguage
+  const userLanguageCandidate = pathname.substring(1, 3)
 
   if (
     [...LANGUAGES, 'zh'].indexOf(userLanguageCandidate) !== -1 &&
     pathname.indexOf(`/${userLanguageCandidate}/`) === 0
   ) {
-    userLanguage = userLanguageCandidate;
+    userLanguage = userLanguageCandidate
   } else {
-    userLanguage = 'en';
+    userLanguage = 'en'
   }
 
-  const canonicalAs = userLanguage === 'en' ? pathname : pathname.substring(3);
+  const canonicalAs = userLanguage === 'en' ? pathname : pathname.substring(3)
   // Remove hash as it's never sent to the server
   // https://github.com/vercel/next.js/issues/25202
-  const canonicalAsServer = canonicalAs.replace(/#(.*)$/, '');
-  const canonicalPathname = canonicalAsServer.replace(/^\/api/, '/api-docs').replace(/\/$/, '');
+  const canonicalAsServer = canonicalAs.replace(/#(.*)$/, '')
+  const canonicalPathname = canonicalAsServer
+    .replace(/^\/api/, '/api-docs')
+    .replace(/\/$/, '')
 
   return {
     userLanguage,
     canonicalAs,
     canonicalAsServer,
     canonicalPathname,
-  };
+  }
 }

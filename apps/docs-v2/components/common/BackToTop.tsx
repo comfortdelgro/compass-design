@@ -6,10 +6,8 @@ import {Theme} from '@mui/material/styles'
 import Tooltip from '@mui/material/Tooltip'
 import useScrollTrigger from '@mui/material/useScrollTrigger'
 import * as React from 'react'
-import {useTranslate} from 'utils/i18n'
 
 export default function BackToTop() {
-  const t = useTranslate()
   const [open, setOpen] = React.useState(false)
 
   const handleClose = () => {
@@ -66,7 +64,6 @@ export default function BackToTop() {
               }),
             ]}
             size='small'
-            aria-label={t('backToTop')}
             onClick={handleClick}
             data-ga-event-category='docs'
             data-ga-event-action='click-back-to-top'

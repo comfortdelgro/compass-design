@@ -12,7 +12,6 @@ import {CodeCopyProvider} from 'utils/CodeCopy'
 import {CodeStylingProvider} from 'utils/codeStylingSolution'
 import {CodeVariantProvider} from 'utils/codeVariant'
 import {pathnameToLanguage} from 'utils/helpers'
-import {UserLanguageProvider} from 'utils/i18n'
 import './global.css'
 
 const clientSideEmotionCache = createEmotionCache()
@@ -153,20 +152,18 @@ function AppWrapper(props) {
         <meta name='mui:productId' content={productId} />
         <meta name='mui:productCategoryId' content={productCategoryId} />
       </NextHead>
-      <UserLanguageProvider defaultUserLanguage={pageProps.userLanguage}>
-        <CodeCopyProvider>
-          <CodeStylingProvider>
-            <CodeVariantProvider>
-              <PageContext.Provider value={pageContextValue}>
-                <ThemeProvider>
-                  <Preflight />
-                  {children}
-                </ThemeProvider>
-              </PageContext.Provider>
-            </CodeVariantProvider>
-          </CodeStylingProvider>
-        </CodeCopyProvider>
-      </UserLanguageProvider>
+      <CodeCopyProvider>
+        <CodeStylingProvider>
+          <CodeVariantProvider>
+            <PageContext.Provider value={pageContextValue}>
+              <ThemeProvider>
+                <Preflight />
+                {children}
+              </ThemeProvider>
+            </PageContext.Provider>
+          </CodeVariantProvider>
+        </CodeStylingProvider>
+      </CodeCopyProvider>
     </React.Fragment>
   )
 }
