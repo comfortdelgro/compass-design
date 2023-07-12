@@ -1,29 +1,11 @@
 import Preflight from '@comfortdelgro/react-compass/preflight'
-import createEmotionServer from '@emotion/server/create-instance'
-import {ServerStyleSheets as JSSServerStyleSheets} from '@mui/styles'
-import createEmotionCache from 'docs/src/createEmotionCache'
 import Document, {Head, Html, Main, NextScript} from 'next/document'
 import * as React from 'react'
-import {ServerStyleSheet} from 'styled-components'
-import {pathnameToLanguage} from 'utils/helpers'
-
-let prefixer
-let cleanCSS
-if (process.env.NODE_ENV === 'production') {
-  const postcss = require('postcss')
-  const autoprefixer = require('autoprefixer')
-  const CleanCSS = require('clean-css')
-
-  prefixer = postcss([autoprefixer])
-  cleanCSS = new CleanCSS()
-}
 
 export default class MyDocument extends Document {
   render() {
-    const {canonicalAsServer, userLanguage} = this.props
-
     return (
-      <Html lang={userLanguage}>
+      <Html lang='en'>
         <Head>
           {Preflight.flush()}
           <link rel='manifest' href='/static/manifest.json' />
@@ -48,13 +30,11 @@ export default class MyDocument extends Document {
           {/* SEO */}
           <link
             rel='canonical'
-            href={`https://mui.com${
-              userLanguage === 'en' ? '' : `/${userLanguage}`
-            }${canonicalAsServer}`}
+            href='https://comfortdelgro.github.io/compass-design'
           />
           <link
             rel='alternate'
-            href={`https://mui.com${canonicalAsServer}`}
+            href='https://comfortdelgro.github.io/compass-design'
             hrefLang='x-default'
           />
           {/*
@@ -112,66 +92,11 @@ export default class MyDocument extends Document {
   }
 }
 
-// `getInitialProps` belongs to `_document` (instead of `_app`),
-// it's compatible with static-site generation (SSG).
-MyDocument.getInitialProps = async (ctx) => {
-  // Resolution order
-  //
-  // On the server:
-  // 1. app.getInitialProps
-  // 2. page.getInitialProps
-  // 3. document.getInitialProps
-  // 4. app.render
-  // 5. page.render
-  // 6. document.render
-  //
-  // On the server with error:
-  // 1. document.getInitialProps
-  // 2. app.render
-  // 3. page.render
-  // 4. document.render
-  //
-  // On the client
-  // 1. app.getInitialProps
-  // 2. page.getInitialProps
-  // 3. app.render
-  // 4. page.render
-
-  // Render app and page and get the context of the page with collected side effects.
-  const jssSheets = new JSSServerStyleSheets()
-  const styledComponentsSheet = new ServerStyleSheet()
-  const originalRenderPage = ctx.renderPage
-
-  const cache = createEmotionCache()
-  const {extractCriticalToChunks} = createEmotionServer(cache)
-
+MyDocument.getInitialProps = async (ctx: any) => {
   try {
-    ctx.renderPage = () =>
-      originalRenderPage({
-        enhanceApp: (App) => (props) =>
-          styledComponentsSheet.collectStyles(
-            jssSheets.collect(<App emotionCache={cache} {...props} />),
-          ),
-      })
-
     const initialProps = await Document.getInitialProps(ctx)
-    const emotionStyles = extractCriticalToChunks(initialProps.html)
-    const emotionStyleTags = emotionStyles.styles.map((style) => (
-      <style
-        data-emotion={`${style.key} ${style.ids.join(' ')}`}
-        key={style.key}
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{__html: style.css}}
-      />
-    ))
 
-    let css = jssSheets.toString()
     // It might be undefined, e.g. after an error.
-    if (css && process.env.NODE_ENV === 'production') {
-      const result1 = await prefixer.process(css, {from: undefined})
-      css = result1.css
-      css = cleanCSS.minify(css).styles
-    }
 
     // All the URLs should have a leading /.
     // This is missing in the Next.js static export.
@@ -182,20 +107,9 @@ MyDocument.getInitialProps = async (ctx) => {
 
     return {
       ...initialProps,
-      canonicalAsServer: pathnameToLanguage(url).canonicalAsServer,
-      userLanguage: ctx.query.userLanguage || 'en',
-      // Styles fragment is rendered after the app and page rendering finish.
       styles: [
         <style id='material-icon-font' key='material-icon-font' />,
         <style id='font-awesome-css' key='font-awesome-css' />,
-        styledComponentsSheet.getStyleElement(),
-        ...emotionStyleTags,
-        <style
-          id='jss-server-side'
-          key='jss-server-side'
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{__html: css}}
-        />,
         <style id='app-search' key='app-search' />,
         <style id='prismjs' key='prismjs' />,
         <style id='insertion-point-jss' key='insertion-point-jss' />,
@@ -203,6 +117,5 @@ MyDocument.getInitialProps = async (ctx) => {
       ],
     }
   } finally {
-    styledComponentsSheet.seal()
   }
 }
