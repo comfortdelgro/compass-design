@@ -17,11 +17,11 @@ export default function GetStartedButtons() {
   }
   return (
     <Box>
-      <Button size='lg' variant='primary' rightIcon={<ArrowRightFilled />}>
+      <Button size='md' variant='primary' rightIcon={<ArrowRightFilled />}>
         Get started
       </Button>
       <Button
-        size='lg'
+        size='md'
         variant='secondary'
         rightIcon={copied ? <Tick color='primary' /> : <Copy />}
         onClick={handleCopy}

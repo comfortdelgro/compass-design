@@ -3,14 +3,14 @@ import Image from 'next/image'
 
 const Banner = () => {
   return (
-    <Box css={{position: 'relative'}}>
+    <Box css={{position: 'relative', background: '#ECE2EF'}}>
       <Image
         src='/static/images/home-background.png'
         alt='banner'
         width={0}
         height={0}
         sizes='100vw'
-        style={{width: '100%', height: 'auto'}}
+        style={{width: '100%', height: 'auto', minHeight: 300}}
       />
       <Box
         css={{
@@ -18,10 +18,24 @@ const Banner = () => {
           background: 'rgba(0, 0, 0, 0.10)',
           backdropFilter: 'blur(40px)',
           padding: '$14 $4',
-          top: '4rem',
+          top: 'calc(50% - 143px)',
           width: '50%',
           left: '25%',
           borderRadius: 16,
+          '@media screen and (max-width: 1200px)': {
+            padding: '$8 $4',
+            top: 'calc(50% - 119px)',
+            width: '70%',
+            left: '15%',
+          },
+          '@media screen and (max-width: 992px)': {
+            padding: '$4 $4',
+            top: 'calc(50% - 103px)',
+          },
+          '@media screen and (max-width: 768px)': {
+            width: '90%',
+            left: '5%',
+          },
         }}
       >
         <Typography.Header
@@ -41,6 +55,9 @@ const Banner = () => {
             fontSize: '2.875rem',
             textAlign: 'center',
             padding: '$8 0 $10 0',
+            '@media screen and (max-width: 768px)': {
+              fontSize: '2rem',
+            },
           }}
         >
           Compass Design System

@@ -1,28 +1,49 @@
 import {Box, Typography} from '@comfortdelgro/react-compass'
 import Container from 'components/layouts/Container'
-import GradientText from '../typography/GradientText'
+import Image from 'next/image'
 import GetStartedButtons from './GetStartedButtons'
 
 export default function Hero() {
   return (
-    <Container>
-      <Box css={{textAlign: 'center', padding: '4rem 0'}}>
-        <Typography.Header
-          variant='header1'
-          css={{fontSize: '4rem', fontWeight: 'bold'}}
+    <Box css={{background: '#ECE2EF', position: 'relative'}}>
+      <Container css={{height: 538}}>
+        <Box
+          css={{
+            padding: '4rem 0',
+            width: '60%',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            height: '100%',
+          }}
         >
-          <GradientText>Move faster</GradientText> with intuitive React UI tools
-        </Typography.Header>
-        <Box css={{padding: '2rem'}}>
-          <Typography.Body variant='body1'>
-            React Compass offers a comprehensive suite of UI tools to help you
-            ship new features faster. Start with React Compass, our fully-loaded
-            component library, or bring your own design system to our
-            production-ready components.
-          </Typography.Body>
+          <Typography.Header variant='header1'>
+            Ready to use Design components
+          </Typography.Header>
+          <Box css={{padding: '$6 0'}}>
+            <Typography.Body variant='body2'>
+              React Compass offers a comprehensive suite of UI tools to help you
+              ship new features faster. Start with React Compass, our
+              full-loaded component library, or bring your own design system to
+              our production-ready component.
+            </Typography.Body>
+          </Box>
+          <GetStartedButtons />
         </Box>
-        <GetStartedButtons />
-      </Box>
-    </Container>
+        <Image
+          src='/static/images/introduction.png'
+          alt='banner'
+          width={538}
+          height={538}
+          style={{
+            width: 'auto',
+            height: 538,
+            position: 'absolute',
+            right: 0,
+            top: 0,
+          }}
+        />
+      </Container>
+    </Box>
   )
 }
