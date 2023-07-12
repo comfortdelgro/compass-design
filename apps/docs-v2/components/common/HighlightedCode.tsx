@@ -25,11 +25,10 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(
 
   return (
     <Component ref={ref} {...other}>
-      <div className='MuiCode-root' {...handlers}>
+      <div {...handlers}>
         <pre>
           <code
             className={`language-${language}`}
-            // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{__html: renderedCode}}
           />
         </pre>

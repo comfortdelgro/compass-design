@@ -1,5 +1,4 @@
 import {Box} from '@comfortdelgro/react-compass'
-import {useTheme} from '@mui/system'
 import AppLayoutDocs from 'components/common/AppLayoutDocs'
 import Demo from 'components/common/Demo'
 import HighlightedCodeWithTabs from 'components/common/HighlightedCodeWithTabs'
@@ -14,7 +13,6 @@ function noComponent(moduleID: string) {
 }
 
 export default function MarkdownDocs(props: any) {
-  const theme = useTheme()
   const {
     disableAd = false,
     disableToc = false,
@@ -39,7 +37,7 @@ export default function MarkdownDocs(props: any) {
       title={title}
       toc={toc}
     >
-      {rendered.map((renderedMarkdownOrDemo, index) => {
+      {rendered.map((renderedMarkdownOrDemo: any, index: number) => {
         if (typeof renderedMarkdownOrDemo === 'string') {
           return <MarkdownElement renderedMarkdown={renderedMarkdownOrDemo} />
         }
@@ -104,7 +102,6 @@ export default function MarkdownDocs(props: any) {
         return (
           <Demo
             key={index}
-            mode={theme.palette.mode}
             demo={{
               raw: demo.raw,
               js: demoComponents[demo.module] ?? noComponent(demo.module),

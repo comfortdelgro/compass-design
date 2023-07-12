@@ -1,35 +1,27 @@
-import {alpha, styled} from '@mui/material/styles'
+import {styled} from '@comfortdelgro/react-compass'
 import clsx from 'clsx'
-import {brandingLightTheme as lightTheme} from 'docs/src/brandingTheme'
 import * as React from 'react'
 
-const Root = styled('div')(({theme}) => ({
+const Root = styled('div', {
   lineHeight: 1.5625, // Increased compared to the 1.5 default to make the docs easier to read.
 
   wordBreak: 'break-word',
   '& pre': {
     lineHeight: 1.5, // Developers likes when the code is dense.
-    margin: theme.spacing(2, 'auto'),
-    padding: theme.spacing(2),
-    backgroundColor: `var(--muidocs-palette-primaryDark-800, ${lightTheme.palette.primaryDark[800]})`,
+    margin: '$2',
+    padding: '$2',
+    backgroundColor: '$cdgBlue120',
     color: '#f8f8f2',
-    colorScheme: 'dark',
-    borderRadius: `var(--muidocs-shape-borderRadius, ${
-      theme.shape?.borderRadius ?? lightTheme.shape.borderRadius
-    }px)`,
+    borderRadius: '$md',
     border: '1px solid',
-    borderColor: `var(--muidocs-palette-primaryDark-700, ${lightTheme.palette.primaryDark[700]})`,
+    borderColor: '$cdgBlue100',
     overflow: 'auto',
     WebkitOverflowScrolling: 'touch',
-    fontSize: lightTheme.typography.pxToRem(13),
+    fontSize: 13,
     maxWidth: 'calc(100vw - 32px)',
     maxHeight: '400px',
-    [lightTheme.breakpoints.up('md')]: {
-      maxWidth: 'calc(100vw - 32px - 16px)',
-    },
   },
   '& code': {
-    fontFamily: lightTheme.typography.fontFamilyCode,
     fontWeight: 400,
     WebkitFontSmoothing: 'subpixel-antialiased',
   },
@@ -39,18 +31,16 @@ const Root = styled('div')(({theme}) => ({
   '& :not(pre) > code': {
     display: 'inline-block',
     padding: '0 5px',
-    color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
-    backgroundColor: '#b1b1b1',
+    color: '$primaryText',
+    backgroundColor: '$primaryBg',
     borderRadius: 5,
-    fontSize: lightTheme.typography.pxToRem(13),
+    fontSize: 13,
     direction: 'ltr /*! @noflip */',
   },
   '& h1': {
-    ...lightTheme.typography.h3,
-    fontSize: lightTheme.typography.pxToRem(36),
-    fontFamily: `"PlusJakartaSans-ExtraBold", ${lightTheme.typography.fontFamilySystem}`,
+    fontSize: 36,
     margin: '10px 0',
-    color: `var(--muidocs-palette-primaryDark-900, ${lightTheme.palette.primaryDark[900]})`,
+    color: '$cdgBlue140',
     fontWeight: 800,
   },
   '& .description': {
@@ -61,48 +51,42 @@ const Root = styled('div')(({theme}) => ({
     margin: '0 0 40px',
   },
   '& h2': {
-    fontFamily: lightTheme.typography.fontFamilySystem,
     fontWeight: 700,
-    color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
+    color: '$gray110',
     margin: '40px 0 4px',
   },
   '& h3': {
-    fontFamily: lightTheme.typography.fontFamilySystem,
-    fontWeight: lightTheme.typography.fontWeightSemiBold,
-    color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
+    fontWeight: 'bold',
+    color: '$gray110',
     margin: '24px 0 8px',
   },
   '& h4': {
-    fontFamily: lightTheme.typography.fontFamilySystem,
-    fontWeight: lightTheme.typography.fontWeightSemiBold,
-    color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
+    fontWeight: 'bold',
+    color: '$gray110',
     margin: '24px 0 8px',
   },
   '& h5': {
-    fontWeight: lightTheme.typography.fontWeightSemiBold,
-    color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
+    fontWeight: 'bold',
+    color: '$gray110',
     margin: '20px 0 8px',
   },
   '& p, & ul, & ol': {
     marginTop: 0,
     marginBottom: 16,
-    color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
+    color: '$gray110',
   },
   '& ul': {
     paddingLeft: 30,
   },
   '& h1, & h2, & h3, & h4': {
     position: 'relative',
-    // Reserve space for the end of the line action button
     paddingRight: 26 * 2 + 10,
     '& code': {
       fontSize: 'inherit',
       lineHeight: 'inherit',
-      // Remove scroll on small screens.
       wordBreak: 'break-all',
     },
     '& .anchor-link': {
-      // To prevent the link to get the focus.
       display: 'none',
     },
     '& a:not(.anchor-link):hover': {
@@ -118,17 +102,17 @@ const Root = styled('div')(({theme}) => ({
       marginTop: 5,
       height: 26,
       width: 26,
-      backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
+      backgroundColor: '$cdgBlue70',
       border: '1px solid',
-      borderColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
+      borderColor: '$gray30',
       borderRadius: 8,
-      color: `var(--muidocs-palette-text-secondary, ${lightTheme.palette.text.secondary})`,
+      color: '$primaryText',
       cursor: 'pointer',
       display: 'inline-block',
       '&:hover': {
         backgroundColor: 'red',
-        borderColor: `var(--muidocs-palette-primary-100, ${lightTheme.palette.primary[100]})`,
-        color: `var(--muidocs-palette-primary-main, ${lightTheme.palette.primary.main})`,
+        borderColor: '$gray10',
+        color: '$primaryText',
       },
       '& svg': {
         width: '0.875rem',
@@ -137,35 +121,19 @@ const Root = styled('div')(({theme}) => ({
         pointerEvents: 'none',
       },
     },
-    '& .comment-link': {
-      display: 'none', // So we can have the comment button opt-in.
-      top: 0,
-      right: 0,
-      transition: theme.transitions.create('opacity', {
-        duration: theme.transitions.duration.shortest,
-      }),
-      '& svg': {
-        opacity: 0.6,
-        marginBottom: 2,
-        verticalAlign: 'middle',
-      },
-      '&:hover': {
-        '&>svg': {opacity: 1},
-      },
-    },
   },
   '& h1 code, & h2 code, & h3 code': {
-    color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
+    color: '$gray110',
   },
   '& h1 code': {
-    fontWeight: lightTheme.typography.fontWeightSemiBold,
+    fontWeight: 'bold',
   },
   '& h2 code': {
-    fontSize: lightTheme.typography.pxToRem(24),
-    fontWeight: lightTheme.typography.fontWeightSemiBold,
+    fontSize: 24,
+    fontWeight: 'bold',
   },
   '& h3 code': {
-    fontSize: lightTheme.typography.pxToRem(18),
+    fontSize: 18,
   },
   '& table': {
     // Trade display table for scroll overflow
@@ -179,9 +147,8 @@ const Root = styled('div')(({theme}) => ({
     '& .prop-name, & .prop-type, & .prop-default, & .slot-name, & .slot-defaultClass, & .slot-default':
       {
         fontWeight: 400,
-        fontFamily: lightTheme.typography.fontFamilyCode,
         WebkitFontSmoothing: 'subpixel-antialiased',
-        fontSize: lightTheme.typography.pxToRem(13),
+        fontSize: 13,
       },
     '& .required': {
       color: '#006500',
@@ -193,26 +160,26 @@ const Root = styled('div')(({theme}) => ({
       color: '#932981',
     },
     '& .prop-default, & .slot-default': {
-      borderBottom: `1px dotted var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
+      borderBottom: `1px dotted #201F1E`,
     },
   },
   '& td': {
-    borderBottom: `1px solid var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
+    borderBottom: `1px solid #201F1E`,
     paddingRight: 20,
     paddingTop: 12,
     paddingBottom: 12,
-    color: `var(--muidocs-palette-text-secondary, ${lightTheme.palette.text.secondary})`,
+    color: '$primaryText',
   },
   '& td code': {
     lineHeight: 1.6,
   },
   '& th': {
-    fontSize: theme.typography.pxToRem(14),
-    lineHeight: theme.typography.pxToRem(24),
+    fontSize: 14,
+    lineHeight: 24,
     fontWeight: 500,
-    color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
+    color: '$primaryText',
     whiteSpace: 'pre',
-    borderBottom: `1px solid var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
+    borderBottom: `1px solid #201F1E`,
     paddingRight: 20,
     paddingTop: 12,
     paddingBottom: 12,
@@ -221,13 +188,13 @@ const Root = styled('div')(({theme}) => ({
     borderRadius: 12,
     border: '1px solid',
     borderLeft: '8px solid',
-    borderColor: `var(--muidocs-palette-warning-300, ${lightTheme.palette.warning[300]})`,
-    backgroundColor: `var(--muidocs-palette-warning-50, ${lightTheme.palette.warning[50]})`,
+    borderColor: '$warning',
+    backgroundColor: '$warningBg',
     padding: '10px 20px',
     margin: '20px 0',
     '& p': {
       marginTop: 10,
-      color: `var(--muidocs-palette-primaryDark-800, ${lightTheme.palette.primaryDark[800]})`,
+      color: '$warning',
     },
   },
   '& .MuiCallout-root': {
@@ -244,14 +211,15 @@ const Root = styled('div')(({theme}) => ({
       color: 'inherit',
     },
     '&.MuiCallout-error': {
-      color: `var(--muidocs-palette-error-900, ${lightTheme.palette.error[900]})`,
-      backgroundColor: `var(--muidocs-palette-error-50, ${lightTheme.palette.error[50]})`,
-      borderColor: `var(--muidocs-palette-error-100, ${lightTheme.palette.error[100]})`,
+      color: '$danger',
+      backgroundColor: '$dangerBg',
+      borderColor: '$dangerBg',
       '& strong': {
-        color: `var(--muidocs-palette-error-800, ${lightTheme.palette.error[800]})`,
+        color: '$danger',
+        fontWeight: 'bold',
       },
       '& a': {
-        color: `var(--muidocs-palette-error-800, ${lightTheme.palette.error[800]})`,
+        color: 'red',
         textDecorationColor: 'red',
         '&:hover': {
           textDecorationColor: 'inherit',
@@ -259,22 +227,23 @@ const Root = styled('div')(({theme}) => ({
       },
     },
     '&.MuiCallout-info': {
-      color: `var(--muidocs-palette-primary-900, ${lightTheme.palette.primary[900]})`,
-      backgroundColor: `var(--muidocs-palette-grey-50, ${lightTheme.palette.grey[50]})`,
-      borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
+      color: '$info',
+      backgroundColor: '$infoBg',
+      borderColor: '$info',
       '& strong': {
-        color: `var(--muidocs-palette-primary-800, ${lightTheme.palette.primary[800]})`,
+        color: '$info',
       },
     },
     '&.MuiCallout-success': {
-      color: `var(--muidocs-palette-success-900, ${lightTheme.palette.success[900]})`,
-      backgroundColor: `var(--muidocs-palette-success-50, ${lightTheme.palette.success[50]})`,
-      borderColor: `var(--muidocs-palette-success-200, ${lightTheme.palette.success[200]})`,
+      color: '$success',
+      backgroundColor: '$successBg',
+      borderColor: '$success',
       '& strong': {
-        color: `var(--muidocs-palette-success-900, ${lightTheme.palette.success[900]})`,
+        color: 'green',
+        fontWeight: 'bold',
       },
       '& a': {
-        color: `var(--muidocs-palette-success-900, ${lightTheme.palette.success[900]})`,
+        color: '$success',
         textDecorationColor: 'red',
         '&:hover': {
           textDecorationColor: 'inherit',
@@ -282,15 +251,15 @@ const Root = styled('div')(({theme}) => ({
       },
     },
     '&.MuiCallout-warning': {
-      color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
-      backgroundColor: alpha(lightTheme.palette.warning[50], 0.5),
-      borderColor: alpha(lightTheme.palette.warning[600], 0.3),
+      color: '$warning',
+      backgroundColor: '$warningBg',
+      borderColor: '$warning',
       '& strong': {
-        color: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
+        color: '$warning',
       },
       '& a': {
-        color: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
-        textDecorationColor: alpha(lightTheme.palette.warning.main, 0.4),
+        color: '$warning',
+        textDecorationColor: '$warning',
         '&:hover': {
           textDecorationColor: 'inherit',
         },
@@ -299,7 +268,7 @@ const Root = styled('div')(({theme}) => ({
   },
   '& a, & a code': {
     // Style taken from the Link component
-    color: `var(--muidocs-palette-primary-600, ${lightTheme.palette.primary[600]})`,
+    color: '$cdgBlue60',
     textDecoration: 'underline',
     textDecorationColor: 'red',
     '&:hover': {
@@ -319,10 +288,10 @@ const Root = styled('div')(({theme}) => ({
   },
   '& hr': {
     height: 1,
-    margin: theme.spacing(5, 0),
+    margin: '$5 0',
     border: 0,
     flexShrink: 0,
-    backgroundColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
+    backgroundColor: `#201F1E`,
   },
   '& kbd.key': {
     padding: '5px',
@@ -331,12 +300,12 @@ const Root = styled('div')(({theme}) => ({
     margin: '0 1px',
     font: '11px Consolas,Liberation Mono,Menlo,monospace',
     lineHeight: '10px',
-    color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
+    color: '$primaryText',
     verticalAlign: 'middle',
-    backgroundColor: `var(--muidocs-palette-grey-50, ${lightTheme.palette.grey[50]})`,
-    border: `1px solid var(--muidocs-palette-grey-300, ${lightTheme.palette.grey[300]})`,
+    backgroundColor: '$gray50',
+    border: `1px solid $gray30`,
     borderRadius: 5,
-    boxShadow: `inset 0 -1px 0 var(--muidocs-palette-grey-300, ${lightTheme.palette.grey[300]})`,
+    boxShadow: `inset 0 -1px 0 $gray30`,
   },
   '& details': {
     marginBottom: 15,
@@ -361,9 +330,9 @@ const Root = styled('div')(({theme}) => ({
     height: 26,
     cursor: 'pointer',
     position: 'absolute',
-    top: theme.spacing(1),
-    right: theme.spacing(1),
-    padding: theme.spacing(0.5),
+    top: '$1',
+    right: '$1',
+    padding: '$1',
     fontFamily: 'inherit',
     fontWeight: 500,
     borderRadius: 6,
@@ -371,16 +340,10 @@ const Root = styled('div')(({theme}) => ({
     backgroundColor: 'transparent',
     color: '#FFF',
     opacity: 0.6,
-    transition: theme.transitions.create(
-      ['background', 'borderColor', 'display'],
-      {
-        duration: theme.transitions.duration.shortest,
-      },
-    ),
     '& svg': {
       userSelect: 'none',
-      width: theme.typography.pxToRem(16),
-      height: theme.typography.pxToRem(16),
+      width: 16,
+      height: 16,
       display: 'inline-block',
       fill: 'currentcolor',
       flexShrink: 0,
@@ -392,7 +355,7 @@ const Root = styled('div')(({theme}) => ({
     },
     '&:hover, &:focus': {
       opacity: 1,
-      backgroundColor: lightTheme.palette.primaryDark[500],
+      backgroundColor: '$cdgBlue40',
       '& .MuiCode-copyKeypress': {
         display: 'block',
         '@media (any-hover: none)': {
@@ -407,9 +370,9 @@ const Root = styled('div')(({theme}) => ({
     },
     '&[data-copied]': {
       // style of the button when it is in copied state.
-      borderColor: lightTheme.palette.primary[700],
+      borderColor: '$cdgBlue60',
       color: '#fff',
-      backgroundColor: lightTheme.palette.primaryDark[600],
+      backgroundColor: '$cdgBlue40',
       '& .MuiCode-copy-icon': {
         display: 'none',
       },
@@ -420,29 +383,32 @@ const Root = styled('div')(({theme}) => ({
     '&:focus-visible': {
       outline: '2px solid',
       outlineOffset: 2,
-      outlineColor: lightTheme.palette.primaryDark[500],
+      outlineColor: '$cdgBlue40',
     },
   },
   '& .MuiCode-copyKeypress': {
     pointerEvents: 'none',
     userSelect: 'none',
-    marginRight: theme.spacing(1.2),
-    marginBottom: theme.spacing(0.2),
+    marginRight: '$1',
+    marginBottom: '$1',
     whiteSpace: 'nowrap',
     opacity: 0.6,
   },
   '& li': {
     marginBottom: 4,
     '& pre': {
-      marginTop: theme.spacing(1),
+      marginTop: '$1',
     },
     '& > p': {
-      marginBottom: theme.spacing(1),
+      marginBottom: '$!',
     },
   },
-}))
+})
 
-const MarkdownElement = React.forwardRef(function MarkdownElement(props, ref) {
+const MarkdownElement = React.forwardRef(function MarkdownElement(
+  props: any,
+  ref,
+) {
   const {className, renderedMarkdown, ...other} = props as any
   const more = {}
 

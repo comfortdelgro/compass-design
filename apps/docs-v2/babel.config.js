@@ -31,14 +31,6 @@ module.exports = {
     ],
   ],
   plugins: [
-    [
-      'babel-plugin-macros',
-      {
-        muiError: {
-          errorCodesPath,
-        },
-      },
-    ],
     'babel-plugin-optimize-clsx',
     // for IE11 support
     '@babel/plugin-transform-object-assign',
