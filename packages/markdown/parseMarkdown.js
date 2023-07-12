@@ -38,20 +38,8 @@ function escape(html, encode) {
 }
 
 function checkUrlHealth(href, linkText, context) {
-  const url = new URL(href, 'https://mui.com/')
+  const url = new URL(href, 'https://comfortdelgro.github.io/')
 
-  // External links to MUI, ignore
-  if (url.host !== 'mui.com') {
-    return
-  }
-
-  /**
-   * Break for links like:
-   * /material-ui/customization/theming
-   *
-   * It needs to be:
-   * /material-ui/customization/theming/
-   */
   if (url.pathname[url.pathname.length - 1] !== '/') {
     throw new Error(
       [

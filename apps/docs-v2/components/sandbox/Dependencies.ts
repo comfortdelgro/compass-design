@@ -14,7 +14,6 @@ export default function SandboxDependencies(
   },
   options?: any,
 ) {
-  console.log('=======', demo)
   function addTypeDeps(deps: Record<string, string>): void {
     const packagesWithBundledTypes = ['date-fns', 'dayjs']
     const packagesWithDTPackage = Object.keys(deps)

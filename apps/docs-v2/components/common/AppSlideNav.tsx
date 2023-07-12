@@ -45,8 +45,12 @@ const AppSideNav: React.FC = () => {
               }}
             >
               <MenuListDropdown>
-                {children.map((child) => (
-                  <Link href={child.pathname} style={{textDecoration: 'none'}}>
+                {children.map((child, index) => (
+                  <Link
+                    key={`${child.pathname}${index}`}
+                    href={child.pathname}
+                    style={{textDecoration: 'none'}}
+                  >
                     <MenuListDropdown.Item key={child.pathname}>
                       {child.title}
                     </MenuListDropdown.Item>

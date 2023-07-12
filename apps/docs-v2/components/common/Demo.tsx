@@ -1,4 +1,4 @@
-import {Box, Button, NoSsr, styled} from '@comfortdelgro/react-compass'
+import {Box, Button, styled} from '@comfortdelgro/react-compass'
 import DemoEditor from 'components/common/DemoEditor'
 import DemoEditorError from 'components/common/DemoEditorError'
 import DemoSandbox from 'components/common/DemoSandbox'
@@ -258,66 +258,62 @@ export default function Demo(props: any) {
           {demoElement}
         </DemoSandbox>
       </Box>
-      <NoSsr>
-        <React.Suspense fallback={<DemoToolbarFallback />}>
-          <React.Suspense fallback={<DemoToolbarFallback />}>
-            <DemoToolbar
-              codeOpen={codeOpen}
-              codeVariant={codeVariant}
-              demo={demo}
-              demoData={demoData}
-              demoHovered={demoHovered}
-              demoId={demoId}
-              demoName={demoName}
-              demoOptions={demoOptions}
-              demoSourceId={demoSourceId}
-              initialFocusRef={initialFocusRef}
-              onCodeOpenChange={() => {
-                setCodeOpen((open: boolean) => !open)
-              }}
-              onResetDemoClick={resetDemo}
-              openDemoSource={openDemoSource}
-              showPreview={showPreview}
-            />
-          </React.Suspense>
-        </React.Suspense>
-        <Box>
-          {demoOptions.disableLiveEdit ? (
-            <DemoCodeViewer
-              code={editorCode.value}
-              id={demoSourceId}
-              language={demoData.sourceLanguage}
-              copyButtonProps={{
-                'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-                'data-ga-event-label': demo.gaLabel,
-                'data-ga-event-action': 'copy-click',
-              }}
-            />
-          ) : (
-            <DemoEditor
-              value={editorCode.value}
-              onChange={(value) => {
-                setEditorCode({
-                  ...editorCode,
-                  value,
-                })
-              }}
-              onFocus={() => {
-                setLiveDemoActive(true)
-              }}
-              id={demoSourceId}
-              language={demoData.sourceLanguage}
-              copyButtonProps={{
-                'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-                'data-ga-event-label': demo.gaLabel,
-                'data-ga-event-action': 'copy-click',
-              }}
-            >
-              <DemoEditorError>{debouncedError}</DemoEditorError>
-            </DemoEditor>
-          )}
-        </Box>
-      </NoSsr>
+      <React.Suspense fallback={<DemoToolbarFallback />}>
+        <DemoToolbar
+          codeOpen={codeOpen}
+          codeVariant={codeVariant}
+          demo={demo}
+          demoData={demoData}
+          demoHovered={demoHovered}
+          demoId={demoId}
+          demoName={demoName}
+          demoOptions={demoOptions}
+          demoSourceId={demoSourceId}
+          initialFocusRef={initialFocusRef}
+          onCodeOpenChange={() => {
+            setCodeOpen((open: boolean) => !open)
+          }}
+          onResetDemoClick={resetDemo}
+          openDemoSource={openDemoSource}
+          showPreview={showPreview}
+        />
+      </React.Suspense>
+      <Box>
+        {demoOptions.disableLiveEdit ? (
+          <DemoCodeViewer
+            code={editorCode.value}
+            id={demoSourceId}
+            language={demoData.sourceLanguage}
+            copyButtonProps={{
+              'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
+              'data-ga-event-label': demo.gaLabel,
+              'data-ga-event-action': 'copy-click',
+            }}
+          />
+        ) : (
+          <DemoEditor
+            value={editorCode.value}
+            onChange={(value) => {
+              setEditorCode({
+                ...editorCode,
+                value,
+              })
+            }}
+            onFocus={() => {
+              setLiveDemoActive(true)
+            }}
+            id={demoSourceId}
+            language={demoData.sourceLanguage}
+            copyButtonProps={{
+              'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
+              'data-ga-event-label': demo.gaLabel,
+              'data-ga-event-action': 'copy-click',
+            }}
+          >
+            <DemoEditorError>{debouncedError}</DemoEditorError>
+          </DemoEditor>
+        )}
+      </Box>
     </Box>
   )
 }

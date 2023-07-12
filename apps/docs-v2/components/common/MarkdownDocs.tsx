@@ -33,7 +33,12 @@ export default function MarkdownDocs(props: any) {
     >
       {rendered.map((renderedMarkdownOrDemo: any, index: number) => {
         if (typeof renderedMarkdownOrDemo === 'string') {
-          return <MarkdownElement renderedMarkdown={renderedMarkdownOrDemo} />
+          return (
+            <MarkdownElement
+              key={index}
+              renderedMarkdown={renderedMarkdownOrDemo}
+            />
+          )
         }
 
         if (renderedMarkdownOrDemo.component) {
