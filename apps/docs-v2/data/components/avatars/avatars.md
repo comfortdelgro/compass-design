@@ -1,5 +1,4 @@
 ---
-productId: material-ui
 title: React Avatar component
 components: Avatar, AvatarGroup, Badge
 ---

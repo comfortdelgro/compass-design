@@ -34,50 +34,6 @@ const componentPackageMapping = {
   'joy-ui': {},
 }
 
-const packages = [
-  {
-    productId: 'material-ui',
-    paths: [
-      // path.join(__dirname, '../../packages/mui-base/src'),
-      // path.join(__dirname, '../../packages/mui-lab/src'),
-      // path.join(__dirname, '../../packages/mui-material/src'),
-    ],
-  },
-  {
-    productId: 'base-ui',
-    // paths: [path.join(__dirname, '../../packages/mui-base/src')],
-  },
-  {
-    productId: 'joy-ui',
-    // paths: [path.join(__dirname, '../../packages/mui-joy/src')],
-  },
-]
-
-// packages.forEach((pkg) => {
-//   pkg.paths.forEach((pkgPath) => {
-//     const match = pkgPath.match(/packages(?:\\|\/)([^/\\]+)(?:\\|\/)src/)
-//     const packageName = match ? match[1] : null
-//     if (!packageName) {
-//       throw new Error(`cannot find package name from path: ${pkgPath}`)
-//     }
-//     const filePaths = readdirSync(pkgPath)
-//     filePaths.forEach((folder) => {
-//       if (folder.match(/^[A-Z]/)) {
-//         if (!componentPackageMapping[pkg.productId]) {
-//           throw new Error(
-//             `componentPackageMapping must have "${pkg.productId}" as a key`,
-//           )
-//         }
-//         // filename starts with Uppercase = component
-//         componentPackageMapping[pkg.productId][folder] = packageName
-//       }
-//     })
-//   })
-// })
-
-/**
- * @type {import('webpack').loader.Loader}
- */
 module.exports = async function demoLoader() {
   const englishFilepath = this.resourcePath
   const options = this.getOptions()

@@ -1,9 +1,7 @@
 import ArrowLeft from '@comfortdelgro/compass-icons/react/arrow-left'
 import ArrowRight from '@comfortdelgro/compass-icons/react/arrow-right'
 import {Box, Button} from '@comfortdelgro/react-compass'
-import PageContext from 'components/common/PageContext'
 import Link from 'next/link'
-import * as React from 'react'
 
 function orderedPages(pages: any, current = []) {
   return pages
@@ -23,7 +21,8 @@ function orderedPages(pages: any, current = []) {
 }
 
 function usePageNeighbours() {
-  const {activePage, pages} = React.useContext(PageContext)
+  const activePage = '/'
+  const pages: any = []
   const pageList = orderedPages(pages)
   const currentPageNum = pageList.indexOf(activePage)
 

@@ -308,10 +308,6 @@ function createRender(context) {
         finalHref = `/${userLanguage}${href}`
       }
 
-      // This logic turns link like:
-      // https://github.com/mui/material-ui/blob/-/packages/mui-joy/src/styles/components.d.ts
-      // into a permalink:
-      // https://github.com/mui/material-ui/blob/v5.11.15/packages/mui-joy/src/styles/components.d.ts
       if (finalHref.startsWith(`${options.env.SOURCE_CODE_REPO}/blob/-/`)) {
         finalHref = finalHref.replace(
           `${options.env.SOURCE_CODE_REPO}/blob/-/`,
@@ -322,7 +318,6 @@ function createRender(context) {
       return `<a href="${finalHref}"${more}>${linkText}</a>`
     }
     renderer.code = (code, infostring, escaped) => {
-      // https://github.com/markedjs/marked/blob/30e90e5175700890e6feb1836c57b9404c854466/src/Renderer.js#L15
       const lang = (infostring || '').match(/\S*/)[0]
       const out = prism(code, lang)
       if (out != null && out !== code) {
@@ -407,12 +402,7 @@ function createRender(context) {
 }
 
 function prepareMarkdown(config) {
-  const {
-    fileRelativeContext,
-    translations,
-    componentPackageMapping = {},
-    options,
-  } = config
+  const {fileRelativeContext, translations, options} = config
 
   const demos = {}
   /**

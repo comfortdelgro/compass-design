@@ -1,5 +1,4 @@
 ---
-productId: material-ui
 title: React Autocomplete component
 components: TextField
 ---

@@ -26,8 +26,7 @@ function useDemoData(codeVariant: string, demo: any, githubLocation: string) {
   const userLanguage = 'en'
 
   return React.useMemo(() => {
-    let productId
-    let name = 'Material UI'
+    let name = 'React Compass'
 
     let codeOptions = {}
 
@@ -56,7 +55,6 @@ function useDemoData(codeVariant: string, demo: any, githubLocation: string) {
       jsxPreview,
       ...codeOptions,
       title: `${getDemoName(githubLocation)} demo — ${name}`,
-      productId,
       language: userLanguage,
     }
   }, [codeVariant, demo, githubLocation, userLanguage])

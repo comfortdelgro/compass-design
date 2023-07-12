@@ -1,10 +1,7 @@
 import Preflight from '@comfortdelgro/react-compass/preflight'
 import 'components/common/bootstrap'
-import PageContext from 'components/common/PageContext'
 import {ThemeProvider} from 'components/common/ThemeContext'
-import routes from 'constants/routes'
 import NextHead from 'next/head'
-import {useRouter} from 'next/router'
 import * as React from 'react'
 import {CodeCopyProvider} from 'utils/CodeCopy'
 import './global.css'
@@ -97,39 +94,21 @@ if (typeof window !== 'undefined' && process.env.NODE_ENV === 'production') {
 function AppWrapper(props: any) {
   const {children} = props
 
-  const router = useRouter()
-
-  const productId = 'material-ui'
-  const productCategoryId = 'core'
-
   React.useEffect(() => {
     loadDependencies()
     registerServiceWorker()
   }, [])
 
-  const pageContextValue = React.useMemo(() => {
-    const pages = routes
-
-    return {
-      pages,
-      productId,
-    }
-  }, [productId, router.pathname])
-
   return (
     <React.Fragment>
       <NextHead>
         <meta name='viewport' content='initial-scale=1, width=device-width' />
-        <meta name='mui:productId' content={productId} />
-        <meta name='mui:productCategoryId' content={productCategoryId} />
       </NextHead>
       <CodeCopyProvider>
-        <PageContext.Provider value={pageContextValue}>
-          <ThemeProvider>
-            <Preflight />
-            {children}
-          </ThemeProvider>
-        </PageContext.Provider>
+        <ThemeProvider>
+          <Preflight />
+          {children}
+        </ThemeProvider>
       </CodeCopyProvider>
     </React.Fragment>
   )
