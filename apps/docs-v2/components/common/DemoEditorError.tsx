@@ -10,7 +10,7 @@ export default function DemoEditorError(props: {children: React.ReactNode}) {
     <Box
       css={{
         position: 'absolute',
-        top: 0,
+        top: 20,
         left: '50%',
         transform: 'translateX(-50%) translateY(-50%)',
         py: '2px',

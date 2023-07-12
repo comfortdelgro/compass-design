@@ -1,7 +1,6 @@
-import {Box} from '@comfortdelgro/react-compass'
+import {Box, NoSsr} from '@comfortdelgro/react-compass'
 import Collapse from '@mui/material/Collapse'
 import IconButton from '@mui/material/IconButton'
-import NoSsr from '@mui/material/NoSsr'
 import {styled} from '@mui/material/styles'
 import {debounce} from '@mui/material/utils'
 import {unstable_useId as useId} from '@mui/utils'
@@ -11,11 +10,9 @@ import DemoSandbox from 'components/common/DemoSandbox'
 import HighlightedCode from 'components/common/HighlightedCode'
 import ReactRunner from 'components/common/ReactRunner'
 import {CODE_STYLING, CODE_VARIANTS} from 'constants'
-import {useRouter} from 'next/router'
 import * as React from 'react'
 import {useCodeStyling} from 'utils/codeStylingSolution'
 import {useCodeVariant} from 'utils/codeVariant'
-import {pathnameToLanguage} from 'utils/helpers'
 
 function trimLeadingSpaces(input = '') {
   return input.replace(/^\s+/gm, '')
@@ -36,14 +33,10 @@ function getDemoName(location) {
 
 function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
   const userLanguage = 'en'
-  const router = useRouter()
-  const {canonicalAs} = pathnameToLanguage(router.asPath)
 
   return React.useMemo(() => {
     let productId
     let name = 'Material UI'
-
-    console.log({codeStyling})
 
     let codeOptions = {}
 
@@ -83,14 +76,7 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
       language: userLanguage,
       codeStyling,
     }
-  }, [
-    canonicalAs,
-    codeVariant,
-    demo,
-    githubLocation,
-    userLanguage,
-    codeStyling,
-  ])
+  }, [codeVariant, demo, githubLocation, userLanguage, codeStyling])
 }
 
 function useDemoElement({
@@ -158,7 +144,7 @@ const InitialFocus = styled(IconButton)(({theme}) => ({
 }))
 
 export default function Demo(props) {
-  const {demo, demoOptions, disableAd, githubLocation, mode} = props
+  const {demo, demoOptions, githubLocation} = props
 
   if (
     (demoOptions.demo.endsWith('.ts') || demoOptions.demo.endsWith('.tsx')) &&
@@ -300,8 +286,8 @@ export default function Demo(props) {
           {demoElement}
         </DemoSandbox>
       </Box>
-      <>
-        <NoSsr defer fallback={<DemoToolbarFallback />}>
+      <NoSsr>
+        <React.Suspense fallback={<DemoToolbarFallback />}>
           <React.Suspense fallback={<DemoToolbarFallback />}>
             <DemoToolbar
               codeOpen={codeOpen}
@@ -323,7 +309,7 @@ export default function Demo(props) {
               showPreview={showPreview}
             />
           </React.Suspense>
-        </NoSsr>
+        </React.Suspense>
         <Collapse in={openDemoSource} unmountOnExit timeout={150}>
           {/* A limitation from https://github.com/nihgwu/react-runner,
             we can't inject the `window` of the iframe so we need a disableLiveEdit option. */}
@@ -364,7 +350,7 @@ export default function Demo(props) {
             </DemoEditor>
           )}
         </Collapse>
-      </>
+      </NoSsr>
     </Box>
   )
 }
