@@ -2,13 +2,13 @@ import React, {useMemo} from 'react'
 import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useIsInViewport} from './hooks/useInViewport'
-import {MultipleDropdownContext} from './multiple-dropdown-new-context'
-import MultipleDropdownHeader from './multiple-dropdown-new.header'
+import {MultipleDropdownContext} from './multiple-dropdown-context'
+import MultipleDropdownHeader from './multiple-dropdown.header'
 import {
   StyledDropdownList,
   StyledEmptyData,
   StyledLoading,
-} from './multiple-dropdown-new.styles'
+} from './multiple-dropdown.styles'
 import {getDistanceBetweenElements, textContent} from './utils'
 
 interface Props extends StyledComponentProps {

@@ -4,14 +4,14 @@ import {useDOMRef} from '../utils/use-dom-ref'
 import {
   MultipleDropdownContext,
   SelectedItemDropdown,
-} from './multiple-dropdown-new-context'
-import {MultipleDropdownItemProps} from './multiple-dropdown-new-item'
+} from './multiple-dropdown-context'
+import {MultipleDropdownItemProps} from './multiple-dropdown-item'
 import {
   DropdownItemVariantProps,
   StyledDropdownSection,
   StyledRightIcon,
   StyledSectionContent,
-} from './multiple-dropdown-new.styles'
+} from './multiple-dropdown.styles'
 
 export interface DropdownSectionBase extends StyledComponentProps {
   id?: number | string

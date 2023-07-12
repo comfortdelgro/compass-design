@@ -1,8 +1,8 @@
 import React from 'react'
 import {pickChild} from '../utils/pick-child'
-import {DropdownItemKey} from './multiple-dropdown-new-context'
-import {MultipleDropdownItemProps} from './multiple-dropdown-new-item'
-import MultipleDropdownHeader from './multiple-dropdown-new.header'
+import {DropdownItemKey} from './multiple-dropdown-context'
+import {MultipleDropdownItemProps} from './multiple-dropdown-item'
+import MultipleDropdownHeader from './multiple-dropdown.header'
 
 /**
  * Get text in Element
@@ -23,8 +23,13 @@ export function textContent(
     return elem.props.textValue
   }
 
+  if (elem instanceof Array) {
+    return elem.map(textContent).join(' ')
+  }
+
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   const children = elem.props?.children
+
   if (children instanceof Array) {
     return children.map(textContent).join(' ')
   }

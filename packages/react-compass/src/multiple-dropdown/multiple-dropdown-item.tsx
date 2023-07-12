@@ -1,11 +1,11 @@
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
-import {MultipleDropdownContext} from './multiple-dropdown-new-context'
+import {MultipleDropdownContext} from './multiple-dropdown-context'
 import {
   StyledContent,
   StyledOption,
   StyledRightIcon,
-} from './multiple-dropdown-new.styles'
+} from './multiple-dropdown.styles'
 import {textContent} from './utils'
 
 interface Props extends StyledComponentProps {
@@ -17,7 +17,7 @@ interface Props extends StyledComponentProps {
 
 export type MultipleDropdownItemProps = Props
 
-const MultipleDropdownNewItem: React.FC<MultipleDropdownItemProps> = (
+const MultipleDropdownItem: React.FC<MultipleDropdownItemProps> = (
   props: MultipleDropdownItemProps,
 ) => {
   const {children, value, checkmark = 'checkbox'} = props
@@ -122,7 +122,7 @@ const MultipleDropdownNewItem: React.FC<MultipleDropdownItemProps> = (
   ) : null
 }
 
-export default MultipleDropdownNewItem
+export default MultipleDropdownItem
 
 const Tick = () => (
   <svg width='10' height='10' viewBox='0 0 10 10' fill='none'>
