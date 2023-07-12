@@ -15,12 +15,7 @@ export default function SandboxDependencies(
   options?: any,
 ) {
   function addTypeDeps(deps: Record<string, string>): void {
-    const packagesWithBundledTypes = [
-      'date-fns',
-      '@emotion/react',
-      '@emotion/styled',
-      'dayjs',
-    ]
+    const packagesWithBundledTypes = ['date-fns', 'dayjs']
     const packagesWithDTPackage = Object.keys(deps)
       .filter((name) => packagesWithBundledTypes.indexOf(name) === -1)
       // All the MUI packages come with bundled types
