@@ -1,5 +1,6 @@
 import {Box, Typography} from '@comfortdelgro/react-compass'
 import Container from 'components/layouts/Container'
+import GradientText from 'components/typography/GradientText'
 import Image from 'next/image'
 import GetStartedButtons from './GetStartedButtons'
 
@@ -27,8 +28,8 @@ export default function Hero() {
             },
           }}
         >
-          <Typography.Header variant='header1'>
-            Ready to use Design components
+          <Typography.Header variant='header0'>
+            Ready to use <GradientText>Design components</GradientText>
           </Typography.Header>
           <Box css={{padding: '$6 0'}}>
             <Typography.Body variant='body2'>
@@ -55,7 +56,7 @@ export default function Hero() {
           <Image
             src='/static/images/introduction.png'
             alt='banner'
-            width={629}
+            width={578}
             height={538}
           />
         </Box>

@@ -1,7 +1,4 @@
 import Compass from '@comfortdelgro/compass-icons/react/colorful/compass'
-import Facebook from '@comfortdelgro/compass-icons/react/colorful/facebook'
-import Twitter from '@comfortdelgro/compass-icons/react/colorful/twitter'
-import Youtube from '@comfortdelgro/compass-icons/react/colorful/youtube'
 import {Box, Typography} from '@comfortdelgro/react-compass'
 import Link from 'next/link'
 import Container from './Container'
@@ -12,34 +9,26 @@ interface AppFooterProps {
 
 export default function AppFooter(props: AppFooterProps) {
   return (
-    <Box css={{padding: '$8 0'}}>
-      <Container>
+    <Box css={{padding: '$8 0', background: '#D9D2E9'}}>
+      <Container css={{display: 'flex', justifyContent: 'space-between'}}>
         <Box
           css={{
             display: 'flex',
           }}
         >
           <Link href='/'>
-            <Compass width={40} height={40} />
+            <Compass width={25} height={25} />
           </Link>
-          <Typography.Header css={{marginLeft: 5}} variant='header3'>
-            React Compass
-          </Typography.Header>
-          <Box css={{display: 'flex'}}>
-            <Box css={{padding: '0 $1'}}>
-              <Facebook />
-            </Box>
-            <Box css={{padding: '0 $1'}}>
-              <Youtube />
-            </Box>
-            <Box css={{padding: '0 $1'}}>
-              <Twitter />
-            </Box>
-          </Box>
+          <Typography.Body variant='body2' css={{marginLeft: 5}}>
+            © 2023 CDG Zig. All rights reserved.
+          </Typography.Body>
         </Box>
-        <Typography.Label variant='label2'>
-          Copyright © {new Date().getFullYear()}
-        </Typography.Label>
+        <Box css={{display: 'flex'}}>
+          <Typography.Body variant='body2' css={{marginRight: 10}}>
+            Privacy
+          </Typography.Body>
+          <Typography.Body variant='body2'>Terms&Conditions</Typography.Body>
+        </Box>
       </Container>
     </Box>
   )

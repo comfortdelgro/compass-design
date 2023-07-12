@@ -2,6 +2,7 @@ import {Divider} from '@comfortdelgro/react-compass'
 import Head from 'components/common/Head'
 import MarkdownLinks from 'components/common/MarkdownLinks'
 import Banner from 'components/home/Banner'
+import Introduction from 'components/home/Introduction'
 import Hero from '../components/home/Hero'
 import ReactCompass from '../components/home/ReactCompass'
 import AppFooter from '../components/layouts/AppFooter'
@@ -19,6 +20,7 @@ export default function Home() {
         <MarkdownLinks />
         <Banner />
         <Hero />
+        <Introduction />
         <ReactCompass />
         <Divider />
       </main>

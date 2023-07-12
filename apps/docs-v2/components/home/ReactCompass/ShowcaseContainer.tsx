@@ -25,8 +25,7 @@ export default function ShowcaseContainer({
             justifyContent: 'center',
             alignItems: 'center',
             borderRadius: 20,
-            backgroundColor: '$gray40',
-            borderColor: '$gray50',
+            backgroundColor: '#E2DEEB',
             borderBottomLeftRadius: 0,
             borderBottomRightRadius: 0,
           }}

@@ -27,7 +27,6 @@ const Banner = () => {
             top: 'calc(50% - 119px)',
             width: '70%',
             left: '15%',
-            background: 'red',
           },
           '@media screen and (max-width: 992px)': {
             padding: '$4 $4',
