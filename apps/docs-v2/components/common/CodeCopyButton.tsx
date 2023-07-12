@@ -1,5 +1,5 @@
-import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded'
-import LibraryAddCheckRoundedIcon from '@mui/icons-material/LibraryAddCheckRounded'
+import Copy from '@comfortdelgro/compass-icons/react/copy'
+import TickCircle from '@comfortdelgro/compass-icons/react/tick-circle'
 import useClipboardCopy from 'utils/useClipboardCopy'
 
 interface CodeCopyButtonProps {
@@ -23,11 +23,7 @@ export default function CodeCopyButton(props: CodeCopyButtonProps) {
         await copy(code)
       }}
     >
-      {isCopied ? (
-        <LibraryAddCheckRoundedIcon sx={{fontSize: 18}} />
-      ) : (
-        <ContentCopyRoundedIcon sx={{fontSize: 18}} />
-      )}
+      {isCopied ? <TickCircle /> : <Copy />}
       <span className='MuiCode-copyKeypress'>
         <span>(or</span> {key}C<span>)</span>
       </span>

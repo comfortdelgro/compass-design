@@ -19,14 +19,6 @@ export default function SandboxDependencies(
 ) {
   const {commitRef} = options || {}
 
-  /**
-   * WARNING: Always uses `latest` typings.
-   *
-   * Adds dependencies to @types packages only for packages that are not listed
-   * in packagesWithBundledTypes
-   *
-   * @param deps - list of dependency as `name => version`
-   */
   function addTypeDeps(deps: Record<string, string>): void {
     const packagesWithBundledTypes = [
       'date-fns',

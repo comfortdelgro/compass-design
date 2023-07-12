@@ -1,5 +1,5 @@
 import prism from '@comfortdelgro/markdown/prism'
-import NoSsr from '@mui/base/NoSsr'
+import {NoSsr} from '@comfortdelgro/react-compass'
 
 import CodeCopyButton from 'components/common/CodeCopyButton'
 import MarkdownElement from 'components/common/MarkdownElement'
