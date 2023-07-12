@@ -11,12 +11,10 @@ export const getHtml = ({
 <html lang="${language}">
   <head>
     <title>${title}</title>
-    <!-- Fonts to support Material Design -->
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
     />
-    <!-- Icons to support Material Design -->
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -48,14 +46,11 @@ export const getHtml = ({
 export const getRootIndex = () => {
   return `import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
-import { StyledEngineProvider } from '@mui/material/styles';
 import Demo from './demo';
 
 ReactDOM.createRoot(document.querySelector("#root")).render(
   <React.StrictMode>
-    <StyledEngineProvider injectFirst>
-      <Demo />
-    </StyledEngineProvider>
+    <Demo />
   </React.StrictMode>
 );`
 }

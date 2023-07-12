@@ -6,7 +6,6 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  // This needs to be kept in sync with docs/src/modules/sandbox/CreateReactApp.tsx
   theme: {
     extend: {
       boxShadow: {
@@ -22,4 +21,4 @@ module.exports = {
     preflight: false,
   },
   plugins: [],
-};
+}
