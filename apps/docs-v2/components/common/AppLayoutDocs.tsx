@@ -2,7 +2,6 @@ import {Box} from '@comfortdelgro/react-compass'
 import AppFrame from 'components/common/AppFrame'
 import AppLayoutDocsFooter from 'components/common/AppLayoutDocsFooter'
 import AppTableOfContents from 'components/common/AppTableOfContents'
-import BackToTop from 'components/common/BackToTop'
 import EditPage from 'components/common/EditPage'
 import Head from 'components/common/Head'
 
@@ -37,7 +36,6 @@ export default function AppLayoutDocs(props: any) {
         </Box>
         <AppTableOfContents toc={toc} />
       </Box>
-      <BackToTop />
     </AppFrame>
   )
 }

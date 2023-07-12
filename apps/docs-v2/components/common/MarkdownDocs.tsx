@@ -1,7 +1,5 @@
-import {Box} from '@comfortdelgro/react-compass'
 import AppLayoutDocs from 'components/common/AppLayoutDocs'
 import Demo from 'components/common/Demo'
-import HighlightedCodeWithTabs from 'components/common/HighlightedCodeWithTabs'
 import MarkdownElement from 'components/common/MarkdownElement'
 import path from 'path'
 
@@ -23,7 +21,7 @@ export default function MarkdownDocs(props: any) {
 
   const localizedDoc = docs.en
   const {description, location, rendered, title, toc} = localizedDoc
-
+  console.log({rendered: rendered.type})
   return (
     <AppLayoutDocs
       description={description}
@@ -50,19 +48,6 @@ export default function MarkdownDocs(props: any) {
 
           return (
             <Component {...renderedMarkdownOrDemo} markdown={localizedDoc} />
-          )
-        }
-        if (renderedMarkdownOrDemo.type === 'codeblock') {
-          return (
-            <Box key={index}>
-              <HighlightedCodeWithTabs
-                tabs={renderedMarkdownOrDemo.data}
-                storageKey={
-                  renderedMarkdownOrDemo.storageKey &&
-                  `codeblock-${renderedMarkdownOrDemo.storageKey}`
-                }
-              />
-            </Box>
           )
         }
 
