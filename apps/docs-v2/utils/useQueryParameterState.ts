@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { useRouter } from 'next/router';
-import { debounce } from '@mui/material/utils';
+import {debounce} from 'lodash'
+import {useRouter} from 'next/router'
+import * as React from 'react'
 
-const QUERY_UPDATE_WAIT_MS = 220;
+const QUERY_UPDATE_WAIT_MS = 220
 
 /**
  * Similar to `React.useState`, but it syncs back the current state to a query
@@ -15,26 +15,28 @@ export default function useQueryParameterState(
   name: string,
   initialValue = '',
 ): [string, (newValue: string) => void] {
-  const initialValueRef = React.useRef(initialValue);
+  const initialValueRef = React.useRef(initialValue)
 
-  const router = useRouter();
+  const router = useRouter()
 
-  const queryParamValue = router.query[name];
+  const queryParamValue = router.query[name]
 
-  const urlValue = Array.isArray(queryParamValue) ? queryParamValue[0] : queryParamValue;
+  const urlValue = Array.isArray(queryParamValue)
+    ? queryParamValue[0]
+    : queryParamValue
 
-  const [state, setState] = React.useState(urlValue || initialValue);
+  const [state, setState] = React.useState(urlValue || initialValue)
 
   const setUrlValue = React.useMemo(
     () =>
       debounce((newValue = '') => {
-        const query = new URLSearchParams(window.location.search);
+        const query = new URLSearchParams(window.location.search)
         if (newValue && newValue !== initialValueRef.current) {
-          query.set(name, newValue);
+          query.set(name, newValue)
         } else {
-          query.delete(name);
+          query.delete(name)
         }
-        const newSearch = query.toString();
+        const newSearch = query.toString()
         if (window.location.search !== newSearch) {
           router.replace(
             {
@@ -48,39 +50,39 @@ export default function useQueryParameterState(
               scroll: false,
               shallow: true,
             },
-          );
+          )
         }
       }, QUERY_UPDATE_WAIT_MS),
     [name, router],
-  );
+  )
 
   React.useEffect(
     () => () => {
-      setUrlValue.clear();
+      setUrlValue.clear()
     },
     [setUrlValue],
-  );
+  )
 
   const setUserState = React.useCallback(
     (newValue: string) => {
-      setUrlValue(newValue);
-      setState(newValue);
+      setUrlValue(newValue)
+      setState(newValue)
     },
     [setUrlValue],
-  );
+  )
 
   // Make sure to initialize the state when route params are only available client-side
-  const isInitialized = React.useRef(false);
+  const isInitialized = React.useRef(false)
   React.useEffect(() => {
     if (isInitialized.current) {
-      return;
+      return
     }
 
-    isInitialized.current = true;
-    const query = new URLSearchParams(window.location.search);
-    const value = query.get(name);
-    setState(value || initialValue);
-  }, [name, initialValue]);
+    isInitialized.current = true
+    const query = new URLSearchParams(window.location.search)
+    const value = query.get(name)
+    setState(value || initialValue)
+  }, [name, initialValue])
 
-  return [state, setUserState];
+  return [state, setUserState]
 }

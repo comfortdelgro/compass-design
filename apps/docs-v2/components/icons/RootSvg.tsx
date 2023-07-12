@@ -1,13 +1,7 @@
-import { styled, Theme } from '@mui/material/styles';
-import { SxProps } from '@mui/system';
+import {styled} from '@comfortdelgro/react-compass'
 
-export type RootSvgProps<P = unknown> = Omit<React.SVGProps<SVGSVGElement>, 'ref'> & {
-  sx?: SxProps<Theme>;
-  ref?: React.Ref<SVGSVGElement>;
-} & P;
-
-const Svg = styled('svg')({
+const Svg = styled('svg', {
   verticalAlign: 'bottom',
-});
+})
 
-export default Svg;
+export default Svg

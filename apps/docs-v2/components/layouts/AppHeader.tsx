@@ -4,7 +4,6 @@ import {Box, Button, Navbar, Typography} from '@comfortdelgro/react-compass'
 import NavbarActions from '@comfortdelgro/react-compass/navbar/navbar-actions'
 import {NavbarLinks} from '@comfortdelgro/react-compass/navbar/navbar-links.styles'
 import {NavbarSeperator} from '@comfortdelgro/react-compass/navbar/navbar-seperator.style'
-import useMediaQuery from '@mui/material/useMediaQuery'
 import {DeferredAppSearch} from 'components/common/AppFrame'
 import ThemeModeToggle from 'components/header/ThemeModeToggle'
 import * as React from 'react'
@@ -17,7 +16,6 @@ export default function AppHeader(props: AppHeaderProps) {
   const {gitHubRepository = 'https://github.com/comfortdelgro/compass-design'} =
     props
   const [mode, setMode] = React.useState<string | null>(null)
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
 
   const handleChangeThemeMode = (checked: boolean) => {
     const paletteMode = checked ? 'dark' : 'light'
@@ -77,7 +75,7 @@ export default function AppHeader(props: AppHeaderProps) {
           ></Button>
         </a>
         <ThemeModeToggle
-          checked={mode === 'system' ? prefersDarkMode : mode === 'dark'}
+          checked={mode === 'dark'}
           onChange={handleChangeThemeMode}
         />
       </NavbarActions>

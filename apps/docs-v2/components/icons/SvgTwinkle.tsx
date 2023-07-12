@@ -1,6 +1,6 @@
-import RootSvg, {RootSvgProps} from 'components/icons/RootSvg'
+import RootSvg from 'components/icons/RootSvg'
 
-function SvgTwinkle(props: RootSvgProps) {
+function SvgTwinkle(props: any) {
   return (
     <RootSvg
       xmlns='http://www.w3.org/2000/svg'
