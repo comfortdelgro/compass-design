@@ -13,7 +13,6 @@ import {CodeStylingProvider} from 'utils/codeStylingSolution'
 import {CodeVariantProvider} from 'utils/codeVariant'
 import {pathnameToLanguage} from 'utils/helpers'
 import {UserLanguageProvider} from 'utils/i18n'
-import DocsStyledEngineProvider from 'utils/StyledEngineProvider'
 import './global.css'
 
 const clientSideEmotionCache = createEmotionCache()
@@ -160,10 +159,8 @@ function AppWrapper(props) {
             <CodeVariantProvider>
               <PageContext.Provider value={pageContextValue}>
                 <ThemeProvider>
-                  <DocsStyledEngineProvider cacheLtr={emotionCache}>
-                    <Preflight />
-                    {children}
-                  </DocsStyledEngineProvider>
+                  <Preflight />
+                  {children}
                 </ThemeProvider>
               </PageContext.Provider>
             </CodeVariantProvider>
