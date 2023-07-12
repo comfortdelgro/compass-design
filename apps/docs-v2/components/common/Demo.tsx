@@ -1,14 +1,10 @@
-import {Box, NoSsr} from '@comfortdelgro/react-compass'
-import IconButton from '@mui/material/IconButton'
-import {styled} from '@mui/material/styles'
-import {unstable_useId as useId} from '@mui/utils'
+import {Box, Button, NoSsr, styled} from '@comfortdelgro/react-compass'
 import DemoEditor from 'components/common/DemoEditor'
 import DemoEditorError from 'components/common/DemoEditorError'
 import DemoSandbox from 'components/common/DemoSandbox'
 import HighlightedCode from 'components/common/HighlightedCode'
 import ReactRunner from 'components/common/ReactRunner'
-import {CODE_VARIANTS} from 'constants'
-import {debounce} from 'lodash'
+import {debounce, uniqueId} from 'lodash'
 import * as React from 'react'
 import {useCodeVariant} from 'utils/codeVariant'
 
@@ -22,14 +18,11 @@ function DemoToolbarFallback() {
   return <Box>Loading...</Box>
 }
 
-function getDemoName(location) {
-  return location.endsWith('.js') || location.endsWith('.tsx')
-    ? location.replace(/(.+?)(\w+)\.\w+$$/, '$2')
-    : // the demos with multiple styling solution point to directory
-      location.split('/').pop()
+function getDemoName(location: string) {
+  return location.replace(/(.+?)(\w+)\.\w+$$/, '$2')
 }
 
-function useDemoData(codeVariant, demo, githubLocation) {
+function useDemoData(codeVariant: string, demo: any, githubLocation: string) {
   const userLanguage = 'en'
 
   return React.useMemo(() => {
@@ -38,9 +31,9 @@ function useDemoData(codeVariant, demo, githubLocation) {
 
     let codeOptions = {}
 
-    if (codeVariant === CODE_VARIANTS.TS && demo.rawTS) {
+    if (codeVariant === 'TS' && demo.rawTS) {
       codeOptions = {
-        codeVariant: CODE_VARIANTS.TS,
+        codeVariant: 'TS',
         githubLocation: githubLocation.replace(/\.js$/, '.tsx'),
         raw: demo.rawTS,
         Component: demo.tsx,
@@ -48,7 +41,7 @@ function useDemoData(codeVariant, demo, githubLocation) {
       }
     } else {
       codeOptions = {
-        codeVariant: CODE_VARIANTS.JS,
+        codeVariant: 'JS',
         githubLocation,
         raw: demo.raw,
         Component: demo.js,
@@ -74,7 +67,7 @@ function useDemoElement({
   editorCode,
   setDebouncedError,
   liveDemoActive,
-}) {
+}: any) {
   const debouncedSetError = React.useMemo(
     () => debounce(setDebouncedError, 300),
     [setDebouncedError],
@@ -109,31 +102,19 @@ function useDemoElement({
     : LiveComponent
 }
 
-const DemoCodeViewer = styled(HighlightedCode)(() => ({
+const DemoCodeViewer = styled(HighlightedCode, {
   '& pre': {
     margin: 0,
     maxHeight: 'min(68vh, 1000px)',
     maxWidth: 'initial',
     borderRadius: 0,
   },
-}))
+})
 
-const InitialFocus = styled(IconButton)(({theme}) => ({
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  width: theme.spacing(4),
-  height: theme.spacing(4),
-  pointerEvents: 'none',
-}))
-
-export default function Demo(props) {
+export default function Demo(props: any) {
   const {demo, demoOptions, githubLocation} = props
 
-  if (
-    (demoOptions.demo.endsWith('.ts') || demoOptions.demo.endsWith('.tsx')) &&
-    demoOptions.hideToolbar !== true
-  ) {
+  if (demoOptions.demo.endsWith('.ts') || demoOptions.demo.endsWith('.tsx')) {
     throw new Error(
       [
         `The following demos use TS directly: ${demoOptions.demo}.`,
@@ -142,17 +123,17 @@ export default function Demo(props) {
         `{{"demo": "${demoOptions.demo.replace(/\.(.*)$/, '.js')}", …}}.`,
         '',
         "Otherwise, if it's not a code demo hide the toolbar:",
-        `{{"demo": "${demoOptions.demo}", "hideToolbar": true, …}}.`,
+        `{{"demo": "${demoOptions.demo}", …}}.`,
       ].join('\n'),
     )
   }
 
   const codeVariant = useCodeVariant()
 
-  const demoData = useDemoData(codeVariant, demo, githubLocation)
+  const demoData: any = useDemoData(codeVariant, demo, githubLocation)
 
   const [demoHovered, setDemoHovered] = React.useState(false)
-  const handleDemoHover = (event) => {
+  const handleDemoHover = (event: any) => {
     setDemoHovered(event.type === 'mouseenter')
   }
 
@@ -189,14 +170,12 @@ export default function Demo(props) {
   }, [demoName])
 
   const showPreview =
-    !demoOptions.hideToolbar &&
-    demoOptions.defaultCodeOpen !== false &&
-    Boolean(demoData.jsxPreview)
+    demoOptions.defaultCodeOpen !== false && Boolean(demoData.jsxPreview)
 
   const [demoKey, setDemoKey] = React.useReducer((key) => key + 1, 0)
 
-  const demoId = `demo-${useId()}`
-  const demoSourceId = `demoSource-${useId()}`
+  const demoId = `demo-${uniqueId()}`
+  const demoSourceId = `demoSource-${uniqueId()}`
   const openDemoSource = codeOpen || showPreview
 
   const initialFocusRef = React.useRef(null)
@@ -253,7 +232,24 @@ export default function Demo(props) {
         onMouseEnter={handleDemoHover}
         onMouseLeave={handleDemoHover}
       >
-        <InitialFocus action={initialFocusRef} tabIndex={-1} />
+        <Button
+          ref={initialFocusRef}
+          tabIndex={-1}
+          css={{
+            position: 'absolute',
+            top: -15,
+            left: 0,
+            width: 10,
+            height: 12,
+            pointerEvents: 'none',
+            background: 'gray',
+            borderRadius: 10,
+            border: 'none',
+            '&:focus': {
+              background: '$cdgBlue40',
+            },
+          }}
+        />
         <DemoSandbox
           key={demoKey}
           style={demoSandboxedStyle}
@@ -279,7 +275,7 @@ export default function Demo(props) {
               demoSourceId={demoSourceId}
               initialFocusRef={initialFocusRef}
               onCodeOpenChange={() => {
-                setCodeOpen((open) => !open)
+                setCodeOpen((open: boolean) => !open)
               }}
               onResetDemoClick={resetDemo}
               openDemoSource={openDemoSource}
@@ -301,8 +297,6 @@ export default function Demo(props) {
             />
           ) : (
             <DemoEditor
-              // Mount a new text editor when the preview mode change to reset the undo/redo history.
-              key={editorCode.isPreview}
               value={editorCode.value}
               onChange={(value) => {
                 setEditorCode({

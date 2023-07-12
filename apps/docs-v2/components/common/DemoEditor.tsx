@@ -48,7 +48,7 @@ interface DemoEditorProps extends React.HTMLAttributes<HTMLDivElement> {
   copyButtonProps: {}
   id: string
   language: string
-  onChange: () => {}
+  onChange: (value: any) => void
   value: string
 }
 
