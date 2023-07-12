@@ -1,35 +1,28 @@
-import * as React from 'react';
-import Alert, { AlertProps } from '@mui/material/Alert';
+import {Box} from '@comfortdelgro/react-compass'
+import * as React from 'react'
 
-export default function DemoEditorError(props: AlertProps) {
+export default function DemoEditorError(props: {children: React.ReactNode}) {
   if (!props.children) {
-    return null;
+    return null
   }
 
   return (
-    <Alert
-      aria-live="polite"
-      variant="filled"
-      severity="error"
-      sx={{
+    <Box
+      css={{
         position: 'absolute',
         top: 0,
         left: '50%',
         transform: 'translateX(-50%) translateY(-50%)',
         py: '2px',
         px: '6px',
-        '& .MuiAlert-icon': {
-          fontSize: 14,
-          mr: 0.5,
-          mt: 0.25,
-          py: 0,
-        },
-        '& .MuiAlert-message': {
-          fontSize: 12,
-          py: 0,
-        },
+        background: '$dangerBg',
+        color: '$danger',
+        border: '1px solid $danger',
+        padding: '$2',
+        borderRadius: 8,
       }}
-      {...props}
-    />
-  );
+    >
+      {props.children}
+    </Box>
+  )
 }
