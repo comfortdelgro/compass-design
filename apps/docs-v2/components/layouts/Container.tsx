@@ -2,6 +2,7 @@ import {Box} from '@comfortdelgro/react-compass'
 
 interface AppFooterProps {
   children: React.ReactNode
+  css: any
 }
 
 export default function Container(props: AppFooterProps) {
@@ -16,6 +17,7 @@ export default function Container(props: AppFooterProps) {
           paddingLeft: 24,
           paddingRight: 24,
         },
+        ...props.css,
       }}
     >
       {props.children}
