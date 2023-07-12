@@ -1,18 +1,23 @@
 import {Button, Sidebar} from '@comfortdelgro/react-compass'
 import React from 'react'
 
-export function PrimarySidebar() {
+interface PrimarySidebarProps {
+  position: 'left' | 'right'
+}
+
+export function PrimarySidebar({position = 'left'}: PrimarySidebarProps) {
   const [isPrimaryOpen, setIsPrimaryOpen] = React.useState(false)
   return (
     <>
       <Button
         className='c-hKssGC-hYGuEl-variant-primary'
-        css={{width: '9rem', height: '3.5rem', fontSize: '1em', color: 'black'}}
+        css={{height: '3.5rem', fontSize: '1em', color: 'black'}}
         onPress={() => setIsPrimaryOpen(true)}
       >
         Open sidebar
       </Button>
       <Sidebar
+        position={position}
         isOpen={isPrimaryOpen}
         handleClose={() => setIsPrimaryOpen(false)}
       >
@@ -43,7 +48,7 @@ export function SecondarySidebar() {
     <>
       <Button
         className='c-hKssGC-hYGuEl-variant-primary'
-        css={{width: '9rem', height: '3.5rem', fontSize: '1em', color: 'black'}}
+        css={{height: '3.5rem', fontSize: '1em', color: 'black'}}
         onPress={() => setIsPrimaryOpen(true)}
       >
         Open sidebar

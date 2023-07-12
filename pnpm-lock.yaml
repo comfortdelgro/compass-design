@@ -167,6 +167,7 @@ importers:
       '@types/lodash': ^4.14.194
       '@types/node': ^18.11.0
       '@types/react': ^17.0.39
+      '@types/react-dom': ^18.0.6
       '@vitejs/plugin-react': ^2.2.0
       chalk: ^5.1.2
       chart.js: 3.9.1
@@ -240,6 +241,7 @@ importers:
       '@types/lodash': 4.14.194
       '@types/node': 18.16.12
       '@types/react': 17.0.59
+      '@types/react-dom': 18.2.6
       '@vitejs/plugin-react': 2.2.0_vite@3.2.6
       chalk: 5.2.0
       cypress: 12.12.0
@@ -3122,6 +3124,12 @@ packages:
 
   /@types/react-dom/17.0.20:
     resolution: {integrity: sha512-4pzIjSxDueZZ90F52mU3aPoogkHIoSIDG+oQ+wQK7Cy2B9S+MvOqY0uEA/qawKz381qrEDkvpwyt8Bm31I8sbA==}
+    dependencies:
+      '@types/react': 17.0.59
+    dev: true
+
+  /@types/react-dom/18.2.6:
+    resolution: {integrity: sha512-2et4PDvg6PVCyS7fuTc4gPoksV58bW0RwSxWKcPRcHZf0PRUGq03TKcD/rUHe3azfV6/5/biUBJw+HhCQjaP0A==}
     dependencies:
       '@types/react': 17.0.59
     dev: true
