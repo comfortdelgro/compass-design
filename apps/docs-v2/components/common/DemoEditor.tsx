@@ -1,46 +1,34 @@
 import prism from '@comfortdelgro/markdown/prism'
-import Box from '@mui/material/Box'
-import {styled, useTheme} from '@mui/material/styles'
-
+import {Box, styled} from '@comfortdelgro/react-compass'
 import MarkdownElement from 'components/common/MarkdownElement'
-import {blueDark} from 'docs/src/brandingTheme'
 import * as React from 'react'
 import SimpleCodeEditor from 'react-simple-code-editor'
 import {useCodeCopy} from 'utils/CodeCopy'
-import {useTranslate} from 'utils/i18n'
 
-const StyledMarkdownElement = styled(MarkdownElement)(({theme}) => [
-  {
-    '& .scrollContainer': {
-      maxHeight: 'min(68vh, 1000px)',
-      overflow: 'auto',
-      backgroundColor: blueDark[800],
-      marginTop: -1,
-      border: `1px solid ${(theme.vars || theme).palette.divider}`,
-      colorScheme: 'dark',
-      '&:hover': {
-        boxShadow: `0 0 0 3px ${(theme.vars || theme).palette.primary.light}`,
-      },
-      '&:focus-within': {
-        boxShadow: `0 0 0 2px ${(theme.vars || theme).palette.primary.main}`,
-      },
-      [theme.breakpoints.up('sm')]: {
-        borderRadius: '0 0 12px 12px',
-      },
+const StyledMarkdownElement = styled(MarkdownElement, {
+  backgroundColor: 'red',
+  '& .scrollContainer': {
+    maxHeight: 'min(68vh, 1000px)',
+    overflow: 'auto',
+    backgroundColor: '$cdgBlue120',
+    marginTop: -1,
+    border: `1px solid $divider`,
+    colorScheme: 'dark',
+    '&:hover': {
+      boxShadow: `0 0 0 3px $gray50`,
     },
-    '& pre': {
-      // The scroll container needs to be the parent of the editor, overriding:
-      // https://github.com/mui/material-ui/blob/269c1d0c7572fcb6ae3b270a2622d16c7e40c848/components/common/MarkdownElement.js#L27-L26
-      maxWidth: 'initial',
-      maxHeight: 'initial',
+    '&:focus-within': {
+      boxShadow: `0 0 0 2px $gray60`,
     },
   },
-]) as any
+  '& pre': {
+    maxWidth: 'initial',
+    maxHeight: 'initial',
+  },
+})
 
-const StyledSimpleCodeEditor = styled(SimpleCodeEditor)(({theme}) => ({
-  ...theme.typography.body2,
-  fontSize: theme.typography.pxToRem(13),
-  fontFamily: theme.typography.fontFamilyCode,
+const StyledSimpleCodeEditor = styled(SimpleCodeEditor, {
+  fontSize: 12,
   fontWeight: 400,
   WebkitFontSmoothing: 'subpixel-antialiased',
   color: '#f8f8f2',
@@ -51,10 +39,9 @@ const StyledSimpleCodeEditor = styled(SimpleCodeEditor)(({theme}) => ({
     outline: 0,
   },
   '& > textarea, & > pre': {
-    // Override inline-style
     whiteSpace: 'pre !important',
   },
-}))
+})
 
 interface DemoEditorProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode
@@ -68,8 +55,6 @@ interface DemoEditorProps extends React.HTMLAttributes<HTMLDivElement> {
 export default function DemoEditor(props: DemoEditorProps) {
   const {language, value, onChange, copyButtonProps, children, id, ...other} =
     props
-  const t = useTranslate()
-  const contextTheme = useTheme()
   const wrapperRef = React.useRef<HTMLElement | null>(null)
   const enterRef = React.useRef<HTMLElement | null>(null)
   const handlers = useCodeCopy()
@@ -100,6 +85,7 @@ export default function DemoEditor(props: DemoEditorProps) {
     >
       <div className='MuiCode-root' {...handlers}>
         <div className='scrollContainer'>
+          {/* @ts-ignore */}
           <StyledSimpleCodeEditor
             highlight={(code: any) =>
               `<code class="language-${language}">${prism(
@@ -114,21 +100,20 @@ export default function DemoEditor(props: DemoEditorProps) {
         </div>
         <Box
           ref={enterRef}
-          aria-live='polite'
           tabIndex={0}
-          sx={(theme) => ({
+          css={{
             position: 'absolute',
-            top: theme.spacing(1),
-            padding: theme.spacing(0.2, 1, 0.5, 1),
+            top: '$1',
+            padding: '$1',
             outline: 0,
             left: '50%',
             border: '1px solid',
-            borderColor: blueDark[600],
-            backgroundColor: blueDark[700],
+            borderColor: '$6B89F7',
+            backgroundColor: '$91A7F9',
             color: '#FFF',
             transform: 'translateX(-50%)',
             borderRadius: '6px',
-            fontSize: theme.typography.pxToRem(13),
+            fontSize: 13,
             transition: 'all 0.3s',
             boxShadow: '0 2px 4px rgba(0,0,0,0.5)',
             '&:not(:focus)': {
@@ -137,16 +122,16 @@ export default function DemoEditor(props: DemoEditorProps) {
               pointerEvents: 'none',
             },
             '> kbd': {
-              padding: theme.spacing(0.2, 0.4),
-              backgroundColor: blueDark[500],
-              fontSize: theme.typography.pxToRem(11),
+              padding: '$1',
+              backgroundColor: '$cdgBlue60',
+              fontSize: 11,
               borderRadius: '6px',
               border: '1px solid',
-              borderColor: blueDark[400],
+              borderColor: '$cdgBlue40',
             },
-          })}
+          }}
           dangerouslySetInnerHTML={{
-            __html: t('editorHint'),
+            __html: 'Press <kbd>Enter</kbd> to start editing',
           }}
         />
         {/* <NoSsr>

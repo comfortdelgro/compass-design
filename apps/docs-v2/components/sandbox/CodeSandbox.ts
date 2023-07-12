@@ -52,7 +52,7 @@ const createReactApp = (demo: {
       content: CRA.getHtml(demo),
     },
     [`index.${ext}`]: {
-      content: CRA.getRootIndex(demo.productId),
+      content: CRA.getRootIndex(),
     },
     [`demo.${ext}`]: {
       content: demo.raw,

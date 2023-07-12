@@ -1,10 +1,8 @@
 import NextHead from 'next/head'
 import {useRouter} from 'next/router'
 import * as React from 'react'
-import {useTranslate} from 'utils/i18n'
 
-// #major-version-switch
-const HOST = 'https://mui.com'
+const HOST = 'https://comfortdelgro.github.io/compass-design'
 
 interface HeadProps {
   card?: string
@@ -16,13 +14,12 @@ interface HeadProps {
 }
 
 export default function Head(props: HeadProps) {
-  const t = useTranslate()
   const {
     card = '/static/social-previews/default-preview.jpg',
     children,
-    description = t('strapline'),
+    description = 'React Compass provides a simple, customizable, and accessible library of React components.',
     largeCard = true,
-    title = t('headTitle'),
+    title = 'React Compass: A popular React UI framework',
     type = 'website',
   } = props
   const router = useRouter()
@@ -36,10 +33,6 @@ export default function Head(props: HeadProps) {
         name='twitter:card'
         content={largeCard ? 'summary_large_image' : 'summary'}
       />
-      <meta name='twitter:site' content='@MUI_hq' />
-      <meta name='twitter:title' content={title} />
-      <meta name='twitter:description' content={description} />
-      <meta name='twitter:image' content={preview} />
       <meta property='og:type' content={type} />
       <meta property='og:title' content={title} />
       <meta property='og:url' content={`${HOST}${router.asPath}`} />

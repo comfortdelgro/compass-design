@@ -3,9 +3,9 @@ export const getHtml = ({
   language,
   codeStyling,
 }: {
-  title: string;
-  language: string;
-  codeStyling?: 'Tailwind' | 'MUI System';
+  title: string
+  language: string
+  codeStyling?: 'Tailwind' | 'MUI System'
 }) => {
   return `<!DOCTYPE html>
 <html lang="${language}">
@@ -42,37 +42,10 @@ export const getHtml = ({
   <body>
     <div id="root"></div>
   </body>
-</html>`;
-};
+</html>`
+}
 
-export const getRootIndex = (productId?: 'joy-ui' | 'base-ui') => {
-  if (productId === 'joy-ui') {
-    return `import * as React from 'react';
-import * as ReactDOM from 'react-dom/client';
-import { StyledEngineProvider, CssVarsProvider } from '@mui/joy/styles';
-import Demo from './demo';
-
-ReactDOM.createRoot(document.querySelector("#root")).render(
-  <React.StrictMode>
-    <StyledEngineProvider injectFirst>
-      <CssVarsProvider>
-        <Demo />
-      </CssVarsProvider>
-    </StyledEngineProvider>
-  </React.StrictMode>
-);`;
-  }
-  if (productId === 'base-ui') {
-    return `import * as React from 'react';
-import * as ReactDOM from 'react-dom/client';
-import Demo from './demo';
-
-ReactDOM.createRoot(document.querySelector("#root")).render(
-  <React.StrictMode>
-    <Demo />
-  </React.StrictMode>
-);`;
-  }
+export const getRootIndex = () => {
   return `import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { StyledEngineProvider } from '@mui/material/styles';
@@ -84,8 +57,8 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
       <Demo />
     </StyledEngineProvider>
   </React.StrictMode>
-);`;
-};
+);`
+}
 
 export const getTsconfig = () => `{
   "compilerOptions": {
@@ -112,4 +85,4 @@ export const getTsconfig = () => `{
     "src"
   ]
 }
-`;
+`

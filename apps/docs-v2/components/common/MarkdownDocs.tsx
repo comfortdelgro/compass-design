@@ -4,7 +4,6 @@ import Demo from 'components/common/Demo'
 import HighlightedCodeWithTabs from 'components/common/HighlightedCodeWithTabs'
 import MarkdownElement from 'components/common/MarkdownElement'
 import path from 'path'
-import {useTranslate, useUserLanguage} from 'utils/i18n'
 
 function noComponent(moduleID: string) {
   return function NoComponent() {
@@ -22,10 +21,7 @@ export default function MarkdownDocs(props: any) {
     srcComponents,
   } = props
 
-  const userLanguage = useUserLanguage()
-  const t = useTranslate()
-
-  const localizedDoc = docs[userLanguage] || docs.en
+  const localizedDoc = docs.en
   const {description, location, rendered, title, toc} = localizedDoc
 
   return (
@@ -78,16 +74,9 @@ export default function MarkdownDocs(props: any) {
             Object.keys(demos),
           ].join('\n')
 
-          if (userLanguage === 'en') {
-            throw new Error(errorMessage)
-          }
           console.log(errorMessage)
 
-          const warnIcon = (
-            <span role='img' aria-label={t('emojiWarning')}>
-              ⚠️
-            </span>
-          )
+          const warnIcon = <span role='img'>⚠️</span>
           return (
             <div key={index}>
               {warnIcon} Missing demo `{name}` {warnIcon}
