@@ -1,11 +1,9 @@
 export const getHtml = ({
   title,
   language,
-  codeStyling,
 }: {
   title: string
   language: string
-  codeStyling?: 'Tailwind' | 'MUI System'
 }) => {
   return `<!DOCTYPE html>
 <html lang="${language}">
@@ -18,24 +16,7 @@ export const getHtml = ({
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    />${
-      codeStyling === 'Tailwind'
-        ? `
-    <!-- Check the Tailwind CSS's installation guide for setting up tailwind: https://tailwindcss.com/docs/installation -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            boxShadow: {
-              'outline-purple': '0 0 0 3px #c084fc',
-            }
-          }
-        }
-      }
-    </script>`
-        : ''
-    }
+    />
   </head>
   <body>
     <div id="root"></div>

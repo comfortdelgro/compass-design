@@ -195,17 +195,7 @@ function renderInline(markdown) {
 }
 
 // Help rank mui.com on component searches first.
-const noSEOadvantage = [
-  'https://m2.material.io/',
-  'https://getbootstrap.com/',
-  'https://icons.getbootstrap.com/',
-  'https://pictogrammers.com/',
-  'https://www.w3.org/',
-  'https://tailwindcss.com/',
-  'https://heroicons.com/',
-  'https://react-icons.github.io/',
-  'https://fontawesome.com/',
-]
+const noSEOadvantage = ['https://comfortdelgro.github.io/compass-design']
 
 /**
  * Creates a function that MUST be used to render non-inline markdown.

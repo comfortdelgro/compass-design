@@ -5,7 +5,6 @@
   "license": "MIT",
   "scripts": {
     "build": "cross-env NODE_ENV=production NODE_OPTIONS=--max_old_space_size=4096 next build --profile",
-    "build-sw": "node ./scripts/buildServiceWorker.js",
     "build:clean": "rimraf .next && yarn build",
     "dev": "next dev",
     "export": "rimraf docs/export && next export --threads=3 -o export && yarn build-sw",
@@ -78,9 +77,9 @@
   "devDependencies": {
     "@babel/plugin-transform-react-constant-elements": "^7.22.5",
     "@babel/preset-typescript": "^7.22.5",
+    "@types/fg-loadcss": "^3.1.1",
     "@types/lodash": "^4.14.194",
     "@types/marked": "^4.3.1",
-    "gm": "^1.25.0",
-    "tailwindcss": "^3.3.2"
+    "gm": "^1.25.0"
   }
 }
