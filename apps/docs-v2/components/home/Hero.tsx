@@ -6,7 +6,14 @@ import GetStartedButtons from './GetStartedButtons'
 export default function Hero() {
   return (
     <Box css={{background: '#ECE2EF', position: 'relative'}}>
-      <Container css={{height: 538}}>
+      <Container
+        css={{
+          height: 538,
+          '@media screen and (max-width: 1200px)': {
+            height: 400,
+          },
+        }}
+      >
         <Box
           css={{
             padding: '4rem 0',
@@ -15,6 +22,9 @@ export default function Hero() {
             flexDirection: 'column',
             justifyContent: 'center',
             height: '100%',
+            '@media screen and (max-width: 1200px)': {
+              width: '100%',
+            },
           }}
         >
           <Typography.Header variant='header1'>
@@ -30,19 +40,25 @@ export default function Hero() {
           </Box>
           <GetStartedButtons />
         </Box>
-        <Image
-          src='/static/images/introduction.png'
-          alt='banner'
-          width={538}
-          height={538}
-          style={{
+        <Box
+          css={{
             width: 'auto',
             height: 538,
             position: 'absolute',
             right: 0,
             top: 0,
+            '@media screen and (max-width: 1200px)': {
+              display: 'none',
+            },
           }}
-        />
+        >
+          <Image
+            src='/static/images/introduction.png'
+            alt='banner'
+            width={629}
+            height={538}
+          />
+        </Box>
       </Container>
     </Box>
   )

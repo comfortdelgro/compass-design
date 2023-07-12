@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 const Banner = () => {
   return (
-    <Box css={{position: 'relative', background: '#ECE2EF'}}>
+    <Box css={{position: 'relative', background: '#ECE2EF', marginBottom: -3}}>
       <Image
         src='/static/images/home-background.png'
         alt='banner'
@@ -27,6 +27,7 @@ const Banner = () => {
             top: 'calc(50% - 119px)',
             width: '70%',
             left: '15%',
+            background: 'red',
           },
           '@media screen and (max-width: 992px)': {
             padding: '$4 $4',

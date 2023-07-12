@@ -17,7 +17,12 @@ export default function GetStartedButtons() {
   }
   return (
     <Box>
-      <Button size='md' variant='primary' rightIcon={<ArrowRightFilled />}>
+      <Button
+        size='md'
+        variant='primary'
+        css={{marginRight: 10, marginTop: 10}}
+        rightIcon={<ArrowRightFilled />}
+      >
         Get started
       </Button>
       <Button
@@ -35,7 +40,7 @@ export default function GetStartedButtons() {
           background: '#f4f6f9',
           color: '#2d3843',
           fontWeight: 400,
-          marginLeft: 10,
+          marginTop: 10,
         }}
       >
         {installation}
