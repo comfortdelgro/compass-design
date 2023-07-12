@@ -1,13 +1,13 @@
 import React, {useContext, useEffect, useMemo} from 'react'
 import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
-import {DropdownContext} from './dropdown-new-context'
-import DropdownHeader from './dropdown-new.header'
+import {DropdownContext} from './dropdown-context'
+import DropdownHeader from './dropdown.header'
 import {
   StyledDropdownList,
   StyledEmptyData,
   StyledLoading,
-} from './dropdown-new.styles'
+} from './dropdown.styles'
 import {useIsInViewport} from './hooks/useInViewport'
 import {getDistanceBetweenElements, textContent} from './utils'
 
@@ -21,7 +21,7 @@ interface Props extends StyledComponentProps {
 
 export type DropdownItemListProps = Props
 
-const DropdownNewList: React.FC<DropdownItemListProps> = (
+const DropdownList: React.FC<DropdownItemListProps> = (
   props: DropdownItemListProps,
 ) => {
   const {children, isLoading, css = {}, noDataMessage, onLoadMore} = props
@@ -92,4 +92,4 @@ const DropdownNewList: React.FC<DropdownItemListProps> = (
   )
 }
 
-export default DropdownNewList
+export default DropdownList

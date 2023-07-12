@@ -1,184 +1,210 @@
-import isEmpty from 'lodash/isEmpty'
-import React, {Key, RefObject} from 'react'
-import {styled} from '../theme'
-import {StyledComponentProps} from '../utils/stitches.types'
-import DropdownItem, {DropdownItemBase, DropdownItemProps} from './item'
-import DropdownSection, {DropdownSectionProps} from './section'
+import React, {Key} from 'react'
+import {pickChild} from '../utils/pick-child'
+import {DropdownItemKey} from './dropdown-context'
+import {DropdownItemProps} from './dropdown-item'
+import DropdownHeader from './dropdown.header'
 
-export const POPOVER_Z_INDEX = 2147483600
-export const LISTBOX_Z_INDEX = 2147483641
+/**
+ * Get text in Element
+ * @param elem React.ReactElement
+ * @returns string
+ */
+export function textContent(
+  elem: React.ReactElement<DropdownItemProps> | string,
+): string {
+  if (!elem) {
+    return ''
+  }
+  if (typeof elem === 'string') {
+    return elem
+  }
+  if (elem.props?.textValue) {
+    return elem.props.textValue
+  }
 
-const StyledIcon = styled('svg', {
-  color: '$primaryText',
-})
-
-export const Icon = () => (
-  <StyledIcon width='16' height='16' viewBox='0 0 16 16'>
-    <path
-      d='M8.33276 12.3334C8.02004 12.3334 7.70717 12.2125 7.46885 11.9707L1.35805 5.78022C0.880649 5.29658 0.880649 4.5131 1.35805 4.02947C1.83546 3.54584 2.60886 3.54584 3.08626 4.02947L8.33276 9.34651L13.5804 4.03044C14.0578 3.54681 14.8312 3.54681 15.3086 4.03044C15.786 4.51407 15.786 5.29755 15.3086 5.78118L9.19782 11.9717C8.95912 12.2135 8.64594 12.3334 8.33276 12.3334Z'
-      fill='currentColor'
-    />
-  </StyledIcon>
-)
-
-export const pickChilds = <T extends DropdownItemBase>(
-  children: React.ReactNode | undefined,
-  targetType: React.ElementType,
-): Array<React.DetailedReactHTMLElement<T, HTMLElement>> => {
-  const matched: Array<React.DetailedReactHTMLElement<T, HTMLElement>> = []
-  React.Children.forEach(children, (item) => {
-    if (!React.isValidElement(item)) return item
-    if (item.type === targetType) {
-      matched.push(item as React.DetailedReactHTMLElement<T, HTMLElement>)
-    }
-    if (item.type === DropdownSection) {
-      const child = (item as React.DetailedReactHTMLElement<T, HTMLElement>)
-        .props.children
-      React.Children.forEach(child, (i) => {
-        if (!React.isValidElement(i)) return i
-        if (i.type === targetType) {
-          matched.push(i as React.DetailedReactHTMLElement<T, HTMLElement>)
-        }
-        return i
-      })
-    }
-    return item
-  })
-  const childs = matched.length >= 0 ? matched : []
-
-  return childs
+  const children = elem.props?.children
+  if (children instanceof Array) {
+    return children.map(textContent).join(' ')
+  }
+  return textContent(children as React.ReactElement<DropdownItemProps>)
 }
 
-export interface SectionCollection {
-  title?: React.ReactNode
-  isClickable?: boolean
-  onClick?: (title: React.ReactNode) => void
-  isChecked?: boolean
-  checkmark?: 'tick' | 'checkbox'
-  keys?: React.Key[]
-}
-
-export const pickSections = (
-  children: React.ReactNode | undefined,
-): SectionCollection[] => {
-  const matched: SectionCollection[] = []
-  React.Children.forEach(children, (item) => {
-    if (!React.isValidElement(item)) return item // if the item is not a valid React element, return it
-    if (item.type === DropdownSection) {
-      // if the item is a DropdownSection component
-      const dSectionItem = React.cloneElement(
-        item as React.ReactElement<DropdownSectionProps>, // clone the element and cast it as a DropdownSection component
-      )
-      const keys: React.Key[] = []
-      React.Children.forEach(dSectionItem.props.children, (j) => {
-        // loop through the children of the DropdownSection component
-        const dItemItem = React.cloneElement(
-          j as React.ReactElement<DropdownItemProps>, // clone the element and cast it as a DropdownItem component
+const findItemByValue = (
+  items: Array<React.ReactElement<DropdownItemProps>>,
+  value: Key,
+  disabledKeys: Key[] = [],
+): React.ReactElement<DropdownItemProps> | null => {
+  for (let index = 0; index < items.length; index++) {
+    const item = items[index]
+    if (item?.props) {
+      if (
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+        item.props.value?.toString() === value.toString() &&
+        !disabledKeys?.includes(item.props.value)
+      ) {
+        return item
+      }
+      if (item.props.children) {
+        const foundItem = findItemByValue(
+          React.Children.toArray(item.props.children) as Array<
+            React.ReactElement<DropdownItemProps>
+          >,
+          value,
         )
-        if (dItemItem.key) keys.push(dItemItem.key) // if the DropdownItem component has a key property, push it to the keys array
-      })
-      matched.push({
-        // push an object with title and keys properties to the matched array
-        title: dSectionItem.props.title,
-        isClickable: dSectionItem.props.isClickable as boolean,
-        onClick: dSectionItem.props.onClick as (title: React.ReactNode) => void,
-        isChecked: dSectionItem.props.isChecked as boolean,
-        checkmark: dSectionItem.props.checkmark as 'tick' | 'checkbox',
-        keys: keys,
-      })
+        if (foundItem) {
+          return foundItem
+        }
+      }
     }
-
-    if (item.type === DropdownItem) {
-      // if the item is a DropdownItem component
-      const dItemItem = React.cloneElement(
-        item as React.ReactElement<DropdownItemProps>, // clone the element and cast it as a DropdownItem component
-      )
-      if (dItemItem.key)
-        // if the DropdownItem component has a key property
-        matched.push({
-          // push an object with undefined title and keys array with one key to the matched array
-          title: undefined,
-          keys: [dItemItem.key],
-        })
-    }
-
-    return item // return the item
-  })
-  const sections = matched.length >= 0 ? matched : [] // if matched array has length greater than or equal to zero, assign it to sections variable else assign an empty array to sections variable.
-  return sections // return sections variable
+  }
+  return null
 }
 
-export interface ListBoxCollections {
-  id: number
-  type: 'component' | 'group'
-  title?: React.ReactNode
-  isClickable?: boolean
-  onClick?: (title: React.ReactNode) => void
-  isChecked?: boolean
-  checkmark?: 'tick' | 'checkbox'
-  children: Array<
-    React.DetailedReactHTMLElement<DropdownItemProps, HTMLElement> | undefined
-  >
-}
-
-export const getListBoxCollection = (
-  sectionCollection: SectionCollection[],
-  collection: Array<
-    React.DetailedReactHTMLElement<DropdownItemProps, HTMLElement>
-  >,
+/**
+ * Get previous dropdown item
+ * @param key current key
+ * @param children All Dropdown.Item elements
+ * @param dropdownItemKeys All keys of Dropdown.Item elements
+ */
+export const getItemAbove = (
+  key: Key,
+  children?: React.ReactNode,
+  dropdownItemKeys: DropdownItemKey[] = [],
 ) => {
-  const list: ListBoxCollections[] = []
-  sectionCollection.forEach((i, index) => {
-    if (i.title === undefined && i.keys) {
-      list.push({
-        id: index,
-        type: 'component',
-        isClickable: i.isClickable as boolean,
-        onClick: i.onClick as (title: React.ReactNode) => void,
-        isChecked: i.isChecked as boolean,
-        checkmark: i.checkmark as 'tick' | 'checkbox',
-        children: i.keys
-          .map((j) => collection.find((k) => j === k.key))
-          .filter((v) => v),
-      })
-    }
-    if (i.title && i.keys) {
-      list.push({
-        id: index,
-        type: 'group',
-        title: i.title,
-        isClickable: i.isClickable as boolean,
-        onClick: i.onClick as (title: React.ReactNode) => void,
-        isChecked: i.isChecked as boolean,
-        checkmark: i.checkmark as 'tick' | 'checkbox',
-        children: i.keys
-          .map((j) => collection.find((k) => j === k.key))
-          .filter((v) => v),
-      })
-    }
-  })
-  return list
-}
+  if (!dropdownItemKeys.length) return null
 
-export function useIsInViewport(ref: RefObject<Element>) {
-  const [isIntersecting, setIsIntersecting] = React.useState(false)
-
-  const observer = React.useMemo(
-    () =>
-      new IntersectionObserver(([entry]) =>
-        setIsIntersecting(!!entry?.isIntersecting),
-      ),
-    [ref.current],
+  // Get the currently displayed items
+  const visibleDropdownItems = dropdownItemKeys.filter(
+    (item) => item.visibility,
   )
 
-  React.useEffect(() => {
-    if (ref.current) observer.observe(ref.current)
-    return () => {
-      observer.disconnect()
+  if (visibleDropdownItems.length) {
+    const index = visibleDropdownItems.findIndex(
+      (item) => item.value.toString() === key.toString(),
+    )
+    if (index !== -1) {
+      // Get prev item or last item(when we are at first index)
+      const nextKey =
+        visibleDropdownItems[index - 1] ??
+        visibleDropdownItems[visibleDropdownItems.length - 1]
+      if (nextKey) {
+        const nextItem = getItemByKey(nextKey.value, children)
+        return nextItem
+      }
     }
-  }, [ref, observer])
+  }
 
-  return isIntersecting
+  const lastItem = getLastItem(children, dropdownItemKeys)
+  return lastItem
+}
+
+/**
+ * Get next dropdown item
+ * @param key current key
+ * @param children All Dropdown.Item elements
+ * @param dropdownItemKeys All keys of Dropdown.Item elements
+ */
+export const getItemBelow = (
+  key: Key,
+  children?: React.ReactNode,
+  dropdownItemKeys: DropdownItemKey[] = [],
+) => {
+  if (!dropdownItemKeys.length) return null
+
+  // Get the currently displayed items
+  const visibleDropdownItems = dropdownItemKeys.filter(
+    (item) => item.visibility,
+  )
+
+  if (visibleDropdownItems.length) {
+    // Get next item or first item(when we are at last index)
+    const index = visibleDropdownItems.findIndex(
+      (item) => item.value.toString() === key.toString(),
+    )
+    if (index !== -1) {
+      const nextKey = visibleDropdownItems[index + 1] ?? visibleDropdownItems[0]
+      if (nextKey) {
+        const nextItem = getItemByKey(nextKey.value, children)
+        return nextItem
+      }
+    }
+  }
+
+  const firstItem = getFirstItem(children, dropdownItemKeys)
+  return firstItem
+}
+
+/**
+ * Get first Dropdown.Item in children
+ * @param children All Dropdown.Item elements
+ * @param dropdownItemKeys All keys of Dropdown.Item elements
+ */
+export const getFirstItem = (
+  children?: React.ReactNode,
+  dropdownItemKeys: DropdownItemKey[] = [],
+) => {
+  if (!dropdownItemKeys?.length) return null
+
+  let selectItem: React.ReactElement<DropdownItemProps> | null = null
+
+  for (let index = 0; index < dropdownItemKeys.length; index++) {
+    const dropdownItemKey = dropdownItemKeys[index]
+    // The first item is being displayed
+    if (dropdownItemKey?.visibility) {
+      selectItem = getItemByKey(dropdownItemKey.value, children)
+      break
+    }
+  }
+
+  return selectItem
+}
+
+/**
+ * Get last Dropdown.Item in children
+ * @param children All Dropdown.Item elements
+ * @param dropdownItemKeys All keys of Dropdown.Item elements
+ */
+export const getLastItem = (
+  children?: React.ReactNode,
+  dropdownItemKeys: DropdownItemKey[] = [],
+) => {
+  if (!dropdownItemKeys?.length) return null
+
+  let selectItem: React.ReactElement<DropdownItemProps> | null = null
+
+  for (let index = dropdownItemKeys.length - 1; index >= 0; index--) {
+    const dropdownItemKey = dropdownItemKeys[index]
+    // The last item is being displayed
+    if (dropdownItemKey?.visibility) {
+      selectItem = getItemByKey(dropdownItemKey.value, children)
+      break
+    }
+  }
+
+  return selectItem
+}
+
+/**
+ * Get Dropdown.Item element in children by key
+ * @param key current key
+ * @param children All Dropdown.Item elements
+ */
+export const getItemByKey = (key: Key, children?: React.ReactNode) => {
+  // Pick Dropdown.Item in children except for DropdownHeader
+  const {rest: dropdownItems} = pickChild<typeof DropdownHeader>(
+    children,
+    DropdownHeader,
+  )
+  const childrenArr = React.Children.toArray(dropdownItems)
+
+  if (!childrenArr?.length) return null
+
+  const selectItem = findItemByValue(
+    children as Array<React.ReactElement<DropdownItemProps>>,
+    key,
+  )
+
+  return selectItem ?? null
 }
 
 export const getDistanceBetweenElements = (
@@ -192,155 +218,4 @@ export const getDistanceBetweenElements = (
   const aPosition = getTop(a)
   const bPosition = getTop(b)
   return Math.hypot(aPosition - bPosition)
-}
-export interface KeyboardDelegate {
-  getKeyBelow?(key: Key): Key | null
-  getKeyAbove?(key: Key): Key | null
-  getFirstKey?(key?: Key, global?: boolean): Key | null
-  getLastKey?(key?: Key, global?: boolean): Key | null
-}
-export interface DropdownBase extends StyledComponentProps {
-  label?: React.ReactNode
-  isOpen?: boolean
-  isLoading?: boolean
-  autoFocus?: boolean
-  isErrored?: boolean
-  helperText?: string
-  isDisabled?: boolean
-  isReadOnly?: boolean
-  isRequired?: boolean
-  placeholder?: string
-  errorMessage?: string
-  defaultOpen?: boolean
-  numberOfRows?: number
-  icon?: React.ReactNode
-  disabledKeys?: React.Key[]
-  disableClearable?: boolean
-  children?: React.ReactNode
-  description?: React.ReactNode
-  onBlur?: () => void
-  onFocus?: () => void
-  onLoadMore?: () => void
-  onOpenChange?: (isOpen: boolean) => void
-}
-
-export class ListKeyboardDelegate implements KeyboardDelegate {
-  private collection: Array<
-    React.DetailedReactHTMLElement<DropdownItemProps, HTMLElement>
-  >
-  private disabledKeys: Iterable<React.Key>
-
-  constructor(
-    collection: Array<
-      React.DetailedReactHTMLElement<DropdownItemProps, HTMLElement>
-    >,
-    disabledKeys: Iterable<React.Key>,
-  ) {
-    this.collection = collection
-    this.disabledKeys = disabledKeys
-  }
-
-  getKeyIndex = (key: Key) => {
-    const index = this.collection.findIndex((item) => item.key === key)
-    if (index !== -1) return index
-    return null
-  }
-
-  private getKeyAfter = (key: Key) => {
-    const currentKeyIndex = this.getKeyIndex(key)
-    if (currentKeyIndex === null) return null
-    const nextKey = this.collection[currentKeyIndex + 1]?.key
-    if (nextKey) return nextKey
-    return null
-  }
-
-  private getKeyBefore = (key: Key) => {
-    const currentKeyIndex = this.getKeyIndex(key)
-    if (currentKeyIndex === null) return null
-    const nextKey = this.collection[currentKeyIndex - 1]?.key
-    if (nextKey) return nextKey
-    return null
-  }
-
-  getKeyBelow(key: Key) {
-    let nextKey = this.getKeyAfter(key)
-    while (nextKey != null) {
-      if (![...this.disabledKeys].includes(nextKey)) {
-        return nextKey
-      }
-      nextKey = this.getKeyAfter(nextKey)
-    }
-    return null
-  }
-
-  getKeyAbove(key: Key) {
-    let prevKey = this.getKeyBefore(key)
-    while (prevKey != null) {
-      if (![...this.disabledKeys].includes(prevKey)) {
-        return prevKey
-      }
-      prevKey = this.getKeyBefore(prevKey)
-    }
-    return null
-  }
-
-  getFirstKey() {
-    let key = this.collection[0]?.key
-    while (key != null) {
-      if (![...this.disabledKeys].includes(key)) {
-        return key
-      }
-      key = this.getKeyAfter(key)
-    }
-
-    return null
-  }
-
-  getLastKey() {
-    let key = this.collection[this.collection.length - 1]?.key
-    while (key != null) {
-      if (![...this.disabledKeys].includes(key)) {
-        return key
-      }
-      key = this.getKeyBefore(key)
-    }
-    return null
-  }
-}
-
-export function textContent(elem: React.ReactElement | string): string {
-  if (!elem) {
-    return ''
-  }
-  if (typeof elem === 'string') {
-    return elem
-  }
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-  const children = elem.props && elem.props.children
-  if (children instanceof Array) {
-    return children.map(textContent).join(' ')
-  }
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-  return textContent(children)
-}
-
-export function getDefaulValue(
-  defaulValue: React.Key | undefined,
-  value: React.Key | undefined,
-  disableDefault?: boolean,
-): React.Key | undefined {
-  let res = undefined
-  if (
-    defaulValue !== undefined &&
-    defaulValue !== null &&
-    !isEmpty(defaulValue.toString()) &&
-    value !== '' &&
-    !disableDefault
-  ) {
-    res = defaulValue
-  }
-  if (value !== undefined && value !== null && !isEmpty(value.toString())) {
-    res = value
-  }
-  return res
 }

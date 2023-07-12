@@ -7,7 +7,7 @@ import React, {
   useRef,
 } from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
-import {DropdownContext} from './dropdown-new-context'
+import {DropdownContext} from './dropdown-context'
 import {
   StyledColor,
   StyledContent,
@@ -15,7 +15,7 @@ import {
   StyledItemIcon,
   StyledLoading,
   StyledOption,
-} from './dropdown-new.styles'
+} from './dropdown.styles'
 import {textContent} from './utils'
 
 interface Props extends StyledComponentProps {
@@ -47,7 +47,7 @@ const LoadingIcon = () => {
 
 export type DropdownItemProps = Props
 
-const DropdownNewItem: React.FC<DropdownItemProps> = (
+const DropdownItem: React.FC<DropdownItemProps> = (
   props: DropdownItemProps,
 ) => {
   const {children, value, flagName, type, rightIcon, leftIcon, rightColor} =
@@ -174,4 +174,4 @@ const DropdownNewItem: React.FC<DropdownItemProps> = (
   ) : null
 }
 
-export default DropdownNewItem
+export default DropdownItem

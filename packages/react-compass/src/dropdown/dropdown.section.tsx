@@ -5,7 +5,7 @@ import {
   DropdownItemVariantProps,
   StyledDropdownSection,
   StyledSectionContent,
-} from './dropdown-new.styles'
+} from './dropdown.styles'
 
 export interface DropdownSectionBase extends StyledComponentProps {
   title?: React.ReactNode
