@@ -1,4 +1,3 @@
-import Compass from '@comfortdelgro/compass-icons/react/colorful/compass'
 import Github from '@comfortdelgro/compass-icons/react/github'
 import {Box, Button, Navbar, Typography} from '@comfortdelgro/react-compass'
 import NavbarActions from '@comfortdelgro/react-compass/navbar/navbar-actions'
@@ -6,6 +5,8 @@ import {NavbarLinks} from '@comfortdelgro/react-compass/navbar/navbar-links.styl
 import {NavbarSeperator} from '@comfortdelgro/react-compass/navbar/navbar-seperator.style'
 import {DeferredAppSearch} from 'components/common/AppFrame'
 import ThemeModeToggle from 'components/header/ThemeModeToggle'
+import SvgLogo from 'components/icons/SvgLogo'
+import Link from 'next/link'
 import * as React from 'react'
 
 interface AppHeaderProps {
@@ -32,20 +33,25 @@ export default function AppHeader(props: AppHeaderProps) {
   return (
     <Navbar>
       <Navbar.Brand>
-        <Box css={{display: 'flex', alignItems: 'center'}}>
-          <Compass width={'35px'} height={'35px'} />
-          <Typography.Header
-            variant='header4'
-            css={{color: 'white', marginLeft: 10, fontWeight: 'bold'}}
-          >
-            REACT COMPASS
-          </Typography.Header>
-        </Box>
+        <Link href='/' style={{textDecoration: 'none'}}>
+          <Box css={{display: 'flex', alignItems: 'center'}}>
+            <SvgLogo />
+            <Typography.Header
+              variant='header4'
+              css={{color: 'white', marginLeft: 10, fontWeight: 'bold'}}
+            >
+              REACT COMPASS
+            </Typography.Header>
+          </Box>
+        </Link>
       </Navbar.Brand>
       <NavbarLinks>
-        <a href='/getting-started/'>
+        <Link href='/getting-started/'>
           <Button>Document</Button>
-        </a>
+        </Link>
+        <Link href='https://comfortdelgro.github.io/compass-design/ladle/'>
+          <Button>Ladle</Button>
+        </Link>
       </NavbarLinks>
       <NavbarSeperator />
       <NavbarActions
