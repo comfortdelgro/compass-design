@@ -21,7 +21,6 @@ export default function MarkdownDocs(props: any) {
 
   const localizedDoc = docs.en
   const {description, location, rendered, title, toc} = localizedDoc
-  console.log({rendered: rendered.type})
   return (
     <DocsAppLayout
       description={description}
@@ -52,7 +51,11 @@ export default function MarkdownDocs(props: any) {
           }
 
           return (
-            <Component {...renderedMarkdownOrDemo} markdown={localizedDoc} />
+            <Component
+              key={index}
+              {...renderedMarkdownOrDemo}
+              markdown={localizedDoc}
+            />
           )
         }
 

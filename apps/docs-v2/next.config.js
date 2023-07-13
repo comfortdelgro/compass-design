@@ -165,9 +165,6 @@ module.exports = withDocsInfra({
           return
         }
         if (!page.children) {
-          // map api-docs to api
-          // i: /api-docs/* > /api/* (old structure)
-          // ii: /*/api-docs/* > /*/api/* (for new structure)
           map[
             `${prefix}${page.pathname.replace(
               /^(\/[^/]+)?\/api-docs\/(.*)/,

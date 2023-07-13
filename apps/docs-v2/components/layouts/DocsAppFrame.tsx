@@ -18,7 +18,7 @@ export function DeferredAppSearch() {
   return (
     <React.Fragment>
       {mounted ? (
-        <React.Suspense fallback={<Box />}>
+        <React.Suspense fallback={<Box>Error</Box>}>
           <AppSearch />
         </React.Suspense>
       ) : (
