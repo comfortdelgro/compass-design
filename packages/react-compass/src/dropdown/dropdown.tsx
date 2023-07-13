@@ -21,7 +21,7 @@ import {
   DropdownItemKey,
   SelectedItemDropdown,
 } from './dropdown-context'
-import DropdownItem from './dropdown-item-container'
+import DropdownItem from './dropdown-item'
 import DropdownList from './dropdown-list'
 import DropdownComboBox from './dropdown.combobox'
 import DropdownFlag from './dropdown.flag'
@@ -146,6 +146,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     [],
   )
 
+  const [clonedChildren, setClonedChildren] = useState<React.ReactNode>(null)
+
   // Select ref
   const selectRef = useDOMRef<HTMLDivElement>(ref)
   const buttonSelectRef = useDOMRef<HTMLButtonElement>(null)
@@ -181,6 +183,23 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     }
   }, [open])
 
+  // clone children to assign value prop if not exists. the value would be equal to the key prop
+  // This is to support the legacy code where users don't pass value prop and use key prop instead
+  useEffect(() => {
+    const clonedChildren = React.Children.map(children, (child) => {
+      const clonedChild = React.cloneElement(child as React.ReactElement)
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      if (!clonedChild?.props?.value) {
+        return React.cloneElement(clonedChild, {
+          value: clonedChild.key || '',
+        })
+      } else {
+        return clonedChild
+      }
+    })
+    setClonedChildren(clonedChildren)
+  }, [children])
+
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
       const currentFocusKey = (focusKey || selectedItem?.value.toString()) ?? ''
@@ -192,7 +211,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           if (currentFocusKey) {
             const nextKey = getItemAbove(
               currentFocusKey,
-              children,
+              clonedChildren,
               dropdownItemKeys,
             )
             if (nextKey?.props?.value) {
@@ -200,8 +219,10 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
             }
           } else {
             setFocusKey(
-              getLastItem(children, dropdownItemKeys)?.props.value.toString() ??
-                '',
+              getLastItem(
+                clonedChildren,
+                dropdownItemKeys,
+              )?.props?.value?.toString() ?? '',
             )
           }
           break
@@ -211,7 +232,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           if (currentFocusKey) {
             const prevKey = getItemBelow(
               currentFocusKey,
-              children,
+              clonedChildren,
               dropdownItemKeys,
             )
             if (prevKey?.props?.value) {
@@ -220,16 +241,16 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           } else {
             setFocusKey(
               getFirstItem(
-                children,
+                clonedChildren,
                 dropdownItemKeys,
-              )?.props.value.toString() ?? '',
+              )?.props?.value?.toString() ?? '',
             )
           }
           break
         case 'Enter':
           event.preventDefault()
           if (currentFocusKey) {
-            const focusedItem = getItemByKey(currentFocusKey, children)
+            const focusedItem = getItemByKey(currentFocusKey, clonedChildren)
             if (focusedItem) {
               setOpen(false)
               // Deselect item
@@ -243,7 +264,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
                 return
               }
               setSelectedItem({
-                value: focusedItem.props.value.toString(),
+                value: focusedItem?.props?.value?.toString() ?? '',
                 displayValue:
                   focusedItem.props.textValue || focusedItem.props.children,
                 flagName: focusedItem.props.flagName ?? '',
@@ -253,7 +274,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
                   focusedItem.props.children as React.ReactElement,
                 )
               }
-              onSelectionChange?.(focusedItem.props.value)
+              onSelectionChange?.(focusedItem?.props?.value as Key)
             }
           }
 
@@ -268,7 +289,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       disableClearable,
       shouldDeselect,
       focusKey,
-      children,
+      clonedChildren,
       selectedItem,
       dropdownItemKeys,
     ],
@@ -367,7 +388,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     const currentSelectedKey = selectedKey || defaultSelectedKey
 
     // Find the item with the specified value
-    const item = getItemByKey(currentSelectedKey, children)
+    const item = getItemByKey(currentSelectedKey, clonedChildren)
 
     if (item) {
       setSelectedItem({
@@ -380,7 +401,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         inputRef.current.value = textContent(item as React.ReactElement)
       }
     }
-  }, [children, selectedKey, defaultSelectedKey, selectedItem])
+  }, [clonedChildren, selectedKey, defaultSelectedKey, selectedItem])
 
   const contentElement = useMemo(() => {
     switch (type) {
@@ -608,7 +629,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
                 onLoadMore={onLoadMore}
                 noDataMessage={noDataMessage}
               >
-                {children}
+                {clonedChildren}
               </DropdownList>
             </StyledPopover>
           </StyledDropdownPopover>

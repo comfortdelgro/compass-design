@@ -1,5 +1,5 @@
 import Dropdown from './dropdown'
-import DropdownItem from './dropdown-item-container'
+import DropdownItem from './dropdown-item'
 import DropdownCombobox from './dropdown.combobox'
 import DropdownFlag from './dropdown.flag'
 import DropdownHeader from './dropdown.header'
@@ -14,7 +14,7 @@ Dropdown.Section = DropdownSection
 Dropdown.Header = DropdownHeader
 
 export type {DropdownProps} from './dropdown'
-export type {DropdownItemProps} from './dropdown-item-container'
+export type {DropdownItemProps} from './dropdown-item'
 export type {DropdownComboBoxProps} from './dropdown.combobox'
 export type {DropdownFlagProps} from './dropdown.flag'
 export type {DropdownHeaderProps} from './dropdown.header'

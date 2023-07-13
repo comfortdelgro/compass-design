@@ -18,7 +18,7 @@ interface Props extends StyledComponentProps {
   type?: 'icon' | 'color'
   leftIcon?: React.ReactNode
   rightIcon?: React.ReactNode
-  value: Key
+  value?: Key
   textValue?: string
   checkmark?: 'none' | 'checkbox' | 'tick'
   flagName?: string
@@ -35,7 +35,7 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
   (props, ref) => {
     const {
       children,
-      value,
+      value = '',
       flagName,
       type,
       rightIcon,
