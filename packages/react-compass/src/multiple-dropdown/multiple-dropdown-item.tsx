@@ -22,13 +22,9 @@ const MultipleDropdownItem = React.forwardRef<
   HTMLLIElement,
   MultipleDropdownItemProps
 >((props, ref) => {
-  const {
-    children,
-    value,
-    checkmark = 'checkbox',
-    css = {},
-    ...delegated
-  } = props
+  const {children, value, checkmark = 'checkbox', css = {}, ...other} = props
+
+  const {textValue, ...delegated} = other
 
   const {
     disabledKeys = [],
@@ -108,7 +104,7 @@ const MultipleDropdownItem = React.forwardRef<
     }
     onItemClick({
       value: value.toString(),
-      displayValue: children,
+      displayValue: textValue || children,
     })
   }
 

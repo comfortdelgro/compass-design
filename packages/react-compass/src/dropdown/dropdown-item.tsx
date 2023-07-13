@@ -118,7 +118,10 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
 
     useEffect(() => {
       if (selectedKey && selectedKey.toString() === value.toString()) {
-        setSelectedItem({value: value.toString(), displayValue: children})
+        setSelectedItem({
+          value: value.toString(),
+          displayValue: textValue || children,
+        })
         if (dropdownItemRef.current) {
           dropdownItemRef.current.scrollIntoView({block: 'nearest'})
         }
@@ -137,7 +140,7 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
       }
       onItemClick({
         value: value.toString(),
-        displayValue: children,
+        displayValue: textValue || children,
         flagName: flagName ?? '',
       })
     }

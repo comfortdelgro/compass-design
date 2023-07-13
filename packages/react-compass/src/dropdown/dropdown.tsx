@@ -244,7 +244,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
               }
               setSelectedItem({
                 value: focusedItem.props.value.toString(),
-                displayValue: focusedItem.props.children,
+                displayValue:
+                  focusedItem.props.textValue || focusedItem.props.children,
                 flagName: focusedItem.props.flagName ?? '',
               })
               if (inputRef.current) {

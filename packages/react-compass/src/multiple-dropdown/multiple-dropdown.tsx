@@ -303,7 +303,8 @@ const MultipleDropdown = React.forwardRef<
             if (focusedItem) {
               handleDropdownItemClick({
                 value: focusedItem.props.value.toString(),
-                displayValue: focusedItem.props.children,
+                displayValue:
+                  focusedItem.props.textValue || focusedItem.props.children,
               })
             }
           }
