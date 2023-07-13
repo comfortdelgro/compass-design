@@ -41,6 +41,7 @@ const MultipleDropdownSection = React.forwardRef<
     checkmark = 'checkbox',
     isChecked,
     onClick,
+    ...delegated
   } = props
 
   const {onSectionClick, selectedSectionIds} = useContext(
@@ -51,7 +52,7 @@ const MultipleDropdownSection = React.forwardRef<
     isChecked ?? selectedSectionIds.includes(id),
   )
 
-  const DropdownSectionRef = useDOMRef<HTMLDivElement>(ref)
+  const dropdownSectionRef = useDOMRef<HTMLDivElement>(ref)
 
   const handleOnClick = () => {
     if (!isClickable) {
@@ -75,7 +76,7 @@ const MultipleDropdownSection = React.forwardRef<
   }
 
   return (
-    <StyledDropdownSection css={css} ref={DropdownSectionRef}>
+    <StyledDropdownSection css={css} ref={dropdownSectionRef} {...delegated}>
       {title && (
         <StyledSectionContent
           isClickable={!!isClickable}

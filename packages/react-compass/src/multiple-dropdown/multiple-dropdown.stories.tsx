@@ -96,8 +96,8 @@ export const Default: React.FC = () => {
           disabledKeys={['cat']}
           placeholder='Choose an animal'
           selectedKeys={value}
-          // defaultSelectedKeys={['dog']}
-          // erroredKeys={['red panda']}
+          defaultSelectedKeys={['dog']}
+          erroredKeys={['red panda']}
           isRequired
           onSelectionChange={(k: Key[]) => setValue(k)}
           onBlur={() => console.log('blur')}
@@ -124,7 +124,7 @@ export const Default: React.FC = () => {
             Snake
           </MultipleDropdown.Item>
         </MultipleDropdown>
-        {/* <h3>UnControlled</h3>
+        <h3>UnControlled</h3>
         <MultipleDropdown
           label='Favorite Animal'
           disabledKeys={['snake']}
@@ -602,7 +602,7 @@ export const Default: React.FC = () => {
               {item.name}
             </MultipleDropdown.Item>
           ))}
-        </MultipleDropdown> */}
+        </MultipleDropdown>
         <div style={{height: '20rem'}} />
       </Column>
     </Column>

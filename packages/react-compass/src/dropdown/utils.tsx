@@ -38,7 +38,6 @@ const findItemByValue = (
     const item = items[index]
     if (item?.props) {
       if (
-        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
         item.props.value?.toString() === value.toString() &&
         !disabledKeys?.includes(item.props.value)
       ) {

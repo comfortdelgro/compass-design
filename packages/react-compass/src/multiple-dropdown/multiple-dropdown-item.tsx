@@ -1,5 +1,6 @@
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
+import {useDOMRef} from '../utils/use-dom-ref'
 import {MultipleDropdownContext} from './multiple-dropdown-context'
 import {
   StyledContent,
@@ -17,10 +18,18 @@ interface Props extends StyledComponentProps {
 
 export type MultipleDropdownItemProps = Props
 
-const MultipleDropdownItem: React.FC<MultipleDropdownItemProps> = (
-  props: MultipleDropdownItemProps,
-) => {
-  const {children, value, checkmark = 'checkbox'} = props
+const MultipleDropdownItem = React.forwardRef<
+  HTMLLIElement,
+  MultipleDropdownItemProps
+>((props, ref) => {
+  const {
+    children,
+    value,
+    checkmark = 'checkbox',
+    css = {},
+    ...delegated
+  } = props
+
   const {
     disabledKeys = [],
     searchValue,
@@ -30,7 +39,7 @@ const MultipleDropdownItem: React.FC<MultipleDropdownItemProps> = (
     onItemClick,
   } = React.useContext(MultipleDropdownContext)
 
-  const ref = React.useRef<HTMLLIElement>(null)
+  const multipleDropdownItemRef = useDOMRef<HTMLLIElement>(ref)
 
   const isSelected = React.useMemo(() => {
     return (
@@ -84,8 +93,11 @@ const MultipleDropdownItem: React.FC<MultipleDropdownItemProps> = (
 
   React.useEffect(() => {
     if (focusKey && focusKey.toString() === value.toString()) {
-      if (ref.current) {
-        ref.current.scrollIntoView({block: 'nearest', behavior: 'smooth'})
+      if (multipleDropdownItemRef.current) {
+        multipleDropdownItemRef.current.scrollIntoView({
+          block: 'nearest',
+          behavior: 'smooth',
+        })
       }
     }
   }, [focusKey, value])
@@ -107,6 +119,8 @@ const MultipleDropdownItem: React.FC<MultipleDropdownItemProps> = (
       isSelected={isSelected && !isFocused}
       onClick={handleItemClick}
       isDisabled={isDisabled}
+      css={css}
+      {...delegated}
     >
       <StyledContent>{children}</StyledContent>
       <StyledRightIcon isSelected={isSelected} checkmark={checkmark}>
@@ -120,7 +134,7 @@ const MultipleDropdownItem: React.FC<MultipleDropdownItemProps> = (
       </StyledRightIcon>
     </StyledOption>
   ) : null
-}
+})
 
 export default MultipleDropdownItem
 

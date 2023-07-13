@@ -310,6 +310,7 @@ export const StyledContent = styled('div', {
   display: 'flex',
   alignItems: 'center',
   flexGrow: 1,
+  lineHeight: '$normal',
 })
 
 export const StyledLoading = styled('div', {
@@ -349,6 +350,7 @@ export const StyledEmptyData = styled('div', {
   fontWeight: '$medium',
   color: '$disabledText',
   padding: '$2 $4',
+  lineHeight: '$normal',
 })
 
 export const StyledHelperText = styled('div', {
@@ -389,6 +391,7 @@ export const StyledSectionContent = styled('div', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
+  lineHeight: '$normal',
   variants: {
     isClickable: {
       true: {
@@ -405,6 +408,16 @@ export const StyledSectionContent = styled('div', {
     },
   },
 })
+
+export const StyledDropdownHeader = styled('div', {})
+
+export const StyledDropdownListItem = styled('div', {
+  height: '$0_25',
+})
+
+export type DropdownHeaderVariantProps = VariantProps<
+  typeof StyledDropdownHeader
+>
 
 export type DropdownItemVariantProps = VariantProps<
   typeof StyledDropdownSection

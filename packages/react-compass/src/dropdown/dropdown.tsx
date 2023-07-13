@@ -31,6 +31,7 @@ import DropdownSelect from './dropdown.select'
 import {
   DropdownVariantProps,
   StyledComboBox,
+  StyledDropdownPopover,
   StyledDropdownWrapper,
   StyledFlag,
   StyledFlagIcon,
@@ -147,8 +148,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
 
   // Select ref
   const selectRef = useDOMRef<HTMLDivElement>(ref)
-  const buttonSelectRef = useRef<HTMLButtonElement>(null)
-  const inputRef = useRef<HTMLInputElement>(null)
+  const buttonSelectRef = useDOMRef<HTMLButtonElement>(null)
+  const inputRef = useDOMRef<HTMLInputElement>(null)
 
   // ====================================== FLOATING ======================================
   const {refs, floatingStyles, context} = useFloating({
@@ -164,15 +165,15 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
 
   // ====================================== Logic ======================================
 
-  const mounted = useRef(false)
-  const selectedItemInitialRef = useRef(false)
+  const openChangedRef = useRef(false)
+  const selectedItemChangedRef = useRef(false)
 
   /**
    * Reset focus key when closes popover
    */
   useEffect(() => {
-    if (!mounted.current) {
-      mounted.current = true
+    if (!openChangedRef.current) {
+      openChangedRef.current = true
     } else {
       if (!open) {
         setFocusKey('')
@@ -356,10 +357,10 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
 
   useEffect(() => {
     // Run set current selectedKey | defaultSelectedKey for first time
-    if (selectedItemInitialRef.current) {
+    if (selectedItemChangedRef.current) {
       return
     }
-    selectedItemInitialRef.current = true
+    selectedItemChangedRef.current = true
     if (!!selectedItem || !(selectedKey || defaultSelectedKey)) return
 
     const currentSelectedKey = selectedKey || defaultSelectedKey
@@ -504,10 +505,10 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   const triggeElWidth = useMemo(() => {
     switch (type) {
       case 'select':
-        return buttonSelectRef?.current?.clientWidth ?? '100%'
+        return buttonSelectRef.current?.clientWidth ?? '100%'
       case 'combobox':
       case 'flag':
-        return inputRef?.current?.clientWidth ?? '100%'
+        return inputRef.current?.clientWidth ?? '100%'
       default:
         return '100%'
     }
@@ -583,14 +584,10 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       >
         {contentElement}
         {open && (
-          <div
-            className='Popover'
+          <StyledDropdownPopover
             ref={refs.setFloating}
             style={{
               ...floatingStyles,
-              ...{
-                zIndex: 60,
-              },
             }}
             {...getFloatingProps}
           >
@@ -613,7 +610,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
                 {children}
               </DropdownList>
             </StyledPopover>
-          </div>
+          </StyledDropdownPopover>
         )}
       </DropdownContext.Provider>
       {isErrored && errorMessage && (

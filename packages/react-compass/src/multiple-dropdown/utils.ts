@@ -18,7 +18,6 @@ export function textContent(
   if (typeof elem === 'string') {
     return elem
   }
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (elem.props?.textValue) {
     return elem.props.textValue
   }
@@ -27,7 +26,6 @@ export function textContent(
     return elem.map(textContent).join(' ')
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   const children = elem.props?.children
 
   if (children instanceof Array) {
@@ -42,10 +40,8 @@ const findItemByValue = (
   disabledKeys: Array<string | number> = [],
 ): React.ReactElement<MultipleDropdownItemProps> | null => {
   for (const item of items) {
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (item.props) {
       if (
-        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
         item.props.value?.toString() === value.toString() &&
         !disabledKeys.includes(item.props.value)
       ) {

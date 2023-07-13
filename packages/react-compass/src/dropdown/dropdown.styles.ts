@@ -24,6 +24,9 @@ export const StyledDropdownWrapper = styled('div', {
       color: '$danger',
     },
   },
+  '&.cdg-dropdown-opening .cdg-dropdown-input .cdg-dropdown-button': {
+    lineHeight: '$normal',
+  },
   '&.cdg-dropdown-opening .cdg-dropdown-input .cdg-dropdown-button svg': {
     transform: 'rotate(180deg)',
     transition: 'transform 0.3s linear',
@@ -379,6 +382,7 @@ export const StyledEmptyData = styled('div', {
   fontWeight: '$medium',
   color: '$disabledText',
   padding: '$2 $4',
+  lineHeight: '$normal',
 })
 
 export const StyledIcon = styled('svg', {
@@ -466,6 +470,7 @@ export const StyledSectionContent = styled('div', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
+  lineHeight: '$normal',
   variants: {
     isClickable: {
       true: {
@@ -503,9 +508,26 @@ export const StyledContent = styled('div', {
   display: 'flex',
   alignItems: 'center',
   flexGrow: 1,
+  lineHeight: '$normal',
 })
 
-export type DropdownItemVariantProps = VariantProps<
+export const StyledDropdownHeader = styled('div', {})
+
+export const StyledDropdownListItem = styled('div', {
+  height: '$0_25',
+})
+
+export const StyledDropdownPopover = styled('div', {
+  zIndex: 60,
+})
+
+export type DropdownHeaderVariantProps = VariantProps<
+  typeof StyledDropdownHeader
+>
+
+export type DropdownItemVariantProps = VariantProps<typeof StyledOption>
+
+export type DropdownSectionVariantProps = VariantProps<
   typeof StyledDropdownSection
 >
 

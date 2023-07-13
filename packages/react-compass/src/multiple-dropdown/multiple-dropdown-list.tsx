@@ -1,13 +1,15 @@
 import React, {useMemo} from 'react'
 import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
+import {useDOMRef} from '../utils/use-dom-ref'
 import {useIsInViewport} from './hooks/useInViewport'
 import {MultipleDropdownContext} from './multiple-dropdown-context'
+import DropdownLoading from './multiple-dropdown-loading'
 import MultipleDropdownHeader from './multiple-dropdown.header'
 import {
   StyledDropdownList,
+  StyledDropdownListItem,
   StyledEmptyData,
-  StyledLoading,
 } from './multiple-dropdown.styles'
 import {getDistanceBetweenElements, textContent} from './utils'
 
@@ -26,8 +28,8 @@ const MultipleDropdownList: React.FC<DropdownItemListProps> = (
 ) => {
   const {children, isLoading, css = {}, noDataMessage, onLoadMore} = props
 
-  const lastEl = React.useRef<HTMLDivElement | null>(null)
-  const standEl = React.useRef<HTMLDivElement | null>(null)
+  const lastEl = useDOMRef<HTMLDivElement>(null)
+  const standEl = useDOMRef<HTMLDivElement>(null)
 
   const isInViewport = useIsInViewport(lastEl)
   const {searchValue} = React.useContext(MultipleDropdownContext)
@@ -68,23 +70,16 @@ const MultipleDropdownList: React.FC<DropdownItemListProps> = (
         {DropdownHeaderElement && DropdownHeaderElement}
         <StyledDropdownList css={css}>
           {isLoading ? (
-            <StyledLoading>
-              <div className='spinner'>
-                <div className='spinner-1' />
-                <div className='spinner-2' />
-                <div className='spinner-3' />
-                <div />
-              </div>
-            </StyledLoading>
+            <DropdownLoading />
           ) : displayedItemsCount === 0 ? (
             <StyledEmptyData>{noDataMessage || 'No data'}</StyledEmptyData>
           ) : (
             children
           )}
           {React.Children.toArray(dropdownItems).length > 0 && (
-            <div style={{height: 1}} ref={lastEl} />
+            <StyledDropdownListItem ref={lastEl} />
           )}
-          <div style={{height: 1}} ref={standEl} />
+          <StyledDropdownListItem ref={standEl} />
         </StyledDropdownList>
       </>
     ),
