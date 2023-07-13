@@ -23,4 +23,4 @@ import AutoComplete from '@comfortdelgro/react-compass/auto-complete'
 
 The value must be chosen from a predefined set of allowed values.
 
-{{"demo": "ComboBox.js"}}
+{{"demo": "ComboBox.tsx"}}

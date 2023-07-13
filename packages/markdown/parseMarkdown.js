@@ -288,22 +288,7 @@ function createRender(context) {
 
       checkUrlHealth(href, linkText, context)
 
-      if (
-        userLanguage !== 'en' &&
-        href.indexOf('/') === 0 &&
-        !options.ignoreLanguagePages(href)
-      ) {
-        finalHref = `/${userLanguage}${href}`
-      }
-
-      if (finalHref.startsWith(`${options.env.SOURCE_CODE_REPO}/blob/-/`)) {
-        finalHref = finalHref.replace(
-          `${options.env.SOURCE_CODE_REPO}/blob/-/`,
-          `${options.env.SOURCE_CODE_REPO}/blob/v${options.env.LIB_VERSION}/`,
-        )
-      }
-
-      return `<a href="${finalHref}"${more}>${linkText}</a>`
+      return `<a href="https://github.com/comfortdelgro/compass-design">${linkText}</a>`
     }
     renderer.code = (code, infostring, escaped) => {
       const lang = (infostring || '').match(/\S*/)[0]

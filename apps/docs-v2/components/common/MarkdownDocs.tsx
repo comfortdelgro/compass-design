@@ -95,7 +95,7 @@ export default function MarkdownDocs(props: any) {
             }}
             disableAd={disableAd}
             demoOptions={renderedMarkdownOrDemo}
-            githubLocation={`${process.env.SOURCE_CODE_REPO}/blob/v1.1.2${fileNameWithLocation}`}
+            githubLocation='https://github.com/comfortdelgro/compass-design'
           />
         )
       })}

@@ -2,68 +2,19 @@ const path = require('path')
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer')
 const withDocsInfra = require('./nextConfigDocsInfra')
 const {findPages} = require('./utils/find')
-const {
-  LANGUAGES,
-  LANGUAGES_SSR,
-  LANGUAGES_IGNORE_PAGES,
-  LANGUAGES_IN_PROGRESS,
-} = require('./config')
-
 const workspaceRoot = path.join(__dirname, '../')
-
-const l10nPRInNetlify =
-  /^l10n_/.test(process.env.HEAD) && process.env.NETLIFY === 'true'
-const vercelDeploy = Boolean(process.env.VERCEL)
-const isDeployPreview = Boolean(process.env.PULL_REQUEST_ID)
-// For crowdin PRs we want to build all locales for testing.
-const buildOnlyEnglishLocale =
-  isDeployPreview && !l10nPRInNetlify && !vercelDeploy
 
 module.exports = withDocsInfra({
   webpack: (config, options) => {
     const plugins = config.plugins.slice()
-
-    if (process.env.DOCS_STATS_ENABLED) {
-      plugins.push(
-        // For all options see https://github.com/th0r/webpack-bundle-analyzer#as-plugin
-        new BundleAnalyzerPlugin({
-          analyzerMode: 'server',
-          generateStatsFile: true,
-          analyzerPort: options.isServer ? 8888 : 8889,
-          reportTitle: `${options.isServer ? 'server' : 'client'} docs bundle`,
-          // Will be available at `.next/${statsFilename}`
-          statsFilename: `stats-${options.isServer ? 'server' : 'client'}.json`,
-        }),
-      )
-    }
-
-    // next includes node_modules in webpack externals. Some of those have dependencies
-    // on the aliases defined above. If a module is an external those aliases won't be used.
-    // We need tell webpack to not consider those packages as externals.
     if (
       options.isServer &&
-      // Next executes this twice on the server with React 18 (once per runtime).
-      // We only care about Node runtime at this point.
       (options.nextRuntime === undefined || options.nextRuntime === 'nodejs')
     ) {
       const [nextExternals, ...externals] = config.externals
 
       config.externals = [
         (ctx, callback) => {
-          const {request} = ctx
-          const hasDependencyOnRepoPackages = [
-            'notistack',
-            '@mui/x-data-grid',
-            '@mui/x-data-grid-pro',
-            '@mui/x-date-pickers',
-            '@mui/x-date-pickers-pro',
-            '@mui/x-data-grid-generator',
-            '@mui/x-license-pro',
-          ].some((dep) => request.startsWith(dep))
-
-          if (hasDependencyOnRepoPackages) {
-            return callback(null)
-          }
           return nextExternals(ctx, callback)
         },
         ...externals,
@@ -100,12 +51,7 @@ module.exports = withDocsInfra({
                   {
                     loader: require.resolve('@comfortdelgro/markdown/loader'),
                     options: {
-                      ignoreLanguagePages: LANGUAGES_IGNORE_PAGES,
-                      languagesInProgress: LANGUAGES_IN_PROGRESS,
-                      env: {
-                        SOURCE_CODE_REPO: options.config.env.SOURCE_CODE_REPO,
-                        LIB_VERSION: options.config.env.LIB_VERSION,
-                      },
+                      ignoreLanguagePages: [],
                     },
                   },
                 ],
@@ -131,17 +77,6 @@ module.exports = withDocsInfra({
       },
     }
   },
-  env: {
-    GITHUB_AUTH: process.env.GITHUB_AUTH
-      ? `Basic ${Buffer.from(process.env.GITHUB_AUTH).toString('base64')}`
-      : null,
-    LIB_VERSION: '1.0.0',
-    FEEDBACK_URL: process.env.FEEDBACK_URL,
-    SOURCE_GITHUB_BRANCH: 'master', // #default-branch-switch
-    SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
-    GITHUB_TEMPLATE_DOCS_FEEDBACK: '4.docs-feedback.yml',
-    BUILD_ONLY_ENGLISH_LOCALE: buildOnlyEnglishLocale,
-  },
   // Next.js provides a `defaultPathMap` argument, we could simplify the logic.
   // However, we don't in order to prevent any regression in the `findPages()` method.
   exportPathMap: () => {
@@ -149,24 +84,10 @@ module.exports = withDocsInfra({
     const map = {}
 
     function traverse(pages2, userLanguage) {
-      const prefix = userLanguage === 'en' ? '' : `/${userLanguage}`
-
       pages2.forEach((page) => {
-        // The experiments pages are only meant for experiments, they shouldn't leak to production.
-        if (
-          (page.pathname.startsWith('/experiments/') ||
-            page.pathname === '/experiments') &&
-          process.env.DEPLOY_ENV === 'production'
-        ) {
-          return
-        }
-        // The blog is not translated
-        if (userLanguage !== 'en' && LANGUAGES_IGNORE_PAGES(page.pathname)) {
-          return
-        }
         if (!page.children) {
           map[
-            `${prefix}${page.pathname.replace(
+            `${page.pathname.replace(
               /^(\/[^/]+)?\/api-docs\/(.*)/,
               '$1/api/$2',
             )}`
@@ -183,28 +104,12 @@ module.exports = withDocsInfra({
       })
     }
 
-    // We want to speed-up the build of pull requests.
-    // For this, consider only English language on deploy previews, except for crowdin PRs.
-    if (buildOnlyEnglishLocale) {
-      // eslint-disable-next-line no-console
-      console.log('Considering only English for SSR')
-      traverse(pages, 'en')
-    } else {
-      // eslint-disable-next-line no-console
-      console.log('Considering various locales for SSR')
-      LANGUAGES_SSR.forEach((userLanguage) => {
-        traverse(pages, userLanguage)
-      })
-    }
+    traverse(pages, 'en')
     return map
   },
   // rewrites has no effect when run `next export` for production
   rewrites: async () => {
     return [
-      {
-        source: `/:lang(${LANGUAGES.join('|')})?/:rest*`,
-        destination: '/:rest*',
-      },
       // Make sure to include the trailing slash if `trailingSlash` option is set
       {source: '/api/:rest*/', destination: '/api-docs/:rest*/'},
       {

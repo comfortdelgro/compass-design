@@ -34,15 +34,10 @@ function withDocsInfra(nextConfig) {
     reactStrictMode: true,
     ...nextConfig,
     env: {
-      BUILD_ONLY_ENGLISH_LOCALE: true, // disable translations by default
-      // production | staging | pull-request | development
       DEPLOY_ENV,
       ...nextConfig.env,
       COMMIT_REF: process.env.COMMIT_REF,
       PULL_REQUEST_ID: process.env.REVIEW_ID,
-      ENABLE_AD_IN_DEV_MODE: process.env.ENABLE_AD_IN_DEV_MODE,
-      NETLIFY_DEPLOY_URL: process.env.DEPLOY_URL,
-      NETLIFY_SITE_NAME: process.env.SITE_NAME,
     },
     experimental: {
       scrollRestoration: true,
