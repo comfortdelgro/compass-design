@@ -1,6 +1,5 @@
 import {Box} from '@comfortdelgro/react-compass'
 import MarkdownLinks from 'components/common/MarkdownLinks'
-import AppHeader from 'components/layouts/AppHeader'
 import routes from 'constants/routes'
 import SidenavContext from 'contexts/SideNav'
 import {map} from 'lodash'
@@ -91,8 +90,14 @@ export default function DocsAppFrame(props: {children: React.ReactNode}) {
   return (
     <SidenavContext.Provider value={sidenav}>
       <MarkdownLinks />
-      <Box css={{width: '100vw', height: '100vh', overflow: 'hidden'}}>
-        <AppHeader />
+      <Box
+        css={{
+          width: '100vw',
+          height: 'calc(100vh - 54px)',
+          overflow: 'hidden',
+          background: '$background',
+        }}
+      >
         <Box css={{width: '100%', display: 'flex'}}>
           <DocsAppSideNav handleExpandSidenav={handleExpandSidenav} />
           <Box

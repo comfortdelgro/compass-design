@@ -1,9 +1,14 @@
+import {ThemeProvider} from '@comfortdelgro/react-compass'
 import Preflight from '@comfortdelgro/react-compass/preflight'
 import 'components/common/bootstrap'
-import {ThemeProvider} from 'components/common/ThemeContext'
+import {ETheme} from 'constants/index'
+import ThemeContext from 'contexts/Theme'
 import NextHead from 'next/head'
 import * as React from 'react'
 import {CodeCopyProvider} from 'utils/CodeCopy'
+import useLazyCSS from 'utils/useLazyCSS'
+
+import AppHeader from 'components/layouts/AppHeader'
 import './global.css'
 
 let reloadInterval: any
@@ -99,17 +104,31 @@ function AppWrapper(props: any) {
     registerServiceWorker()
   }, [])
 
+  useLazyCSS('/static/styles/prism-okaidia.css', '#prismjs')
+
+  const [mode, setMode] = React.useState<ETheme>(ETheme.Light)
+
+  const handleChangeThemeMode = () => {
+    setMode(mode === ETheme.Light ? ETheme.Dark : ETheme.Light)
+    try {
+      localStorage.setItem('theme-mode', mode)
+    } catch (error) {}
+  }
+
   return (
     <React.Fragment>
       <NextHead>
         <meta name='viewport' content='initial-scale=1, width=device-width' />
       </NextHead>
-      <CodeCopyProvider>
-        <ThemeProvider>
-          <Preflight />
-          {children}
+      <ThemeContext.Provider value={mode}>
+        <ThemeProvider changeBy={mode}>
+          <CodeCopyProvider>
+            <Preflight />
+            <AppHeader handleChangeThemeMode={handleChangeThemeMode} />
+            {children}
+          </CodeCopyProvider>
         </ThemeProvider>
-      </CodeCopyProvider>
+      </ThemeContext.Provider>
     </React.Fragment>
   )
 }

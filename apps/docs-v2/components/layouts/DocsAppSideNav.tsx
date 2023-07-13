@@ -27,7 +27,7 @@ const DocsAppSideNav = (props: TDocsAppSideNav) => {
       css={{
         height: '100vh',
         position: 'relative',
-        background: '$white',
+        background: '$background',
         width: 312,
         overflowY: 'scroll',
         filter: 'none',

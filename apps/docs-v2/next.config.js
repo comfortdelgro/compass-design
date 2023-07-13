@@ -94,7 +94,7 @@ module.exports = withDocsInfra({
             test: /\.md$/,
             oneOf: [
               {
-                resourceQuery: /@mui\/markdown/,
+                resourceQuery: /@comfortdelgro\/compass-design/,
                 use: [
                   options.defaultLoaders.babel,
                   {

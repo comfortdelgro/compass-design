@@ -10,7 +10,7 @@ const Root = styled('div', {
     lineHeight: 1.5, // Developers likes when the code is dense.
     margin: '$2',
     padding: '$2',
-    backgroundColor: '$cdgBlue120',
+    backgroundColor: '#323130',
     color: '#f8f8f2',
     borderRadius: '$md',
     border: '1px solid',

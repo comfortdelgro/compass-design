@@ -10,7 +10,7 @@ const StyledMarkdownElement = styled(MarkdownElement, {
   '& .scrollContainer': {
     maxHeight: 'min(68vh, 1000px)',
     overflow: 'auto',
-    backgroundColor: '$cdgBlue120',
+    backgroundColor: '#323130',
     marginTop: -1,
     border: `1px solid $divider`,
     colorScheme: 'dark',

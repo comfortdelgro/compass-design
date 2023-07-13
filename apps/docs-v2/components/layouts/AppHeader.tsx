@@ -6,32 +6,25 @@ import {NavbarSeperator} from '@comfortdelgro/react-compass/navbar/navbar-sepera
 import ThemeModeToggle from 'components/header/ThemeModeToggle'
 import SvgLogo from 'components/icons/SvgLogo'
 import {DeferredAppSearch} from 'components/layouts/DocsAppFrame'
+import {ETheme} from 'constants/index'
+import {useThemeContext} from 'contexts/Theme'
 import Link from 'next/link'
-import * as React from 'react'
 
 interface AppHeaderProps {
   gitHubRepository?: string
+  handleChangeThemeMode: () => void
 }
 
 export default function AppHeader(props: AppHeaderProps) {
-  const {gitHubRepository = 'https://github.com/comfortdelgro/compass-design'} =
-    props
-  const [mode, setMode] = React.useState<string | null>(null)
+  const {
+    gitHubRepository = 'https://github.com/comfortdelgro/compass-design',
+    handleChangeThemeMode,
+  } = props
 
-  const handleChangeThemeMode = (checked: boolean) => {
-    const paletteMode = checked ? 'dark' : 'light'
-    setMode(paletteMode)
-
-    try {
-      localStorage.setItem('mui-mode', paletteMode)
-    } catch (error) {
-      // do nothing
-    }
-    // changeTheme({paletteMode})
-  }
+  const mode = useThemeContext()
 
   return (
-    <Navbar>
+    <Navbar css={{maxWidth: '100vw', overflow: 'hidden'}}>
       <Navbar.Brand>
         <Link href='/' style={{textDecoration: 'none'}}>
           <Box css={{display: 'flex', alignItems: 'center'}}>
@@ -81,7 +74,7 @@ export default function AppHeader(props: AppHeaderProps) {
           ></Button>
         </a>
         <ThemeModeToggle
-          checked={mode === 'dark'}
+          checked={mode === ETheme.Dark}
           onChange={handleChangeThemeMode}
         />
       </NavbarActions>
