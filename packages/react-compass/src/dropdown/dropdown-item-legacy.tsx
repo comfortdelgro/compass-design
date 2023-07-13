@@ -18,11 +18,11 @@ interface Props extends StyledComponentProps {
   type?: 'icon' | 'color'
   leftIcon?: React.ReactNode
   rightIcon?: React.ReactNode
-  value: Key
   textValue?: string
   checkmark?: 'none' | 'checkbox' | 'tick'
   flagName?: string
   children: React.ReactNode
+  key?: Key
 }
 
 const FlagComponent = React.lazy(() => import('./flags'))
@@ -31,21 +31,23 @@ export type DropdownItemProps = Props &
   DropdownItemVariantProps &
   Omit<React.HTMLAttributes<HTMLLIElement>, keyof Props>
 
-const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
+const DropdownItemLegacy = React.forwardRef<HTMLLIElement, DropdownItemProps>(
   (props, ref) => {
     const {
       children,
-      value,
       flagName,
       type,
       rightIcon,
       leftIcon,
       rightColor,
       css = {},
+      key,
       ...other
     } = props
 
     const {textValue, ...delegated} = other
+
+    const value = key ?? ''
 
     const {
       selectedItem,
@@ -175,4 +177,4 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
   },
 )
 
-export default DropdownItem
+export default DropdownItemLegacy

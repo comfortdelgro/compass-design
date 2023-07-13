@@ -21,7 +21,7 @@ import {
   DropdownItemKey,
   SelectedItemDropdown,
 } from './dropdown-context'
-import DropdownItem from './dropdown-item'
+import DropdownItem from './dropdown-item-container'
 import DropdownList from './dropdown-list'
 import DropdownComboBox from './dropdown.combobox'
 import DropdownFlag from './dropdown.flag'

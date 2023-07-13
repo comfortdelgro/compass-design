@@ -1,7 +1,7 @@
 import React, {Key} from 'react'
 import {pickChild} from '../utils/pick-child'
 import {DropdownItemKey} from './dropdown-context'
-import {DropdownItemProps} from './dropdown-item'
+import {DropdownItemProps} from './dropdown-item-container'
 import DropdownHeader from './dropdown.header'
 
 /**
