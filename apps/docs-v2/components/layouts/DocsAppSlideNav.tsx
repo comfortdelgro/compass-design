@@ -9,9 +9,10 @@ import {
   Sidenav,
 } from '@comfortdelgro/react-compass'
 
-import routes, {TPage} from 'constants/routes'
+import routes from 'constants/routes'
 import Link from 'next/link'
 import React, {useState} from 'react'
+import {TPage} from 'types/common'
 
 const AppSideNav: React.FC = () => {
   const [currentPage, setCurrentPage] = useState('/getting-started')

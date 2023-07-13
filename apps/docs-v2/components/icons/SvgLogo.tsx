@@ -11,7 +11,7 @@ function SvgLogo(props: any) {
       {...props}
     >
       <g filter='url(#filter0_dd_11811_137443)'>
-        <g clip-path='url(#clip0_11811_137443)'>
+        <g clipPath='url(#clip0_11811_137443)'>
           <rect x='3' y='2' width='32' height='32' rx='8' fill='white' />
           <rect
             x='3'
@@ -72,7 +72,7 @@ function SvgLogo(props: any) {
               d='M32.3326 34H5.66514C4.2 34 3 32.8 3 31.3326V4.66743C3 3.2 4.2 2 5.66514 2H32.3326C33.8 2 35 3.2 35 4.66743V31.3326C35 32.8 33.8 34 32.3326 34Z'
               fill='white'
             />
-            <g clip-path='url(#clip1_11811_137443)'>
+            <g clipPath='url(#clip1_11811_137443)'>
               <path
                 d='M31.9442 17.8636H31.4568V18.2421H32V18.3559H31.295V17.3058H31.972V17.4196H31.4566V17.7516H31.9439V17.8638L31.9442 17.8636Z'
                 fill='#0142AF'
@@ -274,7 +274,7 @@ function SvgLogo(props: any) {
           width='38'
           height='38'
           filterUnits='userSpaceOnUse'
-          color-interpolation-filters='sRGB'
+          colorInterpolationFilters='sRGB'
         >
           <feFlood flood-opacity='0' result='BackgroundImageFix' />
           <feColorMatrix
@@ -325,7 +325,7 @@ function SvgLogo(props: any) {
           width='22'
           height='22'
           filterUnits='userSpaceOnUse'
-          color-interpolation-filters='sRGB'
+          colorInterpolationFilters='sRGB'
         >
           <feFlood flood-opacity='0' result='BackgroundImageFix' />
           <feColorMatrix
@@ -376,7 +376,7 @@ function SvgLogo(props: any) {
           width='39.2'
           height='39.2'
           filterUnits='userSpaceOnUse'
-          color-interpolation-filters='sRGB'
+          colorInterpolationFilters='sRGB'
         >
           <feFlood flood-opacity='0' result='BackgroundImageFix' />
           <feColorMatrix

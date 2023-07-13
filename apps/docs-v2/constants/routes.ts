@@ -2,17 +2,10 @@ import {
   faFile,
   faSquarePen,
   faToggleOn,
-  IconDefinition,
 } from '@fortawesome/free-solid-svg-icons'
+import {TPage} from '../types/common'
 
-export type TPage = {
-  pathname: string
-  title: string
-  icon?: IconDefinition
-  children?: TPage[]
-}
-
-const routes: TPage[] = [
+export const routes: TPage[] = [
   {
     pathname: '/getting-started',
     title: 'Getting started',

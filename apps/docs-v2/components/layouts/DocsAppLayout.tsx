@@ -1,9 +1,9 @@
 import {Box} from '@comfortdelgro/react-compass'
-import AppFrame from 'components/common/AppFrame'
-import AppLayoutDocsFooter from 'components/common/AppLayoutDocsFooter'
-import AppTableOfContents from 'components/common/AppTableOfContents'
 import EditPage from 'components/common/EditPage'
 import Head from 'components/common/Head'
+import AppFrame from 'components/layouts/DocsAppFrame'
+import DocsAppToc from 'components/layouts/DocsAppToc'
+import DocsAppFooter from './DocsAppFooter'
 
 export default function AppLayoutDocs(props: any) {
   const {children, description, location, title, toc} = props
@@ -32,9 +32,9 @@ export default function AppLayoutDocs(props: any) {
         >
           <EditPage sourceLocation={location} />
           {children}
-          <AppLayoutDocsFooter tableOfContents={toc} />
+          <DocsAppFooter tableOfContents={toc} />
         </Box>
-        <AppTableOfContents toc={toc} />
+        <DocsAppToc toc={toc} />
       </Box>
     </AppFrame>
   )

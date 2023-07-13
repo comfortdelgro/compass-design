@@ -1,7 +1,7 @@
-import AppLayoutDocs from 'components/common/AppLayoutDocs'
 import Demo from 'components/common/Demo'
 import MarkdownElement from 'components/common/MarkdownElement'
 import path from 'path'
+import DocsAppLayout from '../layouts/DocsAppLayout'
 
 function noComponent(moduleID: string) {
   return function NoComponent() {
@@ -23,7 +23,7 @@ export default function MarkdownDocs(props: any) {
   const {description, location, rendered, title, toc} = localizedDoc
   console.log({rendered: rendered.type})
   return (
-    <AppLayoutDocs
+    <DocsAppLayout
       description={description}
       disableAd={disableAd}
       disableToc={disableToc}
@@ -96,6 +96,6 @@ export default function MarkdownDocs(props: any) {
           />
         )
       })}
-    </AppLayoutDocs>
+    </DocsAppLayout>
   )
 }

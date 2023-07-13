@@ -2,9 +2,9 @@ import {Box} from '@comfortdelgro/react-compass'
 import MarkdownLinks from 'components/common/MarkdownLinks'
 import AppHeader from 'components/layouts/AppHeader'
 import * as React from 'react'
-import AppSideNav from './AppSlideNav'
+import DocsAppSideNav from './DocsAppSlideNav'
 
-const AppSearch = React.lazy(() => import('components/common/AppSearch'))
+const AppSearch = React.lazy(() => import('./AppSearch'))
 export function DeferredAppSearch() {
   const [mounted, setMounted] = React.useState(false)
   React.useEffect(() => {
@@ -33,7 +33,7 @@ export default function AppFrame(props: {children: React.ReactNode}) {
       <Box css={{width: '100vw', height: '100vh', overflow: 'hidden'}}>
         <AppHeader />
         <Box css={{width: '100%', display: 'flex'}}>
-          <AppSideNav />
+          <DocsAppSideNav />
           <Box
             css={{
               display: 'flex',
