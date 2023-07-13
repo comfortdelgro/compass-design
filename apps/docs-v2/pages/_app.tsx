@@ -99,6 +99,8 @@ if (typeof window !== 'undefined' && process.env.NODE_ENV === 'production') {
 function AppWrapper(props: any) {
   const {children} = props
 
+  const [mode, setMode] = React.useState<ETheme>(ETheme.Light)
+
   React.useEffect(() => {
     loadDependencies()
     registerServiceWorker()
@@ -106,13 +108,8 @@ function AppWrapper(props: any) {
 
   useLazyCSS('/static/styles/prism-okaidia.css', '#prismjs')
 
-  const [mode, setMode] = React.useState<ETheme>(ETheme.Light)
-
   const handleChangeThemeMode = () => {
     setMode(mode === ETheme.Light ? ETheme.Dark : ETheme.Light)
-    try {
-      localStorage.setItem('theme-mode', mode)
-    } catch (error) {}
   }
 
   return (

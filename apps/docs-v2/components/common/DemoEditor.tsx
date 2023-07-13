@@ -37,6 +37,13 @@ const StyledSimpleCodeEditor = styled(SimpleCodeEditor, {
   minWidth: '100%',
   '& textarea': {
     outline: 0,
+    fontFamily: '$mono !important',
+    letterSpacing: '0.148px !important',
+    wordWrap: 'normal !important',
+    wordBreak: 'normal !important',
+    fontWeight: '400 !important',
+    whiteSpace: 'pre !important',
+    lineHeight: '19.75px !important',
   },
   '& > textarea, & > pre': {
     whiteSpace: 'pre !important',

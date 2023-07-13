@@ -14,7 +14,7 @@ const Root = styled('div', {
     color: '#f8f8f2',
     borderRadius: '$md',
     border: '1px solid',
-    borderColor: '$cdgBlue100',
+    borderColor: '$gray30',
     overflow: 'auto',
     WebkitOverflowScrolling: 'touch',
     fontSize: 13,
