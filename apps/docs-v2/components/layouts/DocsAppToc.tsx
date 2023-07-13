@@ -42,7 +42,7 @@ function flatten(headings: any) {
   return itemsWithNode
 }
 
-export default function AppTableOfContents(props: any) {
+export default function DocsAppToc(props: any) {
   const {toc} = props
 
   const items = React.useMemo(() => flatten(toc), [toc])

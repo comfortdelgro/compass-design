@@ -46,7 +46,7 @@ export default function AppHeader(props: AppHeaderProps) {
         </Link>
       </Navbar.Brand>
       <NavbarLinks>
-        <Link href='/getting-started/'>
+        <Link href='/getting-started/overview'>
           <Button>Document</Button>
         </Link>
         <Link href='https://comfortdelgro.github.io/compass-design/ladle/'>

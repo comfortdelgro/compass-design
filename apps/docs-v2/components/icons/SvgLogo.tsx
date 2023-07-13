@@ -22,20 +22,20 @@ function SvgLogo(props: any) {
             fill='url(#paint0_linear_11811_137443)'
           />
           <path
-            fill-rule='evenodd'
-            clip-rule='evenodd'
+            fillRule='evenodd'
+            clipRule='evenodd'
             d='M19 4.03885C11.2894 4.03885 5.03882 10.2895 5.03882 18C5.03882 25.7106 11.2894 31.9612 19 31.9612C26.7105 31.9612 32.9612 25.7106 32.9612 18C32.9612 10.2895 26.7105 4.03885 19 4.03885ZM4.96115 18C4.96115 10.2466 11.2466 3.96118 19 3.96118C26.7534 3.96118 33.0388 10.2466 33.0388 18C33.0388 25.7535 26.7534 32.0389 19 32.0389C11.2466 32.0389 4.96115 25.7535 4.96115 18Z'
             fill='#D0D5DD'
           />
           <path
-            fill-rule='evenodd'
-            clip-rule='evenodd'
+            fillRule='evenodd'
+            clipRule='evenodd'
             d='M19 14.0779C16.8338 14.0779 15.0777 15.834 15.0777 18.0002C15.0777 20.1665 16.8338 21.9225 19 21.9225C21.1662 21.9225 22.9223 20.1665 22.9223 18.0002C22.9223 15.834 21.1662 14.0779 19 14.0779ZM15 18.0002C15 15.7911 16.7909 14.0002 19 14.0002C21.2091 14.0002 23 15.7911 23 18.0002C23 20.2094 21.2091 22.0002 19 22.0002C16.7909 22.0002 15 20.2094 15 18.0002Z'
             fill='#D0D5DD'
           />
           <path
-            fill-rule='evenodd'
-            clip-rule='evenodd'
+            fillRule='evenodd'
+            clipRule='evenodd'
             d='M19 15.3201C17.5201 15.3201 16.3204 16.5198 16.3204 17.9997C16.3204 19.4796 17.5201 20.6793 19 20.6793C20.4799 20.6793 21.6796 19.4796 21.6796 17.9997C21.6796 16.5198 20.4799 15.3201 19 15.3201ZM16.2427 17.9997C16.2427 16.4769 17.4772 15.2424 19 15.2424C20.5228 15.2424 21.7573 16.4769 21.7573 17.9997C21.7573 19.5225 20.5228 20.757 19 20.757C17.4772 20.757 16.2427 19.5225 16.2427 17.9997Z'
             fill='#D0D5DD'
           />
@@ -276,7 +276,7 @@ function SvgLogo(props: any) {
           filterUnits='userSpaceOnUse'
           colorInterpolationFilters='sRGB'
         >
-          <feFlood flood-opacity='0' result='BackgroundImageFix' />
+          <feFlood floodOpacity='0' result='BackgroundImageFix' />
           <feColorMatrix
             in='SourceAlpha'
             type='matrix'
@@ -327,7 +327,7 @@ function SvgLogo(props: any) {
           filterUnits='userSpaceOnUse'
           colorInterpolationFilters='sRGB'
         >
-          <feFlood flood-opacity='0' result='BackgroundImageFix' />
+          <feFlood floodOpacity='0' result='BackgroundImageFix' />
           <feColorMatrix
             in='SourceAlpha'
             type='matrix'
@@ -378,7 +378,7 @@ function SvgLogo(props: any) {
           filterUnits='userSpaceOnUse'
           colorInterpolationFilters='sRGB'
         >
-          <feFlood flood-opacity='0' result='BackgroundImageFix' />
+          <feFlood floodOpacity='0' result='BackgroundImageFix' />
           <feColorMatrix
             in='SourceAlpha'
             type='matrix'
@@ -428,8 +428,8 @@ function SvgLogo(props: any) {
           y2='34'
           gradientUnits='userSpaceOnUse'
         >
-          <stop stop-color='white' />
-          <stop offset='1' stop-color='#D0D5DD' />
+          <stop stopColor='white' />
+          <stop offset='1' stopColor='#D0D5DD' />
         </linearGradient>
         <clipPath id='clip0_11811_137443'>
           <rect x='3' y='2' width='32' height='32' rx='8' fill='white' />

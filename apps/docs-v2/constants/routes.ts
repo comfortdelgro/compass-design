@@ -3,41 +3,41 @@ import {
   faSquarePen,
   faToggleOn,
 } from '@fortawesome/free-solid-svg-icons'
-import {TPage} from '../types/common'
+import {TSideNavItem} from 'types/common'
 
-export const routes: TPage[] = [
+export const routes: TSideNavItem[] = [
   {
     pathname: '/getting-started',
     title: 'Getting started',
     icon: faFile,
     children: [
-      {pathname: '/getting-started', title: 'Overview'},
-      {pathname: '/getting-started/installation', title: 'Installation'},
-      {pathname: '/getting-started/usage', title: 'Usage'},
+      {pathname: '/overview', title: 'Overview'},
+      {pathname: '/installation', title: 'Installation'},
+      {pathname: '/usage', title: 'Usage'},
     ],
   },
   {
-    pathname: '/components/autocomplete',
+    pathname: '/components',
     title: 'Components',
     icon: faToggleOn,
     children: [
       {
         title: 'Autocomplete',
-        pathname: '/components/autocomplete',
+        pathname: '/autocomplete',
       },
       {
         title: 'Avatar',
-        pathname: '/components/avatar',
+        pathname: '/avatar',
       },
     ],
   },
   {
-    pathname: '/customization/theming',
+    pathname: '/customization',
     title: 'Customization',
     icon: faSquarePen,
     children: [
-      {pathname: '/customization/theming', title: 'Theming'},
-      {pathname: '/customization/z-index', title: 'Z-index'},
+      {pathname: '/theming', title: 'Theming'},
+      {pathname: '/z-index', title: 'Z-index'},
     ],
   },
 ]

@@ -1,8 +1,13 @@
 import {Box} from '@comfortdelgro/react-compass'
 import MarkdownLinks from 'components/common/MarkdownLinks'
 import AppHeader from 'components/layouts/AppHeader'
+import routes from 'constants/routes'
+import SidenavContext from 'contexts/SideNav'
+import {map} from 'lodash'
+import {useRouter} from 'next/router'
 import * as React from 'react'
-import DocsAppSideNav from './DocsAppSlideNav'
+import {TSideNavItem} from 'types/common'
+import DocsAppSideNav from './DocsAppSideNav'
 
 const AppSearch = React.lazy(() => import('./AppSearch'))
 export function DeferredAppSearch() {
@@ -24,16 +29,72 @@ export function DeferredAppSearch() {
   )
 }
 
-export default function AppFrame(props: {children: React.ReactNode}) {
+export default function DocsAppFrame(props: {children: React.ReactNode}) {
   const {children} = props
+  const router = useRouter()
+
+  const [sidenav, setSidenav] = React.useState<TSideNavItem[]>([])
+
+  React.useEffect(() => {
+    const [_, parentPath = 'getting-started', childrenPath = 'overview'] =
+      router.route.split('/')
+    const newSidenav = map(routes, (route) => {
+      if (route.pathname === `/${parentPath}`) {
+        return {
+          ...route,
+          isExpanded: true,
+          children: map(route.children, (child) => {
+            if (child.pathname === `/${childrenPath}`) {
+              return {
+                ...child,
+                isActive: true,
+              }
+            }
+            return {
+              ...child,
+              pathname: `${route.pathname}${child.pathname}`,
+            }
+          }),
+        }
+      }
+      return {
+        ...route,
+        isExpanded: false,
+        children: map(route.children, (child) => {
+          return {
+            ...child,
+            pathname: `${route.pathname}${child.pathname}`,
+          }
+        }),
+      }
+    })
+
+    setSidenav(newSidenav)
+  }, [])
+
+  const handleExpandSidenav = (path: string) => {
+    const newSidenav = map(sidenav, (sideNavItem) => {
+      if (path === sideNavItem.pathname) {
+        return {
+          ...sideNavItem,
+          isExpanded: true,
+        }
+      }
+      return {
+        ...sideNavItem,
+        isExpanded: false,
+      }
+    })
+    setSidenav(newSidenav)
+  }
 
   return (
-    <>
+    <SidenavContext.Provider value={sidenav}>
       <MarkdownLinks />
       <Box css={{width: '100vw', height: '100vh', overflow: 'hidden'}}>
         <AppHeader />
         <Box css={{width: '100%', display: 'flex'}}>
-          <DocsAppSideNav />
+          <DocsAppSideNav handleExpandSidenav={handleExpandSidenav} />
           <Box
             css={{
               display: 'flex',
@@ -46,6 +107,6 @@ export default function AppFrame(props: {children: React.ReactNode}) {
           </Box>
         </Box>
       </Box>
-    </>
+    </SidenavContext.Provider>
   )
 }
