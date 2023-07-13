@@ -263,7 +263,7 @@ function SvgLogo(props: any) {
           height='31.8'
           rx='7.9'
           stroke='#D0D5DD'
-          stroke-width='0.2'
+          strokeWidth='0.2'
         />
       </g>
       <defs>

@@ -47,7 +47,6 @@ const DocsAppSideNav = (props: TDocsAppSideNav) => {
           />
         )
       })}
-      <Sidenav.Divider />
     </Sidenav>
   )
 }
@@ -75,7 +74,7 @@ const CustomSidenavItem = (props: TCustomSideNavItem) => {
       >
         {icon ? <Icon icon={icon}></Icon> : <></>}
         <Flexbox css={{justifyContent: 'space-between', width: '100%'}}>
-          {title && <span>{title}</span>}
+          {title && <span style={{fontSize: 16}}>{title}</span>}
           {isExpanded ? (
             <ArrowDown style={{width: 15, height: 15}} />
           ) : (
@@ -84,13 +83,20 @@ const CustomSidenavItem = (props: TCustomSideNavItem) => {
         </Flexbox>
       </Sidenav.Item>
       {isExpanded && children && children.length > 0 && (
-        <Box css={{padding: '0 $4'}}>
+        <Box>
           <MenuList
             css={{
               overflow: 'initial',
+              padding: '$1 $4',
               width: '100%',
               borderRadius: 8,
-              borderRight: 'none',
+              border: 'none',
+              background: 'none',
+              fontWeight: 600,
+              '.active': {
+                background: '$cdgBlue20',
+                color: '$cdgBlue100',
+              },
             }}
           >
             <MenuListDropdown>
@@ -103,6 +109,13 @@ const CustomSidenavItem = (props: TCustomSideNavItem) => {
                   <MenuListDropdown.Item
                     key={child.pathname}
                     isActive={child.isActive}
+                    css={{
+                      '&:hover': {
+                        background: '$cdgBlue10',
+                        color: '$cdgBlue60',
+                      },
+                    }}
+                    className={child.isActive ? 'active' : ''}
                   >
                     {child.title}
                   </MenuListDropdown.Item>
