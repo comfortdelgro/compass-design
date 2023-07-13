@@ -68,7 +68,6 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
 
   const filesValidator = (files: FileList) => {
     if (files && files.length > 0) {
-      console.log(files)
       const isInvalidFileSize = Array.from(files).some(
         (file) => file.size > fileSizeLimit,
       )

@@ -55,7 +55,13 @@ const DataGridColumnHeader = React.forwardRef<
           canSort={headerProps.column.getCanSort()}
         >
           {
-            <div onClick={headerProps.column.getToggleGroupingHandler()}>
+            <div
+              onClick={
+                headerProps.column.columnDef.enableGrouping === true
+                  ? headerProps.column.getToggleGroupingHandler()
+                  : undefined
+              }
+            >
               {isGroupedColumn ? (
                 <span>({headerProps.column.getGroupedIndex()})</span>
               ) : (
