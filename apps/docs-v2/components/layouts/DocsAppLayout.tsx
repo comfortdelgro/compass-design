@@ -25,10 +25,10 @@ export default function AppLayoutDocs(props: any) {
         <Box
           css={{
             padding: '$5 $16',
-            maxHeight: 'calc(100vh - 51px)',
             overflowY: 'scroll',
             width: '100%',
           }}
+          id='document'
         >
           <EditPage sourceLocation={location} />
           {children}

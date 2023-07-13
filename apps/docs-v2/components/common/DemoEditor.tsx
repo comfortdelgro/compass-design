@@ -39,12 +39,15 @@ const StyledSimpleCodeEditor = styled(SimpleCodeEditor, {
   '& textarea': {
     outline: 0,
     fontFamily: '$mono !important',
-    letterSpacing: '0.148px !important',
+    letterSpacing: '0.14px !important',
     wordWrap: 'normal !important',
     wordBreak: 'normal !important',
+    whiteSpaceCollapse: 'preserve !important',
     fontWeight: '400 !important',
     whiteSpace: 'pre !important',
-    lineHeight: '19.75px !important',
+    lineHeight: '19.65px !important',
+    textIndent: '0px !important',
+    tabSize: 4,
   },
   '& > textarea, & > pre': {
     whiteSpace: 'pre !important',

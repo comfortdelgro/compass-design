@@ -1,10 +1,9 @@
 import {Box, Typography} from '@comfortdelgro/react-compass'
 import {shouldHandleLinkClick} from 'components/common/MarkdownLinks'
+import {noop} from 'lodash'
 import throttle from 'lodash/throttle'
 import Link from 'next/link'
 import * as React from 'react'
-
-const noop = () => {}
 
 // @ts-ignore
 function useThrottledOnScroll(callback, delay) {
@@ -18,11 +17,12 @@ function useThrottledOnScroll(callback, delay) {
       return undefined
     }
 
-    window.addEventListener('scroll', throttledCallback)
+    const contentDom = document.querySelector('#document')
+    if (contentDom) contentDom.addEventListener('scroll', throttledCallback)
     return () => {
-      window.removeEventListener('scroll', throttledCallback)
-      // @ts-ignore
-      throttledCallback.cancel()
+      const contentDom = document.querySelector('#document')
+      if (contentDom)
+        contentDom.removeEventListener('scroll', throttledCallback)
     }
   }, [throttledCallback])
 }
@@ -50,15 +50,14 @@ export default function DocsAppToc(props: any) {
   const clickedRef = React.useRef(false)
   const unsetClickedRef = React.useRef(null)
   const findActiveIndex = React.useCallback(() => {
-    // Don't set the active index based on scroll if a link was just clicked
     if (clickedRef.current) {
       return
     }
-
     let active
+    const contentDom = document.querySelector('#document')
+    if (!contentDom) return
     for (let i = items.length - 1; i >= 0; i -= 1) {
-      // No hash if we're near the top of the page
-      if (document.documentElement.scrollTop < 200) {
+      if (contentDom.scrollTop < 200) {
         active = {hash: null}
         break
       }
@@ -66,31 +65,19 @@ export default function DocsAppToc(props: any) {
       const item = items[i]
       const node = document.getElementById(item.hash)
 
-      if (process.env.NODE_ENV !== 'production') {
-        if (!node) {
-          console.error(
-            `Missing node on the item ${JSON.stringify(item, null, 2)}`,
-          )
-        }
-      }
-
       if (
         node &&
-        node.offsetTop <
-          document.documentElement.scrollTop +
-            document.documentElement.clientHeight / 8
+        node.offsetTop < contentDom.scrollTop + contentDom.clientHeight / 8
       ) {
         active = item
         break
       }
     }
-
     if (active && activeState !== active.hash) {
       setActiveState(active.hash)
     }
   }, [activeState, items])
 
-  // Corresponds to 10 frames at 60 Hz
   useThrottledOnScroll(items.length > 0 ? findActiveIndex : null, 166)
 
   // @ts-ignore
@@ -120,13 +107,22 @@ export default function DocsAppToc(props: any) {
     [],
   )
 
-  const itemLink = (item: any, secondary = false) => (
+  const itemLink = (item: any) => (
     <Link
       href={`#${item.hash}`}
       onClick={handleClick(item.hash)}
-      // active={activeState === item.hash}
+      style={{
+        textDecoration: 'none',
+      }}
     >
-      <span dangerouslySetInnerHTML={{__html: item.text}} />
+      <Box
+        dangerouslySetInnerHTML={{__html: item.text}}
+        css={{
+          color: `${activeState === item.hash ? '$cdgBlue100' : '$gray80'}`,
+          textDecoration: 'none',
+          fontWeight: 'bold',
+        }}
+      />
     </Link>
   )
 
@@ -141,8 +137,15 @@ export default function DocsAppToc(props: any) {
     >
       {toc.length > 0 ? (
         <>
-          <Typography.Header variant='header4'>Contents</Typography.Header>
-          <Typography.Label>
+          <Typography.Header
+            variant='header4'
+            css={{
+              marginBottom: '$2',
+            }}
+          >
+            Contents
+          </Typography.Header>
+          <Typography.Body variant='body3'>
             {toc.map((item: any) => (
               <Box key={item.text}>
                 {itemLink(item)}
@@ -155,14 +158,14 @@ export default function DocsAppToc(props: any) {
                         }}
                         key={subitem.text}
                       >
-                        {itemLink(subitem, true)}
+                        {itemLink(subitem)}
                       </Box>
                     ))}
                   </Typography.Label>
                 ) : null}
               </Box>
             ))}
-          </Typography.Label>
+          </Typography.Body>
         </>
       ) : null}
     </Box>

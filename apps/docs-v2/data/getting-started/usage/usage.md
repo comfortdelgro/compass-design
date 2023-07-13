@@ -40,8 +40,3 @@ class MyDocument extends Document {
 
 export default MyDocument
 ```
-
-You can play around with this code in the interactive Code Sandbox demo below.
-Try changing the `variant` on the Button to `outlined` to see how the style changes:
-
-{{"demo": "Usage.js", "hideToolbar": true, "bg": true}}

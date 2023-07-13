@@ -112,7 +112,7 @@ const CustomSidenavItem = (props: TCustomSideNavItem) => {
                     css={{
                       '&:hover': {
                         background: '$cdgBlue10',
-                        color: '$cdgBlue60',
+                        color: '$cdgBlue80',
                       },
                     }}
                     className={child.isActive ? 'active' : ''}

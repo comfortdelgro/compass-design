@@ -103,7 +103,7 @@ export default function DocsAppFrame(props: {children: React.ReactNode}) {
           <Box
             css={{
               display: 'flex',
-              maxHeight: 'calc(100vh - 51px)',
+              height: 'calc(100vh - 51px)',
               overflowY: 'hidden',
               width: '100%',
             }}

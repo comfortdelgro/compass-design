@@ -43,7 +43,7 @@ export default function ShowcaseContainer({
             borderWidth: '0 1px 1px 1px',
             borderStyle: 'solid',
             borderColor: '$gray100',
-            backgroundColor: '$gray110',
+            backgroundColor: '$black',
             borderBottomLeftRadius: 20,
             borderBottomRightRadius: 20,
           }}

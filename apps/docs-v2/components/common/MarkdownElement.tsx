@@ -8,7 +8,7 @@ const Root = styled('div', {
   wordBreak: 'break-word',
   '& pre': {
     lineHeight: 1.5, // Developers likes when the code is dense.
-    margin: '$2',
+    margin: '$2 0',
     padding: '$2',
     backgroundColor: '#323130',
     color: '#f8f8f2',

@@ -37,11 +37,6 @@ export default class MyDocument extends Document {
             href='https://comfortdelgro.github.io/compass-design'
             hrefLang='x-default'
           />
-          {/*
-            Preconnect allows the browser to setup early connections before an HTTP request
-            is actually sent to the server.
-            This includes DNS lookups, TLS negotiations, TCP handshakes.
-          */}
           <link
             href='https://fonts.gstatic.com'
             rel='preconnect'
@@ -51,36 +46,6 @@ export default class MyDocument extends Document {
           <link
             href='https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap'
             rel='stylesheet'
-          />
-          <link // prevent font flash
-            rel='preload'
-            // optimized for english characters (40kb -> 6kb)
-            href='/static/fonts/PlusJakartaSans-ExtraBold-subset.woff2'
-            as='font'
-            type='font/woff2'
-            crossOrigin='anonymous'
-          />
-          <style
-            // the above <link> does not work in mobile device, this inline <style> fixes it without blocking resources
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{
-              __html: `@font-face{font-family:'PlusJakartaSans-ExtraBold';font-style:normal;font-weight:800;font-display:swap;src:url('/static/fonts/PlusJakartaSans-ExtraBold-subset.woff2') format('woff2');}`,
-            }}
-          />
-          <style
-            // the above <link> does not work in mobile device, this inline <style> fixes it without blocking resources
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{
-              __html: `@font-face{font-family:'PlusJakartaSans-Bold';font-style:normal;font-weight:700;font-display:swap;src:url('/static/fonts/PlusJakartaSans-Bold-subset.woff2') format('woff2');}`,
-            }}
-          />
-          <style
-            // Loads IBM Plex Sans: 400,500,700 & IBM Plex Mono: 400, 600
-            // use https://cssminifier.com/ to minify
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{
-              __html: `@font-face{font-family:'IBM Plex Sans';src:url(/static/fonts/IBMPlexSans-Regular.woff2) format('woff2'),url(/static/fonts/IBMPlexSans-Regular.woff) format('woff'),url(/static/fonts/IBMPlexSans-Regular.ttf) format('truetype');font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:'IBM Plex Sans';src:url(/static/fonts/IBMPlexSans-Medium.woff2) format('woff2'),url(/static/fonts/IBMPlexSans-Medium.woff) format('woff'),url(/static/fonts/IBMPlexSans-Medium.ttf) format('truetype');font-weight:500;font-style:normal;font-display:swap}@font-face{font-family:'IBM Plex Sans';src:url(/static/fonts/IBMPlexSans-SemiBold.woff2) format('woff2'),url(/static/fonts/IBMPlexSans-SemiBold.woff) format('woff'),url(/static/fonts/IBMPlexSans-SemiBold.ttf) format('truetype');font-weight:600;font-style:normal;font-display:swap}@font-face{font-family:'IBM Plex Sans';src:url(/static/fonts/IBMPlexSans-Bold.woff2) format('woff2'),url(/static/fonts/IBMPlexSans-Bold.woff) format('woff'),url(/static/fonts/IBMPlexSans-Bold.ttf) format('truetype');font-weight:700;font-style:normal;font-display:swap}`,
-            }}
           />
         </Head>
         <body>
