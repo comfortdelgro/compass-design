@@ -1,9 +1,19 @@
 import {
+  Badge,
   Box,
   Button,
+  Icon,
   Tooltip,
   TooltipTrigger,
 } from '@comfortdelgro/react-compass'
+import {
+  faCode,
+  faCodeFork,
+  faCopy,
+  faFileCode,
+  faInfinity,
+  faRefresh,
+} from '@fortawesome/free-solid-svg-icons'
 import copy from 'clipboard-copy'
 import Link from 'next/link'
 import codeSandbox from '../sandbox/CodeSandbox'
@@ -35,11 +45,24 @@ export default function DemoToolbar(props: any) {
 
   return (
     <>
-      <Box>
+      <Box
+        css={{
+          background: '$gray30',
+          borderTop: '1px solid $gray40',
+          borderRight: '1px solid $gray40',
+          borderLeft: '1px solid $gray40',
+          padding: '$2 $4',
+          display: 'flex',
+          justifyContent: 'space-between',
+        }}
+      >
+        <Box>
+          <Badge label='Typescript' color='info' />
+        </Box>
         <Box>
           <TooltipTrigger>
-            <Button onClick={handleCodeOpenClick}>
-              {codeOpen ? 'Hide the source' : 'Show the source'}
+            <Button variant='ghost' size='sm' onClick={handleCodeOpenClick}>
+              <Icon icon={faCode}></Icon>
             </Button>
             <Tooltip>
               {codeOpen ? 'Hide the source' : 'Show the source'}
@@ -48,31 +71,39 @@ export default function DemoToolbar(props: any) {
 
           <TooltipTrigger>
             <Button
+              variant='ghost'
+              size='sm'
               onClick={() =>
                 codeSandbox.createReactApp(demoData).openSandbox('/demo')
               }
             >
-              Edit in code Sandbox
+              <Icon icon={faCodeFork}></Icon>
             </Button>
             <Tooltip>Edit in code Sandbox</Tooltip>
           </TooltipTrigger>
           <TooltipTrigger>
-            <Button onClick={handleCopyClick}>Copy the source code</Button>
+            <Button variant='ghost' size='sm' onClick={handleCopyClick}>
+              <Icon icon={faCopy}></Icon>
+            </Button>
             <Tooltip>Copy the source code</Tooltip>
           </TooltipTrigger>
           <TooltipTrigger>
-            <Button onClick={handleResetFocusClick}>
-              Reset focus to test keyboard navigation
+            <Button variant='ghost' size='sm' onClick={handleResetFocusClick}>
+              <Icon icon={faInfinity}></Icon>
             </Button>
             <Tooltip>Reset focus to test keyboard navigation</Tooltip>
           </TooltipTrigger>
           <TooltipTrigger>
-            <Button onClick={onResetDemoClick}>Reset demo</Button>
+            <Button variant='ghost' size='sm' onClick={onResetDemoClick}>
+              <Icon icon={faRefresh}></Icon>
+            </Button>
             <Tooltip>Reset demo</Tooltip>
           </TooltipTrigger>
           <TooltipTrigger>
             <Link href={demoData.githubLocation}>
-              <Button>View the source on Github</Button>
+              <Button variant='ghost' size='sm'>
+                <Icon icon={faFileCode}></Icon>
+              </Button>
             </Link>
             <Tooltip>View the source on Github</Tooltip>
           </TooltipTrigger>

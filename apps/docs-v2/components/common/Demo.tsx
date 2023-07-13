@@ -226,6 +226,14 @@ export default function Demo(props: any) {
           margin: 'auto',
           display: 'flex',
           justifyContent: 'center',
+          background: '$gray20',
+          padding: '$8 $4',
+          borderTopRightRadius: 12,
+          borderTopLeftRadius: 12,
+          borderRight: '1px solid $gray40',
+          borderTop: '1px solid $gray40',
+          borderLeft: '1px solid $gray40',
+          marginTop: '$8 !important',
         }}
         onMouseEnter={handleDemoHover}
         onMouseLeave={handleDemoHover}
@@ -235,12 +243,13 @@ export default function Demo(props: any) {
           tabIndex={-1}
           css={{
             position: 'absolute',
-            top: -15,
-            left: 0,
+            top: 5,
+            left: 5,
             width: 10,
+            maxWidth: 12,
             height: 12,
             pointerEvents: 'none',
-            background: 'gray',
+            background: '$gray40',
             borderRadius: 10,
             border: 'none',
             '&:focus': {

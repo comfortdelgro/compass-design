@@ -46,7 +46,7 @@ export default function DocsAppFooter(props: any) {
           display: 'flex',
           justifyContent: 'space-between',
           padding: '$4 0',
-          borderTop: '1px solid #c4c4c4',
+          // borderTop: '1px solid #c4c4c4',
           marginTop: '$4',
         }}
       >
