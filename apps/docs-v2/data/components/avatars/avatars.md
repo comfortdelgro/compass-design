@@ -23,4 +23,4 @@ import Avatar from '@comfortdelgro/react-compass/avatar'
 
 Image avatars can be created by passing standard `image` props to the component.
 
-{{"demo": "ImageAvatars.js"}}
+{{"demo": "ImageAvatars.tsx"}}

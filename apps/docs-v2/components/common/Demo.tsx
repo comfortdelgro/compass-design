@@ -112,20 +112,6 @@ const DemoCodeViewer = styled(HighlightedCode, {
 export default function Demo(props: any) {
   const {demo, demoOptions, githubLocation} = props
 
-  if (demoOptions.demo.endsWith('.ts') || demoOptions.demo.endsWith('.tsx')) {
-    throw new Error(
-      [
-        `The following demos use TS directly: ${demoOptions.demo}.`,
-        '',
-        'Please run "yarn docs:typescript:formatted" to generate a JS version and reference it:',
-        `{{"demo": "${demoOptions.demo.replace(/\.(.*)$/, '.js')}", …}}.`,
-        '',
-        "Otherwise, if it's not a code demo hide the toolbar:",
-        `{{"demo": "${demoOptions.demo}", …}}.`,
-      ].join('\n'),
-    )
-  }
-
   const codeVariant = useCodeVariant()
 
   const demoData: any = useDemoData(codeVariant, demo, githubLocation)

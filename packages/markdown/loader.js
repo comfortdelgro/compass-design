@@ -102,9 +102,6 @@ module.exports = async function demoLoader() {
 
   await Promise.all(
     demoNames.map(async (demoName) => {
-      // TODO: const moduleID = demoName;
-      // The import paths currently use a completely different format.
-      // They should just use relative imports.
       let moduleID = `./${demoName.replace(
         `pages/${fileRelativeContext.replace(/^docs\/src\/pages\//, '')}/`,
         '',
@@ -125,7 +122,8 @@ module.exports = async function demoLoader() {
       )
 
       try {
-        const previewFilepath = moduleFilepath.replace(/\.js$/, '.tsx.preview')
+        const previewFilepath = moduleFilepath.replace(/\.tsx$/, '.tsx.preview')
+        console.log(previewFilepath)
 
         const jsxPreview = await fs.readFile(previewFilepath, {
           encoding: 'utf8',

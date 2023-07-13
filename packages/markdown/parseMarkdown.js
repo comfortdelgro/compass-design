@@ -325,7 +325,7 @@ function createRender(context) {
         lang,
         true,
       )}">${escaped ? code : escape(code, true)}</code></pre>${[
-        '<button data-ga-event-category="code" data-ga-event-action="copy-click" aria-label="Copy the code" class="MuiCode-copy">',
+        '<button aria-label="Copy the code" class="MuiCode-copy">',
         '<svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ContentCopyRoundedIcon">',
         '<use class="MuiCode-copy-icon" xlink:href="#copy-icon" />',
         '<use class="MuiCode-copied-icon" xlink:href="#copied-icon" />',
@@ -393,9 +393,6 @@ function prepareMarkdown(config) {
   const {fileRelativeContext, translations, options} = config
 
   const demos = {}
-  /**
-   * @type {Record<string, { rendered: Array<string | { component: string } | { demo:string }> }>}
-   */
   const docs = {}
   const headingHashes = {}
 
