@@ -41,7 +41,7 @@ export const StyledHelperText = styled('div', {
   color: '#B4B4B4',
 })
 
-export const StyledUploadContent = styled('label', {
+export const StyledUploadContent = styled('div', {
   // reset
   appearance: 'none',
   border: 'none',
