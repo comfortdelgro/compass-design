@@ -1,9 +1,7 @@
 import {Dropdown, TextField} from '@comfortdelgro/react-compass'
 import React, {useState} from 'react'
 
-interface Props {}
-
-export const LayoutInputPhoneNumber: React.FC<Props> = ({}) => {
+export const LayoutInputPhoneNumber: React.FC = () => {
   const [inputValue, setInputValue] = useState('7685-9004-5999')
   const [isValid, setIsValid] = useState(true)
   const validateInput = (input: string | number) => {
