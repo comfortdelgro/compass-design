@@ -99,7 +99,7 @@ const MultipleDropdown = React.forwardRef<
     helperText,
     defaultOpen,
     errorMessage,
-    selectedKeys = [],
+    selectedKeys,
     numberOfRows,
     displayedValue = 'chip',
     icon = <Icon />,
@@ -147,8 +147,7 @@ const MultipleDropdown = React.forwardRef<
   const [clonedChildren, setClonedChildren] =
     React.useState<React.ReactNode>(null)
 
-  const mounted = React.useRef(false)
-  const selectedItemInitialRef = React.useRef(false)
+  const openStateInitialChangedRef = React.useRef(false)
 
   // ====================================== REF ======================================
   const refDOM = useDOMRef<HTMLDivElement>(ref)
@@ -166,6 +165,11 @@ const MultipleDropdown = React.forwardRef<
   const dismiss = useDismiss(context)
 
   const {getReferenceProps, getFloatingProps} = useInteractions([dismiss])
+
+  const isUncontrolledComponent = React.useMemo(
+    () => defaultSelectedKeys && defaultSelectedKeys?.length > 0,
+    [defaultSelectedKeys],
+  )
 
   // clone children to assign value prop if not exists. the value would be equal to the key prop
   // This is to support the legacy code where users don't pass value prop and use key prop instead
@@ -185,8 +189,8 @@ const MultipleDropdown = React.forwardRef<
   }, [children])
 
   React.useEffect(() => {
-    if (!mounted.current) {
-      mounted.current = true
+    if (!openStateInitialChangedRef.current) {
+      openStateInitialChangedRef.current = true
       return
     }
     setOpen(!!isOpen)
@@ -205,43 +209,38 @@ const MultipleDropdown = React.forwardRef<
    * Fill selected data and run only on component initialization
    */
   React.useEffect(() => {
-    // Run set current selectedKeys | defaultSelectedKeys for first time
-    if (!clonedChildren || selectedItemInitialRef.current) {
-      return
-    }
-    selectedItemInitialRef.current = true
     if (
-      selectedItems.length > 0 ||
+      !clonedChildren ||
       !(
-        selectedKeys?.length > 0 ||
+        (selectedKeys && selectedKeys?.length > 0) ||
         (defaultSelectedKeys && defaultSelectedKeys.length > 0)
       )
     )
       return
 
-    const currentSelectedKeys = defaultSelectedKeys || selectedKeys
+    const currentSelectedKeys = defaultSelectedKeys ?? selectedKeys ?? []
 
     let currentFocusKey = ''
+
+    const newSelectedItems: SelectedItemDropdown[] = []
 
     // Find the item with the specified value
     for (const currentSelectedKey of currentSelectedKeys) {
       const item = getItemByKey(currentSelectedKey, clonedChildren)
 
       if (item) {
-        setSelectedItems((items) => {
-          items.push({
-            value: currentSelectedKey.toString(),
-            displayValue: item as React.ReactNode,
-          })
-          return items
+        newSelectedItems.push({
+          value: currentSelectedKey.toString(),
+          displayValue: item as React.ReactNode,
         })
         if (!currentFocusKey) {
           currentFocusKey = currentSelectedKey.toString()
         }
       }
     }
+    setSelectedItems(newSelectedItems)
     setFocusKey(currentFocusKey)
-  }, [clonedChildren, selectedKeys, selectedItems, defaultSelectedKeys])
+  }, [clonedChildren, selectedKeys, defaultSelectedKeys])
 
   const handleDropdownItemClick = React.useCallback(
     (item: SelectedItemDropdown) => {
@@ -256,12 +255,12 @@ const MultipleDropdown = React.forwardRef<
         } else {
           newSelectedItems.splice(itemIndex, 1)
         }
-        setSelectedItems([...newSelectedItems])
+        isUncontrolledComponent && setSelectedItems([...newSelectedItems])
         onSelectionChange?.(newSelectedItems.map((item) => item.value))
         inputRef.current?.focus()
       }
     },
-    [isReadOnly, selectedItems],
+    [isReadOnly, selectedItems, isUncontrolledComponent],
   )
 
   const handleKeyDown = React.useCallback(
@@ -451,7 +450,7 @@ const MultipleDropdown = React.forwardRef<
           }
           return [...sectionIdsSet]
         })
-        setSelectedItems([...newSelectedItems])
+        isUncontrolledComponent && setSelectedItems([...newSelectedItems])
         onSelectionChange?.(newSelectedItems.map((item) => item.value))
         inputRef.current?.focus()
       }

@@ -69,7 +69,7 @@ interface SampleData {
 }
 
 export const Default: React.FC = () => {
-  const [value, setValue] = React.useState<Key[]>([])
+  const [value, setValue] = React.useState<Key[]>(['cat'])
   const [value2, setValue2] = React.useState<Key[]>(['snake', 'cat', 'snake'])
   const [isChecked, setIsChecked] = React.useState(true)
   const [sectionSelected, setSectionSelected] = React.useState<
@@ -96,7 +96,6 @@ export const Default: React.FC = () => {
           disabledKeys={['cat']}
           placeholder='Choose an animal'
           selectedKeys={value}
-          defaultSelectedKeys={['dog']}
           erroredKeys={['red panda']}
           isRequired
           onSelectionChange={(k: Key[]) => setValue(k)}
@@ -438,7 +437,6 @@ export const Default: React.FC = () => {
           label='Favorite Animal'
           placeholder='Choose an animal'
           selectedKeys={value}
-          defaultSelectedKeys={['dog']}
           isRequired
           onSelectionChange={(k: Key[]) => setValue(k)}
           css={{width: '80%'}}
@@ -493,7 +491,6 @@ export const Default: React.FC = () => {
           disabledKeys={['cat']}
           placeholder='Choose an animal'
           selectedKeys={value}
-          defaultSelectedKeys={['cat']}
           isRequired
           onSelectionChange={(k: Key[]) => setValue(k)}
           isDisabled
