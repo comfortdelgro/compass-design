@@ -11,8 +11,6 @@ import {useDOMRef} from '../utils/use-dom-ref'
 import {SpeedDialAction} from './speed-dial-action'
 import {SpeedDialTrigger} from './speed-dial-trigger'
 import {
-  SpeedDialIcon,
-  SpeedDialName,
   SpeedDialVariantProps,
   StyledSpeedDial,
   StyledSpeedDialActions,
@@ -133,14 +131,7 @@ const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
               icon={icon}
               name={name}
               position={position}
-            >
-              <SpeedDialIcon className='speed-dial__action-icon'>
-                {icon}
-              </SpeedDialIcon>
-              <SpeedDialName className='speed-dial__action-name'>
-                {name}
-              </SpeedDialName>
-            </SpeedDialAction>
+            />
           ))}
         </StyledSpeedDialActions>
       </StyledSpeedDial>
