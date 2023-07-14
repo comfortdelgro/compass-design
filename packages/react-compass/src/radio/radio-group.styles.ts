@@ -18,7 +18,7 @@ export const StyledRadioGroup = styled('div', {
     },
   },
   '&:focus': {
-    outline: 'none',
+    // outline: 'none',
   },
 })
 
