@@ -49,8 +49,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   } = props
 
   const tabRef = useDOMRef<HTMLDivElement>(ref)
-  const {collection, currentKey, setCurrentKey, focusKey} = useTab(
-    tabRef,
+  const {collection, currentKey, setCurrentKey} = useTab(
     children,
     defaultSelectedKey,
     selectedKey,
@@ -77,20 +76,19 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
         orientation={orientation}
         variant={variant}
         {...delegated}
-        tabIndex={1}
+        tabIndex={0}
       >
         {[...collection].map((item) => (
           <Tab
-            item={item}
             key={item.key}
             icon={props.icon}
             variant={props.variant}
-            focusKey={focusKey}
-            textColor={textColor}
-            currentKey={currentKey}
-            isDisabled={isDisabled}
             disabledKeys={disabledKeys}
+            currentKey={currentKey}
+            textColor={textColor}
             indicatorColor={indicatorColor}
+            item={item}
+            isDisabled={isDisabled}
             onSelect={onSelect}
           />
         ))}
