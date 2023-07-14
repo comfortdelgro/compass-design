@@ -378,8 +378,9 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   }, [open, type, fillTextForInput])
 
   useEffect(() => {
+    // Wait for calculate clonedChildren
     // Run set current selectedKey | defaultSelectedKey for first time
-    if (selectedItemChangedRef.current) {
+    if (!clonedChildren || selectedItemChangedRef.current) {
       return
     }
     selectedItemChangedRef.current = true

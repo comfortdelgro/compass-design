@@ -144,6 +144,9 @@ const MultipleDropdown = React.forwardRef<
     DropdownItemKey[]
   >([])
 
+  const [clonedChildren, setClonedChildren] =
+    React.useState<React.ReactNode>(null)
+
   const mounted = React.useRef(false)
   const selectedItemInitialRef = React.useRef(false)
 
@@ -163,6 +166,23 @@ const MultipleDropdown = React.forwardRef<
   const dismiss = useDismiss(context)
 
   const {getReferenceProps, getFloatingProps} = useInteractions([dismiss])
+
+  // clone children to assign value prop if not exists. the value would be equal to the key prop
+  // This is to support the legacy code where users don't pass value prop and use key prop instead
+  React.useEffect(() => {
+    const clonedChildren = React.Children.map(children, (child) => {
+      const clonedChild = React.cloneElement(child as React.ReactElement)
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      if (!clonedChild?.props?.value) {
+        return React.cloneElement(clonedChild, {
+          value: clonedChild.key || '',
+        })
+      } else {
+        return clonedChild
+      }
+    })
+    setClonedChildren(clonedChildren)
+  }, [children])
 
   React.useEffect(() => {
     if (!mounted.current) {
@@ -186,7 +206,7 @@ const MultipleDropdown = React.forwardRef<
    */
   React.useEffect(() => {
     // Run set current selectedKeys | defaultSelectedKeys for first time
-    if (selectedItemInitialRef.current) {
+    if (!clonedChildren || selectedItemInitialRef.current) {
       return
     }
     selectedItemInitialRef.current = true
@@ -205,7 +225,7 @@ const MultipleDropdown = React.forwardRef<
 
     // Find the item with the specified value
     for (const currentSelectedKey of currentSelectedKeys) {
-      const item = getItemByKey(currentSelectedKey, children)
+      const item = getItemByKey(currentSelectedKey, clonedChildren)
 
       if (item) {
         setSelectedItems((items) => {
@@ -221,7 +241,7 @@ const MultipleDropdown = React.forwardRef<
       }
     }
     setFocusKey(currentFocusKey)
-  }, [children, selectedKeys, selectedItems, defaultSelectedKeys])
+  }, [clonedChildren, selectedKeys, selectedItems, defaultSelectedKeys])
 
   const handleDropdownItemClick = React.useCallback(
     (item: SelectedItemDropdown) => {
@@ -262,7 +282,7 @@ const MultipleDropdown = React.forwardRef<
           if (currentFocusKey) {
             const nextKey = getItemAbove(
               currentFocusKey,
-              children,
+              clonedChildren,
               dropdownItemKeys,
             )
             if (nextKey?.props?.value) {
@@ -270,8 +290,10 @@ const MultipleDropdown = React.forwardRef<
             }
           } else {
             setFocusKey(
-              getLastItem(children, dropdownItemKeys)?.props.value.toString() ??
-                '',
+              getLastItem(
+                clonedChildren,
+                dropdownItemKeys,
+              )?.props.value?.toString() ?? '',
             )
           }
           break
@@ -281,7 +303,7 @@ const MultipleDropdown = React.forwardRef<
           if (currentFocusKey) {
             const prevKey = getItemBelow(
               currentFocusKey,
-              children,
+              clonedChildren,
               dropdownItemKeys,
             )
             if (prevKey?.props?.value) {
@@ -290,19 +312,19 @@ const MultipleDropdown = React.forwardRef<
           } else {
             setFocusKey(
               getFirstItem(
-                children,
+                clonedChildren,
                 dropdownItemKeys,
-              )?.props.value.toString() ?? '',
+              )?.props.value?.toString() ?? '',
             )
           }
           break
         case 'Enter':
           event.preventDefault()
           if (currentFocusKey) {
-            const focusedItem = getItemByKey(currentFocusKey, children)
+            const focusedItem = getItemByKey(currentFocusKey, clonedChildren)
             if (focusedItem) {
               handleDropdownItemClick({
-                value: focusedItem.props.value.toString(),
+                value: focusedItem.props.value?.toString() || '',
                 displayValue:
                   focusedItem.props.textValue || focusedItem.props.children,
               })
@@ -319,7 +341,7 @@ const MultipleDropdown = React.forwardRef<
     },
     [
       focusKey,
-      children,
+      clonedChildren,
       selectedItems,
       dropdownItemKeys,
       handleDropdownItemClick,
@@ -552,7 +574,7 @@ const MultipleDropdown = React.forwardRef<
                 onLoadMore={onLoadMore}
                 noDataMessage={noDataMessage}
               >
-                {children}
+                {clonedChildren}
               </MultipleDropdownList>
             </StyledPopover>
           </div>

@@ -139,14 +139,12 @@ export const Select: React.FC = () => {
       >
         <Dropdown.Item
           key='red panda'
-          value='red panda'
           leftIcon={<FontAwesomeIcon icon={faBug} />}
         >
           Red Panda Red Panda Red Panda Red Panda Red Panda
         </Dropdown.Item>
         <Dropdown.Item
           key='cat'
-          value='cat'
           leftIcon={<FontAwesomeIcon icon={faBug} />}
           type='color'
           rightColor='red'
@@ -154,18 +152,10 @@ export const Select: React.FC = () => {
         >
           Cat Red Panda Red Panda Red Panda Red Panda Red Panda
         </Dropdown.Item>
-        <Dropdown.Item value='dog' key='dog'>
-          Dog
-        </Dropdown.Item>
-        <Dropdown.Item value='aardvark' key='aardvark'>
-          Aardvark
-        </Dropdown.Item>
-        <Dropdown.Item value='kangaroo' key='kangaroo'>
-          Kangaroo
-        </Dropdown.Item>
-        <Dropdown.Item value='snakessss' key='snakessss'>
-          Snake
-        </Dropdown.Item>
+        <Dropdown.Item key='dog'>Dog</Dropdown.Item>
+        <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
+        <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item key='snakessss'>Snake</Dropdown.Item>
       </Dropdown.Select>
       <h3>Prefix</h3>
       <Dropdown.Select

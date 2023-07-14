@@ -10,7 +10,7 @@ import {
 import {textContent} from './utils'
 
 interface Props extends StyledComponentProps {
-  value: string | number
+  value?: string | number
   textValue?: string
   checkmark?: 'none' | 'checkbox' | 'tick'
   children: React.ReactNode
@@ -22,7 +22,13 @@ const MultipleDropdownItem = React.forwardRef<
   HTMLLIElement,
   MultipleDropdownItemProps
 >((props, ref) => {
-  const {children, value, checkmark = 'checkbox', css = {}, ...other} = props
+  const {
+    children,
+    value = '',
+    checkmark = 'checkbox',
+    css = {},
+    ...other
+  } = props
 
   const {textValue, ...delegated} = other
 
