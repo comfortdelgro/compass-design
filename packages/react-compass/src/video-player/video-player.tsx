@@ -187,7 +187,7 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
           <StyledControllerWrapper>
             <StyledSlideBarWrapper>
               <span>{formatTime(currentTime)}</span>
-              <Slider value={progress} onChange={onToggleProgress} />
+              <Slider value={progress} onChangeEnd={onToggleProgress} />
               <span>{formatTime(duration)}</span>
             </StyledSlideBarWrapper>
             <StyledButtonWrapper>
