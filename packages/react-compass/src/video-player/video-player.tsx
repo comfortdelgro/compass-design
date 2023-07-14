@@ -125,6 +125,16 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
     }
   }
 
+  const handleKeyDown = (
+    event: React.KeyboardEvent<HTMLDivElement>,
+    callback?: () => void,
+  ) => {
+    const key = event.key
+    if (key === 'Enter' || key === ' ') {
+      callback?.()
+    }
+  }
+
   const delegateProps = componentProps()
 
   return (
@@ -182,16 +192,36 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
             </StyledSlideBarWrapper>
             <StyledButtonWrapper>
               <div className='slider-bar-button-main'>
-                <div className='slider-bar-button-prev' onClick={onPrev}>
+                <div
+                  tabIndex={0}
+                  className='slider-bar-button-prev'
+                  onClick={onPrev}
+                  onKeyDown={(e) => handleKeyDown(e, onPrev)}
+                >
                   <PrevIcon />
                 </div>
-                <div className='slider-bar-button-play' onClick={play}>
+                <div
+                  tabIndex={0}
+                  className='slider-bar-button-play'
+                  onClick={play}
+                  onKeyDown={(e) => handleKeyDown(e, play)}
+                >
                   {paused ? <PlayIcon /> : <PauseIcon />}
                 </div>
-                <div className='slider-bar-button-next' onClick={onNext}>
+                <div
+                  tabIndex={0}
+                  className='slider-bar-button-next'
+                  onClick={onNext}
+                  onKeyDown={(e) => handleKeyDown(e, onNext)}
+                >
                   <NextIcon />
                 </div>
-                <div className='slider-bar-button-setting' onClick={onSetting}>
+                <div
+                  tabIndex={0}
+                  className='slider-bar-button-setting'
+                  onClick={onSetting}
+                  onKeyDown={(e) => handleKeyDown(e, onSetting)}
+                >
                   <SettingIcon />
                 </div>
               </div>
