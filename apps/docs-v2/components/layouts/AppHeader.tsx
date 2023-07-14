@@ -1,9 +1,9 @@
-import Github from '@comfortdelgro/compass-icons/react/github'
 import {Box, Button, Navbar, Typography} from '@comfortdelgro/react-compass'
 import NavbarActions from '@comfortdelgro/react-compass/navbar/navbar-actions'
 import {NavbarLinks} from '@comfortdelgro/react-compass/navbar/navbar-links.styles'
 import {NavbarSeperator} from '@comfortdelgro/react-compass/navbar/navbar-seperator.style'
 import ThemeModeToggle from 'components/header/ThemeModeToggle'
+import SvgGithub from 'components/icons/SvgGithub'
 import SvgLogo from 'components/icons/SvgLogo'
 import {DeferredAppSearch} from 'components/layouts/DocsAppFrame'
 import {ETheme} from 'constants/index'
@@ -58,7 +58,6 @@ export default function AppHeader(props: AppHeaderProps) {
         <a href={gitHubRepository} target='_blank'>
           <Button
             variant='primary'
-            leftIcon={<Github />}
             css={{
               border: '1px solid white',
               height: 34,
@@ -67,11 +66,10 @@ export default function AppHeader(props: AppHeaderProps) {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              '.left': {
-                marginRight: '0 !important',
-              },
             }}
-          ></Button>
+          >
+            <SvgGithub fill='white' />
+          </Button>
         </a>
         <ThemeModeToggle
           checked={mode === ETheme.Dark}

@@ -145,7 +145,7 @@ export default function DocsAppToc(props: any) {
           >
             Contents
           </Typography.Header>
-          <Typography.Body variant='body3'>
+          <Box>
             {toc.map((item: any) => (
               <Box key={item.text}>
                 {itemLink(item)}
@@ -165,7 +165,7 @@ export default function DocsAppToc(props: any) {
                 ) : null}
               </Box>
             ))}
-          </Typography.Body>
+          </Box>
         </>
       ) : null}
     </Box>

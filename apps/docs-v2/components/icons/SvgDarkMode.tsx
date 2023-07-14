@@ -1,12 +1,12 @@
 import RootSvg from 'components/icons/RootSvg'
 
-function SvgLogo(props: any) {
+function SvgDarkMode(props: any) {
   return (
     <RootSvg
       xmlns='http://www.w3.org/2000/svg'
-      width={38}
-      height={38}
-      viewBox='0 0 38 38'
+      width={14}
+      height={14}
+      viewBox='0 0 14 14'
       fill='none'
       {...props}
     >
@@ -26,4 +26,4 @@ function SvgLogo(props: any) {
   )
 }
 
-export default SvgLogo
+export default SvgDarkMode
