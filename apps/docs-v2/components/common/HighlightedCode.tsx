@@ -12,7 +12,6 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(
 ) {
   const {
     copyButtonHidden = false,
-    copyButtonProps,
     code,
     language,
     component: Component = MarkdownElement,
@@ -34,7 +33,7 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(
         </pre>
         {copyButtonHidden ? null : (
           <NoSsr>
-            <CodeCopyButton code={code} {...copyButtonProps} />
+            <CodeCopyButton code={code} />
           </NoSsr>
         )}
       </div>

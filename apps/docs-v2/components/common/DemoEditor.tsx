@@ -6,7 +6,6 @@ import SimpleCodeEditor from 'react-simple-code-editor'
 import {useCodeCopy} from 'utils/CodeCopy'
 
 const StyledMarkdownElement = styled(MarkdownElement, {
-  backgroundColor: 'red',
   '& .scrollContainer': {
     maxHeight: 'min(68vh, 1000px)',
     padding: '$4',
@@ -56,7 +55,6 @@ const StyledSimpleCodeEditor = styled(SimpleCodeEditor, {
 
 interface DemoEditorProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode
-  copyButtonProps: {}
   id: string
   language: string
   onChange: (value: any) => void
@@ -64,8 +62,7 @@ interface DemoEditorProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export default function DemoEditor(props: DemoEditorProps) {
-  const {language, value, onChange, copyButtonProps, children, id, ...other} =
-    props
+  const {language, value, onChange, children, id, ...other} = props
   const wrapperRef = React.useRef<HTMLElement | null>(null)
   const enterRef = React.useRef<HTMLElement | null>(null)
   const handlers = useCodeCopy()

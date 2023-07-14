@@ -274,16 +274,11 @@ export default function Demo(props: any) {
         />
       </React.Suspense>
       <Box>
-        {demoOptions.disableLiveEdit ? (
+        {!codeOpen ? (
           <DemoCodeViewer
             code={editorCode.value}
             id={demoSourceId}
             language={demoData.sourceLanguage}
-            copyButtonProps={{
-              'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-              'data-ga-event-label': demo.gaLabel,
-              'data-ga-event-action': 'copy-click',
-            }}
           />
         ) : (
           <DemoEditor
@@ -299,11 +294,6 @@ export default function Demo(props: any) {
             }}
             id={demoSourceId}
             language={demoData.sourceLanguage}
-            copyButtonProps={{
-              'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-              'data-ga-event-label': demo.gaLabel,
-              'data-ga-event-action': 'copy-click',
-            }}
           >
             <DemoEditorError>{debouncedError}</DemoEditorError>
           </DemoEditor>
