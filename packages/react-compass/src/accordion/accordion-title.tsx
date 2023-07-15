@@ -46,19 +46,6 @@ const AccordionTitle = React.forwardRef<HTMLButtonElement, AccordionTitleProps>(
       }
     }
 
-    const handleKeyDown = (e?: unknown) => {
-      const event = e as React.KeyboardEvent<HTMLElement>
-      if (event.key === 'Enter') {
-        //will only trigger if accordion is uncontrolled
-        setExpand()
-
-        //trigger user callback if exist
-        if (onExpandChange) {
-          onExpandChange(event)
-        }
-      }
-    }
-
     const renderLeftIcon = () => {
       if (icon === false) return null
       return <div className='accordion-left-icon-container'>{icon}</div>
@@ -71,7 +58,6 @@ const AccordionTitle = React.forwardRef<HTMLButtonElement, AccordionTitleProps>(
         className={`accordion-title-container ${expand ? 'open' : 'close'}`}
         expand={expand ? 'open' : 'close'}
         onMouseDown={(e) => handleOnClick(e)}
-        onKeyDown={(e) => handleKeyDown(e)}
       >
         <StyledAccordionTitleWrapper
           expand={expand ? 'open' : 'close'}
