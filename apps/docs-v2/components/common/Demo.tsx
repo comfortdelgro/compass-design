@@ -101,6 +101,7 @@ function useDemoElement({
 }
 
 const DemoCodeViewer = styled(HighlightedCode, {
+  position: 'relative',
   '& pre': {
     margin: 0,
     maxHeight: 'min(68vh, 1000px)',
