@@ -82,28 +82,28 @@ export default function SandboxDependencies(
         deps[name] = versions[name] ? versions[name] : 'latest'
       }
 
-      const dateAdapterMatch = fullName.match(
-        /^@mui\/(lab|x-date-pickers)\/(?<adapterName>Adapter.*)/,
-      ) as RegExpMatchArrayWithGroups<{adapterName: string}>
-      if (dateAdapterMatch !== null) {
-        const packageName = (
-          {
-            AdapterDateFns: 'date-fns',
-            AdapterDateFnsJalali: 'date-fns-jalali',
-            AdapterDayjs: 'dayjs',
-            AdapterLuxon: 'luxon',
-            AdapterMoment: 'moment',
-            AdapterMomentHijri: 'moment-hijri',
-            AdapterMomentJalaali: 'moment-jalaali',
-          } as Record<string, string>
-        )[dateAdapterMatch.groups?.adapterName || '']
-        if (packageName === undefined) {
-          throw new TypeError(
-            `Can't determine required npm package for adapter '${dateAdapterMatch[1]}'`,
-          )
-        }
-        deps[packageName] = 'latest'
-      }
+      // const dateAdapterMatch = fullName.match(
+      //   /^@mui\/(lab|x-date-pickers)\/(?<adapterName>Adapter.*)/,
+      // ) as RegExpMatchArrayWithGroups<{adapterName: string}>
+      // if (dateAdapterMatch !== null) {
+      //   const packageName = (
+      //     {
+      //       AdapterDateFns: 'date-fns',
+      //       AdapterDateFnsJalali: 'date-fns-jalali',
+      //       AdapterDayjs: 'dayjs',
+      //       AdapterLuxon: 'luxon',
+      //       AdapterMoment: 'moment',
+      //       AdapterMomentHijri: 'moment-hijri',
+      //       AdapterMomentJalaali: 'moment-jalaali',
+      //     } as Record<string, string>
+      //   )[dateAdapterMatch.groups?.adapterName || '']
+      //   if (packageName === undefined) {
+      //     throw new TypeError(
+      //       `Can't determine required npm package for adapter '${dateAdapterMatch[1]}'`,
+      //     )
+      //   }
+      //   deps[packageName] = 'latest'
+      // }
     }
 
     deps = includePeerDependencies(deps, versions)

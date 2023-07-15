@@ -1,5 +1,4 @@
 import {CODE_VARIANTS} from 'constants'
-import PropTypes from 'prop-types'
 import * as React from 'react'
 import {getCookie} from 'utils/helpers'
 
@@ -70,10 +69,6 @@ export function CodeVariantProvider(props) {
       {children}
     </CodeVariantContext.Provider>
   )
-}
-
-CodeVariantProvider.propTypes = {
-  children: PropTypes.node.isRequired,
 }
 
 export function useCodeVariant() {

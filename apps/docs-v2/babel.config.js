@@ -18,12 +18,7 @@ const {version: transformRuntimeVersion} = fse.readJSONSync(
 )
 
 module.exports = {
-  // TODO: Enable once nextjs uses babel 7.13
-  // assumptions: {
-  //   noDocumentAll: true,
-  // },
   presets: [
-    // backport of https://github.com/vercel/next.js/pull/9511
     [
       'next/babel',
       {
@@ -50,7 +45,6 @@ module.exports = {
       plugins: [
         '@babel/plugin-transform-react-constant-elements',
         ['babel-plugin-react-remove-properties'],
-        ['babel-plugin-transform-react-remove-prop-types', {mode: 'remove'}],
       ],
     },
   },

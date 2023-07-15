@@ -77,7 +77,6 @@ MyDocument.getInitialProps = async (ctx: any) => {
         <style id='font-awesome-css' key='font-awesome-css' />,
         <style id='app-search' key='app-search' />,
         <style id='prismjs' key='prismjs' />,
-        <style id='insertion-point-jss' key='insertion-point-jss' />,
         ...React.Children.toArray(initialProps.styles),
       ],
     }
