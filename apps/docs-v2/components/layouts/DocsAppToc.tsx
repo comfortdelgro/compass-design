@@ -107,7 +107,7 @@ export default function DocsAppToc(props: any) {
     [],
   )
 
-  const itemLink = (item: any) => (
+  const itemLink = (item: any, children = false) => (
     <Link
       href={`#${item.hash}`}
       onClick={handleClick(item.hash)}
@@ -118,9 +118,13 @@ export default function DocsAppToc(props: any) {
       <Box
         dangerouslySetInnerHTML={{__html: item.text}}
         css={{
-          color: `${activeState === item.hash ? '$cdgBlue100' : '$gray80'}`,
+          color: activeState === item.hash ? '$gray100' : '$gray70',
+          background: activeState === item.hash ? '$gray30' : 'none',
+          borderRadius: 5,
           textDecoration: 'none',
-          fontWeight: 'bold',
+          fontWeight: activeState === item.hash ? 'bold' : '600',
+          fontSize: 14,
+          padding: '5px',
         }}
       />
     </Link>
@@ -138,9 +142,10 @@ export default function DocsAppToc(props: any) {
       {toc.length > 0 ? (
         <>
           <Typography.Header
-            variant='header4'
+            variant='header5'
             css={{
               marginBottom: '$2',
+              fontWeight: 'bold',
             }}
           >
             Contents
@@ -154,11 +159,11 @@ export default function DocsAppToc(props: any) {
                     {item.children.map((subitem: any) => (
                       <Box
                         css={{
-                          paddingLeft: '$5',
+                          paddingLeft: '$3',
                         }}
                         key={subitem.text}
                       >
-                        {itemLink(subitem)}
+                        {itemLink(subitem, true)}
                       </Box>
                     ))}
                   </Typography.Label>
