@@ -39,8 +39,8 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
 
   const variantProps = {size} as ModalVariantProps
   const ModalRef = useDOMRef<HTMLDivElement>(ref)
-  const refFirstFocusable = React.useRef<HTMLElement | null>(null)
-  const refLastFocusable = React.useRef<HTMLElement | null>(null)
+  const FirstFocusableRef = React.useRef<HTMLElement | null>(null)
+  const LastFocusableRef = React.useRef<HTMLElement | null>(null)
 
   // Pick title child component
   const {child: ModalTitleElement} = pickChild<typeof ModalTitle>(
@@ -67,38 +67,38 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
   )
 
   // Handle click on the modal
-  const handleClick = React.useCallback((e: MouseEvent) => {
+  const handleClick = (e: MouseEvent) => {
     e.stopPropagation()
     e.preventDefault()
     onClick?.()
-  }, [])
+  }
 
-  const handleKeyDown = React.useCallback((e: KeyboardEvent) => {
+  const handleKeyDown = (e: KeyboardEvent) => {
     e.stopPropagation()
     e.preventDefault()
     onKeyDown?.(e)
 
     if (
-      document.activeElement === refLastFocusable.current &&
+      document.activeElement === LastFocusableRef.current &&
       e.key === 'Tab' &&
       !e.shiftKey
     ) {
       e.preventDefault()
-      refFirstFocusable.current?.focus()
+      FirstFocusableRef.current?.focus()
     }
     if (
-      document.activeElement === refFirstFocusable.current &&
+      document.activeElement === FirstFocusableRef.current &&
       e.key === 'Tab' &&
       e.shiftKey
     ) {
       e.preventDefault()
-      refLastFocusable.current?.focus()
+      LastFocusableRef.current?.focus()
     }
 
     if (e.key === 'Escape') {
       handleClose?.()
     }
-  }, [])
+  }
 
   // Focus on the first focusable element and identify the last focusable element
   React.useEffect(() => {
@@ -117,14 +117,14 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
       `) ?? [],
     )
 
-    refFirstFocusable.current = focusableElements[0] ?? null
-    refLastFocusable.current =
+    FirstFocusableRef.current = focusableElements[0] ?? null
+    LastFocusableRef.current =
       focusableElements[focusableElements.length - 1] ?? null
 
-    if (refFirstFocusable.current) {
-      refFirstFocusable.current.focus()
+    if (FirstFocusableRef.current) {
+      FirstFocusableRef.current.focus()
     }
-  }, [ModalRef, refFirstFocusable, refLastFocusable])
+  }, [ModalRef, FirstFocusableRef, LastFocusableRef])
 
   return (
     <StyledModal

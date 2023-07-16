@@ -35,11 +35,11 @@ const ModalTrigger = React.forwardRef<HTMLDivElement, ModalTriggerProps>(
     const modalWrapperRef = useDOMRef<HTMLDivElement>(null)
     const {child: ModalElement} = pickChild<typeof Modal>(children, Modal)
 
-    const handleClickBackdrop = React.useCallback((e: MouseEvent) => {
+    const handleClickBackdrop = (e: MouseEvent) => {
       e.stopPropagation()
       e.preventDefault()
       handleClose?.()
-    }, [])
+    }
 
     return (
       <Portal open={isOpen}>
