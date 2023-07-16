@@ -42,7 +42,10 @@ export default function AppHeader(props: AppHeaderProps) {
         <Link href='/getting-started/overview'>
           <Button>Document</Button>
         </Link>
-        <Link href='https://comfortdelgro.github.io/compass-design/ladle/'>
+        <Link
+          href='https://comfortdelgro.github.io/compass-design/ladle/'
+          target='_blank'
+        >
           <Button>Ladle</Button>
         </Link>
       </NavbarLinks>
