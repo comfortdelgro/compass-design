@@ -22,7 +22,6 @@ const AccordionTitle = React.forwardRef<HTMLButtonElement, AccordionTitleProps>(
       css = {},
       ...delegated
     } = props
-
     const contextValue = useContext(AccordionContext) as AccordionContextType
 
     const {expand, onExpandChange, setExpand} = contextValue
@@ -48,14 +47,23 @@ const AccordionTitle = React.forwardRef<HTMLButtonElement, AccordionTitleProps>(
 
     const handleKeyDown = (e?: unknown) => {
       const event = e as React.KeyboardEvent<HTMLElement>
-      if (event.key === 'Enter') {
-        //will only trigger if accordion is uncontrolled
-        setExpand()
-
-        //trigger user callback if exist
-        if (onExpandChange) {
-          onExpandChange(event)
-        }
+      const {key} = event
+      switch (key) {
+        case 'Spacebar':
+        case 'Enter':
+          setExpand()
+          if (onExpandChange) {
+            onExpandChange(event)
+          }
+          if (event.currentTarget.parentElement) {
+            event.currentTarget.parentElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start',
+            })
+          }
+          break
+        default:
+          break
       }
     }
 
