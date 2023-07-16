@@ -12,7 +12,6 @@ const Root = styled('div', {
     padding: '$2',
     backgroundColor: '#323130',
     color: '#f8f8f2',
-    borderRadius: '$md',
     border: '1px solid',
     borderColor: '$gray30',
     overflow: 'auto',
@@ -20,6 +19,7 @@ const Root = styled('div', {
     fontSize: 13,
     maxWidth: 'calc(100vw - 32px)',
     maxHeight: '400px',
+    marginTop: 0,
   },
   '& code': {
     fontWeight: 400,
@@ -110,7 +110,7 @@ const Root = styled('div', {
       cursor: 'pointer',
       display: 'inline-block',
       '&:hover': {
-        backgroundColor: 'red',
+        backgroundColor: '$gray50',
         borderColor: '$gray10',
         color: '$primaryText',
       },
@@ -136,14 +136,16 @@ const Root = styled('div', {
     fontSize: 18,
   },
   '& table': {
-    // Trade display table for scroll overflow
-    display: 'block',
+    width: '100%',
+    display: 'table',
     wordBreak: 'normal',
     overflowX: 'auto',
     WebkitOverflowScrolling: 'touch',
     borderCollapse: 'collapse',
     marginBottom: '20px',
     borderSpacing: 0,
+    border: `1px solid $gray40`,
+    borderRadius: 12,
     '& .prop-name, & .prop-type, & .prop-default, & .slot-name, & .slot-defaultClass, & .slot-default':
       {
         fontWeight: 400,
@@ -160,14 +162,12 @@ const Root = styled('div', {
       color: '#932981',
     },
     '& .prop-default, & .slot-default': {
-      borderBottom: `1px dotted #201F1E`,
+      borderBottom: `1px dotted $gray40`,
     },
   },
   '& td': {
-    borderBottom: `1px solid #201F1E`,
-    paddingRight: 20,
-    paddingTop: 12,
-    paddingBottom: 12,
+    borderBottom: `1px solid $gray40`,
+    padding: '$3',
     color: '$primaryText',
   },
   '& td code': {
@@ -175,14 +175,12 @@ const Root = styled('div', {
   },
   '& th': {
     fontSize: 14,
-    lineHeight: 24,
     fontWeight: 500,
     color: '$primaryText',
+    background: '$gray20',
     whiteSpace: 'pre',
-    borderBottom: `1px solid #201F1E`,
-    paddingRight: 20,
-    paddingTop: 12,
-    paddingBottom: 12,
+    borderBottom: `1px solid $gray40`,
+    padding: '$3',
   },
   '& blockquote': {
     borderRadius: 12,
