@@ -1,30 +1,18 @@
-type RegExpMatchArrayWithGroupsOnly<T> = {
-  groups?: {
-    [key in keyof T]: string
-  }
-}
-type RegExpMatchArrayWithGroups<T> =
-  | (RegExpMatchArray & RegExpMatchArrayWithGroupsOnly<T>)
-  | null
-
 export default function SandboxDependencies(
   demo: {
     raw: string
-    codeVariant: 'JS' | 'TS'
+    codeVariant: 'TS'
   },
   options?: any,
 ) {
   function addTypeDeps(deps: Record<string, string>): void {
-    const packagesWithBundledTypes = ['date-fns', 'dayjs']
-    const packagesWithDTPackage = Object.keys(deps)
-      .filter((name) => packagesWithBundledTypes.indexOf(name) === -1)
-      .filter((name) => name.indexOf('@mui/') !== 0)
+    const packagesWithBundledTypes = ['']
+    const packagesWithDTPackage = Object.keys(deps).filter(
+      (name) => packagesWithBundledTypes.indexOf(name) === -1,
+    )
 
     packagesWithDTPackage.forEach((name) => {
       let resolvedName = name
-      if (name.startsWith('@')) {
-        resolvedName = name.slice(1).replace('/', '__')
-      }
 
       deps[`@types/${resolvedName}`] = 'latest'
     })
@@ -71,29 +59,6 @@ export default function SandboxDependencies(
       if (!deps[name] && !name.startsWith('.')) {
         deps[name] = versions[name] ? versions[name] : 'latest'
       }
-
-      // const dateAdapterMatch = fullName.match(
-      //   /^@mui\/(lab|x-date-pickers)\/(?<adapterName>Adapter.*)/,
-      // ) as RegExpMatchArrayWithGroups<{adapterName: string}>
-      // if (dateAdapterMatch !== null) {
-      //   const packageName = (
-      //     {
-      //       AdapterDateFns: 'date-fns',
-      //       AdapterDateFnsJalali: 'date-fns-jalali',
-      //       AdapterDayjs: 'dayjs',
-      //       AdapterLuxon: 'luxon',
-      //       AdapterMoment: 'moment',
-      //       AdapterMomentHijri: 'moment-hijri',
-      //       AdapterMomentJalaali: 'moment-jalaali',
-      //     } as Record<string, string>
-      //   )[dateAdapterMatch.groups?.adapterName || '']
-      //   if (packageName === undefined) {
-      //     throw new TypeError(
-      //       `Can't determine required npm package for adapter '${dateAdapterMatch[1]}'`,
-      //     )
-      //   }
-      //   deps[packageName] = 'latest'
-      // }
     }
 
     deps = includePeerDependencies(deps, versions)
@@ -103,10 +68,8 @@ export default function SandboxDependencies(
 
   const dependencies = extractDependencies(demo.raw)
 
-  if (demo.codeVariant === 'TS') {
-    addTypeDeps(dependencies)
-    dependencies.typescript = 'latest'
-  }
+  addTypeDeps(dependencies)
+  dependencies.typescript = 'latest'
 
   const devDependencies = {
     'react-scripts': 'latest',

@@ -124,7 +124,7 @@ export default function DocsAppToc(props: any) {
           textDecoration: 'none',
           fontWeight: activeState === item.hash ? 'bold' : '600',
           fontSize: 14,
-          padding: '5px',
+          padding: children ? '2px 5px' : '5px',
         }}
       />
     </Link>
