@@ -21,14 +21,14 @@ export default function CodeCopyButton(props: CodeCopyButtonProps) {
       {...other}
       aria-label='Copy the code'
       type='button'
-      className='MuiCode-copy'
+      className='cdg-copy'
       onClick={async (event) => {
         event.stopPropagation()
         await copy(code)
       }}
     >
       {isCopied ? <TickCircle /> : <Copy />}
-      <span className='MuiCode-copyKeypress'>
+      <span className='cdg-copyKeypress'>
         <span>(or</span> {key}C<span>)</span>
       </span>
     </button>

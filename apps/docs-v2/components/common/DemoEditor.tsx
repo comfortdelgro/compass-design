@@ -91,7 +91,7 @@ export default function DemoEditor(props: DemoEditorProps) {
       }}
       {...other}
     >
-      <div className='MuiCode-root' {...handlers}>
+      <div className='cdg-root' {...handlers}>
         <div className='scrollContainer'>
           {/* @ts-ignore */}
           <StyledSimpleCodeEditor

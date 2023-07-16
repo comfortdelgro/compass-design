@@ -18,7 +18,7 @@ export function useCodeCopy(): any {
       if (rootNode.current === event.currentTarget) {
         ;(
           rootNode.current.querySelector(
-            '.MuiCode-copy',
+            '.cdg-copy',
           ) as null | HTMLButtonElement
         )?.blur()
         rootNode.current = null
@@ -47,7 +47,7 @@ function InitCodeCopy() {
       }
     }
     const codeRoots = document.getElementsByClassName(
-      'MuiCode-root',
+      'cdg-root',
     ) as HTMLCollectionOf<HTMLDivElement>
 
     if (codeRoots !== null) {
@@ -66,7 +66,7 @@ function InitCodeCopy() {
           if (rootNode.current === elm) {
             ;(
               rootNode.current.querySelector(
-                '.MuiCode-copy',
+                '.cdg-copy',
               ) as null | HTMLButtonElement
             )?.blur()
             rootNode.current = null
@@ -118,12 +118,9 @@ function InitCodeCopy() {
           } catch (error) {}
         }
 
-        const btn = elm.querySelector(
-          '.MuiCode-copy',
-        ) as HTMLButtonElement | null
+        const btn = elm.querySelector('.cdg-copy') as HTMLButtonElement | null
         if (btn) {
-          const keyNode = btn.querySelector('.MuiCode-copyKeypress')
-            ?.childNodes[1]
+          const keyNode = btn.querySelector('.cdg-copyKeypress')?.childNodes[1]
           if (!keyNode) {
             // skip the logic if the btn is not generated from the markdown.
             return
@@ -193,7 +190,7 @@ export function CodeCopyProvider({children}: CodeCopyProviderProps) {
         return
       }
       const copyBtn = rootNode.current.querySelector(
-        '.MuiCode-copy',
+        '.cdg-copy',
       ) as HTMLButtonElement | null
       if (!copyBtn) {
         return

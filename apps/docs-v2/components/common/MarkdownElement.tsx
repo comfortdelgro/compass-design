@@ -197,7 +197,7 @@ const Root = styled('div', {
       color: '$warning',
     },
   },
-  '& .MuiCallout-root': {
+  '& .CdgCallout-root': {
     padding: '16px',
     margin: '16px 0',
     border: '1px solid',
@@ -210,7 +210,7 @@ const Root = styled('div', {
     '& > p, & ul, li': {
       color: 'inherit',
     },
-    '&.MuiCallout-error': {
+    '&.CdgCallout-error': {
       color: '$danger',
       backgroundColor: '$dangerBg',
       borderColor: '$dangerBg',
@@ -226,7 +226,7 @@ const Root = styled('div', {
         },
       },
     },
-    '&.MuiCallout-info': {
+    '&.CdgCallout-info': {
       color: '$info',
       backgroundColor: '$infoBg',
       borderColor: '$info',
@@ -234,7 +234,7 @@ const Root = styled('div', {
         color: '$info',
       },
     },
-    '&.MuiCallout-success': {
+    '&.CdgCallout-success': {
       color: '$success',
       backgroundColor: '$successBg',
       borderColor: '$success',
@@ -250,7 +250,7 @@ const Root = styled('div', {
         },
       },
     },
-    '&.MuiCallout-warning': {
+    '&.CdgCallout-warning': {
       color: '$warning',
       backgroundColor: '$warningBg',
       borderColor: '$warning',
@@ -317,12 +317,12 @@ const Root = styled('div', {
   '& summary': {
     cursor: 'pointer',
   },
-  '& .MuiCode-root': {
+  '& .cdg-root': {
     direction: 'ltr /*! @noflip */',
     position: 'relative',
     fontSize: 10,
   },
-  '& .MuiCode-copy': {
+  '& .cdg-copy': {
     display: 'inline-flex',
     flexDirection: 'row-reverse',
     alignItems: 'center',
@@ -350,20 +350,20 @@ const Root = styled('div', {
       fontSize: '18px',
       margin: 'auto',
     },
-    '& .MuiCode-copied-icon': {
+    '& .cdg-copied-icon': {
       display: 'none',
     },
     '&:hover, &:focus': {
       opacity: 1,
       backgroundColor: '$cdgBlue40',
-      '& .MuiCode-copyKeypress': {
+      '& .cdg-copyKeypress': {
         display: 'block',
         '@media (any-hover: none)': {
           display: 'none',
         },
       },
     },
-    '& .MuiCode-copyKeypress': {
+    '& .cdg-copyKeypress': {
       display: 'none',
       position: 'absolute',
       right: 26,
@@ -373,10 +373,10 @@ const Root = styled('div', {
       borderColor: '$cdgBlue60',
       color: '#fff',
       backgroundColor: '$cdgBlue40',
-      '& .MuiCode-copy-icon': {
+      '& .cdg-copy-icon': {
         display: 'none',
       },
-      '& .MuiCode-copied-icon': {
+      '& .cdg-copied-icon': {
         display: 'block',
       },
     },
@@ -386,7 +386,7 @@ const Root = styled('div', {
       outlineColor: '$cdgBlue40',
     },
   },
-  '& .MuiCode-copyKeypress': {
+  '& .cdg-copyKeypress': {
     pointerEvents: 'none',
     userSelect: 'none',
     marginRight: '$1',

@@ -57,16 +57,6 @@ export default function SandboxDependencies(
       'react-dom': 'latest',
     }
 
-    // TODO: consider if this configuration could be injected in a "cleaner" way.
-    if ((window as any).muiDocConfig) {
-      const muiCommitRef = process.env.PULL_REQUEST_ID
-        ? process.env.COMMIT_REF
-        : undefined
-      versions = (window as any).muiDocConfig.csbGetVersions(versions, {
-        muiCommitRef,
-      })
-    }
-
     const re = /^import\s'([^']+)'|import\s[\s\S]*?\sfrom\s+'([^']+)/gm
     let m: RegExpExecArray | null = null
     // eslint-disable-next-line no-cond-assign

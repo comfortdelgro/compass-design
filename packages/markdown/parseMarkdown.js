@@ -182,7 +182,6 @@ function renderInline(markdown) {
   return marked.parseInline(markdown)
 }
 
-// Help rank mui.com on component searches first.
 const noSEOadvantage = ['https://comfortdelgro.github.io/compass-design']
 
 /**
@@ -306,16 +305,16 @@ function createRender(context) {
         }</code></pre>\n`
       }
 
-      return `<div class="MuiCode-root"><pre><code class="language-${escape(
+      return `<div class="cdg-root"><pre><code class="language-${escape(
         lang,
         true,
       )}">${escaped ? code : escape(code, true)}</code></pre>${[
-        '<button aria-label="Copy the code" class="MuiCode-copy">',
-        '<svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ContentCopyRoundedIcon">',
-        '<use class="MuiCode-copy-icon" xlink:href="#copy-icon" />',
-        '<use class="MuiCode-copied-icon" xlink:href="#copied-icon" />',
+        '<button aria-label="Copy the code" class="cdg-copy">',
+        '<svg focusable="false" aria-hidden="true" viewBox="0 0 24 24">',
+        '<use class="cdg-copy-icon" xlink:href="#copy-icon" />',
+        '<use class="cdg-copied-icon" xlink:href="#copied-icon" />',
         '</svg>',
-        '<span class="MuiCode-copyKeypress"><span>(or</span> $keyC<span>)</span></span></button></div>',
+        '<span class="cdg-copyKeypress"><span>(or</span> $keyC<span>)</span></span></button></div>',
       ].join('')}\n`
     }
 
@@ -360,7 +359,7 @@ function createRender(context) {
             return undefined
           },
           renderer(token) {
-            return `<aside class="MuiCallout-root MuiCallout-${
+            return `<aside class="CdgCallout-root CdgCallout-${
               token.severity
             }">${this.parser.parse(token.tokens)}\n</aside>`
           },

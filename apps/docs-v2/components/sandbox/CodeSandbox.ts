@@ -4,7 +4,6 @@ import addHiddenInput from 'utils/addHiddenInput'
 import * as CRA from './CreateReactApp'
 import SandboxDependencies from './Dependencies'
 import getFileExtension from './FileExtension'
-import {CodeStyling, CodeVariant} from './types'
 
 function compress(object: any) {
   return LZString.compressToBase64(JSON.stringify(object))
@@ -41,7 +40,6 @@ const createReactApp = (demo: {
   raw: string
   codeVariant: CodeVariant
   githubLocation: string
-  codeStyling: CodeStyling
 }) => {
   const ext = getFileExtension(demo.codeVariant)
   const {title, githubLocation: description} = demo
@@ -64,7 +62,7 @@ const createReactApp = (demo: {
   }
 
   const {dependencies, devDependencies} = SandboxDependencies(demo, {
-    commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
+    commitRef: undefined,
   })
 
   files['package.json'] = {
