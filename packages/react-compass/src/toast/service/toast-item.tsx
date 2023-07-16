@@ -6,6 +6,7 @@ import {ToastItemType} from './types'
 
 export type ToastItemProps = ToastItemType & {
   toastItemClassName?: string
+  horizontal: 'left' | 'right' | 'center'
 }
 const ANIMATION_TIME = 300
 const CLOSE_TIME = 1000
@@ -21,6 +22,7 @@ const ToastItem = ({
   title,
   label,
   color,
+  horizontal,
 }: ToastItemProps) => {
   const toast = useToast() // call useToast
 
@@ -36,7 +38,7 @@ const ToastItem = ({
   }
 
   return (
-    <StyledToastItem ref={toastItemRef}>
+    <StyledToastItem ref={toastItemRef} horizontal={horizontal}>
       <Toast
         isOpen
         handleClose={handleDismiss}

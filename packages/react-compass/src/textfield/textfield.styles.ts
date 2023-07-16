@@ -23,12 +23,12 @@ export const StyledTextFieldBox = styled('div', {
   borderStyle: 'solid',
   borderColor: '$divider',
   borderRadius: '$md',
-  color: '$tertiaryText',
+  color: '$typeHeading',
   backgroundColor: '$whiteText',
   transition: '$default',
 
   '.left-icon, .right-icon': {
-    color: '$tertiaryText',
+    color: '$typeHeading',
     transition: '$default',
   },
 
@@ -135,7 +135,13 @@ export const StyledTextFieldWrapper = styled('div', {
   variants: {
     isDarkTheme: {
       true: {
+        [`${StyledTextField}`]: {
+          backgroundColor: '$transparent',
+          color: '$tertiaryText',
+        },
         [`${StyledTextFieldBox}`]: {
+          color: '$tertiaryText',
+          backgroundColor: '$gray20',
           '&:focus-within': {
             borderColor: '$cdgBlue120',
             '.left-icon': {

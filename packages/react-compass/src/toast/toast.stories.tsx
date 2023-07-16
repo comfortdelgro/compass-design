@@ -1,6 +1,7 @@
 import {faImage, faXmark} from '@fortawesome/free-solid-svg-icons'
-import React from 'react'
+import React, {Key} from 'react'
 import Button from '../button/button'
+import Dropdown from '../dropdown'
 import {Icon} from '../icon'
 import {Column} from '../utils/components'
 import {useToast} from './hooks/useToast'
@@ -67,10 +68,43 @@ const SubService2 = () => {
   )
 }
 export const Multiple: React.FC = () => {
+  const [horizontal, setHorizontal] = React.useState<
+    'center' | 'left' | 'right'
+  >('right')
+  const [vertical, setVertical] = React.useState<'center' | 'top' | 'bottom'>(
+    'top',
+  )
+
   return (
     <Column>
       <h3>Toast as a service</h3>
-      <ToastContextProvider>
+      <Dropdown.Select
+        isRequired
+        label='Please select horizontal'
+        placeholder='Choose a horizontal'
+        selectedKey={horizontal}
+        onSelectionChange={(k: Key) =>
+          setHorizontal(k as 'center' | 'left' | 'right')
+        }
+      >
+        <Dropdown.Item key='left'>Left</Dropdown.Item>
+        <Dropdown.Item key='center'>Center</Dropdown.Item>
+        <Dropdown.Item key='right'>Right</Dropdown.Item>
+      </Dropdown.Select>
+      <Dropdown.Select
+        isRequired
+        label='Please select vertical'
+        placeholder='Choose a vertical'
+        selectedKey={vertical}
+        onSelectionChange={(k: Key) =>
+          setVertical(k as 'center' | 'top' | 'bottom')
+        }
+      >
+        <Dropdown.Item key='top'>Top</Dropdown.Item>
+        <Dropdown.Item key='center'>Center</Dropdown.Item>
+        <Dropdown.Item key='bottom'>Bottom</Dropdown.Item>
+      </Dropdown.Select>
+      <ToastContextProvider anchorOrigin={{horizontal, vertical}}>
         <>
           <SubService1 />
           <SubService2 />
