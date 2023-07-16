@@ -1,5 +1,6 @@
 import {Dropdown, TextField} from '@comfortdelgro/react-compass'
 import React, {useState} from 'react'
+import '../styles/layout_styles/_LayoutInputPhoneNumber.module.css'
 
 export const LayoutInputPhoneNumber: React.FC = () => {
   const [inputValue, setInputValue] = useState('7685-9004-5999')
@@ -14,36 +15,14 @@ export const LayoutInputPhoneNumber: React.FC = () => {
     setIsValid(validateInput(value))
   }
   return (
-    <div
-      style={{
-        width: '100%',
-        height: '450px',
-        position: 'relative',
-        overflow: 'hidden',
-      }}
-    >
-      <div
-        style={{
-          width: '100%',
-          flexDirection: 'column',
-          justifyContent: 'flex-start',
-          alignItems: 'flex-start',
-          gap: 4,
-          display: 'inline-flex',
-        }}
+    <div className='cdg-layout-wrapper'>
+      <div className='cdg-input-content-wrapper'
       >
         <div>
           <span>Mobile no. </span>
           <span>*</span>
         </div>
-        <div
-          style={{
-            alignSelf: 'stretch',
-            justifyContent: 'flex-start',
-            alignItems: 'center',
-            gap: 8,
-            display: 'inline-flex',
-          }}
+        <div className='cdg-input-content'
         >
           <div
             className='cdg-input-country-code'
@@ -63,14 +42,6 @@ export const LayoutInputPhoneNumber: React.FC = () => {
           </div>
           <div
             className='cdg-input-phone-number'
-            style={{
-              flex: '1 1 0',
-              background: 'white',
-              justifyContent: 'center',
-              alignItems: 'center',
-              gap: 8,
-              display: 'flex',
-            }}
           >
             <TextField
               css={{
@@ -85,29 +56,13 @@ export const LayoutInputPhoneNumber: React.FC = () => {
           </div>
         </div>
       </div>
-      <div
-        style={{
-          width: '100%',
-          flexDirection: 'column',
-          justifyContent: 'flex-start',
-          alignItems: 'flex-start',
-          gap: 4,
-          display: 'inline-flex',
-          paddingTop: '10%',
-        }}
+      <div className='cdg-input-content-wrapper'
       >
         <div style={{width: 327}}>
           <span>Mobile no. </span>
           <span>*</span>
         </div>
-        <div
-          style={{
-            alignSelf: 'stretch',
-            justifyContent: 'flex-start',
-            alignItems: 'center',
-            gap: 8,
-            display: 'inline-flex',
-          }}
+        <div className='cdg-input-content'
         >
           <div
             className='cdg-input-country-code'
@@ -128,43 +83,18 @@ export const LayoutInputPhoneNumber: React.FC = () => {
           </div>
           <div
             className='cdg-input-phone-number'
-            style={{
-              flex: '1 1 0',
-              height: 44,
-              background: 'white',
-              justifyContent: 'center',
-              alignItems: 'center',
-              gap: 8,
-              display: 'flex',
-            }}
           >
             <TextField placeholder='AAAA-AAAA-AAAA' />
           </div>
         </div>
       </div>
-      <div
-        style={{
-          width: '100%',
-          flexDirection: 'column',
-          justifyContent: 'flex-start',
-          alignItems: 'flex-start',
-          gap: 4,
-          display: 'inline-flex',
-          paddingTop: '10%',
-        }}
+      <div className='cdg-input-content-wrapper'
       >
         <div style={{width: 327}}>
           <span>Mobile no. </span>
           <span>*</span>
         </div>
-        <div
-          style={{
-            alignSelf: 'stretch',
-            justifyContent: 'flex-start',
-            alignItems: 'center',
-            gap: 8,
-            display: 'inline-flex',
-          }}
+        <div className='cdg-input-content'
         >
           <div
             className='cdg-input-country-code'
@@ -189,15 +119,6 @@ export const LayoutInputPhoneNumber: React.FC = () => {
           </div>
           <div
             className='cdg-input-phone-number'
-            style={{
-              flex: '1 1 0',
-              height: 44,
-              background: '#F3F2F1',
-              justifyContent: 'center',
-              alignItems: 'center',
-              gap: 8,
-              display: 'flex',
-            }}
           >
             <TextField
               value='7685-9004-5000'
