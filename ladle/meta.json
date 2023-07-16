@@ -25,6 +25,56 @@
       "filePath": "src/accordion/accordion.stories.tsx",
       "meta": {}
     },
+    "action-bar--center": {
+      "name": "Center",
+      "levels": [
+        "Action bar"
+      ],
+      "locStart": 60,
+      "locEnd": 71,
+      "filePath": "src/action-bar/ActionBar.stories.tsx",
+      "meta": {}
+    },
+    "action-bar--default": {
+      "name": "Default",
+      "levels": [
+        "Action bar"
+      ],
+      "locStart": 10,
+      "locEnd": 30,
+      "filePath": "src/action-bar/ActionBar.stories.tsx",
+      "meta": {}
+    },
+    "action-bar--left": {
+      "name": "Left",
+      "levels": [
+        "Action bar"
+      ],
+      "locStart": 48,
+      "locEnd": 58,
+      "filePath": "src/action-bar/ActionBar.stories.tsx",
+      "meta": {}
+    },
+    "action-bar--left-and-right": {
+      "name": "Left and right",
+      "levels": [
+        "Action bar"
+      ],
+      "locStart": 32,
+      "locEnd": 46,
+      "filePath": "src/action-bar/ActionBar.stories.tsx",
+      "meta": {}
+    },
+    "action-bar--right": {
+      "name": "Right",
+      "levels": [
+        "Action bar"
+      ],
+      "locStart": 73,
+      "locEnd": 82,
+      "filePath": "src/action-bar/ActionBar.stories.tsx",
+      "meta": {}
+    },
     "alert--basic": {
       "name": "Basic",
       "levels": [
@@ -191,7 +241,7 @@
         "Button"
       ],
       "locStart": 15,
-      "locEnd": 179,
+      "locEnd": 194,
       "filePath": "src/button/button.stories.tsx",
       "meta": {}
     },
@@ -553,6 +603,16 @@
       "locStart": 16,
       "locEnd": 351,
       "filePath": "src/footer/footer.stories.tsx",
+      "meta": {}
+    },
+    "form-layout--default": {
+      "name": "Default",
+      "levels": [
+        "Form layout"
+      ],
+      "locStart": 12,
+      "locEnd": 129,
+      "filePath": "src/form-layout/FormLayout.stories.tsx",
       "meta": {}
     },
     "form--variants": {
@@ -975,13 +1035,23 @@
       "filePath": "src/sidebar/sidebar.stories.tsx",
       "meta": {}
     },
+    "sidebar--position": {
+      "name": "Position",
+      "levels": [
+        "Sidebar"
+      ],
+      "locStart": 50,
+      "locEnd": 124,
+      "filePath": "src/sidebar/sidebar.stories.tsx",
+      "meta": {}
+    },
     "sidebar--variants": {
       "name": "Variants",
       "levels": [
         "Sidebar"
       ],
-      "locStart": 50,
-      "locEnd": 104,
+      "locStart": 126,
+      "locEnd": 180,
       "filePath": "src/sidebar/sidebar.stories.tsx",
       "meta": {}
     },
@@ -1075,13 +1145,23 @@
       "filePath": "src/subBanner/subBanner.stories.tsx",
       "meta": {}
     },
+    "table-v2--editable-template-cell": {
+      "name": "Editable template cell",
+      "levels": [
+        "Table v2"
+      ],
+      "locStart": 238,
+      "locEnd": 395,
+      "filePath": "src/table-v2/table-v2.stories.tsx",
+      "meta": {}
+    },
     "table-v2--full-featured": {
       "name": "Full featured",
       "levels": [
         "Table v2"
       ],
-      "locStart": 15,
-      "locEnd": 229,
+      "locStart": 22,
+      "locEnd": 236,
       "filePath": "src/table-v2/table-v2.stories.tsx",
       "meta": {}
     },
@@ -1240,8 +1320,8 @@
       "levels": [
         "Toast"
       ],
-      "locStart": 218,
-      "locEnd": 248,
+      "locStart": 252,
+      "locEnd": 282,
       "filePath": "src/toast/toast.stories.tsx",
       "meta": {}
     },
@@ -1250,8 +1330,8 @@
       "levels": [
         "Toast"
       ],
-      "locStart": 111,
-      "locEnd": 216,
+      "locStart": 145,
+      "locEnd": 250,
       "filePath": "src/toast/toast.stories.tsx",
       "meta": {}
     },
@@ -1260,8 +1340,8 @@
       "levels": [
         "Toast"
       ],
-      "locStart": 83,
-      "locEnd": 109,
+      "locStart": 117,
+      "locEnd": 143,
       "filePath": "src/toast/toast.stories.tsx",
       "meta": {}
     },
@@ -1270,8 +1350,8 @@
       "levels": [
         "Toast"
       ],
-      "locStart": 69,
-      "locEnd": 81,
+      "locStart": 70,
+      "locEnd": 115,
       "filePath": "src/toast/toast.stories.tsx",
       "meta": {}
     },
