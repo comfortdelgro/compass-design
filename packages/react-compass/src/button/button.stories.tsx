@@ -175,5 +175,20 @@ export const Variations: React.FC = () => (
         Disabled
       </Button>
     </Row>
+    <h3>9. Act as a link</h3>
+    <Row>
+      <Button href='/#page' variant='primary'>
+        Primary
+      </Button>
+      <Button href='https://google.com' hrefExternal variant='secondary'>
+        Google
+      </Button>
+      <Button href='/#page' variant='danger' hrefTarget='_blank'>
+        Danger
+      </Button>
+      <Button href='/#page' variant='ghost'>
+        Ghost
+      </Button>
+    </Row>
   </Column>
 )

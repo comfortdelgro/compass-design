@@ -22,7 +22,7 @@ export const StyledRatingComponent = styled('div', {
       color: '$info',
       borderColor: '$infoBg',
       backgroundColor: '$infoBg',
-      '&:hover': {
+      '&:hover:enabled': {
         borderColor: '$infoBg',
         backgroundColor: '$infoBg',
       },
@@ -30,9 +30,12 @@ export const StyledRatingComponent = styled('div', {
         color: '$info',
       },
     },
-    '&:hover': {
-      backgroundColor: '$white !important',
-      borderColor: '$white !important',
+    '&:focus-visible': {
+      outline: '2px solid $cdgBlue60',
+    },
+    '&:hover:enabled': {
+      backgroundColor: '$white',
+      borderColor: '$white',
     },
     '.children': {
       display: 'flex',
@@ -42,6 +45,9 @@ export const StyledRatingComponent = styled('div', {
       width: '2rem',
       height: '2rem',
       color: '$primaryText',
+    },
+    '& div': {
+      justifyContent: 'center',
     },
   },
 })

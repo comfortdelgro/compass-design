@@ -13,13 +13,13 @@ export type DialogActionsProps = Props &
 
 const DialogActions = React.forwardRef<HTMLDivElement, DialogActionsProps>(
   (props, ref) => {
-    const {children, css = {}, isMobile, ...delegated} = props
+    const {children, css = {}, isMobile = false, ...delegated} = props
     const dialogActionRef = useDOMRef<HTMLDivElement>(ref)
     return (
       <StyledDialogActionsContainer
         css={css}
         ref={dialogActionRef}
-        responsive={isMobile ? 'true' : 'false'}
+        responsive={isMobile}
         {...delegated}
       >
         {children}
