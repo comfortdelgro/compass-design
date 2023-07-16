@@ -61,7 +61,14 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
   )
 
   return (
-    <StyledModal css={css} ref={ModalRef} {...delegated} {...variantProps}>
+    <StyledModal
+      css={css}
+      ref={ModalRef}
+      {...delegated}
+      {...variantProps}
+      role='dialog'
+      aria-modal={true}
+    >
       <StyledModalHeader>
         {ModalTitleElement}
         {CloseIconElement &&

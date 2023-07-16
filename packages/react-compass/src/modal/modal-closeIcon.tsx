@@ -19,8 +19,9 @@ const ModalCloseIcon = React.forwardRef<HTMLDivElement, ModalCloseIconProps>(
       <StyledModalCloseIcon
         css={css}
         ref={modalCloseIconRef}
-        {...delegated}
         onClick={() => onClose?.()}
+        tabIndex={0}
+        {...delegated}
       >
         {children}
       </StyledModalCloseIcon>

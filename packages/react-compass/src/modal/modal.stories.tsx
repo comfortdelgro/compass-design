@@ -30,7 +30,9 @@ export const Default: React.FC = () => {
           </Modal.CloseIcon>
           <Modal.Description>{lorem}</Modal.Description>
           <Modal.Actions>
-            <Button onPress={() => setDefaultOpen(false)}>Cancel</Button>
+            <Button onPress={() => setDefaultOpen(false)} tabIndex={0}>
+              Cancel
+            </Button>
             <Button onPress={() => setDefaultOpen(false)}>Do it</Button>
           </Modal.Actions>
         </Modal>

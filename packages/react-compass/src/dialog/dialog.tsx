@@ -61,7 +61,14 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
   )
 
   return (
-    <StyledDialog css={css} ref={dialogRef} {...variantProps} {...delegated}>
+    <StyledDialog
+      css={css}
+      ref={dialogRef}
+      role='dialog'
+      aria-modal={true}
+      {...variantProps}
+      {...delegated}
+    >
       {variant == 'alert' ? DialogIconElement : null}
       {DialogTitleElement}
       {DialogDescriptionElement}
