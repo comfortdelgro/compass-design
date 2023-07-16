@@ -13,6 +13,8 @@ interface Props extends StyledComponentProps {
   children?: React.ReactNode
   handleClose?: () => void
   size?: 'sm' | 'md' | 'lg'
+  onClick?: () => void
+  onKeyDown?: (e: KeyboardEvent) => void
 }
 
 export type ModalProps = Props &
@@ -27,6 +29,8 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
     children,
     // ComponentProps
     handleClose,
+    onClick,
+    onKeyDown,
     // VariantProps
     size = 'md',
     // AriaButtonProps
@@ -35,6 +39,8 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
 
   const variantProps = {size} as ModalVariantProps
   const ModalRef = useDOMRef<HTMLDivElement>(ref)
+  const refFirstFocusable = React.useRef<HTMLElement | null>(null)
+  const refLastFocusable = React.useRef<HTMLElement | null>(null)
 
   // Pick title child component
   const {child: ModalTitleElement} = pickChild<typeof ModalTitle>(
@@ -60,6 +66,66 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
     ModalCloseIcon,
   )
 
+  // Handle click on the modal
+  const handleClick = React.useCallback((e: MouseEvent) => {
+    e.stopPropagation()
+    e.preventDefault()
+    onClick?.()
+  }, [])
+
+  const handleKeyDown = React.useCallback((e: KeyboardEvent) => {
+    e.stopPropagation()
+    e.preventDefault()
+    onKeyDown?.(e)
+
+    if (
+      document.activeElement === refLastFocusable.current &&
+      e.key === 'Tab' &&
+      !e.shiftKey
+    ) {
+      e.preventDefault()
+      refFirstFocusable.current?.focus()
+    }
+    if (
+      document.activeElement === refFirstFocusable.current &&
+      e.key === 'Tab' &&
+      e.shiftKey
+    ) {
+      e.preventDefault()
+      refLastFocusable.current?.focus()
+    }
+
+    if (e.key === 'Escape') {
+      handleClose?.()
+    }
+  }, [])
+
+  // Focus on the first focusable element and identify the last focusable element
+  React.useEffect(() => {
+    const focusableElements = Array.from<HTMLElement>(
+      ModalRef.current?.querySelectorAll(`
+        button,
+        a[href],
+        input[type="button"],
+        input[type="submit"],
+        input[type="text"],
+        textarea,
+        select,
+        input[type="checkbox"],
+        input[type="radio"],
+        [tabindex]:not([tabindex="-1"])
+      `) ?? [],
+    )
+
+    refFirstFocusable.current = focusableElements[0] ?? null
+    refLastFocusable.current =
+      focusableElements[focusableElements.length - 1] ?? null
+
+    if (refFirstFocusable.current) {
+      refFirstFocusable.current.focus()
+    }
+  }, [ModalRef, refFirstFocusable, refLastFocusable])
+
   return (
     <StyledModal
       css={css}
@@ -68,6 +134,8 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
       {...variantProps}
       role='dialog'
       aria-modal={true}
+      onClick={(e) => handleClick?.(e as unknown as MouseEvent)}
+      onKeyDown={(e) => handleKeyDown?.(e as unknown as KeyboardEvent)}
     >
       <StyledModalHeader>
         {ModalTitleElement}

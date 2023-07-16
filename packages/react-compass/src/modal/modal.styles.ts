@@ -122,6 +122,16 @@ export const StyledModalCloseIcon = styled('div', {
   },
 })
 
+export const StyledChildModalContainer = styled('div', {
+  // reset
+  appearance: 'none',
+  border: 'none',
+  boxSizing: 'border-box',
+  background: 'transparent',
+  margin: '0px',
+  padding: '0px',
+})
+
 export const StyledModal = styled('div', {
   // reset
   appearance: 'none',

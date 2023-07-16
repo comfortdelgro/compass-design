@@ -30,9 +30,7 @@ export const Default: React.FC = () => {
           </Modal.CloseIcon>
           <Modal.Description>{lorem}</Modal.Description>
           <Modal.Actions>
-            <Button onPress={() => setDefaultOpen(false)} tabIndex={0}>
-              Cancel
-            </Button>
+            <Button onPress={() => setDefaultOpen(false)}>Cancel</Button>
             <Button onPress={() => setDefaultOpen(false)}>Do it</Button>
           </Modal.Actions>
         </Modal>
@@ -111,6 +109,73 @@ export const Variants: React.FC = () => {
           <Modal.Actions>
             <Button onPress={() => setLargeOpen(false)}>Cancel</Button>
             <Button onPress={() => setLargeOpen(false)}>Do it</Button>
+          </Modal.Actions>
+        </Modal>
+      </Modal.Trigger>
+    </Column>
+  )
+}
+
+const ChildModal: React.FC = () => {
+  const lorem =
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. pariatur.'
+  const [isChildOpen, setIsChildOpen] = React.useState(false)
+  const handleChildClose = () => {
+    setIsChildOpen(false)
+  }
+
+  return (
+    <>
+      <Button css={{width: '7.8rem'}} onPress={() => setIsChildOpen(true)}>
+        Open Child Modal
+      </Button>
+      <Modal.Trigger
+        isOpen={isChildOpen}
+        handleClose={() => handleChildClose?.()}
+        className='parent-modal-trigger'
+      >
+        <Modal className='parent-modal' css={{width: '20rem'}}>
+          <Modal.Title>My parent modal</Modal.Title>
+          <Modal.CloseIcon>
+            <FontAwesomeIcon icon={faXmark} />
+          </Modal.CloseIcon>
+          <Modal.Description>{lorem}</Modal.Description>
+          <Modal.Actions>
+            <Button onPress={() => setIsChildOpen(false)}>Cancel</Button>
+          </Modal.Actions>
+        </Modal>
+      </Modal.Trigger>
+    </>
+  )
+}
+
+export const NestedModal: React.FC = () => {
+  const lorem =
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. pariatur.'
+  const [parentOpen, setParentOpen] = React.useState(false)
+  const handleParentClose = () => {
+    setParentOpen(false)
+  }
+  return (
+    <Column>
+      <h3>Default Modal is Medium sized</h3>
+      <Button css={{width: '7.8rem'}} onPress={() => setParentOpen(true)}>
+        Open Modal
+      </Button>
+      <Modal.Trigger
+        isOpen={parentOpen}
+        handleClose={() => handleParentClose?.()}
+        className='my-modal-trigger'
+      >
+        <Modal className='my-modal'>
+          <Modal.Title>My small title</Modal.Title>
+          <Modal.CloseIcon>
+            <FontAwesomeIcon icon={faXmark} />
+          </Modal.CloseIcon>
+          <Modal.Description>{lorem}</Modal.Description>
+          <Modal.Actions>
+            <Button onPress={() => setParentOpen(false)}>Cancel</Button>
+            <ChildModal />
           </Modal.Actions>
         </Modal>
       </Modal.Trigger>
