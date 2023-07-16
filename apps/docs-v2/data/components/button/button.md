@@ -2,6 +2,8 @@
 
 <p class="description">Buttons allow users to take actions, and make choices, with a single tap.</p>
 
+{{"component": "components/common/ComponentLinkHeader.tsx"}}
+
 ## Import
 
 ```js

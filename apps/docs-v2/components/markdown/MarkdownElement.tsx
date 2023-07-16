@@ -13,7 +13,7 @@ const Root = styled('div', {
     maxWidth: 'calc(100vw - 32px)',
   },
   '& code': {
-    fontFamily: '"Menlo", "Consolas", "Droid Sans Mono", "monospace"',
+    fontFamily: '$mono !important',
     fontWeight: 400,
     WebkitFontSmoothing: 'subpixel-antialiased',
     // Reset for Safari
