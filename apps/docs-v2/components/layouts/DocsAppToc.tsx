@@ -125,6 +125,9 @@ export default function DocsAppToc(props: any) {
           fontWeight: activeState === item.hash ? 'bold' : '600',
           fontSize: 14,
           padding: children ? '2px 5px' : '5px',
+          '&:hover': {
+            background: '$gray30',
+          },
         }}
       />
     </Link>

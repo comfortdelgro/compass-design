@@ -9,7 +9,7 @@ interface AppFooterProps {
 
 export default function AppFooter(props: AppFooterProps) {
   return (
-    <Box css={{padding: '$8 0', background: '#D9D2E9'}}>
+    <Box css={{padding: '$6 0', background: '$gray20'}}>
       <Container css={{display: 'flex', justifyContent: 'space-between'}}>
         <Box
           css={{
@@ -27,7 +27,9 @@ export default function AppFooter(props: AppFooterProps) {
           <Typography.Body variant='body2' css={{marginRight: 10}}>
             Privacy
           </Typography.Body>
-          <Typography.Body variant='body2'>Terms&Conditions</Typography.Body>
+          <Typography.Body variant='body2' css={{whiteSpace: 'nowrap'}}>
+            Terms & Conditions
+          </Typography.Body>
         </Box>
       </Container>
     </Box>

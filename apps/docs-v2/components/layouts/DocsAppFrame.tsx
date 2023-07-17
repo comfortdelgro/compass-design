@@ -46,6 +46,7 @@ export default function DocsAppFrame(props: {children: React.ReactNode}) {
             if (child.pathname === `/${childrenPath}`) {
               return {
                 ...child,
+                pathname: `${route.pathname}${child.pathname}`,
                 isActive: true,
               }
             }
