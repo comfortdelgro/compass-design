@@ -76,6 +76,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
         orientation={orientation}
         variant={variant}
         {...delegated}
+        tabIndex={0}
       >
         {[...collection].map((item) => (
           <Tab

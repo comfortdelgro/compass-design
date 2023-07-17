@@ -1,9 +1,8 @@
-import {isEmpty} from 'lodash'
-import React, {Key} from 'react'
+import React from 'react'
 import {pickChild} from '../utils/pick-child'
-import {DropdownItemKey} from './dropdown-context'
-import {DropdownItemProps} from './dropdown-item'
-import DropdownHeader from './dropdown.header'
+import {DropdownItemKey} from './multiple-dropdown-context'
+import {MultipleDropdownItemProps} from './multiple-dropdown-item'
+import MultipleDropdownHeader from './multiple-dropdown.header'
 
 /**
  * Get text in Element
@@ -11,7 +10,7 @@ import DropdownHeader from './dropdown.header'
  * @returns string
  */
 export function textContent(
-  elem: React.ReactElement<DropdownItemProps> | string,
+  elem: React.ReactElement<MultipleDropdownItemProps> | string,
 ): string {
   if (!elem) {
     return ''
@@ -23,30 +22,35 @@ export function textContent(
     return elem.props.textValue
   }
 
+  if (elem instanceof Array) {
+    return elem.map(textContent).join(' ')
+  }
+
   const children = elem.props?.children
+
   if (children instanceof Array) {
     return children.map(textContent).join(' ')
   }
-  return textContent(children as React.ReactElement<DropdownItemProps>)
+  return textContent(children as React.ReactElement<MultipleDropdownItemProps>)
 }
 
 const findItemByValue = (
-  items: Array<React.ReactElement<DropdownItemProps>>,
-  value: Key,
-  disabledKeys: Key[] = [],
-): React.ReactElement<DropdownItemProps> | null => {
-  for (let index = 0; index < items.length; index++) {
-    const item = items[index]
-    if (item?.props) {
-      const itemKey =
-        item.props.value ?? item.key?.toString().replace('.$', '') ?? ''
-      if (itemKey === value.toString() && !disabledKeys?.includes(itemKey)) {
+  items: Array<React.ReactElement<MultipleDropdownItemProps>>,
+  value: string | number,
+  disabledKeys: Array<string | number> = [],
+): React.ReactElement<MultipleDropdownItemProps> | null => {
+  for (const item of items) {
+    if (item.props) {
+      if (
+        item.props.value?.toString() === value.toString() &&
+        !disabledKeys.includes(item.props.value)
+      ) {
         return item
       }
       if (item.props.children) {
         const foundItem = findItemByValue(
           React.Children.toArray(item.props.children) as Array<
-            React.ReactElement<DropdownItemProps>
+            React.ReactElement<MultipleDropdownItemProps>
           >,
           value,
         )
@@ -66,7 +70,7 @@ const findItemByValue = (
  * @param dropdownItemKeys All keys of Dropdown.Item elements
  */
 export const getItemAbove = (
-  key: Key,
+  key: string | number,
   children?: React.ReactNode,
   dropdownItemKeys: DropdownItemKey[] = [],
 ) => {
@@ -104,7 +108,7 @@ export const getItemAbove = (
  * @param dropdownItemKeys All keys of Dropdown.Item elements
  */
 export const getItemBelow = (
-  key: Key,
+  key: string | number,
   children?: React.ReactNode,
   dropdownItemKeys: DropdownItemKey[] = [],
 ) => {
@@ -114,7 +118,6 @@ export const getItemBelow = (
   const visibleDropdownItems = dropdownItemKeys.filter(
     (item) => item.visibility,
   )
-
   if (visibleDropdownItems.length) {
     // Get next item or first item(when we are at last index)
     const index = visibleDropdownItems.findIndex(
@@ -142,14 +145,13 @@ export const getFirstItem = (
   children?: React.ReactNode,
   dropdownItemKeys: DropdownItemKey[] = [],
 ) => {
-  if (!dropdownItemKeys?.length) return null
+  if (!dropdownItemKeys.length) return null
 
-  let selectItem: React.ReactElement<DropdownItemProps> | null = null
+  let selectItem: React.ReactElement<MultipleDropdownItemProps> | null = null
 
-  for (let index = 0; index < dropdownItemKeys.length; index++) {
-    const dropdownItemKey = dropdownItemKeys[index]
+  for (const dropdownItemKey of dropdownItemKeys) {
     // The first item is being displayed
-    if (dropdownItemKey?.visibility) {
+    if (dropdownItemKey.visibility) {
       selectItem = getItemByKey(dropdownItemKey.value, children)
       break
     }
@@ -167,9 +169,9 @@ export const getLastItem = (
   children?: React.ReactNode,
   dropdownItemKeys: DropdownItemKey[] = [],
 ) => {
-  if (!dropdownItemKeys?.length) return null
+  if (!dropdownItemKeys.length) return null
 
-  let selectItem: React.ReactElement<DropdownItemProps> | null = null
+  let selectItem: React.ReactElement<MultipleDropdownItemProps> | null = null
 
   for (let index = dropdownItemKeys.length - 1; index >= 0; index--) {
     const dropdownItemKey = dropdownItemKeys[index]
@@ -188,18 +190,23 @@ export const getLastItem = (
  * @param key current key
  * @param children All Dropdown.Item elements
  */
-export const getItemByKey = (key: Key, children?: React.ReactNode) => {
+export const getItemByKey = (
+  key: string | number,
+  children?: React.ReactNode,
+) => {
   // Pick Dropdown.Item in children except for DropdownHeader
-  const {rest: dropdownItems} = pickChild<typeof DropdownHeader>(
+  const {rest: dropdownItems} = pickChild<typeof MultipleDropdownHeader>(
     children,
-    DropdownHeader,
+    MultipleDropdownHeader,
   )
   const childrenArr = React.Children.toArray(dropdownItems)
 
-  if (!childrenArr?.length) return null
+  if (!childrenArr.length) return null
 
   const selectItem = findItemByValue(
-    children as Array<React.ReactElement<DropdownItemProps>>,
+    React.Children.toArray(children) as Array<
+      React.ReactElement<MultipleDropdownItemProps>
+    >,
     key,
   )
 
@@ -217,116 +224,4 @@ export const getDistanceBetweenElements = (
   const aPosition = getTop(a)
   const bPosition = getTop(b)
   return Math.hypot(aPosition - bPosition)
-}
-
-export function getDefaulValue(
-  defaulValue: React.Key | undefined,
-  value: React.Key | undefined,
-  disableDefault?: boolean,
-): React.Key | undefined {
-  let res = undefined
-  if (
-    defaulValue !== undefined &&
-    defaulValue !== null &&
-    !isEmpty(defaulValue.toString()) &&
-    value !== '' &&
-    !disableDefault
-  ) {
-    res = defaulValue
-  }
-  if (value !== undefined && value !== null && !isEmpty(value.toString())) {
-    res = value
-  }
-  return res
-}
-
-export interface KeyboardDelegate {
-  getKeyBelow?(key: Key): Key | null
-  getKeyAbove?(key: Key): Key | null
-  getFirstKey?(key?: Key, global?: boolean): Key | null
-  getLastKey?(key?: Key, global?: boolean): Key | null
-}
-
-export class ListKeyboardDelegate implements KeyboardDelegate {
-  private collection: Array<
-    React.DetailedReactHTMLElement<DropdownItemProps, HTMLElement>
-  >
-  private disabledKeys: Iterable<React.Key>
-
-  constructor(
-    collection: Array<
-      React.DetailedReactHTMLElement<DropdownItemProps, HTMLElement>
-    >,
-    disabledKeys: Iterable<React.Key>,
-  ) {
-    this.collection = collection
-    this.disabledKeys = disabledKeys
-  }
-
-  getKeyIndex = (key: Key) => {
-    const index = this.collection.findIndex((item) => item.key === key)
-    if (index !== -1) return index
-    return null
-  }
-
-  private getKeyAfter = (key: Key) => {
-    const currentKeyIndex = this.getKeyIndex(key)
-    if (currentKeyIndex === null) return null
-    const nextKey = this.collection[currentKeyIndex + 1]?.key
-    if (nextKey) return nextKey
-    return null
-  }
-
-  private getKeyBefore = (key: Key) => {
-    const currentKeyIndex = this.getKeyIndex(key)
-    if (currentKeyIndex === null) return null
-    const nextKey = this.collection[currentKeyIndex - 1]?.key
-    if (nextKey) return nextKey
-    return null
-  }
-
-  getKeyBelow(key: Key) {
-    let nextKey = this.getKeyAfter(key)
-    while (nextKey != null) {
-      if (![...this.disabledKeys].includes(nextKey)) {
-        return nextKey
-      }
-      nextKey = this.getKeyAfter(nextKey)
-    }
-    return null
-  }
-
-  getKeyAbove(key: Key) {
-    let prevKey = this.getKeyBefore(key)
-    while (prevKey != null) {
-      if (![...this.disabledKeys].includes(prevKey)) {
-        return prevKey
-      }
-      prevKey = this.getKeyBefore(prevKey)
-    }
-    return null
-  }
-
-  getFirstKey() {
-    let key = this.collection[0]?.key
-    while (key != null) {
-      if (![...this.disabledKeys].includes(key)) {
-        return key
-      }
-      key = this.getKeyAfter(key)
-    }
-
-    return null
-  }
-
-  getLastKey() {
-    let key = this.collection[this.collection.length - 1]?.key
-    while (key != null) {
-      if (![...this.disabledKeys].includes(key)) {
-        return key
-      }
-      key = this.getKeyBefore(key)
-    }
-    return null
-  }
 }
