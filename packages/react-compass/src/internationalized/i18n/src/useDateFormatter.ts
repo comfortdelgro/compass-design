@@ -8,8 +8,8 @@
  * found in the LICENSE.txt file at the root directory of this source tree.
  */
 
-import {DateFormatter} from '../../date'
 import {useMemo, useRef} from 'react'
+import {DateFormatter} from '../../date'
 import {useLocale} from './context'
 
 export interface DateFormatterOptions extends Intl.DateTimeFormatOptions {
