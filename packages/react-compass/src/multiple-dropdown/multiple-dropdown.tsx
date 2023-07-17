@@ -239,7 +239,6 @@ const MultipleDropdown = React.forwardRef<
           newSelectedItems.splice(itemIndex, 1)
         }
         isUncontrolledComponent && setSelectedItems([...newSelectedItems])
-
         onSelectionChange?.(newSelectedItems.map((item) => item.value))
         inputRef.current?.focus()
       }
