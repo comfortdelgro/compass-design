@@ -31,7 +31,8 @@
     "dev:ladle": "ladle dev"
   },
   "resolutions": {
-    "@internationalized/date": "3.2.0"
+    "@internationalized/date": "3.2.0",
+    "@react-stately/table": "3.9.0"
   },
   "dependencies": {
     "@chakra-ui/descendant": "^3.0.14",
