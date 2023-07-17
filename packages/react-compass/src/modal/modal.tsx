@@ -178,13 +178,13 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
     <StyledModal
       css={css}
       ref={ModalRef}
-      {...delegated}
-      {...variantProps}
       tabIndex={0}
       role='dialog'
       aria-modal={true}
       onClick={(e) => handleClick?.(e as unknown as MouseEvent)}
       onKeyDown={(e) => handleKeyDown?.(e as unknown as KeyboardEvent)}
+      {...delegated}
+      {...variantProps}
     >
       <StyledModalContent tabIndex={0}>
         <StyledModalHeader>

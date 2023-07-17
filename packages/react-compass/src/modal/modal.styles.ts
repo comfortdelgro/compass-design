@@ -125,6 +125,8 @@ export const StyledModalCloseIcon = styled('div', {
 export const StyledModalContent = styled('div', {
   // reset
   all: 'unset',
+  width: 'fit-content',
+  height: 'fit-content',
 })
 
 export const StyledModal = styled('div', {

@@ -19,7 +19,6 @@ export type ModalTriggerProps = Props &
 
 const ModalTrigger = React.forwardRef<HTMLDivElement, ModalTriggerProps>(
   (props, ref) => {
-    // let {overlayProps} = useOverlay()
     const {
       // StyledComponentProps
       css = {},
@@ -28,8 +27,10 @@ const ModalTrigger = React.forwardRef<HTMLDivElement, ModalTriggerProps>(
       // ComponentProps
       isOpen = false,
       handleClose,
-      size = 'md',
       id,
+      // VariantProps
+      size = 'md',
+      // HTMLDiv Props
       ...delegated
     } = props
 
@@ -49,7 +50,6 @@ const ModalTrigger = React.forwardRef<HTMLDivElement, ModalTriggerProps>(
           css={css}
           ref={modalWrapperRef}
           onClick={(e) => handleClickBackdrop?.(e as unknown as MouseEvent)}
-          tabIndex={0}
           {...delegated}
         >
           {ModalElement &&

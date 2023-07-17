@@ -131,7 +131,7 @@ const ChildModal: React.FC = () => {
         css={{width: '7.8rem'}}
         onPress={() => setIsChildOpen(true)}
       >
-        Open Child Modal
+        Open Child
       </Button>
       <Modal.Trigger
         isOpen={isChildOpen}
