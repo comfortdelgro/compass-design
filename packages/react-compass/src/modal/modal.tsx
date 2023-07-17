@@ -49,6 +49,7 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
   const FirstFocusableRef = React.useRef<HTMLElement | null>(null) // This is the Modal Content
   const SecondFocusableRef = React.useRef<HTMLElement | null>(null) // This is the Modal Close Icon
   const LastFocusableRef = React.useRef<HTMLElement | null>(null)
+  const CloseIconRef = React.useRef<HTMLButtonElement | null>(null)
 
   // Pick title child component
   const {child: ModalTitleElement} = pickChild<typeof ModalTitle>(
@@ -108,6 +109,12 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
     ) {
       e.preventDefault()
       LastFocusableRef.current?.focus()
+    }
+
+    // If the modal is open and the focus is on the close icon, close the modal on enter key
+    if (document.activeElement === CloseIconRef.current && e.key === 'Enter') {
+      e.preventDefault()
+      handleClose?.()
     }
   }
 
@@ -185,6 +192,7 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
           {CloseIconElement &&
             React.cloneElement(CloseIconElement as unknown as JSX.Element, {
               onClose: () => handleClose?.(),
+              ref: CloseIconRef,
             })}
         </StyledModalHeader>
 
