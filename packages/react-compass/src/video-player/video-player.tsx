@@ -131,14 +131,78 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
   ) => {
     const key = event.key
     if (key === 'Enter' || key === ' ') {
+      event.preventDefault()
+      event.stopPropagation()
       callback?.()
+    }
+  }
+
+  const handleSliderKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    const key = event.key
+    switch (key) {
+      case 'ArrowRight':
+        event.preventDefault()
+        event.stopPropagation()
+        if (videoRef.current) {
+          const value = Math.min(progress + duration * 0.05, 100)
+          videoRef.current.currentTime = (duration * value) / 100
+          setProgress(value)
+        }
+        break
+      case 'ArrowLeft':
+        event.preventDefault()
+        event.stopPropagation()
+        if (videoRef.current) {
+          const value = Math.max(progress - duration * 0.05, 0)
+          videoRef.current.currentTime = (duration * value) / 100
+          setProgress(value)
+        }
+        break
+    }
+  }
+
+  const handleVolumeKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    const key = event.key
+    switch (key) {
+      case 'ArrowUp':
+        event.preventDefault()
+        event.stopPropagation()
+        if (videoRef.current) {
+          const value = Math.min(volume + 10, 100)
+          videoRef.current.volume = value / 100
+          setVolume(value)
+        }
+        break
+      case 'ArrowDown':
+        event.preventDefault()
+        event.stopPropagation()
+        if (videoRef.current) {
+          const value = Math.max(volume - 10, 0)
+          videoRef.current.volume = value / 100
+          setVolume(value)
+        }
+        break
+    }
+  }
+
+  const handleWrapperKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    const key = event.key
+    switch (key) {
+      case 'ArrowLeft':
+      case 'ArrowRight':
+        handleSliderKeyDown(event)
+        break
+      case 'ArrowUp':
+      case 'ArrowDown':
+        handleVolumeKeyDown(event)
+        break
     }
   }
 
   const delegateProps = componentProps()
 
   return (
-    <StyledVideoPlayer css={css} id={id}>
+    <StyledVideoPlayer css={css} id={id} onKeyDown={handleWrapperKeyDown}>
       {loadError && (
         <div
           style={{
@@ -178,7 +242,7 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
       />
       {controls && (
         <>
-          <StyledVolume>
+          <StyledVolume tabIndex={0}>
             <VolumeSlider value={volume} onChange={onToggleVolume} />
             <div className='slider-bar-volume-icon'>
               <VolumeIcon value={volume} onChange={onToggleVolume} />
