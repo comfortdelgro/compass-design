@@ -27,10 +27,11 @@ export const StyledDropdownWrapper = styled('div', {
   '&.cdg-dropdown-opening .cdg-dropdown-input .cdg-dropdown-button': {
     lineHeight: '$normal',
   },
-  '&.cdg-dropdown-opening .cdg-dropdown-input .cdg-dropdown-button svg': {
-    transform: 'rotate(180deg)',
-    transition: 'transform 0.3s linear',
-  },
+  '&.cdg-dropdown-opening .cdg-dropdown-input .cdg-dropdown-button .cdg-dropdown-button-icon':
+    {
+      transform: 'rotate(180deg)',
+      transition: 'transform 0.3s linear',
+    },
 })
 
 export const StyledDropdownList = styled('ul', {})
