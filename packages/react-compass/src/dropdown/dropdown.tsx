@@ -1,11 +1,3 @@
-import {
-  autoUpdate,
-  flip,
-  offset,
-  useDismiss,
-  useFloating,
-  useInteractions,
-} from '@floating-ui/react'
 import React, {
   Key,
   useCallback,
@@ -14,6 +6,7 @@ import React, {
   useRef,
   useState,
 } from 'react'
+import Popover from '../popover'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
@@ -31,7 +24,6 @@ import DropdownSelect from './dropdown.select'
 import {
   DropdownVariantProps,
   StyledComboBox,
-  StyledDropdownPopover,
   StyledDropdownWrapper,
   StyledFlag,
   StyledFlagIcon,
@@ -83,7 +75,12 @@ interface Props extends StyledComponentProps {
 }
 
 export const Icon = () => (
-  <StyledIcon width='16' height='16' viewBox='0 0 16 16'>
+  <StyledIcon
+    width='16'
+    height='16'
+    viewBox='0 0 16 16'
+    className='cdg-dropdown-button-icon'
+  >
     <path
       d='M8.33276 12.3334C8.02004 12.3334 7.70717 12.2125 7.46885 11.9707L1.35805 5.78022C0.880649 5.29658 0.880649 4.5131 1.35805 4.02947C1.83546 3.54584 2.60886 3.54584 3.08626 4.02947L8.33276 9.34651L13.5804 4.03044C14.0578 3.54681 14.8312 3.54681 15.3086 4.03044C15.786 4.51407 15.786 5.29755 15.3086 5.78118L9.19782 11.9717C8.95912 12.2135 8.64594 12.3334 8.33276 12.3334Z'
       fill='currentColor'
@@ -153,24 +150,12 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   const buttonSelectRef = useDOMRef<HTMLButtonElement>(null)
   const inputRef = useDOMRef<HTMLInputElement>(null)
 
-  // ====================================== FLOATING ======================================
-  const {refs, floatingStyles, context} = useFloating({
-    open: open,
-    onOpenChange: setOpen,
-    middleware: [offset(8), flip()],
-    whileElementsMounted: autoUpdate,
-  })
-
-  const dismiss = useDismiss(context)
-
-  const {getReferenceProps, getFloatingProps} = useInteractions([dismiss])
-
   // ====================================== Logic ======================================
 
   const openStateInitialChangedRef = useRef(false)
 
   const isUncontrolledComponent = useMemo(
-    () => !!defaultSelectedKey,
+    () => !!defaultSelectedKey || (!defaultSelectedKey && !selectedKey),
     [defaultSelectedKey],
   )
 
@@ -230,8 +215,12 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
               clonedChildren,
               dropdownItemKeys,
             )
-            if (nextKey?.props?.value) {
-              setFocusKey(nextKey.props.value.toString() ?? '')
+            const itemKey =
+              nextKey?.props.value ??
+              nextKey?.key?.toString().replace('.$', '') ??
+              ''
+            if (itemKey) {
+              setFocusKey(itemKey)
             }
           } else {
             setFocusKey(
@@ -251,8 +240,13 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
               clonedChildren,
               dropdownItemKeys,
             )
-            if (prevKey?.props?.value) {
-              setFocusKey(prevKey.props.value.toString() ?? '')
+            const itemKey =
+              prevKey?.props.value ??
+              prevKey?.key?.toString().replace('.$', '') ??
+              ''
+
+            if (itemKey) {
+              setFocusKey(itemKey)
             }
           } else {
             setFocusKey(
@@ -428,12 +422,10 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       case 'select':
         return (
           <StyledSelect
-            ref={refs.setReference}
             isEmpty={!selectedItem}
             className='cdg-dropdown-input'
             isErrored={!!isErrored}
             isDisabled={isDisabled}
-            {...getReferenceProps}
           >
             <button
               id={id}
@@ -461,11 +453,9 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         return (
           <StyledComboBox
             isEmpty={!selectedItem}
-            ref={refs.setReference}
             className='cdg-dropdown-input'
             isErrored={!!isErrored}
             isDisabled={isDisabled}
-            {...getReferenceProps}
           >
             <input
               id={id}
@@ -492,12 +482,10 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       case 'flag':
         return (
           <StyledFlag
-            ref={refs.setReference}
             isEmpty={!selectedItem}
             className='cdg-dropdown-input'
             isErrored={!!isErrored}
             isDisabled={isDisabled}
-            {...getReferenceProps}
           >
             {selectedItem && selectedItem?.flagName ? (
               <StyledFlagIcon>
@@ -584,6 +572,10 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     }
   }
 
+  const handleClosePopover = useCallback(() => {
+    setOpen(false)
+  }, [])
+
   return (
     <StyledDropdownWrapper
       className={`${open ? 'cdg-dropdown-opening' : ''}`}
@@ -612,36 +604,33 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           onItemClick: handleDropdownItemClick,
         }}
       >
-        {contentElement}
-        {open && (
-          <StyledDropdownPopover
-            ref={refs.setFloating}
+        <Popover
+          isOpen={open}
+          anchor={contentElement}
+          css={{width: '100%'}}
+          direction='bottom'
+          onClose={handleClosePopover}
+        >
+          <StyledPopover
             style={{
-              ...floatingStyles,
+              width: triggeElWidth,
             }}
-            {...getFloatingProps}
           >
-            <StyledPopover
-              style={{
-                width: triggeElWidth,
+            <DropdownList
+              searchValue={searchValue}
+              isLoading={isLoading}
+              css={{
+                maxHeight: numberOfRows
+                  ? `${numberOfRows * ITEM_HEIGHT}px`
+                  : '16rem',
               }}
+              onLoadMore={onLoadMore}
+              noDataMessage={noDataMessage}
             >
-              <DropdownList
-                searchValue={searchValue}
-                isLoading={isLoading}
-                css={{
-                  maxHeight: numberOfRows
-                    ? `${numberOfRows * ITEM_HEIGHT}px`
-                    : '16rem',
-                }}
-                onLoadMore={onLoadMore}
-                noDataMessage={noDataMessage}
-              >
-                {clonedChildren}
-              </DropdownList>
-            </StyledPopover>
-          </StyledDropdownPopover>
-        )}
+              {clonedChildren}
+            </DropdownList>
+          </StyledPopover>
+        </Popover>
       </DropdownContext.Provider>
       {isErrored && errorMessage && (
         <StyledHelperText error={!!isErrored}>{errorMessage}</StyledHelperText>

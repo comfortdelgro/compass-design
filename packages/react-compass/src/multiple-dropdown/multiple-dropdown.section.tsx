@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
@@ -52,7 +52,26 @@ const MultipleDropdownSection = React.forwardRef<
     isChecked ?? selectedSectionIds.includes(id),
   )
 
+  const [clonedChildren, setClonedChildren] = useState<React.ReactNode>(null)
+
   const dropdownSectionRef = useDOMRef<HTMLDivElement>(ref)
+
+  // clone children to assign value prop if not exists. the value would be equal to the key prop
+  // This is to support the legacy code where users don't pass value prop and use key prop instead
+  useEffect(() => {
+    const clonedChildren = React.Children.map(children, (child) => {
+      const clonedChild = React.cloneElement(child as React.ReactElement)
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      if (!clonedChild?.props?.value) {
+        return React.cloneElement(clonedChild, {
+          value: clonedChild.key || '',
+        })
+      } else {
+        return clonedChild
+      }
+    })
+    setClonedChildren(clonedChildren)
+  }, [children])
 
   const handleOnClick = () => {
     if (!isClickable) {
@@ -60,7 +79,7 @@ const MultipleDropdownSection = React.forwardRef<
     }
     onClick?.(title)
     const itemsInSection: SelectedItemDropdown[] = React.Children.toArray(
-      children,
+      clonedChildren,
     ).map((child) => {
       const typedChild = child as React.DetailedReactHTMLElement<
         MultipleDropdownItemProps,
@@ -68,7 +87,7 @@ const MultipleDropdownSection = React.forwardRef<
       >
       return {
         value: typedChild.props.value?.toString() ?? '',
-        displayValue: typedChild.props.children,
+        displayValue: typedChild.props.textValue ?? typedChild.props.children,
       }
     })
     onSectionClick(itemsInSection, !checking, id)
@@ -98,7 +117,7 @@ const MultipleDropdownSection = React.forwardRef<
           </StyledRightIcon>
         </StyledSectionContent>
       )}
-      {children}
+      {clonedChildren}
     </StyledDropdownSection>
   )
 })

@@ -74,7 +74,7 @@ const MultipleDropdownList: React.FC<DropdownItemListProps> = (
           ) : displayedItemsCount === 0 ? (
             <StyledEmptyData>{noDataMessage || 'No data'}</StyledEmptyData>
           ) : (
-            children
+            dropdownItems
           )}
           {React.Children.toArray(dropdownItems).length > 0 && (
             <StyledDropdownListItem ref={lastEl} />
@@ -83,7 +83,7 @@ const MultipleDropdownList: React.FC<DropdownItemListProps> = (
         </StyledDropdownList>
       </>
     ),
-    [css, isLoading, children],
+    [css, isLoading, dropdownItems],
   )
 }
 

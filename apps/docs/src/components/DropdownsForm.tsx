@@ -1,14 +1,14 @@
 import Inspect from '@comfortdelgro/compass-icons/react/inspect'
 import {
-Button,
-Dropdown,
-MultipleDropdown,
-TextField
+  Button,
+  Dropdown,
+  MultipleDropdown,
+  TextField,
 } from '@comfortdelgro/react-compass'
-import { yupResolver } from '@hookform/resolvers/yup'
-import { PersonInfo,useCreatePersonStore } from 'hooks/useDropdownsForm'
-import { Fragment,useEffect,useState } from 'react'
-import { Controller,useForm } from 'react-hook-form'
+import {yupResolver} from '@hookform/resolvers/yup'
+import {PersonInfo, useCreatePersonStore} from 'hooks/useDropdownsForm'
+import {Fragment, useEffect, useState} from 'react'
+import {Controller, useForm} from 'react-hook-form'
 import * as yup from 'yup'
 export const DropdownsForm: React.FC = () => {
   const inputsScheme = yup.object().shape({
@@ -21,11 +21,8 @@ export const DropdownsForm: React.FC = () => {
     phoneNumber: yup.string().required(),
   })
 
-  const {
-    personInfo,
-    setPersonInfoFieldValue,
-    setPersonInfoValue,
-  } = useCreatePersonStore()
+  const {personInfo, setPersonInfoFieldValue, setPersonInfoValue} =
+    useCreatePersonStore()
 
   const {control, handleSubmit, formState, setValue} = useForm<PersonInfo>({
     resolver: yupResolver(inputsScheme),
@@ -216,9 +213,9 @@ export const DropdownsForm: React.FC = () => {
               >
                 {currentDrinksList.map((item: any) => {
                   return (
-                    <Dropdown.Item key={String(item.strDrink)}>
+                    <MultipleDropdown.Item key={String(item.strDrink)}>
                       {item.strDrink}
-                    </Dropdown.Item>
+                    </MultipleDropdown.Item>
                   )
                 })}
               </MultipleDropdown>
