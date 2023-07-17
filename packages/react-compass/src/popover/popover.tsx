@@ -92,6 +92,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     disableInteractive = false,
     defaultOpen = false,
     trigger = 'click',
+    css = {},
   } = props
 
   // uncontrolled state
@@ -185,7 +186,11 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
 
   return (
     <>
-      <StyledAnchorWrapper ref={refs.setReference} {...getReferenceProps()}>
+      <StyledAnchorWrapper
+        ref={refs.setReference}
+        {...getReferenceProps()}
+        css={css}
+      >
         {anchor}
       </StyledAnchorWrapper>
       <FloatingPortal>

@@ -51,7 +51,6 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
       selectedItem,
       disabledKeys = [],
       searchValue,
-      open,
       focusKey,
       selectedKey,
       setSelectedItem,
@@ -122,17 +121,25 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
           value: value.toString(),
           displayValue: textValue || children,
         })
-        if (dropdownItemRef.current) {
-          dropdownItemRef.current.scrollIntoView({block: 'nearest'})
-        }
       }
     }, [selectedKey, value])
 
     useEffect(() => {
-      if (open && isSelected && dropdownItemRef.current) {
-        dropdownItemRef.current.scrollIntoView({block: 'nearest'})
+      if (isFocused) {
+        setTimeout(() => {
+          if (dropdownItemRef.current) {
+            dropdownItemRef.current.scrollIntoView({block: 'nearest'})
+          }
+        }, 0)
       }
-    }, [open, isSelected])
+      if (isSelected) {
+        setTimeout(() => {
+          if (dropdownItemRef.current) {
+            dropdownItemRef.current.scrollIntoView({block: 'center'})
+          }
+        }, 0)
+      }
+    }, [isFocused, isSelected])
 
     const handleItemClick = () => {
       if (isDisabled) {

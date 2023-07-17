@@ -38,10 +38,9 @@ const findItemByValue = (
   for (let index = 0; index < items.length; index++) {
     const item = items[index]
     if (item?.props) {
-      if (
-        item.props.value?.toString() === value.toString() &&
-        !disabledKeys?.includes(item.props.value)
-      ) {
+      const itemKey =
+        item.props.value ?? item.key?.toString().replace('.$', '') ?? ''
+      if (itemKey === value.toString() && !disabledKeys?.includes(itemKey)) {
         return item
       }
       if (item.props.children) {

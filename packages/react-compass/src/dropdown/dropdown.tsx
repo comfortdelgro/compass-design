@@ -1,11 +1,3 @@
-import {
-  autoUpdate,
-  flip,
-  offset,
-  useDismiss,
-  useFloating,
-  useInteractions,
-} from '@floating-ui/react'
 import React, {
   Key,
   useCallback,
@@ -14,6 +6,7 @@ import React, {
   useRef,
   useState,
 } from 'react'
+import Popover from '../popover'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
@@ -31,7 +24,6 @@ import DropdownSelect from './dropdown.select'
 import {
   DropdownVariantProps,
   StyledComboBox,
-  StyledDropdownPopover,
   StyledDropdownWrapper,
   StyledFlag,
   StyledFlagIcon,
@@ -158,18 +150,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   const buttonSelectRef = useDOMRef<HTMLButtonElement>(null)
   const inputRef = useDOMRef<HTMLInputElement>(null)
 
-  // ====================================== FLOATING ======================================
-  const {refs, floatingStyles, context} = useFloating({
-    open: open,
-    onOpenChange: setOpen,
-    middleware: [offset(8), flip()],
-    whileElementsMounted: autoUpdate,
-  })
-
-  const dismiss = useDismiss(context)
-
-  const {getReferenceProps, getFloatingProps} = useInteractions([dismiss])
-
   // ====================================== Logic ======================================
 
   const openStateInitialChangedRef = useRef(false)
@@ -235,8 +215,12 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
               clonedChildren,
               dropdownItemKeys,
             )
-            if (nextKey?.props?.value) {
-              setFocusKey(nextKey.props.value.toString() ?? '')
+            const itemKey =
+              nextKey?.props.value ??
+              nextKey?.key?.toString().replace('.$', '') ??
+              ''
+            if (itemKey) {
+              setFocusKey(itemKey)
             }
           } else {
             setFocusKey(
@@ -256,8 +240,13 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
               clonedChildren,
               dropdownItemKeys,
             )
-            if (prevKey?.props?.value) {
-              setFocusKey(prevKey.props.value.toString() ?? '')
+            const itemKey =
+              prevKey?.props.value ??
+              prevKey?.key?.toString().replace('.$', '') ??
+              ''
+
+            if (itemKey) {
+              setFocusKey(itemKey)
             }
           } else {
             setFocusKey(
@@ -433,12 +422,10 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       case 'select':
         return (
           <StyledSelect
-            ref={refs.setReference}
             isEmpty={!selectedItem}
             className='cdg-dropdown-input'
             isErrored={!!isErrored}
             isDisabled={isDisabled}
-            {...getReferenceProps}
           >
             <button
               id={id}
@@ -466,11 +453,9 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         return (
           <StyledComboBox
             isEmpty={!selectedItem}
-            ref={refs.setReference}
             className='cdg-dropdown-input'
             isErrored={!!isErrored}
             isDisabled={isDisabled}
-            {...getReferenceProps}
           >
             <input
               id={id}
@@ -497,12 +482,10 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       case 'flag':
         return (
           <StyledFlag
-            ref={refs.setReference}
             isEmpty={!selectedItem}
             className='cdg-dropdown-input'
             isErrored={!!isErrored}
             isDisabled={isDisabled}
-            {...getReferenceProps}
           >
             {selectedItem && selectedItem?.flagName ? (
               <StyledFlagIcon>
@@ -589,6 +572,10 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     }
   }
 
+  const handleClosePopover = useCallback(() => {
+    setOpen(false)
+  }, [])
+
   return (
     <StyledDropdownWrapper
       className={`${open ? 'cdg-dropdown-opening' : ''}`}
@@ -617,36 +604,33 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           onItemClick: handleDropdownItemClick,
         }}
       >
-        {contentElement}
-        {open && (
-          <StyledDropdownPopover
-            ref={refs.setFloating}
+        <Popover
+          isOpen={open}
+          anchor={contentElement}
+          css={{width: '100%'}}
+          direction='bottom'
+          onClose={handleClosePopover}
+        >
+          <StyledPopover
             style={{
-              ...floatingStyles,
+              width: triggeElWidth,
             }}
-            {...getFloatingProps}
           >
-            <StyledPopover
-              style={{
-                width: triggeElWidth,
+            <DropdownList
+              searchValue={searchValue}
+              isLoading={isLoading}
+              css={{
+                maxHeight: numberOfRows
+                  ? `${numberOfRows * ITEM_HEIGHT}px`
+                  : '16rem',
               }}
+              onLoadMore={onLoadMore}
+              noDataMessage={noDataMessage}
             >
-              <DropdownList
-                searchValue={searchValue}
-                isLoading={isLoading}
-                css={{
-                  maxHeight: numberOfRows
-                    ? `${numberOfRows * ITEM_HEIGHT}px`
-                    : '16rem',
-                }}
-                onLoadMore={onLoadMore}
-                noDataMessage={noDataMessage}
-              >
-                {clonedChildren}
-              </DropdownList>
-            </StyledPopover>
-          </StyledDropdownPopover>
-        )}
+              {clonedChildren}
+            </DropdownList>
+          </StyledPopover>
+        </Popover>
       </DropdownContext.Provider>
       {isErrored && errorMessage && (
         <StyledHelperText error={!!isErrored}>{errorMessage}</StyledHelperText>
