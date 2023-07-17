@@ -67,7 +67,7 @@ const MultipleDropdownSection = React.forwardRef<
         HTMLElement
       >
       return {
-        value: typedChild.props.value.toString(),
+        value: typedChild.props.value?.toString() ?? '',
         displayValue: typedChild.props.children,
       }
     })

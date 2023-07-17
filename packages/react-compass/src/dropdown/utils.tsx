@@ -1,3 +1,4 @@
+import {isEmpty} from 'lodash'
 import React, {Key} from 'react'
 import {pickChild} from '../utils/pick-child'
 import {DropdownItemKey} from './dropdown-context'
@@ -217,4 +218,116 @@ export const getDistanceBetweenElements = (
   const aPosition = getTop(a)
   const bPosition = getTop(b)
   return Math.hypot(aPosition - bPosition)
+}
+
+export function getDefaulValue(
+  defaulValue: React.Key | undefined,
+  value: React.Key | undefined,
+  disableDefault?: boolean,
+): React.Key | undefined {
+  let res = undefined
+  if (
+    defaulValue !== undefined &&
+    defaulValue !== null &&
+    !isEmpty(defaulValue.toString()) &&
+    value !== '' &&
+    !disableDefault
+  ) {
+    res = defaulValue
+  }
+  if (value !== undefined && value !== null && !isEmpty(value.toString())) {
+    res = value
+  }
+  return res
+}
+
+export interface KeyboardDelegate {
+  getKeyBelow?(key: Key): Key | null
+  getKeyAbove?(key: Key): Key | null
+  getFirstKey?(key?: Key, global?: boolean): Key | null
+  getLastKey?(key?: Key, global?: boolean): Key | null
+}
+
+export class ListKeyboardDelegate implements KeyboardDelegate {
+  private collection: Array<
+    React.DetailedReactHTMLElement<DropdownItemProps, HTMLElement>
+  >
+  private disabledKeys: Iterable<React.Key>
+
+  constructor(
+    collection: Array<
+      React.DetailedReactHTMLElement<DropdownItemProps, HTMLElement>
+    >,
+    disabledKeys: Iterable<React.Key>,
+  ) {
+    this.collection = collection
+    this.disabledKeys = disabledKeys
+  }
+
+  getKeyIndex = (key: Key) => {
+    const index = this.collection.findIndex((item) => item.key === key)
+    if (index !== -1) return index
+    return null
+  }
+
+  private getKeyAfter = (key: Key) => {
+    const currentKeyIndex = this.getKeyIndex(key)
+    if (currentKeyIndex === null) return null
+    const nextKey = this.collection[currentKeyIndex + 1]?.key
+    if (nextKey) return nextKey
+    return null
+  }
+
+  private getKeyBefore = (key: Key) => {
+    const currentKeyIndex = this.getKeyIndex(key)
+    if (currentKeyIndex === null) return null
+    const nextKey = this.collection[currentKeyIndex - 1]?.key
+    if (nextKey) return nextKey
+    return null
+  }
+
+  getKeyBelow(key: Key) {
+    let nextKey = this.getKeyAfter(key)
+    while (nextKey != null) {
+      if (![...this.disabledKeys].includes(nextKey)) {
+        return nextKey
+      }
+      nextKey = this.getKeyAfter(nextKey)
+    }
+    return null
+  }
+
+  getKeyAbove(key: Key) {
+    let prevKey = this.getKeyBefore(key)
+    while (prevKey != null) {
+      if (![...this.disabledKeys].includes(prevKey)) {
+        return prevKey
+      }
+      prevKey = this.getKeyBefore(prevKey)
+    }
+    return null
+  }
+
+  getFirstKey() {
+    let key = this.collection[0]?.key
+    while (key != null) {
+      if (![...this.disabledKeys].includes(key)) {
+        return key
+      }
+      key = this.getKeyAfter(key)
+    }
+
+    return null
+  }
+
+  getLastKey() {
+    let key = this.collection[this.collection.length - 1]?.key
+    while (key != null) {
+      if (![...this.disabledKeys].includes(key)) {
+        return key
+      }
+      key = this.getKeyBefore(key)
+    }
+    return null
+  }
 }

@@ -9,14 +9,14 @@ import {
 } from './multiple-dropdown.styles'
 import {textContent} from './utils'
 
-interface Props extends StyledComponentProps {
+export interface StyledMultipleDropdownItemProps extends StyledComponentProps {
   value?: string | number
   textValue?: string
   checkmark?: 'none' | 'checkbox' | 'tick'
   children: React.ReactNode
 }
 
-export type MultipleDropdownItemProps = Props
+export type MultipleDropdownItemProps = StyledMultipleDropdownItemProps
 
 const MultipleDropdownItem = React.forwardRef<
   HTMLLIElement,
