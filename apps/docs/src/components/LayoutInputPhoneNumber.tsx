@@ -1,6 +1,6 @@
 import {Dropdown, TextField} from '@comfortdelgro/react-compass'
 import React, {useState} from 'react'
-import '../styles/layout_styles/_LayoutInputPhoneNumber.module.css'
+import layoutStyles from '../styles/layout_styles/_LayoutInputPhoneNumber.module.css'
 
 export const LayoutInputPhoneNumber: React.FC = () => {
   const [inputValue, setInputValue] = useState('7685-9004-5999')
@@ -15,15 +15,13 @@ export const LayoutInputPhoneNumber: React.FC = () => {
     setIsValid(validateInput(value))
   }
   return (
-    <div className='cdg-layout-wrapper'>
-      <div className='cdg-input-content-wrapper'
-      >
+    <div className={layoutStyles.cdgLayoutWrapper}>
+      <div className={layoutStyles.cdgInputContentWrapper}>
         <div>
           <span>Mobile no. </span>
           <span>*</span>
         </div>
-        <div className='cdg-input-content'
-        >
+        <div className={layoutStyles.cdgInputContent}>
           <div
             className='cdg-input-country-code'
             style={{
@@ -40,9 +38,7 @@ export const LayoutInputPhoneNumber: React.FC = () => {
               helperText='Format: Country name + area code'
             />
           </div>
-          <div
-            className='cdg-input-phone-number'
-          >
+          <div className={layoutStyles.cdgInputPhoneNumber}>
             <TextField
               css={{
                 color: '#323130',
@@ -56,14 +52,12 @@ export const LayoutInputPhoneNumber: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className='cdg-input-content-wrapper'
-      >
+      <div className={layoutStyles.cdgInputContentWrapper}>
         <div style={{width: 327}}>
           <span>Mobile no. </span>
           <span>*</span>
         </div>
-        <div className='cdg-input-content'
-        >
+        <div className={layoutStyles.cdgInputContent}>
           <div
             className='cdg-input-country-code'
             style={{
@@ -81,21 +75,17 @@ export const LayoutInputPhoneNumber: React.FC = () => {
               }}
             />
           </div>
-          <div
-            className='cdg-input-phone-number'
-          >
+          <div className={layoutStyles.cdgInputPhoneNumber}>
             <TextField placeholder='AAAA-AAAA-AAAA' />
           </div>
         </div>
       </div>
-      <div className='cdg-input-content-wrapper'
-      >
+      <div className={layoutStyles.cdgInputContentWrapper}>
         <div style={{width: 327}}>
           <span>Mobile no. </span>
           <span>*</span>
         </div>
-        <div className='cdg-input-content'
-        >
+        <div className={layoutStyles.cdgInputContent}>
           <div
             className='cdg-input-country-code'
             style={{
@@ -117,9 +107,7 @@ export const LayoutInputPhoneNumber: React.FC = () => {
               }}
             />
           </div>
-          <div
-            className='cdg-input-phone-number'
-          >
+          <div className={layoutStyles.cdgInputPhoneNumber}>
             <TextField
               value='7685-9004-5000'
               placeholder='AAAA-AAAA-AAAA'
