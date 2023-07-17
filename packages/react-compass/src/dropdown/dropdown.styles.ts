@@ -1,5 +1,15 @@
 import {styled} from '../theme'
-import type {VariantProps} from '../utils/stitches.types'
+import {keyframes} from '../theme/stitches.config'
+import {VariantProps} from '../utils/stitches.types'
+
+const spin = keyframes({
+  '0%': {
+    transform: 'rotate(0deg)',
+  },
+  '100%': {
+    transform: 'rotate(360deg)',
+  },
+})
 
 export const StyledDropdownWrapper = styled('div', {
   width: '100%',
@@ -12,6 +22,40 @@ export const StyledDropdownWrapper = styled('div', {
     span: {
       marginLeft: '$1',
       color: '$danger',
+    },
+  },
+  '&.cdg-dropdown-opening .cdg-dropdown-input .cdg-dropdown-button': {
+    lineHeight: '$normal',
+  },
+  '&.cdg-dropdown-opening .cdg-dropdown-input .cdg-dropdown-button svg': {
+    transform: 'rotate(180deg)',
+    transition: 'transform 0.3s linear',
+  },
+})
+
+export const StyledDropdownList = styled('ul', {})
+
+export const StyledPopover = styled('div', {
+  margin: 0,
+  padding: '$2 0',
+  borderRadius: '$md',
+  width: 'fit-content',
+  height: 'fit-content',
+  minWidth: '100%',
+  background: '$background',
+  boxShadow:
+    '0px 0.6px 1.8px rgba(0, 0, 0, 0.1), 0px 3.2px 7.2px rgba(0, 0, 0, 0.13)',
+  ul: {
+    overscrollBehavior: 'contain',
+    overflowY: 'auto',
+    listStyle: 'none',
+    marginBlockStart: 0,
+    marginBlockEnd: 0,
+    marginInlineStart: 0,
+    marginInlineEnd: 0,
+    paddingInlineStart: 0,
+    '&:focus': {
+      outline: 'none',
     },
   },
 })
@@ -48,6 +92,7 @@ export const StyledSelect = styled('div', {
       flexShrink: 0,
       width: '$4',
       height: '$4',
+      transition: 'transform 0.3s linear',
     },
     span: {
       whiteSpace: 'nowrap',
@@ -145,6 +190,7 @@ export const StyledComboBox = styled('div', {
     svg: {
       width: '$4',
       height: '$4',
+      transition: 'transform 0.3s linear',
     },
   },
   variants: {
@@ -236,6 +282,7 @@ export const StyledFlag = styled('div', {
     svg: {
       width: '$4',
       height: '$4',
+      transition: 'transform 0.3s linear',
     },
   },
   variants: {
@@ -275,31 +322,40 @@ export const StyledFlag = styled('div', {
   },
 })
 
-export const StyledFlagIcon = styled('div', {
+export const StyledOption = styled('li', {
+  fontSize: '$label1',
+  fontWeight: '$medium',
+  padding: '$2 $4',
+  outline: 'none',
+  cursor: 'pointer',
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'center',
-  left: '$3',
-  flexShrink: 0,
-  width: '$6',
-  height: '$6',
-  overflow: 'hidden',
-  position: 'absolute',
-  svg: {
-    width: '$6',
-    height: '$6',
+  gap: '$2',
+  color: '$primaryText',
+  '&:hover': {
+    backgroundColor: '$gray20',
   },
-})
-
-export const StyledListBoxWrapper = styled('div', {
-  position: 'relative',
-  minWidth: '100%',
-})
-
-export const StyledPopoverWrapper = styled('div', {
-  position: 'relative',
-  zIndex: 1,
-  marginTop: '$1',
+  variants: {
+    isFocused: {
+      true: {
+        backgroundColor: '$cdgBlue20',
+      },
+    },
+    isSelected: {
+      true: {
+        backgroundColor: '$gray20',
+      },
+    },
+    isDisabled: {
+      true: {
+        '&:hover': {
+          backgroundColor: 'transparent',
+        },
+        opacity: 0.4,
+        cursor: 'not-allowed',
+      },
+    },
+  },
 })
 
 export const StyledHelperText = styled('div', {
@@ -320,5 +376,159 @@ export const StyledHelperText = styled('div', {
     },
   },
 })
+
+export const StyledEmptyData = styled('div', {
+  fontSize: '$label1',
+  fontWeight: '$medium',
+  color: '$disabledText',
+  padding: '$2 $4',
+  lineHeight: '$normal',
+})
+
+export const StyledIcon = styled('svg', {
+  color: '$primaryText',
+})
+
+export const StyledLoading = styled('div', {
+  display: 'flex',
+  justifyContent: 'center',
+  margin: '$4 auto',
+  '.spinner': {
+    display: 'inline-block',
+    position: 'relative',
+    width: '$4',
+    height: '$4',
+    div: {
+      boxSizing: 'border-box',
+      display: 'block',
+      position: 'absolute',
+      width: '$4',
+      height: '$4',
+      border: '2px solid $divider',
+      borderRadius: '50%',
+      animation: `${spin} 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite`,
+      borderColor: '$divider transparent transparent transparent',
+    },
+    '.spinner-1': {
+      animationDelay: '-0.45s',
+    },
+    '.spinner-2': {
+      animationDelay: '-0.3s',
+    },
+    '.spinner-3': {
+      animationDelay: '-0.15s',
+    },
+  },
+})
+
+export const StyledFlagItem = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flexShrink: 0,
+  width: '$6',
+  height: '$6',
+  overflow: 'hidden',
+  svg: {
+    width: '$6',
+    height: '$6',
+  },
+})
+
+export const StyledFlagIcon = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  left: '$3',
+  flexShrink: 0,
+  width: '$6',
+  height: '$6',
+  overflow: 'hidden',
+  position: 'absolute',
+  svg: {
+    width: '$6',
+    height: '$6',
+  },
+})
+
+export const StyledDropdownSection = styled('div', {
+  // reset
+  appearance: 'none',
+  border: 'none',
+  backgroundColor: 'transparent',
+  boxSizing: 'border-box',
+  margin: '0px',
+  padding: '0px',
+})
+
+export const StyledSectionContent = styled('div', {
+  backgroundColor: '$cdgBlue10',
+  padding: '$2 $4',
+  fontSize: '$label2',
+  fontWeight: '$semibold',
+  color: '$gray100',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  lineHeight: '$normal',
+  variants: {
+    isClickable: {
+      true: {
+        cursor: 'pointer',
+        '&:hover': {
+          backgroundColor: '$cdgBlue20',
+        },
+      },
+    },
+  },
+})
+
+export const StyledItemIcon = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flexShrink: 0,
+  width: '$4',
+  height: '$4',
+  overflow: 'hidden',
+})
+
+export const StyledColor = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flexShrink: 0,
+  width: '$6',
+  height: '$6',
+  borderRadius: '$md',
+  background: '$$bg',
+})
+
+export const StyledContent = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  flexGrow: 1,
+  lineHeight: '$normal',
+})
+
+export const StyledDropdownHeader = styled('div', {})
+
+export const StyledDropdownListItem = styled('div', {
+  height: '$0_25',
+})
+
+export const StyledDropdownPopover = styled('div', {
+  zIndex: 60,
+})
+
+export type DropdownHeaderVariantProps = VariantProps<
+  typeof StyledDropdownHeader
+>
+
+export type DropdownItemVariantProps = VariantProps<typeof StyledOption>
+
+export type DropdownSectionVariantProps = VariantProps<
+  typeof StyledDropdownSection
+>
 
 export type DropdownVariantProps = VariantProps<typeof StyledDropdownWrapper>

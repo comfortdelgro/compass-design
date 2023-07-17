@@ -62,6 +62,8 @@ export type {
 } from './chart'
 export {default as Checkbox} from './checkbox'
 export type {CheckboxProps} from './checkbox'
+export {default as Chip} from './chip'
+export type {ChipProps} from './chip'
 export {default as DashboardSidecard} from './dashboard-sidecard'
 export type {
   DashboardSidecardContentProps,

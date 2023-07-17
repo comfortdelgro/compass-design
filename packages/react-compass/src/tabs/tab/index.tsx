@@ -48,16 +48,25 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>(
       if (item.key && !disabledState) onSelect(item.key)
     }
 
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+      const key = event.key
+      if (key === 'Enter' || key === ' ') {
+        handleSelect()
+      }
+    }
+
     return (
       <StyledTab
         icon={icon}
         ref={tabRef}
+        tabIndex={0}
         variant={variant}
         active={isSelected}
         disabled={!!disabledState}
         className='tab-item-wrapper'
         css={{$$textColor: textColor, $$indicatorColor: indicatorColor}}
         onClick={handleSelect}
+        onKeyDown={handleKeyDown}
       >
         {title}
         {icon !== 'none' && (
