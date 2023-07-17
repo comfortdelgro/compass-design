@@ -135,7 +135,7 @@ export const StyledLabel = styled('label', {
   width: '100%',
   height: '$4_5',
   fontFamily: '$sans',
-  fontSize: '$label2',
+  fontSize: '$label1',
   lineHeight: '$normal',
   fontWeight: '$semibold',
   '& .cdg-isRequired-Sign': {
