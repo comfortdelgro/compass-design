@@ -27,10 +27,6 @@ export const Default: React.FC = () => {
 
       <Accordion>
         <Accordion.Title>Title</Accordion.Title>
-        <p tabIndex={0}>{lorem}</p>
-        <p tabIndex={0}>{lorem}</p>
-        <p tabIndex={0}>{lorem}</p>
-        <p tabIndex={0}>{lorem}</p>
         {lorem}
       </Accordion>
 
