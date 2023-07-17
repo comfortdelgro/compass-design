@@ -10,6 +10,7 @@ interface Props extends StyledComponentProps {
   children?: React.ReactNode
   isOpen?: boolean
   handleClose?: () => void
+  id?: string
 }
 
 export type DialogTriggerProps = Props &
@@ -18,7 +19,6 @@ export type DialogTriggerProps = Props &
 
 const DialogTrigger = React.forwardRef<HTMLDivElement, DialogTriggerProps>(
   (props, ref) => {
-    // let {overlayProps} = useOverlay()
     const {
       // StyledComponentProps
       css = {},
@@ -27,7 +27,8 @@ const DialogTrigger = React.forwardRef<HTMLDivElement, DialogTriggerProps>(
       // ComponentProps
       isOpen = false,
       handleClose,
-      // variant props
+      id,
+      // VariantProps
       variant = 'confirmation',
       // HTMLDiv Props
       ...delegated
@@ -36,37 +37,28 @@ const DialogTrigger = React.forwardRef<HTMLDivElement, DialogTriggerProps>(
     const {child: DialogElement} = pickChild<typeof Dialog>(children, Dialog)
 
     const dialogRef = useDOMRef<HTMLDivElement>(ref)
+    const dialogWrapperRef = useDOMRef<HTMLDivElement>(null)
 
-    React.useEffect(() => {
-      /**
-       * Close the sidebar if clicked on outside of element
-       */
-      function handleClickOutside(event: MouseEvent) {
-        if (
-          dialogRef.current &&
-          !dialogRef?.current?.contains(event.target as Node)
-        ) {
-          event.preventDefault()
-          event.stopPropagation()
-          handleClose?.()
-        }
-      }
-      // Bind the event listener
-      document.addEventListener('mousedown', handleClickOutside)
-      return () => {
-        // Unbind the event listener on clean up
-        document.removeEventListener('mousedown', handleClickOutside)
-      }
-    }, [dialogRef])
+    const handleClickBackdrop = (e: MouseEvent) => {
+      e.stopPropagation()
+      e.preventDefault()
+      handleClose?.()
+    }
 
     return (
       <Portal open={isOpen}>
-        <StyledDialogWrapper css={css} {...delegated}>
+        <StyledDialogWrapper
+          css={css}
+          ref={dialogWrapperRef}
+          onClick={(e) => handleClickBackdrop?.(e as unknown as MouseEvent)}
+          {...delegated}
+        >
           {DialogElement &&
             React.cloneElement(DialogElement as unknown as JSX.Element, {
-              onClose: () => handleClose?.(),
               ref: dialogRef,
               variant: variant,
+              triggerId: id,
+              handleClose: () => handleClose?.(),
             })}
         </StyledDialogWrapper>
       </Portal>
