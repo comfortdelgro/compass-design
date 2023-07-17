@@ -1972,7 +1972,7 @@ export const countries = [
   },
 ]
 
-export const Flag = ({iso}: {iso: string}) => {
+const Flag = ({iso}: {iso: string}) => {
   switch (iso) {
     case 'AF':
       return <AFFlag />
@@ -2472,3 +2472,5 @@ export const Flag = ({iso}: {iso: string}) => {
       return null
   }
 }
+
+export default Flag
