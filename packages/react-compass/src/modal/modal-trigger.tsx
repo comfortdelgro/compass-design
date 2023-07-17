@@ -11,6 +11,7 @@ interface Props extends StyledComponentProps {
   isOpen?: boolean
   handleClose?: () => void
   size?: 'sm' | 'md' | 'lg'
+  id?: string
 }
 
 export type ModalTriggerProps = Props &
@@ -28,6 +29,7 @@ const ModalTrigger = React.forwardRef<HTMLDivElement, ModalTriggerProps>(
       isOpen = false,
       handleClose,
       size = 'md',
+      id,
       ...delegated
     } = props
 
@@ -47,6 +49,7 @@ const ModalTrigger = React.forwardRef<HTMLDivElement, ModalTriggerProps>(
           css={css}
           ref={modalWrapperRef}
           onClick={(e) => handleClickBackdrop?.(e as unknown as MouseEvent)}
+          tabIndex={0}
           {...delegated}
         >
           {ModalElement &&
@@ -55,6 +58,7 @@ const ModalTrigger = React.forwardRef<HTMLDivElement, ModalTriggerProps>(
               ref: modalRef,
               size: size,
               handleClose: () => handleClose?.(),
+              triggerId: id,
             })}
         </StyledModalWrapper>
       </Portal>

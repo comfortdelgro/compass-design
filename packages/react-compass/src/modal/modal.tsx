@@ -7,7 +7,12 @@ import ModalCloseIcon from './modal-closeIcon'
 import ModalDescription from './modal-description'
 import ModalTitle from './modal-title'
 import ModalTrigger from './modal-trigger'
-import {ModalVariantProps, StyledModal, StyledModalHeader} from './modal.styles'
+import {
+  ModalVariantProps,
+  StyledModal,
+  StyledModalContent,
+  StyledModalHeader,
+} from './modal.styles'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
@@ -15,6 +20,7 @@ interface Props extends StyledComponentProps {
   size?: 'sm' | 'md' | 'lg'
   onClick?: () => void
   onKeyDown?: (e: KeyboardEvent) => void
+  triggerId?: string
 }
 
 export type ModalProps = Props &
@@ -33,13 +39,15 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
     onKeyDown,
     // VariantProps
     size = 'md',
+    triggerId,
     // AriaButtonProps
     ...delegated
   } = props
 
   const variantProps = {size} as ModalVariantProps
   const ModalRef = useDOMRef<HTMLDivElement>(ref)
-  const FirstFocusableRef = React.useRef<HTMLElement | null>(null)
+  const FirstFocusableRef = React.useRef<HTMLElement | null>(null) // This is the Modal Content
+  const SecondFocusableRef = React.useRef<HTMLElement | null>(null) // This is the Modal Close Icon
   const LastFocusableRef = React.useRef<HTMLElement | null>(null)
 
   // Pick title child component
@@ -75,17 +83,24 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
 
   const handleKeyDown = (e: KeyboardEvent) => {
     e.stopPropagation()
-    e.preventDefault()
     onKeyDown?.(e)
 
+    // Close modal on escape key
+    if (e.key === 'Escape') {
+      handleClose?.()
+    }
+
+    // Focus on the second focusable element when tabbing from the last focusable element
     if (
       document.activeElement === LastFocusableRef.current &&
       e.key === 'Tab' &&
       !e.shiftKey
     ) {
       e.preventDefault()
-      FirstFocusableRef.current?.focus()
+      SecondFocusableRef.current?.focus()
     }
+
+    // Focus on the last focusable element when tabbing from the first focusable element
     if (
       document.activeElement === FirstFocusableRef.current &&
       e.key === 'Tab' &&
@@ -93,10 +108,6 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
     ) {
       e.preventDefault()
       LastFocusableRef.current?.focus()
-    }
-
-    if (e.key === 'Escape') {
-      handleClose?.()
     }
   }
 
@@ -116,13 +127,43 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
         [tabindex]:not([tabindex="-1"])
       `) ?? [],
     )
+    const modalArray = Array.from<HTMLElement>(
+      document?.querySelectorAll('[role="dialog"]') ?? [],
+    )
 
     FirstFocusableRef.current = focusableElements[0] ?? null
+
+    SecondFocusableRef.current = focusableElements[1] ?? null
     LastFocusableRef.current =
       focusableElements[focusableElements.length - 1] ?? null
 
     if (FirstFocusableRef.current) {
       FirstFocusableRef.current.focus()
+    }
+
+    // Find the index of the current modal in the array of modals
+    const modalIndex = modalArray.findIndex(
+      (modal) => modal === ModalRef.current,
+    )
+
+    // transfer focus to previous modal when current modal unmounts if there is one
+    return () => {
+      if (
+        modalArray.length > 1 &&
+        modalIndex > 0 &&
+        modalArray[modalIndex - 1]
+      ) {
+        modalArray[modalIndex - 1]?.focus()
+      } else {
+        // otherwise focus on the trigger element
+        const triggerElement = document?.querySelector<HTMLElement>(
+          `[data-target= ${triggerId}]`,
+        )
+
+        if (triggerElement) {
+          triggerElement.focus()
+        }
+      }
     }
   }, [ModalRef, FirstFocusableRef, LastFocusableRef])
 
@@ -132,21 +173,24 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
       ref={ModalRef}
       {...delegated}
       {...variantProps}
+      tabIndex={0}
       role='dialog'
       aria-modal={true}
       onClick={(e) => handleClick?.(e as unknown as MouseEvent)}
       onKeyDown={(e) => handleKeyDown?.(e as unknown as KeyboardEvent)}
     >
-      <StyledModalHeader>
-        {ModalTitleElement}
-        {CloseIconElement &&
-          React.cloneElement(CloseIconElement as unknown as JSX.Element, {
-            onClose: () => handleClose?.(),
-          })}
-      </StyledModalHeader>
+      <StyledModalContent tabIndex={0}>
+        <StyledModalHeader>
+          {ModalTitleElement}
+          {CloseIconElement &&
+            React.cloneElement(CloseIconElement as unknown as JSX.Element, {
+              onClose: () => handleClose?.(),
+            })}
+        </StyledModalHeader>
 
-      {ModalDescriptionElement}
-      {ModalActionsElement}
+        {ModalDescriptionElement}
+        {ModalActionsElement}
+      </StyledModalContent>
     </StyledModal>
   )
 })

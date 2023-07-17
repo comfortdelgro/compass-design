@@ -126,7 +126,11 @@ const ChildModal: React.FC = () => {
 
   return (
     <>
-      <Button css={{width: '7.8rem'}} onPress={() => setIsChildOpen(true)}>
+      <Button
+        variant='secondary'
+        css={{width: '7.8rem'}}
+        onPress={() => setIsChildOpen(true)}
+      >
         Open Child Modal
       </Button>
       <Modal.Trigger
@@ -134,14 +138,16 @@ const ChildModal: React.FC = () => {
         handleClose={() => handleChildClose?.()}
         className='parent-modal-trigger'
       >
-        <Modal className='parent-modal' css={{width: '20rem'}}>
-          <Modal.Title>My parent modal</Modal.Title>
+        <Modal css={{width: '20rem'}}>
+          <Modal.Title>My child modal</Modal.Title>
           <Modal.CloseIcon>
             <FontAwesomeIcon icon={faXmark} />
           </Modal.CloseIcon>
           <Modal.Description>{lorem}</Modal.Description>
           <Modal.Actions>
-            <Button onPress={() => setIsChildOpen(false)}>Cancel</Button>
+            <Button variant='secondary' onPress={() => setIsChildOpen(false)}>
+              Cancel
+            </Button>
           </Modal.Actions>
         </Modal>
       </Modal.Trigger>
@@ -159,22 +165,30 @@ export const NestedModal: React.FC = () => {
   return (
     <Column>
       <h3>Default Modal is Medium sized</h3>
-      <Button css={{width: '7.8rem'}} onPress={() => setParentOpen(true)}>
+      <Button
+        variant='secondary'
+        css={{width: '7.8rem'}}
+        onPress={() => setParentOpen(true)}
+        data-target='parent-modal' // This is needed for accessibility. When modal unmouts, focus will be set to this element
+      >
         Open Modal
       </Button>
       <Modal.Trigger
         isOpen={parentOpen}
         handleClose={() => handleParentClose?.()}
         className='my-modal-trigger'
+        id='parent-modal'
       >
-        <Modal className='my-modal'>
-          <Modal.Title>My small title</Modal.Title>
+        <Modal>
+          <Modal.Title>My parent modal</Modal.Title>
           <Modal.CloseIcon>
             <FontAwesomeIcon icon={faXmark} />
           </Modal.CloseIcon>
           <Modal.Description>{lorem}</Modal.Description>
           <Modal.Actions>
-            <Button onPress={() => setParentOpen(false)}>Cancel</Button>
+            <Button variant='secondary' onPress={() => setParentOpen(false)}>
+              Cancel
+            </Button>
             <ChildModal />
           </Modal.Actions>
         </Modal>

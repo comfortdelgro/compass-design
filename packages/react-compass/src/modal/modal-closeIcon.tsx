@@ -20,14 +20,12 @@ const ModalCloseIcon = React.forwardRef<HTMLDivElement, ModalCloseIconProps>(
     const modalCloseIconRef = useDOMRef<HTMLDivElement>(ref)
     const handleFocus = React.useCallback((e: React.FocusEvent) => {
       e.stopPropagation()
-      e.preventDefault()
       onfocus?.(e as unknown as React.FocusEvent)
       setIsFocused(true)
     }, [])
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
       e.stopPropagation()
-      e.preventDefault()
       if (e.key === 'Enter' && isFocused) {
         onClose?.()
       }
