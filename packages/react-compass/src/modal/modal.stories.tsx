@@ -164,7 +164,7 @@ export const NestedModal: React.FC = () => {
   }
   return (
     <Column>
-      <h3>Default Modal is Medium sized</h3>
+      <h3>Nested Modal</h3>
       <Button
         variant='secondary'
         css={{width: '7.8rem'}}
