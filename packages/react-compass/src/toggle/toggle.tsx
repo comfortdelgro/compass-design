@@ -58,6 +58,13 @@ const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>((props, ref) => {
     }
   }
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    const key = event.key
+    if (key === 'Enter' || key === ' ') {
+      onClick()
+    }
+  }
+
   React.useEffect(() => {
     props.onChange?.(isSelectedState)
   }, [isSelectedState])
@@ -70,10 +77,12 @@ const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>((props, ref) => {
     <StyledToggle
       css={css}
       size={size}
+      tabIndex={0}
+      className={className}
       active={isSelectedState}
       disabled={!!props.isDisabled}
       onClick={onClick}
-      className={className}
+      onKeyDown={handleKeyDown}
     >
       <input
         aria-controls={props['aria-controls']}
