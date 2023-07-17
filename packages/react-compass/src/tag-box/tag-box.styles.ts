@@ -134,6 +134,16 @@ export const StyledItem = styled('div', {
     padding: 0,
     margin: 0,
   },
+  button: {
+    width: '16px',
+    height: '16px',
+    padding: 0,
+    margin: 0,
+    border: 0,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   variants: {
     isDisabled: {
       true: {

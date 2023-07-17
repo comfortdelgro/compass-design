@@ -1,9 +1,9 @@
 import React from 'react'
-import Dropdown, {DropdownProps} from '.'
 import {StyledComponentProps} from '../utils/stitches.types'
+import Dropdown, {DropdownProps} from './dropdown'
+import DropdownItem from './dropdown-item'
 import {DropdownVariantProps} from './dropdown.styles'
 import {countries} from './flags'
-import DropdownItem from './item'
 
 interface P extends DropdownProps, StyledComponentProps {
   flagKeyType?: 'alpha-2' | 'alpha-3' | 'name' | 'country-code'
@@ -22,76 +22,38 @@ export type DropdownFlagProps = Props & DropdownVariantProps
 
 const DropdownFlag = React.forwardRef<HTMLDivElement, DropdownFlagProps>(
   (props, ref) => {
-    const {
-      flagKeyType = 'alpha-3',
-      selectedKey,
-      defaultSelectedKey,
-      onSelectionChange = () => {
-        /**/
-      },
-      onCountryChange = () => {
-        /**/
-      },
-      ...delegated
-    } = props
+    const {flagKeyType, onSelectionChange, onCountryChange, ...delegated} =
+      props
 
-    const [selected, setSelected] = React.useState<React.Key | undefined>(
-      defaultSelectedKey,
-    )
-
-    React.useEffect(() => {
-      const getAlpha3FromKey = (key: React.Key) => {
-        const selected = countries.find(
-          (item) =>
-            item.name === key ||
-            item['alpha-2'] === key ||
-            item['alpha-3'] === key ||
-            item['phone-code'] === key ||
-            item['country-code'] === key,
-        )
-        if (selected) {
-          return selected['alpha-3']
+    const handleCountryChange = React.useCallback(
+      (c: React.Key) => {
+        const country = countries.find((item) => item['alpha-3'] === c)
+        if (country) {
+          if (flagKeyType) {
+            onSelectionChange?.(country[flagKeyType])
+          }
+          onCountryChange?.(country)
         }
-        return undefined
-      }
-
-      if (selectedKey) {
-        setSelected(getAlpha3FromKey(selectedKey))
-      }
-    }, [selectedKey])
-
-    const handleCountryChange = (c: React.Key) => {
-      const country = countries.find((item) => item['alpha-3'] === c)
-      if (country) {
-        onSelectionChange?.(country[flagKeyType])
-        onCountryChange?.(country)
-      }
-    }
-
-    const valueProps = {
-      ...(selected ? {selectedKey: selected} : {}),
-    }
-
-    return (
-      <PreDropdown
-        ref={ref}
-        {...delegated}
-        {...valueProps}
-        onSelectionChange={handleCountryChange}
-      >
-        {countries.map((item) => (
-          <DropdownItem key={item['alpha-3']}>{item.name}</DropdownItem>
-        ))}
-      </PreDropdown>
+      },
+      [flagKeyType, onSelectionChange, onCountryChange],
     )
-  },
-)
 
-const PreDropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
-  (props, ref) => {
     return (
-      <Dropdown {...props} ref={ref} type='flag'>
-        {props.children}
+      <Dropdown
+        ref={ref}
+        type='flag'
+        onSelectionChange={handleCountryChange}
+        {...delegated}
+      >
+        {countries.map((country) => (
+          <DropdownItem
+            key={country['alpha-3']}
+            value={country['alpha-3']}
+            flagName={country['alpha-2']}
+          >
+            {country.name}
+          </DropdownItem>
+        ))}
       </Dropdown>
     )
   },

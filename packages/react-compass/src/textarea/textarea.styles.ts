@@ -38,8 +38,8 @@ export const StyledTextarea = styled('textarea', {
   borderStyle: 'solid',
   borderColor: '$divider',
   borderRadius: '$md',
-  color: '$tertiaryText',
-  backgroundColor: '$gray20',
+  color: '$typeHeading',
+  backgroundColor: '$whiteText',
   transition: 'border-color 250ms ease 0s',
 
   '&:disabled': {
@@ -83,6 +83,8 @@ export const StyledTextareaWrapper = styled('div', {
     isDarkTheme: {
       true: {
         [`${StyledTextarea}`]: {
+          color: '$tertiaryText',
+          backgroundColor: '$gray20',
           '&:focus': {
             outline: 'none',
             borderColor: '$cdgBlue120',

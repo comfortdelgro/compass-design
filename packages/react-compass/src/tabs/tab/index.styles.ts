@@ -17,10 +17,6 @@ export const StyledTab = styled('div', {
   alignItems: 'center',
   width: 'max-content',
 
-  '&:focus-visible': {
-    outline: 'none',
-  },
-
   '& .icon': {
     width: '$4',
     height: '$4',
