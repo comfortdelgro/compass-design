@@ -152,7 +152,9 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           </StyledCheckboxBox>
 
           {/* Label */}
-          <StyledCheckboxLabelContent>{children}</StyledCheckboxLabelContent>
+          {children && (
+            <StyledCheckboxLabelContent>{children}</StyledCheckboxLabelContent>
+          )}
         </StyledCheckboxLabel>
       </StyledCheckboxWrapper>
     )
