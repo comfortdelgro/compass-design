@@ -3,6 +3,9 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React, {Key} from 'react'
 import Dropdown from '.'
 import {Column} from '../utils'
+import ADFlag from './flags/ad'
+import AEFlag from './flags/ae'
+import AFFlag from './flags/af'
 
 function generateRandomName() {
   const firstNames = [
@@ -70,9 +73,23 @@ interface SampleData {
 
 export const Select: React.FC = () => {
   const [value, setValue] = React.useState<Key>('cat')
+  const [flag, setFlag] = React.useState<Key>('')
   const [loadMoreValue, setLoadMoreValue] = React.useState<Key>('')
   const [data, setData] = React.useState<SampleData[]>(generateRandomData(10))
   const [value1, setValue1] = React.useState<Key>('cat')
+
+  const handlePrefix = (key: Key) => {
+    if (key === 'afghanistan') {
+      return <ADFlag />
+    }
+    if (key === 'albania') {
+      return <AEFlag />
+    }
+    if (key === 'algeria') {
+      return <AFFlag />
+    }
+    return null
+  }
 
   return (
     <Column>
@@ -113,6 +130,31 @@ export const Select: React.FC = () => {
         <Dropdown.Item key='aardvark1'>Aardvark1</Dropdown.Item>
         <Dropdown.Item key='kangaroo1'>Kangaroo1</Dropdown.Item>
         <Dropdown.Item key='snakessss1'>Snake1</Dropdown.Item>
+      </Dropdown.Select>
+      <h3>Prefix</h3>
+      <Dropdown.Select
+        isRequired
+        isDisabled
+        label={<>Phone Code Select</>}
+        placeholder='Choose an animal'
+        selectedKey={flag}
+        onSelectionChange={(k: Key) => setFlag(k)}
+        prefix={
+          <div
+            style={{
+              marginRight: '0.7rem',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            {handlePrefix(flag)}
+          </div>
+        }
+      >
+        <Dropdown.Item key='afghanistan'>Afghanistan (+93)</Dropdown.Item>
+        <Dropdown.Item key='albania'>Albania (+355)</Dropdown.Item>
+        <Dropdown.Item key='algeria'>Algeria (+213)</Dropdown.Item>
       </Dropdown.Select>
       <h3>Disable the whole thing</h3>
       <Dropdown.Select
