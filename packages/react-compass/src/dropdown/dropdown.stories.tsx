@@ -134,7 +134,6 @@ export const Select: React.FC = () => {
       <h3>Prefix</h3>
       <Dropdown.Select
         isRequired
-        isDisabled
         label={<>Phone Code Select</>}
         placeholder='Choose an animal'
         selectedKey={flag}
