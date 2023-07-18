@@ -156,6 +156,10 @@ export const Select: React.FC = () => {
         <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
         <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
         <Dropdown.Item key='snakessss'>Snake</Dropdown.Item>
+        <Dropdown.Item key='dog1'>Dog1</Dropdown.Item>
+        <Dropdown.Item key='aardvark1'>Aardvark1</Dropdown.Item>
+        <Dropdown.Item key='kangaroo1'>Kangaroo1</Dropdown.Item>
+        <Dropdown.Item key='snakessss1'>Snake1</Dropdown.Item>
       </Dropdown.Select>
       <h3>Prefix</h3>
       <Dropdown.Select
