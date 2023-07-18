@@ -5,4 +5,3 @@
 ### Flow chart
 
 ![Flow chart](https://github.com/comfortdelgro/compass-design/assets/117263060/c846e159-b2d6-4b56-a7e6-c8be0b056089)
-
