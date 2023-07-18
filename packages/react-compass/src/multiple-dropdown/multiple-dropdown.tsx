@@ -198,8 +198,10 @@ const MultipleDropdown = React.forwardRef<
         (selectedKeys && selectedKeys?.length > 0) ||
         (defaultSelectedKeys && defaultSelectedKeys.length > 0)
       )
-    )
+    ) {
+      setSelectedItems([])
       return
+    }
 
     const currentSelectedKeys = defaultSelectedKeys ?? selectedKeys ?? []
 
@@ -216,9 +218,7 @@ const MultipleDropdown = React.forwardRef<
           value: currentSelectedKey.toString(),
           displayValue: item as React.ReactNode,
         })
-        if (!currentFocusKey) {
-          currentFocusKey = currentSelectedKey.toString()
-        }
+        currentFocusKey = currentSelectedKey.toString()
       }
     }
     setSelectedItems(newSelectedItems)
@@ -434,20 +434,18 @@ const MultipleDropdown = React.forwardRef<
             newSelectedItems.splice(itemIndex, 1)
           }
         }
-        setSelectedSectionIds((sectionIds) => {
-          const sectionIdsSet = new Set(sectionIds)
-          if (checking) {
-            sectionIdsSet.add(id)
-          } else {
-            sectionIdsSet.delete(id)
-          }
-          return [...sectionIdsSet]
-        })
-        isUncontrolledComponent && setSelectedItems([...newSelectedItems])
-        onSelectionChange?.(newSelectedItems.map((item) => item.value))
-        inputRef.current?.focus()
       }
     })
+    const sectionIdsSet = new Set(selectedSectionIds)
+    if (checking) {
+      sectionIdsSet.add(id)
+    } else {
+      sectionIdsSet.delete(id)
+    }
+    setSelectedSectionIds([...sectionIdsSet])
+    isUncontrolledComponent && setSelectedItems([...newSelectedItems])
+    onSelectionChange?.(newSelectedItems.map((item) => item.value))
+    inputRef.current?.focus()
   }
 
   const handleClosePopover = useCallback(() => {
