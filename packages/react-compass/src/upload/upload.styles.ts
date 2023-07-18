@@ -60,6 +60,7 @@ export const StyledUploadContent = styled('div', {
   whiteSpace: 'nowrap',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
+  cursor: 'pointer',
   p: {
     margin: 0,
     padding: 0,
@@ -97,11 +98,17 @@ export const StyledUploadContainer = styled('div', {
   borderRadius: '$lg',
   display: 'flex',
   gap: '0px',
+  transition: 'border 200ms ease-in-out',
+
+  '&:focus-within': {
+    border: '1px solid $cdgBlue',
+  },
 })
 
-export const StyledBrowseFile = styled('div', {
+export const StyledBrowseFile = styled('button', {
   // reset
   appearance: 'none',
+  border: 'none',
   //border: 'none',
   boxSizing: 'border-box',
   margin: '0px',
@@ -121,6 +128,10 @@ export const StyledBrowseFile = styled('div', {
   span: {
     width: 'max-content',
   },
+
+  '&:focus-visible': {
+    outline: 'none',
+  },
 })
 
 export const StyledLabel = styled('label', {
@@ -135,7 +146,7 @@ export const StyledLabel = styled('label', {
   width: '100%',
   height: '$4_5',
   fontFamily: '$sans',
-  fontSize: '$label2',
+  fontSize: '$label1',
   lineHeight: '$normal',
   fontWeight: '$semibold',
   '& .cdg-isRequired-Sign': {

@@ -213,9 +213,9 @@ export const DropdownsForm: React.FC = () => {
               >
                 {currentDrinksList.map((item: any) => {
                   return (
-                    <Dropdown.Item key={String(item.strDrink)}>
+                    <MultipleDropdown.Item key={String(item.strDrink)}>
                       {item.strDrink}
-                    </Dropdown.Item>
+                    </MultipleDropdown.Item>
                   )
                 })}
               </MultipleDropdown>

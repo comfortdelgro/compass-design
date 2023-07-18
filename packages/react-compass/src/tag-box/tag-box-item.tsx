@@ -140,16 +140,15 @@ const TagBoxItem = React.forwardRef<HTMLDivElement, BannerProps>(
         >
           {value}
         </span>
-        <span
+        <button
+          onClick={() => onRemove?.(id)}
+          tabIndex={isDisabled ? 0 : 1}
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
             cursor: isDisabled ? 'not-allowed' : 'pointer',
           }}
         >
-          <Xmark onClick={() => onRemove?.(id)} />
-        </span>
+          <Xmark />
+        </button>
       </StyledItem>
     )
   },

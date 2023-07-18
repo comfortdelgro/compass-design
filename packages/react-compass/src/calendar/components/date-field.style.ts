@@ -132,3 +132,7 @@ export const StyledTextFieldHelperText = styled('div', {
     },
   },
 })
+
+export const StyledIcon = styled('svg', {
+  color: '$primaryText',
+})
