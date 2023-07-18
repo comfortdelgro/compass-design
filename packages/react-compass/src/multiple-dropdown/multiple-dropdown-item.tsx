@@ -52,7 +52,7 @@ const MultipleDropdownItem = React.forwardRef<
   }, [selectedItems, value])
 
   const isFocused = React.useMemo(
-    () => focusKey === value.toString(),
+    () => focusKey?.toString() === value.toString(),
     [focusKey, value],
   )
 
@@ -98,7 +98,6 @@ const MultipleDropdownItem = React.forwardRef<
       if (multipleDropdownItemRef.current) {
         multipleDropdownItemRef.current.scrollIntoView({
           block: 'nearest',
-          behavior: 'smooth',
         })
       }
     }
@@ -116,7 +115,7 @@ const MultipleDropdownItem = React.forwardRef<
 
   return canDisplayed ? (
     <StyledOption
-      ref={ref}
+      ref={multipleDropdownItemRef}
       isFocused={isFocused}
       isSelected={isSelected && !isFocused}
       onClick={handleItemClick}

@@ -1,6 +1,5 @@
-import { styled } from '../theme'
-import type { VariantProps } from '../utils/stitches.types'
-
+import {styled} from '../theme'
+import type {VariantProps} from '../utils/stitches.types'
 
 export const StyledModalHeader = styled('div', {
   // reset
@@ -118,10 +117,21 @@ export const StyledModalCloseIcon = styled('div', {
     width: '100%',
     height: '100%',
   },
+  '&:focus-visible': {
+    outline: '2px solid $cdgBlue60',
+  },
+})
+
+export const StyledModalContent = styled('div', {
+  // reset
+  all: 'unset',
+  width: 'fit-content',
+  height: 'fit-content',
 })
 
 export const StyledModal = styled('div', {
   // reset
+  all: 'unset',
   appearance: 'none',
   border: 'none',
   boxSizing: 'border-box',

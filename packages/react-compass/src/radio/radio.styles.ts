@@ -1,6 +1,5 @@
-import { styled } from '../theme'
-import type { VariantProps } from '../utils/stitches.types'
-
+import {styled} from '../theme'
+import type {VariantProps} from '../utils/stitches.types'
 
 export const StyledRadio = styled('div', {
   position: 'relative',
@@ -52,7 +51,9 @@ export const StyledRadio = styled('div', {
       },
     },
     variant: {
-      simple: {},
+      simple: {
+        padding: '$1', // Prevent boxmodel inside overflow with boxmodel wrapper
+      },
       outlined: {
         padding: '$4',
         border: '1px solid $cdgBlue100',
