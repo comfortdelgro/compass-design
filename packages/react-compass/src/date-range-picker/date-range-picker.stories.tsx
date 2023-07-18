@@ -105,20 +105,25 @@ export const Controlled: React.FC = () => {
   return (
     <I18nProvider locale='en-SG'>
       <h3>Controlled</h3>
-      {range.start && range.end
-        ? formatter.formatRange(
-            range.start.toDate(getLocalTimeZone()),
-            range.end.toDate(getLocalTimeZone()),
-          )
-        : `${
-            range.start &&
-            formatter.format(range.start.toDate(getLocalTimeZone()))
-          } - ${
-            range.end && formatter.format(range.end.toDate(getLocalTimeZone()))
-          }`}
+      <p>
+        {range.start && range.end
+          ? formatter.formatRange(
+              range.start.toDate(getLocalTimeZone()),
+              range.end.toDate(getLocalTimeZone()),
+            )
+          : `${
+              range.start &&
+              formatter.format(range.start.toDate(getLocalTimeZone()))
+            } - ${
+              range.end &&
+              formatter.format(range.end.toDate(getLocalTimeZone()))
+            }`}
+      </p>
       <DateRangePicker
         value={range}
         shouldCloseOnSelect
+        startDateLabel='Start Date'
+        endDateLabel='End Date'
         onChange={(e) => setRange(e as RangeValue<DateValue>)}
       />
     </I18nProvider>

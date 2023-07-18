@@ -1,0 +1,9 @@
+<Button variant='secondary'>
+  <Icon icon={faVirus} />
+</Button>
+<Button variant='danger'>
+  <Icon icon={faVirus} />
+</Button>
+<Button variant='ghost'>
+  <Icon icon={faVirus} />
+</Button>

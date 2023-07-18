@@ -2,6 +2,7 @@ import {Callout} from 'nextra-theme-docs'
 import styles from '../../styles/Home.module.css'
 import BugIcon from '@comfortdelgro/compass-icons/react/bug'
 import Textfield from '@comfortdelgro/react-compass/textfield'
+import {Controlled} from '../../components/TextField'
 
 # Text Field
 
@@ -36,6 +37,33 @@ import Textfield from '@comfortdelgro/react-compass/textfield'
 
 ```js
 <Textfield placeholder='Enter your name' />
+```
+
+---
+
+### Controlled:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Controlled />
+</section>
+
+```js
+  const [value, setValue] = React.useState('')
+  return (
+    <>
+      <Textfield
+        placeholder='Pick a number from 1 - 100'
+        value={value}
+        onChange={(value) => {
+          const valueAsNumber = Number(value)
+          if ((valueAsNumber >= 0 && valueAsNumber <= 100) || value === '') {
+            setValue(value as string)
+          }
+          return
+        }}
+      />
+    </>
+  )
 ```
 
 ---

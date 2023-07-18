@@ -24,26 +24,6 @@ Actually, you can put whatever you want into the popover content, which is the c
 
 ---
 
-### Props:
-
-| Name            | Type                                                                             | Default         | Description                                        |
-| :-------------- | :------------------------------------------------------------------------------- | :-------------- | :------------------------------------------------- |
-| anchor          | `React.ReactNode`                                                                | `-`             | Element that when you click on to show the Popover |
-| isOpen          | `boolean`                                                                        | `-`             | Let Popover content open                           |
-| offset          | `number`                                                                         | `10`            | Distance from anchor to popover content            |
-| attachToElement | `HTMLELement`                                                                    | `document.body` | Where to attach the popover                        |
-| direction       | `bottom-right` `bottom-left` `bottom-center` `top-right` `top-left` `top-center` | `bottom-right`  | Direction of Popover content                       |
-
----
-
-### Methods:
-
-| Name    | Type         | Default                                       | Description |
-| :------ | :----------- | :-------------------------------------------- | :---------- |
-| onClose | `() => void` | Event that calls when use has clicked outside |
-
----
-
 ### Import:
 
 ```js
@@ -59,31 +39,66 @@ import Popover, {PopoverDirection} from '@comfortdelgro/react-compass/popover'
 </section>
 
 ```js
-const [isOpen, setIsOpen] = useState(false)
-const direction = 'bottom-right'
+const [isOpen1, setIsOpen1] = useState(false)
+const [currentDirection, setCurrentDirection] =
+  useState < PopoverDirection > 'bottom'
+
+const openPopover1 = () => {
+  setIsOpen1(true)
+}
+
+const SamplePopover = () => {
+  return (
+    <div
+      className='popover-content'
+      style={{
+        background: '#ffffff',
+        border: '1px solid #b63f3f',
+        borderRadius: '5px',
+        width: '100px',
+        height: '50px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      Content
+    </div>
+  )
+}
 
 return (
   <Popover
-    isOpen={isOpen}
+    isOpen={isOpen1}
     anchor={
-      <Button
-        variant='secondary'
-        onPress={() => {
-          setIsOpen(true)
-        }}
-      >
-        Open
+      <Button variant='secondary' onPress={openPopover1}>
+        Click me!
       </Button>
     }
-    direction={direction}
+    direction={currentDirection}
     onClose={() => {
-      setIsLeftOpen(false)
+      setIsOpen1(false)
     }}
   >
-    <SampleTopPopover />
+    <SamplePopover />
   </Popover>
 )
 ```
+
+---
+
+### Props:
+
+| Name      | Type                                                                             | Default        | Description                                        |
+| :-------- | :------------------------------------------------------------------------------- | :------------- | :------------------------------------------------- |
+| anchor    | `React.ReactNode`                                                                | `-`            | Element that when you click on to show the Popover |
+| isOpen    | `boolean`                                                                        | `-`            | Let Popover content open                           |
+| offset    | `number`                                                                         | `10`           | Distance from anchor to popover content            |
+| direction | `bottom-right` `bottom-left` `bottom-center` `top-right` `top-left` `top-center` | `bottom-right` | Direction of Popover content                       |
+| `css `    | `CSS`                                                                            | —              |                                                    |
+| onClose   | `() => void`                                                                     |                | Callback to close popover                          |
+
+---
 
 <Callout>
   Check out our [ladle](/ladle?story=popover--variants) for more info on this

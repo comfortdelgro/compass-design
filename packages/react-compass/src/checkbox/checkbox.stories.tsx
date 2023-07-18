@@ -48,7 +48,7 @@ export const Variants: Story<{onChange: () => void}> = () => (
 
     <h3>3. Without Labels</h3>
     <Column>
-      <Row>
+      <Row css={{gap: '1em'}}>
         <Checkbox />
         <Checkbox defaultSelected />
         <Checkbox isDisabled />
@@ -56,7 +56,7 @@ export const Variants: Story<{onChange: () => void}> = () => (
         <Checkbox isIndeterminate defaultSelected />
         <Checkbox isIndeterminate isDisabled defaultSelected />
       </Row>
-      <Row>
+      <Row css={{gap: '1em'}}>
         <Checkbox variant='rounded' />
         <Checkbox variant='rounded' defaultSelected />
         <Checkbox variant='rounded' isDisabled />

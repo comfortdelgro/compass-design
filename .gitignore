@@ -6,6 +6,7 @@
 node_modules
 .pnp
 .pnp.js
+.tool-versions
 
 # debug
 npm-debug.log*

@@ -22,6 +22,7 @@ import RangeCalendar from '../range-calendar/range-calendar'
 import {CustomShortcutsProps} from '../range-calendar/range-calendar-shortcuts'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
+import {useMediaQuery} from '../utils/use-media-query'
 import {
   StyledDateRangeInputsWrapper,
   StyledRangeDatepicker,
@@ -42,6 +43,7 @@ interface Props
   maxValue?: DateValue | null | undefined
   hasShortcuts?: boolean
   ctaButtonRender?: React.ReactNode
+  visibleMonths?: 1 | 2
   onSearchButtonClick?: (
     e:
       | React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -64,6 +66,7 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
       maxValue,
       hasShortcuts,
       ctaButtonRender,
+      visibleMonths,
       onSearchButtonClick,
       customShortcuts,
       ...delegated
@@ -124,7 +127,11 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
     calendarProps.isReadOnly = checkIfCalendarInMobile()
 
     return (
-      <StyledRangeDatepicker ref={calendarRef} css={css}>
+      <StyledRangeDatepicker
+        ref={calendarRef}
+        css={css}
+        className='date-range-picker-wrapper'
+      >
         <DatePickerProvider>
           <DateRangeInputsWrapper
             state={state}
@@ -153,6 +160,7 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
             onSearchButtonClick={onSearchButtonClick}
             customShortcuts={customShortcuts}
             css={props.calendarCSS}
+            visibleMonths={visibleMonths}
           />
         </DatePickerProvider>
       </StyledRangeDatepicker>
@@ -237,6 +245,7 @@ interface DateRangeCalendarWrapperProps {
   css?: CSS | undefined
   hasShortcuts?: boolean | undefined
   ctaButtonRender?: React.ReactNode | undefined
+  visibleMonths?: 1 | 2 | undefined
   onSearchButtonClick?:
     | ((
         e:
@@ -257,11 +266,13 @@ const DateRangeCalendarWrapper = (props: DateRangeCalendarWrapperProps) => {
     hasShortcuts = false,
     maxValue = parseDate('2999-03-10'),
     ctaButtonRender,
+    visibleMonths,
     onSearchButtonClick,
     customShortcuts,
   } = props
 
   const {value, onChange, ...resCalendarProps} = calendarProps
+  const isMobileView = useMediaQuery('(max-width: 768px)')
 
   const onChangeRangeCalendar = (e: unknown) => {
     onChange && onChange(e as RangeValue<DateValue>)
@@ -296,6 +307,9 @@ const DateRangeCalendarWrapper = (props: DateRangeCalendarWrapperProps) => {
               ctaButtonRender={ctaButtonRender}
               onSearchButtonClick={onSearchButtonClick}
               customShortcuts={customShortcuts}
+              visibleMonths={
+                visibleMonths ? visibleMonths : isMobileView ? 1 : 2
+              }
             />
           </Dialog>
         </Popover>
