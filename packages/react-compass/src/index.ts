@@ -90,7 +90,6 @@ export type {DividerProps} from './divider'
 export {default as Dropdown} from './dropdown'
 export type {
   DropdownComboBoxProps,
-  DropdownFlagProps,
   DropdownItemProps,
   DropdownProps,
   DropdownSelectProps,

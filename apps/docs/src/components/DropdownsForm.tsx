@@ -96,7 +96,7 @@ export const DropdownsForm: React.FC = () => {
           )
         }}
       />
-      <Controller
+      {/* <Controller
         control={control}
         name='nationality'
         render={({field, fieldState}) => {
@@ -116,9 +116,9 @@ export const DropdownsForm: React.FC = () => {
             </Fragment>
           )
         }}
-      />
+      /> */}
 
-      <Controller
+      {/* <Controller
         control={control}
         name='phoneCode'
         render={({field, fieldState}) => {
@@ -139,7 +139,7 @@ export const DropdownsForm: React.FC = () => {
             </Fragment>
           )
         }}
-      />
+      /> */}
       <Controller
         control={control}
         name='phoneNumber'

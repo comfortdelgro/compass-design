@@ -17,7 +17,6 @@ import {
 import DropdownItem from './dropdown-item'
 import DropdownList from './dropdown-list'
 import DropdownComboBox from './dropdown.combobox'
-import DropdownFlag from './dropdown.flag'
 import DropdownHeader from './dropdown.header'
 import DropdownSection from './dropdown.section'
 import DropdownSelect from './dropdown.select'
@@ -25,14 +24,11 @@ import {
   DropdownVariantProps,
   StyledComboBox,
   StyledDropdownWrapper,
-  StyledFlag,
-  StyledFlagIcon,
   StyledHelperText,
   StyledIcon,
   StyledPopover,
   StyledSelect,
 } from './dropdown.styles'
-import Flag from './flags'
 import {
   getFirstItem,
   getItemAbove,
@@ -48,7 +44,7 @@ interface Props extends StyledComponentProps {
   defaultSelectedKey?: Key
   shouldDeselect?: boolean
   allowsCustomValue?: boolean
-  type?: 'select' | 'combobox' | 'flag'
+  type?: 'select' | 'combobox'
   prefix?: React.ReactNode
   icon?: React.ReactNode
   label?: React.ReactNode
@@ -164,7 +160,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       case 'select':
         return buttonSelectRef.current?.clientWidth ?? '100%'
       case 'combobox':
-      case 'flag':
         return inputRef.current?.clientWidth ?? '100%'
       default:
         return '100%'
@@ -327,16 +322,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     (event: React.ChangeEvent<HTMLInputElement>) => {
       setOpen(true)
       setSearchValue(event.target.value ?? '')
-      // Reset current selected item and set to backup item
-      if (type === 'flag') {
-        // Check if selectedItemBackup exists
-        if (selectedItem && !selectedItemBackup) {
-          setSelectedItemBackup(selectedItem)
-        }
-        isUncontrolledComponent && setSelectedItem(null)
-      }
-      // Combobox
-      else if (type === 'combobox') {
+      if (type === 'combobox') {
         if (allowsCustomValue) {
           isUncontrolledComponent && setSelectedItem(null)
           onSelectionChange?.('')
@@ -354,17 +340,11 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   )
 
   const fillTextForInput = useCallback(() => {
-    if (['combobox', 'flag'].includes(type) && inputRef.current) {
+    if (['combobox'].includes(type) && inputRef.current) {
       // wait for document move cursor
       setTimeout(() => {
         // Check if click into content of Dropdown
         if (document.activeElement === inputRef.current) {
-          return
-        }
-        // Check if there is a backup item but no new item is selected then rollback backup item
-        if (type === 'flag' && selectedItemBackup && !selectedItem) {
-          isUncontrolledComponent && setSelectedItem(selectedItemBackup)
-          setSelectedItemBackup(null)
           return
         }
         if (inputRef.current) {
@@ -391,7 +371,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   ])
 
   useEffect(() => {
-    if (!open && ['combobox', 'flag'].includes(type) && inputRef.current) {
+    if (!open && ['combobox'].includes(type) && inputRef.current) {
       fillTextForInput()
     }
   }, [open, type, fillTextForInput])
@@ -479,41 +459,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
             </button>
           </StyledComboBox>
         )
-      case 'flag':
-        return (
-          <StyledFlag
-            isEmpty={!selectedItem}
-            className='cdg-dropdown-input'
-            isErrored={!!isErrored}
-            isDisabled={isDisabled}
-          >
-            {selectedItem && selectedItem?.flagName ? (
-              <StyledFlagIcon>
-                <Flag iso={selectedItem.flagName} />
-              </StyledFlagIcon>
-            ) : null}
-            <input
-              id={id}
-              ref={inputRef}
-              readOnly={isReadOnly}
-              disabled={isDisabled}
-              placeholder={placeholder}
-              onChange={handleInputChange}
-              onBlur={onBlur}
-              onFocus={onFocus}
-              onClick={handleDropdownToggle}
-            />
-            <button
-              tabIndex={-1}
-              disabled={isDisabled}
-              onClick={handleDropdownToggle}
-              type='button'
-              className='cdg-dropdown-button'
-            >
-              {icon}
-            </button>
-          </StyledFlag>
-        )
       default:
         return null
     }
@@ -559,7 +504,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     }
     isUncontrolledComponent && setSelectedItem(currentItem)
     setSelectedItemBackup(currentItem)
-    if (['combobox', 'flag'].includes(type)) {
+    if (['combobox'].includes(type)) {
       if (inputRef.current) {
         inputRef.current.value = textContent(
           currentItem.displayValue as React.ReactElement,
@@ -642,7 +587,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
 
 export default Select as typeof Select & {
   ComboBox: typeof DropdownComboBox
-  Flag: typeof DropdownFlag
   Select: typeof DropdownSelect
   Item: typeof DropdownItem
   Section: typeof DropdownSection
