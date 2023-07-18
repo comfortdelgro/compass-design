@@ -1,1 +1,1 @@
-declare module 'fg-loadcss';
+declare module 'fg-loadcss'

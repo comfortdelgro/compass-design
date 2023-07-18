@@ -1,5 +1,11 @@
 ## 1.0.0-beta.0.0
 
+## 1.2.0
+
+### Minor Changes
+
+- 4afbe01a: Accessibility features
+
 ## 1.1.0
 
 ### Minor Changes
