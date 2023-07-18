@@ -123,6 +123,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     onFocus = EMPTY_FUNC,
     onBlur = EMPTY_FUNC,
     onLoadMore = EMPTY_FUNC,
+    onOpenChange = EMPTY_FUNC,
     ...delegated
   } = props
 
@@ -173,11 +174,11 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     if (!openStateInitialChangedRef.current) {
       openStateInitialChangedRef.current = true
     } else {
-      if (!open) {
+      if (!open && allowsCustomValue) {
         setFocusKey('')
       }
     }
-  }, [open])
+  }, [open, allowsCustomValue])
 
   // clone children to assign value prop if not exists. the value would be equal to the key prop
   // This is to support the legacy code where users don't pass value prop and use key prop instead
@@ -195,6 +196,18 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     })
     setClonedChildren(clonedChildren)
   }, [children])
+
+  const setValueForItemAndFocusKey = useCallback(
+    (item: SelectedItemDropdown | null) => {
+      if (isUncontrolledComponent) {
+        setSelectedItem(item)
+        console.log('setValueForItemAndFocusKey: ', item?.value ?? '')
+
+        setFocusKey(item?.value ?? '')
+      }
+    },
+    [isUncontrolledComponent],
+  )
 
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
@@ -258,23 +271,23 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
             const focusedItem = getItemByKey(currentFocusKey, clonedChildren)
             if (focusedItem) {
               setOpen(false)
+              onOpenChange?.(false)
               // Deselect item
               if (
                 !disableClearable &&
                 shouldDeselect &&
                 selectedItem?.value === focusedItem.props.value
               ) {
-                isUncontrolledComponent && setSelectedItem(null)
+                setValueForItemAndFocusKey(null)
                 onSelectionChange?.('')
                 return
               }
-              isUncontrolledComponent &&
-                setSelectedItem({
-                  value: focusedItem?.props?.value?.toString() ?? '',
-                  displayValue:
-                    focusedItem.props.textValue || focusedItem.props.children,
-                  flagName: focusedItem.props.flagName ?? '',
-                })
+              setValueForItemAndFocusKey({
+                value: focusedItem?.props?.value?.toString() ?? '',
+                displayValue:
+                  focusedItem.props.textValue || focusedItem.props.children,
+                flagName: focusedItem.props.flagName ?? '',
+              })
               if (inputRef.current) {
                 inputRef.current.value = textContent(
                   focusedItem.props.children as React.ReactElement,
@@ -288,17 +301,19 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         case 'Escape':
         case 'Tab':
           setOpen(false)
+          onOpenChange?.(false)
           break
       }
     },
     [
-      isUncontrolledComponent,
       disableClearable,
       shouldDeselect,
       focusKey,
       clonedChildren,
       selectedItem,
       dropdownItemKeys,
+      onOpenChange,
+      setValueForItemAndFocusKey,
     ],
   )
 
@@ -315,16 +330,18 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
 
   const handleDropdownToggle = useCallback(() => {
     setOpen((v) => !v)
+    onOpenChange?.(!open)
     inputRef.current?.focus()
-  }, [])
+  }, [onOpenChange, open])
 
   const handleInputChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       setOpen(true)
+      onOpenChange?.(true)
       setSearchValue(event.target.value ?? '')
       if (type === 'combobox') {
         if (allowsCustomValue) {
-          isUncontrolledComponent && setSelectedItem(null)
+          setValueForItemAndFocusKey(null)
           onSelectionChange?.('')
         }
       }
@@ -335,7 +352,9 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       selectedItem,
       selectedItemBackup,
       allowsCustomValue,
+      onOpenChange,
       onSelectionChange,
+      setValueForItemAndFocusKey,
     ],
   )
 
@@ -377,7 +396,11 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   }, [open, type, fillTextForInput])
 
   useEffect(() => {
-    if (!clonedChildren || (!selectedKey && !defaultSelectedKey)) return
+    if (!clonedChildren || (!selectedKey && !defaultSelectedKey)) {
+      setSelectedItem(null)
+      setFocusKey('')
+      return
+    }
 
     const currentSelectedKey = selectedKey || defaultSelectedKey
 
@@ -482,9 +505,10 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       return
     }
     setOpen(false)
+    onOpenChange?.(false)
     // Select clear item
     if (!disableClearable && !currentItem.value) {
-      isUncontrolledComponent && setSelectedItem(null)
+      setValueForItemAndFocusKey(null)
       onSelectionChange?.('')
       return
     }
@@ -494,7 +518,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       shouldDeselect &&
       selectedItem?.value === currentItem.value
     ) {
-      isUncontrolledComponent && setSelectedItem(null)
+      setValueForItemAndFocusKey(null)
       onSelectionChange?.('')
       return
     }
@@ -502,7 +526,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     if (selectedItem?.value !== currentItem.value) {
       onSelectionChange?.(currentItem.value)
     }
-    isUncontrolledComponent && setSelectedItem(currentItem)
+    setValueForItemAndFocusKey(currentItem)
     setSelectedItemBackup(currentItem)
     if (['combobox'].includes(type)) {
       if (inputRef.current) {
@@ -519,7 +543,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
 
   const handleClosePopover = useCallback(() => {
     setOpen(false)
-  }, [])
+    onOpenChange?.(false)
+  }, [onOpenChange])
 
   return (
     <StyledDropdownWrapper
