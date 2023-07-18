@@ -71,7 +71,7 @@ interface SampleData {
 export const Default: React.FC = () => {
   const [value, setValue] = React.useState<Key[]>(['cat'])
   const [value2, setValue2] = React.useState<Key[]>(['snake', 'cat', 'dog'])
-  const [isChecked, setIsChecked] = React.useState(true)
+  const [isChecked, setIsChecked] = React.useState(false)
   const [sectionSelected, setSectionSelected] = React.useState<
     React.ReactNode[]
   >([])
@@ -445,6 +445,7 @@ export const Default: React.FC = () => {
             title='Group 1'
             isClickable
             checkmark='tick'
+            // id='cdg-group-1'
             isChecked={isChecked}
             onClick={(title: React.ReactNode) => {
               setIsChecked(!isChecked)
