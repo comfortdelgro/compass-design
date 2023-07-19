@@ -124,6 +124,11 @@ export const StyledSelect = styled('div', {
           color: '$disabledText',
           cursor: 'not-allowed !important',
         },
+        button: {
+          span: {
+            color: '$disabledText',
+          },
+        },
       },
     },
     isErrored: {
@@ -216,6 +221,11 @@ export const StyledComboBox = styled('div', {
         '*': {
           color: '$disabledText',
           cursor: 'not-allowed !important',
+        },
+        button: {
+          span: {
+            color: '$disabledText',
+          },
         },
       },
     },
@@ -310,6 +320,11 @@ export const StyledFlag = styled('div', {
         '& > *': {
           cursor: 'not-allowed !important',
         },
+        button: {
+          span: {
+            color: '$disabledText',
+          },
+        },
       },
     },
     isErrored: {
@@ -354,6 +369,9 @@ export const StyledOption = styled('li', {
         },
         opacity: 0.4,
         cursor: 'not-allowed',
+      },
+      '*': {
+        color: '$disabledText',
       },
     },
   },
