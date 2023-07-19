@@ -3,7 +3,8 @@ import {Callout} from 'nextra-theme-docs'
 import styles from '../../styles/Home.module.css'
 import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons'
 import Icon from '@comfortdelgro/react-compass/icon'
-import {TagBox, Button} from '@comfortdelgro/react-compass'
+import {Button} from '@comfortdelgro/react-compass'
+import {TabBoxComponent} from '../../components/TagBox'
 
 # Tag Box
 
@@ -35,71 +36,10 @@ import TagBox from '@comfortdelgro/react-compass/tag-box'
 ### Basic Example
 
 <section className={styles.avatarShowcaseContainer}>
-  <TagBox
+  <TabBoxComponent
     label='Text Label'
-    items={[
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 1',
-        icon: <Icon icon={faExclamationTriangle} />,
-      },
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 2',
-        isDisabled: true,
-      },
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 3',
-        icon: <Icon icon={faExclamationTriangle} />,
-      },
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 4',
-        isDisabled: true,
-      },
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 5',
-        icon: <Icon icon={faExclamationTriangle} />,
-        isError: true,
-      },
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 6',
-        isDisabled: true,
-      },
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 7',
-        icon: <Icon icon={faExclamationTriangle} />,
-      },
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 8',
-        isDisabled: true,
-      },
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 9',
-        icon: <Icon icon={faExclamationTriangle} />,
-      },
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 10',
-        isDisabled: true,
-      },
-    ]}
-    onRemove={(e) => console.log(e)}
-    onEdit={(i, v) => console.log(i, v)}
     helperText='Helper text'
-  >
-    <TagBox.Action>
-      <Button className='c-hKssGC-hYGuEl-variant-primary'>
-        Call to action
-      </Button>
-    </TagBox.Action>
-  </TagBox>
+  />
 </section>
 
 ```js
@@ -158,8 +98,8 @@ import TagBox from '@comfortdelgro/react-compass/tag-box'
       isDisabled: true,
     },
   ]}
-  onRemove={(e) => console.log(e)}
-  onEdit={(i, v) => console.log(i, v)}
+  onRemove={(e) => handleRemove(e)}
+  onEdit={(i, v) => handleEdit(i, v)}
   helperText='Helper text'
 >
   <TagBox.Action>
@@ -171,73 +111,11 @@ import TagBox from '@comfortdelgro/react-compass/tag-box'
 ### Typeable
 
 <section className={styles.avatarShowcaseContainer}>
-  <TagBox
-    label='Text Label'
-    items={[
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 1',
-        icon: <Icon icon={faExclamationTriangle} />,
-      },
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 2',
-        isDisabled: true,
-      },
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 3',
-        icon: <Icon icon={faExclamationTriangle} />,
-      },
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 4',
-        isDisabled: true,
-      },
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 5',
-        icon: <Icon icon={faExclamationTriangle} />,
-        isError: true,
-      },
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 6',
-        isDisabled: true,
-      },
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 7',
-        icon: <Icon icon={faExclamationTriangle} />,
-      },
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 8',
-        isDisabled: true,
-      },
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 9',
-        icon: <Icon icon={faExclamationTriangle} />,
-      },
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 10',
-        isDisabled: true,
-      },
-    ]}
-    onRemove={(e) => console.log(e)}
-    onAdd={(e) => console.log(e)}
-    onEdit={(i, v) => console.log(i, v)}
+  <TabBoxComponent
     typeable
+    label='Text Label'
     helperText='Helper text'
-  >
-    <TagBox.Action>
-      <Button className='c-hKssGC-hYGuEl-variant-primary'>
-        Call to action
-      </Button>
-    </TagBox.Action>
-  </TagBox>
+  />
 </section>
 
 ```js
@@ -296,9 +174,9 @@ import TagBox from '@comfortdelgro/react-compass/tag-box'
       isDisabled: true,
     },
   ]}
-  onRemove={(e) => console.log(e)}
-  onAdd={(e) => console.log(e)}
-  onEdit={(i, v) => console.log(i, v)}
+  onRemove={(e) => handleRemove(e)}
+  onAdd={(e) => handleAdd(e)}
+  onEdit={(i, v) => handleEdit(i, v)}
   typeable
   helperText='Helper text'
 >
@@ -311,73 +189,12 @@ import TagBox from '@comfortdelgro/react-compass/tag-box'
 ### Error
 
 <section className={styles.avatarShowcaseContainer}>
-  <TagBox
+  <TabBoxComponent
     label='Text Label'
-    items={[
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 1',
-        icon: <Icon icon={faExclamationTriangle} />,
-      },
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 2',
-        isDisabled: true,
-      },
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 3',
-        icon: <Icon icon={faExclamationTriangle} />,
-      },
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 4',
-        isDisabled: true,
-      },
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 5',
-        icon: <Icon icon={faExclamationTriangle} />,
-        isError: true,
-      },
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 6',
-        isDisabled: true,
-      },
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 7',
-        icon: <Icon icon={faExclamationTriangle} />,
-      },
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 8',
-        isDisabled: true,
-      },
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 9',
-        icon: <Icon icon={faExclamationTriangle} />,
-      },
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 10',
-        isDisabled: true,
-      },
-    ]}
-    onRemove={(e) => console.log(e)}
-    onEdit={(i, v) => console.log(i, v)}
     isErrored
     errorMessage='Use Helper Text for Errors'
     helperText='Helper text'
-  >
-    <TagBox.Action>
-      <Button className='c-hKssGC-hYGuEl-variant-primary'>
-        Call to action
-      </Button>
-    </TagBox.Action>
-  </TagBox>
+  />
 </section>
 
 ```js
@@ -436,8 +253,8 @@ import TagBox from '@comfortdelgro/react-compass/tag-box'
       isDisabled: true,
     },
   ]}
-  onRemove={(e) => console.log(e)}
-  onEdit={(i, v) => console.log(i, v)}
+  onRemove={(e) => handleRemove(e)}
+  onEdit={(i, v) => handleEdit(i, v)}
   isErrored
   errorMessage='Use Helper Text for Errors'
   helperText='Helper text'
@@ -451,72 +268,11 @@ import TagBox from '@comfortdelgro/react-compass/tag-box'
 ### Collaspable
 
 <section className={styles.avatarShowcaseContainer}>
-  <TagBox
+  <TabBoxComponent
     label='Text Label'
     collaspable
-    items={[
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 1',
-        icon: <Icon icon={faExclamationTriangle} />,
-      },
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 2',
-        isDisabled: true,
-      },
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 3',
-        icon: <Icon icon={faExclamationTriangle} />,
-      },
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 4',
-        isDisabled: true,
-      },
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 5',
-        icon: <Icon icon={faExclamationTriangle} />,
-        isError: true,
-      },
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 6',
-        isDisabled: true,
-      },
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 7',
-        icon: <Icon icon={faExclamationTriangle} />,
-      },
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 8',
-        isDisabled: true,
-      },
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 9',
-        icon: <Icon icon={faExclamationTriangle} />,
-      },
-      {
-        id: `cdg-id-${Math.random().toString(36).substring(2)}`,
-        value: 'Item 10',
-        isDisabled: true,
-      },
-    ]}
-    onRemove={(e) => console.log(e)}
-    onEdit={(i, v) => console.log(i, v)}
     helperText='Helper text'
-  >
-    <TagBox.Action>
-      <Button className='c-hKssGC-hYGuEl-variant-primary'>
-        Call to action
-      </Button>
-    </TagBox.Action>
-  </TagBox>
+  />
 </section>
 
 ```js
@@ -575,8 +331,8 @@ import TagBox from '@comfortdelgro/react-compass/tag-box'
       isDisabled: true,
     },
   ]}
-  onRemove={(e) => console.log(e)}
-  onEdit={(i, v) => console.log(i, v)}
+  onRemove={(e) => handleRemove(e)}
+  onEdit={(i, v) => handleEdit(i, v)}
   helperText='Helper text'
 >
   <TagBox.Action>
