@@ -115,7 +115,7 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
       <StyledReactTableWrapper css={css} {...delegated}>
         {toolbar && <>{toolbar}</>}
         <StyledDataGrid>
-          <table ref={tableRef}>
+          <table ref={tableRef} role='table'>
             <DataGridRowGroup as='thead'>
               {table.getHeaderGroups().map((headerGroup) => (
                 <DataGridHeaderRow key={headerGroup.id}>
