@@ -264,11 +264,16 @@ export {
 } from './table-v2'
 export type {
   AccessorColumnConfig,
+  CellConfig,
+  CellContextProps,
   ColumnConfig,
   DisplayColumnConfig,
   GroupColumnConfig,
+  HeaderContextProps,
   ReactTableProps,
+  RowConfig,
   StateSorting,
+  TableConfig,
 } from './table-v2'
 export {default as Tabs} from './tabs'
 export type {TabsProps} from './tabs'

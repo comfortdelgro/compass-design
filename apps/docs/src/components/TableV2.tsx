@@ -1,4 +1,6 @@
 import {
+  faChevronDown,
+  faChevronRight,
   faDashboard,
   faFileLines,
   faTrashAlt,
@@ -6,13 +8,20 @@ import {
 
 import {
   Button,
+  Divider,
+  Dropdown,
   Icon,
   Pagination,
   ReactTable,
   ReactTableOptions,
   SearchField,
 } from '@comfortdelgro/react-compass'
-import {ColumnConfig, StateSorting} from '@comfortdelgro/react-compass/table-v2'
+import {
+  CellContextProps,
+  ColumnConfig,
+  HeaderContextProps,
+  StateSorting,
+} from '@comfortdelgro/react-compass/table-v2'
 import React, {useState} from 'react'
 
 export type Person = {
@@ -24,6 +33,19 @@ export type Person = {
   status: string
   createdAt: Date
   subRows?: Person[] | null
+}
+export type LimitRequestStatus = {
+  id: string
+  accountName: string
+  code: string
+  requestLimit: number
+  status: string
+  progress?: Progress[] | null
+}
+export type Progress = {
+  id: string
+  remarks: string
+  createdAt: Date
 }
 
 const range = (len: number) => {
@@ -123,6 +145,32 @@ function generateFullName(type: string) {
   return `${lastNames[Math.floor(Math.random() * lastNames.length)]}`
 }
 
+function generateAccountName() {
+  const accountNames = [
+    'Miss Reilly Lemke',
+    'Elizabeth Friesen',
+    'Dr. Doyle Boehm',
+    'Domenica Zemlak DDS',
+    'Samson Bogan',
+    'Thora Hilll',
+    'Shannon Mann',
+    'Mrs. Barry Franecki',
+    'Kendrick Balistreri',
+    'Daphnee Durgan',
+    'Stevie Herman',
+    'Salvador Koelpin',
+    'Milo Torphy',
+    'Amelie Halvorson',
+    'Cora Weissnat IV',
+    'Rey Watsica',
+    'Alexandria Murray',
+    'Angeline Schowalter',
+    'Britney Cole',
+    'Marlene Bosco',
+  ]
+
+  return `${accountNames[Math.floor(Math.random() * accountNames.length)]}`
+}
 const newPerson = (): Person => {
   return {
     firstName: generateFullName('firstName'),
@@ -138,6 +186,37 @@ const newPerson = (): Person => {
     ]!,
   }
 }
+const newRequestStatus = (): LimitRequestStatus => {
+  return {
+    id: makeid(5),
+    accountName: generateAccountName(),
+    code: makeid(3),
+    requestLimit: Math.floor(Math.random() * 1000),
+    status: ['Submited', 'Processing', 'Approval'][
+      Math.floor(Math.random() * ['Submited', 'Processing', 'Approval'].length)
+    ],
+    progress: [
+      {
+        id: makeid(5),
+        remarks:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eleifend iaculis sodales. Pellentesque at metus felis. Nulla fermentum ipsum nec orci laoreet, at rhoncus eros dictum.',
+        createdAt: getRandomDate(new Date(2020, 0, 1), new Date(2029, 11, 31)),
+      },
+      {
+        id: makeid(5),
+        remarks:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eleifend iaculis sodales. Pellentesque at metus felis. Nulla fermentum ipsum nec orci laoreet, at rhoncus eros dictum.',
+        createdAt: getRandomDate(new Date(2020, 0, 1), new Date(2029, 11, 31)),
+      },
+      {
+        id: makeid(5),
+        remarks:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eleifend iaculis sodales. Pellentesque at metus felis. Nulla fermentum ipsum nec orci laoreet, at rhoncus eros dictum.',
+        createdAt: getRandomDate(new Date(2020, 0, 1), new Date(2029, 11, 31)),
+      },
+    ],
+  }
+}
 
 export function makeData(...lens: number[]) {
   const makeDataLevel = (depth = 0): Person[] => {
@@ -146,6 +225,18 @@ export function makeData(...lens: number[]) {
       return {
         ...newPerson(),
         subRows: lens[depth + 1] ? makeDataLevel(depth + 1) : null,
+      }
+    })
+  }
+
+  return makeDataLevel()
+}
+function makeRequestStatusData(...lens: number[]) {
+  const makeDataLevel = (depth = 0): LimitRequestStatus[] => {
+    const len = lens[depth]!
+    return range(len).map((d): LimitRequestStatus => {
+      return {
+        ...newRequestStatus(),
       }
     })
   }
@@ -643,6 +734,166 @@ export const EditableCellTable: React.FC = () => {
             </Button>
           </div>
         </ReactTable.Toolbar>
+      </ReactTable>
+    </div>
+  )
+}
+
+export const ExpandableColumnTable: React.FC = () => {
+  const [data, setData] = React.useState(() => makeRequestStatusData(10))
+  const [page, setPage] = useState(1)
+  const options: ReactTableOptions<LimitRequestStatus> = {
+    enableSorting: false,
+    enableMultiSort: false,
+    columnResizeMode: 'onChange',
+    manualSorting: false,
+  }
+
+  const columns = React.useMemo<Array<ColumnConfig<LimitRequestStatus>>>(
+    () => [
+      {
+        id: 'expander',
+        size: 40,
+        header: ({table}: HeaderContextProps<LimitRequestStatus, unknown>) => (
+          <>
+            <button
+              {...{
+                onClick: table.getToggleAllRowsExpandedHandler(),
+              }}
+            >
+              {table.getIsAllRowsExpanded() ? (
+                <Icon icon={faChevronDown} />
+              ) : (
+                <Icon icon={faChevronRight} />
+              )}
+            </button>{' '}
+          </>
+        ),
+        cell: ({row}: CellContextProps<LimitRequestStatus, unknown>) => (
+          <span
+            onClick={() => row.toggleExpanded()}
+            style={{
+              cursor: 'pointer',
+              userSelect: 'none',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            {row.getIsExpanded() ? (
+              <Icon icon={faChevronDown} />
+            ) : (
+              <Icon icon={faChevronRight} />
+            )}
+          </span>
+        ),
+      },
+      {
+        id: 'accountName',
+        accessorKey: 'accountName',
+        header: () => <div style={{textAlign: 'center'}}>Account Name</div>,
+        footer: (props: HeaderContextProps<LimitRequestStatus, unknown>) =>
+          props.column.id,
+      },
+      {
+        id: 'code',
+        accessorKey: 'code',
+        header: () => <div style={{textAlign: 'center'}}>Code</div>,
+        footer: (props: HeaderContextProps<LimitRequestStatus, unknown>) =>
+          props.column.id,
+      },
+      {
+        id: 'requestLimit',
+        accessorKey: 'requestLimit',
+        header: () => (
+          <div style={{textAlign: 'center'}}>New Request Limit</div>
+        ),
+        footer: (props: HeaderContextProps<LimitRequestStatus, unknown>) =>
+          props.column.id,
+      },
+      {
+        id: 'status',
+        accessorKey: 'status',
+        header: () => <div style={{textAlign: 'center'}}>Status</div>,
+        footer: (props: HeaderContextProps<LimitRequestStatus, unknown>) =>
+          props.column.id,
+      },
+    ],
+    [],
+  )
+
+  const renderRowSubComponent = (rowData: LimitRequestStatus) => {
+    return (
+      <div
+        style={{
+          padding: '1em',
+          display: 'flex',
+          flexDirection: 'column',
+          rowGap: '1em',
+        }}
+      >
+        <h3>Current Status: {rowData.status}</h3>
+        <Divider />
+        {rowData.progress?.map((processItem) => {
+          return (
+            <>
+              <p style={{fontSize: '12px'}}>{processItem.remarks}</p>
+              <p style={{fontSize: '11px', fontWeight: 200, color: '#878787'}}>
+                {processItem.createdAt.toDateString()}
+              </p>
+              <Divider />
+            </>
+          )
+        })}
+      </div>
+    )
+  }
+
+  return (
+    <div>
+      <ReactTable
+        data={data}
+        columns={columns}
+        options={options}
+        renderRowSubComponent={renderRowSubComponent}
+      >
+        <ReactTable.Footer
+          css={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}
+        >
+          <div style={{display: 'flex', alignItems: 'center'}}>
+            <span style={{width: 200}}>Rows per page: </span>
+            <Dropdown.Select defaultSelectedKey='10'>
+              <Dropdown.Item key='10'>10 rows</Dropdown.Item>
+              <Dropdown.Item key='20'>20 rows</Dropdown.Item>
+              <Dropdown.Item key='50'>50 rows</Dropdown.Item>
+            </Dropdown.Select>
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: '0.5rem',
+            }}
+          >
+            <div
+              style={{
+                fontWeight: '600',
+              }}
+            >
+              {(page - 1) * 10 + 1} - {(page - 1) * 10 + 10} of 100
+            </div>
+            <Pagination
+              page={page}
+              onChange={(page: number) => setPage(page)}
+              total={10}
+            />
+          </div>
+        </ReactTable.Footer>
       </ReactTable>
     </div>
   )
