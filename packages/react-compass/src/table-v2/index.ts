@@ -34,14 +34,14 @@ ReactTable.Footer.displayName = 'Card.Image'
 
 ReactTable.displayName = 'ReactTable'
 
-export type ColumnConfig<T> = ColumnDef<T>
-export type AccessorColumnConfig<T> = AccessorColumnDef<T>
-export type DisplayColumnConfig<T> = DisplayColumnDef<T>
-export type GroupColumnConfig<T> = GroupColumnDef<T>
-export type StateSorting = SortingState
-export type RowConfig<T> = Row<T>
-export type CellConfig<TData, TValue> = Cell<TData, TValue>
-export type HeaderContextProps<TData, TValue> = HeaderContext<TData, TValue>
-export type CellContextProps<TData, TValue> = CellContext<TData, TValue>
-export type TableConfig<T> = Table<T>
+export type TableV2ColumnDef<T> = ColumnDef<T>
+export type TableV2AccessorColumnDef<T> = AccessorColumnDef<T>
+export type TableV2DisplayColumnDef<T> = DisplayColumnDef<T>
+export type TableV2SortingState = SortingState
+export type TableV2GroupColumnDef<T> = GroupColumnDef<T>
+export type TableV2Row<T> = Row<T>
+export type TableV2Cell<TData, TValue> = Cell<TData, TValue>
+export type TableV2HeaderContext<TData, TValue> = HeaderContext<TData, TValue>
+export type TableV2CellContext<TData, TValue> = CellContext<TData, TValue>
+export type TableV2Table<T> = Table<T>
 export default ReactTable

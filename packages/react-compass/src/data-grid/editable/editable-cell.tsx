@@ -102,6 +102,7 @@ export const EditableCell = React.forwardRef<
             onChange={handleChange}
             onKeyDown={handleKeyDown}
             onBlur={handleBlur}
+            style={{textAlign: 'center'}}
           />
         )
       ) : (
