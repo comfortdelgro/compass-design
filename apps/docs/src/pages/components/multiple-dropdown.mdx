@@ -180,20 +180,20 @@ We recommend the second method to import components for the benefits of [tree sh
 </section>
 
 ```js
-  <MultipleDropdown
-    label='Favorite Animal'
-    defaultSelectedKeys={['red panda', 'cat']}
-    erroredKeys={['red panda']}
-    isErrored
-    errorMessage='Red panda is not available'
-  >
-    <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
-  </MultipleDropdown>
+<MultipleDropdown
+  label='Favorite Animal'
+  defaultSelectedKeys={['red panda', 'cat']}
+  erroredKeys={['red panda']}
+  isErrored
+  errorMessage='Red panda is not available'
+>
+  <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
+  <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
+  <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
+  <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
+  <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
+  <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+</MultipleDropdown>
 ```
 
 ---
@@ -484,22 +484,28 @@ We recommend the second method to import components for the benefits of [tree sh
 
 #### `<MultipleDropdown.Item/>` :
 
-| Name      | Type                           | Default | Description                      |
-| :-------- | :----------------------------- | :------ | :------------------------------- |
-| key       | `Key`                          | —       | The key of the dropdown.         |
-| icon      | `icon` \| `color`              | —       | The content of the dropdown Item |
-| title     | `ReactNode`                    | —       | The title of the dropdown.       |
-| children  | `ReactNode`                    | —       | The content of the dropdown Item |
-| checkmark | `none` \| `checkbox` \| `tick` | -       | Variant for the selected         |
+| Name      | Type                           | Default | Description                                                                    |
+| :-------- | :----------------------------- | :------ | :----------------------------------------------------------------------------- |
+| key       | `Key`                          | —       | The key of the dropdown.(Will delete in the near future, Replace with `value`) |
+| value     | `Key`                          | —       | The value of the dropdown.                                                     |
+| icon      | `icon` \| `color`              | —       | The content of the dropdown Item                                               |
+| title     | `ReactNode`                    | —       | The title of the dropdown.                                                     |
+| children  | `ReactNode`                    | —       | The content of the dropdown Item                                               |
+| checkmark | `none` \| `checkbox` \| `tick` | -       | Variant for the selected                                                       |
 
 ---
 
 #### `<MultipleDropdown.Section/>` :
 
-| Name     | Type        | Default | Description                |
-| :------- | :---------- | :------ | :------------------------- |
-| title    | `ReactNode` | —       | The title of the section.  |
-| children | `ReactNode` | —       | The content of the section |
+| Name        | Type                 | Default | Description                           |
+| :---------- | :------------------- | :------ | :------------------------------------ |
+| title       | `ReactNode`          | —       | The title of the section.             |
+| children    | `ReactNode`          | —       | The content of the section            |
+| id          | `string`             | —       | The id to handle click to the section |
+| isClickable | `boolean`            | false   | Whether the section is clickable.     |
+| isChecked   | `boolean`            | false   | Whether the section is selected.      |
+| onClick     | `Function`           | —       | Fire click to the section.            |
+| checkmark   | `checkbox` \| `tick` | -       | Variant for the selected              |
 
 ---
 

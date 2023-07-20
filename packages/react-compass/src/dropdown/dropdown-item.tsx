@@ -1,13 +1,11 @@
-import React, {Key, Suspense, useContext, useEffect, useMemo} from 'react'
+import React, {Key, useContext, useEffect, useMemo} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {DropdownContext} from './dropdown-context'
-import DropdownLoading from './dropdown-loading'
 import {
   DropdownItemVariantProps,
   StyledColor,
   StyledContent,
-  StyledFlagItem,
   StyledItemIcon,
   StyledOption,
 } from './dropdown.styles'
@@ -24,8 +22,6 @@ interface Props extends StyledComponentProps {
   flagName?: string
   children: React.ReactNode
 }
-
-const FlagComponent = React.lazy(() => import('./flags'))
 
 export type DropdownItemProps = Props &
   DropdownItemVariantProps &
@@ -51,7 +47,6 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
       selectedItem,
       disabledKeys = [],
       searchValue,
-      open,
       focusKey,
       selectedKey,
       setSelectedItem,
@@ -109,30 +104,23 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
     }, [value, isDisabled, canDisplayed])
 
     useEffect(() => {
-      if (focusKey && focusKey.toString() === value.toString()) {
-        if (dropdownItemRef.current) {
-          dropdownItemRef.current.scrollIntoView({block: 'nearest'})
-        }
-      }
-    }, [focusKey, value])
-
-    useEffect(() => {
       if (selectedKey && selectedKey.toString() === value.toString()) {
         setSelectedItem({
           value: value.toString(),
           displayValue: textValue || children,
         })
-        if (dropdownItemRef.current) {
-          dropdownItemRef.current.scrollIntoView({block: 'nearest'})
-        }
       }
     }, [selectedKey, value])
 
     useEffect(() => {
-      if (open && isSelected && dropdownItemRef.current) {
-        dropdownItemRef.current.scrollIntoView({block: 'nearest'})
+      if (isFocused || (isSelected && isFocused)) {
+        setTimeout(() => {
+          if (dropdownItemRef.current) {
+            dropdownItemRef.current.scrollIntoView({block: 'nearest'})
+          }
+        }, 0)
       }
-    }, [open, isSelected])
+    }, [isFocused, isSelected])
 
     const handleItemClick = () => {
       if (isDisabled) {
@@ -155,13 +143,6 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
         ref={dropdownItemRef}
         {...delegated}
       >
-        {flagName && (
-          <StyledFlagItem>
-            <Suspense fallback={<DropdownLoading />}>
-              <FlagComponent iso={flagName} />
-            </Suspense>
-          </StyledFlagItem>
-        )}
         {leftIcon && <StyledItemIcon>{leftIcon}</StyledItemIcon>}
         <StyledContent>{children}</StyledContent>
         {type === 'icon' && rightIcon && (

@@ -71,39 +71,9 @@ interface SampleData {
   lastName: string
 }
 
-export const Flag: React.FC = () => {
-  const [value, setValue] = React.useState<React.Key>('')
-  return (
-    <Column>
-      <h3>Flag</h3>
-      <Dropdown.Flag
-        isRequired
-        label={<>List of country</>}
-        flagKeyType={'country-code'}
-        placeholder='Choose a country'
-        selectedKey={value}
-        onSelectionChange={(e) => {
-          console.log(e)
-          setValue(e)
-        }}
-        onCountryChange={(e) => {
-          console.log(e)
-        }}
-      />
-      <h3>Disabled Flag</h3>
-      <Dropdown.Flag
-        isDisabled
-        isRequired
-        defaultSelectedKey='VNM'
-        label='List of country'
-        placeholder='Choose a country'
-      />
-    </Column>
-  )
-}
-
 export const Select: React.FC = () => {
   const [value, setValue] = React.useState<Key>('cat')
+  const [flag, setFlag] = React.useState<Key>('')
   const [loadMoreValue, setLoadMoreValue] = React.useState<Key>('')
   const [data, setData] = React.useState<SampleData[]>(generateRandomData(10))
   const [value1, setValue1] = React.useState<Key>('cat')
@@ -156,14 +126,18 @@ export const Select: React.FC = () => {
         <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
         <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
         <Dropdown.Item key='snakessss'>Snake</Dropdown.Item>
+        <Dropdown.Item key='dog1'>Dog1</Dropdown.Item>
+        <Dropdown.Item key='aardvark1'>Aardvark1</Dropdown.Item>
+        <Dropdown.Item key='kangaroo1'>Kangaroo1</Dropdown.Item>
+        <Dropdown.Item key='snakessss1'>Snake1</Dropdown.Item>
       </Dropdown.Select>
       <h3>Prefix</h3>
       <Dropdown.Select
         isRequired
         label={<>Phone Code Select</>}
         placeholder='Choose an animal'
-        selectedKey={value}
-        onSelectionChange={(k: Key) => setValue(k)}
+        selectedKey={flag}
+        onSelectionChange={(k: Key) => setFlag(k)}
         prefix={
           <div
             style={{
@@ -173,19 +147,13 @@ export const Select: React.FC = () => {
               alignItems: 'center',
             }}
           >
-            {handlePrefix(value)}
+            {handlePrefix(flag)}
           </div>
         }
       >
-        <Dropdown.Item value='afghanistan' key='afghanistan'>
-          Afghanistan (+93)
-        </Dropdown.Item>
-        <Dropdown.Item value='albania' key='albania'>
-          Albania (+355)
-        </Dropdown.Item>
-        <Dropdown.Item value='algeria' key='algeria'>
-          Algeria (+213)
-        </Dropdown.Item>
+        <Dropdown.Item key='afghanistan'>Afghanistan (+93)</Dropdown.Item>
+        <Dropdown.Item key='albania'>Albania (+355)</Dropdown.Item>
+        <Dropdown.Item key='algeria'>Algeria (+213)</Dropdown.Item>
       </Dropdown.Select>
       <h3>Disable the whole thing</h3>
       <Dropdown.Select

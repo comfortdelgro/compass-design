@@ -70,8 +70,8 @@ interface SampleData {
 
 export const Default: React.FC = () => {
   const [value, setValue] = React.useState<Key[]>(['cat'])
-  const [value2, setValue2] = React.useState<Key[]>(['snake', 'cat', 'snake'])
-  const [isChecked, setIsChecked] = React.useState(true)
+  const [value2, setValue2] = React.useState<Key[]>(['snake', 'cat', 'dog'])
+  const [isChecked, setIsChecked] = React.useState(false)
   const [sectionSelected, setSectionSelected] = React.useState<
     React.ReactNode[]
   >([])
@@ -172,7 +172,7 @@ export const Default: React.FC = () => {
           label='Favorite Animal'
           displayedValue='string'
           defaultSelectedKeys={['snake', 'cat', 'snake']}
-          placeholder='Choosesss an animal sadfsa sadfasdfsd asfdsfasdf asdfdsfsddf asdfsdf asdfsdf grfgasd asfasdfasdf á  '
+          placeholder='Choosesss an animal'
           css={{width: '200px'}}
         >
           <MultipleDropdown.Item value='red panda' key='red panda'>
@@ -230,8 +230,8 @@ export const Default: React.FC = () => {
         <MultipleDropdown
           label='Favorite Animal'
           displayedValue='string'
-          defaultSelectedKeys={['snake', 'cat', 'snake']}
-          placeholder='Choosesss an animal sadfsa sadfasdfsd asfdsfasdf asdfdsfsddf asdfsdf asdfsdf grfgasd asfasdfasdf á  '
+          defaultSelectedKeys={['snake', 'cat', 'dog']}
+          placeholder='Choosesss an animal'
           css={{width: '200px'}}
         >
           <MultipleDropdown.Item
@@ -445,6 +445,7 @@ export const Default: React.FC = () => {
             title='Group 1'
             isClickable
             checkmark='tick'
+            // id='cdg-group-1'
             isChecked={isChecked}
             onClick={(title: React.ReactNode) => {
               setIsChecked(!isChecked)

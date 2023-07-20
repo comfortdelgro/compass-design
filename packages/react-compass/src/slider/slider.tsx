@@ -193,6 +193,46 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     }
   }
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    const key = event.key
+    const updateThumbPosition = (newValue: number) => {
+      const slider = sliderRef.current
+      if (slider) {
+        const thumb = slider.querySelector('.thumb') as HTMLElement
+        const sliderProgress = slider.querySelector(
+          '.range-slider',
+        ) as HTMLElement
+        const sliderWidth = slider.offsetWidth
+        const thumbWidth = thumb.offsetWidth
+        const progressWidth =
+          ((newValue - minValue) / (maxValue - minValue)) * sliderWidth -
+          thumbWidth
+        thumb.style.left = `${Math.max(
+          0 - thumbWidth,
+          Math.min(progressWidth - thumbWidth, sliderWidth - thumbWidth),
+        )}px`
+        sliderProgress.style.width = `${progressWidth}px`
+        setCurrentValue(newValue)
+        onChange?.(newValue)
+        onChangeEnd?.(newValue)
+        thumb.setAttribute('value', newValue.toString())
+      }
+    }
+    if (key === 'ArrowRight' && currentValue !== undefined) {
+      event.preventDefault()
+      event.stopPropagation()
+      const value = Math.min(currentValue + step, maxValue)
+      updateThumbPosition(value)
+    }
+    if (key === 'ArrowLeft' && currentValue !== undefined) {
+      event.preventDefault()
+      event.stopPropagation()
+      const value = Math.max(currentValue - step, minValue)
+      updateThumbPosition(value)
+    }
+    delegateProps.onKeyDown?.(event)
+  }
+
   const delegateProps = componentProps()
 
   return (
@@ -201,6 +241,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
       className={`cdg-range-slider ${className}`}
       tabIndex={0}
       ref={sliderRef}
+      onKeyDown={handleKeyDown}
       style={{pointerEvents: `${isDisabled ? 'none' : 'auto'}`}}
     >
       <RangeSlider className='range-slider'>

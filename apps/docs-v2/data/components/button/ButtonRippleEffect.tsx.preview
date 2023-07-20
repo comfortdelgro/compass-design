@@ -1,0 +1,12 @@
+<Button variant='primary' ripple>
+  Primary
+</Button>
+<Button variant='secondary' ripple>
+  Secondary
+</Button>
+<Button variant='danger' ripple>
+  Danger
+</Button>
+<Button variant='ghost' ripple>
+  Ghost
+</Button>

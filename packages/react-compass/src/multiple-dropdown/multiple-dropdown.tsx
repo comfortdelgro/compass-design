@@ -1,13 +1,6 @@
-import {
-  autoUpdate,
-  flip,
-  offset,
-  useDismiss,
-  useFloating,
-  useInteractions,
-} from '@floating-ui/react'
 import React, {useCallback} from 'react'
 import Chip from '../chip'
+import Popover from '../popover'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
@@ -154,21 +147,11 @@ const MultipleDropdown = React.forwardRef<
   const wrapperRef = useDOMRef<HTMLDivElement>(null)
   const inputRef = useDOMRef<HTMLInputElement>(null)
 
-  // ====================================== FLOATING ======================================
-  const {refs, floatingStyles, context} = useFloating({
-    open: open,
-    onOpenChange: setOpen,
-    middleware: [offset(8), flip()],
-    whileElementsMounted: autoUpdate,
-  })
-
-  const dismiss = useDismiss(context)
-
-  const {getReferenceProps, getFloatingProps} = useInteractions([dismiss])
-
   const isUncontrolledComponent = React.useMemo(
-    () => defaultSelectedKeys && defaultSelectedKeys?.length > 0,
-    [defaultSelectedKeys],
+    () =>
+      (defaultSelectedKeys && defaultSelectedKeys?.length > 0) ||
+      (!defaultSelectedKeys && !selectedKeys),
+    [defaultSelectedKeys, selectedKeys],
   )
 
   // clone children to assign value prop if not exists. the value would be equal to the key prop
@@ -215,8 +198,10 @@ const MultipleDropdown = React.forwardRef<
         (selectedKeys && selectedKeys?.length > 0) ||
         (defaultSelectedKeys && defaultSelectedKeys.length > 0)
       )
-    )
+    ) {
+      setSelectedItems([])
       return
+    }
 
     const currentSelectedKeys = defaultSelectedKeys ?? selectedKeys ?? []
 
@@ -233,9 +218,7 @@ const MultipleDropdown = React.forwardRef<
           value: currentSelectedKey.toString(),
           displayValue: item as React.ReactNode,
         })
-        if (!currentFocusKey) {
-          currentFocusKey = currentSelectedKey.toString()
-        }
+        currentFocusKey = currentSelectedKey.toString()
       }
     }
     setSelectedItems(newSelectedItems)
@@ -284,8 +267,12 @@ const MultipleDropdown = React.forwardRef<
               clonedChildren,
               dropdownItemKeys,
             )
-            if (nextKey?.props?.value) {
-              setFocusKey(nextKey.props.value.toString() ?? '')
+            const itemKey =
+              nextKey?.props.value ??
+              nextKey?.key?.toString().replace('.$', '') ??
+              ''
+            if (itemKey) {
+              setFocusKey(itemKey)
             }
           } else {
             setFocusKey(
@@ -305,8 +292,13 @@ const MultipleDropdown = React.forwardRef<
               clonedChildren,
               dropdownItemKeys,
             )
-            if (prevKey?.props?.value) {
-              setFocusKey(prevKey.props.value.toString() ?? '')
+            const itemKey =
+              prevKey?.props.value ??
+              prevKey?.key?.toString().replace('.$', '') ??
+              ''
+
+            if (itemKey) {
+              setFocusKey(itemKey)
             }
           } else {
             setFocusKey(
@@ -319,6 +311,7 @@ const MultipleDropdown = React.forwardRef<
           break
         case 'Enter':
           event.preventDefault()
+          setOpen(true)
           if (currentFocusKey) {
             const focusedItem = getItemByKey(currentFocusKey, clonedChildren)
             if (focusedItem) {
@@ -441,21 +434,23 @@ const MultipleDropdown = React.forwardRef<
             newSelectedItems.splice(itemIndex, 1)
           }
         }
-        setSelectedSectionIds((sectionIds) => {
-          const sectionIdsSet = new Set(sectionIds)
-          if (checking) {
-            sectionIdsSet.add(id)
-          } else {
-            sectionIdsSet.delete(id)
-          }
-          return [...sectionIdsSet]
-        })
-        isUncontrolledComponent && setSelectedItems([...newSelectedItems])
-        onSelectionChange?.(newSelectedItems.map((item) => item.value))
-        inputRef.current?.focus()
       }
     })
+    const sectionIdsSet = new Set(selectedSectionIds)
+    if (checking) {
+      sectionIdsSet.add(id)
+    } else {
+      sectionIdsSet.delete(id)
+    }
+    setSelectedSectionIds([...sectionIdsSet])
+    isUncontrolledComponent && setSelectedItems([...newSelectedItems])
+    onSelectionChange?.(newSelectedItems.map((item) => item.value))
+    inputRef.current?.focus()
   }
+
+  const handleClosePopover = useCallback(() => {
+    setOpen(false)
+  }, [])
 
   return (
     <StyledDropdownWrapper
@@ -489,95 +484,87 @@ const MultipleDropdown = React.forwardRef<
             {isRequired && <span>*</span>}
           </label>
         )}
-        <div ref={refs.setReference} {...getReferenceProps}>
-          <StyledDropdown
-            className='dropdownContainer'
-            isOpen={open}
-            ref={wrapperRef}
-            isErrored={!!isErrored}
-            isDisabled={!!isDisabled}
-            onClick={handleOpen}
-            onBlur={onBlur}
-            onFocus={onFocus}
-          >
-            <StyledSelectedItemWrapper className='selectedItemWrapper'>
-              {selectedItems.length === 0 &&
-                search === '' &&
-                !open &&
-                !focused && <p className='placeholder'>{placeholder}</p>}
-              {displayedValue === 'chip' &&
-                selectedItems.length > 0 &&
-                selectedItems.map((selectedItem) => (
-                  <Chip
-                    key={selectedItem.value}
-                    hasCloseButton={
-                      disabledKeys.findIndex(
-                        (item) =>
-                          item.toString() === selectedItem.value.toString(),
-                      ) === -1
-                    }
-                    onCloseClick={handleCloseChipClick(selectedItem)}
-                    isErrored={checkIsError(selectedItem.value.toString())}
-                  >
-                    {selectedItem.displayValue instanceof Array
-                      ? selectedItem.displayValue
-                      : textContent(
-                          selectedItem.displayValue as React.ReactElement,
-                        )}
-                  </Chip>
-                ))}
-              {displayedValue === 'string' && selectedItems.length > 0 ? (
-                <div className='itemListString'>
-                  {customDisplayValue ?? convertSelectedNodeToString()}
-                </div>
-              ) : null}
-              {!isDisabled && variant === 'combobox' && (
-                <input
-                  id={id}
-                  type='text'
-                  ref={inputRef}
-                  value={search}
-                  onChange={handleInputChange}
-                  onBlur={() => setFocused(false)}
-                  onFocus={() => setFocused(true)}
-                />
-              )}
-            </StyledSelectedItemWrapper>
-            <div className='dropdown-icon'>{icon}</div>
-          </StyledDropdown>
-        </div>
-
-        {open && (
-          <div
-            className='Popover'
-            ref={refs.setFloating}
-            style={{
-              ...floatingStyles,
-              ...{
-                zIndex: 60,
-              },
-            }}
-            {...getFloatingProps}
-          >
-            <StyledPopover
-              style={{
-                width: wrapperRef?.current?.clientWidth ?? '100%',
-              }}
+        <Popover
+          isOpen={open}
+          anchor={
+            <StyledDropdown
+              className='dropdownContainer'
+              isOpen={open}
+              ref={wrapperRef}
+              isErrored={!!isErrored}
+              isDisabled={!!isDisabled}
+              onClick={handleOpen}
+              onBlur={onBlur}
+              onFocus={onFocus}
             >
-              <MultipleDropdownList
-                searchValue=''
-                isLoading={isLoading}
-                css={{
-                  maxHeight: numberOfRows ? `${numberOfRows * 40}px` : '16rem',
-                }}
-                onLoadMore={onLoadMore}
-                noDataMessage={noDataMessage}
-              >
-                {clonedChildren}
-              </MultipleDropdownList>
-            </StyledPopover>
-          </div>
-        )}
+              <StyledSelectedItemWrapper className='selectedItemWrapper'>
+                {selectedItems.length === 0 &&
+                  search === '' &&
+                  !open &&
+                  !focused && <p className='placeholder'>{placeholder}</p>}
+                {displayedValue === 'chip' &&
+                  selectedItems.length > 0 &&
+                  selectedItems.map((selectedItem) => (
+                    <Chip
+                      key={selectedItem.value}
+                      hasCloseButton={
+                        disabledKeys.findIndex(
+                          (item) =>
+                            item.toString() === selectedItem.value.toString(),
+                        ) === -1
+                      }
+                      onCloseClick={handleCloseChipClick(selectedItem)}
+                      isErrored={checkIsError(selectedItem.value.toString())}
+                    >
+                      {selectedItem.displayValue instanceof Array
+                        ? selectedItem.displayValue
+                        : textContent(
+                            selectedItem.displayValue as React.ReactElement,
+                          )}
+                    </Chip>
+                  ))}
+                {displayedValue === 'string' && selectedItems.length > 0 ? (
+                  <div className='itemListString'>
+                    {customDisplayValue ?? convertSelectedNodeToString()}
+                  </div>
+                ) : null}
+                {!isDisabled && variant === 'combobox' && (
+                  <input
+                    id={id}
+                    type='text'
+                    ref={inputRef}
+                    value={search}
+                    onChange={handleInputChange}
+                    onBlur={() => setFocused(false)}
+                    onFocus={() => setFocused(true)}
+                  />
+                )}
+              </StyledSelectedItemWrapper>
+              <div className='dropdown-icon'>{icon}</div>
+            </StyledDropdown>
+          }
+          css={{width: '100%'}}
+          direction='bottom'
+          onClose={handleClosePopover}
+        >
+          <StyledPopover
+            style={{
+              width: wrapperRef?.current?.clientWidth ?? '100%',
+            }}
+          >
+            <MultipleDropdownList
+              searchValue=''
+              isLoading={isLoading}
+              css={{
+                maxHeight: numberOfRows ? `${numberOfRows * 40}px` : '16rem',
+              }}
+              onLoadMore={onLoadMore}
+              noDataMessage={noDataMessage}
+            >
+              {clonedChildren}
+            </MultipleDropdownList>
+          </StyledPopover>
+        </Popover>
       </MultipleDropdownContext.Provider>
       {isErrored && errorMessage && (
         <StyledHelperText error={!!isErrored}>{errorMessage}</StyledHelperText>

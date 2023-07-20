@@ -27,10 +27,11 @@ export const StyledDropdownWrapper = styled('div', {
   '&.cdg-dropdown-opening .cdg-dropdown-input .cdg-dropdown-button': {
     lineHeight: '$normal',
   },
-  '&.cdg-dropdown-opening .cdg-dropdown-input .cdg-dropdown-button svg': {
-    transform: 'rotate(180deg)',
-    transition: 'transform 0.3s linear',
-  },
+  '&.cdg-dropdown-opening .cdg-dropdown-input .cdg-dropdown-button .cdg-dropdown-button-icon':
+    {
+      transform: 'rotate(180deg)',
+      transition: 'transform 0.3s linear',
+    },
 })
 
 export const StyledDropdownList = styled('ul', {})
@@ -122,6 +123,11 @@ export const StyledSelect = styled('div', {
         '*': {
           color: '$disabledText',
           cursor: 'not-allowed !important',
+        },
+        button: {
+          span: {
+            color: '$disabledText',
+          },
         },
       },
     },
@@ -216,6 +222,11 @@ export const StyledComboBox = styled('div', {
           color: '$disabledText',
           cursor: 'not-allowed !important',
         },
+        button: {
+          span: {
+            color: '$disabledText',
+          },
+        },
       },
     },
     isErrored: {
@@ -309,6 +320,11 @@ export const StyledFlag = styled('div', {
         '& > *': {
           cursor: 'not-allowed !important',
         },
+        button: {
+          span: {
+            color: '$disabledText',
+          },
+        },
       },
     },
     isErrored: {
@@ -353,6 +369,9 @@ export const StyledOption = styled('li', {
         },
         opacity: 0.4,
         cursor: 'not-allowed',
+      },
+      '*': {
+        color: '$disabledText',
       },
     },
   },

@@ -90,7 +90,6 @@ export type {DividerProps} from './divider'
 export {default as Dropdown} from './dropdown'
 export type {
   DropdownComboBoxProps,
-  DropdownFlagProps,
   DropdownItemProps,
   DropdownProps,
   DropdownSelectProps,
@@ -265,11 +264,16 @@ export {
 } from './table-v2'
 export type {
   AccessorColumnConfig,
+  CellConfig,
+  CellContextProps,
   ColumnConfig,
   DisplayColumnConfig,
   GroupColumnConfig,
+  HeaderContextProps,
   ReactTableProps,
+  RowConfig,
   StateSorting,
+  TableConfig,
 } from './table-v2'
 export {default as Tabs} from './tabs'
 export type {TabsProps} from './tabs'
