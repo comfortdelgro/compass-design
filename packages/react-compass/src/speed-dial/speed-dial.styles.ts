@@ -20,7 +20,7 @@ export const StyledSpeedDial = styled('div', {
     flexDirection: 'row',
   },
 })
-export const StyledSpeedDialTrigger = styled('div', {
+export const StyledSpeedDialTrigger = styled('button', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -88,7 +88,7 @@ export const StyledSpeedDialActions = styled('ul', {
     },
   },
 })
-export const SpeedDialAction = styled('li', {
+export const SpeedDialAction = styled('button', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',

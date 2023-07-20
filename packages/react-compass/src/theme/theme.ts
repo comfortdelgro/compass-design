@@ -4,6 +4,7 @@ import {StitchesTheme} from '../utils/stitches.types'
 const defineTheme = <T extends StitchesTheme>(theme: T) => theme
 
 const spacings = {
+  '0_25': '0.0625rem', // 1px
   '0_5': '0.125rem', // 2px
   1: '0.25rem', // 4px
   '1_5': '0.375rem', // 6px
@@ -246,7 +247,7 @@ export const darkTheme = createTheme('dark-theme', {
     primaryText: '#FDFDFD',
     secondaryText: '#E4E2E6',
     disabledText: '#7B7D89',
-    tertiaryText: 'C5C6CF',
+    tertiaryText: '#C5C6CF',
     whiteText: '#FFFFFF',
 
     divider: '#45464E', // Body Divider

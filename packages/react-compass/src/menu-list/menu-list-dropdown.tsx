@@ -3,7 +3,10 @@ import {StyledComponentProps} from '../utils/stitches.types'
 import {MenuListContext} from './menu-list-context'
 import MenuListDropdownHeader from './menu-list-dropdown-header'
 import MenuListDropdownItem from './menu-list-dropdown-item'
-import {StyledMenuListDropdown} from './menu-list-dropdown.styles'
+import {
+  StyledMenuListDropdown,
+  StyledMenuListDropdownBody,
+} from './menu-list-dropdown.styles'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
@@ -14,6 +17,11 @@ interface Props extends StyledComponentProps {
 
 export type MenuListDropdownProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
+
+enum EBodyOpenState {
+  OPEN = 'open',
+  CLOSE = 'close',
+}
 
 const MenuListDropdown = React.forwardRef<
   HTMLDivElement,
@@ -32,19 +40,23 @@ const MenuListDropdown = React.forwardRef<
     ...delegated
   } = props
 
-  const [isOpen, setOpen] = useState(isOpenProp ?? defaultOpen)
+  const [isOpenState, setOpenState] = useState(isOpenProp ?? defaultOpen)
 
   const [title, ...body] = React.Children.toArray(children)
 
   // whether the state is controlled or not
   const isControlled = isOpenProp !== undefined
 
+  const isOpen = isControlled ? isOpenProp : isOpenState
+
   const toggleOpen = () => {
     if (isControlled && onMenuListChange) {
-      onMenuListChange(!isOpen)
+      onMenuListChange(!isOpenState)
     }
-    setOpen((prev) => !prev)
+    setOpenState((prev) => !prev)
   }
+
+  const bodyOpenState = isOpen ? EBodyOpenState.OPEN : EBodyOpenState.CLOSE
 
   return (
     <StyledMenuListDropdown
@@ -53,11 +65,11 @@ const MenuListDropdown = React.forwardRef<
       css={css}
       {...delegated}
     >
-      <MenuListContext.Provider
-        value={{isOpen: isControlled ? isOpenProp : isOpen, toggleOpen}}
-      >
+      <MenuListContext.Provider value={{isOpen: isOpen, toggleOpen}}>
         {title}
-        {(isControlled ? isOpenProp : isOpen) && body}
+        <StyledMenuListDropdownBody openState={bodyOpenState}>
+          {body}
+        </StyledMenuListDropdownBody>
       </MenuListContext.Provider>
     </StyledMenuListDropdown>
   )

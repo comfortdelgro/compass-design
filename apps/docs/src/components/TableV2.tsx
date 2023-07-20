@@ -52,10 +52,81 @@ const getRandomDate = (startDate: Date, endDate: Date) => {
   return new Date(timestamp)
 }
 
+function generateFullName(type: string) {
+  const firstNames = [
+    'James',
+    'Mary',
+    'John',
+    'Patricia',
+    'Robert',
+    'Jennifer',
+    'Michael',
+    'Linda',
+    'William',
+    'Elizabeth',
+    'David',
+    'Susan',
+    'Joseph',
+    'Jessica',
+    'Charles',
+    'Sarah',
+    'Thomas',
+    'Karen',
+    'Daniel',
+    'Nancy',
+    'Matthew',
+    'Lisa',
+    'Anthony',
+    'Margaret',
+    'Donald',
+    'Betty',
+    'Steven',
+    'Sandra',
+    'Paul',
+    'Ashley',
+  ]
+
+  const lastNames = [
+    'Smith',
+    'Johnson',
+    'Williams',
+    'Jones',
+    'Brown',
+    'Davis',
+    'Miller',
+    'Wilson',
+    'Moore',
+    'Taylor',
+    'Anderson',
+    'Thomas',
+    'Jackson',
+    'White',
+    'Harris',
+    'Martin',
+    'Thompson',
+    'Garcia',
+    'Martinez',
+    'Robinson',
+    'Clark',
+    'Rodriguez',
+    'Lewis',
+    'Lee',
+    'Walker',
+    'Hall',
+    'Allen',
+    'Young',
+    'King',
+  ]
+  if (type === 'firstName')
+    return `${firstNames[Math.floor(Math.random() * firstNames.length)]}`
+
+  return `${lastNames[Math.floor(Math.random() * lastNames.length)]}`
+}
+
 const newPerson = (): Person => {
   return {
-    firstName: makeid(5),
-    lastName: makeid(5),
+    firstName: generateFullName('firstName'),
+    lastName: generateFullName('lastName'),
     age: Math.floor(Math.random() * 40),
     visits: Math.floor(Math.random() * 1000),
     progress: Math.floor(Math.random() * 100),
@@ -82,15 +153,15 @@ export function makeData(...lens: number[]) {
   return makeDataLevel()
 }
 
-export const ReactTableStory: React.FC = () => {
+export const ReactTableFullFeature: React.FC = () => {
   const [page, setPage] = useState(1)
-  const [data] = React.useState(() => makeData(10))
+  const [data, setData] = React.useState(() => makeData(10))
   const options: ReactTableOptions<Person> = {
     enableSorting: true,
     enableMultiSort: true,
     columnResizeMode: 'onChange',
     manualSorting: true,
-    enableRowSelection: (row:any) => row.original.age > 30,
+    enableRowSelection: (row: any) => row.original.age > 30,
   }
   const onSorting = (sortingField: StateSorting) => {}
 
@@ -107,7 +178,6 @@ export const ReactTableStory: React.FC = () => {
   }
 
   const TableHeaderCell = ({row}: any) => {
-    console.log("=========",row.getCanSelect())
     return (
       <div className='px-1'>
         <ReactTable.CheckboxCell
@@ -126,9 +196,201 @@ export const ReactTableStory: React.FC = () => {
     () => [
       {
         id: 'select',
-        header: ({table}) => <TableHeader table={table} />,
-        cell: ({row}) => <TableHeaderCell row={row} />,
+        header: ({table}) => {
+          return (
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <ReactTable.CheckboxCell
+                checked={table.getIsAllRowsSelected()}
+                indeterminate={table.getIsSomeRowsSelected()}
+                onChange={table.getToggleAllRowsSelectedHandler()}
+              />
+            </div>
+          )
+        },
+        cell: ({row}) => (
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <ReactTable.CheckboxCell
+              disabled={!row.getCanSelect()}
+              checked={row.getIsSelected()}
+              indeterminate={row.getIsSomeSelected()}
+              onChange={row.getToggleSelectedHandler()}
+            />
+          </div>
+        ),
       },
+      {
+        id: 'name',
+        header: () => <div style={{textAlign: 'center'}}>Name</div>,
+        footer: (props) => props.column.id,
+        enableGrouping: false,
+        columns: [
+          {
+            accessorKey: 'firstName',
+            cell: (info) => info.getValue<string>(),
+            header: () => <span>First Name</span>,
+            footer: (props) => props.column.id,
+            enableResizing: true,
+            enableGrouping: false,
+            sortDescriptor: 'asc',
+            meta: {
+              editable: true,
+              updateData: (rowIndex: number, id: string, value: any) => {
+                setData((old: Person[]) =>
+                  old.map((row, index) => {
+                    if (index === rowIndex) {
+                      return {
+                        ...old[rowIndex],
+                        [id]: value,
+                      } as Person
+                    }
+                    return row
+                  }),
+                )
+              },
+            },
+          },
+          {
+            accessorFn: (row) => row.lastName,
+            id: 'lastName',
+            cell: (info) => info.getValue<string>(),
+            header: () => <span>Last Name</span>,
+            footer: (props) => props.column.id,
+            enableResizing: true,
+          },
+        ],
+      },
+      {
+        id: 'otherInfo',
+        header: () => <div style={{textAlign: 'center'}}>Other info</div>,
+        footer: (props) => props.column.id,
+        enableGrouping: false,
+        columns: [
+          {
+            accessorKey: 'age',
+            header: () => 'Age',
+            footer: (info) => info.column.id,
+          },
+          {
+            accessorKey: 'visits',
+            header: () => <span>Visits</span>,
+            footer: (info) => info.column.id,
+          },
+          {
+            accessorKey: 'status',
+            header: 'Status',
+            footer: (info) => info.column.id,
+          },
+          {
+            accessorKey: 'progress',
+            header: 'Profile Progress',
+            cell: (info) => info.getValue<string>(),
+            footer: (info) => info.column.id,
+          },
+        ],
+      },
+    ],
+    [],
+  )
+
+  return (
+    <div>
+      <ReactTable
+        data={data}
+        columns={columns}
+        options={options}
+        onManualSorting={onSorting}
+      >
+        <ReactTable.Toolbar
+          css={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}
+        >
+          <SearchField placeholder='Search' />
+
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: '0.5rem',
+            }}
+          >
+            <Button
+              variant='primary'
+              className='c-hKssGC-hYGuEl-variant-primary'
+            >
+              Button
+            </Button>
+            <Button variant='secondary'>Button</Button>
+            <Button variant='ghost'>
+              <Icon icon={faTrashAlt} />
+            </Button>
+            <Button variant='ghost'>
+              <Icon icon={faDashboard} />
+            </Button>
+            <Button variant='ghost'>
+              <Icon icon={faFileLines} />
+            </Button>
+          </div>
+        </ReactTable.Toolbar>
+        <ReactTable.Footer
+          css={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}
+        >
+          <div>{/* Todo: Dropdown */}</div>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: '0.5rem',
+            }}
+          >
+            <div
+              style={{
+                fontWeight: '600',
+              }}
+            >
+              {(page - 1) * 10 + 1} - {(page - 1) * 10 + 10} of 100
+            </div>
+            <Pagination
+              page={page}
+              onChange={(page) => setPage(page)}
+              total={10}
+            />
+          </div>
+        </ReactTable.Footer>
+      </ReactTable>
+    </div>
+  )
+}
+
+export const ReactTableBasic: React.FC = () => {
+  const [page, setPage] = useState(1)
+  const [data] = React.useState(() => makeData(10))
+  const options: ReactTableOptions<Person> = {
+    enableSorting: false,
+  }
+
+  const columns = React.useMemo<Array<ColumnConfig<Person>>>(
+    () => [
       {
         id: 'name',
         header: () => <div style={{textAlign: 'center'}}>Name</div>,
@@ -139,6 +401,162 @@ export const ReactTableStory: React.FC = () => {
             cell: (info) => info.getValue<string>(),
             footer: (props) => props.column.id,
             enableResizing: false,
+            enableColumnFilter: false,
+          },
+          {
+            accessorFn: (row) => row.lastName,
+            id: 'lastName',
+            cell: (info) => info.getValue<string>(),
+            header: () => <span>Last Name</span>,
+            footer: (props) => props.column.id,
+            enableResizing: false,
+            enableColumnFilter: false,
+            enableGrouping: false,
+          },
+        ],
+      },
+      {
+        id: 'otherInfo',
+        header: () => <div style={{textAlign: 'center'}}>Other info</div>,
+        footer: (props) => props.column.id,
+        columns: [
+          {
+            accessorKey: 'age',
+            header: () => 'Age',
+            footer: (info) => info.column.id,
+            enableColumnFilter: false,
+          },
+          {
+            accessorKey: 'visits',
+            header: () => <span>Visits</span>,
+            footer: (info) => info.column.id,
+            enableColumnFilter: false,
+          },
+          {
+            accessorKey: 'status',
+            header: 'Status',
+            footer: (info) => info.column.id,
+            enableColumnFilter: false,
+          },
+          {
+            accessorKey: 'progress',
+            header: 'Profile Progress',
+            cell: (info) => info.getValue<string>(),
+            footer: (info) => info.column.id,
+            enableColumnFilter: false,
+          },
+        ],
+      },
+    ],
+    [],
+  )
+
+  return (
+    <div>
+      <ReactTable data={data} columns={columns} options={options}>
+        <ReactTable.Toolbar
+          css={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}
+        >
+          <SearchField placeholder='Search' />
+
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: '0.5rem',
+            }}
+          >
+            <Button variant='primary'>Button</Button>
+            <Button variant='secondary'>Button</Button>
+            <Button variant='ghost'>
+              <Icon icon={faTrashAlt} />
+            </Button>
+            <Button variant='ghost'>
+              <Icon icon={faDashboard} />
+            </Button>
+            <Button variant='ghost'>
+              <Icon icon={faFileLines} />
+            </Button>
+          </div>
+        </ReactTable.Toolbar>
+        <ReactTable.Footer
+          css={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}
+        >
+          <div>{/* Todo: Dropdown */}</div>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: '0.5rem',
+            }}
+          >
+            <div
+              style={{
+                fontWeight: '600',
+              }}
+            >
+              {(page - 1) * 10 + 1} - {(page - 1) * 10 + 10} of 100
+            </div>
+            <Pagination
+              page={page}
+              onChange={(page) => setPage(page)}
+              total={10}
+            />
+          </div>
+        </ReactTable.Footer>
+      </ReactTable>
+    </div>
+  )
+}
+
+export const EditableCellTable: React.FC = () => {
+  const [data, setData] = React.useState(() => makeData(10))
+  const options: ReactTableOptions<Person> = {
+    enableSorting: false,
+    enableMultiSort: false,
+    columnResizeMode: 'onChange',
+    manualSorting: false,
+  }
+  const onSorting = (sortingField: StateSorting) => {}
+
+  const columns = React.useMemo<Array<ColumnConfig<Person>>>(
+    () => [
+      {
+        id: 'name',
+        header: () => <div style={{textAlign: 'center'}}>Name</div>,
+        footer: (props) => props.column.id,
+        columns: [
+          {
+            accessorKey: 'firstName',
+            cell: (info) => info.getValue<string>(),
+            footer: (props) => props.column.id,
+            enableResizing: false,
+            meta: {
+              editable: true,
+              updateData: (rowIndex: number, id: string, value: any) => {
+                setData((old: Person[]) =>
+                  old.map((row, index) => {
+                    if (index === rowIndex) {
+                      return {
+                        ...old[rowIndex],
+                        [id]: value,
+                      } as Person
+                    }
+                    return row
+                  }),
+                )
+              },
+            },
           },
           {
             accessorFn: (row) => row.lastName,
@@ -207,7 +625,12 @@ export const ReactTableStory: React.FC = () => {
               gap: '0.5rem',
             }}
           >
-            <Button variant='primary'>Button</Button>
+            <Button
+              variant='primary'
+              className='c-hKssGC-hYGuEl-variant-primary'
+            >
+              Button
+            </Button>
             <Button variant='secondary'>Button</Button>
             <Button variant='ghost'>
               <Icon icon={faTrashAlt} />
@@ -220,36 +643,6 @@ export const ReactTableStory: React.FC = () => {
             </Button>
           </div>
         </ReactTable.Toolbar>
-        <ReactTable.Footer
-          css={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-          }}
-        >
-          <div>{/* Todo: Dropdown */}</div>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: '0.5rem',
-            }}
-          >
-            <div
-              style={{
-                fontWeight: '600',
-              }}
-            >
-              {(page - 1) * 10 + 1} - {(page - 1) * 10 + 10} of 100
-            </div>
-            <Pagination
-              page={page}
-              onChange={(page) => setPage(page)}
-              total={10}
-            />
-          </div>
-        </ReactTable.Footer>
       </ReactTable>
     </div>
   )

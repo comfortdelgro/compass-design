@@ -1,94 +1,140 @@
 import Button from '@comfortdelgro/react-compass/button'
-import Dropdown from '@comfortdelgro/react-compass/dropdown'
 import Popover, {PopoverDirection} from '@comfortdelgro/react-compass/popover'
 import {useState} from 'react'
 
-const SampleTopPopover = () => {
+const SamplePopover = () => {
   return (
     <div
       className='popover-content'
       style={{
-        padding: '10px',
         background: '#ffffff',
-        boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
+        border: '1px solid #b63f3f',
         borderRadius: '5px',
-        width: '300px',
-        height: '200px',
+        width: '100px',
+        height: '50px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
       }}
     >
-      Popover content here
+      Content
     </div>
   )
 }
 
+const directions: PopoverDirection[] = [
+  'bottom',
+  'bottom-end',
+  'bottom-start',
+  'left',
+  'left-end',
+  'left-start',
+  'right',
+  'right-end',
+  'right-start',
+  'top',
+  'top-end',
+  'top-start',
+]
+
 export const Popovers = () => {
-  const [direction, setDirection] = useState<PopoverDirection>('bottom-left')
-  const [isLeftOpen, setIsLeftOpen] = useState(false)
-  const [isRightOpen, setIsRightOpen] = useState(false)
+  const [isOpen1, setIsOpen1] = useState(false)
+  const [currentDirection, setCurrentDirection] =
+    useState<PopoverDirection>('bottom')
 
-  const openLeftPopover = () => {
-    setIsLeftOpen(true)
-  }
+  const [currentOffset, setCurrentOffset] = useState(10)
 
-  const openRightPopover = () => {
-    setIsRightOpen(true)
-  }
-
-  const selectDirection = (key: any) => {
-    setDirection(key as PopoverDirection)
+  const openPopover1 = () => {
+    setIsOpen1(true)
   }
 
   return (
     <>
-      <div style={{width: '300px', padding: '20px'}}>
-        <Dropdown.Select
-          label='Select direction'
-          placeholder='Select direction'
-          onSelectionChange={selectDirection}
-          selectedKey={direction}
-        >
-          <Dropdown.Item key='bottom-left'>bottom-left</Dropdown.Item>
-          <Dropdown.Item key='bottom-right'>bottom-right</Dropdown.Item>
-          <Dropdown.Item key='bottom-center'>bottom-center</Dropdown.Item>
-          <Dropdown.Item key='top-right'>top-right</Dropdown.Item>
-          <Dropdown.Item key='top-left'>top-left</Dropdown.Item>
-          <Dropdown.Item key='top-center'>top-center</Dropdown.Item>
-        </Dropdown.Select>
-      </div>
       <div
         style={{
           display: 'flex',
-          justifyContent: 'space-between',
-          padding: '20px',
+          gap: '1rem',
+          justifyContent: 'start',
+          alignItems: 'center',
+        }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '0.2rem',
+            margin: '0.5rem',
+          }}
+        >
+          <label
+            style={{fontSize: '0.85em', color: 'red'}}
+            htmlFor='directionSelect'
+          >
+            Direction
+          </label>
+          <select
+            id='directionSelect'
+            onChange={(e) => {
+              setCurrentDirection(e.target.value as PopoverDirection)
+            }}
+            style={{width: '6rem', height: '1.8rem'}}
+          >
+            {directions.map((direction) => {
+              return (
+                <option key={direction} value={direction}>
+                  {direction}
+                </option>
+              )
+            })}
+          </select>
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '0.2rem',
+          }}
+        >
+          <label
+            style={{fontSize: '0.85em', color: 'red'}}
+            htmlFor='offsetInput'
+          >
+            Offset
+          </label>
+          <input
+            id='offsetInput'
+            style={{width: '6rem', height: '1.8rem'}}
+            type='number'
+            value={currentOffset}
+            onChange={(e) => setCurrentOffset(Number(e.target.value))}
+          />
+        </div>
+      </div>
+
+      <div
+        style={{
+          width: '100%',
+          height: '100%',
+          border: '1px solid black',
+          borderRadius: '5px',
+          padding: '10rem 10rem',
+          marginTop: '0.5rem',
         }}
       >
         <Popover
-          isOpen={isLeftOpen}
+          isOpen={isOpen1}
           anchor={
-            <Button variant='secondary' onPress={openLeftPopover}>
-              Open
+            <Button variant='secondary' onPress={openPopover1}>
+              Click me!
             </Button>
           }
-          direction={direction}
+          offset={currentOffset}
+          direction={currentDirection}
           onClose={() => {
-            setIsLeftOpen(false)
+            setIsOpen1(false)
           }}
         >
-          <SampleTopPopover />
-        </Popover>
-        <Popover
-          isOpen={isRightOpen}
-          anchor={
-            <Button variant='secondary' onPress={openRightPopover}>
-              Open
-            </Button>
-          }
-          direction={direction}
-          onClose={() => {
-            setIsRightOpen(false)
-          }}
-        >
-          <SampleTopPopover />
+          <SamplePopover />
         </Popover>
       </div>
     </>

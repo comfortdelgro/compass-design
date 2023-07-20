@@ -14,13 +14,16 @@ export type ModalCloseIconProps = Props &
 const ModalCloseIcon = React.forwardRef<HTMLDivElement, ModalCloseIconProps>(
   (props, ref) => {
     const {children, css = {}, onClose, ...delegated} = props
+
     const modalCloseIconRef = useDOMRef<HTMLDivElement>(ref)
+
     return (
       <StyledModalCloseIcon
         css={css}
         ref={modalCloseIconRef}
-        {...delegated}
         onClick={() => onClose?.()}
+        tabIndex={0}
+        {...delegated}
       >
         {children}
       </StyledModalCloseIcon>

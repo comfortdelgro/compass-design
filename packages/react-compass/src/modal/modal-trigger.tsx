@@ -1,4 +1,5 @@
 import React from 'react'
+import Portal from '../portal'
 import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -10,6 +11,7 @@ interface Props extends StyledComponentProps {
   isOpen?: boolean
   handleClose?: () => void
   size?: 'sm' | 'md' | 'lg'
+  id?: string
 }
 
 export type ModalTriggerProps = Props &
@@ -17,7 +19,6 @@ export type ModalTriggerProps = Props &
 
 const ModalTrigger = React.forwardRef<HTMLDivElement, ModalTriggerProps>(
   (props, ref) => {
-    // let {overlayProps} = useOverlay()
     const {
       // StyledComponentProps
       css = {},
@@ -26,52 +27,41 @@ const ModalTrigger = React.forwardRef<HTMLDivElement, ModalTriggerProps>(
       // ComponentProps
       isOpen = false,
       handleClose,
+      id,
+      // VariantProps
       size = 'md',
+      // HTMLDiv Props
       ...delegated
     } = props
 
     const modalRef = useDOMRef<HTMLDivElement>(ref)
+    const modalWrapperRef = useDOMRef<HTMLDivElement>(null)
     const {child: ModalElement} = pickChild<typeof Modal>(children, Modal)
 
-    React.useEffect(() => {
-      /**
-       * Close the sidebar if clicked on outside of element
-       */
-
-      function handleClickOutside(event: MouseEvent) {
-        if (
-          modalRef.current &&
-          !modalRef?.current?.contains(event.target as Node)
-        ) {
-          event.preventDefault()
-          event.stopPropagation()
-          handleClose?.()
-        }
-      }
-
-      // Bind the event listener
-      document.addEventListener('mousedown', handleClickOutside)
-
-      return () => {
-        // Unbind the event listener on clean up
-        document.removeEventListener('mousedown', handleClickOutside)
-      }
-    }, [modalRef])
+    const handleClickBackdrop = (e: MouseEvent) => {
+      e.stopPropagation()
+      e.preventDefault()
+      handleClose?.()
+    }
 
     return (
-      <>
-        {isOpen && (
-          <StyledModalWrapper css={css} {...delegated}>
-            {ModalElement &&
-              React.cloneElement(ModalElement as unknown as JSX.Element, {
-                onClose: () => handleClose?.(),
-                ref: modalRef,
-                size: size,
-                handleClose: () => handleClose?.(),
-              })}
-          </StyledModalWrapper>
-        )}
-      </>
+      <Portal open={isOpen}>
+        <StyledModalWrapper
+          css={css}
+          ref={modalWrapperRef}
+          onClick={(e) => handleClickBackdrop?.(e as unknown as MouseEvent)}
+          {...delegated}
+        >
+          {ModalElement &&
+            React.cloneElement(ModalElement as unknown as JSX.Element, {
+              onClose: () => handleClose?.(),
+              ref: modalRef,
+              size: size,
+              handleClose: () => handleClose?.(),
+              triggerId: id,
+            })}
+        </StyledModalWrapper>
+      </Portal>
     )
   },
 )

@@ -1,27 +1,39 @@
 import {Button, Sidebar} from '@comfortdelgro/react-compass'
 import React from 'react'
 
-export function PrimarySidebar() {
+interface PrimarySidebarProps {
+  position: 'left' | 'right'
+}
+
+export function PrimarySidebar({position = 'left'}: PrimarySidebarProps) {
   const [isPrimaryOpen, setIsPrimaryOpen] = React.useState(false)
   return (
     <>
       <Button
-        css={{width: '9rem', height: '3.5rem', fontSize: '1em', color: 'black'}}
+        className='c-hKssGC-hYGuEl-variant-primary'
+        css={{height: '3.5rem', fontSize: '1em', color: 'black'}}
         onPress={() => setIsPrimaryOpen(true)}
       >
         Open sidebar
       </Button>
       <Sidebar
+        position={position}
         isOpen={isPrimaryOpen}
         handleClose={() => setIsPrimaryOpen(false)}
       >
         <Sidebar.Title>My title</Sidebar.Title>
         <Sidebar.Content>My content</Sidebar.Content>
         <Sidebar.Actions>
-          <Button css={{width: '45%', height: '100%', fontSize: '1em'}}>
+          <Button
+            className='c-hKssGC-hYGuEl-variant-primary'
+            css={{width: '45%', height: '100%', fontSize: '1em'}}
+          >
             Action
           </Button>
-          <Button css={{width: '45%', height: '100%', fontSize: '1em'}}>
+          <Button
+            className='c-hKssGC-hYGuEl-variant-primary'
+            css={{width: '45%', height: '100%', fontSize: '1em'}}
+          >
             Action
           </Button>
         </Sidebar.Actions>
@@ -35,7 +47,8 @@ export function SecondarySidebar() {
   return (
     <>
       <Button
-        css={{width: '9rem', height: '3.5rem', fontSize: '1em', color: 'black'}}
+        className='c-hKssGC-hYGuEl-variant-primary'
+        css={{height: '3.5rem', fontSize: '1em', color: 'black'}}
         onPress={() => setIsPrimaryOpen(true)}
       >
         Open sidebar
@@ -48,10 +61,16 @@ export function SecondarySidebar() {
         <Sidebar.Title>My title</Sidebar.Title>
         <Sidebar.Content>My content</Sidebar.Content>
         <Sidebar.Actions>
-          <Button css={{width: '45%', height: '100%', fontSize: '1em'}}>
+          <Button
+            className='c-hKssGC-hYGuEl-variant-primary'
+            css={{width: '45%', height: '100%', fontSize: '1em'}}
+          >
             Action
           </Button>
-          <Button css={{width: '45%', height: '100%', fontSize: '1em'}}>
+          <Button
+            className='c-hKssGC-hYGuEl-variant-primary'
+            css={{width: '45%', height: '100%', fontSize: '1em'}}
+          >
             Action
           </Button>
         </Sidebar.Actions>

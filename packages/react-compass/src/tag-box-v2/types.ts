@@ -5,6 +5,7 @@ export interface Tag {
   id: string | number
   value: string
   icon?: IconDefinition
+  isErrored?: boolean
 }
 
 export interface TagBoxV2Props {

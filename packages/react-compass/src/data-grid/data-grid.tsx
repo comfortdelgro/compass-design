@@ -38,6 +38,7 @@ export interface Options {
 }
 
 export type OptionType = Options
+
 export interface Props<T> extends StyledComponentProps {
   data: T[]
   columns: Array<ColumnDef<T>>
@@ -117,6 +118,8 @@ const DataGrid = React.forwardRef<HTMLTableElement, DataGridProps>(
       onManualSorting?.(sorting)
     }, [sorting])
 
+    const dataGridRows = table.getRowModel().rows ?? []
+
     return (
       <StyledDataGridWrapper css={css}>
         {toolbar && <>{toolbar}</>}
@@ -139,13 +142,8 @@ const DataGrid = React.forwardRef<HTMLTableElement, DataGridProps>(
             </DataGridRowGroup>
             {
               <DataGridRowGroup as='tbody'>
-                {table.getRowModel().rows.length === 0 ||
-                table.getRowModel().rows === undefined ? (
-                  <NoDataComponent
-                    colSpan={table.getAllLeafColumns()?.length}
-                  ></NoDataComponent>
-                ) : (
-                  table.getRowModel().rows.map((row) => {
+                {dataGridRows.length ? (
+                  dataGridRows.map((row) => {
                     return (
                       <DataGridRow
                         key={row.id}
@@ -157,14 +155,19 @@ const DataGrid = React.forwardRef<HTMLTableElement, DataGridProps>(
                               key={cell.id}
                               cell={cell}
                               row={row}
-                              // eslint-disable-next-line @typescript-eslint/no-empty-function
-                              onChangeCell={onUpdateData || (() => {})}
+                              onChangeCell={(newData) =>
+                                onUpdateData?.(newData)
+                              }
                             />
                           )
                         })}
                       </DataGridRow>
                     )
                   })
+                ) : (
+                  <NoDataComponent
+                    colSpan={table.getAllLeafColumns()?.length}
+                  ></NoDataComponent>
                 )}
               </DataGridRowGroup>
             }

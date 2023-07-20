@@ -14,19 +14,20 @@
 import {useCallback, useLayoutEffect, useState} from 'react'
 import {useId} from './useId'
 
-export function useSlotId(depArray: ReadonlyArray<any> = []): string {
+export function useSlotId(depArray: readonly any[] = []): string {
   const id = useId()
-  const [resolvedId, setResolvedId] = useState(id)
+  const [resolvedId, setResolvedId] = useState<string | undefined>(id) // Adjust the type of resolvedId
+
   const updateId = useCallback(() => {
-    // @ts-ignore
-    setResolvedId(function* () {
+    const generatorFunction = function* () {
       yield id
-
       yield document.getElementById(id) ? id : undefined
-    })
-  }, [id, setResolvedId])
-  // @ts-ignore
-  useLayoutEffect(updateId, [id, updateId, ...depArray])
+    }
 
-  return resolvedId
+    const generator = generatorFunction()
+    setResolvedId(generator.next().value as string | undefined) // Retrieve the first yielded value
+  }, [id])
+
+  useLayoutEffect(updateId, [id, ...depArray]) // Remove updateId from the dependency array
+  return resolvedId ?? '' // Provide a default value in case resolvedId is undefined
 }

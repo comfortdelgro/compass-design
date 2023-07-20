@@ -1,12 +1,6 @@
 import {styled} from '../theme'
 import type {VariantProps} from '../utils/stitches.types'
 
-export const StyledTextFieldWrapper = styled('div', {
-  width: '100%',
-  display: 'block',
-  fontFamily: '$sans',
-})
-
 export const StyledTextFieldLabel = styled('label', {
   fontSize: '$label1',
   fontWeight: '$semibold',
@@ -32,13 +26,6 @@ export const StyledTextFieldBox = styled('div', {
   color: '$typeHeading',
   backgroundColor: '$whiteText',
   transition: '$default',
-
-  '&:focus-within': {
-    borderColor: '$cdgBlue',
-    '.left-icon': {
-      color: '$cdgBlue',
-    },
-  },
 
   '.left-icon, .right-icon': {
     color: '$typeHeading',
@@ -84,7 +71,10 @@ export const StyledTextFieldBox = styled('div', {
         backgroundColor: '$gray20',
         '*': {
           color: '$disabledText',
-          cursor: 'not-allowed !important',
+          cursor: 'not-allowed',
+        },
+        input: {
+          backgroundColor: '$gray20',
         },
       },
     },
@@ -108,7 +98,7 @@ export const StyledTextField = styled('input', {
   padding: '$1_5 $3',
   border: 0,
   borderRadius: '$md',
-  backgroundColor: 'transparent',
+  backgroundColor: '$whiteText',
 
   '&:focus': {
     outline: 'none',
@@ -116,7 +106,7 @@ export const StyledTextField = styled('input', {
   },
 
   '&::placeholder': {
-    color: '#B4B4B4',
+    color: '$tertiaryText',
     fontSize: '$label1',
     fontWeight: '$semibold',
   },
@@ -133,6 +123,42 @@ export const StyledTextFieldHelperText = styled('div', {
     error: {
       true: {
         color: '$danger',
+      },
+    },
+  },
+})
+
+export const StyledTextFieldWrapper = styled('div', {
+  width: '100%',
+  display: 'block',
+  fontFamily: '$sans',
+  variants: {
+    isDarkTheme: {
+      true: {
+        [`${StyledTextField}`]: {
+          backgroundColor: '$transparent',
+          color: '$tertiaryText',
+        },
+        [`${StyledTextFieldBox}`]: {
+          color: '$tertiaryText',
+          backgroundColor: '$gray20',
+          '&:focus-within': {
+            borderColor: '$cdgBlue120',
+            '.left-icon': {
+              color: '$cdgBlue',
+            },
+          },
+        },
+      },
+      false: {
+        [`${StyledTextFieldBox}`]: {
+          '&:focus-within': {
+            borderColor: '$cdgBlue',
+            '.left-icon': {
+              color: '$cdgBlue',
+            },
+          },
+        },
       },
     },
   },

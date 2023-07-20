@@ -88,12 +88,20 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     >
 
     const handleCheckboxChange = () => {
+      if (isDisabled || isReadOnly) return
       if (onChange) {
         onChange(!checked)
       }
       if (isSelected !== undefined) return
 
       setChecked(!checked)
+    }
+
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+      const key = event.key
+      if (key === 'Enter' || key === ' ') {
+        handleCheckboxChange()
+      }
     }
 
     useEffect(() => {
@@ -104,15 +112,16 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       <StyledCheckboxWrapper css={css} {...htmlProps}>
         <StyledCheckboxLabel isDarkTheme={isDarkTheme}>
           <StyledCheckboxInput
+            tabIndex={-1}
             type='checkbox'
             ref={checkboxRef}
             checked={checked}
             disabled={isDisabled}
-            onChange={!isReadOnly ? handleCheckboxChange : undefined}
             css={cssCheckBoxInput}
             readOnly={isReadOnly}
             aria-invalid={validationState === 'invalid' ? 'true' : undefined}
             aria-readonly={isReadOnly === true ? 'true' : undefined}
+            onChange={handleCheckboxChange}
           />
 
           {/* Checkbox */}
@@ -120,6 +129,8 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
             disabled={!!isDisabled}
             rounded={variant === 'rounded'}
             isDarkTheme={isDarkTheme}
+            tabIndex={0}
+            onKeyDown={handleKeyDown}
           >
             <StyledCheckboxCheckmark>
               {isIndeterminate ? (
@@ -141,7 +152,9 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           </StyledCheckboxBox>
 
           {/* Label */}
-          <StyledCheckboxLabelContent>{children}</StyledCheckboxLabelContent>
+          {children && (
+            <StyledCheckboxLabelContent>{children}</StyledCheckboxLabelContent>
+          )}
         </StyledCheckboxLabel>
       </StyledCheckboxWrapper>
     )

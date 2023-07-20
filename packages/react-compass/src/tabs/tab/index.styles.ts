@@ -17,10 +17,6 @@ export const StyledTab = styled('div', {
   alignItems: 'center',
   width: 'max-content',
 
-  '&:focus-visible': {
-    outline: 'none',
-  },
-
   '& .icon': {
     width: '$4',
     height: '$4',
@@ -29,7 +25,7 @@ export const StyledTab = styled('div', {
     alignItems: 'center',
     border: 'black thin solid',
     borderRadius: '$full',
-    backgroundColor: '$background',
+    backgroundColor: '$cdgBlue120',
     '& svg': {
       display: 'none',
     },

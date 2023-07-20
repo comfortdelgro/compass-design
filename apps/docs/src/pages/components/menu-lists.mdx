@@ -165,7 +165,11 @@ import MenuList, {MenuListDropdown} from '@comfortdelgro/react-compass/MenuList'
         <MenuListDropdown>
           <MenuListDropdown.Header>Dashboard</MenuListDropdown.Header>
           <MenuListDropdown.Item icon={<BugIcon />}>Menu</MenuListDropdown.Item>
-          <MenuListDropdown.Item isDisabled icon={<BugIcon />}>
+          <MenuListDropdown.Item
+            isDisabled
+            icon={<BugIcon />}
+            css={{p: {marginTop: 0}}}
+          >
             Menu
           </MenuListDropdown.Item>
           <MenuListDropdown.Item icon={<BugIcon />}>Menu</MenuListDropdown.Item>
@@ -179,7 +183,7 @@ import MenuList, {MenuListDropdown} from '@comfortdelgro/react-compass/MenuList'
   </MenuList>
 </section>
 
-```js {13}
+```js {14}
 <MenuList css={{height: '800px'}}>
   <MenuListDropdown>
     <MenuListDropdown.Header>Dashboard</MenuListDropdown.Header>
@@ -228,12 +232,12 @@ import MenuList, {MenuListDropdown} from '@comfortdelgro/react-compass/MenuList'
 
 ### MenuListDropdown.Header
 
-| Name      | Type                  | Default | Description |
-| :-------- | :-------------------- | :------ | :---------- |
-| children  | `React.ReactNode`     | —       |             |
+| Name      | Type                         | Default | Description |
+| :-------- | :--------------------------- | :------ | :---------- |
+| children  | `React.ReactNode`            | —       |             |
 | leftIcon  | `React.ReactNode` \| `false` | true    |             |
 | rightIcon | `React.ReactNode` \| `true`  | false   |             |
-| css       | `CSS`                 | —       |             |
+| css       | `CSS`                        | —       |             |
 
 ### MenuListDropdown.Item
 
@@ -242,7 +246,7 @@ import MenuList, {MenuListDropdown} from '@comfortdelgro/react-compass/MenuList'
 | children   | `React.ReactNode` | —       |                                                |
 | isActive   | `boolean`         | false   | Whether the item is currently activated or not |
 | isDisabled | `boolean`         | false   | Whether the item is currently disabled or not  |
-| icon       | `ReactNode`        | —       |                                                |
+| icon       | `ReactNode`       | —       |                                                |
 | css        | `CSS`             | —       |                                                |
 
 <Callout>

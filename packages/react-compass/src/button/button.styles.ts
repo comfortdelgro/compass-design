@@ -79,6 +79,7 @@ export const StyledButtonContent = styled('div', {
 })
 
 export const StyledButton = styled('button', {
+  textDecoration: 'none',
   position: 'relative',
   flexShrink: 0,
 
@@ -111,8 +112,8 @@ export const StyledButton = styled('button', {
     borderColor: '$divider',
     cursor: 'not-allowed',
   },
-  '&:focus': {
-    outline: 'none',
+  '&:focus-visible': {
+    outline: '1px solid $cdgBlue60',
     boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;',
   },
 
@@ -143,6 +144,10 @@ export const StyledButton = styled('button', {
         background: '$cdgBlue',
         color: '$whiteText',
         borderColor: '$cdgBlue',
+        '&.cdg-link-button:hover': {
+          background: '$cdgBlue120',
+          borderColor: '$cdgBlue120',
+        },
         '&:hover:enabled': {
           background: '$cdgBlue120',
           borderColor: '$cdgBlue120',
@@ -152,6 +157,11 @@ export const StyledButton = styled('button', {
         background: 'transparent',
         color: '$cdgBlue',
         borderColor: '$cdgBlue',
+        '&.cdg-link-button:hover': {
+          color: '$cdgBlue100',
+          background: '$cdgBlue10',
+          borderColor: '$cdgBlue120',
+        },
         '&:hover:enabled': {
           color: '$cdgBlue100',
           background: '$cdgBlue10',
@@ -162,6 +172,10 @@ export const StyledButton = styled('button', {
         background: 'transparent',
         color: '$danger',
         borderColor: '$danger',
+        '&.cdg-link-button:hover': {
+          background: '$dangerBg',
+          borderColor: '$dangerBg',
+        },
         '&:hover:enabled': {
           background: '$dangerBg',
           borderColor: '$dangerBg',
@@ -171,6 +185,10 @@ export const StyledButton = styled('button', {
         background: 'transparent',
         color: '$typeHeading',
         borderColor: 'transparent',
+        '&.cdg-link-button:hover': {
+          color: '$cdgBlue',
+          background: '$cdgBlue10',
+        },
         '&:hover:enabled': {
           color: '$cdgBlue',
           background: '$cdgBlue10',
@@ -244,5 +262,4 @@ export const StyledButton = styled('button', {
     iconOnly: false,
   },
 })
-
 export type ButtonVariantProps = VariantProps<typeof StyledButton>

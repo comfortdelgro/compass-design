@@ -12,10 +12,11 @@ export const StyledTextField = styled('input', {
 
   '&:focus': {
     outline: 'none',
+    backgroundColor: '$cdgblue120',
   },
 
   '&::placeholder': {
-    color: '#B4B4B4',
+    color: '$tertiaryText',
     fontSize: '$label1',
     fontWeight: '$semibold',
   },
@@ -41,7 +42,7 @@ export const TimePickerContainer = styled('div', {
 
 export const TimePickerDropdownWrapper = styled('div', {
   background: '$background',
-  border: '1px solid #e6e6e6',
+  border: '1px solid $divider',
   borderRadius: '$md',
   zIndex: 9999,
 })
@@ -65,11 +66,11 @@ export const TimePickerDropdownControl = styled('div', {
   },
 
   '&:not(:last-child)': {
-    borderRight: '1px solid #e6e6e6',
+    borderRight: '1px solid $divider',
   },
 })
 export const TimePickerDropdownItemStyle = styled('button', {
-  backgroundColor: '$background',
+  backgroundColor: '$white',
   border: 'none',
   display: 'flex',
   justifyContent: 'center',
@@ -82,7 +83,7 @@ export const TimePickerDropdownItemStyle = styled('button', {
   fontWeight: 500,
   boxSizing: 'border-box',
   '&:hover': {
-    backgroundColor: '$primaryBg',
+    backgroundColor: '$infoBg',
   },
   fontSize: '$body3',
   lineHeight: '$5_25',
@@ -96,7 +97,7 @@ export const TimePickerDropdownFooter = styled('div', {
   padding: '$2',
   display: 'flex',
   justifyContent: 'flex-end',
-  borderTop: '1px solid #e6e6e6',
+  borderTop: '1px solid $divider',
   button: {
     fontWeight: 500,
     fontSize: '$body3',

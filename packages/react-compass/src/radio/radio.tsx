@@ -36,10 +36,16 @@ const Radio: React.FC<RadioProps> = (props) => {
   const state = context
   const [isChecked, setIsChecked] = useState(state.value === value)
 
-  const ref = React.useRef<HTMLInputElement | null>(null)
   const onClick = () => {
     if (!isDisabled) {
       state.handleOnClickRadionButton(value) // clicked value
+    }
+  }
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    const key = event.key
+    if (key === 'Enter' || key === ' ') {
+      onClick()
     }
   }
 
@@ -49,13 +55,14 @@ const Radio: React.FC<RadioProps> = (props) => {
 
   return (
     <StyledRadio
-      disabled={isDisabled}
-      variant={variant}
-      onClick={onClick}
       css={css}
+      tabIndex={0}
+      variant={variant}
+      disabled={isDisabled}
+      onClick={onClick}
+      onKeyDown={handleKeyDown}
       {...delegated}
     >
-      <input style={{display: 'none'}} ref={ref} />
       <div className='radio-wrapper'>
         <StyledRadioInput active={isChecked} disabled={isDisabled} />
       </div>
@@ -63,7 +70,7 @@ const Radio: React.FC<RadioProps> = (props) => {
         <div className='radio-label'>
           {label} {!!tooltip && <Tooltip text={tooltip} />}
         </div>
-        <p className='radio-description'>{description}</p>
+        {description && <p className='radio-description'>{description}</p>}
       </div>
       <p className='radio-right-label'>{rightLabel}</p>
     </StyledRadio>

@@ -24,8 +24,8 @@ export const StyledCheckboxInput = styled('input', {
 //mark for merging point
 export const StyledCheckboxBox = styled('span', {
   position: 'absolute', //mark for merged
-  top: 0,
-  left: 0,
+  top: '2px',
+  left: '2px',
   height: '$4',
   width: '$4',
   backgroundColor: '$whiteText',
@@ -121,12 +121,19 @@ export const StyledCheckboxLabelContent = styled('span', {
 })
 
 export const StyledCheckboxLabel = styled('label', {
-  display: 'block',
   position: 'relative',
   fontSize: '$label1',
   cursor: 'pointer',
   userSelect: 'none',
-
+  borderRadius: '3px',
+  display: 'inline-block',
+  whiteSpace: 'nowrap',
+  minHeight: '$5',
+  minWidth: '$5',
+  padding: '2px',
+  '&:focus-within': {
+    outline: '2px solid $cdgBlue60',
+  },
   [`${StyledCheckboxInput}:checked ~ ${StyledCheckboxBox}`]: {
     borderColor: '$cdgBlue',
     backgroundColor: '$cdgBlue',
@@ -148,7 +155,6 @@ export const StyledCheckboxLabel = styled('label', {
       display: 'flex',
     },
   },
-
   [`${StyledCheckboxInput}:disabled:checked ~ ${StyledTableCheckboxBox}`]: {
     borderColor: '$gray50',
     backgroundColor: '$gray50',

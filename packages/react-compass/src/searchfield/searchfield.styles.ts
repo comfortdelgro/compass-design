@@ -2,6 +2,25 @@ import {StyledButton} from '../button/button.styles'
 import {styled} from '../theme'
 import type {VariantProps} from '../utils/stitches.types'
 
+export const StyledSearchFieldInput = styled('input', {
+  width: '100%',
+  fontSize: '$label1',
+  fontWeight: '$semibold',
+  lineHeight: '$normal',
+  padding: '$1_5 $3',
+  border: 0,
+  borderRadius: '$md',
+  backgroundColor: 'transparent',
+  '&::placeholder': {
+    color: '#B4B4B4',
+    fontSize: '$label1',
+    fontWeight: '$semibold',
+  },
+  '&:disabled': {
+    cursor: 'not-allowed',
+  },
+})
+
 export const StyledSearchFieldBox = styled('div', {
   display: 'flex',
   height: '$11',
@@ -16,10 +35,6 @@ export const StyledSearchFieldBox = styled('div', {
   backgroundColor: '$whiteText',
   transition: '$default',
   minWidth: '$48',
-
-  '&:focus-within': {
-    borderColor: '$cdgBlue',
-  },
 
   [`${StyledButton}`]: {
     transform: 'scale(0.9)',
@@ -40,31 +55,33 @@ export const StyledSearchFieldBox = styled('div', {
         },
       },
     },
-  },
-})
-
-export const StyledSearchFieldInput = styled('input', {
-  width: '100%',
-  fontSize: '$label1',
-  fontWeight: '$semibold',
-  lineHeight: '$normal',
-  padding: '$1_5 $3',
-  border: 0,
-  borderRadius: '$md',
-  backgroundColor: 'transparent',
-  '&::placeholder': {
-    color: '#B4B4B4',
-    fontSize: '$label1',
-    fontWeight: '$semibold',
-  },
-
-  '&:focus': {
-    outline: 'none',
-    boxShadow: 'none',
-  },
-
-  '&:disabled': {
-    cursor: 'not-allowed',
+    isDarkTheme: {
+      true: {
+        [`${StyledSearchFieldInput}`]: {
+          color: '$tertiaryText',
+          '&:focus': {
+            borderColor: 'cdgBlue120',
+            outline: 'none',
+            boxShadow: 'none',
+          },
+        },
+        '&:focus-within': {
+          borderColor: '$cdgBlue120',
+        },
+      },
+      false: {
+        [`${StyledSearchFieldInput}`]: {
+          '&:focus': {
+            borderColor: 'cdgBlue',
+            outline: 'none',
+            boxShadow: 'none',
+          },
+        },
+        '&:focus-within': {
+          borderColor: '$cdgBlue',
+        },
+      },
+    },
   },
 })
 

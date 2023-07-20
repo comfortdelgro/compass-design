@@ -41,6 +41,7 @@ const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>((props, ref) => {
     isSelected = !!props.defaultSelected,
     isReadOnly = false,
     isRequired = false,
+    isDisabled = false,
     css = {},
     className,
   } = props
@@ -52,8 +53,15 @@ const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>((props, ref) => {
   }
 
   const onClick = () => {
-    if (!props.isDisabled) {
+    if (!isDisabled && !isReadOnly) {
       setIsSelectedState((s) => !s)
+    }
+  }
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    const key = event.key
+    if (key === 'Enter' || key === ' ') {
+      onClick()
     }
   }
 
@@ -61,14 +69,20 @@ const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>((props, ref) => {
     props.onChange?.(isSelectedState)
   }, [isSelectedState])
 
+  React.useEffect(() => {
+    setIsSelectedState(isSelected)
+  }, [isSelected])
+
   return (
     <StyledToggle
       css={css}
       size={size}
+      tabIndex={0}
+      className={className}
       active={isSelectedState}
       disabled={!!props.isDisabled}
       onClick={onClick}
-      className={className}
+      onKeyDown={handleKeyDown}
     >
       <input
         aria-controls={props['aria-controls']}

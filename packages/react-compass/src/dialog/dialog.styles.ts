@@ -37,7 +37,7 @@ export const StyledDialogTitle = styled('h3', {
   color: '$primaryText',
 })
 
-export const StyledDialogDescription = styled('p', {
+export const StyledDialogDescription = styled('div', {
   // reset
   appearance: 'none',
   border: 'none',
@@ -69,6 +69,26 @@ export const StyledDialogActionsContainer = styled('div', {
   flexDirection: 'row',
   justifyContent: 'flex-end',
   gap: '$2',
+
+  variants: {
+    responsive: {
+      true: {
+        '@media (max-width: 900px)': {
+          flexDirection: 'column',
+          button: {
+            div: {
+              display: 'block',
+            },
+          },
+        },
+      },
+      false: {},
+    },
+  },
+
+  defaultVariants: {
+    responsive: 'false',
+  },
 })
 
 export const StyledDialogWrapper = styled('div', {
@@ -80,6 +100,7 @@ export const StyledDialogWrapper = styled('div', {
   background: '$overlayDark',
 
   // backdrop styling
+  padding: '$4',
   position: 'fixed',
   top: '0',
   left: '0',
@@ -91,8 +112,20 @@ export const StyledDialogWrapper = styled('div', {
   alignItems: 'center',
 })
 
+export const StyledDialogContent = styled('div', {
+  all: 'unset',
+  maxHeight: '100%',
+  maxWidth: '100%',
+  overflow: 'auto',
+  padding: '$4',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '$4',
+})
+
 export const StyledDialog = styled('div', {
   // reset
+  all: 'unset',
   appearance: 'none',
   border: 'none',
   boxSizing: 'border-box',
@@ -101,14 +134,12 @@ export const StyledDialog = styled('div', {
 
   // dialog container
   width: '$120',
-  padding: '$4',
+  maxHeight: '100%',
+  overflow: 'auto',
   backgroundColor: '$background',
   boxShadow:
     '0px 0.6px 1.8px rgba(0, 0, 0, 0.1), 0px 3.2px 7.2px rgba(0, 0, 0, 0.13)',
 
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '$4',
   borderRadius: '$lg',
 
   variants: {

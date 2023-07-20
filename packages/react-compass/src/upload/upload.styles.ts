@@ -47,20 +47,20 @@ export const StyledUploadContent = styled('div', {
   border: 'none',
   boxSizing: 'border-box',
   margin: '0px',
-  background: 'transparent',
 
   //upload button styling
   flexGrow: 1,
   height: '100%',
   display: 'flex',
   alignItems: 'center',
-  borderLeft: '1px solid #E6E6E6',
+  borderLeft: '1px solid $divider',
   padding: '0 $4',
   fontSize: '$body2',
   fontWeight: '$semibold',
   whiteSpace: 'nowrap',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
+  cursor: 'pointer',
   p: {
     margin: 0,
     padding: 0,
@@ -93,20 +93,25 @@ export const StyledUploadContainer = styled('div', {
   //container styling
   width: '100%',
   height: '$11',
-  border: '1px solid #E6E6E6',
+  border: '1px solid $divider',
   overflow: 'hidden',
   borderRadius: '$lg',
   display: 'flex',
   gap: '0px',
+  transition: 'border 200ms ease-in-out',
+
+  '&:focus-within': {
+    border: '1px solid $cdgBlue',
+  },
 })
 
-export const StyledBrowseFile = styled('div', {
+export const StyledBrowseFile = styled('button', {
   // reset
   appearance: 'none',
+  border: 'none',
   //border: 'none',
   boxSizing: 'border-box',
   margin: '0px',
-  background: 'transparent',
 
   //container styling
   width: 'min-content',
@@ -120,12 +125,12 @@ export const StyledBrowseFile = styled('div', {
   fontWeight: '$semibold',
   lineHeight: '$normal',
   cursor: 'pointer',
-  backgroundColor: '$gray10',
   span: {
     width: 'max-content',
   },
-  '&:hover': {
-    backgroundColor: '$gray20',
+
+  '&:focus-visible': {
+    outline: 'none',
   },
 })
 
@@ -141,7 +146,7 @@ export const StyledLabel = styled('label', {
   width: '100%',
   height: '$4_5',
   fontFamily: '$sans',
-  fontSize: '$label2',
+  fontSize: '$label1',
   lineHeight: '$normal',
   fontWeight: '$semibold',
   '& .cdg-isRequired-Sign': {
@@ -157,7 +162,7 @@ export const StyledUploadWrapper = styled('div', {
   margin: '0px',
   padding: '0px',
   background: 'transparent',
-  boxShadow: '1px solid #E6E6E6',
+  boxShadow: '1px solid $divider',
   minWidth: '$96',
 
   // wrapper styling
@@ -182,6 +187,28 @@ export const StyledUploadWrapper = styled('div', {
           color: '$gray40',
           cursor: 'not-allowed',
           border: 'none',
+        },
+      },
+    },
+    isDarkTheme: {
+      true: {
+        [`${StyledBrowseFile}`]: {
+          backgroundColor: '$cdgBlue120',
+          color: '$cdgBlue40',
+        },
+        [`${StyledUploadContent}`]: {
+          background: '$gray20',
+        },
+      },
+      false: {
+        [`${StyledBrowseFile}`]: {
+          backgroundColor: '$gray10',
+          '&:hover': {
+            backgroundColor: '$gray20',
+          },
+        },
+        [`${StyledUploadContent}`]: {
+          background: 'transparent',
         },
       },
     },

@@ -35,7 +35,7 @@ export const StyledDateField = styled('div', {
   },
 
   '& .date-field-input.mobile:active': {
-    backgroundColor: '$gray60',
+    backgroundColor: '$gray10',
   },
 
   '& .toggle-calendar-button': {
@@ -131,4 +131,8 @@ export const StyledTextFieldHelperText = styled('div', {
       },
     },
   },
+})
+
+export const StyledIcon = styled('svg', {
+  color: '$primaryText',
 })
