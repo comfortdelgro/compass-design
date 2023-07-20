@@ -57,6 +57,9 @@ Example
 {{"demo": "ButtonSize.tsx"}}
 ```
 
+![image](https://github.com/comfortdelgro/compass-design/assets/128688086/c0af5e7a-f0bb-4da8-a925-dc516ae304e9)
+
+
 #### 2.2 Add component
 
 To add a demo, you need to create a `.tsx` file and import by `{{"component": "[component_path].tsx"}}`
