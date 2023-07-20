@@ -58,12 +58,6 @@ const AccordionTitle = React.forwardRef<HTMLButtonElement, AccordionTitleProps>(
           if (onExpandChange) {
             onExpandChange(event)
           }
-          if (event.currentTarget.parentElement) {
-            event.currentTarget.parentElement.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start',
-            })
-          }
           break
         default:
           break
