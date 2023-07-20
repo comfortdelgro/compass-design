@@ -14,6 +14,7 @@ interface Props extends StyledComponentProps {
   defaultExpand?: boolean
   children: React.ReactNode
   onExpandChange?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void
+  'aria-labelledby'?: string
 }
 
 export type AccordionProps = Props &
@@ -34,8 +35,6 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
     } = props
 
     const [uncontrolledExpand, setUncontrolledExpand] = useState(defaultExpand)
-    const [focusIndex, setFocusIndex] = useState<number | null>(null)
-    const [isActiveAccordion, setIsActiveAccordion] = useState(false)
     const accordionBodyRef = useDOMRef<HTMLDivElement>(null)
 
     // Component expansion state managed by its own or by user
@@ -51,9 +50,11 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
       if (!accordionBodyRef.current) return
       const accordionBody = accordionBodyRef.current
       if (expand) {
+        accordionBody.removeAttribute('hidden')
         accordionBody.style.maxHeight = `${accordionBody.scrollHeight}px`
       } else {
         accordionBody.style.maxHeight = '0px'
+        accordionBody.setAttribute('hidden', '')
       }
     }, [expand, accordionBodyRef.current])
 
@@ -93,91 +94,13 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
           })
         : AccordionTitleElement
 
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
-      if (!expand || !isActiveAccordion) {
-        return
-      }
-      const {key} = e
-      switch (key) {
-        case 'ArrowRight':
-        case 'ArrowDown':
-          e.preventDefault()
-          if (e.currentTarget) {
-            const accordionBody = e.currentTarget.querySelector(
-              '.accordion-body-inner',
-            )
-            if (accordionBody) {
-              const focusableItems = Array.from(
-                accordionBody.querySelectorAll<HTMLElement>('[tabIndex="0"]'),
-              )
-              if (focusIndex === null) {
-                focusableItems[0]?.focus()
-                setFocusIndex(0)
-              } else {
-                const nextIndex = (focusIndex + 1) % focusableItems.length
-                focusableItems[nextIndex]?.focus()
-                setFocusIndex(nextIndex)
-              }
-            }
-          }
-          break
-        case 'ArrowLeft':
-        case 'ArrowUp':
-          e.preventDefault()
-          if (e.currentTarget) {
-            const accordionBody = e.currentTarget.querySelector(
-              '.accordion-body-inner',
-            )
-            if (accordionBody) {
-              const focusableItems = Array.from(
-                accordionBody.querySelectorAll<HTMLElement>('[tabIndex="0"]'),
-              )
-              if (focusIndex === null) {
-                focusableItems[focusableItems.length - 1]?.focus()
-                setFocusIndex(focusableItems.length - 1)
-              } else {
-                const prevIndex =
-                  (focusIndex - 1 + focusableItems.length) %
-                  focusableItems.length
-                focusableItems[prevIndex]?.focus()
-                setFocusIndex(prevIndex)
-              }
-            }
-          }
-          break
-        case 'Tab':
-          setFocusIndex(null)
-          setUncontrolledExpand(false)
-          break
-        case 'Escape':
-          e.preventDefault()
-          setFocusIndex(null)
-          setUncontrolledExpand(false)
-          break
-        default:
-          break
-      }
-    }
-    const handleAccordionFocus = () => {
-      setIsActiveAccordion(true)
-    }
-
-    const handleAccordionBlur = () => {
-      setIsActiveAccordion(false)
-    }
     return (
-      <StyledAccordion
-        {...delegated}
-        css={css}
-        ref={accordionRef}
-        onKeyDown={handleKeyDown}
-        onFocus={handleAccordionFocus}
-        onBlur={handleAccordionBlur}
-      >
+      <StyledAccordion {...delegated} css={css} ref={accordionRef}>
         <AccordionContext.Provider value={contextValue}>
           {AccordionTitleWithIcon}
           <div
-            tabIndex={0}
+            role='region'
+            aria-labelledby={props['aria-labelledby']}
             className={`accordion-body ${expand ? 'expanded' : 'collapsed'}`}
             ref={accordionBodyRef}
           >

@@ -8,6 +8,8 @@ interface Props extends StyledComponentProps {
   icon?: false | React.ReactNode
   children?: string | React.ReactNode
   expandIcon?: React.ReactNode
+  'aria-expanded'?: boolean
+  'aria-controls'?: string
 }
 
 export type AccordionTitleProps = Props &
@@ -20,6 +22,7 @@ const AccordionTitle = React.forwardRef<HTMLButtonElement, AccordionTitleProps>(
       children,
       expandIcon,
       css = {},
+      'aria-controls': ariaControls,
       ...delegated
     } = props
     const contextValue = useContext(AccordionContext) as AccordionContextType
@@ -47,9 +50,9 @@ const AccordionTitle = React.forwardRef<HTMLButtonElement, AccordionTitleProps>(
 
     const handleKeyDown = (e?: unknown) => {
       const event = e as React.KeyboardEvent<HTMLElement>
-      const {key} = event
-      switch (key) {
-        case 'Spacebar':
+      const {code} = event
+      switch (code) {
+        case 'Space':
         case 'Enter':
           setExpand()
           if (onExpandChange) {
@@ -74,6 +77,7 @@ const AccordionTitle = React.forwardRef<HTMLButtonElement, AccordionTitleProps>(
 
     return (
       <AccordionButton
+        aria-controls={ariaControls}
         ref={ref}
         css={css}
         className={`accordion-title-container ${expand ? 'open' : 'close'}`}
