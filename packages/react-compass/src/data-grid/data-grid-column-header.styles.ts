@@ -7,7 +7,7 @@ export const StyledDataGridSortingIndicator = styled('span', {
 })
 
 export const StyledDataGridColumnHeader = styled('th', {
-  textAlign: 'left',
+  textAlign: 'center',
   fontSize: '$label1',
   fontWeight: '$semibold',
   padding: '$3_5 $3',

@@ -47,6 +47,7 @@ export interface Props<T> extends StyledComponentProps {
   onChangeRowSelection?: (selectionRows: T[]) => void
   onUpdateData?: (newData: object) => void
   children: React.ReactNode
+  renderRowSubComponent?: (row: T) => React.JSX.Element | undefined
 }
 
 export type DataGridProps<T = any> = Props<T> &
@@ -67,6 +68,7 @@ const DataGrid = React.forwardRef<HTMLTableElement, DataGridProps>(
       onManualSorting,
       onChangeRowSelection,
       onUpdateData,
+      renderRowSubComponent,
       children,
       // HTMLDiv Props
       ...delegated
@@ -145,23 +147,30 @@ const DataGrid = React.forwardRef<HTMLTableElement, DataGridProps>(
                 {dataGridRows.length ? (
                   dataGridRows.map((row) => {
                     return (
-                      <DataGridRow
-                        key={row.id}
-                        isSelected={row.getIsSelected()}
-                      >
-                        {row.getVisibleCells().map((cell) => {
-                          return (
-                            <DataGridCell
-                              key={cell.id}
-                              cell={cell}
-                              row={row}
-                              onChangeCell={(newData) =>
-                                onUpdateData?.(newData)
-                              }
-                            />
-                          )
-                        })}
-                      </DataGridRow>
+                      <>
+                        <DataGridRow
+                          key={row.id}
+                          isSelected={row.getIsSelected()}
+                          isExpanded={row.getIsExpanded()}
+                        >
+                          {row.getVisibleCells().map((cell) => {
+                            return (
+                              <DataGridCell
+                                key={cell.id}
+                                cell={cell}
+                                row={row}
+                              />
+                            )
+                          })}
+                        </DataGridRow>
+                        {row.getIsExpanded() && renderRowSubComponent ? (
+                          <tr>
+                            <td colSpan={table.getAllLeafColumns()?.length}>
+                              {renderRowSubComponent(row.original)}
+                            </td>
+                          </tr>
+                        ) : null}
+                      </>
                     )
                   })
                 ) : (

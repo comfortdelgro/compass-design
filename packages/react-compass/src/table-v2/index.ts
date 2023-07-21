@@ -1,9 +1,14 @@
 import {
   AccessorColumnDef,
+  Cell,
+  CellContext,
   ColumnDef,
   DisplayColumnDef,
   GroupColumnDef,
+  HeaderContext,
+  Row,
   SortingState,
+  Table,
 } from '@tanstack/react-table'
 import DataGridCheckbox from '../data-grid/data-grid-checkbox'
 import DataGridCheckboxCell from '../data-grid/data-grid-checkbox-cell'
@@ -34,4 +39,9 @@ export type AccessorColumnConfig<T> = AccessorColumnDef<T>
 export type DisplayColumnConfig<T> = DisplayColumnDef<T>
 export type GroupColumnConfig<T> = GroupColumnDef<T>
 export type StateSorting = SortingState
+export type RowConfig<T> = Row<T>
+export type CellConfig<TData, TValue> = Cell<TData, TValue>
+export type HeaderContextProps<TData, TValue> = HeaderContext<TData, TValue>
+export type CellContextProps<TData, TValue> = CellContext<TData, TValue>
+export type TableConfig<T> = Table<T>
 export default ReactTable
