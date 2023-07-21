@@ -705,8 +705,11 @@ or with iconify
 
 ```js
 import {Icon} from '@iconify/react'
-import activityIcon from '@comfortdelgro/compass-icons/iconify/activity'
+import Activity from '@comfortdelgro/compass-icons/iconify/activity'
+import {Activity} from '@comfortdelgro/compass-icons/iconify'
 ```
+
+Named exports only work with iconify icons
 
 ---
 
@@ -2156,20 +2159,6 @@ import SVG from '@comfortdelgro/compass-icons/react/file/svg'
   />
   <IconBox component={<ZipFile width={40} height={40} />} name='Zip' />
 </section>
-
----
-
-### Usage:
-
-```js
-<Activity width={20} height={20} color='red' />
-```
-
-or with iconify
-
-```js
-<Icon icon={activityIcon} width={20} height={20} />
-```
 
 ---
 

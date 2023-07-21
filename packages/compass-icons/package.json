@@ -14,6 +14,9 @@
   "author": "ComfortDelGro Corporation Limited (https://www.comfortdelgro.com/)",
   "sideEffects": false,
   "type": "module",
+  "main": "iconify/index.cjs",
+  "module": "iconify/index.mjs",
+  "types": "iconify/index.d.ts",
   "exports": {
     "./react/*": {
       "require": "./react/*.cjs",
@@ -21,9 +24,14 @@
       "types": "./react/*.d.ts"
     },
     "./iconify/*": {
-      "require": "./iconify/*.cjs",
-      "import": "./iconify/*.mjs",
-      "types": "./iconify/*.d.ts"
+      "require": "./iconify/*/index.cjs",
+      "import": "./iconify/*/index.mjs",
+      "types": "./iconify/*/index.d.ts"
+    },
+    "./iconify": {
+      "require": "./iconify/index.cjs",
+      "import": "./iconify/index.mjs",
+      "types": "./iconify/index.d.ts"
     }
   },
   "files": [

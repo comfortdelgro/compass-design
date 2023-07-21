@@ -105,6 +105,9 @@ async function buildIcons(
     await fs.rmdir(iconifyPath, {recursive: true})
   await fs.mkdir(iconifyPath)
 
+  let indexCJS = 'module.exports = {\n'
+  let indexESM = ''
+
   console.log(`Writing iconify outputs at "${iconifyOutput}"...`)
   for (const iconName in exported.icons) {
     const des = dimensions[iconName]
@@ -112,6 +115,11 @@ async function buildIcons(
     icon.width = des.width
     icon.height = des.height
     const data = `const data = ${JSON.stringify(icon)}`
+    const pascalName = toPascalCase(iconName)
+
+    // Generate index content
+    indexCJS += `${pascalName}: require('./${iconName}'),\n`
+    indexESM += `export { default as ${pascalName} } from './${iconName}';\n`
 
     // Write CJS
     fs.writeFile(
@@ -128,11 +136,27 @@ async function buildIcons(
     // Write DTS
     fs.writeFile(
       path.join(iconifyOutput, `${iconName}.d.ts`),
-      `
-      declare const data: {width: number; height: number; body: string}
-      export default data`,
+      `declare const data: {width: number; height: number; body: string}\nexport default data`,
     )
   }
+
+  // Write index CJS
+  fs.writeFile(
+    path.join(iconifyOutput, `index.cjs`),
+    indexCJS + '}',
+  )
+
+  // Write index ESM
+  fs.writeFile(
+    path.join(iconifyOutput, `index.mjs`),
+    indexESM,
+  )
+
+  // Write index Type
+  fs.writeFile(
+    path.join(iconifyOutput, `index.d.ts`),
+    indexESM,
+  )
 
   // Write react files
 
