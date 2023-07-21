@@ -415,6 +415,16 @@
       "filePath": "src/checkbox/checkbox.stories.tsx",
       "meta": {}
     },
+    "chip--default": {
+      "name": "Default",
+      "levels": [
+        "Chip"
+      ],
+      "locStart": 5,
+      "locEnd": 25,
+      "filePath": "src/chip/chip.stories.tsx",
+      "meta": {}
+    },
     "dashboard-sidecard--default": {
       "name": "Default",
       "levels": [
@@ -471,7 +481,7 @@
         "Date range picker"
       ],
       "locStart": 98,
-      "locEnd": 126,
+      "locEnd": 131,
       "filePath": "src/date-range-picker/date-range-picker.stories.tsx",
       "meta": {}
     },
@@ -480,8 +490,8 @@
       "levels": [
         "Date range picker"
       ],
-      "locStart": 128,
-      "locEnd": 130,
+      "locStart": 133,
+      "locEnd": 135,
       "filePath": "src/date-range-picker/date-range-picker.stories.tsx",
       "meta": {}
     },
@@ -505,13 +515,23 @@
       "filePath": "src/dialog/dialog.stories.tsx",
       "meta": {}
     },
+    "dialog--nested-dialog": {
+      "name": "Nested dialog",
+      "levels": [
+        "Dialog"
+      ],
+      "locStart": 73,
+      "locEnd": 107,
+      "filePath": "src/dialog/dialog.stories.tsx",
+      "meta": {}
+    },
     "dialog--variants": {
       "name": "Variants",
       "levels": [
         "Dialog"
       ],
-      "locStart": 41,
-      "locEnd": 155,
+      "locStart": 109,
+      "locEnd": 223,
       "filePath": "src/dialog/dialog.stories.tsx",
       "meta": {}
     },
@@ -525,23 +545,13 @@
       "filePath": "src/divider/divider.stories.tsx",
       "meta": {}
     },
-    "dropdown--combo-box": {
-      "name": "Combo box",
+    "dropdown--combobox": {
+      "name": "Combobox",
       "levels": [
         "Dropdown"
       ],
-      "locStart": 342,
-      "locEnd": 593,
-      "filePath": "src/dropdown/dropdown.stories.tsx",
-      "meta": {}
-    },
-    "dropdown--flag": {
-      "name": "Flag",
-      "levels": [
-        "Dropdown"
-      ],
-      "locStart": 10,
-      "locEnd": 37,
+      "locStart": 512,
+      "locEnd": 905,
       "filePath": "src/dropdown/dropdown.stories.tsx",
       "meta": {}
     },
@@ -550,8 +560,8 @@
       "levels": [
         "Dropdown"
       ],
-      "locStart": 39,
-      "locEnd": 340,
+      "locStart": 74,
+      "locEnd": 510,
       "filePath": "src/dropdown/dropdown.stories.tsx",
       "meta": {}
     },
@@ -785,6 +795,16 @@
       "filePath": "src/modal/modal.stories.tsx",
       "meta": {}
     },
+    "modal--nested-modal": {
+      "name": "Nested modal",
+      "levels": [
+        "Modal"
+      ],
+      "locStart": 158,
+      "locEnd": 198,
+      "filePath": "src/modal/modal.stories.tsx",
+      "meta": {}
+    },
     "modal--variants": {
       "name": "Variants",
       "levels": [
@@ -800,8 +820,8 @@
       "levels": [
         "Multiple dropdown"
       ],
-      "locStart": 7,
-      "locEnd": 344,
+      "locStart": 71,
+      "locEnd": 598,
       "filePath": "src/multiple-dropdown/multiple-dropdown.stories.tsx",
       "meta": {}
     },
@@ -861,7 +881,7 @@
         "Popover"
       ],
       "locStart": 40,
-      "locEnd": 92,
+      "locEnd": 134,
       "filePath": "src/popover/popover.stories.tsx",
       "meta": {}
     },
@@ -1150,8 +1170,18 @@
       "levels": [
         "Table v2"
       ],
-      "locStart": 238,
-      "locEnd": 395,
+      "locStart": 246,
+      "locEnd": 403,
+      "filePath": "src/table-v2/table-v2.stories.tsx",
+      "meta": {}
+    },
+    "table-v2--expandable-row": {
+      "name": "Expandable row",
+      "levels": [
+        "Table v2"
+      ],
+      "locStart": 501,
+      "locEnd": 661,
       "filePath": "src/table-v2/table-v2.stories.tsx",
       "meta": {}
     },
@@ -1160,8 +1190,8 @@
       "levels": [
         "Table v2"
       ],
-      "locStart": 22,
-      "locEnd": 236,
+      "locStart": 31,
+      "locEnd": 244,
       "filePath": "src/table-v2/table-v2.stories.tsx",
       "meta": {}
     },
@@ -1281,7 +1311,7 @@
         "Textfield"
       ],
       "locStart": 27,
-      "locEnd": 135,
+      "locEnd": 151,
       "filePath": "src/textfield/textfield.stories.tsx",
       "meta": {}
     },
