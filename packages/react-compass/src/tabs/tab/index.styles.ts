@@ -12,10 +12,11 @@ export const StyledTab = styled('div', {
 
   cursor: 'pointer',
   userSelect: 'none',
-  transition: '$Tabs',
   display: 'flex',
   alignItems: 'center',
   width: 'max-content',
+
+  transition: '$button',
 
   '& .icon': {
     width: '$4',
@@ -23,15 +24,15 @@ export const StyledTab = styled('div', {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    border: 'black thin solid',
+    border: '$gray110 thin solid',
     borderRadius: '$full',
-    backgroundColor: '$cdgBlue120',
     '& svg': {
       display: 'none',
     },
   },
 
-  '&:hover': {
+  '&:hover, &:focus-visible': {
+    outline: 'none',
     '& .icon': {
       backgroundColor: '$background',
       '& path': {
@@ -49,7 +50,7 @@ export const StyledTab = styled('div', {
         background: 'transparent',
         borderRadius: '$full',
         color: '$$textColor',
-        '&:hover': {
+        '&:hover, &:focus-visible': {
           background: '$cdgBlue140',
           color: '$whiteText',
         },
@@ -57,7 +58,10 @@ export const StyledTab = styled('div', {
       simple: {
         background: 'transparent',
         padding: '$2 0',
-        '&:hover': {
+        '&:focus-visible': {
+          boxShadow: '0px -2px $$indicatorColor',
+        },
+        '&:hover, &:focus-visible': {
           color: '$$textColor',
           '& .icon': {
             backgroundColor: '$$textColor',
@@ -134,7 +138,7 @@ export const StyledTab = styled('div', {
             },
           },
         },
-        '&:hover': {
+        '&:hover, &:focus-visible': {
           background: 'transparent',
           color: '$gray50',
           '& .icon': {
@@ -166,7 +170,7 @@ export const StyledTab = styled('div', {
       css: {
         color: '$gray50',
         backgroundColor: 'transparent',
-        '&:hover': {
+        '&:hover, &:focus-visible': {
           color: '$gray50',
           backgroundColor: 'transparent',
         },
@@ -222,7 +226,7 @@ export const StyledTab = styled('div', {
             },
           },
         },
-        '&:hover': {
+        '&:hover, &:focus-visible': {
           '& .icon': {
             backgroundColor: '$gray50',
             '& path': {
