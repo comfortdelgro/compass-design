@@ -8,6 +8,7 @@ import {
   SortingState,
   useReactTable,
 } from '@tanstack/react-table'
+
 import React, {useEffect, useState} from 'react'
 import DataGridCell from '../data-grid/data-grid-cell'
 import DataGridCheckbox from '../data-grid/data-grid-checkbox'
@@ -26,6 +27,7 @@ import {StyledDataGrid} from '../data-grid/data-grid.styles'
 import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
+import {ExpandableRow} from './expandable/ExpandableRow'
 import {StyledReactTableWrapper} from './react-table.styles'
 
 export interface Options<TData> {
@@ -160,13 +162,15 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
                             )
                           })}
                         </DataGridRow>
-                        {row.getIsExpanded() && renderRowSubComponent ? (
-                          <tr>
-                            <td colSpan={table.getAllLeafColumns()?.length}>
-                              {renderRowSubComponent(row.original)}
-                            </td>
-                          </tr>
-                        ) : null}
+                        <ExpandableRow
+                          isExpanded={
+                            row.getIsExpanded() &&
+                            renderRowSubComponent !== undefined
+                          }
+                          colSpan={table.getAllLeafColumns()?.length}
+                        >
+                          {renderRowSubComponent?.(row.original)}
+                        </ExpandableRow>
                       </>
                     )
                   })
