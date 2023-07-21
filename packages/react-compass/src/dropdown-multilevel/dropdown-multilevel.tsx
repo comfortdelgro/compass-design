@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useCallback, useState} from 'react'
 import Popover from '../popover'
 import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
@@ -45,6 +45,10 @@ const DropdownMultilevel = React.forwardRef<
     [open, setOpen],
   )
 
+  const handleClosePopover = useCallback(() => {
+    setOpen(false)
+  }, [])
+
   return (
     <StyledDropdownMultilevel ref={dropdownRef}>
       <DropdownMultilevelContext.Provider value={contextValue}>
@@ -52,9 +56,7 @@ const DropdownMultilevel = React.forwardRef<
           isOpen={open}
           anchor={dropdownMultilevelToggleElement}
           direction='bottom-left'
-          onClose={() => {
-            // setOpen(false)
-          }}
+          onClose={handleClosePopover}
         >
           {dropdownMultilevelMenuElement}
         </Popover>

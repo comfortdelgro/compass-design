@@ -20,12 +20,12 @@ const DropdownMultilevelToggle = React.forwardRef<
   const {children, css = {}, ...delegated} = props
   const DropdownMultilevelToggleRef = useDOMRef<HTMLDivElement>(ref)
 
-  const contextValue = useContext(
+  const {open, setOpen} = useContext(
     DropdownMultilevelContext,
   ) as DropdownMultilevelContextType
 
   const handleButonClick = () => {
-    contextValue.setOpen(!contextValue.open)
+    setOpen(!open)
   }
 
   return (

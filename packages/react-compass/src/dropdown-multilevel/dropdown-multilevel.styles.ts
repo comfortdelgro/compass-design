@@ -8,12 +8,13 @@ const dropdownMenuBoxshadow = {
   height: 'fit-content',
   minWidth: '10rem',
   background: '$background',
+  listStyleType: 'none',
+  margin: '0',
   boxShadow:
     '0px 0.6px 1.8px rgba(0, 0, 0, 0.1), 0px 3.2px 7.2px rgba(0, 0, 0, 0.13)',
   ul: {
     overscrollBehavior: 'contain',
     maxHeight: '$64',
-    overflowY: 'auto',
     listStyle: 'none',
     marginBlockStart: 0,
     marginBlockEnd: 0,
@@ -32,7 +33,7 @@ export const StyledDropdownMultilevel = styled('div', {
 
 export const StyledDropdownMultilevelToggle = styled('div', {})
 
-export const StyledDropdownMultilevelItem = styled('div', {
+export const StyledDropdownMultilevelItem = styled('li', {
   position: 'relative',
   fontSize: '14px',
   fontWeight: 500,
@@ -40,12 +41,18 @@ export const StyledDropdownMultilevelItem = styled('div', {
   alignItems: 'center',
   justifyContent: 'space-between',
   padding: '8px 16px',
+  cursor: 'pointer',
   '& > *': {
-    // color: var(--grey90);
+    color: '$gray90',
+  },
+  '.cdg-arrow-right-icon': {
+    width: '16px',
+    height: '16px',
   },
   '&:hover': {
-    '& > *': {
-      // color: var(--accent);
+    color: '$cdgBlue100',
+    '& > .cdg-arrow-right-icon': {
+      color: '$cdgBlue100',
     },
   },
   '&:hover > .cdg-dropdown-multilevel-submenu': {
@@ -53,11 +60,11 @@ export const StyledDropdownMultilevelItem = styled('div', {
   },
 })
 
-export const StyledDropdownMultilevelMenu = styled('div', {
+export const StyledDropdownMultilevelMenu = styled('ul', {
   ...dropdownMenuBoxshadow,
 })
 
-export const StyledDropdownMultilevelSubmenu = styled('div', {
+export const StyledDropdownMultilevelSubmenu = styled('ul', {
   ...dropdownMenuBoxshadow,
   display: 'none',
   position: 'absolute',

@@ -1,9 +1,6 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
-import DropdownMultilevelContext, {
-  DropdownMultilevelContextType,
-} from './dropdown-multilevel-context'
 import {StyledDropdownMultilevelMenu} from './dropdown-multilevel.styles'
 
 interface Props extends StyledComponentProps {
@@ -11,24 +8,21 @@ interface Props extends StyledComponentProps {
 }
 
 export type DropdownMultilevelMenuProps = Props &
-  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
+  Omit<React.HTMLAttributes<HTMLUListElement>, keyof Props>
 
 const DropdownMultilevelMenu = React.forwardRef<
-  HTMLDivElement,
+  HTMLUListElement,
   DropdownMultilevelMenuProps
 >((props, ref) => {
-  const {children, css = {}, ...delegated} = props
+  const {children, css = {}, tabIndex = 0, ...delegated} = props
 
-  const dropdownMultilevelMenuRef = useDOMRef<HTMLDivElement>(ref)
-
-  const contextValue = useContext(
-    DropdownMultilevelContext,
-  ) as DropdownMultilevelContextType
+  const dropdownMultilevelMenuRef = useDOMRef<HTMLUListElement>(ref)
 
   return (
     <StyledDropdownMultilevelMenu
       css={css}
       ref={dropdownMultilevelMenuRef}
+      tabIndex={tabIndex}
       {...delegated}
     >
       {children}
