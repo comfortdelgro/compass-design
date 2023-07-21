@@ -156,10 +156,13 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
           multiple={multiple}
           onChange={handleFileFieldChange}
         />
-        <StyledBrowseFile onClick={onLableClick}>
+        <StyledBrowseFile onClick={onLableClick} type='button' role='button'>
           <span>Browse file</span>
         </StyledBrowseFile>
-        <StyledUploadContent fileSelected={selectedFiles.length > 0}>
+        <StyledUploadContent
+          onClick={onLableClick}
+          fileSelected={selectedFiles.length > 0}
+        >
           {selectedFiles.length > 0 ? (
             <p>{selectedFiles.map((file) => file.name).join(', ')}</p>
           ) : (

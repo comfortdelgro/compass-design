@@ -62,6 +62,8 @@ export type {
 } from './chart'
 export {default as Checkbox} from './checkbox'
 export type {CheckboxProps} from './checkbox'
+export {default as Chip} from './chip'
+export type {ChipProps} from './chip'
 export {default as DashboardSidecard} from './dashboard-sidecard'
 export type {
   DashboardSidecardContentProps,
@@ -88,7 +90,6 @@ export type {DividerProps} from './divider'
 export {default as Dropdown} from './dropdown'
 export type {
   DropdownComboBoxProps,
-  DropdownFlagProps,
   DropdownItemProps,
   DropdownProps,
   DropdownSelectProps,
@@ -263,11 +264,16 @@ export {
 } from './table-v2'
 export type {
   AccessorColumnConfig,
+  CellConfig,
+  CellContextProps,
   ColumnConfig,
   DisplayColumnConfig,
   GroupColumnConfig,
+  HeaderContextProps,
   ReactTableProps,
+  RowConfig,
   StateSorting,
+  TableConfig,
 } from './table-v2'
 export {default as Tabs} from './tabs'
 export type {TabsProps} from './tabs'

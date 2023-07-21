@@ -10,6 +10,7 @@ interface Props extends StyledComponentProps {
   children?: React.ReactNode
   className?: string
   onMouseDown?: (event: React.MouseEvent<HTMLButtonElement>) => void
+  onKeyDown?: (event: React.KeyboardEvent<HTMLButtonElement>) => void
 }
 
 export type ButtonProps = Props &
@@ -24,6 +25,7 @@ const AccordionButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
       className,
       css = {},
       onMouseDown,
+      onKeyDown,
       ...delegated
     } = props
 
@@ -36,6 +38,7 @@ const AccordionButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
         className={className}
         css={css}
         onMouseDown={onMouseDown}
+        onKeyDown={onKeyDown}
         type='button'
         {...delegated}
       >

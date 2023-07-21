@@ -132,9 +132,7 @@ export const BasicFooter = (props: BasicFooterProps) => {
           <Button
             variant={buttonVariant}
             css={{width: '136px', background: 'black'}}
-            className={`${
-              color !== 'white' ? `c-hKssGC-hYGuEl-variant-primary` : ``
-            }`}
+            className={`${color !== 'white'? `c-hKssGC-hYGuEl-variant-primary`:``}`}
           >
             {' '}
             Appstore
@@ -142,9 +140,7 @@ export const BasicFooter = (props: BasicFooterProps) => {
           <Button
             variant={buttonVariant}
             css={{width: '136px', background: 'black'}}
-            className={`${
-              color !== 'white' ? `c-hKssGC-hYGuEl-variant-primary` : ``
-            }`}
+            className={`${color !== 'white'? `c-hKssGC-hYGuEl-variant-primary`:``}`}
           >
             {' '}
             Google Play

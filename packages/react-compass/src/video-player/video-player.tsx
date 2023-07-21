@@ -125,10 +125,84 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
     }
   }
 
+  const handleKeyDown = (
+    event: React.KeyboardEvent<HTMLDivElement>,
+    callback?: () => void,
+  ) => {
+    const key = event.key
+    if (key === 'Enter' || key === ' ') {
+      event.preventDefault()
+      event.stopPropagation()
+      callback?.()
+    }
+  }
+
+  const handleSliderKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    const key = event.key
+    switch (key) {
+      case 'ArrowRight':
+        event.preventDefault()
+        event.stopPropagation()
+        if (videoRef.current) {
+          const value = Math.min(progress + duration * 0.05, 100)
+          videoRef.current.currentTime = (duration * value) / 100
+          setProgress(value)
+        }
+        break
+      case 'ArrowLeft':
+        event.preventDefault()
+        event.stopPropagation()
+        if (videoRef.current) {
+          const value = Math.max(progress - duration * 0.05, 0)
+          videoRef.current.currentTime = (duration * value) / 100
+          setProgress(value)
+        }
+        break
+    }
+  }
+
+  const handleVolumeKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    const key = event.key
+    switch (key) {
+      case 'ArrowUp':
+        event.preventDefault()
+        event.stopPropagation()
+        if (videoRef.current) {
+          const value = Math.min(volume + 10, 100)
+          videoRef.current.volume = value / 100
+          setVolume(value)
+        }
+        break
+      case 'ArrowDown':
+        event.preventDefault()
+        event.stopPropagation()
+        if (videoRef.current) {
+          const value = Math.max(volume - 10, 0)
+          videoRef.current.volume = value / 100
+          setVolume(value)
+        }
+        break
+    }
+  }
+
+  const handleWrapperKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    const key = event.key
+    switch (key) {
+      case 'ArrowLeft':
+      case 'ArrowRight':
+        handleSliderKeyDown(event)
+        break
+      case 'ArrowUp':
+      case 'ArrowDown':
+        handleVolumeKeyDown(event)
+        break
+    }
+  }
+
   const delegateProps = componentProps()
 
   return (
-    <StyledVideoPlayer css={css} id={id}>
+    <StyledVideoPlayer css={css} id={id} onKeyDown={handleWrapperKeyDown}>
       {loadError && (
         <div
           style={{
@@ -168,7 +242,7 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
       />
       {controls && (
         <>
-          <StyledVolume>
+          <StyledVolume tabIndex={0}>
             <VolumeSlider value={volume} onChange={onToggleVolume} />
             <div className='slider-bar-volume-icon'>
               <VolumeIcon value={volume} onChange={onToggleVolume} />
@@ -177,21 +251,41 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
           <StyledControllerWrapper>
             <StyledSlideBarWrapper>
               <span>{formatTime(currentTime)}</span>
-              <Slider value={progress} onChange={onToggleProgress} />
+              <Slider value={progress} onChangeEnd={onToggleProgress} />
               <span>{formatTime(duration)}</span>
             </StyledSlideBarWrapper>
             <StyledButtonWrapper>
               <div className='slider-bar-button-main'>
-                <div className='slider-bar-button-prev' onClick={onPrev}>
+                <div
+                  tabIndex={0}
+                  className='slider-bar-button-prev'
+                  onClick={onPrev}
+                  onKeyDown={(e) => handleKeyDown(e, onPrev)}
+                >
                   <PrevIcon />
                 </div>
-                <div className='slider-bar-button-play' onClick={play}>
+                <div
+                  tabIndex={0}
+                  className='slider-bar-button-play'
+                  onClick={play}
+                  onKeyDown={(e) => handleKeyDown(e, play)}
+                >
                   {paused ? <PlayIcon /> : <PauseIcon />}
                 </div>
-                <div className='slider-bar-button-next' onClick={onNext}>
+                <div
+                  tabIndex={0}
+                  className='slider-bar-button-next'
+                  onClick={onNext}
+                  onKeyDown={(e) => handleKeyDown(e, onNext)}
+                >
                   <NextIcon />
                 </div>
-                <div className='slider-bar-button-setting' onClick={onSetting}>
+                <div
+                  tabIndex={0}
+                  className='slider-bar-button-setting'
+                  onClick={onSetting}
+                  onKeyDown={(e) => handleKeyDown(e, onSetting)}
+                >
                   <SettingIcon />
                 </div>
               </div>

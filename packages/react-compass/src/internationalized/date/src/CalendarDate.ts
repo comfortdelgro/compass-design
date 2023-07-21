@@ -8,64 +8,33 @@
  * found in the LICENSE.txt file at the root directory of this source tree.
  */
 
-import {GregorianCalendar} from './calendars/GregorianCalendar'
-import {toCalendarDateTime, toDate, toZoned, zonedToDate} from './conversion'
-import {
-  add,
-  addTime,
-  addZoned,
-  constrain,
-  constrainTime,
-  cycleDate,
-  cycleTime,
-  cycleZoned,
-  set,
-  setTime,
-  setZoned,
-  subtract,
-  subtractTime,
-  subtractZoned,
-} from './manipulation'
-import {compareDate, compareTime} from './queries'
-import {
-  dateTimeToString,
-  dateToString,
-  timeToString,
-  zonedDateTimeToString,
-} from './string'
-import {
-  AnyCalendarDate,
-  AnyTime,
-  Calendar,
-  CycleOptions,
-  CycleTimeOptions,
-  DateDuration,
-  DateField,
-  DateFields,
-  DateTimeDuration,
-  Disambiguation,
-  TimeDuration,
-  TimeField,
-  TimeFields,
-} from './types'
+
+import { GregorianCalendar } from './calendars/GregorianCalendar';
+import { toCalendarDateTime,toDate,toZoned,zonedToDate } from './conversion';
+import { add,addTime,addZoned,constrain,constrainTime,cycleDate,cycleTime,cycleZoned,set,setTime,setZoned,subtract,subtractTime,subtractZoned } from './manipulation';
+import { compareDate,compareTime } from './queries';
+import { dateTimeToString,dateToString,timeToString,zonedDateTimeToString } from './string';
+import { AnyCalendarDate,AnyTime,Calendar,CycleOptions,CycleTimeOptions,DateDuration,DateField,DateFields,DateTimeDuration,Disambiguation,TimeDuration,TimeField,TimeFields } from './types';
+
 
 function shiftArgs(args: any[]) {
-  let calendar: Calendar =
-    typeof args[0] === 'object' ? args.shift() : new GregorianCalendar()
+  let calendar: Calendar = typeof args[0] === 'object'
+    ? args.shift()
+    : new GregorianCalendar();
 
-  let era: string
+  let era: string;
   if (typeof args[0] === 'string') {
-    era = args.shift()
+    era = args.shift();
   } else {
-    let eras = calendar.getEras()
-    era = eras[eras.length - 1] as string
+    let eras = calendar.getEras();
+    era = eras[eras.length - 1] as string;
   }
 
-  let year = args.shift()
-  let month = args.shift()
-  let day = args.shift()
+  let year = args.shift();
+  let month = args.shift();
+  let day = args.shift();
 
-  return [calendar, era, year, month, day]
+  return [calendar, era, year, month, day];
 }
 
 /** A CalendarDate represents a date without any time components in a specific calendar system. */
@@ -74,98 +43,82 @@ export class CalendarDate {
   // i.e. a ZonedDateTime should not be be passable to a parameter that expects CalendarDate.
   // If that behavior is desired, use the AnyCalendarDate interface instead.
   // @ts-ignore
-  #type
+  #type;
   /** The calendar system associated with this date, e.g. Gregorian. */
-  public readonly calendar: Calendar
+  public readonly calendar: Calendar;
   /** The calendar era for this date, e.g. "BC" or "AD". */
-  public readonly era: string
+  public readonly era: string;
   /** The year of this date within the era. */
-  public readonly year: number
+  public readonly year: number;
   /**
    * The month number within the year. Note that some calendar systems such as Hebrew
    * may have a variable number of months per year. Therefore, month numbers may not
    * always correspond to the same month names in different years.
    */
-  public readonly month: number
+  public readonly month: number;
   /** The day number within the month. */
-  public readonly day: number
+  public readonly day: number;
 
-  constructor(year: number, month: number, day: number)
-  constructor(era: string, year: number, month: number, day: number)
-  constructor(calendar: Calendar, year: number, month: number, day: number)
-  constructor(
-    calendar: Calendar,
-    era: string,
-    year: number,
-    month: number,
-    day: number,
-  )
+  constructor(year: number, month: number, day: number);
+  constructor(era: string, year: number, month: number, day: number);
+  constructor(calendar: Calendar, year: number, month: number, day: number);
+  constructor(calendar: Calendar, era: string, year: number, month: number, day: number);
   constructor(...args: any[]) {
-    let [calendar, era, year, month, day] = shiftArgs(args)
-    this.calendar = calendar
-    this.era = era
-    this.year = year
-    this.month = month
-    this.day = day
+    let [calendar, era, year, month, day] = shiftArgs(args);
+    this.calendar = calendar;
+    this.era = era;
+    this.year = year;
+    this.month = month;
+    this.day = day;
 
-    constrain(this)
+    constrain(this);
   }
 
   /** Returns a copy of this date. */
   copy(): CalendarDate {
     if (this.era) {
-      return new CalendarDate(
-        this.calendar,
-        this.era,
-        this.year,
-        this.month,
-        this.day,
-      )
+      return new CalendarDate(this.calendar, this.era, this.year, this.month, this.day);
     } else {
-      return new CalendarDate(this.calendar, this.year, this.month, this.day)
+      return new CalendarDate(this.calendar, this.year, this.month, this.day);
     }
   }
 
   /** Returns a new `CalendarDate` with the given duration added to it. */
   add(duration: DateDuration): CalendarDate {
-    return add(this, duration)
+    return add(this, duration);
   }
 
   /** Returns a new `CalendarDate` with the given duration subtracted from it. */
   subtract(duration: DateDuration): CalendarDate {
-    return subtract(this, duration)
+    return subtract(this, duration);
   }
 
   /** Returns a new `CalendarDate` with the given fields set to the provided values. Other fields will be constrained accordingly. */
   set(fields: DateFields): CalendarDate {
-    return set(this, fields)
+    return set(this, fields);
   }
 
   /**
    * Returns a new `CalendarDate` with the given field adjusted by a specified amount.
    * When the resulting value reaches the limits of the field, it wraps around.
    */
-  cycle(
-    field: DateField,
-    amount: number,
-    options?: CycleOptions,
-  ): CalendarDate {
-    return cycleDate(this, field, amount, options)
+  cycle(field: DateField, amount: number, options?: CycleOptions): CalendarDate {
+    return cycleDate(this, field, amount, options);
   }
 
   /** Converts the date to a native JavaScript Date object, with the time set to midnight in the given time zone. */
   toDate(timeZone: string): Date {
-    return toDate(this, timeZone)
+    return toDate(this, timeZone);
   }
 
   /** Converts the date to an ISO 8601 formatted string. */
   toString(): string {
-    return dateToString(this)
+    return dateToString(this);
   }
 
   /** Compares this date with another. A negative result indicates that this date is before the given one, and a positive date indicates that it is after. */
   compare(b: AnyCalendarDate): number {
-    return compareDate(this, b)
+    return compareDate(this, b);
   }
 }
 
@@ -173,47 +126,47 @@ export class CalendarDate {
 export class Time {
   // This prevents TypeScript from allowing other types with the same fields to match.
   // @ts-ignore
-  #type
+  #type;
   /** The hour, numbered from 0 to 23. */
-  public readonly hour: number
+  public readonly hour: number;
   /** The minute in the hour. */
-  public readonly minute: number
+  public readonly minute: number;
   /** The second in the minute. */
-  public readonly second: number
+  public readonly second: number;
   /** The millisecond in the second. */
-  public readonly millisecond: number
+  public readonly millisecond: number;
 
   constructor(
     hour: number = 0,
     minute: number = 0,
     second: number = 0,
-    millisecond: number = 0,
+    millisecond: number = 0
   ) {
-    this.hour = hour
-    this.minute = minute
-    this.second = second
-    this.millisecond = millisecond
-    constrainTime(this)
+    this.hour = hour;
+    this.minute = minute;
+    this.second = second;
+    this.millisecond = millisecond;
+    constrainTime(this);
   }
 
   /** Returns a copy of this time. */
   copy(): Time {
-    return new Time(this.hour, this.minute, this.second, this.millisecond)
+    return new Time(this.hour, this.minute, this.second, this.millisecond);
   }
 
   /** Returns a new `Time` with the given duration added to it. */
   add(duration: TimeDuration) {
-    return addTime(this, duration)
+    return addTime(this, duration);
   }
 
   /** Returns a new `Time` with the given duration subtracted from it. */
   subtract(duration: TimeDuration) {
-    return subtractTime(this, duration)
+    return subtractTime(this, duration);
   }
 
   /** Returns a new `Time` with the given fields set to the provided values. Other fields will be constrained accordingly. */
   set(fields: TimeFields) {
-    return setTime(this, fields)
+    return setTime(this, fields);
   }
 
   /**
@@ -221,17 +174,17 @@ export class Time {
    * When the resulting value reaches the limits of the field, it wraps around.
    */
   cycle(field: TimeField, amount: number, options?: CycleTimeOptions) {
-    return cycleTime(this, field, amount, options)
+    return cycleTime(this, field, amount, options);
   }
 
   /** Converts the time to an ISO 8601 formatted string. */
   toString() {
-    return timeToString(this)
+    return timeToString(this);
   }
 
   /** Compares this time with another. A negative result indicates that this time is before the given one, and a positive time indicates that it is after. */
   compare(b: AnyTime) {
-    return compareTime(this, b)
+    return compareTime(this, b);
   }
 }
 
@@ -239,166 +192,107 @@ export class Time {
 export class CalendarDateTime {
   // This prevents TypeScript from allowing other types with the same fields to match.
   // @ts-ignore
-  #type
+  #type;
   /** The calendar system associated with this date, e.g. Gregorian. */
-  public readonly calendar: Calendar
+  public readonly calendar: Calendar;
   /** The calendar era for this date, e.g. "BC" or "AD". */
-  public readonly era: string
+  public readonly era: string;
   /** The year of this date within the era. */
-  public readonly year: number
+  public readonly year: number;
   /**
    * The month number within the year. Note that some calendar systems such as Hebrew
    * may have a variable number of months per year. Therefore, month numbers may not
    * always correspond to the same month names in different years.
    */
-  public readonly month: number
+  public readonly month: number;
   /** The day number within the month. */
-  public readonly day: number
+  public readonly day: number;
   /** The hour in the day, numbered from 0 to 23. */
-  public readonly hour: number
+  public readonly hour: number;
   /** The minute in the hour. */
-  public readonly minute: number
+  public readonly minute: number;
   /** The second in the minute. */
-  public readonly second: number
+  public readonly second: number;
   /** The millisecond in the second. */
-  public readonly millisecond: number
+  public readonly millisecond: number;
 
-  constructor(
-    year: number,
-    month: number,
-    day: number,
-    hour?: number,
-    minute?: number,
-    second?: number,
-    millisecond?: number,
-  )
-  constructor(
-    era: string,
-    year: number,
-    month: number,
-    day: number,
-    hour?: number,
-    minute?: number,
-    second?: number,
-    millisecond?: number,
-  )
-  constructor(
-    calendar: Calendar,
-    year: number,
-    month: number,
-    day: number,
-    hour?: number,
-    minute?: number,
-    second?: number,
-    millisecond?: number,
-  )
-  constructor(
-    calendar: Calendar,
-    era: string,
-    year: number,
-    month: number,
-    day: number,
-    hour?: number,
-    minute?: number,
-    second?: number,
-    millisecond?: number,
-  )
+  constructor(year: number, month: number, day: number, hour?: number, minute?: number, second?: number, millisecond?: number);
+  constructor(era: string, year: number, month: number, day: number, hour?: number, minute?: number, second?: number, millisecond?: number);
+  constructor(calendar: Calendar, year: number, month: number, day: number, hour?: number, minute?: number, second?: number, millisecond?: number);
+  constructor(calendar: Calendar, era: string, year: number, month: number, day: number, hour?: number, minute?: number, second?: number, millisecond?: number);
   constructor(...args: any[]) {
-    let [calendar, era, year, month, day] = shiftArgs(args)
-    this.calendar = calendar
-    this.era = era
-    this.year = year
-    this.month = month
-    this.day = day
-    this.hour = args.shift() || 0
-    this.minute = args.shift() || 0
-    this.second = args.shift() || 0
-    this.millisecond = args.shift() || 0
+    let [calendar, era, year, month, day] = shiftArgs(args);
+    this.calendar = calendar;
+    this.era = era;
+    this.year = year;
+    this.month = month;
+    this.day = day;
+    this.hour = args.shift() || 0;
+    this.minute = args.shift() || 0;
+    this.second = args.shift() || 0;
+    this.millisecond = args.shift() || 0;
 
-    constrain(this)
+    constrain(this);
   }
 
   /** Returns a copy of this date. */
   copy(): CalendarDateTime {
     if (this.era) {
-      return new CalendarDateTime(
-        this.calendar,
-        this.era,
-        this.year,
-        this.month,
-        this.day,
-        this.hour,
-        this.minute,
-        this.second,
-        this.millisecond,
-      )
+      return new CalendarDateTime(this.calendar, this.era, this.year, this.month, this.day, this.hour, this.minute, this.second, this.millisecond);
     } else {
-      return new CalendarDateTime(
-        this.calendar,
-        this.year,
-        this.month,
-        this.day,
-        this.hour,
-        this.minute,
-        this.second,
-        this.millisecond,
-      )
+      return new CalendarDateTime(this.calendar, this.year, this.month, this.day, this.hour, this.minute, this.second, this.millisecond);
     }
   }
 
   /** Returns a new `CalendarDateTime` with the given duration added to it. */
   add(duration: DateTimeDuration): CalendarDateTime {
-    return add(this, duration)
+    return add(this, duration);
   }
 
   /** Returns a new `CalendarDateTime` with the given duration subtracted from it. */
   subtract(duration: DateTimeDuration): CalendarDateTime {
-    return subtract(this, duration)
+    return subtract(this, duration);
   }
 
   /** Returns a new `CalendarDateTime` with the given fields set to the provided values. Other fields will be constrained accordingly. */
   set(fields: DateFields & TimeFields): CalendarDateTime {
-    return set(setTime(this, fields), fields)
+    return set(setTime(this, fields), fields);
   }
 
   /**
    * Returns a new `CalendarDateTime` with the given field adjusted by a specified amount.
    * When the resulting value reaches the limits of the field, it wraps around.
    */
-  cycle(
-    field: DateField | TimeField,
-    amount: number,
-    options?: CycleTimeOptions,
-  ): CalendarDateTime {
+  cycle(field: DateField | TimeField, amount: number, options?: CycleTimeOptions): CalendarDateTime {
     switch (field) {
       case 'era':
       case 'year':
       case 'month':
       case 'day':
-        return cycleDate(this, field, amount, options)
+        return cycleDate(this, field, amount, options);
       default:
-        return cycleTime(this, field, amount, options)
+        return cycleTime(this, field, amount, options);
     }
   }
 
   /** Converts the date to a native JavaScript Date object in the given time zone. */
   toDate(timeZone: string, disambiguation?: Disambiguation): Date {
-    return toDate(this, timeZone, disambiguation)
+    return toDate(this, timeZone, disambiguation);
   }
 
   /** Converts the date to an ISO 8601 formatted string. */
   toString(): string {
-    return dateTimeToString(this)
+    return dateTimeToString(this);
   }
 
   /** Compares this date with another. A negative result indicates that this date is before the given one, and a positive date indicates that it is after. */
   compare(b: CalendarDate | CalendarDateTime | ZonedDateTime): number {
-    let res = compareDate(this, b)
+    let res = compareDate(this, b);
     if (res === 0) {
-      return compareTime(this, toCalendarDateTime(b))
+      return compareTime(this, toCalendarDateTime(b));
     }
 
-    return res
+    return res;
   }
 }
 
@@ -406,180 +300,107 @@ export class CalendarDateTime {
 export class ZonedDateTime {
   // This prevents TypeScript from allowing other types with the same fields to match.
   // @ts-ignore
-  #type
+  #type;
   /** The calendar system associated with this date, e.g. Gregorian. */
-  public readonly calendar: Calendar
+  public readonly calendar: Calendar;
   /** The calendar era for this date, e.g. "BC" or "AD". */
-  public readonly era: string
+  public readonly era: string;
   /** The year of this date within the era. */
-  public readonly year: number
+  public readonly year: number;
   /**
    * The month number within the year. Note that some calendar systems such as Hebrew
    * may have a variable number of months per year. Therefore, month numbers may not
    * always correspond to the same month names in different years.
    */
-  public readonly month: number
+  public readonly month: number;
   /** The day number within the month. */
-  public readonly day: number
+  public readonly day: number;
   /** The hour in the day, numbered from 0 to 23. */
-  public readonly hour: number
+  public readonly hour: number;
   /** The minute in the hour. */
-  public readonly minute: number
+  public readonly minute: number;
   /** The second in the minute. */
-  public readonly second: number
+  public readonly second: number;
   /** The millisecond in the second. */
-  public readonly millisecond: number
+  public readonly millisecond: number;
   /** The IANA time zone identifier that this date and time is represented in. */
-  public readonly timeZone: string
+  public readonly timeZone: string;
   /** The UTC offset for this time, in milliseconds. */
-  public readonly offset: number
+  public readonly offset: number;
 
-  constructor(
-    year: number,
-    month: number,
-    day: number,
-    timeZone: string,
-    offset: number,
-    hour?: number,
-    minute?: number,
-    second?: number,
-    millisecond?: number,
-  )
-  constructor(
-    era: string,
-    year: number,
-    month: number,
-    day: number,
-    timeZone: string,
-    offset: number,
-    hour?: number,
-    minute?: number,
-    second?: number,
-    millisecond?: number,
-  )
-  constructor(
-    calendar: Calendar,
-    year: number,
-    month: number,
-    day: number,
-    timeZone: string,
-    offset: number,
-    hour?: number,
-    minute?: number,
-    second?: number,
-    millisecond?: number,
-  )
-  constructor(
-    calendar: Calendar,
-    era: string,
-    year: number,
-    month: number,
-    day: number,
-    timeZone: string,
-    offset: number,
-    hour?: number,
-    minute?: number,
-    second?: number,
-    millisecond?: number,
-  )
+  constructor(year: number, month: number, day: number, timeZone: string, offset: number, hour?: number, minute?: number, second?: number, millisecond?: number);
+  constructor(era: string, year: number, month: number, day: number, timeZone: string, offset: number, hour?: number, minute?: number, second?: number, millisecond?: number);
+  constructor(calendar: Calendar, year: number, month: number, day: number, timeZone: string, offset: number, hour?: number, minute?: number, second?: number, millisecond?: number);
+  constructor(calendar: Calendar, era: string, year: number, month: number, day: number, timeZone: string, offset: number, hour?: number, minute?: number, second?: number, millisecond?: number);
   constructor(...args: any[]) {
-    let [calendar, era, year, month, day] = shiftArgs(args)
-    let timeZone = args.shift()
-    let offset = args.shift()
-    this.calendar = calendar
-    this.era = era
-    this.year = year
-    this.month = month
-    this.day = day
-    this.timeZone = timeZone
-    this.offset = offset
-    this.hour = args.shift() || 0
-    this.minute = args.shift() || 0
-    this.second = args.shift() || 0
-    this.millisecond = args.shift() || 0
+    let [calendar, era, year, month, day] = shiftArgs(args);
+    let timeZone = args.shift();
+    let offset = args.shift();
+    this.calendar = calendar;
+    this.era = era;
+    this.year = year;
+    this.month = month;
+    this.day = day;
+    this.timeZone = timeZone;
+    this.offset = offset;
+    this.hour = args.shift() || 0;
+    this.minute = args.shift() || 0;
+    this.second = args.shift() || 0;
+    this.millisecond = args.shift() || 0;
 
-    constrain(this)
+    constrain(this);
   }
 
   /** Returns a copy of this date. */
   copy(): ZonedDateTime {
     if (this.era) {
-      return new ZonedDateTime(
-        this.calendar,
-        this.era,
-        this.year,
-        this.month,
-        this.day,
-        this.timeZone,
-        this.offset,
-        this.hour,
-        this.minute,
-        this.second,
-        this.millisecond,
-      )
+      return new ZonedDateTime(this.calendar, this.era, this.year, this.month, this.day, this.timeZone, this.offset, this.hour, this.minute, this.second, this.millisecond);
     } else {
-      return new ZonedDateTime(
-        this.calendar,
-        this.year,
-        this.month,
-        this.day,
-        this.timeZone,
-        this.offset,
-        this.hour,
-        this.minute,
-        this.second,
-        this.millisecond,
-      )
+      return new ZonedDateTime(this.calendar, this.year, this.month, this.day, this.timeZone, this.offset, this.hour, this.minute, this.second, this.millisecond);
     }
   }
 
   /** Returns a new `ZonedDateTime` with the given duration added to it. */
   add(duration: DateTimeDuration) {
-    return addZoned(this, duration)
+    return addZoned(this, duration);
   }
 
   /** Returns a new `ZonedDateTime` with the given duration subtracted from it. */
   subtract(duration: DateTimeDuration) {
-    return subtractZoned(this, duration)
+    return subtractZoned(this, duration);
   }
 
   /** Returns a new `ZonedDateTime` with the given fields set to the provided values. Other fields will be constrained accordingly. */
   set(fields: DateFields & TimeFields, disambiguation?: Disambiguation) {
-    return setZoned(this, fields, disambiguation)
+    return setZoned(this, fields, disambiguation);
   }
 
   /**
    * Returns a new `ZonedDateTime` with the given field adjusted by a specified amount.
    * When the resulting value reaches the limits of the field, it wraps around.
    */
-  cycle(
-    field: DateField | TimeField,
-    amount: number,
-    options?: CycleTimeOptions,
-  ) {
-    return cycleZoned(this, field, amount, options)
+  cycle(field: DateField | TimeField, amount: number, options?: CycleTimeOptions) {
+    return cycleZoned(this, field, amount, options);
   }
 
   /** Converts the date to a native JavaScript Date object. */
   toDate() {
-    return zonedToDate(this)
+    return zonedToDate(this);
   }
 
-  /** Converts the date to an ISO 8601 formatted string, including the UTC offset and time zone identifier. */
+   /** Converts the date to an ISO 8601 formatted string, including the UTC offset and time zone identifier. */
   toString() {
-    return zonedDateTimeToString(this)
+    return zonedDateTimeToString(this);
   }
 
-  /** Converts the date to an ISO 8601 formatted string in UTC. */
+   /** Converts the date to an ISO 8601 formatted string in UTC. */
   toAbsoluteString() {
-    return this.toDate().toISOString()
+    return this.toDate().toISOString();
   }
 
   /** Compares this date with another. A negative result indicates that this date is before the given one, and a positive date indicates that it is after. */
   compare(b: CalendarDate | CalendarDateTime | ZonedDateTime) {
     // TODO: Is this a bad idea??
-    return (
-      this.toDate().getTime() - toZoned(b, this.timeZone).toDate().getTime()
-    )
+    return this.toDate().getTime() - toZoned(b, this.timeZone).toDate().getTime();
   }
 }

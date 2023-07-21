@@ -51,7 +51,9 @@ export const StyledRadio = styled('div', {
       },
     },
     variant: {
-      simple: {},
+      simple: {
+        padding: '$1', // Prevent boxmodel inside overflow with boxmodel wrapper
+      },
       outlined: {
         padding: '$4',
         border: '1px solid $cdgBlue100',

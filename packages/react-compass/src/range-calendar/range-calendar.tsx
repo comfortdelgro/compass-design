@@ -35,6 +35,7 @@ interface Props extends StyledComponentProps {
   isReadOnly?: boolean
   hasShortcuts?: boolean
   ctaButtonRender?: React.ReactNode
+  visibleMonths?: 1 | 2
   onSearchButtonClick?:
     | ((
         e:
@@ -56,6 +57,7 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
       maxValue = parseDate('2999-02-17'),
       hasShortcuts = false,
       ctaButtonRender,
+      visibleMonths = 2,
       onSearchButtonClick,
       customShortcuts,
       ...delegated
@@ -67,7 +69,7 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
       value: props.state
         ? (props.state?.value as RangeValue<DateValue>)
         : (props.value as RangeValue<DateValue>),
-      visibleDuration: {months: 2},
+      visibleDuration: {months: visibleMonths},
       locale,
       createCalendar,
     })
@@ -117,11 +119,15 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
       )
     }
 
+    const isRangeCalendar = visibleMonths === 1 ? false : true
+
+    const showShortcut = isRangeCalendar && hasShortcuts ? true : false
+
     const renderCTAButton = useCallback(() => {
       if (ctaButtonRender) {
         return ctaButtonRender
       } else {
-        if (hasShortcuts) {
+        if (showShortcut) {
           return (
             <Button variant='primary' onPress={(e) => onSearchButtonClick?.(e)}>
               Search
@@ -135,15 +141,15 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
           )
         }
       }
-    }, [ctaButtonRender, hasShortcuts])
+    }, [ctaButtonRender, showShortcut])
 
     return (
       <StyledRangeCalendar
         ref={rangeCalendarRef}
         css={css}
-        variants={hasShortcuts ? 'extend' : 'basic'}
+        variants={showShortcut ? 'extend' : 'basic'}
       >
-        {hasShortcuts ? (
+        {showShortcut ? (
           <RangeCalendarShorcuts
             state={state}
             pickerState={pickerState}
@@ -155,18 +161,22 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
         <Box>
           <CalendarHeader
             state={state}
-            variant='range'
+            variant={isRangeCalendar ? 'range' : 'default'}
             calendarProps={calendarProps}
             prevButtonProps={prevButtonProps as unknown as ButtonProps}
             nextButtonProps={nextButtonProps as unknown as ButtonProps}
           />
           <div className='calendar-body'>
             <CalendarGrid state={state} maxValue={maxValue} />
-            <CalendarGrid
-              state={state}
-              offset={{months: 1}}
-              maxValue={maxValue}
-            />
+            {isRangeCalendar ? (
+              <CalendarGrid
+                state={state}
+                offset={{months: 1}}
+                maxValue={maxValue}
+              />
+            ) : (
+              <></>
+            )}
           </div>
           {hasFooter && (
             <div className='calendar-footer'>
