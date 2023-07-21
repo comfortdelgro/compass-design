@@ -38,6 +38,10 @@ export interface Options<TData> {
 }
 
 export type OptionType<TData> = Options<TData>
+
+// can expand all?
+// conditionally expandable row
+// is custom row defined?
 export interface Props<T> extends StyledComponentProps {
   data: T[]
   columns: Array<ColumnDef<T>>

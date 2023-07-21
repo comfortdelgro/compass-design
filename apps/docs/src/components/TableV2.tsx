@@ -287,51 +287,23 @@ export const ReactTableFullFeature: React.FC = () => {
     () => [
       {
         id: 'select',
-        header: ({table}: TableV2HeaderContext<Person, unknown>) => {
-          return (
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <ReactTable.CheckboxCell
-                checked={table.getIsAllRowsSelected()}
-                indeterminate={table.getIsSomeRowsSelected()}
-                onChange={table.getToggleAllRowsSelectedHandler()}
-              />
-            </div>
-          )
-        },
-        cell: ({row}: TableV2CellContext<Person, unknown>) => (
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <ReactTable.CheckboxCell
-              disabled={!row.getCanSelect()}
-              checked={row.getIsSelected()}
-              indeterminate={row.getIsSomeSelected()}
-              onChange={row.getToggleSelectedHandler()}
-            />
-          </div>
-        ),
+        header: ({table}) => <TableHeader table={table} />,
+        cell: ({row}) => <TableHeaderCell row={row} />,
       },
       {
         id: 'name',
         header: () => <div style={{textAlign: 'center'}}>Name</div>,
-        footer: (props: TableV2HeaderContext<Person, unknown>) => props.column.id,
+        footer: (props: TableV2HeaderContext<Person, unknown>) =>
+          props.column.id,
         enableGrouping: false,
         columns: [
           {
             accessorKey: 'firstName',
-            cell: (info: TableV2CellContext<Person, unknown>) => info.getValue<string>(),
+            cell: (info: TableV2CellContext<Person, unknown>) =>
+              info.getValue<string>(),
             header: () => <span>First Name</span>,
-            footer: (props: TableV2HeaderContext<Person, unknown>) => props.column.id,
+            footer: (props: TableV2HeaderContext<Person, unknown>) =>
+              props.column.id,
             enableResizing: true,
             enableGrouping: false,
             sortDescriptor: 'asc',
@@ -355,9 +327,11 @@ export const ReactTableFullFeature: React.FC = () => {
           {
             accessorFn: (row: Person) => row.lastName,
             id: 'lastName',
-            cell: (info: TableV2CellContext<Person, unknown>) => info.getValue<string>(),
+            cell: (info: TableV2CellContext<Person, unknown>) =>
+              info.getValue<string>(),
             header: () => <span>Last Name</span>,
-            footer: (props: TableV2HeaderContext<Person, unknown>) => props.column.id,
+            footer: (props: TableV2HeaderContext<Person, unknown>) =>
+              props.column.id,
             enableResizing: true,
           },
         ],
@@ -365,29 +339,35 @@ export const ReactTableFullFeature: React.FC = () => {
       {
         id: 'otherInfo',
         header: () => <div style={{textAlign: 'center'}}>Other info</div>,
-        footer: (props: TableV2HeaderContext<Person, unknown>) => props.column.id,
+        footer: (props: TableV2HeaderContext<Person, unknown>) =>
+          props.column.id,
         enableGrouping: false,
         columns: [
           {
             accessorKey: 'age',
             header: () => 'Age',
-            footer: (info: TableV2HeaderContext<Person, unknown>) => info.column.id,
+            footer: (info: TableV2HeaderContext<Person, unknown>) =>
+              info.column.id,
           },
           {
             accessorKey: 'visits',
             header: () => <span>Visits</span>,
-            footer: (info: TableV2HeaderContext<Person, unknown>) => info.column.id,
+            footer: (info: TableV2HeaderContext<Person, unknown>) =>
+              info.column.id,
           },
           {
             accessorKey: 'status',
             header: 'Status',
-            footer: (info: TableV2HeaderContext<Person, unknown>) => info.column.id,
+            footer: (info: TableV2HeaderContext<Person, unknown>) =>
+              info.column.id,
           },
           {
             accessorKey: 'progress',
             header: 'Profile Progress',
-            cell: (info: TableV2CellContext<Person, unknown>) => info.getValue<string>(),
-            footer: (info: TableV2HeaderContext<Person, unknown>) => info.column.id,
+            cell: (info: TableV2CellContext<Person, unknown>) =>
+              info.getValue<string>(),
+            footer: (info: TableV2HeaderContext<Person, unknown>) =>
+              info.column.id,
           },
         ],
       },
@@ -485,21 +465,26 @@ export const ReactTableBasic: React.FC = () => {
       {
         id: 'name',
         header: () => <div style={{textAlign: 'center'}}>Name</div>,
-        footer: (props: TableV2HeaderContext<Person, unknown>) => props.column.id,
+        footer: (props: TableV2HeaderContext<Person, unknown>) =>
+          props.column.id,
         columns: [
           {
             accessorKey: 'firstName',
-            cell: (info: TableV2CellContext<Person, unknown>) => info.getValue<string>(),
-            footer: (props: TableV2HeaderContext<Person, unknown>) => props.column.id,
+            cell: (info: TableV2CellContext<Person, unknown>) =>
+              info.getValue<string>(),
+            footer: (props: TableV2HeaderContext<Person, unknown>) =>
+              props.column.id,
             enableResizing: false,
             enableColumnFilter: false,
           },
           {
             accessorFn: (row: Person) => row.lastName,
             id: 'lastName',
-            cell: (info: TableV2CellContext<Person, unknown>) => info.getValue<string>(),
+            cell: (info: TableV2CellContext<Person, unknown>) =>
+              info.getValue<string>(),
             header: () => <span>Last Name</span>,
-            footer: (props: TableV2HeaderContext<Person, unknown>) => props.column.id,
+            footer: (props: TableV2HeaderContext<Person, unknown>) =>
+              props.column.id,
             enableResizing: false,
             enableColumnFilter: false,
             enableGrouping: false,
@@ -509,31 +494,37 @@ export const ReactTableBasic: React.FC = () => {
       {
         id: 'otherInfo',
         header: () => <div style={{textAlign: 'center'}}>Other info</div>,
-        footer: (props: TableV2HeaderContext<Person, unknown>) => props.column.id,
+        footer: (props: TableV2HeaderContext<Person, unknown>) =>
+          props.column.id,
         columns: [
           {
             accessorKey: 'age',
             header: () => 'Age',
-            footer: (info: TableV2HeaderContext<Person, unknown>) => info.column.id,
+            footer: (info: TableV2HeaderContext<Person, unknown>) =>
+              info.column.id,
             enableColumnFilter: false,
           },
           {
             accessorKey: 'visits',
             header: () => <span>Visits</span>,
-            footer: (info: TableV2HeaderContext<Person, unknown>) => info.column.id,
+            footer: (info: TableV2HeaderContext<Person, unknown>) =>
+              info.column.id,
             enableColumnFilter: false,
           },
           {
             accessorKey: 'status',
             header: 'Status',
-            footer: (info: TableV2HeaderContext<Person, unknown>) => info.column.id,
+            footer: (info: TableV2HeaderContext<Person, unknown>) =>
+              info.column.id,
             enableColumnFilter: false,
           },
           {
             accessorKey: 'progress',
             header: 'Profile Progress',
-            cell: (info: TableV2CellContext<Person, unknown>) => info.getValue<string>(),
-            footer: (info: TableV2HeaderContext<Person, unknown>) => info.column.id,
+            cell: (info: TableV2CellContext<Person, unknown>) =>
+              info.getValue<string>(),
+            footer: (info: TableV2HeaderContext<Person, unknown>) =>
+              info.column.id,
             enableColumnFilter: false,
           },
         ],
@@ -625,12 +616,15 @@ export const EditableCellTable: React.FC = () => {
       {
         id: 'name',
         header: () => <div style={{textAlign: 'center'}}>Name</div>,
-        footer: (props: TableV2HeaderContext<Person, unknown>) => props.column.id,
+        footer: (props: TableV2HeaderContext<Person, unknown>) =>
+          props.column.id,
         columns: [
           {
             accessorKey: 'firstName',
-            cell: (info: TableV2CellContext<Person, unknown>) => info.getValue<string>(),
-            footer: (props: TableV2HeaderContext<Person, unknown>) => props.column.id,
+            cell: (info: TableV2CellContext<Person, unknown>) =>
+              info.getValue<string>(),
+            footer: (props: TableV2HeaderContext<Person, unknown>) =>
+              props.column.id,
             enableResizing: false,
             meta: {
               editable: true,
@@ -652,9 +646,11 @@ export const EditableCellTable: React.FC = () => {
           {
             accessorFn: (row: Person) => row.lastName,
             id: 'lastName',
-            cell: (info: TableV2CellContext<Person, unknown>) => info.getValue<string>(),
+            cell: (info: TableV2CellContext<Person, unknown>) =>
+              info.getValue<string>(),
             header: () => <span>Last Name</span>,
-            footer: (props: TableV2HeaderContext<Person, unknown>) => props.column.id,
+            footer: (props: TableV2HeaderContext<Person, unknown>) =>
+              props.column.id,
             enableResizing: true,
           },
         ],
@@ -662,28 +658,34 @@ export const EditableCellTable: React.FC = () => {
       {
         id: 'otherInfo',
         header: () => <div style={{textAlign: 'center'}}>Other info</div>,
-        footer: (props: TableV2HeaderContext<Person, unknown>) => props.column.id,
+        footer: (props: TableV2HeaderContext<Person, unknown>) =>
+          props.column.id,
         columns: [
           {
             accessorKey: 'age',
             header: () => 'Age',
-            footer: (info: TableV2HeaderContext<Person, unknown>) => info.column.id,
+            footer: (info: TableV2HeaderContext<Person, unknown>) =>
+              info.column.id,
           },
           {
             accessorKey: 'visits',
             header: () => <span>Visits</span>,
-            footer: (info: TableV2HeaderContext<Person, unknown>) => info.column.id,
+            footer: (info: TableV2HeaderContext<Person, unknown>) =>
+              info.column.id,
           },
           {
             accessorKey: 'status',
             header: 'Status',
-            footer: (info: TableV2HeaderContext<Person, unknown>) => info.column.id,
+            footer: (info: TableV2HeaderContext<Person, unknown>) =>
+              info.column.id,
           },
           {
             accessorKey: 'progress',
             header: 'Profile Progress',
-            cell: (info: TableV2CellContext<Person, unknown>) => info.getValue<string>(),
-            footer: (info: TableV2HeaderContext<Person, unknown>) => info.column.id,
+            cell: (info: TableV2CellContext<Person, unknown>) =>
+              info.getValue<string>(),
+            footer: (info: TableV2HeaderContext<Person, unknown>) =>
+              info.column.id,
           },
         ],
       },
