@@ -9,19 +9,19 @@ import Superscript from '@tiptap/extension-superscript'
 import TextAlign from '@tiptap/extension-text-align'
 import TextStyle from '@tiptap/extension-text-style'
 import Underline from '@tiptap/extension-underline'
-import { Content,EditorContent,JSONContent,useEditor } from '@tiptap/react'
+import {Content, EditorContent, JSONContent, useEditor} from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import isEqual from 'lodash/isEqual'
 import React from 'react'
-import { StyledComponentProps } from '../utils/stitches.types'
-import { useDOMRef } from '../utils/use-dom-ref'
+import {StyledComponentProps} from '../utils/stitches.types'
+import {useDOMRef} from '../utils/use-dom-ref'
 import * as controls from './controls'
 import Control from './controls/Control/Control'
 import ControlsGroup from './controls/ControlsGroup/ControlsGroup'
-import { RichTextEditorProvider } from './rich-text-editor.context'
+import {RichTextEditorProvider} from './rich-text-editor.context'
 import {
-StyledEditorContent,
-StyledRichTextEditor
+  StyledEditorContent,
+  StyledRichTextEditor,
 } from './rich-text-editor.styles'
 import Toolbar from './toolbar/Toolbar'
 

@@ -1,5 +1,5 @@
-import React, {Key} from 'react'
 import {DragAndDropList} from '@comfortdelgro/react-compass'
+import React, {Key} from 'react'
 
 export const DragAndDrop: React.FC = () => {
   const [arr, setArr] = React.useState<Key[]>(['red', 'green', 'blue'])
