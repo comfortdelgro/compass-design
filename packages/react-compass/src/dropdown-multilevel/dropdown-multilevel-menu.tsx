@@ -1,11 +1,3 @@
-import {
-  autoUpdate,
-  flip,
-  offset,
-  useDismiss,
-  useFloating,
-  useInteractions,
-} from '@floating-ui/react'
 import React, {useContext} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -26,39 +18,20 @@ const DropdownMultilevelMenu = React.forwardRef<
   DropdownMultilevelMenuProps
 >((props, ref) => {
   const {children, css = {}, ...delegated} = props
-  const DropdownMultilevelMenuRef = useDOMRef<HTMLDivElement>(ref)
+
+  const dropdownMultilevelMenuRef = useDOMRef<HTMLDivElement>(ref)
 
   const contextValue = useContext(
     DropdownMultilevelContext,
   ) as DropdownMultilevelContextType
 
-  // ====================================== FLOATING ======================================
-  const {refs, floatingStyles, context} = useFloating({
-    open: contextValue.open,
-    onOpenChange: contextValue.setOpen,
-    middleware: [offset(8), flip()],
-    whileElementsMounted: autoUpdate,
-  })
-
-  const dismiss = useDismiss(context)
-
-  const {getReferenceProps, getFloatingProps} = useInteractions([dismiss])
-
   return (
-    <StyledDropdownMultilevelMenu css={css} {...delegated}>
-      <div
-        className='Popover'
-        ref={refs.setFloating}
-        style={{
-          ...floatingStyles,
-          ...{
-            zIndex: 60,
-          },
-        }}
-        {...getFloatingProps}
-      >
-        {children}
-      </div>
+    <StyledDropdownMultilevelMenu
+      css={css}
+      ref={dropdownMultilevelMenuRef}
+      {...delegated}
+    >
+      {children}
     </StyledDropdownMultilevelMenu>
   )
 })

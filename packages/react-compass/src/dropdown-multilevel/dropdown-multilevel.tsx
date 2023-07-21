@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import Popover from '../popover'
 import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -29,11 +30,11 @@ const DropdownMultilevel = React.forwardRef<
   const dropdownRef = useDOMRef<HTMLDivElement>(ref)
 
   // Pick child element from children props
-  const {child: DropdownMultilevelToggleElement} = pickChild<
+  const {child: dropdownMultilevelToggleElement} = pickChild<
     typeof DropdownMultilevelToggle
   >(children, DropdownMultilevelToggle)
 
-  const {child: DropdownMultilevelMenuElement} = pickChild<
+  const {child: dropdownMultilevelMenuElement} = pickChild<
     typeof DropdownMultilevelMenu
   >(children, DropdownMultilevelMenu)
 
@@ -47,8 +48,16 @@ const DropdownMultilevel = React.forwardRef<
   return (
     <StyledDropdownMultilevel ref={dropdownRef}>
       <DropdownMultilevelContext.Provider value={contextValue}>
-        {DropdownMultilevelToggleElement}
-        {open && DropdownMultilevelMenuElement}
+        <Popover
+          isOpen={open}
+          anchor={dropdownMultilevelToggleElement}
+          direction='bottom-left'
+          onClose={() => {
+            // setOpen(false)
+          }}
+        >
+          {dropdownMultilevelMenuElement}
+        </Popover>
       </DropdownMultilevelContext.Provider>
     </StyledDropdownMultilevel>
   )

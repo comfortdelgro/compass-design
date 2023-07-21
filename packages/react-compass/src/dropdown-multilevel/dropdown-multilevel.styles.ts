@@ -1,6 +1,7 @@
 import {styled} from '../theme'
 
 const dropdownMenuBoxshadow = {
+  position: 'relative',
   padding: '$2 0',
   borderRadius: '$md',
   width: 'fit-content',
@@ -32,16 +33,28 @@ export const StyledDropdownMultilevel = styled('div', {
 export const StyledDropdownMultilevelToggle = styled('div', {})
 
 export const StyledDropdownMultilevelItem = styled('div', {
-  '&:hover .cdg-dropdown-multilevel-submenu': {
+  position: 'relative',
+  fontSize: '14px',
+  fontWeight: 500,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  padding: '8px 16px',
+  '& > *': {
+    // color: var(--grey90);
+  },
+  '&:hover': {
+    '& > *': {
+      // color: var(--accent);
+    },
+  },
+  '&:hover > .cdg-dropdown-multilevel-submenu': {
     display: 'block',
   },
 })
 
 export const StyledDropdownMultilevelMenu = styled('div', {
   ...dropdownMenuBoxshadow,
-  // position: 'absolute',
-  // top: 'calc(100% + 4px)',
-  // margin: 0,
 })
 
 export const StyledDropdownMultilevelSubmenu = styled('div', {
@@ -50,4 +63,16 @@ export const StyledDropdownMultilevelSubmenu = styled('div', {
   position: 'absolute',
   left: '100%',
   top: '0',
+  '&:hover > .cdg-dropdown-multilevel-submenu': {
+    display: 'block',
+  },
+})
+
+export const StyledPopover = styled('div', {
+  margin: 0,
+  padding: '$2 0',
+  borderRadius: '$md',
+  width: 'fit-content',
+  height: 'fit-content',
+  minWidth: '100%',
 })
