@@ -1,23 +1,21 @@
 import Dropdown from './dropdown'
-import ComboBox from './dropdown.combobox'
-import DropdownFlag from './dropdown.flag'
-import Select from './dropdown.select'
-import DropdownHeader from './header'
-import DropdownItem from './item'
-import DropdownSection from './section'
+import DropdownItem from './dropdown-item'
+import DropdownCombobox from './dropdown.combobox'
+import DropdownHeader from './dropdown.header'
+import DropdownSection from './dropdown.section'
+import DropdownSelect from './dropdown.select'
 
 Dropdown.Item = DropdownItem
+Dropdown.Select = DropdownSelect
+Dropdown.ComboBox = DropdownCombobox
 Dropdown.Section = DropdownSection
 Dropdown.Header = DropdownHeader
-Dropdown.ComboBox = ComboBox
-Dropdown.Flag = DropdownFlag
-Dropdown.Select = Select
 
 export type {DropdownProps} from './dropdown'
+export type {DropdownItemProps} from './dropdown-item'
 export type {DropdownComboBoxProps} from './dropdown.combobox'
-export type {DropdownFlagProps} from './dropdown.flag'
+export type {DropdownHeaderProps} from './dropdown.header'
+export type {DropdownSectionProps} from './dropdown.section'
 export type {DropdownSelectProps} from './dropdown.select'
-export type {DropdownItemProps} from './item'
-export type {DropdownSectionProps} from './section'
 
 export default Dropdown

@@ -112,8 +112,20 @@ export const StyledDialogWrapper = styled('div', {
   alignItems: 'center',
 })
 
+export const StyledDialogContent = styled('div', {
+  all: 'unset',
+  maxHeight: '100%',
+  maxWidth: '100%',
+  overflow: 'auto',
+  padding: '$4',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '$4',
+})
+
 export const StyledDialog = styled('div', {
   // reset
+  all: 'unset',
   appearance: 'none',
   border: 'none',
   boxSizing: 'border-box',
@@ -124,14 +136,10 @@ export const StyledDialog = styled('div', {
   width: '$120',
   maxHeight: '100%',
   overflow: 'auto',
-  padding: '$4',
   backgroundColor: '$background',
   boxShadow:
     '0px 0.6px 1.8px rgba(0, 0, 0, 0.1), 0px 3.2px 7.2px rgba(0, 0, 0, 0.13)',
 
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '$4',
   borderRadius: '$lg',
 
   variants: {

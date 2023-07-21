@@ -1,5 +1,7 @@
 import {
   faCheck,
+  faChevronDown,
+  faChevronRight,
   faClose,
   faDashboard,
   faFileLines,
@@ -7,17 +9,24 @@ import {
   faTrashAlt,
 } from '@fortawesome/free-solid-svg-icons'
 
+import {CellContext, HeaderContext} from '@tanstack/react-table'
 import React, {Key, MouseEvent, TouchEvent, useState} from 'react'
 import ReactTable, {ColumnConfig, OptionType, StateSorting} from '.'
 import Button from '../button'
 import {useEditableCellContext} from '../data-grid'
+import Divider from '../divider'
 import Dropdown from '../dropdown'
 import Grid from '../grid'
 import {Icon} from '../icon'
 import Pagination from '../pagination'
 import SearchField from '../searchfield'
 import TextField from '../textfield'
-import {makeData, Person} from './makeData'
+import {
+  LimitRequestStatus,
+  makeData,
+  makeRequestStatusData,
+  Person,
+} from './makeData'
 
 export const FullFeatured: React.FC = () => {
   const [page, setPage] = useState(1)
@@ -160,7 +169,6 @@ export const FullFeatured: React.FC = () => {
     ],
     [],
   )
-
   return (
     <div>
       <ReactTable
@@ -487,5 +495,167 @@ const PersonTemplateCell = () => {
         </Dropdown.Select>
       </Grid.Item>
     </Grid>
+  )
+}
+
+export const ExpandableRow: React.FC = () => {
+  const [data, setData] = React.useState(() => makeRequestStatusData(10))
+  const [page, setPage] = useState(1)
+  const options: OptionType<LimitRequestStatus> = {
+    enableSorting: false,
+    enableMultiSort: false,
+    columnResizeMode: 'onChange',
+    manualSorting: false,
+  }
+
+  const columns = React.useMemo<Array<ColumnConfig<LimitRequestStatus>>>(
+    () => [
+      {
+        id: 'expander',
+        size: 40,
+        header: ({table}: HeaderContext<LimitRequestStatus, unknown>) => (
+          <span
+            onClick={table.getToggleAllRowsExpandedHandler()}
+            style={{
+              cursor: 'pointer',
+              userSelect: 'none',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            {table.getIsAllRowsExpanded() ? (
+              <Icon icon={faChevronDown} />
+            ) : (
+              <Icon icon={faChevronRight} />
+            )}
+          </span>
+        ),
+        cell: ({row}: CellContext<LimitRequestStatus, unknown>) => (
+          <span
+            onClick={() => row.toggleExpanded()}
+            style={{
+              cursor: 'pointer',
+              userSelect: 'none',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            {row.getIsExpanded() ? (
+              <Icon icon={faChevronDown} />
+            ) : (
+              <Icon icon={faChevronRight} />
+            )}
+          </span>
+        ),
+      },
+      {
+        id: 'accountName',
+        accessorKey: 'accountName',
+        header: () => <div style={{textAlign: 'center'}}>Account Name</div>,
+        footer: (props: HeaderContext<LimitRequestStatus, unknown>) =>
+          props.column.id,
+      },
+      {
+        id: 'code',
+        accessorKey: 'code',
+        header: () => <div style={{textAlign: 'center'}}>Code</div>,
+        footer: (props: HeaderContext<LimitRequestStatus, unknown>) =>
+          props.column.id,
+      },
+      {
+        id: 'requestLimit',
+        accessorKey: 'requestLimit',
+        header: () => (
+          <div style={{textAlign: 'center'}}>New Request Limit</div>
+        ),
+        footer: (props: HeaderContext<LimitRequestStatus, unknown>) =>
+          props.column.id,
+      },
+      {
+        id: 'status',
+        accessorKey: 'status',
+        header: () => <div style={{textAlign: 'center'}}>Status</div>,
+        footer: (props: HeaderContext<LimitRequestStatus, unknown>) =>
+          props.column.id,
+      },
+    ],
+    [],
+  )
+
+  const renderRowSubComponent = (rowData: LimitRequestStatus) => {
+    return (
+      <div
+        style={{
+          padding: '1em',
+          display: 'flex',
+          flexDirection: 'column',
+          rowGap: '1em',
+        }}
+      >
+        <h3>Current Status: {rowData.status}</h3>
+        <Divider />
+        {rowData.progress?.map((processItem) => {
+          return (
+            <>
+              <p style={{fontSize: '12px'}}>{processItem.remarks}</p>
+              <p style={{fontSize: '11px', fontWeight: 200, color: '#878787'}}>
+                {processItem.createdAt.toDateString()}
+              </p>
+              <Divider />
+            </>
+          )
+        })}
+      </div>
+    )
+  }
+  return (
+    <div>
+      <ReactTable
+        data={data}
+        columns={columns}
+        options={options}
+        renderRowSubComponent={renderRowSubComponent}
+      >
+        <ReactTable.Footer
+          css={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}
+        >
+          <div style={{display: 'flex', alignItems: 'center'}}>
+            <span style={{width: 250}}>Rows per page: </span>
+            <Dropdown.Select defaultSelectedKey='10'>
+              <Dropdown.Item key='10'>10 rows</Dropdown.Item>
+              <Dropdown.Item key='20'>20 rows</Dropdown.Item>
+              <Dropdown.Item key='50'>50 rows</Dropdown.Item>
+            </Dropdown.Select>
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: '0.5rem',
+            }}
+          >
+            <div
+              style={{
+                fontWeight: '600',
+              }}
+            >
+              {(page - 1) * 10 + 1} - {(page - 1) * 10 + 10} of 100
+            </div>
+            <Pagination
+              page={page}
+              onChange={(page: number) => setPage(page)}
+              total={10}
+            />
+          </div>
+        </ReactTable.Footer>
+      </ReactTable>
+    </div>
   )
 }

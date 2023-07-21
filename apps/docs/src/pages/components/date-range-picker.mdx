@@ -34,7 +34,6 @@ import DateRangePicker from '@comfortdelgro/react-compass/date-range-picker'
 
 React Compass use [React Aria I18N](https://react-spectrum.adobe.com/react-aria/internationalization.html) and [React Aria Internationalized](https://react-spectrum.adobe.com/internationalized/index.html) to deal with i18n.
 
-
 How to use
 
 ```js
@@ -177,9 +176,7 @@ It is up to applications to split the full selected range into multiple as neede
 </section>
 
 ```js
-
-const {isWeekend} =
-  Calendar.InternationalizedDate
+const {isWeekend} = Calendar.InternationalizedDate
 
 function ValidatedDateRangePickers() {
   const {locale} = useLocale()
@@ -237,6 +234,23 @@ export function DateRangePickerWithShortcuts() {
 }
 ```
 
+### One Calendar Only
+
+<section className={styles.componentShowcaseContainer}>
+  <DateRangePicker
+    visibleMonths={1}
+    calendarCSS={{
+      '& .calendar-footer button:nth-child(2)': {
+        backgroundColor: 'var(--colors-cdgBlue)',
+      },
+    }}
+  />
+</section>
+
+```js
+<DateRangePicker visibleMonths={1} />
+```
+
 ### Disabled
 
 <section className={styles.componentShowcaseContainer}>
@@ -282,6 +296,7 @@ export function DateRangePickerWithShortcuts() {
 | minValue                  | `DateValue`                                                                                                            |         | The minimum allowed date that a user may select.                                                                                           |
 | maxValue                  | `DateValue`                                                                                                            |         | The maximum allowed date that a user may select.                                                                                           |
 | granularity               | `'day' \| 'hour' \| 'minute' \| 'second'`                                                                              |         | Determines the smallest unit that is displayed in the date picker. By default, this is "day" for dates, and "minute" for times.            |
+| visibleMonths             | 1 \| 2                                                                                                                 | 2       | Whether the range calendar shows 2 months consecutively or not.                                                                            |
 | isReadOnly                | `boolean`                                                                                                              | false   | Whether the calendar value is immutable.                                                                                                   |
 | isDisabled                | `boolean`                                                                                                              | false   | Whether the calendar is disabled.                                                                                                          |
 | value                     | `RangeValue<DateValue>`                                                                                                |         | The current value (controlled).                                                                                                            |

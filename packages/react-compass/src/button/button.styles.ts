@@ -112,8 +112,8 @@ export const StyledButton = styled('button', {
     borderColor: '$divider',
     cursor: 'not-allowed',
   },
-  '&:focus': {
-    outline: 'none',
+  '&:focus-visible': {
+    outline: '1px solid $cdgBlue60',
     boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;',
   },
 

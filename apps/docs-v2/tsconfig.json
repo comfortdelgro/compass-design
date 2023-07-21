@@ -1,0 +1,35 @@
+{
+  "include": [
+    "next-env.d.ts",
+    "types",
+    "src",
+    "pages",
+    "data",
+    "components",
+    "utils"
+  ],
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "es5",
+    "lib": ["es2020", "dom"],
+    "jsx": "preserve",
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "experimentalDecorators": true,
+    "baseUrl": "./",
+    "allowSyntheticDefaultImports": true,
+    "noErrorTruncation": false,
+    "allowJs": true,
+    "isolatedModules": true,
+    /* files are emitted by babel */
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "types": ["react"],
+    "incremental": true
+  },
+  "exclude": ["node_modules"]
+}

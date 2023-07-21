@@ -96,7 +96,7 @@ export const DropdownsForm: React.FC = () => {
           )
         }}
       />
-      <Controller
+      {/* <Controller
         control={control}
         name='nationality'
         render={({field, fieldState}) => {
@@ -116,9 +116,9 @@ export const DropdownsForm: React.FC = () => {
             </Fragment>
           )
         }}
-      />
+      /> */}
 
-      <Controller
+      {/* <Controller
         control={control}
         name='phoneCode'
         render={({field, fieldState}) => {
@@ -139,7 +139,7 @@ export const DropdownsForm: React.FC = () => {
             </Fragment>
           )
         }}
-      />
+      /> */}
       <Controller
         control={control}
         name='phoneNumber'
@@ -213,9 +213,9 @@ export const DropdownsForm: React.FC = () => {
               >
                 {currentDrinksList.map((item: any) => {
                   return (
-                    <Dropdown.Item key={String(item.strDrink)}>
+                    <MultipleDropdown.Item key={String(item.strDrink)}>
                       {item.strDrink}
-                    </Dropdown.Item>
+                    </MultipleDropdown.Item>
                   )
                 })}
               </MultipleDropdown>
