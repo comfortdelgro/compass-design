@@ -143,127 +143,105 @@ export const Default: React.FC = () => {
           Personal Information
         </Accordion.Title>
         <div id='sect1' role='region' aria-labelledby='accordion1id'>
-          <p>
-            <TextField
-              label={
-                <>
-                  Name: <FontAwesomeIcon icon={faBug} />
-                </>
-              }
-              placeholder='Enter your name'
-              isRequired
-            />
-          </p>
-          <p>
-            <TextField
-              label={
-                <>
-                  Email: <FontAwesomeIcon icon={faBug} />
-                </>
-              }
-              placeholder='Enter your email'
-              isRequired
-            />
-          </p>
-          <p>
-            <TextField
-              label={
-                <>
-                  Phone: <FontAwesomeIcon icon={faBug} />
-                </>
-              }
-              placeholder='Enter your phone'
-              isRequired
-            />
-          </p>
-          <p>
-            <TextField
-              label={
-                <>
-                  Extension: <FontAwesomeIcon icon={faBug} />
-                </>
-              }
-              placeholder='Extension'
-            />
-          </p>
-          <p>
-            <TextField
-              label={
-                <>
-                  Country: <FontAwesomeIcon icon={faBug} />
-                </>
-              }
-              placeholder='Enter your country'
-            />
-          </p>
-          <p>
-            <TextField
-              label={
-                <>
-                  City/Province: <FontAwesomeIcon icon={faBug} />
-                </>
-              }
-              placeholder='Enter your city/province'
-            />
-          </p>
+          <TextField
+            label={
+              <>
+                Name: <FontAwesomeIcon icon={faBug} />
+              </>
+            }
+            placeholder='Enter your name'
+            isRequired
+          />
+          <TextField
+            label={
+              <>
+                Email: <FontAwesomeIcon icon={faBug} />
+              </>
+            }
+            placeholder='Enter your email'
+            isRequired
+          />
+          <TextField
+            label={
+              <>
+                Phone: <FontAwesomeIcon icon={faBug} />
+              </>
+            }
+            placeholder='Enter your phone'
+            isRequired
+          />
+          <TextField
+            label={
+              <>
+                Extension: <FontAwesomeIcon icon={faBug} />
+              </>
+            }
+            placeholder='Extension'
+          />
+          <TextField
+            label={
+              <>
+                Country: <FontAwesomeIcon icon={faBug} />
+              </>
+            }
+            placeholder='Enter your country'
+          />
+          <TextField
+            label={
+              <>
+                City/Province: <FontAwesomeIcon icon={faBug} />
+              </>
+            }
+            placeholder='Enter your city/province'
+          />
         </div>
       </Accordion>
       <Accordion>
         <Accordion.Title aria-controls='sect2'>Billing Address</Accordion.Title>
         <div id='sect2' role='region' aria-labelledby='accordion2id'>
-          <p>
-            <TextField
-              label={
-                <>
-                  Address 1: <FontAwesomeIcon icon={faBug} />
-                </>
-              }
-              placeholder='Enter your address 1'
-              isRequired
-            />
-          </p>
-          <p>
-            <TextField
-              label={
-                <>
-                  Address 2: <FontAwesomeIcon icon={faBug} />
-                </>
-              }
-              placeholder='Enter your address 2'
-              isRequired
-            />
-          </p>
-          <p>
-            <TextField
-              label={
-                <>
-                  City: <FontAwesomeIcon icon={faBug} />
-                </>
-              }
-              placeholder='Enter your city'
-              isRequired
-            />
-          </p>
-          <p>
-            <TextField
-              label={
-                <>
-                  State: <FontAwesomeIcon icon={faBug} />
-                </>
-              }
-              placeholder='State'
-            />
-          </p>
-          <p>
-            <TextField
-              label={
-                <>
-                  Zip Code: <FontAwesomeIcon icon={faBug} />
-                </>
-              }
-              placeholder='Enter your zip code'
-            />
-          </p>
+          <TextField
+            label={
+              <>
+                Address 1: <FontAwesomeIcon icon={faBug} />
+              </>
+            }
+            placeholder='Enter your address 1'
+            isRequired
+          />
+          <TextField
+            label={
+              <>
+                Address 2: <FontAwesomeIcon icon={faBug} />
+              </>
+            }
+            placeholder='Enter your address 2'
+            isRequired
+          />
+          <TextField
+            label={
+              <>
+                City: <FontAwesomeIcon icon={faBug} />
+              </>
+            }
+            placeholder='Enter your city'
+            isRequired
+          />
+          <TextField
+            label={
+              <>
+                State: <FontAwesomeIcon icon={faBug} />
+              </>
+            }
+            placeholder='State'
+          />
+          <TextField
+            label={
+              <>
+                Zip Code: <FontAwesomeIcon icon={faBug} />
+              </>
+            }
+            placeholder='Enter your zip code'
+          />
         </div>
       </Accordion>
       <Accordion>
@@ -271,59 +249,49 @@ export const Default: React.FC = () => {
           Shipping Address
         </Accordion.Title>
         <div id='sect3' role='region' aria-labelledby='accordion3id'>
-          <p>
-            <TextField
-              label={
-                <>
-                  Address 1: <FontAwesomeIcon icon={faBug} />
-                </>
-              }
-              placeholder='Enter your address 1'
-              isRequired
-            />
-          </p>
-          <p>
-            <TextField
-              label={
-                <>
-                  Address 2: <FontAwesomeIcon icon={faBug} />
-                </>
-              }
-              placeholder='Enter your address 2'
-              isRequired
-            />
-          </p>
-          <p>
-            <TextField
-              label={
-                <>
-                  City: <FontAwesomeIcon icon={faBug} />
-                </>
-              }
-              placeholder='Enter your city'
-              isRequired
-            />
-          </p>
-          <p>
-            <TextField
-              label={
-                <>
-                  State: <FontAwesomeIcon icon={faBug} />
-                </>
-              }
-              placeholder='state'
-            />
-          </p>
-          <p>
-            <TextField
-              label={
-                <>
-                  Zip Code: <FontAwesomeIcon icon={faBug} />
-                </>
-              }
-              placeholder='Enter your zip code'
-            />
-          </p>
+          <TextField
+            label={
+              <>
+                Address 1: <FontAwesomeIcon icon={faBug} />
+              </>
+            }
+            placeholder='Enter your address 1'
+            isRequired
+          />
+          <TextField
+            label={
+              <>
+                Address 2: <FontAwesomeIcon icon={faBug} />
+              </>
+            }
+            placeholder='Enter your address 2'
+            isRequired
+          />
+          <TextField
+            label={
+              <>
+                City: <FontAwesomeIcon icon={faBug} />
+              </>
+            }
+            placeholder='Enter your city'
+            isRequired
+          />
+          <TextField
+            label={
+              <>
+                State: <FontAwesomeIcon icon={faBug} />
+              </>
+            }
+            placeholder='state'
+          />
+          <TextField
+            label={
+              <>
+                Zip Code: <FontAwesomeIcon icon={faBug} />
+              </>
+            }
+            placeholder='Enter your zip code'
+          />
         </div>
       </Accordion>
     </Column>
