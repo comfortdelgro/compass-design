@@ -94,7 +94,7 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
             active={item === active}
             onClick={() => item !== active && setPage(item)}
             aria-label={`page ${item}`}
-            aria-current={item === active ? 'page' : undefined}
+            aria-current={item === active}
           >
             {item}
           </StyledPaginationItem>
