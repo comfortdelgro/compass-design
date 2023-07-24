@@ -1,35 +1,30 @@
 import {Box, Typography} from '@comfortdelgro/react-compass'
 import Container from 'components/layouts/Container'
-import GradientText from 'components/typography/GradientText'
 import Image from 'next/image'
 import GetStartedButtons from './GetStartedButtons'
 
 export default function Hero() {
   return (
-    <Box css={{background: '#ECE2EF', position: 'relative'}}>
-      <Container
-        css={{
-          height: 538,
-          '@media screen and (max-width: 1200px)': {
-            height: 400,
-          },
-        }}
-      >
+    <Box className='portal-background'>
+      <Container>
         <Box
           css={{
             padding: '4rem 0',
-            width: '60%',
+            width: 'calc(100% - 536px)',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
             height: '100%',
-            '@media screen and (max-width: 1200px)': {
+            '@media screen and (max-width: 980px)': {
+              width: 'calc(100% - 440px)',
+            },
+            '@media screen and (max-width: 768px)': {
               width: '100%',
             },
           }}
         >
-          <Typography.Header variant='header0'>
-            Ready to use <GradientText>Design components</GradientText>
+          <Typography.Header variant='header0' className='section-big-header'>
+            Ready to use Design components
           </Typography.Header>
           <Box css={{padding: '$6 0'}}>
             <Typography.Body variant='body2'>
@@ -41,22 +36,12 @@ export default function Hero() {
           </Box>
           <GetStartedButtons />
         </Box>
-        <Box
-          css={{
-            width: 'auto',
-            height: 538,
-            position: 'absolute',
-            right: 0,
-            top: 0,
-            '@media screen and (max-width: 1200px)': {
-              display: 'none',
-            },
-          }}
-        >
+        <Box className='figma-preview-wrapper'>
           <Image
+            className='figma-preview'
             src='/static/images/introduction.png'
             alt='banner'
-            width={578}
+            width={496}
             height={538}
           />
         </Box>
