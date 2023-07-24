@@ -55,9 +55,13 @@ export const StyledDropdownMultilevelItem = styled('li', {
       color: '$cdgBlue100',
     },
   },
-  '&:hover > .cdg-dropdown-multilevel-submenu': {
-    display: 'block',
+  '&:focus': {
+    background: 'red',
   },
+  '&:hover > .cdg-dropdown-multilevel-submenu, &:focus > .cdg-dropdown-multilevel-submenu':
+    {
+      display: 'block',
+    },
 })
 
 export const StyledDropdownMultilevelMenu = styled('ul', {

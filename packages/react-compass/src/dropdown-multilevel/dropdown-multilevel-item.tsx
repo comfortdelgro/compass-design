@@ -1,7 +1,8 @@
-import React from 'react'
+import React, {useContext, useEffect} from 'react'
 import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
+import DropdownMultilevelContext from './dropdown-multilevel-context'
 import DropdownMultilevelSubmenu from './dropdown-multilevel-submenu'
 import {StyledDropdownMultilevelItem} from './dropdown-multilevel.styles'
 
@@ -30,7 +31,7 @@ const DropdownMultilevelItem = React.forwardRef<
   HTMLLIElement,
   DropdownMultilevelItemProps
 >((props, ref) => {
-  const {children, css = {}, ...delegated} = props
+  const {children, css = {}, className, ...delegated} = props
 
   const {child} = pickChild<typeof DropdownMultilevelSubmenu>(
     children,
@@ -38,11 +39,19 @@ const DropdownMultilevelItem = React.forwardRef<
   )
   const DropdownMultilevelItemRef = useDOMRef<HTMLLIElement>(ref)
 
+  const {refs} = useContext(DropdownMultilevelContext)
+
+  useEffect(() => {
+    if (refs?.current) {
+      refs.current.push(DropdownMultilevelItemRef)
+    }
+  }, [])
+
   return (
     <StyledDropdownMultilevelItem
       css={css}
       ref={DropdownMultilevelItemRef}
-      tabIndex={1}
+      className={`cdg-dropdown-multilevel-item ${className ?? ''}`}
       {...delegated}
     >
       {children}

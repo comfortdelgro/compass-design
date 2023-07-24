@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react'
+import React, {useCallback, useEffect, useRef, useState} from 'react'
 import Popover from '../popover'
 import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
@@ -25,7 +25,7 @@ const DropdownMultilevel = React.forwardRef<
   HTMLDivElement,
   DropdownMultilevelProps
 >((props, ref) => {
-  const {children} = props
+  const {children, onKeyDown, css = {}, ...delegated} = props
 
   const dropdownRef = useDOMRef<HTMLDivElement>(ref)
 
@@ -39,18 +39,72 @@ const DropdownMultilevel = React.forwardRef<
   >(children, DropdownMultilevelMenu)
 
   const [open, setOpen] = useState(false)
+  const [itemIds, setItemIds] = useState<string[]>([])
+
+  const refs = useRef<Array<React.RefObject<HTMLLIElement>>>([])
 
   const contextValue = React.useMemo(
-    () => ({open, setOpen: setOpen}),
-    [open, setOpen],
+    () => ({
+      open,
+      setOpen,
+      itemIds,
+      setItemIds,
+      refs,
+    }),
+    [open, setOpen, itemIds, setItemIds],
   )
 
   const handleClosePopover = useCallback(() => {
     setOpen(false)
   }, [])
 
+  useEffect(() => {
+    if (!open) {
+      refs.current = []
+    }
+  }, [open])
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    onKeyDown?.(event)
+    if (open) {
+      switch (event.key) {
+        case 'ArrowLeft':
+        case 'ArrowRight':
+          event.preventDefault()
+          break
+        case 'ArrowUp':
+          event.preventDefault()
+          if (refs.current) {
+            console.log(refs.current[refs.current.length - 1]?.current)
+            refs.current[refs.current.length - 1]?.current?.focus()
+          }
+          break
+        case 'ArrowDown':
+          event.preventDefault()
+          if (refs.current) {
+            console.log(refs.current[0]?.current)
+
+            refs.current[0]?.current?.focus()
+          }
+          break
+        case 'Enter':
+          event.preventDefault()
+          break
+        case 'Escape':
+        case 'Tab':
+          setOpen(false)
+          break
+      }
+    }
+  }
+
   return (
-    <StyledDropdownMultilevel ref={dropdownRef}>
+    <StyledDropdownMultilevel
+      ref={dropdownRef}
+      onKeyDown={handleKeyDown}
+      css={css}
+      {...delegated}
+    >
       <DropdownMultilevelContext.Provider value={contextValue}>
         <Popover
           isOpen={open}

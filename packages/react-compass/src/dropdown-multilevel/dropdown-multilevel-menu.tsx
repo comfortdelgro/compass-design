@@ -14,7 +14,7 @@ const DropdownMultilevelMenu = React.forwardRef<
   HTMLUListElement,
   DropdownMultilevelMenuProps
 >((props, ref) => {
-  const {children, css = {}, tabIndex = 0, ...delegated} = props
+  const {children, css = {}, className, ...delegated} = props
 
   const dropdownMultilevelMenuRef = useDOMRef<HTMLUListElement>(ref)
 
@@ -22,7 +22,7 @@ const DropdownMultilevelMenu = React.forwardRef<
     <StyledDropdownMultilevelMenu
       css={css}
       ref={dropdownMultilevelMenuRef}
-      tabIndex={tabIndex}
+      className={`${className ?? ''} cdg-dropdown-multilevel-menu`}
       {...delegated}
     >
       {children}

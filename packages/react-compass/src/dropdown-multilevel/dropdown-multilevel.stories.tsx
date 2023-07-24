@@ -5,10 +5,20 @@ import DropdownMenu from './'
 
 export const Default: React.FC = () => (
   <Column>
-    <h3>Default divider</h3>
+    <h3>Default</h3>
     <DropdownMenu>
       <DropdownMenu.Toggle>
-        <Button>DropdownMenuToggle</Button>
+        <Button>Default</Button>
+      </DropdownMenu.Toggle>
+      <DropdownMenu.Menu>
+        <DropdownMenu.Item>Item 1</DropdownMenu.Item>
+        <DropdownMenu.Item>Item 2</DropdownMenu.Item>
+      </DropdownMenu.Menu>
+    </DropdownMenu>
+    <h3>Submenu</h3>
+    <DropdownMenu>
+      <DropdownMenu.Toggle>
+        <Button>Submenu</Button>
       </DropdownMenu.Toggle>
       <DropdownMenu.Menu>
         <DropdownMenu.Item>Item 1</DropdownMenu.Item>
