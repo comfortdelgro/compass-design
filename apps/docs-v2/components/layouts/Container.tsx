@@ -17,6 +17,10 @@ export default function Container(props: AppFooterProps) {
           paddingLeft: 24,
           paddingRight: 24,
         },
+        '@media (max-width: 599px)': {
+          paddingLeft: 16,
+          paddingRight: 16,
+        },
         ...props.css,
       }}
     >

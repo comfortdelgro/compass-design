@@ -20,8 +20,9 @@ function ReactCompass() {
               <Item
                 title='Latest updates'
                 description='Check out our latest updates'
-                textLink='Figma link'
-                urlLink='/'
+                textLink='Latest updates'
+                urlLink='https://github.com/comfortdelgro/compass-design/releases'
+                target='_blank'
                 image='/static/images/home/lastest-updated.png'
               />
             </Grid.Item>
@@ -30,7 +31,8 @@ function ReactCompass() {
                 title='Github'
                 description='Check out our github repo.'
                 textLink='Get started'
-                urlLink='/'
+                urlLink='https://github.com/comfortdelgro/compass-design'
+                target='_blank'
                 image='/static/images/home/github.png'
               />
             </Grid.Item>
@@ -39,7 +41,14 @@ function ReactCompass() {
         <Divider css={{padding: '$4'}} />
         <Box css={{paddingTop: '$8'}}>
           <Typography.Header css={{paddingBottom: '$3'}}>
-            Demo
+            Add preflight flushing styles for SSR.
+          </Typography.Header>
+          <CoreShowcase />
+        </Box>
+        <Box css={{paddingTop: '$8'}}>
+          <Typography.Header css={{paddingBottom: '$3'}}>
+            Add Preflight component for better CSS resets according to design
+            guidelines.
           </Typography.Header>
           <CoreShowcase />
         </Box>

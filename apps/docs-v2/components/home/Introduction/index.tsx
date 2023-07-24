@@ -22,7 +22,8 @@ export default function Introduction() {
                 title='Design'
                 description='Check out our figma Compass design system'
                 textLink='Figma link'
-                urlLink='/'
+                urlLink='https://www.figma.com/file/JSiK3cmMmxTt8qhR3dty8t/Workbench-Design-System?type=design&node-id=480-41144&mode=design&t=PfKoDFh3mPd3y9yz-4'
+                target={'_blank'}
                 image='/static/images/home/design.png'
               />
             </Grid.Item>
@@ -31,7 +32,8 @@ export default function Introduction() {
                 title='Develop'
                 description='Find installation guide and tooling tips'
                 textLink='Get started'
-                urlLink='/'
+                target={'_self'}
+                urlLink='./getting-started/overview/'
                 image='/static/images/home/develop.png'
               />
             </Grid.Item>
