@@ -4,12 +4,13 @@ import {faThumbsUp, faVirus} from '@fortawesome/free-solid-svg-icons'
 import {DataGridStory} from 'components/DataGrid'
 
 # Data Grid
-The Data Grid component offers various features that enhance data visualization and user experience. 
-It enables sorting, filtering, and grouping of data, making it easier for users to find and analyze specific information within large datasets. 
+
+The Data Grid component offers various features that enhance data visualization and user experience.
+It enables sorting, filtering, and grouping of data, making it easier for users to find and analyze specific information within large datasets.
 Users can click on column headers to sort the data in ascending or descending order, and they can apply filters to display only the relevant data based on specific criteria.
 Data-grid would be a component displaying tabular data, just like a table. However, it is more advanced and has more features. For example, you can even draw chart within data-grid cell.
 
-Provided appears to be a React component called DataGrid which is a table component built base on the @tanstack/react-table library. 
+Provided appears to be a React component called DataGrid which is a table component built base on the @tanstack/react-table library.
 It accepts various props to customize its behavior and rendering.
 
 <Callout>
@@ -161,18 +162,19 @@ const columns = React.useMemo<Array<ColumnConfig<Person>>>(
   </DataGrid.Footer>
 </DataGrid>
 ```
+
 ### Data
 
 #### data: TData[]
 
-The data for the data grid to display. This array should match the type you provided to `table.setRowType<...>`, but in theory could be an array of anything. 
+The data for the data grid to display. This array should match the type you provided to `table.setRowType<...>`, but in theory could be an array of anything.
 It's common for each item in the array to be an object of key/values but this is not required. Columns can access this data via string/index or a functional accessor to return anything they want.
 
-When the data option changes reference (compared via Object.is), the data grid will reprocess the data. 
+When the data option changes reference (compared via Object.is), the data grid will reprocess the data.
 Any other data processing that relies on the core data model (such as grouping, sorting, filtering, etc) will also be reprocessed.
 
-Make sure your data option is only changing when you want the data grid to reprocess. 
-Providing an inline [] or constructing the data array as a new object every time you want to render the data grid will result in a lot of unnecessary re-processing. 
+Make sure your data option is only changing when you want the data grid to reprocess.
+Providing an inline [] or constructing the data array as a new object every time you want to render the data grid will result in a lot of unnecessary re-processing.
 This can easily go unnoticed in smaller data grids, but you will likely notice it in larger data grids.
 
 ### Options Interface
@@ -228,6 +230,7 @@ interface Options<TData> {
   enableRowSelection?: boolean | ((row: Row<TData>) => boolean)
 }
 ```
+
 ---
 
 ### Usage:
@@ -289,14 +292,13 @@ const onSorting = (sortingField: StateSorting) => {
 
 ### Props:
 
-| Name         | Type                  | Default | Description                 |
-| :----------- | :-------------------- | :------ | :-------------------------- |
-| `data`       | Array                 | `[]`    | `Data for show `            |
-| `columns`    | `Array<ColumnDef<T>>` | `[]`    | `column with custom config` |
-| `options`    | OptionType            | {}      | `Data Grid option`          |
-| `children`   | React.ReactNode       | —       | `child element`             |
-| `css`        | `CSS`                 | —       | ``                          |
-| `delegated ` | `CSS`                 | —       |                             |
+| Name       | Type                  | Default | Description                 |
+| :--------- | :-------------------- | :------ | :-------------------------- |
+| `data`     | Array                 | `[]`    | `Data for show `            |
+| `columns`  | `Array<ColumnDef<T>>` | `[]`    | `column with custom config` |
+| `options`  | OptionType            | {}      | `Data Grid option`          |
+| `children` | React.ReactNode       | —       | `child element`             |
+| `css`      | `CSS`                 | —       | ``                          |
 
 ---
 

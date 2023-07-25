@@ -17,6 +17,7 @@ interface Props extends StyledComponentProps {
   children?: React.ReactNode
   isOpen?: boolean
   handleClose?: () => void
+  onClick?: (event: MouseEvent) => void
   position?: 'left' | 'right'
 }
 
@@ -35,6 +36,7 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>((props, ref) => {
     // Component props
     isOpen = false,
     handleClose,
+    onClick,
     // HTMLDiv Props
     ...delegated
   } = props
@@ -55,26 +57,15 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>((props, ref) => {
     SidebarTitle,
   )
 
-  React.useEffect(() => {
-    /**
-     * Close the sidebar if clicked on outside of element
-     */
-    function handleClickOutside(event: MouseEvent) {
-      if (
-        sidebarRef.current &&
-        !sidebarRef?.current?.contains(event.target as Node)
-      ) {
-        event.preventDefault()
-        handleClose?.()
-      }
-    }
-    // Bind the event listener
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => {
-      // Unbind the event listener on clean up
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [sidebarRef])
+  function handleClickBackDrop(event: MouseEvent) {
+    event.preventDefault()
+    handleClose?.()
+  }
+
+  function handleClickSidebar(event: MouseEvent) {
+    event.stopPropagation()
+    onClick?.(event as unknown as MouseEvent)
+  }
 
   React.useEffect(() => {
     if (isOpen) {
@@ -87,11 +78,15 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>((props, ref) => {
   return (
     <>
       {isOpen && (
-        <StyledSidebarWrapper css={css}>
+        <StyledSidebarWrapper
+          css={css}
+          onClick={(e) => handleClickBackDrop(e as unknown as MouseEvent)}
+        >
           <StyledSidebar
             variant={variant}
             position={position}
             ref={sidebarRef}
+            onClick={(e) => handleClickSidebar(e as unknown as MouseEvent)}
             {...delegated}
           >
             {variant == 'primary' && (

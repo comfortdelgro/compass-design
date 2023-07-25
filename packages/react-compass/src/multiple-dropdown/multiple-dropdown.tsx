@@ -398,9 +398,12 @@ const MultipleDropdown = React.forwardRef<
   }
 
   const handleCloseChipClick = useCallback(
-    (selectedItem: SelectedItemDropdown) => () => {
-      handleDropdownItemClick(selectedItem)
-    },
+    (selectedItem: SelectedItemDropdown) =>
+      (event: React.MouseEvent<HTMLDivElement>) => {
+        event.stopPropagation()
+        event.preventDefault()
+        handleDropdownItemClick(selectedItem)
+      },
     [handleDropdownItemClick],
   )
 

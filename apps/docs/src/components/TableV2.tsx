@@ -13,14 +13,14 @@ import {
   Icon,
   Pagination,
   ReactTable,
-  ReactTableOptions,
   SearchField,
+  TableV2Options,
 } from '@comfortdelgro/react-compass'
 import {
-  CellContextProps,
-  ColumnConfig,
-  HeaderContextProps,
-  StateSorting,
+  TableV2CellContext,
+  TableV2ColumnDef,
+  TableV2HeaderContext,
+  TableV2SortingState,
 } from '@comfortdelgro/react-compass/table-v2'
 import React, {useState} from 'react'
 
@@ -247,14 +247,14 @@ function makeRequestStatusData(...lens: number[]) {
 export const ReactTableFullFeature: React.FC = () => {
   const [page, setPage] = useState(1)
   const [data, setData] = React.useState(() => makeData(10))
-  const options: ReactTableOptions<Person> = {
+  const options: TableV2Options<Person> = {
     enableSorting: true,
     enableMultiSort: true,
     columnResizeMode: 'onChange',
     manualSorting: true,
     enableRowSelection: (row: any) => row.original.age > 30,
   }
-  const onSorting = (sortingField: StateSorting) => {}
+  const onSorting = (sortingField: TableV2SortingState) => {}
 
   const TableHeader = ({table}: any) => {
     return (
@@ -283,55 +283,27 @@ export const ReactTableFullFeature: React.FC = () => {
     )
   }
 
-  const columns = React.useMemo<Array<ColumnConfig<Person>>>(
+  const columns = React.useMemo<Array<TableV2ColumnDef<Person>>>(
     () => [
       {
         id: 'select',
-        header: ({table}) => {
-          return (
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <ReactTable.CheckboxCell
-                checked={table.getIsAllRowsSelected()}
-                indeterminate={table.getIsSomeRowsSelected()}
-                onChange={table.getToggleAllRowsSelectedHandler()}
-              />
-            </div>
-          )
-        },
-        cell: ({row}) => (
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <ReactTable.CheckboxCell
-              disabled={!row.getCanSelect()}
-              checked={row.getIsSelected()}
-              indeterminate={row.getIsSomeSelected()}
-              onChange={row.getToggleSelectedHandler()}
-            />
-          </div>
-        ),
+        header: ({table}) => <TableHeader table={table} />,
+        cell: ({row}) => <TableHeaderCell row={row} />,
       },
       {
         id: 'name',
         header: () => <div style={{textAlign: 'center'}}>Name</div>,
-        footer: (props) => props.column.id,
+        footer: (props: TableV2HeaderContext<Person, unknown>) =>
+          props.column.id,
         enableGrouping: false,
         columns: [
           {
             accessorKey: 'firstName',
-            cell: (info) => info.getValue<string>(),
+            cell: (info: TableV2CellContext<Person, unknown>) =>
+              info.getValue<string>(),
             header: () => <span>First Name</span>,
-            footer: (props) => props.column.id,
+            footer: (props: TableV2HeaderContext<Person, unknown>) =>
+              props.column.id,
             enableResizing: true,
             enableGrouping: false,
             sortDescriptor: 'asc',
@@ -353,11 +325,13 @@ export const ReactTableFullFeature: React.FC = () => {
             },
           },
           {
-            accessorFn: (row) => row.lastName,
+            accessorFn: (row: Person) => row.lastName,
             id: 'lastName',
-            cell: (info) => info.getValue<string>(),
+            cell: (info: TableV2CellContext<Person, unknown>) =>
+              info.getValue<string>(),
             header: () => <span>Last Name</span>,
-            footer: (props) => props.column.id,
+            footer: (props: TableV2HeaderContext<Person, unknown>) =>
+              props.column.id,
             enableResizing: true,
           },
         ],
@@ -365,29 +339,35 @@ export const ReactTableFullFeature: React.FC = () => {
       {
         id: 'otherInfo',
         header: () => <div style={{textAlign: 'center'}}>Other info</div>,
-        footer: (props) => props.column.id,
+        footer: (props: TableV2HeaderContext<Person, unknown>) =>
+          props.column.id,
         enableGrouping: false,
         columns: [
           {
             accessorKey: 'age',
             header: () => 'Age',
-            footer: (info) => info.column.id,
+            footer: (info: TableV2HeaderContext<Person, unknown>) =>
+              info.column.id,
           },
           {
             accessorKey: 'visits',
             header: () => <span>Visits</span>,
-            footer: (info) => info.column.id,
+            footer: (info: TableV2HeaderContext<Person, unknown>) =>
+              info.column.id,
           },
           {
             accessorKey: 'status',
             header: 'Status',
-            footer: (info) => info.column.id,
+            footer: (info: TableV2HeaderContext<Person, unknown>) =>
+              info.column.id,
           },
           {
             accessorKey: 'progress',
             header: 'Profile Progress',
-            cell: (info) => info.getValue<string>(),
-            footer: (info) => info.column.id,
+            cell: (info: TableV2CellContext<Person, unknown>) =>
+              info.getValue<string>(),
+            footer: (info: TableV2HeaderContext<Person, unknown>) =>
+              info.column.id,
           },
         ],
       },
@@ -463,7 +443,7 @@ export const ReactTableFullFeature: React.FC = () => {
             </div>
             <Pagination
               page={page}
-              onChange={(page) => setPage(page)}
+              onChange={(page: number) => setPage(page)}
               total={10}
             />
           </div>
@@ -476,30 +456,35 @@ export const ReactTableFullFeature: React.FC = () => {
 export const ReactTableBasic: React.FC = () => {
   const [page, setPage] = useState(1)
   const [data] = React.useState(() => makeData(10))
-  const options: ReactTableOptions<Person> = {
+  const options: TableV2Options<Person> = {
     enableSorting: false,
   }
 
-  const columns = React.useMemo<Array<ColumnConfig<Person>>>(
+  const columns = React.useMemo<Array<TableV2ColumnDef<Person>>>(
     () => [
       {
         id: 'name',
         header: () => <div style={{textAlign: 'center'}}>Name</div>,
-        footer: (props) => props.column.id,
+        footer: (props: TableV2HeaderContext<Person, unknown>) =>
+          props.column.id,
         columns: [
           {
             accessorKey: 'firstName',
-            cell: (info) => info.getValue<string>(),
-            footer: (props) => props.column.id,
+            cell: (info: TableV2CellContext<Person, unknown>) =>
+              info.getValue<string>(),
+            footer: (props: TableV2HeaderContext<Person, unknown>) =>
+              props.column.id,
             enableResizing: false,
             enableColumnFilter: false,
           },
           {
-            accessorFn: (row) => row.lastName,
+            accessorFn: (row: Person) => row.lastName,
             id: 'lastName',
-            cell: (info) => info.getValue<string>(),
+            cell: (info: TableV2CellContext<Person, unknown>) =>
+              info.getValue<string>(),
             header: () => <span>Last Name</span>,
-            footer: (props) => props.column.id,
+            footer: (props: TableV2HeaderContext<Person, unknown>) =>
+              props.column.id,
             enableResizing: false,
             enableColumnFilter: false,
             enableGrouping: false,
@@ -509,31 +494,37 @@ export const ReactTableBasic: React.FC = () => {
       {
         id: 'otherInfo',
         header: () => <div style={{textAlign: 'center'}}>Other info</div>,
-        footer: (props) => props.column.id,
+        footer: (props: TableV2HeaderContext<Person, unknown>) =>
+          props.column.id,
         columns: [
           {
             accessorKey: 'age',
             header: () => 'Age',
-            footer: (info) => info.column.id,
+            footer: (info: TableV2HeaderContext<Person, unknown>) =>
+              info.column.id,
             enableColumnFilter: false,
           },
           {
             accessorKey: 'visits',
             header: () => <span>Visits</span>,
-            footer: (info) => info.column.id,
+            footer: (info: TableV2HeaderContext<Person, unknown>) =>
+              info.column.id,
             enableColumnFilter: false,
           },
           {
             accessorKey: 'status',
             header: 'Status',
-            footer: (info) => info.column.id,
+            footer: (info: TableV2HeaderContext<Person, unknown>) =>
+              info.column.id,
             enableColumnFilter: false,
           },
           {
             accessorKey: 'progress',
             header: 'Profile Progress',
-            cell: (info) => info.getValue<string>(),
-            footer: (info) => info.column.id,
+            cell: (info: TableV2CellContext<Person, unknown>) =>
+              info.getValue<string>(),
+            footer: (info: TableV2HeaderContext<Person, unknown>) =>
+              info.column.id,
             enableColumnFilter: false,
           },
         ],
@@ -600,7 +591,7 @@ export const ReactTableBasic: React.FC = () => {
             </div>
             <Pagination
               page={page}
-              onChange={(page) => setPage(page)}
+              onChange={(page: number) => setPage(page)}
               total={10}
             />
           </div>
@@ -612,25 +603,28 @@ export const ReactTableBasic: React.FC = () => {
 
 export const EditableCellTable: React.FC = () => {
   const [data, setData] = React.useState(() => makeData(10))
-  const options: ReactTableOptions<Person> = {
+  const options: TableV2Options<Person> = {
     enableSorting: false,
     enableMultiSort: false,
     columnResizeMode: 'onChange',
     manualSorting: false,
   }
-  const onSorting = (sortingField: StateSorting) => {}
+  const onSorting = (sortingField: TableV2SortingState) => {}
 
-  const columns = React.useMemo<Array<ColumnConfig<Person>>>(
+  const columns = React.useMemo<Array<TableV2ColumnDef<Person>>>(
     () => [
       {
         id: 'name',
         header: () => <div style={{textAlign: 'center'}}>Name</div>,
-        footer: (props) => props.column.id,
+        footer: (props: TableV2HeaderContext<Person, unknown>) =>
+          props.column.id,
         columns: [
           {
             accessorKey: 'firstName',
-            cell: (info) => info.getValue<string>(),
-            footer: (props) => props.column.id,
+            cell: (info: TableV2CellContext<Person, unknown>) =>
+              info.getValue<string>(),
+            footer: (props: TableV2HeaderContext<Person, unknown>) =>
+              props.column.id,
             enableResizing: false,
             meta: {
               editable: true,
@@ -650,11 +644,13 @@ export const EditableCellTable: React.FC = () => {
             },
           },
           {
-            accessorFn: (row) => row.lastName,
+            accessorFn: (row: Person) => row.lastName,
             id: 'lastName',
-            cell: (info) => info.getValue<string>(),
+            cell: (info: TableV2CellContext<Person, unknown>) =>
+              info.getValue<string>(),
             header: () => <span>Last Name</span>,
-            footer: (props) => props.column.id,
+            footer: (props: TableV2HeaderContext<Person, unknown>) =>
+              props.column.id,
             enableResizing: true,
           },
         ],
@@ -662,28 +658,34 @@ export const EditableCellTable: React.FC = () => {
       {
         id: 'otherInfo',
         header: () => <div style={{textAlign: 'center'}}>Other info</div>,
-        footer: (props) => props.column.id,
+        footer: (props: TableV2HeaderContext<Person, unknown>) =>
+          props.column.id,
         columns: [
           {
             accessorKey: 'age',
             header: () => 'Age',
-            footer: (info) => info.column.id,
+            footer: (info: TableV2HeaderContext<Person, unknown>) =>
+              info.column.id,
           },
           {
             accessorKey: 'visits',
             header: () => <span>Visits</span>,
-            footer: (info) => info.column.id,
+            footer: (info: TableV2HeaderContext<Person, unknown>) =>
+              info.column.id,
           },
           {
             accessorKey: 'status',
             header: 'Status',
-            footer: (info) => info.column.id,
+            footer: (info: TableV2HeaderContext<Person, unknown>) =>
+              info.column.id,
           },
           {
             accessorKey: 'progress',
             header: 'Profile Progress',
-            cell: (info) => info.getValue<string>(),
-            footer: (info) => info.column.id,
+            cell: (info: TableV2CellContext<Person, unknown>) =>
+              info.getValue<string>(),
+            footer: (info: TableV2HeaderContext<Person, unknown>) =>
+              info.column.id,
           },
         ],
       },
@@ -742,19 +744,21 @@ export const EditableCellTable: React.FC = () => {
 export const ExpandableColumnTable: React.FC = () => {
   const [data, setData] = React.useState(() => makeRequestStatusData(10))
   const [page, setPage] = useState(1)
-  const options: ReactTableOptions<LimitRequestStatus> = {
+  const options: TableV2Options<LimitRequestStatus> = {
     enableSorting: false,
     enableMultiSort: false,
     columnResizeMode: 'onChange',
     manualSorting: false,
   }
 
-  const columns = React.useMemo<Array<ColumnConfig<LimitRequestStatus>>>(
+  const columns = React.useMemo<Array<TableV2ColumnDef<LimitRequestStatus>>>(
     () => [
       {
         id: 'expander',
         size: 40,
-        header: ({table}: HeaderContextProps<LimitRequestStatus, unknown>) => (
+        header: ({
+          table,
+        }: TableV2HeaderContext<LimitRequestStatus, unknown>) => (
           <>
             <button
               {...{
@@ -769,7 +773,7 @@ export const ExpandableColumnTable: React.FC = () => {
             </button>{' '}
           </>
         ),
-        cell: ({row}: CellContextProps<LimitRequestStatus, unknown>) => (
+        cell: ({row}: TableV2CellContext<LimitRequestStatus, unknown>) => (
           <span
             onClick={() => row.toggleExpanded()}
             style={{
@@ -792,14 +796,14 @@ export const ExpandableColumnTable: React.FC = () => {
         id: 'accountName',
         accessorKey: 'accountName',
         header: () => <div style={{textAlign: 'center'}}>Account Name</div>,
-        footer: (props: HeaderContextProps<LimitRequestStatus, unknown>) =>
+        footer: (props: TableV2HeaderContext<LimitRequestStatus, unknown>) =>
           props.column.id,
       },
       {
         id: 'code',
         accessorKey: 'code',
         header: () => <div style={{textAlign: 'center'}}>Code</div>,
-        footer: (props: HeaderContextProps<LimitRequestStatus, unknown>) =>
+        footer: (props: TableV2HeaderContext<LimitRequestStatus, unknown>) =>
           props.column.id,
       },
       {
@@ -808,14 +812,14 @@ export const ExpandableColumnTable: React.FC = () => {
         header: () => (
           <div style={{textAlign: 'center'}}>New Request Limit</div>
         ),
-        footer: (props: HeaderContextProps<LimitRequestStatus, unknown>) =>
+        footer: (props: TableV2HeaderContext<LimitRequestStatus, unknown>) =>
           props.column.id,
       },
       {
         id: 'status',
         accessorKey: 'status',
         header: () => <div style={{textAlign: 'center'}}>Status</div>,
-        footer: (props: HeaderContextProps<LimitRequestStatus, unknown>) =>
+        footer: (props: TableV2HeaderContext<LimitRequestStatus, unknown>) =>
           props.column.id,
       },
     ],
