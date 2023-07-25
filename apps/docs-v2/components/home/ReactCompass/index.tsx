@@ -1,4 +1,4 @@
-import {Box, Divider, Grid, Typography} from '@comfortdelgro/react-compass'
+import {Box, Divider, Typography} from '@comfortdelgro/react-compass'
 import Container from 'components/layouts/Container'
 import Item from '../Introduction/item'
 import CoreShowcase from './CoreShowcase'
@@ -15,28 +15,24 @@ function ReactCompass() {
           </Typography.Body>
         </Box>
         <Box css={{paddingTop: '$4'}}>
-          <Grid spacing='sm' alignItems='center' style={{height: '100%'}}>
-            <Grid.Item xs={12} sm={12} md={6} lg={6} xl={6}>
-              <Item
-                title='Latest updates'
-                description='Check out our latest updates'
-                textLink='Latest updates'
-                urlLink='https://github.com/comfortdelgro/compass-design/releases'
-                target='_blank'
-                image='/static/images/home/lastest-updated.png'
-              />
-            </Grid.Item>
-            <Grid.Item xs={12} sm={12} md={6} lg={6} xl={6}>
-              <Item
-                title='Github'
-                description='Check out our github repo.'
-                textLink='Get started'
-                urlLink='https://github.com/comfortdelgro/compass-design'
-                target='_blank'
-                image='/static/images/home/github.png'
-              />
-            </Grid.Item>
-          </Grid>
+          <div className='cdg-card-row'>
+            <Item
+              title='Latest updates'
+              description='Check out our latest updates'
+              textLink='Latest updates'
+              urlLink='https://github.com/comfortdelgro/compass-design/releases'
+              target='_blank'
+              image='/static/images/home/lastest-updated.png'
+            />
+            <Item
+              title='Github'
+              description='Check out our github repo.'
+              textLink='Get started'
+              urlLink='https://github.com/comfortdelgro/compass-design'
+              target='_blank'
+              image='/static/images/home/github.png'
+            />
+          </div>
         </Box>
         <Divider css={{padding: '$4'}} />
         <Box css={{paddingTop: '$8'}}>

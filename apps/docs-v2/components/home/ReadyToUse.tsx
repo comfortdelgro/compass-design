@@ -3,26 +3,11 @@ import Container from 'components/layouts/Container'
 import Image from 'next/image'
 import GetStartedButtons from './GetStartedButtons'
 
-export default function Hero() {
+export default function ReadyToUse() {
   return (
     <Box className='portal-background'>
-      <Container>
-        <Box
-          css={{
-            padding: '4rem 0',
-            width: 'calc(100% - 536px)',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            height: '100%',
-            '@media screen and (max-width: 980px)': {
-              width: 'calc(100% - 440px)',
-            },
-            '@media screen and (max-width: 768px)': {
-              width: '100%',
-            },
-          }}
-        >
+      <Container className='container-row ready-to-use-section'>
+        <Box className='ready-to-use-content'>
           <Typography.Header variant='header0' className='section-big-header'>
             Ready to use Design components
           </Typography.Header>
