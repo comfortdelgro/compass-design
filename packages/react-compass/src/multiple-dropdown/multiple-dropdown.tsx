@@ -337,6 +337,7 @@ const MultipleDropdown = React.forwardRef<
       selectedItems,
       dropdownItemKeys,
       handleDropdownItemClick,
+      onOpenChange,
     ],
   )
 
@@ -455,6 +456,24 @@ const MultipleDropdown = React.forwardRef<
     setOpen(false)
   }, [])
 
+  const handleKeydownInput = useCallback(
+    (event: React.KeyboardEvent<HTMLInputElement>) => {
+      if (!open) {
+        switch (event.key) {
+          case 'ArrowUp':
+          case 'ArrowDown':
+            event.preventDefault()
+            setOpen(true)
+            onOpenChange?.(true)
+            break
+          default:
+            break
+        }
+      }
+    },
+    [onOpenChange],
+  )
+
   return (
     <StyledDropdownWrapper
       css={css}
@@ -537,6 +556,7 @@ const MultipleDropdown = React.forwardRef<
                     type='text'
                     ref={inputRef}
                     value={search}
+                    onKeyDown={handleKeydownInput}
                     onChange={handleInputChange}
                     onBlur={() => setFocused(false)}
                     onFocus={() => setFocused(true)}
