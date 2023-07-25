@@ -241,7 +241,7 @@
         "Button"
       ],
       "locStart": 15,
-      "locEnd": 194,
+      "locEnd": 195,
       "filePath": "src/button/button.stories.tsx",
       "meta": {}
     },
@@ -950,8 +950,8 @@
       "levels": [
         "Radio"
       ],
-      "locStart": 104,
-      "locEnd": 139,
+      "locStart": 105,
+      "locEnd": 140,
       "filePath": "src/radio/radio.stories.tsx",
       "meta": {}
     },
@@ -961,7 +961,7 @@
         "Radio"
       ],
       "locStart": 7,
-      "locEnd": 102,
+      "locEnd": 103,
       "filePath": "src/radio/radio.stories.tsx",
       "meta": {}
     },
@@ -1280,8 +1280,8 @@
       "levels": [
         "Tag box"
       ],
-      "locStart": 133,
-      "locEnd": 213,
+      "locStart": 197,
+      "locEnd": 294,
       "filePath": "src/tag-box/tag-box.stories.tsx",
       "meta": {}
     },
@@ -1290,8 +1290,8 @@
       "levels": [
         "Tag box"
       ],
-      "locStart": 62,
-      "locEnd": 131,
+      "locStart": 104,
+      "locEnd": 195,
       "filePath": "src/tag-box/tag-box.stories.tsx",
       "meta": {}
     },
@@ -1391,7 +1391,7 @@
         "Toggle"
       ],
       "locStart": 24,
-      "locEnd": 45,
+      "locEnd": 52,
       "filePath": "src/toggle/toggle.stories.tsx",
       "meta": {}
     },
