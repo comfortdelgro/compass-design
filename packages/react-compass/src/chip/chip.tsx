@@ -10,7 +10,7 @@ interface Props extends StyledComponentProps {
   children?: React.ReactNode
   hasCloseButton?: boolean
   isErrored?: boolean
-  onCloseClick?: () => void
+  onCloseClick?: (event: React.MouseEvent<HTMLDivElement>) => void
 }
 
 const CloseIcon = () => (

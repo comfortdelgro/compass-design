@@ -241,23 +241,74 @@ interface Options<TData> {
 </section>
 
 ```tsx
-const columns = React.useMemo<Array<ColumnConfig<Person>>>(
+const columns = React.useMemo<Array<TableV2ColumnDef<Person>>>(
   () => [
     {
       id: 'select',
-      header: ({table}) => <TableHeader table={table} />,
-      cell: ({row}) => <TableHeaderCell row={row} />,
+      header: ({table}) => {
+        return (
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <ReactTable.CheckboxCell
+              checked={table.getIsAllRowsSelected()}
+              indeterminate={table.getIsSomeRowsSelected()}
+              onChange={table.getToggleAllRowsSelectedHandler()}
+            />
+          </div>
+        )
+      },
+      cell: ({row}) => (
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <ReactTable.CheckboxCell
+            disabled={!row.getCanSelect()}
+            checked={row.getIsSelected()}
+            indeterminate={row.getIsSomeSelected()}
+            onChange={row.getToggleSelectedHandler()}
+          />
+        </div>
+      ),
     },
     {
       id: 'name',
       header: () => <div style={{textAlign: 'center'}}>Name</div>,
       footer: (props) => props.column.id,
+      enableGrouping: false,
       columns: [
         {
           accessorKey: 'firstName',
           cell: (info) => info.getValue<string>(),
+          header: () => <span>First Name</span>,
           footer: (props) => props.column.id,
-          enableResizing: false,
+          enableResizing: true,
+          enableGrouping: false,
+          sortDescriptor: 'asc',
+          meta: {
+            editable: true,
+            updateData: (rowIndex: number, id: string, value: any) => {
+              setData((old: Person[]) =>
+                old.map((row, index) => {
+                  if (index === rowIndex) {
+                    return {
+                      ...old[rowIndex],
+                      [id]: value,
+                    } as Person
+                  }
+                  return row
+                }),
+              )
+            },
+          },
         },
         {
           accessorFn: (row) => row.lastName,
@@ -273,6 +324,7 @@ const columns = React.useMemo<Array<ColumnConfig<Person>>>(
       id: 'otherInfo',
       header: () => <div style={{textAlign: 'center'}}>Other info</div>,
       footer: (props) => props.column.id,
+      enableGrouping: false,
       columns: [
         {
           accessorKey: 'age',
@@ -303,7 +355,12 @@ const columns = React.useMemo<Array<ColumnConfig<Person>>>(
 ```
 
 ```js
-<ReactTable data={data} columns={columns} options={options}>
+<ReactTable
+  data={data}
+  columns={columns}
+  options={options}
+  onManualSorting={onSorting}
+>
   <ReactTable.Toolbar
     css={{
       display: 'flex',
@@ -321,7 +378,9 @@ const columns = React.useMemo<Array<ColumnConfig<Person>>>(
         gap: '0.5rem',
       }}
     >
-      <Button variant='primary'>Button</Button>
+      <Button variant='primary' className='c-hKssGC-hYGuEl-variant-primary'>
+        Button
+      </Button>
       <Button variant='secondary'>Button</Button>
       <Button variant='ghost'>
         <Icon icon={faTrashAlt} />
@@ -385,7 +444,7 @@ const options: ReactTableOptions = {
 Example
 
 ```js
-const onSorting = (sortingField: StateSorting) => {
+const onSorting = (sortingField: TableV2SortingState) => {
   console.log('stateSorting', sortingField)
 }
 ```
@@ -430,23 +489,23 @@ interface Options<TData> {
 
 ```js
 <ReactTable
-        data={data}
-        columns={columns}
-        options={options}
-        onManualSorting={onSorting}
-        className='someClassName'
-      >
+  data={data}
+  columns={columns}
+  options={options}
+  onManualSorting={onSorting}
+  className='someClassName'
+>
 ```
 
 - options property of table-v2:
 
 ```js
-  const options: OptionType = {
-        enableSorting?: boolean
-        enableMultiSort?: boolean
-        manualSorting?: boolean
-        columnResizeMode?: 'onChange' | 'onEnd'
-  }
+const options: OptionType = {
+  enableSorting?: boolean
+  enableMultiSort?: boolean
+  manualSorting?: boolean
+  columnResizeMode?: 'onChange' | 'onEnd'
+}
 ```
 
 #### ColumnConfig

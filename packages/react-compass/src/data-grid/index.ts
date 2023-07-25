@@ -1,4 +1,15 @@
-import {ColumnDef, SortingState} from '@tanstack/react-table'
+import {
+  AccessorColumnDef,
+  Cell,
+  CellContext,
+  ColumnDef,
+  DisplayColumnDef,
+  GroupColumnDef,
+  HeaderContext,
+  Row,
+  SortingState,
+  Table,
+} from '@tanstack/react-table'
 import DataGrid from './data-grid'
 import DataGridCheckbox from './data-grid-checkbox'
 import DataGridCheckboxCell from './data-grid-checkbox-cell'
@@ -29,6 +40,14 @@ DataGrid.ProgressPercentage.displayName = 'ProgressPercentage'
 
 DataGrid.displayName = 'DataGrid'
 
-export type ColumnConfig<T> = ColumnDef<T>
-export type StateSorting = SortingState
+export type DataGridColumnDef<T> = ColumnDef<T>
+export type DataGridAccessorColumnDef<T> = AccessorColumnDef<T>
+export type DataGridDisplayColumnDef<T> = DisplayColumnDef<T>
+export type DataGridGroupColumnDef<T> = GroupColumnDef<T>
+export type DataGridSortingState = SortingState
+export type DataGridRow<T> = Row<T>
+export type DataGridCell<TData, TValue> = Cell<TData, TValue>
+export type DataGridHeaderContext<TData, TValue> = HeaderContext<TData, TValue>
+export type DataGridCellContext<TData, TValue> = CellContext<TData, TValue>
+export type DataGridTableConfig<T> = Table<T>
 export default DataGrid

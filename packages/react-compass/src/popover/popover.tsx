@@ -71,6 +71,7 @@ interface Props extends StyledComponentProps {
   disableInteractive?: boolean
   defaultOpen?: boolean
   trigger?: 'click' | null
+  isFloatingPortal?: boolean
 }
 
 export type PopoverProps = Props &
@@ -93,6 +94,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     defaultOpen = false,
     trigger = 'click',
     css = {},
+    isFloatingPortal = true,
   } = props
 
   // uncontrolled state
@@ -193,13 +195,24 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
       >
         {anchor}
       </StyledAnchorWrapper>
-      <FloatingPortal>
-        {(isOpenProp != null ? isOpenProp : isOpen) && (
-          <StyledPopoverWrapper ref={mergeRefs} {...popoverProps}>
-            {children} {/* The actual popover */}
-          </StyledPopoverWrapper>
-        )}
-      </FloatingPortal>
+
+      {isFloatingPortal ? (
+        <FloatingPortal>
+          {(isOpenProp != null ? isOpenProp : isOpen) && (
+            <StyledPopoverWrapper ref={mergeRefs} {...popoverProps}>
+              {children} {/* The actual popover */}
+            </StyledPopoverWrapper>
+          )}
+        </FloatingPortal>
+      ) : (
+        <>
+          {(isOpenProp != null ? isOpenProp : isOpen) && (
+            <StyledPopoverWrapper ref={mergeRefs} {...popoverProps}>
+              {children} {/* The actual popover */}
+            </StyledPopoverWrapper>
+          )}
+        </>
+      )}
     </>
   )
 })

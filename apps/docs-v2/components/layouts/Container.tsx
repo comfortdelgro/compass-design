@@ -3,11 +3,17 @@ import {Box} from '@comfortdelgro/react-compass'
 interface AppFooterProps {
   children: React.ReactNode
   css?: any
+  className?: string
 }
 
-export default function Container(props: AppFooterProps) {
+export default function Container({
+  children,
+  css,
+  className = '',
+}: AppFooterProps) {
   return (
     <Box
+      className={`container ${className}`}
       css={{
         '@media (min-width: 1200px)': {
           maxWidth: 1200,
@@ -17,10 +23,14 @@ export default function Container(props: AppFooterProps) {
           paddingLeft: 24,
           paddingRight: 24,
         },
-        ...props.css,
+        '@media (max-width: 599px)': {
+          paddingLeft: 16,
+          paddingRight: 16,
+        },
+        ...css,
       }}
     >
-      {props.children}
+      {children}
     </Box>
   )
 }

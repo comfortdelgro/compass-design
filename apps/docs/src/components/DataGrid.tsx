@@ -6,14 +6,16 @@ import {
 
 import {
   Button,
-  ColumnConfig,
   DataGrid,
   DataGridOptions,
   Icon,
   Pagination,
   SearchField,
-  StateSorting,
 } from '@comfortdelgro/react-compass'
+import {
+  DataGridColumnDef,
+  DataGridSortingState,
+} from '@comfortdelgro/react-compass/data-grid'
 import React, {useState} from 'react'
 import StatusComponent from './person-status'
 
@@ -155,7 +157,7 @@ export const DataGridStory: React.FC = () => {
     columnResizeMode: 'onChange',
     manualSorting: true,
   }
-  const onSorting = (sortingField: StateSorting) => {}
+  const onSorting = (sortingField: DataGridSortingState) => {}
 
   const GridHeader = ({table}: any) => {
     return (
@@ -183,7 +185,7 @@ export const DataGridStory: React.FC = () => {
     )
   }
 
-  const columns = React.useMemo<Array<ColumnConfig<Person>>>(
+  const columns = React.useMemo<Array<DataGridColumnDef<Person>>>(
     () => [
       {
         id: 'select',
