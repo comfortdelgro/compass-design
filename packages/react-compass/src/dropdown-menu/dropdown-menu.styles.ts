@@ -35,19 +35,19 @@ export const StyledDropdownMenuToggle = styled('div', {})
 
 export const StyledDropdownMenuItem = styled('li', {
   position: 'relative',
-  fontSize: '14px',
-  fontWeight: 500,
+  fontSize: '$label1',
+  fontWeight: '$medium',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  padding: '8px 16px',
+  padding: '$2 $4',
   cursor: 'pointer',
   '& > *': {
     color: '$gray90',
   },
   '.cdg-arrow-right-icon': {
-    width: '16px',
-    height: '16px',
+    width: '$4',
+    height: '$4',
   },
   variants: {
     isDisabled: {
@@ -97,7 +97,7 @@ export const StyledDropdownMenuSubmenu = styled('ul', {
 })
 
 export const StyledPopover = styled('div', {
-  margin: 0,
+  margin: '0',
   padding: '$2 0',
   borderRadius: '$md',
   width: 'fit-content',
