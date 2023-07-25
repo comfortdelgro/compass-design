@@ -1,5 +1,6 @@
-import {styled} from '../../../theme'
-import type {VariantProps} from '../../../utils/stitches.types'
+import { styled } from '../../../theme'
+import type { VariantProps } from '../../../utils/stitches.types'
+
 
 export const StyledOption = styled('li', {
   fontSize: '$label1',

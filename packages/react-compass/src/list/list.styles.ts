@@ -1,5 +1,7 @@
-import {styled} from '../theme'
-import {VariantProps} from '../utils/stitches.types'
+import { styled } from '../theme'
+import { VariantProps } from '../utils/stitches.types'
+
+
 
 export const StyledList = styled('div', {
   display: 'flex',

@@ -158,7 +158,7 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
           <StyledBox
             id={id}
             ref={boxRef}
-            tabIndex={1}
+            tabIndex={0}
             collaspable={collaspable}
             isErrored={!!isErrored}
             onFocus={() => {

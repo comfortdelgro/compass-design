@@ -27,7 +27,14 @@ export const State: React.FC = () => {
   return (
     <Column>
       <h3>Controlled</h3>
-      <Toggle size='lg' isSelected={value} onChange={setValue} />
+      <Toggle
+        size='lg'
+        isSelected={value}
+        onChange={(value) => {
+          console.log('value', value)
+          setValue(value)
+        }}
+      />
 
       <h3>UnControlled</h3>
       <Toggle size='lg' defaultSelected={true} />

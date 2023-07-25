@@ -153,7 +153,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               <></>
             )}
 
-            <StyledButtonContent>
+            <StyledButtonContent isHaveIcon={Boolean(leftIcon || rightIcon)}>
               {leftIcon || (fullWidth && rightIcon) ? (
                 <div className='icon left'>{leftIcon}</div>
               ) : null}
