@@ -1,7 +1,7 @@
 import React from 'react'
+import DropdownMenu from '.'
 import Button from '../button'
 import {Column} from '../utils/components'
-import DropdownMenu from './'
 
 export const Default: React.FC = () => {
   const handleItemClick = (event: React.MouseEvent<HTMLLIElement>) => {

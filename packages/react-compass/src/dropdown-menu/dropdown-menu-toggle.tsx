@@ -1,42 +1,46 @@
 import React, {useContext} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
-import DropdownMultilevelContext from './dropdown-multilevel-context'
-import {StyledDropdownMultilevelToggle} from './dropdown-multilevel.styles'
+import DropdownMenuContext from './dropdown-menu-context'
+import {StyledDropdownMenuToggle} from './dropdown-menu.styles'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
   'aria-haspopup'?: boolean
 }
 
-export type DropdownMultilevelToggleProps = Props &
+export type DropdownMenuToggleProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
-const DropdownMultilevelToggle = React.forwardRef<
+const DropdownMenuToggle = React.forwardRef<
   HTMLDivElement,
-  DropdownMultilevelToggleProps
+  DropdownMenuToggleProps
 >((props, ref) => {
   const {children, css = {}, onClick, ...delegated} = props
-  const DropdownMultilevelToggleRef = useDOMRef<HTMLDivElement>(ref)
+  const DropdownMenuToggleRef = useDOMRef<HTMLDivElement>(ref)
 
-  const {open, setOpen} = useContext(DropdownMultilevelContext)
+  const {open, setOpen, onClose, onOpenChange} = useContext(DropdownMenuContext)
 
   const handleButtonClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (open) {
+      onClose?.()
+    }
+    onOpenChange?.(!open)
     setOpen(!open)
     onClick?.(event)
   }
 
   return (
-    <StyledDropdownMultilevelToggle
+    <StyledDropdownMenuToggle
       css={css}
-      ref={DropdownMultilevelToggleRef}
+      ref={DropdownMenuToggleRef}
       onClick={handleButtonClick}
       aria-haspopup={props['aria-haspopup']}
       {...delegated}
     >
       {children}
-    </StyledDropdownMultilevelToggle>
+    </StyledDropdownMenuToggle>
   )
 })
 
-export default DropdownMultilevelToggle
+export default DropdownMenuToggle

@@ -27,13 +27,13 @@ const dropdownMenuBoxshadow = {
   },
 }
 
-export const StyledDropdownMultilevel = styled('div', {
+export const StyledDropdownMenu = styled('div', {
   position: 'relative',
 })
 
-export const StyledDropdownMultilevelToggle = styled('div', {})
+export const StyledDropdownMenuToggle = styled('div', {})
 
-export const StyledDropdownMultilevelItem = styled('li', {
+export const StyledDropdownMenuItem = styled('li', {
   position: 'relative',
   fontSize: '14px',
   fontWeight: 500,
@@ -81,11 +81,11 @@ export const StyledDropdownMultilevelItem = styled('li', {
   },
 })
 
-export const StyledDropdownMultilevelMenu = styled('ul', {
+export const StyledDropdownMenuMenu = styled('ul', {
   ...dropdownMenuBoxshadow,
 })
 
-export const StyledDropdownMultilevelSubmenu = styled('ul', {
+export const StyledDropdownMenuSubmenu = styled('ul', {
   ...dropdownMenuBoxshadow,
   display: 'none',
   position: 'absolute',
