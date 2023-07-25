@@ -33,7 +33,7 @@ const AccordionButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <StyledAccordionButton
-        aria-expanded={expand === 'close' ? false : true}
+        aria-expanded={expand !== 'close'}
         aria-controls={props['aria-controls']}
         expand={expand}
         ref={buttonRef}

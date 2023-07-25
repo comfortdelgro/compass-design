@@ -3,6 +3,7 @@ import {StyledComponentProps} from '../utils/stitches.types'
 import AccordionButton from './accordion-button'
 import AccordionContext, {AccordionContextType} from './accordion-context'
 import {StyledAccordionTitleWrapper} from './accordion-title.styles'
+import {KeyBoard} from './constants'
 
 interface Props extends StyledComponentProps {
   icon?: false | React.ReactNode
@@ -50,10 +51,10 @@ const AccordionTitle = React.forwardRef<HTMLButtonElement, AccordionTitleProps>(
 
     const handleKeyDown = (e?: unknown) => {
       const event = e as React.KeyboardEvent<HTMLElement>
-      const {code} = event
-      switch (code) {
-        case 'Space':
-        case 'Enter':
+      const {key} = event
+      switch (key) {
+        case KeyBoard.Space:
+        case KeyBoard.Enter:
           setExpand()
           if (onExpandChange) {
             onExpandChange(event)
