@@ -95,7 +95,7 @@ export const StyledTimelineContainer = styled('div', {
 
   // styling
   // overflow: 'hidden',
-  boxShadow: '-1px 0 0 0 $gray50',
+  boxShadow: '-1px 0 0 0 #EDEBE9',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'flex-start',
@@ -139,7 +139,7 @@ export const StyledTimelineContainer = styled('div', {
       labelAlignment: 'left',
       itemAlignment: 'left',
       css: {
-        boxShadow: '1px 0 0 0 $gray50',
+        boxShadow: '1px 0 0 0 #EDEBE9',
 
         [`${StyledItemHeaderContainer}`]: {
           flexDirection: 'row-reverse',
@@ -179,7 +179,7 @@ export const StyledTimelineContainer = styled('div', {
       labelAlignment: 'right',
       itemAlignment: 'left',
       css: {
-        boxShadow: '1px 0 0 0 $gray50',
+        boxShadow: '1px 0 0 0 #EDEBE9',
 
         [`${StyledItemHeaderContainer}`]: {
           position: 'relative',
@@ -223,7 +223,7 @@ export const StyledTimelineContainer = styled('div', {
       labelAlignment: 'top',
       itemAlignment: 'bottom',
       css: {
-        boxShadow: '0 -1px 0 0 $gray50',
+        boxShadow: '0 -1px 0 0 #EDEBE9',
         display: 'flex',
         flexDirection: 'row',
         // justifyContent: 'flex-start',
@@ -251,7 +251,7 @@ export const StyledTimelineContainer = styled('div', {
       labelAlignment: 'bottom',
       itemAlignment: 'top',
       css: {
-        boxShadow: '0 1px 0 0 $gray50',
+        boxShadow: '0 1px 0 0 #EDEBE9',
         display: 'flex',
         flexDirection: 'row',
         padding: '0',
@@ -276,7 +276,7 @@ export const StyledTimelineContainer = styled('div', {
       labelAlignment: 'alternate',
       itemAlignment: 'alternate',
       css: {
-        boxShadow: '0 1px 0 0 $gray50',
+        boxShadow: '0 1px 0 0 #EDEBE9',
         display: 'flex',
         flexDirection: 'row',
         padding: '0',
