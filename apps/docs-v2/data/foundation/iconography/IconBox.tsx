@@ -1,5 +1,3 @@
-// import toast from 'react-hot-toast'
-
 interface Props {
   component: React.ReactNode
   name: string
@@ -34,8 +32,6 @@ const IconBox: React.FC<Props> = ({name, component}) => {
               })
               .replace(/^-/, ''),
           )
-
-        // toast.success('Copied to clipboard')
       }}
     >
       <div>{component}</div>
