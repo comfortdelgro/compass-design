@@ -2,6 +2,7 @@ import {Box, Divider, Typography} from '@comfortdelgro/react-compass'
 import Container from 'components/layouts/Container'
 import Item from '../Introduction/item'
 import CoreShowcase from './CoreShowcase'
+import PreflightComponent from './PreflightComponent'
 
 function ReactCompass() {
   return (
@@ -46,7 +47,7 @@ function ReactCompass() {
             Add Preflight component for better CSS resets according to design
             guidelines.
           </Typography.Header>
-          <CoreShowcase />
+          <PreflightComponent />
         </Box>
       </Container>
     </Box>
