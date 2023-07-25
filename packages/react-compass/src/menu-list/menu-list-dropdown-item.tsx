@@ -42,6 +42,7 @@ const MenuListDropdownItem = React.forwardRef<
       ref={ref}
       css={css}
       tabIndex={tabIndex}
+      role={'menuitem'}
       {...delegated}
     >
       {icon ? <div className='cdg-menu-list-dropdown-icon'>{icon}</div> : <></>}
