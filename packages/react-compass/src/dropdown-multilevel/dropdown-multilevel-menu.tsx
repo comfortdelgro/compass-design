@@ -10,6 +10,8 @@ interface Props extends StyledComponentProps {
 export type DropdownMultilevelMenuProps = Props &
   Omit<React.HTMLAttributes<HTMLUListElement>, keyof Props>
 
+export const MULTILEVEL_MENU_CLASS_NAME = 'cdg-dropdown-multilevel-menu'
+
 const DropdownMultilevelMenu = React.forwardRef<
   HTMLUListElement,
   DropdownMultilevelMenuProps
@@ -22,7 +24,7 @@ const DropdownMultilevelMenu = React.forwardRef<
     <StyledDropdownMultilevelMenu
       css={css}
       ref={dropdownMultilevelMenuRef}
-      className={`${className ?? ''} cdg-dropdown-multilevel-menu`}
+      className={`${className ?? ''} ${MULTILEVEL_MENU_CLASS_NAME}`}
       {...delegated}
     >
       {children}

@@ -3,11 +3,14 @@ import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import DropdownMultilevelContext from './dropdown-multilevel-context'
+import {MULTILEVEL_MENU_CLASS_NAME} from './dropdown-multilevel-menu'
 import DropdownMultilevelSubmenu from './dropdown-multilevel-submenu'
 import {StyledDropdownMultilevelItem} from './dropdown-multilevel.styles'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
+  isDisabled?: boolean
+  isActived?: boolean
 }
 
 const ArrowRightIcon = () => (
@@ -31,7 +34,15 @@ const DropdownMultilevelItem = React.forwardRef<
   HTMLLIElement,
   DropdownMultilevelItemProps
 >((props, ref) => {
-  const {children, css = {}, className, ...delegated} = props
+  const {
+    children,
+    css = {},
+    className,
+    isDisabled = false,
+    isActived = false,
+    onClick,
+    ...delegated
+  } = props
 
   const {child} = pickChild<typeof DropdownMultilevelSubmenu>(
     children,
@@ -43,15 +54,35 @@ const DropdownMultilevelItem = React.forwardRef<
 
   useEffect(() => {
     if (refs?.current) {
-      refs.current.push(DropdownMultilevelItemRef)
+      if (
+        DropdownMultilevelItemRef.current?.parentElement?.className.includes(
+          MULTILEVEL_MENU_CLASS_NAME,
+        ) &&
+        !isDisabled
+      ) {
+        refs.current.push(DropdownMultilevelItemRef)
+      }
     }
   }, [])
+
+  const handleItemClick = (event: React.MouseEvent<HTMLLIElement>) => {
+    if (!isDisabled) {
+      onClick?.(event)
+    }
+  }
 
   return (
     <StyledDropdownMultilevelItem
       css={css}
       ref={DropdownMultilevelItemRef}
       className={`cdg-dropdown-multilevel-item ${className ?? ''}`}
+      tabIndex={-1}
+      role={child ? 'none presentation' : 'menuitem'}
+      aria-haspopup={!!child}
+      aria-disabled={isDisabled}
+      isDisabled={isDisabled}
+      isActived={isActived}
+      onClick={handleItemClick}
       {...delegated}
     >
       {children}

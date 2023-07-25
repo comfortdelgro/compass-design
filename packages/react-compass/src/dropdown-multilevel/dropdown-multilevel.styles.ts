@@ -49,19 +49,36 @@ export const StyledDropdownMultilevelItem = styled('li', {
     width: '16px',
     height: '16px',
   },
+  variants: {
+    isDisabled: {
+      true: {
+        backgroundColor: '$gray20',
+        color: '$disabledText',
+        cursor: 'not-allowed !important',
+        '&:hover': {
+          color: '$disabledText',
+          '& > .cdg-arrow-right-icon': {
+            color: '$disabledText',
+          },
+        },
+      },
+    },
+    isActived: {
+      true: {
+        backgroundColor: '$cdgBlue20',
+      },
+    },
+  },
+  '&:hover > .cdg-dropdown-multilevel-submenu, &:focus > .cdg-dropdown-multilevel-submenu':
+    {
+      display: 'block',
+    },
   '&:hover': {
     color: '$cdgBlue100',
     '& > .cdg-arrow-right-icon': {
       color: '$cdgBlue100',
     },
   },
-  '&:focus': {
-    background: 'red',
-  },
-  '&:hover > .cdg-dropdown-multilevel-submenu, &:focus > .cdg-dropdown-multilevel-submenu':
-    {
-      display: 'block',
-    },
 })
 
 export const StyledDropdownMultilevelMenu = styled('ul', {

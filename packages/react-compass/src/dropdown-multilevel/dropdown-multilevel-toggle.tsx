@@ -6,6 +6,7 @@ import {StyledDropdownMultilevelToggle} from './dropdown-multilevel.styles'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
+  'aria-haspopup'?: boolean
 }
 
 export type DropdownMultilevelToggleProps = Props &
@@ -30,6 +31,7 @@ const DropdownMultilevelToggle = React.forwardRef<
       css={css}
       ref={DropdownMultilevelToggleRef}
       onClick={handleButtonClick}
+      aria-haspopup={props['aria-haspopup']}
       {...delegated}
     >
       {children}

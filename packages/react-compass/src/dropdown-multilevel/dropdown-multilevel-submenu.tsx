@@ -5,6 +5,7 @@ import {StyledDropdownMultilevelSubmenu} from './dropdown-multilevel.styles'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
+  'aria-labelledby'?: string
 }
 
 export type DropdownMultilevelSubmenuProps = Props &
@@ -14,15 +15,17 @@ const DropdownMultilevelSubmenu = React.forwardRef<
   HTMLUListElement,
   DropdownMultilevelSubmenuProps
 >((props, ref) => {
-  const {children, css = {}, ...delegated} = props
+  const {children, css = {}, className, ...delegated} = props
   const DropdownMultilevelSubmenuRef = useDOMRef<HTMLUListElement>(ref)
 
   return (
     <StyledDropdownMultilevelSubmenu
       css={css}
       ref={DropdownMultilevelSubmenuRef}
+      role='menu'
+      aria-labelledby={props['aria-labelledby']}
+      className={`cdg-dropdown-multilevel-submenu ${className ?? ''}`}
       {...delegated}
-      className='cdg-dropdown-multilevel-submenu'
     >
       {children}
     </StyledDropdownMultilevelSubmenu>

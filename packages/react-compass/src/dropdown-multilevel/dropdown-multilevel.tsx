@@ -16,6 +16,7 @@ interface Props extends StyledComponentProps {
   isOpen?: boolean
   handleClose?: () => void
   autoClose?: false | number
+  'aria-labelledby'?: string
 }
 
 export type DropdownMultilevelProps = Props &
@@ -40,6 +41,7 @@ const DropdownMultilevel = React.forwardRef<
 
   const [open, setOpen] = useState(false)
   const [itemIds, setItemIds] = useState<string[]>([])
+  const [selectedIndex, setSelectedIndex] = useState(-1)
 
   const refs = useRef<Array<React.RefObject<HTMLLIElement>>>([])
 
@@ -61,6 +63,7 @@ const DropdownMultilevel = React.forwardRef<
   useEffect(() => {
     if (!open) {
       refs.current = []
+      setSelectedIndex(-1)
     }
   }, [open])
 
@@ -68,27 +71,36 @@ const DropdownMultilevel = React.forwardRef<
     onKeyDown?.(event)
     if (open) {
       switch (event.key) {
-        case 'ArrowLeft':
-        case 'ArrowRight':
-          event.preventDefault()
-          break
         case 'ArrowUp':
           event.preventDefault()
           if (refs.current) {
-            console.log(refs.current[refs.current.length - 1]?.current)
-            refs.current[refs.current.length - 1]?.current?.focus()
+            if (selectedIndex === 0 || selectedIndex === -1) {
+              setSelectedIndex(refs.current.length - 1)
+              refs.current[refs.current.length - 1]?.current?.focus()
+            } else {
+              setSelectedIndex(selectedIndex - 1)
+              refs.current[selectedIndex - 1]?.current?.focus()
+            }
           }
           break
         case 'ArrowDown':
           event.preventDefault()
           if (refs.current) {
-            console.log(refs.current[0]?.current)
-
-            refs.current[0]?.current?.focus()
+            if (
+              selectedIndex === -1 ||
+              selectedIndex === refs.current.length - 1
+            ) {
+              setSelectedIndex(0)
+              refs.current[0]?.current?.focus()
+            } else {
+              setSelectedIndex(selectedIndex + 1)
+              refs.current[selectedIndex + 1]?.current?.focus()
+            }
           }
           break
         case 'Enter':
           event.preventDefault()
+          refs.current[selectedIndex]?.current?.click()
           break
         case 'Escape':
         case 'Tab':
@@ -103,6 +115,8 @@ const DropdownMultilevel = React.forwardRef<
       ref={dropdownRef}
       onKeyDown={handleKeyDown}
       css={css}
+      role='menu'
+      aria-labelledby={props['aria-labelledby']}
       {...delegated}
     >
       <DropdownMultilevelContext.Provider value={contextValue}>
