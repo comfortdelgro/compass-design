@@ -1,32 +1,32 @@
-import * as React from 'react';
-import clipboardCopy from 'clipboard-copy';
+import clipboardCopy from 'clipboard-copy'
+import * as React from 'react'
 
 export default function useClipboardCopy() {
-  const [isCopied, setIsCopied] = React.useState(false);
-  const timeout = React.useRef<ReturnType<typeof setTimeout> | undefined>();
-  const mounted = React.useRef(false);
+  const [isCopied, setIsCopied] = React.useState(false)
+  const timeout = React.useRef<ReturnType<typeof setTimeout> | undefined>()
+  const mounted = React.useRef(false)
 
   React.useEffect(() => {
-    mounted.current = true;
+    mounted.current = true
     return () => {
-      mounted.current = false;
-    };
-  }, []);
+      mounted.current = false
+    }
+  }, [])
 
   const copy = async (text: string) => {
     try {
-      setIsCopied(true);
-      clearTimeout(timeout.current);
+      setIsCopied(true)
+      clearTimeout(timeout.current)
       timeout.current = setTimeout(() => {
         if (mounted) {
-          setIsCopied(false);
+          setIsCopied(false)
         }
-      }, 1200);
-      await clipboardCopy(text);
+      }, 1200)
+      await clipboardCopy(text)
     } catch (error) {
       // ignore error
     }
-  };
+  }
 
-  return { copy, isCopied };
+  return {copy, isCopied}
 }

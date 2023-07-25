@@ -1,5 +1,11 @@
 ## 1.0.0-next.2
 
+## 2.7.0
+
+### Minor Changes
+
+- 463f1acf: Fix minor bugs in toggle, button, sidebar, radio
+
 ## 2.6.0
 
 ### Minor Changes
