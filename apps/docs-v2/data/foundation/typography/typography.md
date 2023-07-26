@@ -1,5 +1,5 @@
 {{"backgroundColor": #F4CAC2}}
-{{"imgSrc": https:\/\/s3-alpha-sig.figma.com/img/330e/fb28/f14e88bcf8b2a5de7ff7c31033655dee?Expires=1691366400&Signature=E91sD05bU3HN~Tgs~ouLwDqKJzDFK7~2QGyeOqOXh4FDxULOhgmvx4zBJx4qvoN-d2WpG5v2hwGMgzN~0CpMCjLvbeCQJu1puwUxLrSOia1MXAB9eaKZyz3jpHCJJjA5tUFFvTweLS9o~WOEDIanyYsbUcoYvT1l1LT2QscojGSzz4noIX9g5bLLcgn9pntqZ8eKG-xwxgv520M0LWqIpMF6R8q0vfCe2Qav4BgslUBEUag1z8M5ldNXNKaoenhcQ6idw9khKBPotj1AODEZtcFpKEJIS~WmDULADHTTG~I1GwI8sKPK3BcaUsn~atRZFIfEb5Uv-oSiNxgdKpM8jQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4}}
+{{"imgSrc": /static/images/typography-background.png}}
 
 # Typography
 
@@ -23,7 +23,7 @@ import Typography from '@comfortdelgro/react-compass/typography'
   We use our custom font, Poppins, for almost everything brand and marketing — from banner ads to billboards. It was designed to be incredibly versatile with lots of range in terms of tone and playfulness. It can be quirky and expressive when it needs to be, or neutral when the situation calls for something a bit more serious. On rare occasions, we also use native typography for selected elements.
 </p>
 
-{{"component": "data/foundation/typography/components/example-panel.tsx"}}
+{{"component": "data/foundation/typography/components/ExamplePanel.tsx"}}
 
 ## Usage
 
@@ -44,7 +44,7 @@ import Typography from '@comfortdelgro/react-compass/typography'
   The choice of font weight is also based on the principles of order, stability, and restraint. In most cases, just regular and bold should be enough.
 </P>
 
-{{"component": "data/foundation/typography/components/font-weight-example.tsx"}}
+{{"component": "data/foundation/typography/components/FontWeightExample.tsx"}}
 
 ## Variants
 
@@ -52,27 +52,27 @@ Compass Typography provides you with variant of pre-defined font-weight and font
 
 ### Display
 
-{{"demo": "/showcases/display-typography.tsx"}}
+{{"demo": "/showcases/DisplayTypography.tsx"}}
 
 ### Header
 
-{{"demo": "/showcases/header-typography.tsx"}}
+{{"demo": "/showcases/HeaderTypography.tsx"}}
 
 ### Body
 
-{{"demo": "/showcases/body-typography.tsx"}}
+{{"demo": "/showcases/BodyTypography.tsx"}}
 
 ### Labels
 
-{{"demo": "/showcases/labels-typography.tsx"}}
+{{"demo": "/showcases/LabelsTypography.tsx"}}
 
 ### Links
 
-{{"demo": "/showcases/links-typography.tsx"}}
+{{"demo": "/showcases/LinksTypography.tsx"}}
 
 ## Styling
 
-{{"demo": "/showcases/styled-typography.tsx"}}
+{{"demo": "/showcases/StyledTypography.tsx"}}
 
 ## Props
 

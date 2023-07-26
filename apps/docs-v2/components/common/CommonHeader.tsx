@@ -6,6 +6,7 @@ import {
   Typography,
 } from '@comfortdelgro/react-compass'
 import {usePageProps} from 'contexts/PageProps'
+import _ from 'lodash'
 import {useRouter} from 'next/router'
 import {useMemo} from 'react'
 
@@ -68,8 +69,8 @@ export const CommonHeaderTitle = () => {
     () =>
       pathname
         .split('/')
-        .filter((segment) => segment !== '')
-        .map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1)),
+        .filter((segment) => !_.isEmpty(segment))
+        .map((segment) => _.capitalize(segment)),
     [pathname],
   )
 
@@ -102,6 +103,9 @@ export const CommonHeaderTitle = () => {
         css={{
           fontSize: '46px',
           fontWeight: 700,
+          '@max_768': {
+            fontSize: '32px'
+          }
         }}
       >
         {pageProps?.title}
