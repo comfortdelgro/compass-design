@@ -121,6 +121,8 @@ const MultipleDropdownItem = React.forwardRef<
       onClick={handleItemClick}
       isDisabled={isDisabled}
       css={css}
+      role='option'
+      aria-selected={isSelected}
       {...delegated}
     >
       <StyledContent>{children}</StyledContent>

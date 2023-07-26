@@ -141,6 +141,8 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
         isDisabled={isDisabled}
         onClick={handleItemClick}
         ref={dropdownItemRef}
+        role='option'
+        aria-selected={isSelected}
         {...delegated}
       >
         {leftIcon && <StyledItemIcon>{leftIcon}</StyledItemIcon>}

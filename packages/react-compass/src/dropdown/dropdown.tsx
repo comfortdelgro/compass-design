@@ -119,6 +119,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     disableClearable = false,
     prefix = null,
     noDataMessage = '',
+    label,
     onSelectionChange = EMPTY_FUNC,
     onFocus = EMPTY_FUNC,
     onBlur = EMPTY_FUNC,
@@ -211,101 +212,116 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
 
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
-      const currentFocusKey = (focusKey || selectedItem?.value.toString()) ?? ''
-      switch (event.key) {
-        case 'ArrowUp':
-        case 'ArrowLeft':
-          event.preventDefault()
-          // Check if focus key exists
-          if (currentFocusKey) {
-            const nextKey = getItemAbove(
-              currentFocusKey,
-              clonedChildren,
-              dropdownItemKeys,
-            )
-            const itemKey =
-              nextKey?.props.value ??
-              nextKey?.key?.toString().replace('.$', '') ??
-              ''
-            if (itemKey) {
-              setFocusKey(itemKey)
-            }
-          } else {
-            setFocusKey(
-              getLastItem(
+      if (open) {
+        const currentFocusKey =
+          (focusKey || selectedItem?.value.toString()) ?? ''
+        switch (event.key) {
+          case 'ArrowUp':
+          case 'ArrowLeft':
+            event.preventDefault()
+            // Check if focus key exists
+            if (currentFocusKey) {
+              const nextKey = getItemAbove(
+                currentFocusKey,
                 clonedChildren,
                 dropdownItemKeys,
-              )?.props?.value?.toString() ?? '',
-            )
-          }
-          break
-        case 'ArrowDown':
-        case 'ArrowRight':
-          event.preventDefault()
-          if (currentFocusKey) {
-            const prevKey = getItemBelow(
-              currentFocusKey,
-              clonedChildren,
-              dropdownItemKeys,
-            )
-            const itemKey =
-              prevKey?.props.value ??
-              prevKey?.key?.toString().replace('.$', '') ??
-              ''
-
-            if (itemKey) {
-              setFocusKey(itemKey)
+              )
+              const itemKey =
+                nextKey?.props.value ??
+                nextKey?.key?.toString().replace('.$', '') ??
+                ''
+              if (itemKey) {
+                setFocusKey(itemKey)
+              }
+            } else {
+              setFocusKey(
+                getLastItem(
+                  clonedChildren,
+                  dropdownItemKeys,
+                )?.props?.value?.toString() ?? '',
+              )
             }
-          } else {
-            setFocusKey(
-              getFirstItem(
+            break
+          case 'ArrowDown':
+          case 'ArrowRight':
+            event.preventDefault()
+            if (currentFocusKey) {
+              const prevKey = getItemBelow(
+                currentFocusKey,
                 clonedChildren,
                 dropdownItemKeys,
-              )?.props?.value?.toString() ?? '',
-            )
-          }
-          break
-        case 'Enter':
-          event.preventDefault()
-          if (currentFocusKey) {
-            const focusedItem = getItemByKey(currentFocusKey, clonedChildren)
-            if (focusedItem) {
-              setOpen(false)
-              onOpenChange?.(false)
-              // Deselect item
-              if (
-                !disableClearable &&
-                shouldDeselect &&
-                selectedItem?.value === focusedItem.props.value
-              ) {
-                setValueForItemAndFocusKey(null)
-                onSelectionChange?.('')
-                return
-              }
-              setValueForItemAndFocusKey({
-                value: focusedItem?.props?.value?.toString() ?? '',
-                displayValue:
-                  focusedItem.props.textValue || focusedItem.props.children,
-                flagName: focusedItem.props.flagName ?? '',
-              })
-              if (inputRef.current) {
-                inputRef.current.value = textContent(
-                  focusedItem.props.children as React.ReactElement,
-                )
-              }
-              onSelectionChange?.(focusedItem?.props?.value as Key)
-            }
-          }
+              )
+              const itemKey =
+                prevKey?.props.value ??
+                prevKey?.key?.toString().replace('.$', '') ??
+                ''
 
-          break
-        case 'Escape':
-        case 'Tab':
-          setOpen(false)
-          onOpenChange?.(false)
-          break
+              if (itemKey) {
+                setFocusKey(itemKey)
+              }
+            } else {
+              setFocusKey(
+                getFirstItem(
+                  clonedChildren,
+                  dropdownItemKeys,
+                )?.props?.value?.toString() ?? '',
+              )
+            }
+            break
+          case 'Enter':
+            event.preventDefault()
+            if (currentFocusKey) {
+              const focusedItem = getItemByKey(currentFocusKey, clonedChildren)
+              if (focusedItem) {
+                setOpen(false)
+                onOpenChange?.(false)
+                // Deselect item
+                if (
+                  !disableClearable &&
+                  shouldDeselect &&
+                  selectedItem?.value === focusedItem.props.value
+                ) {
+                  setValueForItemAndFocusKey(null)
+                  onSelectionChange?.('')
+                  return
+                }
+                setValueForItemAndFocusKey({
+                  value: focusedItem?.props?.value?.toString() ?? '',
+                  displayValue:
+                    focusedItem.props.textValue || focusedItem.props.children,
+                  flagName: focusedItem.props.flagName ?? '',
+                })
+                if (inputRef.current) {
+                  inputRef.current.value = textContent(
+                    focusedItem.props.children as React.ReactElement,
+                  )
+                }
+                onSelectionChange?.(focusedItem?.props?.value as Key)
+              }
+            }
+
+            break
+          case 'Escape':
+          case 'Tab':
+            setOpen(false)
+            onOpenChange?.(false)
+            break
+        }
+      } else {
+        switch (event.key) {
+          case 'ArrowUp':
+          case 'ArrowDown':
+            event.preventDefault()
+            setOpen(true)
+            onOpenChange?.(true)
+            break
+          default:
+            break
+        }
       }
     },
     [
+      open,
       disableClearable,
       shouldDeselect,
       focusKey,
@@ -318,15 +334,15 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   )
 
   useEffect(() => {
-    if (open) {
-      document.addEventListener('keydown', handleKeyDown)
-    } else {
-      document.removeEventListener('keydown', handleKeyDown)
+    if (selectRef.current) {
+      selectRef.current.addEventListener('keydown', handleKeyDown)
     }
     return () => {
-      document.removeEventListener('keydown', handleKeyDown)
+      if (selectRef.current) {
+        selectRef.current.removeEventListener('keydown', handleKeyDown)
+      }
     }
-  }, [open, handleKeyDown])
+  }, [handleKeyDown])
 
   const handleDropdownToggle = useCallback(() => {
     setOpen((v) => !v)
@@ -427,8 +443,10 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           <StyledSelect
             isEmpty={!selectedItem}
             className='cdg-dropdown-input'
+            role='button'
             isErrored={!!isErrored}
             isDisabled={isDisabled}
+            aria-required={isRequired}
           >
             <button
               id={id}
@@ -457,8 +475,10 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           <StyledComboBox
             isEmpty={!selectedItem}
             className='cdg-dropdown-input'
+            role='button'
             isErrored={!!isErrored}
             isDisabled={isDisabled}
+            aria-required={isRequired}
           >
             <input
               id={id}
@@ -470,6 +490,10 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
               onBlur={onBlur}
               onFocus={onFocus}
               onClick={handleDropdownToggle}
+              aria-autocomplete='list'
+              role='combobox'
+              aria-invalid={isErrored}
+              aria-expanded={open}
             />
             <button
               type='button'
@@ -553,9 +577,9 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       ref={selectRef}
       {...delegated}
     >
-      {props.label && (
-        <label htmlFor={id}>
-          {props.label}
+      {label && (
+        <label htmlFor={id} id={`${id}-label`}>
+          {label}
           {isRequired && <span>*</span>}
         </label>
       )}
@@ -567,6 +591,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           defaultSelectedKey,
           disabledKeys,
           searchValue,
+          labelId: `${id}-label`,
           selectedItem,
           setSelectedItem,
           dropdownItemKeys,

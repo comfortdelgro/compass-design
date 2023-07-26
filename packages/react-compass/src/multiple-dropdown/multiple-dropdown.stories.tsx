@@ -445,7 +445,6 @@ export const Default: React.FC = () => {
             title='Group 1'
             isClickable
             checkmark='tick'
-            // id='cdg-group-1'
             isChecked={isChecked}
             onClick={(title: React.ReactNode) => {
               setIsChecked(!isChecked)
