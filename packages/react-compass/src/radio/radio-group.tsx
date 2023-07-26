@@ -19,6 +19,7 @@ interface Props extends StyledComponentProps {
   defaultValue?: string
   onChange?: (value: string) => void
   onBlur?: () => void
+  'aria-labelledby'?: string
 }
 
 export type RadioGroupProps = Props &
@@ -34,6 +35,7 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
       onChange,
       onBlur,
       css = {},
+      'aria-labelledby': ariaLabelledBy = '',
       ...delegated
     } = props
 
@@ -60,6 +62,17 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
     }
 
     useEffect(() => {
+      const radioButtons: HTMLDivElement[] = Array.from(
+        groupRef.current?.querySelectorAll('[role="radio"]') || [],
+      ).filter((el): el is HTMLDivElement => {
+        return (
+          el instanceof HTMLDivElement &&
+          el.getAttribute('aria-disabled') !== 'true'
+        )
+      })
+      if (radioButtons.length > 0 && radioButtons[0] !== undefined) {
+        radioButtons[0].tabIndex = 0
+      }
       if (onMountRef.current) {
         if (!selectedValue) return
         onChange && onChange(selectedValue)
@@ -68,6 +81,98 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
       }
     }, [selectedValue])
 
+    const focusNextRadio = () => {
+      const activeElement = document.activeElement as HTMLDivElement | null
+      if (!activeElement || !groupRef.current) {
+        return
+      }
+
+      const radioButtons: HTMLDivElement[] = Array.from(
+        groupRef.current?.querySelectorAll('[role="radio"]') || [],
+      ).filter((el): el is HTMLDivElement => {
+        return (
+          el instanceof HTMLDivElement &&
+          el.getAttribute('aria-disabled') !== 'true'
+        )
+      })
+      const currentIndex = radioButtons.findIndex(
+        (radio) => radio === activeElement,
+      )
+      const nextIndex = (currentIndex + 1) % radioButtons.length
+      radioButtons[nextIndex]?.focus()
+      const value =
+        radioButtons[nextIndex]?.getAttribute('aria-valuetext') || selectedValue
+      setSelectedValue(value)
+    }
+
+    const focusPreviousRadio = () => {
+      const activeElement = document.activeElement as HTMLDivElement | null
+      if (!activeElement || !groupRef.current) {
+        return
+      }
+
+      const radioButtons: HTMLDivElement[] = Array.from(
+        groupRef.current?.querySelectorAll('[role="radio"]') || [],
+      ).filter((el): el is HTMLDivElement => {
+        return (
+          el instanceof HTMLDivElement &&
+          el.getAttribute('aria-disabled') !== 'true'
+        )
+      })
+      const currentIndex = radioButtons.findIndex(
+        (radio) => radio === activeElement,
+      )
+      const previousIndex =
+        (currentIndex - 1 + radioButtons.length) % radioButtons.length
+      radioButtons[previousIndex]?.focus()
+      const value =
+        radioButtons[previousIndex]?.getAttribute('aria-valuetext') ||
+        selectedValue
+      setSelectedValue(value)
+    }
+
+    const handleKeydown = useCallback(
+      (event: React.KeyboardEvent<HTMLDivElement>) => {
+        const activeElement = document.activeElement as HTMLDivElement | null
+        if (!activeElement) {
+          return
+        }
+        const role = activeElement.getAttribute('role')
+        if (role !== 'radio') {
+          return
+        }
+
+        let flag = false
+
+        switch (event.key.toLowerCase()) {
+          case 'up':
+          case 'arrowup':
+          case 'left':
+          case 'arrowleft':
+            focusPreviousRadio()
+            flag = true
+            break
+
+          case 'down':
+          case 'arrowdown':
+          case 'right':
+          case 'arrowright':
+            focusNextRadio()
+            flag = true
+            break
+
+          default:
+            break
+        }
+
+        if (flag) {
+          event.stopPropagation()
+          event.preventDefault()
+        }
+      },
+      [],
+    )
+
     return (
       <StyledRadioGroup
         ref={groupRef}
@@ -75,7 +180,9 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
         css={css}
         onBlur={handleBlur}
         {...delegated}
-        tabIndex={0}
+        onKeyDown={handleKeydown}
+        aria-labelledby={ariaLabelledBy}
+        role=''
       >
         <RadioContext.Provider
           value={{value: handleControl(), handleOnClickRadionButton}}

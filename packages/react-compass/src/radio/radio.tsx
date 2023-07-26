@@ -56,11 +56,14 @@ const Radio: React.FC<RadioProps> = (props) => {
   return (
     <StyledRadio
       css={css}
-      tabIndex={0}
+      tabIndex={-1}
       variant={variant}
       disabled={isDisabled}
       onClick={onClick}
       onKeyDown={handleKeyDown}
+      role='radio'
+      aria-disabled={isDisabled}
+      aria-valuetext={value}
       {...delegated}
     >
       <div className='radio-wrapper'>
