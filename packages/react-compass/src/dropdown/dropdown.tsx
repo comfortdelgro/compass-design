@@ -190,7 +190,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       DropdownItem,
     )
     const newItems = React.Children.map(items, (child) => {
-      if (!child) return
+      if (!child) return child
       if (!React.isValidElement(child)) return child
       if (child.type !== DropdownItem) return child
       const childWithProps = child as React.ReactElement<{value?: string}>
