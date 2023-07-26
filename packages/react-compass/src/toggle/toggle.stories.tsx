@@ -30,10 +30,10 @@ export const State: React.FC = () => {
       <Toggle
         size='lg'
         isSelected={value}
-        onChange={(value) => {
-          console.log('value', value)
-          setValue(value)
-        }}
+        // onChange={(value) => {
+        //   console.log('value', value)
+        //   setValue(value)
+        // }}
       />
 
       <h3>UnControlled</h3>
