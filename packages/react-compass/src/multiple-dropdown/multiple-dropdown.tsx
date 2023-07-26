@@ -163,6 +163,8 @@ const MultipleDropdown = React.forwardRef<
   const recursivelyAddValueProp = (
     children: React.ReactNode,
   ): React.ReactNode => {
+    if (typeof children === 'string') return children
+
     let sectionIndex = -1
     return React.Children.map(children, (child) => {
       if (!child) return child

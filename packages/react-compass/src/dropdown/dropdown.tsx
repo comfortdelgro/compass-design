@@ -186,6 +186,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   const recursivelyAddValueProp = (
     children: React.ReactNode,
   ): React.ReactNode => {
+    if (typeof children === 'string') return children
+
     return React.Children.map(children, (child) => {
       if (!child) return child
 
@@ -221,8 +223,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     (item: SelectedItemDropdown | null) => {
       if (isUncontrolledComponent) {
         setSelectedItem(item)
-        console.log('setValueForItemAndFocusKey: ', item?.value ?? '')
-
         setFocusKey(item?.value ?? '')
       }
     },
