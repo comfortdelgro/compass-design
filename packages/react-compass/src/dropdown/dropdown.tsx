@@ -119,6 +119,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     disableClearable = false,
     prefix = null,
     noDataMessage = '',
+    label,
     onSelectionChange = EMPTY_FUNC,
     onFocus = EMPTY_FUNC,
     onBlur = EMPTY_FUNC,
@@ -442,8 +443,10 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           <StyledSelect
             isEmpty={!selectedItem}
             className='cdg-dropdown-input'
+            role='button'
             isErrored={!!isErrored}
             isDisabled={isDisabled}
+            aria-required={isRequired}
           >
             <button
               id={id}
@@ -472,8 +475,10 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           <StyledComboBox
             isEmpty={!selectedItem}
             className='cdg-dropdown-input'
+            role='button'
             isErrored={!!isErrored}
             isDisabled={isDisabled}
+            aria-required={isRequired}
           >
             <input
               id={id}
@@ -485,6 +490,10 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
               onBlur={onBlur}
               onFocus={onFocus}
               onClick={handleDropdownToggle}
+              aria-autocomplete='list'
+              role='combobox'
+              aria-invalid={isErrored}
+              aria-expanded={open}
             />
             <button
               type='button'
@@ -568,9 +577,9 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       ref={selectRef}
       {...delegated}
     >
-      {props.label && (
-        <label htmlFor={id}>
-          {props.label}
+      {label && (
+        <label htmlFor={id} id={`${id}-label`}>
+          {label}
           {isRequired && <span>*</span>}
         </label>
       )}
@@ -582,6 +591,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           defaultSelectedKey,
           disabledKeys,
           searchValue,
+          labelId: `${id}-label`,
           selectedItem,
           setSelectedItem,
           dropdownItemKeys,

@@ -32,7 +32,7 @@ const DropdownList: React.FC<DropdownItemListProps> = (
   const standEl = useDOMRef<HTMLDivElement>(null)
 
   const isInViewport = useIsInViewport(lastEl)
-  const {searchValue} = useContext(DropdownContext)
+  const {searchValue, labelId} = useContext(DropdownContext)
 
   const {child: DropdownHeaderElement, rest: dropdownItems} = pickChild<
     typeof DropdownHeader
@@ -68,7 +68,7 @@ const DropdownList: React.FC<DropdownItemListProps> = (
     () => (
       <>
         {DropdownHeaderElement && DropdownHeaderElement}
-        <StyledDropdownList css={css}>
+        <StyledDropdownList css={css} role='listbox' aria-labelledby={labelId}>
           {isLoading ? (
             <DropdownLoading />
           ) : displayedItemsCount === 0 ? (

@@ -491,6 +491,7 @@ const MultipleDropdown = React.forwardRef<
           disabledKeys,
           searchValue: search,
           selectedItems,
+          labelId: `${id}-label`,
           setSelectedItems,
           dropdownItemKeys,
           setDropdownItemKeys,
@@ -501,8 +502,8 @@ const MultipleDropdown = React.forwardRef<
         }}
       >
         {label && (
-          <label onClick={handleOpen} htmlFor={id}>
-            {props.label}
+          <label onClick={handleOpen} htmlFor={id} id={`${id}-label`}>
+            {label}
             {isRequired && <span>*</span>}
           </label>
         )}
@@ -518,6 +519,7 @@ const MultipleDropdown = React.forwardRef<
               onClick={handleOpen}
               onBlur={onBlur}
               onFocus={onFocus}
+              role='button'
             >
               <StyledSelectedItemWrapper className='selectedItemWrapper'>
                 {selectedItems.length === 0 &&
@@ -560,6 +562,11 @@ const MultipleDropdown = React.forwardRef<
                     onChange={handleInputChange}
                     onBlur={() => setFocused(false)}
                     onFocus={() => setFocused(true)}
+                    aria-autocomplete='list'
+                    role='combobox'
+                    aria-required={isRequired}
+                    aria-invalid={isErrored}
+                    aria-expanded={open}
                   />
                 )}
               </StyledSelectedItemWrapper>

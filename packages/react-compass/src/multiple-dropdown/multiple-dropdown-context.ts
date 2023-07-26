@@ -31,12 +31,14 @@ export interface MultipleDropdownContextType {
   setSelectedSectionIds: React.Dispatch<
     React.SetStateAction<Array<string | number>>
   >
+  labelId: string
 }
 
 export const MultipleDropdownContext =
   createContext<MultipleDropdownContextType>({
     open: false,
     searchValue: '',
+    labelId: '',
     selectedItems: [],
     disabledKeys: [],
     selectedKeys: [],
