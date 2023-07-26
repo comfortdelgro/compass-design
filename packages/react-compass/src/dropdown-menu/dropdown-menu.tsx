@@ -83,6 +83,9 @@ const DropdownMenu = React.forwardRef<HTMLDivElement, DropdownMenuProps>(
       onKeyDown?.(event)
       if (open) {
         switch (event.key) {
+          case 'ArrowRight':
+            console.log(refs.current[selectedIndex])
+            break
           case 'ArrowUp':
             event.preventDefault()
             if (refs.current) {

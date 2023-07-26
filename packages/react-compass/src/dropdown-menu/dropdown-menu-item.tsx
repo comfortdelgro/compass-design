@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react'
+import React, {useCallback, useContext, useEffect, useState} from 'react'
 import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -46,26 +46,30 @@ const DropdownMenuItem = React.forwardRef<HTMLLIElement, DropdownMenuItemProps>(
       eventKey,
       onClick,
       onSelect,
+      onBlur,
+      onFocus,
       ...delegated
     } = props
 
-    const {child} = pickChild<typeof DropdownMenuSubmenu>(
+    const [focusing, setFocusing] = useState(false)
+
+    const {child: subMenuChild} = pickChild<typeof DropdownMenuSubmenu>(
       children,
       DropdownMenuSubmenu,
     )
-    const DropdownMenuItemRef = useDOMRef<HTMLLIElement>(ref)
+    const dropdownMenuItemRef = useDOMRef<HTMLLIElement>(ref)
 
     const {refs} = useContext(DropdownMenuContext)
 
     useEffect(() => {
       if (refs?.current) {
         if (
-          DropdownMenuItemRef.current?.parentElement?.className.includes(
+          dropdownMenuItemRef.current?.parentElement?.className.includes(
             MULTILEVEL_MENU_CLASS_NAME,
           ) &&
           !isDisabled
         ) {
-          refs.current.push(DropdownMenuItemRef)
+          refs.current.push(dropdownMenuItemRef)
         }
       }
     }, [])
@@ -77,22 +81,53 @@ const DropdownMenuItem = React.forwardRef<HTMLLIElement, DropdownMenuItemProps>(
       }
     }
 
+    const handleDropdownMenuItemKeyDown = useCallback(
+      (event: React.KeyboardEvent<HTMLLIElement>) => {
+        if (focusing) {
+          if (event.key === 'ArrowRight') {
+            event.stopPropagation()
+            event.preventDefault()
+            const subMenuArr = React.Children.toArray(subMenuChild)
+            subMenuArr.forEach((itemSubMenu, index) => {
+              if (index === 0) {
+                console.log(itemSubMenu)
+              }
+            })
+          } else if (event.key === 'ArrowLeft') {
+            event.stopPropagation()
+            event.preventDefault()
+            console.log('close children')
+          }
+        }
+      },
+      [subMenuChild, focusing],
+    )
+
     return (
       <StyledDropdownMenuItem
         css={css}
-        ref={DropdownMenuItemRef}
+        ref={dropdownMenuItemRef}
         className={`cdg-dropdown-multilevel-item ${className ?? ''}`}
         tabIndex={-1}
-        role={child ? 'none presentation' : 'menuitem'}
-        aria-haspopup={!!child}
+        role={subMenuChild ? 'none presentation' : 'menuitem'}
+        aria-haspopup={!!subMenuChild}
         aria-disabled={isDisabled}
         isDisabled={isDisabled}
         isActived={isActived}
         onClick={handleItemClick}
+        onKeyDown={handleDropdownMenuItemKeyDown}
+        onFocus={(event) => {
+          onFocus?.(event)
+          setFocusing(true)
+        }}
+        onBlur={(event) => {
+          onBlur?.(event)
+          setFocusing(false)
+        }}
         {...delegated}
       >
         {children}
-        {!!child && <ArrowRightIcon />}
+        {!!subMenuChild && <ArrowRightIcon />}
       </StyledDropdownMenuItem>
     )
   },
