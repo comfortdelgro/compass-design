@@ -20,8 +20,15 @@ export interface DropdownSectionBase extends StyledComponentProps {
   children: React.ReactNode
   isClickable?: boolean
   onClick?: (title: React.ReactNode) => void
+  onSectionClick?: (
+    items: SelectedItemDropdown[],
+    checking: boolean,
+    id: string | number,
+    index: number,
+  ) => void
   isChecked?: boolean
   checkmark?: 'checkbox' | 'tick'
+  index?: number
 }
 
 export type DropdownSectionProps = DropdownSectionBase &
@@ -40,16 +47,17 @@ const MultipleDropdownSection = React.forwardRef<
     css = {},
     checkmark = 'checkbox',
     isChecked,
+    index = -1,
     onClick,
+    onSectionClick,
     ...delegated
   } = props
 
-  const {onSectionClick, selectedSectionIds} = useContext(
-    MultipleDropdownContext,
-  )
+  const {onSectionClick: onSectionClickContext, selectedSectionIndexes} =
+    useContext(MultipleDropdownContext)
 
   const [checking, setChecking] = React.useState(
-    isChecked ?? selectedSectionIds.includes(id),
+    isChecked ?? selectedSectionIndexes.includes(index),
   )
 
   const [clonedChildren, setClonedChildren] = useState<React.ReactNode>(null)
@@ -90,7 +98,8 @@ const MultipleDropdownSection = React.forwardRef<
         displayValue: typedChild.props.textValue ?? typedChild.props.children,
       }
     })
-    onSectionClick(itemsInSection, !checking, id)
+    onSectionClickContext(itemsInSection, !checking, id, index)
+    onSectionClick?.(itemsInSection, !checking, id, index)
     setChecking(!checking)
   }
 
