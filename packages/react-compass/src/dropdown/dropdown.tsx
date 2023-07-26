@@ -14,7 +14,7 @@ import {
   DropdownItemKey,
   SelectedItemDropdown,
 } from './dropdown-context'
-import DropdownItem from './dropdown-item'
+import DropdownItem, {DropdownItemProps} from './dropdown-item'
 import DropdownList from './dropdown-list'
 import DropdownComboBox from './dropdown.combobox'
 import DropdownHeader from './dropdown.header'
@@ -191,7 +191,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
 
       if (React.isValidElement(child)) {
         if (child.type === DropdownItem) {
-          const childWithProps = child as React.ReactElement<{value?: string}>
+          const childWithProps = child as React.ReactElement<DropdownItemProps>
           if (!('value' in childWithProps.props)) {
             return React.cloneElement(childWithProps, {
               value: `${child.key}` || '',
