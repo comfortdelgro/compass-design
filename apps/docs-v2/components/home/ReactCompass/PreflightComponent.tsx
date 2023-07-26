@@ -2,16 +2,24 @@ import {Box, Button} from '@comfortdelgro/react-compass'
 import HighlightedCode from 'components/common/HighlightedCode'
 import MarkdownElement from '../../markdown/MarkdownElement'
 import ShowcaseContainer from './ShowcaseContainer'
-import ShowcaseDemo, {componentCode} from './ShowcaseDemo'
 
-export default function CoreShowcase() {
+const componentCode = `import Preflight from '@comfortdelgro/react-compass/preflight'
+import {AppProps} from 'next/app'
+ 
+const App: React.FC<AppProps> = ({Component, pageProps}) => {
+  return (
+    <>
+      <Preflight />
+      <Component {...pageProps} />
+    </>
+  )
+}
+ 
+export default App`
+
+export default function PreflightComponent() {
   return (
     <ShowcaseContainer
-      // preview={
-        // <Box css={{padding: '$8'}}>
-          // {/* <ShowcaseDemo /> */}
-        // </Box>
-      // }
       code={
         <Box>
           <Box

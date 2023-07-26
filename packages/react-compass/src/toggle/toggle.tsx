@@ -1,6 +1,7 @@
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
+import {useId} from '../utils/useId'
 import {StyledToggle, ToggleVariantProps} from './toggle.styles'
 
 interface Props extends StyledComponentProps {
@@ -32,33 +33,39 @@ interface Props extends StyledComponentProps {
   className?: string
 }
 
-export type ToggleProps = Props & ToggleVariantProps
+export type ToggleProps = Props &
+  ToggleVariantProps &
+  Omit<React.HTMLAttributes<HTMLInputElement>, keyof Props>
 
 const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>((props, ref) => {
   const {
+    id,
     size = 'sm',
     name,
-    isSelected = !!props.defaultSelected,
+    isSelected,
+    defaultSelected,
     isReadOnly = false,
     isRequired = false,
     isDisabled = false,
     css = {},
     className,
   } = props
-  const [isSelectedState, setIsSelectedState] = React.useState(isSelected)
+  const [isActive, setIsActive] = React.useState(
+    !!isSelected || !!defaultSelected,
+  )
+  const toggleId = useId(id)
   const toggleRef = useDOMRef<HTMLInputElement>(ref)
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value === 'true'
-    setIsSelectedState(value)
+    const value = e.target.checked
+    // Prevent set active status when controlled without onChange
+    if (!(isSelected !== undefined && !props.onChange)) setIsActive(value)
     props.onChange?.(value)
   }
 
   const onClick = () => {
-    if (!isDisabled && !isReadOnly) {
-      const value = !isSelectedState
-      setIsSelectedState(value)
-      props.onChange?.(value)
+    if (!isReadOnly && !isDisabled) {
+      toggleRef.current?.click()
     }
   }
 
@@ -70,8 +77,8 @@ const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>((props, ref) => {
   }
 
   React.useEffect(() => {
-    setIsSelectedState(isSelected)
-  }, [isSelected])
+    setIsActive(!!isSelected || !!defaultSelected)
+  }, [isSelected, defaultSelected])
 
   return (
     <StyledToggle
@@ -79,29 +86,32 @@ const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>((props, ref) => {
       size={size}
       tabIndex={isDisabled ? -1 : 0}
       className={className}
-      active={isSelectedState}
+      active={isActive}
       disabled={!!props.isDisabled}
       onClick={onClick}
       onKeyDown={handleKeyDown}
     >
       <input
-        aria-controls={props['aria-controls']}
+        name={name}
+        id={toggleId}
+        type='checkbox'
+        ref={toggleRef}
+        checked={isSelected}
+        disabled={isDisabled}
+        readOnly={isReadOnly}
+        required={isRequired}
+        defaultChecked={defaultSelected}
+        onChange={onChange}
+        onBlur={props.onBlur}
+        onKeyUp={props.onKeyUp}
+        onFocus={props.onFocus}
+        onKeyDown={props.onKeyDown}
         aria-label={props['aria-label']}
+        aria-controls={props['aria-controls']}
+        aria-details={props['aria-details']}
         aria-labelledby={props['aria-labelledby']}
         aria-describedby={props['aria-describedby']}
-        aria-details={props['aria-details']}
         aria-errormessage={props['aria-errormessage']}
-        readOnly={!!isReadOnly}
-        required={!!isRequired}
-        name={name}
-        value={isSelectedState.toString()}
-        onChange={onChange}
-        onFocus={props.onFocus}
-        onBlur={props.onBlur}
-        onKeyDown={props.onKeyDown}
-        onKeyUp={props.onKeyUp}
-        ref={toggleRef}
-        style={{display: 'none'}}
       />
       <div className='toggle-circle' />
     </StyledToggle>
