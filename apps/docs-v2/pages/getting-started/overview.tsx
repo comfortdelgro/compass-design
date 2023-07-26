@@ -69,7 +69,7 @@ export default function Page() {
             zIndex: 1,
             display: 'flex',
             alignItems: 'center',
-            padding: '80px 40px',
+            padding: '80px $16',
           }}
         >
           <Box>
