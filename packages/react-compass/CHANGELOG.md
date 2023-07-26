@@ -1,5 +1,11 @@
 ## 1.0.0-next.2
 
+## 2.8.0
+
+### Minor Changes
+
+- 40b6fcab: Fix bugs in multiple-dropdown
+
 ## 2.7.0
 
 ### Minor Changes
