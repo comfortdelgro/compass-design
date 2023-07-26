@@ -5,8 +5,11 @@ const prism = require('./prism')
 
 const headerRegExp = /---[\r\n]([\s\S]*)[\r\n]---/
 const titleRegExp = /# (.*)[\r\n]/
-const descriptionRegExp = /<p class="description">(.*?)<\/p>/s
+const descriptionRegExp = /<p class="description(.*?)">(.*?)<\/p>/s
 const headerKeyValueRegExp = /(.*?):[\r\n]?\s+(\[[^\]]+\]|.*)/g
+const backgroundColorExp = /{{"backgroundColor":(.*?)}}/s
+const backgroundImageExp = /{{"backgroundImage":(.*?)}}/s
+const imgSrcExp = /{{"imgSrc":(.*?)}}/s
 const emptyRegExp = /^\s*$/
 
 /**
@@ -172,6 +175,30 @@ function getDescription(markdown) {
     return undefined
   }
 
+  return matches[2].trim().replace(/`/g, '')
+}
+
+function getBackgroundColor(markdown) {
+  const matches = markdown.match(backgroundColorExp)
+  if (matches === null) {
+    return undefined
+  }
+  return matches[1].trim().replace(/`/g, '')
+}
+
+function getBackgroundImage(markdown) {
+  const matches = markdown.match(backgroundImageExp)
+  if (matches === null) {
+    return undefined
+  }
+  return matches[1].trim().replace(/`/g, '')
+}
+
+function getImageSource(markdown) {
+  const matches = markdown.match(imgSrcExp)
+  if (matches === null) {
+    return undefined
+  }
   return matches[1].trim().replace(/`/g, '')
 }
 
@@ -390,6 +417,9 @@ function prepareMarkdown(config) {
       const location = headers.filename || `/${fileRelativeContext}/${filename}`
       const title = headers.title || getTitle(markdown)
       const description = headers.description || getDescription(markdown)
+      const backgroundColor = getBackgroundColor(markdown)
+      const backgroundImage = getBackgroundImage(markdown)
+      const imgSrc = getImageSource(markdown)
 
       if (title == null || title === '') {
         throw new Error(`docs-infra: Missing title in the page: ${location}\n`)
@@ -515,6 +545,9 @@ function prepareMarkdown(config) {
         toc,
         title,
         headers,
+        backgroundColor,
+        backgroundImage,
+        imgSrc,
       }
     })
 

@@ -8,3 +8,15 @@ export type TSideNavItem = {
   title: string
   icon?: IconDefinition
 }
+
+export type TPageProps = {
+  description?: string
+  disableAd?: boolean
+  disableToc?: boolean
+  location?: string
+  title?: string
+  toc?: unknown
+  backgroundColor?: string
+  backgroundImage?: string
+  imgSrc?: string
+}
