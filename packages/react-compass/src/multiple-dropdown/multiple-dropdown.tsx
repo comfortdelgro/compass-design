@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react'
+import React, {useCallback, useEffect} from 'react'
 import Chip from '../chip'
 import Popover from '../popover'
 import {StyledComponentProps} from '../utils/stitches.types'
@@ -8,10 +8,14 @@ import {
   MultipleDropdownContext,
   SelectedItemDropdown,
 } from './multiple-dropdown-context'
-import MultipleDropdownItem from './multiple-dropdown-item'
+import MultipleDropdownItem, {
+  MultipleDropdownItemProps,
+} from './multiple-dropdown-item'
 import MultipleDropdownList from './multiple-dropdown-list'
 import MultipleDropdownHeader from './multiple-dropdown.header'
-import MultipleDropdownSection from './multiple-dropdown.section'
+import MultipleDropdownSection, {
+  DropdownSectionProps,
+} from './multiple-dropdown.section'
 import {
   DropdownVariantProps,
   StyledDropdown,
@@ -156,31 +160,48 @@ const MultipleDropdown = React.forwardRef<
 
   // clone children to assign value prop if not exists. the value would be equal to the key prop
   // This is to support the legacy code where users don't pass value prop and use key prop instead
-  React.useEffect(() => {
+  const recursivelyAddValueProp = (
+    children: React.ReactNode,
+  ): React.ReactNode => {
+    if (typeof children === 'string') return children
+
     let sectionIndex = -1
-    const clonedChildren = React.Children.map(children, (child) => {
-      const clonedChild = React.cloneElement(child as React.ReactElement)
-      // Set value for MultipleDropdownItem missing value
-      if (
-        clonedChild.type === MultipleDropdownItem &&
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        !clonedChild?.props?.value
-      ) {
-        return React.cloneElement(clonedChild, {
-          value: clonedChild.key || '',
-        })
+    return React.Children.map(children, (child) => {
+      if (!child) return child
+
+      if (React.isValidElement(child)) {
+        if (child.type === MultipleDropdownItem) {
+          const childWithProps =
+            child as React.ReactElement<MultipleDropdownItemProps>
+          if (!('value' in childWithProps.props)) {
+            return React.cloneElement(childWithProps, {
+              value: `${child.key}` || '',
+            })
+          }
+        }
+
+        const childProps = child as React.ReactElement<
+          Pick<DropdownSectionProps, 'index' | 'children'>
+        >
+        if (childProps.props.children) {
+          const newProps: Pick<DropdownSectionProps, 'index' | 'children'> = {
+            children: recursivelyAddValueProp(childProps.props.children),
+          }
+          //   // Set index for MultipleDropdownSection to handle selected section by index
+          if (childProps.type === MultipleDropdownSection) {
+            sectionIndex++
+            newProps.index = sectionIndex
+          }
+          return React.cloneElement(childProps, {...newProps})
+        }
       }
-      // Set index for MultipleDropdownSection to handle selected section by index
-      else if (clonedChild.type === MultipleDropdownSection) {
-        sectionIndex++
-        return React.cloneElement(clonedChild, {
-          index: sectionIndex,
-        })
-      } else {
-        return clonedChild
-      }
+
+      return child
     })
-    setClonedChildren(clonedChildren)
+  }
+
+  useEffect(() => {
+    setClonedChildren(recursivelyAddValueProp(children))
   }, [children])
 
   React.useEffect(() => {

@@ -14,7 +14,7 @@ import {
   DropdownItemKey,
   SelectedItemDropdown,
 } from './dropdown-context'
-import DropdownItem from './dropdown-item'
+import DropdownItem, {DropdownItemProps} from './dropdown-item'
 import DropdownList from './dropdown-list'
 import DropdownComboBox from './dropdown.combobox'
 import DropdownHeader from './dropdown.header'
@@ -183,27 +183,46 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
 
   // clone children to assign value prop if not exists. the value would be equal to the key prop
   // This is to support the legacy code where users don't pass value prop and use key prop instead
-  useEffect(() => {
-    const clonedChildren = React.Children.map(children, (child) => {
-      const clonedChild = React.cloneElement(child as React.ReactElement)
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      if (!clonedChild?.props?.value) {
-        return React.cloneElement(clonedChild, {
-          value: clonedChild.key || '',
-        })
-      } else {
-        return clonedChild
+  const recursivelyAddValueProp = (
+    children: React.ReactNode,
+  ): React.ReactNode => {
+    if (typeof children === 'string') return children
+
+    return React.Children.map(children, (child) => {
+      if (!child) return child
+
+      if (React.isValidElement(child)) {
+        if (child.type === DropdownItem) {
+          const childWithProps = child as React.ReactElement<DropdownItemProps>
+          if (!('value' in childWithProps.props)) {
+            return React.cloneElement(childWithProps, {
+              value: `${child.key}` || '',
+            })
+          }
+        }
+
+        const childProps = child as React.ReactElement<{
+          children?: React.ReactNode
+        }>
+        if (childProps.props.children) {
+          return React.cloneElement(childProps, {
+            children: recursivelyAddValueProp(childProps.props.children),
+          })
+        }
       }
+
+      return child
     })
-    setClonedChildren(clonedChildren)
+  }
+
+  useEffect(() => {
+    setClonedChildren(recursivelyAddValueProp(children))
   }, [children])
 
   const setValueForItemAndFocusKey = useCallback(
     (item: SelectedItemDropdown | null) => {
       if (isUncontrolledComponent) {
         setSelectedItem(item)
-        console.log('setValueForItemAndFocusKey: ', item?.value ?? '')
-
         setFocusKey(item?.value ?? '')
       }
     },
