@@ -7,6 +7,7 @@ import React, {
   useState,
 } from 'react'
 import Popover from '../popover'
+import {pickChildren} from '../utils/pick-children'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
@@ -184,18 +185,25 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   // clone children to assign value prop if not exists. the value would be equal to the key prop
   // This is to support the legacy code where users don't pass value prop and use key prop instead
   useEffect(() => {
-    const clonedChildren = React.Children.map(children, (child) => {
-      const clonedChild = React.cloneElement(child as React.ReactElement)
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      if (!clonedChild?.props?.value) {
-        return React.cloneElement(clonedChild, {
-          value: clonedChild.key || '',
+    const {children: items, rest} = pickChildren<React.ReactElement>(
+      children,
+      DropdownItem,
+    )
+    const newItems = React.Children.map(items, (child) => {
+      if (!child) return
+      if (!React.isValidElement(child)) return child
+      if (child.type !== DropdownItem) return child
+      const childWithProps = child as React.ReactElement<{value?: string}>
+      if (!('value' in childWithProps.props)) {
+        return React.cloneElement(childWithProps, {
+          value: `${child.key}` || '',
         })
       } else {
-        return clonedChild
+        return child
       }
     })
-    setClonedChildren(clonedChildren)
+    const newChildren = [...newItems, ...React.Children.toArray(rest)]
+    setClonedChildren(newChildren)
   }, [children])
 
   const setValueForItemAndFocusKey = useCallback(
