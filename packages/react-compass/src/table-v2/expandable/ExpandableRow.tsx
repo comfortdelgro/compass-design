@@ -1,5 +1,5 @@
-import {Transition} from '@headlessui/react'
 import React from 'react'
+import Transitions from '../../transitions'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import {StyledExpandableRow} from './ExpandableRow.styles'
 
@@ -17,23 +17,16 @@ export const ExpandableRow = React.forwardRef<
   ExpandableRowProps
 >((props, ref) => {
   const {colSpan, isExpanded, children} = props
-  const classNames = {
-    enter: 'enter',
-    enterFrom: 'enterFrom',
-    enterTo: 'enterTo',
-    leave: 'leave',
-    leaveFrom: 'leaveFrom',
-    leaveTo: 'leaveTo',
-  }
+
   const rowRef = useDOMRef<HTMLTableRowElement>(ref)
+  React.useEffect(() => {
+    console.log('isExpaned', isExpanded)
+  }, [isExpanded])
   return (
-    <Transition
-      ref={rowRef}
-      as={StyledExpandableRow}
-      show={isExpanded}
-      {...classNames}
-    >
-      <td colSpan={colSpan}>{children}</td>
-    </Transition>
+    <Transitions effect='collapse' show={isExpanded} speed={0.5}>
+      <StyledExpandableRow ref={rowRef}>
+        <td colSpan={colSpan}>{children}</td>
+      </StyledExpandableRow>
+    </Transitions>
   )
 })
