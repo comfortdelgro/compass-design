@@ -1,9 +1,9 @@
 export default function getFileExtension(codeVariant: 'TS' | 'JS') {
   if (codeVariant === 'TS') {
-    return 'tsx'
+    return 'tsx';
   }
   if (codeVariant === 'JS') {
-    return 'js'
+    return 'js';
   }
-  throw new Error(`Unsupported codeVariant: ${codeVariant}`)
+  throw new Error(`Unsupported codeVariant: ${codeVariant}`);
 }

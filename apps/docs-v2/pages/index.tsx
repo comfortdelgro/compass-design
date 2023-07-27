@@ -3,8 +3,8 @@ import Head from 'components/common/Head'
 import MarkdownLinks from 'components/common/MarkdownLinks'
 import Banner from 'components/home/Banner'
 import Introduction from 'components/home/Introduction'
-import ReactCompass from '../components/home/ReactCompass'
 import ReadyToUse from '../components/home/ReadyToUse'
+import ReactCompass from '../components/home/ReactCompass'
 import AppFooter from '../components/layouts/AppFooter'
 
 export default function Home() {

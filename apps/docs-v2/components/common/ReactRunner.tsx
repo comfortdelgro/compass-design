@@ -1,20 +1,20 @@
-import * as React from 'react'
-import {useRunner} from 'react-runner'
+import * as React from 'react';
+import { useRunner } from 'react-runner';
 
 interface ReactRunnerProps {
-  code: string
+  code: string;
   scope: {
-    process: {}
-    import: {}
-  }
-  onError: (error: string | null) => {}
+    process: {};
+    import: {};
+  };
+  onError: (error: string | null) => {};
 }
 
 // The docs https://github.com/nihgwu/react-runner
 export default function ReactRunner(props: ReactRunnerProps) {
-  const {code, scope: scopeProp, onError} = props
+  const { code, scope: scopeProp, onError } = props;
 
-  let scope = scopeProp
+  let scope = scopeProp;
 
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -26,25 +26,25 @@ export default function ReactRunner(props: ReactRunnerProps) {
               'A demo tries to access process.x in ReactRunner. This is not supported.',
               'If you do not need to show the source, you can set "hideToolbar": true to solve the issue.',
             ].join('\n'),
-          )
+          );
         },
-      }
+      };
 
       return {
         ...scopeProp,
         process: new Proxy(scopeProp.process, handler),
-      }
-    }, [scopeProp])
+      };
+    }, [scopeProp]);
   }
 
-  const {element, error} = useRunner({
+  const { element, error } = useRunner({
     code,
     scope,
-  })
+  });
 
   React.useEffect(() => {
-    onError(error)
-  }, [error, onError])
+    onError(error);
+  }, [error, onError]);
 
-  return element
+  return element;
 }
