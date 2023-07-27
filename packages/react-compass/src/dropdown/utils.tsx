@@ -40,7 +40,10 @@ const findItemByValue = (
     if (item?.props) {
       const itemKey =
         item.props.value ?? item.key?.toString().replace('.$', '') ?? ''
-      if (itemKey === value.toString() && !disabledKeys?.includes(itemKey)) {
+      if (
+        itemKey.toString() === value.toString() &&
+        !disabledKeys?.includes(itemKey.toString())
+      ) {
         return item
       }
       if (item.props.children) {
