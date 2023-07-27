@@ -29,7 +29,7 @@ import IconBox from './IconBox'
 export default function colorfulIcons() {
   return (
     <Flexbox
-      css={{justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap'}}
+      css={{justifyContent: 'center', alignItems: 'flex-start', flexWrap: 'wrap'}}
     >
       <IconBox
         component={<ClubhouseColorful width={40} height={40} />}

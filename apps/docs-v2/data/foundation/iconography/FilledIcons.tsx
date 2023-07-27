@@ -30,7 +30,7 @@ import IconBox from './IconBox'
 export default function filledIcons() {
   return (
     <Flexbox
-      css={{justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap'}}
+      css={{justifyContent: 'center', alignItems: 'flex-start', flexWrap: 'wrap'}}
     >
       <IconBox
         component={<AddressBookFilled width={40} height={40} />}

@@ -250,7 +250,7 @@ import IconBox from './IconBox'
 export default function countryIcons() {
   return (
     <Flexbox
-      css={{justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap'}}
+      css={{justifyContent: 'center', alignItems: 'flex-start', flexWrap: 'wrap'}}
     >
       <IconBox component={<FlagAbw width={40} height={40} />} name='FlagAbw' />
       <IconBox component={<FlagAfg width={40} height={40} />} name='FlagAfg' />

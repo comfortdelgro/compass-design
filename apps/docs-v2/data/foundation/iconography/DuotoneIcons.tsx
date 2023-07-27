@@ -17,7 +17,7 @@ import IconBox from './IconBox'
 export default function duotoneIcons() {
   return (
     <Flexbox
-      css={{justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap'}}
+      css={{justifyContent: 'center', alignItems: 'flex-start', flexWrap: 'wrap'}}
     >
       <IconBox
         component={<BadgeDollarDuotone width={40} height={40} />}

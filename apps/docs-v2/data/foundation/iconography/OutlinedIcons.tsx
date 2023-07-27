@@ -31,7 +31,7 @@ import IconBox from './IconBox'
 export default function outlinedIcons() {
   return (
     <Flexbox
-      css={{justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap'}}
+      css={{justifyContent: 'center', alignItems: 'flex-start', flexWrap: 'wrap'}}
     >
       <IconBox
         component={<AddressBookOutlined width={40} height={40} />}
