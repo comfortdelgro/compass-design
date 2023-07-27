@@ -275,36 +275,6 @@
       "filePath": "src/card/card.stories.tsx",
       "meta": {}
     },
-    "carousel-v2--mobile": {
-      "name": "Mobile",
-      "levels": [
-        "Carousel v2"
-      ],
-      "locStart": 204,
-      "locEnd": 241,
-      "filePath": "src/carousel-v2/carouselV2.stories.tsx",
-      "meta": {}
-    },
-    "carousel-v2--promotion": {
-      "name": "Promotion",
-      "levels": [
-        "Carousel v2"
-      ],
-      "locStart": 174,
-      "locEnd": 202,
-      "filePath": "src/carousel-v2/carouselV2.stories.tsx",
-      "meta": {}
-    },
-    "carousel-v2--sliders": {
-      "name": "Sliders",
-      "levels": [
-        "Carousel v2"
-      ],
-      "locStart": 97,
-      "locEnd": 172,
-      "filePath": "src/carousel-v2/carouselV2.stories.tsx",
-      "meta": {}
-    },
     "carousel--mobile": {
       "name": "Mobile",
       "levels": [
@@ -550,8 +520,8 @@
       "levels": [
         "Dropdown"
       ],
-      "locStart": 512,
-      "locEnd": 905,
+      "locStart": 535,
+      "locEnd": 928,
       "filePath": "src/dropdown/dropdown.stories.tsx",
       "meta": {}
     },
@@ -561,7 +531,7 @@
         "Dropdown"
       ],
       "locStart": 74,
-      "locEnd": 510,
+      "locEnd": 533,
       "filePath": "src/dropdown/dropdown.stories.tsx",
       "meta": {}
     },
@@ -623,16 +593,6 @@
       "locStart": 12,
       "locEnd": 129,
       "filePath": "src/form-layout/FormLayout.stories.tsx",
-      "meta": {}
-    },
-    "form--variants": {
-      "name": "Variants",
-      "levels": [
-        "Form"
-      ],
-      "locStart": 14,
-      "locEnd": 188,
-      "filePath": "src/form/form.stories.tsx",
       "meta": {}
     },
     "grid--default": {
@@ -821,7 +781,7 @@
         "Multiple dropdown"
       ],
       "locStart": 71,
-      "locEnd": 598,
+      "locEnd": 611,
       "filePath": "src/multiple-dropdown/multiple-dropdown.stories.tsx",
       "meta": {}
     },
@@ -1023,16 +983,6 @@
       "locStart": 46,
       "locEnd": 231,
       "filePath": "src/rich-text-editor/rich-text-editor.stories.tsx",
-      "meta": {}
-    },
-    "richtext-render--default": {
-      "name": "Default",
-      "levels": [
-        "Richtext render"
-      ],
-      "locStart": 62,
-      "locEnd": 73,
-      "filePath": "src/richtext-render/richtext-render.stories.tsx",
       "meta": {}
     },
     "searchfield--variants": {
@@ -1503,16 +1453,6 @@
       "locStart": 95,
       "locEnd": 106,
       "filePath": "src/typography/typography.stories.tsx",
-      "meta": {}
-    },
-    "upload-v2--variants": {
-      "name": "Variants",
-      "levels": [
-        "Upload v2"
-      ],
-      "locStart": 5,
-      "locEnd": 52,
-      "filePath": "src/upload-v2/uploadV2.stories.tsx",
       "meta": {}
     },
     "upload--click-to-upload": {
