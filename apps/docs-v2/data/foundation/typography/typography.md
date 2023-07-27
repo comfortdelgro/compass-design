@@ -1,5 +1,6 @@
 ---
 backgroundColor: #F4CAC2
+textColor: #684842
 imgSrc: /static/images/typography-background.png
 ---
 

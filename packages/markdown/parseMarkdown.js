@@ -9,6 +9,7 @@ const descriptionRegExp = /<p class="description(.*?)">(.*?)<\/p>/s
 const headerKeyValueRegExp = /(.*?):[\r\n]?\s+(\[[^\]]+\]|.*)/g
 const backgroundColorExp = /{{"backgroundColor":(.*?)}}/s
 const backgroundImageExp = /{{"backgroundImage":(.*?)}}/s
+const textColorExp = /{{"textColor":(.*?)}}/s
 const imgSrcExp = /{{"imgSrc":(.*?)}}/s
 const emptyRegExp = /^\s*$/
 
@@ -180,6 +181,14 @@ function getDescription(markdown) {
 
 function getBackgroundColor(markdown) {
   const matches = markdown.match(backgroundColorExp)
+  if (matches === null) {
+    return undefined
+  }
+  return matches[1].trim().replace(/`/g, '')
+}
+
+function getTextColor(markdown) {
+  const matches = markdown.match(textColorExp)
   if (matches === null) {
     return undefined
   }
@@ -419,6 +428,7 @@ function prepareMarkdown(config) {
       const description = headers.description || getDescription(markdown)
       const backgroundColor =
         headers.backgroundColor || getBackgroundColor(markdown)
+      const textColor = headers.textColor || getTextColor(markdown)
       const backgroundImage =
         headers.backgroundImage || getBackgroundImage(markdown)
       const imgSrc = headers.imgSrc || getImageSource(markdown)
@@ -548,6 +558,7 @@ function prepareMarkdown(config) {
         title,
         headers,
         backgroundColor,
+        textColor,
         backgroundImage,
         imgSrc,
       }

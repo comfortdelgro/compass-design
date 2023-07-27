@@ -17,6 +17,7 @@ export type TPageProps = {
   title?: string
   toc?: unknown
   backgroundColor?: string
+  textColor?: string
   backgroundImage?: string
   imgSrc?: string
 }

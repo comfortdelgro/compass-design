@@ -28,7 +28,7 @@ export const CommonHeader = () => {
       <CommonHeaderTitle />
       {hasImage ? (
         <Box
-          style={{
+          css={{
             backgroundColor: '#F3F2F1',
             borderRadius: '30px',
             height: '100%',
@@ -37,6 +37,9 @@ export const CommonHeader = () => {
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
             backgroundSize: 'cover',
+            '@max_1200': {
+              display: 'none',
+            },
           }}
         ></Box>
       ) : (
@@ -90,6 +93,7 @@ export const CommonHeaderTitle = () => {
           '@max_768': {
             fontSize: '32px',
           },
+          color: pageProps?.textColor,
         }}
       >
         {pageProps?.title}
@@ -99,6 +103,7 @@ export const CommonHeaderTitle = () => {
           fontSize: '18px',
           fontWeight: 400,
           maxWidth: '450px',
+          color: pageProps?.textColor,
         }}
       >
         {pageProps?.description}
