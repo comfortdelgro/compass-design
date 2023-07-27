@@ -63,7 +63,6 @@ const MenuListDropdown = React.forwardRef<
       className={`${className} menu-list-dropdown`}
       ref={ref}
       css={css}
-      aria-expanded={isOpenState}
       {...delegated}
     >
       <MenuListContext.Provider value={{isOpen: isOpen, toggleOpen}}>
