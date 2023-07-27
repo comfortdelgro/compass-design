@@ -80,13 +80,46 @@ export const Select: React.FC = () => {
 
   const handlePrefix = (key: Key) => {
     if (key === 'afghanistan') {
-      return <ADFlag />
+      return (
+        <div
+          style={{
+            marginRight: '0.7rem',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <ADFlag />
+        </div>
+      )
     }
     if (key === 'albania') {
-      return <AEFlag />
+      return (
+        <div
+          style={{
+            marginRight: '0.7rem',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <AEFlag />
+        </div>
+      )
     }
     if (key === 'algeria') {
-      return <AFFlag />
+      return (
+        <div
+          style={{
+            marginRight: '0.7rem',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <AFFlag />
+        </div>
+      )
     }
     return null
   }
@@ -109,6 +142,7 @@ export const Select: React.FC = () => {
       >
         <Dropdown.Item
           key='red panda'
+          checkmark='checkbox'
           leftIcon={<FontAwesomeIcon icon={faBug} />}
         >
           Red Panda Red Panda Red Panda Red Panda Red Panda
@@ -155,18 +189,7 @@ export const Select: React.FC = () => {
         placeholder='Choose an animal'
         selectedKey={flag}
         onSelectionChange={(k: Key) => setFlag(k)}
-        prefix={
-          <div
-            style={{
-              marginRight: '0.7rem',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            {handlePrefix(flag)}
-          </div>
-        }
+        prefix={<>{handlePrefix(flag)}</>}
       >
         <Dropdown.Item key='afghanistan' value='afghanistan'>
           Afghanistan (+93)
