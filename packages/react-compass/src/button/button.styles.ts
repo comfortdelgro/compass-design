@@ -49,7 +49,7 @@ export const StyledLoading = styled('span', {
 export const StyledButtonContent = styled('div', {
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'space-between',
+  justifyContent: 'center',
   flexWrap: 'nowrap',
   flexShrink: 0,
 
@@ -75,6 +75,14 @@ export const StyledButtonContent = styled('div', {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  variants: {
+    isHaveIcon: {
+      true: {
+        justifyContent: 'space-between',
+      },
+      fasle: {},
+    },
   },
 })
 

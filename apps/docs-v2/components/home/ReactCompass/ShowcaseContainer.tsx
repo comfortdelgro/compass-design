@@ -21,7 +21,6 @@ export default function ShowcaseContainer({
           css={{
             display: 'flex',
             position: 'relative',
-            minHeight: 220,
             justifyContent: 'center',
             alignItems: 'center',
             borderRadius: 20,
@@ -39,7 +38,6 @@ export default function ShowcaseContainer({
             flexDirection: 'column',
             maxWidth: '100%',
             position: 'relative',
-            minHeight: 200,
             borderWidth: '0 1px 1px 1px',
             borderStyle: 'solid',
             borderColor: '$gray100',

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
@@ -34,25 +34,6 @@ const DropdownSection = React.forwardRef<HTMLDivElement, DropdownSectionProps>(
 
     const DropdownSectionRef = useDOMRef<HTMLDivElement>(ref)
 
-    const [clonedChildren, setClonedChildren] = useState<React.ReactNode>(null)
-
-    // clone children to assign value prop if not exists. the value would be equal to the key prop
-    // This is to support the legacy code where users don't pass value prop and use key prop instead
-    useEffect(() => {
-      const clonedChildren = React.Children.map(children, (child) => {
-        const clonedChild = React.cloneElement(child as React.ReactElement)
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        if (!clonedChild?.props?.value) {
-          return React.cloneElement(clonedChild, {
-            value: clonedChild.key || '',
-          })
-        } else {
-          return clonedChild
-        }
-      })
-      setClonedChildren(clonedChildren)
-    }, [children])
-
     const handleOnClick = () => {
       if (!isClickable) {
         return
@@ -70,7 +51,7 @@ const DropdownSection = React.forwardRef<HTMLDivElement, DropdownSectionProps>(
             {title}
           </StyledSectionContent>
         )}
-        {clonedChildren}
+        {children}
       </StyledDropdownSection>
     )
   },

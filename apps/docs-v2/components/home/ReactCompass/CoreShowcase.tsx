@@ -7,11 +7,11 @@ import ShowcaseDemo, {componentCode} from './ShowcaseDemo'
 export default function CoreShowcase() {
   return (
     <ShowcaseContainer
-      preview={
-        <Box css={{padding: '$8'}}>
-          <ShowcaseDemo />
-        </Box>
-      }
+      // preview={
+        // <Box css={{padding: '$8'}}>
+          // {/* <ShowcaseDemo /> */}
+        // </Box>
+      // }
       code={
         <Box>
           <Box
