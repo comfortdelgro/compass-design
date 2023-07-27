@@ -93,6 +93,10 @@
   gap: 36px;
 }
 
+.scale:hover {
+  transform: scale(1.2);
+}
+
 @media screen and (max-width: 980px) {
   .section-big-header {
     font-size: 32px;
