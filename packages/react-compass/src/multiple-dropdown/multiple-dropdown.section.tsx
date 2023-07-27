@@ -53,14 +53,42 @@ const MultipleDropdownSection = React.forwardRef<
     ...delegated
   } = props
 
-  const {onSectionClick: onSectionClickContext, selectedSectionIndexes} =
-    useContext(MultipleDropdownContext)
+  const {
+    onSectionClick: onSectionClickContext,
+    selectedSectionIndexes,
+    setSelectedSectionIndexes,
+    selectedItems,
+  } = useContext(MultipleDropdownContext)
 
   const [checking, setChecking] = React.useState(
     isChecked ?? selectedSectionIndexes.includes(index),
   )
 
   const dropdownSectionRef = useDOMRef<HTMLDivElement>(ref)
+
+  React.useEffect(() => {
+    const itemsInSection = React.Children.toArray(children)
+    const isNotCheckAll = itemsInSection.some((itemSection) => {
+      const itemSectionType =
+        itemSection as React.ReactElement<MultipleDropdownItemProps>
+      return (
+        selectedItems.findIndex(
+          (item) =>
+            item.value.toString() === itemSectionType.props.value?.toString(),
+        ) === -1
+      )
+    })
+    setChecking(!isNotCheckAll)
+    setSelectedSectionIndexes((selectedSectionIndexes) => {
+      const sectionIdsSet = new Set(selectedSectionIndexes)
+      if (isNotCheckAll) {
+        sectionIdsSet.delete(index)
+      } else {
+        sectionIdsSet.add(index)
+      }
+      return [...sectionIdsSet]
+    })
+  }, [selectedItems, children, setSelectedSectionIndexes])
 
   const handleOnClick = () => {
     if (!isClickable) {

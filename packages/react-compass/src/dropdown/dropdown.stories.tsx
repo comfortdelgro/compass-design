@@ -531,6 +531,31 @@ export const Select: React.FC = () => {
           </Dropdown.Item>
         </Dropdown.Section>
       </Dropdown.Select>
+      <h3>Don't close after select item</h3>
+      <Dropdown.Select
+        label='Favorite Animal'
+        isCloseOnSelect={false}
+        placeholder='Choose an animal'
+      >
+        <Dropdown.Item value='fly' checkmark='tick'>
+          Fly
+        </Dropdown.Item>
+        <Dropdown.Item value='cat' checkmark='tick'>
+          Cat
+        </Dropdown.Item>
+        <Dropdown.Item value='dog' checkmark='tick'>
+          Dog
+        </Dropdown.Item>
+        <Dropdown.Item value='aardvark' checkmark='tick'>
+          Aardvark
+        </Dropdown.Item>
+        <Dropdown.Item value='kangaroo' checkmark='tick'>
+          Kangaroo
+        </Dropdown.Item>
+        <Dropdown.Item value='snake' checkmark='tick'>
+          Snake
+        </Dropdown.Item>
+      </Dropdown.Select>
       <h3>Load more</h3>
       <Dropdown.Select
         isRequired
@@ -945,6 +970,35 @@ export const Combobox: React.FC = () => {
             Snake
           </Dropdown.Item>
         </Dropdown.Section>
+      </Dropdown.ComboBox>
+
+      <h3>Don't close after select item</h3>
+      <Dropdown.ComboBox
+        label='Favorite Animal'
+        isCloseOnSelect={false}
+        placeholder='Choose an animal'
+      >
+        <Dropdown.Item value='fly' checkmark='tick'>
+          Fly
+        </Dropdown.Item>
+        <Dropdown.Item value='red panda' checkmark='tick'>
+          Red Panda
+        </Dropdown.Item>
+        <Dropdown.Item value='cat' checkmark='tick'>
+          Cat
+        </Dropdown.Item>
+        <Dropdown.Item value='dog' checkmark='tick'>
+          Dog
+        </Dropdown.Item>
+        <Dropdown.Item value='aardvark' checkmark='tick'>
+          Aardvark
+        </Dropdown.Item>
+        <Dropdown.Item value='kangaroo' checkmark='tick'>
+          Kangaroo
+        </Dropdown.Item>
+        <Dropdown.Item value='snake' checkmark='tick'>
+          Snake
+        </Dropdown.Item>
       </Dropdown.ComboBox>
     </Column>
   )

@@ -70,22 +70,10 @@ interface SampleData {
 
 export const Default: React.FC = () => {
   const [value, setValue] = React.useState<Key[]>(['cat'])
+  const [sectionValue, setSectionValue] = React.useState<Key[]>(['cat'])
   const [value2, setValue2] = React.useState<Key[]>(['snake', 'cat', 'dog'])
-  const [isChecked, setIsChecked] = React.useState(false)
-  const [sectionSelected, setSectionSelected] = React.useState<
-    React.ReactNode[]
-  >([])
   const [loadMoreValue, setLoadMoreValue] = React.useState<Key[]>([])
   const [data, setData] = React.useState<SampleData[]>(generateRandomData(10))
-
-  React.useEffect(() => {
-    if (isChecked && sectionSelected.includes('Group 1')) {
-      setValue(['red panda', 'cat', 'dog', 'aardvark', 'kangaroo', 'snake'])
-    }
-    if (!isChecked) {
-      setValue([])
-    }
-  }, [isChecked])
 
   return (
     <Column>
@@ -450,52 +438,55 @@ export const Default: React.FC = () => {
         <MultipleDropdown
           label='Favorite Animal'
           placeholder='Choose an animal'
-          selectedKeys={value}
+          selectedKeys={sectionValue}
           isRequired
-          onSelectionChange={(k: Key[]) => setValue(k)}
+          onSelectionChange={(k: Key[]) => setSectionValue(k)}
           css={{width: '80%'}}
         >
           <MultipleDropdown.Section
-            title='Group 1'
+            title='Amphibians'
             isClickable
             checkmark='tick'
-            isChecked={isChecked}
-            onClick={(title: React.ReactNode) => {
-              setIsChecked(!isChecked)
-              const newSectionSelected = [...sectionSelected]
-              newSectionSelected.push(title)
-              setSectionSelected(newSectionSelected)
-            }}
           >
-            <MultipleDropdown.Item
-              value='red panda'
-              key='red panda'
-              checkmark='tick'
-            >
-              Red Panda
+            <MultipleDropdown.Item value='frogs' checkmark='tick'>
+              Frogs
             </MultipleDropdown.Item>
-            <MultipleDropdown.Item value='cat' key='cat' checkmark='tick'>
-              Cat
+            <MultipleDropdown.Item value='newts' checkmark='tick'>
+              Newts
             </MultipleDropdown.Item>
-            <MultipleDropdown.Item value='dog' key='dog' checkmark='tick'>
-              Dog
+          </MultipleDropdown.Section>
+          <MultipleDropdown.Section title='Birds' isClickable checkmark='tick'>
+            <MultipleDropdown.Item value='chickens' checkmark='tick'>
+              Chickens
             </MultipleDropdown.Item>
-            <MultipleDropdown.Item
-              value='aardvark'
-              key='aardvark'
-              checkmark='tick'
-            >
-              Aardvark
+            <MultipleDropdown.Item value='hummingbirds' checkmark='tick'>
+              Hummingbirds
             </MultipleDropdown.Item>
-            <MultipleDropdown.Item
-              value='kangaroo'
-              key='kangaroo'
-              checkmark='tick'
-            >
-              Kangaroo
+          </MultipleDropdown.Section>
+          <MultipleDropdown.Section title='Fish' isClickable checkmark='tick'>
+            <MultipleDropdown.Item value='eels' checkmark='tick'>
+              Eels
             </MultipleDropdown.Item>
-            <MultipleDropdown.Item value='snake' key='snake' checkmark='tick'>
-              Snake
+            <MultipleDropdown.Item value='hagfish' checkmark='tick'>
+              Hagfish
+            </MultipleDropdown.Item>
+            <MultipleDropdown.Item value='lampreys' checkmark='tick'>
+              Lampreys
+            </MultipleDropdown.Item>
+          </MultipleDropdown.Section>
+          <MultipleDropdown.Section
+            isClickable
+            title='Mammals'
+            checkmark='tick'
+          >
+            <MultipleDropdown.Item value='aardvarks' checkmark='tick'>
+              Aardvarks
+            </MultipleDropdown.Item>
+            <MultipleDropdown.Item value='bats' checkmark='tick'>
+              Bats
+            </MultipleDropdown.Item>
+            <MultipleDropdown.Item value='humans' checkmark='tick'>
+              Humans
             </MultipleDropdown.Item>
           </MultipleDropdown.Section>
         </MultipleDropdown>

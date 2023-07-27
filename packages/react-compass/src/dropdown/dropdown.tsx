@@ -63,6 +63,7 @@ interface Props extends StyledComponentProps {
   description?: React.ReactNode
   disableClearable?: boolean
   noDataMessage?: string
+  isCloseOnSelect?: boolean
   onBlur?: () => void
   onFocus?: () => void
   onLoadMore?: () => void
@@ -120,6 +121,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     prefix = null,
     noDataMessage = '',
     label,
+    isCloseOnSelect = true,
     onSelectionChange = EMPTY_FUNC,
     onFocus = EMPTY_FUNC,
     onBlur = EMPTY_FUNC,
@@ -292,7 +294,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
             if (currentFocusKey) {
               const focusedItem = getItemByKey(currentFocusKey, clonedChildren)
               if (focusedItem) {
-                setOpen(false)
+                isCloseOnSelect && setOpen(false)
                 onOpenChange?.(false)
                 // Deselect item
                 if (
@@ -340,6 +342,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       }
     },
     [
+      isCloseOnSelect,
       open,
       disableClearable,
       shouldDeselect,
@@ -547,7 +550,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     if (isReadOnly) {
       return
     }
-    setOpen(false)
+    isCloseOnSelect && setOpen(false)
     onOpenChange?.(false)
     // Select clear item
     if (!disableClearable && !currentItem.value) {
@@ -576,11 +579,17 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         inputRef.current.value = textContent(
           currentItem.displayValue as React.ReactElement,
         )
-        inputRef.current.blur()
+        if (!isCloseOnSelect) {
+          inputRef.current?.focus()
+        } else {
+          inputRef.current.blur()
+        }
       }
       setSearchValue(
         textContent(currentItem.displayValue as React.ReactElement),
       )
+    } else {
+      buttonSelectRef.current?.focus()
     }
   }
 

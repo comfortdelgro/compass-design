@@ -225,6 +225,7 @@ const MultipleDropdown = React.forwardRef<
    * Fill selected data and run only on component initialization
    */
   React.useEffect(() => {
+    if (!open) return
     if (
       !clonedChildren ||
       !(
@@ -255,8 +256,10 @@ const MultipleDropdown = React.forwardRef<
       }
     }
     setSelectedItems(newSelectedItems)
-    setFocusKey(currentFocusKey)
-  }, [clonedChildren, selectedKeys, defaultSelectedKeys])
+    setFocusKey((oldFocusKey) => {
+      return oldFocusKey ?? currentFocusKey
+    })
+  }, [clonedChildren, selectedKeys, defaultSelectedKeys, open])
 
   const handleDropdownItemClick = React.useCallback(
     (item: SelectedItemDropdown) => {
