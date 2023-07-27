@@ -410,7 +410,10 @@ const MarkdownElement = React.forwardRef(function MarkdownElement(
   const {className, renderedMarkdown, ...other} = props as any
   const more = {}
 
-  if (typeof renderedMarkdown === 'string') {
+  if (
+    typeof renderedMarkdown === 'string' &&
+    !renderedMarkdown.includes('class="description hidden"')
+  ) {
     // @ts-ignore
     more.dangerouslySetInnerHTML = {__html: renderedMarkdown}
   }

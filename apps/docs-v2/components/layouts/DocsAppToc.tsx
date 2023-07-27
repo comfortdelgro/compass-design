@@ -140,6 +140,8 @@ export default function DocsAppToc(props: any) {
         maxHeight: 'calc(100vh - 51px)',
         overflowY: 'scroll',
         padding: '$4',
+        position: 'sticky',
+        top: 0,
       }}
     >
       {toc.length > 0 ? (
