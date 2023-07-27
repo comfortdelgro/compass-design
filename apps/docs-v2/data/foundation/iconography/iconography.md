@@ -1,8 +1,18 @@
+---
+backgroundColor: #E3D0B3
+textColor: #684842
+imgSrc: /static/images/iconography-background.png
+---
+
 # Iconography
 
-<p class="description">Icons should be used to maximize comprehension and reduce cognitive load when you need to call attention to a particular action, command, or section.</p>
+<p class="description hidden">Icons are visual representations of commands, devices, directories, or common actions.</p>
 
----
+{{"component": "components/common/ComponentLinkHeader.tsx"}}
+
+## Icons
+
+Icons should be used to maximize comprehension and reduce cognitive load when you need to call attention to a particular action, command, or section. Our icons are designed with our brand personality baked in.
 
 ## Import
 
@@ -24,7 +34,7 @@ import Activity from '@comfortdelgro/compass-icons/react/activity'
 import AddressBookFilled from '@comfortdelgro/compass-icons/react/filled/address-book-filled'
 ```
 
-{{"demo": "FilledIcons.tsx"}}
+{{"demo": "/showcases/FilledIcons.tsx"}}
 
 ## Outline Icons
 
@@ -32,7 +42,7 @@ import AddressBookFilled from '@comfortdelgro/compass-icons/react/filled/address
 import AddressBookOutlined from '@comfortdelgro/compass-icons/react/outlined/address-book-outlined'
 ```
 
-{{"demo": "OutlinedIcons.tsx"}}
+{{"demo": "/showcases/OutlinedIcons.tsx"}}
 
 ## Duotone Icons
 
@@ -40,7 +50,7 @@ import AddressBookOutlined from '@comfortdelgro/compass-icons/react/outlined/add
 import BadgeDollarDuotone from '@comfortdelgro/compass-icons/react/duotone/badge-dollar-duotone'
 ```
 
-{{"demo": "DuotoneIcons.tsx"}}
+{{"demo": "/showcases/DuotoneIcons.tsx"}}
 
 ## Colorful Icons
 
@@ -48,7 +58,7 @@ import BadgeDollarDuotone from '@comfortdelgro/compass-icons/react/duotone/badge
 import Compass from '@comfortdelgro/compass-icons/react/colorful/compass'
 ```
 
-{{"demo": "ColorfulIcons.tsx"}}
+{{"demo": "/showcases/ColorfulIcons.tsx"}}
 
 ## Other Icons
 
@@ -56,7 +66,7 @@ import Compass from '@comfortdelgro/compass-icons/react/colorful/compass'
 import Activity from '@comfortdelgro/compass-icons/react/activity'
 ```
 
-{{"demo": "Icons.tsx"}}
+{{"demo": "/showcases/Icons.tsx"}}
 
 ## Country Icons
 
@@ -64,7 +74,7 @@ import Activity from '@comfortdelgro/compass-icons/react/activity'
 import FlagAbw from '@comfortdelgro/compass-icons/react/country/flag-abw'
 ```
 
-{{"demo": "CountryIcons.tsx"}}
+{{"demo": "/showcases/CountryIcons.tsx"}}
 
 ## File Icons
 
@@ -72,7 +82,7 @@ import FlagAbw from '@comfortdelgro/compass-icons/react/country/flag-abw'
 import SVG from '@comfortdelgro/compass-icons/react/file/svg'
 ```
 
-{{"demo": "FileIcons.tsx"}}
+{{"demo": "/showcases/FileIcons.tsx"}}
 
 ## Props
 

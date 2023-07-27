@@ -244,8 +244,8 @@ import FlagYem from '@comfortdelgro/compass-icons/react/country/flag-yem'
 import FlagZaf from '@comfortdelgro/compass-icons/react/country/flag-zaf'
 import FlagZmb from '@comfortdelgro/compass-icons/react/country/flag-zmb'
 import FlagZwe from '@comfortdelgro/compass-icons/react/country/flag-zwe'
+import IconBox from 'data/foundation/iconography/components/IconBox'
 import {Flexbox} from '@comfortdelgro/react-compass'
-import IconBox from './IconBox'
 
 export default function countryIcons() {
   return (
