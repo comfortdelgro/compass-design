@@ -162,21 +162,15 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
                             )
                           })}
                         </DataGridRow>
-                        <tr className='expanded-row'>
-                          <td
-                            colSpan={table.getAllLeafColumns()?.length}
-                            style={{padding: 0}}
-                          >
-                            <ExpandableRow
-                              isExpanded={
-                                row.getIsExpanded() &&
-                                renderRowSubComponent !== undefined
-                              }
-                            >
-                              {renderRowSubComponent?.(row.original)}
-                            </ExpandableRow>
-                          </td>
-                        </tr>
+                        <ExpandableRow
+                          colSpan={table.getAllLeafColumns()?.length}
+                          isExpanded={
+                            row.getIsExpanded() &&
+                            renderRowSubComponent !== undefined
+                          }
+                        >
+                          {renderRowSubComponent?.(row.original)}
+                        </ExpandableRow>
                       </>
                     )
                   })

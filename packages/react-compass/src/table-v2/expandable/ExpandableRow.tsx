@@ -6,39 +6,43 @@ import {StyledExpandableRow} from './ExpandableRow.styles'
 interface Props {
   isExpanded: boolean
   children: React.ReactNode
+  colSpan: number
 }
 
 export type ExpandableRowProps = Props &
-  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
+  Omit<React.HTMLAttributes<HTMLTableRowElement>, keyof Props>
 
 export const ExpandableRow = React.forwardRef<
-  HTMLDivElement,
+  HTMLTableRowElement,
   ExpandableRowProps
 >((props, ref) => {
-  const {isExpanded, children} = props
+  const {colSpan, isExpanded, children} = props
 
-  const rowRef = useDOMRef<HTMLDivElement>(ref)
+  const rowRef = useDOMRef<HTMLTableRowElement>(ref)
   const [childrenHeight, setChildrenHeight] = React.useState<number>(1000)
 
   React.useEffect(() => {
     if (isExpanded) {
-      const element = rowRef.current
+      const element = rowRef.current?.querySelector('.cdg-transition > div')
       if (element) {
-        const height = element.clientHeight
-        setChildrenHeight(height)
+        setChildrenHeight(element.clientHeight)
       }
     }
   }, [isExpanded])
 
   return (
-    <Transitions
-      className='cdg-transition'
-      effect='collapse'
-      show={isExpanded}
-      speed={0.5}
-      collapsedSize={`${childrenHeight}px`}
-    >
-      <StyledExpandableRow ref={rowRef}>{children}</StyledExpandableRow>
-    </Transitions>
+    <StyledExpandableRow ref={rowRef}>
+      <td colSpan={colSpan}>
+        <Transitions
+          className='cdg-transition'
+          effect='collapse'
+          show={isExpanded}
+          speed={0.5}
+          collapsedSize={`${childrenHeight}px`}
+        >
+          {children}
+        </Transitions>
+      </td>
+    </StyledExpandableRow>
   )
 })
