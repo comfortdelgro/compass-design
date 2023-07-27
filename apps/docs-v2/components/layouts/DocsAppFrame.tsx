@@ -1,4 +1,5 @@
 import {Box} from '@comfortdelgro/react-compass'
+import {CommonHeader} from 'components/common/CommonHeader'
 import MarkdownLinks from 'components/common/MarkdownLinks'
 import routes from 'constants/routes'
 import SidenavContext from 'contexts/SideNav'
@@ -104,11 +105,13 @@ export default function DocsAppFrame(props: {children: React.ReactNode}) {
           <Box
             css={{
               display: 'flex',
+              flexDirection: 'column',
               height: 'calc(100vh - 51px)',
-              overflowY: 'hidden',
+              overflow: 'auto',
               width: '100%',
             }}
           >
+            <CommonHeader />
             {children}
           </Box>
         </Box>

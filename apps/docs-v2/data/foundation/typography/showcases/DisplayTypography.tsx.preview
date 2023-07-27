@@ -1,0 +1,3 @@
+<Typography.Display variant='display1'>Display 1</Typography.Display>
+<Typography.Display variant='display2'>Display 2</Typography.Display>
+<Typography.Display variant='display3'>Display 3</Typography.Display>
