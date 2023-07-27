@@ -59,7 +59,6 @@ Example
 
 ![image](https://github.com/comfortdelgro/compass-design/assets/128688086/c0af5e7a-f0bb-4da8-a925-dc516ae304e9)
 
-
 #### 2.2 Add component
 
 To add a demo, you need to create a `.tsx` file and import by `{{"component": "[component_path].tsx"}}`
@@ -68,6 +67,25 @@ Example
 
 ```md
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
+```
+
+If you want to pass prop to component, follow below steps
+
+```md
+{{"component": "components/common/ComponentLinkHeader.tsx", "background": "red"}}
+```
+
+```tsx
+export default function ComponentLinkHeader({backround}: {background: string}) {
+  return (
+    <Flexbox
+      css={{
+        marginBottom: '$4',
+        background: backround,
+      }}
+    ></Flexbox>
+  )
+}
 ```
 
 #### 2.3 Add alert

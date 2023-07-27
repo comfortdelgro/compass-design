@@ -19,16 +19,6 @@
   padding: 70px 40px;
 }
 
-.hero-content {
-  padding: 24px 70px;
-  background: rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(40px);
-  border-radius: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
 .portal-background {
   position: relative;
   background: var(
