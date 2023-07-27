@@ -182,6 +182,5 @@ function getMinimums(date: AnyCalendarDate) {
   if (date.year === 1) {
     let idx = ERA_NAMES.indexOf(date.era)
     return ERA_START_DATES[idx]
-  }
-  return
+  } return
 }

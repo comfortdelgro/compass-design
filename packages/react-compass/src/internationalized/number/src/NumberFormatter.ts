@@ -86,7 +86,8 @@ export class NumberFormatter implements Intl.NumberFormat {
       const unit = resolvedOptions.unit as keyof typeof UNITS
       const unitDisplay =
         (resolvedOptions.unitDisplay as keyof typeof UNITS.degree) ?? 'short'
-      const locale = resolvedOptions.locale as keyof typeof UNITS.degree.narrow
+      const locale =
+        resolvedOptions.locale as keyof typeof UNITS.degree.narrow
       let values = UNITS[unit]?.[unitDisplay]
       res += values[locale] || values.default
     }

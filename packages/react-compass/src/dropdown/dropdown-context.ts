@@ -20,6 +20,7 @@ export interface DropdownContextType {
   selectedKey?: Key
   defaultSelectedKey?: Key
   dropdownItemKeys?: DropdownItemKey[]
+  labelId: string
   setDropdownItemKeys?: React.Dispatch<React.SetStateAction<DropdownItemKey[]>>
   setSelectedItem: React.Dispatch<
     React.SetStateAction<SelectedItemDropdown | null>
@@ -28,6 +29,7 @@ export interface DropdownContextType {
 }
 
 export const DropdownContext = createContext<DropdownContextType>({
+  labelId: '',
   open: false,
   searchValue: '',
   selectedItem: null,

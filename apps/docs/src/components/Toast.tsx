@@ -59,8 +59,12 @@ const SubService2 = () => {
             title: 'My Title',
             actions: (
               <>
-                <Button css={{width: 'fit-content'}}>Take action</Button>
-                <Button css={{width: 'fit-content'}}>Take action</Button>
+                <Button css={{width: 'fit-content'}}>
+                  Take action
+                </Button>
+                <Button css={{width: 'fit-content'}}>
+                  Take action
+                </Button>
               </>
             ),
             label: 'a few minutes ago',
@@ -120,10 +124,14 @@ const ToastTestComponent: React.FC<props> = ({
         </Toast.CloseIcon>
         <Toast.Message>Lorem ipsum dolor, sit amet consectetur.</Toast.Message>
         <Toast.Actions>
-          <Button className='c-hKssGC-hYGuEl-variant-primary'>
+          <Button
+            className='c-hKssGC-hYGuEl-variant-primary'
+          >
             Take action
           </Button>
-          <Button className='c-hKssGC-hYGuEl-variant-primary'>
+          <Button
+            className='c-hKssGC-hYGuEl-variant-primary'
+          >
             Take action
           </Button>
         </Toast.Actions>
