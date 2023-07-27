@@ -1,5 +1,11 @@
 ## 1.0.0-next.2
 
+## 2.9.0
+
+### Minor Changes
+
+- caff50ee: Fix bugs in dropdown and add checkmark prop to dropdown
+
 ## 2.8.0
 
 ### Minor Changes
