@@ -1,5 +1,7 @@
-{{"backgroundColor": #F4CAC2}}
-{{"imgSrc": /static/images/typography-background.png}}
+---
+backgroundColor: #F4CAC2
+imgSrc: /static/images/typography-background.png
+---
 
 # Typography
 

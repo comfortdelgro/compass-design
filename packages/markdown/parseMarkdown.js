@@ -417,9 +417,11 @@ function prepareMarkdown(config) {
       const location = headers.filename || `/${fileRelativeContext}/${filename}`
       const title = headers.title || getTitle(markdown)
       const description = headers.description || getDescription(markdown)
-      const backgroundColor = getBackgroundColor(markdown)
-      const backgroundImage = getBackgroundImage(markdown)
-      const imgSrc = getImageSource(markdown)
+      const backgroundColor =
+        headers.backgroundColor || getBackgroundColor(markdown)
+      const backgroundImage =
+        headers.backgroundImage || getBackgroundImage(markdown)
+      const imgSrc = headers.imgSrc || getImageSource(markdown)
 
       if (title == null || title === '') {
         throw new Error(`docs-infra: Missing title in the page: ${location}\n`)

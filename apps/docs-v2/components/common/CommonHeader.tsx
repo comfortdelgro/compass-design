@@ -2,7 +2,7 @@ import {
   Box,
   Breadcrumbs,
   Column,
-  Grid,
+  Row,
   Typography,
 } from '@comfortdelgro/react-compass'
 import {usePageProps} from 'contexts/PageProps'
@@ -24,41 +24,25 @@ export const CommonHeader = () => {
   }
 
   return (
-    <Grid css={{padding: hasImage ? '$4 20px' : '0'}} spacing='sm'>
-      <Grid.Item xs={12} sm={12} md={12} lg={6} xl={6}>
-        <CommonHeaderTitle />
-      </Grid.Item>
-
+    <Row css={{padding: hasImage ? '$4 20px' : '0', gap: '$4'}}>
+      <CommonHeaderTitle />
       {hasImage ? (
-        <Grid.Item
-          xs={12}
-          sm={12}
-          md={12}
-          lg={6}
-          xl={6}
-          css={{
-            '@max_1200': {
-              display: 'none',
-            },
+        <Box
+          style={{
+            backgroundColor: '#F3F2F1',
+            borderRadius: '30px',
+            height: '100%',
+            width: '100%',
+            backgroundImage: `url(${pageProps?.imgSrc})`,
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+            backgroundSize: 'cover',
           }}
-        >
-          <Box
-            style={{
-              backgroundColor: '#F3F2F1',
-              borderRadius: '30px',
-              height: '100%',
-              width: '100%',
-              backgroundImage: `url(${pageProps?.imgSrc})`,
-              backgroundRepeat: 'no-repeat',
-              backgroundPosition: 'center',
-              backgroundSize: 'cover',
-            }}
-          ></Box>
-        </Grid.Item>
+        ></Box>
       ) : (
         <></>
       )}
-    </Grid>
+    </Row>
   )
 }
 
@@ -104,8 +88,8 @@ export const CommonHeaderTitle = () => {
           fontSize: '46px',
           fontWeight: 700,
           '@max_768': {
-            fontSize: '32px'
-          }
+            fontSize: '32px',
+          },
         }}
       >
         {pageProps?.title}
