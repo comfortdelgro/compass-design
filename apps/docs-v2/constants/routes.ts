@@ -49,7 +49,7 @@ export const routes: TSideNavItem[] = [
     pathname: '/foundation',
     title: 'Foundation',
     icon: faHouse,
-    children: [{pathname: '/typography', title: 'Typography'}],
+    children: [{pathname: '/typography', title: 'Typography'}, {pathname: '/iconography', title: 'Iconography'}],
   },
 ]
 
