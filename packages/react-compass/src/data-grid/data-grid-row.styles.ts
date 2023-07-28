@@ -14,5 +14,10 @@ export const StyledDataGridRow = styled('tr', {
         borderLeft: '1px solid $cdgBlue',
       },
     },
+    isExpanded: {
+      true: {
+        backgroundColor: '$cdgBlue10',
+      },
+    },
   },
 })

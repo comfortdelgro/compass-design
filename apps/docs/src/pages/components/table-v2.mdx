@@ -5,6 +5,7 @@ import {
   ReactTableFullFeature,
   ReactTableBasic,
   EditableCellTable,
+  ExpandableColumnTable,
 } from 'components/TableV2'
 
 # Table-v2
@@ -240,23 +241,74 @@ interface Options<TData> {
 </section>
 
 ```tsx
-const columns = React.useMemo<Array<ColumnConfig<Person>>>(
+const columns = React.useMemo<Array<TableV2ColumnDef<Person>>>(
   () => [
     {
       id: 'select',
-      header: ({table}) => <TableHeader table={table} />,
-      cell: ({row}) => <TableHeaderCell row={row} />,
+      header: ({table}) => {
+        return (
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <ReactTable.CheckboxCell
+              checked={table.getIsAllRowsSelected()}
+              indeterminate={table.getIsSomeRowsSelected()}
+              onChange={table.getToggleAllRowsSelectedHandler()}
+            />
+          </div>
+        )
+      },
+      cell: ({row}) => (
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <ReactTable.CheckboxCell
+            disabled={!row.getCanSelect()}
+            checked={row.getIsSelected()}
+            indeterminate={row.getIsSomeSelected()}
+            onChange={row.getToggleSelectedHandler()}
+          />
+        </div>
+      ),
     },
     {
       id: 'name',
       header: () => <div style={{textAlign: 'center'}}>Name</div>,
       footer: (props) => props.column.id,
+      enableGrouping: false,
       columns: [
         {
           accessorKey: 'firstName',
           cell: (info) => info.getValue<string>(),
+          header: () => <span>First Name</span>,
           footer: (props) => props.column.id,
-          enableResizing: false,
+          enableResizing: true,
+          enableGrouping: false,
+          sortDescriptor: 'asc',
+          meta: {
+            editable: true,
+            updateData: (rowIndex: number, id: string, value: any) => {
+              setData((old: Person[]) =>
+                old.map((row, index) => {
+                  if (index === rowIndex) {
+                    return {
+                      ...old[rowIndex],
+                      [id]: value,
+                    } as Person
+                  }
+                  return row
+                }),
+              )
+            },
+          },
         },
         {
           accessorFn: (row) => row.lastName,
@@ -272,6 +324,7 @@ const columns = React.useMemo<Array<ColumnConfig<Person>>>(
       id: 'otherInfo',
       header: () => <div style={{textAlign: 'center'}}>Other info</div>,
       footer: (props) => props.column.id,
+      enableGrouping: false,
       columns: [
         {
           accessorKey: 'age',
@@ -302,7 +355,12 @@ const columns = React.useMemo<Array<ColumnConfig<Person>>>(
 ```
 
 ```js
-<ReactTable data={data} columns={columns} options={options}>
+<ReactTable
+  data={data}
+  columns={columns}
+  options={options}
+  onManualSorting={onSorting}
+>
   <ReactTable.Toolbar
     css={{
       display: 'flex',
@@ -320,7 +378,9 @@ const columns = React.useMemo<Array<ColumnConfig<Person>>>(
         gap: '0.5rem',
       }}
     >
-      <Button variant='primary'>Button</Button>
+      <Button variant='primary' className='c-hKssGC-hYGuEl-variant-primary'>
+        Button
+      </Button>
       <Button variant='secondary'>Button</Button>
       <Button variant='ghost'>
         <Icon icon={faTrashAlt} />
@@ -384,7 +444,7 @@ const options: ReactTableOptions = {
 Example
 
 ```js
-const onSorting = (sortingField: StateSorting) => {
+const onSorting = (sortingField: TableV2SortingState) => {
   console.log('stateSorting', sortingField)
 }
 ```
@@ -429,23 +489,23 @@ interface Options<TData> {
 
 ```js
 <ReactTable
-        data={data}
-        columns={columns}
-        options={options}
-        onManualSorting={onSorting}
-        className='someClassName'
-      >
+  data={data}
+  columns={columns}
+  options={options}
+  onManualSorting={onSorting}
+  className='someClassName'
+>
 ```
 
 - options property of table-v2:
 
 ```js
-  const options: OptionType = {
-        enableSorting?: boolean
-        enableMultiSort?: boolean
-        manualSorting?: boolean
-        columnResizeMode?: 'onChange' | 'onEnd'
-  }
+const options: OptionType = {
+  enableSorting?: boolean
+  enableMultiSort?: boolean
+  manualSorting?: boolean
+  columnResizeMode?: 'onChange' | 'onEnd'
+}
 ```
 
 #### ColumnConfig
@@ -496,7 +556,7 @@ Define further information about the column. Now `meta` is used to define `edita
   },
 ```
 
-#### Editable cell
+#### Editable Cell
 
 Press `ENTER` to finish editing the firstName cell, `Esc` to quit editing.
 
@@ -547,16 +607,196 @@ To use this functionality:
   },
 ```
 
+#### Expandable Table Row
+
+<section className={styles.componentShowcaseContainer}>
+  <ExpandableColumnTable />
+</section>
+
+This feature allows users to display additional content to the table row.\
+The `table-v2` component provides `renderRowSubComponent` props which is a callback with row data argument.\
+In reality, users could pass whatever they want to the sub row including the entire
+table instance. Users can also decide which column cell can be the row expander. Please take a look at the example for more details.
+
+```tsx
+const ExpandableColumnTable: React.FC = () => {
+  const [data, setData] = React.useState(() => makeRequestStatusData(10))
+  const [page, setPage] = useState(1)
+  const options: ReactTableOptions<LimitRequestStatus> = {
+    enableSorting: false,
+    enableMultiSort: false,
+    columnResizeMode: 'onChange',
+    manualSorting: false,
+  }
+
+  const columns = React.useMemo<Array<ColumnConfig<LimitRequestStatus>>>(
+    () => [
+      {
+        id: 'expander',
+        size: 40,
+        header: ({table}: HeaderContextProps<LimitRequestStatus, unknown>) => (
+          <>
+            <button
+              {...{
+                onClick: table.getToggleAllRowsExpandedHandler(),
+              }}
+            >
+              {table.getIsAllRowsExpanded() ? (
+                <Icon icon={faChevronDown} />
+              ) : (
+                <Icon icon={faChevronRight} />
+              )}
+            </button>{' '}
+          </>
+        ),
+        cell: ({row}: CellContextProps<LimitRequestStatus, unknown>) => (
+          <span
+            onClick={() => row.toggleExpanded()}
+            style={{
+              cursor: 'pointer',
+              userSelect: 'none',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            {row.getIsExpanded() ? (
+              <Icon icon={faChevronDown} />
+            ) : (
+              <Icon icon={faChevronRight} />
+            )}
+          </span>
+        ),
+      },
+      {
+        id: 'accountName',
+        accessorKey: 'accountName',
+        header: () => <div style={{textAlign: 'center'}}>Account Name</div>,
+        footer: (props: HeaderContextProps<LimitRequestStatus, unknown>) =>
+          props.column.id,
+      },
+      {
+        id: 'code',
+        accessorKey: 'code',
+        header: () => <div style={{textAlign: 'center'}}>Code</div>,
+        footer: (props: HeaderContextProps<LimitRequestStatus, unknown>) =>
+          props.column.id,
+      },
+      {
+        id: 'requestLimit',
+        accessorKey: 'requestLimit',
+        header: () => (
+          <div style={{textAlign: 'center'}}>New Request Limit</div>
+        ),
+        footer: (props: HeaderContextProps<LimitRequestStatus, unknown>) =>
+          props.column.id,
+      },
+      {
+        id: 'status',
+        accessorKey: 'status',
+        header: () => <div style={{textAlign: 'center'}}>Status</div>,
+        footer: (props: HeaderContextProps<LimitRequestStatus, unknown>) =>
+          props.column.id,
+      },
+    ],
+    [],
+  )
+
+  const renderRowSubComponent = (rowData: LimitRequestStatus) => {
+    return (
+      <div
+        style={{
+          padding: '1em',
+          display: 'flex',
+          flexDirection: 'column',
+          rowGap: '1em',
+        }}
+      >
+        <h3>Current Status: {rowData.status}</h3>
+        <Divider />
+        {rowData.progress?.map((processItem) => {
+          return (
+            <>
+              <p style={{fontSize: '12px'}}>{processItem.remarks}</p>
+              <p style={{fontSize: '11px', fontWeight: 200, color: '#878787'}}>
+                {processItem.createdAt.toDateString()}
+              </p>
+              <Divider />
+            </>
+          )
+        })}
+      </div>
+    )
+  }
+  return (
+    <div>
+      <ReactTable
+        data={data}
+        columns={columns}
+        options={options}
+        renderRowSubComponent={renderRowSubComponent}
+      >
+        <ReactTable.Footer
+          css={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}
+        >
+          <div>{/* Todo: Dropdown */}</div>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: '0.5rem',
+            }}
+          >
+            <div
+              style={{
+                fontWeight: '600',
+              }}
+            >
+              {(page - 1) * 10 + 1} - {(page - 1) * 10 + 10} of 100
+            </div>
+            <Pagination
+              page={page}
+              onChange={(page: number) => setPage(page)}
+              total={10}
+            />
+          </div>
+        </ReactTable.Footer>
+      </ReactTable>
+    </div>
+  )
+}
+
+type LimitRequestStatus = {
+  id: string
+  accountName: string
+  code: string
+  requestLimit: number
+  status: string
+  progress?: Progress[] | null
+}
+
+type Progress = {
+  id: string
+  remarks: string
+  createdAt: Date
+}
+```
+
 ### Props
 
-| Name         | Type                  | Default | Description                 |
-| :----------- | :-------------------- | :------ | :-------------------------- |
-| `data`       | Array                 | `[]`    | `Data for show `            |
-| `columns`    | `Array<ColumnDef<T>>` | `[]`    | `column with custom config` |
-| `options`    | OptionType            | {}      | `Table option`              |
-| `children`   | React.ReactNode       | —       | `child element`             |
-| `css`        | `CSS`                 | —       | ``                          |
-| `delegated ` | `CSS`                 | —       |                             |
+| Name                     | Type                                | Default | Description                     |
+| :----------------------- | :---------------------------------- | :------ | :------------------------------ |
+| `data`                   | Array                               | `[]`    | `Data for show.`                |
+| `columns`                | `Array<ColumnDef<T>>`               | `[]`    | `column with custom config.`    |
+| `options`                | OptionType                          | `{}`    | `Table option.`                 |
+| `children`               | React.ReactNode                     | —       | `Child elements.`               |
+| `css`                    | `CSS`                               | `{}`    | `Additional style.`             |
+| `renderRowSubComponent ` | `(rowData: T) => React.JSX.Element` | —       | `Callback after expanding row.` |
 
 ---
 

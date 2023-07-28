@@ -1,14 +1,14 @@
 import {ThemeProvider} from '@comfortdelgro/react-compass'
 import Preflight from '@comfortdelgro/react-compass/preflight'
 import 'components/common/bootstrap'
+import AppHeader from 'components/layouts/AppHeader'
 import {ETheme} from 'constants/index'
+import PagePropsProvider from 'contexts/PageProps'
 import ThemeContext from 'contexts/Theme'
 import NextHead from 'next/head'
 import * as React from 'react'
 import {CodeCopyProvider} from 'utils/CodeCopy'
 import useLazyCSS from 'utils/useLazyCSS'
-
-import AppHeader from 'components/layouts/AppHeader'
 import './global.css'
 
 let dependenciesLoaded = false
@@ -69,7 +69,9 @@ export default function MyApp(props: any) {
 
   return (
     <AppWrapper pageProps={pageProps}>
-      {getLayout(<Component {...pageProps} />)}
+      <PagePropsProvider>
+        {getLayout(<Component {...pageProps} />)}
+      </PagePropsProvider>
     </AppWrapper>
   )
 }

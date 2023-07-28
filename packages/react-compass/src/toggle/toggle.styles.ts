@@ -17,6 +17,10 @@ export const StyledToggle = styled('div', {
     borderRadius: '$full',
     backgroundColor: '$background',
   },
+  input: {
+    visibility: 'hidden',
+    position: 'absolute',
+  },
   variants: {
     active: {
       true: {

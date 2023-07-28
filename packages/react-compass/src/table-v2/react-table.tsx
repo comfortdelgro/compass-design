@@ -1,12 +1,14 @@
 import {
   ColumnDef,
   getCoreRowModel,
+  getExpandedRowModel,
   getFilteredRowModel,
   getSortedRowModel,
   Row,
   SortingState,
   useReactTable,
 } from '@tanstack/react-table'
+
 import React, {useEffect, useState} from 'react'
 import DataGridCell from '../data-grid/data-grid-cell'
 import DataGridCheckbox from '../data-grid/data-grid-checkbox'
@@ -25,6 +27,7 @@ import {StyledDataGrid} from '../data-grid/data-grid.styles'
 import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
+import {ExpandableRow} from './expandable/ExpandableRow'
 import {StyledReactTableWrapper} from './react-table.styles'
 
 export interface Options<TData> {
@@ -37,6 +40,10 @@ export interface Options<TData> {
 }
 
 export type OptionType<TData> = Options<TData>
+
+// can expand all?
+// conditionally expandable row
+// is custom row defined?
 export interface Props<T> extends StyledComponentProps {
   data: T[]
   columns: Array<ColumnDef<T>>
@@ -44,6 +51,7 @@ export interface Props<T> extends StyledComponentProps {
   onManualSorting?: (sortingField: SortingState) => void
   onChangeRowSelection?: (selectionRows: T[]) => void
   children: React.ReactNode
+  renderRowSubComponent?: (row: T) => React.JSX.Element
 }
 
 export type ReactTableProps<T = any> = Props<T> &
@@ -63,6 +71,7 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
       onManualSorting,
       onChangeRowSelection,
       children,
+      renderRowSubComponent,
       // HTMLDiv Props
       ...delegated
     } = props
@@ -87,6 +96,7 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
       getCoreRowModel: getCoreRowModel(),
       getSortedRowModel: getSortedRowModel(),
       getFilteredRowModel: getFilteredRowModel(),
+      getExpandedRowModel: getExpandedRowModel(),
       onRowSelectionChange: setRowSelection,
       debugTable: true,
       data: data,
@@ -136,16 +146,32 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
                 {tableRows.length ? (
                   tableRows.map((row) => {
                     return (
-                      <DataGridRow
-                        key={row.id}
-                        isSelected={row.getIsSelected()}
-                      >
-                        {row.getVisibleCells().map((cell) => {
-                          return (
-                            <DataGridCell key={cell.id} cell={cell} row={row} />
-                          )
-                        })}
-                      </DataGridRow>
+                      <>
+                        <DataGridRow
+                          key={row.id}
+                          isSelected={row.getIsSelected()}
+                          isExpanded={row.getIsExpanded()}
+                        >
+                          {row.getVisibleCells().map((cell) => {
+                            return (
+                              <DataGridCell
+                                key={cell.id}
+                                cell={cell}
+                                row={row}
+                              />
+                            )
+                          })}
+                        </DataGridRow>
+                        <ExpandableRow
+                          colSpan={table.getAllLeafColumns()?.length}
+                          isExpanded={
+                            row.getIsExpanded() &&
+                            renderRowSubComponent !== undefined
+                          }
+                        >
+                          {renderRowSubComponent?.(row.original)}
+                        </ExpandableRow>
+                      </>
                     )
                   })
                 ) : (
