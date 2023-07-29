@@ -2,7 +2,13 @@ import {styled} from '../theme'
 
 export const StyledLayout = styled('div', {
   display: 'flex',
-  gap: '$4',
+  overflow: 'auto',
+  '&.column': {
+    flexDirection: 'column',
+  },
+  '&.row': {
+    flexDirection: 'row',
+  },
 })
 
 export const StyledActionBarLeftGroup = styled('div', {
