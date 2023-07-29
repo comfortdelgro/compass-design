@@ -1,0 +1,60 @@
+import ComponentDisplay from 'components/ComponentDisplay'
+import {Callout} from 'nextra-theme-docs'
+import {PortalLayout} from 'components/PortalLayout'
+
+# Portal layout
+
+The sample of portal layout, admin page layout
+
+<Callout>
+  You can see how this component is implemented on
+  [ladle](https://comfortdelgro.github.io/compass-design/ladle/?story=action-bar--default)
+</Callout>
+
+---
+
+### Import:
+
+```js
+import {ActionBar} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import ActionBar from '@comfortdelgro/react-compass/action-bar'
+```
+
+---
+
+### Basic Example
+
+<ComponentDisplay>
+  <PortalLayout></PortalLayout>
+</ComponentDisplay>
+
+```tsx {22}
+import {ActionBar} from '@comfortdelgro/react-compass'
+
+function BasicExample() {
+  return (
+    <ActionBar>
+      <ActionBar.LeftGroup>
+        <Button variant='primary'>
+          <Icon icon={faExclamationTriangle} />
+        </Button>
+      </ActionBar.LeftGroup>
+      <ActionBar.CenterGroup>
+        <Button isDisabled>
+          <Icon icon={faUserEdit} />
+        </Button>
+        <Button variant='danger'>Danger</Button>
+      </ActionBar.CenterGroup>
+      <ActionBar.RightGroup>
+        <Button variant='primary'>Primary</Button>
+        <Button variant='secondary'>Secondary</Button>
+      </ActionBar.RightGroup>
+    </ActionBar>
+  )
+}
+```
