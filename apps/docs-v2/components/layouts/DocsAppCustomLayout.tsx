@@ -18,11 +18,17 @@ export default function DocsAppCustomLayout(props: PageProps) {
         card='https://github.com/comfortdelgro/compass-design'
       />
 
-      <Box css={{display: 'flex', width: '100%'}}>
+      <Box
+        css={{display: 'flex', width: '100%', minHeight: 'calc(100vh - 51px)'}}
+      >
         <Box
           css={{
             overflowY: 'scroll',
             width: '100%',
+            minHeight: 'calc(100vh - 51px)',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
           }}
           id='document'
         >
