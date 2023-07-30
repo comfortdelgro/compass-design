@@ -14,6 +14,7 @@ interface Props extends StyledComponentProps {
   isDisabled?: boolean
   value: string
   id?: string
+  name?: string
 }
 
 export type RadioProps = Props & RadioVariantProps
@@ -27,6 +28,7 @@ const Radio: React.FC<RadioProps> = (props) => {
     rightLabel,
     isDisabled = false,
     variant = 'simple',
+    name = '',
     css = {},
     ...delegated
   } = props
@@ -42,13 +44,6 @@ const Radio: React.FC<RadioProps> = (props) => {
     }
   }
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    const key = event.key
-    if (key === 'Enter' || key === ' ') {
-      onClick()
-    }
-  }
-
   useEffect(() => {
     setIsChecked(state.value === value)
   }, [state.value])
@@ -56,18 +51,17 @@ const Radio: React.FC<RadioProps> = (props) => {
   return (
     <StyledRadio
       css={css}
-      tabIndex={-1}
       variant={variant}
       disabled={isDisabled}
       onClick={onClick}
-      onKeyDown={handleKeyDown}
       role='radio'
       aria-disabled={isDisabled}
       aria-valuetext={value}
       {...delegated}
     >
-      <div className='radio-wrapper'>
+      <div className={`radio-wrapper`}>
         <StyledRadioInput active={isChecked} disabled={isDisabled} />
+        <input type='radio' name={name} disabled={isDisabled}></input>
       </div>
       <div className='radio-content-wrapper'>
         <div className='radio-label'>

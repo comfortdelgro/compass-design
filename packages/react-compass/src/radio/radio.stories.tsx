@@ -22,12 +22,14 @@ export const Variants: React.FC = () => {
             value='1'
             tooltip='This is tooltip'
             id='item1'
+            name='variants'
           />
           <Radio
             variant='outlined'
             label='test2'
             description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
             value='2'
+            name='variants'
           />
           <Radio
             variant='outlined'
@@ -35,6 +37,7 @@ export const Variants: React.FC = () => {
             description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
             value='3'
             isDisabled
+            name='variants'
           />
         </Radio.Group>
       </Row>
