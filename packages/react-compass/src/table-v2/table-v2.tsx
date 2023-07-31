@@ -3,32 +3,35 @@ import {
   getCoreRowModel,
   getExpandedRowModel,
   getFilteredRowModel,
+  getGroupedRowModel,
   getSortedRowModel,
+  GroupingState,
   Row,
   SortingState,
   useReactTable,
 } from '@tanstack/react-table'
 
 import React, {useEffect, useState} from 'react'
-import DataGridCell from '../data-grid/data-grid-cell'
-import DataGridCheckbox from '../data-grid/data-grid-checkbox'
-import DataGridCheckboxCell from '../data-grid/data-grid-checkbox-cell'
-import DataGridColumnHeader from '../data-grid/data-grid-column-header'
-import DataGridFooter from '../data-grid/data-grid-footer'
-import DataGridHeaderRow from '../data-grid/data-grid-header-row'
+// import DataGridColumnHeader from '../data-grid/data-grid-column-header'
+// import DataGridFooter from '../data-grid/data-grid-footer'
+// import DataGridHeaderRow from '../data-grid/data-grid-header-row'
 import {NoDataComponent} from '../data-grid/data-grid-nodata'
-import DataGridRow from '../data-grid/data-grid-row'
-import DataGridRowGroup from '../data-grid/data-grid-row-group'
-import {
-  default as DataGridToolbar,
-  default as TableToolbar,
-} from '../data-grid/data-grid-toolbar'
-import {StyledDataGrid} from '../data-grid/data-grid.styles'
+// import DataGridRow from '../data-grid/data-grid-row'
+// import DataGridRowGroup from '../data-grid/data-grid-row-group'
 import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {ExpandableRow} from './expandable/ExpandableRow'
-import {StyledReactTableWrapper} from './react-table.styles'
+import TableV2Cell from './table-v2-cell'
+import TableV2Checkbox from './table-v2-checkbox'
+import TableV2CheckboxCell from './table-v2-checkbox-cell'
+import TableV2ColumnHeader from './table-v2-column-header'
+import TableV2Footer from './table-v2-footer'
+import TableV2HeaderRow from './table-v2-header-row'
+import TableV2Row from './table-v2-row'
+import TableV2RowGroup from './table-v2-row-group'
+import TableV2Toolbar from './table-v2-toolbar'
+import {StyledTableV2, StyledTableV2Wrapper} from './table-v2.styles'
 
 export interface Options<TData> {
   enableSorting?: boolean
@@ -51,6 +54,7 @@ export interface Props<T> extends StyledComponentProps {
   onManualSorting?: (sortingField: SortingState) => void
   onChangeRowSelection?: (selectionRows: T[]) => void
   children: React.ReactNode
+  onUpdateData?: (newData: object) => void
   renderRowSubComponent?: (row: T) => React.JSX.Element
 }
 
@@ -61,6 +65,7 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
   (props, ref) => {
     const [sorting, setSorting] = useState<SortingState>([])
     const [rowSelection, setRowSelection] = useState({})
+    const [grouping, setGrouping] = React.useState<GroupingState>([])
 
     const {
       // StyledComponentProps
@@ -70,33 +75,37 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
       options,
       onManualSorting,
       onChangeRowSelection,
-      children,
+      onUpdateData,
       renderRowSubComponent,
+      children,
       // HTMLDiv Props
       ...delegated
     } = props
 
     const {child: toolbar, rest: childrenWithoutToolbar} = pickChild<
-      typeof TableToolbar
-    >(children, TableToolbar)
+      typeof TableV2Toolbar
+    >(children, TableV2Toolbar)
 
-    const {child: footer} = pickChild<typeof DataGridFooter>(
+    const {child: footer} = pickChild<typeof TableV2Footer>(
       childrenWithoutToolbar,
-      DataGridFooter,
+      TableV2Footer,
     )
 
     const tableRef = useDOMRef<HTMLTableElement>(ref)
 
     const table = useReactTable({
       state: {
+        grouping,
         rowSelection,
         sorting: options.initialSortBy ? options.initialSortBy : sorting,
       },
+      onGroupingChange: setGrouping,
+      getExpandedRowModel: getExpandedRowModel(),
+      getGroupedRowModel: getGroupedRowModel(),
       onSortingChange: setSorting,
       getCoreRowModel: getCoreRowModel(),
       getSortedRowModel: getSortedRowModel(),
       getFilteredRowModel: getFilteredRowModel(),
-      getExpandedRowModel: getExpandedRowModel(),
       onRowSelectionChange: setRowSelection,
       debugTable: true,
       data: data,
@@ -122,46 +131,46 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
     const tableRows = table.getRowModel().rows ?? []
 
     return (
-      <StyledReactTableWrapper css={css} {...delegated}>
+      <StyledTableV2Wrapper css={css} {...delegated}>
         {toolbar && <>{toolbar}</>}
-        <StyledDataGrid>
+        <StyledTableV2>
           <table ref={tableRef}>
-            <DataGridRowGroup as='thead'>
+            <TableV2RowGroup as='thead'>
               {table.getHeaderGroups().map((headerGroup) => (
-                <DataGridHeaderRow key={headerGroup.id}>
+                <TableV2HeaderRow key={headerGroup.id}>
                   {headerGroup.headers.map((header) => {
                     return (
-                      <DataGridColumnHeader
+                      <TableV2ColumnHeader
                         key={header.id}
                         headerProps={header}
                         tableOption={table}
                       />
                     )
                   })}
-                </DataGridHeaderRow>
+                </TableV2HeaderRow>
               ))}
-            </DataGridRowGroup>
+            </TableV2RowGroup>
             {
-              <DataGridRowGroup as='tbody'>
+              <TableV2RowGroup as='tbody'>
                 {tableRows.length ? (
                   tableRows.map((row) => {
                     return (
                       <>
-                        <DataGridRow
+                        <TableV2Row
                           key={row.id}
                           isSelected={row.getIsSelected()}
                           isExpanded={row.getIsExpanded()}
                         >
                           {row.getVisibleCells().map((cell) => {
                             return (
-                              <DataGridCell
+                              <TableV2Cell
                                 key={cell.id}
                                 cell={cell}
                                 row={row}
                               />
                             )
                           })}
-                        </DataGridRow>
+                        </TableV2Row>
                         <ExpandableRow
                           colSpan={table.getAllLeafColumns()?.length}
                           isExpanded={
@@ -179,19 +188,19 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
                     colSpan={table.getAllLeafColumns()?.length}
                   ></NoDataComponent>
                 )}
-              </DataGridRowGroup>
+              </TableV2RowGroup>
             }
           </table>
-        </StyledDataGrid>
+        </StyledTableV2>
         {footer && <>{footer}</>}
-      </StyledReactTableWrapper>
+      </StyledTableV2Wrapper>
     )
   },
 )
 
 export default ReactTable as typeof ReactTable & {
-  Toolbar: typeof DataGridToolbar
-  Footer: typeof DataGridFooter
-  Checkbox: typeof DataGridCheckbox
-  CheckboxCell: typeof DataGridCheckboxCell
+  Toolbar: typeof TableV2Toolbar
+  Footer: typeof TableV2Footer
+  Checkbox: typeof TableV2Checkbox
+  CheckboxCell: typeof TableV2CheckboxCell
 }

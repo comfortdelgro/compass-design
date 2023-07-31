@@ -14,7 +14,7 @@ import DataGridCheckbox from '../data-grid/data-grid-checkbox'
 import DataGridCheckboxCell from '../data-grid/data-grid-checkbox-cell'
 import DataGridFooter from '../data-grid/data-grid-footer'
 import DataGridToolbar from '../data-grid/data-grid-toolbar'
-import ReactTable from './react-table'
+import ReactTable from './table-v2'
 
 export type {
   DataGridCheckboxCellProps as ReactTableCheckboxCellProps,
@@ -22,7 +22,7 @@ export type {
   DataGridFooterProps as ReactTableFooterProps,
   DataGridToolbarProps as ReactTableToolbarProps,
 } from '../data-grid'
-export type {OptionType, ReactTableProps} from './react-table'
+export type {OptionType, ReactTableProps} from './table-v2'
 
 ReactTable.Toolbar = DataGridToolbar
 ReactTable.Footer = DataGridFooter
