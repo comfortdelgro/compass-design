@@ -154,7 +154,9 @@ export default function useNumberField(
 
   const incrementButtonProps = {
     'aria-label': 'increase',
+    slot: 'increment',
     type: 'button',
+    tabIndex: -1,
     disabled: !state.canIncrement,
     onClick: () => {
       onButtonPressStart()
@@ -165,7 +167,9 @@ export default function useNumberField(
 
   const decrementButtonProps = {
     'aria-label': 'decrease',
+    slot: 'decrement',
     type: 'button',
+    tabIndex: -1,
     disabled: !state.canDecrement,
     onClick: () => {
       onButtonPressStart()

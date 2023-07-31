@@ -1,4 +1,10 @@
+import {useId} from '@floating-ui/react'
 import React from 'react'
+import {
+  KeyboardNavigationProvider,
+  useKeyboardNavigation,
+  useKeyboardNavigationState,
+} from '../utils/hooks'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import TabItem from './item'
@@ -45,6 +51,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     selectedKey,
     defaultSelectedKey,
     css = {},
+    onKeyDown: onKeyDownProps,
     ...delegated
   } = props
 
@@ -68,6 +75,36 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     if (currentKey) props.onSelectionChange?.(currentKey)
   }, [currentKey])
 
+  const {onKeyDown, nextFocus, prevFocus} = useKeyboardNavigation()
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    onKeyDown?.<HTMLDivElement>({
+      ArrowLeft: (e) => {
+        e.preventDefault()
+        orientation === 'horizontal' && prevFocus?.()
+      },
+      ArrowRight: (e) => {
+        e.preventDefault()
+        console.log('go right')
+        orientation === 'horizontal' && nextFocus?.()
+      },
+      ArrowUp: (e) => {
+        e.preventDefault()
+        orientation === 'vertical' && prevFocus?.()
+      },
+      ArrowDown: (e) => {
+        e.preventDefault()
+        orientation === 'vertical' && nextFocus?.()
+      },
+    })(e)
+
+    onKeyDownProps?.(e)
+  }
+
+  const id = useId()
+
+  const tabPanelId = `${id}_${selectedItem?.key}`
+
   return (
     <StyledWrapper>
       <StyledTabs
@@ -75,8 +112,10 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
         css={css}
         orientation={orientation}
         variant={variant}
+        onKeyDown={handleKeyDown}
+        role='tablist'
+        aria-orientation={orientation}
         {...delegated}
-        tabIndex={0}
       >
         {[...collection].map((item) => (
           <Tab
@@ -90,17 +129,34 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
             item={item}
             isDisabled={isDisabled}
             onSelect={onSelect}
+            id={`${id}_${item.key}`}
           />
         ))}
       </StyledTabs>
       {!hidePanel && (
-        <TabPanel key={selectedItem?.key} selectedItem={selectedItem} />
+        <TabPanel
+          aria-labelledby={tabPanelId}
+          key={selectedItem?.key}
+          selectedItem={selectedItem}
+        />
       )}
     </StyledWrapper>
   )
 })
 
-export default Tabs as typeof Tabs & {
+export const TabsContextWrapper = React.forwardRef<HTMLDivElement, TabsProps>(
+  (props, ref) => {
+    const {provider} = useKeyboardNavigationState()
+
+    return (
+      <KeyboardNavigationProvider {...provider}>
+        <Tabs {...props} ref={ref} />
+      </KeyboardNavigationProvider>
+    )
+  },
+)
+
+export default TabsContextWrapper as typeof Tabs & {
   Item: typeof TabItem
   Paneless: typeof TabsPaneless
 }

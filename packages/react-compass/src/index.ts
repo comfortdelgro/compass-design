@@ -146,6 +146,8 @@ export * from './internationalized/date'
 export * from './internationalized/i18n'
 export * from './internationalized/number'
 export * from './internationalized/string'
+export {default as Layout} from './layouts'
+export type {LayoutProps} from './layouts'
 export {default as Link} from './link'
 export type {LinkProps} from './link'
 export {
