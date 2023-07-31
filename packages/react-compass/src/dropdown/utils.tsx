@@ -39,7 +39,9 @@ const findItemByValue = (
     const item = items[index]
     if (item?.props) {
       const itemKey =
-        item.props.value ?? item.key?.toString().replace('.$', '') ?? ''
+        item.props.value?.toString() ??
+        item.key?.toString().replace('.$', '') ??
+        ''
       if (itemKey === value.toString() && !disabledKeys?.includes(itemKey)) {
         return item
       }

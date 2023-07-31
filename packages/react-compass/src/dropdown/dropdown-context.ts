@@ -12,6 +12,7 @@ export interface DropdownItemKey {
 }
 
 export interface DropdownContextType {
+  isPositioned: boolean
   open: boolean
   searchValue: string
   disabledKeys?: Key[]
@@ -29,6 +30,7 @@ export interface DropdownContextType {
 }
 
 export const DropdownContext = createContext<DropdownContextType>({
+  isPositioned: false,
   labelId: '',
   open: false,
   searchValue: '',

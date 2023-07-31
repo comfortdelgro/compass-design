@@ -42,6 +42,8 @@ interface Props extends StyledComponentProps {
   defaultOpen?: boolean
   selectedKey?: Key
   defaultSelectedKey?: Key
+  value?: Key
+  defaultValue?: Key
   shouldDeselect?: boolean
   allowsCustomValue?: boolean
   type?: 'select' | 'combobox'
@@ -59,6 +61,7 @@ interface Props extends StyledComponentProps {
   errorMessage?: string
   numberOfRows?: number
   disabledKeys?: Key[]
+  disabledValues?: Key[]
   children?: React.ReactNode
   description?: React.ReactNode
   disableClearable?: boolean
@@ -68,6 +71,7 @@ interface Props extends StyledComponentProps {
   onLoadMore?: () => void
   onOpenChange?: (isOpen: boolean) => void
   onSelectionChange?: (key: Key) => void
+  onValueChange?: (key: Key) => void
 }
 
 export const Icon = () => (
@@ -107,11 +111,14 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     isReadOnly = false,
     isLoading = false,
     helperText,
-    selectedKey = '',
     errorMessage,
     numberOfRows,
     disabledKeys = [],
+    selectedKey = '',
     defaultSelectedKey = '',
+    disabledValues = [],
+    value = '',
+    defaultValue = '',
     defaultOpen = false,
     isDisabled = false,
     shouldDeselect = false,
@@ -120,6 +127,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     prefix = null,
     noDataMessage = '',
     label,
+    onValueChange = EMPTY_FUNC,
     onSelectionChange = EMPTY_FUNC,
     onFocus = EMPTY_FUNC,
     onBlur = EMPTY_FUNC,
@@ -128,13 +136,23 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     ...delegated
   } = props
 
+  const defaultValueDropdown = useMemo(
+    () => defaultValue || defaultSelectedKey,
+    [defaultValue, defaultSelectedKey],
+  )
+  const valueDropdown = useMemo(
+    () => value || selectedKey,
+    [value, selectedKey],
+  )
+
+  const [isPositioned, setIsPositioned] = React.useState(false)
   const [open, setOpen] = React.useState<boolean>(defaultOpen)
   const [selectedItem, setSelectedItem] =
     React.useState<SelectedItemDropdown | null>(null)
   const [selectedItemBackup, setSelectedItemBackup] =
     React.useState<SelectedItemDropdown | null>(null)
   const [focusKey, setFocusKey] = React.useState<Key | undefined>(
-    selectedKey || defaultSelectedKey,
+    valueDropdown || defaultValueDropdown,
   )
   const [searchValue, setSearchValue] = useState<string>('')
   const [dropdownItemKeys, setDropdownItemKeys] = useState<DropdownItemKey[]>(
@@ -153,8 +171,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   const openStateInitialChangedRef = useRef(false)
 
   const isUncontrolledComponent = useMemo(
-    () => !!defaultSelectedKey || (!defaultSelectedKey && !selectedKey),
-    [defaultSelectedKey],
+    () => !!defaultValueDropdown || (!defaultValueDropdown && !valueDropdown),
+    [defaultValueDropdown],
   )
 
   const triggeElWidth = useMemo(() => {
@@ -175,7 +193,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     if (!openStateInitialChangedRef.current) {
       openStateInitialChangedRef.current = true
     } else {
-      if (!open && allowsCustomValue) {
+      if (!open) {
         setFocusKey('')
       }
     }
@@ -302,6 +320,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
                 ) {
                   setValueForItemAndFocusKey(null)
                   onSelectionChange?.('')
+                  onValueChange?.('')
                   return
                 }
                 setValueForItemAndFocusKey({
@@ -316,6 +335,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
                   )
                 }
                 onSelectionChange?.(focusedItem?.props?.value as Key)
+                onValueChange?.(focusedItem?.props?.value as Key)
               }
             }
 
@@ -347,6 +367,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       clonedChildren,
       selectedItem,
       dropdownItemKeys,
+      onValueChange,
+      onSelectionChange,
       onOpenChange,
       setValueForItemAndFocusKey,
     ],
@@ -378,6 +400,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         if (allowsCustomValue) {
           setValueForItemAndFocusKey(null)
           onSelectionChange?.('')
+          onValueChange?.('')
         }
       }
     },
@@ -388,6 +411,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       selectedItemBackup,
       allowsCustomValue,
       onOpenChange,
+      onValueChange,
       onSelectionChange,
       setValueForItemAndFocusKey,
     ],
@@ -431,13 +455,13 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   }, [open, type, fillTextForInput])
 
   useEffect(() => {
-    if (!clonedChildren || (!selectedKey && !defaultSelectedKey)) {
+    if (!clonedChildren || (!valueDropdown && !defaultValueDropdown)) {
       setSelectedItem(null)
       setFocusKey('')
       return
     }
 
-    const currentSelectedKey = selectedKey || defaultSelectedKey
+    const currentSelectedKey = valueDropdown || defaultValueDropdown
 
     // Find the item with the specified value
     const item = getItemByKey(currentSelectedKey, clonedChildren)
@@ -448,12 +472,11 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         displayValue: item as React.ReactNode,
         flagName: item?.props?.flagName ?? '',
       })
-      setFocusKey(currentSelectedKey.toString())
       if (inputRef.current) {
         inputRef.current.value = textContent(item as React.ReactElement)
       }
     }
-  }, [clonedChildren, selectedKey, defaultSelectedKey])
+  }, [clonedChildren, valueDropdown, defaultValueDropdown])
 
   const contentElement = useMemo(() => {
     switch (type) {
@@ -553,6 +576,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     if (!disableClearable && !currentItem.value) {
       setValueForItemAndFocusKey(null)
       onSelectionChange?.('')
+      onValueChange?.('')
       return
     }
     // Deselect item
@@ -563,11 +587,13 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     ) {
       setValueForItemAndFocusKey(null)
       onSelectionChange?.('')
+      onValueChange?.('')
       return
     }
 
     if (selectedItem?.value !== currentItem.value) {
       onSelectionChange?.(currentItem.value)
+      onValueChange?.(currentItem.value)
     }
     setValueForItemAndFocusKey(currentItem)
     setSelectedItemBackup(currentItem)
@@ -589,6 +615,10 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     onOpenChange?.(false)
   }, [onOpenChange])
 
+  const handlePositionedChange = useCallback((isPositioned: boolean) => {
+    setIsPositioned(isPositioned)
+  }, [])
+
   return (
     <StyledDropdownWrapper
       className={`${open ? 'cdg-dropdown-opening' : ''}`}
@@ -604,11 +634,12 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       )}
       <DropdownContext.Provider
         value={{
+          isPositioned,
           open,
           focusKey: focusKey ?? '',
-          selectedKey,
-          defaultSelectedKey,
-          disabledKeys,
+          selectedKey: valueDropdown,
+          defaultSelectedKey: defaultValueDropdown,
+          disabledKeys: disabledValues ?? disabledKeys ?? [],
           searchValue,
           labelId: `${id}-label`,
           selectedItem,
@@ -624,6 +655,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           css={{width: '100%'}}
           direction='bottom'
           onClose={handleClosePopover}
+          onPositionedChange={handlePositionedChange}
         >
           <StyledPopover
             style={{

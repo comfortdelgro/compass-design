@@ -72,7 +72,7 @@ interface SampleData {
 }
 
 export const Select: React.FC = () => {
-  const [value, setValue] = React.useState<Key>('cat')
+  const [value, setValue] = React.useState<Key>('aardvark1')
   const [flag, setFlag] = React.useState<Key>('')
   const [loadMoreValue, setLoadMoreValue] = React.useState<Key>('')
   const [data, setData] = React.useState<SampleData[]>(generateRandomData(10))
@@ -102,7 +102,7 @@ export const Select: React.FC = () => {
           </>
         }
         placeholder='Choose an animal'
-        selectedKey={value}
+        value={value}
         onSelectionChange={(k: Key) => setValue(k)}
         onBlur={() => console.log('blur')}
         onFocus={() => console.log('focus')}
@@ -153,7 +153,7 @@ export const Select: React.FC = () => {
         isRequired
         label={<>Phone Code Select</>}
         placeholder='Choose an animal'
-        selectedKey={flag}
+        value={flag}
         onSelectionChange={(k: Key) => setFlag(k)}
         prefix={
           <div
@@ -184,7 +184,7 @@ export const Select: React.FC = () => {
         isRequired
         label='Favorite Animal'
         placeholder='Choose an animal'
-        selectedKey={value1}
+        value={value1}
         onSelectionChange={(k: Key) => setValue1(k)}
       >
         <Dropdown.Item
@@ -222,9 +222,9 @@ export const Select: React.FC = () => {
         isRequired
         label='Favorite Animal'
         placeholder='Choose an animal'
-        selectedKey={value1}
+        value={value1}
         onSelectionChange={(k: Key) => setValue1(k)}
-        disabledKeys={['dog']}
+        disabledValues={['dog']}
       >
         <Dropdown.Item
           key='red panda'
@@ -260,8 +260,8 @@ export const Select: React.FC = () => {
       <Dropdown.Select
         label='Favorite Animal'
         placeholder='Choose an animal'
-        defaultSelectedKey={'cat'}
-        disabledKeys={['dog']}
+        defaultValue={'cat'}
+        disabledValues={['dog']}
       >
         <Dropdown.Item
           key='red panda'
@@ -291,7 +291,7 @@ export const Select: React.FC = () => {
       <Dropdown.Select
         label='Favorite Animal'
         placeholder='Choose an animal'
-        defaultSelectedKey={'dog'}
+        defaultValue={'dog'}
         shouldDeselect
       >
         <Dropdown.Item
@@ -513,7 +513,7 @@ export const Select: React.FC = () => {
         isRequired
         label='Using load more'
         placeholder='Select name'
-        selectedKey={loadMoreValue}
+        value={loadMoreValue}
         onSelectionChange={(k: Key) => setLoadMoreValue(k)}
         onLoadMore={() => {
           setData((currentData) => [
@@ -548,11 +548,12 @@ export const Combobox: React.FC = () => {
           </>
         }
         placeholder='Choose an animal'
-        selectedKey={value}
+        value={value}
         onSelectionChange={(k: Key) => setValue(k)}
         onBlur={() => console.log('blur')}
         onFocus={() => console.log('focus')}
       >
+        {/* <Dropdown.Item key=''>Clear Data</Dropdown.Item> */}
         <Dropdown.Item
           key='red panda'
           value='red panda'
@@ -625,7 +626,7 @@ export const Combobox: React.FC = () => {
         isRequired
         label='Favorite Animal'
         placeholder='Choose an animal'
-        selectedKey={disabledValue}
+        value={disabledValue}
       >
         <Dropdown.Item
           key='red panda'
@@ -709,7 +710,7 @@ export const Combobox: React.FC = () => {
       <Dropdown.ComboBox
         label='Favorite Animal'
         placeholder='Choose an animal'
-        selectedKey={customValue}
+        value={customValue}
         onSelectionChange={(k: Key) => setCustomValue(k)}
         allowsCustomValue
       >
