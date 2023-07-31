@@ -39,7 +39,7 @@ export default function AppHeader(props: AppHeaderProps) {
         </Link>
       </Navbar.Brand>
       <NavbarLinks>
-        <Link href='/getting-started/overview'>
+        <Link href='/foundation/overview'>
           <Button>Document</Button>
         </Link>
         <Link

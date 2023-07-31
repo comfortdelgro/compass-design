@@ -10,41 +10,41 @@ export default function Page() {
       description:
         'It distinguishes our brand and it creates consistent experience.',
       image: '/static/images/overview/intro-1.png',
-      url: '/getting-started/color',
+      url: '/foundation/color',
     },
     {
       title: 'Elevations',
       description:
         'Elevations are layered surface that forms the foundation of UI.',
       image: '/static/images/overview/intro-2.png',
-      url: '/getting-started/color',
+      url: '/foundation/color',
     },
     {
       title: 'Iconography',
       description:
         'Icons are visual representation of commands or common actions.',
       image: '/static/images/overview/intro-3.png',
-      url: '/getting-started/color',
+      url: '/foundation/iconography',
     },
     {
       title: 'Typography',
       description:
         'It is our system of fonts. each font conveys the sentiment to assist.',
       image: '/static/images/overview/intro-4.png',
-      url: '/getting-started/color',
+      url: '/foundation/typography',
     },
     {
       title: 'Illustrations',
       description: 'It help convey complex ideas in a simple way.',
       image: '/static/images/overview/intro-5.png',
-      url: '/getting-started/color',
+      url: '/foundation/color',
     },
     {
       title: 'Logo’s',
       description:
         'It distinguishes our brand and it creates consistent experience.',
       image: '/static/images/overview/intro-6.png',
-      url: '/getting-started/color',
+      url: '/foundation/color',
     },
   ]
 
