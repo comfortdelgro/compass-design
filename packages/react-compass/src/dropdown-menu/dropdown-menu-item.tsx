@@ -13,11 +13,8 @@ interface Props extends StyledComponentProps {
   children?: React.ReactNode
   isDisabled?: boolean
   isActived?: boolean
-  eventKey?: string | number
-  onSelect?: (
-    event: React.MouseEvent<HTMLLIElement>,
-    eventKey?: string | number,
-  ) => void
+  eventKey?: string
+  onSelect?: (event: React.MouseEvent<HTMLLIElement>, eventKey?: string) => void
 }
 export const MULTILEVEL_ITEM_CLASS_NAME = 'cdg-dropdown-multilevel-item'
 
