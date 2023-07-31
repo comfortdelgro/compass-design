@@ -5,5 +5,6 @@
 ### Editable cell sequence diagram
 ![editable cell drawio](https://github.com/comfortdelgro/compass-design/assets/7071853/ff62b5c0-9d0f-4fbd-af92-50d2dd619d09)
 ### Expandable cell sequence diagram
-![editable cell drawio](https://github.com/comfortdelgro/compass-design/assets/7071853/ff62b5c0-9d0f-4fbd-af92-50d2dd619d09)
+![expandable sequence drawio](https://github.com/comfortdelgro/compass-design/assets/7071853/fd18cf9d-2b5c-4d79-bb88-bdbc3e5c5f0a)
+
 
