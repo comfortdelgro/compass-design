@@ -1,4 +1,5 @@
 import ComponentDisplay from 'components/ComponentDisplay'
+import {LayoutAlignment} from 'components/LayoutAlignment'
 import {Callout} from 'nextra-theme-docs'
 import {Layout} from '@comfortdelgro/react-compass'
 
@@ -76,6 +77,19 @@ import Layout from '@comfortdelgro/react-compass/layouts'
     <Layout css={{width: '200px'}}>200px column</Layout>
     <Layout flex={1}>Col 2</Layout>
   </Layout>
+</ComponentDisplay>
+
+```tsx {22}
+<Layout direction='row'>
+  <Layout css={{width: '200px'}}>200px column</Layout>
+  <Layout flex={1}>Col 2</Layout>
+</Layout>
+```
+
+### Alignment
+
+<ComponentDisplay>
+  <LayoutAlignment></LayoutAlignment>
 </ComponentDisplay>
 
 ```tsx {22}

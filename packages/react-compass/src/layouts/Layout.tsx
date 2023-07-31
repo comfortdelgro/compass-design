@@ -3,11 +3,23 @@ import {CSS, StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {StyledLayout} from './Layout.styles'
 
+export type LayoutAlignment =
+  | 'start-start'
+  | 'center-start'
+  | 'end-start'
+  | 'start-center'
+  | 'center-center'
+  | 'end-center'
+  | 'start-end'
+  | 'center-end'
+  | 'end-end'
+
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
   css?: CSS
   direction?: 'row' | 'column'
   flex?: Number
+  align?: LayoutAlignment
 }
 
 export type LayoutProps = Props &
@@ -16,14 +28,21 @@ export type LayoutProps = Props &
 export const Layout = React.forwardRef<HTMLDivElement, LayoutProps>(
   (props, ref) => {
     const layoutRef = useDOMRef<HTMLDivElement>(ref)
-    const {children, direction = 'column', flex, css = {}, ...delegated} = props
+    const {
+      children,
+      direction = 'column',
+      align,
+      flex,
+      css = {},
+      ...delegated
+    } = props
 
     return (
       <StyledLayout
         ref={layoutRef}
         css={css}
         {...delegated}
-        className={`cdg-layout ${direction}`}
+        className={`cdg-layout ${direction} ${align ? ' ' + align : ''}`}
         style={flex ? {flex: flex.toString()} : {}}
       >
         {children}
