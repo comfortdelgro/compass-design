@@ -12,6 +12,7 @@ interface Props extends StyledComponentProps {
   collapsedSize?: string
   orientation?: 'horizontal' | 'vertical'
   slideDirection?: 'left' | 'right' | 'top' | 'bottom'
+  isLazyMounted?: boolean
 }
 
 export type TransitionsProps = Props &
@@ -28,6 +29,7 @@ const Transitions = React.forwardRef<HTMLDivElement, TransitionsProps>(
       collapsedSize = '1000px',
       orientation = 'vertical',
       slideDirection = 'bottom',
+      isLazyMounted = true,
       ...delegated
     } = props
     const TransitionWrapperRef = useDOMRef<HTMLDivElement>(ref)
@@ -40,23 +42,47 @@ const Transitions = React.forwardRef<HTMLDivElement, TransitionsProps>(
       return 'translateY(100vh)'
     }
 
+    const [unMountedChildren, setUnMountedChildren] =
+      React.useState<React.ReactNode>(children)
+
+    const renderChildren = () => {
+      if (show) {
+        return children
+      } else {
+        return unMountedChildren
+      }
+    }
+
+    React.useEffect(() => {
+      if (isLazyMounted == false) return
+      if (show) {
+        setUnMountedChildren(children)
+      } else {
+        setTimeout(() => {
+          setUnMountedChildren(null)
+        }, speed * 1000)
+      }
+    }, [show, children, isLazyMounted])
+
     return (
-      <StyledTransition
-        css={{
-          $$speed: `${speed}s`,
-          $$collapsedSize: collapsedSize,
-          $$collapseDirection: collapseDirection,
-          $$slideDirection: determineSlideDirection(),
-          ...css,
-        }}
-        ref={TransitionWrapperRef}
-        effect={effect}
-        show={show}
-        orientation={effect === 'collapse' ? orientation : 'none'}
-        {...delegated}
-      >
-        <div ref={ChildrenRef}>{children}</div>
-      </StyledTransition>
+      <>
+        <StyledTransition
+          css={{
+            $$speed: `${speed}s`,
+            $$collapsedSize: collapsedSize,
+            $$collapseDirection: collapseDirection,
+            $$slideDirection: determineSlideDirection(),
+            ...css,
+          }}
+          ref={TransitionWrapperRef}
+          effect={effect}
+          show={show}
+          orientation={effect === 'collapse' ? orientation : 'none'}
+          {...delegated}
+        >
+          <div ref={ChildrenRef}>{renderChildren()}</div>
+        </StyledTransition>
+      </>
     )
   },
 )
