@@ -3,7 +3,9 @@ import Popover from '../popover'
 import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
-import DropdownMenuContext from './dropdown-menu-context'
+import DropdownMenuContext, {
+  DropdownMenuContextType,
+} from './dropdown-menu-context'
 import DropdownMenuItem from './dropdown-menu-item'
 import DropdownMenuMenu from './dropdown-menu-menu'
 import DropdownMenuSubmenu from './dropdown-menu-submenu'
@@ -26,12 +28,8 @@ const DropdownMenu = React.forwardRef<HTMLDivElement, DropdownMenuProps>(
       children,
       onKeyDown,
       css = {},
-      onClose = () => {
-        //
-      },
-      onOpenChange = () => {
-        //
-      },
+      onClose,
+      onOpenChange,
       ...delegated
     } = props
 
@@ -53,7 +51,7 @@ const DropdownMenu = React.forwardRef<HTMLDivElement, DropdownMenuProps>(
 
     const refs = useRef<Array<React.RefObject<HTMLLIElement>>>([])
 
-    const contextValue = React.useMemo(
+    const contextValue: DropdownMenuContextType = React.useMemo(
       () => ({
         open,
         setOpen,
@@ -122,6 +120,16 @@ const DropdownMenu = React.forwardRef<HTMLDivElement, DropdownMenuProps>(
             setOpen(false)
             onOpenChange?.(false)
             onClose?.()
+            break
+        }
+      } else {
+        switch (event.key) {
+          case 'ArrowUp':
+          case 'ArrowDown':
+            event.preventDefault()
+            setOpen(true)
+            break
+          default:
             break
         }
       }

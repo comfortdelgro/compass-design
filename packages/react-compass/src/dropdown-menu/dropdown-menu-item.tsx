@@ -32,6 +32,34 @@ const ArrowRightIcon = () => (
   </svg>
 )
 
+const getNextSibling = (
+  dropdownMenuItem: HTMLLIElement | null,
+): HTMLLIElement | null => {
+  const nextElement = dropdownMenuItem?.nextElementSibling as HTMLLIElement
+  if (!dropdownMenuItem || !nextElement) {
+    return null
+  }
+  if (nextElement.getAttribute('aria-disabled') === 'true') {
+    return getNextSibling(nextElement)
+  }
+
+  return nextElement
+}
+
+const getPrevSibling = (
+  dropdownMenuItem: HTMLLIElement | null,
+): HTMLLIElement | null => {
+  const prevElement = dropdownMenuItem?.previousElementSibling as HTMLLIElement
+  if (!dropdownMenuItem || !prevElement) {
+    return null
+  }
+  if (prevElement.getAttribute('aria-disabled') === 'true') {
+    return getPrevSibling(prevElement)
+  }
+
+  return prevElement
+}
+
 export type DropdownMenuItemProps = Props &
   Omit<React.HTMLAttributes<HTMLLIElement>, keyof Props>
 
@@ -87,16 +115,59 @@ const DropdownMenuItem = React.forwardRef<HTMLLIElement, DropdownMenuItemProps>(
           if (event.key === 'ArrowRight') {
             event.stopPropagation()
             event.preventDefault()
-            const subMenuArr = React.Children.toArray(subMenuChild)
-            subMenuArr.forEach((itemSubMenu, index) => {
-              if (index === 0) {
-                console.log(itemSubMenu)
+            const dropdownSubMenu: HTMLUListElement =
+              dropdownMenuItemRef.current?.querySelector(
+                '.cdg-dropdown-multilevel-submenu',
+              ) as HTMLUListElement
+            if (dropdownSubMenu) {
+              dropdownSubMenu.style.display = 'block'
+              const dropdownMenuItemChild = dropdownSubMenu?.querySelector(
+                '.cdg-dropdown-multilevel-item',
+              ) as HTMLLIElement
+              if (dropdownMenuItemChild) {
+                setTimeout(() => {
+                  dropdownMenuItemChild.focus()
+                }, 0)
               }
-            })
+            }
           } else if (event.key === 'ArrowLeft') {
             event.stopPropagation()
             event.preventDefault()
-            console.log('close children')
+            if (
+              dropdownMenuItemRef.current?.parentElement?.className.includes(
+                MULTILEVEL_MENU_CLASS_NAME,
+              )
+            ) {
+              return
+            }
+
+            const dropdownSubMenu: HTMLUListElement = dropdownMenuItemRef
+              .current?.parentElement as HTMLUListElement
+            if (dropdownSubMenu) {
+              dropdownSubMenu.style.display = 'none'
+              const dropdownMenuItemChild =
+                dropdownSubMenu.parentElement as HTMLLIElement
+              if (dropdownMenuItemChild) {
+                setTimeout(() => {
+                  dropdownMenuItemChild.focus()
+                }, 0)
+              }
+            }
+          } else if (event.key === 'ArrowUp') {
+            event.stopPropagation()
+            event.preventDefault()
+            const prevDropdownMenuItem = getPrevSibling(
+              dropdownMenuItemRef.current,
+            )
+            prevDropdownMenuItem?.focus()
+          } else if (event.key === 'ArrowDown') {
+            event.stopPropagation()
+            event.preventDefault()
+            const nextDropdownMenuItem = getNextSibling(
+              dropdownMenuItemRef.current,
+            )
+
+            nextDropdownMenuItem?.focus()
           }
         }
       },

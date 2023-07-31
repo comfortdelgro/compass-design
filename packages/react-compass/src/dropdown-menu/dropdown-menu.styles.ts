@@ -69,10 +69,9 @@ export const StyledDropdownMenuItem = styled('li', {
       },
     },
   },
-  '&:hover > .cdg-dropdown-multilevel-submenu, &:focus > .cdg-dropdown-multilevel-submenu':
-    {
-      display: 'block',
-    },
+  '&:hover > .cdg-dropdown-multilevel-submenu': {
+    display: 'block !important',
+  },
   '&:hover': {
     color: '$cdgBlue100',
     '& > .cdg-arrow-right-icon': {

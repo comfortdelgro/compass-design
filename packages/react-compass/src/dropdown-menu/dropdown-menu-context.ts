@@ -6,8 +6,8 @@ export interface DropdownMenuContextType {
   itemIds: string[]
   setItemIds: React.Dispatch<React.SetStateAction<string[]>>
   refs?: React.MutableRefObject<Array<React.RefObject<HTMLLIElement>>>
-  onClose?: () => void
-  onOpenChange?: (status: boolean) => void
+  onClose?: (() => void) | undefined
+  onOpenChange?: ((status: boolean) => void) | undefined
 }
 
 const DropdownMenuContext = React.createContext<DropdownMenuContextType>({
