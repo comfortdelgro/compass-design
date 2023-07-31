@@ -23,12 +23,7 @@ export const ExpandableRow = React.forwardRef<
   return (
     <StyledExpandableRow ref={rowRef}>
       <td colSpan={colSpan}>
-        <Transitions
-          className='cdg-transition'
-          effect='collapse'
-          show={isExpanded}
-          speed={0.5}
-        >
+        <Transitions effect='collapse' show={isExpanded} speed={0.5}>
           {children}
         </Transitions>
       </td>
