@@ -7,6 +7,7 @@ interface SubmenuProps extends StyledComponentProps {
   children?: React.ReactNode
   'aria-labelledby'?: string
 }
+export const MULTILEVEL_SUBMENU_CLASS_NAME = 'cdg-dropdown-multilevel-submenu'
 
 export type DropdownMenuSubmenuProps = SubmenuProps &
   Omit<React.HTMLAttributes<HTMLUListElement>, keyof SubmenuProps>
@@ -24,7 +25,7 @@ const DropdownMenuSubmenu = React.forwardRef<
       ref={DropdownMenuSubmenuRef}
       role='menu'
       aria-labelledby={props['aria-labelledby']}
-      className={`cdg-dropdown-multilevel-submenu ${className ?? ''}`}
+      className={`${MULTILEVEL_SUBMENU_CLASS_NAME} ${className ?? ''}`}
       {...delegated}
     >
       {children}

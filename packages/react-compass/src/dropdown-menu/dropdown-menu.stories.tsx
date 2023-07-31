@@ -4,8 +4,11 @@ import Button from '../button'
 import {Column} from '../utils/components'
 
 export const Default: React.FC = () => {
-  const handleItemClick = (event: React.MouseEvent<HTMLLIElement>) => {
-    console.log('handleItemClick: ', event)
+  const handleItemSelect = (
+    event: React.MouseEvent<HTMLLIElement>,
+    eventKey?: string | number,
+  ) => {
+    console.log('handleItemSelect: ', eventKey, event.target)
   }
 
   return (
@@ -16,16 +19,20 @@ export const Default: React.FC = () => {
           <Button>Default</Button>
         </DropdownMenu.Toggle>
         <DropdownMenu.Menu>
-          <DropdownMenu.Item onClick={handleItemClick}>
+          <DropdownMenu.Item onSelect={handleItemSelect} eventKey='item-1'>
             Item 1
           </DropdownMenu.Item>
-          <DropdownMenu.Item onClick={handleItemClick}>
+          <DropdownMenu.Item onSelect={handleItemSelect} eventKey='item-2'>
             Item 2
           </DropdownMenu.Item>
-          <DropdownMenu.Item onClick={handleItemClick} isActived>
+          <DropdownMenu.Item
+            onSelect={handleItemSelect}
+            isActived
+            eventKey='item-3'
+          >
             Item 3
           </DropdownMenu.Item>
-          <DropdownMenu.Item onClick={handleItemClick}>
+          <DropdownMenu.Item onSelect={handleItemSelect} eventKey='item-4'>
             Item 4
           </DropdownMenu.Item>
         </DropdownMenu.Menu>
@@ -36,36 +43,80 @@ export const Default: React.FC = () => {
           <Button>Submenu</Button>
         </DropdownMenu.Toggle>
         <DropdownMenu.Menu>
-          <DropdownMenu.Item isActived onClick={handleItemClick}>
+          <DropdownMenu.Item
+            isActived
+            onSelect={handleItemSelect}
+            eventKey='item-1'
+          >
             Item 1
           </DropdownMenu.Item>
-          <DropdownMenu.Item onClick={handleItemClick}>
+          <DropdownMenu.Item onSelect={handleItemSelect} eventKey='item-2'>
             Item 2
             <DropdownMenu.Submenu>
-              <DropdownMenu.Item>
+              <DropdownMenu.Item
+                eventKey='item-2-1'
+                onSelect={handleItemSelect}
+              >
                 Item 2 - 1
                 <DropdownMenu.Submenu>
-                  <DropdownMenu.Item>Item 2 - 1 - 1</DropdownMenu.Item>
-                  <DropdownMenu.Item>Item 2 - 1 - 2</DropdownMenu.Item>
+                  <DropdownMenu.Item
+                    eventKey='item-2-1-1'
+                    onSelect={handleItemSelect}
+                  >
+                    Item 2 - 1 - 1
+                  </DropdownMenu.Item>
+                  <DropdownMenu.Item
+                    eventKey='item-2-1-2'
+                    onSelect={handleItemSelect}
+                  >
+                    Item 2 - 1 - 2
+                  </DropdownMenu.Item>
                 </DropdownMenu.Submenu>
               </DropdownMenu.Item>
-              <DropdownMenu.Item>Item 2 - 2</DropdownMenu.Item>
+              <DropdownMenu.Item
+                eventKey='item-2-2'
+                onSelect={handleItemSelect}
+              >
+                Item 2 - 2
+              </DropdownMenu.Item>
             </DropdownMenu.Submenu>
           </DropdownMenu.Item>
-          <DropdownMenu.Item isDisabled onClick={handleItemClick}>
+          <DropdownMenu.Item
+            isDisabled
+            onSelect={handleItemSelect}
+            eventKey='item-3'
+          >
             Item 3
           </DropdownMenu.Item>
-          <DropdownMenu.Item onClick={handleItemClick}>
+          <DropdownMenu.Item onSelect={handleItemSelect} eventKey='item-4'>
             Item 4
             <DropdownMenu.Submenu>
-              <DropdownMenu.Item>
+              <DropdownMenu.Item
+                eventKey='item-4-1'
+                onSelect={handleItemSelect}
+              >
                 Item 4 - 1
                 <DropdownMenu.Submenu>
-                  <DropdownMenu.Item>Item 4 - 1 - 1</DropdownMenu.Item>
-                  <DropdownMenu.Item>Item 4 - 1 - 2</DropdownMenu.Item>
+                  <DropdownMenu.Item
+                    eventKey='item-4-1-1'
+                    onSelect={handleItemSelect}
+                  >
+                    Item 4 - 1 - 1
+                  </DropdownMenu.Item>
+                  <DropdownMenu.Item
+                    eventKey='item-4-1-2'
+                    onSelect={handleItemSelect}
+                  >
+                    Item 4 - 1 - 2
+                  </DropdownMenu.Item>
                 </DropdownMenu.Submenu>
               </DropdownMenu.Item>
-              <DropdownMenu.Item>Item 4 - 2</DropdownMenu.Item>
+              <DropdownMenu.Item
+                eventKey='item-4-2'
+                onSelect={handleItemSelect}
+              >
+                Item 4 - 2
+              </DropdownMenu.Item>
             </DropdownMenu.Submenu>
           </DropdownMenu.Item>
         </DropdownMenu.Menu>

@@ -81,12 +81,10 @@ const DropdownMenu = React.forwardRef<HTMLDivElement, DropdownMenuProps>(
       onKeyDown?.(event)
       if (open) {
         switch (event.key) {
-          case 'ArrowRight':
-            console.log(refs.current[selectedIndex])
-            break
           case 'ArrowUp':
             event.preventDefault()
             if (refs.current) {
+              // Check if first item or no item is selected
               if (selectedIndex === 0 || selectedIndex === -1) {
                 setSelectedIndex(refs.current.length - 1)
                 refs.current[refs.current.length - 1]?.current?.focus()
@@ -99,6 +97,7 @@ const DropdownMenu = React.forwardRef<HTMLDivElement, DropdownMenuProps>(
           case 'ArrowDown':
             event.preventDefault()
             if (refs.current) {
+              // Check if last item or no item is selected
               if (
                 selectedIndex === -1 ||
                 selectedIndex === refs.current.length - 1
@@ -113,6 +112,7 @@ const DropdownMenu = React.forwardRef<HTMLDivElement, DropdownMenuProps>(
             break
           case 'Enter':
             event.preventDefault()
+            console.log('Menu Enter')
             refs.current[selectedIndex]?.current?.click()
             break
           case 'Escape':
@@ -123,6 +123,7 @@ const DropdownMenu = React.forwardRef<HTMLDivElement, DropdownMenuProps>(
             break
         }
       } else {
+        // Show Menu when it's closing
         switch (event.key) {
           case 'ArrowUp':
           case 'ArrowDown':

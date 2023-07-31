@@ -4,7 +4,9 @@ import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import DropdownMenuContext from './dropdown-menu-context'
 import {MULTILEVEL_MENU_CLASS_NAME} from './dropdown-menu-menu'
-import DropdownMenuSubmenu from './dropdown-menu-submenu'
+import DropdownMenuSubmenu, {
+  MULTILEVEL_SUBMENU_CLASS_NAME,
+} from './dropdown-menu-submenu'
 import {StyledDropdownMenuItem} from './dropdown-menu.styles'
 
 interface Props extends StyledComponentProps {
@@ -17,6 +19,7 @@ interface Props extends StyledComponentProps {
     eventKey?: string | number,
   ) => void
 }
+export const MULTILEVEL_ITEM_CLASS_NAME = 'cdg-dropdown-multilevel-item'
 
 const ArrowRightIcon = () => (
   <svg
@@ -32,12 +35,41 @@ const ArrowRightIcon = () => (
   </svg>
 )
 
+const getFirstItem = (dropdownMenu: HTMLUListElement) => {
+  if (dropdownMenu.children.length === 0) {
+    return null
+  }
+  for (let index = 0; index < dropdownMenu.children.length; index++) {
+    const menuItem = dropdownMenu.children.item(index)
+    if (menuItem?.classList.contains(MULTILEVEL_ITEM_CLASS_NAME)) {
+      return menuItem as HTMLLIElement
+    }
+  }
+  return null
+}
+
+const getLastItem = (dropdownMenu: HTMLUListElement) => {
+  if (dropdownMenu.children.length === 0) {
+    return null
+  }
+  for (let index = dropdownMenu.children.length - 1; index > 0; index--) {
+    const menuItem = dropdownMenu.children.item(index)
+    if (menuItem?.classList.contains(MULTILEVEL_ITEM_CLASS_NAME)) {
+      return menuItem as HTMLLIElement
+    }
+  }
+  return null
+}
+
 const getNextSibling = (
   dropdownMenuItem: HTMLLIElement | null,
 ): HTMLLIElement | null => {
   const nextElement = dropdownMenuItem?.nextElementSibling as HTMLLIElement
-  if (!dropdownMenuItem || !nextElement) {
+  if (!dropdownMenuItem) {
     return null
+  }
+  if (!nextElement) {
+    return getFirstItem(dropdownMenuItem.parentElement as HTMLUListElement)
   }
   if (nextElement.getAttribute('aria-disabled') === 'true') {
     return getNextSibling(nextElement)
@@ -50,8 +82,11 @@ const getPrevSibling = (
   dropdownMenuItem: HTMLLIElement | null,
 ): HTMLLIElement | null => {
   const prevElement = dropdownMenuItem?.previousElementSibling as HTMLLIElement
-  if (!dropdownMenuItem || !prevElement) {
+  if (!dropdownMenuItem) {
     return null
+  }
+  if (!prevElement) {
+    return getLastItem(dropdownMenuItem.parentElement as HTMLUListElement)
   }
   if (prevElement.getAttribute('aria-disabled') === 'true') {
     return getPrevSibling(prevElement)
@@ -91,6 +126,7 @@ const DropdownMenuItem = React.forwardRef<HTMLLIElement, DropdownMenuItemProps>(
 
     useEffect(() => {
       if (refs?.current) {
+        // First level menu
         if (
           dropdownMenuItemRef.current?.parentElement?.className.includes(
             MULTILEVEL_MENU_CLASS_NAME,
@@ -104,6 +140,7 @@ const DropdownMenuItem = React.forwardRef<HTMLLIElement, DropdownMenuItemProps>(
 
     const handleItemClick = (event: React.MouseEvent<HTMLLIElement>) => {
       if (!isDisabled) {
+        event.stopPropagation()
         onClick?.(event)
         onSelect?.(event, eventKey)
       }
@@ -112,73 +149,114 @@ const DropdownMenuItem = React.forwardRef<HTMLLIElement, DropdownMenuItemProps>(
     const handleDropdownMenuItemKeyDown = useCallback(
       (event: React.KeyboardEvent<HTMLLIElement>) => {
         if (focusing) {
-          if (event.key === 'ArrowRight') {
-            event.stopPropagation()
-            event.preventDefault()
-            const dropdownSubMenu: HTMLUListElement =
-              dropdownMenuItemRef.current?.querySelector(
-                '.cdg-dropdown-multilevel-submenu',
+          let dropdownSubMenu: HTMLUListElement | null = null
+          let nextDropdownMenuItem: HTMLLIElement | null = null
+          switch (event.key) {
+            case 'ArrowRight':
+              event.stopPropagation()
+              event.preventDefault()
+              dropdownSubMenu = dropdownMenuItemRef.current?.querySelector(
+                `.${MULTILEVEL_SUBMENU_CLASS_NAME}`,
               ) as HTMLUListElement
-            if (dropdownSubMenu) {
-              dropdownSubMenu.style.display = 'block'
-              const dropdownMenuItemChild = dropdownSubMenu?.querySelector(
-                '.cdg-dropdown-multilevel-item',
-              ) as HTMLLIElement
-              if (dropdownMenuItemChild) {
-                setTimeout(() => {
-                  dropdownMenuItemChild.focus()
-                }, 0)
+              // Check if item contains Submenu
+              if (dropdownSubMenu) {
+                dropdownSubMenu.style.display = 'block'
+                const dropdownMenuItemChild = dropdownSubMenu?.querySelector(
+                  `.${MULTILEVEL_ITEM_CLASS_NAME}`,
+                ) as HTMLLIElement
+                // Get and focus first Item
+                if (dropdownMenuItemChild) {
+                  setTimeout(() => {
+                    dropdownMenuItemChild.focus()
+                  }, 0)
+                }
               }
-            }
-          } else if (event.key === 'ArrowLeft') {
-            event.stopPropagation()
-            event.preventDefault()
-            if (
-              dropdownMenuItemRef.current?.parentElement?.className.includes(
-                MULTILEVEL_MENU_CLASS_NAME,
-              )
-            ) {
-              return
-            }
-
-            const dropdownSubMenu: HTMLUListElement = dropdownMenuItemRef
-              .current?.parentElement as HTMLUListElement
-            if (dropdownSubMenu) {
-              dropdownSubMenu.style.display = 'none'
-              const dropdownMenuItemChild =
-                dropdownSubMenu.parentElement as HTMLLIElement
-              if (dropdownMenuItemChild) {
-                setTimeout(() => {
-                  dropdownMenuItemChild.focus()
-                }, 0)
+              break
+            case 'ArrowLeft':
+              event.stopPropagation()
+              event.preventDefault()
+              if (
+                dropdownMenuItemRef.current?.parentElement?.className.includes(
+                  MULTILEVEL_MENU_CLASS_NAME,
+                )
+              ) {
+                return
               }
-            }
-          } else if (event.key === 'ArrowUp') {
-            event.stopPropagation()
-            event.preventDefault()
-            const prevDropdownMenuItem = getPrevSibling(
-              dropdownMenuItemRef.current,
-            )
-            prevDropdownMenuItem?.focus()
-          } else if (event.key === 'ArrowDown') {
-            event.stopPropagation()
-            event.preventDefault()
-            const nextDropdownMenuItem = getNextSibling(
-              dropdownMenuItemRef.current,
-            )
 
-            nextDropdownMenuItem?.focus()
+              dropdownSubMenu = dropdownMenuItemRef.current
+                ?.parentElement as HTMLUListElement
+              // Check parent is Submenu
+              if (
+                dropdownSubMenu &&
+                dropdownSubMenu.classList.contains(
+                  MULTILEVEL_SUBMENU_CLASS_NAME,
+                )
+              ) {
+                // Close Submenu
+                dropdownSubMenu.style.display = 'none'
+                const dropdownMenuItemChild =
+                  dropdownSubMenu.parentElement as HTMLLIElement
+                // Check parent is Item
+                if (
+                  dropdownMenuItemChild &&
+                  dropdownMenuItemChild.classList.contains(
+                    MULTILEVEL_ITEM_CLASS_NAME,
+                  )
+                ) {
+                  setTimeout(() => {
+                    dropdownMenuItemChild.focus()
+                  }, 0)
+                }
+              }
+              break
+            case 'ArrowUp':
+              event.stopPropagation()
+              event.preventDefault()
+              nextDropdownMenuItem = getPrevSibling(dropdownMenuItemRef.current)
+              nextDropdownMenuItem?.focus()
+              break
+            case 'ArrowDown':
+              event.stopPropagation()
+              event.preventDefault()
+              nextDropdownMenuItem = getNextSibling(dropdownMenuItemRef.current)
+
+              nextDropdownMenuItem?.focus()
+              break
+            case 'Enter':
+              event.stopPropagation()
+              event.preventDefault()
+              dropdownMenuItemRef.current?.click()
+              break
+
+            default:
+              break
           }
         }
       },
       [subMenuChild, focusing],
     )
 
+    const handleFocusItem = useCallback(
+      (event: React.FocusEvent<HTMLLIElement>) => {
+        onFocus?.(event)
+        setFocusing(true)
+      },
+      [onFocus],
+    )
+
+    const handleBlurItem = useCallback(
+      (event: React.FocusEvent<HTMLLIElement>) => {
+        onBlur?.(event)
+        setFocusing(false)
+      },
+      [onBlur],
+    )
+
     return (
       <StyledDropdownMenuItem
         css={css}
         ref={dropdownMenuItemRef}
-        className={`cdg-dropdown-multilevel-item ${className ?? ''}`}
+        className={`${MULTILEVEL_ITEM_CLASS_NAME} ${className ?? ''}`}
         tabIndex={-1}
         role={subMenuChild ? 'none presentation' : 'menuitem'}
         aria-haspopup={!!subMenuChild}
@@ -187,14 +265,8 @@ const DropdownMenuItem = React.forwardRef<HTMLLIElement, DropdownMenuItemProps>(
         isActived={isActived}
         onClick={handleItemClick}
         onKeyDown={handleDropdownMenuItemKeyDown}
-        onFocus={(event) => {
-          onFocus?.(event)
-          setFocusing(true)
-        }}
-        onBlur={(event) => {
-          onBlur?.(event)
-          setFocusing(false)
-        }}
+        onFocus={handleFocusItem}
+        onBlur={handleBlurItem}
         {...delegated}
       >
         {children}
