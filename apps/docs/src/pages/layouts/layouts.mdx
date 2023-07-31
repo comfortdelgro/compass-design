@@ -1,0 +1,86 @@
+import ComponentDisplay from 'components/ComponentDisplay'
+import {Callout} from 'nextra-theme-docs'
+import {Layout} from '@comfortdelgro/react-compass'
+
+# Layouts
+
+Layout will helps you to arrange your layout with flex layout
+
+<Callout>
+  You can see how this component is implemented on
+  [ladle](https://comfortdelgro.github.io/compass-design/ladle/?story=action-bar--default)
+</Callout>
+
+---
+
+### Import:
+
+```js
+import {Layout} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import Layout from '@comfortdelgro/react-compass/layouts'
+```
+
+---
+
+### Basic Example
+
+<ComponentDisplay>
+  <Layout direction='row'>
+    <Layout flex={1}>Col 1</Layout>
+    <Layout flex={1}>Col 2</Layout>
+  </Layout>
+  <Layout direction='column' css={{marginTop: '20px'}}>
+    <Layout>Row 1</Layout>
+    <Layout>Row 2</Layout>
+  </Layout>
+</ComponentDisplay>
+
+```tsx {22}
+<Layout direction='row'>
+  <Layout flex={1}>Col 1</Layout>
+  <Layout flex={1}>Col 2</Layout>
+</Layout>
+<Layout direction='column' css={{marginTop: '20px'}}>
+  <Layout>Row 1</Layout>
+  <Layout>Row 2</Layout>
+</Layout>
+```
+
+### Column size
+
+<ComponentDisplay>
+  <Layout direction='row'>
+    <Layout flex={0.2}>Col 1</Layout>
+    <Layout flex={0.8}>Col 2</Layout>
+  </Layout>
+</ComponentDisplay>
+
+```tsx {22}
+<Layout direction='row'>
+  <Layout direction='row'>
+    <Layout flex={0.2}>Col 1</Layout>
+    <Layout flex={0.8}>Col 2</Layout>
+  </Layout>
+</Layout>
+```
+
+### Column size with fixed left column
+
+<ComponentDisplay>
+  <Layout direction='row'>
+    <Layout css={{width: '200px'}}>200px column</Layout>
+    <Layout flex={1}>Col 2</Layout>
+  </Layout>
+</ComponentDisplay>
+
+```tsx {22}
+<Layout direction='row'>
+  <Layout css={{width: '200px'}}>200px column</Layout>
+  <Layout flex={1}>Col 2</Layout>
+</Layout>
+```

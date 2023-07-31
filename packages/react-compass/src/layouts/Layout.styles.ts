@@ -9,27 +9,46 @@ export const StyledLayout = styled('div', {
   '&.row': {
     flexDirection: 'row',
   },
-})
-
-export const StyledActionBarLeftGroup = styled('div', {
-  display: 'flex',
-  alignItems: 'center',
-  flex: 1,
-  gap: '$4',
-})
-
-export const StyledActionBarCenterGroup = styled('div', {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  flex: 1,
-  gap: '$4',
-})
-
-export const StyledActionBarRightGroup = styled('div', {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'flex-end',
-  flex: 1,
-  gap: '$4',
+  '&.start-start': {
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+  },
+  '&.center-start': {
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+  },
+  '&.end-start': {
+    alignItems: 'flex-start',
+    justifyContent: 'flex-end',
+  },
+  '&.start-center': {
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    textAlign: 'center',
+  },
+  '&.center-center': {
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+  },
+  '&.end-center': {
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    textAlign: 'right',
+  },
+  '&.start-end': {
+    alignItems: 'flex-end',
+    justifyContent: 'flex-start',
+    textAlign: 'right',
+  },
+  '&.center-end': {
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+    textAlign: 'center',
+  },
+  '&.end-end': {
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+    textAlign: 'right',
+  },
 })
