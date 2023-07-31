@@ -72,7 +72,7 @@ export const Icon: React.FC = () => (
   <Column>
     <h3>With left icon</h3>
     <Row>
-      <Tabs icon='left' disabledKeys={['1']}>
+      <Tabs icon='left'>
         <Tabs.Item key='1' title='Founding of Rome'>
           Arma virumque cano, Troiae qui primus ab oris.
         </Tabs.Item>
@@ -121,7 +121,7 @@ export const Orientation: React.FC = () => (
   <Column>
     <h3>Horizontal Rounded</h3>
     <Row>
-      <Tabs orientation='horizontal' disabledKeys={['1']}>
+      <Tabs orientation='horizontal'>
         <Tabs.Item key='1' title='Founding of Rome'>
           Arma virumque cano, Troiae qui primus ab oris.
         </Tabs.Item>
@@ -136,7 +136,7 @@ export const Orientation: React.FC = () => (
 
     <h3>Vertical Rounded</h3>
     <Row>
-      <Tabs orientation='vertical' disabledKeys={['1']}>
+      <Tabs orientation='vertical'>
         <Tabs.Item key='1' title='Founding of Rome'>
           Arma virumque cano, Troiae qui primus ab oris.
         </Tabs.Item>
