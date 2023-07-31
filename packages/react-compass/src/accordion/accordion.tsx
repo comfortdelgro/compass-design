@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
+import Transitions from '../transitions'
 import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -45,19 +46,6 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
       return uncontrolledExpand
     })()
 
-    // Calculate max height for accordion body for better transition animation
-    useEffect(() => {
-      if (!accordionBodyRef.current) return
-      const accordionBody = accordionBodyRef.current
-      if (expand) {
-        accordionBody.removeAttribute('hidden')
-        accordionBody.style.maxHeight = `${accordionBody.scrollHeight}px`
-      } else {
-        accordionBody.style.maxHeight = '0px'
-        accordionBody.setAttribute('hidden', '')
-      }
-    }, [expand, accordionBodyRef.current])
-
     // Toggle expansion state only when user doesnt control the component
     const setExpandIfUncontrolled = React.useCallback(() => {
       if (!controlledExpand !== undefined) {
@@ -98,14 +86,15 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
       <StyledAccordion {...delegated} css={css} ref={accordionRef}>
         <AccordionContext.Provider value={contextValue}>
           {AccordionTitleWithIcon}
-          <div
+          <Transitions
             role='region'
             aria-labelledby={props['aria-labelledby']}
-            className={`accordion-body ${expand ? 'expanded' : 'collapsed'}`}
             ref={accordionBodyRef}
+            isLazyMounted={true}
+            show={expand}
           >
             <div className='accordion-body-inner'>{AccordionContent}</div>
-          </div>
+          </Transitions>
         </AccordionContext.Provider>
       </StyledAccordion>
     )
