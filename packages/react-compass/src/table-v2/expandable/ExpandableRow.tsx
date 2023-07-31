@@ -19,16 +19,6 @@ export const ExpandableRow = React.forwardRef<
   const {colSpan, isExpanded, children} = props
 
   const rowRef = useDOMRef<HTMLTableRowElement>(ref)
-  const [childrenHeight, setChildrenHeight] = React.useState<number>(1000)
-
-  React.useEffect(() => {
-    if (isExpanded) {
-      const element = rowRef.current?.querySelector('.cdg-transition > div')
-      if (element) {
-        setChildrenHeight(element.clientHeight)
-      }
-    }
-  }, [isExpanded])
 
   return (
     <StyledExpandableRow ref={rowRef}>
@@ -38,7 +28,6 @@ export const ExpandableRow = React.forwardRef<
           effect='collapse'
           show={isExpanded}
           speed={0.5}
-          collapsedSize={`${childrenHeight}px`}
         >
           {children}
         </Transitions>

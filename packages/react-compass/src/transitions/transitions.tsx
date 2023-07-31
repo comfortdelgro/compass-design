@@ -26,14 +26,13 @@ const Transitions = React.forwardRef<HTMLDivElement, TransitionsProps>(
       css = {},
       children,
       speed = 0.3,
-      collapsedSize = '1000px',
+      collapsedSize,
       orientation = 'vertical',
       slideDirection = 'bottom',
       isLazyMounted = true,
       ...delegated
     } = props
     const TransitionWrapperRef = useDOMRef<HTMLDivElement>(ref)
-    const ChildrenRef = useDOMRef<HTMLDivElement>(null)
     const collapseDirection = orientation === 'vertical' ? 'height' : 'width'
     const determineSlideDirection = () => {
       if (slideDirection === 'left') return 'translateX(-100vh)'
@@ -44,6 +43,7 @@ const Transitions = React.forwardRef<HTMLDivElement, TransitionsProps>(
 
     const [unMountedChildren, setUnMountedChildren] =
       React.useState<React.ReactNode>(children)
+    const [childrenHeight, setChildrenHeight] = React.useState<number>(1000)
 
     const renderChildren = () => {
       if (show) {
@@ -64,12 +64,22 @@ const Transitions = React.forwardRef<HTMLDivElement, TransitionsProps>(
       }
     }, [show, children, isLazyMounted])
 
+    React.useEffect(() => {
+      if (show) {
+        const element =
+          TransitionWrapperRef.current?.querySelector(':first-child')
+        if (element) {
+          setChildrenHeight(element.clientHeight)
+        }
+      }
+    }, [show])
+
     return (
       <>
         <StyledTransition
           css={{
             $$speed: `${speed}s`,
-            $$collapsedSize: collapsedSize,
+            $$collapsedSize: collapsedSize ?? `${childrenHeight}px`,
             $$collapseDirection: collapseDirection,
             $$slideDirection: determineSlideDirection(),
             ...css,
@@ -80,7 +90,7 @@ const Transitions = React.forwardRef<HTMLDivElement, TransitionsProps>(
           orientation={effect === 'collapse' ? orientation : 'none'}
           {...delegated}
         >
-          <div ref={ChildrenRef}>{renderChildren()}</div>
+          {renderChildren()}
         </StyledTransition>
       </>
     )
