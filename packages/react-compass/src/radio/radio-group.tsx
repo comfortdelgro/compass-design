@@ -6,11 +6,13 @@ import {RadioGroupVariantProps, StyledRadioGroup} from './radio-group.styles'
 interface RadioGroupContextValue {
   value: string | null
   handleOnClickRadionButton: (value: string) => void
+  radioName: string
 }
 
 export const RadioContext = React.createContext<RadioGroupContextValue>({
   value: '',
   handleOnClickRadionButton: () => {},
+  radioName: '',
 })
 
 interface Props extends StyledComponentProps {
@@ -20,6 +22,7 @@ interface Props extends StyledComponentProps {
   onChange?: (value: string) => void
   onBlur?: () => void
   'aria-labelledby'?: string
+  groupName?: string
 }
 
 export type RadioGroupProps = Props &
@@ -35,6 +38,7 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
       onChange,
       onBlur,
       css = {},
+      groupName = `cdg-group-name-${Math.random().toString(36).substring(2)}`,
       'aria-labelledby': ariaLabelledBy = '',
       ...delegated
     } = props
@@ -81,7 +85,11 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
         role=''
       >
         <RadioContext.Provider
-          value={{value: handleControl(), handleOnClickRadionButton}}
+          value={{
+            value: handleControl(),
+            handleOnClickRadionButton,
+            radioName: groupName,
+          }}
         >
           {children}
         </RadioContext.Provider>

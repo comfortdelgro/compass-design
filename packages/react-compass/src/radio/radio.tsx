@@ -61,7 +61,11 @@ const Radio: React.FC<RadioProps> = (props) => {
     >
       <div className={`radio-wrapper`}>
         <StyledRadioInput active={isChecked} disabled={isDisabled} />
-        <input type='radio' name={name} disabled={isDisabled}></input>
+        <input
+          type='radio'
+          name={state.radioName ? state.radioName : name}
+          disabled={isDisabled}
+        ></input>
       </div>
       <div className='radio-content-wrapper'>
         <div className='radio-label'>
