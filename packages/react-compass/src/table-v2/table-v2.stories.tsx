@@ -613,6 +613,7 @@ export const ExpandableRow: React.FC = () => {
         columns={columns}
         options={options}
         renderRowSubComponent={renderRowSubComponent}
+        css={{width: '65rem'}}
       >
         <ReactTable.Footer
           css={{
