@@ -69,14 +69,13 @@ const ProductService = () => {
 
   return (
     <Grid
-      spacing={'sm'}
       css={{
         maxWidth: '1200px',
         width: '100%',
         backgroundColor: '$gray10',
+        padding: '0 0 24px 24px',
         marginTop: '24px',
         borderRadius: '24px',
-        padding: '24px',
         boxShadow:
           '0px 3.200000047683716px 7.199999809265137px 0px rgba(0, 0, 0, 0.13), 0px 0.6000000238418579px 1.7999999523162842px 0px rgba(0, 0, 0, 0.10)',
       }}
@@ -90,6 +89,7 @@ const ProductService = () => {
           lg={3}
           xl={3}
           css={{
+            padding: '24px 24px 0 0',
             '@media (min-width: 1920px)': {
               flexBasis: '25%',
             },
