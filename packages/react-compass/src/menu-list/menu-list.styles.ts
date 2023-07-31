@@ -1,6 +1,6 @@
 import {styled} from '../theme'
 
-export const StyledMenuList = styled('div', {
+export const StyledMenuList = styled('nav', {
   width: '$48',
   background: '$secondaryBg',
   borderRight: '1px solid $gray50',
