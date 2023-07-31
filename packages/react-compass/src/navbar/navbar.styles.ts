@@ -2,7 +2,7 @@ import {styled} from '../theme'
 import {VariantProps} from '../utils/stitches.types'
 import {StyledNavbarBrand} from './navbar-brand.styles'
 
-export const StyledNavbar = styled('div', {
+export const StyledNavbar = styled('nav', {
   display: 'flex',
   flexDirection: 'row',
   alignItems: 'center',
