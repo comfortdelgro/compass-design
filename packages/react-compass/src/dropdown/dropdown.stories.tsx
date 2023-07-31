@@ -115,6 +115,7 @@ export const Select: React.FC = () => {
         </Dropdown.Item>
         <Dropdown.Item
           key='cat'
+          value='cat'
           leftIcon={<FontAwesomeIcon icon={faBug} />}
           type='color'
           rightColor='red'
@@ -122,14 +123,30 @@ export const Select: React.FC = () => {
         >
           Cat Red Panda Red Panda Red Panda Red Panda Red Panda
         </Dropdown.Item>
-        <Dropdown.Item key='dog'>Dog</Dropdown.Item>
-        <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
-        <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
-        <Dropdown.Item key='snakessss'>Snake</Dropdown.Item>
-        <Dropdown.Item key='dog1'>Dog1</Dropdown.Item>
-        <Dropdown.Item key='aardvark1'>Aardvark1</Dropdown.Item>
-        <Dropdown.Item key='kangaroo1'>Kangaroo1</Dropdown.Item>
-        <Dropdown.Item key='snakessss1'>Snake1</Dropdown.Item>
+        <Dropdown.Item key='dog' value='dog'>
+          Dog
+        </Dropdown.Item>
+        <Dropdown.Item key='aardvark' value='aardvark'>
+          Aardvark
+        </Dropdown.Item>
+        <Dropdown.Item key='kangaroo' value='kangaroo'>
+          Kangaroo
+        </Dropdown.Item>
+        <Dropdown.Item key='snakessss' value='snakessss'>
+          Snake
+        </Dropdown.Item>
+        <Dropdown.Item key='dog1' value='dog1'>
+          Dog1
+        </Dropdown.Item>
+        <Dropdown.Item key='aardvark1' value='aardvark1'>
+          Aardvark1
+        </Dropdown.Item>
+        <Dropdown.Item key='kangaroo1' value='kangaroo1'>
+          Kangaroo1
+        </Dropdown.Item>
+        <Dropdown.Item key='snakessss1' value='snakessss1'>
+          Snake1
+        </Dropdown.Item>
       </Dropdown.Select>
       <h3>Prefix</h3>
       <Dropdown.Select
@@ -151,9 +168,15 @@ export const Select: React.FC = () => {
           </div>
         }
       >
-        <Dropdown.Item key='afghanistan'>Afghanistan (+93)</Dropdown.Item>
-        <Dropdown.Item key='albania'>Albania (+355)</Dropdown.Item>
-        <Dropdown.Item key='algeria'>Algeria (+213)</Dropdown.Item>
+        <Dropdown.Item key='afghanistan' value='afghanistan'>
+          Afghanistan (+93)
+        </Dropdown.Item>
+        <Dropdown.Item key='albania' value='albania'>
+          Albania (+355)
+        </Dropdown.Item>
+        <Dropdown.Item key='algeria' value='algeria'>
+          Algeria (+213)
+        </Dropdown.Item>
       </Dropdown.Select>
       <h3>Disable the whole thing</h3>
       <Dropdown.Select

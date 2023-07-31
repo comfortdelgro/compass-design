@@ -79,6 +79,12 @@ const TagBoxItem = React.forwardRef<HTMLDivElement, BannerProps>(
       }
     }
 
+    const handleRemove = () => {
+      if (!isDisabled) {
+        onRemove?.(id)
+      }
+    }
+
     const onKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
       const value = (e.target as HTMLInputElement).value
       if (value !== '' && e.key === 'Enter') {
@@ -104,6 +110,7 @@ const TagBoxItem = React.forwardRef<HTMLDivElement, BannerProps>(
           }
         })
       }
+      setInputValue(value)
     }, [value])
 
     const onBlur = () => {
@@ -141,8 +148,8 @@ const TagBoxItem = React.forwardRef<HTMLDivElement, BannerProps>(
           {value}
         </span>
         <button
-          onClick={() => onRemove?.(id)}
-          tabIndex={isDisabled ? 0 : 1}
+          onClick={handleRemove}
+          tabIndex={isDisabled ? -1 : 0}
           style={{
             cursor: isDisabled ? 'not-allowed' : 'pointer',
           }}

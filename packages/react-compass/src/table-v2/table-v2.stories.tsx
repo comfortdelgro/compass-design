@@ -11,7 +11,7 @@ import {
 
 import {CellContext, HeaderContext} from '@tanstack/react-table'
 import React, {Key, MouseEvent, TouchEvent, useState} from 'react'
-import ReactTable, {ColumnConfig, OptionType, StateSorting} from '.'
+import ReactTable, {OptionType, TableV2ColumnDef, TableV2SortingState} from '.'
 import Button from '../button'
 import {useEditableCellContext} from '../data-grid'
 import Divider from '../divider'
@@ -36,19 +36,15 @@ export const FullFeatured: React.FC = () => {
     enableMultiSort: true,
     columnResizeMode: 'onChange',
     manualSorting: false,
-    initialSortBy: [
-      {id: 'firstName', desc: true},
-      {id: 'lastName', desc: false},
-    ],
     enableRowSelection: (row) => row.original.age > 30,
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  const onSorting = (sortingField: StateSorting) => {}
+  const onSorting = (sortingField: TableV2SortingState) => {}
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   const onChangeRowSelection = (rowSelection: any) => {}
 
-  const columns = React.useMemo<Array<ColumnConfig<Person>>>(
+  const columns = React.useMemo<Array<TableV2ColumnDef<Person>>>(
     () => [
       {
         id: 'select',
@@ -197,14 +193,14 @@ export const FullFeatured: React.FC = () => {
           >
             <Button variant='primary'>Button</Button>
             <Button variant='secondary'>Button</Button>
-            <Button variant='ghost'>
+            <Button variant='ghost' aria-label='Delete'>
               <Icon icon={faTrashAlt} />
             </Button>
-            <Button variant='ghost'>
+            <Button variant='ghost' aria-label='Dashboard'>
               <Icon icon={faDashboard} />
             </Button>
             <Button variant='ghost'>
-              <Icon icon={faFileLines} />
+              <Icon icon={faFileLines} aria-label='File' />
             </Button>
           </div>
         </ReactTable.Toolbar>
@@ -261,11 +257,11 @@ export const EditableTemplateCell: React.FC = () => {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  const onSorting = (sortingField: StateSorting) => {}
+  const onSorting = (sortingField: TableV2SortingState) => {}
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   const onChangeRowSelection = (rowSelection: any) => {}
 
-  const columns = React.useMemo<Array<ColumnConfig<Person>>>(
+  const columns = React.useMemo<Array<TableV2ColumnDef<Person>>>(
     () => [
       {
         id: 'edit',
@@ -508,7 +504,7 @@ export const ExpandableRow: React.FC = () => {
     manualSorting: false,
   }
 
-  const columns = React.useMemo<Array<ColumnConfig<LimitRequestStatus>>>(
+  const columns = React.useMemo<Array<TableV2ColumnDef<LimitRequestStatus>>>(
     () => [
       {
         id: 'expander',
@@ -617,6 +613,7 @@ export const ExpandableRow: React.FC = () => {
         columns={columns}
         options={options}
         renderRowSubComponent={renderRowSubComponent}
+        css={{width: '65rem'}}
       >
         <ReactTable.Footer
           css={{

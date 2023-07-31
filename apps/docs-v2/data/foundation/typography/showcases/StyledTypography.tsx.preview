@@ -1,0 +1,3 @@
+<Typography.Body variant='body1' css={{color: '$cdgBlue'}}>
+  Body 1
+</Typography.Body>

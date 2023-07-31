@@ -16,6 +16,7 @@ export const Variations: React.FC = () => (
   <Column>
     <h3>1. Variants</h3>
     <Row>
+      <Button css={{width: '250px'}}>Primary</Button>
       <Button variant='primary' onPress={() => console.log('pressed')}>
         Primary
       </Button>

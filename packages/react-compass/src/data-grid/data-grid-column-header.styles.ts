@@ -2,12 +2,11 @@ import {styled} from '../theme'
 
 export const StyledDataGridSortingIndicator = styled('span', {
   color: '$gray30',
-  textAlign: 'right',
+  textAlign: 'left',
   visibility: 'visible',
 })
 
 export const StyledDataGridColumnHeader = styled('th', {
-  textAlign: 'center',
   fontSize: '$label1',
   fontWeight: '$semibold',
   padding: '$3_5 $3',

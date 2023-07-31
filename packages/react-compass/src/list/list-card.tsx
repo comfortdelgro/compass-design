@@ -44,7 +44,11 @@ const ListCard = React.forwardRef<HTMLDivElement, ListCardProps>(
           <div className='list-card-header-right-side'>
             {badge ? badge : <></>}
             {!children && showActionButton ? (
-              <Button isDisabled={!!isDisabled} variant='ghost'>
+              <Button
+                isDisabled={!!isDisabled}
+                variant='ghost'
+                aria-label='Action Header'
+              >
                 <svg className='list-card-ellipsis-icon' viewBox='0 0 128 512'>
                   <path
                     fill='currentColor'
@@ -68,6 +72,7 @@ const ListCard = React.forwardRef<HTMLDivElement, ListCardProps>(
             <Button
               isDisabled={!!isDisabled}
               variant='ghost'
+              aria-label='Action Footer'
               css={{marginTop: '$4'}}
             >
               <svg className='list-card-ellipsis-icon' viewBox='0 0 128 512'>

@@ -110,6 +110,7 @@ const MenuListDropdownHeader = React.forwardRef<
       ref={buttonRef}
       css={css}
       onClick={handleOnClick}
+      aria-expanded={isOpen}
       {...delegated}
     >
       {renderLeftIcon()}

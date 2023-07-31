@@ -8,10 +8,11 @@ type Props = {
   image: string
   textLink: string
   urlLink: string
+  target: '_blank' | '_self' | '_parent' | '_top'
 }
 
 export default function Item(props: Props) {
-  const {title, description, image, textLink, urlLink = '/'} = props
+  const {title, description, image, textLink, urlLink = '/', target} = props
   return (
     <Box
       css={{
@@ -45,7 +46,7 @@ export default function Item(props: Props) {
       >
         <Typography.Header variant='header3'>{title}</Typography.Header>
         <Typography.Body variant='body2'>{description}</Typography.Body>
-        <Link href={urlLink} style={{textDecoration: 'none'}}>
+        <Link href={urlLink} style={{textDecoration: 'none'}} target={target}>
           <Typography.Body
             variant='body2'
             css={{color: '$cdgBlue', fontWeight: 'bold'}}

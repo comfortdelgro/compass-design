@@ -38,6 +38,7 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
     } = props
 
     const groupRef = useDOMRef<HTMLDivElement>(ref)
+    const onMountRef = React.useRef(false)
     const [selectedValue, setSelectedValue] = useState<string | null>(value)
 
     const handleBlur = useCallback(() => {
@@ -59,8 +60,12 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
     }
 
     useEffect(() => {
-      if (!selectedValue) return
-      onChange && onChange(selectedValue)
+      if (onMountRef.current) {
+        if (!selectedValue) return
+        onChange && onChange(selectedValue)
+      } else {
+        onMountRef.current = true
+      }
     }, [selectedValue])
 
     return (

@@ -69,10 +69,11 @@ export const Variants: React.FC = () => {
         <Radio.Group
           value={value}
           onChange={(value) => {
+            console.log('onChange')
             setValue(value)
           }}
           onBlur={() => {
-            alert('onBlur triggered!!')
+            console.log('onBlur')
           }}
         >
           <Radio

@@ -18,6 +18,7 @@ const DragAndDropListOutletItem = (props: DragAndDropListItemProps) => {
       onDragEnd={onDragEnd}
       draggable
       ref={ref}
+      tabIndex={0}
     >
       {item}
     </li>

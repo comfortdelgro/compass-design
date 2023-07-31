@@ -1,5 +1,6 @@
 import {
   faFile,
+  faHouse,
   faSquarePen,
   faToggleOn,
 } from '@fortawesome/free-solid-svg-icons'
@@ -42,6 +43,16 @@ export const routes: TSideNavItem[] = [
     children: [
       {pathname: '/theming', title: 'Theming'},
       {pathname: '/z-index', title: 'Z-index'},
+    ],
+  },
+  {
+    pathname: '/foundation',
+    title: 'Foundation',
+    icon: faHouse,
+    children: [
+      {pathname: '/colors', title: 'Colors'},
+      {pathname: '/typography', title: 'Typography'},
+      {pathname: '/iconography', title: 'Iconography'},
     ],
   },
 ]

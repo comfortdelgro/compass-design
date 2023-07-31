@@ -103,15 +103,29 @@ export const Default: React.FC = () => {
           onFocus={() => console.log('focus')}
           css={{width: '50%'}}
         >
-          <MultipleDropdown.Item key='red panda' textValue='Panda'>
+          <MultipleDropdown.Item
+            key='red panda'
+            value='red panda'
+            textValue='Panda'
+          >
             <FontAwesomeIcon icon={faBug} style={{marginRight: 5}} />
             Red Panda
           </MultipleDropdown.Item>
-          <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
-          <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
-          <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
-          <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
-          <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+          <MultipleDropdown.Item key='cat' value='cat'>
+            Cat
+          </MultipleDropdown.Item>
+          <MultipleDropdown.Item key='dog' value='dog'>
+            Dog
+          </MultipleDropdown.Item>
+          <MultipleDropdown.Item key='aardvark' value='aardvark'>
+            Aardvark
+          </MultipleDropdown.Item>
+          <MultipleDropdown.Item key='kangaroo' value='kangaroo'>
+            Kangaroo
+          </MultipleDropdown.Item>
+          <MultipleDropdown.Item key='snake' value='snake'>
+            Snake
+          </MultipleDropdown.Item>
         </MultipleDropdown>
         <h3>UnControlled</h3>
         <MultipleDropdown
@@ -171,7 +185,7 @@ export const Default: React.FC = () => {
         <MultipleDropdown
           label='Favorite Animal'
           displayedValue='string'
-          defaultSelectedKeys={['snake', 'cat', 'snake']}
+          defaultSelectedKeys={['snake', 'cat', 'dog']}
           placeholder='Choosesss an animal'
           css={{width: '200px'}}
         >
@@ -445,7 +459,6 @@ export const Default: React.FC = () => {
             title='Group 1'
             isClickable
             checkmark='tick'
-            // id='cdg-group-1'
             isChecked={isChecked}
             onClick={(title: React.ReactNode) => {
               setIsChecked(!isChecked)

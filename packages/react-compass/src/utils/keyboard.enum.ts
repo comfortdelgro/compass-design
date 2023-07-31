@@ -1,4 +1,7 @@
 export enum EKeyboardKey {
+  /** The Spacebar key */
+  Spacebar = ' ',
+
   /** The user agent wasn't able to map the event's virtual keycode to a specific key value. This can happen due to hardware or software constraints, or because of constraints around the platform on which the user agent is running. */
   Unidentified = 'Unidentified',
 

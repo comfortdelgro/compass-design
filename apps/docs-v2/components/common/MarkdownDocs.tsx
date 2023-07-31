@@ -1,6 +1,8 @@
 import Demo from 'components/common/Demo'
 import MarkdownElement from 'components/common/MarkdownElement'
+import {usePageProps} from 'contexts/PageProps'
 import path from 'path'
+import {useEffect} from 'react'
 import DocsAppLayout from '../layouts/DocsAppLayout'
 
 function noComponent(moduleID: string) {
@@ -21,6 +23,12 @@ export default function MarkdownDocs(props: any) {
 
   const localizedDoc = docs.en
   const {description, location, rendered, title, toc} = localizedDoc
+  const {setPageProps} = usePageProps()
+
+  useEffect(() => {
+    setPageProps?.(localizedDoc)
+  }, [localizedDoc])
+
   return (
     <DocsAppLayout
       description={description}

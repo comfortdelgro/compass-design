@@ -65,11 +65,25 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
   const {gridProps} = useTable(ariaProps, state, tableRef)
   const {collection} = state
 
+  const tableProps: React.DetailedHTMLProps<
+    React.TableHTMLAttributes<HTMLTableElement>,
+    HTMLTableElement
+  > = {
+    id: gridProps.id,
+    // 'aria-multiselectable': gridProps['aria-multiselectable'],
+    onBlur: gridProps.onBlur,
+    onFocus: gridProps.onFocus,
+    onKeyDown: gridProps.onKeyDown,
+    onKeyDownCapture: gridProps.onKeyDownCapture,
+    onMouseDown: gridProps.onMouseDown,
+    tabIndex: gridProps.tabIndex,
+  }
+
   return (
     <StyledTableWrapper css={css}>
       {toolbar && <>{toolbar}</>}
       <StyledTable>
-        <table ref={tableRef} {...gridProps}>
+        <table ref={tableRef} {...tableProps} role='grid'>
           <TableRowGroup as='thead'>
             {collection.headerRows.map((row) => (
               <TableHeaderRow key={row.key} item={row} state={state}>
