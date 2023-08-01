@@ -73,6 +73,7 @@ interface SampleData {
 
 export const Select: React.FC = () => {
   const [value, setValue] = React.useState<Key>('aardvark1')
+  const [valueHeader, setValueHeader] = React.useState<Key>('')
   const [flag, setFlag] = React.useState<Key>('')
   const [loadMoreValue, setLoadMoreValue] = React.useState<Key>('')
   const [data, setData] = React.useState<SampleData[]>(generateRandomData(10))
@@ -279,7 +280,12 @@ export const Select: React.FC = () => {
         <Dropdown.Item value='snake'>Snake</Dropdown.Item>
       </Dropdown.Select>
       <h3>With Header</h3>
-      <Dropdown.Select label='Favorite Animal' placeholder='Choose an animal'>
+      <Dropdown.Select
+        label='Favorite Animal'
+        placeholder='Choose an animal'
+        value={valueHeader}
+        onValueChange={(value: Key) => setValueHeader(value)}
+      >
         <Dropdown.Header>
           <div
             style={{
@@ -311,6 +317,7 @@ export const Select: React.FC = () => {
                 cursor: 'pointer',
                 backgroundColor: 'transparent',
               }}
+              onClick={() => setValueHeader('')}
             >
               Clear
             </button>
