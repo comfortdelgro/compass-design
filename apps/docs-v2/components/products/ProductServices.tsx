@@ -9,7 +9,7 @@ import {
   FNBLogo,
   TEMLogo,
   ZigStoreLogo,
-} from './product-logos'
+} from './ProductLogos'
 
 const ProductService = () => {
   const lorem = 'Lorem ipsum dola sign lewded saedh kdkroe krtyer'
