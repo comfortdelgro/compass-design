@@ -1,5 +1,5 @@
-import {Dropdown} from '@comfortdelgro/react-compass'
 import BugIcon from '@comfortdelgro/compass-icons/react/bug'
+import {Dropdown} from '@comfortdelgro/react-compass'
 import React from 'react'
 
 export const ControlledDropdown = () => {
@@ -10,17 +10,14 @@ export const ControlledDropdown = () => {
         isRequired
         label='Favorite Animal'
         placeholder='Choose an animal'
-        selectedKey={value}
-        onSelectionChange={(k: React.Key) => setValue(k)}
+        value={value}
+        onValueChange={(k: React.Key) => setValue(k)}
       >
-        <Dropdown.Item
-          key='red panda'
-          leftIcon={<BugIcon />}
-        >
+        <Dropdown.Item value='red panda' leftIcon={<BugIcon />}>
           Red Panda Red Panda Red Panda Red Panda Red Panda
         </Dropdown.Item>
         <Dropdown.Item
-          key='cat'
+          value='cat'
           leftIcon={<BugIcon />}
           type='color'
           rightColor='red'
@@ -28,26 +25,23 @@ export const ControlledDropdown = () => {
         >
           Cat Red Panda Red Panda Red Panda Red Panda Red Panda
         </Dropdown.Item>
-        <Dropdown.Item key='dog'>Dog</Dropdown.Item>
-        <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
-        <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
-        <Dropdown.Item key='snakessss'>Snake</Dropdown.Item>
+        <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+        <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+        <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item value='snakessss'>Snake</Dropdown.Item>
       </Dropdown.Select>
       <Dropdown.ComboBox
         isRequired
         label='Favorite Animal'
         placeholder='Choose an animal'
-        selectedKey={value}
-        onSelectionChange={(k: React.Key) => setValue(k)}
+        value={value}
+        onValueChange={(k: React.Key) => setValue(k)}
       >
-        <Dropdown.Item
-          key='red panda'
-          leftIcon={<BugIcon />}
-        >
+        <Dropdown.Item value='red panda' leftIcon={<BugIcon />}>
           Red Panda Red Panda Red Panda Red Panda Red Panda
         </Dropdown.Item>
         <Dropdown.Item
-          key='cat'
+          value='cat'
           leftIcon={<BugIcon />}
           type='color'
           rightColor='red'
@@ -55,10 +49,10 @@ export const ControlledDropdown = () => {
         >
           Cat Red Panda Red Panda Red Panda Red Panda Red Panda
         </Dropdown.Item>
-        <Dropdown.Item key='dog'>Dog</Dropdown.Item>
-        <Dropdown.Item key='aardvark'>Aardvark</Dropdown.Item>
-        <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
-        <Dropdown.Item key='snakessss'>Snake</Dropdown.Item>
+        <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+        <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+        <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item value='snakessss'>Snake</Dropdown.Item>
       </Dropdown.ComboBox>
     </>
   )

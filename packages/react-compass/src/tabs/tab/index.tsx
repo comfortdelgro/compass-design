@@ -1,10 +1,15 @@
-import React from 'react'
+import {useMergeRefs} from '@floating-ui/react'
+import React, {HTMLAttributes} from 'react'
+import {
+  useKeyboardNavigation,
+  useKeyboardNavigationState,
+} from '../../utils/hooks'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import {TabItemProps} from '../item'
 import {Icon, Variant} from '../utils'
 import {StyledTab} from './index.styles'
 
-interface TabProps {
+interface Props {
   textColor: string
   isDisabled: boolean
   key: React.Key | null
@@ -17,6 +22,8 @@ interface TabProps {
   onSelect: (key: React.Key) => void
 }
 
+type TabProps = Props & Omit<HTMLAttributes<HTMLDivElement>, keyof Props>
+
 const Tab = React.forwardRef<HTMLDivElement, TabProps>(
   (
     {
@@ -28,6 +35,7 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>(
       disabledKeys,
       variant = 'rounded',
       icon = 'none',
+      id,
       onSelect,
     },
     ref,
@@ -51,15 +59,27 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>(
     const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
       const key = event.key
       if (key === 'Enter' || key === ' ') {
+        event.preventDefault()
         handleSelect()
       }
     }
 
+    const {useDescendant} = useKeyboardNavigationState()
+    const {index, register} = useDescendant({disabled: disabledState})
+    const {onFocus} = useKeyboardNavigation()
+
+    const handleOnFocus = () => {
+      onFocus?.(index)()
+    }
+
+    const mergeRef = useMergeRefs([tabRef, register])
+
     return (
       <StyledTab
+        id={id}
         icon={icon}
-        ref={tabRef}
-        tabIndex={0}
+        ref={mergeRef}
+        tabIndex={isSelected && !disabledState ? 0 : -1}
         variant={variant}
         active={isSelected}
         disabled={!!disabledState}
@@ -67,6 +87,9 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>(
         css={{$$textColor: textColor, $$indicatorColor: indicatorColor}}
         onClick={handleSelect}
         onKeyDown={handleKeyDown}
+        onFocus={handleOnFocus}
+        role='tab'
+        aria-selected={isSelected}
       >
         {title}
         {icon !== 'none' && (

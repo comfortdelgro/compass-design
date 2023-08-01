@@ -107,6 +107,14 @@ export type {
   DropdownProps,
   DropdownSelectProps,
 } from './dropdown'
+export {default as DropdownMenu} from './dropdown-menu'
+export type {
+  DropdownMenuItemProps,
+  DropdownMenuMenuProps,
+  DropdownMenuProps,
+  DropdownMenuSubmenuProps,
+  DropdownMenuToggleProps,
+} from './dropdown-menu'
 export {default as Error} from './error'
 export type {
   ErrorActionProps,
@@ -146,6 +154,8 @@ export * from './internationalized/date'
 export * from './internationalized/i18n'
 export * from './internationalized/number'
 export * from './internationalized/string'
+export {default as Layout} from './layouts'
+export type {LayoutProps} from './layouts'
 export {default as Link} from './link'
 export type {LinkProps} from './link'
 export {

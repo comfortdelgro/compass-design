@@ -1,0 +1,3 @@
+<ColorBox color={theme.colors.cdgBlue} />
+<ColorBox color={theme.colors.typeHeading} />
+<ColorBox color={theme.colors.background} />

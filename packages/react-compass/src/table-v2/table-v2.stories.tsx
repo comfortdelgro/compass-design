@@ -36,10 +36,6 @@ export const FullFeatured: React.FC = () => {
     enableMultiSort: true,
     columnResizeMode: 'onChange',
     manualSorting: false,
-    initialSortBy: [
-      {id: 'firstName', desc: true},
-      {id: 'lastName', desc: false},
-    ],
     enableRowSelection: (row) => row.original.age > 30,
   }
 
@@ -197,14 +193,14 @@ export const FullFeatured: React.FC = () => {
           >
             <Button variant='primary'>Button</Button>
             <Button variant='secondary'>Button</Button>
-            <Button variant='ghost'>
+            <Button variant='ghost' aria-label='Delete'>
               <Icon icon={faTrashAlt} />
             </Button>
-            <Button variant='ghost'>
+            <Button variant='ghost' aria-label='Dashboard'>
               <Icon icon={faDashboard} />
             </Button>
             <Button variant='ghost'>
-              <Icon icon={faFileLines} />
+              <Icon icon={faFileLines} aria-label='File' />
             </Button>
           </div>
         </ReactTable.Toolbar>
@@ -617,6 +613,7 @@ export const ExpandableRow: React.FC = () => {
         columns={columns}
         options={options}
         renderRowSubComponent={renderRowSubComponent}
+        css={{width: '65rem'}}
       >
         <ReactTable.Footer
           css={{

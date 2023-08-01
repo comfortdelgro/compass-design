@@ -107,8 +107,10 @@ export default function DocsAppFrame(props: {children: React.ReactNode}) {
               display: 'flex',
               flexDirection: 'column',
               height: 'calc(100vh - 51px)',
+              minHeight: 'calc(100vh - 51px)',
               overflow: 'auto',
               width: '100%',
+              marginTop: 51,
             }}
           >
             <CommonHeader />

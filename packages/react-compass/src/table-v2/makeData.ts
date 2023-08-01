@@ -98,18 +98,6 @@ export const newRequestStatus = (): LimitRequestStatus => {
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eleifend iaculis sodales. Pellentesque at metus felis. Nulla fermentum ipsum nec orci laoreet, at rhoncus eros dictum.',
         createdAt: getRandomDate(new Date(2020, 0, 1), new Date(2029, 11, 31)),
       },
-      {
-        id: makeid(5),
-        remarks:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eleifend iaculis sodales. Pellentesque at metus felis. Nulla fermentum ipsum nec orci laoreet, at rhoncus eros dictum.',
-        createdAt: getRandomDate(new Date(2020, 0, 1), new Date(2029, 11, 31)),
-      },
-      {
-        id: makeid(5),
-        remarks:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eleifend iaculis sodales. Pellentesque at metus felis. Nulla fermentum ipsum nec orci laoreet, at rhoncus eros dictum.',
-        createdAt: getRandomDate(new Date(2020, 0, 1), new Date(2029, 11, 31)),
-      },
     ],
   }
 }
