@@ -42,18 +42,22 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
       null,
     )
     const containerRef = useDOMRef<HTMLDivElement>(ref)
+    const latestSearchedValueRef = React.useRef<unknown>(null)
 
     const calculatedPopoverWidth = containerRef.current?.clientWidth
 
     // Debounce search and close popover when searched value is empty
     React.useEffect(() => {
+      latestSearchedValueRef.current = searchedValue
       if (searchedValue && searchedValue !== selectedOption) {
         // Clear the previous timer
         if (timerId) {
           clearTimeout(timerId)
         }
         const newTimerId = setTimeout(() => {
-          onSearch && onSearch(searchedValue)
+          if (latestSearchedValueRef.current === searchedValue) {
+            onSearch && onSearch(searchedValue)
+          }
         }, debounce)
         setTimerId(newTimerId)
       } else {
@@ -75,13 +79,12 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
       }
     }, [options])
 
-    // Select an option
-    React.useEffect(() => {
-      if (selectedOption) {
-        onSelect && onSelect(selectedOption)
-        setIsOpenPopover(false)
-      }
-    }, [selectedOption])
+    // function to select option
+    const handleSelectOption = (option: string) => {
+      setSelectedOption(option)
+      onSelect && onSelect(option)
+      setIsOpenPopover(false)
+    }
 
     return (
       <StyledAutoComplete ref={containerRef} css={css} {...delegated}>
@@ -103,7 +106,7 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
               options?.map((option) => (
                 <StyledOption
                   key={option}
-                  onClick={() => setSelectedOption(option)}
+                  onClick={() => handleSelectOption(option)}
                 >
                   {option}
                 </StyledOption>
