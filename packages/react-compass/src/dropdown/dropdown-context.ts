@@ -27,6 +27,7 @@ export interface DropdownContextType {
     React.SetStateAction<SelectedItemDropdown | null>
   >
   onItemClick: (item: SelectedItemDropdown) => void
+  onHeaderClick: () => void
 }
 
 export const DropdownContext = createContext<DropdownContextType>({
@@ -42,6 +43,9 @@ export const DropdownContext = createContext<DropdownContextType>({
     //
   },
   onItemClick: () => {
+    //
+  },
+  onHeaderClick: () => {
     //
   },
 })

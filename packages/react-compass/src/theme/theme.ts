@@ -191,6 +191,7 @@ export const lightTheme = defineTheme({
 
     cdgBlue10: '#E6ECF7',
     cdgBlue20: '#CCD9EF',
+    cdgBlue30: '#CCD5EF',
     cdgBlue40: '#99B3DF',
     cdgBlue60: '#678ECF',
     cdgBlue80: '#3468BF',

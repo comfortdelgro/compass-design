@@ -572,6 +572,10 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     }
     setOpen(false)
     onOpenChange?.(false)
+    setTimeout(() => {
+      inputRef.current?.focus()
+      buttonSelectRef.current?.focus()
+    }, 0)
     // Select clear item
     if (!disableClearable && !currentItem.value) {
       setValueForItemAndFocusKey(null)
@@ -608,6 +612,13 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         textContent(currentItem.displayValue as React.ReactElement),
       )
     }
+  }
+
+  const handleDropdownHeaderClick = () => {
+    setTimeout(() => {
+      inputRef.current?.focus()
+      buttonSelectRef.current?.focus()
+    }, 0)
   }
 
   const handleClosePopover = useCallback(() => {
@@ -647,6 +658,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           dropdownItemKeys,
           setDropdownItemKeys,
           onItemClick: handleDropdownItemClick,
+          onHeaderClick: handleDropdownHeaderClick,
         }}
       >
         <Popover

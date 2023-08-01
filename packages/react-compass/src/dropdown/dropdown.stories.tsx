@@ -103,18 +103,17 @@ export const Select: React.FC = () => {
         }
         placeholder='Choose an animal'
         value={value}
-        onSelectionChange={(k: Key) => setValue(k)}
+        onValueChange={(k: Key) => setValue(k)}
         onBlur={() => console.log('blur')}
         onFocus={() => console.log('focus')}
       >
         <Dropdown.Item
-          key='red panda'
+          value='panda'
           leftIcon={<FontAwesomeIcon icon={faBug} />}
         >
           Red Panda Red Panda Red Panda Red Panda Red Panda
         </Dropdown.Item>
         <Dropdown.Item
-          key='cat'
           value='cat'
           leftIcon={<FontAwesomeIcon icon={faBug} />}
           type='color'
@@ -123,30 +122,14 @@ export const Select: React.FC = () => {
         >
           Cat Red Panda Red Panda Red Panda Red Panda Red Panda
         </Dropdown.Item>
-        <Dropdown.Item key='dog' value='dog'>
-          Dog
-        </Dropdown.Item>
-        <Dropdown.Item key='aardvark' value='aardvark'>
-          Aardvark
-        </Dropdown.Item>
-        <Dropdown.Item key='kangaroo' value='kangaroo'>
-          Kangaroo
-        </Dropdown.Item>
-        <Dropdown.Item key='snakessss' value='snakessss'>
-          Snake
-        </Dropdown.Item>
-        <Dropdown.Item key='dog1' value='dog1'>
-          Dog1
-        </Dropdown.Item>
-        <Dropdown.Item key='aardvark1' value='aardvark1'>
-          Aardvark1
-        </Dropdown.Item>
-        <Dropdown.Item key='kangaroo1' value='kangaroo1'>
-          Kangaroo1
-        </Dropdown.Item>
-        <Dropdown.Item key='snakessss1' value='snakessss1'>
-          Snake1
-        </Dropdown.Item>
+        <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+        <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+        <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item value='snakessss'>Snake</Dropdown.Item>
+        <Dropdown.Item value='dog1'>Dog1</Dropdown.Item>
+        <Dropdown.Item value='aardvark1'>Aardvark1</Dropdown.Item>
+        <Dropdown.Item value='kangaroo1'>Kangaroo1</Dropdown.Item>
+        <Dropdown.Item value='snakessss1'>Snake1</Dropdown.Item>
       </Dropdown.Select>
       <h3>Prefix</h3>
       <Dropdown.Select
@@ -154,7 +137,7 @@ export const Select: React.FC = () => {
         label={<>Phone Code Select</>}
         placeholder='Choose an animal'
         value={flag}
-        onSelectionChange={(k: Key) => setFlag(k)}
+        onValueChange={(k: Key) => setFlag(k)}
         prefix={
           <div
             style={{
@@ -168,15 +151,9 @@ export const Select: React.FC = () => {
           </div>
         }
       >
-        <Dropdown.Item key='afghanistan' value='afghanistan'>
-          Afghanistan (+93)
-        </Dropdown.Item>
-        <Dropdown.Item key='albania' value='albania'>
-          Albania (+355)
-        </Dropdown.Item>
-        <Dropdown.Item key='algeria' value='algeria'>
-          Algeria (+213)
-        </Dropdown.Item>
+        <Dropdown.Item value='afghanistan'>Afghanistan (+93)</Dropdown.Item>
+        <Dropdown.Item value='albania'>Albania (+355)</Dropdown.Item>
+        <Dropdown.Item value='algeria'>Algeria (+213)</Dropdown.Item>
       </Dropdown.Select>
       <h3>Disable the whole thing</h3>
       <Dropdown.Select
@@ -185,17 +162,15 @@ export const Select: React.FC = () => {
         label='Favorite Animal'
         placeholder='Choose an animal'
         value={value1}
-        onSelectionChange={(k: Key) => setValue1(k)}
+        onValueChange={(k: Key) => setValue1(k)}
       >
         <Dropdown.Item
-          key='red panda'
-          value='red panda'
+          value='panda'
           leftIcon={<FontAwesomeIcon icon={faBug} />}
         >
           Red Panda Red Panda Red Panda Red Panda Red Panda
         </Dropdown.Item>
         <Dropdown.Item
-          key='cat'
           value='cat'
           leftIcon={<FontAwesomeIcon icon={faBug} />}
           type='color'
@@ -204,18 +179,10 @@ export const Select: React.FC = () => {
         >
           Cat Red Panda Red Panda Red Panda Red Panda Red Panda
         </Dropdown.Item>
-        <Dropdown.Item value='dog' key='dog'>
-          Dog
-        </Dropdown.Item>
-        <Dropdown.Item value='aardvark' key='aardvark'>
-          Aardvark
-        </Dropdown.Item>
-        <Dropdown.Item value='kangaroo' key='kangaroo'>
-          Kangaroo
-        </Dropdown.Item>
-        <Dropdown.Item value='snakessss' key='snakessss'>
-          Snake
-        </Dropdown.Item>
+        <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+        <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+        <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item value='snakessss'>Snake</Dropdown.Item>
       </Dropdown.Select>
       <h3>Disable only one item</h3>
       <Dropdown.Select
@@ -223,18 +190,16 @@ export const Select: React.FC = () => {
         label='Favorite Animal'
         placeholder='Choose an animal'
         value={value1}
-        onSelectionChange={(k: Key) => setValue1(k)}
+        onValueChange={(k: Key) => setValue1(k)}
         disabledValues={['dog']}
       >
         <Dropdown.Item
-          key='red panda'
-          value='red panda'
+          value='panda'
           leftIcon={<FontAwesomeIcon icon={faBug} />}
         >
           Red Panda Red Panda Red Panda Red Panda Red Panda
         </Dropdown.Item>
         <Dropdown.Item
-          key='cat'
           value='cat'
           leftIcon={<FontAwesomeIcon icon={faBug} />}
           type='color'
@@ -243,18 +208,10 @@ export const Select: React.FC = () => {
         >
           Cat Red Panda Red Panda Red Panda Red Panda Red Panda
         </Dropdown.Item>
-        <Dropdown.Item value='dog' key='dog'>
-          Dog
-        </Dropdown.Item>
-        <Dropdown.Item value='aardvark' key='aardvark'>
-          Aardvark
-        </Dropdown.Item>
-        <Dropdown.Item value='kangaroo' key='kangaroo'>
-          Kangaroo
-        </Dropdown.Item>
-        <Dropdown.Item value='snakessss' key='snakessss'>
-          Snake
-        </Dropdown.Item>
+        <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+        <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+        <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item value='snakessss'>Snake</Dropdown.Item>
       </Dropdown.Select>
       <h3>UnControlled</h3>
       <Dropdown.Select
@@ -264,28 +221,19 @@ export const Select: React.FC = () => {
         disabledValues={['dog']}
       >
         <Dropdown.Item
-          key='red panda'
-          value='red panda'
+          value='panda'
           leftIcon={<FontAwesomeIcon icon={faBug} />}
           textValue='pandared'
         >
           Red Panda
         </Dropdown.Item>
-        <Dropdown.Item key='cat' value='cat' type='color' rightColor='red'>
+        <Dropdown.Item value='cat' type='color' rightColor='red'>
           Cat
         </Dropdown.Item>
-        <Dropdown.Item value='dog' key='dog'>
-          Dog
-        </Dropdown.Item>
-        <Dropdown.Item value='aardvark' key='aardvark'>
-          Aardvark
-        </Dropdown.Item>
-        <Dropdown.Item value='kangaroo' key='kangaroo'>
-          Kangaroo
-        </Dropdown.Item>
-        <Dropdown.Item value='snake' key='snake'>
-          Snake
-        </Dropdown.Item>
+        <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+        <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+        <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item value='snake'>Snake</Dropdown.Item>
       </Dropdown.Select>
       <h3>Allow deselect with double click</h3>
       <Dropdown.Select
@@ -295,28 +243,19 @@ export const Select: React.FC = () => {
         shouldDeselect
       >
         <Dropdown.Item
-          key='red panda'
-          value='red panda'
+          value='panda'
           leftIcon={<FontAwesomeIcon icon={faBug} />}
           textValue='pandared'
         >
           Red Panda
         </Dropdown.Item>
-        <Dropdown.Item key='cat' value='cat' type='color' rightColor='red'>
+        <Dropdown.Item value='cat' type='color' rightColor='red'>
           Cat
         </Dropdown.Item>
-        <Dropdown.Item value='dog' key='dog'>
-          Dog
-        </Dropdown.Item>
-        <Dropdown.Item value='aardvark' key='aardvark'>
-          Aardvark
-        </Dropdown.Item>
-        <Dropdown.Item value='kangaroo' key='kangaroo'>
-          Kangaroo
-        </Dropdown.Item>
-        <Dropdown.Item value='snake' key='snake'>
-          Snake
-        </Dropdown.Item>
+        <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+        <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+        <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item value='snake'>Snake</Dropdown.Item>
       </Dropdown.Select>
       <h3>Erorr</h3>
       <Dropdown.Select
@@ -326,27 +265,18 @@ export const Select: React.FC = () => {
         errorMessage='Error Message'
       >
         <Dropdown.Item
-          key='red panda'
-          value='red panda'
+          value='panda'
           leftIcon={<FontAwesomeIcon icon={faBug} />}
         >
           Red Panda
         </Dropdown.Item>
-        <Dropdown.Item key='cat' value='cat' type='color' rightColor='red'>
+        <Dropdown.Item value='cat' type='color' rightColor='red'>
           Cat
         </Dropdown.Item>
-        <Dropdown.Item value='dog' key='dog'>
-          Dog
-        </Dropdown.Item>
-        <Dropdown.Item value='aardvark' key='aardvark'>
-          Aardvark
-        </Dropdown.Item>
-        <Dropdown.Item value='kangaroo' key='kangaroo'>
-          Kangaroo
-        </Dropdown.Item>
-        <Dropdown.Item value='snake' key='snake'>
-          Snake
-        </Dropdown.Item>
+        <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+        <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+        <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item value='snake'>Snake</Dropdown.Item>
       </Dropdown.Select>
       <h3>With Header</h3>
       <Dropdown.Select label='Favorite Animal' placeholder='Choose an animal'>
@@ -386,24 +316,12 @@ export const Select: React.FC = () => {
             </button>
           </div>
         </Dropdown.Header>
-        <Dropdown.Item key='red panda' value='red panda'>
-          Red Panda
-        </Dropdown.Item>
-        <Dropdown.Item key='cat' value='cat'>
-          Cat
-        </Dropdown.Item>
-        <Dropdown.Item value='dog' key='dog'>
-          Dog
-        </Dropdown.Item>
-        <Dropdown.Item value='aardvark' key='aardvark'>
-          Aardvark
-        </Dropdown.Item>
-        <Dropdown.Item value='kangaroo' key='kangaroo'>
-          Kangaroo
-        </Dropdown.Item>
-        <Dropdown.Item value='snake' key='snake'>
-          Snake
-        </Dropdown.Item>
+        <Dropdown.Item value='panda'>Red Panda</Dropdown.Item>
+        <Dropdown.Item value='cat'>Cat</Dropdown.Item>
+        <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+        <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+        <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item value='snake'>Snake</Dropdown.Item>
       </Dropdown.Select>
       <h3>Loading</h3>
       <Dropdown.Select
@@ -411,24 +329,12 @@ export const Select: React.FC = () => {
         placeholder='Choose an animal'
         isLoading
       >
-        <Dropdown.Item key='red panda' value='red panda'>
-          Red Panda
-        </Dropdown.Item>
-        <Dropdown.Item key='cat' value='cat'>
-          Cat
-        </Dropdown.Item>
-        <Dropdown.Item value='dog' key='dog'>
-          Dog
-        </Dropdown.Item>
-        <Dropdown.Item value='aardvark' key='aardvark'>
-          Aardvark
-        </Dropdown.Item>
-        <Dropdown.Item value='kangaroo' key='kangaroo'>
-          Kangaroo
-        </Dropdown.Item>
-        <Dropdown.Item value='snake' key='snake'>
-          Snake
-        </Dropdown.Item>
+        <Dropdown.Item value='panda'>Red Panda</Dropdown.Item>
+        <Dropdown.Item value='cat'>Cat</Dropdown.Item>
+        <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+        <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+        <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item value='snake'>Snake</Dropdown.Item>
       </Dropdown.Select>
       <h3>With Icon</h3>
       <Dropdown.Select
@@ -436,24 +342,12 @@ export const Select: React.FC = () => {
         placeholder='Choose an animal'
         icon={<FontAwesomeIcon icon={faBug} />}
       >
-        <Dropdown.Item key='red panda' value='red panda'>
-          Red Panda
-        </Dropdown.Item>
-        <Dropdown.Item key='cat' value='cat'>
-          Cat
-        </Dropdown.Item>
-        <Dropdown.Item value='dog' key='dog'>
-          Dog
-        </Dropdown.Item>
-        <Dropdown.Item value='aardvark' key='aardvark'>
-          Aardvark
-        </Dropdown.Item>
-        <Dropdown.Item value='kangaroo' key='kangaroo'>
-          Kangaroo
-        </Dropdown.Item>
-        <Dropdown.Item value='snake' key='snake'>
-          Snake
-        </Dropdown.Item>
+        <Dropdown.Item value='panda'>Red Panda</Dropdown.Item>
+        <Dropdown.Item value='cat'>Cat</Dropdown.Item>
+        <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+        <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+        <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item value='snake'>Snake</Dropdown.Item>
       </Dropdown.Select>
       <h3>Number of rows</h3>
       <Dropdown.Select
@@ -461,51 +355,25 @@ export const Select: React.FC = () => {
         placeholder='Choose an animal'
         numberOfRows={4}
       >
-        <Dropdown.Item key='red panda' value='red panda'>
-          Red Panda
-        </Dropdown.Item>
-        <Dropdown.Item key='cat' value='cat'>
-          Cat
-        </Dropdown.Item>
-        <Dropdown.Item value='dog' key='dog'>
-          Dog
-        </Dropdown.Item>
-        <Dropdown.Item value='aardvark' key='aardvark'>
-          Aardvark
-        </Dropdown.Item>
-        <Dropdown.Item value='kangaroo' key='kangaroo'>
-          Kangaroo
-        </Dropdown.Item>
-        <Dropdown.Item value='snake' key='snake'>
-          Snake
-        </Dropdown.Item>
+        <Dropdown.Item value='panda'>Red Panda</Dropdown.Item>
+        <Dropdown.Item value='cat'>Cat</Dropdown.Item>
+        <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+        <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+        <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item value='snake'>Snake</Dropdown.Item>
       </Dropdown.Select>
       <h3>With Section</h3>
       <Dropdown.Select label='Favorite Animal' placeholder='Choose an animal'>
-        <Dropdown.Item value='fly' key='fly'>
-          Fly
-        </Dropdown.Item>
+        <Dropdown.Item value='fly'>Fly</Dropdown.Item>
         <Dropdown.Section title='Group 1'>
-          <Dropdown.Item key='red panda' value='red panda'>
-            Red Panda
-          </Dropdown.Item>
-          <Dropdown.Item key='cat' value='cat'>
-            Cat
-          </Dropdown.Item>
-          <Dropdown.Item value='dog' key='dog'>
-            Dog
-          </Dropdown.Item>
+          <Dropdown.Item value='panda'>Red Panda</Dropdown.Item>
+          <Dropdown.Item value='cat'>Cat</Dropdown.Item>
+          <Dropdown.Item value='dog'>Dog</Dropdown.Item>
         </Dropdown.Section>
         <Dropdown.Section title='Group 2'>
-          <Dropdown.Item value='aardvark' key='aardvark'>
-            Aardvark
-          </Dropdown.Item>
-          <Dropdown.Item value='kangaroo' key='kangaroo'>
-            Kangaroo
-          </Dropdown.Item>
-          <Dropdown.Item value='snake' key='snake'>
-            Snake
-          </Dropdown.Item>
+          <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+          <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+          <Dropdown.Item value='snake'>Snake</Dropdown.Item>
         </Dropdown.Section>
       </Dropdown.Select>
       <h3>Load more</h3>
@@ -514,7 +382,7 @@ export const Select: React.FC = () => {
         label='Using load more'
         placeholder='Select name'
         value={loadMoreValue}
-        onSelectionChange={(k: Key) => setLoadMoreValue(k)}
+        onValueChange={(k: Key) => setLoadMoreValue(k)}
         onLoadMore={() => {
           setData((currentData) => [
             ...currentData,
@@ -549,45 +417,28 @@ export const Combobox: React.FC = () => {
         }
         placeholder='Choose an animal'
         value={value}
-        onSelectionChange={(k: Key) => setValue(k)}
+        onValueChange={(k: Key) => setValue(k)}
         onBlur={() => console.log('blur')}
         onFocus={() => console.log('focus')}
       >
-        {/* <Dropdown.Item key=''>Clear Data</Dropdown.Item> */}
+        {/* <Dropdown.Item lear Data</Dropdown.Item> */}
         <Dropdown.Item
-          key='red panda'
-          value='red panda'
+          value='panda'
           leftIcon={<FontAwesomeIcon icon={faBug} />}
         >
           Red Panda Red Panda Red Panda Red Panda Red Panda
         </Dropdown.Item>
-        <Dropdown.Item key='cat' value='cat' type='color' rightColor='red'>
+        <Dropdown.Item value='cat' type='color' rightColor='red'>
           Cat
         </Dropdown.Item>
-        <Dropdown.Item value='dog' key='dog'>
-          Dog
-        </Dropdown.Item>
-        <Dropdown.Item value='aardvark' key='aardvark'>
-          Aardvark
-        </Dropdown.Item>
-        <Dropdown.Item value='kangaroo' key='kangaroo'>
-          Kangaroo
-        </Dropdown.Item>
-        <Dropdown.Item value='snake' key='snake'>
-          Snake
-        </Dropdown.Item>
-        <Dropdown.Item value='dog1' key='dog1'>
-          Dog
-        </Dropdown.Item>
-        <Dropdown.Item value='aardvark1' key='aardvark1'>
-          Aardvark
-        </Dropdown.Item>
-        <Dropdown.Item value='kangaroo1' key='kangaroo1'>
-          Kangaroo
-        </Dropdown.Item>
-        <Dropdown.Item value='snake1' key='snake1'>
-          Snake
-        </Dropdown.Item>
+        <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+        <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+        <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item value='snake'>Snake</Dropdown.Item>
+        <Dropdown.Item value='dog1'>Dog</Dropdown.Item>
+        <Dropdown.Item value='aardvark1'>Aardvark</Dropdown.Item>
+        <Dropdown.Item value='kangaroo1'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item value='snake1'>Snake</Dropdown.Item>
       </Dropdown.ComboBox>
 
       <h3>Allow deselect with double click</h3>
@@ -597,27 +448,18 @@ export const Combobox: React.FC = () => {
         shouldDeselect
       >
         <Dropdown.Item
-          key='red panda'
-          value='red panda'
+          value='panda'
           leftIcon={<FontAwesomeIcon icon={faBug} />}
         >
           Red Panda
         </Dropdown.Item>
-        <Dropdown.Item key='cat' value='cat' type='color' rightColor='red'>
+        <Dropdown.Item value='cat' type='color' rightColor='red'>
           Cat
         </Dropdown.Item>
-        <Dropdown.Item value='dog' key='dog'>
-          Dog
-        </Dropdown.Item>
-        <Dropdown.Item value='aardvark' key='aardvark'>
-          Aardvark
-        </Dropdown.Item>
-        <Dropdown.Item value='kangaroo' key='kangaroo'>
-          Kangaroo
-        </Dropdown.Item>
-        <Dropdown.Item value='snake' key='snake'>
-          Snake
-        </Dropdown.Item>
+        <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+        <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+        <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item value='snake'>Snake</Dropdown.Item>
       </Dropdown.ComboBox>
 
       <h3>Disabled</h3>
@@ -629,52 +471,34 @@ export const Combobox: React.FC = () => {
         value={disabledValue}
       >
         <Dropdown.Item
-          key='red panda'
-          value='red panda'
+          value='panda'
           leftIcon={<FontAwesomeIcon icon={faBug} />}
         >
           Red Panda Red Panda Red Panda Red Panda Red Panda
         </Dropdown.Item>
-        <Dropdown.Item key='cat' value='cat' type='color' rightColor='red'>
+        <Dropdown.Item value='cat' type='color' rightColor='red'>
           Cat
         </Dropdown.Item>
-        <Dropdown.Item value='dog' key='dog'>
-          Dog
-        </Dropdown.Item>
-        <Dropdown.Item value='aardvark' key='aardvark'>
-          Aardvark
-        </Dropdown.Item>
-        <Dropdown.Item value='kangaroo' key='kangaroo'>
-          Kangaroo
-        </Dropdown.Item>
-        <Dropdown.Item value='snake' key='snake'>
-          Snake
-        </Dropdown.Item>
+        <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+        <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+        <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item value='snake'>Snake</Dropdown.Item>
       </Dropdown.ComboBox>
       <h3>UnControlled</h3>
       <Dropdown.ComboBox label='Favorite Animal' placeholder='Choose an animal'>
         <Dropdown.Item
-          key='red panda'
-          value='red panda'
+          value='panda'
           leftIcon={<FontAwesomeIcon icon={faBug} />}
         >
           Red Panda
         </Dropdown.Item>
-        <Dropdown.Item key='cat' value='cat' type='color' rightColor='red'>
+        <Dropdown.Item value='cat' type='color' rightColor='red'>
           Cat
         </Dropdown.Item>
-        <Dropdown.Item value='dog' key='dog'>
-          Dog
-        </Dropdown.Item>
-        <Dropdown.Item value='aardvark' key='aardvark'>
-          Aardvark
-        </Dropdown.Item>
-        <Dropdown.Item value='kangaroo' key='kangaroo'>
-          Kangaroo
-        </Dropdown.Item>
-        <Dropdown.Item value='snake' key='snake'>
-          Snake
-        </Dropdown.Item>
+        <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+        <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+        <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item value='snake'>Snake</Dropdown.Item>
       </Dropdown.ComboBox>
       <h3>Erorr</h3>
       <Dropdown.ComboBox
@@ -684,58 +508,40 @@ export const Combobox: React.FC = () => {
         errorMessage='Error Message'
       >
         <Dropdown.Item
-          key='red panda'
-          value='red panda'
+          value='panda'
           leftIcon={<FontAwesomeIcon icon={faBug} />}
         >
           Red Panda
         </Dropdown.Item>
-        <Dropdown.Item key='cat' value='cat' type='color' rightColor='red'>
+        <Dropdown.Item value='cat' type='color' rightColor='red'>
           Cat
         </Dropdown.Item>
-        <Dropdown.Item value='dog' key='dog'>
-          Dog
-        </Dropdown.Item>
-        <Dropdown.Item value='aardvark' key='aardvark'>
-          Aardvark
-        </Dropdown.Item>
-        <Dropdown.Item value='kangaroo' key='kangaroo'>
-          Kangaroo
-        </Dropdown.Item>
-        <Dropdown.Item value='snake' key='snake'>
-          Snake
-        </Dropdown.Item>
+        <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+        <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+        <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item value='snake'>Snake</Dropdown.Item>
       </Dropdown.ComboBox>
       <h3>with allowsCustomValue</h3>
       <Dropdown.ComboBox
         label='Favorite Animal'
         placeholder='Choose an animal'
         value={customValue}
-        onSelectionChange={(k: Key) => setCustomValue(k)}
+        onValueChange={(k: Key) => setCustomValue(k)}
         allowsCustomValue
       >
         <Dropdown.Item
-          key='red panda'
-          value='red panda'
+          value='panda'
           leftIcon={<FontAwesomeIcon icon={faBug} />}
         >
           Red Panda
         </Dropdown.Item>
-        <Dropdown.Item key='cat' value='cat' type='color' rightColor='red'>
+        <Dropdown.Item value='cat' type='color' rightColor='red'>
           Cat
         </Dropdown.Item>
-        <Dropdown.Item value='dog' key='dog'>
-          Dog
-        </Dropdown.Item>
-        <Dropdown.Item value='aardvark' key='aardvark'>
-          Aardvark
-        </Dropdown.Item>
-        <Dropdown.Item value='kangaroo' key='kangaroo'>
-          Kangaroo
-        </Dropdown.Item>
-        <Dropdown.Item value='snake' key='snake'>
-          Snake
-        </Dropdown.Item>
+        <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+        <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+        <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item value='snake'>Snake</Dropdown.Item>
       </Dropdown.ComboBox>
       <h3>With Header</h3>
       <Dropdown.ComboBox label='Favorite Animal' placeholder='Choose an animal'>
@@ -775,24 +581,12 @@ export const Combobox: React.FC = () => {
             </button>
           </div>
         </Dropdown.Header>
-        <Dropdown.Item key='red panda' value='red panda'>
-          Red Panda
-        </Dropdown.Item>
-        <Dropdown.Item key='cat' value='cat'>
-          Cat
-        </Dropdown.Item>
-        <Dropdown.Item value='dog' key='dog'>
-          Dog
-        </Dropdown.Item>
-        <Dropdown.Item value='aardvark' key='aardvark'>
-          Aardvark
-        </Dropdown.Item>
-        <Dropdown.Item value='kangaroo' key='kangaroo'>
-          Kangaroo
-        </Dropdown.Item>
-        <Dropdown.Item value='snake' key='snake'>
-          Snake
-        </Dropdown.Item>
+        <Dropdown.Item value='panda'>Red Panda</Dropdown.Item>
+        <Dropdown.Item value='cat'>Cat</Dropdown.Item>
+        <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+        <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+        <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item value='snake'>Snake</Dropdown.Item>
       </Dropdown.ComboBox>
       <h3>Loading</h3>
       <Dropdown.ComboBox
@@ -800,24 +594,12 @@ export const Combobox: React.FC = () => {
         placeholder='Choose an animal'
         isLoading
       >
-        <Dropdown.Item key='red panda' value='red panda'>
-          Red Panda
-        </Dropdown.Item>
-        <Dropdown.Item key='cat' value='cat'>
-          Cat
-        </Dropdown.Item>
-        <Dropdown.Item value='dog' key='dog'>
-          Dog
-        </Dropdown.Item>
-        <Dropdown.Item value='aardvark' key='aardvark'>
-          Aardvark
-        </Dropdown.Item>
-        <Dropdown.Item value='kangaroo' key='kangaroo'>
-          Kangaroo
-        </Dropdown.Item>
-        <Dropdown.Item value='snake' key='snake'>
-          Snake
-        </Dropdown.Item>
+        <Dropdown.Item value='panda'>Red Panda</Dropdown.Item>
+        <Dropdown.Item value='cat'>Cat</Dropdown.Item>
+        <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+        <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+        <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item value='snake'>Snake</Dropdown.Item>
       </Dropdown.ComboBox>
       <h3>With Icon</h3>
       <Dropdown.ComboBox
@@ -825,24 +607,12 @@ export const Combobox: React.FC = () => {
         placeholder='Choose an animal'
         icon={<FontAwesomeIcon icon={faBug} />}
       >
-        <Dropdown.Item key='red panda' value='red panda'>
-          Red Panda
-        </Dropdown.Item>
-        <Dropdown.Item key='cat' value='cat'>
-          Cat
-        </Dropdown.Item>
-        <Dropdown.Item value='dog' key='dog'>
-          Dog
-        </Dropdown.Item>
-        <Dropdown.Item value='aardvark' key='aardvark'>
-          Aardvark
-        </Dropdown.Item>
-        <Dropdown.Item value='kangaroo' key='kangaroo'>
-          Kangaroo
-        </Dropdown.Item>
-        <Dropdown.Item value='snake' key='snake'>
-          Snake
-        </Dropdown.Item>
+        <Dropdown.Item value='panda'>Red Panda</Dropdown.Item>
+        <Dropdown.Item value='cat'>Cat</Dropdown.Item>
+        <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+        <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+        <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item value='snake'>Snake</Dropdown.Item>
       </Dropdown.ComboBox>
       <h3>Number of rows</h3>
       <Dropdown.ComboBox
@@ -850,24 +620,12 @@ export const Combobox: React.FC = () => {
         placeholder='Choose an animal'
         numberOfRows={4}
       >
-        <Dropdown.Item key='red panda' value='red panda'>
-          Red Panda
-        </Dropdown.Item>
-        <Dropdown.Item key='cat' value='cat'>
-          Cat
-        </Dropdown.Item>
-        <Dropdown.Item value='dog' key='dog'>
-          Dog
-        </Dropdown.Item>
-        <Dropdown.Item value='aardvark' key='aardvark'>
-          Aardvark
-        </Dropdown.Item>
-        <Dropdown.Item value='kangaroo' key='kangaroo'>
-          Kangaroo
-        </Dropdown.Item>
-        <Dropdown.Item value='snake' key='snake'>
-          Snake
-        </Dropdown.Item>
+        <Dropdown.Item value='panda'>Red Panda</Dropdown.Item>
+        <Dropdown.Item value='cat'>Cat</Dropdown.Item>
+        <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+        <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+        <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item value='snake'>Snake</Dropdown.Item>
       </Dropdown.ComboBox>
 
       <h3>Disabled Clearable</h3>
@@ -876,52 +634,26 @@ export const Combobox: React.FC = () => {
         placeholder='Choose an animal'
         disableClearable
       >
-        <Dropdown.Item key='red panda' value='red panda'>
-          Red Panda
-        </Dropdown.Item>
-        <Dropdown.Item key='cat' value='cat'>
-          Cat
-        </Dropdown.Item>
-        <Dropdown.Item value='dog' key='dog'>
-          Dog
-        </Dropdown.Item>
-        <Dropdown.Item value='aardvark' key='aardvark'>
-          Aardvark
-        </Dropdown.Item>
-        <Dropdown.Item value='kangaroo' key='kangaroo'>
-          Kangaroo
-        </Dropdown.Item>
-        <Dropdown.Item value='snake' key='snake'>
-          Snake
-        </Dropdown.Item>
+        <Dropdown.Item value='panda'>Red Panda</Dropdown.Item>
+        <Dropdown.Item value='cat'>Cat</Dropdown.Item>
+        <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+        <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+        <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item value='snake'>Snake</Dropdown.Item>
       </Dropdown.ComboBox>
 
       <h3>With Section</h3>
       <Dropdown.ComboBox label='Favorite Animal' placeholder='Choose an animal'>
-        <Dropdown.Item value='fly' key='fly'>
-          Fly
-        </Dropdown.Item>
+        <Dropdown.Item value='fly'>Fly</Dropdown.Item>
         <Dropdown.Section title='Group 1'>
-          <Dropdown.Item key='red panda' value='red panda'>
-            Red Panda
-          </Dropdown.Item>
-          <Dropdown.Item key='cat' value='cat'>
-            Cat
-          </Dropdown.Item>
-          <Dropdown.Item value='dog' key='dog'>
-            Dog
-          </Dropdown.Item>
+          <Dropdown.Item value='panda'>Red Panda</Dropdown.Item>
+          <Dropdown.Item value='cat'>Cat</Dropdown.Item>
+          <Dropdown.Item value='dog'>Dog</Dropdown.Item>
         </Dropdown.Section>
         <Dropdown.Section title='Group 2'>
-          <Dropdown.Item value='aardvark' key='aardvark'>
-            Aardvark
-          </Dropdown.Item>
-          <Dropdown.Item value='kangaroo' key='kangaroo'>
-            Kangaroo
-          </Dropdown.Item>
-          <Dropdown.Item value='snake' key='snake'>
-            Snake
-          </Dropdown.Item>
+          <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+          <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+          <Dropdown.Item value='snake'>Snake</Dropdown.Item>
         </Dropdown.Section>
       </Dropdown.ComboBox>
     </Column>
