@@ -37,6 +37,7 @@ const DataGridCell = React.forwardRef<HTMLTableCellElement, DataGridCellProps>(
         css={{
           width: cell.column.getSize(),
         }}
+        role='cell'
       >
         {isCellEditable ? (
           <EditableCell

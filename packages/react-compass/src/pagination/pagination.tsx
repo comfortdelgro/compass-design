@@ -76,6 +76,7 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
             <Ellipsis
               key={index}
               isBefore={isBefore}
+              aria-label={isBefore ? 'previous 5 items' : 'next 5 items'}
               onClick={() => {
                 if (isBefore) {
                   setPage(active - 5 >= 1 ? active - 5 : 1)
@@ -92,6 +93,8 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
             key={index}
             active={item === active}
             onClick={() => item !== active && setPage(item)}
+            aria-label={`page ${item}`}
+            aria-current={item === active}
           >
             {item}
           </StyledPaginationItem>
@@ -101,8 +104,14 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
     )
 
     return (
-      <StyledPagination css={css} ref={paginationRef} {...delegated}>
-        <StyledPaginationItem onClick={previous}>
+      <StyledPagination
+        css={css}
+        ref={paginationRef}
+        role='navigation'
+        aria-label='pagination'
+        {...delegated}
+      >
+        <StyledPaginationItem onClick={previous} aria-label='previous page'>
           <svg viewBox='0 0 320 512'>
             <path
               fill='currentColor'
@@ -111,7 +120,7 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
           </svg>
         </StyledPaginationItem>
         {items.map(renderItem)}
-        <StyledPaginationItem onClick={next}>
+        <StyledPaginationItem onClick={next} aria-label='next page'>
           <svg viewBox='0 0 320 512'>
             <path
               fill='currentColor'

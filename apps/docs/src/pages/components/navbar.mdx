@@ -59,15 +59,9 @@ Navbar Links renders buttons or links that help user navigate better
   <Navbar>
     <Navbar.Brand>Workbench Title</Navbar.Brand>
     <Navbar.Links>
-      <a href='#'>
-        <Button>Home</Button>
-      </a>
-      <a href='#'>
-        <Button>Services</Button>
-      </a>
-      <a href='#'>
-        <Button>Products</Button>
-      </a>
+      <Button href='#'>Home</Button>
+      <Button href='#'>Services</Button>
+      <Button href='#'>Products</Button>
     </Navbar.Links>
   </Navbar>
 </section>
@@ -76,15 +70,9 @@ Navbar Links renders buttons or links that help user navigate better
 <Navbar>
   <Navbar.Brand>Workbench Title</Navbar.Brand>
   <Navbar.Links>
-    <a href='#'>
-      <Button>Home</Button>
-    </a>
-    <a href='#'>
-      <Button>Services</Button>
-    </a>
-    <a href='#'>
-      <Button>Products</Button>
-    </a>
+    <Button href='#'>Home</Button>
+    <Button href='#'>Services</Button>
+    <Button href='#'>Products</Button>
   </Navbar.Links>
 </Navbar>
 ```
@@ -97,21 +85,13 @@ Navbar Separator helps separate the left side and the right side of the navbar
   <Navbar>
     <Navbar.Brand>Workbench Title</Navbar.Brand>
     <Navbar.Links>
-      <a href='#'>
-        <Button>Home</Button>
-      </a>
-      <a href='#'>
-        <Button>Services</Button>
-      </a>
-      <a href='#'>
-        <Button>Products</Button>
-      </a>
+      <Button href='#'>Home</Button>
+      <Button href='#'>Services</Button>
+      <Button href='#'>Products</Button>
     </Navbar.Links>
     <Navbar.Separator></Navbar.Separator>
     <Navbar.Links>
-      <a href='#'>
-        <Button>Home</Button>
-      </a>
+      <Button href='#'>Home</Button>
     </Navbar.Links>
   </Navbar>
 </section>
@@ -120,21 +100,13 @@ Navbar Separator helps separate the left side and the right side of the navbar
 <Navbar>
   <Navbar.Brand>Workbench Title</Navbar.Brand>
   <Navbar.Links>
-    <a href='#'>
-      <Button>Home</Button>
-    </a>
-    <a href='#'>
-      <Button>Services</Button>
-    </a>
-    <a href='#'>
-      <Button>Products</Button>
-    </a>
+    <Button href='#'>Home</Button>
+    <Button href='#'>Services</Button>
+    <Button href='#'>Products</Button>
   </Navbar.Links>
   <Navbar.Separator></Navbar.Separator>
   <Navbar.Links>
-    <a href='#'>
-      <Button>Home</Button>
-    </a>
+    <Button href='#'>Home</Button>
   </Navbar.Links>
 </Navbar>
 ```
@@ -147,15 +119,9 @@ Navbar Actions helps organize action buttons. The prop `alternativeElement` prov
   <Navbar>
     <Navbar.Brand>Workbench Title</Navbar.Brand>
     <Navbar.Links>
-      <a href='#'>
-        <Button>Home</Button>
-      </a>
-      <a href='#'>
-        <Button>Services</Button>
-      </a>
-      <a href='#'>
-        <Button>Products</Button>
-      </a>
+      <Button href='#'>Home</Button>
+      <Button href='#'>Services</Button>
+      <Button href='#'>Products</Button>
     </Navbar.Links>
     <Navbar.Separator></Navbar.Separator>
     <Navbar.Actions alternativeElement={<MenuIcon color='white' />}>
@@ -171,15 +137,9 @@ Navbar Actions helps organize action buttons. The prop `alternativeElement` prov
 <Navbar>
   <Navbar.Brand>Workbench Title</Navbar.Brand>
   <Navbar.Links>
-    <a href='#'>
-      <Button>Home</Button>
-    </a>
-    <a href='#'>
-      <Button>Services</Button>
-    </a>
-    <a href='#'>
-      <Button>Products</Button>
-    </a>
+    <Button href='#'>Home</Button>
+    <Button href='#'>Services</Button>
+    <Button href='#'>Products</Button>
   </Navbar.Links>
   <Navbar.Separator></Navbar.Separator>
   <Navbar.Actions alternativeElement={<MenuIcon color='white' />}>
@@ -199,15 +159,9 @@ Navbar Actions helps organize action buttons. The prop `alternativeElement` prov
   <Navbar variant='portal'>
     <Avatar size='sm' label='Avatar' />
     <Navbar.Links>
-      <a href='#'>
-        <Button>Home</Button>
-      </a>
-      <a href='#'>
-        <Button>Services</Button>
-      </a>
-      <a href='#'>
-        <Button>Products</Button>
-      </a>
+      <Button href='#'>Home</Button>
+      <Button href='#'>Services</Button>
+      <Button href='#'>Products</Button>
     </Navbar.Links>
   </Navbar>
 </section>
@@ -216,15 +170,9 @@ Navbar Actions helps organize action buttons. The prop `alternativeElement` prov
 <Navbar variant='portal'>
   <Avatar size='sm' label='Avatar' />
   <Navbar.Links>
-    <a href='#'>
-      <Button>Home</Button>
-    </a>
-    <a href='#'>
-      <Button>Services</Button>
-    </a>
-    <a href='#'>
-      <Button>Products</Button>
-    </a>
+    <Button href='#'>Home</Button>
+    <Button href='#'>Services</Button>
+    <Button href='#'>Products</Button>
   </Navbar.Links>
 </Navbar>
 ```
@@ -235,9 +183,15 @@ Navbar Actions helps organize action buttons. The prop `alternativeElement` prov
   <Navbar variant='website' color='white'>
     <Workbench width={'40px'} height={'40px'} />
     <Navbar.Links>
-      <Button variant='ghost'>Home</Button>
-      <Button variant='ghost'>Services</Button>
-      <Button variant='ghost'>Products</Button>
+      <Button href='#' variant='ghost'>
+        Home
+      </Button>
+      <Button href='#' variant='ghost'>
+        Services
+      </Button>
+      <Button href='#' variant='ghost'>
+        Products
+      </Button>
     </Navbar.Links>
   </Navbar>
 </section>
@@ -246,9 +200,9 @@ Navbar Actions helps organize action buttons. The prop `alternativeElement` prov
 <Navbar variant='website' color='white'>
   <Avatar size='lg' label='asd' />
   <Navbar.Links>
-    <Button>Home</Button>
-    <Button>Services</Button>
-    <Button>Products</Button>
+    <Button href='#'>Home</Button>
+    <Button href='#'>Services</Button>
+    <Button href='#'>Products</Button>
   </Navbar.Links>
 </Navbar>
 ```
@@ -262,9 +216,9 @@ Navbar Actions helps organize action buttons. The prop `alternativeElement` prov
     <Avatar size='sm' label='asd' />
     <Navbar.Brand>Workbench Title</Navbar.Brand>
     <Navbar.Links>
-      <Button>Home</Button>
-      <Button>Services</Button>
-      <Button>Products</Button>
+      <Button href='#'>Home</Button>
+      <Button href='#'>Services</Button>
+      <Button href='#'>Products</Button>
     </Navbar.Links>
   </Navbar>
 </section>
@@ -274,9 +228,9 @@ Navbar Actions helps organize action buttons. The prop `alternativeElement` prov
   <Avatar size='sm' label='asd' />
   <Navbar.Brand>Workbench Title</Navbar.Brand>
   <Navbar.Links>
-    <Button>Home</Button>
-    <Button>Services</Button>
-    <Button>Products</Button>
+    <Button href='#'>Home</Button>
+    <Button href='#'>Services</Button>
+    <Button href='#'>Products</Button>
   </Navbar.Links>
 </Navbar>
 ```
@@ -288,9 +242,15 @@ Navbar Actions helps organize action buttons. The prop `alternativeElement` prov
     <Avatar size='sm' label='asd' />
     <Navbar.Brand>Workbench Title</Navbar.Brand>
     <Navbar.Links>
-      <Button variant='ghost'>Home</Button>
-      <Button variant='ghost'>Services</Button>
-      <Button variant='ghost'>Products</Button>
+      <Button href='#' variant='ghost'>
+        Home
+      </Button>
+      <Button href='#' variant='ghost'>
+        Services
+      </Button>
+      <Button href='#' variant='ghost'>
+        Products
+      </Button>
     </Navbar.Links>
   </Navbar>
 </section>
@@ -300,9 +260,15 @@ Navbar Actions helps organize action buttons. The prop `alternativeElement` prov
   <Avatar size='sm' label='asd' />
   <Navbar.Brand>Workbench Title</Navbar.Brand>
   <Navbar.Links>
-    <Button variant='ghost'>Home</Button>
-    <Button variant='ghost'>Services</Button>
-    <Button variant='ghost'>Products</Button>
+    <Button href='#' variant='ghost'>
+      Home
+    </Button>
+    <Button href='#' variant='ghost'>
+      Services
+    </Button>
+    <Button href='#' variant='ghost'>
+      Products
+    </Button>
   </Navbar.Links>
 </Navbar>
 ```

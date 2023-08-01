@@ -19,8 +19,7 @@ export const StyledDragAndDrop = styled('ul', {
   li: {
     cursor: 'pointer',
     '&:focus-visible': {
-      outline: 'none',
-      borderRadius: 0,
+      outline: '2px solid $cdgBlue',
     },
   },
 })
