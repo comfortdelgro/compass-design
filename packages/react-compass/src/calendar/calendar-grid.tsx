@@ -1,4 +1,3 @@
-import {useLocale} from '@react-aria/i18n'
 import React from 'react'
 import {
   CalendarDate,
@@ -7,6 +6,7 @@ import {
   getWeeksInMonth,
   parseDate,
 } from '../internationalized/date'
+import {useLocale} from '../internationalized/i18n'
 import {StyledComponentProps} from '../utils/stitches.types'
 import CalendarCell from './calendar-cell'
 import {StyledCalendarGrid, StyledTRowPlaceholder} from './calendar-grid.style'

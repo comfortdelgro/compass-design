@@ -11,9 +11,9 @@
 /* eslint-disable @typescript-eslint/unbound-method */
 /* eslint-disable @typescript-eslint/prefer-ts-expect-error */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import {useLocale} from '@react-aria/i18n'
 import {RefObject, useMemo} from 'react'
 import {DateValue} from '../../internationalized/date'
+import {useLocale} from '../../internationalized/i18n'
 import {focusManagerSymbol, roleSymbol} from '../constants/focus.constant'
 import {
   AriaDateRangePickerProps,

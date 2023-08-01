@@ -16,7 +16,6 @@
 // Reference: https://github.com/adobe/react-spectrum/blob/98cad3f064c5302c04a1140d12a2cacc3ee921a2/packages/%40react-aria/datepicker/src/useDateSegment.ts
 /* eslint-disable prefer-const */
 import {NumberParser} from '@internationalized/number'
-import {useDateFormatter, useFilter, useLocale} from '@react-aria/i18n'
 import React, {
   KeyboardEvent,
   RefObject,
@@ -25,6 +24,11 @@ import React, {
   useRef,
 } from 'react'
 import {CalendarDate, toCalendar} from '../../internationalized/date'
+import {
+  useDateFormatter,
+  useFilter,
+  useLocale,
+} from '../../internationalized/i18n'
 import {
   DateFieldState,
   DateSegment,

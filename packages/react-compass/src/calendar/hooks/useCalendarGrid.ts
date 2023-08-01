@@ -9,7 +9,6 @@
  */
 
 /* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
-import {useDateFormatter, useLocale} from '@react-aria/i18n'
 import {useMemo} from 'react'
 import {
   CalendarDate,
@@ -17,6 +16,7 @@ import {
   startOfWeek,
   today,
 } from '../../internationalized/date'
+import {useDateFormatter, useLocale} from '../../internationalized/i18n'
 import {CalendarState, RangeCalendarState} from '../types'
 import {hookData} from '../utils'
 import {useLabels} from './useLabels'
