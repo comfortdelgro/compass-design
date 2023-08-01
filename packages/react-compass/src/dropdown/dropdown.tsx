@@ -66,7 +66,7 @@ interface Props extends StyledComponentProps {
   description?: React.ReactNode
   disableClearable?: boolean
   noDataMessage?: string
-  onBlur?: () => void
+  onBlur?: (event: React.FocusEvent) => void
   onFocus?: () => void
   onLoadMore?: () => void
   onOpenChange?: (isOpen: boolean) => void
@@ -116,7 +116,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     disabledKeys = [],
     selectedKey = '',
     defaultSelectedKey = '',
-    disabledValues = [],
+    disabledValues,
     value = '',
     defaultValue = '',
     defaultOpen = false,
@@ -148,8 +148,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   const [isPositioned, setIsPositioned] = React.useState(false)
   const [open, setOpen] = React.useState<boolean>(defaultOpen)
   const [selectedItem, setSelectedItem] =
-    React.useState<SelectedItemDropdown | null>(null)
-  const [selectedItemBackup, setSelectedItemBackup] =
     React.useState<SelectedItemDropdown | null>(null)
   const [focusKey, setFocusKey] = React.useState<Key | null>(
     valueDropdown || defaultValueDropdown,
@@ -304,6 +302,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           case 'Enter':
             event.preventDefault()
             if (currentFocusKey !== null) {
+              setSearchValue('')
               const focusedItem = getItemByKey(
                 currentFocusKey ?? '',
                 clonedChildren,
@@ -427,7 +426,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       isUncontrolledComponent,
       type,
       selectedItem,
-      selectedItemBackup,
       allowsCustomValue,
       onOpenChange,
       onValueChange,
@@ -459,13 +457,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         }
       })
     }
-  }, [
-    type,
-    selectedItemBackup,
-    selectedItem,
-    allowsCustomValue,
-    isUncontrolledComponent,
-  ])
+  }, [type, selectedItem, allowsCustomValue, isUncontrolledComponent])
 
   useEffect(() => {
     if (!open && ['combobox'].includes(type) && inputRef.current) {
@@ -477,7 +469,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     if (!clonedChildren || (!valueDropdown && !defaultValueDropdown)) {
       setSelectedItem(null)
       setSearchValue('')
-      if (inputRef.current) {
+      if (!allowsCustomValue && inputRef.current) {
         inputRef.current.value = ''
       }
       setFocusKey((oldFocusKey) => oldFocusKey ?? null)
@@ -499,7 +491,29 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         inputRef.current.value = textContent(item as React.ReactElement)
       }
     }
-  }, [clonedChildren, valueDropdown, defaultValueDropdown])
+  }, [clonedChildren, valueDropdown, defaultValueDropdown, allowsCustomValue])
+
+  const handleInputComboboxBlur = useCallback(
+    (event: React.FocusEvent) => {
+      onBlur?.(event)
+      if (['combobox'].includes(type) && inputRef.current) {
+        if (inputRef.current) {
+          if (!allowsCustomValue) {
+            // Check if there is selected item then set text for input
+            if (selectedItem) {
+              inputRef.current.value = textContent(
+                selectedItem?.displayValue as React.ReactElement,
+              )
+            } else {
+              inputRef.current.value = ''
+            }
+          }
+          setSearchValue('')
+        }
+      }
+    },
+    [onBlur, selectedItem, type, allowsCustomValue],
+  )
 
   const contentElement = useMemo(() => {
     switch (type) {
@@ -519,7 +533,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
               ref={buttonSelectRef}
               disabled={isDisabled}
               onClick={handleDropdownToggle}
-              onBlur={onBlur}
+              onBlur={handleInputComboboxBlur}
               onFocus={onFocus}
               className='cdg-dropdown-button'
             >
@@ -552,7 +566,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
               disabled={isDisabled}
               placeholder={placeholder}
               onChange={handleInputChange}
-              onBlur={onBlur}
+              onBlur={handleInputComboboxBlur}
               onFocus={onFocus}
               onClick={handleDropdownToggle}
               aria-autocomplete='list'
@@ -587,6 +601,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     onFocus,
     handleDropdownToggle,
     handleInputChange,
+    handleInputComboboxBlur,
   ])
 
   const handleDropdownItemClick = (currentItem: SelectedItemDropdown) => {
@@ -595,6 +610,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     }
     setOpen(false)
     onOpenChange?.(false)
+    setSearchValue('')
     setTimeout(() => {
       inputRef.current?.focus()
       buttonSelectRef.current?.focus()
@@ -623,7 +639,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       onValueChange?.(currentItem.value)
     }
     setValueForItemAndFocusKey(currentItem)
-    setSelectedItemBackup(currentItem)
     if (['combobox'].includes(type)) {
       if (inputRef.current) {
         inputRef.current.value = textContent(
