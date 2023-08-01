@@ -67,6 +67,7 @@ interface Props extends StyledComponentProps {
   disableClearable?: boolean
   noDataMessage?: string
   isCloseOnSelect?: boolean
+  isLoadingMore?: boolean
   onBlur?: (event: React.FocusEvent) => void
   onFocus?: () => void
   onLoadMore?: () => void
@@ -129,6 +130,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     noDataMessage = '',
     label,
     isCloseOnSelect = true,
+    isLoadingMore = false,
     onValueChange = EMPTY_FUNC,
     onSelectionChange = EMPTY_FUNC,
     onFocus = EMPTY_FUNC,
@@ -151,9 +153,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   const [open, setOpen] = React.useState<boolean>(defaultOpen)
   const [selectedItem, setSelectedItem] =
     React.useState<SelectedItemDropdown | null>(null)
-  const [focusKey, setFocusKey] = React.useState<Key | null>(
-    valueDropdown || defaultValueDropdown,
-  )
+  const [focusKey, setFocusKey] = React.useState<Key | null>(null)
   const [searchValue, setSearchValue] = useState<string>('')
   const [dropdownItemKeys, setDropdownItemKeys] = useState<DropdownItemKey[]>(
     [],
@@ -692,6 +692,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       )}
       <DropdownContext.Provider
         value={{
+          isLoadingMore,
           isPositioned,
           open,
           focusKey: focusKey,

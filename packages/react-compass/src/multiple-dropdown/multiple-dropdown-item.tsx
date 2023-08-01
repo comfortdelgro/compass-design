@@ -104,6 +104,14 @@ const MultipleDropdownItem = React.forwardRef<
     }
   }, [focusKey, value, isPositioned])
 
+  React.useEffect(() => {
+    if (isSelected && isPositioned) {
+      if (multipleDropdownItemRef.current) {
+        multipleDropdownItemRef.current.scrollIntoView({block: 'nearest'})
+      }
+    }
+  }, [isPositioned, open, isSelected])
+
   const handleItemClick = () => {
     if (isDisabled) {
       return

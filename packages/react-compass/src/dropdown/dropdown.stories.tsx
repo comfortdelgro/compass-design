@@ -76,6 +76,7 @@ export const Select: React.FC = () => {
   const [valueHeader, setValueHeader] = React.useState<Key>('')
   const [flag, setFlag] = React.useState<Key>('')
   const [loadMoreValue, setLoadMoreValue] = React.useState<Key>('')
+  const [loadingMoreStatus, setLoadingMoreStatus] = React.useState(false)
   const [data, setData] = React.useState<SampleData[]>(generateRandomData(10))
   const [value1, setValue1] = React.useState<Key>('cat')
 
@@ -448,12 +449,19 @@ export const Select: React.FC = () => {
         label='Using load more'
         placeholder='Select name'
         value={loadMoreValue}
+        isLoadingMore={loadingMoreStatus}
         onValueChange={(k: Key) => setLoadMoreValue(k)}
         onLoadMore={() => {
-          setData((currentData) => [
-            ...currentData,
-            ...generateRandomData(10, currentData.length + 1),
-          ])
+          setLoadingMoreStatus(true)
+          setData((currentData) => {
+            setTimeout(() => {
+              setLoadingMoreStatus(false)
+            })
+            return [
+              ...currentData,
+              ...generateRandomData(10, currentData.length + 1),
+            ]
+          })
         }}
       >
         {data.map((item) => (

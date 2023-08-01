@@ -64,6 +64,7 @@ interface Props extends StyledComponentProps {
   children?: React.ReactNode
   description?: React.ReactNode
   noDataMessage?: string
+  isLoadingMore?: boolean
   onBlur?: () => void
   onFocus?: () => void
   onLoadMore?: () => void
@@ -118,6 +119,7 @@ const MultipleDropdown = React.forwardRef<
     erroredKeys,
     erroredValues,
     noDataMessage = '',
+    isLoadingMore = false,
     onLoadMore = () => {
       //Load more
     },
@@ -245,7 +247,7 @@ const MultipleDropdown = React.forwardRef<
   }, [isOpen])
 
   React.useEffect(() => {
-    if (!isOpen) {
+    if (!open) {
       setFocusKey('')
     }
   }, [open])
@@ -320,6 +322,9 @@ const MultipleDropdown = React.forwardRef<
 
   const handleKeyDown = React.useCallback(
     (event: KeyboardEvent) => {
+      if (!open) {
+        return
+      }
       const currentFocusKey =
         (focusKey
           ? focusKey
@@ -404,6 +409,7 @@ const MultipleDropdown = React.forwardRef<
       }
     },
     [
+      open,
       focusKey,
       clonedChildren,
       selectedItems,
@@ -535,6 +541,7 @@ const MultipleDropdown = React.forwardRef<
   const handleKeydownInput = useCallback(
     (event: React.KeyboardEvent<HTMLInputElement>) => {
       if (!open) {
+        event.stopPropagation()
         switch (event.key) {
           case 'ArrowUp':
           case 'ArrowDown':
@@ -570,6 +577,7 @@ const MultipleDropdown = React.forwardRef<
     >
       <MultipleDropdownContext.Provider
         value={{
+          isLoadingMore,
           open,
           focusKey: focusKey ?? '',
           selectedKeys: dropdownValues ?? [],
