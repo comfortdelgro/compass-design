@@ -36,7 +36,7 @@ export default function DocsAppFrame(props: {children: React.ReactNode}) {
   const [sidenav, setSidenav] = React.useState<TSideNavItem[]>([])
 
   React.useEffect(() => {
-    const [_, parentPath = 'getting-started', childrenPath = 'overview'] =
+    const [_, parentPath = 'foundation', childrenPath = 'overview'] =
       router.route.split('/')
     const newSidenav = map(routes, (route) => {
       if (route.pathname === `/${parentPath}`) {
