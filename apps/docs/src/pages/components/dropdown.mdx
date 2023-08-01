@@ -820,7 +820,8 @@ export const useCreatePersonStore = personInfoStore()
 | onLoadMore      | `() => void`                | —       | Handler when user scrolls to the end.                                                                                                                     |
 | onValueChange   | `(key: Key) => any`         | —       | Handler that is called when the selection changes.                                                                                                        |
 | onOpenChange    | `(isOpen: boolean) => void` | —       | Method that is called when the open state of the menu changes. Returns the new open state and the action that caused the opening of the menu.             |
-| isCloseOnSelect | `true`                      | 'false' | Prevent closing popup after selecting item.                                                                                                               |
+| isCloseOnSelect | `boolean`                   | 'false' | Prevent closing popup after selecting item.                                                                                                               |
+| isLoadingMore   | `boolean`                   | 'false' | Prevent to fire function `onLoadMore`.                                                                                                                      |
 
 #### `<Dropdown.Item/>` :
 

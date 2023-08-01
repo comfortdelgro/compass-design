@@ -14,6 +14,7 @@ export interface DropdownItemKey {
 export interface DropdownContextType {
   isPositioned: boolean
   open: boolean
+  isLoadingMore: boolean
   searchValue: string
   disabledKeys?: Key[]
   selectedItem: SelectedItemDropdown | null
@@ -31,6 +32,7 @@ export interface DropdownContextType {
 }
 
 export const DropdownContext = createContext<DropdownContextType>({
+  isLoadingMore: false,
   focusKey: null,
   isPositioned: false,
   labelId: '',

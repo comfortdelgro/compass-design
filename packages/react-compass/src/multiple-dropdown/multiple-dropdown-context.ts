@@ -11,6 +11,7 @@ export interface DropdownItemKey {
 }
 
 export interface MultipleDropdownContextType {
+  isLoadingMore: boolean
   isPositioned: boolean
   open: boolean
   searchValue: string
@@ -37,6 +38,7 @@ export interface MultipleDropdownContextType {
 
 export const MultipleDropdownContext =
   createContext<MultipleDropdownContextType>({
+    isLoadingMore: false,
     isPositioned: false,
     open: false,
     searchValue: '',
