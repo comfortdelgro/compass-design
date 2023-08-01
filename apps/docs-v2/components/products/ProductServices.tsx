@@ -1,71 +1,7 @@
-import {Box, Button, Grid, Row, Typography} from '@comfortdelgro/react-compass'
-import {useMemo} from 'react'
-import {
-  AdminPortalLogo,
-  CarbyPortalLogo,
-  CMSLogo,
-  ComfortConnectLogo,
-  FMSLogo,
-  FNBLogo,
-  TEMLogo,
-  ZigStoreLogo,
-} from './ProductLogos'
+import { Box, Button, Grid, Row, Typography } from '@comfortdelgro/react-compass'
+import { products } from 'constants/products'
+const ProductServices = () => {
 
-const ProductService = () => {
-  const lorem = 'Lorem ipsum dola sign lewded saedh kdkroe krtyer'
-
-  const products = useMemo<ProductCard[]>(() => {
-    return [
-      {
-        icon: <ZigStoreLogo />,
-        title: 'Zig Store',
-        description: lorem,
-        link: '/',
-      },
-      {
-        icon: <ComfortConnectLogo />,
-        title: 'Comfort Connect',
-        description: lorem,
-        link: '/',
-      },
-      {
-        icon: <CMSLogo />,
-        title: 'CMS',
-        description: lorem,
-        link: '/',
-      },
-      {
-        icon: <CarbyPortalLogo />,
-        title: 'Carby Portal',
-        description: lorem,
-        link: '/',
-      },
-      {
-        icon: <AdminPortalLogo />,
-        title: 'Admin Portal',
-        description: lorem,
-        link: '/',
-      },
-      {
-        icon: <FMSLogo />,
-        title: 'FMS',
-        description: lorem,
-        link: '/',
-      },
-      {
-        icon: <FNBLogo />,
-        title: 'FnB',
-        description: lorem,
-        link: '/',
-      },
-      {
-        icon: <TEMLogo />,
-        title: 'Tem',
-        description: lorem,
-        link: '/',
-      },
-    ]
-  }, [])
 
   return (
     <Grid
@@ -77,7 +13,7 @@ const ProductService = () => {
         marginTop: '24px',
         borderRadius: '24px',
         boxShadow:
-          '0px 3.200000047683716px 7.199999809265137px 0px rgba(0, 0, 0, 0.13), 0px 0.6000000238418579px 1.7999999523162842px 0px rgba(0, 0, 0, 0.10)',
+          '0px 3px 7px 0px rgba(0, 0, 0, 0.13), 0px 1px 2px 0px rgba(0, 0, 0, 0.10)',
       }}
     >
       {products.map((product) => (
@@ -122,20 +58,20 @@ const ProductCard = (props: ProductCard) => {
         border: '1px solid $cdgBlue20',
       }}
     >
-      <Row css={{gap: '24px'}}>
+      <Row css={{ gap: '24px' }}>
         {props.icon}
-        <Typography.Body variant='body1' css={{fontWeight: '$normal'}}>
+        <Typography.Body variant='body1' css={{ fontWeight: '$normal' }}>
           {props.title}
         </Typography.Body>
       </Row>
       <Typography.Body variant='body3'>
         Lorem ipsum dola sign lewded saedh kdkroe krtyer
       </Typography.Body>
-      <Button css={{width: 'fit-content'}} href={props.link} hrefExternal>
+      <Button css={{ width: 'fit-content' }} href={props.link} hrefExternal>
         Try now
       </Button>
     </Box>
   )
 }
 
-export default ProductService
+export default ProductServices
