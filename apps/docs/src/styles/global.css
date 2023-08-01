@@ -30,3 +30,9 @@ button.c-hKssGC-hYGuEl-variant-primary,
     cursor: not-allowed;
   }
 }
+
+.sample-layout {
+  border: 1px solid var(--colors-divider);
+  padding: 4px;
+  gap: 4px;
+}
