@@ -35,6 +35,7 @@ export const StyledSearchFieldBox = styled('div', {
   backgroundColor: '$whiteText',
   transition: '$default',
   minWidth: '$48',
+  outline: 'none',
 
   [`${StyledButton}`]: {
     transform: 'scale(0.9)',
@@ -60,7 +61,7 @@ export const StyledSearchFieldBox = styled('div', {
         [`${StyledSearchFieldInput}`]: {
           color: '$tertiaryText',
           '&:focus': {
-            borderColor: 'cdgBlue120',
+            borderColor: '$cdgBlue120',
             outline: 'none',
             boxShadow: 'none',
           },
@@ -72,7 +73,7 @@ export const StyledSearchFieldBox = styled('div', {
       false: {
         [`${StyledSearchFieldInput}`]: {
           '&:focus': {
-            borderColor: 'cdgBlue',
+            borderColor: '$cdgBlue',
             outline: 'none',
             boxShadow: 'none',
           },
