@@ -3,11 +3,14 @@ import {StyledComponentProps} from '../utils/stitches.types'
 import AccordionButton from './accordion-button'
 import AccordionContext, {AccordionContextType} from './accordion-context'
 import {StyledAccordionTitleWrapper} from './accordion-title.styles'
+import {KeyBoard} from './constants'
 
 interface Props extends StyledComponentProps {
   icon?: false | React.ReactNode
   children?: string | React.ReactNode
   expandIcon?: React.ReactNode
+  'aria-expanded'?: boolean
+  'aria-controls'?: string
 }
 
 export type AccordionTitleProps = Props &
@@ -20,6 +23,7 @@ const AccordionTitle = React.forwardRef<HTMLButtonElement, AccordionTitleProps>(
       children,
       expandIcon,
       css = {},
+      'aria-controls': ariaControls,
       ...delegated
     } = props
     const contextValue = useContext(AccordionContext) as AccordionContextType
@@ -49,17 +53,11 @@ const AccordionTitle = React.forwardRef<HTMLButtonElement, AccordionTitleProps>(
       const event = e as React.KeyboardEvent<HTMLElement>
       const {key} = event
       switch (key) {
-        case 'Spacebar':
-        case 'Enter':
+        case KeyBoard.Space:
+        case KeyBoard.Enter:
           setExpand()
           if (onExpandChange) {
             onExpandChange(event)
-          }
-          if (event.currentTarget.parentElement) {
-            event.currentTarget.parentElement.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start',
-            })
           }
           break
         default:
@@ -74,6 +72,7 @@ const AccordionTitle = React.forwardRef<HTMLButtonElement, AccordionTitleProps>(
 
     return (
       <AccordionButton
+        aria-controls={ariaControls}
         ref={ref}
         css={css}
         className={`accordion-title-container ${expand ? 'open' : 'close'}`}
