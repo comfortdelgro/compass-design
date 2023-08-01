@@ -409,6 +409,7 @@ export const Select: React.FC = () => {
 
 export const Combobox: React.FC = () => {
   const [value, setValue] = React.useState<Key>('cat')
+  const [valueHeader, setValueHeader] = React.useState<Key>('')
   const [disabledValue] = React.useState<Key>('dog')
   const [customValue, setCustomValue] = React.useState<Key>('kangaroo')
 
@@ -551,7 +552,12 @@ export const Combobox: React.FC = () => {
         <Dropdown.Item value='snake'>Snake</Dropdown.Item>
       </Dropdown.ComboBox>
       <h3>With Header</h3>
-      <Dropdown.ComboBox label='Favorite Animal' placeholder='Choose an animal'>
+      <Dropdown.ComboBox
+        label='Favorite Animal'
+        placeholder='Choose an animal'
+        value={valueHeader}
+        onValueChange={(value: Key) => setValueHeader(value)}
+      >
         <Dropdown.Header>
           <div
             style={{
@@ -583,6 +589,7 @@ export const Combobox: React.FC = () => {
                 cursor: 'pointer',
                 backgroundColor: 'transparent',
               }}
+              onClick={() => setValueHeader('')}
             >
               Clear
             </button>
