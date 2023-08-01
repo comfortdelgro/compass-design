@@ -15,6 +15,8 @@ export const StyledPopover = styled('div', {
   boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
   borderRadius: '$md',
   minHeight: '2rem',
+  maxHeight: '16rem',
+  overflowY: 'auto',
 })
 export const StyledEmptyMessage = styled('div', {
   // Reset
@@ -45,7 +47,6 @@ export const StyledOption = styled('div', {
   outline: 'none',
   border: 'none',
   margin: 0,
-  //padding: 0,
 
   // Custom
   width: '100%',
@@ -60,6 +61,9 @@ export const StyledOption = styled('div', {
   gap: '$2',
   '&:hover': {
     backgroundColor: '$gray20',
+  },
+  '&:focus-visible': {
+    backgroundColor: '$cdgBlue20',
   },
   variants: {
     isFocused: {
