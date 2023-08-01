@@ -34,8 +34,6 @@ importers:
       '@fortawesome/free-solid-svg-icons': ^6.2.0
       '@hookform/resolvers': ^3.1.0
       '@iconify/react': ^4.0.1
-      '@internationalized/date': 3.2.0
-      '@react-aria/i18n': ^3.6.2
       '@react-aria/ssr': ^3.5.0
       '@types/node': ^18.11.0
       '@types/react': ^17.0.39
@@ -61,8 +59,6 @@ importers:
       '@fortawesome/free-solid-svg-icons': 6.4.0
       '@hookform/resolvers': 3.1.0_react-hook-form@7.44.2
       '@iconify/react': 4.1.0_react@18.2.0
-      '@internationalized/date': 3.2.0
-      '@react-aria/i18n': 3.7.1_react@18.2.0
       '@react-aria/ssr': 3.6.0_react@18.2.0
       clsx: 1.2.1
       next: 12.3.1_biqbaboplfbrettd7655fr4n2y

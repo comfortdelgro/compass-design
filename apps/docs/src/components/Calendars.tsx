@@ -13,9 +13,6 @@ import {
   useDateFormatter,
   useLocale,
 } from '@comfortdelgro/react-compass'
-// import {
-// } from '@internationalized/date'
-// import {} from '@react-aria/i18n'
 import React from 'react'
 
 export function ControlledCalendar() {
