@@ -35,6 +35,7 @@ export const StyledSearchFieldBox = styled('div', {
   backgroundColor: '$whiteText',
   transition: '$default',
   minWidth: '$48',
+  outline: 'none',
 
   [`${StyledButton}`]: {
     transform: 'scale(0.9)',
