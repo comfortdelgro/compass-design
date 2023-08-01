@@ -1,0 +1,2 @@
+<ColorBox color={theme.colors.overlayLight} />
+<ColorBox color={theme.colors.overlayDark} />

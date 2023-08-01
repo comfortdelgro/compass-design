@@ -20,6 +20,7 @@ const TableV2Row = React.forwardRef<HTMLTableRowElement, Props>(
         isExpanded={isExpanded}
         ref={tableRowRef}
         css={css}
+        role='row'
       >
         {children}
       </StyledTableV2Row>

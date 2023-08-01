@@ -17,6 +17,7 @@ export const KeyboardNavigationContext = React.createContext<
       callbacks?: OnKeyDownCallback<T> | undefined,
     ) => (e: React.KeyboardEvent<T>) => void
     onMouseMove?: (index: number) => () => void
+    onFocus?: (index: number) => () => void
   }
 >({})
 
@@ -78,6 +79,12 @@ export const KeyboardNavigationProvider = (
     }
   }
 
+  const onFocus = (index: number) => {
+    return () => {
+      setSelected?.(index)
+    }
+  }
+
   return (
     <DescendantsProvider value={descendants}>
       <KeyboardNavigationContext.Provider
@@ -91,6 +98,7 @@ export const KeyboardNavigationProvider = (
           resetFocus,
           onKeyDown,
           onMouseMove,
+          onFocus,
         }}
       >
         {children}

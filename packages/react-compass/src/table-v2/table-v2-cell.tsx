@@ -37,6 +37,7 @@ const TableV2Cell = React.forwardRef<HTMLTableCellElement, TableV2CellProps>(
         css={{
           width: cell.column.getSize(),
         }}
+        role='cell'
       >
         {isCellEditable ? (
           <EditableCell

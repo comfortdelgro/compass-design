@@ -12,6 +12,13 @@ export const StyledRadio = styled('div', {
     display: 'flex !important',
     justifyContent: 'center',
     alignItems: 'center',
+    '& input': {
+      position: 'relative',
+      opacity: 0,
+      width: 0,
+      height: 0,
+      appearance: 'none',
+    },
   },
   '.radio-content-wrapper': {
     flexGrow: 1,
@@ -70,6 +77,9 @@ export const StyledRadio = styled('div', {
 
   defaultVariants: {
     variant: 'outlined',
+  },
+  '&:focus-within': {
+    outline: '2px solid $cdgBlue100',
   },
 })
 

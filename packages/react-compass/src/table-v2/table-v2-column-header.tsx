@@ -1,5 +1,6 @@
 import {flexRender, Header, Table} from '@tanstack/react-table'
-import React from 'react'
+import React, {useMemo} from 'react'
+import {EKeyboardKey} from '../utils/keyboard.enum'
 import {CSS, StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import HeaderColumnFilter from './table-v2-column-header-filter'
@@ -24,11 +25,12 @@ export type TableV2ColumnHeaderProps<TData = any, TValue = unknown> = Props<
 const TableV2ColumnHeader = React.forwardRef<
   HTMLTableCellElement,
   TableV2ColumnHeaderProps
->(({headerProps, tableOption, css = {}}, ref) => {
+>(({headerProps, tableOption, css = {}, onKeyDown}, ref) => {
   const enableResizing = headerProps?.column?.columnDef?.enableResizing
   const isFilterableColumn =
     headerProps.column.columnDef.enableColumnFilter === true &&
     headerProps.column.getCanFilter()
+  const isSortableColumn = headerProps.column.getCanSort()
   const isGroupedColumn =
     headerProps.column.columnDef.enableGrouping === true &&
     headerProps.column.getIsGrouped()
@@ -39,16 +41,50 @@ const TableV2ColumnHeader = React.forwardRef<
     desc: <ArrowDownIcon />,
   }
 
+  const handleOnKeyDown = (e: React.KeyboardEvent<HTMLTableCellElement>) => {
+    const key = e.key as EKeyboardKey
+    const handler = headerProps.column.getToggleSortingHandler()
+    switch (key) {
+      case EKeyboardKey.Enter:
+        handler?.(e)
+        break
+      case EKeyboardKey.Spacebar:
+        e.preventDefault()
+        handler?.(e)
+        break
+      default:
+        break
+    }
+
+    onKeyDown?.(e)
+  }
+
+  const ariaSort = useMemo<
+    React.HTMLAttributes<HTMLDivElement>['aria-sort']
+  >(() => {
+    if (sortDirection === false) {
+      return 'none'
+    } else if (sortDirection === 'asc') {
+      return 'ascending'
+    } else {
+      return 'descending'
+    }
+  }, [sortDirection])
+
   return (
     <StyledTableV2ColumnHeader
       ref={tableRowRef}
       key={headerProps.id}
       colSpan={headerProps.colSpan}
       onClick={headerProps.column.getToggleSortingHandler()}
+      onKeyDown={handleOnKeyDown}
       css={{
         width: headerProps.getSize(),
         ...css,
       }}
+      role='columnheader'
+      aria-sort={ariaSort}
+      tabIndex={isSortableColumn || isFilterableColumn ? 0 : -1}
     >
       {headerProps.isPlaceholder ? null : (
         <StyledTableV2ColumnHeaderContent

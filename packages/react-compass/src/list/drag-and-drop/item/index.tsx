@@ -1,6 +1,7 @@
 import React from 'react'
+import {StyledComponentProps} from '../../../utils/stitches.types'
 
-interface Props {
+interface Props extends StyledComponentProps {
   key: React.Key
   children: React.ReactNode
 }

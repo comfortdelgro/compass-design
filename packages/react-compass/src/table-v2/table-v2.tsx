@@ -134,7 +134,7 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
       <StyledTableV2Wrapper css={css} {...delegated}>
         {toolbar && <>{toolbar}</>}
         <StyledTableV2>
-          <table ref={tableRef}>
+          <table ref={tableRef} role='table'>
             <TableV2RowGroup as='thead'>
               {table.getHeaderGroups().map((headerGroup) => (
                 <TableV2HeaderRow key={headerGroup.id}>

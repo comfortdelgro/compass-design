@@ -100,6 +100,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
       const key = event.key
       if (key === 'Enter' || key === ' ') {
+        event.preventDefault()
         handleCheckboxChange()
       }
     }
@@ -130,6 +131,8 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
             rounded={variant === 'rounded'}
             isDarkTheme={isDarkTheme}
             tabIndex={0}
+            role='checkbox'
+            aria-checked={checked}
             onKeyDown={handleKeyDown}
           >
             <StyledCheckboxCheckmark>
