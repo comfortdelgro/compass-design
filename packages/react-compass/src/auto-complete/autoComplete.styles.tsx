@@ -94,6 +94,11 @@ export const StyledAutoComplete = styled('div', {
   border: 'none',
   margin: 0,
   padding: 0,
+  '&:focus-visible': {
+    outline: 'none',
+    border: 'none',
+    borderColor: 'transparent',
+  },
 
   // Custom
   width: 'fit-content',

@@ -97,7 +97,7 @@ export const FullFeatured: React.FC = () => {
       <h3>Full-featured Example: Auto Complete</h3>
       <AutoComplete
         searchedValue={inputValue}
-        debounce={300}
+        debounce={800}
         onSearch={(value) => onSearchHandler(value)}
         options={searchResults}
         onSelect={(value) => onSelectHandler(value)}
@@ -108,7 +108,9 @@ export const FullFeatured: React.FC = () => {
         {/* You can put your own input element here instead of using our SearchField component */}
         <SearchField
           placeholder='Search'
-          onChange={(newValue) => setInputValue(newValue)}
+          onInput={(event: React.ChangeEvent<HTMLInputElement>) =>
+            setInputValue(event.target.value)
+          }
           value={inputValue}
         />
       </AutoComplete>
