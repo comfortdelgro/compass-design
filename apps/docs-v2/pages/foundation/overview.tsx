@@ -118,8 +118,8 @@ export default function Page() {
       </Box>
       <Box css={{padding: '$5 $16', width: '100%'}}>
         <Grid spacing='sm' alignItems='center' style={{width: '100%'}}>
-          {introduces.map((introduce) => (
-            <Grid.Item xs={12} sm={6} md={4} lg={4} xl={4}>
+          {introduces.map((introduce, index) => (
+            <Grid.Item xs={12} sm={6} md={4} lg={4} xl={4} key={index}>
               <Link href={introduce.url} style={{textDecoration: 'none'}}>
                 <Box
                   css={{
