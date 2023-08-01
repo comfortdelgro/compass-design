@@ -407,30 +407,30 @@ export const ListCards: React.FC = () => {
       <ListCard
         title='Lorem Ipsum'
         description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
-        badge={<Badge label='Active' color='success' variant='secondary' />}
-        css={{width: '347px'}}
+        badge={<Badge label='Active' color='success' variant='primary' />}
+        css={{width: '347px', backgroundColor: '$background'}}
       />
       <ListCard
         title='Lorem Ipsum'
         showActionButton
         description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
-        badge={<Badge label='Active' color='success' variant='secondary' />}
-        css={{width: '347px'}}
+        badge={<Badge label='Active' color='success' variant='primary' />}
+        css={{width: '347px', backgroundColor: '$background'}}
       />
       <ListCard
         title='Lorem Ipsum'
         isDisabled
         showActionButton
         description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
-        badge={<Badge label='Active' color='success' variant='secondary' />}
-        css={{width: '347px'}}
+        badge={<Badge label='Active' color='success' variant='primary' />}
+        css={{width: '347px', backgroundColor: '$background'}}
       />
       <h3>With details (Avatar)</h3>
       <ListCard
         title='Lorem Ipsum'
         description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
-        badge={<Badge label='Active' color='success' variant='secondary' />}
-        css={{width: '347px'}}
+        badge={<Badge label='Active' color='success' variant='primary' />}
+        css={{width: '347px', backgroundColor: '$background'}}
       >
         <ListCardDetail
           title='Detail 1'
@@ -442,8 +442,8 @@ export const ListCards: React.FC = () => {
         showActionButton
         title='Lorem Ipsum'
         description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
-        badge={<Badge label='Active' color='success' variant='secondary' />}
-        css={{width: '347px'}}
+        badge={<Badge label='Active' color='success' variant='primary' />}
+        css={{width: '347px', backgroundColor: '$background'}}
       >
         <ListCardDetail
           title='Detail 1'
@@ -455,8 +455,8 @@ export const ListCards: React.FC = () => {
         showActionButton
         title='Lorem Ipsum'
         description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
-        badge={<Badge label='Active' color='success' variant='secondary' />}
-        css={{width: '347px'}}
+        badge={<Badge label='Active' color='success' variant='primary' />}
+        css={{width: '347px', backgroundColor: '$background'}}
       >
         <ListCardDetail
           title='Detail 1'
@@ -473,8 +473,8 @@ export const ListCards: React.FC = () => {
         isDisabled
         title='Lorem Ipsum'
         description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
-        badge={<Badge label='Active' color='success' variant='secondary' />}
-        css={{width: '347px'}}
+        badge={<Badge label='Active' color='success' variant='primary' />}
+        css={{width: '347px', backgroundColor: '$background'}}
       >
         <ListCardDetail
           title='Detail 1'
@@ -486,8 +486,8 @@ export const ListCards: React.FC = () => {
       <ListCard
         title='Lorem Ipsum'
         description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
-        badge={<Badge label='Active' color='success' variant='secondary' />}
-        css={{width: '347px'}}
+        badge={<Badge label='Active' color='success' variant='primary' />}
+        css={{width: '347px', backgroundColor: '$background'}}
       >
         <ListCardDetail
           title='Detail 1'
@@ -507,8 +507,8 @@ export const ListCards: React.FC = () => {
         title='Lorem Ipsum'
         showActionButton
         description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
-        badge={<Badge label='Active' color='success' variant='secondary' />}
-        css={{width: '347px'}}
+        badge={<Badge label='Active' color='success' variant='primary' />}
+        css={{width: '347px', backgroundColor: '$background'}}
       >
         <ListCardDetail
           title='Detail 1'
@@ -541,8 +541,8 @@ export const ListCards: React.FC = () => {
         showActionButton
         title='Lorem Ipsum'
         description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
-        badge={<Badge label='Active' color='success' variant='secondary' />}
-        css={{width: '347px'}}
+        badge={<Badge label='Active' color='success' variant='primary' />}
+        css={{width: '347px', backgroundColor: '$background'}}
       >
         <ListCardDetail
           title='Detail 1'
@@ -568,8 +568,8 @@ export const ListCards: React.FC = () => {
         showActionButton
         title='Lorem Ipsum'
         description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
-        badge={<Badge label='Active' color='success' variant='secondary' />}
-        css={{width: '347px'}}
+        badge={<Badge label='Active' color='success' variant='primary' />}
+        css={{width: '347px', backgroundColor: '$background'}}
       >
         <ListCardDetail
           title='Detail 1'
@@ -768,10 +768,15 @@ export const InteractiveLists: React.FC = () => {
 export const DragAndDrop: React.FC = () => {
   const [arr, setArr] = React.useState<Key[]>(['red', 'green', 'blue'])
   return (
-    <DragAndDropList onReorderByKeys={(a) => setArr(a)}>
+    <DragAndDropList onReorderByKeys={(a) => setArr(a)} css={{width: 400}}>
       {arr.map((a) => (
         <DragAndDropList.Item key={a}>
-          <div>{a}</div>
+          <ListCard
+            title={String(a)}
+            description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+            badge={<Badge label='Active' color='success' variant='primary' />}
+            css={{width: 400, backgroundColor: '$background'}}
+          />
         </DragAndDropList.Item>
       ))}
     </DragAndDropList>

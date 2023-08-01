@@ -20,6 +20,7 @@ const DataGridRow = React.forwardRef<HTMLTableRowElement, Props>(
         isExpanded={isExpanded}
         ref={tableRowRef}
         css={css}
+        role='row'
       >
         {children}
       </StyledDataGridRow>

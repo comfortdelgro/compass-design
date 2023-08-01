@@ -27,6 +27,10 @@ export default function AppLayoutDocs(props: any) {
           css={{
             overflowY: 'scroll',
             width: '100%',
+            minHeight: 'calc(100vh - 51px)',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
           }}
           id='document'
         >
