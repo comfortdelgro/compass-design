@@ -16,7 +16,11 @@ import TableV2Toolbar from './table-v2-toolbar'
 
 import ReactTable from './table-v2'
 import TableV2Footer from './table-v2-footer'
-
+import ProgressPercentage from './table-v2-progress'
+export {
+  EditableCellContextProvider,
+  useEditableCellContext,
+} from './editable/editable-cell'
 export type {OptionType, ReactTableProps} from './table-v2'
 export type {TableV2CheckboxProps as ReactTableCheckboxProps} from './table-v2-checkbox'
 export type {TableV2CheckboxCellProps as ReactTableCheckboxCellProps} from './table-v2-checkbox-cell'
@@ -27,7 +31,8 @@ ReactTable.Toolbar = TableV2Toolbar
 ReactTable.Footer = TableV2Footer
 ReactTable.Checkbox = TableV2Checkbox
 ReactTable.CheckboxCell = TableV2CheckboxCell
-
+ReactTable.ProgressPercentage = ProgressPercentage
+ReactTable.ProgressPercentage.displayName = 'ProgressPercentage'
 ReactTable.Toolbar.displayName = 'ReactTable.Toolbar'
 ReactTable.Footer.displayName = 'ReactTable.Footer'
 

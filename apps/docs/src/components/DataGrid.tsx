@@ -6,16 +6,17 @@ import {
 
 import {
   Button,
-  DataGrid,
-  DataGridOptions,
   Icon,
   Pagination,
+  ReactTable,
   SearchField,
+  TableV2Options,
 } from '@comfortdelgro/react-compass'
 import {
-  DataGridColumnDef,
-  DataGridSortingState,
-} from '@comfortdelgro/react-compass/data-grid'
+  TableV2ColumnDef,
+  TableV2SortingState,
+} from '@comfortdelgro/react-compass/table-v2'
+
 import React, {useState} from 'react'
 import StatusComponent from './person-status'
 
@@ -148,20 +149,20 @@ export function makeData(...lens: number[]) {
   return makeDataLevel()
 }
 
-export const DataGridStory: React.FC = () => {
+export const DataGrid: React.FC = () => {
   const [page, setPage] = useState(1)
   const [data] = React.useState(() => makeData(10))
-  const options: DataGridOptions = {
+  const options: TableV2Options<Person> = {
     enableSorting: true,
     enableMultiSort: true,
     columnResizeMode: 'onChange',
     manualSorting: true,
   }
-  const onSorting = (sortingField: DataGridSortingState) => {}
+  const onSorting = (sortingField: TableV2SortingState) => {}
 
   const GridHeader = ({table}: any) => {
     return (
-      <DataGrid.CheckboxCell
+      <ReactTable.CheckboxCell
         {...{
           checked: table.getIsAllRowsSelected(),
           indeterminate: table.getIsSomeRowsSelected(),
@@ -174,7 +175,7 @@ export const DataGridStory: React.FC = () => {
   const GridHeaderCell = ({row}: any) => {
     return (
       <div className='px-1'>
-        <DataGrid.CheckboxCell
+        <ReactTable.CheckboxCell
           {...{
             checked: row.getIsSelected(),
             indeterminate: row.getIsSomeSelected(),
@@ -185,7 +186,7 @@ export const DataGridStory: React.FC = () => {
     )
   }
 
-  const columns = React.useMemo<Array<DataGridColumnDef<Person>>>(
+  const columns = React.useMemo<Array<TableV2ColumnDef<Person>>>(
     () => [
       {
         id: 'select',
@@ -242,9 +243,9 @@ export const DataGridStory: React.FC = () => {
             accessorKey: 'progress',
             header: 'Profile Progress',
             cell: (info) => (
-              <DataGrid.ProgressPercentage
+              <ReactTable.ProgressPercentage
                 progress={Number(info.getValue<string>())}
-              ></DataGrid.ProgressPercentage>
+              ></ReactTable.ProgressPercentage>
             ),
             footer: (info) => info.column.id,
           },
@@ -256,13 +257,13 @@ export const DataGridStory: React.FC = () => {
 
   return (
     <div>
-      <DataGrid
+      <ReactTable
         data={data}
         columns={columns}
         options={options}
         onManualSorting={onSorting}
       >
-        <DataGrid.Toolbar
+        <ReactTable.Toolbar
           css={{
             display: 'flex',
             flexDirection: 'row',
@@ -296,8 +297,8 @@ export const DataGridStory: React.FC = () => {
               <Icon icon={faFileLines} />
             </Button>
           </div>
-        </DataGrid.Toolbar>
-        <DataGrid.Footer
+        </ReactTable.Toolbar>
+        <ReactTable.Footer
           css={{
             display: 'flex',
             flexDirection: 'row',
@@ -326,8 +327,8 @@ export const DataGridStory: React.FC = () => {
               total={10}
             />
           </div>
-        </DataGrid.Footer>
-      </DataGrid>
+        </ReactTable.Footer>
+      </ReactTable>
     </div>
   )
 }

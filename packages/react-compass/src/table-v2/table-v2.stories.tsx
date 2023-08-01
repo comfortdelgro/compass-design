@@ -13,7 +13,6 @@ import {CellContext, HeaderContext} from '@tanstack/react-table'
 import React, {Key, MouseEvent, TouchEvent, useState} from 'react'
 import ReactTable, {OptionType, TableV2ColumnDef, TableV2SortingState} from '.'
 import Button from '../button'
-import {useEditableCellContext} from '../data-grid'
 import Divider from '../divider'
 import Dropdown from '../dropdown'
 import Grid from '../grid'
@@ -21,6 +20,7 @@ import {Icon} from '../icon'
 import Pagination from '../pagination'
 import SearchField from '../searchfield'
 import TextField from '../textfield'
+import {useEditableCellContext} from './'
 import StatusComponent from './for story/person-status'
 import {
   LimitRequestStatus,
@@ -558,6 +558,7 @@ export const ExpandableRow: React.FC = () => {
       {
         id: 'code',
         accessorKey: 'code',
+
         header: () => <div style={{textAlign: 'center'}}>Code</div>,
         footer: (props: HeaderContext<LimitRequestStatus, unknown>) =>
           props.column.id,
@@ -565,6 +566,7 @@ export const ExpandableRow: React.FC = () => {
       {
         id: 'requestLimit',
         accessorKey: 'requestLimit',
+
         header: () => (
           <div style={{textAlign: 'center'}}>New Request Limit</div>
         ),
@@ -573,6 +575,8 @@ export const ExpandableRow: React.FC = () => {
       },
       {
         id: 'status',
+        size: 280,
+
         accessorKey: 'status',
         header: () => <div style={{textAlign: 'center'}}>Status</div>,
         footer: (props: HeaderContext<LimitRequestStatus, unknown>) =>
@@ -615,7 +619,12 @@ export const ExpandableRow: React.FC = () => {
         columns={columns}
         options={options}
         renderRowSubComponent={renderRowSubComponent}
-        css={{width: '65rem'}}
+        css={{
+          width: '65rem',
+          table: {
+            width: 'unset',
+          },
+        }}
       >
         <ReactTable.Footer
           css={{
@@ -659,7 +668,7 @@ export const ExpandableRow: React.FC = () => {
   )
 }
 
-export const ReactTableStory: React.FC = () => {
+export const DataGrid: React.FC = () => {
   const [page, setPage] = useState(1)
   const [data] = useState<Person[]>(() => makeData(10))
   const options: OptionType<Person> = {

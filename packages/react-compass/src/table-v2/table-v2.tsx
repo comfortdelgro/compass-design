@@ -28,6 +28,7 @@ import TableV2CheckboxCell from './table-v2-checkbox-cell'
 import TableV2ColumnHeader from './table-v2-column-header'
 import TableV2Footer from './table-v2-footer'
 import TableV2HeaderRow from './table-v2-header-row'
+import ProgressPercentage from './table-v2-progress'
 import TableV2Row from './table-v2-row'
 import TableV2RowGroup from './table-v2-row-group'
 import TableV2Toolbar from './table-v2-toolbar'
@@ -203,4 +204,5 @@ export default ReactTable as typeof ReactTable & {
   Footer: typeof TableV2Footer
   Checkbox: typeof TableV2Checkbox
   CheckboxCell: typeof TableV2CheckboxCell
+  ProgressPercentage: typeof ProgressPercentage
 }
