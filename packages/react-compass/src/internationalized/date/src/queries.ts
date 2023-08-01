@@ -8,10 +8,10 @@
  * found in the LICENSE.txt file at the root directory of this source tree.
  */
 
-import { CalendarDate,CalendarDateTime,ZonedDateTime } from './CalendarDate'
-import { fromAbsolute,toCalendar,toCalendarDate } from './conversion'
-import { AnyCalendarDate,AnyTime } from './types'
-import { weekStartData } from './weekStartData'
+import {CalendarDate, CalendarDateTime, ZonedDateTime} from './CalendarDate'
+import {fromAbsolute, toCalendar, toCalendarDate} from './conversion'
+import {AnyCalendarDate, AnyTime} from './types'
+import {weekStartData} from './weekStartData'
 
 let localTimeZone: string | null = null
 export type DateValue = CalendarDate | CalendarDateTime | ZonedDateTime
@@ -255,4 +255,26 @@ export function maxDate<A extends DateValue, B extends DateValue>(
   }
 
   return a || b
+}
+
+/** Returns the last date of the week for the given date and locale. */
+export function endOfWeek(date: ZonedDateTime, locale: string): ZonedDateTime
+export function endOfWeek(
+  date: CalendarDateTime,
+  locale: string,
+): CalendarDateTime
+export function endOfWeek(date: CalendarDate, locale: string): CalendarDate
+export function endOfWeek(date: DateValue, locale: string): DateValue {
+  return startOfWeek(date, locale).add({days: 6})
+}
+
+/** Returns the last day of the year for the given date. */
+export function endOfYear(date: ZonedDateTime): ZonedDateTime
+export function endOfYear(date: CalendarDateTime): CalendarDateTime
+export function endOfYear(date: CalendarDate): CalendarDate
+export function endOfYear(date: DateValue): DateValue
+export function endOfYear(date: DateValue): DateValue {
+  return endOfMonth(
+    date.add({months: date.calendar.getMonthsInYear(date) - date.month}),
+  )
 }
