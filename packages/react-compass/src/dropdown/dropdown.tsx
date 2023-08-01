@@ -151,7 +151,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     React.useState<SelectedItemDropdown | null>(null)
   const [selectedItemBackup, setSelectedItemBackup] =
     React.useState<SelectedItemDropdown | null>(null)
-  const [focusKey, setFocusKey] = React.useState<Key | undefined>(
+  const [focusKey, setFocusKey] = React.useState<Key | null>(
     valueDropdown || defaultValueDropdown,
   )
   const [searchValue, setSearchValue] = useState<string>('')
@@ -194,7 +194,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       openStateInitialChangedRef.current = true
     } else {
       if (!open) {
-        setFocusKey('')
+        setFocusKey(null)
       }
     }
   }, [open, allowsCustomValue])
@@ -241,7 +241,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     (item: SelectedItemDropdown | null) => {
       if (isUncontrolledComponent) {
         setSelectedItem(item)
-        setFocusKey(item?.value ?? '')
+        setFocusKey(item?.value ?? null)
       }
     },
     [isUncontrolledComponent],
@@ -251,64 +251,63 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     (event: KeyboardEvent) => {
       if (open) {
         const currentFocusKey =
-          (focusKey || selectedItem?.value.toString()) ?? ''
+          focusKey ?? selectedItem?.value.toString() ?? null
         switch (event.key) {
           case 'ArrowUp':
           case 'ArrowLeft':
             event.preventDefault()
             // Check if focus key exists
-            if (currentFocusKey) {
+            if (currentFocusKey !== null) {
               const nextKey = getItemAbove(
-                currentFocusKey,
+                currentFocusKey ?? '',
                 clonedChildren,
                 dropdownItemKeys,
               )
               const itemKey =
                 nextKey?.props.value ??
                 nextKey?.key?.toString().replace('.$', '') ??
-                ''
-              if (itemKey) {
-                setFocusKey(itemKey)
-              }
+                null
+              setFocusKey(itemKey)
             } else {
               setFocusKey(
                 getLastItem(
                   clonedChildren,
                   dropdownItemKeys,
-                )?.props?.value?.toString() ?? '',
+                )?.props?.value?.toString() ?? null,
               )
             }
             break
           case 'ArrowDown':
           case 'ArrowRight':
             event.preventDefault()
-            if (currentFocusKey) {
+            if (currentFocusKey !== null) {
               const prevKey = getItemBelow(
-                currentFocusKey,
+                currentFocusKey ?? '',
                 clonedChildren,
                 dropdownItemKeys,
               )
               const itemKey =
                 prevKey?.props.value ??
                 prevKey?.key?.toString().replace('.$', '') ??
-                ''
+                null
 
-              if (itemKey) {
-                setFocusKey(itemKey)
-              }
+              setFocusKey(itemKey)
             } else {
               setFocusKey(
                 getFirstItem(
                   clonedChildren,
                   dropdownItemKeys,
-                )?.props?.value?.toString() ?? '',
+                )?.props?.value?.toString() ?? null,
               )
             }
             break
           case 'Enter':
             event.preventDefault()
-            if (currentFocusKey) {
-              const focusedItem = getItemByKey(currentFocusKey, clonedChildren)
+            if (currentFocusKey !== null) {
+              const focusedItem = getItemByKey(
+                currentFocusKey ?? '',
+                clonedChildren,
+              )
               if (focusedItem) {
                 setOpen(false)
                 onOpenChange?.(false)
@@ -344,6 +343,26 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           case 'Tab':
             setOpen(false)
             onOpenChange?.(false)
+            break
+          case 'Home':
+            event.preventDefault()
+            setFocusKey(
+              getFirstItem(
+                clonedChildren,
+                dropdownItemKeys,
+              )?.props?.value?.toString() ?? null,
+            )
+            break
+          case 'End':
+            event.preventDefault()
+            setFocusKey(
+              getLastItem(
+                clonedChildren,
+                dropdownItemKeys,
+              )?.props?.value?.toString() ?? null,
+            )
+            break
+          default:
             break
         }
       } else {
@@ -457,7 +476,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   useEffect(() => {
     if (!clonedChildren || (!valueDropdown && !defaultValueDropdown)) {
       setSelectedItem(null)
-      setFocusKey('')
+      setFocusKey((oldFocusKey) => oldFocusKey ?? null)
       return
     }
 
@@ -647,7 +666,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         value={{
           isPositioned,
           open,
-          focusKey: focusKey ?? '',
+          focusKey: focusKey,
           selectedKey: valueDropdown,
           defaultSelectedKey: defaultValueDropdown,
           disabledKeys: disabledValues ?? disabledKeys ?? [],
