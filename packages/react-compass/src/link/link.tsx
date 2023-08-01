@@ -39,6 +39,8 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
       rel={target === '_blank' || external ? 'noopener noreferrer' : undefined}
       {...variantProps}
       {...delegated}
+      role='link'
+      tabIndex={0}
     >
       {children}
     </StyledLink>
