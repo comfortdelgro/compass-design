@@ -9,14 +9,14 @@
  */
 
 /* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
+import {useDateFormatter, useLocale} from '@react-aria/i18n'
+import {useMemo} from 'react'
 import {
   CalendarDate,
   getLocalTimeZone,
   startOfWeek,
   today,
-} from '@internationalized/date'
-import {useDateFormatter, useLocale} from '@react-aria/i18n'
-import {useMemo} from 'react'
+} from '../../internationalized/date'
 import {CalendarState, RangeCalendarState} from '../types'
 import {hookData} from '../utils'
 import {useLabels} from './useLabels'

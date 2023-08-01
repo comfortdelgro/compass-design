@@ -1,3 +1,8 @@
+import {useLocale} from '@react-aria/i18n'
+import {useEffect, useState} from 'react'
+import {CalendarProps} from '../calendar'
+import {RangeValue} from '../calendar/types'
+import {isInvalid} from '../calendar/utils'
 import {
   DateValue,
   endOfMonth,
@@ -7,12 +12,7 @@ import {
   startOfWeek,
   startOfYear,
   today,
-} from '@internationalized/date'
-import {useLocale} from '@react-aria/i18n'
-import {useEffect, useState} from 'react'
-import {CalendarProps} from '../calendar'
-import {RangeValue} from '../calendar/types'
-import {isInvalid} from '../calendar/utils'
+} from '../internationalized/date'
 import {
   RangeCalendarShorcutItem,
   RangeCalendarShortcutsProps,

@@ -1,4 +1,4 @@
-import {CalendarDate} from '@internationalized/date'
+import {CalendarDate} from '../../internationalized/date'
 
 export interface AnyCalendarDate {
   readonly calendar: Calendar

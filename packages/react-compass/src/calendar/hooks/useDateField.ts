@@ -14,8 +14,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/prefer-ts-expect-error */
-import {DateValue} from '@internationalized/date'
 import {RefObject, useEffect, useMemo, useRef} from 'react'
+import {DateValue} from '../../internationalized/date'
 import {focusManagerSymbol, roleSymbol} from '../constants/focus.constant'
 import {
   AriaDateFieldOptions,

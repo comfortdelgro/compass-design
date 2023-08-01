@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-condition */
-import {CalendarDate} from '@internationalized/date'
 import {useDateFormatter, useLocale} from '@react-aria/i18n'
 import {useEffect, useMemo, useState} from 'react'
 import {ButtonProps} from '../../button'
+import {CalendarDate} from '../../internationalized/date'
 import {MAX_YEAR, MIN_YEAR} from '../constants/common'
 import {CalendarState, DateValue, RangeCalendarState} from '../types'
 

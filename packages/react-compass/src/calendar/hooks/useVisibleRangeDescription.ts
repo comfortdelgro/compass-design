@@ -8,9 +8,9 @@
  * found in the LICENSE.txt file at the root directory of this source tree.
  */
 
-import {CalendarDate} from '@internationalized/date'
 import {useDateFormatter} from '@react-aria/i18n'
 import {useMemo} from 'react'
+import {CalendarDate} from '../../internationalized/date'
 
 export function useVisibleRangeDescription(
   startDate: CalendarDate,

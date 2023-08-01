@@ -1,9 +1,3 @@
-import * as InternationalizedDate from '@internationalized/date'
-import {
-  createCalendar,
-  getLocalTimeZone,
-  parseDate,
-} from '@internationalized/date'
 import {useDateFormatter, useLocale} from '@react-aria/i18n'
 import React, {useCallback} from 'react'
 import Box from '../box'
@@ -14,6 +8,12 @@ import {useRangeCalendar} from '../calendar/hooks/useRangeCalendar'
 import {useRangeCalendarState} from '../calendar/hooks/useRangeCalendarState'
 import {DateRangePickerState, DateValue, RangeValue} from '../calendar/types'
 import {useDatePickerContext} from '../date-picker/date-picker-context'
+import * as InternationalizedDate from '../internationalized/date'
+import {
+  createCalendar,
+  getLocalTimeZone,
+  parseDate,
+} from '../internationalized/date'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import RangeCalendarShorcuts, {

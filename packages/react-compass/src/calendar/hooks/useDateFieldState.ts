@@ -13,6 +13,8 @@
 /* eslint-disable @typescript-eslint/prefer-ts-expect-error */
 // Reference: https://github.com/adobe/react-spectrum/blob/98cad3f064c5302c04a1140d12a2cacc3ee921a2/packages/%40react-stately/datepicker/src/useDateFieldState.ts
 /* eslint-disable prefer-const */
+import {useEffect, useMemo, useRef, useState} from 'react'
+import {useDatePickerContext} from '../../date-picker/date-picker-context'
 import {
   Calendar,
   CalendarDate,
@@ -21,9 +23,7 @@ import {
   getMinimumMonthInYear,
   GregorianCalendar,
   toCalendar,
-} from '@internationalized/date'
-import {useEffect, useMemo, useRef, useState} from 'react'
-import {useDatePickerContext} from '../../date-picker/date-picker-context'
+} from '../../internationalized/date'
 import {MIN_YEAR} from '../constants/common'
 import {
   DatePickerProps,

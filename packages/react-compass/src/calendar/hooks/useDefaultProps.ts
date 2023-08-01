@@ -8,9 +8,9 @@
  * found in the LICENSE.txt file at the root directory of this source tree.
  */
 
-import {DateFormatter, DateValue} from '@internationalized/date'
 import {useLocale} from '@react-aria/i18n'
 import {useMemo, useRef} from 'react'
+import {DateFormatter, DateValue} from '../../internationalized/date'
 import {Granularity} from '../types'
 
 export function useDefaultProps(

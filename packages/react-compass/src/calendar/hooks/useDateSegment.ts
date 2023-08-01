@@ -15,7 +15,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 // Reference: https://github.com/adobe/react-spectrum/blob/98cad3f064c5302c04a1140d12a2cacc3ee921a2/packages/%40react-aria/datepicker/src/useDateSegment.ts
 /* eslint-disable prefer-const */
-import {CalendarDate, toCalendar} from '@internationalized/date'
 import {NumberParser} from '@internationalized/number'
 import {useDateFormatter, useFilter, useLocale} from '@react-aria/i18n'
 import React, {
@@ -25,6 +24,7 @@ import React, {
   useMemo,
   useRef,
 } from 'react'
+import {CalendarDate, toCalendar} from '../../internationalized/date'
 import {
   DateFieldState,
   DateSegment,
