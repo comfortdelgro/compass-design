@@ -107,6 +107,14 @@ export type {
   DropdownProps,
   DropdownSelectProps,
 } from './dropdown'
+export {default as DropdownMenu} from './dropdown-menu'
+export type {
+  DropdownMenuItemProps,
+  DropdownMenuMenuProps,
+  DropdownMenuProps,
+  DropdownMenuSubmenuProps,
+  DropdownMenuToggleProps,
+} from './dropdown-menu'
 export {default as Error} from './error'
 export type {
   ErrorActionProps,
