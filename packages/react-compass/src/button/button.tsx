@@ -44,6 +44,8 @@ interface Props extends StyledComponentProps {
   onTouchEnd?: (e: React.TouchEvent<HTMLButtonElement>) => void
   tabIndex?: number
   type?: 'button' | 'reset' | 'submit' | undefined
+  enableEventsOnDisabled?: boolean
+  enableEventsOnLoading?: boolean
 }
 
 export type ButtonProps = Props &
@@ -64,16 +66,31 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       className,
       leftIcon,
       rightIcon,
+      onPress,
+      onClick,
+      onTouchEnd,
+      onBlur,
+      onDragStart,
+      onFocus,
+      onKeyDown,
+      onKeyUp,
+      onPointerDown,
+      onPointerUp,
+      ripple = false,
+      isDisabled = false,
+      type = 'button',
+      tabIndex,
+      'aria-controls': ariaControls,
+      'aria-expanded': ariaExpanded,
+      'aria-haspopup': ariaHaspopup,
+      'aria-pressed': ariaPressed,
+      enableEventsOnDisabled = false,
+      enableEventsOnLoading = false,
       // VariantProps
       variant,
       size,
       fullWidth,
       loading,
-      onPress,
-      onClick,
-      ripple = false,
-      isDisabled = false,
-      type = 'button',
       // AriaButtonProps
       ...delegated
     } = props
@@ -112,6 +129,50 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     }
     const delegateProps = componentProps()
 
+    // events handler
+    const handleEvents = (
+      e:
+        | React.MouseEvent<HTMLButtonElement>
+        | React.KeyboardEvent<HTMLButtonElement>
+        | React.FocusEvent<HTMLButtonElement>
+        | React.TouchEvent<HTMLButtonElement>,
+    ) => {
+      if (!enableEventsOnDisabled && isDisabled) return
+      if (!enableEventsOnLoading && loading) return
+      switch (e.type) {
+        case 'keydown':
+          onKeyDown?.(e as React.KeyboardEvent<HTMLButtonElement>)
+          break
+        case 'keyup':
+          onKeyUp?.(e as React.KeyboardEvent<HTMLButtonElement>)
+          break
+        case 'pointerdown':
+          onPointerDown?.(e as React.PointerEvent<HTMLButtonElement>)
+          break
+        case 'pointerup':
+          onPointerUp?.(e as React.PointerEvent<HTMLButtonElement>)
+          break
+        case 'focus':
+          onFocus?.(e as React.FocusEvent<HTMLButtonElement>)
+          break
+        case 'blur':
+          onBlur?.(e as React.FocusEvent<HTMLButtonElement>)
+          break
+        case 'click':
+          onClick?.(e as React.MouseEvent<HTMLButtonElement>) ??
+            onPress?.(e as React.MouseEvent<HTMLButtonElement>)
+          break
+        case 'touchend':
+          onTouchEnd?.(e as React.TouchEvent<HTMLButtonElement>)
+          break
+        case 'dragstart':
+          onDragStart?.(e as React.MouseEvent<HTMLButtonElement>)
+          break
+        default:
+          break
+      }
+    }
+
     return (
       <>
         <Ripple isEnabled={ripple}>
@@ -120,21 +181,22 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             ref={buttonRef}
             // only allow onClick and onTouchEnd to be passed to the button
             // reserve onMouseDown and onTouchStart for ripple effect
-            onClick={onClick ?? onPress}
-            onTouchEnd={props.onTouchEnd}
             disabled={isDisabled}
-            aria-controls={props['aria-controls']}
-            aria-expanded={props['aria-expanded']}
-            aria-haspopup={props['aria-haspopup']}
-            aria-pressed={props['aria-pressed']}
-            tabIndex={props.tabIndex}
-            onBlur={props.onBlur}
-            onDragStart={props.onDragStart}
-            onFocus={props.onFocus}
-            onKeyDown={props.onKeyDown}
-            onKeyUp={props.onKeyUp}
-            onPointerDown={props.onPointerDown}
-            onPointerUp={props.onPointerUp}
+            aria-controls={ariaControls}
+            aria-expanded={ariaExpanded}
+            aria-haspopup={ariaHaspopup}
+            aria-pressed={ariaPressed}
+            tabIndex={tabIndex}
+            role={href ? 'link' : 'button'}
+            onClick={handleEvents}
+            onTouchEnd={handleEvents}
+            onBlur={handleEvents}
+            onDragStart={handleEvents}
+            onFocus={handleEvents}
+            onKeyDown={handleEvents}
+            onKeyUp={handleEvents}
+            onPointerDown={handleEvents}
+            onPointerUp={handleEvents}
             type={type}
           >
             {loading ? (
@@ -149,9 +211,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                   <span />
                 </div>
               </StyledLoading>
-            ) : (
-              <></>
-            )}
+            ) : null}
 
             <StyledButtonContent isHaveIcon={Boolean(leftIcon || rightIcon)}>
               {leftIcon || (fullWidth && rightIcon) ? (
