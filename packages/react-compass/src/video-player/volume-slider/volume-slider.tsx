@@ -22,6 +22,12 @@ const VolumeSlider: React.FC<VerticalSliderProps> = ({value, onChange}) => {
     }
   }, [sliderValue])
 
+  useEffect(() => {
+    if (value) {
+      setSliderValue(value)
+    }
+  }, [value])
+
   const handleMouseDown = () => {
     document.addEventListener('mousemove', handleMouseMove)
     document.addEventListener('mouseup', handleMouseUp)
@@ -76,8 +82,8 @@ const VolumeSlider: React.FC<VerticalSliderProps> = ({value, onChange}) => {
 
   return (
     <SliderContainer
-      className='vertical-slider'
       ref={sliderRef}
+      className='vertical-slider'
       onMouseDown={handleMouseDown}
       onClick={handleClick}
     >

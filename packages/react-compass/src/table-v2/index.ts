@@ -1,9 +1,14 @@
 import {
   AccessorColumnDef,
+  Cell,
+  CellContext,
   ColumnDef,
   DisplayColumnDef,
   GroupColumnDef,
+  HeaderContext,
+  Row,
   SortingState,
+  Table,
 } from '@tanstack/react-table'
 import DataGridCheckbox from '../data-grid/data-grid-checkbox'
 import DataGridCheckboxCell from '../data-grid/data-grid-checkbox-cell'
@@ -29,9 +34,14 @@ ReactTable.Footer.displayName = 'Card.Image'
 
 ReactTable.displayName = 'ReactTable'
 
-export type ColumnConfig<T> = ColumnDef<T>
-export type AccessorColumnConfig<T> = AccessorColumnDef<T>
-export type DisplayColumnConfig<T> = DisplayColumnDef<T>
-export type GroupColumnConfig<T> = GroupColumnDef<T>
-export type StateSorting = SortingState
+export type TableV2ColumnDef<T> = ColumnDef<T>
+export type TableV2AccessorColumnDef<T> = AccessorColumnDef<T>
+export type TableV2DisplayColumnDef<T> = DisplayColumnDef<T>
+export type TableV2SortingState = SortingState
+export type TableV2GroupColumnDef<T> = GroupColumnDef<T>
+export type TableV2Row<T> = Row<T>
+export type TableV2Cell<TData, TValue> = Cell<TData, TValue>
+export type TableV2HeaderContext<TData, TValue> = HeaderContext<TData, TValue>
+export type TableV2CellContext<TData, TValue> = CellContext<TData, TValue>
+export type TableV2Table<T> = Table<T>
 export default ReactTable

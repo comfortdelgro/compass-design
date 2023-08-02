@@ -11,6 +11,18 @@ export const StyledSpinner = styled('div', {
   '.ring': {
     position: 'relative',
     aspectRatio: '1 / 1',
+    border: 'none',
+    outline: 'none',
+  },
+
+  '.ring:focus': {
+    border: 'none',
+    outline: 'none',
+  },
+
+  '.ring:focus-within': {
+    border: 'none',
+    outline: 'none',
   },
 
   '.ring .bg, .ring .segment': {

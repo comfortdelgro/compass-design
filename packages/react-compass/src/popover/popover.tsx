@@ -71,6 +71,8 @@ interface Props extends StyledComponentProps {
   disableInteractive?: boolean
   defaultOpen?: boolean
   trigger?: 'click' | null
+  isFloatingPortal?: boolean
+  onPositionedChange?: (isPositioned: boolean) => void
 }
 
 export type PopoverProps = Props &
@@ -85,6 +87,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     isOpen: isOpenProp,
     onOpenChange,
     onClose,
+    onPositionedChange,
     offset,
     shouldFlip = true,
     direction = 'bottom',
@@ -93,6 +96,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     defaultOpen = false,
     trigger = 'click',
     css = {},
+    isFloatingPortal = true,
   } = props
 
   // uncontrolled state
@@ -119,7 +123,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     }
   }, [direction])
 
-  const {x, y, refs, strategy, context} = useFloating({
+  const {x, y, refs, strategy, context, isPositioned} = useFloating({
     open: isOpen,
     onOpenChange: onOpenChange ? onOpenChange : setIsOpen,
     placement: placementProp,
@@ -173,6 +177,10 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
   }
 
   React.useEffect(() => {
+    onPositionedChange?.(isPositioned)
+  }, [onPositionedChange, isPositioned])
+
+  React.useEffect(() => {
     if (isOpenProp != null) {
       setIsOpen(isOpenProp)
     }
@@ -193,13 +201,24 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
       >
         {anchor}
       </StyledAnchorWrapper>
-      <FloatingPortal>
-        {(isOpenProp != null ? isOpenProp : isOpen) && (
-          <StyledPopoverWrapper ref={mergeRefs} {...popoverProps}>
-            {children} {/* The actual popover */}
-          </StyledPopoverWrapper>
-        )}
-      </FloatingPortal>
+
+      {isFloatingPortal ? (
+        <FloatingPortal>
+          {(isOpenProp != null ? isOpenProp : isOpen) && (
+            <StyledPopoverWrapper ref={mergeRefs} {...popoverProps}>
+              {children} {/* The actual popover */}
+            </StyledPopoverWrapper>
+          )}
+        </FloatingPortal>
+      ) : (
+        <>
+          {(isOpenProp != null ? isOpenProp : isOpen) && (
+            <StyledPopoverWrapper ref={mergeRefs} {...popoverProps}>
+              {children} {/* The actual popover */}
+            </StyledPopoverWrapper>
+          )}
+        </>
+      )}
     </>
   )
 })

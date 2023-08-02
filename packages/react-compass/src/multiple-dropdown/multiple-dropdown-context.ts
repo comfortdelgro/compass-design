@@ -11,6 +11,8 @@ export interface DropdownItemKey {
 }
 
 export interface MultipleDropdownContextType {
+  isLoadingMore: boolean
+  isPositioned: boolean
   open: boolean
   searchValue: string
   disabledKeys?: Array<string | number>
@@ -26,23 +28,27 @@ export interface MultipleDropdownContextType {
     items: SelectedItemDropdown[],
     checking: boolean,
     id: number | string,
+    index: number,
   ) => void
-  selectedSectionIds: Array<string | number>
-  setSelectedSectionIds: React.Dispatch<
-    React.SetStateAction<Array<string | number>>
-  >
+  selectedSectionIndexes: number[]
+  setSelectedSectionIndexes: React.Dispatch<React.SetStateAction<number[]>>
+  labelId: string
+  onHeaderClick: () => void
 }
 
 export const MultipleDropdownContext =
   createContext<MultipleDropdownContextType>({
+    isLoadingMore: false,
+    isPositioned: false,
     open: false,
     searchValue: '',
+    labelId: '',
     selectedItems: [],
     disabledKeys: [],
     selectedKeys: [],
     defaultSelectedKeys: [],
-    selectedSectionIds: [],
-    setSelectedSectionIds: () => {
+    selectedSectionIndexes: [],
+    setSelectedSectionIndexes: () => {
       //
     },
     setSelectedItems: () => {
@@ -52,6 +58,9 @@ export const MultipleDropdownContext =
       //
     },
     onSectionClick: () => {
+      //
+    },
+    onHeaderClick: () => {
       //
     },
   })

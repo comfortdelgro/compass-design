@@ -6,11 +6,13 @@ import {RadioGroupVariantProps, StyledRadioGroup} from './radio-group.styles'
 interface RadioGroupContextValue {
   value: string | null
   handleOnClickRadionButton: (value: string) => void
+  radioName: string
 }
 
 export const RadioContext = React.createContext<RadioGroupContextValue>({
   value: '',
   handleOnClickRadionButton: () => {},
+  radioName: '',
 })
 
 interface Props extends StyledComponentProps {
@@ -19,6 +21,8 @@ interface Props extends StyledComponentProps {
   defaultValue?: string
   onChange?: (value: string) => void
   onBlur?: () => void
+  'aria-labelledby'?: string
+  groupName?: string
 }
 
 export type RadioGroupProps = Props &
@@ -34,10 +38,13 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
       onChange,
       onBlur,
       css = {},
+      groupName = `cdg-group-name-${Math.random().toString(36).substring(2)}`,
+      'aria-labelledby': ariaLabelledBy = '',
       ...delegated
     } = props
 
     const groupRef = useDOMRef<HTMLDivElement>(ref)
+    const onMountRef = React.useRef(false)
     const [selectedValue, setSelectedValue] = useState<string | null>(value)
 
     const handleBlur = useCallback(() => {
@@ -59,8 +66,12 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
     }
 
     useEffect(() => {
-      if (!selectedValue) return
-      onChange && onChange(selectedValue)
+      if (onMountRef.current) {
+        if (!selectedValue) return
+        onChange && onChange(selectedValue)
+      } else {
+        onMountRef.current = true
+      }
     }, [selectedValue])
 
     return (
@@ -70,10 +81,15 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
         css={css}
         onBlur={handleBlur}
         {...delegated}
-        tabIndex={0}
+        aria-labelledby={ariaLabelledBy}
+        role=''
       >
         <RadioContext.Provider
-          value={{value: handleControl(), handleOnClickRadionButton}}
+          value={{
+            value: handleControl(),
+            handleOnClickRadionButton,
+            radioName: groupName,
+          }}
         >
           {children}
         </RadioContext.Provider>

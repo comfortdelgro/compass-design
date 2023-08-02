@@ -79,6 +79,11 @@ export const StyledDropdown = styled('div', {
           color: '$disabledText',
           cursor: 'not-allowed !important',
         },
+        button: {
+          span: {
+            color: '$disabledText',
+          },
+        },
       },
     },
     isErrored: {
@@ -301,6 +306,11 @@ export const StyledOption = styled('li', {
       true: {
         opacity: 0.4,
         cursor: 'not-allowed',
+      },
+      button: {
+        span: {
+          color: '$disabledText',
+        },
       },
     },
   },

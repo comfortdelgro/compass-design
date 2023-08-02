@@ -64,3 +64,78 @@ export function makeData(...lens: number[]) {
 
   return makeDataLevel()
 }
+
+export type LimitRequestStatus = {
+  id: string
+  accountName: string
+  code: string
+  requestLimit: number
+  status: string
+  progress?: Progress[] | null
+}
+export type Progress = {
+  id: string
+  remarks: string
+  createdAt: Date
+}
+
+export const newRequestStatus = (): LimitRequestStatus => {
+  return {
+    id: makeid(5),
+    accountName: generateAccountName(),
+    code: makeid(3),
+    requestLimit: Math.floor(Math.random() * 1000),
+    status:
+      ['Submited', 'Processing', 'Approval'][
+        Math.floor(
+          Math.random() * ['Submited', 'Processing', 'Approval'].length,
+        )
+      ] ?? 'Submited',
+    progress: [
+      {
+        id: makeid(5),
+        remarks:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eleifend iaculis sodales. Pellentesque at metus felis. Nulla fermentum ipsum nec orci laoreet, at rhoncus eros dictum.',
+        createdAt: getRandomDate(new Date(2020, 0, 1), new Date(2029, 11, 31)),
+      },
+    ],
+  }
+}
+export function makeRequestStatusData(...lens: number[]) {
+  const makeDataLevel = (depth = 0): LimitRequestStatus[] => {
+    const len = lens[depth]!
+    return range(len).map((d): LimitRequestStatus => {
+      return {
+        ...newRequestStatus(),
+      }
+    })
+  }
+
+  return makeDataLevel()
+}
+function generateAccountName() {
+  const accountNames = [
+    'Miss Reilly Lemke',
+    'Elizabeth Friesen',
+    'Dr. Doyle Boehm',
+    'Domenica Zemlak DDS',
+    'Samson Bogan',
+    'Thora Hilll',
+    'Shannon Mann',
+    'Mrs. Barry Franecki',
+    'Kendrick Balistreri',
+    'Daphnee Durgan',
+    'Stevie Herman',
+    'Salvador Koelpin',
+    'Milo Torphy',
+    'Amelie Halvorson',
+    'Cora Weissnat IV',
+    'Rey Watsica',
+    'Alexandria Murray',
+    'Angeline Schowalter',
+    'Britney Cole',
+    'Marlene Bosco',
+  ]
+
+  return `${accountNames[Math.floor(Math.random() * accountNames.length)]}`
+}

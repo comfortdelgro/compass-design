@@ -80,23 +80,23 @@ export const DropdownsForm: React.FC = () => {
               <Dropdown.Select
                 label='Gender'
                 placeholder='Select'
-                selectedKey={field.value}
+                value={field.value}
                 isRequired
-                onSelectionChange={(key) => {
+                onValueChange={(key) => {
                   setPersonInfoFieldValue('gender', String(key))
                   setValue('gender', String(key), {shouldValidate: true})
                 }}
                 isErrored={Boolean(fieldState.error)}
                 description={'Gender'}
               >
-                <Dropdown.Item key='male'>Male</Dropdown.Item>
-                <Dropdown.Item key='female'>Female</Dropdown.Item>
+                <Dropdown.Item value='male'>Male</Dropdown.Item>
+                <Dropdown.Item value='female'>Female</Dropdown.Item>
               </Dropdown.Select>
             </Fragment>
           )
         }}
       />
-      <Controller
+      {/* <Controller
         control={control}
         name='nationality'
         render={({field, fieldState}) => {
@@ -116,9 +116,9 @@ export const DropdownsForm: React.FC = () => {
             </Fragment>
           )
         }}
-      />
+      /> */}
 
-      <Controller
+      {/* <Controller
         control={control}
         name='phoneCode'
         render={({field, fieldState}) => {
@@ -139,7 +139,7 @@ export const DropdownsForm: React.FC = () => {
             </Fragment>
           )
         }}
-      />
+      /> */}
       <Controller
         control={control}
         name='phoneNumber'
@@ -171,22 +171,22 @@ export const DropdownsForm: React.FC = () => {
               <Dropdown.ComboBox
                 label={'Skills'}
                 placeholder='Select'
-                selectedKey={field.value}
+                value={field.value}
                 isRequired
-                onSelectionChange={(key) => {
+                onValueChange={(key) => {
                   setPersonInfoFieldValue('skill', String(key))
                   setValue('skill', String(key), {shouldValidate: true})
                 }}
                 isErrored={Boolean(fieldState.error)}
                 icon={<Inspect />}
               >
-                <Dropdown.Item key='html'>HTML</Dropdown.Item>
-                <Dropdown.Item key='css'>CSS</Dropdown.Item>
-                <Dropdown.Item key='Javascript'>Javascript</Dropdown.Item>
-                <Dropdown.Item key='SQL'>SQL</Dropdown.Item>
-                <Dropdown.Item key='NoSQL'>NoSQL</Dropdown.Item>
-                <Dropdown.Item key='Azure'>Azure</Dropdown.Item>
-                <Dropdown.Item key='AWS'>AWS</Dropdown.Item>
+                <Dropdown.Item value='html'>HTML</Dropdown.Item>
+                <Dropdown.Item value='css'>CSS</Dropdown.Item>
+                <Dropdown.Item value='Javascript'>Javascript</Dropdown.Item>
+                <Dropdown.Item value='SQL'>SQL</Dropdown.Item>
+                <Dropdown.Item value='NoSQL'>NoSQL</Dropdown.Item>
+                <Dropdown.Item value='Azure'>Azure</Dropdown.Item>
+                <Dropdown.Item value='AWS'>AWS</Dropdown.Item>
               </Dropdown.ComboBox>
             </Fragment>
           )
@@ -201,8 +201,8 @@ export const DropdownsForm: React.FC = () => {
               <MultipleDropdown
                 label={'Drinks'}
                 placeholder='Select'
-                selectedKeys={field.value}
-                onSelectionChange={(keys) => {
+                values={field.value}
+                onValuesChange={(keys) => {
                   const keysValue = [...keys].map((item) => String(item))
                   setPersonInfoFieldValue('drinks', keysValue)
                   setValue('drinks', keysValue, {shouldValidate: true})
@@ -213,7 +213,10 @@ export const DropdownsForm: React.FC = () => {
               >
                 {currentDrinksList.map((item: any) => {
                   return (
-                    <MultipleDropdown.Item key={String(item.strDrink)}>
+                    <MultipleDropdown.Item
+                      key={String(item.strDrink)}
+                      value={String(item.strDrink)}
+                    >
                       {item.strDrink}
                     </MultipleDropdown.Item>
                   )
@@ -232,8 +235,8 @@ export const DropdownsForm: React.FC = () => {
               <Dropdown.ComboBox
                 label='Favorite Animal'
                 placeholder='Choose an animal'
-                selectedKey={field.value}
-                onSelectionChange={(key) => {
+                value={field.value}
+                onValueChange={(key) => {
                   setPersonInfoFieldValue('animal', String(key))
                   setValue('animal', String(key), {shouldValidate: true})
                 }}
@@ -241,14 +244,14 @@ export const DropdownsForm: React.FC = () => {
                 isErrored={Boolean(fieldState.error)}
               >
                 <Dropdown.Section title='Birds'>
-                  <Dropdown.Item key='red panda'>Eagle</Dropdown.Item>
-                  <Dropdown.Item key='cat'>Pigeon</Dropdown.Item>
-                  <Dropdown.Item key='dog'>Parrot</Dropdown.Item>
+                  <Dropdown.Item value='red panda'>Eagle</Dropdown.Item>
+                  <Dropdown.Item value='cat'>Pigeon</Dropdown.Item>
+                  <Dropdown.Item value='dog'>Parrot</Dropdown.Item>
                 </Dropdown.Section>
                 <Dropdown.Section title='Mammal'>
-                  <Dropdown.Item key='aardvark'>Bear</Dropdown.Item>
-                  <Dropdown.Item key='kangaroo'>Lion</Dropdown.Item>
-                  <Dropdown.Item key='snake'>Whale</Dropdown.Item>
+                  <Dropdown.Item value='aardvark'>Bear</Dropdown.Item>
+                  <Dropdown.Item value='kangaroo'>Lion</Dropdown.Item>
+                  <Dropdown.Item value='snake'>Whale</Dropdown.Item>
                 </Dropdown.Section>
               </Dropdown.ComboBox>
             </Fragment>

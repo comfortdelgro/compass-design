@@ -1,7 +1,7 @@
 import Navbar from './navbar'
 import NavbarActions from './navbar-actions'
 import NavbarBrand from './navbar-brand'
-import {NavbarLinks} from './navbar-links.styles'
+import {NavbarLinks} from './navbar-links'
 import {NavbarSeperator} from './navbar-seperator.style'
 
 export type {NavbarProps} from './navbar'

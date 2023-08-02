@@ -71,7 +71,20 @@ export type {
   DashboardSidecardProps,
 } from './dashboard-sidecard'
 export {default as DataGrid} from './data-grid'
-export type {DataGridProps, OptionType as DataGridOptions} from './data-grid'
+export type {
+  DataGridAccessorColumnDef,
+  DataGridCell,
+  DataGridCellContext,
+  DataGridColumnDef,
+  DataGridDisplayColumnDef,
+  DataGridGroupColumnDef,
+  DataGridHeaderContext,
+  DataGridProps,
+  DataGridRow,
+  DataGridSortingState,
+  DataGridTableConfig,
+  OptionType as DataGridOptions,
+} from './data-grid'
 export {default as DatePicker} from './date-picker'
 export type {DatePickerProps} from './date-picker'
 export {default as DateRangePicker} from './date-range-picker'
@@ -90,11 +103,18 @@ export type {DividerProps} from './divider'
 export {default as Dropdown} from './dropdown'
 export type {
   DropdownComboBoxProps,
-  DropdownFlagProps,
   DropdownItemProps,
   DropdownProps,
   DropdownSelectProps,
 } from './dropdown'
+export {default as DropdownMenu} from './dropdown-menu'
+export type {
+  DropdownMenuItemProps,
+  DropdownMenuMenuProps,
+  DropdownMenuProps,
+  DropdownMenuSubmenuProps,
+  DropdownMenuToggleProps,
+} from './dropdown-menu'
 export {default as Error} from './error'
 export type {
   ErrorActionProps,
@@ -134,6 +154,8 @@ export * from './internationalized/date'
 export * from './internationalized/i18n'
 export * from './internationalized/number'
 export * from './internationalized/string'
+export {default as Layout} from './layouts'
+export type {LayoutProps} from './layouts'
 export {default as Link} from './link'
 export type {LinkProps} from './link'
 export {
@@ -259,17 +281,19 @@ export type {
 } from './subBanner'
 export {default as Table} from './table'
 export type {TableProps} from './table'
-export {
-  default as ReactTable,
-  OptionType as ReactTableOptions,
-} from './table-v2'
+export {default as ReactTable, OptionType as TableV2Options} from './table-v2'
 export type {
-  AccessorColumnConfig,
-  ColumnConfig,
-  DisplayColumnConfig,
-  GroupColumnConfig,
   ReactTableProps,
-  StateSorting,
+  TableV2AccessorColumnDef,
+  TableV2Cell,
+  TableV2CellContext,
+  TableV2ColumnDef,
+  TableV2DisplayColumnDef,
+  TableV2GroupColumnDef,
+  TableV2HeaderContext,
+  TableV2Row,
+  TableV2SortingState,
+  TableV2Table,
 } from './table-v2'
 export {default as Tabs} from './tabs'
 export type {TabsProps} from './tabs'

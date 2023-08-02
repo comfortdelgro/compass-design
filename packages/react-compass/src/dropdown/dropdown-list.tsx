@@ -32,7 +32,7 @@ const DropdownList: React.FC<DropdownItemListProps> = (
   const standEl = useDOMRef<HTMLDivElement>(null)
 
   const isInViewport = useIsInViewport(lastEl)
-  const {searchValue} = useContext(DropdownContext)
+  const {searchValue, labelId, isLoadingMore} = useContext(DropdownContext)
 
   const {child: DropdownHeaderElement, rest: dropdownItems} = pickChild<
     typeof DropdownHeader
@@ -59,7 +59,7 @@ const DropdownList: React.FC<DropdownItemListProps> = (
         standEl.current,
       )
       if (isInViewport && distance >= 0 && distance < 4) {
-        onLoadMore?.()
+        !isLoadingMore && onLoadMore?.()
       }
     }
   }, [isInViewport])
@@ -68,7 +68,7 @@ const DropdownList: React.FC<DropdownItemListProps> = (
     () => (
       <>
         {DropdownHeaderElement && DropdownHeaderElement}
-        <StyledDropdownList css={css}>
+        <StyledDropdownList css={css} role='listbox' aria-labelledby={labelId}>
           {isLoading ? (
             <DropdownLoading />
           ) : displayedItemsCount === 0 ? (

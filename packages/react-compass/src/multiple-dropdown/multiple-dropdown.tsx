@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react'
+import React, {useCallback, useEffect} from 'react'
 import Chip from '../chip'
 import Popover from '../popover'
 import {StyledComponentProps} from '../utils/stitches.types'
@@ -8,10 +8,14 @@ import {
   MultipleDropdownContext,
   SelectedItemDropdown,
 } from './multiple-dropdown-context'
-import MultipleDropdownItem from './multiple-dropdown-item'
+import MultipleDropdownItem, {
+  MultipleDropdownItemProps,
+} from './multiple-dropdown-item'
 import MultipleDropdownList from './multiple-dropdown-list'
 import MultipleDropdownHeader from './multiple-dropdown.header'
-import MultipleDropdownSection from './multiple-dropdown.section'
+import MultipleDropdownSection, {
+  DropdownSectionProps,
+} from './multiple-dropdown.section'
 import {
   DropdownVariantProps,
   StyledDropdown,
@@ -34,6 +38,9 @@ interface Props extends StyledComponentProps {
   erroredKeys?: Array<string | number>
   selectedKeys?: Array<string | number>
   defaultSelectedKeys?: Array<string | number>
+  erroredValues?: Array<string | number>
+  values?: Array<string | number>
+  defaultValues?: Array<string | number>
   customDisplayValue?: React.ReactNode
   displayedValue?: 'chip' | 'string'
   variant?: 'combobox' | 'select'
@@ -52,15 +59,18 @@ interface Props extends StyledComponentProps {
   numberOfRows?: number
   icon?: React.ReactNode
   disabledKeys?: Array<string | number>
+  disabledValues?: Array<string | number>
   disableClearable?: boolean
   children?: React.ReactNode
   description?: React.ReactNode
   noDataMessage?: string
+  isLoadingMore?: boolean
   onBlur?: () => void
   onFocus?: () => void
   onLoadMore?: () => void
   onOpenChange?: (isOpen: boolean) => void
   onSelectionChange?: (key: Array<string | number>) => void
+  onValuesChange?: (key: Array<string | number>) => void
 }
 
 export type MultipleDropdownProps = Props &
@@ -93,18 +103,23 @@ const MultipleDropdown = React.forwardRef<
     defaultOpen,
     errorMessage,
     selectedKeys,
+    values,
     numberOfRows,
     displayedValue = 'chip',
     icon = <Icon />,
     disabledKeys = [],
+    disabledValues = [],
     isLoading = false,
     variant = 'combobox',
     customDisplayValue,
     defaultSelectedKeys,
+    defaultValues,
     label,
     placeholder,
     erroredKeys,
+    erroredValues,
     noDataMessage = '',
+    isLoadingMore = false,
     onLoadMore = () => {
       //Load more
     },
@@ -117,6 +132,9 @@ const MultipleDropdown = React.forwardRef<
     onSelectionChange = () => {
       //
     },
+    onValuesChange = () => {
+      //
+    },
     onOpenChange = () => {
       //
     },
@@ -124,11 +142,12 @@ const MultipleDropdown = React.forwardRef<
   } = props
   // ====================================== STATE ======================================
   const [open, setOpen] = React.useState(isOpen ?? defaultOpen ?? false)
+  const [isPositioned, setIsPositioned] = React.useState(false)
   const [focused, setFocused] = React.useState(false)
   const [search, setSearch] = React.useState('')
   const [focusKey, setFocusKey] = React.useState<string | number | undefined>()
-  const [selectedSectionIds, setSelectedSectionIds] = React.useState<
-    Array<string | number>
+  const [selectedSectionIndexes, setSelectedSectionIndexes] = React.useState<
+    number[]
   >([])
   const [selectedItems, setSelectedItems] = React.useState<
     SelectedItemDropdown[]
@@ -147,28 +166,73 @@ const MultipleDropdown = React.forwardRef<
   const wrapperRef = useDOMRef<HTMLDivElement>(null)
   const inputRef = useDOMRef<HTMLInputElement>(null)
 
+  const dropdownDisabledKeys = React.useMemo(
+    () => disabledValues || disabledKeys,
+    [disabledValues, disabledKeys],
+  )
+  const defaultDropdownValues = React.useMemo(
+    () => defaultValues || defaultSelectedKeys,
+    [defaultValues, defaultSelectedKeys],
+  )
+  const dropdownValues = React.useMemo(
+    () => values || selectedKeys,
+    [values, selectedKeys],
+  )
   const isUncontrolledComponent = React.useMemo(
     () =>
-      (defaultSelectedKeys && defaultSelectedKeys?.length > 0) ||
-      (!defaultSelectedKeys && !selectedKeys),
-    [defaultSelectedKeys, selectedKeys],
+      (defaultDropdownValues && defaultDropdownValues?.length > 0) ||
+      (!defaultDropdownValues && !selectedKeys),
+    [defaultDropdownValues, selectedKeys],
+  )
+  const errorValues = React.useMemo(
+    () => erroredValues || erroredKeys,
+    [erroredValues, erroredKeys],
   )
 
   // clone children to assign value prop if not exists. the value would be equal to the key prop
   // This is to support the legacy code where users don't pass value prop and use key prop instead
-  React.useEffect(() => {
-    const clonedChildren = React.Children.map(children, (child) => {
-      const clonedChild = React.cloneElement(child as React.ReactElement)
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      if (!clonedChild?.props?.value) {
-        return React.cloneElement(clonedChild, {
-          value: clonedChild.key || '',
-        })
-      } else {
-        return clonedChild
+  const recursivelyAddValueProp = (
+    children: React.ReactNode,
+  ): React.ReactNode => {
+    if (typeof children === 'string') return children
+
+    let sectionIndex = -1
+    return React.Children.map(children, (child) => {
+      if (!child) return child
+
+      if (React.isValidElement(child)) {
+        if (child.type === MultipleDropdownItem) {
+          const childWithProps =
+            child as React.ReactElement<MultipleDropdownItemProps>
+          if (!('value' in childWithProps.props)) {
+            return React.cloneElement(childWithProps, {
+              value: `${child.key}` || '',
+            })
+          }
+        }
+
+        const childProps = child as React.ReactElement<
+          Pick<DropdownSectionProps, 'index' | 'children'>
+        >
+        if (childProps.props.children) {
+          const newProps: Pick<DropdownSectionProps, 'index' | 'children'> = {
+            children: recursivelyAddValueProp(childProps.props.children),
+          }
+          //   // Set index for MultipleDropdownSection to handle selected section by index
+          if (childProps.type === MultipleDropdownSection) {
+            sectionIndex++
+            newProps.index = sectionIndex
+          }
+          return React.cloneElement(childProps, {...newProps})
+        }
       }
+
+      return child
     })
-    setClonedChildren(clonedChildren)
+  }
+
+  useEffect(() => {
+    setClonedChildren(recursivelyAddValueProp(children))
   }, [children])
 
   React.useEffect(() => {
@@ -183,7 +247,7 @@ const MultipleDropdown = React.forwardRef<
   }, [isOpen])
 
   React.useEffect(() => {
-    if (!isOpen) {
+    if (!open) {
       setFocusKey('')
     }
   }, [open])
@@ -195,13 +259,15 @@ const MultipleDropdown = React.forwardRef<
     if (
       !clonedChildren ||
       !(
-        (selectedKeys && selectedKeys?.length > 0) ||
-        (defaultSelectedKeys && defaultSelectedKeys.length > 0)
+        (dropdownValues && dropdownValues?.length > 0) ||
+        (defaultDropdownValues && defaultDropdownValues.length > 0)
       )
-    )
+    ) {
+      setSelectedItems([])
       return
+    }
 
-    const currentSelectedKeys = defaultSelectedKeys ?? selectedKeys ?? []
+    const currentSelectedKeys = defaultDropdownValues ?? dropdownValues ?? []
 
     let currentFocusKey = ''
 
@@ -216,14 +282,14 @@ const MultipleDropdown = React.forwardRef<
           value: currentSelectedKey.toString(),
           displayValue: item as React.ReactNode,
         })
-        if (!currentFocusKey) {
-          currentFocusKey = currentSelectedKey.toString()
-        }
+        currentFocusKey = currentSelectedKey.toString()
       }
     }
     setSelectedItems(newSelectedItems)
-    setFocusKey(currentFocusKey)
-  }, [clonedChildren, selectedKeys, defaultSelectedKeys])
+    setFocusKey((oldFocusKey) => {
+      return oldFocusKey ?? currentFocusKey
+    })
+  }, [clonedChildren, dropdownValues, defaultDropdownValues])
 
   const handleDropdownItemClick = React.useCallback(
     (item: SelectedItemDropdown) => {
@@ -239,15 +305,26 @@ const MultipleDropdown = React.forwardRef<
           newSelectedItems.splice(itemIndex, 1)
         }
         isUncontrolledComponent && setSelectedItems([...newSelectedItems])
-        onSelectionChange?.(newSelectedItems.map((item) => item.value))
+        const selectedValues = newSelectedItems.map((item) => item.value)
+        onSelectionChange?.(selectedValues)
+        onValuesChange?.(selectedValues)
         inputRef.current?.focus()
       }
     },
-    [isReadOnly, selectedItems, isUncontrolledComponent],
+    [
+      isReadOnly,
+      selectedItems,
+      isUncontrolledComponent,
+      onSelectionChange,
+      onValuesChange,
+    ],
   )
 
   const handleKeyDown = React.useCallback(
     (event: KeyboardEvent) => {
+      if (!open) {
+        return
+      }
       const currentFocusKey =
         (focusKey
           ? focusKey
@@ -332,11 +409,13 @@ const MultipleDropdown = React.forwardRef<
       }
     },
     [
+      open,
       focusKey,
       clonedChildren,
       selectedItems,
       dropdownItemKeys,
       handleDropdownItemClick,
+      onOpenChange,
     ],
   )
 
@@ -398,26 +477,31 @@ const MultipleDropdown = React.forwardRef<
   }
 
   const handleCloseChipClick = useCallback(
-    (selectedItem: SelectedItemDropdown) => () => {
-      handleDropdownItemClick(selectedItem)
-    },
+    (selectedItem: SelectedItemDropdown) =>
+      (event: React.MouseEvent<HTMLDivElement>) => {
+        event.stopPropagation()
+        event.preventDefault()
+        handleDropdownItemClick(selectedItem)
+      },
     [handleDropdownItemClick],
   )
 
   const checkIsError = useCallback(
     (value: string) => {
-      return !!erroredKeys?.some(
+      return !!errorValues?.some(
         (erroredKey) => erroredKey.toString() === value,
       )
     },
-    [erroredKeys],
+    [errorValues],
   )
 
   const handleDropdownSectionClick = (
     items: SelectedItemDropdown[],
     checking: boolean,
-    id: number | string,
+    _id: number | string,
+    index: number,
   ) => {
+    if (index === -1) return
     const newSelectedItems = [...selectedItems]
     items.forEach((item) => {
       if (!isReadOnly) {
@@ -434,24 +518,53 @@ const MultipleDropdown = React.forwardRef<
             newSelectedItems.splice(itemIndex, 1)
           }
         }
-        setSelectedSectionIds((sectionIds) => {
-          const sectionIdsSet = new Set(sectionIds)
-          if (checking) {
-            sectionIdsSet.add(id)
-          } else {
-            sectionIdsSet.delete(id)
-          }
-          return [...sectionIdsSet]
-        })
-        isUncontrolledComponent && setSelectedItems([...newSelectedItems])
-        onSelectionChange?.(newSelectedItems.map((item) => item.value))
-        inputRef.current?.focus()
       }
     })
+    const sectionIdsSet = new Set(selectedSectionIndexes)
+    if (checking) {
+      sectionIdsSet.add(index)
+    } else {
+      sectionIdsSet.delete(index)
+    }
+    setSelectedSectionIndexes([...sectionIdsSet])
+    isUncontrolledComponent && setSelectedItems([...newSelectedItems])
+    const selectedValues = newSelectedItems.map((item) => item.value)
+    onSelectionChange?.(selectedValues)
+    onValuesChange?.(selectedValues)
+    inputRef.current?.focus()
   }
 
   const handleClosePopover = useCallback(() => {
     setOpen(false)
+  }, [])
+
+  const handleKeydownInput = useCallback(
+    (event: React.KeyboardEvent<HTMLInputElement>) => {
+      if (!open) {
+        event.stopPropagation()
+        switch (event.key) {
+          case 'ArrowUp':
+          case 'ArrowDown':
+            event.preventDefault()
+            setOpen(true)
+            onOpenChange?.(true)
+            break
+          default:
+            break
+        }
+      }
+    },
+    [onOpenChange],
+  )
+
+  const handleDropdownHeaderClick = () => {
+    setTimeout(() => {
+      inputRef.current?.focus()
+    }, 0)
+  }
+
+  const handlePositionedChange = useCallback((isPositioned: boolean) => {
+    setIsPositioned(isPositioned)
   }, [])
 
   return (
@@ -464,30 +577,35 @@ const MultipleDropdown = React.forwardRef<
     >
       <MultipleDropdownContext.Provider
         value={{
+          isLoadingMore,
           open,
           focusKey: focusKey ?? '',
-          selectedKeys: selectedKeys ?? [],
-          defaultSelectedKeys: defaultSelectedKeys ?? [],
-          disabledKeys,
+          selectedKeys: dropdownValues ?? [],
+          defaultSelectedKeys: defaultDropdownValues ?? [],
+          disabledKeys: dropdownDisabledKeys,
           searchValue: search,
           selectedItems,
+          labelId: `${id}-label`,
           setSelectedItems,
           dropdownItemKeys,
           setDropdownItemKeys,
-          selectedSectionIds,
-          setSelectedSectionIds,
+          selectedSectionIndexes,
+          setSelectedSectionIndexes,
           onItemClick: handleDropdownItemClick,
           onSectionClick: handleDropdownSectionClick,
+          onHeaderClick: handleDropdownHeaderClick,
+          isPositioned,
         }}
       >
         {label && (
-          <label onClick={handleOpen} htmlFor={id}>
-            {props.label}
+          <label onClick={handleOpen} htmlFor={id} id={`${id}-label`}>
+            {label}
             {isRequired && <span>*</span>}
           </label>
         )}
         <Popover
           isOpen={open}
+          onPositionedChange={handlePositionedChange}
           anchor={
             <StyledDropdown
               className='dropdownContainer'
@@ -498,6 +616,7 @@ const MultipleDropdown = React.forwardRef<
               onClick={handleOpen}
               onBlur={onBlur}
               onFocus={onFocus}
+              role='button'
             >
               <StyledSelectedItemWrapper className='selectedItemWrapper'>
                 {selectedItems.length === 0 &&
@@ -536,9 +655,15 @@ const MultipleDropdown = React.forwardRef<
                     type='text'
                     ref={inputRef}
                     value={search}
+                    onKeyDown={handleKeydownInput}
                     onChange={handleInputChange}
                     onBlur={() => setFocused(false)}
                     onFocus={() => setFocused(true)}
+                    aria-autocomplete='list'
+                    role='combobox'
+                    aria-required={isRequired}
+                    aria-invalid={isErrored}
+                    aria-expanded={open}
                   />
                 )}
               </StyledSelectedItemWrapper>

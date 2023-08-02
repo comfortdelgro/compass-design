@@ -124,6 +124,11 @@ export const StyledSelect = styled('div', {
           color: '$disabledText',
           cursor: 'not-allowed !important',
         },
+        button: {
+          span: {
+            color: '$disabledText',
+          },
+        },
       },
     },
     isErrored: {
@@ -210,6 +215,7 @@ export const StyledComboBox = styled('div', {
       true: {
         color: '$disabledText',
         input: {
+          color: '$disabledText',
           backgroundColor: '$gray20',
         },
         cursor: 'not-allowed !important',
@@ -217,98 +223,10 @@ export const StyledComboBox = styled('div', {
           color: '$disabledText',
           cursor: 'not-allowed !important',
         },
-      },
-    },
-    isErrored: {
-      true: {
-        borderColor: '$danger',
-        '&:focus-within': {
-          borderColor: '$danger',
-        },
-      },
-    },
-  },
-})
-
-export const StyledFlag = styled('div', {
-  width: '100%',
-  border: '1px solid $divider',
-  background: '$background',
-  overflow: 'hidden',
-  borderRadius: '$md',
-  position: 'relative',
-  display: 'flex',
-  alignItems: 'center',
-  zIndex: 0,
-  transition: '$default',
-  borderWidth: '1px',
-  borderStyle: 'solid',
-  borderColor: '$divider',
-  '&:focus-within': {
-    borderColor: '$cdgBlue',
-  },
-  input: {
-    color: '$primaryText',
-    boxSizing: 'border-box',
-    background: '$background',
-    whiteSpace: 'nowrap',
-    textOverflow: 'ellipsis',
-    overflow: 'hidden',
-    fontSize: '$label1',
-    fontWeight: '$semibold',
-    width: '100%',
-    height: '$11',
-    flexGrow: 1,
-    border: 'none',
-    padding: '$3 $11 $3 $12',
-    margin: 0,
-    '&:focus': {
-      outline: 'none',
-    },
-  },
-  button: {
-    position: 'absolute',
-    cursor: 'pointer',
-    top: '50%',
-    right: '$3',
-    transform: 'translateY(-50%)',
-    width: '$6',
-    height: '$6',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 0,
-    border: 'none',
-    background: 'transparent',
-    svg: {
-      width: '$4',
-      height: '$4',
-      transition: 'transform 0.3s linear',
-    },
-  },
-  variants: {
-    isEmpty: {
-      true: {
-        input: {
-          padding: '$3 $11 $3 $4',
-          '&::placeholder': {
-            color: '$gray40',
-            fontSize: '$label1',
-            fontWeight: '$semibold',
+        button: {
+          span: {
+            color: '$disabledText',
           },
-        },
-      },
-    },
-    isDisabled: {
-      true: {
-        color: '$disabledText',
-        input: {
-          backgroundColor: '$gray20',
-          color: '$disabledText !important',
-        },
-        cursor: 'not-allowed !important',
-        '& > *': {
-          cursor: 'not-allowed !important',
         },
       },
     },
@@ -337,6 +255,11 @@ export const StyledOption = styled('li', {
     backgroundColor: '$gray20',
   },
   variants: {
+    isSelectedFocused: {
+      true: {
+        backgroundColor: '$cdgBlue30',
+      },
+    },
     isFocused: {
       true: {
         backgroundColor: '$cdgBlue20',
@@ -354,6 +277,9 @@ export const StyledOption = styled('li', {
         },
         opacity: 0.4,
         cursor: 'not-allowed',
+      },
+      '*': {
+        color: '$disabledText',
       },
     },
   },
@@ -419,36 +345,6 @@ export const StyledLoading = styled('div', {
     '.spinner-3': {
       animationDelay: '-0.15s',
     },
-  },
-})
-
-export const StyledFlagItem = styled('div', {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  flexShrink: 0,
-  width: '$6',
-  height: '$6',
-  overflow: 'hidden',
-  svg: {
-    width: '$6',
-    height: '$6',
-  },
-})
-
-export const StyledFlagIcon = styled('div', {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  left: '$3',
-  flexShrink: 0,
-  width: '$6',
-  height: '$6',
-  overflow: 'hidden',
-  position: 'absolute',
-  svg: {
-    width: '$6',
-    height: '$6',
   },
 })
 
@@ -520,6 +416,57 @@ export const StyledDropdownListItem = styled('div', {
 
 export const StyledDropdownPopover = styled('div', {
   zIndex: 60,
+})
+
+export const StyledRightIcon = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flexShrink: 0,
+  width: '$6',
+  height: '$6',
+  variants: {
+    isSelected: {
+      true: {
+        div: {
+          border: 0,
+          background: '$cdgBlue100 !important',
+          svg: {
+            display: 'block',
+          },
+        },
+      },
+      false: {
+        svg: {
+          display: 'none',
+        },
+      },
+    },
+    checkmark: {
+      checkbox: {
+        div: {
+          border: '1px solid $black',
+          borderRadius: '3px',
+          width: '$4',
+          height: '$4',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: '$background',
+        },
+
+        svg: {
+          color: '$whiteText',
+        },
+      },
+      none: {},
+      tick: {
+        svg: {
+          color: '$cdgBlue',
+        },
+      },
+    },
+  },
 })
 
 export type DropdownHeaderVariantProps = VariantProps<

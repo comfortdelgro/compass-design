@@ -11,7 +11,7 @@ const DataGridHeaderRow = React.forwardRef<HTMLTableRowElement, Props>(
     const dataGridHeaderRowRef = useDOMRef<HTMLTableRowElement>(ref)
 
     return (
-      <StyledDataGridHeaderRow ref={dataGridHeaderRowRef}>
+      <StyledDataGridHeaderRow ref={dataGridHeaderRowRef} role='row'>
         {children}
       </StyledDataGridHeaderRow>
     )

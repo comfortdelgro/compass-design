@@ -5,14 +5,20 @@ import Chip from './index'
 export const Default: React.FC = () => {
   return (
     <Column>
-      <h3>Chip</h3>
+      <h3>Basic Chip</h3>
+      <Chip>Basic Chip</Chip>
+      <h3>Close button</h3>
       <Chip
         hasCloseButton
         onCloseClick={() => {
           console.log('Close button click')
         }}
       >
-        Option 2
+        Close button
+      </Chip>
+      <h3>Errored Chip</h3>
+      <Chip hasCloseButton isErrored>
+        Errored Chip
       </Chip>
     </Column>
   )

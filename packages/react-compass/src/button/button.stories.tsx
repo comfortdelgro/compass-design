@@ -16,6 +16,9 @@ export const Variations: React.FC = () => (
   <Column>
     <h3>1. Variants</h3>
     <Row>
+      <Button css={{width: '250px'}} onClick={(e) => console.log('click', e)}>
+        Primary
+      </Button>
       <Button variant='primary' onPress={() => console.log('pressed')}>
         Primary
       </Button>
@@ -159,7 +162,11 @@ export const Variations: React.FC = () => (
 
     <h3>8. Loading</h3>
     <Row>
-      <Button loading variant='primary'>
+      <Button
+        loading
+        variant='primary'
+        onClick={() => console.log('click loading')}
+      >
         Primary
       </Button>
       <Button loading variant='secondary'>

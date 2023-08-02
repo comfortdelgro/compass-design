@@ -36,18 +36,18 @@ We recommend the second method to import components for the benefits of [tree sh
   <MultipleDropdown
     label='Favorite Animal'
     selectionMode='multiple'
-    disabledKeys={['cat']}
+    disabledValues={['cat']}
     placeholder='Choose an animal'
-    defaultSelectedKeys={['cat']}
+    defaultValues={['cat']}
   >
-    <MultipleDropdown.Item key='red panda'>
+    <MultipleDropdown.Item value='panda'>
       <BugIcon /> Red Panda
     </MultipleDropdown.Item>
-    <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='dog'>Dog</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='aardvark'>Aardvark</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='kangaroo'>Kangaroo</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='snake'>Snake</MultipleDropdown.Item>
 
   </MultipleDropdown>
 </section>
@@ -56,21 +56,19 @@ We recommend the second method to import components for the benefits of [tree sh
 <MultipleDropdown
   label='Favorite Animal'
   selectionMode='multiple'
-  disabledKeys={['snake']}
+  disabledValues={['snake']}
   placeholder='Choose an animal'
-  selectedKeys={value}
-  onSelectionChange={(k: 'all' | Set<Key>) =>
-    setValue(k === 'all' ? k : [...k])
-  }
+  values={value}
+  onValuesChange={(k: 'all' | Set<Key>) => setValue(k === 'all' ? k : [...k])}
 >
-  <MultipleDropdown.Item key='red panda'>
+  <MultipleDropdown.Item value='panda'>
     <BugIcon /> Red Panda
   </MultipleDropdown.Item>
-  <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
-  <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
-  <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
-  <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
-  <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='dog'>Dog</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='aardvark'>Aardvark</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='kangaroo'>Kangaroo</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='snake'>Snake</MultipleDropdown.Item>
 </MultipleDropdown>
 ```
 
@@ -82,17 +80,17 @@ We recommend the second method to import components for the benefits of [tree sh
   <MultipleDropdown
     label='Favorite Animal'
     selectionMode='multiple'
-    disabledKeys={['snake']}
+    disabledValues={['snake']}
     placeholder='Choose an animal'
   >
-    <MultipleDropdown.Item key='red panda'>
+    <MultipleDropdown.Item value='panda'>
       <BugIcon /> Red Panda
     </MultipleDropdown.Item>
-    <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='dog'>Dog</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='aardvark'>Aardvark</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='kangaroo'>Kangaroo</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='snake'>Snake</MultipleDropdown.Item>
   </MultipleDropdown>
 </section>
 
@@ -100,17 +98,17 @@ We recommend the second method to import components for the benefits of [tree sh
 <MultipleDropdown
   label='Favorite Animal'
   selectionMode='multiple'
-  disabledKeys={['snake']}
+  disabledValues={['snake']}
   placeholder='Choose an animal'
 >
-  <MultipleDropdown.Item key='red panda'>
+  <MultipleDropdown.Item value='panda'>
     <BugIcon /> Red Panda
   </MultipleDropdown.Item>
-  <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
-  <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
-  <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
-  <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
-  <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='dog'>Dog</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='aardvark'>Aardvark</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='kangaroo'>Kangaroo</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='snake'>Snake</MultipleDropdown.Item>
 </MultipleDropdown>
 ```
 
@@ -122,19 +120,19 @@ We recommend the second method to import components for the benefits of [tree sh
   <MultipleDropdown
     label='Favorite Animal'
     selectionMode='multiple'
-    disabledKeys={['snake']}
+    disabledValues={['snake']}
     placeholder='Choose an animal'
     isErrored
     errorMessage='Use Helper Text for Errors'
   >
-    <MultipleDropdown.Item key='red panda'>
+    <MultipleDropdown.Item value='panda'>
       <BugIcon /> Red Panda
     </MultipleDropdown.Item>
-    <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='dog'>Dog</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='aardvark'>Aardvark</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='kangaroo'>Kangaroo</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='snake'>Snake</MultipleDropdown.Item>
   </MultipleDropdown>
 </section>
 
@@ -142,19 +140,19 @@ We recommend the second method to import components for the benefits of [tree sh
 <MultipleDropdown
   label='Favorite Animal'
   selectionMode='multiple'
-  disabledKeys={['snake']}
+  disabledValues={['snake']}
   placeholder='Choose an animal'
   isErrored
   errorMessage='Use Helper Text for Errors'
 >
-  <MultipleDropdown.Item key='red panda'>
+  <MultipleDropdown.Item value='panda'>
     <BugIcon /> Red Panda
   </MultipleDropdown.Item>
-  <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
-  <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
-  <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
-  <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
-  <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='dog'>Dog</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='aardvark'>Aardvark</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='kangaroo'>Kangaroo</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='snake'>Snake</MultipleDropdown.Item>
 </MultipleDropdown>
 ```
 
@@ -165,35 +163,35 @@ We recommend the second method to import components for the benefits of [tree sh
 <section className={styles.componentDisplayVertical}>
   <MultipleDropdown
     label='Favorite Animal'
-    defaultSelectedKeys={['red panda', 'cat']}
-    erroredKeys={['red panda']}
+    defaultValues={['panda', 'cat']}
+    erroredValues={['panda']}
     isErrored
     errorMessage='Red panda is not available'
   >
-    <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='panda'>Red Panda</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='dog'>Dog</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='aardvark'>Aardvark</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='kangaroo'>Kangaroo</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='snake'>Snake</MultipleDropdown.Item>
   </MultipleDropdown>
 </section>
 
 ```js
-  <MultipleDropdown
-    label='Favorite Animal'
-    defaultSelectedKeys={['red panda', 'cat']}
-    erroredKeys={['red panda']}
-    isErrored
-    errorMessage='Red panda is not available'
-  >
-    <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
-  </MultipleDropdown>
+<MultipleDropdown
+  label='Favorite Animal'
+  defaultValues={['panda', 'cat']}
+  erroredValues={['panda']}
+  isErrored
+  errorMessage='Red panda is not available'
+>
+  <MultipleDropdown.Item value='panda'>Red Panda</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='dog'>Dog</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='aardvark'>Aardvark</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='kangaroo'>Kangaroo</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='snake'>Snake</MultipleDropdown.Item>
+</MultipleDropdown>
 ```
 
 ---
@@ -203,37 +201,37 @@ We recommend the second method to import components for the benefits of [tree sh
 <section className={styles.componentDisplayVertical}>
   <MultipleDropdown
     label='Favorite Animal'
-    disabledKeys={['snake']}
-    defaultSelectedKeys={['snake']}
+    disabledValues={['snake']}
+    defaultValues={['snake']}
     customDisplayValue='Favorite Animal Selected'
     placeholder='Choose an animal'
   >
-    <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='dog' checkmark='tick'>
+    <MultipleDropdown.Item value='panda'>Red Panda</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='dog' checkmark='tick'>
       Dog
     </MultipleDropdown.Item>
-    <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='aardvark'>Aardvark</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='kangaroo'>Kangaroo</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='snake'>Snake</MultipleDropdown.Item>
   </MultipleDropdown>
 </section>
 
 ```js
 <MultipleDropdown
   label='Favorite Animal'
-  defaultSelectedKeys={['snake']}
+  defaultValues={['snake']}
   customDisplayValue='Favorite Animal Selected'
   placeholder='Choose an animal'
 >
-  <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
-  <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
-  <MultipleDropdown.Item key='dog' checkmark='tick'>
+  <MultipleDropdown.Item value='panda'>Red Panda</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='dog' checkmark='tick'>
     Dog
   </MultipleDropdown.Item>
-  <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
-  <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
-  <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='aardvark'>Aardvark</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='kangaroo'>Kangaroo</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='snake'>Snake</MultipleDropdown.Item>
 </MultipleDropdown>
 ```
 
@@ -244,7 +242,7 @@ We recommend the second method to import components for the benefits of [tree sh
 <section className={styles.componentDisplayVertical}>
   <MultipleDropdown
     selectionMode='multiple'
-    disabledKeys={['snake']}
+    disabledValues={['snake']}
     label='Favorite Animal'
     placeholder='Choose an animal'
   >
@@ -284,19 +282,19 @@ We recommend the second method to import components for the benefits of [tree sh
         </button>
       </div>
     </MultipleDropdown.Header>
-    <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='panda'>Red Panda</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='dog'>Dog</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='aardvark'>Aardvark</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='kangaroo'>Kangaroo</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='snake'>Snake</MultipleDropdown.Item>
   </MultipleDropdown>
 </section>
 
 ```js
 <MultipleDropdown
   selectionMode='multiple'
-  disabledKeys={['snake']}
+  disabledValues={['snake']}
   label='Favorite Animal'
   placeholder='Choose an animal'
 >
@@ -336,12 +334,12 @@ We recommend the second method to import components for the benefits of [tree sh
       </button>
     </div>
   </MultipleDropdown.Header>
-  <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
-  <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
-  <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
-  <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
-  <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
-  <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='panda'>Red Panda</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='dog'>Dog</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='aardvark'>Aardvark</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='kangaroo'>Kangaroo</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='snake'>Snake</MultipleDropdown.Item>
 </MultipleDropdown>
 ```
 
@@ -356,12 +354,12 @@ We recommend the second method to import components for the benefits of [tree sh
     placeholder='Choose an animal'
     isLoading
   >
-    <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='panda'>Red Panda</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='dog'>Dog</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='aardvark'>Aardvark</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='kangaroo'>Kangaroo</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='snake'>Snake</MultipleDropdown.Item>
   </MultipleDropdown>
 </section>
 
@@ -372,12 +370,12 @@ We recommend the second method to import components for the benefits of [tree sh
   placeholder='Choose an animal'
   isLoading
 >
-  <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
-  <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
-  <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
-  <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
-  <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
-  <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='panda'>Red Panda</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='dog'>Dog</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='aardvark'>Aardvark</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='kangaroo'>Kangaroo</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='snake'>Snake</MultipleDropdown.Item>
 </MultipleDropdown>
 ```
 
@@ -392,12 +390,12 @@ We recommend the second method to import components for the benefits of [tree sh
     placeholder='Choose an animal'
     icon={<BugIcon />}
   >
-    <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='panda'>Red Panda</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='dog'>Dog</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='aardvark'>Aardvark</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='kangaroo'>Kangaroo</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='snake'>Snake</MultipleDropdown.Item>
   </MultipleDropdown>
 </section>
 
@@ -408,12 +406,12 @@ We recommend the second method to import components for the benefits of [tree sh
   placeholder='Choose an animal'
   icon={<BugIcon />}
 >
-  <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
-  <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
-  <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
-  <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
-  <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
-  <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='panda'>Red Panda</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='dog'>Dog</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='aardvark'>Aardvark</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='kangaroo'>Kangaroo</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='snake'>Snake</MultipleDropdown.Item>
 </MultipleDropdown>
 ```
 
@@ -423,32 +421,32 @@ We recommend the second method to import components for the benefits of [tree sh
 
 <section className={styles.componentDisplayVertical}>
   <MultipleDropdown label='Favorite Animal' placeholder='Choose an animal'>
-    <MultipleDropdown.Item key='fly'>Fly</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='fly'>Fly</MultipleDropdown.Item>
     <MultipleDropdown.Section title='Group 1'>
-      <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
-      <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
-      <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
+      <MultipleDropdown.Item value='panda'>Red Panda</MultipleDropdown.Item>
+      <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
+      <MultipleDropdown.Item value='dog'>Dog</MultipleDropdown.Item>
     </MultipleDropdown.Section>
     <MultipleDropdown.Section title='Group 2'>
-      <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
-      <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
-      <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+      <MultipleDropdown.Item value='aardvark'>Aardvark</MultipleDropdown.Item>
+      <MultipleDropdown.Item value='kangaroo'>Kangaroo</MultipleDropdown.Item>
+      <MultipleDropdown.Item value='snake'>Snake</MultipleDropdown.Item>
     </MultipleDropdown.Section>
   </MultipleDropdown>
 </section>
 
 ```js
 <MultipleDropdown label='Favorite Animal' placeholder='Choose an animal'>
-  <MultipleDropdown.Item key='fly'>Fly</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='fly'>Fly</MultipleDropdown.Item>
   <MultipleDropdown.Section title='Group 1'>
-    <MultipleDropdown.Item key='red panda'>Red Panda</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='cat'>Cat</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='dog'>Dog</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='panda'>Red Panda</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='dog'>Dog</MultipleDropdown.Item>
   </MultipleDropdown.Section>
   <MultipleDropdown.Section title='Group 2'>
-    <MultipleDropdown.Item key='aardvark'>Aardvark</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='kangaroo'>Kangaroo</MultipleDropdown.Item>
-    <MultipleDropdown.Item key='snake'>Snake</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='aardvark'>Aardvark</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='kangaroo'>Kangaroo</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='snake'>Snake</MultipleDropdown.Item>
   </MultipleDropdown.Section>
 </MultipleDropdown>
 ```
@@ -459,34 +457,35 @@ We recommend the second method to import components for the benefits of [tree sh
 
 #### `<MultipleDropdown/>` :
 
-| Name                | Type                        | Default | Description                                                                                                                                               |
-| :------------------ | :-------------------------- | :------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| icon                | `ReactNode`                 | -       | Icon display in right side                                                                                                                                |
-| name                | `string`                    | —       | The name of the input element, used when submitting an HTML form. See MDN.                                                                                |
-| label               | `ReactNode`                 | —       | The content to display as the label.                                                                                                                      |
-| customDisplayValue  | `ReactNode`                 | —       | Replace the chips with your own message.                                                                                                                  |
-| isOpen              | `boolean`                   | —       | Open state of the menu.                                                                                                                                   |
-| isLoading           | `boolean`                   | 'false' | Loading effect when list of items is loading by API                                                                                                       |
-| isErrored           | `boolean`                   | 'false' | Error state when dropdown is isErrored                                                                                                                    |
-| isDisabled          | `boolean`                   | —       | Whether the input is disabled.                                                                                                                            |
-| isReadOnly          | `boolean`                   | —       | Whether the input can be selected but not changed by the user.                                                                                            |
-| isRequired          | `boolean`                   | —       | Whether user input is required on the input before form submission. Often paired with the necessityIndicator prop to add a visual indicator to the input. |
-| selectedKeys        | `Iterable<Key>`             | -       | The currently selected keys in the collection (controlled).                                                                                               |
-| description         | `string`                    | —       | A description for the field. Provides a hint such as specific requirements for what to choose.                                                            |
-| placeholder         | `string`                    | —       | Temporary text that occupies the text input when it is empty.                                                                                             |
-| errorMessage        | `string`                    | -       | Error message for dropdown                                                                                                                                |
-| disabledKeys        | `Iterable<Key>`             | —       | The item keys that are disabled. These items cannot be selected, focused, or otherwise interacted with.                                                   |
-| numberOfRows        | `number`                    | —       | Number of items displayed in Popover.                                                                                                                     |
-| defaultSelectedKeys | `Iterable<Key>`             | —       | The initial selected key in the collection (uncontrolled).                                                                                                |
-| onLoadMore          | `() => void`                | —       | Handler when user scrolls to the end.                                                                                                                     |
-| onSelectionChange   | `(key: Key) => any`         | —       | Handler that is called when the selection changes.                                                                                                        |
-| onOpenChange        | `(isOpen: boolean) => void` | —       | Method that is called when the open state of the menu changes. Returns the new open state and the action that caused the opening of the menu.             |
+| Name               | Type                                    | Default | Description                                                                                                                                               |
+| :----------------- | :-------------------------------------- | :------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| icon               | `ReactNode`                             | -       | Icon display in right side                                                                                                                                |
+| name               | `string`                                | —       | The name of the input element, used when submitting an HTML form. See MDN.                                                                                |
+| label              | `ReactNode`                             | —       | The content to display as the label.                                                                                                                      |
+| customDisplayValue | `ReactNode`                             | —       | Replace the chips with your own message.                                                                                                                  |
+| isOpen             | `boolean`                               | —       | Open state of the menu.                                                                                                                                   |
+| isLoading          | `boolean`                               | 'false' | Loading effect when list of items is loading by API                                                                                                       |
+| isErrored          | `boolean`                               | 'false' | Error state when dropdown is isErrored                                                                                                                    |
+| isDisabled         | `boolean`                               | —       | Whether the input is disabled.                                                                                                                            |
+| isReadOnly         | `boolean`                               | —       | Whether the input can be selected but not changed by the user.                                                                                            |
+| isRequired         | `boolean`                               | —       | Whether user input is required on the input before form submission. Often paired with the necessityIndicator prop to add a visual indicator to the input. |
+| values             | `Key[]`                                 | `[]`    | The currently selected values in the collection (controlled).                                                                                             |
+| description        | `string`                                | —       | A description for the field. Provides a hint such as specific requirements for what to choose.                                                            |
+| placeholder        | `string`                                | —       | Temporary text that occupies the text input when it is empty.                                                                                             |
+| errorMessage       | `string`                                | -       | Error message for dropdown                                                                                                                                |
+| disabledValues     | `Key[]`                                 | —       | The item values that are disabled. These items cannot be selected, focused, or otherwise interacted with.                                                 |
+| numberOfRows       | `number`                                | —       | Number of items displayed in Popover.                                                                                                                     |
+| defaultValues      | `Key[]`                                 | —       | The initial selected value in the collection (uncontrolled).                                                                                              |
+| onLoadMore         | `() => void`                            | —       | Handler when user scrolls to the end.                                                                                                                     |
+| onValuesChange     | `(key: Array<string \| number>) => any` | —       | Handler that is called when the selection changes.                                                                                                        |
+| onOpenChange       | `(isOpen: boolean) => void`             | —       | Method that is called when the open state of the menu changes. Returns the new open state and the action that caused the opening of the menu.             |
+| isLoadingMore      | `boolean`                               | 'false' | Prevent to fire function `onLoadMore`.                                                                                                                    |
 
 #### `<MultipleDropdown.Item/>` :
 
 | Name      | Type                           | Default | Description                      |
 | :-------- | :----------------------------- | :------ | :------------------------------- |
-| key       | `Key`                          | —       | The key of the dropdown.         |
+| value     | `Key`                          | —       | The value of the dropdown.       |
 | icon      | `icon` \| `color`              | —       | The content of the dropdown Item |
 | title     | `ReactNode`                    | —       | The title of the dropdown.       |
 | children  | `ReactNode`                    | —       | The content of the dropdown Item |
@@ -496,10 +495,15 @@ We recommend the second method to import components for the benefits of [tree sh
 
 #### `<MultipleDropdown.Section/>` :
 
-| Name     | Type        | Default | Description                |
-| :------- | :---------- | :------ | :------------------------- |
-| title    | `ReactNode` | —       | The title of the section.  |
-| children | `ReactNode` | —       | The content of the section |
+| Name        | Type                 | Default | Description                           |
+| :---------- | :------------------- | :------ | :------------------------------------ |
+| title       | `ReactNode`          | —       | The title of the section.             |
+| children    | `ReactNode`          | —       | The content of the section            |
+| id          | `string`             | —       | The id to handle click to the section |
+| isClickable | `boolean`            | false   | Whether the section is clickable.     |
+| isChecked   | `boolean`            | false   | Whether the section is selected.      |
+| onClick     | `Function`           | —       | Fire click to the section.            |
+| checkmark   | `checkbox` \| `tick` | -       | Variant for the selected              |
 
 ---
 

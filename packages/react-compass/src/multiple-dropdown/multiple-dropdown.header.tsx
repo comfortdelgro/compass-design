@@ -1,6 +1,7 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
+import {MultipleDropdownContext} from './multiple-dropdown-context'
 import {
   DropdownHeaderVariantProps,
   StyledDropdownHeader,
@@ -17,11 +18,22 @@ const MultipleDropdownHeader = React.forwardRef<
   HTMLDivElement,
   MultipleDropdownHeaderProps
 >((props, ref) => {
-  const {children, css = {}, ...delegated} = props
+  const {children, css = {}, onClick, ...delegated} = props
   const dropdownHeaderRef = useDOMRef<HTMLDivElement>(ref)
+  const {onHeaderClick} = useContext(MultipleDropdownContext)
+
+  const handleHeaderClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    onHeaderClick()
+    onClick?.(event)
+  }
 
   return (
-    <StyledDropdownHeader ref={dropdownHeaderRef} css={css} {...delegated}>
+    <StyledDropdownHeader
+      ref={dropdownHeaderRef}
+      css={css}
+      {...delegated}
+      onClick={handleHeaderClick}
+    >
       {children}
     </StyledDropdownHeader>
   )
