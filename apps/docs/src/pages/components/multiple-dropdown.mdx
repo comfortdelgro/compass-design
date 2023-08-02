@@ -453,6 +453,46 @@ We recommend the second method to import components for the benefits of [tree sh
 
 ---
 
+### Limit width for Popover:
+
+<section className={styles.componentDisplayVerticalLeft}>
+  <MultipleDropdown
+    label='Favorite Animal'
+    placeholder='Animals'
+    css={{width: 250}}
+    popoverCSS={{width: 'auto'}}
+  >
+    <MultipleDropdown.Item value='Panda' textValue='Panda'>
+      Red Panda Red Panda Red Panda Red Panda Red Panda
+    </MultipleDropdown.Item>
+    <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='dog'>Dog</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='aardvark'>Aardvark</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='kangaroo'>Kangaroo</MultipleDropdown.Item>
+    <MultipleDropdown.Item value='snake'>Snake</MultipleDropdown.Item>
+  </MultipleDropdown>
+</section>
+
+```js
+<MultipleDropdown
+  label='Favorite Animal'
+  placeholder='Animals'
+  css={{width: 250}}
+  popoverCSS={{width: 'auto'}}
+>
+  <MultipleDropdown.Item value='Panda' textValue='Panda'>
+    Red Panda Red Panda Red Panda Red Panda Red Panda
+  </MultipleDropdown.Item>
+  <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='dog'>Dog</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='aardvark'>Aardvark</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='kangaroo'>Kangaroo</MultipleDropdown.Item>
+  <MultipleDropdown.Item value='snake'>Snake</MultipleDropdown.Item>
+</MultipleDropdown>
+```
+
+---
+
 ### Props:
 
 #### `<MultipleDropdown/>` :
@@ -480,6 +520,7 @@ We recommend the second method to import components for the benefits of [tree sh
 | onValuesChange     | `(key: Array<string \| number>) => any` | —       | Handler that is called when the selection changes.                                                                                                        |
 | onOpenChange       | `(isOpen: boolean) => void`             | —       | Method that is called when the open state of the menu changes. Returns the new open state and the action that caused the opening of the menu.             |
 | isLoadingMore      | `boolean`                               | 'false' | Prevent to fire function `onLoadMore`.                                                                                                                    |
+| popoverCSS         | `CSS`                                   | —       | The system prop that allows defining system overrides as well as additional CSS styles of Popover.                                                        |
 
 #### `<MultipleDropdown.Item/>` :
 
