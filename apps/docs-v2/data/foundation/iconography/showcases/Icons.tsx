@@ -191,13 +191,17 @@ import ZoomIn from '@comfortdelgro/compass-icons/react/zoom-in'
 import ZoomMinus from '@comfortdelgro/compass-icons/react/zoom-minus'
 import ZoomOut from '@comfortdelgro/compass-icons/react/zoom-out'
 import ZoomPlus from '@comfortdelgro/compass-icons/react/zoom-plus'
-import IconBox from 'data/foundation/iconography/components/IconBox'
 import {Flexbox} from '@comfortdelgro/react-compass'
+import IconBox from 'data/foundation/iconography/components/IconBox'
 
 export default function Icons() {
   return (
     <Flexbox
-      css={{justifyContent: 'center', alignItems: 'flex-start', flexWrap: 'wrap'}}
+      css={{
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        flexWrap: 'wrap',
+      }}
     >
       <IconBox
         component={<Activity width={40} height={40} />}
