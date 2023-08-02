@@ -80,15 +80,8 @@ export const CommonHeaderTitle = () => {
       {hasImage ? (
         <Breadcrumbs>
           {breadcrumbs.map((title, index) => {
-            const routeTo = `/${breadcrumbs
-              .slice(0, index + 1)
-              .join('/')
-              .toLowerCase()}`
-            return (
-              <Breadcrumbs.Item key={title} href={routeTo}>
-                {title}
-              </Breadcrumbs.Item>
-            )
+            const routeTo = `/${breadcrumbs.slice(0, index + 1).join("/").toLowerCase()}`;
+            return <Breadcrumbs.Item key={title} href={routeTo}>{title}</Breadcrumbs.Item>
           })}
         </Breadcrumbs>
       ) : (

@@ -1,7 +1,7 @@
 import {Box, Column, Typography} from '@comfortdelgro/react-compass'
 import AppFooter from 'components/layouts/AppFooter'
-import ProductsBackground from 'components/products/ProductsBackground'
 import ProductServices from 'components/products/ProductServices'
+import ProductsBackground from 'components/products/ProductsBackground'
 import Head from 'next/head'
 
 const Products = () => {

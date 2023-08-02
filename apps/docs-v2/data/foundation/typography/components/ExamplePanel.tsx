@@ -18,6 +18,7 @@ const ExamplePanel = () => {
         '@max_1024': {
           width: '100%',
         },
+        
       }}
     >
       <Typography.Display variant='display1'>{exampleText}</Typography.Display>

@@ -23,17 +23,13 @@ import ZigBizColorful from '@comfortdelgro/compass-icons/react/colorful/zig-biz'
 import ZigBizSquareColorful from '@comfortdelgro/compass-icons/react/colorful/zig-biz-square'
 import ZigBizTsmColorful from '@comfortdelgro/compass-icons/react/colorful/zig-biz-tsm'
 import ZigBizWhiteColorful from '@comfortdelgro/compass-icons/react/colorful/zig-biz-white'
-import {Flexbox} from '@comfortdelgro/react-compass'
 import IconBox from 'data/foundation/iconography/components/IconBox'
+import {Flexbox} from '@comfortdelgro/react-compass'
 
 export default function colorfulIcons() {
   return (
     <Flexbox
-      css={{
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        flexWrap: 'wrap',
-      }}
+      css={{justifyContent: 'center', alignItems: 'flex-start', flexWrap: 'wrap'}}
     >
       <IconBox
         component={<ClubhouseColorful width={40} height={40} />}

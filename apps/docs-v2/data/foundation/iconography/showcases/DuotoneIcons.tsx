@@ -11,17 +11,13 @@ import OrgChartDuotone from '@comfortdelgro/compass-icons/react/duotone/org-char
 import PasswordDuotone from '@comfortdelgro/compass-icons/react/duotone/password-duotone'
 import TrashDuotone from '@comfortdelgro/compass-icons/react/duotone/trash-duotone'
 import UserDuotone from '@comfortdelgro/compass-icons/react/duotone/user-duotone'
-import {Flexbox} from '@comfortdelgro/react-compass'
 import IconBox from 'data/foundation/iconography/components/IconBox'
+import {Flexbox} from '@comfortdelgro/react-compass'
 
 export default function duotoneIcons() {
   return (
     <Flexbox
-      css={{
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        flexWrap: 'wrap',
-      }}
+      css={{justifyContent: 'center', alignItems: 'flex-start', flexWrap: 'wrap'}}
     >
       <IconBox
         component={<BadgeDollarDuotone width={40} height={40} />}
