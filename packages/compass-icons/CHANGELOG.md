@@ -1,5 +1,15 @@
 # @comfortdelgro/compass-icons
 
+## 2.0.0
+
+### Major Changes
+
+- d257a302: Build for named export
+
+### Minor Changes
+
+- 745e4f12: New export for named
+
 ## 1.1.0
 
 ### Minor Changes
