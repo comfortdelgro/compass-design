@@ -1,0 +1,84 @@
+import styles from '../../styles/Home.module.css'
+import {
+  SubHeaderComponent,
+  MiniPageHeader,
+} from '../../components/PageHeaderComponent'
+
+# SubHeader
+
+The Sub header is then used to follow up on the top of subsequent child pages
+
+<Callout>
+  Check out our [ladle](/ladle?story=page-header--default) for more info on this
+  component.
+</Callout>
+
+---
+
+### Import
+
+```js
+import {SubHeader} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import SubHeader from '@comfortdelgro/react-compass/page-header'
+```
+
+---
+
+### Basic SubHeader
+
+<section className={styles.componentShowcaseContainer}>
+  <SubHeaderComponent />
+</section>
+
+```js
+<SubHeader>
+  <SubHeader.Header>
+    <SubHeader.Title>Title</SubHeader.Title>
+  </SubHeader.Header>
+  <SubHeader.Description>Description.</SubHeader.Description>
+</SubHeader>
+```
+
+### Props
+
+#### PageHeader
+
+#### SubHeader
+
+| Name     | Type              | Default | Description |
+| :------- | :---------------- | :------ | :---------- |
+| children | `React.ReactNode` | —       |             |
+| css      | `CSS`             | —       |             |
+
+#### SubHeader.Header
+
+| Name     | Type              | Default | Description |
+| :------- | :---------------- | :------ | :---------- |
+| children | `React.ReactNode` | —       |             |
+| css      | `CSS`             | —       |             |
+
+#### SubHeader.Title
+
+| Name     | Type              | Default | Description |
+| :------- | :---------------- | :------ | :---------- |
+| children | `React.ReactNode` | —       |             |
+| css      | `CSS`             | —       |             |
+
+#### SubHeader.Description
+
+| Name     | Type              | Default | Description |
+| :------- | :---------------- | :------ | :---------- |
+| children | `React.ReactNode` | —       |             |
+| css      | `CSS`             | —       |             |
+
+import {Callout} from 'nextra-theme-docs'
+
+<Callout>
+  Check out our [ladle](/ladle?story=page-header--default) for more info on this
+  component.
+</Callout>

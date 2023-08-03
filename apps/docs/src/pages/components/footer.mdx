@@ -1,0 +1,278 @@
+import styles from '../../styles/Home.module.css'
+import {faGlobe, faCamera} from '@fortawesome/free-solid-svg-icons'
+import {BasicFooter} from '../../components/BasicFooter'
+import {Callout} from 'nextra-theme-docs'
+
+# Footer
+
+Footer component is an additional navigation used for displaying general information that a user might want to access from any page within your site.
+
+---
+
+### Import
+
+```js
+import {Footer, FooterInfo} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import {Footer, FooterInfo} from '@comfortdelgro/react-compass/footer'
+```
+
+---
+
+### Content
+
+Footer has some supports component like Header or Nav, you should use them together to make the footer responsive
+
+### Footer Variants
+
+#### White
+
+<section className={styles.componentShowcaseContainer}>
+  <BasicFooter />
+</section>
+
+```js
+<Footer
+  css={{
+    '& a': {
+      color: '$gray70',
+      textDecoration: 'none',
+      fontSize: '14px',
+      fontWeight: '400',
+    },
+  }}
+>
+  <Footer.Header
+    className='top-items'
+    css={{
+      '& .logo': {
+        fontSize: '30px',
+        color: '$cdgBlue',
+        margin: 0,
+      },
+    }}
+  >
+    <h1 className='logo'>zig</h1>
+    <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+      <Icon
+        icon={faGlobe}
+        style={{width: '22px', height: '22px', marginRight: '8px'}}
+      ></Icon>
+      <p style={{margin: 0}}>English</p>
+    </div>
+  </Footer.Header>
+  <Footer.Nav
+    className='center-items'
+    gridItems={6}
+    css={{
+      '& .footer-nav-title': {
+        fontSize: '16px',
+        fontWeight: 500,
+        margin: 0,
+      },
+    }}
+  >
+    <div>
+      <h3 className='footer-nav-title' style={{fontWeight: 'bold'}}>
+        About us
+      </h3>
+      <Link href='#'>Profile</Link>
+      <Link href='#'>Milestones</Link>
+      <Link href='#'>Careers</Link>
+    </div>
+    <div>
+      <h3 className='footer-nav-title' style={{fontWeight: 'bold'}}>
+        About us
+      </h3>
+      <Link href='#'>Profile</Link>
+      <Link href='#'>Milestones</Link>
+      <Link href='#'>Careers</Link>
+    </div>
+    <div>
+      <h3 className='footer-nav-title' style={{fontWeight: 'bold'}}>
+        About us
+      </h3>
+      <Link href='#'>Profile</Link>
+      <Link href='#'>Milestones</Link>
+      <Link href='#'>Careers</Link>
+    </div>
+    <div>
+      <h3 className='footer-nav-title' style={{fontWeight: 'bold'}}>
+        About us
+      </h3>
+      <Link href='#'>Profile</Link>
+      <Link href='#'>Milestones</Link>
+      <Link href='#'>Careers</Link>
+    </div>
+    <div>
+      <h3 className='footer-nav-title' style={{fontWeight: 'bold'}}>
+        About us
+      </h3>
+      <Link href='#'>Profile</Link>
+      <Link href='#'>Milestones</Link>
+      <Link href='#'>Careers</Link>
+    </div>
+    <div>
+      <h3 className='footer-nav-title' style={{fontWeight: 'bold'}}>
+        About us
+      </h3>
+      <Link href='#'>Profile</Link>
+      <Link href='#'>Milestones</Link>
+      <Link href='#'>Careers</Link>
+    </div>
+  </Footer.Nav>
+  <FooterInfo
+    css={{
+      '& span': {fontSize: '14px', fontWeight: 600, lineHeight: '21px'},
+    }}
+  >
+    <div>
+      <FooterInfo.Social>
+        <Icon icon={faCamera} />
+        <Icon icon={faCamera} />
+        <Icon icon={faCamera} />
+      </FooterInfo.Social>
+      <span>383 Sin Ming Dr</span>
+      <br />
+      <span>Singapore 575717</span>
+    </div>
+    <FooterInfo.Download>
+      <Button variant='secondary' css={{width: '136px', background: 'black'}}>
+        {' '}
+        Appstore
+      </Button>
+      <Button variant='secondary' css={{width: '136px', background: 'black'}}>
+        {' '}
+        Google Play
+      </Button>
+    </FooterInfo.Download>
+  </FooterInfo>
+  <Footer.Policy>
+    <p style={{margin: 0, lineHeight: '21px'}}>
+      2022 ComfortDelGroTaxi. All rights reserved
+    </p>
+    <div
+      style={{
+        display: 'flex',
+        width: 'fit-content',
+        gap: '16px',
+        flexWrap: 'wrap',
+      }}
+    >
+      <Link href='#'>Privacy</Link>
+      <Link href='#'>Accessibility</Link>
+      <Link href='#'>Terms</Link>
+    </div>
+  </Footer.Policy>
+</Footer>
+```
+
+#### Black
+
+<section className={styles.componentShowcaseContainer}>
+  <BasicFooter color="black"/>
+</section>
+
+```js {1}
+<Footer color={'black'}>
+  ...
+</Footer>
+```
+
+#### Black
+
+<section className={styles.componentShowcaseContainer}>
+  <BasicFooter color="blue"/>
+</section>
+
+```js {1}
+<Footer color={'blue'}>
+  ...
+</Footer>
+```
+
+---
+
+### Footer.Header
+
+Footer.Header should contain company logo and/or language-changing button
+
+### Footer.Nav
+
+Footer.Nav should contain all links of pages in website for user to navigate
+
+### Footer.Policy
+
+Footer.Policy should contain links to policies and/or copyrights
+
+### FooterInfo
+
+FooterInfo should contain the address, social media and/or download links of the website
+
+### FooterInfo.Social
+
+### FooterInfo.Download
+
+### Props
+
+#### Footer
+
+| Name     | Type              | Default | Description |
+| :------- | :---------------- | :------ | :---------- |
+| children | `React.ReactNode` | —       |             |
+| css      | `CSS`             | —       |             |
+
+#### Footer.Header
+
+| Name     | Type              | Default | Description |
+| :------- | :---------------- | :------ | :---------- |
+| children | `React.ReactNode` | —       |             |
+| css      | `CSS`             | —       |             |
+
+#### Footer.Nav
+
+| Name             | Type              | Default | Description                                    |
+| :--------------- | :---------------- | :------ | :--------------------------------------------- |
+| children         | `React.ReactNode` | —       |                                                |
+| gridNumber       | `number`          | —       | Number of grid column                          |
+| tabletGridNumber | `number`          | —       | Number of grid column in the tablet responsive |
+| css              | `CSS`             | —       |                                                |
+
+#### Footer.Policy
+
+| Name     | Type              | Default | Description |
+| :------- | :---------------- | :------ | :---------- |
+| children | `React.ReactNode` | —       |             |
+| css      | `CSS`             | —       |             |
+
+#### FooterInfo
+
+| Name     | Type              | Default | Description |
+| :------- | :---------------- | :------ | :---------- |
+| children | `React.ReactNode` | —       |             |
+| css      | `CSS`             | —       |             |
+
+#### FooterInfo.Download
+
+| Name     | Type              | Default | Description |
+| :------- | :---------------- | :------ | :---------- |
+| children | `React.ReactNode` | —       |             |
+| css      | `CSS`             | —       |             |
+
+#### FooterInfo.Social
+
+| Name     | Type              | Default | Description |
+| :------- | :---------------- | :------ | :---------- |
+| children | `React.ReactNode` | —       |             |
+| css      | `CSS`             | —       |             |
+
+---
+
+<Callout>
+  Check out our [ladle](/ladle?story=footer--variants) for more info on this
+  component.
+</Callout>
