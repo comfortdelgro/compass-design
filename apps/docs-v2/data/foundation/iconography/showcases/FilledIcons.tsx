@@ -24,13 +24,17 @@ import ThumbtackFilled from '@comfortdelgro/compass-icons/react/filled/thumbtack
 import TrashFilled from '@comfortdelgro/compass-icons/react/filled/trash-filled'
 import UserAddFilled from '@comfortdelgro/compass-icons/react/filled/user-add-filled'
 import WarningFilled from '@comfortdelgro/compass-icons/react/filled/warning-filled'
-import IconBox from 'data/foundation/iconography/components/IconBox'
 import {Flexbox} from '@comfortdelgro/react-compass'
+import IconBox from 'data/foundation/iconography/components/IconBox'
 
 export default function filledIcons() {
   return (
     <Flexbox
-      css={{justifyContent: 'center', alignItems: 'flex-start', flexWrap: 'wrap'}}
+      css={{
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        flexWrap: 'wrap',
+      }}
     >
       <IconBox
         component={<AddressBookFilled width={40} height={40} />}

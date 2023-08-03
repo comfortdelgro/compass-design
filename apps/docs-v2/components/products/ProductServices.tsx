@@ -1,8 +1,6 @@
-import { Box, Button, Grid, Row, Typography } from '@comfortdelgro/react-compass'
-import { products } from 'constants/products'
+import {Box, Button, Grid, Row, Typography} from '@comfortdelgro/react-compass'
+import {products} from 'constants/products'
 const ProductServices = () => {
-
-
   return (
     <Grid
       css={{
@@ -58,16 +56,16 @@ const ProductCard = (props: ProductCard) => {
         border: '1px solid $cdgBlue20',
       }}
     >
-      <Row css={{ gap: '24px' }}>
+      <Row css={{gap: '24px'}}>
         {props.icon}
-        <Typography.Body variant='body1' css={{ fontWeight: '$normal' }}>
+        <Typography.Body variant='body1' css={{fontWeight: '$normal'}}>
           {props.title}
         </Typography.Body>
       </Row>
       <Typography.Body variant='body3'>
         Lorem ipsum dola sign lewded saedh kdkroe krtyer
       </Typography.Body>
-      <Button css={{ width: 'fit-content' }} href={props.link} hrefExternal>
+      <Button css={{width: 'fit-content'}} href={props.link} hrefExternal>
         Try now
       </Button>
     </Box>
