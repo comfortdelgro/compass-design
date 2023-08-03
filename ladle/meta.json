@@ -10,8 +10,8 @@
       "levels": [
         "Accordion"
       ],
-      "locStart": 12,
-      "locEnd": 139,
+      "locStart": 14,
+      "locEnd": 299,
       "filePath": "src/accordion/accordion.stories.tsx",
       "meta": {}
     },
@@ -20,8 +20,8 @@
       "levels": [
         "Accordion"
       ],
-      "locStart": 141,
-      "locEnd": 175,
+      "locStart": 301,
+      "locEnd": 335,
       "filePath": "src/accordion/accordion.stories.tsx",
       "meta": {}
     },
@@ -111,7 +111,7 @@
         "Auto complete"
       ],
       "locStart": 6,
-      "locEnd": 70,
+      "locEnd": 119,
       "filePath": "src/auto-complete/autoComplete.stories.tsx",
       "meta": {}
     },
@@ -241,7 +241,7 @@
         "Button"
       ],
       "locStart": 15,
-      "locEnd": 195,
+      "locEnd": 201,
       "filePath": "src/button/button.stories.tsx",
       "meta": {}
     },
@@ -515,13 +515,23 @@
       "filePath": "src/divider/divider.stories.tsx",
       "meta": {}
     },
+    "dropdown-menu--default": {
+      "name": "Default",
+      "levels": [
+        "Dropdown menu"
+      ],
+      "locStart": 6,
+      "locEnd": 126,
+      "filePath": "src/dropdown-menu/dropdown-menu.stories.tsx",
+      "meta": {}
+    },
     "dropdown--combobox": {
       "name": "Combobox",
       "levels": [
         "Dropdown"
       ],
-      "locStart": 535,
-      "locEnd": 928,
+      "locStart": 506,
+      "locEnd": 800,
       "filePath": "src/dropdown/dropdown.stories.tsx",
       "meta": {}
     },
@@ -531,7 +541,7 @@
         "Dropdown"
       ],
       "locStart": 74,
-      "locEnd": 533,
+      "locEnd": 504,
       "filePath": "src/dropdown/dropdown.stories.tsx",
       "meta": {}
     },
@@ -685,6 +695,16 @@
       "filePath": "src/image-viewer/image-viewer.stories.tsx",
       "meta": {}
     },
+    "layout--default": {
+      "name": "Default",
+      "levels": [
+        "Layout"
+      ],
+      "locStart": 4,
+      "locEnd": 11,
+      "filePath": "src/layouts/Layout.stories.tsx",
+      "meta": {}
+    },
     "link--default": {
       "name": "Default",
       "levels": [
@@ -701,7 +721,7 @@
         "List"
       ],
       "locStart": 768,
-      "locEnd": 779,
+      "locEnd": 784,
       "filePath": "src/list/list.stories.tsx",
       "meta": {}
     },
@@ -781,7 +801,7 @@
         "Multiple dropdown"
       ],
       "locStart": 71,
-      "locEnd": 611,
+      "locEnd": 547,
       "filePath": "src/multiple-dropdown/multiple-dropdown.stories.tsx",
       "meta": {}
     },
@@ -790,8 +810,8 @@
       "levels": [
         "Navbar"
       ],
-      "locStart": 23,
-      "locEnd": 153,
+      "locStart": 24,
+      "locEnd": 207,
       "filePath": "src/navbar/navbar.stories.tsx",
       "meta": {}
     },
@@ -951,7 +971,7 @@
         "Rating"
       ],
       "locStart": 5,
-      "locEnd": 12,
+      "locEnd": 26,
       "filePath": "src/rating/rating.stories.tsx",
       "meta": {}
     },
@@ -960,8 +980,8 @@
       "levels": [
         "Rating"
       ],
-      "locStart": 13,
-      "locEnd": 20,
+      "locStart": 27,
+      "locEnd": 34,
       "filePath": "src/rating/rating.stories.tsx",
       "meta": {}
     },
@@ -1120,8 +1140,8 @@
       "levels": [
         "Table v2"
       ],
-      "locStart": 246,
-      "locEnd": 403,
+      "locStart": 242,
+      "locEnd": 399,
       "filePath": "src/table-v2/table-v2.stories.tsx",
       "meta": {}
     },
@@ -1130,8 +1150,8 @@
       "levels": [
         "Table v2"
       ],
-      "locStart": 501,
-      "locEnd": 661,
+      "locStart": 497,
+      "locEnd": 658,
       "filePath": "src/table-v2/table-v2.stories.tsx",
       "meta": {}
     },
@@ -1141,7 +1161,7 @@
         "Table v2"
       ],
       "locStart": 31,
-      "locEnd": 244,
+      "locEnd": 240,
       "filePath": "src/table-v2/table-v2.stories.tsx",
       "meta": {}
     },
