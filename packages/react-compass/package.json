@@ -1,6 +1,6 @@
 {
   "name": "@comfortdelgro/react-compass",
-  "version": "1.0.0-beta.0.1",
+  "version": "2.9.0",
   "description": "React Compass Design System by ComfortDelGro Corporation",
   "keywords": [
     "design system",
@@ -45,7 +45,6 @@
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@headlessui/react": "^1.7.15",
-    "@internationalized/date": "3.2.0",
     "@internationalized/number": "^3.2.0",
     "@internationalized/string": "^3.1.0",
     "@react-aria/dialog": "^3.4.1",

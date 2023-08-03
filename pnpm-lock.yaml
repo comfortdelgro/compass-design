@@ -182,7 +182,6 @@ importers:
       '@fortawesome/react-fontawesome': ^0.2.0
       '@frsource/cypress-plugin-visual-regression-diff': ^3.2.7
       '@headlessui/react': ^1.7.15
-      '@internationalized/date': 3.2.0
       '@internationalized/number': 3.2.0
       '@internationalized/string': ^3.1.0
       '@ladle/react': ^2.4.5
@@ -250,7 +249,6 @@ importers:
       '@fortawesome/free-solid-svg-icons': 6.4.0
       '@fortawesome/react-fontawesome': 0.2.0_tumfstpptabomqiydababgzl3q
       '@headlessui/react': 1.7.15_biqbaboplfbrettd7655fr4n2y
-      '@internationalized/date': 3.2.0
       '@internationalized/number': 3.2.0
       '@internationalized/string': 3.1.0
       '@react-aria/dialog': 3.5.1_biqbaboplfbrettd7655fr4n2y
