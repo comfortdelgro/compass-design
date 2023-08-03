@@ -72,6 +72,7 @@ interface Props extends StyledComponentProps {
   defaultOpen?: boolean
   trigger?: 'click' | null
   isFloatingPortal?: boolean
+  onPositionedChange?: (isPositioned: boolean) => void
 }
 
 export type PopoverProps = Props &
@@ -86,6 +87,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     isOpen: isOpenProp,
     onOpenChange,
     onClose,
+    onPositionedChange,
     offset,
     shouldFlip = true,
     direction = 'bottom',
@@ -121,7 +123,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     }
   }, [direction])
 
-  const {x, y, refs, strategy, context} = useFloating({
+  const {x, y, refs, strategy, context, isPositioned} = useFloating({
     open: isOpen,
     onOpenChange: onOpenChange ? onOpenChange : setIsOpen,
     placement: placementProp,
@@ -173,6 +175,10 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
       ref.current = el
     }
   }
+
+  React.useEffect(() => {
+    onPositionedChange?.(isPositioned)
+  }, [onPositionedChange, isPositioned])
 
   React.useEffect(() => {
     if (isOpenProp != null) {
