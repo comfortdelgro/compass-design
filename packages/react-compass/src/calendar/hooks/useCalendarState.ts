@@ -9,6 +9,7 @@
  */
 
 /* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
+import {useMemo, useRef, useState} from 'react'
 import {
   Calendar,
   CalendarDate,
@@ -22,8 +23,7 @@ import {
   toCalendar,
   toCalendarDate,
   today,
-} from '@internationalized/date'
-import {useMemo, useRef, useState} from 'react'
+} from '../../internationalized/date'
 import {
   CalendarState,
   DateDuration,

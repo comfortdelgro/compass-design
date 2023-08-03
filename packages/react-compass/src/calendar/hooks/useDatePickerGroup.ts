@@ -13,8 +13,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/prefer-ts-expect-error */
-import {useLocale} from '@react-aria/i18n'
 import {RefObject, useMemo} from 'react'
+import {useLocale} from '../../internationalized/i18n'
 import {
   DateFieldState,
   DatePickerState,

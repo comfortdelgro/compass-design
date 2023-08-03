@@ -1,12 +1,4 @@
 import {
-  Calendar,
-  CalendarDate,
-  CalendarDateTime,
-  DateFormatter,
-  Time,
-  ZonedDateTime,
-} from '@internationalized/date'
-import {
   AriaRole,
   CSSProperties,
   DragEvent,
@@ -16,6 +8,14 @@ import {
   ReactNode,
   TouchEvent,
 } from 'react'
+import {
+  Calendar,
+  CalendarDate,
+  CalendarDateTime,
+  DateFormatter,
+  Time,
+  ZonedDateTime,
+} from '../../internationalized/date'
 import {HelpTextProps} from './common.types'
 import {AriaDatePickerProps} from './date-picker.types'
 import {

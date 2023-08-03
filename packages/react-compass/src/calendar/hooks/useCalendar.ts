@@ -10,8 +10,8 @@
 
 /* eslint-disable @typescript-eslint/no-unnecessary-condition */
 /* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
-import {CalendarDate} from '@internationalized/date'
 import {useRef} from 'react'
+import {CalendarDate} from '../../internationalized/date'
 import {CalendarProps} from '../calendar'
 import {
   AriaLabelingProps,

@@ -1,19 +1,19 @@
 import {
   Calendar,
-  RangeCalendar,
-  RangeCalendarShorcutItem,
-  RangeValue,
-} from '@comfortdelgro/react-compass'
-import {
   DateValue,
   endOfWeek,
   getLocalTimeZone,
   isWeekend,
   parseDate,
+  RangeCalendar,
+  RangeCalendarShorcutItem,
+  RangeValue,
   startOfWeek,
   today,
-} from '@internationalized/date'
-import {useDateFormatter, useLocale} from '@react-aria/i18n'
+  useDateFormatter,
+  useLocale,
+} from '@comfortdelgro/react-compass'
+
 import React from 'react'
 
 export function ControlledCalendar() {

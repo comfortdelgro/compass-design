@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
+import {MouseEvent} from 'react'
 import {
   Calendar,
   CalendarDate,
@@ -17,8 +18,7 @@ import {
   toCalendar,
   toCalendarDate,
   toCalendarDateTime,
-} from '@internationalized/date'
-import {MouseEvent} from 'react'
+} from '../../internationalized/date'
 import {DEFAULT_FIELD_OPTIONS} from '../constants/field.constant'
 import {
   CalendarState,
