@@ -90,6 +90,7 @@ export const StyledTransition = styled('div', {
       show: true,
       css: {
         transform: 'translateX(0)',
+        position: 'static',
       },
     },
     {
