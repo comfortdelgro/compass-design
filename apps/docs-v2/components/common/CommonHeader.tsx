@@ -81,12 +81,19 @@ export const CommonHeaderTitle = () => {
         <Breadcrumbs>
           {breadcrumbs.map((title, index) => {
             let routeTo
-            if (title === 'Foundation'){
+            if (title === 'Foundation') {
               routeTo = '/foundation/overview'
             } else {
-              routeTo = `/${breadcrumbs.slice(0, index + 1).join("/").toLowerCase()}`;
+              routeTo = `/${breadcrumbs
+                .slice(0, index + 1)
+                .join('/')
+                .toLowerCase()}`
             }
-            return <Breadcrumbs.Item key={title} href={routeTo}>{title}</Breadcrumbs.Item>
+            return (
+              <Breadcrumbs.Item key={title} href={routeTo}>
+                {title}
+              </Breadcrumbs.Item>
+            )
           })}
         </Breadcrumbs>
       ) : (

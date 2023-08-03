@@ -1,5 +1,11 @@
 ## 2.9.0
 
+## 2.10.0
+
+### Minor Changes
+
+- b579d35d: Add accessibility. Fix bugs for dropdown and multiple dropdown. Add features to autocomplete and transitions.
+
 ### Minor Changes
 
 - caff50ee: Fix bugs in dropdown and add checkmark prop to dropdown

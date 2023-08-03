@@ -148,13 +148,17 @@ import XmlSolidFile from '@comfortdelgro/compass-icons/react/file/xml-solid'
 import ZipFile from '@comfortdelgro/compass-icons/react/file/zip'
 import ZipGrayFile from '@comfortdelgro/compass-icons/react/file/zip-gray'
 import ZipSolidFile from '@comfortdelgro/compass-icons/react/file/zip-solid'
-import IconBox from 'data/foundation/iconography/components/IconBox'
 import {Flexbox} from '@comfortdelgro/react-compass'
+import IconBox from 'data/foundation/iconography/components/IconBox'
 
 export default function fileIcons() {
   return (
     <Flexbox
-      css={{justifyContent: 'center', alignItems: 'flex-start', flexWrap: 'wrap'}}
+      css={{
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        flexWrap: 'wrap',
+      }}
     >
       <IconBox
         component={<AepGrayFile width={40} height={40} />}
