@@ -1,7 +1,0 @@
-<Button
-  variant='danger'
-  rightIcon={<Icon icon={faThumbsUp} />}
-  css={{'&:hover': {color: 'grey'}}}
->
-  Danger
-</Button>

@@ -1,9 +1,0 @@
-<Button variant='secondary' loading>
-  Secondary
-</Button>
-<Button variant='danger' loading rightIcon={<Icon icon={faThumbsUp} />}>
-  Danger
-</Button>
-<Button variant='ghost' loading rightIcon={<Icon icon={faThumbsUp} />}>
-  Ghost
-</Button>
