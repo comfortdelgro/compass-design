@@ -1,5 +1,0 @@
-<Button variant='primary'>Primary</Button>
-<Button variant='secondary'>Secondary</Button>
-<Button variant='danger'>Danger</Button>
-<Button variant='ghost'>Ghost</Button>
-<Button isDisabled>Disabled</Button>

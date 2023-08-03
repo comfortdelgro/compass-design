@@ -1,9 +1,0 @@
-<Button variant='secondary' leftIcon={<Icon icon={faThumbsUp} />}>
-  Secondary
-</Button>
-<Button variant='danger' leftIcon={<Icon icon={faThumbsUp} />}>
-  Danger
-</Button>
-<Button variant='ghost' leftIcon={<Icon icon={faThumbsUp} />}>
-  Ghost
-</Button>
