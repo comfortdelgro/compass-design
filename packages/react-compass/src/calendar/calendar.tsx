@@ -25,6 +25,8 @@ interface Props extends StyledComponentProps, ValueBase<DateValue> {
   isDisabled?: boolean
   ctaButtonRender?: React.ReactNode
   isDateUnavailable?: (date: DateValue) => boolean
+  'aria-labelledby'?: string
+  'aria-describedby'?: string
 }
 
 export type CalendarProps = Props & DateValue
@@ -37,6 +39,8 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     maxValue = parseDate('2999-02-17'),
     isDisabled = false,
     ctaButtonRender,
+    'aria-labelledby': ariaLabelledBy,
+    'aria-describedby': ariaDescribedBy,
     ...delegated
   } = props
 
@@ -127,7 +131,14 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
 
   return (
     <>
-      <StyledCalendar ref={calendarRef} css={css}>
+      <StyledCalendar
+        ref={calendarRef}
+        css={css}
+        role='Calendar'
+        aria-label='Calendar'
+        aria-labelledby={ariaLabelledBy}
+        aria-describedby={ariaDescribedBy}
+      >
         <CalendarHeader
           state={state}
           calendarProps={calendarProps}

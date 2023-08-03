@@ -87,6 +87,8 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
             {...cellProps}
             css={css}
             className={classNameCombine()}
+            aria-selected={isSelected}
+            aria-disabled={isDisabled}
           >
             <div
               ref={cellRef}
