@@ -6,6 +6,7 @@
 node_modules
 .pnp
 .pnp.js
+.tool-versions
 
 # debug
 npm-debug.log*
@@ -50,4 +51,4 @@ packages/compass-icons/react/
 .idea
 
 # cypress snapshot
-**/_image_snapshots_/
+**/__image_snapshots__/

@@ -1,0 +1,3 @@
+<ColorBox color={theme.colors.divider} />
+<ColorBox color={theme.colors.border} />
+<ColorBox color={theme.colors.activeBorder} />

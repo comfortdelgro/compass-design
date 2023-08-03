@@ -1,0 +1,91 @@
+import Rating from '@comfortdelgro/react-compass/rating'
+import styles from '../../styles/Home.module.css'
+import {Callout} from 'nextra-theme-docs'
+
+# Rating
+
+Rating provides others' opinions and experiences.
+
+<Callout>
+  Check out our [ladle](/ladle?story=rating--default) for more info on this
+  component.
+</Callout>
+
+### Import
+
+```js
+import {Rating} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import Rating from '@comfortdelgro/react-compass/rating'
+```
+
+---
+
+### Basic
+
+<section className={styles.componentShowcaseContainer}>
+  <Rating />
+</section>
+
+```js
+<Rating />
+```
+### Controlled
+
+<section className={styles.componentShowcaseContainer}>
+  <Rating value={2} />
+</section>
+
+```js
+<Rating value={2} />
+```
+
+### Read-only
+
+<section className={styles.componentShowcaseContainer}>
+  <Rating value={1} readOnly />
+</section>
+
+```js
+<Rating value={1} readOnly />
+```
+
+### Disabled
+
+<section className={styles.componentShowcaseContainer}>
+  <Rating disabled />
+</section>
+
+```js
+<Rating disabled />
+```
+
+### With Icons
+
+<section className={styles.componentShowcaseContainer}>
+  <Rating useIcons />
+</section>
+
+```js
+<Rating useIcons />
+```
+
+### Props
+
+| Name     | Type                           | Default | Description                                                                             |
+| :------- | :----------------------------- | :------ | :-------------------------------------------------------------------------------------- |
+| useIcons | `boolean`                      |         | The minimum allowed date that a user may select.                                        |
+| onChange | `(e: number \| null ) => void` |         | Callback that is called when changing the rating.                                       |
+| css      | `CSS`                          | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
+| disabled | `boolean`                      | —       | If true, the component is disabled.                                                     |
+| readOnly | `boolean`                      | —       | If true, the component is disabled.                                                     |
+| value    | `number`                       | —       | The rating value.                                                                       |
+
+<Callout>
+  Check out our [ladle](/ladle?story=rating--default) for more info on this
+  component.
+</Callout>

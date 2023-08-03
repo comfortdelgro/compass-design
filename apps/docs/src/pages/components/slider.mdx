@@ -1,0 +1,80 @@
+import {Callout} from 'nextra-theme-docs'
+import styles from '../../styles/Home.module.css'
+import Slider from '@comfortdelgro/react-compass/slider'
+
+# Slider
+
+Provides the behavior and accessibility implementation for a slider component representing one or more values.
+
+<Callout>
+  Check out our [ladle](/ladle?story=slider--default) for more info on this
+  component.
+</Callout>
+
+---
+
+### Import:
+
+```js
+import {Slider} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import Slider from '@comfortdelgro/react-compass/slider'
+```
+
+---
+
+### Basic Usage:
+
+<section
+  className={styles.avatarShowcaseContainer}
+  style={{display: 'flex', flexDirection: 'column', gap: '2rem'}}
+>
+  <div style={{width: '100%'}}>
+    <Slider />
+  </div>
+  <div style={{width: '100%'}}>
+    <Slider value={20} onChangeEnd={(val) => console.log(val)} />
+  </div>
+  <div style={{width: '100%'}}>
+    <Slider isDisabled />
+  </div>
+  <div style={{width: '100%'}}>
+    <Slider tooltip={false} />
+  </div>
+</section>
+
+```js
+<Slider />
+<Slider value={20} onChangeEnd={(val) => console.log(val)} />
+<Slider isDisabled />
+<Slider tooltip={false} />
+```
+
+---
+
+### Props:
+
+| Name         | Type                      | Default | Description                                                                                                |
+| :----------- | :------------------------ | :------ | :--------------------------------------------------------------------------------------------------------- |
+| isDisabled   | `boolean`                 | `false` | Whether the Slider are disabled. Shows that a selection exists, but is not available in that circumstance. |
+| tooltip      | `boolean`                 | `true`  | Whether the tooltip of slider are hidden.                                                                  |
+| onChangeEnd  | `(value: number) => void` | —       | Fired when the slider stops moving, due to being let go.                                                   |
+| onChange     | `(value: number) => void` | —       | Handler that is called when the value changes.                                                             |
+| minValue     | `number`                  | 0       | The slider's minimum value.                                                                                |
+| maxValue     | `number`                  | 100     | The slider's maximum value.                                                                                |
+| step         | `number`                  | 1       | The slider's step value.                                                                                   |
+| value        | `number`                  | 0       | The current value (controlled).                                                                            |
+| defaultValue | `number`                  | 0       | The currently selected key in the collection (uncontrolled).                                               |
+| className    | `String`                  | —       | Extra class name for slider.                                                                               |
+| css          | `CSS`                     | —       | The system prop that allows defining system overrides as well as additional CSS styles.                    |
+
+---
+
+<Callout>
+  Check out our [ladle](/ladle?story=slider--default) for more info on this
+  component.
+</Callout>

@@ -1,0 +1,233 @@
+import {Callout} from 'nextra-theme-docs'
+import styles from '../../styles/Home.module.css'
+import BugIcon from '@comfortdelgro/compass-icons/react/bug'
+import Textfield from '@comfortdelgro/react-compass/textfield'
+import {Controlled} from '../../components/TextField'
+
+# Text Field
+
+Text Fields let users enter and edit text.
+
+<Callout>
+  Check out our [ladle](/ladle?story=textfield--variants) for more info on this
+  component.
+</Callout>
+
+---
+
+### Import:
+
+```js
+import {Textfield} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import Textfield from '@comfortdelgro/react-compass/textfield'
+```
+
+---
+
+### Basic text field:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Textfield placeholder='Enter your name' />
+</section>
+
+```js
+<Textfield placeholder='Enter your name' />
+```
+
+---
+
+### Controlled:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Controlled />
+</section>
+
+```js
+  const [value, setValue] = React.useState('')
+  return (
+    <>
+      <Textfield
+        placeholder='Pick a number from 1 - 100'
+        value={value}
+        onChange={(value) => {
+          const valueAsNumber = Number(value)
+          if ((valueAsNumber >= 0 && valueAsNumber <= 100) || value === '') {
+            setValue(value as string)
+          }
+          return
+        }}
+      />
+    </>
+  )
+```
+
+---
+
+### Text field with label:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Textfield
+    label={
+      <>
+        Text Label <BugIcon />
+      </>
+    }
+    placeholder='Enter your name'
+  />
+</section>
+
+```js
+<Textfield label='Name' placeholder='Enter your name' />
+```
+
+---
+
+### Text field with helper text:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Textfield
+    label='Name'
+    placeholder='Enter your name'
+    helperText='Helper Text'
+  />
+</section>
+
+```js
+<Textfield
+  label='Name'
+  placeholder='Enter your name'
+  helperText='Helper Text'
+/>
+```
+
+---
+
+### Text field with input error:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Textfield
+    isErrored
+    value='Wrong Value'
+    label='Name'
+    placeholder='Enter your name'
+    helperText='Use Helper Text for Errors'
+  />
+</section>
+
+```js
+<Textfield
+  isErrored
+  value='Wrong Value'
+  label='Name'
+  placeholder='Enter your name'
+  helperText='Use Helper Text for Errors'
+/>
+```
+
+---
+
+### Text field with icons:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Textfield
+    label='Name'
+    leftIcon={<BugIcon />}
+    placeholder='Enter your name'
+  />
+  <Textfield
+    label='Name'
+    rightIcon={<BugIcon />}
+    placeholder='Enter your name'
+  />
+</section>
+
+```js
+<Textfield label='Name' leftIcon={<BugIcon />} placeholder='Enter your name' />
+<Textfield
+  label='Name'
+  rightIcon={<BugIcon />}
+  placeholder='Enter your name'
+/>
+```
+
+---
+
+### Disabled text field:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Textfield
+    value='Wrong Value'
+    label='Name'
+    placeholder='Enter your name'
+    helperText='Use Helper Text for Errors'
+    isDisabled
+  />
+</section>
+
+```js
+<Textfield
+  value='Wrong Value'
+  label='Name'
+  placeholder='Enter your name'
+  helperText='Use Helper Text for Errors'
+  isDisabled
+/>
+```
+
+---
+
+### Custom styling:
+
+You can style React Compass's components with the css prop. <br/>
+With css prop, you can basically do anything that css can do.
+
+<section className={styles.avatarShowcaseContainer}>
+  <Textfield
+    value='Wrong Value'
+    label='Name'
+    placeholder='Enter your name'
+    helperText='Use Helper Text for Errors'
+    isDisabled
+    css={{width: '20rem'}}
+  />
+</section>
+
+```js
+<Textfield
+  value='Wrong Value'
+  label='Name'
+  placeholder='Enter your name'
+  helperText='Use Helper Text for Errors'
+  isDisabled
+  css={{width: '20rem'}}
+/>
+```
+
+---
+
+### Props:
+
+| Name          | Type                                | Default | Description                                                  |
+| :------------ | :---------------------------------- | :------ | :----------------------------------------------------------- |
+| `placeholder` | `string` \| `null`                  | `null`  | `Placeholder of the text field`                              |
+| `label`       | `string` \| `null`                  | `null`  | `Label of the text field`                                    |
+| `helperText`  | `string` \| `null`                  | —       |                                                              |
+| `isErrored`   | `true` \| `false`                   | `false` | `Throw error when input value is wrong`                      |
+| `value`       | `string`                            | —       | `Input value`                                                |
+| `rightIcon`   | `ReactNode`                         | -       | `Icon placed on the right side of the text field`            |
+| `leftIcon`    | `ReactNode`                         | -       | `Icon placed on the left side of the text field`             |
+| `isDisabled`  | `false`\| `true`                    | `false` | `Disable the text field when true`                           |
+| `css `        | `CSS`                               | —       |                                                              |
+| `inputRef `   | `React.RefObject<HTMLInputElement>` | —       | `Use useRef to control input tag inside TextField component` |
+
+---
+
+<Callout>
+  Check out our [ladle](/ladle?story=textfield--variants) for more info on this
+  component.
+</Callout>

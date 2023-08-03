@@ -1,0 +1,241 @@
+import {Callout} from 'nextra-theme-docs'
+import styles from '../../styles/Home.module.css'
+import Chart from '@comfortdelgro/react-compass/chart'
+
+# Chart
+
+The Chart using for visualize your data.
+
+<Callout>
+  Check out our [ladle](/ladle?story=chart--columns) for more info on this
+  component.
+</Callout>
+
+---
+
+Warning: This component only works well with next.13 or later (because of swc issues). If you are using next.12 please use this config in your next.config file
+
+```
+const nextConfig = {
+  swcMinify: fasle,
+}
+```
+
+---
+
+### Import:
+
+```js
+import {Chart} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import Chart from '@comfortdelgro/react-compass/chart'
+```
+
+---
+
+### Column:
+
+<section className={styles.avatarShowcaseContainer}>
+  <div style={{width: '100%'}}>
+    <Chart.Column
+      labels={['January', 'February', 'March', 'April', 'May', 'June', 'July']}
+      data={[
+        {
+          label: 'Dataset 1',
+          data: new Array(7)
+            .fill(0)
+            .map(() => Math.floor(Math.random() * 1000)),
+        },
+        {
+          label: 'Dataset 2',
+          data: new Array(7)
+            .fill(0)
+            .map(() => Math.floor(Math.random() * 1000)),
+        },
+      ]}
+      title='Column Chart'
+    />
+  </div>
+</section>
+
+```js
+<Chart.Column
+  labels={['January', 'February', 'March', 'April', 'May', 'June', 'July']}
+  data={[
+    {
+      label: 'Dataset 1',
+      data: new Array(7).fill(0).map(() => Math.floor(Math.random() * 1000)),
+    },
+    {
+      label: 'Dataset 2',
+      data: new Array(7).fill(0).map(() => Math.floor(Math.random() * 1000)),
+    },
+  ]}
+  title='Column Chart'
+/>
+```
+
+---
+
+### Bar:
+
+<section className={styles.avatarShowcaseContainer}>
+  <div style={{width: '100%'}}>
+    <Chart.Bar
+      labels={['January', 'February', 'March', 'April', 'May', 'June', 'July']}
+      data={[
+        {
+          label: 'Dataset 1',
+          data: new Array(7)
+            .fill(0)
+            .map(() => Math.floor(Math.random() * 1000)),
+        },
+        {
+          label: 'Dataset 2',
+          data: new Array(7)
+            .fill(0)
+            .map(() => Math.floor(Math.random() * 1000)),
+        },
+      ]}
+      title='Bar Chart'
+    />
+  </div>
+</section>
+
+```js
+<Chart.Bar
+  labels={['January', 'February', 'March', 'April', 'May', 'June', 'July']}
+  data={[
+    {
+      label: 'Dataset 1',
+      data: new Array(7).fill(0).map(() => Math.floor(Math.random() * 1000)),
+    },
+    {
+      label: 'Dataset 2',
+      data: new Array(7).fill(0).map(() => Math.floor(Math.random() * 1000)),
+    },
+  ]}
+  title='Bar Chart'
+/>
+```
+
+---
+
+### Line:
+
+<section className={styles.avatarShowcaseContainer}>
+  <div style={{width: '100%'}}>
+    <Chart.Line
+      labels={['January', 'February', 'March', 'April', 'May', 'June', 'July']}
+      data={[
+        {
+          label: 'Dataset 1',
+          data: new Array(7)
+            .fill(0)
+            .map(() => Math.floor(Math.random() * 1000)),
+        },
+        {
+          label: 'Dataset 2',
+          data: new Array(7)
+            .fill(0)
+            .map(() => Math.floor(Math.random() * 1000)),
+        },
+      ]}
+      title='Line Chart'
+    />
+  </div>
+</section>
+
+```js
+<Chart.Line
+  labels={['January', 'February', 'March', 'April', 'May', 'June', 'July']}
+  data={[
+    {
+      label: 'Dataset 1',
+      data: new Array(7).fill(0).map(() => Math.floor(Math.random() * 1000)),
+    },
+    {
+      label: 'Dataset 2',
+      data: new Array(7).fill(0).map(() => Math.floor(Math.random() * 1000)),
+    },
+  ]}
+  title='Line Chart'
+/>
+```
+
+---
+
+### Area:
+
+<section className={styles.avatarShowcaseContainer}>
+  <div style={{width: '100%'}}>
+    <Chart.Area
+      labels={['January', 'February', 'March', 'April', 'May', 'June', 'July']}
+      data={[
+        {
+          label: 'Dataset 1',
+          data: new Array(7)
+            .fill(0)
+            .map(() => Math.floor(Math.random() * 1000)),
+        },
+        {
+          label: 'Dataset 2',
+          data: new Array(7)
+            .fill(0)
+            .map(() => Math.floor(Math.random() * 1000)),
+        },
+      ]}
+      title='Area Chart'
+    />
+  </div>
+</section>
+
+```js
+<Chart.Area
+  labels={['January', 'February', 'March', 'April', 'May', 'June', 'July']}
+  data={[
+    {
+      label: 'Dataset 1',
+      data: new Array(7).fill(0).map(() => Math.floor(Math.random() * 1000)),
+    },
+    {
+      label: 'Dataset 2',
+      data: new Array(7).fill(0).map(() => Math.floor(Math.random() * 1000)),
+    },
+  ]}
+  title='Area Chart'
+/>
+```
+
+---
+
+### Props:
+
+| Name           | Type                             | Default | Description                  |
+| :------------- | :------------------------------- | :------ | :--------------------------- |
+| data           | `Dataset[]`                      | -       | Data set of the chart        |
+| labels         | `string[]`                       | -       | List of lables in the chart  |
+| unit           | `string`                         | -       | Unit of the dataset lables   |
+| title          | `string`                         | -       | Display title of the chart   |
+| hideYAxis      | `boolean`                        | false   | Hide the y-axis of the chart |
+| hideXAxis      | `boolean`                        | false   | Hide the x-axis of the chart |
+| legendPosition | `top`\|`bottom`\|`left`\|`right` | false   | Position of the legends      |
+
+Type of DataSet includes:
+| Name | Type | Default | Description | |
+|:----------------|:-----------|:--------|:-------------------------------------------|--|
+| label | `string` | - | Name of the dataset | |
+| data | `number[]` | - | List of value in dataset | |
+| backgroundColor | `string` | - | Background color in 1 point of the dataset | |
+| borderColor | `string` | - | Border color in 1 point of the dataset | |
+
+---
+
+<Callout>
+  Check out our [ladle](/ladle?story=chart--columns) for more info on this
+  component.
+</Callout>

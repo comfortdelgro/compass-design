@@ -1,0 +1,38 @@
+html {
+  /* reset font features by nextra */
+  font-feature-settings: 'rlig' 0, 'calt' 0, 'ss01' 0, 'ss06' 0 !important;
+}
+
+table {
+  display: table !important;
+  width: 100%;
+}
+
+.scale:hover {
+  transform: scale(1.1);
+}
+
+/* override button-primary styling nextra */
+button.c-hKssGC-hYGuEl-variant-primary,
+[type='button'].c-drjVIW-hYGuEl-variant-primary,
+[type='button'].c-hKssGC-hYGuEl-variant-primary,
+[type='reset'].c-hKssGC-hYGuEl-variant-primary,
+[type='submit'].c-hKssGC-hYGuEl-variant-primary {
+  background: var(--colors-cdgBlue);
+  color: var(--colors-whiteText);
+  border-color: var(--colors-cdgBlue);
+}
+
+.c-fPJmJH-iStByz-isDisabled-true {
+  color: #a19f9d;
+  cursor: not-allowed;
+  & input {
+    cursor: not-allowed;
+  }
+}
+
+.sample-layout {
+  border: 1px solid var(--colors-divider);
+  padding: 4px;
+  gap: 4px;
+}

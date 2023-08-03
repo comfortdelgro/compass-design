@@ -1,0 +1,145 @@
+import {Callout} from 'nextra-theme-docs'
+import styles from '../../styles/Home.module.css'
+import BugIcon from '@comfortdelgro/compass-icons/react/bug'
+import Textarea from '@comfortdelgro/react-compass/textarea'
+
+# Text areas
+
+Progress indicators commonly known as spinners, express an unspecified wait time or display the length of a process.
+
+<Callout>
+  Check out our [ladle](/ladle?story=textarea--variants) for more info on this
+  component.
+</Callout>
+
+---
+
+### Import:
+
+```js
+import {Textarea} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import Textarea from '@comfortdelgro/react-compass/textarea'
+```
+
+---
+
+### Basic text areas:
+
+<section className={styles.textAreaShowcaseContainer}>
+  <Textarea placeholder='Enter your message' />
+  <Textarea label='Text Label' placeholder='Enter your message' isDisabled/>
+  <Textarea
+    label={
+      <>
+        Text Label <BugIcon />
+      </>
+    }
+    placeholder='Enter your message'
+    value='Lorem ipsum dolor sit amet.'
+  />
+
+  <Textarea
+    label='Text Label'
+    placeholder='Enter your message'
+    wordCount
+    value='Lorem ipsum dolor sit amet.'
+  />
+  <Textarea
+    label='Text Label'
+    placeholder='Enter your message'
+    wordCount
+    maxLength={50}
+    value={'Lorem ipsum dolor sit amet.'}
+    onChange={() => {}}
+  />
+  <Textarea
+    label='Text Label'
+    placeholder='Enter your message'
+    wordCount
+    maxLength={50}
+    isErrored
+  />
+</section>
+
+```js
+  <Textarea placeholder='Enter your message' />
+  <Textarea label='Text Label' placeholder='Enter your message' isDisabled/>
+  <Textarea
+    label='Text Label'
+    placeholder='Enter your message'
+    wordCount
+    value='Lorem ipsum dolor sit amet.'
+  />
+  <Textarea
+    label='Text Label'
+    placeholder='Enter your message'
+    wordCount
+    maxLength={50}
+    value={'Lorem ipsum dolor sit amet.'}
+    onChange={() => {}}
+  />
+  <Textarea
+    label='Text Label'
+    placeholder='Enter your message'
+    wordCount
+    maxLength={50}
+    isErrored
+  />
+```
+
+---
+
+### Custom styling:
+
+You can style React Compass's components with the css prop. <br/>
+With css prop, you can basically do anything that css can do.
+
+<section className={styles.avatarShowcaseContainer}>
+  <Textarea
+    label='Text Label'
+    placeholder='Enter your message'
+    wordCount
+    maxLength={50}
+    isErrored
+    css={{height: '10em', width: '50em'}}
+  />
+</section>
+
+```js
+<Textarea
+  label='Text Label'
+  placeholder='Enter your message'
+  wordCount
+  maxLength={50}
+  isErrored
+  css={{height: '10em', width: '50em'}}
+/>
+```
+
+---
+
+### Props:
+
+| Name          | Type               | Default | Description                              |
+| :------------ | :----------------- | :------ | :--------------------------------------- |
+| `placeholder` | `string` \| `null` | `null`  | `Placeholder of the text field`          |
+| `label`       | `ReactNode`        | `null`  | `Label of the text field`                |
+| `isErrored`   | `true` \| `false`  | `false` | `Throw error when input value is wrong`  |
+| `value`       | `string`           | —       | `Input value`                            |
+| `isDisabled`  | `false`\| `true`   | `false` | `Disable the text field when true`       |
+| `css `        | `CSS`              | —       |                                          |
+| `wordCount`   | `false`\| `true`   | `false` | `Show word count of the input when true` |
+| `maxLength`   | `number`           | —       | `Limit length of the input`              |
+| `onChange`    | `function`         | —       |                                          |
+
+---
+
+<Callout>
+  Check out our [ladle](/ladle?story=textarea--variants) for more info on this
+  component.
+</Callout>

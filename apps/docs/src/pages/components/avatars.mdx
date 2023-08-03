@@ -1,0 +1,271 @@
+import {Callout} from 'nextra-theme-docs'
+import styles from '../../styles/Home.module.css'
+import Avatar from '@comfortdelgro/react-compass/avatar'
+import BugIcon from '@comfortdelgro/compass-icons/react/bug'
+
+# Avatar
+
+Avatars can be used in everything including a person's profile picture, dialog menu, ext.
+
+<Callout>
+  You can see how this component is implemented on
+  [ladle](https://comfortdelgro.github.io/compass-design/ladle/?story=avatar--grouped)
+</Callout>
+---
+
+### Import:
+
+```js
+import {Avatar} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import Avatar from '@comfortdelgro/react-compass/avatar'
+```
+
+---
+
+### Image avatars:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Avatar
+    label='Albert Einstein'
+    image='https://i.pravatar.cc/150?img=32'
+    size='lg'
+  />
+  <Avatar
+    label='Albert Einstein'
+    image='https://i.pravatar.cc/150?img=31'
+    size='lg'
+  />
+  <Avatar
+    label='Albert Einstein'
+    image='https://i.pravatar.cc/150?img=60'
+    size='lg'
+  />
+</section>
+
+```js
+<Avatar
+  label='Albert Einstein'
+  image='https://i.pravatar.cc/150?img=32'
+  size='lg'
+/>
+
+<Avatar
+  label='Albert Einstein'
+  image='https://i.pravatar.cc/150?img=31'
+  size='lg'
+/>
+
+<Avatar
+  label='Albert Einstein'
+  image='https://i.pravatar.cc/150?img=60'
+  size='lg'
+/>
+```
+
+---
+
+### Letter avatars:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Avatar label='Albert Einstein' size='lg' />
+  <Avatar label='Adam Levine' size='lg' />
+  <Avatar label='Dwane Johnson' size='lg' />
+</section>
+
+```js
+<Avatar label='Albert Einstein' size='lg' />
+
+<Avatar label='Adam Levine' size='lg' />
+
+<Avatar label='Dwane Johnson' size='lg' />
+```
+
+---
+
+### Sizes:
+
+<section className={styles.avatarShowcaseContainer}>
+<Avatar
+  label='Albert Einstein'
+  image='https://i.pravatar.cc/150?img=32'
+  size='xs'
+/>
+
+<Avatar
+  label='Albert Einstein'
+  image='https://i.pravatar.cc/150?img=31'
+  size='sm'
+/>
+
+<Avatar
+  label='Albert Einstein'
+  image='https://i.pravatar.cc/150?img=60'
+  size='md'
+/>
+<Avatar
+  label='Albert Einstein'
+  image='https://i.pravatar.cc/150?u=a042581f4e29026704d'
+  size='lg'
+/>
+</section>
+
+```js
+<Avatar
+  label='Albert Einstein'
+  image='https://i.pravatar.cc/150?img=32'
+  size='xs'
+/>
+
+<Avatar
+  label='Albert Einstein'
+  image='https://i.pravatar.cc/150?img=31'
+  size='sm'
+/>
+
+<Avatar
+  label='Albert Einstein'
+  image='https://i.pravatar.cc/150?img=60'
+  size='md'
+/>
+<Avatar
+  label='Albert Einstein'
+  image='https://i.pravatar.cc/150?u=a042581f4e29026704d'
+  size='lg'
+/>
+
+```
+
+---
+
+### Icon avatars:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Avatar label='Albert Einstein' icon={<BugIcon />} size='lg' />
+</section>
+
+```js
+<Avatar label='Albert Einstein' icon={<BugIcon />} size='lg' />
+```
+
+---
+
+### Grouped
+
+<section className={styles.avatarShowcaseContainer}>
+  <Avatar.Group display={3} size='lg'>
+    <Avatar
+      label='Albert Einstein'
+      image='https://i.pravatar.cc/150?u=a042581f4e29026704d'
+      size='lg'
+    />
+    <Avatar
+      label='Albert Einstein'
+      image='https://i.pravatar.cc/150?u=a0581f4e29d026704d'
+      size='lg'
+    />
+    <Avatar
+      label='Albert Einstein'
+      image='https://i.pravatar.cc/150?u=a042581f4e429026704d'
+      size='lg'
+    />
+    <Avatar
+      label='Albert Einstein'
+      image='https://i.pravatar.cc/150?u=a042581f4e42239026704d'
+      size='lg'
+    />
+    <Avatar
+      label='Albert Einstein'
+      image='https://i.pravatar.cc/150?u=a0425e81f4234e429026704d'
+      size='lg'
+    />
+  </Avatar.Group>
+</section>
+
+```js
+<Avatar.Group display={3}>
+  <Avatar
+    label='Albert Einstein'
+    image='https://i.pravatar.cc/150?u=a042581f4e29026704d'
+    size='lg'
+  />
+  <Avatar
+    label='Albert Einstein'
+    image='https://i.pravatar.cc/150?u=a0581f4e29d026704d'
+    size='lg'
+  />
+  <Avatar
+    label='Albert Einstein'
+    image='https://i.pravatar.cc/150?u=a042581f4e429026704d'
+    size='lg'
+  />
+  <Avatar
+    label='Albert Einstein'
+    image='https://i.pravatar.cc/150?u=a042581f4e42239026704d'
+    size='lg'
+  />
+  <Avatar
+    label='Albert Einstein'
+    image='https://i.pravatar.cc/150?u=a0425e81f4234e429026704d'
+    size='lg'
+  />
+</Avatar.Group>
+```
+
+---
+
+### Custom styling:
+
+You can style React Compass's components with the css prop. <br/>
+With css prop, you can basically do anything that css can do.
+
+<section className={styles.avatarShowcaseContainer}>
+  <Avatar
+    label='Albert Einstein'
+    image='https://i.pravatar.cc/150?u=a0425e81423429026704d'
+    size='lg'
+    css={{opacity: '0.8', '&:hover': {opacity: '0.5', cursor: 'pointer'}}}
+  />
+</section>
+
+```js
+<Avatar
+  label='Albert Einstein'
+  image='https://i.pravatar.cc/150?u=a0425e81423429026704d'
+  size='lg'
+  css={{opacity: '0.8', '&:hover': {opacity: '0.5', cursor: 'pointer'}}}
+/>
+```
+
+---
+
+### Props:
+
+#### `<Avatar/>` :
+
+| Name  | Type                         | Default | Description                                                                                          |
+| :---- | :--------------------------- | :------ | :--------------------------------------------------------------------------------------------------- |
+| label | `String`                     | —       | The label, used as fallback for image. The avatars would show the initials of the labels.            |
+| image | `String `                    | —       | Image of the avatars takes the highest priority. We pass the image's address as string to this prop. |
+| size  | `xs`\|`sm`\|`md`\|`lg`       | —       | Sizes of the avatars.                                                                                |
+| icon  | `ReactNode`\|`false`\| `true`| false   | The icon of the alerts. It'd disappear if the value is false.                                        |
+| css   | `CSS`                        | —       | The system prop that allows defining system overrides as well as additional CSS styles.              |
+
+#### `<Avatar.Group/>` :
+
+| Name     | Type                    | Default | Description                                                                             |
+| :------- | :---------------------- | :------ | :-------------------------------------------------------------------------------------- |
+| children | `ReactNode` \| `String` | —       | We pass our avatars as children props to Avatar.Group.                                  |
+| display  | `Number`                | —       | Display prop determines the number of avatar displayed.                                 |
+| css      | `CSS`                   | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
+
+---
+
+<Callout>
+  Check out our [ladle](/ladle?story=avatar--variants) for more info on this
+  component.
+</Callout>

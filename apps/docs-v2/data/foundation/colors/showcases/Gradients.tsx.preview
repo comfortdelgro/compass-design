@@ -1,0 +1,3 @@
+<ColorBox color={theme.colors.gradientOrange} gradient />
+<ColorBox color={theme.colors.gradientRainbow} gradient />
+<ColorBox color={theme.colors.gradientOrangeBlue} gradient />

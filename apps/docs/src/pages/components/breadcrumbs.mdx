@@ -1,0 +1,122 @@
+import {Callout} from 'nextra-theme-docs'
+import styles from '../../styles/Home.module.css'
+import BugIcon from '@comfortdelgro/compass-icons/react/bug'
+import Breadcrumbs from '@comfortdelgro/react-compass/breadcrumbs'
+import {
+  BasicBreadcrumb,
+  CustomDividerBreadcrumb,
+  CustomCSSBreadcrumb,
+} from '../../components/BreadcrumbList'
+
+# Breadcrumbs
+
+Breadcrumbs consist of a list of links that help a user visualize a page's location within the hierarchical structure of a website, and allow navigation up to any of its "ancestors".
+
+<Callout>
+  Check out our [ladle](/ladle?story=breadcrumbs--default) for more info on this
+  component.
+</Callout>
+
+---
+
+### Import:
+
+```js
+import {Breadcrumbs} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import Breadcrumbs from '@comfortdelgro/react-compass/breadcrumbs'
+```
+
+---
+
+### Basic:
+
+<section className={styles.avatarShowcaseContainer}>
+  <BasicBreadcrumb />
+</section>
+
+```js
+const isCurrent = (i: number) => {
+  if (window && window.location) return window.location.hash === `#${i}`
+  return false
+}
+
+;<Breadcrumbs isCurrent={isCurrent}>
+  <Breadcrumbs.Item href='#0'>Home</Breadcrumbs.Item>
+  <Breadcrumbs.Item href='#1'>Library</Breadcrumbs.Item>
+  <Breadcrumbs.Item href='#2' isDisabled>
+    Disabled
+  </Breadcrumbs.Item>
+  <Breadcrumbs.Item href='#3'>Data</Breadcrumbs.Item>
+</Breadcrumbs>
+```
+
+---
+
+### Colors :
+
+<section className={styles.avatarShowcaseContainer}>
+  <CustomDividerBreadcrumb />
+</section>
+
+```js
+const isCurrent = (i: number) => {
+  if (window && window.location) return window.location.hash === `#${i}`
+  return false
+}
+;<Breadcrumbs dividerIcon={<BugIcon />} isCurrent={isCurrent}>
+  <BreadcrumbItem href='#0'>Home</BreadcrumbItem>
+  <BreadcrumbItem href='#1'>Library</BreadcrumbItem>
+  <BreadcrumbItem href='#2'>Data</BreadcrumbItem>
+</Breadcrumbs>
+```
+
+---
+
+### Custom styling:
+
+You can style React Compass's components with the css prop. <br/>
+With css prop, you can basically do anything that css can do.
+
+<section className={styles.avatarShowcaseContainer}>
+  <CustomCSSBreadcrumb />
+</section>
+
+```js
+const isCurrent = (i: number) => {
+  if (window && window.location) return window.location.hash === `#${i}`
+  return false
+}
+
+;<Breadcrumbs isCurrent={isCurrent}>
+  <Breadcrumbs.Item href='#0' css={{'&:hover': {color: 'black'}}}>
+    Home
+  </Breadcrumbs.Item>
+  <Breadcrumbs.Item href='#1' css={{'&:hover': {color: 'black'}}}>
+    Library
+  </Breadcrumbs.Item>
+  <Breadcrumbs.Item href='#2' css={{'&:hover': {color: 'black'}}}>
+    Data
+  </Breadcrumbs.Item>
+</Breadcrumbs>
+```
+
+---
+
+### Props:
+
+| Name        | Type                         | Default | Description |
+| :---------- | :--------------------------- | :------ | :---------- |
+| isCurrent   | `(i:number) => boolean`      | false   |             |
+| dividerIcon | `ReactNode`\|`false`\| `true`| —       |             |
+
+---
+
+<Callout>
+  Check out our [ladle](/ladle?story=breadcrumbs--default) for more info on this
+  component.
+</Callout>
