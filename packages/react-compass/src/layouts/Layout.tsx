@@ -20,6 +20,7 @@ interface Props extends StyledComponentProps {
   direction?: 'row' | 'column'
   flex?: Number
   align?: LayoutAlignment
+  className?: string
 }
 
 export type LayoutProps = Props &
@@ -33,6 +34,7 @@ export const Layout = React.forwardRef<HTMLDivElement, LayoutProps>(
       direction = 'column',
       align,
       flex,
+      className,
       css = {},
       ...delegated
     } = props
@@ -42,7 +44,9 @@ export const Layout = React.forwardRef<HTMLDivElement, LayoutProps>(
         ref={layoutRef}
         css={css}
         {...delegated}
-        className={`cdg-layout ${direction} ${align ? ' ' + align : ''}`}
+        className={`cdg-layout ${direction} ${align ? ' ' + align : ''} ${
+          className ? ' ' + className : ''
+        }`}
         style={flex ? {flex: flex.toString()} : {}}
       >
         {children}
