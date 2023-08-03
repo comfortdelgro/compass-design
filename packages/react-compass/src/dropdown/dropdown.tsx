@@ -7,7 +7,7 @@ import React, {
   useState,
 } from 'react'
 import Popover from '../popover'
-import {StyledComponentProps} from '../utils/stitches.types'
+import {CSS, StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
   DropdownContext,
@@ -68,6 +68,7 @@ interface Props extends StyledComponentProps {
   noDataMessage?: string
   isCloseOnSelect?: boolean
   isLoadingMore?: boolean
+  popoverCSS?: CSS
   onBlur?: (event: React.FocusEvent) => void
   onFocus?: () => void
   onLoadMore?: () => void
@@ -104,6 +105,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   const {
     id = `cdg-element-${Math.random().toString(36).substring(2)}`,
     css = {},
+    popoverCSS = {},
     children,
     type = 'select',
     icon = <Icon />,
@@ -713,14 +715,12 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           isOpen={open}
           anchor={contentElement}
           css={{width: '100%'}}
-          direction='bottom'
+          direction='bottom-left'
           onClose={handleClosePopover}
           onPositionedChange={handlePositionedChange}
         >
           <StyledPopover
-            style={{
-              width: triggeElWidth,
-            }}
+            css={{...popoverCSS, width: popoverCSS.width ?? triggeElWidth}}
           >
             <DropdownList
               searchValue={searchValue}
