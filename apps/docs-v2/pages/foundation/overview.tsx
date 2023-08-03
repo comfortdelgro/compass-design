@@ -1,53 +1,62 @@
 import {Box, Grid, Typography} from '@comfortdelgro/react-compass'
 import DocsAppCustomLayout from 'components/layouts/DocsAppCustomLayout'
+import { usePageProps } from 'contexts/PageProps'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useEffect } from 'react'
+
+const introduces = [
+  {
+    title: 'Colors',
+    description:
+      'It distinguishes our brand and it creates consistent experience.',
+    image: '/static/images/overview/intro-1.png',
+    url: '/foundation/color',
+  },
+  {
+    title: 'Elevations',
+    description:
+      'Elevations are layered surface that forms the foundation of UI.',
+    image: '/static/images/overview/intro-2.png',
+    url: '/foundation/color',
+  },
+  {
+    title: 'Iconography',
+    description:
+      'Icons are visual representation of commands or common actions.',
+    image: '/static/images/overview/intro-3.png',
+    url: '/foundation/iconography',
+  },
+  {
+    title: 'Typography',
+    description:
+      'It is our system of fonts. each font conveys the sentiment to assist.',
+    image: '/static/images/overview/intro-4.png',
+    url: '/foundation/typography',
+  },
+  {
+    title: 'Illustrations',
+    description: 'It help convey complex ideas in a simple way.',
+    image: '/static/images/overview/intro-5.png',
+    url: '/foundation/color',
+  },
+  {
+    title: 'Logo’s',
+    description:
+      'It distinguishes our brand and it creates consistent experience.',
+    image: '/static/images/overview/intro-6.png',
+    url: '/foundation/color',
+  },
+]
 
 export default function Page() {
-  const introduces = [
-    {
-      title: 'Colors',
-      description:
-        'It distinguishes our brand and it creates consistent experience.',
-      image: '/static/images/overview/intro-1.png',
-      url: '/getting-started/color',
-    },
-    {
-      title: 'Elevations',
-      description:
-        'Elevations are layered surface that forms the foundation of UI.',
-      image: '/static/images/overview/intro-2.png',
-      url: '/getting-started/color',
-    },
-    {
-      title: 'Iconography',
-      description:
-        'Icons are visual representation of commands or common actions.',
-      image: '/static/images/overview/intro-3.png',
-      url: '/getting-started/color',
-    },
-    {
-      title: 'Typography',
-      description:
-        'It is our system of fonts. each font conveys the sentiment to assist.',
-      image: '/static/images/overview/intro-4.png',
-      url: '/getting-started/color',
-    },
-    {
-      title: 'Illustrations',
-      description: 'It help convey complex ideas in a simple way.',
-      image: '/static/images/overview/intro-5.png',
-      url: '/getting-started/color',
-    },
-    {
-      title: 'Logo’s',
-      description:
-        'It distinguishes our brand and it creates consistent experience.',
-      image: '/static/images/overview/intro-6.png',
-      url: '/getting-started/color',
-    },
-  ]
+  const {setPageProps} = usePageProps()
 
+  // Overview not using any data of context, so clear it before loading
+  useEffect(() => {
+    setPageProps?.({})
+  }, [])
+  
   return (
     <DocsAppCustomLayout>
       <Box
@@ -109,8 +118,8 @@ export default function Page() {
       </Box>
       <Box css={{padding: '$5 $16', width: '100%'}}>
         <Grid spacing='sm' alignItems='center' style={{width: '100%'}}>
-          {introduces.map((introduce) => (
-            <Grid.Item xs={12} sm={6} md={4} lg={4} xl={4}>
+          {introduces.map((introduce, index) => (
+            <Grid.Item xs={12} sm={6} md={4} lg={4} xl={4} key={index}>
               <Link href={introduce.url} style={{textDecoration: 'none'}}>
                 <Box
                   css={{

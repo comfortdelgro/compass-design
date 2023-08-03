@@ -30,7 +30,7 @@ export default function Introduction() {
               description='Find installation guide and tooling tips'
               textLink='Get started'
               target={'_self'}
-              urlLink='./getting-started/overview/'
+              urlLink='./foundation/overview/'
               image='/static/images/home/develop.png'
             />
           </div>

@@ -12,7 +12,6 @@ export const routes: TSideNavItem[] = [
     title: 'Getting started',
     icon: faFile,
     children: [
-      {pathname: '/overview', title: 'Overview'},
       {pathname: '/installation', title: 'Installation'},
       {pathname: '/usage', title: 'Usage'},
     ],
@@ -50,6 +49,7 @@ export const routes: TSideNavItem[] = [
     title: 'Foundation',
     icon: faHouse,
     children: [
+      {pathname: '/overview', title: 'Overview'},
       {pathname: '/colors', title: 'Colors'},
       {pathname: '/typography', title: 'Typography'},
       {pathname: '/iconography', title: 'Iconography'},
