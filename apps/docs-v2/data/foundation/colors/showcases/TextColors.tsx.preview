@@ -1,0 +1,4 @@
+<ColorBox color={theme.colors.primaryText} />
+<ColorBox color={theme.colors.secondaryText} />
+<ColorBox color={theme.colors.disabledText} />
+<ColorBox color={theme.colors.whiteText} />

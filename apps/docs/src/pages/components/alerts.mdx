@@ -1,0 +1,170 @@
+import {Callout} from 'nextra-theme-docs'
+import Alert from '@comfortdelgro/react-compass/alert'
+import styles from '../../styles/Home.module.css'
+import BugIcon from '@comfortdelgro/compass-icons/react/bug'
+
+# Alerts
+
+Alerts provide short, timely, and relevant information for your users without interrupting their tasks.
+
+<Callout>
+  You can see how this component is implemented on
+  [ladle](https://comfortdelgro.github.io/compass-design/ladle/?story=alert--basic)
+</Callout>
+
+---
+
+### Import:
+
+```js
+import {Alert} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import Alert from '@comfortdelgro/react-compass/alert'
+```
+
+---
+
+### Basic alerts:
+
+<section className={styles.componentShowcaseContainer}>
+  <Alert color='info'>This is an info alert — check it out!</Alert>
+  <Alert color='success'>This is a sucess alert — check it out!</Alert>
+  <Alert color='danger'>This is a danger alert — check it out!</Alert>
+  <Alert color='warning'>This is a warning alert — check it out!</Alert>
+</section>
+
+```js
+<Alert color='info'> This is an info alert — check it out! </Alert>
+
+<Alert color='success'> This is a sucess alert — check it out! </Alert>
+
+<Alert color='danger'> This is a danger alert — check it out! </Alert>
+
+<Alert color='warning'> This is a warning alert — check it out! </Alert>
+```
+
+---
+
+### Dismissible:
+
+<section className={styles.componentShowcaseContainer}>
+  <Alert color='info' dismissible onDismiss={() => {}}>
+    This is an info alert — check it out!
+  </Alert>
+</section>
+
+```js
+<Alert color='info' dismissible onDismiss={() => {}}>
+  This is an info alert — check it out!
+</Alert>
+```
+
+---
+
+### Transition:
+
+You can use a transition component such as `AnimatePresence` and `motion` to transition the appearance of the alert.
+
+Click [ladle](/ladle?story=alert--dismissible) to see this in action.
+
+```tsx
+const MotionAlert = motion(Alert)
+
+export const Dismissible: React.FC = () => {
+  const [alerts, setAlerts] = useState([
+    {color: 'info' as const, key: 'info'},
+    {color: 'success' as const, key: 'success'},
+    {color: 'danger' as const, key: 'danger'},
+  ])
+
+  const removeAlert = (key: string) =>
+    setAlerts((alerts) => alerts.filter((alert) => alert.key !== key))
+
+  return (
+    <Column>
+      <AnimatePresence mode='popLayout'>
+        {alerts.map((alert) => (
+          <MotionAlert
+            key={alert.key}
+            color={alert.color}
+            dismissible
+            onDismiss={() => removeAlert(alert.key)}
+            // motion
+            layout
+            animate={{x: 0, opacity: 1}}
+            exit={{x: -20, opacity: 0}}
+            transition={{duration: 0.2}}
+          >
+            <AlertContent />
+          </MotionAlert>
+        ))}
+      </AnimatePresence>
+    </Column>
+  )
+}
+```
+
+---
+
+### Icons:
+
+The `icon` prop allows you to add an icon to the beginning of the alert component. This will override the default icon for the specified severity.
+
+<section className={styles.componentShowcaseContainer}>
+  <Alert color='success' icon={<BugIcon />}>
+    This is a success alert — check it out!
+  </Alert>
+</section>
+```js
+<Alert color='success' icon={<BugIcon />}>
+  This is a success alert — check it out!
+</Alert>
+```
+
+---
+
+### Custom styling:
+
+You can style React Compass's components with the css prop. <br/>
+With css prop, you can basically do anything that css can do.
+
+<section className={styles.componentShowcaseContainer}>
+  <Alert
+    color='success'
+    css={{backgroundColor: 'orange', '&:hover': {backgroundColor: 'red'}}}
+  >
+    This is a success alert — check it out!
+  </Alert>
+</section>
+
+```js
+<Alert
+  color='success'
+  css={{backgroundColor: 'orange', '&:hover': {backgroundColor: 'red'}}}
+>
+  This is a success alert — check it out!
+</Alert>
+```
+
+---
+
+### Props:
+
+| Name        | Type                   | Default | Description                                                                             |
+| :---------- | :--------------------- | :------ | :-------------------------------------------------------------------------------------- |
+| children    | `ReactNode` \|`String` | —       | The content to display in the alerts.                                                   |
+| dismissible | `boolean`              | `false` | If true, show the close icon.                                                           |
+| onDismiss   | `function`             | —       | Callback to close the alerts.                                                           |
+| icon        | `ReactNode` \| `false` | —       | The icon of the alerts. It'd disappear if the value is false.                           |
+| css         | `CSS`                  | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
+
+---
+
+<Callout>
+  Check out our [ladle](/ladle?story=alert--variants) for more info on this
+  component.
+</Callout>

@@ -1,0 +1,139 @@
+import {Callout} from 'nextra-theme-docs'
+import styles from '../../styles/Home.module.css'
+import Toggle from '@comfortdelgro/react-compass/toggle'
+
+# Toggle
+
+Provides the behavior and accessibility implementation for a toggle component. A toggle is similar to a checkbox, but represents on/off values as opposed to selection.
+
+<Callout>
+  Check out our [ladle](/ladle?story=toggle--variants) for more info on this
+  component.
+</Callout>
+---
+
+### Import:
+
+```js
+import {Toggle} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import Toggle from '@comfortdelgro/react-compass/toggle'
+```
+
+---
+
+### Controlled:
+
+```js
+  const [value, setValue] = React.useState<boolean>(true)
+  <Toggle size='lg' isSelected={value} onChange={setValue} />
+```
+
+<section className={styles.avatarShowcaseContainer}>
+  <Toggle size='lg' defaultSelected={true} />
+</section>
+
+---
+
+### UnControlled:
+
+```js
+  <Toggle size='lg' defaultSelected={true} />
+```
+
+<section className={styles.avatarShowcaseContainer}>
+  <Toggle size='lg' defaultSelected={true} />
+</section>
+
+---
+
+### Disabled:
+
+```js
+<Toggle size='lg' isDisabled />
+```
+
+<section className={styles.avatarShowcaseContainer}>
+  <Toggle size='lg' isDisabled />
+</section>
+
+---
+
+### ReadOnly:
+
+```js
+<Toggle size='lg' isReadOnly />
+```
+
+<section className={styles.avatarShowcaseContainer}>
+  <Toggle size='lg' isReadOnly />
+</section>
+
+---
+
+### Size:
+
+Small as default
+
+```js
+<Toggle size='sm' />
+```
+
+<section className={styles.avatarShowcaseContainer}>
+  <Toggle size='sm' />
+</section>
+
+Large
+
+```js
+<Toggle size='lg' />
+```
+<section className={styles.avatarShowcaseContainer}>
+  <Toggle size='lg' />
+</section>
+---
+
+### Custom styling:
+
+You can style React Compass's components with the css prop. <br/>
+With css prop, you can basically do anything that css can do.
+
+<section className={styles.avatarShowcaseContainer}>
+  <Toggle css={{'&:hover': {background: 'red'}}} />
+</section>
+```js
+<Toggle css={{'&:hover': {background: 'red'}}} />
+``` 
+
+---
+
+### Props:
+
+| Name            | Type                            | Default | Description                                                                             |
+| :-------------- | :------------------------------ | :------ | :-------------------------------------------------------------------------------------- |
+| defaultSelected | `boolean`                       | `false` | Whether the Toggle should be selected (uncontrolled).                                   |
+| isSelected      | `boolean`                       | `false` | Whether the Toggle should be selected (controlled).                                     |
+| onChange        | `(isSelected: boolean) => void` | -       | Handler that is called when the Toggle's selection state changes.                       |
+| value           | `string`                        | -       | The value of the input element, used when submitting an HTML form. See MDN.             |
+| name            | `string`                        | -       | The name of the input element, used when submitting an HTML form. See MDN.              |
+| isDisabled      | `boolean`                       | `false` | Whether the input is disabled.                                                          |
+| isReadOnly      | `boolean`                       | `false` | Whether the input can be selected but not changed by the user.                          |
+| autoFocus       | `boolean`                       | `false` | Whether the element should receive focus on render.                                     |
+| onFocus         | `(e: FocusEvent) => void`       | -       | Handler that is called when the element receives focus.                                 |
+| onBlur          | `(e: FocusEvent) => void`       | -       | Handler that is called when the element loses focus.                                    |
+| onFocusChange   | `(isFocused: boolean) => void`  | -       | Handler that is called when the element's focus status changes.                         |
+| onKeyDown       | `(e: KeyboardEvent) => void`    | -       | Handler that is called when a key is pressed.                                           |
+| onKeyUp         | `(e: KeyboardEvent) => void`    | -       | Handler that is called when a key is released.                                          |
+| onFocus         | `(e: FocusEvent) => void`       | -       | Handler that is called when the element receives focus.                                 |
+| css             | `CSS`                           | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
+
+---
+
+<Callout>
+  Check out our [ladle](/ladle?story=toggle--variants) for more info on this
+  component.
+</Callout>

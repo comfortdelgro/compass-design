@@ -1,0 +1,320 @@
+import {Callout} from 'nextra-theme-docs'
+import styles from '../../styles/Home.module.css'
+import Navbar from '@comfortdelgro/react-compass/navbar'
+import Button from '@comfortdelgro/react-compass/button'
+import Avatar from '@comfortdelgro/react-compass/avatar'
+import BugIcon from '@comfortdelgro/compass-icons/react/bug'
+import QuestionIcon from '@comfortdelgro/compass-icons/react/outlined/question-outlined'
+import NotificationIcon from '@comfortdelgro/compass-icons/react/filled/notification-filled'
+import OrgChatIcon from '@comfortdelgro/compass-icons/react/duotone/org-chart-duotone'
+import MenuIcon from '@comfortdelgro/compass-icons/react/menu'
+import Workbench from '@comfortdelgro/compass-icons/react/colorful/workbench'
+
+# Navbar
+
+The Navbar displays horizontally information and navigation relating to the current screen.
+
+<Callout>
+  Check out our [ladle](/ladle?story=navbar--variants) for more info on this
+  component.
+</Callout>
+
+---
+
+### Import
+
+```js
+import {Navbar} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import Navbar from '@comfortdelgro/react-compass/navbar'
+```
+
+---
+
+### Brand
+
+Navbar Brand renders heading text that adapt to the current [color](#colors) of the Navbar
+
+<section className={styles.componentShowcaseContainer}>
+  <Navbar>
+    <Navbar.Brand>Workbench Title</Navbar.Brand>
+  </Navbar>
+</section>
+
+```js
+<Navbar>
+  <Navbar.Brand>Workbench Title</Navbar.Brand>
+</Navbar>
+```
+
+### Links
+
+Navbar Links renders buttons or links that help user navigate better
+
+<section className={styles.componentShowcaseContainer}>
+  <Navbar>
+    <Navbar.Brand>Workbench Title</Navbar.Brand>
+    <Navbar.Links>
+      <Button href='#'>Home</Button>
+      <Button href='#'>Services</Button>
+      <Button href='#'>Products</Button>
+    </Navbar.Links>
+  </Navbar>
+</section>
+
+```js
+<Navbar>
+  <Navbar.Brand>Workbench Title</Navbar.Brand>
+  <Navbar.Links>
+    <Button href='#'>Home</Button>
+    <Button href='#'>Services</Button>
+    <Button href='#'>Products</Button>
+  </Navbar.Links>
+</Navbar>
+```
+
+### Separator
+
+Navbar Separator helps separate the left side and the right side of the navbar
+
+<section className={styles.componentShowcaseContainer}>
+  <Navbar>
+    <Navbar.Brand>Workbench Title</Navbar.Brand>
+    <Navbar.Links>
+      <Button href='#'>Home</Button>
+      <Button href='#'>Services</Button>
+      <Button href='#'>Products</Button>
+    </Navbar.Links>
+    <Navbar.Separator></Navbar.Separator>
+    <Navbar.Links>
+      <Button href='#'>Home</Button>
+    </Navbar.Links>
+  </Navbar>
+</section>
+
+```js
+<Navbar>
+  <Navbar.Brand>Workbench Title</Navbar.Brand>
+  <Navbar.Links>
+    <Button href='#'>Home</Button>
+    <Button href='#'>Services</Button>
+    <Button href='#'>Products</Button>
+  </Navbar.Links>
+  <Navbar.Separator></Navbar.Separator>
+  <Navbar.Links>
+    <Button href='#'>Home</Button>
+  </Navbar.Links>
+</Navbar>
+```
+
+### Actions
+
+Navbar Actions helps organize action buttons. The prop `alternativeElement` provides the alternate action button when the screen size is small (less than 768px)
+
+<section className={styles.componentShowcaseContainer}>
+  <Navbar>
+    <Navbar.Brand>Workbench Title</Navbar.Brand>
+    <Navbar.Links>
+      <Button href='#'>Home</Button>
+      <Button href='#'>Services</Button>
+      <Button href='#'>Products</Button>
+    </Navbar.Links>
+    <Navbar.Separator></Navbar.Separator>
+    <Navbar.Actions alternativeElement={<MenuIcon color='white' />}>
+      <QuestionIcon color='white'></QuestionIcon>
+      <NotificationIcon color='white'></NotificationIcon>
+      <OrgChatIcon color='white'></OrgChatIcon>
+      <Avatar label='Avatar' size='xs' />
+    </Navbar.Actions>
+  </Navbar>
+</section>
+
+```js
+<Navbar>
+  <Navbar.Brand>Workbench Title</Navbar.Brand>
+  <Navbar.Links>
+    <Button href='#'>Home</Button>
+    <Button href='#'>Services</Button>
+    <Button href='#'>Products</Button>
+  </Navbar.Links>
+  <Navbar.Separator></Navbar.Separator>
+  <Navbar.Actions alternativeElement={<MenuIcon color='white' />}>
+    <QuestionIcon color='white'></QuestionIcon>
+    <NotificationIcon color='white'></NotificationIcon>
+    <OrgChatIcon color='white'></OrgChatIcon>
+    <Avatar label='Avatar' size='xs' />
+  </Navbar.Actions>
+</Navbar>
+```
+
+### Variants
+
+#### Portal Version
+
+<section className={styles.componentShowcaseContainer}>
+  <Navbar variant='portal'>
+    <Avatar size='sm' label='Avatar' />
+    <Navbar.Links>
+      <Button href='#'>Home</Button>
+      <Button href='#'>Services</Button>
+      <Button href='#'>Products</Button>
+    </Navbar.Links>
+  </Navbar>
+</section>
+
+```js
+<Navbar variant='portal'>
+  <Avatar size='sm' label='Avatar' />
+  <Navbar.Links>
+    <Button href='#'>Home</Button>
+    <Button href='#'>Services</Button>
+    <Button href='#'>Products</Button>
+  </Navbar.Links>
+</Navbar>
+```
+
+#### Website Version
+
+<section className={styles.componentShowcaseContainer}>
+  <Navbar variant='website' color='white'>
+    <Workbench width={'40px'} height={'40px'} />
+    <Navbar.Links>
+      <Button href='#' variant='ghost'>
+        Home
+      </Button>
+      <Button href='#' variant='ghost'>
+        Services
+      </Button>
+      <Button href='#' variant='ghost'>
+        Products
+      </Button>
+    </Navbar.Links>
+  </Navbar>
+</section>
+
+```js
+<Navbar variant='website' color='white'>
+  <Avatar size='lg' label='asd' />
+  <Navbar.Links>
+    <Button href='#'>Home</Button>
+    <Button href='#'>Services</Button>
+    <Button href='#'>Products</Button>
+  </Navbar.Links>
+</Navbar>
+```
+
+### Colors
+
+#### Blue Color Version
+
+<section className={styles.componentShowcaseContainer}>
+  <Navbar color='blue'>
+    <Avatar size='sm' label='asd' />
+    <Navbar.Brand>Workbench Title</Navbar.Brand>
+    <Navbar.Links>
+      <Button href='#'>Home</Button>
+      <Button href='#'>Services</Button>
+      <Button href='#'>Products</Button>
+    </Navbar.Links>
+  </Navbar>
+</section>
+
+```js
+<Navbar color='blue'>
+  <Avatar size='sm' label='asd' />
+  <Navbar.Brand>Workbench Title</Navbar.Brand>
+  <Navbar.Links>
+    <Button href='#'>Home</Button>
+    <Button href='#'>Services</Button>
+    <Button href='#'>Products</Button>
+  </Navbar.Links>
+</Navbar>
+```
+
+#### White Color Version
+
+<section className={styles.componentShowcaseContainer}>
+  <Navbar color='white'>
+    <Avatar size='sm' label='asd' />
+    <Navbar.Brand>Workbench Title</Navbar.Brand>
+    <Navbar.Links>
+      <Button href='#' variant='ghost'>
+        Home
+      </Button>
+      <Button href='#' variant='ghost'>
+        Services
+      </Button>
+      <Button href='#' variant='ghost'>
+        Products
+      </Button>
+    </Navbar.Links>
+  </Navbar>
+</section>
+
+```js
+<Navbar color='white'>
+  <Avatar size='sm' label='asd' />
+  <Navbar.Brand>Workbench Title</Navbar.Brand>
+  <Navbar.Links>
+    <Button href='#' variant='ghost'>
+      Home
+    </Button>
+    <Button href='#' variant='ghost'>
+      Services
+    </Button>
+    <Button href='#' variant='ghost'>
+      Products
+    </Button>
+  </Navbar.Links>
+</Navbar>
+```
+
+### Props
+
+#### Navbar
+
+| Name     | Type                  | Default | Description |
+| :------- | :-------------------- | :------ | :---------- |
+| children | `React.ReactNode`     | —       |             |
+| color    | `white` \| `blue`     | —       |             |
+| variant  | `portal` \| `website` | —       |             |
+| css      | `CSS`                 | —       |             |
+
+#### Navbar.Brand
+
+| Name           | Type              | Default | Description                                                   |
+| :------------- | :---------------- | :------ | :------------------------------------------------------------ |
+| children       | `React.ReactNode` | —       |                                                               |
+| hiddenOnMobile | `boolean`         | —       | Brand name will be hidden when screen is resize to small size |
+| css            | `CSS`             | —       |                                                               |
+
+#### Navbar.Links
+
+| Name     | Type              | Default | Description |
+| :------- | :---------------- | :------ | :---------- |
+| children | `React.ReactNode` | —       |             |
+| css      | `CSS`             | —       |             |
+
+#### Navbar.Separator
+
+| Name     | Type              | Default | Description |
+| :------- | :---------------- | :------ | :---------- |
+| children | `React.ReactNode` | —       |             |
+| css      | `CSS`             | —       |             |
+
+#### Navbar.Actions
+
+| Name               | Type              | Default | Description                                                         |
+| :----------------- | :---------------- | :------ | :------------------------------------------------------------------ |
+| children           | `React.ReactNode` | —       |                                                                     |
+| alternativeElement | `React.ReactNode` | —       | Alternative element to show when the screen is resize to small size |
+| css                | `CSS`             | —       |                                                                     |
+
+<Callout>
+  Check out our [ladle](/ladle?story=navbar--variants) for more info on this
+  component.
+</Callout>

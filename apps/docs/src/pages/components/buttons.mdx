@@ -1,0 +1,343 @@
+import {Callout} from 'nextra-theme-docs'
+import styles from '../../styles/Home.module.css'
+import {faThumbsUp, faVirus} from '@fortawesome/free-solid-svg-icons'
+import Button from '@comfortdelgro/react-compass/button'
+import Icon from '@comfortdelgro/react-compass/icon'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {SSRProvider} from '@comfortdelgro/react-compass'
+
+# Button
+
+Buttons allow users to take actions, and make choices, with a single tap.
+
+<Callout>
+  Check out our [ladle](/ladle?story=button--variants) for more info on this
+  component.
+</Callout>
+
+---
+
+### Import:
+
+```js
+import {Button} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import Button from '@comfortdelgro/react-compass/button'
+```
+
+---
+
+### Button Sizes:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Button className='c-hKssGC-hYGuEl-variant-primary' size='lg'>
+    Large
+  </Button>
+  <Button className='c-hKssGC-hYGuEl-variant-primary' size='md'>
+    Medium (Default)
+  </Button>
+  <Button className='c-hKssGC-hYGuEl-variant-primary' size='sm'>
+    Small
+  </Button>
+</section>
+
+```js
+<Button size='lg'>Large</Button>
+<Button size='md'>Medium (Default)</Button>
+<Button size='sm'>Small</Button>
+```
+
+---
+
+### Button with ripple effect:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Button className='c-hKssGC-hYGuEl-variant-primary' variant='primary' ripple>
+    Primary
+  </Button>
+  <Button variant='secondary' ripple>
+    Secondary
+  </Button>
+  <Button variant='danger' ripple>
+    Danger
+  </Button>
+  <Button variant='ghost' ripple>
+    Ghost
+  </Button>
+</section>
+
+```js
+<Button variant='primary' ripple>
+  Primary
+</Button>
+<Button variant='secondary' ripple>
+  Secondary
+</Button>
+<Button variant='danger' ripple>
+  Danger
+</Button>
+<Button variant='ghost' ripple>
+  Ghost
+</Button>
+```
+
+---
+
+### Button Variants:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Button className='c-hKssGC-hYGuEl-variant-primary' variant='primary'>
+    Primary
+  </Button>
+  <Button variant='secondary'>Secondary</Button>
+  <Button variant='danger'>Danger</Button>
+  <Button variant='ghost'>Ghost</Button>
+  <Button isDisabled>Disabled</Button>
+</section>
+```js
+<Button variant='primary'>Primary</Button>
+<Button variant='secondary'>Secondary</Button>
+<Button variant='danger'>Danger</Button>
+<Button variant='ghost'>Ghost</Button>
+<Button isDisabled>Disabled</Button>
+```
+
+---
+
+### Buttons with left icons :
+
+<section className={styles.avatarShowcaseContainer}>
+  <Button variant='secondary' leftIcon={<Icon icon={faThumbsUp} />}>
+    Secondary
+  </Button>
+  <Button variant='danger' leftIcon={<Icon icon={faThumbsUp} />}>
+    Danger
+  </Button>
+  <Button variant='ghost' leftIcon={<Icon icon={faThumbsUp} />}>
+    Ghost
+  </Button>
+</section>
+
+```js
+<Button variant='secondary' leftIcon={<Icon icon={faThumbsUp} />}>
+  Secondary
+</Button>
+<Button variant='danger' leftIcon={<Icon icon={faThumbsUp} />}>
+  Danger
+</Button>
+<Button variant='ghost' leftIcon={<Icon icon={faThumbsUp} />}>
+  Ghost
+</Button>
+```
+
+---
+
+### Buttons with right icons :
+
+<section className={styles.avatarShowcaseContainer}>
+  <Button variant='secondary' rightIcon={<Icon icon={faThumbsUp} />}>
+    Secondary
+  </Button>
+  <Button variant='danger' rightIcon={<Icon icon={faThumbsUp} />}>
+    Danger
+  </Button>
+  <Button variant='ghost' rightIcon={<Icon icon={faThumbsUp} />}>
+    Ghost
+  </Button>
+</section>
+
+```js
+<Button variant='secondary' rightIcon={<Icon icon={faThumbsUp} />}>
+  Secondary
+</Button>
+<Button variant='danger' rightIcon={<Icon icon={faThumbsUp} />}>
+  Danger
+</Button>
+<Button variant='ghost' rightIcon={<Icon icon={faThumbsUp} />}>
+  Ghost
+</Button>
+```
+
+---
+
+### Buttons with both left and right icons :
+
+<section className={styles.avatarShowcaseContainer}>
+  <Button
+    variant='secondary'
+    rightIcon={<Icon icon={faThumbsUp} />}
+    leftIcon={<Icon icon={faVirus} />}
+  >
+    Secondary
+  </Button>
+  <Button
+    variant='danger'
+    rightIcon={<Icon icon={faThumbsUp} />}
+    leftIcon={<Icon icon={faVirus} />}
+  >
+    Danger
+  </Button>
+  <Button
+    variant='ghost'
+    rightIcon={<Icon icon={faThumbsUp} />}
+    leftIcon={<Icon icon={faVirus} />}
+  >
+    Ghost
+  </Button>
+</section>
+
+```js
+<Button variant='secondary' rightIcon={<Icon icon={faThumbsUp} />} leftIcon={<Icon icon={faVirus} />}>
+  Secondary
+</Button>
+<Button variant='danger' rightIcon={<Icon icon={faThumbsUp} />} leftIcon={<Icon icon={faVirus} />}>
+  Danger
+</Button>
+<Button variant='ghost' rightIcon={<Icon icon={faThumbsUp} />} leftIcon={<Icon icon={faVirus} />}>
+  Ghost
+</Button>
+```
+
+---
+
+### Buttons with icons as content:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Button variant='secondary'>
+    <Icon icon={faVirus} />
+  </Button>
+  <Button variant='danger'>
+    <Icon icon={faVirus} />
+  </Button>
+  <Button variant='ghost'>
+    <Icon icon={faVirus} />
+  </Button>
+</section>
+
+```js
+import Icon from '@comfortdelgro/react-compass/icon'
+
+<Button variant='secondary'>
+  <Icon icon={faVirus} />
+</Button>
+<Button variant='danger'>
+  <Icon icon={faVirus} />
+</Button>
+<Button variant='ghost'>
+  <Icon icon={faVirus} />
+</Button>
+```
+
+---
+
+### Loading buttons :
+
+<section className={styles.avatarShowcaseContainer}>
+  <Button variant='secondary' loading>
+    Secondary
+  </Button>
+  <Button variant='danger' loading rightIcon={<Icon icon={faThumbsUp} />}>
+    Danger
+  </Button>
+  <Button variant='ghost' loading rightIcon={<Icon icon={faThumbsUp} />}>
+    Ghost
+  </Button>
+</section>
+
+```js
+<Button variant='secondary' loading>
+  Secondary
+</Button>
+<Button variant='danger' loading rightIcon={<Icon icon={faThumbsUp} />}>
+  Danger
+</Button>
+<Button variant='ghost' loading rightIcon={<Icon icon={faThumbsUp} />}>
+  Ghost
+</Button>
+```
+
+---
+
+### Custom styling:
+
+You can style React Compass's components with the css prop. <br/>
+With css prop, you can basically do anything that css can do.
+
+<section className={styles.avatarShowcaseContainer}>
+  <Button
+    variant='danger'
+    rightIcon={<Icon icon={faThumbsUp} />}
+    css={{'&:hover': {color: 'grey'}}}
+  >
+    Danger
+  </Button>
+</section>
+
+```js
+<Button
+  variant='danger'
+  rightIcon={<Icon icon={faThumbsUp} />}
+  css={{'&:hover': {color: 'grey'}}}
+>
+  Danger
+</Button>
+```
+
+### Act as a link:
+
+You can pass href props for button to make it become a link <br/>
+
+<section className={styles.avatarShowcaseContainer}>
+  <Button variant='primary' href='/#page'>
+    Navigate
+  </Button>
+  <Button variant='secondary' href='https://google.com' hrefExternal>
+    External Navigate
+  </Button>
+  <Button variant='danger' href='/#page' hrefTarget='_blank'>
+    Target Blank Navigate
+  </Button>
+  <Button variant='ghost' href='/#page'>
+    Navigate
+  </Button>
+</section>
+
+```tsx
+<Button variant='primary' href='/#page'>
+    Navigate
+  </Button>
+  <Button variant='secondary' href='https://google.com' hrefExternal>
+    External Navigate
+  </Button>
+  <Button variant='danger' href='/#page' hrefTarget='_blank'>
+     Target Blank Navigate
+  </Button>
+  <Button variant='ghost' href='/#page'>
+    Navigate
+  </Button>
+```
+
+---
+
+### Props:
+
+| Name       | Type                                            | Default | Description |
+| :--------- | :---------------------------------------------- | :------ | :---------- |
+| color      | `info` \| `success` \| `warning` \| `danger`    |         |             |
+| rightIcon  | `ReactNode`\|`false`\| `true`                   | —       |             |
+| leftIcon   | `ReactNode`\|`false`\| `true`                   |         |             |
+| variant    | `primary` \| `secondary` \| `danger` \| `ghost` |         |             |
+| css        | `CSS`                                           | —       |             |
+| isDisabled |                                                 |         |             |
+| loading    | `false`\| `true`                                |         |             |
+
+---
+
+<Callout>
+  Check out our [ladle](/ladle?story=button--variants) for more info on this
+  component.
+</Callout>

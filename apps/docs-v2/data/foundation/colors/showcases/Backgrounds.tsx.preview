@@ -1,0 +1,3 @@
+<ColorBox color={theme.colors.primaryBg} />
+<ColorBox color={theme.colors.secondaryBg} />
+<ColorBox color={theme.colors.darkerBg} />

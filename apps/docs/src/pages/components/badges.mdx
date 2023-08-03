@@ -1,0 +1,166 @@
+import {Callout} from 'nextra-theme-docs'
+import styles from '../../styles/Home.module.css'
+import Badge from '@comfortdelgro/react-compass/badge'
+import BugIcon from '@comfortdelgro/compass-icons/react/bug'
+
+# Badge
+
+Badges can be used to highlight important bits of information such as labels, notifications, data trends & status.
+
+<Callout>
+  You can see how this component is implemented on
+  [ladle](https://comfortdelgro.github.io/compass-design/ladle/?story=badge--basic)
+</Callout>
+---
+
+### Import:
+
+```js
+import {Badge} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import Badge from '@comfortdelgro/react-compass/badge'
+```
+
+---
+
+### Basic:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Badge label='Default' />
+</section>
+
+```js
+<Badge label='Default' />
+```
+
+---
+
+### Colors :
+
+<section className={styles.avatarShowcaseContainer}>
+  <Badge label='Info' color='info' />
+  <Badge label='Success' color='success' />
+  <Badge label='Danger' color='danger' />
+  <Badge label='Warning' color='warning' />
+</section>
+
+```js
+<Badge label='Info' color='info' />
+
+<Badge label='Success' color='success' />
+
+<Badge label='Danger' color='danger' />
+
+<Badge label='Warning' color='warning' />
+```
+
+---
+
+### Variants:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Badge label='Primary' color='danger' variant='primary' />
+  <Badge label='Secondary' color='danger' variant='secondary' />
+  <Badge label='Outline' color='danger' variant='outline' />
+</section>
+
+```js
+<Badge label='Primary' color='danger' variant='primary' />
+<Badge label='Secondary' color='danger' variant='secondary' />
+<Badge label='Outline' color='danger' variant='outline' />
+```
+
+---
+
+### Default icon:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Badge label='Primary' color='info' variant='primary' icon />
+  <Badge label='Success' color='success' variant='primary' icon />
+  <Badge label='Secondary' color='danger' variant='secondary' icon />
+  <Badge label='Outline' color='warning' variant='outline' icon />
+</section>
+
+```js
+<Badge label='Primary' color='info' variant='primary' icon />
+<Badge label='Success' color='success' variant='primary' icon />
+<Badge label='Secondary' color='danger' variant='secondary' icon />
+<Badge label='Outline' color='warning' variant='outline' icon />
+```
+
+---
+
+### Custom icon:
+
+<section className={styles.avatarShowcaseContainer}>
+  <Badge label='LGTM' color='success' variant='secondary' icon={<BugIcon />} />
+  <Badge
+    label='Practice Social Distancing'
+    color='danger'
+    variant='outline'
+    icon={<BugIcon />}
+  />
+</section>
+
+```js
+<Badge
+  label='LGTM'
+  color='success'
+  variant='secondary'
+  icon={<BugIcon />}
+/>
+<Badge
+  label='Practice Social Distancing'
+  color='danger'
+  variant='outline'
+  icon={<BugIcon />}
+/>
+```
+
+---
+
+### Custom styling:
+
+You can style React Compass's components with the css prop. <br/>
+With css prop, you can basically do anything that css can do.
+
+<section className={styles.avatarShowcaseContainer}>
+  <Badge
+    label='Outline'
+    color='warning'
+    variant='outline'
+    css={{color: 'purple', '&:hover': {backgroundColor: 'grey'}}}
+  />
+</section>
+
+```js
+<Badge
+  label='Outline'
+  color='warning'
+  variant='outline'
+  css={{color: 'purple', '&:hover': {backgroundColor: 'grey'}}}
+/>
+```
+
+---
+
+### Props:
+
+| Name    | Type                                         | Default | Description                                                                                                                       |
+| :------ | :------------------------------------------- | :------ | :-------------------------------------------------------------------------------------------------------------------------------- |
+| color   | `info` \| `success` \| `warning` \| `danger` | info    | These colors will determine the color of background of the badges.                                                                |
+| label   | `String `                                    | —       | Lable of the badges.                                                                                                              |
+| variant | `primary` \| `secondary` \| `outline`        | primary | Variants will determine the color of the badges' label, border and the darkness of its background .                               |
+| icon    | `ReactNode`\|`false`\| `true`                | false   | When false, no icon is shown in the badge. When true, the default icons are shown. And you can pass in custom icons to this prop. |
+| css     | `CSS`                                        | —       | The system prop that allows defining system overrides as well as additional CSS styles.                                           |
+
+---
+
+<Callout>
+  Check out our [ladle](/ladle?story=badge--variants) for more info on this
+  component.
+</Callout>

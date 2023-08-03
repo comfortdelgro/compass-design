@@ -1,0 +1,2192 @@
+import {Callout} from 'nextra-theme-docs'
+import styles from '../../styles/Home.module.css'
+import IconBox from 'components/IconBox'
+//Filled icons
+import AddressBookFilled from '@comfortdelgro/compass-icons/react/filled/address-book-filled'
+import ArrowDownFilled from '@comfortdelgro/compass-icons/react/filled/arrow-down-filled'
+import ArrowLeftFilled from '@comfortdelgro/compass-icons/react/filled/arrow-left-filled'
+import ArrowRightFilled from '@comfortdelgro/compass-icons/react/filled/arrow-right-filled'
+import ArrowUpFilled from '@comfortdelgro/compass-icons/react/filled/arrow-up-filled'
+import CalendarDaysFilled from '@comfortdelgro/compass-icons/react/filled/calendar-days-filled'
+import ClockFilled from '@comfortdelgro/compass-icons/react/filled/clock-filled'
+import CreditCardFilled from '@comfortdelgro/compass-icons/react/filled/credit-card-filled'
+import DuplicateImageFilled from '@comfortdelgro/compass-icons/react/filled/duplicate-image-filled'
+import ExclamationFilled from '@comfortdelgro/compass-icons/react/filled/exclamation-filled'
+import GroupAddFilled from '@comfortdelgro/compass-icons/react/filled/group-add-filled'
+import GroupSettingsFilled from '@comfortdelgro/compass-icons/react/filled/group-settings-filled'
+import HeartFilled from '@comfortdelgro/compass-icons/react/filled/heart-filled'
+import ImageFilled from '@comfortdelgro/compass-icons/react/filled/image-filled'
+import InfoFilled from '@comfortdelgro/compass-icons/react/filled/info-filled'
+import MailFilled from '@comfortdelgro/compass-icons/react/filled/mail-filled'
+import NotificationFilled from '@comfortdelgro/compass-icons/react/filled/notification-filled'
+import PencilFilled from '@comfortdelgro/compass-icons/react/filled/pencil-filled'
+import PersonFilled from '@comfortdelgro/compass-icons/react/filled/person-filled'
+import ProfileFilled from '@comfortdelgro/compass-icons/react/filled/profile-filled'
+import QuestionFilled from '@comfortdelgro/compass-icons/react/filled/question-filled'
+import StarFilled from '@comfortdelgro/compass-icons/react/filled/star-filled'
+import ThumbtackFilled from '@comfortdelgro/compass-icons/react/filled/thumbtack-filled'
+import TrashFilled from '@comfortdelgro/compass-icons/react/filled/trash-filled'
+import UserAddFilled from '@comfortdelgro/compass-icons/react/filled/user-add-filled'
+import WarningFilled from '@comfortdelgro/compass-icons/react/filled/warning-filled'
+//Outline icons
+import AddressBookOutlined from '@comfortdelgro/compass-icons/react/outlined/address-book-outlined'
+import ArrowDownOutlined from '@comfortdelgro/compass-icons/react/outlined/arrow-down-outlined'
+import ArrowLeftOutlined from '@comfortdelgro/compass-icons/react/outlined/arrow-left-outlined'
+import ArrowRightOutlined from '@comfortdelgro/compass-icons/react/outlined/arrow-right-outlined'
+import ArrowUpOutlined from '@comfortdelgro/compass-icons/react/outlined/arrow-up-outlined'
+import CalendarDaysOutlined from '@comfortdelgro/compass-icons/react/outlined/calendar-days-outlined'
+import ClockOutlined from '@comfortdelgro/compass-icons/react/outlined/clock-outlined'
+import CreditCardOutlined from '@comfortdelgro/compass-icons/react/outlined/credit-card-outlined'
+import DuplicateImageOutlined from '@comfortdelgro/compass-icons/react/outlined/duplicate-image-outlined'
+import ExclamationOutlined from '@comfortdelgro/compass-icons/react/outlined/exclamation-outlined'
+import GroupAddOutlined from '@comfortdelgro/compass-icons/react/outlined/group-add-outlined'
+import GroupSettingsOutlined from '@comfortdelgro/compass-icons/react/outlined/group-settings-outlined'
+import HeartOutlined from '@comfortdelgro/compass-icons/react/outlined/heart-outlined'
+import ImageOutlined from '@comfortdelgro/compass-icons/react/outlined/image-outlined'
+import InfoOutlined from '@comfortdelgro/compass-icons/react/outlined/info-outlined'
+import MailOutlined from '@comfortdelgro/compass-icons/react/outlined/mail-outlined'
+import NotificationOutlined from '@comfortdelgro/compass-icons/react/outlined/notification-outlined'
+import PencilOutlined from '@comfortdelgro/compass-icons/react/outlined/pencil-outlined'
+import PersonOutlined from '@comfortdelgro/compass-icons/react/outlined/person-outlined'
+import ProfileOutlined from '@comfortdelgro/compass-icons/react/outlined/profile-outlined'
+import QuestionOutlined from '@comfortdelgro/compass-icons/react/outlined/question-outlined'
+import StarOutlined from '@comfortdelgro/compass-icons/react/outlined/star-outlined'
+import ThumbtackOutlined from '@comfortdelgro/compass-icons/react/outlined/thumbtack-outlined'
+import TrashOutlined from '@comfortdelgro/compass-icons/react/outlined/trash-outlined'
+import UserAddOutlined from '@comfortdelgro/compass-icons/react/outlined/user-add-outlined'
+import UserGroupOutlined from '@comfortdelgro/compass-icons/react/outlined/user-group-outlined'
+import WarningOutlined from '@comfortdelgro/compass-icons/react/outlined/warning-outlined'
+//Duotone icons
+import BadgeDollarDuotone from '@comfortdelgro/compass-icons/react/duotone/badge-dollar-duotone'
+import CalendarDaysDuotone from '@comfortdelgro/compass-icons/react/duotone/calendar-days-duotone'
+import ChartLineUpDuotone from '@comfortdelgro/compass-icons/react/duotone/chart-line-up-duotone'
+import ChartPieDuotone from '@comfortdelgro/compass-icons/react/duotone/chart-pie-duotone'
+import EditDuotone from '@comfortdelgro/compass-icons/react/duotone/edit-duotone'
+import FlagDuotone from '@comfortdelgro/compass-icons/react/duotone/flag-duotone'
+import GearsDuotone from '@comfortdelgro/compass-icons/react/duotone/gears-duotone'
+import GridDuotone from '@comfortdelgro/compass-icons/react/duotone/grid-duotone'
+import NotificationDuotone from '@comfortdelgro/compass-icons/react/duotone/notification-duotone'
+import OrgChartDuotone from '@comfortdelgro/compass-icons/react/duotone/org-chart-duotone'
+import PasswordDuotone from '@comfortdelgro/compass-icons/react/duotone/password-duotone'
+import TrashDuotone from '@comfortdelgro/compass-icons/react/duotone/trash-duotone'
+import UserDuotone from '@comfortdelgro/compass-icons/react/duotone/user-duotone'
+//Colorful icons
+import ClubhouseColorful from '@comfortdelgro/compass-icons/react/colorful/clubhouse'
+import CompassColorful from '@comfortdelgro/compass-icons/react/colorful/compass'
+import CrownColorful from '@comfortdelgro/compass-icons/react/colorful/crown'
+import DiscordColorful from '@comfortdelgro/compass-icons/react/colorful/discord'
+import DoctypeColorful from '@comfortdelgro/compass-icons/react/colorful/doctype'
+import DribbbleColorful from '@comfortdelgro/compass-icons/react/colorful/dribbble'
+import FacebookColorful from '@comfortdelgro/compass-icons/react/colorful/facebook'
+import FigmaColorful from '@comfortdelgro/compass-icons/react/colorful/figma'
+import GoogleColorful from '@comfortdelgro/compass-icons/react/colorful/google'
+import LinkedinColorful from '@comfortdelgro/compass-icons/react/colorful/linkedin'
+import PinterestColorful from '@comfortdelgro/compass-icons/react/colorful/pinterest'
+import RedditColorful from '@comfortdelgro/compass-icons/react/colorful/reddit'
+import SignalColorful from '@comfortdelgro/compass-icons/react/colorful/signal'
+import SnapchatColorful from '@comfortdelgro/compass-icons/react/colorful/snapchat'
+import TelegramColorful from '@comfortdelgro/compass-icons/react/colorful/telegram'
+import TiktokColorful from '@comfortdelgro/compass-icons/react/colorful/tiktok'
+import TumblrColorful from '@comfortdelgro/compass-icons/react/colorful/tumblr'
+import TwitterColorful from '@comfortdelgro/compass-icons/react/colorful/twitter'
+import WorkbenchTextColorful from '@comfortdelgro/compass-icons/react/colorful/workbench-text'
+import WorkbenchColorful from '@comfortdelgro/compass-icons/react/colorful/workbench'
+import YoutubeColorful from '@comfortdelgro/compass-icons/react/colorful/youtube'
+import ZigBizSquareColorful from '@comfortdelgro/compass-icons/react/colorful/zig-biz-square'
+import ZigBizTsmColorful from '@comfortdelgro/compass-icons/react/colorful/zig-biz-tsm'
+import ZigBizWhiteColorful from '@comfortdelgro/compass-icons/react/colorful/zig-biz-white'
+import ZigBizColorful from '@comfortdelgro/compass-icons/react/colorful/zig-biz'
+//other icons
+import Activity from '@comfortdelgro/compass-icons/react/activity'
+import AlignCenter from '@comfortdelgro/compass-icons/react/align-center'
+import AlignJustify from '@comfortdelgro/compass-icons/react/align-justify'
+import AlignLeft from '@comfortdelgro/compass-icons/react/align-left'
+import AlignRight from '@comfortdelgro/compass-icons/react/align-right'
+import Angellist from '@comfortdelgro/compass-icons/react/angellist'
+import Apple from '@comfortdelgro/compass-icons/react/apple'
+import ArrowDown from '@comfortdelgro/compass-icons/react/arrow-down'
+import ArrowLeft from '@comfortdelgro/compass-icons/react/arrow-left'
+import ArrowRight from '@comfortdelgro/compass-icons/react/arrow-right'
+import ArrowUp from '@comfortdelgro/compass-icons/react/arrow-up'
+import Bid from '@comfortdelgro/compass-icons/react/bid'
+import Bold from '@comfortdelgro/compass-icons/react/bold'
+import Browser from '@comfortdelgro/compass-icons/react/browser'
+import Bug from '@comfortdelgro/compass-icons/react/bug'
+import Building from '@comfortdelgro/compass-icons/react/building'
+import Bus2 from '@comfortdelgro/compass-icons/react/bus-2'
+import BusAndCar from '@comfortdelgro/compass-icons/react/bus-and-car'
+import Bus from '@comfortdelgro/compass-icons/react/bus'
+import Calendar from '@comfortdelgro/compass-icons/react/calendar'
+import Cancelled from '@comfortdelgro/compass-icons/react/cancelled'
+import Capacity from '@comfortdelgro/compass-icons/react/capacity'
+import Car from '@comfortdelgro/compass-icons/react/car'
+import CaretDown from '@comfortdelgro/compass-icons/react/caret-down'
+import CaretLeft from '@comfortdelgro/compass-icons/react/caret-left'
+import CaretRight from '@comfortdelgro/compass-icons/react/caret-right'
+import CaretUp from '@comfortdelgro/compass-icons/react/caret-up'
+import Chart from '@comfortdelgro/compass-icons/react/chart'
+import Chat from '@comfortdelgro/compass-icons/react/chat'
+import Cities from '@comfortdelgro/compass-icons/react/cities'
+import ClapperboardPlay from '@comfortdelgro/compass-icons/react/clapperboard-play'
+import Classification from '@comfortdelgro/compass-icons/react/classification'
+import Clipboard from '@comfortdelgro/compass-icons/react/clipboard'
+import CloudUpload from '@comfortdelgro/compass-icons/react/cloud-upload'
+import Copy from '@comfortdelgro/compass-icons/react/copy'
+import CrossCircle from '@comfortdelgro/compass-icons/react/cross-circle'
+import Cross from '@comfortdelgro/compass-icons/react/cross'
+import CustomerService from '@comfortdelgro/compass-icons/react/customer-service'
+import Dashboard from '@comfortdelgro/compass-icons/react/dashboard'
+import Deleted from '@comfortdelgro/compass-icons/react/deleted'
+import Document from '@comfortdelgro/compass-icons/react/document'
+import Download from '@comfortdelgro/compass-icons/react/download'
+import Driver from '@comfortdelgro/compass-icons/react/driver'
+import Edit from '@comfortdelgro/compass-icons/react/edit'
+import Email from '@comfortdelgro/compass-icons/react/email'
+import Excel from '@comfortdelgro/compass-icons/react/excel'
+import Export from '@comfortdelgro/compass-icons/react/export'
+import EyeSlash from '@comfortdelgro/compass-icons/react/eye-slash'
+import EyeSolid from '@comfortdelgro/compass-icons/react/eye-solid'
+import FaceFrown from '@comfortdelgro/compass-icons/react/face-frown'
+import FaceLaugh from '@comfortdelgro/compass-icons/react/face-laugh'
+import FaceMeh from '@comfortdelgro/compass-icons/react/face-meh'
+import FaceSadTear from '@comfortdelgro/compass-icons/react/face-sad-tear'
+import FaceSmileHeart from '@comfortdelgro/compass-icons/react/face-smile-heart'
+import FaceSmile from '@comfortdelgro/compass-icons/react/face-smile'
+import FacebookCircular from '@comfortdelgro/compass-icons/react/facebook-circular'
+import FacebookSquare from '@comfortdelgro/compass-icons/react/facebook-square'
+import FileLaptop from '@comfortdelgro/compass-icons/react/file-laptop'
+import FilePen from '@comfortdelgro/compass-icons/react/file-pen'
+import FileSignature from '@comfortdelgro/compass-icons/react/file-signature'
+import File from '@comfortdelgro/compass-icons/react/file'
+import Fill from '@comfortdelgro/compass-icons/react/fill'
+import Filter from '@comfortdelgro/compass-icons/react/filter'
+import Flag from '@comfortdelgro/compass-icons/react/flag'
+import FolderOpen from '@comfortdelgro/compass-icons/react/folder-open'
+import Folder from '@comfortdelgro/compass-icons/react/folder'
+import FontColour from '@comfortdelgro/compass-icons/react/font-colour'
+import Font from '@comfortdelgro/compass-icons/react/font'
+import Gauge from '@comfortdelgro/compass-icons/react/gauge'
+import Gears from '@comfortdelgro/compass-icons/react/gears'
+import Github from '@comfortdelgro/compass-icons/react/github'
+import Globe from '@comfortdelgro/compass-icons/react/globe'
+import Google from '@comfortdelgro/compass-icons/react/google'
+import Grid from '@comfortdelgro/compass-icons/react/grid'
+import GripDots from '@comfortdelgro/compass-icons/react/grip-dots'
+import H from '@comfortdelgro/compass-icons/react/h'
+import H1 from '@comfortdelgro/compass-icons/react/h1'
+import H2 from '@comfortdelgro/compass-icons/react/h2'
+import H3 from '@comfortdelgro/compass-icons/react/h3'
+import H4 from '@comfortdelgro/compass-icons/react/h4'
+import H5 from '@comfortdelgro/compass-icons/react/h5'
+import H6 from '@comfortdelgro/compass-icons/react/h6'
+import HatWizard from '@comfortdelgro/compass-icons/react/hat-wizard'
+import Heading from '@comfortdelgro/compass-icons/react/heading'
+import HexagonXmark from '@comfortdelgro/compass-icons/react/hexagon-xmark'
+import Hide from '@comfortdelgro/compass-icons/react/hide'
+import Home from '@comfortdelgro/compass-icons/react/home'
+import HourglassClock from '@comfortdelgro/compass-icons/react/hourglass-clock'
+import InfoSquare from '@comfortdelgro/compass-icons/react/info-square'
+import Inspect from '@comfortdelgro/compass-icons/react/inspect'
+import Instagram from '@comfortdelgro/compass-icons/react/instagram'
+import Invoice from '@comfortdelgro/compass-icons/react/invoice'
+import Italic from '@comfortdelgro/compass-icons/react/italic'
+import Job2 from '@comfortdelgro/compass-icons/react/job-2'
+import Job from '@comfortdelgro/compass-icons/react/job'
+import Key from '@comfortdelgro/compass-icons/react/key'
+import Layers from '@comfortdelgro/compass-icons/react/layers'
+import LightbulbOn from '@comfortdelgro/compass-icons/react/lightbulb-on'
+import Link from '@comfortdelgro/compass-icons/react/link'
+import Linkedin from '@comfortdelgro/compass-icons/react/linkedin'
+import ListOl from '@comfortdelgro/compass-icons/react/list-ol'
+import ListUl from '@comfortdelgro/compass-icons/react/list-ul'
+import List from '@comfortdelgro/compass-icons/react/list'
+import Logout from '@comfortdelgro/compass-icons/react/logout'
+import LowVolume from '@comfortdelgro/compass-icons/react/low-volume'
+import Maintenance from '@comfortdelgro/compass-icons/react/maintenance'
+import MapMarked from '@comfortdelgro/compass-icons/react/map-marked'
+import MapMarker from '@comfortdelgro/compass-icons/react/map-marker'
+import Map from '@comfortdelgro/compass-icons/react/map'
+import Menu from '@comfortdelgro/compass-icons/react/menu'
+import MessageLines from '@comfortdelgro/compass-icons/react/message-lines'
+import Message from '@comfortdelgro/compass-icons/react/message'
+import MinusSquare from '@comfortdelgro/compass-icons/react/minus-square'
+import Minus from '@comfortdelgro/compass-icons/react/minus'
+import MoneyBill from '@comfortdelgro/compass-icons/react/money-bill'
+import MoneyCheckAlt from '@comfortdelgro/compass-icons/react/money-check-alt'
+import Money from '@comfortdelgro/compass-icons/react/money'
+import Mute from '@comfortdelgro/compass-icons/react/mute'
+import NotificationBadge from '@comfortdelgro/compass-icons/react/notification-badge'
+import NotificationOff from '@comfortdelgro/compass-icons/react/notification-off'
+import Outdent from '@comfortdelgro/compass-icons/react/outdent'
+import Paste from '@comfortdelgro/compass-icons/react/paste'
+import Pause from '@comfortdelgro/compass-icons/react/pause'
+import Pdf from '@comfortdelgro/compass-icons/react/pdf'
+import PenNib from '@comfortdelgro/compass-icons/react/pen-nib'
+import Phone from '@comfortdelgro/compass-icons/react/phone'
+import Pinterest from '@comfortdelgro/compass-icons/react/pinterest'
+import PlusSquare from '@comfortdelgro/compass-icons/react/plus-square'
+import Plus from '@comfortdelgro/compass-icons/react/plus'
+import ProfileCard from '@comfortdelgro/compass-icons/react/profile-card'
+import Profile from '@comfortdelgro/compass-icons/react/profile'
+import Project from '@comfortdelgro/compass-icons/react/project'
+import QuestionSquare from '@comfortdelgro/compass-icons/react/question-square'
+import QuoteLeft from '@comfortdelgro/compass-icons/react/quote-left'
+import QuoteRight from '@comfortdelgro/compass-icons/react/quote-right'
+import RatingStar0 from '@comfortdelgro/compass-icons/react/rating-star-0'
+import RatingStar10 from '@comfortdelgro/compass-icons/react/rating-star-10'
+import RatingStar100 from '@comfortdelgro/compass-icons/react/rating-star-100'
+import RatingStar20 from '@comfortdelgro/compass-icons/react/rating-star-20'
+import RatingStar30 from '@comfortdelgro/compass-icons/react/rating-star-30'
+import RatingStar40 from '@comfortdelgro/compass-icons/react/rating-star-40'
+import RatingStar50 from '@comfortdelgro/compass-icons/react/rating-star-50'
+import RatingStar60 from '@comfortdelgro/compass-icons/react/rating-star-60'
+import RatingStar70 from '@comfortdelgro/compass-icons/react/rating-star-70'
+import RatingStar80 from '@comfortdelgro/compass-icons/react/rating-star-80'
+import RatingStar90 from '@comfortdelgro/compass-icons/react/rating-star-90'
+import Refresh from '@comfortdelgro/compass-icons/react/refresh'
+import Reveal from '@comfortdelgro/compass-icons/react/reveal'
+import School from '@comfortdelgro/compass-icons/react/school'
+import Search from '@comfortdelgro/compass-icons/react/search'
+import Settings from '@comfortdelgro/compass-icons/react/settings'
+import Shapes from '@comfortdelgro/compass-icons/react/shapes'
+import Share from '@comfortdelgro/compass-icons/react/share'
+import Shield2 from '@comfortdelgro/compass-icons/react/shield-2'
+import Shield from '@comfortdelgro/compass-icons/react/shield'
+import Snapchat from '@comfortdelgro/compass-icons/react/snapchat'
+import Sort1To9Ascending from '@comfortdelgro/compass-icons/react/sort-1-to-9-ascending'
+import Sort1To9Descending from '@comfortdelgro/compass-icons/react/sort-1-to-9-descending'
+import Sort9To1Ascending from '@comfortdelgro/compass-icons/react/sort-9-to-1-ascending'
+import Sort9To1Descending from '@comfortdelgro/compass-icons/react/sort-9-to-1-descending'
+import Sort from '@comfortdelgro/compass-icons/react/sort'
+import Sparkle from '@comfortdelgro/compass-icons/react/sparkle'
+import Spreadsheet from '@comfortdelgro/compass-icons/react/spreadsheet'
+import Stamp from '@comfortdelgro/compass-icons/react/stamp'
+import Status from '@comfortdelgro/compass-icons/react/status'
+import Store from '@comfortdelgro/compass-icons/react/store'
+import Strikethrough from '@comfortdelgro/compass-icons/react/strikethrough'
+import Suitcase from '@comfortdelgro/compass-icons/react/suitcase'
+import TableColumns from '@comfortdelgro/compass-icons/react/table-columns'
+import Table from '@comfortdelgro/compass-icons/react/table'
+import Tags from '@comfortdelgro/compass-icons/react/tags'
+import Taxi from '@comfortdelgro/compass-icons/react/taxi'
+import TextHeight from '@comfortdelgro/compass-icons/react/text-height'
+import ThumbDown from '@comfortdelgro/compass-icons/react/thumb-down'
+import ThumbUp from '@comfortdelgro/compass-icons/react/thumb-up'
+import TickCircle from '@comfortdelgro/compass-icons/react/tick-circle'
+import Tick from '@comfortdelgro/compass-icons/react/tick'
+import Ticket from '@comfortdelgro/compass-icons/react/ticket'
+import Timeline from '@comfortdelgro/compass-icons/react/timeline'
+import Twitter from '@comfortdelgro/compass-icons/react/twitter'
+import Underline from '@comfortdelgro/compass-icons/react/underline'
+import Unpin from '@comfortdelgro/compass-icons/react/unpin'
+import Upload from '@comfortdelgro/compass-icons/react/upload'
+import UserTie from '@comfortdelgro/compass-icons/react/user-tie'
+import Users from '@comfortdelgro/compass-icons/react/users'
+import Verified from '@comfortdelgro/compass-icons/react/verified'
+import Volume from '@comfortdelgro/compass-icons/react/volume'
+import Word from '@comfortdelgro/compass-icons/react/word'
+import Youtube from '@comfortdelgro/compass-icons/react/youtube'
+import ZoomIn from '@comfortdelgro/compass-icons/react/zoom-in'
+import ZoomMinus from '@comfortdelgro/compass-icons/react/zoom-minus'
+import ZoomOut from '@comfortdelgro/compass-icons/react/zoom-out'
+import ZoomPlus from '@comfortdelgro/compass-icons/react/zoom-plus'
+//country icons
+import FlagAbw from '@comfortdelgro/compass-icons/react/country/flag-abw'
+import FlagAfg from '@comfortdelgro/compass-icons/react/country/flag-afg'
+import FlagAgo from '@comfortdelgro/compass-icons/react/country/flag-ago'
+import FlagAia from '@comfortdelgro/compass-icons/react/country/flag-aia'
+import FlagAla from '@comfortdelgro/compass-icons/react/country/flag-ala'
+import FlagAlb from '@comfortdelgro/compass-icons/react/country/flag-alb'
+import FlagAnd from '@comfortdelgro/compass-icons/react/country/flag-and'
+import FlagAre from '@comfortdelgro/compass-icons/react/country/flag-are'
+import FlagArg from '@comfortdelgro/compass-icons/react/country/flag-arg'
+import FlagArm from '@comfortdelgro/compass-icons/react/country/flag-arm'
+import FlagAsm from '@comfortdelgro/compass-icons/react/country/flag-asm'
+import FlagAta from '@comfortdelgro/compass-icons/react/country/flag-ata'
+import FlagAtg from '@comfortdelgro/compass-icons/react/country/flag-atg'
+import FlagAus from '@comfortdelgro/compass-icons/react/country/flag-aus'
+import FlagAut from '@comfortdelgro/compass-icons/react/country/flag-aut'
+import FlagAze from '@comfortdelgro/compass-icons/react/country/flag-aze'
+import FlagBdi from '@comfortdelgro/compass-icons/react/country/flag-bdi'
+import FlagBel from '@comfortdelgro/compass-icons/react/country/flag-bel'
+import FlagBen from '@comfortdelgro/compass-icons/react/country/flag-ben'
+import FlagBes from '@comfortdelgro/compass-icons/react/country/flag-bes'
+import FlagBfa from '@comfortdelgro/compass-icons/react/country/flag-bfa'
+import FlagBgd from '@comfortdelgro/compass-icons/react/country/flag-bgd'
+import FlagBgr from '@comfortdelgro/compass-icons/react/country/flag-bgr'
+import FlagBhr from '@comfortdelgro/compass-icons/react/country/flag-bhr'
+import FlagBhs from '@comfortdelgro/compass-icons/react/country/flag-bhs'
+import FlagBih from '@comfortdelgro/compass-icons/react/country/flag-bih'
+import FlagBlm from '@comfortdelgro/compass-icons/react/country/flag-blm'
+import FlagBlr from '@comfortdelgro/compass-icons/react/country/flag-blr'
+import FlagBlz from '@comfortdelgro/compass-icons/react/country/flag-blz'
+import FlagBmu from '@comfortdelgro/compass-icons/react/country/flag-bmu'
+import FlagBol from '@comfortdelgro/compass-icons/react/country/flag-bol'
+import FlagBra from '@comfortdelgro/compass-icons/react/country/flag-bra'
+import FlagBrb from '@comfortdelgro/compass-icons/react/country/flag-brb'
+import FlagBrn from '@comfortdelgro/compass-icons/react/country/flag-brn'
+import FlagBtn from '@comfortdelgro/compass-icons/react/country/flag-btn'
+import FlagBwa from '@comfortdelgro/compass-icons/react/country/flag-bwa'
+import FlagCaf from '@comfortdelgro/compass-icons/react/country/flag-caf'
+import FlagCan from '@comfortdelgro/compass-icons/react/country/flag-can'
+import FlagCck from '@comfortdelgro/compass-icons/react/country/flag-cck'
+import FlagChe from '@comfortdelgro/compass-icons/react/country/flag-che'
+import FlagChl from '@comfortdelgro/compass-icons/react/country/flag-chl'
+import FlagChn from '@comfortdelgro/compass-icons/react/country/flag-chn'
+import FlagCiv from '@comfortdelgro/compass-icons/react/country/flag-civ'
+import FlagCmr from '@comfortdelgro/compass-icons/react/country/flag-cmr'
+import FlagCod from '@comfortdelgro/compass-icons/react/country/flag-cod'
+import FlagCog from '@comfortdelgro/compass-icons/react/country/flag-cog'
+import FlagCok from '@comfortdelgro/compass-icons/react/country/flag-cok'
+import FlagCol from '@comfortdelgro/compass-icons/react/country/flag-col'
+import FlagCom from '@comfortdelgro/compass-icons/react/country/flag-com'
+import FlagCpv from '@comfortdelgro/compass-icons/react/country/flag-cpv'
+import FlagCri from '@comfortdelgro/compass-icons/react/country/flag-cri'
+import FlagCub from '@comfortdelgro/compass-icons/react/country/flag-cub'
+import FlagCuw from '@comfortdelgro/compass-icons/react/country/flag-cuw'
+import FlagCxr from '@comfortdelgro/compass-icons/react/country/flag-cxr'
+import FlagCym from '@comfortdelgro/compass-icons/react/country/flag-cym'
+import FlagCyp from '@comfortdelgro/compass-icons/react/country/flag-cyp'
+import FlagCze from '@comfortdelgro/compass-icons/react/country/flag-cze'
+import FlagDeu from '@comfortdelgro/compass-icons/react/country/flag-deu'
+import FlagDji from '@comfortdelgro/compass-icons/react/country/flag-dji'
+import FlagDma from '@comfortdelgro/compass-icons/react/country/flag-dma'
+import FlagDnk from '@comfortdelgro/compass-icons/react/country/flag-dnk'
+import FlagDom from '@comfortdelgro/compass-icons/react/country/flag-dom'
+import FlagDza from '@comfortdelgro/compass-icons/react/country/flag-dza'
+import FlagEcu from '@comfortdelgro/compass-icons/react/country/flag-ecu'
+import FlagEgy from '@comfortdelgro/compass-icons/react/country/flag-egy'
+import FlagEri from '@comfortdelgro/compass-icons/react/country/flag-eri'
+import FlagEsh from '@comfortdelgro/compass-icons/react/country/flag-esh'
+import FlagEsp from '@comfortdelgro/compass-icons/react/country/flag-esp'
+import FlagEst from '@comfortdelgro/compass-icons/react/country/flag-est'
+import FlagEth from '@comfortdelgro/compass-icons/react/country/flag-eth'
+import FlagFin from '@comfortdelgro/compass-icons/react/country/flag-fin'
+import FlagFji from '@comfortdelgro/compass-icons/react/country/flag-fji'
+import FlagFlk from '@comfortdelgro/compass-icons/react/country/flag-flk'
+import FlagFra from '@comfortdelgro/compass-icons/react/country/flag-fra'
+import FlagFro from '@comfortdelgro/compass-icons/react/country/flag-fro'
+import FlagFsm from '@comfortdelgro/compass-icons/react/country/flag-fsm'
+import FlagGab from '@comfortdelgro/compass-icons/react/country/flag-gab'
+import FlagGbr from '@comfortdelgro/compass-icons/react/country/flag-gbr'
+import FlagGeo from '@comfortdelgro/compass-icons/react/country/flag-geo'
+import FlagGgy from '@comfortdelgro/compass-icons/react/country/flag-ggy'
+import FlagGha from '@comfortdelgro/compass-icons/react/country/flag-gha'
+import FlagGib from '@comfortdelgro/compass-icons/react/country/flag-gib'
+import FlagGin from '@comfortdelgro/compass-icons/react/country/flag-gin'
+import FlagGlp from '@comfortdelgro/compass-icons/react/country/flag-glp'
+import FlagGmb from '@comfortdelgro/compass-icons/react/country/flag-gmb'
+import FlagGnb from '@comfortdelgro/compass-icons/react/country/flag-gnb'
+import FlagGnq from '@comfortdelgro/compass-icons/react/country/flag-gnq'
+import FlagGrc from '@comfortdelgro/compass-icons/react/country/flag-grc'
+import FlagGrd from '@comfortdelgro/compass-icons/react/country/flag-grd'
+import FlagGrl from '@comfortdelgro/compass-icons/react/country/flag-grl'
+import FlagGtm from '@comfortdelgro/compass-icons/react/country/flag-gtm'
+import FlagGuf from '@comfortdelgro/compass-icons/react/country/flag-guf'
+import FlagGum from '@comfortdelgro/compass-icons/react/country/flag-gum'
+import FlagGuy from '@comfortdelgro/compass-icons/react/country/flag-guy'
+import FlagHkg from '@comfortdelgro/compass-icons/react/country/flag-hkg'
+import FlagHnd from '@comfortdelgro/compass-icons/react/country/flag-hnd'
+import FlagHrv from '@comfortdelgro/compass-icons/react/country/flag-hrv'
+import FlagHti from '@comfortdelgro/compass-icons/react/country/flag-hti'
+import FlagHun from '@comfortdelgro/compass-icons/react/country/flag-hun'
+import FlagIdn from '@comfortdelgro/compass-icons/react/country/flag-idn'
+import FlagImn from '@comfortdelgro/compass-icons/react/country/flag-imn'
+import FlagInd from '@comfortdelgro/compass-icons/react/country/flag-ind'
+import FlagIot from '@comfortdelgro/compass-icons/react/country/flag-iot'
+import FlagIrl from '@comfortdelgro/compass-icons/react/country/flag-irl'
+import FlagIrn from '@comfortdelgro/compass-icons/react/country/flag-irn'
+import FlagIrq from '@comfortdelgro/compass-icons/react/country/flag-irq'
+import FlagIsl from '@comfortdelgro/compass-icons/react/country/flag-isl'
+import FlagIsr from '@comfortdelgro/compass-icons/react/country/flag-isr'
+import FlagIta from '@comfortdelgro/compass-icons/react/country/flag-ita'
+import FlagJam from '@comfortdelgro/compass-icons/react/country/flag-jam'
+import FlagJey from '@comfortdelgro/compass-icons/react/country/flag-jey'
+import FlagJor from '@comfortdelgro/compass-icons/react/country/flag-jor'
+import FlagJpn from '@comfortdelgro/compass-icons/react/country/flag-jpn'
+import FlagKaz from '@comfortdelgro/compass-icons/react/country/flag-kaz'
+import FlagKen from '@comfortdelgro/compass-icons/react/country/flag-ken'
+import FlagKgz from '@comfortdelgro/compass-icons/react/country/flag-kgz'
+import FlagKhm from '@comfortdelgro/compass-icons/react/country/flag-khm'
+import FlagKir from '@comfortdelgro/compass-icons/react/country/flag-kir'
+import FlagKna from '@comfortdelgro/compass-icons/react/country/flag-kna'
+import FlagKor from '@comfortdelgro/compass-icons/react/country/flag-kor'
+import FlagKos from '@comfortdelgro/compass-icons/react/country/flag-kos'
+import FlagKwt from '@comfortdelgro/compass-icons/react/country/flag-kwt'
+import FlagLao from '@comfortdelgro/compass-icons/react/country/flag-lao'
+import FlagLbn from '@comfortdelgro/compass-icons/react/country/flag-lbn'
+import FlagLbr from '@comfortdelgro/compass-icons/react/country/flag-lbr'
+import FlagLby from '@comfortdelgro/compass-icons/react/country/flag-lby'
+import FlagLca from '@comfortdelgro/compass-icons/react/country/flag-lca'
+import FlagLie from '@comfortdelgro/compass-icons/react/country/flag-lie'
+import FlagLka from '@comfortdelgro/compass-icons/react/country/flag-lka'
+import FlagLso from '@comfortdelgro/compass-icons/react/country/flag-lso'
+import FlagLtu from '@comfortdelgro/compass-icons/react/country/flag-ltu'
+import FlagLux from '@comfortdelgro/compass-icons/react/country/flag-lux'
+import FlagLva from '@comfortdelgro/compass-icons/react/country/flag-lva'
+import FlagMac from '@comfortdelgro/compass-icons/react/country/flag-mac'
+import FlagMaf from '@comfortdelgro/compass-icons/react/country/flag-maf'
+import FlagMar from '@comfortdelgro/compass-icons/react/country/flag-mar'
+import FlagMco from '@comfortdelgro/compass-icons/react/country/flag-mco'
+import FlagMda from '@comfortdelgro/compass-icons/react/country/flag-mda'
+import FlagMdg from '@comfortdelgro/compass-icons/react/country/flag-mdg'
+import FlagMdv from '@comfortdelgro/compass-icons/react/country/flag-mdv'
+import FlagMex from '@comfortdelgro/compass-icons/react/country/flag-mex'
+import FlagMhl from '@comfortdelgro/compass-icons/react/country/flag-mhl'
+import FlagMkd from '@comfortdelgro/compass-icons/react/country/flag-mkd'
+import FlagMli from '@comfortdelgro/compass-icons/react/country/flag-mli'
+import FlagMlt from '@comfortdelgro/compass-icons/react/country/flag-mlt'
+import FlagMmr from '@comfortdelgro/compass-icons/react/country/flag-mmr'
+import FlagMne from '@comfortdelgro/compass-icons/react/country/flag-mne'
+import FlagMng from '@comfortdelgro/compass-icons/react/country/flag-mng'
+import FlagMnp from '@comfortdelgro/compass-icons/react/country/flag-mnp'
+import FlagMoz from '@comfortdelgro/compass-icons/react/country/flag-moz'
+import FlagMrt from '@comfortdelgro/compass-icons/react/country/flag-mrt'
+import FlagMsr from '@comfortdelgro/compass-icons/react/country/flag-msr'
+import FlagMtq from '@comfortdelgro/compass-icons/react/country/flag-mtq'
+import FlagMus from '@comfortdelgro/compass-icons/react/country/flag-mus'
+import FlagMwi from '@comfortdelgro/compass-icons/react/country/flag-mwi'
+import FlagMys from '@comfortdelgro/compass-icons/react/country/flag-mys'
+import FlagMyt from '@comfortdelgro/compass-icons/react/country/flag-myt'
+import FlagNam from '@comfortdelgro/compass-icons/react/country/flag-nam'
+import FlagNcl from '@comfortdelgro/compass-icons/react/country/flag-ncl'
+import FlagNer from '@comfortdelgro/compass-icons/react/country/flag-ner'
+import FlagNfk from '@comfortdelgro/compass-icons/react/country/flag-nfk'
+import FlagNga from '@comfortdelgro/compass-icons/react/country/flag-nga'
+import FlagNic from '@comfortdelgro/compass-icons/react/country/flag-nic'
+import FlagNiu from '@comfortdelgro/compass-icons/react/country/flag-niu'
+import FlagNld from '@comfortdelgro/compass-icons/react/country/flag-nld'
+import FlagNor from '@comfortdelgro/compass-icons/react/country/flag-nor'
+import FlagNpl from '@comfortdelgro/compass-icons/react/country/flag-npl'
+import FlagNru from '@comfortdelgro/compass-icons/react/country/flag-nru'
+import FlagNzl from '@comfortdelgro/compass-icons/react/country/flag-nzl'
+import FlagOmn from '@comfortdelgro/compass-icons/react/country/flag-omn'
+import FlagPak from '@comfortdelgro/compass-icons/react/country/flag-pak'
+import FlagPan from '@comfortdelgro/compass-icons/react/country/flag-pan'
+import FlagPcn from '@comfortdelgro/compass-icons/react/country/flag-pcn'
+import FlagPer from '@comfortdelgro/compass-icons/react/country/flag-per'
+import FlagPhl from '@comfortdelgro/compass-icons/react/country/flag-phl'
+import FlagPlw from '@comfortdelgro/compass-icons/react/country/flag-plw'
+import FlagPng from '@comfortdelgro/compass-icons/react/country/flag-png'
+import FlagPol from '@comfortdelgro/compass-icons/react/country/flag-pol'
+import FlagPri from '@comfortdelgro/compass-icons/react/country/flag-pri'
+import FlagPrk from '@comfortdelgro/compass-icons/react/country/flag-prk'
+import FlagPrt from '@comfortdelgro/compass-icons/react/country/flag-prt'
+import FlagPry from '@comfortdelgro/compass-icons/react/country/flag-pry'
+import FlagPse from '@comfortdelgro/compass-icons/react/country/flag-pse'
+import FlagPyf from '@comfortdelgro/compass-icons/react/country/flag-pyf'
+import FlagQat from '@comfortdelgro/compass-icons/react/country/flag-qat'
+import FlagReu from '@comfortdelgro/compass-icons/react/country/flag-reu'
+import FlagRou from '@comfortdelgro/compass-icons/react/country/flag-rou'
+import FlagRus from '@comfortdelgro/compass-icons/react/country/flag-rus'
+import FlagRwa from '@comfortdelgro/compass-icons/react/country/flag-rwa'
+import FlagSau from '@comfortdelgro/compass-icons/react/country/flag-sau'
+import FlagSdn from '@comfortdelgro/compass-icons/react/country/flag-sdn'
+import FlagSen from '@comfortdelgro/compass-icons/react/country/flag-sen'
+import FlagSgp from '@comfortdelgro/compass-icons/react/country/flag-sgp'
+import FlagSgs from '@comfortdelgro/compass-icons/react/country/flag-sgs'
+import FlagShn from '@comfortdelgro/compass-icons/react/country/flag-shn'
+import FlagSjm from '@comfortdelgro/compass-icons/react/country/flag-sjm'
+import FlagSlb from '@comfortdelgro/compass-icons/react/country/flag-slb'
+import FlagSle from '@comfortdelgro/compass-icons/react/country/flag-sle'
+import FlagSlv from '@comfortdelgro/compass-icons/react/country/flag-slv'
+import FlagSmr from '@comfortdelgro/compass-icons/react/country/flag-smr'
+import FlagSom from '@comfortdelgro/compass-icons/react/country/flag-som'
+import FlagSpm from '@comfortdelgro/compass-icons/react/country/flag-spm'
+import FlagSrb from '@comfortdelgro/compass-icons/react/country/flag-srb'
+import FlagSsd from '@comfortdelgro/compass-icons/react/country/flag-ssd'
+import FlagStp from '@comfortdelgro/compass-icons/react/country/flag-stp'
+import FlagSur from '@comfortdelgro/compass-icons/react/country/flag-sur'
+import FlagSvk from '@comfortdelgro/compass-icons/react/country/flag-svk'
+import FlagSvn from '@comfortdelgro/compass-icons/react/country/flag-svn'
+import FlagSwe from '@comfortdelgro/compass-icons/react/country/flag-swe'
+import FlagSwz from '@comfortdelgro/compass-icons/react/country/flag-swz'
+import FlagSxm from '@comfortdelgro/compass-icons/react/country/flag-sxm'
+import FlagSyc from '@comfortdelgro/compass-icons/react/country/flag-syc'
+import FlagSyr from '@comfortdelgro/compass-icons/react/country/flag-syr'
+import FlagTca from '@comfortdelgro/compass-icons/react/country/flag-tca'
+import FlagTcd from '@comfortdelgro/compass-icons/react/country/flag-tcd'
+import FlagTgo from '@comfortdelgro/compass-icons/react/country/flag-tgo'
+import FlagTha from '@comfortdelgro/compass-icons/react/country/flag-tha'
+import FlagTjk from '@comfortdelgro/compass-icons/react/country/flag-tjk'
+import FlagTkl from '@comfortdelgro/compass-icons/react/country/flag-tkl'
+import FlagTkm from '@comfortdelgro/compass-icons/react/country/flag-tkm'
+import FlagTls from '@comfortdelgro/compass-icons/react/country/flag-tls'
+import FlagTon from '@comfortdelgro/compass-icons/react/country/flag-ton'
+import FlagTto from '@comfortdelgro/compass-icons/react/country/flag-tto'
+import FlagTun from '@comfortdelgro/compass-icons/react/country/flag-tun'
+import FlagTur from '@comfortdelgro/compass-icons/react/country/flag-tur'
+import FlagTuv from '@comfortdelgro/compass-icons/react/country/flag-tuv'
+import FlagTwn from '@comfortdelgro/compass-icons/react/country/flag-twn'
+import FlagTza from '@comfortdelgro/compass-icons/react/country/flag-tza'
+import FlagUga from '@comfortdelgro/compass-icons/react/country/flag-uga'
+import FlagUkr from '@comfortdelgro/compass-icons/react/country/flag-ukr'
+import FlagUry from '@comfortdelgro/compass-icons/react/country/flag-ury'
+import FlagUsa from '@comfortdelgro/compass-icons/react/country/flag-usa'
+import FlagUzb from '@comfortdelgro/compass-icons/react/country/flag-uzb'
+import FlagVat from '@comfortdelgro/compass-icons/react/country/flag-vat'
+import FlagVct from '@comfortdelgro/compass-icons/react/country/flag-vct'
+import FlagVen from '@comfortdelgro/compass-icons/react/country/flag-ven'
+import FlagVgb from '@comfortdelgro/compass-icons/react/country/flag-vgb'
+import FlagVir from '@comfortdelgro/compass-icons/react/country/flag-vir'
+import FlagVnm from '@comfortdelgro/compass-icons/react/country/flag-vnm'
+import FlagVut from '@comfortdelgro/compass-icons/react/country/flag-vut'
+import FlagWlf from '@comfortdelgro/compass-icons/react/country/flag-wlf'
+import FlagWsm from '@comfortdelgro/compass-icons/react/country/flag-wsm'
+import FlagYem from '@comfortdelgro/compass-icons/react/country/flag-yem'
+import FlagZaf from '@comfortdelgro/compass-icons/react/country/flag-zaf'
+import FlagZmb from '@comfortdelgro/compass-icons/react/country/flag-zmb'
+import FlagZwe from '@comfortdelgro/compass-icons/react/country/flag-zwe'
+//File icons
+import AepGrayFile from '@comfortdelgro/compass-icons/react/file/aep-gray'
+import AepSolidFile from '@comfortdelgro/compass-icons/react/file/aep-solid'
+import AepFile from '@comfortdelgro/compass-icons/react/file/aep'
+import AiGrayFile from '@comfortdelgro/compass-icons/react/file/ai-gray'
+import AiSolidFile from '@comfortdelgro/compass-icons/react/file/ai-solid'
+import AiFile from '@comfortdelgro/compass-icons/react/file/ai'
+import AudioGrayFile from '@comfortdelgro/compass-icons/react/file/audio-gray'
+import AudioSolidFile from '@comfortdelgro/compass-icons/react/file/audio-solid'
+import AudioFile from '@comfortdelgro/compass-icons/react/file/audio'
+import AviGrayFile from '@comfortdelgro/compass-icons/react/file/avi-gray'
+import AviSolidFile from '@comfortdelgro/compass-icons/react/file/avi-solid'
+import AviFile from '@comfortdelgro/compass-icons/react/file/avi'
+import CodeGrayFile from '@comfortdelgro/compass-icons/react/file/code-gray'
+import CodeSolidFile from '@comfortdelgro/compass-icons/react/file/code-solid'
+import CodeFile from '@comfortdelgro/compass-icons/react/file/code'
+import CssGrayFile from '@comfortdelgro/compass-icons/react/file/css-gray'
+import CssSolidFile from '@comfortdelgro/compass-icons/react/file/css-solid'
+import CssFile from '@comfortdelgro/compass-icons/react/file/css'
+import CsvGrayFile from '@comfortdelgro/compass-icons/react/file/csv-gray'
+import CsvSolidFile from '@comfortdelgro/compass-icons/react/file/csv-solid'
+import CsvFile from '@comfortdelgro/compass-icons/react/file/csv'
+import DmgGrayFile from '@comfortdelgro/compass-icons/react/file/dmg-gray'
+import DmgSolidFile from '@comfortdelgro/compass-icons/react/file/dmg-solid'
+import DmgFile from '@comfortdelgro/compass-icons/react/file/dmg'
+import DocGrayFile from '@comfortdelgro/compass-icons/react/file/doc-gray'
+import DocSolidFile from '@comfortdelgro/compass-icons/react/file/doc-solid'
+import DocFile from '@comfortdelgro/compass-icons/react/file/doc'
+import DocumentGrayFile from '@comfortdelgro/compass-icons/react/file/document-gray'
+import DocumentSolidFile from '@comfortdelgro/compass-icons/react/file/document-solid'
+import DocumentFile from '@comfortdelgro/compass-icons/react/file/document'
+import DocxGrayFile from '@comfortdelgro/compass-icons/react/file/docx-gray'
+import DocxSolidFile from '@comfortdelgro/compass-icons/react/file/docx-solid'
+import DocxFile from '@comfortdelgro/compass-icons/react/file/docx'
+import EmptyGrayFile from '@comfortdelgro/compass-icons/react/file/empty-gray'
+import EmptySolidFile from '@comfortdelgro/compass-icons/react/file/empty-solid'
+import EmptyFile from '@comfortdelgro/compass-icons/react/file/empty'
+import EspGrayFile from '@comfortdelgro/compass-icons/react/file/esp-gray'
+import EspSolidFile from '@comfortdelgro/compass-icons/react/file/esp-solid'
+import EspFile from '@comfortdelgro/compass-icons/react/file/esp'
+import ExeGrayFile from '@comfortdelgro/compass-icons/react/file/exe-gray'
+import ExeSolidFile from '@comfortdelgro/compass-icons/react/file/exe-solid'
+import ExeFile from '@comfortdelgro/compass-icons/react/file/exe'
+import FigGrayFile from '@comfortdelgro/compass-icons/react/file/fig-gray'
+import FigSolidFile from '@comfortdelgro/compass-icons/react/file/fig-solid'
+import FigFile from '@comfortdelgro/compass-icons/react/file/fig'
+import FolderGrayFile from '@comfortdelgro/compass-icons/react/file/folder-gray'
+import FolderSolidFile from '@comfortdelgro/compass-icons/react/file/folder-solid'
+import FolderFile from '@comfortdelgro/compass-icons/react/file/folder'
+import GifGrayFile from '@comfortdelgro/compass-icons/react/file/gif-gray'
+import GifSolidFile from '@comfortdelgro/compass-icons/react/file/gif-solid'
+import GifFile from '@comfortdelgro/compass-icons/react/file/gif'
+import HtmlGrayFile from '@comfortdelgro/compass-icons/react/file/html-gray'
+import HtmlSolidFile from '@comfortdelgro/compass-icons/react/file/html-solid'
+import HtmlFile from '@comfortdelgro/compass-icons/react/file/html'
+import ImageGrayFile from '@comfortdelgro/compass-icons/react/file/image-gray'
+import ImageSolidFile from '@comfortdelgro/compass-icons/react/file/image-solid'
+import ImageFile from '@comfortdelgro/compass-icons/react/file/image'
+import ImgGrayFile from '@comfortdelgro/compass-icons/react/file/img-gray'
+import ImgSolidFile from '@comfortdelgro/compass-icons/react/file/img-solid'
+import ImgFile from '@comfortdelgro/compass-icons/react/file/img'
+import InddGrayFile from '@comfortdelgro/compass-icons/react/file/indd-gray'
+import InddSolidFile from '@comfortdelgro/compass-icons/react/file/indd-solid'
+import InddFile from '@comfortdelgro/compass-icons/react/file/indd'
+import JavaGrayFile from '@comfortdelgro/compass-icons/react/file/java-gray'
+import JavaSolidFile from '@comfortdelgro/compass-icons/react/file/java-solid'
+import JavaFile from '@comfortdelgro/compass-icons/react/file/java'
+import JpegGrayFile from '@comfortdelgro/compass-icons/react/file/jpeg-gray'
+import JpegSolidFile from '@comfortdelgro/compass-icons/react/file/jpeg-solid'
+import JpegFile from '@comfortdelgro/compass-icons/react/file/jpeg'
+import JpgGrayFile from '@comfortdelgro/compass-icons/react/file/jpg-gray'
+import JpgSolidFile from '@comfortdelgro/compass-icons/react/file/jpg-solid'
+import JpgFile from '@comfortdelgro/compass-icons/react/file/jpg'
+import JsGrayFile from '@comfortdelgro/compass-icons/react/file/js-gray'
+import JsSolidFile from '@comfortdelgro/compass-icons/react/file/js-solid'
+import JsFile from '@comfortdelgro/compass-icons/react/file/js'
+import JsonGrayFile from '@comfortdelgro/compass-icons/react/file/json-gray'
+import JsonSolidFile from '@comfortdelgro/compass-icons/react/file/json-solid'
+import JsonFile from '@comfortdelgro/compass-icons/react/file/json'
+import MkvGrayFile from '@comfortdelgro/compass-icons/react/file/mkv-gray'
+import MkvSolidFile from '@comfortdelgro/compass-icons/react/file/mkv-solid'
+import MkvFile from '@comfortdelgro/compass-icons/react/file/mkv'
+import Mp3GrayFile from '@comfortdelgro/compass-icons/react/file/mp3-gray'
+import Mp3SolidFile from '@comfortdelgro/compass-icons/react/file/mp3-solid'
+import Mp3File from '@comfortdelgro/compass-icons/react/file/mp3'
+import Mp4GrayFile from '@comfortdelgro/compass-icons/react/file/mp4-gray'
+import Mp4SolidFile from '@comfortdelgro/compass-icons/react/file/mp4-solid'
+import Mp4File from '@comfortdelgro/compass-icons/react/file/mp4'
+import MpegGrayFile from '@comfortdelgro/compass-icons/react/file/mpeg-gray'
+import MpegSolidFile from '@comfortdelgro/compass-icons/react/file/mpeg-solid'
+import MpegFile from '@comfortdelgro/compass-icons/react/file/mpeg'
+import PdfGrayFile from '@comfortdelgro/compass-icons/react/file/pdf-gray'
+import PdfSolidFile from '@comfortdelgro/compass-icons/react/file/pdf-solid'
+import PdfFile from '@comfortdelgro/compass-icons/react/file/pdf'
+import Pdf2GrayFile from '@comfortdelgro/compass-icons/react/file/pdf2-gray'
+import Pdf2SolidFile from '@comfortdelgro/compass-icons/react/file/pdf2-solid'
+import Pdf2File from '@comfortdelgro/compass-icons/react/file/pdf2'
+import PngGrayFile from '@comfortdelgro/compass-icons/react/file/png-gray'
+import PngSolidFile from '@comfortdelgro/compass-icons/react/file/png-solid'
+import PngFile from '@comfortdelgro/compass-icons/react/file/png'
+import PsdGrayFile from '@comfortdelgro/compass-icons/react/file/psd-gray'
+import PsdSolidFile from '@comfortdelgro/compass-icons/react/file/psd-solid'
+import PsdFile from '@comfortdelgro/compass-icons/react/file/psd'
+import PttGrayFile from '@comfortdelgro/compass-icons/react/file/ptt-gray'
+import PttSolidFile from '@comfortdelgro/compass-icons/react/file/ptt-solid'
+import PttFile from '@comfortdelgro/compass-icons/react/file/ptt'
+import PttxGrayFile from '@comfortdelgro/compass-icons/react/file/pttx-gray'
+import PttxSolidFile from '@comfortdelgro/compass-icons/react/file/pttx-solid'
+import PttxFile from '@comfortdelgro/compass-icons/react/file/pttx'
+import RarGrayFile from '@comfortdelgro/compass-icons/react/file/rar-gray'
+import RarSolidFile from '@comfortdelgro/compass-icons/react/file/rar-solid'
+import RarFile from '@comfortdelgro/compass-icons/react/file/rar'
+import RssGrayFile from '@comfortdelgro/compass-icons/react/file/rss-gray'
+import RssSolidFile from '@comfortdelgro/compass-icons/react/file/rss-solid'
+import RssFile from '@comfortdelgro/compass-icons/react/file/rss'
+import SpreadsheetGrayFile from '@comfortdelgro/compass-icons/react/file/spreadsheet-gray'
+import SpreadsheetSolidFile from '@comfortdelgro/compass-icons/react/file/spreadsheet-solid'
+import SpreadsheetFile from '@comfortdelgro/compass-icons/react/file/spreadsheet'
+import SqlGrayFile from '@comfortdelgro/compass-icons/react/file/sql-gray'
+import SqlSolidFile from '@comfortdelgro/compass-icons/react/file/sql-solid'
+import SqlFile from '@comfortdelgro/compass-icons/react/file/sql'
+import SvgGrayFile from '@comfortdelgro/compass-icons/react/file/svg-gray'
+import SvgSolidFile from '@comfortdelgro/compass-icons/react/file/svg-solid'
+import SvgFile from '@comfortdelgro/compass-icons/react/file/svg'
+import TiffGrayFile from '@comfortdelgro/compass-icons/react/file/tiff-gray'
+import TiffSolidFile from '@comfortdelgro/compass-icons/react/file/tiff-solid'
+import TiffFile from '@comfortdelgro/compass-icons/react/file/tiff'
+import TxtGrayFile from '@comfortdelgro/compass-icons/react/file/txt-gray'
+import TxtSolidFile from '@comfortdelgro/compass-icons/react/file/txt-solid'
+import TxtFile from '@comfortdelgro/compass-icons/react/file/txt'
+import Video01GrayFile from '@comfortdelgro/compass-icons/react/file/video01-gray'
+import Video01SolidFile from '@comfortdelgro/compass-icons/react/file/video01-solid'
+import Video01File from '@comfortdelgro/compass-icons/react/file/video01'
+import Video02GrayFile from '@comfortdelgro/compass-icons/react/file/video02-gray'
+import Video02SolidFile from '@comfortdelgro/compass-icons/react/file/video02-solid'
+import Video02File from '@comfortdelgro/compass-icons/react/file/video02'
+import WavGrayFile from '@comfortdelgro/compass-icons/react/file/wav-gray'
+import WavSolidFile from '@comfortdelgro/compass-icons/react/file/wav-solid'
+import WavFile from '@comfortdelgro/compass-icons/react/file/wav'
+import WebpGrayFile from '@comfortdelgro/compass-icons/react/file/webp-gray'
+import WebpSolidFile from '@comfortdelgro/compass-icons/react/file/webp-solid'
+import WebpFile from '@comfortdelgro/compass-icons/react/file/webp'
+import XlsxGrayFile from '@comfortdelgro/compass-icons/react/file/xlsx-gray'
+import XlsxSolidFile from '@comfortdelgro/compass-icons/react/file/xlsx-solid'
+import XlsxFile from '@comfortdelgro/compass-icons/react/file/xlsx'
+import XmlGrayFile from '@comfortdelgro/compass-icons/react/file/xml-gray'
+import XmlSolidFile from '@comfortdelgro/compass-icons/react/file/xml-solid'
+import XmlFile from '@comfortdelgro/compass-icons/react/file/xml'
+import ZipGrayFile from '@comfortdelgro/compass-icons/react/file/zip-gray'
+import ZipSolidFile from '@comfortdelgro/compass-icons/react/file/zip-solid'
+import ZipFile from '@comfortdelgro/compass-icons/react/file/zip'
+
+# Icons
+
+The SGV icons
+
+---
+
+### Import:
+
+```js
+import Activity from '@comfortdelgro/compass-icons/react/activity'
+```
+
+or with iconify
+
+```js
+import {Icon} from '@iconify/react'
+import activityIcon from '@comfortdelgro/compass-icons/iconify/activity'
+```
+
+---
+
+### Filled Icons:
+
+```js
+import AddressBookFilled from '@comfortdelgro/compass-icons/react/filled/address-book-filled'
+```
+
+<section
+  className={styles.avatarShowcaseContainer}
+  style={{
+    display: 'flex',
+    gap: '10px',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
+  }}
+>
+  <IconBox
+    component={<AddressBookFilled width={40} height={40} />}
+    name='AddressBookFilled'
+  />
+  <IconBox
+    component={<ArrowDownFilled width={40} height={40} />}
+    name='ArrowDownFilled'
+  />
+  <IconBox
+    component={<ArrowLeftFilled width={40} height={40} />}
+    name='ArrowLeftFilled'
+  />
+  <IconBox
+    component={<ArrowRightFilled width={40} height={40} />}
+    name='ArrowRightFilled'
+  />
+  <IconBox
+    component={<ArrowUpFilled width={40} height={40} />}
+    name='ArrowUpFilled'
+  />
+  <IconBox
+    component={<CalendarDaysFilled width={40} height={40} />}
+    name='CalendarDaysFilled'
+  />
+  <IconBox
+    component={<ClockFilled width={40} height={40} />}
+    name='ClockFilled'
+  />
+  <IconBox
+    component={<CreditCardFilled width={40} height={40} />}
+    name='CreditCardFilled'
+  />
+  <IconBox
+    component={<DuplicateImageFilled width={40} height={40} />}
+    name='DuplicateImageFilled'
+  />
+  <IconBox
+    component={<ExclamationFilled width={40} height={40} />}
+    name='ExclamationFilled'
+  />
+  <IconBox
+    component={<GroupAddFilled width={40} height={40} />}
+    name='GroupAddFilled'
+  />
+  <IconBox
+    component={<GroupSettingsFilled width={40} height={40} />}
+    name='GroupSettingsFilled'
+  />
+  <IconBox
+    component={<HeartFilled width={40} height={40} />}
+    name='HeartFilled'
+  />
+  <IconBox
+    component={<ImageFilled width={40} height={40} />}
+    name='ImageFilled'
+  />
+  <IconBox
+    component={<InfoFilled width={40} height={40} />}
+    name='InfoFilled'
+  />
+  <IconBox
+    component={<MailFilled width={40} height={40} />}
+    name='MailFilled'
+  />
+  <IconBox
+    component={<NotificationFilled width={40} height={40} />}
+    name='NotificationFilled'
+  />
+  <IconBox
+    component={<PencilFilled width={40} height={40} />}
+    name='PencilFilled'
+  />
+  <IconBox
+    component={<PersonFilled width={40} height={40} />}
+    name='PersonFilled'
+  />
+  <IconBox
+    component={<ProfileFilled width={40} height={40} />}
+    name='ProfileFilled'
+  />
+  <IconBox
+    component={<QuestionFilled width={40} height={40} />}
+    name='QuestionFilled'
+  />
+  <IconBox
+    component={<StarFilled width={40} height={40} />}
+    name='StarFilled'
+  />
+  <IconBox
+    component={<ThumbtackFilled width={40} height={40} />}
+    name='ThumbtackFilled'
+  />
+  <IconBox
+    component={<TrashFilled width={40} height={40} />}
+    name='TrashFilled'
+  />
+  <IconBox
+    component={<UserAddFilled width={40} height={40} />}
+    name='UserAddFilled'
+  />
+  <IconBox
+    component={<WarningFilled width={40} height={40} />}
+    name='WarningFilled'
+  />
+</section>
+
+---
+
+### Outline Icons:
+
+```js
+import AddressBookOutlined from '@comfortdelgro/compass-icons/react/outlined/address-book-outlined'
+```
+
+<section
+  className={styles.avatarShowcaseContainer}
+  style={{
+    display: 'flex',
+    gap: '10px',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
+  }}
+>
+  <IconBox
+    component={<AddressBookOutlined width={40} height={40} />}
+    name='AddressBookOutlined'
+  />
+  <IconBox
+    component={<ArrowDownOutlined width={40} height={40} />}
+    name='ArrowDownOutlined'
+  />
+  <IconBox
+    component={<ArrowLeftOutlined width={40} height={40} />}
+    name='ArrowLeftOutlined'
+  />
+  <IconBox
+    component={<ArrowRightOutlined width={40} height={40} />}
+    name='ArrowRightOutlined'
+  />
+  <IconBox
+    component={<ArrowUpOutlined width={40} height={40} />}
+    name='ArrowUpOutlined'
+  />
+  <IconBox
+    component={<CalendarDaysOutlined width={40} height={40} />}
+    name='CalendarDaysOutlined'
+  />
+  <IconBox
+    component={<ClockOutlined width={40} height={40} />}
+    name='ClockOutlined'
+  />
+  <IconBox
+    component={<CreditCardOutlined width={40} height={40} />}
+    name='CreditCardOutlined'
+  />
+  <IconBox
+    component={<DuplicateImageOutlined width={40} height={40} />}
+    name='DuplicateImageOutlined'
+  />
+  <IconBox
+    component={<ExclamationOutlined width={40} height={40} />}
+    name='ExclamationOutlined'
+  />
+  <IconBox
+    component={<GroupAddOutlined width={40} height={40} />}
+    name='GroupAddOutlined'
+  />
+  <IconBox
+    component={<GroupSettingsOutlined width={40} height={40} />}
+    name='GroupSettingsOutlined'
+  />
+  <IconBox
+    component={<HeartOutlined width={40} height={40} />}
+    name='HeartOutlined'
+  />
+  <IconBox
+    component={<ImageOutlined width={40} height={40} />}
+    name='ImageOutlined'
+  />
+  <IconBox
+    component={<InfoOutlined width={40} height={40} />}
+    name='InfoOutlined'
+  />
+  <IconBox
+    component={<MailOutlined width={40} height={40} />}
+    name='MailOutlined'
+  />
+  <IconBox
+    component={<NotificationOutlined width={40} height={40} />}
+    name='NotificationOutlined'
+  />
+  <IconBox
+    component={<PencilOutlined width={40} height={40} />}
+    name='PencilOutlined'
+  />
+  <IconBox
+    component={<PersonOutlined width={40} height={40} />}
+    name='PersonOutlined'
+  />
+  <IconBox
+    component={<ProfileOutlined width={40} height={40} />}
+    name='ProfileOutlined'
+  />
+  <IconBox
+    component={<QuestionOutlined width={40} height={40} />}
+    name='QuestionOutlined'
+  />
+  <IconBox
+    component={<StarOutlined width={40} height={40} />}
+    name='StarOutlined'
+  />
+  <IconBox
+    component={<ThumbtackOutlined width={40} height={40} />}
+    name='ThumbtackOutlined'
+  />
+  <IconBox
+    component={<TrashOutlined width={40} height={40} />}
+    name='TrashOutlined'
+  />
+  <IconBox
+    component={<UserAddOutlined width={40} height={40} />}
+    name='UserAddOutlined'
+  />
+  <IconBox
+    component={<UserGroupOutlined width={40} height={40} />}
+    name='UserGroupOutlined'
+  />
+  <IconBox
+    component={<WarningOutlined width={40} height={40} />}
+    name='WarningOutlined'
+  />
+</section>
+
+---
+
+### Duotone Icons:
+
+```js
+import BadgeDollarDuotone from '@comfortdelgro/compass-icons/react/duotone/badge-dollar-duotone'
+```
+
+<section
+  className={styles.avatarShowcaseContainer}
+  style={{
+    display: 'flex',
+    gap: '10px',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
+  }}
+>
+  <IconBox
+    component={<BadgeDollarDuotone width={40} height={40} />}
+    name='BadgeDollarDuotone'
+  />
+  <IconBox
+    component={<CalendarDaysDuotone width={40} height={40} />}
+    name='CalendarDaysDuotone'
+  />
+  <IconBox
+    component={<ChartLineUpDuotone width={40} height={40} />}
+    name='ChartLineUpDuotone'
+  />
+  <IconBox
+    component={<ChartPieDuotone width={40} height={40} />}
+    name='ChartPieDuotone'
+  />
+  <IconBox
+    component={<EditDuotone width={40} height={40} />}
+    name='EditDuotone'
+  />
+  <IconBox
+    component={<FlagDuotone width={40} height={40} />}
+    name='FlagDuotone'
+  />
+  <IconBox
+    component={<GearsDuotone width={40} height={40} />}
+    name='GearsDuotone'
+  />
+  <IconBox
+    component={<GridDuotone width={40} height={40} />}
+    name='GridDuotone'
+  />
+  <IconBox
+    component={<NotificationDuotone width={40} height={40} />}
+    name='NotificationDuotone'
+  />
+  <IconBox
+    component={<OrgChartDuotone width={40} height={40} />}
+    name='OrgChartDuotone'
+  />
+  <IconBox
+    component={<PasswordDuotone width={40} height={40} />}
+    name='PasswordDuotone'
+  />
+  <IconBox
+    component={<TrashDuotone width={40} height={40} />}
+    name='TrashDuotone'
+  />
+  <IconBox
+    component={<UserDuotone width={40} height={40} />}
+    name='UserDuotone'
+  />
+</section>
+
+---
+
+### Colorful Icons:
+
+```js
+import Compass from '@comfortdelgro/compass-icons/react/colorful/compass'
+```
+
+<section
+  className={styles.avatarShowcaseContainer}
+  style={{
+    display: 'flex',
+    gap: '10px',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
+  }}
+>
+  <IconBox
+    component={<ClubhouseColorful width={40} height={40} />}
+    name='Clubhouse'
+  />
+  <IconBox
+    component={<CompassColorful width={40} height={40} />}
+    name='Compass'
+  />
+  <IconBox component={<CrownColorful width={40} height={40} />} name='Crown' />
+  <IconBox
+    component={<DiscordColorful width={40} height={40} />}
+    name='Discord'
+  />
+  <IconBox
+    component={<DoctypeColorful width={40} height={40} />}
+    name='Doctype'
+  />
+  <IconBox
+    component={<DribbbleColorful width={40} height={40} />}
+    name='Dribbble'
+  />
+  <IconBox
+    component={<FacebookColorful width={40} height={40} />}
+    name='Facebook'
+  />
+  <IconBox component={<FigmaColorful width={40} height={40} />} name='Figma' />
+  <IconBox
+    component={<GoogleColorful width={40} height={40} />}
+    name='Google'
+  />
+  <IconBox
+    component={<LinkedinColorful width={40} height={40} />}
+    name='Linkedin'
+  />
+  <IconBox
+    component={<PinterestColorful width={40} height={40} />}
+    name='Pinterest'
+  />
+  <IconBox
+    component={<RedditColorful width={40} height={40} />}
+    name='Reddit'
+  />
+  <IconBox
+    component={<SignalColorful width={40} height={40} />}
+    name='Signal'
+  />
+  <IconBox
+    component={<SnapchatColorful width={40} height={40} />}
+    name='Snapchat'
+  />
+  <IconBox
+    component={<TelegramColorful width={40} height={40} />}
+    name='Telegram'
+  />
+  <IconBox
+    component={<TiktokColorful width={40} height={40} />}
+    name='Tiktok'
+  />
+  <IconBox
+    component={<TumblrColorful width={40} height={40} />}
+    name='Tumblr'
+  />
+  <IconBox
+    component={<TwitterColorful width={40} height={40} />}
+    name='Twitter'
+  />
+  <IconBox
+    component={<WorkbenchTextColorful width={40} height={40} />}
+    name='WorkbenchText'
+  />
+  <IconBox
+    component={<WorkbenchColorful width={40} height={40} />}
+    name='Workbench'
+  />
+  <IconBox
+    component={<YoutubeColorful width={40} height={40} />}
+    name='Youtube'
+  />
+  <IconBox
+    component={<ZigBizSquareColorful width={40} height={40} />}
+    name='ZigBizSquare'
+  />
+  <IconBox
+    component={<ZigBizTsmColorful width={40} height={40} />}
+    name='ZigBizTsm'
+  />
+  <IconBox
+    component={<ZigBizWhiteColorful width={40} height={40} />}
+    name='ZigBizWhite'
+  />
+  <IconBox
+    component={<ZigBizColorful width={40} height={40} />}
+    name='ZigBiz'
+  />
+</section>
+
+---
+
+### Other Icons:
+
+```js
+import Activity from '@comfortdelgro/compass-icons/react/activity'
+```
+
+<section
+  className={styles.avatarShowcaseContainer}
+  style={{
+    display: 'flex',
+    gap: '10px',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
+  }}
+>
+  <IconBox component={<Activity width={40} height={40} />} name='Activity' />
+  <IconBox
+    component={<AlignCenter width={40} height={40} />}
+    name='AlignCenter'
+  />
+  <IconBox
+    component={<AlignJustify width={40} height={40} />}
+    name='AlignJustify'
+  />
+  <IconBox component={<AlignLeft width={40} height={40} />} name='AlignLeft' />
+  <IconBox
+    component={<AlignRight width={40} height={40} />}
+    name='AlignRight'
+  />
+  <IconBox component={<Angellist width={40} height={40} />} name='Angellist' />
+  <IconBox component={<Apple width={40} height={40} />} name='Apple' />
+  <IconBox component={<ArrowDown width={40} height={40} />} name='ArrowDown' />
+  <IconBox component={<ArrowLeft width={40} height={40} />} name='ArrowLeft' />
+  <IconBox
+    component={<ArrowRight width={40} height={40} />}
+    name='ArrowRight'
+  />
+  <IconBox component={<ArrowUp width={40} height={40} />} name='ArrowUp' />
+  <IconBox component={<Bid width={40} height={40} />} name='Bid' />
+  <IconBox component={<Bold width={40} height={40} />} name='Bold' />
+  <IconBox component={<Browser width={40} height={40} />} name='Browser' />
+  <IconBox component={<Bug width={40} height={40} />} name='Bug' />
+  <IconBox component={<Building width={40} height={40} />} name='Building' />
+  <IconBox component={<Bus2 width={40} height={40} />} name='Bus2' />
+  <IconBox component={<BusAndCar width={40} height={40} />} name='BusAndCar' />
+  <IconBox component={<Bus width={40} height={40} />} name='Bus' />
+  <IconBox component={<Calendar width={40} height={40} />} name='Calendar' />
+  <IconBox component={<Cancelled width={40} height={40} />} name='Cancelled' />
+  <IconBox component={<Capacity width={40} height={40} />} name='Capacity' />
+  <IconBox component={<Car width={40} height={40} />} name='Car' />
+  <IconBox component={<CaretDown width={40} height={40} />} name='CaretDown' />
+  <IconBox component={<CaretLeft width={40} height={40} />} name='CaretLeft' />
+  <IconBox
+    component={<CaretRight width={40} height={40} />}
+    name='CaretRight'
+  />
+  <IconBox component={<CaretUp width={40} height={40} />} name='CaretUp' />
+  <IconBox component={<Chart width={40} height={40} />} name='Chart' />
+  <IconBox component={<Chat width={40} height={40} />} name='Chat' />
+  <IconBox component={<Cities width={40} height={40} />} name='Cities' />
+  <IconBox
+    component={<ClapperboardPlay width={40} height={40} />}
+    name='ClapperboardPlay'
+  />
+  <IconBox
+    component={<Classification width={40} height={40} />}
+    name='Classification'
+  />
+  <IconBox component={<Clipboard width={40} height={40} />} name='Clipboard' />
+  <IconBox
+    component={<CloudUpload width={40} height={40} />}
+    name='CloudUpload'
+  />
+  <IconBox component={<Copy width={40} height={40} />} name='Copy' />
+  <IconBox
+    component={<CrossCircle width={40} height={40} />}
+    name='CrossCircle'
+  />
+  <IconBox component={<Cross width={40} height={40} />} name='Cross' />
+  <IconBox
+    component={<CustomerService width={40} height={40} />}
+    name='CustomerService'
+  />
+  <IconBox component={<Dashboard width={40} height={40} />} name='Dashboard' />
+  <IconBox component={<Deleted width={40} height={40} />} name='Deleted' />
+  <IconBox component={<Document width={40} height={40} />} name='Document' />
+  <IconBox component={<Download width={40} height={40} />} name='Download' />
+  <IconBox component={<Driver width={40} height={40} />} name='Driver' />
+  <IconBox component={<Edit width={40} height={40} />} name='Edit' />
+  <IconBox component={<Email width={40} height={40} />} name='Email' />
+  <IconBox component={<Excel width={40} height={40} />} name='Excel' />
+  <IconBox component={<Export width={40} height={40} />} name='Export' />
+  <IconBox component={<EyeSlash width={40} height={40} />} name='EyeSlash' />
+  <IconBox component={<EyeSolid width={40} height={40} />} name='EyeSolid' />
+  <IconBox component={<FaceFrown width={40} height={40} />} name='FaceFrown' />
+  <IconBox component={<FaceLaugh width={40} height={40} />} name='FaceLaugh' />
+  <IconBox component={<FaceMeh width={40} height={40} />} name='FaceMeh' />
+  <IconBox
+    component={<FaceSadTear width={40} height={40} />}
+    name='FaceSadTear'
+  />
+  <IconBox
+    component={<FaceSmileHeart width={40} height={40} />}
+    name='FaceSmileHeart'
+  />
+  <IconBox component={<FaceSmile width={40} height={40} />} name='FaceSmile' />
+  <IconBox
+    component={<FacebookCircular width={40} height={40} />}
+    name='FacebookCircular'
+  />
+  <IconBox
+    component={<FacebookSquare width={40} height={40} />}
+    name='FacebookSquare'
+  />
+  <IconBox
+    component={<FileLaptop width={40} height={40} />}
+    name='FileLaptop'
+  />
+  <IconBox component={<FilePen width={40} height={40} />} name='FilePen' />
+  <IconBox
+    component={<FileSignature width={40} height={40} />}
+    name='FileSignature'
+  />
+  <IconBox component={<File width={40} height={40} />} name='File' />
+  <IconBox component={<Fill width={40} height={40} />} name='Fill' />
+  <IconBox component={<Filter width={40} height={40} />} name='Filter' />
+  <IconBox component={<Flag width={40} height={40} />} name='Flag' />
+  <IconBox
+    component={<FolderOpen width={40} height={40} />}
+    name='FolderOpen'
+  />
+  <IconBox component={<Folder width={40} height={40} />} name='Folder' />
+  <IconBox
+    component={<FontColour width={40} height={40} />}
+    name='FontColour'
+  />
+  <IconBox component={<Font width={40} height={40} />} name='Font' />
+  <IconBox component={<Gauge width={40} height={40} />} name='Gauge' />
+  <IconBox component={<Gears width={40} height={40} />} name='Gears' />
+  <IconBox component={<Github width={40} height={40} />} name='Github' />
+  <IconBox component={<Globe width={40} height={40} />} name='Globe' />
+  <IconBox component={<Google width={40} height={40} />} name='Google' />
+  <IconBox component={<Grid width={40} height={40} />} name='Grid' />
+  <IconBox component={<GripDots width={40} height={40} />} name='GripDots' />
+  <IconBox component={<H width={40} height={40} />} name='H' />
+  <IconBox component={<H1 width={40} height={40} />} name='H1' />
+  <IconBox component={<H2 width={40} height={40} />} name='H2' />
+  <IconBox component={<H3 width={40} height={40} />} name='H3' />
+  <IconBox component={<H4 width={40} height={40} />} name='H4' />
+  <IconBox component={<H5 width={40} height={40} />} name='H5' />
+  <IconBox component={<H6 width={40} height={40} />} name='H6' />
+  <IconBox component={<HatWizard width={40} height={40} />} name='HatWizard' />
+  <IconBox component={<Heading width={40} height={40} />} name='Heading' />
+  <IconBox
+    component={<HexagonXmark width={40} height={40} />}
+    name='HexagonXmark'
+  />
+  <IconBox component={<Hide width={40} height={40} />} name='Hide' />
+  <IconBox component={<Home width={40} height={40} />} name='Home' />
+  <IconBox
+    component={<HourglassClock width={40} height={40} />}
+    name='HourglassClock'
+  />
+  <IconBox
+    component={<InfoSquare width={40} height={40} />}
+    name='InfoSquare'
+  />
+  <IconBox component={<Inspect width={40} height={40} />} name='Inspect' />
+  <IconBox component={<Instagram width={40} height={40} />} name='Instagram' />
+  <IconBox component={<Invoice width={40} height={40} />} name='Invoice' />
+  <IconBox component={<Italic width={40} height={40} />} name='Italic' />
+  <IconBox component={<Job2 width={40} height={40} />} name='Job2' />
+  <IconBox component={<Job width={40} height={40} />} name='Job' />
+  <IconBox component={<Key width={40} height={40} />} name='Key' />
+  <IconBox component={<Layers width={40} height={40} />} name='Layers' />
+  <IconBox
+    component={<LightbulbOn width={40} height={40} />}
+    name='LightbulbOn'
+  />
+  <IconBox component={<Link width={40} height={40} />} name='Link' />
+  <IconBox component={<Linkedin width={40} height={40} />} name='Linkedin' />
+  <IconBox component={<ListOl width={40} height={40} />} name='ListOl' />
+  <IconBox component={<ListUl width={40} height={40} />} name='ListUl' />
+  <IconBox component={<List width={40} height={40} />} name='List' />
+  <IconBox component={<Logout width={40} height={40} />} name='Logout' />
+  <IconBox component={<LowVolume width={40} height={40} />} name='LowVolume' />
+  <IconBox
+    component={<Maintenance width={40} height={40} />}
+    name='Maintenance'
+  />
+  <IconBox component={<MapMarked width={40} height={40} />} name='MapMarked' />
+  <IconBox component={<MapMarker width={40} height={40} />} name='MapMarker' />
+  <IconBox component={<Map width={40} height={40} />} name='Map' />
+  <IconBox component={<Menu width={40} height={40} />} name='Menu' />
+  <IconBox
+    component={<MessageLines width={40} height={40} />}
+    name='MessageLines'
+  />
+  <IconBox component={<Message width={40} height={40} />} name='Message' />
+  <IconBox
+    component={<MinusSquare width={40} height={40} />}
+    name='MinusSquare'
+  />
+  <IconBox component={<Minus width={40} height={40} />} name='Minus' />
+  <IconBox component={<MoneyBill width={40} height={40} />} name='MoneyBill' />
+  <IconBox
+    component={<MoneyCheckAlt width={40} height={40} />}
+    name='MoneyCheckAlt'
+  />
+  <IconBox component={<Money width={40} height={40} />} name='Money' />
+  <IconBox component={<Mute width={40} height={40} />} name='Mute' />
+  <IconBox
+    component={<NotificationBadge width={40} height={40} />}
+    name='NotificationBadge'
+  />
+  <IconBox
+    component={<NotificationOff width={40} height={40} />}
+    name='NotificationOff'
+  />
+  <IconBox component={<Outdent width={40} height={40} />} name='Outdent' />
+  <IconBox component={<Paste width={40} height={40} />} name='Paste' />
+  <IconBox component={<Pause width={40} height={40} />} name='Pause' />
+  <IconBox component={<Pdf width={40} height={40} />} name='Pdf' />
+  <IconBox component={<PenNib width={40} height={40} />} name='PenNib' />
+  <IconBox component={<Phone width={40} height={40} />} name='Phone' />
+  <IconBox component={<Pinterest width={40} height={40} />} name='Pinterest' />
+  <IconBox
+    component={<PlusSquare width={40} height={40} />}
+    name='PlusSquare'
+  />
+  <IconBox component={<Plus width={40} height={40} />} name='Plus' />
+  <IconBox
+    component={<ProfileCard width={40} height={40} />}
+    name='ProfileCard'
+  />
+  <IconBox component={<Profile width={40} height={40} />} name='Profile' />
+  <IconBox component={<Project width={40} height={40} />} name='Project' />
+  <IconBox
+    component={<QuestionSquare width={40} height={40} />}
+    name='QuestionSquare'
+  />
+  <IconBox component={<QuoteLeft width={40} height={40} />} name='QuoteLeft' />
+  <IconBox
+    component={<QuoteRight width={40} height={40} />}
+    name='QuoteRight'
+  />
+  <IconBox
+    component={<RatingStar0 width={40} height={40} />}
+    name='RatingStar0'
+  />
+  <IconBox
+    component={<RatingStar10 width={40} height={40} />}
+    name='RatingStar10'
+  />
+  <IconBox
+    component={<RatingStar100 width={40} height={40} />}
+    name='RatingStar100'
+  />
+  <IconBox
+    component={<RatingStar20 width={40} height={40} />}
+    name='RatingStar20'
+  />
+  <IconBox
+    component={<RatingStar30 width={40} height={40} />}
+    name='RatingStar30'
+  />
+  <IconBox
+    component={<RatingStar40 width={40} height={40} />}
+    name='RatingStar40'
+  />
+  <IconBox
+    component={<RatingStar50 width={40} height={40} />}
+    name='RatingStar50'
+  />
+  <IconBox
+    component={<RatingStar60 width={40} height={40} />}
+    name='RatingStar60'
+  />
+  <IconBox
+    component={<RatingStar70 width={40} height={40} />}
+    name='RatingStar70'
+  />
+  <IconBox
+    component={<RatingStar80 width={40} height={40} />}
+    name='RatingStar80'
+  />
+  <IconBox
+    component={<RatingStar90 width={40} height={40} />}
+    name='RatingStar90'
+  />
+  <IconBox component={<Refresh width={40} height={40} />} name='Refresh' />
+  <IconBox component={<Reveal width={40} height={40} />} name='Reveal' />
+  <IconBox component={<School width={40} height={40} />} name='School' />
+  <IconBox component={<Search width={40} height={40} />} name='Search' />
+  <IconBox component={<Settings width={40} height={40} />} name='Settings' />
+  <IconBox component={<Shapes width={40} height={40} />} name='Shapes' />
+  <IconBox component={<Share width={40} height={40} />} name='Share' />
+  <IconBox component={<Shield2 width={40} height={40} />} name='Shield2' />
+  <IconBox component={<Shield width={40} height={40} />} name='Shield' />
+  <IconBox component={<Snapchat width={40} height={40} />} name='Snapchat' />
+  <IconBox
+    component={<Sort1To9Ascending width={40} height={40} />}
+    name='Sort1To9Ascending'
+  />
+  <IconBox
+    component={<Sort1To9Descending width={40} height={40} />}
+    name='Sort1To9Descending'
+  />
+  <IconBox
+    component={<Sort9To1Ascending width={40} height={40} />}
+    name='Sort9To1Ascending'
+  />
+  <IconBox
+    component={<Sort9To1Descending width={40} height={40} />}
+    name='Sort9To1Descending'
+  />
+  <IconBox component={<Sort width={40} height={40} />} name='Sort' />
+  <IconBox component={<Sparkle width={40} height={40} />} name='Sparkle' />
+  <IconBox
+    component={<Spreadsheet width={40} height={40} />}
+    name='Spreadsheet'
+  />
+  <IconBox component={<Stamp width={40} height={40} />} name='Stamp' />
+  <IconBox component={<Status width={40} height={40} />} name='Status' />
+  <IconBox component={<Store width={40} height={40} />} name='Store' />
+  <IconBox
+    component={<Strikethrough width={40} height={40} />}
+    name='Strikethrough'
+  />
+  <IconBox component={<Suitcase width={40} height={40} />} name='Suitcase' />
+  <IconBox
+    component={<TableColumns width={40} height={40} />}
+    name='TableColumns'
+  />
+  <IconBox component={<Table width={40} height={40} />} name='Table' />
+  <IconBox component={<Tags width={40} height={40} />} name='Tags' />
+  <IconBox component={<Taxi width={40} height={40} />} name='Taxi' />
+  <IconBox
+    component={<TextHeight width={40} height={40} />}
+    name='TextHeight'
+  />
+  <IconBox component={<ThumbDown width={40} height={40} />} name='ThumbDown' />
+  <IconBox component={<ThumbUp width={40} height={40} />} name='ThumbUp' />
+  <IconBox
+    component={<TickCircle width={40} height={40} />}
+    name='TickCircle'
+  />
+  <IconBox component={<Tick width={40} height={40} />} name='Tick' />
+  <IconBox component={<Ticket width={40} height={40} />} name='Ticket' />
+  <IconBox component={<Timeline width={40} height={40} />} name='Timeline' />
+  <IconBox component={<Twitter width={40} height={40} />} name='Twitter' />
+  <IconBox component={<Underline width={40} height={40} />} name='Underline' />
+  <IconBox component={<Unpin width={40} height={40} />} name='Unpin' />
+  <IconBox component={<Upload width={40} height={40} />} name='Upload' />
+  <IconBox component={<UserTie width={40} height={40} />} name='UserTie' />
+  <IconBox component={<Users width={40} height={40} />} name='Users' />
+  <IconBox component={<Verified width={40} height={40} />} name='Verified' />
+  <IconBox component={<Volume width={40} height={40} />} name='Volume' />
+  <IconBox component={<Word width={40} height={40} />} name='Word' />
+  <IconBox component={<Youtube width={40} height={40} />} name='Youtube' />
+  <IconBox component={<ZoomIn width={40} height={40} />} name='ZoomIn' />
+  <IconBox component={<ZoomMinus width={40} height={40} />} name='ZoomMinus' />
+  <IconBox component={<ZoomOut width={40} height={40} />} name='ZoomOut' />
+  <IconBox component={<ZoomPlus width={40} height={40} />} name='ZoomPlus' />
+</section>
+
+---
+
+### Country Icons:
+
+```js
+import FlagAbw from '@comfortdelgro/compass-icons/react/country/flag-abw'
+```
+
+<section
+  className={styles.avatarShowcaseContainer}
+  style={{
+    display: 'flex',
+    gap: '10px',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
+  }}
+>
+  <IconBox component={<FlagAbw width={40} height={40} />} name='FlagAbw' />
+  <IconBox component={<FlagAfg width={40} height={40} />} name='FlagAfg' />
+  <IconBox component={<FlagAgo width={40} height={40} />} name='FlagAgo' />
+  <IconBox component={<FlagAia width={40} height={40} />} name='FlagAia' />
+  <IconBox component={<FlagAla width={40} height={40} />} name='FlagAla' />
+  <IconBox component={<FlagAlb width={40} height={40} />} name='FlagAlb' />
+  <IconBox component={<FlagAnd width={40} height={40} />} name='FlagAnd' />
+  <IconBox component={<FlagAre width={40} height={40} />} name='FlagAre' />
+  <IconBox component={<FlagArg width={40} height={40} />} name='FlagArg' />
+  <IconBox component={<FlagArm width={40} height={40} />} name='FlagArm' />
+  <IconBox component={<FlagAsm width={40} height={40} />} name='FlagAsm' />
+  <IconBox component={<FlagAta width={40} height={40} />} name='FlagAta' />
+  <IconBox component={<FlagAtg width={40} height={40} />} name='FlagAtg' />
+  <IconBox component={<FlagAus width={40} height={40} />} name='FlagAus' />
+  <IconBox component={<FlagAut width={40} height={40} />} name='FlagAut' />
+  <IconBox component={<FlagAze width={40} height={40} />} name='FlagAze' />
+  <IconBox component={<FlagBdi width={40} height={40} />} name='FlagBdi' />
+  <IconBox component={<FlagBel width={40} height={40} />} name='FlagBel' />
+  <IconBox component={<FlagBen width={40} height={40} />} name='FlagBen' />
+  <IconBox component={<FlagBes width={40} height={40} />} name='FlagBes' />
+  <IconBox component={<FlagBfa width={40} height={40} />} name='FlagBfa' />
+  <IconBox component={<FlagBgd width={40} height={40} />} name='FlagBgd' />
+  <IconBox component={<FlagBgr width={40} height={40} />} name='FlagBgr' />
+  <IconBox component={<FlagBhr width={40} height={40} />} name='FlagBhr' />
+  <IconBox component={<FlagBhs width={40} height={40} />} name='FlagBhs' />
+  <IconBox component={<FlagBih width={40} height={40} />} name='FlagBih' />
+  <IconBox component={<FlagBlm width={40} height={40} />} name='FlagBlm' />
+  <IconBox component={<FlagBlr width={40} height={40} />} name='FlagBlr' />
+  <IconBox component={<FlagBlz width={40} height={40} />} name='FlagBlz' />
+  <IconBox component={<FlagBmu width={40} height={40} />} name='FlagBmu' />
+  <IconBox component={<FlagBol width={40} height={40} />} name='FlagBol' />
+  <IconBox component={<FlagBra width={40} height={40} />} name='FlagBra' />
+  <IconBox component={<FlagBrb width={40} height={40} />} name='FlagBrb' />
+  <IconBox component={<FlagBrn width={40} height={40} />} name='FlagBrn' />
+  <IconBox component={<FlagBtn width={40} height={40} />} name='FlagBtn' />
+  <IconBox component={<FlagBwa width={40} height={40} />} name='FlagBwa' />
+  <IconBox component={<FlagCaf width={40} height={40} />} name='FlagCaf' />
+  <IconBox component={<FlagCan width={40} height={40} />} name='FlagCan' />
+  <IconBox component={<FlagCck width={40} height={40} />} name='FlagCck' />
+  <IconBox component={<FlagChe width={40} height={40} />} name='FlagChe' />
+  <IconBox component={<FlagChl width={40} height={40} />} name='FlagChl' />
+  <IconBox component={<FlagChn width={40} height={40} />} name='FlagChn' />
+  <IconBox component={<FlagCiv width={40} height={40} />} name='FlagCiv' />
+  <IconBox component={<FlagCmr width={40} height={40} />} name='FlagCmr' />
+  <IconBox component={<FlagCod width={40} height={40} />} name='FlagCod' />
+  <IconBox component={<FlagCog width={40} height={40} />} name='FlagCog' />
+  <IconBox component={<FlagCok width={40} height={40} />} name='FlagCok' />
+  <IconBox component={<FlagCol width={40} height={40} />} name='FlagCol' />
+  <IconBox component={<FlagCom width={40} height={40} />} name='FlagCom' />
+  <IconBox component={<FlagCpv width={40} height={40} />} name='FlagCpv' />
+  <IconBox component={<FlagCri width={40} height={40} />} name='FlagCri' />
+  <IconBox component={<FlagCub width={40} height={40} />} name='FlagCub' />
+  <IconBox component={<FlagCuw width={40} height={40} />} name='FlagCuw' />
+  <IconBox component={<FlagCxr width={40} height={40} />} name='FlagCxr' />
+  <IconBox component={<FlagCym width={40} height={40} />} name='FlagCym' />
+  <IconBox component={<FlagCyp width={40} height={40} />} name='FlagCyp' />
+  <IconBox component={<FlagCze width={40} height={40} />} name='FlagCze' />
+  <IconBox component={<FlagDeu width={40} height={40} />} name='FlagDeu' />
+  <IconBox component={<FlagDji width={40} height={40} />} name='FlagDji' />
+  <IconBox component={<FlagDma width={40} height={40} />} name='FlagDma' />
+  <IconBox component={<FlagDnk width={40} height={40} />} name='FlagDnk' />
+  <IconBox component={<FlagDom width={40} height={40} />} name='FlagDom' />
+  <IconBox component={<FlagDza width={40} height={40} />} name='FlagDza' />
+  <IconBox component={<FlagEcu width={40} height={40} />} name='FlagEcu' />
+  <IconBox component={<FlagEgy width={40} height={40} />} name='FlagEgy' />
+  <IconBox component={<FlagEri width={40} height={40} />} name='FlagEri' />
+  <IconBox component={<FlagEsh width={40} height={40} />} name='FlagEsh' />
+  <IconBox component={<FlagEsp width={40} height={40} />} name='FlagEsp' />
+  <IconBox component={<FlagEst width={40} height={40} />} name='FlagEst' />
+  <IconBox component={<FlagEth width={40} height={40} />} name='FlagEth' />
+  <IconBox component={<FlagFin width={40} height={40} />} name='FlagFin' />
+  <IconBox component={<FlagFji width={40} height={40} />} name='FlagFji' />
+  <IconBox component={<FlagFlk width={40} height={40} />} name='FlagFlk' />
+  <IconBox component={<FlagFra width={40} height={40} />} name='FlagFra' />
+  <IconBox component={<FlagFro width={40} height={40} />} name='FlagFro' />
+  <IconBox component={<FlagFsm width={40} height={40} />} name='FlagFsm' />
+  <IconBox component={<FlagGab width={40} height={40} />} name='FlagGab' />
+  <IconBox component={<FlagGbr width={40} height={40} />} name='FlagGbr' />
+  <IconBox component={<FlagGeo width={40} height={40} />} name='FlagGeo' />
+  <IconBox component={<FlagGgy width={40} height={40} />} name='FlagGgy' />
+  <IconBox component={<FlagGha width={40} height={40} />} name='FlagGha' />
+  <IconBox component={<FlagGib width={40} height={40} />} name='FlagGib' />
+  <IconBox component={<FlagGin width={40} height={40} />} name='FlagGin' />
+  <IconBox component={<FlagGlp width={40} height={40} />} name='FlagGlp' />
+  <IconBox component={<FlagGmb width={40} height={40} />} name='FlagGmb' />
+  <IconBox component={<FlagGnb width={40} height={40} />} name='FlagGnb' />
+  <IconBox component={<FlagGnq width={40} height={40} />} name='FlagGnq' />
+  <IconBox component={<FlagGrc width={40} height={40} />} name='FlagGrc' />
+  <IconBox component={<FlagGrd width={40} height={40} />} name='FlagGrd' />
+  <IconBox component={<FlagGrl width={40} height={40} />} name='FlagGrl' />
+  <IconBox component={<FlagGtm width={40} height={40} />} name='FlagGtm' />
+  <IconBox component={<FlagGuf width={40} height={40} />} name='FlagGuf' />
+  <IconBox component={<FlagGum width={40} height={40} />} name='FlagGum' />
+  <IconBox component={<FlagGuy width={40} height={40} />} name='FlagGuy' />
+  <IconBox component={<FlagHkg width={40} height={40} />} name='FlagHkg' />
+  <IconBox component={<FlagHnd width={40} height={40} />} name='FlagHnd' />
+  <IconBox component={<FlagHrv width={40} height={40} />} name='FlagHrv' />
+  <IconBox component={<FlagHti width={40} height={40} />} name='FlagHti' />
+  <IconBox component={<FlagHun width={40} height={40} />} name='FlagHun' />
+  <IconBox component={<FlagIdn width={40} height={40} />} name='FlagIdn' />
+  <IconBox component={<FlagImn width={40} height={40} />} name='FlagImn' />
+  <IconBox component={<FlagInd width={40} height={40} />} name='FlagInd' />
+  <IconBox component={<FlagIot width={40} height={40} />} name='FlagIot' />
+  <IconBox component={<FlagIrl width={40} height={40} />} name='FlagIrl' />
+  <IconBox component={<FlagIrn width={40} height={40} />} name='FlagIrn' />
+  <IconBox component={<FlagIrq width={40} height={40} />} name='FlagIrq' />
+  <IconBox component={<FlagIsl width={40} height={40} />} name='FlagIsl' />
+  <IconBox component={<FlagIsr width={40} height={40} />} name='FlagIsr' />
+  <IconBox component={<FlagIta width={40} height={40} />} name='FlagIta' />
+  <IconBox component={<FlagJam width={40} height={40} />} name='FlagJam' />
+  <IconBox component={<FlagJey width={40} height={40} />} name='FlagJey' />
+  <IconBox component={<FlagJor width={40} height={40} />} name='FlagJor' />
+  <IconBox component={<FlagJpn width={40} height={40} />} name='FlagJpn' />
+  <IconBox component={<FlagKaz width={40} height={40} />} name='FlagKaz' />
+  <IconBox component={<FlagKen width={40} height={40} />} name='FlagKen' />
+  <IconBox component={<FlagKgz width={40} height={40} />} name='FlagKgz' />
+  <IconBox component={<FlagKhm width={40} height={40} />} name='FlagKhm' />
+  <IconBox component={<FlagKir width={40} height={40} />} name='FlagKir' />
+  <IconBox component={<FlagKna width={40} height={40} />} name='FlagKna' />
+  <IconBox component={<FlagKor width={40} height={40} />} name='FlagKor' />
+  <IconBox component={<FlagKos width={40} height={40} />} name='FlagKos' />
+  <IconBox component={<FlagKwt width={40} height={40} />} name='FlagKwt' />
+  <IconBox component={<FlagLao width={40} height={40} />} name='FlagLao' />
+  <IconBox component={<FlagLbn width={40} height={40} />} name='FlagLbn' />
+  <IconBox component={<FlagLbr width={40} height={40} />} name='FlagLbr' />
+  <IconBox component={<FlagLby width={40} height={40} />} name='FlagLby' />
+  <IconBox component={<FlagLca width={40} height={40} />} name='FlagLca' />
+  <IconBox component={<FlagLie width={40} height={40} />} name='FlagLie' />
+  <IconBox component={<FlagLka width={40} height={40} />} name='FlagLka' />
+  <IconBox component={<FlagLso width={40} height={40} />} name='FlagLso' />
+  <IconBox component={<FlagLtu width={40} height={40} />} name='FlagLtu' />
+  <IconBox component={<FlagLux width={40} height={40} />} name='FlagLux' />
+  <IconBox component={<FlagLva width={40} height={40} />} name='FlagLva' />
+  <IconBox component={<FlagMac width={40} height={40} />} name='FlagMac' />
+  <IconBox component={<FlagMaf width={40} height={40} />} name='FlagMaf' />
+  <IconBox component={<FlagMar width={40} height={40} />} name='FlagMar' />
+  <IconBox component={<FlagMco width={40} height={40} />} name='FlagMco' />
+  <IconBox component={<FlagMda width={40} height={40} />} name='FlagMda' />
+  <IconBox component={<FlagMdg width={40} height={40} />} name='FlagMdg' />
+  <IconBox component={<FlagMdv width={40} height={40} />} name='FlagMdv' />
+  <IconBox component={<FlagMex width={40} height={40} />} name='FlagMex' />
+  <IconBox component={<FlagMhl width={40} height={40} />} name='FlagMhl' />
+  <IconBox component={<FlagMkd width={40} height={40} />} name='FlagMkd' />
+  <IconBox component={<FlagMli width={40} height={40} />} name='FlagMli' />
+  <IconBox component={<FlagMlt width={40} height={40} />} name='FlagMlt' />
+  <IconBox component={<FlagMmr width={40} height={40} />} name='FlagMmr' />
+  <IconBox component={<FlagMne width={40} height={40} />} name='FlagMne' />
+  <IconBox component={<FlagMng width={40} height={40} />} name='FlagMng' />
+  <IconBox component={<FlagMnp width={40} height={40} />} name='FlagMnp' />
+  <IconBox component={<FlagMoz width={40} height={40} />} name='FlagMoz' />
+  <IconBox component={<FlagMrt width={40} height={40} />} name='FlagMrt' />
+  <IconBox component={<FlagMsr width={40} height={40} />} name='FlagMsr' />
+  <IconBox component={<FlagMtq width={40} height={40} />} name='FlagMtq' />
+  <IconBox component={<FlagMus width={40} height={40} />} name='FlagMus' />
+  <IconBox component={<FlagMwi width={40} height={40} />} name='FlagMwi' />
+  <IconBox component={<FlagMys width={40} height={40} />} name='FlagMys' />
+  <IconBox component={<FlagMyt width={40} height={40} />} name='FlagMyt' />
+  <IconBox component={<FlagNam width={40} height={40} />} name='FlagNam' />
+  <IconBox component={<FlagNcl width={40} height={40} />} name='FlagNcl' />
+  <IconBox component={<FlagNer width={40} height={40} />} name='FlagNer' />
+  <IconBox component={<FlagNfk width={40} height={40} />} name='FlagNfk' />
+  <IconBox component={<FlagNga width={40} height={40} />} name='FlagNga' />
+  <IconBox component={<FlagNic width={40} height={40} />} name='FlagNic' />
+  <IconBox component={<FlagNiu width={40} height={40} />} name='FlagNiu' />
+  <IconBox component={<FlagNld width={40} height={40} />} name='FlagNld' />
+  <IconBox component={<FlagNor width={40} height={40} />} name='FlagNor' />
+  <IconBox component={<FlagNpl width={40} height={40} />} name='FlagNpl' />
+  <IconBox component={<FlagNru width={40} height={40} />} name='FlagNru' />
+  <IconBox component={<FlagNzl width={40} height={40} />} name='FlagNzl' />
+  <IconBox component={<FlagOmn width={40} height={40} />} name='FlagOmn' />
+  <IconBox component={<FlagPak width={40} height={40} />} name='FlagPak' />
+  <IconBox component={<FlagPan width={40} height={40} />} name='FlagPan' />
+  <IconBox component={<FlagPcn width={40} height={40} />} name='FlagPcn' />
+  <IconBox component={<FlagPer width={40} height={40} />} name='FlagPer' />
+  <IconBox component={<FlagPhl width={40} height={40} />} name='FlagPhl' />
+  <IconBox component={<FlagPlw width={40} height={40} />} name='FlagPlw' />
+  <IconBox component={<FlagPng width={40} height={40} />} name='FlagPng' />
+  <IconBox component={<FlagPol width={40} height={40} />} name='FlagPol' />
+  <IconBox component={<FlagPri width={40} height={40} />} name='FlagPri' />
+  <IconBox component={<FlagPrk width={40} height={40} />} name='FlagPrk' />
+  <IconBox component={<FlagPrt width={40} height={40} />} name='FlagPrt' />
+  <IconBox component={<FlagPry width={40} height={40} />} name='FlagPry' />
+  <IconBox component={<FlagPse width={40} height={40} />} name='FlagPse' />
+  <IconBox component={<FlagPyf width={40} height={40} />} name='FlagPyf' />
+  <IconBox component={<FlagQat width={40} height={40} />} name='FlagQat' />
+  <IconBox component={<FlagReu width={40} height={40} />} name='FlagReu' />
+  <IconBox component={<FlagRou width={40} height={40} />} name='FlagRou' />
+  <IconBox component={<FlagRus width={40} height={40} />} name='FlagRus' />
+  <IconBox component={<FlagRwa width={40} height={40} />} name='FlagRwa' />
+  <IconBox component={<FlagSau width={40} height={40} />} name='FlagSau' />
+  <IconBox component={<FlagSdn width={40} height={40} />} name='FlagSdn' />
+  <IconBox component={<FlagSen width={40} height={40} />} name='FlagSen' />
+  <IconBox component={<FlagSgp width={40} height={40} />} name='FlagSgp' />
+  <IconBox component={<FlagSgs width={40} height={40} />} name='FlagSgs' />
+  <IconBox component={<FlagShn width={40} height={40} />} name='FlagShn' />
+  <IconBox component={<FlagSjm width={40} height={40} />} name='FlagSjm' />
+  <IconBox component={<FlagSlb width={40} height={40} />} name='FlagSlb' />
+  <IconBox component={<FlagSle width={40} height={40} />} name='FlagSle' />
+  <IconBox component={<FlagSlv width={40} height={40} />} name='FlagSlv' />
+  <IconBox component={<FlagSmr width={40} height={40} />} name='FlagSmr' />
+  <IconBox component={<FlagSom width={40} height={40} />} name='FlagSom' />
+  <IconBox component={<FlagSpm width={40} height={40} />} name='FlagSpm' />
+  <IconBox component={<FlagSrb width={40} height={40} />} name='FlagSrb' />
+  <IconBox component={<FlagSsd width={40} height={40} />} name='FlagSsd' />
+  <IconBox component={<FlagStp width={40} height={40} />} name='FlagStp' />
+  <IconBox component={<FlagSur width={40} height={40} />} name='FlagSur' />
+  <IconBox component={<FlagSvk width={40} height={40} />} name='FlagSvk' />
+  <IconBox component={<FlagSvn width={40} height={40} />} name='FlagSvn' />
+  <IconBox component={<FlagSwe width={40} height={40} />} name='FlagSwe' />
+  <IconBox component={<FlagSwz width={40} height={40} />} name='FlagSwz' />
+  <IconBox component={<FlagSxm width={40} height={40} />} name='FlagSxm' />
+  <IconBox component={<FlagSyc width={40} height={40} />} name='FlagSyc' />
+  <IconBox component={<FlagSyr width={40} height={40} />} name='FlagSyr' />
+  <IconBox component={<FlagTca width={40} height={40} />} name='FlagTca' />
+  <IconBox component={<FlagTcd width={40} height={40} />} name='FlagTcd' />
+  <IconBox component={<FlagTgo width={40} height={40} />} name='FlagTgo' />
+  <IconBox component={<FlagTha width={40} height={40} />} name='FlagTha' />
+  <IconBox component={<FlagTjk width={40} height={40} />} name='FlagTjk' />
+  <IconBox component={<FlagTkl width={40} height={40} />} name='FlagTkl' />
+  <IconBox component={<FlagTkm width={40} height={40} />} name='FlagTkm' />
+  <IconBox component={<FlagTls width={40} height={40} />} name='FlagTls' />
+  <IconBox component={<FlagTon width={40} height={40} />} name='FlagTon' />
+  <IconBox component={<FlagTto width={40} height={40} />} name='FlagTto' />
+  <IconBox component={<FlagTun width={40} height={40} />} name='FlagTun' />
+  <IconBox component={<FlagTur width={40} height={40} />} name='FlagTur' />
+  <IconBox component={<FlagTuv width={40} height={40} />} name='FlagTuv' />
+  <IconBox component={<FlagTwn width={40} height={40} />} name='FlagTwn' />
+  <IconBox component={<FlagTza width={40} height={40} />} name='FlagTza' />
+  <IconBox component={<FlagUga width={40} height={40} />} name='FlagUga' />
+  <IconBox component={<FlagUkr width={40} height={40} />} name='FlagUkr' />
+  <IconBox component={<FlagUry width={40} height={40} />} name='FlagUry' />
+  <IconBox component={<FlagUsa width={40} height={40} />} name='FlagUsa' />
+  <IconBox component={<FlagUzb width={40} height={40} />} name='FlagUzb' />
+  <IconBox component={<FlagVat width={40} height={40} />} name='FlagVat' />
+  <IconBox component={<FlagVct width={40} height={40} />} name='FlagVct' />
+  <IconBox component={<FlagVen width={40} height={40} />} name='FlagVen' />
+  <IconBox component={<FlagVgb width={40} height={40} />} name='FlagVgb' />
+  <IconBox component={<FlagVir width={40} height={40} />} name='FlagVir' />
+  <IconBox component={<FlagVnm width={40} height={40} />} name='FlagVnm' />
+  <IconBox component={<FlagVut width={40} height={40} />} name='FlagVut' />
+  <IconBox component={<FlagWlf width={40} height={40} />} name='FlagWlf' />
+  <IconBox component={<FlagWsm width={40} height={40} />} name='FlagWsm' />
+  <IconBox component={<FlagYem width={40} height={40} />} name='FlagYem' />
+  <IconBox component={<FlagZaf width={40} height={40} />} name='FlagZaf' />
+  <IconBox component={<FlagZmb width={40} height={40} />} name='FlagZmb' />
+  <IconBox component={<FlagZwe width={40} height={40} />} name='FlagZwe' />
+</section>
+
+---
+
+### File Icons:
+
+```js
+import SVG from '@comfortdelgro/compass-icons/react/file/svg'
+```
+
+<section
+  className={styles.avatarShowcaseContainer}
+  style={{
+    display: 'flex',
+    gap: '10px',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
+  }}
+>
+  <IconBox component={<AepGrayFile width={40} height={40} />} name='AepGray' />
+  <IconBox
+    component={<AepSolidFile width={40} height={40} />}
+    name='AepSolid'
+  />
+  <IconBox component={<AepFile width={40} height={40} />} name='Aep' />
+  <IconBox component={<AiGrayFile width={40} height={40} />} name='AiGray' />
+  <IconBox component={<AiSolidFile width={40} height={40} />} name='AiSolid' />
+  <IconBox component={<AiFile width={40} height={40} />} name='Ai' />
+  <IconBox
+    component={<AudioGrayFile width={40} height={40} />}
+    name='AudioGray'
+  />
+  <IconBox
+    component={<AudioSolidFile width={40} height={40} />}
+    name='AudioSolid'
+  />
+  <IconBox component={<AudioFile width={40} height={40} />} name='Audio' />
+  <IconBox component={<AviGrayFile width={40} height={40} />} name='AviGray' />
+  <IconBox
+    component={<AviSolidFile width={40} height={40} />}
+    name='AviSolid'
+  />
+  <IconBox component={<AviFile width={40} height={40} />} name='Avi' />
+  <IconBox
+    component={<CodeGrayFile width={40} height={40} />}
+    name='CodeGray'
+  />
+  <IconBox
+    component={<CodeSolidFile width={40} height={40} />}
+    name='CodeSolid'
+  />
+  <IconBox component={<CodeFile width={40} height={40} />} name='Code' />
+  <IconBox component={<CssGrayFile width={40} height={40} />} name='CssGray' />
+  <IconBox
+    component={<CssSolidFile width={40} height={40} />}
+    name='CssSolid'
+  />
+  <IconBox component={<CssFile width={40} height={40} />} name='Css' />
+  <IconBox component={<CsvGrayFile width={40} height={40} />} name='CsvGray' />
+  <IconBox
+    component={<CsvSolidFile width={40} height={40} />}
+    name='CsvSolid'
+  />
+  <IconBox component={<CsvFile width={40} height={40} />} name='Csv' />
+  <IconBox component={<DmgGrayFile width={40} height={40} />} name='DmgGray' />
+  <IconBox
+    component={<DmgSolidFile width={40} height={40} />}
+    name='DmgSolid'
+  />
+  <IconBox component={<DmgFile width={40} height={40} />} name='Dmg' />
+  <IconBox component={<DocGrayFile width={40} height={40} />} name='DocGray' />
+  <IconBox
+    component={<DocSolidFile width={40} height={40} />}
+    name='DocSolid'
+  />
+  <IconBox component={<DocFile width={40} height={40} />} name='Doc' />
+  <IconBox
+    component={<DocumentGrayFile width={40} height={40} />}
+    name='DocumentGray'
+  />
+  <IconBox
+    component={<DocumentSolidFile width={40} height={40} />}
+    name='DocumentSolid'
+  />
+  <IconBox
+    component={<DocumentFile width={40} height={40} />}
+    name='Document'
+  />
+  <IconBox
+    component={<DocxGrayFile width={40} height={40} />}
+    name='DocxGray'
+  />
+  <IconBox
+    component={<DocxSolidFile width={40} height={40} />}
+    name='DocxSolid'
+  />
+  <IconBox component={<DocxFile width={40} height={40} />} name='Docx' />
+  <IconBox
+    component={<EmptyGrayFile width={40} height={40} />}
+    name='EmptyGray'
+  />
+  <IconBox
+    component={<EmptySolidFile width={40} height={40} />}
+    name='EmptySolid'
+  />
+  <IconBox component={<EmptyFile width={40} height={40} />} name='Empty' />
+  <IconBox component={<EspGrayFile width={40} height={40} />} name='EspGray' />
+  <IconBox
+    component={<EspSolidFile width={40} height={40} />}
+    name='EspSolid'
+  />
+  <IconBox component={<EspFile width={40} height={40} />} name='Esp' />
+  <IconBox component={<ExeGrayFile width={40} height={40} />} name='ExeGray' />
+  <IconBox
+    component={<ExeSolidFile width={40} height={40} />}
+    name='ExeSolid'
+  />
+  <IconBox component={<ExeFile width={40} height={40} />} name='Exe' />
+  <IconBox component={<FigGrayFile width={40} height={40} />} name='FigGray' />
+  <IconBox
+    component={<FigSolidFile width={40} height={40} />}
+    name='FigSolid'
+  />
+  <IconBox component={<FigFile width={40} height={40} />} name='Fig' />
+  <IconBox
+    component={<FolderGrayFile width={40} height={40} />}
+    name='FolderGray'
+  />
+  <IconBox
+    component={<FolderSolidFile width={40} height={40} />}
+    name='FolderSolid'
+  />
+  <IconBox component={<FolderFile width={40} height={40} />} name='Folder' />
+  <IconBox component={<GifGrayFile width={40} height={40} />} name='GifGray' />
+  <IconBox
+    component={<GifSolidFile width={40} height={40} />}
+    name='GifSolid'
+  />
+  <IconBox component={<GifFile width={40} height={40} />} name='Gif' />
+  <IconBox
+    component={<HtmlGrayFile width={40} height={40} />}
+    name='HtmlGray'
+  />
+  <IconBox
+    component={<HtmlSolidFile width={40} height={40} />}
+    name='HtmlSolid'
+  />
+  <IconBox component={<HtmlFile width={40} height={40} />} name='Html' />
+  <IconBox
+    component={<ImageGrayFile width={40} height={40} />}
+    name='ImageGray'
+  />
+  <IconBox
+    component={<ImageSolidFile width={40} height={40} />}
+    name='ImageSolid'
+  />
+  <IconBox component={<ImageFile width={40} height={40} />} name='Image' />
+  <IconBox component={<ImgGrayFile width={40} height={40} />} name='ImgGray' />
+  <IconBox
+    component={<ImgSolidFile width={40} height={40} />}
+    name='ImgSolid'
+  />
+  <IconBox component={<ImgFile width={40} height={40} />} name='Img' />
+  <IconBox
+    component={<InddGrayFile width={40} height={40} />}
+    name='InddGray'
+  />
+  <IconBox
+    component={<InddSolidFile width={40} height={40} />}
+    name='InddSolid'
+  />
+  <IconBox component={<InddFile width={40} height={40} />} name='Indd' />
+  <IconBox
+    component={<JavaGrayFile width={40} height={40} />}
+    name='JavaGray'
+  />
+  <IconBox
+    component={<JavaSolidFile width={40} height={40} />}
+    name='JavaSolid'
+  />
+  <IconBox component={<JavaFile width={40} height={40} />} name='Java' />
+  <IconBox
+    component={<JpegGrayFile width={40} height={40} />}
+    name='JpegGray'
+  />
+  <IconBox
+    component={<JpegSolidFile width={40} height={40} />}
+    name='JpegSolid'
+  />
+  <IconBox component={<JpegFile width={40} height={40} />} name='Jpeg' />
+  <IconBox component={<JpgGrayFile width={40} height={40} />} name='JpgGray' />
+  <IconBox
+    component={<JpgSolidFile width={40} height={40} />}
+    name='JpgSolid'
+  />
+  <IconBox component={<JpgFile width={40} height={40} />} name='Jpg' />
+  <IconBox component={<JsGrayFile width={40} height={40} />} name='JsGray' />
+  <IconBox component={<JsSolidFile width={40} height={40} />} name='JsSolid' />
+  <IconBox component={<JsFile width={40} height={40} />} name='Js' />
+  <IconBox
+    component={<JsonGrayFile width={40} height={40} />}
+    name='JsonGray'
+  />
+  <IconBox
+    component={<JsonSolidFile width={40} height={40} />}
+    name='JsonSolid'
+  />
+  <IconBox component={<JsonFile width={40} height={40} />} name='Json' />
+  <IconBox component={<MkvGrayFile width={40} height={40} />} name='MkvGray' />
+  <IconBox
+    component={<MkvSolidFile width={40} height={40} />}
+    name='MkvSolid'
+  />
+  <IconBox component={<MkvFile width={40} height={40} />} name='Mkv' />
+  <IconBox component={<Mp3GrayFile width={40} height={40} />} name='Mp3Gray' />
+  <IconBox
+    component={<Mp3SolidFile width={40} height={40} />}
+    name='Mp3Solid'
+  />
+  <IconBox component={<Mp3File width={40} height={40} />} name='Mp3' />
+  <IconBox component={<Mp4GrayFile width={40} height={40} />} name='Mp4Gray' />
+  <IconBox
+    component={<Mp4SolidFile width={40} height={40} />}
+    name='Mp4Solid'
+  />
+  <IconBox component={<Mp4File width={40} height={40} />} name='Mp4' />
+  <IconBox
+    component={<MpegGrayFile width={40} height={40} />}
+    name='MpegGray'
+  />
+  <IconBox
+    component={<MpegSolidFile width={40} height={40} />}
+    name='MpegSolid'
+  />
+  <IconBox component={<MpegFile width={40} height={40} />} name='Mpeg' />
+  <IconBox component={<PdfGrayFile width={40} height={40} />} name='PdfGray' />
+  <IconBox
+    component={<PdfSolidFile width={40} height={40} />}
+    name='PdfSolid'
+  />
+  <IconBox component={<PdfFile width={40} height={40} />} name='Pdf' />
+  <IconBox
+    component={<Pdf2GrayFile width={40} height={40} />}
+    name='Pdf2Gray'
+  />
+  <IconBox
+    component={<Pdf2SolidFile width={40} height={40} />}
+    name='Pdf2Solid'
+  />
+  <IconBox component={<Pdf2File width={40} height={40} />} name='Pdf2' />
+  <IconBox component={<PngGrayFile width={40} height={40} />} name='PngGray' />
+  <IconBox
+    component={<PngSolidFile width={40} height={40} />}
+    name='PngSolid'
+  />
+  <IconBox component={<PngFile width={40} height={40} />} name='Png' />
+  <IconBox component={<PsdGrayFile width={40} height={40} />} name='PsdGray' />
+  <IconBox
+    component={<PsdSolidFile width={40} height={40} />}
+    name='PsdSolid'
+  />
+  <IconBox component={<PsdFile width={40} height={40} />} name='Psd' />
+  <IconBox component={<PttGrayFile width={40} height={40} />} name='PttGray' />
+  <IconBox
+    component={<PttSolidFile width={40} height={40} />}
+    name='PttSolid'
+  />
+  <IconBox component={<PttFile width={40} height={40} />} name='Ptt' />
+  <IconBox
+    component={<PttxGrayFile width={40} height={40} />}
+    name='PttxGray'
+  />
+  <IconBox
+    component={<PttxSolidFile width={40} height={40} />}
+    name='PttxSolid'
+  />
+  <IconBox component={<PttxFile width={40} height={40} />} name='Pttx' />
+  <IconBox component={<RarGrayFile width={40} height={40} />} name='RarGray' />
+  <IconBox
+    component={<RarSolidFile width={40} height={40} />}
+    name='RarSolid'
+  />
+  <IconBox component={<RarFile width={40} height={40} />} name='Rar' />
+  <IconBox component={<RssGrayFile width={40} height={40} />} name='RssGray' />
+  <IconBox
+    component={<RssSolidFile width={40} height={40} />}
+    name='RssSolid'
+  />
+  <IconBox component={<RssFile width={40} height={40} />} name='Rss' />
+  <IconBox
+    component={<SpreadsheetGrayFile width={40} height={40} />}
+    name='SpreadsheetGray'
+  />
+  <IconBox
+    component={<SpreadsheetSolidFile width={40} height={40} />}
+    name='SpreadsheetSolid'
+  />
+  <IconBox
+    component={<SpreadsheetFile width={40} height={40} />}
+    name='Spreadsheet'
+  />
+  <IconBox component={<SqlGrayFile width={40} height={40} />} name='SqlGray' />
+  <IconBox
+    component={<SqlSolidFile width={40} height={40} />}
+    name='SqlSolid'
+  />
+  <IconBox component={<SqlFile width={40} height={40} />} name='Sql' />
+  <IconBox component={<SvgGrayFile width={40} height={40} />} name='SvgGray' />
+  <IconBox
+    component={<SvgSolidFile width={40} height={40} />}
+    name='SvgSolid'
+  />
+  <IconBox component={<SvgFile width={40} height={40} />} name='Svg' />
+  <IconBox
+    component={<TiffGrayFile width={40} height={40} />}
+    name='TiffGray'
+  />
+  <IconBox
+    component={<TiffSolidFile width={40} height={40} />}
+    name='TiffSolid'
+  />
+  <IconBox component={<TiffFile width={40} height={40} />} name='Tiff' />
+  <IconBox component={<TxtGrayFile width={40} height={40} />} name='TxtGray' />
+  <IconBox
+    component={<TxtSolidFile width={40} height={40} />}
+    name='TxtSolid'
+  />
+  <IconBox component={<TxtFile width={40} height={40} />} name='Txt' />
+  <IconBox
+    component={<Video01GrayFile width={40} height={40} />}
+    name='Video01Gray'
+  />
+  <IconBox
+    component={<Video01SolidFile width={40} height={40} />}
+    name='Video01Solid'
+  />
+  <IconBox component={<Video01File width={40} height={40} />} name='Video01' />
+  <IconBox
+    component={<Video02GrayFile width={40} height={40} />}
+    name='Video02Gray'
+  />
+  <IconBox
+    component={<Video02SolidFile width={40} height={40} />}
+    name='Video02Solid'
+  />
+  <IconBox component={<Video02File width={40} height={40} />} name='Video02' />
+  <IconBox component={<WavGrayFile width={40} height={40} />} name='WavGray' />
+  <IconBox
+    component={<WavSolidFile width={40} height={40} />}
+    name='WavSolid'
+  />
+  <IconBox component={<WavFile width={40} height={40} />} name='Wav' />
+  <IconBox
+    component={<WebpGrayFile width={40} height={40} />}
+    name='WebpGray'
+  />
+  <IconBox
+    component={<WebpSolidFile width={40} height={40} />}
+    name='WebpSolid'
+  />
+  <IconBox component={<WebpFile width={40} height={40} />} name='Webp' />
+  <IconBox
+    component={<XlsxGrayFile width={40} height={40} />}
+    name='XlsxGray'
+  />
+  <IconBox
+    component={<XlsxSolidFile width={40} height={40} />}
+    name='XlsxSolid'
+  />
+  <IconBox component={<XlsxFile width={40} height={40} />} name='Xlsx' />
+  <IconBox component={<XmlGrayFile width={40} height={40} />} name='XmlGray' />
+  <IconBox
+    component={<XmlSolidFile width={40} height={40} />}
+    name='XmlSolid'
+  />
+  <IconBox component={<XmlFile width={40} height={40} />} name='Xml' />
+  <IconBox component={<ZipGrayFile width={40} height={40} />} name='ZipGray' />
+  <IconBox
+    component={<ZipSolidFile width={40} height={40} />}
+    name='ZipSolid'
+  />
+  <IconBox component={<ZipFile width={40} height={40} />} name='Zip' />
+</section>
+
+---
+
+### Usage:
+
+```js
+<Activity width={20} height={20} color='red' />
+```
+
+or with iconify
+
+```js
+<Icon icon={activityIcon} width={20} height={20} />
+```
+
+---
+
+### Props:
+
+| Name      | Type     | Default | Description            |
+| :-------- | :------- | :------ | :--------------------- |
+| color     | `string` | —       | Color of the icon      |
+| height    | `number` | —       | Height of the icon     |
+| width     | `number` | —       | Width of the icon      |
+| id        | `string` | —       | Unique ID of the icon  |
+| style     | `string` | —       | Style of the icon      |
+| className | `CSS`    | —       | Class name of the icon |
+
+---
+
+<Callout>
+  Check out our [ladle](/ladle?story=links--variants) for more info on this
+  component.
+</Callout>

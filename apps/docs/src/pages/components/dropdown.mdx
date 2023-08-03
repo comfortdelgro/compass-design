@@ -1,0 +1,916 @@
+import {Callout} from 'nextra-theme-docs'
+import styles from '../../styles/Home.module.css'
+import Dropdown from '@comfortdelgro/react-compass/dropdown'
+import BugIcon from '@comfortdelgro/compass-icons/react/bug'
+import {ControlledDropdown} from '../../components/ControlledDropdown'
+import {DropdownsForm} from '../../components/DropdownsForm'
+
+# Dropdown
+
+Dropdown components are used for collecting user provided information from a list of options.
+
+<Callout>
+  Check out our [ladle](/ladle?story=dropdown--select) for more info on this
+  component.
+</Callout>
+
+---
+
+### Import:
+
+```js
+import {Dropdown} from '@comfortdelgro/react-compass'
+```
+
+or
+
+```js
+import Dropdown from '@comfortdelgro/react-compass/dropdown'
+```
+
+We recommend the second method to import components for the benefits of [tree shaking](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking).
+
+---
+
+### Select Controlled:
+
+We provide 2 type of dropdown that can be used to select: `Dropdown.Select` and `Dropdown.ComboBox`
+
+### Controlled:
+
+<section className={styles.componentDisplayVertical}>
+  <ControlledDropdown />
+</section>
+
+```js
+  const [value, setValue] = React.useState<Key>('cat')
+  <Dropdown.Select
+    isRequired
+    label='Favorite Animal'
+    placeholder='Choose an animal'
+    value={value}
+    onValueChange={(k: React.Key) => setValue(k)}
+  >
+    <Dropdown.Item
+      value='panda'
+      leftIcon={<BugIcon />}
+    >
+      Panda
+    </Dropdown.Item>
+    <Dropdown.Item
+      value='cat'
+      leftIcon={<BugIcon />}
+      type='color'
+      rightColor='red'
+      textValue='pandared'
+    >
+      Cat Panda
+    </Dropdown.Item>
+    <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+    <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+    <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+    <Dropdown.Item value='snakessss'>Snake</Dropdown.Item>
+  </Dropdown.Select>
+  <Dropdown.ComboBox
+    isRequired
+    label='Favorite Animal'
+    placeholder='Choose an animal'
+    value={value}
+    onValueChange={(k: React.Key) => setValue(k)}
+  >
+    <Dropdown.Item
+      value='panda'
+      leftIcon={<BugIcon />}
+    >
+      Panda
+    </Dropdown.Item>
+    <Dropdown.Item
+      value='cat'
+      leftIcon={<BugIcon />}
+      type='color'
+      rightColor='red'
+      textValue='pandared'
+    >
+      Cat Panda
+    </Dropdown.Item>
+    <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+    <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+    <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+    <Dropdown.Item value='snakessss'>Snake</Dropdown.Item>
+  </Dropdown.ComboBox>
+```
+
+---
+
+### UnControlled:
+
+<section className={styles.componentDisplayVertical}>
+  <Dropdown.Select
+    isRequired
+    label='Favorite Animal'
+    placeholder='Choose an animal'
+  >
+    <Dropdown.Item value='panda'>Panda</Dropdown.Item>
+    <Dropdown.Item
+      value='cat'
+      type='color'
+      rightColor='red'
+      textValue='pandared'
+    >
+      Cat Panda
+    </Dropdown.Item>
+    <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+    <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+    <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+    <Dropdown.Item value='snakessss'>Snake</Dropdown.Item>
+  </Dropdown.Select>
+  <Dropdown.ComboBox
+    isRequired
+    label='Favorite Animal'
+    placeholder='Choose an animal'
+  >
+    <Dropdown.Item value='panda'>Panda</Dropdown.Item>
+    <Dropdown.Item
+      value='cat'
+      type='color'
+      rightColor='red'
+      textValue='pandared'
+    >
+      Cat Panda
+    </Dropdown.Item>
+    <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+    <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+    <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+    <Dropdown.Item value='snakessss'>Snake</Dropdown.Item>
+  </Dropdown.ComboBox>
+</section>
+```js
+<Dropdown.Select
+  isRequired
+  label='Favorite Animal'
+  placeholder='Choose an animal'
+>
+  <Dropdown.Item value='panda'>Panda</Dropdown.Item>
+  <Dropdown.Item value='cat' type='color' rightColor='red' textValue='pandared'>
+    Cat Panda
+  </Dropdown.Item>
+  <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+  <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+  <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+  <Dropdown.Item value='snakessss'>Snake</Dropdown.Item>
+</Dropdown.Select>
+<Dropdown.ComboBox
+  isRequired
+  label='Favorite Animal'
+  placeholder='Choose an animal'
+>
+  <Dropdown.Item value='panda'>Panda</Dropdown.Item>
+  <Dropdown.Item value='cat' type='color' rightColor='red' textValue='pandared'>
+    Cat Panda
+  </Dropdown.Item>
+  <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+  <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+  <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+  <Dropdown.Item value='snakessss'>Snake</Dropdown.Item>
+</Dropdown.ComboBox>
+```
+
+---
+
+### Error:
+
+<section className={styles.componentDisplayVertical}>
+  <Dropdown.Select
+    label='Favorite Animal'
+    placeholder='Choose an animal'
+    isErrored
+    errorMessage='Use Helper Text for Errors'
+  >
+    <Dropdown.Item value='panda'>Panda</Dropdown.Item>
+    <Dropdown.Item
+      value='cat'
+      type='color'
+      rightColor='red'
+      textValue='pandared'
+    >
+      Cat Panda
+    </Dropdown.Item>
+    <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+    <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+    <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+    <Dropdown.Item value='snake'>Snake</Dropdown.Item>
+  </Dropdown.Select>
+</section>
+```js
+<Dropdown.Select
+  label='Favorite Animal'
+  placeholder='Choose an animal'
+  isErrored
+  errorMessage='Use Helper Text for Errors'
+>
+  <Dropdown.Item value='panda'>Panda</Dropdown.Item>
+  <Dropdown.Item value='cat' type='color' rightColor='red' textValue='pandared'>
+    Cat Panda
+  </Dropdown.Item>
+  <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+  <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+  <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+  <Dropdown.Item value='snake'>Snake</Dropdown.Item>
+</Dropdown.Select>
+```
+
+---
+
+### Allows Custom Value:
+
+<section className={styles.componentDisplayVertical}>
+  <Dropdown.ComboBox
+    label='Favorite Animal'
+    placeholder='Choose an animal'
+    allowsCustomValue
+    errorMessage='Use Helper Text for Errors'
+  >
+    <Dropdown.Item value='panda'>Panda</Dropdown.Item>
+    <Dropdown.Item
+      value='cat'
+      type='color'
+      rightColor='red'
+      textValue='pandared'
+    >
+      Cat Panda
+    </Dropdown.Item>
+    <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+    <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+    <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+    <Dropdown.Item value='snake'>Snake</Dropdown.Item>
+  </Dropdown.ComboBox>
+</section>
+```js
+<Dropdown.ComboBox
+  label='Favorite Animal'
+  placeholder='Choose an animal'
+  allowsCustomValue
+  errorMessage='Use Helper Text for Errors'
+>
+  <Dropdown.Item value='panda'>Panda</Dropdown.Item>
+  <Dropdown.Item value='cat' type='color' rightColor='red' textValue='pandared'>
+    Cat Panda
+  </Dropdown.Item>
+  <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+  <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+  <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+  <Dropdown.Item value='snake'>Snake</Dropdown.Item>
+</Dropdown.ComboBox>
+```
+
+---
+
+### With Section:
+
+<section className={styles.componentDisplayVertical}>
+  <Dropdown.Select label='Favorite Animal' placeholder='Choose an animal'>
+    <Dropdown.Item value='fly'>Fly</Dropdown.Item>
+    <Dropdown.Section title='Group 1'>
+      <Dropdown.Item value='panda'>Red Panda</Dropdown.Item>
+      <Dropdown.Item value='cat'>Cat</Dropdown.Item>
+      <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+    </Dropdown.Section>
+    <Dropdown.Section title='Group 2'>
+      <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+      <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+      <Dropdown.Item value='snake'>Snake</Dropdown.Item>
+    </Dropdown.Section>
+  </Dropdown.Select>
+</section>
+```js
+<Dropdown.Select label='Favorite Animal' placeholder='Choose an animal'>
+  <Dropdown.Item value='fly'>Fly</Dropdown.Item>
+  <Dropdown.Section title='Group 1'>
+    <Dropdown.Item value='panda'>Red Panda</Dropdown.Item>
+    <Dropdown.Item value='cat'>Cat</Dropdown.Item>
+    <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+  </Dropdown.Section>
+  <Dropdown.Section title='Group 2'>
+    <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+    <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+    <Dropdown.Item value='snake'>Snake</Dropdown.Item>
+  </Dropdown.Section>
+</Dropdown.Select>
+```
+
+---
+
+### Limit width for Popover:
+
+<section className={styles.componentDisplayVerticalLeft}>
+  <Dropdown.Select
+    label='Favorite Animal'
+    placeholder='Choose an animal'
+    css={{width: 250}}
+    popoverCSS={{width: 'auto'}}
+  >
+    <Dropdown.Item
+      checkmark='tick'
+      value='panda'
+      textValue='Panda'
+      css={{textWrap: 'nowrap'}}
+    >
+      Red Panda Red Panda Red Panda Red Panda Red Panda
+    </Dropdown.Item>
+    <Dropdown.Item
+      value='cat'
+      type='color'
+      rightColor='red'
+      textValue='pandared'
+    >
+      Cat
+    </Dropdown.Item>
+    <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+    <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+    <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+    <Dropdown.Item value='snakessss'>Snake</Dropdown.Item>
+  </Dropdown.Select>
+</section>
+```js
+<Dropdown.Select
+  label='Favorite Animal'
+  placeholder='Choose an animal'
+  css={{width: 250}}
+  popoverCSS={{width: 'auto'}}
+>
+  <Dropdown.Item
+    checkmark='tick'
+    value='panda'
+    textValue='Panda'
+    css={{textWrap: 'nowrap'}}
+  >
+    Red Panda Red Panda Red Panda Red Panda Red Panda
+  </Dropdown.Item>
+  <Dropdown.Item value='cat' type='color' rightColor='red' textValue='pandared'>
+    Cat
+  </Dropdown.Item>
+  <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+  <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+  <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+  <Dropdown.Item value='snakessss'>Snake</Dropdown.Item>
+</Dropdown.Select>
+```
+
+---
+
+### With Header:
+
+<section className={styles.componentDisplayVertical}>
+  <Dropdown.Select label='Favorite Animal' placeholder='Choose an animal'>
+    <Dropdown.Header>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          width: '100%',
+          padding: '8px 16px',
+          borderBottom: '2px solid #EDEBE9',
+        }}
+      >
+        <span
+          style={{
+            color: '#323130',
+            fontSize: '12px',
+            fontWeight: 'bold',
+            padding: 0,
+            margin: 0,
+          }}
+        >
+          Filter
+        </span>
+        <button
+          style={{
+            fontSize: '12px',
+            fontWeight: 'bold',
+            color: '#A4262C',
+            border: 0,
+            cursor: 'pointer',
+            backgroundColor: 'transparent',
+          }}
+        >
+          Clear
+        </button>
+      </div>
+    </Dropdown.Header>
+    <Dropdown.Item value='panda'>Red Panda</Dropdown.Item>
+    <Dropdown.Item value='cat'>Cat</Dropdown.Item>
+    <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+    <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+    <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+    <Dropdown.Item value='snake'>Snake</Dropdown.Item>
+  </Dropdown.Select>
+</section>
+
+```js
+<Dropdown.Select label='Favorite Animal' placeholder='Choose an animal'>
+  <Dropdown.Header>
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        width: '100%',
+        padding: '8px 16px',
+        borderBottom: '2px solid #EDEBE9',
+      }}
+    >
+      <span
+        style={{
+          color: '#323130',
+          fontSize: '12px',
+          fontWeight: 'bold',
+          padding: 0,
+          margin: 0,
+        }}
+      >
+        Filter
+      </span>
+      <button
+        style={{
+          fontSize: '12px',
+          fontWeight: 'bold',
+          color: '#A4262C',
+          border: 0,
+          cursor: 'pointer',
+          backgroundColor: 'transparent',
+        }}
+      >
+        Clear
+      </button>
+    </div>
+  </Dropdown.Header>
+  <Dropdown.Item value='panda'>Red Panda</Dropdown.Item>
+  <Dropdown.Item value='cat'>Cat</Dropdown.Item>
+  <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+  <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+  <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+  <Dropdown.Item value='snake'>Snake</Dropdown.Item>
+</Dropdown.Select>
+```
+
+---
+
+### With Icon:
+
+<section className={styles.componentDisplayVertical}>
+  <Dropdown.Select
+    label='Favorite Animal'
+    placeholder='Choose an animal'
+    icon={<BugIcon />}
+  >
+    <Dropdown.Item value='panda'>Red Panda</Dropdown.Item>
+    <Dropdown.Item value='cat'>Cat</Dropdown.Item>
+    <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+    <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+    <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+    <Dropdown.Item value='snake'>Snake</Dropdown.Item>
+  </Dropdown.Select>
+</section>
+```js
+<Dropdown.Select
+  label='Favorite Animal'
+  placeholder='Choose an animal'
+  icon={<BugIcon />}
+>
+  <Dropdown.Item value='panda'>Red Panda</Dropdown.Item>
+  <Dropdown.Item value='cat'>Cat</Dropdown.Item>
+  <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+  <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+  <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+  <Dropdown.Item value='snake'>Snake</Dropdown.Item>
+</Dropdown.Select>
+```
+
+---
+
+### Loading:
+
+<section className={styles.componentDisplayVertical}>
+  <Dropdown.Select
+    label='Favorite Animal'
+    placeholder='Choose an animal'
+    isLoading
+  >
+    <Dropdown.Item value='panda'>Red Panda</Dropdown.Item>
+    <Dropdown.Item value='cat'>Cat</Dropdown.Item>
+    <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+    <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+    <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+    <Dropdown.Item value='snake'>Snake</Dropdown.Item>
+  </Dropdown.Select>
+</section>
+```js
+<Dropdown.Select
+  label='Favorite Animal'
+  placeholder='Choose an animal'
+  isLoading
+>
+  <Dropdown.Item value='panda'>Red Panda</Dropdown.Item>
+  <Dropdown.Item value='cat'>Cat</Dropdown.Item>
+  <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+  <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+  <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+  <Dropdown.Item value='snake'>Snake</Dropdown.Item>
+</Dropdown.Select>
+```
+
+---
+
+### Disable Clearable:
+
+<section className={styles.componentDisplayVertical}>
+  <Dropdown.ComboBox
+    label='Favorite Animal'
+    placeholder='Choose an animal'
+    disableClearable
+  >
+    <Dropdown.Item value='panda'>Red Panda</Dropdown.Item>
+    <Dropdown.Item value='cat'>Cat</Dropdown.Item>
+    <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+    <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+    <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+    <Dropdown.Item value='snake'>Snake</Dropdown.Item>
+  </Dropdown.ComboBox>
+</section>
+```js
+<Dropdown.ComboBox
+  label='Favorite Animal'
+  placeholder='Choose an animal'
+  disableClearable
+>
+  <Dropdown.Item value='panda'>Red Panda</Dropdown.Item>
+  <Dropdown.Item value='cat'>Cat</Dropdown.Item>
+  <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+  <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+  <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+  <Dropdown.Item value='snake'>Snake</Dropdown.Item>
+</Dropdown.ComboBox>
+```
+
+---
+
+### Integrated with react-hook-form:
+
+<section className={styles.componentDisplayVertical}>
+  <DropdownsForm />
+</section>
+
+```js
+import Inspect from '@comfortdelgro/compass-icons/react/inspect'
+import {
+  Button,
+  Dropdown,
+  MultipleDropdown,
+  TextField,
+} from '@comfortdelgro/react-compass'
+import {yupResolver} from '@hookform/resolvers/yup'
+import {PersonInfo, useCreatePersonStore} from 'hooks/useDropdownsForm'
+import {Fragment, useEffect, useState} from 'react'
+import {Controller, useForm} from 'react-hook-form'
+import * as yup from 'yup'
+export const DropdownsForm: React.FC = () => {
+  const inputsScheme = yup.object().shape({
+    gender: yup.string().required(),
+    nationality: yup.string().required(),
+    skill: yup.string().required(),
+    drinks: yup.array(yup.string().required()).min(1).required(),
+    animal: yup.string().required(),
+    phoneCode: yup.string().required(),
+    phoneNumber: yup.string().required(),
+  })
+
+  const {personInfo, setPersonInfoFieldValue, setPersonInfoValue} =
+    useCreatePersonStore()
+
+  const {control, handleSubmit, formState, setValue} =
+    useForm <
+    PersonInfo >
+    {
+      resolver: yupResolver(inputsScheme),
+      defaultValues: {...personInfo},
+      reValidateMode: 'onChange',
+    }
+
+  const handleValid = (data: PersonInfo) => {
+    console.log(data)
+
+    setPersonInfoValue(data)
+  }
+  const [drinksList, setDrinksList] = useState([])
+  const [currentDrinksList, setCurrentDrinksList] = useState([])
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(
+        'https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail&i=gin',
+      )
+      const json = await response.json()
+      return json
+    }
+    fetchData().then((res) => {
+      setDrinksList(res.drinks)
+      setCurrentDrinksList(res.drinks.slice(0, 10))
+    })
+  }, [])
+
+  const handleLoadMore = () => {}
+  return (
+    <form
+      noValidate
+      onSubmit={handleSubmit(handleValid)}
+      style={{
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        rowGap: '10px',
+      }}
+    >
+      <Controller
+        control={control}
+        name='gender'
+        render={({field, fieldState}) => {
+          return (
+            <Fragment>
+              <Dropdown.Select
+                label='Gender'
+                placeholder='Select'
+                value={field.value}
+                isRequired
+                onValueChange={(key) => {
+                  setPersonInfoFieldValue('gender', String(key))
+                  setValue('gender', String(key), {shouldValidate: true})
+                }}
+                isErrored={Boolean(fieldState.error)}
+                description={'Gender'}
+              >
+                <Dropdown.Item value='male'>Male</Dropdown.Item>
+                <Dropdown.Item value='female'>Female</Dropdown.Item>
+              </Dropdown.Select>
+            </Fragment>
+          )
+        }}
+      />
+      <Controller
+        control={control}
+        name='phoneNumber'
+        render={({field, fieldState}) => {
+          return (
+            <Fragment>
+              <TextField
+                isRequired
+                label='Phone Number'
+                placeholder='Enter your phone'
+                isErrored={Boolean(fieldState.error)}
+                value={field.value}
+                onChange={(value) => {
+                  setPersonInfoFieldValue('phoneNumber', String(value))
+                  setValue('phoneNumber', String(value), {shouldValidate: true})
+                }}
+              />
+            </Fragment>
+          )
+        }}
+      />
+
+      <Controller
+        control={control}
+        name='skill'
+        render={({field, fieldState}) => {
+          return (
+            <Fragment>
+              <Dropdown.ComboBox
+                label={'Skills'}
+                placeholder='Select'
+                value={field.value}
+                isRequired
+                onValueChange={(key) => {
+                  setPersonInfoFieldValue('skill', String(key))
+                  setValue('skill', String(key), {shouldValidate: true})
+                }}
+                isErrored={Boolean(fieldState.error)}
+                icon={<Inspect />}
+              >
+                <Dropdown.Item value='html'>HTML</Dropdown.Item>
+                <Dropdown.Item value='css'>CSS</Dropdown.Item>
+                <Dropdown.Item value='Javascript'>Javascript</Dropdown.Item>
+                <Dropdown.Item value='SQL'>SQL</Dropdown.Item>
+                <Dropdown.Item value='NoSQL'>NoSQL</Dropdown.Item>
+                <Dropdown.Item value='Azure'>Azure</Dropdown.Item>
+                <Dropdown.Item value='AWS'>AWS</Dropdown.Item>
+              </Dropdown.ComboBox>
+            </Fragment>
+          )
+        }}
+      />
+      <Controller
+        control={control}
+        name='drinks'
+        render={({field, fieldState}) => {
+          return (
+            <Fragment>
+              <MultipleDropdown
+                label={'Drinks'}
+                placeholder='Select'
+                values={field.value}
+                onValueChange={(keys) => {
+                  const keysValue = [...keys].map((item) => String(item))
+                  setPersonInfoFieldValue('drinks', keysValue)
+                  setValue('drinks', keysValue, {shouldValidate: true})
+                }}
+                isRequired
+                isErrored={Boolean(fieldState.error)}
+                onLoadMore={handleLoadMore}
+              >
+                {currentDrinksList.map((item: any) => {
+                  return (
+                    <Dropdown.Item key={String(item.strDrink)}>
+                      {item.strDrink}
+                    </Dropdown.Item>
+                  )
+                })}
+              </MultipleDropdown>
+            </Fragment>
+          )
+        }}
+      />
+      <Controller
+        control={control}
+        name='animal'
+        render={({field, fieldState}) => {
+          return (
+            <Fragment>
+              <Dropdown.ComboBox
+                label='Favorite Animal'
+                placeholder='Choose an animal'
+                value={field.value}
+                onValueChange={(key) => {
+                  setPersonInfoFieldValue('animal', String(key))
+                  setValue('animal', String(key), {shouldValidate: true})
+                }}
+                isRequired
+                isErrored={Boolean(fieldState.error)}
+              >
+                <Dropdown.Section title='Birds'>
+                  <Dropdown.Item value='panda'>Eagle</Dropdown.Item>
+                  <Dropdown.Item value='cat'>Pigeon</Dropdown.Item>
+                  <Dropdown.Item value='dog'>Parrot</Dropdown.Item>
+                </Dropdown.Section>
+                <Dropdown.Section title='Mammal'>
+                  <Dropdown.Item value='aardvark'>Bear</Dropdown.Item>
+                  <Dropdown.Item value='kangaroo'>Lion</Dropdown.Item>
+                  <Dropdown.Item value='snake'>Whale</Dropdown.Item>
+                </Dropdown.Section>
+              </Dropdown.ComboBox>
+            </Fragment>
+          )
+        }}
+      />
+
+      <Button
+        variant='secondary'
+        type='submit'
+        disabled={formState.isSubmitting}
+        css={{marginTop: '2em', width: 200, margin: 'auto'}}
+      >
+        Submit
+      </Button>
+    </form>
+  )
+}
+```
+
+```js
+import { create } from 'zustand'
+export interface PersonInfo {
+  gender: string
+  nationality: string
+  skill: string
+  drinks: string[]
+  animal: string
+  phoneCode: string
+  phoneNumber: string
+}
+interface ICreatePersonInfoStore {
+  personInfo: PersonInfo | {}
+  personInfoErrorState: any
+
+  setPersonInfoFieldValue<TField extends keyof PersonInfo = keyof PersonInfo>(
+    field: TField,
+    value: PersonInfo[TField],
+  ): void
+  setPersonInfoValue(value: PersonInfo): void
+
+  setPersonInfoErrorState(field: string, message: string | undefined): void
+
+  clearResponse(): void
+}
+const personInfoStore = () => {
+  const storageName = 'create-person-info'
+  return create<ICreatePersonInfoStore>()((set, get) => {
+    return {
+      personInfo: {},
+      personInfoErrorState: {},
+      setPersonInfoFieldValue(field, value) {
+        const {personInfo} = get()
+        set({
+          personInfo: {
+            ...personInfo,
+            [field]: value,
+          },
+        })
+      },
+      setPersonInfoValue(value) {
+        set({
+          personInfo: value,
+        })
+      },
+      setPersonInfoErrorState(field: string, message: string) {
+        const {personInfoErrorState} = get()
+        set({
+          personInfoErrorState: {
+            ...personInfoErrorState,
+            [field]: message,
+          },
+        })
+      },
+      clearResponse: () =>
+        set({
+          personInfo: undefined,
+        }),
+    }
+  })
+}
+
+export const useCreatePersonStore = personInfoStore()
+
+```
+
+---
+
+### Props:
+
+#### `<Dropdown.Select/>` | `<Dropdown.ComboBox/>` :
+
+| Name            | Type                        | Default | Description                                                                                                                                               |
+| :-------------- | :-------------------------- | :------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| icon            | `ReactNode`                 | -       | Icon display in right side                                                                                                                                |
+| name            | `string`                    | —       | The name of the input element, used when submitting an HTML form. See MDN.                                                                                |
+| label           | `ReactNode`                 | —       | The content to display as the label.                                                                                                                      |
+| isOpen          | `boolean`                   | —       | Open state of the menu.                                                                                                                                   |
+| isLoading       | `boolean`                   | 'false' | Loading effect when list of items is loading by API                                                                                                       |
+| isErrored       | `boolean`                   | 'false' | Error state when dropdown is isErrored                                                                                                                    |
+| isDisabled      | `boolean`                   | —       | Whether the input is disabled.                                                                                                                            |
+| isReadOnly      | `boolean`                   | —       | Whether the input can be selected but not changed by the user.                                                                                            |
+| isRequired      | `boolean`                   | —       | Whether user input is required on the input before form submission. Often paired with the necessityIndicator prop to add a visual indicator to the input. |
+| value           | `Key`                       | —       | The currently selected value in the collection (controlled).                                                                                              |
+| description     | `string`                    | —       | A description for the field. Provides a hint such as specific requirements for what to choose.                                                            |
+| placeholder     | `string`                    | —       | Temporary text that occupies the text input when it is empty.                                                                                             |
+| errorMessage    | `string`                    | -       | Error message for dropdown                                                                                                                                |
+| shouldDeselect  | `boolean`                   | `false` | When it true, active item can be remove by click one more time                                                                                            |
+| disabledValues  | `Iterable<Key>`             | —       | The item values that are disabled. These items cannot be selected, focused, or otherwise interacted with.                                                 |
+| numberOfRows    | `number`                    | —       | Number of items displayed in Popover.                                                                                                                     |
+| defaultValue    | `Key`                       | —       | The initial selected value in the collection (uncontrolled).                                                                                              |
+| onLoadMore      | `() => void`                | —       | Handler when user scrolls to the end.                                                                                                                     |
+| onValueChange   | `(key: Key) => any`         | —       | Handler that is called when the selection changes.                                                                                                        |
+| onOpenChange    | `(isOpen: boolean) => void` | —       | Method that is called when the open state of the menu changes. Returns the new open state and the action that caused the opening of the menu.             |
+| isCloseOnSelect | `boolean`                   | 'false' | Prevent closing popup after selecting item.                                                                                                               |
+| isLoadingMore   | `boolean`                   | 'false' | Prevent to fire function `onLoadMore`.                                                                                                                    |
+| popoverCSS      | `CSS`                       | —       | The system prop that allows defining system overrides as well as additional CSS styles of Popover.                                                        |
+
+#### `<Dropdown.Item/>` :
+
+| Name       | Type                           | Default | Description                      |
+| :--------- | :----------------------------- | :------ | :------------------------------- |
+| value      | `Key`                          | —       | The value of the dropdown.       |
+| icon       | `icon` \| `color`              | —       | The content of the dropdown Item |
+| title      | `string`                       | —       | The title of the dropdown.       |
+| children   | `ReactNode`                    | —       | The content of the dropdown Item |
+| leftIcon   | `ReactNode`                    | -       | Left icon of the dropdown Item   |
+| rightIcon  | `ReactNode`                    | -       | Right icon of the dropdown Item  |
+| rightColor | `string`                       | -       | Right color of the dropdown Item |
+| checkmark  | `none` \| `checkbox` \| `tick` | -       | Variant for the selected         |
+
+---
+
+#### `<Dropdown.Section/>` :
+
+| Name        | Type                 | Default | Description                       |
+| :---------- | :------------------- | :------ | :-------------------------------- |
+| title       | `ReactNode`          | —       | The title of the section.         |
+| children    | `ReactNode`          | —       | The content of the section        |
+| isClickable | `boolean`            | false   | Whether the section is clickable. |
+| isChecked   | `boolean`            | false   | Whether the section is selected.  |
+| onClick     | `Function`           | —       | Fire click to the section.        |
+| checkmark   | `checkbox` \| `tick` | -       | Variant for the selected          |
+
+---
+
+<Callout>
+  Check out our [ladle](/ladle?story=dropdown--select) for more info on this
+  component.
+</Callout>
