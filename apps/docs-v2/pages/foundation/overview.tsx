@@ -1,9 +1,9 @@
 import {Box, Grid, Typography} from '@comfortdelgro/react-compass'
 import DocsAppCustomLayout from 'components/layouts/DocsAppCustomLayout'
-import { usePageProps } from 'contexts/PageProps'
+import {usePageProps} from 'contexts/PageProps'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect } from 'react'
+import {useEffect} from 'react'
 
 const introduces = [
   {
@@ -56,7 +56,7 @@ export default function Page() {
   useEffect(() => {
     setPageProps?.({})
   }, [])
-  
+
   return (
     <DocsAppCustomLayout>
       <Box

@@ -1,5 +1,5 @@
-import Breadcrumbs from '@comfortdelgro/react-compass/breadcrumbs'
 import BugIcon from '@comfortdelgro/compass-icons/react/bug'
+import Breadcrumbs from '@comfortdelgro/react-compass/breadcrumbs'
 
 export function BasicBreadcrumb() {
   return (
