@@ -36,10 +36,6 @@ export const StyledCalendarCell = styled('td', {
     borderRadius: '$md',
   },
 
-  // '&:hover .calendar-cell-value.selected': {
-  //   color: 'currentColor',
-  // },
-
   '&:hover .calendar-cell-value, &.highlighted .calendar-cell-value:hover': {
     color: '$whiteText',
   },
