@@ -1,5 +1,11 @@
 ## 2.9.0
 
+## 2.11.0
+
+### Minor Changes
+
+- 020471b3: Fix bugs in Calendar and Popover
+
 ## 2.10.0
 
 ### Minor Changes
