@@ -98,8 +98,15 @@ const CalendarHeader = (props: Props) => {
         <h2>{(calendarProps as AriaLabelingProps)['aria-label']}</h2>
       </VisuallyHidden>
       <div className='calendar-header-left-side'>
-        <Button variant='ghost' type='button' {...prevButtonProps}>
-          <ArrowLeft style={iconButtonStyle} />
+        <Button
+          variant='ghost'
+          type='button'
+          css={{
+            '& #cdg-calendar-arrow-left': iconButtonStyle,
+          }}
+          {...prevButtonProps}
+        >
+          <ArrowLeft id='cdg-calendar-arrow-left' />
         </Button>
         {variant === 'default' ? (
           <button
@@ -135,8 +142,15 @@ const CalendarHeader = (props: Props) => {
           </h2>
         )}
         {variant === 'default' && (
-          <Button variant='ghost' type='button' {...nextButtonProps}>
-            <ArrowRight style={iconButtonStyle} />
+          <Button
+            variant='ghost'
+            type='button'
+            css={{
+              '& #cdg-calendar-arrow-right': iconButtonStyle,
+            }}
+            {...nextButtonProps}
+          >
+            <ArrowRight id='cdg-calendar-arrow-right' />
           </Button>
         )}
       </div>
@@ -151,8 +165,15 @@ const CalendarHeader = (props: Props) => {
               ),
             )}
           </h2>
-          <Button variant='ghost' type='button' {...nextButtonProps}>
-            <ArrowRight style={iconButtonStyle} />
+          <Button
+            variant='ghost'
+            type='button'
+            css={{
+              '& #cdg-calendar-arrow-right': iconButtonStyle,
+            }}
+            {...nextButtonProps}
+          >
+            <ArrowRight id='cdg-calendar-arrow-right' />
           </Button>
         </div>
       )}
