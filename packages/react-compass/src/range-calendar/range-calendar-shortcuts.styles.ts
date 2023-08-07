@@ -20,6 +20,7 @@ export const StyledRangeCalendarShorcutsItem = styled('button', {
   border: 'none',
   cursor: 'pointer',
   transition: '$button',
+  color: '$primaryText',
 
   '&:hover': {
     borderRadius: '6px',

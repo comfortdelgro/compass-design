@@ -18,19 +18,23 @@ export const StyledCalendarMonthYearCell = styled('button', {
 
   '&:hover, &:focus-visible': {
     backgroundColor: '$cdgBlue100',
-    color: '$primaryText !important',
-    fontWeight: 'normal !important',
+    color: '$white',
+    fontWeight: 'normal',
     outline: 'none',
   },
 
   '&:disabled, &:disabled:hover': {
     backgroundColor: 'inherit',
-    color: '$gray50 !important',
+    color: '$gray50',
     cursor: 'not-allowed',
   },
 
   '&.highlighted': {
     color: '$cdgBlue100',
     fontWeight: 'bold',
+  },
+
+  '&.highlighted:hover': {
+    color: '$white',
   },
 })
