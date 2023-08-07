@@ -4,7 +4,7 @@ export const StyledCalendarCell = styled('td', {
   cursor: 'pointer',
 
   '.calendar-cell-value:focus-visible': {
-    outline: '$cdgBlue120 solid 2px',
+    outline: '$cdgBlue100 solid 2px',
     borderRadius: '$md',
   },
 
@@ -18,11 +18,6 @@ export const StyledCalendarCell = styled('td', {
     fontWeight: 'bold',
   },
 
-  '&:hover': {
-    backgroundColor: '$cdgBlue40 !important',
-    borderRadius: '$md',
-  },
-
   '&.selected': {
     backgroundColor: '$gray20',
   },
@@ -33,6 +28,19 @@ export const StyledCalendarCell = styled('td', {
   },
 
   '&.highlighted .calendar-cell-value': {
+    color: '$whiteText',
+  },
+
+  '&:hover': {
+    backgroundColor: '$cdgBlue40',
+    borderRadius: '$md',
+  },
+
+  // '&:hover .calendar-cell-value.selected': {
+  //   color: 'currentColor',
+  // },
+
+  '&:hover .calendar-cell-value, &.highlighted .calendar-cell-value:hover': {
     color: '$whiteText',
   },
 

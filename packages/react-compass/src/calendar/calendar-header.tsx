@@ -1,3 +1,5 @@
+import ArrowLeft from '@comfortdelgro/compass-icons/react/arrow-left'
+import ArrowRight from '@comfortdelgro/compass-icons/react/arrow-right'
 import {DateValue} from '@internationalized/date'
 import {useDateFormatter} from '@react-aria/i18n'
 import {VisuallyHidden} from '@react-aria/visually-hidden'
@@ -7,6 +9,7 @@ import {StyledComponentProps} from '../utils/stitches.types'
 import {StyledCalendarHeader} from './calendar-header.style'
 import {MonthYearState, MONTH_YEAR_STATE} from './hooks/useMonthYearState'
 import {AriaLabelingProps, DOMProps} from './types'
+
 import {
   CalendarState,
   DOMAttributes,
@@ -22,6 +25,11 @@ interface Props extends StyledComponentProps {
   nextButtonProps: ButtonProps
   middleButtonProps?: MonthYearState
   maxValue?: DateValue
+}
+
+const iconButtonStyle = {
+  width: '18px',
+  height: '16px',
 }
 
 const CalendarHeader = (props: Props) => {
@@ -91,16 +99,8 @@ const CalendarHeader = (props: Props) => {
         <h2>{(calendarProps as AriaLabelingProps)['aria-label']}</h2>
       </VisuallyHidden>
       <div className='calendar-header-left-side'>
-        <Button variant='ghost' {...prevButtonProps}>
-          <svg
-            className='calendar-header-icon chevron-left'
-            viewBox='0 0 320 512'
-          >
-            <path
-              fill='currentColor'
-              d='M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z'
-            />
-          </svg>
+        <Button variant='ghost' type='button' {...prevButtonProps}>
+          <ArrowLeft style={iconButtonStyle} />
         </Button>
         {variant === 'default' ? (
           <button
@@ -109,6 +109,7 @@ const CalendarHeader = (props: Props) => {
             // so we don't need to repeat that here for screen reader users.
             className='calendar-header-middle'
             aria-hidden
+            type='button'
             onClick={() => {
               if (variant === 'default' && middleButtonProps) {
                 middleButtonProps.nextState()
@@ -135,16 +136,8 @@ const CalendarHeader = (props: Props) => {
           </h2>
         )}
         {variant === 'default' && (
-          <Button variant='ghost' {...nextButtonProps}>
-            <svg
-              className='calendar-header-icon chevron-right'
-              viewBox='0 0 320 512'
-            >
-              <path
-                fill='currentColor'
-                d='M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z'
-              />
-            </svg>
+          <Button variant='ghost' type='button' {...nextButtonProps}>
+            <ArrowRight style={iconButtonStyle} />
           </Button>
         )}
       </div>
@@ -159,16 +152,8 @@ const CalendarHeader = (props: Props) => {
               ),
             )}
           </h2>
-          <Button variant='ghost' {...nextButtonProps}>
-            <svg
-              className='calendar-header-icon chevron-right'
-              viewBox='0 0 320 512'
-            >
-              <path
-                fill='currentColor'
-                d='M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z'
-              />
-            </svg>
+          <Button variant='ghost' type='button' {...nextButtonProps}>
+            <ArrowRight style={iconButtonStyle} />
           </Button>
         </div>
       )}
