@@ -90,7 +90,7 @@ export const StyledDropdown = styled('div', {
       true: {
         borderColor: '$danger',
         '&:focus-within': {
-          borderColor: '$danger',
+          borderColor: '$dangerDarker',
         },
       },
     },

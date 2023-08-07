@@ -135,7 +135,7 @@ export const StyledSelect = styled('div', {
       true: {
         borderColor: '$danger',
         '&:focus-within': {
-          borderColor: '$danger',
+          borderColor: '$dangerDarker',
         },
       },
     },
@@ -234,7 +234,7 @@ export const StyledComboBox = styled('div', {
       true: {
         borderColor: '$danger',
         '&:focus-within': {
-          borderColor: '$danger',
+          borderColor: '$dangerDarker',
         },
       },
     },

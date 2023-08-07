@@ -177,6 +177,7 @@ export const lightTheme = defineTheme({
 
     dangerBg: '#EFD9DB',
     danger: '#A4262C',
+    dangerDarker: '#7d1b20',
 
     successBg: '#D1E8CF',
     success: '#107C10',
@@ -262,6 +263,7 @@ export const darkTheme = createTheme('dark-theme', {
 
     dangerBg: '#F4B7AE',
     danger: '#861913',
+    dangerDarker: '#7d1b20',
 
     successBg: '#87DD63',
     success: '#235213',
