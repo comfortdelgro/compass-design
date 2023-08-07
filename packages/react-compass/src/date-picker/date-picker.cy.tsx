@@ -1,5 +1,5 @@
-import {parseDate} from '@internationalized/date'
 import React from 'react'
+import {parseDate} from '../internationalized/date'
 import DatePicker from './index'
 
 const centerDateString = `2022-05-15`

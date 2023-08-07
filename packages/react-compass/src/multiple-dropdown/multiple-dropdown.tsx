@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect} from 'react'
 import Chip from '../chip'
 import Popover from '../popover'
-import {StyledComponentProps} from '../utils/stitches.types'
+import {CSS, StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
   DropdownItemKey,
@@ -65,6 +65,7 @@ interface Props extends StyledComponentProps {
   description?: React.ReactNode
   noDataMessage?: string
   isLoadingMore?: boolean
+  popoverCSS?: CSS
   onBlur?: () => void
   onFocus?: () => void
   onLoadMore?: () => void
@@ -93,6 +94,7 @@ const MultipleDropdown = React.forwardRef<
   const {
     id = `cdg-element-${Math.random().toString(36).substring(2)}`,
     css = {},
+    popoverCSS = {},
     isOpen,
     children,
     isErrored,
@@ -671,12 +673,14 @@ const MultipleDropdown = React.forwardRef<
             </StyledDropdown>
           }
           css={{width: '100%'}}
-          direction='bottom'
+          direction='bottom-left'
           onClose={handleClosePopover}
         >
           <StyledPopover
-            style={{
-              width: wrapperRef?.current?.clientWidth ?? '100%',
+            css={{
+              ...popoverCSS,
+              width:
+                popoverCSS.width ?? wrapperRef?.current?.clientWidth ?? '100%',
             }}
           >
             <MultipleDropdownList

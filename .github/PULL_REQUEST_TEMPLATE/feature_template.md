@@ -2,15 +2,11 @@
 
 ## Description
 
-**1) Root cause**
-
-<!-- Describe reason why -->
-
-**2) Changes**
+**1) Changes**
 
 <!-- Link to JIRA -->
 
-**3) Impact**
+**2) Impact**
 
 <!-- Impact to function, screen or module -->
 
@@ -23,7 +19,7 @@
 - [x] 1. Did you start and verify your changes?
 - [x] 2. Did you run build to make sure that your changes can be built successfully?
 - [x] 3. No !important flag, inline style in css
-- [x] 4. No boilerplate codes (1)
+- [x] 4. No bolerplate codes (1)
 - [x] 5. No duplicate code that exist in common functions?
 - [x] 6. All of defined variables should have default value, check null and undefined?
 - [x] 7. Use meaningful name for variables, no suffix 1,2,... Describes reference information for easier to understand what's inside. (2)

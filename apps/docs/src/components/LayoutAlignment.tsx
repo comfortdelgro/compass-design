@@ -31,7 +31,8 @@ export const LayoutAlignment = () => {
         <Layout
           direction='row'
           align={alignment}
-          css={{height: '100px', border: '1px solid #cccccc'}}
+          className='sample-layout'
+          css={{height: '100px'}}
         >
           Sample content
         </Layout>

@@ -1,4 +1,4 @@
-import {Calendar, DateValue} from '@internationalized/date'
+import {Calendar, DateValue} from '../../internationalized/date'
 import {
   DOMAttributes,
   Granularity,

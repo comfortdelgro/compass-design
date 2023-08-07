@@ -13,8 +13,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/prefer-ts-expect-error */
-import {DateValue} from '@internationalized/date'
 import {RefObject, useRef} from 'react'
+import {DateValue} from '../../internationalized/date'
 import {
   AriaRangeCalendarProps,
   CalendarAria,

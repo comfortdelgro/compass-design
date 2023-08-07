@@ -143,7 +143,7 @@ export const Select: React.FC = () => {
         onFocus={() => console.log('focus')}
       >
         <Dropdown.Item
-          checkmark='checkbox'
+          checkmark='tick'
           value='panda'
           leftIcon={<FontAwesomeIcon icon={faBug} />}
         >
@@ -442,6 +442,35 @@ export const Select: React.FC = () => {
         <Dropdown.Item value='snake' checkmark='tick'>
           Snake
         </Dropdown.Item>
+      </Dropdown.Select>
+      <h3>Limit width for Popover</h3>
+      <Dropdown.Select
+        isRequired
+        label='Favorite Animal'
+        placeholder='Choose an animal'
+        css={{width: 250}}
+        popoverCSS={{width: 'auto'}}
+      >
+        <Dropdown.Item
+          checkmark='tick'
+          value='panda'
+          css={{textWrap: 'nowrap'}}
+        >
+          Red Panda Red Panda Red Panda Red Panda Red Panda
+        </Dropdown.Item>
+        <Dropdown.Item
+          value='cat'
+          leftIcon={<FontAwesomeIcon icon={faBug} />}
+          type='color'
+          rightColor='red'
+          textValue='pandared'
+        >
+          Cat
+        </Dropdown.Item>
+        <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+        <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+        <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item value='snakessss'>Snake</Dropdown.Item>
       </Dropdown.Select>
       <h3>Load more</h3>
       <Dropdown.Select

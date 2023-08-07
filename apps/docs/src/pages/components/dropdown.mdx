@@ -300,6 +300,64 @@ We provide 2 type of dropdown that can be used to select: `Dropdown.Select` and 
 
 ---
 
+### Limit width for Popover:
+
+<section className={styles.componentDisplayVerticalLeft}>
+  <Dropdown.Select
+    label='Favorite Animal'
+    placeholder='Choose an animal'
+    css={{width: 250}}
+    popoverCSS={{width: 'auto'}}
+  >
+    <Dropdown.Item
+      checkmark='tick'
+      value='panda'
+      textValue='Panda'
+      css={{textWrap: 'nowrap'}}
+    >
+      Red Panda Red Panda Red Panda Red Panda Red Panda
+    </Dropdown.Item>
+    <Dropdown.Item
+      value='cat'
+      type='color'
+      rightColor='red'
+      textValue='pandared'
+    >
+      Cat
+    </Dropdown.Item>
+    <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+    <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+    <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+    <Dropdown.Item value='snakessss'>Snake</Dropdown.Item>
+  </Dropdown.Select>
+</section>
+```js
+<Dropdown.Select
+  label='Favorite Animal'
+  placeholder='Choose an animal'
+  css={{width: 250}}
+  popoverCSS={{width: 'auto'}}
+>
+  <Dropdown.Item
+    checkmark='tick'
+    value='panda'
+    textValue='Panda'
+    css={{textWrap: 'nowrap'}}
+  >
+    Red Panda Red Panda Red Panda Red Panda Red Panda
+  </Dropdown.Item>
+  <Dropdown.Item value='cat' type='color' rightColor='red' textValue='pandared'>
+    Cat
+  </Dropdown.Item>
+  <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+  <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+  <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+  <Dropdown.Item value='snakessss'>Snake</Dropdown.Item>
+</Dropdown.Select>
+```
+
+---
+
 ### With Header:
 
 <section className={styles.componentDisplayVertical}>
@@ -821,7 +879,8 @@ export const useCreatePersonStore = personInfoStore()
 | onValueChange   | `(key: Key) => any`         | —       | Handler that is called when the selection changes.                                                                                                        |
 | onOpenChange    | `(isOpen: boolean) => void` | —       | Method that is called when the open state of the menu changes. Returns the new open state and the action that caused the opening of the menu.             |
 | isCloseOnSelect | `boolean`                   | 'false' | Prevent closing popup after selecting item.                                                                                                               |
-| isLoadingMore   | `boolean`                   | 'false' | Prevent to fire function `onLoadMore`.                                                                                                                      |
+| isLoadingMore   | `boolean`                   | 'false' | Prevent to fire function `onLoadMore`.                                                                                                                    |
+| popoverCSS      | `CSS`                       | —       | The system prop that allows defining system overrides as well as additional CSS styles of Popover.                                                        |
 
 #### `<Dropdown.Item/>` :
 

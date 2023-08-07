@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/prefer-ts-expect-error */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import {Calendar, toCalendar} from '@internationalized/date'
+import {Calendar, toCalendar} from '../../internationalized/date'
 import {
   CalendarState,
   DateFieldState,

@@ -1,1 +1,1 @@
-export default function highlight(code: string, language: string): string;
+export default function highlight(code: string, language: string): string
