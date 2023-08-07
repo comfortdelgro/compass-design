@@ -88,7 +88,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     onOpenChange,
     onClose,
     onPositionedChange,
-    offset,
+    offset = undefined,
     shouldFlip = true,
     direction = 'bottom',
     delay = 0,
@@ -130,7 +130,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     // Make sure the tooltip stays on the screen
     whileElementsMounted: autoUpdate,
     middleware: [
-      offsetMiddleware(offset ? offset : DEFAULT_OFFSET),
+      offsetMiddleware(offset !== undefined ? offset : DEFAULT_OFFSET),
       shouldFlip ? flip() : null,
       shift(),
     ],
