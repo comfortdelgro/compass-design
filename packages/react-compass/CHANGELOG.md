@@ -1,5 +1,11 @@
 ## 2.9.0
 
+## 2.12.0
+
+### Minor Changes
+
+- 9d82c8c5: fix bug in dropdown
+
 ## 2.11.0
 
 ### Minor Changes
