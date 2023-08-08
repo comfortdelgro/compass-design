@@ -409,6 +409,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   }, [handleKeyDown])
 
   const handleDropdownToggle = useCallback(() => {
+    setSearchValue('')
     setOpen((v) => !v)
     onOpenChange?.(!open)
     inputRef.current?.focus()
