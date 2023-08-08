@@ -174,7 +174,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
 
   const isUncontrolledComponent = useMemo(
     () => !!defaultValueDropdown || (!defaultValueDropdown && !valueDropdown),
-    [defaultValueDropdown],
+    [defaultValueDropdown, valueDropdown],
   )
 
   const triggeElWidth = useMemo(() => {
@@ -323,6 +323,9 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
                   setValueForItemAndFocusKey(null)
                   onSelectionChange?.('')
                   onValueChange?.('')
+                  if (inputRef.current) {
+                    inputRef.current.value = ''
+                  }
                   return
                 }
                 setValueForItemAndFocusKey({
@@ -409,6 +412,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   }, [handleKeyDown])
 
   const handleDropdownToggle = useCallback(() => {
+    setSearchValue('')
     setOpen((v) => !v)
     onOpenChange?.(!open)
     inputRef.current?.focus()
@@ -513,7 +517,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
               inputRef.current.value = ''
             }
           }
-          setSearchValue('')
         }
       }
     },
@@ -613,9 +616,11 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     if (isReadOnly) {
       return
     }
-    isCloseOnSelect && setOpen(false)
-    onOpenChange?.(false)
-    setSearchValue('')
+    if (isCloseOnSelect) {
+      setOpen(false)
+      setSearchValue('')
+      onOpenChange?.(false)
+    }
     setTimeout(() => {
       inputRef.current?.focus()
       buttonSelectRef.current?.focus()
@@ -652,12 +657,12 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         if (!isCloseOnSelect) {
           inputRef.current?.focus()
         } else {
+          setSearchValue(
+            textContent(currentItem.displayValue as React.ReactElement),
+          )
           inputRef.current.blur()
         }
       }
-      setSearchValue(
-        textContent(currentItem.displayValue as React.ReactElement),
-      )
     } else {
       buttonSelectRef.current?.focus()
     }
