@@ -182,15 +182,17 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
         {type === 'color' && rightColor && (
           <StyledColor css={{$$bg: rightColor}} />
         )}
-        <StyledRightIcon isSelected={isSelected} checkmark={checkmark}>
-          {checkmark === 'checkbox' ? (
-            <div>
-              <Tick />
-            </div>
-          ) : checkmark === 'tick' ? (
-            <BlueTick />
-          ) : null}
-        </StyledRightIcon>
+        {checkmark !== 'none' && (
+          <StyledRightIcon isSelected={isSelected} checkmark={checkmark}>
+            {checkmark === 'checkbox' ? (
+              <div>
+                <Tick />
+              </div>
+            ) : checkmark === 'tick' ? (
+              <BlueTick />
+            ) : null}
+          </StyledRightIcon>
+        )}
       </StyledOption>
     ) : null
   },

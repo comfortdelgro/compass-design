@@ -95,7 +95,7 @@ export type DropdownProps = Props &
   DropdownVariantProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
-const ITEM_HEIGHT = 32
+const ITEM_HEIGHT = 37
 const EMPTY_FUNC = () => {
   //
 }
@@ -725,6 +725,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           onPositionedChange={handlePositionedChange}
         >
           <StyledPopover
+            onClick={handleDropdownHeaderClick}
             css={{...popoverCSS, width: popoverCSS.width ?? triggeElWidth}}
           >
             <DropdownList
