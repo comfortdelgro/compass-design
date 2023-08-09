@@ -76,6 +76,7 @@ export const Select: React.FC = () => {
   const [valueHeader, setValueHeader] = React.useState<Key>('')
   const [flag, setFlag] = React.useState<Key>('')
   const [loadMoreValue, setLoadMoreValue] = React.useState<Key>('')
+  const [loading, setLoading] = React.useState(true)
   const [loadingMoreStatus, setLoadingMoreStatus] = React.useState(false)
   const [data, setData] = React.useState<SampleData[]>(generateRandomData(10))
   const [value1, setValue1] = React.useState<Key>('cat')
@@ -369,7 +370,16 @@ export const Select: React.FC = () => {
       <Dropdown.Select
         label='Favorite Animal'
         placeholder='Choose an animal'
-        isLoading
+        onOpenChange={(open) => {
+          if (open) {
+            setTimeout(() => {
+              setLoading(false)
+            }, 3000)
+          } else {
+            setLoading(true)
+          }
+        }}
+        isLoading={loading}
       >
         <Dropdown.Item value='panda'>Red Panda</Dropdown.Item>
         <Dropdown.Item value='cat'>Cat</Dropdown.Item>
@@ -467,6 +477,30 @@ export const Select: React.FC = () => {
         >
           Cat
         </Dropdown.Item>
+        <Dropdown.Item value='dog'>Dog</Dropdown.Item>
+        <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
+        <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
+        <Dropdown.Item value='snakessss'>Snake</Dropdown.Item>
+      </Dropdown.Select>
+      <h3>Custom CSS</h3>
+      <Dropdown.Select
+        isRequired
+        label='Favorite Animal'
+        placeholder='Choose an animal'
+        css={{
+          button: {span: {color: '$whiteText'}},
+          '.cdg-dropdown-input': {
+            borderColor: '$warning',
+            borderWidth: '3px',
+            backgroundColor: '$cdgBlue100',
+            '.cdg-dropdown-button-icon': {
+              color: '$whiteText',
+            },
+          },
+        }}
+      >
+        <Dropdown.Item value='panda'>Panda</Dropdown.Item>
+        <Dropdown.Item value='cat'>Cat</Dropdown.Item>
         <Dropdown.Item value='dog'>Dog</Dropdown.Item>
         <Dropdown.Item value='aardvark'>Aardvark</Dropdown.Item>
         <Dropdown.Item value='kangaroo'>Kangaroo</Dropdown.Item>
