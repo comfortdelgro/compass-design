@@ -1,5 +1,6 @@
 import {Box, Typography} from '@comfortdelgro/react-compass'
 import {shouldHandleLinkClick} from 'components/common/MarkdownLinks'
+import {useIsTabletScreen} from 'hooks'
 import {noop} from 'lodash'
 import throttle from 'lodash/throttle'
 import Link from 'next/link'
@@ -48,6 +49,7 @@ export default function DocsAppToc(props: any) {
   const items = React.useMemo(() => flatten(toc), [toc])
   const [activeState, setActiveState] = React.useState(null)
   const clickedRef = React.useRef(false)
+  const isTabletScreen = useIsTabletScreen()
   const unsetClickedRef = React.useRef(null)
   const findActiveIndex = React.useCallback(() => {
     if (clickedRef.current) {
@@ -133,7 +135,9 @@ export default function DocsAppToc(props: any) {
     </Link>
   )
 
-  return (
+  return isTabletScreen ? (
+    <></>
+  ) : (
     <Box
       css={{
         width: 300,

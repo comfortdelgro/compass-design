@@ -10,7 +10,7 @@ const Root = styled('div', {
     lineHeight: 1.5, // Developers likes when the code is dense.
     margin: '$2 0',
     padding: '$2',
-    backgroundColor: '#323130',
+    backgroundColor: '$gray20',
     color: '#f8f8f2',
     border: '1px solid',
     borderColor: '$gray30',
@@ -27,6 +27,7 @@ const Root = styled('div', {
   },
   '& pre > code': {
     fontSize: 'inherit',
+    color: '$gray110',
   },
   '& :not(pre) > code': {
     display: 'inline-block',
