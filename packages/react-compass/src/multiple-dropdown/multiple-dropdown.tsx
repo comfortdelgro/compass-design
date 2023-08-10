@@ -390,7 +390,6 @@ const MultipleDropdown = React.forwardRef<
           break
         case 'Enter':
           event.preventDefault()
-          setOpen(true)
           if (currentFocusKey) {
             const focusedItem = getItemByKey(currentFocusKey, clonedChildren)
             if (focusedItem) {
@@ -422,13 +421,17 @@ const MultipleDropdown = React.forwardRef<
   )
 
   React.useEffect(() => {
-    if (open) {
-      document.addEventListener('keydown', handleKeyDown)
-    } else {
-      document.removeEventListener('keydown', handleKeyDown)
+    if (refDOM.current) {
+      if (open) {
+        refDOM.current.addEventListener('keydown', handleKeyDown)
+      } else {
+        refDOM.current.removeEventListener('keydown', handleKeyDown)
+      }
     }
     return () => {
-      document.removeEventListener('keydown', handleKeyDown)
+      if (refDOM.current) {
+        refDOM.current.removeEventListener('keydown', handleKeyDown)
+      }
     }
   }, [open, handleKeyDown])
 
@@ -631,7 +634,7 @@ const MultipleDropdown = React.forwardRef<
                     <Chip
                       key={selectedItem.value}
                       hasCloseButton={
-                        disabledKeys.findIndex(
+                        dropdownDisabledKeys.findIndex(
                           (item) =>
                             item.toString() === selectedItem.value.toString(),
                         ) === -1

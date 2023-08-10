@@ -520,6 +520,46 @@ export const Default: React.FC = () => {
           </MultipleDropdown.Item>
           <MultipleDropdown.Item value='snake'>Snake</MultipleDropdown.Item>
         </MultipleDropdown>
+        <h3>Custom CSS</h3>
+        <MultipleDropdown
+          label='Favorite Animal'
+          placeholder='Animals'
+          css={{
+            button: {span: {color: '$whiteText'}},
+            '.dropdownContainer': {
+              color: '$whiteText',
+              borderColor: '$warning',
+              borderWidth: '3px',
+              backgroundColor: '$cdgBlue100',
+              '.selectedItemWrapper > div': {
+                color: '$whiteText',
+                svg: {
+                  color: '$whiteText',
+                },
+              },
+              '.selectedItemWrapper > input': {
+                color: '$whiteText',
+                backgroundColor: '$cdgBlue100',
+              },
+              '.dropdown-icon svg': {
+                color: '$whiteText',
+              },
+            },
+          }}
+        >
+          <MultipleDropdown.Item value='Panda' textValue='Panda'>
+            Red Panda Red Panda Red Panda Red Panda Red Panda
+          </MultipleDropdown.Item>
+          <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
+          <MultipleDropdown.Item value='dog'>Dog</MultipleDropdown.Item>
+          <MultipleDropdown.Item value='aardvark'>
+            Aardvark
+          </MultipleDropdown.Item>
+          <MultipleDropdown.Item value='kangaroo'>
+            Kangaroo
+          </MultipleDropdown.Item>
+          <MultipleDropdown.Item value='snake'>Snake</MultipleDropdown.Item>
+        </MultipleDropdown>
         <h3>Load more</h3>
         <MultipleDropdown
           label='Using load more'
