@@ -140,6 +140,9 @@ const MultipleDropdown = React.forwardRef<
     onOpenChange = () => {
       //
     },
+    onKeyDown = () => {
+      //
+    },
     ...delegated
   } = props
   // ====================================== STATE ======================================
@@ -323,7 +326,8 @@ const MultipleDropdown = React.forwardRef<
   )
 
   const handleKeyDown = React.useCallback(
-    (event: KeyboardEvent) => {
+    (event: React.KeyboardEvent<HTMLDivElement>) => {
+      onKeyDown(event)
       if (!open) {
         return
       }
@@ -390,6 +394,7 @@ const MultipleDropdown = React.forwardRef<
           break
         case 'Enter':
           event.preventDefault()
+          setOpen(true)
           if (currentFocusKey) {
             const focusedItem = getItemByKey(currentFocusKey, clonedChildren)
             if (focusedItem) {
@@ -417,23 +422,9 @@ const MultipleDropdown = React.forwardRef<
       dropdownItemKeys,
       handleDropdownItemClick,
       onOpenChange,
+      onKeyDown,
     ],
   )
-
-  React.useEffect(() => {
-    if (refDOM.current) {
-      if (open) {
-        refDOM.current.addEventListener('keydown', handleKeyDown)
-      } else {
-        refDOM.current.removeEventListener('keydown', handleKeyDown)
-      }
-    }
-    return () => {
-      if (refDOM.current) {
-        refDOM.current.removeEventListener('keydown', handleKeyDown)
-      }
-    }
-  }, [open, handleKeyDown])
 
   const handleOpen = () => {
     if (!isDisabled) {
@@ -576,6 +567,7 @@ const MultipleDropdown = React.forwardRef<
     <StyledDropdownWrapper
       css={css}
       ref={refDOM}
+      onKeyDown={handleKeyDown}
       {...delegated}
       displayedValue={displayedValue}
       variant={variant}
