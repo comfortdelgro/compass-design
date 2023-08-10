@@ -22,6 +22,10 @@ export const routes: TSideNavItem[] = [
     icon: faToggleOn,
     children: [
       {
+        title: 'Accordions',
+        pathname: '/accordions',
+      },
+      {
         title: 'Autocomplete',
         pathname: '/autocomplete',
       },
