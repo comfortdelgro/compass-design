@@ -11,14 +11,6 @@
 /* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
 /* eslint-disable @typescript-eslint/no-unnecessary-condition */
 import {
-  CalendarDate,
-  DateFormatter,
-  isEqualDay,
-  isSameDay,
-  isToday,
-} from '@internationalized/date'
-import {useDateFormatter} from '@react-aria/i18n'
-import {
   MouseEvent,
   PointerEvent,
   RefObject,
@@ -26,6 +18,14 @@ import {
   useMemo,
   useRef,
 } from 'react'
+import {
+  CalendarDate,
+  DateFormatter,
+  isEqualDay,
+  isSameDay,
+  isToday,
+} from '../../internationalized/date'
+import {useDateFormatter} from '../../internationalized/i18n'
 import {
   AriaCalendarCellProps,
   CalendarCellAria,

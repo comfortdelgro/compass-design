@@ -64,6 +64,8 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
     const {textValue, ...delegated} = other
 
     const {
+      isPositioned,
+      open,
       selectedItem,
       disabledKeys = [],
       searchValue,
@@ -133,14 +135,20 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
     }, [selectedKey, value])
 
     useEffect(() => {
-      if (isFocused || (isSelected && isFocused)) {
-        setTimeout(() => {
-          if (dropdownItemRef.current) {
-            dropdownItemRef.current.scrollIntoView({block: 'nearest'})
-          }
-        }, 0)
+      if (isPositioned && (isFocused || (isSelected && isFocused))) {
+        if (dropdownItemRef.current) {
+          dropdownItemRef.current.scrollIntoView({block: 'nearest'})
+        }
       }
-    }, [isFocused, isSelected])
+    }, [isPositioned, isFocused, isSelected])
+
+    useEffect(() => {
+      if (isSelected && isPositioned) {
+        if (dropdownItemRef.current) {
+          dropdownItemRef.current.scrollIntoView({block: 'nearest'})
+        }
+      }
+    }, [isPositioned, open, isSelected])
 
     const handleItemClick = () => {
       if (isDisabled) {
@@ -156,8 +164,9 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
     return canDisplayed ? (
       <StyledOption
         css={css}
-        isFocused={isFocused}
+        isFocused={isFocused && !isSelected}
         isSelected={isSelected && !isFocused}
+        isSelectedFocused={isSelected && isFocused}
         isDisabled={isDisabled}
         onClick={handleItemClick}
         ref={dropdownItemRef}
@@ -173,15 +182,17 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
         {type === 'color' && rightColor && (
           <StyledColor css={{$$bg: rightColor}} />
         )}
-        <StyledRightIcon isSelected={isSelected} checkmark={checkmark}>
-          {checkmark === 'checkbox' ? (
-            <div>
-              <Tick />
-            </div>
-          ) : checkmark === 'tick' ? (
-            <BlueTick />
-          ) : null}
-        </StyledRightIcon>
+        {checkmark !== 'none' && (
+          <StyledRightIcon isSelected={isSelected} checkmark={checkmark}>
+            {checkmark === 'checkbox' ? (
+              <div>
+                <Tick />
+              </div>
+            ) : checkmark === 'tick' ? (
+              <BlueTick />
+            ) : null}
+          </StyledRightIcon>
+        )}
       </StyledOption>
     ) : null
   },

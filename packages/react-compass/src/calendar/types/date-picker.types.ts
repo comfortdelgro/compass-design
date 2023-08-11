@@ -1,5 +1,5 @@
-import {CalendarDate, DateValue} from '@internationalized/date'
 import {ElementType} from 'react'
+import {CalendarDate, DateValue} from '../../internationalized/date'
 import {CalendarProps} from '../calendar'
 import {
   DOMAttributes,

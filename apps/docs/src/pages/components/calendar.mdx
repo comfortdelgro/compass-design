@@ -1,24 +1,46 @@
 import styles from '../../styles/Home.module.css'
 import {ControlledCalendar, ValidatedCalendar} from '../../components/Calendars'
 import Calendar from '@comfortdelgro/react-compass/calendar'
+import {Callout} from 'nextra-theme-docs'
 
 # Calendar
 
 Calendars display a grid of days in one or more months and allow users to select a single date.
 
-### Pre-Install
+### I18n
 
-Install these packages to use their utilities
+React Compass use [React Aria I18N](https://react-spectrum.adobe.com/react-aria/internationalization.html) and [React Aria Internationalized](https://react-spectrum.adobe.com/internationalized/index.html) to deal with i18n.
 
-import {Tabs, Tab, Callout} from 'nextra-theme-docs'
+How to use
 
-<Tabs items={['npm', 'yarn', 'pnpm']} defaultIndex={0}>
-  <Tab>```bash npm i @react-aria/i18n @internationalized/date ```</Tab>
-  <Tab>``` bash yarn add @react-aria/i18n @internationalized/date ```</Tab>
-  <Tab>``` bash pnpm add @react-aria/i18n @internationalized/date ```</Tab>
-</Tabs>
+```js
+import Calendar from '@comfortdelgro/react-compass/calendar'
 
----
+const {
+  /** any function in react aria i18n */
+} = Calendar.I18N
+const {
+  /** any function in react aria internationalized */
+} = Calendar.InternationalizedDate
+```
+
+### I18nProvider
+
+I18nProvider allows you to override the default locale as determined by the browser/system setting with a locale defined by your application (e.g. application setting).
+In this docs, we will use English(Singapore) `en-SG` as default locale
+
+```js
+import Calendar from '@comfortdelgro/react-compass/calendar'
+
+const {
+  I18nProvider
+} = Calendar.I18N
+
+<I18nProvider locale="en-SG">
+  <App/>
+</I18nProvider>
+
+```
 
 ### Import
 

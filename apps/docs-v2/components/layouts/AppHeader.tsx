@@ -39,14 +39,21 @@ export default function AppHeader(props: AppHeaderProps) {
         </Link>
       </Navbar.Brand>
       <NavbarLinks>
-        <Link href='/getting-started/overview'>
-          <Button>Document</Button>
+        <Link href='/foundation/overview' passHref legacyBehavior>
+          <Button href='/foundation/overview'>Document</Button>
         </Link>
         <Link
           href='https://comfortdelgro.github.io/compass-design/ladle/'
           target='_blank'
+          passHref
+          legacyBehavior
         >
-          <Button>Ladle</Button>
+          <Button href='https://comfortdelgro.github.io/compass-design/ladle/'>
+            Ladle
+          </Button>
+        </Link>
+        <Link href='/products' passHref legacyBehavior>
+          <Button href='/products'>Products</Button>
         </Link>
       </NavbarLinks>
       <NavbarSeperator />

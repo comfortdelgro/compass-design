@@ -1,4 +1,3 @@
-import {CalendarDate} from '@internationalized/date'
 import React from 'react'
 import {CalendarProps} from '../calendar'
 import {
@@ -7,6 +6,7 @@ import {
   RangeCalendarState,
   RangeValue,
 } from '../calendar/types'
+import {CalendarDate} from '../internationalized/date'
 import {
   StyledRangeCalendarShorcuts,
   StyledRangeCalendarShorcutsItem,

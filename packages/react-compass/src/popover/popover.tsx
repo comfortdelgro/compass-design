@@ -72,6 +72,7 @@ interface Props extends StyledComponentProps {
   defaultOpen?: boolean
   trigger?: 'click' | null
   isFloatingPortal?: boolean
+  onPositionedChange?: (isPositioned: boolean) => void
 }
 
 export type PopoverProps = Props &
@@ -86,7 +87,8 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     isOpen: isOpenProp,
     onOpenChange,
     onClose,
-    offset,
+    onPositionedChange,
+    offset = undefined,
     shouldFlip = true,
     direction = 'bottom',
     delay = 0,
@@ -121,14 +123,14 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     }
   }, [direction])
 
-  const {x, y, refs, strategy, context} = useFloating({
+  const {x, y, refs, strategy, context, isPositioned} = useFloating({
     open: isOpen,
     onOpenChange: onOpenChange ? onOpenChange : setIsOpen,
     placement: placementProp,
     // Make sure the tooltip stays on the screen
     whileElementsMounted: autoUpdate,
     middleware: [
-      offsetMiddleware(offset ? offset : DEFAULT_OFFSET),
+      offsetMiddleware(offset !== undefined ? offset : DEFAULT_OFFSET),
       shouldFlip ? flip() : null,
       shift(),
     ],
@@ -173,6 +175,10 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
       ref.current = el
     }
   }
+
+  React.useEffect(() => {
+    onPositionedChange?.(isPositioned)
+  }, [onPositionedChange, isPositioned])
 
   React.useEffect(() => {
     if (isOpenProp != null) {

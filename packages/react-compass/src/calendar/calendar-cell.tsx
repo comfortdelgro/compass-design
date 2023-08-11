@@ -1,3 +1,5 @@
+import {useFocusRing} from '@react-aria/focus'
+import React from 'react'
 import {
   CalendarDate,
   DateValue,
@@ -6,9 +8,7 @@ import {
   isSameMonth,
   isToday as isTodayFunction,
   parseDate,
-} from '@internationalized/date'
-import {useFocusRing} from '@react-aria/focus'
-import React from 'react'
+} from '../internationalized/date'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {StyledCalendarCell} from './calendar-cell.style'
@@ -87,6 +87,8 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
             {...cellProps}
             css={css}
             className={classNameCombine()}
+            aria-selected={isSelected}
+            aria-disabled={isDisabled}
           >
             <div
               ref={cellRef}

@@ -11,13 +11,13 @@
 /* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/prefer-ts-expect-error */
+import {useState} from 'react'
 import {
   DateFormatter,
   DateValue,
   toCalendarDate,
   toCalendarDateTime,
-} from '@internationalized/date'
-import {useState} from 'react'
+} from '../../internationalized/date'
 import {
   DateRange,
   DateRangePickerState,

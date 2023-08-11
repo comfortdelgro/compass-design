@@ -1,5 +1,5 @@
-import {CalendarDate} from '@internationalized/date'
 import React from 'react'
+import {CalendarDate} from '../internationalized/date'
 import {
   StyledCalendarMonthGrid,
   StyledCalendarMonthYearCell,

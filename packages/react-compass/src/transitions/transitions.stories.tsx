@@ -11,8 +11,8 @@ export const Variants: React.FC = () => {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: '10rem',
-    width: '10rem',
+    height: '160px',
+    width: '160px',
     backgroundColor: '#ADD8E6',
     borderRadius: '0.5rem',
     border: '1px solid black',
@@ -51,20 +51,20 @@ export const Variants: React.FC = () => {
             css={{
               marginBottom: '5px',
               marginTop: '5px',
-              height: '165px',
-              width: '165px',
+              minHeight: '180px',
+              minWidth: '180px',
             }}
           >
             <Transitions effect='collapse' show={show}>
               <Box css={{...Style}}>Basic</Box>
             </Transitions>
           </Box>
-          <Box css={{marginBottom: '5px', height: '165px', width: '165px'}}>
+          <Box css={{marginBottom: '5px', minHeight: '180px', width: '180px'}}>
             <Transitions effect='collapse' show={show} speed={2}>
               <Box css={{...Style}}>Custom Speed: 2s</Box>
             </Transitions>
           </Box>
-          <Box css={{marginBottom: '5px', height: '165px', width: '165px'}}>
+          <Box css={{marginBottom: '5px', minHeight: '180px', width: '180px'}}>
             <Transitions effect='collapse' show={show} collapsedSize='100px'>
               <Box
                 css={{
@@ -78,7 +78,7 @@ export const Variants: React.FC = () => {
               </Box>
             </Transitions>
           </Box>
-          <Box css={{marginBottom: '5px', height: '165px', width: '165px'}}>
+          <Box css={{marginBottom: '5px', minHeight: '180px', width: '180px'}}>
             <Transitions effect='collapse' show={show} orientation='horizontal'>
               <Box css={{...Style}}>Horizontal</Box>
             </Transitions>
@@ -90,8 +90,8 @@ export const Variants: React.FC = () => {
             css={{
               marginBottom: '5px',
               marginTop: '5px',
-              height: '165px',
-              width: '165px',
+              minHeight: '180px',
+              minWidth: '180px',
             }}
           >
             <Transitions effect='fade' show={show}>
@@ -102,8 +102,8 @@ export const Variants: React.FC = () => {
             css={{
               marginBottom: '5px',
               marginTop: '5px',
-              height: '165px',
-              width: '165px',
+              minHeight: '180px',
+              minWidth: '180px',
             }}
           >
             <Transitions effect='fade' show={show} speed={2}>
@@ -117,8 +117,8 @@ export const Variants: React.FC = () => {
             css={{
               marginBottom: '5px',
               marginTop: '5px',
-              height: '165px',
-              width: '165px',
+              minHeight: '180px',
+              minWidth: '180px',
             }}
           >
             <Transitions effect='zoom' show={show}>
@@ -129,8 +129,8 @@ export const Variants: React.FC = () => {
             css={{
               marginBottom: '5px',
               marginTop: '5px',
-              height: '165px',
-              width: '165px',
+              minHeight: '180px',
+              minWidth: '180px',
             }}
           >
             <Transitions effect='zoom' show={show} speed={2}>
@@ -144,8 +144,8 @@ export const Variants: React.FC = () => {
             css={{
               marginBottom: '5px',
               marginTop: '5px',
-              height: '165px',
-              width: '165px',
+              minHeight: '180px',
+              minWidth: '180px',
             }}
           >
             <Transitions effect='slide' show={show}>
@@ -156,8 +156,8 @@ export const Variants: React.FC = () => {
             css={{
               marginBottom: '5px',
               marginTop: '5px',
-              height: '165px',
-              width: '165px',
+              minHeight: '180px',
+              minWidth: '180px',
             }}
           >
             <Transitions effect='slide' show={show} speed={2}>
@@ -168,8 +168,8 @@ export const Variants: React.FC = () => {
             css={{
               marginBottom: '5px',
               marginTop: '5px',
-              height: '165px',
-              width: '165px',
+              minHeight: '180px',
+              minWidth: '180px',
             }}
           >
             <Transitions effect='slide' show={show} slideDirection='top'>

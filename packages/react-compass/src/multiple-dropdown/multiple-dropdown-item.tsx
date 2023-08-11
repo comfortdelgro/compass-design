@@ -33,6 +33,7 @@ const MultipleDropdownItem = React.forwardRef<
   const {textValue, ...delegated} = other
 
   const {
+    isPositioned,
     disabledKeys = [],
     searchValue,
     focusKey,
@@ -94,14 +95,22 @@ const MultipleDropdownItem = React.forwardRef<
   }, [value, isDisabled, canDisplayed])
 
   React.useEffect(() => {
-    if (focusKey && focusKey.toString() === value.toString()) {
+    if (isPositioned && focusKey && focusKey.toString() === value.toString()) {
       if (multipleDropdownItemRef.current) {
         multipleDropdownItemRef.current.scrollIntoView({
           block: 'nearest',
         })
       }
     }
-  }, [focusKey, value])
+  }, [focusKey, value, isPositioned])
+
+  React.useEffect(() => {
+    if (isSelected && isPositioned) {
+      if (multipleDropdownItemRef.current) {
+        multipleDropdownItemRef.current.scrollIntoView({block: 'nearest'})
+      }
+    }
+  }, [isPositioned, open, isSelected])
 
   const handleItemClick = () => {
     if (isDisabled) {

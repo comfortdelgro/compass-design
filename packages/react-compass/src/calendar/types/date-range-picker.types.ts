@@ -1,4 +1,4 @@
-import {DateValue} from '@internationalized/date'
+import {DateValue} from '../../internationalized/date'
 import {
   CalendarPropsBase,
   DOMAttributes,

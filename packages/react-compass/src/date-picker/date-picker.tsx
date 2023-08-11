@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/unbound-method */
-import {DateValue, parseDate} from '@internationalized/date'
 import {CSS} from '@stitches/react'
 import React from 'react'
 import {ButtonProps} from '../button'
@@ -17,6 +16,7 @@ import {
   DOMAttributes,
   SpectrumDatePickerProps,
 } from '../calendar/types'
+import {DateValue, parseDate} from '../internationalized/date'
 import type {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import DatePickerProvider from './date-picker-context'

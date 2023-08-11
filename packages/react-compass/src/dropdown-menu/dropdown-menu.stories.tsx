@@ -8,7 +8,7 @@ export const Default: React.FC = () => {
     event: React.MouseEvent<HTMLLIElement>,
     eventKey?: string | number,
   ) => {
-    console.log('handleItemSelect: ', eventKey, event.target)
+    console.log('handleItemSelect: ', eventKey, event)
   }
 
   return (

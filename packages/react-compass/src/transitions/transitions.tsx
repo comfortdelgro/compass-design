@@ -64,12 +64,13 @@ const Transitions = React.forwardRef<HTMLDivElement, TransitionsProps>(
       }
     }, [show, children, isLazyMounted])
 
-    React.useEffect(() => {
-      if (show) {
+    React.useLayoutEffect(() => {
+      if (show && TransitionWrapperRef.current) {
         const element =
           TransitionWrapperRef.current?.querySelector(':first-child')
-        if (element) {
-          setChildrenHeight(element.clientHeight)
+        if (element instanceof HTMLElement) {
+          // Check if element is an instance of HTMLElement
+          setChildrenHeight(element.offsetHeight)
         }
       }
     }, [show])

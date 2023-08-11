@@ -13,6 +13,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/prefer-ts-expect-error */
+import {useMemo, useRef, useState} from 'react'
 import {
   CalendarDate,
   DateValue,
@@ -22,8 +23,7 @@ import {
   minDate,
   toCalendar,
   toCalendarDate,
-} from '@internationalized/date'
-import {useMemo, useRef, useState} from 'react'
+} from '../../internationalized/date'
 import {RangeCalendarState, RangeValue} from '../types'
 import {RangeCalendarStateOptions} from '../types/range-calendar.types'
 import {
