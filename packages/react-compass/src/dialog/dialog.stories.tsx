@@ -15,10 +15,6 @@ export const Default: React.FC = () => {
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. pariatur.'
   const [defaultOpen, setDefaultOpen] = React.useState(false)
 
-  const getFileFunc = (file: File[]) => {
-    if (file.length < 1) return
-    console.log(file)
-  }
   return (
     <Column>
       <h3>Default dialog is confirmation variant</h3>
