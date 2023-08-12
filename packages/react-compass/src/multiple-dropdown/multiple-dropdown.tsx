@@ -140,6 +140,9 @@ const MultipleDropdown = React.forwardRef<
     onOpenChange = () => {
       //
     },
+    onKeyDown = () => {
+      //
+    },
     ...delegated
   } = props
   // ====================================== STATE ======================================
@@ -323,7 +326,8 @@ const MultipleDropdown = React.forwardRef<
   )
 
   const handleKeyDown = React.useCallback(
-    (event: KeyboardEvent) => {
+    (event: React.KeyboardEvent<HTMLDivElement>) => {
+      onKeyDown(event)
       if (!open) {
         return
       }
@@ -418,19 +422,9 @@ const MultipleDropdown = React.forwardRef<
       dropdownItemKeys,
       handleDropdownItemClick,
       onOpenChange,
+      onKeyDown,
     ],
   )
-
-  React.useEffect(() => {
-    if (open) {
-      document.addEventListener('keydown', handleKeyDown)
-    } else {
-      document.removeEventListener('keydown', handleKeyDown)
-    }
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown)
-    }
-  }, [open, handleKeyDown])
 
   const handleOpen = () => {
     if (!isDisabled) {
@@ -573,6 +567,7 @@ const MultipleDropdown = React.forwardRef<
     <StyledDropdownWrapper
       css={css}
       ref={refDOM}
+      onKeyDown={handleKeyDown}
       {...delegated}
       displayedValue={displayedValue}
       variant={variant}
@@ -631,7 +626,7 @@ const MultipleDropdown = React.forwardRef<
                     <Chip
                       key={selectedItem.value}
                       hasCloseButton={
-                        disabledKeys.findIndex(
+                        dropdownDisabledKeys.findIndex(
                           (item) =>
                             item.toString() === selectedItem.value.toString(),
                         ) === -1

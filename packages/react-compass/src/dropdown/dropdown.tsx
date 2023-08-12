@@ -139,6 +139,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     onBlur = EMPTY_FUNC,
     onLoadMore = EMPTY_FUNC,
     onOpenChange = EMPTY_FUNC,
+    onKeyDown = EMPTY_FUNC,
     ...delegated
   } = props
 
@@ -250,7 +251,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   )
 
   const handleKeyDown = useCallback(
-    (event: KeyboardEvent) => {
+    (event: React.KeyboardEvent<HTMLDivElement>) => {
+      onKeyDown(event)
       if (open) {
         const currentFocusKey =
           focusKey ?? selectedItem?.value.toString() ?? null
@@ -312,7 +314,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
                 clonedChildren,
               )
               if (focusedItem) {
-                isCloseOnSelect && setOpen(false)
+                setOpen(!isCloseOnSelect)
                 onOpenChange?.(false)
                 // Deselect item
                 if (
@@ -396,20 +398,10 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       onValueChange,
       onSelectionChange,
       onOpenChange,
+      onKeyDown,
       setValueForItemAndFocusKey,
     ],
   )
-
-  useEffect(() => {
-    if (selectRef.current) {
-      selectRef.current.addEventListener('keydown', handleKeyDown)
-    }
-    return () => {
-      if (selectRef.current) {
-        selectRef.current.removeEventListener('keydown', handleKeyDown)
-      }
-    }
-  }, [handleKeyDown])
 
   const handleDropdownToggle = useCallback(() => {
     setSearchValue('')
@@ -689,6 +681,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       className={`${open ? 'cdg-dropdown-opening' : ''}`}
       css={css}
       ref={selectRef}
+      onKeyDown={handleKeyDown}
       {...delegated}
     >
       {label && (
