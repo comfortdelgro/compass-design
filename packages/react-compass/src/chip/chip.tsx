@@ -1,13 +1,18 @@
 import React from 'react'
+import {useIsLightTheme} from '../theme'
+import generateRandomString from '../utils/generateRandomString'
+import injectCssToDocument from '../utils/objectToCss/inject-css-to-document'
+import objectToCSS, {StyleObject} from '../utils/objectToCss/object-to-css'
 import {useDOMRef} from '../utils/use-dom-ref'
-import styles from './chip.module.css'
+import darkThemeStyles from './styles/dark.module.css'
+import lightThemeStyles from './styles/light.module.css'
 
 interface Props {
   children?: React.ReactNode
   hasCloseButton?: boolean
   isErrored?: boolean
   onClose?: (event: React.MouseEvent<HTMLDivElement>) => void
-  css?: any
+  css?: unknown
 }
 
 const Chip = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
@@ -16,83 +21,44 @@ const Chip = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     hasCloseButton = false,
     isErrored = false,
     onClose,
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     css,
     ...delegated
   } = props
 
   const chipRef = useDOMRef<HTMLDivElement>(ref)
-  const [chipContainerClassName, setChipContainerClassName] = React.useState('')
+
+  /*** handle light/dark theme  ***/
+  const isLightTheme = useIsLightTheme()
+  const styles = isLightTheme ? lightThemeStyles : darkThemeStyles
+  /*** end of handle light/dark theme  ***/
+
+  /*** Handle prop css  ***/
+  const [chipClassName, setchipClassName] = React.useState('')
 
   React.useEffect(() => {
-    const chipContainerClassName = `cdg-chip-container-${Math.random()
-      .toString(36)
-      .substring(2)}`
-    setChipContainerClassName(chipContainerClassName)
+    const chipClassName = generateRandomString('cdg-chip')
+    setchipClassName(chipClassName)
   }, [chipRef])
 
   React.useEffect(() => {
-    type StyleObject = {
-      [key: string]: string | StyleObject
+    if (chipClassName) {
+      const cssString = objectToCSS(css as StyleObject, `.${chipClassName}`)
+      injectCssToDocument(cssString)
     }
-
-    function objectToCSS(obj: StyleObject, selector = '', indent = ''): string {
-      let css = ''
-      // eslint-disable-next-line prefer-const
-      let map = new Map<string, string>()
-
-      for (const key in obj) {
-        if (typeof obj[key] === 'object') {
-          const newSelector = `${selector} ${key.replace(/&/g, '')}`.trim()
-          css += objectToCSS(obj[key] as StyleObject, newSelector, indent)
-        } else {
-          // Check if the selector already exists in the map
-          if (map.has(selector)) {
-            // Append the property to the existing value
-            // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-            map.set(selector, map.get(selector) + `; ${key}: ${obj[key]}`)
-          } else {
-            // Create a new entry with the selector and the property
-            map.set(selector, `${key}: ${obj[key]}`)
-          }
-        }
-      }
-
-      // Iterate over the map and generate the CSS string
-      for (const [selector, value] of map) {
-        css += `${indent}${selector} {\n${indent}  ${value};\n${indent}}\n`
-      }
-
-      return css
-    }
-
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const styles: StyleObject = css
-
-    const cssString = objectToCSS(styles, `.${chipContainerClassName}`)
-
-    // inject cssString to global css
-    const styleElement = document.createElement('style')
-    styleElement.textContent = cssString
-    document.head.appendChild(styleElement)
-  }, [css, chipContainerClassName])
+  }, [css, chipClassName])
+  /*** End of hanlde prop css  ***/
 
   return (
     <div
       ref={chipRef}
-      className={` ${chipContainerClassName} ${styles.chip} ${
+      className={` ${chipClassName} ${styles.chip} ${
         isErrored ? styles.isErrored : ''
       }`}
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      style={css}
       {...delegated}
     >
       {children}
       {hasCloseButton && (
-        <div
-          className={`${styles['cdg-chip-close-icon']} cdg-chip-close-icon`}
-          onClick={onClose}
-        >
+        <div className={`${styles['close-icon-container']}`} onClick={onClose}>
           <svg width='10' height='10' viewBox='0 0 10 10'>
             <g clipPath='url(#clip0_5299_13653)'>
               <path

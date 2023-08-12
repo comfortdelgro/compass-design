@@ -1,0 +1,28 @@
+@import '../../themeV2/theme.module.css';
+
+.chip {
+  border: 1px solid rgb(230, 230, 230);
+  border-radius: var(--cdg-border-radius-full);
+  padding: var(--cdg-spacing-1) var(--cdg-spacing-3);
+  font-size: var(--cdg-spacing-3_5);
+  cursor: pointer;
+  font-weight: var(--cdg-font-weight-semibold);
+  line-height: var(--cdg-line-height-normal);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--cdg-spacing-2);
+  color: var(--cdg-lightThemeColor-primaryText);
+  width: fit-content;
+  height: fit-content;
+  font-family: var(--cdg-font-sans);
+}
+
+.chip.isErrored {
+  border-color: var(--cdg-lightThemeColor-danger);
+  background-color: var(--cdg-lightThemeColor-dangerBg);
+}
+
+.close-icon-container {
+  cursor: pointer;
+}
