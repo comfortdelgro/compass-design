@@ -1,5 +1,12 @@
 # docs
 
+## 1.0.4
+
+### Patch Changes
+
+- Updated dependencies [fed5273a]
+  - @comfortdelgro/react-compass@2.13.0
+
 ## 1.0.3
 
 ### Patch Changes

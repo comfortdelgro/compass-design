@@ -1,5 +1,11 @@
 ## 2.9.0
 
+## 2.13.0
+
+### Minor Changes
+
+- fed5273a: Fix bugs in dialog, modal and dropdown
+
 ## 2.12.0
 
 ### Minor Changes
