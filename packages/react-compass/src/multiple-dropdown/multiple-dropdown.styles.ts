@@ -128,7 +128,7 @@ export const StyledSelectedItemWrapper = styled('div', {
     margin: 0,
   },
 
-  '.multiple-dropdown-chip-icon': {
+  '.cdg-chip-close-icon': {
     svg: {
       color: '$primaryText',
     },

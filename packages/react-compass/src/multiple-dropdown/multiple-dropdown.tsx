@@ -631,7 +631,7 @@ const MultipleDropdown = React.forwardRef<
                             item.toString() === selectedItem.value.toString(),
                         ) === -1
                       }
-                      onCloseClick={handleCloseChipClick(selectedItem)}
+                      onClose={handleCloseChipClick(selectedItem)}
                       isErrored={checkIsError(selectedItem.value.toString())}
                     >
                       {selectedItem.displayValue instanceof Array

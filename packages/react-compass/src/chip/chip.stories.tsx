@@ -10,7 +10,7 @@ export const Default: React.FC = () => {
       <h3>Close button</h3>
       <Chip
         hasCloseButton
-        onCloseClick={() => {
+        onClose={() => {
           console.log('Close button click')
         }}
       >
@@ -19,6 +19,25 @@ export const Default: React.FC = () => {
       <h3>Errored Chip</h3>
       <Chip hasCloseButton isErrored>
         Errored Chip
+      </Chip>
+      <h3>Custom Styling</h3>
+      <Chip
+        hasCloseButton
+        css={{
+          color: 'purple',
+          border: '1px solid purple',
+          '& .cdg-chip-close-icon': {
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            '& svg': {
+              height: '2rem',
+              width: '2rem',
+            },
+          },
+        }}
+      >
+        Close button
       </Chip>
     </Column>
   )

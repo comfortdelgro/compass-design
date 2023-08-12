@@ -5,6 +5,7 @@ module.exports = {
     tsconfigRootDir: __dirname,
     project: ['./tsconfig.json'],
   },
+
   rules: {
     '@typescript-eslint/restrict-template-expressions': 'off',
     'prettier/prettier': [

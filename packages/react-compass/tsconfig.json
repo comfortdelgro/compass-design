@@ -30,6 +30,7 @@
     ".ladle",
     "vite.config.ts",
     "cypress.config.ts",
-    "cypress"
+    "cypress",
+    "globals.d.ts"
   ]
 }
