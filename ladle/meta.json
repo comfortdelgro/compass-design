@@ -480,8 +480,8 @@
       "levels": [
         "Dialog"
       ],
-      "locStart": 13,
-      "locEnd": 39,
+      "locStart": 14,
+      "locEnd": 58,
       "filePath": "src/dialog/dialog.stories.tsx",
       "meta": {}
     },
@@ -490,8 +490,8 @@
       "levels": [
         "Dialog"
       ],
-      "locStart": 73,
-      "locEnd": 107,
+      "locStart": 92,
+      "locEnd": 126,
       "filePath": "src/dialog/dialog.stories.tsx",
       "meta": {}
     },
@@ -500,8 +500,8 @@
       "levels": [
         "Dialog"
       ],
-      "locStart": 109,
-      "locEnd": 223,
+      "locStart": 128,
+      "locEnd": 242,
       "filePath": "src/dialog/dialog.stories.tsx",
       "meta": {}
     },
@@ -530,8 +530,8 @@
       "levels": [
         "Dropdown"
       ],
-      "locStart": 506,
-      "locEnd": 800,
+      "locStart": 540,
+      "locEnd": 834,
       "filePath": "src/dropdown/dropdown.stories.tsx",
       "meta": {}
     },
@@ -541,7 +541,7 @@
         "Dropdown"
       ],
       "locStart": 74,
-      "locEnd": 504,
+      "locEnd": 538,
       "filePath": "src/dropdown/dropdown.stories.tsx",
       "meta": {}
     },
@@ -801,7 +801,7 @@
         "Multiple dropdown"
       ],
       "locStart": 71,
-      "locEnd": 547,
+      "locEnd": 587,
       "filePath": "src/multiple-dropdown/multiple-dropdown.stories.tsx",
       "meta": {}
     },
