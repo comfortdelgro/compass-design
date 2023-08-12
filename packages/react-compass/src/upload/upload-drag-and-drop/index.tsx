@@ -156,7 +156,8 @@ const UploadDragAndDrop = React.forwardRef<
     return customErrorMessages
   }
 
-  const onLableClick = () => uploadInputRef.current?.click()
+  const onOpenUploadClick = () =>
+    !isDisabled ? uploadInputRef.current?.click() : null
 
   const iconFillColor = () => {
     if (!isDisabled) return '#0142AF'
@@ -191,9 +192,10 @@ const UploadDragAndDrop = React.forwardRef<
           onChange={handleFileFieldChange}
         />
         <StyledUploadButton
-          onClick={onLableClick}
+          onClick={onOpenUploadClick}
           disabled={isDisabled}
           type='button'
+          role='button'
         >
           {variant === 'field' && (
             <svg

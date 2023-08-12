@@ -121,7 +121,8 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
     filesValidator(files)
   }
 
-  const onLableClick = () => !isDisabled && uploadInputRef.current?.click()
+  const onOpenUploadClick = () =>
+    !isDisabled ? uploadInputRef.current?.click() : null
 
   const handleErrorMessage = (error: string | undefined) => {
     if (!customErrorMessages || !error) {
@@ -156,11 +157,15 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
           multiple={multiple}
           onChange={handleFileFieldChange}
         />
-        <StyledBrowseFile onClick={onLableClick} type='button' role='button'>
+        <StyledBrowseFile
+          onClick={onOpenUploadClick}
+          type='button'
+          role='button'
+        >
           <span>Browse file</span>
         </StyledBrowseFile>
         <StyledUploadContent
-          onClick={onLableClick}
+          onClick={onOpenUploadClick}
           fileSelected={selectedFiles.length > 0}
         >
           {selectedFiles.length > 0 ? (

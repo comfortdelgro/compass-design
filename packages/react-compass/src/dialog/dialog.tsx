@@ -76,7 +76,6 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
   // Handle click on the modal
   const handleClick = (e: MouseEvent) => {
     e.stopPropagation()
-    e.preventDefault()
     onClick?.()
   }
 
@@ -116,13 +115,9 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
       DialogRef.current?.querySelectorAll(`
           button,
           a[href],
-          input[type="button"],
-          input[type="submit"],
-          input[type="text"],
+          input,
           textarea,
           select,
-          input[type="checkbox"],
-          input[type="radio"],
           [tabindex]:not([tabindex="-1"])
         `) ?? [],
     )
