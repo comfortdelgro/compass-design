@@ -7,6 +7,7 @@ import DatePicker from '../date-picker'
 import Textarea from '../textarea'
 import TextField from '../textfield'
 import Typography from '../typography'
+import Upload from '../upload'
 import {Column} from '../utils/components'
 import Dialog from './index'
 
@@ -15,6 +16,10 @@ export const Default: React.FC = () => {
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. pariatur.'
   const [defaultOpen, setDefaultOpen] = React.useState(false)
 
+  const getFileFunc = (file: File[]) => {
+    if (file.length < 1) return
+    console.log(file)
+  }
   return (
     <Column>
       <h3>Default dialog is confirmation variant</h3>
@@ -27,7 +32,21 @@ export const Default: React.FC = () => {
       >
         <Dialog>
           <Dialog.Title>My title</Dialog.Title>
-          <Dialog.Description>{lorem}</Dialog.Description>
+          <Dialog.Description>
+            {lorem}
+            <input
+              type='file'
+              id='avatar'
+              name='avatar'
+              accept='image/png, image/jpeg'
+            />
+            <Upload
+              css={{marginTop: '1rem'}}
+              getFile={getFileFunc}
+              accept='image/*, .docs, .docx'
+              fileSizeLimit={30000}
+            />
+          </Dialog.Description>
           <Dialog.Actions>
             <Button onPress={() => setDefaultOpen(false)}>Cancel</Button>
             <Button onPress={() => setDefaultOpen(false)}>Do it</Button>

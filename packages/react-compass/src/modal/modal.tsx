@@ -78,7 +78,6 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
   // Handle click on the modal
   const handleClick = (e: MouseEvent) => {
     e.stopPropagation()
-    e.preventDefault()
     onClick?.()
   }
 
