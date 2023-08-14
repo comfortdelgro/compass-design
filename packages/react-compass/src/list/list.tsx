@@ -7,6 +7,7 @@ interface Props extends StyledComponentProps, ListVariantProps {
   leftInfo?: React.ReactNode
   title?: string
   description?: string
+  descriptionIcon?: React.ReactNode
   rightInfo?: {
     text?: string
     description?: string
@@ -28,6 +29,7 @@ const List = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
     size = 'md',
     css = {},
     className = '',
+    descriptionIcon,
     ...delegated
   } = props
 
@@ -59,9 +61,12 @@ const List = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
         {(title || description) && (
           <div className='list-text-wrapper'>
             {title && <h2 className='list-text-title'>{title}</h2>}
-            {description && (
-              <span className='list-text-description'>{description}</span>
-            )}
+            <div>
+              {description && (
+                <span className='list-text-description'>{description}</span>
+              )}
+              {descriptionIcon && descriptionIcon}
+            </div>
           </div>
         )}
       </div>

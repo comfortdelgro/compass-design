@@ -1,8 +1,8 @@
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
-import {StyledListImage} from './list-image.styles'
+import {ListImageVariantProps, StyledListImage} from './list-image.styles'
 
-interface Props extends StyledComponentProps {
+interface Props extends StyledComponentProps, ListImageVariantProps {
   children?: React.ReactNode
   isRounded?: boolean
 }

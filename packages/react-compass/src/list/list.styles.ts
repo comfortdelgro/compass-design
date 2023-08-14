@@ -139,6 +139,10 @@ export const StyledList = styled('div', {
       },
       h5: {
         borderRadius: 0,
+        gap: 8,
+        '&:hover': {
+          backgroundColor: '$blueShades10',
+        },
         '& .list-left-side': {
           gap: '$3',
         },
@@ -154,6 +158,7 @@ export const StyledList = styled('div', {
           fontSize: '$label2',
           lineHeight: '1.2rem',
           color: '$grayShades60',
+          marginRight: 4,
         },
         '.list-h5-right-side': {
           display: 'flex',
@@ -169,6 +174,7 @@ export const StyledList = styled('div', {
             fontSize: '$label3',
             lineHeight: '1rem',
             color: '$grayShades40',
+            textAlign: 'end',
           },
         },
       },

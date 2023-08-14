@@ -1,4 +1,5 @@
 import {styled} from '../theme'
+import {VariantProps} from '../utils/stitches.types'
 
 export const StyledListImage = styled('img', {
   width: '$10',
@@ -19,3 +20,5 @@ export const StyledListImage = styled('img', {
     },
   },
 })
+
+export type ListImageVariantProps = VariantProps<typeof StyledListImage>

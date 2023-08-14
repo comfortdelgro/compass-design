@@ -1,4 +1,8 @@
-import {faBug, faChevronRight} from '@fortawesome/free-solid-svg-icons'
+import {
+  faBug,
+  faChevronRight,
+  faFaceSmile,
+} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {StoryDecorator} from '@ladle/react'
 import React, {Key} from 'react'
@@ -102,6 +106,12 @@ export const Variants: React.FC = () => {
           <List
             title='ComfortRIDE'
             description='Car or Taxi, Flat Fare'
+            descriptionIcon={
+              <FontAwesomeIcon
+                style={{width: 14, height: 14, color: '#0142AF'}}
+                icon={faFaceSmile}
+              />
+            }
             variant='h5'
             leftInfo={
               <ListImage variant='h5' isRounded src={imgSrc} alt='singapore' />
@@ -129,6 +139,12 @@ export const Variants: React.FC = () => {
               <ListImage variant='h5' isRounded src={imgSrc} alt='singapore' />
             }
             rightInfo={{text: '$9.90', description: 'Fees may apply'}}
+            descriptionIcon={
+              <FontAwesomeIcon
+                style={{width: 14, height: 14, color: '#0142AF'}}
+                icon={faFaceSmile}
+              />
+            }
           />
           <List
             title='ComfortRIDE'
