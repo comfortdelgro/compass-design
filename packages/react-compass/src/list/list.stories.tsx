@@ -100,6 +100,58 @@ export const Variants: React.FC = () => {
 
         <Column>
           <List
+            title='ComfortRIDE'
+            description='Car or Taxi, Flat Fare'
+            variant='h5'
+            leftInfo={
+              <ListImage variant='h5' isRounded src={imgSrc} alt='singapore' />
+            }
+            rightInfo={{
+              text: '$9.90',
+              description: 'Fees may apply',
+              icon: <FontAwesomeIcon icon={faChevronRight} />,
+            }}
+          />
+          <List
+            title='ComfortRIDE'
+            description='Car or Taxi, Flat Fare'
+            variant='h5'
+            leftInfo={
+              <ListImage variant='h5' isRounded src={imgSrc} alt='singapore' />
+            }
+            rightInfo={{text: '$9.90', description: 'Fees may apply'}}
+          />
+          <List
+            title='ComfortRIDE'
+            description='Car or Taxi, Flat Fare'
+            variant='h5'
+            leftInfo={
+              <ListImage variant='h5' isRounded src={imgSrc} alt='singapore' />
+            }
+            rightInfo={{text: '$9.90', description: 'Fees may apply'}}
+          />
+          <List
+            title='ComfortRIDE'
+            description='Car or Taxi, Flat Fare'
+            variant='h5'
+            leftInfo={
+              <ListImage variant='h5' isRounded src={imgSrc} alt='singapore' />
+            }
+            rightInfo={{text: '$9.90', description: 'Fees may apply'}}
+          />
+          <List
+            title='ComfortRIDE'
+            description='Car or Taxi, Flat Fare'
+            variant='h5'
+            leftInfo={
+              <ListImage variant='h5' isRounded src={imgSrc} alt='singapore' />
+            }
+            rightInfo={{text: '$9.90', description: 'Fees may apply'}}
+          />
+        </Column>
+
+        <Column>
+          <List
             title='Title'
             description='Line 1'
             leftInfo={<FontAwesomeIcon icon={faBug} />}

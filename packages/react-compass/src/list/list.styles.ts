@@ -137,6 +137,41 @@ export const StyledList = styled('div', {
           color: '$primaryText',
         },
       },
+      h5: {
+        borderRadius: 0,
+        '& .list-left-side': {
+          gap: '$3',
+        },
+        '.list-text-wrapper': {
+          gap: 0,
+        },
+        '.list-text-title': {
+          fontSize: '$header5',
+          color: '$grayShades100',
+          lineHeight: '$normal',
+        },
+        '.list-text-description': {
+          fontSize: '$label2',
+          lineHeight: '1.2rem',
+          color: '$grayShades60',
+        },
+        '.list-h5-right-side': {
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-end',
+          gap: 4,
+          '.list-text-title': {
+            fontSize: '$label1',
+            color: '$grayShades100',
+            lineHeight: '1.2rem',
+          },
+          '.list-text-description': {
+            fontSize: '$label3',
+            lineHeight: '1rem',
+            color: '$grayShades40',
+          },
+        },
+      },
     },
     isDisabled: {
       true: {

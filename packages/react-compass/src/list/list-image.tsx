@@ -4,6 +4,7 @@ import {StyledListImage} from './list-image.styles'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
+  isRounded?: boolean
 }
 
 export type ListImageProps = Props &
@@ -11,9 +12,15 @@ export type ListImageProps = Props &
 
 const ListImage = React.forwardRef<HTMLImageElement, ListImageProps>(
   (props, ref) => {
-    const {css = {}, ...delegated} = props
-
-    return <StyledListImage ref={ref} css={css} {...delegated} />
+    const {isRounded = false, css = {}, ...delegated} = props
+    return (
+      <StyledListImage
+        ref={ref}
+        css={css}
+        isRounded={isRounded}
+        {...delegated}
+      />
+    )
   },
 )
 
