@@ -15,6 +15,8 @@ export type {
 } from './action-bar'
 export {default as Alert} from './alert'
 export type {AlertProps} from './alert'
+export {default as AppNav} from './appnav'
+export type {AppNavProps} from './appnav'
 export {default as AutoComplete} from './auto-complete'
 export type {AutoCompleteProps} from './auto-complete'
 export {default as Avatar} from './avatar'
