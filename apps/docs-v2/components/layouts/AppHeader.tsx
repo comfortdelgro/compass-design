@@ -1,6 +1,6 @@
 import {Box, Button, Navbar, Typography} from '@comfortdelgro/react-compass'
 import NavbarActions from '@comfortdelgro/react-compass/navbar/navbar-actions'
-import {NavbarLinks} from '@comfortdelgro/react-compass/navbar/navbar-links.styles'
+import {NavbarLinks} from '@comfortdelgro/react-compass/navbar/navbar-links'
 import {NavbarSeperator} from '@comfortdelgro/react-compass/navbar/navbar-seperator.style'
 import ThemeModeToggle from 'components/header/ThemeModeToggle'
 import SvgGithub from 'components/icons/SvgGithub'
