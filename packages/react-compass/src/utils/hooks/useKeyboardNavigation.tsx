@@ -1,5 +1,5 @@
-import {DescendantsManager} from '@chakra-ui/descendant'
 import React, {useContext} from 'react'
+import {DescendantsManager} from '../descendant'
 import {EKeyboardKey} from '../keyboard.enum'
 import {
   SelectType,
