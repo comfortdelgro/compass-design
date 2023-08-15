@@ -37,7 +37,7 @@ export const AppNavSection = React.forwardRef<
     if (!isNil(onChange) && !isNil(index)) {
       onChange(index)
     }
-  }, [index])
+  }, [])
 
   return (
     <StyledAppNavSection
