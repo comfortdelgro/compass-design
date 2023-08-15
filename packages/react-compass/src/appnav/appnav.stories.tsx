@@ -1,14 +1,14 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React from 'react'
 
 import {
-faBell,
-faHome,
-faList,
-faUser,
-faWallet
+  faBell,
+  faHome,
+  faList,
+  faUser,
+  faWallet,
 } from '@fortawesome/free-solid-svg-icons'
-import { Column } from '../utils'
+import {Column} from '../utils'
 import AppNav from './index'
 
 export const FourSections: React.FC = () => {
