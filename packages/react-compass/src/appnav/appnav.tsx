@@ -6,9 +6,8 @@ import {StyledAppNav} from './appnav.styles'
 
 interface Props extends StyledComponentProps {
   children: React.ReactNode
-  sections?: 4 | 5
   position?: 'top' | 'bottom'
-  value: number
+  index: number
   onChange: (value: number) => void
 }
 
@@ -18,30 +17,23 @@ export type AppNavProps = Props &
 const AppNav = React.forwardRef<HTMLDivElement, AppNavProps>((props, ref) => {
   const navBarRef = useDOMRef(ref)
   const {
-    sections = 4,
     position = 'bottom',
     css = {},
     children,
-    value,
+    index,
     onChange,
     ...delegated
   } = props
   return (
-    <StyledAppNav
-      sections={sections}
-      position={position}
-      ref={navBarRef}
-      css={css}
-      {...delegated}
-    >
-      {React.Children.map(children, (child, index) => {
+    <StyledAppNav position={position} ref={navBarRef} css={css} {...delegated}>
+      {React.Children.map(children, (child, childIndex) => {
         if (!React.isValidElement(child)) {
           return null
         }
         const childToClone = child as React.ReactElement<AppNavSectionProps>
         const props = {} as AppNavSectionProps
-        props.active = index === value
-        props.value = index
+        props.isActive = childIndex === index
+        props.index = childIndex
         props.onChange = onChange
         if ('icon' in childToClone.props) {
           props.icon = childToClone.props.icon

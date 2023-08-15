@@ -12,10 +12,10 @@ import {Column} from '../utils'
 import AppNav from './index'
 
 export const FourSections: React.FC = () => {
-  const [value, setValue] = React.useState<number>(0)
+  const [index, setIndex] = React.useState<number>(0)
   return (
     <Column>
-      <h3>App nav with four sections</h3>
+      <h3>Bottom app nav with four sections</h3>
       <div
         style={{
           position: 'relative',
@@ -26,9 +26,9 @@ export const FourSections: React.FC = () => {
         }}
       >
         <AppNav
-          value={value}
-          onChange={(newValue) => {
-            setValue(newValue)
+          index={index}
+          onChange={(newIndex) => {
+            setIndex(newIndex)
           }}
           css={{
             position: 'absolute',
@@ -58,10 +58,10 @@ export const FourSections: React.FC = () => {
   )
 }
 export const FiveSections: React.FC = () => {
-  const [value, setValue] = React.useState<number>(1)
+  const [index, setIndex] = React.useState<number>(1)
   return (
     <Column>
-      <h3>App nav with five sections</h3>
+      <h3>Top app nav with five sections</h3>
       <div
         style={{
           position: 'relative',
@@ -72,10 +72,10 @@ export const FiveSections: React.FC = () => {
         }}
       >
         <AppNav
-          value={value}
-          sections={5}
-          onChange={(newValue) => {
-            setValue(newValue)
+          index={index}
+          position='top'
+          onChange={(newIndex) => {
+            setIndex(newIndex)
           }}
           css={{
             position: 'absolute',

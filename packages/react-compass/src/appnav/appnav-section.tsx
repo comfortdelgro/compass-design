@@ -1,16 +1,17 @@
-import React, {HTMLAttributes} from 'react'
+import {isNil} from 'lodash'
+import React, {HTMLAttributes, useCallback} from 'react'
 import Badge from '../badge'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {StyledAppNavSection} from './appnav.styles'
 
 interface Props extends StyledComponentProps {
-  active?: boolean
+  isActive?: boolean
   icon: React.ReactNode
   hasBadge?: boolean
   label: string
-  value?: number
-  onChange?: (value: number) => void
+  index?: number
+  onChange?: (index: number) => void
 }
 
 export type AppNavSectionProps = Props &
@@ -22,26 +23,27 @@ export const AppNavSection = React.forwardRef<
 >((props, ref) => {
   const itemRef = useDOMRef(ref)
   const {
-    active = false,
+    isActive = false,
     icon = <DefaultIcon />,
     hasBadge = false,
     onChange,
-    value,
+    index,
     label,
     css = {},
     ...delegated
   } = props
 
-  const handleClick = () => {
-    if (onChange !== undefined && value !== undefined) {
-      onChange(value)
+  const handleClick = useCallback(() => {
+    if (!isNil(onChange) && !isNil(index)) {
+      onChange(index)
     }
-  }
+  }, [index])
+
   return (
     <StyledAppNavSection
       type='button'
       ref={itemRef}
-      active={active}
+      isActive={isActive}
       css={css}
       onClick={handleClick}
       tabIndex={0}
@@ -71,10 +73,6 @@ export const AppNavSection = React.forwardRef<
 const DefaultIcon = () => (
   <svg
     aria-hidden='true'
-    // focusable='false'
-    // data-prefix='fas'
-    // data-icon='house'
-    // class='svg-inline--fa fa-house '
     role='img'
     xmlns='http://www.w3.org/2000/svg'
     viewBox='0 0 576 512'
