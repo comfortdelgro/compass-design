@@ -1,14 +1,14 @@
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 
 import {
-  faBell,
-  faHome,
-  faList,
-  faUser,
-  faWallet,
+faBell,
+faHome,
+faList,
+faUser,
+faWallet
 } from '@fortawesome/free-solid-svg-icons'
-import {Column} from '../utils'
+import { Column } from '../utils'
 import AppNav from './index'
 
 export const FourSections: React.FC = () => {
@@ -58,7 +58,7 @@ export const FourSections: React.FC = () => {
   )
 }
 export const FiveSections: React.FC = () => {
-  const [value, setValue] = React.useState<number>(0)
+  const [value, setValue] = React.useState<number>(1)
   return (
     <Column>
       <h3>App nav with five sections</h3>
@@ -99,6 +99,7 @@ export const FiveSections: React.FC = () => {
           <AppNav.Section
             icon={<FontAwesomeIcon icon={faWallet} />}
             label='ZigPay'
+            hasBadge
           />
           <AppNav.Section
             icon={<FontAwesomeIcon icon={faUser} />}
