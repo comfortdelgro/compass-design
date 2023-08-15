@@ -32,15 +32,15 @@ const Header: React.FC<headerTypographyProps> = (props) => {
       case 'header0':
         return 'h1'
       case 'header1':
-        return 'h2'
+        return 'h1'
       case 'header2':
-        return 'h3'
+        return 'h2'
       case 'header3':
-        return 'h4'
+        return 'h3'
       case 'header4':
-        return 'h5'
+        return 'h4'
       case 'header5':
-        return 'h6'
+        return 'h5'
       default:
         return 'p'
     }

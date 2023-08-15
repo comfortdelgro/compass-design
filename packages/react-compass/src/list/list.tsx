@@ -7,8 +7,10 @@ interface Props extends StyledComponentProps, ListVariantProps {
   leftInfo?: React.ReactNode
   title?: string
   description?: string
+  descriptionIcon?: React.ReactNode
   rightInfo?: {
     text?: string
+    description?: string
     icon?: React.ReactNode
   }
 }
@@ -27,6 +29,7 @@ const List = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
     size = 'md',
     css = {},
     className = '',
+    descriptionIcon,
     ...delegated
   } = props
 
@@ -58,19 +61,37 @@ const List = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
         {(title || description) && (
           <div className='list-text-wrapper'>
             {title && <h2 className='list-text-title'>{title}</h2>}
-            {description && (
-              <span className='list-text-description'>{description}</span>
-            )}
+            <div>
+              {description && (
+                <span className='list-text-description'>{description}</span>
+              )}
+              {descriptionIcon && descriptionIcon}
+            </div>
           </div>
         )}
       </div>
       {rightInfo && (
-        <div className='list-right-side'>
-          {rightInfo.text && (
-            <span className='list-right-side-text'>{rightInfo?.text}</span>
+        <>
+          {variant === 'h5' ? (
+            <div className='list-h5-right-side'>
+              {rightInfo?.text && (
+                <h2 className='list-text-title'>{rightInfo?.text}</h2>
+              )}
+              {rightInfo?.description && (
+                <span className='list-text-description'>
+                  {rightInfo?.description}
+                </span>
+              )}
+            </div>
+          ) : (
+            <div className='list-right-side'>
+              {rightInfo.text && (
+                <span className='list-right-side-text'>{rightInfo?.text}</span>
+              )}
+              {rightInfo?.icon}
+            </div>
           )}
-          {rightInfo?.icon}
-        </div>
+        </>
       )}
     </StyledList>
   )
