@@ -1,12 +1,20 @@
 import ArrowLeft from '@comfortdelgro/compass-icons/react/arrow-left'
 import ArrowRight from '@comfortdelgro/compass-icons/react/arrow-right'
 import CrossIcon from '@comfortdelgro/compass-icons/react/cross'
+import {faChevronRight, faFaceSmile} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React, {FormEventHandler, useState} from 'react'
 import Button from '../button'
+import List from '../list'
+import ListImage from '../list/list-image'
 import TextField from '../textfield'
 import Typography from '../typography'
 import {Row} from '../utils'
+import {Column} from '../utils/components'
 import Drawer, {DrawerProps} from './index'
+
+const imgSrc =
+  'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
 
 export function H5() {
   const [openDrawer, setOpenDrawer] = useState(false)
@@ -19,15 +27,80 @@ export function H5() {
 
       <Drawer
         open={openDrawer}
-        css={{height: '40dvh'}}
+        css={{height: '40dvh', '& .drawer-content': {padding: 0}}}
         onClose={() => setOpenDrawer(false)}
         variant='h5'
       >
-        <Typography.Body variant='body2' css={{textAlign: 'center'}}>
+        <Typography.Body
+          variant='body2'
+          css={{textAlign: 'center', paddingBlock: '$4'}}
+        >
           Pull up for more rides
         </Typography.Body>
 
-        <section style={{height: '100vh'}}>lorem</section>
+        <Column>
+          <List
+            title='ComfortRIDE'
+            description='Car or Taxi, Flat Fare'
+            descriptionIcon={
+              <FontAwesomeIcon
+                style={{width: 14, height: 14, color: '#0142AF'}}
+                icon={faFaceSmile}
+              />
+            }
+            variant='h5'
+            leftInfo={
+              <ListImage variant='h5' isRounded src={imgSrc} alt='singapore' />
+            }
+            rightInfo={{
+              text: '$9.90',
+              description: 'Fees may apply',
+              icon: <FontAwesomeIcon icon={faChevronRight} />,
+            }}
+          />
+          <List
+            title='ComfortRIDE'
+            description='Car or Taxi, Flat Fare'
+            variant='h5'
+            leftInfo={
+              <ListImage variant='h5' isRounded src={imgSrc} alt='singapore' />
+            }
+            rightInfo={{text: '$9.90', description: 'Fees may apply'}}
+          />
+          <List
+            title='ComfortRIDE'
+            description='Car or Taxi, Flat Fare'
+            variant='h5'
+            leftInfo={
+              <ListImage variant='h5' isRounded src={imgSrc} alt='singapore' />
+            }
+            rightInfo={{text: '$9.90', description: 'Fees may apply'}}
+            descriptionIcon={
+              <FontAwesomeIcon
+                style={{width: 14, height: 14, color: '#0142AF'}}
+                icon={faFaceSmile}
+              />
+            }
+          />
+          <List
+            title='ComfortRIDE'
+            description='Car or Taxi, Flat Fare'
+            variant='h5'
+            leftInfo={
+              <ListImage variant='h5' isRounded src={imgSrc} alt='singapore' />
+            }
+            rightInfo={{text: '$9.90', description: 'Fees may apply'}}
+          />
+          <List
+            title='ComfortRIDE'
+            description='Car or Taxi, Flat Fare'
+            variant='h5'
+            leftInfo={
+              <ListImage variant='h5' isRounded src={imgSrc} alt='singapore' />
+            }
+            rightInfo={{text: '$9.90', description: 'Fees may apply'}}
+          />
+        </Column>
       </Drawer>
     </>
   )
