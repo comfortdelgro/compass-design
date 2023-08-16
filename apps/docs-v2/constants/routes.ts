@@ -37,6 +37,18 @@ export const routes: TSideNavItem[] = [
         title: 'Button',
         pathname: '/button',
       },
+      {
+        title: 'ActionBar',
+        pathname: '/actionbar',
+      },
+      {
+        title: 'Badges',
+        pathname: '/badges',
+      },
+      {
+        title: 'Banner',
+        pathname: '/banner',
+      },
     ],
   },
   {
