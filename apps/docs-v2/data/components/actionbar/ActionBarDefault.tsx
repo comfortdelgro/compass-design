@@ -5,7 +5,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
 
-const FullFeatured: React.FC = () => {
+const Default: React.FC = () => {
   return (
     <Column>
       <ActionBar>
@@ -29,4 +29,4 @@ const FullFeatured: React.FC = () => {
   )
 }
 
-export default FullFeatured
+export default Default

@@ -1,0 +1,7 @@
+<ActionBar>
+  <ActionBar.LeftGroup>
+    <Button variant='primary'>
+      <Icon icon={faExclamationTriangle} />
+    </Button>
+  </ActionBar.LeftGroup>
+</ActionBar>

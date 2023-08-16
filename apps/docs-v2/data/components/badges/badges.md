@@ -1,71 +1,48 @@
 ---
-title: React Autocomplete component
-components: TextField
+title: React Badges component
+components: Badges
 ---
 
-# Accordions
+# Badge
 
-<p class="description">The accordion component allows the user to show and hide sections of related content on a page.</p>
+<p class="description">Badge can be used to highlight important bits of information such as labels, notifications, data trends & status.</p>
 
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ## Import
 
 ```js
-import {Accordion} from '@comfortdelgro/react-compass'
+import {Badge} from '@comfortdelgro/react-compass'
 ```
 
 or
 
 ```js
-import Accordion from '@comfortdelgro/react-compass/accordion'
+import Badge from '@comfortdelgro/react-compass/badge'
 ```
 
 ## Example
 
-### Basic Example
+### Basic
 
-{{"demo": "AccordionsBasic.tsx"}}
+{{"demo": "BadgeBasic.tsx"}}
 
-### Controlled Accordion
+### Default icon
 
-{{"demo": "AccordionsControlled.tsx"}}
+{{"demo": "BadgeIcon.tsx"}}
 
-### Expand by default
+### Custom styling
 
-{{"demo": "AccordionsExpandDefault.tsx"}}
-
-### Table Accordion
-
-{{"demo": "AccordionsTable.tsx"}}
-
-### Custom Accordions
-
-{{"demo": "AccordionsCustom.tsx"}}
+You can style React Compass's components with the css prop.<br>
+With css prop, you can basically do anything that css can do.
+{{"demo": "BadgeCustom.tsx"}}
 
 ## Props
 
-### Accordion
-
-| Name           | Type        | Default | Description                                                                                                  |
-| :------------- | :---------- | :------ | :----------------------------------------------------------------------------------------------------------- |
-| children \*    | `ReactNode` | —       | The content to display in the accordion.                                                                     |
-| expand         | `boolean`   | `false` | If true, expands the accordion, otherwise collapse it. Setting this prop enables control over the accordion. |
-| defaultExpand  | `boolean`   | `false` | If true, expands the accordion by default.                                                                   |
-| onExpandChange | `function`  | —       | Callback fired when the expand/collapse state is changed.                                                    |
-| css            | `CSS`       | —       | The system prop that allows defining system overrides as well as additional CSS styles.                      |
-
-### Accordion.Title
-
-| Name     | Type                    | Default | Description                                                                                                       |
-| :------- | :---------------------- | :------ | :---------------------------------------------------------------------------------------------------------------- |
-| children | `ReactNode` \| `string` | —       | The content to display in the accordion title. If you pass children as a string, it will be render as `h1`        |
-| icon     | `ReactNode` \| `false`  | —       | The icon of accordion title. By default it is a circle question mark. You can disable the icon by passing `false` |
-| css      | `CSS`                   | —       | The system prop that allows defining system overrides as well as additional CSS styles.                           |
-
-### Accordion.Table
-
-| Name        | Type        | Default | Description                                                                             |
-| :---------- | :---------- | :------ | :-------------------------------------------------------------------------------------- |
-| children \* | `ReactNode` | —       | The content to display in the accordion table.                                          |
-| css         | `CSS`       | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
+| Name    | Type                                         | Default | Description                                                                                                                       |
+| :------ | :------------------------------------------- | :------ | :-------------------------------------------------------------------------------------------------------------------------------- |
+| color   | `info` \| `success` \| `warning` \| `danger` | info    | These colors will determine the color of background of the badges.                                                                |
+| label   | `String `                                    | —       | Lable of the badges.                                                                                                              |
+| variant | `primary` \| `secondary` \| `outline`        | primary | Variants will determine the color of the badges' label, border and the darkness of its background .                               |
+| icon    | `ReactNode`\|`false`\| `true`                | false   | When false, no icon is shown in the badge. When true, the default icons are shown. And you can pass in custom icons to this prop. |
+| css     | `CSS`                                        | —       | The system prop that allows defining system overrides as well as additional CSS styles.                                           |
