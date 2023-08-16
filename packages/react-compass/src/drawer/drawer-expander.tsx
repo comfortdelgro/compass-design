@@ -21,8 +21,10 @@ export type DrawerExpanderProps = Props &
   Omit<HTMLAttributes<HTMLDivElement>, keyof Props>
 
 /**
- * @note this component is draggable
- * On touch device, it will be re-render (to reflect with the user's drag action) many more times than when using a mouse.
+ * @note This component is draggable.
+ *
+ * On touch device, it will be re-render (to reflect with the user's drag actions)
+ * many more times than when being 'dragged' by a mouse.
  */
 const DrawerExpander = ({
   drawerOpen,

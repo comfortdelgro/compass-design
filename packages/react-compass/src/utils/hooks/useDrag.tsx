@@ -237,7 +237,7 @@ const useDrag = <T extends HTMLElement>(
             ])
 
       opts.onMove?.(target, [x, y], setTransform)
-      void setTransform([x, y])
+      setTransform([x, y])
     },
     [dragging, opts, setTransform],
   )
