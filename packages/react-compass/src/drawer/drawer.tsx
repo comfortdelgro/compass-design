@@ -8,11 +8,10 @@ import React, {
   useEffect,
   useState,
 } from 'react'
-import useDrag from '../utils/hooks/useDrag'
 import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
-import DrawerExpander from './drawer-expander'
+import DrawerExpander, {DrawerExpanderProps} from './drawer-expander'
 import DrawerFooter from './drawer-footer'
 import DrawerHeader from './drawer-header'
 import {
@@ -30,6 +29,7 @@ type Props = (
       position?: 'right' | 'bottom' | 'left' | undefined
       expanderCSS?: never
       onExpandChange?: never
+      static?: never
       autoClose?: never
     }
   | {
@@ -37,6 +37,12 @@ type Props = (
       position?: never
       expanderCSS?: StyledComponentProps['css']
       onExpandChange?: (isExpand: boolean) => void
+
+      /**
+       * if false, the H5 drawer will NOT be able to expand/collapse and the expander line will be hidden.
+       * @default false
+       */
+      static?: boolean
 
       /**
        * Close the H5 drawer if the user drag it to the bottom of screen
@@ -71,58 +77,18 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
     ...delegated
   } = props
 
+  // const viewPortHeight =
+  //   typeof window !== 'undefined' ? window.innerHeight : undefined
   const position: DrawerProps['position'] =
     variant === 'h5' ? 'bottom' : drawerPosition
   const DrawerRef = useDOMRef<HTMLDialogElement>(ref)
   const DrawerElement = DrawerRef.current
 
   const [drawerInitHeight, setDrawerInitHeight] = useState(0)
-  const [drawerHeight, setDrawerHeight] = useState(DrawerElement?.offsetHeight)
+  const [drawerHeight, setDrawerHeight] = useState(
+    DrawerElement?.offsetHeight ?? 0,
+  )
   const [isExpanded, setIsExpanded] = useState(false)
-
-  const {
-    target: DrawerExpanderRef,
-    position: {y},
-    setPosition,
-  } = useDrag<HTMLDivElement>({
-    // stepSize: 2,
-    direction: 'vertical',
-    setCSS: false,
-    onStart() {
-      if (!DrawerElement) {
-        return
-      }
-
-      DrawerElement.style.setProperty('transition', 'none')
-    },
-    onEnd(_, dragPosition, setPositionOnEnd) {
-      if (!window.innerHeight || !open || !DrawerElement) {
-        return
-      }
-      DrawerElement.style.setProperty('transition', 'height 0.2s ease')
-
-      const collapseHeight = Math.floor(window.innerHeight / 3)
-      let expandableLine = collapseHeight * 2
-      if (drawerInitHeight > expandableLine) {
-        expandableLine = drawerInitHeight
-      }
-
-      const newHeight = drawerInitHeight - dragPosition[1]
-
-      const isCrossExpandLine = newHeight > expandableLine
-      setIsExpanded(isCrossExpandLine)
-      onExpandChange?.(isCrossExpandLine)
-
-      // Close the drawer if the user drag the drawer to the bottom of screen
-      if (autoClose && newHeight < collapseHeight) {
-        setDrawerHeight(drawerInitHeight)
-        DrawerElement.close()
-        return
-      }
-
-      setPositionOnEnd([0, 0])
-    },
-  })
 
   const {child: DrawerHeaderElement, rest: OtherElementsExceptHeader} =
     pickChild<typeof DrawerHeader>(children, DrawerHeader)
@@ -147,7 +113,72 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
         DrawerElement.close('dismiss')
       }
     },
-    [DrawerElement],
+    [DrawerElement, onMouseDown],
+  )
+
+  const handleExpanderDragStart = useCallback<
+    NonNullable<DrawerExpanderProps['onDragStart']>
+  >(() => {
+    if (!DrawerElement) {
+      return
+    }
+
+    if (isExpanded) {
+      setIsExpanded(false)
+    }
+
+    DrawerElement.style.setProperty('transition', 'opacity .2s ease')
+  }, [DrawerElement, isExpanded])
+
+  const handleExpanderDrag = useCallback<
+    NonNullable<DrawerExpanderProps['onDragPositionYChange']>
+  >(
+    (y) => {
+      if (!DrawerElement) {
+        return
+      }
+
+      const newHeight = drawerInitHeight - y
+      setDrawerHeight(newHeight)
+    },
+    [DrawerElement, drawerInitHeight],
+  )
+
+  const handleExpanderDragEnd = useCallback<
+    NonNullable<DrawerExpanderProps['onDragEnd']>
+  >(
+    (_, dragPosition, setPositionOnEnd) => {
+      if (!window.innerHeight || !open || !DrawerElement) {
+        return
+      }
+
+      DrawerElement.style.setProperty(
+        'transition',
+        'height .2s ease, opacity .2s ease',
+      )
+
+      const collapseHeight = Math.floor(window.innerHeight / 3)
+      let expandableLine = collapseHeight * 2
+      if (drawerInitHeight > expandableLine) {
+        expandableLine = drawerInitHeight
+      }
+
+      const newHeight = drawerInitHeight - dragPosition[1]
+
+      const isCrossExpandLine = newHeight > expandableLine
+      setIsExpanded(isCrossExpandLine)
+      onExpandChange?.(isCrossExpandLine)
+
+      // Close the drawer if the user drag the drawer to the bottom of screen
+      if (autoClose && newHeight < collapseHeight) {
+        setDrawerHeight(drawerInitHeight)
+        DrawerElement.close()
+        return
+      }
+
+      setPositionOnEnd([0, 0])
+    },
+    [open, drawerInitHeight, DrawerElement],
   )
 
   useEffect(() => {
@@ -155,26 +186,17 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
       return
     }
 
-    setPosition([0, 0])
-
     if (open) {
+      document.body.style.setProperty('overflow', 'hidden')
       document.body.setAttribute('inert', '')
       DrawerElement.showModal()
       return
     }
 
+    document.body.style.setProperty('overflow', bodyOverflow)
     document.body.removeAttribute('inert')
     DrawerElement.close()
   }, [open, DrawerElement])
-
-  useEffect(() => {
-    const newHeight = drawerInitHeight - y
-    if (newHeight === drawerHeight) {
-      return
-    }
-
-    setDrawerHeight(newHeight)
-  }, [y, drawerInitHeight])
 
   useEffect(() => {
     setDrawerInitHeight(DrawerElement?.offsetHeight ?? 0)
@@ -191,7 +213,7 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
       style={{
         ...style,
         height:
-          variant === 'h5' && drawerHeight
+          variant === 'h5' && drawerHeight && !isExpanded
             ? `${drawerHeight}px`
             : style?.height,
       }}
@@ -200,9 +222,12 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
     >
       {variant === 'h5' && (
         <DrawerExpander
-          ref={DrawerExpanderRef}
+          drawerOpen={open}
           className='drawer-expander'
           css={expanderCSS}
+          onDragStart={handleExpanderDragStart}
+          onDragPositionYChange={handleExpanderDrag}
+          onDragEnd={handleExpanderDragEnd}
         />
       )}
       {DrawerHeaderElement}

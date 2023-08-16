@@ -53,6 +53,7 @@ export const StyledDrawer = styled('dialog', {
     display: 'flex',
     opacity: 0,
     animation: '.2s cubic-bezier(.25,0,.3,1) forwards',
+    transition: 'height .2s ease, opacity .2s ease',
 
     '&[open]': {
       opacity: 1,
@@ -94,19 +95,11 @@ export const StyledDrawer = styled('dialog', {
         height: '100dvh',
         width: '100%',
         '@sm': {width: 'clamp( 30vw, $160, 50vw )'},
-
-        '@media (prefers-reduced-motion: no-preference)': {
-          transition: 'height .2s ease, opacity .2s ease',
-        },
       },
       h5: {
         height: '40dvh',
         maxHeight: 'calc(100dvh - 1rem)',
         borderRadius: '1rem 1rem 0 0',
-
-        '@media (prefers-reduced-motion: no-preference)': {
-          transition: 'opacity .2s ease',
-        },
 
         '&.drawer-expanded': {
           height: 'calc(100dvh - 1rem)',
