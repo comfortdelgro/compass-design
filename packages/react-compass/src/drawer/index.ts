@@ -2,9 +2,9 @@ import Drawer from './drawer'
 import DrawerFooter from './drawer-footer'
 import DrawerHeader from './drawer-header'
 
-export type {DrawerProps} from './drawer'
 export type {DrawerFooterProps} from './drawer-footer'
 export type {DrawerHeaderProps} from './drawer-header'
+export type {DrawerProps, H5DrawerProps} from './types'
 
 Drawer.Header = DrawerHeader
 Drawer.Footer = DrawerFooter

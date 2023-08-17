@@ -1,7 +1,6 @@
 'use client'
 
 import React, {
-  DialogHTMLAttributes,
   forwardRef,
   MouseEvent,
   useCallback,
@@ -10,95 +9,27 @@ import React, {
   useState,
 } from 'react'
 import {pickChild} from '../utils/pick-child'
-import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import DrawerExpander, {DrawerExpanderProps} from './drawer-expander'
 import DrawerFooter from './drawer-footer'
 import DrawerHeader from './drawer-header'
-import {
-  DrawerVariantProps,
-  StyledDrawer,
-  StyledDrawerBody,
-} from './drawer.styles'
-
-const bodyOverflow =
-  typeof document !== 'undefined' ? document.body.style.overflow : 'auto'
+import {StyledDrawer, StyledDrawerBody} from './drawer.styles'
+import {DrawerProps} from './types'
 
 const DEFAULT_EXPANDED_POINT = 100
 const DEFAULT_EXPANDABLE_LINE = 67
 
-type Props = (
-  | {
-      variant?: 'default'
-      position?: 'right' | 'bottom' | 'left' | undefined
-      expanderCSS?: never
-      onExpandChange?: never
-      expandedPoint?: never
-      expandableLine?: never
-      disableResize?: never
-      disableAddBodyAttr?: never
-      autoClose?: never
-    }
-  | {
-      variant: 'h5'
-      position?: never
-
-      expanderCSS?: StyledComponentProps['css']
-      onExpandChange?: (isExpand: boolean) => void
-
-      /**
-       * How many **percentage** of the viewport height that the drawer will be fully expanded.
-       * ___
-       * Accepted value range: `0` - `100`
-       *
-       * Must be greater than `expandableLine` and drawer initialization height (percent).
-       * ___
-       * @default 100
-       */
-      expandedPoint?: number
-
-      /**
-       * A boundary to tell the drawer to fully expand when its top crosses this line.
-       * ___
-       * Accepted value range: `0` - `100`
-       *
-       * Must be smaller than `expandedPoint` and greater than drawer initialization height (percent).
-       * ___
-       * @default 100
-       */
-      expandableLine?: number
-
-      /**
-       * if `false`, the H5 drawer will NOT be able to expand/collapse and the expander line will be hidden.
-       * @default false
-       */
-      disableResize?: boolean
-
-      /**
-       * if `false`, when open a drawer, it will NOT add {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inert inert}
-       * attribute and `overflow: hidden` to the `<body>` tag.
-       * @default false
-       */
-      disableAddBodyAttr?: boolean
-
-      /**
-       * Close the H5 drawer if the user drag it to the bottom of screen
-       * @default true
-       */
-      autoClose?: boolean
-    }
-) &
-  StyledComponentProps
-
-export type DrawerProps = Props &
-  Omit<DrawerVariantProps, 'position'> &
-  Omit<DialogHTMLAttributes<HTMLDialogElement>, keyof Props>
-
 const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
   const viewPortHeight =
     typeof window !== 'undefined' ? window.innerHeight : undefined
+  const bodyOverflow = useMemo(
+    () =>
+      typeof document !== 'undefined' ? document.body.style.overflow : 'auto',
+    [document],
+  )
 
   const {
+    drawerMode = 'modal',
     className = '',
     css = {},
     style,
@@ -118,11 +49,15 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
     expandableLine: expandLine = DEFAULT_EXPANDABLE_LINE,
     disableResize = false,
     autoClose = true,
-    disableAddBodyAttr = false,
+    disableAddBodyAttr: disableAddBodyAttributes = false,
 
     // the rest
     ...delegated
   } = props
+
+  // override config props
+  const disableAddBodyAttr =
+    drawerMode === 'non-modal' ? true : disableAddBodyAttributes
 
   const position: DrawerProps['position'] =
     variant === 'h5' ? 'bottom' : drawerPosition
@@ -265,6 +200,7 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
     [
       DrawerElement,
       open,
+      autoClose,
       drawerInitHeight,
       drawerStartingHeight,
       expandedPosition,
@@ -278,21 +214,28 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
     }
 
     if (open) {
-      if (!disableAddBodyAttr) {
+      if (disableAddBodyAttr) {
+        document.body.style.setProperty('overflow', bodyOverflow)
+        document.body.removeAttribute('inert')
+      } else {
         document.body.style.setProperty('overflow', 'hidden')
         document.body.setAttribute('inert', '')
       }
-      DrawerElement.showModal()
+
+      if (drawerMode === 'modal') {
+        DrawerElement.showModal()
+        return
+      }
+
+      DrawerElement.show()
       return
     }
 
-    if (!disableAddBodyAttr) {
-      document.body.style.setProperty('overflow', bodyOverflow)
-      document.body.removeAttribute('inert')
-    }
+    document.body.style.setProperty('overflow', bodyOverflow)
+    document.body.removeAttribute('inert')
 
     DrawerElement.close()
-  }, [open, DrawerElement])
+  }, [open, DrawerElement, disableAddBodyAttr])
 
   useEffect(() => {
     if (!open && drawerInitHeight) {

@@ -37,7 +37,7 @@ export const StyledDrawer = styled('dialog', {
 
   border: 'none',
   boxSizing: 'border-box',
-  zIndex: '50',
+  zIndex: '48',
   pointerEvents: 'none',
 
   '&::backdrop': {
@@ -123,8 +123,8 @@ export const StyledDrawerBody = styled('article', {
   padding: '$4',
 
   maxHeight: '100%',
-  maxWidth: '100%',
-  overflow: 'auto',
+  width: '100%',
+  overflow: 'hidden auto',
 })
 
 export const StyledDrawerFooter = styled('footer', {
@@ -150,6 +150,7 @@ export const StyledDrawerExpander = styled('div', {
     width: '$10',
     height: '$1',
     background: '$grayShades20',
+    borderRadius: '$md',
   },
 })
 

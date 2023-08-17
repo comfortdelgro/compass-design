@@ -7,22 +7,76 @@ import React, {FormEventHandler, useState} from 'react'
 import Button from '../button'
 import List from '../list'
 import ListImage from '../list/list-image'
+import Modal from '../modal'
 import TextField from '../textfield'
 import Typography from '../typography'
 import {Row} from '../utils'
 import {Column} from '../utils/components'
-import Drawer, {DrawerProps} from './index'
+import Drawer, {DrawerProps, H5DrawerProps} from './index'
 
 const imgSrc =
   'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
 
+const h5DrawerDefaultConfig: Partial<H5DrawerProps> = {
+  disableResize: false,
+  disableAddBodyAttr: false,
+  autoClose: true,
+}
+
 export function H5() {
   const [openDrawer, setOpenDrawer] = useState(false)
+  const [openDemoDrawer, setOpenDemoDrawer] = useState(false)
+  const [openNonModalDrawer, setOpenNonModalDrawer] = useState(false)
+  const [openDemoTripDrawer, setOpenDemoTripDrawer] = useState(false)
+  const [openConfirmModal, setOpenConfirmModal] = useState(false)
+
+  const [drawerConfig, setDrawerConfig] = useState<Partial<H5DrawerProps>>(
+    h5DrawerDefaultConfig,
+  )
+
   return (
-    <>
-      <h3>H5 Drawer</h3>
+    <div style={{position: 'relative', minHeight: '100vh'}}>
+      <h4>H5 Drawer</h4>
       <Button type='button' onClick={() => setOpenDrawer(true)}>
         Open Drawer
+      </Button>
+
+      <h4>Drawer Customize</h4>
+      <Button type='button' onClick={() => setOpenDemoDrawer(true)}>
+        Open Customizable Drawer
+      </Button>
+
+      <h4 style={{marginBottom: 0}}>Demo Trip information</h4>
+      <Typography.Body
+        variant='body3'
+        css={{color: '$grayShades60', marginBlock: '$2 $4'}}
+      >
+        Drawer's maximum expanded height will be half of current viewport with
+        autoclose disabled.
+        <br />
+        Better view on mobile screen
+      </Typography.Body>
+      <Button type='button' onClick={() => setOpenDemoTripDrawer(true)}>
+        Open Drawer
+      </Button>
+
+      <h4>Non-modal mode</h4>
+      <Typography.Body
+        variant='body3'
+        css={{color: '$grayShades60', marginBlock: '$2 $4'}}
+      >
+        A Drawer that has no backdrop and also doesn't render on the top-layer.
+        It can <strong>NOT</strong> be closed by pressing the <kbd>ESC</kbd>{' '}
+        key.
+        <br />
+        The content below the non-modal drawer can be interacted.
+      </Typography.Body>
+      <Button
+        type='button'
+        variant='secondary'
+        onClick={() => setOpenNonModalDrawer(!openNonModalDrawer)}
+      >
+        Toggle Non-modal Drawer
       </Button>
 
       <Drawer
@@ -102,7 +156,256 @@ export function H5() {
           />
         </Column>
       </Drawer>
-    </>
+
+      <Drawer
+        open={openDemoDrawer}
+        css={{
+          height: '40dvh',
+          '& .drawer-content': {
+            button: {
+              marginBottom: '$4',
+            },
+          },
+        }}
+        onClose={() => {
+          setOpenDemoDrawer(false)
+          setDrawerConfig(h5DrawerDefaultConfig)
+        }}
+        variant='h5'
+        {...drawerConfig}
+      >
+        <p>Resizable Drawer?</p>
+        <Button
+          type='button'
+          onClick={() =>
+            setDrawerConfig((currState) => ({
+              ...currState,
+              disableResize: !currState.disableResize,
+            }))
+          }
+        >
+          Toggle Draggable
+        </Button>
+        <hr />
+
+        <p>
+          Should block the below layer from scrolling and tell the browser to
+          ignore its elements (inert)?{' '}
+          <strong>{`${!drawerConfig.disableAddBodyAttr}`}</strong>
+        </p>
+        <Button
+          type='button'
+          onClick={() =>
+            setDrawerConfig((currState) => ({
+              ...currState,
+              disableAddBodyAttr: !currState.disableAddBodyAttr,
+            }))
+          }
+        >
+          Toggle Block
+        </Button>
+        <hr />
+
+        <p>
+          Should autoclose when drags and drops the drawer below its height?{' '}
+          <strong>{`${drawerConfig.autoClose}`}</strong>
+        </p>
+        <Button
+          type='button'
+          onClick={() =>
+            setDrawerConfig((currState) => ({
+              ...currState,
+              autoClose: !currState.autoClose,
+            }))
+          }
+        >
+          Toggle autoclose
+        </Button>
+      </Drawer>
+
+      <Drawer
+        open={openDemoTripDrawer}
+        css={{height: '20dvh'}}
+        expanderCSS={{
+          background: '$blueShades100',
+          paddingBlock: '$2 $6',
+        }}
+        onClose={() => setOpenDemoTripDrawer(false)}
+        variant='h5'
+        expandedPoint={50}
+        expandableLine={33}
+        autoClose={false}
+      >
+        <Drawer.Header
+          css={{
+            display: 'flex',
+            paddingTop: 0,
+            gap: '$2',
+            justifyContent: 'space-between',
+            backgroundColor: '$blueShades100',
+          }}
+        >
+          <Typography.Body
+            variant='body3'
+            weight='semibold'
+            css={{color: '$grayShades10', width: 'fit-content'}}
+          >
+            Your ride is on the way
+          </Typography.Body>
+          <Typography.Body
+            variant='body3'
+            weight='semibold'
+            css={{color: '$grayShades10', width: 'fit-content'}}
+          >
+            Arriving in 8 - 10 min
+          </Typography.Body>
+        </Drawer.Header>
+
+        <Typography.Body
+          weight='semibold'
+          css={{
+            paddingBlock: '$5 $8',
+            display: 'flex',
+            gap: '$2',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
+          Shaw
+          <Button type='button' variant='secondary'>
+            Call Driver
+          </Button>
+        </Typography.Body>
+
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'auto auto',
+            justifyContent: 'space-between',
+            gap: '1rem',
+          }}
+        >
+          <Typography.Body
+            variant='body3'
+            weight='semibold'
+            css={{
+              display: 'flex',
+              gap: '$2',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
+          >
+            <span>ComfortRIDE</span>{' '}
+            <Typography.Link variant='link2'>T&C apply</Typography.Link>
+          </Typography.Body>
+          <div>$8.60</div>
+
+          <Typography.Body variant='body3' weight='semibold'>
+            Total
+          </Typography.Body>
+          <div>$8.60</div>
+        </div>
+
+        <div style={{display: 'flex', gap: '1rem', paddingBlock: '1rem'}}>
+          <Button type='button' variant='secondary' css={{flex: 1}}>
+            Share your trip
+          </Button>
+          <Button type='button' variant='danger' css={{flex: 1}}>
+            Cancel trip
+          </Button>
+        </div>
+      </Drawer>
+
+      <Drawer
+        open={openNonModalDrawer}
+        css={{height: '20dvh', position: 'fixed', overflow: 'hidden'}}
+        expanderCSS={{
+          background: '$blueShades100',
+          paddingBlock: '$2 $6',
+        }}
+        onClose={() => setOpenNonModalDrawer(false)}
+        variant='h5'
+        expandedPoint={50}
+        expandableLine={33}
+        drawerMode='non-modal'
+      >
+        <Drawer.Header
+          css={{
+            display: 'flex',
+            paddingTop: 0,
+            gap: '$2',
+            justifyContent: 'space-between',
+            backgroundColor: '$blueShades100',
+          }}
+        >
+          <Typography.Body
+            variant='body3'
+            weight='semibold'
+            css={{color: '$grayShades10', width: 'fit-content'}}
+          >
+            Your ride is on the way
+          </Typography.Body>
+          <Typography.Body
+            variant='body3'
+            weight='semibold'
+            css={{color: '$grayShades10', width: 'fit-content'}}
+          >
+            Arriving in 8 - 10 min
+          </Typography.Body>
+        </Drawer.Header>
+        <p>
+          <strong>Drag to bottom</strong> ⏬ of the screen to close or
+          <br /> just <strong>tap</strong> on the Toggle Non-modal button
+        </p>
+        <p>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas
+          quod itaque fugiat ipsa eveniet illum quae eligendi, qui hic officia
+          sequi perferendis laborum vel nostrum praesentium doloremque, dolorum
+          debitis unde!
+        </p>
+
+        <Button
+          type='button'
+          variant='secondary'
+          onClick={() => setOpenConfirmModal(true)}
+        >
+          Open confirm modal
+        </Button>
+
+        <Modal.Trigger
+          isOpen={openConfirmModal}
+          handleClose={() => setOpenConfirmModal(false)}
+        >
+          <Modal css={{display: 'flex', flexDirection: 'column'}}>
+            <Modal.Title>Please confirm</Modal.Title>
+            <Modal.Description css={{flex: 1}}>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+              Molestias reprehenderit animi ducimus facere perspiciatis, quod
+              deserunt, necessitatibus voluptatibus ipsam harum rerum cumque,
+              vero tempore ipsum praesentium quas veniam expedita magnam.
+            </Modal.Description>
+            <Modal.Actions>
+              <Button
+                variant='ghost'
+                onClick={() => setOpenConfirmModal(false)}
+                css={{marginRight: '4px'}}
+              >
+                Cancel
+              </Button>
+              <Button
+                variant='danger'
+                onClick={() => {
+                  setOpenConfirmModal(false)
+                  setOpenNonModalDrawer(false)
+                }}
+              >
+                Proceed
+              </Button>
+            </Modal.Actions>
+          </Modal>
+        </Modal.Trigger>
+      </Drawer>
+    </div>
   )
 }
 
