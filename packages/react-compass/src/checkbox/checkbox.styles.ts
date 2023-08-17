@@ -113,15 +113,12 @@ export const StyledCheckboxCheckmark = styled('span', {
   },
 })
 
-export const StyledCheckboxLabelContent = styled('span', {})
-
 export const StyledCheckboxLabel = styled('label', {
   position: 'relative',
   fontSize: '$label1',
   cursor: 'pointer',
   userSelect: 'none',
   borderRadius: '3px',
-  // display: 'inline-block',
   whiteSpace: 'nowrap',
   minHeight: '$5',
   minWidth: '$5',
@@ -176,7 +173,6 @@ export const StyledCheckboxLabel = styled('label', {
         maxWidth: '343px',
         padding: '$4',
         borderRadius: '$xl',
-        backgroundColor: '$grayShades10',
         whiteSpace: 'normal',
       },
       default: {},

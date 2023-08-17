@@ -127,16 +127,19 @@ export const Uncontrolled: Story<{onChange: () => void}> = () => {
   )
 }
 export const H5Checkbox = () => {
+  const [checked, setChecked] = useState<boolean>(false)
   return (
     <Column>
       <h3>H5 Checkbox</h3>
-      <Column>
-        <Checkbox isSelected variant='h5'>
-          <b style={{fontSize: '16px', lineHeight: '24px'}}>
-            I'm picking with/for a child below 1.35m
-          </b>
-        </Checkbox>
-      </Column>
+      <Checkbox
+        isSelected={checked}
+        variant='h5'
+        onChange={() => setChecked(!checked)}
+      >
+        <b style={{fontSize: '16px', lineHeight: '24px'}}>
+          I'm picking with/for a child below 1.35m
+        </b>
+      </Checkbox>
     </Column>
   )
 }
