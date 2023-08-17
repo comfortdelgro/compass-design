@@ -1,5 +1,4 @@
 import React from 'react'
-import theme from '../themeV2/theme'
 import {Column} from '../utils/components'
 import Chip from './index'
 
@@ -25,7 +24,6 @@ export const Default: React.FC = () => {
       <Chip
         hasCloseButton
         css={{
-          color: theme.colors.primaryText,
           border: '1px solid purple',
           '&:hover': {color: '$success'},
           '& > div:first-child': {
