@@ -25,7 +25,7 @@ interface Props extends StyledComponentProps {
   isSelected?: boolean
   cssCheckBoxInput?: CSS
   // Variants for children
-  variant?: 'default' | 'rounded'
+  variant?: 'default' | 'rounded' | 'h5'
   validationState?: 'valid' | 'invalid'
   onChange?: (isSelected: boolean) => void
 
@@ -111,7 +111,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
 
     return (
       <StyledCheckboxWrapper css={css} {...htmlProps}>
-        <StyledCheckboxLabel isDarkTheme={isDarkTheme}>
+        <StyledCheckboxLabel isDarkTheme={isDarkTheme} variant={variant}>
           <StyledCheckboxInput
             tabIndex={-1}
             type='checkbox'

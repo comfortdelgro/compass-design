@@ -23,9 +23,6 @@ export const StyledCheckboxInput = styled('input', {
 
 //mark for merging point
 export const StyledCheckboxBox = styled('span', {
-  position: 'absolute', //mark for merged
-  top: '2px',
-  left: '2px',
   height: '$4',
   width: '$4',
   backgroundColor: '$whiteText',
@@ -116,9 +113,7 @@ export const StyledCheckboxCheckmark = styled('span', {
   },
 })
 
-export const StyledCheckboxLabelContent = styled('span', {
-  marginLeft: '$7', // checkbox area + padding
-})
+export const StyledCheckboxLabelContent = styled('span', {})
 
 export const StyledCheckboxLabel = styled('label', {
   position: 'relative',
@@ -126,11 +121,14 @@ export const StyledCheckboxLabel = styled('label', {
   cursor: 'pointer',
   userSelect: 'none',
   borderRadius: '3px',
-  display: 'inline-block',
+  // display: 'inline-block',
   whiteSpace: 'nowrap',
   minHeight: '$5',
   minWidth: '$5',
   padding: '2px',
+  display: 'inline-flex',
+  alignItems: 'center',
+  gap: '$3',
   '&:focus-within': {
     outline: '2px solid $cdgBlue60',
   },
@@ -172,6 +170,17 @@ export const StyledCheckboxLabel = styled('label', {
         },
       },
       false: {},
+    },
+    variant: {
+      h5: {
+        maxWidth: '343px',
+        padding: '$4',
+        borderRadius: '$xl',
+        backgroundColor: '$grayShades10',
+        whiteSpace: 'normal',
+      },
+      default: {},
+      rounded: {},
     },
   },
 })
