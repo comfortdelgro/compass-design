@@ -123,7 +123,7 @@ export const StyledCheckboxLabel = styled('label', {
   minHeight: '$5',
   minWidth: '$5',
   padding: '2px',
-  display: 'inline-flex',
+  display: 'flex',
   alignItems: 'center',
   gap: '$3',
   '&:focus-within': {
