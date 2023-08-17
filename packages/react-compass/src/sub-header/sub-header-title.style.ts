@@ -8,13 +8,13 @@ export const StyledSubHeaderTitle = styled('h1', {
     variant: {
       default: {
         fontWeight: '$semibold',
-        fontSize: '$header5 !important',
-        lineHeight: '$normal !important',
+        fontSize: '$header5',
+        lineHeight: '$normal',
       },
       h5: {
-        fontSize: '$header2 !important',
+        fontSize: '$header2',
         fontWeight: '700',
-        lineHeight: '42px !important',
+        lineHeight: '42px',
       },
     },
   },

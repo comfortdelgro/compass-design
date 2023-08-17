@@ -6,14 +6,14 @@ export const StyledSubHeaderDescription = styled('p', {
   variants: {
     variant: {
       default: {
-        fontSize: '$label1 !important',
-        color: '$gray70 !important',
-        margin: '0 !important',
+        fontSize: '$label1',
+        color: '$gray70',
+        margin: '0',
       },
       h5: {
         fontSize: '$label1',
         fontWeight: '$medium',
-        lineHeight: '20px !important',
+        lineHeight: '20px',
       },
     },
   },
