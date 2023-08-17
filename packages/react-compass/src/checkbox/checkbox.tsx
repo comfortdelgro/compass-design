@@ -24,7 +24,7 @@ interface Props extends StyledComponentProps {
   isSelected?: boolean
   cssCheckBoxInput?: CSS
   // Variants for children
-  variant?: 'default' | 'rounded' | 'h5'
+  variant?: CheckboxVariantProps['variant']
   validationState?: 'valid' | 'invalid'
   onChange?: (isSelected: boolean) => void
 
