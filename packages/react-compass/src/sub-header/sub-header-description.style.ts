@@ -1,5 +1,5 @@
-import {VariantProps} from '@stitches/react'
 import {styled} from '../theme'
+import {VariantProps} from '../utils/stitches.types'
 
 export const StyledSubHeaderDescription = styled('p', {
   margin: '0',
