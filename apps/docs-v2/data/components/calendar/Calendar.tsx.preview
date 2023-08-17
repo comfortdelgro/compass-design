@@ -1,0 +1,9 @@
+<Calendar
+    value={date}
+    // maxValue={today(getLocalTimeZone())}
+    minValue={today(getLocalTimeZone())}
+    onChange={(e) => {
+    setDate(e)
+    }}
+    hasFooter
+/>
