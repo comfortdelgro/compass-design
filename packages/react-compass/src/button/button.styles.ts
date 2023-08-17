@@ -202,6 +202,58 @@ export const StyledButton = styled('button', {
           background: '$cdgBlue10',
         },
       },
+      'h5-primary': {
+        background: '$blueShades100',
+        color: '$whiteText',
+        borderColor: '$grayShades20',
+        '&.cdg-link-button:hover': {
+          background: '$blueShades120',
+          borderColor: '$grayShades20',
+        },
+        '&:hover:enabled': {
+          background: '$blueShades120',
+          borderColor: '$grayShades20',
+        },
+      },
+      'h5-secondary': {
+        background: 'transparent',
+        color: '$blueShades100',
+        borderColor: '$blueShades100',
+        '&.cdg-link-button:hover': {
+          color: '$blueShades120',
+          background: '$grayShades10',
+          borderColor: '$blueShades120',
+        },
+        '&:hover:enabled': {
+          color: '$blueShades120',
+          background: '$grayShades10',
+          borderColor: '$blueShades120',
+        },
+      },
+      'h5-danger': {
+        background: 'transparent',
+        color: '$dangerShades',
+        borderColor: '$dangerShades',
+        '&.cdg-link-button:hover': {
+          background: '$grayShades10',
+        },
+        '&:hover:enabled': {
+          background: '$grayShades10',
+        },
+      },
+      'h5-default': {
+        background: '$grayShades20',
+        color: '$grayShades60',
+        borderColor: '$grayShades20',
+      },
+    },
+    h5: {
+      true: {
+        borderRadius: '$lg',
+        padding: '11px $6',
+        fontSize: '$body2',
+        fontWeight: '$bold',
+      },
     },
     fullWidth: {
       true: {
