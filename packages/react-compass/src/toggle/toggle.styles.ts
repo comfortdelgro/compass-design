@@ -45,6 +45,16 @@ export const StyledToggle = styled('div', {
         backgroundColor: '$gray50',
       },
     },
+    variant: {
+      h5: {
+        width: '$12',
+        height: '$7',
+        '& .toggle-circle': {
+          width: '$6',
+          height: '$6',
+        },
+      },
+    },
   },
   compoundVariants: [
     {
@@ -52,6 +62,13 @@ export const StyledToggle = styled('div', {
       active: true,
       css: {
         backgroundColor: '#D0EBCC',
+      },
+    },
+    {
+      active: true,
+      variant: 'h5',
+      css: {
+        backgroundColor: '$secondaryGreen',
       },
     },
   ],
