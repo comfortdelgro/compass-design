@@ -9,7 +9,7 @@ interface Props extends StyledComponentProps {
   label?: string
   icon?: boolean | React.ReactNode
   destination?: string
-  revert?: boolean
+  isRevert?: boolean
 }
 
 export type BadgeProps = Omit<Props, 'children'> &

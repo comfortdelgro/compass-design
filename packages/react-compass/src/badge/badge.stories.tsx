@@ -77,7 +77,7 @@ export const Variants: React.FC = () => (
         destination='A'
       />
       <Badge label='Current Location' variant='h5' destination='B' />
-      <Badge label='Current Location' variant='h5' destination='C' revert />
+      <Badge label='Current Location' variant='h5' destination='C' isRevert />
     </Row>
   </Column>
 )

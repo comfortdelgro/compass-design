@@ -50,7 +50,7 @@ export const StyledBadge = styled('div', {
       secondary: {},
       outline: {},
       h5: {
-        background: '$white',
+        background: '$background',
         color: '$grayShades100',
         borderColor: '$blueShades80',
         padding: '3px $2 3px 3px',
@@ -77,7 +77,7 @@ export const StyledBadge = styled('div', {
         },
       },
     },
-    revert: {
+    isRevert: {
       true: {
         flexDirection: 'row-reverse',
         padding: '3px 3px 3px $2',
