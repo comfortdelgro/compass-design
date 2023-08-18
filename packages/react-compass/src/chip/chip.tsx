@@ -1,13 +1,13 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
 import {useIsLightTheme} from '../theme'
 import generateRandomString from '../utils/generateRandomString'
-import injectCssToDocument from '../utils/objectToCss/inject-css-to-document'
 import objectToCSS, {StyleObject} from '../utils/objectToCss/object-to-css'
 import {useDOMRef} from '../utils/use-dom-ref'
 import darkThemeStyles from './styles/dark.module.css'
 import lightThemeStyles from './styles/light.module.css'
 
-interface Props {
+export interface Props {
   children?: React.ReactNode
   hasCloseButton?: boolean
   isErrored?: boolean
@@ -40,10 +40,16 @@ const Chip = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     setchipClassName(chipClassName)
   }, [chipRef])
 
-  React.useEffect(() => {
-    if (chipClassName) {
-      const cssString = objectToCSS(css as StyleObject, `.${chipClassName}`)
-      injectCssToDocument(cssString)
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+  React.useInsertionEffect(() => {
+    if (chipClassName === '') return
+    if (!css) return
+    const cssString = objectToCSS(css as StyleObject, `.${chipClassName}`)
+    const styleElement = document.createElement('style')
+    styleElement.textContent = cssString
+    document.head.appendChild(styleElement)
+    return () => {
+      document.head.removeChild(styleElement)
     }
   }, [css, chipClassName])
   /*** End of hanlde prop css  ***/
