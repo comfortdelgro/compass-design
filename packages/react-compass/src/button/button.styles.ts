@@ -241,11 +241,6 @@ export const StyledButton = styled('button', {
           background: '$grayShades10',
         },
       },
-      'h5-default': {
-        background: '$grayShades20',
-        color: '$grayShades60',
-        borderColor: '$grayShades20',
-      },
     },
     h5: {
       true: {
@@ -253,6 +248,11 @@ export const StyledButton = styled('button', {
         padding: '11px $6',
         fontSize: '$body2',
         fontWeight: '$bold',
+        '&:disabled': {
+          background: '$grayShades20',
+          color: '$grayShades60',
+          borderColor: '$grayShades20',
+        },
       },
     },
     fullWidth: {

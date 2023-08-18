@@ -201,9 +201,6 @@ export const Variations: React.FC = () => (
       <Button variant='h5-danger' h5>
         Danger
       </Button>
-      <Button variant='h5-default' h5>
-        Default
-      </Button>
       <Button isDisabled h5>
         Disabled
       </Button>
