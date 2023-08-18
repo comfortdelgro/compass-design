@@ -10,11 +10,11 @@ import React, {
 } from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
-import PudoItem, {PudoItemPrivateProps} from './pudo-item'
+import PudoItem, {PudoItemProps} from './pudo-item'
 import {StyledPUDO} from './pudo.styles'
 
 export type PudoProps<TItemKeys extends string | number | symbol> = {
-  items: Readonly<Array<PudoItemPrivateProps<TItemKeys>>>
+  items: Readonly<Array<PudoItemProps<TItemKeys>>>
   onValuesChange?: (values: Record<TItemKeys, string>) => void
 } & StyledComponentProps &
   HTMLAttributes<HTMLDivElement>

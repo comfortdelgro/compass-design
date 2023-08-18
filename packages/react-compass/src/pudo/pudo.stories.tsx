@@ -1,16 +1,16 @@
 import React, {useState} from 'react'
 import Pudo from './pudo'
+import {PudoItemProps} from './pudo-item'
 
-const pudoItem = [
+type PudoItemKeys = 'pickUp' | 'des1' | 'des2'
+const pudoItems: Array<PudoItemProps<PudoItemKeys>> = [
   {name: 'pickUp', value: ''},
   {name: 'des1', value: ''},
   {name: 'des2', value: ''},
-] as const
-
-type PudoItemKeys = (typeof pudoItem)[number]['name']
+]
 
 export function Default() {
-  const initFormValues = pudoItem.reduce(
+  const initFormValues = pudoItems.reduce(
     (obj, {name, value}) => ({...obj, [name]: value}),
     {},
   ) as Record<PudoItemKeys, string>
@@ -28,7 +28,7 @@ export function Default() {
       </div>
 
       <Pudo
-        items={pudoItem}
+        items={pudoItems}
         onValuesChange={(values) => setFormValues(values)}
       />
     </>

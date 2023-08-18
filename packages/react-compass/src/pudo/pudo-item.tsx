@@ -3,7 +3,7 @@ import TextField from '../textfield'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {PudoItemVariantProps, StyledPUDOItem} from './pudo.styles'
 
-export type PudoItemPrivateProps<TName extends string | number | symbol> = {
+export type PudoItemProps<TName = string> = {
   name: TName
   icon?: ReactNode
   type?: 'input' | 'label'
@@ -12,9 +12,9 @@ export type PudoItemPrivateProps<TName extends string | number | symbol> = {
   hideIcon?: boolean
 }
 
-export type PudoItemProps<TName extends string | number | symbol> = {
+export type PudoItemPrivateProps<TName extends string | number | symbol> = {
   onValueChange?: (value: string) => void
-} & PudoItemPrivateProps<TName> &
+} & PudoItemProps<TName> &
   StyledComponentProps &
   PudoItemVariantProps
 
@@ -26,7 +26,7 @@ const PudoItem = <TItemName extends string | number | symbol>({
   onValueChange,
   placeholder = '',
   ...delegated
-}: PudoItemProps<TItemName>) => {
+}: PudoItemPrivateProps<TItemName>) => {
   const renderPudoContent = useCallback(() => {
     switch (type) {
       case 'label':
