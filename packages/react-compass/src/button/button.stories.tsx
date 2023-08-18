@@ -192,13 +192,13 @@ export const Variations: React.FC = () => (
     </Row>
     <h3>10. H5</h3>
     <Row>
-      <Button variant='h5-primary' h5 onPress={() => console.log('pressed')}>
+      <Button variant='primary' h5 onPress={() => console.log('pressed')}>
         Primary
       </Button>
-      <Button variant='h5-secondary' h5>
+      <Button variant='secondary' h5>
         Secondary
       </Button>
-      <Button variant='h5-danger' h5>
+      <Button variant='danger' h5>
         Danger
       </Button>
       <Button isDisabled h5>
