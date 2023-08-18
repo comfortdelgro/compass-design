@@ -70,6 +70,14 @@ export const Variants: React.FC = () => (
       <Badge label='Primary' variant='primary' icon />
       <Badge label='Secondary' variant='secondary' icon />
       <Badge label='Outline' variant='outline' icon />
+      <Badge
+        css={{maxWidth: 210}}
+        label='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+        variant='h5'
+        destination='A'
+      />
+      <Badge label='Current Location' variant='h5' destination='B' />
+      <Badge label='Current Location' variant='h5' destination='C' revert />
     </Row>
   </Column>
 )
