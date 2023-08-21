@@ -62,7 +62,7 @@ const PudoItem = <TItemName extends string | number | symbol>({
           <TextField
             className='pudo-item__input'
             css={{
-              '> div': {
+              '&.pudo-item__input > div': {
                 border: 'none',
                 height: 'unset',
                 backgroundColor: 'inherit',
