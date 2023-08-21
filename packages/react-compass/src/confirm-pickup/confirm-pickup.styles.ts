@@ -2,7 +2,7 @@ import {styled} from '../theme'
 import {VariantProps} from '../utils/stitches.types'
 
 export const StyledConfirmPUPoint = styled('div', {
-  width: '375px',
+  minWidth: '375px',
   padding: '$4_5',
   backgroundColor: '$background',
   borderRadius: '$xl $xl 0px 0px',
@@ -14,6 +14,10 @@ export const StyledConfirmPUPoint = styled('div', {
     lineHeight: '16px',
     fontWeight: 500,
     height: '$5',
+
+    '> div': {
+      marginBottom: '5px',
+    },
   },
   '.pu-point-address': {
     backgroundColor: '$grayShades10',

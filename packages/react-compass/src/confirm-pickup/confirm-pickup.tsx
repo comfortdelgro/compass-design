@@ -117,7 +117,15 @@ const ConfirmPUPoint = React.forwardRef<HTMLDivElement, ConfirmPUPointProps>(
             }}
           />
         )}
-        <Button css={{height: '$12'}} onPress={handleConfirmPickup}>
+        <Button
+          css={{
+            height: '$12',
+            maxWidth: '420px',
+            minWidth: '345px',
+            margin: 'auto',
+          }}
+          onPress={handleConfirmPickup}
+        >
           Confirm pick up
         </Button>
       </StyledConfirmPUPoint>

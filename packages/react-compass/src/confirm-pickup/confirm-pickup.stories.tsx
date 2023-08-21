@@ -19,6 +19,7 @@ export const Default = () => {
         onConfirmPickup={(pickupPoint) => {
           console.log(pickupPoint)
         }}
+        onChangePUPoint={() => {}}
       />
     </Card>
   )
