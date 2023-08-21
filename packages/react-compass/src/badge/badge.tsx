@@ -1,3 +1,4 @@
+import {toUpper} from 'lodash'
 import React from 'react'
 import {getIconFromColor} from '../utils/get-icon-from-color'
 import {StyledComponentProps} from '../utils/stitches.types'
@@ -7,6 +8,8 @@ import {BadgeVariantProps, StyledBadge} from './badge.styles'
 interface Props extends StyledComponentProps {
   label?: string
   icon?: boolean | React.ReactNode
+  destination?: string
+  isRevert?: boolean
 }
 
 export type BadgeProps = Omit<Props, 'children'> &
@@ -15,12 +18,10 @@ export type BadgeProps = Omit<Props, 'children'> &
 
 const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
   const {
-    // StyledComponentProps
     css = {},
-    // ComponentProps
     label,
     icon = false,
-    // VariantProps
+    destination,
     variant = 'primary',
     color = 'info',
     ...delegates
@@ -36,8 +37,10 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
           {typeof icon === 'boolean' ? getIconFromColor(color) : icon}
         </div>
       ) : null}
-
-      <div className='label'>{label}</div>
+      {destination ? (
+        <span className='destination'>{toUpper(destination)}</span>
+      ) : null}
+      <span className='label'>{label}</span>
     </StyledBadge>
   )
 })

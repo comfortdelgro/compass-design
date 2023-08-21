@@ -228,7 +228,7 @@ export const lightTheme = defineTheme({
     blueShades20: '',
     blueShades40: '',
     blueShades60: '',
-    blueShades80: '',
+    blueShades80: '#3468BF',
     blueShades100: '#0142AF',
     blueShades120: '#012158',
 
@@ -330,7 +330,7 @@ export const darkTheme = createTheme('dark-theme', {
     blueShades20: '',
     blueShades40: '',
     blueShades60: '',
-    blueShades80: '',
+    blueShades80: '#3468BF',
     blueShades100: '#0142AF',
     blueShades120: '#012158',
 
