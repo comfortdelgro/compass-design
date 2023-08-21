@@ -211,6 +211,7 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
       {...itemProps}
       type={type || itemProps.type || 'input'}
       index={index}
+      itemsLength={currArr.length}
       value={pudoValues[itemProps.name]}
       allowSwap={!!itemProps.allowSwap}
       handleSwap={() => {

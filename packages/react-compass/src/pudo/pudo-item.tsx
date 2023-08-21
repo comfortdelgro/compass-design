@@ -26,6 +26,7 @@ export type PudoItemProps<TName extends string | number | symbol = string> = {
 
 export type PudoItemPrivateProps<TName extends string | number | symbol> = {
   index: number
+  itemsLength: number
   onValueChange?: (value: string) => void
   handleSwap?: () => void
 } & PudoItemProps<TName> &
@@ -33,6 +34,7 @@ export type PudoItemPrivateProps<TName extends string | number | symbol> = {
 
 const PudoItem = <TItemName extends string | number | symbol>({
   index,
+  itemsLength,
   name,
   className = '',
   css = {},
@@ -91,7 +93,7 @@ const PudoItem = <TItemName extends string | number | symbol>({
 
   return (
     <StyledPUDOItem
-      css={css}
+      css={{...css, zIndex: itemsLength - 1 - index ?? undefined}}
       className={`pudo-item ${className}`}
       {...{type}}
       {...delegated}
