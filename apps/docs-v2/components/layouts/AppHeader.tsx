@@ -8,7 +8,9 @@ import SvgLogo from 'components/icons/SvgLogo'
 import {DeferredAppSearch} from 'components/layouts/DocsAppFrame'
 import {ETheme} from 'constants/index'
 import {useThemeContext} from 'contexts/Theme'
+import {useIsTabletScreen} from 'hooks'
 import Link from 'next/link'
+import DocsAppSideNavMobile from './DocsAppSideNavMobile'
 
 interface AppHeaderProps {
   gitHubRepository?: string
@@ -22,9 +24,11 @@ export default function AppHeader(props: AppHeaderProps) {
   } = props
 
   const mode = useThemeContext()
+  const isTabletScreen = useIsTabletScreen()
 
   return (
-    <Navbar css={{maxWidth: '100vw', overflow: 'hidden'}}>
+    <Navbar css={{maxWidth: '100vw', overflow: 'hidden', gap: '$1'}}>
+      {isTabletScreen && <DocsAppSideNavMobile />}
       <Navbar.Brand>
         <Link href='/' style={{textDecoration: 'none'}}>
           <Box css={{display: 'flex', alignItems: 'center'}}>
