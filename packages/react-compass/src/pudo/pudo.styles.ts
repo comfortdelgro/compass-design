@@ -10,7 +10,7 @@ const fadeIn = keyframes({
 export const StyledPUDO = styled('div', {
   maxWidth: '100%',
 
-  '.pudo-items': {
+  '.pudo-items-wrapper': {
     borderRadius: '$lg',
     border: '1px solid $grayShades20',
     overflow: 'hidden',
@@ -21,6 +21,10 @@ export const StyledPUDO = styled('div', {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
+
+    '&:empty': {
+      display: 'none',
+    },
   },
 })
 
@@ -74,21 +78,41 @@ export const StyledPUDOItem = styled('div', {
     },
   },
 
-  '&~ .pudo-item': {
-    '.pudo-item__input': {
-      transition: 'height .2s ease-in-out',
-      borderTop: '1px solid $grayShades20',
-    },
-  },
-
-  '&:focus-within': {
-    backgroundColor: '$grayShades10',
-  },
-
   variants: {
-    variant: {
-      input: {},
-      label: {},
+    type: {
+      input: {
+        '&~ .pudo-item': {
+          '.pudo-item__input': {
+            borderTop: '1px solid $grayShades20',
+          },
+        },
+        '&:focus-within': {
+          backgroundColor: '$grayShades10',
+        },
+      },
+      label: {
+        '.pudo-item__label': {
+          marginBlock: 0,
+          paddingBlock: '$4',
+          width: '100%',
+
+          whiteSpace: 'nowrap',
+          overflowX: 'auto',
+          '@sm': {
+            textOverflow: 'ellipsis',
+            overflow: 'hidden',
+          },
+
+          fontSize: '$label1',
+          fontWeight: '$normal',
+          lineHeight: '$5',
+        },
+        '&~ .pudo-item': {
+          '.pudo-item__label': {
+            borderTop: '1px solid $grayShades20',
+          },
+        },
+      },
     },
   },
 })

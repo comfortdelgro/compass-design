@@ -66,7 +66,6 @@ export function H5() {
       >
         Support 2 types of return values with auto infer name types:
       </Typography.Body>
-
       <Pudo
         css={{marginBlock: '$4'}}
         items={exampleItem}
@@ -74,14 +73,12 @@ export function H5() {
           setDataExample1({obj: objValues, arr: arrValues})
         }
       />
-
       {dataExample1 && (
         <PreviewCodeContainer>
           <PreviewCode>{JSON.stringify(dataExample1.obj, null, 2)}</PreviewCode>
           <PreviewCode>{JSON.stringify(dataExample1.arr, null, 2)}</PreviewCode>
         </PreviewCodeContainer>
       )}
-
       <h4>Swap, add and remove items</h4>
       <Typography.Body
         variant='body3'
@@ -102,13 +99,32 @@ export function H5() {
         minLength={2} // default value
         maxLength={3} // default value
       />
-
       {formValues && (
         <PreviewCodeContainer>
           <PreviewCode>{JSON.stringify(formValues.obj, null, 2)}</PreviewCode>
           <PreviewCode>{JSON.stringify(formValues.arr, null, 2)}</PreviewCode>
         </PreviewCodeContainer>
       )}
+
+      <h4>Label view</h4>
+      <Pudo
+        css={{marginBlock: '$4'}}
+        items={[
+          {
+            name: 'item1',
+            value: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum
+          assumenda officiis voluptates quam rem qui libero commodi veritatis
+          deserunt harum voluptatum beatae perferendis, vitae minus magnam facere
+          quidem tempora iusto? Tempore praesentium accusamus mollitia, inventore
+          quos tenetur, aspernatur eos, in id corporis veniam blanditiis error. Est
+          illo temporibus velit, beatae dolores accusantium quis vel corporis neque
+          harum? Accusantium, voluptates consequuntur?`,
+            placeholder: 'item1',
+          },
+          {name: 'item2', value: 'Destination', placeholder: 'item2'},
+        ]}
+        type='label'
+      />
     </>
   )
 }

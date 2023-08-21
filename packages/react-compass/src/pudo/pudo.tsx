@@ -17,12 +17,23 @@ import PudoItem, {PudoItemProps} from './pudo-item'
 import {StyledPUDO} from './pudo.styles'
 
 export type PudoProps<TItemKeys extends string | number | symbol> = {
+  /**
+   * PUDO's item list.
+   * ___
+   * This item list will be automatically de-duplicated (by `name`).
+   */
   items: Readonly<Array<PudoItemProps<TItemKeys>>>
+  /**
+   * This will override the `type` value of all items.
+   */
+  type?: PudoItemProps<TItemKeys>['type']
   onValuesChange?: (
     values: Record<TItemKeys, string>,
     arrValues: Array<{name: TItemKeys; value: string}>,
   ) => void
   /**
+   * Min length of item list.
+   * ___
    * Must be smaller than `maxLength`
    * @default
    * minLength = 2
@@ -30,14 +41,28 @@ export type PudoProps<TItemKeys extends string | number | symbol> = {
    */
   minLength?: number
   /**
+   * Max length of item list.
+   * ___
    * Must be greater than `minLength`
    * @default
    * minLength = 2
    * maxLength = 3
    */
   maxLength?: number
+  /**
+   * Remove all items by its `name` according to provided keys.
+   * ___
+   * This array will be de-duplicated automatically and will be ignored
+   * if PUDO's `type` is `'label'`.
+   */
   removableItems?: TItemKeys[]
   removableLabel?: string
+  /**
+   * Add all provided items to the existing item list.
+   * ___
+   * This array will be de-duplicated automatically (by `name`) and will be ignored
+   * if PUDO's `type` is `'label'`.
+   */
   addItems?: Readonly<Array<PudoItemProps<TItemKeys>>>
   addItemsLabel?: string
 } & StyledComponentProps &
@@ -47,6 +72,7 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
   {
     items,
     css = {},
+    type,
     onValuesChange,
     minLength = 2,
     maxLength: unCheckedMaxLength = 3,
@@ -95,7 +121,23 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
     [removableItems, pudoItems],
   )
 
+  const showAddButton = useMemo(() => {
+    if (type === 'label') {
+      return false
+    }
+
+    if (!dedupedAddItems.length || pudoItems.length > maxLength - 1) {
+      return false
+    }
+
+    return true
+  }, [type, pudoItems, dedupedAddItems, maxLength])
+
   const showRemoveButton = useMemo(() => {
+    if (type === 'label') {
+      return false
+    }
+
     if (!dedupedRemoveKeys.length || pudoItems.length < minLength + 1) {
       return false
     }
@@ -105,7 +147,7 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
     }
 
     return true
-  }, [pudoItems, dedupedRemoveKeys, minLength])
+  }, [type, pudoItems, dedupedRemoveKeys, minLength])
 
   const handleAddItems = useCallback(() => {
     if (!dedupedAddItems.length) {
@@ -167,6 +209,7 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
     <PudoItem
       key={itemProps.name.toString()}
       {...itemProps}
+      type={type || itemProps.type || 'input'}
       index={index}
       value={pudoValues[itemProps.name]}
       allowSwap={!!itemProps.allowSwap}
@@ -229,9 +272,10 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
 
   return (
     <StyledPUDO ref={PudoRef} css={css} {...delegated}>
-      <div className='pudo-items'>{renderPudoItems}</div>
+      <div className='pudo-items-wrapper'>{renderPudoItems}</div>
+
       <div className='pudo-actions'>
-        {!dedupedAddItems.length || pudoItems.length > maxLength - 1 || (
+        {showAddButton && (
           <Button
             css={{border: 'none'}}
             variant='ghost'
@@ -281,6 +325,7 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
           </Button>
         )}
       </div>
+
       {children}
     </StyledPUDO>
   )

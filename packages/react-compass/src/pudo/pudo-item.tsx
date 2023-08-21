@@ -3,10 +3,15 @@ import TextField from '../textfield'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {PudoItemVariantProps, StyledPUDOItem} from './pudo.styles'
 
-export type PudoItemProps<TName = string> = {
+export type PudoItemProps<TName extends string | number | symbol = string> = {
   name: TName
   className?: string
   icon?: ReactNode
+  /**
+   * `type` of each item will be overwritten
+   * if provided in the PUDO component.
+   * @default 'input'
+   */
   type?: 'input' | 'label'
   value: string
   placeholder?: string
@@ -44,7 +49,11 @@ const PudoItem = <TItemName extends string | number | symbol>({
   const renderPudoContent = useCallback(() => {
     switch (type) {
       case 'label':
-        return <div>{value}</div>
+        return (
+          <p className='pudo-item__label' title={value}>
+            {value}
+          </p>
+        )
 
       case 'input':
         return (
@@ -66,6 +75,7 @@ const PudoItem = <TItemName extends string | number | symbol>({
                 },
               },
             }}
+            type='text'
             name={name.toString()}
             value={value}
             onChange={(v) => onValueChange?.(v.toString())}
@@ -102,7 +112,7 @@ const PudoItem = <TItemName extends string | number | symbol>({
         <circle cx='10' cy='23.5' r='1.5' fill='#B4B4B4' />
       </svg>
 
-      {allowSwap ? (
+      {allowSwap && type === 'input' ? (
         <button
           className='pudo-item__swap-icon'
           type='button'
