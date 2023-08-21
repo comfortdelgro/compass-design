@@ -1,3 +1,5 @@
+'use client'
+
 import {
   RefObject,
   useCallback,
@@ -185,7 +187,7 @@ const useDrag = <T extends HTMLElement>(
         return
       }
 
-      if (opts.prevent) {
+      if (opts.prevent && e.cancelable) {
         e.preventDefault()
       }
 
