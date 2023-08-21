@@ -79,10 +79,10 @@ export default function AppHeader(props: AppHeaderProps) {
           <Button
             variant='primary'
             css={{
-              border: '1px solid white',
+              border: '1px solid $cdgBlue60',
               height: 34,
               width: 34,
-              borderRadius: 10,
+              borderRadius: 4,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',

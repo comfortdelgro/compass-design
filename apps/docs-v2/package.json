@@ -22,7 +22,6 @@
     "@comfortdelgro/compass-icons": "^1.2.0",
     "@comfortdelgro/markdown": "workspace:*",
     "@comfortdelgro/react-compass": "workspace:*",
-    "@docsearch/react": "^3.5.1",
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-brands-svg-icons": "^6.2.1",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",

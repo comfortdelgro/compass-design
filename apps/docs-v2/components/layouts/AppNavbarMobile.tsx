@@ -1,80 +1,15 @@
 import AlignRight from '@comfortdelgro/compass-icons/react/align-right'
 import {Box, Button, Drawer, Icon} from '@comfortdelgro/react-compass'
 import {faClose} from '@fortawesome/free-solid-svg-icons'
-import routes from 'constants/routes'
-import SidenavContext from 'contexts/SideNav'
-import {map} from 'lodash'
 import Link from 'next/link'
-import {useRouter} from 'next/router'
-import {useEffect, useState} from 'react'
-import {TSideNavItem} from 'types/common'
+import {useState} from 'react'
 import {DeferredAppSearch} from './DocsAppFrame'
 
 export default function AppNavbarMobile(props: any) {
   const [isShowDrawer, setIsShowDrawer] = useState(false)
-  const [sidenav, setSidenav] = useState<TSideNavItem[]>([])
-  const router = useRouter()
-
-  useEffect(() => {
-    const [_, parentPath = 'foundation', childrenPath = 'overview'] =
-      router.route.split('/')
-    const newSidenav = map(routes, (route) => {
-      if (route.pathname === `/${parentPath}`) {
-        return {
-          ...route,
-          isExpanded: true,
-          children: map(route.children, (child) => {
-            if (child.pathname === `/${childrenPath}`) {
-              return {
-                ...child,
-                pathname: `${route.pathname}${child.pathname}`,
-                isActive: true,
-              }
-            }
-            return {
-              ...child,
-              pathname: `${route.pathname}${child.pathname}`,
-            }
-          }),
-        }
-      }
-      return {
-        ...route,
-        isExpanded: false,
-        children: map(route.children, (child) => {
-          return {
-            ...child,
-            pathname: `${route.pathname}${child.pathname}`,
-          }
-        }),
-      }
-    })
-
-    setSidenav(newSidenav)
-  }, [router])
-
-  const handleExpandSidenav = (path: string) => {
-    const newSidenav = map(sidenav, (sideNavItem) => {
-      if (path === sideNavItem.pathname) {
-        return {
-          ...sideNavItem,
-          isExpanded: true,
-        }
-      }
-      return {
-        ...sideNavItem,
-        isExpanded: false,
-      }
-    })
-    setSidenav(newSidenav)
-  }
-
-  const onClickItem = () => {
-    setIsShowDrawer(false)
-  }
 
   return (
-    <SidenavContext.Provider value={sidenav}>
+    <>
       <Button
         css={{padding: '$1'}}
         type='button'
@@ -148,6 +83,6 @@ export default function AppNavbarMobile(props: any) {
           </Link>
         </Box>
       </Drawer>
-    </SidenavContext.Provider>
+    </>
   )
 }
