@@ -240,6 +240,8 @@ export const lightTheme = defineTheme({
     gradientOrange: '#F02627, #EA8816',
     gradientRainbow: '#0163AE, #D80837, #53AF35',
     gradientOrangeBlue: '#D2132A, #0597DB',
+
+    greenShades: '#159A00',
   },
   fonts,
   fontSizes,
@@ -342,6 +344,8 @@ export const darkTheme = createTheme('dark-theme', {
     gradientOrange: '#CC1E1F, #D37C16',
     gradientRainbow: '#025493, #A51C2E, #46932D',
     gradientOrangeBlue: '#AA1022, #027FB9',
+
+    greenShades: '#159A00',
   },
   fonts,
   fontSizes,
