@@ -37,6 +37,26 @@ export const routes: TSideNavItem[] = [
         title: 'Button',
         pathname: '/button',
       },
+      {
+        title: 'Chip',
+        pathname: '/chip',
+      },
+      {
+        title: 'DashboardSidecard',
+        pathname: '/dashboard-sidecard',
+      },
+      {
+        title: 'Dialog',
+        pathname: '/dialog',
+      },
+      {
+        title: 'Divider',
+        pathname: '/divider',
+      },
+      {
+        title: 'Dropdown',
+        pathname: '/dropdown',
+      },
     ],
   },
   {

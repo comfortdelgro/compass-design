@@ -20,7 +20,7 @@ export const Variants: Story<{onChange: () => void}> = () => (
         Indeterminate (disabled)
       </Checkbox>
       <Checkbox isSelected isReadOnly>
-        Read ony
+        Read only
       </Checkbox>
     </Column>
 

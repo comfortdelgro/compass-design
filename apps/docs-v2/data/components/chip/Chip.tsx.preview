@@ -1,0 +1,14 @@
+<Chip>Basic Chip</Chip>
+
+<Chip
+    hasCloseButton
+    onCloseClick={() => {
+    console.log('Close button click')
+    }}
+>
+    Close button
+</Chip>
+
+<Chip hasCloseButton isErrored>
+    Errored Chip
+</Chip>
