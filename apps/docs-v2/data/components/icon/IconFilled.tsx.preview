@@ -1,0 +1,6 @@
+import AddressBookFilled from '@comfortdelgro/compass-icons/react/filled/address-book-filled'
+
+<IconBox
+      component={<AddressBookFilled width={40} height={40} />}
+      name='AddressBookFilled'
+/>
