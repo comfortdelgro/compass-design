@@ -2,7 +2,6 @@
 
 import React, {
   forwardRef,
-  HTMLAttributes,
   ReactElement,
   Ref,
   useCallback,
@@ -11,62 +10,10 @@ import React, {
   useState,
 } from 'react'
 import Button from '../button'
-import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
-import PudoItem, {PudoItemProps} from './pudo-item'
+import PudoItem from './pudo-item'
 import {StyledPUDO} from './pudo.styles'
-
-export type PudoProps<TItemKeys extends string | number | symbol> = {
-  /**
-   * PUDO's item list.
-   * ___
-   * This item list will be automatically de-duplicated (by `name`).
-   */
-  items: Readonly<Array<PudoItemProps<TItemKeys>>>
-  /**
-   * This will override the `type` value of all items.
-   */
-  type?: PudoItemProps<TItemKeys>['type']
-  onValuesChange?: (
-    values: Record<TItemKeys, string>,
-    arrValues: Array<{name: TItemKeys; value: string}>,
-  ) => void
-  /**
-   * Min length of item list.
-   * ___
-   * Must be smaller than `maxLength`
-   * @default
-   * minLength = 2
-   * maxLength = 3
-   */
-  minLength?: number
-  /**
-   * Max length of item list.
-   * ___
-   * Must be greater than `minLength`
-   * @default
-   * minLength = 2
-   * maxLength = 3
-   */
-  maxLength?: number
-  /**
-   * Remove all items by its `name` according to provided keys.
-   * ___
-   * This array will be de-duplicated automatically and will be ignored
-   * if PUDO's `type` is `'label'`.
-   */
-  removableItems?: TItemKeys[]
-  removableLabel?: string
-  /**
-   * Add all provided items to the existing item list.
-   * ___
-   * This array will be de-duplicated automatically (by `name`) and will be ignored
-   * if PUDO's `type` is `'label'`.
-   */
-  addItems?: Readonly<Array<PudoItemProps<TItemKeys>>>
-  addItemsLabel?: string
-} & StyledComponentProps &
-  HTMLAttributes<HTMLDivElement>
+import {PudoItemProps, PudoProps} from './pudo.types'
 
 const PudoRefComponent = <TItemKeys extends string | number | symbol>(
   {

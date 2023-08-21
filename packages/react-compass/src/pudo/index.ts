@@ -1,6 +1,5 @@
 import Pudo from './pudo'
 
-export type {PudoProps} from './pudo'
-export type {PudoItemProps} from './pudo-item'
+export type {PudoItemProps, PudoProps} from './pudo.types'
 
 export default Pudo

@@ -4,7 +4,7 @@ import React, {useState} from 'react'
 import {styled} from '../theme'
 import Typography from '../typography'
 import Pudo from './pudo'
-import {PudoItemProps} from './pudo-item'
+import {PudoItemProps} from './pudo.types'
 
 const exampleItem = [
   {name: 'item1', value: '', placeholder: 'item1'},
