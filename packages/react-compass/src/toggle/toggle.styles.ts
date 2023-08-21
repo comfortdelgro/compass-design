@@ -69,7 +69,7 @@ export const StyledToggle = styled('div', {
       disabled: false,
       variant: 'h5',
       css: {
-        backgroundColor: '$secondaryGreen',
+        backgroundColor: '$greenShades',
       },
     },
   ],

@@ -1,6 +1,5 @@
-import { createTheme } from '@stitches/react'
-import { StitchesTheme } from '../utils/stitches.types'
-
+import {createTheme} from '@stitches/react'
+import {StitchesTheme} from '../utils/stitches.types'
 
 const defineTheme = <T extends StitchesTheme>(theme: T) => theme
 
@@ -241,7 +240,7 @@ export const lightTheme = defineTheme({
     gradientRainbow: '#0163AE, #D80837, #53AF35',
     gradientOrangeBlue: '#D2132A, #0597DB',
 
-    secondaryGreen: '#159A00',
+    greenShades: '#159A00',
   },
   fonts,
   fontSizes,
@@ -344,7 +343,7 @@ export const darkTheme = createTheme('dark-theme', {
     gradientRainbow: '#025493, #A51C2E, #46932D',
     gradientOrangeBlue: '#AA1022, #027FB9',
 
-    secondaryGreen: '#159A00',
+    greenShades: '#159A00',
   },
   fonts,
   fontSizes,
