@@ -40,6 +40,10 @@ export const StyledDrawer = styled('dialog', {
   zIndex: '48',
   pointerEvents: 'none',
 
+  '&:focus-visible': {
+    outline: 'none',
+  },
+
   '&::backdrop': {
     background: 'rgba(0, 0, 0, 0.4)',
   },
