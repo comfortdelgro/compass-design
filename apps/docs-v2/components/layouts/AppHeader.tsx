@@ -8,8 +8,9 @@ import SvgLogo from 'components/icons/SvgLogo'
 import {DeferredAppSearch} from 'components/layouts/DocsAppFrame'
 import {ETheme} from 'constants/index'
 import {useThemeContext} from 'contexts/Theme'
-import {useIsTabletScreen} from 'hooks'
+import {useIsMobileScreen, useIsTabletScreen} from 'hooks'
 import Link from 'next/link'
+import AppNavbarMobile from './AppNavbarMobile'
 import DocsAppSideNavMobile from './DocsAppSideNavMobile'
 
 interface AppHeaderProps {
@@ -25,6 +26,7 @@ export default function AppHeader(props: AppHeaderProps) {
 
   const mode = useThemeContext()
   const isTabletScreen = useIsTabletScreen()
+  const isMobileScreen = useIsMobileScreen()
 
   return (
     <Navbar css={{maxWidth: '100vw', overflow: 'hidden', gap: '$1'}}>
@@ -33,33 +35,37 @@ export default function AppHeader(props: AppHeaderProps) {
         <Link href='/' style={{textDecoration: 'none'}}>
           <Box css={{display: 'flex', alignItems: 'center'}}>
             <SvgLogo />
-            <Typography.Header
-              variant='header4'
-              css={{color: 'white', marginLeft: 10, fontWeight: 'bold'}}
-            >
-              REACT COMPASS
-            </Typography.Header>
+            {!isMobileScreen && (
+              <Typography.Header
+                variant='header4'
+                css={{color: 'white', marginLeft: 10, fontWeight: 'bold'}}
+              >
+                REACT COMPASS
+              </Typography.Header>
+            )}
           </Box>
         </Link>
       </Navbar.Brand>
-      <NavbarLinks>
-        <Link href='/foundation/overview' passHref legacyBehavior>
-          <Button href='/foundation/overview'>Document</Button>
-        </Link>
-        <Link
-          href='https://comfortdelgro.github.io/compass-design/ladle/'
-          target='_blank'
-          passHref
-          legacyBehavior
-        >
-          <Button href='https://comfortdelgro.github.io/compass-design/ladle/'>
-            Ladle
-          </Button>
-        </Link>
-        <Link href='/products' passHref legacyBehavior>
-          <Button href='/products'>Products</Button>
-        </Link>
-      </NavbarLinks>
+      {!isTabletScreen && (
+        <NavbarLinks>
+          <Link href='/foundation/overview' passHref legacyBehavior>
+            <Button href='/foundation/overview'>Document</Button>
+          </Link>
+          <Link
+            href='https://comfortdelgro.github.io/compass-design/ladle/'
+            target='_blank'
+            passHref
+            legacyBehavior
+          >
+            <Button href='https://comfortdelgro.github.io/compass-design/ladle/'>
+              Ladle
+            </Button>
+          </Link>
+          <Link href='/products' passHref legacyBehavior>
+            <Button href='/products'>Products</Button>
+          </Link>
+        </NavbarLinks>
+      )}
       <NavbarSeperator />
       <NavbarActions
         css={{
@@ -68,7 +74,7 @@ export default function AppHeader(props: AppHeaderProps) {
           },
         }}
       >
-        <DeferredAppSearch />
+        {!isTabletScreen && <DeferredAppSearch />}
         <a href={gitHubRepository} target='_blank'>
           <Button
             variant='primary'
@@ -89,6 +95,7 @@ export default function AppHeader(props: AppHeaderProps) {
           checked={mode === ETheme.Dark}
           onChange={handleChangeThemeMode}
         />
+        {isTabletScreen && <AppNavbarMobile />}
       </NavbarActions>
     </Navbar>
   )
