@@ -203,6 +203,19 @@ export const StyledButton = styled('button', {
         },
       },
     },
+    h5: {
+      true: {
+        borderRadius: '$lg',
+        padding: '11px $6',
+        fontSize: '$body2',
+        fontWeight: '$bold',
+        '&:disabled': {
+          background: '$grayShades20',
+          color: '$grayShades60',
+          borderColor: '$grayShades20',
+        },
+      },
+    },
     fullWidth: {
       true: {
         width: '100%',
@@ -259,6 +272,59 @@ export const StyledButton = styled('button', {
       iconOnly: true,
       css: {
         height: 'calc((1.5*$3) + (2*$1))',
+      },
+    },
+    {
+      variant: 'primary',
+      h5: true,
+      css: {
+        background: '$blueShades100',
+        color: '$whiteText',
+        borderColor: '$grayShades20',
+        '&.cdg-link-button:hover': {
+          background: '$blueShades120',
+          borderColor: '$grayShades20',
+        },
+        '&:hover:enabled': {
+          background: '$blueShades120',
+          borderColor: '$grayShades20',
+        },
+      },
+    },
+    {
+      variant: 'secondary',
+      h5: true,
+      css: {
+        background: 'transparent',
+        color: '$blueShades100',
+        borderColor: '$blueShades100',
+        '&.cdg-link-button:hover': {
+          color: '$blueShades120',
+          background: '$grayShades10',
+          borderColor: '$blueShades120',
+        },
+        '&:hover:enabled': {
+          color: '$blueShades120',
+          background: '$grayShades10',
+          borderColor: '$blueShades120',
+        },
+      },
+    },
+    {
+      variant: 'danger',
+      h5: true,
+      css: {
+        background: 'transparent',
+        color: '$dangerShades',
+        borderColor: '$dangerShades',
+        '&.cdg-link-button:hover': {
+          background: '$grayShades10',
+          borderColor: '$dangerShades',
+        },
+        '&:hover:enabled': {
+          background: '$grayShades10',
+          borderColor: '$dangerShades',
+        },
       },
     },
   ],
