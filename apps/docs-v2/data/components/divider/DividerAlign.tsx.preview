@@ -1,0 +1,9 @@
+<Divider textAlign='left'>
+    <span>Left</span>
+</Divider>
+<Divider textAlign='center'>
+    <span>Center</span>
+</Divider>
+<Divider textAlign='right'>
+    <span>Right</span>
+</Divider>
