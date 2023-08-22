@@ -66,6 +66,8 @@ export {default as Checkbox} from './checkbox'
 export type {CheckboxProps} from './checkbox'
 export {default as Chip} from './chip'
 export type {ChipProps} from './chip'
+export {default as ConfirmPUPoint} from './confirm-pickup'
+export type {ConfirmPUPointProps, PickupPointType} from './confirm-pickup'
 export {default as DashboardSidecard} from './dashboard-sidecard'
 export type {
   DashboardSidecardContentProps,
