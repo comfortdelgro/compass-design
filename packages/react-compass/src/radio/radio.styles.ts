@@ -18,6 +18,7 @@ export const StyledRadio = styled('div', {
       width: 0,
       height: 0,
       appearance: 'none',
+      margin: 0,
     },
   },
   '.radio-content-wrapper': {
