@@ -26,6 +26,52 @@ export const StyledPUDO = styled('div', {
       display: 'none',
     },
   },
+
+  variants: {
+    compact: {
+      md: {
+        '.pudo-items-wrapper .pudo-item': {
+          '.pudo-item__input, .pudo-item__label': {
+            borderTop: 'none',
+          },
+          '.pudo-item__label': {
+            paddingBlock: '$3',
+          },
+          '.pudo-item__input': {
+            input: {
+              height: '$10',
+            },
+          },
+          '.pudo-item__connect-icon': {
+            height: '$5',
+            bottom: '-$2',
+            overflow: 'hidden',
+          },
+        },
+      },
+      sm: {
+        '.pudo-items-wrapper .pudo-item': {
+          '.pudo-item__input, .pudo-item__label': {
+            borderTop: 'none',
+          },
+          '.pudo-item__label': {
+            paddingBlock: '$2',
+          },
+          '.pudo-item__input': {
+            input: {
+              paddingBlock: '$1',
+              height: 'auto',
+            },
+          },
+          '.pudo-item__connect-icon': {
+            height: '$2_5',
+            bottom: '-$1',
+            overflow: 'hidden',
+          },
+        },
+      },
+    },
+  },
 })
 
 export const StyledPUDOItem = styled('div', {
@@ -49,7 +95,7 @@ export const StyledPUDOItem = styled('div', {
   '.pudo-item__connect-icon': {
     position: 'absolute',
     left: '$4',
-    bottom: '-$3_5',
+    bottom: '-$4_5',
     zIndex: 1,
   },
 
@@ -105,7 +151,7 @@ export const StyledPUDOItem = styled('div', {
 
           fontSize: '$label1',
           fontWeight: '$normal',
-          lineHeight: '$5',
+          lineHeight: '$tight',
         },
         '&~ .pudo-item': {
           '.pudo-item__label': {
@@ -118,3 +164,4 @@ export const StyledPUDOItem = styled('div', {
 })
 
 export type PudoItemVariantProps = VariantProps<typeof StyledPUDOItem>
+export type PudoVariantProps = VariantProps<typeof StyledPUDO>

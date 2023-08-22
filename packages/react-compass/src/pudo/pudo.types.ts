@@ -1,19 +1,29 @@
-import {HTMLAttributes, ReactNode} from 'react'
+import {CSSProperties, FocusEvent, ReactNode} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {PudoItemVariantProps} from './pudo.styles'
 
+export type PudoValueChange<
+  TItemKeys extends string | number | symbol = string,
+> = Array<{
+  name: TItemKeys
+  value: string
+  isFocusing?: boolean
+}>
+
 export type PudoProps<TItemKeys extends string | number | symbol> = {
+  className?: string
+  style?: CSSProperties
   /**
    * PUDO's item list.
    * ___
    * This item list will be automatically de-duplicated (by `name`).
    */
-  items: Readonly<Array<PudoItemProps<TItemKeys>>>
+  items: Array<PudoItemProps<TItemKeys>>
   /**
    * This will override the `type` of all items.
    */
   type?: PudoItemProps<TItemKeys>['type']
-  onValuesChange?: (values: Array<{name: TItemKeys; value: string}>) => void
+  onValuesChange?: (values: PudoValueChange<TItemKeys>) => void
   /**
    * Min length of item list.
    * ___
@@ -48,14 +58,8 @@ export type PudoProps<TItemKeys extends string | number | symbol> = {
    */
   addItems?: Readonly<Array<PudoItemProps<TItemKeys>>>
   addItemsLabel?: string
-  /**
-   * Debounce time for `onValuesChange`
-   * Unit: miliseconds
-   * @default 0 // no debounce
-   */
-  debounceTime?: number
-} & StyledComponentProps &
-  HTMLAttributes<HTMLDivElement>
+  compact?: 'sm' | 'md'
+} & StyledComponentProps
 
 export type PudoItemProps<TName extends string | number | symbol = string> = {
   name: TName
@@ -76,6 +80,8 @@ export type PudoItemProps<TName extends string | number | symbol = string> = {
 
   /** @default 255 */
   maxLength?: number
+
+  isRequired?: boolean
 } & StyledComponentProps
 
 export type PudoItemPrivateProps<TName extends string | number | symbol> = {
@@ -83,5 +89,6 @@ export type PudoItemPrivateProps<TName extends string | number | symbol> = {
   itemsLength: number
   onValueChange?: (value: string) => void
   handleSwap?: () => void
+  onInputFocus?: (e: FocusEvent<HTMLInputElement>) => void
 } & PudoItemProps<TName> &
   PudoItemVariantProps

@@ -14,10 +14,12 @@ const PudoItem = <TItemName extends string | number | symbol>({
   icon,
   value = '',
   onValueChange,
+  onInputFocus,
   allowSwap = false,
   handleSwap,
   placeholder = '',
   maxLength = 255,
+  isRequired = false,
   ...delegated
 }: PudoItemPrivateProps<TItemName>) => {
   const pudoItemCSS = useMemo(
@@ -57,9 +59,11 @@ const PudoItem = <TItemName extends string | number | symbol>({
             type='text'
             name={name.toString()}
             value={value}
+            onFocus={(event) => onInputFocus?.(event)}
             onChange={(v) => onValueChange?.(v.toString())}
             placeholder={placeholder}
             maxLength={maxLength}
+            isRequired={isRequired}
           />
         )
 
@@ -77,19 +81,20 @@ const PudoItem = <TItemName extends string | number | symbol>({
     >
       <div className='pudo-item__icon'>{icon || DefaultIcons[index]}</div>
       {renderPudoContent()}
-      <svg
-        className='pudo-item__connect-icon'
-        width='20'
-        height='29'
-        viewBox='0 0 20 29'
-        fill='none'
-        xmlns='http://www.w3.org/2000/svg'
-      >
-        <circle cx='10' cy='5.5' r='1.5' fill='#B4B4B4' />
-        <circle cx='10' cy='11.5' r='1.5' fill='#B4B4B4' />
-        <circle cx='10' cy='17.5' r='1.5' fill='#B4B4B4' />
-        <circle cx='10' cy='23.5' r='1.5' fill='#B4B4B4' />
-      </svg>
+      <div className='pudo-item__connect-icon'>
+        <svg
+          width='20'
+          height='29'
+          viewBox='0 0 20 29'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <circle cx='10' cy='5.5' r='1.5' fill='#B4B4B4' />
+          <circle cx='10' cy='11.5' r='1.5' fill='#B4B4B4' />
+          <circle cx='10' cy='17.5' r='1.5' fill='#B4B4B4' />
+          <circle cx='10' cy='23.5' r='1.5' fill='#B4B4B4' />
+        </svg>
+      </div>
 
       {allowSwap && type === 'input' ? (
         <button

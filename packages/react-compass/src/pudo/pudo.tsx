@@ -10,15 +10,15 @@ import React, {
   useState,
 } from 'react'
 import Button from '../button'
-import {useDebouncedValue} from '../utils/hooks'
 import {useDOMRef} from '../utils/use-dom-ref'
 import PudoItem from './pudo-item'
 import {StyledPUDO} from './pudo.styles'
-import {PudoItemProps, PudoProps} from './pudo.types'
+import {PudoItemProps, PudoProps, PudoValueChange} from './pudo.types'
 
 const PudoRefComponent = <TItemKeys extends string | number | symbol>(
   {
     items,
+    className = '',
     css = {},
     type,
     onValuesChange,
@@ -28,8 +28,7 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
     removableLabel = 'Remove',
     addItems = [],
     addItemsLabel = 'Add',
-    debounceTime = 0,
-    children,
+    compact,
     ...delegated
   }: PudoProps<TItemKeys>,
   ref: Ref<HTMLDivElement>,
@@ -44,11 +43,8 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
     [],
   )
   const [arrPudoValues, setArrPudoValues] = useState<
-    Array<{name: TItemKeys; value: string}>
+    PudoValueChange<TItemKeys>
   >([])
-  useDebouncedValue(arrPudoValues, debounceTime, {
-    onStateChange: onValuesChange,
-  })
 
   const dedupedAddItems = useMemo(
     () =>
@@ -106,6 +102,7 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
       ...allowToAdd.map(({name, value}) => ({name, value})),
     ]
     setArrPudoValues(newPudoArrValues)
+    onValuesChange?.(newPudoArrValues)
   }, [pudoItems, arrPudoValues, dedupedAddItems, maxLength])
 
   const handleRemoveItems = useCallback(() => {
@@ -131,6 +128,7 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
 
     setPudoItems(newPudoItems)
     setArrPudoValues(newPudoArrValues)
+    onValuesChange?.(newPudoArrValues)
   }, [pudoItems, arrPudoValues, dedupedRemoveKeys, minLength])
 
   const renderPudoItems = pudoItems.map((itemProps, index, currArr) => (
@@ -160,14 +158,24 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
         }
 
         setArrPudoValues(newArrayPudoValues)
+        onValuesChange?.(newArrayPudoValues)
       }}
       onValueChange={(value) => {
         const newArrayPudoValues = arrPudoValues.map((currValue) =>
           currValue.name === itemProps.name
-            ? {name: itemProps.name, value}
-            : currValue,
+            ? {name: itemProps.name, value, isFocusing: true}
+            : {...currValue, isFocusing: false},
         )
         setArrPudoValues(newArrayPudoValues)
+        onValuesChange?.(newArrayPudoValues)
+      }}
+      onInputFocus={() => {
+        const newArrayPudoValues = arrPudoValues.map((currValue) => ({
+          ...currValue,
+          isFocusing: currValue.name === itemProps.name,
+        }))
+        setArrPudoValues(newArrayPudoValues)
+        onValuesChange?.(newArrayPudoValues)
       }}
     />
   ))
@@ -178,12 +186,19 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
         index === currArr.findIndex((compareItem) => compareItem.name === name),
     )
 
+    const pudoValue = dedupedItems.map(({name, value}) => ({name, value}))
     setPudoItems(dedupedItems)
-    setArrPudoValues(dedupedItems.map(({name, value}) => ({name, value})))
+    setArrPudoValues(pudoValue)
   }, [items])
 
   return (
-    <StyledPUDO ref={PudoRef} css={css} {...delegated}>
+    <StyledPUDO
+      ref={PudoRef}
+      className={`${className} pudo-container`}
+      css={css}
+      {...(compact ? {compact} : undefined)}
+      {...delegated}
+    >
       <div className='pudo-items-wrapper'>{renderPudoItems}</div>
 
       <div className='pudo-actions'>
@@ -237,8 +252,6 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
           </Button>
         )}
       </div>
-
-      {children}
     </StyledPUDO>
   )
 }
