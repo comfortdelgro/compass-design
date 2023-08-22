@@ -344,7 +344,7 @@ const Root = styled('div', {
       width: 16,
       height: 16,
       display: 'inline-block',
-      fill: 'currentcolor',
+      fill: '$gray110',
       flexShrink: 0,
       fontSize: '18px',
       margin: 'auto',
@@ -354,8 +354,9 @@ const Root = styled('div', {
     },
     '&:hover, &:focus': {
       opacity: 1,
-      backgroundColor: '$cdgBlue40',
+      backgroundColor: '$gray40',
       '& .cdg-copyKeypress': {
+        color: '$gray110',
         display: 'block',
         '@media (any-hover: none)': {
           display: 'none',

@@ -228,7 +228,7 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
 
     if (open) {
       if (disableAddBodyAttr) {
-        document.body.style.setProperty('overflow', bodyOverflow)
+        document.body.style.setProperty('overflow', 'auto')
         document.body.removeAttribute('inert')
       } else {
         document.body.style.setProperty('overflow', 'hidden')
