@@ -86,7 +86,7 @@ export const StyledPUDOItem = styled('div', {
             borderTop: '1px solid $grayShades20',
           },
         },
-        '&:focus-within': {
+        '&:has(.pudo-item__input:focus-within)': {
           backgroundColor: '$grayShades10',
         },
       },
