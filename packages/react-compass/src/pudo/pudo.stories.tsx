@@ -8,14 +8,24 @@ import {PudoItemProps} from './pudo.types'
 
 const exampleItem = [
   {name: 'item1', value: '', placeholder: 'item1'},
-  {name: 'item2', value: '', placeholder: 'item2'},
-  {name: 'item3', value: '', placeholder: 'item3'},
+  {
+    name: 'item2',
+    value: '',
+    placeholder: 'item2',
+    allowSwap: true,
+  },
+  {
+    name: 'item3',
+    icon: <MapMarked />,
+    value: '',
+    placeholder: 'item3',
+  },
 ] as const
 
-type DataExampleState<T extends string | number | symbol = string> = {
-  obj: Record<T, string>
-  arr: Array<{name: T; value: string}>
-}
+type DataExampleState<T extends string | number | symbol = string> = Array<{
+  name: T
+  value: string
+}>
 
 type PudoItemKeys = 'pickUp' | 'des1'
 const pudoItems: Array<PudoItemProps<PudoItemKeys>> = [
@@ -41,21 +51,13 @@ const pendingAddItems = [
 
 type PudoItemAllKeys = (typeof pendingAddItems)[number]['name'] | PudoItemKeys
 
-const initFormValues = pudoItems.reduce(
-  (obj, {name, value}) => ({...obj, [name]: value}),
-  {},
-) as Record<PudoItemAllKeys, string>
-
 export function H5() {
   const [dataExample1, setDataExample1] =
     useState<DataExampleState<(typeof exampleItem)[number]['name']>>()
 
   const [formValues, setFormValues] = useState<
     DataExampleState<PudoItemAllKeys>
-  >({
-    obj: initFormValues,
-    arr: pudoItems.map(({name, value}) => ({name, value})),
-  })
+  >(pudoItems.map(({name, value}) => ({name, value})))
 
   return (
     <>
@@ -64,21 +66,18 @@ export function H5() {
         variant='body3'
         css={{color: '$grayShades60', marginBlock: '$2 $4'}}
       >
-        Support 2 types of return values with auto infer name types:
+        with 200ms debounced value changes.
       </Typography.Body>
       <Pudo
         css={{marginBlock: '$4'}}
         items={exampleItem}
-        onValuesChange={(objValues, arrValues) =>
-          setDataExample1({obj: objValues, arr: arrValues})
-        }
+        onValuesChange={(values) => setDataExample1(values)}
+        debounceTime={200}
       />
       {dataExample1 && (
-        <PreviewCodeContainer>
-          <PreviewCode>{JSON.stringify(dataExample1.obj, null, 2)}</PreviewCode>
-          <PreviewCode>{JSON.stringify(dataExample1.arr, null, 2)}</PreviewCode>
-        </PreviewCodeContainer>
+        <PreviewCode>{JSON.stringify(dataExample1, null, 2)}</PreviewCode>
       )}
+
       <h4>Swap, add and remove items</h4>
       <Typography.Body
         variant='body3'
@@ -87,11 +86,10 @@ export function H5() {
         Default value - Minlength: <strong>2</strong>, Maxlength:{' '}
         <strong>3</strong>, Input&#39;s maxlength: <strong>255</strong>
       </Typography.Body>
+
       <Pudo
         items={pudoItems}
-        onValuesChange={(objValues, arrValues) =>
-          setFormValues({obj: objValues, arr: arrValues})
-        }
+        onValuesChange={(values) => setFormValues(values)}
         addItems={pendingAddItems}
         addItemsLabel='Add extra destination'
         removableItems={['des2', 'des3', 'des4']}
@@ -100,10 +98,7 @@ export function H5() {
         maxLength={3} // default value
       />
       {formValues && (
-        <PreviewCodeContainer>
-          <PreviewCode>{JSON.stringify(formValues.obj, null, 2)}</PreviewCode>
-          <PreviewCode>{JSON.stringify(formValues.arr, null, 2)}</PreviewCode>
-        </PreviewCodeContainer>
+        <PreviewCode>{JSON.stringify(formValues, null, 2)}</PreviewCode>
       )}
 
       <h4>Label view</h4>
@@ -141,14 +136,4 @@ const PreviewCode = styled('pre', {
   fontSize: '$label1',
   whiteSpace: 'pre-wrap',
   overflowWrap: 'anywhere',
-})
-
-const PreviewCodeContainer = styled('div', {
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '1rem',
-
-  '@sm': {
-    flexDirection: 'row',
-  },
 })

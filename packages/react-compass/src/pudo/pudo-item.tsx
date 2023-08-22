@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react'
+import React, {useCallback, useMemo} from 'react'
 import TextField from '../textfield'
 import {DefaultIcons} from './pudo.config'
 import {StyledPUDOItem} from './pudo.styles'
@@ -20,6 +20,11 @@ const PudoItem = <TItemName extends string | number | symbol>({
   maxLength = 255,
   ...delegated
 }: PudoItemPrivateProps<TItemName>) => {
+  const pudoItemCSS = useMemo(
+    () => ({...css, zIndex: itemsLength - 1 - index ?? undefined}),
+    [css, index, itemsLength],
+  )
+
   const renderPudoContent = useCallback(() => {
     switch (type) {
       case 'label':
@@ -65,7 +70,7 @@ const PudoItem = <TItemName extends string | number | symbol>({
 
   return (
     <StyledPUDOItem
-      css={{...css, zIndex: itemsLength - 1 - index ?? undefined}}
+      css={pudoItemCSS}
       className={`pudo-item ${className}`}
       {...{type}}
       {...delegated}

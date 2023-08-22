@@ -10,6 +10,7 @@ import React, {
   useState,
 } from 'react'
 import Button from '../button'
+import {useDebouncedValue} from '../utils/hooks'
 import {useDOMRef} from '../utils/use-dom-ref'
 import PudoItem from './pudo-item'
 import {StyledPUDO} from './pudo.styles'
@@ -27,6 +28,7 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
     removableLabel = 'Remove',
     addItems = [],
     addItemsLabel = 'Add',
+    debounceTime = 0,
     children,
     ...delegated
   }: PudoProps<TItemKeys>,
@@ -41,17 +43,12 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
   const [pudoItems, setPudoItems] = useState<Array<PudoItemProps<TItemKeys>>>(
     [],
   )
-
   const [arrPudoValues, setArrPudoValues] = useState<
     Array<{name: TItemKeys; value: string}>
   >([])
-
-  const [pudoValues, setPudoValues] = useState<Record<TItemKeys, string>>(
-    arrPudoValues.reduce(
-      (obj, {name, value}) => ({...obj, [name]: value}),
-      {},
-    ) as Record<TItemKeys, string>,
-  )
+  useDebouncedValue(arrPudoValues, debounceTime, {
+    onStateChange: onValuesChange,
+  })
 
   const dedupedAddItems = useMemo(
     () =>
@@ -104,21 +101,12 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
     const allowToAdd = dedupedAddItems.slice(0, maxLength - pudoItems.length)
     setPudoItems((currState) => [...currState, ...allowToAdd])
 
-    const newPudoObjValues = {
-      ...pudoValues,
-      ...(allowToAdd.reduce(
-        (obj, {name, value}) => ({...obj, [name]: value}),
-        {},
-      ) as Record<TItemKeys, string>),
-    }
     const newPudoArrValues = [
       ...arrPudoValues,
       ...allowToAdd.map(({name, value}) => ({name, value})),
     ]
-    setPudoValues(newPudoObjValues)
     setArrPudoValues(newPudoArrValues)
-    onValuesChange?.(newPudoObjValues, newPudoArrValues)
-  }, [pudoItems, arrPudoValues, pudoValues, dedupedAddItems, maxLength])
+  }, [pudoItems, arrPudoValues, dedupedAddItems, maxLength])
 
   const handleRemoveItems = useCallback(() => {
     if (!dedupedRemoveKeys.length) {
@@ -141,16 +129,9 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
       newPudoArrValues.splice(removeIndex, 1)
     }
 
-    const newPudoObjValues = newPudoArrValues.reduce(
-      (obj, {name, value}) => ({...obj, [name]: value}),
-      {},
-    ) as Record<TItemKeys, string>
-
     setPudoItems(newPudoItems)
-    setPudoValues(newPudoObjValues)
     setArrPudoValues(newPudoArrValues)
-    onValuesChange?.(newPudoObjValues, newPudoArrValues)
-  }, [pudoItems, arrPudoValues, pudoValues, dedupedRemoveKeys, minLength])
+  }, [pudoItems, arrPudoValues, dedupedRemoveKeys, minLength])
 
   const renderPudoItems = pudoItems.map((itemProps, index, currArr) => (
     <PudoItem
@@ -159,7 +140,7 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
       type={type || itemProps.type || 'input'}
       index={index}
       itemsLength={currArr.length}
-      value={pudoValues[itemProps.name]}
+      value={arrPudoValues[index]?.value ?? ''}
       allowSwap={!!itemProps.allowSwap}
       handleSwap={() => {
         const swapKey = currArr[index + 1]?.name
@@ -167,37 +148,26 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
           return
         }
 
-        const swapValue = pudoValues[swapKey]
-        const currItemValue = pudoValues[itemProps.name]
         // structuredClone requires at least node@17, it might break vendor's apps.
         const newArrayPudoValues = arrPudoValues.slice()
-        newArrayPudoValues[index] = {name: itemProps.name, value: swapValue}
-        newArrayPudoValues[index + 1] = {name: swapKey, value: currItemValue}
-
-        const newPudoValues = {
-          ...pudoValues,
-          [swapKey]: currItemValue,
-          [itemProps.name]: swapValue,
+        newArrayPudoValues[index] = {
+          name: itemProps.name,
+          value: arrPudoValues[index + 1]?.value ?? '',
+        }
+        newArrayPudoValues[index + 1] = {
+          name: swapKey,
+          value: arrPudoValues[index]?.value ?? '',
         }
 
         setArrPudoValues(newArrayPudoValues)
-        setPudoValues(newPudoValues)
-        onValuesChange?.(newPudoValues, newArrayPudoValues)
       }}
       onValueChange={(value) => {
-        const newPudoValues: Record<TItemKeys, string> = {
-          ...pudoValues,
-          [itemProps.name]: value,
-        }
-
         const newArrayPudoValues = arrPudoValues.map((currValue) =>
           currValue.name === itemProps.name
             ? {name: itemProps.name, value}
             : currValue,
         )
-        onValuesChange?.(newPudoValues, newArrayPudoValues)
         setArrPudoValues(newArrayPudoValues)
-        setPudoValues(newPudoValues)
       }}
     />
   ))
@@ -210,12 +180,6 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
 
     setPudoItems(dedupedItems)
     setArrPudoValues(dedupedItems.map(({name, value}) => ({name, value})))
-    setPudoValues(
-      dedupedItems.reduce(
-        (obj, {name, value}) => ({...obj, [name]: value}),
-        {},
-      ) as Record<TItemKeys, string>,
-    )
   }, [items])
 
   return (
