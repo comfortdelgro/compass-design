@@ -1,0 +1,6 @@
+<Badge
+  label='Outline'
+  color='warning'
+  variant='outline'
+  css={{color: 'purple', '&:hover': {backgroundColor: 'grey'}}}
+/>
