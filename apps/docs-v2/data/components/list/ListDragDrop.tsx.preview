@@ -1,0 +1,5 @@
+<DragAndDropList>
+  <DragAndDropList.Item key='1'>green</DragAndDropList.Item>
+  <DragAndDropList.Item key='2'>red</DragAndDropList.Item>
+  <DragAndDropList.Item key='3'>blue</DragAndDropList.Item>
+</DragAndDropList>

@@ -39,7 +39,6 @@ export const Variations: React.FC = () => (
         </Button>
       </div>
     </Row>
-
     <h3>3. Ripple effect when being clicked</h3>
     <Row>
       <Button
@@ -61,9 +60,7 @@ export const Variations: React.FC = () => (
         Ghost
       </Button>
     </Row>
-
     <h3>4. Left Icons</h3>
-
     <Row>
       <Button variant='primary' leftIcon={<Icon icon={faChevronDown} />}>
         Primary
@@ -81,7 +78,6 @@ export const Variations: React.FC = () => (
         Disabled
       </Button>
     </Row>
-
     <h3>5. Right Icons</h3>
     <Row>
       <Button variant='primary' rightIcon={<Icon icon={faChevronDown} />}>
@@ -100,7 +96,6 @@ export const Variations: React.FC = () => (
         Disabled
       </Button>
     </Row>
-
     <h3>6. both Left & Right Icons</h3>
     <Row>
       <Button
@@ -140,7 +135,6 @@ export const Variations: React.FC = () => (
         Disabled
       </Button>
     </Row>
-
     <h3>7. With only Icons</h3>
     <Row>
       <Button variant='primary'>
@@ -159,7 +153,6 @@ export const Variations: React.FC = () => (
         <Icon icon={faUserEdit} />
       </Button>
     </Row>
-
     <h3>8. Loading</h3>
     <Row>
       <Button
@@ -195,6 +188,21 @@ export const Variations: React.FC = () => (
       </Button>
       <Button href='/#page' variant='ghost'>
         Ghost
+      </Button>
+    </Row>
+    <h3>10. H5</h3>
+    <Row>
+      <Button variant='primary' h5 onPress={() => console.log('pressed')}>
+        Primary
+      </Button>
+      <Button variant='secondary' h5>
+        Secondary
+      </Button>
+      <Button variant='danger' h5>
+        Danger
+      </Button>
+      <Button isDisabled h5>
+        Disabled
       </Button>
     </Row>
   </Column>

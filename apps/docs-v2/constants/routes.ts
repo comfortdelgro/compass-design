@@ -60,6 +60,46 @@ export const routes: TSideNavItem[] = [
       {
         title: 'Checkbox',
         pathname: '/checkbox',
+        title: 'Chip',
+        pathname: '/chip',
+      },
+      {
+        title: 'DashboardSidecard',
+        pathname: '/dashboard-sidecard',
+      },
+      {
+        title: 'Dialog',
+        pathname: '/dialog',
+      },
+      {
+        title: 'Divider',
+        pathname: '/divider',
+      },
+      {
+        title: 'Dropdown',
+        pathname: '/dropdown',
+        title: 'Dropdown Menu',
+        pathname: '/dropdown-menu',
+      },
+      {
+        title: 'Error',
+        pathname: '/error',
+      },
+      {
+        title: 'Icon',
+        pathname: '/icon',
+      },
+      {
+        title: 'Image Viewer',
+        pathname: '/image-viewer',
+      },
+      {
+        title: 'Link',
+        pathname: '/link',
+      },
+      {
+        title: 'List',
+        pathname: '/list',
       },
     ],
   },

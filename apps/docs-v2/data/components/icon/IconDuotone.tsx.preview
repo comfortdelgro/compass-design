@@ -1,0 +1,6 @@
+import BadgeDollarDuotone from '@comfortdelgro/compass-icons/react/duotone/badge-dollar-duotone'
+
+<IconBox
+    component={<BadgeDollarDuotone width={40} height={40} />}
+    name='BadgeDollarDuotone'
+/>
