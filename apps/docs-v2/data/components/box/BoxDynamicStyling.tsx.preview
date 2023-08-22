@@ -1,0 +1,23 @@
+<Box
+    css={{
+        backgroundColor: 'grey',
+        width: '8rem',
+        textAlign: 'center',
+        '& p': {
+        color: 'white',
+        },
+    }}
+>
+    <p>My box</p>
+</Box>
+
+<Box
+    style={{
+        backgroundColor: 'grey',
+        width: '8rem',
+        textAlign: 'center',
+        color: 'red',
+    }}
+>
+<p>My box</p>
+</Box>

@@ -1,0 +1,6 @@
+<Checkbox
+    isSelected={isSelected}
+    onChange={() => setIsSelected(!isSelected)}
+>
+    {isSelected ? 'Selected' : 'Unselected'}
+</Checkbox>
