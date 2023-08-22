@@ -25,7 +25,7 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
   const bodyOverflow = useMemo(
     () =>
       typeof document !== 'undefined' ? document.body.style.overflow : 'auto',
-    [document],
+    [],
   )
 
   const {
@@ -108,6 +108,20 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
     typeof DrawerFooter
   >(OtherElementsExceptHeader, DrawerFooter)
 
+  const handleCloseDrawer = useCallback(
+    (dialogReturnValue?: string) => {
+      if (typeof document === 'undefined' || !DrawerElement) {
+        return
+      }
+      setDrawerHeight(drawerInitHeight)
+
+      document.body.style.setProperty('overflow', bodyOverflow)
+      document.body.removeAttribute('inert')
+      DrawerElement.close(dialogReturnValue)
+    },
+    [DrawerElement, drawerInitHeight],
+  )
+
   const handleMouseDown = useCallback(
     (e: MouseEvent<HTMLDialogElement>) => {
       if (!DrawerElement) {
@@ -121,10 +135,10 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
 
       // Close the drawer if the user click to the dialog elements itself (eg: the backdrop)
       if (e.target.nodeName === 'DIALOG') {
-        DrawerElement.close('dismiss')
+        handleCloseDrawer('dismiss')
       }
     },
-    [DrawerElement, onMouseDown],
+    [DrawerElement, onMouseDown, handleCloseDrawer],
   )
 
   const handleExpanderDragStart = useCallback<
@@ -192,8 +206,7 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
 
       // Close the drawer if the user drag the drawer to the bottom of screen
       if (autoClose && newHeight < drawerInitHeight - 100) {
-        setDrawerHeight(drawerInitHeight)
-        DrawerElement.close()
+        handleCloseDrawer()
         return
       }
     },
@@ -231,11 +244,8 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
       return
     }
 
-    document.body.style.setProperty('overflow', bodyOverflow)
-    document.body.removeAttribute('inert')
-
-    DrawerElement.close()
-  }, [open, DrawerElement, disableAddBodyAttr])
+    handleCloseDrawer()
+  }, [open, DrawerElement, disableAddBodyAttr, handleCloseDrawer])
 
   useEffect(() => {
     if (!open && drawerInitHeight) {

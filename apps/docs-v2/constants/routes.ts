@@ -56,6 +56,28 @@ export const routes: TSideNavItem[] = [
       {
         title: 'Dropdown',
         pathname: '/dropdown',
+        title: 'Dropdown Menu',
+        pathname: '/dropdown-menu',
+      },
+      {
+        title: 'Error',
+        pathname: '/error',
+      },
+      {
+        title: 'Icon',
+        pathname: '/icon',
+      },
+      {
+        title: 'Image Viewer',
+        pathname: '/image-viewer',
+      },
+      {
+        title: 'Link',
+        pathname: '/link',
+      },
+      {
+        title: 'List',
+        pathname: '/list',
       },
     ],
   },
