@@ -41,6 +41,7 @@ export const WithoutSpecificPUPoint = () => {
         onConfirmPickup={(pickupPoint) => {
           console.log(pickupPoint)
         }}
+        placeholder='E.g. Lobby, side entrance, etc'
       />
     </Card>
   )
