@@ -21,11 +21,20 @@ type Props = {
   onConfirmPickup: (pickupPoint?: IPickupPoint) => void
   pickupPoint: IPickupPoint
   onChangePUPoint?: () => void
+  placeholder?: string
 } & StyledComponentProps
 export type ConfirmPUPointProps = Props & ConfirmPUPointVariantProps
 
 const ConfirmPUPoint = React.forwardRef<HTMLDivElement, ConfirmPUPointProps>(
-  ({pickupPoint: initialPUPoint, onConfirmPickup, onChangePUPoint}, ref) => {
+  (
+    {
+      pickupPoint: initialPUPoint,
+      onConfirmPickup,
+      onChangePUPoint,
+      placeholder = '',
+    },
+    ref,
+  ) => {
     const componentRef = useDOMRef(ref)
     const {name, address, city, street, postalCode, specificPUPoint} =
       initialPUPoint
@@ -39,7 +48,7 @@ const ConfirmPUPoint = React.forwardRef<HTMLDivElement, ConfirmPUPointProps>(
       }
     }, [pickupPoint])
 
-    const handleEditPUPoint = React.useCallback((value) => {
+    const handleInputChange = React.useCallback((value) => {
       setPickupPoint((prev) => {
         return {
           ...prev,
@@ -103,8 +112,8 @@ const ConfirmPUPoint = React.forwardRef<HTMLDivElement, ConfirmPUPointProps>(
           </div>
         ) : (
           <TextField
-            placeholder='E.g. Lobby, side entrance, etc'
-            onChange={handleEditPUPoint}
+            placeholder={placeholder}
+            onChange={handleInputChange}
             css={{
               fontWeight: 400,
               fontSize: '$body3',
