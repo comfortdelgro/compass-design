@@ -245,7 +245,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
       style={{pointerEvents: `${isDisabled ? 'none' : 'auto'}`}}
     >
       <RangeSlider className='range-slider'>
-        <Thumb className={`thumb ${tooltip ? `thumb-tooltips` : ''}`} />
+        <Thumb className={`thumb ${tooltip ? `cdg-thumb-tooltips` : ''}`} />
       </RangeSlider>
     </RangeSliderContainer>
   )

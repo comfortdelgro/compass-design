@@ -12,14 +12,16 @@ import {
 import {useSidenavContext} from 'contexts/SideNav'
 import {isNil} from 'lodash'
 import Link from 'next/link'
+import {useCallback} from 'react'
 import {TSideNavItem} from 'types/common'
 
 type TDocsAppSideNav = {
   handleExpandSidenav: (path: string) => void
+  onClickItem?: () => void
 }
 
 const DocsAppSideNav = (props: TDocsAppSideNav) => {
-  const {handleExpandSidenav} = props
+  const {handleExpandSidenav, onClickItem} = props
   const sideNavs = useSidenavContext()
 
   return (
@@ -44,6 +46,7 @@ const DocsAppSideNav = (props: TDocsAppSideNav) => {
             key={`${item.pathname}${item.title}`}
             {...item}
             handleExpandSidenav={handleExpandSidenav}
+            onClickItem={onClickItem}
           />
         )
       })}
@@ -53,16 +56,28 @@ const DocsAppSideNav = (props: TDocsAppSideNav) => {
 
 type TCustomSideNavItem = {
   handleExpandSidenav: (path: string) => void
+  onClickItem?: () => void
 } & TSideNavItem
 
 const CustomSidenavItem = (props: TCustomSideNavItem) => {
-  const {icon, title, children, isExpanded, pathname, handleExpandSidenav} =
-    props
+  const {
+    icon,
+    title,
+    children,
+    isExpanded,
+    pathname,
+    handleExpandSidenav,
+    onClickItem,
+  } = props
 
   const handleClickSidenav = () => {
     if (isNil(isExpanded)) return
     handleExpandSidenav(pathname)
   }
+
+  const handleOnClickItem = useCallback(() => {
+    onClickItem && onClickItem()
+  }, [onClickItem])
 
   return (
     <>
@@ -105,6 +120,7 @@ const CustomSidenavItem = (props: TCustomSideNavItem) => {
                   key={`${child.pathname}${index}`}
                   href={child.pathname}
                   style={{textDecoration: 'none'}}
+                  onClick={handleOnClickItem}
                 >
                   <MenuListDropdown.Item
                     key={child.pathname}

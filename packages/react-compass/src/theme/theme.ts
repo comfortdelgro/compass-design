@@ -178,6 +178,7 @@ export const lightTheme = defineTheme({
     dangerBg: '#EFD9DB',
     danger: '#A4262C',
     dangerDarker: '#7d1b20',
+    dangerShades: '#E31617',
 
     successBg: '#D1E8CF',
     success: '#107C10',
@@ -215,6 +216,22 @@ export const lightTheme = defineTheme({
     gray100: '#323130',
     gray110: '#201F1E',
 
+    grayShades10: '#F7F8F9',
+    grayShades20: '#E6E6E6',
+    grayShades40: '#B4B4B4',
+    grayShades60: '#757575',
+    grayShades80: '#3E3E3E',
+    grayShades100: '#333333',
+
+    blueShades0: '',
+    blueShades10: '#E6ECF7',
+    blueShades20: '',
+    blueShades40: '',
+    blueShades60: '',
+    blueShades80: '#3468BF',
+    blueShades100: '#0142AF',
+    blueShades120: '#012158',
+
     primaryBg: '#F5F5F6',
     secondaryBg: '#F0F0F0',
     darkerBg: '#EAEBEB',
@@ -223,6 +240,8 @@ export const lightTheme = defineTheme({
     gradientOrange: '#F02627, #EA8816',
     gradientRainbow: '#0163AE, #D80837, #53AF35',
     gradientOrangeBlue: '#D2132A, #0597DB',
+
+    greenShades: '#159A00',
   },
   fonts,
   fontSizes,
@@ -264,6 +283,7 @@ export const darkTheme = createTheme('dark-theme', {
     dangerBg: '#F4B7AE',
     danger: '#861913',
     dangerDarker: '#7d1b20',
+    dangerShades: '#E31617',
 
     successBg: '#87DD63',
     success: '#235213',
@@ -300,6 +320,22 @@ export const darkTheme = createTheme('dark-theme', {
     gray100: '#C2C6DB',
     gray110: '#DEE1F7',
 
+    grayShades10: '#333333',
+    grayShades20: '#3E3E3E',
+    grayShades40: '#757575',
+    grayShades60: '#B4B4B4',
+    grayShades80: '#E6E6E6',
+    grayShades100: '#F7F8F9',
+
+    blueShades0: '',
+    blueShades10: '#E6ECF7',
+    blueShades20: '',
+    blueShades40: '',
+    blueShades60: '',
+    blueShades80: '#3468BF',
+    blueShades100: '#0142AF',
+    blueShades120: '#012158',
+
     primaryBg: '#1B1B1F',
     secondaryBg: '#2C3041',
     darkerBg: '#EAEBEB',
@@ -308,6 +344,8 @@ export const darkTheme = createTheme('dark-theme', {
     gradientOrange: '#CC1E1F, #D37C16',
     gradientRainbow: '#025493, #A51C2E, #46932D',
     gradientOrangeBlue: '#AA1022, #027FB9',
+
+    greenShades: '#159A00',
   },
   fonts,
   fontSizes,

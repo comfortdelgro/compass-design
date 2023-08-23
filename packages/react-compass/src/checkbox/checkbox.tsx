@@ -9,7 +9,6 @@ import {
   StyledCheckboxCheckmark,
   StyledCheckboxInput,
   StyledCheckboxLabel,
-  StyledCheckboxLabelContent,
   StyledCheckboxWrapper,
 } from './checkbox.styles'
 
@@ -25,7 +24,7 @@ interface Props extends StyledComponentProps {
   isSelected?: boolean
   cssCheckBoxInput?: CSS
   // Variants for children
-  variant?: 'default' | 'rounded'
+  variant?: CheckboxVariantProps['variant']
   validationState?: 'valid' | 'invalid'
   onChange?: (isSelected: boolean) => void
 
@@ -111,7 +110,18 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
 
     return (
       <StyledCheckboxWrapper css={css} {...htmlProps}>
-        <StyledCheckboxLabel isDarkTheme={isDarkTheme}>
+        <StyledCheckboxLabel
+          isDarkTheme={isDarkTheme}
+          variant={variant}
+          css={{
+            backgroundColor:
+              variant === 'h5'
+                ? checked === true
+                  ? '$cdgBlue10'
+                  : '$grayShades10'
+                : undefined,
+          }}
+        >
           <StyledCheckboxInput
             tabIndex={-1}
             type='checkbox'
@@ -155,9 +165,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           </StyledCheckboxBox>
 
           {/* Label */}
-          {children && (
-            <StyledCheckboxLabelContent>{children}</StyledCheckboxLabelContent>
-          )}
+          {children && <span>{children}</span>}
         </StyledCheckboxLabel>
       </StyledCheckboxWrapper>
     )

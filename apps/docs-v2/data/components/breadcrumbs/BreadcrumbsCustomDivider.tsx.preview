@@ -1,0 +1,8 @@
+<Breadcrumbs
+    dividerIcon={<FontAwesomeIcon icon={faBug} />}
+    isCurrent={isCurrent}
+>
+    <Breadcrumbs.Item href='#0'>Home</Breadcrumbs.Item>
+    <Breadcrumbs.Item href='#1'>Library</Breadcrumbs.Item>
+    <Breadcrumbs.Item href='#2'>Data</Breadcrumbs.Item>
+</Breadcrumbs>

@@ -1,0 +1,6 @@
+<ActionBar>
+  <ActionBar.RightGroup>
+    <Button variant='primary'>Primary</Button>
+    <Button variant='secondary'>Secondary</Button>
+  </ActionBar.RightGroup>
+</ActionBar>

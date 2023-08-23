@@ -20,7 +20,7 @@ export const Variants: Story<{onChange: () => void}> = () => (
         Indeterminate (disabled)
       </Checkbox>
       <Checkbox isSelected isReadOnly>
-        Read ony
+        Read only
       </Checkbox>
     </Column>
 
@@ -123,6 +123,23 @@ export const Uncontrolled: Story<{onChange: () => void}> = () => {
           Indeterminate (disabled)
         </Checkbox>
       </Column>
+    </Column>
+  )
+}
+export const H5Checkbox = () => {
+  const [checked, setChecked] = useState<boolean>(false)
+  return (
+    <Column>
+      <h3>H5 Checkbox</h3>
+      <Checkbox
+        isSelected={checked}
+        variant='h5'
+        onChange={() => setChecked(!checked)}
+      >
+        <b style={{fontSize: '16px', lineHeight: '24px'}}>
+          I'm picking with/for a child below 1.35m
+        </b>
+      </Checkbox>
     </Column>
   )
 }

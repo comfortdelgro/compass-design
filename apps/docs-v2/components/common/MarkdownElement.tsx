@@ -10,7 +10,7 @@ const Root = styled('div', {
     lineHeight: 1.5, // Developers likes when the code is dense.
     margin: '$2 0',
     padding: '$2',
-    backgroundColor: '#323130',
+    backgroundColor: '$gray20',
     color: '#f8f8f2',
     border: '1px solid',
     borderColor: '$gray30',
@@ -27,6 +27,7 @@ const Root = styled('div', {
   },
   '& pre > code': {
     fontSize: 'inherit',
+    color: '$gray110',
   },
   '& :not(pre) > code': {
     display: 'inline-block',
@@ -343,7 +344,7 @@ const Root = styled('div', {
       width: 16,
       height: 16,
       display: 'inline-block',
-      fill: 'currentcolor',
+      fill: '$gray110',
       flexShrink: 0,
       fontSize: '18px',
       margin: 'auto',
@@ -353,8 +354,9 @@ const Root = styled('div', {
     },
     '&:hover, &:focus': {
       opacity: 1,
-      backgroundColor: '$cdgBlue40',
+      backgroundColor: '$gray40',
       '& .cdg-copyKeypress': {
+        color: '$gray110',
         display: 'block',
         '@media (any-hover: none)': {
           display: 'none',

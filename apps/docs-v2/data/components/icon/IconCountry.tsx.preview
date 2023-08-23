@@ -1,0 +1,3 @@
+import FlagAbw from '@comfortdelgro/compass-icons/react/country/flag-abw'
+
+<IconBox component={<FlagAbw width={40} height={40} />} name='FlagAbw' />

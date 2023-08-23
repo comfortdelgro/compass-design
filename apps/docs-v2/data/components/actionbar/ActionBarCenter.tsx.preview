@@ -1,0 +1,8 @@
+<ActionBar>
+  <ActionBar.CenterGroup>
+    <Button isDisabled>
+      <Icon icon={faUserEdit} />
+    </Button>
+    <Button variant='danger'>Danger</Button>
+  </ActionBar.CenterGroup>
+</ActionBar>

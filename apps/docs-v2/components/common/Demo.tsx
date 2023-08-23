@@ -211,7 +211,7 @@ export default function Demo(props: any) {
           position: 'relative',
           outline: 0,
           margin: 'auto',
-          display: 'flex',
+          display: 'block',
           justifyContent: 'center',
           background: '$gray20',
           padding: '$8 $4',

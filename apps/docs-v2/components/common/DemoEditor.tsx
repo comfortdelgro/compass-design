@@ -10,7 +10,7 @@ const StyledMarkdownElement = styled(MarkdownElement, {
     maxHeight: 'min(68vh, 1000px)',
     padding: '$4',
     overflow: 'auto',
-    backgroundColor: '#323130',
+    backgroundColor: '$gray20',
     marginTop: -1,
     border: `1px solid $divider`,
     colorScheme: 'dark',

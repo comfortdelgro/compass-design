@@ -31,6 +31,7 @@ interface Props extends StyledComponentProps {
   'aria-details'?: string
   'aria-errormessage'?: string
   className?: string
+  variant?: ToggleVariantProps['variant']
 }
 
 export type ToggleProps = Props &
@@ -47,6 +48,7 @@ const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>((props, ref) => {
     isReadOnly = false,
     isRequired = false,
     isDisabled = false,
+    variant,
     css = {},
     className,
   } = props
@@ -90,6 +92,7 @@ const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>((props, ref) => {
       disabled={!!props.isDisabled}
       onClick={onClick}
       onKeyDown={handleKeyDown}
+      {...(variant ? {variant} : {})}
     >
       <input
         name={name}

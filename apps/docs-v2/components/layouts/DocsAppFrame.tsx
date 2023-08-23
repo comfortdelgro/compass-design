@@ -3,6 +3,7 @@ import {CommonHeader} from 'components/common/CommonHeader'
 import MarkdownLinks from 'components/common/MarkdownLinks'
 import routes from 'constants/routes'
 import SidenavContext from 'contexts/SideNav'
+import {useIsTabletScreen} from 'hooks'
 import {map} from 'lodash'
 import {useRouter} from 'next/router'
 import * as React from 'react'
@@ -32,6 +33,7 @@ export function DeferredAppSearch() {
 export default function DocsAppFrame(props: {children: React.ReactNode}) {
   const {children} = props
   const router = useRouter()
+  const isTabletScreen = useIsTabletScreen()
 
   const [sidenav, setSidenav] = React.useState<TSideNavItem[]>([])
 
@@ -101,7 +103,9 @@ export default function DocsAppFrame(props: {children: React.ReactNode}) {
         }}
       >
         <Box css={{width: '100%', display: 'flex'}}>
-          <DocsAppSideNav handleExpandSidenav={handleExpandSidenav} />
+          {!isTabletScreen && (
+            <DocsAppSideNav handleExpandSidenav={handleExpandSidenav} />
+          )}
           <Box
             css={{
               display: 'flex',
@@ -110,7 +114,6 @@ export default function DocsAppFrame(props: {children: React.ReactNode}) {
               minHeight: 'calc(100vh - 51px)',
               overflow: 'auto',
               width: '100%',
-              marginTop: 51,
             }}
           >
             <CommonHeader />

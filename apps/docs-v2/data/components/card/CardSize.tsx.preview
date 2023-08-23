@@ -1,0 +1,51 @@
+<h3>Basic card small size</h3>
+    <Card size='sm'>
+    <Card.Image src={backgroundSrc} />
+    <Card.Body>
+        <Card.Title>Card title</Card.Title>
+        <p style={{margin: 0}}>{lorem.slice(0, lorem.length / 5)}</p>
+        <Card.Action>
+        <Button variant='primary'>Button</Button>
+        <Button variant='primary'>Button</Button>
+        </Card.Action>
+    </Card.Body>
+    </Card>
+
+<h3>Basic card large size</h3>
+    <Card size='lg'>
+    <Card.Image src={backgroundSrc} />
+    <Card.Body>
+        <Card.Title>Card title</Card.Title>
+        <p style={{margin: 0}}>{lorem.slice(0, lorem.length / 2)}</p>
+        <Card.Action>
+        <Button variant='primary'>Button</Button>
+        <Button variant='secondary'>Button</Button>
+        </Card.Action>
+    </Card.Body>
+    </Card>
+
+<h3>Basic card full size</h3>
+    <Card size='full'>
+    <Card.Image src={backgroundSrc} />
+    <Card.Body>
+        <Card.Title>Card title</Card.Title>
+        <p style={{margin: 0}}>{lorem}</p>
+        <Card.Action>
+        <Button variant='primary'>Button</Button>
+        <Button variant='secondary'>Button</Button>
+        </Card.Action>
+    </Card.Body>
+    </Card>
+
+<h3>Basic card customized size</h3>
+    <Card css={{maxWidth: '400px'}} isClickable>
+    <Card.Image src={backgroundSrc} />
+    <Card.Body>
+        <Card.Title>Card title</Card.Title>
+        <p style={{margin: 0}}>{lorem}</p>
+        <Card.Action>
+        <Button variant='primary'>Button</Button>
+        <Button variant='secondary'>Button</Button>
+        </Card.Action>
+    </Card.Body>
+    </Card>

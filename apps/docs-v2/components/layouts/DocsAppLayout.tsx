@@ -34,7 +34,15 @@ export default function AppLayoutDocs(props: any) {
           }}
           id='document'
         >
-          <Box css={{padding: '$5 $16', width: '100%'}}>
+          <Box
+            css={{
+              padding: '$5 $16',
+              width: '100%',
+              '@max_1024': {
+                padding: '$4',
+              },
+            }}
+          >
             <EditPage sourceLocation={location} />
             {children}
             <DocsAppFooter tableOfContents={toc} />
