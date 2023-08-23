@@ -36,8 +36,7 @@ const ConfirmPUPoint = React.forwardRef<HTMLDivElement, ConfirmPUPointProps>(
     ref,
   ) => {
     const componentRef = useDOMRef(ref)
-    const {name, address, city, street, postalCode, specificPUPoint} =
-      initialPUPoint
+    const {name, address, city, postalCode, specificPUPoint} = initialPUPoint
 
     const [pickupPoint, setPickupPoint] =
       React.useState<IPickupPoint>(initialPUPoint)
