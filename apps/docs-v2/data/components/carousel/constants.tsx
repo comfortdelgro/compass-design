@@ -1,5 +1,9 @@
-import { CarouselSliderButton, CarouselSliderItem, SocicalIcon } from "@comfortdelgro/react-compass"
 import BugIcon from '@comfortdelgro/compass-icons/react/bug'
+import {
+  CarouselSliderButton,
+  CarouselSliderItem,
+  SocicalIcon,
+} from '@comfortdelgro/react-compass'
 
 export const socials: SocicalIcon[] = [
   {

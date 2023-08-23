@@ -1,5 +1,11 @@
 ## 2.9.0
 
+## 2.14.0
+
+### Minor Changes
+
+- eb5e467b: Fix minor bugs and add new h5 components
+
 ## 2.13.0
 
 ### Minor Changes

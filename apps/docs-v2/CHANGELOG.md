@@ -1,5 +1,16 @@
 # docs
 
+## 1.1.0
+
+### Minor Changes
+
+- eb5e467b: Fix minor bugs and add new h5 components
+
+### Patch Changes
+
+- Updated dependencies [eb5e467b]
+  - @comfortdelgro/react-compass@2.14.0
+
 ## 1.0.4
 
 ### Patch Changes

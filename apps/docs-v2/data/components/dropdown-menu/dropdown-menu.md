@@ -31,7 +31,7 @@ import DropdownMenu from '@comfortdelgro/react-compass/dropdown-menu'
 
 ## Props
 
-### `<DropdownMenu/>` 
+### `<DropdownMenu/>`
 
 | Name         | Type                        | Default | Description                                       |
 | :----------- | :-------------------------- | :------ | :------------------------------------------------ |
@@ -40,7 +40,7 @@ import DropdownMenu from '@comfortdelgro/react-compass/dropdown-menu'
 | onClose      | `() => void`                | —       | Callback fired when the modal needs to be closed. |
 | css          | `CSS`                       | —       |                                                   |
 
-### `<DropdownMenu.Item/>` 
+### `<DropdownMenu.Item/>`
 
 | Name       | Type        | Default | Description                                                                                     |
 | :--------- | :---------- | :------ | :---------------------------------------------------------------------------------------------- |

@@ -25,7 +25,6 @@ import ImageViewer from '@comfortdelgro/react-compass/image-viewer'
 
 {{"demo": "ImageViewer.tsx"}}
 
-
 ## Props
 
 | Name                   | Type                                            | Default | Description                                                                    |
