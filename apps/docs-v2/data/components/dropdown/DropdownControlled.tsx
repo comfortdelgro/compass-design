@@ -2,7 +2,7 @@ import BugIcon from '@comfortdelgro/compass-icons/react/bug'
 import {Dropdown} from '@comfortdelgro/react-compass'
 import React from 'react'
 
- const ControlledDropdown = () => {
+const ControlledDropdown = () => {
   const [value, setValue] = React.useState<React.Key>('cat')
   return (
     <>

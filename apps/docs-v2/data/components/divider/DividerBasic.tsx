@@ -1,4 +1,4 @@
-import {Divider, Column} from '@comfortdelgro/react-compass'
+import {Column, Divider} from '@comfortdelgro/react-compass'
 
 const Basic: React.FC = () => {
   return (

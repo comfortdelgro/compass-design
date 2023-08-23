@@ -31,7 +31,7 @@ import Breadcrumbs from '@comfortdelgro/react-compass/breadcrumbs'
 
 ## Props
 
-| Name        | Type                         | Default | Description |
-| :---------- | :--------------------------- | :------ | :---------- |
-| isCurrent   | `(i:number) => boolean`      | false   |             |
-| dividerIcon | `ReactNode`\|`false`\| `true`| —       |             |
+| Name        | Type                          | Default | Description |
+| :---------- | :---------------------------- | :------ | :---------- |
+| isCurrent   | `(i:number) => boolean`       | false   |             |
+| dividerIcon | `ReactNode`\|`false`\| `true` | —       |             |

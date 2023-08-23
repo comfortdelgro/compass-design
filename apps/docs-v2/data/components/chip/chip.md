@@ -18,6 +18,7 @@ or
 ```jsx
 import Chip from '@comfortdelgro/react-compass/chip'
 ```
+
 ## Example
 
 {{"demo": "Chip.tsx"}}
