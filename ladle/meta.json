@@ -105,6 +105,26 @@
       "filePath": "src/alert/alert.stories.tsx",
       "meta": {}
     },
+    "appnav--five-sections": {
+      "name": "Five sections",
+      "levels": [
+        "Appnav"
+      ],
+      "locStart": 60,
+      "locEnd": 112,
+      "filePath": "src/appnav/appnav.stories.tsx",
+      "meta": {}
+    },
+    "appnav--four-sections": {
+      "name": "Four sections",
+      "levels": [
+        "Appnav"
+      ],
+      "locStart": 14,
+      "locEnd": 59,
+      "filePath": "src/appnav/appnav.stories.tsx",
+      "meta": {}
+    },
     "auto-complete--full-featured": {
       "name": "Full featured",
       "levels": [
@@ -171,7 +191,7 @@
         "Badge"
       ],
       "locStart": 65,
-      "locEnd": 75,
+      "locEnd": 83,
       "filePath": "src/badge/badge.stories.tsx",
       "meta": {}
     },
@@ -241,7 +261,7 @@
         "Button"
       ],
       "locStart": 15,
-      "locEnd": 201,
+      "locEnd": 209,
       "filePath": "src/button/button.stories.tsx",
       "meta": {}
     },
@@ -365,6 +385,16 @@
       "filePath": "src/checkbox/checkbox.stories.tsx",
       "meta": {}
     },
+    "checkbox--h5-checkbox": {
+      "name": "H5 checkbox",
+      "levels": [
+        "Checkbox"
+      ],
+      "locStart": 129,
+      "locEnd": 145,
+      "filePath": "src/checkbox/checkbox.stories.tsx",
+      "meta": {}
+    },
     "checkbox--uncontrolled": {
       "name": "Uncontrolled",
       "levels": [
@@ -393,6 +423,26 @@
       "locStart": 5,
       "locEnd": 25,
       "filePath": "src/chip/chip.stories.tsx",
+      "meta": {}
+    },
+    "confirm-pickup--default": {
+      "name": "Default",
+      "levels": [
+        "Confirm pickup"
+      ],
+      "locStart": 5,
+      "locEnd": 26,
+      "filePath": "src/confirm-pickup/confirm-pickup.stories.tsx",
+      "meta": {}
+    },
+    "confirm-pickup--without-specific-pu-point": {
+      "name": "Without specific pu point",
+      "levels": [
+        "Confirm pickup"
+      ],
+      "locStart": 27,
+      "locEnd": 48,
+      "filePath": "src/confirm-pickup/confirm-pickup.stories.tsx",
       "meta": {}
     },
     "dashboard-sidecard--default": {
@@ -513,6 +563,26 @@
       "locStart": 5,
       "locEnd": 28,
       "filePath": "src/divider/divider.stories.tsx",
+      "meta": {}
+    },
+    "drawer--default": {
+      "name": "Default",
+      "levels": [
+        "Drawer"
+      ],
+      "locStart": 412,
+      "locEnd": 600,
+      "filePath": "src/drawer/drawer.stories.tsx",
+      "meta": {}
+    },
+    "drawer--h5": {
+      "name": "H5",
+      "levels": [
+        "Drawer"
+      ],
+      "locStart": 26,
+      "locEnd": 410,
+      "filePath": "src/drawer/drawer.stories.tsx",
       "meta": {}
     },
     "dropdown-menu--default": {
@@ -720,8 +790,8 @@
       "levels": [
         "List"
       ],
-      "locStart": 768,
-      "locEnd": 784,
+      "locStart": 836,
+      "locEnd": 852,
       "filePath": "src/list/list.stories.tsx",
       "meta": {}
     },
@@ -730,8 +800,8 @@
       "levels": [
         "List"
       ],
-      "locStart": 605,
-      "locEnd": 766,
+      "locStart": 673,
+      "locEnd": 834,
       "filePath": "src/list/list.stories.tsx",
       "meta": {}
     },
@@ -740,8 +810,8 @@
       "levels": [
         "List"
       ],
-      "locStart": 403,
-      "locEnd": 603,
+      "locStart": 471,
+      "locEnd": 671,
       "filePath": "src/list/list.stories.tsx",
       "meta": {}
     },
@@ -750,8 +820,8 @@
       "levels": [
         "List"
       ],
-      "locStart": 27,
-      "locEnd": 401,
+      "locStart": 31,
+      "locEnd": 469,
       "filePath": "src/list/list.stories.tsx",
       "meta": {}
     },
@@ -913,6 +983,16 @@
       "locStart": 34,
       "locEnd": 79,
       "filePath": "src/progress/progress.stories.tsx",
+      "meta": {}
+    },
+    "pudo--default": {
+      "name": "Default",
+      "levels": [
+        "Pudo"
+      ],
+      "locStart": 51,
+      "locEnd": 226,
+      "filePath": "src/pudo/pudo.stories.tsx",
       "meta": {}
     },
     "quantity-toggle--variants": {
@@ -1111,7 +1191,7 @@
         "Sub header"
       ],
       "locStart": 6,
-      "locEnd": 19,
+      "locEnd": 45,
       "filePath": "src/sub-header/sub-header.stories.tsx",
       "meta": {}
     },
@@ -1360,8 +1440,8 @@
       "levels": [
         "Toggle"
       ],
-      "locStart": 24,
-      "locEnd": 52,
+      "locStart": 31,
+      "locEnd": 59,
       "filePath": "src/toggle/toggle.stories.tsx",
       "meta": {}
     },
@@ -1371,7 +1451,7 @@
         "Toggle"
       ],
       "locStart": 5,
-      "locEnd": 22,
+      "locEnd": 29,
       "filePath": "src/toggle/toggle.stories.tsx",
       "meta": {}
     },
