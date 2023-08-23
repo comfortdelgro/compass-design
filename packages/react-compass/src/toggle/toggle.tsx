@@ -92,7 +92,7 @@ const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>((props, ref) => {
       disabled={!!props.isDisabled}
       onClick={onClick}
       onKeyDown={handleKeyDown}
-      variant={variant}
+      {...(variant ? {variant} : {})}
     >
       <input
         name={name}
