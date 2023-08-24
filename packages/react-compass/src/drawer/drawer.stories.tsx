@@ -13,15 +13,16 @@ import {styled} from '../theme'
 import Typography from '../typography'
 import {Row} from '../utils'
 import {Column} from '../utils/components'
-import Drawer, {DrawerProps, H5DrawerProps} from './index'
+import Drawer, {DrawerH5Props, DrawerProps} from './index'
 
 const imgSrc =
   'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
 
-const h5DrawerDefaultConfig: Partial<H5DrawerProps> = {
+const h5DrawerDefaultConfig: Partial<DrawerH5Props> = {
   disableResize: false,
   disableAddBodyAttr: false,
   autoClose: true,
+  preventClose: false,
 }
 
 export function H5() {
@@ -33,10 +34,10 @@ export function H5() {
 
   const [openNoFocusDrawer, setOpenNoFocusDrawer] = useState({
     open: false,
-    focusContent: false,
+    preventFocus: false,
   })
 
-  const [drawerConfig, setDrawerConfig] = useState<Partial<H5DrawerProps>>(
+  const [drawerConfig, setDrawerConfig] = useState<Partial<DrawerH5Props>>(
     h5DrawerDefaultConfig,
   )
 
@@ -93,7 +94,7 @@ export function H5() {
         By default, the Drawer will autofocus on the first nested focusable
         element after opening.
         <br />
-        To disable that, set focusContent to false
+        To disable that, set preventFocus to false
       </Typography.Body>
       <Button
         css={{marginRight: '$4'}}
@@ -101,7 +102,7 @@ export function H5() {
         onClick={() =>
           setOpenNoFocusDrawer({
             open: true,
-            focusContent: true,
+            preventFocus: true,
           })
         }
       >
@@ -113,7 +114,7 @@ export function H5() {
         onClick={() =>
           setOpenNoFocusDrawer({
             open: true,
-            focusContent: false,
+            preventFocus: false,
           })
         }
       >
@@ -199,6 +200,7 @@ export function H5() {
       </Drawer>
 
       <Drawer
+        {...drawerConfig}
         open={openDemoDrawer}
         css={{
           height: '40dvh',
@@ -213,7 +215,6 @@ export function H5() {
           setDrawerConfig(h5DrawerDefaultConfig)
         }}
         variant='h5'
-        {...drawerConfig}
       >
         <p>Resizable Drawer?</p>
         <Button
@@ -262,6 +263,37 @@ export function H5() {
         >
           Toggle autoclose
         </Button>
+
+        <hr />
+        <p>
+          Should prevent drawer from closing when users tap/click on the
+          backdrop or press Escape key?{' '}
+          <strong>{`${drawerConfig.preventClose}`}</strong>
+        </p>
+        <Button
+          css={{marginRight: '$4'}}
+          type='button'
+          onClick={() =>
+            setDrawerConfig((currState) => ({
+              ...currState,
+              preventClose: !currState.preventClose,
+            }))
+          }
+        >
+          Toggle prevent close
+        </Button>
+        {drawerConfig.preventClose && (
+          <Button
+            type='button'
+            variant='secondary'
+            onClick={() => {
+              setOpenDemoDrawer(false)
+              setDrawerConfig(h5DrawerDefaultConfig)
+            }}
+          >
+            Manually close drawer
+          </Button>
+        )}
       </Drawer>
 
       <Drawer
@@ -450,16 +482,16 @@ export function H5() {
       <Drawer
         open={openNoFocusDrawer.open}
         css={{height: '30dvh'}}
-        onClose={() => setOpenNoFocusDrawer({open: false, focusContent: false})}
+        onClose={() => setOpenNoFocusDrawer({open: false, preventFocus: false})}
         variant='h5'
         expandedPoint={90}
         expandableLine={50}
-        focusContent={openNoFocusDrawer.focusContent}
+        preventFocus={openNoFocusDrawer.preventFocus}
       >
         {openNoFocusDrawer.open && (
           <>
             <Typography.Body variant='body3'>
-              {!openNoFocusDrawer.focusContent && 'Disable'}{' '}
+              {!openNoFocusDrawer.preventFocus && 'Disable'}{' '}
               <strong>Autofocus</strong> on the first focusable element - a
               button at the bottom ⏬
             </Typography.Body>
