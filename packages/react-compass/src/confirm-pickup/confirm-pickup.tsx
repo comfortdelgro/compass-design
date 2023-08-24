@@ -8,52 +8,44 @@ import {
   ConfirmPUPointVariantProps,
   StyledConfirmPUPoint,
 } from './confirm-pickup.styles'
-export interface IPickupPoint {
-  name: string
-  address: string
-  city: string
-  street: string
-  postalCode: string
-  specificPUPoint: string
-}
 
 type Props = {
-  onConfirmPickup: (pickupPoint?: IPickupPoint) => void
-  pickupPoint: IPickupPoint
+  onConfirmPickup: (specificPUPoint?: string) => void
   onChangePUPoint?: () => void
   placeholder?: string
+  puPointTitle: string
+  puPointDescription: string
+  specificPUPoint: string
 } & StyledComponentProps
 export type ConfirmPUPointProps = Props & ConfirmPUPointVariantProps
 
 const ConfirmPUPoint = React.forwardRef<HTMLDivElement, ConfirmPUPointProps>(
   (
     {
-      pickupPoint: initialPUPoint,
       onConfirmPickup,
       onChangePUPoint,
       placeholder = '',
+      puPointTitle,
+      puPointDescription,
+      specificPUPoint: initialSpecificPUPoint,
+      css = {},
     },
     ref,
   ) => {
     const componentRef = useDOMRef(ref)
-    const {name, address, city, postalCode, specificPUPoint} = initialPUPoint
 
-    const [pickupPoint, setPickupPoint] =
-      React.useState<IPickupPoint>(initialPUPoint)
+    const [specificPUPoint, setSpecificPickupPoint] = React.useState<string>(
+      initialSpecificPUPoint,
+    )
 
     const handleConfirmPickup = React.useCallback(() => {
       if (onConfirmPickup) {
-        onConfirmPickup(pickupPoint)
+        onConfirmPickup(specificPUPoint)
       }
-    }, [pickupPoint])
+    }, [specificPUPoint])
 
     const handleInputChange = React.useCallback((value) => {
-      setPickupPoint((prev) => {
-        return {
-          ...prev,
-          specificPUPoint: value as string,
-        }
-      })
+      setSpecificPickupPoint(String(value))
     }, [])
 
     const handlePUPointChange = () => {
@@ -62,12 +54,12 @@ const ConfirmPUPoint = React.forwardRef<HTMLDivElement, ConfirmPUPointProps>(
       }
     }
     return (
-      <StyledConfirmPUPoint ref={componentRef}>
+      <StyledConfirmPUPoint ref={componentRef} css={css}>
         <div className='pu-point-address'>
           <div>
-            <div className='pu-point-address__name'>{name}</div>
-            <div className='pu-point-address__address'>
-              {address}, {city} {postalCode}
+            <div className='pu-point-address__title'>{puPointTitle}</div>
+            <div className='pu-point-address__description'>
+              {puPointDescription}
             </div>
           </div>
           <Button
@@ -92,8 +84,8 @@ const ConfirmPUPoint = React.forwardRef<HTMLDivElement, ConfirmPUPointProps>(
           <div>Set a specific pickup point</div>
           <Divider />
         </div>
-        {specificPUPoint ? (
-          <div className='pu-point-location'>
+        {initialSpecificPUPoint ? (
+          <div className='pu-specific-location'>
             <svg
               width='12'
               height='15'
@@ -107,7 +99,9 @@ const ConfirmPUPoint = React.forwardRef<HTMLDivElement, ConfirmPUPointProps>(
               />
             </svg>
 
-            {specificPUPoint}
+            <div className='pu-specific-location__name'>
+              {initialSpecificPUPoint}
+            </div>
           </div>
         ) : (
           <TextField
@@ -128,11 +122,20 @@ const ConfirmPUPoint = React.forwardRef<HTMLDivElement, ConfirmPUPointProps>(
         <Button
           css={{
             height: '$12',
-            maxWidth: '420px',
-            minWidth: '345px',
             margin: 'auto',
+
+            '@xs': {
+              width: '100%',
+            },
+            '@sm': {
+              width: '50%',
+            },
+            '@md': {
+              width: '30%',
+            },
           }}
           onPress={handleConfirmPickup}
+          className='confirm-pu-button'
         >
           Confirm pick up
         </Button>
