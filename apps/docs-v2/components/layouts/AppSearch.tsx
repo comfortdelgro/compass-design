@@ -1,33 +1,35 @@
 import {
   Box,
   Column,
-  List,
   Modal,
   SearchField,
   styled,
   TextField,
+  Typography,
 } from '@comfortdelgro/react-compass'
-import {faChevronRight} from '@fortawesome/free-solid-svg-icons'
+import {faChevronRight, faClose} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {useCallback, useMemo, useRef, useState} from 'react'
+import {map, replace, toLower} from 'lodash'
+import {useRouter} from 'next/router'
+import {useCallback, useEffect, useMemo, useRef, useState} from 'react'
 import {getDataSearch} from 'utils'
 
 const Shortcut = styled('div', {
   fontSize: 12,
-  fontWeight: 700,
+  fontWeight: 500,
   lineHeight: '20px',
-  border: `1px solid $cdgBlue40`,
-  backgroundColor: '$cdgBlue20',
-  padding: '3px $2',
+  backgroundColor: '$cdgBlue60',
+  padding: '4px $2',
   borderRadius: 4,
 })
 
 const dataSearch = getDataSearch()
 
 export default function AppSearch(props: any) {
-  const searchButtonRef = useRef(null)
+  const searchInputRef = useRef(null)
   const [isOpen, setIsOpen] = useState(false)
   const [keyword, setKeyword] = useState('')
+  const router = useRouter()
   const macOS = window.navigator.platform.toUpperCase().indexOf('MAC') >= 0
   const onOpen = useCallback(() => {
     setIsOpen(true)
@@ -41,16 +43,67 @@ export default function AppSearch(props: any) {
     setKeyword(data)
   }
 
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.keyCode === 75 && e.metaKey) {
+      setIsOpen(true)
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown)
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  })
+
+  useEffect(() => {
+    if (isOpen && !!document) {
+      setKeyword('')
+      setTimeout(() => {
+        const input = document.querySelector(
+          '[placeholder="Enter the keyword you want to search..."]',
+        )
+        // @ts-ignore
+        input?.focus()
+      }, 200)
+    }
+  }, [isOpen])
+
   const searchRecommend = useMemo(() => {
-    return dataSearch.filter((item) => item.title.includes(keyword))
+    const keywordLower = toLower(keyword)
+    const data = dataSearch.filter(
+      (item) =>
+        toLower(item.title).includes(keywordLower) ||
+        toLower(item.description).includes(keywordLower),
+    )
+    return map(data, (item) => {
+      return {
+        ...item,
+        title: replace(
+          toLower(item.title),
+          keywordLower,
+          `<span style="color: var(--colors-cdgBlue80)">${keywordLower}</span>`,
+        ),
+        description: replace(
+          toLower(item.description),
+          keywordLower,
+          `<span style="color: var(--colors-cdgBlue80)">${keywordLower}</span>`,
+        ),
+      }
+    })
   }, [keyword])
+
+  const handleClickItemSearch = async (pathname: string) => {
+    await router.push(pathname)
+    setIsOpen(false)
+  }
 
   return (
     <>
       <Box css={{position: 'relative'}}>
         <TextField
           css={{
-            background: '$cdgBlue100',
+            background: '$cdgBlue !important',
             height: 34,
             ':first-child': {
               borderColor: '$cdgBlue60',
@@ -58,7 +111,6 @@ export default function AppSearch(props: any) {
               overflow: 'hidden',
             },
           }}
-          inputRef={searchButtonRef}
           onClick={onOpen}
           placeholder='Search...'
         />
@@ -68,29 +120,71 @@ export default function AppSearch(props: any) {
       </Box>
       <Modal.Trigger isOpen={isOpen} handleClose={() => onClose?.()} size='lg'>
         <Modal>
-          <Modal.Title>Search Box</Modal.Title>
-          <Modal.CloseIcon>X</Modal.CloseIcon>
+          <Modal.Title>
+            <Typography.Header variant='header4'>Search Box</Typography.Header>
+          </Modal.Title>
+          <Modal.CloseIcon>
+            <FontAwesomeIcon icon={faClose} />
+          </Modal.CloseIcon>
           <Modal.Description>
             <SearchField
+              autoFocus={true}
               onChange={handleChangeKeyword}
-              placeholder='Search'
+              placeholder='Enter the keyword you want to search...'
               value={keyword}
               css={{width: '100%'}}
+              ref={searchInputRef}
             />
             <Column
               css={{height: '50vh', overflowY: 'scroll', marginTop: '$3'}}
             >
               {searchRecommend.map((searchItem) => {
                 return (
-                  <List
-                    css={{background: '$gray20'}}
-                    title={searchItem.title}
-                    onClick={() => console.log('runn')}
-                    description={searchItem.description}
-                    rightInfo={{
-                      icon: <FontAwesomeIcon icon={faChevronRight} />,
+                  <Box
+                    as={'button'}
+                    css={{
+                      background: '$gray10',
+                      padding: '$3',
+                      margin: 1,
+                      borderRadius: 8,
+                      cursor: 'pointer',
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      '&:hover': {
+                        background: '$cdgBlue10',
+                      },
                     }}
-                  />
+                    onClick={() => handleClickItemSearch(searchItem.pathname)}
+                  >
+                    <Box
+                      css={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                      }}
+                    >
+                      {/* @ts-ignore */}
+                      <Typography.Header
+                        variant='header5'
+                        css={{textAlign: 'left', textTransform: 'capitalize'}}
+                        dangerouslySetInnerHTML={{__html: searchItem.title}}
+                      />
+                      {/* @ts-ignore */}
+                      <Typography.Label
+                        variant='label1'
+                        css={{
+                          textAlign: 'left',
+                          color: '$gray80',
+                          marginTop: '$1',
+                          textTransform: 'capitalize',
+                        }}
+                        dangerouslySetInnerHTML={{
+                          __html: searchItem.description,
+                        }}
+                      />
+                    </Box>
+                    <FontAwesomeIcon icon={faChevronRight} />
+                  </Box>
                 )
               })}
             </Column>

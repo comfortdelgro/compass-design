@@ -27,6 +27,56 @@ export const routes: TSideNavItem[] = [
     ],
   },
   {
+    pathname: '/foundation',
+    title: 'Foundation',
+    icon: faHouse,
+    children: [
+      {
+        pathname: '/overview',
+        title: 'Overview',
+        description:
+          'Foundations inform the basis of any great user interface, from accessibility standards to essential patterns for layout and interaction.',
+      },
+      {
+        pathname: '/colors',
+        title: 'Colors',
+        description:
+          'Color distinguishes a brand. It is used to convey personality, attracts the eye and indicate change.',
+      },
+      {
+        pathname: '/typography',
+        title: 'Typography',
+        description:
+          'Clear typographical hierarchy organizes and structures content, making it easy for people to find their way through an experience.',
+      },
+      {
+        pathname: '/iconography',
+        title: 'Iconography',
+        description:
+          'Icons are visual representations of commands, devices, directories, or common actions.',
+      },
+    ],
+  },
+  {
+    pathname: '/customization',
+    title: 'Customization',
+    icon: faSquarePen,
+    children: [
+      {
+        pathname: '/theming',
+        title: 'Theming',
+        description:
+          'Customize React Compass with your theme. You can change the colors, the typography and much more.',
+      },
+      {
+        pathname: '/z-index',
+        title: 'Z-index',
+        description:
+          'Z-index is the CSS property that helps control layout by providing a third axis to arrange content.',
+      },
+    ],
+  },
+  {
     pathname: '/components',
     title: 'Components',
     icon: faToggleOn,
@@ -153,56 +203,6 @@ export const routes: TSideNavItem[] = [
         title: 'List',
         pathname: '/list',
         description: 'Lists show a large set of items or options to the user.',
-      },
-    ],
-  },
-  {
-    pathname: '/customization',
-    title: 'Customization',
-    icon: faSquarePen,
-    children: [
-      {
-        pathname: '/theming',
-        title: 'Theming',
-        description:
-          'Customize React Compass with your theme. You can change the colors, the typography and much more.',
-      },
-      {
-        pathname: '/z-index',
-        title: 'Z-index',
-        description:
-          'Z-index is the CSS property that helps control layout by providing a third axis to arrange content.',
-      },
-    ],
-  },
-  {
-    pathname: '/foundation',
-    title: 'Foundation',
-    icon: faHouse,
-    children: [
-      {
-        pathname: '/overview',
-        title: 'Overview',
-        description:
-          'Foundations inform the basis of any great user interface, from accessibility standards to essential patterns for layout and interaction.',
-      },
-      {
-        pathname: '/colors',
-        title: 'Colors',
-        description:
-          'Color distinguishes a brand. It is used to convey personality, attracts the eye and indicate change.',
-      },
-      {
-        pathname: '/typography',
-        title: 'Typography',
-        description:
-          'Clear typographical hierarchy organizes and structures content, making it easy for people to find their way through an experience.',
-      },
-      {
-        pathname: '/iconography',
-        title: 'Iconography',
-        description:
-          'Icons are visual representations of commands, devices, directories, or common actions.',
       },
     ],
   },
