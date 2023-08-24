@@ -44,8 +44,12 @@ export default function Item(props: Props) {
           justifyContent: 'space-around',
         }}
       >
-        <Typography.Header variant='header3'>{title}</Typography.Header>
-        <Typography.Body variant='body2'>{description}</Typography.Body>
+        <Typography.Header variant='header3' css={{color: 'black'}}>
+          {title}
+        </Typography.Header>
+        <Typography.Body variant='body2' css={{color: 'black'}}>
+          {description}
+        </Typography.Body>
         <Link href={urlLink} style={{textDecoration: 'none'}} target={target}>
           <Typography.Body
             variant='body2'

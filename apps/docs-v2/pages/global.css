@@ -27,6 +27,13 @@
   );
 }
 
+.dark-theme .portal-background {
+  background: var(
+    --background-portal-background,
+    linear-gradient(225deg, var(--colors-gray90) 0%, var(--colors-gray80) 100%)
+  );
+}
+
 .figma-preview-wrapper {
   flex: 0.4;
   background-color: #d9d6ec;
