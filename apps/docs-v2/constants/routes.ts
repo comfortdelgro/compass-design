@@ -48,6 +48,8 @@ export const routes: TSideNavItem[] = [
       {
         title: 'Banner',
         pathname: '/banner',
+      },
+      {
         title: 'Box',
         pathname: '/box',
       },
@@ -70,6 +72,8 @@ export const routes: TSideNavItem[] = [
       {
         title: 'Checkbox',
         pathname: '/checkbox',
+      },
+      {
         title: 'Chip',
         pathname: '/chip',
       },
@@ -88,6 +92,8 @@ export const routes: TSideNavItem[] = [
       {
         title: 'Dropdown',
         pathname: '/dropdown',
+      },
+      {
         title: 'Dropdown Menu',
         pathname: '/dropdown-menu',
       },
@@ -110,6 +116,48 @@ export const routes: TSideNavItem[] = [
       {
         title: 'List',
         pathname: '/list',
+      },
+      {
+        title: 'MenuList',
+        pathname: '/menu-list',
+        description:
+          "The Menu List component allows you to create a menu with expandable items.",
+      },
+      {
+        title: 'Modal',
+        pathname: '/modal',
+        description:
+          "The Modal component is a flexible and customizable modal/dialog that can be used in various use cases like confirmation dialogs, information popups, and more.",
+      },
+      {
+        title: 'OTP Input',
+        pathname: '/otp-input',
+        description:
+          "OTP Input component for inputting One-Time Passwords.",
+      },
+      {
+        title: 'Page Header',
+        pathname: '/page-header',
+        description:
+          "The Page header is used to begin pages and is a format guideline to how the top of a page should be organised.",
+      },
+      {
+        title: 'Popover',
+        pathname: '/popover',
+        description:
+          "When you want to show a content on above and anchor with an element when user click on it, just use this component follow this guidelines.",
+      },
+      {
+        title: 'Portal',
+        pathname: '/portal',
+        description:
+          "The sample of portal layout, admin page layout.",
+      },
+      {
+        title: 'QuantityToggle',
+        pathname: '/quantity-toggle',
+        description:
+          "Quantity Toggle fields allow users to enter a number, and increment or decrement the value using stepper buttons.",
       },
     ],
   },

@@ -1,0 +1,28 @@
+<Button
+variant='secondary'
+css={{width: '7.8rem'}}
+onPress={() => setParentOpen(true)}
+data-target='parent-modal' // This is needed for accessibility. When modal unmouts, focus will be set to this element
+>
+Open Modal
+</Button>
+<Modal.Trigger
+isOpen={parentOpen}
+handleClose={() => handleParentClose?.()}
+className='my-modal-trigger'
+id='parent-modal'
+>
+<Modal>
+    <Modal.Title>My parent modal</Modal.Title>
+    <Modal.CloseIcon>
+    <FontAwesomeIcon icon={faXmark} />
+    </Modal.CloseIcon>
+    <Modal.Description>{lorem}</Modal.Description>
+    <Modal.Actions>
+    <Button variant='secondary' onPress={() => setParentOpen(false)}>
+        Cancel
+    </Button>
+    <ChildModal />
+    </Modal.Actions>
+</Modal>
+</Modal.Trigger>

@@ -1,0 +1,20 @@
+<Button css={{width: '7.8rem'}} onPress={() => setDefaultOpen(true)}>
+Open Modal
+</Button>
+<Modal.Trigger
+isOpen={defaultOpen}
+handleClose={() => handleDefaultClose?.()}
+className='my-modal-trigger'
+>
+<Modal className='my-modal'>
+    <Modal.Title>My small title</Modal.Title>
+    <Modal.CloseIcon>
+    <FontAwesomeIcon icon={faXmark} />
+    </Modal.CloseIcon>
+    <Modal.Description>{lorem}</Modal.Description>
+    <Modal.Actions>
+    <Button onPress={() => setDefaultOpen(false)}>Cancel</Button>
+    <Button onPress={() => setDefaultOpen(false)}>Do it</Button>
+    </Modal.Actions>
+</Modal>
+</Modal.Trigger>
