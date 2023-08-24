@@ -9,6 +9,7 @@ import List from '../list'
 import ListImage from '../list/list-image'
 import Modal from '../modal'
 import TextField from '../textfield'
+import {styled} from '../theme'
 import Typography from '../typography'
 import {Row} from '../utils'
 import {Column} from '../utils/components'
@@ -30,12 +31,17 @@ export function H5() {
   const [openDemoTripDrawer, setOpenDemoTripDrawer] = useState(false)
   const [openConfirmModal, setOpenConfirmModal] = useState(false)
 
+  const [openNoFocusDrawer, setOpenNoFocusDrawer] = useState({
+    open: false,
+    focusContent: false,
+  })
+
   const [drawerConfig, setDrawerConfig] = useState<Partial<H5DrawerProps>>(
     h5DrawerDefaultConfig,
   )
 
   return (
-    <div style={{position: 'relative', minHeight: '100vh'}}>
+    <StyledContainer>
       <h4>H5 Drawer</h4>
       <Button type='button' onClick={() => setOpenDrawer(true)}>
         Open Drawer
@@ -46,7 +52,7 @@ export function H5() {
         Open Customizable Drawer
       </Button>
 
-      <h4 style={{marginBottom: 0}}>Demo Trip information</h4>
+      <h4>Demo Trip information</h4>
       <Typography.Body
         variant='body3'
         css={{color: '$grayShades60', marginBlock: '$2 $4'}}
@@ -77,6 +83,41 @@ export function H5() {
         onClick={() => setOpenNonModalDrawer(!openNonModalDrawer)}
       >
         Toggle Non-modal Drawer
+      </Button>
+
+      <h4>Disable autofocus on the first nested focusable element</h4>
+      <Typography.Body
+        variant='body3'
+        css={{color: '$grayShades60', marginBlock: '$2 $4'}}
+      >
+        By default, the Drawer will autofocus on the first nested focusable
+        element after opening.
+        <br />
+        To disable that, set focusContent to false
+      </Typography.Body>
+      <Button
+        css={{marginRight: '$4'}}
+        type='button'
+        onClick={() =>
+          setOpenNoFocusDrawer({
+            open: true,
+            focusContent: true,
+          })
+        }
+      >
+        Open Normal Drawer
+      </Button>
+      <Button
+        type='button'
+        variant='secondary'
+        onClick={() =>
+          setOpenNoFocusDrawer({
+            open: true,
+            focusContent: false,
+          })
+        }
+      >
+        Open autofocus disabled Drawer
       </Button>
 
       <Drawer
@@ -318,7 +359,7 @@ export function H5() {
 
       <Drawer
         open={openNonModalDrawer}
-        css={{height: '20dvh', position: 'fixed', overflow: 'hidden'}}
+        css={{height: '20dvh', position: 'fixed'}}
         expanderCSS={{
           background: '$blueShades100',
           paddingBlock: '$2 $6',
@@ -405,7 +446,63 @@ export function H5() {
           </Modal>
         </Modal.Trigger>
       </Drawer>
-    </div>
+
+      <Drawer
+        open={openNoFocusDrawer.open}
+        css={{height: '30dvh'}}
+        onClose={() => setOpenNoFocusDrawer({open: false, focusContent: false})}
+        variant='h5'
+        expandedPoint={90}
+        expandableLine={50}
+        focusContent={openNoFocusDrawer.focusContent}
+      >
+        {openNoFocusDrawer.open && (
+          <>
+            <Typography.Body variant='body3'>
+              {!openNoFocusDrawer.focusContent && 'Disable'}{' '}
+              <strong>Autofocus</strong> on the first focusable element - a
+              button at the bottom ⏬
+            </Typography.Body>
+
+            <Typography.Body
+              variant='body3'
+              css={{minHeight: '30vh', marginTop: '$10'}}
+            >
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Praesentium molestias voluptatem officia at repellat, voluptates
+              corrupti quod sunt necessitatibus delectus quae enim, temporibus
+              nisi, asperiores consectetur fugiat molestiae error itaque. Animi
+              ad ut eum cupiditate tempora reiciendis, doloremque quis corporis
+              ipsam aperiam explicabo voluptatum! Possimus tempore praesentium
+              suscipit non quisquam ea assumenda, eius sit illo ratione rem
+              consequatur est dignissimos? Similique animi dolor a fugiat modi
+              nostrum maiores possimus aliquid, repudiandae commodi, suscipit
+              aliquam eaque sint repellendus illum dolorem velit. Totam
+              necessitatibus accusamus tenetur, saepe distinctio illo maiores
+              facilis sapiente! Natus, ab. Omnis deleniti optio sunt debitis
+              odio placeat exercitationem tenetur sapiente atque quod neque
+              vitae, ipsum amet quas asperiores fugit corporis quo laboriosam
+              quibusdam iure porro. Ullam, veritatis totam. Qui reprehenderit
+              quidem reiciendis dolorum nisi molestias placeat sit enim culpa
+              hic quasi, doloribus, omnis quod ea eligendi architecto? Sint
+              alias voluptatem eveniet. Ipsa dolorem, maxime dolor excepturi
+              expedita consequuntur. Earum iste voluptatum, expedita vitae
+              temporibus optio dolor eius. Eveniet quae ipsum beatae! Pariatur
+              explicabo est fuga, suscipit nulla ad a eius porro minus eveniet
+              sed eligendi impedit adipisci quaerat.
+            </Typography.Body>
+
+            <Button
+              type='button'
+              variant='secondary'
+              onClick={() => console.log('clicked')}
+            >
+              A focusable element at the bottom
+            </Button>
+          </>
+        )}
+      </Drawer>
+    </StyledContainer>
   )
 }
 
@@ -598,3 +695,15 @@ export function Default() {
     </>
   )
 }
+
+const StyledContainer = styled('div', {
+  h4: {
+    marginBlock: 0,
+  },
+  'h4:not(:first-child)': {
+    marginTop: '$14',
+  },
+  'h4 + button': {
+    marginTop: '$4',
+  },
+})

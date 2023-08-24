@@ -38,6 +38,7 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
     open = false,
     onClose,
     onMouseDown,
+    focusContent = true,
 
     variant = 'default',
     position: drawerPosition = 'right',
@@ -235,17 +236,16 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
         document.body.setAttribute('inert', '')
       }
 
-      if (drawerMode === 'modal') {
-        DrawerElement.showModal()
-        return
+      if (!focusContent) {
+        DrawerElement.setAttribute('inert', '')
       }
-
-      DrawerElement.show()
+      drawerMode === 'modal' ? DrawerElement.showModal() : DrawerElement.show()
+      DrawerElement.removeAttribute('inert')
       return
     }
 
     handleCloseDrawer()
-  }, [open, DrawerElement, disableAddBodyAttr, handleCloseDrawer])
+  }, [open, DrawerElement, disableAddBodyAttr, focusContent, handleCloseDrawer])
 
   useEffect(() => {
     if (!open && drawerInitHeight) {
@@ -264,6 +264,7 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
       ref={DrawerRef}
       className={`${className} ${isExpanded ? 'drawer-expanded' : ''}`}
       css={css}
+      {...{drawerMode}}
       {...{variant}}
       {...{position}}
       {...delegated}

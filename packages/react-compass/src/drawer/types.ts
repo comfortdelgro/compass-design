@@ -31,6 +31,13 @@ interface DrawerSharedProps {
    *
    */
   drawerMode?: 'non-modal' | 'modal'
+  /**
+   * If `false`, disable a default behavior of `<dialog>` element:
+   *
+   * Browser won't autofocus on the first nested focusable element anymore.
+   * @default true
+   */
+  focusContent?: boolean
 }
 
 interface DefaultDrawerProps {
@@ -103,4 +110,7 @@ type Props = DrawerSharedProps &
 
 export type DrawerProps = Props &
   Omit<DrawerVariantProps, 'position'> &
-  Omit<DialogHTMLAttributes<HTMLDialogElement>, keyof Props>
+  Omit<
+    DialogHTMLAttributes<HTMLDialogElement>,
+    keyof Props | 'tabIndex' | 'autoFocus'
+  >
