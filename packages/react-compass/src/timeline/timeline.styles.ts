@@ -163,12 +163,13 @@ export const StyledTimeline = styled('div', {
       labelAlignment: 'left',
       itemAlignment: 'right',
       css: {
+        paddingRight: '0px',
         [`${StyledItemHeaderContainer}`]: {
           flexDirection: 'row-reverse',
           justifyContent: 'flex-end',
           gap: '$6',
-          //position: 'relative',
-          //right: '6.3rem',
+          position: 'relative',
+          right: '6.3rem',
         },
         [`${StyledItemLabel}`]: {
           justifyContent: 'flex-end',
@@ -183,13 +184,10 @@ export const StyledTimeline = styled('div', {
       itemAlignment: 'left',
       css: {
         boxShadow: '1px 0 0 0 #EDEBE9',
-
+        paddingLeft: '0px',
         [`${StyledItemHeaderContainer}`]: {
-          //position: 'relative',
-          //left: '7rem',
-        },
-        [`${StyledItemLabel}`]: {
-          //justifyContent: 'flex-end',
+          position: 'relative',
+          left: '7rem',
         },
       },
     },
@@ -200,22 +198,26 @@ export const StyledTimeline = styled('div', {
       labelAlignment: 'alternate',
       itemAlignment: 'alternate',
       css: {
+        paddingRight: '0px',
         [`${StyledItemHeaderContainer}`]: {},
         [`${StyledItemLabel}`]: {},
-        '& .header-even': {},
+        '& .header-even': {
+          position: 'relative',
+          right: '3.2rem',
+        },
         '& .header-odd': {
           display: 'flex',
           flexDirection: 'row-reverse',
-          //position: 'relative',
-          //right: '7rem',
+          position: 'relative',
+          right: '6.3rem',
         },
         '& .label-odd': {
           display: 'flex',
           justifyContent: 'flex-end',
         },
         '& .content-even': {
-          //position: 'relative',
-          //right: '10.1rem',
+          position: 'relative',
+          right: '10.1rem',
         },
       },
     },
@@ -229,23 +231,20 @@ export const StyledTimeline = styled('div', {
         boxShadow: '0 -1px 0 0 #EDEBE9',
         display: 'flex',
         flexDirection: 'row',
-        // justifyContent: 'flex-start',
+        justifyContent: 'flex-start',
         padding: '0',
         gap: '$39',
+        paddingBottom: '0px ',
         [`${StyledItemHeaderContainer}`]: {
           display: 'flex',
           flexDirection: 'column-reverse',
-          //right: '0',
+          right: '0',
         },
         [`${StyledItemContainer}`]: {
-          //position: 'relative',
+          position: 'relative',
           bottom: '4rem',
           display: 'flex',
           justifyContent: 'flex-start',
-        },
-        [`${StyledItemContentWrapper}`]: {
-          // display: 'flex',
-          // justifyContent: 'flex-start',
         },
       },
     },
@@ -259,13 +258,14 @@ export const StyledTimeline = styled('div', {
         flexDirection: 'row',
         padding: '0',
         gap: '$39',
+        paddingTop: '0px',
         [`${StyledItemHeaderContainer}`]: {
           display: 'flex',
           flexDirection: 'column',
-          //right: '0',
+          right: '0',
         },
         [`${StyledItemContainer}`]: {
-          //position: 'relative',
+          position: 'relative',
           top: '3.95rem',
           display: 'flex',
           justifyContent: 'flex-start',
@@ -287,10 +287,10 @@ export const StyledTimeline = styled('div', {
         [`${StyledItemHeaderContainer}`]: {
           display: 'flex',
           flexDirection: 'column',
-          //right: '0',
+          right: '0',
         },
         [`${StyledItemContainer}`]: {
-          //position: 'relative',
+          position: 'relative',
           top: '3.95rem',
           display: 'flex',
           justifyContent: 'flex-start',
@@ -369,7 +369,9 @@ export const StyledTimeLineContainer = styled('div', {
       mode: 'vertical',
       labelAlignment: 'left',
       itemAlignment: 'right',
-      css: {},
+      css: {
+        paddingLeft: '6.5rem',
+      },
     },
 
     // compound with: vertical right-side label & left-side items
@@ -377,7 +379,9 @@ export const StyledTimeLineContainer = styled('div', {
       mode: 'vertical',
       labelAlignment: 'right',
       itemAlignment: 'left',
-      css: {},
+      css: {
+        paddingRight: '6.5rem',
+      },
     },
 
     // compound with: vertical alternate
@@ -385,7 +389,9 @@ export const StyledTimeLineContainer = styled('div', {
       mode: 'vertical',
       labelAlignment: 'alternate',
       itemAlignment: 'alternate',
-      css: {},
+      css: {
+        paddingLeft: '8rem',
+      },
     },
 
     // compount with: horizontal top label & bottom items
@@ -393,26 +399,32 @@ export const StyledTimeLineContainer = styled('div', {
       mode: 'horizontal',
       labelAlignment: 'top',
       itemAlignment: 'bottom',
-      css: {},
+      css: {
+        paddingTop: '4rem',
+      },
     },
     {
       mode: 'horizontal',
       labelAlignment: 'bottom',
       itemAlignment: 'top',
-      css: {},
+      css: {
+        paddingBottom: '4rem',
+      },
     },
     {
       mode: 'horizontal',
       labelAlignment: 'alternate',
       itemAlignment: 'alternate',
-      css: {},
+      css: {
+        paddingBottom: '8rem',
+      },
     },
   ],
 
   defaultVariants: {
     mode: 'vertical',
-    labelAlignment: '//right',
-    itemAlignment: '//right',
+    labelAlignment: 'right',
+    itemAlignment: 'right',
   },
 })
 
