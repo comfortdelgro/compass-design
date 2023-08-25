@@ -213,7 +213,7 @@ export default function Demo(props: any) {
           margin: 'auto',
           display: 'block',
           justifyContent: 'center',
-          background: '$gray20',
+          background: '$background',
           padding: '$8 $4',
           borderTopRightRadius: 12,
           borderTopLeftRadius: 12,
