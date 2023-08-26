@@ -66,6 +66,12 @@ export const StyledDrawer = styled('dialog', {
   },
 
   variants: {
+    drawerMode: {
+      'non-modal': {
+        overflow: 'hidden',
+      },
+      modal: {},
+    },
     position: {
       left: {
         insetInline: '0 auto',

@@ -1,10 +1,13 @@
-import {Box, Typography} from '@comfortdelgro/react-compass'
+import {Box, Typography, useIsDarkTheme} from '@comfortdelgro/react-compass'
 import Container from 'components/layouts/Container'
 import Item from './item'
 
 export default function Introduction() {
+  const isDarkTheme = useIsDarkTheme()
   return (
-    <Box css={{background: '#E2DEEB', padding: '$14 0'}}>
+    <Box
+      css={{background: isDarkTheme ? '$gray70' : '#E2DEEB', padding: '$14 0'}}
+    >
       <Container>
         <Typography.Header>Introduction</Typography.Header>
         <Typography.Body variant='body2' css={{padding: '$5 0 $3 0'}}>
