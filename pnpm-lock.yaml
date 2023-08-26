@@ -168,7 +168,6 @@ importers:
 
   packages/react-compass:
     specifiers:
-      '@chakra-ui/descendant': ^3.0.14
       '@comfortdelgro/compass-icons': '*'
       '@comfortdelgro/eslint-config': ^1.0.2
       '@contentful/rich-text-html-renderer': ^16.0.2
@@ -237,7 +236,6 @@ importers:
       typescript: ^4.8.4
       vite: ^3.2.5
     dependencies:
-      '@chakra-ui/descendant': 3.0.14_react@18.2.0
       '@comfortdelgro/compass-icons': 1.1.1_react@18.2.0
       '@contentful/rich-text-html-renderer': 16.0.4
       '@contentful/rich-text-react-renderer': 15.16.4_biqbaboplfbrettd7655fr4n2y
@@ -829,32 +827,6 @@ packages:
       '@babel/helper-string-parser': 7.22.5
       '@babel/helper-validator-identifier': 7.22.5
       to-fast-properties: 2.0.0
-
-  /@chakra-ui/descendant/3.0.14_react@18.2.0:
-    resolution: {integrity: sha512-+Ahvp9H4HMpfScIv9w1vaecGz7qWAaK1YFHHolz/SIsGLaLGlbdp+5UNabQC7L6TUnzzJDQDxzwif78rTD7ang==}
-    peerDependencies:
-      react: '>=18'
-    dependencies:
-      '@chakra-ui/react-context': 2.0.8_react@18.2.0
-      '@chakra-ui/react-use-merge-refs': 2.0.7_react@18.2.0
-      react: 18.2.0
-    dev: false
-
-  /@chakra-ui/react-context/2.0.8_react@18.2.0:
-    resolution: {integrity: sha512-tRTKdn6lCTXM6WPjSokAAKCw2ioih7Eg8cNgaYRSwKBck8nkz9YqxgIIEj3dJD7MGtpl24S/SNI98iRWkRwR/A==}
-    peerDependencies:
-      react: '>=18'
-    dependencies:
-      react: 18.2.0
-    dev: false
-
-  /@chakra-ui/react-use-merge-refs/2.0.7_react@18.2.0:
-    resolution: {integrity: sha512-zds4Uhsc+AMzdH8JDDkLVet9baUBgtOjPbhC5r3A0ZXjZvGhCztFAVE3aExYiVoMPoHLKbLcqvCWE6ioFKz1lw==}
-    peerDependencies:
-      react: '>=18'
-    dependencies:
-      react: 18.2.0
-    dev: false
 
   /@changesets/apply-release-plan/6.1.3:
     resolution: {integrity: sha512-ECDNeoc3nfeAe1jqJb5aFQX7CqzQhD2klXRez2JDb/aVpGUbX673HgKrnrgJRuQR/9f2TtLoYIzrGB9qwD77mg==}

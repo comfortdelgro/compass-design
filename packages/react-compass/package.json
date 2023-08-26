@@ -35,7 +35,6 @@
     "@react-stately/table": "3.9.0"
   },
   "dependencies": {
-    "@chakra-ui/descendant": "^3.0.14",
     "@comfortdelgro/compass-icons": "*",
     "@contentful/rich-text-html-renderer": "^16.0.2",
     "@contentful/rich-text-react-renderer": "^15.16.2",
