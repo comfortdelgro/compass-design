@@ -40,6 +40,8 @@ interface Props extends StyledComponentProps {
   onBlur?: (e: React.FocusEvent) => void
   onKeyDown?: (e: React.KeyboardEvent) => void
   onKeyUp?: (e: React.KeyboardEvent) => void
+  maxLength?: number
+  minLength?: number
   'aria-activedescendant'?: string
   'aria-autocomplete'?: 'none' | 'inline' | 'list' | 'both'
   'aria-haspopup'?:
@@ -76,55 +78,25 @@ const SearchField = React.forwardRef<HTMLDivElement, SearchFieldProps>(
       isDisabled = false,
       autoFocus = false,
       placeholder = '',
-      onSubmit = () => {
-        /* empty */
-      },
-      onChange = () => {
-        /* empty */
-      },
-      onChangeEvent = () => {
-        /* empty */
-      },
-      onCut = () => {
-        /* empty */
-      },
-      onCopy = () => {
-        /* empty */
-      },
-      onBlur = () => {
-        /* empty */
-      },
-      onPaste = () => {
-        /* empty */
-      },
-      onInput = () => {
-        /* empty */
-      },
-      onKeyUp = () => {
-        /* empty */
-      },
-      onSelect = () => {
-        /* empty */
-      },
+      onSubmit,
+      onChange,
+      onChangeEvent,
+      onCut,
+      onCopy,
+      onBlur,
+      onPaste,
+      onInput,
+      onKeyUp,
+      onSelect,
 
-      onKeyDown = () => {
-        /* empty */
-      },
-      onBeforeInput = () => {
-        /* empty */
-      },
-      onCompositionEnd = () => {
-        /* empty */
-      },
-      onCompositionStart = () => {
-        /* empty */
-      },
-      onCompositionUpdate = () => {
-        /* empty */
-      },
-      onFocus = () => {
-        /* empty */
-      },
+      onKeyDown,
+      onBeforeInput,
+      onCompositionEnd,
+      onCompositionStart,
+      onCompositionUpdate,
+      onFocus,
+      maxLength,
+      minLength,
       ...delegated
     } = props
     const isDarkTheme = useIsDarkTheme()
@@ -209,6 +181,8 @@ const SearchField = React.forwardRef<HTMLDivElement, SearchFieldProps>(
           onCompositionEnd={onCompositionEnd}
           onCompositionStart={onCompositionStart}
           onCompositionUpdate={onCompositionUpdate}
+          maxLength={maxLength}
+          minLength={minLength}
         />
         {textValue !== '' ? (
           <Button size='sm' variant='ghost' onPress={onClearButtonClick}>

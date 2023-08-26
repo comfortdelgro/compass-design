@@ -1,12 +1,23 @@
-import {Box, Divider, Typography} from '@comfortdelgro/react-compass'
+import {
+  Box,
+  Divider,
+  Typography,
+  useIsDarkTheme,
+} from '@comfortdelgro/react-compass'
 import Container from 'components/layouts/Container'
 import Item from '../Introduction/item'
 import CoreShowcase from './CoreShowcase'
 import PreflightComponent from './PreflightComponent'
 
 function ReactCompass() {
+  const isDarkTheme = useIsDarkTheme()
   return (
-    <Box css={{padding: '4rem 0', background: '#ECE2EF'}}>
+    <Box
+      css={{
+        padding: '4rem 0',
+        background: isDarkTheme ? '$gray90' : '#ECE2EF',
+      }}
+    >
       <Container>
         <Box>
           <Typography.Header>Usage</Typography.Header>

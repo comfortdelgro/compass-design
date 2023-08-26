@@ -7,6 +7,13 @@ export type TSideNavItem = {
   pathname: string
   title: string
   icon?: IconDefinition
+  description?: string
+}
+
+export type TSearchItem = {
+  pathname: string
+  title: string
+  description?: string
 }
 
 export type TPageProps = {

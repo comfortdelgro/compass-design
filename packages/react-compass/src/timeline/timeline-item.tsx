@@ -11,8 +11,9 @@ import {
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
-  label?: string
-  dot?: unknown | Element
+  label?: React.ReactNode | string
+  icon?: React.ReactNode
+  dot?: React.ReactNode
   identifier?: number
 }
 
@@ -26,6 +27,7 @@ const TimelineItem = React.forwardRef<HTMLDivElement, TimelineItemProps>(
       css = {},
       label = '',
       identifier = 0,
+      icon,
       dot,
       ...delegated
     } = props
@@ -47,10 +49,12 @@ const TimelineItem = React.forwardRef<HTMLDivElement, TimelineItemProps>(
           className={className('itemContainer')}
         >
           <StyledItemHeaderContainer className={className('header')}>
-            <StyledItemDot>{dot}</StyledItemDot>
-            <StyledItemLabel className={className('label')}>
-              {label}
-            </StyledItemLabel>
+            {!dot ? <StyledItemDot>{icon}</StyledItemDot> : dot}
+            {typeof label === 'string' ? (
+              <StyledItemLabel>{label}</StyledItemLabel>
+            ) : (
+              label
+            )}
           </StyledItemHeaderContainer>
           <StyledItemContentWrapper className={className('content')}>
             {children}

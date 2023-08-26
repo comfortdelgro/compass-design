@@ -105,7 +105,13 @@ export type {
 export {default as Divider} from './divider'
 export type {DividerProps} from './divider'
 export {default as Drawer} from './drawer'
-export type {DrawerFooterProps, DrawerHeaderProps, DrawerProps} from './drawer'
+export type {
+  DrawerDefaultProps,
+  DrawerFooterProps,
+  DrawerH5Props,
+  DrawerHeaderProps,
+  DrawerProps,
+} from './drawer'
 export {default as Dropdown} from './dropdown'
 export type {
   DropdownComboBoxProps,

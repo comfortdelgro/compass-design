@@ -2,7 +2,11 @@ import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import TimelineItem from './timeline-item'
-import {StyledTimelineContainer, TimelineVariantProps} from './timeline.styles'
+import {
+  StyledTimeline,
+  StyledTimeLineContainer,
+  TimelineVariantProps,
+} from './timeline.styles'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
@@ -31,16 +35,24 @@ const Timeline = React.forwardRef<HTMLDivElement, TimelineProps>(
     const timelineRef = useDOMRef<HTMLDivElement>(ref)
 
     return (
-      <StyledTimelineContainer
-        css={css}
-        ref={timelineRef}
-        {...delegated}
+      <StyledTimeLineContainer
+        className='cdg-timeline-container'
         mode={mode}
         labelAlignment={labelAlignment}
         itemAlignment={itemAlignment}
       >
-        {children}
-      </StyledTimelineContainer>
+        <StyledTimeline
+          css={css}
+          ref={timelineRef}
+          {...delegated}
+          mode={mode}
+          labelAlignment={labelAlignment}
+          itemAlignment={itemAlignment}
+          className='cdg-timeline'
+        >
+          {children}
+        </StyledTimeline>
+      </StyledTimeLineContainer>
     )
   },
 )

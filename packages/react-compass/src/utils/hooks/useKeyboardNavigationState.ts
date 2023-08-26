@@ -1,9 +1,9 @@
+import React, {useMemo} from 'react'
 import {
   createDescendantContext,
   DescendantsManager,
   UseDescendantsReturn,
-} from '@chakra-ui/descendant'
-import React, {useMemo} from 'react'
+} from '../descendant'
 
 export interface SelectType {
   selected: number
@@ -12,13 +12,13 @@ export interface SelectType {
 
 export interface UseKeyboardNavigationReturn extends SelectType {
   provider: {
-    descendants: DescendantsManager<HTMLElement, object>
+    descendants: DescendantsManager<HTMLElement>
     selected: number
     setSelected: React.Dispatch<React.SetStateAction<number>>
   }
-  DescendantsProvider: React.Provider<DescendantsManager<HTMLElement, object>>
-  useDescendantsContext: () => DescendantsManager<HTMLElement, object>
-  useDescendants: () => DescendantsManager<HTMLElement, object>
+  DescendantsProvider: React.Provider<DescendantsManager<HTMLElement>>
+  useDescendantsContext: () => DescendantsManager<HTMLElement>
+  useDescendants: () => DescendantsManager<HTMLElement>
   useDescendant: (
     options?:
       | {
@@ -30,7 +30,7 @@ export interface UseKeyboardNavigationReturn extends SelectType {
     descendants: UseDescendantsReturn
     index: number
     enabledIndex: number
-    register: (node: HTMLElement | null) => void
+    register: ((node: HTMLElement | null) => void) | null
   }
 }
 

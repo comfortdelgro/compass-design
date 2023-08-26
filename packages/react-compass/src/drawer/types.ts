@@ -31,6 +31,18 @@ interface DrawerSharedProps {
    *
    */
   drawerMode?: 'non-modal' | 'modal'
+  /**
+   * If `true`, disable a default behavior of `<dialog>` element:
+   *
+   * Browser won't autofocus on the first nested focusable element anymore.
+   * @default false
+   */
+  preventFocus?: boolean
+  /**
+   * If `true`, the drawer won't close when users press `Escape` key or click/tap on the backdrop.
+   * @default false
+   */
+  preventClose?: boolean
 }
 
 interface DefaultDrawerProps {
@@ -46,7 +58,7 @@ interface DefaultDrawerProps {
   autoClose?: never
 }
 
-export interface H5DrawerProps {
+interface H5DrawerProps {
   variant: 'h5'
   position?: never
   expanderCSS?: StyledComponentProps['css']
@@ -97,10 +109,16 @@ export interface H5DrawerProps {
   autoClose?: boolean
 }
 
+export type DrawerH5Props = DrawerSharedProps & H5DrawerProps
+export type DrawerDefaultProps = DrawerSharedProps & DefaultDrawerProps
+
 type Props = DrawerSharedProps &
   (DefaultDrawerProps | H5DrawerProps) &
   StyledComponentProps
 
 export type DrawerProps = Props &
   Omit<DrawerVariantProps, 'position'> &
-  Omit<DialogHTMLAttributes<HTMLDialogElement>, keyof Props>
+  Omit<
+    DialogHTMLAttributes<HTMLDialogElement>,
+    keyof Props | 'tabIndex' | 'autoFocus'
+  >

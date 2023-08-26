@@ -60,6 +60,14 @@ import Compass from '@comfortdelgro/compass-icons/react/colorful/compass'
 
 {{"demo": "/showcases/ColorfulIcons.tsx"}}
 
+## Payment Icons
+
+```js
+import Compass from '@comfortdelgro/compass-icons/react/payment/compass'
+```
+
+{{"demo": "/showcases/PaymentIcons.tsx"}}
+
 ## Other Icons
 
 ```js
@@ -83,6 +91,14 @@ import SVG from '@comfortdelgro/compass-icons/react/file/svg'
 ```
 
 {{"demo": "/showcases/FileIcons.tsx"}}
+
+## H5 Icons
+
+```js
+import SVG from '@comfortdelgro/compass-icons/react/h5/svg'
+```
+
+{{"demo": "/showcases/H5Icons.tsx"}}
 
 ## Props
 
