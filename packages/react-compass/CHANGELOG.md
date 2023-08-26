@@ -1,5 +1,11 @@
 ## 2.9.0
 
+## 2.15.0
+
+### Minor Changes
+
+- df06bff9: Fix minor bugs
+
 ## 2.14.0
 
 ### Minor Changes
