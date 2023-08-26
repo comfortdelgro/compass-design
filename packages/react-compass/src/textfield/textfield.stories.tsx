@@ -146,6 +146,22 @@ export const Variants: React.FC = () => {
         helperText='Your password should contain at least 18 characters.'
         password={true}
       />
+      <h3>Max length</h3>
+      <Textfield
+        css={{width: '16rem'}}
+        label='Password'
+        placeholder='This has a max length of 10'
+        helperText='Your input should be equal or less than 10 characters.'
+        maxLength={10}
+      />
+      <h3>Min length</h3>
+      <Textfield
+        css={{width: '16rem'}}
+        label='Password'
+        placeholder='This has a min length of 5'
+        helperText='Your input should be equal or more than 5 characters.'
+        minLength={5}
+      />
     </Column>
   )
 }

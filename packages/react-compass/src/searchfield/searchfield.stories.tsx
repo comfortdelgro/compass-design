@@ -46,6 +46,20 @@ export const Variants: React.FC = () => {
         onChange={(value) => setValue(value)}
         css={{width: '10rem'}}
       />
+      <h3> Max Length</h3>
+      <SearchField
+        placeholder='Search'
+        maxLength={10}
+        css={{width: '10rem'}}
+        onSubmit={(text) => console.log(text)}
+      />
+      <h3> Min Length</h3>
+      <SearchField
+        placeholder='Search'
+        minLength={5}
+        css={{width: '10rem'}}
+        onSubmit={(text) => console.log(text)}
+      />
     </Column>
   )
 }
