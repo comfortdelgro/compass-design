@@ -18,10 +18,13 @@ or
 ```jsx
 import Dropdown from '@comfortdelgro/react-compass/dropdown'
 ```
+
 ## Example
+
 ### Select Controlled:
 
 We provide 2 type of dropdown that can be used to select: `Dropdown.Select` and `Dropdown.ComboBox`
+
 ### Controlled
 
 {{"demo": "DropdownControlled.tsx"}}
@@ -79,7 +82,6 @@ We provide 2 type of dropdown that can be used to select: `Dropdown.Select` and 
 | rightIcon  | `ReactNode`                    | -       | Right icon of the dropdown Item  |
 | rightColor | `string`                       | -       | Right color of the dropdown Item |
 | checkmark  | `none` \| `checkbox` \| `tick` | -       | Variant for the selected         |
-
 
 ### `<Dropdown.Section/>` :
 

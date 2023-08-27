@@ -16,66 +16,66 @@ import IconBox from 'data/foundation/iconography/components/IconBox'
 function Doutone() {
   return (
     <section
-    style={{
-      display: 'flex',
-      gap: '10px',
-      flexWrap: 'wrap',
-      alignItems: 'flex-start',
-    }}
-  >
-    <IconBox
-      component={<BadgeDollarDuotone width={40} height={40} />}
-      name='BadgeDollarDuotone'
-    />
-    <IconBox
-      component={<CalendarDaysDuotone width={40} height={40} />}
-      name='CalendarDaysDuotone'
-    />
-    <IconBox
-      component={<ChartLineUpDuotone width={40} height={40} />}
-      name='ChartLineUpDuotone'
-    />
-    <IconBox
-      component={<ChartPieDuotone width={40} height={40} />}
-      name='ChartPieDuotone'
-    />
-    <IconBox
-      component={<EditDuotone width={40} height={40} />}
-      name='EditDuotone'
-    />
-    <IconBox
-      component={<FlagDuotone width={40} height={40} />}
-      name='FlagDuotone'
-    />
-    <IconBox
-      component={<GearsDuotone width={40} height={40} />}
-      name='GearsDuotone'
-    />
-    <IconBox
-      component={<GridDuotone width={40} height={40} />}
-      name='GridDuotone'
-    />
-    <IconBox
-      component={<NotificationDuotone width={40} height={40} />}
-      name='NotificationDuotone'
-    />
-    <IconBox
-      component={<OrgChartDuotone width={40} height={40} />}
-      name='OrgChartDuotone'
-    />
-    <IconBox
-      component={<PasswordDuotone width={40} height={40} />}
-      name='PasswordDuotone'
-    />
-    <IconBox
-      component={<TrashDuotone width={40} height={40} />}
-      name='TrashDuotone'
-    />
-    <IconBox
-      component={<UserDuotone width={40} height={40} />}
-      name='UserDuotone'
-    />
-  </section>
+      style={{
+        display: 'flex',
+        gap: '10px',
+        flexWrap: 'wrap',
+        alignItems: 'flex-start',
+      }}
+    >
+      <IconBox
+        component={<BadgeDollarDuotone width={40} height={40} />}
+        name='BadgeDollarDuotone'
+      />
+      <IconBox
+        component={<CalendarDaysDuotone width={40} height={40} />}
+        name='CalendarDaysDuotone'
+      />
+      <IconBox
+        component={<ChartLineUpDuotone width={40} height={40} />}
+        name='ChartLineUpDuotone'
+      />
+      <IconBox
+        component={<ChartPieDuotone width={40} height={40} />}
+        name='ChartPieDuotone'
+      />
+      <IconBox
+        component={<EditDuotone width={40} height={40} />}
+        name='EditDuotone'
+      />
+      <IconBox
+        component={<FlagDuotone width={40} height={40} />}
+        name='FlagDuotone'
+      />
+      <IconBox
+        component={<GearsDuotone width={40} height={40} />}
+        name='GearsDuotone'
+      />
+      <IconBox
+        component={<GridDuotone width={40} height={40} />}
+        name='GridDuotone'
+      />
+      <IconBox
+        component={<NotificationDuotone width={40} height={40} />}
+        name='NotificationDuotone'
+      />
+      <IconBox
+        component={<OrgChartDuotone width={40} height={40} />}
+        name='OrgChartDuotone'
+      />
+      <IconBox
+        component={<PasswordDuotone width={40} height={40} />}
+        name='PasswordDuotone'
+      />
+      <IconBox
+        component={<TrashDuotone width={40} height={40} />}
+        name='TrashDuotone'
+      />
+      <IconBox
+        component={<UserDuotone width={40} height={40} />}
+        name='UserDuotone'
+      />
+    </section>
   )
 }
 
