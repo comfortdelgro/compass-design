@@ -204,6 +204,122 @@ export const routes: TSideNavItem[] = [
         pathname: '/list',
         description: 'Lists show a large set of items or options to the user.',
       },
+      {
+        title: 'Alert',
+        pathname: '/alert',
+        description:
+          'The Alert component displays important messages to the user.',
+      },
+      {
+        title: 'Chart',
+        pathname: '/chart',
+        description: 'Charts visualize data in graphical form.',
+      },
+      {
+        title: 'Data Grid',
+        pathname: '/data-grid',
+        description: 'Data Grid displays tabular data in rows and columns.',
+      },
+      {
+        title: 'Date Picker',
+        pathname: '/date-picker',
+        description:
+          'Date Picker allows users to select dates from a calendar.',
+      },
+      {
+        title: 'Date Range Picker',
+        pathname: '/date-range-picker',
+        description:
+          'Date Range Picker enables users to select a range of dates.',
+      },
+      {
+        title: 'File',
+        pathname: '/file',
+        description: 'File component handles file uploads and interactions.',
+      },
+      {
+        title: 'Footer',
+        pathname: '/footer',
+        description: 'Footer is typically used at the bottom of a web page.',
+      },
+      {
+        title: 'Form Layout',
+        pathname: '/form-layout',
+        description:
+          'Form Layout arranges form elements for a consistent look.',
+      },
+      {
+        title: 'Grid',
+        pathname: '/grid',
+        description: 'Grid system helps organize and align page elements.',
+      },
+      {
+        title: 'Gutter',
+        pathname: '/gutter',
+        description: 'Gutter provides spacing between grid or layout items.',
+      },
+      {
+        title: 'Layouts',
+        pathname: '/layouts',
+        description: 'Layouts define the structure of a web page or app.',
+      },
+      {
+        title: 'Multiple Dropdown',
+        pathname: '/multiple-dropdown',
+        description: 'Multiple Dropdown allows selecting multiple options.',
+      },
+      {
+        title: 'No-SSR',
+        pathname: '/no-ssr',
+        description:
+          'No-SSR ensures components are not rendered on the server.',
+      },
+      {
+        title: 'Preflight',
+        pathname: '/preflight',
+        description: 'Preflight sets baseline styles for consistent rendering.',
+      },
+      {
+        title: 'Progress Bar',
+        pathname: '/progress-bar',
+        description: 'Progress Bar indicates completion of a task.',
+      },
+      {
+        title: 'Radio',
+        pathname: '/radio',
+        description:
+          'Radio allows users to select a single option from a list.',
+      },
+      {
+        title: 'Searchfield',
+        pathname: '/searchfield',
+        description: 'Searchfield provides an input for search queries.',
+      },
+      {
+        title: 'Spinner',
+        pathname: '/spinner',
+        description: 'Spinner indicates loading or processing activity.',
+      },
+      {
+        title: 'Toggle',
+        pathname: '/toggle',
+        description: 'Toggle switches between two states, like on/off.',
+      },
+      {
+        title: 'Transitions',
+        pathname: '/transitions',
+        description: 'Transitions add animations when elements change.',
+      },
+      {
+        title: 'Time Picker',
+        pathname: '/time-picker',
+        description: 'Time Picker allows users to select times of day.',
+      },
+      {
+        title: 'Pagination',
+        pathname: '/pagination',
+        description: 'Pagination divides content into pages for navigation.',
+      },
     ],
   },
 ]
