@@ -83,7 +83,7 @@ export const TimePickerDropdownItemStyle = styled('button', {
   fontWeight: 500,
   boxSizing: 'border-box',
   '&:hover': {
-    backgroundColor: '$infoBg',
+    backgroundColor: '$primaryBg',
   },
   fontSize: '$body3',
   lineHeight: '$5_25',

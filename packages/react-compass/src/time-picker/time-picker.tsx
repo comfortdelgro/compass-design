@@ -529,6 +529,7 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
           attachToElement={
             containerRef.current && containerRef.current.parentElement
           }
+          direction='bottom-left'
           offset={8}
           isOpen={isOpen}
           onClose={handlePopoverClose(true)}
@@ -550,4 +551,4 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
   },
 )
 
-export default React.memo(TimePicker)
+export default TimePicker
