@@ -7,6 +7,7 @@ import {
   MenuList,
   MenuListDropdown,
   Sidenav,
+  Transitions,
 } from '@comfortdelgro/react-compass'
 
 import {useSidenavContext} from 'contexts/SideNav'
@@ -85,7 +86,11 @@ const CustomSidenavItem = (props: TCustomSideNavItem) => {
         isActive={isExpanded}
         // @ts-ignore
         onClick={handleClickSidenav}
-        css={{marginBottom: '$3 !important', overflow: 'initial'}}
+        css={{
+          marginBottom: '0 !important',
+          overflow: 'initial',
+          minHeight: 40,
+        }}
       >
         {icon ? <Icon icon={icon}></Icon> : <></>}
         <Flexbox css={{justifyContent: 'space-between', width: '100%'}}>
@@ -97,50 +102,54 @@ const CustomSidenavItem = (props: TCustomSideNavItem) => {
           )}
         </Flexbox>
       </Sidenav.Item>
-      {isExpanded && children && children.length > 0 && (
-        <Box>
-          <MenuList
-            css={{
-              overflow: 'initial',
-              padding: '$1 $4',
-              width: '100%',
-              borderRadius: 8,
-              border: 'none',
-              background: 'none',
-              fontWeight: 600,
-              '.active': {
-                background: '$cdgBlue20',
-                color: '$cdgBlue100',
-              },
-            }}
-          >
-            <MenuListDropdown>
-              {children.map((child, index) => (
-                <Link
-                  key={`${child.pathname}${index}`}
-                  href={child.pathname}
-                  style={{textDecoration: 'none'}}
-                  onClick={handleOnClickItem}
-                >
-                  <MenuListDropdown.Item
-                    key={child.pathname}
-                    isActive={child.isActive}
-                    css={{
-                      '&:hover': {
-                        background: '$cdgBlue10',
-                        color: '$cdgBlue80',
-                      },
-                    }}
-                    className={child.isActive ? 'active' : ''}
+      <Transitions effect='collapse' show={isExpanded} speed={0.4}>
+        {isExpanded && children && children.length > 0 && (
+          <Box>
+            <MenuList
+              css={{
+                overflow: 'initial',
+                padding: '$1 $4',
+                width: '100%',
+                borderRadius: 8,
+                border: 'none',
+                background: 'none',
+                fontWeight: 600,
+                '.active': {
+                  transition: 'all .3s',
+                  background: '$cdgBlue20',
+                  color: '$cdgBlue100',
+                },
+              }}
+            >
+              <MenuListDropdown>
+                {children.map((child, index) => (
+                  <Link
+                    key={`${child.pathname}${index}`}
+                    href={child.pathname}
+                    style={{textDecoration: 'none'}}
+                    onClick={handleOnClickItem}
                   >
-                    {child.title}
-                  </MenuListDropdown.Item>
-                </Link>
-              ))}
-            </MenuListDropdown>
-          </MenuList>
-        </Box>
-      )}
+                    <MenuListDropdown.Item
+                      key={child.pathname}
+                      isActive={child.isActive}
+                      css={{
+                        '&:hover': {
+                          background: '$cdgBlue10',
+                          color: '$cdgBlue80',
+                          transition: 'all .2s',
+                        },
+                      }}
+                      className={child.isActive ? 'active' : ''}
+                    >
+                      {child.title}
+                    </MenuListDropdown.Item>
+                  </Link>
+                ))}
+              </MenuListDropdown>
+            </MenuList>
+          </Box>
+        )}
+      </Transitions>
     </>
   )
 }

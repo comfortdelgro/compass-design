@@ -27,4 +27,4 @@ import DashboardSidecard from '@comfortdelgro/react-compass/dashboard-sidecard'
 
 | Name | Type  | Default | Description                                                                             |
 | :--- | :---- | :------ | :-------------------------------------------------------------------------------------- |
-| css  | `CSS` |    —    | The system prop that allows defining system overrides as well as additional CSS styles. |
+| css  | `CSS` | —       | The system prop that allows defining system overrides as well as additional CSS styles. |

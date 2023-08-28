@@ -11,14 +11,14 @@ const introduces = [
     description:
       'It distinguishes our brand and it creates consistent experience.',
     image: '/static/images/overview/intro-1.png',
-    url: '/foundation/color',
+    url: '/foundation/colors',
   },
   {
     title: 'Elevations',
     description:
       'Elevations are layered surface that forms the foundation of UI.',
     image: '/static/images/overview/intro-2.png',
-    url: '/foundation/color',
+    url: '/getting-started/colors',
   },
   {
     title: 'Iconography',
@@ -38,14 +38,14 @@ const introduces = [
     title: 'Illustrations',
     description: 'It help convey complex ideas in a simple way.',
     image: '/static/images/overview/intro-5.png',
-    url: '/foundation/color',
+    url: '/foundation/colors',
   },
   {
     title: 'Logo’s',
     description:
       'It distinguishes our brand and it creates consistent experience.',
     image: '/static/images/overview/intro-6.png',
-    url: '/foundation/color',
+    url: '/foundation/colors',
   },
 ]
 

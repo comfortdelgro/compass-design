@@ -15,6 +15,7 @@ import {
   faRefresh,
 } from '@fortawesome/free-solid-svg-icons'
 import copy from 'clipboard-copy'
+import {useIsMobileScreen} from 'hooks'
 import Link from 'next/link'
 import codeSandbox from '../sandbox/CodeSandbox'
 
@@ -33,6 +34,8 @@ export default function DemoToolbar(props: any) {
     // TODO: handle toast
   }
 
+  const isMobileScreen = useIsMobileScreen()
+
   const handleCodeOpenClick = () => {
     document.cookie = `sourceHintSeen=true;path=/;max-age=31536000`
     onCodeOpenChange()
@@ -50,14 +53,24 @@ export default function DemoToolbar(props: any) {
           borderTop: '1px solid $gray40',
           borderRight: '1px solid $gray40',
           borderLeft: '1px solid $gray40',
-          padding: '$2 $4',
+          padding: '$2 $3',
           display: 'flex',
           justifyContent: 'space-between',
         }}
       >
-        <Box>
-          <Badge label='Typescript' color='info' />
-        </Box>
+        {!isMobileScreen && (
+          <Box>
+            <Badge
+              label='Typescript'
+              css={{
+                color: '$gray80',
+                backgroundColor: '$gray40',
+                '&:hover': {backgroundColor: 'grey'},
+              }}
+            />
+          </Box>
+        )}
+
         <Box>
           <TooltipTrigger>
             <Button variant='ghost' size='sm' onClick={handleCodeOpenClick}>

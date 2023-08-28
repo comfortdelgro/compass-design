@@ -3,6 +3,7 @@
 import React, {
   forwardRef,
   MouseEvent,
+  ReactEventHandler,
   useCallback,
   useEffect,
   useMemo,
@@ -38,6 +39,8 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
     open = false,
     onClose,
     onMouseDown,
+    preventFocus = true,
+    preventClose = false,
 
     variant = 'default',
     position: drawerPosition = 'right',
@@ -129,7 +132,7 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
       }
 
       onMouseDown?.(e)
-      if (!(e.target instanceof HTMLDialogElement)) {
+      if (!(e.target instanceof HTMLDialogElement) || !preventClose) {
         return
       }
 
@@ -139,6 +142,15 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
       }
     },
     [DrawerElement, onMouseDown, handleCloseDrawer],
+  )
+
+  const handleCancelDrawer = useCallback<ReactEventHandler<HTMLDialogElement>>(
+    (e) => {
+      if (preventClose) {
+        e.preventDefault()
+      }
+    },
+    [preventClose],
   )
 
   const handleExpanderDragStart = useCallback<
@@ -235,17 +247,16 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
         document.body.setAttribute('inert', '')
       }
 
-      if (drawerMode === 'modal') {
-        DrawerElement.showModal()
-        return
+      if (!preventFocus) {
+        DrawerElement.setAttribute('inert', '')
       }
-
-      DrawerElement.show()
+      drawerMode === 'modal' ? DrawerElement.showModal() : DrawerElement.show()
+      DrawerElement.removeAttribute('inert')
       return
     }
 
     handleCloseDrawer()
-  }, [open, DrawerElement, disableAddBodyAttr, handleCloseDrawer])
+  }, [open, DrawerElement, disableAddBodyAttr, preventFocus, handleCloseDrawer])
 
   useEffect(() => {
     if (!open && drawerInitHeight) {
@@ -264,6 +275,7 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
       ref={DrawerRef}
       className={`${className} ${isExpanded ? 'drawer-expanded' : ''}`}
       css={css}
+      {...{drawerMode}}
       {...{variant}}
       {...{position}}
       {...delegated}
@@ -276,6 +288,7 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
       }}
       onMouseDown={handleMouseDown}
       onClose={onClose}
+      onCancel={handleCancelDrawer}
     >
       {variant === 'h5' && !disableResize && (
         <DrawerExpander

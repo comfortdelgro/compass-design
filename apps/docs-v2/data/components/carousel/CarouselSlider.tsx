@@ -18,7 +18,7 @@ const Sliders = () => {
     <CarouselSlider
       onSwitchSlide={handleSwitchSlide}
       className='floating-slide'
-      style={{height: '512px',width:'100%'}}
+      style={{height: '512px', width: '100%'}}
     >
       {imageUrls.map((imageUrl: string, index: number) => (
         <CarouselSlider.ImageSlide

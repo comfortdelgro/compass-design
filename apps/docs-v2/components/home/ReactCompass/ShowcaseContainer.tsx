@@ -44,6 +44,9 @@ export default function ShowcaseContainer({
             backgroundColor: '$black',
             borderBottomLeftRadius: 20,
             borderBottomRightRadius: 20,
+            '.token.punctuation': {
+              color: 'white',
+            },
           }}
         >
           {code}

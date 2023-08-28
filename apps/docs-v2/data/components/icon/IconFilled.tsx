@@ -29,118 +29,118 @@ import IconBox from 'data/foundation/iconography/components/IconBox'
 function Filled() {
   return (
     <section
-    style={{
-      display: 'flex',
-      gap: '10px',
-      flexWrap: 'wrap',
-      alignItems: 'flex-start',
-    }}
-  >
-    <IconBox
-      component={<AddressBookFilled width={40} height={40} />}
-      name='AddressBookFilled'
-    />
-    <IconBox
-      component={<ArrowDownFilled width={40} height={40} />}
-      name='ArrowDownFilled'
-    />
-    <IconBox
-      component={<ArrowLeftFilled width={40} height={40} />}
-      name='ArrowLeftFilled'
-    />
-    <IconBox
-      component={<ArrowRightFilled width={40} height={40} />}
-      name='ArrowRightFilled'
-    />
-    <IconBox
-      component={<ArrowUpFilled width={40} height={40} />}
-      name='ArrowUpFilled'
-    />
-    <IconBox
-      component={<CalendarDaysFilled width={40} height={40} />}
-      name='CalendarDaysFilled'
-    />
-    <IconBox
-      component={<ClockFilled width={40} height={40} />}
-      name='ClockFilled'
-    />
-    <IconBox
-      component={<CreditCardFilled width={40} height={40} />}
-      name='CreditCardFilled'
-    />
-    <IconBox
-      component={<DuplicateImageFilled width={40} height={40} />}
-      name='DuplicateImageFilled'
-    />
-    <IconBox
-      component={<ExclamationFilled width={40} height={40} />}
-      name='ExclamationFilled'
-    />
-    <IconBox
-      component={<GroupAddFilled width={40} height={40} />}
-      name='GroupAddFilled'
-    />
-    <IconBox
-      component={<GroupSettingsFilled width={40} height={40} />}
-      name='GroupSettingsFilled'
-    />
-    <IconBox
-      component={<HeartFilled width={40} height={40} />}
-      name='HeartFilled'
-    />
-    <IconBox
-      component={<ImageFilled width={40} height={40} />}
-      name='ImageFilled'
-    />
-    <IconBox
-      component={<InfoFilled width={40} height={40} />}
-      name='InfoFilled'
-    />
-    <IconBox
-      component={<MailFilled width={40} height={40} />}
-      name='MailFilled'
-    />
-    <IconBox
-      component={<NotificationFilled width={40} height={40} />}
-      name='NotificationFilled'
-    />
-    <IconBox
-      component={<PencilFilled width={40} height={40} />}
-      name='PencilFilled'
-    />
-    <IconBox
-      component={<PersonFilled width={40} height={40} />}
-      name='PersonFilled'
-    />
-    <IconBox
-      component={<ProfileFilled width={40} height={40} />}
-      name='ProfileFilled'
-    />
-    <IconBox
-      component={<QuestionFilled width={40} height={40} />}
-      name='QuestionFilled'
-    />
-    <IconBox
-      component={<StarFilled width={40} height={40} />}
-      name='StarFilled'
-    />
-    <IconBox
-      component={<ThumbtackFilled width={40} height={40} />}
-      name='ThumbtackFilled'
-    />
-    <IconBox
-      component={<TrashFilled width={40} height={40} />}
-      name='TrashFilled'
-    />
-    <IconBox
-      component={<UserAddFilled width={40} height={40} />}
-      name='UserAddFilled'
-    />
-    <IconBox
-      component={<WarningFilled width={40} height={40} />}
-      name='WarningFilled'
-    />
-  </section>
+      style={{
+        display: 'flex',
+        gap: '10px',
+        flexWrap: 'wrap',
+        alignItems: 'flex-start',
+      }}
+    >
+      <IconBox
+        component={<AddressBookFilled width={40} height={40} />}
+        name='AddressBookFilled'
+      />
+      <IconBox
+        component={<ArrowDownFilled width={40} height={40} />}
+        name='ArrowDownFilled'
+      />
+      <IconBox
+        component={<ArrowLeftFilled width={40} height={40} />}
+        name='ArrowLeftFilled'
+      />
+      <IconBox
+        component={<ArrowRightFilled width={40} height={40} />}
+        name='ArrowRightFilled'
+      />
+      <IconBox
+        component={<ArrowUpFilled width={40} height={40} />}
+        name='ArrowUpFilled'
+      />
+      <IconBox
+        component={<CalendarDaysFilled width={40} height={40} />}
+        name='CalendarDaysFilled'
+      />
+      <IconBox
+        component={<ClockFilled width={40} height={40} />}
+        name='ClockFilled'
+      />
+      <IconBox
+        component={<CreditCardFilled width={40} height={40} />}
+        name='CreditCardFilled'
+      />
+      <IconBox
+        component={<DuplicateImageFilled width={40} height={40} />}
+        name='DuplicateImageFilled'
+      />
+      <IconBox
+        component={<ExclamationFilled width={40} height={40} />}
+        name='ExclamationFilled'
+      />
+      <IconBox
+        component={<GroupAddFilled width={40} height={40} />}
+        name='GroupAddFilled'
+      />
+      <IconBox
+        component={<GroupSettingsFilled width={40} height={40} />}
+        name='GroupSettingsFilled'
+      />
+      <IconBox
+        component={<HeartFilled width={40} height={40} />}
+        name='HeartFilled'
+      />
+      <IconBox
+        component={<ImageFilled width={40} height={40} />}
+        name='ImageFilled'
+      />
+      <IconBox
+        component={<InfoFilled width={40} height={40} />}
+        name='InfoFilled'
+      />
+      <IconBox
+        component={<MailFilled width={40} height={40} />}
+        name='MailFilled'
+      />
+      <IconBox
+        component={<NotificationFilled width={40} height={40} />}
+        name='NotificationFilled'
+      />
+      <IconBox
+        component={<PencilFilled width={40} height={40} />}
+        name='PencilFilled'
+      />
+      <IconBox
+        component={<PersonFilled width={40} height={40} />}
+        name='PersonFilled'
+      />
+      <IconBox
+        component={<ProfileFilled width={40} height={40} />}
+        name='ProfileFilled'
+      />
+      <IconBox
+        component={<QuestionFilled width={40} height={40} />}
+        name='QuestionFilled'
+      />
+      <IconBox
+        component={<StarFilled width={40} height={40} />}
+        name='StarFilled'
+      />
+      <IconBox
+        component={<ThumbtackFilled width={40} height={40} />}
+        name='ThumbtackFilled'
+      />
+      <IconBox
+        component={<TrashFilled width={40} height={40} />}
+        name='TrashFilled'
+      />
+      <IconBox
+        component={<UserAddFilled width={40} height={40} />}
+        name='UserAddFilled'
+      />
+      <IconBox
+        component={<WarningFilled width={40} height={40} />}
+        name='WarningFilled'
+      />
+    </section>
   )
 }
 

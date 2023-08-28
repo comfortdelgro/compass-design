@@ -29,7 +29,6 @@ import Link from '@comfortdelgro/react-compass/link'
 
 {{"demo": "LinkCustom.tsx"}}
 
-
 ## Props
 
 | Name     | Type             | Default | Description                        |
