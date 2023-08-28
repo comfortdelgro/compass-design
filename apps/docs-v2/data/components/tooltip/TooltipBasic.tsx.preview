@@ -1,0 +1,4 @@
+<TooltipTrigger>
+  <a href='#'>Hover me</a>
+  <Tooltip>Tooltip</Tooltip>
+</TooltipTrigger>
