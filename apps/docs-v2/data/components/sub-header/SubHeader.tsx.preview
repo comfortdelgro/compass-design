@@ -1,0 +1,6 @@
+<SubHeader>
+  <SubHeader.Header>
+    <SubHeader.Title>Title</SubHeader.Title>
+  </SubHeader.Header>
+  <SubHeader.Description>Description.</SubHeader.Description>
+</SubHeader>

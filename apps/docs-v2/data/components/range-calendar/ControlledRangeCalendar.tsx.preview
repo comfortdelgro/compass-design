@@ -1,0 +1,27 @@
+import {Calendar, RangeCalendar, RangeValue} from '@comfortdelgro/react-compass'
+import {
+  DateValue,
+  getLocalTimeZone,
+  isWeekend,
+  parseDate,
+  today,
+} from '@internationalized/date'
+import {useDateFormatter, useLocale} from '@react-aria/i18n'
+
+export function ControlledRangeCalendar() {
+  const [range, setRange] = React.useState<RangeValue<DateValue>>({
+    start: parseDate('2020-02-03'),
+    end: parseDate('2020-02-08'),
+  })
+  const formatter = useDateFormatter({dateStyle: 'long'})
+  return (
+    <>
+      {range &&
+        formatter.formatRange(
+          range.start.toDate(getLocalTimeZone()),
+          range.end.toDate(getLocalTimeZone()),
+        )}
+      <RangeCalendar onChange={(e) => setRange(e as RangeValue<DateValue>)} />
+    </>
+  )
+}
