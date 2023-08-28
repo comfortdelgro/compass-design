@@ -123,16 +123,7 @@ const ConfirmPUPoint = React.forwardRef<HTMLDivElement, ConfirmPUPointProps>(
           css={{
             height: '$12',
             margin: 'auto',
-
-            '@xs': {
-              width: '100%',
-            },
-            '@sm': {
-              width: '50%',
-            },
-            '@md': {
-              width: '30%',
-            },
+            width: '100%',
           }}
           onPress={handleConfirmPickup}
           className='confirm-pu-button'

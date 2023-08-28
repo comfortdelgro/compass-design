@@ -38,7 +38,7 @@ export const Variants = () => {
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}
         css={{
-          height: '40dvh',
+          height: '35dvh',
         }}
       >
         <ConfirmPUPoint
