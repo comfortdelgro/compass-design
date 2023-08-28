@@ -3,10 +3,9 @@ title: React Gutter component
 components: Gutter
 ---
 
-# Error
+# Gutter
 
-<p class="description">This gutter control will align with parent element, it will update directly to parent element size.
-To implement it, just place it into the element that you want to resize.</p>
+<p class="description">Gutter is used to manage spacing and separation between elements in layout design.</p>
 
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 

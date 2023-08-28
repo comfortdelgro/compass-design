@@ -21,7 +21,7 @@ import Toggle from '@comfortdelgro/react-compass/toggle'
 ### Controlled
 
 {{"demo": "ToggleControlled.tsx"}}
-
+    
 ### UnControlled
 
 {{"demo": "ToggleUnControlled.tsx"}}

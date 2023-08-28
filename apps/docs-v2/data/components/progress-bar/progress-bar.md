@@ -36,7 +36,7 @@ import ProgressBar from '@comfortdelgro/react-compass/progress-bar'
 {{"demo": "ProgressBarVariants.tsx"}}
 
 
-### 3. Custom Styling
+### Custom Styling
 
 {{"demo": "ProgressBarCustomStyling.tsx"}}
 

@@ -18,32 +18,19 @@ or
 ```jsx
 import Radio from '@comfortdelgro/react-compass/radio'
 ```
-### Basic
+### Outline
 
-{{"demo": "RadioBasic.tsx"}}
+{{"demo": "RadioOutline.tsx"}}
 
-### Label and Description
+### Controlled
 
-{{"demo": "RadioWithLabelAndDescription.tsx"}}
-
-
-### Tooltip
-
-{{"demo": "RadioTooltip.tsx"}}
+{{"demo": "RadioControlled.tsx"}}
 
 
-### Disabled
-
-{{"demo": "RadioIsDisabled.tsx"}}
-
-
-### 5. Variants
-
-{{"demo": "RadioDisabled.tsx"}}
-
-### 6. Orientation
+### Orientation
 
 {{"demo": "RadioOrientation.tsx"}}
+
 
 ## Props:
 

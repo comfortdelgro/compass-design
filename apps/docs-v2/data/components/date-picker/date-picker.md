@@ -3,7 +3,7 @@ title: React Date Picker component
 components: Date Picker
 ---
 
-# Chart
+# Date Picker
 
 <p class="description">DatePickers combine input and a Calendar popover to allow users to enter or select a date.</p>
 
@@ -64,11 +64,11 @@ A visual label should be provided for the DatePicker using the label prop. If th
 
 ### Disabled
 
-{{"demo": "DatePickerValidation.tsx"}}
+{{"demo": "DatePickerisDisabled.tsx"}}
 
 ### Read Only
 
-{{"demo": "DatePickerReadOnly.tsx"}}
+{{"demo": "DatePickerisReadOnly.tsx"}}
 
 ### Invalid
 

@@ -3,7 +3,7 @@ title: React Date Picker component
 components: Date Range Picker
 ---
 
-# Chart
+# Date Range Picker
 
 <p class="description">
 DateRangePickers combine two input fields and a RangeCalendar popover to allow users to enter or select a date and time range .</p>
@@ -22,7 +22,7 @@ or
 import DateRangePicker from '@comfortdelgro/react-compass/date-range-picker'
 ```
 
-### I18nProvider
+### I18n Provider
 
 I18nProvider allows you to override the default locale as determined by the browser/system setting with a locale defined by your application (e.g. application setting).
 In this docs, we will use English(Singapore) `en-SG` as default locale
@@ -61,6 +61,8 @@ A visual label should be provided for the DatePicker using the label prop. If th
 
 ### Validation
 
+Date Range Picker supports marking certain dates as unavailable. These dates cannot be selected by the user and are displayed with a crossed out appearance. The isDateUnavailable prop accepts a callback that is called to evaluate whether each visible date is unavailable.
+
 {{"demo": "DateRangePickerValidation.tsx"}}
 
 ### Non-contiguous ranges
@@ -82,13 +84,11 @@ A visual label should be provided for the DatePicker using the label prop. If th
 
 ### Read Only
 
-
 {{"demo": "DateRangePickerReadOnly.tsx"}}
 
 ### InValid
 
-
-{{"demo": "DateRangePickerInValid.tsx"}} 
+{{"demo": "DateRangePickerInvalid.tsx"}}
 
 
 ## Props

@@ -40,9 +40,6 @@ FooterInfo should contain the address, social media and/or download links of the
 
 ## Props
 
-
-### Props
-
 #### Footer
 
 | Name     | Type              | Default | Description |
