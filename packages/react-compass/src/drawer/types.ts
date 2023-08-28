@@ -55,7 +55,7 @@ interface DefaultDrawerProps {
   expandableLine?: never
   disableResize?: never
   disableAddBodyAttr?: never
-  autoClose?: never
+  disableDragClose?: never
 }
 
 interface H5DrawerProps {
@@ -102,11 +102,11 @@ interface H5DrawerProps {
   /**
    * Close the H5 drawer if the user drags and drops it below the default height.
    *
-   * If `disableResize` is true, the drawer won't autoclose.
+   * Note that if `disableResize` is true, users can't drag the the drawer.
    * ___
-   * @default true
+   * @default false
    */
-  autoClose?: boolean
+  disableDragClose?: boolean
 }
 
 export type DrawerH5Props = DrawerSharedProps & H5DrawerProps
