@@ -25,7 +25,7 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
     typeof window !== 'undefined' ? window.innerHeight : undefined
   const bodyOverflow = useMemo(
     () =>
-      typeof document !== 'undefined' ? document.body.style.overflow : 'auto',
+      typeof document !== 'undefined' ? document.body.style.overflow : null,
     [],
   )
 
@@ -239,7 +239,7 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
 
     if (open) {
       if (disableAddBodyAttr) {
-        document.body.style.setProperty('overflow', 'auto')
+        document.body.style.setProperty('overflow', bodyOverflow)
         document.body.removeAttribute('inert')
       } else {
         document.body.style.setProperty('overflow', 'hidden')

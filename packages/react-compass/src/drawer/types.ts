@@ -21,12 +21,6 @@ interface DrawerSharedProps {
    *
    * The content below the non-modal drawer can be interacted.
    *
-   * Note that the non-modal drawer is not rendered on the top-layer
-   * and its position is `absolute` by default. It will be rendered relatively.
-   * So please consider:
-   * 1. Add `position: relative` to the parent element.
-   * 2. Set the `position` of the drawer to fixed.
-   *
    * {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog#accessibility_considerations Read more}
    *
    */
@@ -87,13 +81,13 @@ interface H5DrawerProps {
   expandableLine?: number
 
   /**
-   * if `false`, the H5 drawer will NOT be able to expand/collapse and the expander line will be hidden.
+   * if `true`, the H5 drawer will NOT be able to expand/collapse and the expander line will be hidden.
    * @default false
    */
   disableResize?: boolean
 
   /**
-   * if `false`, when open a drawer, it will NOT add {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inert inert}
+   * if `true`, when open a drawer, it will NOT add {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inert inert}
    * attribute and `overflow: hidden` to the `<body>` tag.
    * @default false
    */

@@ -187,7 +187,7 @@ export const routes: TSideNavItem[] = [
         title: 'Drawer',
         pathname: '/drawer',
         description:
-          'Display overlay area on top of a page and slides in from the side. Build on top of the native HTML <dialog/> element.',
+          'Display overlay area on top of a page and slides in from the side. Build on top of the native HTML &#60;dialog/> element.',
       },
       {
         title: 'Dropdown',

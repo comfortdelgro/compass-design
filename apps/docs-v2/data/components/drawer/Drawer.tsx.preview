@@ -1,0 +1,11 @@
+import {Button, Drawer} from '@comfortdelgro/react-compass'
+
+const [openDrawer, setOpenDrawer] = useState(false)
+
+<Button type='button' onClick={() => setOpenDrawer(true)}>
+  Open Drawer
+</Button>
+
+<Drawer open={openDrawer} onClose={() => setOpenDrawer(false)}>
+  Some article contents
+</Drawer>

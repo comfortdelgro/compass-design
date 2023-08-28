@@ -1,24 +1,18 @@
-import ArrowLeft from '@comfortdelgro/compass-icons/react/arrow-left'
-import ArrowRight from '@comfortdelgro/compass-icons/react/arrow-right'
 import CrossIcon from '@comfortdelgro/compass-icons/react/cross'
 import {
   Button,
   Column,
+  Divider,
   Drawer,
-  DrawerProps,
   Row,
   TextField,
   Typography,
 } from '@comfortdelgro/react-compass'
 import {FormEventHandler, useState} from 'react'
 
-export function Default() {
+export default function DrawerDocs() {
   const [openDrawer, setOpenDrawer] = useState(false)
-  const [keyword, setKeyword] = useState('')
-
-  const [openDrawerPosition, setOpenDrawerPosition] = useState(false)
-  const [drawerPosition, setDrawerPosition] =
-    useState<DrawerProps['position']>(undefined)
+  const [keyword, setKeyword] = useState('') // just for display form value
 
   const handleFormSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault()
@@ -26,7 +20,7 @@ export function Default() {
     const formData = new FormData(e.currentTarget)
     setKeyword((formData.get('keyword') as string) || '')
 
-    if (!formData.get('keep')) {
+    if (!formData.get('keepFormValue')) {
       e.currentTarget.reset()
     }
 
@@ -39,23 +33,26 @@ export function Default() {
     // Do other stuff when drawer close
   }
 
-  const handleChangePosition = (position: DrawerProps['position']) => {
-    setDrawerPosition(position)
-    setOpenDrawerPosition(true)
-  }
-
   return (
     <Column>
-      <Typography.Label>Drawer</Typography.Label>
-      <p>Drawer form value: {keyword}</p>
-      <Button type='button' onClick={() => setOpenDrawer(true)}>
-        Open Drawer
-      </Button>
+      <Typography.Header variant='header4'>
+        Drawer controlled by form
+      </Typography.Header>
+
+      <Row css={{marginBlock: '$4'}}>
+        <Button type='button' onClick={() => setOpenDrawer(true)}>
+          Open Drawer
+        </Button>
+      </Row>
+
+      <Typography.Body variant='body2'>Submitted form values:</Typography.Body>
+      <pre>{JSON.stringify({keyword}, null, 2)}</pre>
 
       <Drawer open={openDrawer} onClose={listenOnCloseDrawer}>
         <Drawer.Header>
-          <h2 style={{marginBlock: 0}}>Drawer controlled by form</h2>
-
+          <Typography.Header variant='header3'>
+            Drawer controlled by form
+          </Typography.Header>
           <Button
             css={{
               padding: '$1',
@@ -71,27 +68,40 @@ export function Default() {
           </Button>
         </Drawer.Header>
 
-        <form id='form-in-drawer' method='dialog' onSubmit={handleFormSubmit}>
-          <h3>Drawer Form</h3>
+        <Typography.Header variant='header4'>Drawer Form</Typography.Header>
+        <Typography.Body
+          variant='body3'
+          css={{color: '$grayShades60', marginBottom: '$4'}}
+        >
+          In this example, all inputs are uncontrolled input.
+        </Typography.Body>
 
+        <form id='form-in-drawer' method='dialog' onSubmit={handleFormSubmit}>
           <TextField
             label='Keyword'
             name='keyword'
             id='keyword'
             placeholder='Enter anything'
           />
+
           <label htmlFor='keepValue'>Keep form value: </label>
           <input
-            name='keep'
+            name='keepFormValue'
             type='checkbox'
             id='keepValue'
             style={{marginTop: '1rem'}}
           />
         </form>
 
-        <section style={{height: '50vh', marginTop: '5rem'}}>
-          <h3
-            style={{
+        <Divider css={{marginBlock: '$4'}} />
+
+        <Typography.Header variant='header4' css={{marginTop: '$16'}}>
+          Article contents
+        </Typography.Header>
+        <section style={{height: '50vh'}}>
+          <Typography.Header
+            variant='header5'
+            css={{
               position: 'sticky',
               insetInline: 0,
               top: '-1rem',
@@ -101,19 +111,20 @@ export function Default() {
             }}
           >
             Section 1: Very long content here, scroll down ⏬ for more content
-          </h3>
+          </Typography.Header>
 
-          <p>
+          <Typography.Body variant='body3'>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo
             molestiae tenetur in, dicta veniam quisquam iste officia deleniti,
             nemo cum nesciunt repudiandae fugiat sapiente nihil eius ut culpa
             quis modi.
-          </p>
+          </Typography.Body>
         </section>
 
         <section style={{height: '100vh'}}>
-          <h3
-            style={{
+          <Typography.Header
+            variant='header5'
+            css={{
               position: 'sticky',
               insetInline: 0,
               top: '-1rem',
@@ -123,9 +134,9 @@ export function Default() {
             }}
           >
             Section 2: No idea
-          </h3>
+          </Typography.Header>
 
-          <p>
+          <Typography.Body variant='body3'>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo
             molestiae tenetur in, dicta veniam quisquam iste officia deleniti,
             nemo cum nesciunt repudiandae fugiat sapiente nihil eius ut culpa
@@ -133,7 +144,7 @@ export function Default() {
             Voluptatem quidem omnis architecto aliquam id dicta dolor magnam,
             sapiente, itaque quaerat laboriosam reiciendis placeat tempore animi
             ratione! Neque doloribus vel esse.
-          </p>
+          </Typography.Body>
         </section>
 
         <Drawer.Footer css={{display: 'flex', gap: '$2'}}>
@@ -150,49 +161,6 @@ export function Default() {
             Submit
           </Button>
         </Drawer.Footer>
-      </Drawer>
-
-      <Typography.Label>Position</Typography.Label>
-      <Row>
-        <Button
-          type='button'
-          leftIcon={<ArrowLeft />}
-          onClick={() => handleChangePosition('left')}
-        >
-          Open on the left
-        </Button>
-
-        <Button
-          variant='secondary'
-          type='button'
-          onClick={() => handleChangePosition('bottom')}
-        >
-          Open on the bottom
-        </Button>
-
-        <Button
-          type='button'
-          rightIcon={<ArrowRight />}
-          onClick={() => handleChangePosition('right')}
-        >
-          Open on the right
-        </Button>
-      </Row>
-
-      <Drawer
-        open={openDrawerPosition}
-        onClose={() => setOpenDrawerPosition(false)}
-        position={drawerPosition}
-      >
-        <Drawer.Header>
-          <h2>Drawer {drawerPosition || ''}</h2>
-        </Drawer.Header>
-
-        <p>Article contents</p>
-
-        <Button type='button' onClick={() => setOpenDrawerPosition(false)}>
-          Close Drawer
-        </Button>
       </Drawer>
     </Column>
   )
