@@ -1,0 +1,6 @@
+<QuantityToggle
+    label='Step + minValue + maxValue'
+    minValue={2}
+    maxValue={21}
+    step={3}
+/>

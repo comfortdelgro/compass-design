@@ -118,6 +118,12 @@ export const routes: TSideNavItem[] = [
           'Badge can be used to highlight important bits of information such as labels, notifications, data trends & status.',
       },
       {
+        title: 'Banner',
+        pathname: '/banner',
+        description:
+          'The Banner component is a reusable React component that displays a banner or header section on a web page',
+      },
+      {
         title: 'Box',
         pathname: '/box',
         description:
@@ -148,6 +154,12 @@ export const routes: TSideNavItem[] = [
           'A group of slider components. The core component is CarouselSlider with common feature is switching slides.',
       },
       {
+        title: 'Checkbox',
+        pathname: '/checkbox',
+        description:
+          'Checkbox is a small interactive box that can be toggled by the user to indicate an affirmative or negative choice.',
+      },
+      {
         title: 'Chip',
         pathname: '/chip',
         description:
@@ -170,6 +182,12 @@ export const routes: TSideNavItem[] = [
         pathname: '/divider',
         description:
           'A divider is a thin line that groups content in lists and layouts.',
+      },
+      {
+        title: 'Dropdown',
+        pathname: '/dropdown',
+        description:
+          'Dropdown components are used for collecting user provided information from a list of options.',
       },
       {
         title: 'Dropdown Menu',
@@ -205,6 +223,44 @@ export const routes: TSideNavItem[] = [
         description: 'Lists show a large set of items or options to the user.',
       },
       {
+        title: 'MenuList',
+        pathname: '/menu-list',
+        description:
+          'The Menu List component allows you to create a menu with expandable items.',
+      },
+      {
+        title: 'Modal',
+        pathname: '/modal',
+        description:
+          'The Modal component is a flexible and customizable modal/dialog that can be used in various use cases like confirmation dialogs, information popups, and more.',
+      },
+      {
+        title: 'OTP Input',
+        pathname: '/otp-input',
+        description: 'OTP Input component for inputting One-Time Passwords.',
+      },
+      {
+        title: 'Page Header',
+        pathname: '/page-header',
+        description:
+          'The Page header is used to begin pages and is a format guideline to how the top of a page should be organised.',
+      },
+      {
+        title: 'Popover',
+        pathname: '/popover',
+        description:
+          'When you want to show a content on above and anchor with an element when user click on it, just use this component follow this guidelines.',
+      },
+      {
+        title: 'Portal',
+        pathname: '/portal',
+        description: 'The sample of portal layout, admin page layout.',
+      },
+      {
+        title: 'QuantityToggle',
+        pathname: '/quantity-toggle',
+        description:
+          'Quantity Toggle fields allow users to enter a number, and increment or decrement the value using stepper buttons.',
         title: 'Range Calendar',
         pathname: '/range-calendar',
         description: 'RangeCalendars display a grid of days in one or more months and allow users to select a contiguous range of dates.',
