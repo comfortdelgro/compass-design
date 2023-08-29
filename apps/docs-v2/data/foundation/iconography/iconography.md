@@ -34,7 +34,7 @@ import Activity from '@comfortdelgro/compass-icons/react/activity'
 import AddressBookFilled from '@comfortdelgro/compass-icons/react/filled/address-book-filled'
 ```
 
-{{"demo": "/showcases/FilledIcons.tsx"}}
+{{"demo": "showcases/FilledIcons.tsx"}}
 
 ## Outline Icons
 
@@ -42,7 +42,7 @@ import AddressBookFilled from '@comfortdelgro/compass-icons/react/filled/address
 import AddressBookOutlined from '@comfortdelgro/compass-icons/react/outlined/address-book-outlined'
 ```
 
-{{"demo": "/showcases/OutlinedIcons.tsx"}}
+{{"demo": "showcases/OutlinedIcons.tsx"}}
 
 ## Duotone Icons
 
@@ -50,7 +50,7 @@ import AddressBookOutlined from '@comfortdelgro/compass-icons/react/outlined/add
 import BadgeDollarDuotone from '@comfortdelgro/compass-icons/react/duotone/badge-dollar-duotone'
 ```
 
-{{"demo": "/showcases/DuotoneIcons.tsx"}}
+{{"demo": "showcases/DuotoneIcons.tsx"}}
 
 ## Colorful Icons
 
@@ -58,7 +58,7 @@ import BadgeDollarDuotone from '@comfortdelgro/compass-icons/react/duotone/badge
 import Compass from '@comfortdelgro/compass-icons/react/colorful/compass'
 ```
 
-{{"demo": "/showcases/ColorfulIcons.tsx"}}
+{{"demo": "showcases/ColorfulIcons.tsx"}}
 
 ## Payment Icons
 
@@ -66,7 +66,7 @@ import Compass from '@comfortdelgro/compass-icons/react/colorful/compass'
 import Compass from '@comfortdelgro/compass-icons/react/payment/compass'
 ```
 
-{{"demo": "/showcases/PaymentIcons.tsx"}}
+{{"demo": "showcases/PaymentIcons.tsx"}}
 
 ## Other Icons
 
@@ -74,7 +74,7 @@ import Compass from '@comfortdelgro/compass-icons/react/payment/compass'
 import Activity from '@comfortdelgro/compass-icons/react/activity'
 ```
 
-{{"demo": "/showcases/Icons.tsx"}}
+{{"demo": "showcases/Icons.tsx"}}
 
 ## Country Icons
 
@@ -82,7 +82,7 @@ import Activity from '@comfortdelgro/compass-icons/react/activity'
 import FlagAbw from '@comfortdelgro/compass-icons/react/country/flag-abw'
 ```
 
-{{"demo": "/showcases/CountryIcons.tsx"}}
+{{"demo": "showcases/CountryIcons.tsx"}}
 
 ## File Icons
 
@@ -90,7 +90,7 @@ import FlagAbw from '@comfortdelgro/compass-icons/react/country/flag-abw'
 import SVG from '@comfortdelgro/compass-icons/react/file/svg'
 ```
 
-{{"demo": "/showcases/FileIcons.tsx"}}
+{{"demo": "showcases/FileIcons.tsx"}}
 
 ## H5 Icons
 
@@ -98,7 +98,7 @@ import SVG from '@comfortdelgro/compass-icons/react/file/svg'
 import SVG from '@comfortdelgro/compass-icons/react/h5/svg'
 ```
 
-{{"demo": "/showcases/H5Icons.tsx"}}
+{{"demo": "showcases/H5Icons.tsx"}}
 
 ## Props
 
