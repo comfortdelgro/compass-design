@@ -269,6 +269,56 @@ export const routes: TSideNavItem[] = [
         pathname: '/tabs',
         description: 'Provides the behavior and accessibility implementation for a tab list. Tabs organize content into multiple sections and allow users to navigate between them.',
       },
+      {
+        title: 'Tag Box',
+        pathname: '/tag-box',
+        description: 'Tag Box using to display list of tags.',
+      },
+      {
+        title: 'Tag Box V2',
+        pathname: '/tag-box-v2',
+        description: 'Tag Box V2 using to display list of tags.',
+      },
+      {
+        title: 'Textarea',
+        pathname: '/textarea',
+        description: 'Progress indicators commonly known as spinners, express an unspecified wait time or display the length of a process.',
+      },
+      {
+        title: 'Text Field',
+        pathname: '/textfield',
+        description: 'Text Fields let users enter and edit text.',
+      },
+      {
+        title: 'Timeline',
+        pathname: '/timeline',
+        description: 'The timeline displays a list of events in chronological order.',
+      },
+      {
+        title: 'Tooltip',
+        pathname: '/tooltip',
+        description: 'Display container for Tooltip content. Has a directional arrow dependent on its placement.',
+      },
+      {
+        title: 'Typography',
+        pathname: '/typography',
+        description: 'The Typography component.',
+      },
+      {
+        title: 'Upload',
+        pathname: '/upload',
+        description: 'The upload component allows users to upload files of various types and sizes.',
+      },
+      {
+        title: 'Video Player',
+        pathname: '/video-player',
+        description: 'Using to display a video.',
+      },
+      {
+        title: 'Wizard',
+        pathname: '/wizard',
+        description: 'Using for display stepper.',
+      },
     ],
   },
 ]

@@ -2,7 +2,6 @@ import {styled} from '../theme'
 import {VariantProps} from '../utils/stitches.types'
 
 export const StyledConfirmPUPoint = styled('div', {
-  minWidth: '375px',
   padding: '$4_5',
   backgroundColor: '$background',
   borderRadius: '$xl $xl 0px 0px',
@@ -25,20 +24,30 @@ export const StyledConfirmPUPoint = styled('div', {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+
+    '> div': {
+      maxWidth: '80%',
+    },
   },
 
-  '.pu-point-address__name': {
+  '.pu-point-address__title': {
     fontSize: '$label1',
     fontWeight: 600,
     lineHeight: '20px',
     color: '$cdgBlue100',
+    overflowX: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
   },
 
-  '.pu-point-address__address': {
+  '.pu-point-address__description': {
     fontSize: '$label2',
     fontWeight: 500,
     lineHeight: '18px',
     color: '$grayShades60',
+    overflowX: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
   },
 
   '.pu-point-address__icon': {
@@ -49,7 +58,7 @@ export const StyledConfirmPUPoint = styled('div', {
     border: 'none',
     backgroundColor: 'transparent',
   },
-  '.pu-point-location': {
+  '.pu-specific-location': {
     backgroundColor: '$blueShades10',
     height: '40px',
     padding: '$3',
@@ -57,6 +66,12 @@ export const StyledConfirmPUPoint = styled('div', {
     alignItems: 'center',
     gap: '$3',
     color: '$blueShades120',
+    '.pu-specific-location__name': {
+      maxWidth: '90%',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
+    },
   },
 })
 
