@@ -1,0 +1,13 @@
+<TooltipTrigger>
+  <a href='#'>Hover me</a>
+  <Tooltip
+    title={<p style={{fontSize: '20px', margin: 0}}>Title</p>}
+    dismissible
+    css={{backgroundColor: 'black'}}
+  >
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae
+    blanditiis laborum commodi mollitia officiis minus ipsum totam fuga odit,
+    dicta magnam numquam reprehenderit et sequi dignissimos iusto deleniti.
+    Quia, modi
+  </Tooltip>
+</TooltipTrigger>

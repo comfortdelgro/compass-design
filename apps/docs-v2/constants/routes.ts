@@ -204,6 +204,121 @@ export const routes: TSideNavItem[] = [
         pathname: '/list',
         description: 'Lists show a large set of items or options to the user.',
       },
+      {
+        title: 'Range Calendar',
+        pathname: '/range-calendar',
+        description: 'RangeCalendars display a grid of days in one or more months and allow users to select a contiguous range of dates.',
+      },
+      {
+        title: 'Rating',
+        pathname: '/rating',
+        description: 'Rating provides others opinions and experiences.',
+      },
+      {
+        title: 'Rich text editor',
+        pathname: '/rich-text-editor',
+        description: 'A rich text editor is an interface or input field for text editing.',
+      },
+      {
+        title: 'Searchfield',
+        pathname: '/searchfield',
+        description: 'Search Fields let users enter search input.',
+      },
+      {
+        title: 'Sidebar',
+        pathname: '/sidebar',
+        description: 'Sidebar is an expandable and collapsible component that typically acts as a side container to place primary or secondary content alongside the main content.',
+      },
+      {
+        title: 'Sidenav',
+        pathname: '/sidenav',
+        description: 'The Sidenav displays horizontally information and navigation relating to the current screen.',
+      },
+      {
+        title: 'Skeleton',
+        pathname: '/skeleton',
+        description: 'Display a placeholder preview of your content before the data gets loaded to reduce load-time frustration.',
+      },
+      {
+        title: 'Slider',
+        pathname: '/slider',
+        description: 'Provides the behavior and accessibility implementation for a slider component representing one or more values.',
+      },
+      {
+        title: 'SpeedDial',
+        pathname: '/speed-dial',
+        description: 'Provides the behavior and accessibility implementation for a speed-dial component.',
+      },
+      {
+        title: 'SubHeader',
+        pathname: '/sub-header',
+        description: 'The Sub header is then used to follow up on the top of subsequent child pages.',
+      },
+      {
+        title: 'SubBanner',
+        pathname: '/sub-banner',
+        description: 'The Sub Banner.',
+      },
+      {
+        title: 'Table-v2',
+        pathname: '/table-v2',
+        description: 'Table version 2 is a wrapper around the core table logic. Most of its job is related to managing state the "react" way.',
+      },
+      {
+        title: 'Tabs',
+        pathname: '/tabs',
+        description: 'Provides the behavior and accessibility implementation for a tab list. Tabs organize content into multiple sections and allow users to navigate between them.',
+      },
+      {
+        title: 'Tag Box',
+        pathname: '/tag-box',
+        description: 'Tag Box using to display list of tags.',
+      },
+      {
+        title: 'Tag Box V2',
+        pathname: '/tag-box-v2',
+        description: 'Tag Box V2 using to display list of tags.',
+      },
+      {
+        title: 'Textarea',
+        pathname: '/textarea',
+        description: 'Progress indicators commonly known as spinners, express an unspecified wait time or display the length of a process.',
+      },
+      {
+        title: 'Text Field',
+        pathname: '/textfield',
+        description: 'Text Fields let users enter and edit text.',
+      },
+      {
+        title: 'Timeline',
+        pathname: '/timeline',
+        description: 'The timeline displays a list of events in chronological order.',
+      },
+      {
+        title: 'Tooltip',
+        pathname: '/tooltip',
+        description: 'Display container for Tooltip content. Has a directional arrow dependent on its placement.',
+      },
+      {
+        title: 'Typography',
+        pathname: '/typography',
+        description: 'The Typography component.',
+      },
+      {
+        title: 'Upload',
+        pathname: '/upload',
+        description: 'The upload component allows users to upload files of various types and sizes.',
+      },
+      {
+        title: 'Video Player',
+        pathname: '/video-player',
+        description: 'Using to display a video.',
+      },
+      {
+        title: 'Wizard',
+        pathname: '/wizard',
+        description: 'Using for display stepper.',
+      },
     ],
   },
 ]
