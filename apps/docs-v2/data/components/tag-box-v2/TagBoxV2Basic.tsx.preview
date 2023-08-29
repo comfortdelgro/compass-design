@@ -1,0 +1,15 @@
+<TagBoxV2
+    tagBoxLabel='Attribute values'
+    addTagPlaceholder='Please enter to add tag'
+    tags={tags}
+    isErrored={false}
+    isEditable
+    onAddTag={handleAddTag}
+    onRemoveTag={(tagToBeRemoved) =>
+    handleRemoveTag(tagToBeRemoved.id as number)
+    }
+    onEditTag={(tagToBeEdited) =>
+    handleEditTag(tagToBeEdited.id as number, tagToBeEdited.value)
+    }
+    css={{width: '70%'}}
+/>

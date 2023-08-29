@@ -61,6 +61,8 @@ export const StyledTransition = styled('div', {
       show: true,
       css: {
         height: '$$collapsedSize',
+        minHeight: '$$collapsedSize',
+        maxHeight: '$$collapsedSize',
       },
     },
     {

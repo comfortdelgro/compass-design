@@ -118,6 +118,12 @@ export const routes: TSideNavItem[] = [
           'Badge can be used to highlight important bits of information such as labels, notifications, data trends & status.',
       },
       {
+        title: 'Banner',
+        pathname: '/banner',
+        description:
+          'The Banner component is a reusable React component that displays a banner or header section on a web page',
+      },
+      {
         title: 'Box',
         pathname: '/box',
         description:
@@ -148,6 +154,12 @@ export const routes: TSideNavItem[] = [
           'A group of slider components. The core component is CarouselSlider with common feature is switching slides.',
       },
       {
+        title: 'Checkbox',
+        pathname: '/checkbox',
+        description:
+          'Checkbox is a small interactive box that can be toggled by the user to indicate an affirmative or negative choice.',
+      },
+      {
         title: 'Chip',
         pathname: '/chip',
         description:
@@ -170,6 +182,12 @@ export const routes: TSideNavItem[] = [
         pathname: '/divider',
         description:
           'A divider is a thin line that groups content in lists and layouts.',
+      },
+      {
+        title: 'Dropdown',
+        pathname: '/dropdown',
+        description:
+          'Dropdown components are used for collecting user provided information from a list of options.',
       },
       {
         title: 'Dropdown Menu',
@@ -203,6 +221,159 @@ export const routes: TSideNavItem[] = [
         title: 'List',
         pathname: '/list',
         description: 'Lists show a large set of items or options to the user.',
+      },
+      {
+        title: 'MenuList',
+        pathname: '/menu-list',
+        description:
+          'The Menu List component allows you to create a menu with expandable items.',
+      },
+      {
+        title: 'Modal',
+        pathname: '/modal',
+        description:
+          'The Modal component is a flexible and customizable modal/dialog that can be used in various use cases like confirmation dialogs, information popups, and more.',
+      },
+      {
+        title: 'OTP Input',
+        pathname: '/otp-input',
+        description: 'OTP Input component for inputting One-Time Passwords.',
+      },
+      {
+        title: 'Page Header',
+        pathname: '/page-header',
+        description:
+          'The Page header is used to begin pages and is a format guideline to how the top of a page should be organised.',
+      },
+      {
+        title: 'Popover',
+        pathname: '/popover',
+        description:
+          'When you want to show a content on above and anchor with an element when user click on it, just use this component follow this guidelines.',
+      },
+      {
+        title: 'Portal',
+        pathname: '/portal',
+        description: 'The sample of portal layout, admin page layout.',
+      },
+      {
+        title: 'QuantityToggle',
+        pathname: '/quantity-toggle',
+        description:
+          'Quantity Toggle fields allow users to enter a number, and increment or decrement the value using stepper buttons.',
+        title: 'Range Calendar',
+        pathname: '/range-calendar',
+        description: 'RangeCalendars display a grid of days in one or more months and allow users to select a contiguous range of dates.',
+      },
+      {
+        title: 'Rating',
+        pathname: '/rating',
+        description: 'Rating provides others opinions and experiences.',
+      },
+      {
+        title: 'Rich text editor',
+        pathname: '/rich-text-editor',
+        description: 'A rich text editor is an interface or input field for text editing.',
+      },
+      {
+        title: 'Searchfield',
+        pathname: '/searchfield',
+        description: 'Search Fields let users enter search input.',
+      },
+      {
+        title: 'Sidebar',
+        pathname: '/sidebar',
+        description: 'Sidebar is an expandable and collapsible component that typically acts as a side container to place primary or secondary content alongside the main content.',
+      },
+      {
+        title: 'Sidenav',
+        pathname: '/sidenav',
+        description: 'The Sidenav displays horizontally information and navigation relating to the current screen.',
+      },
+      {
+        title: 'Skeleton',
+        pathname: '/skeleton',
+        description: 'Display a placeholder preview of your content before the data gets loaded to reduce load-time frustration.',
+      },
+      {
+        title: 'Slider',
+        pathname: '/slider',
+        description: 'Provides the behavior and accessibility implementation for a slider component representing one or more values.',
+      },
+      {
+        title: 'SpeedDial',
+        pathname: '/speed-dial',
+        description: 'Provides the behavior and accessibility implementation for a speed-dial component.',
+      },
+      {
+        title: 'SubHeader',
+        pathname: '/sub-header',
+        description: 'The Sub header is then used to follow up on the top of subsequent child pages.',
+      },
+      {
+        title: 'SubBanner',
+        pathname: '/sub-banner',
+        description: 'The Sub Banner.',
+      },
+      {
+        title: 'Table-v2',
+        pathname: '/table-v2',
+        description: 'Table version 2 is a wrapper around the core table logic. Most of its job is related to managing state the "react" way.',
+      },
+      {
+        title: 'Tabs',
+        pathname: '/tabs',
+        description: 'Provides the behavior and accessibility implementation for a tab list. Tabs organize content into multiple sections and allow users to navigate between them.',
+      },
+      {
+        title: 'Tag Box',
+        pathname: '/tag-box',
+        description: 'Tag Box using to display list of tags.',
+      },
+      {
+        title: 'Tag Box V2',
+        pathname: '/tag-box-v2',
+        description: 'Tag Box V2 using to display list of tags.',
+      },
+      {
+        title: 'Textarea',
+        pathname: '/textarea',
+        description: 'Progress indicators commonly known as spinners, express an unspecified wait time or display the length of a process.',
+      },
+      {
+        title: 'Text Field',
+        pathname: '/textfield',
+        description: 'Text Fields let users enter and edit text.',
+      },
+      {
+        title: 'Timeline',
+        pathname: '/timeline',
+        description: 'The timeline displays a list of events in chronological order.',
+      },
+      {
+        title: 'Tooltip',
+        pathname: '/tooltip',
+        description: 'Display container for Tooltip content. Has a directional arrow dependent on its placement.',
+      },
+      {
+        title: 'Typography',
+        pathname: '/typography',
+        description: 'The Typography component.',
+      },
+      {
+        title: 'Upload',
+        pathname: '/upload',
+        description: 'The upload component allows users to upload files of various types and sizes.',
+      },
+      {
+        title: 'Video Player',
+        pathname: '/video-player',
+        description: 'Using to display a video.',
+      },
+      {
+        title: 'Wizard',
+        pathname: '/wizard',
+        description: 'Using for display stepper.',
       },
     ],
   },
