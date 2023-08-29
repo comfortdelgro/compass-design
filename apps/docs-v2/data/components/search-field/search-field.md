@@ -3,7 +3,7 @@ title: React SearchField component
 components: Search Field
 ---
 
-# Error
+# Search Field
 
 <p class="description">Search Fields let users enter search input.</p>
 
@@ -18,16 +18,16 @@ or
 ```jsx
 import SearchField from '@comfortdelgro/react-compass/searchfield'
 ```
-### Basic
+
+## Basic
 
 {{"demo": "SearchFieldBasic.tsx"}}
 
-### CustomStyling
+## CustomStyling
 
 {{"demo": "RadioCustomStyling.tsx"}}
 
-
-### Props:
+## Props
 
 | Name       | Type               | Default | Description |
 | :--------- | :----------------- | :------ | :---------- |

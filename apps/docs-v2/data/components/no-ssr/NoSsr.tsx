@@ -1,6 +1,5 @@
 import {Button} from '@comfortdelgro/react-compass'
 import Box from '@comfortdelgro/react-compass/box'
-import NoSsr from '@comfortdelgro/react-compass/nossr'
 import React from 'react'
 
 const MyNoSsr: React.FC = () => {
@@ -54,10 +53,10 @@ const MyNoSsr: React.FC = () => {
         {state.open ? (
           <React.Fragment>
             <div>Outside NoSsr</div>
-            <NoSsr defer={state.defer}>
+            {/* <NoSsr defer={state.defer}>
               .....Inside NoSsr
               <LargeTree />
-            </NoSsr>
+            </NoSsr> */}
           </React.Fragment>
         ) : null}
       </Box>

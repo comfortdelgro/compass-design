@@ -18,30 +18,28 @@ or
 ```jsx
 import ProgressBar from '@comfortdelgro/react-compass/progress-bar'
 ```
-### Basic
+
+## Basic
 
 {{"demo": "ProgressBarBasic.tsx"}}
 
-### Sizes
+## Sizes
 
 {{"demo": "ProgressBarSizes.tsx"}}
 
-### Colors
+## Colors
 
 {{"demo": "ProgressBarColors.tsx"}}
 
-
-### Variants
+## Variants
 
 {{"demo": "ProgressBarVariants.tsx"}}
 
-
-### Custom Styling
+## Custom Styling
 
 {{"demo": "ProgressBarCustomStyling.tsx"}}
 
-
-### Props:
+## Props
 
 | Name            | Type      | Default | Description                                                      |
 | :-------------- | :-------- | :------ | :--------------------------------------------------------------- |

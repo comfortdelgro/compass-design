@@ -3,7 +3,7 @@ title: React Spinner component
 components: Spinner
 ---
 
-# Error
+# Spinner
 
 <p class="description">Progress indicators commonly known as spinners, express an unspecified wait time or display the length of a process.</p>
 
@@ -18,25 +18,24 @@ or
 ```jsx
 import Spinner from '@comfortdelgro/react-compass/spinner'
 ```
-### Basic
+
+## Basic
 
 {{"demo": "SpinnerBasic.tsx"}}
 
-### Circular without label:
+## Circular without label
 
 {{"demo": "SpinnerWithoutLabel.tsx"}}
 
-### Circular with custom label:
+## Circular with custom label
 
 {{"demo": "SpinnerCustomLabel.tsx"}}
 
-### Circular with custom styling:
+## Circular with custom styling
 
 {{"demo": "SpinnerCustomStyling.tsx"}}
 
-
-### Props:
-
+## Props
 
 | Name  | Type                                 | Default | Description |
 | :---- | :----------------------------------- | :------ | :---------- |

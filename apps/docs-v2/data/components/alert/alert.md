@@ -43,7 +43,7 @@ import Alert from '@comfortdelgro/react-compass/alert'
 
 | Name        | Type                   | Default | Description                                                                             |
 | :---------- | :--------------------- | :------ | :-------------------------------------------------------------------------------------- |
-| children    | `ReactNode` \|`String` | —       | The content to display in th alerts.                                                   |
+| children    | `ReactNode` \|`String` | —       | The content to display in th alerts.                                                    |
 | dismissible | `boolean`              | `false` | If true, show the close icon.                                                           |
 | onDismiss   | `function`             | —       | Callback to close the alerts.                                                           |
 | icon        | `ReactNode` \| `false` | —       | The icon of the alerts. It'd disappear if the value is false.                           |

@@ -3,7 +3,7 @@ title: React Transitions component
 components: Transitions
 ---
 
-# Error
+# Transitions
 
 <p class="description">The Transitions component provides you various transition effects.</p>
 
@@ -18,23 +18,24 @@ or
 ```jsx
 import Transitions from '@comfortdelgro/react-compass/transitions'
 ```
-### Fade
+
+## Fade
 
 {{"demo": "TransitionsFade.tsx"}}
 
-### Collapse
+## Collapse
 
 {{"demo": "TransitionsCollapse.tsx"}}
 
-### Zoom
+## Zoom
 
 {{"demo": "TransitionsZoom.tsx"}}
 
-### Slide
+## Slide
 
 {{"demo": "TransitionsSlide.tsx"}}
 
-### Props
+## Props
 
 | Name           | Type                                        | Default      | Description                                                                                                             |
 | :------------- | :------------------------------------------ | :----------- | :---------------------------------------------------------------------------------------------------------------------- |

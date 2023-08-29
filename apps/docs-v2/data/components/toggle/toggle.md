@@ -3,7 +3,7 @@ title: React Toggle component
 components: Toggle
 ---
 
-# Error
+# Toggle
 
 <p class="description">Provides the behavior and accessibility implementation for a toggle component. A toggle is similar to a checkbox, but represents on/off values as opposed to selection.</p>
 
@@ -18,32 +18,32 @@ or
 ```jsx
 import Toggle from '@comfortdelgro/react-compass/toggle'
 ```
-### Controlled
+
+## Controlled
 
 {{"demo": "ToggleControlled.tsx"}}
-    
-### UnControlled
+
+## UnControlled
 
 {{"demo": "ToggleUnControlled.tsx"}}
 
-### isDisabled
+## isDisabled
 
 {{"demo": "ToggleIsDisabled.tsx"}}
 
-### isReadOnly
+## isReadOnly
 
 {{"demo": "ToggleIsReadOnly.tsx"}}
 
-### Sizes
+## Sizes
 
 {{"demo": "ToggleSizes.tsx"}}
 
-### Custom Styling
+## Custom Styling
 
 {{"demo": "ToggleCustomStyling.tsx"}}
 
-### Props:
-
+## Props
 
 | Name            | Type                            | Default | Description                                                                             |
 | :-------------- | :------------------------------ | :------ | :-------------------------------------------------------------------------------------- |

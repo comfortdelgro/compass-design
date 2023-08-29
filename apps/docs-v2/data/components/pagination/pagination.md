@@ -3,7 +3,7 @@ title: React Pagination component
 components: Pagination
 ---
 
-# Error
+# Pagination
 
 <p class="description">The Pagination component enables the user to select a specific page from a range of pages.</p>
 
@@ -18,15 +18,16 @@ or
 ```jsx
 import Pagination from '@comfortdelgro/react-compass/pagination'
 ```
-### Basic
+
+## Basic
 
 {{"demo": "PaginationBasic.tsx"}}
 
-### Controlled Pagination
+## Controlled Pagination
 
 {{"demo": "PaginationControlled.tsx"}}
 
-### Props:
+## Props:
 
 | Name     | Type       | Default | Description                                                                             |
 | :------- | :--------- | :------ | :-------------------------------------------------------------------------------------- |

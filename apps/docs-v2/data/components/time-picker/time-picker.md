@@ -3,7 +3,7 @@ title: React Time Picker component
 components: Time Picker
 ---
 
-# Error
+# Time Picker
 
 <p class="description">TimePicker is used to let user select a time or input time.</p>
 
@@ -18,37 +18,36 @@ or
 ```jsx
 import TimePicker from '@comfortdelgro/react-compass/time-picker'
 ```
-### Basic
+
+## Basic
 
 {{"demo": "TimePickerBasic.tsx"}}
 
-### isDisabled
+## isDisabled
 
 {{"demo": "TimePickerIsDisabled.tsx"}}
 
-### isReadOnly
+## isReadOnly
 
 {{"demo": "TimePickerIsReadOnly.tsx"}}
 
-### Uncontrolled with 12-hour system
+## Uncontrolled with 12-hour system
 
 {{"demo": "TimePickerUncontrolled12Hours.tsx"}}
 
-### Controlled with 12-hour system
+## Controlled with 12-hour system
 
 {{"demo": "TimePickerControlled12Hours.tsx"}}
 
-### Uncontrolled with 24-hour system
+## Uncontrolled with 24-hour system
 
 {{"demo": "TimePickerUncontrolled24Hours.tsx"}}
 
-### Controlled with 24-hour system
+## Controlled with 24-hour system
 
 {{"demo": "TimePickerControlled24Hours.tsx"}}
 
-
-### Props:
-
+## Props
 
 | Name         | Type         | Default                              | Description                                                                             |
 | :----------- | :----------- | :----------------------------------- | :-------------------------------------------------------------------------------------- |

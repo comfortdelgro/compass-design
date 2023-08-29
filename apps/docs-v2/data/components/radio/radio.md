@@ -3,7 +3,7 @@ title: React Radio component
 components: Radio
 ---
 
-# Error
+# Radio
 
 <p class="description">Radio allow users to select a single item from a list of mutually exclusive options.</p>
 
@@ -18,23 +18,22 @@ or
 ```jsx
 import Radio from '@comfortdelgro/react-compass/radio'
 ```
-### Outline
+
+## Outline
 
 {{"demo": "RadioOutline.tsx"}}
 
-### Controlled
+## Controlled
 
 {{"demo": "RadioControlled.tsx"}}
 
-
-### Orientation
+## Orientation
 
 {{"demo": "RadioOrientation.tsx"}}
 
+## Props
 
-## Props:
-
-### Radio.Group Props:
+### Radio.Group Props
 
 | Name         | Type                             | Default  | Description                                                                             |
 | :----------- | :------------------------------- | :------- | :-------------------------------------------------------------------------------------- |
@@ -60,4 +59,3 @@ import Radio from '@comfortdelgro/react-compass/radio'
 | value       | `string`    | -       | The value of the radio button, used when submitting an HTML form.                                                      |
 | isDisabled  | `boolean`   | false   | Whether the radio button is disabled or not. Shows that a selection exists, but is not available in that circumstance. |
 | css         | `CSS`       | —       | The system prop that allows defining system overrides as well as additional CSS styles.                                |
-
