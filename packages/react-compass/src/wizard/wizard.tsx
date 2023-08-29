@@ -17,7 +17,9 @@ interface Props extends StyledComponentProps {
   onStepClick?: (index: number) => void
 }
 
-export type WizardProps = Props & WizardVariantProps
+export type WizardProps = Props &
+  WizardVariantProps &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const Wizard = React.forwardRef<HTMLDivElement, WizardProps>((props, ref) => {
   const {
