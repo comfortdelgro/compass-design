@@ -1,15 +1,15 @@
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledDataGridFooter} from './data-grid-footer.styles'
+import {StyledTableV2Footer} from './table-v2-footer.styles'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
 }
 
-export type DataGridFooterProps = Props
+export type TableV2FooterProps = Props
 
-const DataGridFooter = React.forwardRef<HTMLDivElement, DataGridFooterProps>(
+const TableV2Footer = React.forwardRef<HTMLDivElement, TableV2FooterProps>(
   (props, ref) => {
     const {
       // StyledComponentProps
@@ -18,14 +18,14 @@ const DataGridFooter = React.forwardRef<HTMLDivElement, DataGridFooterProps>(
       children,
     } = props
 
-    const dataGridFooterRef = useDOMRef<HTMLDivElement>(ref)
+    const TableV2FooterRef = useDOMRef<HTMLDivElement>(ref)
 
     return (
-      <StyledDataGridFooter css={css} ref={dataGridFooterRef}>
+      <StyledTableV2Footer css={css} ref={TableV2FooterRef}>
         {children}
-      </StyledDataGridFooter>
+      </StyledTableV2Footer>
     )
   },
 )
 
-export default DataGridFooter
+export default TableV2Footer

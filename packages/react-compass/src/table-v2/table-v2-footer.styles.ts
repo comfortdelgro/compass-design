@@ -1,5 +1,5 @@
 import {styled} from '../theme'
 
-export const StyledDataGridFooter = styled('div', {
+export const StyledTableV2Footer = styled('div', {
   paddingTop: '$6',
 })

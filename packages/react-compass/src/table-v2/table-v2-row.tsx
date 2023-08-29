@@ -1,7 +1,7 @@
 import React from 'react'
 import {CSS, StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledDataGridRow} from './data-grid-row.styles'
+import {StyledTableV2Row} from './table-v2-row.styles'
 
 interface Props extends StyledComponentProps {
   children: React.ReactNode
@@ -10,12 +10,12 @@ interface Props extends StyledComponentProps {
   css?: CSS
 }
 
-const DataGridRow = React.forwardRef<HTMLTableRowElement, Props>(
+const TableV2Row = React.forwardRef<HTMLTableRowElement, Props>(
   ({children, isSelected, isExpanded, css = {}}, ref) => {
     const tableRowRef = useDOMRef<HTMLTableRowElement>(ref)
 
     return (
-      <StyledDataGridRow
+      <StyledTableV2Row
         isSelected={isSelected}
         isExpanded={isExpanded}
         ref={tableRowRef}
@@ -23,9 +23,9 @@ const DataGridRow = React.forwardRef<HTMLTableRowElement, Props>(
         role='row'
       >
         {children}
-      </StyledDataGridRow>
+      </StyledTableV2Row>
     )
   },
 )
 
-export default DataGridRow
+export default TableV2Row

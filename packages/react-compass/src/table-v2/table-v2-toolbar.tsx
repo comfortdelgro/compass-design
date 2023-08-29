@@ -1,15 +1,15 @@
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledDataGridToolbar} from './data-grid-toolbar.styles'
+import {StyledTableV2Toolbar} from './table-v2-toolbar.styles'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
 }
 
-export type DataGridToolbarProps = Props
+export type TableV2ToolbarProps = Props
 
-const DataGridToolbar = React.forwardRef<HTMLDivElement, DataGridToolbarProps>(
+const TableV2Toolbar = React.forwardRef<HTMLDivElement, TableV2ToolbarProps>(
   (props, ref) => {
     const {
       // StyledComponentProps
@@ -21,11 +21,11 @@ const DataGridToolbar = React.forwardRef<HTMLDivElement, DataGridToolbarProps>(
     const tableToolbarRef = useDOMRef<HTMLDivElement>(ref)
 
     return (
-      <StyledDataGridToolbar css={css} ref={tableToolbarRef}>
+      <StyledTableV2Toolbar css={css} ref={tableToolbarRef}>
         {children}
-      </StyledDataGridToolbar>
+      </StyledTableV2Toolbar>
     )
   },
 )
 
-export default DataGridToolbar
+export default TableV2Toolbar

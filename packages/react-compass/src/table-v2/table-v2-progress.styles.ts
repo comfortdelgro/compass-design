@@ -1,14 +1,14 @@
 import {styled} from '../theme'
 import type {VariantProps} from '../utils/stitches.types'
 
-export const StyledDataGridProgressBar = styled('div', {
+export const StyledTableV2ProgressBar = styled('div', {
   width: '200px',
   height: '20px',
   backgroundColor: '$secondaryBg',
   borderRadius: '10px',
   position: 'relative',
 })
-export const StyledDataGridProgress = styled('div', {
+export const StyledTableV2Progress = styled('div', {
   height: '100%',
   borderRadius: '10px',
   transition: `width 0.5s ease-in-out`,
@@ -22,7 +22,7 @@ export const StyledDataGridProgress = styled('div', {
     backgroundColor: '$success',
   },
 })
-export const StyledDataGridProgressLabel = styled('span', {
+export const StyledTableV2ProgressLabel = styled('span', {
   position: 'absolute',
   top: '50%',
   left: '50%',
@@ -30,6 +30,6 @@ export const StyledDataGridProgressLabel = styled('span', {
   color: '$primaryText',
 })
 
-export type DataGridProgressBarVariantProps = VariantProps<
-  typeof StyledDataGridProgress
+export type TableV2ProgressBarVariantProps = VariantProps<
+  typeof StyledTableV2Progress
 >

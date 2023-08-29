@@ -1,6 +1,6 @@
 import {styled} from '../theme'
 
-export const StyledDataGridResizer = styled('div', {
+export const StyledTableV2Resizer = styled('div', {
   position: 'absolute',
   right: 0,
   top: 0,

@@ -10,27 +10,31 @@ import {
   SortingState,
   Table,
 } from '@tanstack/react-table'
-import DataGridCheckbox from '../data-grid/data-grid-checkbox'
-import DataGridCheckboxCell from '../data-grid/data-grid-checkbox-cell'
-import DataGridFooter from '../data-grid/data-grid-footer'
-import DataGridToolbar from '../data-grid/data-grid-toolbar'
-import ReactTable from './react-table'
+import TableV2Checkbox from './table-v2-checkbox'
+import TableV2CheckboxCell from './table-v2-checkbox-cell'
+import TableV2Toolbar from './table-v2-toolbar'
 
-export type {
-  DataGridCheckboxCellProps as ReactTableCheckboxCellProps,
-  DataGridCheckboxProps as ReactTableCheckboxProps,
-  DataGridFooterProps as ReactTableFooterProps,
-  DataGridToolbarProps as ReactTableToolbarProps,
-} from '../data-grid'
-export type {OptionType, ReactTableProps} from './react-table'
+import ReactTable from './table-v2'
+import TableV2Footer from './table-v2-footer'
+import ProgressPercentage from './table-v2-progress'
+export {
+  EditableCellContextProvider,
+  useEditableCellContext,
+} from './editable/editable-cell'
+export type {OptionType, ReactTableProps} from './table-v2'
+export type {TableV2CheckboxProps as ReactTableCheckboxProps} from './table-v2-checkbox'
+export type {TableV2CheckboxCellProps as ReactTableCheckboxCellProps} from './table-v2-checkbox-cell'
+export type {TableV2FooterProps as ReactTableFooterProps} from './table-v2-footer'
+export type {TableV2ToolbarProps as ReactTableToolbarProps} from './table-v2-toolbar'
 
-ReactTable.Toolbar = DataGridToolbar
-ReactTable.Footer = DataGridFooter
-ReactTable.Checkbox = DataGridCheckbox
-ReactTable.CheckboxCell = DataGridCheckboxCell
-
-ReactTable.Toolbar.displayName = 'Card.Body'
-ReactTable.Footer.displayName = 'Card.Image'
+ReactTable.Toolbar = TableV2Toolbar
+ReactTable.Footer = TableV2Footer
+ReactTable.Checkbox = TableV2Checkbox
+ReactTable.CheckboxCell = TableV2CheckboxCell
+ReactTable.ProgressPercentage = ProgressPercentage
+ReactTable.ProgressPercentage.displayName = 'ProgressPercentage'
+ReactTable.Toolbar.displayName = 'ReactTable.Toolbar'
+ReactTable.Footer.displayName = 'ReactTable.Footer'
 
 ReactTable.displayName = 'ReactTable'
 

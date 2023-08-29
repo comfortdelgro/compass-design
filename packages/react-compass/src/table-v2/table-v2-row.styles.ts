@@ -1,6 +1,6 @@
 import {styled} from '../theme'
 
-export const StyledDataGridRow = styled('tr', {
+export const StyledTableV2Row = styled('tr', {
   background: '$whiteText',
   backgroundColor: 'transparent',
   borderLeftWidth: '$medium',

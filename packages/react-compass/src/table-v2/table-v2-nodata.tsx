@@ -1,5 +1,5 @@
 import React from 'react'
-import {StyledNoData} from './data-grid-nodata.styles'
+import {StyledNoData} from './table-v2-nodata.styles'
 
 export const NoDataComponent = ({colSpan}: {colSpan: number}) => {
   return (

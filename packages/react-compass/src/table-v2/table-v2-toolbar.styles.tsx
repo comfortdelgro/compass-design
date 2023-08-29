@@ -1,6 +1,6 @@
 import {styled} from '../theme'
 
-export const StyledDataGridToolbar = styled('div', {
+export const StyledTableV2Toolbar = styled('div', {
   paddingBottom: '$6',
   overflowX: 'auto',
 })

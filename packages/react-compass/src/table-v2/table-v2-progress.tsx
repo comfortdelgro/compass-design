@@ -1,18 +1,18 @@
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {
-  DataGridProgressBarVariantProps,
-  StyledDataGridProgress,
-  StyledDataGridProgressBar,
-  StyledDataGridProgressLabel,
-} from './data-grid-progress.styles'
+  StyledTableV2Progress,
+  StyledTableV2ProgressBar,
+  StyledTableV2ProgressLabel,
+  TableV2ProgressBarVariantProps,
+} from './table-v2-progress.styles'
 
 interface Props extends StyledComponentProps {
   progress: number
 }
 
 export type ProgressPercentageProps = Props &
-  DataGridProgressBarVariantProps &
+  TableV2ProgressBarVariantProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const ProgressPercentage: React.FC<ProgressPercentageProps> = ({
@@ -28,13 +28,13 @@ const ProgressPercentage: React.FC<ProgressPercentageProps> = ({
   }
 
   return (
-    <StyledDataGridProgressBar className='progress-bar'>
-      <StyledDataGridProgress
+    <StyledTableV2ProgressBar className='progress-bar'>
+      <StyledTableV2Progress
         className={`progress ${status}`}
         css={{width: `${progress}%`}}
-      ></StyledDataGridProgress>
-      <StyledDataGridProgressLabel className='progress-label'>{`${progress}%`}</StyledDataGridProgressLabel>
-    </StyledDataGridProgressBar>
+      ></StyledTableV2Progress>
+      <StyledTableV2ProgressLabel className='progress-label'>{`${progress}%`}</StyledTableV2ProgressLabel>
+    </StyledTableV2ProgressBar>
   )
 }
 

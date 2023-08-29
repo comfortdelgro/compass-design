@@ -74,21 +74,6 @@ export type {
   DashboardSidecardHeaderProps,
   DashboardSidecardProps,
 } from './dashboard-sidecard'
-export {default as DataGrid} from './data-grid'
-export type {
-  DataGridAccessorColumnDef,
-  DataGridCell,
-  DataGridCellContext,
-  DataGridColumnDef,
-  DataGridDisplayColumnDef,
-  DataGridGroupColumnDef,
-  DataGridHeaderContext,
-  DataGridProps,
-  DataGridRow,
-  DataGridSortingState,
-  DataGridTableConfig,
-  OptionType as DataGridOptions,
-} from './data-grid'
 export {default as DatePicker} from './date-picker'
 export type {DatePickerProps} from './date-picker'
 export {default as DateRangePicker} from './date-range-picker'

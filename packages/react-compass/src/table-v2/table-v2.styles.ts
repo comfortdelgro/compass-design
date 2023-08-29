@@ -1,7 +1,7 @@
 import {styled} from '../theme'
 import type {VariantProps} from '../utils/stitches.types'
 
-export const StyledDataGrid = styled('div', {
+export const StyledTableV2 = styled('div', {
   overflowX: 'auto',
   table: {
     fontFamily: '$sans',
@@ -11,8 +11,8 @@ export const StyledDataGrid = styled('div', {
   },
 })
 
-export const StyledDataGridWrapper = styled('div', {
+export const StyledTableV2Wrapper = styled('div', {
   width: '100%',
 })
 
-export type DataGridVariantProps = VariantProps<typeof StyledDataGrid>
+export type TableV2VariantProps = VariantProps<typeof StyledTableV2>

@@ -1,12 +1,12 @@
 import {styled} from '../theme'
 
-export const StyledDataGridSortingIndicator = styled('span', {
+export const StyledTableV2SortingIndicator = styled('span', {
   color: '$gray30',
   textAlign: 'left',
   visibility: 'visible',
 })
 
-export const StyledDataGridColumnHeader = styled('th', {
+export const StyledTableV2ColumnHeader = styled('th', {
   fontSize: '$label1',
   fontWeight: '$semibold',
   padding: '$3_5 $3',
@@ -14,7 +14,7 @@ export const StyledDataGridColumnHeader = styled('th', {
   // border: '1px solid $gray100',
 })
 
-export const StyledDataGridColumnHeaderContent = styled('div', {
+export const StyledTableV2ColumnHeaderContent = styled('div', {
   variants: {
     canSort: {
       true: {

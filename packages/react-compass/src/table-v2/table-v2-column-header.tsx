@@ -3,28 +3,28 @@ import React, {useMemo} from 'react'
 import {EKeyboardKey} from '../utils/keyboard.enum'
 import {CSS, StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
-import HeaderColumnFilter from './data-grid-column-header-filter'
+import HeaderColumnFilter from './table-v2-column-header-filter'
 import {
-  StyledDataGridColumnHeader,
-  StyledDataGridColumnHeaderContent,
-  StyledDataGridSortingIndicator,
-} from './data-grid-column-header.styles'
-import DataGridResizer from './data-grid-resizer'
+  StyledTableV2ColumnHeader,
+  StyledTableV2ColumnHeaderContent,
+  StyledTableV2SortingIndicator,
+} from './table-v2-column-header.styles'
+import TableV2Resizer from './table-v2-resizer'
 
 interface Props<TData, TValue> extends StyledComponentProps {
   headerProps: Header<TData, TValue>
   tableOption: Table<TData>
   css?: CSS
 }
-export type DataGridColumnHeaderProps<TData = any, TValue = unknown> = Props<
+export type TableV2ColumnHeaderProps<TData = any, TValue = unknown> = Props<
   TData,
   TValue
 > &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props<TData, TValue>>
 
-const DataGridColumnHeader = React.forwardRef<
+const TableV2ColumnHeader = React.forwardRef<
   HTMLTableCellElement,
-  DataGridColumnHeaderProps
+  TableV2ColumnHeaderProps
 >(({headerProps, tableOption, css = {}, onKeyDown}, ref) => {
   const enableResizing = headerProps?.column?.columnDef?.enableResizing
   const isFilterableColumn =
@@ -72,7 +72,7 @@ const DataGridColumnHeader = React.forwardRef<
   }, [sortDirection])
 
   return (
-    <StyledDataGridColumnHeader
+    <StyledTableV2ColumnHeader
       ref={tableRowRef}
       key={headerProps.id}
       colSpan={headerProps.colSpan}
@@ -87,7 +87,7 @@ const DataGridColumnHeader = React.forwardRef<
       tabIndex={isSortableColumn || isFilterableColumn ? 0 : -1}
     >
       {headerProps.isPlaceholder ? null : (
-        <StyledDataGridColumnHeaderContent
+        <StyledTableV2ColumnHeaderContent
           canSort={headerProps.column.getCanSort()}
         >
           {
@@ -116,16 +116,16 @@ const DataGridColumnHeader = React.forwardRef<
               table={tableOption}
             />
           ) : null}
-        </StyledDataGridColumnHeaderContent>
+        </StyledTableV2ColumnHeaderContent>
       )}
       {enableResizing && (
-        <DataGridResizer resizeHandler={headerProps.getResizeHandler()} />
+        <TableV2Resizer resizeHandler={headerProps.getResizeHandler()} />
       )}
-    </StyledDataGridColumnHeader>
+    </StyledTableV2ColumnHeader>
   )
 })
 const ArrowDownIcon = () => (
-  <StyledDataGridSortingIndicator aria-hidden='true'>
+  <StyledTableV2SortingIndicator aria-hidden='true'>
     <svg width='24' height='26' viewBox='0 0 24 26' fill='none'>
       <path
         d='M12.8476 4.34166C12.379 3.88611 11.6181 3.88611 11.1495 4.34166L6.35152 9.00651C6.00666 9.34179 5.90546 9.84108 6.09288 10.2784C6.2803 10.7157 6.71512 11 7.20242 11H16.7984C17.282 11 17.7205 10.7157 17.908 10.2784C18.0954 9.84108 17.9904 9.34179 17.6493 9.00651L12.8513 4.34166H12.8476Z'
@@ -136,10 +136,10 @@ const ArrowDownIcon = () => (
         fill={'#A19F9D'}
       />
     </svg>
-  </StyledDataGridSortingIndicator>
+  </StyledTableV2SortingIndicator>
 )
 const ArrowUpIcon = () => (
-  <StyledDataGridSortingIndicator aria-hidden='true'>
+  <StyledTableV2SortingIndicator aria-hidden='true'>
     <svg width='24' height='26' viewBox='0 0 24 26' fill='none'>
       <path
         d='M12.8476 4.34166C12.379 3.88611 11.6181 3.88611 11.1495 4.34166L6.35152 9.00651C6.00666 9.34179 5.90546 9.84108 6.09288 10.2784C6.2803 10.7157 6.71512 11 7.20242 11H16.7984C17.282 11 17.7205 10.7157 17.908 10.2784C18.0954 9.84108 17.9904 9.34179 17.6493 9.00651L12.8513 4.34166H12.8476Z'
@@ -150,6 +150,6 @@ const ArrowUpIcon = () => (
         fill={'#EDEBE9'}
       />
     </svg>
-  </StyledDataGridSortingIndicator>
+  </StyledTableV2SortingIndicator>
 )
-export default DataGridColumnHeader
+export default TableV2ColumnHeader

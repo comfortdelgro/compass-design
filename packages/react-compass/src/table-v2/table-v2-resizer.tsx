@@ -1,25 +1,25 @@
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledDataGridResizer} from './data-grid-resizer.styles'
+import {StyledTableV2Resizer} from './table-v2-resizer.styles'
 export interface Props extends StyledComponentProps {
   resizeHandler: (e: unknown) => void
 }
 
-export type DataGridResizerProps = Props
+export type TableV2ResizerProps = Props
 
-const DataGridResizer = React.forwardRef<
+const TableV2Resizer = React.forwardRef<
   HTMLTableCellElement,
-  DataGridResizerProps
+  TableV2ResizerProps
 >(({resizeHandler}, ref) => {
-  const DataGridResizerRef = useDOMRef<HTMLDivElement>(ref)
+  const TableV2ResizerRef = useDOMRef<HTMLDivElement>(ref)
   return (
-    <StyledDataGridResizer
+    <StyledTableV2Resizer
       onMouseDown={resizeHandler}
       onTouchStart={resizeHandler}
-      ref={DataGridResizerRef}
+      ref={TableV2ResizerRef}
     />
   )
 })
 
-export default DataGridResizer
+export default TableV2Resizer

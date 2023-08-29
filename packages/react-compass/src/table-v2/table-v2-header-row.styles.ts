@@ -1,5 +1,5 @@
 import {styled} from '../theme'
 
-export const StyledDataGridHeaderRow = styled('tr', {
+export const StyledTableV2HeaderRow = styled('tr', {
   background: '$primaryBg',
 })

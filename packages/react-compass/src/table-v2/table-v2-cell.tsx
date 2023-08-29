@@ -2,8 +2,8 @@ import {Cell, flexRender, Row} from '@tanstack/react-table'
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledDataGridCell} from './data-grid-cell.styles'
 import {CellMetaProps, EditableCell} from './editable/editable-cell'
+import {StyledTableV2Cell} from './table-v2-cell.styles'
 
 export interface Props<TData, TValue> extends StyledComponentProps {
   cell: Cell<TData, TValue>
@@ -11,15 +11,15 @@ export interface Props<TData, TValue> extends StyledComponentProps {
   onChangeCell?: (newData: object) => void
 }
 
-export type DataGridCellProps<TData = any, TValue = unknown> = Props<
+export type TableV2CellProps<TData = any, TValue = unknown> = Props<
   TData,
   TValue
 > &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props<TData, TValue>>
 
-const DataGridCell = React.forwardRef<HTMLTableCellElement, DataGridCellProps>(
+const TableV2Cell = React.forwardRef<HTMLTableCellElement, TableV2CellProps>(
   ({cell, row}, ref) => {
-    const dataGridCellRef = useDOMRef<HTMLTableCellElement>(ref)
+    const TableV2CellRef = useDOMRef<HTMLTableCellElement>(ref)
     const {
       getValue,
       row: {index},
@@ -28,8 +28,8 @@ const DataGridCell = React.forwardRef<HTMLTableCellElement, DataGridCellProps>(
     const tableMeta = cell.column.columnDef.meta as CellMetaProps<any, unknown>
     const isCellEditable = tableMeta?.editable
     return (
-      <StyledDataGridCell
-        ref={dataGridCellRef}
+      <StyledTableV2Cell
+        ref={TableV2CellRef}
         key={cell.id}
         isGrouped={cell.getIsGrouped()}
         isAggregated={cell.getIsAggregated()}
@@ -90,9 +90,9 @@ const DataGridCell = React.forwardRef<HTMLTableCellElement, DataGridCellProps>(
         ) : cell.getIsPlaceholder() ? null : (
           flexRender(cell.column.columnDef.cell, cell.getContext())
         )}
-      </StyledDataGridCell>
+      </StyledTableV2Cell>
     )
   },
 )
 
-export default DataGridCell
+export default TableV2Cell

@@ -1,6 +1,6 @@
 import {styled} from '../theme'
 
-export const StyledDataGridCell = styled('td', {
+export const StyledTableV2Cell = styled('td', {
   position: 'relative',
   fontSize: '$label1',
   padding: '$3_5 $3',

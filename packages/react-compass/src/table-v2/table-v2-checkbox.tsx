@@ -7,7 +7,7 @@ import {
 } from '../checkbox/checkbox.styles'
 import Icon from '../icon'
 import {StyledComponentProps} from '../utils/stitches.types'
-import {StyledReactCheckboxInput} from './data-grid-checkbox.styles'
+import {StyledReactCheckboxInput} from './table-v2-checkbox.styles'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
@@ -16,14 +16,14 @@ interface Props extends StyledComponentProps {
   disabled?: boolean
 }
 
-export type DataGridCheckboxProps = Props
+export type TableV2CheckboxProps = Props
 
-const DataGridCheckbox = ({
+const TableV2Checkbox = ({
   indeterminate,
   className = '',
   disabled = false,
   ...rest
-}: DataGridCheckboxProps) => {
+}: TableV2CheckboxProps) => {
   const ref = React.useRef<HTMLInputElement>(null!)
 
   React.useEffect(() => {
@@ -50,4 +50,4 @@ const DataGridCheckbox = ({
   )
 }
 
-export default DataGridCheckbox
+export default TableV2Checkbox

@@ -1,6 +1,6 @@
 import React from 'react'
 import {CSS, StyledComponentProps} from '../utils/stitches.types'
-import DataGridCheckbox from './data-grid-checkbox'
+import TableV2Checkbox from './table-v2-checkbox'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
@@ -11,18 +11,18 @@ interface Props extends StyledComponentProps {
   css?: CSS
 }
 
-export type DataGridCheckboxCellProps = Props &
+export type TableV2CheckboxCellProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
-const DataGridCheckboxCell = ({
+const TableV2CheckboxCell = ({
   indeterminate = false,
   className = '',
   disabled = false,
   css = {},
   ...rest
-}: DataGridCheckboxCellProps) => {
+}: TableV2CheckboxCellProps) => {
   return (
-    <DataGridCheckbox
+    <TableV2Checkbox
       disabled={disabled}
       indeterminate={indeterminate}
       className={className}
@@ -32,4 +32,4 @@ const DataGridCheckboxCell = ({
   )
 }
 
-export default DataGridCheckboxCell
+export default TableV2CheckboxCell

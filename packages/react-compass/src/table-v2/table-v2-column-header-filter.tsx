@@ -4,7 +4,7 @@ import {StyledComponentProps} from '../utils/stitches.types'
 import {
   StyledFilter,
   StyledFilterInput,
-} from './data-grid-column-header-filter.styles'
+} from './table-v2-column-header-filter.styles'
 
 interface Props<TData, TValue> extends StyledComponentProps {
   column: Column<TData, TValue>
