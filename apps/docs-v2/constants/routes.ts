@@ -267,6 +267,8 @@ export const routes: TSideNavItem[] = [
         pathname: '/quantity-toggle',
         description:
           'Quantity Toggle fields allow users to enter a number, and increment or decrement the value using stepper buttons.',
+      },
+      {
         title: 'Range Calendar',
         pathname: '/range-calendar',
         description:
