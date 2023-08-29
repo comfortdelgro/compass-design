@@ -1,0 +1,6 @@
+<TagBoxV2
+    tagBoxLabel='Attribute values'
+    addTagPlaceholder='Please enter to add tag'
+    tags={tags}
+    isErrored={true}
+/>

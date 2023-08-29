@@ -1,0 +1,4 @@
+<Slider />
+<Slider value={20} onChangeEnd={(val) => console.log(val)} />
+<Slider isDisabled />
+<Slider tooltip={false} />

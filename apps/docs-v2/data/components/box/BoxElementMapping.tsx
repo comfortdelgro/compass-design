@@ -1,5 +1,5 @@
 import {Box, Column, TextField} from '@comfortdelgro/react-compass'
-import { useState } from 'react'
+import {useState} from 'react'
 
 const ElementMapping: React.FC = () => {
   const [inputValue, setInputValue] = useState<string | number>('')

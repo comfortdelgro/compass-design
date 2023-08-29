@@ -19,6 +19,7 @@ or
 ```jsx
 import Dialog from '@comfortdelgro/react-compass/dialog'
 ```
+
 ## Example
 
 ### Basic

@@ -21,7 +21,7 @@ const imgSrc =
 const h5DrawerDefaultConfig: Partial<DrawerH5Props> = {
   disableResize: false,
   disableAddBodyAttr: false,
-  autoClose: true,
+  disableDragClose: false,
   preventClose: false,
 }
 
@@ -250,14 +250,14 @@ export function H5() {
 
         <p>
           Should autoclose when drags and drops the drawer below its height?{' '}
-          <strong>{`${drawerConfig.autoClose}`}</strong>
+          <strong>{`${!drawerConfig.disableDragClose}`}</strong>
         </p>
         <Button
           type='button'
           onClick={() =>
             setDrawerConfig((currState) => ({
               ...currState,
-              autoClose: !currState.autoClose,
+              disableDragClose: !currState.disableDragClose,
             }))
           }
         >
@@ -307,7 +307,7 @@ export function H5() {
         variant='h5'
         expandedPoint={50}
         expandableLine={33}
-        autoClose={false}
+        disableDragClose
       >
         <Drawer.Header
           css={{

@@ -1,0 +1,18 @@
+<Sidenav css={{height: '800px'}}>
+  <Sidenav.Item isActive>
+    <Icon icon={faHelicopter}></Icon>
+    <span>Menu</span>
+    <Sidenav.Menu>
+      <Sidenav.Item>
+        <Icon icon={faHelicopter}></Icon>
+        <span>Menu</span>
+        <Sidenav.Menu>
+          <Sidenav.Item>
+            <Icon icon={faHelicopter}></Icon>
+            <span>Menu</span>
+          </Sidenav.Item>
+        </Sidenav.Menu>
+      </Sidenav.Item>
+    </Sidenav.Menu>
+  </Sidenav.Item>
+</Sidenav>

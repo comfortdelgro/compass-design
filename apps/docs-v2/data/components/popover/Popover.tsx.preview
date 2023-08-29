@@ -1,0 +1,29 @@
+<Popover
+    isOpen={isOpen1}
+    anchor={
+    <Button variant='secondary' onPress={openPopover1}>
+        Click me!
+    </Button>
+    }
+    offset={currentOffset}
+    direction={currentDirection}
+    onClose={() => {
+    setIsOpen1(false)
+    }}
+>
+    <div
+      className='popover-content'
+      style={{
+        background: '#ffffff',
+        border: '1px solid #b63f3f',
+        borderRadius: '5px',
+        width: '100px',
+        height: '50px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      Content
+    </div>
+</Popover>
