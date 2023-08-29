@@ -27,9 +27,10 @@ const slideOutUp = keyframes({
 })
 
 export const StyledDrawer = styled('dialog', {
-  padding: 0,
+  position: 'fixed',
   insetBlock: 0,
 
+  padding: 0,
   maxHeight: '100%',
   maxWidth: 'unset',
 

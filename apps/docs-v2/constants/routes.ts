@@ -184,6 +184,12 @@ export const routes: TSideNavItem[] = [
           'A divider is a thin line that groups content in lists and layouts.',
       },
       {
+        title: 'Drawer',
+        pathname: '/drawer',
+        description:
+          'Display overlay area on top of a page and slides in from the side. Build on top of the native HTML &#60;dialog/> element.',
+      },
+      {
         title: 'Dropdown',
         pathname: '/dropdown',
         description:
@@ -375,9 +381,12 @@ export const routes: TSideNavItem[] = [
         pathname: '/quantity-toggle',
         description:
           'Quantity Toggle fields allow users to enter a number, and increment or decrement the value using stepper buttons.',
+      },
+      {
         title: 'Range Calendar',
         pathname: '/range-calendar',
-        description: 'RangeCalendars display a grid of days in one or more months and allow users to select a contiguous range of dates.',
+        description:
+          'RangeCalendars display a grid of days in one or more months and allow users to select a contiguous range of dates.',
       },
       {
         title: 'Rating',
@@ -387,7 +396,8 @@ export const routes: TSideNavItem[] = [
       {
         title: 'Rich text editor',
         pathname: '/rich-text-editor',
-        description: 'A rich text editor is an interface or input field for text editing.',
+        description:
+          'A rich text editor is an interface or input field for text editing.',
       },
       {
         title: 'Searchfield',
@@ -397,32 +407,38 @@ export const routes: TSideNavItem[] = [
       {
         title: 'Sidebar',
         pathname: '/sidebar',
-        description: 'Sidebar is an expandable and collapsible component that typically acts as a side container to place primary or secondary content alongside the main content.',
+        description:
+          'Sidebar is an expandable and collapsible component that typically acts as a side container to place primary or secondary content alongside the main content.',
       },
       {
         title: 'Sidenav',
         pathname: '/sidenav',
-        description: 'The Sidenav displays horizontally information and navigation relating to the current screen.',
+        description:
+          'The Sidenav displays horizontally information and navigation relating to the current screen.',
       },
       {
         title: 'Skeleton',
         pathname: '/skeleton',
-        description: 'Display a placeholder preview of your content before the data gets loaded to reduce load-time frustration.',
+        description:
+          'Display a placeholder preview of your content before the data gets loaded to reduce load-time frustration.',
       },
       {
         title: 'Slider',
         pathname: '/slider',
-        description: 'Provides the behavior and accessibility implementation for a slider component representing one or more values.',
+        description:
+          'Provides the behavior and accessibility implementation for a slider component representing one or more values.',
       },
       {
         title: 'SpeedDial',
         pathname: '/speed-dial',
-        description: 'Provides the behavior and accessibility implementation for a speed-dial component.',
+        description:
+          'Provides the behavior and accessibility implementation for a speed-dial component.',
       },
       {
         title: 'SubHeader',
         pathname: '/sub-header',
-        description: 'The Sub header is then used to follow up on the top of subsequent child pages.',
+        description:
+          'The Sub header is then used to follow up on the top of subsequent child pages.',
       },
       {
         title: 'SubBanner',
@@ -432,12 +448,14 @@ export const routes: TSideNavItem[] = [
       {
         title: 'Table-v2',
         pathname: '/table-v2',
-        description: 'Table version 2 is a wrapper around the core table logic. Most of its job is related to managing state the "react" way.',
+        description:
+          'Table version 2 is a wrapper around the core table logic. Most of its job is related to managing state the "react" way.',
       },
       {
         title: 'Tabs',
         pathname: '/tabs',
-        description: 'Provides the behavior and accessibility implementation for a tab list. Tabs organize content into multiple sections and allow users to navigate between them.',
+        description:
+          'Provides the behavior and accessibility implementation for a tab list. Tabs organize content into multiple sections and allow users to navigate between them.',
       },
       {
         title: 'Tag Box',
@@ -452,7 +470,8 @@ export const routes: TSideNavItem[] = [
       {
         title: 'Textarea',
         pathname: '/textarea',
-        description: 'Progress indicators commonly known as spinners, express an unspecified wait time or display the length of a process.',
+        description:
+          'Progress indicators commonly known as spinners, express an unspecified wait time or display the length of a process.',
       },
       {
         title: 'Text Field',
@@ -462,12 +481,14 @@ export const routes: TSideNavItem[] = [
       {
         title: 'Timeline',
         pathname: '/timeline',
-        description: 'The timeline displays a list of events in chronological order.',
+        description:
+          'The timeline displays a list of events in chronological order.',
       },
       {
         title: 'Tooltip',
         pathname: '/tooltip',
-        description: 'Display container for Tooltip content. Has a directional arrow dependent on its placement.',
+        description:
+          'Display container for Tooltip content. Has a directional arrow dependent on its placement.',
       },
       {
         title: 'Typography',
@@ -477,7 +498,8 @@ export const routes: TSideNavItem[] = [
       {
         title: 'Upload',
         pathname: '/upload',
-        description: 'The upload component allows users to upload files of various types and sizes.',
+        description:
+          'The upload component allows users to upload files of various types and sizes.',
       },
       {
         title: 'Video Player',

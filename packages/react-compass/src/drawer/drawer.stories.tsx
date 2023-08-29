@@ -94,7 +94,7 @@ export function H5() {
         By default, the Drawer will autofocus on the first nested focusable
         element after opening.
         <br />
-        To disable that, set preventFocus to false
+        To disable that, set preventFocus to true
       </Typography.Body>
       <Button
         css={{marginRight: '$4'}}
@@ -391,7 +391,7 @@ export function H5() {
 
       <Drawer
         open={openNonModalDrawer}
-        css={{height: '20dvh', position: 'fixed'}}
+        css={{height: '20dvh'}}
         expanderCSS={{
           background: '$blueShades100',
           paddingBlock: '$2 $6',
