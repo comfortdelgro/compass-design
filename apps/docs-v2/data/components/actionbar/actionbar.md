@@ -39,7 +39,7 @@ import ActionBar from '@comfortdelgro/react-compass/action-bar'
 
 ## Props
 
-| Name           | Type        | Default | Description                                                                                                  |
-| :------------- | :---------- | :------ | :----------------------------------------------------------------------------------------------------------- |
-| children       | `ReactNode` | —       | The content to display in the accordion.                                                                     |
-| css            | `CSS`       | —       | The system prop that allows defining system overrides as well as additional CSS styles.                      |
+| Name     | Type        | Default | Description                                                                             |
+| :------- | :---------- | :------ | :-------------------------------------------------------------------------------------- |
+| children | `ReactNode` | —       | The content to display in the accordion.                                                |
+| css      | `CSS`       | —       | The system prop that allows defining system overrides as well as additional CSS styles. |

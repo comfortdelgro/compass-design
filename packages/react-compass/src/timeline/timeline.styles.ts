@@ -61,14 +61,16 @@ export const StyledItemHeaderContainer = styled('div', {
   boxSizing: 'border-box',
   margin: '0px',
   padding: '0px',
+  height: 'fit-content',
+  width: 'fit-content',
 
   //styling
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'flex-start',
   gap: '$6',
-  position: 'relative',
-  right: '$12_5',
+  //position: 'relative',
+  //right: '$12_5',
 })
 
 export const StyledItemContainer = styled('div', {
@@ -85,13 +87,15 @@ export const StyledItemContainer = styled('div', {
   justifyContent: 'space-between',
 })
 
-export const StyledTimelineContainer = styled('div', {
+export const StyledTimeline = styled('div', {
   // reset
   appearance: 'none',
   border: 'none',
   boxSizing: 'border-box',
   margin: '0px',
   padding: '0px',
+  width: 'fit-content',
+  height: 'fit-content',
 
   // styling
   // overflow: 'hidden',
@@ -102,7 +106,6 @@ export const StyledTimelineContainer = styled('div', {
   gap: '$4',
   paddingLeft: '$9_25',
   paddingRight: '$9_25',
-  width: 'fit-content',
 
   variants: {
     mode: {
@@ -140,13 +143,13 @@ export const StyledTimelineContainer = styled('div', {
       itemAlignment: 'left',
       css: {
         boxShadow: '1px 0 0 0 #EDEBE9',
-
+        paddingLeft: '0px',
         [`${StyledItemHeaderContainer}`]: {
           flexDirection: 'row-reverse',
 
           gap: '$6',
           position: 'relative',
-          left: '$12_5',
+          left: '3.9rem',
         },
         [`${StyledItemLabel}`]: {
           justifyContent: 'flex-end',
@@ -160,6 +163,7 @@ export const StyledTimelineContainer = styled('div', {
       labelAlignment: 'left',
       itemAlignment: 'right',
       css: {
+        paddingRight: '0px',
         [`${StyledItemHeaderContainer}`]: {
           flexDirection: 'row-reverse',
           justifyContent: 'flex-end',
@@ -180,13 +184,10 @@ export const StyledTimelineContainer = styled('div', {
       itemAlignment: 'left',
       css: {
         boxShadow: '1px 0 0 0 #EDEBE9',
-
+        paddingLeft: '0px',
         [`${StyledItemHeaderContainer}`]: {
           position: 'relative',
           left: '7rem',
-        },
-        [`${StyledItemLabel}`]: {
-          //justifyContent: 'flex-end',
         },
       },
     },
@@ -197,14 +198,18 @@ export const StyledTimelineContainer = styled('div', {
       labelAlignment: 'alternate',
       itemAlignment: 'alternate',
       css: {
+        paddingRight: '0px',
         [`${StyledItemHeaderContainer}`]: {},
         [`${StyledItemLabel}`]: {},
-        '& .header-even': {},
+        '& .header-even': {
+          position: 'relative',
+          right: '3.2rem',
+        },
         '& .header-odd': {
           display: 'flex',
           flexDirection: 'row-reverse',
           position: 'relative',
-          right: '7rem',
+          right: '6.3rem',
         },
         '& .label-odd': {
           display: 'flex',
@@ -226,9 +231,10 @@ export const StyledTimelineContainer = styled('div', {
         boxShadow: '0 -1px 0 0 #EDEBE9',
         display: 'flex',
         flexDirection: 'row',
-        // justifyContent: 'flex-start',
+        justifyContent: 'flex-start',
         padding: '0',
         gap: '$39',
+        paddingBottom: '0px ',
         [`${StyledItemHeaderContainer}`]: {
           display: 'flex',
           flexDirection: 'column-reverse',
@@ -239,10 +245,6 @@ export const StyledTimelineContainer = styled('div', {
           bottom: '4rem',
           display: 'flex',
           justifyContent: 'flex-start',
-        },
-        [`${StyledItemContentWrapper}`]: {
-          // display: 'flex',
-          // justifyContent: 'flex-start',
         },
       },
     },
@@ -256,6 +258,7 @@ export const StyledTimelineContainer = styled('div', {
         flexDirection: 'row',
         padding: '0',
         gap: '$39',
+        paddingTop: '0px',
         [`${StyledItemHeaderContainer}`]: {
           display: 'flex',
           flexDirection: 'column',
@@ -312,4 +315,117 @@ export const StyledTimelineContainer = styled('div', {
   },
 })
 
-export type TimelineVariantProps = VariantProps<typeof StyledTimelineContainer>
+// This is only for the timeline container, doesn't effect its child elements
+export const StyledTimeLineContainer = styled('div', {
+  // reset
+  appearance: 'none',
+  border: 'none',
+  boxSizing: 'border-box',
+  margin: '0px',
+  padding: '0px',
+  height: 'fit-content',
+  width: 'fit-content',
+  variants: {
+    mode: {
+      vertical: {},
+      horizontal: {},
+    },
+    labelAlignment: {
+      right: {},
+      left: {},
+      top: {},
+      bottom: {},
+      alternate: {},
+    },
+    itemAlignment: {
+      right: {},
+      left: {},
+      top: {},
+      bottom: {},
+      alternate: {},
+    },
+  },
+
+  compoundVariants: [
+    // Default compound
+    {
+      mode: 'vertical',
+      labelAlignment: 'right',
+      itemAlignment: 'right',
+      css: {},
+    },
+    // compound with: vertical left-side label & left-side items
+    {
+      mode: 'vertical',
+      labelAlignment: 'left',
+      itemAlignment: 'left',
+      css: {
+        paddingRight: '0.9rem',
+      },
+    },
+
+    // compound with: vertical left-side label & right-side items
+    {
+      mode: 'vertical',
+      labelAlignment: 'left',
+      itemAlignment: 'right',
+      css: {
+        paddingLeft: '6.5rem',
+      },
+    },
+
+    // compound with: vertical right-side label & left-side items
+    {
+      mode: 'vertical',
+      labelAlignment: 'right',
+      itemAlignment: 'left',
+      css: {
+        paddingRight: '6.5rem',
+      },
+    },
+
+    // compound with: vertical alternate
+    {
+      mode: 'vertical',
+      labelAlignment: 'alternate',
+      itemAlignment: 'alternate',
+      css: {
+        paddingLeft: '8rem',
+      },
+    },
+
+    // compount with: horizontal top label & bottom items
+    {
+      mode: 'horizontal',
+      labelAlignment: 'top',
+      itemAlignment: 'bottom',
+      css: {
+        paddingTop: '4rem',
+      },
+    },
+    {
+      mode: 'horizontal',
+      labelAlignment: 'bottom',
+      itemAlignment: 'top',
+      css: {
+        paddingBottom: '4rem',
+      },
+    },
+    {
+      mode: 'horizontal',
+      labelAlignment: 'alternate',
+      itemAlignment: 'alternate',
+      css: {
+        paddingBottom: '8rem',
+      },
+    },
+  ],
+
+  defaultVariants: {
+    mode: 'vertical',
+    labelAlignment: 'right',
+    itemAlignment: 'right',
+  },
+})
+
+export type TimelineVariantProps = VariantProps<typeof StyledTimeline>

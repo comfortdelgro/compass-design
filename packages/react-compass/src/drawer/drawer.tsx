@@ -51,7 +51,7 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
     expandedPoint: expandPoint = DEFAULT_EXPANDED_POINT,
     expandableLine: expandLine = DEFAULT_EXPANDABLE_LINE,
     disableResize = false,
-    autoClose = true,
+    disableDragClose = false,
     disableAddBodyAttr: disableAddBodyAttributes = false,
 
     // the rest
@@ -132,7 +132,7 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
       }
 
       onMouseDown?.(e)
-      if (!(e.target instanceof HTMLDialogElement) || !preventClose) {
+      if (!(e.target instanceof HTMLDialogElement) || preventClose) {
         return
       }
 
@@ -141,7 +141,7 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
         handleCloseDrawer('dismiss')
       }
     },
-    [DrawerElement, onMouseDown, handleCloseDrawer],
+    [DrawerElement, preventClose, onMouseDown, handleCloseDrawer],
   )
 
   const handleCancelDrawer = useCallback<ReactEventHandler<HTMLDialogElement>>(
@@ -217,15 +217,14 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
       }
 
       // Close the drawer if the user drag the drawer to the bottom of screen
-      if (autoClose && newHeight < drawerInitHeight - 100) {
+      if (!disableDragClose && newHeight < drawerInitHeight - 100) {
         handleCloseDrawer()
-        return
       }
     },
     [
       DrawerElement,
       open,
-      autoClose,
+      disableDragClose,
       drawerInitHeight,
       drawerStartingHeight,
       expandedPosition,

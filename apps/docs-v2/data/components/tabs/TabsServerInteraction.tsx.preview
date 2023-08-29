@@ -1,0 +1,16 @@
+<Column>
+    <Typography.Label>Server Interaction</Typography.Label>
+    <Row>
+    <Tabs icon='left'>
+        <Tabs.Item key='1' title='Founding of Rome'>
+        <FetchList id='1' />
+        </Tabs.Item>
+        <Tabs.Item key='2' title='Monarchy and Republic'>
+        <FetchList id='2' />
+        </Tabs.Item>
+        <Tabs.Item key='3' title='Empire'>
+        <FetchList id='3' />
+        </Tabs.Item>
+    </Tabs>
+    </Row>
+</Column>

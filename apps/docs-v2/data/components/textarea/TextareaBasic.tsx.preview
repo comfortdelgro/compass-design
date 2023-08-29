@@ -1,0 +1,23 @@
+<Textarea placeholder='Enter your message' />
+<Textarea label='Text Label' placeholder='Enter your message' isDisabled/>
+<Textarea
+label='Text Label'
+placeholder='Enter your message'
+wordCount
+value='Lorem ipsum dolor sit amet.'
+/>
+<Textarea
+label='Text Label'
+placeholder='Enter your message'
+wordCount
+maxLength={50}
+value={'Lorem ipsum dolor sit amet.'}
+onChange={() => {}}
+/>
+<Textarea
+label='Text Label'
+placeholder='Enter your message'
+wordCount
+maxLength={50}
+isErrored
+/>

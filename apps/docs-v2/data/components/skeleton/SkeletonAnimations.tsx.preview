@@ -1,0 +1,3 @@
+<Skeleton width={210} height={60} />
+<Skeleton width={210} height={60} animation='wave' />
+<Skeleton width={210} height={60} animation={false} />
