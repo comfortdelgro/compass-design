@@ -30,9 +30,13 @@ export const Default: React.FC = () => (
       </ol>
     </section>
     <h3>Example: </h3>
-    <Link href='/#page'>Go to another page</Link>
-    <Link href='https://google.com' external>
-      Go to Google
-    </Link>
+    <span>
+      <Link href='/#page'>Go to another page</Link>
+    </span>
+    <span>
+      <Link href='https://google.com' external>
+        Go to Google
+      </Link>
+    </span>
   </Column>
 )
