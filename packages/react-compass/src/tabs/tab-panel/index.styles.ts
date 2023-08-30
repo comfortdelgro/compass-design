@@ -70,202 +70,105 @@ export const StyledTab = styled('div', {
           },
         },
       },
-      disabled: {
-        true: {
-          background: '$divider',
+    },
+    disabled: {
+      true: {
+        background: '$divider',
+        color: '$gray50',
+        cursor: 'not-allowed',
+      },
+    },
+    active: {
+      true: {
+        color: '$whiteText',
+        background: '$cdgBlue',
+      },
+    },
+    icon: {
+      none: {
+        '& .icon': {
+          display: 'none',
+        },
+      },
+      left: {
+        display: 'flex',
+        flexDirection: 'row',
+        '& .icon': {
+          width: '$4',
+          marginLeft: '$2',
+        },
+      },
+      right: {
+        display: 'flex',
+        flexDirection: 'row-reverse',
+        '& .icon': {
+          width: '$4',
+          marginRight: '$2',
+        },
+      },
+      top: {
+        display: 'flex',
+        flexDirection: 'column-reverse',
+        '& .icon': {
+          width: '$4',
+          marginBottom: '$2',
+        },
+      },
+    },
+  },
+  compoundVariants: [
+    {
+      variant: 'simple',
+      disabled: true,
+      css: {
+        background: 'transparent',
+        '& .icon': {
+          backgroundColor: '$gray50',
+          border: 'none',
+          display: 'flex',
+          '& svg': {
+            display: 'block',
+            '& path': {
+              fill: '$whiteText',
+            },
+          },
+        },
+        '&:hover': {
+          background: 'transparent',
           color: '$gray50',
-          cursor: 'not-allowed',
-        },
-      },
-      active: {
-        true: {
-          color: '$whiteText',
-          background: '$cdgBlue',
-        },
-      },
-      icon: {
-        none: {
           '& .icon': {
-            display: 'none',
-          },
-        },
-        left: {
-          display: 'flex',
-          flexDirection: 'row',
-          '& .icon': {
-            width: '$4',
-            marginLeft: '$2',
-          },
-        },
-        right: {
-          display: 'flex',
-          flexDirection: 'row-reverse',
-          '& .icon': {
-            width: '$4',
-            marginRight: '$2',
-          },
-        },
-        top: {
-          display: 'flex',
-          flexDirection: 'column-reverse',
-          '& .icon': {
-            width: '$4',
-            marginBottom: '$2',
+            backgroundColor: '$gray50',
+            border: 'none',
+            display: 'flex',
+            '& svg': {
+              display: 'block',
+              '& path': {
+                fill: '$whiteText',
+              },
+            },
           },
         },
       },
     },
-    compoundVariants: [
-      {
-        variant: 'simple',
-        disabled: true,
-        css: {
+    {
+      variant: 'h5',
+      disabled: true,
+      css: {
+        background: 'transparent',
+        '& .icon': {
+          backgroundColor: '$gray50',
+          border: 'none',
+          display: 'flex',
+          '& svg': {
+            display: 'block',
+            '& path': {
+              fill: '$whiteText',
+            },
+          },
+        },
+        '&:hover': {
           background: 'transparent',
-          '& .icon': {
-            backgroundColor: '$gray50',
-            border: 'none',
-            display: 'flex',
-            '& svg': {
-              display: 'block',
-              '& path': {
-                fill: '$whiteText',
-              },
-            },
-          },
-          '&:hover': {
-            background: 'transparent',
-            color: '$gray50',
-            '& .icon': {
-              backgroundColor: '$gray50',
-              border: 'none',
-              display: 'flex',
-              '& svg': {
-                display: 'block',
-                '& path': {
-                  fill: '$whiteText',
-                },
-              },
-            },
-          },
-        },
-      },
-      {
-        variant: 'h5',
-        disabled: true,
-        css: {
-          background: 'transparent',
-          '& .icon': {
-            backgroundColor: '$gray50',
-            border: 'none',
-            display: 'flex',
-            '& svg': {
-              display: 'block',
-              '& path': {
-                fill: '$whiteText',
-              },
-            },
-          },
-          '&:hover': {
-            background: 'transparent',
-            color: '$gray50',
-            '& .icon': {
-              backgroundColor: '$gray50',
-              border: 'none',
-              display: 'flex',
-              '& svg': {
-                display: 'block',
-                '& path': {
-                  fill: '$whiteText',
-                },
-              },
-            },
-          },
-        },
-      },
-      {
-        variant: 'simple',
-        active: true,
-        css: {
-          color: '$cdgBlue100',
-          borderBottom: '$cdgBlue 2px solid',
-        },
-      },
-      {
-        variant: 'h5',
-        active: true,
-        css: {
-          color: '$cdgBlue100',
-          borderBottom: '$cdgBlue 2px solid',
-        },
-      },
-      {
-        variant: 'rounded',
-        disabled: true,
-        css: {
           color: '$gray50',
-          backgroundColor: 'transparent',
-          '&:hover': {
-            color: '$gray50',
-            backgroundColor: '$background',
-          },
-        },
-      },
-      {
-        variant: 'rounded',
-        active: true,
-        css: {
-          color: '$whiteText',
-          backgroundColor: '$cdgBlue100',
-          '& .icon': {
-            backgroundColor: '$background',
-            border: 'none',
-            '& svg': {
-              display: 'block',
-              '& path': {
-                fill: '$cdgBlue100',
-              },
-            },
-          },
-        },
-      },
-      {
-        variant: 'simple',
-        active: true,
-        css: {
-          backgroundColor: 'transparent',
-          '& .icon': {
-            backgroundColor: '$cdgBlue100',
-            border: 'none',
-            '& svg': {
-              display: 'block',
-              '& path': {
-                fill: '$whiteText',
-              },
-            },
-          },
-        },
-      },
-      {
-        variant: 'h5',
-        active: true,
-        css: {
-          backgroundColor: 'transparent',
-          '& .icon': {
-            backgroundColor: '$cdgBlue100',
-            border: 'none',
-            '& svg': {
-              display: 'block',
-              '& path': {
-                fill: '$whiteText',
-              },
-            },
-          },
-        },
-      },
-      {
-        variant: 'rounded',
-        disabled: true,
-        css: {
           '& .icon': {
             backgroundColor: '$gray50',
             border: 'none',
@@ -277,22 +180,119 @@ export const StyledTab = styled('div', {
               },
             },
           },
-          '&:hover': {
-            '& .icon': {
-              backgroundColor: '$gray50',
-              '& path': {
-                fill: '$whiteText',
-              },
-            },
-          },
         },
       },
-    ],
-    defaultVariants: {
+    },
+    {
+      variant: 'simple',
+      active: true,
+      css: {
+        color: '$cdgBlue100',
+        borderBottom: '$cdgBlue 2px solid',
+      },
+    },
+    {
+      variant: 'h5',
+      active: true,
+      css: {
+        color: '$cdgBlue100',
+        borderBottom: '$cdgBlue 2px solid',
+      },
+    },
+    {
       variant: 'rounded',
-      disabled: false,
-      icon: 'none',
+      disabled: true,
+      css: {
+        color: '$gray50',
+        backgroundColor: 'transparent',
+        '&:hover': {
+          color: '$gray50',
+          backgroundColor: '$background',
+        },
+      },
     },
+    {
+      variant: 'rounded',
+      active: true,
+      css: {
+        color: '$whiteText',
+        backgroundColor: '$cdgBlue100',
+        '& .icon': {
+          backgroundColor: '$background',
+          border: 'none',
+          '& svg': {
+            display: 'block',
+            '& path': {
+              fill: '$cdgBlue100',
+            },
+          },
+        },
+      },
+    },
+    {
+      variant: 'simple',
+      active: true,
+      css: {
+        backgroundColor: 'transparent',
+        '& .icon': {
+          backgroundColor: '$cdgBlue100',
+          border: 'none',
+          '& svg': {
+            display: 'block',
+            '& path': {
+              fill: '$whiteText',
+            },
+          },
+        },
+      },
+    },
+    {
+      variant: 'h5',
+      active: true,
+      css: {
+        backgroundColor: 'transparent',
+        '& .icon': {
+          backgroundColor: '$cdgBlue100',
+          border: 'none',
+          '& svg': {
+            display: 'block',
+            '& path': {
+              fill: '$whiteText',
+            },
+          },
+        },
+      },
+    },
+    {
+      variant: 'rounded',
+      disabled: true,
+      css: {
+        '& .icon': {
+          backgroundColor: '$gray50',
+          border: 'none',
+          display: 'flex',
+          '& svg': {
+            display: 'block',
+            '& path': {
+              fill: '$whiteText',
+            },
+          },
+        },
+        '&:hover': {
+          '& .icon': {
+            backgroundColor: '$gray50',
+            '& path': {
+              fill: '$whiteText',
+            },
+          },
+        },
+      },
+    },
+  ],
+  defaultVariants: {
+    variant: 'rounded',
+    disabled: false,
+    icon: 'none',
   },
 })
 
