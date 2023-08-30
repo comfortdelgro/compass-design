@@ -19,9 +19,21 @@ const getNearestScale = (value: number, stepSize: number) => {
   return value - prevStep > nextStep - value ? nextStep : prevStep
 }
 
-type SetPosition = (position: [number, number], transition?: string) => void
+type DragPosition = {x: number; y: number}
 
-export type DraggableOptions = {
+type SetPosition = (
+  position: DragPosition,
+  options?: {transition?: string; skipCalulateStep?: boolean},
+) => void
+
+export type DraggableOptions<T extends HTMLElement = HTMLElement> = {
+  /**
+   * Ref to drag element
+   * This hook will tracking the provided ref element
+   * instead of its own target ref (and also won't return it anymore).
+   * @default undefined
+   */
+  targetRef?: RefObject<T>
   /**
    * use Event.preventDefault with the touchmove events
    * @default true
@@ -42,14 +54,19 @@ export type DraggableOptions = {
    * @default 'both'
    */
   direction?: 'vertical' | 'horizontal' | 'both'
-  /** Set css transform */
+  /** Set css transform
+   * @default true
+   */
   setCSS?: boolean
-  /** Max dragging distance */
-  maxDistance?: {
+  /** Limit dragging distance */
+  limit?: {
     x?: {max?: number; min?: number}
     y?: {max?: number; min?: number}
   }
-  /** Position step size */
+  /**
+   * Position step size
+   * @default 0
+   */
   stepSize?:
     | number
     | {
@@ -58,99 +75,123 @@ export type DraggableOptions = {
       }
 
   onStart?: (
-    target: RefObject<HTMLElement>,
-    position: [number, number],
+    target: RefObject<T>,
+    position: DragPosition,
     setPosition: SetPosition,
   ) => void
 
-  onMove?: (
-    target: RefObject<HTMLElement>,
-    position: [number, number],
-    setPosition: SetPosition,
-  ) => void
+  /**
+   * Callback function that triggers when users dragging the HTML element.
+   *
+   * Recommend passing a memorized function or a function from the parent of the component that contains draggable element.
+   */
+  onMove?: (target: RefObject<T>, position: DragPosition) => void
 
   onEnd?: (
-    target: RefObject<HTMLElement>,
-    position: [number, number],
+    target: RefObject<T>,
+    position: DragPosition,
     setPosition: SetPosition,
   ) => void
+
+  /**
+   * If `true`, the target element won't draggable anymore.
+   * ___
+   * Equivalent with `touch === false && mouse === false`
+   * ___
+   * @default false
+   */
+  disabled?: boolean
 }
 
-const defaultOptions: DraggableOptions = {
-  prevent: true,
-  touch: true,
-  mouse: true,
-  direction: 'both',
-  maxDistance: {
-    x: {max: Infinity, min: -Infinity},
-    y: {max: Infinity, min: -Infinity},
-  },
-  stepSize: 0,
-  setCSS: true,
-}
-
-const useDrag = <T extends HTMLElement>(
-  options?: DraggableOptions,
+const useDrag = <T extends HTMLElement = HTMLElement>(
+  options?: DraggableOptions<T>,
 ): {
-  /** Target element ref  */
-  target: RefObject<T>
+  /**
+   * Target element ref.
+   * @returns `undefined` if `options.targetRef` is provided
+   */
+  target: RefObject<T> | undefined
   /** Position state {x, y} */
-  position: {x: number; y: number}
+  position: DragPosition
   /** Function to set a new position value. */
   setPosition: SetPosition
 } => {
-  const opts = useMemo(
-    () => ({
-      ...defaultOptions,
-      ...options,
-      // touch: isTouchDevice() ? options?.touch : false,
-    }),
-    [options],
-  )
+  const opts = useMemo(() => {
+    const processingOptions: DraggableOptions<T> = {
+      // the default options
+      prevent: true,
+      touch: true,
+      mouse: true,
+      direction: 'both',
+      limit: {
+        x: {max: Infinity, min: -Infinity},
+        y: {max: Infinity, min: -Infinity},
+      },
+      stepSize: 0,
+      setCSS: true,
+      disabled: false,
 
-  const target = useRef<T>(null)
-  const startXY = useRef<[number, number]>([0, 0])
-  const prevPosition = useRef<[number, number]>([0, 0])
+      // customize/override the default options
+      ...options,
+    }
+
+    if (processingOptions.disabled) {
+      processingOptions.mouse = false
+      processingOptions.touch = false
+    }
+
+    return processingOptions
+  }, [options])
+
+  const target = opts.targetRef || useRef<T>(null)
+  const startXY = useRef<DragPosition>({x: 0, y: 0})
+  const prevPosition = useRef<DragPosition>({x: 0, y: 0})
   const dragging = useRef<boolean>(false)
-  const [position, setPosition] = useState<[number, number]>([0, 0])
+  const [position, setPosition] = useState<DragPosition>({x: 0, y: 0})
 
   const setTransform = useCallback<SetPosition>(
-    (newPosition, transition) => {
-      if (opts.stepSize) {
-        newPosition = [
-          getNearestScale(
-            position[0],
+    (newPosition, options) => {
+      if (!target.current) {
+        return
+      }
+
+      if (!options?.skipCalulateStep && opts.stepSize) {
+        newPosition = {
+          x: getNearestScale(
+            position.x,
             typeof opts.stepSize === 'object' ? opts.stepSize.x : opts.stepSize,
           ),
-          getNearestScale(
-            position[1],
+          y: getNearestScale(
+            position.y,
             typeof opts.stepSize === 'object' ? opts.stepSize.y : opts.stepSize,
           ),
-        ]
+        }
       }
 
       prevPosition.current = newPosition
       setPosition(newPosition)
 
-      if (!target.current || !opts.setCSS) {
+      if (!opts.setCSS) {
         return
       }
 
-      if (transition) {
-        target.current.style.transition = transition
+      if (options?.transition) {
+        target.current.style.transition = options.transition
       } else {
         target.current.style.transition = ''
       }
 
-      target.current.style.transform = `translate3d(${newPosition[0]}px, ${newPosition[1]}px, 0)`
+      target.current.style.transform = `translate3d(${newPosition.x}px, ${newPosition.y}px, 0)`
     },
     [opts.setCSS, opts.stepSize],
   )
 
   const handleStart = useCallback(
     (e: TouchEvent | MouseEvent) => {
-      const [prevX, prevY] = prevPosition.current
-      let [x, y] = prevPosition.current
+      const {x: prevX, y: prevY} = prevPosition.current
+      let x = prevX,
+        y = prevY
+
       if (
         opts.touch &&
         (e as TouchEvent).touches?.[0]?.clientX
@@ -162,8 +203,8 @@ const useDrag = <T extends HTMLElement>(
           x = touchList.clientX - prevX
           y = touchList.clientY - prevY
 
-          startXY.current = [x, y]
-          opts.onStart?.(target, [x, y], setTransform)
+          startXY.current = {x, y}
+          opts.onStart?.(target, {x, y}, setTransform)
         }
 
         return
@@ -174,8 +215,8 @@ const useDrag = <T extends HTMLElement>(
         x = e.clientX - prevX
         y = e.clientY - prevY
 
-        startXY.current = [x, y]
-        opts.onStart?.(target, [x, y], setTransform)
+        startXY.current = {x, y}
+        opts.onStart?.(target, {x, y}, setTransform)
       }
     },
     [opts, setTransform],
@@ -191,8 +232,11 @@ const useDrag = <T extends HTMLElement>(
         e.preventDefault()
       }
 
-      const [startX, startY] = startXY.current
-      let [x, y] = prevPosition.current
+      const {x: startX, y: startY} = startXY.current
+      const {x: prevX, y: prevY} = prevPosition.current
+      let x = prevX,
+        y = prevY
+
       if (
         opts.touch &&
         (e as TouchEvent).touches?.[0]?.clientX
@@ -227,25 +271,33 @@ const useDrag = <T extends HTMLElement>(
         opts.direction === 'vertical'
           ? 0
           : clamp(x, [
-              opts.maxDistance?.x?.min ?? -Infinity,
-              opts.maxDistance?.x?.max ?? Infinity,
+              opts.limit?.x?.min ?? -Infinity,
+              opts.limit?.x?.max ?? Infinity,
             ])
       y =
         opts.direction === 'horizontal'
           ? 0
           : clamp(y, [
-              opts.maxDistance?.y?.min ?? -Infinity,
-              opts.maxDistance?.y?.max ?? Infinity,
+              opts.limit?.y?.min ?? -Infinity,
+              opts.limit?.y?.max ?? Infinity,
             ])
 
-      opts.onMove?.(target, [x, y], setTransform)
-      setTransform([x, y])
+      if (x !== prevX || y !== prevY) {
+        opts.onMove?.(target, {x, y})
+      }
+
+      setTransform({x, y}, {skipCalulateStep: true})
     },
     [dragging, opts, setTransform],
   )
 
   const handleEnd = useCallback(
     (e: TouchEvent | MouseEvent) => {
+      // only trigger this function if the target element is being dragged.
+      if (!dragging.current) {
+        return
+      }
+
       if (
         // Firefox Desktop will throw errors if we check like this: e instanceof window.TouchEvent
         (opts.touch && typeof (e as TouchEvent).touches !== 'undefined') ||
@@ -255,7 +307,7 @@ const useDrag = <T extends HTMLElement>(
         opts.onEnd?.(target, prevPosition.current, setTransform)
       }
     },
-    [opts, setTransform],
+    [dragging, opts, setTransform],
   )
 
   useEffect(() => {
@@ -300,8 +352,8 @@ const useDrag = <T extends HTMLElement>(
   }, [target, opts, handleStart, handleMove, handleEnd])
 
   return {
-    target,
-    position: {x: position[0], y: position[1]},
+    target: opts.targetRef ? undefined : target,
+    position,
     setPosition: setTransform,
   }
 }

@@ -3,7 +3,9 @@ import {VariantProps} from '../utils/stitches.types'
 
 export const StyledSlideAction = styled('div', {
   padding: '$2',
-  maxWidth: '$80',
+  '@sm': {
+    maxWidth: '$80',
+  },
 
   display: 'flex',
   alignItems: 'center',
@@ -16,6 +18,7 @@ export const StyledSlideAction = styled('div', {
 export const StyledSlideDragger = styled('button', {
   width: '$12',
   height: '$12',
+  zIndex: '1',
 
   display: 'flex',
   alignItems: 'center',
@@ -42,6 +45,7 @@ export const StyledSlideLabel = styled('div', {
   whiteSpace: 'nowrap',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
+  cursor: 'default',
 })
 
 export type SlideActionVariantProps = VariantProps<typeof StyledSlideAction>
