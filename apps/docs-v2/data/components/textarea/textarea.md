@@ -28,6 +28,9 @@ import Textarea from '@comfortdelgro/react-compass/textarea'
 ### Custom styling
 
 {{"demo": "TextareaCustom.tsx"}}
+### H5 project styling
+
+{{"demo": "TextareaH5.tsx"}}
 
 ## Props
 
@@ -42,3 +45,5 @@ import Textarea from '@comfortdelgro/react-compass/textarea'
 | `wordCount`   | `false`\| `true`   | `false` | `Show word count of the input when true` |
 | `maxLength`   | `number`           | —       | `Limit length of the input`              |
 | `onChange`    | `function`         | —       |                                          |
+| `variant`     | `string`           | —       | `Specific style for particular projects` |
+| `resizable`   | `boolean`          | `true`  | `Whether the textarea is resizable`      |
