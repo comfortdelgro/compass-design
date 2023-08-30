@@ -10,6 +10,21 @@ export const Variants: React.FC = () => {
 
   return (
     <Column>
+      <h3> H5</h3>
+      <Textarea
+        variant='h5'
+        resizable={false}
+        placeholder='Type your feedback here'
+        css={{
+          textarea: {
+            width: '343px',
+            height: '129px',
+          },
+        }}
+        label='Details'
+        wordCount
+        maxLength={200}
+      />
       <h3> Simple textarea</h3>
       <Textarea placeholder='Enter your message' />
       <br />
