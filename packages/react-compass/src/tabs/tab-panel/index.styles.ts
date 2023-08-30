@@ -70,7 +70,6 @@ export const StyledTab = styled('div', {
           },
         },
       },
-    },
     disabled: {
       true: {
         background: '$divider',
@@ -151,7 +150,48 @@ export const StyledTab = styled('div', {
       },
     },
     {
+      variant: 'h5',
+      disabled: true,
+      css: {
+        background: 'transparent',
+        '& .icon': {
+          backgroundColor: '$gray50',
+          border: 'none',
+          display: 'flex',
+          '& svg': {
+            display: 'block',
+            '& path': {
+              fill: '$whiteText',
+            },
+          },
+        },
+        '&:hover': {
+          background: 'transparent',
+          color: '$gray50',
+          '& .icon': {
+            backgroundColor: '$gray50',
+            border: 'none',
+            display: 'flex',
+            '& svg': {
+              display: 'block',
+              '& path': {
+                fill: '$whiteText',
+              },
+            },
+          },
+        },
+      },
+    },
+    {
       variant: 'simple',
+      active: true,
+      css: {
+        color: '$cdgBlue100',
+        borderBottom: '$cdgBlue 2px solid',
+      },
+    },
+    {
+      variant: 'h5',
       active: true,
       css: {
         color: '$cdgBlue100',
@@ -190,6 +230,23 @@ export const StyledTab = styled('div', {
     },
     {
       variant: 'simple',
+      active: true,
+      css: {
+        backgroundColor: 'transparent',
+        '& .icon': {
+          backgroundColor: '$cdgBlue100',
+          border: 'none',
+          '& svg': {
+            display: 'block',
+            '& path': {
+              fill: '$whiteText',
+            },
+          },
+        },
+      },
+    },
+    {
+      variant: 'h5',
       active: true,
       css: {
         backgroundColor: 'transparent',
