@@ -66,6 +66,7 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
       )
 
     const timePickerInputRef = useRef<HTMLInputElement>(null)
+    const timePickerIconRef = useRef<HTMLButtonElement>(null)
     const containerRef = useDOMRef<HTMLElement>(ref)
 
     // Slit format string for object with position, min, max, format value
@@ -498,6 +499,13 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
       setIsOpen(false)
     }
 
+    /**
+     * Emits when clicking button Ok at the bottom
+     */
+    const handleEscapeKeyDown = useCallback(() => {
+      timePickerIconRef.current?.focus()
+    }, [])
+
     return (
       <TimePickerContainer
         ref={containerRef as React.RefObject<HTMLDivElement>}
@@ -519,6 +527,7 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
                   onClick={handleIconClockClick}
                   className='time-picker-input-icon'
                   disabled={delegated.isDisabled}
+                  ref={timePickerIconRef}
                 >
                   <svg
                     viewBox='0 0 16 16'
@@ -550,6 +559,7 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             minuteStep={minuteStep}
             hasFooter={hasFooter}
             isReadOnly={!!delegated.isReadOnly}
+            onEscapeKeyDown={handleEscapeKeyDown}
           />
         </Popover>
       </TimePickerContainer>
