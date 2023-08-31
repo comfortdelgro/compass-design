@@ -6,7 +6,7 @@ import {SlideDraggerProps} from './slide-action.types'
 /**
  * @note This component is draggable.
  *
- * It will be re-render frequently (to reflect with the user's drag actions)
+ * It will be re-render (to reflect with the user's drag actions) and how frequently is
  * depend on the `stepSize` option of `useDrag` hook.
  */
 export default function SlideDragger({
@@ -21,9 +21,12 @@ export default function SlideDragger({
   const slideDragRef = useRef<HTMLButtonElement>(null)
   const SlideDragElement = slideDragRef.current
 
-  const maxSlideDistance = useMemo(() => {
+  const slideDragInfo = useMemo(() => {
     if (typeof window === 'undefined' || !slideRef.current) {
-      return 0
+      return {
+        slideDragWidth: 0,
+        maxSlideDistance: 0,
+      }
     }
 
     const computedStyle = window.getComputedStyle(slideRef.current)
@@ -32,19 +35,23 @@ export default function SlideDragger({
       parseFloat(computedStyle.paddingRight)
     const slideDragWidth = SlideDragElement?.offsetWidth ?? 0
 
-    return slideRef.current.offsetWidth - elementPaddingInline - slideDragWidth
+    return {
+      slideDragWidth,
+      maxSlideDistance:
+        slideRef.current.offsetWidth - elementPaddingInline - slideDragWidth,
+    }
   }, [slideRef.current, SlideDragElement])
 
   useDrag({
     targetRef: slideDragRef,
     direction: 'horizontal',
 
-    limit: {x: {min: 0, max: maxSlideDistance}},
+    limit: {x: {min: 0, max: slideDragInfo.maxSlideDistance}},
     onMove: (...params) => {
-      onDrag?.(maxSlideDistance, ...params)
+      onDrag?.(slideDragInfo, ...params)
     },
     onEnd: (...params) => {
-      onDragEnd?.(maxSlideDistance, ...params)
+      onDragEnd?.(slideDragInfo, ...params)
     },
     disabled: disableDrag,
   })

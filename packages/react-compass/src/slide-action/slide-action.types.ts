@@ -1,6 +1,10 @@
 import {HTMLAttributes, ReactNode, RefObject} from 'react'
 import {DraggableOptions} from '../utils/hooks'
 import {StyledComponentProps} from '../utils/stitches.types'
+import {
+  SlideBgVariantProps,
+  SlideLabelVariantProps,
+} from './slide-action.styles'
 
 type Props = {
   icon?: ReactNode
@@ -9,8 +13,10 @@ type Props = {
   onChange?: (isSuccess: boolean) => void
   onSuccess?: (reset: () => void) => void
   /** @default false */
-  enableDragOnSuccess?: boolean
-} & StyledComponentProps
+  enableDragAfterSuccess?: boolean
+} & StyledComponentProps &
+  SlideBgVariantProps &
+  SlideLabelVariantProps
 
 export type SlideActionProps = Props &
   Omit<HTMLAttributes<HTMLDivElement>, keyof Props>
@@ -20,11 +26,11 @@ export type SlideDraggerProps = {
   icon?: ReactNode
   color?: string
   onDrag?: (
-    maxSlideDistance: number,
+    slideDragInfo: {slideDragWidth: number; maxSlideDistance: number},
     ...params: Parameters<NonNullable<DraggableOptions['onMove']>>
   ) => void
   onDragEnd?: (
-    maxSlideDistance: number,
+    slideDragInfo: {slideDragWidth: number; maxSlideDistance: number},
     ...params: Parameters<NonNullable<DraggableOptions['onEnd']>>
   ) => void
   disableDrag?: boolean
