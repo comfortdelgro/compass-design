@@ -5,7 +5,7 @@ import Button from '../button'
 import Modal from '../modal'
 import {styled} from '../theme'
 import Typography from '../typography'
-import SliderAction from './slide-action'
+import SlideAction from './slide-action'
 
 export function Default() {
   const [slideStatus, setSlideStatus] = useState(false)
@@ -27,7 +27,7 @@ export function Default() {
         Slide status: <strong>{`${slideStatus}`}</strong>
       </Typography.Body>
 
-      <SliderAction
+      <SlideAction
         color='$cdgBlue'
         onChange={(isSuccess) => setSlideStatus(isSuccess)}
         onSuccess={(reset) => {
@@ -42,7 +42,7 @@ export function Default() {
         minima quaerat, ipsum ad temporibus amet distinctio vitae cupiditate
         fugit reprehenderit minus beatae hic dolor rerum, labore architecto
         facere nam numquam?
-      </SliderAction>
+      </SlideAction>
 
       <Typography.Header variant='header3' css={{marginBlock: '$8 $4'}}>
         Close a modal
@@ -72,12 +72,12 @@ export function Default() {
           <Modal.Description>
             Our Driver is on the way. Any promo code that has been applied maybe
             forfeited. Do you want to proceed?
-            <SliderAction
+            <SlideAction
               css={{marginBlock: '$4', maxWidth: 'unset', width: '100%'}}
               onSuccess={() => setOpenConfirmModal(false)}
             >
               Slide to cancel
-            </SliderAction>
+            </SlideAction>
             <Button
               variant='ghost'
               onClick={() => setOpenConfirmModal(false)}
@@ -109,7 +109,7 @@ const slideBgColors = [
 ]
 
 export function Customize() {
-  const [colorBg, setColorBg] = useState('$cdgBlue')
+  const [colorBg, setColorBg] = useState(slideBgColors[0] || '$cdgBlue')
 
   return (
     <>
@@ -117,7 +117,20 @@ export function Customize() {
         Default
       </Typography.Header>
       <pre>color: $dangerShades</pre>
-      <SliderAction css={{marginTop: '$4'}}>Default color</SliderAction>
+      <SlideAction css={{marginTop: '$4'}}>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque enim
+        sint labore nesciunt
+      </SlideAction>
+
+      <Typography.Header variant='header3' css={{marginBlock: '$8 $4'}}>
+        Compact
+      </Typography.Header>
+      <SlideAction compact>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque enim
+        sint labore nesciunt, excepturi et voluptates laudantium exercitationem
+        similique. Libero id quo eligendi sunt. Cupiditate dignissimos qui
+        inventore dolores hic.
+      </SlideAction>
 
       <Typography.Header variant='header3' css={{marginBlock: '$8 $4'}}>
         More color
@@ -147,41 +160,45 @@ export function Customize() {
           Random
         </StyledColorPicker>
       </StyledColorPickerWrapper>
-      <SliderAction css={{marginTop: '$4'}} color={colorBg}>
+      <SlideAction css={{marginTop: '$4'}} color={colorBg}>
         Slide background
-      </SliderAction>
+      </SlideAction>
 
-      <SliderAction css={{marginTop: '$4'}} color={colorBg} bgType='static'>
+      <SlideAction css={{marginTop: '$4'}} color={colorBg} slideType='static'>
         Fadein background
-      </SliderAction>
+      </SlideAction>
 
       <Typography.Header variant='header4' css={{marginBlock: '$8 $4'}}>
         Label slide effect
       </Typography.Header>
 
-      <SliderAction labelType='slide' color={colorBg}>
+      <SlideAction labelType='slide' color={colorBg}>
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa non
         ipsum, pariatur in eveniet neque dolores sequi, numquam aspernatur
         ratione veritatis nemo earum maxime aut distinctio repellat dolorum ipsa
         deleniti!
-      </SliderAction>
+      </SlideAction>
 
       <Typography.Body variant='body2' css={{marginBlock: '$4'}}>
         With custom icon
       </Typography.Body>
-      <SliderAction
+      <SlideAction
         icon={<FontAwesomeIcon icon={faPowerOff} color='#fff' size='2x' />}
         labelType='slide'
       >
         Slide to shutdown
-      </SliderAction>
+      </SlideAction>
 
       <Typography.Header variant='header4' css={{marginBlock: '$8 $4'}}>
         Default gradient background
       </Typography.Header>
-      <SliderAction css={{marginTop: '$4'}} color='#e11d48' slideBg='gradient'>
+      <SlideAction
+        css={{marginTop: '$4'}}
+        color='#e11d48'
+        slideColor='gradient'
+      >
         Slide to see bg color change
-      </SliderAction>
+      </SlideAction>
     </>
   )
 }

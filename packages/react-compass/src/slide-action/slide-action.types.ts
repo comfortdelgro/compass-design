@@ -2,6 +2,7 @@ import {HTMLAttributes, ReactNode, RefObject} from 'react'
 import {DraggableOptions} from '../utils/hooks'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {
+  SlideActionVariantProps,
   SlideBgVariantProps,
   SlideLabelVariantProps,
 } from './slide-action.styles'
@@ -15,6 +16,7 @@ type Props = {
   /** @default false */
   enableDragAfterSuccess?: boolean
 } & StyledComponentProps &
+  SlideActionVariantProps &
   SlideBgVariantProps &
   SlideLabelVariantProps
 

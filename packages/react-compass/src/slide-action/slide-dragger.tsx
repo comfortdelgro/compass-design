@@ -64,7 +64,7 @@ export default function SlideDragger({
         backgroundColor: color,
         pointerEvents: disableDrag ? 'none' : 'auto',
       }}
-      className='slide-action__button'
+      className='slide-action__dragger'
     >
       {icon || (
         <svg

@@ -2,6 +2,7 @@
 
 import React, {forwardRef, useCallback, useRef, useState} from 'react'
 import {useDOMRef} from '../utils/use-dom-ref'
+import {SLIDER_REDUCE_OPACITY} from './slide-action.const'
 import {
   StyledSlideAction,
   StyledSlideBg,
@@ -21,70 +22,70 @@ const SlideAction = forwardRef<HTMLDivElement, SlideActionProps>(
       labelType = 'default',
       onChange,
       onSuccess,
-      bgType = 'slide',
-      slideBg = 'mono',
+      slideType = 'slide',
+      slideColor = 'mono',
       enableDragAfterSuccess = false,
+      compact = false,
       children,
 
       ...delegated
     },
     ref,
   ) => {
-    const SlideRef = useDOMRef<HTMLDivElement>(ref)
-    const SlideBgRef = useRef<HTMLDivElement>(null)
-    const SlideLabelRef = useRef<HTMLDivElement>(null)
+    const slideRef = useDOMRef<HTMLDivElement>(ref)
+    const slideBgRef = useRef<HTMLDivElement>(null)
+    const slideLabelRef = useRef<HTMLDivElement>(null)
     const [disableDrag, setDisableDrag] = useState(false)
 
     const handleUpdateSlideBg = useCallback<
       (opacity: number, width: number) => void
     >(
       (opacity, width) => {
-        if (!SlideBgRef.current) {
+        if (!slideBgRef.current) {
           return
         }
 
-        if (bgType === 'static') {
-          SlideBgRef.current.style.setProperty('opacity', opacity.toFixed(2))
+        if (slideType === 'static') {
+          slideBgRef.current.style.setProperty('opacity', opacity.toFixed(2))
           return
         }
 
-        // SlideBgRef.current.style.setProperty('transform', transform)
-        SlideBgRef.current.style.setProperty('width', `${width}px`)
+        slideBgRef.current.style.setProperty('width', `${width}px`)
       },
-      [SlideBgRef.current, bgType],
+      [slideBgRef.current, slideType],
     )
 
     const handleOnDrag = useCallback<NonNullable<SlideDraggerProps['onDrag']>>(
       ({slideDragWidth, maxSlideDistance}, _, {x}) => {
-        if (!SlideRef.current || !SlideLabelRef.current) {
+        if (!slideRef.current || !slideLabelRef.current) {
           return
         }
         const calcDistance = (maxSlideDistance - x) / maxSlideDistance
-        SlideLabelRef.current.style.setProperty(
+        slideLabelRef.current.style.setProperty(
           'opacity',
           (calcDistance - 0.1).toFixed(2),
         )
 
-        const bgOpacity = x / maxSlideDistance - 0.4
+        const bgOpacity = x / maxSlideDistance - SLIDER_REDUCE_OPACITY
         handleUpdateSlideBg(
-          bgOpacity > 0.4 ? 0.4 : bgOpacity,
+          bgOpacity > SLIDER_REDUCE_OPACITY ? SLIDER_REDUCE_OPACITY : bgOpacity,
           slideDragWidth + x,
         )
       },
-      [SlideRef.current, SlideLabelRef.current, handleUpdateSlideBg],
+      [slideRef.current, slideLabelRef.current, handleUpdateSlideBg],
     )
 
     const handleOnDragEnd = useCallback<
       NonNullable<SlideDraggerProps['onDragEnd']>
     >(
       ({maxSlideDistance}, _, {x}, setPosition) => {
-        if (!SlideRef.current) {
+        if (!slideRef.current) {
           return
         }
 
         const resetPosition = () => {
-          if (SlideLabelRef.current) {
-            SlideLabelRef.current.style.setProperty('opacity', '1')
+          if (slideLabelRef.current) {
+            slideLabelRef.current.style.setProperty('opacity', '1')
           }
 
           setDisableDrag(false)
@@ -107,8 +108,8 @@ const SlideAction = forwardRef<HTMLDivElement, SlideActionProps>(
         resetPosition()
       },
       [
-        SlideRef.current,
-        SlideLabelRef.current,
+        slideRef.current,
+        slideLabelRef.current,
         onChange,
         onSuccess,
         handleUpdateSlideBg,
@@ -117,20 +118,21 @@ const SlideAction = forwardRef<HTMLDivElement, SlideActionProps>(
 
     return (
       <StyledSlideAction
-        ref={SlideRef}
+        ref={slideRef}
         className={`${className} slide-action`}
         css={{...css, borderColor: color}}
+        {...{compact}}
         {...delegated}
       >
         <StyledSlideBg
           className='slide-action__bg'
-          ref={SlideBgRef}
+          ref={slideBgRef}
           css={{backgroundColor: color}}
-          {...{slideBg}}
-          {...{bgType}}
+          {...{slideColor}}
+          {...{slideType}}
         />
         <SlideDragger
-          slideRef={SlideRef}
+          slideRef={slideRef}
           color={color}
           icon={icon}
           onDrag={handleOnDrag}
@@ -139,7 +141,7 @@ const SlideAction = forwardRef<HTMLDivElement, SlideActionProps>(
         />
 
         <StyledSlideLabel
-          ref={SlideLabelRef}
+          ref={slideLabelRef}
           css={{
             color,
             '@media (prefers-reduced-motion: no-preference)': {

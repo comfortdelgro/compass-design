@@ -23,6 +23,7 @@ const gradientWaveText = keyframes({
 export const StyledSlideAction = styled('div', {
   position: 'relative',
   padding: '$2',
+
   '@sm': {
     maxWidth: '$80',
   },
@@ -34,6 +35,34 @@ export const StyledSlideAction = styled('div', {
   borderRadius: '$full',
   border: '1px solid $dangerShades',
   overflow: 'hidden',
+
+  variants: {
+    compact: {
+      true: {
+        padding: 0,
+
+        '@sm': {
+          maxWidth: '$60',
+        },
+
+        '&>.slide-action__dragger': {
+          width: '$10',
+          height: '$10',
+        },
+
+        '&>.slide-action__bg': {
+          width: '$10',
+          height: '100%',
+        },
+
+        '&>.slide-action__label': {
+          fontSize: '$label1',
+          paddingRight: '$2',
+        },
+      },
+      false: {},
+    },
+  },
 })
 
 export const StyledSlideDragger = styled('button', {
@@ -81,22 +110,20 @@ export const StyledSlideLabel = styled('div', {
 
 export const StyledSlideBg = styled('div', {
   position: 'absolute',
-  width: 'calc(100% - $4)',
+  width: '$12',
   height: 'calc(100% - $4)',
   borderRadius: '$full',
   opacity: 0.2,
 
   variants: {
-    bgType: {
+    slideType: {
       static: {
+        width: 'calc(100% - $4)',
         opacity: 0,
       },
-      slide: {
-        // transform: 'translateX(-110%)',
-        width: '$12',
-      },
+      slide: {},
     },
-    slideBg: {
+    slideColor: {
       mono: {},
       gradient: {
         background:
