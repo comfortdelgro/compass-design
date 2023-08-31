@@ -30,7 +30,7 @@ export function Default() {
       <SlideAction
         color='$cdgBlue'
         onChange={(isSuccess) => setSlideStatus(isSuccess)}
-        onSuccess={(reset) => {
+        onSwipeEnd={(reset) => {
           console.log('success')
           // do sth when users swiped to the end
           setTimeout(() => {
@@ -74,7 +74,7 @@ export function Default() {
             forfeited. Do you want to proceed?
             <SlideAction
               css={{marginBlock: '$4', maxWidth: 'unset', width: '100%'}}
-              onSuccess={() => setOpenConfirmModal(false)}
+              onSwipeEnd={() => setOpenConfirmModal(false)}
             >
               Slide to cancel
             </SlideAction>
@@ -183,7 +183,7 @@ export function Customize() {
         With custom icon
       </Typography.Body>
       <SlideAction
-        icon={<FontAwesomeIcon icon={faPowerOff} color='#fff' size='2x' />}
+        icon={<FontAwesomeIcon icon={faPowerOff} color='#fff' size='xl' />}
         labelType='slide'
       >
         Slide to shutdown

@@ -11,6 +11,11 @@ import {
 import {SlideActionProps, SlideDraggerProps} from './slide-action.types'
 import SlideDragger from './slide-dragger'
 
+/**
+ * A Slide action or Swiper component that requires user to swipe to confirm an action.
+ *
+ * Usually use for important actions, such as purchase order, turn off privacy setting, delete something, etc.
+ */
 const SlideAction = forwardRef<HTMLDivElement, SlideActionProps>(
   (
     {
@@ -21,7 +26,7 @@ const SlideAction = forwardRef<HTMLDivElement, SlideActionProps>(
       label = 'Slide',
       labelType = 'default',
       onChange,
-      onSuccess,
+      onSwipeEnd,
       slideType = 'slide',
       slideColor = 'mono',
       enableDragAfterSuccess = false,
@@ -101,7 +106,7 @@ const SlideAction = forwardRef<HTMLDivElement, SlideActionProps>(
             setDisableDrag?.(true)
           }
           onChange?.(true)
-          onSuccess?.(resetPosition)
+          onSwipeEnd?.(resetPosition)
           return
         }
 
@@ -111,7 +116,7 @@ const SlideAction = forwardRef<HTMLDivElement, SlideActionProps>(
         slideRef.current,
         slideLabelRef.current,
         onChange,
-        onSuccess,
+        onSwipeEnd,
         handleUpdateSlideBg,
       ],
     )

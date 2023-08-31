@@ -11,9 +11,26 @@ type Props = {
   icon?: ReactNode
   label?: string
   color?: string
+  /** Trigger when component's status changes */
   onChange?: (isSuccess: boolean) => void
-  onSuccess?: (reset: () => void) => void
-  /** @default false */
+  /**
+   * Trigger when users swiped all the way to the end. It will be considered as a successful or confirmatory action.
+   *
+   * Call the `reset()` function to reset the component status.
+   */
+  onSwipeEnd?: (reset: () => void) => void
+  /**
+   * ⚠️ Avoid enabling this flag as much as possible.
+   *
+   * If you wanna reset this component, please use the `reset()` function that shipped with `onSwipeEnd` instead.
+   * ___
+   * ⚠️ **Accessibility considerations** (Act unintentionally)
+   *
+   * Since an action is a successful action when they dragged/swiped this component all the way to the end.
+   * If users tap & release without dragging, this component will assume that it is another successful or confirmatory action. As a result, onSwipeEnd will be re-triggered.
+   *
+   * @default false
+   */
   enableDragAfterSuccess?: boolean
 } & StyledComponentProps &
   SlideActionVariantProps &
