@@ -135,7 +135,7 @@ export default function DocsAppToc(props: any) {
     </Link>
   )
 
-  return isTabletScreen ? (
+  return isTabletScreen || toc.length === 0 ? (
     <></>
   ) : (
     <Box

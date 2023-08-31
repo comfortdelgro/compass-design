@@ -54,159 +54,159 @@ export default function colorfulIcons() {
     >
       <IconBox
         component={<AdminPotalLightColorful width={40} height={40} />}
-        name='AdminPotalLight'
+        name='admin-potal-light'
       />
       <IconBox
         component={<AdminPotalColorful width={40} height={40} />}
-        name='AdminPotal'
+        name='admin-potal'
       />
       <IconBox
         component={<CabyPortalLightColorful width={40} height={40} />}
-        name='CabyPortalLight'
+        name='caby-portal-light'
       />
       <IconBox
         component={<CabyPortalColorful width={40} height={40} />}
-        name='CabyPortal'
+        name='caby-portal'
       />
       <IconBox
         component={<ClubhouseColorful width={40} height={40} />}
-        name='Clubhouse'
+        name='clubhouse'
       />
       <IconBox
         component={<CmsLightColorful width={40} height={40} />}
-        name='CmsLight'
+        name='cms-light'
       />
-      <IconBox component={<CmsColorful width={40} height={40} />} name='Cms' />
+      <IconBox component={<CmsColorful width={40} height={40} />} name='cms' />
       <IconBox
         component={<ComfortConnectLightColorful width={40} height={40} />}
-        name='ComfortConnectLight'
+        name='comfort-connect-light'
       />
       <IconBox
         component={<ComfortConnectColorful width={40} height={40} />}
-        name='ComfortConnect'
+        name='comfort-connect'
       />
       <IconBox
         component={<CompassColorful width={40} height={40} />}
-        name='Compass'
+        name='compass'
       />
       <IconBox
         component={<CrownColorful width={40} height={40} />}
-        name='Crown'
+        name='crown'
       />
       <IconBox
         component={<DiscordColorful width={40} height={40} />}
-        name='Discord'
+        name='discord'
       />
       <IconBox
         component={<DoctypeColorful width={40} height={40} />}
-        name='Doctype'
+        name='doctype'
       />
       <IconBox
         component={<DribbbleColorful width={40} height={40} />}
-        name='Dribbble'
+        name='dribbble'
       />
       <IconBox
         component={<FacebookColorful width={40} height={40} />}
-        name='Facebook'
+        name='facebook'
       />
       <IconBox
         component={<FigmaColorful width={40} height={40} />}
-        name='Figma'
+        name='figma'
       />
       <IconBox
         component={<FmsLightColorful width={40} height={40} />}
-        name='FmsLight'
+        name='fms-light'
       />
-      <IconBox component={<FmsColorful width={40} height={40} />} name='Fms' />
+      <IconBox component={<FmsColorful width={40} height={40} />} name='fms' />
       <IconBox
         component={<FnbLightColorful width={40} height={40} />}
-        name='FnbLight'
+        name='fnb-light'
       />
-      <IconBox component={<FnbColorful width={40} height={40} />} name='Fnb' />
+      <IconBox component={<FnbColorful width={40} height={40} />} name='fnb' />
       <IconBox
         component={<GoogleColorful width={40} height={40} />}
-        name='Google'
+        name='google'
       />
       <IconBox
         component={<LinkedinColorful width={40} height={40} />}
-        name='Linkedin'
+        name='linkedin'
       />
       <IconBox
         component={<PinterestColorful width={40} height={40} />}
-        name='Pinterest'
+        name='pinterest'
       />
       <IconBox
         component={<RedditColorful width={40} height={40} />}
-        name='Reddit'
+        name='reddit'
       />
       <IconBox
         component={<SignalColorful width={40} height={40} />}
-        name='Signal'
+        name='signal'
       />
       <IconBox
         component={<SnapchatColorful width={40} height={40} />}
-        name='Snapchat'
+        name='snapchat'
       />
       <IconBox
         component={<TelegramColorful width={40} height={40} />}
-        name='Telegram'
+        name='telegram'
       />
       <IconBox
         component={<TemLightColorful width={40} height={40} />}
-        name='TemLight'
+        name='tem-light'
       />
-      <IconBox component={<TemColorful width={40} height={40} />} name='Tem' />
+      <IconBox component={<TemColorful width={40} height={40} />} name='tem' />
       <IconBox
         component={<TiktokColorful width={40} height={40} />}
-        name='Tiktok'
+        name='tiktok'
       />
       <IconBox
         component={<TumblrColorful width={40} height={40} />}
-        name='Tumblr'
+        name='tumblr'
       />
       <IconBox
         component={<TwitterColorful width={40} height={40} />}
-        name='Twitter'
+        name='twitter'
       />
       <IconBox
         component={<WorkbenchLightColorful width={40} height={40} />}
-        name='WorkbenchLight'
+        name='workbench-light'
       />
       <IconBox
         component={<WorkbenchTextColorful width={40} height={40} />}
-        name='WorkbenchText'
+        name='workbench-text'
       />
       <IconBox
         component={<WorkbenchColorful width={40} height={40} />}
-        name='Workbench'
+        name='workbench'
       />
       <IconBox
         component={<YoutubeColorful width={40} height={40} />}
-        name='Youtube'
+        name='youtube'
       />
       <IconBox
         component={<ZigBizSquareColorful width={40} height={40} />}
-        name='ZigBizSquare'
+        name='zig-biz-square'
       />
       <IconBox
         component={<ZigBizTsmColorful width={40} height={40} />}
-        name='ZigBizTsm'
+        name='zig-biz-tsm'
       />
       <IconBox
         component={<ZigBizWhiteColorful width={40} height={40} />}
-        name='ZigBizWhite'
+        name='zig-biz-white'
       />
       <IconBox
         component={<ZigBizColorful width={40} height={40} />}
-        name='ZigBiz'
+        name='zig-biz'
       />
       <IconBox
         component={<ZigStoreLightColorful width={40} height={40} />}
-        name='ZigStoreLight'
+        name='zig-store-light'
       />
       <IconBox
         component={<ZigStoreColorful width={40} height={40} />}
-        name='ZigStore'
+        name='zig-store'
       />
     </Flexbox>
   )

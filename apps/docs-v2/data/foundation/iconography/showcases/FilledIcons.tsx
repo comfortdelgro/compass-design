@@ -38,107 +38,107 @@ export default function filledIcons() {
     >
       <IconBox
         component={<AddressBookFilled width={40} height={40} />}
-        name='AddressBookFilled'
+        name='address-book-filled'
       />
       <IconBox
         component={<ArrowDownFilled width={40} height={40} />}
-        name='ArrowDownFilled'
+        name='arrow-down-filled'
       />
       <IconBox
         component={<ArrowLeftFilled width={40} height={40} />}
-        name='ArrowLeftFilled'
+        name='arrow-left-filled'
       />
       <IconBox
         component={<ArrowRightFilled width={40} height={40} />}
-        name='ArrowRightFilled'
+        name='arrow-right-filled'
       />
       <IconBox
         component={<ArrowUpFilled width={40} height={40} />}
-        name='ArrowUpFilled'
+        name='arrow-up-filled'
       />
       <IconBox
         component={<CalendarDaysFilled width={40} height={40} />}
-        name='CalendarDaysFilled'
+        name='calendar-days-filled'
       />
       <IconBox
         component={<ClockFilled width={40} height={40} />}
-        name='ClockFilled'
+        name='clock-filled'
       />
       <IconBox
         component={<CreditCardFilled width={40} height={40} />}
-        name='CreditCardFilled'
+        name='credit-card-filled'
       />
       <IconBox
         component={<DuplicateImageFilled width={40} height={40} />}
-        name='DuplicateImageFilled'
+        name='duplicate-image-filled'
       />
       <IconBox
         component={<ExclamationFilled width={40} height={40} />}
-        name='ExclamationFilled'
+        name='exclamation-filled'
       />
       <IconBox
         component={<GroupAddFilled width={40} height={40} />}
-        name='GroupAddFilled'
+        name='group-add-filled'
       />
       <IconBox
         component={<GroupSettingsFilled width={40} height={40} />}
-        name='GroupSettingsFilled'
+        name='group-settings-filled'
       />
       <IconBox
         component={<HeartFilled width={40} height={40} />}
-        name='HeartFilled'
+        name='heart-filled'
       />
       <IconBox
         component={<ImageFilled width={40} height={40} />}
-        name='ImageFilled'
+        name='image-filled'
       />
       <IconBox
         component={<InfoFilled width={40} height={40} />}
-        name='InfoFilled'
+        name='info-filled'
       />
       <IconBox
         component={<MailFilled width={40} height={40} />}
-        name='MailFilled'
+        name='mail-filled'
       />
       <IconBox
         component={<NotificationFilled width={40} height={40} />}
-        name='NotificationFilled'
+        name='notification-filled'
       />
       <IconBox
         component={<PencilFilled width={40} height={40} />}
-        name='PencilFilled'
+        name='pencil-filled'
       />
       <IconBox
         component={<PersonFilled width={40} height={40} />}
-        name='PersonFilled'
+        name='person-filled'
       />
       <IconBox
         component={<ProfileFilled width={40} height={40} />}
-        name='ProfileFilled'
+        name='profile-filled'
       />
       <IconBox
         component={<QuestionFilled width={40} height={40} />}
-        name='QuestionFilled'
+        name='question-filled'
       />
       <IconBox
         component={<StarFilled width={40} height={40} />}
-        name='StarFilled'
+        name='star-filled'
       />
       <IconBox
         component={<ThumbtackFilled width={40} height={40} />}
-        name='ThumbtackFilled'
+        name='thumbtack-filled'
       />
       <IconBox
         component={<TrashFilled width={40} height={40} />}
-        name='TrashFilled'
+        name='trash-filled'
       />
       <IconBox
         component={<UserAddFilled width={40} height={40} />}
-        name='UserAddFilled'
+        name='user-add-filled'
       />
       <IconBox
         component={<WarningFilled width={40} height={40} />}
-        name='WarningFilled'
+        name='warning-filled'
       />
     </Flexbox>
   )

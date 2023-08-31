@@ -49,90 +49,90 @@ export default function paymentIcons() {
         flexWrap: 'wrap',
       }}
     >
-      <IconBox component={<Affirm width={40} height={40} />} name='Affirm' />
-      <IconBox component={<Alipay width={40} height={40} />} name='Alipay' />
-      <IconBox component={<Amazon width={40} height={40} />} name='Amazon' />
-      <IconBox component={<Amex width={40} height={40} />} name='Amex' />
+      <IconBox component={<Affirm width={40} height={40} />} name='affirm' />
+      <IconBox component={<Alipay width={40} height={40} />} name='alipay' />
+      <IconBox component={<Amazon width={40} height={40} />} name='amazon' />
+      <IconBox component={<Amex width={40} height={40} />} name='amex' />
       <IconBox
         component={<ApplePay width={40} height={40} />}
-        name='ApplePay'
+        name='apple-pay'
       />
       <IconBox
         component={<Bancontact width={40} height={40} />}
-        name='Bancontact'
+        name='bancontact'
       />
       <IconBox
         component={<BitcoinCash width={40} height={40} />}
-        name='BitcoinCash'
+        name='bitcoin-cash'
       />
-      <IconBox component={<Bitcoin width={40} height={40} />} name='Bitcoin' />
-      <IconBox component={<Bitpay width={40} height={40} />} name='Bitpay' />
+      <IconBox component={<Bitcoin width={40} height={40} />} name='bitcoin' />
+      <IconBox component={<Bitpay width={40} height={40} />} name='bitpay' />
       <IconBox
         component={<Citadele width={40} height={40} />}
-        name='Citadele'
+        name='citadele'
       />
       <IconBox
         component={<DinersClub width={40} height={40} />}
-        name='DinersClub'
+        name='diners-club'
       />
       <IconBox
         component={<Discover width={40} height={40} />}
-        name='Discover'
+        name='discover'
       />
-      <IconBox component={<Elo width={40} height={40} />} name='Elo' />
+      <IconBox component={<Elo width={40} height={40} />} name='elo' />
       <IconBox
         component={<Etherium width={40} height={40} />}
-        name='Etherium'
+        name='etherium'
       />
       <IconBox
         component={<Forbrugsforeningen width={40} height={40} />}
-        name='Forbrugsforeningen'
+        name='forbrugsforeningen'
       />
-      <IconBox component={<GiroPay width={40} height={40} />} name='GiroPay' />
+      <IconBox component={<GiroPay width={40} height={40} />} name='giro-pay' />
       <IconBox
         component={<GooglePay width={40} height={40} />}
-        name='GooglePay'
+        name='google-pay'
       />
-      <IconBox component={<Ideal width={40} height={40} />} name='Ideal' />
-      <IconBox component={<Interac width={40} height={40} />} name='Interac' />
-      <IconBox component={<Jcb width={40} height={40} />} name='Jcb' />
-      <IconBox component={<Klarna width={40} height={40} />} name='Klarna' />
+      <IconBox component={<Ideal width={40} height={40} />} name='ideal' />
+      <IconBox component={<Interac width={40} height={40} />} name='interac' />
+      <IconBox component={<Jcb width={40} height={40} />} name='jcb' />
+      <IconBox component={<Klarna width={40} height={40} />} name='klarna' />
       <IconBox
         component={<Lightcoin width={40} height={40} />}
-        name='Lightcoin'
+        name='lightcoin'
       />
-      <IconBox component={<Maestro width={40} height={40} />} name='Maestro' />
+      <IconBox component={<Maestro width={40} height={40} />} name='maestro' />
       <IconBox
         component={<Mastercard width={40} height={40} />}
-        name='Mastercard'
+        name='mastercard'
       />
       <IconBox
         component={<Payoneer width={40} height={40} />}
-        name='Payoneer'
+        name='payoneer'
       />
-      <IconBox component={<Paypal width={40} height={40} />} name='Paypal' />
-      <IconBox component={<Paysafe width={40} height={40} />} name='Paysafe' />
-      <IconBox component={<Qiwi width={40} height={40} />} name='Qiwi' />
-      <IconBox component={<Sepa width={40} height={40} />} name='Sepa' />
-      <IconBox component={<ShopPay width={40} height={40} />} name='ShopPay' />
-      <IconBox component={<Skrill width={40} height={40} />} name='Skrill' />
-      <IconBox component={<Sofort width={40} height={40} />} name='Sofort' />
-      <IconBox component={<Stripe width={40} height={40} />} name='Stripe' />
+      <IconBox component={<Paypal width={40} height={40} />} name='paypal' />
+      <IconBox component={<Paysafe width={40} height={40} />} name='paysafe' />
+      <IconBox component={<Qiwi width={40} height={40} />} name='qiwi' />
+      <IconBox component={<Sepa width={40} height={40} />} name='sepa' />
+      <IconBox component={<ShopPay width={40} height={40} />} name='shop-pay' />
+      <IconBox component={<Skrill width={40} height={40} />} name='skrill' />
+      <IconBox component={<Sofort width={40} height={40} />} name='sofort' />
+      <IconBox component={<Stripe width={40} height={40} />} name='stripe' />
       <IconBox
         component={<UnionPay width={40} height={40} />}
-        name='UnionPay'
+        name='union-pay'
       />
       <IconBox
         component={<Verifone width={40} height={40} />}
-        name='Verifone'
+        name='verifone'
       />
-      <IconBox component={<Visa width={40} height={40} />} name='Visa' />
-      <IconBox component={<WeChat width={40} height={40} />} name='WeChat' />
+      <IconBox component={<Visa width={40} height={40} />} name='visa' />
+      <IconBox component={<WeChat width={40} height={40} />} name='we-chat' />
       <IconBox
         component={<WebMoney width={40} height={40} />}
-        name='WebMoney'
+        name='web-money'
       />
-      <IconBox component={<Yandex width={40} height={40} />} name='Yandex' />
+      <IconBox component={<Yandex width={40} height={40} />} name='yandex' />
     </Flexbox>
   )
 }

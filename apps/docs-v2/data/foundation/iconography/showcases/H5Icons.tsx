@@ -40,85 +40,85 @@ export default function h5Icons() {
     >
       <IconBox
         component={<H5AccountFilled width={40} height={40} />}
-        name='H5AccountFilled'
+        name='h5-account-filled'
       />
       <IconBox
         component={<H5AccountOutlined width={40} height={40} />}
-        name='H5AccountOutlined'
+        name='h5-account-outlined'
       />
       <IconBox
         component={<H5ActivitiesFilled width={40} height={40} />}
-        name='H5ActivitiesFilled'
+        name='h5-activities-filled'
       />
       <IconBox
         component={<H5ActivitiesOutlined width={40} height={40} />}
-        name='H5ActivitiesOutlined'
+        name='h5-activities-outlined'
       />
       <IconBox
         component={<H5AddHeart width={40} height={40} />}
-        name='H5AddHeart'
+        name='h5-add-heart'
       />
-      <IconBox component={<H5Add width={40} height={40} />} name='H5Add' />
-      <IconBox component={<H5Call width={40} height={40} />} name='H5Call' />
+      <IconBox component={<H5Add width={40} height={40} />} name='h5-add' />
+      <IconBox component={<H5Call width={40} height={40} />} name='h5-call' />
       <IconBox
         component={<H5CircleOutlined width={40} height={40} />}
-        name='H5CircleOutlined'
+        name='h5-circle-outlined'
       />
-      <IconBox component={<H5Clock width={40} height={40} />} name='H5Clock' />
-      <IconBox component={<H5Close width={40} height={40} />} name='H5Close' />
-      <IconBox component={<H5Coin width={40} height={40} />} name='H5Coin' />
+      <IconBox component={<H5Clock width={40} height={40} />} name='h5-clock' />
+      <IconBox component={<H5Close width={40} height={40} />} name='h5-close' />
+      <IconBox component={<H5Coin width={40} height={40} />} name='h5-coin' />
       <IconBox
         component={<H5DoubleRight width={40} height={40} />}
-        name='H5DoubleRight'
+        name='h5-double-right'
       />
       <IconBox
         component={<H5Filter width={40} height={40} />}
-        name='H5Filter'
+        name='h5-filter'
       />
-      <IconBox component={<H5Heart width={40} height={40} />} name='H5Heart' />
+      <IconBox component={<H5Heart width={40} height={40} />} name='h5-heart' />
       <IconBox
         component={<H5HomeFilled width={40} height={40} />}
-        name='H5HomeFilled'
+        name='h5-home-filled'
       />
       <IconBox
         component={<H5HomeOutlined width={40} height={40} />}
-        name='H5HomeOutlined'
+        name='h5-home-outlined'
       />
-      <IconBox component={<H5Map width={40} height={40} />} name='H5Map' />
+      <IconBox component={<H5Map width={40} height={40} />} name='h5-map' />
       <IconBox
         component={<H5MarkerBorderWhite width={40} height={40} />}
-        name='H5MarkerBorderWhite'
+        name='h5-marker-border-white'
       />
       <IconBox
         component={<H5MarkerBorder width={40} height={40} />}
-        name='H5MarkerBorder'
+        name='h5-marker-border'
       />
       <IconBox
         component={<H5Marker width={40} height={40} />}
-        name='H5Marker'
+        name='h5-marker'
       />
       <IconBox
         component={<H5NotificationsFilled width={40} height={40} />}
-        name='H5NotificationsFilled'
+        name='h5-notifications-filled'
       />
       <IconBox
         component={<H5NotificationsOutlined width={40} height={40} />}
-        name='H5NotificationsOutlined'
+        name='h5-notifications-outlined'
       />
-      <IconBox component={<H5Pen width={40} height={40} />} name='H5Pen' />
+      <IconBox component={<H5Pen width={40} height={40} />} name='h5-pen' />
       <IconBox
         component={<H5Remove width={40} height={40} />}
-        name='H5Remove'
+        name='h5-remove'
       />
       <IconBox
         component={<H5Search width={40} height={40} />}
-        name='H5Search'
+        name='h5-search'
       />
-      <IconBox component={<H5Share width={40} height={40} />} name='H5Share' />
-      <IconBox component={<H5Smile width={40} height={40} />} name='H5Smile' />
+      <IconBox component={<H5Share width={40} height={40} />} name='h5-share' />
+      <IconBox component={<H5Smile width={40} height={40} />} name='h5-smile' />
       <IconBox
         component={<H5Switch width={40} height={40} />}
-        name='H5Switch'
+        name='h5-switch'
       />
     </Flexbox>
   )
