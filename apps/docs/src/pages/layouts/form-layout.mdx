@@ -35,7 +35,7 @@ import FormLayout from '@comfortdelgro/react-compass/form-layout'
 
 ```jsx
 <FormLayout>
-  <FormLayout.Row>
+  <FormLayout.Row breaksOnSmall={true}>
     <FormLayout.Explaination
       title={'Create New Time/Date Policy'}
       description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -43,7 +43,7 @@ import FormLayout from '@comfortdelgro/react-compass/form-layout'
     />
   </FormLayout.Row>
   <Divider />
-  <FormLayout.Row columns={3}>
+  <FormLayout.Row columns={3} breaksOnSmall={true}>
     <FormLayout.Group>
       <Dropdown.Select label='Salutation'>
         <Dropdown.Item key={'mr'}>Mr</Dropdown.Item>
@@ -52,7 +52,7 @@ import FormLayout from '@comfortdelgro/react-compass/form-layout'
       </Dropdown.Select>
     </FormLayout.Group>
   </FormLayout.Row>
-  <FormLayout.Row columns={3}>
+  <FormLayout.Row columns={3} breaksOnSmall={true}>
     <FormLayout.Group>
       <Radio
         variant='outlined'
@@ -84,7 +84,7 @@ import FormLayout from '@comfortdelgro/react-compass/form-layout'
       />
     </FormLayout.Group>
   </FormLayout.Row>
-  <FormLayout.Row columns={2}>
+  <FormLayout.Row columns={2} breaksOnSmall={true}>
     <FormLayout.Group>
       <FormLayout.Explaination
         title={'Create New Time/Date Policy'}
@@ -167,8 +167,9 @@ import FormLayout from '@comfortdelgro/react-compass/form-layout'
 
 ### Props of FormLayout.Row:
 
-| Name     | Type          | Default | Description                                                                             |
-| -------- | ------------- | ------- | --------------------------------------------------------------------------------------- |
-| css      | `CSS`         | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
-| children | `ReactNode`   | —       | The content to display in the Row.                                                      |
-| columns  | `1 \| 2 \| 3` | `1`     | The number of columns per row.                                                          |
+| Name          | Type          | Default | Description                                                                             |
+| ------------- | ------------- | ------- | --------------------------------------------------------------------------------------- |
+| css           | `CSS`         | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
+| children      | `ReactNode`   | —       | The content to display in the Row.                                                      |
+| columns       | `1 \| 2 \| 3` | `1`     | The number of columns per row.                                                          |
+| breaksOnSmall | boolean       | `false` | To let the component responsive, displays as 1 column on small devices                  |

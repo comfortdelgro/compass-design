@@ -7,6 +7,8 @@ interface Props extends StyledComponentProps {
   children?: React.ReactNode
   css?: CSS
   columns?: 1 | 2 | 3
+  breaksOnSmall?: boolean
+  className?: string
 }
 
 export type FormLayoutRowProps = Props &
@@ -17,13 +19,21 @@ export const FormLayoutRow = React.forwardRef<
   FormLayoutRowProps
 >((props, ref) => {
   const formRef = useDOMRef<HTMLDivElement>(ref)
-  const {children, columns = 3, css = {}, ...delegated} = props
+  const {
+    children,
+    columns = 3,
+    css = {},
+    className = '',
+    breaksOnSmall = false,
+    ...delegated
+  } = props
 
   return (
     <StyledFormLayoutRow
       ref={formRef}
       css={css}
       columns={columns}
+      className={`${className}${breaksOnSmall ? 'break-on-small' : ''}`}
       {...delegated}
     >
       {children}
