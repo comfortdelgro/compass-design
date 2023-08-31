@@ -110,6 +110,7 @@ const slideBgColors = [
 
 export function Customize() {
   const [colorBg, setColorBg] = useState(slideBgColors[0] || '$cdgBlue')
+  const [turnedOff, setTurnedOff] = useState(false)
 
   return (
     <>
@@ -179,16 +180,6 @@ export function Customize() {
         deleniti!
       </SlideAction>
 
-      <Typography.Body variant='body2' css={{marginBlock: '$4'}}>
-        With custom icon
-      </Typography.Body>
-      <SlideAction
-        icon={<FontAwesomeIcon icon={faPowerOff} color='#fff' size='xl' />}
-        labelType='slide'
-      >
-        Slide to shutdown
-      </SlideAction>
-
       <Typography.Header variant='header4' css={{marginBlock: '$8 $4'}}>
         Default gradient background
       </Typography.Header>
@@ -199,6 +190,30 @@ export function Customize() {
       >
         Slide to see bg color change
       </SlideAction>
+
+      <Typography.Header variant='header4' css={{marginTop: '$8'}}>
+        With custom icon
+      </Typography.Header>
+      <StyledIphoneCheap
+        css={{
+          ...(turnedOff
+            ? {background: '#000', '&>*': {display: 'none'}}
+            : undefined),
+        }}
+      >
+        <SlideAction
+          css={{
+            border: 'none',
+            backgroundColor: 'rgba(61, 127, 118, 0.5)',
+          }}
+          color='#fff'
+          icon={<FontAwesomeIcon icon={faPowerOff} color='red' size='lg' />}
+          labelType='slide'
+          onSwipeEnd={() => setTurnedOff(true)}
+        >
+          Slide to power off
+        </SlideAction>
+      </StyledIphoneCheap>
     </>
   )
 }
@@ -225,5 +240,38 @@ const StyledColorPicker = styled('button', {
 
   '&:hover': {
     opacity: 1,
+  },
+})
+
+const StyledIphoneCheap = styled('div', {
+  position: 'relative',
+  marginBlock: '$8',
+  height: '780px',
+  width: '360px',
+  padding: '$4 $12',
+  paddingTop: '$20',
+
+  backgroundColor: 'rgb(34,193,195)',
+  background:
+    'linear-gradient(321deg, rgba(34,193,195,0.8) 0%, rgba(253,187,45,0.8) 100%)',
+
+  fontWeight: '$semibold',
+  textAlign: 'center',
+
+  outline: '10px solid #000',
+  borderRadius: '36px',
+
+  '&::before': {
+    content: '',
+    position: 'absolute',
+    top: '$2',
+    insetInline: 0,
+    marginInline: 'auto',
+
+    height: '$6',
+    width: '$20',
+
+    borderRadius: '9999px',
+    backgroundColor: '#000',
   },
 })

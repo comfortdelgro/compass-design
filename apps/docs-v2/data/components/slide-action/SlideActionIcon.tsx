@@ -5,10 +5,15 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 export default function SliderActionIconDocs() {
   return (
     <SlideAction
-      icon={<FontAwesomeIcon icon={faPowerOff} color='#fff' size='xl' />}
+      css={{
+        border: 'none',
+        backgroundColor: 'rgba(61, 127, 118, 0.5)',
+      }}
+      color='#fff'
+      icon={<FontAwesomeIcon icon={faPowerOff} color='red' size='lg' />}
       labelType='slide'
     >
-      Slide to shutdown
+      Slide to power off
     </SlideAction>
   )
 }
