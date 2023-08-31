@@ -31,7 +31,7 @@ type Props = {
    *
    * @default false
    */
-  enableDragAfterSuccess?: boolean
+  allowSwipeAfterEnd?: boolean
 } & StyledComponentProps &
   SlideActionVariantProps &
   SlideBgVariantProps &

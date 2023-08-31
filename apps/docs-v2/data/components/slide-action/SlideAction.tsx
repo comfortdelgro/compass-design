@@ -13,9 +13,6 @@ export default function SliderActionDocs() {
       <Typography.Body variant='body3' css={{color: '$grayShades60'}}>
         The component below will be reset 1000ms after that.
       </Typography.Body>
-      <Typography.Body variant='body3'>
-        Status: <strong>{`${slideStatus}`}</strong>
-      </Typography.Body>
 
       <SlideAction
         label='Swipe to purchase'
@@ -28,6 +25,10 @@ export default function SliderActionDocs() {
           }, 1000)
         }}
       />
+
+      <Typography.Body variant='body3'>
+        Status: <strong>{`${slideStatus}`}</strong>
+      </Typography.Body>
     </Column>
   )
 }

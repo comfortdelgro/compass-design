@@ -2,7 +2,7 @@ import {SlideAction} from '@comfortdelgro/react-compass'
 
 <SlideAction
   label='Swipe to purchase'
-  onSwipeEnd={async(reset) => {
+  onSwipeEnd={async (reset) => {
     await purchaseOrder()
     reset()
   }}

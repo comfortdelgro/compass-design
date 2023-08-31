@@ -29,7 +29,7 @@ const SlideAction = forwardRef<HTMLDivElement, SlideActionProps>(
       onSwipeEnd,
       slideType = 'slide',
       slideColor = 'mono',
-      enableDragAfterSuccess = false,
+      allowSwipeAfterEnd = false,
       compact = false,
       children,
 
@@ -102,9 +102,10 @@ const SlideAction = forwardRef<HTMLDivElement, SlideActionProps>(
         }
 
         if (x === maxSlideDistance) {
-          if (!enableDragAfterSuccess) {
+          if (!allowSwipeAfterEnd) {
             setDisableDrag?.(true)
           }
+
           onChange?.(true)
           onSwipeEnd?.(resetPosition)
           return

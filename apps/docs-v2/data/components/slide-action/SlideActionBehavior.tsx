@@ -7,15 +7,16 @@ export default function SliderActionBehaviorDocs() {
   return (
     <>
       <Typography.Body variant='body3' css={{marginBottom: '$4'}}>
-        Success count: <strong>{`${countSuccess}`}</strong>
+        Successful / confirmatory action count:{' '}
+        <strong>{`${countSuccess}`}</strong>
       </Typography.Body>
 
       <SlideAction
         color='#475569'
-        enableDragAfterSuccess
+        allowSwipeAfterEnd
         onSwipeEnd={() => setCountSuccess((currState) => currState + 1)}
       >
-        Can slide after success
+        Can swipe after success
       </SlideAction>
     </>
   )

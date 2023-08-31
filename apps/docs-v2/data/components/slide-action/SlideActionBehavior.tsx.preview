@@ -1,1 +1,1 @@
-<SlideAction enableDragAfterSuccess />
+<SlideAction allowSwipeAfterEnd />

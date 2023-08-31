@@ -1,1 +1,3 @@
-<SlideAction slideType='static' labelType='slide' />
+<SlideAction />
+<SlideAction slideType='static' />
+<SlideAction labelType='slide' />

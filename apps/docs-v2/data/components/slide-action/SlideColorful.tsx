@@ -1,5 +1,6 @@
 import {
   Column,
+  Divider,
   SlideAction,
   styled,
   Typography,
@@ -28,9 +29,10 @@ export default function SliderColorfulDocs() {
         sint labore nesciunt
       </SlideAction>
 
-      <Typography.Header variant='header4'>More color</Typography.Header>
+      <Divider />
 
-      <StyledColorPickerWrapper>
+      <Typography.Header variant='header4'>More colors 🎨</Typography.Header>
+      <StyledColorPickerWrapper css={{marginBottom: '$4'}}>
         {slideBgColors.map((color) => (
           <StyledColorPicker
             key={color}
@@ -54,11 +56,10 @@ export default function SliderColorfulDocs() {
           Random
         </StyledColorPicker>
       </StyledColorPickerWrapper>
-      <SlideAction css={{marginTop: '$4'}} color={colorBg}>
-        Slide background
-      </SlideAction>
 
-      <SlideAction css={{marginTop: '$4'}} color={colorBg} slideType='static'>
+      <SlideAction color={colorBg}>Slide background</SlideAction>
+
+      <SlideAction css={{marginBlock: '$4'}} color={colorBg} slideType='static'>
         Fadein background
       </SlideAction>
 
@@ -69,14 +70,12 @@ export default function SliderColorfulDocs() {
         deleniti!
       </SlideAction>
 
-      <Typography.Header variant='header4' css={{marginBlock: '$8 $4'}}>
+      <Divider css={{marginBlock: '$4'}} />
+
+      <Typography.Header variant='header4'>
         Default gradient background
       </Typography.Header>
-      <SlideAction
-        css={{marginTop: '$4'}}
-        color='#e11d48'
-        slideColor='gradient'
-      >
+      <SlideAction color='#e11d48' slideColor='gradient'>
         Slide to see bg color change
       </SlideAction>
     </Column>
@@ -86,6 +85,7 @@ export default function SliderColorfulDocs() {
 const StyledColorPickerWrapper = styled('div', {
   display: 'flex',
   alignItems: 'center',
+  flexWrap: 'wrap',
   gap: '$2',
 })
 

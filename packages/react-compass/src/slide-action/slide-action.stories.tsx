@@ -133,7 +133,7 @@ export function Customize() {
       </SlideAction>
 
       <Typography.Header variant='header3' css={{marginBlock: '$8 $4'}}>
-        More color
+        More colors 🎨
       </Typography.Header>
 
       <StyledColorPickerWrapper>
@@ -206,6 +206,7 @@ export function Customize() {
 const StyledColorPickerWrapper = styled('div', {
   display: 'flex',
   alignItems: 'center',
+  flexWrap: 'wrap',
   gap: '$2',
 })
 
