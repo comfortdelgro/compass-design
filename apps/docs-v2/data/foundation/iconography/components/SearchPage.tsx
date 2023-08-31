@@ -74,7 +74,7 @@ const IconBox: React.FC<Props> = () => {
           >
             {searchList.map((icon, idx) =>
               tab === 'all' || tab === icon.type ? (
-                <BoxItem icon={icon} index={idx} />
+                <BoxItem icon={icon} key={idx} />
               ) : null,
             )}
           </Box>
@@ -92,7 +92,6 @@ const IconBox: React.FC<Props> = () => {
 }
 
 interface BoxItemProps {
-  index: number
   icon: {
     name: string
     type: string
@@ -100,9 +99,8 @@ interface BoxItemProps {
   }
 }
 
-const BoxItem = ({icon, index}: BoxItemProps) => (
+const BoxItem = ({icon}: BoxItemProps) => (
   <Box
-    key={index}
     css={{
       width: '100%',
       cursor: 'pointer',
