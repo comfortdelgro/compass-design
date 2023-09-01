@@ -81,3 +81,17 @@ export const Variants: React.FC = () => (
     </Row>
   </Column>
 )
+export const Sizes: React.FC = () => (
+  <Column>
+    <h3>Sizes</h3>
+
+    <Row>
+      <h4>1. Small</h4>
+      <Badge label='Small' variant='primary' size='sm' icon />
+    </Row>
+    <Row>
+      <h4>2. Large</h4>
+      <Badge label='Large' variant='primary' size='lg' icon />
+    </Row>
+  </Column>
+)

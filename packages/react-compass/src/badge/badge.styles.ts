@@ -3,16 +3,12 @@ import type {VariantProps} from '../utils/stitches.types'
 
 export const StyledBadge = styled('div', {
   fontFamily: '$sans',
-  fontSize: '$label2',
   fontWeight: '$semibold',
-  lineHeight: '1em',
-
-  padding: '$1 $2_5',
+  padding: '$1 $3',
   borderWidth: '$light',
   borderStyle: 'solid',
   borderColor: 'transparent',
   borderRadius: '$full',
-  height: '$6_5',
   width: 'fit-content',
   display: 'flex',
   justifyContent: 'space-between',
@@ -83,6 +79,18 @@ export const StyledBadge = styled('div', {
         padding: '3px 3px 3px $2',
       },
     },
+    size: {
+      sm: {
+        height: '$4_5',
+        fontSize: '$label2',
+        lineHeight: '18px',
+      },
+      lg: {
+        height: '$6_5',
+        fontSize: '$body2',
+        lineHeight: '24px',
+      },
+    },
   },
 
   compoundVariants: [
@@ -127,6 +135,7 @@ export const StyledBadge = styled('div', {
   defaultVariants: {
     variant: 'primary',
     color: 'info',
+    size: 'lg',
   },
 })
 
