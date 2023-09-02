@@ -107,9 +107,9 @@ export const StyledBadge = styled('div', {
             color,
             variant: 'secondary',
             css: {
-              background:
-                //  `$${color}Bg`
-                `$${color === 'warning' ? 'warningBg' : `${color}Bg`}`,
+              background: `$${
+                color === 'warning' ? 'warningBg' : `${color}Bg`
+              }`,
               color: `$${color === 'warning' ? 'badgeWarningBg' : `${color}`}`,
             },
           },
