@@ -22,6 +22,18 @@ export const Colors: React.FC = () => (
       <Badge label='Danger' color='danger' />
       <Badge label='Warning' color='warning' />
     </Row>
+    <Row>
+      <Badge label='Info' color='info' variant='secondary' />
+      <Badge label='Success' color='success' variant='secondary' />
+      <Badge label='Danger' color='danger' variant='secondary' />
+      <Badge label='Warning' color='warning' variant='secondary' />
+    </Row>
+    <Row>
+      <Badge label='Info' color='info' variant='outline' />
+      <Badge label='Success' color='success' variant='outline' />
+      <Badge label='Danger' color='danger' variant='outline' />
+      <Badge label='Warning' color='warning' variant='outline' />
+    </Row>
   </Column>
 )
 

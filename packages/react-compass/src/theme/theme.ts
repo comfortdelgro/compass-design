@@ -242,6 +242,8 @@ export const lightTheme = defineTheme({
     gradientOrangeBlue: '#D2132A, #0597DB',
 
     greenShades: '#159A00',
+
+    badgeWarningBg: '#95711F',
   },
   fonts,
   fontSizes,
