@@ -81,3 +81,12 @@ export const Variants: React.FC = () => (
     </Row>
   </Column>
 )
+export const Disabled: React.FC = () => (
+  <Column>
+    <h3>Disabled</h3>
+    <Row>
+      <Badge label='Default' isDisabled />
+      <Badge label='Default' isDisabled icon />
+    </Row>
+  </Column>
+)
