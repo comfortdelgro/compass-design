@@ -6,7 +6,7 @@ import Tooltip from './tooltip'
 
 interface Props extends StyledComponentProps {
   className?: string
-  label: React.ReactNode
+  label?: React.ReactNode
   description?: string
   rightLabel?: string
   tooltip?: string
@@ -68,9 +68,12 @@ const Radio: React.FC<RadioProps> = (props) => {
         ></input>
       </div>
       <div className='radio-content-wrapper'>
-        <div className='radio-label'>
-          {label} {!!tooltip && <Tooltip text={tooltip} />}
-        </div>
+        {!!label && (
+          <div className='radio-label'>
+            {label} {!!tooltip && <Tooltip text={tooltip} />}
+          </div>
+        )}
+
         {description && <p className='radio-description'>{description}</p>}
       </div>
       <p className='radio-right-label'>{rightLabel}</p>
