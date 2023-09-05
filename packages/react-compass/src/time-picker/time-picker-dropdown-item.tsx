@@ -58,7 +58,9 @@ function TimePickerDropdownItem(props: TimePickerDropdownItemProps) {
   return (
     <TimePickerDropdownItemStyle
       ref={ref}
-      className={selectedTime === time ? 'active' : ''}
+      className={`cdg-timepicker-dropdown-item ${
+        selectedTime === time ? 'active' : ''
+      }`}
       onClick={onClickItem(time, displayDataType)}
       tabIndex={-1}
     >
