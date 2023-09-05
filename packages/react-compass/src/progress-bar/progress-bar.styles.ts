@@ -12,13 +12,6 @@ export const StyledProgressBar = styled('div', {
       fontSize: '$label1',
     },
   },
-  '.progress-bar': {
-    backgroundColor: '$gray30',
-    '& div': {
-      height: '100%',
-      backgroundColor: '$info',
-    },
-  },
   variants: {
     variant: {
       normal: {},
@@ -27,22 +20,6 @@ export const StyledProgressBar = styled('div', {
           borderRadius: '$full',
           '& div': {
             borderRadius: '$full',
-          },
-        },
-      },
-    },
-    color: {
-      blue: {
-        '.progress-bar': {
-          '& div': {
-            backgroundColor: '$info',
-          },
-        },
-      },
-      green: {
-        '.progress-bar': {
-          '& div': {
-            backgroundColor: '$success',
           },
         },
       },
@@ -72,9 +49,15 @@ export const StyledProgressBar = styled('div', {
   },
   defaultVariants: {
     size: 'lg',
-    color: 'green',
     variant: 'normal',
   },
+})
+
+export const StyledProgressDisplay = styled('div', {})
+
+export const StyledCurrentProgress = styled('div', {
+  height: '100%',
+  transition: 'width .2s linear',
 })
 
 export type ProgressBarVariantProps = VariantProps<typeof StyledProgressBar>
