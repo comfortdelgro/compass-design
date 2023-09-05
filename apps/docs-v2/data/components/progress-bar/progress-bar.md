@@ -3,7 +3,7 @@ title: React Progress Bar component
 components: Progress Bar
 ---
 
-# Error
+# Progress Bar
 
 <p class="description">Provides the accessibility implementation for a progress bar component. Progress bars show either determinate or indeterminate progress of an operation over time.</p>
 
@@ -19,35 +19,34 @@ or
 import ProgressBar from '@comfortdelgro/react-compass/progress-bar'
 ```
 
-## Basic
+## Usage
 
 {{"demo": "ProgressBarBasic.tsx"}}
 
-## Sizes
-
-{{"demo": "ProgressBarSizes.tsx"}}
-
-## Colors
-
-{{"demo": "ProgressBarColors.tsx"}}
-
-## Variants
+### Variant
 
 {{"demo": "ProgressBarVariants.tsx"}}
 
-## Custom Styling
+### Size
 
-{{"demo": "ProgressBarCustomStyling.tsx"}}
+{{"demo": "ProgressBarSizes.tsx"}}
 
-## Props
+### Color
 
-| Name            | Type      | Default | Description                                                      |
-| :-------------- | :-------- | :------ | :--------------------------------------------------------------- |
-| isIndeterminate | `boolean` | -       | Whether presentation is indeterminate when progress isn't known. |
-| label           | `boolean` | `false` | The content to display as the left label.                        |
-| rightLabel      | `boolean` | `false` | The content to display as the right label.                       |
-| value           | `number`  | `0`     | The current value (controlled).                                  |
-| minValue        | `number`  | `0`     | The smallest value allowed for the input.                        |
-| maxValue        | `number`  | `100`   | Whether presentation is indeterminate when progress isn't known. |
-| isIndeterminate | `boolean` | `false` | Whether presentation is indeterminate when progress isn't known. |
-| css             | `CSS`     | —       | Extra styles for progress bar                                    |
+{{"demo": "ProgressBarColors.tsx"}}
+
+## Component Props
+
+| Name         | Type                              | Default                                 | Description                                                                             |
+| :----------- | :-------------------------------- | :-------------------------------------- | :-------------------------------------------------------------------------------------- |
+| `css`        | `CSS`                             | —                                       | The system prop that allows defining system overrides as well as additional CSS styles. |
+| `variant`    | `"normal"` \| `"rounded"`         | `"normal"`                              | Whether presentation is indeterminate when progress isn't known.                        |
+| `size`       | `"sm"` \|`"md"` \|`"lg"` \|`"xl"` | `"lg"`                                  | Whether presentation is indeterminate when progress isn't known.                        |
+| `label`      | `string`                          | —                                       |                                                                                         |
+| `rightLabel` | `string`                          | —                                       |                                                                                         |
+| `color`      | `string`                          | `"blue"` <small>- $info #009EDA</small> | Color visualization for the current value.                                              |
+| `barColor`   | `string`                          | `"$gray30"` <small>- #EDEBE9</small>    | Color of the progress bar.                                                              |
+| `value`      | `number`                          | `0`                                     | Current progress value.                                                                 |
+| `minValue`   | `number`                          | `0`                                     | The lower numeric bound of the measured range. This must be less than `maxValue`.       |
+| `maxValue`   | `number`                          | `100`                                   | The upper numeric bound of the measured range. This must be greater than `minValue`.    |
+| `onComplete` | `() => void`                      | —                                       |
