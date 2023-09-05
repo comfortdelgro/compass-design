@@ -53,7 +53,7 @@ export const StyledModalTitle = styled('h3', {
         fontSize: '$body1',
         paddingTop: '$6',
         paddingBottom: 0,
-        fontWeight: '$extrabold',
+        fontWeight: '$bold',
         color: '$grayShades100',
       },
       false: {},
