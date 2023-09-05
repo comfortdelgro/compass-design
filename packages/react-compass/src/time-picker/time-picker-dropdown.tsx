@@ -52,6 +52,7 @@ const findNextFocusIndexBySelectedValue = (
 
   return `${controlIndex}-${itemIndex}`
 }
+
 const TIME_PICKER_ITEM_HEIGHT = 50
 
 function TimePickerDropdown(props: TimePickerDropdownProps) {
