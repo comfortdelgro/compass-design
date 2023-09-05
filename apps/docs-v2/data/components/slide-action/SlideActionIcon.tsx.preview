@@ -1,0 +1,3 @@
+<SlideAction
+  icon={<FontAwesomeIcon icon={faPowerOff} color='red' size='lg' />}
+/>

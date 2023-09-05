@@ -60,6 +60,15 @@ export const StyledTextarea = styled('textarea', {
         },
       },
     },
+
+    resizable: {
+      false: {
+        resize: 'none',
+      },
+      true: {
+        resize: 'both',
+      },
+    },
   },
 
   defaultVariants: {
@@ -100,7 +109,41 @@ export const StyledTextareaWrapper = styled('div', {
         },
       },
     },
+    variant: {
+      h5: {
+        gap: '4px',
+        [`${StyledTextAreaLabel}`]: {
+          color: '$grayShades80',
+          fontSize: '$label2',
+          fontWeight: 500,
+          marginBottom: 0,
+        },
+        [`${StyledTextarea}`]: {
+          padding: '$3 $4',
+          borderRadius: '$lg',
+          border: '1px solid $grayShades20',
+          backgroundColor: '$background',
+          fontSize: '$label2',
+          '&::placeholder': {
+            fontSize: '$label2',
+            fontWeight: 400,
+            lineHeight: '$tight',
+            color: '$grayShades40',
+          },
+        },
+        [`${StyledTextAreaHelperText}`]: {
+          fontSize: '$label2',
+          fontWeight: 500,
+          lineHeight: 'normal',
+          color: '$grayShades40',
+          marginTop: 0,
+        },
+      },
+    },
   },
 })
 
 export type TextareaVariantProps = VariantProps<typeof StyledTextarea>
+export type TextareaVariantWrapperProps = VariantProps<
+  typeof StyledTextareaWrapper
+>

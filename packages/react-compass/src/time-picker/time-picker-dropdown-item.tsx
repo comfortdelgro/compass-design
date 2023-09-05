@@ -4,6 +4,8 @@ import {TimePickerDropdownItemStyle} from './time-picker.styles'
 import {SelectedKey, TimePickerDropdownSelectedDisplayList} from './types'
 
 interface TimePickerDropdownItemProps {
+  itemId: string
+  focusingItemId: string
   selectedDisplayList: TimePickerDropdownSelectedDisplayList
   selectedTime: string | number | null
   time: string
@@ -13,8 +15,22 @@ interface TimePickerDropdownItemProps {
 }
 
 function TimePickerDropdownItem(props: TimePickerDropdownItemProps) {
-  const {selectedTime, time, onClickItem, displayDataType, isOpen} = props
+  const {
+    selectedTime,
+    time,
+    onClickItem,
+    displayDataType,
+    isOpen,
+    itemId,
+    focusingItemId,
+  } = props
   const ref = useRef<HTMLButtonElement>(null)
+
+  useEffect(() => {
+    if (itemId === focusingItemId) {
+      ref.current?.focus()
+    }
+  }, [focusingItemId, itemId])
 
   useEffect(() => {
     if (isOpen && selectedTime === time) {
@@ -44,6 +60,7 @@ function TimePickerDropdownItem(props: TimePickerDropdownItemProps) {
       ref={ref}
       className={selectedTime === time ? 'active' : ''}
       onClick={onClickItem(time, displayDataType)}
+      tabIndex={-1}
     >
       {time}
     </TimePickerDropdownItemStyle>
