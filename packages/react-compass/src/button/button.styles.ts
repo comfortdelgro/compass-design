@@ -251,7 +251,13 @@ export const StyledButton = styled('button', {
         },
       },
     },
+    isSquare: {
+      true: {
+        aspectRatio: '1 / 1',
+      },
+    },
   },
+
   compoundVariants: [
     {
       size: 'lg',

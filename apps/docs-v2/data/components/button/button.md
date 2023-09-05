@@ -66,3 +66,4 @@ With css prop, you can basically do anything that css can do.
 | css        | `CSS`                                           | —       |             |
 | isDisabled |                                                 |         |             |
 | loading    | `false`\| `true`                                |         |             |
+| isSquare   | `false`\| `true`                                |         |             |
