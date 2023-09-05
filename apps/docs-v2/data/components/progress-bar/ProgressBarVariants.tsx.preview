@@ -1,0 +1,2 @@
+<ProgressBar value={20} label='normal' />
+<ProgressBar value={20} variant='rounded' label='rounded' />
