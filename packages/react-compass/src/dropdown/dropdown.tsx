@@ -1,3 +1,4 @@
+import {isEmpty} from 'lodash'
 import React, {
   Key,
   useCallback,
@@ -443,9 +444,22 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           onSelectionChange?.('')
           onValueChange?.('')
         }
+        if (
+          (event.target.value === '' ||
+            isEmpty(event.target.value.replaceAll(' ', ''))) &&
+          !isReadOnly &&
+          !disableClearable
+        ) {
+          setSelectedItem(null)
+          setFocusKey(null)
+          onSelectionChange?.('')
+          onValueChange?.('')
+        }
       }
     },
     [
+      isReadOnly,
+      disableClearable,
       isUncontrolledComponent,
       type,
       selectedItem,
@@ -519,9 +533,9 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   const handleInputComboboxBlur = useCallback(
     (event: React.FocusEvent) => {
       onBlur?.(event)
-      if (['combobox'].includes(type) && inputFieldRef.current) {
+      if (type === 'combobox' && inputFieldRef.current) {
         if (inputFieldRef.current) {
-          if (!allowsCustomValue) {
+          if (!allowsCustomValue || !disableClearable) {
             // Check if there is selected item then set text for input
             if (selectedItem) {
               inputFieldRef.current.value = textContent(

@@ -559,7 +559,6 @@ export const Combobox: React.FC = () => {
         onBlur={() => console.log('blur')}
         onFocus={() => console.log('focus')}
       >
-        {/* <Dropdown.Item lear Data</Dropdown.Item> */}
         <Dropdown.Item
           value='panda'
           leftIcon={<FontAwesomeIcon icon={faBug} />}
