@@ -136,7 +136,7 @@ export const StyledButton = styled('button', {
     size: {
       lg: {
         fontSize: '$body2',
-        padding: '$2 $6',
+        padding: '$2 $5',
       },
       md: {
         fontSize: '$body3',
