@@ -175,96 +175,94 @@ function TimePickerDropdown(props: TimePickerDropdownProps) {
     onOkClick && onOkClick()
   }
 
-  const handleWrapperKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (!isOpen) return
-    const [controlIndex, itemIndex] = focusingItemId.split('-')
-    switch (event.code) {
-      case 'ArrowUp':
-        event.stopPropagation()
-        event.preventDefault()
-        if (!focusingItemId) {
+  const moveToNextItem = (emptyIndex: number, nextItemIndex: number) => {
+    const [controlIndex] = focusingItemId.split('-')
+    if (!focusingItemId) {
+      setFocusingItemId(
+        findNextFocusIndexBySelectedValue(
+          displayList,
+          selectedDisplayList,
+          emptyIndex,
+        ),
+      )
+    } else {
+      const control = displayList[Number(controlIndex)]
+      if (control) {
+        setFocusingItemId(`${controlIndex}-${nextItemIndex}`)
+      }
+    }
+  }
+
+  const handleTabKeyDown = (shiftKey = false) => {
+    const [controlIndex] = focusingItemId.split('-')
+    const nextControlIndex = shiftKey ? displayList.length - 1 : 0
+    if (document.activeElement === buttonRef.current) {
+      setFocusingItemId(
+        findNextFocusIndexBySelectedValue(
+          displayList,
+          selectedDisplayList,
+          nextControlIndex,
+        ),
+      )
+      return
+    }
+    if (focusingItemId) {
+      const nextIndex = shiftKey
+        ? Number(controlIndex) - 1
+        : Number(controlIndex) + 1
+      if (displayList[nextIndex]) {
+        setFocusingItemId(
+          findNextFocusIndexBySelectedValue(
+            displayList,
+            selectedDisplayList,
+            nextIndex,
+          ),
+        )
+      } else {
+        if (hasFooter) {
+          buttonRef.current?.focus()
+          setFocusingItemId('')
+        } else {
           setFocusingItemId(
             findNextFocusIndexBySelectedValue(
               displayList,
               selectedDisplayList,
-              0,
+              nextControlIndex,
             ),
           )
-        } else {
-          const control = displayList[Number(controlIndex)]
-          if (control) {
-            setFocusingItemId(
-              `${controlIndex}-${
-                Number(itemIndex) - 1 >= 0
-                  ? (Number(itemIndex) - 1) % control.items.length
-                  : control.items.length - 1
-              }`,
-            )
-          }
+        }
+      }
+    }
+  }
+
+  const handleWrapperKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (!isOpen) return
+    const [controlIndex, itemIndex] = focusingItemId.split('-')
+    const control = displayList[Number(controlIndex)]
+    const controlItemsLength = control?.items.length || 0
+    switch (event.code) {
+      case 'ArrowUp':
+        event.stopPropagation()
+        event.preventDefault()
+        if (control) {
+          const nextIndex =
+            Number(itemIndex) - 1 >= 0
+              ? (Number(itemIndex) - 1) % controlItemsLength
+              : controlItemsLength - 1
+          moveToNextItem(0, nextIndex)
         }
         break
       case 'ArrowDown':
         event.stopPropagation()
         event.preventDefault()
-        if (!focusingItemId) {
-          setFocusingItemId(
-            findNextFocusIndexBySelectedValue(
-              displayList,
-              selectedDisplayList,
-              0,
-            ),
-          )
-        } else {
-          const control = displayList[Number(controlIndex)]
-          if (control) {
-            setFocusingItemId(
-              `${controlIndex}-${
-                (Number(itemIndex) + 1) % control.items.length
-              }`,
-            )
-          }
+        if (control) {
+          moveToNextItem(0, (Number(itemIndex) + 1) % controlItemsLength)
         }
         break
       case 'Tab':
         event.stopPropagation()
         event.preventDefault()
-        if (document.activeElement === buttonRef.current) {
-          setFocusingItemId(
-            findNextFocusIndexBySelectedValue(
-              displayList,
-              selectedDisplayList,
-              event.shiftKey ? displayList.length - 1 : 0,
-            ),
-          )
-          return
-        }
-        if (focusingItemId) {
-          const nextIndex = event.shiftKey
-            ? Number(controlIndex) - 1
-            : Number(controlIndex) + 1
-          if (displayList[nextIndex]) {
-            setFocusingItemId(
-              findNextFocusIndexBySelectedValue(
-                displayList,
-                selectedDisplayList,
-                nextIndex,
-              ),
-            )
-          } else {
-            if (hasFooter) {
-              buttonRef.current?.focus()
-              setFocusingItemId('')
-            } else {
-              setFocusingItemId(
-                findNextFocusIndexBySelectedValue(
-                  displayList,
-                  selectedDisplayList,
-                  event.shiftKey ? displayList.length - 1 : 0,
-                ),
-              )
-            }
-          }
-        }
+        handleTabKeyDown(event.shiftKey)
         break
       case 'Escape':
         onEscapeKeyDown?.()
