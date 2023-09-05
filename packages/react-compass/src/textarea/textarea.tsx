@@ -8,6 +8,7 @@ import {
   StyledTextAreaLabel,
   StyledTextareaWrapper,
   TextareaVariantProps,
+  TextareaVariantWrapperProps,
 } from './textarea.styles'
 
 interface Props extends StyledComponentProps {
@@ -70,6 +71,8 @@ interface Props extends StyledComponentProps {
   'aria-describedby'?: string
   'aria-details'?: string
   'aria-errormessage'?: string
+  variant?: TextareaVariantWrapperProps['variant']
+  resizable?: boolean
 }
 
 export type TextareaProps = Props &
@@ -117,6 +120,8 @@ const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
       onBlur = () => null,
       onKeyDown = () => null,
       onKeyUp = () => null,
+      resizable = true,
+      variant,
       ...delegated
     } = props
     const isDarkTheme = useIsDarkTheme()
@@ -141,6 +146,7 @@ const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
         ref={wrapperRef}
         {...delegated}
         isDarkTheme={isDarkTheme}
+        {...(variant ? {variant} : {})}
       >
         {label && (
           <StyledTextAreaLabel htmlFor={textareaId}>
@@ -180,6 +186,7 @@ const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
           onCompositionEnd={onCompositionEnd}
           onCompositionStart={onCompositionStart}
           onCompositionUpdate={onCompositionUpdate}
+          resizable={resizable}
         />
         {wordCount && (
           <StyledTextAreaHelperText className='word-count'>

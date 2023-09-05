@@ -196,11 +196,11 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
         referenceHeight = drawerStartingHeight
       }
 
-      const newHeight = referenceHeight - dragPosition[1]
+      const newHeight = referenceHeight - dragPosition.y
       const isCrossExpandLine = newHeight > expandablePosition
       setIsExpanded(isCrossExpandLine)
       onExpandChange?.(isCrossExpandLine)
-      setPositionOnEnd([0, 0])
+      setPositionOnEnd({x: 0, y: 0})
 
       if (
         isCrossExpandLine &&
