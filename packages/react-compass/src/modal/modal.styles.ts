@@ -17,6 +17,16 @@ export const StyledModalHeader = styled('div', {
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
+
+  variants: {
+    h5: {
+      true: {
+        paddingLeft: '$6',
+        paddingRight: '$6',
+      },
+      false: {},
+    },
+  },
 })
 
 export const StyledModalTitle = styled('h3', {
@@ -36,6 +46,19 @@ export const StyledModalTitle = styled('h3', {
   fontSize: '$header3',
   lineHeight: '$normal',
   color: '$primaryText',
+
+  variants: {
+    h5: {
+      true: {
+        fontSize: '$body1',
+        paddingTop: '$6',
+        paddingBottom: 0,
+        fontWeight: '$extrabold',
+        color: '$grayShades100',
+      },
+      false: {},
+    },
+  },
 })
 
 export const StyledModalDescription = styled('div', {
@@ -56,6 +79,16 @@ export const StyledModalDescription = styled('div', {
   color: '$secondaryText',
   borderTop: '1px solid rgba(0, 0, 0, 0.1)',
   borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
+
+  variants: {
+    h5: {
+      true: {
+        padding: '$6',
+        border: 'none',
+      },
+      false: {},
+    },
+  },
 })
 
 export const StyledModalActionsContainer = styled('div', {
@@ -160,6 +193,14 @@ export const StyledModal = styled('div', {
       lg: {
         width: '$200',
       },
+    },
+    h5: {
+      true: {
+        minHeight: '$20',
+        maxWidth: 'calc(100vw - 32px)',
+        borderRadius: '16px',
+      },
+      false: {},
     },
   },
 
