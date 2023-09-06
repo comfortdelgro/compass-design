@@ -1,11 +1,10 @@
 import {
-faFile,
-faHouse,
-faSquarePen,
-faToggleOn
+  faFile,
+  faHouse,
+  faSquarePen,
+  faToggleOn,
 } from '@fortawesome/free-solid-svg-icons'
-import { TSideNavItem } from 'types/common'
-
+import {TSideNavItem} from 'types/common'
 
 export const routes: TSideNavItem[] = [
   {
@@ -316,10 +315,9 @@ export const routes: TSideNavItem[] = [
           'Radio allows users to select a single option from a list.',
       },
       {
-        title: 'Rating Slider',
-        pathname: '/rating-slider',
-        description:
-          'Specific H5 component for providing the service experiences.',
+        title: 'Multiple Choices Slider',
+        pathname: '/multiple-choices-slider',
+        description: 'Specific multi choices H5 component.',
       },
       {
         title: 'Searchfield',
