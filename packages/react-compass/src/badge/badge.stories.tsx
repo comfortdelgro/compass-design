@@ -105,7 +105,6 @@ export const Disabled: React.FC = () => (
 export const Sizes: React.FC = () => (
   <Column>
     <h3>Sizes</h3>
-
     <Row>
       <h4>1. Small</h4>
       <Badge label='Small' variant='primary' size='sm' icon />
