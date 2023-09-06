@@ -238,11 +238,12 @@ export const StyledTimeline = styled('div', {
         [`${StyledItemHeaderContainer}`]: {
           display: 'flex',
           flexDirection: 'column-reverse',
+          gap: '$2',
           right: '0',
         },
         [`${StyledItemContainer}`]: {
           position: 'relative',
-          bottom: '4rem',
+          bottom: '$12',
           display: 'flex',
           justifyContent: 'flex-start',
         },
@@ -262,11 +263,12 @@ export const StyledTimeline = styled('div', {
         [`${StyledItemHeaderContainer}`]: {
           display: 'flex',
           flexDirection: 'column',
+          gap: '$2',
           right: '0',
         },
         [`${StyledItemContainer}`]: {
           position: 'relative',
-          top: '3.95rem',
+          top: '$12',
           display: 'flex',
           justifyContent: 'flex-start',
           flexDirection: 'column-reverse',
@@ -287,11 +289,12 @@ export const StyledTimeline = styled('div', {
         [`${StyledItemHeaderContainer}`]: {
           display: 'flex',
           flexDirection: 'column',
+          gap: '$2',
           right: '0',
         },
         [`${StyledItemContainer}`]: {
           position: 'relative',
-          top: '3.95rem',
+          top: '$12',
           display: 'flex',
           justifyContent: 'flex-start',
           flexDirection: 'column-reverse',
