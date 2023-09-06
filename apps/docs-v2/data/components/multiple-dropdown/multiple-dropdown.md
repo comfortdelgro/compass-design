@@ -3,7 +3,7 @@ title: React Multiple Dropdown component
 components: Multiple Dropdown
 ---
 
-# Error
+# Multiple Dropdown
 
 <p class="description">Provides the behavior and accessibility implementation for a listbox component. A listbox displays a list of options and allows a user to select one or more of them.</p>
 
@@ -31,16 +31,13 @@ import Dropdown from '@comfortdelgro/react-compass/dropdown'
 
 {{"demo": "MultipleDropdownIsErrored.tsx"}}
 
-
 ## Errored Values
 
 {{"demo": "MultipleDropdownErroredValues.tsx"}}
 
-
 ## Custom Display Values
 
 {{"demo": "MultipleDropdownCustomDisplayValue.tsx"}}
-
 
 ## With Header
 
@@ -58,15 +55,13 @@ import Dropdown from '@comfortdelgro/react-compass/dropdown'
 
 {{"demo": "MultipleDropdownWithSection.tsx"}}
 
-
 ## Custom styling for popover
 
 {{"demo": "MultipleDropdownCustomPopoverStyling.tsx"}}
 
+### Props
 
-### Props:
-
-#### `<MultipleDropdown/>` :
+#### `<MultipleDropdown/>`
 
 | Name               | Type                                    | Default | Description                                                                                                                                               |
 | :----------------- | :-------------------------------------- | :------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -93,7 +88,7 @@ import Dropdown from '@comfortdelgro/react-compass/dropdown'
 | isLoadingMore      | `boolean`                               | 'false' | Prevent to fire function `onLoadMore`.                                                                                                                    |
 | popoverCSS         | `CSS`                                   | —       | The system prop that allows defining system overrides as well as additional CSS styles of Popover.                                                        |
 
-#### `<MultipleDropdown.Item/>` :
+#### `<MultipleDropdown.Item/>`
 
 | Name      | Type                           | Default | Description                      |
 | :-------- | :----------------------------- | :------ | :------------------------------- |
@@ -103,9 +98,7 @@ import Dropdown from '@comfortdelgro/react-compass/dropdown'
 | children  | `ReactNode`                    | —       | The content of the dropdown Item |
 | checkmark | `none` \| `checkbox` \| `tick` | -       | Variant for the selected         |
 
----
-
-#### `<MultipleDropdown.Section/>` :
+#### `<MultipleDropdown.Section/>`
 
 | Name        | Type                 | Default | Description                           |
 | :---------- | :------------------- | :------ | :------------------------------------ |
