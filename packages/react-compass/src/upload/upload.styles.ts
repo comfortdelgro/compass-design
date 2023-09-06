@@ -184,7 +184,7 @@ export const StyledUploadWrapper = styled('div', {
         },
         [`${StyledUploadContent}`]: {
           backgroundColor: '$gray20',
-          color: '$gray40',
+          color: '$grayShades40',
           cursor: 'not-allowed',
           border: 'none',
         },
