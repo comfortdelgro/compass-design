@@ -33,6 +33,10 @@ import {Tabs, TabsProps} from '@comfortdelgro/react-compass/tabs'
 
 {{"demo": "TabsServerInteraction.tsx"}}
 
+### H5 Project
+
+{{"demo": "TabsH5.tsx"}}
+
 ## Props
 
 ### `<Tabs/>` | `<Tabs.Paneless/>`:
@@ -40,7 +44,7 @@ import {Tabs, TabsProps} from '@comfortdelgro/react-compass/tabs'
 | Name               | Type                               | Default      | Description                                                                                              |
 | :----------------- | :--------------------------------- | :----------- | :------------------------------------------------------------------------------------------------------- |
 | children\*         | `ReactNode`                        | —            | The contents of the collection.                                                                          |
-| variant            | `rounded`,`simple`                 | `rounded`    | Style of the tab                                                                                         |
+| variant            | `rounded`,`simple`, `h5`           | `rounded`    | Style of the tab                                                                                         |
 | orientation        | `horizontal`\|`vertical`           | `horizontal` | Direction of the tab                                                                                     |
 | icon               | `none` \| `left`\| `right`\| `top` | `none`       | Display icon in tab content                                                                              |
 | isDisabled         | `boolean`                          | `false`      | Whether the Tabs are disabled. Shows that a selection exists, but is not available in that circumstance. |
