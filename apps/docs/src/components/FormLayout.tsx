@@ -11,7 +11,7 @@ import {
 export const FormLayoutComponent: React.FC = () => {
   return (
     <FormLayout>
-      <FormLayout.Row>
+      <FormLayout.Row breaksOnSmall={true}>
         <FormLayout.Explaination
           title={'Create New Time/Date Policy'}
           description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -19,7 +19,7 @@ export const FormLayoutComponent: React.FC = () => {
         />
       </FormLayout.Row>
       <Divider />
-      <FormLayout.Row columns={3}>
+      <FormLayout.Row columns={3} breaksOnSmall={true}>
         <FormLayout.Group>
           <Dropdown.Select label='Salutation'>
             <Dropdown.Item key={'mr'}>Mr</Dropdown.Item>
@@ -28,7 +28,7 @@ export const FormLayoutComponent: React.FC = () => {
           </Dropdown.Select>
         </FormLayout.Group>
       </FormLayout.Row>
-      <FormLayout.Row columns={3}>
+      <FormLayout.Row columns={3} breaksOnSmall={true}>
         <FormLayout.Group>
           <Radio
             variant='outlined'
@@ -60,7 +60,7 @@ export const FormLayoutComponent: React.FC = () => {
           />
         </FormLayout.Group>
       </FormLayout.Row>
-      <FormLayout.Row columns={2}>
+      <FormLayout.Row columns={2} breaksOnSmall={true}>
         <FormLayout.Group>
           <FormLayout.Explaination
             title={'Create New Time/Date Policy'}
@@ -77,7 +77,7 @@ export const FormLayoutComponent: React.FC = () => {
         </FormLayout.Group>
       </FormLayout.Row>
       <Divider />
-      <FormLayout.Row columns={2}>
+      <FormLayout.Row columns={2} breaksOnSmall={true}>
         <FormLayout.Group>
           <FormLayout.Explaination
             title={'Create New Time/Date Policy'}
