@@ -79,9 +79,18 @@ export const StyledBadge = styled('div', {
         padding: '3px 3px 3px $2',
       },
     },
+    isDisabled: {
+      true: {},
+      false: {},
+    },
     size: {
       sm: {
         height: '$4_5',
+        fontSize: '$label2',
+        lineHeight: '18px',
+      },
+      md: {
+        height: '$6_5',
         fontSize: '$label2',
         lineHeight: '18px',
       },
@@ -99,10 +108,18 @@ export const StyledBadge = styled('div', {
 
       return colors
         .map((color) => [
+          {
+            isDisabled: true,
+            css: {
+              background: '$gray20',
+              color: '$gray60',
+            },
+          },
           // primary
           {
             color,
             variant: 'primary',
+            isDisabled: false,
             css: {
               background: `$${
                 color === 'warning' ? 'badgeWarningBg' : `${color}`
@@ -114,6 +131,8 @@ export const StyledBadge = styled('div', {
           {
             color,
             variant: 'secondary',
+            isDisabled: false,
+
             css: {
               background: `$${
                 color === 'warning' ? 'warningBg' : `${color}Bg`
@@ -124,6 +143,7 @@ export const StyledBadge = styled('div', {
           // outline
           {
             color,
+            isDisabled: false,
             variant: 'outline',
             css: {
               background: `$${
@@ -143,7 +163,8 @@ export const StyledBadge = styled('div', {
   defaultVariants: {
     variant: 'primary',
     color: 'info',
-    size: 'lg',
+    isDisabled: false,
+    size: 'md',
   },
 })
 
