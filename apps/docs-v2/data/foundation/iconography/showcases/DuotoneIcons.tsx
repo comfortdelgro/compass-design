@@ -25,55 +25,55 @@ export default function duotoneIcons() {
     >
       <IconBox
         component={<BadgeDollarDuotone width={40} height={40} />}
-        name='BadgeDollarDuotone'
+        name='badge-dollar-duotone'
       />
       <IconBox
         component={<CalendarDaysDuotone width={40} height={40} />}
-        name='CalendarDaysDuotone'
+        name='calendar-days-duotone'
       />
       <IconBox
         component={<ChartLineUpDuotone width={40} height={40} />}
-        name='ChartLineUpDuotone'
+        name='chart-line-up-duotone'
       />
       <IconBox
         component={<ChartPieDuotone width={40} height={40} />}
-        name='ChartPieDuotone'
+        name='chart-pie-duotone'
       />
       <IconBox
         component={<EditDuotone width={40} height={40} />}
-        name='EditDuotone'
+        name='edit-duotone'
       />
       <IconBox
         component={<FlagDuotone width={40} height={40} />}
-        name='FlagDuotone'
+        name='flag-duotone'
       />
       <IconBox
         component={<GearsDuotone width={40} height={40} />}
-        name='GearsDuotone'
+        name='gears-duotone'
       />
       <IconBox
         component={<GridDuotone width={40} height={40} />}
-        name='GridDuotone'
+        name='grid-duotone'
       />
       <IconBox
         component={<NotificationDuotone width={40} height={40} />}
-        name='NotificationDuotone'
+        name='notification-duotone'
       />
       <IconBox
         component={<OrgChartDuotone width={40} height={40} />}
-        name='OrgChartDuotone'
+        name='org-chart-duotone'
       />
       <IconBox
         component={<PasswordDuotone width={40} height={40} />}
-        name='PasswordDuotone'
+        name='password-duotone'
       />
       <IconBox
         component={<TrashDuotone width={40} height={40} />}
-        name='TrashDuotone'
+        name='trash-duotone'
       />
       <IconBox
         component={<UserDuotone width={40} height={40} />}
-        name='UserDuotone'
+        name='user-duotone'
       />
     </Flexbox>
   )

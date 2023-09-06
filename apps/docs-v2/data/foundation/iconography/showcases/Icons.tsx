@@ -205,472 +205,472 @@ export default function Icons() {
     >
       <IconBox
         component={<Activity width={40} height={40} />}
-        name='Activity'
+        name='activity'
       />
       <IconBox
         component={<AlignCenter width={40} height={40} />}
-        name='AlignCenter'
+        name='align-center'
       />
       <IconBox
         component={<AlignJustify width={40} height={40} />}
-        name='AlignJustify'
+        name='align-justify'
       />
       <IconBox
         component={<AlignLeft width={40} height={40} />}
-        name='AlignLeft'
+        name='align-left'
       />
       <IconBox
         component={<AlignRight width={40} height={40} />}
-        name='AlignRight'
+        name='align-right'
       />
       <IconBox
         component={<Angellist width={40} height={40} />}
-        name='Angellist'
+        name='angellist'
       />
-      <IconBox component={<Apple width={40} height={40} />} name='Apple' />
+      <IconBox component={<Apple width={40} height={40} />} name='apple' />
       <IconBox
         component={<ArrowDown width={40} height={40} />}
-        name='ArrowDown'
+        name='arrow-down'
       />
       <IconBox
         component={<ArrowLeft width={40} height={40} />}
-        name='ArrowLeft'
+        name='arrow-left'
       />
       <IconBox
         component={<ArrowRight width={40} height={40} />}
-        name='ArrowRight'
+        name='arrow-right'
       />
-      <IconBox component={<ArrowUp width={40} height={40} />} name='ArrowUp' />
-      <IconBox component={<Bid width={40} height={40} />} name='Bid' />
-      <IconBox component={<Bold width={40} height={40} />} name='Bold' />
-      <IconBox component={<Browser width={40} height={40} />} name='Browser' />
-      <IconBox component={<Bug width={40} height={40} />} name='Bug' />
+      <IconBox component={<ArrowUp width={40} height={40} />} name='arrow-up' />
+      <IconBox component={<Bid width={40} height={40} />} name='bid' />
+      <IconBox component={<Bold width={40} height={40} />} name='bold' />
+      <IconBox component={<Browser width={40} height={40} />} name='browser' />
+      <IconBox component={<Bug width={40} height={40} />} name='bug' />
       <IconBox
         component={<Building width={40} height={40} />}
-        name='Building'
+        name='building'
       />
-      <IconBox component={<Bus2 width={40} height={40} />} name='Bus2' />
+      <IconBox component={<Bus2 width={40} height={40} />} name='bus-2' />
       <IconBox
         component={<BusAndCar width={40} height={40} />}
-        name='BusAndCar'
+        name='bus-and-car'
       />
-      <IconBox component={<Bus width={40} height={40} />} name='Bus' />
+      <IconBox component={<Bus width={40} height={40} />} name='bus' />
       <IconBox
         component={<Calendar width={40} height={40} />}
-        name='Calendar'
+        name='calendar'
       />
       <IconBox
         component={<Cancelled width={40} height={40} />}
-        name='Cancelled'
+        name='cancelled'
       />
       <IconBox
         component={<Capacity width={40} height={40} />}
-        name='Capacity'
+        name='capacity'
       />
-      <IconBox component={<Car width={40} height={40} />} name='Car' />
+      <IconBox component={<Car width={40} height={40} />} name='car' />
       <IconBox
         component={<CaretDown width={40} height={40} />}
-        name='CaretDown'
+        name='caret-down'
       />
       <IconBox
         component={<CaretLeft width={40} height={40} />}
-        name='CaretLeft'
+        name='caret-left'
       />
       <IconBox
         component={<CaretRight width={40} height={40} />}
-        name='CaretRight'
+        name='caret-right'
       />
-      <IconBox component={<CaretUp width={40} height={40} />} name='CaretUp' />
-      <IconBox component={<Chart width={40} height={40} />} name='Chart' />
-      <IconBox component={<Chat width={40} height={40} />} name='Chat' />
-      <IconBox component={<Cities width={40} height={40} />} name='Cities' />
+      <IconBox component={<CaretUp width={40} height={40} />} name='caret-up' />
+      <IconBox component={<Chart width={40} height={40} />} name='chart' />
+      <IconBox component={<Chat width={40} height={40} />} name='chat' />
+      <IconBox component={<Cities width={40} height={40} />} name='cities' />
       <IconBox
         component={<ClapperboardPlay width={40} height={40} />}
-        name='ClapperboardPlay'
+        name='clapperboard-play'
       />
       <IconBox
         component={<Classification width={40} height={40} />}
-        name='Classification'
+        name='classification'
       />
       <IconBox
         component={<Clipboard width={40} height={40} />}
-        name='Clipboard'
+        name='clipboard'
       />
       <IconBox
         component={<CloudUpload width={40} height={40} />}
-        name='CloudUpload'
+        name='cloud-upload'
       />
-      <IconBox component={<Copy width={40} height={40} />} name='Copy' />
+      <IconBox component={<Copy width={40} height={40} />} name='copy' />
       <IconBox
         component={<CrossCircle width={40} height={40} />}
-        name='CrossCircle'
+        name='cross-circle'
       />
-      <IconBox component={<Cross width={40} height={40} />} name='Cross' />
+      <IconBox component={<Cross width={40} height={40} />} name='cross' />
       <IconBox
         component={<CustomerService width={40} height={40} />}
-        name='CustomerService'
+        name='customer-service'
       />
       <IconBox
         component={<Dashboard width={40} height={40} />}
-        name='Dashboard'
+        name='dashboard'
       />
-      <IconBox component={<Deleted width={40} height={40} />} name='Deleted' />
+      <IconBox component={<Deleted width={40} height={40} />} name='deleted' />
       <IconBox
         component={<Document width={40} height={40} />}
-        name='Document'
+        name='document'
       />
       <IconBox
         component={<Download width={40} height={40} />}
-        name='Download'
+        name='download'
       />
-      <IconBox component={<Driver width={40} height={40} />} name='Driver' />
-      <IconBox component={<Edit width={40} height={40} />} name='Edit' />
-      <IconBox component={<Email width={40} height={40} />} name='Email' />
-      <IconBox component={<Excel width={40} height={40} />} name='Excel' />
-      <IconBox component={<Export width={40} height={40} />} name='Export' />
+      <IconBox component={<Driver width={40} height={40} />} name='driver' />
+      <IconBox component={<Edit width={40} height={40} />} name='edit' />
+      <IconBox component={<Email width={40} height={40} />} name='email' />
+      <IconBox component={<Excel width={40} height={40} />} name='excel' />
+      <IconBox component={<Export width={40} height={40} />} name='export' />
       <IconBox
         component={<EyeSlash width={40} height={40} />}
-        name='EyeSlash'
+        name='eye-slash'
       />
       <IconBox
         component={<EyeSolid width={40} height={40} />}
-        name='EyeSolid'
+        name='eye-solid'
       />
       <IconBox
         component={<FaceFrown width={40} height={40} />}
-        name='FaceFrown'
+        name='face-frown'
       />
       <IconBox
         component={<FaceLaugh width={40} height={40} />}
-        name='FaceLaugh'
+        name='face-laugh'
       />
-      <IconBox component={<FaceMeh width={40} height={40} />} name='FaceMeh' />
+      <IconBox component={<FaceMeh width={40} height={40} />} name='face-meh' />
       <IconBox
         component={<FaceSadTear width={40} height={40} />}
-        name='FaceSadTear'
+        name='face-sad-tear'
       />
       <IconBox
         component={<FaceSmileHeart width={40} height={40} />}
-        name='FaceSmileHeart'
+        name='face-smile-heart'
       />
       <IconBox
         component={<FaceSmile width={40} height={40} />}
-        name='FaceSmile'
+        name='face-smile'
       />
       <IconBox
         component={<FacebookCircular width={40} height={40} />}
-        name='FacebookCircular'
+        name='facebook-circular'
       />
       <IconBox
         component={<FacebookSquare width={40} height={40} />}
-        name='FacebookSquare'
+        name='facebook-square'
       />
       <IconBox
         component={<FileLaptop width={40} height={40} />}
-        name='FileLaptop'
+        name='file-laptop'
       />
-      <IconBox component={<FilePen width={40} height={40} />} name='FilePen' />
+      <IconBox component={<FilePen width={40} height={40} />} name='file-pen' />
       <IconBox
         component={<FileSignature width={40} height={40} />}
-        name='FileSignature'
+        name='file-signature'
       />
-      <IconBox component={<File width={40} height={40} />} name='File' />
-      <IconBox component={<Fill width={40} height={40} />} name='Fill' />
-      <IconBox component={<Filter width={40} height={40} />} name='Filter' />
-      <IconBox component={<Flag width={40} height={40} />} name='Flag' />
+      <IconBox component={<File width={40} height={40} />} name='file' />
+      <IconBox component={<Fill width={40} height={40} />} name='fill' />
+      <IconBox component={<Filter width={40} height={40} />} name='filter' />
+      <IconBox component={<Flag width={40} height={40} />} name='flag' />
       <IconBox
         component={<FolderOpen width={40} height={40} />}
-        name='FolderOpen'
+        name='folder-open'
       />
-      <IconBox component={<Folder width={40} height={40} />} name='Folder' />
+      <IconBox component={<Folder width={40} height={40} />} name='folder' />
       <IconBox
         component={<FontColour width={40} height={40} />}
-        name='FontColour'
+        name='font-colour'
       />
-      <IconBox component={<Font width={40} height={40} />} name='Font' />
-      <IconBox component={<Gauge width={40} height={40} />} name='Gauge' />
-      <IconBox component={<Gears width={40} height={40} />} name='Gears' />
-      <IconBox component={<Github width={40} height={40} />} name='Github' />
-      <IconBox component={<Globe width={40} height={40} />} name='Globe' />
-      <IconBox component={<Google width={40} height={40} />} name='Google' />
-      <IconBox component={<Grid width={40} height={40} />} name='Grid' />
+      <IconBox component={<Font width={40} height={40} />} name='font' />
+      <IconBox component={<Gauge width={40} height={40} />} name='gauge' />
+      <IconBox component={<Gears width={40} height={40} />} name='gears' />
+      <IconBox component={<Github width={40} height={40} />} name='github' />
+      <IconBox component={<Globe width={40} height={40} />} name='globe' />
+      <IconBox component={<Google width={40} height={40} />} name='google' />
+      <IconBox component={<Grid width={40} height={40} />} name='grid' />
       <IconBox
         component={<GripDots width={40} height={40} />}
-        name='GripDots'
+        name='grip-dots'
       />
-      <IconBox component={<H width={40} height={40} />} name='H' />
-      <IconBox component={<H1 width={40} height={40} />} name='H1' />
-      <IconBox component={<H2 width={40} height={40} />} name='H2' />
-      <IconBox component={<H3 width={40} height={40} />} name='H3' />
-      <IconBox component={<H4 width={40} height={40} />} name='H4' />
-      <IconBox component={<H5 width={40} height={40} />} name='H5' />
-      <IconBox component={<H6 width={40} height={40} />} name='H6' />
+      <IconBox component={<H width={40} height={40} />} name='h' />
+      <IconBox component={<H1 width={40} height={40} />} name='h1' />
+      <IconBox component={<H2 width={40} height={40} />} name='h2' />
+      <IconBox component={<H3 width={40} height={40} />} name='h3' />
+      <IconBox component={<H4 width={40} height={40} />} name='h4' />
+      <IconBox component={<H5 width={40} height={40} />} name='h5' />
+      <IconBox component={<H6 width={40} height={40} />} name='h6' />
       <IconBox
         component={<HatWizard width={40} height={40} />}
-        name='HatWizard'
+        name='hat-wizard'
       />
-      <IconBox component={<Heading width={40} height={40} />} name='Heading' />
+      <IconBox component={<Heading width={40} height={40} />} name='heading' />
       <IconBox
         component={<HexagonXmark width={40} height={40} />}
-        name='HexagonXmark'
+        name='hexagon-xmark'
       />
-      <IconBox component={<Hide width={40} height={40} />} name='Hide' />
-      <IconBox component={<Home width={40} height={40} />} name='Home' />
+      <IconBox component={<Hide width={40} height={40} />} name='hide' />
+      <IconBox component={<Home width={40} height={40} />} name='home' />
       <IconBox
         component={<HourglassClock width={40} height={40} />}
-        name='HourglassClock'
+        name='hourglass-clock'
       />
       <IconBox
         component={<InfoSquare width={40} height={40} />}
-        name='InfoSquare'
+        name='info-square'
       />
-      <IconBox component={<Inspect width={40} height={40} />} name='Inspect' />
+      <IconBox component={<Inspect width={40} height={40} />} name='inspect' />
       <IconBox
         component={<Instagram width={40} height={40} />}
-        name='Instagram'
+        name='instagram'
       />
-      <IconBox component={<Invoice width={40} height={40} />} name='Invoice' />
-      <IconBox component={<Italic width={40} height={40} />} name='Italic' />
-      <IconBox component={<Job2 width={40} height={40} />} name='Job2' />
-      <IconBox component={<Job width={40} height={40} />} name='Job' />
-      <IconBox component={<Key width={40} height={40} />} name='Key' />
-      <IconBox component={<Layers width={40} height={40} />} name='Layers' />
+      <IconBox component={<Invoice width={40} height={40} />} name='invoice' />
+      <IconBox component={<Italic width={40} height={40} />} name='italic' />
+      <IconBox component={<Job2 width={40} height={40} />} name='job-2' />
+      <IconBox component={<Job width={40} height={40} />} name='job' />
+      <IconBox component={<Key width={40} height={40} />} name='key' />
+      <IconBox component={<Layers width={40} height={40} />} name='layers' />
       <IconBox
         component={<LightbulbOn width={40} height={40} />}
-        name='LightbulbOn'
+        name='lightbulb-on'
       />
-      <IconBox component={<Link width={40} height={40} />} name='Link' />
+      <IconBox component={<Link width={40} height={40} />} name='link' />
       <IconBox
         component={<Linkedin width={40} height={40} />}
-        name='Linkedin'
+        name='linkedin'
       />
-      <IconBox component={<ListOl width={40} height={40} />} name='ListOl' />
-      <IconBox component={<ListUl width={40} height={40} />} name='ListUl' />
-      <IconBox component={<List width={40} height={40} />} name='List' />
-      <IconBox component={<Logout width={40} height={40} />} name='Logout' />
+      <IconBox component={<ListOl width={40} height={40} />} name='list-ol' />
+      <IconBox component={<ListUl width={40} height={40} />} name='list-ul' />
+      <IconBox component={<List width={40} height={40} />} name='list' />
+      <IconBox component={<Logout width={40} height={40} />} name='logout' />
       <IconBox
         component={<LowVolume width={40} height={40} />}
-        name='LowVolume'
+        name='low-volume'
       />
       <IconBox
         component={<Maintenance width={40} height={40} />}
-        name='Maintenance'
+        name='maintenance'
       />
       <IconBox
         component={<MapMarked width={40} height={40} />}
-        name='MapMarked'
+        name='map-marked'
       />
       <IconBox
         component={<MapMarker width={40} height={40} />}
-        name='MapMarker'
+        name='map-marker'
       />
-      <IconBox component={<Map width={40} height={40} />} name='Map' />
-      <IconBox component={<Menu width={40} height={40} />} name='Menu' />
+      <IconBox component={<Map width={40} height={40} />} name='map' />
+      <IconBox component={<Menu width={40} height={40} />} name='menu' />
       <IconBox
         component={<MessageLines width={40} height={40} />}
-        name='MessageLines'
+        name='message-lines'
       />
-      <IconBox component={<Message width={40} height={40} />} name='Message' />
+      <IconBox component={<Message width={40} height={40} />} name='message' />
       <IconBox
         component={<MinusSquare width={40} height={40} />}
-        name='MinusSquare'
+        name='minus-square'
       />
-      <IconBox component={<Minus width={40} height={40} />} name='Minus' />
+      <IconBox component={<Minus width={40} height={40} />} name='minus' />
       <IconBox
         component={<MoneyBill width={40} height={40} />}
-        name='MoneyBill'
+        name='money-bill'
       />
       <IconBox
         component={<MoneyCheckAlt width={40} height={40} />}
-        name='MoneyCheckAlt'
+        name='money-check-alt'
       />
-      <IconBox component={<Money width={40} height={40} />} name='Money' />
-      <IconBox component={<Mute width={40} height={40} />} name='Mute' />
+      <IconBox component={<Money width={40} height={40} />} name='money' />
+      <IconBox component={<Mute width={40} height={40} />} name='mute' />
       <IconBox
         component={<NotificationBadge width={40} height={40} />}
-        name='NotificationBadge'
+        name='notification-badge'
       />
       <IconBox
         component={<NotificationOff width={40} height={40} />}
-        name='NotificationOff'
+        name='notification-off'
       />
-      <IconBox component={<Outdent width={40} height={40} />} name='Outdent' />
-      <IconBox component={<Paste width={40} height={40} />} name='Paste' />
-      <IconBox component={<Pause width={40} height={40} />} name='Pause' />
-      <IconBox component={<Pdf width={40} height={40} />} name='Pdf' />
-      <IconBox component={<PenNib width={40} height={40} />} name='PenNib' />
-      <IconBox component={<Phone width={40} height={40} />} name='Phone' />
+      <IconBox component={<Outdent width={40} height={40} />} name='outdent' />
+      <IconBox component={<Paste width={40} height={40} />} name='paste' />
+      <IconBox component={<Pause width={40} height={40} />} name='pause' />
+      <IconBox component={<Pdf width={40} height={40} />} name='pdf' />
+      <IconBox component={<PenNib width={40} height={40} />} name='pen-nib' />
+      <IconBox component={<Phone width={40} height={40} />} name='phone' />
       <IconBox
         component={<Pinterest width={40} height={40} />}
-        name='Pinterest'
+        name='pinterest'
       />
       <IconBox
         component={<PlusSquare width={40} height={40} />}
-        name='PlusSquare'
+        name='plus-square'
       />
-      <IconBox component={<Plus width={40} height={40} />} name='Plus' />
+      <IconBox component={<Plus width={40} height={40} />} name='plus' />
       <IconBox
         component={<ProfileCard width={40} height={40} />}
-        name='ProfileCard'
+        name='profile-card'
       />
-      <IconBox component={<Profile width={40} height={40} />} name='Profile' />
-      <IconBox component={<Project width={40} height={40} />} name='Project' />
+      <IconBox component={<Profile width={40} height={40} />} name='profile' />
+      <IconBox component={<Project width={40} height={40} />} name='project' />
       <IconBox
         component={<QuestionSquare width={40} height={40} />}
-        name='QuestionSquare'
+        name='question-square'
       />
       <IconBox
         component={<QuoteLeft width={40} height={40} />}
-        name='QuoteLeft'
+        name='quote-left'
       />
       <IconBox
         component={<QuoteRight width={40} height={40} />}
-        name='QuoteRight'
+        name='quote-right'
       />
       <IconBox
         component={<RatingStar0 width={40} height={40} />}
-        name='RatingStar0'
+        name='rating-star-0'
       />
       <IconBox
         component={<RatingStar10 width={40} height={40} />}
-        name='RatingStar10'
+        name='rating-star-10'
       />
       <IconBox
         component={<RatingStar100 width={40} height={40} />}
-        name='RatingStar100'
+        name='rating-star-100'
       />
       <IconBox
         component={<RatingStar20 width={40} height={40} />}
-        name='RatingStar20'
+        name='rating-star-20'
       />
       <IconBox
         component={<RatingStar30 width={40} height={40} />}
-        name='RatingStar30'
+        name='rating-star-30'
       />
       <IconBox
         component={<RatingStar40 width={40} height={40} />}
-        name='RatingStar40'
+        name='rating-star-40'
       />
       <IconBox
         component={<RatingStar50 width={40} height={40} />}
-        name='RatingStar50'
+        name='rating-star-50'
       />
       <IconBox
         component={<RatingStar60 width={40} height={40} />}
-        name='RatingStar60'
+        name='rating-star-60'
       />
       <IconBox
         component={<RatingStar70 width={40} height={40} />}
-        name='RatingStar70'
+        name='rating-star-70'
       />
       <IconBox
         component={<RatingStar80 width={40} height={40} />}
-        name='RatingStar80'
+        name='rating-star-80'
       />
       <IconBox
         component={<RatingStar90 width={40} height={40} />}
-        name='RatingStar90'
+        name='rating-star-90'
       />
-      <IconBox component={<Refresh width={40} height={40} />} name='Refresh' />
-      <IconBox component={<Reveal width={40} height={40} />} name='Reveal' />
-      <IconBox component={<School width={40} height={40} />} name='School' />
-      <IconBox component={<Search width={40} height={40} />} name='Search' />
+      <IconBox component={<Refresh width={40} height={40} />} name='refresh' />
+      <IconBox component={<Reveal width={40} height={40} />} name='reveal' />
+      <IconBox component={<School width={40} height={40} />} name='school' />
+      <IconBox component={<Search width={40} height={40} />} name='search' />
       <IconBox
         component={<Settings width={40} height={40} />}
-        name='Settings'
+        name='settings'
       />
-      <IconBox component={<Shapes width={40} height={40} />} name='Shapes' />
-      <IconBox component={<Share width={40} height={40} />} name='Share' />
-      <IconBox component={<Shield2 width={40} height={40} />} name='Shield2' />
-      <IconBox component={<Shield width={40} height={40} />} name='Shield' />
+      <IconBox component={<Shapes width={40} height={40} />} name='shapes' />
+      <IconBox component={<Share width={40} height={40} />} name='share' />
+      <IconBox component={<Shield2 width={40} height={40} />} name='shield-2' />
+      <IconBox component={<Shield width={40} height={40} />} name='shield' />
       <IconBox
         component={<Snapchat width={40} height={40} />}
-        name='Snapchat'
+        name='snapchat'
       />
       <IconBox
         component={<Sort1To9Ascending width={40} height={40} />}
-        name='Sort1To9Ascending'
+        name='sort-1-to-9-ascending'
       />
       <IconBox
         component={<Sort1To9Descending width={40} height={40} />}
-        name='Sort1To9Descending'
+        name='sort-1-to-9-descending'
       />
       <IconBox
         component={<Sort9To1Ascending width={40} height={40} />}
-        name='Sort9To1Ascending'
+        name='sort-9-to-1-ascending'
       />
       <IconBox
         component={<Sort9To1Descending width={40} height={40} />}
-        name='Sort9To1Descending'
+        name='sort-9-to-1-descending'
       />
-      <IconBox component={<Sort width={40} height={40} />} name='Sort' />
-      <IconBox component={<Sparkle width={40} height={40} />} name='Sparkle' />
+      <IconBox component={<Sort width={40} height={40} />} name='sort' />
+      <IconBox component={<Sparkle width={40} height={40} />} name='sparkle' />
       <IconBox
         component={<Spreadsheet width={40} height={40} />}
-        name='Spreadsheet'
+        name='spreadsheet'
       />
-      <IconBox component={<Stamp width={40} height={40} />} name='Stamp' />
-      <IconBox component={<Status width={40} height={40} />} name='Status' />
-      <IconBox component={<Store width={40} height={40} />} name='Store' />
+      <IconBox component={<Stamp width={40} height={40} />} name='stamp' />
+      <IconBox component={<Status width={40} height={40} />} name='status' />
+      <IconBox component={<Store width={40} height={40} />} name='store' />
       <IconBox
         component={<Strikethrough width={40} height={40} />}
-        name='Strikethrough'
+        name='strikethrough'
       />
       <IconBox
         component={<Suitcase width={40} height={40} />}
-        name='Suitcase'
+        name='suitcase'
       />
       <IconBox
         component={<TableColumns width={40} height={40} />}
-        name='TableColumns'
+        name='table-columns'
       />
-      <IconBox component={<Table width={40} height={40} />} name='Table' />
-      <IconBox component={<Tags width={40} height={40} />} name='Tags' />
-      <IconBox component={<Taxi width={40} height={40} />} name='Taxi' />
+      <IconBox component={<Table width={40} height={40} />} name='table' />
+      <IconBox component={<Tags width={40} height={40} />} name='tags' />
+      <IconBox component={<Taxi width={40} height={40} />} name='taxi' />
       <IconBox
         component={<TextHeight width={40} height={40} />}
-        name='TextHeight'
+        name='text-height'
       />
       <IconBox
         component={<ThumbDown width={40} height={40} />}
-        name='ThumbDown'
+        name='thumb-down'
       />
-      <IconBox component={<ThumbUp width={40} height={40} />} name='ThumbUp' />
+      <IconBox component={<ThumbUp width={40} height={40} />} name='thumb-up' />
       <IconBox
         component={<TickCircle width={40} height={40} />}
-        name='TickCircle'
+        name='tick-circle'
       />
-      <IconBox component={<Tick width={40} height={40} />} name='Tick' />
-      <IconBox component={<Ticket width={40} height={40} />} name='Ticket' />
+      <IconBox component={<Tick width={40} height={40} />} name='tick' />
+      <IconBox component={<Ticket width={40} height={40} />} name='ticket' />
       <IconBox
         component={<Timeline width={40} height={40} />}
-        name='Timeline'
+        name='timeline'
       />
-      <IconBox component={<Twitter width={40} height={40} />} name='Twitter' />
+      <IconBox component={<Twitter width={40} height={40} />} name='twitter' />
       <IconBox
         component={<Underline width={40} height={40} />}
-        name='Underline'
+        name='underline'
       />
-      <IconBox component={<Unpin width={40} height={40} />} name='Unpin' />
-      <IconBox component={<Upload width={40} height={40} />} name='Upload' />
-      <IconBox component={<UserTie width={40} height={40} />} name='UserTie' />
-      <IconBox component={<Users width={40} height={40} />} name='Users' />
+      <IconBox component={<Unpin width={40} height={40} />} name='unpin' />
+      <IconBox component={<Upload width={40} height={40} />} name='upload' />
+      <IconBox component={<UserTie width={40} height={40} />} name='user-tie' />
+      <IconBox component={<Users width={40} height={40} />} name='users' />
       <IconBox
         component={<Verified width={40} height={40} />}
-        name='Verified'
+        name='verified'
       />
-      <IconBox component={<Volume width={40} height={40} />} name='Volume' />
-      <IconBox component={<Word width={40} height={40} />} name='Word' />
-      <IconBox component={<Youtube width={40} height={40} />} name='Youtube' />
-      <IconBox component={<ZoomIn width={40} height={40} />} name='ZoomIn' />
+      <IconBox component={<Volume width={40} height={40} />} name='volume' />
+      <IconBox component={<Word width={40} height={40} />} name='word' />
+      <IconBox component={<Youtube width={40} height={40} />} name='youtube' />
+      <IconBox component={<ZoomIn width={40} height={40} />} name='zoom-in' />
       <IconBox
         component={<ZoomMinus width={40} height={40} />}
-        name='ZoomMinus'
+        name='zoom-minus'
       />
-      <IconBox component={<ZoomOut width={40} height={40} />} name='ZoomOut' />
+      <IconBox component={<ZoomOut width={40} height={40} />} name='zoom-out' />
       <IconBox
         component={<ZoomPlus width={40} height={40} />}
-        name='ZoomPlus'
+        name='zoom-plus'
       />
     </Flexbox>
   )
