@@ -22,7 +22,7 @@ export const StyledSubBannerBottom = styled('div', {
   border: 'none',
   boxSizing: 'border-box',
   margin: '0px',
-  padding: '0px',
+  padding: '$8 $4',
 
   // sub-banner bottom
   width: '100%',
@@ -60,6 +60,7 @@ export const StyledSubBannerDescription = styled('p', {
   backgroundColor: 'transparent',
   boxSizing: 'border-box',
   margin: '0px',
+  marginTop: '$1_5',
   padding: '0px',
 
   // font style
@@ -76,9 +77,6 @@ export const StyledBottomContentContainer = styled('div', {
   border: 'none',
   boxSizing: 'border-box',
   margin: '0px',
-
-  // content container
-  padding: '0px $4',
 })
 
 export const StyledSubBanner = styled('div', {
@@ -113,6 +111,7 @@ export const StyledSubBanner = styled('div', {
         [`& ${StyledBottomContentContainer}`]: {
           position: 'absolute',
           bottom: '$2',
+          paddingInline: '$4',
         },
       },
     },
