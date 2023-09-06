@@ -205,5 +205,41 @@ export const Variations: React.FC = () => (
         Disabled
       </Button>
     </Row>
+    <h3>Square button</h3>
+    <Row>
+      <Button
+        variant='primary'
+        onPress={() => console.log('pressed')}
+        isSquare={true}
+      >
+        Primary
+      </Button>
+      <Button variant='secondary' isSquare={true}>
+        Secondary
+      </Button>
+      <Button variant='danger' isSquare={true}>
+        Danger
+      </Button>
+      <Button isDisabled isSquare={true}>
+        Disabled
+      </Button>
+    </Row>
+    <Row>
+      <Button variant='primary' isSquare={true}>
+        <Icon icon={faBars} />
+      </Button>
+      <Button variant='secondary' isSquare={true}>
+        <Icon icon={faClose} />
+      </Button>
+      <Button variant='danger' isSquare={true}>
+        <Icon icon={faExclamationTriangle} />
+      </Button>
+      <Button variant='ghost' isSquare={true}>
+        <Icon icon={faBell} />
+      </Button>
+      <Button isDisabled isSquare={true}>
+        <Icon icon={faUserEdit} />
+      </Button>
+    </Row>
   </Column>
 )

@@ -21,7 +21,7 @@ export const Default: React.FC = () => {
           </Dropdown.Select>
         </FormLayout.Group>
       </FormLayout.Row>
-      <FormLayout.Row columns={3}>
+      <FormLayout.Row columns={3} breaksOnSmall={true}>
         <FormLayout.Group>
           <Radio
             variant='outlined'
@@ -53,7 +53,7 @@ export const Default: React.FC = () => {
           />
         </FormLayout.Group>
       </FormLayout.Row>
-      <FormLayout.Row columns={2}>
+      <FormLayout.Row columns={2} breaksOnSmall={true}>
         <FormLayout.Group>
           <FormLayout.Explaination
             title={'Create New Time/Date Policy'}

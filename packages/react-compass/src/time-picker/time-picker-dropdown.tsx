@@ -1,5 +1,5 @@
 import {cloneDeep} from 'lodash'
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import Button from '../button'
 import {
   DEFAULT_VIEWS,
@@ -32,7 +32,28 @@ interface TimePickerDropdownProps {
   views?: ViewType[]
   onItemClick: (value: TimePickerDropdownSelectedDisplayList) => void
   onOkClick?: () => void
+  onEscapeKeyDown?: () => void
 }
+
+const findNextFocusIndexBySelectedValue = (
+  displayList: TimePickerDropdownDisplayList,
+  selectedDisplayList: TimePickerDropdownSelectedDisplayList,
+  controlIndex: number,
+) => {
+  const nextControl = displayList[controlIndex]
+  const typeOfNextControl = nextControl?.type
+  const itemIndex = typeOfNextControl
+    ? nextControl?.items.findIndex(
+        (item) =>
+          item.toString().padStart(2, '0') ===
+          selectedDisplayList[typeOfNextControl]?.toString(),
+      )
+    : '0'
+
+  return `${controlIndex}-${itemIndex}`
+}
+
+const TIME_PICKER_ITEM_HEIGHT = 50
 
 function TimePickerDropdown(props: TimePickerDropdownProps) {
   const {
@@ -41,14 +62,19 @@ function TimePickerDropdown(props: TimePickerDropdownProps) {
     minuteStep = 1,
     value = EMPTY_DISPLAY_TIME_DROPDOWN_LIST,
     hasFooter = true,
-    onItemClick,
-    onOkClick,
     views = DEFAULT_VIEWS,
     isReadOnly,
+    onItemClick,
+    onOkClick,
+    onEscapeKeyDown,
   } = props
+  const ref = useRef<HTMLDivElement>(null)
+  const buttonRef = useRef<HTMLButtonElement>(null)
+
   const [displayList, setDisplayList] = useState<TimePickerDropdownDisplayList>(
     [],
   )
+  const [focusingItemId, setFocusingItemId] = useState('')
   const [selectedDisplayList, setSelectedDisplayList] =
     useState<TimePickerDropdownSelectedDisplayList>(
       EMPTY_DISPLAY_TIME_DROPDOWN_LIST,
@@ -108,6 +134,26 @@ function TimePickerDropdown(props: TimePickerDropdownProps) {
     setSelectedDisplayList(value || EMPTY_DISPLAY_TIME_DROPDOWN_LIST)
   }, [value])
 
+  useEffect(() => {
+    if (isOpen) {
+      setFocusingItemId((focusingItemId) => {
+        const [controlIndex] = focusingItemId.split('-')
+        return findNextFocusIndexBySelectedValue(
+          displayList,
+          selectedDisplayList,
+          controlIndex ? Number(controlIndex) : 0,
+        )
+      })
+      if (ref.current) {
+        ref.current.style.minWidth = `${
+          displayList.length * TIME_PICKER_ITEM_HEIGHT
+        }px`
+      }
+    } else {
+      setFocusingItemId('')
+    }
+  }, [isOpen, selectedDisplayList, displayList])
+
   const handleTimeItemClick =
     (value: number | string, type: SelectedKey) => () => {
       if (isReadOnly) return
@@ -136,17 +182,116 @@ function TimePickerDropdown(props: TimePickerDropdownProps) {
     onOkClick && onOkClick()
   }
 
+  const moveToNextItem = (emptyIndex: number, nextItemIndex: number) => {
+    const [controlIndex] = focusingItemId.split('-')
+    if (!focusingItemId) {
+      setFocusingItemId(
+        findNextFocusIndexBySelectedValue(
+          displayList,
+          selectedDisplayList,
+          emptyIndex,
+        ),
+      )
+    } else {
+      const control = displayList[Number(controlIndex)]
+      if (control) {
+        setFocusingItemId(`${controlIndex}-${nextItemIndex}`)
+      }
+    }
+  }
+
+  const handleTabKeyDown = (shiftKey = false) => {
+    const [controlIndex] = focusingItemId.split('-')
+    const nextControlIndex = shiftKey ? displayList.length - 1 : 0
+    if (document.activeElement === buttonRef.current) {
+      setFocusingItemId(
+        findNextFocusIndexBySelectedValue(
+          displayList,
+          selectedDisplayList,
+          nextControlIndex,
+        ),
+      )
+      return
+    }
+    if (focusingItemId) {
+      const nextIndex = shiftKey
+        ? Number(controlIndex) - 1
+        : Number(controlIndex) + 1
+      if (displayList[nextIndex]) {
+        setFocusingItemId(
+          findNextFocusIndexBySelectedValue(
+            displayList,
+            selectedDisplayList,
+            nextIndex,
+          ),
+        )
+      } else {
+        if (hasFooter) {
+          buttonRef.current?.focus()
+          setFocusingItemId('')
+        } else {
+          setFocusingItemId(
+            findNextFocusIndexBySelectedValue(
+              displayList,
+              selectedDisplayList,
+              nextControlIndex,
+            ),
+          )
+        }
+      }
+    }
+  }
+
+  const handleWrapperKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (!isOpen) return
+    const [controlIndex, itemIndex] = focusingItemId.split('-')
+    const control = displayList[Number(controlIndex)]
+    const controlItemsLength = control?.items.length || 0
+    switch (event.code) {
+      case 'ArrowUp':
+        event.stopPropagation()
+        event.preventDefault()
+        if (control) {
+          const nextIndex =
+            Number(itemIndex) - 1 >= 0
+              ? (Number(itemIndex) - 1) % controlItemsLength
+              : controlItemsLength - 1
+          moveToNextItem(0, nextIndex)
+        }
+        break
+      case 'ArrowDown':
+        event.stopPropagation()
+        event.preventDefault()
+        if (control) {
+          moveToNextItem(0, (Number(itemIndex) + 1) % controlItemsLength)
+        }
+        break
+      case 'Tab':
+        event.stopPropagation()
+        event.preventDefault()
+        handleTabKeyDown(event.shiftKey)
+        break
+      case 'Escape':
+        onEscapeKeyDown?.()
+        break
+      default:
+        break
+    }
+  }
+
   return (
-    <>
-      <TimePickerDropdownWrapper>
-        <TimePickerDropdownContent>
-          {displayList.map((displayData, index) => (
-            <TimePickerDropdownControl
-              className='time-picker-dropdown-control'
-              key={index}
-            >
-              {displayData.items.map((time: string | number) => (
+    <TimePickerDropdownWrapper onKeyDown={handleWrapperKeyDown} ref={ref}>
+      <TimePickerDropdownContent>
+        {displayList.map((displayData, index) => (
+          <TimePickerDropdownControl
+            className='time-picker-dropdown-control'
+            key={index}
+          >
+            {displayData.items.map(
+              (time: string | number, timeIndex: number) => (
                 <TimePickerDropdownItem
+                  itemId={`${index}-${timeIndex}`}
+                  focusingItemId={focusingItemId}
                   key={time}
                   isOpen={isOpen}
                   selectedDisplayList={selectedDisplayList}
@@ -155,19 +300,24 @@ function TimePickerDropdown(props: TimePickerDropdownProps) {
                   displayDataType={displayData.type}
                   onClickItem={handleTimeItemClick}
                 />
-              ))}
-            </TimePickerDropdownControl>
-          ))}
-        </TimePickerDropdownContent>
-        {hasFooter && (
-          <TimePickerDropdownFooter>
-            <Button variant='ghost' onClick={handleButtonOkClick}>
-              OK
-            </Button>
-          </TimePickerDropdownFooter>
-        )}
-      </TimePickerDropdownWrapper>
-    </>
+              ),
+            )}
+          </TimePickerDropdownControl>
+        ))}
+      </TimePickerDropdownContent>
+      {hasFooter && (
+        <TimePickerDropdownFooter>
+          <Button
+            variant='ghost'
+            onClick={handleButtonOkClick}
+            tabIndex={-1}
+            ref={buttonRef}
+          >
+            OK
+          </Button>
+        </TimePickerDropdownFooter>
+      )}
+    </TimePickerDropdownWrapper>
   )
 }
 export default React.memo(TimePickerDropdown)

@@ -72,16 +72,16 @@ interface SampleData {
 }
 
 export const Select: React.FC = () => {
-  const [value, setValue] = React.useState<Key>('aardvark1')
-  const [valueHeader, setValueHeader] = React.useState<Key>('')
-  const [flag, setFlag] = React.useState<Key>('')
-  const [loadMoreValue, setLoadMoreValue] = React.useState<Key>('')
+  const [value, setValue] = React.useState<string>('aardvark1')
+  const [valueHeader, setValueHeader] = React.useState<string>('')
+  const [flag, setFlag] = React.useState<string>('')
+  const [loadMoreValue, setLoadMoreValue] = React.useState<string>('')
   const [loading, setLoading] = React.useState(true)
   const [loadingMoreStatus, setLoadingMoreStatus] = React.useState(false)
   const [data, setData] = React.useState<SampleData[]>(generateRandomData(10))
-  const [value1, setValue1] = React.useState<Key>('cat')
+  const [value1, setValue1] = React.useState<string>('cat')
 
-  const handlePrefix = (key: Key) => {
+  const handlePrefix = (key: string) => {
     if (key === 'afghanistan') {
       return (
         <div
@@ -139,7 +139,7 @@ export const Select: React.FC = () => {
         }
         placeholder='Choose an animal'
         value={value}
-        onValueChange={(k: Key) => setValue(k)}
+        onValueChange={(k: Key) => setValue(k.toString())}
         onBlur={() => console.log('blur')}
         onFocus={() => console.log('focus')}
       >
@@ -174,7 +174,7 @@ export const Select: React.FC = () => {
         label={<>Phone Code Select</>}
         placeholder='Choose an animal'
         value={flag}
-        onValueChange={(k: Key) => setFlag(k)}
+        onValueChange={(k: Key) => setFlag(k.toString())}
         prefix={
           <div
             style={{
@@ -199,7 +199,7 @@ export const Select: React.FC = () => {
         label='Favorite Animal'
         placeholder='Choose an animal'
         value={value1}
-        onValueChange={(k: Key) => setValue1(k)}
+        onValueChange={(k: Key) => setValue1(k.toString())}
       >
         <Dropdown.Item
           value='panda'
@@ -227,7 +227,7 @@ export const Select: React.FC = () => {
         label='Favorite Animal'
         placeholder='Choose an animal'
         value={value1}
-        onValueChange={(k: Key) => setValue1(k)}
+        onValueChange={(k: Key) => setValue1(k.toString())}
         disabledValues={['dog']}
       >
         <Dropdown.Item
@@ -320,7 +320,7 @@ export const Select: React.FC = () => {
         label='Favorite Animal'
         placeholder='Choose an animal'
         value={valueHeader}
-        onValueChange={(value: Key) => setValueHeader(value)}
+        onValueChange={(value: Key) => setValueHeader(value.toString())}
       >
         <Dropdown.Header>
           <div
@@ -513,7 +513,7 @@ export const Select: React.FC = () => {
         placeholder='Select name'
         value={loadMoreValue}
         isLoadingMore={loadingMoreStatus}
-        onValueChange={(k: Key) => setLoadMoreValue(k)}
+        onValueChange={(k: Key) => setLoadMoreValue(k.toString())}
         onLoadMore={() => {
           setLoadingMoreStatus(true)
           setData((currentData) => {
@@ -538,10 +538,10 @@ export const Select: React.FC = () => {
 }
 
 export const Combobox: React.FC = () => {
-  const [value, setValue] = React.useState<Key>('cat')
-  const [valueHeader, setValueHeader] = React.useState<Key>('')
-  const [disabledValue] = React.useState<Key>('dog')
-  const [customValue, setCustomValue] = React.useState<Key>('kangaroo')
+  const [value, setValue] = React.useState<string>('cat')
+  const [valueHeader, setValueHeader] = React.useState<string>('')
+  const [disabledValue] = React.useState<string>('dog')
+  const [customValue, setCustomValue] = React.useState<string>('kangaroo')
 
   return (
     <Column>
@@ -555,11 +555,10 @@ export const Combobox: React.FC = () => {
         }
         placeholder='Choose an animal'
         value={value}
-        onValueChange={(k: Key) => setValue(k)}
+        onValueChange={(k: Key) => setValue(k.toString())}
         onBlur={() => console.log('blur')}
         onFocus={() => console.log('focus')}
       >
-        {/* <Dropdown.Item lear Data</Dropdown.Item> */}
         <Dropdown.Item
           value='panda'
           leftIcon={<FontAwesomeIcon icon={faBug} />}
@@ -664,7 +663,7 @@ export const Combobox: React.FC = () => {
         label='Favorite Animal'
         placeholder='Choose an animal'
         value={customValue}
-        onValueChange={(k: Key) => setCustomValue(k)}
+        onValueChange={(k: Key) => setCustomValue(k.toString())}
         allowsCustomValue
       >
         <Dropdown.Item
@@ -686,7 +685,7 @@ export const Combobox: React.FC = () => {
         label='Favorite Animal'
         placeholder='Choose an animal'
         value={valueHeader}
-        onValueChange={(value: Key) => setValueHeader(value)}
+        onValueChange={(value: Key) => setValueHeader(value.toString())}
       >
         <Dropdown.Header>
           <div

@@ -5,10 +5,17 @@ export const StyledFormLayout = styled('form', {
   width: '100%',
   flexDirection: 'column',
   gap: '$4',
+  containerType: 'inline-size',
+  containerName: 'formLayout',
 })
 export const StyledFormLayoutRow = styled('div', {
   display: 'grid',
   gap: '$4',
+  '@container formLayout (max-width: 640px)': {
+    '&.break-on-small': {
+      gridTemplateColumns: '1fr',
+    },
+  },
   variants: {
     columns: {
       1: {

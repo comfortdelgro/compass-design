@@ -343,6 +343,8 @@ export const routes: TSideNavItem[] = [
         title: 'Pagination',
         pathname: '/pagination',
         description: 'Pagination divides content into pages for navigation.',
+      },
+      {
         title: 'MenuList',
         pathname: '/menu-list',
         description:
@@ -421,6 +423,12 @@ export const routes: TSideNavItem[] = [
         pathname: '/skeleton',
         description:
           'Display a placeholder preview of your content before the data gets loaded to reduce load-time frustration.',
+      },
+      {
+        title: 'Slide action/Swiper',
+        pathname: '/slide-action',
+        description:
+          'A slide action/swiper for important actions, such as purchase order, turn off privacy setting, etc.',
       },
       {
         title: 'Slider',

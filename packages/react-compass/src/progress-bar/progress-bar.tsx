@@ -1,21 +1,44 @@
-import React from 'react'
+import clampValue from 'lodash/clamp'
+import React, {useEffect, useMemo} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {ProgressBarVariantProps, StyledProgressBar} from './progress-bar.styles'
+import {
+  ProgressBarWrapperVariantProps,
+  StyledCurrentProgress,
+  StyledLoadingProgress,
+  StyledProgressBar,
+  StyledProgressBarWrapper,
+} from './progress-bar.styles'
 
-interface Props extends StyledComponentProps {
+type Props = {
   rightLabel?: string
+  /** @default "lg" */
   size?: 'sm' | 'md' | 'lg' | 'xl'
-  color?: 'green' | 'blue'
+  /**
+   * Color visualization of the current value.
+   * @default "blue" // $info - #009EDA
+   */
+  color?: string
+  /**
+   * Color of the progress bar.
+   * @default "$gray30" // #EDEBE9
+   */
+  barColor?: string
+  /** @default "normal" */
   variant?: 'normal' | 'rounded'
-  label?: ''
-  value: number
-  minValue: number
-  maxValue: number
-}
+  label?: string
+  /** @default 0 */
+  value?: number
+  /** @default 0 */
+  minValue?: number
+  /** @default 100 */
+  maxValue?: number
+  onComplete?: () => void
+  loading?: 'stripes' | boolean
+} & StyledComponentProps &
+  ProgressBarWrapperVariantProps
 
 export type ProgressBarProps = Props &
-  ProgressBarVariantProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
@@ -24,19 +47,38 @@ const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
       // StyledComponentProps
       css = {},
       // ComponentProps
+      loading = false,
       label,
       rightLabel,
       size = 'lg',
-      color = 'blue',
+      barColor = '$gray30',
+      color: inputColor = 'blue',
       variant = 'normal',
-      value = 0,
-      minValue = 0,
-      maxValue = 100,
+      value: inputValue = 0,
+      minValue: inputMinValue = 0,
+      maxValue: inputMaxValue = 100,
+      onComplete,
       // html props
       ...delegated
     } = props
 
-    const variantProps = {} as ProgressBarVariantProps
+    const color = useMemo(() => {
+      // support the old color variants
+      if (inputColor === 'blue') {
+        return '$info'
+      }
+
+      if (inputColor === 'green') {
+        return '$success'
+      }
+
+      return inputColor
+    }, [inputColor])
+
+    const minValue = inputMinValue < 0 ? 0 : inputMinValue
+    const maxValue = inputMaxValue < minValue ? minValue : inputMaxValue
+    const value = clampValue(inputValue, minValue, maxValue)
+
     const linkRef = useDOMRef<HTMLDivElement>(ref)
     const labelProps = {
       role: 'progressbar',
@@ -46,17 +88,29 @@ const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
       'aria-valuemax': maxValue,
     }
 
-    const percentage = (value - minValue) / (maxValue - minValue)
-    const barWidth = `${Math.round(percentage * 100)}%`
+    const progressPercentage = useMemo(() => {
+      if (maxValue - minValue === 0 || value === maxValue) {
+        return 100
+      }
+
+      const percentage = (value - minValue) / (maxValue - minValue)
+      return Math.round(percentage * 100)
+    }, [value, minValue, maxValue])
+
+    useEffect(() => {
+      if (progressPercentage === 100) {
+        onComplete?.()
+      }
+    }, [progressPercentage, onComplete])
+
     return (
-      <StyledProgressBar
+      <StyledProgressBarWrapper
+        className='progress-bar-wrapper'
         css={css}
         ref={linkRef}
         size={size}
-        color={color}
-        variant={variant}
+        {...{variant}}
         {...labelProps}
-        {...variantProps}
         {...delegated}
       >
         {(!!label || !!rightLabel) && (
@@ -65,10 +119,36 @@ const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
             {rightLabel && <span {...labelProps}>{rightLabel ?? ''}</span>}
           </div>
         )}
-        <div className='progress-bar'>
-          <div style={{width: barWidth}} />
-        </div>
-      </StyledProgressBar>
+
+        <StyledProgressBar
+          className='progress-bar'
+          css={{backgroundColor: barColor}}
+        >
+          {!loading && (
+            <StyledCurrentProgress
+              className='progress-bar__current-state'
+              css={{width: `${progressPercentage}%`, backgroundColor: color}}
+            />
+          )}
+
+          <StyledLoadingProgress
+            className='progress-bar__loading'
+            css={{
+              ...(loading === 'stripes'
+                ? {
+                    backgroundImage: `repeating-linear-gradient(-45deg,transparent 0 1.5%,${color} 1.5% 3%)`,
+                    '@sm': {
+                      backgroundImage: `repeating-linear-gradient(-45deg,transparent 0 .8%,${color} .8% 1.6%)`,
+                    },
+                  }
+                : {
+                    backgroundColor: color,
+                  }),
+            }}
+            {...{loading}}
+          />
+        </StyledProgressBar>
+      </StyledProgressBarWrapper>
     )
   },
 )

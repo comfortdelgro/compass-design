@@ -169,8 +169,8 @@ export const StyledUploadContainer = styled('div', {
 
   //container styling
   width: '100%',
-  border: '1px dashed #E6E6E6',
-  background: '$primaryBg',
+  border: '1px dashed $border',
+  background: '$gray10',
   padding: '$2',
   overflow: 'hidden',
   borderRadius: '$lg',
@@ -245,7 +245,12 @@ export const StyledUploadWrapper = styled('div', {
   variants: {
     variant: {
       field: {},
-      area: {},
+      area: {
+        [`${StyledUploadContainer}`]: {
+          border: '1px dashed $gray60',
+          background: '$primaryBg',
+        },
+      },
     },
   },
 })

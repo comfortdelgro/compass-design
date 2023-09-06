@@ -22,6 +22,18 @@ export const Colors: React.FC = () => (
       <Badge label='Danger' color='danger' />
       <Badge label='Warning' color='warning' />
     </Row>
+    <Row>
+      <Badge label='Info' color='info' variant='secondary' />
+      <Badge label='Success' color='success' variant='secondary' />
+      <Badge label='Danger' color='danger' variant='secondary' />
+      <Badge label='Warning' color='warning' variant='secondary' />
+    </Row>
+    <Row>
+      <Badge label='Info' color='info' variant='outline' />
+      <Badge label='Success' color='success' variant='outline' />
+      <Badge label='Danger' color='danger' variant='outline' />
+      <Badge label='Warning' color='warning' variant='outline' />
+    </Row>
   </Column>
 )
 
@@ -87,6 +99,24 @@ export const Disabled: React.FC = () => (
     <Row>
       <Badge label='Default' isDisabled />
       <Badge label='Default' isDisabled icon />
+    </Row>
+  </Column>
+)
+export const Sizes: React.FC = () => (
+  <Column>
+    <h3>Sizes</h3>
+
+    <Row>
+      <h4>1. Small</h4>
+      <Badge label='Small' variant='primary' size='sm' icon />
+    </Row>
+    <Row>
+      <h4>1. Medium</h4>
+      <Badge label='Medium' variant='primary' size='md' icon />
+    </Row>
+    <Row>
+      <h4>2. Large</h4>
+      <Badge label='Large' variant='primary' size='lg' icon />
     </Row>
   </Column>
 )

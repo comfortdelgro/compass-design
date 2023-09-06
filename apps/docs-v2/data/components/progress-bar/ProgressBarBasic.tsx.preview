@@ -1,0 +1,1 @@
+<ProgressBar value={20} label='Label' rightLabel='Right label' />

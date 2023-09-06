@@ -162,469 +162,469 @@ export default function fileIcons() {
     >
       <IconBox
         component={<AepGrayFile width={40} height={40} />}
-        name='AepGray'
+        name='aep-gray'
       />
       <IconBox
         component={<AepSolidFile width={40} height={40} />}
-        name='AepSolid'
+        name='aep-solid'
       />
-      <IconBox component={<AepFile width={40} height={40} />} name='Aep' />
+      <IconBox component={<AepFile width={40} height={40} />} name='aep' />
       <IconBox
         component={<AiGrayFile width={40} height={40} />}
-        name='AiGray'
+        name='ai-gray'
       />
       <IconBox
         component={<AiSolidFile width={40} height={40} />}
-        name='AiSolid'
+        name='ai-solid'
       />
-      <IconBox component={<AiFile width={40} height={40} />} name='Ai' />
+      <IconBox component={<AiFile width={40} height={40} />} name='ai' />
       <IconBox
         component={<AudioGrayFile width={40} height={40} />}
-        name='AudioGray'
+        name='audio-gray'
       />
       <IconBox
         component={<AudioSolidFile width={40} height={40} />}
-        name='AudioSolid'
+        name='audio-solid'
       />
-      <IconBox component={<AudioFile width={40} height={40} />} name='Audio' />
+      <IconBox component={<AudioFile width={40} height={40} />} name='audio' />
       <IconBox
         component={<AviGrayFile width={40} height={40} />}
-        name='AviGray'
+        name='avi-gray'
       />
       <IconBox
         component={<AviSolidFile width={40} height={40} />}
-        name='AviSolid'
+        name='avi-solid'
       />
-      <IconBox component={<AviFile width={40} height={40} />} name='Avi' />
+      <IconBox component={<AviFile width={40} height={40} />} name='avi' />
       <IconBox
         component={<CodeGrayFile width={40} height={40} />}
-        name='CodeGray'
+        name='code-gray'
       />
       <IconBox
         component={<CodeSolidFile width={40} height={40} />}
-        name='CodeSolid'
+        name='code-solid'
       />
-      <IconBox component={<CodeFile width={40} height={40} />} name='Code' />
+      <IconBox component={<CodeFile width={40} height={40} />} name='code' />
       <IconBox
         component={<CssGrayFile width={40} height={40} />}
-        name='CssGray'
+        name='css-gray'
       />
       <IconBox
         component={<CssSolidFile width={40} height={40} />}
-        name='CssSolid'
+        name='css-solid'
       />
-      <IconBox component={<CssFile width={40} height={40} />} name='Css' />
+      <IconBox component={<CssFile width={40} height={40} />} name='css' />
       <IconBox
         component={<CsvGrayFile width={40} height={40} />}
-        name='CsvGray'
+        name='csv-gray'
       />
       <IconBox
         component={<CsvSolidFile width={40} height={40} />}
-        name='CsvSolid'
+        name='csv-solid'
       />
-      <IconBox component={<CsvFile width={40} height={40} />} name='Csv' />
+      <IconBox component={<CsvFile width={40} height={40} />} name='csv' />
       <IconBox
         component={<DmgGrayFile width={40} height={40} />}
-        name='DmgGray'
+        name='dmg-gray'
       />
       <IconBox
         component={<DmgSolidFile width={40} height={40} />}
-        name='DmgSolid'
+        name='dmg-solid'
       />
-      <IconBox component={<DmgFile width={40} height={40} />} name='Dmg' />
+      <IconBox component={<DmgFile width={40} height={40} />} name='dmg' />
       <IconBox
         component={<DocGrayFile width={40} height={40} />}
-        name='DocGray'
+        name='doc-gray'
       />
       <IconBox
         component={<DocSolidFile width={40} height={40} />}
-        name='DocSolid'
+        name='doc-solid'
       />
-      <IconBox component={<DocFile width={40} height={40} />} name='Doc' />
+      <IconBox component={<DocFile width={40} height={40} />} name='doc' />
       <IconBox
         component={<DocumentGrayFile width={40} height={40} />}
-        name='DocumentGray'
+        name='document-gray'
       />
       <IconBox
         component={<DocumentSolidFile width={40} height={40} />}
-        name='DocumentSolid'
+        name='document-solid'
       />
       <IconBox
         component={<DocumentFile width={40} height={40} />}
-        name='Document'
+        name='document'
       />
       <IconBox
         component={<DocxGrayFile width={40} height={40} />}
-        name='DocxGray'
+        name='docx-gray'
       />
       <IconBox
         component={<DocxSolidFile width={40} height={40} />}
-        name='DocxSolid'
+        name='docx-solid'
       />
-      <IconBox component={<DocxFile width={40} height={40} />} name='Docx' />
+      <IconBox component={<DocxFile width={40} height={40} />} name='docx' />
       <IconBox
         component={<EmptyGrayFile width={40} height={40} />}
-        name='EmptyGray'
+        name='empty-gray'
       />
       <IconBox
         component={<EmptySolidFile width={40} height={40} />}
-        name='EmptySolid'
+        name='empty-solid'
       />
-      <IconBox component={<EmptyFile width={40} height={40} />} name='Empty' />
+      <IconBox component={<EmptyFile width={40} height={40} />} name='empty' />
       <IconBox
         component={<EspGrayFile width={40} height={40} />}
-        name='EspGray'
+        name='esp-gray'
       />
       <IconBox
         component={<EspSolidFile width={40} height={40} />}
-        name='EspSolid'
+        name='esp-solid'
       />
-      <IconBox component={<EspFile width={40} height={40} />} name='Esp' />
+      <IconBox component={<EspFile width={40} height={40} />} name='esp' />
       <IconBox
         component={<ExeGrayFile width={40} height={40} />}
-        name='ExeGray'
+        name='exe-gray'
       />
       <IconBox
         component={<ExeSolidFile width={40} height={40} />}
-        name='ExeSolid'
+        name='exe-solid'
       />
-      <IconBox component={<ExeFile width={40} height={40} />} name='Exe' />
+      <IconBox component={<ExeFile width={40} height={40} />} name='exe' />
       <IconBox
         component={<FigGrayFile width={40} height={40} />}
-        name='FigGray'
+        name='fig-gray'
       />
       <IconBox
         component={<FigSolidFile width={40} height={40} />}
-        name='FigSolid'
+        name='fig-solid'
       />
-      <IconBox component={<FigFile width={40} height={40} />} name='Fig' />
+      <IconBox component={<FigFile width={40} height={40} />} name='fig' />
       <IconBox
         component={<FolderGrayFile width={40} height={40} />}
-        name='FolderGray'
+        name='folder-gray'
       />
       <IconBox
         component={<FolderSolidFile width={40} height={40} />}
-        name='FolderSolid'
+        name='folder-solid'
       />
       <IconBox
         component={<FolderFile width={40} height={40} />}
-        name='Folder'
+        name='folder'
       />
       <IconBox
         component={<GifGrayFile width={40} height={40} />}
-        name='GifGray'
+        name='gif-gray'
       />
       <IconBox
         component={<GifSolidFile width={40} height={40} />}
-        name='GifSolid'
+        name='gif-solid'
       />
-      <IconBox component={<GifFile width={40} height={40} />} name='Gif' />
+      <IconBox component={<GifFile width={40} height={40} />} name='gif' />
       <IconBox
         component={<HtmlGrayFile width={40} height={40} />}
-        name='HtmlGray'
+        name='html-gray'
       />
       <IconBox
         component={<HtmlSolidFile width={40} height={40} />}
-        name='HtmlSolid'
+        name='html-solid'
       />
-      <IconBox component={<HtmlFile width={40} height={40} />} name='Html' />
+      <IconBox component={<HtmlFile width={40} height={40} />} name='html' />
       <IconBox
         component={<ImageGrayFile width={40} height={40} />}
-        name='ImageGray'
+        name='image-gray'
       />
       <IconBox
         component={<ImageSolidFile width={40} height={40} />}
-        name='ImageSolid'
+        name='image-solid'
       />
-      <IconBox component={<ImageFile width={40} height={40} />} name='Image' />
+      <IconBox component={<ImageFile width={40} height={40} />} name='image' />
       <IconBox
         component={<ImgGrayFile width={40} height={40} />}
-        name='ImgGray'
+        name='img-gray'
       />
       <IconBox
         component={<ImgSolidFile width={40} height={40} />}
-        name='ImgSolid'
+        name='img-solid'
       />
-      <IconBox component={<ImgFile width={40} height={40} />} name='Img' />
+      <IconBox component={<ImgFile width={40} height={40} />} name='img' />
       <IconBox
         component={<InddGrayFile width={40} height={40} />}
-        name='InddGray'
+        name='indd-gray'
       />
       <IconBox
         component={<InddSolidFile width={40} height={40} />}
-        name='InddSolid'
+        name='indd-solid'
       />
-      <IconBox component={<InddFile width={40} height={40} />} name='Indd' />
+      <IconBox component={<InddFile width={40} height={40} />} name='indd' />
       <IconBox
         component={<JavaGrayFile width={40} height={40} />}
-        name='JavaGray'
+        name='java-gray'
       />
       <IconBox
         component={<JavaSolidFile width={40} height={40} />}
-        name='JavaSolid'
+        name='java-solid'
       />
-      <IconBox component={<JavaFile width={40} height={40} />} name='Java' />
+      <IconBox component={<JavaFile width={40} height={40} />} name='java' />
       <IconBox
         component={<JpegGrayFile width={40} height={40} />}
-        name='JpegGray'
+        name='jpeg-gray'
       />
       <IconBox
         component={<JpegSolidFile width={40} height={40} />}
-        name='JpegSolid'
+        name='jpeg-solid'
       />
-      <IconBox component={<JpegFile width={40} height={40} />} name='Jpeg' />
+      <IconBox component={<JpegFile width={40} height={40} />} name='jpeg' />
       <IconBox
         component={<JpgGrayFile width={40} height={40} />}
-        name='JpgGray'
+        name='jpg-gray'
       />
       <IconBox
         component={<JpgSolidFile width={40} height={40} />}
-        name='JpgSolid'
+        name='jpg-solid'
       />
-      <IconBox component={<JpgFile width={40} height={40} />} name='Jpg' />
+      <IconBox component={<JpgFile width={40} height={40} />} name='jpg' />
       <IconBox
         component={<JsGrayFile width={40} height={40} />}
-        name='JsGray'
+        name='js-gray'
       />
       <IconBox
         component={<JsSolidFile width={40} height={40} />}
-        name='JsSolid'
+        name='js-solid'
       />
-      <IconBox component={<JsFile width={40} height={40} />} name='Js' />
+      <IconBox component={<JsFile width={40} height={40} />} name='js' />
       <IconBox
         component={<JsonGrayFile width={40} height={40} />}
-        name='JsonGray'
+        name='json-gray'
       />
       <IconBox
         component={<JsonSolidFile width={40} height={40} />}
-        name='JsonSolid'
+        name='json-solid'
       />
-      <IconBox component={<JsonFile width={40} height={40} />} name='Json' />
+      <IconBox component={<JsonFile width={40} height={40} />} name='json' />
       <IconBox
         component={<MkvGrayFile width={40} height={40} />}
-        name='MkvGray'
+        name='mkv-gray'
       />
       <IconBox
         component={<MkvSolidFile width={40} height={40} />}
-        name='MkvSolid'
+        name='mkv-solid'
       />
-      <IconBox component={<MkvFile width={40} height={40} />} name='Mkv' />
+      <IconBox component={<MkvFile width={40} height={40} />} name='mkv' />
       <IconBox
         component={<Mp3GrayFile width={40} height={40} />}
-        name='Mp3Gray'
+        name='mp3-gray'
       />
       <IconBox
         component={<Mp3SolidFile width={40} height={40} />}
-        name='Mp3Solid'
+        name='mp3-solid'
       />
-      <IconBox component={<Mp3File width={40} height={40} />} name='Mp3' />
+      <IconBox component={<Mp3File width={40} height={40} />} name='mp3' />
       <IconBox
         component={<Mp4GrayFile width={40} height={40} />}
-        name='Mp4Gray'
+        name='mp4-gray'
       />
       <IconBox
         component={<Mp4SolidFile width={40} height={40} />}
-        name='Mp4Solid'
+        name='mp4-solid'
       />
-      <IconBox component={<Mp4File width={40} height={40} />} name='Mp4' />
+      <IconBox component={<Mp4File width={40} height={40} />} name='mp4' />
       <IconBox
         component={<MpegGrayFile width={40} height={40} />}
-        name='MpegGray'
+        name='mpeg-gray'
       />
       <IconBox
         component={<MpegSolidFile width={40} height={40} />}
-        name='MpegSolid'
+        name='mpeg-solid'
       />
-      <IconBox component={<MpegFile width={40} height={40} />} name='Mpeg' />
+      <IconBox component={<MpegFile width={40} height={40} />} name='mpeg' />
       <IconBox
         component={<PdfGrayFile width={40} height={40} />}
-        name='PdfGray'
+        name='pdf-gray'
       />
       <IconBox
         component={<PdfSolidFile width={40} height={40} />}
-        name='PdfSolid'
+        name='pdf-solid'
       />
-      <IconBox component={<PdfFile width={40} height={40} />} name='Pdf' />
+      <IconBox component={<PdfFile width={40} height={40} />} name='pdf' />
       <IconBox
         component={<Pdf2GrayFile width={40} height={40} />}
-        name='Pdf2Gray'
+        name='pdf2-gray'
       />
       <IconBox
         component={<Pdf2SolidFile width={40} height={40} />}
-        name='Pdf2Solid'
+        name='pdf2-solid'
       />
-      <IconBox component={<Pdf2File width={40} height={40} />} name='Pdf2' />
+      <IconBox component={<Pdf2File width={40} height={40} />} name='pdf2' />
       <IconBox
         component={<PngGrayFile width={40} height={40} />}
-        name='PngGray'
+        name='png-gray'
       />
       <IconBox
         component={<PngSolidFile width={40} height={40} />}
-        name='PngSolid'
+        name='png-solid'
       />
-      <IconBox component={<PngFile width={40} height={40} />} name='Png' />
+      <IconBox component={<PngFile width={40} height={40} />} name='png' />
       <IconBox
         component={<PsdGrayFile width={40} height={40} />}
-        name='PsdGray'
+        name='psd-gray'
       />
       <IconBox
         component={<PsdSolidFile width={40} height={40} />}
-        name='PsdSolid'
+        name='psd-solid'
       />
-      <IconBox component={<PsdFile width={40} height={40} />} name='Psd' />
+      <IconBox component={<PsdFile width={40} height={40} />} name='psd' />
       <IconBox
         component={<PttGrayFile width={40} height={40} />}
-        name='PttGray'
+        name='ptt-gray'
       />
       <IconBox
         component={<PttSolidFile width={40} height={40} />}
-        name='PttSolid'
+        name='ptt-solid'
       />
-      <IconBox component={<PttFile width={40} height={40} />} name='Ptt' />
+      <IconBox component={<PttFile width={40} height={40} />} name='ptt' />
       <IconBox
         component={<PttxGrayFile width={40} height={40} />}
-        name='PttxGray'
+        name='pttx-gray'
       />
       <IconBox
         component={<PttxSolidFile width={40} height={40} />}
-        name='PttxSolid'
+        name='pttx-solid'
       />
-      <IconBox component={<PttxFile width={40} height={40} />} name='Pttx' />
+      <IconBox component={<PttxFile width={40} height={40} />} name='pttx' />
       <IconBox
         component={<RarGrayFile width={40} height={40} />}
-        name='RarGray'
+        name='rar-gray'
       />
       <IconBox
         component={<RarSolidFile width={40} height={40} />}
-        name='RarSolid'
+        name='rar-solid'
       />
-      <IconBox component={<RarFile width={40} height={40} />} name='Rar' />
+      <IconBox component={<RarFile width={40} height={40} />} name='rar' />
       <IconBox
         component={<RssGrayFile width={40} height={40} />}
-        name='RssGray'
+        name='rss-gray'
       />
       <IconBox
         component={<RssSolidFile width={40} height={40} />}
-        name='RssSolid'
+        name='rss-solid'
       />
-      <IconBox component={<RssFile width={40} height={40} />} name='Rss' />
+      <IconBox component={<RssFile width={40} height={40} />} name='rss' />
       <IconBox
         component={<SpreadsheetGrayFile width={40} height={40} />}
-        name='SpreadsheetGray'
+        name='spreadsheet-gray'
       />
       <IconBox
         component={<SpreadsheetSolidFile width={40} height={40} />}
-        name='SpreadsheetSolid'
+        name='spreadsheet-solid'
       />
       <IconBox
         component={<SpreadsheetFile width={40} height={40} />}
-        name='Spreadsheet'
+        name='spreadsheet'
       />
       <IconBox
         component={<SqlGrayFile width={40} height={40} />}
-        name='SqlGray'
+        name='sql-gray'
       />
       <IconBox
         component={<SqlSolidFile width={40} height={40} />}
-        name='SqlSolid'
+        name='sql-solid'
       />
-      <IconBox component={<SqlFile width={40} height={40} />} name='Sql' />
+      <IconBox component={<SqlFile width={40} height={40} />} name='sql' />
       <IconBox
         component={<SvgGrayFile width={40} height={40} />}
-        name='SvgGray'
+        name='svg-gray'
       />
       <IconBox
         component={<SvgSolidFile width={40} height={40} />}
-        name='SvgSolid'
+        name='svg-solid'
       />
-      <IconBox component={<SvgFile width={40} height={40} />} name='Svg' />
+      <IconBox component={<SvgFile width={40} height={40} />} name='svg' />
       <IconBox
         component={<TiffGrayFile width={40} height={40} />}
-        name='TiffGray'
+        name='tiff-gray'
       />
       <IconBox
         component={<TiffSolidFile width={40} height={40} />}
-        name='TiffSolid'
+        name='tiff-solid'
       />
-      <IconBox component={<TiffFile width={40} height={40} />} name='Tiff' />
+      <IconBox component={<TiffFile width={40} height={40} />} name='tiff' />
       <IconBox
         component={<TxtGrayFile width={40} height={40} />}
-        name='TxtGray'
+        name='txt-gray'
       />
       <IconBox
         component={<TxtSolidFile width={40} height={40} />}
-        name='TxtSolid'
+        name='txt-solid'
       />
-      <IconBox component={<TxtFile width={40} height={40} />} name='Txt' />
+      <IconBox component={<TxtFile width={40} height={40} />} name='txt' />
       <IconBox
         component={<Video01GrayFile width={40} height={40} />}
-        name='Video01Gray'
+        name='video01-gray'
       />
       <IconBox
         component={<Video01SolidFile width={40} height={40} />}
-        name='Video01Solid'
+        name='video01-solid'
       />
       <IconBox
         component={<Video01File width={40} height={40} />}
-        name='Video01'
+        name='video01'
       />
       <IconBox
         component={<Video02GrayFile width={40} height={40} />}
-        name='Video02Gray'
+        name='video02-gray'
       />
       <IconBox
         component={<Video02SolidFile width={40} height={40} />}
-        name='Video02Solid'
+        name='video02-solid'
       />
       <IconBox
         component={<Video02File width={40} height={40} />}
-        name='Video02'
+        name='video02'
       />
       <IconBox
         component={<WavGrayFile width={40} height={40} />}
-        name='WavGray'
+        name='wav-gray'
       />
       <IconBox
         component={<WavSolidFile width={40} height={40} />}
-        name='WavSolid'
+        name='wav-solid'
       />
-      <IconBox component={<WavFile width={40} height={40} />} name='Wav' />
+      <IconBox component={<WavFile width={40} height={40} />} name='wav' />
       <IconBox
         component={<WebpGrayFile width={40} height={40} />}
-        name='WebpGray'
+        name='webp-gray'
       />
       <IconBox
         component={<WebpSolidFile width={40} height={40} />}
-        name='WebpSolid'
+        name='webp-solid'
       />
-      <IconBox component={<WebpFile width={40} height={40} />} name='Webp' />
+      <IconBox component={<WebpFile width={40} height={40} />} name='webp' />
       <IconBox
         component={<XlsxGrayFile width={40} height={40} />}
-        name='XlsxGray'
+        name='xlsx-gray'
       />
       <IconBox
         component={<XlsxSolidFile width={40} height={40} />}
-        name='XlsxSolid'
+        name='xlsx-solid'
       />
-      <IconBox component={<XlsxFile width={40} height={40} />} name='Xlsx' />
+      <IconBox component={<XlsxFile width={40} height={40} />} name='xlsx' />
       <IconBox
         component={<XmlGrayFile width={40} height={40} />}
-        name='XmlGray'
+        name='xml-gray'
       />
       <IconBox
         component={<XmlSolidFile width={40} height={40} />}
-        name='XmlSolid'
+        name='xml-solid'
       />
-      <IconBox component={<XmlFile width={40} height={40} />} name='Xml' />
+      <IconBox component={<XmlFile width={40} height={40} />} name='xml' />
       <IconBox
         component={<ZipGrayFile width={40} height={40} />}
-        name='ZipGray'
+        name='zip-gray'
       />
       <IconBox
         component={<ZipSolidFile width={40} height={40} />}
-        name='ZipSolid'
+        name='zip-solid'
       />
-      <IconBox component={<ZipFile width={40} height={40} />} name='Zip' />
+      <IconBox component={<ZipFile width={40} height={40} />} name='zip' />
     </Flexbox>
   )
 }

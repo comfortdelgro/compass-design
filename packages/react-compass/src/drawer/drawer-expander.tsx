@@ -36,7 +36,7 @@ const DrawerExpander = ({
   onDragEnd,
   ...delegated
 }: DrawerExpanderProps) => {
-  const dragHookOptions = useMemo<DraggableOptions>(
+  const dragHookOptions = useMemo<DraggableOptions<HTMLDivElement>>(
     () => ({
       // stepSize: 2,
       direction: 'vertical',
@@ -58,10 +58,10 @@ const DrawerExpander = ({
     target: drawerExpanderRef,
     position: {y},
     setPosition,
-  } = useDrag<HTMLDivElement>(dragHookOptions)
+  } = useDrag(dragHookOptions)
 
   useEffect(() => {
-    setPosition([0, 0])
+    setPosition({x: 0, y: 0})
   }, [drawerOpen])
 
   useEffect(() => {

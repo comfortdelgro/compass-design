@@ -15,6 +15,7 @@ import {
 } from './modal.styles'
 
 interface Props extends StyledComponentProps {
+  h5?: boolean
   children?: React.ReactNode
   handleClose?: () => void
   size?: 'sm' | 'md' | 'lg'
@@ -29,6 +30,7 @@ export type ModalProps = Props &
 
 const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
   const {
+    h5 = false,
     // StyledComponentProps
     css = {},
     // children
@@ -180,13 +182,14 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
       tabIndex={0}
       role='dialog'
       aria-modal={true}
+      h5={h5}
       onClick={(e) => handleClick?.(e as unknown as MouseEvent)}
       onKeyDown={(e) => handleKeyDown?.(e as unknown as KeyboardEvent)}
       {...delegated}
       {...variantProps}
     >
       <StyledModalContent tabIndex={0}>
-        <StyledModalHeader>
+        <StyledModalHeader h5={h5}>
           {ModalTitleElement}
           {CloseIconElement &&
             React.cloneElement(CloseIconElement as unknown as JSX.Element, {

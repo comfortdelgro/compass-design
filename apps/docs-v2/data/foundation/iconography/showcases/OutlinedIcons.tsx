@@ -39,111 +39,111 @@ export default function outlinedIcons() {
     >
       <IconBox
         component={<AddressBookOutlined width={40} height={40} />}
-        name='AddressBookOutlined'
+        name='address-book-outlined'
       />
       <IconBox
         component={<ArrowDownOutlined width={40} height={40} />}
-        name='ArrowDownOutlined'
+        name='arrow-down-outlined'
       />
       <IconBox
         component={<ArrowLeftOutlined width={40} height={40} />}
-        name='ArrowLeftOutlined'
+        name='arrow-left-outlined'
       />
       <IconBox
         component={<ArrowRightOutlined width={40} height={40} />}
-        name='ArrowRightOutlined'
+        name='arrow-right-outlined'
       />
       <IconBox
         component={<ArrowUpOutlined width={40} height={40} />}
-        name='ArrowUpOutlined'
+        name='arrow-up-outlined'
       />
       <IconBox
         component={<CalendarDaysOutlined width={40} height={40} />}
-        name='CalendarDaysOutlined'
+        name='calendar-days-outlined'
       />
       <IconBox
         component={<ClockOutlined width={40} height={40} />}
-        name='ClockOutlined'
+        name='clock-outlined'
       />
       <IconBox
         component={<CreditCardOutlined width={40} height={40} />}
-        name='CreditCardOutlined'
+        name='credit-card-outlined'
       />
       <IconBox
         component={<DuplicateImageOutlined width={40} height={40} />}
-        name='DuplicateImageOutlined'
+        name='duplicate-image-outlined'
       />
       <IconBox
         component={<ExclamationOutlined width={40} height={40} />}
-        name='ExclamationOutlined'
+        name='exclamation-outlined'
       />
       <IconBox
         component={<GroupAddOutlined width={40} height={40} />}
-        name='GroupAddOutlined'
+        name='group-add-outlined'
       />
       <IconBox
         component={<GroupSettingsOutlined width={40} height={40} />}
-        name='GroupSettingsOutlined'
+        name='group-settings-outlined'
       />
       <IconBox
         component={<HeartOutlined width={40} height={40} />}
-        name='HeartOutlined'
+        name='heart-outlined'
       />
       <IconBox
         component={<ImageOutlined width={40} height={40} />}
-        name='ImageOutlined'
+        name='image-outlined'
       />
       <IconBox
         component={<InfoOutlined width={40} height={40} />}
-        name='InfoOutlined'
+        name='info-outlined'
       />
       <IconBox
         component={<MailOutlined width={40} height={40} />}
-        name='MailOutlined'
+        name='mail-outlined'
       />
       <IconBox
         component={<NotificationOutlined width={40} height={40} />}
-        name='NotificationOutlined'
+        name='notification-outlined'
       />
       <IconBox
         component={<PencilOutlined width={40} height={40} />}
-        name='PencilOutlined'
+        name='pencil-outlined'
       />
       <IconBox
         component={<PersonOutlined width={40} height={40} />}
-        name='PersonOutlined'
+        name='person-outlined'
       />
       <IconBox
         component={<ProfileOutlined width={40} height={40} />}
-        name='ProfileOutlined'
+        name='profile-outlined'
       />
       <IconBox
         component={<QuestionOutlined width={40} height={40} />}
-        name='QuestionOutlined'
+        name='question-outlined'
       />
       <IconBox
         component={<StarOutlined width={40} height={40} />}
-        name='StarOutlined'
+        name='star-outlined'
       />
       <IconBox
         component={<ThumbtackOutlined width={40} height={40} />}
-        name='ThumbtackOutlined'
+        name='thumbtack-outlined'
       />
       <IconBox
         component={<TrashOutlined width={40} height={40} />}
-        name='TrashOutlined'
+        name='trash-outlined'
       />
       <IconBox
         component={<UserAddOutlined width={40} height={40} />}
-        name='UserAddOutlined'
+        name='user-add-outlined'
       />
       <IconBox
         component={<UserGroupOutlined width={40} height={40} />}
-        name='UserGroupOutlined'
+        name='user-group-outlined'
       />
       <IconBox
         component={<WarningOutlined width={40} height={40} />}
-        name='WarningOutlined'
+        name='warning-outlined'
       />
     </Flexbox>
   )
