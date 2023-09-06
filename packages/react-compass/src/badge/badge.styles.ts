@@ -104,8 +104,10 @@ export const StyledBadge = styled('div', {
             color,
             variant: 'primary',
             css: {
-              background: `$${color}`,
-              color: '$whiteText',
+              background: `$${
+                color === 'warning' ? 'badgeWarningBg' : `${color}`
+              }`,
+              color: `$${color === 'warning' ? 'warningBg' : 'whiteText'}`,
             },
           },
           // secondary
@@ -113,8 +115,10 @@ export const StyledBadge = styled('div', {
             color,
             variant: 'secondary',
             css: {
-              background: `$${color}Bg`,
-              color: `$${color}`,
+              background: `$${
+                color === 'warning' ? 'warningBg' : `${color}Bg`
+              }`,
+              color: `$${color === 'warning' ? 'badgeWarningBg' : `${color}`}`,
             },
           },
           // outline
@@ -122,9 +126,13 @@ export const StyledBadge = styled('div', {
             color,
             variant: 'outline',
             css: {
-              background: `$${color}Bg`,
-              color: `$${color}`,
-              borderColor: `$${color}`,
+              background: `$${
+                color === 'warning' ? 'warningBg' : `${color}Bg`
+              }`,
+              color: `$${color === 'warning' ? 'badgeWarningBg' : `${color}`}`,
+              borderColor: `$${
+                color === 'warning' ? 'badgeWarningBg' : `${color}`
+              }`,
             },
           },
         ])
