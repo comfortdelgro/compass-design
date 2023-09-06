@@ -2,7 +2,7 @@ import {faCar} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React from 'react'
 import {PreviewCode} from '../pudo/pudo.stories'
-import RatingSlider from './index'
+import MultipleChoicesSlider from './index'
 export const Default: React.FC = () => {
   const [selectedKeys, setSelectedKeys] = React.useState<number[]>([])
   const handleChange = (e: number[]) => {
@@ -11,48 +11,48 @@ export const Default: React.FC = () => {
   return (
     <>
       <div style={{width: '374px', marginBottom: '20px'}}>
-        <RatingSlider onChange={handleChange}>
-          <RatingSlider.Item
+        <MultipleChoicesSlider onChange={handleChange}>
+          <MultipleChoicesSlider.Item
             icon={<FontAwesomeIcon icon={faCar} />}
             label={'Safe Driving'}
             index={0}
           />
-          <RatingSlider.Item
+          <MultipleChoicesSlider.Item
             icon={<FontAwesomeIcon icon={faCar} />}
             label={'Clean & Tidy Vehicle'}
             index={1}
           />
-          <RatingSlider.Item
+          <MultipleChoicesSlider.Item
             icon={<FontAwesomeIcon icon={faCar} />}
             label={'Friendly Driver'}
             index={2}
           />
-          <RatingSlider.Item
+          <MultipleChoicesSlider.Item
             icon={<FontAwesomeIcon icon={faCar} />}
             label={'On Time'}
             index={3}
           />
-          <RatingSlider.Item
+          <MultipleChoicesSlider.Item
             icon={<FontAwesomeIcon icon={faCar} />}
             label={'Safe Driving'}
             index={4}
           />
-          <RatingSlider.Item
+          <MultipleChoicesSlider.Item
             icon={<FontAwesomeIcon icon={faCar} />}
             label={'Clean & Tidy Vehicle'}
             index={5}
           />
-          <RatingSlider.Item
+          <MultipleChoicesSlider.Item
             icon={<FontAwesomeIcon icon={faCar} />}
             label={'Friendly Driver'}
             index={6}
           />
-          <RatingSlider.Item
+          <MultipleChoicesSlider.Item
             icon={<FontAwesomeIcon icon={faCar} />}
             label={'On Time'}
             index={7}
           />
-        </RatingSlider>
+        </MultipleChoicesSlider>
       </div>
       <PreviewCode css={{width: '374px'}}>
         Selected keys:

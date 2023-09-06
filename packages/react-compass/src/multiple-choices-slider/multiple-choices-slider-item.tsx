@@ -1,7 +1,7 @@
 import React, {HTMLAttributes} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledRatingSliderItem} from './rating-slider.styles'
+import {StyledMultipleChoicesSliderItem} from './multiple-choices-slider.styles'
 
 interface Props extends StyledComponentProps {
   isSelected?: boolean
@@ -11,12 +11,12 @@ interface Props extends StyledComponentProps {
   onChange?: (index: number, isAdded: boolean) => void
 }
 
-export type RatingSliderItemProps = Props &
+export type MultipleChoicesSliderItemProps = Props &
   Omit<HTMLAttributes<HTMLDivElement>, keyof Props>
 
-const RatingSliderItem = React.forwardRef<
+const MultipleChoicesSliderItem = React.forwardRef<
   HTMLDivElement,
-  RatingSliderItemProps
+  MultipleChoicesSliderItemProps
 >((props, ref) => {
   const {isSelected, icon, label, index, onChange} = props
   const itemRef = useDOMRef(ref)
@@ -26,15 +26,15 @@ const RatingSliderItem = React.forwardRef<
     }
   }, [index, isSelected])
   return (
-    <StyledRatingSliderItem
+    <StyledMultipleChoicesSliderItem
       ref={itemRef}
       onClick={handleItemClick}
       isActive={!!isSelected}
     >
       {icon}
       <span>{label}</span>
-    </StyledRatingSliderItem>
+    </StyledMultipleChoicesSliderItem>
   )
 })
 
-export default RatingSliderItem
+export default MultipleChoicesSliderItem

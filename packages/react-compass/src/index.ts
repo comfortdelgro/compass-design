@@ -144,8 +144,6 @@ export {default as Grid} from './grid'
 export type {GridContainerProps, GridItemProps} from './grid'
 export {default as Gutter} from './gutter'
 export type {GutterProps} from './gutter'
-export {default as RatingSlider} from './h5-rating-slider'
-export type {RatingSliderItemProps, RatingSliderProps} from './h5-rating-slider'
 export {default as Icon} from './icon'
 export type {IconProp} from './icon'
 export {default as ImageViewer} from './image-viewer'
@@ -191,6 +189,11 @@ export type {
   ModalTitleProps,
   ModalTriggerProps,
 } from './modal'
+export {default as MultipleChoicesSlider} from './multiple-choices-slider'
+export type {
+  MultipleChoicesSliderItemProps,
+  MultipleChoicesSliderProps,
+} from './multiple-choices-slider'
 export {default as MultipleDropdown} from './multiple-dropdown'
 export type {
   MultipleDropdownItemProps,

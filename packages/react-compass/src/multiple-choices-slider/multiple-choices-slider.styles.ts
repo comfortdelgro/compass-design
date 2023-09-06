@@ -1,7 +1,7 @@
 import {styled} from '../theme'
 import {VariantProps} from '../utils/stitches.types'
 
-export const StyledRatingSlider = styled('div', {
+export const StyledMultipleChoicesSlider = styled('div', {
   width: '100%',
   overflowX: 'auto',
   whiteSpace: 'nowrap',
@@ -10,7 +10,7 @@ export const StyledRatingSlider = styled('div', {
   gap: '$2',
   scrollSnapType: 'x mandatory',
 })
-export const StyledRatingSliderItem = styled('div', {
+export const StyledMultipleChoicesSliderItem = styled('div', {
   display: 'flex',
   alignItems: 'center',
   flexDirection: 'column',
@@ -34,6 +34,7 @@ export const StyledRatingSliderItem = styled('div', {
     width: '100%',
     whiteSpace: 'normal',
     textAlign: 'center',
+    userSelect: 'none',
   },
   variants: {
     isActive: {
@@ -47,7 +48,9 @@ export const StyledRatingSliderItem = styled('div', {
   },
 })
 
-export type RatingSliderVariantProps = VariantProps<typeof StyledRatingSlider>
-export type StyledRatingSliderItemVariantProps = VariantProps<
-  typeof StyledRatingSliderItem
+export type MultiChoicesSliderVariantProps = VariantProps<
+  typeof StyledMultipleChoicesSlider
+>
+export type MultiChoicesSliderItemVariantProps = VariantProps<
+  typeof StyledMultipleChoicesSliderItem
 >
