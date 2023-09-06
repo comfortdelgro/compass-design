@@ -80,13 +80,13 @@ import Dropdown from '@comfortdelgro/react-compass/dropdown'
 | isDisabled         | `boolean`                               | —       | Whether the input is disabled.                                                                                                                            |
 | isReadOnly         | `boolean`                               | —       | Whether the input can be selected but not changed by the user.                                                                                            |
 | isRequired         | `boolean`                               | —       | Whether user input is required on the input before form submission. Often paired with the necessityIndicator prop to add a visual indicator to the input. |
-| values             | `Key[]`                                 | `[]`    | The currently selected values in the collection (controlled).                                                                                             |
+| values             | `Array<string \| number>`               | `[]`    | The currently selected values in the collection (controlled).                                                                                             |
 | description        | `string`                                | —       | A description for the field. Provides a hint such as specific requirements for what to choose.                                                            |
 | placeholder        | `string`                                | —       | Temporary text that occupies the text input when it is empty.                                                                                             |
 | errorMessage       | `string`                                | -       | Error message for dropdown                                                                                                                                |
-| disabledValues     | `Key[]`                                 | —       | The item values that are disabled. These items cannot be selected, focused, or otherwise interacted with.                                                 |
+| disabledValues     | `Array<string \| number>`               | —       | The item values that are disabled. These items cannot be selected, focused, or otherwise interacted with.                                                 |
 | numberOfRows       | `number`                                | —       | Number of items displayed in Popover.                                                                                                                     |
-| defaultValues      | `Key[]`                                 | —       | The initial selected value in the collection (uncontrolled).                                                                                              |
+| defaultValues      | `Array<string \| number>`               | —       | The initial selected value in the collection (uncontrolled).                                                                                              |
 | onLoadMore         | `() => void`                            | —       | Handler when user scrolls to the end.                                                                                                                     |
 | onValuesChange     | `(key: Array<string \| number>) => any` | —       | Handler that is called when the selection changes.                                                                                                        |
 | onOpenChange       | `(isOpen: boolean) => void`             | —       | Method that is called when the open state of the menu changes. Returns the new open state and the action that caused the opening of the menu.             |
@@ -97,7 +97,7 @@ import Dropdown from '@comfortdelgro/react-compass/dropdown'
 
 | Name      | Type                           | Default | Description                      |
 | :-------- | :----------------------------- | :------ | :------------------------------- |
-| value     | `Key`                          | —       | The value of the dropdown.       |
+| value     | `string \| number`             | —       | The value of the dropdown.       |
 | icon      | `icon` \| `color`              | —       | The content of the dropdown Item |
 | title     | `ReactNode`                    | —       | The title of the dropdown.       |
 | children  | `ReactNode`                    | —       | The content of the dropdown Item |
