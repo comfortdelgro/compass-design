@@ -39,6 +39,11 @@ export const StyledPaginationItem = styled('button', {
         },
       },
     },
+    isEllipsis: {
+      true: {
+        background: '$background',
+      },
+    },
   },
 })
 
@@ -46,8 +51,8 @@ export const StyledPagination = styled('nav', {
   display: 'flex',
   flexDirection: 'row',
   alignItems: 'center',
-  gap: '$1',
-  padding: '$2 0',
+  gap: '$4',
+  padding: '$2 $6',
   flexWrap: 'wrap',
 })
 
