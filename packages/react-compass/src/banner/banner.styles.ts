@@ -58,6 +58,7 @@ export const StyledBannerDescription = styled('p', {
   backgroundColor: 'transparent',
   boxSizing: 'border-box',
   margin: '0px',
+  marginTop: '$1_5',
   padding: '0px',
 
   // font style
