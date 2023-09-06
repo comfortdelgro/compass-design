@@ -5,7 +5,7 @@ export const StyledLink = styled('a', {
   fontFamily: 'inherit',
   fontWeight: '$medium',
   color: '$info',
-  textDecoration: 'underline',
+  textDecoration: 'none',
   transition: '$default',
 })
 
