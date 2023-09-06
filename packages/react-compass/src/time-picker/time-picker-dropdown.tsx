@@ -53,6 +53,8 @@ const findNextFocusIndexBySelectedValue = (
   return `${controlIndex}-${itemIndex}`
 }
 
+const TIME_PICKER_ITEM_HEIGHT = 50
+
 function TimePickerDropdown(props: TimePickerDropdownProps) {
   const {
     isOpen = true,
@@ -142,6 +144,11 @@ function TimePickerDropdown(props: TimePickerDropdownProps) {
           controlIndex ? Number(controlIndex) : 0,
         )
       })
+      if (ref.current) {
+        ref.current.style.minWidth = `${
+          displayList.length * TIME_PICKER_ITEM_HEIGHT
+        }px`
+      }
     } else {
       setFocusingItemId('')
     }
