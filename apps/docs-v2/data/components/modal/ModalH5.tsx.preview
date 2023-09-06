@@ -1,0 +1,6 @@
+ <Modal.Trigger isOpen={...}>
+  <Modal h5>
+    <Modal.Title h5>...</Modal.Title>
+    <Modal.Description h5>...</Modal.Description>
+  </Modal>
+</Modal.Trigger>

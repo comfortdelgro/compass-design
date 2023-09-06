@@ -33,6 +33,9 @@ import Modal from '@comfortdelgro/react-compass/modal'
 
 {{"demo": "ModalNested.tsx"}}
 
+### H5
+
+{{"demo": "ModalH5.tsx"}}
 
 ## Props
 

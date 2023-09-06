@@ -5,6 +5,7 @@ import {StyledModalTitle} from './modal.styles'
 
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
+  h5?: boolean
 }
 
 export type ModalTitleProps = Props &
@@ -12,10 +13,10 @@ export type ModalTitleProps = Props &
 
 const ModalTitle = React.forwardRef<HTMLHeadingElement, ModalTitleProps>(
   (props, ref) => {
-    const {children, css = {}, ...delegated} = props
+    const {children, css = {}, h5 = false, ...delegated} = props
     const modalTitleRef = useDOMRef<HTMLHeadingElement>(ref)
     return (
-      <StyledModalTitle css={css} ref={modalTitleRef} {...delegated}>
+      <StyledModalTitle h5={h5} css={css} ref={modalTitleRef} {...delegated}>
         {children}
       </StyledModalTitle>
     )
