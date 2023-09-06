@@ -1,4 +1,13 @@
-import {faCar} from '@fortawesome/free-solid-svg-icons'
+import {
+  faAddressCard,
+  faAmbulance,
+  faAnchor,
+  faAngleUp,
+  faAsterisk,
+  faBank,
+  faBookOpen,
+  faCar,
+} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React from 'react'
 import {PreviewCode} from '../pudo/pudo.stories'
@@ -18,37 +27,37 @@ export const Default: React.FC = () => {
             index={0}
           />
           <MultipleChoicesSlider.Item
-            icon={<FontAwesomeIcon icon={faCar} />}
+            icon={<FontAwesomeIcon icon={faAmbulance} />}
             label={'Clean & Tidy Vehicle'}
             index={1}
           />
           <MultipleChoicesSlider.Item
-            icon={<FontAwesomeIcon icon={faCar} />}
+            icon={<FontAwesomeIcon icon={faAddressCard} />}
             label={'Friendly Driver'}
             index={2}
           />
           <MultipleChoicesSlider.Item
-            icon={<FontAwesomeIcon icon={faCar} />}
+            icon={<FontAwesomeIcon icon={faAnchor} />}
             label={'On Time'}
             index={3}
           />
           <MultipleChoicesSlider.Item
-            icon={<FontAwesomeIcon icon={faCar} />}
+            icon={<FontAwesomeIcon icon={faAsterisk} />}
             label={'Safe Driving'}
             index={4}
           />
           <MultipleChoicesSlider.Item
-            icon={<FontAwesomeIcon icon={faCar} />}
+            icon={<FontAwesomeIcon icon={faAngleUp} />}
             label={'Clean & Tidy Vehicle'}
             index={5}
           />
           <MultipleChoicesSlider.Item
-            icon={<FontAwesomeIcon icon={faCar} />}
+            icon={<FontAwesomeIcon icon={faBank} />}
             label={'Friendly Driver'}
             index={6}
           />
           <MultipleChoicesSlider.Item
-            icon={<FontAwesomeIcon icon={faCar} />}
+            icon={<FontAwesomeIcon icon={faBookOpen} />}
             label={'On Time'}
             index={7}
           />
