@@ -443,8 +443,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           setValueForItemAndFocusKey(null)
           onSelectionChange?.('')
           onValueChange?.('')
-        }
-        if (
+        } else if (
           (event.target.value === '' ||
             isEmpty(event.target.value.replaceAll(' ', ''))) &&
           !isReadOnly &&
