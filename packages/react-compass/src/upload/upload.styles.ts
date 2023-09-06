@@ -55,7 +55,7 @@ export const StyledUploadContent = styled('div', {
   alignItems: 'center',
   borderLeft: '1px solid $divider',
   padding: '0 $4',
-  fontSize: '$body2',
+  fontSize: '$body3',
   fontWeight: '$semibold',
   whiteSpace: 'nowrap',
   overflow: 'hidden',
