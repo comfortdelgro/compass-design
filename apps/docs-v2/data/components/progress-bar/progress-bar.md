@@ -35,6 +35,10 @@ import ProgressBar from '@comfortdelgro/react-compass/progress-bar'
 
 {{"demo": "ProgressBarColors.tsx"}}
 
+### Loading State
+
+{{"demo": "ProgressBarLoading.tsx"}}
+
 ## Component Props
 
 | Name         | Type                              | Default                                 | Description                                                                             |
@@ -50,3 +54,4 @@ import ProgressBar from '@comfortdelgro/react-compass/progress-bar'
 | `minValue`   | `number`                          | `0`                                     | The lower numeric bound of the measured range. This must be less than `maxValue`.       |
 | `maxValue`   | `number`                          | `100`                                   | The upper numeric bound of the measured range. This must be greater than `minValue`.    |
 | `onComplete` | `() => void`                      | —                                       |
+| `loading`    | `boolean` \| `"stripes"`          | `false`                                 | Loading state                                                                           |

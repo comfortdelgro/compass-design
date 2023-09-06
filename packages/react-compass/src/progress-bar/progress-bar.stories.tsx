@@ -128,3 +128,15 @@ export const Variant = () => {
     </Column>
   )
 }
+
+export const LoadingState = () => (
+  <Column>
+    <ProgressBar variant='rounded' label='Loading' loading />
+    <ProgressBar
+      variant='rounded'
+      label='Stripes'
+      barColor='$blueShades10'
+      loading='stripes'
+    />
+  </Column>
+)

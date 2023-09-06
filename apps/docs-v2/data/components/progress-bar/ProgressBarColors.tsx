@@ -51,6 +51,12 @@ export default function ProgressBarColorDocs() {
       <ProgressBar value={20} color='blue' label='blue' />
       <ProgressBar value={40} color='green' label='green' />
       <ProgressBar
+        value={20}
+        label='color: $dangerShades | barColor: $FECACA'
+        color='$dangerShades'
+        barColor='#fecaca'
+      />
+      <ProgressBar
         value={60}
         label='color: $cdgBlue | barColor: $blueShades10'
         color='$cdgBlue'
