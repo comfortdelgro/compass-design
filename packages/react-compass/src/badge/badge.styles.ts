@@ -13,6 +13,7 @@ export const StyledBadge = styled('div', {
   display: 'flex',
   justifyContent: 'space-between',
   alignContent: 'center',
+  gap: '$2',
 
   '& > .icon': {
     height: '100%',
@@ -20,7 +21,6 @@ export const StyledBadge = styled('div', {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'start',
-    marginRight: '$1',
   },
 
   '& > svg': {
