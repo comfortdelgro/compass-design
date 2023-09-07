@@ -37,7 +37,7 @@ jobs:
 
       - name: Build the website
         run: |
-          BASE_PATH="/compass-design" pnpm run --filter=@comfortdelgro/compass-design-website export
+          BASE_PATH="/compass-design" pnpm run --filter=@comfortdelgro/compass-design-website build
           pnpm run --filter=@comfortdelgro/react-compass build:ladle --base "/compass-design/ladle"
           mv packages/react-compass/build apps/docs/out/ladle
 
