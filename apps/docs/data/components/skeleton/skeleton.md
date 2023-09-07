@@ -41,4 +41,3 @@ import Skeleton from '@comfortdelgro/react-compass/skeleton'
 | animation | `pulse` \| `wave` \| `false`                       | `pulse` | The animation. If false the animation effect is disabled.                                                           |
 | variant   | `circular` \| `rectangular` \| `rounded` \| `text` | `text`  | The type of content that will be rendered.                                                                          |
 | css       | `CSS`                                              | —       |                                                                                                                     |
-

@@ -23,7 +23,6 @@ import SpeedDial from '@comfortdelgro/react-compass/speed-dial'
 
 {{"demo": "SpeedDial.tsx"}}
 
-
 ## Props
 
 | Name     | Type            | Default | Description                                                |

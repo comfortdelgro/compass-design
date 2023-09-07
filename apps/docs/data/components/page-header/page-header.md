@@ -25,7 +25,6 @@ import PageHeader from '@comfortdelgro/react-compass/page-header'
 
 {{"demo": "PageHeader.tsx"}}
 
-
 ## Props
 
 | Name     | Type              | Default | Description |

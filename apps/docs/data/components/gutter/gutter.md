@@ -31,12 +31,9 @@ import Gutter from '@comfortdelgro/react-compass/gutter'
 
 {{"demo": "GutterBothSide.tsx"}}
 
-
 ## Extend Button
 
 {{"demo": "GutterExtendButton.tsx"}}
-
-
 
 ### Props:
 

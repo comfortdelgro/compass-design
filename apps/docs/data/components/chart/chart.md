@@ -43,10 +43,9 @@ import Chart from '@comfortdelgro/react-compass/chart'
 
 {{"demo": "ChartLine.tsx"}}
 
-### Area    
+### Area
 
 {{"demo": "ChartArea.tsx"}}
-
 
 ## Props
 

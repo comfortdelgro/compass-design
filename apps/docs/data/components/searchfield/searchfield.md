@@ -29,7 +29,6 @@ import SearchField from '@comfortdelgro/react-compass/searchfield'
 
 {{"demo": "SearchFieldCustom.tsx"}}
 
-
 ## Props
 
 | Name       | Type               | Default | Description |

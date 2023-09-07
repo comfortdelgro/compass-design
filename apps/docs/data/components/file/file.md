@@ -34,7 +34,6 @@ import File from '@comfortdelgro/react-compass/file'
 
 {{"demo": "FileErrored.tsx"}}
 
-
 ### Basic Preview
 
 {{"demo": "FilePreview.tsx"}}
@@ -43,10 +42,7 @@ import File from '@comfortdelgro/react-compass/file'
 
 {{"demo": "FileCustomStyling.tsx"}}
 
-
-
 ## Props
-
 
 ### File State Props:
 

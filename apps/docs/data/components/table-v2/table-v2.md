@@ -107,6 +107,7 @@ Define further information about the column. Now `meta` is used to define `edita
     enableGrouping: true,
   },
 ```
+
 ### Editable Cell
 
 Press `ENTER` to finish editing the firstName cell, `Esc` to quit editing.

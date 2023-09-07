@@ -1,12 +1,12 @@
-import React from 'react'
-import {MultipleChoicesSlider} from '@comfortdelgro/react-compass'
 import Clubhouse from '@comfortdelgro/compass-icons/react/colorful/clubhouse'
 import Compass from '@comfortdelgro/compass-icons/react/colorful/compass'
 import Google from '@comfortdelgro/compass-icons/react/colorful/google'
 import Linkedin from '@comfortdelgro/compass-icons/react/colorful/linkedin'
 import Pinterest from '@comfortdelgro/compass-icons/react/colorful/pinterest'
 import Twitter from '@comfortdelgro/compass-icons/react/colorful/twitter'
+import {MultipleChoicesSlider} from '@comfortdelgro/react-compass'
 import IconBox from 'data/foundation/iconography/components/IconBox'
+import React from 'react'
 
 function BasicExample() {
   const [selectedKeys, setSelectedKeys] = React.useState<number[]>([])
