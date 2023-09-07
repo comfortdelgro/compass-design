@@ -55,7 +55,7 @@ export const StyledUploadContent = styled('div', {
   alignItems: 'center',
   borderLeft: '1px solid $divider',
   padding: '0 $4',
-  fontSize: '$body2',
+  fontSize: '$body3',
   fontWeight: '$semibold',
   whiteSpace: 'nowrap',
   overflow: 'hidden',
@@ -184,7 +184,7 @@ export const StyledUploadWrapper = styled('div', {
         },
         [`${StyledUploadContent}`]: {
           backgroundColor: '$gray20',
-          color: '$gray40',
+          color: '$grayShades40',
           cursor: 'not-allowed',
           border: 'none',
         },

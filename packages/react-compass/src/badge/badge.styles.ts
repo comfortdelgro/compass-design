@@ -3,20 +3,17 @@ import type {VariantProps} from '../utils/stitches.types'
 
 export const StyledBadge = styled('div', {
   fontFamily: '$sans',
-  fontSize: '$label2',
   fontWeight: '$semibold',
-  lineHeight: '1em',
-
-  padding: '$1 $2_5',
+  padding: '$1 $3',
   borderWidth: '$light',
   borderStyle: 'solid',
   borderColor: 'transparent',
   borderRadius: '$full',
-  height: '$6_5',
   width: 'fit-content',
   display: 'flex',
   justifyContent: 'space-between',
   alignContent: 'center',
+  gap: '$2',
 
   '& > .icon': {
     height: '100%',
@@ -24,7 +21,6 @@ export const StyledBadge = styled('div', {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'start',
-    marginRight: '$1',
   },
 
   '& > svg': {
@@ -83,6 +79,27 @@ export const StyledBadge = styled('div', {
         padding: '3px 3px 3px $2',
       },
     },
+    isDisabled: {
+      true: {},
+      false: {},
+    },
+    size: {
+      sm: {
+        height: '$4_5',
+        fontSize: '$label2',
+        lineHeight: '18px',
+      },
+      md: {
+        height: '$6_5',
+        fontSize: '$label2',
+        lineHeight: '18px',
+      },
+      lg: {
+        height: '$6_5',
+        fontSize: '$body2',
+        lineHeight: '24px',
+      },
+    },
   },
 
   compoundVariants: [
@@ -91,32 +108,51 @@ export const StyledBadge = styled('div', {
 
       return colors
         .map((color) => [
+          {
+            isDisabled: true,
+            css: {
+              background: '$gray20',
+              color: '$gray60',
+            },
+          },
           // primary
           {
             color,
             variant: 'primary',
+            isDisabled: false,
             css: {
-              background: `$${color}`,
-              color: '$whiteText',
+              background: `$${
+                color === 'warning' ? 'badgeWarningBg' : `${color}`
+              }`,
+              color: `$${color === 'warning' ? 'warningBg' : 'whiteText'}`,
             },
           },
           // secondary
           {
             color,
             variant: 'secondary',
+            isDisabled: false,
+
             css: {
-              background: `$${color}Bg`,
-              color: `$${color}`,
+              background: `$${
+                color === 'warning' ? 'warningBg' : `${color}Bg`
+              }`,
+              color: `$${color === 'warning' ? 'badgeWarningBg' : `${color}`}`,
             },
           },
           // outline
           {
             color,
+            isDisabled: false,
             variant: 'outline',
             css: {
-              background: `$${color}Bg`,
-              color: `$${color}`,
-              borderColor: `$${color}`,
+              background: `$${
+                color === 'warning' ? 'warningBg' : `${color}Bg`
+              }`,
+              color: `$${color === 'warning' ? 'badgeWarningBg' : `${color}`}`,
+              borderColor: `$${
+                color === 'warning' ? 'badgeWarningBg' : `${color}`
+              }`,
             },
           },
         ])
@@ -127,6 +163,8 @@ export const StyledBadge = styled('div', {
   defaultVariants: {
     variant: 'primary',
     color: 'info',
+    isDisabled: false,
+    size: 'md',
   },
 })
 

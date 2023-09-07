@@ -225,7 +225,7 @@ export function Default() {
   )
 }
 
-const PreviewCode = styled('pre', {
+export const PreviewCode = styled('pre', {
   padding: '$2',
   margin: '0',
 

@@ -14,7 +14,8 @@ interface Props extends StyledComponentProps {
   variant?: 'fullWidth' | 'inset' | 'middle'
 }
 
-export type DividerProps = Props
+export type DividerProps = Props &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const Divider = React.forwardRef<HTMLElement, DividerProps>((props, ref) => {
   const {

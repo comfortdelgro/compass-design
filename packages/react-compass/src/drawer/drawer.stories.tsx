@@ -21,7 +21,7 @@ const imgSrc =
 const h5DrawerDefaultConfig: Partial<DrawerH5Props> = {
   disableResize: false,
   disableAddBodyAttr: false,
-  autoClose: true,
+  disableDragClose: false,
   preventClose: false,
 }
 
@@ -94,7 +94,7 @@ export function H5() {
         By default, the Drawer will autofocus on the first nested focusable
         element after opening.
         <br />
-        To disable that, set preventFocus to false
+        To disable that, set preventFocus to true
       </Typography.Body>
       <Button
         css={{marginRight: '$4'}}
@@ -250,14 +250,14 @@ export function H5() {
 
         <p>
           Should autoclose when drags and drops the drawer below its height?{' '}
-          <strong>{`${drawerConfig.autoClose}`}</strong>
+          <strong>{`${!drawerConfig.disableDragClose}`}</strong>
         </p>
         <Button
           type='button'
           onClick={() =>
             setDrawerConfig((currState) => ({
               ...currState,
-              autoClose: !currState.autoClose,
+              disableDragClose: !currState.disableDragClose,
             }))
           }
         >
@@ -307,7 +307,7 @@ export function H5() {
         variant='h5'
         expandedPoint={50}
         expandableLine={33}
-        autoClose={false}
+        disableDragClose
       >
         <Drawer.Header
           css={{
@@ -391,7 +391,7 @@ export function H5() {
 
       <Drawer
         open={openNonModalDrawer}
-        css={{height: '20dvh', position: 'fixed'}}
+        css={{height: '20dvh'}}
         expanderCSS={{
           background: '$blueShades100',
           paddingBlock: '$2 $6',

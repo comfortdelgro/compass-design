@@ -46,6 +46,7 @@ interface Props extends StyledComponentProps {
   type?: 'button' | 'reset' | 'submit' | undefined
   enableEventsOnDisabled?: boolean
   enableEventsOnLoading?: boolean
+  isSquare?: boolean
 }
 
 export type ButtonProps = Props &
@@ -86,6 +87,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       'aria-pressed': ariaPressed,
       enableEventsOnDisabled = false,
       enableEventsOnLoading = false,
+      isSquare = false,
       // VariantProps
       variant,
       size,
@@ -198,6 +200,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             onPointerDown={handleEvents}
             onPointerUp={handleEvents}
             type={type}
+            isSquare={isSquare}
           >
             {loading ? (
               <StyledLoading

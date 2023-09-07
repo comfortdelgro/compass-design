@@ -30,13 +30,19 @@ export const TimePickerContainer = styled('div', {
     display: 'flex',
     cursor: 'pointer',
     borderRadius: '$full',
+    backgroundColor: 'transparent',
+    border: 'none',
+    padding: '$1',
   },
   '.time-picker-input-icon:active': {
     backgroundColor: '$gray20',
   },
   '.time-picker-input-icon svg': {
-    width: '$6',
-    height: '$6',
+    width: '$4',
+    height: '$4',
+  },
+  '.time-picker-input-icon path': {
+    fill: '$secondaryText',
   },
 })
 
@@ -83,7 +89,7 @@ export const TimePickerDropdownItemStyle = styled('button', {
   fontWeight: 500,
   boxSizing: 'border-box',
   '&:hover': {
-    backgroundColor: '$infoBg',
+    backgroundColor: '$primaryBg',
   },
   fontSize: '$body3',
   lineHeight: '$5_25',

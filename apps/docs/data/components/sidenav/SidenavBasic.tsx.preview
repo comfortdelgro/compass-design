@@ -1,0 +1,25 @@
+<Sidenav css={{height: '800px'}}>
+  <Sidenav.Item>
+    <Avatar label='M' />
+    <h2 style={{fontSize: '24px', marginLeft: '22px', color: '#323130'}}>
+      Workbench
+    </h2>
+  </Sidenav.Item>
+  <Sidenav.Divider />
+  <Sidenav.Item>
+    <Icon icon={faAmbulance}></Icon>
+    <span>Menu</span>
+  </Sidenav.Item>
+  <Sidenav.Item>
+    <Icon icon={faBank}></Icon>
+    <span>Menu</span>
+  </Sidenav.Item>
+  <Sidenav.Item>
+    <Icon icon={faCar}></Icon>
+    <span>Menu</span>
+  </Sidenav.Item>
+  <Sidenav.Item>
+    <Icon icon={faHelicopter}></Icon>
+    <span>Menu</span>
+  </Sidenav.Item>
+</Sidenav>

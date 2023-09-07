@@ -1,0 +1,14 @@
+<Textarea
+  variant='h5'
+  resizable={false}
+  placeholder='Type your feedback here'
+  wordCount
+  maxLength={200}
+  css={{
+  textarea: {
+    width: '343px',
+    height: '129px',
+    },
+  }}
+  label='Details'
+/>

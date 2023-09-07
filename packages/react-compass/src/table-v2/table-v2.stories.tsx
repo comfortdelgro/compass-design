@@ -13,7 +13,6 @@ import {CellContext, HeaderContext} from '@tanstack/react-table'
 import React, {Key, MouseEvent, TouchEvent, useState} from 'react'
 import ReactTable, {OptionType, TableV2ColumnDef, TableV2SortingState} from '.'
 import Button from '../button'
-import {useEditableCellContext} from '../data-grid'
 import Divider from '../divider'
 import Dropdown from '../dropdown'
 import Grid from '../grid'
@@ -21,12 +20,15 @@ import {Icon} from '../icon'
 import Pagination from '../pagination'
 import SearchField from '../searchfield'
 import TextField from '../textfield'
+import {useEditableCellContext} from './'
+import StatusComponent from './for story/person-status'
 import {
   LimitRequestStatus,
   makeData,
   makeRequestStatusData,
   Person,
 } from './makeData'
+import ProgressPercentage from './table-v2-progress'
 
 export const FullFeatured: React.FC = () => {
   const [page, setPage] = useState(1)
@@ -556,6 +558,7 @@ export const ExpandableRow: React.FC = () => {
       {
         id: 'code',
         accessorKey: 'code',
+
         header: () => <div style={{textAlign: 'center'}}>Code</div>,
         footer: (props: HeaderContext<LimitRequestStatus, unknown>) =>
           props.column.id,
@@ -563,6 +566,7 @@ export const ExpandableRow: React.FC = () => {
       {
         id: 'requestLimit',
         accessorKey: 'requestLimit',
+
         header: () => (
           <div style={{textAlign: 'center'}}>New Request Limit</div>
         ),
@@ -571,6 +575,8 @@ export const ExpandableRow: React.FC = () => {
       },
       {
         id: 'status',
+        size: 280,
+
         accessorKey: 'status',
         header: () => <div style={{textAlign: 'center'}}>Status</div>,
         footer: (props: HeaderContext<LimitRequestStatus, unknown>) =>
@@ -613,7 +619,12 @@ export const ExpandableRow: React.FC = () => {
         columns={columns}
         options={options}
         renderRowSubComponent={renderRowSubComponent}
-        css={{width: '65rem'}}
+        css={{
+          width: '65rem',
+          table: {
+            width: 'unset',
+          },
+        }}
       >
         <ReactTable.Footer
           css={{
@@ -648,6 +659,210 @@ export const ExpandableRow: React.FC = () => {
             <Pagination
               page={page}
               onChange={(page: number) => setPage(page)}
+              total={10}
+            />
+          </div>
+        </ReactTable.Footer>
+      </ReactTable>
+    </div>
+  )
+}
+
+export const DataGrid: React.FC = () => {
+  const [page, setPage] = useState(1)
+  const [data] = useState<Person[]>(() => makeData(10))
+  const options: OptionType<Person> = {
+    enableSorting: true,
+    enableMultiSort: true,
+    columnResizeMode: 'onChange',
+    manualSorting: false,
+    initialSortBy: [
+      {id: 'firstName', desc: true},
+      {id: 'lastName', desc: false},
+    ],
+  }
+
+  const onSorting = (sortingField: TableV2SortingState) => {
+    console.log('stateSorting', sortingField)
+  }
+  const onChangeRowSelection = (rowSelection: Person[]) => {
+    console.log('stateSelectedRows', rowSelection)
+  }
+
+  const columns = React.useMemo<Array<TableV2ColumnDef<Person>>>(
+    () => [
+      {
+        id: 'select',
+        header: ({table}) => {
+          return (
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <ReactTable.CheckboxCell
+                {...{
+                  checked: table.getIsAllRowsSelected(),
+                  indeterminate: table.getIsSomeRowsSelected(),
+                  onChange: table.getToggleAllRowsSelectedHandler(),
+                }}
+              />
+            </div>
+          )
+        },
+        enableGrouping: false,
+        cell: ({row}) => (
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <ReactTable.CheckboxCell
+              {...{
+                disabled: !row.getCanSelect(),
+                checked: row.getIsSelected(),
+                indeterminate: row.getIsSomeSelected(),
+                onChange: row.getToggleSelectedHandler(),
+              }}
+            />
+          </div>
+        ),
+      },
+      {
+        id: 'name',
+        header: () => <div style={{textAlign: 'center'}}>Name</div>,
+        footer: (props) => props.column.id,
+        enableGrouping: false,
+        columns: [
+          {
+            accessorKey: 'firstName',
+            cell: (info) => info.getValue<string>(),
+            footer: (props) => props.column.id,
+            enableResizing: false,
+            editable: true,
+            sortDescriptor: 'asc',
+          },
+          {
+            accessorFn: (row) => row.lastName,
+            id: 'lastName',
+            cell: (info) => info.getValue<string>(),
+            header: () => <span>Last Name</span>,
+            footer: (props) => props.column.id,
+            enableResizing: true,
+          },
+        ],
+      },
+      {
+        id: 'otherInfo',
+        header: () => <div style={{textAlign: 'center'}}>Other info</div>,
+        footer: (props) => props.column.id,
+        enableGrouping: false,
+        columns: [
+          {
+            accessorKey: 'age',
+            header: () => 'Age',
+            footer: (info) => info.column.id,
+          },
+          {
+            accessorKey: 'visits',
+            header: () => <span>Visits</span>,
+            footer: (info) => info.column.id,
+          },
+          {
+            accessorKey: 'status',
+            header: 'Status',
+            cell: (info) => (
+              <StatusComponent
+                status={info.getValue<string>()}
+              ></StatusComponent>
+            ),
+            footer: (info) => info.column.id,
+          },
+          {
+            accessorKey: 'progress',
+            header: 'Profile Progress',
+            cell: (info) => (
+              <ProgressPercentage
+                progress={Number(info.getValue<string>())}
+              ></ProgressPercentage>
+            ),
+            footer: (info) => info.column.id,
+          },
+        ],
+      },
+    ],
+    [],
+  )
+
+  return (
+    <div>
+      <ReactTable
+        data={data}
+        columns={columns}
+        options={options}
+        onManualSorting={onSorting}
+        onChangeRowSelection={onChangeRowSelection}
+      >
+        <ReactTable.Toolbar
+          css={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}
+        >
+          <SearchField placeholder='Search' />
+
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: '0.5rem',
+            }}
+          >
+            <Button variant='primary'>Button</Button>
+            <Button variant='secondary'>Button</Button>
+            <Button variant='ghost'>
+              <Icon icon={faTrashAlt} />
+            </Button>
+            <Button variant='ghost'>
+              <Icon icon={faDashboard} />
+            </Button>
+            <Button variant='ghost'>
+              <Icon icon={faFileLines} />
+            </Button>
+          </div>
+        </ReactTable.Toolbar>
+        <ReactTable.Footer
+          css={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}
+        >
+          <div>{/* Todo: Dropdown */}</div>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: '0.5rem',
+            }}
+          >
+            <div
+              style={{
+                fontWeight: '600',
+              }}
+            >
+              {(page - 1) * 10 + 1} - {(page - 1) * 10 + 10} of 100
+            </div>
+            <Pagination
+              page={page}
+              onChange={(page) => setPage(page)}
               total={10}
             />
           </div>

@@ -64,14 +64,27 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
     const [viewWidth, setViewWidth] = useState(0)
     const [timer, setTimer] = useState<any>()
 
+    const targetXPosition =
+      (sliderRef.current && sliderRef.current.clientWidth * current) || 0
+    const slideWidth = (sliderRef.current && sliderRef.current.clientWidth) || 0
+
+    useEffect(() => {
+      const handleResize = () => {
+        setXPosition(targetXPosition)
+      }
+      window.addEventListener('resize', handleResize)
+
+      return () => {
+        window.removeEventListener('resize', handleResize)
+      }
+    }, [])
+
     useEffect(() => {
       if (autoSwitch) {
         setTimer(setTimeout(next, 3000))
       }
       onSwitchSlide(current)
-      setXPosition(
-        (sliderRef.current && sliderRef.current.clientWidth * current) || 0,
-      )
+      setXPosition(targetXPosition)
 
       return () => {
         clearTimeout(timer)
@@ -109,10 +122,6 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
       }
     }
 
-    const getSlideWidth = () => {
-      return (sliderRef.current && sliderRef.current.clientWidth) || 0
-    }
-
     const handlePointerDown = (event: React.PointerEvent) => {
       const pointer = new Pointer()
       pointer.start(new Position(event.pageX, event.pageY))
@@ -137,7 +146,7 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
               handlePointerMove,
             )
             scroller.current.style.transition = 'all 250ms ease'
-            if (Math.abs(pointer.distance.x) / getSlideWidth() > 0.2) {
+            if (Math.abs(pointer.distance.x) / slideWidth > 0.2) {
               if (pointer.distance.x < 0) {
                 next()
               } else {

@@ -1,3 +1,4 @@
+import {isEmpty} from 'lodash'
 import React, {
   Key,
   useCallback,
@@ -69,6 +70,8 @@ interface Props extends StyledComponentProps {
   isCloseOnSelect?: boolean
   isLoadingMore?: boolean
   popoverCSS?: CSS
+  inputRef?: React.RefObject<HTMLInputElement>
+  buttonRef?: React.RefObject<HTMLButtonElement>
   onBlur?: (event: React.FocusEvent) => void
   onFocus?: () => void
   onLoadMore?: () => void
@@ -124,7 +127,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     value = '',
     defaultValue = '',
     defaultOpen = false,
-    isDisabled = false,
     shouldDeselect = false,
     allowsCustomValue = false,
     disableClearable = false,
@@ -135,13 +137,34 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     isLoadingMore = false,
     onValueChange = EMPTY_FUNC,
     onSelectionChange = EMPTY_FUNC,
-    onFocus = EMPTY_FUNC,
-    onBlur = EMPTY_FUNC,
     onLoadMore = EMPTY_FUNC,
     onOpenChange = EMPTY_FUNC,
+    // AriaTextFieldProps
+    isDisabled = false,
+    inputRef,
+    buttonRef,
+    autoFocus,
+    autoCapitalize,
+    onCut,
+    onCopy,
+    onBlur = EMPTY_FUNC,
+    onFocus = EMPTY_FUNC,
+    onPaste,
+    onInput,
+    onKeyUp,
+    onSelect,
     onKeyDown = EMPTY_FUNC,
-    ...delegated
+    onBeforeInput,
+    onCompositionEnd,
+    onCompositionStart,
+    onCompositionUpdate,
+    ...ariaSafeProps
   } = props
+
+  const htmlProps = {...ariaSafeProps} as Omit<
+    React.HTMLAttributes<HTMLDivElement>,
+    keyof Props
+  >
 
   const defaultValueDropdown = useMemo(
     () => defaultValue || defaultSelectedKey,
@@ -166,8 +189,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
 
   // Select ref
   const selectRef = useDOMRef<HTMLDivElement>(ref)
-  const buttonSelectRef = useDOMRef<HTMLButtonElement>(null)
-  const inputRef = useDOMRef<HTMLInputElement>(null)
+  const buttonSelectRef = useDOMRef<HTMLButtonElement>(buttonRef)
+  const inputFieldRef = useDOMRef<HTMLInputElement>(inputRef)
 
   // ====================================== Logic ======================================
 
@@ -183,7 +206,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       case 'select':
         return buttonSelectRef.current?.clientWidth ?? '100%'
       case 'combobox':
-        return inputRef.current?.clientWidth ?? '100%'
+        return inputFieldRef.current?.clientWidth ?? '100%'
       default:
         return '100%'
     }
@@ -325,8 +348,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
                   setValueForItemAndFocusKey(null)
                   onSelectionChange?.('')
                   onValueChange?.('')
-                  if (inputRef.current) {
-                    inputRef.current.value = ''
+                  if (inputFieldRef.current) {
+                    inputFieldRef.current.value = ''
                   }
                   return
                 }
@@ -336,8 +359,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
                     focusedItem.props.textValue || focusedItem.props.children,
                   flagName: focusedItem.props.flagName ?? '',
                 })
-                if (inputRef.current) {
-                  inputRef.current.value = textContent(
+                if (inputFieldRef.current) {
+                  inputFieldRef.current.value = textContent(
                     focusedItem.props.children as React.ReactElement,
                   )
                 }
@@ -407,7 +430,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     setSearchValue('')
     setOpen((v) => !v)
     onOpenChange?.(!open)
-    inputRef.current?.focus()
+    inputFieldRef.current?.focus()
   }, [onOpenChange, open])
 
   const handleInputChange = useCallback(
@@ -420,10 +443,22 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           setValueForItemAndFocusKey(null)
           onSelectionChange?.('')
           onValueChange?.('')
+        } else if (
+          (event.target.value === '' ||
+            isEmpty(event.target.value.replaceAll(' ', ''))) &&
+          !isReadOnly &&
+          !disableClearable
+        ) {
+          setSelectedItem(null)
+          setFocusKey(null)
+          onSelectionChange?.('')
+          onValueChange?.('')
         }
       }
     },
     [
+      isReadOnly,
+      disableClearable,
       isUncontrolledComponent,
       type,
       selectedItem,
@@ -436,22 +471,22 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   )
 
   const fillTextForInput = useCallback(() => {
-    if (['combobox'].includes(type) && inputRef.current) {
+    if (['combobox'].includes(type) && inputFieldRef.current) {
       // wait for document move cursor
       setTimeout(() => {
         // Check if click into content of Dropdown
-        if (document.activeElement === inputRef.current) {
+        if (document.activeElement === inputFieldRef.current) {
           return
         }
-        if (inputRef.current) {
+        if (inputFieldRef.current) {
           if (!allowsCustomValue) {
             // Check if there is selected item then set text for input
             if (selectedItem) {
-              inputRef.current.value = textContent(
+              inputFieldRef.current.value = textContent(
                 selectedItem?.displayValue as React.ReactElement,
               )
             } else {
-              inputRef.current.value = ''
+              inputFieldRef.current.value = ''
             }
           }
           setSearchValue('')
@@ -461,7 +496,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   }, [type, selectedItem, allowsCustomValue, isUncontrolledComponent])
 
   useEffect(() => {
-    if (!open && ['combobox'].includes(type) && inputRef.current) {
+    if (!open && ['combobox'].includes(type) && inputFieldRef.current) {
       fillTextForInput()
     }
   }, [open, type, fillTextForInput])
@@ -470,8 +505,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     if (!clonedChildren || (!valueDropdown && !defaultValueDropdown)) {
       setSelectedItem(null)
       setSearchValue('')
-      if (!allowsCustomValue && inputRef.current) {
-        inputRef.current.value = ''
+      if (!allowsCustomValue && inputFieldRef.current) {
+        inputFieldRef.current.value = ''
       }
       setFocusKey((oldFocusKey) => oldFocusKey ?? null)
       return
@@ -488,8 +523,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         displayValue: item as React.ReactNode,
         flagName: item?.props?.flagName ?? '',
       })
-      if (inputRef.current) {
-        inputRef.current.value = textContent(item as React.ReactElement)
+      if (inputFieldRef.current) {
+        inputFieldRef.current.value = textContent(item as React.ReactElement)
       }
     }
   }, [clonedChildren, valueDropdown, defaultValueDropdown, allowsCustomValue])
@@ -497,16 +532,16 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   const handleInputComboboxBlur = useCallback(
     (event: React.FocusEvent) => {
       onBlur?.(event)
-      if (['combobox'].includes(type) && inputRef.current) {
-        if (inputRef.current) {
-          if (!allowsCustomValue) {
+      if (type === 'combobox' && inputFieldRef.current) {
+        if (inputFieldRef.current) {
+          if (!allowsCustomValue || !disableClearable) {
             // Check if there is selected item then set text for input
             if (selectedItem) {
-              inputRef.current.value = textContent(
+              inputFieldRef.current.value = textContent(
                 selectedItem?.displayValue as React.ReactElement,
               )
             } else {
-              inputRef.current.value = ''
+              inputFieldRef.current.value = ''
             }
           }
         }
@@ -536,6 +571,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
               onBlur={handleInputComboboxBlur}
               onFocus={onFocus}
               className='cdg-dropdown-button'
+              autoFocus={autoFocus}
             >
               {prefix}
               <span>
@@ -559,20 +595,35 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
             isDisabled={isDisabled}
             aria-required={isRequired}
           >
+            {prefix}
             <input
               id={id}
-              ref={inputRef}
+              ref={inputFieldRef}
               readOnly={isReadOnly}
               disabled={isDisabled}
               placeholder={placeholder}
-              onChange={handleInputChange}
-              onBlur={handleInputComboboxBlur}
-              onFocus={onFocus}
-              onClick={handleDropdownToggle}
+              required={isRequired}
+              autoFocus={autoFocus}
+              autoCapitalize={autoCapitalize}
               aria-autocomplete='list'
               role='combobox'
               aria-invalid={isErrored}
               aria-expanded={open}
+              onClick={handleDropdownToggle}
+              onChange={handleInputChange}
+              onBlur={handleInputComboboxBlur}
+              onFocus={onFocus}
+              onCut={onCut}
+              onCopy={onCopy}
+              onPaste={onPaste}
+              onInput={onInput}
+              onKeyUp={onKeyUp}
+              onSelect={onSelect}
+              onKeyDown={onKeyDown}
+              onBeforeInput={onBeforeInput}
+              onCompositionEnd={onCompositionEnd}
+              onCompositionStart={onCompositionStart}
+              onCompositionUpdate={onCompositionUpdate}
             />
             <button
               type='button'
@@ -589,6 +640,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         return null
     }
   }, [
+    prefix,
     open,
     type,
     id,
@@ -597,11 +649,24 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     isErrored,
     isDisabled,
     isReadOnly,
+    autoFocus,
+    autoCapitalize,
     onBlur,
     onFocus,
     handleDropdownToggle,
     handleInputChange,
     handleInputComboboxBlur,
+    onCut,
+    onCopy,
+    onPaste,
+    onInput,
+    onKeyUp,
+    onSelect,
+    onKeyDown,
+    onBeforeInput,
+    onCompositionEnd,
+    onCompositionStart,
+    onCompositionUpdate,
   ])
 
   const handleDropdownItemClick = (currentItem: SelectedItemDropdown) => {
@@ -614,7 +679,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       onOpenChange?.(false)
     }
     setTimeout(() => {
-      inputRef.current?.focus()
+      inputFieldRef.current?.focus()
       buttonSelectRef.current?.focus()
     }, 0)
     // Select clear item
@@ -642,17 +707,17 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     }
     setValueForItemAndFocusKey(currentItem)
     if (['combobox'].includes(type)) {
-      if (inputRef.current) {
-        inputRef.current.value = textContent(
+      if (inputFieldRef.current) {
+        inputFieldRef.current.value = textContent(
           currentItem.displayValue as React.ReactElement,
         )
         if (!isCloseOnSelect) {
-          inputRef.current?.focus()
+          inputFieldRef.current?.focus()
         } else {
           setSearchValue(
             textContent(currentItem.displayValue as React.ReactElement),
           )
-          inputRef.current.blur()
+          inputFieldRef.current.blur()
         }
       }
     } else {
@@ -662,7 +727,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
 
   const handleDropdownHeaderClick = () => {
     setTimeout(() => {
-      inputRef.current?.focus()
+      inputFieldRef.current?.focus()
       buttonSelectRef.current?.focus()
     }, 0)
   }
@@ -682,7 +747,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       css={css}
       ref={selectRef}
       onKeyDown={handleKeyDown}
-      {...delegated}
+      {...htmlProps}
     >
       {label && (
         <label htmlFor={id} id={`${id}-label`}>

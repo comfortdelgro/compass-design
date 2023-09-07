@@ -25,7 +25,7 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
     typeof window !== 'undefined' ? window.innerHeight : undefined
   const bodyOverflow = useMemo(
     () =>
-      typeof document !== 'undefined' ? document.body.style.overflow : 'auto',
+      typeof document !== 'undefined' ? document.body.style.overflow : null,
     [],
   )
 
@@ -51,7 +51,7 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
     expandedPoint: expandPoint = DEFAULT_EXPANDED_POINT,
     expandableLine: expandLine = DEFAULT_EXPANDABLE_LINE,
     disableResize = false,
-    autoClose = true,
+    disableDragClose = false,
     disableAddBodyAttr: disableAddBodyAttributes = false,
 
     // the rest
@@ -132,7 +132,7 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
       }
 
       onMouseDown?.(e)
-      if (!(e.target instanceof HTMLDialogElement) || !preventClose) {
+      if (!(e.target instanceof HTMLDialogElement) || preventClose) {
         return
       }
 
@@ -141,7 +141,7 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
         handleCloseDrawer('dismiss')
       }
     },
-    [DrawerElement, onMouseDown, handleCloseDrawer],
+    [DrawerElement, preventClose, onMouseDown, handleCloseDrawer],
   )
 
   const handleCancelDrawer = useCallback<ReactEventHandler<HTMLDialogElement>>(
@@ -196,11 +196,11 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
         referenceHeight = drawerStartingHeight
       }
 
-      const newHeight = referenceHeight - dragPosition[1]
+      const newHeight = referenceHeight - dragPosition.y
       const isCrossExpandLine = newHeight > expandablePosition
       setIsExpanded(isCrossExpandLine)
       onExpandChange?.(isCrossExpandLine)
-      setPositionOnEnd([0, 0])
+      setPositionOnEnd({x: 0, y: 0})
 
       if (
         isCrossExpandLine &&
@@ -217,15 +217,14 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
       }
 
       // Close the drawer if the user drag the drawer to the bottom of screen
-      if (autoClose && newHeight < drawerInitHeight - 100) {
+      if (!disableDragClose && newHeight < drawerInitHeight - 100) {
         handleCloseDrawer()
-        return
       }
     },
     [
       DrawerElement,
       open,
-      autoClose,
+      disableDragClose,
       drawerInitHeight,
       drawerStartingHeight,
       expandedPosition,
@@ -240,7 +239,7 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
 
     if (open) {
       if (disableAddBodyAttr) {
-        document.body.style.setProperty('overflow', 'auto')
+        document.body.style.setProperty('overflow', bodyOverflow)
         document.body.removeAttribute('inert')
       } else {
         document.body.style.setProperty('overflow', 'hidden')

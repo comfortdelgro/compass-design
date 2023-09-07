@@ -67,28 +67,13 @@ export type {CheckboxProps} from './checkbox'
 export {default as Chip} from './chip'
 export type {ChipProps} from './chip'
 export {default as ConfirmPUPoint} from './confirm-pickup'
-export type {ConfirmPUPointProps, PickupPointType} from './confirm-pickup'
+export type {ConfirmPUPointProps} from './confirm-pickup'
 export {default as DashboardSidecard} from './dashboard-sidecard'
 export type {
   DashboardSidecardContentProps,
   DashboardSidecardHeaderProps,
   DashboardSidecardProps,
 } from './dashboard-sidecard'
-export {default as DataGrid} from './data-grid'
-export type {
-  DataGridAccessorColumnDef,
-  DataGridCell,
-  DataGridCellContext,
-  DataGridColumnDef,
-  DataGridDisplayColumnDef,
-  DataGridGroupColumnDef,
-  DataGridHeaderContext,
-  DataGridProps,
-  DataGridRow,
-  DataGridSortingState,
-  DataGridTableConfig,
-  OptionType as DataGridOptions,
-} from './data-grid'
 export {default as DatePicker} from './date-picker'
 export type {DatePickerProps} from './date-picker'
 export {default as DateRangePicker} from './date-range-picker'
@@ -204,6 +189,11 @@ export type {
   ModalTitleProps,
   ModalTriggerProps,
 } from './modal'
+export {default as MultipleChoicesSlider} from './multiple-choices-slider'
+export type {
+  MultipleChoicesSliderItemProps,
+  MultipleChoicesSliderProps,
+} from './multiple-choices-slider'
 export {default as MultipleDropdown} from './multiple-dropdown'
 export type {
   MultipleDropdownItemProps,
@@ -272,6 +262,8 @@ export type {
 } from './sidenav'
 export {default as Skeleton} from './skeleton'
 export type {SkeletonProps} from './skeleton'
+export {default as SlideAction} from './slide-action'
+export type {SlideActionProps} from './slide-action'
 export {default as Slider} from './slider'
 export type {SliderProps} from './slider'
 export {default as SpeedDial} from './speed-dial'

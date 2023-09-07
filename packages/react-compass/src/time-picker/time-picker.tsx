@@ -66,6 +66,7 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
       )
 
     const timePickerInputRef = useRef<HTMLInputElement>(null)
+    const timePickerIconRef = useRef<HTMLButtonElement>(null)
     const containerRef = useDOMRef<HTMLElement>(ref)
 
     // Slit format string for object with position, min, max, format value
@@ -482,7 +483,11 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
     /**
      * Emits when clicking Icon Lock button at the right
      */
-    const handleIconClockClick = () => {
+    const handleIconClockClick = (
+      event: React.MouseEvent<HTMLButtonElement>,
+    ) => {
+      event.stopPropagation()
+      event.preventDefault()
       if (delegated.isDisabled) return
       setIsOpen(true)
     }
@@ -493,6 +498,13 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
     const handleOkClick = () => {
       setIsOpen(false)
     }
+
+    /**
+     * Emits when clicking button Ok at the bottom
+     */
+    const handleEscapeKeyDown = useCallback(() => {
+      timePickerIconRef.current?.focus()
+    }, [])
 
     return (
       <TimePickerContainer
@@ -511,17 +523,20 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
               placeholder={formatTime}
               className='time-picker-input'
               rightIcon={
-                <div
+                <button
                   onClick={handleIconClockClick}
                   className='time-picker-input-icon'
+                  disabled={delegated.isDisabled}
+                  ref={timePickerIconRef}
                 >
-                  <svg viewBox='0 0 24 24'>
-                    <path
-                      d='M11.3438 8.28125C11.3438 7.91758 11.6363 7.625 12 7.625C12.3637 7.625 12.6562 7.91758 12.6562 8.28125V11.65L14.9887 13.2031C15.2895 13.4055 15.3715 13.8129 15.1473 14.1137C14.9695 14.4145 14.5621 14.4965 14.2613 14.2723L11.6363 12.5223C11.4531 12.4238 11.3438 12.2188 11.3438 11.9754V8.28125ZM12 5C15.8664 5 19 8.13359 19 12C19 15.8664 15.8664 19 12 19C8.13359 19 5 15.8664 5 12C5 8.13359 8.13359 5 12 5ZM6.3125 12C6.3125 15.1418 8.8582 17.6875 12 17.6875C15.1418 17.6875 17.6875 15.1418 17.6875 12C17.6875 8.8582 15.1418 6.3125 12 6.3125C8.8582 6.3125 6.3125 8.8582 6.3125 12Z'
-                      fill='currentColor'
-                    />
+                  <svg
+                    viewBox='0 0 16 16'
+                    fill='none'
+                    xmlns='http://www.w3.org/2000/svg'
+                  >
+                    <path d='M7.34375 4.28125C7.34375 3.91758 7.63633 3.625 8 3.625C8.36367 3.625 8.65625 3.91758 8.65625 4.28125V7.65L10.9887 9.20312C11.2895 9.40547 11.3715 9.81289 11.1473 10.1137C10.9695 10.4145 10.5621 10.4965 10.2613 10.2723L7.63633 8.52227C7.45312 8.42383 7.34375 8.21875 7.34375 7.97539V4.28125ZM8 1C11.8664 1 15 4.13359 15 8C15 11.8664 11.8664 15 8 15C4.13359 15 1 11.8664 1 8C1 4.13359 4.13359 1 8 1ZM2.3125 8C2.3125 11.1418 4.8582 13.6875 8 13.6875C11.1418 13.6875 13.6875 11.1418 13.6875 8C13.6875 4.8582 11.1418 2.3125 8 2.3125C4.8582 2.3125 2.3125 4.8582 2.3125 8Z' />
                   </svg>
-                </div>
+                </button>
               }
               {...delegated}
             />
@@ -529,6 +544,7 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
           attachToElement={
             containerRef.current && containerRef.current.parentElement
           }
+          direction='bottom-left'
           offset={8}
           isOpen={isOpen}
           onClose={handlePopoverClose(true)}
@@ -543,6 +559,7 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             minuteStep={minuteStep}
             hasFooter={hasFooter}
             isReadOnly={!!delegated.isReadOnly}
+            onEscapeKeyDown={handleEscapeKeyDown}
           />
         </Popover>
       </TimePickerContainer>
@@ -550,4 +567,4 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
   },
 )
 
-export default React.memo(TimePicker)
+export default TimePicker
