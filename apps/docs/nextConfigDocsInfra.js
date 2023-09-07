@@ -14,7 +14,6 @@ function withDocsInfra(nextConfig) {
     images: {
       unoptimized: true,
     },
-    assetPrefix: `/${process.env.BASE_PATH}/`,
     basePath: process.env.BASE_PATH || '',
     experimental: {
       scrollRestoration: true,
