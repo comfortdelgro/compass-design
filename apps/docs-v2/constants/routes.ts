@@ -315,6 +315,11 @@ export const routes: TSideNavItem[] = [
           'Radio allows users to select a single option from a list.',
       },
       {
+        title: 'Multiple Choices Slider',
+        pathname: '/multiple-choices-slider',
+        description: 'Specific multi choices H5 component.',
+      },
+      {
         title: 'Searchfield',
         pathname: '/searchfield',
         description: 'Searchfield provides an input for search queries.',
