@@ -1,4 +1,5 @@
 import {Box} from '@comfortdelgro/react-compass'
+import {getStaticPath} from 'utils'
 
 const ProductsBackground = () => {
   return (
@@ -9,7 +10,9 @@ const ProductsBackground = () => {
         top: 0,
         left: 0,
         width: '100%',
-        backgroundImage: `url(/static/images/product-background.png)`,
+        backgroundImage: `url(${getStaticPath(
+          '/static/images/product-background.png',
+        )})`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
