@@ -1,4 +1,4 @@
-import React, {useCallback, useMemo} from 'react'
+import React, {useCallback} from 'react'
 import type {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import ItemCounting from './pagination-itemCounting'
@@ -22,29 +22,28 @@ export type PaginationProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const Ellipsis: React.FC<
-  React.ComponentPropsWithoutRef<typeof StyledPagination> & {isBefore: boolean}
-> = ({isBefore, ...props}) => {
-  const icon = useMemo(
-    () =>
-      isBefore ? (
-        <svg viewBox='0 0 512 512'>
-          <path
-            fill='currentColor'
-            d='M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160zm352-160l-160 160c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L301.3 256 438.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0z'
-          ></path>
-        </svg>
-      ) : (
-        <svg viewBox='0 0 512 512'>
-          <path
-            fill='currentColor'
-            d='M470.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 256 265.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160zm-352 160l160-160c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L210.7 256 73.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0z'
-          ></path>
-        </svg>
-      ),
-    [isBefore],
+  React.ComponentPropsWithoutRef<typeof StyledPagination>
+> = ({...props}) => {
+  const svgIcon = (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='18'
+      height='4'
+      viewBox='0 0 18 4'
+      fill='none'
+    >
+      <path
+        d='M2.04298 3.098C1.68832 3.098 1.39432 2.99067 1.16098 2.776C0.936984 2.552 0.824984 2.27667 0.824984 1.95C0.824984 1.62333 0.936984 1.35267 1.16098 1.138C1.39432 0.914 1.68832 0.802 2.04298 0.802C2.38832 0.802 2.67298 0.914 2.89698 1.138C3.12098 1.35267 3.23298 1.62333 3.23298 1.95C3.23298 2.27667 3.12098 2.552 2.89698 2.776C2.67298 2.99067 2.38832 3.098 2.04298 3.098ZM9.01564 3.098C8.66097 3.098 8.36697 2.99067 8.13364 2.776C7.90964 2.552 7.79764 2.27667 7.79764 1.95C7.79764 1.62333 7.90964 1.35267 8.13364 1.138C8.36697 0.914 8.66097 0.802 9.01564 0.802C9.36097 0.802 9.64564 0.914 9.86964 1.138C10.0936 1.35267 10.2056 1.62333 10.2056 1.95C10.2056 2.27667 10.0936 2.552 9.86964 2.776C9.64564 2.99067 9.36097 3.098 9.01564 3.098ZM15.9883 3.098C15.6336 3.098 15.3396 2.99067 15.1063 2.776C14.8823 2.552 14.7703 2.27667 14.7703 1.95C14.7703 1.62333 14.8823 1.35267 15.1063 1.138C15.3396 0.914 15.6336 0.802 15.9883 0.802C16.3336 0.802 16.6183 0.914 16.8423 1.138C17.0663 1.35267 17.1783 1.62333 17.1783 1.95C17.1783 2.27667 17.0663 2.552 16.8423 2.776C16.6183 2.99067 16.3336 3.098 15.9883 3.098Z'
+        fill='#333333'
+      />
+    </svg>
   )
 
-  return <StyledPaginationItem {...props}>{icon}</StyledPaginationItem>
+  return (
+    <StyledPaginationItem isEllipsis={true} {...props}>
+      {svgIcon}
+    </StyledPaginationItem>
+  )
 }
 
 const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
@@ -77,7 +76,6 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
           return (
             <Ellipsis
               key={index}
-              isBefore={isBefore}
               aria-label={isBefore ? 'previous 5 items' : 'next 5 items'}
               onClick={() => {
                 if (isBefore) {

@@ -75,6 +75,29 @@ export const StyledTab = styled('div', {
           },
         },
       },
+      h5: {
+        background: 'transparent',
+        padding: '0',
+        color: '$grayShades60',
+        fontSize: '$label1',
+        lineHeight: '20px',
+        '&:focus-visible': {
+          boxShadow: '0px -2px $$indicatorColor',
+        },
+        '&:hover, &:focus-visible': {
+          color: '$blueShades100',
+          '& .icon': {
+            backgroundColor: '$blueShades100',
+            border: 'none',
+            '& svg': {
+              display: 'block',
+              '& path': {
+                fill: '$whiteText',
+              },
+            },
+          },
+        },
+      },
     },
     disabled: {
       true: {
@@ -156,6 +179,39 @@ export const StyledTab = styled('div', {
       },
     },
     {
+      variant: 'h5',
+      disabled: true,
+      css: {
+        background: 'transparent',
+        '& .icon': {
+          backgroundColor: '$gray50',
+          border: 'none',
+          display: 'flex',
+          '& svg': {
+            display: 'block',
+            '& path': {
+              fill: '$whiteText',
+            },
+          },
+        },
+        '&:hover, &:focus-visible': {
+          background: 'transparent',
+          color: '$gray50',
+          '& .icon': {
+            backgroundColor: '$gray50',
+            border: 'none',
+            display: 'flex',
+            '& svg': {
+              display: 'block',
+              '& path': {
+                fill: '$whiteText',
+              },
+            },
+          },
+        },
+      },
+    },
+    {
       variant: 'simple',
       active: true,
       css: {
@@ -199,6 +255,34 @@ export const StyledTab = styled('div', {
       active: true,
       css: {
         backgroundColor: 'transparent',
+        '& .icon': {
+          backgroundColor: '$$textColor',
+          border: 'none',
+          '& svg': {
+            display: 'block',
+            '& path': {
+              fill: '$whiteText',
+            },
+          },
+        },
+      },
+    },
+    {
+      variant: 'h5',
+      active: true,
+      css: {
+        backgroundColor: 'transparent',
+        color: '$blueShades100',
+        '&:after': {
+          position: 'absolute',
+          borderRadius: 1,
+          bottom: -4,
+          left: -1,
+          content: '',
+          width: 'calc(100% + 2px)',
+          height: 2,
+          background: '$blueShades100',
+        },
         '& .icon': {
           backgroundColor: '$$textColor',
           border: 'none',

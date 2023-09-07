@@ -9,7 +9,7 @@ export const StyledActionBarLeftGroup = styled('div', {
   display: 'flex',
   alignItems: 'center',
   flex: 1,
-  gap: '$4',
+  gap: '$2_5',
 })
 
 export const StyledActionBarCenterGroup = styled('div', {
@@ -17,7 +17,7 @@ export const StyledActionBarCenterGroup = styled('div', {
   alignItems: 'center',
   justifyContent: 'center',
   flex: 1,
-  gap: '$4',
+  gap: '$2_5',
 })
 
 export const StyledActionBarRightGroup = styled('div', {
@@ -25,5 +25,5 @@ export const StyledActionBarRightGroup = styled('div', {
   alignItems: 'center',
   justifyContent: 'flex-end',
   flex: 1,
-  gap: '$4',
+  gap: '$2_5',
 })

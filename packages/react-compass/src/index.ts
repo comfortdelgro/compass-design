@@ -189,6 +189,11 @@ export type {
   ModalTitleProps,
   ModalTriggerProps,
 } from './modal'
+export {default as MultipleChoicesSlider} from './multiple-choices-slider'
+export type {
+  MultipleChoicesSliderItemProps,
+  MultipleChoicesSliderProps,
+} from './multiple-choices-slider'
 export {default as MultipleDropdown} from './multiple-dropdown'
 export type {
   MultipleDropdownItemProps,

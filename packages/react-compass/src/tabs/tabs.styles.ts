@@ -27,6 +27,12 @@ export const StyledTabs = styled('div', {
         background: 'transparent',
         borderRadius: 'none',
       },
+      h5: {
+        background: 'transparent',
+        borderRadius: 'none',
+        padding: '0 0 4px 0!important',
+        gap: '$5',
+      },
     },
     orientation: {
       horizontal: {

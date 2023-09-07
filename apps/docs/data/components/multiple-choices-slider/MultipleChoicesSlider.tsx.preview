@@ -1,0 +1,42 @@
+<MultipleChoicesSlider onChange={handleChange}>
+  <MultipleChoicesSlider.Item
+    icon={
+      <IconBox component={<Compass width={40} height={40} />} name='' />
+    }
+    label={'Compass'}
+    index={0}
+  />
+  <MultipleChoicesSlider.Item
+    icon={
+      <IconBox component={<Clubhouse width={40} height={40} />} name='' />
+    }
+    label={'Clubhouse'}
+    index={1}
+  />
+  <MultipleChoicesSlider.Item
+    icon={<IconBox component={<Google width={40} height={40} />} name='' />}
+    label={'Google'}
+    index={2}
+  />
+  <MultipleChoicesSlider.Item
+    icon={
+      <IconBox component={<Linkedin width={40} height={40} />} name='' />
+    }
+    label={'Linkedin'}
+    index={3}
+  />
+  <MultipleChoicesSlider.Item
+    icon={
+      <IconBox component={<Twitter width={40} height={40} />} name='' />
+    }
+    label={'Twitter'}
+    index={4}
+  />
+  <MultipleChoicesSlider.Item
+    icon={
+      <IconBox component={<Pinterest width={40} height={40} />} name='' />
+    }
+    label={'Pinterest'}
+    index={5}
+  />
+</MultipleChoicesSlider>
