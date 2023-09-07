@@ -4,6 +4,7 @@ function withDocsInfra(nextConfig) {
   return {
     trailingSlash: true,
     // Can be turned on when https://github.com/vercel/next.js/issues/24640 is fixed
+    output: 'export',
     optimizeFonts: false,
     reactStrictMode: true,
     ...nextConfig,
