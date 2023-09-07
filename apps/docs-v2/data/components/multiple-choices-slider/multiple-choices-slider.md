@@ -3,7 +3,8 @@ title: React Multiple Choices Slider component for H5
 components: MultipleChoicesSlider
 ---
 
-# Rating
+# Multiple choices slider
+
 
 <p class="description">This component is ideal for various use cases such as product reviews, surveys where multiple-item selection or rating is essential.
 
