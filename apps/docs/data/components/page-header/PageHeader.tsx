@@ -7,7 +7,8 @@ import {
 
 function FullFeature() {
   const isCurrent = (i: number) => {
-    if (window && window.location) return window.location.hash === `#${i}`
+    // todo: taibc Fix it to build successfully
+    // if (window && window.location) return window.location.hash === `#${i}`
     return false
   }
   return (
