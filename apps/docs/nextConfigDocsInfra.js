@@ -28,7 +28,6 @@ function withDocsInfra(nextConfig) {
       ignoreBuildErrors: true,
       ...nextConfig.typescript,
     },
-    output: 'export',
   }
 }
 
