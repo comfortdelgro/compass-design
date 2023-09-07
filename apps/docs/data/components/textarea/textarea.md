@@ -28,6 +28,7 @@ import Textarea from '@comfortdelgro/react-compass/textarea'
 ### Custom styling
 
 {{"demo": "TextareaCustom.tsx"}}
+
 ### H5 project styling
 
 {{"demo": "TextareaH5.tsx"}}

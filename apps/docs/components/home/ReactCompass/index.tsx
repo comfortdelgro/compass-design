@@ -5,6 +5,7 @@ import {
   useIsDarkTheme,
 } from '@comfortdelgro/react-compass'
 import Container from 'components/layouts/Container'
+import {getStaticPath} from 'utils'
 import Item from '../Introduction/item'
 import CoreShowcase from './CoreShowcase'
 import PreflightComponent from './PreflightComponent'
@@ -34,7 +35,7 @@ function ReactCompass() {
               textLink='Latest updates'
               urlLink='https://github.com/comfortdelgro/compass-design/releases'
               target='_blank'
-              image='/static/images/home/lastest-updated.png'
+              image={getStaticPath('/static/images/home/lastest-updated.png')}
             />
             <Item
               title='Github'
@@ -42,7 +43,7 @@ function ReactCompass() {
               textLink='Get started'
               urlLink='https://github.com/comfortdelgro/compass-design'
               target='_blank'
-              image='/static/images/home/github.png'
+              image={getStaticPath('/static/images/home/github.png')}
             />
           </div>
         </Box>

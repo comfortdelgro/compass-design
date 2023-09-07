@@ -49,12 +49,13 @@ const {
 {{"demo": "DateRangePickerControlled.tsx"}}
 
 ### Granularity
+
 The granularity prop allows you to control the smallest unit that is displayed by a DatePicker.
 
 {{"demo": "DateRangePickerGranularity.tsx"}}
 
-
 ### Labeling
+
 A visual label should be provided for the DatePicker using the label prop. If the DatePicker is required, the isRequired and necessityIndicator props can be used to show a required state.
 
 {{"demo": "DateRangePickerLabeling.tsx"}}
@@ -79,7 +80,6 @@ Date Range Picker supports marking certain dates as unavailable. These dates can
 
 ### IsDisabled
 
-
 {{"demo": "DateRangePickerIsDisabled.tsx"}}
 
 ### Read Only
@@ -90,9 +90,7 @@ Date Range Picker supports marking certain dates as unavailable. These dates can
 
 {{"demo": "DateRangePickerInvalid.tsx"}}
 
-
 ## Props
-
 
 | Name                      | Type                                                                                                                   | Default | Description                                                                                                                                |
 | :------------------------ | :--------------------------------------------------------------------------------------------------------------------- | :------ | :----------------------------------------------------------------------------------------------------------------------------------------- |

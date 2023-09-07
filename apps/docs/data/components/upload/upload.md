@@ -60,4 +60,3 @@ import Upload from '@comfortdelgro/react-compass/upload'
 | variant             | string                   | —       | Determines the variant of the drag-and-drop area. Possible values: "primary" or "secondary".            |
 | multiple            | boolean                  | `false` | Indicates whether multiple files can be selected for upload.                                            |
 | css                 | `CSS`                    | —       | The system prop that allows defining system overrides as well as additional CSS styles.                 |
-

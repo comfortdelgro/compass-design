@@ -40,4 +40,3 @@ import Slider from '@comfortdelgro/react-compass/slider'
 | defaultValue | `number`                  | 0       | The currently selected key in the collection (uncontrolled).                                               |
 | className    | `String`                  | —       | Extra class name for slider.                                                                               |
 | css          | `CSS`                     | —       | The system prop that allows defining system overrides as well as additional CSS styles.                    |
-

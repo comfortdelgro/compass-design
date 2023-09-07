@@ -1,12 +1,13 @@
 import {Box, Typography} from '@comfortdelgro/react-compass'
 import Image from 'next/image'
+import {getStaticPath} from 'utils'
 
 const Banner = () => {
   return (
     <Box className='hero-banner'>
       <Image
         className='hero-background'
-        src='/static/images/home-background.png'
+        src={getStaticPath('/static/images/home-background.png')}
         alt='Big hero banner'
         sizes='100vw'
         width={0}

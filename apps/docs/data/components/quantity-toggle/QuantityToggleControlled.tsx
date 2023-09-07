@@ -1,5 +1,5 @@
 import {QuantityToggle} from '@comfortdelgro/react-compass'
-import { useState } from 'react'
+import {useState} from 'react'
 
 function QuantityToggleControlled() {
   const [value, setValue] = useState(0)

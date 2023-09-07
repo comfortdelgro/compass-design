@@ -1,4 +1,4 @@
-import { SearchField } from "@comfortdelgro/react-compass"
+import {SearchField} from '@comfortdelgro/react-compass'
 
 function BasicExample() {
   return (

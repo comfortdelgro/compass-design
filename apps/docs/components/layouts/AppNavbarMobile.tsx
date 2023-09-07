@@ -58,27 +58,17 @@ export default function AppNavbarMobile(props: any) {
           }}
         >
           <DeferredAppSearch />
-          <Link href='/foundation/overview' passHref legacyBehavior>
-            <Button variant='secondary' href='/foundation/overview'>
+          <Link href='/foundation/overview'>
+            <Button variant='secondary' fullWidth>
               Document
             </Button>
           </Link>
           <Link
             href='https://comfortdelgro.github.io/compass-design/ladle/'
             target='_blank'
-            passHref
-            legacyBehavior
           >
-            <Button
-              variant='secondary'
-              href='https://comfortdelgro.github.io/compass-design/ladle/'
-            >
+            <Button variant='secondary' fullWidth>
               Ladle
-            </Button>
-          </Link>
-          <Link href='/products' passHref legacyBehavior>
-            <Button variant='secondary' href='/products'>
-              Products
             </Button>
           </Link>
         </Box>
