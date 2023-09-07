@@ -14,6 +14,7 @@ function withDocsInfra(nextConfig) {
     images: {
       unoptimized: true,
     },
+    basePath: process.env.BASE_PATH || '',
     experimental: {
       scrollRestoration: true,
       esmExternals: false,
@@ -27,7 +28,6 @@ function withDocsInfra(nextConfig) {
       ignoreBuildErrors: true,
       ...nextConfig.typescript,
     },
-    output: 'export',
   }
 }
 
