@@ -54,16 +54,9 @@ export default function AppHeader(props: AppHeaderProps) {
           <Link
             href='https://comfortdelgro.github.io/compass-design/ladle/'
             target='_blank'
-            passHref
-            legacyBehavior
           >
-            <Button href='https://comfortdelgro.github.io/compass-design/ladle/'>
-              Ladle
-            </Button>
+            <Button>Ladle</Button>
           </Link>
-          {/* <Link href='/products'>
-            <Button>Products</Button>
-          </Link> */}
         </NavbarLinks>
       )}
       <NavbarSeperator />
