@@ -67,7 +67,7 @@ export default function Page() {
       >
         <Image
           className='hero-background'
-          src='/static/images/overview/banner-overview.png'
+          src={getStaticPath('/static/images/overview/banner-overview.png')}
           alt='Big hero banner'
           sizes='100vw'
           width={0}

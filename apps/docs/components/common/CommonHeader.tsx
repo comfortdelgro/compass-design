@@ -9,6 +9,7 @@ import {usePageProps} from 'contexts/PageProps'
 import _ from 'lodash'
 import {useRouter} from 'next/router'
 import {useMemo} from 'react'
+import {getStaticPath} from 'utils'
 
 export const CommonHeader = () => {
   const {pageProps} = usePageProps()
@@ -69,7 +70,10 @@ export const CommonHeaderTitle = () => {
     <Column
       css={{
         backgroundColor: pageProps?.backgroundColor,
-        backgroundImage: `url(${pageProps?.backgroundImage})`,
+        backgroundImage: `url(${
+          pageProps?.backgroundImage &&
+          getStaticPath(pageProps?.backgroundImage)
+        })`,
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
         backgroundSize: 'cover',
