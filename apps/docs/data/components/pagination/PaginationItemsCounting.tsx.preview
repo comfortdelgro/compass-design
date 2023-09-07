@@ -1,0 +1,6 @@
+<Pagination page={page} total={10} onChange={(page) => setPage(page)}>
+    <Pagination.ItemsCounting
+    totalItem={100}
+    page={page}
+    ></Pagination.ItemsCounting>
+</Pagination>
