@@ -1,27 +1,29 @@
 import {
-  ColumnDef,
-  getCoreRowModel,
-  getExpandedRowModel,
-  getFilteredRowModel,
-  getGroupedRowModel,
-  getSortedRowModel,
-  GroupingState,
-  Row,
-  SortingState,
-  useReactTable,
+ColumnDef,
+getCoreRowModel,
+getExpandedRowModel,
+getFilteredRowModel,
+getGroupedRowModel,
+getSortedRowModel,
+GroupingState,
+Row,
+SortingState,
+useReactTable
 } from '@tanstack/react-table'
 
-import React, {useEffect, useState} from 'react'
+import React,{ useEffect,useState } from 'react'
 // import DataGridColumnHeader from '../data-grid/data-grid-column-header'
 // import DataGridFooter from '../data-grid/data-grid-footer'
 // import DataGridHeaderRow from '../data-grid/data-grid-header-row'
-import {NoDataComponent} from './table-v2-nodata'
+import { NoDataComponent } from './table-v2-nodata'
 // import DataGridRow from '../data-grid/data-grid-row'
 // import DataGridRowGroup from '../data-grid/data-grid-row-group'
-import {pickChild} from '../utils/pick-child'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {useDOMRef} from '../utils/use-dom-ref'
-import {ExpandableRow} from './expandable/ExpandableRow'
+import Spinner from '../spinner'
+import { pickChild } from '../utils/pick-child'
+import { StyledComponentProps } from '../utils/stitches.types'
+import { useDOMRef } from '../utils/use-dom-ref'
+import { ExpandableRow } from './expandable/ExpandableRow'
+import LoadingComponent from './loading/loading-component'
 import TableV2Cell from './table-v2-cell'
 import TableV2Checkbox from './table-v2-checkbox'
 import TableV2CheckboxCell from './table-v2-checkbox-cell'
@@ -32,7 +34,9 @@ import ProgressPercentage from './table-v2-progress'
 import TableV2Row from './table-v2-row'
 import TableV2RowGroup from './table-v2-row-group'
 import TableV2Toolbar from './table-v2-toolbar'
-import {StyledTableV2, StyledTableV2Wrapper} from './table-v2.styles'
+import { StyledTableV2,StyledTableV2Wrapper } from './table-v2.styles'
+
+
 
 export interface Options<TData> {
   enableSorting?: boolean
@@ -57,6 +61,8 @@ export interface Props<T> extends StyledComponentProps {
   children: React.ReactNode
   onUpdateData?: (newData: object) => void
   renderRowSubComponent?: (row: T) => React.JSX.Element
+  isLoading?: boolean
+  loadingIndicator?: React.ReactNode
 }
 
 export type ReactTableProps<T = any> = Props<T> &
@@ -78,6 +84,8 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
       onChangeRowSelection,
       onUpdateData,
       renderRowSubComponent,
+      isLoading,
+      loadingIndicator = <Spinner />,
       children,
       // HTMLDiv Props
       ...delegated
@@ -184,6 +192,11 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
                       </>
                     )
                   })
+                ) : isLoading ? (
+                  <LoadingComponent
+                    colSpan={table.getAllLeafColumns()?.length}
+                    loadingIndicator={loadingIndicator}
+                  />
                 ) : (
                   <NoDataComponent
                     colSpan={table.getAllLeafColumns()?.length}
