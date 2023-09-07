@@ -61,9 +61,9 @@ export default function AppHeader(props: AppHeaderProps) {
               Ladle
             </Button>
           </Link>
-          <Link href='/products'>
+          {/* <Link href='/products'>
             <Button>Products</Button>
-          </Link>
+          </Link> */}
         </NavbarLinks>
       )}
       <NavbarSeperator />
