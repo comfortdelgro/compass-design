@@ -1,2 +1,2 @@
-export * from './getPathStatic'
+export * from './getStaticPath'
 export * from './search'

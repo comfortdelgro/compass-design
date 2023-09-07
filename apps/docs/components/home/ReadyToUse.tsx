@@ -1,7 +1,7 @@
 import {Box, Typography} from '@comfortdelgro/react-compass'
 import Container from 'components/layouts/Container'
 import Image from 'next/image'
-import {getPathStatic} from 'utils'
+import {getStaticPath} from 'utils'
 import GetStartedButtons from './GetStartedButtons'
 
 export default function ReadyToUse() {
@@ -25,7 +25,7 @@ export default function ReadyToUse() {
         <Box className='figma-preview-wrapper'>
           <Image
             className='figma-preview'
-            src={getPathStatic('/static/images/introduction.png')}
+            src={getStaticPath('/static/images/introduction.png')}
             alt='banner'
             width={496}
             height={538}
