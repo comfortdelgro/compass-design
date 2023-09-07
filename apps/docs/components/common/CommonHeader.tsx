@@ -34,7 +34,9 @@ export const CommonHeader = () => {
             borderRadius: '30px',
             height: '100%',
             width: '100%',
-            backgroundImage: `url(${pageProps?.imgSrc})`,
+            backgroundImage: `url(${
+              pageProps?.imgSrc && getStaticPath(pageProps?.imgSrc)
+            })`,
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
             backgroundSize: 'cover',
@@ -70,10 +72,7 @@ export const CommonHeaderTitle = () => {
     <Column
       css={{
         backgroundColor: pageProps?.backgroundColor,
-        backgroundImage: `url(${
-          pageProps?.backgroundImage &&
-          getStaticPath(pageProps?.backgroundImage)
-        })`,
+        backgroundImage: `url(${pageProps?.backgroundImage})`,
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
         backgroundSize: 'cover',
