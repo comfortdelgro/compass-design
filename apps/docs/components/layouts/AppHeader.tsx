@@ -48,7 +48,7 @@ export default function AppHeader(props: AppHeaderProps) {
       </Navbar.Brand>
       {!isTabletScreen && (
         <NavbarLinks>
-          <Link href='foundation/overview' passHref legacyBehavior>
+          <Link href='/foundation/overview'>
             <Button>Document</Button>
           </Link>
           <Link
