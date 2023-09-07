@@ -13,7 +13,7 @@ function withDocsInfra(nextConfig) {
     },
     images: {
       unoptimized: true,
-      path: `${process.env.BASE_PATH || ''}`,
+      path: `${process.env.BASE_PATH || ''}/_next`,
     },
     basePath: process.env.BASE_PATH || '',
     experimental: {
