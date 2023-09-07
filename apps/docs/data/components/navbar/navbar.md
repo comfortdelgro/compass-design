@@ -29,7 +29,6 @@ import Navbar from '@comfortdelgro/react-compass/navbar'
 
 {{"demo": "LinkCustom.tsx"}} -->
 
-
 ## Props
 
 ### Navbar

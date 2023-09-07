@@ -11,9 +11,11 @@ imgSrc: /static/images/iconography-background.png
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 {{"component": "data/foundation/iconography/components/SearchBar.tsx"}}
+
 ## Icons
 
 Icons should be used to maximize comprehension and reduce cognitive load when you need to call attention to a particular action, command, or section. Our icons are designed with our brand personality baked in.
+
 ## Import
 
 ```js

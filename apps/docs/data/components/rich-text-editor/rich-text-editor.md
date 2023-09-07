@@ -29,7 +29,6 @@ import {
 
 ## Example
 
-
 {{"demo": "RichTextEditor.tsx"}}
 
 ## Components:
@@ -68,7 +67,6 @@ import {
 | RichTextEditor.TextAlginmentSelector | `Component` |         | Render a text alignment selector.                               |
 | RichTextEditor.HeadingsControl       | `Component` |         | Render a heading selector, provide levels via **levels** props. |
 | RichTextEditor.CodeBlock             | `Component` |         | Render a code block.                                            |
-
 
 ## Props
 

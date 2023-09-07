@@ -1,6 +1,8 @@
     ---
+
 title: React Footer component
 components: Footer
+
 ---
 
 # Chart
@@ -32,11 +34,6 @@ Footer.Header should contain company logo and/or language-changing button.
 Footer.Nav should contain all links of pages in website for user to navigate.
 Footer.Policy should contain links to policies and/or copyrights.
 FooterInfo should contain the address, social media and/or download links of the website.
-
-
-
-
-
 
 ## Props
 

@@ -24,8 +24,8 @@ const {
 const {
   /** any function in react aria internationalized */
 } = Calendar.InternationalizedDate
-
 ```
+
 ## I18nProvider
 
 I18nProvider allows you to override the default locale as determined by the browser/system setting with a locale defined by your application (e.g. application setting).
@@ -70,7 +70,6 @@ import RangeCalendar from '@comfortdelgro/react-compass/range-calendar'
 
 {{"demo": "CustomizeShorcutsRangeCalendar.tsx"}}
 
-
 ## Props
 
 | Name                | Type                                                                                                                   | Default | Description                                                                                                                 |
@@ -89,4 +88,3 @@ import RangeCalendar from '@comfortdelgro/react-compass/range-calendar'
 | ctaButtonRender     | `React.ReactNode`                                                                                                      |         | To render custom CTA Button in the footer                                                                                   |
 | customShortcuts     | `(defaultShortcuts: RangeCalendarShorcutItem[], isValid: (value: DateValue) => boolean) => RangeCalendarShorcutItem[]` |         | This callback function is to render custom shortcuts. It has two params: `defaultShortcuts` and `isInvalid` for user to use |
 | isDateUnavailable   | `(date: DateValue) => boolean`                                                                                         |         | Callback that is called for each date of the calendar. If it returns true, then the date is unavailable.                    |
-
