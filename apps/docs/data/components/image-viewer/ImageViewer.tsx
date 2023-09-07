@@ -7,6 +7,7 @@ const images = Array.from(Array(8).keys()).map((index) => {
   return {
     src: `https://picsum.photos/id/${index + 1}/5000/3333`,
     alt: `Image ${index + 1}`,
+    srcPreview: `https://picsum.photos/id/${index + 1}/60/50`,
   }
 })
 
