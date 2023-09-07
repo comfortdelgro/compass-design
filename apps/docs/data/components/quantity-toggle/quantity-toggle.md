@@ -18,6 +18,7 @@ or
 ```jsx
 import QuantityToggle from '@comfortdelgro/react-compass/quantity-toggle'
 ```
+
 ## Support
 
 Support for internationalized number formatting and parsing including decimals, percentages, currency values, and units
@@ -63,7 +64,6 @@ Works around bugs in VoiceOver with the spinbutton role
 ### Unit Quantity Toggle
 
 {{"demo": "QuantityToggleUnit.tsx"}}
-
 
 ## Props
 

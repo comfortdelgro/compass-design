@@ -48,12 +48,13 @@ const {
 {{"demo": "DatePickerControlled.tsx"}}
 
 ### Granularity
+
 The granularity prop allows you to control the smallest unit that is displayed by a DatePicker.
 
 {{"demo": "DatePickerGranularity.tsx"}}
 
-
 ### Labeling
+
 A visual label should be provided for the DatePicker using the label prop. If the DatePicker is required, the isRequired and necessityIndicator props can be used to show a required state.
 
 {{"demo": "DatePickerLabeling.tsx"}}
@@ -80,9 +81,7 @@ Mobile variant of date picker will remove the ability of inputing values by hand
 
 {{"demo": "DatePickerIsMobile.tsx"}}
 
-
 ## Props
-
 
 | Name                | Type                                             | Default | Description                                                                                                                                         |
 | :------------------ | :----------------------------------------------- | :------ | :-------------------------------------------------------------------------------------------------------------------------------------------------- |

@@ -23,7 +23,6 @@ import Rating from '@comfortdelgro/react-compass/rating'
 
 {{"demo": "Rating.tsx"}}
 
-
 ## Props
 
 | Name     | Type                           | Default | Description                                                                             |

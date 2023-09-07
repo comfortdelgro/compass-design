@@ -1,5 +1,10 @@
 import {Avatar, Icon, Sidenav} from '@comfortdelgro/react-compass'
-import { faAmbulance, faBank, faCar, faHelicopter } from '@fortawesome/free-solid-svg-icons'
+import {
+  faAmbulance,
+  faBank,
+  faCar,
+  faHelicopter,
+} from '@fortawesome/free-solid-svg-icons'
 
 function BasicExample() {
   return (

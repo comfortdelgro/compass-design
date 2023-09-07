@@ -48,21 +48,14 @@ export default function AppHeader(props: AppHeaderProps) {
       </Navbar.Brand>
       {!isTabletScreen && (
         <NavbarLinks>
-          <Link href='/foundation/overview' passHref legacyBehavior>
-            <Button href='/foundation/overview'>Document</Button>
+          <Link href='/foundation/overview'>
+            <Button>Document</Button>
           </Link>
           <Link
             href='https://comfortdelgro.github.io/compass-design/ladle/'
             target='_blank'
-            passHref
-            legacyBehavior
           >
-            <Button href='https://comfortdelgro.github.io/compass-design/ladle/'>
-              Ladle
-            </Button>
-          </Link>
-          <Link href='/products' passHref legacyBehavior>
-            <Button href='/products'>Products</Button>
+            <Button>Ladle</Button>
           </Link>
         </NavbarLinks>
       )}

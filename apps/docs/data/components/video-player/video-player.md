@@ -46,4 +46,3 @@ import {
 | onPrev    | `() => void`                   | -       | Fired when the prev button is clicked                                                                 |
 | onSetting | `() => void`                   | -       | Fired when the settings button is clicked                                                             |
 | css?      | `CSS`                          | —       | The system prop that allows defining system overrides as well as additional CSS styles.               |
-

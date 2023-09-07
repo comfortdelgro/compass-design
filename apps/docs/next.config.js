@@ -108,14 +108,14 @@ module.exports = withDocsInfra({
     return map
   },
   // rewrites has no effect when run `next export` for production
-  rewrites: async () => {
-    return [
-      // Make sure to include the trailing slash if `trailingSlash` option is set
-      {source: '/api/:rest*/', destination: '/api-docs/:rest*/'},
-      {
-        source: `/static/x/:rest*`,
-        destination: 'http://0.0.0.0:3001/static/x/:rest*',
-      },
-    ]
-  },
+  // rewrites: async () => {
+  //   return [
+  //     // Make sure to include the trailing slash if `trailingSlash` option is set
+  //     {source: '/api/:rest*/', destination: '/api-docs/:rest*/'},
+  //     {
+  //       source: `/static/x/:rest*`,
+  //       destination: 'http://0.0.0.0:3001/static/x/:rest*',
+  //     },
+  //   ]
+  // },
 })
