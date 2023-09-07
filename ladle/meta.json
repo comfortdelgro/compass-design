@@ -171,7 +171,17 @@
         "Badge"
       ],
       "locStart": 16,
-      "locEnd": 26,
+      "locEnd": 38,
+      "filePath": "src/badge/badge.stories.tsx",
+      "meta": {}
+    },
+    "badge--disabled": {
+      "name": "Disabled",
+      "levels": [
+        "Badge"
+      ],
+      "locStart": 96,
+      "locEnd": 104,
       "filePath": "src/badge/badge.stories.tsx",
       "meta": {}
     },
@@ -180,8 +190,18 @@
       "levels": [
         "Badge"
       ],
-      "locStart": 28,
-      "locEnd": 63,
+      "locStart": 40,
+      "locEnd": 75,
+      "filePath": "src/badge/badge.stories.tsx",
+      "meta": {}
+    },
+    "badge--sizes": {
+      "name": "Sizes",
+      "levels": [
+        "Badge"
+      ],
+      "locStart": 105,
+      "locEnd": 121,
       "filePath": "src/badge/badge.stories.tsx",
       "meta": {}
     },
@@ -190,8 +210,8 @@
       "levels": [
         "Badge"
       ],
-      "locStart": 65,
-      "locEnd": 83,
+      "locStart": 77,
+      "locEnd": 95,
       "filePath": "src/badge/badge.stories.tsx",
       "meta": {}
     },
@@ -261,7 +281,7 @@
         "Button"
       ],
       "locStart": 15,
-      "locEnd": 209,
+      "locEnd": 245,
       "filePath": "src/button/button.stories.tsx",
       "meta": {}
     },
@@ -425,23 +445,13 @@
       "filePath": "src/chip/chip.stories.tsx",
       "meta": {}
     },
-    "confirm-pickup--default": {
-      "name": "Default",
+    "confirm-pickup--variants": {
+      "name": "Variants",
       "levels": [
         "Confirm pickup"
       ],
-      "locStart": 5,
-      "locEnd": 26,
-      "filePath": "src/confirm-pickup/confirm-pickup.stories.tsx",
-      "meta": {}
-    },
-    "confirm-pickup--without-specific-pu-point": {
-      "name": "Without specific pu point",
-      "levels": [
-        "Confirm pickup"
-      ],
-      "locStart": 27,
-      "locEnd": 48,
+      "locStart": 14,
+      "locEnd": 86,
       "filePath": "src/confirm-pickup/confirm-pickup.stories.tsx",
       "meta": {}
     },
@@ -453,16 +463,6 @@
       "locStart": 8,
       "locEnd": 60,
       "filePath": "src/dashboard-sidecard/dashboardSidecard.stories.tsx",
-      "meta": {}
-    },
-    "data-grid--data-grid-story": {
-      "name": "Data grid story",
-      "levels": [
-        "Data grid"
-      ],
-      "locStart": 17,
-      "locEnd": 219,
-      "filePath": "src/data-grid/data-grid.stories.tsx",
       "meta": {}
     },
     "date-picker--controlled": {
@@ -601,7 +601,7 @@
         "Dropdown"
       ],
       "locStart": 540,
-      "locEnd": 834,
+      "locEnd": 833,
       "filePath": "src/dropdown/dropdown.stories.tsx",
       "meta": {}
     },
@@ -781,7 +781,7 @@
         "Link"
       ],
       "locStart": 5,
-      "locEnd": 38,
+      "locEnd": 42,
       "filePath": "src/link/link.stories.tsx",
       "meta": {}
     },
@@ -840,8 +840,18 @@
       "levels": [
         "Modal"
       ],
-      "locStart": 8,
-      "locEnd": 40,
+      "locStart": 9,
+      "locEnd": 41,
+      "filePath": "src/modal/modal.stories.tsx",
+      "meta": {}
+    },
+    "modal--h5": {
+      "name": "H5",
+      "levels": [
+        "Modal"
+      ],
+      "locStart": 201,
+      "locEnd": 258,
       "filePath": "src/modal/modal.stories.tsx",
       "meta": {}
     },
@@ -850,8 +860,8 @@
       "levels": [
         "Modal"
       ],
-      "locStart": 158,
-      "locEnd": 198,
+      "locStart": 159,
+      "locEnd": 199,
       "filePath": "src/modal/modal.stories.tsx",
       "meta": {}
     },
@@ -860,9 +870,19 @@
       "levels": [
         "Modal"
       ],
-      "locStart": 42,
-      "locEnd": 117,
+      "locStart": 43,
+      "locEnd": 118,
       "filePath": "src/modal/modal.stories.tsx",
+      "meta": {}
+    },
+    "multiple-choices-slider--default": {
+      "name": "Default",
+      "levels": [
+        "Multiple choices slider"
+      ],
+      "locStart": 15,
+      "locEnd": 72,
+      "filePath": "src/multiple-choices-slider/multiple-choices-slider.stories.tsx",
       "meta": {}
     },
     "multiple-dropdown--default": {
@@ -940,8 +960,18 @@
       "levels": [
         "Progress bar"
       ],
-      "locStart": 22,
-      "locEnd": 31,
+      "locStart": 25,
+      "locEnd": 41,
+      "filePath": "src/progress-bar/progress-bar.stories.tsx",
+      "meta": {}
+    },
+    "progress-bar--loading-state": {
+      "name": "Loading state",
+      "levels": [
+        "Progress bar"
+      ],
+      "locStart": 132,
+      "locEnd": 142,
       "filePath": "src/progress-bar/progress-bar.stories.tsx",
       "meta": {}
     },
@@ -950,8 +980,8 @@
       "levels": [
         "Progress bar"
       ],
-      "locStart": 5,
-      "locEnd": 20,
+      "locStart": 8,
+      "locEnd": 23,
       "filePath": "src/progress-bar/progress-bar.stories.tsx",
       "meta": {}
     },
@@ -960,8 +990,8 @@
       "levels": [
         "Progress bar"
       ],
-      "locStart": 33,
-      "locEnd": 42,
+      "locStart": 46,
+      "locEnd": 130,
       "filePath": "src/progress-bar/progress-bar.stories.tsx",
       "meta": {}
     },
@@ -992,6 +1022,16 @@
       ],
       "locStart": 51,
       "locEnd": 226,
+      "filePath": "src/pudo/pudo.stories.tsx",
+      "meta": {}
+    },
+    "pudo--preview-code": {
+      "name": "Preview code",
+      "levels": [
+        "Pudo"
+      ],
+      "locStart": 228,
+      "locEnd": 240,
       "filePath": "src/pudo/pudo.stories.tsx",
       "meta": {}
     },
@@ -1155,6 +1195,26 @@
       "filePath": "src/skeleton/skeleton.stories.tsx",
       "meta": {}
     },
+    "slide-action--customize": {
+      "name": "Customize",
+      "levels": [
+        "Slide action"
+      ],
+      "locStart": 111,
+      "locEnd": 219,
+      "filePath": "src/slide-action/slide-action.stories.tsx",
+      "meta": {}
+    },
+    "slide-action--default": {
+      "name": "Default",
+      "levels": [
+        "Slide action"
+      ],
+      "locStart": 10,
+      "locEnd": 98,
+      "filePath": "src/slide-action/slide-action.stories.tsx",
+      "meta": {}
+    },
     "slider--default": {
       "name": "Default",
       "levels": [
@@ -1215,13 +1275,23 @@
       "filePath": "src/subBanner/subBanner.stories.tsx",
       "meta": {}
     },
+    "table-v2--data-grid": {
+      "name": "Data grid",
+      "levels": [
+        "Table v2"
+      ],
+      "locStart": 671,
+      "locEnd": 873,
+      "filePath": "src/table-v2/table-v2.stories.tsx",
+      "meta": {}
+    },
     "table-v2--editable-template-cell": {
       "name": "Editable template cell",
       "levels": [
         "Table v2"
       ],
-      "locStart": 242,
-      "locEnd": 399,
+      "locStart": 244,
+      "locEnd": 401,
       "filePath": "src/table-v2/table-v2.stories.tsx",
       "meta": {}
     },
@@ -1230,8 +1300,8 @@
       "levels": [
         "Table v2"
       ],
-      "locStart": 497,
-      "locEnd": 658,
+      "locStart": 499,
+      "locEnd": 669,
       "filePath": "src/table-v2/table-v2.stories.tsx",
       "meta": {}
     },
@@ -1240,8 +1310,8 @@
       "levels": [
         "Table v2"
       ],
-      "locStart": 31,
-      "locEnd": 240,
+      "locStart": 33,
+      "locEnd": 242,
       "filePath": "src/table-v2/table-v2.stories.tsx",
       "meta": {}
     },
@@ -1255,13 +1325,23 @@
       "filePath": "src/table/tableV1.stories.tsx",
       "meta": {}
     },
+    "tab--h5": {
+      "name": "H5",
+      "levels": [
+        "Tab"
+      ],
+      "locStart": 71,
+      "locEnd": 96,
+      "filePath": "src/tabs/tab.stories.tsx",
+      "meta": {}
+    },
     "tab--icon": {
       "name": "Icon",
       "levels": [
         "Tab"
       ],
-      "locStart": 71,
-      "locEnd": 118,
+      "locStart": 98,
+      "locEnd": 145,
       "filePath": "src/tabs/tab.stories.tsx",
       "meta": {}
     },
@@ -1270,8 +1350,8 @@
       "levels": [
         "Tab"
       ],
-      "locStart": 120,
-      "locEnd": 152,
+      "locStart": 147,
+      "locEnd": 179,
       "filePath": "src/tabs/tab.stories.tsx",
       "meta": {}
     },
@@ -1300,8 +1380,8 @@
       "levels": [
         "Tab"
       ],
-      "locStart": 154,
-      "locEnd": 186,
+      "locStart": 181,
+      "locEnd": 213,
       "filePath": "src/tabs/tab.stories.tsx",
       "meta": {}
     },
@@ -1351,7 +1431,7 @@
         "Textarea"
       ],
       "locStart": 8,
-      "locEnd": 68,
+      "locEnd": 83,
       "filePath": "src/textarea/textarea.stories.tsx",
       "meta": {}
     },
