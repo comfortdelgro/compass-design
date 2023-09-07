@@ -7,7 +7,6 @@
     "build": "cross-env NODE_ENV=production NODE_OPTIONS=--max_old_space_size=4096 next build --profile",
     "build:clean": "rimraf .next && yarn build",
     "dev": "next dev",
-    "export": "next build && next export",
     "start": "next start",
     "typescript": "tsc -p tsconfig.json && tsc -p scripts/tsconfig.json",
     "typescript:transpile": "echo 'Use `yarn docs:typescript:formatted'` instead && exit 1",
