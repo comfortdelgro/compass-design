@@ -1,6 +1,7 @@
 import React, {useCallback, useMemo} from 'react'
 import type {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
+import ItemCounting from './pagination-itemCounting'
 import {usePagination} from './pagination.hooks'
 import {
   PaginationVariantProps,
@@ -13,6 +14,7 @@ interface Props extends StyledComponentProps {
   total?: number
   initialPage?: number
   onChange?: (page: number) => void
+  children?: React.ReactNode
 }
 
 export type PaginationProps = Props &
@@ -51,10 +53,11 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
       // StyledComponentProps
       css = {},
       // ComponentProps
-      page,
+      page = 1,
       total = 1,
       initialPage = 1,
       onChange,
+      children,
       // html props
       ...delegated
     } = props
@@ -66,7 +69,6 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
       initialPage,
       onChange,
     })
-
     const renderItem = useCallback(
       (item: (typeof items)[number], index: number) => {
         if (item === 'dots') {
@@ -111,6 +113,7 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
         aria-label='pagination'
         {...delegated}
       >
+        {children}
         <StyledPaginationItem onClick={previous} aria-label='previous page'>
           <svg viewBox='0 0 320 512'>
             <path
@@ -133,4 +136,6 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
   },
 )
 
-export default Pagination
+export default Pagination as typeof Pagination & {
+  ItemsCounting: typeof ItemCounting
+}
