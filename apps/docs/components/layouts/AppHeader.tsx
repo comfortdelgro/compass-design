@@ -61,8 +61,8 @@ export default function AppHeader(props: AppHeaderProps) {
               Ladle
             </Button>
           </Link>
-          <Link href='/products' passHref legacyBehavior>
-            <Button href='/products'>Products</Button>
+          <Link href='/products'>
+            <Button>Products</Button>
           </Link>
         </NavbarLinks>
       )}
