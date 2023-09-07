@@ -1,4 +1,4 @@
-import {SSRProvider, ThemeProvider} from '@comfortdelgro/react-compass'
+import {ThemeProvider} from '@comfortdelgro/react-compass'
 import Preflight from '@comfortdelgro/react-compass/preflight'
 import 'components/common/bootstrap'
 import AppHeader from 'components/layouts/AppHeader'
@@ -70,7 +70,7 @@ export default function MyApp(props: any) {
   return (
     <AppWrapper pageProps={pageProps}>
       <PagePropsProvider>
-        <SSRProvider>{getLayout(<Component {...pageProps} />)}</SSRProvider>
+        {getLayout(<Component {...pageProps} />)}
       </PagePropsProvider>
     </AppWrapper>
   )
