@@ -18,8 +18,8 @@ import Dropdown from '../dropdown'
 import Grid from '../grid'
 import {Icon} from '../icon'
 import Pagination from '../pagination'
-import Progress from '../progress'
 import SearchField from '../searchfield'
+import Spinner from '../spinner'
 import TextField from '../textfield'
 import {Column} from '../utils'
 import {useEditableCellContext} from './'
@@ -1030,13 +1030,7 @@ export const Loading: React.FC = () => {
           columns={columns}
           options={options}
           isLoading
-          loadingIndicator={
-            <Progress.Linear
-              variant='indeterminate'
-              size={10}
-              css={{width: '50%', margin: 'auto'}}
-            />
-          }
+          loadingIndicator={<Spinner />}
         >
           <ReactTable.Footer
             css={{

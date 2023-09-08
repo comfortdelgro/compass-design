@@ -28,6 +28,9 @@ import ReactTable from '@comfortdelgro/react-compass/table-v2'
 ### Expandable Column Table
 
 {{"demo": "ExpandableColumnTable.tsx"}}
+### Loading
+
+{{"demo": "LoadingTable.tsx"}}
 
 ## Usage
 
@@ -155,13 +158,18 @@ To use this functionality:
   },
 ```
 
+### Loading
+
+By default, the table uses Progress componenst as the default loading indicator. Users can replace it with any other React components (Spinner, linear Progress, etc).
 ## Props
 
-| Name                     | Type                                | Default | Description                     |
-| :----------------------- | :---------------------------------- | :------ | :------------------------------ |
-| `data`                   | Array                               | `[]`    | `Data for show.`                |
-| `columns`                | `Array<ColumnDef<T>>`               | `[]`    | `column with custom config.`    |
-| `options`                | OptionType                          | `{}`    | `Table option.`                 |
-| `children`               | React.ReactNode                     | —       | `Child elements.`               |
-| `css`                    | `CSS`                               | `{}`    | `Additional style.`             |
-| `renderRowSubComponent ` | `(rowData: T) => React.JSX.Element` | —       | `Callback after expanding row.` |
+| Name                     | Type                                | Default              | Description                       |
+| :----------------------- | :---------------------------------- | :------------------- | :-------------------------------- |
+| `data`                   | Array                               | `[]`                 | `Data for show.`                  |
+| `columns`                | `Array<ColumnDef<T>>`               | `[]`                 | `column with custom config.`      |
+| `options`                | OptionType                          | `{}`                 | `Table option.`                   |
+| `children`               | React.ReactNode                     | —                    | `Child elements.`                 |
+| `css`                    | `CSS`                               | `{}`                 | `Additional style.`               |
+| `renderRowSubComponent ` | `(rowData: T) => React.JSX.Element` | —                    | `Callback after expanding row.`   |
+| `isLoading `             | `boolean`                           | `false`              | `Loading status of the table.`    |
+| `loadingIndicator `      | React.ReactNode                     | `Progress.Circular` | `Loading indicator of the table.` |
