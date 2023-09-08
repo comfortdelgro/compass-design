@@ -49,6 +49,11 @@ export const StyledToastContainer = styled('div', {
         right: '0',
       },
     },
+    centerCenter: {
+      true: {
+        transform: 'translate(-50%, -50%)',
+      },
+    },
   },
 })
 
