@@ -160,7 +160,7 @@ To use this functionality:
 
 ### Loading
 
-By default, the Table V2 uses Progress component as the default loading indicator. Users can replace it with any other React components (Spinner, linear Progress, etc).
+By default, the Table V2 uses the circular Progress component as the default loading indicator. Users can replace it with any other React components (Spinner, linear Progress, etc).
 ## Props
 
 | Name                     | Type                                | Default              | Description                       |
