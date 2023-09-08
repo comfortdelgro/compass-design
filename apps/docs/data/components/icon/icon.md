@@ -26,19 +26,19 @@ import activityIcon from '@comfortdelgro/compass-icons/iconify/activity'rom '@co
 
 {{"demo": "IconFilled.tsx"}}
 
-### Outline Icons:
+### Outline Icons
 
 {{"demo": "IconOutline.tsx"}}
 
-### Colorful Icons:
+### Colorful Icons
 
 {{"demo": "IconColor.tsx"}}
 
-### Other Icons:
+### Other Icons
 
 {{"demo": "IconOther.tsx"}}
 
-### Country Icons:
+### Country Icons
 
 {{"demo": "IconCountry.tsx"}}
 
