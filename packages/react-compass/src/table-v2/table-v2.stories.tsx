@@ -1,5 +1,4 @@
 import {
-  faCar,
   faCheck,
   faChevronDown,
   faChevronRight,
@@ -10,7 +9,6 @@ import {
   faTrashAlt,
 } from '@fortawesome/free-solid-svg-icons'
 
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {CellContext, HeaderContext} from '@tanstack/react-table'
 import React, {Key, MouseEvent, TouchEvent, useState} from 'react'
 import ReactTable, {OptionType, TableV2ColumnDef, TableV2SortingState} from '.'
@@ -20,9 +18,10 @@ import Dropdown from '../dropdown'
 import Grid from '../grid'
 import {Icon} from '../icon'
 import Pagination from '../pagination'
+import Progress from '../progress'
 import SearchField from '../searchfield'
 import TextField from '../textfield'
-import {Column, Row} from '../utils'
+import {Column} from '../utils'
 import {useEditableCellContext} from './'
 import StatusComponent from './for story/person-status'
 import {
@@ -1032,7 +1031,11 @@ export const Loading: React.FC = () => {
           options={options}
           isLoading
           loadingIndicator={
-            <FontAwesomeIcon icon={faCar} size='4x' color='gray' />
+            <Progress.Linear
+              variant='indeterminate'
+              size={10}
+              css={{width: '50%', margin: 'auto'}}
+            />
           }
         >
           <ReactTable.Footer
