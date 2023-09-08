@@ -126,9 +126,8 @@ export default function DrawerCustomizeDocs() {
         <br />
         To disable that, set <code>preventFocus</code> to true
       </Typography.Body>
-      <Row>
+      <Row css={{gap: '$4'}}>
         <Button
-          css={{marginRight: '$4'}}
           type='button'
           onClick={() =>
             setOpenNoFocusDrawer({
