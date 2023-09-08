@@ -23,7 +23,7 @@ export const StyledBadge = styled('div', {
     justifyContent: 'start',
   },
 
-  '& > svg': {
+  'svg': {
     height: '$3',
     width: '100%',
   },
