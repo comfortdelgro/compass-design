@@ -25,7 +25,6 @@ import Popover from '@comfortdelgro/react-compass/popover'
 
 {{"demo": "Popover.tsx"}}
 
-
 ## Props
 
 | Name             | Type                                                                             | Default        | Description                                                                                               |

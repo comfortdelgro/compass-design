@@ -23,8 +23,6 @@ import OTPInput from '@comfortdelgro/react-compass/otpinput'
 
 {{"demo": "OTPInput.tsx"}}
 
-
-
 ## Props
 
 | Name          | Type     | Default | Description                          |

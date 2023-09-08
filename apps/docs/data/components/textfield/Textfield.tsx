@@ -1,6 +1,6 @@
 import {Column, Row, TextField, Typography} from '@comfortdelgro/react-compass'
-import { faBug } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faBug} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React from 'react'
 
 const Select = (

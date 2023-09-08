@@ -86,11 +86,11 @@ We provide 2 type of dropdown that can be used to select: `Dropdown.Select` and 
 
 ### `<Dropdown.Section/>` :
 
-| Name        | Type                 | Default | Description                       |
-| :---------- | :------------------- | :------ | :-------------------------------- |
-| title       | `ReactNode`          | —       | The title of the section.         |
-| children    | `ReactNode`          | —       | The content of the section        |
-| isClickable | `boolean`            | false   | Whether the section is clickable. |
-| isChecked   | `boolean`            | false   | Whether the section is selected.  |
-| onClick     | `Function`           | —       | Fire click to the section.        |
+| Name        | Type                     | Default | Description                       |
+| :---------- | :----------------------- | :------ | :-------------------------------- |
+| title       | `ReactNode`              | —       | The title of the section.         |
+| children    | `ReactNode`              | —       | The content of the section        |
+| isClickable | `boolean`                | false   | Whether the section is clickable. |
+| isChecked   | `boolean`                | false   | Whether the section is selected.  |
+| onClick     | `Function`               | —       | Fire click to the section.        |
 | checkmark   | `'checkbox'` \| `'tick'` | -       | Variant for the selected          |

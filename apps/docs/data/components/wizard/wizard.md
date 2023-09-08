@@ -18,6 +18,7 @@ or
 ```jsx
 import Wizard from '@comfortdelgro/react-compass/wizard'
 ```
+
 ## Content
 
 The TooltipTrigger accepts exactly two children: the element which triggers the display of the Tooltip and the Tooltip itself. The trigger element must be the first child passed into the TooltipTrigger. All content should be internationalized.
@@ -45,7 +46,7 @@ The TooltipTrigger accepts exactly two children: the element which triggers the 
 
 ### Wizard.Item
 
-| Name        | Type       | Default | Description                                                                             |
-| :---------- | :--------- | :------ | :-------------------------------------------------------------------------------------- |
-| title       | `string`   | -       | Text displayed below the stepper                                                        |
-| children    | `ReactNode`| 1       | Something to display the stepper                                                        |
+| Name     | Type        | Default | Description                      |
+| :------- | :---------- | :------ | :------------------------------- |
+| title    | `string`    | -       | Text displayed below the stepper |
+| children | `ReactNode` | 1       | Something to display the stepper |

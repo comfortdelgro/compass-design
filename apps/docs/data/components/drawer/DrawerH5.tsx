@@ -83,18 +83,18 @@ export default function DrawerH5Docs() {
         </Button>
       </Row>
 
-      <Modal.Trigger isOpen={openModal} size='sm' handleClose={() => setOpenModal(false)}>
+      <Modal.Trigger
+        isOpen={openModal}
+        size='sm'
+        handleClose={() => setOpenModal(false)}
+      >
         <Modal>
           <Modal.Description css={{display: 'flex', flexDirection: 'column'}}>
             <Typography.Label variant='label1' css={{textAlign: 'center'}}>
               Trip is cancelled. No Payment is required.
             </Typography.Label>
             <Dropdown onClickDropdown={() => setOpenDrawer(true)} />
-            <Button
-              type='button'
-              variant='primary'
-              h5
-            >
+            <Button type='button' variant='primary' h5>
               Submit
             </Button>
           </Modal.Description>
@@ -156,7 +156,9 @@ const Dropdown = ({
         cursor: 'pointer',
       }}
     >
-      <Typography.Label css={{cursor: 'pointer',}}>Reason for cancel </Typography.Label>
+      <Typography.Label css={{cursor: 'pointer'}}>
+        Reason for cancel{' '}
+      </Typography.Label>
       <Icon icon={faChevronDown} color='#757575' />
     </Box>
   )

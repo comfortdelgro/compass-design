@@ -9,7 +9,14 @@ const HorizontalAlternate = () => {
     width: 'fit-content',
   }
   return (
-    <div style={{width: '100%', display: 'flex', justifyContent: 'center', marginBottom: '10rem'}}>
+    <div
+      style={{
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        marginBottom: '10rem',
+      }}
+    >
       <TimeLine
         mode='horizontal'
         labelAlignment='alternate'

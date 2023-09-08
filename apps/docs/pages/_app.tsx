@@ -1,4 +1,4 @@
-import {ThemeProvider} from '@comfortdelgro/react-compass'
+import {SSRProvider, ThemeProvider} from '@comfortdelgro/react-compass'
 import Preflight from '@comfortdelgro/react-compass/preflight'
 import 'components/common/bootstrap'
 import AppHeader from 'components/layouts/AppHeader'
@@ -7,6 +7,7 @@ import PagePropsProvider from 'contexts/PageProps'
 import ThemeContext from 'contexts/Theme'
 import NextHead from 'next/head'
 import * as React from 'react'
+import {getStaticPath} from 'utils'
 import {CodeCopyProvider} from 'utils/CodeCopy'
 import useLazyCSS from 'utils/useLazyCSS'
 import './global.css'
@@ -39,7 +40,7 @@ function AppWrapper(props: any) {
     loadDependencies()
   }, [])
 
-  useLazyCSS('/static/styles/prism-okaidia.css', '#prismjs')
+  useLazyCSS(getStaticPath('/static/styles/prism-okaidia.css'), '#prismjs')
 
   const handleChangeThemeMode = () => {
     setMode(mode === ETheme.Light ? ETheme.Dark : ETheme.Light)
@@ -70,7 +71,7 @@ export default function MyApp(props: any) {
   return (
     <AppWrapper pageProps={pageProps}>
       <PagePropsProvider>
-        {getLayout(<Component {...pageProps} />)}
+        <SSRProvider>{getLayout(<Component {...pageProps} />)}</SSRProvider>
       </PagePropsProvider>
     </AppWrapper>
   )

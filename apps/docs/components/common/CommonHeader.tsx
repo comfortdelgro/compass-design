@@ -9,6 +9,7 @@ import {usePageProps} from 'contexts/PageProps'
 import _ from 'lodash'
 import {useRouter} from 'next/router'
 import {useMemo} from 'react'
+import {getStaticPath} from 'utils'
 
 export const CommonHeader = () => {
   const {pageProps} = usePageProps()
@@ -33,7 +34,9 @@ export const CommonHeader = () => {
             borderRadius: '30px',
             height: '100%',
             width: '100%',
-            backgroundImage: `url(${pageProps?.imgSrc})`,
+            backgroundImage: `url(${
+              pageProps?.imgSrc && getStaticPath(pageProps?.imgSrc)
+            })`,
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
             backgroundSize: 'cover',
