@@ -86,6 +86,40 @@ export const StyledSearchFieldBox = styled('div', {
   },
 })
 
+export const StyledTextFieldHelperText = styled('div', {
+  fontSize: '$label2',
+  fontWeight: '$medium',
+  transition: '$default',
+  marginTop: '$1',
+  color: '$gray70',
+
+  variants: {
+    error: {
+      true: {
+        color: '$danger',
+      },
+    },
+  },
+})
+
+export const StyledSearchFieldBoxWrapper = styled('div', {
+  width: '100%',
+  display: 'block',
+  fontFamily: '$sans',
+})
+
+export const StyledTextFieldLabel = styled('label', {
+  fontSize: '$label1',
+  fontWeight: '$semibold',
+  marginBottom: '$2',
+  display: 'inline-block',
+  width: '100%',
+  '.asterisk': {
+    marginLeft: '$1',
+    color: '$danger',
+  },
+})
+
 export type SearchFieldVariantProps = VariantProps<
   typeof StyledSearchFieldInput
 >
