@@ -11,7 +11,7 @@ import {
 
 import {CellContext, HeaderContext} from '@tanstack/react-table'
 import React, {Key, MouseEvent, TouchEvent, useState} from 'react'
-import ReactTable, {OptionType, TableV2ColumnDef, TableV2SortingState} from '.'
+import Table, {OptionType, TableColumnDef, TableSortingState} from '.'
 import Button from '../button'
 import Divider from '../divider'
 import Dropdown from '../dropdown'
@@ -20,17 +20,17 @@ import {Icon} from '../icon'
 import Pagination from '../pagination'
 import SearchField from '../searchfield'
 import Spinner from '../spinner'
-import TextField from '../textfield'
-import {Column} from '../utils'
-import {useEditableCellContext} from './'
-import StatusComponent from './for story/person-status'
+import StatusComponent from '../table-v2/for story/person-status'
 import {
   LimitRequestStatus,
   makeData,
   makeRequestStatusData,
   Person,
-} from './makeData'
-import ProgressPercentage from './table-v2-progress'
+} from '../table-v2/makeData'
+import ProgressPercentage from '../table-v2/table-v2-progress'
+import TextField from '../textfield'
+import {Column} from '../utils'
+import {useEditableCellContext} from './'
 
 export const FullFeatured: React.FC = () => {
   const [page, setPage] = useState(1)
@@ -44,11 +44,11 @@ export const FullFeatured: React.FC = () => {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  const onSorting = (sortingField: TableV2SortingState) => {}
+  const onSorting = (sortingField: TableSortingState) => {}
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   const onChangeRowSelection = (rowSelection: any) => {}
 
-  const columns = React.useMemo<Array<TableV2ColumnDef<Person>>>(
+  const columns = React.useMemo<Array<TableColumnDef<Person>>>(
     () => [
       {
         id: 'select',
@@ -61,7 +61,7 @@ export const FullFeatured: React.FC = () => {
                 alignItems: 'center',
               }}
             >
-              <ReactTable.CheckboxCell
+              <Table.CheckboxCell
                 checked={table.getIsAllRowsSelected()}
                 indeterminate={table.getIsSomeRowsSelected()}
                 onChange={table.getToggleAllRowsSelectedHandler()}
@@ -77,7 +77,7 @@ export const FullFeatured: React.FC = () => {
               alignItems: 'center',
             }}
           >
-            <ReactTable.CheckboxCell
+            <Table.CheckboxCell
               disabled={!row.getCanSelect()}
               checked={row.getIsSelected()}
               indeterminate={row.getIsSomeSelected()}
@@ -172,14 +172,14 @@ export const FullFeatured: React.FC = () => {
   )
   return (
     <div>
-      <ReactTable
+      <Table
         data={data}
         columns={columns}
         options={options}
         onManualSorting={onSorting}
         onChangeRowSelection={onChangeRowSelection}
       >
-        <ReactTable.Toolbar
+        <Table.Toolbar
           css={{
             display: 'flex',
             flexDirection: 'row',
@@ -208,8 +208,8 @@ export const FullFeatured: React.FC = () => {
               <Icon icon={faFileLines} aria-label='File' />
             </Button>
           </div>
-        </ReactTable.Toolbar>
-        <ReactTable.Footer
+        </Table.Toolbar>
+        <Table.Footer
           css={{
             display: 'flex',
             flexDirection: 'row',
@@ -238,8 +238,8 @@ export const FullFeatured: React.FC = () => {
               total={10}
             />
           </div>
-        </ReactTable.Footer>
-      </ReactTable>
+        </Table.Footer>
+      </Table>
     </div>
   )
 }
@@ -262,11 +262,11 @@ export const EditableTemplateCell: React.FC = () => {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  const onSorting = (sortingField: TableV2SortingState) => {}
+  const onSorting = (sortingField: TableSortingState) => {}
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   const onChangeRowSelection = (rowSelection: any) => {}
 
-  const columns = React.useMemo<Array<TableV2ColumnDef<Person>>>(
+  const columns = React.useMemo<Array<TableColumnDef<Person>>>(
     () => [
       {
         id: 'edit',
@@ -330,7 +330,7 @@ export const EditableTemplateCell: React.FC = () => {
 
   return (
     <>
-      <ReactTable
+      <Table
         data={data}
         columns={columns}
         options={options}
@@ -338,7 +338,7 @@ export const EditableTemplateCell: React.FC = () => {
         onChangeRowSelection={onChangeRowSelection}
         id='editableTable'
       >
-        <ReactTable.Toolbar
+        <Table.Toolbar
           css={{
             display: 'flex',
             flexDirection: 'row',
@@ -367,8 +367,8 @@ export const EditableTemplateCell: React.FC = () => {
               <Icon icon={faFileLines} />
             </Button>
           </div>
-        </ReactTable.Toolbar>
-        <ReactTable.Footer
+        </Table.Toolbar>
+        <Table.Footer
           css={{
             display: 'flex',
             flexDirection: 'row',
@@ -397,8 +397,8 @@ export const EditableTemplateCell: React.FC = () => {
               total={10}
             />
           </div>
-        </ReactTable.Footer>
-      </ReactTable>
+        </Table.Footer>
+      </Table>
     </>
   )
 }
@@ -509,7 +509,7 @@ export const ExpandableRow: React.FC = () => {
     manualSorting: false,
   }
 
-  const columns = React.useMemo<Array<TableV2ColumnDef<LimitRequestStatus>>>(
+  const columns = React.useMemo<Array<TableColumnDef<LimitRequestStatus>>>(
     () => [
       {
         id: 'expander',
@@ -617,7 +617,7 @@ export const ExpandableRow: React.FC = () => {
   }
   return (
     <div>
-      <ReactTable
+      <Table
         data={data}
         columns={columns}
         options={options}
@@ -629,7 +629,7 @@ export const ExpandableRow: React.FC = () => {
           },
         }}
       >
-        <ReactTable.Footer
+        <Table.Footer
           css={{
             display: 'flex',
             flexDirection: 'row',
@@ -665,8 +665,8 @@ export const ExpandableRow: React.FC = () => {
               total={10}
             />
           </div>
-        </ReactTable.Footer>
-      </ReactTable>
+        </Table.Footer>
+      </Table>
     </div>
   )
 }
@@ -685,7 +685,7 @@ export const EmptyState: React.FC = () => {
     ],
   }
 
-  const columns = React.useMemo<Array<TableV2ColumnDef<Person>>>(
+  const columns = React.useMemo<Array<TableColumnDef<Person>>>(
     () => [
       {
         id: 'select',
@@ -698,7 +698,7 @@ export const EmptyState: React.FC = () => {
                 alignItems: 'center',
               }}
             >
-              <ReactTable.CheckboxCell
+              <Table.CheckboxCell
                 {...{
                   checked: table.getIsAllRowsSelected(),
                   indeterminate: table.getIsSomeRowsSelected(),
@@ -717,7 +717,7 @@ export const EmptyState: React.FC = () => {
               alignItems: 'center',
             }}
           >
-            <ReactTable.CheckboxCell
+            <Table.CheckboxCell
               {...{
                 disabled: !row.getCanSelect(),
                 checked: row.getIsSelected(),
@@ -796,8 +796,8 @@ export const EmptyState: React.FC = () => {
 
   return (
     <div>
-      <ReactTable data={data} columns={columns} options={options}>
-        <ReactTable.Toolbar
+      <Table data={data} columns={columns} options={options}>
+        <Table.Toolbar
           css={{
             display: 'flex',
             flexDirection: 'row',
@@ -826,8 +826,8 @@ export const EmptyState: React.FC = () => {
               <Icon icon={faFileLines} />
             </Button>
           </div>
-        </ReactTable.Toolbar>
-        <ReactTable.Footer
+        </Table.Toolbar>
+        <Table.Footer
           css={{
             display: 'flex',
             flexDirection: 'row',
@@ -856,8 +856,8 @@ export const EmptyState: React.FC = () => {
               total={10}
             />
           </div>
-        </ReactTable.Footer>
-      </ReactTable>
+        </Table.Footer>
+      </Table>
     </div>
   )
 }
@@ -876,7 +876,7 @@ export const Loading: React.FC = () => {
     ],
   }
 
-  const columns = React.useMemo<Array<TableV2ColumnDef<Person>>>(
+  const columns = React.useMemo<Array<TableColumnDef<Person>>>(
     () => [
       {
         id: 'select',
@@ -889,7 +889,7 @@ export const Loading: React.FC = () => {
                 alignItems: 'center',
               }}
             >
-              <ReactTable.CheckboxCell
+              <Table.CheckboxCell
                 {...{
                   checked: table.getIsAllRowsSelected(),
                   indeterminate: table.getIsSomeRowsSelected(),
@@ -908,7 +908,7 @@ export const Loading: React.FC = () => {
               alignItems: 'center',
             }}
           >
-            <ReactTable.CheckboxCell
+            <Table.CheckboxCell
               {...{
                 disabled: !row.getCanSelect(),
                 checked: row.getIsSelected(),
@@ -989,8 +989,8 @@ export const Loading: React.FC = () => {
     <>
       <Column>
         <h3>1. Default loading indicator</h3>
-        <ReactTable data={data} columns={columns} options={options} isLoading>
-          <ReactTable.Footer
+        <Table data={data} columns={columns} options={options} isLoading>
+          <Table.Footer
             css={{
               display: 'flex',
               flexDirection: 'row',
@@ -1019,20 +1019,20 @@ export const Loading: React.FC = () => {
                 total={10}
               />
             </div>
-          </ReactTable.Footer>
-        </ReactTable>
+          </Table.Footer>
+        </Table>
       </Column>
       <br />
       <Column>
         <h3>2. Customized loading indicator</h3>
-        <ReactTable
+        <Table
           data={data}
           columns={columns}
           options={options}
           isLoading
           loadingIndicator={<Spinner />}
         >
-          <ReactTable.Footer
+          <Table.Footer
             css={{
               display: 'flex',
               flexDirection: 'row',
@@ -1061,8 +1061,8 @@ export const Loading: React.FC = () => {
                 total={10}
               />
             </div>
-          </ReactTable.Footer>
-        </ReactTable>
+          </Table.Footer>
+        </Table>
       </Column>
     </>
   )
@@ -1081,14 +1081,14 @@ export const DataGrid: React.FC = () => {
     ],
   }
 
-  const onSorting = (sortingField: TableV2SortingState) => {
+  const onSorting = (sortingField: TableSortingState) => {
     console.log('stateSorting', sortingField)
   }
   const onChangeRowSelection = (rowSelection: Person[]) => {
     console.log('stateSelectedRows', rowSelection)
   }
 
-  const columns = React.useMemo<Array<TableV2ColumnDef<Person>>>(
+  const columns = React.useMemo<Array<TableColumnDef<Person>>>(
     () => [
       {
         id: 'select',
@@ -1101,7 +1101,7 @@ export const DataGrid: React.FC = () => {
                 alignItems: 'center',
               }}
             >
-              <ReactTable.CheckboxCell
+              <Table.CheckboxCell
                 {...{
                   checked: table.getIsAllRowsSelected(),
                   indeterminate: table.getIsSomeRowsSelected(),
@@ -1120,7 +1120,7 @@ export const DataGrid: React.FC = () => {
               alignItems: 'center',
             }}
           >
-            <ReactTable.CheckboxCell
+            <Table.CheckboxCell
               {...{
                 disabled: !row.getCanSelect(),
                 checked: row.getIsSelected(),
@@ -1199,14 +1199,14 @@ export const DataGrid: React.FC = () => {
 
   return (
     <div>
-      <ReactTable
+      <Table
         data={data}
         columns={columns}
         options={options}
         onManualSorting={onSorting}
         onChangeRowSelection={onChangeRowSelection}
       >
-        <ReactTable.Toolbar
+        <Table.Toolbar
           css={{
             display: 'flex',
             flexDirection: 'row',
@@ -1235,8 +1235,8 @@ export const DataGrid: React.FC = () => {
               <Icon icon={faFileLines} />
             </Button>
           </div>
-        </ReactTable.Toolbar>
-        <ReactTable.Footer
+        </Table.Toolbar>
+        <Table.Footer
           css={{
             display: 'flex',
             flexDirection: 'row',
@@ -1265,8 +1265,8 @@ export const DataGrid: React.FC = () => {
               total={10}
             />
           </div>
-        </ReactTable.Footer>
-      </ReactTable>
+        </Table.Footer>
+      </Table>
     </div>
   )
 }
