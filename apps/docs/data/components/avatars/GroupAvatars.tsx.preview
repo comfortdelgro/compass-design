@@ -1,0 +1,9 @@
+<Avatar.Group display={5} size='md' disabledAnimation>
+    <Avatar label='Leonhard Euler' image={images[0]} size='md' />
+    <Avatar label='Isaac Newton' image={images[1]} size='md' />
+    <Avatar label='Alan Turing' image={images[2]} size='md' />
+    <Avatar label='David Hilbert' image={images[3]} size='md' />
+    <Avatar label='Edwin Hubble' image={images[4]} size='md' />
+    <Avatar label='Ada Lovelace' image={images[0]} size='md' />
+    <Avatar label='Max Planck' image={images[1]} size='md' />
+</Avatar.Group>
