@@ -1,0 +1,19 @@
+<SpeedDial
+    css={{
+    position: 'relative',
+    height: '200px',
+    }}
+    actions={[
+    {
+        name: 'Action 1',
+        icon: '+',
+        onClick: () => console.log('Action 1 clicked'),
+    },
+    {
+        name: 'Action 2',
+        icon: '-',
+        onClick: () => console.log('Action 2 clicked'),
+    },
+    ]}
+    position='right'
+/>

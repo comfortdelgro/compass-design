@@ -3,7 +3,7 @@ import {faHelicopter} from '@fortawesome/free-solid-svg-icons'
 
 function BasicExample() {
   return (
-    <Sidenav css={{height: '800px'}}>
+    <Sidenav css={{height: '500px'}}>
       <Sidenav.Item isActive>
         <Icon icon={faHelicopter}></Icon>
         <span>Menu</span>

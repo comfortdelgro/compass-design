@@ -29,6 +29,14 @@ import Sidenav from '@comfortdelgro/react-compass/sidenav'
 
 {{"demo": "SidenavMenu.tsx"}}
 
+### Sidenav item
+
+{{"demo": "SidenavItem.tsx"}}
+
+### Sidenav divider
+
+{{"demo": "SidenavDivider.tsx"}}
+
 ## Props
 
 ### Sidenav
