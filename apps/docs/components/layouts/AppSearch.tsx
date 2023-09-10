@@ -141,6 +141,7 @@ export default function AppSearch(props: any) {
               {searchRecommend.map((searchItem) => {
                 return (
                   <Box
+                    key={searchItem.pathname}
                     as={'button'}
                     css={{
                       background: '$gray10',

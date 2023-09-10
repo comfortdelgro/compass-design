@@ -6,7 +6,7 @@ export default function EditPage(props: {sourceLocation: string}) {
   const {sourceLocation} = props
   return (
     <Link
-      href={`https://github.com/comfortdelgro/compass-design/edit/master${sourceLocation}`}
+      href={`https://github.com/comfortdelgro/compass-design/edit/main/apps${sourceLocation}`}
       target='_blank'
     >
       <Button variant='ghost' size='sm' leftIcon={<Github />}>

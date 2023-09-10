@@ -1,6 +1,7 @@
 import Preflight from '@comfortdelgro/react-compass/preflight'
 import Document, {Head, Html, Main, NextScript} from 'next/document'
 import * as React from 'react'
+import {getStaticPath} from 'utils'
 
 export default class MyDocument extends Document {
   render() {
@@ -8,7 +9,7 @@ export default class MyDocument extends Document {
       <Html lang='en'>
         <Head>
           {Preflight.flush()}
-          <link rel='manifest' href='/static/manifest.json' />
+          <link rel='manifest' href={getStaticPath('/static/manifest.json')} />
           {/* PWA primary color */}
           <meta
             name='theme-color'
@@ -20,12 +21,15 @@ export default class MyDocument extends Document {
             content='dark'
             media='(prefers-color-scheme: dark)'
           />
-          <link rel='shortcut icon' href='/static/favicon.ico' />
+          <link
+            rel='shortcut icon'
+            href={getStaticPath('/static/favicon.ico')}
+          />
           {/* iOS Icon */}
           <link
             rel='apple-touch-icon'
             sizes='180x180'
-            href='/static/icons/180x180.png'
+            href={getStaticPath('/static/icons/180x180.png')}
           />
           {/* SEO */}
           <link
