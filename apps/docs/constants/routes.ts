@@ -459,10 +459,10 @@ export const routes: TSideNavItem[] = [
         description: 'The Sub Banner.',
       },
       {
-        title: 'Table-v2',
-        pathname: '/table-v2',
+        title: 'Table',
+        pathname: '/table',
         description:
-          'Table version 2 is a wrapper around the core table logic. Most of its job is related to managing state the "react" way.',
+          'Table is a wrapper around the core table logic. Most of its job is related to managing state the "react" way.',
       },
       {
         title: 'Tabs',
