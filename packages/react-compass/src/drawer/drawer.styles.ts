@@ -37,7 +37,9 @@ export const StyledDrawer = styled('dialog', {
   flexDirection: 'column',
 
   border: 'none',
-  boxSizing: 'border-box',
+  boxShadow:
+    '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
+
   zIndex: '48',
   pointerEvents: 'none',
 
@@ -94,6 +96,10 @@ export const StyledDrawer = styled('dialog', {
         height: '40dvh',
         width: '100%',
         insetBlock: 'auto 0',
+
+        boxShadow:
+          '0 -4px 6px -1px rgb(0 0 0 / 0.1), 0 -2px 4px -2px rgb(0 0 0 / 0.1)',
+
         animationName: `${slideOutUp}`,
 
         '&[open]': {

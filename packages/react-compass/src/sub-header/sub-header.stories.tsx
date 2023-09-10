@@ -1,20 +1,53 @@
 import {StoryDecorator} from '@ladle/react'
 import React from 'react'
-import {Column} from '../utils'
+import Button from '../button'
+import {Column, Row} from '../utils'
 import SubHeader from './index'
 
 export const Default: React.FC = () => {
   return (
     <>
-      <h3>Default</h3>
-      <Column>
+      <Column css={{marginBottom: '$8'}}>
+        <h3>Default</h3>
         <SubHeader>
           <SubHeader.Header>
             <SubHeader.Title>Title</SubHeader.Title>
           </SubHeader.Header>
           <SubHeader.Description>Description.</SubHeader.Description>
         </SubHeader>
+
+        <h3>With actions</h3>
+        <SubHeader
+          variant='h5'
+          css={{
+            '@mobile': {
+              flexDirection: 'column',
+              alignItems: 'unset',
+            },
+          }}
+        >
+          <Column css={{flex: 1}}>
+            <SubHeader.Header>
+              <SubHeader.Title>Title</SubHeader.Title>
+            </SubHeader.Header>
+            <SubHeader.Description>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
+              harum quaerat earum vitae veritatis molestiae vel commodi iste
+              tempore magni, officia eaque repudiandae pariatur voluptate
+              maiores debitis sed, reprehenderit assumenda.
+            </SubHeader.Description>
+          </Column>
+          <Row css={{width: 'fit-content', flexWrap: 'wrap'}}>
+            <Button type='button' size='sm'>
+              Call to action
+            </Button>
+            <Button type='button' variant='secondary' size='sm'>
+              Call to action
+            </Button>
+          </Row>
+        </SubHeader>
       </Column>
+
       <h3>H5</h3>
       <div
         style={{

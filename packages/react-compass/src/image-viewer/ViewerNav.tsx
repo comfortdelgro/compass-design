@@ -29,7 +29,7 @@ export default function ViewerNav(props: ViewerNavProps) {
         >
           <img
             className={index === activeIndex ? 'active' : ''}
-            src={item.src}
+            src={item?.srcPreview ?? item.src}
             alt={item.alt}
           />
         </StyledNavbarItem>

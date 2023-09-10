@@ -58,7 +58,11 @@ export const StyledNavbar = styled('div', {
   width: '100vw',
 })
 
-export const StyledNavbarItem = styled('div', {
+export const StyledNavbarItem = styled('button', {
+  background: 'none',
+  border: 'none',
+  cursor: 'pointer',
+  padding: 0,
   zIndex: 53,
   height: 50,
   marginBottom: 10,

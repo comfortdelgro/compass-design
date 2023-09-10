@@ -96,9 +96,14 @@ export default function ViewerToolbar(props: ViewerToolbarProps) {
           handleAction(config)
         }}
         data-key={config.key}
+        css={{
+          '&:hover': {
+            background: '$cdgBlue100 !important',
+          },
+        }}
       >
         {config.icon ? (
-          <Icon icon={config.icon} color={colors.cdgBlue40} />
+          <Icon icon={config.icon} color={colors.white} />
         ) : (
           <>{config.key}</>
         )}

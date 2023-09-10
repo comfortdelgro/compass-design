@@ -1,5 +1,5 @@
 import {cloneDeep} from 'lodash'
-import React, {useEffect, useRef, useState} from 'react'
+import React, {useCallback, useEffect, useRef, useState} from 'react'
 import Button from '../button'
 import {
   DEFAULT_VIEWS,
@@ -30,6 +30,7 @@ interface TimePickerDropdownProps {
   hasFooter?: boolean
   isReadOnly?: boolean
   views?: ViewType[]
+  isUncontrolledComponent: boolean
   onItemClick: (value: TimePickerDropdownSelectedDisplayList) => void
   onOkClick?: () => void
   onEscapeKeyDown?: () => void
@@ -62,6 +63,7 @@ function TimePickerDropdown(props: TimePickerDropdownProps) {
     minuteStep = 1,
     value = EMPTY_DISPLAY_TIME_DROPDOWN_LIST,
     hasFooter = true,
+    isUncontrolledComponent = true,
     views = DEFAULT_VIEWS,
     isReadOnly,
     onItemClick,
@@ -154,7 +156,7 @@ function TimePickerDropdown(props: TimePickerDropdownProps) {
     }
   }, [isOpen, selectedDisplayList, displayList])
 
-  const handleTimeItemClick =
+  const handleTimeItemClick = useCallback(
     (value: number | string, type: SelectedKey) => () => {
       if (isReadOnly) return
       const newSelectedDisplayList = cloneDeep(selectedDisplayList)
@@ -174,9 +176,20 @@ function TimePickerDropdown(props: TimePickerDropdownProps) {
         }
       })
 
-      setSelectedDisplayList(newSelectedDisplayList)
+      if (isUncontrolledComponent) {
+        console.log('setSelectedDisplayList')
+        setSelectedDisplayList(newSelectedDisplayList)
+      }
       onItemClick(newSelectedDisplayList)
-    }
+    },
+    [
+      isReadOnly,
+      selectedDisplayList,
+      isUncontrolledComponent,
+      displayList,
+      onItemClick,
+    ],
+  )
 
   const handleButtonOkClick = () => {
     onOkClick && onOkClick()

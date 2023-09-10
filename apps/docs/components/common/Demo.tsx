@@ -221,6 +221,7 @@ export default function Demo(props: any) {
           borderTop: '1px solid $gray40',
           borderLeft: '1px solid $gray40',
           marginTop: '$8 !important',
+          overflow: 'hidden',
         }}
         onMouseEnter={handleDemoHover}
         onMouseLeave={handleDemoHover}

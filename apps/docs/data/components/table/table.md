@@ -1,33 +1,34 @@
 ---
-title: React Table-v2 component
-components: ReactTable
+title: Table component
+components: Table
 ---
 
-# Table-v2
+# Table
 
-<p class="description">Table version 2 is a wrapper around the core table logic. Most of its job is related to managing state the "react" way.</p>
+<p class="description">Table is a wrapper around the core table logic. Most of its job is related to managing state the "react" way.</p>
 
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {ReactTable} from '@comfortdelgro/react-compass'
+import {Table} from '@comfortdelgro/react-compass'
 ```
 
 or
 
 ```jsx
-import ReactTable from '@comfortdelgro/react-compass/table-v2'
+import Table from '@comfortdelgro/react-compass/table'
 ```
 
 ## Example
 
 ### Full features
 
-{{"demo": "ReactTable.tsx"}}
+{{"demo": "Table.tsx"}}
 
 ### Expandable Column Table
 
 {{"demo": "ExpandableColumnTable.tsx"}}
+
 ### Loading
 
 {{"demo": "LoadingTable.tsx"}}
@@ -36,10 +37,10 @@ import ReactTable from '@comfortdelgro/react-compass/table-v2'
 
 ### For server sorting
 
-\*if user want to custom sort. Add `manualSorting: true` to ReactTableOptions.
+\*if user want to custom sort. Add `manualSorting: true` to TableOptions.
 
 ```js
-const options: ReactTableOptions = {
+const options: TableOptions = {
   enableSorting: true,
   enableMultiSort: true,
   columnResizeMode: 'onChange',
@@ -52,13 +53,13 @@ const options: ReactTableOptions = {
 Example
 
 ```js
-const onSorting = (sortingField: TableV2SortingState) => {
+const onSorting = (sortingField: TableSortingState) => {
   console.log('stateSorting', sortingField)
 }
 ```
 
 ```js
- <ReactTable data={data} columns={columns} options={options} onManualSorting={onSorting}>
+ <Table data={data} columns={columns} options={options} onManualSorting={onSorting}>
 ```
 
 \*props `sortingField` contain all informations sorting for your need
@@ -69,28 +70,28 @@ Column definitions are plain objects with the following options:
 
 #### Enable Resizing
 
-| Name             | Type    | Default | Description            |
-| :--------------- | :------ | :------ | :--------------------- |
+| Name             | Type      | Default | Description            |
+| :--------------- | :-------- | :------ | :--------------------- |
 | `enableResizing` | `boolean` | `false` | `Enable column resize` |
 
 #### Enable column filter
 
-| Name                 | Type    | Default | Description            |
-| :------------------- | :------ | :------ | :--------------------- |
+| Name                 | Type      | Default | Description            |
+| :------------------- | :-------- | :------ | :--------------------- |
 | `enableColumnFilter` | `boolean` | `false` | `Enable column filter` |
 
 #### Enable Grouping
 
-| Name             | Type    | Default | Description              |
-| :--------------- | :------ | :------ | :----------------------- |
+| Name             | Type      | Default | Description              |
+| :--------------- | :-------- | :------ | :----------------------- |
 | `enableGrouping` | `boolean` | `false` | `Enable column grouping` |
 
 #### Meta
 
 Define further information about the column. Now `meta` is used to define `editable` columns.
 
-| Name         | Type                                                            | Default     | Description                         |
-| :----------- | :-------------------------------------------------------------- | :---------- | :---------------------------------- |
+| Name         | Type                                                              | Default     | Description                         |
+| :----------- | :---------------------------------------------------------------- | :---------- | :---------------------------------- |
 | `editable`   | `boolean \| undefined`                                            | `undefined` | `Enable rendering editable column`  |
 | `template`   | `JSX Element \| undefined`                                        | `undefined` | `Enable rendering editable column`  |
 | `updateData` | `(rowIndex: number, id: string, value: any) => void \| undefined` | `undefined` | `Callback to update table data`     |
@@ -161,15 +162,16 @@ To use this functionality:
 ### Loading
 
 By default, the Table V2 uses the circular Progress component as the default loading indicator. Users can replace it with any other React components (Spinner, linear Progress, etc).
+
 ## Props
 
-| Name                     | Type                                | Default              | Description                       |
-| :----------------------- | :---------------------------------- | :------------------- | :-------------------------------- |
-| `data`                   | `Array`                               | `[]`                 | `Data for show.`                  |
-| `columns`                | `Array<ColumnDef<T>>`               | `[]`                 | `column with custom config.`      |
-| `options`                | `OptionType`                          | `{}`                 | `Table option.`                   |
-| `children`               | `React.ReactNode`                     | —                    | `Child elements.`                 |
-| `css`                    | `CSS`                               | `{}`                 | `Additional style.`               |
-| `renderRowSubComponent ` | `(rowData: T) => React.JSX.Element` | —                    | `Callback after expanding row.`   |
-| `isLoading `             | `boolean`                           | `false`              | `Loading status of the table.`    |
-| `loadingIndicator `      | `React.ReactNode`                     | `Progress.Circular` | `Loading indicator of the table.` |
+| Name                     | Type                                | Default             | Description                       |
+| :----------------------- | :---------------------------------- | :------------------ | :-------------------------------- |
+| `data`                   | `Array`                             | `[]`                | `Data for show.`                  |
+| `columns`                | `Array<ColumnDef<T>>`               | `[]`                | `column with custom config.`      |
+| `options`                | `OptionType`                        | `{}`                | `Table option.`                   |
+| `children`               | `React.ReactNode`                   | —                   | `Child elements.`                 |
+| `css`                    | `CSS`                               | `{}`                | `Additional style.`               |
+| `renderRowSubComponent ` | `(rowData: T) => React.JSX.Element` | —                   | `Callback after expanding row.`   |
+| `isLoading `             | `boolean`                           | `false`             | `Loading status of the table.`    |
+| `loadingIndicator `      | `React.ReactNode`                   | `Progress.Circular` | `Loading indicator of the table.` |

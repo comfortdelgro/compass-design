@@ -9,6 +9,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
 import {Icon} from '../icon'
+import Typography from '../typography'
 import {Column, Row} from '../utils/components'
 import Button from './index'
 
@@ -26,6 +27,24 @@ export const Variations: React.FC = () => (
       <Button variant='danger'>Danger</Button>
       <Button variant='ghost'>Ghost</Button>
       <Button isDisabled>Disabled</Button>
+    </Row>
+
+    <Typography.Header variant='header5' css={{marginTop: '$4'}}>
+      Disabled state
+    </Typography.Header>
+    <Row>
+      <Button variant='primary' isDisabled>
+        Primary
+      </Button>
+      <Button variant='secondary' isDisabled>
+        Secondary
+      </Button>
+      <Button variant='danger' isDisabled>
+        Danger
+      </Button>
+      <Button variant='ghost' isDisabled>
+        Ghost
+      </Button>
     </Row>
     <h3>2. Sizes</h3>
     <Row>

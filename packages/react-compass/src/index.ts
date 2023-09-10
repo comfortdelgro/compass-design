@@ -286,7 +286,20 @@ export type {
   SubBannerTitleProps,
 } from './subBanner'
 export {default as Table} from './table'
-export type {TableProps} from './table'
+export type {
+  OptionType,
+  TableAccessorColumnDef,
+  TableCell,
+  TableCellContext,
+  TableColumnDef,
+  TableDisplayColumnDef,
+  TableGroupColumnDef,
+  TableHeaderContext,
+  TableProps,
+  TableRow,
+  TableSortingState,
+  TableType,
+} from './table'
 export {default as ReactTable, OptionType as TableV2Options} from './table-v2'
 export type {
   ReactTableProps,

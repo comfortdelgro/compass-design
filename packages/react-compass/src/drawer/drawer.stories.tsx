@@ -5,6 +5,7 @@ import {faChevronRight, faFaceSmile} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React, {FormEventHandler, useState} from 'react'
 import Button from '../button'
+import Link from '../link'
 import List from '../list'
 import ListImage from '../list/list-image'
 import Modal from '../modal'
@@ -391,15 +392,15 @@ export function H5() {
 
       <Drawer
         open={openNonModalDrawer}
-        css={{height: '20dvh'}}
+        css={{height: '30dvh'}}
         expanderCSS={{
           background: '$blueShades100',
           paddingBlock: '$2 $6',
         }}
         onClose={() => setOpenNonModalDrawer(false)}
         variant='h5'
-        expandedPoint={50}
-        expandableLine={33}
+        expandedPoint={80}
+        expandableLine={60}
         drawerMode='non-modal'
       >
         <Drawer.Header
@@ -541,6 +542,7 @@ export function H5() {
 export function Default() {
   const [openDrawer, setOpenDrawer] = useState(false)
   const [keyword, setKeyword] = useState('')
+  const [openDrawerNonModal, setOpenDrawerNonModal] = useState(false)
 
   const [openDrawerPosition, setOpenDrawerPosition] = useState(false)
   const [drawerPosition, setDrawerPosition] =
@@ -576,9 +578,15 @@ export function Default() {
 
   return (
     <>
-      <h3>1. Drawer</h3>
-      <p>Drawer form value: {keyword}</p>
-      <Button type='button' onClick={() => setOpenDrawer(true)}>
+      <Typography.Header variant='header4'>1. Drawer</Typography.Header>
+      <Typography.Body variant='body2'>
+        Drawer form value: {keyword}
+      </Typography.Body>
+      <Button
+        css={{marginBlock: '$4'}}
+        type='button'
+        onClick={() => setOpenDrawer(true)}
+      >
         Open Drawer
       </Button>
 
@@ -682,8 +690,8 @@ export function Default() {
         </Drawer.Footer>
       </Drawer>
 
-      <h3>2. Position</h3>
-      <Row>
+      <Typography.Header variant='header4'>2. Position</Typography.Header>
+      <Row css={{marginBlock: '$4'}}>
         <Button
           type='button'
           leftIcon={<ArrowLeft />}
@@ -721,6 +729,81 @@ export function Default() {
         <p>Article contents</p>
 
         <Button type='button' onClick={() => setOpenDrawerPosition(false)}>
+          Close Drawer
+        </Button>
+      </Drawer>
+
+      <Typography.Header variant='header4'>3. Non-modal mode</Typography.Header>
+      <Typography.Body
+        variant='body3'
+        css={{color: '$grayShades60', marginBlock: '$2 $4'}}
+      >
+        A Drawer that has no backdrop and also doesn't render on the top-layer.
+        It can <strong>NOT</strong> be closed by pressing the <kbd>ESC</kbd>{' '}
+        key.
+        <br />
+        The content below the non-modal drawer can be interacted.
+      </Typography.Body>
+      <Button
+        type='button'
+        onClick={() => setOpenDrawerNonModal(!openDrawerNonModal)}
+      >
+        Toggle Non-modal Drawer
+      </Button>
+
+      <Drawer
+        open={openDrawerNonModal}
+        onClose={() => setOpenDrawerNonModal(false)}
+        drawerMode='non-modal'
+        position={drawerPosition}
+      >
+        <Drawer.Header>
+          <Typography.Header variant='header3'>
+            Non-modal Drawer
+          </Typography.Header>
+        </Drawer.Header>
+
+        <Typography.Body variant='body2'>
+          <Link
+            href='https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog#accessibility_considerations'
+            target='_blank'
+          >
+            Read more
+          </Link>{' '}
+          about non-modal mode and accessibility considerations.
+        </Typography.Body>
+
+        <Row css={{marginBlock: '$24 $4'}}>
+          <Button
+            type='button'
+            leftIcon={<ArrowLeft />}
+            onClick={() => setDrawerPosition('left')}
+          >
+            Open on the left
+          </Button>
+
+          <Button
+            variant='secondary'
+            type='button'
+            onClick={() => setDrawerPosition('bottom')}
+          >
+            Open on the bottom
+          </Button>
+
+          <Button
+            type='button'
+            rightIcon={<ArrowRight />}
+            onClick={() => setDrawerPosition('right')}
+          >
+            Open on the right
+          </Button>
+        </Row>
+
+        <Button
+          type='button'
+          variant='danger'
+          onClick={() => setOpenDrawerNonModal(false)}
+        >
           Close Drawer
         </Button>
       </Drawer>
