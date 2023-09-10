@@ -39,6 +39,10 @@ const ToastsContainer = (props: ToastsContainerProps) => {
         {...delegated}
         vertical={anchorOrigin.vertical}
         horizontal={anchorOrigin.horizontal}
+        centerCenter={
+          anchorOrigin.vertical === 'center' &&
+          anchorOrigin.horizontal === 'center'
+        }
         className={`${toasts.length > 0 ? '' : 'cdg-toast-container-hidden'} ${
           className ?? ''
         }`}
