@@ -31,7 +31,7 @@ import {
 
 {{"demo": "RichTextEditor.tsx"}}
 
-## Components:
+## Components
 
 | Name                                 | Type        | Default | Description                                                     |
 | :----------------------------------- | :---------- | :------ | :-------------------------------------------------------------- |

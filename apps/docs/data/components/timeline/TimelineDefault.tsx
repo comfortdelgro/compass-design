@@ -19,7 +19,7 @@ const Default: React.FC = () => {
             dot={
               <Icon
                 icon={faCalendarDay}
-                style={{color: 'white', height: '50%'}}
+                style={{color: 'green', height: '50%'}}
               />
             }
           >
@@ -43,7 +43,7 @@ const Default: React.FC = () => {
             dot={
               <Icon
                 icon={faCalendarDay}
-                style={{color: 'white', height: '50%'}}
+                style={{color: 'green', height: '50%'}}
               />
             }
           >
