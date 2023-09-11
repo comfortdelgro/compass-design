@@ -99,7 +99,7 @@ export const Link: React.FC = () => (
     </Typography.Link>
     <Typography.Link variant='link2'>{text}</Typography.Link>
     <Typography.Link variant='link3'>{text}</Typography.Link>
-    <Typography.Link variant='link3' weight='semibold'>
+    <Typography.Link variant='link3' weight='bold'>
       {text}
     </Typography.Link>
   </Column>

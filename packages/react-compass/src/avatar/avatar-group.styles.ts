@@ -10,7 +10,7 @@ export const StyledAvatarGroup = styled('div', {
   width: 'fit-content',
 
   [`& ${StyledAvatar}`]: {
-    marginRight: '-$2',
+    marginRight: '-$3',
     '&:hover': {
       marginTop: '-$4',
     },
@@ -21,7 +21,7 @@ export const StyledAvatarGroup = styled('div', {
       false: {},
       true: {
         [`& ${StyledAvatar}`]: {
-          marginRight: '-$2',
+          marginRight: '-$3',
           '&:hover': {
             marginTop: '0px',
           },
