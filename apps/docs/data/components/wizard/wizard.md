@@ -29,6 +29,10 @@ The TooltipTrigger accepts exactly two children: the element which triggers the 
 
 {{"demo": "WizardBasic.tsx"}}
 
+### Error steps
+
+{{"demo": "WizardError.tsx"}}
+
 ### Custom styling
 
 {{"demo": "WizardCustom.tsx"}}
@@ -41,12 +45,14 @@ The TooltipTrigger accepts exactly two children: the element which triggers the 
 | :---------- | :-------------------- | :------ | :-------------------------------------------------------------------------------------- |
 | items?      | `string[]`            | -       | List of display contennt below the stepper                                              |
 | currentStep | `number`              | 1       | Current active step, start from 1                                                       |
+| errorSteps  | `number[]`            | -       | List of error step                                                                      |
 | onStepClick | `(n: number) => void` | -       | Handler when click on step, return index of step                                        |
 | css?        | `CSS`                 | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
 
 ### Wizard.Item
 
-| Name     | Type        | Default | Description                      |
-| :------- | :---------- | :------ | :------------------------------- |
-| title    | `string`    | -       | Text displayed below the stepper |
-| children | `ReactNode` | 1       | Something to display the stepper |
+| Name      | Type        | Default | Description                      |
+| :-------- | :---------- | :------ | :------------------------------- |
+| title     | `string`    | -       | Text displayed below the stepper |
+| children  | `ReactNode` | 1       | Something to display the stepper |
+| isErrored | `boolean`   | false   | Error state of the item          |
