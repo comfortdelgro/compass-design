@@ -92,6 +92,7 @@ const ToastAsService: React.FC = () => {
         <Dropdown.Item key='center'>Center</Dropdown.Item>
         <Dropdown.Item key='right'>Right</Dropdown.Item>
       </Dropdown.Select>
+      <br />
       <Dropdown.Select
         isRequired
         label='Please select vertical'
@@ -106,10 +107,17 @@ const ToastAsService: React.FC = () => {
         <Dropdown.Item key='bottom'>Bottom</Dropdown.Item>
       </Dropdown.Select>
       <ToastContextProvider anchorOrigin={{horizontal, vertical}}>
-        <>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            gap: '0.5rem',
+            margin: '1rem',
+          }}
+        >
           <SubService1 />
           <SubService2 />
-        </>
+        </div>
       </ToastContextProvider>
     </div>
   )
