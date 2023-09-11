@@ -1,9 +1,11 @@
+import {Editor} from '@tiptap/react'
 import React from 'react'
 import {useRichTextEditorContext} from '../../rich-text-editor.context'
 import Select from '../../select'
 
 export const TextAlignmentSelectorControl = () => {
   const {editor} = useRichTextEditorContext()
+  const [selectedKey, setSelectedKey] = React.useState<string>('left')
   const handleSelectionChange = (key: React.Key) => {
     editor
       ?.chain()
@@ -11,10 +13,29 @@ export const TextAlignmentSelectorControl = () => {
       .setTextAlign(key as string)
       .run()
   }
+
+  React.useEffect(() => {
+    editor?.on('transaction', ({editor}) => {
+      handleSelectedHeadingChange(editor as Editor)
+    })
+  }, [editor])
+
+  const handleSelectedHeadingChange = (editor: Editor) => {
+    if (editor.isActive({textAlign: 'left'})) {
+      setSelectedKey('left')
+    } else if (editor.isActive({textAlign: 'center'})) {
+      setSelectedKey('center')
+    } else if (editor.isActive({textAlign: 'right'})) {
+      setSelectedKey('right3')
+    } else if (editor.isActive({textAlign: 'justify'})) {
+      setSelectedKey('justify')
+    }
+  }
+
   return (
     <Select
       onSelectionChange={handleSelectionChange}
-      defaultSelectedKey={'left'}
+      selectedKey={selectedKey}
       type='alignment'
       css={{
         width: '56px',

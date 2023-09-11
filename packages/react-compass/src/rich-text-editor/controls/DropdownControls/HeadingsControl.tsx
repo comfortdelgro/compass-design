@@ -1,6 +1,8 @@
+import {Editor} from '@tiptap/react'
 import React from 'react'
 import {useRichTextEditorContext} from '../../rich-text-editor.context'
 import Select from '../../select'
+
 export type HeadingsControlProps = {
   levels?: number[]
 }
@@ -82,6 +84,28 @@ export const HeadingsControl = () => {
     },
     [editor],
   )
+
+  React.useEffect(() => {
+    editor?.on('transaction', ({editor}) => {
+      handleSelectedHeadingChange(editor as Editor)
+    })
+  }, [editor])
+
+  const handleSelectedHeadingChange = (editor: Editor) => {
+    if (editor.isActive('heading', {level: 1})) {
+      setLevel('1')
+    } else if (editor.isActive('heading', {level: 2})) {
+      setLevel('2')
+    } else if (editor.isActive('heading', {level: 3})) {
+      setLevel('3')
+    } else if (editor.isActive('heading', {level: 4})) {
+      setLevel('4')
+    } else if (editor.isActive('heading', {level: 5})) {
+      setLevel('5')
+    } else {
+      setLevel('0')
+    }
+  }
 
   return (
     <Select
