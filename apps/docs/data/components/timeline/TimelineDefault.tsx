@@ -1,7 +1,7 @@
 import {Column} from '@comfortdelgro/react-compass'
 import Icon from '@comfortdelgro/react-compass/icon'
 import Timeline from '@comfortdelgro/react-compass/timeline'
-import { faCalendarDay } from '@fortawesome/free-solid-svg-icons'
+import {faCalendarDay} from '@fortawesome/free-solid-svg-icons'
 
 const Default: React.FC = () => {
   const itemStyle = {
@@ -19,7 +19,7 @@ const Default: React.FC = () => {
             dot={
               <Icon
                 icon={faCalendarDay}
-                style={{color: 'white', height: '50%'}}
+                style={{color: 'green', height: '50%'}}
               />
             }
           >
@@ -43,7 +43,7 @@ const Default: React.FC = () => {
             dot={
               <Icon
                 icon={faCalendarDay}
-                style={{color: 'white', height: '50%'}}
+                style={{color: 'green', height: '50%'}}
               />
             }
           >

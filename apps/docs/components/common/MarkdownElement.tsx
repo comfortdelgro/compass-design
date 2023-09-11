@@ -219,7 +219,6 @@ const Root = styled('div', {
       },
       '& a': {
         color: 'red',
-        textDecorationColor: 'red',
         '&:hover': {
           textDecorationColor: 'inherit',
         },
@@ -243,7 +242,6 @@ const Root = styled('div', {
       },
       '& a': {
         color: '$success',
-        textDecorationColor: 'red',
         '&:hover': {
           textDecorationColor: 'inherit',
         },
@@ -267,9 +265,8 @@ const Root = styled('div', {
   },
   '& a, & a code': {
     // Style taken from the Link component
-    color: '$cdgBlue60',
-    textDecoration: 'underline',
-    textDecorationColor: 'red',
+    color: '$cdgBlue80',
+    textDecoration: 'none',
     '&:hover': {
       textDecorationColor: 'inherit',
     },

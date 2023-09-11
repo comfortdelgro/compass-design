@@ -33,7 +33,6 @@ import Grid from '@comfortdelgro/react-compass/grid'
 6. There are five grid breakpoints: xs, sm, md, lg, and xl.
 7. Integer values can be given to each breakpoint, indicating how many of the 12 available columns are occupied by the component when the viewport width satisfies the breakpoint constraints.
 
-
 ### Default Breakpoints:
 
 1. xs, extra-small: 0px
@@ -41,7 +40,6 @@ import Grid from '@comfortdelgro/react-compass/grid'
 3. md, medium: 900px
 4. lg, large: 1200px
 5. xl, extra-large: 1536px
-
 
 ### Props of Grid:
 

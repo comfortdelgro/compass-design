@@ -12,22 +12,19 @@ import {
 } from '@tanstack/react-table'
 
 import React, {useEffect, useState} from 'react'
-// import DataGridColumnHeader from '../data-grid/data-grid-column-header'
-// import DataGridFooter from '../data-grid/data-grid-footer'
-// import DataGridHeaderRow from '../data-grid/data-grid-header-row'
-import {NoDataComponent} from './table-v2-nodata'
-// import DataGridRow from '../data-grid/data-grid-row'
-// import DataGridRowGroup from '../data-grid/data-grid-row-group'
+import Progress from '../progress'
 import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {ExpandableRow} from './expandable/ExpandableRow'
+import LoadingComponent from './loading/loading-component'
 import TableV2Cell from './table-v2-cell'
 import TableV2Checkbox from './table-v2-checkbox'
 import TableV2CheckboxCell from './table-v2-checkbox-cell'
 import TableV2ColumnHeader from './table-v2-column-header'
 import TableV2Footer from './table-v2-footer'
 import TableV2HeaderRow from './table-v2-header-row'
+import {NoDataComponent} from './table-v2-nodata'
 import ProgressPercentage from './table-v2-progress'
 import TableV2Row from './table-v2-row'
 import TableV2RowGroup from './table-v2-row-group'
@@ -45,9 +42,6 @@ export interface Options<TData> {
 
 export type OptionType<TData> = Options<TData>
 
-// can expand all?
-// conditionally expandable row
-// is custom row defined?
 export interface Props<T> extends StyledComponentProps {
   data: T[]
   columns: Array<ColumnDef<T>>
@@ -57,6 +51,8 @@ export interface Props<T> extends StyledComponentProps {
   children: React.ReactNode
   onUpdateData?: (newData: object) => void
   renderRowSubComponent?: (row: T) => React.JSX.Element
+  isLoading?: boolean
+  loadingIndicator?: React.ReactNode
 }
 
 export type ReactTableProps<T = any> = Props<T> &
@@ -78,6 +74,8 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
       onChangeRowSelection,
       onUpdateData,
       renderRowSubComponent,
+      isLoading,
+      loadingIndicator = <Progress.Circular variant='indeterminate' />,
       children,
       // HTMLDiv Props
       ...delegated
@@ -184,6 +182,11 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
                       </>
                     )
                   })
+                ) : isLoading ? (
+                  <LoadingComponent
+                    colSpan={table.getAllLeafColumns()?.length}
+                    loadingIndicator={loadingIndicator}
+                  />
                 ) : (
                   <NoDataComponent
                     colSpan={table.getAllLeafColumns()?.length}

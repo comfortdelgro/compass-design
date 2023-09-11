@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   Column,
+  Divider,
   Drawer,
   Icon,
   List,
@@ -25,6 +26,7 @@ const imgSrc =
 export default function DrawerH5Docs() {
   const [openDrawer, setOpenDrawer] = useState(false)
   const [openModal, setOpenModal] = useState(false)
+  const [openReasonDrawer, setOpenReasonDrawer] = useState(false)
 
   const renderDemoList = Array.from(Array(10).keys()).map((id) => (
     <List
@@ -76,25 +78,34 @@ export default function DrawerH5Docs() {
 
         <Column>{renderDemoList}</Column>
       </Drawer>
-      <Typography.Header variant='header4'>Dropdown</Typography.Header>
+
+      <Divider />
+
+      <Typography.Header variant='header4'>
+        With Modal and controlled by a <code>{'<Dropdown />'}</code>
+      </Typography.Header>
       <Row css={{marginBlock: '$4'}}>
-        <Button type='button' onClick={() => setOpenModal(true)}>
-          Modal & Dropdown
+        <Button
+          type='button'
+          variant='secondary'
+          onClick={() => setOpenModal(true)}
+        >
+          Modal & H5 Drawer
         </Button>
       </Row>
 
-      <Modal.Trigger isOpen={openModal} size='sm' handleClose={() => setOpenModal(false)}>
+      <Modal.Trigger
+        isOpen={openModal}
+        size='sm'
+        handleClose={() => setOpenModal(false)}
+      >
         <Modal>
           <Modal.Description css={{display: 'flex', flexDirection: 'column'}}>
             <Typography.Label variant='label1' css={{textAlign: 'center'}}>
               Trip is cancelled. No Payment is required.
             </Typography.Label>
-            <Dropdown onClickDropdown={() => setOpenDrawer(true)} />
-            <Button
-              type='button'
-              variant='primary'
-              h5
-            >
+            <Dropdown onClickDropdown={() => setOpenReasonDrawer(true)} />
+            <Button type='button' variant='primary' h5>
               Submit
             </Button>
           </Modal.Description>
@@ -102,9 +113,9 @@ export default function DrawerH5Docs() {
       </Modal.Trigger>
 
       <Drawer
-        open={openDrawer}
+        open={openReasonDrawer}
         css={{height: '40dvh', '& .drawer-content': {padding: 0}}}
-        onClose={() => setOpenDrawer(false)}
+        onClose={() => setOpenReasonDrawer(false)}
         variant='h5'
         disableResize
       >
@@ -156,7 +167,9 @@ const Dropdown = ({
         cursor: 'pointer',
       }}
     >
-      <Typography.Label css={{cursor: 'pointer',}}>Reason for cancel </Typography.Label>
+      <Typography.Label css={{cursor: 'pointer'}}>
+        Reason for cancel{' '}
+      </Typography.Label>
       <Icon icon={faChevronDown} color='#757575' />
     </Box>
   )

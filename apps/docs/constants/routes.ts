@@ -166,7 +166,7 @@ export const routes: TSideNavItem[] = [
           'Chips are compact elements that represent an input, attribute, or action.',
       },
       {
-        title: 'DashboardSidecard',
+        title: 'Dashboard Sidecard',
         pathname: '/dashboard-sidecard',
         description:
           'Dashboard Sidecard presents section of data on dashboard.',
@@ -407,11 +407,6 @@ export const routes: TSideNavItem[] = [
           'A rich text editor is an interface or input field for text editing.',
       },
       {
-        title: 'Searchfield',
-        pathname: '/searchfield',
-        description: 'Search Fields let users enter search input.',
-      },
-      {
         title: 'Sidebar',
         pathname: '/sidebar',
         description:
@@ -459,10 +454,10 @@ export const routes: TSideNavItem[] = [
         description: 'The Sub Banner.',
       },
       {
-        title: 'Table-v2',
-        pathname: '/table-v2',
+        title: 'Table',
+        pathname: '/table',
         description:
-          'Table version 2 is a wrapper around the core table logic. Most of its job is related to managing state the "react" way.',
+          'Table is a wrapper around the core table logic. Most of its job is related to managing state the "react" way.',
       },
       {
         title: 'Tabs',

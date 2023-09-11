@@ -1,5 +1,6 @@
 import {Box, Typography, useIsDarkTheme} from '@comfortdelgro/react-compass'
 import Container from 'components/layouts/Container'
+import {getStaticPath} from 'utils'
 import Item from './item'
 
 export default function Introduction() {
@@ -26,7 +27,7 @@ export default function Introduction() {
               textLink='Figma link'
               urlLink='https://www.figma.com/file/JSiK3cmMmxTt8qhR3dty8t/Workbench-Design-System?type=design&node-id=480-41144&mode=design&t=PfKoDFh3mPd3y9yz-4'
               target={'_blank'}
-              image='/static/images/home/design.png'
+              image={getStaticPath('/static/images/home/design.png')}
             />
             <Item
               title='Develop'
@@ -34,7 +35,7 @@ export default function Introduction() {
               textLink='Get started'
               target={'_self'}
               urlLink='./foundation/overview/'
-              image='/static/images/home/develop.png'
+              image={getStaticPath('/static/images/home/develop.png')}
             />
           </div>
         </Box>

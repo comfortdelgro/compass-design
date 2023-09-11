@@ -25,7 +25,6 @@ import Textfield from '@comfortdelgro/react-compass/textfield'
 
 {{"demo": "Textfield.tsx"}}
 
-
 ## Props
 
 | Name          | Type                                | Default | Description                                                  |

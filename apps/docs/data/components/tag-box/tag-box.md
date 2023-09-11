@@ -21,7 +21,7 @@ import TagBox from '@comfortdelgro/react-compass/tag-box'
 
 ## Example
 
-### Basic
+### Full features
 
 {{"demo": "TagBoxBasic.tsx"}}
 

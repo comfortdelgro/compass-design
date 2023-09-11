@@ -28,6 +28,9 @@ import ReactTable from '@comfortdelgro/react-compass/table-v2'
 ### Expandable Column Table
 
 {{"demo": "ExpandableColumnTable.tsx"}}
+### Loading
+
+{{"demo": "LoadingTable.tsx"}}
 
 ## Usage
 
@@ -68,19 +71,19 @@ Column definitions are plain objects with the following options:
 
 | Name             | Type    | Default | Description            |
 | :--------------- | :------ | :------ | :--------------------- |
-| `enableResizing` | boolean | `false` | `Enable column resize` |
+| `enableResizing` | `boolean` | `false` | `Enable column resize` |
 
 #### Enable column filter
 
 | Name                 | Type    | Default | Description            |
 | :------------------- | :------ | :------ | :--------------------- |
-| `enableColumnFilter` | boolean | `false` | `Enable column filter` |
+| `enableColumnFilter` | `boolean` | `false` | `Enable column filter` |
 
 #### Enable Grouping
 
 | Name             | Type    | Default | Description              |
 | :--------------- | :------ | :------ | :----------------------- |
-| `enableGrouping` | boolean | `false` | `Enable column grouping` |
+| `enableGrouping` | `boolean` | `false` | `Enable column grouping` |
 
 #### Meta
 
@@ -88,10 +91,10 @@ Define further information about the column. Now `meta` is used to define `edita
 
 | Name         | Type                                                            | Default     | Description                         |
 | :----------- | :-------------------------------------------------------------- | :---------- | :---------------------------------- |
-| `editable`   | boolean \| undefined                                            | `undefined` | `Enable rendering editable column`  |
-| `template`   | JSX Element \| undefined                                        | `undefined` | `Enable rendering editable column`  |
-| `updateData` | (rowIndex: number, id: string, value: any) => void \| undefined | `undefined` | `Callback to update table data`     |
-| `revertData` | (rowIndex: number) => void \| undefined                         | `undefined` | `Callback to revert the table data` |
+| `editable`   | `boolean \| undefined`                                            | `undefined` | `Enable rendering editable column`  |
+| `template`   | `JSX Element \| undefined`                                        | `undefined` | `Enable rendering editable column`  |
+| `updateData` | `(rowIndex: number, id: string, value: any) => void \| undefined` | `undefined` | `Callback to update table data`     |
+| `revertData` | `(rowIndex: number) => void \| undefined`                         | `undefined` | `Callback to revert the table data` |
 
 #### Example
 
@@ -107,6 +110,7 @@ Define further information about the column. Now `meta` is used to define `edita
     enableGrouping: true,
   },
 ```
+
 ### Editable Cell
 
 Press `ENTER` to finish editing the firstName cell, `Esc` to quit editing.
@@ -154,13 +158,18 @@ To use this functionality:
   },
 ```
 
+### Loading
+
+By default, the Table V2 uses the circular Progress component as the default loading indicator. Users can replace it with any other React components (Spinner, linear Progress, etc).
 ## Props
 
-| Name                     | Type                                | Default | Description                     |
-| :----------------------- | :---------------------------------- | :------ | :------------------------------ |
-| `data`                   | Array                               | `[]`    | `Data for show.`                |
-| `columns`                | `Array<ColumnDef<T>>`               | `[]`    | `column with custom config.`    |
-| `options`                | OptionType                          | `{}`    | `Table option.`                 |
-| `children`               | React.ReactNode                     | —       | `Child elements.`               |
-| `css`                    | `CSS`                               | `{}`    | `Additional style.`             |
-| `renderRowSubComponent ` | `(rowData: T) => React.JSX.Element` | —       | `Callback after expanding row.` |
+| Name                     | Type                                | Default              | Description                       |
+| :----------------------- | :---------------------------------- | :------------------- | :-------------------------------- |
+| `data`                   | `Array`                               | `[]`                 | `Data for show.`                  |
+| `columns`                | `Array<ColumnDef<T>>`               | `[]`                 | `column with custom config.`      |
+| `options`                | `OptionType`                          | `{}`                 | `Table option.`                   |
+| `children`               | `React.ReactNode`                     | —                    | `Child elements.`                 |
+| `css`                    | `CSS`                               | `{}`                 | `Additional style.`               |
+| `renderRowSubComponent ` | `(rowData: T) => React.JSX.Element` | —                    | `Callback after expanding row.`   |
+| `isLoading `             | `boolean`                           | `false`              | `Loading status of the table.`    |
+| `loadingIndicator `      | `React.ReactNode`                     | `Progress.Circular` | `Loading indicator of the table.` |

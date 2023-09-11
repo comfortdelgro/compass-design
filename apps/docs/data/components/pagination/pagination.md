@@ -27,13 +27,7 @@ import Pagination from '@comfortdelgro/react-compass/pagination'
 
 {{"demo": "PaginationControlled.tsx"}}
 
-## With Items Counter
-
-{{"demo": "PaginationItemsCounting.tsx"}}
-
-## Props
-
-### Pagination
+## Props:
 
 | Name     | Type       | Default | Description                                                                             |
 | :------- | :--------- | :------ | :-------------------------------------------------------------------------------------- |
@@ -41,11 +35,3 @@ import Pagination from '@comfortdelgro/react-compass/pagination'
 | page     | `number`   | `1`     | Currenty selected page.                                                                 |
 | onChange | `function` | —       | Callback to catch current page.                                                         |
 | css      | `CSS`      | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
-
-### ItemCounting
-
-| Name       | Type     | Default | Description                                                                             |
-| :--------- | :------- | :------ | :-------------------------------------------------------------------------------------- |
-| totalItems | `number` | `0`     | Total items .                                                                           |
-| page       | `number` | `0`     | Currenty selected page.                                                                 |
-| css        | `CSS`    | —       | The system prop that allows defining system overrides as well as additional CSS styles. |

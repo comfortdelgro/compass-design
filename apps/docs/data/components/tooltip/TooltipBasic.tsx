@@ -1,4 +1,4 @@
-import { Tooltip, TooltipTrigger } from "@comfortdelgro/react-compass"
+import {Tooltip, TooltipTrigger} from '@comfortdelgro/react-compass'
 
 function BasicExample() {
   return (

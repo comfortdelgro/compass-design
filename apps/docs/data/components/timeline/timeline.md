@@ -21,7 +21,7 @@ import Timeline from '@comfortdelgro/react-compass/timeline'
 
 ## Example
 
-### Default 
+### Default
 
 Default timeline is vertical with label and item both are aligned on the
 right

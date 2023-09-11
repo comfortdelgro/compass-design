@@ -22,7 +22,9 @@ const FetchList = ({id}: {id: React.Key}) => {
 const ServerInteraction: React.FC = () => {
   return (
     <Column>
-      <Typography.Label>Server Interaction</Typography.Label>
+      <Typography.Header variant='header3'>
+        Server Interaction
+      </Typography.Header>
       <Row>
         <Tabs icon='left'>
           <Tabs.Item key='1' title='Founding of Rome'>

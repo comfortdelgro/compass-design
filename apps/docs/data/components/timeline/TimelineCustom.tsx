@@ -9,7 +9,14 @@ const HorizontalAlternate = () => {
     width: 'fit-content',
   }
   return (
-    <div style={{width: '100%', display: 'flex', justifyContent: 'center', marginBottom: '10rem'}}>
+    <div
+      style={{
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        marginBottom: '10rem',
+      }}
+    >
       <TimeLine
         mode='horizontal'
         labelAlignment='alternate'
@@ -21,7 +28,7 @@ const HorizontalAlternate = () => {
           dot={
             <Icon
               icon={faCalendarDay}
-              style={{color: 'white', height: '50%'}}
+              style={{color: 'green', height: '50%'}}
             />
           }
         >
@@ -45,7 +52,7 @@ const HorizontalAlternate = () => {
           dot={
             <Icon
               icon={faCalendarDay}
-              style={{color: 'white', height: '50%'}}
+              style={{color: 'green', height: '50%'}}
             />
           }
         >

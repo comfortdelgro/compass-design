@@ -21,7 +21,7 @@ const imageSrc = 'https://i.pravatar.cc/150?img=32'
 const Variants: React.FC = () => {
   return (
     <Column>
-      <Navbar css={{width:'100%'}}>
+      <Navbar css={{width: '100%'}}>
         <a href='#'>
           <FontAwesomeIcon
             icon={faBars}

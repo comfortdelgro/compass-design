@@ -1,5 +1,12 @@
-import { DateValue, RangeCalendar, RangeValue, getLocalTimeZone, parseDate, useDateFormatter } from "@comfortdelgro/react-compass"
-import React from "react"
+import {
+  DateValue,
+  getLocalTimeZone,
+  parseDate,
+  RangeCalendar,
+  RangeValue,
+  useDateFormatter,
+} from '@comfortdelgro/react-compass'
+import React from 'react'
 
 function ControlledRangeCalendar() {
   const [range, setRange] = React.useState<RangeValue<DateValue | null>>({

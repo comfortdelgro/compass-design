@@ -1,6 +1,7 @@
 import NextHead from 'next/head'
 import {useRouter} from 'next/router'
 import * as React from 'react'
+import {getStaticPath} from 'utils'
 
 const HOST = 'https://comfortdelgro.github.io/compass-design'
 
@@ -15,7 +16,7 @@ interface HeadProps {
 
 export default function Head(props: HeadProps) {
   const {
-    card = '/static/social-previews/default-preview.jpg',
+    card = getStaticPath('/static/social-previews/default-preview.jpg'),
     children,
     description = 'React Compass provides a simple, customizable, and accessible library of React components.',
     largeCard = true,

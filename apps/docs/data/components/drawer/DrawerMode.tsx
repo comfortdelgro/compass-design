@@ -2,6 +2,7 @@ import {
   Button,
   Column,
   Drawer,
+  Link,
   Modal,
   Row,
   Typography,
@@ -10,6 +11,7 @@ import {useState} from 'react'
 
 export default function DrawerModeDocs() {
   const [openNonModalDrawer, setOpenNonModalDrawer] = useState(false)
+  const [openNonModalH5Drawer, setOpenNonModalH5Drawer] = useState(false)
   const [openConfirmModal, setOpenConfirmModal] = useState(false)
 
   return (
@@ -17,21 +19,65 @@ export default function DrawerModeDocs() {
       <Row>
         <Button
           type='button'
-          variant='secondary'
           onClick={() => setOpenNonModalDrawer(!openNonModalDrawer)}
         >
           Toggle Non-modal Drawer
         </Button>
       </Row>
 
+      <Typography.Header css={{marginBlock: '$4 0'}} variant='header4'>
+        H5 Drawer
+      </Typography.Header>
+      <Row>
+        <Button
+          type='button'
+          variant='secondary'
+          onClick={() => setOpenNonModalH5Drawer(!openNonModalH5Drawer)}
+        >
+          Toggle Non-modal H5 Drawer
+        </Button>
+      </Row>
+
       <Drawer
         open={openNonModalDrawer}
+        onClose={() => setOpenNonModalDrawer(false)}
+        drawerMode='non-modal'
+      >
+        <Drawer.Header>
+          <Typography.Header variant='header3'>
+            Non-modal Drawer
+          </Typography.Header>
+        </Drawer.Header>
+
+        <Typography.Body variant='body2'>
+          <Link
+            href='https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog#accessibility_considerations'
+            target='_blank'
+          >
+            Read more
+          </Link>{' '}
+          about non-modal mode and related accessibility considerations.
+        </Typography.Body>
+
+        <Drawer.Footer>
+          <Button
+            type='button'
+            variant='danger'
+            onClick={() => setOpenNonModalDrawer(false)}
+          >
+            Close Drawer
+          </Button>
+        </Drawer.Footer>
+      </Drawer>
+
+      <Drawer
+        open={openNonModalH5Drawer}
         css={{height: '30dvh'}}
         expanderCSS={{
           background: '$blueShades100',
           paddingBlock: '$2 $6',
         }}
-        onClose={() => setOpenNonModalDrawer(false)}
+        onClose={() => setOpenNonModalH5Drawer(false)}
         variant='h5'
         expandedPoint={70}
         expandableLine={60}
@@ -51,14 +97,14 @@ export default function DrawerModeDocs() {
             weight='semibold'
             css={{color: '$grayShades10', width: 'fit-content'}}
           >
-            Your ride is on the way
+            Drawer Header
           </Typography.Body>
           <Typography.Body
             variant='body3'
             weight='semibold'
             css={{color: '$grayShades10', width: 'fit-content'}}
           >
-            Arriving in 8 - 10 min
+            Non-modal Mode
           </Typography.Body>
         </Drawer.Header>
 
@@ -103,7 +149,7 @@ export default function DrawerModeDocs() {
                 variant='danger'
                 onClick={() => {
                   setOpenConfirmModal(false)
-                  setOpenNonModalDrawer(false)
+                  setOpenNonModalH5Drawer(false)
                 }}
               >
                 Proceed

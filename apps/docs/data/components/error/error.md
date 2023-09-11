@@ -29,6 +29,10 @@ import Error from '@comfortdelgro/react-compass/error'
 
 {{"demo": "ErrorVariant.tsx"}}
 
+### With Css
+
+{{"demo": "ErrorCss.tsx"}}
+
 ## Props
 
 | Name    | Type                     | Default | Description                |

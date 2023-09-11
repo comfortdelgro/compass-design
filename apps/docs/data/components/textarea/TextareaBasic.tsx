@@ -1,5 +1,5 @@
-import { Textarea } from "@comfortdelgro/react-compass"
 import BugIcon from '@comfortdelgro/compass-icons/react/bug'
+import {Textarea} from '@comfortdelgro/react-compass'
 
 function BasicExample() {
   return (

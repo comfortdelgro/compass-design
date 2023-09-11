@@ -116,7 +116,7 @@ const TagBoxs: React.FC = () => {
 
   return (
     <Column>
-      <Typography.Label>Fully Functional</Typography.Label>
+      <Typography.Header variant='header3'>Fully Functional</Typography.Header>
       <TagBox
         label='Text Label'
         items={list}
@@ -131,7 +131,7 @@ const TagBoxs: React.FC = () => {
           <Button>Call to action</Button>
         </TagBox.Action>
       </TagBox>
-      <Typography.Label>Typeable</Typography.Label>
+      <Typography.Header variant='header3'>Typeable</Typography.Header>
       <TagBox
         label='Text Label'
         items={list}
@@ -146,7 +146,7 @@ const TagBoxs: React.FC = () => {
           <Button>Call to action</Button>
         </TagBox.Action>
       </TagBox>
-      <Typography.Label>Error</Typography.Label>
+      <Typography.Header variant='header3'>Error</Typography.Header>
       <TagBox
         label='Text Label'
         items={list}
@@ -162,7 +162,7 @@ const TagBoxs: React.FC = () => {
           <Button>Call to action</Button>
         </TagBox.Action>
       </TagBox>
-      <Typography.Label>Positioned Label</Typography.Label>
+      <Typography.Header variant='header3'>Positioned Label</Typography.Header>
       <TagBox
         items={list}
         onAdd={addItem}
@@ -176,7 +176,7 @@ const TagBoxs: React.FC = () => {
           <Button>Call to action</Button>
         </TagBox.Action>
       </TagBox>
-      <Typography.Label>No Action</Typography.Label>
+      <Typography.Header variant='header3'>No Action</Typography.Header>
       <TagBox
         label='Text Label'
         items={list}
@@ -185,7 +185,9 @@ const TagBoxs: React.FC = () => {
         onRemove={removeItem}
         helperText='Helper text'
       />
-      <Typography.Label>No Helper text and Action</Typography.Label>
+      <Typography.Header variant='header3'>
+        No Helper text and Action
+      </Typography.Header>
       <TagBox
         label='Text Label'
         items={list}

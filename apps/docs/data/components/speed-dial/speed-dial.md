@@ -21,12 +21,17 @@ import SpeedDial from '@comfortdelgro/react-compass/speed-dial'
 
 ## Example
 
+### Default
+
 {{"demo": "SpeedDial.tsx"}}
 
+### Position
+
+{{"demo": "SpeedDialPosition.tsx"}}
 
 ## Props
 
-| Name     | Type            | Default | Description                                                |
-| :------- | :-------------- | :------ | :--------------------------------------------------------- |
-| actions  | `Array<Object>` | `{}`    | Array of Object define the actions can show on speed dial. |
-| position | `string`        | `up`    | Define the position where the actions list show            |
+| Name     | Type                                      | Default | Description                                                |
+| :------- | :---------------------------------------- | :------ | :--------------------------------------------------------- |
+| actions  | `Array<Object>`                           | `{}`    | Array of Object define the actions can show on speed dial. |
+| position | `'up'` \| `'down'`\| `'left'`\| `'right'` | `up`    | Define the position where the actions list show            |
