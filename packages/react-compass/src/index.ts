@@ -213,7 +213,7 @@ export type {
   PageHeaderTitleProps,
 } from './page-header'
 export {default as Pagination} from './pagination'
-export type {ItemCountingProps, PaginationProps} from './pagination'
+export type {PaginationProps} from './pagination'
 export {default as Popover} from './popover'
 export type {PopoverDirection, PopoverProps} from './popover'
 export {default as Preflight} from './preflight'

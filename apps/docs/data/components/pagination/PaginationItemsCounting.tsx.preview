@@ -1,6 +1,11 @@
-<Pagination page={page} total={10} onChange={(page) => setPage(page)}>
-    <Pagination.ItemsCounting
-    totalItem={100}
+<Pagination
+    rowsOptions={[5, 10, 15, 20]}
+    rowsPerPage={5}
+    onRowsPerPageChange={(rows) => {
+        setRows(rows)
+    }}
     page={page}
-    ></Pagination.ItemsCounting>
-</Pagination>
+    total={10}
+    onChange={(page) => setPage(page)}
+    count={100}
+/>
