@@ -1,6 +1,6 @@
-import {styled} from '../theme'
-import {keyframes} from '../theme/stitches.config'
-import {VariantProps} from '../utils/stitches.types'
+import { styled } from '../theme'
+import { keyframes } from '../theme/stitches.config'
+import { VariantProps } from '../utils/stitches.types'
 
 const spin = keyframes({
   '0%': {
@@ -28,10 +28,10 @@ export const StyledDropdownWrapper = styled('div', {
     lineHeight: '$normal',
   },
   '&.cdg-dropdown-opening .cdg-dropdown-input .cdg-dropdown-button .cdg-dropdown-button-icon':
-    {
-      transform: 'rotate(180deg)',
-      transition: 'transform 0.3s linear',
-    },
+  {
+    transform: 'rotate(180deg)',
+    transition: 'transform 0.3s linear',
+  },
 })
 
 export const StyledDropdownList = styled('ul', {})
@@ -77,7 +77,7 @@ export const StyledSelect = styled('div', {
   },
 
   button: {
-    padding: '$3 $4',
+    padding: '$2 $4',
     width: '100%',
     height: '100%',
     cursor: 'pointer',
@@ -85,7 +85,7 @@ export const StyledSelect = styled('div', {
     justifyContent: 'center',
     alignItems: 'center',
     border: 'none',
-    gap: '$1',
+    gap: '$2',
     background: 'transparent',
     fontSize: '$label1',
     fontWeight: '$semibold',
@@ -173,7 +173,7 @@ export const StyledComboBox = styled('div', {
     height: '100%',
     flexGrow: 1,
     border: 'none',
-    padding: '$3 $11 $3 $4',
+    padding: '$2 $12 $2 $4',
     margin: 0,
     '&:focus': {
       outline: 'none',
@@ -183,7 +183,7 @@ export const StyledComboBox = styled('div', {
     position: 'absolute',
     cursor: 'pointer',
     top: '50%',
-    right: '$3',
+    right: '$4',
     transform: 'translateY(-50%)',
     width: '$6',
     height: '$6',
@@ -399,6 +399,20 @@ export const StyledColor = styled('div', {
   height: '$6',
   borderRadius: '$md',
   background: '$$bg',
+  '.cdg-dropdown-item-color': {
+    display: 'none',
+    color: '$whiteText',
+    marginRight: '-$0_25'
+  },
+  variants: {
+    isSelected: {
+      true: {
+        '.cdg-dropdown-item-color': {
+          display: 'block',
+        },
+      },
+    },
+  }
 })
 
 export const StyledContent = styled('div', {
