@@ -21,7 +21,7 @@ export const StyledBadge = styled('div', {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'start',
-    'svg': {
+    svg: {
       height: '$3',
       width: '100%',
     },
