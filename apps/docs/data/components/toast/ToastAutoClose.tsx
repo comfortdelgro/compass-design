@@ -4,7 +4,7 @@ import Toast from '@comfortdelgro/react-compass/toast'
 import {faImage, faXmark} from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
 
-export const AutoClose: React.FC = () => {
+const AutoClose: React.FC = () => {
   const [isAutoCloseOpen, setIsAutoCloseOpen] = React.useState(false)
   return (
     <div>
@@ -35,3 +35,5 @@ export const AutoClose: React.FC = () => {
     </div>
   )
 }
+
+export default AutoClose
