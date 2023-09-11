@@ -25,15 +25,14 @@ export const StyledQuantityToggle = styled('div', {
       color: '$gray100',
       padding: '$3 $4',
       textAlign: 'center',
-      border: '1px solid $divider',
       borderRadius: '0',
       backgroundColor: '$white',
       fontSize: '$label1',
       fontWeight: '$semibold',
-    },
-    'input:focus-visible': {
-      outline: 'none',
-      border: '1px solid $cdgBlue120',
+      borderWidth: '1px',
+      borderStyle: 'solid',
+      borderColor: '$divider',
+      transition: '$default',
     },
     'input::placeholder': {
       color: '$tertiaryText',
@@ -44,7 +43,10 @@ export const StyledQuantityToggle = styled('div', {
       width: '$14',
       cursor: 'pointer',
       fontWeight: '$bold',
-      border: '1px solid $divider',
+      borderWidth: '1px',
+      borderStyle: 'solid',
+      borderColor: '$divider',
+      transition: '$default',
       backgroundColor: '$gray10',
     },
     "button[aria-label='decrease']": {
@@ -54,6 +56,16 @@ export const StyledQuantityToggle = styled('div', {
     "button[aria-label='increase']": {
       borderLeft: 'none',
       borderRadius: '0 4px 4px 0',
+    },
+  },
+  ':focus-within': {
+    input: {
+      outline: 'none',
+      borderColor: '$cdgBlue120',
+    },
+    button: {
+      borderColor: '$cdgBlue120',
+      backgroundColor: '#E6ECF7',
     },
   },
   variants: {
@@ -76,10 +88,21 @@ export const StyledQuantityToggle = styled('div', {
       true: {
         div: {
           input: {
+            outline: 'none',
             borderColor: '$danger',
           },
           button: {
             borderColor: '$danger',
+          },
+        },
+        ':focus-within': {
+          input: {
+            outline: 'none',
+            borderColor: '$danger',
+          },
+          button: {
+            borderColor: '$danger',
+            backgroundColor: '$gray10',
           },
         },
       },
