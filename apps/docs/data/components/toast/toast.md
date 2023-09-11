@@ -3,7 +3,7 @@ title: React Page Toast component
 components: Toast
 ---
 
-# Progress
+# Toast
 
 <p class="description">Toasts provide brief notifications.</p>
 
