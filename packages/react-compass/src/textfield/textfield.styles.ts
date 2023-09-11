@@ -19,7 +19,7 @@ export const StyledTextFieldBox = styled('div', {
   display: 'flex',
   flexDirection: 'row',
   alignItems: 'center',
-  borderWidth: '1px',
+  borderWidth: '$0_5',
   borderStyle: 'solid',
   borderColor: '$divider',
   borderRadius: '$md',
