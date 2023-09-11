@@ -1,5 +1,5 @@
 import React from 'react'
-import {Column} from '../utils/components'
+import { Column } from '../utils/components'
 import Chip from './index'
 
 export const Default: React.FC = () => {
@@ -13,6 +13,7 @@ export const Default: React.FC = () => {
         onCloseClick={() => {
           console.log('Close button click')
         }}
+        onClick={() => console.log('clicked...')}
       >
         Close button
       </Chip>
