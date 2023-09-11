@@ -68,7 +68,7 @@ const SubService2 = () => {
   )
 }
 
-const Toast: React.FC = () => {
+const ToastAsService: React.FC = () => {
   const [horizontal, setHorizontal] = React.useState<
     'center' | 'left' | 'right'
   >('right')
@@ -115,4 +115,4 @@ const Toast: React.FC = () => {
   )
 }
 
-export default Toast
+export default ToastAsService
