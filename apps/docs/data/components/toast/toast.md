@@ -10,13 +10,13 @@ components: Toast
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Sidebar} from '@comfortdelgro/react-compass'
+import Toast from '@comfortdelgro/react-compass/toast'
 ```
 
 or
 
 ```jsx
-import Sidebar from '@comfortdelgro/react-compass/progress'
+import {Toast} from '@comfortdelgro/react-compass'
 ```
 
 ## Examples
@@ -40,6 +40,8 @@ import Sidebar from '@comfortdelgro/react-compass/progress'
 
 ## Props
 
+### `<Toast/>`
+
 
 | Name        | Type                                                   | Default   | Description                                                                             |
 | :---------- | :----------------------------------------------------- | :-------- | :-------------------------------------------------------------------------------------- |
@@ -48,3 +50,19 @@ import Sidebar from '@comfortdelgro/react-compass/progress'
 | isOpen      | `boolean`                                              | false     | The toast is visible when true.                                                         |
 | autoClose   | `false` \| `number`                                    | false     | Number of miliseconds to auto close.                                                    |
 | css         | `CSS`                                                  | —         | The system prop that allows defining system overrides as well as additional CSS styles. |
+
+
+### `useToast()`
+
+| Name     | Type       | Default | Description                                  |
+| :------- | :--------- | :------ | :------------------------------------------- |
+| show     | `Function` | -       | Call to add toast to show in ToastContainer. |
+| remove   | `Function` | -       | Call to remove toast from ToastContext.      |
+| clearAll | `Function` | —       | Call to remove all toasts from ToastContext. |
+
+
+### `ToastContextProvider`
+
+| Name         | Type     | Default                                  | Description                   |
+| :----------- | :------- | :--------------------------------------- | :---------------------------- |
+| anchorOrigin | `Anchor` | `{horizontal: 'right', vertical: 'top'}` | Placements of ToastContainer. |
