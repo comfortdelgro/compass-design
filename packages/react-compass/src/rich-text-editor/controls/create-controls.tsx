@@ -28,7 +28,7 @@ export function createControl({
               : false
           }
           ref={ref}
-          onClick={onClick(editor)}
+          onClick={editor?.isEditable ? onClick(editor) : undefined}
           icon={icon}
           aria-label={label}
           {...props}

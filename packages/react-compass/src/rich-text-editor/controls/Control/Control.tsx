@@ -7,7 +7,7 @@ interface Props extends StyledComponentProps {
   active: boolean
   children?: React.ReactNode
   className?: string
-  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
+  onClick?: ((event: React.MouseEvent<HTMLButtonElement>) => void) | undefined
   ripple?: boolean
   isDisabled?: boolean
   'aria-controls'?: string

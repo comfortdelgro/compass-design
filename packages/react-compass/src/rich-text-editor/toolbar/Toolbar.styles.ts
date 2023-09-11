@@ -8,12 +8,11 @@ export const StyledToolbar = styled('div', {
   boxSizing: 'border-box',
   margin: '0px',
   // Styling
-  padding: '5px 20px',
+  padding: '$2 $4',
   backgroundColor: '$gray20',
   overflow: 'hidden',
-  maxHeight: 38,
+  maxHeight: 44,
   position: 'relative',
-  rowGap: 5,
 })
 
 export type StyledToolbarProps = VariantProps<typeof StyledToolbar>
