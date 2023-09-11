@@ -37,11 +37,9 @@ import {Toast} from '@comfortdelgro/react-compass'
 
 {{"demo": "ToastAsAService.tsx"}}
 
-
 ## Props
 
 ### `<Toast/>`
-
 
 | Name        | Type                                                   | Default   | Description                                                                             |
 | :---------- | :----------------------------------------------------- | :-------- | :-------------------------------------------------------------------------------------- |
@@ -51,7 +49,6 @@ import {Toast} from '@comfortdelgro/react-compass'
 | autoClose   | `false` \| `number`                                    | false     | Number of miliseconds to auto close.                                                    |
 | css         | `CSS`                                                  | —         | The system prop that allows defining system overrides as well as additional CSS styles. |
 
-
 ### `useToast()`
 
 | Name     | Type       | Default | Description                                  |
@@ -59,7 +56,6 @@ import {Toast} from '@comfortdelgro/react-compass'
 | show     | `Function` | -       | Call to add toast to show in ToastContainer. |
 | remove   | `Function` | -       | Call to remove toast from ToastContext.      |
 | clearAll | `Function` | —       | Call to remove all toasts from ToastContext. |
-
 
 ### `ToastContextProvider`
 

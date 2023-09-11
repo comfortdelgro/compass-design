@@ -28,6 +28,7 @@ import Progress from '@comfortdelgro/react-compass/progress'
 ### Circular determinate
 
 {{"demo": "CircularDeterminate.tsx"}}
+
 ### Circular color
 
 {{"demo": "CircularColor.tsx"}}
@@ -51,7 +52,7 @@ import Progress from '@comfortdelgro/react-compass/progress'
 {{"demo": "LinearBuffer.tsx"}}
 
 ### Linear Color
- 
+
 {{"demo": "LinearColor.tsx"}}
 
 ### Linear Size
@@ -75,7 +76,6 @@ import Progress from '@comfortdelgro/react-compass/progress'
 | disableShrink | `number`                        | `false`         | If true, the shrink animation is disabled. This only works if variant is indeterminate.   |
 | variant       | `determinate`\| `indeterminate` | `indeterminate` | The variant to use. Use indeterminate when there is no progress value.                    |
 
-
 ### Progress.Linear Props:
 
 | Name        | Type                                       | Default         | Description                                                                               |
@@ -86,4 +86,3 @@ import Progress from '@comfortdelgro/react-compass/progress'
 | rounded     | `boolean`                                  | `false`         | The border radius of lines.                                                               |
 | valueBuffer | `number`                                   | `0`             | The value for the buffer variant. Value between 0 and 100.                                |
 | variant     | `determinate`\| `indeterminate`\| `buffer` | `indeterminate` | The variant to use. Use indeterminate when there is no progress value.                    |
-
