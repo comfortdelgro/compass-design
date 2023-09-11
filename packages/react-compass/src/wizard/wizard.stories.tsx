@@ -131,7 +131,7 @@ export const Variants: React.FC = () => (
     <h3>With error items</h3>
     <Wizard
       items={['Value1', 'Value2', 'Value3', 'Value4']}
-      errorSteps={[2]}
+      erroredSteps={[2]}
       currentStep={3}
       onStepClick={(n) => console.log(n)}
     />
