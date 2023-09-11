@@ -280,8 +280,8 @@
       "levels": [
         "Button"
       ],
-      "locStart": 15,
-      "locEnd": 245,
+      "locStart": 16,
+      "locEnd": 264,
       "filePath": "src/button/button.stories.tsx",
       "meta": {}
     },
@@ -570,8 +570,8 @@
       "levels": [
         "Drawer"
       ],
-      "locStart": 541,
-      "locEnd": 729,
+      "locStart": 542,
+      "locEnd": 812,
       "filePath": "src/drawer/drawer.stories.tsx",
       "meta": {}
     },
@@ -580,8 +580,8 @@
       "levels": [
         "Drawer"
       ],
-      "locStart": 28,
-      "locEnd": 539,
+      "locStart": 29,
+      "locEnd": 540,
       "filePath": "src/drawer/drawer.stories.tsx",
       "meta": {}
     },
@@ -750,8 +750,8 @@
       "levels": [
         "Image viewer"
       ],
-      "locStart": 12,
-      "locEnd": 30,
+      "locStart": 13,
+      "locEnd": 31,
       "filePath": "src/image-viewer/image-viewer.stories.tsx",
       "meta": {}
     },
@@ -760,8 +760,8 @@
       "levels": [
         "Image viewer"
       ],
-      "locStart": 32,
-      "locEnd": 129,
+      "locStart": 33,
+      "locEnd": 130,
       "filePath": "src/image-viewer/image-viewer.stories.tsx",
       "meta": {}
     },
@@ -1011,7 +1011,7 @@
         "Progress"
       ],
       "locStart": 34,
-      "locEnd": 79,
+      "locEnd": 80,
       "filePath": "src/progress/progress.stories.tsx",
       "meta": {}
     },
@@ -1250,8 +1250,8 @@
       "levels": [
         "Sub header"
       ],
-      "locStart": 6,
-      "locEnd": 45,
+      "locStart": 7,
+      "locEnd": 78,
       "filePath": "src/sub-header/sub-header.stories.tsx",
       "meta": {}
     },
@@ -1275,54 +1275,64 @@
       "filePath": "src/subBanner/subBanner.stories.tsx",
       "meta": {}
     },
-    "table-v2--data-grid": {
+    "table--data-grid": {
       "name": "Data grid",
       "levels": [
-        "Table v2"
+        "Table"
       ],
-      "locStart": 671,
-      "locEnd": 873,
-      "filePath": "src/table-v2/table-v2.stories.tsx",
+      "locStart": 1070,
+      "locEnd": 1272,
+      "filePath": "src/table/table.stories.tsx",
       "meta": {}
     },
-    "table-v2--editable-template-cell": {
+    "table--editable-template-cell": {
       "name": "Editable template cell",
       "levels": [
-        "Table v2"
+        "Table"
       ],
-      "locStart": 244,
-      "locEnd": 401,
-      "filePath": "src/table-v2/table-v2.stories.tsx",
+      "locStart": 247,
+      "locEnd": 404,
+      "filePath": "src/table/table.stories.tsx",
       "meta": {}
     },
-    "table-v2--expandable-row": {
+    "table--empty-state": {
+      "name": "Empty state",
+      "levels": [
+        "Table"
+      ],
+      "locStart": 674,
+      "locEnd": 863,
+      "filePath": "src/table/table.stories.tsx",
+      "meta": {}
+    },
+    "table--expandable-row": {
       "name": "Expandable row",
       "levels": [
-        "Table v2"
+        "Table"
       ],
-      "locStart": 499,
-      "locEnd": 669,
-      "filePath": "src/table-v2/table-v2.stories.tsx",
+      "locStart": 502,
+      "locEnd": 672,
+      "filePath": "src/table/table.stories.tsx",
       "meta": {}
     },
-    "table-v2--full-featured": {
+    "table--full-featured": {
       "name": "Full featured",
       "levels": [
-        "Table v2"
+        "Table"
       ],
-      "locStart": 33,
-      "locEnd": 242,
-      "filePath": "src/table-v2/table-v2.stories.tsx",
+      "locStart": 35,
+      "locEnd": 245,
+      "filePath": "src/table/table.stories.tsx",
       "meta": {}
     },
-    "table-v1--full-featured": {
-      "name": "Full featured",
+    "table--loading": {
+      "name": "Loading",
       "levels": [
-        "Table v1"
+        "Table"
       ],
-      "locStart": 69,
-      "locEnd": 287,
-      "filePath": "src/table/tableV1.stories.tsx",
+      "locStart": 865,
+      "locEnd": 1069,
+      "filePath": "src/table/table.stories.tsx",
       "meta": {}
     },
     "tab--h5": {
@@ -1681,7 +1691,7 @@
         "Wizard"
       ],
       "locStart": 5,
-      "locEnd": 132,
+      "locEnd": 139,
       "filePath": "src/wizard/wizard.stories.tsx",
       "meta": {}
     }
