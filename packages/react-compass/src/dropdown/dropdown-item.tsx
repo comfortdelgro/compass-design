@@ -36,7 +36,7 @@ interface Props extends StyledComponentProps {
   leftIcon?: React.ReactNode
   rightIcon?: React.ReactNode
   value?: Key
-  textValue?: string
+  textValue?: React.ReactNode
   checkmark?: 'none' | 'checkbox' | 'tick'
   flagName?: string
   children: React.ReactNode

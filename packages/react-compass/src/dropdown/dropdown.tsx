@@ -76,8 +76,8 @@ interface Props extends StyledComponentProps {
   onFocus?: () => void
   onLoadMore?: () => void
   onOpenChange?: (isOpen: boolean) => void
-  onSelectionChange?: (key: Key) => void
-  onValueChange?: (key: Key) => void
+  onSelectionChange?: (key: string | number) => void
+  onValueChange?: (key: string | number) => void
 }
 
 export const Icon = () => (

@@ -1,3 +1,5 @@
+import PersonOutlined from '@comfortdelgro/compass-icons/react/outlined/person-outlined'
+import Phone from '@comfortdelgro/compass-icons/react/phone'
 import {faBug} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React, {Key} from 'react'
@@ -6,7 +8,6 @@ import {Column} from '../utils'
 import ADFlag from './flags/ad'
 import AEFlag from './flags/ae'
 import AFFlag from './flags/af'
-
 function generateRandomName() {
   const firstNames = [
     'Alice',
@@ -73,6 +74,7 @@ interface SampleData {
 
 export const Select: React.FC = () => {
   const [value, setValue] = React.useState<string>('aardvark1')
+  const [assignee, setAssignee] = React.useState<string>('')
   const [valueHeader, setValueHeader] = React.useState<string>('')
   const [flag, setFlag] = React.useState<string>('')
   const [loadMoreValue, setLoadMoreValue] = React.useState<string>('')
@@ -175,6 +177,18 @@ export const Select: React.FC = () => {
         placeholder='Choose an animal'
         value={flag}
         onValueChange={(k: Key) => setFlag(k.toString())}
+        prefix={<>{handlePrefix(flag)}</>}
+      >
+        <Dropdown.Item value='afghanistan'>Afghanistan (+93)</Dropdown.Item>
+        <Dropdown.Item value='albania'>Albania (+355)</Dropdown.Item>
+        <Dropdown.Item value='algeria'>Algeria (+213)</Dropdown.Item>
+      </Dropdown.Select>
+      <h3>Custom Display</h3>
+      <Dropdown.Select
+        label={<>Assignee</>}
+        placeholder='Select'
+        value={assignee}
+        onValueChange={(k: Key) => setAssignee(k as string)}
         prefix={
           <div
             style={{
@@ -184,13 +198,33 @@ export const Select: React.FC = () => {
               alignItems: 'center',
             }}
           >
-            {handlePrefix(flag)}
+            <PersonOutlined color='blue' />
           </div>
         }
       >
-        <Dropdown.Item value='afghanistan'>Afghanistan (+93)</Dropdown.Item>
-        <Dropdown.Item value='albania'>Albania (+355)</Dropdown.Item>
-        <Dropdown.Item value='algeria'>Algeria (+213)</Dropdown.Item>
+        <Dropdown.Item
+          value='NateRusell'
+          checkmark='tick'
+          textValue={
+            <>
+              Nate Russell - Service advisor -
+              <Phone />
+              0029838882
+            </>
+          }
+        >
+          Nate Russell - Service advisor -
+          <Phone />
+          0029838882
+        </Dropdown.Item>
+        <Dropdown.Item value='AlanLau' checkmark='tick'>
+          Alan Lau - Service advisor - <Phone />
+          0029838284
+        </Dropdown.Item>
+        <Dropdown.Item value='JeremyLin' checkmark='tick'>
+          Jeremy Lin - Service advisor - <Phone />
+          0029839381
+        </Dropdown.Item>
       </Dropdown.Select>
       <h3>Disable the whole thing</h3>
       <Dropdown.Select
