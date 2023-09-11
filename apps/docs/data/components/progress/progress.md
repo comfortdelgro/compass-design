@@ -25,13 +25,12 @@ import Progress from '@comfortdelgro/react-compass/progress'
 
 {{"demo": "CircularIndeterminate.tsx"}}
 
-### Circular color
-
-{{"demo": "CircularColor.tsx"}}
-
 ### Circular determinate
 
 {{"demo": "CircularDeterminate.tsx"}}
+### Circular color
+
+{{"demo": "CircularColor.tsx"}}
 
 ### Circular size
 
@@ -47,8 +46,12 @@ import Progress from '@comfortdelgro/react-compass/progress'
 
 {{"demo": "LinearDeterminate.tsx"}}
 
-### Linear Color
+### Linear Buffer
 
+{{"demo": "LinearBuffer.tsx"}}
+
+### Linear Color
+ 
 {{"demo": "LinearColor.tsx"}}
 
 ### Linear Size
