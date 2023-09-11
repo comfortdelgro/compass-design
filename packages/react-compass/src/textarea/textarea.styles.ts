@@ -34,7 +34,7 @@ export const StyledTextarea = styled('textarea', {
   fontWeight: '$medium',
   lineHeight: '$normal',
   padding: '$1_5 $3',
-  borderWidth: '1px',
+  borderWidth: '$0_5',
   borderStyle: 'solid',
   borderColor: '$divider',
   borderRadius: '$md',
