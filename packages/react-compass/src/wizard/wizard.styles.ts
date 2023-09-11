@@ -43,6 +43,10 @@ export const StyledLine = styled('div', {
         backgroundColor: '$cdgBlue10',
       },
     },
+    error: {
+      true: {},
+      false: {},
+    },
   },
   compoundVariants: [
     {
@@ -59,6 +63,13 @@ export const StyledLine = styled('div', {
       css: {
         borderTopRightRadius: '$full',
         borderBottomRightRadius: '$full',
+      },
+    },
+    {
+      error: true,
+      active: true,
+      css: {
+        backgroundColor: '$danger',
       },
     },
   ],
@@ -80,6 +91,10 @@ export const StyledItem = styled('span', {
   zIndex: 2,
 
   variants: {
+    error: {
+      true: {},
+      false: {},
+    },
     active: {
       true: {
         backgroundColor: '$cdgBlue100',
@@ -106,6 +121,18 @@ export const StyledItem = styled('span', {
       },
     },
   },
+  compoundVariants: [
+    {
+      error: true,
+      active: true,
+      css: {
+        backgroundColor: '$danger',
+        '&:after': {
+          backgroundColor: '$danger',
+        },
+      },
+    },
+  ],
 })
 
 export const StyledTitle = styled('span', {

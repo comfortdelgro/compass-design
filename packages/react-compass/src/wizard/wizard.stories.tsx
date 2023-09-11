@@ -128,5 +128,12 @@ export const Variants: React.FC = () => (
         </div>
       </Wizard.Item>
     </Wizard>
+    <h3>With error items</h3>
+    <Wizard
+      items={['Value1', 'Value2', 'Value3', 'Value4']}
+      erroredSteps={[2]}
+      currentStep={3}
+      onStepClick={(n) => console.log(n)}
+    />
   </Column>
 )
