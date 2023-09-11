@@ -125,6 +125,8 @@ export default function Page() {
                 <Box
                   css={{
                     backgroundImage: `url('${introduce.image}')`,
+                    backgroundPosition: 'center',
+                    backgroundSize: 'cover',
                     height: '275px',
                     borderRadius: '12px',
                     display: 'flex',
@@ -148,6 +150,7 @@ export default function Page() {
                       backdropFilter: 'blur(50px)',
                       borderBottomLeftRadius: 12,
                       borderBottomRightRadius: 12,
+                      height: '40%',
                     }}
                   >
                     <Box>

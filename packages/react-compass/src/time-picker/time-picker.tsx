@@ -65,6 +65,11 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
         cloneDeep(EMPTY_DISPLAY_TIME_DROPDOWN_LIST),
       )
 
+    const isUncontrolledComponent = useMemo(
+      () => !!defaultValue || (!defaultValue && !value),
+      [defaultValue, value],
+    )
+
     const timePickerInputRef = useRef<HTMLInputElement>(null)
     const timePickerIconRef = useRef<HTMLButtonElement>(null)
     const containerRef = useDOMRef<HTMLElement>(ref)
@@ -95,20 +100,24 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
 
     const handleItemClick = useCallback(
       (value: TimePickerDropdownSelectedDisplayList) => {
-        setSelectedDropdownValue(value)
+        if (isUncontrolledComponent) {
+          setSelectedDropdownValue(value)
+        }
         if (timePickerInputRef.current) {
-          // Convert from format and selected value to display data
-          timePickerInputRef.current.value = formatTime
+          const dataValue = formatTime
             .replace('hh', String(value.hour).padStart(2, '0'))
             .replace('HH', String(value.hour).padStart(2, '0'))
             .replace('mm', String(value.minute).padStart(2, '0'))
             .replace('ss', String(value.second).padStart(2, '0'))
             .replace('AA', String(value.session))
-
-          onTimeChange && onTimeChange(timePickerInputRef.current.value)
+          // Convert from format and selected value to display data
+          if (isUncontrolledComponent) {
+            timePickerInputRef.current.value = dataValue
+          }
+          onTimeChange && onTimeChange(dataValue)
         }
       },
-      [hasFooter],
+      [hasFooter, formatTime, isUncontrolledComponent, onTimeChange],
     )
 
     /**
@@ -188,6 +197,11 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
       }
       event.preventDefault()
       event.stopPropagation()
+      const isControlledWithoutOnTimeChange =
+        !isUncontrolledComponent && !onTimeChange
+      if (isControlledWithoutOnTimeChange) {
+        return
+      }
 
       let isNumber = false
       const currentValue = timePickerInputRef.current.value
@@ -550,6 +564,7 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
           onClose={handlePopoverClose(true)}
         >
           <TimePickerDropdown
+            isUncontrolledComponent={isUncontrolledComponent}
             views={views}
             isOpen={isOpen}
             value={selectedDropdownValue}

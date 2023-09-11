@@ -21,11 +21,10 @@ export const StyledBadge = styled('div', {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'start',
-  },
-
-  '& > svg': {
-    height: '$3',
-    width: '100%',
+    'svg': {
+      height: '$3',
+      width: '100%',
+    },
   },
 
   '& > .label': {

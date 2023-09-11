@@ -1,7 +1,7 @@
 const {marked} = require('marked')
-const kebabCase = require('lodash/kebabCase')
 const textToHash = require('./textToHash')
 const prism = require('./prism')
+const {startsWith} = require('lodash')
 
 const headerRegExp = /---[\r\n]([\s\S]*)[\r\n]---/
 const titleRegExp = /# (.*)[\r\n]/
@@ -39,45 +39,6 @@ function escape(html, encode) {
   }
 
   return html
-}
-
-function checkUrlHealth(href, linkText, context) {
-  const url = new URL(href, 'https://comfortdelgro.github.io/')
-
-  if (url.pathname[url.pathname.length - 1] !== '/') {
-    throw new Error(
-      [
-        'docs-infra: Missing trailing slash. The following link:',
-        `[${linkText}](${href}) in ${context.location} is missing a trailing slash, please add it.`,
-        '',
-        'See https://ahrefs.com/blog/trailing-slash/ for more details.',
-        '',
-      ].join('\n'),
-    )
-  }
-
-  // Relative links
-  if (
-    href[0] !== '#' &&
-    !(href.startsWith('https://') || href.startsWith('http://'))
-  ) {
-    /**
-     * Break for links like:
-     * material-ui/customization/theming/
-     *
-     * It needs to be:
-     * /material-ui/customization/theming/
-     */
-    if (href[0] !== '/') {
-      throw new Error(
-        [
-          'docs-infra: Missing leading slash. The following link:',
-          `[${linkText}](${href}) in ${context.location} is missing a leading slash, please add it.`,
-          '',
-        ].join('\n'),
-      )
-    }
-  }
 }
 
 /**
@@ -218,8 +179,6 @@ function renderInline(markdown) {
   return marked.parseInline(markdown)
 }
 
-const noSEOadvantage = ['https://comfortdelgro.github.io/compass-design']
-
 /**
  * Creates a function that MUST be used to render non-inline markdown.
  * It keeps track of a table of contents and hashes of its items.
@@ -313,18 +272,17 @@ function createRender(context) {
       ].join('')
     }
     renderer.link = (href, linkTitle, linkText) => {
-      let more = ''
-
-      if (noSEOadvantage.some((domain) => href.indexOf(domain) !== -1)) {
-        more = ' target="_blank" rel="noopener nofollow"'
-      }
-
-      let finalHref = href
-
-      checkUrlHealth(href, linkText, context)
-
-      return `<a href="https://github.com/comfortdelgro/compass-design">${linkText}</a>`
+      return `<a href="${href}" ${
+        startsWith(href, 'http')
+          ? 'target="_blank" rel="noopener nofollow"'
+          : ''
+      }>${linkText}</a>`
     }
+
+    renderer.image = (href, title, alt) => {
+      return `<img src="${href}" alt="${title || alt}"/>`
+    }
+
     renderer.code = (code, infostring, escaped) => {
       const lang = (infostring || '').match(/\S*/)[0]
       const out = prism(code, lang)

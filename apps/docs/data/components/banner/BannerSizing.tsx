@@ -3,7 +3,7 @@ import {Banner, Flexbox} from '@comfortdelgro/react-compass'
 function Sizing() {
   return (
     <Flexbox css={{flexDirection: 'column'}}>
-      <Banner size='sm'>
+      <Banner size='sm' css={{zIndex: 1}}>
         <Banner.Image src='https://images.unsplash.com/photo-1614227154650-69524d5fb1a5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80' />
         <Banner.Title>My Title</Banner.Title>
         <Banner.Description>
@@ -12,7 +12,7 @@ function Sizing() {
         </Banner.Description>
       </Banner>
 
-      <Banner size='md'>
+      <Banner size='md' css={{zIndex: 1}}>
         <Banner.Image src='https://images.unsplash.com/photo-1614227154650-69524d5fb1a5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80' />
         <Banner.Title>My Title</Banner.Title>
         <Banner.Description>
@@ -21,7 +21,7 @@ function Sizing() {
         </Banner.Description>
       </Banner>
 
-      <Banner size='lg'>
+      <Banner size='lg' css={{zIndex: 1}}>
         <Banner.Image src='https://images.unsplash.com/photo-1614227154650-69524d5fb1a5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80' />
         <Banner.Title>My Title</Banner.Title>
         <Banner.Description>

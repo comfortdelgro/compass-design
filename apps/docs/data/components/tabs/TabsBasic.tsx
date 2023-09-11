@@ -2,7 +2,7 @@ import {Column, Row, Tabs, Typography} from '@comfortdelgro/react-compass'
 
 const Icon: React.FC = () => (
   <Column>
-    <Typography.Label>With left icon</Typography.Label>
+    <Typography.Header variant='header3'>With left icon</Typography.Header>
     <Row>
       <Tabs icon='left'>
         <Tabs.Item key='1' title='Founding of Rome'>
@@ -17,7 +17,7 @@ const Icon: React.FC = () => (
       </Tabs>
     </Row>
 
-    <Typography.Label>With right icon</Typography.Label>
+    <Typography.Header variant='header3'>With right icon</Typography.Header>
     <Row>
       <Tabs icon='right' disabledKeys={['1']}>
         <Tabs.Item key='1' title='Founding of Rome'>
@@ -32,7 +32,7 @@ const Icon: React.FC = () => (
       </Tabs>
     </Row>
 
-    <Typography.Label>With top icon</Typography.Label>
+    <Typography.Header variant='header3'>With top icon</Typography.Header>
     <Row>
       <Tabs variant='simple' icon='top' disabledKeys={['1']}>
         <Tabs.Item key='1' title='Founding of Rome'>

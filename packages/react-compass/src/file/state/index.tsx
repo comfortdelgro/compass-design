@@ -54,6 +54,9 @@ const Loading = () => (
       '.ring': {
         width: '16px',
         height: '16px',
+        '.segment': {
+          borderColor: '#009EDA transparent transparent transparent',
+        },
         div: {
           width: '16px',
           height: '16px',

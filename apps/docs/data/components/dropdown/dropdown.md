@@ -31,7 +31,7 @@ We provide 2 type of dropdown that can be used to select: `Dropdown.Select` and 
 
 ### UnControlled
 
-{{"demo": "DropdownControlled.tsx"}}
+{{"demo": "UnControlled.tsx"}}
 
 ### With Section
 

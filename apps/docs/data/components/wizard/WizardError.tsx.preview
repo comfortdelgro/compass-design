@@ -1,0 +1,5 @@
+<Wizard
+    items={['Value1', 'Value2', 'Value3', 'Value4']}
+    erroredSteps={[2]}
+    currentStep={3}
+/>

@@ -1,8 +1,8 @@
-import {Checkbox, Column, Row} from '@comfortdelgro/react-compass'
+import {Checkbox, Column, Row, Typography} from '@comfortdelgro/react-compass'
 
 const Variants: React.FC = () => (
   <Column>
-    <h3>1. Default</h3>
+    <Typography.Header variant='header3'>1. Default</Typography.Header>
     <Column>
       <Checkbox isSelected={false}>Unselected</Checkbox>
       <Checkbox isSelected>Selected</Checkbox>
@@ -21,7 +21,7 @@ const Variants: React.FC = () => (
       </Checkbox>
     </Column>
 
-    <h3>2. Rounded</h3>
+    <Typography.Header variant='header3'>2. Rounded</Typography.Header>
     <Column>
       <Checkbox variant='rounded' isSelected={false}>
         Unselected
@@ -43,7 +43,7 @@ const Variants: React.FC = () => (
       </Checkbox>
     </Column>
 
-    <h3>3. Without Labels</h3>
+    <Typography.Header variant='header3'>3. Without Labels</Typography.Header>
     <Column>
       <Row css={{gap: '1em'}}>
         <Checkbox />
@@ -68,7 +68,7 @@ const Variants: React.FC = () => (
       </Row>
     </Column>
 
-    <h3>4. HTML forms</h3>
+    <Typography.Header variant='header3'>4. HTML forms</Typography.Header>
     <Column>
       <Row>
         <Checkbox name='newsletter' value='subscribe'>

@@ -40,6 +40,7 @@ export interface ImageDecorator {
   src: string
   alt?: string
   defaultSize?: ViewerImageSize
+  srcPreview?: string
 }
 
 export interface ToolbarConfig {

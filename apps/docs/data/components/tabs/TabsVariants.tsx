@@ -2,7 +2,7 @@ import {Column, Row, Tabs, Typography} from '@comfortdelgro/react-compass'
 
 const Variants: React.FC = () => (
   <Column>
-    <Typography.Label>Simple Style</Typography.Label>
+    <Typography.Header variant='header3'>Simple Style</Typography.Header>
     <Row>
       <Tabs variant='simple' disabledKeys={['1']}>
         <Tabs.Item key='1' title='Founding of Rome'>
@@ -17,7 +17,7 @@ const Variants: React.FC = () => (
       </Tabs>
     </Row>
 
-    <Typography.Label>Rounded Style</Typography.Label>
+    <Typography.Header variant='header3'>Rounded Style</Typography.Header>
     <Row>
       <Tabs variant='rounded' disabledKeys={['1']}>
         <Tabs.Item key='1' title='Founding of Rome'>

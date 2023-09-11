@@ -28,7 +28,7 @@ const HorizontalAlternate = () => {
           dot={
             <Icon
               icon={faCalendarDay}
-              style={{color: 'white', height: '50%'}}
+              style={{color: 'green', height: '50%'}}
             />
           }
         >
@@ -52,7 +52,7 @@ const HorizontalAlternate = () => {
           dot={
             <Icon
               icon={faCalendarDay}
-              style={{color: 'white', height: '50%'}}
+              style={{color: 'green', height: '50%'}}
             />
           }
         >

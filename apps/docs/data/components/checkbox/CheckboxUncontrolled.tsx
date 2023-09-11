@@ -4,7 +4,6 @@ import React from 'react'
 const Uncontrolled: React.FC = () => {
   return (
     <Column>
-      <h3>Uncontrolled</h3>
       <Column>
         <Checkbox variant='rounded'>Unselected</Checkbox>
         <Checkbox variant='rounded' defaultSelected>

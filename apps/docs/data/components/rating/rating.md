@@ -21,7 +21,13 @@ import Rating from '@comfortdelgro/react-compass/rating'
 
 ## Example
 
+### Default
+
 {{"demo": "Rating.tsx"}}
+
+### Icon
+
+{{"demo": "IconRating.tsx"}}
 
 ## Props
 

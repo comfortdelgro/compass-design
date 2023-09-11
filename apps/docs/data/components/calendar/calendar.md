@@ -21,7 +21,13 @@ import Calendar from '@comfortdelgro/react-compass/calendar'
 
 ## Example
 
+### Calendar
+
 {{"demo": "Calendar.tsx"}}
+
+### Validation Calendar
+
+{{"demo": "Validation.tsx"}}
 
 ## Props
 

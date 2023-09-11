@@ -37,7 +37,9 @@ const Variants: React.FC = () => {
           onKeyDown={(e) => console.log('onKeyDownTest', e)}
         />
       </Row>
-      <Typography.Label>Controlled (min-max number input)</Typography.Label>
+      <Typography.Header variant='header3'>
+        Controlled (min-max number input)
+      </Typography.Header>
       <Row>
         <TextField
           placeholder='Pick a number from 1 - 100'
@@ -52,7 +54,7 @@ const Variants: React.FC = () => {
         />
       </Row>
 
-      <Typography.Label>With Label</Typography.Label>
+      <Typography.Header variant='header3'>With Header</Typography.Header>
       <Row>
         <TextField
           label={
@@ -65,7 +67,7 @@ const Variants: React.FC = () => {
         />
       </Row>
 
-      <Typography.Label>With Helper Text</Typography.Label>
+      <Typography.Header variant='header3'>With Helper Text</Typography.Header>
       <Row>
         <TextField
           label='Name'
@@ -74,7 +76,7 @@ const Variants: React.FC = () => {
         />
       </Row>
 
-      <Typography.Label>Error</Typography.Label>
+      <Typography.Header variant='header3'>Error</Typography.Header>
       <Row>
         <TextField
           isErrored
@@ -85,7 +87,7 @@ const Variants: React.FC = () => {
         />
       </Row>
 
-      <Typography.Label>With Icons</Typography.Label>
+      <Typography.Header variant='header3'>With Icons</Typography.Header>
       <Row>
         <TextField
           label='Name'
@@ -105,7 +107,7 @@ const Variants: React.FC = () => {
         />
       </Row>
 
-      <Typography.Label>Disabled</Typography.Label>
+      <Typography.Header variant='header3'>Disabled</Typography.Header>
       <Row>
         <TextField label='Name' placeholder='Enter your name' isDisabled />
         <TextField
@@ -128,7 +130,7 @@ const Variants: React.FC = () => {
           isDisabled
         />
       </Row>
-      <Typography.Label>Prefix</Typography.Label>
+      <Typography.Header variant='header3'>Prefix</Typography.Header>
       <Row>
         <TextField
           label='Name'
@@ -136,7 +138,7 @@ const Variants: React.FC = () => {
           placeholder='Enter your phone number'
         />
       </Row>
-      <Typography.Label>Password</Typography.Label>
+      <Typography.Header variant='header3'>Password</Typography.Header>
       <TextField
         css={{width: '16rem'}}
         label='Password'
@@ -144,7 +146,7 @@ const Variants: React.FC = () => {
         helperText='Your password should contain at least 18 characters.'
         password={true}
       />
-      <Typography.Label>Max length</Typography.Label>
+      <Typography.Header variant='header3'>Max length</Typography.Header>
       <TextField
         css={{width: '16rem'}}
         label='Password'
@@ -152,7 +154,7 @@ const Variants: React.FC = () => {
         helperText='Your input should be equal or less than 10 characters.'
         maxLength={10}
       />
-      <Typography.Label>Min length</Typography.Label>
+      <Typography.Header variant='header3'>Min length</Typography.Header>
       <TextField
         css={{width: '16rem'}}
         label='Password'
