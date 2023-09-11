@@ -35,8 +35,9 @@ export const Linear: React.FC = () => {
   const [progress, setProgress] = React.useState(0)
   const [buffer, setBuffer] = React.useState(10)
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  const progressRef = React.useRef(() => {})
+  const progressRef = React.useRef(() => {
+    //
+  })
   React.useEffect(() => {
     progressRef.current = () => {
       if (progress > 100) {

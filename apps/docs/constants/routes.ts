@@ -106,8 +106,8 @@ export const routes: TSideNavItem[] = [
           'Buttons allow users to take actions, and make choices, with a single tap.',
       },
       {
-        title: 'ActionBar',
-        pathname: '/actionbar',
+        title: 'Action Bar',
+        pathname: '/action-bar',
         description:
           'The ActionBar component is a versatile user interface element that provides a cohesive grouping of buttons, icons, and interactive elements within a container.',
       },
@@ -240,11 +240,6 @@ export const routes: TSideNavItem[] = [
         description: 'Charts visualize data in graphical form.',
       },
       {
-        title: 'Data Grid',
-        pathname: '/data-grid',
-        description: 'Data Grid displays tabular data in rows and columns.',
-      },
-      {
         title: 'Date Picker',
         pathname: '/date-picker',
         description:
@@ -281,11 +276,6 @@ export const routes: TSideNavItem[] = [
         title: 'Gutter',
         pathname: '/gutter',
         description: 'Gutter provides spacing between grid or layout items.',
-      },
-      {
-        title: 'Layouts',
-        pathname: '/layouts',
-        description: 'Layouts define the structure of a web page or app.',
       },
       {
         title: 'Multiple Dropdown',
@@ -384,7 +374,7 @@ export const routes: TSideNavItem[] = [
         description: 'The sample of portal layout, admin page layout.',
       },
       {
-        title: 'QuantityToggle',
+        title: 'Quantity Toggle',
         pathname: '/quantity-toggle',
         description:
           'Quantity Toggle fields allow users to enter a number, and increment or decrement the value using stepper buttons.',
@@ -518,6 +508,21 @@ export const routes: TSideNavItem[] = [
         title: 'Wizard',
         pathname: '/wizard',
         description: 'Using for display stepper.',
+      },
+      {
+        title: 'Navbar',
+        pathname: '/navbar',
+        description: `The navbar is your site's navigation hub`,
+      },
+      {
+        title: 'Progress',
+        pathname: '/progress',
+        description: 'The progress component tracks task completion.',
+      },
+      {
+        title: 'Toast',
+        pathname: '/toast',
+        description: 'The toast component displays a message.',
       },
     ],
   },

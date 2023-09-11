@@ -13,6 +13,7 @@ import {
 interface Props extends StyledComponentProps {
   items?: string[]
   currentStep?: number
+  erroredSteps?: number[]
   children?: React.ReactNode
   onStepClick?: (index: number) => void
 }
@@ -27,6 +28,7 @@ const Wizard = React.forwardRef<HTMLDivElement, WizardProps>((props, ref) => {
     css = {},
     // ComponentProps
     currentStep = 1,
+    erroredSteps = [],
     children,
     items,
     onStepClick,
@@ -61,9 +63,11 @@ const Wizard = React.forwardRef<HTMLDivElement, WizardProps>((props, ref) => {
                 side='left'
                 bordered={index === 0}
                 active={currentStep > index + 1 || index + 1 === currentStep}
+                error={!!erroredSteps.includes(index + 1)}
               />
               <StyledItem
                 active={currentStep > index + 1 || index + 1 === currentStep}
+                error={!!erroredSteps.includes(index + 1)}
                 onClick={() => onStepClick?.(index + 1)}
                 css={{cursor: onStepClick ? 'pointer' : ''}}
               >
@@ -73,6 +77,7 @@ const Wizard = React.forwardRef<HTMLDivElement, WizardProps>((props, ref) => {
                 className='side-right'
                 bordered={index === items.length - 1}
                 active={currentStep > index + 1}
+                error={!!erroredSteps.includes(index + 1)}
               />
             </div>
           ))}
@@ -84,12 +89,14 @@ const Wizard = React.forwardRef<HTMLDivElement, WizardProps>((props, ref) => {
                 side='left'
                 bordered={index === 0}
                 active={currentStep > index + 1 || index + 1 === currentStep}
+                error={!!item.props.isErrored}
               />
               {item}
               <StyledLine
                 className='side-right'
                 bordered={index === collection.length - 1}
                 active={currentStep > index + 1}
+                error={!!item.props.isErrored}
               />
             </div>
           ))}
