@@ -79,7 +79,9 @@ const Chip = React.forwardRef<HTMLDivElement, ChipProps>((props, ref) => {
       onKeyDown={handleChipKeyDown}
       {...delegated}
     >
-      {children}
+      <div className="cdg-chip-content">
+        {children}
+      </div>
       {hasCloseButton && (
         <div className='multiple-dropdown-chip-icon' onClick={handleCloseChipClick} ref={closeButtonRef}>
           <CloseIcon />
