@@ -105,7 +105,7 @@ export const Variants: React.FC = () => {
       <h3>Default - Shadowless</h3>
       <Card size='lg' isShadowless={true}>
         <Card.Body>
-          <Card.Title style={{display: 'flex', alignItems: 'center'}}>
+          <Card.Title>
             <h3 className='card-title'>Card title</h3>
             <Button variant='ghost'>
               <Edit />
