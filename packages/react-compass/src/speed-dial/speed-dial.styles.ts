@@ -1,5 +1,6 @@
-import {styled} from '../theme'
-import type {VariantProps} from '../utils/stitches.types'
+import { styled } from '../theme'
+import type { VariantProps } from '../utils/stitches.types'
+
 
 export const StyledSpeedDial = styled('div', {
   width: 'fit-content',
@@ -61,6 +62,7 @@ export const StyledSpeedDialActions = styled('ul', {
   listStyle: 'none',
   opacity: '0',
   transition: 'opacity 0.3s ease, transform 0.3s ease',
+  display: 'flex',
   '&.open': {
     opacity: '1',
     transform: 'translateY(0)',
@@ -80,10 +82,10 @@ export const StyledSpeedDialActions = styled('ul', {
   variants: {
     isOpenAction: {
       true: {
-        display: 'flex',
+        // display: 'flex',
       },
       false: {
-        display: 'none',
+        // display: 'none',
       },
     },
   },
