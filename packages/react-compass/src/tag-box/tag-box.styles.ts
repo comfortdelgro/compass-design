@@ -64,6 +64,7 @@ export const StyledBox = styled('div', {
 
   '&:focus-within': {
     borderColor: '$cdgBlue',
+    outline: '1px $cdgBlue solid',
     '.left-icon': {
       color: '$cdgBlue',
     },
@@ -81,9 +82,11 @@ export const StyledBox = styled('div', {
     isErrored: {
       true: {
         borderColor: '$danger',
+        outline: '1px $danger solid',
 
         '&:focus-within': {
           borderColor: '$danger',
+          outline: '1px $danger solid',
         },
       },
     },
