@@ -1,3 +1,4 @@
+import Edit from '@comfortdelgro/compass-icons/react/edit'
 import React from 'react'
 import Button from '../button/button'
 import {Column} from '../utils/components'
@@ -104,7 +105,12 @@ export const Variants: React.FC = () => {
       <h3>Default - Shadowless</h3>
       <Card size='lg' isShadowless={true}>
         <Card.Body>
-          <Card.Title>Card title</Card.Title>
+          <Card.Title style={{display: 'flex', alignItems: 'center'}}>
+            <h3 className='card-title'>Card title</h3>
+            <Button variant='ghost'>
+              <Edit />
+            </Button>
+          </Card.Title>
           <p style={{margin: 0}}>{lorem.slice(0, lorem.length / 2)}</p>
           <Card.Action>
             <Button variant='primary'>Button</Button>
