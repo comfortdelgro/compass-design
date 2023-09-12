@@ -34,7 +34,7 @@ export const StyledErrorAction = styled('div', {
   width: '100%',
   display: 'flex',
   justifyContent: 'flex-end',
-  gap: '$4',
+  gap: '$6',
 })
 
 export const StyledErrorDescription = styled('p', {
@@ -51,6 +51,7 @@ export const StyledErrorDescription = styled('p', {
   size: '$body2',
   lineHeight: '$normal',
   fontWeight: '$normal',
+  color: '$secondaryText',
 })
 
 export const StyledErrorTitle = styled('h3', {
@@ -70,6 +71,7 @@ export const StyledErrorTitle = styled('h3', {
   fontWeight: '$semibold',
   display: 'flex',
   alignItems: 'center',
+  color: '$primaryText',
 })
 
 export const StyledErrorIcon = styled('div', {
@@ -112,12 +114,12 @@ export const StyledErrorContainer = styled('div', {
   boxSizing: 'border-box',
   background: 'transparent',
   margin: '0px',
-  padding: '$4',
+  padding: '$6',
 
   //error container
   flexDirection: 'collumn',
   justifyContent: 'flex-start',
-  gap: '$4',
+  gap: '$6',
   '@mobile': {
     gap: '$2',
   },
@@ -137,7 +139,7 @@ export const StyledErrorContainer = styled('div', {
         maxWidth: '$127_25',
         minHeight: '$96',
         padding: '$8',
-        backgroundColor: '$secondaryBg',
+        backgroundColor: 'transparent',
         borderRadius: '0px 4px 4px 0px',
         display: 'flex',
         flexDirection: 'column',
@@ -161,11 +163,9 @@ export const StyledErrorContainer = styled('div', {
             fontSize: '$header3',
           },
           justifyContent: 'center',
-          color: '$primaryText',
         },
         [`${StyledErrorDescription}`]: {
           fontSize: '$body3',
-          color: '$gray80',
           justifyContent: 'center',
         },
         [`${StyledErrorAction}`]: {
