@@ -200,7 +200,12 @@ const SearchField = React.forwardRef<HTMLDivElement, SearchFieldProps>(
             minLength={minLength}
           />
           {textValue !== '' ? (
-            <Button size='sm' variant='ghost' onPress={onClearButtonClick}>
+            <Button
+              size='sm'
+              variant='ghost'
+              onPress={onClearButtonClick}
+              className='cdg-searchfield-button'
+            >
               <svg className='icon' viewBox='0 0 384 512'>
                 <path
                   fill='currentColor'
@@ -212,6 +217,7 @@ const SearchField = React.forwardRef<HTMLDivElement, SearchFieldProps>(
             <Button
               isDisabled={!!isDisabled}
               onPress={onSearchButtonClick}
+              className='cdg-searchfield-button'
               size='sm'
               variant='ghost'
             >

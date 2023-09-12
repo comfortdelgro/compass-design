@@ -7,7 +7,7 @@ export const StyledSearchFieldInput = styled('input', {
   fontSize: '$label1',
   fontWeight: '$semibold',
   lineHeight: '$normal',
-  padding: '$1_5 $3',
+  padding: '0',
   border: 0,
   borderRadius: '$md',
   backgroundColor: 'transparent',
@@ -23,11 +23,13 @@ export const StyledSearchFieldInput = styled('input', {
 
 export const StyledSearchFieldBox = styled('div', {
   display: 'flex',
-  height: '$11',
+  height: '$8',
+  padding: '0 $4',
+  gap: '$2',
   fontFamily: '$sans',
   flexDirection: 'row',
   alignItems: 'center',
-  borderWidth: '1px',
+  borderWidth: '$light',
   borderStyle: 'solid',
   borderColor: '$divider',
   borderRadius: '$md',
@@ -41,6 +43,17 @@ export const StyledSearchFieldBox = styled('div', {
     transform: 'scale(0.9)',
   },
 
+  '.cdg-searchfield-button': {
+    padding: '0',
+    width: '$6',
+    height: '$6',
+  },
+
+  '.cdg-searchfield-button .children svg': {
+    width: '$4',
+    height: '$4',
+  },
+
   variants: {
     disabled: {
       true: {
@@ -51,6 +64,7 @@ export const StyledSearchFieldBox = styled('div', {
     isErrored: {
       true: {
         borderColor: '$danger',
+        borderWidth: '$medium',
         '&:focus-within': {
           borderColor: '$danger',
         },
