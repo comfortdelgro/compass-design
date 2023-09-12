@@ -10,7 +10,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React from 'react'
-import {PreviewCode} from '../pudo/pudo.stories'
+import {styled} from '../theme'
 import MultipleChoicesSlider from './index'
 export const Default: React.FC = () => {
   const [selectedKeys, setSelectedKeys] = React.useState<number[]>([])
@@ -70,3 +70,17 @@ export const Default: React.FC = () => {
     </>
   )
 }
+
+const PreviewCode = styled('pre', {
+  padding: '$2',
+  margin: '0',
+
+  width: '100%',
+  minHeight: '$5',
+  borderRadius: '$lg',
+
+  backgroundColor: '$secondaryBg',
+  fontSize: '$label1',
+  whiteSpace: 'pre-wrap',
+  overflowWrap: 'anywhere',
+})

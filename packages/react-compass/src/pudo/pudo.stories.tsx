@@ -152,26 +152,9 @@ export function Default() {
 
       <h4>Compact</h4>
       <Pudo
-        css={{
-          marginBlock: '$4',
-          '.pudo-items-wrapper': {
-            border: 'none',
-            boxShadow: '0px 4px 8px 0px rgba(0, 0, 0, 0.16)',
-          },
-        }}
         items={[
-          {
-            name: 'item1',
-            value: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum
-          assumenda officiis voluptates quam rem qui libero commodi veritatis
-          deserunt harum voluptatum beatae perferendis, vitae minus magnam facere
-          quidem tempora iusto? Tempore praesentium accusamus mollitia, inventore
-          quos tenetur, aspernatur eos, in id corporis veniam blanditiis error. Est
-          illo temporibus velit, beatae dolores accusantium quis vel corporis neque
-          harum? Accusantium, voluptates consequuntur?`,
-            placeholder: 'item1',
-          },
-          {name: 'item2', value: 'Destination', placeholder: 'item2'},
+          {name: 'item1', value: '', placeholder: 'item 1'},
+          {name: 'item2', value: '', placeholder: 'item 2'},
         ]}
         compact='md'
       />
@@ -221,11 +204,38 @@ export function Default() {
           compact='md'
         />
       </CompactContainer>
+
+      <h4>Styling</h4>
+      <Pudo
+        css={{
+          marginBlock: '$4',
+          '.pudo-items-wrapper': {
+            border: 'none',
+            boxShadow: '0px 4px 8px 0px rgba(0, 0, 0, 0.16)',
+          },
+        }}
+        items={[
+          {
+            name: 'item1',
+            value: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum
+          assumenda officiis voluptates quam rem qui libero commodi veritatis
+          deserunt harum voluptatum beatae perferendis, vitae minus magnam facere
+          quidem tempora iusto? Tempore praesentium accusamus mollitia, inventore
+          quos tenetur, aspernatur eos, in id corporis veniam blanditiis error. Est
+          illo temporibus velit, beatae dolores accusantium quis vel corporis neque
+          harum? Accusantium, voluptates consequuntur?`,
+            placeholder: 'item1',
+          },
+          {name: 'item2', value: 'Destination', placeholder: 'item2'},
+        ]}
+        type='label'
+        compact='md'
+      />
     </>
   )
 }
 
-export const PreviewCode = styled('pre', {
+const PreviewCode = styled('pre', {
   padding: '$2',
   margin: '0',
 
@@ -245,7 +255,10 @@ const CompactContainer = styled('div', {
   gap: '$4',
 
   '@sm': {
-    width: '50%',
     flexDirection: 'row',
+
+    '& > .pudo-container': {
+      width: 'calc(100% / 2 - $2)',
+    },
   },
 })

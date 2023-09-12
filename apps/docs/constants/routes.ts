@@ -520,6 +520,12 @@ export const routes: TSideNavItem[] = [
         description: 'The progress component tracks task completion.',
       },
       {
+        title: 'PUDO',
+        pathname: '/pudo',
+        description:
+          'A journey planner that allows user to input multiple locations.',
+      },
+      {
         title: 'Toast',
         pathname: '/toast',
         description: 'The toast component displays a message.',
