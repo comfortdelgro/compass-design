@@ -5,11 +5,11 @@ import React, {
   ReactElement,
   Ref,
   useCallback,
-  useEffect,
   useMemo,
   useState,
 } from 'react'
 import Button from '../button'
+import {useDeepCompareEffect} from '../utils/hooks'
 import {useDOMRef} from '../utils/use-dom-ref'
 import PudoItem from './pudo-item'
 import {StyledPUDO} from './pudo.styles'
@@ -183,7 +183,7 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
     />
   ))
 
-  useEffect(() => {
+  useDeepCompareEffect(() => {
     const dedupedItems = items.filter(
       ({name}, index, currArr) =>
         index === currArr.findIndex((compareItem) => compareItem.name === name),

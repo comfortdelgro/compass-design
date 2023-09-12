@@ -25,12 +25,16 @@ import Pudo from '@comfortdelgro/react-compass/pudo'
 
 {{"demo": "Pudo.tsx"}}
 
+### H5 example
+
+{{"demo": "PudoH5Example.tsx"}}
+
 ### Swap, add & remove items
 
 <small>
-Real-world cases in general and the H5 application in particular, the `minLength` and `maxLength` are static value, there's no reason to change it dynamically as shown in the demo below.
+Real-world cases in general and the H5 application in particular, the <code>minLength</code> and <code>maxLength</code> are static value, there's no reason to change it dynamically as shown in the demo below.
 
-This example is just for demo the swap, add & remove features. To prevent rendering issue, please avoid decreasing the `minLength` and/or `maxLength` value as much as possible.
+This example is just for demo the swap, add & remove features. To prevent rendering issue, please avoid programmatically changing or at least avoid decreasing `minLength` and/or `maxLength` value as much as possible.
 </small>
 
 {{"demo": "PudoManipulation.tsx"}}
