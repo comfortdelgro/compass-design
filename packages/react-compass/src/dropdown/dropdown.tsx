@@ -520,7 +520,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     if (item) {
       setSelectedItem({
         value: currentSelectedKey.toString(),
-        displayValue: item as React.ReactNode,
+        displayValue: item.props.textValue || item.props.children,
         flagName: item?.props?.flagName ?? '',
       })
       if (inputFieldRef.current) {
@@ -575,11 +575,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
             >
               {prefix}
               <span>
-                {selectedItem
-                  ? textContent(
-                      selectedItem?.displayValue as React.ReactElement,
-                    )
-                  : placeholder}
+                {selectedItem ? selectedItem?.displayValue : placeholder}
               </span>
               {icon}
             </button>

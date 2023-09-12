@@ -74,7 +74,7 @@ interface SampleData {
 
 export const Select: React.FC = () => {
   const [value, setValue] = React.useState<string>('aardvark1')
-  const [assignee, setAssignee] = React.useState<string>('')
+  const [assignee, setAssignee] = React.useState<string>('NateRusell')
   const [valueHeader, setValueHeader] = React.useState<string>('')
   const [flag, setFlag] = React.useState<string>('')
   const [loadMoreValue, setLoadMoreValue] = React.useState<string>('')
@@ -206,11 +206,9 @@ export const Select: React.FC = () => {
           value='NateRusell'
           checkmark='tick'
           textValue={
-            <>
-              Nate Russell - Service advisor -
-              <Phone />
-              0029838882
-            </>
+            <div style={{display: 'flex', alignItems: 'center'}}>
+              Nate - <Phone /> - 0029838882
+            </div>
           }
         >
           Nate Russell - Service advisor -
