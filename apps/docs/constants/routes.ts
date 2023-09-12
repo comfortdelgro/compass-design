@@ -415,10 +415,10 @@ export const routes: TSideNavItem[] = [
           'Display a placeholder preview of your content before the data gets loaded to reduce load-time frustration.',
       },
       {
-        title: 'Slide action/Swiper',
+        title: 'Slide action | Swiper',
         pathname: '/slide-action',
         description:
-          'A slide action/swiper for important actions, such as purchase order, turn off privacy setting, etc.',
+          'Usually use for important actions, such as purchase order, changes privacy setting, turn off devices, etc.',
       },
       {
         title: 'Slider',
