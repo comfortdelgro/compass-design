@@ -13,6 +13,7 @@ interface Props extends StyledComponentProps, ListVariantProps {
     description?: string
     icon?: React.ReactNode
   }
+  rightContent?: React.ReactNode
 }
 
 export type ListProps = Props &
@@ -24,6 +25,7 @@ const List = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
     title,
     description,
     rightInfo,
+    rightContent,
     variant = 'interactive',
     isDisabled = false,
     size = 'md',
@@ -70,7 +72,7 @@ const List = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
           </div>
         )}
       </div>
-      {rightInfo && (
+      {rightInfo && !rightContent && (
         <>
           {variant === 'h5' ? (
             <div className='list-h5-right-side'>
@@ -92,6 +94,9 @@ const List = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
             </div>
           )}
         </>
+      )}
+      {rightContent && !rightInfo && (
+        <div className='list-h5-right-side'> {rightContent} </div>
       )}
     </StyledList>
   )

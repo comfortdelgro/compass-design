@@ -2,7 +2,7 @@ import {styled} from '../theme'
 import type {VariantProps} from '../utils/stitches.types'
 
 export const StyledToggle = styled('div', {
-  position: 'relative',
+  // position: 'relative',
   width: '$8',
   height: '$4',
   padding: '$0_5',
@@ -20,6 +20,19 @@ export const StyledToggle = styled('div', {
   input: {
     visibility: 'hidden',
     position: 'absolute',
+  },
+  '&:focus-within': {
+    boxSizing: 'border-box',
+    border: '2px solid #678ECF',
+    outline: 'none',
+    padding: '0',
+    // outlineColor: 'red',
+  },
+  '&:hover': {
+    boxSizing: 'border-box',
+    border: '1px solid #8A8886',
+    outline: 'none',
+    padding: '$0_25',
   },
   variants: {
     active: {
@@ -43,6 +56,7 @@ export const StyledToggle = styled('div', {
       true: {
         cursor: 'not-allowed',
         backgroundColor: '$gray50',
+        pointerEvents: 'none',
       },
     },
     variant: {
