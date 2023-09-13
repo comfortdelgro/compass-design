@@ -3,7 +3,7 @@
     label='Favorite Animal'
     placeholder='Choose an animal'
     value={value}
-    onValueChange={(k: React.Key) => setValue(k)}
+    onValueChange={(k: string | number) => setValue(k.toString())}
     >
     <Dropdown.Item value='red panda' leftIcon={<BugIcon />}>
         Red Panda Red Panda Red Panda Red Panda Red Panda
@@ -28,7 +28,7 @@
     label='Favorite Animal'
     placeholder='Choose an animal'
     value={value}
-    onValueChange={(k: React.Key) => setValue(k)}
+    onValueChange={(k: string | number) => setValue(k.toString())}
     >
     <Dropdown.Item value='red panda' leftIcon={<BugIcon />}>
         Red Panda Red Panda Red Panda Red Panda Red Panda
