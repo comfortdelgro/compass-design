@@ -26,11 +26,12 @@ export const StyledRadio = styled('div', {
     marginLeft: '$4',
     display: 'grid',
     gap: '$2',
+    fontSize: '$header5',
+
     '.radio-label': {
       padding: 0,
       margin: 0,
       fontWeight: '$semibold',
-      fontSize: '$header5',
       display: 'flex',
       alignItems: 'center',
       color: '$primaryText',
@@ -39,7 +40,6 @@ export const StyledRadio = styled('div', {
       padding: 0,
       margin: 0,
       fontWeight: '$normal',
-      fontSize: '$header5',
       color: '$secondaryText',
     },
   },
@@ -71,6 +71,26 @@ export const StyledRadio = styled('div', {
           height: '$4',
         },
       },
+      h5: {
+        padding: '0',
+
+        '.radio-content-wrapper': {
+          fontSize: '$label1',
+        },
+      },
+    },
+    inputPosition: {
+      right: {
+        flexDirection: 'row-reverse',
+        justifyContent: 'space-between',
+        gap: '$4',
+        width: '100%',
+
+        '.radio-content-wrapper': {
+          marginLeft: 0,
+        },
+      },
+      left: {},
     },
     // disabled: {},
     // icon: {},
@@ -78,10 +98,21 @@ export const StyledRadio = styled('div', {
 
   defaultVariants: {
     variant: 'outlined',
+    inputPosition: 'right',
   },
   '&:focus-within': {
     outline: '2px solid $cdgBlue100',
   },
+
+  compoundVariants: [
+    {
+      variant: 'h5',
+      disabled: true,
+      css: {
+        opacity: '0.6',
+      },
+    },
+  ],
 })
 
 export const StyledRadioInput = styled('div', {
@@ -95,6 +126,13 @@ export const StyledRadioInput = styled('div', {
   borderRadius: '$full',
 
   variants: {
+    variant: {
+      simple: {},
+      outlined: {},
+      h5: {
+        border: '1px solid $grayShades20',
+      },
+    },
     active: {
       true: {
         borderColor: '$cdgBlue100',
@@ -131,6 +169,15 @@ export const StyledRadioInput = styled('div', {
           height: '$2',
           background: '$gray50',
         },
+      },
+    },
+    {
+      variant: 'h5',
+      active: true,
+      css: {
+        border: '4px solid $blueShades100',
+
+        '&:after': {display: 'none'},
       },
     },
   ],
