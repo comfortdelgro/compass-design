@@ -1,13 +1,12 @@
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import Activity from '@comfortdelgro/compass-icons/react/activity'
+import CreditCard from '@comfortdelgro/compass-icons/react/credit-card-filled'
+import CreditCardOutlined from '@comfortdelgro/compass-icons/react/credit-card-outlined'
+import Home from '@comfortdelgro/compass-icons/react/home'
+import Notification from '@comfortdelgro/compass-icons/react/notification-filled'
+import NotificationOutlined from '@comfortdelgro/compass-icons/react/notification-outlined'
+import User from '@comfortdelgro/compass-icons/react/user-duotone'
 import React from 'react'
 
-import {
-  faBell,
-  faHome,
-  faList,
-  faUser,
-  faWallet,
-} from '@fortawesome/free-solid-svg-icons'
 import {Column} from '../utils'
 import AppNav from './index'
 
@@ -32,24 +31,27 @@ export const FourSections: React.FC = () => {
           }}
           css={{
             position: 'absolute',
-            gap: '2.25rem',
           }}
         >
           <AppNav.Section
-            icon={<FontAwesomeIcon icon={faHome} />}
+            activeIcon={<Home />}
+            inactiveIcon={<Home />}
             label='Home'
             hasBadge
           />
           <AppNav.Section
-            icon={<FontAwesomeIcon icon={faList} />}
+            activeIcon={<Activity />}
+            inactiveIcon={<Activity />}
             label='Activities'
           />
           <AppNav.Section
-            icon={<FontAwesomeIcon icon={faBell} />}
+            activeIcon={<NotificationOutlined />}
+            inactiveIcon={<NotificationOutlined />}
             label='Notifications'
           />
           <AppNav.Section
-            icon={<FontAwesomeIcon icon={faUser} />}
+            activeIcon={<User />}
+            inactiveIcon={<User />}
             label='Account'
           />
         </AppNav>
@@ -73,36 +75,38 @@ export const FiveSections: React.FC = () => {
       >
         <AppNav
           index={index}
-          position='top'
           onChange={(newIndex) => {
             setIndex(newIndex)
           }}
           css={{
             position: 'absolute',
-            gap: '1rem',
-            justifyContent: 'space-around',
           }}
         >
           <AppNav.Section
-            icon={<FontAwesomeIcon icon={faHome} />}
+            activeIcon={<Home />}
+            inactiveIcon={<Home />}
             label='Home'
           />
           <AppNav.Section
-            icon={<FontAwesomeIcon icon={faList} />}
+            activeIcon={<Activity />}
+            inactiveIcon={<Activity />}
             label='Activities'
             hasBadge
           />
           <AppNav.Section
-            icon={<FontAwesomeIcon icon={faBell} />}
+            activeIcon={<Notification />}
+            inactiveIcon={<NotificationOutlined />}
             label='Notifications'
           />
           <AppNav.Section
-            icon={<FontAwesomeIcon icon={faWallet} />}
+            activeIcon={<CreditCard />}
+            inactiveIcon={<CreditCardOutlined />}
             label='ZigPay'
             hasBadge
           />
           <AppNav.Section
-            icon={<FontAwesomeIcon icon={faUser} />}
+            activeIcon={<User />}
+            inactiveIcon={<User />}
             label='Account'
           />
         </AppNav>
