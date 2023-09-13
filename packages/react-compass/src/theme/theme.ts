@@ -348,6 +348,8 @@ export const darkTheme = createTheme('dark-theme', {
     gradientOrangeBlue: '#AA1022, #027FB9',
 
     greenShades: '#159A00',
+
+    badgeWarningBg: '#95711F',
   },
   fonts,
   fontSizes,

@@ -71,6 +71,43 @@ export const StyledBadge = styled('div', {
           lineHeight: '18px',
         },
       },
+      rounded: {
+        borderRadius: '50%',
+        justifyContent: 'center',
+        '.label': {
+          display: 'none',
+        },
+      },
+    },
+    status: {
+      online: {},
+      away: {},
+      busy: {},
+      offline: {},
+    },
+    statusSize: {
+      '8': {
+        width: '$2',
+        height: '$2',
+        padding: 0,
+      },
+      '12': {width: '$3', height: '$3', padding: 0, '.icon': {width: '$2'}},
+      '16': {width: '$4', height: '$4', padding: 0, '.icon': {width: '$2'}},
+      '20': {width: '$5', height: '$5', padding: 0, '.icon': {width: '$3'}},
+      '24': {
+        width: '$6',
+        height: '$6',
+        padding: 0,
+        '.icon': {width: '$4'},
+        '& > .icon svg ': {width: '$4', height: '$4'},
+      },
+      '28': {
+        width: '$7',
+        height: '$7',
+        padding: 0,
+        '.icon': {width: '$5'},
+        '& > .icon svg ': {width: '$5', height: '$5'},
+      },
     },
     isRevert: {
       true: {
@@ -157,13 +194,49 @@ export const StyledBadge = styled('div', {
         ])
         .flat()
     })(),
+    {
+      status: 'online',
+      variant: 'rounded',
+      isDisabled: false,
+      css: {
+        backgroundColor: '$success',
+        color: '$whiteText',
+      },
+    },
+    {
+      status: 'away',
+      variant: 'rounded',
+      isDisabled: false,
+      css: {
+        backgroundColor: '$badgeWarningBg',
+        color: '$whiteText',
+      },
+    },
+    {
+      status: 'busy',
+      variant: 'rounded',
+      isDisabled: false,
+      css: {
+        backgroundColor: '$danger',
+        color: '$whiteText',
+      },
+    },
+    {
+      status: 'offline',
+      variant: 'rounded',
+      isDisabled: false,
+      css: {
+        backgroundColor: '$white',
+        color: '$whiteText',
+        border: '2px solid $gray70',
+      },
+    },
   ],
 
   defaultVariants: {
     variant: 'primary',
     color: 'info',
     isDisabled: false,
-    size: 'md',
   },
 })
 
