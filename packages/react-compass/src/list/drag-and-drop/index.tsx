@@ -1,10 +1,10 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {StyledComponentProps} from '../../utils/stitches.types'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import {StyledDragAndDrop} from './index.styles'
 import DragAndDropListItem from './item'
-import DragAndDropListOutletItem from './item/outlet'
 import {pickChilds} from './utils'
+import List from './utils/List'
 
 export interface Props extends StyledComponentProps {
   children: React.ReactNode
@@ -20,54 +20,34 @@ const DragAndDropList = React.forwardRef<
 >((props, ref) => {
   const {css = {}, children, onReorderByKeys, ...delegated} = props
   const dndRef = useDOMRef<HTMLUListElement>(ref)
-  const [startPosition, setStartPosition] = useState<number>(-1)
-  const [dragOverPosition, setDragOverPosition] = useState<number>(-1)
 
   const collection = React.useMemo(
     () => pickChilds(children, DragAndDropListItem),
     [children],
   )
 
-  const dragStart = (position: number) => {
-    setStartPosition(position)
-  }
-
-  const dragEnter = (position: number) => {
-    setDragOverPosition(position)
-  }
-
-  const drop = () => {
-    const copyListItems = [...collection]
-    const dragItemContent = copyListItems[startPosition]
-    if (dragItemContent) {
-      copyListItems.splice(startPosition, 1)
-      copyListItems.splice(dragOverPosition, 0, dragItemContent)
-      setStartPosition(-1)
-      setDragOverPosition(-1)
-      onReorderByKeys?.(copyListItems.map((item) => item.key ?? ''))
-    }
-  }
+  const items = React.useMemo(
+    () => collection.map((item) => item.key!),
+    [collection],
+  )
 
   return (
     <StyledDragAndDrop ref={dndRef} css={css} {...delegated}>
-      {collection.map((child, index) => {
-        return (
-          <React.Fragment key={index}>
-            {dragOverPosition === index && startPosition > index && (
-              <li className='dnd-list-drop-target'></li>
-            )}
-            <DragAndDropListOutletItem
-              item={child}
-              onDragStart={() => dragStart(index)}
-              onDragEnter={() => dragEnter(index)}
-              onDragEnd={drop}
-            />
-            {dragOverPosition === index && startPosition < index && (
-              <li className='dnd-list-drop-target'></li>
-            )}
-          </React.Fragment>
-        )
-      })}
+      <List
+        values={items}
+        collection={collection}
+        onChange={({oldIndex, newIndex}) => {
+          const array = items.slice()
+          array.splice(
+            newIndex < 0 ? array.length + newIndex : newIndex,
+            0,
+            array.splice(oldIndex, 1)[0]!,
+          )
+          onReorderByKeys?.(array)
+        }}
+      >
+        {children}
+      </List>
     </StyledDragAndDrop>
   )
 })

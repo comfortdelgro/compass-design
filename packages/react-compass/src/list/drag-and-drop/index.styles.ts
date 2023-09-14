@@ -16,9 +16,17 @@ export const StyledDragAndDrop = styled('ul', {
     background: '$cdgBlue',
     height: 2,
   },
+  ul: {
+    padding: 0,
+    margin: 0,
+    listStyle: 'none',
+  },
   li: {
+    listStyle: 'none',
     cursor: 'pointer',
     '&:focus-visible': {
+      overflow: 'hidden',
+      borderRadius: '4px',
       outline: '2px solid $cdgBlue',
     },
   },

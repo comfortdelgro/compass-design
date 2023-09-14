@@ -1,26 +1,30 @@
-import React, {DragEventHandler} from 'react'
+import React from 'react'
 import {StyledComponentProps} from '../../../utils/stitches.types'
+import {IItemProps} from '../utils/types'
 
 export interface DragAndDropListItemProps extends StyledComponentProps {
-  onDragStart?: DragEventHandler<HTMLLIElement>
-  onDragEnter?: DragEventHandler<HTMLLIElement>
-  onDragEnd?: DragEventHandler<HTMLLIElement>
-  item: React.ReactNode
+  children: React.ReactNode
+  props: IItemProps
+  index?: number
+  isDragged: boolean
+  isSelected: boolean
+  isOutOfBounds: boolean
 }
-const DragAndDropListOutletItem = (props: DragAndDropListItemProps) => {
-  const ref = React.useRef(null)
-  const {item, onDragStart, onDragEnter, onDragEnd} = props
 
+const DragAndDropListOutletItem = ({
+  children,
+  props,
+  isDragged,
+}: DragAndDropListItemProps) => {
   return (
     <li
-      onDragStart={onDragStart}
-      onDragEnter={onDragEnter}
-      onDragEnd={onDragEnd}
-      draggable
-      ref={ref}
-      tabIndex={0}
+      {...props}
+      style={{
+        ...props.style,
+        cursor: isDragged ? 'grabbing' : 'grab',
+      }}
     >
-      {item}
+      {children}
     </li>
   )
 }
