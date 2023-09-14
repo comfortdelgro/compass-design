@@ -1,6 +1,7 @@
 import {isNil} from 'lodash'
 import React, {HTMLAttributes, useCallback} from 'react'
 import Badge from '../badge'
+import Ripple from '../button/ripple'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {StyledAppNavSection} from './appnav.styles'
@@ -42,34 +43,36 @@ export const AppNavSection = React.forwardRef<
   }, [])
 
   return (
-    <StyledAppNavSection
-      type='button'
-      ref={itemRef}
-      isActive={isActive}
-      css={css}
-      onClick={handleClick}
-      tabIndex={0}
-      {...delegated}
-    >
-      <div className='icon'>
-        {hasBadge && (
-          <Badge
-            label=''
-            css={{
-              width: '$2',
-              height: '$2',
-              backgroundColor: '$danger',
-              padding: 0,
-              borderRadius: '50%',
-              position: 'absolute',
-              right: '-15px',
-              top: 0,
-            }}
-          />
-        )}
-        {isActive ? activeIcon : inactiveIcon}
-      </div>
-      <span>{label}</span>
-    </StyledAppNavSection>
+    <Ripple isEnabled>
+      <StyledAppNavSection
+        type='button'
+        ref={itemRef}
+        isActive={isActive}
+        css={css}
+        onClick={handleClick}
+        tabIndex={0}
+        {...delegated}
+      >
+        <div className='icon'>
+          {hasBadge && (
+            <Badge
+              label=''
+              css={{
+                width: '$2',
+                height: '$2',
+                backgroundColor: '$danger',
+                padding: 0,
+                borderRadius: '50%',
+                position: 'absolute',
+                right: '-15px',
+                top: 0,
+              }}
+            />
+          )}
+          {isActive ? activeIcon : inactiveIcon}
+        </div>
+        <span>{label}</span>
+      </StyledAppNavSection>
+    </Ripple>
   )
 })

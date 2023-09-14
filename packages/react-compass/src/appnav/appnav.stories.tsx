@@ -29,9 +29,11 @@ export const FourSections: React.FC = () => {
           onChange={(newIndex) => {
             setIndex(newIndex)
           }}
-          css={{
-            position: 'absolute',
-          }}
+          css={
+            {
+              // position: 'absolute',
+            }
+          }
         >
           <AppNav.Section
             activeIcon={<Home />}

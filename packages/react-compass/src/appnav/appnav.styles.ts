@@ -2,7 +2,6 @@ import {styled} from '../theme'
 import {VariantProps} from '../utils/stitches.types'
 
 export const StyledAppNav = styled('nav', {
-  // width: '375px',
   height: '102px',
   backgroundColor: '$background',
   padding: '$6 $6 34px $6',
