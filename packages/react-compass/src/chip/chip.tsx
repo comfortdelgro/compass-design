@@ -1,7 +1,7 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledBox} from './chip.styles'
+import { StyledComponentProps } from '../utils/stitches.types'
+import { useDOMRef } from '../utils/use-dom-ref'
+import { StyledBox } from './chip.styles'
 
 export type ChipProps = Props &
   Omit<React.HTMLAttributes<HTMLElement>, keyof Props>
@@ -38,17 +38,52 @@ const Chip = React.forwardRef<HTMLDivElement, ChipProps>((props, ref) => {
     // custom props
     hasCloseButton = false,
     isErrored = false,
+    tabIndex,
     onCloseClick,
+    onClick,
+    onKeyDown,
     ...delegated
   } = props
 
   const chipRef = useDOMRef<HTMLDivElement>(ref)
+  const closeButtonRef = useDOMRef<HTMLDivElement>(null)
+
+  const handleCloseChipClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation()
+    event.preventDefault()
+    onCloseClick?.(event)
+  }
+
+  const handleChipKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    onKeyDown?.(event)
+    switch (event.code) {
+      case 'Backspace':
+      case 'Delete':
+        closeButtonRef.current?.click()
+        break;
+      case 'Escape':
+        chipRef.current?.blur()
+        break;
+      default:
+        break;
+    }
+  }
 
   return (
-    <StyledBox ref={chipRef} css={css} isErrored={isErrored} {...delegated}>
-      {children}
+    <StyledBox
+      ref={chipRef}
+      css={css}
+      isErrored={isErrored}
+      tabIndex={hasCloseButton || onClick ? tabIndex || 0 : -1}
+      onClick={onClick}
+      onKeyDown={handleChipKeyDown}
+      {...delegated}
+    >
+      <div className="cdg-chip-content">
+        {children}
+      </div>
       {hasCloseButton && (
-        <div className='multiple-dropdown-chip-icon' onClick={onCloseClick}>
+        <div className='multiple-dropdown-chip-icon' onClick={handleCloseChipClick} ref={closeButtonRef}>
           <CloseIcon />
         </div>
       )}
