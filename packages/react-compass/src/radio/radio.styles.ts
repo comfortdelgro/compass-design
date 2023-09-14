@@ -73,6 +73,7 @@ export const StyledRadio = styled('div', {
       },
       h5: {
         padding: '0',
+        lineHeight: '20px',
 
         '.radio-content-wrapper': {
           fontSize: '$label1',
