@@ -14,6 +14,8 @@ import type {IItemProps, IProps, TEvent} from './types'
 
 const AUTOSCROLL_ACTIVE_OFFSET = 200
 const AUTOSCROLL_SPEED_RATIO = 10
+const TRANSITION_DURATION = 200
+
 const BASE_STYLE = {
   userSelect: 'none',
   WebkitUserSelect: 'none',
@@ -53,7 +55,6 @@ class List extends React.Component<IProps> {
   schdOnEnd: {(e: Event): void; cancel(): void}
 
   static defaultProps = {
-    transitionDuration: 200,
     removableByMove: false,
   }
 
@@ -343,7 +344,7 @@ class List extends React.Component<IProps> {
     animateMovedItem = false,
   ) => {
     this.getChildren().forEach((item, i) => {
-      setItemTransition(item, this.props.transitionDuration)
+      setItemTransition(item, TRANSITION_DURATION)
       if (movedItem === i && animateMovedItem) {
         if (movedItem === needle) {
           return transformItem(item, null)
@@ -395,16 +396,12 @@ class List extends React.Component<IProps> {
 
     const removeItem =
       this.props.removableByMove && this.isDraggedItemOutOfBounds()
-    if (
-      !removeItem &&
-      this.props.transitionDuration > 0 &&
-      this.afterIndex !== -2
-    ) {
+    if (!removeItem && TRANSITION_DURATION > 0 && this.afterIndex !== -2) {
       // animate drop
       schd(() => {
         setItemTransition(
           this.ghostRef.current!,
-          this.props.transitionDuration,
+          TRANSITION_DURATION,
           'cubic-bezier(.2,1,.1,1)',
         )
         if (this.afterIndex < 1 && this.state.itemDragged === 0) {
@@ -433,7 +430,7 @@ class List extends React.Component<IProps> {
     }
     this.dropTimeout = window.setTimeout(
       this.finishDrop,
-      removeItem || this.afterIndex === -2 ? 0 : this.props.transitionDuration,
+      removeItem || this.afterIndex === -2 ? 0 : TRANSITION_DURATION,
     )
   }
 

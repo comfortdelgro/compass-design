@@ -12,8 +12,7 @@ export interface IItemProps {
 
 export interface IProps {
   values: React.Key[]
-  removableByMove: boolean
-  transitionDuration: number
+  removableByMove?: boolean
   collection: Array<
     React.DetailedReactHTMLElement<DragAndDropListItemProps, HTMLElement>
   >
