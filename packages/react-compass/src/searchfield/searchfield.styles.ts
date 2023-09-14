@@ -83,6 +83,31 @@ export const StyledSearchFieldBox = styled('div', {
         },
       },
     },
+    isH5Variant: {
+      true: {
+        flexDirection: 'row-reverse',
+        gap: '$2',
+        padding: '$2 $4',
+        borderRadius: '$lg',
+        height: '$12',
+        [`${StyledButton}`]: {
+          padding: 0,
+          color: '$grayShades60',
+        },
+        [`${StyledSearchFieldInput}`]: {
+          padding: 0,
+          '&::placeholder': {
+            fontSize: '$3_5',
+            fontStyle: 'normal',
+            fontWeight: '$medium',
+            lineHeight: '20px',
+          },
+        },
+      },
+      false: {
+        flexDirection: 'row',
+      },
+    },
   },
 })
 

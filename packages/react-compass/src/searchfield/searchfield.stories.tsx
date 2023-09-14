@@ -60,6 +60,14 @@ export const Variants: React.FC = () => {
         css={{width: '10rem'}}
         onSubmit={(text) => console.log(text)}
       />
+      <h3> H5</h3>
+      <SearchField
+        placeholder='Search'
+        minLength={5}
+        css={{width: '343px'}}
+        isH5Variant
+        onSubmit={(text) => console.log(text)}
+      />
     </Column>
   )
 }

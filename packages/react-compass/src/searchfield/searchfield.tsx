@@ -59,6 +59,7 @@ interface Props extends StyledComponentProps {
   'aria-describedby'?: string
   'aria-details'?: string
   'aria-errormessage'?: string
+  isH5Variant?: boolean
 }
 
 export type SearchFieldProps = Props &
@@ -97,6 +98,7 @@ const SearchField = React.forwardRef<HTMLDivElement, SearchFieldProps>(
       onFocus,
       maxLength,
       minLength,
+      isH5Variant = false,
       ...delegated
     } = props
     const isDarkTheme = useIsDarkTheme()
@@ -156,6 +158,7 @@ const SearchField = React.forwardRef<HTMLDivElement, SearchFieldProps>(
         ref={wrapperRef}
         {...delegated}
         isDarkTheme={isDarkTheme}
+        isH5Variant={isH5Variant}
       >
         <StyledSearchFieldInput
           ref={searchFieldRef}
@@ -184,7 +187,9 @@ const SearchField = React.forwardRef<HTMLDivElement, SearchFieldProps>(
           maxLength={maxLength}
           minLength={minLength}
         />
-        {textValue !== '' ? (
+        {isH5Variant ? (
+          <H5SearchIcon />
+        ) : textValue !== '' ? (
           <Button size='sm' variant='ghost' onPress={onClearButtonClick}>
             <svg className='icon' viewBox='0 0 384 512'>
               <path
@@ -211,6 +216,25 @@ const SearchField = React.forwardRef<HTMLDivElement, SearchFieldProps>(
       </StyledSearchFieldBox>
     )
   },
+)
+
+const H5SearchIcon = () => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width='16'
+    height='17'
+    viewBox='0 0 16 17'
+    fill='none'
+  >
+    <path
+      d='M15 14.5971C15 14.8279 14.9093 15.0587 14.7324 15.2352C14.3787 15.5883 13.8027 15.5883 13.449 15.2352L10.9916 12.9019C10.6378 12.5489 10.6378 11.9741 10.9916 11.621C11.3453 11.268 11.9213 11.268 12.275 11.621L14.7324 13.9544C14.9093 14.1354 15 14.3663 15 14.5971Z'
+      fill='#757575'
+    />
+    <path
+      d='M2.87044 7.1C2.87044 5.042 4.54915 3.36667 6.61131 3.36667C8.67347 3.36667 10.3522 5.042 10.3522 7.1C10.3522 9.158 8.67347 10.8333 6.61131 10.8333C4.54915 10.8333 2.87044 9.158 2.87044 7.1ZM1 7.1C1 10.194 3.51106 12.7 6.61131 12.7C9.71156 12.7 12.2226 10.194 12.2226 7.1C12.2226 4.006 9.71156 1.5 6.61131 1.5C3.51106 1.5 0.999999 4.006 1 7.1Z'
+      fill='#757575'
+    />
+  </svg>
 )
 
 export default SearchField
