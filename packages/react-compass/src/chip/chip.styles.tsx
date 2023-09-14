@@ -15,10 +15,19 @@ export const StyledBox = styled('div', {
   color: '$primaryText',
   width: 'fit-content',
   height: 'fit-content',
+  maxWidth: '100%',
+  overflow: 'hidden',
+
   '.multiple-dropdown-chip-icon': {
     svg: {
       color: '$primaryText',
     },
+  },
+  '.cdg-chip-content': {
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    maxWidth: '100%',
+    overflow: 'hidden',
   },
   variants: {
     isErrored: {

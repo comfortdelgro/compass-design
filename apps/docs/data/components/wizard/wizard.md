@@ -41,13 +41,13 @@ The TooltipTrigger accepts exactly two children: the element which triggers the 
 
 ### Wizard
 
-| Name        | Type                  | Default | Description                                                                             |
-| :---------- | :-------------------- | :------ | :-------------------------------------------------------------------------------------- |
-| items?      | `string[]`            | -       | List of display contennt below the stepper                                              |
-| currentStep | `number`              | 1       | Current active step, start from 1                                                       |
-| erroredSteps  | `number[]`            | -       | List of error step                                                                      |
-| onStepClick | `(n: number) => void` | -       | Handler when click on step, return index of step                                        |
-| css?        | `CSS`                 | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
+| Name         | Type                  | Default | Description                                                                             |
+| :----------- | :-------------------- | :------ | :-------------------------------------------------------------------------------------- |
+| items?       | `string[]`            | -       | List of display contennt below the stepper                                              |
+| currentStep  | `number`              | 1       | Current active step, start from 1                                                       |
+| erroredSteps | `number[]`            | -       | List of error step                                                                      |
+| onStepClick  | `(n: number) => void` | -       | Handler when click on step, return index of step                                        |
+| css?         | `CSS`                 | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
 
 ### Wizard.Item
 

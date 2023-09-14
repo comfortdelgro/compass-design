@@ -19,7 +19,7 @@ export const StyledTextFieldBox = styled('div', {
   display: 'flex',
   flexDirection: 'row',
   alignItems: 'center',
-  borderWidth: '$0_5',
+  borderWidth: '$light',
   borderStyle: 'solid',
   borderColor: '$divider',
   borderRadius: '$md',
@@ -81,6 +81,7 @@ export const StyledTextFieldBox = styled('div', {
     isErrored: {
       true: {
         borderColor: '$danger',
+        borderWidth: '$medium',
 
         '&:focus-within': {
           borderColor: '$danger',

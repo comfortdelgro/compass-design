@@ -1,12 +1,13 @@
+import PersonOutlined from '@comfortdelgro/compass-icons/react/outlined/person-outlined'
+import Phone from '@comfortdelgro/compass-icons/react/phone'
 import {faBug} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import React, {Key} from 'react'
+import React from 'react'
 import Dropdown from '.'
 import {Column} from '../utils'
 import ADFlag from './flags/ad'
 import AEFlag from './flags/ae'
 import AFFlag from './flags/af'
-
 function generateRandomName() {
   const firstNames = [
     'Alice',
@@ -73,6 +74,7 @@ interface SampleData {
 
 export const Select: React.FC = () => {
   const [value, setValue] = React.useState<string>('aardvark1')
+  const [assignee, setAssignee] = React.useState<string>('NateRusell')
   const [valueHeader, setValueHeader] = React.useState<string>('')
   const [flag, setFlag] = React.useState<string>('')
   const [loadMoreValue, setLoadMoreValue] = React.useState<string>('')
@@ -139,7 +141,7 @@ export const Select: React.FC = () => {
         }
         placeholder='Choose an animal'
         value={value}
-        onValueChange={(k: Key) => setValue(k.toString())}
+        onValueChange={(k: string | number) => setValue(k.toString())}
         onBlur={() => console.log('blur')}
         onFocus={() => console.log('focus')}
       >
@@ -174,7 +176,19 @@ export const Select: React.FC = () => {
         label={<>Phone Code Select</>}
         placeholder='Choose an animal'
         value={flag}
-        onValueChange={(k: Key) => setFlag(k.toString())}
+        onValueChange={(k: string | number) => setFlag(k.toString())}
+        prefix={<>{handlePrefix(flag)}</>}
+      >
+        <Dropdown.Item value='afghanistan'>Afghanistan (+93)</Dropdown.Item>
+        <Dropdown.Item value='albania'>Albania (+355)</Dropdown.Item>
+        <Dropdown.Item value='algeria'>Algeria (+213)</Dropdown.Item>
+      </Dropdown.Select>
+      <h3>Custom Display</h3>
+      <Dropdown.Select
+        label={<>Assignee</>}
+        placeholder='Select'
+        value={assignee}
+        onValueChange={(k: string | number) => setAssignee(k as string)}
         prefix={
           <div
             style={{
@@ -184,13 +198,23 @@ export const Select: React.FC = () => {
               alignItems: 'center',
             }}
           >
-            {handlePrefix(flag)}
+            <PersonOutlined color='blue' />
           </div>
         }
       >
-        <Dropdown.Item value='afghanistan'>Afghanistan (+93)</Dropdown.Item>
-        <Dropdown.Item value='albania'>Albania (+355)</Dropdown.Item>
-        <Dropdown.Item value='algeria'>Algeria (+213)</Dropdown.Item>
+        <Dropdown.Item value='NateRusell' checkmark='tick'>
+          Nate Russell - Service advisor -
+          <Phone />
+          0029838882
+        </Dropdown.Item>
+        <Dropdown.Item value='AlanLau' checkmark='tick'>
+          Alan Lau - Service advisor - <Phone />
+          0029838284
+        </Dropdown.Item>
+        <Dropdown.Item value='JeremyLin' checkmark='tick'>
+          Jeremy Lin - Service advisor - <Phone />
+          0029839381
+        </Dropdown.Item>
       </Dropdown.Select>
       <h3>Disable the whole thing</h3>
       <Dropdown.Select
@@ -199,7 +223,7 @@ export const Select: React.FC = () => {
         label='Favorite Animal'
         placeholder='Choose an animal'
         value={value1}
-        onValueChange={(k: Key) => setValue1(k.toString())}
+        onValueChange={(k: string | number) => setValue1(k.toString())}
       >
         <Dropdown.Item
           value='panda'
@@ -227,7 +251,7 @@ export const Select: React.FC = () => {
         label='Favorite Animal'
         placeholder='Choose an animal'
         value={value1}
-        onValueChange={(k: Key) => setValue1(k.toString())}
+        onValueChange={(k: string | number) => setValue1(k.toString())}
         disabledValues={['dog']}
       >
         <Dropdown.Item
@@ -320,7 +344,9 @@ export const Select: React.FC = () => {
         label='Favorite Animal'
         placeholder='Choose an animal'
         value={valueHeader}
-        onValueChange={(value: Key) => setValueHeader(value.toString())}
+        onValueChange={(value: string | number) =>
+          setValueHeader(value.toString())
+        }
       >
         <Dropdown.Header>
           <div
@@ -513,7 +539,7 @@ export const Select: React.FC = () => {
         placeholder='Select name'
         value={loadMoreValue}
         isLoadingMore={loadingMoreStatus}
-        onValueChange={(k: Key) => setLoadMoreValue(k.toString())}
+        onValueChange={(k: string | number) => setLoadMoreValue(k.toString())}
         onLoadMore={() => {
           setLoadingMoreStatus(true)
           setData((currentData) => {
@@ -555,7 +581,7 @@ export const Combobox: React.FC = () => {
         }
         placeholder='Choose an animal'
         value={value}
-        onValueChange={(k: Key) => setValue(k.toString())}
+        onValueChange={(k: string | number) => setValue(k.toString())}
         onBlur={() => console.log('blur')}
         onFocus={() => console.log('focus')}
       >
@@ -663,7 +689,7 @@ export const Combobox: React.FC = () => {
         label='Favorite Animal'
         placeholder='Choose an animal'
         value={customValue}
-        onValueChange={(k: Key) => setCustomValue(k.toString())}
+        onValueChange={(k: string | number) => setCustomValue(k.toString())}
         allowsCustomValue
       >
         <Dropdown.Item
@@ -685,7 +711,9 @@ export const Combobox: React.FC = () => {
         label='Favorite Animal'
         placeholder='Choose an animal'
         value={valueHeader}
-        onValueChange={(value: Key) => setValueHeader(value.toString())}
+        onValueChange={(value: string | number) =>
+          setValueHeader(value.toString())
+        }
       >
         <Dropdown.Header>
           <div
