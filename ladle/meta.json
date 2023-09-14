@@ -300,8 +300,8 @@
       "levels": [
         "Card"
       ],
-      "locStart": 12,
-      "locEnd": 71,
+      "locStart": 13,
+      "locEnd": 72,
       "filePath": "src/card/card.stories.tsx",
       "meta": {}
     },
@@ -310,8 +310,8 @@
       "levels": [
         "Card"
       ],
-      "locStart": 73,
-      "locEnd": 106,
+      "locStart": 74,
+      "locEnd": 138,
       "filePath": "src/card/card.stories.tsx",
       "meta": {}
     },
@@ -441,7 +441,7 @@
         "Chip"
       ],
       "locStart": 5,
-      "locEnd": 25,
+      "locEnd": 47,
       "filePath": "src/chip/chip.stories.tsx",
       "meta": {}
     },
@@ -600,8 +600,8 @@
       "levels": [
         "Dropdown"
       ],
-      "locStart": 540,
-      "locEnd": 833,
+      "locStart": 566,
+      "locEnd": 861,
       "filePath": "src/dropdown/dropdown.stories.tsx",
       "meta": {}
     },
@@ -610,8 +610,8 @@
       "levels": [
         "Dropdown"
       ],
-      "locStart": 74,
-      "locEnd": 538,
+      "locStart": 75,
+      "locEnd": 564,
       "filePath": "src/dropdown/dropdown.stories.tsx",
       "meta": {}
     },
@@ -1131,7 +1131,7 @@
         "Searchfield"
       ],
       "locStart": 6,
-      "locEnd": 65,
+      "locEnd": 67,
       "filePath": "src/searchfield/searchfield.stories.tsx",
       "meta": {}
     },
