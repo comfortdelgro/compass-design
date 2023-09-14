@@ -3,7 +3,7 @@ import {Dropdown} from '@comfortdelgro/react-compass'
 import React from 'react'
 
 const ControlledDropdown = () => {
-  const [value, setValue] = React.useState<React.Key>('cat')
+  const [value, setValue] = React.useState<string>('cat')
   return (
     <>
       <Dropdown.Select
@@ -11,7 +11,7 @@ const ControlledDropdown = () => {
         label='Favorite Animal'
         placeholder='Choose an animal'
         value={value}
-        onValueChange={(k: React.Key) => setValue(k)}
+        onValueChange={(k: string | number) => setValue(k.toString())}
       >
         <Dropdown.Item value='red panda' leftIcon={<BugIcon />}>
           Red Panda Red Panda Red Panda Red Panda Red Panda
@@ -36,7 +36,7 @@ const ControlledDropdown = () => {
         label='Favorite Animal'
         placeholder='Choose an animal'
         value={value}
-        onValueChange={(k: React.Key) => setValue(k)}
+        onValueChange={(k: string | number) => setValue(k.toString())}
       >
         <Dropdown.Item value='red panda' leftIcon={<BugIcon />}>
           Red Panda Red Panda Red Panda Red Panda Red Panda

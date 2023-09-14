@@ -66,8 +66,8 @@ export const VolumeIcon: React.FC<Props> = ({value, onChange}) => {
     case 0:
       return (
         <svg
-          width='25'
-          height='25'
+          width='24'
+          height='24'
           viewBox='0 0 25 25'
           fill='none'
           onClick={unmute}
@@ -81,8 +81,8 @@ export const VolumeIcon: React.FC<Props> = ({value, onChange}) => {
     case 100:
       return (
         <svg
-          width='25'
-          height='25'
+          width='24'
+          height='24'
           viewBox='0 0 25 25'
           fill='none'
           onClick={mute}
@@ -96,8 +96,8 @@ export const VolumeIcon: React.FC<Props> = ({value, onChange}) => {
     default:
       return (
         <svg
-          width='25'
-          height='25'
+          width='24'
+          height='24'
           viewBox='0 0 25 25'
           fill='none'
           onClick={mute}
