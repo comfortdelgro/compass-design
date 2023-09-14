@@ -1,4 +1,4 @@
-import { styled } from '../theme'
+import {styled} from '../theme'
 
 export const StyledBox = styled('div', {
   border: '1px solid #E6E6E6',

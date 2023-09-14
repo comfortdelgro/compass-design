@@ -34,7 +34,7 @@ export const StyledTextarea = styled('textarea', {
   fontWeight: '$medium',
   lineHeight: '$normal',
   padding: '$1_5 $3',
-  borderWidth: '1px',
+  borderWidth: '$light',
   borderStyle: 'solid',
   borderColor: '$divider',
   borderRadius: '$md',
@@ -55,6 +55,7 @@ export const StyledTextarea = styled('textarea', {
     isErrored: {
       true: {
         borderColor: '$danger',
+        borderWidth: '$medium',
         '&:focus': {
           borderColor: '$danger',
         },

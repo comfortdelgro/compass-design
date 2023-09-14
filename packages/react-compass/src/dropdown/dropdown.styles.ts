@@ -1,6 +1,6 @@
-import { styled } from '../theme'
-import { keyframes } from '../theme/stitches.config'
-import { VariantProps } from '../utils/stitches.types'
+import {styled} from '../theme'
+import {keyframes} from '../theme/stitches.config'
+import {VariantProps} from '../utils/stitches.types'
 
 const spin = keyframes({
   '0%': {
@@ -28,10 +28,10 @@ export const StyledDropdownWrapper = styled('div', {
     lineHeight: '$normal',
   },
   '&.cdg-dropdown-opening .cdg-dropdown-input .cdg-dropdown-button .cdg-dropdown-button-icon':
-  {
-    transform: 'rotate(180deg)',
-    transition: 'transform 0.3s linear',
-  },
+    {
+      transform: 'rotate(180deg)',
+      transition: 'transform 0.3s linear',
+    },
 })
 
 export const StyledDropdownList = styled('ul', {})
@@ -402,7 +402,7 @@ export const StyledColor = styled('div', {
   '.cdg-dropdown-item-color': {
     display: 'none',
     color: '$whiteText',
-    marginRight: '-$0_25'
+    marginRight: '-$0_25',
   },
   variants: {
     isSelected: {
@@ -412,7 +412,7 @@ export const StyledColor = styled('div', {
         },
       },
     },
-  }
+  },
 })
 
 export const StyledContent = styled('div', {

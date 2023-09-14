@@ -1,7 +1,7 @@
 import React from 'react'
-import { StyledComponentProps } from '../utils/stitches.types'
-import { useDOMRef } from '../utils/use-dom-ref'
-import { StyledBox } from './chip.styles'
+import {StyledComponentProps} from '../utils/stitches.types'
+import {useDOMRef} from '../utils/use-dom-ref'
+import {StyledBox} from './chip.styles'
 
 export type ChipProps = Props &
   Omit<React.HTMLAttributes<HTMLElement>, keyof Props>
@@ -60,12 +60,12 @@ const Chip = React.forwardRef<HTMLDivElement, ChipProps>((props, ref) => {
       case 'Backspace':
       case 'Delete':
         closeButtonRef.current?.click()
-        break;
+        break
       case 'Escape':
         chipRef.current?.blur()
-        break;
+        break
       default:
-        break;
+        break
     }
   }
 
@@ -79,11 +79,13 @@ const Chip = React.forwardRef<HTMLDivElement, ChipProps>((props, ref) => {
       onKeyDown={handleChipKeyDown}
       {...delegated}
     >
-      <div className="cdg-chip-content">
-        {children}
-      </div>
+      <div className='cdg-chip-content'>{children}</div>
       {hasCloseButton && (
-        <div className='multiple-dropdown-chip-icon' onClick={handleCloseChipClick} ref={closeButtonRef}>
+        <div
+          className='multiple-dropdown-chip-icon'
+          onClick={handleCloseChipClick}
+          ref={closeButtonRef}
+        >
           <CloseIcon />
         </div>
       )}
