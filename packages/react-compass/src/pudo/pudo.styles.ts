@@ -17,13 +17,23 @@ export const StyledPUDO = styled('div', {
   },
 
   '.pudo-actions': {
-    paddingBlock: '$2',
+    paddingBlock: '$3',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
+    gap: '$4',
 
     '&:empty': {
       display: 'none',
+    },
+
+    '& > button': {
+      padding: 0,
+      border: 'none',
+
+      '&:hover': {
+        background: '$background',
+      },
     },
   },
 
