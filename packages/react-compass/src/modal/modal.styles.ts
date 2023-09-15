@@ -72,7 +72,7 @@ export const StyledModalDescription = styled('div', {
   //title
   width: '100%',
   flex: '1',
-  overflow: 'auto',
+  //overflow: 'auto',
   fontFamily: '$sans',
   fontWeight: '$normal',
   fontSize: '$body2',
@@ -172,14 +172,13 @@ export const StyledModal = styled('div', {
   boxSizing: 'border-box',
   margin: '0px',
   zIndex: '50',
-  overflow: 'auto',
+  overflow: 'hidden',
 
   // modal container
   width: '$120',
   minHeight: '$56',
   maxHeight: 'calc(100vh - 40px)',
   height: 'fit-content',
-  overFlow: 'auto',
   display: 'flex',
   flexDirection: 'column',
   backgroundColor: '$background',

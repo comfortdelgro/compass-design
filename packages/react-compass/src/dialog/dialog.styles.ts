@@ -117,10 +117,10 @@ export const StyledDialogContent = styled('div', {
   maxHeight: '100%',
   maxWidth: '100%',
   overflow: 'auto',
-  padding: '$4',
+  padding: '$6',
   display: 'flex',
   flexDirection: 'column',
-  gap: '$4',
+  gap: '$6',
 })
 
 export const StyledDialog = styled('div', {
