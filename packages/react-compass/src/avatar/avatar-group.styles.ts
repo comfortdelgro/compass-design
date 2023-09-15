@@ -17,6 +17,17 @@ export const StyledAvatarGroup = styled('div', {
   },
 
   variants: {
+    size: {
+      lg: {},
+      md: {},
+      sm: {},
+      xs: {},
+      xxs: {
+        [`& ${StyledAvatar}`]: {
+          marginRight: '-$2',
+        },
+      },
+    },
     disabledAnimation: {
       false: {},
       true: {
