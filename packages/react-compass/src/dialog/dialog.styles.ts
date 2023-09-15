@@ -134,7 +134,7 @@ export const StyledDialog = styled('div', {
 
   // dialog container
   width: '$120',
-  maxHeight: '100%',
+  height: 'fit-content',
   overflow: 'auto',
   backgroundColor: '$background',
   boxShadow:

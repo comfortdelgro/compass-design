@@ -174,7 +174,7 @@ export const Variants: React.FC = () => {
         </Dialog>
       </Dialog.Trigger>
 
-      <h3>Custom dialog</h3>
+      <h3>Custom & Large Content Dialog</h3>
       <Button css={{width: '7.8rem'}} onPress={() => setCustomOpen(true)}>
         Open Dialog
       </Button>
@@ -182,7 +182,13 @@ export const Variants: React.FC = () => {
         isOpen={customOpen}
         handleClose={() => setCustomOpen(false)}
       >
-        <Dialog>
+        <Dialog
+          css={{
+            overflow: 'hidden',
+            '.cdg-dialog-content': {height: '40rem'},
+          }}
+        >
+          {/* css above is to set the border-radius of the scroll bar  */}
           <Dialog.Title>My title</Dialog.Title>
           <Dialog.Description>
             <Column css={{gap: '$4'}}>

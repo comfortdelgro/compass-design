@@ -139,8 +139,8 @@ export const StyledModalCloseIcon = styled('div', {
   padding: '0px',
 
   // styling
-  width: '$3_5',
-  height: '$3_5',
+  width: '$4',
+  height: '$4',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -156,10 +156,10 @@ export const StyledModalCloseIcon = styled('div', {
 })
 
 export const StyledModalContent = styled('div', {
-  // reset
   all: 'unset',
-  width: 'fit-content',
-  height: 'fit-content',
+  maxHeight: '100%',
+  maxWidth: '100%',
+  overflow: 'auto',
 })
 
 export const StyledModal = styled('div', {
@@ -174,13 +174,13 @@ export const StyledModal = styled('div', {
   // modal container
   width: '$120',
   minHeight: '$56',
-  // padding: '$4',
+  maxHeight: '98vh',
+  height: 'fit-content',
+  overFlow: 'auto',
   backgroundColor: '$background',
   boxShadow:
     '0px 0.6px 1.8px rgba(0, 0, 0, 0.1), 0px 3.2px 7.2px rgba(0, 0, 0, 0.13)',
-
   borderRadius: '$lg',
-  overflow: 'clip',
 
   variants: {
     size: {
