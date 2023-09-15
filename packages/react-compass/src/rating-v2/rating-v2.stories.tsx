@@ -7,28 +7,44 @@ export const Default: React.FC = () => {
     <>
       <Column>
         <h3>Default Rating Component</h3>
-        <RatingComponent />
+        <RatingComponent
+          onChange={(value) => {
+            console.log(value)
+          }}
+        />
       </Column>
       <Column>
         <h3>Controlled Rating Component</h3>
-        <RatingComponent value={2} />
+        <RatingComponent />
       </Column>
       <Column>
         <h3>Read-only Rating Component</h3>
-        <RatingComponent value={1} readOnly />
+        <RatingComponent readOnly />
       </Column>
       <Column>
         <h3>Disabled Rating Component</h3>
         <RatingComponent disabled />
       </Column>
+      <Column>
+        <h3>Config Limited rating</h3>
+        <RatingComponent
+          maxRating={8}
+          onChange={(value) => {
+            console.log(value)
+          }}
+        />
+      </Column>
+      {/* <Column>
+        <h3>Custom rating</h3>
+        <RatingComponent
+          onChange={(value) => {
+            console.log(value)
+          }}
+          renderStar={() => {
+
+          }}
+        />
+      </Column> */}
     </>
-  )
-}
-export const UsingIcons: React.FC = () => {
-  return (
-    <Column>
-      <h3>Rating Component with icons</h3>
-      <RatingComponent useIcons />
-    </Column>
   )
 }

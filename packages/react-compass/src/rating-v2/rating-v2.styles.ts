@@ -1,54 +1,37 @@
 import {styled} from '../theme'
 import {VariantProps} from '../utils/stitches.types'
 
-export const StyledRatingComponent = styled('div', {
+export const StyledRatingv2Component = styled('span', {
   display: 'inline-flex',
-  gap: '8px',
-  '.rating': {
-    width: '60px',
-    height: '60px',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontSize: '20px',
-    lineHeight: '30px',
-    backgroundColor: '$background',
-    borderColor: '$white',
-    boxShadow:
-      '0px 0.3px 0.9px rgba(0, 0, 0, 0.1), 0px 1.6px 3.6px rgba(0, 0, 0, 0.13)',
-    color: '$primaryText',
-    '&.active': {
-      boxShadow:
-        '0px 1.2px 3.6px rgba(0, 0, 0, 0.1), 0px 6.4px 14.4px rgba(0, 0, 0, 0.13)',
-      color: '$info',
-      borderColor: '$infoBg',
-      backgroundColor: '$infoBg',
-      '&:hover:enabled': {
-        borderColor: '$infoBg',
-        backgroundColor: '$infoBg',
+  position: 'relative',
+  fontSize: ' 1.5rem',
+})
+export const StyledInputStar = styled('input', {
+  border: 0,
+  clip: ' rect(0 0 0 0)',
+  height: '4px',
+  margin: '-1px',
+  overflow: 'hidden',
+  padding: '0',
+  position: 'absolute',
+  whiteSpace: 'nowrap',
+  width: '38px',
+})
+export const StyledInputStarWrapper = styled('label', {
+  variants: {
+    noOutline: {
+      true: {
+        '&:focus-within': {
+          outline: 'none',
+        },
       },
-      '.children > .emo-icons': {
-        color: '$info',
+      false: {
+        '&:focus-within': {
+          outline: '2px solid blue',
+          outlineOffset: '2px',
+        },
       },
-    },
-    '&:focus-visible': {
-      outline: '2px solid $cdgBlue60',
-    },
-    '&:hover:enabled': {
-      backgroundColor: '$white',
-      borderColor: '$white',
-    },
-    '.children': {
-      display: 'flex',
-      alignItems: 'center',
-    },
-    '.children > .emo-icons': {
-      width: '2rem',
-      height: '2rem',
-      color: '$primaryText',
-    },
-    '& div': {
-      justifyContent: 'center',
     },
   },
 })
-export type RatingVariantProps = VariantProps<typeof StyledRatingComponent>
+export type RatingVariantProps = VariantProps<typeof StyledRatingv2Component>
