@@ -577,6 +577,7 @@ class List extends React.Component<IProps> {
             }
             return (
               <DragAndDropListOutletItem
+                key={item.key}
                 props={props}
                 index={index}
                 isSelected
