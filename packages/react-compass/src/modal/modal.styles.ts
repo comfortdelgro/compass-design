@@ -71,7 +71,8 @@ export const StyledModalDescription = styled('div', {
 
   //title
   width: '100%',
-  height: '10.124%',
+  flex: '1',
+  overflow: 'auto',
   fontFamily: '$sans',
   fontWeight: '$normal',
   fontSize: '$body2',
@@ -102,7 +103,6 @@ export const StyledModalActionsContainer = styled('div', {
   // container
   backgroundColor: '$primaryBg',
   width: '100%',
-  height: '17.857%',
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'flex-end',
@@ -160,6 +160,8 @@ export const StyledModalContent = styled('div', {
   maxHeight: '100%',
   maxWidth: '100%',
   overflow: 'auto',
+  display: 'flex',
+  flexDirection: 'column',
 })
 
 export const StyledModal = styled('div', {
@@ -170,13 +172,16 @@ export const StyledModal = styled('div', {
   boxSizing: 'border-box',
   margin: '0px',
   zIndex: '50',
+  overflow: 'auto',
 
   // modal container
   width: '$120',
   minHeight: '$56',
-  maxHeight: '98vh',
+  maxHeight: 'calc(100vh - 40px)',
   height: 'fit-content',
   overFlow: 'auto',
+  display: 'flex',
+  flexDirection: 'column',
   backgroundColor: '$background',
   boxShadow:
     '0px 0.6px 1.8px rgba(0, 0, 0, 0.1), 0px 3.2px 7.2px rgba(0, 0, 0, 0.13)',
