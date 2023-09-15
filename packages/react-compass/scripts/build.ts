@@ -1,81 +1,78 @@
-import chalk from 'chalk'
-import {execaCommand} from 'execa'
-import fs from 'node:fs/promises'
+import chalk from 'chalk' // For colorful console output
+import fs from 'fs/promises' // For file system operations
+import path from 'path'
 
-const INPUT_DIR = 'src'
-const OUTPUT_DIR = 'dist'
+// Define source directory
+const SRC_DIR = 'src'
 
+// Define text colors for console output
 const colors = [chalk.red, chalk.cyan, chalk.yellow, chalk.blue, chalk.green]
-const bgs = [
-  chalk.bgRed,
-  chalk.bgCyan,
-  chalk.bgYellow,
-  chalk.bgBlue,
-  chalk.bgGreen,
-]
-let execCounter = 0
-const runInShell = (c: string) => {
-  const index = execCounter++ % colors.length
-  const color = colors[index]!
-  const bg = bgs[index]!
 
-  console.log(`${bg('Running'.padEnd(10))}: ${color(c)}`)
-  return execaCommand(c, {stdio: 'inherit'})
-    .then(() => console.log(`${bg('Done'.padEnd(10))}: ${color(c)}`))
-    .catch((e) => {
-      console.error(e)
-      process.exit(1)
-    })
-}
+// Counter for tracking file processing
+let fileCounter = 0
 
-const premiseOf = <T>(p: Promise<T>) => p.then(() => true).catch(() => false)
-const makeCliOptions = (o: Record<string, unknown>) =>
-  Object.entries(o)
-    .map(([key, value]) => `--${key} ${value}`)
-    .join(' ')
+// Function to process CSS files
+const processCssFiles = async () => {
+  try {
+    // Step 1: Loop through the source directory
+    const files = await fs.readdir(SRC_DIR)
 
-const main = async () => {
-  // Remove existing dist/ directory to ensure a clean build
-  const doesDistExist = await premiseOf(fs.stat(OUTPUT_DIR))
-  if (doesDistExist) runInShell(`rimraf ${OUTPUT_DIR}`)
+    // Step 2: Create a list of light.module.css files and their addresses
+    const lightCssFiles = files.filter((file) =>
+      file.endsWith('light.module.css'),
+    )
 
-  const tscScript = 'tsc -p tsconfig.build.json'
-  const options = {
-    declaration: true,
-    declarationDir: OUTPUT_DIR,
-    emitDeclarationOnly: true,
-  }
-  void runInShell(`${tscScript} ${makeCliOptions(options)}`)
-  // ^ intentionally voided
+    // Step 3: Check if there are any existing dark.module.css files and delete them
+    for (const lightCssFile of lightCssFiles) {
+      const darkCssFileName = lightCssFile.replace(
+        'light.module.css',
+        'dark.module.css',
+      )
+      const darkCssFilePath = path.join(SRC_DIR, darkCssFileName)
 
-  // Build
-  const swcScript = `swc ${INPUT_DIR} -d ${OUTPUT_DIR}`
-  await runInShell(`${swcScript} -C module.type=commonjs`)
-
-  // Generate package.json
-  const packageJson = await fs
-    .readFile('package.json', 'utf-8')
-    .then(JSON.parse)
-
-  packageJson.scripts = {}
-  packageJson.devDependencies = {}
-  if (packageJson.publishConfig) delete packageJson.publishConfig
-  if (packageJson.files) delete packageJson.files
-
-  const references = ['main', 'module', 'types']
-  for (const ref of references) {
-    if (packageJson[ref]) {
-      packageJson[ref] = packageJson[ref].replace(`${OUTPUT_DIR}/`, './')
+      // Check if the dark.module.css file exists and delete it if it does
+      try {
+        await fs.unlink(darkCssFilePath)
+      } catch (error) {
+        // Ignore errors if the file doesn't exist
+      }
     }
+
+    // Step 4, 5, and 6: Process each light.module.css file
+    for (const lightCssFile of lightCssFiles) {
+      const lightCssFilePath = path.join(SRC_DIR, lightCssFile)
+      const darkCssFileName = lightCssFile.replace(
+        'light.module.css',
+        'dark.module.css',
+      )
+      const darkCssFilePath = path.join(SRC_DIR, darkCssFileName)
+
+      // Create a new empty dark.module.css file
+      await fs.writeFile(darkCssFilePath, '')
+
+      // Read the content of the light.module.css file
+      const lightCssContent = await fs.readFile(lightCssFilePath, 'utf-8')
+
+      // Modify the content by replacing 'lightTheme' with 'darkTheme'
+      const darkCssContent = lightCssContent.replace(/lightTheme/g, 'darkTheme')
+
+      // Write the modified content to the dark.module.css file
+      await fs.writeFile(darkCssFilePath, darkCssContent)
+
+      // Step 6: Log the processing of each file
+      const index = fileCounter++ % colors.length
+      const color = colors[index]
+      console.log(
+        `${color(`Processed: ${lightCssFilePath} -> ${darkCssFilePath}`)}`,
+      )
+    }
+
+    // Log completion message
+    console.log(chalk.green('Processing completed.'))
+  } catch (error) {
+    console.error(chalk.red('An error occurred:'), error)
   }
-
-  await fs.writeFile(
-    `${OUTPUT_DIR}/package.json`,
-    JSON.stringify(packageJson, null, 2),
-  )
-
-  // Copy README.md
-  await fs.copyFile('README.md', `${OUTPUT_DIR}/README.md`)
 }
 
-main()
+// Call the function to process the CSS files
+processCssFiles()

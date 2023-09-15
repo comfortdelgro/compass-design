@@ -1,3 +1,5 @@
+// This file is exposed to users only. We don't need it in the library anymore since we moved from stitches to css module.
+
 const spacings = {
   '0_25': '0.0625rem', // 1px
   '0_5': '0.125rem', // 2px

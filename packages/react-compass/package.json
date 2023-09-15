@@ -31,7 +31,8 @@
     "check:up-to-date-types": "tcm --listDifferent .",
     "dev": "concurrently \"pnpm run dev:ladle\" \"pnpm run generate:css-types\"",
     "dev:ladle": "ladle dev",
-    "generate:css-types": "tcm --watch ."
+    "generate:css-types": "tcm --watch .",
+    "generate:dark-theme": "node scripts/generateDarkTheme.mjs"
   },
   "resolutions": {
     "@internationalized/date": "3.2.0",
