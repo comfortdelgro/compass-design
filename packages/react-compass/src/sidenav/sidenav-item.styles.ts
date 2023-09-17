@@ -1,4 +1,4 @@
-import {styled} from '../theme'
+import { styled } from '../theme'
 
 export const StyledSidenavItem = styled('div', {
   color: '$gray80',
@@ -21,7 +21,11 @@ export const StyledSidenavItem = styled('div', {
     color: '$cdgBlue',
   },
 
-  '& .sidenav-item-title': {
+  '& .cdg-sidenav-item-icon': {
+    width: '$13',
+  },
+
+  '& .cdg-sidenav-item-title': {
     fontSize: '$body3',
     fontWeight: '$semibold',
     marginLeft: '$2_5',
@@ -30,7 +34,7 @@ export const StyledSidenavItem = styled('div', {
     textOverflow: 'ellipsis',
   },
 
-  '& .sidenav-item-title > *': {
+  '& .cdg-sidenav-item-title > *': {
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     textOverflow: 'ellipsis',

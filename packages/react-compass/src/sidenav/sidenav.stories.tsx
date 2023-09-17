@@ -1,3 +1,4 @@
+import { StoryDecorator } from '@ladle/react'
 import {
   faAmbulance,
   faBank,
@@ -7,10 +8,10 @@ import {
   faTractor,
   IconDefinition,
 } from '@fortawesome/free-solid-svg-icons'
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import Avatar from '../avatar'
 import Icon from '../icon'
-import {Row} from '../utils/components'
+import { Row } from '../utils/components'
 import Sidenav from './index'
 import SidenavMenu from './sidenav-menu'
 // import SidenavMenu from './sidenav-menu'
@@ -34,42 +35,42 @@ export const Default: React.FC = () => {
       icon: faCar,
       title: 'Placeholder',
       children: [
-        {id: 11, title: 'Placeholder', icon: faCar},
-        {id: 12, title: 'Placeholder', icon: faCar},
+        { id: 11, title: 'Placeholder', icon: faCar },
+        { id: 12, title: 'Placeholder', icon: faCar },
         {
           id: 13,
           title: 'Placeholder',
           icon: faCar,
           children: [
-            {id: 11, title: 'Placeholder', icon: faCar},
+            { id: 11, title: 'Placeholder', icon: faCar },
             {
               id: 12,
               title: 'Placeholder',
               icon: faCar,
               children: [
-                {id: 11, title: 'Placeholder', icon: faCar},
-                {id: 12, title: 'Placeholder', icon: faCar},
+                { id: 11, title: 'Placeholder', icon: faCar },
+                { id: 12, title: 'Placeholder', icon: faCar },
                 {
                   id: 13,
                   title: 'Placeholder',
                   icon: faCar,
                   children: [
-                    {id: 11, title: 'Placeholder', icon: faCar},
-                    {id: 12, title: 'Placeholder', icon: faCar},
-                    {id: 13, title: 'Placeholder', icon: faCar},
+                    { id: 11, title: 'Placeholder', icon: faCar },
+                    { id: 12, title: 'Placeholder', icon: faCar },
+                    { id: 13, title: 'Placeholder', icon: faCar },
                   ],
                 },
               ],
             },
-            {id: 13, title: 'Placeholder', icon: faCar},
+            { id: 13, title: 'Placeholder', icon: faCar },
           ],
         },
       ],
     },
-    {id: 2, icon: faAmbulance, title: 'Placeholder'},
-    {id: 3, icon: faPlane, title: 'Placeholder'},
-    {id: 4, icon: faHelicopter, title: 'Placeholder'},
-    {id: 5, icon: faTractor, title: 'Placeholder'},
+    { id: 2, icon: faAmbulance, title: 'Placeholder' },
+    { id: 3, icon: faPlane, title: 'Placeholder' },
+    { id: 4, icon: faHelicopter, title: 'Placeholder' },
+    { id: 5, icon: faTractor, title: 'Placeholder' },
   ]
 
   const handleOnClick = (
@@ -80,8 +81,8 @@ export const Default: React.FC = () => {
     setCurrentPage(id)
   }
 
-  const CustomSizenavItem = (props: ItemType & {isMenu?: boolean}) => {
-    const {id, icon, title, children, isMenu} = props
+  const CustomSizenavItem = (props: ItemType & { isMenu?: boolean }) => {
+    const { id, icon, title, children, isMenu } = props
     return (
       <Sidenav.Item isActive={isMenu ? false : currentPage === id}>
         {icon ? <Icon icon={icon}></Icon> : <></>}
@@ -108,17 +109,17 @@ export const Default: React.FC = () => {
   }
 
   return (
-    <Row css={{position: 'relative'}}>
+    <Row css={{ position: 'relative' }}>
       <Sidenav
-        css={{height: '800px', position: 'absolute', top: '0px', zIndex: 2}}
+        css={{ height: '800px', position: 'absolute', top: '0px', zIndex: 2 }}
         expand={false}
         delay={200}
       >
         <Sidenav.Item>
-          <div style={{width: '40px'}}>
+          <div style={{ width: '40px' }}>
             <Avatar label='M' />
           </div>
-          <h2 style={{fontSize: '24px', marginLeft: '22px', color: '#323130'}}>
+          <h2 style={{ fontSize: '24px', marginLeft: '22px', color: '#323130' }}>
             Workbench
           </h2>
         </Sidenav.Item>
@@ -131,14 +132,14 @@ export const Default: React.FC = () => {
               }}
               key={item.id}
               href='#'
-              style={{color: 'inherit', textDecoration: 'none'}}
+              style={{ color: 'inherit', textDecoration: 'none', outline: '$cdgBlue' }}
             >
               <CustomSizenavItem key={item.id} {...item} />
             </a>
           )
         })}
         <Sidenav.Divider />
-        <Sidenav.Item css={{marginTop: 'auto'}}>
+        <Sidenav.Item css={{ marginTop: 'auto' }}>
           <Icon icon={faBank}></Icon>
           <span>Placeholder</span>
         </Sidenav.Item>
@@ -187,4 +188,20 @@ export const Default: React.FC = () => {
       </Sidenav> */}
     </Row>
   )
+}
+
+
+export default {
+  decorators: [
+    (Component) => (
+      <div>
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `.ladle-main { background: #eee; }`,
+          }}
+        ></style>
+        <Component />
+      </div>
+    ),
+  ] as StoryDecorator[],
 }
