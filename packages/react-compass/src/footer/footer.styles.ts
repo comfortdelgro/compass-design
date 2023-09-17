@@ -1,5 +1,5 @@
-import {styled} from '../theme'
-import {VariantProps} from '../utils/stitches.types'
+import { styled } from '../theme'
+import { VariantProps } from '../utils/stitches.types'
 
 export const StyledFooter = styled('div', {
   width: '100%',
@@ -24,6 +24,9 @@ export const StyledFooter = styled('div', {
         color: '$whiteText',
       },
     },
+  },
+  '@tablet': {
+    padding: '$8 $12',
   },
   '@mobile': {
     gap: '24px',
