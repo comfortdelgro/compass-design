@@ -8,13 +8,12 @@ export const StyledSidenavItem = styled('div', {
   position: 'relative',
   height: '$10',
   cursor: 'pointer',
-  padding: '0 $4',
+  padding: '0 $2',
   overflow: 'hidden',
 
   '& svg': {
-    width: '$5',
-    height: '$5',
-    marginLeft: '$2_5',
+    width: '$6',
+    height: '$6',
   },
 
   '&:hover': {
@@ -22,7 +21,18 @@ export const StyledSidenavItem = styled('div', {
   },
 
   '& .cdg-sidenav-item-icon': {
-    width: '$13',
+    minWidth: '$13',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
+    '.cdg-sidenav-item-icon-wrapper': {
+      width: '$10',
+      height: '$10',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    }
   },
 
   '& .cdg-sidenav-item-title': {
@@ -47,10 +57,10 @@ export const StyledSidenavItem = styled('div', {
           color: '$cdgBlue',
         },
 
-        '&:before': {
+        '& .cdg-sidenav-item-icon:before': {
           content: '',
           position: 'absolute',
-          left: '$4',
+          left: '0',
           top: 0,
           height: '100%',
           width: '3px',

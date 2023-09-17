@@ -111,7 +111,7 @@ export const Default: React.FC = () => {
   return (
     <Row css={{ position: 'relative' }}>
       <Sidenav
-        css={{ height: '800px', position: 'absolute', top: '0px', zIndex: 2 }}
+        css={{ height: '800px', position: 'absolute', top: '0px', zIndex: 2, padding: '16px 0' }}
         expand={false}
         delay={200}
       >
@@ -123,7 +123,7 @@ export const Default: React.FC = () => {
             Workbench
           </h2>
         </Sidenav.Item>
-        <Sidenav.Divider />
+        <Sidenav.Divider style={{ marginBottom: '8px' }} />
         {items.map((item) => {
           return (
             <a
@@ -132,60 +132,18 @@ export const Default: React.FC = () => {
               }}
               key={item.id}
               href='#'
-              style={{ color: 'inherit', textDecoration: 'none', outline: '$cdgBlue' }}
+              style={{ color: 'inherit', textDecoration: 'none', outlineColor: '#678ECF' }}
             >
               <CustomSizenavItem key={item.id} {...item} />
             </a>
           )
         })}
-        <Sidenav.Divider />
+        <Sidenav.Divider style={{ margin: '8px 0' }} />
         <Sidenav.Item css={{ marginTop: 'auto' }}>
           <Icon icon={faBank}></Icon>
           <span>Placeholder</span>
         </Sidenav.Item>
       </Sidenav>
-      {/* <Sidenav
-        css={{
-          height: '800px',
-          position: 'absolute',
-          left: '200px',
-          backgroundColor: '$primaryBg',
-          top: '0px',
-          zIndex: 1,
-          '& .Sidenav-item-active': {
-            color: '$warning',
-          },
-        }}
-        expand
-      >
-        {items.map((item) => (
-          <a
-            onClick={(e) => {
-              handleOnClick(e, item.id)
-            }}
-            key={item.id}
-            href='#'
-            style={{color: 'inherit', textDecoration: 'none'}}
-          >
-            <Sidenav.Item
-              isActive={currentPage === item.id}
-              css={{
-                '&:hover': {
-                  color: '$danger',
-                },
-              }}
-            >
-              <Icon icon={item.icon}></Icon>
-              <span>Placeholder</span>
-            </Sidenav.Item>
-          </a>
-        ))}
-        <Sidenav.Divider />
-        <Sidenav.Item css={{marginTop: 'auto'}}>
-          <Icon icon={faBank}></Icon>
-          <span>Placeholder</span>
-        </Sidenav.Item>
-      </Sidenav> */}
     </Row>
   )
 }

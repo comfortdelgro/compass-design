@@ -9,8 +9,12 @@ export const StyledSidenav = styled('div', {
   overflow: 'hidden',
   transition: 'all 0.25s',
 
-  [`& > :not(:last-child)`]: {
-    marginBottom: '$2',
+  [`& .cdg-sidenav-item`]: {
+    marginBottom: '$4',
+  },
+
+  [`& .cdg-sidenav-item:last-child`]: {
+    marginBottom: '0',
   },
 
   variants: {

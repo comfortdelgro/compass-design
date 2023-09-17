@@ -67,7 +67,7 @@ const SidenavItem = React.forwardRef<HTMLDivElement, SidenavItemProps>(
       <StyledSidenavItem
         ref={mergeRefs}
         css={css}
-        className={`${className} ${isActive ? 'sidenav-item-active' : ''}`}
+        className={`cdg-sidenav-item ${className} ${isActive ? 'sidenav-item-active' : ''}`}
         active={isActive ? 'active' : 'default'}
         onMouseEnter={() => {
           setOpenMenu(true)
@@ -75,7 +75,11 @@ const SidenavItem = React.forwardRef<HTMLDivElement, SidenavItemProps>(
         {...delegated}
         {...menuParenProps?.getReferenceProps()}
       >
-        <div className='cdg-sidenav-item-icon'>{icon}</div>
+        <div className='cdg-sidenav-item-icon'>
+          <div className="cdg-sidenav-item-icon-wrapper">
+            {icon}
+          </div>
+        </div>
         <div className='cdg-sidenav-item-title'>{title}</div>
         {clonedMenu}
       </StyledSidenavItem>
