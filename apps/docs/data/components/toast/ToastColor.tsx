@@ -20,6 +20,7 @@ const Colors: React.FC = () => {
         isOpen={isInformativeOpen}
         handleClose={() => setIsInformativeOpen(false)}
         color='informative'
+        anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
       >
         <Toast.Icon>
           <Icon icon={faImage} />
@@ -44,6 +45,7 @@ const Colors: React.FC = () => {
         isOpen={isNeutralOpen}
         handleClose={() => setIsNeutralOpen(false)}
         color='neutral'
+        anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
       >
         <Toast.Icon>
           <Icon icon={faImage} />
@@ -68,6 +70,7 @@ const Colors: React.FC = () => {
         isOpen={isNegativeOpen}
         handleClose={() => setIsNegativeOpen(false)}
         color='negative'
+        anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
       >
         <Toast.Icon>
           <Icon icon={faImage} />
@@ -92,6 +95,7 @@ const Colors: React.FC = () => {
         isOpen={isPositiveOpen}
         handleClose={() => setIsPositiveOpen(false)}
         color='positive'
+        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <Toast.Icon>
           <Icon icon={faImage} />
