@@ -22,7 +22,7 @@ b. Variables
 Example:
 
 ```js
-<Chip (static/src/chip)
+<Chip>
   hasCloseButton
   css={{
     border: '1px solid purple',
@@ -39,7 +39,7 @@ Example:
   }}
 >
   Close button
-</Chip (static/src/chip)>
+</Chip>
 ```
 
 Note: "css" prop in `@stitches/react` even allows new variable assignment. However, this feature is mostly needed on the library side; users do not really need it. So we can ignore this feature for now.
