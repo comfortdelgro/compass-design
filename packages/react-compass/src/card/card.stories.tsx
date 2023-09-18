@@ -1,3 +1,4 @@
+import Edit from '@comfortdelgro/compass-icons/react/edit'
 import React from 'react'
 import Button from '../button/button'
 import {Column} from '../utils/components'
@@ -88,6 +89,37 @@ export const Variants: React.FC = () => {
       </Card>
       <h3>Disabled</h3>
       <Card isDisabled={true} size='lg'>
+        <Card.Body>
+          <Card.Title>Card title</Card.Title>
+          <p style={{margin: 0}}>{lorem.slice(0, lorem.length / 2)}</p>
+          <Card.Action>
+            <Button isDisabled={isDisabled} variant='primary'>
+              Button
+            </Button>
+            <Button isDisabled={isDisabled} variant='secondary'>
+              Button
+            </Button>
+          </Card.Action>
+        </Card.Body>
+      </Card>
+      <h3>Default - Shadowless</h3>
+      <Card size='lg' isShadowless={true}>
+        <Card.Body>
+          <Card.Title>
+            <h3 className='card-title'>Card title</h3>
+            <Button variant='ghost'>
+              <Edit />
+            </Button>
+          </Card.Title>
+          <p style={{margin: 0}}>{lorem.slice(0, lorem.length / 2)}</p>
+          <Card.Action>
+            <Button variant='primary'>Button</Button>
+            <Button variant='secondary'>Button</Button>
+          </Card.Action>
+        </Card.Body>
+      </Card>
+      <h3>Disabled - Shadowless</h3>
+      <Card isDisabled={true} size='lg' isShadowless={true}>
         <Card.Body>
           <Card.Title>Card title</Card.Title>
           <p style={{margin: 0}}>{lorem.slice(0, lorem.length / 2)}</p>

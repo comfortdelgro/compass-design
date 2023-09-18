@@ -185,10 +185,11 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
       h5={h5}
       onClick={(e) => handleClick?.(e as unknown as MouseEvent)}
       onKeyDown={(e) => handleKeyDown?.(e as unknown as KeyboardEvent)}
+      className='cdg-modal-container'
       {...delegated}
       {...variantProps}
     >
-      <StyledModalContent tabIndex={0}>
+      <StyledModalContent tabIndex={0} className='cdg-modal-content'>
         <StyledModalHeader h5={h5}>
           {ModalTitleElement}
           {CloseIconElement &&

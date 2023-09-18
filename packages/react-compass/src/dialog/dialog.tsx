@@ -172,8 +172,9 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
       onKeyDown={(e) => handleKeyDown?.(e as unknown as KeyboardEvent)}
       {...variantProps}
       {...delegated}
+      className='cdg-dialog-container'
     >
-      <StyledDialogContent tabIndex={0}>
+      <StyledDialogContent tabIndex={0} className='cdg-dialog-content'>
         {variant == 'alert' ? DialogIconElement : null}
         {DialogTitleElement}
         {DialogDescriptionElement}

@@ -77,6 +77,12 @@ export const Variants: React.FC = () => {
         onChange={(value) => setValue(value)}
       />
       <br />
+      <h3>Custom width and height</h3>
+      <Textarea
+        label='Disabled Text Label'
+        placeholder='Enter your message'
+        css={{'& textarea': {width: '600px', height: '300px'}}}
+      />
       <br />
     </Column>
   )

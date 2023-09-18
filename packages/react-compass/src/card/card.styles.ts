@@ -47,6 +47,9 @@ export const StyledCard = styled('div', {
     isShadowless: {
       true: {
         boxShadow: 'none',
+        '&:hover': {
+          boxShadow: 'none',
+        },
       },
     },
     isClickable: {

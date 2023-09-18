@@ -415,10 +415,10 @@ export const routes: TSideNavItem[] = [
           'Display a placeholder preview of your content before the data gets loaded to reduce load-time frustration.',
       },
       {
-        title: 'Slide action/Swiper',
+        title: 'Slide action | Swiper',
         pathname: '/slide-action',
         description:
-          'A slide action/swiper for important actions, such as purchase order, turn off privacy setting, etc.',
+          'Usually use for important actions, such as purchase order, changes privacy setting, turn off devices, etc.',
       },
       {
         title: 'Slider',
@@ -518,6 +518,12 @@ export const routes: TSideNavItem[] = [
         title: 'Progress',
         pathname: '/progress',
         description: 'The progress component tracks task completion.',
+      },
+      {
+        title: 'PUDO',
+        pathname: '/pudo',
+        description:
+          'A journey planner that allows user to input multiple locations.',
       },
       {
         title: 'Toast',

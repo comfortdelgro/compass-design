@@ -66,7 +66,14 @@ const Wizard = React.forwardRef<HTMLDivElement, WizardProps>((props, ref) => {
                 error={!!erroredSteps.includes(index + 1)}
               />
               <StyledItem
+                tabIndex={0}
                 active={currentStep > index + 1 || index + 1 === currentStep}
+                onKeyDown={(event) => {
+                  const key = event.key
+                  if (key === 'Enter' || key === ' ') {
+                    onStepClick?.(index + 1)
+                  }
+                }}
                 error={!!erroredSteps.includes(index + 1)}
                 onClick={() => onStepClick?.(index + 1)}
                 css={{cursor: onStepClick ? 'pointer' : ''}}

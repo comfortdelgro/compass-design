@@ -82,6 +82,10 @@ export const StyledSlideDragger = styled('button', {
   '&:active': {
     cursor: 'grabbing',
   },
+
+  '& > .slide-action__default-icon': {
+    fill: '$background',
+  },
 })
 
 export const StyledSlideLabel = styled('div', {
