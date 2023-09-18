@@ -391,6 +391,11 @@ export const routes: TSideNavItem[] = [
         description: 'Rating provides others opinions and experiences.',
       },
       {
+        title: 'Rating-v2',
+        pathname: '/rating-v2',
+        description: 'Rating provides others opinions and experiences.',
+      },
+      {
         title: 'Rich text editor',
         pathname: '/rich-text-editor',
         description:

@@ -1,0 +1,15 @@
+<RatingV2
+    maxRating={8}
+    onChange={(value) => {
+        console.log(value)
+    }}
+/>
+
+<RatingV2
+    onChange={(value) => {
+        console.log('Star rating changed to:', value)
+    }}
+    renderStar={(isFilled, value) => {
+        return <span style={{margin: '0 5px'}}>{isFilled ? '🌟' : '⭐'}</span>
+    }}
+/>
