@@ -1,6 +1,7 @@
 import {faBug} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React, {useState} from 'react'
+import Typography from '../typography'
 import {Column, Row} from '../utils/components'
 import Radio from './index'
 
@@ -63,6 +64,7 @@ export const Variants: React.FC = () => {
           />
         </Radio.Group>
       </Row>
+
       <h3>Controlled</h3>
       <h4>Selected Value: {value}</h4>
       <Row>
@@ -138,3 +140,68 @@ export const Orientation: React.FC = () => (
     </Row>
   </Column>
 )
+
+const H5RadioData = [
+  {label: 'General'},
+  {label: 'App issue'},
+  {label: 'Booking issue'},
+  {label: 'Payment'},
+  {label: 'Promo code issue', disabled: true},
+  {label: 'Vehicle condition'},
+]
+
+export const H5 = () => {
+  return (
+    <>
+      <Typography.Header variant='header4' css={{marginBottom: '$4'}}>
+        H5
+      </Typography.Header>
+      <Row>
+        <Radio.Group
+          css={{padding: 0}}
+          onChange={(value) => console.log(value)}
+        >
+          {H5RadioData.map(({label, disabled = false}, index) => (
+            <Radio
+              key={index}
+              css={{
+                '.radio-content-wrapper .radio-label': {
+                  fontWeight: '$normal',
+                },
+              }}
+              variant='h5'
+              label={label}
+              value={index.toString()}
+              isDisabled={disabled}
+            />
+          ))}
+        </Radio.Group>
+      </Row>
+
+      <Typography.Header variant='header4' css={{marginBlock: '$6 $4'}}>
+        H5 with inputPosition: right
+      </Typography.Header>
+      <Row>
+        <Radio.Group
+          css={{padding: 0}}
+          onChange={(value) => console.log(value)}
+        >
+          {H5RadioData.map(({label, disabled = false}, index) => (
+            <Radio
+              key={index}
+              variant='h5'
+              label={label}
+              description={
+                label +
+                ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem quisquam eaque nulla in! Magni fugiat aliquid atque accusantium culpa, eos, nostrum, facilis eius sint incidunt ipsam excepturi praesentium. Natus, iusto?'
+              }
+              value={index.toString()}
+              inputPosition='right'
+              isDisabled={disabled}
+            />
+          ))}
+        </Radio.Group>
+      </Row>
+    </>
+  )
+}
