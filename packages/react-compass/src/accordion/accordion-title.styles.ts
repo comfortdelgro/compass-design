@@ -35,8 +35,8 @@ export const StyledAccordionTitleWrapper = styled('div', {
   },
 
   '& svg': {
-    width: '$5',
-    height: '$5',
+    width: '$6',
+    height: '$6',
     marginTop: '12px',
   },
 
@@ -45,7 +45,7 @@ export const StyledAccordionTitleWrapper = styled('div', {
   },
 
   '& .accordion-chevron-icon': {
-    width: '$5',
+    width: '$6',
     height: '$0.75',
     marginTop: '12px',
   },
