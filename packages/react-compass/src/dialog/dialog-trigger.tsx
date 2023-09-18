@@ -51,6 +51,7 @@ const DialogTrigger = React.forwardRef<HTMLDivElement, DialogTriggerProps>(
           css={css}
           ref={dialogWrapperRef}
           onClick={(e) => handleClickBackdrop?.(e as unknown as MouseEvent)}
+          className='cdg-dialog-wrapper'
           {...delegated}
         >
           {DialogElement &&
