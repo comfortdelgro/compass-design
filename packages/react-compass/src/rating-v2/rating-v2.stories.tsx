@@ -15,11 +15,11 @@ export const Default: React.FC = () => {
       </Column>
       <Column>
         <h3>Controlled Rating Component</h3>
-        <RatingComponent />
+        <RatingComponent currentRating={3} />
       </Column>
       <Column>
         <h3>Read-only Rating Component</h3>
-        <RatingComponent readOnly />
+        <RatingComponent currentRating={3} readOnly />
       </Column>
       <Column>
         <h3>Disabled Rating Component</h3>
@@ -34,17 +34,19 @@ export const Default: React.FC = () => {
           }}
         />
       </Column>
-      {/* <Column>
+      <Column>
         <h3>Custom rating</h3>
         <RatingComponent
           onChange={(value) => {
-            console.log(value)
+            console.log('Star rating changed to:', value)
           }}
-          renderStar={() => {
-
+          renderStar={(isFilled, value) => {
+            return (
+              <span style={{margin: '0 5px'}}>{isFilled ? '🌟' : '⭐'}</span>
+            )
           }}
         />
-      </Column> */}
+      </Column>
     </>
   )
 }

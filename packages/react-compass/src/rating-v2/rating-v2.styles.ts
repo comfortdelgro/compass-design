@@ -18,19 +18,16 @@ export const StyledInputStar = styled('input', {
   width: '38px',
 })
 export const StyledInputStarWrapper = styled('label', {
-  variants: {
-    noOutline: {
-      true: {
-        '&:focus-within': {
-          outline: 'none',
-        },
-      },
-      false: {
-        '&:focus-within': {
-          outline: '2px solid blue',
-          outlineOffset: '2px',
-        },
-      },
+  cursor: 'pointer',
+  '&.noOutline-true': {
+    '&:focus-within': {
+      outline: 'none',
+    },
+  },
+  '&.noOutline-false': {
+    '&:focus-within': {
+      outline: '2px solid blue',
+      outlineOffset: '2px',
     },
   },
 })

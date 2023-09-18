@@ -11,16 +11,11 @@ export type RatingProps = {
   onChange?: (newRating: number) => void
   disabled?: boolean
   readOnly?: boolean
-  renderStar?: (
-    isFilled: boolean,
-    value: number,
-    name: string,
-    checked: boolean,
-    onChange: () => void,
-  ) => React.ReactNode
+  renderStar?: (isFilled: boolean, value: number) => React.ReactNode
+  className?: string
 }
 
-const Rating = React.forwardRef<HTMLDivElement, RatingProps>((props, ref) => {
+const RatingV2 = React.forwardRef<HTMLDivElement, RatingProps>((props, ref) => {
   const {
     maxRating = 5,
     currentRating = 0,
@@ -28,6 +23,7 @@ const Rating = React.forwardRef<HTMLDivElement, RatingProps>((props, ref) => {
     disabled,
     readOnly,
     renderStar,
+    ...delegated
   } = props
   const [rating, setRating] = useState(currentRating)
   const [noOutline, setNoOutline] = useState(true)
@@ -68,41 +64,22 @@ const Rating = React.forwardRef<HTMLDivElement, RatingProps>((props, ref) => {
     }
   }, [])
 
-  const defaultRenderStar = (
-    isFilled: boolean,
-    value: number,
-    name: string,
-    checked: boolean,
-  ) => (
-    <StyledInputStarWrapper htmlFor={`${name}-${value}`} noOutline={noOutline}>
-      <StyledInputStar
-        type='radio'
-        role='radio'
-        id={`${name}-${value}`}
-        name={name}
-        value={value}
-        checked={checked}
-        disabled={disabled || readOnly}
-        aria-checked={checked}
-        aria-disabled={disabled || readOnly}
-        onChange={() => handleChange(value)}
-      />
-      <span>
-        {' '}
-        {isFilled ? (
-          <svg height='25' width='23'>
-            <polygon
-              points='9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78'
-              fill='#ffd055'
-            ></polygon>
-          </svg>
-        ) : (
-          <svg height='25' width='23'>
-            <polygon points='9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78' />
-          </svg>
-        )}
-      </span>
-    </StyledInputStarWrapper>
+  const defaultRenderStarVisual = (isFilled: boolean) => (
+    <span>
+      {' '}
+      {isFilled ? (
+        <svg height='25' width='23'>
+          <polygon
+            points='9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78'
+            fill='#ffd055'
+          ></polygon>
+        </svg>
+      ) : (
+        <svg height='25' width='23'>
+          <polygon points='9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78' />
+        </svg>
+      )}
+    </span>
   )
 
   const stars = Array.from({length: maxRating}, (_, index) => {
@@ -110,13 +87,30 @@ const Rating = React.forwardRef<HTMLDivElement, RatingProps>((props, ref) => {
     const isFilled = value <= rating
     const checked = rating === value
 
+    const starVisual = renderStar
+      ? renderStar(isFilled, value)
+      : defaultRenderStarVisual(isFilled)
+
     return (
       <React.Fragment key={value}>
-        {renderStar
-          ? renderStar(isFilled, value, groupName, checked, () =>
-              handleChange(value),
-            )
-          : defaultRenderStar(isFilled, value, groupName, checked)}
+        <StyledInputStarWrapper
+          htmlFor={`${groupName}-${value}`}
+          className={`noOutline-${noOutline}`}
+        >
+          <StyledInputStar
+            type='radio'
+            role='radio'
+            id={`${groupName}-${value}`}
+            name={groupName}
+            value={value}
+            checked={checked}
+            disabled={disabled || readOnly}
+            aria-checked={checked}
+            aria-disabled={disabled || readOnly}
+            onChange={() => handleChange(value)}
+          />
+          {starVisual}
+        </StyledInputStarWrapper>
       </React.Fragment>
     )
   })
@@ -125,19 +119,13 @@ const Rating = React.forwardRef<HTMLDivElement, RatingProps>((props, ref) => {
     <StyledRatingv2Component
       ref={ref}
       role='radiogroup'
-      aria-disabled={disabled} // add aria-disabled
-      aria-readonly={readOnly} // add aria-readonly
+      aria-disabled={disabled}
+      aria-readonly={readOnly}
+      {...delegated}
     >
       {stars}
     </StyledRatingv2Component>
   )
 })
 
-Rating.defaultProps = {
-  maxRating: 5,
-  currentRating: 0,
-  disabled: false,
-  readOnly: false,
-}
-
-export default Rating
+export default RatingV2
