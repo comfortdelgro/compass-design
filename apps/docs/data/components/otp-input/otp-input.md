@@ -23,12 +23,19 @@ import OTPInput from '@comfortdelgro/react-compass/otpinput'
 
 {{"demo": "OTPInput.tsx"}}
 
+## Mobile view example
+
+{{"demo": "OTPInputMobile.tsx"}}
+
 ## Props
 
-| Name          | Type     | Default | Description                          |
-| :------------ | :------- | :------ | :----------------------------------- |
-| length        | `number` | —       | The length of the OTP input          |
-| isNumberInput | `bool`   | `false` | Whether the input should be numbers  |
-| autoFocus     | `bool`   | `false` | Whether to autofocus the first input |
-| onChangeOTP   | `func`   | —       | Callback when the OTP value changes  |
-| disabled      | `bool`   | `false` | Whether the input should be disabled |
+| Name          | Type                    | Default | Description                          |
+| :------------ | :---------------------- | :------ | :----------------------------------- |
+| length        | `number`                | 6       | The length of the OTP input          |
+| isNumberInput | `boolean`               | `false` | Whether the input should be numbers  |
+| autoFocus     | `boolean`               | `false` | Whether to autofocus the first input |
+| onChangeOTP\* | `(otp: string) => void` | —       | Callback when the OTP value changes  |
+| disabled      | `boolean`               | `false` | Whether the input should be disabled |
+| isMobile      | `boolean`               | `false` | Mobile UI                            |
+
+\*: Required.
