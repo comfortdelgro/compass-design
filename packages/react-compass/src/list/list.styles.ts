@@ -103,18 +103,6 @@ export const StyledList = styled('div', {
 
         '&.pressed': {
           backgroundColor: '$cdgBlue100',
-          '.list-text-title': {
-            color: '#FFF !important',
-          },
-          '.list-text-description': {
-            color: '#FFF !important',
-          },
-          '.list-right-side-text': {
-            color: '#FFF !important',
-          },
-          svg: {
-            color: '#FFF !important',
-          },
         },
 
         '& .list-text-title': {
