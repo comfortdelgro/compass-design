@@ -59,7 +59,7 @@ interface Props extends StyledComponentProps {
   'aria-describedby'?: string
   'aria-details'?: string
   'aria-errormessage'?: string
-  isH5Variant?: boolean
+  h5?: boolean
 }
 
 export type SearchFieldProps = Props &
@@ -98,7 +98,7 @@ const SearchField = React.forwardRef<HTMLDivElement, SearchFieldProps>(
       onFocus,
       maxLength,
       minLength,
-      isH5Variant = false,
+      h5 = false,
       ...delegated
     } = props
     const isDarkTheme = useIsDarkTheme()
@@ -158,7 +158,7 @@ const SearchField = React.forwardRef<HTMLDivElement, SearchFieldProps>(
         ref={wrapperRef}
         {...delegated}
         isDarkTheme={isDarkTheme}
-        isH5Variant={isH5Variant}
+        h5={h5}
       >
         <StyledSearchFieldInput
           ref={searchFieldRef}
@@ -203,7 +203,7 @@ const SearchField = React.forwardRef<HTMLDivElement, SearchFieldProps>(
             size='sm'
             variant='ghost'
           >
-            {isH5Variant ? (
+            {h5 ? (
               <H5SearchIcon />
             ) : (
               <svg className='icon' viewBox='0 0 512 512'>

@@ -83,7 +83,7 @@ export const StyledSearchFieldBox = styled('div', {
         },
       },
     },
-    isH5Variant: {
+    h5: {
       true: {
         flexDirection: 'row-reverse',
         gap: '$2',
