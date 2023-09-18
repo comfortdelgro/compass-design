@@ -16,14 +16,14 @@ import {OTPInput} from '@comfortdelgro/react-compass'
 or
 
 ```jsx
-import OTPInput from '@comfortdelgro/react-compass/otpinput'
+import OTPInput from '@comfortdelgro/react-compass/otp-input'
 ```
 
-## Example
+## Examples
 
 {{"demo": "OTPInput.tsx"}}
 
-## Mobile view example
+## Mobile view
 
 {{"demo": "OTPInputMobile.tsx"}}
 
@@ -36,6 +36,6 @@ import OTPInput from '@comfortdelgro/react-compass/otpinput'
 | autoFocus     | `boolean`               | `false` | Whether to autofocus the first input |
 | onChangeOTP\* | `(otp: string) => void` | —       | Callback when the OTP value changes  |
 | disabled      | `boolean`               | `false` | Whether the input should be disabled |
-| isMobile      | `boolean`               | `false` | Mobile UI                            |
+| isMobile      | `boolean`               | `false` | Toggle Mobile UI                     |
 
 \*: Required.
