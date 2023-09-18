@@ -50,6 +50,12 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 
 {{"demo": "TooltipCustom.tsx"}}
 
+{{"demo": "TooltipBackground.tsx"}}
+
+### Placement
+
+{{"demo": "TooltipPlacement.tsx"}}
+
 ## Props
 
 ### TooltipTrigger Props

@@ -8,6 +8,7 @@ interface Props extends StyledComponentProps {
   title?: React.ReactNode | string
   children?: React.ReactNode
   dismissible?: boolean
+  className?: string
 }
 
 export type TooltipProps = Props &
@@ -15,7 +16,14 @@ export type TooltipProps = Props &
 
 const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
   (props, refs) => {
-    const {title, dismissible, css = {}, children, ...delegated} = props
+    const {
+      title,
+      dismissible,
+      css = {},
+      children,
+      className = '',
+      ...delegated
+    } = props
 
     const tooltipContext = useContext(TooltipContext)
 
@@ -41,6 +49,9 @@ const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
         ref={mergeRefs}
         {...tooltipContext.tooltipProps}
         {...delegated}
+        className={`cdg-tooltip${className ? ' ' + className : ''}${
+          title ? '' : ' no-title'
+        }`}
       >
         {/* only show header when it has title or dismissible = true */}
         {(title || dismissible) && (
