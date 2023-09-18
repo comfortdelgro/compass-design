@@ -5,11 +5,13 @@ import Select from '../../select'
 export const TextAlignmentSelectorControl = () => {
   const {editor} = useRichTextEditorContext()
   const handleSelectionChange = (key: React.Key) => {
-    editor
-      ?.chain()
-      .focus()
-      .setTextAlign(key as string)
-      .run()
+    if (editor?.isEditable) {
+      editor
+        .chain()
+        .focus()
+        .setTextAlign(key as string)
+        .run()
+    }
   }
   return (
     <Select

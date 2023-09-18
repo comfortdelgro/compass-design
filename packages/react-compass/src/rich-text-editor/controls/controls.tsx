@@ -18,7 +18,8 @@ export const UndoControl = createControl({
     </svg>
   ),
   isActive: {name: 'undo'},
-  onClick: (editor) => () => editor?.chain().focus().undo().run(),
+  onClick: (editor) =>
+    editor !== null ? editor.chain().focus().undo().run() : false,
 })
 export const RedoControl = createControl({
   label: 'redo',
@@ -37,7 +38,8 @@ export const RedoControl = createControl({
     </svg>
   ),
   isActive: {name: 'redo'},
-  onClick: (editor) => () => editor?.chain().focus().redo().run(),
+  onClick: (editor) =>
+    editor !== null ? editor.chain().focus().redo().run() : false,
 })
 export const BoldControl = createControl({
   label: 'bold',
@@ -56,7 +58,8 @@ export const BoldControl = createControl({
     </svg>
   ),
   isActive: {name: 'bold'},
-  onClick: (editor) => () => editor?.chain().focus().toggleBold().run(),
+  onClick: (editor) =>
+    editor !== null ? editor.chain().focus().toggleBold().run() : false,
 })
 
 export const ItalicControl = createControl({
@@ -76,7 +79,8 @@ export const ItalicControl = createControl({
     </svg>
   ),
   isActive: {name: 'italic'},
-  onClick: (editor) => () => editor?.chain().focus().toggleItalic().run(),
+  onClick: (editor) =>
+    editor !== null ? editor.chain().focus().toggleItalic().run() : false,
 })
 
 export const UnderlineControl = createControl({
@@ -96,7 +100,8 @@ export const UnderlineControl = createControl({
     </svg>
   ),
   isActive: {name: 'underline'},
-  onClick: (editor) => () => editor?.chain().focus().toggleUnderline().run(),
+  onClick: (editor) =>
+    editor !== null ? editor.chain().focus().toggleUnderline().run() : false,
 })
 
 export const StrikeThroughControl = createControl({
@@ -116,7 +121,8 @@ export const StrikeThroughControl = createControl({
     </svg>
   ),
   isActive: {name: 'strike'},
-  onClick: (editor) => () => editor?.chain().focus().toggleStrike().run(),
+  onClick: (editor) =>
+    editor !== null ? editor.chain().focus().toggleStrike().run() : false,
 })
 
 export const UnlinkControl = createControl({
@@ -129,7 +135,8 @@ export const UnlinkControl = createControl({
       />
     </svg>
   ),
-  onClick: (editor) => () => editor?.chain().focus().unsetLink().run(),
+  onClick: (editor) =>
+    editor !== null ? editor.chain().focus().unsetLink().run() : false,
 })
 
 export const BulletListControl = createControl({
@@ -149,7 +156,8 @@ export const BulletListControl = createControl({
     </svg>
   ),
   isActive: {name: 'bulletList'},
-  onClick: (editor) => () => editor?.chain().focus().toggleBulletList().run(),
+  onClick: (editor) =>
+    editor !== null ? editor.chain().focus().toggleBulletList().run() : false,
 })
 
 export const OrderedListControl = createControl({
@@ -169,7 +177,8 @@ export const OrderedListControl = createControl({
     </svg>
   ),
   isActive: {name: 'orderedList'},
-  onClick: (editor) => () => editor?.chain().focus().toggleOrderedList().run(),
+  onClick: (editor) =>
+    editor !== null ? editor.chain().focus().toggleOrderedList().run() : false,
 })
 
 export const H1Control = createControl({
@@ -193,8 +202,10 @@ export const H1Control = createControl({
     </svg>
   ),
   isActive: {name: 'heading', attributes: {level: 1}},
-  onClick: (editor) => () =>
-    editor?.chain().focus().toggleHeading({level: 1}).run(),
+  onClick: (editor) =>
+    editor !== null
+      ? editor.chain().focus().toggleHeading({level: 1}).run()
+      : false,
 })
 
 export const H2Control = createControl({
@@ -219,8 +230,10 @@ export const H2Control = createControl({
     </svg>
   ),
   isActive: {name: 'heading', attributes: {level: 2}},
-  onClick: (editor) => () =>
-    editor?.chain().focus().toggleHeading({level: 2}).run(),
+  onClick: (editor) =>
+    editor !== null
+      ? editor.chain().focus().toggleHeading({level: 2}).run()
+      : false,
 })
 
 export const H3Control = createControl({
@@ -244,8 +257,10 @@ export const H3Control = createControl({
     </svg>
   ),
   isActive: {name: 'heading', attributes: {level: 3}},
-  onClick: (editor) => () =>
-    editor?.chain().focus().toggleHeading({level: 3}).run(),
+  onClick: (editor) =>
+    editor !== null
+      ? editor.chain().focus().toggleHeading({level: 3}).run()
+      : false,
 })
 
 export const H4Control = createControl({
@@ -276,8 +291,10 @@ export const H4Control = createControl({
     </svg>
   ),
   isActive: {name: 'heading', attributes: {level: 4}},
-  onClick: (editor) => () =>
-    editor?.chain().focus().toggleHeading({level: 4}).run(),
+  onClick: (editor) =>
+    editor !== null
+      ? editor.chain().focus().toggleHeading({level: 4}).run()
+      : false,
 })
 
 export const H5Control = createControl({
@@ -301,8 +318,10 @@ export const H5Control = createControl({
     </svg>
   ),
   isActive: {name: 'heading', attributes: {level: 5}},
-  onClick: (editor) => () =>
-    editor?.chain().focus().toggleHeading({level: 5}).run(),
+  onClick: (editor) =>
+    editor !== null
+      ? editor.chain().focus().toggleHeading({level: 5}).run()
+      : false,
 })
 
 export const H6Control = createControl({
@@ -326,8 +345,10 @@ export const H6Control = createControl({
     </svg>
   ),
   isActive: {name: 'heading', attributes: {level: 6}},
-  onClick: (editor) => () =>
-    editor?.chain().focus().toggleHeading({level: 6}).run(),
+  onClick: (editor) =>
+    editor !== null
+      ? editor.chain().focus().toggleHeading({level: 6}).run()
+      : false,
 })
 
 export const BlockquoteControl = createControl({
@@ -347,7 +368,8 @@ export const BlockquoteControl = createControl({
     </svg>
   ),
   isActive: {name: 'blockquote'},
-  onClick: (editor) => () => editor?.chain().focus().toggleBlockquote().run(),
+  onClick: (editor) =>
+    editor !== null ? editor.chain().focus().toggleBlockquote().run() : false,
 })
 
 export const AlignLeftControl = createControl({
@@ -360,7 +382,8 @@ export const AlignLeftControl = createControl({
       />
     </svg>
   ),
-  onClick: (editor) => () => editor?.chain().focus().setTextAlign('left').run(),
+  onClick: (editor) =>
+    editor !== null ? editor.chain().focus().setTextAlign('left').run() : false,
 })
 
 export const AlignRightControl = createControl({
@@ -373,8 +396,10 @@ export const AlignRightControl = createControl({
       />
     </svg>
   ),
-  onClick: (editor) => () =>
-    editor?.chain().focus().setTextAlign('right').run(),
+  onClick: (editor) =>
+    editor !== null
+      ? editor.chain().focus().setTextAlign('right').run()
+      : false,
 })
 
 export const AlignCenterControl = createControl({
@@ -387,8 +412,10 @@ export const AlignCenterControl = createControl({
       />
     </svg>
   ),
-  onClick: (editor) => () =>
-    editor?.chain().focus().setTextAlign('center').run(),
+  onClick: (editor) =>
+    editor !== null
+      ? editor.chain().focus().setTextAlign('center').run()
+      : false,
 })
 
 export const AlignJustifyControl = createControl({
@@ -401,8 +428,10 @@ export const AlignJustifyControl = createControl({
       />
     </svg>
   ),
-  onClick: (editor) => () =>
-    editor?.chain().focus().setTextAlign('justify').run(),
+  onClick: (editor) =>
+    editor !== null
+      ? editor.chain().focus().setTextAlign('justify').run()
+      : false,
 })
 
 export const SubscriptControl = createControl({
@@ -416,7 +445,8 @@ export const SubscriptControl = createControl({
     </svg>
   ),
   isActive: {name: 'subscript'},
-  onClick: (editor) => () => editor?.chain().focus().toggleSubscript().run(),
+  onClick: (editor) =>
+    editor !== null ? editor.chain().focus().toggleSubscript().run() : false,
 })
 
 export const SuperscriptControl = createControl({
@@ -430,7 +460,8 @@ export const SuperscriptControl = createControl({
     </svg>
   ),
   isActive: {name: 'superscript'},
-  onClick: (editor) => () => editor?.chain().focus().toggleSuperscript().run(),
+  onClick: (editor) =>
+    editor !== null ? editor.chain().focus().toggleSuperscript().run() : false,
 })
 
 export const CodeBlockControl = createControl({
@@ -444,7 +475,8 @@ export const CodeBlockControl = createControl({
     </svg>
   ),
   isActive: {name: 'codeBlock'},
-  onClick: (editor) => () => editor?.chain().focus().toggleCodeBlock().run(),
+  onClick: (editor) =>
+    editor !== null ? editor.chain().focus().toggleCodeBlock().run() : false,
 })
 
 export const HrControl = createControl({
@@ -457,5 +489,6 @@ export const HrControl = createControl({
       />
     </svg>
   ),
-  onClick: (editor) => () => editor?.chain().focus().setHorizontalRule().run(),
+  onClick: (editor) =>
+    editor !== null ? editor.chain().focus().setHorizontalRule().run() : false,
 })

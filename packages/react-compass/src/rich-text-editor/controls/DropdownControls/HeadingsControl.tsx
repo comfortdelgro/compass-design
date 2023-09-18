@@ -72,11 +72,11 @@ export const HeadingsControl = () => {
       setLevel(String(key))
       if (editor?.isEditable) {
         if (Number(key) === 0) {
-          editor?.commands.setNode('paragraph')
-          editor?.chain().focus().run()
+          editor.commands.setNode('paragraph')
+          editor.chain().focus().run()
         } else {
           editor
-            ?.chain()
+            .chain()
             .focus()
             .setHeading({level: Number(key) as Level})
             .run()

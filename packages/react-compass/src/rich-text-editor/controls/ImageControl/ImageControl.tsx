@@ -12,9 +12,8 @@ export const ImageControl = React.forwardRef<
   const addImage = React.useCallback(() => {
     if (editor?.isEditable) {
       const url = window.prompt('URL')
-
       if (url) {
-        editor?.chain().focus().setImage({src: url}).run()
+        editor.chain().focus().setImage({src: url}).run()
       }
     }
   }, [editor])

@@ -12,8 +12,8 @@ export const LinkControl = React.forwardRef<
   const setLink = React.useCallback(() => {
     const previousUrl = editor?.getAttributes('link')['href'] as string
     if (editor?.isEditable) {
-      if (editor?.isActive('link')) {
-        editor?.chain().focus().extendMarkRange('link').unsetLink().run()
+      if (editor.isActive('link')) {
+        editor.chain().focus().extendMarkRange('link').unsetLink().run()
       } else {
         const url = window.prompt('URL', previousUrl)
         // cancelled

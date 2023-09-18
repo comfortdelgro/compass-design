@@ -31,7 +31,7 @@ export const ColorControl = ({colors = defaultColors}: ColorControlProps) => {
   const handleSelectionChange = (key: React.Key) => {
     if (editor?.isEditable) {
       editor
-        ?.chain()
+        .chain()
         .focus()
         .setColor(key as string)
         .run()
