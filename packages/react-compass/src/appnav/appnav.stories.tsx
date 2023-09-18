@@ -1,4 +1,5 @@
 import Activity from '@comfortdelgro/compass-icons/react/activity'
+import ActivityOutlined from '@comfortdelgro/compass-icons/react/address-book-outlined'
 import CreditCard from '@comfortdelgro/compass-icons/react/credit-card-filled'
 import CreditCardOutlined from '@comfortdelgro/compass-icons/react/credit-card-outlined'
 import Home from '@comfortdelgro/compass-icons/react/home'
@@ -29,11 +30,9 @@ export const FourSections: React.FC = () => {
           onChange={(newIndex) => {
             setIndex(newIndex)
           }}
-          css={
-            {
-              // position: 'absolute',
-            }
-          }
+          css={{
+            position: 'absolute',
+          }}
         >
           <AppNav.Section
             activeIcon={<Home />}
@@ -43,11 +42,11 @@ export const FourSections: React.FC = () => {
           />
           <AppNav.Section
             activeIcon={<Activity />}
-            inactiveIcon={<Activity />}
+            inactiveIcon={<ActivityOutlined />}
             label='Activities'
           />
           <AppNav.Section
-            activeIcon={<NotificationOutlined />}
+            activeIcon={<Notification />}
             inactiveIcon={<NotificationOutlined />}
             label='Notifications'
           />
