@@ -19,9 +19,6 @@ export function textContent(
   if (typeof elem === 'string') {
     return elem
   }
-  if (elem.props?.textValue) {
-    return elem.props.textValue
-  }
 
   const children = elem.props?.children
   if (children instanceof Array) {

@@ -5,11 +5,11 @@ import React, {
   ReactElement,
   Ref,
   useCallback,
-  useEffect,
   useMemo,
   useState,
 } from 'react'
 import Button from '../button'
+import {useDeepCompareEffect} from '../utils/hooks'
 import {useDOMRef} from '../utils/use-dom-ref'
 import PudoItem from './pudo-item'
 import {StyledPUDO} from './pudo.styles'
@@ -51,9 +51,10 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
       addItems.filter(
         ({name}, index, currArr) =>
           index ===
-          currArr.findIndex((compareItem) => compareItem.name === name),
+            currArr.findIndex((compareItem) => compareItem.name === name) &&
+          !pudoItems.find((item) => item.name === name),
       ),
-    [addItems],
+    [addItems, pudoItems],
   )
 
   const dedupedRemoveKeys = useMemo(
@@ -151,10 +152,12 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
         newArrayPudoValues[index] = {
           name: itemProps.name,
           value: arrPudoValues[index + 1]?.value ?? '',
+          isFocusing: false,
         }
         newArrayPudoValues[index + 1] = {
           name: swapKey,
           value: arrPudoValues[index]?.value ?? '',
+          isFocusing: false,
         }
 
         setArrPudoValues(newArrayPudoValues)
@@ -180,7 +183,7 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
     />
   ))
 
-  useEffect(() => {
+  useDeepCompareEffect(() => {
     const dedupedItems = items.filter(
       ({name}, index, currArr) =>
         index === currArr.findIndex((compareItem) => compareItem.name === name),
@@ -204,9 +207,9 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
       <div className='pudo-actions'>
         {showAddButton && (
           <Button
-            css={{border: 'none'}}
             variant='ghost'
             type='button'
+            size='sm'
             onClick={handleAddItems}
             rightIcon={
               <svg
@@ -229,9 +232,9 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
 
         {showRemoveButton && (
           <Button
-            css={{border: 'none'}}
             variant='danger'
             type='button'
+            size='sm'
             onClick={handleRemoveItems}
             rightIcon={
               <svg

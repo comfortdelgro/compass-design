@@ -19,10 +19,12 @@ or
 import Chip from '@comfortdelgro/react-compass/chip'
 ```
 
-## Example
+## Chip
 
 {{"demo": "Chip.tsx"}}
 
+<!-- ## Chip Server (Experimental)
+{{"demo": "ChipServer.tsx"}} -->
 ## Props
 
 | Name           | Type        | Default | Description                                                                             |

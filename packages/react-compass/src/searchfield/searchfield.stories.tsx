@@ -17,11 +17,13 @@ export const Variants: React.FC = () => {
 
       <h3>isErrored</h3>
       <SearchField
+        label='SearchField isErrored = true'
         placeholder='Search'
         onSubmit={(text) => console.log(text)}
         value={'Initial value'}
         isErrored={true}
         css={{width: '10rem'}}
+        errorMessage='SearchField error message'
       />
 
       <h3>isDisabled</h3>

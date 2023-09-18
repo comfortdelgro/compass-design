@@ -400,6 +400,11 @@ const Root = styled('div', {
       marginBottom: '$!',
     },
   },
+  '& sup': {
+    top: 'unset',
+    fontSize: 'smaller',
+    verticalAlign: 'super',
+  },
 })
 
 const MarkdownElement = React.forwardRef(function MarkdownElement(

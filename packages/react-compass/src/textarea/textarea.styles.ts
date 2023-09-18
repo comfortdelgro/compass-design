@@ -34,13 +34,14 @@ export const StyledTextarea = styled('textarea', {
   fontWeight: '$medium',
   lineHeight: '$normal',
   padding: '$1_5 $3',
-  borderWidth: '1px',
+  borderWidth: '$light',
   borderStyle: 'solid',
   borderColor: '$divider',
   borderRadius: '$md',
   color: '$typeHeading',
   backgroundColor: '$whiteText',
   transition: 'border-color 250ms ease 0s',
+  width: '100%',
 
   '&:disabled': {
     cursor: 'not-allowed !important',
@@ -55,6 +56,7 @@ export const StyledTextarea = styled('textarea', {
     isErrored: {
       true: {
         borderColor: '$danger',
+        borderWidth: '$medium',
         '&:focus': {
           borderColor: '$danger',
         },
@@ -83,7 +85,7 @@ export const StyledTextareaWrapper = styled('div', {
   fontFamily: '$sans',
   width: 'fit-content',
 
-  '.word-count': {
+  '.cdg-word-count': {
     width: '100%',
     display: 'flex',
     justifyContent: 'flex-end',

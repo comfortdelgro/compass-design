@@ -142,14 +142,17 @@ const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
     return (
       <StyledTextareaWrapper
         css={css}
-        className={className}
+        className={className ?? 'cdg-textarea-container'}
         ref={wrapperRef}
         {...delegated}
         isDarkTheme={isDarkTheme}
         {...(variant ? {variant} : {})}
       >
         {label && (
-          <StyledTextAreaLabel htmlFor={textareaId}>
+          <StyledTextAreaLabel
+            htmlFor={textareaId}
+            className='cdg-textarea-label'
+          >
             {label}
             {isRequired && <span className='asterisk'>*</span>}
           </StyledTextAreaLabel>
@@ -187,15 +190,16 @@ const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
           onCompositionStart={onCompositionStart}
           onCompositionUpdate={onCompositionUpdate}
           resizable={resizable}
+          className='cdg-textarea'
         />
         {wordCount && (
-          <StyledTextAreaHelperText className='word-count'>
+          <StyledTextAreaHelperText className='cdg-word-count'>
             {wordCountValue}
             {maxLength ? `/${maxLength}` : null}
           </StyledTextAreaHelperText>
         )}
         {isErrored && errorMessage && (
-          <StyledTextAreaHelperText error>
+          <StyledTextAreaHelperText error className='cdg-error-message'>
             {errorMessage}
           </StyledTextAreaHelperText>
         )}

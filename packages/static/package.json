@@ -1,0 +1,66 @@
+{
+  "name": "@comfortdelgro/static",
+  "version": "0.0.0",
+  "private": true,
+  "description": "React Compass Design System by ComfortDelGro Corporation",
+  "keywords": [
+    "design system",
+    "react compass",
+    "react component library"
+  ],
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/compass.js",
+      "require": "./dist/compass.umd.cjs"
+    },
+    "./style.css": {
+      "import": "./dist/style.css",
+      "require": "./dist/style.css"
+    }
+  },
+  "main": "./dist/compass.umd.cjs",
+  "module": "./dist/compass.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "./dist"
+  ],
+  "scripts": {
+    "build": "tsc && vite build",
+    "build-storybook": "storybook build",
+    "dev:vite": "vite",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "storybook": "storybook dev -p 6006"
+  },
+  "dependencies": {
+    "@storybook/builder-vite": "^7.4.2",
+    "@storybook/core-server": "^7.4.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "vite-plugin-css-injected-by-js": "^3.3.0",
+    "vite-plugin-dts": "^3.5.3"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "7.4.2",
+    "@storybook/addon-interactions": "7.4.2",
+    "@storybook/addon-links": "7.4.2",
+    "@storybook/addon-onboarding": "1.0.8",
+    "@storybook/blocks": "7.4.2",
+    "@storybook/react": "7.4.2",
+    "@storybook/react-vite": "7.4.2",
+    "@storybook/testing-library": "0.2.1",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
+    "@typescript-eslint/eslint-plugin": "^6.0 .0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "@vitejs/plugin-react-swc": "^3.3.2",
+    "eslint": "^8.45.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "eslint-plugin-storybook": "^0.6.13",
+    "storybook": "7.4.2",
+    "typescript": "^5.2.2",
+    "vite": "^4.4.9"
+  }
+}

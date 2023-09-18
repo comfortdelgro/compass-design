@@ -61,7 +61,7 @@ export const StyledToggle = styled('div', {
       disabled: true,
       active: true,
       css: {
-        backgroundColor: '#D0EBCC',
+        backgroundColor: '#D1E8CF',
       },
     },
     {

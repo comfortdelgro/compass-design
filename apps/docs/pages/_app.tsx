@@ -1,5 +1,6 @@
 import {SSRProvider, ThemeProvider} from '@comfortdelgro/react-compass'
 import Preflight from '@comfortdelgro/react-compass/preflight'
+import '@comfortdelgro/static/style.css'
 import 'components/common/bootstrap'
 import AppHeader from 'components/layouts/AppHeader'
 import {ETheme} from 'constants/index'

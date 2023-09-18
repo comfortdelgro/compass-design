@@ -2,10 +2,9 @@
 
 We have `CarouselSlider` as a common component that can be reused in many places. The other will automatically have the logic of sliding slides, auto switch, navigation buttons...
 
-We will have so much more type of carousel: Only image, Promotion, Any content... 
+We will have so much more type of carousel: Only image, Promotion, Any content...
 
 ![ContentSlider](https://github.com/comfortdelgro/compass-design/assets/119040724/0c0192e0-b444-4c0c-ba82-9de50f45e43c)
-
 
 ### Navigation Button Click
 

@@ -1,0 +1,29 @@
+const defaultItems = [
+  {name: 'pickUp', value: '', placeholder: 'Pick up from', maxLength: 200},
+  {name: 'des1', value: '', placeholder: 'Where to', allowSwap: true},
+]
+
+const addItemsPool = [
+  {name: 'des2', value: '', placeholder: 'Where to', allowSwap: true},
+  {
+    name: 'des3',
+    icon: <MapMarked />,
+    value: '',
+    placeholder: 'New destination',
+    allowSwap: true,
+  },
+  {
+    name: 'des4',
+    icon: <InfoOutlined />,
+    value: '',
+    placeholder: 'New destination 2',
+  },
+]
+
+<Pudo
+  items={defaultItems}
+  addItems={addItemsPool}
+  addItemsLabel='Add extra destination'
+  removableItems={['des2', 'des3', 'des4']}
+  removableLabel='Remove extra destination'
+/>
