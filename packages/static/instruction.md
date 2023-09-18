@@ -165,7 +165,6 @@ You have to make sure your components in old react-compass sync with new react-c
 - Error
 - Grid
 - Icon component
-- Internationalized
 - Link
 - No Ssr
 - OTP input
@@ -239,6 +238,7 @@ You have to make sure your components in old react-compass sync with new react-c
 - Image Viewer
 - Theme (everything inside folder theme)
 ### Hai
+- Internationalized
 - Rich-text-editor
 - Speed dial
 - Table (as well as Table V2)
