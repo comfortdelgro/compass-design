@@ -1,6 +1,6 @@
 # Guidelines for enhancing React-Compass to accommodate server components
 
-## You just need to read this file if you want to know what goes behind the scene. If you just want to know how to convert our current components to server-supported components, you can just read the code of ChipServer component (src/chip-server).
+## You just need to read this file if you want to know what goes behind the scene. If you just want to know how to convert our current components to server-supported components, you can just read the code of Chip component (static/src/chip).
 
 To support server components, we need to do the following:
 
@@ -22,7 +22,7 @@ b. Variables
 Example:
 
 ```js
-<ChipServer (src/chip-server)
+<Chip (static/src/chip)
   hasCloseButton
   css={{
     border: '1px solid purple',
@@ -39,7 +39,7 @@ Example:
   }}
 >
   Close button
-</ChipServer (src/chip-server)>
+</Chip (static/src/chip)>
 ```
 
 Note: "css" prop in `@stitches/react` even allows new variable assignment. However, this feature is mostly needed on the library side; users do not really need it. So we can ignore this feature for now.
@@ -80,9 +80,9 @@ Note: for every change in terms of theming, we need to make update to both of th
 
 To apply dark theme to our components from our end, we need to create 2 ".module.css" files for each component.
 
-For example, for our ChipServer (src/chip-server) component, we have "styles/light.module.css" and "styles/dark.module.css". The first one is applied when useIsLightTheme() is true, and the second one is applied when useIsLightTheme() is false.
+For example, for our Chip (static/src/chip) component, we have "styles/light.module.css" and "styles/dark.module.css". The first one is applied when useIsLightTheme() is true, and the second one is applied when useIsLightTheme() is false.
 
-You can go ChipServer (src/chip-server) component to see how this is implemented. 
+You can go Chip (static/src/chip) component to see how this is implemented. 
 
 Note: to generate the file 'dark.module.css', you just have to copy the content of 'light.module.css' and replace all the word 'lightTheme' with 'darkTheme'. In the future, we might spend time writing a script to automate this process.
 
@@ -204,6 +204,7 @@ You have to make sure your components in old react-compass sync with new react-c
 - Chip
 - Dropdown
 - Multiple Dropdown
+- Dropdown Menu
 - Text Area
 - Text Field
 - Time Picker
@@ -226,7 +227,6 @@ You have to make sure your components in old react-compass sync with new react-c
 - Chart
 - Checkbox
 - Divider
-- Dropdown Menu
 - File
 - Gutter
 - List
