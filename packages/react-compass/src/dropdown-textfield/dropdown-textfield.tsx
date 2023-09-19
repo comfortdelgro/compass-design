@@ -127,7 +127,7 @@ const DropdownTextfield = React.forwardRef<
   return (
     <StyledDropdownTextfield ref={componentRef}>
       {label && (
-        <StyledTextFieldLabel htmlFor={id}>
+        <StyledTextFieldLabel htmlFor={id} h5={h5}>
           {label}
           {isRequired && <span className='asterisk'>*</span>}
         </StyledTextFieldLabel>
@@ -141,16 +141,9 @@ const DropdownTextfield = React.forwardRef<
           isReadOnly={isReadOnly}
           isRequired={isRequired}
           isDisabled={isDisabled}
+          h5={h5}
           css={{
-            width: '20%',
-            // color: '$grayShades60',
-            // fontSize: '$3_5',
-            // lineHeight: '$tight',
-            // fontWeight: '$normal',
-            // '& .cdg-dropdown-input': {
-            //   borderRadius: '$lg',
-            //   borderWidth: '1px',
-            // },
+            width: '25%',
           }}
         >
           {options.map((option) => (
@@ -182,6 +175,7 @@ const DropdownTextfield = React.forwardRef<
           isDisabled={isDisabled}
           minLength={Number(minLength)}
           maxLength={Number(maxLength)}
+          h5={h5}
           // onCut={onCut ?? (() => null)}
           // onCopy={onCopy ?? (() => null)}
           // onBlur={onBlur ?? (() => null)}
@@ -196,27 +190,9 @@ const DropdownTextfield = React.forwardRef<
           // onCompositionStart={onCompositionStart ?? (() => null)}
           // onCompositionUpdate={onCompositionUpdate ?? (() => null)}
           css={{
-            width: '80%',
-            // color: '$grayShades100',
-            // fontSize: '$3_5',
-            // lineHeight: '$tight',
-            // fontWeight: '$normal',
-            'div:nth-child(1)': {
-              // borderRadius: '$lg',
-              // border: `1px solid ${isErrored ? '$danger' : '$grayShades20'} `,
-            },
+            width: '75%',
             'div:nth-child(2)': {
               display: 'none',
-            },
-            input: {
-              // border: 'none',
-              // width: '100%',
-              // '&::placeholder': {
-              //   color: '$grayShades40',
-              //   fontSize: '$3_5',
-              //   lineHeight: '$tight',
-              //   fontWeight: '$normal',
-              // },
             },
           }}
         />

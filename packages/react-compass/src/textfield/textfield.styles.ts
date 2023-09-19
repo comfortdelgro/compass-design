@@ -11,6 +11,16 @@ export const StyledTextFieldLabel = styled('label', {
     marginLeft: '$1',
     color: '$danger',
   },
+  variants: {
+    h5: {
+      true: {
+        fontSize: '$label2',
+        fontWeight: '$medium',
+        color: '$grayShades80',
+        marginBottom: '$1',
+      },
+    },
+  },
 })
 
 export const StyledTextFieldBox = styled('div', {
@@ -180,6 +190,8 @@ export const StyledTextFieldWrapper = styled('div', {
         [`${StyledTextField}`]: {
           border: 'none',
           width: '100%',
+          fontSize: '$label2',
+          fontWeight: '$normal',
           '&::placeholder': {
             color: '$grayShades40',
             fontSize: '$3_5',

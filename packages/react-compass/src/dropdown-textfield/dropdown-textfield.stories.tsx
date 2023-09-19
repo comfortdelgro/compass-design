@@ -1,38 +1,39 @@
 import Singapore from '@comfortdelgro/compass-icons/react/flag-sgp'
 import USA from '@comfortdelgro/compass-icons/react/flag-usa'
 import React from 'react'
+import TextField from '../textfield'
 import {Column, Row} from '../utils'
 import DropdownTextfield, {DropdownOptions} from './dropdown-textfield'
+const dropdownOptions: DropdownOptions[] = [
+  {
+    value: 'mr',
+    label: 'Mr',
+    icon: null,
+  },
+  {
+    value: 'ms',
+    label: 'Ms',
+    icon: null,
+  },
+  {
+    value: 'mrs',
+    label: 'Mrs',
+    icon: null,
+  },
+]
+const phoneDropdownOptions: DropdownOptions[] = [
+  {
+    value: '+65',
+    label: '65',
+    icon: <Singapore />,
+  },
+  {
+    value: '+1',
+    label: '1',
+    icon: <USA />,
+  },
+]
 export const Variants: React.FC = () => {
-  const dropdownOptions: DropdownOptions[] = [
-    {
-      value: 'mr',
-      label: 'Mr',
-      icon: null,
-    },
-    {
-      value: 'ms',
-      label: 'Ms',
-      icon: null,
-    },
-    {
-      value: 'mrs',
-      label: 'Mrs',
-      icon: null,
-    },
-  ]
-  const phoneDropdownOptions: DropdownOptions[] = [
-    {
-      value: '+65',
-      label: '65',
-      icon: <Singapore />,
-    },
-    {
-      value: '+1',
-      label: '1',
-      icon: <USA />,
-    },
-  ]
   const handleInputsChange = (selectedKey: string, value: string | number) => {
     console.log({selectedKey, value})
   }
@@ -121,6 +122,34 @@ export const Variants: React.FC = () => {
           />
         </Column>
       </Row>
+    </>
+  )
+}
+
+export const H5Form: React.FC = () => {
+  return (
+    <>
+      <h4>Your Information</h4>
+      <div style={{display: 'flex', flexDirection: 'column', gap: '16px'}}>
+        <DropdownTextfield
+          options={dropdownOptions}
+          inputType='text'
+          label='Name'
+          h5
+        />
+        <DropdownTextfield
+          options={phoneDropdownOptions}
+          inputType='text'
+          label='Mobile Number'
+          h5
+        />
+        <TextField
+          h5
+          type='email'
+          value={'sallylee@gmail.com'}
+          label={'Email'}
+        />
+      </div>
     </>
   )
 }

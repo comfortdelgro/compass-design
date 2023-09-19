@@ -45,6 +45,7 @@ export const StyledDropdownWrapper = styled('div', {
           fontSize: '$label1',
           fontWeight: '$normal',
           lineHeight: '$tight',
+          padding: '$3 $4',
         },
       },
     },
