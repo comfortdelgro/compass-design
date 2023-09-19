@@ -89,7 +89,6 @@ class List extends React.Component<IProps> {
       prevState.scrollingSpeed !== this.state.scrollingSpeed &&
       prevState.scrollingSpeed === 0
     ) {
-      console.log('sad')
       this.doScrolling()
     }
   }
@@ -461,70 +460,26 @@ class List extends React.Component<IProps> {
   }
 
   onKeyDown = (e: React.KeyboardEvent) => {
-    const selectedItem = this.state.selectedItem
     const index = this.getTargetIndex(e)
     if (checkIfInteractive(e.target as Element, e.currentTarget)) {
       return
     }
     if (index === -1) return
-    if (e.key === ' ') {
-      e.preventDefault()
-      if (selectedItem === index) {
-        if (selectedItem !== this.needle) {
-          this.getChildren().forEach((item) => {
-            setItemTransition(item, 0)
-            transformItem(item, null)
-          })
-          this.props.onChange({
-            oldIndex: selectedItem,
-            newIndex: this.needle,
-          })
-          ;(this.getChildren()[this.needle] as HTMLElement).focus()
-        }
-        this.setState({
-          selectedItem: -1,
-        })
-        this.needle = -1
-      } else {
-        this.setState({
-          selectedItem: index,
-        })
-        this.needle = index
-        this.calculateOffsets()
-      }
-    }
     if (
-      (e.key === 'ArrowDown' || e.key === 'j') &&
-      selectedItem > -1 &&
+      e.key === 'ArrowDown' &&
+      index > -1 &&
       this.needle < this.props.values.length - 1
     ) {
       e.preventDefault()
-      const offset = getTranslateOffset(this.getChildren()[selectedItem]!)
+      const offset = getTranslateOffset(this.getChildren()[index]!)
       this.needle++
-      this.animateItems(this.needle, selectedItem, offset, true)
+      this.animateItems(this.needle, index, offset, true)
     }
-    if (
-      (e.key === 'ArrowUp' || e.key === 'k') &&
-      selectedItem > -1 &&
-      this.needle > 0
-    ) {
+    if (e.key === 'ArrowUp' && index > -1 && this.needle > 0) {
       e.preventDefault()
-      const offset = getTranslateOffset(this.getChildren()[selectedItem]!)
+      const offset = getTranslateOffset(this.getChildren()[index]!)
       this.needle--
-      this.animateItems(this.needle, selectedItem, offset, true)
-    }
-    if (e.key === 'Escape' && selectedItem > -1) {
-      this.getChildren().forEach((item) => {
-        setItemTransition(item, 0)
-        transformItem(item, null)
-      })
-      this.setState({
-        selectedItem: -1,
-      })
-      this.needle = -1
-    }
-    if ((e.key === 'Tab' || e.key === 'Enter') && selectedItem > -1) {
-      e.preventDefault()
+      this.animateItems(this.needle, index, offset, true)
     }
   }
 
