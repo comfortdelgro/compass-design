@@ -491,7 +491,7 @@ class List extends React.Component<IProps> {
       position: 'fixed',
       overflow: 'hidden',
       borderRadius: '4px',
-      outline: '2px solid #014AC8',
+      outline: '2px solid var(--colors-cdgBlue)',
       boxShadow:
         '0px 8px 16px 0px rgba(0, 0, 0, 0.13), 0px 2px 4px 0px rgba(0, 0, 0, 0.1)',
       top: this.state.targetY,
@@ -511,9 +511,7 @@ class List extends React.Component<IProps> {
           style={{
             cursor: this.state.itemDragged > -1 ? 'grabbing' : undefined,
             background:
-              this.state.itemDragged > -1
-                ? ' rgba(237, 235, 233, 1)'
-                : undefined,
+              this.state.itemDragged > -1 ? 'var(--colors-gray30)' : undefined,
           }}
         >
           {this.props.collection.map((item, index) => {
