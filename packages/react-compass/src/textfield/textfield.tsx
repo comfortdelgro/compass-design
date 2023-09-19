@@ -81,6 +81,8 @@ export interface Props extends StyledComponentProps {
   'aria-describedby'?: string
   'aria-details'?: string
   'aria-errormessage'?: string
+
+  h5?: boolean
 }
 
 export type TextFieldProps = Props &
@@ -130,6 +132,7 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
       onCompositionEnd,
       onCompositionStart,
       onCompositionUpdate,
+      h5 = false,
       ...ariaSafeProps
     } = props
     const isDarkTheme = useIsDarkTheme()
@@ -163,6 +166,7 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
         {...htmlProps}
         ref={textfieldRef}
         isDarkTheme={isDarkTheme}
+        h5={h5}
       >
         {label && (
           <StyledTextFieldLabel htmlFor={id}>

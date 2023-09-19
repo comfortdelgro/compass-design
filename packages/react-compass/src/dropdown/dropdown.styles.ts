@@ -32,6 +32,23 @@ export const StyledDropdownWrapper = styled('div', {
       transform: 'rotate(180deg)',
       transition: 'transform 0.3s linear',
     },
+  variants: {
+    h5: {
+      true: {
+        label: {
+          fontSize: '$label2',
+          fontWeight: '$medium',
+          color: '$grayShades80',
+          marginBottom: '$1',
+        },
+        '.cdg-dropdown-button': {
+          fontSize: '$label1',
+          fontWeight: '$normal',
+          lineHeight: '$tight',
+        },
+      },
+    },
+  },
 })
 
 export const StyledDropdownList = styled('ul', {})
@@ -136,6 +153,15 @@ export const StyledSelect = styled('div', {
         borderColor: '$danger',
         '&:focus-within': {
           borderColor: '$dangerDarker',
+        },
+      },
+    },
+    h5: {
+      true: {
+        borderRadius: '$lg',
+        color: '$grayShades100',
+        svg: {
+          color: '$grayShades60',
         },
       },
     },

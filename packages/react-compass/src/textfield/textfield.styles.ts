@@ -162,6 +162,33 @@ export const StyledTextFieldWrapper = styled('div', {
         },
       },
     },
+    h5: {
+      true: {
+        color: '$grayShades100',
+        fontSize: '$label1',
+        lineHeight: '$tight',
+        fontWeight: '$normal',
+        [`${StyledTextFieldLabel}`]: {
+          fontSize: '$label2',
+          fontWeight: '$medium',
+          color: '$grayShades80',
+          marginBottom: '$1',
+        },
+        [`${StyledTextFieldBox}`]: {
+          borderRadius: '$lg',
+        },
+        [`${StyledTextField}`]: {
+          border: 'none',
+          width: '100%',
+          '&::placeholder': {
+            color: '$grayShades40',
+            fontSize: '$3_5',
+            lineHeight: '$tight',
+            fontWeight: '$normal',
+          },
+        },
+      },
+    },
   },
 })
 

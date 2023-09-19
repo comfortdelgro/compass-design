@@ -1,6 +1,7 @@
 import React, {Key} from 'react'
 import Dropdown from '../dropdown'
 import TextField from '../textfield'
+import {StyledTextFieldLabel} from '../textfield/textfield.styles'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
@@ -9,9 +10,10 @@ import {
 } from './dropdown-textfield.styles'
 
 interface Props extends StyledComponentProps {
-  inputType: 'text' | 'numeric' | 'email'
+  id?: string
+  inputType: 'text' | 'numeric' | 'email' | 'password'
   options: DropdownOptions[]
-  onChange: (dropdownValue: string, inputValue: string | number) => void
+  onChange?: (dropdownValue: string, inputValue: string | number) => void
   label: string
   isErrored?: boolean
   errorMessage?: string
@@ -20,24 +22,24 @@ interface Props extends StyledComponentProps {
   isReadOnly?: boolean
   defaultSelectedKey?: string
   defaultInputValue?: string | number
-  inputValue?: string | number
-  inputRef?: React.RefObject<HTMLInputElement>
-  onChangeEvent?: (event: React.ChangeEvent<HTMLInputElement>) => void
-  onCopy?: React.ClipboardEventHandler<HTMLInputElement>
-  onCut?: React.ClipboardEventHandler<HTMLInputElement>
-  onPaste?: React.ClipboardEventHandler<HTMLInputElement>
-  onCompositionStart?: React.CompositionEventHandler<HTMLInputElement>
-  onCompositionEnd?: React.CompositionEventHandler<HTMLInputElement>
-  onCompositionUpdate?: React.CompositionEventHandler<HTMLInputElement>
-  onSelect?: React.ReactEventHandler<HTMLInputElement>
-  onBeforeInput?: React.FormEventHandler<HTMLInputElement>
-  onInput?: React.FormEventHandler<HTMLInputElement>
-  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void
-  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
-  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
-  onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void
-
+  // onChangeEvent?: (event: React.ChangeEvent<HTMLInputElement>) => void
+  // onCopy?: React.ClipboardEventHandler<HTMLInputElement>
+  // onCut?: React.ClipboardEventHandler<HTMLInputElement>
+  // onPaste?: React.ClipboardEventHandler<HTMLInputElement>
+  // onCompositionStart?: React.CompositionEventHandler<HTMLInputElement>
+  // onCompositionEnd?: React.CompositionEventHandler<HTMLInputElement>
+  // onCompositionUpdate?: React.CompositionEventHandler<HTMLInputElement>
+  // onSelect?: React.ReactEventHandler<HTMLInputElement>
+  // onBeforeInput?: React.FormEventHandler<HTMLInputElement>
+  // onInput?: React.FormEventHandler<HTMLInputElement>
+  // onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void
+  // onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
+  // onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
+  // onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void
+  placeholder?: string
   autoFocus?: boolean
+  maxLength?: number
+  minLength?: number
   'aria-activedescendant'?: string
   'aria-autocomplete'?: 'none' | 'inline' | 'list' | 'both'
   'aria-haspopup'?:
@@ -55,6 +57,7 @@ interface Props extends StyledComponentProps {
   'aria-describedby'?: string
   'aria-details'?: string
   'aria-errormessage'?: string
+  h5?: boolean
 }
 
 export type DropdownTextfieldProps = Props &
@@ -71,15 +74,35 @@ const DropdownTextfield = React.forwardRef<
   DropdownTextfieldProps
 >((props, ref) => {
   const {
+    id = '',
     options,
     defaultSelectedKey,
     defaultInputValue,
-    label,
     isErrored = false,
     isReadOnly = false,
     isRequired = false,
+    isDisabled = false,
     errorMessage = '',
+    placeholder = '',
+    inputType = 'text',
+    label = '',
+    minLength,
+    maxLength,
     onChange: onDropdownInputChange,
+    // onCut,
+    // onCopy,
+    // onBlur,
+    // onFocus,
+    // onPaste,
+    // onInput,
+    // onKeyUp,
+    // onSelect,
+    // onKeyDown,
+    // onBeforeInput,
+    // onCompositionEnd,
+    // onCompositionStart,
+    // onCompositionUpdate,
+    h5 = false,
   } = props
   const componentRef = useDOMRef(ref)
   const [selectedDropdownKey, setDropdownKey] = React.useState<Key>(
@@ -103,6 +126,12 @@ const DropdownTextfield = React.forwardRef<
   }, [selectedDropdownKey, textfieldValue])
   return (
     <StyledDropdownTextfield ref={componentRef}>
+      {label && (
+        <StyledTextFieldLabel htmlFor={id}>
+          {label}
+          {isRequired && <span className='asterisk'>*</span>}
+        </StyledTextFieldLabel>
+      )}
       <InputWrapper className='input-wrapper'>
         <Dropdown.Select
           aria-label={label}
@@ -111,36 +140,84 @@ const DropdownTextfield = React.forwardRef<
           isErrored={isErrored}
           isReadOnly={isReadOnly}
           isRequired={isRequired}
+          isDisabled={isDisabled}
           css={{
             width: '20%',
-            '& .cdg-dropdown-input': {
-              borderRadius: '$lg',
-              // borderWidth: '2px',
-              // border: '1px solid $grayShades20',
-            },
+            // color: '$grayShades60',
+            // fontSize: '$3_5',
+            // lineHeight: '$tight',
+            // fontWeight: '$normal',
+            // '& .cdg-dropdown-input': {
+            //   borderRadius: '$lg',
+            //   borderWidth: '1px',
+            // },
           }}
         >
           {options.map((option) => (
-            <Dropdown.Item key={option.value} textValue={option.label}>
-              {option.label}
+            <Dropdown.Item
+              key={option.value}
+              textValue={option.label}
+              css={{
+                'div:first-child': {
+                  gap: '$2',
+                  alignItems: 'center',
+                },
+              }}
+            >
+              {option.icon} {option.label}
             </Dropdown.Item>
           ))}
         </Dropdown.Select>
         <TextField
+          id={id}
           aria-label={label}
+          type={inputType}
           onChange={handleInputChange}
           value={textfieldValue}
           errorMessage={errorMessage}
           isErrored={isErrored}
           isReadOnly={isReadOnly}
           isRequired={isRequired}
+          placeholder={placeholder}
+          isDisabled={isDisabled}
+          minLength={Number(minLength)}
+          maxLength={Number(maxLength)}
+          // onCut={onCut ?? (() => null)}
+          // onCopy={onCopy ?? (() => null)}
+          // onBlur={onBlur ?? (() => null)}
+          // onFocus={onFocus ?? (() => null)}
+          // onPaste={onPaste ?? (() => null)}
+          // onInput={onInput ?? (() => null)}
+          // onKeyUp={onKeyUp ?? (() => null)}
+          // onSelect={onSelect ?? (() => null)}
+          // onKeyDown={onKeyDown ?? (() => null)}
+          // onBeforeInput={onBeforeInput ?? (() => null)}
+          // onCompositionEnd={onCompositionEnd ?? (() => null)}
+          // onCompositionStart={onCompositionStart ?? (() => null)}
+          // onCompositionUpdate={onCompositionUpdate ?? (() => null)}
           css={{
+            width: '80%',
+            // color: '$grayShades100',
+            // fontSize: '$3_5',
+            // lineHeight: '$tight',
+            // fontWeight: '$normal',
+            'div:nth-child(1)': {
+              // borderRadius: '$lg',
+              // border: `1px solid ${isErrored ? '$danger' : '$grayShades20'} `,
+            },
             'div:nth-child(2)': {
               display: 'none',
             },
-            width: '80%',
-            border: '1px solid $grayShades20',
-            borderRadius: '$lg',
+            input: {
+              // border: 'none',
+              // width: '100%',
+              // '&::placeholder': {
+              //   color: '$grayShades40',
+              //   fontSize: '$3_5',
+              //   lineHeight: '$tight',
+              //   fontWeight: '$normal',
+              // },
+            },
           }}
         />
       </InputWrapper>

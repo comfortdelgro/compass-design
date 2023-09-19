@@ -7,8 +7,13 @@ export const StyledDropdownTextfield = styled('div', {
   justifyContent: 'center',
   flexDirection: 'column',
   width: '100%',
-  gap: '$1',
+  '.dropdown-textfield__label': {
+    fontSize: '$label1',
+    fontWeight: '$semibold',
+    marginBottom: '$2',
+  },
   '.dropdown-textfield__error': {
+    marginTop: '$1',
     color: '$danger',
     fontSize: '$label2',
     fontWeight: '$medium',
