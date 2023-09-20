@@ -7,7 +7,7 @@ import {StyledAvatar} from './avatar.styles'
 interface Props extends StyledComponentProps {
   display?: number
   children?: React.ReactNode
-  size?: 'lg' | 'md' | 'sm' | 'xs'
+  size?: 'lg' | 'md' | 'sm' | 'xs' | 'xxs'
   disabledAnimation?: boolean
 }
 
@@ -36,12 +36,14 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
       if (size == 'sm' && avatars.length - display > 9) return '0.8rem'
       if (size == 'xs' && avatars.length - display < 10) return '0.8rem'
       if (size == 'xs' && avatars.length - display > 9) return '0.5rem'
+      if (size == 'xxs') return '0.5rem'
       return '1rem'
     }
 
     return (
       <StyledAvatarGroup
         css={css}
+        size={size}
         ref={avatarGroupRef}
         disabledAnimation={disabledAnimation}
         {...delegated}
