@@ -42,6 +42,7 @@ export default function DemoToolbar(props: any) {
   }
 
   const handleResetFocusClick = () => {
+    initialFocusRef.current.style.display = 'block'
     initialFocusRef.current.focus()
   }
 
