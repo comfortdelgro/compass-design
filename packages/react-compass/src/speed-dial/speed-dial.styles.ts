@@ -1,6 +1,5 @@
-import { styled } from '../theme'
-import type { VariantProps } from '../utils/stitches.types'
-
+import {styled} from '../theme'
+import type {VariantProps} from '../utils/stitches.types'
 
 export const StyledSpeedDial = styled('div', {
   width: 'fit-content',
@@ -79,16 +78,6 @@ export const StyledSpeedDialActions = styled('ul', {
   '&.speed-dial__actions--right': {
     flexDirection: 'row',
   },
-  variants: {
-    isOpenAction: {
-      true: {
-        // display: 'flex',
-      },
-      false: {
-        // display: 'none',
-      },
-    },
-  },
 })
 export const SpeedDialAction = styled('button', {
   display: 'flex',
@@ -101,7 +90,6 @@ export const SpeedDialAction = styled('button', {
   border: 'none',
   borderRadius: '50%',
   fontSize: '24px',
-  cursor: 'pointer',
   transition: 'background-color 0.3s ease',
   boxShadow:
     '0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12)',
@@ -124,6 +112,16 @@ export const SpeedDialAction = styled('button', {
 
   '&.speed-dial__action--left': {
     marginRight: '10px',
+  },
+  variants: {
+    isVisible: {
+      true: {
+        cursor: 'pointer',
+      },
+      false: {
+        cursor: 'default',
+      },
+    },
   },
 })
 
