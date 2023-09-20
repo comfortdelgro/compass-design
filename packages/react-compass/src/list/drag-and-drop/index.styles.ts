@@ -21,6 +21,7 @@ export const StyledDragAndDrop = styled('ul', {
     margin: 0,
     listStyle: 'none',
     borderRadius: '4px',
+    touchAction: 'none',
   },
   li: {
     listStyle: 'none',

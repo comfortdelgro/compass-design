@@ -4,7 +4,6 @@ import {
   binarySearch,
   checkIfInteractive,
   getTranslateOffset,
-  isTouchEvent,
   schd,
   setItemTransition,
   transformItem,
@@ -50,9 +49,8 @@ class List extends React.Component<IProps> {
     scrollingSpeed: 0,
     scrollWindow: false,
   }
-  schdOnMouseMove: {(e: MouseEvent): void; cancel(): void}
-  schdOnTouchMove: {(e: TouchEvent): void; cancel(): void}
-  schdOnEnd: {(e: Event): void; cancel(): void}
+  schdOnPointerMove: {(e: PointerEvent): void; cancel(): void}
+  schdOnEnd: {(e: PointerEvent): void; cancel(): void}
 
   static defaultProps = {
     removableByMove: false,
@@ -60,25 +58,13 @@ class List extends React.Component<IProps> {
 
   constructor(props: IProps) {
     super(props)
-    this.schdOnMouseMove = schd(this.onMouseMove)
-    this.schdOnTouchMove = schd(this.onTouchMove)
+    this.schdOnPointerMove = schd(this.onPointerMove)
     this.schdOnEnd = schd(this.onEnd)
   }
 
   override componentDidMount() {
     this.calculateOffsets()
-    document.addEventListener(
-      'touchstart',
-      this.onMouseOrTouchStart as EventListener,
-      {
-        passive: false,
-        capture: false,
-      },
-    )
-    document.addEventListener(
-      'mousedown',
-      this.onMouseOrTouchStart as EventListener,
-    )
+    document.addEventListener('pointerdown', this.onPointerStart)
   }
 
   override componentDidUpdate(
@@ -94,17 +80,11 @@ class List extends React.Component<IProps> {
   }
 
   override componentWillUnmount() {
-    document.removeEventListener('touchstart', (e) =>
-      this.onMouseOrTouchStart(e as MouseEvent & TouchEvent),
-    )
-    document.removeEventListener('mousedown', (e) =>
-      this.onMouseOrTouchStart(e as MouseEvent & TouchEvent),
-    )
+    document.removeEventListener('pointerdown', this.onPointerStart)
     if (this.dropTimeout) {
       window.clearTimeout(this.dropTimeout)
     }
-    this.schdOnMouseMove.cancel()
-    this.schdOnTouchMove.cancel()
+    this.schdOnPointerMove.cancel()
     this.schdOnEnd.cancel()
   }
 
@@ -148,14 +128,12 @@ class List extends React.Component<IProps> {
     )
   }
 
-  onMouseOrTouchStart = (e: MouseEvent & TouchEvent) => {
+  onPointerStart = (event: PointerEvent) => {
     if (this.dropTimeout && this.state.itemDragged > -1) {
       window.clearTimeout(this.dropTimeout)
       this.finishDrop()
     }
-    const isTouch = isTouchEvent(e)
-    if (!isTouch && e.button !== 0) return
-    const index = this.getTargetIndex(e as unknown as TEvent)
+    const index = this.getTargetIndex(event as unknown as TEvent)
     if (index === -1 || !this.props.values[index]) {
       if (this.state.selectedItem !== -1) {
         this.setState({selectedItem: -1})
@@ -164,37 +142,18 @@ class List extends React.Component<IProps> {
       return
     }
     const listItemTouched = this.getChildren()[index] as HTMLElement
-    const handle = listItemTouched.querySelector('[data-movable-handle]')
-    if (handle && !handle.contains(e.target as Node)) {
+    const handle = listItemTouched.querySelector('[data-handler]')
+    if (handle && !handle.contains(event.target as Node)) {
       return
     }
-    if (checkIfInteractive(e.target as HTMLElement, listItemTouched)) {
+    if (checkIfInteractive(event.target as HTMLElement, listItemTouched)) {
       return
     }
-    e.preventDefault()
-    if (isTouch) {
-      const opts = {passive: false}
-      listItemTouched.style.touchAction = 'none'
-      document.addEventListener('touchend', this.schdOnEnd, opts)
-      document.addEventListener('touchmove', this.schdOnTouchMove, opts)
-      document.addEventListener('touchcancel', this.schdOnEnd, opts)
-    } else {
-      document.addEventListener('mousemove', this.schdOnMouseMove)
-      document.addEventListener('mouseup', this.schdOnEnd)
-
-      const listItemDragged = this.getChildren()[
-        this.state.itemDragged
-      ] as HTMLElement
-      if (listItemDragged && listItemDragged.style) {
-        listItemDragged.style.touchAction = ''
-      }
-    }
-    this.onStart(
-      listItemTouched,
-      isTouch ? e.touches[0]!.clientX : e.clientX,
-      isTouch ? e.touches[0]!.clientY : e.clientY,
-      index,
-    )
+    event.preventDefault()
+    document.addEventListener('pointermove', this.schdOnPointerMove)
+    document.addEventListener('pointercancel', this.schdOnEnd)
+    document.addEventListener('pointerup', this.schdOnEnd)
+    this.onStart(listItemTouched, event.clientX, event.clientY, index)
   }
 
   getYOffset = () => {
@@ -233,14 +192,9 @@ class List extends React.Component<IProps> {
     })
   }
 
-  onMouseMove = (e: MouseEvent) => {
-    e.cancelable && e.preventDefault()
-    this.onMove(e.clientX, e.clientY)
-  }
-
-  onTouchMove = (e: TouchEvent) => {
-    e.cancelable && e.preventDefault()
-    this.onMove(e.touches[0]!.clientX, e.touches[0]!.clientY)
+  onPointerMove = (event: PointerEvent) => {
+    event.cancelable && event.preventDefault()
+    this.onMove(event.clientX, event.clientY)
   }
 
   onWheel = (e: React.WheelEvent) => {
@@ -385,13 +339,11 @@ class List extends React.Component<IProps> {
     return false
   }
 
-  onEnd = (e: TouchEvent & MouseEvent) => {
-    e.cancelable && e.preventDefault()
-    document.removeEventListener('mousemove', this.schdOnMouseMove)
-    document.removeEventListener('touchmove', this.schdOnTouchMove)
-    document.removeEventListener('mouseup', this.schdOnEnd)
-    document.removeEventListener('touchup', this.schdOnEnd)
-    document.removeEventListener('touchcancel', this.schdOnEnd)
+  onEnd = (event: PointerEvent) => {
+    event.cancelable && event.preventDefault()
+    document.removeEventListener('pointermove', this.schdOnPointerMove)
+    document.removeEventListener('pointerup', this.schdOnEnd)
+    document.removeEventListener('pointercancel', this.schdOnEnd)
 
     const removeItem =
       this.props.removableByMove && this.isDraggedItemOutOfBounds()
