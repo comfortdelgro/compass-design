@@ -25,6 +25,10 @@ import TagBoxV2 from '@comfortdelgro/react-compass/tag-box-v2'
 
 {{"demo": "TagBoxV2Basic.tsx"}}
 
+### Error
+
+{{"demo": "TagBoxV2Error.tsx"}}
+
 ### With Errored Items
 
 {{"demo": "WithErroredItems.tsx"}}

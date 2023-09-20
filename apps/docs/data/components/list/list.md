@@ -29,9 +29,25 @@ import {
 
 {{"demo": "ListBasic.tsx"}}
 
+### Disabled
+
+{{"demo": "DisabledList.tsx"}}
+
+### Size
+
+{{"demo": "SizeList.tsx"}}
+
+### Variant
+
+{{"demo": "VariantList.tsx"}}
+
 ### ListCard
 
 {{"demo": "ListCard.tsx"}}
+
+### Variant
+
+{{"demo": "VariantList.tsx"}}
 
 ### List Interactive
 
