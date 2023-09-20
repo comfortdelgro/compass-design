@@ -31,6 +31,10 @@ import Radio from '@comfortdelgro/react-compass/radio'
 
 {{"demo": "RadioOrientation.tsx"}}
 
+## H5 variant
+
+{{"demo": "RadioH5.tsx"}}
+
 ## Props
 
 ### Radio.Group Props
@@ -50,12 +54,14 @@ import Radio from '@comfortdelgro/react-compass/radio'
 
 ### Radio Props
 
-| Name        | Type        | Default | Description                                                                                                            |
-| :---------- | :---------- | :------ | :--------------------------------------------------------------------------------------------------------------------- |
-| title       | `string`    | —       | Display title for radio                                                                                                |
-| description | `string`    | —       | Display description for radio                                                                                          |
-| rightLabel  | `ReactNode` | —       | Display rightLabel for radio                                                                                           |
-| tooltip     | `string`    | —       | Display tooltip for radio                                                                                              |
-| value       | `string`    | -       | The value of the radio button, used when submitting an HTML form.                                                      |
-| isDisabled  | `boolean`   | false   | Whether the radio button is disabled or not. Shows that a selection exists, but is not available in that circumstance. |
-| css         | `CSS`       | —       | The system prop that allows defining system overrides as well as additional CSS styles.                                |
+| Name          | Type                                 | Default    | Description                                                                                                            |
+| :------------ | :----------------------------------- | :--------- | :--------------------------------------------------------------------------------------------------------------------- |
+| variant       | `"h5"` \| `"simple"` \| `"outlined"` | `"simple"` |                                                                                                                        |
+| title         | `string`                             | —          | Display title for radio                                                                                                |
+| description   | `string`                             | —          | Display description for radio                                                                                          |
+| rightLabel    | `ReactNode`                          | —          | Display rightLabel for radio                                                                                           |
+| tooltip       | `string`                             | —          | Display tooltip for radio                                                                                              |
+| value         | `string`                             | -          | The value of the radio button, used when submitting an HTML form.                                                      |
+| isDisabled    | `boolean`                            | false      | Whether the radio button is disabled or not. Shows that a selection exists, but is not available in that circumstance. |
+| css           | `CSS`                                | —          | The system prop that allows defining system overrides as well as additional CSS styles.                                |
+| inputPosition | `"left"` \| `"right"`                | `"left"`   | The position of the radio input icon                                                                                   |

@@ -21,9 +21,13 @@ import PageHeader from '@comfortdelgro/react-compass/page-header'
 
 ## Example
 
-### Full features
+### Basic features
 
 {{"demo": "PageHeader.tsx"}}
+
+### Colors
+
+{{"demo": "PageHeaderColors.tsx"}}
 
 ## Props
 

@@ -1,9 +1,9 @@
 ---
 title: React Actionbar component
-components: Actionbar
+components: Action Bar
 ---
 
-# ActionBar
+# Action Bar
 
 <p class="description">The ActionBar component is a versatile user interface element that provides a cohesive grouping of buttons, icons, and interactive elements within a container.</p>
 

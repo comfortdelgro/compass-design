@@ -10,18 +10,29 @@ export const StyledAvatarGroup = styled('div', {
   width: 'fit-content',
 
   [`& ${StyledAvatar}`]: {
-    marginRight: '-$2',
+    marginRight: '-$3',
     '&:hover': {
       marginTop: '-$4',
     },
   },
 
   variants: {
+    size: {
+      lg: {},
+      md: {},
+      sm: {},
+      xs: {},
+      xxs: {
+        [`& ${StyledAvatar}`]: {
+          marginRight: '-$2',
+        },
+      },
+    },
     disabledAnimation: {
       false: {},
       true: {
         [`& ${StyledAvatar}`]: {
-          marginRight: '-$2',
+          marginRight: '-$3',
           '&:hover': {
             marginTop: '0px',
           },

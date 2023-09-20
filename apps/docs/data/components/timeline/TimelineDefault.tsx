@@ -1,5 +1,4 @@
-import {Column} from '@comfortdelgro/react-compass'
-import Icon from '@comfortdelgro/react-compass/icon'
+import {Column, Icon, Typography} from '@comfortdelgro/react-compass'
 import Timeline from '@comfortdelgro/react-compass/timeline'
 import {faCalendarDay} from '@fortawesome/free-solid-svg-icons'
 
@@ -13,13 +12,13 @@ const Default: React.FC = () => {
   return (
     <Column>
       <div style={{position: 'relative', left: '11.55rem'}}>
-        <Timeline mode='vertical' labelAlignment='left' itemAlignment='left'>
+        <Timeline>
           <Timeline.Item
             label='June'
-            dot={
+            icon={
               <Icon
                 icon={faCalendarDay}
-                style={{color: 'green', height: '50%'}}
+                style={{color: 'white', height: '50%'}}
               />
             }
           >
@@ -28,7 +27,7 @@ const Default: React.FC = () => {
           </Timeline.Item>
           <Timeline.Item
             label='July'
-            dot={
+            icon={
               <Icon
                 icon={faCalendarDay}
                 style={{color: 'red', height: '50%'}}
@@ -40,10 +39,10 @@ const Default: React.FC = () => {
           </Timeline.Item>
           <Timeline.Item
             label='August'
-            dot={
+            icon={
               <Icon
                 icon={faCalendarDay}
-                style={{color: 'green', height: '50%'}}
+                style={{color: 'white', height: '50%'}}
               />
             }
           >
@@ -56,5 +55,4 @@ const Default: React.FC = () => {
     </Column>
   )
 }
-
 export default Default

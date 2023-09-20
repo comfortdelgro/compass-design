@@ -100,14 +100,20 @@ export const routes: TSideNavItem[] = [
           "Avatars can be used in everything including a person's profile picture, dialog menu, ext.",
       },
       {
+        title: 'App Navigation',
+        pathname: '/app-navigation',
+        description:
+          'A navigation bar containing a number of destinations at the top or bottom of the screen .',
+      },
+      {
         title: 'Button',
         pathname: '/button',
         description:
           'Buttons allow users to take actions, and make choices, with a single tap.',
       },
       {
-        title: 'ActionBar',
-        pathname: '/actionbar',
+        title: 'Action Bar',
+        pathname: '/action-bar',
         description:
           'The ActionBar component is a versatile user interface element that provides a cohesive grouping of buttons, icons, and interactive elements within a container.',
       },
@@ -240,11 +246,6 @@ export const routes: TSideNavItem[] = [
         description: 'Charts visualize data in graphical form.',
       },
       {
-        title: 'Data Grid',
-        pathname: '/data-grid',
-        description: 'Data Grid displays tabular data in rows and columns.',
-      },
-      {
         title: 'Date Picker',
         pathname: '/date-picker',
         description:
@@ -283,11 +284,6 @@ export const routes: TSideNavItem[] = [
         description: 'Gutter provides spacing between grid or layout items.',
       },
       {
-        title: 'Layouts',
-        pathname: '/layouts',
-        description: 'Layouts define the structure of a web page or app.',
-      },
-      {
         title: 'Multiple Dropdown',
         pathname: '/multiple-dropdown',
         description: 'Multiple Dropdown allows selecting multiple options.',
@@ -297,11 +293,6 @@ export const routes: TSideNavItem[] = [
         pathname: '/no-ssr',
         description:
           'No-SSR ensures components are not rendered on the server.',
-      },
-      {
-        title: 'Preflight',
-        pathname: '/preflight',
-        description: 'Preflight sets baseline styles for consistent rendering.',
       },
       {
         title: 'Progress Bar',
@@ -384,7 +375,7 @@ export const routes: TSideNavItem[] = [
         description: 'The sample of portal layout, admin page layout.',
       },
       {
-        title: 'QuantityToggle',
+        title: 'Quantity Toggle',
         pathname: '/quantity-toggle',
         description:
           'Quantity Toggle fields allow users to enter a number, and increment or decrement the value using stepper buttons.',
@@ -425,10 +416,10 @@ export const routes: TSideNavItem[] = [
           'Display a placeholder preview of your content before the data gets loaded to reduce load-time frustration.',
       },
       {
-        title: 'Slide action/Swiper',
+        title: 'Slide action | Swiper',
         pathname: '/slide-action',
         description:
-          'A slide action/swiper for important actions, such as purchase order, turn off privacy setting, etc.',
+          'Usually use for important actions, such as purchase order, changes privacy setting, turn off devices, etc.',
       },
       {
         title: 'Slider',
@@ -518,6 +509,27 @@ export const routes: TSideNavItem[] = [
         title: 'Wizard',
         pathname: '/wizard',
         description: 'Using for display stepper.',
+      },
+      {
+        title: 'Navbar',
+        pathname: '/navbar',
+        description: `The navbar is your site's navigation hub`,
+      },
+      {
+        title: 'Progress',
+        pathname: '/progress',
+        description: 'The progress component tracks task completion.',
+      },
+      {
+        title: 'PUDO',
+        pathname: '/pudo',
+        description:
+          'A journey planner that allows user to input multiple locations.',
+      },
+      {
+        title: 'Toast',
+        pathname: '/toast',
+        description: 'The toast component displays a message.',
       },
     ],
   },

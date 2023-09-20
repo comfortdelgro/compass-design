@@ -1,4 +1,5 @@
 import React, {MouseEvent, ReactNode} from 'react'
+import {keyframes} from '../theme/stitches.config'
 
 // Define the interface for the props expected by the Ripple component
 interface Props {
@@ -35,8 +36,13 @@ const Ripple: React.FC<Props> = ({children, isEnabled = false}: Props) => {
       event.clientY - button.getBoundingClientRect().top - radius
     }px`
 
-    // Add the 'ripple' class to the circle element
+    // Add the 'ripple' styles to the circle element
     circle.classList.add('ripple')
+    circle.style.position = 'absolute'
+    circle.style.borderRadius = '50%'
+    circle.style.transform = 'scale(0)'
+    circle.style.animation = `${rippleKeyframes} 600ms linear`
+    circle.style.backgroundColor = 'rgba(255, 255, 255, 0.7)'
 
     // Check if there is an existing element with the 'ripple' class within the button
     const ripple = button.getElementsByClassName('ripple')[0]
@@ -66,5 +72,12 @@ const Ripple: React.FC<Props> = ({children, isEnabled = false}: Props) => {
       })
     : (children as React.ReactElement)
 }
+
+const rippleKeyframes = keyframes({
+  to: {
+    transform: 'scale(4)',
+    opacity: 0,
+  },
+})
 
 export default Ripple

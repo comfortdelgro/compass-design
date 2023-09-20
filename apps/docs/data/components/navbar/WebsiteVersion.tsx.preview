@@ -1,0 +1,8 @@
+<Navbar variant='website' color='white'>
+    <Workbench width={'40px'} height={'40px'} />
+    <Navbar.Links>
+      <Button variant='ghost'>Home</Button>
+      <Button variant='ghost'>Services</Button>
+      <Button variant='ghost'>Products</Button>
+    </Navbar.Links>
+</Navbar>

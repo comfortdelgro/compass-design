@@ -174,7 +174,6 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
           {leftIcon ? <div className='left-icon'>{leftIcon}</div> : null}
           {prefix ? <div className='prefix'>{prefix}</div> : null}
           <StyledTextField
-            css={css}
             id={id}
             prefix=''
             placeholder={placeholder}

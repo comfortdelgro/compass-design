@@ -29,6 +29,10 @@ import Card from '@comfortdelgro/react-compass/card'
 
 {{"demo": "CardVariant.tsx"}}
 
+### Shadowless
+
+{{"demo": "CardShadowless.tsx"}}
+
 ## Props
 
 ### Card

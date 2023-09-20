@@ -27,7 +27,7 @@ const DocsAppSideNav = (props: TDocsAppSideNav) => {
   return (
     <Sidenav
       css={{
-        height: '100vh',
+        height: '93vh',
         position: 'relative',
         background: '$background',
         width: 312,

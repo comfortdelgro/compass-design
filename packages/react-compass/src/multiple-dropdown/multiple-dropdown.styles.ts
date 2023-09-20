@@ -19,8 +19,8 @@ export const StyledDropdown = styled('div', {
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
-  padding: '$1_5 $4',
-  gap: '$1',
+  padding: '$2 $4',
+  gap: '$2',
   backgroundColor: '$background',
   transition: '$default',
   borderWidth: '1px',
@@ -35,6 +35,8 @@ export const StyledDropdown = styled('div', {
     padding: 0,
     border: 'none',
     background: 'transparent',
+    width: '$6',
+    height: '$6',
     svg: {
       width: '$4',
       height: '$4',
@@ -158,7 +160,7 @@ export const StyledDropdownWrapper = styled('div', {
   label: {
     fontSize: '$label1',
     fontWeight: '$semibold',
-    marginBottom: '$2',
+    marginBottom: '$1',
     display: 'inline-block',
     width: '100%',
     span: {

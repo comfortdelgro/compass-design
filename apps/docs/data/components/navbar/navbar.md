@@ -25,9 +25,15 @@ import Navbar from '@comfortdelgro/react-compass/navbar'
 
 {{"demo": "Navbar.tsx"}}
 
-<!-- ### Custom styling
+### Website Version
 
-{{"demo": "LinkCustom.tsx"}} -->
+{{"demo": "WebsiteVersion.tsx"}}
+
+### With alternative element
+
+Change screen size to less than 768px
+
+{{"demo": "Alternative.tsx"}}
 
 ## Props
 

@@ -50,6 +50,7 @@ const ModalTrigger = React.forwardRef<HTMLDivElement, ModalTriggerProps>(
           css={css}
           ref={modalWrapperRef}
           onClick={(e) => handleClickBackdrop?.(e as unknown as MouseEvent)}
+          className='modal-wrapper'
           {...delegated}
         >
           {ModalElement &&

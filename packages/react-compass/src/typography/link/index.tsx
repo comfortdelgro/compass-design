@@ -4,7 +4,7 @@ import {StyledComponentProps} from '../../utils/stitches.types'
 
 interface Props extends StyledComponentProps {
   variant?: 'link1' | 'link2' | 'link3'
-  weight?: 'none' | 'semibold'
+  weight?: 'none' | 'semibold' | 'bold'
   children: React.ReactNode
 }
 
@@ -30,6 +30,9 @@ const Link: React.FC<linkTypographyProps> = (props) => {
       weight: {
         none: {},
         semibold: {
+          fontWeight: '$semibold',
+        },
+        bold: {
           fontWeight: '$bold',
         },
       },

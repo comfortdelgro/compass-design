@@ -71,7 +71,7 @@ By default, it respects the default accessibility behavior and settings of a `<d
 | :------------- | :------------------------- | :---------- | :---------------------------------------------------------------------------------------------------------------------------------- |
 | `css`          | `CSS`                      | —           | The system prop that allows defining system overrides as well as additional CSS styles.                                             |
 | `variant`      | `'default'` \| `'h5'`      | `'default'` |                                                                                                                                     |
-| `drawerMode`   | `'modal'` \| `'non-modal'` | `'modal'`   | `'modal'`[^1]<br/>`'non-modal'`[^2]                                                                                                 |
+| `drawerMode`   | `'modal'` \| `'non-modal'` | `'modal'`   | `'modal'`<sup>(1)</sup><br/>`'non-modal'`<sup>(2)</sup>                                                                             |
 | `preventFocus` | `boolean`                  | `false`     | If `true`, disable a default behavior of `<dialog>` element: Browser won't autofocus on the first nested focusable element anymore. |
 | `preventClose` | `boolean`                  | `false`     | If `true`, the drawer won't close when users press `Escape` key or click/tap on the backdrop.                                       |
 
@@ -93,5 +93,5 @@ By default, it respects the default accessibility behavior and settings of a `<d
 | `disableAddBodyAttr` | `boolean`                     | `true`                                                               | If `true`, when open the H5 drawer, it will NOT add inert attribute and `overflow: hidden` to the `<body>` tag.                                                                                                                            |
 | `disableDragClose`   | `boolean`                     | `true`                                                               | If `true`, the H5 drawer will NOT close itself if user drags and drops it below the default height.                                                                                                                                        |
 
-[^1]: Act the same as a default `<dialog/>`. It will be rendered on the top-layer with a backdrop. Everything other than the drawer and its contents will be ignored by the browsers and can't be interact with.<br/>
-[^2]: It has no backdrop and also doesn't render on the top-layer. It can not be closed by pressing the `ESC` key. The content below the non-modal drawer can be interacted. [Read more](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog/#accessibility_considerations).
+(1): Act the same as a default `<dialog/>`. It will be rendered on the top-layer with a backdrop. Everything other than the drawer and its contents will be ignored by the browsers and can't be interact with.<br/>
+(2): It has no backdrop and also doesn't render on the top-layer. It can not be closed by pressing the `ESC` key. The content below the non-modal drawer can be interacted. [Read more](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog/#accessibility_considerations).

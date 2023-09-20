@@ -1,5 +1,17 @@
 ## 2.9.0
 
+## 2.18.0
+
+### Minor Changes
+
+- 2d7ef1e3: Fix bugs
+
+## 2.17.0
+
+### Minor Changes
+
+- 5c734b65: Fix minor bugs
+
 ## 2.16.0
 
 ### Minor Changes

@@ -8,7 +8,7 @@ export const StyledNavbarActions = styled('div', {
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'row',
-    gap: '$8',
+    gap: '$2',
     margin: '0 $4',
   },
 

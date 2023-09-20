@@ -3,7 +3,7 @@ title: React File component
 components: File
 ---
 
-# Chart
+# File
 
 <p class="description">
 The File component allows you to display state and preview of the file uploaded.</p>

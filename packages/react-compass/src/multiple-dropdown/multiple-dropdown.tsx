@@ -172,15 +172,15 @@ const MultipleDropdown = React.forwardRef<
   const inputRef = useDOMRef<HTMLInputElement>(null)
 
   const dropdownDisabledKeys = React.useMemo(
-    () => disabledValues || disabledKeys,
+    () => (disabledValues.length ? disabledValues : disabledKeys),
     [disabledValues, disabledKeys],
   )
   const defaultDropdownValues = React.useMemo(
-    () => defaultValues || defaultSelectedKeys,
+    () => (defaultValues?.length ? defaultValues : defaultSelectedKeys),
     [defaultValues, defaultSelectedKeys],
   )
   const dropdownValues = React.useMemo(
-    () => values || selectedKeys,
+    () => (values?.length ? values : selectedKeys),
     [values, selectedKeys],
   )
   const isUncontrolledComponent = React.useMemo(
@@ -190,7 +190,7 @@ const MultipleDropdown = React.forwardRef<
     [defaultDropdownValues, selectedKeys],
   )
   const errorValues = React.useMemo(
-    () => erroredValues || erroredKeys,
+    () => (erroredValues?.length ? erroredValues : erroredKeys),
     [erroredValues, erroredKeys],
   )
 
