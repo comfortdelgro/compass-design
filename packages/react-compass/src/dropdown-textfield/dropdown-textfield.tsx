@@ -22,20 +22,20 @@ interface Props extends StyledComponentProps {
   isReadOnly?: boolean
   defaultSelectedKey?: string
   defaultInputValue?: string | number
-  // onChangeEvent?: (event: React.ChangeEvent<HTMLInputElement>) => void
-  // onCopy?: React.ClipboardEventHandler<HTMLInputElement>
-  // onCut?: React.ClipboardEventHandler<HTMLInputElement>
-  // onPaste?: React.ClipboardEventHandler<HTMLInputElement>
-  // onCompositionStart?: React.CompositionEventHandler<HTMLInputElement>
-  // onCompositionEnd?: React.CompositionEventHandler<HTMLInputElement>
-  // onCompositionUpdate?: React.CompositionEventHandler<HTMLInputElement>
-  // onSelect?: React.ReactEventHandler<HTMLInputElement>
-  // onBeforeInput?: React.FormEventHandler<HTMLInputElement>
-  // onInput?: React.FormEventHandler<HTMLInputElement>
-  // onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void
-  // onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
-  // onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
-  // onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void
+  onChangeEvent?: (event: React.ChangeEvent<HTMLInputElement>) => void
+  onCopy?: React.ClipboardEventHandler<HTMLInputElement>
+  onCut?: React.ClipboardEventHandler<HTMLInputElement>
+  onPaste?: React.ClipboardEventHandler<HTMLInputElement>
+  onCompositionStart?: React.CompositionEventHandler<HTMLInputElement>
+  onCompositionEnd?: React.CompositionEventHandler<HTMLInputElement>
+  onCompositionUpdate?: React.CompositionEventHandler<HTMLInputElement>
+  onSelect?: React.ReactEventHandler<HTMLInputElement>
+  onBeforeInput?: React.FormEventHandler<HTMLInputElement>
+  onInput?: React.FormEventHandler<HTMLInputElement>
+  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
+  onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void
   placeholder?: string
   autoFocus?: boolean
   maxLength?: number
@@ -89,19 +89,19 @@ const DropdownTextfield = React.forwardRef<
     minLength,
     maxLength,
     onChange: onDropdownInputChange,
-    // onCut,
-    // onCopy,
-    // onBlur,
-    // onFocus,
-    // onPaste,
-    // onInput,
-    // onKeyUp,
-    // onSelect,
-    // onKeyDown,
-    // onBeforeInput,
-    // onCompositionEnd,
-    // onCompositionStart,
-    // onCompositionUpdate,
+    onCut,
+    onCopy,
+    onBlur,
+    onFocus,
+    onPaste,
+    onInput,
+    onKeyUp,
+    onSelect,
+    onKeyDown,
+    onBeforeInput,
+    onCompositionEnd,
+    onCompositionStart,
+    onCompositionUpdate,
     h5 = false,
   } = props
   const componentRef = useDOMRef(ref)
@@ -176,19 +176,19 @@ const DropdownTextfield = React.forwardRef<
           minLength={Number(minLength)}
           maxLength={Number(maxLength)}
           h5={h5}
-          // onCut={onCut ?? (() => null)}
-          // onCopy={onCopy ?? (() => null)}
-          // onBlur={onBlur ?? (() => null)}
-          // onFocus={onFocus ?? (() => null)}
-          // onPaste={onPaste ?? (() => null)}
-          // onInput={onInput ?? (() => null)}
-          // onKeyUp={onKeyUp ?? (() => null)}
-          // onSelect={onSelect ?? (() => null)}
-          // onKeyDown={onKeyDown ?? (() => null)}
-          // onBeforeInput={onBeforeInput ?? (() => null)}
-          // onCompositionEnd={onCompositionEnd ?? (() => null)}
-          // onCompositionStart={onCompositionStart ?? (() => null)}
-          // onCompositionUpdate={onCompositionUpdate ?? (() => null)}
+          onCut={onCut ?? (() => null)}
+          onCopy={onCopy ?? (() => null)}
+          onBlur={onBlur ?? (() => null)}
+          onFocus={onFocus ?? (() => null)}
+          onPaste={onPaste ?? (() => null)}
+          onInput={onInput ?? (() => null)}
+          onKeyUp={onKeyUp ?? (() => null)}
+          onSelect={onSelect ?? (() => null)}
+          onKeyDown={onKeyDown ?? (() => null)}
+          onBeforeInput={onBeforeInput ?? (() => null)}
+          onCompositionEnd={onCompositionEnd ?? (() => null)}
+          onCompositionStart={onCompositionStart ?? (() => null)}
+          onCompositionUpdate={onCompositionUpdate ?? (() => null)}
           css={{
             width: '75%',
             'div:nth-child(2)': {
