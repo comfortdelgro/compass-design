@@ -16,6 +16,7 @@ function SecondarySidebar() {
         isOpen={isPrimaryOpen}
         handleClose={() => setIsPrimaryOpen(false)}
         variant='secondary'
+        position='right'
       >
         <Sidebar.Title>My title</Sidebar.Title>
         <Sidebar.Content>My content</Sidebar.Content>

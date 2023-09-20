@@ -295,11 +295,6 @@ export const routes: TSideNavItem[] = [
           'No-SSR ensures components are not rendered on the server.',
       },
       {
-        title: 'Preflight',
-        pathname: '/preflight',
-        description: 'Preflight sets baseline styles for consistent rendering.',
-      },
-      {
         title: 'Progress Bar',
         pathname: '/progress-bar',
         description: 'Progress Bar indicates completion of a task.',

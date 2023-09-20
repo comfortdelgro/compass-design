@@ -33,6 +33,14 @@ We provide 2 type of dropdown that can be used to select: `Dropdown.Select` and 
 
 {{"demo": "UnControlled.tsx"}}
 
+### Error
+
+{{"demo": "Error.tsx"}}
+
+### Allows Custom Value:
+
+{{"demo": "CustomValue.tsx"}}
+
 ### With Section
 
 {{"demo": "DropdownSection.tsx"}}
@@ -40,6 +48,18 @@ We provide 2 type of dropdown that can be used to select: `Dropdown.Select` and 
 ### With Header
 
 {{"demo": "DropdownHeader.tsx"}}
+
+### With Icon
+
+{{"demo": "DropdownIcon.tsx"}}
+
+### Disable Clearable
+
+{{"demo": "DisableClearable.tsx"}}
+
+### Loading
+
+{{"demo": "Loading.tsx"}}
 
 ## Props:
 
