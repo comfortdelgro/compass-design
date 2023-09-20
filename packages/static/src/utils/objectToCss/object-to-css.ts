@@ -1,4 +1,3 @@
-'use client'
 import theme from '../../theme-static/theme'
 export interface StyleObject {
   [key: string]: string | StyleObject
