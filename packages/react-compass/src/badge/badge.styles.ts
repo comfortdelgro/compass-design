@@ -13,8 +13,11 @@ export const StyledBadge = styled('div', {
   display: 'flex',
   justifyContent: 'space-between',
   alignContent: 'center',
+  alignItems: 'center',
   gap: '$2',
-
+  height: '$6_5',
+  fontSize: '$label2',
+  lineHeight: '18px',
   '& > .icon': {
     height: '100%',
     width: '$3_5',
@@ -86,11 +89,7 @@ export const StyledBadge = styled('div', {
       offline: {},
     },
     statusSize: {
-      '8': {
-        width: '$2',
-        height: '$2',
-        padding: 0,
-      },
+      '8': {width: '$2', height: '$2', padding: 0, '.icon': {width: '$1'}},
       '12': {width: '$3', height: '$3', padding: 0, '.icon': {width: '$2'}},
       '16': {width: '$4', height: '$4', padding: 0, '.icon': {width: '$2'}},
       '20': {width: '$5', height: '$5', padding: 0, '.icon': {width: '$3'}},
@@ -122,11 +121,6 @@ export const StyledBadge = styled('div', {
     size: {
       sm: {
         height: '$4_5',
-        fontSize: '$label2',
-        lineHeight: '18px',
-      },
-      md: {
-        height: '$6_5',
         fontSize: '$label2',
         lineHeight: '18px',
       },

@@ -11,7 +11,7 @@ export const Basic: React.FC = () => (
   <Column>
     <h3>Basic Badge</h3>
     <Row>
-      <Badge label='Default' size='md' />
+      <Badge label='Default' />
     </Row>
   </Column>
 )
@@ -20,22 +20,22 @@ export const Colors: React.FC = () => (
   <Column>
     <h3>Colors</h3>
     <Row>
-      <Badge label='Info' color='info' size='md' />
-      <Badge label='Success' color='success' size='md' />
-      <Badge label='Danger' color='danger' size='md' />
-      <Badge label='Warning' color='warning' size='md' />
+      <Badge label='Info' color='info' />
+      <Badge label='Success' color='success' />
+      <Badge label='Danger' color='danger' />
+      <Badge label='Warning' color='warning' />
     </Row>
     <Row>
-      <Badge label='Info' color='info' variant='secondary' size='md' />
-      <Badge label='Success' color='success' variant='secondary' size='md' />
-      <Badge label='Danger' color='danger' variant='secondary' size='md' />
-      <Badge label='Warning' color='warning' variant='secondary' size='md' />
+      <Badge label='Info' color='info' variant='secondary' />
+      <Badge label='Success' color='success' variant='secondary' />
+      <Badge label='Danger' color='danger' variant='secondary' />
+      <Badge label='Warning' color='warning' variant='secondary' />
     </Row>
     <Row>
-      <Badge label='Info' color='info' variant='outline' size='md' />
-      <Badge label='Success' color='success' variant='outline' size='md' />
-      <Badge label='Danger' color='danger' variant='outline' size='md' />
-      <Badge label='Warning' color='warning' variant='outline' size='md' />
+      <Badge label='Info' color='info' variant='outline' />
+      <Badge label='Success' color='success' variant='outline' />
+      <Badge label='Danger' color='danger' variant='outline' />
+      <Badge label='Warning' color='warning' variant='outline' />
     </Row>
   </Column>
 )
@@ -113,8 +113,8 @@ export const Sizes: React.FC = () => (
       <Badge label='Small' variant='primary' size='sm' icon />
     </Row>
     <Row>
-      <h4>1. Medium</h4>
-      <Badge label='Medium' variant='primary' size='md' icon />
+      <h4>1. Default</h4>
+      <Badge label='Default' variant='primary' icon />
     </Row>
     <Row>
       <h4>2. Large</h4>
@@ -126,7 +126,7 @@ export const Status: React.FC = () => (
   <Column>
     <h3>Status</h3>
     <Row>
-      <Badge status='online' variant='rounded' statusSize='8' />
+      <Badge status='online' variant='rounded' statusSize='8' icon={<Tick />} />
       <Badge
         status='online'
         variant='rounded'
@@ -159,7 +159,7 @@ export const Status: React.FC = () => (
       />
     </Row>
     <Row>
-      <Badge status='away' variant='rounded' statusSize='8' />
+      <Badge status='away' variant='rounded' statusSize='8' icon={<Clock />} />
       <Badge status='away' variant='rounded' statusSize='12' icon={<Clock />} />
       <Badge status='away' variant='rounded' statusSize='16' icon={<Clock />} />
       <Badge status='away' variant='rounded' statusSize='20' icon={<Clock />} />
