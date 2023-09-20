@@ -23,7 +23,7 @@ const Toolbar = React.forwardRef<HTMLDivElement, ToolbarProps>((props, ref) => {
     const handleResize = () => {
       const currentToolbar = toolbarRef.current
       if (currentToolbar) {
-        currentToolbar.style.maxHeight = '38px'
+        currentToolbar.style.maxHeight = '44px'
       }
       setExpand(false)
       if (toolbarRef.current) {
@@ -42,7 +42,7 @@ const Toolbar = React.forwardRef<HTMLDivElement, ToolbarProps>((props, ref) => {
     setExpand(isExpanded)
     const currentToolbar = toolbarRef.current
     if (currentToolbar) {
-      currentToolbar.style.maxHeight = isExpanded ? '300px' : '38px'
+      currentToolbar.style.maxHeight = isExpanded ? '300px' : '44px'
     }
   }
 

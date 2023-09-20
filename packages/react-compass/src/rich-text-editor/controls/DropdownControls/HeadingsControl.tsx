@@ -71,15 +71,17 @@ export const HeadingsControl = () => {
   const handleSelectionChange = React.useCallback(
     (key: React.Key) => {
       setLevel(String(key))
-      if (Number(key) === 0) {
-        editor?.commands.setNode('paragraph')
-        editor?.chain().focus().run()
-      } else {
-        editor
-          ?.chain()
-          .focus()
-          .setHeading({level: Number(key) as Level})
-          .run()
+      if (editor?.isEditable) {
+        if (Number(key) === 0) {
+          editor.commands.setNode('paragraph')
+          editor.chain().focus().run()
+        } else {
+          editor
+            .chain()
+            .focus()
+            .setHeading({level: Number(key) as Level})
+            .run()
+        }
       }
     },
     [editor],
@@ -116,6 +118,7 @@ export const HeadingsControl = () => {
         width: '124px',
         height: '28px',
         float: 'left',
+        margin: '0 $2 $2',
         button: {
           color: '$gray110',
         },
