@@ -21,7 +21,7 @@ export const Default: React.FC = () => {
         handleClose={() => setIsDefaultOpen(false)}
       >
         <Sidebar.Title>My title</Sidebar.Title>
-        <Sidebar.Content>
+        <Sidebar.Content style={{gap: '16px'}}>
           <TextField name='title' />
           <TextField name='subtitle' />
           <Dropdown.ComboBox
@@ -33,6 +33,7 @@ export const Default: React.FC = () => {
             <Dropdown.Item key='kangaroo'>Kangaroo</Dropdown.Item>
             <Dropdown.Item key='snake'>Snake</Dropdown.Item>
           </Dropdown.ComboBox>
+          <p style={{height: '1000px', flexShrink: '0'}}>Sample content</p>
         </Sidebar.Content>
         <Sidebar.Actions>
           <Button css={{width: '45%', height: '100%', fontSize: '1em'}}>
