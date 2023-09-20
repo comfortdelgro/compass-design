@@ -1,9 +1,12 @@
 import Singapore from '@comfortdelgro/compass-icons/react/flag-sgp'
 import USA from '@comfortdelgro/compass-icons/react/flag-usa'
 import React from 'react'
+import Dropdown from '../dropdown'
+import Textarea from '../textarea'
 import TextField from '../textfield'
 import {Column, Row} from '../utils'
 import DropdownTextfield, {DropdownOptions} from './dropdown-textfield'
+
 const dropdownOptions: DropdownOptions[] = [
   {
     value: 'mr',
@@ -148,6 +151,22 @@ export const H5Form: React.FC = () => {
           type='email'
           value={'sallylee@gmail.com'}
           label={'Email'}
+        />
+      </div>
+
+      <h4>Your Information</h4>
+      <div style={{display: 'flex', flexDirection: 'column', gap: '16px'}}>
+        <Dropdown.Select h5 label='Feedback' defaultSelectedKey={'General'}>
+          <Dropdown.Item key={'General'}>General</Dropdown.Item>
+        </Dropdown.Select>
+        <TextField placeholder='Enter trip number' h5 />
+        <Textarea
+          variant='h5'
+          placeholder='Type your feedback here'
+          resizable={false}
+          wordCount
+          maxLength={200}
+          label={'Details'}
         />
       </div>
     </>
