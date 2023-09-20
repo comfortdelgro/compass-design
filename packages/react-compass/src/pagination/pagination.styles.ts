@@ -56,4 +56,17 @@ export const StyledPagination = styled('nav', {
   flexWrap: 'wrap',
 })
 
+export const StyledPaginationItemCounting = styled('div', {
+  fontWeight: '600',
+})
+
+export const StyledPaginationRowsCounting = styled('div', {
+  fontWeight: '600',
+  display: 'flex',
+  whiteSpace: 'nowrap',
+  marginRight: 'auto',
+  alignItems: 'center',
+  gap: '10px',
+})
+
 export type PaginationVariantProps = VariantProps<typeof StyledPagination>

@@ -8,7 +8,7 @@ export default defineConfig({
     react(),
     dts({
       insertTypesEntry: true,
-      exclude: ['**/__tests__/**/*', '**/*.test-d.ts', '  .stories'],
+      exclude: ['**/__tests__/**/*', '**/*.test-d.ts', '*.stories', '.storybook'],
       include: ['src'],
     }),
   ],

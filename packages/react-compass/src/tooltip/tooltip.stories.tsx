@@ -6,6 +6,7 @@ import TooltipTrigger from './tooltip-trigger'
 
 export const Controlled: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const [isOpenSimple, setIsOpenSimple] = useState(false)
 
   return (
     <>
@@ -17,12 +18,23 @@ export const Controlled: React.FC = () => {
         }}
       >
         <Button>Trigger</Button>
-        <Tooltip title='Title' dismissible>
+        <Tooltip title='Title' dismissible css={{backgroundColor: '#0142AF'}}>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente
           quam ullam amet est rerum in enim doloribus laborum beatae veniam
           corrupti blanditiis, neque fuga, ipsam ut consequuntur laboriosam.
           Tempora, sit?
         </Tooltip>
+      </TooltipTrigger>
+
+      <h3>Simple Tooltip State: {isOpenSimple ? 'opened' : 'closed'}</h3>
+      <TooltipTrigger
+        isOpen={isOpenSimple}
+        onOpenChange={(isOpenSimple) => {
+          setIsOpenSimple(isOpenSimple)
+        }}
+      >
+        <Button>Trigger</Button>
+        <Tooltip>This is simple tooltip</Tooltip>
       </TooltipTrigger>
     </>
   )

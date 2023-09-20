@@ -21,6 +21,7 @@ export const Individual = () => (
       <Avatar label='Albert Einstein' image={images[1]} size='md' />
       <Avatar label='Albert Einstein' image={images[2]} size='sm' />
       <Avatar label='Albert Einstein' image={images[3]} size='xs' />
+      <Avatar label='Albert Einstein' image={images[4]} size='xxs' />
     </Row>
 
     <h3>2. Letter Avatar</h3>
@@ -30,6 +31,7 @@ export const Individual = () => (
       <Avatar label='Albert Einstein' size='md' />
       <Avatar label='Albert Einstein' size='sm' />
       <Avatar label='Albert Einstein' size='xs' />
+      <Avatar label='Albert Einstein' size='xxs' />
     </Row>
 
     <h3>3. Icon Avatar</h3>
@@ -39,13 +41,24 @@ export const Individual = () => (
       <Avatar icon={<FontAwesomeIcon icon={faBug} />} size='md' />
       <Avatar icon={<FontAwesomeIcon icon={faBug} />} size='sm' />
       <Avatar icon={<FontAwesomeIcon icon={faBug} />} size='xs' />
+      <Avatar icon={<FontAwesomeIcon icon={faBug} />} size='xxs' />
     </Row>
   </>
 )
 
 export const Grouped = () => (
   <>
-    <h3>1. Extra Small</h3>
+    <h3>1. Extra Extra Small</h3>
+    <Avatar.Group display={5} size='xxs' disabledAnimation>
+      <Avatar label='Leonhard Euler' image={images[0]} size='xxs' />
+      <Avatar label='Isaac Newton' image={images[1]} size='xxs' />
+      <Avatar label='Alan Turing' image={images[2]} size='xxs' />
+      <Avatar label='David Hilbert' image={images[3]} size='xxs' />
+      <Avatar label='Edwin Hubble' image={images[4]} size='xxs' />
+      <Avatar label='Ada Lovelace' image={images[0]} size='xxs' />
+      <Avatar label='Max Planck' image={images[1]} size='xxs' />
+    </Avatar.Group>
+    <h3>2. Extra Small</h3>
     <Avatar.Group display={5} size='xs' disabledAnimation>
       <Avatar label='Leonhard Euler' image={images[0]} size='xs' />
       <Avatar label='Isaac Newton' image={images[1]} size='xs' />
@@ -55,7 +68,7 @@ export const Grouped = () => (
       <Avatar label='Ada Lovelace' image={images[0]} size='xs' />
       <Avatar label='Max Planck' image={images[1]} size='xs' />
     </Avatar.Group>
-    <h3>2. Small</h3>
+    <h3>3. Small</h3>
     <Avatar.Group display={5} size='sm' disabledAnimation>
       <Avatar label='Leonhard Euler' image={images[0]} size='sm' />
       <Avatar label='Isaac Newton' image={images[1]} size='sm' />
@@ -65,7 +78,7 @@ export const Grouped = () => (
       <Avatar label='Ada Lovelace' image={images[0]} size='sm' />
       <Avatar label='Max Planck' image={images[1]} size='sm' />
     </Avatar.Group>
-    <h3>3. Medium</h3>
+    <h3>4. Medium</h3>
     <Avatar.Group display={5} size='md' disabledAnimation>
       <Avatar label='Leonhard Euler' image={images[0]} size='md' />
       <Avatar label='Isaac Newton' image={images[1]} size='md' />
@@ -75,7 +88,7 @@ export const Grouped = () => (
       <Avatar label='Ada Lovelace' image={images[0]} size='md' />
       <Avatar label='Max Planck' image={images[1]} size='md' />
     </Avatar.Group>
-    <h3>4. Large</h3>
+    <h3>5. Large</h3>
     <Avatar.Group display={5} size='lg' disabledAnimation>
       <Avatar label='Leonhard Euler' image={images[0]} size='lg' />
       <Avatar label='Isaac Newton' image={images[1]} size='lg' />
