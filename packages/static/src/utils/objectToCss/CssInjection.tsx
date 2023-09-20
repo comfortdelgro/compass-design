@@ -1,4 +1,3 @@
-'use client'
 import React from 'react'
 import generateRandomString from '../generateRandomString'
 import objectToCSS, {StyleObject} from './object-to-css'
