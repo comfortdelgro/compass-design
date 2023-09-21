@@ -25,7 +25,7 @@ const RenderDocument = (
   }
   return platform === 'react'
     ? documentToReactComponents(document, documentOptions)
-    : documentToHtmlString(document, documentOptions)
+    : documentToHtmlString(document)
 }
 
 export default RenderDocument
