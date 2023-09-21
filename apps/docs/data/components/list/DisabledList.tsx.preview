@@ -1,0 +1,7 @@
+<List
+    isDisabled
+    title='Title'
+    description='Line 1'
+    leftInfo={<Avatar label='A' />}
+    rightInfo={{text: 'Details', icon: <Icon icon={faChevronRight} />}}
+/>

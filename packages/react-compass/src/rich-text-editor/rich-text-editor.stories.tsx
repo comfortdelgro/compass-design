@@ -12,15 +12,9 @@ export const Default: React.FC = () => {
             <RichTextEditor.Undo />
             <RichTextEditor.Redo />
           </RichTextEditor.ControlsGroup>
-          <RichTextEditor.ControlsGroup>
-            <RichTextEditor.HeadingsControl />
-          </RichTextEditor.ControlsGroup>
-          <RichTextEditor.ControlsGroup>
-            <RichTextEditor.ColorControl />
-          </RichTextEditor.ControlsGroup>
-          <RichTextEditor.ControlsGroup>
-            <RichTextEditor.TextAlginmentSelector />
-          </RichTextEditor.ControlsGroup>
+          <RichTextEditor.HeadingsControl />
+          <RichTextEditor.ColorControl />
+          <RichTextEditor.TextAlginmentSelector />
           <RichTextEditor.ControlsGroup>
             <RichTextEditor.Bold />
             <RichTextEditor.Italic />

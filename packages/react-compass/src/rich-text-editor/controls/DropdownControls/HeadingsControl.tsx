@@ -1,6 +1,8 @@
+import {Editor} from '@tiptap/react'
 import React from 'react'
 import {useRichTextEditorContext} from '../../rich-text-editor.context'
 import Select from '../../select'
+
 export type HeadingsControlProps = {
   levels?: number[]
 }
@@ -69,19 +71,43 @@ export const HeadingsControl = () => {
   const handleSelectionChange = React.useCallback(
     (key: React.Key) => {
       setLevel(String(key))
-      if (Number(key) === 0) {
-        editor?.commands.setNode('paragraph')
-        editor?.chain().focus().run()
-      } else {
-        editor
-          ?.chain()
-          .focus()
-          .setHeading({level: Number(key) as Level})
-          .run()
+      if (editor?.isEditable) {
+        if (Number(key) === 0) {
+          editor.commands.setNode('paragraph')
+          editor.chain().focus().run()
+        } else {
+          editor
+            .chain()
+            .focus()
+            .setHeading({level: Number(key) as Level})
+            .run()
+        }
       }
     },
     [editor],
   )
+
+  React.useEffect(() => {
+    editor?.on('transaction', ({editor}) => {
+      handleSelectedHeadingChange(editor as Editor)
+    })
+  }, [editor])
+
+  const handleSelectedHeadingChange = (editor: Editor) => {
+    if (editor.isActive('heading', {level: 1})) {
+      setLevel('1')
+    } else if (editor.isActive('heading', {level: 2})) {
+      setLevel('2')
+    } else if (editor.isActive('heading', {level: 3})) {
+      setLevel('3')
+    } else if (editor.isActive('heading', {level: 4})) {
+      setLevel('4')
+    } else if (editor.isActive('heading', {level: 5})) {
+      setLevel('5')
+    } else {
+      setLevel('0')
+    }
+  }
 
   return (
     <Select
@@ -92,6 +118,7 @@ export const HeadingsControl = () => {
         width: '124px',
         height: '28px',
         float: 'left',
+        margin: '0 $2 $2',
         button: {
           color: '$gray110',
         },

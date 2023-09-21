@@ -1,0 +1,11 @@
+<SearchField
+  placeholder='Search'
+  onSubmit={(text) => console.log(text)}
+  isH5Variant
+/>
+<SearchField
+  isDisabled
+  placeholder='Search'
+  isH5Variant
+  onSubmit={(text) => console.log(text)}
+/>

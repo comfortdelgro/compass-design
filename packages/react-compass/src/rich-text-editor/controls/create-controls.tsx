@@ -8,7 +8,7 @@ interface CreateControlProps {
   icon: React.FC
   label: string
   isActive?: {name: string; attributes?: Record<string, any> | string}
-  onClick: (editor: Editor | null) => () => void
+  onClick: (editor: Editor | null) => boolean
 }
 
 export function createControl({
@@ -20,15 +20,21 @@ export function createControl({
   const CreatedControl = forwardRef<HTMLButtonElement, PremadeControlProps>(
     (props, ref) => {
       const {editor} = useRichTextEditorContext()
+      const handleClick = React.useCallback(() => {
+        if (editor !== null && editor.isEditable) {
+          return onClick(editor)
+        }
+        return false
+      }, [editor])
+
       return (
         <ControlBase
           active={
-            isActive?.name
-              ? editor?.isActive(isActive.name, isActive.attributes) ?? false
-              : false
+            !!isActive?.name &&
+            !!editor?.isActive(isActive.name, isActive.attributes)
           }
           ref={ref}
-          onClick={onClick(editor)}
+          onClick={handleClick}
           icon={icon}
           aria-label={label}
           {...props}

@@ -5,6 +5,6 @@ export const StyledNavbarLinks = styled('ul', {
   display: 'flex',
   margin: 0,
   padding: 0,
-  gap: '4px',
+  gap: '$2',
   flexWrap: 'wrap',
 })

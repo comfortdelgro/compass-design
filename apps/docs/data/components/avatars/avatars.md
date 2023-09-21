@@ -39,7 +39,7 @@ Image avatars can be created by passing standard `image` props to the component.
 | :---- | :---------------------------- | :------ | :--------------------------------------------------------------------------------------------------- |
 | label | `String`                      | —       | The label, used as fallback for image. The avatars would show the initials of the labels.            |
 | image | `String `                     | —       | Image of the avatars takes the highest priority. We pass the image's address as string to this prop. |
-| size  | `xs`\|`sm`\|`md`\|`lg`        | —       | Sizes of the avatars.                                                                                |
+| size  | `xxs`\|`xs`\|`sm`\|`md`\|`lg` | —       | Sizes of the avatars.                                                                                |
 | icon  | `ReactNode`\|`false`\| `true` | false   | The icon of the alerts. It'd disappear if the value is false.                                        |
 | css   | `CSS`                         | —       | The system prop that allows defining system overrides as well as additional CSS styles.              |
 

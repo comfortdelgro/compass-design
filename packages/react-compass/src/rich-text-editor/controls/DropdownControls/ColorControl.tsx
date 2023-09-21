@@ -29,11 +29,13 @@ export const ColorControl = ({colors = defaultColors}: ColorControlProps) => {
   const {editor} = useRichTextEditorContext()
   const colorSet = new Set(colors)
   const handleSelectionChange = (key: React.Key) => {
-    editor
-      ?.chain()
-      .focus()
-      .setColor(key as string)
-      .run()
+    if (editor?.isEditable) {
+      editor
+        .chain()
+        .focus()
+        .setColor(key as string)
+        .run()
+    }
   }
   return (
     <Select
@@ -44,6 +46,7 @@ export const ColorControl = ({colors = defaultColors}: ColorControlProps) => {
         width: '70px',
         height: '28px',
         float: 'left',
+        margin: '0 $2 $2',
         button: {
           color: '$gray110',
         },

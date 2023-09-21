@@ -1,18 +1,20 @@
 import React, {memo, useCallback, useState} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
+import SingleInput from './SingleInput'
 import {
   OtpInputContainerVariantProps,
   StyledOtpInputContainer,
 } from './otpInput.styles'
-import SingleInput from './SingleInput'
 
 export interface Props extends StyledComponentProps {
-  length: number
-  onChangeOTP: (otp: string) => unknown
+  /** @default 6 */
+  length?: number
+  onChangeOTP: (otp: string) => void
   autoFocus?: boolean
   isNumberInput?: boolean
   disabled?: boolean
+  isMobile?: boolean
 }
 export type OTPInputProps = Props &
   OtpInputContainerVariantProps &
@@ -22,10 +24,11 @@ const OTPInputComponent = React.forwardRef<HTMLDivElement, OTPInputProps>(
   (props, ref) => {
     const {
       css = {},
-      length,
+      length = 6,
       isNumberInput,
       autoFocus,
       disabled,
+      isMobile = false,
       onChangeOTP,
       ...delegated
     } = props
@@ -118,9 +121,9 @@ const OTPInputComponent = React.forwardRef<HTMLDivElement, OTPInputProps>(
             e.preventDefault()
             if (otpValues[activeInput]) {
               changeCodeAtFocus('')
-            } else {
-              focusPrevInput()
             }
+
+            focusPrevInput()
             break
           }
           case 'ArrowLeft': {
@@ -178,23 +181,30 @@ const OTPInputComponent = React.forwardRef<HTMLDivElement, OTPInputProps>(
     )
 
     return (
-      <StyledOtpInputContainer css={css} ref={inputRef} {...delegated}>
-        {Array(length)
-          .fill('')
-          .map((_, index) => (
-            <SingleInput
-              key={`SingleInput-${index}`}
-              focus={activeInput === index}
-              autoFocus={autoFocus}
-              value={otpValues && otpValues[index]}
-              onFocus={handleOnFocus(index)}
-              onChange={handleOnChange}
-              onKeyDown={handleOnKeyDown}
-              onBlur={onBlur}
-              onPaste={handleOnPaste}
-              disabled={disabled}
-            />
-          ))}
+      <StyledOtpInputContainer
+        css={css}
+        ref={inputRef}
+        isMobile={isMobile}
+        {...delegated}
+      >
+        {Array.from(Array(length).keys()).map((index) => (
+          <SingleInput
+            key={`SingleInput-${index}`}
+            focus={activeInput === index}
+            autoFocus={autoFocus}
+            value={otpValues && otpValues[index]}
+            onFocus={handleOnFocus(index)}
+            onChange={handleOnChange}
+            onKeyDown={handleOnKeyDown}
+            onBlur={onBlur}
+            onPaste={handleOnPaste}
+            {...(isNumberInput
+              ? {type: 'number', pattern: 'd{1}', inputMode: 'numeric'}
+              : undefined)}
+            autoComplete='one-time-code'
+            disabled={disabled}
+          />
+        ))}
       </StyledOtpInputContainer>
     )
   },

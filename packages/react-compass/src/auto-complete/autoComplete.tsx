@@ -62,10 +62,20 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
     const triggeringElement =
       triggerElementRef.current?.querySelector('input') ??
       triggerElementRef.current
-    const clonedChilren = React.Children.map(children, (child) => {
+
+    const onFocusHandler = () => {
+      if (!searchedValue || !onSearch) return
+      onSearch(searchedValue)
+    }
+    const clonedChildren = React.Children.map(children, (child) => {
       return React.cloneElement(child as React.ReactElement, {
         ref: triggerElementRef,
-        tabIndex: -1, // Allow the triggering element to be focused programmatically
+        //tabIndex: -1, // Allow the triggering element to be focused programmatically
+        onFocus: () => onFocusHandler(),
+        onBlur: () => setIsOpenPopover(false),
+        onKeyDown: (event: React.KeyboardEvent) => {
+          handleKeyDownOnInput(event)
+        },
       })
     })
 
@@ -83,8 +93,7 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
       const popoverContentElement = popoverContentRef.current
       if (
         popoverContentElement &&
-        popoverContentElement.scrollTop + popoverContentElement.clientHeight >=
-          popoverContentElement.scrollHeight
+        popoverContentElement.scrollTop === popoverContentElement.scrollHeight
       ) {
         // User has reached the bottom of the popover content, trigger onLoadMore
         if (onLoadMore && !isLoadingMore) {
@@ -93,8 +102,30 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
       }
     }
 
+    // Simulate the scroll behavior of native select element
+    const ensureOptionInView = (
+      popoverContentElement: HTMLElement,
+      option: HTMLElement,
+    ) => {
+      const optionTop = option.offsetTop
+      const optionBottom = optionTop + option.clientHeight
+      const popoverTop = popoverContentElement.scrollTop
+      const popoverBottom = popoverTop + popoverContentElement.clientHeight
+
+      if (optionTop < popoverTop) {
+        // Option is above the visible area, scroll up to show it
+        popoverContentElement.scrollTop = optionTop
+      } else if (optionBottom > popoverBottom) {
+        // Option is below the visible area, scroll down to show it
+        popoverContentElement.scrollTop =
+          optionBottom -
+          popoverContentElement.clientHeight +
+          option.clientHeight
+      }
+    }
+
     // Function to handle key down events
-    const handleKeyDownOnPopover = (event: React.KeyboardEvent) => {
+    const handleKeyDownOnInput = (event: React.KeyboardEvent) => {
       const popoverContentElement = popoverContentRef.current
 
       if (popoverContentElement && triggeringElement) {
@@ -103,55 +134,70 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
         )
         const firstOption = optionArray[0] as HTMLElement
         const lastOption = optionArray[optionArray.length - 1] as HTMLElement
+        const hoveredOption = popoverContentElement.querySelector(
+          '.hover',
+        ) as HTMLElement
 
         switch (event.key) {
           case 'ArrowUp':
             event.preventDefault()
-            if (document.activeElement === firstOption) {
-              lastOption.focus()
+            // If the first option is hovered, move the focus to the last option
+            if (firstOption.classList.contains('hover')) {
+              firstOption.classList.remove('hover')
+              lastOption.classList.add('hover')
+              ensureOptionInView(popoverContentElement, lastOption)
             } else {
-              const index = optionArray.indexOf(
-                document.activeElement as HTMLElement,
+              // Move the focus to the previous option
+              const index = optionArray.findIndex((option) =>
+                option.classList.contains('hover'),
               )
-              optionArray[index - 1]?.focus()
+              optionArray[index]?.classList.remove('hover')
+              optionArray[index - 1]?.classList.add('hover')
+              ensureOptionInView(
+                popoverContentElement,
+                optionArray[index - 1] as HTMLElement,
+              )
             }
+
             break
+
           case 'ArrowDown':
             event.preventDefault()
-            if (document.activeElement === lastOption) {
+            if (lastOption.classList.contains('hover')) {
               if (onLoadMore && !isLoadingMore) {
                 onLoadMore()
               } else {
-                firstOption.focus()
+                lastOption.classList.remove('hover')
+                firstOption.classList.add('hover')
+                ensureOptionInView(popoverContentElement, firstOption)
               }
             } else {
-              const index = optionArray.indexOf(
-                document.activeElement as HTMLElement,
+              const index = optionArray.findIndex((option) =>
+                option.classList.contains('hover'),
               )
-              optionArray[index + 1]?.focus()
+              optionArray[index]?.classList.remove('hover')
+              optionArray[index + 1]?.classList.add('hover')
+              ensureOptionInView(
+                popoverContentElement,
+                optionArray[index + 1] as HTMLElement,
+              )
+            }
+
+            break
+
+          case 'Enter':
+            event.preventDefault()
+            if (hoveredOption) {
+              handleSelectOption(hoveredOption.dataset['value'] ?? '')
             }
             break
 
           case 'Escape':
             event.preventDefault()
             setIsOpenPopover(false)
-            triggeringElement.focus()
             break
           default:
             break
-        }
-      }
-    }
-
-    // Function to handle key down events on option
-    const handleKeyDownOnOption = (
-      option: string,
-      event: React.KeyboardEvent,
-    ) => {
-      if (event.key === 'Enter') {
-        event.preventDefault()
-        if (option) {
-          handleSelectOption(option)
         }
       }
     }
@@ -212,14 +258,11 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
             '[role="option"]',
           ) as HTMLElement
           if (firstOption) {
-            firstOption.focus()
+            // add class 'hover' to firstOption
+            firstOption.classList.add('hover')
           } else {
-            popoverContentElement.focus()
+            popoverContentElement.classList.add('hover')
           }
-        }
-      } else {
-        if (triggeringElement) {
-          triggeringElement.focus() // Return focus to the triggering element
         }
       }
     }, [isOpenPopover, triggerElementRef])
@@ -236,10 +279,7 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
       >
         <Popover
           isOpen={isOpenPopover}
-          onClose={() => {
-            setIsOpenPopover(false)
-          }}
-          anchor={clonedChilren}
+          anchor={clonedChildren}
           direction='bottom-center'
           attachToElement={
             containerRef.current && containerRef.current.parentElement
@@ -251,7 +291,6 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
               width: calculatedPopoverWidth,
             }}
             onScroll={handleScroll}
-            onKeyDown={handleKeyDownOnPopover}
             tabIndex={-1} // Allow the popover to be focused programmatically
           >
             {options?.length === 0 ? (
@@ -260,8 +299,8 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
               options?.map((option) => (
                 <StyledOption
                   key={option}
+                  data-value={option}
                   onClick={() => handleSelectOption(option)}
-                  onKeyDown={(event) => handleKeyDownOnOption(option, event)}
                   tabIndex={0} // Allow each option to be focused
                   role='option'
                 >

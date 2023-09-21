@@ -147,17 +147,16 @@ export const StyledPUDOItem = styled('div', {
         },
       },
       label: {
+        paddingInline: '$4',
+
         '.pudo-item__label': {
           marginBlock: 0,
           paddingBlock: '$4',
           width: '100%',
 
           whiteSpace: 'nowrap',
-          overflowX: 'auto',
-          '@sm': {
-            textOverflow: 'ellipsis',
-            overflow: 'hidden',
-          },
+          textOverflow: 'ellipsis',
+          overflow: 'hidden',
 
           fontSize: '$label1',
           fontWeight: '$normal',

@@ -100,6 +100,12 @@ export const routes: TSideNavItem[] = [
           "Avatars can be used in everything including a person's profile picture, dialog menu, ext.",
       },
       {
+        title: 'App Navigation',
+        pathname: '/app-navigation',
+        description:
+          'A navigation bar containing a number of destinations at the top or bottom of the screen .',
+      },
+      {
         title: 'Button',
         pathname: '/button',
         description:
@@ -287,11 +293,6 @@ export const routes: TSideNavItem[] = [
         pathname: '/no-ssr',
         description:
           'No-SSR ensures components are not rendered on the server.',
-      },
-      {
-        title: 'Preflight',
-        pathname: '/preflight',
-        description: 'Preflight sets baseline styles for consistent rendering.',
       },
       {
         title: 'Progress Bar',

@@ -48,6 +48,10 @@ import Button from '@comfortdelgro/react-compass/button'
 
 {{"demo": "ButtonLoading.tsx"}}
 
+## Square buttons
+
+{{"demo": "SquareButton.tsx"}}
+
 ## Custom styling
 
 You can style React Compass's components with the css prop. <br/>

@@ -106,7 +106,17 @@ export const Variants: React.FC = () => {
       >
         <Modal>
           <Modal.Title>My large title</Modal.Title>
-          <Modal.Description>{lorem}</Modal.Description>
+          <Modal.Description>
+            {lorem}
+            <div
+              style={{
+                height: '40rem',
+                backgroundColor: 'grey',
+                margin: '2rem',
+                borderRadius: '1rem',
+              }}
+            />
+          </Modal.Description>
           <Modal.Actions>
             <Button onPress={() => setLargeOpen(false)}>Cancel</Button>
             <Button onPress={() => setLargeOpen(false)}>Do it</Button>
