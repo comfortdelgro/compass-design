@@ -81,7 +81,6 @@ export interface Props extends StyledComponentProps {
   'aria-describedby'?: string
   'aria-details'?: string
   'aria-errormessage'?: string
-
   h5?: boolean
 }
 
