@@ -1,7 +1,7 @@
 import {styled} from '../theme'
 
 export const StyledSidenav = styled('div', {
-  width: '$17',
+  width: '$18',
   padding: '$2 0',
   backgroundColor: '$background',
   display: 'flex',

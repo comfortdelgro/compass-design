@@ -8,7 +8,7 @@ export const StyledSidenavItem = styled('div', {
   position: 'relative',
   height: '$10',
   cursor: 'pointer',
-  padding: '0 $2',
+  padding: '0 $4',
   overflow: 'hidden',
 
   '& svg': {
@@ -21,7 +21,7 @@ export const StyledSidenavItem = styled('div', {
   },
 
   '& .cdg-sidenav-item-icon': {
-    minWidth: '$13',
+    minWidth: '$10',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
