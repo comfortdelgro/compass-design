@@ -21,9 +21,13 @@ import MenuList, {MenuListDropdown} from '@comfortdelgro/react-compass/MenuList'
 
 ## Example
 
-### Default
+### Menu List
 
 {{"demo": "MenuList.tsx"}}
+
+### Disabled
+
+{{"demo": "DisabledMenuList.tsx"}}
 
 ## Props
 

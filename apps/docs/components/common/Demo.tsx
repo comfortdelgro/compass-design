@@ -231,6 +231,7 @@ export default function Demo(props: any) {
           tabIndex={-1}
           css={{
             position: 'absolute',
+            display: 'none',
             top: 5,
             left: 5,
             width: 10,
@@ -255,7 +256,7 @@ export default function Demo(props: any) {
           {demoElement}
         </DemoSandbox>
       </Box>
-      <React.Suspense fallback={<DemoToolbarFallback />}>
+      <React.Suspense fallback={<></>}>
         <DemoToolbar
           codeOpen={codeOpen}
           codeVariant={codeVariant}

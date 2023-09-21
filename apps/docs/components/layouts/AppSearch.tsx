@@ -1,5 +1,7 @@
+import Search from '@comfortdelgro/compass-icons/react/search'
 import {
   Box,
+  Button,
   Column,
   Modal,
   SearchField,
@@ -9,7 +11,8 @@ import {
 } from '@comfortdelgro/react-compass'
 import {faChevronRight, faClose} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {map, replace, toLower} from 'lodash'
+import {useIsTabletScreen} from 'hooks'
+import {map, replace, toLower, uniqBy} from 'lodash'
 import {useRouter} from 'next/router'
 import {useCallback, useEffect, useMemo, useRef, useState} from 'react'
 import {getDataSearch} from 'utils'
@@ -27,8 +30,10 @@ const dataSearch = getDataSearch()
 
 export default function AppSearch(props: any) {
   const searchInputRef = useRef(null)
+  const firstItemRef = useRef<HTMLInputElement>(null)
   const [isOpen, setIsOpen] = useState(false)
   const [keyword, setKeyword] = useState('')
+  const isTabletScreen = useIsTabletScreen()
   const router = useRouter()
   const macOS = window.navigator.platform.toUpperCase().indexOf('MAC') >= 0
   const onOpen = useCallback(() => {
@@ -46,6 +51,11 @@ export default function AppSearch(props: any) {
   const handleKeyDown = (e: KeyboardEvent) => {
     if (e.keyCode === 75 && e.metaKey) {
       setIsOpen(true)
+    } else if (isOpen) {
+      if (e.keyCode === 40) {
+        // arrow down
+        firstItemRef.current && firstItemRef.current?.focus()
+      }
     }
   }
 
@@ -71,12 +81,17 @@ export default function AppSearch(props: any) {
 
   const searchRecommend = useMemo(() => {
     const keywordLower = toLower(keyword)
-    const data = dataSearch.filter(
-      (item) =>
-        toLower(item.title).includes(keywordLower) ||
-        toLower(item.description).includes(keywordLower),
+    const titleIncludeKeyword = dataSearch.filter((item) =>
+      toLower(item.title).includes(keywordLower),
     )
-    return map(data, (item) => {
+    const descriptionIncludeKeyword = dataSearch.filter((item) =>
+      toLower(item.description).includes(keywordLower),
+    )
+    const listRecommended = uniqBy(
+      [...titleIncludeKeyword, ...descriptionIncludeKeyword],
+      'title',
+    )
+    return map(listRecommended, (item) => {
       return {
         ...item,
         title: replace(
@@ -101,22 +116,42 @@ export default function AppSearch(props: any) {
   return (
     <>
       <Box css={{position: 'relative'}}>
-        <TextField
-          css={{
-            background: '$cdgBlue !important',
-            height: 34,
-            ':first-child': {
-              borderColor: '$cdgBlue60',
+        {isTabletScreen ? (
+          <Button
+            variant='primary'
+            onClick={onOpen}
+            css={{
+              border: '1px solid $cdgBlue60',
               height: 34,
-              overflow: 'hidden',
-            },
-          }}
-          onClick={onOpen}
-          placeholder='Search...'
-        />
-        <Shortcut style={{position: 'absolute', top: 3, right: 3}}>
-          {macOS ? '⌘' : 'Ctrl+'}K
-        </Shortcut>
+              width: 34,
+              borderRadius: 4,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <Search fill='white' />
+          </Button>
+        ) : (
+          <>
+            <TextField
+              css={{
+                background: '$cdgBlue !important',
+                height: 34,
+                ':first-child': {
+                  borderColor: '$cdgBlue60',
+                  height: 34,
+                  overflow: 'hidden',
+                },
+              }}
+              onClick={onOpen}
+              placeholder='Search...'
+            />
+            <Shortcut style={{position: 'absolute', top: 3, right: 3}}>
+              {macOS ? '⌘' : 'Ctrl+'}K
+            </Shortcut>
+          </>
+        )}
       </Box>
       <Modal.Trigger isOpen={isOpen} handleClose={() => onClose?.()} size='lg'>
         <Modal>
@@ -138,11 +173,12 @@ export default function AppSearch(props: any) {
             <Column
               css={{height: '50vh', overflowY: 'scroll', marginTop: '$3'}}
             >
-              {searchRecommend.map((searchItem) => {
+              {searchRecommend.map((searchItem, index) => {
                 return (
                   <Box
                     key={searchItem.pathname}
                     as={'button'}
+                    {...(index === 0 ? {ref: firstItemRef} : {})}
                     css={{
                       background: '$gray10',
                       padding: '$3',

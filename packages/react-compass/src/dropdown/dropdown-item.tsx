@@ -36,7 +36,7 @@ interface Props extends StyledComponentProps {
   leftIcon?: React.ReactNode
   rightIcon?: React.ReactNode
   value?: Key
-  textValue?: string
+  textValue?: React.ReactNode
   checkmark?: 'none' | 'checkbox' | 'tick'
   flagName?: string
   children: React.ReactNode
@@ -180,7 +180,21 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
           <StyledItemIcon>{rightIcon}</StyledItemIcon>
         )}
         {type === 'color' && rightColor && (
-          <StyledColor css={{$$bg: rightColor}} />
+          <StyledColor isSelected={isSelected} css={{$$bg: rightColor}}>
+            <svg
+              className='cdg-dropdown-item-color'
+              width='16'
+              height='16'
+              viewBox='0 0 16 16'
+              fill='none'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path
+                d='M13.7893 3.08716C14.1555 3.45337 14.1555 4.0481 13.7893 4.41431L6.28931 11.9143C5.9231 12.2805 5.32837 12.2805 4.96216 11.9143L1.21216 8.16431C0.845947 7.7981 0.845947 7.20337 1.21216 6.83716C1.57837 6.47095 2.1731 6.47095 2.53931 6.83716L5.6272 9.92212L12.4651 3.08716C12.8313 2.72095 13.426 2.72095 13.7922 3.08716H13.7893Z'
+                fill='currentColor'
+              />
+            </svg>
+          </StyledColor>
         )}
         {checkmark !== 'none' && (
           <StyledRightIcon isSelected={isSelected} checkmark={checkmark}>

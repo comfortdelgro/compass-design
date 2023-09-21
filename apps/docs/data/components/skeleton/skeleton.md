@@ -21,9 +21,13 @@ import Skeleton from '@comfortdelgro/react-compass/skeleton'
 
 ## Example
 
-### Basic
+### Variant
 
 {{"demo": "SkeletonVariants.tsx"}}
+
+### Animation
+
+{{"demo": "SkeletonAnimation.tsx"}}
 
 ### Custom styling
 

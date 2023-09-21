@@ -24,6 +24,13 @@ import Sidenav from '@comfortdelgro/react-compass/sidenav'
 ### Sidenav
 
 {{"demo": "SidenavBasic.tsx"}}
+### Expand
+
+{{"demo": "SidenavExpand.tsx"}}
+
+### Delay
+
+{{"demo": "SidenavDelay.tsx"}}
 
 ### Sidenav menu
 

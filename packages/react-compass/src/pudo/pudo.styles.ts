@@ -17,13 +17,23 @@ export const StyledPUDO = styled('div', {
   },
 
   '.pudo-actions': {
-    paddingBlock: '$2',
+    paddingBlock: '$3',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
+    gap: '$4',
 
     '&:empty': {
       display: 'none',
+    },
+
+    '& > button': {
+      padding: 0,
+      border: 'none',
+
+      '&:hover': {
+        background: '$background',
+      },
     },
   },
 
@@ -137,17 +147,16 @@ export const StyledPUDOItem = styled('div', {
         },
       },
       label: {
+        paddingInline: '$4',
+
         '.pudo-item__label': {
           marginBlock: 0,
           paddingBlock: '$4',
           width: '100%',
 
           whiteSpace: 'nowrap',
-          overflowX: 'auto',
-          '@sm': {
-            textOverflow: 'ellipsis',
-            overflow: 'hidden',
-          },
+          textOverflow: 'ellipsis',
+          overflow: 'hidden',
 
           fontSize: '$label1',
           fontWeight: '$normal',

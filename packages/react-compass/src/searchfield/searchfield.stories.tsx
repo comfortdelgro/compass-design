@@ -17,11 +17,13 @@ export const Variants: React.FC = () => {
 
       <h3>isErrored</h3>
       <SearchField
+        label='SearchField isErrored = true'
         placeholder='Search'
         onSubmit={(text) => console.log(text)}
         value={'Initial value'}
         isErrored={true}
         css={{width: '10rem'}}
+        errorMessage='SearchField error message'
       />
 
       <h3>isDisabled</h3>
@@ -58,6 +60,29 @@ export const Variants: React.FC = () => {
         placeholder='Search'
         minLength={5}
         css={{width: '10rem'}}
+        onSubmit={(text) => console.log(text)}
+      />
+
+      <h3> H5</h3>
+      <SearchField
+        placeholder='Search'
+        minLength={5}
+        css={{
+          width: '343px',
+        }}
+        h5
+        onSubmit={(text) => console.log(text)}
+      />
+
+      <h3> H5 Searchfield with box shadow</h3>
+      <SearchField
+        placeholder='Search'
+        minLength={5}
+        css={{
+          width: '343px',
+          boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 4px;',
+        }}
+        h5
         onSubmit={(text) => console.log(text)}
       />
     </Column>

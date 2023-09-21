@@ -14,7 +14,7 @@ export function Default() {
   return (
     <div>
       <Typography.Header variant='header3' css={{marginBottom: '$4'}}>
-        Slide Action / Swiper component
+        Slide Action | Swiper component
       </Typography.Header>
 
       <Typography.Body

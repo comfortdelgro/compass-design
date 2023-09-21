@@ -1,0 +1,9 @@
+<TooltipTrigger placement={currentPlacement} >
+    <Button>Bottom</Button>
+    <Tooltip title='Title' dismissible>
+    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente
+    quam ullam amet est rerum in enim doloribus laborum beatae veniam
+    corrupti blanditiis, neque fuga, ipsam ut consequuntur laboriosam.
+    Tempora, sit?
+    </Tooltip>
+</TooltipTrigger>

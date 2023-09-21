@@ -18,7 +18,7 @@ export type PudoProps<TItemKeys extends string | number | symbol> = {
    * ___
    * This item list will be automatically de-duplicated (by `name`).
    */
-  items: Array<PudoItemProps<TItemKeys>>
+  items: Readonly<Array<PudoItemProps<TItemKeys>>>
   /**
    * This will override the `type` of all items.
    */
@@ -49,6 +49,7 @@ export type PudoProps<TItemKeys extends string | number | symbol> = {
    * if PUDO's `type` is `'label'`.
    */
   removableItems?: TItemKeys[]
+  /** @default "Remove" */
   removableLabel?: string
   /**
    * Add all provided items to the existing item list.
@@ -57,6 +58,7 @@ export type PudoProps<TItemKeys extends string | number | symbol> = {
    * if PUDO's `type` is `'label'`.
    */
   addItems?: Readonly<Array<PudoItemProps<TItemKeys>>>
+  /** @default "Add" */
   addItemsLabel?: string
   compact?: 'sm' | 'md'
 } & StyledComponentProps
@@ -73,7 +75,6 @@ export type PudoItemProps<TName extends string | number | symbol = string> = {
   type?: 'input' | 'label'
   value: string
   placeholder?: string
-  hideIcon?: boolean
 
   /** @default false */
   allowSwap?: boolean

@@ -86,6 +86,17 @@ export const StyledAvatar = styled('div', {
         //   width: '$4',
         // },
       },
+      xxs: {
+        width: '$4',
+
+        '.icon-wrapper > svg': {
+          width: '$2_5',
+          height: '$2_5',
+        },
+        '.initials': {
+          fontSize: '8px',
+        },
+      },
     },
   },
   defaultVariants: {

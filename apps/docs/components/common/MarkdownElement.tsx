@@ -345,6 +345,7 @@ const Root = styled('div', {
       flexShrink: 0,
       fontSize: '18px',
       margin: 'auto',
+      color: '$gray110',
     },
     '& .cdg-copied-icon': {
       display: 'none',
@@ -399,6 +400,11 @@ const Root = styled('div', {
     '& > p': {
       marginBottom: '$!',
     },
+  },
+  '& sup': {
+    top: 'unset',
+    fontSize: 'smaller',
+    verticalAlign: 'super',
   },
 })
 

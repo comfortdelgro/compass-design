@@ -1,9 +1,9 @@
 import AlignRight from '@comfortdelgro/compass-icons/react/align-right'
 import {Box, Button, Drawer, Icon} from '@comfortdelgro/react-compass'
 import {faClose} from '@fortawesome/free-solid-svg-icons'
+import {GITHUB_REPOSITORY} from 'constants/index'
 import Link from 'next/link'
 import {useState} from 'react'
-import {DeferredAppSearch} from './DocsAppFrame'
 
 export default function AppNavbarMobile(props: any) {
   const [isShowDrawer, setIsShowDrawer] = useState(false)
@@ -57,7 +57,11 @@ export default function AppNavbarMobile(props: any) {
             flexDirection: 'column',
           }}
         >
-          <DeferredAppSearch />
+          <Link href={GITHUB_REPOSITORY} target='_blank'>
+            <Button variant='secondary' fullWidth>
+              Github
+            </Button>
+          </Link>
           <Link href='/foundation/overview'>
             <Button variant='secondary' fullWidth>
               Document

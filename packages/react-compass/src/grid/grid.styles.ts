@@ -84,6 +84,7 @@ export const StyledGridItem = styled('div', {
     md: {...calculateCols('(min-width: 900px) and (max-width: 1200px)')},
     lg: {...calculateCols('(min-width: 1200px) and (max-width: 1536px)')},
     xl: {...calculateCols('(min-width: 1536px) and (max-width: 1920px)')},
+    xxl: {...calculateCols('(min-width: 1920px)')},
   },
 })
 

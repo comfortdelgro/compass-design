@@ -21,7 +21,7 @@ import Sidebar from '@comfortdelgro/react-compass/sidebar'
 
 ## Example
 
-### Primary
+### Variant
 
 {{"demo": "SidebarPrimary.tsx"}}
 
