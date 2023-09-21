@@ -1,20 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/ban-types */
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import React, {Key} from 'react'
+import React from 'react'
 import {DragAndDropListItemProps} from '../item'
-
-/* eslint-disable @typescript-eslint/no-unnecessary-condition */
-export const arrayMove = (array: Key[], from: number, to: number): Key[] => {
-  array = array.slice()
-  array.splice(to < 0 ? array.length + to : to, 0, array.splice(from, 1)[0]!)
-  return array
-}
-
-export function arrayRemove<T>(array: T[], index: number) {
-  array = array.slice()
-  array.splice(index, 1)
-  return array
-}
 
 export function getTranslateOffset(element: Element) {
   const style = window.getComputedStyle(element)
@@ -23,13 +13,6 @@ export function getTranslateOffset(element: Element) {
       parseInt(style.getPropertyValue('margin-top'), 10),
       parseInt(style.getPropertyValue('margin-bottom'), 10),
     ) + element.getBoundingClientRect().height
-  )
-}
-
-export function isTouchEvent(event: TouchEvent & MouseEvent) {
-  return (
-    (event.touches && event.touches.length >= 0) ||
-    (event.changedTouches && event.changedTouches.length >= 0)
   )
 }
 
@@ -86,8 +69,6 @@ export function binarySearch(array: number[], targetValue: number) {
   return -1
 }
 
-// adapted from https://github.com/alexreardon/raf-schd
-// eslint-disable-next-line @typescript-eslint/ban-types
 export const schd = (fn: Function) => {
   let lastArgs: any[] = []
   let frameId: number | null = null
@@ -98,7 +79,6 @@ export const schd = (fn: Function) => {
     }
     frameId = requestAnimationFrame(() => {
       frameId = null
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       fn(...lastArgs)
     })
   }
