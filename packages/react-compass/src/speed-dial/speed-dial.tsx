@@ -48,12 +48,10 @@ const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
     }
 
     const handleMouseEnter = () => {
-      console.log('handleMouseEnter')
       setIsOpen(true)
     }
     const handleFocus = () => {
       if (isOpen === false) {
-        console.log('handleFocus')
         setIsOpen(true)
       }
     }
