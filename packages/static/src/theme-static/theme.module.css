@@ -207,8 +207,7 @@
   --cdg-color-gradientOrangeBlue: #d2132a, #0597db;
 }
 
-
-[data-cdg-theme='dark'] {
+[data-theme='dark'] {
   /* Dark Theme Colors */
   --cdg-color-cdgBlue: #014ac8;
   --cdg-color-typeHeading: #fdfdfd;
