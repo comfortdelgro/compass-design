@@ -22,13 +22,12 @@ export function transformItem(
   offsetX: number | null = 0,
 ) {
   if (!element) return
+  const elm = element as HTMLElement
   if (offsetY === null || offsetX === null) {
-    ;(element as HTMLElement).style.removeProperty('transform')
+    elm.style.removeProperty('transform')
     return
   }
-  ;(
-    element as HTMLElement
-  ).style.transform = `translate(${offsetX}px, ${offsetY}px)`
+  elm.style.transform = `translate(${offsetX}px, ${offsetY}px)`
 }
 
 export function isItemTransformed(element: Element) {
@@ -41,7 +40,8 @@ export function setItemTransition(
   timing?: string,
 ) {
   if (element) {
-    ;(element as HTMLElement).style.transition = `transform ${duration}ms${
+    const elm = element as HTMLElement
+    elm.style.transition = `transform ${duration}ms${
       timing ? ` ${timing}` : ''
     }`
   }
@@ -104,7 +104,7 @@ export function checkIfInteractive(target: Element, rootElement: Element) {
   ]
   const DISABLED_ROLES = ['button', 'link', 'checkbox', 'tab']
   while (target !== rootElement) {
-    if (target.getAttribute('data-movable-handle')) {
+    if (target.getAttribute('data-handler')) {
       return false
     }
     if (DISABLED_ELEMENTS.includes(target.tagName.toLowerCase())) {
