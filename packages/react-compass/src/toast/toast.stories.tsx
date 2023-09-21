@@ -280,3 +280,35 @@ export const AutoClose: React.FC = () => {
     </Column>
   )
 }
+
+export const Portal: React.FC = () => {
+  const [isAutoCloseOpen, setIsAutoCloseOpen] = React.useState(false)
+  return (
+    <Column>
+      <h3>Portals to body</h3>
+      <Button css={{width: '8rem'}} onPress={() => setIsAutoCloseOpen(true)}>
+        Open toast
+      </Button>
+      <Toast
+        isOpen={isAutoCloseOpen}
+        portalTo={document.body}
+        handleClose={() => setIsAutoCloseOpen(false)}
+        color='informative'
+      >
+        <Toast.Icon>
+          <Icon icon={faImage} />
+        </Toast.Icon>
+        <Toast.Title>My Title</Toast.Title>
+        <Toast.Label>a few minutes ago</Toast.Label>
+        <Toast.CloseIcon>
+          <Icon icon={faXmark} />
+        </Toast.CloseIcon>
+        <Toast.Message>Lorem ipsum dolor, sit amet consectetur.</Toast.Message>
+        <Toast.Actions>
+          <Button>Take action</Button>
+          <Button>Take action</Button>
+        </Toast.Actions>
+      </Toast>
+    </Column>
+  )
+}

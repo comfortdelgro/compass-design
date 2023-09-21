@@ -47,6 +47,7 @@ import {Toast} from '@comfortdelgro/react-compass'
 | handleClose | `Function`                                             | -         | Callback to close toast.                                                                |
 | isOpen      | `boolean`                                              | false     | The toast is visible when true.                                                         |
 | autoClose   | `false` \| `number`                                    | false     | Number of miliseconds to auto close.                                                    |
+| portalTo    | `HTMLElement`                                          | -         | Using ReactPortals to create portal to an element, example document.body                |
 | css         | `CSS`                                                  | —         | The system prop that allows defining system overrides as well as additional CSS styles. |
 
 ### `useToast()`
