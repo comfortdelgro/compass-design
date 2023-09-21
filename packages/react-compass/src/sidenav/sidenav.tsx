@@ -1,10 +1,10 @@
-import React, { useRef, useState } from 'react'
-import { StyledComponentProps } from '../utils/stitches.types'
+import React, {useRef, useState} from 'react'
+import {StyledComponentProps} from '../utils/stitches.types'
 import Divider from './divider'
-import { SidenavContext } from './sidenav-context'
+import {SidenavContext} from './sidenav-context'
 import SidenavItem from './sidenav-item'
 import SidenavMenu from './sidenav-menu'
-import { StyledSidenav } from './sidenav.styles'
+import {StyledSidenav} from './sidenav.styles'
 
 interface Props extends StyledComponentProps {
   children: React.ReactNode
@@ -59,7 +59,7 @@ const Sidenav = React.forwardRef<HTMLDivElement, SidenavProps>((props, ref) => {
 
   return (
     <StyledSidenav
-      css={{ ...css }}
+      css={{...css}}
       ref={ref}
       className={`${className} ${expandOnHover ? 'sidenav-expanded' : ''}`}
       size={isExpand ? 'full' : 'default'}

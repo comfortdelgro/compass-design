@@ -1,4 +1,4 @@
-import { styled } from '../theme'
+import {styled} from '../theme'
 
 export const StyledSidenavItem = styled('div', {
   color: '$gray80',
@@ -32,7 +32,7 @@ export const StyledSidenavItem = styled('div', {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-    }
+    },
   },
 
   '& .cdg-sidenav-item-title': {

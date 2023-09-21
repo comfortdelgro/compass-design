@@ -1,7 +1,7 @@
-import { ExtendedRefs, ReferenceType } from '@floating-ui/react'
-import React, { useState } from 'react'
-import { StyledComponentProps } from '../utils/stitches.types'
-import { StyledSidenavItem } from './sidenav-item.styles'
+import {ExtendedRefs, ReferenceType} from '@floating-ui/react'
+import React, {useState} from 'react'
+import {StyledComponentProps} from '../utils/stitches.types'
+import {StyledSidenavItem} from './sidenav-item.styles'
 
 interface Props extends StyledComponentProps {
   children: React.ReactNode
@@ -41,7 +41,7 @@ const SidenavItem = React.forwardRef<HTMLDivElement, SidenavItemProps>(
         userProps?: React.HTMLProps<Element> | undefined,
       ) => Record<string, unknown>,
     ) => {
-      setMenuParentProps({ ref, getReferenceProps })
+      setMenuParentProps({ref, getReferenceProps})
     }
 
     const clonedMenu = menu ? (
@@ -67,7 +67,9 @@ const SidenavItem = React.forwardRef<HTMLDivElement, SidenavItemProps>(
       <StyledSidenavItem
         ref={mergeRefs}
         css={css}
-        className={`cdg-sidenav-item ${className} ${isActive ? 'sidenav-item-active' : ''}`}
+        className={`cdg-sidenav-item ${className} ${
+          isActive ? 'sidenav-item-active' : ''
+        }`}
         active={isActive ? 'active' : 'default'}
         onMouseEnter={() => {
           setOpenMenu(true)
@@ -76,9 +78,7 @@ const SidenavItem = React.forwardRef<HTMLDivElement, SidenavItemProps>(
         {...menuParenProps?.getReferenceProps()}
       >
         <div className='cdg-sidenav-item-icon'>
-          <div className="cdg-sidenav-item-icon-wrapper">
-            {icon}
-          </div>
+          <div className='cdg-sidenav-item-icon-wrapper'>{icon}</div>
         </div>
         <div className='cdg-sidenav-item-title'>{title}</div>
         {clonedMenu}
