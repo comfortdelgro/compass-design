@@ -12,45 +12,44 @@ export interface Props extends StyledComponentProps {
 }
 
 export type DragAndDropListProps = Props &
-  Omit<React.HTMLAttributes<HTMLUListElement>, keyof Props>
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
-const DragAndDropList = React.forwardRef<
-  HTMLUListElement,
-  DragAndDropListProps
->((props, ref) => {
-  const {css = {}, children, onReorderByKeys, ...delegated} = props
-  const dndRef = useDOMRef<HTMLUListElement>(ref)
+const DragAndDropList = React.forwardRef<HTMLDivElement, DragAndDropListProps>(
+  (props, ref) => {
+    const {css = {}, children, onReorderByKeys, ...delegated} = props
+    const dndRef = useDOMRef<HTMLDivElement>(ref)
 
-  const collection = React.useMemo(
-    () => pickChilds(children, DragAndDropListItem),
-    [children],
-  )
+    const collection = React.useMemo(
+      () => pickChilds(children, DragAndDropListItem),
+      [children],
+    )
 
-  const items = React.useMemo(
-    () => collection.map((item) => item.key!),
-    [collection],
-  )
+    const items = React.useMemo(
+      () => collection.map((item) => item.key!),
+      [collection],
+    )
 
-  return (
-    <StyledDragAndDrop ref={dndRef} css={css} {...delegated}>
-      <List
-        values={items}
-        collection={collection}
-        onChange={({oldIndex, newIndex}) => {
-          const array = items.slice()
-          array.splice(
-            newIndex < 0 ? array.length + newIndex : newIndex,
-            0,
-            array.splice(oldIndex, 1)[0]!,
-          )
-          onReorderByKeys?.(array)
-        }}
-      >
-        {children}
-      </List>
-    </StyledDragAndDrop>
-  )
-})
+    return (
+      <StyledDragAndDrop ref={dndRef} css={css} {...delegated}>
+        <List
+          values={items}
+          collection={collection}
+          onChange={({oldIndex, newIndex}) => {
+            const array = items.slice()
+            array.splice(
+              newIndex < 0 ? array.length + newIndex : newIndex,
+              0,
+              array.splice(oldIndex, 1)[0]!,
+            )
+            onReorderByKeys?.(array)
+          }}
+        >
+          {children}
+        </List>
+      </StyledDragAndDrop>
+    )
+  },
+)
 
 export default DragAndDropList as typeof DragAndDropList & {
   Item: typeof DragAndDropListItem
