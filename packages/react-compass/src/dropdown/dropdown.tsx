@@ -78,6 +78,7 @@ interface Props extends StyledComponentProps {
   onOpenChange?: (isOpen: boolean) => void
   onSelectionChange?: (key: string | number) => void
   onValueChange?: (key: string | number) => void
+  h5?: boolean
 }
 
 export const Icon = () => (
@@ -158,6 +159,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     onCompositionEnd,
     onCompositionStart,
     onCompositionUpdate,
+    h5 = false,
     ...ariaSafeProps
   } = props
 
@@ -561,6 +563,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
             isErrored={!!isErrored}
             isDisabled={isDisabled}
             aria-required={isRequired}
+            h5={h5}
           >
             <button
               id={id}
@@ -743,6 +746,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       css={css}
       ref={selectRef}
       onKeyDown={handleKeyDown}
+      h5={h5}
       {...htmlProps}
     >
       {label && (
