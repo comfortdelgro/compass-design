@@ -1,10 +1,11 @@
 import {Column, Table} from '@tanstack/react-table'
 import React, {forwardRef, useState} from 'react'
+import Button from '../button'
+import Popover from '../popover'
+import TextField from '../textfield'
+import Typography from '../typography'
 import {StyledComponentProps} from '../utils/stitches.types'
-import {
-  StyledFilter,
-  StyledFilterInput,
-} from './table-v2-column-header-filter.styles'
+import {StyledFilterInput} from './table-v2-column-header-filter.styles'
 
 interface Props<TData, TValue> extends StyledComponentProps {
   column: Column<TData, TValue>
@@ -22,9 +23,6 @@ const HeaderColumnFilter = forwardRef<
   HeaderColumnFilterProps
 >(({column, table}, ref) => {
   const [isFiltering, setIsFiltering] = useState(false)
-  const handleClickOrTouchFilter = () => {
-    setIsFiltering(!isFiltering)
-  }
 
   const firstValue = table
     .getPreFilteredRowModel()
@@ -33,59 +31,73 @@ const HeaderColumnFilter = forwardRef<
   const columnFilterValue = column.getFilterValue()
 
   return (
-    <StyledFilter>
-      <svg
-        onClick={handleClickOrTouchFilter}
-        onTouchStart={handleClickOrTouchFilter}
-        width='24'
-        height='26'
-        viewBox='0 0 28 23'
-        fill='currentColor'
+    <Popover
+      isOpen={isFiltering}
+      anchor={
+        <Button
+          variant='ghost'
+          onClick={(e) => {
+            e.stopPropagation()
+            setIsFiltering(!isFiltering)
+          }}
+          iconOnly
+        >
+          <svg width='24' height='26' viewBox='0 0 28 23' fill='currentColor'>
+            <path d='M4.25 5.61C6.27 8.2 10 13 10 13v6c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-6s3.72-4.8 5.74-7.39c.51-.66.04-1.61-.79-1.61H5.04c-.83 0-1.3.95-.79 1.61z'></path>
+          </svg>
+        </Button>
+      }
+      direction='bottom-end'
+      onClose={() => setIsFiltering(false)}
+    >
+      <StyledFilterInput
+        className='column-filter'
+        onClick={(e) => e.stopPropagation()}
       >
-        <path d='M4.25 5.61C6.27 8.2 10 13 10 13v6c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-6s3.72-4.8 5.74-7.39c.51-.66.04-1.61-.79-1.61H5.04c-.83 0-1.3.95-.79 1.61z'></path>
-      </svg>
-      <StyledFilterInput isFiltering={isFiltering}>
         {typeof firstValue === 'number' ? (
-          <div className='flex space-x-2'>
-            <input
+          <div className='column-filter__number-container'>
+            <TextField
               type='number'
               ref={ref}
               value={(columnFilterValue as [number, number])?.[0] ?? ''}
-              onChange={(e) =>
+              onChange={(value) =>
                 column.setFilterValue((old: [number, number]) => [
-                  e.target.value,
+                  value,
                   old?.[1],
                 ])
               }
               placeholder={`Min`}
-              className='w-24 border shadow rounded'
+              autoFocus
             />
-            <input
+
+            <Typography.Label css={{width: 'auto', marginInline: '$2'}}>
+              &#8212;
+            </Typography.Label>
+
+            <TextField
               type='number'
               ref={ref}
               value={(columnFilterValue as [number, number])?.[1] ?? ''}
-              onChange={(e) =>
+              onChange={(value) =>
                 column.setFilterValue((old: [number, number]) => [
                   old?.[0],
-                  e.target.value,
+                  value,
                 ])
               }
               placeholder={`Max`}
-              className='w-24 border shadow rounded'
             />
           </div>
         ) : (
-          <input
-            type='text'
+          <TextField
             ref={ref}
             value={(columnFilterValue ?? '') as string}
-            onChange={(e) => column.setFilterValue(e.target.value)}
+            onChange={(value) => column.setFilterValue(value)}
             placeholder={`Search...`}
-            className='w-36 border shadow rounded'
+            autoFocus
           />
         )}
       </StyledFilterInput>
-    </StyledFilter>
+    </Popover>
   )
 })
 

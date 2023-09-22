@@ -23,9 +23,9 @@ import Spinner from '../spinner'
 import StatusComponent from '../table-v2/for story/person-status'
 import {
   LimitRequestStatus,
+  Person,
   makeData,
   makeRequestStatusData,
-  Person,
 } from '../table-v2/makeData'
 import ProgressPercentage from '../table-v2/table-v2-progress'
 import TextField from '../textfield'
@@ -139,7 +139,7 @@ export const FullFeatured: React.FC = () => {
           {
             accessorKey: 'age',
             header: () => 'Age',
-            enableColumnFilter: false,
+            enableColumnFilter: true,
             enableGrouping: false,
             footer: (info) => info.column.id,
           },
