@@ -152,3 +152,11 @@
   background: var(--colors-gray80);
   border-radius: 10px;
 }
+
+/* :root {
+  --cdg-color-danger: yellow;
+}
+
+[data-theme='dark'] {
+  --cdg-color-danger: green;
+} */
