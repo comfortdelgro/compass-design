@@ -157,6 +157,6 @@
   --cdg-color-danger: yellow;
 }
 
-[data-theme='dark'] {
+[data-cdg-theme='dark'] {
   --cdg-color-danger: green;
 } */
