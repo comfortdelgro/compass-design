@@ -1,5 +1,5 @@
-import {styled} from '../theme'
-import {VariantProps} from '../utils/stitches.types'
+import { styled } from '../theme'
+import { VariantProps } from '../utils/stitches.types'
 
 export const StyledToastActionsContainer = styled('div', {
   // reset
@@ -209,10 +209,6 @@ export const StyledToast = styled('div', {
 
   //center
   position: 'fixed',
-  top: '50%',
-  left: '50%',
-  /* bring your own prefixes */
-  transform: `translate(-50%, -50%)`,
 
   variants: {
     color: {
@@ -226,6 +222,36 @@ export const StyledToast = styled('div', {
       positive: {
         backgroundColor: '$successBg',
       }, //green
+    },
+
+    vertical: {
+      top: {
+        top: '20px',
+      },
+      center: {
+        top: '50%',
+        transform: 'translateY(-50%)',
+      },
+      bottom: {
+        bottom: '20px',
+      },
+    },
+    horizontal: {
+      left: {
+        left: '20px',
+      },
+      center: {
+        left: '50%',
+        transform: 'translateX(-50%)',
+      },
+      right: {
+        right: '20px',
+      },
+    },
+    centerCenter: {
+      true: {
+        transform: 'translate(-50%, -50%)',
+      },
     },
   },
 

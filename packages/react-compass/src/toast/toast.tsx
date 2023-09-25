@@ -1,7 +1,7 @@
 import React from 'react'
-import {pickChild} from '../utils/pick-child'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {useDOMRef} from '../utils/use-dom-ref'
+import { pickChild } from '../utils/pick-child'
+import { StyledComponentProps } from '../utils/stitches.types'
+import { useDOMRef } from '../utils/use-dom-ref'
 import ToastActions from './toast-actions'
 import ToastCloseIcon from './toast-closeIcon'
 import ToastIcon from './toast-icon'
@@ -16,11 +16,16 @@ import {
   ToastVariantProps,
 } from './toast.styles'
 
+interface Anchor {
+  vertical: 'top' | 'bottom' | 'center'
+  horizontal: 'left' | 'center' | 'right'
+}
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
   isOpen?: boolean
   handleClose?: () => void
   autoClose?: false | number
+  anchorOrigin?: Anchor
 }
 
 export type ToastProps = Props &
@@ -38,40 +43,41 @@ const Toast = React.forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
     isOpen = false,
     handleClose,
     autoClose = false,
+    anchorOrigin = { horizontal: 'center', vertical: 'center' },
     // HTMLDiv Props
     ...delegated
   } = props
 
   const toastRef = useDOMRef<HTMLDivElement>(ref)
-  const variantProps = {color} as ToastVariantProps
+  const variantProps = { color } as ToastVariantProps
 
   // Pick child element from children props
-  const {child: ToastActionsElement} = pickChild<typeof ToastActions>(
+  const { child: ToastActionsElement } = pickChild<typeof ToastActions>(
     children,
     ToastActions,
   )
 
-  const {child: ToastCloseIconElement} = pickChild<typeof ToastCloseIcon>(
+  const { child: ToastCloseIconElement } = pickChild<typeof ToastCloseIcon>(
     children,
     ToastCloseIcon,
   )
 
-  const {child: ToastIconElement} = pickChild<typeof ToastIcon>(
+  const { child: ToastIconElement } = pickChild<typeof ToastIcon>(
     children,
     ToastIcon,
   )
 
-  const {child: ToastLabelElement} = pickChild<typeof ToastLabel>(
+  const { child: ToastLabelElement } = pickChild<typeof ToastLabel>(
     children,
     ToastLabel,
   )
 
-  const {child: ToastMessagelement} = pickChild<typeof ToastMessage>(
+  const { child: ToastMessagelement } = pickChild<typeof ToastMessage>(
     children,
     ToastMessage,
   )
 
-  const {child: ToastTitleElement} = pickChild<typeof ToastTitle>(
+  const { child: ToastTitleElement } = pickChild<typeof ToastTitle>(
     children,
     ToastTitle,
   )
@@ -86,7 +92,13 @@ const Toast = React.forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
   return (
     <>
       {isOpen && (
-        <StyledToast {...variantProps} css={css} ref={toastRef} {...delegated}>
+        <StyledToast {...variantProps} css={css} ref={toastRef} {...delegated}
+          vertical={anchorOrigin.vertical}
+          horizontal={anchorOrigin.horizontal}
+          centerCenter={
+            anchorOrigin.vertical === 'center' &&
+            anchorOrigin.horizontal === 'center'
+          }>
           <StyledToastHeader>
             <StyledToastHeaderLeft>
               {ToastIconElement}

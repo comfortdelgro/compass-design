@@ -1,9 +1,7 @@
 import React from 'react'
-import {useIsLightTheme} from '../theme'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import darkThemeStyles from './styles/dark.module.css'
-import lightThemeStyles from './styles/light.module.css'
+import styles from './styles/chip.module.css'
 
 export interface Props {
   children?: React.ReactNode
@@ -24,8 +22,6 @@ const Chip = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   } = props
 
   const chipRef = useDOMRef<HTMLDivElement>(ref)
-
-  const styles = useIsLightTheme() ? lightThemeStyles : darkThemeStyles
 
   return (
     <CssInjection css={css} childrenRef={chipRef}>

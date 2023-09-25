@@ -10,6 +10,7 @@ import {
 
 interface Props extends StyledComponentProps {
   document?: Document
+  platform?: 'react' | 'html'
 }
 
 export type RichTextRenderProps = Props &
@@ -23,6 +24,7 @@ const RichTextRender = React.forwardRef<HTMLInputElement, RichTextRenderProps>(
       css = {},
       // Component
       document,
+      platform = 'react',
       // element
       ...delegates
     } = props
@@ -35,7 +37,7 @@ const RichTextRender = React.forwardRef<HTMLInputElement, RichTextRenderProps>(
         ref={richTextRenderRef}
         {...delegates}
       >
-        {document ? RenderDocument(document) : null}
+        {document ? RenderDocument(document, platform) : null}
       </StyledRichTextRenderContainer>
     )
   },

@@ -112,6 +112,12 @@ export const routes: TSideNavItem[] = [
           'Buttons allow users to take actions, and make choices, with a single tap.',
       },
       {
+        title: 'Dropdown Textfield',
+        pathname: '/dropdown-textfield',
+        description:
+          'The combination of dropdown and textfield in one component.',
+      },
+      {
         title: 'Action Bar',
         pathname: '/action-bar',
         description:

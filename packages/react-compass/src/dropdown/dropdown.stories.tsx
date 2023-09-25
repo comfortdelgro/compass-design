@@ -859,3 +859,28 @@ export const Combobox: React.FC = () => {
     </Column>
   )
 }
+
+export const ForH5 = () => {
+  return (
+    <Dropdown.Select label='Favorite Animal' placeholder='Choose an animal' h5>
+      <Dropdown.Item value='fly' checkmark='tick'>
+        Fly
+      </Dropdown.Item>
+      <Dropdown.Item value='cat' checkmark='tick'>
+        Cat
+      </Dropdown.Item>
+      <Dropdown.Item value='dog' checkmark='tick'>
+        Dog
+      </Dropdown.Item>
+      <Dropdown.Item value='aardvark' checkmark='tick'>
+        Aardvark
+      </Dropdown.Item>
+      <Dropdown.Item value='kangaroo' checkmark='tick'>
+        Kangaroo
+      </Dropdown.Item>
+      <Dropdown.Item value='snake' checkmark='tick'>
+        Snake
+      </Dropdown.Item>
+    </Dropdown.Select>
+  )
+}

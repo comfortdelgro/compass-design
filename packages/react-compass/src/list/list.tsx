@@ -43,18 +43,24 @@ const List = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
       props.onClick(e)
     }
   }
+
+  const onMouse = (value: boolean) => {
+    if (isDisabled) return
+    setPressed(value)
+  }
+
   return (
     <StyledList
       ref={ref}
       tabIndex={0}
       role='button'
       css={css}
-      className={`${className} ${isPressed ? 'pressed' : ''} ${
-        isDisabled ? 'disabled' : ''
-      } ${variant === 'interactive' ? 'interactive' : 'item'}`}
+      className={`${className} ${isPressed ? 'pressed' : ''}
+        ${variant === 'interactive' ? 'interactive' : 'item'}`}
+      isPressed={isPressed}
       onClick={handleClick}
-      onMouseDown={() => setPressed(true)}
-      onMouseUp={() => setPressed(false)}
+      onMouseDown={() => onMouse(true)}
+      onMouseUp={() => onMouse(false)}
       {...variantProps}
       {...delegated}
     >
