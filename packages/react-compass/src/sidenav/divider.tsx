@@ -19,7 +19,7 @@ const Divider = React.forwardRef<HTMLDivElement, DividerProps>((props, ref) => {
 
   return (
     <StyledDivider
-      className={`${className} divider`}
+      className={`${className} cdg-sidenav-divider`}
       ref={ref}
       {...delegated}
     />

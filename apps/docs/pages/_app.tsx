@@ -4,6 +4,7 @@ import {
   ToastContextProvider,
 } from '@comfortdelgro/react-compass'
 import Preflight from '@comfortdelgro/react-compass/preflight'
+import {ThemeStaticProvider} from '@comfortdelgro/static'
 import '@comfortdelgro/static/style.css'
 import 'components/common/bootstrap'
 import AppHeader from 'components/layouts/AppHeader'
@@ -60,13 +61,15 @@ function AppWrapper(props: any) {
         <ToastContextProvider
           anchorOrigin={{horizontal: 'right', vertical: 'top'}}
         >
-          <ThemeProvider changeBy={mode}>
-            <CodeCopyProvider>
-              <Preflight />
-              <AppHeader handleChangeThemeMode={handleChangeThemeMode} />
-              {children}
-            </CodeCopyProvider>
-          </ThemeProvider>
+          <ThemeStaticProvider changeBy={mode}>
+            <ThemeProvider changeBy={mode}>
+              <CodeCopyProvider>
+                <Preflight />
+                <AppHeader handleChangeThemeMode={handleChangeThemeMode} />
+                {children}
+              </CodeCopyProvider>
+            </ThemeProvider>
+          </ThemeStaticProvider>
         </ToastContextProvider>
       </ThemeContext.Provider>
     </React.Fragment>

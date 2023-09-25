@@ -17,12 +17,17 @@ import {
   ToastVariantProps,
 } from './toast.styles'
 
+interface Anchor {
+  vertical: 'top' | 'bottom' | 'center'
+  horizontal: 'left' | 'center' | 'right'
+}
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
   portalTo?: HTMLElement
   isOpen?: boolean
   handleClose?: () => void
   autoClose?: false | number
+  anchorOrigin?: Anchor
 }
 
 export type ToastProps = Props &
@@ -41,6 +46,7 @@ const Toast = React.forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
     isOpen = false,
     handleClose,
     autoClose = false,
+    anchorOrigin = {horizontal: 'center', vertical: 'center'},
     // HTMLDiv Props
     ...delegated
   } = props
@@ -102,6 +108,12 @@ const Toast = React.forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
             css={css}
             ref={toastRef}
             {...delegated}
+            vertical={anchorOrigin.vertical}
+            horizontal={anchorOrigin.horizontal}
+            centerCenter={
+              anchorOrigin.vertical === 'center' &&
+              anchorOrigin.horizontal === 'center'
+            }
           >
             <StyledToastHeader>
               <StyledToastHeaderLeft>

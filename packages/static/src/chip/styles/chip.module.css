@@ -12,15 +12,15 @@
   justify-content: center;
   align-items: center;
   gap: var(--cdg-spacing-2);
-  color: var(--cdg-lightThemeColor-primaryText);
+  color: var(--cdg-color-primaryText);
   width: fit-content;
   height: fit-content;
   font-family: var(--cdg-font-sans);
 }
 
 .chip.isErrored {
-  border-color: var(--cdg-lightThemeColor-danger);
-  background-color: var(--cdg-lightThemeColor-dangerBg);
+  border-color: var(--cdg-color-danger);
+  background-color: var(--cdg-color-dangerBg);
 }
 
 .close-icon-container {

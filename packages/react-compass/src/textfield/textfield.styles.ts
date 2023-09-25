@@ -11,6 +11,16 @@ export const StyledTextFieldLabel = styled('label', {
     marginLeft: '$1',
     color: '$danger',
   },
+  variants: {
+    h5: {
+      true: {
+        fontSize: '$label2',
+        fontWeight: '$medium',
+        color: '$grayShades80',
+        marginBottom: '$1',
+      },
+    },
+  },
 })
 
 export const StyledTextFieldBox = styled('div', {
@@ -158,6 +168,35 @@ export const StyledTextFieldWrapper = styled('div', {
             '.left-icon': {
               color: '$cdgBlue',
             },
+          },
+        },
+      },
+    },
+    h5: {
+      true: {
+        color: '$grayShades100',
+        fontSize: '$label1',
+        lineHeight: '$tight',
+        fontWeight: '$normal',
+        [`${StyledTextFieldLabel}`]: {
+          fontSize: '$label2',
+          fontWeight: '$medium',
+          color: '$grayShades80',
+          marginBottom: '$1',
+        },
+        [`${StyledTextFieldBox}`]: {
+          borderRadius: '$lg',
+        },
+        [`${StyledTextField}`]: {
+          border: 'none',
+          width: '100%',
+          fontSize: '$label2',
+          fontWeight: '$normal',
+          '&::placeholder': {
+            color: '$grayShades40',
+            fontSize: '$3_5',
+            lineHeight: '$tight',
+            fontWeight: '$normal',
           },
         },
       },

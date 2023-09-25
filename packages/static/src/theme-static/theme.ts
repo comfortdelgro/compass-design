@@ -294,7 +294,7 @@ const darkThemeColors = {
   gradientRainbow: '#025493, #A51C2E, #46932D',
   gradientOrangeBlue: '#AA1022, #027FB9',
 }
-const lightTheme = {
+const theme = {
   colors: lightThemeColors,
   fonts,
   fontSizes,
@@ -306,23 +306,5 @@ const lightTheme = {
   sizes: spacings,
   transitions,
 }
-
-const darkTheme = {
-  colors: darkThemeColors,
-  fonts,
-  fontSizes,
-  lineHeights,
-  fontWeights,
-  borderWidths,
-  radii: radius,
-  space: spacings,
-  sizes: spacings,
-  transitions,
-}
-
-const mode = 'light'
-
-// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-const theme = mode === 'light' ? lightTheme : darkTheme
 
 export default theme

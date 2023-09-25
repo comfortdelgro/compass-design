@@ -25,6 +25,9 @@ export const StyledFooter = styled('div', {
       },
     },
   },
+  '@tablet': {
+    padding: '$8 $12',
+  },
   '@mobile': {
     gap: '24px',
     padding: '24px 16px',
