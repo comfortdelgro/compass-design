@@ -33,6 +33,14 @@ import Carousel from '@comfortdelgro/react-compass/carousel'
 
 {{"demo": "CarouselMobile.tsx"}}
 
+### Multiple Slides
+
+Based on real life usage, every pages will have different behavior of responsive, how much items on single page. So that we expose everything to the outside to let the user custom them.
+
+You will need to handle how much items on same page based on screen size, or even container size. This config will need to be matched with side item width.
+
+{{"demo": "MultipleSlides.tsx"}}
+
 ## Components
 
 | Name                      | Type        | Default | Description                                                                       |
@@ -58,6 +66,7 @@ import Carousel from '@comfortdelgro/react-compass/carousel'
 | Name                 | Type                     | Default | Description                                                                              |
 | :------------------- | :----------------------- | :------ | :--------------------------------------------------------------------------------------- |
 | autoSwitch           | `boolean`                | `true`  | To let the slider auto switch in every 300ms                                             |
+| itemPerPage          | `number`                 | `1`     | How many slides on the same page                                                         |
 | useNavigation        | `boolean`                | `true`  | To show next and previous buttons                                                        |
 | useDotIndicator      | `boolean`                | `true`  | To show dot indicators                                                                   |
 | navigationButtonType | `icon` `text`            | `icon`  | To use arrow icon or next & prev text                                                    |
