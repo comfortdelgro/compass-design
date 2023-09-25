@@ -108,7 +108,6 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
     }
 
     const prev = () => {
-      console.log(pageCount)
       clearCurrentTimer()
       const nextIndex = (current - 1 + pageCount) % pageCount
       setCurrent(nextIndex)
