@@ -59,7 +59,7 @@ function useColorMode({
 
   const applyColorMode = useCallback(
     (newMode: ETheme) => {
-      body?.setAttribute('data-theme', newMode)
+      body?.setAttribute('data-cdg-theme', newMode)
       setColorMode(newMode)
       saveColorMode(newMode)
     },
