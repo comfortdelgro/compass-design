@@ -124,7 +124,6 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
       // html props
       ...delegated
     } = props
-
     const paginationRef = useDOMRef<HTMLDivElement>(ref)
     const {items, active, setPage, next, previous} = usePagination({
       page,
@@ -189,19 +188,27 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
           />
         )}
         {count && <ItemCounting count={count} page={page} />}
-        <StyledPaginationItem onClick={previous} aria-label='previous page'>
+        <StyledPaginationItem
+          onClick={previous}
+          aria-label='previous page'
+          disabled={active === 1}
+        >
           <svg viewBox='0 0 320 512'>
             <path
-              fill='currentColor'
+              fill={active === 1 ? '#EDEBE9' : '#201F1E'}
               d='M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z'
             ></path>
           </svg>
         </StyledPaginationItem>
         {items.map(renderItem)}
-        <StyledPaginationItem onClick={next} aria-label='next page'>
+        <StyledPaginationItem
+          onClick={next}
+          aria-label='next page'
+          disabled={active === total}
+        >
           <svg viewBox='0 0 320 512'>
             <path
-              fill='currentColor'
+              fill={active === total ? '#EDEBE9' : '#201F1E'}
               d='M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z'
             ></path>
           </svg>
