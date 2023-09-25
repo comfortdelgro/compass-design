@@ -33,6 +33,10 @@ import Carousel from '@comfortdelgro/react-compass/carousel'
 
 {{"demo": "CarouselMobile.tsx"}}
 
+### Multiple Slides
+
+{{"demo": "MultipleSlides.tsx"}}
+
 ## Components
 
 | Name                      | Type        | Default | Description                                                                       |
@@ -58,6 +62,7 @@ import Carousel from '@comfortdelgro/react-compass/carousel'
 | Name                 | Type                     | Default | Description                                                                              |
 | :------------------- | :----------------------- | :------ | :--------------------------------------------------------------------------------------- |
 | autoSwitch           | `boolean`                | `true`  | To let the slider auto switch in every 300ms                                             |
+| itemPerPage          | `number`                 | `1`     | How many slides on the same page                                                         |
 | useNavigation        | `boolean`                | `true`  | To show next and previous buttons                                                        |
 | useDotIndicator      | `boolean`                | `true`  | To show dot indicators                                                                   |
 | navigationButtonType | `icon` `text`            | `icon`  | To use arrow icon or next & prev text                                                    |

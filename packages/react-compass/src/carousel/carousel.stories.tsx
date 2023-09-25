@@ -97,6 +97,7 @@ const slideData: CarouselSliderItem[] = [
 export const Sliders = () => {
   const [activeIndex, setActiveIndex] = useState(0)
   const [activeIndex1, setActiveIndex1] = useState(0)
+  const [activeIndex2, setActiveIndex2] = useState(0)
 
   const imageUrls = [
     'https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(15).webp',
@@ -112,8 +113,48 @@ export const Sliders = () => {
     setActiveIndex1(index)
   }
 
+  const handleSwitchSlide2 = (index: number) => {
+    setActiveIndex2(index)
+  }
+
   return (
     <>
+      <StyledSampleAnyCarouselSlider className='content-slider-sample'>
+        <h2>Slider - image only + no dots</h2>
+
+        <CarouselSlider
+          onSwitchSlide={handleSwitchSlide2}
+          effect={'slide'}
+          className='floating-slide'
+          itemPerPage={3}
+          style={{height: '512px'}}
+        >
+          {Array.from({length: 9}).map((item, index) => (
+            <CarouselSlide
+              key={index}
+              className={`slider-side${
+                activeIndex2 === index ? ' active' : ''
+              }`}
+              active={false}
+              css={{
+                width: '33.33% !important',
+                padding: '0 20px',
+              }}
+            >
+              <div
+                style={{
+                  backgroundColor: '#ccc',
+                  border: '1px solid #aaa',
+                  height: '100%',
+                }}
+              >
+                Carousel slide {index}
+              </div>
+            </CarouselSlide>
+          ))}
+        </CarouselSlider>
+      </StyledSampleAnyCarouselSlider>
+
       <StyledSampleAnyCarouselSlider className='content-slider-sample'>
         <h2>Slider - image only + no dots</h2>
 
