@@ -35,6 +35,10 @@ import Carousel from '@comfortdelgro/react-compass/carousel'
 
 ### Multiple Slides
 
+Based on real life usage, every pages will have different behavior of responsive, how much items on single page. So that we expose everything to the outside to let the user custom them.
+
+You will need to handle how much items on same page based on screen size, or even container size. This config will need to be matched with side item width.
+
 {{"demo": "MultipleSlides.tsx"}}
 
 ## Components

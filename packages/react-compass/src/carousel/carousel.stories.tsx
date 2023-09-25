@@ -1,6 +1,6 @@
 import {faBug} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {styled} from '../theme'
 import CarouselMobile from './carousel-mobile'
 import CarouselPromotion from './carousel-promotion'
@@ -12,6 +12,7 @@ import {
   CarouselSliderItem,
   SocicalIcon,
 } from './content-slider.types'
+import './stories.css'
 
 const socials: SocicalIcon[] = [
   {
@@ -98,6 +99,7 @@ export const Sliders = () => {
   const [activeIndex, setActiveIndex] = useState(0)
   const [activeIndex1, setActiveIndex1] = useState(0)
   const [activeIndex2, setActiveIndex2] = useState(0)
+  const [count, setCount] = useState(3)
 
   const imageUrls = [
     'https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(15).webp',
@@ -117,6 +119,18 @@ export const Sliders = () => {
     setActiveIndex2(index)
   }
 
+  useEffect(() => {
+    const handleResize = () => {
+      const itemPerpage = window.innerWidth >= 768 ? 3 : 1
+      setCount(itemPerpage)
+    }
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
   return (
     <>
       <StyledSampleAnyCarouselSlider className='content-slider-sample'>
@@ -125,31 +139,18 @@ export const Sliders = () => {
         <CarouselSlider
           onSwitchSlide={handleSwitchSlide2}
           effect={'slide'}
-          className='floating-slide'
-          itemPerPage={3}
-          style={{height: '512px'}}
+          className='my-multiple-slides-slider'
+          itemPerPage={count}
         >
           {Array.from({length: 9}).map((item, index) => (
             <CarouselSlide
               key={index}
-              className={`slider-side${
+              className={`slider-side responsive-slide${
                 activeIndex2 === index ? ' active' : ''
               }`}
               active={false}
-              css={{
-                width: '33.33% !important',
-                padding: '0 20px',
-              }}
             >
-              <div
-                style={{
-                  backgroundColor: '#ccc',
-                  border: '1px solid #aaa',
-                  height: '100%',
-                }}
-              >
-                Carousel slide {index}
-              </div>
+              <div className='sample-slide-inner'>Carousel slide {index}</div>
             </CarouselSlide>
           ))}
         </CarouselSlider>

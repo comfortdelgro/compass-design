@@ -80,7 +80,7 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
       return () => {
         window.removeEventListener('resize', handleResize)
       }
-    }, [current, sliderRef])
+    }, [])
 
     useEffect(() => {
       if (autoSwitch) {

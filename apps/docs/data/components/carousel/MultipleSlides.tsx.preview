@@ -1,29 +1,71 @@
-<CarouselSlider
-    onSwitchSlide={handleSwitchSlide}
-    effect={'slide'}
-    className='floating-slide'
-    itemPerPage={3}
-    style={{height: '512px'}}
->
-    {Array.from({length: 9}).map((item, index) => (
-    <CarouselSlider.Slide
-        key={index}
-        className={`slider-side${activeIndex === index ? ' active' : ''}`}
-        active={false}
-        css={{
-        width: '33.33% !important', // Important flag is just for sample, you just need to give it more complex on css selector
-        padding: '0 20px',
-        }}
+import CarouselSlider from '@comfortdelgro/react-compass/carousel'
+import {useEffect, useState} from 'react'
+import style from './sample.module.css'
+
+const Sliders = () => {
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [count, setCount] = useState(3)
+
+  const handleSwitchSlide = (index: number) => {
+    setActiveIndex(index)
+  }
+
+  useEffect(() => {
+    const handleResize = () => {
+      const itemPerpage = window.innerWidth >= 768 ? 3 : 1
+      setCount(itemPerpage)
+    }
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
+  return (
+    <CarouselSlider
+      onSwitchSlide={handleSwitchSlide}
+      effect={'slide'}
+      className={style.myMultipleSlidesSlider}
+      itemPerPage={count}
     >
-        <div
-        style={{
-            backgroundColor: '#ccc',
-            border: '1px solid #aaa',
-            height: '100%',
-        }}
+      {Array.from({length: 9}).map((item, index) => (
+        <CarouselSlider.Slide
+          key={index}
+          className={`slider-side responsive-slide${
+            activeIndex === index ? ' active' : ''
+          }`}
+          active={false}
         >
-        Carousel slide {index}
-        </div>
-    </CarouselSlider.Slide>
-    ))}
-</CarouselSlider>
+          <div className={style.sampleSlideInner}>Carousel slide {index}</div>
+        </CarouselSlider.Slide>
+      ))}
+    </CarouselSlider>
+  )
+}
+
+export default Sliders
+
+/** CSS **/
+.myMultipleSlidesSlider:global(.content-slider .slider-side.responsive-slide) {
+  display: flex;
+  height: 100%;
+  width: 33.33%;
+}
+
+.sampleSlideInner {
+  background-color: #ccc;
+  border: 1px solid #aaa;
+  width: 100%;
+  height: 250px;
+}
+
+@media screen and (max-width: 768px) {
+  .myMultipleSlidesSlider:global(
+      .content-slider .slider-side.responsive-slide
+    ) {
+    display: flex;
+    height: 100%;
+    width: 100%;
+  }
+}
