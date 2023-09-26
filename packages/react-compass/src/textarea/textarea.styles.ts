@@ -83,8 +83,7 @@ export const StyledTextareaWrapper = styled('div', {
   flexDirection: 'column',
   alignItems: 'flex-start',
   fontFamily: '$sans',
-  width: 'fit-content',
-
+  width: '100%',
   '.cdg-word-count': {
     width: '100%',
     display: 'flex',

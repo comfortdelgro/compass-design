@@ -139,7 +139,7 @@ export const FullFeatured: React.FC = () => {
           {
             accessorKey: 'age',
             header: () => 'Age',
-            enableColumnFilter: false,
+            enableColumnFilter: true,
             enableGrouping: false,
             footer: (info) => info.column.id,
           },

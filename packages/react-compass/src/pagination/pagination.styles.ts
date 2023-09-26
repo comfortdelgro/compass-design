@@ -44,6 +44,14 @@ export const StyledPaginationItem = styled('button', {
         background: '$background',
       },
     },
+    disabled: {
+      true: {
+        cursor: 'initial',
+        '&:hover': {
+          background: 'initial',
+        },
+      },
+    },
   },
 })
 
