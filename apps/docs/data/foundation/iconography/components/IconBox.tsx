@@ -1,7 +1,6 @@
 import {Icon, Toast, useColors} from '@comfortdelgro/react-compass'
 import {faXmark} from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
-import ReactDOM from 'react-dom'
 interface Props {
   component: React.ReactNode
   name: string
@@ -53,23 +52,22 @@ const IconBox: React.FC<Props> = ({name, component}) => {
       >
         {name}
       </div>
-      {isOpen &&
-        ReactDOM.createPortal(
-          <Toast
-            isOpen={isOpen}
-            handleClose={() => setIsOpen(false)}
-            autoClose={2000}
-            color='informative'
-            anchorOrigin={{horizontal: 'right', vertical: 'top'}}
-          >
-            <Toast.Title>Copied Successfully</Toast.Title>
-            <Toast.CloseIcon>
-              <Icon icon={faXmark} />
-            </Toast.CloseIcon>
-            <Toast.Message>Copied to clipboard: {formatedName}</Toast.Message>
-          </Toast>,
-          document.body,
-        )}
+      {isOpen && (
+        <Toast
+          isOpen={isOpen}
+          handleClose={() => setIsOpen(false)}
+          autoClose={2000}
+          portalTo={document.body}
+          color='informative'
+          anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+        >
+          <Toast.Title>Copied Successfully</Toast.Title>
+          <Toast.CloseIcon>
+            <Icon icon={faXmark} />
+          </Toast.CloseIcon>
+          <Toast.Message>Copied to clipboard: {formatedName}</Toast.Message>
+        </Toast>
+      )}
     </div>
   )
 }
