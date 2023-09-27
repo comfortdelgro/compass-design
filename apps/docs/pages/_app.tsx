@@ -4,7 +4,7 @@ import {
   ToastContextProvider,
 } from '@comfortdelgro/react-compass'
 import Preflight from '@comfortdelgro/react-compass/preflight'
-import {ThemeStaticProvider} from '@comfortdelgro/static'
+//import {ThemeStaticProvider} from '@comfortdelgro/static'
 import '@comfortdelgro/static/style.css'
 import 'components/common/bootstrap'
 import AppHeader from 'components/layouts/AppHeader'
