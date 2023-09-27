@@ -57,18 +57,18 @@ function AppWrapper(props: any) {
       <NextHead>
         <meta name='viewport' content='initial-scale=1, width=device-width' />
       </NextHead>
-       {/* <ThemeStaticProvider changeBy={mode}> */}
+      <ThemeContext.Provider value={mode}>
         <ToastContextProvider
           anchorOrigin={{horizontal: 'right', vertical: 'top'}}
         >
-         {/* <ThemeStaticProvider changeBy={mode}> */}
-            <ThemeProvider changeBy={mode}>
-              <CodeCopyProvider>
-                <Preflight />
-                <AppHeader handleChangeThemeMode={handleChangeThemeMode} />
-                {children}
-              </CodeCopyProvider>
-            </ThemeProvider>
+          {/* <ThemeStaticProvider changeBy={mode}> */}
+          <ThemeProvider changeBy={mode}>
+            <CodeCopyProvider>
+              <Preflight />
+              <AppHeader handleChangeThemeMode={handleChangeThemeMode} />
+              {children}
+            </CodeCopyProvider>
+          </ThemeProvider>
           {/* </ThemeStaticProvider> */}
         </ToastContextProvider>
       </ThemeContext.Provider>
