@@ -26,3 +26,10 @@
 .close-icon-container {
   cursor: pointer;
 }
+
+.cdgChipContent {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+}
