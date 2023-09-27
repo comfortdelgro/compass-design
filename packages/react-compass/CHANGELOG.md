@@ -1,5 +1,11 @@
 ## 2.9.0
 
+## 2.19.0
+
+### Minor Changes
+
+- f11d685b: Fix bugs in react-compass and the documentation website
+
 ## 2.18.0
 
 ### Minor Changes
