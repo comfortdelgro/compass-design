@@ -12,7 +12,7 @@ import Tab from './tab'
 import TabPanel from './tab-panel'
 import TabsPaneless from './tabs-paneless'
 import {StyledTabs, StyledWrapper} from './tabs.styles'
-import {Icon, useTab, Variant} from './utils'
+import {Icon, Variant, useTab} from './utils'
 
 interface Props extends StyledComponentProps {
   id?: string

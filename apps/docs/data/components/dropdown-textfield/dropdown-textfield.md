@@ -32,7 +32,7 @@ import DropdownTextfield from '@comfortdelgro/react-compass/dropdown-textfield'
 | Name                 | Type                                                 | Default | Description                                     |
 | :------------------- | :--------------------------------------------------- | :------ | :---------------------------------------------- |
 | `placeholder`        | `string` \| `null`                                   | `null`  | `Placeholder of the text field`                 |
-| `label`              | `string` \| `null`                                   | `null`  | `Label of the dropdown text field`                       |
+| `label`              | `string` \| `null`                                   | `null`  | `Label of the dropdown text field`              |
 | `isErrored`          | `true` \| `false`                                    | `false` | `Throw error when input value is wrong`         |
 | `isDisabled`         | `false`\| `true`                                     | `false` | `Disable the text field when true`              |
 | `isErrored`          | `false`\| `true`                                     | `false` | `Disable the text field when true`              |

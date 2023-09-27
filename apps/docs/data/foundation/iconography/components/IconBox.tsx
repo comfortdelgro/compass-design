@@ -1,4 +1,4 @@
-import { useColors } from "@comfortdelgro/react-compass"
+import {useColors} from '@comfortdelgro/react-compass'
 interface Props {
   component: React.ReactNode
   name: string
@@ -24,7 +24,7 @@ const IconBox: React.FC<Props> = ({name, component}) => {
         transitionProperty: 'all',
         transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
         transitionDuration: '150ms',
-        color: theme.primaryText
+        color: theme.primaryText,
       }}
       onClick={() => {
         navigator &&
