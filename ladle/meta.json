@@ -110,8 +110,8 @@
       "levels": [
         "Appnav"
       ],
-      "locStart": 60,
-      "locEnd": 112,
+      "locStart": 63,
+      "locEnd": 117,
       "filePath": "src/appnav/appnav.stories.tsx",
       "meta": {}
     },
@@ -121,7 +121,7 @@
         "Appnav"
       ],
       "locStart": 14,
-      "locEnd": 59,
+      "locEnd": 62,
       "filePath": "src/appnav/appnav.stories.tsx",
       "meta": {}
     },
@@ -140,8 +140,8 @@
       "levels": [
         "Avatar"
       ],
-      "locStart": 46,
-      "locEnd": 89,
+      "locStart": 49,
+      "locEnd": 102,
       "filePath": "src/avatar/avatar.stories.tsx",
       "meta": {}
     },
@@ -151,7 +151,7 @@
         "Avatar"
       ],
       "locStart": 15,
-      "locEnd": 44,
+      "locEnd": 47,
       "filePath": "src/avatar/avatar.stories.tsx",
       "meta": {}
     },
@@ -160,8 +160,8 @@
       "levels": [
         "Badge"
       ],
-      "locStart": 7,
-      "locEnd": 14,
+      "locStart": 10,
+      "locEnd": 17,
       "filePath": "src/badge/badge.stories.tsx",
       "meta": {}
     },
@@ -170,8 +170,8 @@
       "levels": [
         "Badge"
       ],
-      "locStart": 16,
-      "locEnd": 38,
+      "locStart": 19,
+      "locEnd": 41,
       "filePath": "src/badge/badge.stories.tsx",
       "meta": {}
     },
@@ -180,8 +180,8 @@
       "levels": [
         "Badge"
       ],
-      "locStart": 96,
-      "locEnd": 104,
+      "locStart": 99,
+      "locEnd": 107,
       "filePath": "src/badge/badge.stories.tsx",
       "meta": {}
     },
@@ -190,8 +190,8 @@
       "levels": [
         "Badge"
       ],
-      "locStart": 40,
-      "locEnd": 75,
+      "locStart": 43,
+      "locEnd": 78,
       "filePath": "src/badge/badge.stories.tsx",
       "meta": {}
     },
@@ -200,8 +200,18 @@
       "levels": [
         "Badge"
       ],
-      "locStart": 105,
-      "locEnd": 121,
+      "locStart": 108,
+      "locEnd": 124,
+      "filePath": "src/badge/badge.stories.tsx",
+      "meta": {}
+    },
+    "badge--status": {
+      "name": "Status",
+      "levels": [
+        "Badge"
+      ],
+      "locStart": 125,
+      "locEnd": 186,
       "filePath": "src/badge/badge.stories.tsx",
       "meta": {}
     },
@@ -210,8 +220,8 @@
       "levels": [
         "Badge"
       ],
-      "locStart": 77,
-      "locEnd": 95,
+      "locStart": 80,
+      "locEnd": 98,
       "filePath": "src/badge/badge.stories.tsx",
       "meta": {}
     },
@@ -320,8 +330,8 @@
       "levels": [
         "Carousel"
       ],
-      "locStart": 204,
-      "locEnd": 241,
+      "locStart": 246,
+      "locEnd": 283,
       "filePath": "src/carousel/carousel.stories.tsx",
       "meta": {}
     },
@@ -330,8 +340,8 @@
       "levels": [
         "Carousel"
       ],
-      "locStart": 174,
-      "locEnd": 202,
+      "locStart": 216,
+      "locEnd": 244,
       "filePath": "src/carousel/carousel.stories.tsx",
       "meta": {}
     },
@@ -340,8 +350,8 @@
       "levels": [
         "Carousel"
       ],
-      "locStart": 97,
-      "locEnd": 172,
+      "locStart": 98,
+      "locEnd": 214,
       "filePath": "src/carousel/carousel.stories.tsx",
       "meta": {}
     },
@@ -470,8 +480,8 @@
       "levels": [
         "Date picker"
       ],
-      "locStart": 60,
-      "locEnd": 89,
+      "locStart": 59,
+      "locEnd": 88,
       "filePath": "src/date-picker/date-picker.stories.tsx",
       "meta": {}
     },
@@ -480,8 +490,8 @@
       "levels": [
         "Date picker"
       ],
-      "locStart": 91,
-      "locEnd": 93,
+      "locStart": 90,
+      "locEnd": 92,
       "filePath": "src/date-picker/date-picker.stories.tsx",
       "meta": {}
     },
@@ -491,7 +501,7 @@
         "Date picker"
       ],
       "locStart": 9,
-      "locEnd": 58,
+      "locEnd": 57,
       "filePath": "src/date-picker/date-picker.stories.tsx",
       "meta": {}
     },
@@ -551,7 +561,7 @@
         "Dialog"
       ],
       "locStart": 128,
-      "locEnd": 242,
+      "locEnd": 248,
       "filePath": "src/dialog/dialog.stories.tsx",
       "meta": {}
     },
@@ -595,6 +605,26 @@
       "filePath": "src/dropdown-menu/dropdown-menu.stories.tsx",
       "meta": {}
     },
+    "dropdown-textfield--h5-form": {
+      "name": "H5 form",
+      "levels": [
+        "Dropdown textfield"
+      ],
+      "locStart": 132,
+      "locEnd": 174,
+      "filePath": "src/dropdown-textfield/dropdown-textfield.stories.tsx",
+      "meta": {}
+    },
+    "dropdown-textfield--variants": {
+      "name": "Variants",
+      "levels": [
+        "Dropdown textfield"
+      ],
+      "locStart": 39,
+      "locEnd": 130,
+      "filePath": "src/dropdown-textfield/dropdown-textfield.stories.tsx",
+      "meta": {}
+    },
     "dropdown--combobox": {
       "name": "Combobox",
       "levels": [
@@ -602,6 +632,16 @@
       ],
       "locStart": 566,
       "locEnd": 861,
+      "filePath": "src/dropdown/dropdown.stories.tsx",
+      "meta": {}
+    },
+    "dropdown--for-h5": {
+      "name": "For h5",
+      "levels": [
+        "Dropdown"
+      ],
+      "locStart": 863,
+      "locEnd": 886,
       "filePath": "src/dropdown/dropdown.stories.tsx",
       "meta": {}
     },
@@ -850,8 +890,8 @@
       "levels": [
         "Modal"
       ],
-      "locStart": 201,
-      "locEnd": 258,
+      "locStart": 211,
+      "locEnd": 268,
       "filePath": "src/modal/modal.stories.tsx",
       "meta": {}
     },
@@ -860,8 +900,8 @@
       "levels": [
         "Modal"
       ],
-      "locStart": 159,
-      "locEnd": 199,
+      "locStart": 169,
+      "locEnd": 209,
       "filePath": "src/modal/modal.stories.tsx",
       "meta": {}
     },
@@ -871,7 +911,7 @@
         "Modal"
       ],
       "locStart": 43,
-      "locEnd": 118,
+      "locEnd": 128,
       "filePath": "src/modal/modal.stories.tsx",
       "meta": {}
     },
@@ -921,7 +961,7 @@
         "Otp input"
       ],
       "locStart": 7,
-      "locEnd": 42,
+      "locEnd": 50,
       "filePath": "src/otp-input/otpInput.stories.tsx",
       "meta": {}
     },
@@ -941,7 +981,7 @@
         "Pagination"
       ],
       "locStart": 5,
-      "locEnd": 21,
+      "locEnd": 27,
       "filePath": "src/pagination/pagination.stories.tsx",
       "meta": {}
     },
@@ -1021,17 +1061,7 @@
         "Pudo"
       ],
       "locStart": 51,
-      "locEnd": 226,
-      "filePath": "src/pudo/pudo.stories.tsx",
-      "meta": {}
-    },
-    "pudo--preview-code": {
-      "name": "Preview code",
-      "levels": [
-        "Pudo"
-      ],
-      "locStart": 228,
-      "locEnd": 240,
+      "locEnd": 236,
       "filePath": "src/pudo/pudo.stories.tsx",
       "meta": {}
     },
@@ -1045,13 +1075,23 @@
       "filePath": "src/quantity-toggle/quantity-toggle.stories.tsx",
       "meta": {}
     },
+    "radio--h5": {
+      "name": "H5",
+      "levels": [
+        "Radio"
+      ],
+      "locStart": 153,
+      "locEnd": 207,
+      "filePath": "src/radio/radio.stories.tsx",
+      "meta": {}
+    },
     "radio--orientation": {
       "name": "Orientation",
       "levels": [
         "Radio"
       ],
-      "locStart": 105,
-      "locEnd": 140,
+      "locStart": 107,
+      "locEnd": 142,
       "filePath": "src/radio/radio.stories.tsx",
       "meta": {}
     },
@@ -1060,8 +1100,8 @@
       "levels": [
         "Radio"
       ],
-      "locStart": 7,
-      "locEnd": 103,
+      "locStart": 8,
+      "locEnd": 105,
       "filePath": "src/radio/radio.stories.tsx",
       "meta": {}
     },
@@ -1111,7 +1151,7 @@
         "Rich text editor"
       ],
       "locStart": 5,
-      "locEnd": 44,
+      "locEnd": 38,
       "filePath": "src/rich-text-editor/rich-text-editor.stories.tsx",
       "meta": {}
     },
@@ -1120,9 +1160,19 @@
       "levels": [
         "Rich text editor"
       ],
-      "locStart": 46,
-      "locEnd": 231,
+      "locStart": 40,
+      "locEnd": 225,
       "filePath": "src/rich-text-editor/rich-text-editor.stories.tsx",
+      "meta": {}
+    },
+    "richtext-renderer--default": {
+      "name": "Default",
+      "levels": [
+        "Richtext renderer"
+      ],
+      "locStart": 4,
+      "locEnd": 37,
+      "filePath": "src/richtext-render/richtext-renderer.stories.tsx",
       "meta": {}
     },
     "searchfield--variants": {
@@ -1131,7 +1181,7 @@
         "Searchfield"
       ],
       "locStart": 6,
-      "locEnd": 67,
+      "locEnd": 90,
       "filePath": "src/searchfield/searchfield.stories.tsx",
       "meta": {}
     },
@@ -1141,7 +1191,7 @@
         "Sidebar"
       ],
       "locStart": 8,
-      "locEnd": 48,
+      "locEnd": 49,
       "filePath": "src/sidebar/sidebar.stories.tsx",
       "meta": {}
     },
@@ -1150,8 +1200,8 @@
       "levels": [
         "Sidebar"
       ],
-      "locStart": 50,
-      "locEnd": 124,
+      "locStart": 51,
+      "locEnd": 125,
       "filePath": "src/sidebar/sidebar.stories.tsx",
       "meta": {}
     },
@@ -1160,8 +1210,8 @@
       "levels": [
         "Sidebar"
       ],
-      "locStart": 126,
-      "locEnd": 180,
+      "locStart": 127,
+      "locEnd": 181,
       "filePath": "src/sidebar/sidebar.stories.tsx",
       "meta": {}
     },
@@ -1170,8 +1220,8 @@
       "levels": [
         "Sidenav"
       ],
-      "locStart": 28,
-      "locEnd": 190,
+      "locStart": 79,
+      "locEnd": 224,
       "filePath": "src/sidenav/sidenav.stories.tsx",
       "meta": {}
     },
@@ -1225,13 +1275,13 @@
       "filePath": "src/slider/slider.stories.tsx",
       "meta": {}
     },
-    "speed-dial--default": {
-      "name": "Default",
+    "speed-dial--positions": {
+      "name": "Positions",
       "levels": [
         "Speed dial"
       ],
-      "locStart": 4,
-      "locEnd": 26,
+      "locStart": 19,
+      "locEnd": 47,
       "filePath": "src/speed-dial/speed-dial.stories.tsx",
       "meta": {}
     },
@@ -1441,8 +1491,18 @@
         "Textarea"
       ],
       "locStart": 8,
-      "locEnd": 83,
+      "locEnd": 88,
       "filePath": "src/textarea/textarea.stories.tsx",
+      "meta": {}
+    },
+    "textfield--for-h5-variant": {
+      "name": "For h5 variant",
+      "levels": [
+        "Textfield"
+      ],
+      "locStart": 169,
+      "locEnd": 188,
+      "filePath": "src/textfield/textfield.stories.tsx",
       "meta": {}
     },
     "textfield--variants": {
@@ -1490,8 +1550,8 @@
       "levels": [
         "Toast"
       ],
-      "locStart": 252,
-      "locEnd": 282,
+      "locStart": 293,
+      "locEnd": 324,
       "filePath": "src/toast/toast.stories.tsx",
       "meta": {}
     },
@@ -1500,8 +1560,8 @@
       "levels": [
         "Toast"
       ],
-      "locStart": 145,
-      "locEnd": 250,
+      "locStart": 182,
+      "locEnd": 291,
       "filePath": "src/toast/toast.stories.tsx",
       "meta": {}
     },
@@ -1511,7 +1571,7 @@
         "Toast"
       ],
       "locStart": 117,
-      "locEnd": 143,
+      "locEnd": 180,
       "filePath": "src/toast/toast.stories.tsx",
       "meta": {}
     },
@@ -1522,6 +1582,16 @@
       ],
       "locStart": 70,
       "locEnd": 115,
+      "filePath": "src/toast/toast.stories.tsx",
+      "meta": {}
+    },
+    "toast--portal": {
+      "name": "Portal",
+      "levels": [
+        "Toast"
+      ],
+      "locStart": 326,
+      "locEnd": 356,
       "filePath": "src/toast/toast.stories.tsx",
       "meta": {}
     },
@@ -1551,7 +1621,7 @@
         "Tooltip"
       ],
       "locStart": 7,
-      "locEnd": 29,
+      "locEnd": 41,
       "filePath": "src/tooltip/tooltip.stories.tsx",
       "meta": {}
     },
@@ -1560,8 +1630,8 @@
       "levels": [
         "Tooltip"
       ],
-      "locStart": 151,
-      "locEnd": 189,
+      "locStart": 163,
+      "locEnd": 201,
       "filePath": "src/tooltip/tooltip.stories.tsx",
       "meta": {}
     },
@@ -1570,8 +1640,8 @@
       "levels": [
         "Tooltip"
       ],
-      "locStart": 87,
-      "locEnd": 149,
+      "locStart": 99,
+      "locEnd": 161,
       "filePath": "src/tooltip/tooltip.stories.tsx",
       "meta": {}
     },
@@ -1580,8 +1650,8 @@
       "levels": [
         "Tooltip"
       ],
-      "locStart": 31,
-      "locEnd": 85,
+      "locStart": 43,
+      "locEnd": 97,
       "filePath": "src/tooltip/tooltip.stories.tsx",
       "meta": {}
     },
