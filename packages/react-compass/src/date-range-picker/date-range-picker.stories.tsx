@@ -40,7 +40,7 @@ export const Variants: React.FC = () => {
         <DateRangePicker
           startDateLabel='Start date'
           endDateLabel='End date'
-          minValue={today(getLocalTimeZone())}
+          minValue={today(getLocalTimeZone()).add({days: 1})}
           maxValue={today(getLocalTimeZone()).add({days: 7})}
         />
         <h3>Is Mobile</h3>

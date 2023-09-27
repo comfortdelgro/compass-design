@@ -13,6 +13,7 @@ interface Props extends StyledComponentProps, ListVariantProps {
     description?: string
     icon?: React.ReactNode
   }
+  rightContent?: React.ReactNode
 }
 
 export type ListProps = Props &
@@ -24,6 +25,7 @@ const List = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
     title,
     description,
     rightInfo,
+    rightContent,
     variant = 'interactive',
     isDisabled = false,
     size = 'md',
@@ -41,18 +43,24 @@ const List = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
       props.onClick(e)
     }
   }
+
+  const onMouse = (value: boolean) => {
+    if (isDisabled) return
+    setPressed(value)
+  }
+
   return (
     <StyledList
       ref={ref}
       tabIndex={0}
       role='button'
       css={css}
-      className={`${className} ${isPressed ? 'pressed' : ''} ${
-        isDisabled ? 'disabled' : ''
-      } ${variant === 'interactive' ? 'interactive' : 'item'}`}
+      className={`${className} ${isPressed ? 'pressed' : ''}
+        ${variant === 'interactive' ? 'interactive' : 'item'}`}
+      isPressed={isPressed}
       onClick={handleClick}
-      onMouseDown={() => setPressed(true)}
-      onMouseUp={() => setPressed(false)}
+      onMouseDown={() => onMouse(true)}
+      onMouseUp={() => onMouse(false)}
       {...variantProps}
       {...delegated}
     >
@@ -70,7 +78,7 @@ const List = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
           </div>
         )}
       </div>
-      {rightInfo && (
+      {rightInfo && !rightContent && (
         <>
           {variant === 'h5' ? (
             <div className='list-h5-right-side'>
@@ -92,6 +100,9 @@ const List = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
             </div>
           )}
         </>
+      )}
+      {rightContent && !rightInfo && (
+        <div className='list-h5-right-side'> {rightContent} </div>
       )}
     </StyledList>
   )

@@ -100,10 +100,22 @@ export const routes: TSideNavItem[] = [
           "Avatars can be used in everything including a person's profile picture, dialog menu, ext.",
       },
       {
+        title: 'App Navigation',
+        pathname: '/app-navigation',
+        description:
+          'A navigation bar containing a number of destinations at the top or bottom of the screen .',
+      },
+      {
         title: 'Button',
         pathname: '/button',
         description:
           'Buttons allow users to take actions, and make choices, with a single tap.',
+      },
+      {
+        title: 'Dropdown Textfield',
+        pathname: '/dropdown-textfield',
+        description:
+          'The combination of dropdown and textfield in one component.',
       },
       {
         title: 'Action Bar',
@@ -289,11 +301,6 @@ export const routes: TSideNavItem[] = [
           'No-SSR ensures components are not rendered on the server.',
       },
       {
-        title: 'Preflight',
-        pathname: '/preflight',
-        description: 'Preflight sets baseline styles for consistent rendering.',
-      },
-      {
         title: 'Progress Bar',
         pathname: '/progress-bar',
         description: 'Progress Bar indicates completion of a task.',
@@ -415,10 +422,10 @@ export const routes: TSideNavItem[] = [
           'Display a placeholder preview of your content before the data gets loaded to reduce load-time frustration.',
       },
       {
-        title: 'Slide action/Swiper',
+        title: 'Slide action | Swiper',
         pathname: '/slide-action',
         description:
-          'A slide action/swiper for important actions, such as purchase order, turn off privacy setting, etc.',
+          'Usually use for important actions, such as purchase order, changes privacy setting, turn off devices, etc.',
       },
       {
         title: 'Slider',
@@ -518,6 +525,12 @@ export const routes: TSideNavItem[] = [
         title: 'Progress',
         pathname: '/progress',
         description: 'The progress component tracks task completion.',
+      },
+      {
+        title: 'PUDO',
+        pathname: '/pudo',
+        description:
+          'A journey planner that allows user to input multiple locations.',
       },
       {
         title: 'Toast',

@@ -1,4 +1,5 @@
-import React, {useCallback} from 'react'
+import React, {useCallback, useMemo} from 'react'
+import Dropdown from '../dropdown'
 import type {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {usePagination} from './pagination.hooks'
@@ -6,6 +7,8 @@ import {
   PaginationVariantProps,
   StyledPagination,
   StyledPaginationItem,
+  StyledPaginationItemCounting,
+  StyledPaginationRowsCounting,
 } from './pagination.styles'
 
 interface Props extends StyledComponentProps {
@@ -13,6 +16,10 @@ interface Props extends StyledComponentProps {
   total?: number
   initialPage?: number
   onChange?: (page: number) => void
+  count?: number
+  rowsPerPage?: number
+  rowsOptions?: number[]
+  onRowsPerPageChange?: (rows: number) => void
 }
 
 export type PaginationProps = Props &
@@ -44,20 +51,79 @@ const Ellipsis: React.FC<
   )
 }
 
+const ItemCounting: React.FC<
+  React.ComponentPropsWithoutRef<typeof StyledPagination> & {
+    count: number
+    page: number
+  }
+> = ({count, page, ...props}) => {
+  const layout = useMemo(() => {
+    return `${(page - 1) * 10 + 1} - ${(page - 1) * 10 + 10} of ${count}`
+  }, [count, page])
+
+  return (
+    <StyledPaginationItemCounting {...props}>
+      {layout}
+    </StyledPaginationItemCounting>
+  )
+}
+
+const RowsCounting: React.FC<
+  React.ComponentPropsWithoutRef<typeof StyledPagination> & {
+    rowsPerPage: number
+    rowsOptions: number[]
+    onRowsPerPageChange: (newValue: number) => void | undefined
+  }
+> = ({rowsPerPage, onRowsPerPageChange, rowsOptions, ...props}) => {
+  const dropdown = (
+    <Dropdown.Select
+      css={{width: '138px', gap: '4px'}}
+      defaultValue={rowsPerPage.toString()}
+      onValueChange={(k) =>
+        onRowsPerPageChange && onRowsPerPageChange(Number(k))
+      }
+      onBlur={() => console.log('blur')}
+      onFocus={() => console.log('focus')}
+    >
+      {rowsOptions.map((option, index) => (
+        <Dropdown.Item key={index} value={option.toString()}>
+          {`${option} rows`}
+        </Dropdown.Item>
+      ))}
+    </Dropdown.Select>
+  )
+  const layout = useMemo(() => {
+    return (
+      <>
+        <span>Rows per page:</span> {dropdown}
+      </>
+    )
+  }, [rowsPerPage])
+
+  return (
+    <StyledPaginationRowsCounting {...props}>
+      {layout}
+    </StyledPaginationRowsCounting>
+  )
+}
+
 const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
   (props, ref) => {
     const {
       // StyledComponentProps
       css = {},
       // ComponentProps
-      page,
+      page = 1,
       total = 1,
       initialPage = 1,
       onChange,
+      count,
+      rowsPerPage,
+      onRowsPerPageChange,
+      rowsOptions = [5, 10, 15, 20, 25],
       // html props
       ...delegated
     } = props
-
     const paginationRef = useDOMRef<HTMLDivElement>(ref)
     const {items, active, setPage, next, previous} = usePagination({
       page,
@@ -65,7 +131,6 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
       initialPage,
       onChange,
     })
-
     const renderItem = useCallback(
       (item: (typeof items)[number], index: number) => {
         if (item === 'dots') {
@@ -109,19 +174,41 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
         aria-label='pagination'
         {...delegated}
       >
-        <StyledPaginationItem onClick={previous} aria-label='previous page'>
+        {rowsPerPage && (
+          <RowsCounting
+            rowsOptions={rowsOptions}
+            rowsPerPage={5}
+            onRowsPerPageChange={
+              onRowsPerPageChange
+                ? onRowsPerPageChange
+                : (rows: number) => {
+                    console.log(rows)
+                  }
+            }
+          />
+        )}
+        {count && <ItemCounting count={count} page={page} />}
+        <StyledPaginationItem
+          onClick={previous}
+          aria-label='previous page'
+          disabled={active === 1}
+        >
           <svg viewBox='0 0 320 512'>
             <path
-              fill='currentColor'
+              fill={active === 1 ? '#D2D0CE' : '#201F1E'}
               d='M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z'
             ></path>
           </svg>
         </StyledPaginationItem>
         {items.map(renderItem)}
-        <StyledPaginationItem onClick={next} aria-label='next page'>
+        <StyledPaginationItem
+          onClick={next}
+          aria-label='next page'
+          disabled={active === total}
+        >
           <svg viewBox='0 0 320 512'>
             <path
-              fill='currentColor'
+              fill={active === total ? '#D2D0CE' : '#201F1E'}
               d='M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z'
             ></path>
           </svg>
@@ -131,4 +218,6 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
   },
 )
 
-export default Pagination
+export default Pagination as typeof Pagination & {
+  ItemsCounting: typeof ItemCounting
+}

@@ -62,6 +62,9 @@ export const StyledOption = styled('div', {
   '&:hover': {
     backgroundColor: '$gray20',
   },
+  '&.hover': {
+    backgroundColor: '$gray20',
+  },
   '&:focus-visible': {
     backgroundColor: '$cdgBlue20',
   },

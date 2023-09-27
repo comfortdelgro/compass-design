@@ -20,8 +20,8 @@ const AppNav = React.forwardRef<HTMLDivElement, AppNavProps>((props, ref) => {
     position = 'bottom',
     css = {},
     children,
-    index,
-    onChange,
+    index: AppNavIndex,
+    onChange: AppNavChange,
     ...delegated
   } = props
   return (
@@ -31,20 +31,15 @@ const AppNav = React.forwardRef<HTMLDivElement, AppNavProps>((props, ref) => {
           return null
         }
         const childToClone = child as React.ReactElement<AppNavSectionProps>
+        const {isActive, index, onChange, ...rest} = childToClone.props // filter out unnecessary props when using <AppNav.Section />
         const props = {} as AppNavSectionProps
-        props.isActive = childIndex === index
+        props.isActive = childIndex === AppNavIndex
         props.index = childIndex
-        props.onChange = onChange
-        if ('icon' in childToClone.props) {
-          props.icon = childToClone.props.icon
-        }
-        if ('hasBadge' in childToClone.props) {
-          props.hasBadge = childToClone.props.hasBadge
-        }
-        if ('label' in childToClone.props) {
-          props.label = childToClone.props.label
-        }
-        return React.cloneElement(childToClone, props)
+        props.onChange = AppNavChange
+        return React.cloneElement(childToClone, {
+          ...props,
+          ...rest,
+        })
       })}
     </StyledAppNav>
   )

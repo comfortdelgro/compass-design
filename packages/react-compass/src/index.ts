@@ -112,6 +112,11 @@ export type {
   DropdownMenuSubmenuProps,
   DropdownMenuToggleProps,
 } from './dropdown-menu'
+export {default as DropdownTextfield} from './dropdown-textfield'
+export type {
+  DropdownOptions,
+  DropdownTextfieldProps,
+} from './dropdown-textfield'
 export {default as Error} from './error'
 export type {
   ErrorActionProps,
@@ -156,9 +161,9 @@ export type {LayoutProps} from './layouts'
 export {default as Link} from './link'
 export type {LinkProps} from './link'
 export {
-  default as List,
   DragAndDropList,
   InteractiveList,
+  default as List,
   ListCard,
 } from './list'
 export type {
@@ -254,8 +259,8 @@ export type {
 } from './sidebar'
 export {default as Sidenav, SidenavContext} from './sidenav'
 export type {
-  DividerProps as SidenavDividerProps,
   SidenavContextValue,
+  DividerProps as SidenavDividerProps,
   SidenavItemProps,
   SidenavMenuProps,
   SidenavProps,
@@ -342,8 +347,8 @@ export type {
 export {ToastContextProvider, useToast} from './toast/service'
 export type {
   ToastItemType,
-  ToastsContainerProps,
   ToastState,
+  ToastsContainerProps,
 } from './toast/service'
 export {default as Toggle} from './toggle'
 export type {ToggleProps} from './toggle'

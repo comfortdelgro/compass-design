@@ -41,6 +41,7 @@ export const StyledTextarea = styled('textarea', {
   color: '$typeHeading',
   backgroundColor: '$whiteText',
   transition: 'border-color 250ms ease 0s',
+  width: '100%',
 
   '&:disabled': {
     cursor: 'not-allowed !important',
@@ -82,9 +83,8 @@ export const StyledTextareaWrapper = styled('div', {
   flexDirection: 'column',
   alignItems: 'flex-start',
   fontFamily: '$sans',
-  width: 'fit-content',
-
-  '.word-count': {
+  width: '100%',
+  '.cdg-word-count': {
     width: '100%',
     display: 'flex',
     justifyContent: 'flex-end',

@@ -24,7 +24,7 @@ export const StyledRichTextEditor = styled('div', {
 
   // Styling for ProposeMirror
   '& .ProseMirror': {
-    padding: '10px',
+    padding: '$4',
     minHeight: '100px',
     outline: 'none',
   },

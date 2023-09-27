@@ -6,7 +6,7 @@ export const StyledAlert = styled('div', {
   position: 'relative',
   padding: '$2 $4',
   display: 'flex',
-  gap: '$2',
+  gap: '$4',
   flexDirection: 'row',
   alignItems: 'center',
   fontFamily: '$sans',
@@ -19,8 +19,8 @@ export const StyledAlert = styled('div', {
   borderColor: 'transparent',
 
   svg: {
-    width: '$4',
-    height: '$4',
+    width: '$6',
+    height: '$6',
   },
 
   '.alert-dismiss-button': {
@@ -31,6 +31,10 @@ export const StyledAlert = styled('div', {
     flexGrow: 1,
   },
 
+  '.alert-dismiss-button.custom .alert-close-icon': {
+    width: '$4',
+    height: '$4',
+  },
   variants: {
     color: {
       info: {
@@ -57,7 +61,7 @@ export const StyledAlert = styled('div', {
         background: '$warningBg',
         borderColor: '$warningBg',
         '& svg': {
-          color: '$warning',
+          color: '$badgeWarningBg',
         },
         '.alert-close-icon': {
           color: '$primaryText',

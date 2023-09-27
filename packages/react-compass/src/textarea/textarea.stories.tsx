@@ -13,15 +13,14 @@ export const Variants: React.FC = () => {
       <h3> H5</h3>
       <Textarea
         variant='h5'
-        resizable={false}
         placeholder='Type your feedback here'
         css={{
           textarea: {
-            width: '343px',
             height: '129px',
           },
         }}
         label='Details'
+        resizable={false}
         wordCount
         maxLength={200}
       />
@@ -77,6 +76,12 @@ export const Variants: React.FC = () => {
         onChange={(value) => setValue(value)}
       />
       <br />
+      <h3>Custom width and height</h3>
+      <Textarea
+        label='Disabled Text Label'
+        placeholder='Enter your message'
+        css={{'& textarea': {width: '600px', height: '300px'}}}
+      />
       <br />
     </Column>
   )

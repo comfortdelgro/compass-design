@@ -1,5 +1,11 @@
-import {SSRProvider, ThemeProvider} from '@comfortdelgro/react-compass'
+import {
+  SSRProvider,
+  ThemeProvider,
+  ToastContextProvider,
+} from '@comfortdelgro/react-compass'
 import Preflight from '@comfortdelgro/react-compass/preflight'
+import {ThemeStaticProvider} from '@comfortdelgro/static'
+import '@comfortdelgro/static/style.css'
 import 'components/common/bootstrap'
 import AppHeader from 'components/layouts/AppHeader'
 import {ETheme} from 'constants/index'
@@ -52,13 +58,19 @@ function AppWrapper(props: any) {
         <meta name='viewport' content='initial-scale=1, width=device-width' />
       </NextHead>
       <ThemeContext.Provider value={mode}>
-        <ThemeProvider changeBy={mode}>
-          <CodeCopyProvider>
-            <Preflight />
-            <AppHeader handleChangeThemeMode={handleChangeThemeMode} />
-            {children}
-          </CodeCopyProvider>
-        </ThemeProvider>
+        <ToastContextProvider
+          anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+        >
+          <ThemeStaticProvider changeBy={mode}>
+            <ThemeProvider changeBy={mode}>
+              <CodeCopyProvider>
+                <Preflight />
+                <AppHeader handleChangeThemeMode={handleChangeThemeMode} />
+                {children}
+              </CodeCopyProvider>
+            </ThemeProvider>
+          </ThemeStaticProvider>
+        </ToastContextProvider>
       </ThemeContext.Provider>
     </React.Fragment>
   )

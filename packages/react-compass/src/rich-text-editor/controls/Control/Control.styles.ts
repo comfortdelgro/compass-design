@@ -13,11 +13,11 @@ export const StyledControl = styled('button', {
   backgroundColor: 'transparent',
   display: 'inline-flex',
   alignItems: 'center',
-  width: 28,
-  height: 28,
+  width: '$8',
+  height: '$7',
   justifyContent: 'center',
   padding: 0,
-  margin: '0 8px 4px 8px',
+  margin: '0 $2 $2 $2',
   float: 'left',
   color: '$gray110',
   '&:hover': {
@@ -25,7 +25,8 @@ export const StyledControl = styled('button', {
     color: '$gray110',
   },
   svg: {
-    height: '18px',
+    height: '$4',
+    width: '$4',
   },
   '&:disabled': {
     backgroundColor: '$divider',

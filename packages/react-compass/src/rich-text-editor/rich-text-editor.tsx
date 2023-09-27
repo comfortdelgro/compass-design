@@ -73,7 +73,6 @@ const RichTextEditor = React.forwardRef<HTMLDivElement, RichTextEditorProps>(
         Superscript,
         Subscript,
         Placeholder.configure({
-          // Use a placeholder:
           placeholder: placeholder as string,
         }),
       ],

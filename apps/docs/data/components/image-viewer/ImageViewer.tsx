@@ -15,7 +15,7 @@ const ImageViewerDemo: React.FC = () => {
   const [visible, setVisible] = React.useState(false)
   return (
     <>
-      <Button variant='ghost' onClick={() => setVisible(true)}>
+      <Button variant='primary' onClick={() => setVisible(true)}>
         Open image viewer
       </Button>
       <ImageViewer

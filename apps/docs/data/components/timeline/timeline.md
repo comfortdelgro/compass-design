@@ -28,7 +28,7 @@ right
 
 {{"demo": "TimelineDefault.tsx"}}
 
-### Horizontal timeline with alternate label and items
+### Variant
 
 {{"demo": "TimelineCustom.tsx"}}
 

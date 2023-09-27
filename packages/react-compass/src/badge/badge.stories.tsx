@@ -1,5 +1,8 @@
+import Clock from '@comfortdelgro/compass-icons/react/clock-outlined'
+import Tick from '@comfortdelgro/compass-icons/react/tick'
 import {faBug} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+
 import React from 'react'
 import {Column, Row} from '../utils/components'
 import Badge from './index'
@@ -110,12 +113,74 @@ export const Sizes: React.FC = () => (
       <Badge label='Small' variant='primary' size='sm' icon />
     </Row>
     <Row>
-      <h4>1. Medium</h4>
-      <Badge label='Medium' variant='primary' size='md' icon />
+      <h4>1. Default</h4>
+      <Badge label='Default' variant='primary' icon />
     </Row>
     <Row>
       <h4>2. Large</h4>
       <Badge label='Large' variant='primary' size='lg' icon />
+    </Row>
+  </Column>
+)
+export const Status: React.FC = () => (
+  <Column>
+    <h3>Status</h3>
+    <Row>
+      <Badge status='online' variant='rounded' statusSize='8' icon={<Tick />} />
+      <Badge
+        status='online'
+        variant='rounded'
+        statusSize='12'
+        icon={<Tick />}
+      />
+      <Badge
+        status='online'
+        variant='rounded'
+        statusSize='16'
+        icon={<Tick />}
+      />
+      <Badge
+        status='online'
+        variant='rounded'
+        statusSize='20'
+        icon={<Tick />}
+      />
+      <Badge
+        status='online'
+        variant='rounded'
+        statusSize='24'
+        icon={<Tick />}
+      />
+      <Badge
+        status='online'
+        variant='rounded'
+        statusSize='28'
+        icon={<Tick />}
+      />
+    </Row>
+    <Row>
+      <Badge status='away' variant='rounded' statusSize='8' icon={<Clock />} />
+      <Badge status='away' variant='rounded' statusSize='12' icon={<Clock />} />
+      <Badge status='away' variant='rounded' statusSize='16' icon={<Clock />} />
+      <Badge status='away' variant='rounded' statusSize='20' icon={<Clock />} />
+      <Badge status='away' variant='rounded' statusSize='24' icon={<Clock />} />
+      <Badge status='away' variant='rounded' statusSize='28' icon={<Clock />} />
+    </Row>
+    <Row>
+      <Badge status='busy' variant='rounded' statusSize='8' />
+      <Badge status='busy' variant='rounded' statusSize='12' />
+      <Badge status='busy' variant='rounded' statusSize='16' />
+      <Badge status='busy' variant='rounded' statusSize='20' />
+      <Badge status='busy' variant='rounded' statusSize='24' />
+      <Badge status='busy' variant='rounded' statusSize='28' />
+    </Row>
+    <Row>
+      <Badge status='offline' variant='rounded' statusSize='8' />
+      <Badge status='offline' variant='rounded' statusSize='12' />
+      <Badge status='offline' variant='rounded' statusSize='16' />
+      <Badge status='offline' variant='rounded' statusSize='20' />
+      <Badge status='offline' variant='rounded' statusSize='24' />
+      <Badge status='offline' variant='rounded' statusSize='28' />
     </Row>
   </Column>
 )

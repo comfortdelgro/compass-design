@@ -10,7 +10,7 @@ interface Props extends StyledComponentProps {
   description?: string
   rightLabel?: string
   tooltip?: string
-  variant?: 'simple' | 'outlined'
+  variant?: 'simple' | 'outlined' | 'h5'
   isDisabled?: boolean
   value: string
   id?: string
@@ -28,6 +28,7 @@ const Radio: React.FC<RadioProps> = (props) => {
     rightLabel,
     isDisabled = false,
     variant = 'simple',
+    inputPosition = 'left',
     name = '',
     css = {},
     ...delegated
@@ -52,6 +53,7 @@ const Radio: React.FC<RadioProps> = (props) => {
     <StyledRadio
       css={css}
       variant={variant}
+      inputPosition={inputPosition}
       disabled={isDisabled}
       onClick={onClick}
       role='radio'
@@ -60,7 +62,11 @@ const Radio: React.FC<RadioProps> = (props) => {
       {...delegated}
     >
       <div className={`radio-wrapper`}>
-        <StyledRadioInput active={isChecked} disabled={isDisabled} />
+        <StyledRadioInput
+          variant={variant}
+          active={isChecked}
+          disabled={isDisabled}
+        />
         <input
           type='radio'
           name={state.radioName ? state.radioName : name}
@@ -76,7 +82,7 @@ const Radio: React.FC<RadioProps> = (props) => {
 
         {description && <p className='radio-description'>{description}</p>}
       </div>
-      <p className='radio-right-label'>{rightLabel}</p>
+      {!!rightLabel && <p className='radio-right-label'>{rightLabel}</p>}
     </StyledRadio>
   )
 }

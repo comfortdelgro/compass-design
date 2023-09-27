@@ -12,16 +12,30 @@ export const StyledSidenavItem = styled('div', {
   overflow: 'hidden',
 
   '& svg': {
-    width: '$5',
-    height: '$5',
-    marginLeft: '$2_5',
+    width: '$6',
+    height: '$6',
   },
 
   '&:hover': {
     color: '$cdgBlue',
   },
 
-  '& .sidenav-item-title': {
+  '& .cdg-sidenav-item-icon': {
+    minWidth: '$10',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
+    '.cdg-sidenav-item-icon-wrapper': {
+      width: '$10',
+      height: '$10',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+  },
+
+  '& .cdg-sidenav-item-title': {
     fontSize: '$body3',
     fontWeight: '$semibold',
     marginLeft: '$2_5',
@@ -30,7 +44,7 @@ export const StyledSidenavItem = styled('div', {
     textOverflow: 'ellipsis',
   },
 
-  '& .sidenav-item-title > *': {
+  '& .cdg-sidenav-item-title > *': {
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
@@ -43,10 +57,10 @@ export const StyledSidenavItem = styled('div', {
           color: '$cdgBlue',
         },
 
-        '&:before': {
+        '& .cdg-sidenav-item-icon:before': {
           content: '',
           position: 'absolute',
-          left: '$4',
+          left: '0',
           top: 0,
           height: '100%',
           width: '3px',
