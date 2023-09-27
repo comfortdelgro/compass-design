@@ -1,5 +1,5 @@
-import { styled } from '../theme'
-import { VariantProps } from '../utils/stitches.types'
+import {styled} from '../theme'
+import {VariantProps} from '../utils/stitches.types'
 
 export const StyledToastActionsContainer = styled('div', {
   // reset

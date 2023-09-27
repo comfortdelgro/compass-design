@@ -1,11 +1,11 @@
-import { styled } from '../theme'
+import {styled} from '../theme'
 
 export const StyledMenuListDropdown = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   color: '$gray100',
   width: '100%',
-  gap: '$1'
+  gap: '$1',
 })
 
 export const StyledMenuListDropdownBody = styled('div', {
@@ -14,7 +14,7 @@ export const StyledMenuListDropdownBody = styled('div', {
     openState: {
       open: {
         display: 'flex',
-        gap: '$1'
+        gap: '$1',
       },
       close: {
         display: 'none',

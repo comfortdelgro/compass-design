@@ -11,7 +11,7 @@ export const StyledTableV2Row = styled('tr', {
       true: {
         borderWidth: `$borderWidths.light`,
         backgroundColor: '$cdgBlue10',
-        borderLeft: '1px solid $cdgBlue',
+        borderLeft: '2px solid $cdgBlue',
       },
     },
     isExpanded: {

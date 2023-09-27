@@ -1,4 +1,4 @@
-import { styled } from '../theme'
+import {styled} from '../theme'
 
 export const StyledMenuList = styled('nav', {
   width: '$48',
@@ -8,5 +8,5 @@ export const StyledMenuList = styled('nav', {
   overflow: 'auto',
   display: 'flex',
   flexDirection: 'column',
-  gap: '$1'
+  gap: '$1',
 })

@@ -34,6 +34,7 @@ interface Props extends StyledComponentProps {
   socials?: SocicalIcon[]
   className?: string
   effect?: AnimationType
+  itemPerPage?: number
   onSwitchSlide?: (index: number) => void
 }
 
@@ -51,6 +52,7 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
       socials,
       className,
       effect = 'fade',
+      itemPerPage = 1,
       css = {},
       onSwitchSlide = () => null,
       ...delegated
@@ -67,6 +69,7 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
     const targetXPosition =
       (sliderRef.current && sliderRef.current.clientWidth * current) || 0
     const slideWidth = (sliderRef.current && sliderRef.current.clientWidth) || 0
+    const pageCount = children.length / itemPerPage
 
     useEffect(() => {
       const handleResize = () => {
@@ -100,13 +103,13 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
 
     const next = () => {
       clearCurrentTimer()
-      const nextIndex = (current + 1) % children.length
+      const nextIndex = (current + 1) % pageCount
       setCurrent(nextIndex)
     }
 
     const prev = () => {
       clearCurrentTimer()
-      const nextIndex = (current - 1 + children.length) % children.length
+      const nextIndex = (current - 1 + pageCount) % pageCount
       setCurrent(nextIndex)
     }
 
@@ -194,7 +197,7 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
             children
           )}
         </StyledCarouselSliderContainer>
-        {useNavigation && children.length > 1 && (
+        {useNavigation && pageCount > 1 && (
           <div className='content-slider-controls'>
             <StyledCarouselSliderPrev
               onClick={prev}
@@ -233,9 +236,9 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
             socials && socials.length ? ' use-socials' : ''
           }`}
         >
-          {useDotIndicator && children.length > 1 && (
+          {useDotIndicator && pageCount > 1 && (
             <CarouselSliderDots
-              length={children.length}
+              length={pageCount}
               current={current}
               dotClick={setCurrentIndex}
             />
