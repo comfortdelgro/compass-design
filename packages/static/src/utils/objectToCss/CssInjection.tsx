@@ -5,10 +5,10 @@ import objectToCSS, {StyleObject} from './object-to-css'
 export interface Props {
   children?: React.ReactNode
   css?: unknown
-  childrenRef?: React.Ref<HTMLDivElement>
+  childrenRef?: React.Ref<HTMLElement>
 }
 
-const CssInjection = React.forwardRef<HTMLDivElement, Props>((props) => {
+const CssInjection = React.forwardRef<HTMLElement, Props>((props) => {
   const {children, css, childrenRef} = props
 
   // Generate a unique class name for the children
