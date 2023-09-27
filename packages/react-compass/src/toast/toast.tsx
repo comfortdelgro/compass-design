@@ -1,7 +1,8 @@
 import React from 'react'
-import { pickChild } from '../utils/pick-child'
-import { StyledComponentProps } from '../utils/stitches.types'
-import { useDOMRef } from '../utils/use-dom-ref'
+import ReactDOM from 'react-dom'
+import {pickChild} from '../utils/pick-child'
+import {StyledComponentProps} from '../utils/stitches.types'
+import {useDOMRef} from '../utils/use-dom-ref'
 import ToastActions from './toast-actions'
 import ToastCloseIcon from './toast-closeIcon'
 import ToastIcon from './toast-icon'
@@ -22,6 +23,7 @@ interface Anchor {
 }
 interface Props extends StyledComponentProps {
   children?: React.ReactNode
+  portalTo?: HTMLElement
   isOpen?: boolean
   handleClose?: () => void
   autoClose?: false | number
@@ -40,46 +42,54 @@ const Toast = React.forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
     // VariantProps
     color = 'neutral',
     //Component props
+    portalTo,
     isOpen = false,
     handleClose,
     autoClose = false,
-    anchorOrigin = { horizontal: 'center', vertical: 'center' },
+    anchorOrigin = {horizontal: 'center', vertical: 'center'},
     // HTMLDiv Props
     ...delegated
   } = props
 
   const toastRef = useDOMRef<HTMLDivElement>(ref)
-  const variantProps = { color } as ToastVariantProps
+  const variantProps = {color} as ToastVariantProps
 
   // Pick child element from children props
-  const { child: ToastActionsElement } = pickChild<typeof ToastActions>(
+  const {child: ToastActionsElement} = pickChild<typeof ToastActions>(
     children,
     ToastActions,
   )
 
-  const { child: ToastCloseIconElement } = pickChild<typeof ToastCloseIcon>(
+  const {child: ToastCloseIconElement} = pickChild<typeof ToastCloseIcon>(
     children,
     ToastCloseIcon,
   )
 
-  const { child: ToastIconElement } = pickChild<typeof ToastIcon>(
+  const {child: ToastIconElement} = pickChild<typeof ToastIcon>(
     children,
     ToastIcon,
   )
 
-  const { child: ToastLabelElement } = pickChild<typeof ToastLabel>(
+  const {child: ToastLabelElement} = pickChild<typeof ToastLabel>(
     children,
     ToastLabel,
   )
 
-  const { child: ToastMessagelement } = pickChild<typeof ToastMessage>(
+  const {child: ToastMessagelement} = pickChild<typeof ToastMessage>(
     children,
     ToastMessage,
   )
 
-  const { child: ToastTitleElement } = pickChild<typeof ToastTitle>(
+  const {child: ToastTitleElement} = pickChild<typeof ToastTitle>(
     children,
     ToastTitle,
+  )
+
+  const renderContent = React.useCallback(
+    (children: React.ReactNode) => {
+      return portalTo ? ReactDOM.createPortal(children, portalTo) : children
+    },
+    [portalTo],
   )
 
   // Auto close
@@ -91,34 +101,40 @@ const Toast = React.forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
 
   return (
     <>
-      {isOpen && (
-        <StyledToast {...variantProps} css={css} ref={toastRef} {...delegated}
-          vertical={anchorOrigin.vertical}
-          horizontal={anchorOrigin.horizontal}
-          centerCenter={
-            anchorOrigin.vertical === 'center' &&
-            anchorOrigin.horizontal === 'center'
-          }>
-          <StyledToastHeader>
-            <StyledToastHeaderLeft>
-              {ToastIconElement}
-              {ToastTitleElement}
-            </StyledToastHeaderLeft>
-            <StyledToastHeaderRight>
-              {ToastLabelElement}
-              {ToastCloseIconElement &&
-                React.cloneElement(
-                  ToastCloseIconElement as unknown as JSX.Element,
-                  {
-                    onClose: () => handleClose?.(),
-                  },
-                )}
-            </StyledToastHeaderRight>
-          </StyledToastHeader>
-          {ToastMessagelement}
-          {ToastActionsElement}
-        </StyledToast>
-      )}
+      {isOpen &&
+        renderContent(
+          <StyledToast
+            {...variantProps}
+            css={css}
+            ref={toastRef}
+            {...delegated}
+            vertical={anchorOrigin.vertical}
+            horizontal={anchorOrigin.horizontal}
+            centerCenter={
+              anchorOrigin.vertical === 'center' &&
+              anchorOrigin.horizontal === 'center'
+            }
+          >
+            <StyledToastHeader>
+              <StyledToastHeaderLeft>
+                {ToastIconElement}
+                {ToastTitleElement}
+              </StyledToastHeaderLeft>
+              <StyledToastHeaderRight>
+                {ToastLabelElement}
+                {ToastCloseIconElement &&
+                  React.cloneElement(
+                    ToastCloseIconElement as unknown as JSX.Element,
+                    {
+                      onClose: () => handleClose?.(),
+                    },
+                  )}
+              </StyledToastHeaderRight>
+            </StyledToastHeader>
+            {ToastMessagelement}
+            {ToastActionsElement}
+          </StyledToast>,
+        )}
     </>
   )
 })

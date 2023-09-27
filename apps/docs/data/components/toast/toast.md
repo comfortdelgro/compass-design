@@ -51,6 +51,7 @@ import {Toast} from '@comfortdelgro/react-compass'
 | isOpen       | `boolean`                                              | false                                        | The toast is visible when true.                                                         |
 | autoClose    | `false` \| `number`                                    | false                                        | Number of miliseconds to auto close.                                                    |
 | css          | `CSS`                                                  | —                                            | The system prop that allows defining system overrides as well as additional CSS styles. |
+| portalTo    | `HTMLElement`                                          | -         | Using ReactPortals to create portal to an element, example document.body                |
 | anchorOrigin | `Anchor`                                               | `{horizontal: 'center', vertical: 'center'}` | Placements of Toast.                                                                    |
 
 ### `useToast()`
