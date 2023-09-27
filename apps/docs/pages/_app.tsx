@@ -61,7 +61,7 @@ function AppWrapper(props: any) {
         <ToastContextProvider
           anchorOrigin={{horizontal: 'right', vertical: 'top'}}
         >
-          <ThemeStaticProvider changeBy={mode}>
+         {/* <ThemeStaticProvider changeBy={mode}> */}
             <ThemeProvider changeBy={mode}>
               <CodeCopyProvider>
                 <Preflight />
