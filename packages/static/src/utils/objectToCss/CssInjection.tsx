@@ -15,7 +15,7 @@ const CssInjection = React.forwardRef<HTMLElement, Props>((props) => {
   const [additionalClasses, setAdditionalClasses] = React.useState('')
 
   React.useEffect(() => {
-    const childClassName: string = generateRandomString('cdg-chip')
+    const childClassName: string = generateRandomString('cdg')
     setAdditionalClasses(childClassName)
   }, [childrenRef])
 
