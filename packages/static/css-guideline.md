@@ -196,7 +196,7 @@ div[id^="section"] {
 }
 ```
 
-### 3.5 Always use direct selector with className unless there is a good reason
+### 3.9 Always use direct selector with className unless there is a good reason
 #### Good:
 ```css
 /* Direct selector */
