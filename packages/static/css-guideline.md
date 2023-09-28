@@ -12,7 +12,7 @@ Example:
 
 ```css
 /* Good */
-.Button {
+.button {
   /* Styles for buttons */
 }
 
@@ -193,6 +193,32 @@ div[id^="section"] {
 
 .button:before {
   /* Ambiguous naming */
+}
+```
+
+### 3.5 Always use direct selector with className unless there is a good reason
+#### Good:
+```css
+/* Direct selector */
+
+.title {
+  /* Styles for title with className */
+}
+
+.description {
+  /* Styles for description with className */
+}
+```
+#### Bad:
+```css
+/* Indirect selector */
+
+.parent:first-child {
+  /* Styles for title*/
+}
+
+.parent > div {
+  /* Styles for description */
 }
 ```
 
