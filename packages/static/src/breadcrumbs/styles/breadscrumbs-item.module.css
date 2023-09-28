@@ -1,6 +1,6 @@
 @import '../../theme-static/theme.module.css';
 
-.cdg-breadcrumbs-item {
+.breadcrumbsItem {
   text-decoration: none;
   font-weight: 400;
   transition: var(--cdg-transition-default);

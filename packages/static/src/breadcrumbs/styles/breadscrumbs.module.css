@@ -1,10 +1,10 @@
 @import '../../theme-static/theme.module.css';
 
-.cdg-breadcrumbs {
+.breadcrumbs {
   font-family: var(--cdg-font-sans);
 }
 
-.cdg-breadcrumbs > ol {
+.breadcrumbsList {
   padding: 0;
   display: flex;
   flex-wrap: wrap;

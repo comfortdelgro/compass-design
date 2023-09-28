@@ -29,7 +29,7 @@ const BreadcrumbItem = React.forwardRef<HTMLAnchorElement, BreadcrumbItemProps>(
 
     const linkRef = useDOMRef<HTMLAnchorElement>(ref)
 
-    const className = `${styles['cdg-breadcrumbs-item']} ${
+    const className = `${styles.breadcrumbsItem} ${
       isCurrent ? styles.active : ''
     } ${isDisabled ? styles.disabled : ''}`
 

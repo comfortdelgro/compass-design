@@ -2,8 +2,8 @@
 import React from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import styles from './styles/breadscrumbs.module.css'
 import BreadcrumbItem from './breadcrumb-item'
+import styles from './styles/breadscrumbs.module.css'
 
 export interface Props {
   css?: unknown
@@ -11,7 +11,6 @@ export interface Props {
   dividerIcon?: React.ReactNode
   isCurrent?: (item: number) => boolean
 }
-
 
 export type BreadcrumbsProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
@@ -38,19 +37,15 @@ const Breadcrumbs = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
 
   return (
     <CssInjection css={css} childrenRef={breadcrumbsRef}>
-      <nav
-        ref={breadcrumbsRef}
-        className={styles['cdg-breadcrumbs']}
-        {...delegated}
-      >
-        <ol>
+      <nav ref={breadcrumbsRef} className={styles.breadcrumbs} {...delegated}>
+        <ol className={styles.breadcrumbsList}>
           {items.map((item, i) => (
             <React.Fragment key={i}>
               {React.cloneElement(item as JSX.Element, {
                 isCurrent: isCurrent ? isCurrent(i) : false,
               })}
               {i < items.length - 1 && (
-                <li aria-hidden className={styles.divider }>
+                <li aria-hidden className={styles.divider}>
                   {dividerIcon}
                 </li>
               )}
