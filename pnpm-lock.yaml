@@ -251,10 +251,11 @@ importers:
 
   packages/static:
     specifiers:
+      '@fortawesome/free-solid-svg-icons': ^6.4.2
+      '@fortawesome/react-fontawesome': ^0.2.0
       '@storybook/addon-essentials': 7.4.2
       '@storybook/addon-interactions': 7.4.2
       '@storybook/addon-links': 7.4.2
-      '@storybook/addon-onboarding': 1.0.8
       '@storybook/blocks': 7.4.2
       '@storybook/builder-vite': ^7.4.2
       '@storybook/core-server': ^7.4.2
@@ -278,6 +279,8 @@ importers:
       vite-plugin-css-injected-by-js: ^3.3.0
       vite-plugin-dts: ^3.5.3
     dependencies:
+      '@fortawesome/free-solid-svg-icons': 6.4.2
+      '@fortawesome/react-fontawesome': 0.2.0_react@18.2.0
       '@storybook/builder-vite': 7.4.2_5at2almb2fvddpzkgvkkndjq6y
       '@storybook/core-server': 7.4.2
       react: 18.2.0
@@ -288,7 +291,6 @@ importers:
       '@storybook/addon-essentials': 7.4.2_q2ny6fm7z3lcok7xjh6l4iypda
       '@storybook/addon-interactions': 7.4.2_q2ny6fm7z3lcok7xjh6l4iypda
       '@storybook/addon-links': 7.4.2_biqbaboplfbrettd7655fr4n2y
-      '@storybook/addon-onboarding': 1.0.8_biqbaboplfbrettd7655fr4n2y
       '@storybook/blocks': 7.4.2_q2ny6fm7z3lcok7xjh6l4iypda
       '@storybook/react': 7.4.2_vegmnuvoswdxuttpuhvewcem44
       '@storybook/react-vite': 7.4.2_m4t4ng7lhsnc46wncbl2o5qdpu
@@ -2352,6 +2354,16 @@ packages:
       react: 18.2.0
     dev: false
 
+  /@fortawesome/react-fontawesome/0.2.0_react@18.2.0:
+    resolution: {integrity: sha512-uHg75Rb/XORTtVt7OS9WoK8uM276Ufi7gCzshVWkUJbHhh3svsUUeqXerrM96Wm7fRiDzfKRwSoahhMIkGAYHw==}
+    peerDependencies:
+      '@fortawesome/fontawesome-svg-core': ~1 || ~6
+      react: '>=16.3'
+    dependencies:
+      prop-types: 15.8.1
+      react: 18.2.0
+    dev: false
+
   /@frsource/base64/1.0.17:
     resolution: {integrity: sha512-QyMv52jCRIMUIlDM6ysSVPc6Cp3KCTu6/YeLUyJpTEhleXssYB3CT5PqmQijGGwu4819qvan8Eu4PWJRAW5Akg==}
     dev: true
@@ -4043,21 +4055,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - '@types/react-dom'
-    dev: true
-
-  /@storybook/addon-onboarding/1.0.8_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-3WwCocUuTibHWO89uzAbeONEn6x9NkmxA0mOU4rYPhEsMQ4NDNDD1GXcievZmpwt5VviFgw5FRx8+BxPn54YmQ==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-    dependencies:
-      '@storybook/telemetry': 7.4.2
-      react: 18.2.0
-      react-confetti: 6.1.0_react@18.2.0
-      react-dom: 18.2.0_react@18.2.0
-    transitivePeerDependencies:
-      - encoding
-      - supports-color
     dev: true
 
   /@storybook/addon-outline/7.4.2_q2ny6fm7z3lcok7xjh6l4iypda:
@@ -5980,7 +5977,7 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.22.5_@babel+core@7.22.20
       magic-string: 0.27.0
       react-refresh: 0.14.0
-      vite: 4.4.9_@types+node@18.17.17
+      vite: 4.4.9
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -12421,16 +12418,6 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: true
 
-  /react-confetti/6.1.0_react@18.2.0:
-    resolution: {integrity: sha512-7Ypx4vz0+g8ECVxr88W9zhcQpbeujJAVqL14ZnXJ3I23mOI9/oBVTQ3dkJhUmB0D6XOtCZEM6N0Gm9PMngkORw==}
-    engines: {node: '>=10.18'}
-    peerDependencies:
-      react: ^16.3.0 || ^17.0.1 || ^18.0.0
-    dependencies:
-      react: 18.2.0
-      tween-functions: 1.2.0
-    dev: true
-
   /react-docgen-typescript/2.2.2_typescript@5.2.2:
     resolution: {integrity: sha512-tvg2ZtOpOi6QDwsb3GZhOjDkkX0h8Z2gipvTg6OVMUyoYoURhEiRNePT8NZItTVCDh39JJHnLdfCOkzoLbFnTg==}
     peerDependencies:
@@ -14047,10 +14034,6 @@ packages:
       turbo-linux-arm64: 1.10.14
       turbo-windows-64: 1.10.14
       turbo-windows-arm64: 1.10.14
-    dev: true
-
-  /tween-functions/1.2.0:
-    resolution: {integrity: sha512-PZBtLYcCLtEcjL14Fzb1gSxPBeL7nWvGhO5ZFPGqziCcr8uvHp0NDmdjBchp6KHL+tExcg0m3NISmKxhU394dA==}
     dev: true
 
   /tweetnacl/0.14.5:

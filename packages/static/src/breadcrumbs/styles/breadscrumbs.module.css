@@ -1,0 +1,27 @@
+@import '../../theme-static/theme.module.css';
+
+.cdg-breadcrumbs {
+  font-family: var(--cdg-font-sans);
+}
+
+.cdg-breadcrumbs > ol {
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cdg-spacing-2);
+  flex-direction: row;
+  align-items: center;
+  list-style: none;
+}
+
+.divider {
+  color: var(--cdg-color-primaryText);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.divider > svg {
+  width: var(--cdg-spacing-3_5);
+  height: var(--cdg-spacing-3_5);
+}
