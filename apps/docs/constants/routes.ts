@@ -1,4 +1,5 @@
 import {
+  faCog,
   faFile,
   faHouse,
   faSquarePen,
@@ -530,6 +531,50 @@ export const routes: TSideNavItem[] = [
         title: 'Toast',
         pathname: '/toast',
         description: 'The toast component displays a message.',
+      },
+    ],
+  },
+
+  {
+    pathname: '/utilities',
+    title: 'Utilities',
+    icon: faCog,
+    children: [
+      {
+        title: 'Calendar',
+        pathname: '/date/calendar',
+        description:
+          'The Calendar represents a calendar system, including information about how days, months, years, eras are organized, and methods to perform arithmetic on dates.',
+      },
+      {
+        title: 'CalendarDate',
+        pathname: '/date/calendar-date',
+        description:
+          'A CalendarDate represents a date without any time components in a specific calendar system.',
+      },
+      {
+        title: 'CalendarDateTime',
+        pathname: '/date/calendar-date-time',
+        description:
+          'A CalendarDateTime represents a date and time without a time zone, in a specific calendar system.',
+      },
+      {
+        title: 'DateFormatter',
+        pathname: '/date/date-formatter',
+        description:
+          'A wrapper around Intl.DateTimeFormat that fixes various browser bugs, and polyfills new features.',
+      },
+      {
+        title: 'Time',
+        pathname: '/date/time',
+        description:
+          'A Time represents a clock time without any date components.',
+      },
+      {
+        title: 'ZonedDateTime',
+        pathname: '/date/zoned-date-time',
+        description:
+          'A ZonedDateTime represents a date and time in a specific time zone and calendar system.',
       },
     ],
   },
