@@ -62,6 +62,10 @@ const OTPInputComponent = React.forwardRef<HTMLDivElement, OTPInputProps>(
       (str: string) => {
         const updatedOTPValues = [...otpValues]
         updatedOTPValues[activeInput] = str[0] || ''
+        if (otpValues[activeInput] === updatedOTPValues[activeInput]) {
+          return
+        }
+
         setOTPValues(updatedOTPValues)
         handleOtpChange(updatedOTPValues)
       },
@@ -93,8 +97,8 @@ const OTPInputComponent = React.forwardRef<HTMLDivElement, OTPInputProps>(
       [focusInput],
     )
 
-    // Handle onChange value for each input
-    const handleOnChange = useCallback(
+    // Handle onInput event for each input
+    const handleOnInput = useCallback(
       (e: React.ChangeEvent<HTMLInputElement>) => {
         const val = getRightValue(e.currentTarget.value)
         if (!val) {
@@ -192,9 +196,10 @@ const OTPInputComponent = React.forwardRef<HTMLDivElement, OTPInputProps>(
             key={`SingleInput-${index}`}
             focus={activeInput === index}
             autoFocus={autoFocus}
+            index={index}
             value={otpValues && otpValues[index]}
             onFocus={handleOnFocus(index)}
-            onChange={handleOnChange}
+            onInput={handleOnInput}
             onKeyDown={handleOnKeyDown}
             onBlur={onBlur}
             onPaste={handleOnPaste}
