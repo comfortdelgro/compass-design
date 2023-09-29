@@ -108,12 +108,24 @@
   justify-content: center;
   background: var(--cdg-color-background);
 }
-.dropdownItemRightIcon.dropdownItemRightIconCheckMarkCheckbox svg {
+.dropdownItemRightIcon.dropdownItemRightIconCheckMarkCheckbox
+  .dropdownItemRightIconContentSvg {
   color: var(--cdg-color-whiteText);
 }
 
-.dropdownItemRightIcon.dropdownItemRightIconCheckMarkTick svg {
+.dropdownItemRightIcon.dropdownItemRightIconCheckMarkTick
+  .dropdownItemRightIconContentSvg {
   color: var(--cdg-color-cdgBlue);
+}
+
+.dropdownItemRightIcon.dropdownItemRightIconCheckMarkTick
+  .dropdownItemRightIconContentSvg {
+  display: none;
+}
+
+.dropdownItemRightIcon.dropdownItemRightIconCheckMarkTick.dropdownItemRightIconSelected
+  .dropdownItemRightIconContentSvg {
+  display: block;
 }
 
 .dropdownItemRightIcon.dropdownItemRightIconSelected
