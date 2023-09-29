@@ -155,14 +155,43 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
       })
     }
 
+    const dropdownOptionClassName = useMemo(() => {
+      let className = `${styles.dropdownOption}`
+      if (isFocused && !isSelected) {
+        className += ` ${styles.dropdownItemIsFocused}`
+      }
+      if (isSelected && !isFocused) {
+        className += ` ${styles.dropdownItemIsSelected}`
+      }
+      if (isSelected && isFocused) {
+        className += ` ${styles.dropdownItemIsSelectedFocused}`
+      }
+      if (isDisabled) {
+        className += ` ${styles.dropdownItemIsDisabled}`
+      }
+
+      return className
+    }, [isDisabled, isFocused, isSelected])
+
+    const dropdownItemRightIconClassName = useMemo(() => {
+      let className = `${styles.dropdownItemRightIcon}`
+      if (isSelected) {
+        className += ` ${styles.dropdownItemRightIconSelected}`
+      }
+
+      if (checkmark === 'checkbox') {
+        className += ` ${styles.dropdownItemRightIconCheckMarkCheckbox}`
+      } else if (checkmark === 'tick') {
+        className += ` ${styles.dropdownItemRightIconCheckMarkTick}`
+      }
+
+      return className
+    }, [checkmark, isSelected])
+
     return canDisplayed ? (
       <CssInjection css={css} childrenRef={dropdownItemRef}>
         <li
-          className={`${styles.dropdownOption}`}
-          // isFocused={isFocused && !isSelected}
-          // isSelected={isSelected && !isFocused}
-          // isSelectedFocused={isSelected && isFocused}
-          // isDisabled={isDisabled}
+          className={`${dropdownOptionClassName} cdg-dropdown-item`}
           onClick={handleItemClick}
           ref={dropdownItemRef}
           role='option'
@@ -179,12 +208,12 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
           {type === 'color' && rightColor && (
             <div
               className={`${styles.dropdownItemColor} ${
-                isSelected ? 'cdg-dropdown-item-selected' : ''
+                isSelected ? styles.dropdownItemSelected : ''
               }`}
               style={{background: rightColor}}
             >
               <svg
-                className='cdg-dropdown-item-color'
+                className={styles.dropdownItemColor}
                 width='16'
                 height='16'
                 viewBox='0 0 16 16'
@@ -199,13 +228,9 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
             </div>
           )}
           {checkmark !== 'none' && (
-            <div
-              className={`${styles.dropdownItemRightIcon} ${
-                isSelected ? 'cdg-dropdown-item-right-icon-selected' : ''
-              } cdg-dropdown-item-right-icon-${checkmark}`}
-            >
+            <div className={dropdownItemRightIconClassName}>
               {checkmark === 'checkbox' ? (
-                <div className='cdg-dropdown-item-right-icon-content'>
+                <div className={styles.dropdownItemRightIconContent}>
                   <Tick />
                 </div>
               ) : checkmark === 'tick' ? (

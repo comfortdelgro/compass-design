@@ -545,16 +545,29 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   )
 
   const contentElement = useMemo(() => {
+    let containerClassName = ''
     switch (type) {
       case 'select':
+        containerClassName = `${styles.dropdownSelect}`
+        if (!selectedItem) {
+          containerClassName += ` ${styles.dropdownInputIsEmpty}`
+        }
+        if (isErrored) {
+          containerClassName += ` ${styles.dropdownInputIsErrored}`
+        }
+        if (isDisabled) {
+          containerClassName += ` ${styles.dropdownItemIsSelectedFocused}`
+        }
+        if (isDisabled) {
+          containerClassName += ` ${styles.dropdownInputIsDisabled}`
+        }
+        if (h5) {
+          containerClassName += ` ${styles.dropdownInputH5}`
+        }
+
         return (
           <div
-            className={`${styles.dropdownSelect}
-                        ${!selectedItem ? 'cdg-dropdown-input-isEmpty' : ''}
-                        ${isErrored ? 'cdg-dropdown-input-isErrored' : ''}
-                        ${isDisabled ? 'cdg-dropdown-input-isDisabled' : ''}
-                        ${h5 ? 'cdg-dropdown-input-h5' : ''}
-                        cdg-dropdown-input`}
+            className={containerClassName}
             role='button'
             aria-required={isRequired}
           >
@@ -580,25 +593,20 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           </div>
         )
       case 'combobox':
+        containerClassName = `${styles.dropdownComboBox}`
+        if (!selectedItem) {
+          containerClassName += ` ${styles.dropdownItemRightIconIsEmpty}`
+        }
+        if (isDisabled) {
+          containerClassName += ` ${styles.dropdownItemRightIconIsDisabled}`
+        }
+        if (isErrored) {
+          containerClassName += ` ${styles.dropdownItemRightIconIsErrored}`
+        }
+
         return (
           <div
-            className={`${styles.dropdownComboBox}
-                        cdg-dropdown-input ${
-                          !selectedItem
-                            ? 'cdg-dropdown-item-right-icon-isEmpty'
-                            : ''
-                        }
-                        ${
-                          isDisabled
-                            ? 'cdg-dropdown-item-right-icon-isDisabled'
-                            : ''
-                        }
-                        ${
-                          isErrored
-                            ? 'cdg-dropdown-item-right-icon-isErrored'
-                            : ''
-                        }
-                        `}
+            className={containerClassName}
             role='button'
             aria-required={isRequired}
           >
@@ -631,7 +639,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
               onCompositionEnd={onCompositionEnd}
               onCompositionStart={onCompositionStart}
               onCompositionUpdate={onCompositionUpdate}
-              className='cdg-dropdown-input-control'
+              className={styles.dropdownInputControl}
             />
             <button
               type='button'
@@ -754,7 +762,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       <div
         className={`${styles.dropdownWrapper} ${
           open ? styles.dropdownOpening : ''
-        } ${open ? styles.dropdownH5 : ''}`}
+        } ${h5 ? styles.dropdownH5 : ''}`}
         ref={selectRef}
         onKeyDown={handleKeyDown}
         {...htmlProps}
@@ -820,7 +828,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         {isErrored && errorMessage && (
           <div
             className={`${styles.dropdownHelperText} ${
-              isErrored ? 'cdg-dropdown-helper-isErrored' : ''
+              isErrored ? styles.dropdownHelperIsErrored : ''
             }`}
           >
             {errorMessage}

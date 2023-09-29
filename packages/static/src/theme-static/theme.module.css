@@ -1,5 +1,6 @@
 :root {
   /* Spacings */
+  --cdg-spacing--0_25: -0.0625rem;
   --cdg-spacing-0_25: 0.0625rem;
   --cdg-spacing-0_5: 0.125rem;
   --cdg-spacing-1: 0.25rem;

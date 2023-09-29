@@ -22,6 +22,35 @@
   color: var(--cdg-color-primaryText);
 }
 
+.dropdownOption:hover {
+  background-color: var(--cdg-color-gray20);
+}
+
+.dropdownOption.dropdownItemIsFocused {
+  background-color: var(--cdg-color-cdgBlue20);
+}
+
+.dropdownOption.dropdownItemIsSelected {
+  background-color: var(--cdg-color-gray20);
+}
+
+.dropdownOption.dropdownItemIsSelectedFocused {
+  background-color: var(--cdg-color-cdgBlue30);
+}
+
+.dropdownOption.dropdownItemIsDisabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.dropdownOption.dropdownItemIsDisabled:hover {
+  background-color: transparent;
+}
+
+.dropdownOption.dropdownItemIsDisabled * {
+  color: var(--cdg-color-disabledText);
+}
+
 .dropdownItemIcon {
   display: flex;
   align-items: center;
@@ -49,13 +78,13 @@
   border-radius: var(--cdg-border-radius-md);
 }
 
-.dropdownItemColor .cdg-dropdown-item-color {
+.dropdownItemColor .dropdownItemColor {
   display: none;
   color: var(--cdg-color-whiteText);
-  margin-right: -var(--cdg-spacing-0_25);
+  margin-right: var(--cdg-spacing--0_25);
 }
 
-.dropdownItemColor.cdg-dropdown-item-selected .cdg-dropdown-item-color {
+.dropdownItemColor.dropdownItemSelected .dropdownItemColor {
   display: block;
 }
 
@@ -68,14 +97,33 @@
   height: var(--cdg-spacing-6);
 }
 
-.dropdownItemRightIcon.cdg-dropdown-item-right-icon-selected
-  .cdg-dropdown-item-right-icon-content {
+.dropdownItemRightIcon.dropdownItemRightIconCheckMarkCheckbox
+  .dropdownItemRightIconContent {
+  border: 1px solid var(--cdg-color-black);
+  border-radius: 3px;
+  width: var(--cdg-spacing-4);
+  height: var(--cdg-spacing-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cdg-color-background);
+}
+.dropdownItemRightIcon.dropdownItemRightIconCheckMarkCheckbox svg {
+  color: var(--cdg-color-whiteText);
+}
+
+.dropdownItemRightIcon.dropdownItemRightIconCheckMarkTick svg {
+  color: var(--cdg-color-cdgBlue);
+}
+
+.dropdownItemRightIcon.dropdownItemRightIconSelected
+  .dropdownItemRightIconContent {
   border: 0;
   background: var(--cdg-color-cdgBlue100);
 }
 
-.dropdownItemRightIcon.cdg-dropdown-item-right-icon-selected
-  .cdg-dropdown-item-right-icon-content
+.dropdownItemRightIcon.dropdownItemRightIconSelected
+  .dropdownItemRightIconContent
   svg {
   display: block;
 }
@@ -150,7 +198,7 @@
   border-color: var(--cdg-color-cdgBlue);
 }
 
-.dropdownComboBox .cdg-dropdown-input-control {
+.dropdownComboBox .dropdownInputControl {
   color: var(--cdg-color-primaryText);
   box-sizing: border-box;
   background: var(--cdg-color-background);
@@ -168,7 +216,7 @@
   margin: 0;
 }
 
-.dropdownComboBox .cdg-dropdown-input-control:focus {
+.dropdownComboBox .dropdownInputControl:focus {
   outline: none;
 }
 
@@ -194,40 +242,37 @@
   transition: transform 0.3s linear;
 }
 
-.dropdownComboBox.cdg-dropdown-item-right-icon-isEmpty
-  .cdg-dropdown-input-control::placeholder {
+.dropdownComboBox.dropdownItemRightIconIsEmpty
+  .dropdownInputControl::placeholder {
   color: var(--cdg-color-gray40);
   font-size: var(--cdg-font-size-label1);
   font-weight: var(--cdg-font-weight-semibold);
 }
 
-.dropdownComboBox.cdg-dropdown-item-right-icon-isDisabled {
+.dropdownComboBox.dropdownItemRightIconIsDisabled {
   color: var(--cdg-color-disabledText);
   cursor: not-allowed !important;
 }
 
-.dropdownComboBox.cdg-dropdown-item-right-icon-isDisabled * {
+.dropdownComboBox.dropdownItemRightIconIsDisabled * {
   color: var(--cdg-color-disabledText);
   cursor: not-allowed !important;
 }
 
-.dropdownComboBox.cdg-dropdown-item-right-icon-isDisabled
-  .cdg-dropdown-input-control {
+.dropdownComboBox.dropdownItemRightIconIsDisabled .dropdownInputControl {
   color: var(--cdg-color-disabledText);
   background-color: var(--cdg-color-gray20);
 }
 
-.dropdownComboBox.cdg-dropdown-item-right-icon-isDisabled
-  .dropdownSelectButton
-  span {
+.dropdownComboBox.dropdownItemRightIconIsDisabled .dropdownSelectButton span {
   color: var(--cdg-color-disabledText);
 }
 
-.dropdownComboBox.cdg-dropdown-item-right-icon-isErrored {
+.dropdownComboBox.dropdownItemRightIconIsErrored {
   border-color: var(--cdg-color-danger);
 }
 
-.dropdownComboBox.cdg-dropdown-item-right-icon-isErrored:focus-within {
+.dropdownComboBox.dropdownItemRightIconIsErrored:focus-within {
   border-color: var(--cdg-color-dangerDarker);
 }
 
@@ -235,14 +280,14 @@
   width: 100%;
 }
 
-.dropdownWrapper.dropdownOpening .cdg-dropdown-input .dropdownSelectButton {
+.dropdownWrapper.dropdownOpening .dropdownSelect .dropdownSelectButton {
   line-height: var(--cdg-line-height-normal);
 }
 
 .dropdownWrapper.dropdownOpening
-  .cdg-dropdown-input
+  .dropdownSelect
   .dropdownSelectButton
-  .cdg-dropdown-button-icon {
+  .dropdownButtonIcon {
   transform: rotate(180deg);
   transition: transform 0.3s linear;
 }
@@ -269,7 +314,7 @@
   color: var(--cdg-color-gray70);
 }
 
-.dropdownHelperText.cdg-dropdown-helper-isErrored {
+.dropdownHelperText.dropdownHelperIsErrored {
   color: var(--cdg-color-danger);
 }
 
@@ -356,36 +401,36 @@
   outline: none;
 }
 
-.dropdownSelect.cdg-dropdown-input-isEmpty .dropdownSelectButton {
+.dropdownSelect.dropdownInputIsEmpty .dropdownSelectButton .dropdownButtonText {
   color: var(--cdg-color-disabledText);
 }
 
-.dropdownSelect.cdg-dropdown-input-isDisabled {
+.dropdownSelect.dropdownInputIsDisabled {
   background-color: var(--cdg-color-gray20);
 }
 
-.dropdownSelect.cdg-dropdown-input-isDisabled * {
+.dropdownSelect.dropdownInputIsDisabled * {
   color: var(--cdg-color-disabledText);
   cursor: not-allowed !important;
 }
 
-.dropdownSelect.cdg-dropdown-input-isDisabled .dropdownSelectButton {
+.dropdownSelect.dropdownInputIsDisabled .dropdownSelectButton {
   color: var(--cdg-color-disabledText);
 }
 
-.dropdownSelect.cdg-dropdown-input-isErrored {
+.dropdownSelect.dropdownInputIsErrored {
   border-color: var(--cdg-color-danger);
 }
 
-.dropdownSelect.cdg-dropdown-input-isErrored:focus-within {
+.dropdownSelect.dropdownInputIsErrored:focus-within {
   border-color: var(--cdg-color-dangerDarker);
 }
 
-.dropdownSelect.cdg-dropdown-input-h5 {
+.dropdownSelect.dropdownInputH5 {
   border-radius: var(--cdg-border-radius-lg);
   color: var(--cdg-color-grayShades100);
 }
 
-.dropdownSelect.cdg-dropdown-input-h5 svg {
+.dropdownSelect.dropdownInputH5 svg {
   color: var(--cdg-color-grayShades60);
 }
