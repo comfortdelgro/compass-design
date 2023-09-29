@@ -6,7 +6,6 @@ import React, {
   useRef,
   useState,
 } from 'react'
-import Popover from '../popover'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
   DropdownContext,
@@ -15,10 +14,7 @@ import {
 } from './dropdown-context'
 import DropdownItem, {DropdownItemProps} from './dropdown-item'
 import DropdownList from './dropdown-list'
-// import DropdownComboBox from './dropdown.combobox'
 import DropdownHeader from './dropdown.header'
-// import DropdownSection from './dropdown.section'
-// import DropdownSelect from './dropdown.select'
 import {
   getFirstItem,
   getItemAbove,
@@ -28,7 +24,11 @@ import {
   textContent,
 } from './utils'
 
+import {Popover} from '..'
 import CssInjection from '../utils/objectToCss/CssInjection'
+import DropdownComboBox from './dropdown.combobox'
+import DropdownSection from './dropdown.section'
+import DropdownSelect from './dropdown.select'
 import styles from './styles/dropdown.module.css'
 
 export interface Props {
@@ -62,7 +62,7 @@ export interface Props {
   isCloseOnSelect?: boolean
   isLoadingMore?: boolean
   popoverCSS?: React.CSSProperties
-  css?: React.CSSProperties
+  css?: unknown
   inputRef?: React.RefObject<HTMLInputElement>
   buttonRef?: React.RefObject<HTMLButtonElement>
   onBlur?: (event: React.FocusEvent) => void
@@ -94,6 +94,40 @@ export type DropdownProps = Props &
 const ITEM_HEIGHT = 37
 const EMPTY_FUNC = () => {
   //
+}
+
+// clone children to assign value prop if not exists. the value would be equal to the key prop
+// This is to support the legacy code where users don't pass value prop and use key prop instead
+const recursivelyAddValueProp = (
+  children: React.ReactNode,
+): React.ReactNode => {
+  if (typeof children === 'string') return children
+
+  return React.Children.map(children, (child) => {
+    if (!child) return child
+
+    if (React.isValidElement(child)) {
+      if (child.type === DropdownItem) {
+        const childWithProps = child as React.ReactElement<DropdownItemProps>
+        if (!('value' in childWithProps.props)) {
+          return React.cloneElement(childWithProps, {
+            value: `${child.key}` || '',
+          })
+        }
+      }
+
+      const childProps = child as React.ReactElement<{
+        children?: React.ReactNode
+      }>
+      if (childProps.props.children) {
+        return React.cloneElement(childProps, {
+          children: recursivelyAddValueProp(childProps.props.children),
+        })
+      }
+    }
+
+    return child
+  })
 }
 
 const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
@@ -204,7 +238,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       default:
         return '100%'
     }
-  }, [type, open])
+  }, [type, buttonSelectRef, inputFieldRef])
 
   /**
    * Reset focus key when closes popover
@@ -218,40 +252,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       }
     }
   }, [open, allowsCustomValue])
-
-  // clone children to assign value prop if not exists. the value would be equal to the key prop
-  // This is to support the legacy code where users don't pass value prop and use key prop instead
-  const recursivelyAddValueProp = (
-    children: React.ReactNode,
-  ): React.ReactNode => {
-    if (typeof children === 'string') return children
-
-    return React.Children.map(children, (child) => {
-      if (!child) return child
-
-      if (React.isValidElement(child)) {
-        if (child.type === DropdownItem) {
-          const childWithProps = child as React.ReactElement<DropdownItemProps>
-          if (!('value' in childWithProps.props)) {
-            return React.cloneElement(childWithProps, {
-              value: `${child.key}` || '',
-            })
-          }
-        }
-
-        const childProps = child as React.ReactElement<{
-          children?: React.ReactNode
-        }>
-        if (childProps.props.children) {
-          return React.cloneElement(childProps, {
-            children: recursivelyAddValueProp(childProps.props.children),
-          })
-        }
-      }
-
-      return child
-    })
-  }
 
   useEffect(() => {
     setClonedChildren(recursivelyAddValueProp(children))
@@ -404,19 +404,20 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       }
     },
     [
-      isCloseOnSelect,
+      onKeyDown,
       open,
+      focusKey,
+      selectedItem?.value,
+      onOpenChange,
+      clonedChildren,
+      dropdownItemKeys,
+      isCloseOnSelect,
       disableClearable,
       shouldDeselect,
-      focusKey,
-      clonedChildren,
-      selectedItem,
-      dropdownItemKeys,
-      onValueChange,
-      onSelectionChange,
-      onOpenChange,
-      onKeyDown,
       setValueForItemAndFocusKey,
+      inputFieldRef,
+      onSelectionChange,
+      onValueChange,
     ],
   )
 
@@ -425,7 +426,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     setOpen((v) => !v)
     onOpenChange?.(!open)
     inputFieldRef.current?.focus()
-  }, [onOpenChange, open])
+  }, [inputFieldRef, onOpenChange, open])
 
   const handleInputChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -453,9 +454,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     [
       isReadOnly,
       disableClearable,
-      isUncontrolledComponent,
       type,
-      selectedItem,
       allowsCustomValue,
       onOpenChange,
       onValueChange,
@@ -487,13 +486,13 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         }
       })
     }
-  }, [type, selectedItem, allowsCustomValue, isUncontrolledComponent])
+  }, [type, inputFieldRef, allowsCustomValue, selectedItem])
 
   useEffect(() => {
     if (!open && ['combobox'].includes(type) && inputFieldRef.current) {
       fillTextForInput()
     }
-  }, [open, type, fillTextForInput])
+  }, [open, type, fillTextForInput, inputFieldRef])
 
   useEffect(() => {
     if (!clonedChildren || (!valueDropdown && !defaultValueDropdown)) {
@@ -521,7 +520,13 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         inputFieldRef.current.value = textContent(item as React.ReactElement)
       }
     }
-  }, [clonedChildren, valueDropdown, defaultValueDropdown, allowsCustomValue])
+  }, [
+    clonedChildren,
+    valueDropdown,
+    defaultValueDropdown,
+    allowsCustomValue,
+    inputFieldRef,
+  ])
 
   const handleInputComboboxBlur = useCallback(
     (event: React.FocusEvent) => {
@@ -541,14 +546,21 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         }
       }
     },
-    [onBlur, selectedItem, type, allowsCustomValue],
+    [
+      onBlur,
+      type,
+      inputFieldRef,
+      allowsCustomValue,
+      disableClearable,
+      selectedItem,
+    ],
   )
 
   const contentElement = useMemo(() => {
     let containerClassName = ''
     switch (type) {
       case 'select':
-        containerClassName = `${styles.dropdownSelect}`
+        containerClassName = `cdg-dropdown-input ${styles.dropdownSelect}`
         if (!selectedItem) {
           containerClassName += ` ${styles.dropdownInputIsEmpty}`
         }
@@ -593,7 +605,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           </div>
         )
       case 'combobox':
-        containerClassName = `${styles.dropdownComboBox}`
+        containerClassName = `cdg-dropdown-input ${styles.dropdownComboBox}`
         if (!selectedItem) {
           containerClassName += ` ${styles.dropdownItemRightIconIsEmpty}`
         }
@@ -639,14 +651,14 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
               onCompositionEnd={onCompositionEnd}
               onCompositionStart={onCompositionStart}
               onCompositionUpdate={onCompositionUpdate}
-              className={styles.dropdownInputControl}
+              className={`${styles.dropdownInputControl} cdg-dropdown-input-control`}
             />
             <button
               type='button'
               tabIndex={-1}
               disabled={isDisabled}
               onClick={handleDropdownToggle}
-              className='cdg-dropdown-button'
+              className={`${styles.dropdownButtonControl} cdg-dropdown-button`}
             >
               {icon}
             </button>
@@ -656,22 +668,26 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         return null
     }
   }, [
-    prefix,
-    open,
     type,
-    id,
-    placeholder,
     selectedItem,
     isErrored,
     isDisabled,
-    isReadOnly,
-    autoFocus,
-    autoCapitalize,
-    onBlur,
-    onFocus,
+    h5,
+    isRequired,
+    id,
+    buttonSelectRef,
     handleDropdownToggle,
-    handleInputChange,
     handleInputComboboxBlur,
+    onFocus,
+    autoFocus,
+    prefix,
+    placeholder,
+    icon,
+    inputFieldRef,
+    isReadOnly,
+    autoCapitalize,
+    open,
+    handleInputChange,
     onCut,
     onCopy,
     onPaste,
@@ -774,7 +790,9 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
             className={`${styles.dropdownLabel} cdg-dropdown-label`}
           >
             {label}
-            {isRequired && <span>*</span>}
+            {isRequired && (
+              <span className={styles.dropdownLabelAsterisk}>*</span>
+            )}
           </label>
         )}
         <DropdownContext.Provider
@@ -843,9 +861,9 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
 })
 
 export default Select as typeof Select & {
-  // ComboBox: typeof DropdownComboBox
-  // Select: typeof DropdownSelect
+  ComboBox: typeof DropdownComboBox
+  Select: typeof DropdownSelect
   Item: typeof DropdownItem
-  // Section: typeof DropdownSection
+  Section: typeof DropdownSection
   Header: typeof DropdownHeader
 }

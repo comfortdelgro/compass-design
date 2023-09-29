@@ -34,6 +34,7 @@
     "storybook": "storybook dev -p 6006"
   },
   "dependencies": {
+    "@comfortdelgro/compass-icons": "*",
     "@floating-ui/react": "^0.24.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
@@ -44,8 +45,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "vite-plugin-css-injected-by-js": "^3.3.0",
-    "vite-plugin-dts": "^3.5.3",
-    "@floating-ui/react": "^0.24.0"
+    "vite-plugin-dts": "^3.5.3"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "7.4.2",

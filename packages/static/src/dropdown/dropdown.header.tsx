@@ -4,7 +4,7 @@ import {useDOMRef} from '../utils/use-dom-ref'
 import {DropdownContext} from './dropdown-context'
 interface Props {
   children: React.ReactNode
-  css: unknown
+  css?: unknown
   onClick?: React.MouseEventHandler<HTMLDivElement>
 }
 

@@ -1,5 +1,7 @@
+import type {Meta} from '@storybook/react'
 import {useState} from 'react'
 import Popover, {PopoverDirection} from '.'
+import React from 'react'
 
 const SamplePopover = () => {
   return (
@@ -134,3 +136,16 @@ export const Controlled = () => {
     </>
   )
 }
+
+const meta = {
+  title: 'Example/Popover Server',
+  component: Controlled,
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
+  tags: ['autodocs'],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof Controlled>
+
+export default meta
