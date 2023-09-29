@@ -24,12 +24,13 @@ const BreadcrumbItem = React.forwardRef<HTMLAnchorElement, BreadcrumbItemProps>(
       css = {},
       isCurrent = false,
       isDisabled = false,
+      className,
       ...delegated
     } = props
 
     const linkRef = useDOMRef<HTMLAnchorElement>(ref)
 
-    const className = `${styles.breadcrumbsItem} ${
+    const classNameProp = `${className} ${styles.breadcrumbsItem} ${
       isCurrent ? styles.active : ''
     } ${isDisabled ? styles.disabled : ''}`
 
@@ -37,7 +38,7 @@ const BreadcrumbItem = React.forwardRef<HTMLAnchorElement, BreadcrumbItemProps>(
       <CssInjection css={css} childrenRef={linkRef}>
         <li>
           {isCurrent || isDisabled ? (
-            <span {...delegated} className={className} ref={linkRef}>
+            <span {...delegated} className={classNameProp} ref={linkRef}>
               {children}
             </span>
           ) : (

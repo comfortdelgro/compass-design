@@ -9,6 +9,7 @@ export interface Props {
   isErrored?: boolean
   onClose?: (event: React.MouseEvent<HTMLDivElement>) => void
   css?: unknown
+  className?: string
 }
 
 const Chip = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
@@ -18,6 +19,7 @@ const Chip = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     isErrored = false,
     onClose,
     css,
+    className,
     ...delegated
   } = props
 
@@ -27,7 +29,7 @@ const Chip = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     <CssInjection css={css} childrenRef={chipRef}>
       <div
         ref={chipRef}
-        className={` ${styles.chip} ${isErrored ? styles.isErrored : ''}`}
+        className={` ${className} ${styles.chip} ${isErrored ? styles.isErrored : ''}`}
         {...delegated}
       >
         {children}
