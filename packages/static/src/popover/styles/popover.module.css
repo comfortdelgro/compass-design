@@ -1,0 +1,25 @@
+/* StyledPopoverWrapper */
+.popoverWrapper {
+  /* Reset */
+  appearance: none;
+  border: none;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  width: fit-content;
+  height: fit-content;
+}
+
+/* StyledAnchorWrapper */
+.anchorWrapper {
+  /* Reset */
+  appearance: none;
+  border: none;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  width: fit-content;
+  height: fit-content;
+}
