@@ -1,7 +1,7 @@
-import React, { Key } from 'react'
-import { pickChild } from '../utils/pick-child'
-import { DropdownItemKey } from './dropdown-context'
-import { DropdownItemProps } from './dropdown-item'
+import React, {Key} from 'react'
+import {pickChild} from '../utils/pick-child'
+import {DropdownItemKey} from './dropdown-context'
+import {DropdownItemProps} from './dropdown-item'
 import DropdownHeader from './dropdown.header'
 
 /**
@@ -191,7 +191,7 @@ export const getLastItem = (
  */
 export const getItemByKey = (key: Key, children?: React.ReactNode) => {
   // Pick Dropdown.Item in children except for DropdownHeader
-  const { rest: dropdownItems } = pickChild<typeof DropdownHeader>(
+  const {rest: dropdownItems} = pickChild<typeof DropdownHeader>(
     children,
     DropdownHeader,
   )
@@ -212,7 +212,7 @@ export const getDistanceBetweenElements = (
   b: HTMLDivElement,
 ) => {
   const getTop = (element: Element) => {
-    const { top } = element.getBoundingClientRect()
+    const {top} = element.getBoundingClientRect()
     return top
   }
   const aPosition = getTop(a)

@@ -1,6 +1,6 @@
-import type { Meta } from '@storybook/react'
-import React, { useState } from 'react'
-import Popover, { PopoverDirection } from './index'
+import type {Meta} from '@storybook/react'
+import React, {useState} from 'react'
+import Popover, {PopoverDirection} from './index'
 
 const style: {
   display: string
@@ -67,8 +67,8 @@ export const Basic: React.FC = () => {
   }
 
   return (
-    <div style={{ ...style }}>
-      <div style={{ display: 'flex', gap: '1rem' }}>
+    <div style={{...style}}>
+      <div style={{display: 'flex', gap: '1rem'}}>
         <div
           style={{
             display: 'flex',
@@ -77,7 +77,7 @@ export const Basic: React.FC = () => {
           }}
         >
           <label
-            style={{ fontSize: '0.85em', color: 'red' }}
+            style={{fontSize: '0.85em', color: 'red'}}
             htmlFor='directionSelect'
           >
             Direction
@@ -87,7 +87,7 @@ export const Basic: React.FC = () => {
             onChange={(e) => {
               setCurrentDirection(e.target.value as PopoverDirection)
             }}
-            style={{ width: '6rem', height: '1.8rem' }}
+            style={{width: '6rem', height: '1.8rem'}}
           >
             {directions.map((direction) => {
               return (
@@ -106,14 +106,14 @@ export const Basic: React.FC = () => {
           }}
         >
           <label
-            style={{ fontSize: '0.85em', color: 'red' }}
+            style={{fontSize: '0.85em', color: 'red'}}
             htmlFor='offsetInput'
           >
             Offset
           </label>
           <input
             id='offsetInput'
-            style={{ width: '6rem', height: '1.8rem' }}
+            style={{width: '6rem', height: '1.8rem'}}
             type='number'
             value={currentOffset}
             onChange={(e) => setCurrentOffset(Number(e.target.value))}
@@ -133,11 +133,7 @@ export const Basic: React.FC = () => {
       >
         <Popover
           isOpen={isOpen1}
-          anchor={
-            <button onClick={openPopover1}>
-              Click me!
-            </button>
-          }
+          anchor={<button onClick={openPopover1}>Click me!</button>}
           offset={currentOffset}
           direction={currentDirection}
           onClose={() => {

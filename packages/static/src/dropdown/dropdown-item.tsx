@@ -1,10 +1,10 @@
-import React, { Key, useContext, useEffect, useMemo } from 'react'
-import { useDOMRef } from '../utils/use-dom-ref'
-import { DropdownContext } from './dropdown-context'
-import { textContent } from './utils'
+import React, {Key, useContext, useEffect, useMemo} from 'react'
+import {useDOMRef} from '../utils/use-dom-ref'
+import {DropdownContext} from './dropdown-context'
+import {textContent} from './utils'
 
-import styles from './styles/dropdown.module.css'
 import CssInjection from '../utils/objectToCss/CssInjection'
+import styles from './styles/dropdown.module.css'
 
 const Tick = () => (
   <svg width='10' height='10' viewBox='0 0 10 10' fill='none'>
@@ -55,7 +55,7 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
       ...other
     } = props
 
-    const { textValue, ...delegated } = other
+    const {textValue, ...delegated} = other
 
     const {
       isPositioned,
@@ -106,7 +106,7 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
             (keyItem) => keyItem.value.toString() === value.toString(),
           )
           if (index === -1) {
-            keys.push({ value, visibility: true })
+            keys.push({value, visibility: true})
           } else {
             keys[index] = {
               value,
@@ -131,7 +131,7 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
     useEffect(() => {
       if (isPositioned && (isFocused || (isSelected && isFocused))) {
         if (dropdownItemRef.current) {
-          dropdownItemRef.current.scrollIntoView({ block: 'nearest' })
+          dropdownItemRef.current.scrollIntoView({block: 'nearest'})
         }
       }
     }, [isPositioned, isFocused, isSelected])
@@ -139,7 +139,7 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
     useEffect(() => {
       if (isSelected && isPositioned) {
         if (dropdownItemRef.current) {
-          dropdownItemRef.current.scrollIntoView({ block: 'nearest' })
+          dropdownItemRef.current.scrollIntoView({block: 'nearest'})
         }
       }
     }, [isPositioned, open, isSelected])
@@ -157,7 +157,8 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
 
     return canDisplayed ? (
       <CssInjection css={css} childrenRef={dropdownItemRef}>
-        <li className={`${styles.dropdownOption}`}
+        <li
+          className={`${styles.dropdownOption}`}
           // isFocused={isFocused && !isSelected}
           // isSelected={isSelected && !isFocused}
           // isSelectedFocused={isSelected && isFocused}
@@ -168,13 +169,20 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
           aria-selected={isSelected}
           {...delegated}
         >
-          {leftIcon && <div className={`${styles.dropdownItemIcon}`}>{leftIcon}</div>}
+          {leftIcon && (
+            <div className={`${styles.dropdownItemIcon}`}>{leftIcon}</div>
+          )}
           <div className={`${styles.dropdownItemContent}`}>{children}</div>
           {type === 'icon' && rightIcon && (
             <div className={`${styles.dropdownItemIcon}`}>{rightIcon}</div>
           )}
           {type === 'color' && rightColor && (
-            <div className={`${styles.dropdownItemColor} ${isSelected ? 'cdg-dropdown-item-selected' : ''}`} style={{ background: rightColor }}>
+            <div
+              className={`${styles.dropdownItemColor} ${
+                isSelected ? 'cdg-dropdown-item-selected' : ''
+              }`}
+              style={{background: rightColor}}
+            >
               <svg
                 className='cdg-dropdown-item-color'
                 width='16'
@@ -191,7 +199,11 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
             </div>
           )}
           {checkmark !== 'none' && (
-            <div className={`${styles.dropdownItemRightIcon} ${isSelected ? 'cdg-dropdown-item-right-icon-selected' : ''} cdg-dropdown-item-right-icon-${checkmark}`} >
+            <div
+              className={`${styles.dropdownItemRightIcon} ${
+                isSelected ? 'cdg-dropdown-item-right-icon-selected' : ''
+              } cdg-dropdown-item-right-icon-${checkmark}`}
+            >
               {checkmark === 'checkbox' ? (
                 <div className='cdg-dropdown-item-right-icon-content'>
                   <Tick />

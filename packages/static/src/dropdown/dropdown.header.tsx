@@ -1,7 +1,7 @@
-import React, { useContext } from 'react'
-import { useDOMRef } from '../utils/use-dom-ref'
-import { DropdownContext } from './dropdown-context'
+import React, {useContext} from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
+import {useDOMRef} from '../utils/use-dom-ref'
+import {DropdownContext} from './dropdown-context'
 interface Props {
   children: React.ReactNode
   css: unknown
@@ -15,9 +15,9 @@ export type DropdownHeaderProps = Props
 
 const DropdownHeader = React.forwardRef<HTMLDivElement, DropdownItemProps>(
   (props, ref) => {
-    const { children, css, onClick } = props
+    const {children, css, onClick} = props
     const dropdownHeaderRef = useDOMRef<HTMLDivElement>(ref)
-    const { onHeaderClick } = useContext(DropdownContext)
+    const {onHeaderClick} = useContext(DropdownContext)
 
     const handleHeaderClick = (event: React.MouseEvent<HTMLDivElement>) => {
       onHeaderClick()
@@ -26,10 +26,7 @@ const DropdownHeader = React.forwardRef<HTMLDivElement, DropdownItemProps>(
 
     return (
       <CssInjection css={css} childrenRef={dropdownHeaderRef}>
-        <div
-          ref={dropdownHeaderRef}
-          onClick={handleHeaderClick}
-        >
+        <div ref={dropdownHeaderRef} onClick={handleHeaderClick}>
           {children}
         </div>
       </CssInjection>
