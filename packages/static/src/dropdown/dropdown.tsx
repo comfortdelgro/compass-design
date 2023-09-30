@@ -6,13 +6,13 @@ import React, {
   useRef,
   useState,
 } from 'react'
-import {useDOMRef} from '../utils/use-dom-ref'
+import { useDOMRef } from '../utils/use-dom-ref'
 import {
   DropdownContext,
   DropdownItemKey,
   SelectedItemDropdown,
 } from './dropdown-context'
-import DropdownItem, {DropdownItemProps} from './dropdown-item'
+import DropdownItem, { DropdownItemProps } from './dropdown-item'
 import DropdownList from './dropdown-list'
 import DropdownHeader from './dropdown.header'
 import {
@@ -24,7 +24,7 @@ import {
   textContent,
 } from './utils'
 
-import {Popover} from '..'
+import { Popover } from '..'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import DropdownComboBox from './dropdown.combobox'
 import DropdownSection from './dropdown.section'
@@ -189,7 +189,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     ...ariaSafeProps
   } = props
 
-  const htmlProps = {...ariaSafeProps} as Omit<
+  const htmlProps = { ...ariaSafeProps } as Omit<
     React.HTMLAttributes<HTMLDivElement>,
     keyof Props
   >
@@ -212,8 +212,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   const [dropdownItemKeys, setDropdownItemKeys] = useState<DropdownItemKey[]>(
     [],
   )
-
   const [clonedChildren, setClonedChildren] = useState<React.ReactNode>(null)
+  const [triggerElementWidth, setTriggerElementWidth] = useState<string | number>('100%')
 
   // Select ref
   const selectRef = useDOMRef<HTMLDivElement>(ref)
@@ -228,17 +228,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     () => !!defaultValueDropdown || (!defaultValueDropdown && !valueDropdown),
     [defaultValueDropdown, valueDropdown],
   )
-
-  const triggeElWidth = useMemo(() => {
-    switch (type) {
-      case 'select':
-        return buttonSelectRef.current?.clientWidth ?? '100%'
-      case 'combobox':
-        return inputFieldRef.current?.clientWidth ?? '100%'
-      default:
-        return '100%'
-    }
-  }, [type, buttonSelectRef, inputFieldRef])
 
   /**
    * Reset focus key when closes popover
@@ -528,6 +517,18 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     inputFieldRef,
   ])
 
+  useEffect(() => {
+    if (open) {
+      let elementWidth = '100%'
+      if (type === 'select') {
+        elementWidth = (buttonSelectRef.current?.clientWidth ? `${buttonSelectRef.current.clientWidth}px` : '100%')
+      } else if (type === 'combobox') {
+        elementWidth = (inputFieldRef.current?.clientWidth ? `${inputFieldRef.current.clientWidth}px` : '100%')
+      }
+      setTriggerElementWidth(popoverCSS.width ?? elementWidth)
+    }
+  }, [buttonSelectRef, inputFieldRef, open, type, popoverCSS.width])
+
   const handleInputComboboxBlur = useCallback(
     (event: React.FocusEvent) => {
       onBlur?.(event)
@@ -776,9 +777,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   return (
     <CssInjection css={css} childrenRef={selectRef}>
       <div
-        className={`${styles.dropdownWrapper} ${
-          open ? styles.dropdownOpening : ''
-        } ${h5 ? styles.dropdownH5 : ''}`}
+        className={`${styles.dropdownWrapper} ${open ? styles.dropdownOpening : ''
+          } ${h5 ? styles.dropdownH5 : ''}`}
         ref={selectRef}
         onKeyDown={handleKeyDown}
         {...htmlProps}
@@ -817,7 +817,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           <Popover
             isOpen={open}
             anchor={contentElement}
-            css={{width: '100%'}}
+            css={{ width: '100%' }}
             direction='bottom-left'
             onClose={handleClosePopover}
             onPositionedChange={handlePositionedChange}
@@ -825,7 +825,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
             <div
               className={`${styles.dropdownPopover}`}
               onClick={handleDropdownHeaderClick}
-              style={{...popoverCSS, width: popoverCSS.width ?? triggeElWidth}}
+              style={{ ...popoverCSS, width: popoverCSS.width ?? triggerElementWidth }}
             >
               <DropdownList
                 searchValue={searchValue}
@@ -845,9 +845,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         </DropdownContext.Provider>
         {isErrored && errorMessage && (
           <div
-            className={`${styles.dropdownHelperText} ${
-              isErrored ? styles.dropdownHelperIsErrored : ''
-            }`}
+            className={`${styles.dropdownHelperText} ${isErrored ? styles.dropdownHelperIsErrored : ''
+              }`}
           >
             {errorMessage}
           </div>

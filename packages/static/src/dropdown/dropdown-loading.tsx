@@ -3,10 +3,10 @@ import styles from './styles/dropdown.module.css'
 export default function DropdownLoading() {
   return (
     <div className={`${styles.dropdownLoading}`}>
-      <div className='spinner'>
-        <div className='spinner-item spinner-1' />
-        <div className='spinner-item spinner-2' />
-        <div className='spinner-item spinner-3' />
+      <div className={styles.dropdownLoadingSpinner}>
+        <div className={`${styles.dropdownLoadingSpinnerItem} ${styles.dropdownLoadingSpinnerItem1}`} />
+        <div className={`${styles.dropdownLoadingSpinnerItem} ${styles.dropdownLoadingSpinnerItem2}`} />
+        <div className={`${styles.dropdownLoadingSpinnerItem} ${styles.dropdownLoadingSpinnerItem3}`} />
         <div />
       </div>
     </div>

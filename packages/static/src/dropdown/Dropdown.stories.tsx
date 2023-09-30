@@ -729,7 +729,6 @@ export const Combobox: React.FC = () => {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              width: '100%',
               padding: '8px 16px',
               borderBottom: '2px solid #EDEBE9',
             }}

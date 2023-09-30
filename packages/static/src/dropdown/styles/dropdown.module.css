@@ -146,14 +146,14 @@
   margin: var(--cdg-spacing-4) auto;
 }
 
-.dropdownLoading.spinner {
+.dropdownLoading .dropdownLoadingSpinner {
   display: inline-block;
   position: relative;
   width: var(--cdg-spacing-4);
   height: var(--cdg-spacing-4);
 }
 
-.dropdownLoading .spinner-item {
+.dropdownLoading .dropdownLoadingSpinnerItem {
   box-sizing: border-box;
   display: block;
   position: absolute;
@@ -161,19 +161,19 @@
   height: var(--cdg-spacing-4);
   border: 2px solid var(--cdg-color-divider);
   border-radius: 50%;
-  animation: 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   border-color: var(--cdg-color-divider) transparent transparent transparent;
 }
 
-.dropdownLoading .spinner-item .spinner-1 {
+.dropdownLoading .dropdownLoadingSpinnerItem .dropdownLoadingSpinnerItem1 {
   animation-delay: -0.45s;
 }
 
-.dropdownLoading .spinner-item .spinner-2 {
+.dropdownLoading .dropdownLoadingSpinnerItem .dropdownLoadingSpinnerItem2 {
   animation-delay: -0.3s;
 }
 
-.dropdownLoading .spinner-item .spinner-3 {
+.dropdownLoading .dropdownLoadingSpinnerItem .dropdownLoadingSpinnerItem3 {
   animation-delay: -0.15s;
 }
 
@@ -248,7 +248,7 @@
   background: transparent;
 }
 
-.dropdownComboBox .dropdownSelectButton svg {
+.dropdownComboBox .dropdownButtonControl svg {
   width: var(--cdg-spacing-4);
   height: var(--cdg-spacing-4);
   transition: transform 0.3s linear;
@@ -336,6 +336,10 @@
 .dropdownWrapper.dropdownOpening
   .dropdownSelect
   .dropdownSelectButton
+  .dropdownButtonIcon,
+.dropdownWrapper.dropdownOpening
+  .dropdownComboBox
+  .dropdownButtonControl
   .dropdownButtonIcon {
   transform: rotate(180deg);
   transition: transform 0.3s linear;
