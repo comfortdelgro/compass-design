@@ -1,0 +1,138 @@
+@import '../../theme-static/theme.module.css';
+
+.spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.ring {
+  position: relative;
+  aspect-ratio: 1/1;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.ring:focus,
+.ring:focus-within {
+  border: none;
+  outline: none;
+}
+
+.ring .bg,
+.ring .segment {
+  box-sizing: border-box;
+  position: absolute;
+  border-style: solid;
+  border-radius: var(--cdg-border-radius-full);
+}
+
+.ring .bg {
+  border-color: var(--cdg-color-gray30);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.ring .segment {
+  border-color: var(--cdg-color-cdgBlue) transparent transparent transparent;
+  animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+
+.ring .segment:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.ring .segment:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.ring .segment:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+.label {
+  color: var(--cdg-color-cdgBlue);
+  font-family: var(--cdg-font-sans);
+  margin-top: var(--cdg-spacing-2);
+  margin-bottom: var(--cdg-spacing-2);
+}
+
+/* 2xl */
+.size-2xl .ring,
+.size-2xl .ring div {
+  width: var(--cdg-spacing-16);
+  height: var(--cdg-spacing-16);
+}
+
+.size-2xl .ring div {
+  border-width: 0.625rem;
+}
+
+.size-2xl .label {
+  font-size: var(--cdg-font-size-body2);
+}
+
+/* xl */
+.size-xl .ring,
+.size-xl .ring div {
+  width: var(--cdg-spacing-12);
+  height: var(--cdg-spacing-12);
+}
+.size-xl .ring div {
+  border-width: 0.625rem;
+}
+
+.size-xl .label {
+  font-size: var(--cdg-font-size-body2);
+}
+/* lg styles */
+.size-lg .ring,
+.size-lg .ring div {
+  width: var(--cdg-spacing-10);
+  height: var(--cdg-spacing-10);
+}
+
+.size-lg .ring div {
+  border-width: 0.5rem;
+}
+
+.size-lg .label {
+  font-size: var(--cdg-font-size-label1);
+}
+.size-md .ring,
+.size-md .ring div {
+  width: var(--cdg-spacing-8);
+  height: var(--cdg-spacing-8);
+}
+
+.size-md .ring div {
+  border-width: 0.375rem;
+}
+
+.size-md .label {
+  font-size: var(--cdg-font-size-label2);
+}
+
+/* sm styles */
+.size-sm .ring,
+.size-sm .ring div {
+  width: var(--cdg-spacing-6);
+  height: var(--cdg-spacing-6);
+}
+
+.size-sm .ring div {
+  border-width: 0.25rem;
+}
+
+.size-sm .label {
+  font-size: var(--cdg-font-size-label3);
+}
