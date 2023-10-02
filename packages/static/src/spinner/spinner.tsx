@@ -53,17 +53,17 @@ const Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>((props, ref) => {
           <div
             className={`cdg-spinner-segment ${styles.segment} ${
               size ? styles[`segment${size.charAt(0).toUpperCase() + size.slice(1)}`] : ''
-            }`}
+            } ${styles.segment1}`}
           />
           <div
             className={`cdg-spinner-segment ${styles.segment} ${
               size ? styles[`segment${size.charAt(0).toUpperCase() + size.slice(1)}`] : ''
-            }`}
+            } ${styles.segment2}`}
           />
           <div
             className={`cdg-spinner-segment ${styles.segment} ${
               size ? styles[`segment${size.charAt(0).toUpperCase() + size.slice(1)}`] : ''
-            }`}
+            } ${styles.segment3}`}
           />
         </div>
         {labelText ? (

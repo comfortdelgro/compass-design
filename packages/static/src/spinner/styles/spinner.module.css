@@ -47,15 +47,15 @@
   animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
 }
 
-.segment:nth-child(1) {
+.segment1 {
   animation-delay: -0.45s;
 }
 
-.segment:nth-child(2) {
+.segment2 {
   animation-delay: -0.3s;
 }
 
-.segment:nth-child(3) {
+.segment3 {
   animation-delay: -0.15s;
 }
 
@@ -68,12 +68,9 @@
 
 /* 2xl */
 .ring2xl,
-.ring2xl div {
+.bg2xl, .segment2xl {
   width: var(--cdg-spacing-16);
   height: var(--cdg-spacing-16);
-}
-
-.ring2xl div {
   border-width: 0.625rem;
 }
 
@@ -83,11 +80,9 @@
 
 /* xl */
 .ringXl,
-.ringXl div {
+.bgXl, .segmentXl {
   width: var(--cdg-spacing-12);
   height: var(--cdg-spacing-12);
-}
-.ringXl div {
   border-width: 0.625rem;
 }
 
@@ -96,27 +91,25 @@
 }
 /* lg styles */
 .ringLg,
-.ringLg div {
-  width: var(--cdg-spacing-10);
-  height: var(--cdg-spacing-10);
-}
-
-.ringLg div {
-  border-width: 0.5rem;
+.bgLg, .segmentLg {
+  width: var(--cdg-spacing-12);
+  height: var(--cdg-spacing-12);
+  border-width: 0.625rem;
 }
 
 .fontLg {
   font-size: var(--cdg-font-size-label1);
 }
+
+/* md styles */
+
 .ringMd,
-.ringMd div {
-  width: var(--cdg-spacing-8);
-  height: var(--cdg-spacing-8);
+.bgMd, .segmentMd {
+  width: var(--cdg-spacing-12);
+  height: var(--cdg-spacing-12);
+  border-width: 0.625rem;
 }
 
-.ringMd div {
-  border-width: 0.375rem;
-}
 
 .fontMd {
   font-size: var(--cdg-font-size-label2);
@@ -124,13 +117,10 @@
 
 /* sm styles */
 .ringSm,
-.ringSm div {
-  width: var(--cdg-spacing-6);
-  height: var(--cdg-spacing-6);
-}
-
-.ringSm div {
-  border-width: 0.25rem;
+.bgSm, .segmentSm {
+  width: var(--cdg-spacing-12);
+  height: var(--cdg-spacing-12);
+  border-width: 0.625rem;
 }
 
 .fontSm {
