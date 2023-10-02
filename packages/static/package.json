@@ -34,11 +34,14 @@
     "storybook": "storybook dev -p 6006"
   },
   "dependencies": {
+    "@floating-ui/react": "^0.24.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@storybook/builder-vite": "^7.4.2",
     "@storybook/core-server": "^7.4.2",
     "chart.js": "3.9.1",
+    "clsx": "1.2.1",
+    "lodash": "4.17.21",
     "react": "^18.2.0",
     "react-chartjs-2": "4.3.1",
     "react-dom": "^18.2.0",

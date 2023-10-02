@@ -10,6 +10,7 @@ export interface Props {
   children?: React.ReactNode
   dividerIcon?: React.ReactNode
   isCurrent?: (item: number) => boolean
+  className?: string
 }
 
 export type BreadcrumbsProps = Props &
@@ -28,6 +29,7 @@ const Breadcrumbs = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     ),
     isCurrent,
     children,
+    className,
     ...delegated
   } = props
 
@@ -37,7 +39,7 @@ const Breadcrumbs = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
 
   return (
     <CssInjection css={css} childrenRef={breadcrumbsRef}>
-      <nav ref={breadcrumbsRef} className={styles.breadcrumbs} {...delegated}>
+      <nav ref={breadcrumbsRef} className={`${className} ${styles.breadcrumbs}`} {...delegated}>
         <ol className={styles.breadcrumbsList}>
           {items.map((item, i) => (
             <React.Fragment key={i}>
