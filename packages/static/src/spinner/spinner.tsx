@@ -7,7 +7,7 @@ interface Props {
   label?: boolean | string
   css?: unknown
   className?: string
-  size: string
+  size?: '2xl' | 'xl' | 'lg' | 'md' | 'sm';
 }
 
 export type SpinnerProps = Props &
@@ -34,18 +34,47 @@ const Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>((props, ref) => {
       <div
         tabIndex={-1}
         ref={spinnerRef}
-        className={`${styles.spinner} ${
-          size ? styles[`size-${size}`] : ''
+        className={`cdg-spinner ${styles.spinner} ${
+          size ? styles[`${size.charAt(0).toUpperCase() + size.slice(1)}`] : ''
         } ${className}`}
         {...delegated}
       >
-        <div className={styles.ring} tabIndex={-1}>
-          <div className={styles.bg} />
-          <div className={styles.segment} />
-          <div className={styles.segment} />
-          <div className={styles.segment} />
+        <div
+          className={`cdg-spinner-ring ${styles.ring} ${
+            size ? styles[`ring${size.charAt(0).toUpperCase() + size.slice(1)}`] : ''
+          }`}
+          tabIndex={-1}
+        >
+          <div
+            className={`cdg-spinner-bg ${styles.bg} ${
+              size ? styles[`bg${size.charAt(0).toUpperCase() + size.slice(1)}`] : ''
+            }`}
+          />
+          <div
+            className={`cdg-spinner-segment ${styles.segment} ${
+              size ? styles[`segment${size.charAt(0).toUpperCase() + size.slice(1)}`] : ''
+            }`}
+          />
+          <div
+            className={`cdg-spinner-segment ${styles.segment} ${
+              size ? styles[`segment${size.charAt(0).toUpperCase() + size.slice(1)}`] : ''
+            }`}
+          />
+          <div
+            className={`cdg-spinner-segment ${styles.segment} ${
+              size ? styles[`segment${size.charAt(0).toUpperCase() + size.slice(1)}`] : ''
+            }`}
+          />
         </div>
-        {labelText ? <div className={styles.label}>{labelText}</div> : null}
+        {labelText ? (
+          <div
+            className={`cdg-spinner-label ${styles.label} ${
+              size ? styles[`label${size.charAt(0).toUpperCase() + size.slice(1)}`] : ''
+            }`}
+          >
+            {labelText}
+          </div>
+        ) : null}
       </div>
     </CssInjection>
   )
