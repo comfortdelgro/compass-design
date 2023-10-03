@@ -37,9 +37,15 @@ const Breadcrumbs = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
 
   const items = React.Children.toArray(children)
 
+  const wrapperClass = React.useMemo(() => {
+    let classes = `cdg-breadcrumbs ${styles.breadcrumbs}`
+    if(className) classes += ` ${className}`
+    return classes
+  },[className])
+
   return (
     <CssInjection css={css} childrenRef={breadcrumbsRef}>
-      <nav ref={breadcrumbsRef} className={`${className} ${styles.breadcrumbs}`} {...delegated}>
+      <nav ref={breadcrumbsRef} className={wrapperClass} {...delegated}>
         <ol className={styles.breadcrumbsList}>
           {items.map((item, i) => (
             <React.Fragment key={i}>
