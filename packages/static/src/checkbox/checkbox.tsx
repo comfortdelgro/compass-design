@@ -27,21 +27,17 @@ export type CheckboxProps = Props &
 const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   (props, ref) => {
     const {
-      // StyledComponentProps
       css = {},
-      // ComponentProps
-      isDisabled = false,
       children,
-      // VariantProps
+      isSelected,
+      validationState,
+      isDisabled = false,
+      isReadOnly = false,
+      variant = 'default',
       isIndeterminate = false,
       defaultSelected = false,
-      isSelected,
-      onChange,
       cssCheckBoxInput = {},
-      variant = 'default',
-      isReadOnly = false,
-      validationState,
-      // AriaProps
+      onChange,
       ...ariaSafeProps
     } = props
 
