@@ -1,5 +1,7 @@
 export {default as Chip} from './chip'
 export type {ChipProps} from './chip'
+export {default as Divider} from './divider'
+export type {DividerProps} from './divider'
 export {default as Popover} from './popover'
 export type {PopoverDirection, PopoverProps} from './popover'
 export {default as ThemeStaticProvider} from './theme/ThemeProvider'
