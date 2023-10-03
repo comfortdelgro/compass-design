@@ -39,9 +39,9 @@ const Breadcrumbs = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
 
   const wrapperClass = React.useMemo(() => {
     let classes = `cdg-breadcrumbs ${styles.breadcrumbs}`
-    if(className) classes += ` ${className}`
+    if (className) classes += ` ${className}`
     return classes
-  },[className])
+  }, [className])
 
   return (
     <CssInjection css={css} childrenRef={breadcrumbsRef}>
