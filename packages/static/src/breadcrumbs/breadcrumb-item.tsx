@@ -32,11 +32,11 @@ const BreadcrumbItem = React.forwardRef<HTMLAnchorElement, BreadcrumbItemProps>(
 
     const itemClass = React.useMemo(() => {
       let classes = `cdg-breadcrumb-item ${styles.breadcrumbsItem}`
-      if(className) classes += ` ${className}`
-      if(isCurrent) classes += ` ${styles.active}`
-      if(isDisabled) classes += ` ${styles.disabled}`
+      if (className) classes += ` ${className}`
+      if (isCurrent) classes += ` ${styles.active}`
+      if (isDisabled) classes += ` ${styles.disabled}`
       return classes
-    },[isCurrent, isDisabled, className])
+    }, [isCurrent, isDisabled, className])
 
     return (
       <CssInjection css={css} childrenRef={linkRef}>
@@ -45,10 +45,10 @@ const BreadcrumbItem = React.forwardRef<HTMLAnchorElement, BreadcrumbItemProps>(
             isCurrent || isDisabled ? 'span' : 'a',
             {
               ...delegated,
-              className: itemClass,
-              ref: linkRef,
               href: href,
+              ref: linkRef,
               target: target,
+              className: itemClass,
             },
             children,
           )}
