@@ -26,9 +26,10 @@
     "./dist"
   ],
   "scripts": {
-    "build": "tsc && vite build",
+    "build": "pnpm run generate-theme && tsc && vite build",
     "build-storybook": "storybook build",
     "dev:vite": "vite",
+    "generate-theme": "node src/scripts/generate-theme.js",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006"
@@ -39,9 +40,11 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@storybook/builder-vite": "^7.4.2",
     "@storybook/core-server": "^7.4.2",
+    "chart.js": "3.9.1",
     "clsx": "1.2.1",
     "lodash": "4.17.21",
     "react": "^18.2.0",
+    "react-chartjs-2": "4.3.1",
     "react-dom": "^18.2.0",
     "vite-plugin-css-injected-by-js": "^3.3.0",
     "vite-plugin-dts": "^3.5.3"
