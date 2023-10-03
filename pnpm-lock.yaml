@@ -269,6 +269,7 @@ importers:
       '@typescript-eslint/eslint-plugin': ^6.0 .0
       '@typescript-eslint/parser': ^6.0.0
       '@vitejs/plugin-react-swc': ^3.3.2
+      chart.js: 3.9.1
       clsx: 1.2.1
       eslint: ^8.45.0
       eslint-plugin-react-hooks: ^4.6.0
@@ -276,6 +277,7 @@ importers:
       eslint-plugin-storybook: ^0.6.13
       lodash: 4.17.21
       react: ^18.2.0
+      react-chartjs-2: 4.3.1
       react-dom: ^18.2.0
       storybook: 7.4.2
       typescript: ^5.2.2
@@ -289,9 +291,11 @@ importers:
       '@fortawesome/react-fontawesome': 0.2.0_react@18.2.0
       '@storybook/builder-vite': 7.4.2_5at2almb2fvddpzkgvkkndjq6y
       '@storybook/core-server': 7.4.2
+      chart.js: 3.9.1
       clsx: 1.2.1
       lodash: 4.17.21
       react: 18.2.0
+      react-chartjs-2: 4.3.1_2unjvz6v6rskedwoxtmbfw2rje
       react-dom: 18.2.0_react@18.2.0
       vite-plugin-css-injected-by-js: 3.3.0_vite@4.4.9
       vite-plugin-dts: 3.5.3_5at2almb2fvddpzkgvkkndjq6y

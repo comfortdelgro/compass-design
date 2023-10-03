@@ -9,4 +9,6 @@ export type {
 } from './dropdown'
 export {default as Popover} from './popover'
 export type {PopoverDirection, PopoverProps} from './popover'
-export {default as ThemeStaticProvider} from './theme-static/ThemeProvider'
+export {default as ThemeStaticProvider} from './theme/ThemeProvider'
+export {default as Spinner} from './spinner'
+export type {SpinnerProps} from './spinner'
