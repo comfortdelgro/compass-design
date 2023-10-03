@@ -72,18 +72,18 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       setChecked((isSelected || defaultSelected) ?? false)
     }, [defaultSelected, isSelected])
 
-    const labelStyle = React.useMemo(() => {
-      let className = `cdg-checkbox-label ${styles.label}`
-      if (variant === 'h5') className += ` ${styles.labelVariantH5}`
+    const labelClass = React.useMemo(() => {
+      let classes = `cdg-checkbox-label ${styles.label}`
+      if (variant === 'h5') classes += ` ${styles.labelVariantH5}`
       if (variant === 'h5' && checked)
-        className += ` ${styles.labelVariantH5Checked}`
-      return className
+        classes += ` ${styles.labelVariantH5Checked}`
+      return classes
     }, [checked, variant])
 
-    const checkboxBoxStyle = React.useMemo(() => {
-      let className = `cdg-checkbox-checkboxBox ${styles.checkboxBox}`
-      if (variant === 'rounded') className += ` ${styles.rounded}`
-      return className
+    const checkboxBoxClass = React.useMemo(() => {
+      let classes = `cdg-checkbox-checkboxBox ${styles.checkboxBox}`
+      if (variant === 'rounded') classes += ` ${styles.rounded}`
+      return classes
     }, [variant])
 
     return (
@@ -92,7 +92,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           className={`cdg-checkbox-wrapper ${styles.wrapper}`}
           {...htmlProps}
         >
-          <label className={labelStyle}>
+          <label className={labelClass}>
             <CssInjection css={cssCheckBoxInput} childrenRef={checkboxRef}>
               <input
                 tabIndex={-1}
@@ -114,7 +114,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
               tabIndex={0}
               role='checkbox'
               aria-checked={checked}
-              className={checkboxBoxStyle}
+              className={checkboxBoxClass}
               onKeyDown={handleKeyDown}
             >
               <span className={`cdg-checkbox-checkmark ${styles.checkmark}`}>
