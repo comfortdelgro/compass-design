@@ -1,2 +1,3 @@
-export * from './useCurrentTheme'
+export * from './theme'
 export * from './useColors'
+export * from './useCurrentTheme'

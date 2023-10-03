@@ -1,4 +1,4 @@
-@import '../../theme-static/theme.module.css';
+@import '../../theme/theme.module.css';
 
 .breadcrumbsItem {
   text-decoration: none;
