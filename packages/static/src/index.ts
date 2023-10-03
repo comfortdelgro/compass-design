@@ -1,5 +1,7 @@
 export {default as Chip} from './chip'
 export type {ChipProps} from './chip'
+export {default as Checkbox} from './checkbox'
+export type {CheckboxProps} from './checkbox'
 export {default as Popover} from './popover'
 export type {PopoverDirection, PopoverProps} from './popover'
 export {default as Spinner} from './spinner'
