@@ -1,4 +1,3 @@
-// THIS FILE IS AUTO GENERATED. DO NOT MODIFY!
 export const spacings = {
   '0_25': '0.0625rem', // 1px
   '0_5': '0.125rem', // 2px
@@ -293,20 +292,3 @@ export const darkThemeColors = {
   gradientRainbow: '#025493, #A51C2E, #46932D',
   gradientOrangeBlue: '#AA1022, #027FB9',
 }
-
-const theme = {
-  colors: lightThemeColors,
-  fonts,
-  fontSizes,
-  lineHeights,
-  fontWeights,
-  borderWidths,
-  radii: radius,
-  space: spacings,
-  sizes: spacings,
-  transitions,
-}
-   
-export default theme
-   
-export type Colors = typeof lightThemeColors

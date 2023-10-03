@@ -29,6 +29,7 @@
     "build": "tsc && vite build",
     "build-storybook": "storybook build",
     "dev:vite": "vite",
+    "generate-theme": "node src/scripts/generate-theme.js",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006"
