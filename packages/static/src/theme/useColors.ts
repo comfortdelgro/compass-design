@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react'
-import {Colors, lightThemeColors} from '../theme-static/theme'
+import {Colors, lightThemeColors} from './theme'
 
 export function useColors() {
   const [colorsConfig, setColorsConfig] = useState<Colors>(lightThemeColors)

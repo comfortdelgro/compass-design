@@ -4,7 +4,7 @@ import type {Meta} from '@storybook/react'
 import React from 'react'
 import Breadcrumbs from './index'
 
-import '../theme-static/theme.module.css'
+import '../theme/theme.module.css'
 
 const isCurrent = (i: number) => {
   if (window && window.location) return window.location.hash === `#${i}`

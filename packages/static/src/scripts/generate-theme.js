@@ -19,11 +19,8 @@ const __dirname = dirname(__filename)
 
 const rootDir = path.resolve(__dirname, '../')
 const themeConfigPath = path.resolve(rootDir, 'scripts/theme.config.js')
-const themePath = path.resolve(rootDir, 'theme-static/theme.ts')
-const themeModuleCssPath = path.resolve(
-  rootDir,
-  'theme-static/theme.module.css',
-)
+const themePath = path.resolve(rootDir, 'theme/theme.ts')
+const themeModuleCssPath = path.resolve(rootDir, 'theme/theme.module.css')
 
 const writeToFile = (rootPath, data) => {
   fs.writeFileSync(rootPath, data, 'utf8')
@@ -86,7 +83,7 @@ for (const key in darkThemeColors) {
   cssVariables.push(`--cdg-color-${key} : ${lightThemeColors[key]};`)
 }
 
-const cssData = `// THIS FILE IS AUTO GENERATED. DO NOT MODIFY!
+const cssData = `/* THIS FILE IS AUTO GENERATED. DO NOT MODIFY!  */
 :root {
   ${cssVariables.join('\n  ')}
 }`
