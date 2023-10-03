@@ -1,5 +1,5 @@
-import { Column } from '@comfortdelgro/react-compass';
-import { Chip } from '@comfortdelgro/static';
+import {Column} from '@comfortdelgro/react-compass'
+import {Chip} from '@comfortdelgro/static'
 
 const Default: React.FC = () => {
   return (
@@ -19,7 +19,7 @@ const Default: React.FC = () => {
         hasCloseButton
         css={{
           border: '1px solid purple',
-          '&:hover': { color: '$success' },
+          '&:hover': {color: '$success'},
           '& > div:first-child': {
             display: 'flex',
             alignItems: 'center',
@@ -35,7 +35,7 @@ const Default: React.FC = () => {
       </Chip>
       <br />
     </Column>
-  );
-};
+  )
+}
 
-export default Default;
+export default Default
