@@ -1,0 +1,115 @@
+@import '../../theme/theme.module.css';
+
+.avatar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  overflow: hidden;
+  user-select: none;
+  box-sizing: border-box;
+  color: var(--cdg-color-info);
+  background-color: var(--cdg-color-infoBg);
+  width: var(--cdg-spacing-10);
+  height: var(--cdg-spacing-10);
+  font-size: 300%;
+
+  &.large {
+    width: var(--cdg-spacing-12);
+    height: var(--cdg-spacing-12);
+    font-size: var(--cdg-font-size-body1);
+  }
+  &.medium {
+    width: var(--cdg-spacing-10);
+    height: var(--cdg-spacing-10);
+    font-size: var(--cdg-font-size-body2);
+  }
+  &.small {
+    width: var(--cdg-spacing-8);
+    height: var(--cdg-spacing-8);
+    font-size: var(--cdg-font-size-body3);
+  }
+  &.extraSmall {
+    width: var(--cdg-spacing-6);
+    height: var(--cdg-spacing-6);
+    font-size: var(--cdg-font-size-label2);
+  }
+  &.smallest {
+    width: var(--cdg-spacing-4);
+    height: var(--cdg-spacing-4);
+    font-size: var(--cdg-font-size-label3);
+  }
+
+  .avatarImage {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 3;
+    background-color: var(--cdg-color-infoBg);
+  }
+
+  .avatarText {
+    font-family: var(--cdg-font-sans);
+    font-weight: var(--cdg-font-weight-semibold);
+    z-index: 1;
+    background-color: var(--cdg-color-infoBg);
+  }
+
+  .avatarIcon {
+    background-color: var(--cdg-color-infoBg);
+  }
+}
+
+.avatarGroup {
+  display: flex;
+  .avatar {
+    border: 1.5px solid var(--cdg-color-white);
+    z-index: 1;
+  }
+  &.large .avatar {
+    width: var(--cdg-spacing-12);
+    height: var(--cdg-spacing-12);
+    font-size: var(--cdg-font-size-body1);
+    &:not(:first-child) {
+      margin-left: -12px;
+    }
+  }
+  &.medium .avatar {
+    width: var(--cdg-spacing-10);
+    height: var(--cdg-spacing-10);
+    font-size: var(--cdg-font-size-body2);
+    &:not(:first-child) {
+      margin-left: -10px;
+    }
+  }
+  &.small .avatar {
+    width: var(--cdg-spacing-8);
+    height: var(--cdg-spacing-8);
+    font-size: var(--cdg-font-size-body3);
+    &:not(:first-child) {
+      margin-left: -8px;
+    }
+  }
+  &.extraSmall .avatar {
+    width: var(--cdg-spacing-6);
+    height: var(--cdg-spacing-6);
+    font-size: var(--cdg-font-size-label2);
+    &:not(:first-child) {
+      margin-left: -6px;
+    }
+  }
+  &.smallest .avatar {
+    width: var(--cdg-spacing-4);
+    height: var(--cdg-spacing-4);
+    font-size: var(--cdg-font-size-label3);
+    &:not(:first-child) {
+      margin-left: -4px;
+    }
+  }
+}

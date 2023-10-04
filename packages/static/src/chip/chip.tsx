@@ -29,7 +29,9 @@ const Chip = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     <CssInjection css={css} childrenRef={chipRef}>
       <div
         ref={chipRef}
-        className={` ${className} ${styles.chip} ${isErrored ? styles.isErrored : ''}`}
+        className={` ${className} ${styles.chip} ${
+          isErrored ? styles.isErrored : ''
+        }`}
         {...delegated}
       >
         {children}

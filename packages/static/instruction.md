@@ -155,7 +155,6 @@ You have to make sure your components in old react-compass sync with new react-c
 ### Tai
 - Alert
 - Autocomplete
-- Avatar
 - Badge
 - Box
 - Button
@@ -197,6 +196,7 @@ You have to make sure your components in old react-compass sync with new react-c
 - Video Player
 ### Duong
 - Action Bar
+- Avatar
 - Form Layout
 - Layouts
 - Carousel
