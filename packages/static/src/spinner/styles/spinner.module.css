@@ -68,7 +68,8 @@
 
 /* 2xl */
 .ring2xl,
-.bg2xl, .segment2xl {
+.bg2xl,
+.segment2xl {
   width: var(--cdg-spacing-16);
   height: var(--cdg-spacing-16);
   border-width: 0.625rem;
@@ -80,7 +81,8 @@
 
 /* xl */
 .ringXl,
-.bgXl, .segmentXl {
+.bgXl,
+.segmentXl {
   width: var(--cdg-spacing-12);
   height: var(--cdg-spacing-12);
   border-width: 0.625rem;
@@ -91,7 +93,8 @@
 }
 /* lg styles */
 .ringLg,
-.bgLg, .segmentLg {
+.bgLg,
+.segmentLg {
   width: var(--cdg-spacing-12);
   height: var(--cdg-spacing-12);
   border-width: 0.625rem;
@@ -104,12 +107,12 @@
 /* md styles */
 
 .ringMd,
-.bgMd, .segmentMd {
+.bgMd,
+.segmentMd {
   width: var(--cdg-spacing-12);
   height: var(--cdg-spacing-12);
   border-width: 0.625rem;
 }
-
 
 .fontMd {
   font-size: var(--cdg-font-size-label2);
@@ -117,7 +120,8 @@
 
 /* sm styles */
 .ringSm,
-.bgSm, .segmentSm {
+.bgSm,
+.segmentSm {
   width: var(--cdg-spacing-12);
   height: var(--cdg-spacing-12);
   border-width: 0.625rem;
