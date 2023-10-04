@@ -2,7 +2,7 @@ import styles from './styles/avatar.module.css'
 
 export type AvatarSize = 'lg' | 'md' | 'sm' | 'xs' | 'xxs' | ''
 
-export const sizeMap = {
+export const AVATAR_SIZE_MAP = {
   '': '',
   lg: styles.large,
   md: styles.medium,

@@ -2,7 +2,7 @@ import React from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
 import type AvatarGroup from './avatar-group'
-import {AvatarSize, sizeMap} from './avatar.const'
+import {AVATAR_SIZE_MAP, AvatarSize} from './avatar.const'
 import styles from './styles/avatar.module.css'
 
 const calculateInitials = (name: string, size: AvatarSize) => {
@@ -23,6 +23,8 @@ interface Props {
   css?: React.CSSProperties
   size?: AvatarSize
   className?: string
+  cutOffText?: boolean
+  status?: React.ReactElement
 }
 
 export type AvatarProps = Props &
@@ -41,6 +43,8 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
     className,
     // html attribute
     style,
+    status,
+    cutOffText = true,
     ...delegates
   } = props
 
@@ -49,24 +53,32 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
   return (
     <CssInjection css={css} childrenRef={avatarRef}>
       <div
-        className={`${styles.avatar} ${className ? className : ''} ${
-          sizeMap[size]
-        }`}
+        className={`${styles.avatar} ${AVATAR_SIZE_MAP[size]} ${
+          className ? className : ''
+        } `}
         style={style}
       >
-        {label ? (
-          <span className={styles.avatarText}>
-            {calculateInitials(label, size)}
-          </span>
-        ) : null}
-        {icon ? <div className={styles.avatarIcon}>{icon}</div> : null}
-        {image ? (
-          <img
-            className={styles.avatarImage}
-            src={image}
-            alt={label || 'Avatar'}
-          />
-        ) : null}
+        <div className={styles.avatarInner}>
+          {label ? (
+            <span className={styles.avatarText}>
+              {(cutOffText && calculateInitials(label, size)) || label}
+            </span>
+          ) : null}
+          {icon ? <div className={styles.avatarIcon}>{icon}</div> : null}
+          {image ? (
+            <img
+              className={styles.avatarImage}
+              src={image}
+              alt={label || 'Avatar'}
+            />
+          ) : null}
+        </div>
+        {status
+          ? {
+              ...status,
+              props: {...status.props, className: styles.avatarStatus},
+            }
+          : null}
       </div>
     </CssInjection>
   )

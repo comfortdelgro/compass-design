@@ -1,6 +1,9 @@
+import {faPlus} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React from 'react'
+import Avatar from '.'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {AvatarSize, sizeMap} from './avatar.const'
+import {AvatarSize, AVATAR_SIZE_MAP} from './avatar.const'
 import styles from './styles/avatar.module.css'
 
 interface Props {
@@ -8,7 +11,9 @@ interface Props {
   children?: React.ReactNode
   size?: AvatarSize
   disabledAnimation?: boolean
+  useAddMore?: boolean
   css?: unknown
+  onAddMoreClick?: () => void
 }
 
 export type AvatarGroupProps = Props &
@@ -24,6 +29,7 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
       children,
       size = 'md',
       disabledAnimation = false,
+      useAddMore = false,
       ...delegated
     } = props
 
@@ -32,11 +38,22 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
 
     return (
       <div
-        className={`${styles.avatarGroup} ${sizeMap[size]}`}
+        className={`${styles.avatarGroup} ${AVATAR_SIZE_MAP[size]}`}
         ref={avatarGroupRef}
         {...delegated}
       >
-        {children}
+        {avatars.slice(0, display).map((avatar) => avatar)}
+        {display < avatars.length && (
+          <Avatar
+            label={`+${avatars.length - display}`}
+            cutOffText={false}
+          ></Avatar>
+        )}
+        {useAddMore && (
+          <button className={styles.avatarAddMore}>
+            <FontAwesomeIcon icon={faPlus} />
+          </button>
+        )}
       </div>
     )
   },
