@@ -27,9 +27,20 @@ import Badge from '@comfortdelgro/react-compass/badge'
 
 {{"demo": "BadgeBasic.tsx"}}
 
+### Colors
+
+{{"demo": "BadgeColors.tsx"}}
+
+### Variants
+
+{{"demo": "BadgeVariants.tsx"}}
+
 ### Default icon
 
 {{"demo": "BadgeIcon.tsx"}}
+
+### Custom icon
+{{"demo": "BadgeCustomIcon.tsx"}}
 
 ### Status
 
