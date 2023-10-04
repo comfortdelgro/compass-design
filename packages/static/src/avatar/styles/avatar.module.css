@@ -78,82 +78,86 @@
 
 .avatarGroup {
   display: flex;
-  .avatarInner {
-    border: 1.5px solid var(--cdg-color-white);
-    z-index: 1;
-  }
-  &.large {
-    .avatarAddMore,
-    .avatar {
-      width: var(--cdg-spacing-12);
-      height: var(--cdg-spacing-12);
-      font-size: var(--cdg-font-size-body1);
-    }
-    .avatar:not(:first-child) {
-      margin-left: -12px;
-    }
-    .avatarAddMore {
-      margin-left: 12px;
-    }
-  }
+}
 
-  &.medium {
-    .avatarAddMore,
-    .avatar {
-      width: var(--cdg-spacing-10);
-      height: var(--cdg-spacing-10);
-      font-size: var(--cdg-font-size-body2);
-    }
-    .avatar:not(:first-child) {
-      margin-left: -10px;
-    }
-    .avatarAddMore {
-      margin-left: 10px;
-    }
-  }
-  &.small {
-    .avatarAddMore,
-    .avatar {
-      width: var(--cdg-spacing-8);
-      height: var(--cdg-spacing-8);
-      font-size: var(--cdg-font-size-body3);
-    }
-    .avatar:not(:first-child) {
-      margin-left: -8px;
-    }
-    .avatarAddMore {
-      margin-left: 8px;
-    }
-  }
-  &.extraSmall {
-    .avatarAddMore,
-    .avatar {
-      width: var(--cdg-spacing-6);
-      height: var(--cdg-spacing-6);
-      font-size: var(--cdg-font-size-label2);
-    }
-    .avatar:not(:first-child) {
-      margin-left: -6px;
-    }
-    .avatarAddMore {
-      margin-left: 8px;
-    }
-  }
-  &.smallest {
-    .avatarAddMore,
-    .avatar {
-      width: var(--cdg-spacing-4);
-      height: var(--cdg-spacing-4);
-      font-size: 0.5rem;
-    }
+.avatarGroup .avatarInner {
+  border: 1.5px solid var(--cdg-color-white);
+  z-index: 1;
+}
 
-    .avatar:not(:first-child) {
-      margin-left: -4px;
-    }
-    .avatarAddMore {
-      margin-left: 4px;
-    }
-  }
+.avatarGroup.large .avatarAddMore,
+.avatarGroup.large .avatar {
+  width: var(--cdg-spacing-12);
+  height: var(--cdg-spacing-12);
+  font-size: var(--cdg-font-size-body1);
+}
+
+.avatarGroup.large .avatar:not(:first-child) {
+  margin-left: -12px;
+}
+
+.avatarGroup.large .avatarAddMore {
+  margin-left: 12px;
+}
+
+.avatarGroup.medium .avatarAddMore,
+.avatarGroup.medium .avatar {
+  width: var(--cdg-spacing-10);
+  height: var(--cdg-spacing-10);
+  font-size: var(--cdg-font-size-body2);
+}
+
+.avatarGroup.medium .avatar:not(:first-child) {
+  margin-left: -10px;
+}
+
+.avatarGroup.medium .avatarAddMore {
+  margin-left: 10px;
+}
+
+.avatarGroup.small .avatarAddMore,
+.avatarGroup.small .avatar {
+  width: var(--cdg-spacing-8);
+  height: var(--cdg-spacing-8);
+  font-size: var(--cdg-font-size-body3);
+}
+
+.avatarGroup.small .avatar:not(:first-child) {
+  margin-left: -8px;
+}
+
+.avatarGroup.small .avatarAddMore {
+  margin-left: 8px;
+}
+
+.avatarGroup.extraSmall .avatarAddMore,
+.avatarGroup.extraSmall .avatar {
+  width: var(--cdg-spacing-6);
+  height: var(--cdg-spacing-6);
+  font-size: var(--cdg-font-size-label2);
+}
+
+.avatarGroup.extraSmall .avatar:not(:first-child) {
+  margin-left: -6px;
+}
+
+.avatarGroup.extraSmall .avatarAddMore {
+  margin-left: 6px;
+}
+
+.avatarGroup.smallest .avatarAddMore,
+.avatarGroup.smallest .avatar {
+  width: var(--cdg-spacing-4);
+  height: var(--cdg-spacing-4);
+  font-size: 0.5rem;
+}
+
+.avatarGroup.smallest .avatar:not(:first-child) {
+  margin-left: -4px;
+}
+
+.avatarGroup.smallest .avatarAddMore {
+  margin-left: 4px;
 }
 
 .avatarAddMore {
