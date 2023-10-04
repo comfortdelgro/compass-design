@@ -50,30 +50,30 @@
   background-color: var(--cdg-color-infoBg);
   width: 100%;
   height: 100%;
+}
 
-  .avatarImage {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 3;
-    background-color: var(--cdg-color-infoBg);
-  }
+.avatarInner .avatarImage {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 3;
+  background-color: var(--cdg-color-infoBg);
+}
 
-  .avatarText {
-    font-family: var(--cdg-font-sans);
-    font-weight: var(--cdg-font-weight-semibold);
-    z-index: 1;
-    background-color: var(--cdg-color-infoBg);
-  }
+.avatarInner .avatarText {
+  font-family: var(--cdg-font-sans);
+  font-weight: var(--cdg-font-weight-semibold);
+  z-index: 1;
+  background-color: var(--cdg-color-infoBg);
+}
 
-  .avatarIcon {
-    background-color: var(--cdg-color-infoBg);
-  }
+.avatarInner .avatarIcon {
+  background-color: var(--cdg-color-infoBg);
 }
 
 .avatarGroup {
