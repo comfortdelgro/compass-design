@@ -252,6 +252,7 @@ importers:
   packages/static:
     specifiers:
       '@floating-ui/react': ^0.24.0
+      '@fortawesome/fontawesome-svg-core': ^6.4.2
       '@fortawesome/free-solid-svg-icons': ^6.4.2
       '@fortawesome/react-fontawesome': ^0.2.0
       '@storybook/addon-essentials': 7.4.2
@@ -287,8 +288,9 @@ importers:
       vite-plugin-dts: ^3.5.3
     dependencies:
       '@floating-ui/react': 0.24.8_biqbaboplfbrettd7655fr4n2y
+      '@fortawesome/fontawesome-svg-core': 6.4.2
       '@fortawesome/free-solid-svg-icons': 6.4.2
-      '@fortawesome/react-fontawesome': 0.2.0_react@18.2.0
+      '@fortawesome/react-fontawesome': 0.2.0_n6er2j2sfff3f2kho72l4xukey
       '@storybook/builder-vite': 7.4.2_5at2almb2fvddpzkgvkkndjq6y
       '@storybook/core-server': 7.4.2
       chart.js: 3.9.1
@@ -2363,16 +2365,6 @@ packages:
       react: '>=16.3'
     dependencies:
       '@fortawesome/fontawesome-svg-core': 6.4.2
-      prop-types: 15.8.1
-      react: 18.2.0
-    dev: false
-
-  /@fortawesome/react-fontawesome/0.2.0_react@18.2.0:
-    resolution: {integrity: sha512-uHg75Rb/XORTtVt7OS9WoK8uM276Ufi7gCzshVWkUJbHhh3svsUUeqXerrM96Wm7fRiDzfKRwSoahhMIkGAYHw==}
-    peerDependencies:
-      '@fortawesome/fontawesome-svg-core': ~1 || ~6
-      react: '>=16.3'
-    dependencies:
       prop-types: 15.8.1
       react: 18.2.0
     dev: false
