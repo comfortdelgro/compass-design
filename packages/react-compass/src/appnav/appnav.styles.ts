@@ -2,9 +2,8 @@ import {styled} from '../theme'
 import {VariantProps} from '../utils/stitches.types'
 
 export const StyledAppNav = styled('nav', {
-  height: '102px',
   backgroundColor: '$background',
-  padding: '$6 $6 34px $6',
+  padding: '$4 0',
   display: 'flex',
   alignItems: 'center',
   position: 'fixed',
