@@ -142,8 +142,7 @@
   background: transparent;
 }
 
-.radioInputActive.radioInputDisabled {
-  /* For the after pseudo-element */
+.radioInputActive.radioInputDisabled::after{
   position: relative;
   z-index: 2;
   width: var(--cdg-spacing-2);

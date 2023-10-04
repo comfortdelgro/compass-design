@@ -175,7 +175,7 @@ export const H5 = () => {
       </h3>
       <div style={{flexDirection: 'row', ...style}}>
         <Radio.Group
-          css={{padding: 0}}
+          // css={{padding: 0}}
           onChange={(value) => console.log(value)}
         >
           {H5RadioData.map(({label, disabled = false}, index) => (

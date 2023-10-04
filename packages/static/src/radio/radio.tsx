@@ -103,10 +103,10 @@ const Radio: React.FC<RadioProps> = (props) => {
           )}
 
           {description && (
-            <p className={styles.radioDescription}>{description}</p>
+            <p className={`cdg-radio-label  ${styles.radioDescription}`}>{description}</p>
           )}
         </div>
-        {!!rightLabel && <p className={styles.radioRightLabel}>{rightLabel}</p>}
+        {!!rightLabel && <p className={`cdg-radio-label ${styles.radioRightLabel}`}>{rightLabel}</p>}
       </div>
     </CssInjection>
   )
