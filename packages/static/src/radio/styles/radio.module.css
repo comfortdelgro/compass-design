@@ -153,6 +153,9 @@
 }
 
 .radioInputVariantH5.radioInputActive {
-  border: 4px solid var(--cdg-blueShades100);
+  border: 4px solid var(--cdg-color-cdgBlue100);
   content: none;
+}
+.radioInputVariantH5.radioInputActive::after {
+  display: none;
 }

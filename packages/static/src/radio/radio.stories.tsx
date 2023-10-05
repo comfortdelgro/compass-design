@@ -1,8 +1,8 @@
 import {faBug} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {Meta} from '@storybook/react'
 import React, {useState} from 'react'
 import Radio from './index'
-import { Meta } from '@storybook/react'
 
 const style: {
   display: string
@@ -170,20 +170,22 @@ const H5RadioData = [
 export const H5 = () => {
   return (
     <>
-      <h3 style={{marginBottom: '$4'}}>
-        H5
-      </h3>
+      <h3 style={{marginBottom: '$4'}}>H5</h3>
       <div style={{flexDirection: 'row', ...style}}>
         <Radio.Group
-          // css={{padding: 0}}
+         // begin fix and update later
+          css={{padding: '0.5rem'}}
           onChange={(value) => console.log(value)}
         >
           {H5RadioData.map(({label, disabled = false}, index) => (
             <Radio
               key={index}
+              // begin fix and update later
               css={{
-                '.cdg-radio-content-wrapper .cdg-radio-label': {
-                  fontWeight: '$normal',
+                '.cdg-radio-content-wrapper': {
+                  '.cdg-radio-label': {
+                    fontWeight: '400',
+                  },
                 },
               }}
               variant='h5'
@@ -195,12 +197,11 @@ export const H5 = () => {
         </Radio.Group>
       </div>
 
-      <h3 style={{marginBlock: '$6 $4'}}>
-        H5 with inputPosition: right
-      </h3>
+      <h3 style={{marginBlock: '$6 $4'}}>H5 with inputPosition: right</h3>
       <div style={{flexDirection: 'row', ...style}}>
         <Radio.Group
-          css={{padding: 0}}
+         // begin fix and update later
+          css={{padding: '0.5rem'}}
           onChange={(value) => console.log(value)}
         >
           {H5RadioData.map(({label, disabled = false}, index) => (
