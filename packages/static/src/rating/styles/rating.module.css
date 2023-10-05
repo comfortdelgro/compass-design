@@ -1,0 +1,46 @@
+@import '../../theme/theme.module.css';
+
+.StyledRatingComponent {
+  display: inline-flex;
+  gap: 8px;
+}
+
+.rating {
+  width: 60px;
+  height: 60px;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  line-height: 30px;
+  background-color: var(--cdg-color-background); 
+  border-color: var(--cdg-color-white); 
+  box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.1), 0px 1.6px 3.6px rgba(0, 0, 0, 0.13);
+  color: var(--cdg-color-primaryText); 
+}
+
+.active {
+  box-shadow: 0px 1.2px 3.6px rgba(0, 0, 0, 0.1), 0px 6.4px 14.4px rgba(0, 0, 0, 0.13);
+  color: var(--cdg-color-info); 
+  border-color: var(--cdg-color-infoBg); 
+  background-color: var(--cdg-color-infoBg); 
+}
+
+.active .children > .emo-icons {
+  color: var(--cdg-color-info); 
+}
+
+.rating:focus-visible {
+  outline: 2px solid var(--cdg-color-cdgBlue60); 
+}
+
+.rating .children {
+  display: flex;
+  align-items: center;
+}
+
+.rating .children > .emo-icons {
+  width: 2rem;
+  height: 2rem;
+  color: var(--cdg-color-primaryText); 
+}
+
