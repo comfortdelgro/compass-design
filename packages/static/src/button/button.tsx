@@ -1,7 +1,6 @@
 import React from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {ButtonVariantProps} from './button.styles'
 import Ripple from './ripple'
 import styles from './styles/button.module.css'
 
@@ -45,207 +44,214 @@ interface Props {
   isSquare?: boolean
   css?: unknown
   iconOnly?: boolean
+  variant?: 'primary' | 'secondary' | 'tertiary' | 'ghost' | 'danger'
+  size?: 'sm' | 'md' | 'lg'
+  fullWidth?: boolean
+  loading?: boolean
+  h5?: boolean
 }
 
 export type ButtonProps = Props &
-  ButtonVariantProps &
-  Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, keyof Props>
+  Omit<React.HTMLAttributes<HTMLElement>, keyof Props>
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  (props, ref) => {
-    const {
-      // Add link redirect
-      href,
-      // hrefTarget,
-      // hrefExternal,
-      // StyledComponentProps
-      css = {},
-      // ComponentProps
-      children,
-      className,
-      leftIcon,
-      rightIcon,
-      onPress,
-      onClick,
-      onTouchEnd,
-      onBlur,
-      onDragStart,
-      onFocus,
-      onKeyDown,
-      onKeyUp,
-      onPointerDown,
-      onPointerUp,
-      ripple = false,
-      isDisabled = false,
-      type = 'button',
-      tabIndex,
-      'aria-controls': ariaControls,
-      'aria-expanded': ariaExpanded,
-      'aria-haspopup': ariaHaspopup,
-      'aria-pressed': ariaPressed,
-      enableEventsOnDisabled = false,
-      enableEventsOnLoading = false,
-      // VariantProps
-      variant = 'primary',
-      size = 'md',
-      fullWidth = false,
-      loading = false,
-      isSquare = false,
-      iconOnly = false,
-      // AriaButtonProps
-      // ...delegated
-    } = props
+const Button = React.forwardRef<
+  HTMLButtonElement | HTMLAnchorElement,
+  ButtonProps
+>((props, ref) => {
+  const {
+    // Add link redirect
+    href,
+    hrefTarget,
+    hrefExternal,
+    // StyledComponentProps
+    css = {},
+    // ComponentProps
+    children,
+    className,
+    leftIcon,
+    rightIcon,
+    onPress,
+    onClick,
+    onTouchEnd,
+    onBlur,
+    onDragStart,
+    onFocus,
+    onKeyDown,
+    onKeyUp,
+    onPointerDown,
+    onPointerUp,
+    ripple = false,
+    isDisabled = false,
+    type = 'button',
+    tabIndex,
+    'aria-controls': ariaControls,
+    'aria-expanded': ariaExpanded,
+    'aria-haspopup': ariaHaspopup,
+    'aria-pressed': ariaPressed,
+    enableEventsOnDisabled = false,
+    enableEventsOnLoading = false,
+    // VariantProps
+    variant = 'primary',
+    size = 'md',
+    fullWidth = false,
+    loading = false,
+    isSquare = false,
+    iconOnly = false,
+    h5 = false,
+    // html props
+    ...htmlProps
+  } = props
 
-    const buttonRef = useDOMRef<HTMLButtonElement>(ref)
+  const buttonRef = useDOMRef<HTMLButtonElement | HTMLAnchorElement>(
+    ref as React.RefObject<HTMLButtonElement | HTMLAnchorElement>,
+  )
 
-    // const variantProps = {
-    //   variant,
-    //   size,
-    //   fullWidth,
-    //   loading,
-    // } as ButtonVariantProps
-
-    // const componentProps = () => {
-    //   if (loading) return {className, css, ...variantProps}
-    //   if (href || hrefTarget || hrefExternal)
-    //     return {
-    //       className: `cdg-link-button ${className ? className : ''}`,
-    //       css,
-    //       ...{as: 'a', ...delegated},
-    //       ...variantProps,
-    //       href,
-    //       target: `${hrefTarget || (hrefExternal ? '_blank' : undefined)}`,
-    //       rel: `${
-    //         hrefTarget === '_blank' || hrefExternal
-    //           ? 'noopener noreferrer'
-    //           : undefined
-    //       }`,
-    //     }
-    //   return {
-    //     className,
-    //     css,
-    //     ...delegated,
-    //     ...variantProps,
-    //   }
-    // }
-    // const delegateProps = componentProps()
-
-    // events handler
-    const handleEvents = (
-      e:
-        | React.MouseEvent<HTMLButtonElement>
-        | React.KeyboardEvent<HTMLButtonElement>
-        | React.FocusEvent<HTMLButtonElement>
-        | React.TouchEvent<HTMLButtonElement>,
-    ) => {
-      if (!enableEventsOnDisabled && isDisabled) return
-      if (!enableEventsOnLoading && loading) return
-      switch (e.type) {
-        case 'keydown':
-          onKeyDown?.(e as React.KeyboardEvent<HTMLButtonElement>)
-          break
-        case 'keyup':
-          onKeyUp?.(e as React.KeyboardEvent<HTMLButtonElement>)
-          break
-        case 'pointerdown':
-          onPointerDown?.(e as React.PointerEvent<HTMLButtonElement>)
-          break
-        case 'pointerup':
-          onPointerUp?.(e as React.PointerEvent<HTMLButtonElement>)
-          break
-        case 'focus':
-          onFocus?.(e as React.FocusEvent<HTMLButtonElement>)
-          break
-        case 'blur':
-          onBlur?.(e as React.FocusEvent<HTMLButtonElement>)
-          break
-        case 'click':
-          onClick?.(e as React.MouseEvent<HTMLButtonElement>) ??
-            onPress?.(e as React.MouseEvent<HTMLButtonElement>)
-          break
-        case 'touchend':
-          onTouchEnd?.(e as React.TouchEvent<HTMLButtonElement>)
-          break
-        case 'dragstart':
-          onDragStart?.(e as React.MouseEvent<HTMLButtonElement>)
-          break
-        default:
-          break
-      }
+  // events handler
+  const handleEvents = (
+    e:
+      | React.MouseEvent<HTMLButtonElement>
+      | React.MouseEvent<HTMLAnchorElement>
+      | React.KeyboardEvent<HTMLButtonElement>
+      | React.KeyboardEvent<HTMLAnchorElement>
+      | React.FocusEvent<HTMLButtonElement>
+      | React.FocusEvent<HTMLAnchorElement>
+      | React.TouchEvent<HTMLButtonElement>
+      | React.TouchEvent<HTMLAnchorElement>,
+  ) => {
+    if (!enableEventsOnDisabled && isDisabled) return
+    if (!enableEventsOnLoading && loading) return
+    switch (e.type) {
+      case 'keydown':
+        onKeyDown?.(e as React.KeyboardEvent<HTMLButtonElement>)
+        break
+      case 'keyup':
+        onKeyUp?.(e as React.KeyboardEvent<HTMLButtonElement>)
+        break
+      case 'pointerdown':
+        onPointerDown?.(e as React.PointerEvent<HTMLButtonElement>)
+        break
+      case 'pointerup':
+        onPointerUp?.(e as React.PointerEvent<HTMLButtonElement>)
+        break
+      case 'focus':
+        onFocus?.(e as React.FocusEvent<HTMLButtonElement>)
+        break
+      case 'blur':
+        onBlur?.(e as React.FocusEvent<HTMLButtonElement>)
+        break
+      case 'click':
+        onClick
+          ? onClick?.(e as React.MouseEvent<HTMLButtonElement>)
+          : onPress?.(e as React.MouseEvent<HTMLButtonElement>)
+        break
+      case 'touchend':
+        onTouchEnd?.(e as React.TouchEvent<HTMLButtonElement>)
+        break
+      case 'dragstart':
+        onDragStart?.(e as React.MouseEvent<HTMLButtonElement>)
+        break
+      default:
+        break
     }
+  }
 
-    return (
-      <>
+  const Button = href ? 'a' : 'button'
+
+  const buttonClasses = [
+    styles.button,
+    loading && styles.loading,
+    variant && styles[variant],
+    size && styles[size],
+    fullWidth && styles.fullWidth,
+    isSquare && styles.isSquare,
+    loading && styles.loading,
+    isDisabled && styles.isDisabled,
+    href && styles.cdgLinkButton,
+    iconOnly && styles.iconOnly,
+    h5 && styles.h5,
+    className,
+  ]
+    .filter(Boolean)
+    .join(' ')
+
+  return (
+    <Ripple isEnabled={ripple}>
+      {/* This div container is solely for the ripple effect */}
+      <div
+        className={`${styles.buttonContainer} ${
+          fullWidth ? styles.fullWidth : ''
+        }
+        ${loading ? styles.loading : ''}
+        `}
+      >
         <CssInjection css={css}>
-          <Ripple isEnabled={ripple}>
-            <button
-              // {...delegateProps}
-              ref={buttonRef}
-              // only allow onClick and onTouchEnd to be passed to the button
-              // reserve onMouseDown and onTouchStart for ripple effect
-              disabled={isDisabled}
-              aria-controls={ariaControls}
-              aria-expanded={ariaExpanded}
-              aria-haspopup={ariaHaspopup}
-              aria-pressed={ariaPressed}
-              tabIndex={tabIndex}
-              role={href ? 'link' : 'button'}
-              onClick={handleEvents}
-              onTouchEnd={handleEvents}
-              onBlur={handleEvents}
-              onDragStart={handleEvents}
-              onFocus={handleEvents}
-              onKeyDown={handleEvents}
-              onKeyUp={handleEvents}
-              onPointerDown={handleEvents}
-              onPointerUp={handleEvents}
-              type={type}
-              className={`${styles.StyledButton} ${
-                variant ? styles[variant] : ''
-              } ${size ? styles[size] : ''} ${
-                fullWidth ? styles.fullWidth : ''
-              } ${isSquare ? styles.isSquare : ''} ${
-                loading ? styles.isLoading : ''
-              } ${isDisabled ? styles.isDisabled : ''} ${
-                className ? className : ''
-              }
-              ${iconOnly ? styles.iconOnly : ''}
-              `}
-            >
-              {loading ? (
-                <span
-                  // make sure the loading indicator isn't visible to screen readers
-                  hidden={!loading}
-                  aria-hidden={!loading}
-                  className={styles.StyledLoading}
-                >
-                  <div className='dots'>
-                    <span />
-                    <span />
-                    <span />
-                  </div>
+          <Button
+            ref={
+              buttonRef as React.RefObject<HTMLButtonElement> &
+                React.RefObject<HTMLAnchorElement>
+            }
+            href={href}
+            target={hrefTarget || (hrefExternal ? '_blank' : undefined)}
+            rel={
+              hrefTarget === '_blank' || hrefExternal
+                ? 'noopener noreferrer'
+                : undefined
+            }
+            // only allow onClick and onTouchEnd to be passed to the button
+            // reserve onMouseDown and onTouchStart for ripple effect
+            disabled={isDisabled}
+            aria-controls={ariaControls}
+            aria-expanded={ariaExpanded}
+            aria-haspopup={ariaHaspopup}
+            aria-pressed={ariaPressed}
+            tabIndex={tabIndex}
+            role={href ? 'link' : 'button'}
+            onClick={handleEvents}
+            onTouchEnd={handleEvents}
+            onBlur={handleEvents}
+            onDragStart={handleEvents}
+            onFocus={handleEvents}
+            onKeyDown={handleEvents}
+            onKeyUp={handleEvents}
+            onPointerDown={handleEvents}
+            onPointerUp={handleEvents}
+            type={type}
+            className={buttonClasses}
+            {...htmlProps}
+          >
+            {loading ? (
+              <span
+                // make sure the loading indicator isn't visible to screen readers
+                hidden={!loading}
+                aria-hidden={!loading}
+                className={` ${styles.content}`}
+              >
+                <span className={styles.loadingDots}>
+                  <span />
+                  <span />
+                  <span />
                 </span>
-              ) : null}
-
-              <div
-                className={`${styles.StyledButtonContent} ${
-                  leftIcon || rightIcon ? styles.isHaveIcon : ''
+              </span>
+            ) : (
+              <span
+                className={`${styles.content} ${
+                  leftIcon || rightIcon ? styles.hasIcon : ''
                 }`}
               >
                 {leftIcon || (fullWidth && rightIcon) ? (
-                  <div className={styles.leftIcon}>{leftIcon}</div>
+                  <span className={styles.leftIcon}>{leftIcon}</span>
                 ) : null}
                 <span className={styles.children}>{children}</span>
                 {rightIcon || (fullWidth && leftIcon) ? (
-                  <div className={styles.rightIcon}>{rightIcon}</div>
+                  <span className={styles.rightIcon}>{rightIcon}</span>
                 ) : null}
-              </div>
-            </button>
-          </Ripple>
+              </span>
+            )}
+          </Button>
         </CssInjection>
-      </>
-    )
-  },
-)
+      </div>
+    </Ripple>
+  )
+})
 
 export default Button

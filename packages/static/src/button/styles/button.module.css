@@ -1,5 +1,7 @@
+/* Importing the theme module */
 @import '../../theme/theme.module.css';
 
+/* Keyframes for the blink animation */
 @keyframes blink {
   0% {
     opacity: 0.2;
@@ -12,314 +14,272 @@
   }
 }
 
-/* Ripple animation */
-@keyframes ripple {
+/* Keyframes for the ripple animation */
+@keyframes rippleEffect {
   to {
     transform: scale(4);
     opacity: 0;
   }
 }
+
+/* Styling for elements with class 'ripple' */
 .ripple {
-  animation: ripple 600ms linear;
+  animation: rippleEffect 0.6s linear;
 }
 
-.StyledLoading {
-  position: absolute;
-  top: 0;
-  left: 0;
+/* Styling for loading dots */
+.loadingDots {
   width: 100%;
   height: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: wait;
-}
-
-.StyledLoading .dots {
-  display: inline-flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: 2px;
 }
 
-.StyledLoading .dots span {
+.loadingDots span {
   display: inline-block;
-  flex-shrink: 0;
   width: 0.375em;
   height: 0.375em;
   border-radius: 50%;
-  background: currentColor;
-  animation: blink 1.4s infinite both;
+  background-color: currentColor;
+  animation: blink 1s infinite;
 }
 
-.StyledLoading .dots span:nth-child(1) {
+/* Animation delay for loading dots */
+.loadingDots span:nth-child(1) {
   animation-delay: 0s;
 }
-
-.StyledLoading .dots span:nth-child(2) {
+.loadingDots span:nth-child(2) {
   animation-delay: 0.2s;
 }
-
-.StyledLoading .dots span:nth-child(3) {
+.loadingDots span:nth-child(3) {
   animation-delay: 0.4s;
 }
 
-.StyledButtonContent {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: nowrap;
-  flex-shrink: 0;
-}
+/* Common styles for various button types: button, primary, secondary, danger, ghost, h5 */
 
-.StyledButtonContent .icon {
-  width: var(--cdg-spacing-4);
-  height: var(--cdg-spacing-4);
-}
-
-.StyledButtonContent .leftIcon {
-  margin-right: var(--cdg-spacing-2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.StyledButtonContent .rightIcon {
-  margin-left: var(--cdg-spacing-2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.StyledButtonContent .children {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.StyledButtonContent[data-isHaveIcon='true'] {
-  justify-content: space-between;
-}
-
-.StyledButton {
+.button,
+.button.primary,
+.button.primary:hover:enabled,
+.button.secondary,
+.button.secondary:hover:enabled,
+.button.danger,
+.button.danger:hover:enabled,
+.button.ghost,
+.button.ghost:hover:enabled,
+.button.h5,
+.button.h5:disabled,
+.button.primary.h5,
+.button.primary.h5:hover:enabled,
+.button.secondary.h5,
+.button.secondary.h5:hover:enabled,
+.button.danger.h5,
+.button.danger.h5:hover:enabled {
   text-decoration: none;
-  position: relative;
   flex-shrink: 0;
   font-family: var(--cdg-font-sans);
   line-height: var(--cdg-line-height-normal);
   font-weight: var(--cdg-font-weight-semibold);
+  cursor: pointer;
   border-width: var(--cdg-border-width-light);
   border-style: solid;
   border-radius: var(--cdg-border-radius-md);
-  cursor: pointer;
   transition: var(--cdg-transition-button);
   color: var(--cdg-color-whiteText);
 }
 
-.StyledButton .children > svg {
-  width: 1.833125rem;
-  height: 1.166875rem;
+/* Common styles for button icons */
+.leftIcon,
+.rightIcon,
+.iconOnly .children {
+  width: var(--cdg-spacing-4);
+  height: var(--cdg-spacing-4);
 }
 
-.StyledButton:focus-visible {
+/* Styling for left icon */
+.leftIcon {
+  margin-right: var(--cdg-spacing-2);
+}
+
+/* Styling for button container */
+
+.buttonContainer {
+  width: fit-content;
+  height: fit-content;
+}
+
+/* Styling for right icon */
+.rightIcon {
+  margin-left: var(--cdg-spacing-2);
+}
+
+/* Focus styles for buttons */
+.button:focus-visible {
   outline: 1px solid var(--cdg-color-cdgBlue60);
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
-.isHaveIcon {
-  justify-content: space-between;
+/* Other button styles: lg, md, sm, fullWidth, isSquare, iconOnly */
+.button.lg {
+  font-size: var(--cdg-font-size-body2);
+  padding: var(--cdg-spacing-2) var(--cdg-spacing-5);
 }
 
-.StyledButton.primary {
+.button.md {
+  font-size: var(--cdg-font-size-body3);
+  padding: var(--cdg-spacing-1_5) var(--cdg-spacing-4);
+}
+
+.button.sm {
+  font-size: var(--cdg-font-size-label2);
+  padding: var(--cdg-spacing-1) var(--cdg-spacing-2_5);
+}
+
+.button.fullWidth {
+  width: 100%;
+}
+
+.buttonContainer.fullWidth {
+  width: 100%;
+}
+
+/* Square button styles */
+.button.isSquare,
+.button.lg.iconOnly,
+.button.md.iconOnly,
+.button.sm.iconOnly {
+  aspect-ratio: 1 / 1;
+}
+
+/* Styles for primary button */
+.button.primary {
   background: var(--cdg-color-cdgBlue);
   color: var(--cdg-color-var(--cdg-color-whiteText));
   border-color: var(--cdg-color-cdgBlue);
 }
 
-.StyledButton.primary.cdg-link-button:hover {
+.button.primary:hover:enabled,
+.button.primary.cdgLinkButton:hover {
   background: var(--cdg-color-cdgBlue120);
   border-color: var(--cdg-color-cdgBlue120);
 }
 
-.StyledButton.primary:hover:enabled {
-  background: var(--cdg-color-cdgBlue120);
-  border-color: var(--cdg-color-cdgBlue120);
-}
-
-.StyledButton.secondary {
+/* Styles for secondary button */
+.button.secondary {
   background: transparent;
   color: var(--cdg-color-cdgBlue);
   border-color: var(--cdg-color-cdgBlue);
 }
 
-.StyledButton.secondary.cdg-link-button:hover {
+.button.secondary:hover:enabled,
+.button.secondary.cdgLinkButton:hover {
   color: var(--cdg-color-cdgBlue100);
   background: var(--cdg-color-cdgBlue10);
   border-color: var(--cdg-color-cdgBlue120);
 }
 
-.StyledButton.secondary:hover:enabled {
-  color: var(--cdg-color-cdgBlue100);
-  background: var(--cdg-color-cdgBlue10);
-  border-color: var(--cdg-color-cdgBlue120);
-}
-
-.StyledButton.lg {
-  font-size: var(--cdg-font-size-body2);
-  padding: var(--cdg-spacing-2) var(--cdg-spacing-5);
-}
-.StyledButton.md {
-  font-size: var(--cdg-font-size-body3);
-  padding: var(--cdg-spacing-1_5) var(--cdg-spacing-4);
-}
-.StyledButton.sm {
-  font-size: var(--cdg-font-size-body2);
-  padding: var(--cdg-spacing-1) var(--cdg-spacing-2_5);
-}
-
-.StyledButton.danger {
+/* Styles for danger button */
+.button.danger {
   background: transparent;
   color: var(--cdg-color-danger);
   border-color: var(--cdg-color-danger);
 }
 
-.StyledButton.danger.cdg-link-button:hover {
+.button.danger:hover:enabled,
+.button.danger.cdgLinkButton:hover {
   background: var(--cdg-color-dangerBg);
   border-color: var(--cdg-color-dangerBg);
+  color: var(--cdg-color-danger);
 }
 
-.StyledButton.danger:hover:enabled {
-  background: var(--cdg-color-dangerBg);
-  border-color: var(--cdg-color-dangerBg);
-}
-
-.StyledButton.ghost {
+/* Styles for ghost button */
+.button.ghost {
   background: transparent;
   color: var(--cdg-color-typeHeading);
   border-color: transparent;
 }
 
-.StyledButton.ghost.cdg-link-button:hover {
+.button.ghost:hover:enabled,
+.button.ghost.cdgLinkButton:hover {
   color: var(--cdg-color-cdgBlue);
   background: var(--cdg-color-cdgBlue10);
 }
 
-.StyledButton.ghost:hover:enabled {
-  color: var(--cdg-color-cdgBlue);
-  background: var(--cdg-color-cdgBlue10);
-}
-
-.StyledButton:disabled {
+/* Disabled button styles */
+.button:disabled {
   background: var(--cdg-color-divider);
   color: var(--cdg-color-disabledText);
   border-color: var(--cdg-color-divider);
   cursor: not-allowed;
 }
 
-.StyledButton.h5 {
+/*  Styling for loading button */
+.button.loading {
+  height: 100%;
+  width: 100%;
+}
+.buttonContainer.loading {
+  height: 2.1875rem;
+  width: 5.625rem;
+}
+
+/* Styles for h5 class buttons */
+.button.h5,
+.button.h5:disabled,
+.button.primary.h5,
+.button.primary.h5:hover:enabled,
+.button.secondary.h5,
+.button.secondary.h5:hover:enabled,
+.button.danger.h5,
+.button.danger.h5:hover:enabled {
   border-radius: var(--cdg-border-radius-lg);
   padding: 11px var(--cdg-spacing-4);
   font-size: var(--cdg-font-size-body2);
   font-weight: var(--cdg-font-weight-bold);
 }
 
-.StyledButton.h5:disabled {
+.button.h5:disabled {
   background: var(--cdg-color-grayShades20);
   color: var(--cdg-color-grayShades60);
   border-color: var(--cdg-color-grayShades20);
 }
 
-.StyledButton.fullWidth {
-  width: 100%;
-}
-
-.StyledButton.fullWidth .StyledButtonContent .children {
-  flex-grow: 1;
-}
-
-.StyledButton.loading .StyledLoading {
-  display: flex;
-}
-
-.StyledButton.loading .StyledButtonContent {
-  visibility: hidden;
-}
-
-.StyledButton.iconOnly {
-  aspect-ratio: 1 / 1;
-  padding: 0;
-}
-
-.StyledButton.iconOnly .StyledButtonContent .children {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.StyledButton.isSquare {
-  aspect-ratio: 1 / 1;
-}
-
-/* Compound Variants */
-.StyledButton.lg.iconOnly {
-  height: calc((1.5 * var(--cdg-spacing-4)) + (2 * var(--cdg-spacing-2)));
-}
-
-.StyledButton.md.iconOnly {
-  height: calc((1.5 * var(--cdg-spacing-3_5)) + (2 * var(--cdg-spacing-1_5)));
-}
-
-.StyledButton.sm.iconOnly {
-  height: calc((1.5 * var(--cdg-spacing-3)) + (2 * var(--cdg-spacig-1)));
-}
-
-.StyledButton.primary.h5 {
+/* Styles for primary button with h5 class */
+.button.primary.h5 {
   background: var(--cdg-color-blueShades100);
   color: var(--cdg-color-whiteText);
   border-color: var(--cdg-color-grayShades20);
 }
 
-.StyledButton.primary.h5.cdg-link-button:hover {
+.button.primary.h5:hover:enabled {
   background: var(--cdg-color-blueShades120);
   border-color: var(--cdg-color-grayShades20);
 }
 
-.StyledButton.primary.h5:hover:enabled {
-  background: var(--cdg-color-blueShades120);
-  border-color: var(--cdg-color-grayShades20);
-}
-
-.StyledButton.secondary.h5 {
+/* Styles for secondary button with h5 class */
+.button.secondary.h5 {
   background: transparent;
   color: var(--cdg-color-blueShades100);
   border-color: var(--cdg-color-blueShades100);
 }
 
-.StyledButton.secondary.h5.cdg-link-button:hover {
+.button.secondary.h5:hover:enabled {
   color: var(--cdg-color-blueShades120);
   background: var(--cdg-color-grayShades10);
   border-color: var(--cdg-color-blueShades120);
 }
 
-.StyledButton.secondary.h5:hover:enabled {
-  color: var(--cdg-color-blueShades120);
-  background: var(--cdg-color-grayShades10);
-  border-color: var(--cdg-color-blueShades120);
-}
-
-.StyledButton.danger.h5 {
+/* Styles for danger button with h5 class */
+.button.danger.h5 {
   background: transparent;
   color: var(--cdg-color-dangerShades);
   border-color: var(--cdg-color-dangerShades);
 }
 
-.StyledButton.danger.h5.cdg-link-button:hover {
+.button.danger.h5:hover:enabled {
   background: var(--cdg-color-grayShades10);
   border-color: var(--cdg-color-dangerShades);
-}
-
-.StyledButton.danger.h5:hover:enabled {
-  background: var(--cdg-color-grayShades10);
-  border-color: var(--cdg-color-dangerShades);
+  color: var(--cdg-color-dangerShades);
 }
