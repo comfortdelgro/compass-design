@@ -1,11 +1,11 @@
 @import '../../theme/theme.module.css';
 
-.StyledRatingComponent {
+.ratingWrapper {
   display: inline-flex;
   gap: 8px;
 }
 
-.rating {
+.rating .customButton{
   width: 60px;
   height: 60px;
   align-items: center;
