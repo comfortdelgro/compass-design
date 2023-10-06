@@ -51,35 +51,45 @@ const Rating = React.forwardRef<HTMLDivElement, RatingProps>((props, ref) => {
     return (
       <>
         <button
-          className={`${styles.rating} ${activeIndex === 0 ? `${styles.active}` : ''}`}
+          className={`${styles.rating} ${
+            activeIndex === 0 ? `${styles.active}` : ''
+          }`}
           onClick={handleRatingBtnPress(0)}
           disabled={disabled}
         >
           <FaceSadTear />
         </button>
         <button
-          className={`${styles.rating} ${activeIndex === 1 ? `${styles.active}` : ''}`}
+          className={`${styles.rating} ${
+            activeIndex === 1 ? `${styles.active}` : ''
+          }`}
           onClick={handleRatingBtnPress(1)}
           disabled={disabled}
         >
           <FaceFrown />
         </button>
         <button
-          className={`${styles.rating} ${activeIndex === 2 ? `${styles.active}` : ''}`}
+          className={`${styles.rating} ${
+            activeIndex === 2 ? `${styles.active}` : ''
+          }`}
           onClick={handleRatingBtnPress(2)}
           disabled={disabled}
         >
           <FaceMeh />
         </button>
         <button
-          className={`${styles.rating} ${activeIndex === 3 ? `${styles.active}` : ''}`}
+          className={`${styles.rating} ${
+            activeIndex === 3 ? `${styles.active}` : ''
+          }`}
           onClick={handleRatingBtnPress(3)}
           disabled={disabled}
         >
           <FaceSmile />
         </button>
         <button
-          className={`${styles.rating} ${activeIndex === 4 ? `${styles.active}` : ''}`}
+          className={`${styles.rating} ${
+            activeIndex === 4 ? `${styles.active}` : ''
+          }`}
           onClick={handleRatingBtnPress(4)}
           disabled={disabled}
         >
@@ -92,7 +102,9 @@ const Rating = React.forwardRef<HTMLDivElement, RatingProps>((props, ref) => {
     return [1, 2, 3, 4, 5].map((item, index) => {
       return (
         <button
-          className={`${styles.rating} ${activeIndex === index ? `${styles.active}` : ''}`}
+          className={`${styles.rating} ${
+            activeIndex === index ? `${styles.active}` : ''
+          }`}
           onClick={handleRatingBtnPress(index)}
           key={index}
           disabled={disabled}
@@ -104,7 +116,11 @@ const Rating = React.forwardRef<HTMLDivElement, RatingProps>((props, ref) => {
   }
   return (
     <CssInjection css={css} childrenRef={ratingRef}>
-      <div ref={ratingRef} {...htmlProps} className={`cdg-rating ${styles.StyledRatingComponent} ${className}`}>
+      <div
+        ref={ratingRef}
+        {...htmlProps}
+        className={`cdg-rating ${styles.StyledRatingComponent} ${className}`}
+      >
         {useIcons ? renderIconButtons() : renderNumberButtons()}
       </div>
     </CssInjection>
