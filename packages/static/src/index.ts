@@ -1,3 +1,5 @@
+export {default as Button} from './button'
+export type {ButtonProps} from './button'
 export {default as Chip} from './chip'
 export type {ChipProps} from './chip'
 export {default as Icon} from './icon'

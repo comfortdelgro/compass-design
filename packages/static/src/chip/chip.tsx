@@ -20,7 +20,7 @@ const Chip = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     onClose,
     css,
     className,
-    ...delegated
+    ...htmlProps
   } = props
 
   const chipRef = useDOMRef<HTMLDivElement>(ref)
@@ -29,8 +29,10 @@ const Chip = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     <CssInjection css={css} childrenRef={chipRef}>
       <div
         ref={chipRef}
-        className={` ${className} ${styles.chip} ${isErrored ? styles.isErrored : ''}`}
-        {...delegated}
+        className={` ${className} ${styles.chip} ${
+          isErrored ? styles.isErrored : ''
+        }`}
+        {...htmlProps}
       >
         {children}
         {hasCloseButton && (

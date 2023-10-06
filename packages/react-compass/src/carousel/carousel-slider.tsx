@@ -69,7 +69,7 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
     const targetXPosition =
       (sliderRef.current && sliderRef.current.clientWidth * current) || 0
     const slideWidth = (sliderRef.current && sliderRef.current.clientWidth) || 0
-    const pageCount = children.length / itemPerPage
+    const pageCount = Math.ceil(children.length / itemPerPage)
 
     useEffect(() => {
       const handleResize = () => {
