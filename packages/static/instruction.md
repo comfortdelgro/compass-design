@@ -59,7 +59,7 @@ Example of new variable assignment through "css" prop in `@stitches/react`:
     effect={effect}
     show={show}
     orientation={effect === 'collapse' ? orientation : 'none'}
-    {...delegated}
+    {...htmlProps}
 >
     {renderChildren()}
 </StyledTransition>
