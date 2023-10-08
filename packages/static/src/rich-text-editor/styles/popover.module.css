@@ -1,0 +1,46 @@
+@import '../../theme/theme.module.css';
+
+.rtePopover {
+  margin: 0;
+  padding: 4px 0;
+  border-radius: 4px;
+  width: fit-content;
+  height: fit-content;
+  min-width: 100%;
+  background-color: var(--cdg-color-white);
+  box-shadow: '0px 0.6px 1.8px rgba(0; 0; 0; 0.1); 0px 3.2px 7.2px rgba(0; 0; 0; 0.13)';
+}
+
+.rtePopover ul {
+  max-height: 16rem;
+}
+.rtePopover.typeHeading ul {
+  width: 230px;
+}
+.rtePopover.typeColor {
+  width: 238px;
+  padding: 9px;
+}
+.rtePopover.typeColor ul {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.rtePopover.typeColor li {
+  padding: 0;
+}
+
+.rtePopover ul {
+  overscroll-behavior: contain;
+  max-height: var(--cdg-spacing-64);
+  overflow-y: auto;
+  list-style: none;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  padding-inline-start: 0;
+}
+.rtepopover ul:focus {
+  outline: none;
+}
