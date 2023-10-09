@@ -8,7 +8,10 @@ export const StyledNoData = styled('div', {
   alignItems: 'center',
 
   '.empty-description': {
-    color: '$tertiaryText',
-    marginTop: '1em',
+    color: '$cdgBlue',
+    fontSize: '$header4',
+    fontFamily: 'Poppins',
+    fontWeight: '$semibold',
+    marginTop: '1rem',
   },
 })
