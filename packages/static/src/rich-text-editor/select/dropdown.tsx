@@ -54,7 +54,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     defaultSelectedKey,
     isDisabled = false,
     shouldDeselect = false,
-    className,
+    className='',
     ...htmlProps
   } = props
 

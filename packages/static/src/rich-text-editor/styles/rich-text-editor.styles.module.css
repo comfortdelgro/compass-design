@@ -17,7 +17,6 @@
   margin: 0px;
   padding: 0px;
   max-width: 820px;
-
   border-radius: 5px;
   border: 1px solid var(--cdg-color-gray40);
   overflow: clip;
@@ -26,9 +25,10 @@
 .cdgRichTextEditor .ProseMirror {
   padding: var(--cdg-spacing-4);
   min-height: 100px;
+  outline: none,
 }
 
-.cdgRichTextEditor .ProseMirror:focus-visible {
+.ProseMirror:focus-visible {
   outline: none;
 }
 

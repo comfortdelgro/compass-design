@@ -26,7 +26,7 @@ const Option = React.forwardRef<HTMLLIElement, OptionProps>(
       focusKey,
       disabledKeys,
       type,
-      className,
+      className='',
       css = {},
       onSelect,
     },

@@ -51,7 +51,7 @@ const RichTextEditor = React.forwardRef<HTMLDivElement, RichTextEditorProps>(
       isEditable = true,
       content = null,
       placeholder,
-      className,
+      className='',
       ...htmlProps
     } = props
 

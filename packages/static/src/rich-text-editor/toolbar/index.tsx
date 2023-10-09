@@ -18,7 +18,7 @@ const Toolbar = React.forwardRef<HTMLDivElement, ToolbarProps>((props, ref) => {
     // StyledComponentProps
     css = {},
     children,
-    className,
+    className='',
     // element
     ...delegates
   } = props
