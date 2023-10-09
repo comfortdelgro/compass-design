@@ -241,7 +241,7 @@ const Button = React.forwardRef<
                 {leftIcon || (fullWidth && rightIcon) ? (
                   <span className={styles.leftIcon}>{leftIcon}</span>
                 ) : null}
-                <span className={styles.children}>{children}</span>
+                <span className={`cdg-button-content-children ${styles.children}`}>{children}</span>
                 {rightIcon || (fullWidth && leftIcon) ? (
                   <span className={styles.rightIcon}>{rightIcon}</span>
                 ) : null}
