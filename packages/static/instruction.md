@@ -59,7 +59,7 @@ Example of new variable assignment through "css" prop in `@stitches/react`:
     effect={effect}
     show={show}
     orientation={effect === 'collapse' ? orientation : 'none'}
-    {...delegated}
+    {...htmlProps}
 >
     {renderChildren()}
 </StyledTransition>
@@ -69,9 +69,9 @@ This step of replicating "css" prop involves creating new folder called "theme-s
 
 This "theme-static" folder will contain theme.ts and theme.module.css. 
 
-"theme-static/theme.ts" containes vanilla JavaScript version of light/dark theme object for our new "css" prop to loop through to find the meanings of variables. For example, with the above example of component Chip, the new "css" prop will loop through objects in "theme-static/theme.ts" to know that "$8" means "2rem" and "$success" means "#107C10".
+"theme/theme.ts" containes vanilla JavaScript version of light/dark theme object for our new "css" prop to loop through to find the meanings of variables. For example, with the above example of component Chip, the new "css" prop will loop through objects in "theme/theme.ts" to know that "$8" means "2rem" and "$success" means "#107C10".
 
-"theme-static/theme.module.css" is just the "theme-static/theme.ts" re-written in css so that the components' .module.css files can import and use its css variables.
+"theme/theme.module.css" is just the "theme/theme.ts" re-written in css so that the components' .module.css files can import and use its css variables.
 
 Note: for every change in terms of theming, we need to make update to both of these files. In the future, we might spend time writing script to automate that process.
 
@@ -103,13 +103,13 @@ Rather, we would keep our current "theme/stitches.config.ts" file and its relate
 
 ## 3. Custom theming (Theme Provider, useColors() and useCurrentTheme()) - (pending)
 
-We need to modify the "theme/ThemeProvider.tsx", "theme/useColors.ts" and "useCurrentTheme.ts" in a way that it supports light/dark theme object from both "theme/theme.ts" and "theme-static/theme.ts". 
+We need to modify the "theme/ThemeProvider.tsx", "theme/useColors.ts" and "useCurrentTheme.ts" in a way that it supports light/dark theme object from both "theme/theme.ts" and "theme/theme.ts". 
 
 Example to illustrate the idea:
 
 ```js
 import createTheme from '@comfortdelgro/react-compass/theme/theme'
-import createStaticTheme from '@comfortdelgro/react-compass/theme-static/theme'
+import createStaticTheme from '@comfortdelgro/react-compass/theme/theme'
 
 
 // This works
@@ -143,7 +143,7 @@ function MyApp({Component, pageProps}: AppProps) {
 ```
 
 
-To achieve this, "createTheme" from "theme/theme.ts" should not be imported from "@stitches/react", but instead it is a reference to its vanilla js version in "theme-static/theme.ts". And the custom theme recieved by the Theme Provider will go to light/dark theme object in "theme-static/theme.ts", not "theme/theme.ts".
+To achieve this, "createTheme" from "theme/theme.ts" should not be imported from "@stitches/react", but instead it is a reference to its vanilla js version in "theme/theme.ts". And the custom theme recieved by the Theme Provider will go to light/dark theme object in "theme/theme.ts", not "theme/theme.ts".
 
 
 ## 4. Tasks allocation
