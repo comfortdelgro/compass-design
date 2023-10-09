@@ -5,7 +5,7 @@
   gap: 8px;
 }
 
-.rating .customButton{
+.rating.customButton {
   width: 60px;
   height: 60px;
   align-items: center;
@@ -19,7 +19,18 @@
   color: var(--cdg-color-primaryText);
 }
 
-.active {
+.customButton :global(.cdg-button-content) {
+  display: flex;
+  justify-content: center;
+}
+
+.rating.customButton:hover:enabled {
+  background-color: var(--cdg-color-white);
+  border-color: var(--cdg-color-white);
+  color: var(--cdg-color-primaryText);
+}
+
+.active.customButton {
   box-shadow: 0px 1.2px 3.6px rgba(0, 0, 0, 0.1),
     0px 6.4px 14.4px rgba(0, 0, 0, 0.13);
   color: var(--cdg-color-info);
@@ -27,20 +38,26 @@
   background-color: var(--cdg-color-infoBg);
 }
 
-.active .children > .emo-icons {
+.active.customButton:hover:enabled {
+  color: var(--cdg-color-info);
+  border-color: var(--cdg-color-infoBg);
+  background-color: var(--cdg-color-infoBg);
+}
+
+.active.customButton .emoIcons {
   color: var(--cdg-color-info);
 }
 
-.rating:focus-visible {
+.rating.customButton:focus-visible {
   outline: 2px solid var(--cdg-color-cdgBlue60);
 }
 
-.rating .children {
+.rating.customButton :global(.cdg-button-content-children) {
   display: flex;
   align-items: center;
 }
 
-.rating .children > .emo-icons {
+.rating.customButton.emoIcons {
   width: 2rem;
   height: 2rem;
   color: var(--cdg-color-primaryText);
