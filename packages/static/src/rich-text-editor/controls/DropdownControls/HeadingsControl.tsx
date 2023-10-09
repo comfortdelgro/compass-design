@@ -118,10 +118,7 @@ export const HeadingsControl = () => {
         width: '124px',
         height: '28px',
         float: 'left',
-        margin: '0 $2 $2',
-        button: {
-          color: '$gray110',
-        },
+        margin: '0 var(--cdg-spacing-2) var(--cdg-spacing-2)',
       }}
     >
       {heading.map((h) => (

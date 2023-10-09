@@ -19,7 +19,7 @@ import * as controls from './controls'
 import Control from './controls/Control'
 import ControlsGroup from './controls/ControlsGroup'
 import {RichTextEditorProvider} from './rich-text-editor.context'
-import styles from './styles/rich-text-editor.styles.module.css'
+import styles from './styles/rich-text-editor.module.css'
 import Toolbar from './toolbar'
 
 interface Props {
@@ -51,7 +51,7 @@ const RichTextEditor = React.forwardRef<HTMLDivElement, RichTextEditorProps>(
       isEditable = true,
       content = null,
       placeholder,
-      className='',
+      className = '',
       ...htmlProps
     } = props
 
@@ -119,16 +119,15 @@ const RichTextEditor = React.forwardRef<HTMLDivElement, RichTextEditorProps>(
             className={`cdg-rich-text-editor ${className} ${styles.cdgRichTextEditor}`}
           >
             {children}
-            <div
+            <EditorContent
+              editor={editor}
               className={`cdg-rich-text-editor-content ${styles.editorContent}`}
-            >
-              <EditorContent editor={editor} />
-              {characterCount && (
-                <div className={`${styles.characterCount}`}>
-                  {CharacterCountFunc()}/{characterCount}
-                </div>
-              )}
-            </div>
+            />
+            {characterCount && (
+              <div className={`${styles.characterCount}`}>
+                {CharacterCountFunc()}/{characterCount}
+              </div>
+            )}
           </div>
         </CssInjection>
       </RichTextEditorProvider>
@@ -168,9 +167,4 @@ export default RichTextEditor as typeof RichTextEditor & {
   Hr: typeof controls.HrControl
   Undo: typeof controls.UndoControl
   Redo: typeof controls.RedoControl
-  // Code: typeof controls.CodeControl
-  // ColorPicker: typeof controls.ColorPickerControl
-  // Highlight: typeof controls.HighlightControl
-  // ClearFormatting: typeof controls.ClearFormattingControl
-  // UnsetColor: typeof controls.UnsetColorControl
 }

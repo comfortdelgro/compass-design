@@ -1,7 +1,7 @@
 import React, {HTMLAttributes} from 'react'
 import CssInjection from '../../../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../../../utils/use-dom-ref'
-import styles from '../../styles/option.module.css'
+import styles from '../../styles/popover.module.css'
 
 interface Props {
   triggerRef: React.RefObject<HTMLDivElement>
@@ -16,7 +16,7 @@ interface Props {
 type PopoverProps = Props & Omit<HTMLAttributes<HTMLDivElement>, keyof Props>
 const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
   (
-    {children, handleKeyDown, onFocus, onBlur, type, isEmpty, className},
+    {children, handleKeyDown, onFocus, onBlur, type, isEmpty, className=''},
     ref,
   ) => {
     const popoverRef = useDOMRef(ref)
@@ -40,8 +40,10 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
           style={{
             display: isEmpty ? 'none' : '',
           }}
-          className={`${className} ${type === 'color' && styles.typeColor} ${
-            type === 'heading' && styles.typeHeading
+          className={`${className} ${styles.rtePopover} 
+          ${type === 'color' ? styles.typeColor : ''} 
+          ${
+            type === 'heading' ? styles.typeHeading : ''
           }`}
         >
           {children}

@@ -36,13 +36,13 @@
   font-weight: var(--cdg-font-weight-semibold);
 }
 
-.rtedropdown button svg {
+.rteDropdown button svg {
   flex-shrink: 0;
   width: var(--cdg-spacing-4);
   height: var(--cdg-spacing-4);
 }
 
-.rtedropdown button span {
+.rteDropdown button span {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -52,6 +52,3 @@
   align-items: center;
 }
 
-.rtedropdown button:focus {
-  outline: none;
-}

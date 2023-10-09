@@ -26,7 +26,7 @@ const Option = React.forwardRef<HTMLLIElement, OptionProps>(
       focusKey,
       disabledKeys,
       type,
-      className='',
+      className = '',
       css = {},
       onSelect,
     },
@@ -54,16 +54,18 @@ const Option = React.forwardRef<HTMLLIElement, OptionProps>(
     return (
       <CssInjection css={css} childrenRef={optionRef}>
         <li
-          className={`${className} ${isFocused && styles.isFocused} ${
-            isSelected && styles.isSelected
-          } ${isDisabled && styles.isDisabled}`}
+          className={`${className} ${styles.rteOption} ${isFocused ? styles.isFocused : ''} ${
+            isSelected ? styles.isSelected : ''
+          } ${isDisabled ? styles.isDisabled : ''}`}
           onClick={handleSelect}
         >
           <div className={`${styles.optionContent}`}>{children}</div>
           <div
-            className={`rightIcon ${styles.isUnselected} ${
-              type === 'color' && styles.typeColor
-            } ${type === 'heading' && styles.typeHeading}`}
+            className={`${styles.rightIcon} ${
+              isSelected ? '' : styles.isUnselected
+            } ${type === 'color' ? styles.typeColor : ''} ${
+              type === 'heading' ? styles.typeHeading : ''
+            }`}
           >
             <svg
               width='16'

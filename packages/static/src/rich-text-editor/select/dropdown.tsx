@@ -8,15 +8,13 @@ useFloating,
 useInteractions,
 } from '@floating-ui/react'
 import React from 'react'
-import { getDefaulValue } from '../../../../react-compass/src/dropdown/utils'
 import CssInjection from '../../utils/objectToCss/CssInjection'
 import { useDOMRef } from '../../utils/use-dom-ref'
 import styles from '../styles/dropdown.module.css'
 import DropdownItem,{ DropdownItemProps } from './item'
 import ListBox from './list-box'
 import Popover from './popover'
-import { Icon,pickChilds } from './utils'
-
+import { getDefaultValue,Icon,ListKeyboardDelegate,pickChilds } from './utils'
 
 interface Props {
   isDisabled?: boolean
@@ -54,7 +52,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     defaultSelectedKey,
     isDisabled = false,
     shouldDeselect = false,
-    className='',
+    className = '',
     ...htmlProps
   } = props
 
@@ -95,15 +93,15 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     return item.key == currentKey
   })
 
-  // const delegate = React.useMemo(
-  //   () => new ListKeyboardDelegate(collection, disabledKeys),
-  //   [collection, disabledKeys],
-  // )
+  const delegate = React.useMemo(
+    () => new ListKeyboardDelegate(collection, disabledKeys),
+    [collection, disabledKeys],
+  )
 
   // ====================================== EFFECT ======================================
   // map default value
   React.useEffect(() => {
-    const newValue = getDefaulValue(selectedKey, defaultSelectedKey)
+    const newValue = getDefaultValue(selectedKey, defaultSelectedKey)
     setCurrentKey(newValue)
     setFocusKey(newValue)
   }, [selectedKey])
@@ -124,46 +122,46 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   }, [currentKey])
 
   // ====================================== CALLBACK ======================================
-  // const handleKeyDown = (e: KeyboardEvent) => {
-  //   switch (e.key) {
-  //     case 'ArrowUp':
-  //     case 'ArrowLeft': {
-  //       e.preventDefault()
-  //       const key =
-  //         focusKey != undefined && focusKey != -1
-  //           ? delegate.getKeyAbove(focusKey)
-  //           : delegate.getFirstKey()
-  //       if (key) setFocusKey(key)
-  //       break
-  //     }
-  //     case 'ArrowDown':
-  //     case 'ArrowRight': {
-  //       e.preventDefault()
-  //       const key =
-  //         focusKey != undefined && focusKey != -1
-  //           ? delegate.getKeyBelow(focusKey)
-  //           : delegate.getFirstKey()
-  //       if (key) setFocusKey(key)
-  //       break
-  //     }
-  //     case 'Enter': {
-  //       e.preventDefault()
-  //       if (focusKey) {
-  //         onSelect(focusKey)
-  //       }
-  //       break
-  //     }
-  //     case 'Escape': {
-  //       e.preventDefault()
-  //       setOpen(false)
-  //       break
-  //     }
-  //     case 'Tab': {
-  //       setOpen(false)
-  //       break
-  //     }
-  //   }
-  // }
+  const handleKeyDown = (e: KeyboardEvent) => {
+    switch (e.key) {
+      case 'ArrowUp':
+      case 'ArrowLeft': {
+        e.preventDefault()
+        const key =
+          focusKey != undefined && focusKey != -1
+            ? delegate.getKeyAbove(focusKey)
+            : delegate.getFirstKey()
+        if (key) setFocusKey(key)
+        break
+      }
+      case 'ArrowDown':
+      case 'ArrowRight': {
+        e.preventDefault()
+        const key =
+          focusKey != undefined && focusKey != -1
+            ? delegate.getKeyBelow(focusKey)
+            : delegate.getFirstKey()
+        if (key) setFocusKey(key)
+        break
+      }
+      case 'Enter': {
+        e.preventDefault()
+        if (focusKey) {
+          onSelect(focusKey)
+        }
+        break
+      }
+      case 'Escape': {
+        e.preventDefault()
+        setOpen(false)
+        break
+      }
+      case 'Tab': {
+        setOpen(false)
+        break
+      }
+    }
+  }
 
   const onSelect = (key: React.Key) => {
     if (currentKey === key && shouldDeselect) {
@@ -190,18 +188,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
 
   // ====================================== RENDER ======================================
   return (
-    // <StyledSelect
-    //   css={css}
-    //   isEmpty={!selectedItem}
-    //   isDisabled={isDisabled}
-    //   ref={refs.setReference}
-    //   {...getReferenceProps}
-    //   {...htmlProps}
-    // >
-
-    // </StyledSelect>
-
-    <CssInjection css={css} childrenRef={refs.setReference}>
+    <CssInjection css={css} childrenRef={selectRef}>
       <div
         ref={refs.setReference}
         className={`${className} ${styles.rteDropdown} ${
@@ -245,7 +232,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
                 triggerRef={selectRef as React.RefObject<HTMLDivElement>}
                 onBlur={handleBlur}
                 onFocus={handleFocus}
-                // handleKeyDown={handleKeyDown}
+                handleKeyDown={handleKeyDown}
               >
                 <ListBox
                   type={type}

@@ -1,6 +1,6 @@
 @import '../../theme/theme.module.css';
 
-li {
+.rteOption {
   font-size: var(--cdg-font-size-label1);
   font-weight: var(--cdg-font-weight-medium);
   padding: var(--cdg-spacing-2) var(--cdg-spacing-4);
@@ -12,21 +12,21 @@ li {
   color: var(--cdg-color-gray100);
 }
 
-li:hover {
+.rteOption:hover {
   background-color: var(--cdg-color-gray20);
 }
 
-li.isFocused {
+.rteOption.isFocused {
   background-color: var(--cdg-color-gray20);
 }
-li.isSelected {
+.rteOption.isSelected {
   background-color: var(--cdg-color-gray20);
 }
-li.isDisabled {
+.rteOption.isDisabled {
   opacity: 0.4;
   cursor: not-allowed;
 }
-li.isColor {
+.rteOption.isColor {
   position: relative;
 }
 
@@ -39,12 +39,13 @@ li.isColor {
   height: var(--cdg-spacing-6);
 }
 
-.rightIcon.isUnselected svg {
+.rightIcon.isUnselected > svg {
   display: none;
 }
 .rightIcon.typeColor {
   position: absolute;
   color: var(--cdg-color-whiteText);
+  /* z-index: 1; */
 }
 .rightIcon.typeHeading {
   color: var(--cdg-color-cdgBlue);

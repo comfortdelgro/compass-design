@@ -8,7 +8,7 @@
   background-color: var(--cdg-color-background);
   color: var(--cdg-color-primaryText);
   height: var(--cdg-spacing-125);
-  overflow: scroll;
+  overflow: auto;
 }
 
 .cdgRichTextEditor {
@@ -22,47 +22,47 @@
   overflow: clip;
 }
 
-.cdgRichTextEditor .ProseMirror {
+.editorContent div:first-child {
   padding: var(--cdg-spacing-4);
   min-height: 100px;
-  outline: none,
+  outline: none;
 }
 
 .ProseMirror:focus-visible {
   outline: none;
 }
 
-.cdgRichTextEditor .ProseMirror blockquote {
+.editorContent blockquote {
   border-left: 3px solid var(--cdg-color-border);
   padding-left: var(--cdg-spacing-4);
 }
 
-.cdgRichTextEditor .ProseMirror code {
+.editorContent code {
   margin-top: 0.75em;
 }
-.cdgRichTextEditor .ProseMirror pre {
+.editorContent pre {
   background-color: var(--cdg-color-black);
   border-radius: 0.5rem;
   color: var(--cdg-color-white);
   padding: 0.75rem 1rem;
 }
-.cdgRichTextEditor .ProseMirror code {
+.editorContent code {
   background-color: none;
   color: inherit;
   font-size: 0.8rem;
   padding: 0;
 }
-.cdgRichTextEditor .ProseMirror sup {
+.editorContent sup {
   top: -0.5em;
 }
 
-.cdgRichTextEditor .ProseMirror a {
+.editorContent a {
   color: var(--cdg-color-info);
   text-decoration: underline;
   transition: var(--cdg-transition-default);
 }
 
-.cdgRichTextEditor .ProseMirror p.is-editor-empty:first-child::before {
+.editorContent p.is-editor-empty:first-child::before {
   color: var(--cdg-color-tertiaryText);
   content: attr(data-placeholder);
   float: left;
@@ -70,50 +70,50 @@
   pointer-events: none;
 }
 
-.cdgRichTextEditor h1 {
+.editorContent h1 {
   display: block;
   font-size: 2em;
   font-weight: bold;
 }
-.cdgRichTextEditor h2 {
+.editorContent h2 {
   display: block;
   font-size: 1.5em;
   font-weight: bold;
 }
-.cdgRichTextEditor h3 {
+.editorContent h3 {
   display: block;
   font-size: 1.17em;
   font-weight: bold;
 }
-.cdgRichTextEditor h4 {
+.editorContent h4 {
   display: block;
   font-size: 1em;
   font-weight: bold;
 }
-.cdgRichTextEditor h5 {
+.editorContent h5 {
   display: block;
   font-size: 0.83em;
   font-weight: bold;
 }
-.cdgRichTextEditor h6 {
+.editorContent h6 {
   display: block;
   font-size: 0.67em;
   font-weight: bold;
 }
-.cdgRichTextEditor ul {
+.editorContent ul {
   display: block;
   list-style: disc;
   margin: unset;
   padding-left: 20px;
 }
-.cdgRichTextEditor ol {
+.editorContent ol {
   display: block;
   list-style: decimal;
   margin: unset;
   padding-left: 20px;
 }
 
-.cdgRichTextEditor .characterCount {
+.characterCount {
   color: var(--cdg-color-secondaryText);
   padding-top: 1rem;
   padding-left: 1rem;

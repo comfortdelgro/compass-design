@@ -1,6 +1,5 @@
 import React from 'react'
 import {useRichTextEditorContext} from '../../rich-text-editor.context'
-// import {StyledColorItem} from '../../rich-text-editor.styles'
 import Select from '../../select'
 
 export type ColorControlProps = {
@@ -28,8 +27,11 @@ const defaultColors = [
 export const ColorControl = ({colors = defaultColors}: ColorControlProps) => {
   const {editor} = useRichTextEditorContext()
   const colorSet = new Set(colors)
+  const [selectedColor, setColor] = React.useState<React.Key>([...colorSet][0])
+
   const handleSelectionChange = (key: React.Key) => {
     if (editor?.isEditable) {
+      setColor(key)
       editor
         .chain()
         .focus()
@@ -39,14 +41,14 @@ export const ColorControl = ({colors = defaultColors}: ColorControlProps) => {
   }
   return (
     <Select
-      defaultSelectedKey={[...colorSet][0] as React.Key}
+      selectedKey={selectedColor}
       onSelectionChange={handleSelectionChange}
       type='color'
       css={{
         width: '70px',
         height: '28px',
         float: 'left',
-        margin: '0 $2 $2',
+        margin: '0 var(--cdg-spacing-2) var(--cdg-spacing-2)',
         button: {
           color: '$gray110',
         },
@@ -54,7 +56,15 @@ export const ColorControl = ({colors = defaultColors}: ColorControlProps) => {
     >
       {[...colorSet].map((color) => (
         <Select.Item key={color}>
-          <div className='colorItem' style={{backgroundColor: color}}></div>
+          <div
+            className='colorItem'
+            style={{
+              backgroundColor: color,
+              width: '24px',
+              height: '24px',
+              borderRadius: '4px',
+            }}
+          ></div>
         </Select.Item>
       ))}
     </Select>
