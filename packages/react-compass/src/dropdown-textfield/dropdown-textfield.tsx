@@ -11,7 +11,7 @@ import {
 
 interface Props extends StyledComponentProps {
   id?: string
-  inputType: 'text' | 'numeric' | 'email' | 'password'
+  inputType?: 'text' | 'numeric' | 'email' | 'password'
   options: DropdownOptions[]
   onChange?: (dropdownValue: string, inputValue: string | number) => void
   label: string
@@ -36,7 +36,8 @@ interface Props extends StyledComponentProps {
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
   onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void
-  placeholder?: string
+  textfieldPlaceholder?: string
+  dropdownPlaceholder?: string
   autoFocus?: boolean
   maxLength?: number
   minLength?: number
@@ -83,7 +84,8 @@ const DropdownTextfield = React.forwardRef<
     isRequired = false,
     isDisabled = false,
     errorMessage = '',
-    placeholder = '',
+    textfieldPlaceholder = '',
+    dropdownPlaceholder = '',
     inputType = 'text',
     label = '',
     minLength,
@@ -105,9 +107,7 @@ const DropdownTextfield = React.forwardRef<
     h5 = false,
   } = props
   const componentRef = useDOMRef(ref)
-  const [selectedDropdownKey, setDropdownKey] = React.useState<Key>(
-    defaultSelectedKey ?? options[0]?.value ?? '',
-  )
+  const [selectedDropdownKey, setDropdownKey] = React.useState<Key>('')
   const [textfieldValue, setTextfieldValue] = React.useState<Key>(
     defaultInputValue ?? '',
   )
@@ -136,11 +136,13 @@ const DropdownTextfield = React.forwardRef<
         <Dropdown.Select
           aria-label={label}
           selectedKey={selectedDropdownKey}
+          defaultSelectedKey={defaultSelectedKey as Key}
           onSelectionChange={handleDropdownChange}
           isErrored={isErrored}
           isReadOnly={isReadOnly}
           isRequired={isRequired}
           isDisabled={isDisabled}
+          placeholder={dropdownPlaceholder}
           h5={h5}
           css={{
             width: '25%',
@@ -171,10 +173,10 @@ const DropdownTextfield = React.forwardRef<
           isErrored={isErrored}
           isReadOnly={isReadOnly}
           isRequired={isRequired}
-          placeholder={placeholder}
+          placeholder={textfieldPlaceholder}
           isDisabled={isDisabled}
-          minLength={Number(minLength)}
-          maxLength={Number(maxLength)}
+          minLength={minLength ?? 0}
+          maxLength={maxLength ?? 524288}
           h5={h5}
           onCut={onCut ?? (() => null)}
           onCopy={onCopy ?? (() => null)}
