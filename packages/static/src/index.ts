@@ -45,3 +45,8 @@ export {default as SearchField} from './searchfield'
 export type {SearchFieldProps} from './searchfield'
 export * from './theme'
 export {default as ThemeStaticProvider} from './theme/ThemeProvider'
+export {default as MultipleDropdown} from './multiple-dropdown'
+export type {
+  MultipleDropdownItemProps,
+  MultipleDropdownProps,
+} from './multiple-dropdown'
