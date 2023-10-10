@@ -1,0 +1,12 @@
+<Badge
+    label='LGTM'
+    color='success'
+    variant='secondary'
+    icon={<BugIcon />}
+/>
+<Badge
+    label='Practice Social Distancing'
+    color='danger'
+    variant='outline'
+    icon={<BugIcon />}
+/>

@@ -1,0 +1,3 @@
+<Badge label='Primary' color='danger' variant='primary' />
+<Badge label='Secondary' color='danger' variant='secondary' />
+<Badge label='Outline' color='danger' variant='outline' />
