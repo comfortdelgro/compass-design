@@ -1,4 +1,5 @@
 import {Checkbox, Column} from '@comfortdelgro/react-compass'
+// import {Checkbox as StaticCheckbox} from '@comfortdelgro/static'
 import React from 'react'
 
 const Uncontrolled: React.FC = () => {
@@ -21,6 +22,23 @@ const Uncontrolled: React.FC = () => {
         <Checkbox variant='rounded' isIndeterminate isDisabled defaultSelected>
           Indeterminate (disabled)
         </Checkbox>
+
+        {/* <StaticCheckbox variant='rounded'>Unselected</StaticCheckbox>
+        <StaticCheckbox variant='rounded' defaultSelected>
+          Selected
+        </StaticCheckbox>
+        <StaticCheckbox variant='rounded' isDisabled>
+          Unselected (disabled)
+        </StaticCheckbox>
+        <StaticCheckbox variant='rounded' defaultSelected isDisabled>
+          Selected (disabled)
+        </StaticCheckbox>
+        <StaticCheckbox variant='rounded' isIndeterminate defaultSelected>
+          Indeterminate
+        </StaticCheckbox>
+        <StaticCheckbox variant='rounded' isIndeterminate isDisabled defaultSelected>
+          Indeterminate (disabled)
+        </StaticCheckbox> */}
       </Column>
     </Column>
   )
