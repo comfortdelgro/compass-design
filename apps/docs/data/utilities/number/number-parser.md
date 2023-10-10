@@ -23,7 +23,7 @@ To create a `NumberParser`, call the constructor with a locale string and option
 This example creates a parser than accepts values in inches in the `en-US` locale.
 
 ```tsx
-import {NumberParser} from '@internationalized/number'
+import {NumberParser} from '@comfortdelgro/react-compass'
 
 let parser = new NumberParser('en-US', {style: 'unit', unit: 'inch'})
 parser.parse('10 in') // 10
@@ -52,12 +52,12 @@ Numbers can be parsed using the `parse` method. If the input is not a valid numb
 By default, or with the `style: 'decimal'` option, `NumberParser` supports parsing decimal values.
 
 ```tsx
-let parser = new NumberParser('en-US');
-parser.parse('10.5'); // 10.5
-parser.parse('-25.6'); // -25.6
-parser.parse('1,000,000'); // 1000000
-parser.parse('١٢'); // 12
-parser.parse('X'); // NaN
+let parser = new NumberParser('en-US')
+parser.parse('10.5') // 10.5
+parser.parse('-25.6') // -25.6
+parser.parse('1,000,000') // 1000000
+parser.parse('١٢') // 12
+parser.parse('X') // NaN
 ```
 
 ### Percentages
@@ -67,13 +67,12 @@ The `style: 'percent'` option can be provided to the constructor to parse percen
 ```tsx
 let parser = new NumberParser('en-US', {
   style: 'percent',
-  maximumFractionDigits: 2
-});
+  maximumFractionDigits: 2,
+})
 
-parser.parse('45%'); // 0.45
-parser.parse('62.3333%'); // 0.6233
+parser.parse('45%') // 0.45
+parser.parse('62.3333%') // 0.6233
 ```
-
 
 ### Currency values
 
@@ -86,16 +85,16 @@ let parser = new NumberParser('en-US', {
   style: 'currency',
   currency: 'EUR',
   currencyDisplay: 'code',
-  currencySign: 'accounting'
-});
+  currencySign: 'accounting',
+})
 
-parser.parse('45'); // 45
-parser.parse('EUR 45'); // 45
-parser.parse('EUR 26.45'); // 26.45
-parser.parse('EUR -25'); // -25
-parser.parse('(EUR 25)'); // -25
-parser.parse('EU 45'); // NaN (partial currency symbol)
-parser.parse('$45'); // NaN (different currency symbol)
+parser.parse('45') // 45
+parser.parse('EUR 45') // 45
+parser.parse('EUR 26.45') // 26.45
+parser.parse('EUR -25') // -25
+parser.parse('(EUR 25)') // -25
+parser.parse('EU 45') // NaN (partial currency symbol)
+parser.parse('$45') // NaN (different currency symbol)
 ```
 
 ### Unit values
@@ -106,14 +105,14 @@ The `style: 'unit'` option can be passed to the constructor to parse values with
 let parser = new NumberParser('en-US', {
   style: 'unit',
   unit: 'inch',
-  unitDisplay: 'long'
-});
+  unitDisplay: 'long',
+})
 
-parser.parse('12'); // 12
-parser.parse('12 inches'); // 12
-parser.parse('1 inch'); // 1
-parser.parse('12 in'); // NaN (partial unit)
-parser.parse('23 ft'); // NaN (different unit)
+parser.parse('12') // 12
+parser.parse('12 inches') // 12
+parser.parse('1 inch') // 1
+parser.parse('12 in') // NaN (partial unit)
+parser.parse('23 ft') // NaN (different unit)
 ```
 
 ## Validation
@@ -123,12 +122,12 @@ parser.parse('23 ft'); // NaN (different unit)
 Note that partial units and currency symbols are _not_ accepted. Since the unit itself must be known upfront and passed to the constructor, it is better to only allow entering a number rather and autocompleting the unit rather than typing it in one letter at a time.
 
 ```tsx
-let parser = new NumberParser('en-US', {style: 'unit', unit: 'inch'});
-parser.isValidPartialNumber('.'); // true
-parser.isValidPartialNumber('.2'); // true
-parser.isValidPartialNumber('10 in'); // true
-parser.isValidPartialNumber('10 i'); // false
-parser.isValidPartialNumber('10 x'); // false
+let parser = new NumberParser('en-US', {style: 'unit', unit: 'inch'})
+parser.isValidPartialNumber('.') // true
+parser.isValidPartialNumber('.2') // true
+parser.isValidPartialNumber('10 in') // true
+parser.isValidPartialNumber('10 i') // false
+parser.isValidPartialNumber('10 x') // false
 ```
 
 ## Detecting the numbering system
@@ -136,11 +135,14 @@ parser.isValidPartialNumber('10 x'); // false
 Under the hood, `NumberParser` automatically detects the numbering system used in the input. This is also exposed by the `getNumberingSystem` method, which returns a Unicode script identifier. For example, this can be used to create a number formatter based on the numbering system used in the input.
 
 ```tsx
-import {NumberParser, NumberFormatter} from '@internationalized/number';
+import {NumberFormatter, NumberParser} from '@internationalized/number'
 
-let parser = new NumberParser('en-US', {style: 'decimal'});
-let numberingSystem = parser.getNumberingSystem('١٢'); // -> 'arab'
+let parser = new NumberParser('en-US', {style: 'decimal'})
+let numberingSystem = parser.getNumberingSystem('١٢') // -> 'arab'
 
-let formatter = new NumberFormatter('en-US', {style: 'decimal', numberingSystem});
-formatter.format(12);
+let formatter = new NumberFormatter('en-US', {
+  style: 'decimal',
+  numberingSystem,
+})
+formatter.format(12)
 ```

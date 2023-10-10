@@ -1,12 +1,11 @@
 import {
-faCog,
-faFile,
-faHouse,
-faSquarePen,
-faToggleOn,
+  faCog,
+  faFile,
+  faHouse,
+  faSquarePen,
+  faToggleOn,
 } from '@fortawesome/free-solid-svg-icons'
-import { TSideNavItem } from 'types/common'
-
+import {TSideNavItem} from 'types/common'
 
 export const routes: TSideNavItem[] = [
   {
@@ -594,6 +593,30 @@ export const routes: TSideNavItem[] = [
         pathname: '/number/number-formatter',
         description:
           'A wrapper around Intl.NumberFormat providing additional options, polyfills, and caching for performance.',
+      },
+      {
+        title: 'I18nProvider',
+        pathname: '/i18n/i18nProvider',
+        description:
+          'Provides the locale for the application to all child components.',
+      },
+      {
+        title: 'useCollator',
+        pathname: '/i18n/useCollator',
+        description:
+          'Provides localized string collation for the current locale.',
+      },
+      {
+        title: 'useDateFormatter',
+        pathname: '/i18n/useDateFormatter',
+        description:
+          'Provides localized date formatting for the current locale.',
+      },
+      {
+        title: 'useFilter',
+        pathname: '/i18n/useFilter',
+        description:
+          'Provides localized string search functionality that is useful for filtering or matching items in a list.',
       },
     ],
   },
