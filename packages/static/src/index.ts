@@ -31,6 +31,8 @@ export type {
 } from './multiple-choices-slider'
 export {default as Popover} from './popover'
 export type {PopoverDirection, PopoverProps} from './popover'
+export {default as Radio} from './radio'
+export type {RadioGroupProps, RadioProps} from './radio'
 export {default as Spinner} from './spinner'
 export type {SpinnerProps} from './spinner'
 export {default as Status} from './status'
