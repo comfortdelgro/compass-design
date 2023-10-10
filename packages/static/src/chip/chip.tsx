@@ -1,9 +1,7 @@
 import React from 'react'
-import {useIsLightTheme} from '../theme'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import darkThemeStyles from './styles/dark.module.css'
-import lightThemeStyles from './styles/light.module.css'
+import styles from './styles/chip.module.css'
 
 export interface Props {
   children?: React.ReactNode
@@ -11,6 +9,7 @@ export interface Props {
   isErrored?: boolean
   onClose?: (event: React.MouseEvent<HTMLDivElement>) => void
   css?: unknown
+  className?: string
 }
 
 const Chip = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
@@ -20,19 +19,20 @@ const Chip = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     isErrored = false,
     onClose,
     css,
-    ...delegated
+    className,
+    ...htmlProps
   } = props
 
   const chipRef = useDOMRef<HTMLDivElement>(ref)
-
-  const styles = useIsLightTheme() ? lightThemeStyles : darkThemeStyles
 
   return (
     <CssInjection css={css} childrenRef={chipRef}>
       <div
         ref={chipRef}
-        className={` ${styles.chip} ${isErrored ? styles.isErrored : ''}`}
-        {...delegated}
+        className={` ${className} ${styles.chip} ${
+          isErrored ? styles.isErrored : ''
+        }`}
+        {...htmlProps}
       >
         {children}
         {hasCloseButton && (

@@ -9,9 +9,10 @@ export const StyledTableV2SortingIndicator = styled('span', {
 export const StyledTableV2ColumnHeader = styled('th', {
   fontSize: '$label1',
   fontWeight: '$semibold',
-  padding: '$3_5 $3',
+  padding: '$4 $3',
   position: 'relative',
-  // border: '1px solid $gray100',
+  lineHeight: '$5_25',
+  outlineColor: '$cdgBlue',
 })
 
 export const StyledTableV2ColumnHeaderContent = styled('div', {

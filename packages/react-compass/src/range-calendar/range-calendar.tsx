@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react'
+import React, {useCallback, useMemo} from 'react'
 import Box from '../box'
 import Button, {ButtonProps} from '../button'
 import CalendarGrid from '../calendar/calendar-grid'
@@ -6,6 +6,7 @@ import CalendarHeader from '../calendar/calendar-header'
 import {useRangeCalendar} from '../calendar/hooks/useRangeCalendar'
 import {useRangeCalendarState} from '../calendar/hooks/useRangeCalendarState'
 import {DateRangePickerState, DateValue, RangeValue} from '../calendar/types'
+import {isInvalid} from '../calendar/utils'
 import {useDatePickerContext} from '../date-picker/date-picker-context'
 import * as InternationalizedDate from '../internationalized/date'
 import {
@@ -119,6 +120,16 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
       )
     }
 
+    const isTodayButtonDisabled = useMemo(() => {
+      const today = InternationalizedDate.today(
+        InternationalizedDate.getLocalTimeZone(),
+      )
+
+      const isTodayInvalid = isInvalid(today, delegated.minValue, maxValue)
+
+      return isTodayInvalid
+    }, [delegated.minValue, maxValue])
+
     const isRangeCalendar = visibleMonths === 1 ? false : true
 
     const showShortcut = isRangeCalendar && hasShortcuts ? true : false
@@ -135,7 +146,11 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
           )
         } else {
           return (
-            <Button variant='primary' onPress={handleTodayButtonClick}>
+            <Button
+              variant='primary'
+              onPress={handleTodayButtonClick}
+              isDisabled={isTodayButtonDisabled}
+            >
               Today
             </Button>
           )
