@@ -146,6 +146,7 @@ importers:
 
   packages/static:
     specifiers:
+      '@comfortdelgro/compass-icons': '*'
       '@floating-ui/react': ^0.24.0
       '@fortawesome/fontawesome-svg-core': ^6.4.2
       '@fortawesome/free-solid-svg-icons': ^6.4.2
@@ -182,6 +183,7 @@ importers:
       vite-plugin-css-injected-by-js: ^3.3.0
       vite-plugin-dts: ^3.5.3
     dependencies:
+      '@comfortdelgro/compass-icons': 1.4.0
       '@floating-ui/react': 0.24.8_biqbaboplfbrettd7655fr4n2y
       '@fortawesome/fontawesome-svg-core': 6.4.2
       '@fortawesome/free-solid-svg-icons': 6.4.2
@@ -2257,7 +2259,17 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@frsource/base64@1.0.17:
+  /@fortawesome/react-fontawesome/0.2.0_react@18.2.0:
+    resolution: {integrity: sha512-uHg75Rb/XORTtVt7OS9WoK8uM276Ufi7gCzshVWkUJbHhh3svsUUeqXerrM96Wm7fRiDzfKRwSoahhMIkGAYHw==}
+    peerDependencies:
+      '@fortawesome/fontawesome-svg-core': ~1 || ~6
+      react: '>=16.3'
+    dependencies:
+      prop-types: 15.8.1
+      react: 18.2.0
+    dev: false
+
+  /@frsource/base64/1.0.17:
     resolution: {integrity: sha512-QyMv52jCRIMUIlDM6ysSVPc6Cp3KCTu6/YeLUyJpTEhleXssYB3CT5PqmQijGGwu4819qvan8Eu4PWJRAW5Akg==}
     dev: true
 

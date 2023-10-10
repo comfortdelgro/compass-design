@@ -35,6 +35,7 @@
     "storybook": "storybook dev -p 6006"
   },
   "dependencies": {
+    "@comfortdelgro/compass-icons": "*",
     "@floating-ui/react": "^0.24.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",

@@ -2,6 +2,13 @@ export {default as Button} from './button'
 export type {ButtonProps} from './button'
 export {default as Chip} from './chip'
 export type {ChipProps} from './chip'
+export {default as Dropdown} from './dropdown'
+export type {
+  DropdownComboBoxProps,
+  DropdownItemProps,
+  DropdownProps,
+  DropdownSelectProps,
+} from './dropdown'
 export {default as Divider} from './divider'
 export type {DividerProps} from './divider'
 export {default as Checkbox} from './checkbox'
