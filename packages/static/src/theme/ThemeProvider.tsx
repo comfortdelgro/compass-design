@@ -7,8 +7,6 @@ export enum ETheme {
 type ColourMode = ETheme | undefined
 type ColourModeProviderType = [ColourMode, (newMode: ETheme) => void]
 type ThemeProviderProps = {
-  lightThemeCustom?: unknown
-  darkThemeCustom?: unknown
   changeBy?: unknown | undefined
   children?: React.ReactNode
   isCSR?: boolean
@@ -84,14 +82,10 @@ function useColorMode({
 
 const ThemeStaticProvider = ({
   children,
-  lightThemeCustom,
-  darkThemeCustom,
   changeBy,
   isCSR = false,
 }: ThemeProviderProps) => {
   const [colorMode, applyColorMode] = useColorMode({
-    lightThemeCustom,
-    darkThemeCustom,
     changeBy,
     isCSR,
   })
