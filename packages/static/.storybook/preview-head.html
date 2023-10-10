@@ -12,5 +12,38 @@
   body {
     font-family: var(--cdg-font-sans);
     -webkit-font-smoothing: antialiased;
+    background: var(--cdg-color-background) !important;
+  }
+  .sbdocs-wrapper {
+    background: var(--cdg-color-gray10) !important;
+  }
+  .sbdocs-title,
+  .sb-anchor h3,
+  #storybook-root h3 {
+    color: var(--cdg-color-typeHeading) !important;
+  }
+  .docs-story,
+  #storybook-preview-iframe {
+    background: var(--cdg-color-background) !important;
+  }
+  .sbdocs-preview {
+    background: var(--cdg-color-gray20) !important;
+  }
+  .sbdocs-preview > div:first-child {
+    background: var(--cdg-color-gray20) !important;
+  }
+  ::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px var(--cdg-color-gray40);
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--cdg-color-gray80);
+    border-radius: 10px;
   }
 </style>
