@@ -1,0 +1,48 @@
+@import '../../theme/theme.module.css';
+
+.rteControl {
+  position: relative;
+  flex-shrink: 0;
+  line-height: var(--cdg-line-height-normal);
+  font-weight: var(--cdg-font-weight-semibold);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: transparent;
+  display: inline-flex;
+  align-items: center;
+  width: var(--cdg-spacing-8);
+  height: var(--cdg-spacing-7);
+  justify-content: center;
+  padding: 0;
+  margin: 0 var(--cdg-spacing-2) var(--cdg-spacing-2) var(--cdg-spacing-2);
+  float: left;
+  color: var(--cdg-color-gray110);
+}
+
+.rteControl:hover {
+  background-color: var(--cdg-color-gray40);
+  color: var(--cdg-color-gray110);
+}
+
+.rteControl svg {
+  height: var(--cdg-spacing-4);
+  width: var(--cdg-spacing-4);
+}
+
+.rteControl:disabled {
+  background-color: var(--cdg-color-divider);
+  color: var(--cdg-color-disabledText);
+  border-color: var(--cdg-color-divider);
+  cursor: not-allowed;
+}
+
+.active {
+  background-color: var(--cdg-color-gray80);
+  color: var(--cdg-color-white);
+}
+
+.active:hover {
+  background-color: var(--cdg-color-gray80);
+  color: var(--cdg-color-white);
+}
