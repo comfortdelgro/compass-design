@@ -61,8 +61,7 @@
   text-decoration: underline;
   transition: var(--cdg-transition-default);
 }
-
-.editorContent p.is-editor-empty:first-child::before {
+.editorContent div:first-child > p[data-placeholder]::before {
   color: var(--cdg-color-tertiaryText);
   content: attr(data-placeholder);
   float: left;
