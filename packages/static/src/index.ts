@@ -31,6 +31,8 @@ export type {
 } from './multiple-choices-slider'
 export {default as Popover} from './popover'
 export type {PopoverDirection, PopoverProps} from './popover'
+export {default as Progress} from './progress'
+export type {CircularProgressProps, LinearProgressProps} from './progress'
 export {default as Radio} from './radio'
 export type {RadioGroupProps, RadioProps} from './radio'
 export {default as Spinner} from './spinner'
