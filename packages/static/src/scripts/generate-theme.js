@@ -80,7 +80,7 @@ cssVariables.push(`
 /* Dark Theme Colors */
 [data-cdg-theme='dark'] {`)
 for (const key in darkThemeColors) {
-  cssVariables.push(`--cdg-color-${key} : ${lightThemeColors[key]};`)
+  cssVariables.push(`--cdg-color-${key} : ${darkThemeColors[key]};`)
 }
 
 const cssData = `/* THIS FILE IS AUTO GENERATED. DO NOT MODIFY!  */

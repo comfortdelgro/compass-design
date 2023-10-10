@@ -27,9 +27,26 @@ Image avatars can be created by passing standard `image` props to the component.
 
 {{"demo": "ImageAvatars.tsx"}}
 
+### Letter avatars
+
+{{"demo": "LetterAvatars.tsx"}}
+
+### Sizes
+
+{{"demo": "SizesAvatars.tsx"}}
+
+### Icon avatars
+
+{{"demo": "IconAvatars.tsx"}}
+
 ### Group avatars
 
 {{"demo": "GroupAvatars.tsx"}}
+
+### Custom styling
+
+{{"demo": "CustomAvatars.tsx"}}
+
 
 ## Props
 

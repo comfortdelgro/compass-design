@@ -139,6 +139,8 @@ export const H5Form: React.FC = () => {
           inputType='text'
           label='Name'
           h5
+          dropdownPlaceholder='Select gender'
+          textfieldPlaceholder='Enter name'
         />
         <DropdownTextfield
           options={phoneDropdownOptions}

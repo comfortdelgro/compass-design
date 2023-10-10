@@ -62,6 +62,7 @@ const Chip = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
         onClick={onClick}
         onKeyDown={handleChipKeyDown}
         {...delegated}
+
       >
         <div className={`${styles.cdgChipContent}`}>{children}</div>
         {hasCloseButton && (
