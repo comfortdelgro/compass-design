@@ -322,10 +322,9 @@ b.compare(a) > 0 // true
 
 In addition, the following functions can be used to perform a partial comparison. These functions accept dates in different calendar systems, and the second date is converted to the calendar system of the first date before comparison.
 
-- `isSameYear`
-- `isSameMonth`
-- `isSameDay`
-- `isToday`
+- `isSameMonth` – Returns whether the given dates occur in the same month, using the calendar system of the first date.
+- `isSameDay` – Returns whether the given dates occur on the same day, regardless of the time or calendar system.
+- `isToday` – Returns whether the date is today in the given time zone.
 
 ```tsx
 import {
@@ -349,29 +348,7 @@ isSameMonth(
 
 A similar set of functions is also available that does not convert between calendar systems and requires the calendars to be equal.
 
-- `isEqualYear`
-- `isEqualMonth`
-- `isEqualDay`
-
-```tsx
-import {
-  isEqualMonth,
-  IslamicUmalquraCalendar,
-} from '@comfortdelgro/react-compass'
-
-isEqualMonth(
-  new CalendarDateTime(2021, 4, 16, 9, 45),
-  new CalendarDateTime(2021, 4, 30, 5, 15),
-) // true
-isEqualMonth(
-  new CalendarDateTime(2021, 4, 16, 9, 45),
-  new CalendarDateTime(2021, 8, 2, 5, 15),
-) // false
-isEqualMonth(
-  new CalendarDateTime(2021, 4, 16, 9, 45),
-  new CalendarDateTime(new IslamicUmalquraCalendar(), 1442, 9, 4, 5, 15),
-) // false
-```
+- `isEqualDay` – Returns whether the given dates occur on the same day, and are of the same calendar system.
 
 ### Start and end dates
 

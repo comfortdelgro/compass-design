@@ -1,11 +1,12 @@
 import {
-  faCog,
-  faFile,
-  faHouse,
-  faSquarePen,
-  faToggleOn,
+faCog,
+faFile,
+faHouse,
+faSquarePen,
+faToggleOn,
 } from '@fortawesome/free-solid-svg-icons'
-import {TSideNavItem} from 'types/common'
+import { TSideNavItem } from 'types/common'
+
 
 export const routes: TSideNavItem[] = [
   {
@@ -575,6 +576,18 @@ export const routes: TSideNavItem[] = [
         pathname: '/date/zoned-date-time',
         description:
           'A ZonedDateTime represents a date and time in a specific time zone and calendar system.',
+      },
+      {
+        title: 'NumberParser',
+        pathname: '/number/number-parser',
+        description:
+          'A NumberParser can be used to perform locale-aware parsing of numbers from Unicode strings, as well as validation of partial user input. ',
+      },
+      {
+        title: 'NumberFormatter',
+        pathname: '/number/number-formatter',
+        description:
+          'A wrapper around Intl.NumberFormat providing additional options, polyfills, and caching for performance.',
       },
     ],
   },

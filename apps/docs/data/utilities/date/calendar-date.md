@@ -258,10 +258,9 @@ b.compare(a) > 0 // true
 
 In addition, the following functions can be used to perform a partial comparison. These functions accept dates in different calendar systems, and the second date is converted to the calendar system of the first date before comparison.
 
-- `isSameYear`
-- `isSameMonth`
-- `isSameDay`
-- `isToday`
+- `isSameMonth` – Returns whether the given dates occur in the same month, using the calendar system of the first date.
+- `isSameDay` – Returns whether the given dates occur on the same day, regardless of the time or calendar system.
+- `isToday` – Returns whether the date is today in the given time zone.
 
 ```tsx
 import {IslamicUmalquraCalendar, isSameMonth} from '@comfortdelgro/react-compass'
@@ -276,20 +275,7 @@ isSameMonth(
 
 A similar set of functions is also available that does not convert between calendar systems and requires the calendars to be equal.
 
-- `isEqualYear`
-- `isEqualMonth`
-- `isEqualDay`
-
-```tsx
-import {isEqualMonth, IslamicUmalquraCalendar} from '@comfortdelgro/react-compass'
-
-isEqualMonth(new CalendarDate(2021, 4, 16), new CalendarDate(2021, 4, 30)) // true
-isEqualMonth(new CalendarDate(2021, 4, 16), new CalendarDate(2021, 8, 2)) // false
-isEqualMonth(
-  new CalendarDate(2021, 4, 16),
-  new CalendarDate(new IslamicUmalquraCalendar(), 1442, 9, 4),
-) // false
-```
+- `isEqualDay` – Returns whether the given dates occur on the same day, and are of the same calendar system.
 
 ### Start and end dates
 
@@ -326,22 +312,6 @@ let date = new CalendarDate(2022, 2, 6) // a Sunday
 
 getDayOfWeek(date, 'en-US') // 0
 getDayOfWeek(date, 'fr-FR') // 6
-```
-
-### Weekdays and weekends
-
-The `isWeekday` and `isWeekend` functions can be used to determine if a date is weekday or weekend respectively. This depends on the locale. For example, in the United States, weekends are Saturday and Sunday, but in Israel they are Friday and Saturday.
-
-```tsx
-import {isWeekday, isWeekend} from '@comfortdelgro/react-compass'
-
-let date = new CalendarDate(2022, 2, 6) // a Sunday
-
-isWeekday(date, 'en-US') // false
-isWeekday(date, 'he-IL') // true
-
-isWeekend(date, 'en-US') // true
-isWeekend(date, 'he-IL') // false
 ```
 
 ### Weeks in month
