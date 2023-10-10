@@ -97,6 +97,11 @@
   width: var(--cdg-spacing-4);
   height: var(--cdg-spacing-4);
 }
+.children {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 /* Styling for left icon */
 .leftIcon {
