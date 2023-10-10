@@ -10,7 +10,7 @@ export const StyledEditorContent = styled('div', {
   backgroundColor: '$background',
   color: '$primaryText',
   height: '$125',
-  overflow: 'scroll',
+  overflow: 'auto',
   // styling
 })
 

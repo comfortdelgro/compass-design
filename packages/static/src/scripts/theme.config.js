@@ -218,6 +218,22 @@ export const lightThemeColors = {
   gradientOrange: '#F02627, #EA8816',
   gradientRainbow: '#0163AE, #D80837, #53AF35',
   gradientOrangeBlue: '#D2132A, #0597DB',
+
+  grayShades10: '#F7F8F9',
+  grayShades20: '#E6E6E6',
+  grayShades40: '#B4B4B4',
+  grayShades60: '#757575',
+  grayShades80: '#3E3E3E',
+  grayShades100: '#333333',
+
+  blueShades0: '',
+  blueShades10: '#E6ECF7',
+  blueShades20: '',
+  blueShades40: '',
+  blueShades60: '',
+  blueShades80: '#3468BF',
+  blueShades100: '#0142AF',
+  blueShades120: '#012158',
 }
 
 export const darkThemeColors = {
@@ -291,4 +307,20 @@ export const darkThemeColors = {
   gradientOrange: '#CC1E1F, #D37C16',
   gradientRainbow: '#025493, #A51C2E, #46932D',
   gradientOrangeBlue: '#AA1022, #027FB9',
+
+  grayShades10: '#333333',
+  grayShades20: '#3E3E3E',
+  grayShades40: '#757575',
+  grayShades60: '#B4B4B4',
+  grayShades80: '#E6E6E6',
+  grayShades100: '#F7F8F9',
+
+  blueShades0: '',
+  blueShades10: '#E6ECF7',
+  blueShades20: '',
+  blueShades40: '',
+  blueShades60: '',
+  blueShades80: '#3468BF',
+  blueShades100: '#0142AF',
+  blueShades120: '#012158',
 }
