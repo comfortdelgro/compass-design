@@ -4,6 +4,8 @@ export {default as Chip} from './chip'
 export type {ChipProps} from './chip'
 export {default as Icon} from './icon'
 export type {IconProp} from './icon'
+export {default as ImageViewer} from './image-viewer'
+export type {ImageViewerProps} from './image-viewer'
 export * from './layouts'
 export {default as MultipleChoicesSlider} from './multiple-choices-slider'
 export type {
