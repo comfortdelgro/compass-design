@@ -2,6 +2,14 @@ export {default as Avatar} from './avatar'
 export type {AvatarProps} from './avatar'
 export {default as Chip} from './chip'
 export type {ChipProps} from './chip'
+export {default as Drawer} from './drawer'
+export type {
+  DrawerDefaultProps,
+  DrawerFooterProps,
+  DrawerH5Props,
+  DrawerHeaderProps,
+  DrawerProps,
+} from './drawer'
 export {default as Icon} from './icon'
 export type {IconProp} from './icon'
 export {default as Button} from './button'
