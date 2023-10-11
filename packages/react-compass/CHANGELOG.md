@@ -1,5 +1,11 @@
 ## 2.9.0
 
+## 2.20.0
+
+### Minor Changes
+
+- 412ffa63: Fix bugs
+
 ## 2.19.0
 
 ### Minor Changes

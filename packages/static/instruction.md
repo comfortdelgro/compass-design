@@ -36,8 +36,7 @@ Example:
         width: '2rem',
       },
     },
-  }}
-  > Close button
+  }}> Close button
 </Chip>
 ```
 
@@ -53,12 +52,12 @@ Example of new variable assignment through "css" prop in `@stitches/react`:
     $$collapseDirection: collapseDirection,
     $$slideDirection: determineSlideDirection(),
     ...css,
-    }}
-    ref={TransitionWrapperRef}
-    effect={effect}
-    show={show}
-    orientation={effect === 'collapse' ? orientation : 'none'}
-    {...htmlProps}
+  }}
+  ref={TransitionWrapperRef}
+  effect={effect}
+  show={show}
+  orientation={effect === 'collapse' ? orientation : 'none'}
+  {...htmlProps}
 >
   {renderChildren()}
 </StyledTransition>
@@ -98,14 +97,13 @@ Rather, we would keep our current "theme/stitches.config.ts" file and its relate
 
 ## 3. Custom theming (Theme Provider, useColors() and useCurrentTheme()) - (pending)
 
-We need to modify the "theme/ThemeProvider.tsx", "theme/useColors.ts" and "useCurrentTheme.ts" in a way that it supports light/dark theme object from both "theme/theme.ts" and "theme/theme.ts". 
+We need to modify the "theme/ThemeProvider.tsx", "theme/useColors.ts" and "useCurrentTheme.ts" in a way that it supports light/dark theme object from both "theme/theme.ts" and "theme/theme.ts".
 
 Example to illustrate the idea:
 
 ```js
 import createTheme from '@comfortdelgro/react-compass/theme/theme'
 import createStaticTheme from '@comfortdelgro/react-compass/theme/theme'
-
 
 // This works
 export const lightThemeCustom = createTheme('light-theme-custom', {
@@ -135,7 +133,6 @@ function MyApp({Component, pageProps}: AppProps) {
 ```
 
 To achieve this, "createTheme" from "theme/theme.ts" should not be imported from "@stitches/react", but instead it is a reference to its vanilla js version in "theme/theme.ts". And the custom theme recieved by the Theme Provider will go to light/dark theme object in "theme/theme.ts", not "theme/theme.ts".
-
 
 ## 4. Tasks allocation
 

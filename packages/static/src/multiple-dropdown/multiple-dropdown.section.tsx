@@ -1,11 +1,11 @@
-import React, { useContext, useMemo } from 'react'
-import { useDOMRef } from '../utils/use-dom-ref'
+import React, {useContext, useMemo} from 'react'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import {useDOMRef} from '../utils/use-dom-ref'
 import {
   MultipleDropdownContext,
   SelectedItemDropdown,
 } from './multiple-dropdown-context'
-import { MultipleDropdownItemProps } from './multiple-dropdown-item'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {MultipleDropdownItemProps} from './multiple-dropdown-item'
 import styles from './styles/multiple-dropdown.module.css'
 
 export interface DropdownSectionBase {
@@ -131,14 +131,13 @@ const MultipleDropdownSection = React.forwardRef<
       >
         {title && (
           <div
-            className={`${styles.multipleDropdownSectionContent} ${isClickable ? styles.IsClickable : ''
-              }`}
+            className={`${styles.multipleDropdownSectionContent} ${
+              isClickable ? styles.IsClickable : ''
+            }`}
             onClick={handleOnClick}
           >
             {title}
-            <div
-              className={contentRightIconClassName}
-            >
+            <div className={contentRightIconClassName}>
               {checkmark === 'checkbox' ? (
                 <div className={`${styles.multipleDropdownSectionCheckbox}`}>
                   <Tick />

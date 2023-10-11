@@ -263,7 +263,10 @@ In addition, the following functions can be used to perform a partial comparison
 - `isToday` – Returns whether the date is today in the given time zone.
 
 ```tsx
-import {IslamicUmalquraCalendar, isSameMonth} from '@comfortdelgro/react-compass'
+import {
+  IslamicUmalquraCalendar,
+  isSameMonth,
+} from '@comfortdelgro/react-compass'
 
 isSameMonth(new CalendarDate(2021, 4, 16), new CalendarDate(2021, 4, 30)) // true
 isSameMonth(new CalendarDate(2021, 4, 16), new CalendarDate(2021, 8, 2)) // false
@@ -291,7 +294,11 @@ The following functions can be used to find the start or end dates of a particul
 Note that `startOfWeek` and `endOfWeek` require a locale string to be provided. This is because the first day of the week changes depending on the locale. For example, in the United States, the first day of the week is on Sunday, but in France it is on Monday.
 
 ```tsx
-import {startOfMonth, startOfWeek, startOfYear} from '@comfortdelgro/react-compass'
+import {
+  startOfMonth,
+  startOfWeek,
+  startOfYear,
+} from '@comfortdelgro/react-compass'
 
 let date = new CalendarDate(2022, 2, 3)
 
