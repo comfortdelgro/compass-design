@@ -1,0 +1,155 @@
+.searchFieldInput {
+  width: 100%;
+  font-size: var(--cdg-font-size-label1); 
+  font-weight: var(--cdg-font-weight-semibold);
+  line-height: var(--cdg-line-height-normal);
+  padding: 0;
+  border: 0;
+  border-radius: var(--cdg-border-radius-md);
+  background-color: transparent;
+}
+
+.searchFieldInput::placeholder {
+  color: #B4B4B4;
+  font-size: var(--cdg-font-size-label1);
+  font-weight: var(--cdg-font-weight-semibold);
+}
+
+.searchFieldInput:disabled {
+  cursor: not-allowed;
+}
+.searchFieldInput:focus-visible{
+  outline: none;
+}
+
+.searchFieldBox {
+  display: flex;
+  height: var(--cdg-spacing-8);
+  padding: 0 var(--cdg-spacing-4);
+  gap: var(--cdg-spacing-2);
+  font-family: var(--cdg-font-sans);
+  flex-direction: row;
+  align-items: center;
+  border-width: var(--cdg-border-width-light);
+  border-style: solid;
+  border-color: var(--cdg-color-divider);
+  border-radius: var(--cdg-border-radius-md);
+  color: var(--cdg-color-typeHeading);
+  background-color: var(--cdg-color-whiteText);
+  transition: var(--cdg-transition-default);
+  min-width: var(--cdg-spacing-48);
+  outline: none;
+}
+/* button */
+.searchFieldBox :global(.cdg-searchfield-button) {
+  transform: scale(0.9);
+}
+
+.searchFieldBox :global(.cdg-searchfield-button) {
+  padding: 0;
+  width: var(--cdg-spacing-6);
+  height: var(--cdg-spacing-6);
+}
+
+.searchFieldBox :global(.cdg-searchfield-button) :global(.cdg-button-content-children) svg{
+  width: var(--cdg-spacing-4);
+  height: var(--cdg-spacing-4);
+}
+
+.disabledTrue {
+  color: var(--cdg-color-disabledText);
+  background-color: var(--cdg-color-gray20);
+}
+
+.isErroredTrue {
+  border-color: var(--cdg-color-danger);
+  border-width: var(--cdg-border-width-medium);
+}
+
+.isErroredTrue:focus-within {
+  border-color: var(--cdg-color-danger);
+}
+
+.isDarkThemeTrue.searchFieldInput {
+  color: var(--cdg-color-tertiaryText);
+}
+
+.isDarkThemeTrue.searchFieldInput:focus {
+  border-color: var(--cdg-color-cdgBlue120);
+  outline: none;
+  box-shadow: none;
+}
+
+.isDarkThemeTrue:focus-within {
+  border-color: var(--cdg-color-cdgBlue120);
+}
+
+.isDarkThemeFalse.searchFieldInput:focus {
+  border-color: var(--cdg-color-cdgBlue);
+  outline: none;
+  box-shadow: none;
+}
+
+.isDarkThemeFalse:focus-within {
+  border-color: var(--cdg-color-cdgBlue);
+}
+
+.h5True {
+  flex-direction: row-reverse;
+  gap: var(--cdg-spacing-2);
+  padding: var(--cdg-spacing-2) var(--cdg-spacing-4);
+  border-radius: var(--cdg-border-radius-lg);
+  height: var(--cdg-spacing-12);
+}
+
+.h5True :global(.cdg-searchfield-button) {
+  padding: 0;
+  color: var(--cdg-color-grayShades60);
+}
+
+.h5True.searchFieldInput {
+  padding: 0;
+}
+
+.h5True.searchFieldInput::placeholder {
+  font-size: var(--cdg-spacing-3_5);
+  font-style: normal;
+  font-weight: var(--cdg-font-weight-medium);
+  line-height: 20px;
+}
+
+.h5False {
+  flex-direction: row;
+}
+
+
+.textFieldHelperText {
+  font-size: var(--cdg-font-size-label2);
+  font-weight: var(--cdg-font-weight-medium);
+  transition: var(--cdg-transition-default);
+  margin-top: var(--cdg-spacing-1);
+  color: var(--cdg-color-gray70);
+}
+
+.errorTrue {
+  color: var(--cdg-color-danger);
+}
+
+.searchFieldBoxWrapper {
+  width: 100%;
+  display: block;
+  font-family: var(--cdg-font-sans);
+}
+
+.textFieldLabel {
+  font-size: var(--cdg-font-size-label1);
+  font-weight: var(--cdg-font-weight-semibold);
+  margin-bottom: var(--cdg-spacing-2);
+  display: inline-block;
+  width: 100%;
+}
+
+.textFieldLabel.asterisk {
+  margin-left: var(--cdg-spacing-1);
+  color: var(--cdg-color-danger);
+}

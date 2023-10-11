@@ -85,7 +85,12 @@ export const Default: React.FC = () => {
       icon: faCar,
       title: 'Placeholder',
       children: [
-        {id: 11, title: 'Placeholder', icon: faCar},
+        {
+          id: 11,
+          title:
+            'Placeholder item with a really long name that makes this menu item width over screen to test the layout',
+          icon: faCar,
+        },
         {id: 12, title: 'Placeholder', icon: faCar},
         {
           id: 13,

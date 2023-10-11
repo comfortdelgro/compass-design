@@ -42,10 +42,10 @@ export const StyledDropdownWrapper = styled('div', {
           marginBottom: '$1',
         },
         '.cdg-dropdown-button': {
-          fontSize: '$label1',
           fontWeight: '$normal',
-          lineHeight: '$tight',
           padding: '$3 $4',
+          fontSize: '$body3',
+          lineHeight: '20px',
         },
       },
     },

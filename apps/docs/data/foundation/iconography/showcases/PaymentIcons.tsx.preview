@@ -1,39 +1,117 @@
 <Affirm width={40} height={40} /> 
+<Icon icon={affirm} width={40} height={40} /> 
+
 <Alipay width={40} height={40} /> 
+<Icon icon={alipay} width={40} height={40} /> 
+
 <Amazon width={40} height={40} /> 
+<Icon icon={amazon} width={40} height={40} /> 
+
 <Amex width={40} height={40} /> 
+<Icon icon={amex} width={40} height={40} /> 
+
 <ApplePay width={40} height={40} /> 
+<Icon icon={applePay} width={40} height={40} /> 
+
 <Bancontact width={40} height={40} /> 
+<Icon icon={bancontact} width={40} height={40} /> 
+
 <BitcoinCash width={40} height={40} /> 
+<Icon icon={bitcoinCash} width={40} height={40} /> 
+
 <Bitcoin width={40} height={40} /> 
+<Icon icon={bitcoin} width={40} height={40} /> 
+
 <Bitpay width={40} height={40} /> 
+<Icon icon={bitpay} width={40} height={40} /> 
+
 <Citadele width={40} height={40} /> 
+<Icon icon={citadele} width={40} height={40} /> 
+
 <DinersClub width={40} height={40} /> 
+<Icon icon={dinersClub} width={40} height={40} /> 
+
 <Discover width={40} height={40} /> 
+<Icon icon={discover} width={40} height={40} /> 
+
 <Elo width={40} height={40} /> 
+<Icon icon={elo} width={40} height={40} /> 
+
 <Etherium width={40} height={40} /> 
+<Icon icon={etherium} width={40} height={40} /> 
+
 <Forbrugsforeningen width={40} height={40} /> 
+<Icon icon={forbrugsforeningen} width={40} height={40} /> 
+
 <GiroPay width={40} height={40} /> 
+<Icon icon={giroPay} width={40} height={40} /> 
+
 <GooglePay width={40} height={40} /> 
+<Icon icon={googlePay} width={40} height={40} /> 
+
 <Ideal width={40} height={40} /> 
+<Icon icon={ideal} width={40} height={40} /> 
+
 <Interac width={40} height={40} /> 
+<Icon icon={interac} width={40} height={40} /> 
+
 <Jcb width={40} height={40} /> 
+<Icon icon={jcb} width={40} height={40} /> 
+
 <Klarna width={40} height={40} /> 
+<Icon icon={klarna} width={40} height={40} /> 
+
 <Lightcoin width={40} height={40} /> 
+<Icon icon={lightcoin} width={40} height={40} /> 
+
 <Maestro width={40} height={40} /> 
+<Icon icon={maestro} width={40} height={40} /> 
+
 <Mastercard width={40} height={40} /> 
+<Icon icon={mastercard} width={40} height={40} /> 
+
 <Payoneer width={40} height={40} /> 
+<Icon icon={payoneer} width={40} height={40} /> 
+
 <Paypal width={40} height={40} /> 
+<Icon icon={paypal} width={40} height={40} /> 
+
 <Paysafe width={40} height={40} /> 
+<Icon icon={paysafe} width={40} height={40} /> 
+
 <Qiwi width={40} height={40} /> 
+<Icon icon={qiwi} width={40} height={40} /> 
+
 <Sepa width={40} height={40} /> 
+<Icon icon={sepa} width={40} height={40} /> 
+
 <ShopPay width={40} height={40} /> 
+<Icon icon={shopPay} width={40} height={40} /> 
+
 <Skrill width={40} height={40} /> 
+<Icon icon={skrill} width={40} height={40} /> 
+
 <Sofort width={40} height={40} /> 
+<Icon icon={sofort} width={40} height={40} /> 
+
 <Stripe width={40} height={40} /> 
+<Icon icon={stripe} width={40} height={40} /> 
+
 <UnionPay width={40} height={40} /> 
+<Icon icon={unionPay} width={40} height={40} /> 
+
 <Verifone width={40} height={40} /> 
+<Icon icon={verifone} width={40} height={40} /> 
+
 <Visa width={40} height={40} /> 
+<Icon icon={visa} width={40} height={40} /> 
+
 <WeChat width={40} height={40} /> 
+<Icon icon={weChat} width={40} height={40} /> 
+
 <WebMoney width={40} height={40} /> 
+<Icon icon={webMoney} width={40} height={40} /> 
+
 <Yandex width={40} height={40} /> 
+<Icon icon={yandex} width={40} height={40} /> 
+

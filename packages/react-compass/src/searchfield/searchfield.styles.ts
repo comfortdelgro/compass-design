@@ -12,7 +12,7 @@ export const StyledSearchFieldInput = styled('input', {
   borderRadius: '$md',
   backgroundColor: 'transparent',
   '&::placeholder': {
-    color: '#B4B4B4',
+    color: '$placeholder',
     fontSize: '$label1',
     fontWeight: '$semibold',
   },

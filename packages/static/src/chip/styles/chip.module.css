@@ -1,4 +1,4 @@
-@import '../../theme-static/theme.module.css';
+@import '../../theme/theme.module.css';
 
 .chip {
   border: 1px solid rgb(230, 230, 230);
@@ -25,4 +25,11 @@
 
 .close-icon-container {
   cursor: pointer;
+}
+
+.cdgChipContent {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
 }
