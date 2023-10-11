@@ -73,7 +73,7 @@ const Transitions = React.forwardRef<HTMLDivElement, TransitionsProps>(
           setChildrenHeight(element.offsetHeight)
         }
       }
-    }, [show])
+    }, [show, children])
 
     return (
       <>

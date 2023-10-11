@@ -1236,35 +1236,18 @@ export const DataGrid: React.FC = () => {
             </Button>
           </div>
         </Table.Toolbar>
-        <Table.Footer
-          css={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-          }}
-        >
-          <div>{/* Todo: Dropdown */}</div>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: '0.5rem',
+        <Table.Footer>
+          <Pagination
+            rowsOptions={[5, 10, 15, 20]}
+            rowsPerPage={5}
+            onRowsPerPageChange={(rows) => {
+              console.log(rows)
             }}
-          >
-            <div
-              style={{
-                fontWeight: '600',
-              }}
-            >
-              {(page - 1) * 10 + 1} - {(page - 1) * 10 + 10} of 100
-            </div>
-            <Pagination
-              page={page}
-              onChange={(page) => setPage(page)}
-              total={10}
-            />
-          </div>
+            page={page}
+            total={10}
+            onChange={(page) => setPage(page)}
+            count={100}
+          ></Pagination>
         </Table.Footer>
       </Table>
     </div>

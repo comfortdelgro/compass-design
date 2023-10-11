@@ -1,0 +1,132 @@
+@import '../../theme/theme.module.css';
+
+.spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.ring {
+  position: relative;
+  aspect-ratio: 1/1;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.ring:focus,
+.ring:focus-within {
+  border: none;
+  outline: none;
+}
+
+.bg,
+.segment {
+  box-sizing: border-box;
+  position: absolute;
+  border-style: solid;
+  border-radius: var(--cdg-border-radius-full);
+}
+
+.bg {
+  border-color: var(--cdg-color-gray30);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.segment {
+  border-color: var(--cdg-color-cdgBlue) transparent transparent transparent;
+  animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+
+.segment1 {
+  animation-delay: -0.45s;
+}
+
+.segment2 {
+  animation-delay: -0.3s;
+}
+
+.segment3 {
+  animation-delay: -0.15s;
+}
+
+.label {
+  color: var(--cdg-color-cdgBlue);
+  font-family: var(--cdg-font-sans);
+  margin-top: var(--cdg-spacing-2);
+  margin-bottom: var(--cdg-spacing-2);
+}
+
+/* 2xl */
+.ring2xl,
+.bg2xl,
+.segment2xl {
+  width: var(--cdg-spacing-16);
+  height: var(--cdg-spacing-16);
+  border-width: 0.625rem;
+}
+
+.label2xl {
+  font-size: var(--cdg-font-size-body2);
+}
+
+/* xl */
+.ringXl,
+.bgXl,
+.segmentXl {
+  width: var(--cdg-spacing-12);
+  height: var(--cdg-spacing-12);
+  border-width: 0.625rem;
+}
+
+.fontXl {
+  font-size: var(--cdg-font-size-body2);
+}
+/* lg styles */
+.ringLg,
+.bgLg,
+.segmentLg {
+  width: var(--cdg-spacing-12);
+  height: var(--cdg-spacing-12);
+  border-width: 0.625rem;
+}
+
+.fontLg {
+  font-size: var(--cdg-font-size-label1);
+}
+
+/* md styles */
+
+.ringMd,
+.bgMd,
+.segmentMd {
+  width: var(--cdg-spacing-12);
+  height: var(--cdg-spacing-12);
+  border-width: 0.625rem;
+}
+
+.fontMd {
+  font-size: var(--cdg-font-size-label2);
+}
+
+/* sm styles */
+.ringSm,
+.bgSm,
+.segmentSm {
+  width: var(--cdg-spacing-12);
+  height: var(--cdg-spacing-12);
+  border-width: 0.625rem;
+}
+
+.fontSm {
+  font-size: var(--cdg-font-size-label3);
+}

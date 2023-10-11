@@ -503,7 +503,7 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
       event.stopPropagation()
       event.preventDefault()
       if (delegated.isDisabled) return
-      setIsOpen(true)
+      setIsOpen((isOpen) => !isOpen)
     }
 
     /**

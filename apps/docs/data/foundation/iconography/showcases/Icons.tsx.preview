@@ -1,193 +1,579 @@
 <Activity width={40} height={40} /> 
+<Icon icon={activity} width={40} height={40} /> 
+
 <AlignCenter width={40} height={40} /> 
+<Icon icon={alignCenter} width={40} height={40} /> 
+
 <AlignJustify width={40} height={40} /> 
+<Icon icon={alignJustify} width={40} height={40} /> 
+
 <AlignLeft width={40} height={40} /> 
+<Icon icon={alignLeft} width={40} height={40} /> 
+
 <AlignRight width={40} height={40} /> 
+<Icon icon={alignRight} width={40} height={40} /> 
+
 <Angellist width={40} height={40} /> 
+<Icon icon={angellist} width={40} height={40} /> 
+
 <Apple width={40} height={40} /> 
+<Icon icon={apple} width={40} height={40} /> 
+
 <ArrowDown width={40} height={40} /> 
+<Icon icon={arrowDown} width={40} height={40} /> 
+
 <ArrowLeft width={40} height={40} /> 
+<Icon icon={arrowLeft} width={40} height={40} /> 
+
 <ArrowRight width={40} height={40} /> 
+<Icon icon={arrowRight} width={40} height={40} /> 
+
 <ArrowUp width={40} height={40} /> 
+<Icon icon={arrowUp} width={40} height={40} /> 
+
 <Bid width={40} height={40} /> 
+<Icon icon={bid} width={40} height={40} /> 
+
 <Bold width={40} height={40} /> 
+<Icon icon={bold} width={40} height={40} /> 
+
 <Browser width={40} height={40} /> 
+<Icon icon={browser} width={40} height={40} /> 
+
 <Bug width={40} height={40} /> 
+<Icon icon={bug} width={40} height={40} /> 
+
 <Building width={40} height={40} /> 
+<Icon icon={building} width={40} height={40} /> 
+
 <Bus2 width={40} height={40} /> 
+<Icon icon={bus-2} width={40} height={40} /> 
+
 <BusAndCar width={40} height={40} /> 
+<Icon icon={busAndCar} width={40} height={40} /> 
+
 <Bus width={40} height={40} /> 
+<Icon icon={bus} width={40} height={40} /> 
+
 <Calendar width={40} height={40} /> 
+<Icon icon={calendar} width={40} height={40} /> 
+
 <Cancelled width={40} height={40} /> 
+<Icon icon={cancelled} width={40} height={40} /> 
+
 <Capacity width={40} height={40} /> 
+<Icon icon={capacity} width={40} height={40} /> 
+
 <Car width={40} height={40} /> 
+<Icon icon={car} width={40} height={40} /> 
+
 <CaretDown width={40} height={40} /> 
+<Icon icon={caretDown} width={40} height={40} /> 
+
 <CaretLeft width={40} height={40} /> 
+<Icon icon={caretLeft} width={40} height={40} /> 
+
 <CaretRight width={40} height={40} /> 
+<Icon icon={caretRight} width={40} height={40} /> 
+
 <CaretUp width={40} height={40} /> 
+<Icon icon={caretUp} width={40} height={40} /> 
+
 <Chart width={40} height={40} /> 
+<Icon icon={chart} width={40} height={40} /> 
+
 <Chat width={40} height={40} /> 
+<Icon icon={chat} width={40} height={40} /> 
+
 <Cities width={40} height={40} /> 
+<Icon icon={cities} width={40} height={40} /> 
+
 <ClapperboardPlay width={40} height={40} /> 
+<Icon icon={clapperboardPlay} width={40} height={40} /> 
+
 <Classification width={40} height={40} /> 
+<Icon icon={classification} width={40} height={40} /> 
+
 <Clipboard width={40} height={40} /> 
+<Icon icon={clipboard} width={40} height={40} /> 
+
 <CloudUpload width={40} height={40} /> 
+<Icon icon={cloudUpload} width={40} height={40} /> 
+
 <Copy width={40} height={40} /> 
+<Icon icon={copy} width={40} height={40} /> 
+
 <CrossCircle width={40} height={40} /> 
+<Icon icon={crossCircle} width={40} height={40} /> 
+
 <Cross width={40} height={40} /> 
+<Icon icon={cross} width={40} height={40} /> 
+
 <CustomerService width={40} height={40} /> 
+<Icon icon={customerService} width={40} height={40} /> 
+
 <Dashboard width={40} height={40} /> 
+<Icon icon={dashboard} width={40} height={40} /> 
+
 <Deleted width={40} height={40} /> 
+<Icon icon={deleted} width={40} height={40} /> 
+
 <Document width={40} height={40} /> 
+<Icon icon={document} width={40} height={40} /> 
+
 <Download width={40} height={40} /> 
+<Icon icon={download} width={40} height={40} /> 
+
 <Driver width={40} height={40} /> 
+<Icon icon={driver} width={40} height={40} /> 
+
 <Edit width={40} height={40} /> 
+<Icon icon={edit} width={40} height={40} /> 
+
 <Email width={40} height={40} /> 
+<Icon icon={email} width={40} height={40} /> 
+
 <Excel width={40} height={40} /> 
+<Icon icon={excel} width={40} height={40} /> 
+
 <Export width={40} height={40} /> 
+<Icon icon={export} width={40} height={40} /> 
+
 <EyeSlash width={40} height={40} /> 
+<Icon icon={eyeSlash} width={40} height={40} /> 
+
 <EyeSolid width={40} height={40} /> 
+<Icon icon={eyeSolid} width={40} height={40} /> 
+
 <FaceFrown width={40} height={40} /> 
+<Icon icon={faceFrown} width={40} height={40} /> 
+
 <FaceLaugh width={40} height={40} /> 
+<Icon icon={faceLaugh} width={40} height={40} /> 
+
 <FaceMeh width={40} height={40} /> 
+<Icon icon={faceMeh} width={40} height={40} /> 
+
 <FaceSadTear width={40} height={40} /> 
+<Icon icon={faceSadTear} width={40} height={40} /> 
+
 <FaceSmileHeart width={40} height={40} /> 
+<Icon icon={faceSmileHeart} width={40} height={40} /> 
+
 <FaceSmile width={40} height={40} /> 
+<Icon icon={faceSmile} width={40} height={40} /> 
+
 <FacebookCircular width={40} height={40} /> 
+<Icon icon={facebookCircular} width={40} height={40} /> 
+
 <FacebookSquare width={40} height={40} /> 
+<Icon icon={facebookSquare} width={40} height={40} /> 
+
 <FileLaptop width={40} height={40} /> 
+<Icon icon={fileLaptop} width={40} height={40} /> 
+
 <FilePen width={40} height={40} /> 
+<Icon icon={filePen} width={40} height={40} /> 
+
 <FileSignature width={40} height={40} /> 
+<Icon icon={fileSignature} width={40} height={40} /> 
+
 <File width={40} height={40} /> 
+<Icon icon={file} width={40} height={40} /> 
+
 <Fill width={40} height={40} /> 
+<Icon icon={fill} width={40} height={40} /> 
+
 <Filter width={40} height={40} /> 
+<Icon icon={filter} width={40} height={40} /> 
+
 <Flag width={40} height={40} /> 
+<Icon icon={flag} width={40} height={40} /> 
+
 <FolderOpen width={40} height={40} /> 
+<Icon icon={folderOpen} width={40} height={40} /> 
+
 <Folder width={40} height={40} /> 
+<Icon icon={folder} width={40} height={40} /> 
+
 <FontColour width={40} height={40} /> 
+<Icon icon={fontColour} width={40} height={40} /> 
+
 <Font width={40} height={40} /> 
+<Icon icon={font} width={40} height={40} /> 
+
 <Gauge width={40} height={40} /> 
+<Icon icon={gauge} width={40} height={40} /> 
+
 <Gears width={40} height={40} /> 
+<Icon icon={gears} width={40} height={40} /> 
+
 <Github width={40} height={40} /> 
+<Icon icon={github} width={40} height={40} /> 
+
 <Globe width={40} height={40} /> 
+<Icon icon={globe} width={40} height={40} /> 
+
 <Google width={40} height={40} /> 
+<Icon icon={google} width={40} height={40} /> 
+
 <Grid width={40} height={40} /> 
+<Icon icon={grid} width={40} height={40} /> 
+
 <GripDots width={40} height={40} /> 
+<Icon icon={gripDots} width={40} height={40} /> 
+
 <H width={40} height={40} /> 
+<Icon icon={h} width={40} height={40} /> 
+
 <H1 width={40} height={40} /> 
+<Icon icon={h1} width={40} height={40} /> 
+
 <H2 width={40} height={40} /> 
+<Icon icon={h2} width={40} height={40} /> 
+
 <H3 width={40} height={40} /> 
+<Icon icon={h3} width={40} height={40} /> 
+
 <H4 width={40} height={40} /> 
+<Icon icon={h4} width={40} height={40} /> 
+
 <H5 width={40} height={40} /> 
+<Icon icon={h5} width={40} height={40} /> 
+
 <H6 width={40} height={40} /> 
+<Icon icon={h6} width={40} height={40} /> 
+
 <HatWizard width={40} height={40} /> 
+<Icon icon={hatWizard} width={40} height={40} /> 
+
 <Heading width={40} height={40} /> 
+<Icon icon={heading} width={40} height={40} /> 
+
 <HexagonXmark width={40} height={40} /> 
+<Icon icon={hexagonXmark} width={40} height={40} /> 
+
 <Hide width={40} height={40} /> 
+<Icon icon={hide} width={40} height={40} /> 
+
 <Home width={40} height={40} /> 
+<Icon icon={home} width={40} height={40} /> 
+
 <HourglassClock width={40} height={40} /> 
+<Icon icon={hourglassClock} width={40} height={40} /> 
+
 <InfoSquare width={40} height={40} /> 
+<Icon icon={infoSquare} width={40} height={40} /> 
+
 <Inspect width={40} height={40} /> 
+<Icon icon={inspect} width={40} height={40} /> 
+
 <Instagram width={40} height={40} /> 
+<Icon icon={instagram} width={40} height={40} /> 
+
 <Invoice width={40} height={40} /> 
+<Icon icon={invoice} width={40} height={40} /> 
+
 <Italic width={40} height={40} /> 
+<Icon icon={italic} width={40} height={40} /> 
+
 <Job2 width={40} height={40} /> 
+<Icon icon={job-2} width={40} height={40} /> 
+
 <Job width={40} height={40} /> 
+<Icon icon={job} width={40} height={40} /> 
+
 <Key width={40} height={40} /> 
+<Icon icon={key} width={40} height={40} /> 
+
 <Layers width={40} height={40} /> 
+<Icon icon={layers} width={40} height={40} /> 
+
 <LightbulbOn width={40} height={40} /> 
+<Icon icon={lightbulbOn} width={40} height={40} /> 
+
 <Link width={40} height={40} /> 
+<Icon icon={link} width={40} height={40} /> 
+
 <Linkedin width={40} height={40} /> 
+<Icon icon={linkedin} width={40} height={40} /> 
+
 <ListOl width={40} height={40} /> 
+<Icon icon={listOl} width={40} height={40} /> 
+
 <ListUl width={40} height={40} /> 
+<Icon icon={listUl} width={40} height={40} /> 
+
 <List width={40} height={40} /> 
+<Icon icon={list} width={40} height={40} /> 
+
 <Logout width={40} height={40} /> 
+<Icon icon={logout} width={40} height={40} /> 
+
 <LowVolume width={40} height={40} /> 
+<Icon icon={lowVolume} width={40} height={40} /> 
+
 <Maintenance width={40} height={40} /> 
+<Icon icon={maintenance} width={40} height={40} /> 
+
 <MapMarked width={40} height={40} /> 
+<Icon icon={mapMarked} width={40} height={40} /> 
+
 <MapMarker width={40} height={40} /> 
+<Icon icon={mapMarker} width={40} height={40} /> 
+
 <Map width={40} height={40} /> 
+<Icon icon={map} width={40} height={40} /> 
+
 <Menu width={40} height={40} /> 
+<Icon icon={menu} width={40} height={40} /> 
+
 <MessageLines width={40} height={40} /> 
+<Icon icon={messageLines} width={40} height={40} /> 
+
 <Message width={40} height={40} /> 
+<Icon icon={message} width={40} height={40} /> 
+
 <MinusSquare width={40} height={40} /> 
+<Icon icon={minusSquare} width={40} height={40} /> 
+
 <Minus width={40} height={40} /> 
+<Icon icon={minus} width={40} height={40} /> 
+
 <MoneyBill width={40} height={40} /> 
+<Icon icon={moneyBill} width={40} height={40} /> 
+
 <MoneyCheckAlt width={40} height={40} /> 
+<Icon icon={moneyCheckAlt} width={40} height={40} /> 
+
 <Money width={40} height={40} /> 
+<Icon icon={money} width={40} height={40} /> 
+
 <Mute width={40} height={40} /> 
+<Icon icon={mute} width={40} height={40} /> 
+
 <NotificationBadge width={40} height={40} /> 
+<Icon icon={notificationBadge} width={40} height={40} /> 
+
 <NotificationOff width={40} height={40} /> 
+<Icon icon={notificationOff} width={40} height={40} /> 
+
 <Outdent width={40} height={40} /> 
+<Icon icon={outdent} width={40} height={40} /> 
+
 <Paste width={40} height={40} /> 
+<Icon icon={paste} width={40} height={40} /> 
+
 <Pause width={40} height={40} /> 
+<Icon icon={pause} width={40} height={40} /> 
+
 <Pdf width={40} height={40} /> 
+<Icon icon={pdf} width={40} height={40} /> 
+
 <PenNib width={40} height={40} /> 
+<Icon icon={penNib} width={40} height={40} /> 
+
 <Phone width={40} height={40} /> 
+<Icon icon={phone} width={40} height={40} /> 
+
 <Pinterest width={40} height={40} /> 
+<Icon icon={pinterest} width={40} height={40} /> 
+
 <PlusSquare width={40} height={40} /> 
+<Icon icon={plusSquare} width={40} height={40} /> 
+
 <Plus width={40} height={40} /> 
+<Icon icon={plus} width={40} height={40} /> 
+
 <ProfileCard width={40} height={40} /> 
+<Icon icon={profileCard} width={40} height={40} /> 
+
 <Profile width={40} height={40} /> 
+<Icon icon={profile} width={40} height={40} /> 
+
 <Project width={40} height={40} /> 
+<Icon icon={project} width={40} height={40} /> 
+
 <QuestionSquare width={40} height={40} /> 
+<Icon icon={questionSquare} width={40} height={40} /> 
+
 <QuoteLeft width={40} height={40} /> 
+<Icon icon={quoteLeft} width={40} height={40} /> 
+
 <QuoteRight width={40} height={40} /> 
+<Icon icon={quoteRight} width={40} height={40} /> 
+
 <RatingStar0 width={40} height={40} /> 
+<Icon icon={ratingStar-0} width={40} height={40} /> 
+
 <RatingStar10 width={40} height={40} /> 
+<Icon icon={ratingStar-10} width={40} height={40} /> 
+
 <RatingStar100 width={40} height={40} /> 
+<Icon icon={ratingStar-100} width={40} height={40} /> 
+
 <RatingStar20 width={40} height={40} /> 
+<Icon icon={ratingStar-20} width={40} height={40} /> 
+
 <RatingStar30 width={40} height={40} /> 
+<Icon icon={ratingStar-30} width={40} height={40} /> 
+
 <RatingStar40 width={40} height={40} /> 
+<Icon icon={ratingStar-40} width={40} height={40} /> 
+
 <RatingStar50 width={40} height={40} /> 
+<Icon icon={ratingStar-50} width={40} height={40} /> 
+
 <RatingStar60 width={40} height={40} /> 
+<Icon icon={ratingStar-60} width={40} height={40} /> 
+
 <RatingStar70 width={40} height={40} /> 
+<Icon icon={ratingStar-70} width={40} height={40} /> 
+
 <RatingStar80 width={40} height={40} /> 
+<Icon icon={ratingStar-80} width={40} height={40} /> 
+
 <RatingStar90 width={40} height={40} /> 
+<Icon icon={ratingStar-90} width={40} height={40} /> 
+
 <Refresh width={40} height={40} /> 
+<Icon icon={refresh} width={40} height={40} /> 
+
 <Reveal width={40} height={40} /> 
+<Icon icon={reveal} width={40} height={40} /> 
+
 <School width={40} height={40} /> 
+<Icon icon={school} width={40} height={40} /> 
+
 <Search width={40} height={40} /> 
+<Icon icon={search} width={40} height={40} /> 
+
 <Settings width={40} height={40} /> 
+<Icon icon={settings} width={40} height={40} /> 
+
 <Shapes width={40} height={40} /> 
+<Icon icon={shapes} width={40} height={40} /> 
+
 <Share width={40} height={40} /> 
+<Icon icon={share} width={40} height={40} /> 
+
 <Shield2 width={40} height={40} /> 
+<Icon icon={shield-2} width={40} height={40} /> 
+
 <Shield width={40} height={40} /> 
+<Icon icon={shield} width={40} height={40} /> 
+
 <Snapchat width={40} height={40} /> 
+<Icon icon={snapchat} width={40} height={40} /> 
+
 <Sort1To9Ascending width={40} height={40} /> 
+<Icon icon={sort-1To-9Ascending} width={40} height={40} /> 
+
 <Sort1To9Descending width={40} height={40} /> 
+<Icon icon={sort-1To-9Descending} width={40} height={40} /> 
+
 <Sort9To1Ascending width={40} height={40} /> 
+<Icon icon={sort-9To-1Ascending} width={40} height={40} /> 
+
 <Sort9To1Descending width={40} height={40} /> 
+<Icon icon={sort-9To-1Descending} width={40} height={40} /> 
+
 <Sort width={40} height={40} /> 
+<Icon icon={sort} width={40} height={40} /> 
+
 <Sparkle width={40} height={40} /> 
+<Icon icon={sparkle} width={40} height={40} /> 
+
 <Spreadsheet width={40} height={40} /> 
+<Icon icon={spreadsheet} width={40} height={40} /> 
+
 <Stamp width={40} height={40} /> 
+<Icon icon={stamp} width={40} height={40} /> 
+
 <Status width={40} height={40} /> 
+<Icon icon={status} width={40} height={40} /> 
+
 <Store width={40} height={40} /> 
+<Icon icon={store} width={40} height={40} /> 
+
 <Strikethrough width={40} height={40} /> 
+<Icon icon={strikethrough} width={40} height={40} /> 
+
 <Suitcase width={40} height={40} /> 
+<Icon icon={suitcase} width={40} height={40} /> 
+
 <TableColumns width={40} height={40} /> 
+<Icon icon={tableColumns} width={40} height={40} /> 
+
 <Table width={40} height={40} /> 
+<Icon icon={table} width={40} height={40} /> 
+
 <Tags width={40} height={40} /> 
+<Icon icon={tags} width={40} height={40} /> 
+
 <Taxi width={40} height={40} /> 
+<Icon icon={taxi} width={40} height={40} /> 
+
 <TextHeight width={40} height={40} /> 
+<Icon icon={textHeight} width={40} height={40} /> 
+
 <ThumbDown width={40} height={40} /> 
+<Icon icon={thumbDown} width={40} height={40} /> 
+
 <ThumbUp width={40} height={40} /> 
+<Icon icon={thumbUp} width={40} height={40} /> 
+
 <TickCircle width={40} height={40} /> 
+<Icon icon={tickCircle} width={40} height={40} /> 
+
 <Tick width={40} height={40} /> 
+<Icon icon={tick} width={40} height={40} /> 
+
 <Ticket width={40} height={40} /> 
+<Icon icon={ticket} width={40} height={40} /> 
+
 <Timeline width={40} height={40} /> 
+<Icon icon={timeline} width={40} height={40} /> 
+
 <Twitter width={40} height={40} /> 
+<Icon icon={twitter} width={40} height={40} /> 
+
 <Underline width={40} height={40} /> 
+<Icon icon={underline} width={40} height={40} /> 
+
 <Unpin width={40} height={40} /> 
+<Icon icon={unpin} width={40} height={40} /> 
+
 <Upload width={40} height={40} /> 
+<Icon icon={upload} width={40} height={40} /> 
+
 <UserTie width={40} height={40} /> 
+<Icon icon={userTie} width={40} height={40} /> 
+
 <Users width={40} height={40} /> 
+<Icon icon={users} width={40} height={40} /> 
+
 <Verified width={40} height={40} /> 
+<Icon icon={verified} width={40} height={40} /> 
+
 <Volume width={40} height={40} /> 
+<Icon icon={volume} width={40} height={40} /> 
+
 <Word width={40} height={40} /> 
+<Icon icon={word} width={40} height={40} /> 
+
 <Youtube width={40} height={40} /> 
+<Icon icon={youtube} width={40} height={40} /> 
+
 <ZoomIn width={40} height={40} /> 
+<Icon icon={zoomIn} width={40} height={40} /> 
+
 <ZoomMinus width={40} height={40} /> 
+<Icon icon={zoomMinus} width={40} height={40} /> 
+
 <ZoomOut width={40} height={40} /> 
+<Icon icon={zoomOut} width={40} height={40} /> 
+
 <ZoomPlus width={40} height={40} /> 
+<Icon icon={zoomPlus} width={40} height={40} /> 
+

@@ -1,4 +1,4 @@
-import theme from '../../theme-static/theme'
+import theme from '../../theme/theme'
 export interface StyleObject {
   [key: string]: string | StyleObject
 }

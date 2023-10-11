@@ -129,7 +129,7 @@ export const StyledTextareaWrapper = styled('div', {
             fontSize: '$label2',
             fontWeight: 400,
             lineHeight: '$tight',
-            color: '$grayShades40',
+            color: '$placeholder',
           },
         },
         [`${StyledTextAreaHelperText}`]: {

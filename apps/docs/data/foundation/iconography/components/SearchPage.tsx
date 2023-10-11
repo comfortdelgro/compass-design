@@ -1,4 +1,12 @@
-import {Box, SearchField, Tabs, Typography} from '@comfortdelgro/react-compass'
+import {
+  Box,
+  Icon,
+  SearchField,
+  Tabs,
+  Toast,
+  Typography,
+} from '@comfortdelgro/react-compass'
+import {faXmark} from '@fortawesome/free-solid-svg-icons'
 import {useRouter, useSearchParams} from 'next/navigation'
 import React from 'react'
 import {icons} from './constants'
@@ -99,65 +107,82 @@ interface BoxItemProps {
   }
 }
 
-const BoxItem = ({icon}: BoxItemProps) => (
-  <Box
-    css={{
-      width: '100%',
-      cursor: 'pointer',
-      borderRadius: '8px',
-      position: 'relative',
-      background: '#E6ECF7',
-      padding: '24px 12px 16px',
-      '&:hover': {
-        background: '#ffd43b',
-      },
-    }}
-    onClick={() => {
-      navigator && navigator.clipboard.writeText(icon.name)
-    }}
-  >
-    {icon.type !== '' && (
-      <Box
-        css={{
-          position: 'absolute',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          zIndex: 1,
-          top: '-12px',
-          borderRadius: '4px',
-          fontSize: '12px',
-          fontWeight: 'bold',
-          padding: '6px 12px',
-          background: '#ffd43b',
-        }}
-      >
-        {icon.type}
-      </Box>
-    )}
+const BoxItem = ({icon}: BoxItemProps) => {
+  const [isOpen, setIsOpen] = React.useState(false)
+  return (
     <Box
       css={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        svg: {
-          height: 40,
-          width: 'auto',
+        width: '100%',
+        cursor: 'pointer',
+        borderRadius: '8px',
+        position: 'relative',
+        background: '#E6ECF7',
+        padding: '24px 12px 16px',
+        '&:hover': {
+          background: '#ffd43b',
         },
       }}
-    >
-      {icon.component}
-    </Box>
-    <Box
-      css={{
-        display: 'flex',
-        marginTop: '24px',
-        textAlign: 'center',
-        justifyContent: 'center',
+      onClick={() => {
+        navigator && navigator.clipboard.writeText(icon.name)
+        setIsOpen(true)
       }}
     >
-      {icon.name}
+      {icon.type !== '' && (
+        <Box
+          css={{
+            position: 'absolute',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            zIndex: 1,
+            top: '-12px',
+            borderRadius: '4px',
+            fontSize: '12px',
+            fontWeight: 'bold',
+            padding: '6px 12px',
+            background: '#ffd43b',
+          }}
+        >
+          {icon.type}
+        </Box>
+      )}
+      <Box
+        css={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          svg: {
+            height: 40,
+            width: 'auto',
+          },
+        }}
+      >
+        {icon.component}
+      </Box>
+      <Box
+        css={{
+          display: 'flex',
+          marginTop: '24px',
+          textAlign: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        {icon.name}
+      </Box>
+      <Toast
+        isOpen={isOpen}
+        handleClose={() => setIsOpen(false)}
+        autoClose={2000}
+        color='informative'
+        anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+      >
+        <Toast.Title>Copied Successfully</Toast.Title>
+        <Toast.CloseIcon>
+          <Icon icon={faXmark} />
+        </Toast.CloseIcon>
+        <Toast.Message>Copied to clipboard: {icon.name}</Toast.Message>
+      </Toast>
     </Box>
-  </Box>
-)
+  )
+}
 
 export default IconBox
