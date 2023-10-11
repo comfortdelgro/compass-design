@@ -1,0 +1,118 @@
+@import '../../theme/theme.module.css';
+
+@keyframes progressLoading {
+  from {
+      background-position-x: 200%;
+  }
+  to {
+      background-position-x: 0;
+  }
+}
+
+@keyframes progressSlideLoading {
+  0% {
+      left: 0%;
+      right: 100%;
+      width: 0%;
+  }
+  10% {
+      left: 0%;
+      right: 75%;
+      width: 25%;
+  }
+  90% {
+      right: 0%;
+      left: 75%;
+      width: 25%;
+  }
+  100% {
+      left: 100%;
+      right: 0%;
+      width: 0%;
+  }
+}
+
+.progressBarWrapper {
+  width: 100%;
+}
+
+.progressBarLabel {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-2);
+}
+
+.progressBarLabel span {
+  font-weight: var(--font-weight-normal);
+  font-size: var(--font-size-label1);
+}
+
+/* Variants for "variant" */
+.variantRounded .progressBar {
+  border-radius: var(--border-radius-full);
+}
+
+.variantRounded .progressBar div {
+  border-radius: var(--border-radius-full);
+}
+
+/* Variants for "size" */
+.sizeSm .progressBar {
+  height: var(--cdg-spacing-0_5);
+}
+
+.sizeMd .progressBar {
+  height: var(--cdg-spacing-1);
+}
+
+.sizeLg .progressBar {
+  height: var(--cdg-spacing-2);
+}
+
+.sizeXl .progressBar {
+  height: var(--cdg-spacing-3);
+}
+
+.progressBar {
+  position: relative;
+}
+
+.currentProgress {
+  height: 100%;
+  transition: width .2s linear;
+}
+
+.loadingTrue {
+  /* styles for loading: true would go here */
+}
+
+.loadingSlide {
+  /* styles for loading: slide would go here */
+}
+
+.loadingFalse {
+  /* styles for loading: false would go here */
+}
+
+.loadingProgress {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+}
+
+/* Variants for "loading" */
+.loadingStripes {
+  width: 100%;
+  background-size: 200% 100%;
+  animation: progressLoading 10s linear infinite;
+  will-change: background-position;
+}
+
+.loadingTrue {
+  animation: progressSlideLoading 2s linear infinite;
+}
+
+.loadingFalse {
+  display: none;
+}
+
