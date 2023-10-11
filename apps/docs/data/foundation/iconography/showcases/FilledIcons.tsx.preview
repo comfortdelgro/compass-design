@@ -1,26 +1,78 @@
 <AddressBookFilled width={40} height={40} /> 
+<Icon icon={addressBookFilled} width={40} height={40} /> 
+
 <ArrowDownFilled width={40} height={40} /> 
+<Icon icon={arrowDownFilled} width={40} height={40} /> 
+
 <ArrowLeftFilled width={40} height={40} /> 
+<Icon icon={arrowLeftFilled} width={40} height={40} /> 
+
 <ArrowRightFilled width={40} height={40} /> 
+<Icon icon={arrowRightFilled} width={40} height={40} /> 
+
 <ArrowUpFilled width={40} height={40} /> 
+<Icon icon={arrowUpFilled} width={40} height={40} /> 
+
 <CalendarDaysFilled width={40} height={40} /> 
+<Icon icon={calendarDaysFilled} width={40} height={40} /> 
+
 <ClockFilled width={40} height={40} /> 
+<Icon icon={clockFilled} width={40} height={40} /> 
+
 <CreditCardFilled width={40} height={40} /> 
+<Icon icon={creditCardFilled} width={40} height={40} /> 
+
 <DuplicateImageFilled width={40} height={40} /> 
+<Icon icon={duplicateImageFilled} width={40} height={40} /> 
+
 <ExclamationFilled width={40} height={40} /> 
+<Icon icon={exclamationFilled} width={40} height={40} /> 
+
 <GroupAddFilled width={40} height={40} /> 
+<Icon icon={groupAddFilled} width={40} height={40} /> 
+
 <GroupSettingsFilled width={40} height={40} /> 
+<Icon icon={groupSettingsFilled} width={40} height={40} /> 
+
 <HeartFilled width={40} height={40} /> 
+<Icon icon={heartFilled} width={40} height={40} /> 
+
 <ImageFilled width={40} height={40} /> 
+<Icon icon={imageFilled} width={40} height={40} /> 
+
 <InfoFilled width={40} height={40} /> 
+<Icon icon={infoFilled} width={40} height={40} /> 
+
 <MailFilled width={40} height={40} /> 
+<Icon icon={mailFilled} width={40} height={40} /> 
+
 <NotificationFilled width={40} height={40} /> 
+<Icon icon={notificationFilled} width={40} height={40} /> 
+
 <PencilFilled width={40} height={40} /> 
+<Icon icon={pencilFilled} width={40} height={40} /> 
+
 <PersonFilled width={40} height={40} /> 
+<Icon icon={personFilled} width={40} height={40} /> 
+
 <ProfileFilled width={40} height={40} /> 
+<Icon icon={profileFilled} width={40} height={40} /> 
+
 <QuestionFilled width={40} height={40} /> 
+<Icon icon={questionFilled} width={40} height={40} /> 
+
 <StarFilled width={40} height={40} /> 
+<Icon icon={starFilled} width={40} height={40} /> 
+
 <ThumbtackFilled width={40} height={40} /> 
+<Icon icon={thumbtackFilled} width={40} height={40} /> 
+
 <TrashFilled width={40} height={40} /> 
+<Icon icon={trashFilled} width={40} height={40} /> 
+
 <UserAddFilled width={40} height={40} /> 
+<Icon icon={userAddFilled} width={40} height={40} /> 
+
 <WarningFilled width={40} height={40} /> 
+<Icon icon={warningFilled} width={40} height={40} /> 
+

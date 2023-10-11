@@ -280,6 +280,8 @@ export const darkTheme = createTheme('dark-theme', {
     border: '#8A8886', // Input Border
     activeBorder: '#323130', // Input-Hover Border
 
+    placeholder: '#C5CCD3',
+
     // Secondary
 
     infoBg: '#1F4E57',

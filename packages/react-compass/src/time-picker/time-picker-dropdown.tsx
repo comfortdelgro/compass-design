@@ -177,7 +177,6 @@ function TimePickerDropdown(props: TimePickerDropdownProps) {
       })
 
       if (isUncontrolledComponent) {
-        console.log('setSelectedDisplayList')
         setSelectedDisplayList(newSelectedDisplayList)
       }
       onItemClick(newSelectedDisplayList)
