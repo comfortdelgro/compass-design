@@ -1,13 +1,39 @@
 <BadgeDollarDuotone width={40} height={40} /> 
+<Icon icon={badgeDollarDuotone} width={40} height={40} /> 
+
 <CalendarDaysDuotone width={40} height={40} /> 
+<Icon icon={calendarDaysDuotone} width={40} height={40} /> 
+
 <ChartLineUpDuotone width={40} height={40} /> 
+<Icon icon={chartLineUpDuotone} width={40} height={40} /> 
+
 <ChartPieDuotone width={40} height={40} /> 
+<Icon icon={chartPieDuotone} width={40} height={40} /> 
+
 <EditDuotone width={40} height={40} /> 
+<Icon icon={editDuotone} width={40} height={40} /> 
+
 <FlagDuotone width={40} height={40} /> 
+<Icon icon={flagDuotone} width={40} height={40} /> 
+
 <GearsDuotone width={40} height={40} /> 
+<Icon icon={gearsDuotone} width={40} height={40} /> 
+
 <GridDuotone width={40} height={40} /> 
+<Icon icon={gridDuotone} width={40} height={40} /> 
+
 <NotificationDuotone width={40} height={40} /> 
+<Icon icon={notificationDuotone} width={40} height={40} /> 
+
 <OrgChartDuotone width={40} height={40} /> 
+<Icon icon={orgChartDuotone} width={40} height={40} /> 
+
 <PasswordDuotone width={40} height={40} /> 
+<Icon icon={passwordDuotone} width={40} height={40} /> 
+
 <TrashDuotone width={40} height={40} /> 
+<Icon icon={trashDuotone} width={40} height={40} /> 
+
 <UserDuotone width={40} height={40} /> 
+<Icon icon={userDuotone} width={40} height={40} /> 
+

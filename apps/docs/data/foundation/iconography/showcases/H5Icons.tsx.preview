@@ -1,28 +1,84 @@
 <H5AccountFilled width={40} height={40} /> 
+<Icon icon={h5AccountFilled} width={40} height={40} /> 
+
 <H5AccountOutlined width={40} height={40} /> 
+<Icon icon={h5AccountOutlined} width={40} height={40} /> 
+
 <H5ActivitiesFilled width={40} height={40} /> 
+<Icon icon={h5ActivitiesFilled} width={40} height={40} /> 
+
 <H5ActivitiesOutlined width={40} height={40} /> 
+<Icon icon={h5ActivitiesOutlined} width={40} height={40} /> 
+
 <H5AddHeart width={40} height={40} /> 
+<Icon icon={h5AddHeart} width={40} height={40} /> 
+
 <H5Add width={40} height={40} /> 
+<Icon icon={h5Add} width={40} height={40} /> 
+
 <H5Call width={40} height={40} /> 
+<Icon icon={h5Call} width={40} height={40} /> 
+
 <H5CircleOutlined width={40} height={40} /> 
+<Icon icon={h5CircleOutlined} width={40} height={40} /> 
+
 <H5Clock width={40} height={40} /> 
+<Icon icon={h5Clock} width={40} height={40} /> 
+
 <H5Close width={40} height={40} /> 
+<Icon icon={h5Close} width={40} height={40} /> 
+
 <H5Coin width={40} height={40} /> 
+<Icon icon={h5Coin} width={40} height={40} /> 
+
 <H5DoubleRight width={40} height={40} /> 
+<Icon icon={h5DoubleRight} width={40} height={40} /> 
+
 <H5Filter width={40} height={40} /> 
+<Icon icon={h5Filter} width={40} height={40} /> 
+
 <H5Heart width={40} height={40} /> 
+<Icon icon={h5Heart} width={40} height={40} /> 
+
 <H5HomeFilled width={40} height={40} /> 
+<Icon icon={h5HomeFilled} width={40} height={40} /> 
+
 <H5HomeOutlined width={40} height={40} /> 
+<Icon icon={h5HomeOutlined} width={40} height={40} /> 
+
 <H5Map width={40} height={40} /> 
+<Icon icon={h5Map} width={40} height={40} /> 
+
 <H5MarkerBorderWhite width={40} height={40} /> 
+<Icon icon={h5MarkerBorderWhite} width={40} height={40} /> 
+
 <H5MarkerBorder width={40} height={40} /> 
+<Icon icon={h5MarkerBorder} width={40} height={40} /> 
+
 <H5Marker width={40} height={40} /> 
+<Icon icon={h5Marker} width={40} height={40} /> 
+
 <H5NotificationsFilled width={40} height={40} /> 
+<Icon icon={h5NotificationsFilled} width={40} height={40} /> 
+
 <H5NotificationsOutlined width={40} height={40} /> 
+<Icon icon={h5NotificationsOutlined} width={40} height={40} /> 
+
 <H5Pen width={40} height={40} /> 
+<Icon icon={h5Pen} width={40} height={40} /> 
+
 <H5Remove width={40} height={40} /> 
+<Icon icon={h5Remove} width={40} height={40} /> 
+
 <H5Search width={40} height={40} /> 
+<Icon icon={h5Search} width={40} height={40} /> 
+
 <H5Share width={40} height={40} /> 
+<Icon icon={h5Share} width={40} height={40} /> 
+
 <H5Smile width={40} height={40} /> 
+<Icon icon={h5Smile} width={40} height={40} /> 
+
 <H5Switch width={40} height={40} /> 
+<Icon icon={h5Switch} width={40} height={40} /> 
+
