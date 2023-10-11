@@ -11,7 +11,7 @@
         "Accordion"
       ],
       "locStart": 14,
-      "locEnd": 299,
+      "locEnd": 319,
       "filePath": "src/accordion/accordion.stories.tsx",
       "meta": {}
     },
@@ -20,8 +20,8 @@
       "levels": [
         "Accordion"
       ],
-      "locStart": 301,
-      "locEnd": 335,
+      "locStart": 321,
+      "locEnd": 355,
       "filePath": "src/accordion/accordion.stories.tsx",
       "meta": {}
     },
@@ -611,7 +611,7 @@
         "Dropdown textfield"
       ],
       "locStart": 132,
-      "locEnd": 174,
+      "locEnd": 176,
       "filePath": "src/dropdown-textfield/dropdown-textfield.stories.tsx",
       "meta": {}
     },
@@ -700,8 +700,8 @@
       "levels": [
         "Footer"
       ],
-      "locStart": 16,
-      "locEnd": 351,
+      "locStart": 43,
+      "locEnd": 380,
       "filePath": "src/footer/footer.stories.tsx",
       "meta": {}
     },
@@ -1221,7 +1221,7 @@
         "Sidenav"
       ],
       "locStart": 79,
-      "locEnd": 224,
+      "locEnd": 229,
       "filePath": "src/sidenav/sidenav.stories.tsx",
       "meta": {}
     },
@@ -1331,7 +1331,7 @@
         "Table"
       ],
       "locStart": 1070,
-      "locEnd": 1272,
+      "locEnd": 1255,
       "filePath": "src/table/table.stories.tsx",
       "meta": {}
     },
@@ -1521,7 +1521,7 @@
         "Time picker"
       ],
       "locStart": 5,
-      "locEnd": 69,
+      "locEnd": 73,
       "filePath": "src/time-picker/time-picker.stories.tsx",
       "meta": {}
     },
