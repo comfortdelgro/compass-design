@@ -13,6 +13,7 @@ const lorem = `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi,
 
 export const Default: React.FC = () => {
   const [expand, setExpand] = useState<string | false>(false)
+  const [content, setContent] = useState<string>(lorem)
 
   const handleControlledAccordion = (id: string) => () => {
     setExpand((previous) => {
@@ -23,13 +24,32 @@ export const Default: React.FC = () => {
     })
   }
 
+  function generateRandomString(length: number) {
+    const characters =
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 '
+    let result = ''
+    const charactersLength = characters.length
+
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * charactersLength)
+      result += characters.charAt(randomIndex)
+    }
+
+    return result
+  }
   return (
     <Column>
       <h3>Default with icon</h3>
+      <button
+        style={{width: '20%'}}
+        onClick={() => setContent(generateRandomString(1000) + lorem)}
+      >
+        Change content
+      </button>
 
       <Accordion>
         <Accordion.Title>Title</Accordion.Title>
-        {lorem}
+        {content}
       </Accordion>
 
       <Accordion>
