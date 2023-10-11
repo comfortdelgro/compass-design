@@ -175,7 +175,7 @@ export const StyledTextFieldWrapper = styled('div', {
     h5: {
       true: {
         color: '$grayShades100',
-        fontSize: '$label1',
+        fontSize: '$label2',
         lineHeight: '$tight',
         fontWeight: '$normal',
         [`${StyledTextFieldLabel}`]: {
@@ -190,13 +190,14 @@ export const StyledTextFieldWrapper = styled('div', {
         [`${StyledTextField}`]: {
           border: 'none',
           width: '100%',
-          fontSize: '$label2',
+          fontSize: '$label1',
           fontWeight: '$normal',
+          lineHeight: '20px',
           '&::placeholder': {
             color: '$grayShades40',
-            fontSize: '$3_5',
-            lineHeight: '$tight',
+            fontSize: '$label1',
             fontWeight: '$normal',
+            lineHeight: '20px',
           },
         },
       },

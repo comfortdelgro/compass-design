@@ -1,0 +1,142 @@
+@import '../../theme/theme.module.css';
+
+.linear {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  width: 100%;
+  height: 4px; /* Default */
+  z-index: 0; /* Fix Safari's bug during composition of different paint. */
+}
+
+.linearVariantIndeterminate::before,
+.linearVariantDeterminate::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.3;
+  background-color: var(--cdg-progress-linear-color);
+}
+
+.linearVariantDeterminate {
+  opacity: 1;
+  background-color: none;
+}
+
+.linearVariantBuffer {
+  opacity: 1;
+  background-color: transparent;
+}
+
+.linearRounded {
+  border-radius: var(--cdg-border-radius-full);
+}
+
+.dashed {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.3;
+  margin-top: 0;
+  background-position: 0 0;
+  animation: bufferKeyframe 3s infinite linear;
+}
+
+.bar1 {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  transform-origin: left center;
+  transition: transform 0.2s linear;
+}
+
+.bar1VariantIndeterminate {
+  width: auto;
+  animation: indeterminate1Keyframe 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395)
+    infinite;
+}
+
+.bar1VariantDeterminate {
+  transition: transform 0.4s linear;
+}
+
+.bar1VariantBuffer {
+  z-index: 1;
+  transition: transform 0.4s linear;
+}
+
+.bar2 {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  transform-origin: left center;
+  transition: transform 0.2s linear 0s;
+}
+
+.bar2VariantIndeterminate {
+  width: auto;
+  background-color: var(--cdg-progress-linear-color);
+  animation: 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) 1.15s infinite normal none
+    running indeterminate2Keyframe;
+}
+
+.bar2VariantDeterminate {
+  background-color: var(--cdg-progress-linear-color);
+}
+
+.bar2VariantBuffer {
+  transition: transform 0.4s linear;
+  background-color: var(--cdg-progress-linear-shadeColor);
+}
+
+@keyframes bufferKeyframe {
+  0% {
+    opacity: 1;
+    background-position: 0 0;
+  }
+  50% {
+    opacity: 0;
+    background-position: 0 0;
+  }
+  100% {
+    opacity: 1;
+    background-position: -200px 0;
+  }
+}
+
+@keyframes indeterminate1Keyframe {
+  0% {
+    left: -35%;
+    right: 100%;
+  }
+  60% {
+    left: 100%;
+    right: -90%;
+  }
+  100% {
+    left: 100%;
+    right: -90%;
+  }
+}
+
+@keyframes indeterminate2Keyframe {
+  0% {
+    left: -200%;
+    right: 100%;
+  }
+  60% {
+    left: 107%;
+    right: -8%;
+  }
+  100% {
+    left: 107%;
+    right: -8%;
+  }
+}

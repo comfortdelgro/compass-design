@@ -1,4 +1,5 @@
 import Progress from '@comfortdelgro/react-compass/progress'
+// import {Progress as StaticProgress} from '@comfortdelgro/static'
 
 function CircularSize() {
   return (
@@ -17,6 +18,7 @@ function CircularSize() {
       </span>
       <br />
       <Progress.Circular variant='indeterminate' size={70} />
+      {/* <StaticProgress.Circular variant='indeterminate' size={70} /> */}
     </div>
   )
 }

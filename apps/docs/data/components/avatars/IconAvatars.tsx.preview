@@ -1,0 +1,1 @@
+<Avatar label='Albert Einstein' icon={<BugIcon />} size='lg' />

@@ -30,7 +30,7 @@ const Breadcrumbs = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     isCurrent,
     children,
     className,
-    ...delegated
+    ...htmlProps
   } = props
 
   const breadcrumbsRef = useDOMRef<HTMLDivElement>(ref)
@@ -45,7 +45,7 @@ const Breadcrumbs = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
 
   return (
     <CssInjection css={css} childrenRef={breadcrumbsRef}>
-      <nav ref={breadcrumbsRef} className={wrapperClass} {...delegated}>
+      <nav ref={breadcrumbsRef} className={wrapperClass} {...htmlProps}>
         <ol className={styles.breadcrumbsList}>
           {items.map((item, i) => (
             <React.Fragment key={i}>

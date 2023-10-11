@@ -25,7 +25,7 @@ const BreadcrumbItem = React.forwardRef<HTMLAnchorElement, BreadcrumbItemProps>(
       isCurrent = false,
       isDisabled = false,
       className,
-      ...delegated
+      ...htmlProps
     } = props
 
     const linkRef = useDOMRef<HTMLAnchorElement>(ref)
@@ -44,7 +44,7 @@ const BreadcrumbItem = React.forwardRef<HTMLAnchorElement, BreadcrumbItemProps>(
           {React.createElement(
             isCurrent || isDisabled ? 'span' : 'a',
             {
-              ...delegated,
+              ...htmlProps,
               href: href,
               ref: linkRef,
               target: target,

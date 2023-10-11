@@ -1,0 +1,7 @@
+<Badge label='Info' color='info' />
+
+<Badge label='Success' color='success' />
+
+<Badge label='Danger' color='danger' />
+
+<Badge label='Warning' color='warning' />
