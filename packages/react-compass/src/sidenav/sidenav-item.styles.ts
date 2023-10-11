@@ -10,6 +10,7 @@ export const StyledSidenavItem = styled('div', {
   cursor: 'pointer',
   padding: '0 $4',
   overflow: 'hidden',
+  maxWidth: '480px',
 
   '& svg': {
     width: '$6',
