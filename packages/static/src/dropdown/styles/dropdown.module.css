@@ -455,7 +455,7 @@
 }
 
 .dropdownSelect.dropdownInputIsEmpty .dropdownSelectButton .dropdownButtonText {
-  color: var(--cdg-color-disabledText);
+  color: var(--cdg-color-placeholder);
 }
 
 .dropdownSelect.dropdownInputIsDisabled {
