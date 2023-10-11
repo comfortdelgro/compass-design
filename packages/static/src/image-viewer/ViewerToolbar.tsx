@@ -1,21 +1,21 @@
 import {
-faBackward,
-faForward,
-faLeftRight,
-faMagnifyingGlass,
-faMagnifyingGlassMinus,
-faMagnifyingGlassPlus,
-faRotateLeft,
-faRotateRight,
-faUpDown
+  faBackward,
+  faForward,
+  faLeftRight,
+  faMagnifyingGlass,
+  faMagnifyingGlassMinus,
+  faMagnifyingGlassPlus,
+  faRotateLeft,
+  faRotateRight,
+  faUpDown,
 } from '@fortawesome/free-solid-svg-icons'
-import { useCallback } from 'react'
+import {useCallback} from 'react'
 import Button from '../button'
 import Icon from '../icon'
-import { useColors } from '../theme'
-import { ActionTypeEnum } from './Icon'
+import {useColors} from '../theme'
+import {ActionTypeEnum} from './Icon'
 import styles from './styles/image-viewer.module.css'
-import { ToolbarConfig } from './types'
+import {ToolbarConfig} from './types'
 
 export interface ViewerToolbarProps {
   onAction: (config: ToolbarConfig) => void

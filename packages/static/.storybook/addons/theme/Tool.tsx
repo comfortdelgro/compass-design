@@ -1,7 +1,6 @@
 import {IconButton} from '@storybook/components'
-import React, {useCallback, useEffect, useState} from 'react'
-import { TOOL_ID} from './constants'
-
+import {useCallback, useEffect, useState} from 'react'
+import {TOOL_ID} from './constants'
 
 export const Tool = () => {
   const [isLightTheme, setIsLightTheme] = useState(true)

@@ -1,20 +1,20 @@
 import {
-autoUpdate,
-flip,
-FloatingPortal,
-offset,
-useDismiss,
-useFloating,
-useInteractions,
+  autoUpdate,
+  flip,
+  FloatingPortal,
+  offset,
+  useDismiss,
+  useFloating,
+  useInteractions,
 } from '@floating-ui/react'
 import React from 'react'
 import CssInjection from '../../utils/objectToCss/CssInjection'
-import { useDOMRef } from '../../utils/use-dom-ref'
+import {useDOMRef} from '../../utils/use-dom-ref'
 import styles from '../styles/dropdown.module.css'
-import DropdownItem,{ DropdownItemProps } from './item'
+import DropdownItem, {DropdownItemProps} from './item'
 import ListBox from './list-box'
 import Popover from './popover'
-import { getDefaultValue,Icon,ListKeyboardDelegate,pickChilds } from './utils'
+import {getDefaultValue, Icon, ListKeyboardDelegate, pickChilds} from './utils'
 
 interface Props {
   isDisabled?: boolean
