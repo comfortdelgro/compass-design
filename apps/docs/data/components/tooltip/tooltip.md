@@ -37,7 +37,7 @@ import Tooltip from '@comfortdelgro/react-compass/tooltip'
 
 {{"demo": "TooltipOffset.tsx"}}
 
-### Tooltip Direction 
+### Tooltip Direction
 
 {{"demo": "TooltipDirection.tsx"}}
 

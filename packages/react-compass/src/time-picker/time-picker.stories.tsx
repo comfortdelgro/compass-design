@@ -11,7 +11,12 @@ export const Default: React.FC = () => {
       <Column>
         <h3>Default (format: hh:mm AA)</h3>
         <Row>
-          <TimePicker defaultValue={'12:00 PM'} />
+          <TimePicker
+            defaultValue={'12:00 PM'}
+            onFocus={() => console.log('onFocus')}
+            onBlur={() => console.log('onBlur')}
+            onOpenChange={(open) => console.log('onOpenChange: ', open)}
+          />
         </Row>
         <h3>Disable</h3>
         <Row>

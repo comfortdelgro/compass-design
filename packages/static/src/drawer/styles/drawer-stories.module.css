@@ -1,0 +1,21 @@
+.drawerStories {
+  padding: var(--cdg-spacing-4);
+}
+
+.drawerStories > h4 {
+  margin-block: 0;
+}
+
+.drawerStories > h4:not(:first-child) {
+  margin-top: var(--cdg-spacing-14);
+}
+
+.drawerStories > h4 + button {
+  margin-top: var(--cdg-spacing-4);
+}
+
+.drawerStories .container {
+  display: flex;
+  align-items: center;
+  gap: var(--cdg-spacing-4);
+}

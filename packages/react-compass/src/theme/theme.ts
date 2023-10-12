@@ -172,6 +172,7 @@ export const lightTheme = defineTheme({
     divider: '#EDEBE9', // Body Divider
     border: '#8A8886', // Input Border
     activeBorder: '#323130', // Input-Hover Border
+    placeholder: '#C5C6CF',
 
     // Secondary
 
@@ -279,6 +280,7 @@ export const darkTheme = createTheme('dark-theme', {
     divider: '#45464E', // Body Divider
     border: '#8A8886', // Input Border
     activeBorder: '#323130', // Input-Hover Border
+    placeholder: '#C5C6CF',
 
     // Secondary
 

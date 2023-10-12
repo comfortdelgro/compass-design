@@ -1,5 +1,5 @@
 import {Icon, List} from '@comfortdelgro/react-compass'
-import { faBug } from '@fortawesome/free-solid-svg-icons'
+import {faBug} from '@fortawesome/free-solid-svg-icons'
 
 function SizeExample() {
   return (

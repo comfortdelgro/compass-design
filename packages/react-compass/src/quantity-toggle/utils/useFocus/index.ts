@@ -9,7 +9,7 @@
  */
 
 import {FocusEvent, useCallback} from 'react'
-import {DOMAttributes, FocusableElement, FocusEvents} from '../types'
+import {DOMAttributes, FocusEvents, FocusableElement} from '../types'
 import {useSyntheticBlurEvent} from './useSyntheticBlurEvent'
 
 export interface FocusProps<Target = FocusableElement>

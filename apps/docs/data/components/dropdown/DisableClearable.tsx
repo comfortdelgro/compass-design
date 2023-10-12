@@ -1,5 +1,4 @@
 import {Dropdown} from '@comfortdelgro/react-compass'
-import React from 'react'
 
 const DisableClearableDropdown = () => {
   return (

@@ -10,6 +10,7 @@ const config: StorybookConfig = {
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
+    './addons/theme/index.ts',
   ],
   framework: {
     name: '@storybook/react-vite',
