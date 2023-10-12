@@ -52,7 +52,11 @@ interface Props {
 }
 
 export type ButtonProps = Props &
-  Omit<React.HTMLAttributes<HTMLElement>, keyof Props>
+  Omit<React.HTMLAttributes<HTMLElement>, keyof Props> &
+  Omit<
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    keyof Omit<React.HTMLAttributes<HTMLElement>, keyof Props>
+  >
 
 const Button = React.forwardRef<
   HTMLButtonElement | HTMLAnchorElement,
