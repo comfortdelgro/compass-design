@@ -1,6 +1,6 @@
 .searchFieldInput {
   width: 100%;
-  font-size: var(--cdg-font-size-label1); 
+  font-size: var(--cdg-font-size-label1);
   font-weight: var(--cdg-font-weight-semibold);
   line-height: var(--cdg-line-height-normal);
   padding: 0;
@@ -10,7 +10,7 @@
 }
 
 .searchFieldInput::placeholder {
-  color: #B4B4B4;
+  color: var(--cdg-color-placeholder);
   font-size: var(--cdg-font-size-label1);
   font-weight: var(--cdg-font-weight-semibold);
 }
@@ -18,7 +18,7 @@
 .searchFieldInput:disabled {
   cursor: not-allowed;
 }
-.searchFieldInput:focus-visible{
+.searchFieldInput:focus-visible {
   outline: none;
 }
 
@@ -51,7 +51,10 @@
   height: var(--cdg-spacing-6);
 }
 
-.searchFieldBox :global(.cdg-searchfield-button) :global(.cdg-button-content-children) svg{
+.searchFieldBox
+  :global(.cdg-searchfield-button)
+  :global(.cdg-button-content-children)
+  svg {
   width: var(--cdg-spacing-4);
   height: var(--cdg-spacing-4);
 }
@@ -121,7 +124,6 @@
 .h5False {
   flex-direction: row;
 }
-
 
 .textFieldHelperText {
   font-size: var(--cdg-font-size-label2);

@@ -16,7 +16,7 @@ interface Props {
 type PopoverProps = Props & Omit<HTMLAttributes<HTMLDivElement>, keyof Props>
 const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
   (
-    {children, handleKeyDown, onFocus, onBlur, type, isEmpty, className=''},
+    {children, handleKeyDown, onFocus, onBlur, type, isEmpty, className = ''},
     ref,
   ) => {
     const popoverRef = useDOMRef(ref)
@@ -42,9 +42,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
           }}
           className={`${className} ${styles.rtePopover} 
           ${type === 'color' ? styles.typeColor : ''} 
-          ${
-            type === 'heading' ? styles.typeHeading : ''
-          }`}
+          ${type === 'heading' ? styles.typeHeading : ''}`}
         >
           {children}
         </div>

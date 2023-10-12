@@ -15,7 +15,6 @@ const Basic: React.FC = () => {
         <Divider orientation='vertical'></Divider>
       </div>
 
-
       {/* <StaticDivider />
       <div style={{height: 200}}>
         <StaticDivider orientation='vertical'></StaticDivider>

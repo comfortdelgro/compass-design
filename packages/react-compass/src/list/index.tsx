@@ -12,7 +12,7 @@ export type {ListProps} from './list'
 export type {ListCardProps} from './list-card'
 export type {ListCardDetailProps} from './list-card-detail'
 export type {ListImageProps} from './list-image'
-export {ListCard, InteractiveList, DragAndDropList}
+export {DragAndDropList, InteractiveList, ListCard}
 
 List.Image = ListImage
 ListCard.Detail = ListCardDetail
