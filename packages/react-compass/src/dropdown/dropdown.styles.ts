@@ -130,7 +130,7 @@ export const StyledSelect = styled('div', {
       true: {
         button: {
           span: {
-            color: '$disabledText',
+            color: '$placeholder',
           },
         },
       },
