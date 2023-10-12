@@ -1,17 +1,12 @@
-import React, {useCallback, useMemo} from 'react'
+import React, { useCallback, useMemo } from 'react'
 import Dropdown from '../dropdown'
-import type {StyledComponentProps} from '../utils/stitches.types'
-import {useDOMRef} from '../utils/use-dom-ref'
-import {usePagination} from './pagination.hooks'
-import {
-  PaginationVariantProps,
-  StyledPagination,
-  StyledPaginationItem,
-  StyledPaginationItemCounting,
-  StyledPaginationRowsCounting,
-} from './pagination.styles'
 
-interface Props extends StyledComponentProps {
+import { useDOMRef } from '../utils/use-dom-ref'
+import { usePagination } from './pagination.hooks'
+
+import styles from './styles/linear.module.css'
+
+interface Props {
   page?: number
   total?: number
   initialPage?: number
@@ -20,15 +15,13 @@ interface Props extends StyledComponentProps {
   rowsPerPage?: number
   rowsOptions?: number[]
   onRowsPerPageChange?: (rows: number) => void
+  css?: unknown
 }
 
 export type PaginationProps = Props &
-  PaginationVariantProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
-const Ellipsis: React.FC<
-  React.ComponentPropsWithoutRef<typeof StyledPagination>
-> = ({...props}) => {
+const Ellipsis: React.FC = ({ ...props }) => {
   const svgIcon = (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -45,39 +38,37 @@ const Ellipsis: React.FC<
   )
 
   return (
-    <StyledPaginationItem isEllipsis={true} {...props}>
+    <div
+      className={`cdg-pagination-item ${styles.paginationItem} ${styles.ellipsis}`}
+      {...props}>
       {svgIcon}
-    </StyledPaginationItem>
+    </div>
   )
 }
 
-const ItemCounting: React.FC<
-  React.ComponentPropsWithoutRef<typeof StyledPagination> & {
-    count: number
-    page: number
-  }
-> = ({count, page, ...props}) => {
+const ItemCounting: React.FC<{
+  count: number;
+  page: number;
+}> = ({ count, page }) => {
   const layout = useMemo(() => {
-    return `${(page - 1) * 10 + 1} - ${(page - 1) * 10 + 10} of ${count}`
-  }, [count, page])
+    return `${(page - 1) * 10 + 1} - ${(page - 1) * 10 + 10} of ${count}`;
+  }, [count, page]);
 
   return (
-    <StyledPaginationItemCounting {...props}>
+    <div className={styles.paginationItemCounting}>
       {layout}
-    </StyledPaginationItemCounting>
-  )
-}
+    </div>
+  );
+};
 
-const RowsCounting: React.FC<
-  React.ComponentPropsWithoutRef<typeof StyledPagination> & {
-    rowsPerPage: number
-    rowsOptions: number[]
-    onRowsPerPageChange: (newValue: number) => void | undefined
-  }
-> = ({rowsPerPage, onRowsPerPageChange, rowsOptions, ...props}) => {
+const RowsCounting: React.FC<{
+  rowsPerPage: number;
+  rowsOptions: number[];
+  onRowsPerPageChange: (newValue: number) => void | undefined;
+}> = ({ rowsPerPage, onRowsPerPageChange, rowsOptions, ...props }) => {
   const dropdown = (
     <Dropdown.Select
-      css={{width: '138px', gap: '4px'}}
+      style={{ width: '138px', gap: '4px' }}
       defaultValue={rowsPerPage.toString()}
       onValueChange={(k) =>
         onRowsPerPageChange && onRowsPerPageChange(Number(k))
@@ -91,21 +82,22 @@ const RowsCounting: React.FC<
         </Dropdown.Item>
       ))}
     </Dropdown.Select>
-  )
+  );
+
   const layout = useMemo(() => {
     return (
       <>
         <span>Rows per page:</span> {dropdown}
       </>
-    )
-  }, [rowsPerPage])
+    );
+  }, [rowsPerPage]);
 
   return (
-    <StyledPaginationRowsCounting {...props}>
+    <div className={styles.PaginationRowsCounting}>
       {layout}
-    </StyledPaginationRowsCounting>
-  )
-}
+    </div>
+  );
+};
 
 const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
   (props, ref) => {
@@ -125,7 +117,7 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
       ...delegated
     } = props
     const paginationRef = useDOMRef<HTMLDivElement>(ref)
-    const {items, active, setPage, next, previous} = usePagination({
+    const { items, active, setPage, next, previous } = usePagination({
       page,
       total,
       initialPage,
@@ -152,7 +144,8 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
         }
 
         return (
-          <StyledPaginationItem
+          <div
+            className={`cdg-pagination-item ${styles.paginationItem}`}
             key={index}
             active={item === active}
             onClick={() => item !== active && setPage(item)}
@@ -160,14 +153,15 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
             aria-current={item === active}
           >
             {item}
-          </StyledPaginationItem>
+          </div>
         )
       },
       [total, active],
     )
 
     return (
-      <StyledPagination
+      <div
+        className={`cdg-pagination ${styles.pagination}`}
         css={css}
         ref={paginationRef}
         role='navigation'
@@ -182,13 +176,14 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
               onRowsPerPageChange
                 ? onRowsPerPageChange
                 : (rows: number) => {
-                    console.log(rows)
-                  }
+                  console.log(rows)
+                }
             }
           />
         )}
         {count && <ItemCounting count={count} page={page} />}
-        <StyledPaginationItem
+        <div
+          className={`cdg-pagination-item ${styles.paginationItem}`}
           onClick={previous}
           aria-label='previous page'
           disabled={active === 1}
@@ -199,9 +194,10 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
               d='M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z'
             ></path>
           </svg>
-        </StyledPaginationItem>
+        </div>
         {items.map(renderItem)}
-        <StyledPaginationItem
+        <div
+          className={`cdg-pagination-item ${styles.paginationItem}`}
           onClick={next}
           aria-label='next page'
           disabled={active === total}
@@ -212,8 +208,8 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
               d='M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z'
             ></path>
           </svg>
-        </StyledPaginationItem>
-      </StyledPagination>
+        </div>
+      </div>
     )
   },
 )

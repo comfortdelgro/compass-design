@@ -1,7 +1,7 @@
-import Chip from './pagination'
+import Pagination from './pagination'
 
-export type {Props as ChipProps} from './chip'
+export type {PaginationProps} from './pagination'
 
-Chip.displayName = 'Chip'
+Pagination.displayName = 'Pagination'
 
-export default Chip
+export default Pagination
