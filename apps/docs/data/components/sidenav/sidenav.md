@@ -48,12 +48,13 @@ import Sidenav from '@comfortdelgro/react-compass/sidenav'
 
 ### Sidenav
 
-| Name     | Type              | Default | Description                                                      |
-| :------- | :---------------- | :------ | :--------------------------------------------------------------- |
-| children | `React.ReactNode` | —       |                                                                  |
-| expand   | `boolean`         | false   | Whether the Sidenav is expanded by default or expanded by hover. |
-| delay    | `number`          | 0       | The number of milliseconds to wait before expanding the sidenav. |
-| css      | `CSS`             | —       |                                                                  |
+| Name           | Type              | Default | Description                                                      |
+| :------------- | :---------------- | :------ | :--------------------------------------------------------------- |
+| children       | `React.ReactNode` | —       |                                                                  |
+| expand         | `boolean`         | false   | Whether the Sidenav is expanded by default or expanded by hover. |
+| delay          | `number`          | 0       | The number of milliseconds to wait before expanding the sidenav. |
+| onExpandChange | `Function`        | —       | Trigger when state expand changed                                |
+| css            | `CSS`             | —       |                                                                  |
 
 ### Sidenav Item
 
