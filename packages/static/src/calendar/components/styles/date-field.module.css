@@ -1,0 +1,124 @@
+/* Importing the theme module */
+@import '../../../theme/theme.module.css';
+
+.dateField {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.dateField .dateFieldInput {
+  min-width: var(--cdg-spacing-49);
+  height: var(--cdg-spacing-11);
+  display: flex;
+  align-items: center;
+  padding: 0 0 0 var(--cdg-spacing-4);
+  background-color: var(--cdg-color-background);
+  border: 1px solid var(--cdg-color-gray30);
+  border-radius: var(--cdg-border-radius-md);
+}
+
+.dateField .dateFieldInput:focus-within {
+  border: 1px solid var(--cdg-color-cdgBlue100);
+  border-radius: var(--cdg-border-radius-md);
+}
+
+.dateField .dateFieldLabel {
+  font-size: var(--cdg-font-size-label1);
+  font-weight: var(--cdg-font-weight-semibold);
+  margin-bottom: var(--cdg-spacing-2);
+  display: inline-block;
+  width: 100%;
+}
+
+.dateField .dateFieldLabel span {
+  margin-left: var(--cdg-spacing-1);
+  color: var(--cdg-color-danger);
+}
+
+.dateField .dateFieldInput .mobile:active {
+  background-color: var(--cdg-color-gray10);
+}
+
+.dateField .toggleCalendarButton {
+  margin-left: auto;
+}
+
+.dateField .calendarToggleIcon {
+  width: var(--cdg-spacing-3);
+  height: var(--cdg-spacing-3);
+}
+
+.dateField.disabled .dateFieldInput{
+  background-color: var(--cdg-color-gray20);
+  cursor: not-allowed;
+}
+
+.dateField.disabled .dateFieldInput * {
+  color: var(--cdg-color-disabledText);
+  cursor: not-allowed;
+}
+
+.dateField.invalid .dateFieldInput {
+  border-color: var(--cdg-color-danger);
+}
+
+/*  */
+
+.labelNecessity.error {
+  color: var(--cdg-color-danger)
+}
+
+.labelNecessity.text {
+  font-size: var(--cdg-font-size-label2);
+}
+
+/*  */
+
+.expandButton {
+  border: none;
+  margin: 0;
+  width: auto;
+  overflow: visible;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+  font-smooth: inherit;
+  -webkit-appearance: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: var(--cdg-spacing-2) var(--cdg-spacing-4)
+}
+
+.expandButton:focus {
+  box-shadow: none;
+}
+
+.expandButton:focus-visible {
+  outline: 2px solid var(--cdg-color-cdgBlue80);
+  border-radius: 2px;
+}
+
+
+/*  */
+
+.textFieldHelperText {
+  font-size: var(--cdg-font-size-label2);
+  font-weight: var(--cdg-font-weight-medium);
+  transition: var(--cdg-transition-default);
+  margin-top: var(--cdg-spacing-1);
+  color: var(--cdg-color-gray70);
+}
+
+.textFieldHelperText.helperTextError {
+  color: var(--cdg-color-danger);
+}
+
+/*  */
+
+.icon {
+  color: var(--cdg-color-primaryText);
+}

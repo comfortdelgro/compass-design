@@ -1,0 +1,58 @@
+@import '../../theme/theme.module.css';
+
+.calendarCell {
+  cursor: pointer;
+}
+
+.calendarCell.focused {
+  height: 100%;
+  outline: var(--cdg-color-cdgBlue120) solid 2px;
+}
+
+.calendarCell.selected {
+  background-color: var(--cdg-color-gray20);
+}
+
+.calendarCell.highlighted {
+  background-color: var(--cdg-color-cdgBlue100);
+  border-radius: var(--cdg-border-radius-md);
+}
+
+.calendarCell .calendarCellValue:focus-visible {
+  outline: var(--cdg-color-cdgBlue100) solid 2px;
+  border-radius: var(--cdg-border-radius-md);
+}
+
+.calendarCell.highlighted .calendarCellValue {
+  color: var(--cdg-color-whiteText);
+}
+
+.calendarCell:hover {
+  background-color: var(--cdg-color-cdgBlue40);
+  border-radius: var(--cdg-border-radius-md);
+}
+
+.calendarCell:hover .calendarCellValue,
+.calendarCell.highlighted .calendarCellValue:hover {
+  color: var(--cdg-color-whiteText);
+}
+
+.calendarCell.today .calendarCellValue:hover {
+  color: var(--cdg-color-gray50);
+}
+
+.calendarCell .calendarCellValue {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: var(--cdg-font-size-body3);
+  color: var(--cdg-color-primaryText);
+}
+
+.calendarCell .calendarCellValue.disabled,
+.calendarCell.unavailable .calendarCellValue {
+  cursor: not-allowed;
+  color: var(--cdg-color-gray50);
+  background-color: var(--cdg-color-background);
+}
