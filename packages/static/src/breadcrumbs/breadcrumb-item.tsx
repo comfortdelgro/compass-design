@@ -30,27 +30,27 @@ const BreadcrumbItem = React.forwardRef<HTMLAnchorElement, BreadcrumbItemProps>(
 
     const linkRef = useDOMRef<HTMLAnchorElement>(ref)
 
-    const classNameProp = `${className} ${styles.breadcrumbsItem} ${
-      isCurrent ? styles.active : ''
-    } ${isDisabled ? styles.disabled : ''}`
+    const itemClass = React.useMemo(() => {
+      let classes = `cdg-breadcrumb-item ${styles.breadcrumbsItem}`
+      if (className) classes += ` ${className}`
+      if (isCurrent) classes += ` ${styles.active}`
+      if (isDisabled) classes += ` ${styles.disabled}`
+      return classes
+    }, [isCurrent, isDisabled, className])
 
     return (
       <CssInjection css={css} childrenRef={linkRef}>
         <li>
-          {isCurrent || isDisabled ? (
-            <span {...htmlProps} className={classNameProp} ref={linkRef}>
-              {children}
-            </span>
-          ) : (
-            <a
-              {...htmlProps}
-              href={href}
-              ref={linkRef}
-              target={target}
-              className={className}
-            >
-              {children}
-            </a>
+          {React.createElement(
+            isCurrent || isDisabled ? 'span' : 'a',
+            {
+              ...htmlProps,
+              href: href,
+              ref: linkRef,
+              target: target,
+              className: itemClass,
+            },
+            children,
           )}
         </li>
       </CssInjection>

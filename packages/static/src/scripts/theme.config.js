@@ -164,6 +164,7 @@ export const lightThemeColors = {
   divider: '#EDEBE9', // Body Divider
   border: '#8A8886', // Input Border
   activeBorder: '#323130', // Input-Hover Border
+  placeholder: '#C5CCD3',
 
   // Secondary
 
@@ -254,6 +255,7 @@ export const darkThemeColors = {
   divider: '#45464E', // Body Divider
   border: '#8A8886', // Input Border
   activeBorder: '#323130', // Input-Hover Border
+  placeholder: '#C5CCD3',
 
   // Secondary
 

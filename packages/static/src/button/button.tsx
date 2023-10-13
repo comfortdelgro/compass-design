@@ -52,7 +52,11 @@ interface Props {
 }
 
 export type ButtonProps = Props &
-  Omit<React.HTMLAttributes<HTMLElement>, keyof Props>
+  Omit<React.HTMLAttributes<HTMLElement>, keyof Props> &
+  Omit<
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    keyof Omit<React.HTMLAttributes<HTMLElement>, keyof Props>
+  >
 
 const Button = React.forwardRef<
   HTMLButtonElement | HTMLAnchorElement,
@@ -170,6 +174,7 @@ const Button = React.forwardRef<
     iconOnly && styles.iconOnly,
     h5 && styles.h5,
     className,
+    'cdg-button',
   ]
     .filter(Boolean)
     .join(' ')
@@ -182,6 +187,7 @@ const Button = React.forwardRef<
           fullWidth ? styles.fullWidth : ''
         }
         ${loading ? styles.loading : ''}
+        'cdg-button-container'
         `}
       >
         <CssInjection css={css}>
@@ -224,7 +230,7 @@ const Button = React.forwardRef<
                 // make sure the loading indicator isn't visible to screen readers
                 hidden={!loading}
                 aria-hidden={!loading}
-                className={` ${styles.content}`}
+                className={` ${styles.content} cdg-button-loadingDots`}
               >
                 <span className={styles.loadingDots}>
                   <span />
@@ -236,14 +242,22 @@ const Button = React.forwardRef<
               <span
                 className={`${styles.content} ${
                   leftIcon || rightIcon ? styles.hasIcon : ''
-                }`}
+                } cdg-button-content`}
               >
                 {leftIcon || (fullWidth && rightIcon) ? (
-                  <span className={styles.leftIcon}>{leftIcon}</span>
+                  <span className={`${styles.leftIcon} cdg-left-icon`}>
+                    {leftIcon}
+                  </span>
                 ) : null}
-                <span className={styles.children}>{children}</span>
+                <span
+                  className={`cdg-button-content-children ${styles.children}`}
+                >
+                  {children}
+                </span>
                 {rightIcon || (fullWidth && leftIcon) ? (
-                  <span className={styles.rightIcon}>{rightIcon}</span>
+                  <span className={`${styles.rightIcon} cdg-right-icon`}>
+                    {rightIcon}
+                  </span>
                 ) : null}
               </span>
             )}

@@ -117,7 +117,7 @@ export const StyledTextField = styled('input', {
   },
 
   '&::placeholder': {
-    color: '$tertiaryText',
+    color: '$placeholder',
     fontSize: '$label1',
     fontWeight: '$semibold',
   },
