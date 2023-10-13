@@ -1,13 +1,13 @@
-import React, { useMemo } from 'react'
-import { pickChild } from '../utils/pick-child'
-import { useDOMRef } from '../utils/use-dom-ref'
-import { useIsInViewport } from './hooks/useInViewport'
-import { MultipleDropdownContext } from './multiple-dropdown-context'
+import React, {useMemo} from 'react'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import {pickChild} from '../utils/pick-child'
+import {useDOMRef} from '../utils/use-dom-ref'
+import {useIsInViewport} from './hooks/useInViewport'
+import {MultipleDropdownContext} from './multiple-dropdown-context'
 import DropdownLoading from './multiple-dropdown-loading'
 import MultipleDropdownHeader from './multiple-dropdown.header'
-import { getDistanceBetweenElements, textContent } from './utils'
-import CssInjection from '../utils/objectToCss/CssInjection'
 import styles from './styles/multiple-dropdown.module.css'
+import {getDistanceBetweenElements, textContent} from './utils'
 
 interface Props {
   searchValue?: string
@@ -23,17 +23,17 @@ export type DropdownItemListProps = Props
 const MultipleDropdownList: React.FC<DropdownItemListProps> = (
   props: DropdownItemListProps,
 ) => {
-  const { children, isLoading, css = {}, noDataMessage, onLoadMore } = props
+  const {children, isLoading, css = {}, noDataMessage, onLoadMore} = props
 
   const lastEl = useDOMRef<HTMLDivElement>(null)
   const standEl = useDOMRef<HTMLDivElement>(null)
 
   const isInViewport = useIsInViewport(lastEl)
-  const { searchValue, labelId, isLoadingMore } = React.useContext(
+  const {searchValue, labelId, isLoadingMore} = React.useContext(
     MultipleDropdownContext,
   )
 
-  const { child: DropdownHeaderElement, rest: dropdownItems } = pickChild<
+  const {child: DropdownHeaderElement, rest: dropdownItems} = pickChild<
     typeof MultipleDropdownHeader
   >(children, MultipleDropdownHeader)
 
@@ -74,7 +74,9 @@ const MultipleDropdownList: React.FC<DropdownItemListProps> = (
         {isLoading ? (
           <DropdownLoading />
         ) : displayedItemsCount === 0 ? (
-          <div className={`${styles.multipleDropdownListEmptyData}`}>{noDataMessage || 'No data'}</div>
+          <div className={`${styles.multipleDropdownListEmptyData}`}>
+            {noDataMessage || 'No data'}
+          </div>
         ) : (
           dropdownItems
         )}

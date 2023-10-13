@@ -72,7 +72,6 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
         ref: triggerElementRef,
         //tabIndex: -1, // Allow the triggering element to be focused programmatically
         onFocus: () => onFocusHandler(),
-        onBlur: () => setIsOpenPopover(false),
         onKeyDown: (event: React.KeyboardEvent) => {
           handleKeyDownOnInput(event)
         },
@@ -267,6 +266,23 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
       }
     }, [isOpenPopover, triggerElementRef])
 
+    // close popover when click outside of StyledAutoComplete
+    React.useEffect(() => {
+      const handleClickOutside = (event: MouseEvent) => {
+        if (
+          containerRef.current &&
+          !containerRef.current.contains(event.target as Node)
+        ) {
+          setIsOpenPopover(false)
+        }
+      }
+
+      document.addEventListener('pointerdown', handleClickOutside)
+      return () => {
+        document.removeEventListener('pointerdown', handleClickOutside)
+      }
+    }, [containerRef])
+
     return (
       <StyledAutoComplete
         ref={containerRef}
@@ -281,6 +297,7 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
           isOpen={isOpenPopover}
           anchor={clonedChildren}
           direction='bottom-center'
+          isFloatingPortal={false}
           attachToElement={
             containerRef.current && containerRef.current.parentElement
           }

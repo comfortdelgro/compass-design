@@ -115,7 +115,7 @@ export const StyledSelectedItemWrapper = styled('div', {
   gap: '$2_5',
   flexWrap: 'wrap',
   '.placeholder': {
-    color: '#B4B4B4',
+    color: '$placeholder',
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
     overflow: 'hidden',

@@ -272,7 +272,7 @@
 
 .dropdownComboBox.dropdownItemRightIconIsEmpty
   .dropdownInputControl::placeholder {
-  color: var(--cdg-color-gray40);
+  color: var(--cdg-color-placeholder);
   font-size: var(--cdg-font-size-label1);
   font-weight: var(--cdg-font-weight-semibold);
 }
@@ -455,7 +455,7 @@
 }
 
 .dropdownSelect.dropdownInputIsEmpty .dropdownSelectButton .dropdownButtonText {
-  color: var(--cdg-color-disabledText);
+  color: var(--cdg-color-placeholder);
 }
 
 .dropdownSelect.dropdownInputIsDisabled {

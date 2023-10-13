@@ -15,6 +15,7 @@ export const Default: React.FC = () => {
             defaultValue={'12:00 PM'}
             onFocus={() => console.log('onFocus')}
             onBlur={() => console.log('onBlur')}
+            onOpenChange={(open) => console.log('onOpenChange: ', open)}
           />
         </Row>
         <h3>Disable</h3>
