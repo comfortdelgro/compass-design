@@ -4,7 +4,7 @@ import type {Meta} from '@storybook/react'
 import React from 'react'
 import Avatar from '../avatar'
 import AvatarGroup from '../avatar/avatar-group'
-import List, {InteractiveList} from './index'
+import List, {DragAndDropList, InteractiveList} from './index'
 import ListCard from './list-card'
 import ListImage from './list-image'
 
@@ -215,6 +215,25 @@ export const InteractiveLists: React.FC = () => {
         title='Profile Name'
         description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
       />
+    </div>
+  )
+}
+
+export const DragAndDrops: React.FC = () => {
+  const [arr, setArr] = React.useState<React.Key[]>(['red', 'green', 'blue'])
+  return (
+    <div style={{width: 400}}>
+      <DragAndDropList onReorderByKeys={(a) => setArr(a)}>
+        {arr.map((a) => (
+          <DragAndDropList.Item key={a}>
+            <ListCard
+              title={String(a)}
+              description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+              style={{background: 'white'}}
+            />
+          </DragAndDropList.Item>
+        ))}
+      </DragAndDropList>
     </div>
   )
 }
