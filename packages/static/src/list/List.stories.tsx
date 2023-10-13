@@ -3,7 +3,8 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import type {Meta} from '@storybook/react'
 import React from 'react'
 import Avatar from '../avatar'
-import List from './index'
+import AvatarGroup from '../avatar/avatar-group'
+import List, {InteractiveList} from './index'
 import ListCard from './list-card'
 import ListImage from './list-image'
 
@@ -164,6 +165,56 @@ export const ListCards: React.FC = () => {
           description='Lorem Ipsum'
         />
       </ListCard>
+    </div>
+  )
+}
+
+const GroupLabel = (
+  <div
+    style={{
+      width: '84px',
+      height: '58px',
+      backgroundColor: '#009EDA',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: '4px',
+      color: 'white',
+      fontSize: '28px',
+      fontWeight: 'bold',
+    }}
+  >
+    XXX
+  </div>
+)
+
+export const InteractiveLists: React.FC = () => {
+  return (
+    <div style={{width: 300}}>
+      <InteractiveList
+        groupLabel={GroupLabel}
+        avatar={
+          <AvatarGroup>
+            <Avatar image={imgSrc} />
+            <Avatar image={imgSrc} />
+            <Avatar image={imgSrc} />
+            <Avatar image={imgSrc} />
+            <Avatar image={imgSrc} />
+            <Avatar image={imgSrc} />
+          </AvatarGroup>
+        }
+        title='Title'
+        description='Lorem ipsum dolor sit amet'
+        css={{width: '315px', height: 'fit-content'}}
+      />
+
+      <InteractiveList
+        showIcon
+        variant='dropdown'
+        avatar={<Avatar image={imgSrc} />}
+        title='Profile Name'
+        description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+      />
     </div>
   )
 }

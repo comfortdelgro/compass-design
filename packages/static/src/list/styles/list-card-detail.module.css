@@ -2,11 +2,11 @@
 @import '../../avatar/styles/avatar.module.css';
 
 .cardDetail {
-  width: 50%;
+  max-width: 50%;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   gap: var(--cdg-spacing-1);
-  margin-top: var(--cdg-spacing-6);
 }
 
 .cardDetailTitle {
@@ -30,7 +30,23 @@
   font-weight: var(--cdg-font-weight-medium);
 }
 
-.cardDetailAvatar > :global(.avatar) {
+.cardDetailAvatar > :global(.cdg-avatar) {
   width: var(--cdg-spacing-4);
   height: var(--cdg-spacing-4);
+}
+
+.cardDetailAvatar > :global(.cdg-avatar) :global(.cdg-avatar-text) {
+  font-size: var(--cdg-font-size-label3);
+}
+
+.isDisabled .cardDetailTitle {
+  color: var(--cdg-color-gray60);
+}
+
+.isDisabled .cardDetailDescription {
+  color: var(--cdg-color-gray60);
+}
+
+.isDisabled :global(.cdg-avatar) {
+  filter: grayscale(1);
 }

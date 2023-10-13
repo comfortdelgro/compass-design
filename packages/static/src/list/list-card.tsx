@@ -1,9 +1,9 @@
 /* eslint-disable react-refresh/only-export-components */
 import React from 'react'
 import Button from '../button'
-import styles from './styles/list-card.module.css'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import ListCardDetail, {ListCardDetailProps} from './list-card-detail'
+import styles from './styles/list-card.module.css'
 
 interface Props {
   css?: unknown
@@ -22,8 +22,9 @@ const ListCard = React.forwardRef<HTMLDivElement, ListCardProps>(
     const {
       title,
       badge,
-      description,
       children,
+      className,
+      description,
       isDisabled = false,
       showActionButton = false,
       css = {},
@@ -38,39 +39,41 @@ const ListCard = React.forwardRef<HTMLDivElement, ListCardProps>(
       return React.cloneElement(typedChild, {isDisabled})
     })
 
+    const rootClass = React.useMemo(() => {
+      let classes = `cdg-list-card ${styles.listCard}`
+      if (isDisabled) classes += ` ${styles.listCardIsDisabled}`
+      if (className) classes += ` ${className}`
+      return classes
+    }, [className, isDisabled])
+
     return (
       <CssInjection css={css} childrenRef={ref}>
-        <div ref={ref} className={styles.listCard} {...delegated}>
-          <div className={styles.listCardHeader}>
-            {title ? <h2 className={styles.listCardTitle}>{title}</h2> : <></>}
-            <div className={styles.listCardHeaderRight}>
-              {badge ? badge : <></>}
+        <div ref={ref} className={rootClass} {...delegated}>
+          <div className={`cdg-list-card-header ${styles.listCardHeader}`}>
+            {title && <h2 className={`cdg-list-card-title ${styles.listCardTitle}`}>{title}</h2>}
+            <div className={`cdg-list-card-header-right ${styles.listCardHeaderRight}`}>
+              {badge ? badge : null}
               {!children && showActionButton ? (
                 <Button
                   isDisabled={!!isDisabled}
                   variant='ghost'
                   aria-label='Action Header'
                 >
-                  <svg
-                    className={styles.listCardIcon}
-                    viewBox='0 0 128 512'
-                  >
+                  <svg className={styles.listCardIcon} viewBox='0 0 128 512'>
                     <path
                       fill='currentColor'
                       d='M64 360a56 56 0 1 0 0 112 56 56 0 1 0 0-112zm0-160a56 56 0 1 0 0 112 56 56 0 1 0 0-112zM120 96A56 56 0 1 0 8 96a56 56 0 1 0 112 0z'
                     />
                   </svg>
                 </Button>
-              ) : (
-                <></>
-              )}
+              ) : null}
             </div>
           </div>
-          <div className={styles.listCardDescription}>
-            {description ? <span>{description}</span> : <></>}
+          <div className={`cdg-list-card-description ${styles.listCardDescription}`}>
+            {description && <span>{description}</span>}
           </div>
-          <div className={styles.listCardFooter}>
-            <div className={styles.listCardDetail}>
+          <div className={`cdg-list-card-footer ${styles.listCardFooter}`}>
+            <div className={`cdg-list-card-content ${styles.listCardContent}`}>
               {clonedChildren.map((child) => child)}
             </div>
             {children && showActionButton ? (
@@ -78,7 +81,6 @@ const ListCard = React.forwardRef<HTMLDivElement, ListCardProps>(
                 isDisabled={!!isDisabled}
                 variant='ghost'
                 aria-label='Action Footer'
-                css={{marginTop: '$4'}}
               >
                 <svg className={styles.listCardIcon} viewBox='0 0 128 512'>
                   <path
@@ -87,9 +89,7 @@ const ListCard = React.forwardRef<HTMLDivElement, ListCardProps>(
                   />
                 </svg>
               </Button>
-            ) : (
-              <></>
-            )}
+            ) : null}
           </div>
         </div>
       </CssInjection>

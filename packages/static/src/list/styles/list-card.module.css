@@ -39,8 +39,8 @@
 }
 
 .listCardIcon {
-  width: var(--cdg-spacing-1_5);
-  height: 23px;
+  width: 1.83312rem;
+  height: 1.16688rem;
 }
 
 .listCardDescription {
@@ -54,9 +54,10 @@
 .listCardFooter {
   display: flex;
   align-items: flex-start;
+  margin-top: var(--cdg-spacing-6);
 }
 
-.listCardDetail {
+.listCardContent {
   display: flex;
   flex-wrap: wrap;
   flex: 1;

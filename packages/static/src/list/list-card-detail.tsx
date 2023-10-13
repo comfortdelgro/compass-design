@@ -27,7 +27,7 @@ const ListCardDetail = React.forwardRef<HTMLDivElement, ListCardDetailProps>(
     } = props
 
     const rootClass = React.useMemo(() => {
-      let classes = `cdg-list-image ${styles.image}`
+      let classes = `cdg-list-card-detail ${styles.cardDetail}`
       if (isDisabled) classes += ` ${styles.isDisabled}`
       if (className) classes += ` ${className}`
       return classes
@@ -36,11 +36,11 @@ const ListCardDetail = React.forwardRef<HTMLDivElement, ListCardDetailProps>(
     return (
       <CssInjection css={css} childrenRef={ref}>
         <div ref={ref} className={rootClass} {...htmlProps}>
-          {title && <h3 className={styles.cardDetailTitle}>{title}</h3>}
-          <div className={styles.cardDetailFooter}>
-            {avatar && <div className={styles.cardDetailAvatar}>{avatar}</div>}
+          {title && <h3 className={`cdg-list-card-detail-title ${styles.cardDetailTitle}`}>{title}</h3>}
+          <div className={`cdg-list-card-detail-footer ${styles.cardDetailFooter}`}>
+            {avatar && <div className={`cdg-list-card-detail-avatar ${styles.cardDetailAvatar}`}>{avatar}</div>}
             {description && (
-              <span className={styles.cardDetailDescription}>
+              <span className={`cdg-list-card-detail-description ${styles.cardDetailDescription}`}>
                 {description}
               </span>
             )}

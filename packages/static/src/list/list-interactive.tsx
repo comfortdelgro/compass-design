@@ -1,0 +1,114 @@
+import React from 'react'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import styles from './styles/list-interactive.module.css'
+
+interface Props {
+  css?: unknown
+  groupLabel?: React.ReactNode
+  avatar?: React.ReactNode
+  title?: string
+  description?: string
+  variant?: 'default' | 'dropdown'
+  showIcon?: boolean
+}
+
+export type InteractiveListProps = Props &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
+
+const InteractiveList = React.forwardRef<HTMLDivElement, InteractiveListProps>(
+  (props, ref) => {
+    const {
+      title,
+      avatar,
+      css = {},
+      className,
+      groupLabel,
+      description,
+      showIcon = false,
+      variant = 'default',
+      ...htmlProps
+    } = props
+
+    const rootClass = React.useMemo(() => {
+      let classes = `cdg-list-interactive ${styles.interactive}`
+      if (variant === 'dropdown')
+        classes += ` ${styles.interactiveVariantDropdown}`
+      if (className) classes += ` ${className}`
+      return classes
+    }, [className])
+
+    if (variant === 'dropdown') {
+      return (
+        <CssInjection css={css} childrenRef={ref}>
+          <div ref={ref} {...htmlProps} className={rootClass}>
+            {avatar ? avatar : null}
+            <div
+              className={`cdg-list-interactive-dropdown-body ${styles.interactiveDropdownBody}`}
+            >
+              <h2
+                className={`cdg-list-interactive-title ${styles.interactiveTitle}`}
+              >
+                {title}
+              </h2>
+              <span
+                className={`cdg-list-interactive-description ${styles.interactiveDescription}`}
+              >
+                {description}
+              </span>
+            </div>
+            {showIcon && (
+              <div
+                className={`cdg-list-interactive-icon-wrapper ${styles.interactiveIconWrapper}`}
+              >
+                <svg
+                  className={`cdg-list-interactive-icon ${styles.interactiveIcon}`}
+                  viewBox='0 0 320 512'
+                >
+                  <path
+                    fill='currentColor'
+                    d='M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z'
+                  />
+                </svg>
+              </div>
+            )}
+          </div>
+        </CssInjection>
+      )
+    }
+
+    return (
+      <CssInjection css={css} childrenRef={ref}>
+        <div ref={ref} {...htmlProps} className={rootClass}>
+          <div>
+            <div
+              className={`cdg-list-interactive-header ${styles.interactiveHeader}`}
+            >
+              {groupLabel ? groupLabel : null}
+              {avatar ? avatar : null}
+            </div>
+            <div
+              className={`cdg-list-interactive-body ${styles.interactiveBody}`}
+            >
+              {title && (
+                <h2
+                  className={`cdg-list-interactive-title ${styles.interactiveTitle}`}
+                >
+                  {title}
+                </h2>
+              )}
+              {description && (
+                <span
+                  className={`cdg-list-interactive-description ${styles.interactiveDescription}`}
+                >
+                  {description}
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
+      </CssInjection>
+    )
+  },
+)
+
+export default InteractiveList
