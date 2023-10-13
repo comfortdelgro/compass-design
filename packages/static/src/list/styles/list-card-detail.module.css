@@ -1,0 +1,36 @@
+@import '../../theme/theme.module.css';
+@import '../../avatar/styles/avatar.module.css';
+
+.cardDetail {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--cdg-spacing-1);
+  margin-top: var(--cdg-spacing-6);
+}
+
+.cardDetailTitle {
+  margin: 0;
+  line-height: 18px;
+  color: var(--cdg-color-gray80);
+  font-size: var(--cdg-font-size-label2);
+  font-weight: var(--cdg-font-weight-medium);
+}
+
+.cardDetailFooter {
+  display: flex;
+  flex-direction: row;
+  gap: var(--cdg-spacing-1);
+}
+
+.cardDetailDescription {
+  line-height: 16px;
+  color: var(--cdg-color-gray80);
+  font-size: var(--cdg-font-size-label3);
+  font-weight: var(--cdg-font-weight-medium);
+}
+
+.cardDetailAvatar > :global(.avatar) {
+  width: var(--cdg-spacing-4);
+  height: var(--cdg-spacing-4);
+}
