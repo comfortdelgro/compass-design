@@ -1,4 +1,6 @@
 import {faImage, faXmark} from '@fortawesome/free-solid-svg-icons'
+import WarningIcon from '@comfortdelgro/compass-icons/react/warning-filled'
+import CloseIcon from '@comfortdelgro/compass-icons/react/h5-close'
 import React, {Key} from 'react'
 import Button from '../button/button'
 import Dropdown from '../dropdown'
@@ -125,10 +127,12 @@ const SubService2 = () => {
           snackbar.show({
             autoClose: false,
             text: 'Lorem ipsum dolor, sit amet consectetur. Lorem ipsum dolor, sit amet consectetur.',
-            prefixIcon: <Icon icon={faImage} />,
-            detail: 'Detail',
-            detailDescription: 'Detail',
-            type: 'error'
+            prefixIcon: <WarningIcon />,
+            suffixIcon: <CloseIcon />,
+            type: 'reminder',
+            css: {
+              alignItems: 'flex-start'
+            }
           })
         }
       >

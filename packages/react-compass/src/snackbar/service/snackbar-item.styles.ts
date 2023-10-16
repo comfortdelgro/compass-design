@@ -85,7 +85,6 @@ export const StyledSnackbarItem = styled('div', {
     transform: 'unset',
     top: 'unset',
     left: 'unset',
-    maxWidth: '90vw',
   },
 })
 

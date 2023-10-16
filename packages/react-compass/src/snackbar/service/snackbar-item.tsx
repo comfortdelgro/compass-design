@@ -22,6 +22,7 @@ const SnackbarItem = ({
   detail,
   text,
   type='default',
+  css={}
 }: SnackbarItemProps) => {
   const snackbar = useSnackbar() // call useSnackbar
 
@@ -44,6 +45,7 @@ const SnackbarItem = ({
         className={snackbarItemClassName}
         autoClose={autoClose}
         type={type}
+        css={css}
       >
         {prefixIcon && (
           <Snackbar.PrefixIcon>

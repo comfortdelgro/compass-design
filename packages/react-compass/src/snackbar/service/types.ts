@@ -1,4 +1,5 @@
 import {ReactNode} from 'react'
+import { CSS } from '../../utils/stitches.types'
 
 export interface SnackbarItemType {
   id?: number
@@ -9,6 +10,7 @@ export interface SnackbarItemType {
   detailDescription?: ReactNode
   autoClose?: false | number
   type?: 'default' | 'error' | 'success' | 'warning' | 'reminder' | 'ongoing'
+  css?: CSS
 }
 
 export interface SnackbarState {

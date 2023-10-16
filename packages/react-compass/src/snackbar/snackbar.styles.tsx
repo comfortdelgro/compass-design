@@ -14,8 +14,8 @@ export const StyledSnackbarIcon = styled('div', {
   // reset
   ...resetStyles,
   // styling
-  width: '$4',
-  height: '$4',
+  minWidth: '$4',
+  minHeight: '$4',
 
   '& *': {
     width: '100%',
