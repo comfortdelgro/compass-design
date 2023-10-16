@@ -30,15 +30,6 @@
   font-weight: var(--cdg-font-weight-medium);
 }
 
-.cardDetailAvatar > :global(.cdg-avatar) {
-  width: var(--cdg-spacing-4);
-  height: var(--cdg-spacing-4);
-}
-
-.cardDetailAvatar > :global(.cdg-avatar) :global(.cdg-avatar-text) {
-  font-size: var(--cdg-font-size-label3);
-}
-
 .isDisabled .cardDetailTitle {
   color: var(--cdg-color-gray60);
 }

@@ -37,6 +37,20 @@ export type {IconProp} from './icon'
 export {default as ImageViewer} from './image-viewer'
 export type {ImageViewerProps} from './image-viewer'
 export * from './layouts'
+export {
+  DragAndDropList,
+  InteractiveList,
+  default as List,
+  ListCard,
+} from './list'
+export type {
+  DragAndDropListProps,
+  InteractiveListProps,
+  ListCardDetailProps,
+  ListCardProps,
+  ListImageProps,
+  ListProps,
+} from './list'
 export {default as MultipleChoicesSlider} from './multiple-choices-slider'
 export type {
   MultipleChoicesSliderItemProps,

@@ -6,10 +6,8 @@
   border-radius: var(--cdg-border-radius-md);
 }
 
-.interactive :global(.cdg-avatar) {
-  flex-shrink: 0;
-  width: var(--cdg-spacing-8);
-  height: var(--cdg-spacing-8);
+.interactiveAvatar {
+  flex-shrink: 1;
 }
 
 .interactiveHeader {

@@ -1,5 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import React, {useState} from 'react'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import ListImage from './list-image'
 import styles from './styles/list.module.css'
 
@@ -33,7 +34,7 @@ const List = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
     variant = 'interactive',
     isDisabled = false,
     size = 'md',
-    // css = {},
+    css = {},
     className = '',
     descriptionIcon,
     ...delegated
@@ -143,57 +144,59 @@ const List = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
   }, [isDisabled, variant])
 
   return (
-    <div
-      ref={ref}
-      tabIndex={0}
-      role='button'
-      className={listClass}
-      onClick={handleClick}
-      onMouseDown={() => onMouse(true)}
-      onMouseUp={() => onMouse(false)}
-      {...delegated}
-    >
-      <div className={styles.left}>
-        {leftInfo && <div className={leftInfoClass}>{leftInfo}</div>}
-        {(title || description) && (
-          <div className={leftTextClass}>
-            {title && <h2 className={leftTitleClass}>{title}</h2>}
-            <div>
-              {description && (
-                <span className={leftDescriptionClass}>{description}</span>
-              )}
-              {descriptionIcon && descriptionIcon}
-            </div>
-          </div>
-        )}
-      </div>
-      {rightInfo && !rightContent && (
-        <>
-          {variant === 'h5' ? (
-            <div className='list-h5-right-side'>
-              {rightInfo?.text && (
-                <h2 className='list-text-title'>{rightInfo?.text}</h2>
-              )}
-              {rightInfo?.description && (
-                <span className='list-text-description'>
-                  {rightInfo?.description}
-                </span>
-              )}
-            </div>
-          ) : (
-            <div className={styles.right}>
-              {rightInfo.text && (
-                <span className={rightTextClass}>{rightInfo?.text}</span>
-              )}
-              {rightInfo?.icon}
+    <CssInjection css={css} childrenRef={ref}>
+      <div
+        ref={ref}
+        tabIndex={0}
+        role='button'
+        className={listClass}
+        onClick={handleClick}
+        onMouseDown={() => onMouse(true)}
+        onMouseUp={() => onMouse(false)}
+        {...delegated}
+      >
+        <div className={styles.left}>
+          {leftInfo && <div className={leftInfoClass}>{leftInfo}</div>}
+          {(title || description) && (
+            <div className={leftTextClass}>
+              {title && <h2 className={leftTitleClass}>{title}</h2>}
+              <div>
+                {description && (
+                  <span className={leftDescriptionClass}>{description}</span>
+                )}
+                {descriptionIcon && descriptionIcon}
+              </div>
             </div>
           )}
-        </>
-      )}
-      {rightContent && !rightInfo && (
-        <div className='list-h5-right-side'> {rightContent} </div>
-      )}
-    </div>
+        </div>
+        {rightInfo && !rightContent && (
+          <>
+            {variant === 'h5' ? (
+              <div className='list-h5-right-side'>
+                {rightInfo?.text && (
+                  <h2 className='list-text-title'>{rightInfo?.text}</h2>
+                )}
+                {rightInfo?.description && (
+                  <span className='list-text-description'>
+                    {rightInfo?.description}
+                  </span>
+                )}
+              </div>
+            ) : (
+              <div className={styles.right}>
+                {rightInfo.text && (
+                  <span className={rightTextClass}>{rightInfo?.text}</span>
+                )}
+                {rightInfo?.icon}
+              </div>
+            )}
+          </>
+        )}
+        {rightContent && !rightInfo && (
+          <div className='list-h5-right-side'> {rightContent} </div>
+        )}
+      </div>
+    </CssInjection>
   )
 })
 

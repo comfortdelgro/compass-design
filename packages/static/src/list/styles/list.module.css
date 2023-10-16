@@ -112,6 +112,10 @@
   color: var(--cdg-color-cdgBlue60);
 }
 
+.listSizeSM:hover .leftInfoSizeSM svg {
+  color: var(--cdg-color-whiteText);
+}
+
 .leftDescriptionSizeSM {
   font-size: var(--cdg-font-size-body3);
   color: var(--cdg-color-gray70);
@@ -218,10 +222,18 @@
   color: var(--cdg-color-gray60);
 }
 
+.listSizeSM:hover .leftInfoSizeSMIsPressed svg {
+  color: var(--cdg-color-gray60);
+}
+
 /* 
   size: sm
   isDisabled: true
 */
+.listSizeSM:hover.listIsDisabled .leftInfoSizeSM svg {
+  color: var(--cdg-color-gray60);
+}
+
 .listSizeSM:hover.listIsDisabled .leftInfoSizeSM {
   background-color: var(--cdg-color-background);
   color: var(--cdg-color-gray60);

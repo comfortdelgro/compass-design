@@ -36,11 +36,29 @@ const ListCardDetail = React.forwardRef<HTMLDivElement, ListCardDetailProps>(
     return (
       <CssInjection css={css} childrenRef={ref}>
         <div ref={ref} className={rootClass} {...htmlProps}>
-          {title && <h3 className={`cdg-list-card-detail-title ${styles.cardDetailTitle}`}>{title}</h3>}
-          <div className={`cdg-list-card-detail-footer ${styles.cardDetailFooter}`}>
-            {avatar && <div className={`cdg-list-card-detail-avatar ${styles.cardDetailAvatar}`}>{avatar}</div>}
+          {title && (
+            <h3
+              className={`cdg-list-card-detail-title ${styles.cardDetailTitle}`}
+            >
+              {title}
+            </h3>
+          )}
+          <div
+            className={`cdg-list-card-detail-footer ${styles.cardDetailFooter}`}
+          >
+            {avatar && (
+              <div
+                className={`cdg-list-card-detail-avatar ${styles.cardDetailAvatar}`}
+              >
+                {React.cloneElement(avatar as React.ReactElement, {
+                  size: 'xxs',
+                })}
+              </div>
+            )}
             {description && (
-              <span className={`cdg-list-card-detail-description ${styles.cardDetailDescription}`}>
+              <span
+                className={`cdg-list-card-detail-description ${styles.cardDetailDescription}`}
+              >
                 {description}
               </span>
             )}

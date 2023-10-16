@@ -7,6 +7,7 @@ import AvatarGroup from '../avatar/avatar-group'
 import List, {DragAndDropList, InteractiveList} from './index'
 import ListCard from './list-card'
 import ListImage from './list-image'
+import ListCardDetail from './list-card-detail'
 
 const imgSrc =
   'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
@@ -163,6 +164,41 @@ export const ListCards: React.FC = () => {
           title='Detail 1'
           avatar={<Avatar label='A' />}
           description='Lorem Ipsum'
+        />
+      </ListCard>
+
+      <ListCard
+        title='Lorem Ipsum'
+        showActionButton
+        description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+        badge={<ListImage src={imgSrc} alt='singapore' />}
+        css={{width: '347px', backgroundColor: '$background'}}
+      >
+        <ListCardDetail
+          title='Detail 1'
+          avatar={
+            <AvatarGroup>
+              <Avatar image={imgSrc} />
+              <Avatar image={imgSrc} />
+              <Avatar image={imgSrc} />
+              <Avatar image={imgSrc} />
+              <Avatar image={imgSrc} />
+              <Avatar image={imgSrc} />
+            </AvatarGroup>
+          }
+        />
+        <ListCardDetail
+          title='Detail 1'
+          avatar={
+            <AvatarGroup>
+              <Avatar image={imgSrc} />
+              <Avatar image={imgSrc} />
+              <Avatar image={imgSrc} />
+              <Avatar image={imgSrc} />
+              <Avatar image={imgSrc} />
+              <Avatar image={imgSrc} />
+            </AvatarGroup>
+          }
         />
       </ListCard>
     </div>

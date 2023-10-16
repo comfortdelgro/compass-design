@@ -41,7 +41,15 @@ const InteractiveList = React.forwardRef<HTMLDivElement, InteractiveListProps>(
       return (
         <CssInjection css={css} childrenRef={ref}>
           <div ref={ref} {...htmlProps} className={rootClass}>
-            {avatar ? avatar : null}
+            <div
+              className={`cdg-list-interactive-avatar ${styles.interactiveAvatar}`}
+            >
+              {avatar
+                ? React.cloneElement(avatar as React.ReactElement, {
+                    size: 'sm',
+                  })
+                : null}
+            </div>
             <div
               className={`cdg-list-interactive-dropdown-body ${styles.interactiveDropdownBody}`}
             >
@@ -84,7 +92,15 @@ const InteractiveList = React.forwardRef<HTMLDivElement, InteractiveListProps>(
               className={`cdg-list-interactive-header ${styles.interactiveHeader}`}
             >
               {groupLabel ? groupLabel : null}
-              {avatar ? avatar : null}
+              <div
+                className={`cdg-list-interactive-avatar ${styles.interactiveAvatar}`}
+              >
+                {avatar
+                  ? React.cloneElement(avatar as React.ReactElement, {
+                      size: 'sm',
+                    })
+                  : null}
+              </div>
             </div>
             <div
               className={`cdg-list-interactive-body ${styles.interactiveBody}`}
