@@ -45,7 +45,7 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
     style,
     status,
     cutOffText = true,
-    ...delegates
+    ...htmlProps
   } = props
 
   const avatarRef = useDOMRef<HTMLDivElement>(ref)
@@ -53,21 +53,22 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
   return (
     <CssInjection css={css} childrenRef={avatarRef}>
       <div
-        className={`${styles.avatar} ${AVATAR_SIZE_MAP[size]} ${
+        {...htmlProps}
+        className={`cdg-avatar ${styles.avatar} ${AVATAR_SIZE_MAP[size]} ${
           className ? className : ''
         } `}
         style={style}
       >
-        <div className={styles.avatarInner}>
+        <div className={`cdg-avatar-inner ${styles.avatarInner}`}>
           {label ? (
-            <span className={styles.avatarText}>
+            <span className={`cdg-avatar-text ${styles.avatarText}`}>
               {(cutOffText && calculateInitials(label, size)) || label}
             </span>
           ) : null}
-          {icon ? <div className={styles.avatarIcon}>{icon}</div> : null}
+          {icon ? <div className={`cdg-avatar-icon ${styles.avatarIcon}`}>{icon}</div> : null}
           {image ? (
             <img
-              className={styles.avatarImage}
+              className={`cdg-avatar-image ${styles.avatarImage}`}
               src={image}
               alt={label || 'Avatar'}
             />

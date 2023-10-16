@@ -1,9 +1,9 @@
-import React, { useMemo } from 'react'
-import { useDOMRef } from '../utils/use-dom-ref'
-import { MultipleDropdownContext } from './multiple-dropdown-context'
-import { textContent } from './utils'
-import styles from './styles/multiple-dropdown.module.css'
+import React, {useMemo} from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
+import {useDOMRef} from '../utils/use-dom-ref'
+import {MultipleDropdownContext} from './multiple-dropdown-context'
+import styles from './styles/multiple-dropdown.module.css'
+import {textContent} from './utils'
 
 export interface StyledMultipleDropdownItemProps {
   value?: string | number
@@ -27,7 +27,7 @@ const MultipleDropdownItem = React.forwardRef<
     ...other
   } = props
 
-  const { textValue, ...delegated } = other
+  const {textValue, ...delegated} = other
 
   const {
     isPositioned,
@@ -78,7 +78,7 @@ const MultipleDropdownItem = React.forwardRef<
           (keyItem) => keyItem.value.toString() === value.toString(),
         )
         if (index === -1) {
-          keys.push({ value, visibility: true })
+          keys.push({value, visibility: true})
         } else {
           keys[index] = {
             value,
@@ -98,7 +98,7 @@ const MultipleDropdownItem = React.forwardRef<
           multipleDropdownItemRef.current.scrollIntoView({
             block: 'nearest',
           })
-        });
+        })
       }
     }
   }, [focusKey, value, isPositioned, multipleDropdownItemRef])
@@ -107,8 +107,8 @@ const MultipleDropdownItem = React.forwardRef<
     if (isSelected && isPositioned) {
       if (multipleDropdownItemRef.current) {
         setTimeout(() => {
-          multipleDropdownItemRef.current.scrollIntoView({ block: 'nearest' })
-        });
+          multipleDropdownItemRef.current.scrollIntoView({block: 'nearest'})
+        })
       }
     }
   }, [isPositioned, isSelected, multipleDropdownItemRef])
@@ -166,7 +166,9 @@ const MultipleDropdownItem = React.forwardRef<
         aria-selected={isSelected}
         {...delegated}
       >
-        <div className={`${styles.multipleDropdownItemContent}`}>{children}</div>
+        <div className={`${styles.multipleDropdownItemContent}`}>
+          {children}
+        </div>
         <div className={multipleDropdownItemRightIconClassName}>
           {checkmark === 'checkbox' ? (
             <div className={`${styles.multipleDropdownItemRightIconContent}`}>

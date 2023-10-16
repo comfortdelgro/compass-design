@@ -53,7 +53,7 @@ const Rating = React.forwardRef<HTMLDivElement, RatingProps>((props, ref) => {
       <>
         <Button
           css={{
-              backgroundColor: 'black',
+            backgroundColor: 'black',
           }}
           className={`${styles.rating} ${
             activeIndex === 0 ? `${styles.active}` : ''

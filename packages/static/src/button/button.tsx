@@ -52,7 +52,11 @@ interface Props {
 }
 
 export type ButtonProps = Props &
-  Omit<React.HTMLAttributes<HTMLElement>, keyof Props>
+  Omit<React.HTMLAttributes<HTMLElement>, keyof Props> &
+  Omit<
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    keyof Omit<React.HTMLAttributes<HTMLElement>, keyof Props>
+  >
 
 const Button = React.forwardRef<
   HTMLButtonElement | HTMLAnchorElement,
@@ -245,7 +249,11 @@ const Button = React.forwardRef<
                     {leftIcon}
                   </span>
                 ) : null}
-                <span className={`cdg-button-content-children ${styles.children}`}>{children}</span>
+                <span
+                  className={`cdg-button-content-children ${styles.children}`}
+                >
+                  {children}
+                </span>
                 {rightIcon || (fullWidth && leftIcon) ? (
                   <span className={`${styles.rightIcon} cdg-right-icon`}>
                     {rightIcon}
