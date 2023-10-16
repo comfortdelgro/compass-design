@@ -22,7 +22,7 @@ export const Default: React.FC = () => {
 
   return (
     <Column>
-      <h3>Default toast</h3>
+      <h3>Default snackbar</h3>
       <Dropdown.Select
         isRequired
         label='Please select horizontal'
@@ -101,7 +101,7 @@ const SubService1 = () => {
           })
         }
       >
-        Open toast
+        Open snackbar
       </Button>
       <Button
         css={{width: 'fit-content'}}
@@ -112,7 +112,7 @@ const SubService1 = () => {
           })
         }
       >
-        Open toast without close button
+        Open snackbar without close button
       </Button>
     </>
   )
@@ -136,10 +136,10 @@ const SubService2 = () => {
           })
         }
       >
-        Open toast autoClose: false
+        Open snackbar autoClose: false
       </Button>
       <Button css={{width: 'fit-content'}} onClick={() => snackbar.clearAll()}>
-        Clear all toasts
+        Clear all snackbars
       </Button>
     </>
   )
