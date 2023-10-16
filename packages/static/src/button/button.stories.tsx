@@ -25,9 +25,6 @@ export const Variations: React.FC = () => (
   <div style={{width: '100%', height: '100%', padding: '2rem'}}>
     <h3>1. Variants</h3>
     <div style={{...Style}}>
-      <Button css={{width: '250px'}} onClick={(e) => console.log('click', e)}>
-        Primary
-      </Button>
       <Button variant='primary' onPress={() => console.log('pressed')}>
         Primary
       </Button>
@@ -51,6 +48,15 @@ export const Variations: React.FC = () => (
         Ghost
       </Button>
     </div>
+    <h4>Custom style</h4>
+    <div style={{...Style}}>
+      <Button
+        css={{width: '50%', backgroundColor: 'red'}}
+        onClick={(e) => console.log('click', e)}
+      >
+        Custom width and background color
+      </Button>
+    </div>
     <h3>2. Sizes</h3>
     <div style={{...Style}}>
       <Button size='lg'>Large</Button>
@@ -62,6 +68,12 @@ export const Variations: React.FC = () => (
           Medium (Block)
         </Button>
       </div>
+    </div>
+    <h4>Full width</h4>
+    <div style={{...Style}}>
+      <Button fullWidth onClick={(e) => console.log('click', e)}>
+        Full Width (100%)
+      </Button>
     </div>
     <h3>3. Ripple effect when being clicked</h3>
     <div style={{...Style}}>

@@ -174,6 +174,9 @@ export const Default: React.FC = () => {
           padding: '16px 0',
         }}
         expand={false}
+        onExpandChange={(expanded) => {
+          console.log(`Sidenav expanded: ${expanded}`)
+        }}
         delay={200}
       >
         <Sidenav.Item css={{'&.cdg-sidenav-item': {marginBottom: '36px'}}}>
