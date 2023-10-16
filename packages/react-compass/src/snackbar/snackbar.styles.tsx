@@ -1,5 +1,5 @@
-import { styled } from '../theme';
-import { VariantProps } from '../utils/stitches.types';
+import {styled} from '../theme'
+import {VariantProps} from '../utils/stitches.types'
 
 const resetStyles = {
   appearance: 'none',
@@ -15,7 +15,7 @@ export const StyledSnackbarIcon = styled('div', {
   ...resetStyles,
   // styling
   minWidth: '$4',
-  minHeight: '$4',
+  height: '$4',
 
   '& *': {
     width: '100%',
@@ -42,17 +42,17 @@ export const StyledSnackbarSuffixIcon = styled('div', {
 
 export const StyledSnackbarText = styled('div', {
   // reset
-    ...resetStyles,
+  ...resetStyles,
   // styling
   fontWeight: '$medium',
   fontFamily: '$sans',
   fontSize: '$label2',
   lineHeight: 'normal',
-  minWidth: '187px'
+  minWidth: '187px',
 })
 
 export const StyledSnackbarDetail = styled('div', {
-  // reset  
+  // reset
   ...resetStyles,
 
   // styling
@@ -62,11 +62,11 @@ export const StyledSnackbarDetail = styled('div', {
   fontSize: '$label1',
   color: '$grayShade100',
   lineHeight: '20px',
-  textAlign: 'right'
+  textAlign: 'right',
 })
 export const StyledSnackbarDetailDescription = styled('div', {
   // reset
-    ...resetStyles,
+  ...resetStyles,
 
   // styling
   width: 'fit-content',
@@ -82,12 +82,12 @@ export const SnackbarDetailContainer = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   gap: '$0_5',
-  alignItems: 'flex-end'
+  alignItems: 'flex-end',
 })
 export const SnackbarRightSection = styled('div', {
   display: 'flex',
   gap: '$4',
-  alignItems: 'center'
+  alignItems: 'center',
 })
 
 export const StyledSnackbar = styled('div', {
@@ -100,58 +100,58 @@ export const StyledSnackbar = styled('div', {
   alignItems: 'center',
   gap: '$3',
   borderRadius: '$lg',
-  width:'fit-content',
+  width: 'fit-content',
   zIndex: '60',
 
   position: 'fixed',
-  
+
   variants: {
     type: {
       default: {
         backgroundColor: '$background',
         color: '$primaryText',
         [`${StyledSnackbarDetailDescription}`]: {
-          opacity: 0.8
-        }
+          opacity: 0.8,
+        },
       },
       error: {
         backgroundColor: '$dangerBg',
         color: '$danger',
         [`${StyledSnackbarDetailDescription}`]: {
-          opacity: 0.8
-        }
+          opacity: 0.8,
+        },
       },
       success: {
         backgroundColor: '$successBg',
         color: '$success',
         [`${StyledSnackbarDetailDescription}`]: {
-          opacity: 0.8
-        }
+          opacity: 0.8,
+        },
       },
       warning: {
         backgroundColor: '$warningBg',
         color: '$snackbarWarning',
         [`${StyledSnackbarDetailDescription}`]: {
-          opacity: 0.8
-        }
+          opacity: 0.8,
+        },
       },
       reminder: {
         backgroundColor: '$background',
         color: '$primaryText',
         border: '1px solid $danger',
         [`${StyledSnackbarDetailDescription}`]: {
-          opacity: 0.8
+          opacity: 0.8,
         },
         [`${StyledSnackbarIcon}`]: {
-          color: '$danger'
+          color: '$danger',
         },
       },
       ongoing: {
         backgroundColor: '$typeHeading',
         color: '$background',
         [`${StyledSnackbarDetailDescription}`]: {
-          opacity: 0.8
-        }
+          opacity: 0.8,
+        },
       },
     },
     vertical: {
@@ -183,7 +183,7 @@ export const StyledSnackbar = styled('div', {
         transform: 'translate(-50%, -50%)',
       },
     },
-  }
+  },
 })
 
 export type SnackbarVariantProps = VariantProps<typeof StyledSnackbar>

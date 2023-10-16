@@ -39,7 +39,7 @@ const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
       // StyledComponentProps
       css = {},
       // VariantProps
-      color = 'neutral',
+      type = 'default',
       //Component props
       portalTo,
       isOpen = false,
@@ -51,7 +51,7 @@ const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
     } = props
 
     const snackbarRef = useDOMRef<HTMLDivElement>(ref)
-    const variantProps = {color} as SnackbarVariantProps
+    const variantProps = {type} as SnackbarVariantProps
 
     const {child: SnackbarSuffixIconElement} = pickChild<
       typeof SnackbarSuffixIcon

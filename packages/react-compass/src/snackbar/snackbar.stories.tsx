@@ -1,13 +1,13 @@
-import {faImage, faXmark} from '@fortawesome/free-solid-svg-icons'
-import WarningIcon from '@comfortdelgro/compass-icons/react/warning-filled'
 import CloseIcon from '@comfortdelgro/compass-icons/react/h5-close'
+import WarningIcon from '@comfortdelgro/compass-icons/react/warning-filled'
+import {faImage, faXmark} from '@fortawesome/free-solid-svg-icons'
 import React, {Key} from 'react'
+import Snackbar from '.'
 import Button from '../button/button'
 import Dropdown from '../dropdown'
 import {Icon} from '../icon'
 import {Column} from '../utils/components'
-import Snackbar from '.'
-import { SnackbarContextProvider, useSnackbar } from './service'
+import {SnackbarContextProvider, useSnackbar} from './service'
 export const Default: React.FC = () => {
   const [horizontal, setHorizontal] = React.useState<
     'center' | 'left' | 'right'
@@ -15,9 +15,9 @@ export const Default: React.FC = () => {
   const [vertical, setVertical] = React.useState<'center' | 'top' | 'bottom'>(
     'top',
   )
-  const [type, setType] = React.useState<'default' | 'error' | 'success' | 'warning' | 'reminder' | 'ongoing'>(
-    'default',
-  )
+  const [type, setType] = React.useState<
+    'default' | 'error' | 'success' | 'warning' | 'reminder' | 'ongoing'
+  >('default')
   const [isDefaultOpen, setIsDefaultOpen] = React.useState(false)
 
   return (
@@ -55,7 +55,15 @@ export const Default: React.FC = () => {
         placeholder='Choose a type'
         selectedKey={type}
         onSelectionChange={(k: Key) =>
-          setType(k as 'default' | 'error' | 'success' | 'warning' | 'reminder' | 'ongoing')
+          setType(
+            k as
+              | 'default'
+              | 'error'
+              | 'success'
+              | 'warning'
+              | 'reminder'
+              | 'ongoing',
+          )
         }
       >
         <Dropdown.Item key='default'>Default</Dropdown.Item>
@@ -89,7 +97,7 @@ export const Default: React.FC = () => {
 }
 
 const SubService1 = () => {
-  const snackbar = useSnackbar();
+  const snackbar = useSnackbar()
   return (
     <>
       <Button
@@ -131,8 +139,8 @@ const SubService2 = () => {
             suffixIcon: <CloseIcon />,
             type: 'warning',
             css: {
-              alignItems: 'flex-start'
-            }
+              alignItems: 'flex-start',
+            },
           })
         }
       >
@@ -154,7 +162,7 @@ export const Multiple: React.FC = () => {
 
   return (
     <Column>
-      <h3>Snackbart as a service</h3>
+      <h3>Snackbar as a service</h3>
       <Dropdown.Select
         isRequired
         label='Please select horizontal'
@@ -181,9 +189,12 @@ export const Multiple: React.FC = () => {
         <Dropdown.Item key='center'>Center</Dropdown.Item>
         <Dropdown.Item key='bottom'>Bottom</Dropdown.Item>
       </Dropdown.Select>
-      <SnackbarContextProvider anchorOrigin={{horizontal, vertical}} containerCSS={{
-        bottom: '50px'
-      }}>
+      <SnackbarContextProvider
+        anchorOrigin={{horizontal, vertical}}
+        containerCSS={{
+          bottom: '50px',
+        }}
+      >
         <>
           <SubService1 />
           <SubService2 />

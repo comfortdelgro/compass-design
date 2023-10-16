@@ -185,7 +185,7 @@ export const lightThemeColors = {
 
   warningBg: '#F8DB96',
   warning: '#EFB01D',
-  snackbarWarning: '#95711F',
+
   // Shades and Tints
 
   cdgBlue10: '#E6ECF7',
@@ -276,7 +276,7 @@ export const darkThemeColors = {
 
   warningBg: '#F1BF41',
   warning: '#574412',
-  snackbarWarning: '#95711F',
+
   // Shades and Tints
 
   cdgBlue10: '#051649',
