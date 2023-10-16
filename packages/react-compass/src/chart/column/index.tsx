@@ -10,7 +10,7 @@ import {
 import React, {useMemo} from 'react'
 import {Bar} from 'react-chartjs-2'
 import {useColors} from '../../theme'
-import {buildData, Chart, DEFAULT_VERTICAL_OPTIONS} from '../utils'
+import {Chart, DEFAULT_VERTICAL_OPTIONS, buildData} from '../utils'
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 

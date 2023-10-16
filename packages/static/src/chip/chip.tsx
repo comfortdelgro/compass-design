@@ -57,12 +57,13 @@ const Chip = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     <CssInjection css={css} childrenRef={chipRef}>
       <div
         ref={chipRef}
-        className={` ${className} ${styles.chip} ${isErrored ? styles.isErrored : ''}`}
+        className={` ${className} ${styles.chip} ${
+          isErrored ? styles.isErrored : ''
+        }`}
         tabIndex={hasCloseButton || onClick ? tabIndex || 0 : -1}
         onClick={onClick}
         onKeyDown={handleChipKeyDown}
         {...delegated}
-
       >
         <div className={`${styles.cdgChipContent}`}>{children}</div>
         {hasCloseButton && (

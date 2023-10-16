@@ -36,6 +36,7 @@ import {Toast} from '@comfortdelgro/react-compass'
 ### Toast as a service
 
 #### Note: Toast As AService has an API that makes it easy to display toasts, without having to handle their open/close state.
+
 #### Store multiple toasts and display them in the same container.
 
 {{"demo": "ToastAsAService.tsx"}}
@@ -51,7 +52,7 @@ import {Toast} from '@comfortdelgro/react-compass'
 | isOpen       | `boolean`                                              | false                                        | The toast is visible when true.                                                         |
 | autoClose    | `false` \| `number`                                    | false                                        | Number of miliseconds to auto close.                                                    |
 | css          | `CSS`                                                  | —                                            | The system prop that allows defining system overrides as well as additional CSS styles. |
-| portalTo    | `HTMLElement`                                          | -         | Using ReactPortals to create portal to an element, example document.body                |
+| portalTo     | `HTMLElement`                                          | -                                            | Using ReactPortals to create portal to an element, example document.body                |
 | anchorOrigin | `Anchor`                                               | `{horizontal: 'center', vertical: 'center'}` | Placements of Toast.                                                                    |
 
 ### `useToast()`

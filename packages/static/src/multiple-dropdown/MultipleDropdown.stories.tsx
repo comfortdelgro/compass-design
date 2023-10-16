@@ -1,9 +1,8 @@
-import { faBug } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import type { Meta } from '@storybook/react'
+import {faBug} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import type {Meta} from '@storybook/react'
 import React from 'react'
 import MultipleDropdown from '.'
-
 
 function generateRandomName() {
   const firstNames = [
@@ -33,7 +32,7 @@ function generateRandomName() {
   const firstName =
     firstNames[Math.floor(Math.random() * firstNames.length)] ?? ''
   const lastName = lastNames[Math.floor(Math.random() * lastNames.length)] ?? ''
-  return { name: `${firstName} ${lastName}`, firstName, lastName }
+  return {name: `${firstName} ${lastName}`, firstName, lastName}
 }
 
 function generateRandomData(numData: number, startNumber = 1): SampleData[] {
@@ -85,7 +84,7 @@ export const Basic: React.FC = () => {
   const [data, setData] = React.useState<SampleData[]>(generateRandomData(10))
 
   return (
-    <div style={{ ...style }}>
+    <div style={{...style}}>
       <h3>Controlled</h3>
       <MultipleDropdown
         label='Favorite Animal'
@@ -97,7 +96,7 @@ export const Basic: React.FC = () => {
         onValuesChange={(k: string[]) => setValue(k)}
         onBlur={() => console.log('blur')}
         onFocus={() => console.log('focus')}
-        css={{ width: '50%' }}
+        css={{width: '50%'}}
       >
         <MultipleDropdown.Header>
           <div
@@ -136,17 +135,13 @@ export const Basic: React.FC = () => {
           </div>
         </MultipleDropdown.Header>
         <MultipleDropdown.Item value='panda' textValue='Panda'>
-          <FontAwesomeIcon icon={faBug} style={{ marginRight: 5 }} />
+          <FontAwesomeIcon icon={faBug} style={{marginRight: 5}} />
           Red Panda
         </MultipleDropdown.Item>
         <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
         <MultipleDropdown.Item value='dog'>Dog</MultipleDropdown.Item>
-        <MultipleDropdown.Item value='aardvark'>
-          Aardvark
-        </MultipleDropdown.Item>
-        <MultipleDropdown.Item value='kangaroo'>
-          Kangaroo
-        </MultipleDropdown.Item>
+        <MultipleDropdown.Item value='aardvark'>Aardvark</MultipleDropdown.Item>
+        <MultipleDropdown.Item value='kangaroo'>Kangaroo</MultipleDropdown.Item>
         <MultipleDropdown.Item value='snake'>Snake</MultipleDropdown.Item>
       </MultipleDropdown>
       <h3>UnControlled</h3>
@@ -161,12 +156,8 @@ export const Basic: React.FC = () => {
         </MultipleDropdown.Item>
         <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
         <MultipleDropdown.Item value='dog'>Dog</MultipleDropdown.Item>
-        <MultipleDropdown.Item value='aardvark'>
-          Aardvark
-        </MultipleDropdown.Item>
-        <MultipleDropdown.Item value='kangaroo'>
-          Kangaroo
-        </MultipleDropdown.Item>
+        <MultipleDropdown.Item value='aardvark'>Aardvark</MultipleDropdown.Item>
+        <MultipleDropdown.Item value='kangaroo'>Kangaroo</MultipleDropdown.Item>
         <MultipleDropdown.Item value='snake'>Snake</MultipleDropdown.Item>
       </MultipleDropdown>
       <h3>Errored</h3>
@@ -181,12 +172,8 @@ export const Basic: React.FC = () => {
         <MultipleDropdown.Item value='panda'>Red Panda</MultipleDropdown.Item>
         <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
         <MultipleDropdown.Item value='dog'>Dog</MultipleDropdown.Item>
-        <MultipleDropdown.Item value='aardvark'>
-          Aardvark
-        </MultipleDropdown.Item>
-        <MultipleDropdown.Item value='kangaroo'>
-          Kangaroo
-        </MultipleDropdown.Item>
+        <MultipleDropdown.Item value='aardvark'>Aardvark</MultipleDropdown.Item>
+        <MultipleDropdown.Item value='kangaroo'>Kangaroo</MultipleDropdown.Item>
         <MultipleDropdown.Item value='snake'>Snake</MultipleDropdown.Item>
       </MultipleDropdown>
       <h3>displayedValue: String</h3>
@@ -195,17 +182,13 @@ export const Basic: React.FC = () => {
         displayedValue='string'
         defaultValues={['snake', 'cat', 'dog']}
         placeholder='Choosesss an animal'
-        css={{ width: '200px' }}
+        css={{width: '200px'}}
       >
         <MultipleDropdown.Item value='panda'>Red Panda</MultipleDropdown.Item>
         <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
         <MultipleDropdown.Item value='dog'>Dog</MultipleDropdown.Item>
-        <MultipleDropdown.Item value='aardvark'>
-          Aardvark
-        </MultipleDropdown.Item>
-        <MultipleDropdown.Item value='kangaroo'>
-          Kangaroo
-        </MultipleDropdown.Item>
+        <MultipleDropdown.Item value='aardvark'>Aardvark</MultipleDropdown.Item>
+        <MultipleDropdown.Item value='kangaroo'>Kangaroo</MultipleDropdown.Item>
         <MultipleDropdown.Item value='snake'>Snake</MultipleDropdown.Item>
       </MultipleDropdown>
       <h3>
@@ -217,19 +200,15 @@ export const Basic: React.FC = () => {
         displayedValue='string'
         customDisplayValue={`${value2.length} animals selected`}
         placeholder='Choosesss an animal'
-        css={{ width: '290px' }}
+        css={{width: '290px'}}
         values={value2}
         onValuesChange={(k: string[]) => setValue2(k)}
       >
         <MultipleDropdown.Item value='panda'>Red Panda</MultipleDropdown.Item>
         <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
         <MultipleDropdown.Item value='dog'>Dog</MultipleDropdown.Item>
-        <MultipleDropdown.Item value='aardvark'>
-          Aardvark
-        </MultipleDropdown.Item>
-        <MultipleDropdown.Item value='kangaroo'>
-          Kangaroo
-        </MultipleDropdown.Item>
+        <MultipleDropdown.Item value='aardvark'>Aardvark</MultipleDropdown.Item>
+        <MultipleDropdown.Item value='kangaroo'>Kangaroo</MultipleDropdown.Item>
         <MultipleDropdown.Item value='snake'>Snake</MultipleDropdown.Item>
       </MultipleDropdown>
       <h3>Checkmark types</h3>
@@ -238,7 +217,7 @@ export const Basic: React.FC = () => {
         displayedValue='string'
         defaultValues={['snake', 'cat', 'dog']}
         placeholder='Choosesss an animal'
-        css={{ width: '200px' }}
+        css={{width: '200px'}}
       >
         <MultipleDropdown.Item value='panda' checkmark='tick'>
           Red Panda
@@ -268,12 +247,8 @@ export const Basic: React.FC = () => {
         <MultipleDropdown.Item value='panda'>Red Panda</MultipleDropdown.Item>
         <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
         <MultipleDropdown.Item value='dog'>Dog</MultipleDropdown.Item>
-        <MultipleDropdown.Item value='aardvark'>
-          Aardvark
-        </MultipleDropdown.Item>
-        <MultipleDropdown.Item value='kangaroo'>
-          Kangaroo
-        </MultipleDropdown.Item>
+        <MultipleDropdown.Item value='aardvark'>Aardvark</MultipleDropdown.Item>
+        <MultipleDropdown.Item value='kangaroo'>Kangaroo</MultipleDropdown.Item>
         <MultipleDropdown.Item value='snake'>Snake</MultipleDropdown.Item>
       </MultipleDropdown>
       <h3>With Header</h3>
@@ -320,12 +295,8 @@ export const Basic: React.FC = () => {
         <MultipleDropdown.Item value='panda'>Red Panda</MultipleDropdown.Item>
         <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
         <MultipleDropdown.Item value='dog'>Dog</MultipleDropdown.Item>
-        <MultipleDropdown.Item value='aardvark'>
-          Aardvark
-        </MultipleDropdown.Item>
-        <MultipleDropdown.Item value='kangaroo'>
-          Kangaroo
-        </MultipleDropdown.Item>
+        <MultipleDropdown.Item value='aardvark'>Aardvark</MultipleDropdown.Item>
+        <MultipleDropdown.Item value='kangaroo'>Kangaroo</MultipleDropdown.Item>
         <MultipleDropdown.Item value='snake'>Snake</MultipleDropdown.Item>
       </MultipleDropdown>
       <h3>With Icon</h3>
@@ -337,12 +308,8 @@ export const Basic: React.FC = () => {
         <MultipleDropdown.Item value='panda'>Red Panda</MultipleDropdown.Item>
         <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
         <MultipleDropdown.Item value='dog'>Dog</MultipleDropdown.Item>
-        <MultipleDropdown.Item value='aardvark'>
-          Aardvark
-        </MultipleDropdown.Item>
-        <MultipleDropdown.Item value='kangaroo'>
-          Kangaroo
-        </MultipleDropdown.Item>
+        <MultipleDropdown.Item value='aardvark'>Aardvark</MultipleDropdown.Item>
+        <MultipleDropdown.Item value='kangaroo'>Kangaroo</MultipleDropdown.Item>
         <MultipleDropdown.Item value='snake'>Snake</MultipleDropdown.Item>
       </MultipleDropdown>
       <h3>Number of rows</h3>
@@ -354,24 +321,15 @@ export const Basic: React.FC = () => {
         <MultipleDropdown.Item value='panda'>Red Panda</MultipleDropdown.Item>
         <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
         <MultipleDropdown.Item value='dog'>Dog</MultipleDropdown.Item>
-        <MultipleDropdown.Item value='aardvark'>
-          Aardvark
-        </MultipleDropdown.Item>
-        <MultipleDropdown.Item value='kangaroo'>
-          Kangaroo
-        </MultipleDropdown.Item>
+        <MultipleDropdown.Item value='aardvark'>Aardvark</MultipleDropdown.Item>
+        <MultipleDropdown.Item value='kangaroo'>Kangaroo</MultipleDropdown.Item>
         <MultipleDropdown.Item value='snake'>Snake</MultipleDropdown.Item>
       </MultipleDropdown>
       <h3>With Section</h3>
-      <MultipleDropdown
-        label='Favorite Animal'
-        placeholder='Choose an animal'
-      >
+      <MultipleDropdown label='Favorite Animal' placeholder='Choose an animal'>
         <MultipleDropdown.Item value='fly'>Fly</MultipleDropdown.Item>
         <MultipleDropdown.Section title='Group 1'>
-          <MultipleDropdown.Item value='panda'>
-            Red Panda
-          </MultipleDropdown.Item>
+          <MultipleDropdown.Item value='panda'>Red Panda</MultipleDropdown.Item>
           <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
           <MultipleDropdown.Item value='dog'>Dog</MultipleDropdown.Item>
         </MultipleDropdown.Section>
@@ -392,7 +350,7 @@ export const Basic: React.FC = () => {
         values={sectionValue}
         isRequired
         onValuesChange={(k: string[]) => setSectionValue(k)}
-        css={{ width: '80%' }}
+        css={{width: '80%'}}
       >
         <MultipleDropdown.Section
           title='Amphibians'
@@ -425,11 +383,7 @@ export const Basic: React.FC = () => {
             Lampreys
           </MultipleDropdown.Item>
         </MultipleDropdown.Section>
-        <MultipleDropdown.Section
-          isClickable
-          title='Mammals'
-          checkmark='tick'
-        >
+        <MultipleDropdown.Section isClickable title='Mammals' checkmark='tick'>
           <MultipleDropdown.Item value='aardvarks' checkmark='tick'>
             Aardvarks
           </MultipleDropdown.Item>
@@ -452,17 +406,13 @@ export const Basic: React.FC = () => {
         isDisabled
       >
         <MultipleDropdown.Item value='panda'>
-          <FontAwesomeIcon icon={faBug} style={{ marginRight: 5 }} />
+          <FontAwesomeIcon icon={faBug} style={{marginRight: 5}} />
           Red Panda
         </MultipleDropdown.Item>
         <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
         <MultipleDropdown.Item value='dog'>Dog</MultipleDropdown.Item>
-        <MultipleDropdown.Item value='aardvark'>
-          Aardvark
-        </MultipleDropdown.Item>
-        <MultipleDropdown.Item value='kangaroo'>
-          Kangaroo
-        </MultipleDropdown.Item>
+        <MultipleDropdown.Item value='aardvark'>Aardvark</MultipleDropdown.Item>
+        <MultipleDropdown.Item value='kangaroo'>Kangaroo</MultipleDropdown.Item>
         <MultipleDropdown.Item value='snake'>Snake</MultipleDropdown.Item>
       </MultipleDropdown>
       <h3>Variant: select</h3>
@@ -474,17 +424,13 @@ export const Basic: React.FC = () => {
         displayedValue='string'
       >
         <MultipleDropdown.Item value='panda'>
-          <FontAwesomeIcon icon={faBug} style={{ marginRight: 5 }} />
+          <FontAwesomeIcon icon={faBug} style={{marginRight: 5}} />
           Red Panda
         </MultipleDropdown.Item>
         <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
         <MultipleDropdown.Item value='dog'>Dog</MultipleDropdown.Item>
-        <MultipleDropdown.Item value='aardvark'>
-          Aardvark
-        </MultipleDropdown.Item>
-        <MultipleDropdown.Item value='kangaroo'>
-          Kangaroo
-        </MultipleDropdown.Item>
+        <MultipleDropdown.Item value='aardvark'>Aardvark</MultipleDropdown.Item>
+        <MultipleDropdown.Item value='kangaroo'>Kangaroo</MultipleDropdown.Item>
         <MultipleDropdown.Item value='snake'>Snake</MultipleDropdown.Item>
       </MultipleDropdown>
       <h3>Errored strings</h3>
@@ -498,32 +444,24 @@ export const Basic: React.FC = () => {
         <MultipleDropdown.Item value='panda'>Red Panda</MultipleDropdown.Item>
         <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
         <MultipleDropdown.Item value='dog'>Dog</MultipleDropdown.Item>
-        <MultipleDropdown.Item value='aardvark'>
-          Aardvark
-        </MultipleDropdown.Item>
-        <MultipleDropdown.Item value='kangaroo'>
-          Kangaroo
-        </MultipleDropdown.Item>
+        <MultipleDropdown.Item value='aardvark'>Aardvark</MultipleDropdown.Item>
+        <MultipleDropdown.Item value='kangaroo'>Kangaroo</MultipleDropdown.Item>
         <MultipleDropdown.Item value='snake'>Snake</MultipleDropdown.Item>
       </MultipleDropdown>
       <h3>Limit width for Popover</h3>
       <MultipleDropdown
         label='Favorite Animal'
         placeholder='Animals'
-        css={{ width: '250px' }}
-        popoverCSS={{ width: 'auto' }}
+        css={{width: '250px'}}
+        popoverCSS={{width: 'auto'}}
       >
         <MultipleDropdown.Item value='Panda' textValue='Panda'>
           Red Panda Red Panda Red Panda Red Panda Red Panda
         </MultipleDropdown.Item>
         <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
         <MultipleDropdown.Item value='dog'>Dog</MultipleDropdown.Item>
-        <MultipleDropdown.Item value='aardvark'>
-          Aardvark
-        </MultipleDropdown.Item>
-        <MultipleDropdown.Item value='kangaroo'>
-          Kangaroo
-        </MultipleDropdown.Item>
+        <MultipleDropdown.Item value='aardvark'>Aardvark</MultipleDropdown.Item>
+        <MultipleDropdown.Item value='kangaroo'>Kangaroo</MultipleDropdown.Item>
         <MultipleDropdown.Item value='snake'>Snake</MultipleDropdown.Item>
       </MultipleDropdown>
       <h3>Custom CSS</h3>
@@ -531,7 +469,7 @@ export const Basic: React.FC = () => {
         label='Favorite Animal'
         placeholder='Animals'
         css={{
-          '& .button': { span: { color: '$whiteText' } },
+          '& .button': {span: {color: '$whiteText'}},
           '& .dropdownContainer': {
             color: '$whiteText',
             borderColor: '$warning',
@@ -558,12 +496,8 @@ export const Basic: React.FC = () => {
         </MultipleDropdown.Item>
         <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
         <MultipleDropdown.Item value='dog'>Dog</MultipleDropdown.Item>
-        <MultipleDropdown.Item value='aardvark'>
-          Aardvark
-        </MultipleDropdown.Item>
-        <MultipleDropdown.Item value='kangaroo'>
-          Kangaroo
-        </MultipleDropdown.Item>
+        <MultipleDropdown.Item value='aardvark'>Aardvark</MultipleDropdown.Item>
+        <MultipleDropdown.Item value='kangaroo'>Kangaroo</MultipleDropdown.Item>
         <MultipleDropdown.Item value='snake'>Snake</MultipleDropdown.Item>
       </MultipleDropdown>
       <h3>Load more</h3>
@@ -586,7 +520,7 @@ export const Basic: React.FC = () => {
           </MultipleDropdown.Item>
         ))}
       </MultipleDropdown>
-      <div style={{ height: '20rem' }} />
+      <div style={{height: '20rem'}} />
     </div>
   )
 }

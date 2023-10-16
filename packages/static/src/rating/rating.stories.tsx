@@ -1,6 +1,6 @@
+import {Meta} from '@storybook/react'
 import React from 'react'
 import RatingComponent from './rating'
-import { Meta } from '@storybook/react'
 
 const style: {
   display: string

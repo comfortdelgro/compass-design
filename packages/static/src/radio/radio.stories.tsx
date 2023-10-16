@@ -173,7 +173,7 @@ export const H5 = () => {
       <h3 style={{marginBottom: '$4'}}>H5</h3>
       <div style={{flexDirection: 'row', ...style}}>
         <Radio.Group
-         // begin fix and update later
+          // begin fix and update later
           css={{padding: '0.5rem'}}
           onChange={(value) => console.log(value)}
         >
@@ -200,7 +200,7 @@ export const H5 = () => {
       <h3 style={{marginBlock: '$6 $4'}}>H5 with inputPosition: right</h3>
       <div style={{flexDirection: 'row', ...style}}>
         <Radio.Group
-         // begin fix and update later
+          // begin fix and update later
           css={{padding: '0.5rem'}}
           onChange={(value) => console.log(value)}
         >

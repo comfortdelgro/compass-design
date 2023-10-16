@@ -61,16 +61,16 @@ import {
 
 ### List
 
-| Name        | Type                                        | Default       | Description                      |
-| :---------- | :------------------------------------------ | :------------ | :------------------------------- |
-| leftInfo    | `React.ReactNode`                           | —             | Left side information component  |
-| title       | `string`                                    | —             |                                  |
-| description | `string`                                    | —             |                                  |
-| rightInfo   | `{ text?: string, icon?: React.ReactNode }` | —             | Right side information component |
-| rightContent| `React.ReactNode`                           | —             | Right side content               |
-| isDisabled  | `boolean`                                   | —             |                                  |
-| variant     | `"item" \| "interactive"`                   | `interactive` |                                  |
-| css         | `CSS`                                       | —             |                                  |
+| Name         | Type                                        | Default       | Description                      |
+| :----------- | :------------------------------------------ | :------------ | :------------------------------- |
+| leftInfo     | `React.ReactNode`                           | —             | Left side information component  |
+| title        | `string`                                    | —             |                                  |
+| description  | `string`                                    | —             |                                  |
+| rightInfo    | `{ text?: string, icon?: React.ReactNode }` | —             | Right side information component |
+| rightContent | `React.ReactNode`                           | —             | Right side content               |
+| isDisabled   | `boolean`                                   | —             |                                  |
+| variant      | `"item" \| "interactive"`                   | `interactive` |                                  |
+| css          | `CSS`                                       | —             |                                  |
 
 ### List.Image
 
