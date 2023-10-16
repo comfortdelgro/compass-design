@@ -1,10 +1,8 @@
 import React, { useCallback, useMemo } from 'react'
 import Dropdown from '../dropdown'
-
 import { useDOMRef } from '../utils/use-dom-ref'
 import { usePagination } from './pagination.hooks'
-
-import styles from './styles/linear.module.css'
+import styles from './styles/pagination.module.css'
 
 interface Props {
   page?: number
@@ -145,9 +143,8 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
 
         return (
           <div
-            className={`cdg-pagination-item ${styles.paginationItem}`}
+            className={`cdg-pagination-item ${styles.paginationItem} ${item === active ? `${styles.active}` : ''}`}
             key={index}
-            active={item === active}
             onClick={() => item !== active && setPage(item)}
             aria-label={`page ${item}`}
             aria-current={item === active}
@@ -183,10 +180,9 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
         )}
         {count && <ItemCounting count={count} page={page} />}
         <div
-          className={`cdg-pagination-item ${styles.paginationItem}`}
+          className={`cdg-pagination-item ${styles.paginationItem} ${active === 1 ? `${styles.disabled}` : ''}`}
           onClick={previous}
           aria-label='previous page'
-          disabled={active === 1}
         >
           <svg viewBox='0 0 320 512'>
             <path
@@ -197,10 +193,9 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
         </div>
         {items.map(renderItem)}
         <div
-          className={`cdg-pagination-item ${styles.paginationItem}`}
+          className={`cdg-pagination-item ${styles.paginationItem} ${active === total ? `${styles.disabled}` : ''}`}
           onClick={next}
           aria-label='next page'
-          disabled={active === total}
         >
           <svg viewBox='0 0 320 512'>
             <path
