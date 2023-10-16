@@ -3,6 +3,7 @@ import Dropdown from '../dropdown'
 import { useDOMRef } from '../utils/use-dom-ref'
 import { usePagination } from './pagination.hooks'
 import styles from './styles/pagination.module.css'
+import CssInjection from '../utils/objectToCss/CssInjection'
 
 interface Props {
   page?: number
@@ -19,7 +20,7 @@ interface Props {
 export type PaginationProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
-const Ellipsis: React.FC = ({ ...props }) => {
+const Ellipsis: React.FC<React.HTMLProps<HTMLDivElement>> = ({ ...props }) => {
   const svgIcon = (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -91,7 +92,7 @@ const RowsCounting: React.FC<{
   }, [rowsPerPage]);
 
   return (
-    <div className={styles.PaginationRowsCounting}>
+    <div className={styles.paginationRowsCounting}>
       {layout}
     </div>
   );
@@ -157,9 +158,9 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
     )
 
     return (
+      <CssInjection css={css} childrenRef={paginationRef}>
       <div
         className={`cdg-pagination ${styles.pagination}`}
-        css={css}
         ref={paginationRef}
         role='navigation'
         aria-label='pagination'
@@ -205,6 +206,7 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
           </svg>
         </div>
       </div>
+      </CssInjection>
     )
   },
 )
