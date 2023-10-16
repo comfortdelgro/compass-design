@@ -1,0 +1,10 @@
+@import '../../theme/theme.module.css';
+
+.datePicker {
+  width: fit-content;
+}
+
+.datePickerFieldWrapper .dateRangeFields{
+  display: flex;
+  gap: var(--cdg-spacing-6);
+}

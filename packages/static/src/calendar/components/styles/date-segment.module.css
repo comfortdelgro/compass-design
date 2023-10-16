@@ -18,7 +18,7 @@
   outline: none;
   box-shadow: none;
   color: var(--cdg-color-whiteText);
-  color: var(--cdg-color-cdgBlue);
+  background-color : var(--cdg-color-cdgBlue);
 }
 
 .number {
