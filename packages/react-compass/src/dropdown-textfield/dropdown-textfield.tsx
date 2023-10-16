@@ -91,7 +91,7 @@ const DropdownTextfield = React.forwardRef<
     label = '',
     minLength,
     maxLength,
-    autoFocus=false,
+    autoFocus = false,
     onChange: onDropdownInputChange,
     onCut,
     onCopy,
@@ -109,7 +109,7 @@ const DropdownTextfield = React.forwardRef<
     h5 = false,
   } = props
   const componentRef = useDOMRef(ref)
-  const isFirstRun = useRef(true);
+  const isFirstRun = useRef(true)
 
   const [selectedDropdownKey, setDropdownKey] = React.useState<Key>('')
   const [textfieldValue, setTextfieldValue] = React.useState<Key>(
@@ -125,13 +125,12 @@ const DropdownTextfield = React.forwardRef<
 
   React.useEffect(() => {
     if (isFirstRun.current) {
-      isFirstRun.current = false;
+      isFirstRun.current = false
     } else {
       if (onDropdownInputChange) {
-      onDropdownInputChange(String(selectedDropdownKey), textfieldValue)
+        onDropdownInputChange(String(selectedDropdownKey), textfieldValue)
+      }
     }
-    }
-    
   }, [selectedDropdownKey, textfieldValue])
   return (
     <StyledDropdownTextfield ref={componentRef} className={className}>
@@ -143,7 +142,7 @@ const DropdownTextfield = React.forwardRef<
       )}
       <InputWrapper className='input-wrapper'>
         <Dropdown.Select
-          className="cdg-dropdown-textfield-select"
+          className='cdg-dropdown-textfield-select'
           aria-label={label}
           selectedKey={selectedDropdownKey}
           defaultSelectedKey={defaultSelectedKey as Key}
@@ -175,7 +174,7 @@ const DropdownTextfield = React.forwardRef<
         </Dropdown.Select>
         <TextField
           id={id}
-          className="cdg-dropdown-textfield-input"
+          className='cdg-dropdown-textfield-input'
           aria-label={label}
           type={inputType}
           onChange={handleInputChange}
