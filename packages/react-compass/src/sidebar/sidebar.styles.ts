@@ -137,6 +137,7 @@ export const StyledSidebar = styled('div', {
   backgroundColor: '$primaryBg',
   display: 'flex',
   flexDirection: 'column',
+  position: 'absolute',
 
   // variants
   variants: {
