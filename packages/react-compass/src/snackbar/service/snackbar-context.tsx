@@ -2,6 +2,7 @@ import React, {createContext, ReactNode, useReducer} from 'react'
 import SnackbarsContainer from './snackbar-container'
 import {snackbarReducer} from './snackbar-reducer'
 import {SnackbarItemType} from './types'
+import { CSS } from '../../utils/stitches.types'
 
 export const SnackbarContext = createContext<SnackbarContextValue>({
   show: () => {
@@ -23,11 +24,17 @@ export interface Anchor {
   vertical: 'top' | 'bottom' | 'center'
   horizontal: 'left' | 'center' | 'right'
 }
+// export interface Offset {
+//   vertical: 'top' | 'bottom' | 'center'
+//   horizontal: 'left' | 'center' | 'right'
+// }
 
 interface SnackbarContextProviderProps {
   children: ReactNode
   anchorOrigin?: Anchor
+  containerCSS?: CSS
 }
+
 
 export interface SnackbarContextValue {
   show: (item: SnackbarItemType) => void
@@ -40,6 +47,7 @@ const ANCHOR_DEFAULT: Anchor = {horizontal: 'right', vertical: 'top'}
 export const SnackbarContextProvider = ({
   children,
   anchorOrigin,
+  containerCSS={}
 }: SnackbarContextProviderProps) => {
   const [state, dispatch] = useReducer(snackbarReducer, initialState)
   // rest of the code
@@ -70,6 +78,8 @@ export const SnackbarContextProvider = ({
       <SnackbarsContainer
         snackbars={state.snackbars}
         anchorOrigin={anchorOrigin ?? ANCHOR_DEFAULT}
+        css={containerCSS}
+        className='cdg-snackbar-container'
       />
       {children}
     </SnackbarContext.Provider>

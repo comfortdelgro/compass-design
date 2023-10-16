@@ -129,7 +129,7 @@ const SubService2 = () => {
             text: 'Lorem ipsum dolor, sit amet consectetur. Lorem ipsum dolor, sit amet consectetur.',
             prefixIcon: <WarningIcon />,
             suffixIcon: <CloseIcon />,
-            type: 'reminder',
+            type: 'warning',
             css: {
               alignItems: 'flex-start'
             }
@@ -149,7 +149,7 @@ export const Multiple: React.FC = () => {
     'center' | 'left' | 'right'
   >('right')
   const [vertical, setVertical] = React.useState<'center' | 'top' | 'bottom'>(
-    'top',
+    'bottom',
   )
 
   return (
@@ -181,7 +181,9 @@ export const Multiple: React.FC = () => {
         <Dropdown.Item key='center'>Center</Dropdown.Item>
         <Dropdown.Item key='bottom'>Bottom</Dropdown.Item>
       </Dropdown.Select>
-      <SnackbarContextProvider anchorOrigin={{horizontal, vertical}}>
+      <SnackbarContextProvider anchorOrigin={{horizontal, vertical}} containerCSS={{
+        bottom: '50px'
+      }}>
         <>
           <SubService1 />
           <SubService2 />
