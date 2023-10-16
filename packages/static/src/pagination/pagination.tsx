@@ -144,7 +144,7 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
 
         return (
           <div
-            className={`cdg-pagination-item ${styles.paginationItem} ${item === active ? `${styles.active}` : ''}`}
+            className={`cdg-pagination-item ${styles.paginationItem} ${item === active ? `${styles.paginationItemActive}` : ''}`}
             key={index}
             onClick={() => item !== active && setPage(item)}
             aria-label={`page ${item}`}
@@ -159,54 +159,54 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
 
     return (
       <CssInjection css={css} childrenRef={paginationRef}>
-      <div
-        className={`cdg-pagination ${styles.pagination}`}
-        ref={paginationRef}
-        role='navigation'
-        aria-label='pagination'
-        {...delegated}
-      >
-        {rowsPerPage && (
-          <RowsCounting
-            rowsOptions={rowsOptions}
-            rowsPerPage={5}
-            onRowsPerPageChange={
-              onRowsPerPageChange
-                ? onRowsPerPageChange
-                : (rows: number) => {
-                  console.log(rows)
-                }
-            }
-          />
-        )}
-        {count && <ItemCounting count={count} page={page} />}
         <div
-          className={`cdg-pagination-item ${styles.paginationItem} ${active === 1 ? `${styles.disabled}` : ''}`}
-          onClick={previous}
-          aria-label='previous page'
+          className={`cdg-pagination ${styles.pagination}`}
+          ref={paginationRef}
+          role='navigation'
+          aria-label='pagination'
+          {...delegated}
         >
-          <svg viewBox='0 0 320 512'>
-            <path
-              fill={active === 1 ? '#D2D0CE' : '#201F1E'}
-              d='M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z'
-            ></path>
-          </svg>
+          {rowsPerPage && (
+            <RowsCounting
+              rowsOptions={rowsOptions}
+              rowsPerPage={5}
+              onRowsPerPageChange={
+                onRowsPerPageChange
+                  ? onRowsPerPageChange
+                  : (rows: number) => {
+                    console.log(rows)
+                  }
+              }
+            />
+          )}
+          {count && <ItemCounting count={count} page={page} />}
+          <div
+            className={`cdg-pagination-item ${styles.paginationItem} ${active === 1 ? `${styles.paginationItemDisabled}` : ''}`}
+            onClick={previous}
+            aria-label='previous page'
+          >
+            <svg viewBox='0 0 320 512' className={`cdg-pagination-item-svg ${styles.paginationItemSvg}`}>
+              <path
+                fill={active === 1 ? '#D2D0CE' : '#201F1E'}
+                d='M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z'
+              ></path>
+            </svg>
+          </div>
+          {items.map(renderItem)}
+          <div
+            className={`cdg-pagination-item ${styles.paginationItem} ${active === total ? `${styles.paginationItemDisabled}` : ''}`}
+            onClick={next}
+            aria-label='next page'
+          >
+            <svg viewBox='0 0 320 512' className={`cdg-pagination-item-svg ${styles.paginationItemSvg}`} >
+              <path
+                fill={active === total ? '#D2D0CE' : '#201F1E'}
+                d='M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z'
+              ></path>
+            </svg>
+          </div>
         </div>
-        {items.map(renderItem)}
-        <div
-          className={`cdg-pagination-item ${styles.paginationItem} ${active === total ? `${styles.disabled}` : ''}`}
-          onClick={next}
-          aria-label='next page'
-        >
-          <svg viewBox='0 0 320 512'>
-            <path
-              fill={active === total ? '#D2D0CE' : '#201F1E'}
-              d='M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z'
-            ></path>
-          </svg>
-        </div>
-      </div>
-      </CssInjection>
+      </CssInjection >
     )
   },
 )
