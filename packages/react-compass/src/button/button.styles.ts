@@ -134,7 +134,6 @@ export const StyledButton = styled('button', {
     },
     variant: {
       primary: {
-        width: '100px',
         background: '$cdgBlue',
         color: '$whiteText',
         borderColor: '$cdgBlue',
