@@ -10,16 +10,17 @@ interface Props extends StyledComponentProps {
 export type SnackbarPrefixIconProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
-const SnackbarPrefixIcon = React.forwardRef<HTMLDivElement, SnackbarPrefixIconProps>(
-  (props, ref) => {
-    const {children, css = {}, ...delegated} = props
-    const toastIconRef = useDOMRef<HTMLDivElement>(ref)
-    return (
-      <StyledSnackbarIcon css={css} ref={toastIconRef} {...delegated}>
-        {children}
-      </StyledSnackbarIcon>
-    )
-  },
-)
+const SnackbarPrefixIcon = React.forwardRef<
+  HTMLDivElement,
+  SnackbarPrefixIconProps
+>((props, ref) => {
+  const {children, css = {}, ...delegated} = props
+  const snackbarIconRef = useDOMRef<HTMLDivElement>(ref)
+  return (
+    <StyledSnackbarIcon css={css} ref={snackbarIconRef} {...delegated}>
+      {children}
+    </StyledSnackbarIcon>
+  )
+})
 
 export default SnackbarPrefixIcon
