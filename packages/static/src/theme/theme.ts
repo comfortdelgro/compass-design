@@ -175,6 +175,7 @@ export const lightThemeColors = {
   dangerBg: '#EFD9DB',
   danger: '#A4262C',
   dangerDarker: '#7d1b20',
+  dangerShades: '#E31617',
 
   successBg: '#D1E8CF',
   success: '#107C10',
@@ -340,7 +341,7 @@ const theme = {
   sizes: spacings,
   transitions,
 }
-
+   
 export default theme
-
+   
 export type Colors = typeof lightThemeColors
