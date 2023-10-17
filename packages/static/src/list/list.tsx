@@ -54,93 +54,92 @@ const List = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
   }
 
   const listClass = React.useMemo(() => {
-    let classes = `cdg-list ${styles.list}`
-    if (isDisabled) {
-      classes += ` ${styles.listIsDisabled}`
-    }
-    if (size == 'sm') {
-      classes += ` ${styles.listSizeSM}`
-    }
-    if (variant === 'interactive' && !isPressed && !isDisabled) {
-      classes += ` ${styles.listVariantInteractive}`
-    }
-    if (variant === 'item' && !isPressed && !isDisabled) {
-      classes += ` ${styles.listVariantItem}`
-    }
-    if (variant === 'interactive' && isPressed && !isDisabled) {
-      classes += ` ${styles.listVariantInteractiveIsPressed}`
-    }
-    if (variant === 'item' && isPressed && !isDisabled) {
-      classes += ` ${styles.listVariantItemIsPressed}`
-    }
-    if (variant === 'interactive' && isDisabled) {
-      classes += ` ${styles.listVariantInteractiveIsDisabled}`
-    }
-    if (variant === 'item' && isDisabled) {
-      classes += ` ${styles.listVariantItemIsDisabled}`
-    }
-    if (className) {
-      classes += ` ${className}`
-    }
-    return classes
+    return [
+      styles.list,
+      isDisabled && styles.listIsDisabled,
+      size == 'sm' && styles.listSizeSM,
+      variant === 'interactive' &&
+        !isPressed &&
+        !isDisabled &&
+        styles.listVariantInteractive,
+      variant === 'item' && !isPressed && !isDisabled && styles.listVariantItem,
+      variant === 'interactive' &&
+        isPressed &&
+        !isDisabled &&
+        styles.listVariantInteractiveIsPressed,
+      variant === 'item' &&
+        isPressed &&
+        !isDisabled &&
+        styles.listVariantItemIsPressed,
+      variant === 'interactive' &&
+        isDisabled &&
+        styles.listVariantInteractiveIsDisabled,
+      variant === 'item' && isDisabled && styles.listVariantItemIsDisabled,
+      'cdg-list',
+      className,
+    ]
+      .filter(Boolean)
+      .join(' ')
   }, [className, isDisabled, isPressed, size, variant])
 
   const leftDescriptionClass = React.useMemo(() => {
-    let classes = `cdg-list-description ${styles.leftDescription}`
-    if (size == 'sm') {
-      classes += ` ${styles.leftDescriptionSizeSM}`
-    }
-    if (variant === 'interactive') {
-      classes += ` ${styles.lefttDescriptionVariantInteractive}`
-    }
-    if (size == 'sm' && isPressed) {
-      classes += ` ${styles.leftDescriptionSizeSMIsPressed}`
-    }
-    if (variant === 'interactive' && isDisabled) {
-      classes += ` ${styles.leftDescriptionVariantInteractiveIsDisabled}`
-    }
-    return classes
+    return [
+      styles.leftDescription,
+      size == 'sm' && styles.leftDescriptionSizeSM,
+      variant === 'interactive' && styles.lefttDescriptionVariantInteractive,
+      size == 'sm' && isPressed && styles.leftDescriptionSizeSMIsPressed,
+      variant === 'interactive' &&
+        isDisabled &&
+        styles.leftDescriptionVariantInteractiveIsDisabled,
+      'cdg-list-description',
+    ]
+      .filter(Boolean)
+      .join(' ')
   }, [isDisabled, isPressed, size, variant])
 
   const leftInfoClass = React.useMemo(() => {
-    let classes = `cdg-list-info ${styles.leftInfo}`
-    if (size == 'sm') {
-      classes += ` ${styles.leftInfoSizeSM}`
-    }
-    if (size == 'sm' && isPressed) {
-      classes += ` ${styles.leftInfoSizeSMIsPressed}`
-    }
-    return classes
+    return [
+      styles.leftInfo,
+      size == 'sm' && styles.leftInfoSizeSM,
+      size == 'sm' && isPressed && styles.leftInfoSizeSMIsPressed,
+      'cdg-list-info',
+    ]
+      .filter(Boolean)
+      .join(' ')
   }, [isPressed, size])
 
   const leftTitleClass = React.useMemo(() => {
-    let classes = `cdg-list-title ${styles.leftTitle}`
-    if (size == 'sm') {
-      classes += ` ${styles.leftTitleSizeSM}`
-    }
-    if (size == 'sm' && isPressed) {
-      classes += ` ${styles.leftTitleSizeSMIsPressed}`
-    }
-    return classes
+    return [
+      styles.leftTitle,
+      size == 'sm' && styles.leftTitleSizeSM,
+      size == 'sm' && isPressed && styles.leftTitleSizeSMIsPressed,
+      'cdg-list-title',
+    ]
+      .filter(Boolean)
+      .join(' ')
   }, [isPressed, size])
 
   const leftTextClass = React.useMemo(() => {
-    let classes = `cdg-list-left-text ${styles.leftText}`
-    if (size == 'sm') {
-      classes += ` ${styles.leftTextSizeSM}`
-    }
-    if (size == 'sm' && isPressed) {
-      classes += ` ${styles.leftTextSizeSMIsPressed}`
-    }
-    return classes
+    return [
+      styles.leftText,
+      size == 'sm' && styles.leftTextSizeSM,
+      size == 'sm' && isPressed && styles.leftTextSizeSMIsPressed,
+      'cdg-list-left-text',
+    ]
+      .filter(Boolean)
+      .join(' ')
   }, [isPressed, size])
 
   const rightTextClass = React.useMemo(() => {
-    let classes = `cdg-list-right-text ${styles.rightText}`
-    if (variant === 'interactive' && isDisabled) {
-      classes += ` ${styles.rightTextVariantInteractiveIsDisabled}`
-    }
-    return classes
+    return [
+      styles.rightText,
+      variant === 'interactive' &&
+        isDisabled &&
+        styles.rightTextVariantInteractiveIsDisabled,
+      'cdg-list-right-text',
+    ]
+      .filter(Boolean)
+      .join(' ')
   }, [isDisabled, variant])
 
   if (variant === 'h5') return <ListH5 {...props} />

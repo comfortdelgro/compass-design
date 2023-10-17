@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import React, {useState} from 'react'
+import React from 'react'
 import CssInjection from '../../utils/objectToCss/CssInjection'
 import styles from './index.module.css'
 
@@ -35,7 +35,6 @@ const ListH5 = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
     ...delegated
   } = props
 
-  const [isPressed, setPressed] = useState(false)
   const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (isDisabled) return
     if (props.onClick) {
@@ -43,46 +42,42 @@ const ListH5 = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
     }
   }
 
-  const onMouse = (value: boolean) => {
-    if (isDisabled) return
-    setPressed(value)
-  }
-
   const listClass = React.useMemo(() => {
-    let classes = `cdg-list ${styles.list}`
-    if (isDisabled) {
-      classes += ` ${styles.listIsDisabled}`
-    }
-    if (className) {
-      classes += ` ${className}`
-    }
-    return classes
-  }, [className, isDisabled, isPressed])
+    return [
+      styles.list,
+      isDisabled && styles.listIsDisabled,
+      'cdg-list',
+      className,
+    ]
+      .filter(Boolean)
+      .join(' ')
+  }, [className, isDisabled])
 
   const leftDescriptionClass = React.useMemo(() => {
-    let classes = `cdg-list-description ${styles.leftDescription}`
-    return classes
-  }, [isDisabled, isPressed])
+    return [
+      styles.leftDescription,
+      isDisabled && styles.leftDescriptionVariantInteractiveIsDisabled,
+      'cdg-list-description',
+    ]
+      .filter(Boolean)
+      .join(' ')
+  }, [])
 
   const leftInfoClass = React.useMemo(() => {
-    let classes = `cdg-list-info ${styles.leftInfo}`
-    return classes
-  }, [isPressed])
+    return [styles.leftInfo, 'cdg-list-info'].filter(Boolean).join(' ')
+  }, [])
 
   const leftTitleClass = React.useMemo(() => {
-    let classes = `cdg-list-title ${styles.leftTitle}`
-    return classes
-  }, [isPressed])
+    return [styles.leftTitle, 'cdg-list-title'].filter(Boolean).join(' ')
+  }, [])
 
   const leftTextClass = React.useMemo(() => {
-    let classes = `cdg-list-left-text ${styles.leftText}`
-    return classes
-  }, [isPressed])
+    return [styles.leftText, 'cdg-list-left-text'].filter(Boolean).join(' ')
+  }, [])
 
   const rightTextClass = React.useMemo(() => {
-    let classes = `cdg-list-right-text ${styles.rightText}`
-    return classes
-  }, [isDisabled])
+    return [styles.rightText, 'cdg-list-right-text'].filter(Boolean).join(' ')
+  }, [])
 
   return (
     <CssInjection css={css} childrenRef={ref}>
@@ -92,8 +87,6 @@ const ListH5 = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
         role='button'
         className={listClass}
         onClick={handleClick}
-        onMouseDown={() => onMouse(true)}
-        onMouseUp={() => onMouse(false)}
         {...delegated}
       >
         <div className={styles.left}>
@@ -116,7 +109,9 @@ const ListH5 = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
               <h2 className={rightTextClass}>{rightInfo?.text}</h2>
             )}
             {rightInfo?.description && (
-              <span className={`cdg-list-right-description ${styles.rightDescription}`}>
+              <span
+                className={`cdg-list-right-description ${styles.rightDescription}`}
+              >
                 {rightInfo?.description}
               </span>
             )}

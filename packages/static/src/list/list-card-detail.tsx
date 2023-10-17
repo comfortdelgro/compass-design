@@ -27,10 +27,14 @@ const ListCardDetail = React.forwardRef<HTMLDivElement, ListCardDetailProps>(
     } = props
 
     const rootClass = React.useMemo(() => {
-      let classes = `cdg-list-card-detail ${styles.cardDetail}`
-      if (isDisabled) classes += ` ${styles.isDisabled}`
-      if (className) classes += ` ${className}`
-      return classes
+      return [
+        styles.cardDetail,
+        isDisabled && styles.isDisabled,
+        'cdg-list-card-detail',
+        className,
+      ]
+        .filter(Boolean)
+        .join(' ')
     }, [className, isDisabled])
 
     return (

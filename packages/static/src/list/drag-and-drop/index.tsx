@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import React from 'react'
 import CssInjection from '../../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../../utils/use-dom-ref'
@@ -17,7 +18,7 @@ export type DragAndDropListProps = Props &
 
 const DragAndDropList = React.forwardRef<HTMLDivElement, DragAndDropListProps>(
   (props, ref) => {
-    const {css = {}, children, onReorderByKeys, ...htmlProps} = props
+    const {css = {}, className, children, onReorderByKeys, ...htmlProps} = props
     const dndRef = useDOMRef<HTMLDivElement>(ref)
 
     const collection = React.useMemo(
@@ -32,7 +33,11 @@ const DragAndDropList = React.forwardRef<HTMLDivElement, DragAndDropListProps>(
 
     return (
       <CssInjection css={css} childrenRef={ref}>
-        <div ref={dndRef} className={styles.dnd} {...htmlProps}>
+        <div
+          ref={dndRef}
+          className={`${styles.dnd} cdg-list-dnd ${className}`}
+          {...htmlProps}
+        >
           <List
             values={items}
             collection={collection}

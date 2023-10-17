@@ -23,11 +23,15 @@ const ListImage = React.forwardRef<HTMLImageElement, ListImageProps>(
     } = props
 
     const rootClass = React.useMemo(() => {
-      let classes = `cdg-list-image ${styles.image}`
-      if (isRounded) classes += ` ${styles.isRounded}`
-      if (variant === 'h5') classes += ` ${styles.variantH5}`
-      if (className) classes += ` ${className}`
-      return classes
+      return [
+        styles.image,
+        isRounded && styles.isRounded,
+        variant === 'h5' && styles.variantH5,
+        'cdg-list-image',
+        className,
+      ]
+        .filter(Boolean)
+        .join(' ')
     }, [className, isRounded, variant])
 
     return (

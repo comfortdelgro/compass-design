@@ -30,12 +30,15 @@ const InteractiveList = React.forwardRef<HTMLDivElement, InteractiveListProps>(
     } = props
 
     const rootClass = React.useMemo(() => {
-      let classes = `cdg-list-interactive ${styles.interactive}`
-      if (variant === 'dropdown')
-        classes += ` ${styles.interactiveVariantDropdown}`
-      if (className) classes += ` ${className}`
-      return classes
-    }, [className])
+      return [
+        styles.interactive,
+        variant === 'dropdown' && styles.interactiveVariantDropdown,
+        'cdg-list-interactive',
+        className,
+      ]
+        .filter(Boolean)
+        .join(' ')
+    }, [className, variant])
 
     if (variant === 'dropdown') {
       return (
