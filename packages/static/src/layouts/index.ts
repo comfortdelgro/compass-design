@@ -5,3 +5,5 @@ export type {
   ActionBarProps,
   ActionBarRightGroupProps,
 } from './action-bar'
+export {default as Layout} from './layout'
+export type {LayoutProps} from './layout'
