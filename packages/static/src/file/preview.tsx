@@ -36,12 +36,13 @@ const FilePreview = React.forwardRef<HTMLDivElement, FilePreviewProps>(
     return (
       <CssInjection css={css} childrenRef={previewRef}>
         <div ref={previewRef} className={previewClasses} {...htmlProps}>
-          <div className={`cdg-file-preview-image ${styles.imagePreview}`}>
+          <div className={`cdg-file-preview-image-wrapper ${styles.imagePreviewWrapper}`}>
             {imageSrc && !failed ? (
               <img
-                src={imageSrc}
                 alt='preview'
+                src={imageSrc}
                 onError={() => setFailed(true)}
+                className={`cdg-file-preview-image ${styles.previewImage}`}
               />
             ) : imageSrc && failed ? (
               <Fallback />
