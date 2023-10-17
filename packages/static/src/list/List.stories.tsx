@@ -6,8 +6,8 @@ import Avatar from '../avatar'
 import AvatarGroup from '../avatar/avatar-group'
 import List, {DragAndDropList, InteractiveList} from './index'
 import ListCard from './list-card'
-import ListImage from './list-image'
 import ListCardDetail from './list-card-detail'
+import ListImage from './list-image'
 
 const imgSrc =
   'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
@@ -250,6 +250,74 @@ export const InteractiveLists: React.FC = () => {
         avatar={<Avatar image={imgSrc} />}
         title='Profile Name'
         description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+      />
+    </div>
+  )
+}
+
+export const H5: React.FC = () => {
+  return (
+    <div style={{width: 500}}>
+      <List
+        title='ComfortRIDE'
+        description='Car or Taxi, Flat Fare'
+        descriptionIcon={
+          <FontAwesomeIcon
+            style={{width: 14, height: 14, color: '#0142AF'}}
+            icon={faFaceSmile}
+          />
+        }
+        variant='h5'
+        leftInfo={
+          <ListImage variant='h5' isRounded src={imgSrc} alt='singapore' />
+        }
+        rightInfo={{
+          text: '$9.90',
+          description: 'Fees may apply',
+          icon: <FontAwesomeIcon icon={faChevronRight} />,
+        }}
+      />
+      <List
+        title='ComfortRIDE'
+        description='Car or Taxi, Flat Fare'
+        variant='h5'
+        leftInfo={
+          <ListImage variant='h5' isRounded src={imgSrc} alt='singapore' />
+        }
+        rightInfo={{text: '$9.90', description: 'Fees may apply'}}
+      />
+      <List
+        title='ComfortRIDE'
+        description='Car or Taxi, Flat Fare'
+        variant='h5'
+        leftInfo={
+          <ListImage variant='h5' isRounded src={imgSrc} alt='singapore' />
+        }
+        rightInfo={{text: '$9.90', description: 'Fees may apply'}}
+        descriptionIcon={
+          <FontAwesomeIcon
+            style={{width: 14, height: 14, color: '#0142AF'}}
+            icon={faFaceSmile}
+          />
+        }
+      />
+      <List
+        title='ComfortRIDE'
+        description='Car or Taxi, Flat Fare'
+        variant='h5'
+        leftInfo={
+          <ListImage variant='h5' isRounded src={imgSrc} alt='singapore' />
+        }
+        rightInfo={{text: '$9.90', description: 'Fees may apply'}}
+      />
+      <List
+        title='ComfortRIDE'
+        description='Car or Taxi, Flat Fare'
+        variant='h5'
+        leftInfo={
+          <ListImage variant='h5' isRounded src={imgSrc} alt='singapore' />
+        }
+        rightInfo={{text: '$9.90', description: 'Fees may apply'}}
       />
     </div>
   )

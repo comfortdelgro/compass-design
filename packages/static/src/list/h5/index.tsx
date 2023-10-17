@@ -1,14 +1,11 @@
 /* eslint-disable react-refresh/only-export-components */
 import React, {useState} from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
-import ListH5 from './h5'
-import ListImage from './list-image'
-import styles from './styles/list.module.css'
+import CssInjection from '../../utils/objectToCss/CssInjection'
+import styles from './index.module.css'
+
 interface Props {
   css?: unknown
-  variant?: 'item' | 'interactive' | 'h5'
   isDisabled?: boolean
-  size?: 'sm' | 'md'
   leftInfo?: React.ReactNode
   title?: string
   description?: string
@@ -24,16 +21,14 @@ interface Props {
 export type ListProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
-const List = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
+const ListH5 = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
   const {
     leftInfo,
     title,
     description,
     rightInfo,
     rightContent,
-    variant = 'interactive',
     isDisabled = false,
-    size = 'md',
     css = {},
     className = '',
     descriptionIcon,
@@ -58,92 +53,36 @@ const List = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
     if (isDisabled) {
       classes += ` ${styles.listIsDisabled}`
     }
-    if (size == 'sm') {
-      classes += ` ${styles.listSizeSM}`
-    }
-    if (variant === 'interactive' && !isPressed && !isDisabled) {
-      classes += ` ${styles.listVariantInteractive}`
-    }
-    if (variant === 'item' && !isPressed && !isDisabled) {
-      classes += ` ${styles.listVariantItem}`
-    }
-    if (variant === 'interactive' && isPressed && !isDisabled) {
-      classes += ` ${styles.listVariantInteractiveIsPressed}`
-    }
-    if (variant === 'item' && isPressed && !isDisabled) {
-      classes += ` ${styles.listVariantItemIsPressed}`
-    }
-    if (variant === 'interactive' && isDisabled) {
-      classes += ` ${styles.listVariantInteractiveIsDisabled}`
-    }
-    if (variant === 'item' && isDisabled) {
-      classes += ` ${styles.listVariantItemIsDisabled}`
-    }
     if (className) {
       classes += ` ${className}`
     }
     return classes
-  }, [className, isDisabled, isPressed, size, variant])
+  }, [className, isDisabled, isPressed])
 
   const leftDescriptionClass = React.useMemo(() => {
     let classes = `cdg-list-description ${styles.leftDescription}`
-    if (size == 'sm') {
-      classes += ` ${styles.leftDescriptionSizeSM}`
-    }
-    if (variant === 'interactive') {
-      classes += ` ${styles.lefttDescriptionVariantInteractive}`
-    }
-    if (size == 'sm' && isPressed) {
-      classes += ` ${styles.leftDescriptionSizeSMIsPressed}`
-    }
-    if (variant === 'interactive' && isDisabled) {
-      classes += ` ${styles.leftDescriptionVariantInteractiveIsDisabled}`
-    }
     return classes
-  }, [isDisabled, isPressed, size, variant])
+  }, [isDisabled, isPressed])
 
   const leftInfoClass = React.useMemo(() => {
     let classes = `cdg-list-info ${styles.leftInfo}`
-    if (size == 'sm') {
-      classes += ` ${styles.leftInfoSizeSM}`
-    }
-    if (size == 'sm' && isPressed) {
-      classes += ` ${styles.leftInfoSizeSMIsPressed}`
-    }
     return classes
-  }, [isPressed, size])
+  }, [isPressed])
 
   const leftTitleClass = React.useMemo(() => {
     let classes = `cdg-list-title ${styles.leftTitle}`
-    if (size == 'sm') {
-      classes += ` ${styles.leftTitleSizeSM}`
-    }
-    if (size == 'sm' && isPressed) {
-      classes += ` ${styles.leftTitleSizeSMIsPressed}`
-    }
     return classes
-  }, [isPressed, size])
+  }, [isPressed])
 
   const leftTextClass = React.useMemo(() => {
     let classes = `cdg-list-left-text ${styles.leftText}`
-    if (size == 'sm') {
-      classes += ` ${styles.leftTextSizeSM}`
-    }
-    if (size == 'sm' && isPressed) {
-      classes += ` ${styles.leftTextSizeSMIsPressed}`
-    }
     return classes
-  }, [isPressed, size])
+  }, [isPressed])
 
   const rightTextClass = React.useMemo(() => {
     let classes = `cdg-list-right-text ${styles.rightText}`
-    if (variant === 'interactive' && isDisabled) {
-      classes += ` ${styles.rightTextVariantInteractiveIsDisabled}`
-    }
     return classes
-  }, [isDisabled, variant])
-
-  if (variant === 'h5') return <ListH5 {...props} />
+  }, [isDisabled])
 
   return (
     <CssInjection css={css} childrenRef={ref}>
@@ -172,16 +111,23 @@ const List = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
           )}
         </div>
         {rightInfo && !rightContent && (
-          <div className={styles.right}>
-            {rightInfo.text && (
-              <span className={rightTextClass}>{rightInfo?.text}</span>
+          <div className={`cdg-list-right ${styles.right}`}>
+            {rightInfo?.text && (
+              <h2 className={rightTextClass}>{rightInfo?.text}</h2>
             )}
-            {rightInfo?.icon}
+            {rightInfo?.description && (
+              <span className={`cdg-list-right-description ${styles.rightDescription}`}>
+                {rightInfo?.description}
+              </span>
+            )}
           </div>
+        )}
+        {rightContent && !rightInfo && (
+          <div className={`cdg-list-right ${styles.right}`}>{rightContent}</div>
         )}
       </div>
     </CssInjection>
   )
 })
 
-export default List as typeof List & {Image: typeof ListImage}
+export default ListH5
