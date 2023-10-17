@@ -51,7 +51,11 @@ export const Variations: React.FC = () => (
     <h4>Custom style</h4>
     <div style={{...Style}}>
       <Button
-        css={{width: '50%', backgroundColor: 'red'}}
+        css={{
+          width: 250,
+          backgroundColor: 'red',
+          '.cdg-button-content-children': {color: 'purple'},
+        }}
         onClick={(e) => console.log('click', e)}
       >
         Custom width and background color
@@ -140,7 +144,6 @@ export const Variations: React.FC = () => (
         variant='primary'
         leftIcon={<Icon icon={faChevronDown} />}
         rightIcon={<Icon icon={faMapMarkerAlt} />}
-        css={{width: '350px'}}
       >
         Primary
       </Button>

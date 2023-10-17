@@ -4,19 +4,31 @@ export interface StyleObject {
 }
 function handleVariables<T>(
   obj: Record<string, unknown>,
-  targetKey: string,
+  value: string | number,
 ): T | undefined {
-  const targetKeyWithoutPrefix = targetKey.startsWith('$')
-    ? targetKey.slice(1)
-    : targetKey
+  const valueWithout$prefix = (value: string | number) => {
+    // This is to handle the case where the value is a string
+    if (typeof value === 'string') {
+      return value.toString().startsWith('$')
+        ? value.toString().slice(1)
+        : value.toString()
+    }
+    // This is to handle the case where the value is a number
+    if (typeof value === 'number') {
+      return value.toString() + 'px'
+    }
+    return value
+  }
+
+  // Recursively terate over the theme object to see if the css value is one of its keys. If yes, return the value. If not, return the original value
   for (const key in obj) {
     if (key in obj) {
-      if (key === targetKeyWithoutPrefix) {
+      if (key === valueWithout$prefix(value)) {
         return obj[key] as T
       } else if (typeof obj[key] === 'object' && obj[key] !== null) {
         const foundValue = handleVariables<T>(
           obj[key] as Record<string, unknown>,
-          targetKeyWithoutPrefix,
+          valueWithout$prefix(value),
         )
         if (foundValue !== undefined) {
           return foundValue
@@ -25,23 +37,24 @@ function handleVariables<T>(
     }
   }
 
-  return targetKey as unknown as T
+  return value as unknown as T
 }
 
 function objectToCSS(obj: StyleObject, selector = '', indent = ''): string {
   let css = ''
   // eslint-disable-next-line prefer-const
   let map = new Map<string, string>()
+  const space = ' ' // space between parent class and child class
 
   for (const key in obj) {
     if (typeof obj[key] === 'object') {
-      const newSelector = `${selector}${key.replace(/&/g, '')}`.trim()
+      const newSelector = `${selector}${space}${key.replace(/&/g, '')}`.trim()
       css += objectToCSS(obj[key] as StyleObject, newSelector, indent)
     } else {
       // Convert the key from camelCase to kebab-case
       const kebabKey = key.replace(/([A-Z])/g, '-$1').toLowerCase()
       // Get the value from the theme
-      const value = handleVariables<string>(theme, obj[key] as string)
+      const value = handleVariables<string>(theme, obj[key] as string | number)
       // Check if the selector already exists in the map
       if (map.has(selector)) {
         // Append the property to the existing value
