@@ -18,18 +18,24 @@ const FilePreview = React.forwardRef<HTMLDivElement, FilePreviewProps>(
     const previewRef = useDOMRef<HTMLDivElement>(ref)
     const [failed, setFailed] = React.useState(false)
 
-    const previewClass = React.useMemo(() => {
-      let classes = `cdg-file-preview ${styles.preview}`
-      if (!!imageSrc && !failed)
-        classes += ` ${styles.previewVariantImageLoadedTrue}`
-      else classes += ` ${styles.previewVariantImageLoadedFalse}`
-      if (className) classes += ` ${className}`
-      return classes
-    }, [className, failed, imageSrc])
+    const previewClasses = React.useMemo(
+      () =>
+        [
+          styles.preview,
+          !!imageSrc && !failed
+            ? styles.previewVariantImageLoadedTrue
+            : styles.previewVariantImageLoadedFalse,
+          'cdg-file-preview',
+          className,
+        ]
+          .filter(Boolean)
+          .join(' '),
+      [className, failed, imageSrc],
+    )
 
     return (
       <CssInjection css={css} childrenRef={previewRef}>
-        <div ref={previewRef} className={previewClass} {...htmlProps}>
+        <div ref={previewRef} className={previewClasses} {...htmlProps}>
           <div className={`cdg-file-preview-image ${styles.imagePreview}`}>
             {imageSrc && !failed ? (
               <img

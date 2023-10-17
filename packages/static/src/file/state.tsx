@@ -29,15 +29,21 @@ const FileState = React.forwardRef<HTMLDivElement, FileStateProps>(
     } = props
     const stateRef = useDOMRef<HTMLDivElement>(ref)
 
-    const stateClass = React.useMemo(() => {
-      let classes = `cdg-file-state ${styles.state}`
-      if (className) classes += ` ${className}`
-      return classes
-    }, [className])
+    const stateClasses = React.useMemo(
+      () =>
+        [
+          styles.state,
+          'cdg-file-state',
+          className,
+        ]
+          .filter(Boolean)
+          .join(' '),
+      [className],
+    )
 
     return (
       <CssInjection css={css} childrenRef={stateRef}>
-        <div ref={stateRef} className={stateClass}>
+        <div ref={stateRef} className={stateClasses}>
           <div className={`cdg-file-state-name ${styles.name}`}>
             {imageIcon && (
               <div

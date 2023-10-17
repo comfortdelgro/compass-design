@@ -110,7 +110,7 @@ export const Preview: React.FC = () => (
 )
 
 const meta = {
-  title: 'Example/File Server',
+  title: 'Example/File',
   component: State,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],
