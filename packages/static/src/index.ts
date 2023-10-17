@@ -32,6 +32,8 @@ export type {
   DropdownProps,
   DropdownSelectProps,
 } from './dropdown'
+export {default as Gutter} from './gutter'
+export type {GutterProps} from './gutter'
 export {default as Icon} from './icon'
 export type {IconProp} from './icon'
 export {default as ImageViewer} from './image-viewer'
