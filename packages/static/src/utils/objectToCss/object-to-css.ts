@@ -58,7 +58,6 @@ function objectToCSS(obj: StyleObject, selector = '', indent = ''): string {
   for (const [selector, value] of map) {
     css += `${indent}${selector} {\n${indent}  ${value};\n${indent}}\n`
   }
-  console.log(css)
   return css
 }
 

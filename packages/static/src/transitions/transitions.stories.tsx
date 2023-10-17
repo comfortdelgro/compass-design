@@ -1,13 +1,37 @@
 import type {Meta} from '@storybook/react'
 import React from 'react'
-import Box from '../../../react-compass/src/box'
 import Toggle from '../../../react-compass/src/toggle'
 import Transitions from './index'
 
 export const Variants: React.FC = () => {
-  const [show, setShow] = React.useState(false)
+  const [showCollapse, setShowCollapse] = React.useState(false)
+  const [showFade, setShowFade] = React.useState(false)
+  const [showZoom, setShowZoom] = React.useState(false)
+  const [showSlide, setShowSlide] = React.useState(false)
 
-  const Style = {
+  const TitleStyle: React.CSSProperties = {
+    width: '100%',
+    textAlign: 'center',
+  }
+
+  const RowStyle: React.CSSProperties = {
+    marginBottom: '5px',
+    marginTop: '5px',
+    height: '250px',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: '1rem',
+  }
+
+  const TransitionBoxContainerStyle: React.CSSProperties = {
+    width: '170px',
+    height: '170px',
+  }
+
+  const TransitionBoxStyle: React.CSSProperties = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -22,163 +46,178 @@ export const Variants: React.FC = () => {
 
   return (
     <div>
-      <Box
-        css={{
-          width: '7rem',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          position: 'fixed',
-        }}
-      >
-        <span style={{fontSize: '13px'}}>Click here:</span>
-        <Toggle size='sm' onChange={(status) => setShow(status)} />
-      </Box>
-
-      <Box
-        css={{
-          display: 'flex',
-          justifyContent: 'space-around',
-          '& h3': {
-            width: '100%',
-            textAlign: 'center',
-          },
-        }}
-      >
-        <Box css={{padding: '5px'}}>
-          <h3>Collapse</h3>
-          <Box
-            css={{
-              marginBottom: '5px',
-              marginTop: '5px',
-              height: '250px',
-              minHeight: '180px',
-              minWidth: '180px',
+      {/* Collapse */}
+      <div>
+        <div
+          style={{
+            width: '7rem',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginTop: '1rem',
+            marginLeft: '1rem',
+          }}
+        >
+          <span style={{fontSize: '13px'}}>Click here:</span>
+          <Toggle size='sm' onChange={(status) => setShowCollapse(status)} />
+        </div>
+        <div style={{padding: '5px'}}>
+          <h3 style={{...TitleStyle}}>Collapse</h3>
+          <div
+            style={{
+              ...RowStyle,
             }}
           >
-            <Transitions effect='collapse' show={show}>
-              <Box css={{...Style}}>Basic</Box>
-            </Transitions>
-          </Box>
-          {/* <Box css={{marginBottom: '5px', minHeight: '180px', width: '180px'}}>
-            <Transitions effect='collapse' show={show} speed={2}>
-              <Box css={{...Style}}>Custom Speed: 2s</Box>
-            </Transitions>
-          </Box>
-          <Box css={{marginBottom: '5px', minHeight: '180px', width: '180px'}}>
-            <Transitions effect='collapse' show={show} collapsedSize='100px'>
-              <Box
-                css={{
-                  ...Style,
-                  textAlign: 'center',
-                  alignItems: 'start',
-                  padding: '3px',
-                }}
+            <div style={{...TransitionBoxContainerStyle}}>
+              <Transitions effect='collapse' show={showCollapse}>
+                <div style={{...TransitionBoxStyle}}>Basic</div>
+              </Transitions>
+            </div>
+            <div style={{...TransitionBoxContainerStyle}}>
+              <Transitions effect='collapse' show={showCollapse} speed={2}>
+                <div style={{...TransitionBoxStyle}}>Custom Speed: 2s</div>
+              </Transitions>
+            </div>
+            <div style={{...TransitionBoxContainerStyle}}>
+              <Transitions
+                effect='collapse'
+                show={showCollapse}
+                collapsedSize='120px'
               >
-                Custom Collapsed Size: 100px
-              </Box>
-            </Transitions>
-          </Box>
-          <Box css={{marginBottom: '5px', minHeight: '180px', width: '180px'}}>
-            <Transitions effect='collapse' show={show} orientation='horizontal'>
-              <Box css={{...Style}}>Horizontal</Box>
-            </Transitions>
-          </Box> */}
-        </Box>
-        {/* <Box css={{padding: '5px'}}>
-          <h3>Fade</h3>
-          <Box
-            css={{
-              marginBottom: '5px',
-              marginTop: '5px',
-              minHeight: '180px',
-              minWidth: '180px',
+                <div style={{...TransitionBoxStyle}}>
+                  Custom Collapsed Size: 100px
+                </div>
+              </Transitions>
+            </div>
+            <div style={{...TransitionBoxContainerStyle}}>
+              <Transitions
+                effect='collapse'
+                show={showCollapse}
+                orientation='horizontal'
+              >
+                <div style={{...TransitionBoxStyle}}>Horizonal</div>
+              </Transitions>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* End of Collapse */}
+
+      {/* Fade */}
+      <div>
+        <div
+          style={{
+            width: '7rem',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginTop: '1rem',
+            marginLeft: '1rem',
+          }}
+        >
+          <span style={{fontSize: '13px'}}>Click here:</span>
+          <Toggle size='sm' onChange={(status) => setShowFade(status)} />
+        </div>
+        <div style={{padding: '5px'}}>
+          <h3 style={{...TitleStyle}}>Fade</h3>
+          <div
+            style={{
+              ...RowStyle,
             }}
           >
-            <Transitions effect='fade' show={show}>
-              <Box css={{...Style}}>Basic</Box>
-            </Transitions>
-          </Box>
-          <Box
-            css={{
-              marginBottom: '5px',
-              marginTop: '5px',
-              minHeight: '180px',
-              minWidth: '180px',
+            <div style={{...TransitionBoxContainerStyle}}>
+              <Transitions effect='fade' show={showFade}>
+                <div style={{...TransitionBoxStyle}}>Basic</div>
+              </Transitions>
+            </div>
+            <div style={{...TransitionBoxContainerStyle}}>
+              <Transitions effect='fade' show={showFade} speed={2}>
+                <div style={{...TransitionBoxStyle}}>Custom Speed: 2s</div>
+              </Transitions>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* End of Fade */}
+
+      {/* Zoom */}
+      <div>
+        <div
+          style={{
+            width: '7rem',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginTop: '1rem',
+            marginLeft: '1rem',
+          }}
+        >
+          <span style={{fontSize: '13px'}}>Click here:</span>
+          <Toggle size='sm' onChange={(status) => setShowZoom(status)} />
+        </div>
+        <div style={{padding: '5px'}}>
+          <h3 style={{...TitleStyle}}>Zoom</h3>
+          <div
+            style={{
+              ...RowStyle,
             }}
           >
-            <Transitions effect='fade' show={show} speed={2}>
-              <Box css={{...Style}}>Custom Speed: 2s</Box>
-            </Transitions>
-          </Box>
-        </Box>
-        <Box css={{padding: '5px'}}>
-          <h3>Zoom</h3>
-          <Box
-            css={{
-              marginBottom: '5px',
-              marginTop: '5px',
-              minHeight: '180px',
-              minWidth: '180px',
+            <div style={{...TransitionBoxContainerStyle}}>
+              <Transitions effect='zoom' show={showZoom}>
+                <div style={{...TransitionBoxStyle}}>Basic</div>
+              </Transitions>
+            </div>
+            <div style={{...TransitionBoxContainerStyle}}>
+              <Transitions effect='zoom' show={showZoom} speed={2}>
+                <div style={{...TransitionBoxStyle}}>Custom speed: 2s</div>
+              </Transitions>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* End of Zoom */}
+
+      {/* Slide */}
+      <div>
+        <div
+          style={{
+            width: '7rem',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginTop: '1rem',
+            marginLeft: '1rem',
+          }}
+        >
+          <span style={{fontSize: '13px'}}>Click here:</span>
+          <Toggle size='sm' onChange={(status) => setShowSlide(status)} />
+        </div>
+        <div style={{padding: '5px'}}>
+          <h3 style={{...TitleStyle}}>Slide</h3>
+          <div
+            style={{
+              ...RowStyle,
             }}
           >
-            <Transitions effect='zoom' show={show}>
-              <Box css={{...Style}}>Basic</Box>
-            </Transitions>
-          </Box>
-          <Box
-            css={{
-              marginBottom: '5px',
-              marginTop: '5px',
-              minHeight: '180px',
-              minWidth: '180px',
-            }}
-          >
-            <Transitions effect='zoom' show={show} speed={2}>
-              <Box css={{...Style}}>Custom Speed: 2s</Box>
-            </Transitions>
-          </Box>
-        </Box>
-        <Box css={{padding: '5px'}}>
-          <h3>Slide</h3>
-          <Box
-            css={{
-              marginBottom: '5px',
-              marginTop: '5px',
-              minHeight: '180px',
-              minWidth: '180px',
-            }}
-          >
-            <Transitions effect='slide' show={show}>
-              <Box css={{...Style}}>Basic</Box>
-            </Transitions>
-          </Box>
-          <Box
-            css={{
-              marginBottom: '5px',
-              marginTop: '5px',
-              minHeight: '180px',
-              minWidth: '180px',
-            }}
-          >
-            <Transitions effect='slide' show={show} speed={2}>
-              <Box css={{...Style}}>Custom Speed: 2s</Box>
-            </Transitions>
-          </Box>
-          <Box
-            css={{
-              marginBottom: '5px',
-              marginTop: '5px',
-              minHeight: '180px',
-              minWidth: '180px',
-            }}
-          >
-            <Transitions effect='slide' show={show} slideDirection='top'>
-              <Box css={{...Style}}>Custom Direction: top</Box>
-            </Transitions>
-          </Box>
-        </Box> */}
-      </Box>
+            <div style={{...TransitionBoxContainerStyle}}>
+              <Transitions effect='slide' show={showSlide}>
+                <div style={{...TransitionBoxStyle}}>Basic</div>
+              </Transitions>
+            </div>
+            <div style={{...TransitionBoxContainerStyle}}>
+              <Transitions effect='slide' show={showSlide} speed={2}>
+                <div style={{...TransitionBoxStyle}}>Custom speed: 2s</div>
+              </Transitions>
+            </div>
+            <div style={{...TransitionBoxContainerStyle}}>
+              <Transitions effect='slide' show={showSlide} slideDirection='top'>
+                <div style={{...TransitionBoxStyle}}>Custom Direction: top</div>
+              </Transitions>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* End of Slide */}
     </div>
   )
 }
