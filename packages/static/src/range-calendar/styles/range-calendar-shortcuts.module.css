@@ -43,12 +43,12 @@
   cursor: not-allowed;
 }
 
-.rangeCalendarShortcutsItem.active {
+.active {
   background-color: var(--cdg-color-cdgBlue10);
   border-radius: 6px;
 }
 
-.rangeCalendarShortcutsItem.active:focus-visible {
+.active:focus-visible {
   background-color: var(--cdg-color-cdgBlue10);
   box-shadow: 0px 0px 0px 4px #F2F4F7;
 }
