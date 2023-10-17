@@ -22,6 +22,11 @@
 .listIsDisabled {
   cursor: not-allowed;
   user-select: none;
+  background-color: var(--cdg-color-grayShades20);
+}
+
+.listIsDisabled:hover {
+  background-color: var(--cdg-color-grayShades20);
 }
 
 .listIsDisabled:focus-visible {
