@@ -39,8 +39,11 @@ export const Customized = () => {
       backgroundColor: 'var(--cdg-color-gray20)',
       border: '1px solid var(--cdg-color-gray50)',
       '& .disabled': {
-        color: 'var(--cdg-color-gray60) !important',
-        backgroundColor: 'var(--cdg-color-gray40) !important',
+        color: 'var(--cdg-color-gray60)',
+        backgroundColor: 'var(--cdg-color-gray40)',
+      },
+      '& .disabled:hover': {
+        color: 'var(--cdg-color-gray60)',
       }
     }} />
   </div>
