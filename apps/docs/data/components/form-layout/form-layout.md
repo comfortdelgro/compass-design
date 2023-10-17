@@ -1,8 +1,6 @@
 ---
-
 title: React Form Layout component
 components: FormLayout
-
 ---
 
 # Form Layout

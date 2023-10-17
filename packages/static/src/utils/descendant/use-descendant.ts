@@ -152,4 +152,3 @@ export function createDescendantContext<
     _useDescendant,
   ] as const
 }
-

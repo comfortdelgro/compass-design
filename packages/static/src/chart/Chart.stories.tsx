@@ -43,12 +43,7 @@ export const Columns: React.FC = () => (
     <h3>Basic usage</h3>
     <Chart.Column labels={labels} data={data} title=' Chart' />
     <h3>With unit</h3>
-    <Chart.Column
-      labels={labels}
-      data={data}
-      title=' Chart'
-      unit='unit'
-    />
+    <Chart.Column labels={labels} data={data} title=' Chart' unit='unit' />
     <h3>Positioned legends</h3>
     <Chart.Column
       labels={labels}

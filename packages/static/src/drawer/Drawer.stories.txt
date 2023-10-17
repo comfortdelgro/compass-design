@@ -3,16 +3,11 @@ import {
   faArrowRight,
   faClose,
 } from '@fortawesome/free-solid-svg-icons'
+import {faChevronRight} from '@fortawesome/free-solid-svg-icons/faChevronRight'
+import {Meta} from '@storybook/react'
 import {FormEventHandler, useState} from 'react'
 import Button from '../button'
 import Icon from '../icon'
-// import Link from '../link'
-// import List from '../list'
-// import ListImage from '../list/list-image'
-// import Modal from '../modal'
-// import TextField from '../textfield'
-// import Typography from '../typography'
-import {Meta} from '@storybook/react'
 import Drawer, {DrawerH5Props, DrawerProps} from './index'
 import storiesStyles from './styles/drawer-stories.module.css'
 
@@ -45,7 +40,7 @@ export function Default() {
   const listenOnCloseDrawer = () => {
     setOpenDrawer(false)
 
-    // Do other stuff when drawer close
+    //Do other stuff when drawer close
   }
 
   const handleChangePosition = (position: DrawerProps['position']) => {
@@ -55,10 +50,10 @@ export function Default() {
 
   return (
     <div className={storiesStyles.drawerStories}>
-      {/* <Typography.Header variant='header4'>1. Drawer</Typography.Header>
+      <Typography.Header variant='header4'>1. Drawer</Typography.Header>
       <Typography.Body variant='body2'>
         Drawer form value: {keyword}
-      </Typography.Body> */}
+      </Typography.Body>
       <h4>1. Drawer</h4>
       <p>Drawer form value: {keyword}</p>
 
@@ -92,12 +87,12 @@ export function Default() {
         <form id='form-in-drawer' method='dialog' onSubmit={handleFormSubmit}>
           <h3>Drawer Form</h3>
 
-          {/* <TextField
+          <TextField
             label='Keyword'
             name='keyword'
             id='keyword'
             placeholder='Enter anything'
-          /> */}
+          />
           <label htmlFor='keyword'>Keyword</label>
           <input
             type='search'
@@ -163,7 +158,7 @@ export function Default() {
         </section>
 
         <Drawer.Footer css={{display: 'flex', gap: '$2'}}>
-          {/* <Button
+          <Button
             variant='secondary'
             form='form-in-drawer'
             type='reset'
@@ -174,11 +169,11 @@ export function Default() {
 
           <Button form='form-in-drawer' type='submit'>
             Submit
-          </Button> */}
+          </Button>
         </Drawer.Footer>
       </Drawer>
 
-      {/* <Typography.Header variant='header4'>2. Position</Typography.Header> */}
+      <Typography.Header variant='header4'>2. Position</Typography.Header>
       <h4>2. Position</h4>
       <div className={storiesStyles.container}>
         <Button
@@ -222,7 +217,7 @@ export function Default() {
         </Button>
       </Drawer>
 
-      {/* <Typography.Header variant='header4'>3. Non-modal mode</Typography.Header> 
+      <Typography.Header variant='header4'>3. Non-modal mode</Typography.Header>
       <Typography.Body
         variant='body3'
         css={{color: '$grayShades60', marginBlock: '$2 $4'}}
@@ -233,7 +228,7 @@ export function Default() {
         <br />
         The content below the non-modal drawer can be interacted.
       </Typography.Body>
-      */}
+
       <h4>3. Non-modal mode</h4>
       <Button
         type='button'
@@ -248,7 +243,7 @@ export function Default() {
         drawerMode='non-modal'
         position={drawerPosition}
       >
-        {/* <Drawer.Header>
+        <Drawer.Header>
           <Typography.Header variant='header3'>
             Non-modal Drawer
           </Typography.Header>
@@ -256,13 +251,13 @@ export function Default() {
 
         <Typography.Body variant='body2'>
           <Link
-            href='https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog#accessibility_considerations'
+            href='https:developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog#accessibility_considerations'
             target='_blank'
           >
             Read more
-          </Link>{' '}
+          </Link>
           about non-modal mode and accessibility considerations.
-        </Typography.Body> */}
+        </Typography.Body>
 
         <div className={storiesStyles.container}>
           <Button
@@ -302,8 +297,8 @@ export function Default() {
   )
 }
 
-// const imgSrc =
-//   'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+const imgSrc =
+  'https:images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
 
 const h5DrawerDefaultConfig: Partial<DrawerH5Props> = {
   disableResize: false,
@@ -313,16 +308,16 @@ const h5DrawerDefaultConfig: Partial<DrawerH5Props> = {
 }
 
 export function H5() {
-  // const [openDrawer, setOpenDrawer] = useState(false)
+  const [openDrawer, setOpenDrawer] = useState(false)
   const [openDemoDrawer, setOpenDemoDrawer] = useState(false)
   const [openNonModalDrawer, setOpenNonModalDrawer] = useState(false)
-  // const [openDemoTripDrawer, setOpenDemoTripDrawer] = useState(false)
-  // const [openConfirmModal, setOpenConfirmModal] = useState(false)
+  const [openDemoTripDrawer, setOpenDemoTripDrawer] = useState(false)
+  const [openConfirmModal, setOpenConfirmModal] = useState(false)
 
-  // const [openNoFocusDrawer, setOpenNoFocusDrawer] = useState({
-  //   open: false,
-  //   preventFocus: false,
-  // })
+  const [openNoFocusDrawer, setOpenNoFocusDrawer] = useState({
+    open: false,
+    preventFocus: false,
+  })
 
   const [drawerConfig, setDrawerConfig] = useState<Partial<DrawerH5Props>>(
     h5DrawerDefaultConfig,
@@ -331,9 +326,9 @@ export function H5() {
   return (
     <div className={storiesStyles.drawerStories}>
       <h4>H5 Drawer</h4>
-      {/* <Button type='button' onClick={() => setOpenDrawer(true)}>
+      <Button type='button' onClick={() => setOpenDrawer(true)}>
         Open Drawer
-      </Button> */}
+      </Button>
 
       <h4>Drawer Customize</h4>
       <Button type='button' onClick={() => setOpenDemoDrawer(true)}>
@@ -341,7 +336,7 @@ export function H5() {
       </Button>
 
       <h4>Demo Trip information</h4>
-      {/* <Typography.Body
+      <Typography.Body
         variant='body3'
         css={{color: '$grayShades60', marginBlock: '$2 $4'}}
       >
@@ -349,19 +344,19 @@ export function H5() {
         autoclose disabled.
         <br />
         Better view on mobile screen
-      </Typography.Body> */}
+      </Typography.Body>
       <p>
         Drawer's maximum expanded height will be half of current viewport with
         autoclose disabled.
         <br />
         Better view on mobile screen
       </p>
-      {/* <Button type='button' onClick={() => setOpenDemoTripDrawer(true)}>
+      <Button type='button' onClick={() => setOpenDemoTripDrawer(true)}>
         Open Drawer
-      </Button> */}
+      </Button>
 
       <h4>Non-modal mode</h4>
-      {/* <Typography.Body
+      <Typography.Body
         variant='body3'
         css={{color: '$grayShades60', marginBlock: '$2 $4'}}
       >
@@ -370,7 +365,7 @@ export function H5() {
         key.
         <br />
         The content below the non-modal drawer can be interacted.
-      </Typography.Body> */}
+      </Typography.Body>
       <p>
         A Drawer that has no backdrop and also doesn't render on the top-layer.
         It can <strong>NOT</strong> be closed by pressing the <kbd>ESC</kbd>{' '}
@@ -387,7 +382,7 @@ export function H5() {
       </Button>
 
       <h4>Disable autofocus on the first nested focusable element</h4>
-      {/* <Typography.Body
+      <Typography.Body
         variant='body3'
         css={{color: '$grayShades60', marginBlock: '$2 $4'}}
       >
@@ -395,14 +390,14 @@ export function H5() {
         element after opening.
         <br />
         To disable that, set preventFocus to true
-      </Typography.Body> */}
+      </Typography.Body>
       <p>
         By default, the Drawer will autofocus on the first nested focusable
         element after opening.
         <br />
         To disable that, set preventFocus to true
       </p>
-      {/* <Button
+      <Button
         css={{marginRight: '$4'}}
         type='button'
         onClick={() =>
@@ -425,9 +420,9 @@ export function H5() {
         }
       >
         Open autofocus disabled Drawer
-      </Button> */}
+      </Button>
 
-      {/* <Drawer
+      <Drawer
         open={openDrawer}
         css={{height: '40dvh', '& .drawer-content': {padding: 0}}}
         onClose={() => setOpenDrawer(false)}
@@ -501,7 +496,7 @@ export function H5() {
           }
           rightInfo={{text: '$9.90', description: 'Fees may apply'}}
         />
-      </Drawer> */}
+      </Drawer>
 
       <Drawer
         {...drawerConfig}
@@ -600,7 +595,7 @@ export function H5() {
         )}
       </Drawer>
 
-      {/* <Drawer
+      <Drawer
         open={openDemoTripDrawer}
         css={{height: '20dvh'}}
         expanderCSS={{
@@ -691,7 +686,7 @@ export function H5() {
             Cancel trip
           </Button>
         </div>
-      </Drawer> 
+      </Drawer>
 
       <Drawer
         open={openNonModalDrawer}
@@ -838,7 +833,6 @@ export function H5() {
           </>
         )}
       </Drawer>
-    */}
     </div>
   )
 }

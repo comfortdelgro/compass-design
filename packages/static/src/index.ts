@@ -32,12 +32,12 @@ export type {
   DropdownProps,
   DropdownSelectProps,
 } from './dropdown'
+export {default as File} from './file'
+export type {FilePreviewProps, FileStateProps} from './file'
 export {default as Icon} from './icon'
 export type {IconProp} from './icon'
 export {default as ImageViewer} from './image-viewer'
 export type {ImageViewerProps} from './image-viewer'
-export {default as File} from './file'
-export type {FilePreviewProps, FileStateProps} from './file'
 export * from './layouts'
 export {default as MultipleChoicesSlider} from './multiple-choices-slider'
 export type {
@@ -49,6 +49,7 @@ export type {
   MultipleDropdownItemProps,
   MultipleDropdownProps,
 } from './multiple-dropdown'
+
 export {default as Popover} from './popover'
 export type {PopoverDirection, PopoverProps} from './popover'
 export {default as Progress} from './progress'

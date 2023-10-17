@@ -3,7 +3,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React from 'react'
 import Avatar from '.'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {AvatarSize, AVATAR_SIZE_MAP} from './avatar.const'
+import {AVATAR_SIZE_MAP, AvatarSize} from './avatar.const'
 import styles from './styles/avatar.module.css'
 
 interface Props {
