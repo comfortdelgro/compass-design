@@ -48,6 +48,14 @@ export type {
   MultipleDropdownProps,
 } from './multiple-dropdown'
 
+export {default as DropdownMenu} from './dropdown-menu'
+export type {
+  DropdownMenuItemProps,
+  DropdownMenuMenuProps,
+  DropdownMenuProps,
+  DropdownMenuSubmenuProps,
+  DropdownMenuToggleProps,
+} from './dropdown-menu'
 export {default as Popover} from './popover'
 export type {PopoverDirection, PopoverProps} from './popover'
 export {default as Progress} from './progress'
