@@ -17,6 +17,10 @@
     "./style.css": {
       "import": "./dist/style.css",
       "require": "./dist/style.css"
+    },
+    "./chip": {
+      "import": "./dist/chip/index.d.ts",
+      "require": "./dist/chip/index.d.ts"
     }
   },
   "main": "./dist/compass.umd.cjs",

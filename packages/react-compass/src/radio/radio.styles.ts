@@ -8,6 +8,7 @@ export const StyledRadio = styled('div', {
   cursor: 'pointer',
   width: 'fit-content',
   '.radio-wrapper': {
+    background: 'red !important',
     width: '16px !important',
     display: 'flex !important',
     justifyContent: 'center',
