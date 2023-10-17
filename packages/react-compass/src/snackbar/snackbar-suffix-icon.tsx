@@ -11,21 +11,25 @@ interface Props extends StyledComponentProps {
 export type SnackbarSuffixIconProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
-const SnackbarSuffixIcon = React.forwardRef<HTMLDivElement, SnackbarSuffixIconProps>(
-  (props, ref) => {
-    const {children, css = {}, onClose, ...delegated} = props
-    const snackbarSuffixIconRef = useDOMRef<HTMLDivElement>(ref)
-    return (
-      <StyledSnackbarSuffixIcon
-        css={css}
-        ref={snackbarSuffixIconRef}
-        {...delegated}
-        onClick={() => onClose?.()}
-      >
-        {children}
-      </StyledSnackbarSuffixIcon>
-    )
-  },
-)
+const SnackbarSuffixIcon = React.forwardRef<
+  HTMLDivElement,
+  SnackbarSuffixIconProps
+>((props, ref) => {
+  const {children, css = {}, onClose, ...delegated} = props
+  const snackbarSuffixIconRef = useDOMRef<HTMLDivElement>(ref)
+  return (
+    <StyledSnackbarSuffixIcon
+      css={css}
+      ref={snackbarSuffixIconRef}
+      {...delegated}
+      onClick={(e) => {
+        e.stopPropagation()
+        onClose?.()
+      }}
+    >
+      {children}
+    </StyledSnackbarSuffixIcon>
+  )
+})
 
 export default SnackbarSuffixIcon

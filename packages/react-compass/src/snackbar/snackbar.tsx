@@ -3,29 +3,23 @@ import ReactDOM from 'react-dom'
 import {pickChild} from '../utils/pick-child'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
-import SnackbarDetail from './snackbar-detail'
-import SnackbarDetailDescription from './snackbar-detail-description'
 import SnackbarPrefixIcon from './snackbar-prefix-icon'
 import SnackbarSuffixIcon from './snackbar-suffix-icon'
 import SnackbarText from './snackbar-text'
 import {
-  SnackbarDetailContainer,
   SnackbarRightSection,
   SnackbarVariantProps,
   StyledSnackbar,
 } from './snackbar.styles'
 
-interface Anchor {
-  vertical: 'top' | 'bottom' | 'center'
-  horizontal: 'left' | 'center' | 'right'
-}
 interface Props extends StyledComponentProps {
+  id?: number | string
   children?: React.ReactNode
   portalTo?: HTMLElement
   isOpen?: boolean
   handleClose?: () => void
+  onClick?: (e: React.MouseEvent, id: number | string | undefined) => void
   autoClose?: false | number
-  anchorOrigin?: Anchor
 }
 
 export type SnackbarProps = Props &
@@ -37,6 +31,7 @@ const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
     const {
       children,
       // StyledComponentProps
+      id,
       css = {},
       // VariantProps
       type = 'default',
@@ -45,7 +40,7 @@ const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
       isOpen = false,
       handleClose,
       autoClose = false,
-      anchorOrigin = {horizontal: 'center', vertical: 'center'},
+      onClick,
       // HTMLDiv Props
       ...delegated
     } = props
@@ -66,15 +61,6 @@ const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
       SnackbarText,
     )
 
-    const {child: SnackbarDetailElement} = pickChild<typeof SnackbarDetail>(
-      children,
-      SnackbarDetail,
-    )
-
-    const {child: SnackbarDetailDescriptionElement} = pickChild<
-      typeof SnackbarDetailDescription
-    >(children, SnackbarDetailDescription)
-
     const renderContent = React.useCallback(
       (children: React.ReactNode) => {
         return portalTo ? ReactDOM.createPortal(children, portalTo) : children
@@ -88,7 +74,11 @@ const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
         setTimeout(() => handleClose?.(), autoClose)
       }
     }, [isOpen])
-
+    const handleClick = (e: React.MouseEvent) => {
+      if (onClick) {
+        onClick(e, id)
+      }
+    }
     return (
       <>
         {isOpen &&
@@ -97,21 +87,12 @@ const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
               {...variantProps}
               css={css}
               ref={snackbarRef}
+              onClick={handleClick}
               {...delegated}
-              vertical={anchorOrigin.vertical}
-              horizontal={anchorOrigin.horizontal}
-              centerCenter={
-                anchorOrigin.vertical === 'center' &&
-                anchorOrigin.horizontal === 'center'
-              }
             >
               {SnackbarPrefixIconElement}
               {SnackbarTextElement}
               <SnackbarRightSection>
-                <SnackbarDetailContainer>
-                  {SnackbarDetailDescriptionElement}
-                  {SnackbarDetailElement}
-                </SnackbarDetailContainer>
                 {SnackbarSuffixIconElement &&
                   React.cloneElement(
                     SnackbarSuffixIconElement as unknown as JSX.Element,
@@ -129,8 +110,6 @@ const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
 
 export default Snackbar as typeof Snackbar & {
   Text: typeof SnackbarText
-  Detail: typeof SnackbarDetail
-  DetailDescription: typeof SnackbarDetailDescription
   PrefixIcon: typeof SnackbarPrefixIcon
   SuffixIcon: typeof SnackbarSuffixIcon
 }

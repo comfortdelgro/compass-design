@@ -9,46 +9,14 @@ import {Icon} from '../icon'
 import {Column} from '../utils/components'
 import {SnackbarContextProvider, useSnackbar} from './service'
 export const Default: React.FC = () => {
-  const [horizontal, setHorizontal] = React.useState<
-    'center' | 'left' | 'right'
-  >('right')
-  const [vertical, setVertical] = React.useState<'center' | 'top' | 'bottom'>(
-    'top',
-  )
   const [type, setType] = React.useState<
     'default' | 'error' | 'success' | 'warning' | 'reminder' | 'ongoing'
-  >('default')
+  >('success')
   const [isDefaultOpen, setIsDefaultOpen] = React.useState(false)
 
   return (
     <Column>
       <h3>Default snackbar</h3>
-      <Dropdown.Select
-        isRequired
-        label='Please select horizontal'
-        placeholder='Choose a horizontal'
-        selectedKey={horizontal}
-        onSelectionChange={(k: Key) =>
-          setHorizontal(k as 'center' | 'left' | 'right')
-        }
-      >
-        <Dropdown.Item key='left'>Left</Dropdown.Item>
-        <Dropdown.Item key='center'>Center</Dropdown.Item>
-        <Dropdown.Item key='right'>Right</Dropdown.Item>
-      </Dropdown.Select>
-      <Dropdown.Select
-        isRequired
-        label='Please select vertical'
-        placeholder='Choose a vertical'
-        selectedKey={vertical}
-        onSelectionChange={(k: Key) =>
-          setVertical(k as 'center' | 'top' | 'bottom')
-        }
-      >
-        <Dropdown.Item key='top'>Top</Dropdown.Item>
-        <Dropdown.Item key='center'>Center</Dropdown.Item>
-        <Dropdown.Item key='bottom'>Bottom</Dropdown.Item>
-      </Dropdown.Select>
       <Dropdown.Select
         isRequired
         label='Please select type'
@@ -77,17 +45,19 @@ export const Default: React.FC = () => {
         Open Snackbar
       </Button>
       <Snackbar
+        id='snackbar-1'
         isOpen={isDefaultOpen}
         handleClose={() => setIsDefaultOpen(false)}
-        anchorOrigin={{horizontal, vertical}}
         type={type}
+        onClick={(e, id) => console.log(id)}
+        css={{
+          width: '343px',
+        }}
       >
         <Snackbar.PrefixIcon>
           <Icon icon={faImage} />
         </Snackbar.PrefixIcon>
         <Snackbar.Text>Text goes here</Snackbar.Text>
-        <Snackbar.Detail>Detail</Snackbar.Detail>
-        <Snackbar.DetailDescription>Detail</Snackbar.DetailDescription>
         <Snackbar.SuffixIcon>
           <Icon icon={faXmark} />
         </Snackbar.SuffixIcon>
@@ -96,109 +66,98 @@ export const Default: React.FC = () => {
   )
 }
 
-const SubService1 = () => {
+const SubService = () => {
   const snackbar = useSnackbar()
   return (
-    <>
+    <div
+      style={{
+        display: 'flex',
+        gap: '1rem',
+        flexWrap: 'wrap',
+      }}
+    >
       <Button
-        css={{width: 'fit-content'}}
+        css={{width: 'fit-content', marginBottom: '1rem'}}
         onClick={() =>
           snackbar.show({
             type: 'success',
-            text: 'Lorem ipsum dolor, sit amet consectetur',
+            text: 'Lorem ipsum dolor, sit amet consectetur Lorem ipsum  consectetur Lorem ipsum dolor, sit amet consectetur',
+            prefixIcon: <WarningIcon />,
+            suffixIcon: <CloseIcon />,
+            autoClose: false,
           })
         }
       >
         Open snackbar
       </Button>
       <Button
-        css={{width: 'fit-content'}}
+        css={{width: 'fit-content', marginBottom: '1rem'}}
         onClick={() =>
           snackbar.show({
             text: 'Lorem ipsum dolor, sit amet consectetur',
+            autoClose: false,
+            prefixIcon: <WarningIcon />,
+            type: 'success',
+          })
+        }
+      >
+        Without suffix icon
+      </Button>
+      <Button
+        css={{width: 'fit-content', marginBottom: '1rem'}}
+        onClick={() =>
+          snackbar.show({
+            text: 'Lorem ipsum dolor, sit amet consectetur',
+            autoClose: false,
+            suffixIcon: <CloseIcon />,
+            type: 'success',
+          })
+        }
+      >
+        Without prefix icon
+      </Button>
+      <Button
+        css={{width: 'fit-content', marginBottom: '1rem'}}
+        onClick={() =>
+          snackbar.show({
+            text: 'Lorem ipsum dolor, sit amet consectetur',
+            autoClose: false,
+            type: 'success',
             suffixIcon: false,
           })
         }
       >
-        Open snackbar without close button
+        With text only
       </Button>
-    </>
-  )
-}
-const SubService2 = () => {
-  const snackbar = useSnackbar()
-  return (
-    <>
       <Button
-        css={{width: 'fit-content'}}
+        css={{width: 'fit-content', marginBottom: '1rem'}}
         onClick={() =>
           snackbar.show({
-            autoClose: false,
-            text: 'Lorem ipsum dolor, sit amet consectetur. Lorem ipsum dolor, sit amet consectetur.',
-            prefixIcon: <WarningIcon />,
-            suffixIcon: <CloseIcon />,
-            type: 'warning',
-            css: {
-              alignItems: 'flex-start',
-            },
+            text: 'Lorem ipsum dolor, sit amet consectetur',
+            suffixIcon: false,
+            type: 'success',
+            autoClose: 3000,
           })
         }
       >
-        Open snackbar autoClose: false
+        Autoclose after 3000ms
       </Button>
-      <Button css={{width: 'fit-content'}} onClick={() => snackbar.clearAll()}>
+      <Button
+        css={{width: 'fit-content', marginBottom: '1rem'}}
+        onClick={() => snackbar.clearAll()}
+      >
         Clear all snackbars
       </Button>
-    </>
+    </div>
   )
 }
-export const Multiple: React.FC = () => {
-  const [horizontal, setHorizontal] = React.useState<
-    'center' | 'left' | 'right'
-  >('right')
-  const [vertical, setVertical] = React.useState<'center' | 'top' | 'bottom'>(
-    'bottom',
-  )
 
+export const Multiple: React.FC = () => {
   return (
     <Column>
       <h3>Snackbar as a service</h3>
-      <Dropdown.Select
-        isRequired
-        label='Please select horizontal'
-        placeholder='Choose a horizontal'
-        selectedKey={horizontal}
-        onSelectionChange={(k: Key) =>
-          setHorizontal(k as 'center' | 'left' | 'right')
-        }
-      >
-        <Dropdown.Item key='left'>Left</Dropdown.Item>
-        <Dropdown.Item key='center'>Center</Dropdown.Item>
-        <Dropdown.Item key='right'>Right</Dropdown.Item>
-      </Dropdown.Select>
-      <Dropdown.Select
-        isRequired
-        label='Please select vertical'
-        placeholder='Choose a vertical'
-        selectedKey={vertical}
-        onSelectionChange={(k: Key) =>
-          setVertical(k as 'center' | 'top' | 'bottom')
-        }
-      >
-        <Dropdown.Item key='top'>Top</Dropdown.Item>
-        <Dropdown.Item key='center'>Center</Dropdown.Item>
-        <Dropdown.Item key='bottom'>Bottom</Dropdown.Item>
-      </Dropdown.Select>
-      <SnackbarContextProvider
-        anchorOrigin={{horizontal, vertical}}
-        containerCSS={{
-          bottom: '50px',
-        }}
-      >
-        <>
-          <SubService1 />
-          <SubService2 />
-        </>
+      <SnackbarContextProvider>
+        <SubService />
       </SnackbarContextProvider>
     </Column>
   )

@@ -20,14 +20,8 @@ const initialState = {
   snackbars: [],
 }
 
-export interface Anchor {
-  vertical: 'top' | 'bottom' | 'center'
-  horizontal: 'left' | 'center' | 'right'
-}
-
 interface SnackbarContextProviderProps {
   children: ReactNode
-  anchorOrigin?: Anchor
   containerCSS?: CSS
 }
 
@@ -37,11 +31,8 @@ export interface SnackbarContextValue {
   clearAll: () => void
 }
 
-const ANCHOR_DEFAULT: Anchor = {horizontal: 'right', vertical: 'top'}
-
 export const SnackbarContextProvider = ({
   children,
-  anchorOrigin,
   containerCSS = {},
 }: SnackbarContextProviderProps) => {
   const [state, dispatch] = useReducer(snackbarReducer, initialState)
@@ -72,7 +63,6 @@ export const SnackbarContextProvider = ({
     <SnackbarContext.Provider value={value}>
       <SnackbarsContainer
         snackbars={state.snackbars}
-        anchorOrigin={anchorOrigin ?? ANCHOR_DEFAULT}
         css={containerCSS}
         className='cdg-snackbar-container'
       />

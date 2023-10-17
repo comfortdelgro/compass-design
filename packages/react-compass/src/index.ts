@@ -273,8 +273,6 @@ export {default as Slider} from './slider'
 export type {SliderProps} from './slider'
 export {default as Snackbar} from './snackbar'
 export type {
-  SnackbarDetailDescriptionProps,
-  SnackbarDetailProps,
   SnackbarPrefixIconProps,
   SnackbarSuffixIconProps,
   SnackbarTextProps,

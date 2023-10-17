@@ -1,17 +1,11 @@
+import CloseIcon from '@comfortdelgro/compass-icons/react/h5-close'
 import {Button, Dropdown} from '@comfortdelgro/react-compass'
 import Icon from '@comfortdelgro/react-compass/icon'
 import Snackbar from '@comfortdelgro/react-compass/snackbar'
-import {faImage, faXmark} from '@fortawesome/free-solid-svg-icons'
+import {faImage} from '@fortawesome/free-solid-svg-icons'
 import React, {Key} from 'react'
-
 const Default: React.FC = () => {
   const [isDefaultOpen, setIsDefaultOpen] = React.useState(false)
-  const [horizontal, setHorizontal] = React.useState<
-    'center' | 'left' | 'right'
-  >('right')
-  const [vertical, setVertical] = React.useState<'center' | 'top' | 'bottom'>(
-    'top',
-  )
   const [type, setType] = React.useState<
     'default' | 'error' | 'success' | 'warning' | 'reminder' | 'ongoing'
   >('default')
@@ -19,34 +13,6 @@ const Default: React.FC = () => {
   return (
     <div>
       <h3>Default snackbar</h3>
-      <Dropdown.Select
-        isRequired
-        label='Please select horizontal'
-        placeholder='Choose a horizontal'
-        selectedKey={horizontal}
-        onSelectionChange={(k: Key) =>
-          setHorizontal(k as 'center' | 'left' | 'right')
-        }
-      >
-        <Dropdown.Item key='left'>Left</Dropdown.Item>
-        <Dropdown.Item key='center'>Center</Dropdown.Item>
-        <Dropdown.Item key='right'>Right</Dropdown.Item>
-      </Dropdown.Select>
-      <br />
-      <Dropdown.Select
-        isRequired
-        label='Please select vertical'
-        placeholder='Choose a vertical'
-        selectedKey={vertical}
-        onSelectionChange={(k: Key) =>
-          setVertical(k as 'center' | 'top' | 'bottom')
-        }
-      >
-        <Dropdown.Item key='top'>Top</Dropdown.Item>
-        <Dropdown.Item key='center'>Center</Dropdown.Item>
-        <Dropdown.Item key='bottom'>Bottom</Dropdown.Item>
-      </Dropdown.Select>
-      <br />
       <Dropdown.Select
         isRequired
         label='Please select type'
@@ -82,16 +48,13 @@ const Default: React.FC = () => {
         isOpen={isDefaultOpen}
         handleClose={() => setIsDefaultOpen(false)}
         type={type}
-        anchorOrigin={{horizontal, vertical}}
       >
         <Snackbar.PrefixIcon>
           <Icon icon={faImage} />
         </Snackbar.PrefixIcon>
         <Snackbar.Text>Text goes here</Snackbar.Text>
-        <Snackbar.Detail>Detail</Snackbar.Detail>
-        <Snackbar.DetailDescription>Detail</Snackbar.DetailDescription>
         <Snackbar.SuffixIcon>
-          <Icon icon={faXmark} />
+          <CloseIcon />
         </Snackbar.SuffixIcon>
       </Snackbar>
     </div>

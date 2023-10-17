@@ -37,15 +37,15 @@ import {Snackbar} from '@comfortdelgro/react-compass'
 
 ### `<Snackbar/>`
 
-| Name         | Type                                                                    | Default                                      | Description                                                                             |
-| :----------- | :---------------------------------------------------------------------- | :------------------------------------------- | :-------------------------------------------------------------------------------------- |
-| type         | `default` \| `error` \| `warning` \| `success`\| `reminder`\| `ongoing` | 'default'                                    | Variants                                                                                |
-| handleClose  | `Function`                                                              | -                                            | Callback to close snackbar.                                                             |
-| isOpen       | `boolean`                                                               | false                                        | The snackbar is visible when true.                                                      |
-| autoClose    | `false` \| `number`                                                     | false                                        | Number of miliseconds to auto close.                                                    |
-| css          | `CSS`                                                                   | —                                            | The system prop that allows defining system overrides as well as additional CSS styles. |
-| portalTo     | `HTMLElement`                                                           | -                                            | Using ReactPortals to create portal to an element, example document.body                |
-| anchorOrigin | `Anchor`                                                                | `{horizontal: 'center', vertical: 'center'}` | Placements of Snackbar.                                                                 |
+| Name        | Type                                                                    | Default   | Description                                                                                                      |
+| :---------- | :---------------------------------------------------------------------- | :-------- | :--------------------------------------------------------------------------------------------------------------- |
+| type        | `default` \| `error` \| `warning` \| `success`\| `reminder`\| `ongoing` | 'default' | Variants                                                                                                         |
+| handleClose | `Function`                                                              | -         | Callback to close snackbar.                                                                                      |
+| onClick     | `Function`                                                              | -         | Callback fired on clicking the entire snackbar, including 2 paramerters: the event and the optional snackbar id. |
+| isOpen      | `boolean`                                                               | false     | The snackbar is visible when true.                                                                               |
+| autoClose   | `false` \| `number`                                                     | false     | Number of miliseconds to auto close.                                                                             |
+| css         | `CSS`                                                                   | —         | The system prop that allows defining system overrides as well as additional CSS styles.                          |
+| portalTo    | `HTMLElement`                                                           | -         | Using ReactPortals to create portal to an element, example document.body                                         |
 
 ### `useSnackbar()`
 
@@ -61,7 +61,6 @@ import {Snackbar} from '@comfortdelgro/react-compass'
 
 ##### Store multiple snackbars and display them in the same container and handle snackbar's open/close state.
 
-| Name         | Type     | Default                                  | Description                                                                                                                                                                        |
-| :----------- | :------- | :--------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| anchorOrigin | `Anchor` | `{horizontal: 'right', vertical: 'top'}` | Placements of SnackbarContainer.                                                                                                                                                   |
-| containerCSS | `CSS`    | `{}`                                     | Additional CSS to the snackbars container. It can be used to override the inset of the container in case you dont want the snackbars to cover any floating elements on the screen. |
+| Name         | Type  | Default | Description                                                                                                                                                                        |
+| :----------- | :---- | :------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| containerCSS | `CSS` | `{}`    | Additional CSS to the snackbars container. It can be used to override the inset of the container in case you dont want the snackbars to cover any floating elements on the screen. |

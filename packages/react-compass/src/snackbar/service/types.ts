@@ -1,15 +1,14 @@
 import {ReactNode} from 'react'
-import { CSS } from '../../utils/stitches.types'
+import {CSS} from '../../utils/stitches.types'
 
 export interface SnackbarItemType {
   id?: number
   text?: ReactNode
   prefixIcon?: ReactNode
   suffixIcon?: ReactNode
-  detail?: ReactNode
-  detailDescription?: ReactNode
   autoClose?: false | number
   type?: 'default' | 'error' | 'success' | 'warning' | 'reminder' | 'ongoing'
+  onClick?: (e: React.MouseEvent, id: number | undefined) => void
   css?: CSS
 }
 

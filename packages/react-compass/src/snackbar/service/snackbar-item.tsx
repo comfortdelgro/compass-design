@@ -6,7 +6,6 @@ import {SnackbarItemType} from './types'
 
 export type SnackbarItemProps = SnackbarItemType & {
   snackbarItemClassName?: string
-  horizontal: 'left' | 'right' | 'center'
 }
 const ANIMATION_TIME = 300
 const CLOSE_TIME = 1000
@@ -15,14 +14,12 @@ const SnackbarItem = ({
   id,
   snackbarItemClassName,
   autoClose = CLOSE_TIME,
-  horizontal,
   prefixIcon,
   suffixIcon,
-  detailDescription,
-  detail,
   text,
-  type='default',
-  css={}
+  type = 'default',
+  onClick,
+  css = {},
 }: SnackbarItemProps) => {
   const snackbar = useSnackbar() // call useSnackbar
 
@@ -37,8 +34,14 @@ const SnackbarItem = ({
     }
   }
 
+  const handleClick = (e: React.MouseEvent) => {
+    if (onClick) {
+      onClick(e, id)
+    }
+  }
+
   return (
-    <StyledSnackbarItem ref={snackbarItemRef} horizontal={horizontal}>
+    <StyledSnackbarItem ref={snackbarItemRef}>
       <Snackbar
         isOpen
         handleClose={handleDismiss}
@@ -46,21 +49,12 @@ const SnackbarItem = ({
         autoClose={autoClose}
         type={type}
         css={css}
+        onClick={handleClick}
       >
-        {prefixIcon && (
-          <Snackbar.PrefixIcon>
-            {prefixIcon}
-          </Snackbar.PrefixIcon>
-        )}
-        {suffixIcon && (
-          <Snackbar.SuffixIcon>
-            {suffixIcon}
-          </Snackbar.SuffixIcon>
-        )}
+        {prefixIcon && <Snackbar.PrefixIcon>{prefixIcon}</Snackbar.PrefixIcon>}
+        {suffixIcon && <Snackbar.SuffixIcon>{suffixIcon}</Snackbar.SuffixIcon>}
 
         {text && <Snackbar.Text>{text}</Snackbar.Text>}
-        {detail && <Snackbar.Detail>{detail}</Snackbar.Detail>}
-        {detailDescription && <Snackbar.DetailDescription>{detailDescription}</Snackbar.DetailDescription>}
       </Snackbar>
     </StyledSnackbarItem>
   )
