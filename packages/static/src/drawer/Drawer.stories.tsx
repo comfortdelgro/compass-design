@@ -3,7 +3,7 @@ import {
   faArrowRight,
   faClose,
 } from '@fortawesome/free-solid-svg-icons'
-import {faChevronRight} from '@fortawesome/free-solid-svg-icons/faChevronRight'
+// import {faChevronRight} from '@fortawesome/free-solid-svg-icons/faChevronRight'
 import {Meta} from '@storybook/react'
 import {FormEventHandler, useState} from 'react'
 import Button from '../button'
@@ -50,11 +50,7 @@ export function Default() {
 
   return (
     <div className={storiesStyles.drawerStories}>
-      <Typography.Header variant='header4'>1. Drawer</Typography.Header>
-      <Typography.Body variant='body2'>
-        Drawer form value: {keyword}
-      </Typography.Body>
-      <h4>1. Drawer</h4>
+      <h4>Drawer</h4>
       <p>Drawer form value: {keyword}</p>
 
       <Button
@@ -65,7 +61,11 @@ export function Default() {
         Open Drawer
       </Button>
 
-      <Drawer open={openDrawer} onClose={listenOnCloseDrawer}>
+      <Drawer
+        className={storiesStyles.drawerExample}
+        open={openDrawer}
+        onClose={listenOnCloseDrawer}
+      >
         <Drawer.Header>
           <h2 style={{marginBlock: 0}}>Drawer controlled by form</h2>
 
@@ -87,12 +87,6 @@ export function Default() {
         <form id='form-in-drawer' method='dialog' onSubmit={handleFormSubmit}>
           <h3>Drawer Form</h3>
 
-          <TextField
-            label='Keyword'
-            name='keyword'
-            id='keyword'
-            placeholder='Enter anything'
-          />
           <label htmlFor='keyword'>Keyword</label>
           <input
             type='search'
@@ -100,8 +94,9 @@ export function Default() {
             id='keyword'
             placeholder='Enter anything'
           />
+          <br />
 
-          <label htmlFor='keepValue'>Keep form value: </label>
+          <label htmlFor='keepValue'>Keep form value </label>
           <input
             name='keep'
             type='checkbox'
@@ -157,7 +152,7 @@ export function Default() {
           </p>
         </section>
 
-        <Drawer.Footer css={{display: 'flex', gap: '$2'}}>
+        <Drawer.Footer css={{display: 'flex', gap: '1rem'}}>
           <Button
             variant='secondary'
             form='form-in-drawer'
@@ -173,8 +168,7 @@ export function Default() {
         </Drawer.Footer>
       </Drawer>
 
-      <Typography.Header variant='header4'>2. Position</Typography.Header>
-      <h4>2. Position</h4>
+      <h4>Position</h4>
       <div className={storiesStyles.container}>
         <Button
           type='button'
@@ -202,6 +196,7 @@ export function Default() {
       </div>
 
       <Drawer
+        className={storiesStyles.drawerExample}
         open={openDrawerPosition}
         onClose={() => setOpenDrawerPosition(false)}
         position={drawerPosition}
@@ -217,19 +212,15 @@ export function Default() {
         </Button>
       </Drawer>
 
-      <Typography.Header variant='header4'>3. Non-modal mode</Typography.Header>
-      <Typography.Body
-        variant='body3'
-        css={{color: '$grayShades60', marginBlock: '$2 $4'}}
-      >
+      <h4>Non-modal mode</h4>
+      <p className={storiesStyles.description}>
         A Drawer that has no backdrop and also doesn't render on the top-layer.
         It can <strong>NOT</strong> be closed by pressing the <kbd>ESC</kbd>{' '}
         key.
         <br />
         The content below the non-modal drawer can be interacted.
-      </Typography.Body>
+      </p>
 
-      <h4>3. Non-modal mode</h4>
       <Button
         type='button'
         onClick={() => setOpenDrawerNonModal(!openDrawerNonModal)}
@@ -238,26 +229,25 @@ export function Default() {
       </Button>
 
       <Drawer
+        className={storiesStyles.drawerExample}
         open={openDrawerNonModal}
         onClose={() => setOpenDrawerNonModal(false)}
         drawerMode='non-modal'
         position={drawerPosition}
       >
         <Drawer.Header>
-          <Typography.Header variant='header3'>
-            Non-modal Drawer
-          </Typography.Header>
+          <h2>Non-modal Drawer</h2>
         </Drawer.Header>
 
-        <Typography.Body variant='body2'>
-          <Link
+        <p>
+          <a
             href='https:developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog#accessibility_considerations'
             target='_blank'
           >
             Read more
-          </Link>
+          </a>{' '}
           about non-modal mode and accessibility considerations.
-        </Typography.Body>
+        </p>
 
         <div className={storiesStyles.container}>
           <Button
@@ -286,6 +276,7 @@ export function Default() {
         </div>
 
         <Button
+          css={{marginTop: '1rem'}}
           type='button'
           variant='danger'
           onClick={() => setOpenDrawerNonModal(false)}
@@ -297,12 +288,8 @@ export function Default() {
   )
 }
 
-const imgSrc =
-  'https:images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-
 const h5DrawerDefaultConfig: Partial<DrawerH5Props> = {
   disableResize: false,
-  disableAddBodyAttr: false,
   disableDragClose: false,
   preventClose: false,
 }
@@ -310,9 +297,9 @@ const h5DrawerDefaultConfig: Partial<DrawerH5Props> = {
 export function H5() {
   const [openDrawer, setOpenDrawer] = useState(false)
   const [openDemoDrawer, setOpenDemoDrawer] = useState(false)
-  const [openNonModalDrawer, setOpenNonModalDrawer] = useState(false)
-  const [openDemoTripDrawer, setOpenDemoTripDrawer] = useState(false)
-  const [openConfirmModal, setOpenConfirmModal] = useState(false)
+  // const [openNonModalDrawer, setOpenNonModalDrawer] = useState(false)
+  // const [openDemoTripDrawer, setOpenDemoTripDrawer] = useState(false)
+  // const [openConfirmModal, setOpenConfirmModal] = useState(false)
 
   const [openNoFocusDrawer, setOpenNoFocusDrawer] = useState({
     open: false,
@@ -335,38 +322,8 @@ export function H5() {
         Open Customizable Drawer
       </Button>
 
-      <h4>Demo Trip information</h4>
-      <Typography.Body
-        variant='body3'
-        css={{color: '$grayShades60', marginBlock: '$2 $4'}}
-      >
-        Drawer's maximum expanded height will be half of current viewport with
-        autoclose disabled.
-        <br />
-        Better view on mobile screen
-      </Typography.Body>
-      <p>
-        Drawer's maximum expanded height will be half of current viewport with
-        autoclose disabled.
-        <br />
-        Better view on mobile screen
-      </p>
-      <Button type='button' onClick={() => setOpenDemoTripDrawer(true)}>
-        Open Drawer
-      </Button>
-
-      <h4>Non-modal mode</h4>
-      <Typography.Body
-        variant='body3'
-        css={{color: '$grayShades60', marginBlock: '$2 $4'}}
-      >
-        A Drawer that has no backdrop and also doesn't render on the top-layer.
-        It can <strong>NOT</strong> be closed by pressing the <kbd>ESC</kbd>{' '}
-        key.
-        <br />
-        The content below the non-modal drawer can be interacted.
-      </Typography.Body>
-      <p>
+      {/* <h4>Non-modal mode</h4>
+      <p className={storiesStyles.description}>
         A Drawer that has no backdrop and also doesn't render on the top-layer.
         It can <strong>NOT</strong> be closed by pressing the <kbd>ESC</kbd>{' '}
         key.
@@ -379,26 +336,17 @@ export function H5() {
         onClick={() => setOpenNonModalDrawer(!openNonModalDrawer)}
       >
         Toggle Non-modal Drawer
-      </Button>
+      </Button> */}
 
       <h4>Disable autofocus on the first nested focusable element</h4>
-      <Typography.Body
-        variant='body3'
-        css={{color: '$grayShades60', marginBlock: '$2 $4'}}
-      >
-        By default, the Drawer will autofocus on the first nested focusable
-        element after opening.
-        <br />
-        To disable that, set preventFocus to true
-      </Typography.Body>
-      <p>
+      <p className={storiesStyles.description}>
         By default, the Drawer will autofocus on the first nested focusable
         element after opening.
         <br />
         To disable that, set preventFocus to true
       </p>
       <Button
-        css={{marginRight: '$4'}}
+        css={{marginRight: '1rem'}}
         type='button'
         onClick={() =>
           setOpenNoFocusDrawer({
@@ -424,91 +372,23 @@ export function H5() {
 
       <Drawer
         open={openDrawer}
-        css={{height: '40dvh', '& .drawer-content': {padding: 0}}}
+        css={{height: '40dvh'}}
         onClose={() => setOpenDrawer(false)}
         variant='h5'
       >
-        <Typography.Body
-          variant='body2'
-          css={{textAlign: 'center', paddingBlock: '$4'}}
-        >
-          Pull up for more rides
-        </Typography.Body>
+        <p style={{textAlign: 'center'}}>Pull up to expand the drawer</p>
 
-        <List
-          title='ComfortRIDE'
-          description='Car or Taxi, Flat Fare'
-          descriptionIcon={
-            <Icon
-              style={{width: 14, height: 14, color: '#0142AF'}}
-              icon={faFaceSmile}
-            />
-          }
-          variant='h5'
-          leftInfo={
-            <ListImage variant='h5' isRounded src={imgSrc} alt='singapore' />
-          }
-          rightInfo={{
-            text: '$9.90',
-            description: 'Fees may apply',
-            icon: <Icon icon={faChevronRight} />,
-          }}
-        />
-        <List
-          title='ComfortRIDE'
-          description='Car or Taxi, Flat Fare'
-          variant='h5'
-          leftInfo={
-            <ListImage variant='h5' isRounded src={imgSrc} alt='singapore' />
-          }
-          rightInfo={{text: '$9.90', description: 'Fees may apply'}}
-        />
-        <List
-          title='ComfortRIDE'
-          description='Car or Taxi, Flat Fare'
-          variant='h5'
-          leftInfo={
-            <ListImage variant='h5' isRounded src={imgSrc} alt='singapore' />
-          }
-          rightInfo={{text: '$9.90', description: 'Fees may apply'}}
-          descriptionIcon={
-            <Icon
-              style={{width: 14, height: 14, color: '#0142AF'}}
-              icon={faFaceSmile}
-            />
-          }
-        />
-        <List
-          title='ComfortRIDE'
-          description='Car or Taxi, Flat Fare'
-          variant='h5'
-          leftInfo={
-            <ListImage variant='h5' isRounded src={imgSrc} alt='singapore' />
-          }
-          rightInfo={{text: '$9.90', description: 'Fees may apply'}}
-        />
-        <List
-          title='ComfortRIDE'
-          description='Car or Taxi, Flat Fare'
-          variant='h5'
-          leftInfo={
-            <ListImage variant='h5' isRounded src={imgSrc} alt='singapore' />
-          }
-          rightInfo={{text: '$9.90', description: 'Fees may apply'}}
-        />
+        <p>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Modi fuga
+          qui corporis alias molestiae, excepturi suscipit natus autem ut nulla
+          quis placeat, animi nisi ipsum, blanditiis possimus nihil eos ex.
+        </p>
       </Drawer>
 
       <Drawer
         {...drawerConfig}
         open={openDemoDrawer}
-        css={{
-          height: '40dvh',
-          '& .drawer-content': {
-            button: {
-              marginBottom: '$4',
-            },
-          },
-        }}
+        css={{height: '40dvh'}}
         onClose={() => {
           setOpenDemoDrawer(false)
           setDrawerConfig(h5DrawerDefaultConfig)
@@ -526,24 +406,6 @@ export function H5() {
           }
         >
           Toggle Draggable
-        </Button>
-        <hr />
-
-        <p>
-          Should block the below layer from scrolling and tell the browser to
-          ignore its elements (inert)?{' '}
-          <strong>{`${!drawerConfig.disableAddBodyAttr}`}</strong>
-        </p>
-        <Button
-          type='button'
-          onClick={() =>
-            setDrawerConfig((currState) => ({
-              ...currState,
-              disableAddBodyAttr: !currState.disableAddBodyAttr,
-            }))
-          }
-        >
-          Toggle Block
         </Button>
         <hr />
 
@@ -570,7 +432,7 @@ export function H5() {
           <strong>{`${drawerConfig.preventClose}`}</strong>
         </p>
         <Button
-          css={{marginRight: '$4'}}
+          css={{marginRight: '1rem'}}
           type='button'
           onClick={() =>
             setDrawerConfig((currState) => ({
@@ -595,104 +457,11 @@ export function H5() {
         )}
       </Drawer>
 
-      <Drawer
-        open={openDemoTripDrawer}
-        css={{height: '20dvh'}}
-        expanderCSS={{
-          background: '$blueShades100',
-          paddingBlock: '$2 $6',
-        }}
-        onClose={() => setOpenDemoTripDrawer(false)}
-        variant='h5'
-        expandedPoint={50}
-        expandableLine={33}
-        disableDragClose
-      >
-        <Drawer.Header
-          css={{
-            display: 'flex',
-            paddingTop: 0,
-            gap: '$2',
-            justifyContent: 'space-between',
-            backgroundColor: '$blueShades100',
-          }}
-        >
-          <Typography.Body
-            variant='body3'
-            weight='semibold'
-            css={{color: '$grayShades10', width: 'fit-content'}}
-          >
-            Your ride is on the way
-          </Typography.Body>
-          <Typography.Body
-            variant='body3'
-            weight='semibold'
-            css={{color: '$grayShades10', width: 'fit-content'}}
-          >
-            Arriving in 8 - 10 min
-          </Typography.Body>
-        </Drawer.Header>
-
-        <Typography.Body
-          weight='semibold'
-          css={{
-            paddingBlock: '$5 $8',
-            display: 'flex',
-            gap: '$2',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}
-        >
-          Shaw
-          <Button type='button' variant='secondary'>
-            Call Driver
-          </Button>
-        </Typography.Body>
-
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'auto auto',
-            justifyContent: 'space-between',
-            gap: '1rem',
-          }}
-        >
-          <Typography.Body
-            variant='body3'
-            weight='semibold'
-            css={{
-              display: 'flex',
-              gap: '$2',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}
-          >
-            <span>ComfortRIDE</span>{' '}
-            <Typography.Link variant='link2'>T&C apply</Typography.Link>
-          </Typography.Body>
-          <div>$8.60</div>
-
-          <Typography.Body variant='body3' weight='semibold'>
-            Total
-          </Typography.Body>
-          <div>$8.60</div>
-        </div>
-
-        <div style={{display: 'flex', gap: '1rem', paddingBlock: '1rem'}}>
-          <Button type='button' variant='secondary' css={{flex: 1}}>
-            Share your trip
-          </Button>
-          <Button type='button' variant='danger' css={{flex: 1}}>
-            Cancel trip
-          </Button>
-        </div>
-      </Drawer>
-
-      <Drawer
+      {/* <Drawer
         open={openNonModalDrawer}
         css={{height: '30dvh'}}
         expanderCSS={{
-          background: '$blueShades100',
+          background: 'var(--cdg-color-blueShades100)',
           paddingBlock: '$2 $6',
         }}
         onClose={() => setOpenNonModalDrawer(false)}
@@ -707,20 +476,20 @@ export function H5() {
             paddingTop: 0,
             gap: '$2',
             justifyContent: 'space-between',
-            backgroundColor: '$blueShades100',
+            backgroundColor: 'var(--cdg-color-blueShades100)',
           }}
         >
           <Typography.Body
             variant='body3'
             weight='semibold'
-            css={{color: '$grayShades10', width: 'fit-content'}}
+            css={{color: 'var(--cdg-color-grayShades10)', width: 'fit-content'}}
           >
             Your ride is on the way
           </Typography.Body>
           <Typography.Body
             variant='body3'
             weight='semibold'
-            css={{color: '$grayShades10', width: 'fit-content'}}
+            css={{color: 'var(--cdg-color-grayShades10)', width: 'fit-content'}}
           >
             Arriving in 8 - 10 min
           </Typography.Body>
@@ -776,7 +545,7 @@ export function H5() {
             </Modal.Actions>
           </Modal>
         </Modal.Trigger>
-      </Drawer>
+      </Drawer> */}
 
       <Drawer
         open={openNoFocusDrawer.open}
@@ -789,16 +558,13 @@ export function H5() {
       >
         {openNoFocusDrawer.open && (
           <>
-            <Typography.Body variant='body3'>
+            <p>
               {!openNoFocusDrawer.preventFocus && 'Disable'}{' '}
               <strong>Autofocus</strong> on the first focusable element - a
               button at the bottom ⏬
-            </Typography.Body>
+            </p>
 
-            <Typography.Body
-              variant='body3'
-              css={{minHeight: '30vh', marginTop: '$10'}}
-            >
+            <p style={{minHeight: '30vh', marginTop: '2.5rem'}}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Praesentium molestias voluptatem officia at repellat, voluptates
               corrupti quod sunt necessitatibus delectus quae enim, temporibus
@@ -821,7 +587,7 @@ export function H5() {
               temporibus optio dolor eius. Eveniet quae ipsum beatae! Pariatur
               explicabo est fuga, suscipit nulla ad a eius porro minus eveniet
               sed eligendi impedit adipisci quaerat.
-            </Typography.Body>
+            </p>
 
             <Button
               type='button'
@@ -837,13 +603,13 @@ export function H5() {
   )
 }
 
-const meta = {
+const meta: Meta<typeof Default> = {
   title: 'Example/Drawer',
   tags: ['autodocs'],
   component: Default,
   parameters: {
     layout: 'fullscreen',
   },
-} satisfies Meta<typeof Default>
+}
 
 export default meta
