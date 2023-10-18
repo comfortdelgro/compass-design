@@ -44,10 +44,10 @@ const FileState = React.forwardRef<HTMLDivElement, FileStateProps>(
     return (
       <CssInjection css={css} childrenRef={stateRef}>
         <div ref={stateRef} className={stateClasses}>
-          <div className={`cdg-file-state-name ${styles.name}`}>
+          <div className={`${styles.name} cdg-file-state-name`}>
             {imageIcon && (
               <div
-                className={`cdg-file-state-image ${styles.image}`}
+                className={`${styles.image} cdg-file-state-image`}
                 onClick={onIconPress}
               >
                 {imageIcon}
@@ -55,7 +55,7 @@ const FileState = React.forwardRef<HTMLDivElement, FileStateProps>(
             )}
             {fileName}
           </div>
-          <div className={`cdg-file-state-icon ${styles.icon}`}>
+          <div className={`${styles.icon} cdg-file-state-icon`}>
             {isLoading ? <Loading /> : icon}
           </div>
         </div>

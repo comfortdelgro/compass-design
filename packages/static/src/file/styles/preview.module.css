@@ -23,11 +23,13 @@
   object-fit: contain;
 }
 
-/* Variants */
+/*  ================= VARIANT ================= */
+/* ImageLoaded: True */
 .previewVariantImageLoadedTrue {
   background-color: var(--cdg-color-primaryBg);
 }
 
+/* ImageLoaded: False */
 .previewVariantImageLoadedFalse {
   background-color: var(--cdg-color-infoBg);
 }
