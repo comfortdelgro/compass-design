@@ -1,11 +1,12 @@
 /* eslint-disable prettier/prettier */
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledBannerDescription} from './styles/banner.styles'
-
-interface Props extends StyledComponentProps {
+import { useDOMRef } from '../utils/use-dom-ref'
+import styles from './styles/banner.module.css'
+import CssInjection from '../utils/objectToCss/CssInjection'
+interface Props {
   children?: React.ReactNode
+  css?: unknown
+  className?: string
 }
 
 export type BannerDescriptionProps = Props &
@@ -15,16 +16,18 @@ const BannerDescription = React.forwardRef<
   HTMLDivElement,
   BannerDescriptionProps
 >((props, ref) => {
-  const {children, css = {}, ...delegated} = props
+  const { children, css = {}, className = '', ...delegated } = props
   const bannerDescriptionRef = useDOMRef<HTMLParagraphElement>(ref)
   return (
-    <StyledBannerDescription
-      css={css}
-      ref={bannerDescriptionRef}
-      {...delegated}
-    >
-      {children}
-    </StyledBannerDescription>
+    <CssInjection css={css} childrenRef={bannerDescriptionRef}>
+      <div
+        className={`cdg-banner-description ${styles.bannerDescription} ${className}`}
+        ref={bannerDescriptionRef}
+        {...delegated}
+      >
+        {children}
+      </div>
+    </CssInjection>
   )
 })
 

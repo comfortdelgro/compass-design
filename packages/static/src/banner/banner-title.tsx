@@ -1,11 +1,14 @@
 /* eslint-disable prettier/prettier */
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledBannerTitle} from './styles/banner.styles'
+import { useDOMRef } from '../utils/use-dom-ref'
+import styles from './styles/banner.module.css'
+import CssInjection from '../utils/objectToCss/CssInjection'
 
-interface Props extends StyledComponentProps {
+
+interface Props {
   children?: React.ReactNode
+  css?: unknown
+  className?: string
 }
 
 export type BannerTitleProps = Props &
@@ -13,7 +16,7 @@ export type BannerTitleProps = Props &
 
 const BannerTitle = React.forwardRef<HTMLHeadingElement, BannerTitleProps>(
   (props, ref) => {
-    const {children, css = {}, ...delegated} = props
+    const { children, css = {}, className = '', ...delegated } = props
     const bannerTitleRef = useDOMRef<HTMLDivElement>(ref)
     const renderTitle = () => {
       if (typeof children === 'string') {
@@ -23,9 +26,11 @@ const BannerTitle = React.forwardRef<HTMLHeadingElement, BannerTitleProps>(
     }
 
     return (
-      <StyledBannerTitle css={css} ref={bannerTitleRef} {...delegated}>
-        {renderTitle()}
-      </StyledBannerTitle>
+      <CssInjection css={css} childrenRef={bannerTitleRef}>
+        <h1 className={`cdg-banner-title ${styles.bannerTitle} ${className}`} ref={bannerTitleRef} {...delegated}>
+          {renderTitle()}
+        </h1>
+      </CssInjection>
     )
   },
 )
