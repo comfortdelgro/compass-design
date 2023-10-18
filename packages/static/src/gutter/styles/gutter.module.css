@@ -57,14 +57,13 @@
   border: 1px solid var(--cdg-color-darkerBg);
 }
 
-/***** Variants *****/
-/* Side */
-/* left */
+/*  ================= VARIANT ================= */
+/* Side: left */
 .gutterVariantLeft {
   left: 0;
 }
 
-/* right  */
+/* Side: right  */
 .gutterVariantRight {
   right: 0;
 }
