@@ -7,6 +7,7 @@ import AccordionTitle, { AccordionTitleProps } from "./accordion-title"
 import { pickChild } from "../utils/pick-child"
 import AccordionExpandIcon, { AccordionExpandIconProps } from "./accordion-expandIcon"
 import { Transitions } from ".."
+import AccordionTable from "./accordion-table"
 
 interface Props {
   css?: unknown
@@ -101,7 +102,7 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props, ref) 
 
 
 export default Accordion as typeof Accordion & {
-  // Table: typeof AccordionTable
+  Table: typeof AccordionTable
   Title: typeof AccordionTitle
   ExpandIcon: typeof AccordionExpandIcon
 }

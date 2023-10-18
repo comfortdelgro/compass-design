@@ -1,3 +1,10 @@
+export {default as Accordion} from './accordion'
+export type {
+  AccordionExpandIconProps,
+  AccordionProps,
+  AccordionTableProps,
+  AccordionTitleProps,
+} from './accordion'
 export {default as Avatar} from './avatar'
 export type {AvatarProps} from './avatar'
 export {default as Breadcrumbs} from './breadcrumbs'
