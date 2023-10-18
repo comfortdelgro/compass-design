@@ -12,3 +12,5 @@ export type {
   FormLayoutProps,
   FormRowProps,
 } from './form-layout'
+export {default as Layout} from './layout'
+export type {LayoutProps} from './layout'
