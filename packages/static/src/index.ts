@@ -66,3 +66,9 @@ export * from './theme'
 export {default as ThemeStaticProvider} from './theme/ThemeProvider'
 export {default as Transitions} from './transitions'
 export type {TransitionsProps} from './transitions'
+export {default as Sidenav, SidenavContext} from './sidenav'
+export type {SidenavContextValue,
+  DividerProps as SidenavDividerProps,
+  SidenavItemProps,
+  SidenavMenuProps,
+  SidenavProps} from './sidenav'

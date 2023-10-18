@@ -1,0 +1,79 @@
+@import '../../theme/theme.module.css';
+
+/* level 1 css */
+.sidenavItem {
+  color: var(--cdg-color-gray80);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  height: var(--cdg-spacing-10);
+  cursor: pointer;
+  padding: 0 var(--cdg-spacing-4);
+  overflow: hidden;
+  max-width: 480px;
+  margin-bottom: var(--cdg-spacing-4);
+}
+
+
+
+.cdgSidenavItemIcon {
+  min-width: var(--cdg-spacing-10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.cdgSidenavItemIconWrapper {
+  width: var(--cdg-spacing-10);
+  height: var(--cdg-spacing-10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cdgSidenavItemTitle {
+  font-size: var(--cdg-font-size-body);
+  font-weight: var(--cdg-font-weight-semibold);
+  margin-left: var(--cdg-spacing-2_5);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* level 2 css */
+
+.cdgSidenavItemTitle>* {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidenavItem:last-child{
+  margin-bottom: 0;
+}
+
+.sidenavItem svg {
+  width: var(--cdg-spacing-6);
+  height: var(--cdg-spacing-6);
+}
+
+.sidenavItem:hover {
+  color: var(--cdg-color-cdgBlue);
+}
+
+/* Variant for active */
+.sidenavItemActive {
+  color: var(--cdg-color-cdgBlue);
+}
+
+.cdgSidenavItemActiveIcon:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 3px;
+  background-color: currentColor;
+}
