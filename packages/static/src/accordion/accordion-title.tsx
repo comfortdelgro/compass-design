@@ -23,6 +23,7 @@ const AccordionTitle = React.forwardRef<HTMLButtonElement, AccordionTitleProps>(
     children,
     expandIcon,
     css = {},
+    className,
     'aria-controls': ariaControls,
     ...delegated
   } = props
@@ -68,22 +69,22 @@ const AccordionTitle = React.forwardRef<HTMLButtonElement, AccordionTitleProps>(
 
   const renderLeftIcon = () => {
     if (icon === false) return null
-    return <div className={styles['accordion-left-icon-container']}>{icon}</div>
+    return <div className={styles.accordionLeftIconContainer}>{icon}</div>
   }
 
   return <AccordionButton
     aria-controls={ariaControls}
     ref={ref}
     css={css}
-    className={`accordion-title-container ${expand ? styles.open : ''}`}
+    className={`accordion-title-container ${expand ? styles.open : ''} ${className}`}
     expand={expand}
     onMouseDown={(e) => handleOnClick(e)}
     onKeyDown={(e) => handleKeyDown(e)}
   >
-    <div className={`${styles['accordion-title-wrapper']}`} {...delegated}>
+    <div className={`${styles.accordionTitleWrapper}`} {...delegated}>
       {renderLeftIcon()}
-      <div className={`${styles['accordion-title']}`}>{renderTitle()}</div>
-      <div className={styles['accordion-chevron-container']}>
+      <div className={`${styles.accordionTitle}`}>{renderTitle()}</div>
+      <div className={styles.accordionChevronContainer}>
         {expandIcon ? (
           expandIcon
         ) : (
@@ -107,7 +108,7 @@ const DefaultIcon = () => (
 )
 
 const ChevronIcon = () => {
-  return <svg viewBox='0 0 512 512' className={styles['accordion-chevron-icon'] }>
+  return <svg viewBox='0 0 512 512' className={styles.accordionChevronIcon }>
     <path
       fill='currentColor'
       d='M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z'

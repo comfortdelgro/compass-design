@@ -15,6 +15,6 @@
   line-height: var(--cdg-line-height-normal);
 }
 
-.accordion-body-inner {
+.accordionBodyInner {
   padding: var(--cdg-spacing-4) var(--cdg-spacing-6) var(--cdg-spacing-4) var(--cdg-spacing-5);
 }

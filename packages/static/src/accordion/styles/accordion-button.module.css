@@ -1,6 +1,6 @@
 @import '../../theme/theme.module.css';
 
-.accordion-button {
+.accordionButton {
   appearance: none;
   border: none;
   background-color: transparent;
@@ -14,7 +14,7 @@
   color: var(--cdg-color-primaryText);
 }
 
-.accordion-button:focus-visible {
+.accordionButton:focus-visible {
   outline: none;
   box-shadow: 0 0 2px 2px #CCD9EF;
 }

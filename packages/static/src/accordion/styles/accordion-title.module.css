@@ -1,6 +1,6 @@
 @import '../../theme/theme.module.css';
 
-.accordion-title-wrapper {
+.accordionTitleWrapper {
   appearance: none;
   border: none;
   background-color: transparent;
@@ -20,31 +20,31 @@
   cursor: pointer;
 }
 
-.accordion-title-wrapper * {
+.accordionTitleWrapper * {
   margin: 0;
 }
 
-.accordion-title {
+.accordionTitle {
   display: flex;
   align-items: center;
   flex: 1;
 }
 
-.accordion-left-icon-container {
+.accordionLeftIconContainer {
   margin-right: var(--cdg-spacing-6);
 }
 
-.accordion-title-wrapper svg {
+.accordionTitleWrapper svg {
   width: var(--cdg-spacing-6);
   height: var(--cdg-spacing-6);
   margin-top: 12px;
 }
 
-.accordion-chevron-container {
+.accordionChevronContainer {
   margin-left: var(--cdg-spacing-6);
 }
 
-.accordion-chevron-icon {
+.accordionChevronIcon {
   width: var(--cdg-spacing-6);
   height: var(--cdg-spacing-3);
   margin-top: 12px;
@@ -55,6 +55,6 @@
   border-bottom-right-radius: 0;
 }
 
-.open .accordion-chevron-icon {
+.open .accordionChevronIcon {
   transform: rotate(180deg);
 }
