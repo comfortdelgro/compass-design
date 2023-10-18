@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-'use client'
+
+// 'use client'
 
 import clsx from 'clsx'
 import {
@@ -26,11 +27,6 @@ const DEFAULT_EXPANDABLE_LINE = 67
 const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
   const viewPortHeight =
     typeof window !== 'undefined' ? window.innerHeight : undefined
-  const bodyOverflow = useMemo(
-    () =>
-      typeof document !== 'undefined' ? document.body.style.overflow : null,
-    [],
-  )
 
   const {
     drawerMode = 'modal',
@@ -55,15 +51,14 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
     expandableLine: expandLine = DEFAULT_EXPANDABLE_LINE,
     disableResize = false,
     disableDragClose = false,
-    disableAddBodyAttr: disableAddBodyAttributes = false,
+
+    // @todo remove the deprecated "disableAddBodyAttr" flag on next major release.
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    disableAddBodyAttr: _,
 
     // the rest
     ...htmlDialogAttributes
   } = props
-
-  // override config props
-  const disableAddBodyAttr =
-    drawerMode === 'non-modal' ? true : disableAddBodyAttributes
 
   const position: DrawerProps['position'] =
     variant === 'h5' ? 'bottom' : drawerPosition
@@ -119,10 +114,8 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
       if (typeof document === 'undefined' || !DrawerElement) {
         return
       }
-      setDrawerHeight(drawerInitHeight)
 
-      document.body.style.setProperty('overflow', bodyOverflow)
-      document.body.removeAttribute('inert')
+      setDrawerHeight(drawerInitHeight)
       DrawerElement.close(dialogReturnValue)
     },
     [DrawerElement, drawerInitHeight],
@@ -241,14 +234,6 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
     }
 
     if (open) {
-      if (disableAddBodyAttr) {
-        document.body.style.setProperty('overflow', bodyOverflow)
-        document.body.removeAttribute('inert')
-      } else {
-        document.body.style.setProperty('overflow', 'hidden')
-        document.body.setAttribute('inert', '')
-      }
-
       if (!preventFocus) {
         DrawerElement.setAttribute('inert', '')
       }
@@ -258,7 +243,7 @@ const Drawer = forwardRef<HTMLDialogElement, DrawerProps>((props, ref) => {
     }
 
     handleCloseDrawer()
-  }, [open, DrawerElement, disableAddBodyAttr, preventFocus, handleCloseDrawer])
+  }, [open, DrawerElement, preventFocus, handleCloseDrawer])
 
   useEffect(() => {
     if (!open && drawerInitHeight) {
