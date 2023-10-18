@@ -45,7 +45,7 @@ const InteractiveList = React.forwardRef<HTMLDivElement, InteractiveListProps>(
         <CssInjection css={css} childrenRef={ref}>
           <div ref={ref} {...htmlProps} className={rootClass}>
             <div
-              className={`cdg-list-interactive-avatar ${styles.interactiveAvatar}`}
+              className={`${styles.interactiveAvatar} cdg-list-interactive-avatar`}
             >
               {avatar
                 ? React.cloneElement(avatar as React.ReactElement, {
@@ -54,25 +54,25 @@ const InteractiveList = React.forwardRef<HTMLDivElement, InteractiveListProps>(
                 : null}
             </div>
             <div
-              className={`cdg-list-interactive-dropdown-body ${styles.interactiveDropdownBody}`}
+              className={`${styles.interactiveDropdownBody} cdg-list-interactive-dropdown-body`}
             >
               <h2
-                className={`cdg-list-interactive-title ${styles.interactiveTitle}`}
+                className={`${styles.interactiveTitle} cdg-list-interactive-title`}
               >
                 {title}
               </h2>
               <span
-                className={`cdg-list-interactive-description ${styles.interactiveDescription}`}
+                className={`${styles.interactiveDescription} cdg-list-interactive-description`}
               >
                 {description}
               </span>
             </div>
             {showIcon && (
               <div
-                className={`cdg-list-interactive-icon-wrapper ${styles.interactiveIconWrapper}`}
+                className={`${styles.interactiveIconWrapper} cdg-list-interactive-icon-wrapper`}
               >
                 <svg
-                  className={`cdg-list-interactive-icon ${styles.interactiveIcon}`}
+                  className={`${styles.interactiveIcon} cdg-list-interactive-icon`}
                   viewBox='0 0 320 512'
                 >
                   <path

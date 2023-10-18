@@ -53,9 +53,9 @@ const ListCard = React.forwardRef<HTMLDivElement, ListCardProps>(
     return (
       <CssInjection css={css} childrenRef={ref}>
         <div ref={ref} className={rootClass} {...delegated}>
-          <div className={`cdg-list-card-header ${styles.listCardHeader}`}>
-            {title && <h2 className={`cdg-list-card-title ${styles.listCardTitle}`}>{title}</h2>}
-            <div className={`cdg-list-card-header-right ${styles.listCardHeaderRight}`}>
+          <div className={`${styles.listCardHeader} cdg-list-card-header`}>
+            {title && <h2 className={`${styles.listCardTitle} cdg-list-card-title`}>{title}</h2>}
+            <div className={`${styles.listCardHeaderRight} cdg-list-card-header-right`}>
               {badge ? badge : null}
               {!children && showActionButton ? (
                 <Button
@@ -73,11 +73,11 @@ const ListCard = React.forwardRef<HTMLDivElement, ListCardProps>(
               ) : null}
             </div>
           </div>
-          <div className={`cdg-list-card-description ${styles.listCardDescription}`}>
+          <div className={`${styles.listCardDescription} cdg-list-card-description`}>
             {description && <span>{description}</span>}
           </div>
-          <div className={`cdg-list-card-footer ${styles.listCardFooter}`}>
-            <div className={`cdg-list-card-content ${styles.listCardContent}`}>
+          <div className={`${styles.listCardFooter} cdg-list-card-footer`}>
+            <div className={`${styles.listCardContent} cdg-list-card-content`}>
               {clonedChildren.map((child) => child)}
             </div>
             {children && showActionButton ? (

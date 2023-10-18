@@ -42,17 +42,17 @@ const ListCardDetail = React.forwardRef<HTMLDivElement, ListCardDetailProps>(
         <div ref={ref} className={rootClass} {...htmlProps}>
           {title && (
             <h3
-              className={`cdg-list-card-detail-title ${styles.cardDetailTitle}`}
+              className={`${styles.cardDetailTitle} cdg-list-card-detail-title`}
             >
               {title}
             </h3>
           )}
           <div
-            className={`cdg-list-card-detail-footer ${styles.cardDetailFooter}`}
+            className={`${styles.cardDetailFooter} cdg-list-card-detail-footer`}
           >
             {avatar && (
               <div
-                className={`cdg-list-card-detail-avatar ${styles.cardDetailAvatar}`}
+                className={`${styles.cardDetailAvatar} cdg-list-card-detail-avatar`}
               >
                 {React.cloneElement(avatar as React.ReactElement, {
                   size: 'xxs',
@@ -61,7 +61,7 @@ const ListCardDetail = React.forwardRef<HTMLDivElement, ListCardDetailProps>(
             )}
             {description && (
               <span
-                className={`cdg-list-card-detail-description ${styles.cardDetailDescription}`}
+                className={`${styles.cardDetailDescription} cdg-list-card-detail-description`}
               >
                 {description}
               </span>
