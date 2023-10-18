@@ -21,7 +21,7 @@
   white-space: nowrap;
   margin-right: auto;
   align-items: center;
-  gap: 10px;
+  gap: var(--cdg-spacing-2_5);
 }
 
 .paginationItem {
