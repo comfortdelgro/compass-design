@@ -68,7 +68,7 @@ const Gutter = React.forwardRef<HTMLDivElement, GutterProps>((props, ref) => {
               e.stopPropagation()
               toggleExpand()
             }}
-            className={`cdg-gutter-collapse-button ${styles.collapse}`}
+            className={`${styles.collapse} cdg-gutter-collapse-button`}
           >
             <Icon side={side} isExpand={isExpand} />
           </button>
