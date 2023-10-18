@@ -1,7 +1,7 @@
-import React, { useContext } from 'react'
-import { useDOMRef } from '../utils/use-dom-ref'
-import { MultipleDropdownContext } from './multiple-dropdown-context'
+import React, {useContext} from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
+import {useDOMRef} from '../utils/use-dom-ref'
+import {MultipleDropdownContext} from './multiple-dropdown-context'
 
 interface Props {
   children: React.ReactNode
@@ -15,9 +15,9 @@ const MultipleDropdownHeader = React.forwardRef<
   HTMLDivElement,
   MultipleDropdownHeaderProps
 >((props, ref) => {
-  const { children, css = {}, onClick } = props
+  const {children, css = {}, onClick} = props
   const dropdownHeaderRef = useDOMRef<HTMLDivElement>(ref)
-  const { onHeaderClick } = useContext(MultipleDropdownContext)
+  const {onHeaderClick} = useContext(MultipleDropdownContext)
 
   const handleHeaderClick = (event: React.MouseEvent<HTMLDivElement>) => {
     onHeaderClick()

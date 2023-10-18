@@ -7,7 +7,7 @@ import {DateValue} from '../internationalized/date'
 import {useDateFormatter} from '../internationalized/i18n'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {StyledCalendarHeader} from './calendar-header.style'
-import {MonthYearState, MONTH_YEAR_STATE} from './hooks/useMonthYearState'
+import {MONTH_YEAR_STATE, MonthYearState} from './hooks/useMonthYearState'
 import {AriaLabelingProps, DOMProps} from './types'
 import {
   CalendarState,

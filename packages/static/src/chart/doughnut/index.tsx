@@ -2,7 +2,7 @@ import {ArcElement, Chart as ChartJS, Legend, Tooltip} from 'chart.js'
 import React, {useMemo} from 'react'
 import {Doughnut} from 'react-chartjs-2'
 import {useColors} from '../../theme'
-import {buildData, Chart, DEFAULT_CIRCULAR_OPTIONS} from '../utils'
+import {Chart, DEFAULT_CIRCULAR_OPTIONS, buildData} from '../utils'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 

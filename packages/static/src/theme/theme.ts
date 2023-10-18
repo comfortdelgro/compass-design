@@ -165,6 +165,7 @@ export const lightThemeColors = {
   divider: '#EDEBE9', // Body Divider
   border: '#8A8886', // Input Border
   activeBorder: '#323130', // Input-Hover Border
+  placeholder: '#C5CCD3',
 
   // Secondary
 
@@ -174,6 +175,7 @@ export const lightThemeColors = {
   dangerBg: '#EFD9DB',
   danger: '#A4262C',
   dangerDarker: '#7d1b20',
+  dangerShades: '#E31617',
 
   successBg: '#D1E8CF',
   success: '#107C10',
@@ -255,6 +257,7 @@ export const darkThemeColors = {
   divider: '#45464E', // Body Divider
   border: '#8A8886', // Input Border
   activeBorder: '#323130', // Input-Hover Border
+  placeholder: '#C5CCD3',
 
   // Secondary
 
@@ -338,7 +341,7 @@ const theme = {
   sizes: spacings,
   transitions,
 }
-   
+
 export default theme
-   
+
 export type Colors = typeof lightThemeColors

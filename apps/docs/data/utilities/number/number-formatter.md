@@ -19,12 +19,13 @@ See the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refer
 
 ## Properties & Methods
 
-| Method                                                          | Description                                                                                          |
-| --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| constructor(locale: string, options: NumberFormatOptions): void |                                                                                                      |
-| format(value: number): string                                   | Formats a number value as a string, according to the locale and options provided to the constructor. |
-| formatToParts(value: number): Intl.NumberFormatPart[] | Formats a number range as a string.|
-| formatRange(start: number, end: number): string | Formats a number range as a string.|
-| formatRangeToParts(start: number, end: number): NumberRangeFormatPart[] | Formats a number range as an array of parts. |
-| resolvedOptions(): Intl.ResolvedNumberFormatOptions | Returns the resolved formatting options based on the values passed to the constructor.
+| Method                                                                  | Description                                                                                          |
+| ----------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| constructor(locale: string, options: NumberFormatOptions): void         |                                                                                                      |
+| format(value: number): string                                           | Formats a number value as a string, according to the locale and options provided to the constructor. |
+| formatToParts(value: number): Intl.NumberFormatPart[]                   | Formats a number range as a string.                                                                  |
+| formatRange(start: number, end: number): string                         | Formats a number range as a string.                                                                  |
+| formatRangeToParts(start: number, end: number): NumberRangeFormatPart[] | Formats a number range as an array of parts.                                                         |
+| resolvedOptions(): Intl.ResolvedNumberFormatOptions                     | Returns the resolved formatting options based on the values passed to the constructor.               |
+
 |

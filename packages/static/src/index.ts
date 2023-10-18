@@ -17,14 +17,14 @@ export {default as Chip} from './chip'
 export type {ChipProps} from './chip'
 export {default as Divider} from './divider'
 export type {DividerProps} from './divider'
-// export {default as Drawer} from './drawer'
-// export type {
-//   DrawerDefaultProps,
-//   DrawerFooterProps,
-//   DrawerH5Props,
-//   DrawerHeaderProps,
-//   DrawerProps,
-// } from './drawer'
+export {default as Drawer} from './drawer'
+export type {
+  DrawerDefaultProps,
+  DrawerFooterProps,
+  DrawerH5Props,
+  DrawerHeaderProps,
+  DrawerProps,
+} from './drawer'
 export {default as Dropdown} from './dropdown'
 export type {
   DropdownComboBoxProps,
@@ -37,11 +37,11 @@ export type {IconProp} from './icon'
 export {default as ImageViewer} from './image-viewer'
 export type {ImageViewerProps} from './image-viewer'
 export * from './layouts'
-// export {default as MultipleChoicesSlider} from './multiple-choices-slider'
-// export type {
-//   MultipleChoicesSliderItemProps,
-//   MultipleChoicesSliderProps,
-// } from './multiple-choices-slider'
+export {default as MultipleChoicesSlider} from './multiple-choices-slider'
+export type {
+  MultipleChoicesSliderItemProps,
+  MultipleChoicesSliderProps,
+} from './multiple-choices-slider'
 export {default as MultipleDropdown} from './multiple-dropdown'
 export type {
   MultipleDropdownItemProps,
@@ -64,3 +64,5 @@ export {default as Status} from './status'
 export type {StatusProps} from './status'
 export * from './theme'
 export {default as ThemeStaticProvider} from './theme/ThemeProvider'
+export {default as Transitions} from './transitions'
+export type {TransitionsProps} from './transitions'
