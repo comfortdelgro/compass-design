@@ -5,3 +5,10 @@ export type {
   ActionBarProps,
   ActionBarRightGroupProps,
 } from './action-bar'
+export {default as FormLayout} from './form-layout'
+export type {
+  FormExplainationProps,
+  FormGroupProps,
+  FormLayoutProps,
+  FormRowProps,
+} from './form-layout'
