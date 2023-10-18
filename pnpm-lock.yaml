@@ -18,7 +18,7 @@ importers:
       turbo: ^1.5.6
     devDependencies:
       '@changesets/cli': 2.26.2
-      '@comfortdelgro/prettier-config': 1.0.2_dszuhvflyyhgmon6kfgc3xkb24
+      '@comfortdelgro/prettier-config': 1.0.2_prettier@2.8.8
       lint-staged: 13.3.0
       prettier: 2.8.8
       simple-git-hooks: 2.9.0
@@ -256,6 +256,10 @@ importers:
       '@fortawesome/fontawesome-svg-core': ^6.4.2
       '@fortawesome/free-solid-svg-icons': ^6.4.2
       '@fortawesome/react-fontawesome': ^0.2.0
+      '@react-aria/dialog': ^3.4.1
+      '@react-aria/focus': ^3.9.0
+      '@react-aria/overlays': ^3.12.0
+      '@react-aria/visually-hidden': ^3.5.0
       '@storybook/addon-essentials': 7.4.2
       '@storybook/addon-interactions': 7.4.2
       '@storybook/addon-links': 7.4.2
@@ -309,6 +313,10 @@ importers:
       '@fortawesome/fontawesome-svg-core': 6.4.2
       '@fortawesome/free-solid-svg-icons': 6.4.2
       '@fortawesome/react-fontawesome': 0.2.0_n6er2j2sfff3f2kho72l4xukey
+      '@react-aria/dialog': 3.5.6_biqbaboplfbrettd7655fr4n2y
+      '@react-aria/focus': 3.14.2_react@18.2.0
+      '@react-aria/overlays': 3.18.0_biqbaboplfbrettd7655fr4n2y
+      '@react-aria/visually-hidden': 3.8.5_react@18.2.0
       '@storybook/builder-vite': 7.4.6_vrjn4omj5eanksabme5dpzqgqq
       '@storybook/core-server': 7.4.6
       '@tiptap/core': 2.1.12_@tiptap+pm@2.0.3
@@ -1935,16 +1943,15 @@ packages:
       - supports-color
     dev: true
 
-  /@comfortdelgro/prettier-config/1.0.2_dszuhvflyyhgmon6kfgc3xkb24:
+  /@comfortdelgro/prettier-config/1.0.2_prettier@2.8.8:
     resolution: {integrity: sha512-QJAp3A0x8oyaU+fTBVmHEJ/o5YaRpZ0Qagzx5MR5pjOieAneQ+bBFPPctlEdlb4seTFdbZG0PuAH3tgCPv8qmg==}
     peerDependencies:
       prettier: '>=2.7.1'
       typescript: '>=4.7.4'
     dependencies:
       prettier: 2.8.8
-      prettier-plugin-organize-imports: 3.2.3_dszuhvflyyhgmon6kfgc3xkb24
+      prettier-plugin-organize-imports: 3.2.3_prettier@2.8.8
       prettier-plugin-packagejson: 2.4.6_prettier@2.8.8
-      typescript: 5.2.2
     transitivePeerDependencies:
       - '@volar/vue-language-plugin-pug'
       - '@volar/vue-typescript'
@@ -12385,7 +12392,7 @@ packages:
       fast-diff: 1.3.0
     dev: true
 
-  /prettier-plugin-organize-imports/3.2.3_dszuhvflyyhgmon6kfgc3xkb24:
+  /prettier-plugin-organize-imports/3.2.3_prettier@2.8.8:
     resolution: {integrity: sha512-KFvk8C/zGyvUaE3RvxN2MhCLwzV6OBbFSkwZ2OamCrs9ZY4i5L77jQ/w4UmUr+lqX8qbaqVq6bZZkApn+IgJSg==}
     peerDependencies:
       '@volar/vue-language-plugin-pug': ^1.0.4
@@ -12399,7 +12406,6 @@ packages:
         optional: true
     dependencies:
       prettier: 2.8.8
-      typescript: 5.2.2
     dev: true
 
   /prettier-plugin-packagejson/2.4.6_prettier@2.8.8:
