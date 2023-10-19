@@ -248,6 +248,7 @@ export const lightTheme = defineTheme({
     greenShades: '#159A00',
 
     badgeWarningBg: '#95711F',
+    snackbarWarning: '#95711F',
   },
   fonts,
   fontSizes,
@@ -355,6 +356,8 @@ export const darkTheme = createTheme('dark-theme', {
     greenShades: '#159A00',
 
     badgeWarningBg: '#95711F',
+
+    snackbarWarning: '#95711F',
   },
   fonts,
   fontSizes,
