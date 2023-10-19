@@ -1,13 +1,15 @@
 /* Importing the theme module */
 @import '../../../theme/theme.module.css';
 
+/* Level 1 */
+
 .dateField {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
 }
 
-.dateField .dateFieldInput {
+.dateFieldInput {
   min-width: var(--cdg-spacing-49);
   height: var(--cdg-spacing-11);
   display: flex;
@@ -18,12 +20,12 @@
   border-radius: var(--cdg-border-radius-md);
 }
 
-.dateField .dateFieldInput:focus-within {
+.dateFieldInput:focus-within {
   border: 1px solid var(--cdg-color-cdgBlue100);
   border-radius: var(--cdg-border-radius-md);
 }
 
-.dateField .dateFieldLabel {
+.dateFieldLabel {
   font-size: var(--cdg-font-size-label1);
   font-weight: var(--cdg-font-weight-semibold);
   margin-bottom: var(--cdg-spacing-2);
@@ -31,53 +33,20 @@
   width: 100%;
 }
 
-.dateField .dateFieldLabel span {
+.dateFieldLabel span {
   margin-left: var(--cdg-spacing-1);
   color: var(--cdg-color-danger);
 }
 
-.dateField .dateFieldInput .mobile:active {
-  background-color: var(--cdg-color-gray10);
-}
-
-.dateField .toggleCalendarButton {
-  margin-left: auto;
-}
-
-.dateField .calendarToggleIcon {
+.calendarToggleIcon {
   width: var(--cdg-spacing-3);
   height: var(--cdg-spacing-3);
 }
 
-.dateField.disabled .dateFieldInput{
-  background-color: var(--cdg-color-gray20);
-  cursor: not-allowed;
-}
-
-.dateField.disabled .dateFieldInput * {
-  color: var(--cdg-color-disabledText);
-  cursor: not-allowed;
-}
-
-.dateField.invalid .dateFieldInput {
-  border-color: var(--cdg-color-danger);
-}
-
-/*  */
-
-.labelNecessity.error {
-  color: var(--cdg-color-danger)
-}
-
-.labelNecessity.text {
-  font-size: var(--cdg-font-size-label2);
-}
-
-/*  */
-
 .expandButton {
   border: none;
   margin: 0;
+  margin-left: auto;
   width: auto;
   overflow: visible;
   background: transparent;
@@ -90,8 +59,52 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  padding: var(--cdg-spacing-2) var(--cdg-spacing-4)
+  padding: var(--cdg-spacing-2) var(--cdg-spacing-4);
 }
+
+.textFieldHelperText {
+  font-size: var(--cdg-font-size-label2);
+  font-weight: var(--cdg-font-weight-medium);
+  transition: var(--cdg-transition-default);
+  margin-top: var(--cdg-spacing-1);
+  color: var(--cdg-color-gray70);
+}
+
+.icon {
+  color: var(--cdg-color-primaryText);
+}
+
+/* level 2 */
+
+.mobile:active {
+  background-color: var(--cdg-color-gray10);
+}
+
+.disabled .dateFieldInput {
+  background-color: var(--cdg-color-gray20);
+  cursor: not-allowed;
+}
+
+.disabled .dateFieldInput * {
+  color: var(--cdg-color-disabledText);
+  cursor: not-allowed;
+}
+
+.invalid .dateFieldInput {
+  border-color: var(--cdg-color-danger);
+}
+
+/*  */
+
+.error {
+  color: var(--cdg-color-danger);
+}
+
+.text {
+  font-size: var(--cdg-font-size-label2);
+}
+
+/*  */
 
 .expandButton:focus {
   box-shadow: none;
@@ -102,23 +115,10 @@
   border-radius: 2px;
 }
 
-
 /*  */
 
-.textFieldHelperText {
-  font-size: var(--cdg-font-size-label2);
-  font-weight: var(--cdg-font-weight-medium);
-  transition: var(--cdg-transition-default);
-  margin-top: var(--cdg-spacing-1);
-  color: var(--cdg-color-gray70);
-}
-
-.textFieldHelperText.helperTextError {
+.helperTextError {
   color: var(--cdg-color-danger);
 }
 
 /*  */
-
-.icon {
-  color: var(--cdg-color-primaryText);
-}

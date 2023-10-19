@@ -80,15 +80,15 @@ const DateField = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   const generateLabeling = () => {
     const necessityIndicator = props.necessityIndicator ?? 'icon'
     if (props.isRequired && necessityIndicator === 'icon') {
-      return <span className={`${styles.labelNecessity} ${styles.error}`}>*</span>
+      return <span className={`${styles.error}`}>*</span>
     } else if (props.isRequired && necessityIndicator === 'label') {
       return (
-        <span className={`${styles.labelNecessity} ${styles.error} ${styles.text}`}>
+        <span className={`${styles.error} ${styles.text}`}>
           (required)
         </span>
       )
     } else if (!props.isRequired && necessityIndicator === 'label') {
-      return <span className={`${styles.labelNecessity} ${styles.text}`}>(optional)</span>
+      return <span className={`${styles.text}`}>(optional)</span>
     }
     return ''
   }
@@ -143,7 +143,7 @@ const DateField = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
             }}
             type='button'
             disabled={isDisabled || isReadOnly}
-            className={`toggle-calendar-button ${styles.expandButton} ${styles.calendarToggleIcon}`}
+            className={`toggle-calendar-button ${styles.expandButton}`}
           >
             <Icon />
           </button>

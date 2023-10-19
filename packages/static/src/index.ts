@@ -34,6 +34,8 @@ export type {
   DropdownProps,
   DropdownSelectProps,
 } from './dropdown'
+export {default as File} from './file'
+export type {FilePreviewProps, FileStateProps} from './file'
 export {default as Icon} from './icon'
 export type {IconProp} from './icon'
 export {default as ImageViewer} from './image-viewer'
@@ -68,3 +70,5 @@ export {default as Status} from './status'
 export type {StatusProps} from './status'
 export * from './theme'
 export {default as ThemeStaticProvider} from './theme/ThemeProvider'
+export {default as Transitions} from './transitions'
+export type {TransitionsProps} from './transitions'
