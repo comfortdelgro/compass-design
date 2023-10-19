@@ -43,7 +43,6 @@ interface Props {
   enableEventsOnLoading?: boolean
   isSquare?: boolean
   css?: unknown
-  iconOnly?: boolean
   variant?: 'primary' | 'secondary' | 'tertiary' | 'ghost' | 'danger'
   size?: 'sm' | 'md' | 'lg'
   fullWidth?: boolean
@@ -52,7 +51,11 @@ interface Props {
 }
 
 export type ButtonProps = Props &
-  Omit<React.HTMLAttributes<HTMLElement>, keyof Props>
+  Omit<React.HTMLAttributes<HTMLElement>, keyof Props> &
+  Omit<
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    keyof Omit<React.HTMLAttributes<HTMLElement>, keyof Props>
+  >
 
 const Button = React.forwardRef<
   HTMLButtonElement | HTMLAnchorElement,
@@ -96,7 +99,6 @@ const Button = React.forwardRef<
     fullWidth = false,
     loading = false,
     isSquare = false,
-    iconOnly = false,
     h5 = false,
     // html props
     ...htmlProps
@@ -157,6 +159,7 @@ const Button = React.forwardRef<
 
   const Button = href ? 'a' : 'button'
 
+  //  button classes
   const buttonClasses = [
     styles.button,
     loading && styles.loading,
@@ -166,97 +169,106 @@ const Button = React.forwardRef<
     isSquare && styles.isSquare,
     loading && styles.loading,
     isDisabled && styles.isDisabled,
-    href && styles.cdgLinkButton,
-    iconOnly && styles.iconOnly,
+    href && variant && styles[variant + 'Link'],
     h5 && styles.h5,
+    h5 && variant && styles[variant + 'H5'],
     className,
     'cdg-button',
   ]
     .filter(Boolean)
     .join(' ')
 
+  // content classes
+  const contentClasses = [
+    styles.content,
+    leftIcon || (fullWidth && rightIcon) ? styles.hasIcon : '',
+    size && styles[`${size}Content`],
+    h5 && styles.h5Content,
+    'cdg-button-content',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
-    <Ripple isEnabled={ripple}>
-      {/* This div container is solely for the ripple effect */}
-      <div
-        className={`${styles.buttonContainer} ${
-          fullWidth ? styles.fullWidth : ''
+    <CssInjection css={css}>
+      <Button
+        ref={
+          buttonRef as React.RefObject<HTMLButtonElement> &
+            React.RefObject<HTMLAnchorElement>
         }
-        ${loading ? styles.loading : ''}
-        'cdg-button-container'
-        `}
+        href={href}
+        target={hrefTarget || (hrefExternal ? '_blank' : undefined)}
+        rel={
+          hrefTarget === '_blank' || hrefExternal
+            ? 'noopener noreferrer'
+            : undefined
+        }
+        // only allow onClick and onTouchEnd to be passed to the button
+        // reserve onMouseDown and onTouchStart for ripple effect
+        disabled={isDisabled}
+        aria-controls={ariaControls}
+        aria-expanded={ariaExpanded}
+        aria-haspopup={ariaHaspopup}
+        aria-pressed={ariaPressed}
+        tabIndex={tabIndex}
+        role={href ? 'link' : 'button'}
+        onClick={handleEvents}
+        onTouchEnd={handleEvents}
+        onBlur={handleEvents}
+        onDragStart={handleEvents}
+        onFocus={handleEvents}
+        onKeyDown={handleEvents}
+        onKeyUp={handleEvents}
+        onPointerDown={handleEvents}
+        onPointerUp={handleEvents}
+        type={type}
+        className={buttonClasses}
+        {...htmlProps}
       >
-        <CssInjection css={css}>
-          <Button
-            ref={
-              buttonRef as React.RefObject<HTMLButtonElement> &
-                React.RefObject<HTMLAnchorElement>
-            }
-            href={href}
-            target={hrefTarget || (hrefExternal ? '_blank' : undefined)}
-            rel={
-              hrefTarget === '_blank' || hrefExternal
-                ? 'noopener noreferrer'
-                : undefined
-            }
-            // only allow onClick and onTouchEnd to be passed to the button
-            // reserve onMouseDown and onTouchStart for ripple effect
-            disabled={isDisabled}
-            aria-controls={ariaControls}
-            aria-expanded={ariaExpanded}
-            aria-haspopup={ariaHaspopup}
-            aria-pressed={ariaPressed}
-            tabIndex={tabIndex}
-            role={href ? 'link' : 'button'}
-            onClick={handleEvents}
-            onTouchEnd={handleEvents}
-            onBlur={handleEvents}
-            onDragStart={handleEvents}
-            onFocus={handleEvents}
-            onKeyDown={handleEvents}
-            onKeyUp={handleEvents}
-            onPointerDown={handleEvents}
-            onPointerUp={handleEvents}
-            type={type}
-            className={buttonClasses}
-            {...htmlProps}
-          >
-            {loading ? (
-              <span
-                // make sure the loading indicator isn't visible to screen readers
-                hidden={!loading}
-                aria-hidden={!loading}
-                className={` ${styles.content} cdg-button-loadingDots`}
-              >
-                <span className={styles.loadingDots}>
-                  <span />
-                  <span />
-                  <span />
+        {loading ? (
+          <Ripple isEnabled={ripple}>
+            <span
+              // make sure the loading indicator isn't visible to screen readers
+              hidden={!loading}
+              aria-hidden={!loading}
+              className={contentClasses}
+            >
+              <span className={styles.loadingDots}>
+                <span
+                  className={`${styles.loadingDot} ${styles.firstLoadingDot}`}
+                />
+                <span
+                  className={`${styles.loadingDot} ${styles.secondLoadingDot}`}
+                />
+                <span
+                  className={`${styles.loadingDot} ${styles.thirdLoadingDot}`}
+                />
+              </span>
+            </span>
+          </Ripple>
+        ) : (
+          <Ripple isEnabled={ripple}>
+            <span className={contentClasses}>
+              {leftIcon || (fullWidth && rightIcon) ? (
+                <span className={`${styles.leftIcon} cdg-button-left-icon`}>
+                  {leftIcon}
                 </span>
-              </span>
-            ) : (
+              ) : null}
               <span
-                className={`${styles.content} ${
-                  leftIcon || rightIcon ? styles.hasIcon : ''
-                } cdg-button-content`}
+                className={`cdg-button-content-children ${styles.children}`}
               >
-                {leftIcon || (fullWidth && rightIcon) ? (
-                  <span className={`${styles.leftIcon} cdg-left-icon`}>
-                    {leftIcon}
-                  </span>
-                ) : null}
-                <span className={`cdg-button-content-children ${styles.children}`}>{children}</span>
-                {rightIcon || (fullWidth && leftIcon) ? (
-                  <span className={`${styles.rightIcon} cdg-right-icon`}>
-                    {rightIcon}
-                  </span>
-                ) : null}
+                {children}
               </span>
-            )}
-          </Button>
-        </CssInjection>
-      </div>
-    </Ripple>
+              {rightIcon || (fullWidth && leftIcon) ? (
+                <span className={`${styles.rightIcon} cdg-button-right-icon`}>
+                  {rightIcon}
+                </span>
+              ) : null}
+            </span>
+          </Ripple>
+        )}
+      </Button>
+    </CssInjection>
   )
 })
 

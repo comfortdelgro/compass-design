@@ -95,7 +95,9 @@ const Radio: React.FC<RadioProps> = (props) => {
             disabled={isDisabled}
           ></input>
         </div>
-        <div className={`cdg-radio-content-wrapper ${styles.radioContentWrapper}`}>
+        <div
+          className={`cdg-radio-content-wrapper ${styles.radioContentWrapper}`}
+        >
           {!!label && (
             <div className={`cdg-radio-label ${styles.radioLabel}`}>
               {label} {!!tooltip && <Tooltip text={tooltip} />}
@@ -103,10 +105,16 @@ const Radio: React.FC<RadioProps> = (props) => {
           )}
 
           {description && (
-            <p className={`cdg-radio-label  ${styles.radioDescription}`}>{description}</p>
+            <p className={`cdg-radio-label  ${styles.radioDescription}`}>
+              {description}
+            </p>
           )}
         </div>
-        {!!rightLabel && <p className={`cdg-radio-label ${styles.radioRightLabel}`}>{rightLabel}</p>}
+        {!!rightLabel && (
+          <p className={`cdg-radio-label ${styles.radioRightLabel}`}>
+            {rightLabel}
+          </p>
+        )}
       </div>
     </CssInjection>
   )

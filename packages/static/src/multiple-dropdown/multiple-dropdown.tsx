@@ -1,7 +1,8 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, {useCallback, useEffect, useMemo, useState} from 'react'
 import Chip from '../chip'
 import Popover from '../popover'
-import { useDOMRef } from '../utils/use-dom-ref'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import {useDOMRef} from '../utils/use-dom-ref'
 import {
   DropdownItemKey,
   MultipleDropdownContext,
@@ -15,6 +16,7 @@ import MultipleDropdownHeader from './multiple-dropdown.header'
 import MultipleDropdownSection, {
   DropdownSectionProps,
 } from './multiple-dropdown.section'
+import styles from './styles/multiple-dropdown.module.css'
 import {
   getFirstItem,
   getItemAbove,
@@ -23,8 +25,6 @@ import {
   getLastItem,
   textContent,
 } from './utils'
-import CssInjection from '../utils/objectToCss/CssInjection'
-import styles from './styles/multiple-dropdown.module.css'
 
 interface Props {
   erroredKeys?: Array<string | number>
@@ -71,8 +71,12 @@ export type MultipleDropdownProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 export const Icon = () => (
-  <svg width='16' height='16' viewBox='0 0 16 16'
-    className={`${styles.dropdownButtonIcon} cdg-dropdown-button-icon`}>
+  <svg
+    width='16'
+    height='16'
+    viewBox='0 0 16 16'
+    className={`${styles.dropdownButtonIcon} cdg-dropdown-button-icon`}
+  >
     <path
       d='M8.33276 12.3334C8.02004 12.3334 7.70717 12.2125 7.46885 11.9707L1.35805 5.78022C0.880649 5.29658 0.880649 4.5131 1.35805 4.02947C1.83546 3.54584 2.60886 3.54584 3.08626 4.02947L8.33276 9.34651L13.5804 4.03044C14.0578 3.54681 14.8312 3.54681 15.3086 4.03044C15.786 4.51407 15.786 5.29755 15.3086 5.78118L9.19782 11.9717C8.95912 12.2135 8.64594 12.3334 8.33276 12.3334Z'
       fill='currentColor'
@@ -155,7 +159,9 @@ const MultipleDropdown = React.forwardRef<
   >([])
   const [clonedChildren, setClonedChildren] =
     React.useState<React.ReactNode>(null)
-  const [triggerElementWidth, setTriggerElementWidth] = useState<string | number>('100%')
+  const [triggerElementWidth, setTriggerElementWidth] = useState<
+    string | number
+  >('100%')
 
   // ====================================== REF ======================================
   const refDOM = useDOMRef<HTMLDivElement>(ref)
@@ -221,7 +227,7 @@ const MultipleDropdown = React.forwardRef<
             sectionIndex++
             newProps.index = sectionIndex
           }
-          return React.cloneElement(childProps, { ...newProps })
+          return React.cloneElement(childProps, {...newProps})
         }
       }
 
@@ -231,7 +237,9 @@ const MultipleDropdown = React.forwardRef<
 
   useEffect(() => {
     if (open) {
-      setTriggerElementWidth(popoverCSS.width ?? wrapperRef?.current?.clientWidth ?? '100%')
+      setTriggerElementWidth(
+        popoverCSS.width ?? wrapperRef?.current?.clientWidth ?? '100%',
+      )
     }
   }, [open, popoverCSS.width, wrapperRef])
 
@@ -334,8 +342,8 @@ const MultipleDropdown = React.forwardRef<
         (focusKey
           ? focusKey
           : selectedItems.length
-            ? selectedItems[0]?.value
-            : '') ?? ''
+          ? selectedItems[0]?.value
+          : '') ?? ''
 
       switch (event.key) {
         case 'ArrowUp':
@@ -641,11 +649,19 @@ const MultipleDropdown = React.forwardRef<
                 onFocus={onFocus}
                 role='button'
               >
-                <div className={`${styles.multipleDropdownSelectedItemWrapper} cdg-selectedItemWrapper`}>
+                <div
+                  className={`${styles.multipleDropdownSelectedItemWrapper} cdg-selectedItemWrapper`}
+                >
                   {selectedItems.length === 0 &&
                     search === '' &&
                     !open &&
-                    !focused && <p className={`${styles.placeholderSelectedItemWrapper} cdg-placeholder`}>{placeholder}</p>}
+                    !focused && (
+                      <p
+                        className={`${styles.placeholderSelectedItemWrapper} cdg-placeholder`}
+                      >
+                        {placeholder}
+                      </p>
+                    )}
                   {displayedValue === 'chip' &&
                     selectedItems.length > 0 &&
                     selectedItems.map((selectedItem) => (
@@ -663,8 +679,8 @@ const MultipleDropdown = React.forwardRef<
                         {selectedItem.displayValue instanceof Array
                           ? selectedItem.displayValue
                           : textContent(
-                            selectedItem.displayValue as React.ReactElement,
-                          )}
+                              selectedItem.displayValue as React.ReactElement,
+                            )}
                       </Chip>
                     ))}
                   {displayedValue === 'string' && selectedItems.length > 0 ? (
@@ -690,17 +706,24 @@ const MultipleDropdown = React.forwardRef<
                     />
                   )}
                 </div>
-                <div className={`${styles.multipleDropdownControlIcon} dropdown-icon`}>{icon}</div>
+                <div
+                  className={`${styles.multipleDropdownControlIcon} dropdown-icon`}
+                >
+                  {icon}
+                </div>
               </div>
             }
-            css={{ width: '100%' }}
+            css={{width: '100%'}}
             direction='bottom-left'
             onClose={handleClosePopover}
           >
             <div
               className={`${styles.dropdownPopover}`}
               onClick={handleDropdownHeaderClick}
-              style={{ ...popoverCSS, width: popoverCSS.width ?? triggerElementWidth }}
+              style={{
+                ...popoverCSS,
+                width: popoverCSS.width ?? triggerElementWidth,
+              }}
             >
               <MultipleDropdownList
                 searchValue=''
@@ -718,8 +741,9 @@ const MultipleDropdown = React.forwardRef<
         </MultipleDropdownContext.Provider>
         {isErrored && errorMessage && (
           <div
-            className={`${styles.dropdownHelperText} ${isErrored ? styles.dropdownHelperIsErrored : ''
-              }`}
+            className={`${styles.dropdownHelperText} ${
+              isErrored ? styles.dropdownHelperIsErrored : ''
+            }`}
           >
             {errorMessage}
           </div>

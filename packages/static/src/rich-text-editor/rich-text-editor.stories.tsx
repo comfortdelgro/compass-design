@@ -1,5 +1,5 @@
 import type {Meta} from '@storybook/react'
-import RichTextEditor, { Content } from './index'
+import RichTextEditor, {Content} from './index'
 
 const style: {
   display: string
@@ -53,7 +53,6 @@ export const Basic: React.FC = () => {
     </div>
   )
 }
-
 
 export const Variants: React.FC = () => {
   const content: Content = `

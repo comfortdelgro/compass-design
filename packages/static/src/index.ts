@@ -4,6 +4,8 @@ export {default as Breadcrumbs} from './breadcrumbs'
 export type {BreadcrumbItemProps, BreadcrumbsProps} from './breadcrumbs'
 export {default as Button} from './button'
 export type {ButtonProps} from './button'
+export {default as Calendar} from './calendar'
+export type {CalendarProps} from './calendar'
 export {default as Chart} from './chart'
 export type {
   AreaChartProps,
@@ -32,6 +34,8 @@ export type {
   DropdownProps,
   DropdownSelectProps,
 } from './dropdown'
+export {default as File} from './file'
+export type {FilePreviewProps, FileStateProps} from './file'
 export {default as Icon} from './icon'
 export type {IconProp} from './icon'
 export {default as ImageViewer} from './image-viewer'
@@ -47,6 +51,7 @@ export type {
   MultipleDropdownItemProps,
   MultipleDropdownProps,
 } from './multiple-dropdown'
+
 export {default as Popover} from './popover'
 export type {PopoverDirection, PopoverProps} from './popover'
 export {default as Progress} from './progress'
@@ -59,9 +64,11 @@ export {default as SearchField} from './searchfield'
 export type {SearchFieldProps} from './searchfield'
 export {default as Spinner} from './spinner'
 export type {SpinnerProps} from './spinner'
-export {default as ProgressBar} from './progress-bar'
-export type {ProgressBarProps} from './progress-bar'
 export {default as Status} from './status'
 export type {StatusProps} from './status'
 export * from './theme'
 export {default as ThemeStaticProvider} from './theme/ThemeProvider'
+export {default as Transitions} from './transitions'
+export type {TransitionsProps} from './transitions'
+export {default as ProgressBar} from './progress-bar'
+export type {ProgressBarProps} from './progress-bar'

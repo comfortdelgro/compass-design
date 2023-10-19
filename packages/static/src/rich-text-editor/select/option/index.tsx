@@ -54,9 +54,11 @@ const Option = React.forwardRef<HTMLLIElement, OptionProps>(
     return (
       <CssInjection css={css} childrenRef={optionRef}>
         <li
-          className={`${className} ${styles.rteOption} ${isFocused ? styles.isFocused : ''} ${
-            isSelected ? styles.isSelected : ''
-          } ${isDisabled ? styles.isDisabled : ''}`}
+          className={`${className} ${styles.rteOption} ${
+            isFocused ? styles.isFocused : ''
+          } ${isSelected ? styles.isSelected : ''} ${
+            isDisabled ? styles.isDisabled : ''
+          }`}
           onClick={handleSelect}
         >
           <div className={`${styles.optionContent}`}>{children}</div>

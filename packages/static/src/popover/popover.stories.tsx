@@ -1,6 +1,6 @@
+import type {Meta} from '@storybook/react'
 import {useState} from 'react'
 import Popover, {PopoverDirection} from '.'
-import type {Meta} from '@storybook/react'
 
 const SamplePopover = () => {
   return (
