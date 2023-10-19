@@ -61,7 +61,7 @@ const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
     const color = useMemo(() => {
       // support the old color variants
       if (inputColor === 'blue') {
-        return '#78D5E8'
+        return '#009EDA'
       }
 
       if (inputColor === 'green') {
@@ -142,11 +142,9 @@ const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
 
             <div
               className={`progress-bar__loading ${styles.loadingProgress} ${
-                loading
-                  ? styles[
-                      `loading${size.charAt(0).toUpperCase() + size.slice(1)}`
+                styles[
+                      `loading${loading.toString().charAt(0).toUpperCase() + loading.toString().slice(1)}`
                     ]
-                  : ''
               }`}
               style={{
                 ...(loading === 'stripes'

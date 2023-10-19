@@ -113,8 +113,8 @@ export const Variants = () => {
         maxValue={MAX_VALUE}
         size='md'
         label='H5'
-        color='$blueShades80'
-        barColor='$blueShades10'
+        color='#3468BF'
+        barColor='#E6ECF7'
         onComplete={() => setIsCompleted(true)}
       />
 
