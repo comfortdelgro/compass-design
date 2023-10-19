@@ -35,7 +35,6 @@
 }
 
 .calendarFooter button {
-  padding: var(--cdg-spacing-1) var(--cdg-spacing-2_5);
   height: var(--cdg-spacing-8);
   font-size: var(--cdg-font-size-label2);
 }

@@ -5,7 +5,7 @@ import { Button, CalendarProps } from ".."
 import { DateValue, endOfWeek, getLocalTimeZone, parseDate, startOfWeek, today } from "../internationalized/date"
 import { useDateFormatter, useLocale } from "../internationalized/i18n"
 
-export const Basic = () => {
+export const Controlled = () => {
   const [range, setRange] = React.useState<RangeValue<CalendarProps | null>>({
     start: parseDate('2020-02-03'),
     end: parseDate('2020-02-08'),
@@ -87,15 +87,35 @@ export const Variants: React.FC = () => {
   )
 }
 
+export const Custom = () => {
+  return <div style={{ padding: '1rem' }}>
+    <RangeCalendar
+      css={{
+        backgroundColor: 'var(--cdg-color-gray20)',
+        border: '1px solid var(--cdg-color-gray50)',
+        '& .disabled': {
+          color: 'var(--cdg-color-gray60)',
+          backgroundColor: 'var(--cdg-color-gray40)',
+        },
+        '& .disabled:hover': {
+          color: 'var(--cdg-color-gray60)',
+        }
+      }}
+      hasFooter
+      hasShortcuts
+    />
+  </div>
+}
+
 const meta = {
   title: 'Example/Range Calendar Server',
-  component: Basic,
+  component: Controlled,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],
   parameters: {
     // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
     layout: 'fullscreen',
   },
-} satisfies Meta<typeof Basic>
+} satisfies Meta<typeof Controlled>
 
 export default meta
