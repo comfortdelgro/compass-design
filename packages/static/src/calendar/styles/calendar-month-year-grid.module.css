@@ -30,11 +30,11 @@
   cursor: not-allowed;
 }
 
-.calendarMonthYearCell.highlighted {
+.highlighted {
   color: var(--cdg-color-cdgBlue100);
   font-weight: bold;
 }
 
-.calendarMonthYearCell.highlighted:hover {
+.highlighted:hover {
   color: white;
 }

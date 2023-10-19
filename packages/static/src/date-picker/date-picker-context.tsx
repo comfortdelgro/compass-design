@@ -20,7 +20,6 @@ const DatePickerProvider = ({children}: {children: React.ReactNode}) => {
   )
 }
 
-// eslint-disable-next-line react-refresh/only-export-components
 export const useDatePickerContext = () => {
   return useContext(DatePickerContext)
 }

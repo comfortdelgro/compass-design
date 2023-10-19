@@ -10,7 +10,9 @@ import React, {
 } from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {MultipleChoicesSliderItemProps} from './multiple-choices-slider-item'
+import MultipleChoicesSliderItem, {
+  MultipleChoicesSliderItemProps,
+} from './multiple-choices-slider-item'
 import styles from './styles/multiple-choices-slider.module.css'
 
 interface Props {
@@ -75,4 +77,6 @@ const MultipleChoicesSlider = forwardRef<
   )
 })
 
-export default MultipleChoicesSlider
+export default MultipleChoicesSlider as typeof MultipleChoicesSlider & {
+  Item: typeof MultipleChoicesSliderItem
+}

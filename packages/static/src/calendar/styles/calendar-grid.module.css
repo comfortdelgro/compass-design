@@ -12,7 +12,7 @@
   text-indent: -99999px;
 }
 
-.calendarGrid .calendarWeekday {
+.calendarWeekday {
   font-size: var(--cdg-font-size-label2);
   font-weight: var(--cdg-font-weight-semi-bold);
   color: var(--cdg-color-cdgBlue120);

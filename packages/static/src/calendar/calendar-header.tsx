@@ -133,7 +133,7 @@ const CalendarHeader = (props: Props) => {
               )}
             </button>
           ) : (
-            <h2>
+            <h2 className={styles.calendarHeaderTitle}>
               {renderMiddleButtonContent(
                 monthDateFormatter.format(
                   state?.visibleRange?.start?.toDate(
@@ -158,7 +158,7 @@ const CalendarHeader = (props: Props) => {
         </div>
         {variant === 'range' && (
           <div className={`calendar-header-right-side ${styles.calendarHeaderRightSide}`}>
-            <h2>
+            <h2 className={styles.calendarHeaderTitle}>
               {renderMiddleButtonContent(
                 monthDateFormatter.format(
                   state?.visibleRange?.start

@@ -10,6 +10,7 @@ interface Props extends StyledComponentProps {
   children: React.ReactNode
   expand?: boolean
   delay?: number
+  onExpandChange?: (expand: boolean) => void
 }
 
 export type SidenavProps = Props &
@@ -38,6 +39,9 @@ const Sidenav = React.forwardRef<HTMLDivElement, SidenavProps>((props, ref) => {
     if (!expandTimeout.current) {
       expandTimeout.current = setTimeout(() => {
         setExpandOnHover(true)
+        if (props.onExpandChange) {
+          props.onExpandChange(true)
+        }
       }, delay)
     }
   }
@@ -49,6 +53,9 @@ const Sidenav = React.forwardRef<HTMLDivElement, SidenavProps>((props, ref) => {
     if (expandTimeout.current) {
       clearTimeout(expandTimeout.current)
       expandTimeout.current = null
+      if (props.onExpandChange) {
+        props.onExpandChange(false)
+      }
     }
     setExpandOnHover(false)
   }
