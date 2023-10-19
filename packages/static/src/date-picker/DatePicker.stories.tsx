@@ -86,6 +86,24 @@ export const Variants = () => {
   </div>
 }
 
+export const Custom = () => {
+  return <div style={{ padding: '1rem', backgroundColor: 'white' }}>
+    <DatePicker css={{
+      '& .cdg-date-field > div': {
+        backgroundColor: 'var(--cdg-color-cdgBlue20)'
+      },
+      '& .date-field-input > div': {
+        color: 'var(--cdg-color-cdgBlue100)'
+      },
+      '& .date-field-input > div:focus-visible': {
+        color: 'var(--cdg-color-cdgBlue100)',
+        backgroundColor: 'white'
+      }
+    }}
+    />
+  </div>
+}
+
 const meta = {
   title: 'Example/Date Picker Server',
   component: Basic,

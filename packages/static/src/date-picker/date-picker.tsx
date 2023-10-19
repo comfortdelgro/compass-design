@@ -145,7 +145,7 @@ const DatePickerFieldWrapper = React.forwardRef<
   } = props
 
   return (
-    <div {...groupProps} ref={ref} className={styles.datePickerFieldWrapper}>
+    <div {...groupProps} ref={ref}>
       <DateField
         {...fieldProps}
         aria-describedby={fieldProps['aria-describedby'] ?? ''}
