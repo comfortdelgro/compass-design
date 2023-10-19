@@ -102,17 +102,7 @@ const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
     return (
       <CssInjection css={css} childrenRef={linkRef}>
         <div
-          className={`cdg-progress-bar-wrapper ${styles.progressBarWrapper} ${
-            size
-              ? styles[`size${size.charAt(0).toUpperCase() + size.slice(1)}`]
-              : ''
-          } ${
-            variant
-              ? styles[
-                  `variant${variant.charAt(0).toUpperCase() + variant.slice(1)}`
-                ]
-              : ''
-          } ${className}`}
+          className={`cdg-progress-bar-wrapper ${styles.progressBarWrapper} ${className}`}
           ref={linkRef}
           {...labelProps}
           {...delegated}
@@ -127,7 +117,11 @@ const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
           )}
 
           <div
-            className={`cdg-progress-bar ${styles.progressBar}`}
+            className={`cdg-progress-bar ${styles.progressBar} ${
+              styles[
+                `variant${variant.charAt(0).toUpperCase() + variant.slice(1)}`
+              ]
+            } ${styles[`size${size.charAt(0).toUpperCase() + size.slice(1)}`]}`}
             style={{backgroundColor: barColor}}
           >
             {!loading && (
@@ -143,8 +137,11 @@ const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
             <div
               className={`progress-bar__loading ${styles.loadingProgress} ${
                 styles[
-                      `loading${loading.toString().charAt(0).toUpperCase() + loading.toString().slice(1)}`
-                    ]
+                  `loading${
+                    loading.toString().charAt(0).toUpperCase() +
+                    loading.toString().slice(1)
+                  }`
+                ]
               }`}
               style={{
                 ...(loading === 'stripes'
