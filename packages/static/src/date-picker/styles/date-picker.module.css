@@ -3,8 +3,3 @@
 .datePicker {
   width: fit-content;
 }
-
-.dateRangeFields{
-  display: flex;
-  gap: var(--cdg-spacing-6);
-}
