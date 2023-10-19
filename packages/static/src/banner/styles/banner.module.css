@@ -1,5 +1,6 @@
 @import '../../theme/theme.module.css';
 
+/* level 1 css */
 .bannerImage {
   appearance: none;
   border: none;
@@ -83,6 +84,8 @@
   flex-direction: column;
   position: relative;
 }
+
+/* level 2 css */
 
 /* Variants */
 
