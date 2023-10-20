@@ -1,7 +1,7 @@
 import clampValue from 'lodash/clamp'
-import React, {useEffect, useMemo} from 'react'
+import React, { useEffect, useMemo } from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
-import {useDOMRef} from '../utils/use-dom-ref'
+import { useDOMRef } from '../utils/use-dom-ref'
 import styles from './styles/progress-bar.module.css'
 
 type Props = {
@@ -55,7 +55,7 @@ const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
       maxValue: inputMaxValue = 100,
       onComplete,
       // html props
-      ...delegated
+      ...htmlProps
     } = props
 
     const color = useMemo(() => {
@@ -105,24 +105,23 @@ const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
           className={`cdg-progress-bar-wrapper ${styles.progressBarWrapper} ${className}`}
           ref={linkRef}
           {...labelProps}
-          {...delegated}
+          {...htmlProps}
         >
           {(!!label || !!rightLabel) && (
             <div
               className={`cdg-progress-bar-label ${styles.progressBarLabel}`}
             >
-              <span {...labelProps}>{label ?? ''}</span>
-              {rightLabel && <span {...labelProps}>{rightLabel ?? ''}</span>}
+              <span {...labelProps} className={styles.progressBarLabelSpan}>{label}</span>
+              {rightLabel && <span {...labelProps} className={styles.progressBarLabelSpan}>{rightLabel}</span>}
             </div>
           )}
 
           <div
-            className={`cdg-progress-bar ${styles.progressBar} ${
-              styles[
-                `variant${variant.charAt(0).toUpperCase() + variant.slice(1)}`
-              ]
-            } ${styles[`size${size.charAt(0).toUpperCase() + size.slice(1)}`]}`}
-            style={{backgroundColor: barColor}}
+            className={`cdg-progress-bar ${styles.progressBar} ${styles[
+              `variant${variant.charAt(0).toUpperCase() + variant.slice(1)}`
+            ]
+              } ${styles[`size${size.charAt(0).toUpperCase() + size.slice(1)}`]}`}
+            style={{ backgroundColor: barColor }}
           >
             {!loading && (
               <div
@@ -135,27 +134,25 @@ const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
             )}
 
             <div
-              className={`progress-bar__loading ${styles.loadingProgress} ${
-                styles[
-                  `loading${
-                    loading.toString().charAt(0).toUpperCase() +
-                    loading.toString().slice(1)
-                  }`
-                ]
-              }`}
+              className={`progress-bar__loading ${styles.loadingProgress} ${styles[
+                `loading${loading.toString().charAt(0).toUpperCase() +
+                loading.toString().slice(1)
+                }`
+              ]
+                }`}
               style={{
                 ...(loading === 'stripes'
                   ? {
-                      backgroundImage: `repeating-linear-gradient(-45deg,transparent 0 1.5%,${color} 1.5% 3%)`,
-                      '@sm': {
-                        backgroundImage: `repeating-linear-gradient(-45deg,transparent 0 .8%,${color} .8% 1.6%)`,
-                      },
-                    }
+                    backgroundImage: `repeating-linear-gradient(-45deg,transparent 0 1.5%,${color} 1.5% 3%)`,
+                    '@sm': {
+                      backgroundImage: `repeating-linear-gradient(-45deg,transparent 0 .8%,${color} .8% 1.6%)`,
+                    },
+                  }
                   : {
-                      backgroundColor: color,
-                    }),
+                    backgroundColor: color,
+                  }),
               }}
-              {...{loading}}
+              {...{ loading }}
             />
           </div>
         </div>

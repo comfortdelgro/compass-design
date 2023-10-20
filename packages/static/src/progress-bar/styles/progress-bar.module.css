@@ -42,7 +42,7 @@
   margin-bottom: var(--spacing-2);
 }
 
-.progressBarLabel span {
+.progressBarLabelSpan {
   font-weight: var(--font-weight-normal);
   font-size: var(--font-size-label1);
 }
@@ -82,16 +82,8 @@
   transition: width 0.2s linear;
 }
 
-.loadingTrue {
-  /* styles for loading: true would go here */
-}
-
 .loadingSlide {
   /* styles for loading: slide would go here */
-}
-
-.loadingFalse {
-  /* styles for loading: false would go here */
 }
 
 .loadingProgress {
