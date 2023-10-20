@@ -27,7 +27,7 @@ const SubBanner = React.forwardRef<HTMLDivElement, SubBannerProps>(
       // VariantProps
       variant = 'primary',
       // HTMLDiv Props
-      ...delegated
+      ...htmlProps
     } = props
 
     const subBannerRef = useDOMRef<HTMLDivElement>(ref)
@@ -51,7 +51,7 @@ const SubBanner = React.forwardRef<HTMLDivElement, SubBannerProps>(
           <div
             className={`cdg-sub-banner ${className} ${styles.subBanner} `}
             ref={subBannerRef}
-            {...delegated}
+            {...htmlProps}
           >
             {SubBannerImageElement}
             <div className={`cdg-sub-banner-bottom ${styles.subBannerBottom} `}>
@@ -67,7 +67,7 @@ const SubBanner = React.forwardRef<HTMLDivElement, SubBannerProps>(
           <div
             className={`cdg-sub-banner ${className} ${styles.subBanner} ${styles.subBannerSecondary}`}
             ref={subBannerRef}
-            {...delegated}
+            {...htmlProps}
           >
             {SubBannerImageElement}
 

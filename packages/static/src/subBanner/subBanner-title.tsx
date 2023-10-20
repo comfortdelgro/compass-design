@@ -15,7 +15,7 @@ const SubBannerTitle = React.forwardRef<
   HTMLHeadingElement,
   SubBannerTitleProps
 >((props, ref) => {
-  const {children, css = {}, className = '', ...delegated} = props
+  const {children, css = {}, className = '', ...htmlProps} = props
 
   const renderTitle = () => {
     if (typeof children === 'string') {
@@ -29,7 +29,7 @@ const SubBannerTitle = React.forwardRef<
       <h1
         className={`cdg-sub-banner-title ${className} ${styles.subBannerTitle}`}
         ref={ref}
-        {...delegated}
+        {...htmlProps}
       >
         {renderTitle()}
       </h1>

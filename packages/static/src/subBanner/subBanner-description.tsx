@@ -15,13 +15,13 @@ const SubBannerDescription = React.forwardRef<
   HTMLDivElement,
   SubBannerDescriptionProps
 >((props, ref) => {
-  const {children, css = {}, className = '', ...delegated} = props
+  const {children, css = {}, className = '', ...htmlProps} = props
 
   return (
     <CssInjection css={css} childrenRef={ref}>
       <p
         ref={ref}
-        {...delegated}
+        {...htmlProps}
         className={`cdg-sub-banner-description ${className} ${styles.subBannerDescription}`}
       >
         {children}
