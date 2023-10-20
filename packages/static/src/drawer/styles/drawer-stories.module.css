@@ -1,0 +1,41 @@
+.drawerStories {
+  position: relative;
+  padding: var(--cdg-spacing-4);
+
+  > h4 {
+    margin-block: 0 var(--cdg-spacing-2);
+
+    &:not(:first-child) {
+      margin-top: var(--cdg-spacing-14);
+    }
+  }
+
+  .description {
+    font-size: var(--cdg-font-size-body3);
+    color: var(--cdg-color-grayShades60);
+  }
+
+  .container {
+    display: flex;
+    align-items: center;
+    gap: var(--cdg-spacing-4);
+  }
+}
+
+.drawerExample {
+  & h2 {
+    margin-block: 0;
+  }
+
+  & h3 {
+    margin-block: 0 var(--cdg-spacing-2);
+  }
+
+  & p {
+    margin-top: 0;
+  }
+
+  & label + input[type='search'] {
+    margin-left: var(--cdg-spacing-2);
+  }
+}

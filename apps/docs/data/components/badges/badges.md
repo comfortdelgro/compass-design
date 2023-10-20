@@ -40,6 +40,7 @@ import Badge from '@comfortdelgro/react-compass/badge'
 {{"demo": "BadgeIcon.tsx"}}
 
 ### Custom icon
+
 {{"demo": "BadgeCustomIcon.tsx"}}
 
 ### Status

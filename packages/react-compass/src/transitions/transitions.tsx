@@ -1,4 +1,3 @@
-/* eslint-disable prefer-const */
 import React from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -73,7 +72,7 @@ const Transitions = React.forwardRef<HTMLDivElement, TransitionsProps>(
           setChildrenHeight(element.offsetHeight)
         }
       }
-    }, [show])
+    }, [show, children])
 
     return (
       <>

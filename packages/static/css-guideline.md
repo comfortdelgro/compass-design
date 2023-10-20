@@ -139,7 +139,7 @@ button {
 
 ```css
 /* Using attribute selector sparingly */
-input[type="text"] {
+input[type='text'] {
   /* Styles for text inputs */
 }
 ```
@@ -148,7 +148,7 @@ input[type="text"] {
 
 ```css
 /* Overusing attribute selector */
-div[id^="section"] {
+div[id^='section'] {
   /* Selects div elements with IDs starting with "section" */
 }
 ```
@@ -197,7 +197,9 @@ div[id^="section"] {
 ```
 
 ### 3.9 Always use direct selector with className unless there is a good reason
+
 #### Good:
+
 ```css
 /* Direct selector */
 
@@ -209,7 +211,9 @@ div[id^="section"] {
   /* Styles for description with className */
 }
 ```
+
 #### Bad:
+
 ```css
 /* Indirect selector */
 

@@ -85,7 +85,12 @@ export const Default: React.FC = () => {
       icon: faCar,
       title: 'Placeholder',
       children: [
-        {id: 11, title: 'Placeholder', icon: faCar},
+        {
+          id: 11,
+          title:
+            'Placeholder item with a really long name that makes this menu item width over screen to test the layout',
+          icon: faCar,
+        },
         {id: 12, title: 'Placeholder', icon: faCar},
         {
           id: 13,
@@ -169,6 +174,9 @@ export const Default: React.FC = () => {
           padding: '16px 0',
         }}
         expand={false}
+        onExpandChange={(expanded) => {
+          console.log(`Sidenav expanded: ${expanded}`)
+        }}
         delay={200}
       >
         <Sidenav.Item css={{'&.cdg-sidenav-item': {marginBottom: '36px'}}}>

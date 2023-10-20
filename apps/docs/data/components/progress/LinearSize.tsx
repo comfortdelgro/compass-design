@@ -1,4 +1,5 @@
 import Progress from '@comfortdelgro/react-compass/progress'
+// import {Progress as StaticProgress} from '@comfortdelgro/static'
 
 function LinearSize() {
   return (
@@ -16,6 +17,7 @@ function LinearSize() {
       </span>
       <br />
       <Progress.Linear variant='indeterminate' size={10} />
+      {/* <StaticProgress.Linear variant='indeterminate' size={10} /> */}
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import {Column, Icon, Typography} from '@comfortdelgro/react-compass'
+import {Column, Icon} from '@comfortdelgro/react-compass'
 import Timeline from '@comfortdelgro/react-compass/timeline'
 import {faCalendarDay} from '@fortawesome/free-solid-svg-icons'
 

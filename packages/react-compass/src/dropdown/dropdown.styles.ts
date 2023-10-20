@@ -42,10 +42,10 @@ export const StyledDropdownWrapper = styled('div', {
           marginBottom: '$1',
         },
         '.cdg-dropdown-button': {
-          fontSize: '$label1',
           fontWeight: '$normal',
-          lineHeight: '$tight',
           padding: '$3 $4',
+          fontSize: '$body3',
+          lineHeight: '20px',
         },
       },
     },
@@ -130,7 +130,7 @@ export const StyledSelect = styled('div', {
       true: {
         button: {
           span: {
-            color: '$disabledText',
+            color: '$placeholder',
           },
         },
       },
@@ -231,7 +231,7 @@ export const StyledComboBox = styled('div', {
       true: {
         input: {
           '&::placeholder': {
-            color: '$gray40',
+            color: '$placeholder',
             fontSize: '$label1',
             fontWeight: '$semibold',
           },
