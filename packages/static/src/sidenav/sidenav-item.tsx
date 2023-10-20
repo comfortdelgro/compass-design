@@ -50,6 +50,7 @@ const SidenavItem = React.forwardRef<HTMLDivElement, SidenavItemProps>(
       React.cloneElement(menu as JSX.Element, {
         setMenuParentProps: setMenuParent,
         isOpenMenu: isOpenMenu,
+        className: `${styles.sidenavItemLastChild}`
       })
     ) : (
       <></>
