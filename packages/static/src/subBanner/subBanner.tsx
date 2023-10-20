@@ -4,7 +4,7 @@ import { pickChild } from '../utils/pick-child'
 import { useDOMRef } from '../utils/use-dom-ref'
 import styles from './styles/subBanner.module.css'
 import SubBannerDescription from './subBanner-description'
-import SubBannerImage from './subBanner-image'
+import SubBannerImage, { SubBannerImageProps } from './subBanner-image'
 import SubBannerTitle from './subBanner-title'
 
 interface Props {
@@ -36,12 +36,13 @@ const SubBanner = React.forwardRef<HTMLDivElement, SubBannerProps>(
       SubBannerImage,
     )
 
-    let SubBannerImageElementCloned: React.ReactElement;
+    const SubBannerImageElementCloned = () => {
+      if (React.isValidElement(SubBannerImageElement)) {
+        return React.cloneElement(SubBannerImageElement, {
+          variant: variant,
+        } as SubBannerImageProps)
+      }
 
-    if (React.isValidElement(SubBannerImageElement)) {
-      SubBannerImageElementCloned = React.cloneElement(SubBannerImageElement, {
-        variant: variant
-      });
     }
 
     const { child: SubBannerTitleElement } = pickChild<typeof SubBannerTitle>(
@@ -61,7 +62,7 @@ const SubBanner = React.forwardRef<HTMLDivElement, SubBannerProps>(
             ref={subBannerRef}
             {...htmlProps}
           >
-            {SubBannerImageElement}
+            {SubBannerImageElementCloned()}
             <div className={`cdg-sub-banner-bottom ${styles.subBannerBottom} `}>
               <div
                 className={`cdg-bottom-content-container ${styles.bottomContentContainer} `}
@@ -77,7 +78,7 @@ const SubBanner = React.forwardRef<HTMLDivElement, SubBannerProps>(
             ref={subBannerRef}
             {...htmlProps}
           >
-            {SubBannerImageElement}
+            {SubBannerImageElementCloned()}
 
             <div
               className={`cdg-bottom-content-container ${styles.bottomContentContainer} ${styles.bottomContentContainerSecondary}`}

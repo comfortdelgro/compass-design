@@ -25,7 +25,7 @@ const SubBannerImage = React.forwardRef<HTMLImageElement, SubBannerImageProps>(
     return (
       <CssInjection css={css} childrenRef={subBannerImageRef}>
         <img
-          className={`cdg-sub-banner-image ${className} ${styles.subBannerImage}`}
+          className={`cdg-sub-banner-image ${className} ${styles.subBannerImage} ${styles[`subBannerImage${variant.charAt(0).toUpperCase() + variant.slice(1)}`]}`}
           {...htmlProps}
           ref={subBannerImageRef}
           id={id}
