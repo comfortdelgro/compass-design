@@ -6,6 +6,14 @@ export {default as Button} from './button'
 export type {ButtonProps} from './button'
 export {default as Calendar} from './calendar'
 export type {CalendarProps} from './calendar'
+export {default as Carousel} from './carousel'
+export type {
+  CarouselImageSlideProps,
+  CarouselMobileProps,
+  CarouselPromotionProps,
+  CarouselProps,
+  CarouselSlideProps,
+} from './carousel'
 export {default as Chart} from './chart'
 export type {
   AreaChartProps,
