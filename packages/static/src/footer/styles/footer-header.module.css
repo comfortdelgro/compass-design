@@ -1,0 +1,16 @@
+@import '../../theme/theme.module.css';
+
+.footerHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media screen and (max-width: 600px) {
+  .footerHeader {
+    flex-direction: column;
+    justify-content: center;
+    gap: 24px;
+  }
+}

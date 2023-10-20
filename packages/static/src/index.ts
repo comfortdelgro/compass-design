@@ -36,6 +36,16 @@ export type {
 } from './dropdown'
 export {default as File} from './file'
 export type {FilePreviewProps, FileStateProps} from './file'
+export {Footer, FooterInfo} from './footer'
+export type {
+  FooterHeaderProps,
+  FooterInfoDownloadProps,
+  FooterInfoProps,
+  FooterInfoSocialProps,
+  FooterNavigationProps,
+  FooterPolicyProps,
+  FooterProps,
+} from './footer'
 export {default as Icon} from './icon'
 export type {IconProp} from './icon'
 export {default as ImageViewer} from './image-viewer'

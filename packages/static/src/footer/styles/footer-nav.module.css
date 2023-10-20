@@ -1,0 +1,26 @@
+@import '../../theme/theme.module.css';
+
+.footerNav {
+  display: grid;
+  grid-template-columns: repeat(var(--gridNumber), 1fr);
+  gap: 32px;
+  overflow: hidden;
+}
+
+.footerNav > div {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media screen and (max-width: 900px) {
+  .footerNav {
+    grid-template-columns: repeat(var(--tabletGridNumber), 1fr);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .footerNav {
+    display: none;
+  }
+}
