@@ -1,0 +1,20 @@
+@import '../../theme/theme.module.css';
+
+
+.subHeaderTitle {
+  margin: 0;
+  color: var(--cdg-color-grayShades100) !important; 
+
+  /* Default variant */
+  font-weight: var(--cdg-font-weight-semibold); 
+  font-size: var(--cdg-font-size-header5); 
+  line-height: var(--cdg-line-heights-normal);
+
+  /* Variant: h5 */
+  &.h5 {
+    font-size: var(--cdg-font-size-header2); 
+    font-weight: 700;
+    line-height: 42px;
+  }
+}
+

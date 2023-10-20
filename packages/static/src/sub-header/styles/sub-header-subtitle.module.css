@@ -1,0 +1,7 @@
+@import '../../theme/theme.module.css';
+
+.subHeaderSubtitle {
+  color: inherit;
+  font-size: var(--cdg-font-size-label1);
+  line-height: 21px;
+}

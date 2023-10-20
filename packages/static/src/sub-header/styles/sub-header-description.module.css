@@ -1,0 +1,17 @@
+@import '../../theme/theme.module.css';
+
+.subHeaderDescription {
+  margin: 0;
+
+  /* Default variant */
+  font-size: var(--cdg-font-size-label1); 
+  color: var(--cdg-color-gray70); 
+}
+
+/* Variant: h5 */
+.subHeaderDescription.h5 {
+  font-size: var(--cdg-font-size-label1); 
+  font-weight: var(--cdg-font-weights-medium); 
+  line-height: 20px;
+}
+

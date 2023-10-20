@@ -1,0 +1,6 @@
+@import '../../theme/theme.module.css';
+
+.subHeaderImage {
+  margin: 0;
+  height: 104px;
+}

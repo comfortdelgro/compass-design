@@ -1,0 +1,8 @@
+@import '../../theme/theme.module.css';
+
+.subHeaderHeader {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--cdg-spacing-3);
+}

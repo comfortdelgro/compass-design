@@ -2,16 +2,19 @@
 
 .subHeader {
   display: flex;
-  gap: var(--cdg-spacing-2); 
-
-  /* Default variant */
-  flex-direction: column;
-
-  /* Variant: h5 */
-  &.h5 {
-    align-items: center;
-    flex-direction: row;
-    justify-content: space-between;
-  }
+  gap: var(--cdg-spacing-2);
 }
 
+
+/* Variant */
+
+.subHeaderDefault {
+  /* css default */
+  flex-direction: column;
+}
+
+.subHeaderH5 {
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
