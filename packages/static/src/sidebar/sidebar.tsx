@@ -35,7 +35,7 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>((props, ref) => {
     handleClose,
     onClick,
     // HTMLDiv Props
-    ...delegated
+    ...htmlProps
   } = props
 
   const sidebarRef = useDOMRef<HTMLDivElement>(ref)
@@ -99,7 +99,7 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>((props, ref) => {
             }`}
             ref={sidebarRef}
             onClick={(e) => handleClickSidebar(e as unknown as MouseEvent)}
-            {...delegated}
+            {...htmlProps}
           >
             {variant == 'primary' && (
               <div className={`cdg-sidebar-header ${styles.sidebarHeader}`}>
