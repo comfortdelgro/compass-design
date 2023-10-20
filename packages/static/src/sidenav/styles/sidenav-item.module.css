@@ -44,11 +44,6 @@
   margin-bottom: 0;
 }
 
-.sidenavItemLastChild{
-  background-color: red;
-  margin-bottom: 0;
-}
-
 .sidenavItem svg {
   width: var(--cdg-spacing-6);
   height: var(--cdg-spacing-6);
