@@ -1,7 +1,7 @@
 import React from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
-import {pickChild} from '../utils/pick-child'
-import {useDOMRef} from '../utils/use-dom-ref'
+import { pickChild } from '../utils/pick-child'
+import { useDOMRef } from '../utils/use-dom-ref'
 import styles from './styles/subBanner.module.css'
 import SubBannerDescription from './subBanner-description'
 import SubBannerImage from './subBanner-image'
@@ -31,17 +31,25 @@ const SubBanner = React.forwardRef<HTMLDivElement, SubBannerProps>(
     } = props
 
     const subBannerRef = useDOMRef<HTMLDivElement>(ref)
-    const {child: SubBannerImageElement} = pickChild<typeof SubBannerImage>(
+    const { child: SubBannerImageElement } = pickChild<typeof SubBannerImage>(
       children,
       SubBannerImage,
     )
 
-    const {child: SubBannerTitleElement} = pickChild<typeof SubBannerTitle>(
+    let SubBannerImageElementCloned: React.ReactElement;
+
+    if (React.isValidElement(SubBannerImageElement)) {
+      SubBannerImageElementCloned = React.cloneElement(SubBannerImageElement, {
+        variant: variant
+      });
+    }
+
+    const { child: SubBannerTitleElement } = pickChild<typeof SubBannerTitle>(
       children,
       SubBannerTitle,
     )
 
-    const {child: SubBannerDescriptionElement} = pickChild<
+    const { child: SubBannerDescriptionElement } = pickChild<
       typeof SubBannerDescription
     >(children, SubBannerDescription)
 

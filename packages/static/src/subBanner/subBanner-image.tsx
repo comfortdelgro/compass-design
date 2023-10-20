@@ -6,6 +6,7 @@ import styles from './styles/subBanner.module.css'
 interface Props {
   css?: unknown
   className?: string
+  variant?: 'primary' | 'secondary'
 }
 
 export type SubBannerImageProps = Props &
@@ -16,6 +17,7 @@ const SubBannerImage = React.forwardRef<HTMLImageElement, SubBannerImageProps>(
     const {
       css = {},
       className = '',
+      variant = 'primary',
       id = 'cdg-sub-banner-image',
       ...htmlProps
     } = props
