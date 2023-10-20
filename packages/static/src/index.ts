@@ -55,6 +55,8 @@ export type {
 export {default as Popover} from './popover'
 export type {PopoverDirection, PopoverProps} from './popover'
 export {default as Progress} from './progress'
+export {default as ProgressBar} from './progress-bar'
+export type {ProgressBarProps} from './progress-bar'
 export type {CircularProgressProps, LinearProgressProps} from './progress'
 export {default as Radio} from './radio'
 export type {RadioGroupProps, RadioProps} from './radio'
