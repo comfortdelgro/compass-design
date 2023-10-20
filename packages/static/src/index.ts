@@ -1,10 +1,12 @@
-export { default as Avatar } from './avatar'
-export type { AvatarProps } from './avatar'
-export { default as Breadcrumbs } from './breadcrumbs'
-export type { BreadcrumbItemProps, BreadcrumbsProps } from './breadcrumbs'
-export { default as Button } from './button'
-export type { ButtonProps } from './button'
-export { default as Chart } from './chart'
+export {default as Avatar} from './avatar'
+export type {AvatarProps} from './avatar'
+export {default as Breadcrumbs} from './breadcrumbs'
+export type {BreadcrumbItemProps, BreadcrumbsProps} from './breadcrumbs'
+export {default as Button} from './button'
+export type {ButtonProps} from './button'
+export {default as Calendar} from './calendar'
+export type {CalendarProps} from './calendar'
+export {default as Chart} from './chart'
 export type {
   AreaChartProps,
   BarChartProps,
@@ -32,10 +34,12 @@ export type {
   DropdownProps,
   DropdownSelectProps,
 } from './dropdown'
-export { default as Icon } from './icon'
-export type { IconProp } from './icon'
-export { default as ImageViewer } from './image-viewer'
-export type { ImageViewerProps } from './image-viewer'
+export {default as File} from './file'
+export type {FilePreviewProps, FileStateProps} from './file'
+export {default as Icon} from './icon'
+export type {IconProp} from './icon'
+export {default as ImageViewer} from './image-viewer'
+export type {ImageViewerProps} from './image-viewer'
 export * from './layouts'
 export { default as MultipleChoicesSlider } from './multiple-choices-slider'
 export type {

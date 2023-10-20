@@ -1,0 +1,6 @@
+/* Importing the theme module */
+@import '../../../theme/theme.module.css';
+
+.dialog:focus-visible {
+  outline: 1px solid var(--cdg-color-cdgBlue100);
+}
