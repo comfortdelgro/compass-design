@@ -11,8 +11,8 @@ export type {
   CarouselImageSlideProps,
   CarouselMobileProps,
   CarouselPromotionProps,
-  CarouselProps,
   CarouselSlideProps,
+  CarouselSliderProps,
 } from './carousel'
 export {default as Chart} from './chart'
 export type {

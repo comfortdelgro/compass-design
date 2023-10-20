@@ -3,17 +3,19 @@ import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/carousel.module.css'
 
-export interface Props {
+interface Props {
   imageUrl: string
   css?: unknown
   active: boolean
   className?: string
 }
 
-const CarouselImageSlide = React.forwardRef<HTMLDivElement, Props>(
+export type CarouselImageSlideProps = Props &
+  Omit<React.HTMLAttributes<HTMLImageElement>, keyof Props>
+
+const CarouselImageSlide = React.forwardRef<HTMLDivElement, CarouselImageSlideProps>(
   (props, ref) => {
     const {
-      // StyledComponentProps
       css = {},
       imageUrl,
       active,

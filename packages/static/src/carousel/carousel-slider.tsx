@@ -14,7 +14,7 @@ import {
 } from './carousel.const'
 import styles from './styles/carousel.module.css'
 
-export interface Props {
+interface Props {
   css?: unknown
   style?: React.CSSProperties
   children: React.ReactNode[]
@@ -29,9 +29,11 @@ export interface Props {
   onSwitchSlide?: (index: number) => void
 }
 
-const CarouselSlider = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
+export type CarouselSliderProps = Props &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
+
+const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>((props, ref) => {
   const {
-    // StyledComponentProps
     css = {},
     children,
     autoSwitch = true,
@@ -48,8 +50,8 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   } = props
 
   const hostRef = useDOMRef<HTMLDivElement>(ref)
-  const sliderRef = useDOMRef<HTMLDivElement>(ref)
-  const scroller = useDOMRef<HTMLDivElement>(ref)
+  const sliderRef = useDOMRef<HTMLDivElement>()
+  const scroller = useDOMRef<HTMLDivElement>()
 
   const [xPosition, setXPosition] = useState(0)
   const [current, setCurrent] = useState(0)

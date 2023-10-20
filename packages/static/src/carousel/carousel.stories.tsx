@@ -3,8 +3,8 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import type {Meta} from '@storybook/react'
 import React, {useEffect, useState} from 'react'
 import CarouselSlider from '.'
+import CarouselMobile from './carousel-mobile'
 import CarouselPromotion from './carousel-promotion'
-import CarouselSlide from './carousel-slide'
 import {
   CarouselSliderButton,
   CarouselSliderItem,
@@ -111,7 +111,7 @@ export const Multiple: React.FC = () => {
         itemPerPage={count}
       >
         {Array.from({length: 9}).map((item, index) => (
-          <CarouselSlide
+          <CarouselSlider.Slide
             key={index}
             active={activeIndex === index}
             style={{display: 'flex', height: '100%', width: '33.33%'}}
@@ -126,7 +126,7 @@ export const Multiple: React.FC = () => {
             >
               Carousel slide {index}
             </div>
-          </CarouselSlide>
+          </CarouselSlider.Slide>
         ))}
       </CarouselSlider>
     </div>
@@ -163,7 +163,7 @@ export const MultipleResponsive: React.FC = () => {
         itemPerPage={count}
       >
         {Array.from({length: 9}).map((item, index) => (
-          <CarouselSlide
+          <CarouselSlider.Slide
             key={index}
             active={activeIndex === index}
             className={styles.slideItem}
@@ -171,7 +171,7 @@ export const MultipleResponsive: React.FC = () => {
             <div className={styles.slideContent} style={{}}>
               Carousel slide {index}
             </div>
-          </CarouselSlide>
+          </CarouselSlider.Slide>
         ))}
       </CarouselSlider>
     </div>
@@ -274,6 +274,42 @@ export const PromotionWithSocial: React.FC = () => {
     <div>
       <h2>Promotions With Social</h2>
       <CarouselPromotion data={slideData} socials={socials} effect={'slide'} />
+    </div>
+  )
+}
+
+export const Mobile: React.FC = () => {
+  return (
+    <div>
+      <h2>Carousel for mobile mode</h2>
+      <CarouselMobile data={slideData} useNavigation={false} />
+    </div>
+  )
+}
+
+export const MobileWithButtons: React.FC = () => {
+  return (
+    <div>
+      <h2>Carousel for mobile mode</h2>
+      <CarouselMobile
+        data={slideData}
+        useNavigation={false}
+        buttons={buttons}
+      />
+    </div>
+  )
+}
+
+export const MobileFloattingContent: React.FC = () => {
+  return (
+    <div>
+      <h2>Carousel for mobile mode</h2>
+      <CarouselMobile
+        data={slideData}
+        floatingContent={true}
+        useNavigation={false}
+        buttons={buttons}
+      />
     </div>
   )
 }

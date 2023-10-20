@@ -56,6 +56,7 @@
 /** User controls the children list **/
 /** Slider Slide is children component **/
 /** effectSlide is parent's variant **/
+/** This is for temporary **/
 .effectSlide .sliderSlide {
   position: relative;
   flex-shrink: 0;
@@ -162,13 +163,39 @@
   gap: 24px;
 }
 
+.slideMobileButtonRow {
+  flex-direction: column;
+  gap: 0;
+  margin-top: 0;
+}
+
+/** This is for temporary overriding button styles **/
 /** Only secondary class cannot override button background color **/
 .slideButtonRow .secondary {
   background-color: var(--cdg-color-whiteText);
 }
 
+.slideMobileButtonRow .mobile-secondary,
+.slideMobileButtonRow .mobile-primary {
+  border-radius: 0;
+  padding: 16px 24px;
+}
+
+.slideMobileButtonRow .mobile-primary {
+  background-color: var(--cdg-color-cdgBlue);
+}
+
+.slideMobileButtonRow .mobile-secondary {
+}
+/** end **/
+
 .contentSliderDescription {
   margin: 8px 0 0 0;
+}
+
+.mobileContentSliderDescription {
+  font-size: 14px;
+  margin: 0;
 }
 
 .slideMask {
@@ -183,6 +210,12 @@
   margin: 0;
 }
 
+.mobileContentSliderTitle {
+  margin: 0;
+  font-size: 24px;
+  line-height: 30px;
+}
+
 .sliderSocials {
   display: flex;
   color: var(--cdg-color-whiteText);
@@ -195,4 +228,90 @@
 
 .useSocials {
   justify-content: space-between;
+}
+
+.contentSliderMobileMode {
+}
+
+.slideMask {
+  position: absolute;
+  inset: 0;
+}
+
+.mobileInnerContent {
+  align-items: stretch;
+  height: 100%;
+  gap: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileModeSlide {
+  flex-direction: column;
+  position: relative;
+}
+
+.noneFloatingSlideBody {
+  display: flex;
+  flex-direction: column;
+  background: var(--cdg-color-cdgBlue);
+  padding: 24px 16px;
+  overflow: hidden;
+  gap: 8px;
+  position: static;
+  inset: unset;
+}
+
+@container contentSlider (max-width: 1199px) {
+  .contentSliderTitle {
+    font-size: 36px;
+    line-height: 44px;
+  }
+
+  .mobileContentSliderTitle {
+    font-size: 24px;
+    line-height: 30px;
+  }
+}
+
+@container contentSlider (max-width: 768px) {
+  .contentSliderContainer {
+  }
+
+  .contentSliderBottomNav {
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+  }
+
+  .slideMask {
+    display: none;
+  }
+
+  .sliderSlide {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .slideBody {
+    inset: 50px;
+    display: flex;
+    flex: 1;
+    gap: 8px;
+  }
+
+  .contentSliderTitle {
+    font-size: 24px;
+    line-height: 30px;
+    margin: 0 16px;
+  }
+
+  .contentSliderDescription {
+    font-size: 14px;
+    margin: 0 16px;
+  }
+
+  .slideBackground {
+    height: 100%;
+  }
 }

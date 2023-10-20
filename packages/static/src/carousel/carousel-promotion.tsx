@@ -10,6 +10,7 @@ import {
   SocicalIcon,
 } from './carousel.const'
 
+import CarouselSlide from './carousel-slide'
 import styles from './styles/carousel.module.css'
 
 interface Props extends CarouselOptions {
@@ -66,7 +67,7 @@ const CarouselPromotion = React.forwardRef<
         className={`current-slide-buttons-${generateButtonRangeClassName()}`}
       >
         {data.map((dataItem: CarouselSliderItem, index: number) => (
-          <CarouselSlider.Slide
+          <CarouselSlide
             key={index}
             className={`slider-slide${activeIndex === index ? ' active' : ''}`}
             active={activeIndex === index}
@@ -113,7 +114,7 @@ const CarouselPromotion = React.forwardRef<
                 </div>
               )}
             </div>
-          </CarouselSlider.Slide>
+          </CarouselSlide>
         ))}
       </CarouselSlider>
     </CssInjection>

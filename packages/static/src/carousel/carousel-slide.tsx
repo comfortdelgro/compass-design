@@ -3,7 +3,7 @@ import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/carousel.module.css'
 
-export interface Props {
+interface Props {
   children?: React.ReactNode
   css?: unknown
   active: boolean
@@ -11,9 +11,11 @@ export interface Props {
   style?: React.CSSProperties
 }
 
-const CarouselSlide = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
+export type CarouselSlideProps = Props &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
+
+const CarouselSlide = React.forwardRef<HTMLDivElement, CarouselSlideProps>((props, ref) => {
   const {
-    // StyledComponentProps
     css = {},
     children,
     active,

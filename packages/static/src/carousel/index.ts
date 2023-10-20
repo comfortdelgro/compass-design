@@ -4,11 +4,11 @@ import CarouselPromotion from './carousel-promotion'
 import CarouselSlide from './carousel-slide'
 import CarouselSlider from './carousel-slider'
 
-export type {Props as CarouselImageSlideProps} from './carousel-image-slide'
-export type {Props as CarouselMobileProps} from './carousel-mobile'
+export type {CarouselImageSlideProps} from './carousel-image-slide'
+export type {CarouselMobileProps} from './carousel-mobile'
 export type {CarouselPromotionProps} from './carousel-promotion'
-export type {Props as CarouselSlideProps} from './carousel-slide'
-export type {Props as CarouselProps} from './carousel-slider'
+export type {CarouselSlideProps} from './carousel-slide'
+export type {CarouselSliderProps} from './carousel-slider'
 
 CarouselSlider.displayName = 'CarouselSlider'
 CarouselSlider.Slide = CarouselSlide
