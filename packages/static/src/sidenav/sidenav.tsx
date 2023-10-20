@@ -29,7 +29,7 @@ const Sidenav = React.forwardRef<HTMLDivElement, SidenavProps>((props, ref) => {
     // StyledComponentProps
     css = {},
     // HTML Div props
-    ...delegated
+    ...htmlProps
   } = props
 
   const expandTimeout = useRef<NodeJS.Timeout | null>(null)
@@ -73,7 +73,7 @@ const Sidenav = React.forwardRef<HTMLDivElement, SidenavProps>((props, ref) => {
         className={`cdg-sidenav ${styles.sidenav} ${className} ${expandOnHover ? 'sidenav-expanded' : ''} ${isExpand ? `${styles.sidenavFull}` : 'default'}`}
         onMouseOver={handleMouseOver}
         onMouseLeave={handleMouseLeave}
-        {...delegated}
+        {...htmlProps}
       >
         <SidenavContext.Provider value={{ isExpand: isExpand }}>
           {children}

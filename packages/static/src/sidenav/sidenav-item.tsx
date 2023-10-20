@@ -77,7 +77,7 @@ const SidenavItem = React.forwardRef<HTMLDivElement, SidenavItemProps>(
           {...menuParenProps?.getReferenceProps()}
         >
           <div className={`cdg-sidenav-item-icon ${styles.cdgSidenavItemIcon} ${isActive ? `${styles.cdgSidenavItemActiveIcon}` : ''}`}>
-            <div className={`cdg-sidenav-item-icon-wrapper ${styles.cdgSidenavItemIconWrapper}`}>{icon}</div>
+            {icon}
           </div>
           <div className={`cdg-sidenav-item-title ${styles.cdgSidenavItemTitle}`}>{title}</div>
           {clonedMenu}

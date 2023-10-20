@@ -11,7 +11,7 @@
   cursor: pointer;
   padding: 0 var(--cdg-spacing-4);
   overflow: hidden;
-  max-width: 480px;
+  max-width: var(--cdg-spacing-120);
   margin-bottom: var(--cdg-spacing-4);
 }
 
@@ -19,18 +19,11 @@
 
 .cdgSidenavItemIcon {
   min-width: var(--cdg-spacing-10);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.cdgSidenavItemIconWrapper {
-  width: var(--cdg-spacing-10);
   height: var(--cdg-spacing-10);
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .cdgSidenavItemTitle {
@@ -48,6 +41,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-bottom: 0;
 }
 
 .sidenavItem:last-child{
@@ -74,6 +68,6 @@
   left: 0;
   top: 0;
   height: 100%;
-  width: 3px;
+  width: var(--cdg-border-width-thick);
   background-color: currentColor;
 }

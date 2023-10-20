@@ -2,6 +2,6 @@
 
 .divider {
   width: 100%;
-  height: 1px;
+  height: var(--cdg-spacing-0_25);
   background-color: var(--cdg-color-gray50); 
 }
