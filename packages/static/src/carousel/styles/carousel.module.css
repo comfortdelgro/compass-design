@@ -33,10 +33,6 @@
   min-height: 0;
 }
 
-.floatingSlide .contentSliderContainer {
-  height: 100%;
-}
-
 .slideContentSliderContainer {
   overflow: hidden;
   display: flex;
@@ -260,6 +256,57 @@
   gap: 8px;
   position: static;
   inset: unset;
+}
+
+.startStart {
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.centerStart {
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.endStart {
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.startCenter {
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+}
+
+.centerCenter {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.endCenter {
+  align-items: center;
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.startEnd {
+  align-items: flex-end;
+  justify-content: flex-start;
+  text-align: right;
+}
+
+.centerEnd {
+  align-items: flex-end;
+  justify-content: center;
+  text-align: center;
+}
+
+.endEnd {
+  align-items: flex-end;
+  justify-content: flex-end;
+  text-align: right;
 }
 
 @container contentSlider (max-width: 1199px) {

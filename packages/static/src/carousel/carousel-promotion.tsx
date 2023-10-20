@@ -7,6 +7,7 @@ import {
   CarouselOptions,
   CarouselSliderItem,
   NavigationButtonType,
+  NinePartAlignment,
   SocicalIcon,
 } from './carousel.const'
 
@@ -52,6 +53,11 @@ const CarouselPromotion = React.forwardRef<
     return data[activeIndex]?.buttons?.length || 0
   }
 
+  const toCamelCase = (option: NinePartAlignment) => {
+    const parts = option.split('-')
+    return parts[0] + parts[1].charAt(0).toUpperCase() + parts[1].slice(1)
+  }
+
   return (
     <CssInjection css={css} childrenRef={buttonRef}>
       <CarouselSlider
@@ -86,6 +92,10 @@ const CarouselPromotion = React.forwardRef<
             <div
               className={`slide-body ${styles.slideBody} ${
                 dataItem.alignment || ''
+              } ${
+                dataItem.alignment
+                  ? styles[toCamelCase(dataItem.alignment)]
+                  : ''
               }`}
             >
               <h4

@@ -102,7 +102,7 @@ const CarouselMobile = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
                   <div
                     className={`slide-body ${styles.slideBody} ${
                       floatingContent ? dataItem.alignment || '' : ''
-                    }`}
+                    } ${styles.floatingContent}`}
                   >
                     <div
                       className={`content-slider-title ${styles.contentSliderTitle}`}
