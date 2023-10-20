@@ -22,37 +22,37 @@
   transition: box-shadow 0.3s ease-in-out;
 }
 
-.card.disabled {
+.disabled {
   background-color: var(--cdg-color-gray20);
   user-select: none;
   cursor: not-allowed;
 }
 
-.card.shadowless {
+.shadowless {
   box-shadow: none;
 }
 
-.card.shadowless:hover {
+.shadowless:hover {
   box-shadow: none;
 }
 
-.card.clickable {
+.clickable {
   cursor: pointer;
 }
 
-.card.clickable:active {
+.clickable:active {
   background-color: var(--cdg-color-gray20);
 }
 
-.card.sm {
+.sm {
   max-width: 245px;
 }
 
-.card.lg {
+.lg {
   max-width: 396px;
 }
 
-.card.full {
+.full {
   width: 100%;
 }
 
@@ -75,7 +75,7 @@
   color: var(--cdg-color-primaryText);
 }
 
-.card.disabled .cardTitle {
+.disabled .cardTitle {
   color: var(--cdg-color-gray50);
 }
 
@@ -95,7 +95,7 @@
   gap: 12px;
 }
 
-.card.disabled .cardBody {
+.disabled .cardBody {
   color: var(--cdg-color-gray50);
 }
 
