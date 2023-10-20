@@ -14,7 +14,7 @@ export type BannerImageProps = Props &
 
 const BannerImage = React.forwardRef<HTMLImageElement, BannerImageProps>(
   (props, ref) => {
-    const { css = {}, className = '', id = 'myId', onError, ...delegated } = props
+    const { css = {}, className = '', onError, ...delegated } = props
     const [imageError, setImageError] = React.useState(false)
     const bannerImageRef = useDOMRef<HTMLImageElement>(ref)
 

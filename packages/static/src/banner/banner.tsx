@@ -27,7 +27,7 @@ const Banner = React.forwardRef<HTMLDivElement, BannerProps>((props, ref) => {
     // VariantProps
     size = 'md',
     // HTMLDiv Props
-    ...delegated
+    ...htmlProps
   } = props
 
   const bannerRef = useDOMRef<HTMLDivElement>(ref)
@@ -49,7 +49,7 @@ const Banner = React.forwardRef<HTMLDivElement, BannerProps>((props, ref) => {
   return (
     <CssInjection css={css} childrenRef={bannerRef}>
       <div className={`cdg-banner ${className} ${styles.banner} ${styles[`bannerSize${size.charAt(0).toUpperCase() + size.slice(1)}`]}`}
-        ref={bannerRef} {...delegated}>
+        ref={bannerRef} {...htmlProps}>
         {BannerImageElement}
         <div className={`cdg-banner-content-container ${styles.contentContainer}`}>
           {BannerTitleElement}
