@@ -11,6 +11,7 @@ import type {Meta} from '@storybook/react'
 import React from 'react'
 import Icon from '../icon'
 import Button from './index'
+import styles from './styles/stories.module.css'
 
 const Style = {
   width: '100%',
@@ -49,14 +50,25 @@ export const Variations: React.FC = () => (
       </Button>
     </div>
     <h4>Custom style</h4>
+    <h5>Custom style using css prop</h5>
     <div style={{...Style}}>
       <Button
         css={{
           width: 250,
+          opacity: 0.9,
           backgroundColor: 'red',
           '.cdg-button-content-children': {color: 'purple'},
         }}
         onClick={(e) => console.log('click', e)}
+      >
+        Custom width and background color
+      </Button>
+    </div>
+    <h5>Custom style using css module</h5>
+    <div style={{...Style}}>
+      <Button
+        onClick={(e) => console.log('click', e)}
+        className={styles.myButton}
       >
         Custom width and background color
       </Button>

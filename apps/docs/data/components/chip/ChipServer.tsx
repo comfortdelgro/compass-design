@@ -1,6 +1,6 @@
 import {Column} from '@comfortdelgro/react-compass'
-//import {Chip} from '@comfortdelgro/static'
-import Chip from '@comfortdelgro/static/chip'
+import {Chip} from '@comfortdelgro/static'
+//import Chip from '@comfortdelgro/static/chip'
 const Default: React.FC = () => {
   return (
     <Column>

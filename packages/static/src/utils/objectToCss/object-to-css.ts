@@ -2,8 +2,62 @@ import theme from '../../theme/theme'
 export interface StyleObject {
   [key: string]: string | StyleObject
 }
+
+const cssUnitMapping = {
+  width: 'px',
+  maxWidth: 'px',
+  minWidth: 'px',
+  height: 'px',
+  maxHeight: 'px',
+  minHeight: 'px',
+  fontSize: 'px',
+  lineHeight: 'px',
+  margin: 'px',
+  marginTop: 'px',
+  marginRight: 'px',
+  marginBottom: 'px',
+  marginLeft: 'px',
+  padding: 'px',
+  paddingTop: 'px',
+  paddingRight: 'px',
+  paddingBottom: 'px',
+  paddingLeft: 'px',
+  borderWidth: 'px',
+  borderTopWidth: 'px',
+  borderRightWidth: 'px',
+  borderBottomWidth: 'px',
+  borderLeftWidth: 'px',
+  borderRadius: 'px',
+  borderTopLeftRadius: 'px',
+  borderTopRightRadius: 'px',
+  borderBottomRightRadius: 'px',
+  borderBottomLeftRadius: 'px',
+  borderSpacing: 'px',
+  borderImageWidth: 'px',
+  borderImageSlice: 'px',
+  borderImageOutset: 'px',
+  borderImageSource: '',
+  borderImageRepeat: '',
+  letterSpacing: 'px',
+  wordSpacing: 'px',
+  columnWidth: 'px',
+  columnGap: 'px',
+  outlineWidth: 'px',
+  outlineOffset: 'px',
+  textIndent: 'px',
+  top: 'px',
+  right: 'px',
+  bottom: 'px',
+  left: 'px',
+  gridGap: 'px',
+  columnRuleWidth: 'px',
+  maskBorderWidth: 'px',
+  maskBorderOutset: 'px',
+  maskBorderSlice: 'px',
+}
 function handleVariables<T>(
   obj: Record<string, unknown>,
+  key: string,
   value: string | number,
 ): T | undefined {
   const valueWithout$prefix = (value: string | number) => {
@@ -14,10 +68,11 @@ function handleVariables<T>(
         : value.toString()
     }
     // This is to handle the case where the value is a number
-    if (typeof value === 'number') {
-      return value.toString() + 'px'
-    }
-    return value
+    // if typeof value === 'number' and the key is in the cssUnitMapping object, then append its value in cssUniMapping to the value. if the ypeof value === 'number' and the key is not in the cssUnitMapping object, then return the value as it is
+
+    return typeof value === 'number' && key in cssUnitMapping
+      ? `${value}${cssUnitMapping[key]}`
+      : value
   }
 
   // Recursively terate over the theme object to see if the css value is one of its keys. If yes, return the value. If not, return the original value
@@ -28,6 +83,7 @@ function handleVariables<T>(
       } else if (typeof obj[key] === 'object' && obj[key] !== null) {
         const foundValue = handleVariables<T>(
           obj[key] as Record<string, unknown>,
+          key,
           valueWithout$prefix(value),
         )
         if (foundValue !== undefined) {
@@ -54,7 +110,11 @@ function objectToCSS(obj: StyleObject, selector = '', indent = ''): string {
       // Convert the key from camelCase to kebab-case
       const kebabKey = key.replace(/([A-Z])/g, '-$1').toLowerCase()
       // Get the value from the theme
-      const value = handleVariables<string>(theme, obj[key] as string | number)
+      const value = handleVariables<string>(
+        theme,
+        key,
+        obj[key] as string | number,
+      )
       // Check if the selector already exists in the map
       if (map.has(selector)) {
         // Append the property to the existing value
