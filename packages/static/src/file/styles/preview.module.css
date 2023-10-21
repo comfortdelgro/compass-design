@@ -1,0 +1,35 @@
+@import '../../theme/theme.module.css';
+
+.preview {
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: center;
+  height: var(--cdg-spacing-36);
+  border-radius: var(--cdg-border-radius-md);
+  background-color: var(--cdg-color-primaryText);
+}
+
+.imagePreviewWrapper {
+  flex-grow: 1;
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+}
+
+.previewImage {
+  width: 100%;
+  object-fit: contain;
+}
+
+/*  ================= VARIANT ================= */
+/* ImageLoaded: True */
+.previewVariantImageLoadedTrue {
+  background-color: var(--cdg-color-primaryBg);
+}
+
+/* ImageLoaded: False */
+.previewVariantImageLoadedFalse {
+  background-color: var(--cdg-color-infoBg);
+}
