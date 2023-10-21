@@ -20,246 +20,262 @@
   }
 }
 
-/***** Level 1: Default styles for button and its child elements *****/
-/* Level 1 styles will be the default and must not overwrite each other */
-/* One element cannot have 2 classes of a same level on one render */
-.button {
-  text-decoration: none;
-  padding: 0;
-  margin: 0;
-  flex-shrink: 0;
-  font-family: var(--cdg-font-sans);
-  line-height: var(--cdg-line-height-normal);
-  font-weight: var(--cdg-font-weight-semibold);
-  cursor: pointer;
-  border-width: var(--cdg-border-width-light);
-  border-style: solid;
-  border-radius: var(--cdg-border-radius-md);
-  transition: var(--cdg-transition-button);
-  color: var(--cdg-color-whiteText);
-  box-sizing: border-box;
+/* Using @layer is important because it helps users customize the styles easily because un-layered css has the highest priority*/
+
+/* 
+* compoundVariant has the highest priority
+* variant has the second highest priority
+* default has the lowest priority
+*/
+@layer default, variant, compoundVariant;
+
+@layer default {
+  /***** Level 1: Default styles for button and its child elements *****/
+  /* Level 1 styles will be the default and must not overwrite each other */
+  /* One element cannot have 2 classes of a same level on one render */
+  .button {
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+    flex-shrink: 0;
+    font-family: var(--cdg-font-sans);
+    line-height: var(--cdg-line-height-normal);
+    font-weight: var(--cdg-font-weight-semibold);
+    cursor: pointer;
+    border-width: var(--cdg-border-width-light);
+    border-style: solid;
+    border-radius: var(--cdg-border-radius-md);
+    transition: var(--cdg-transition-button);
+    color: var(--cdg-color-whiteText);
+    box-sizing: border-box;
+  }
+
+  .button:focus-visible {
+    outline: 1px solid var(--cdg-color-cdgBlue60);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  }
+
+  .ripple {
+    animation: rippleEffect 0.6s linear;
+  }
+
+  .content {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+  }
+
+  .children {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .leftIcon,
+  .rightIcon {
+    width: var(--cdg-spacing-4);
+    height: var(--cdg-spacing-4);
+  }
+
+  .leftIcon {
+    margin-right: var(--cdg-spacing-2);
+  }
+
+  .rightIcon {
+    margin-left: var(--cdg-spacing-2);
+  }
+  .loadingDots {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+  }
+
+  .loadingDot {
+    display: inline-block;
+    width: 0.375em;
+    height: 0.375em;
+    border-radius: 50%;
+    background-color: currentColor;
+    animation: blink 1s infinite;
+  }
+  .firstLoadingDot {
+    animation-delay: 0s;
+  }
+  .secondLoadingDot {
+    animation-delay: 0.2s;
+  }
+  .thirdLoadingDot {
+    animation-delay: 0.4s;
+  }
+  /***** End of level 1 *****/
 }
 
-.button:focus-visible {
-  outline: 1px solid var(--cdg-color-cdgBlue60);
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+@layer variant {
+  /***** Level 2: Styles for basic variants of button and its child elements *****/
+  /* Level 2 styles will overwrite level 1 styles */
+  /* Styles within level 2 must not overwrite each other */
+  /* One element cannot have 2 classes of a same level on one render */
+
+  .h5 {
+    border-radius: var(--cdg-border-radius-lg);
+    font-size: var(--cdg-font-size-body2);
+    font-weight: var(--cdg-font-weight-bold);
+  }
+
+  .h5:disabled {
+    background: var(--cdg-color-grayShades20);
+    color: var(--cdg-color-grayShades60);
+    border-color: var(--cdg-color-grayShades20);
+  }
+
+  .lg {
+    font-size: var(--cdg-font-size-body2);
+  }
+
+  .md {
+    font-size: var(--cdg-font-size-body3);
+  }
+
+  .sm {
+    font-size: var(--cdg-font-size-label2);
+  }
+
+  .fullWidth {
+    width: 100%;
+  }
+
+  .isSquare {
+    aspect-ratio: 1 / 1;
+  }
+
+  .primary {
+    background: var(--cdg-color-cdgBlue);
+    color: var(--cdg-color-var(--cdg-color-whiteText));
+    border-color: var(--cdg-color-cdgBlue);
+  }
+
+  .primary:hover:enabled,
+  .primaryLink:hover {
+    /* This selector is specifically for <a/> tag */
+    background: var(--cdg-color-cdgBlue120);
+    border-color: var(--cdg-color-cdgBlue120);
+  }
+
+  .secondary {
+    background: transparent;
+    color: var(--cdg-color-cdgBlue);
+    border-color: var(--cdg-color-cdgBlue);
+  }
+
+  .secondary:hover:enabled,
+  .secondaryLink:hover {
+    /* This selector is specifically for <a/> tag */
+    color: var(--cdg-color-cdgBlue100);
+    background: var(--cdg-color-cdgBlue10);
+    border-color: var(--cdg-color-cdgBlue120);
+  }
+
+  .danger {
+    background: transparent;
+    color: var(--cdg-color-danger);
+    border-color: var(--cdg-color-danger);
+  }
+
+  .danger:hover:enabled,
+  .dangerLink:hover {
+    /* This selector is specifically for <a/> tag */
+    background: var(--cdg-color-dangerBg);
+    border-color: var(--cdg-color-dangerBg);
+    color: var(--cdg-color-danger);
+  }
+
+  .ghost {
+    background: transparent;
+    color: var(--cdg-color-typeHeading);
+    border-color: transparent;
+  }
+
+  .ghost:hover:enabled,
+  .ghostLink:hover {
+    /* This selector is specifically for <a/> tag */
+    color: var(--cdg-color-cdgBlue);
+    background: var(--cdg-color-cdgBlue10);
+  }
+
+  .loading {
+    height: 2.1875rem;
+    width: 5.625rem;
+  }
+  /***** End of level 2 *****/
 }
 
-.button:disabled {
-  background: var(--cdg-color-divider);
-  color: var(--cdg-color-disabledText);
-  border-color: var(--cdg-color-divider);
-  cursor: not-allowed;
-}
+@layer compoundVariant {
+  /***** Level 3: Compound variants *****/
+  /* Styles of level 3 will overwrite level 2 styles */
+  /* Styles within the same level must not overwrite each other */
+  /* One element cannot have 2 classes of a same level on one render */
 
-.ripple {
-  animation: rippleEffect 0.6s linear;
-}
+  .smContent {
+    padding: var(--cdg-spacing-1) var(--cdg-spacing-2_5);
+  }
 
-.content {
-  display: flex;
-  justify-content: center;
-  align-items: baseline;
-}
+  .mdContent {
+    padding: var(--cdg-spacing-1_5) var(--cdg-spacing-4);
+  }
 
-.children {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+  .lgContent {
+    padding: var(--cdg-spacing-2) var(--cdg-spacing-5);
+  }
 
-.leftIcon,
-.rightIcon {
-  width: var(--cdg-spacing-4);
-  height: var(--cdg-spacing-4);
-}
+  .h5Content {
+    padding: var(--cdg-spacing-1_5) var(--cdg-spacing-4);
+  }
 
-.leftIcon {
-  margin-right: var(--cdg-spacing-2);
-}
+  .primaryH5 {
+    background: var(--cdg-color-blueShades100);
+    color: var(--cdg-color-whiteText);
+    border-color: var(--cdg-color-grayShades20);
+  }
 
-.rightIcon {
-  margin-left: var(--cdg-spacing-2);
-}
-.loadingDots {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
-}
+  .primaryH5:hover:enabled {
+    background: var(--cdg-color-blueShades120);
+    border-color: var(--cdg-color-grayShades20);
+  }
 
-.loadingDot {
-  display: inline-block;
-  width: 0.375em;
-  height: 0.375em;
-  border-radius: 50%;
-  background-color: currentColor;
-  animation: blink 1s infinite;
-}
-.firstLoadingDot {
-  animation-delay: 0s;
-}
-.secondLoadingDot {
-  animation-delay: 0.2s;
-}
-.thirdLoadingDot {
-  animation-delay: 0.4s;
-}
-/***** End of level 1 *****/
+  .secondaryH5 {
+    background: transparent;
+    color: var(--cdg-color-blueShades100);
+    border-color: var(--cdg-color-blueShades100);
+  }
 
-/***** Level 2: Styles for basic variants of button and its child elements *****/
-/* Level 2 styles will overwrite level 1 styles */
-/* Styles within level 2 must not overwrite each other */
-/* One element cannot have 2 classes of a same level on one render */
+  .secondaryH5:hover:enabled {
+    color: var(--cdg-color-blueShades120);
+    background: var(--cdg-color-grayShades10);
+    border-color: var(--cdg-color-blueShades120);
+  }
 
-.h5 {
-  border-radius: var(--cdg-border-radius-lg);
-  font-size: var(--cdg-font-size-body2);
-  font-weight: var(--cdg-font-weight-bold);
+  .dangerH5 {
+    background: transparent;
+    color: var(--cdg-color-dangerShades);
+    border-color: var(--cdg-color-dangerShades);
+  }
+
+  .dangerH5:hover:enabled {
+    background: var(--cdg-color-grayShades10);
+    border-color: var(--cdg-color-dangerShades);
+    color: var(--cdg-color-dangerShades);
+  }
+
+  /* this styling for disabled is not compound variant but it overrides all variants' styles so I put it here */
+  .button:disabled {
+    background: var(--cdg-color-divider);
+    color: var(--cdg-color-disabledText);
+    border-color: var(--cdg-color-divider);
+    cursor: not-allowed;
+  }
+  /***** End of Level 3 *****/
 }
-
-.h5:disabled {
-  background: var(--cdg-color-grayShades20);
-  color: var(--cdg-color-grayShades60);
-  border-color: var(--cdg-color-grayShades20);
-}
-
-.lg {
-  font-size: var(--cdg-font-size-body2);
-}
-
-.md {
-  font-size: var(--cdg-font-size-body3);
-}
-
-.sm {
-  font-size: var(--cdg-font-size-label2);
-}
-
-.fullWidth {
-  width: 100%;
-}
-
-.isSquare {
-  aspect-ratio: 1 / 1;
-}
-
-.primary {
-  background: var(--cdg-color-cdgBlue);
-  color: var(--cdg-color-var(--cdg-color-whiteText));
-  border-color: var(--cdg-color-cdgBlue);
-}
-
-.primary:hover:enabled,
-.primaryLink:hover {
-  /* This selector is specifically for <a/> tag */
-  background: var(--cdg-color-cdgBlue120);
-  border-color: var(--cdg-color-cdgBlue120);
-}
-
-.secondary {
-  background: transparent;
-  color: var(--cdg-color-cdgBlue);
-  border-color: var(--cdg-color-cdgBlue);
-}
-
-.secondary:hover:enabled,
-.secondaryLink:hover {
-  /* This selector is specifically for <a/> tag */
-  color: var(--cdg-color-cdgBlue100);
-  background: var(--cdg-color-cdgBlue10);
-  border-color: var(--cdg-color-cdgBlue120);
-}
-
-.danger {
-  background: transparent;
-  color: var(--cdg-color-danger);
-  border-color: var(--cdg-color-danger);
-}
-
-.danger:hover:enabled,
-.dangerLink:hover {
-  /* This selector is specifically for <a/> tag */
-  background: var(--cdg-color-dangerBg);
-  border-color: var(--cdg-color-dangerBg);
-  color: var(--cdg-color-danger);
-}
-
-.ghost {
-  background: transparent;
-  color: var(--cdg-color-typeHeading);
-  border-color: transparent;
-}
-
-.ghost:hover:enabled,
-.ghostLink:hover {
-  /* This selector is specifically for <a/> tag */
-  color: var(--cdg-color-cdgBlue);
-  background: var(--cdg-color-cdgBlue10);
-}
-
-.loading {
-  height: 2.1875rem;
-  width: 5.625rem;
-}
-/***** End of level 2 *****/
-
-/***** Level 3: Compound variants *****/
-/* Styles of level 3 will overwrite level 2 styles */
-/* Styles within the same level must not overwrite each other */
-/* One element cannot have 2 classes of a same level on one render */
-
-.smContent {
-  padding: var(--cdg-spacing-1) var(--cdg-spacing-2_5);
-}
-
-.mdContent {
-  padding: var(--cdg-spacing-1_5) var(--cdg-spacing-4);
-}
-
-.lgContent {
-  padding: var(--cdg-spacing-2) var(--cdg-spacing-5);
-}
-
-.h5Content {
-  padding: var(--cdg-spacing-1_5) var(--cdg-spacing-4);
-}
-
-.primaryH5 {
-  background: var(--cdg-color-blueShades100);
-  color: var(--cdg-color-whiteText);
-  border-color: var(--cdg-color-grayShades20);
-}
-
-.primaryH5:hover:enabled {
-  background: var(--cdg-color-blueShades120);
-  border-color: var(--cdg-color-grayShades20);
-}
-
-.secondaryH5 {
-  background: transparent;
-  color: var(--cdg-color-blueShades100);
-  border-color: var(--cdg-color-blueShades100);
-}
-
-.secondaryH5:hover:enabled {
-  color: var(--cdg-color-blueShades120);
-  background: var(--cdg-color-grayShades10);
-  border-color: var(--cdg-color-blueShades120);
-}
-
-.dangerH5 {
-  background: transparent;
-  color: var(--cdg-color-dangerShades);
-  border-color: var(--cdg-color-dangerShades);
-}
-
-.dangerH5:hover:enabled {
-  background: var(--cdg-color-grayShades10);
-  border-color: var(--cdg-color-dangerShades);
-  color: var(--cdg-color-dangerShades);
-}
-/***** End of Level 3 *****/
