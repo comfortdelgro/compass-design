@@ -54,6 +54,8 @@ export type {
 
 export {default as Box} from './box'
 export type {BoxProps} from './box'
+export {default as Link} from './link'
+export type {LinkProps} from './link'
 export {default as Popover} from './popover'
 export type {PopoverDirection, PopoverProps} from './popover'
 export {default as Progress} from './progress'
