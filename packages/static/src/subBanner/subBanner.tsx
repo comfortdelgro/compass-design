@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import { pickChild } from '../utils/pick-child'

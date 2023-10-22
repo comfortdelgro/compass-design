@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import SubBanner from './index'
 import { Meta } from '@storybook/react'
