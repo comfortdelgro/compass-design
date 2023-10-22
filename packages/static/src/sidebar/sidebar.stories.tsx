@@ -1,7 +1,10 @@
+'use client'
+
 import {Meta} from '@storybook/react'
 import React from 'react'
 import Button from './../button'
 import Sidebar from './index'
+import { Dropdown } from '..'
 
 const style: {
   display: string
@@ -24,7 +27,7 @@ const style: {
 // export const Default: React.FC = () => {
 //   const [isDefaultOpen, setIsDefaultOpen] = React.useState(false)
 //   return (
-//     <Column>
+//     <div style={{...style}}>
 //       <h3>Primary Sidebar</h3>
 //       <Button
 //         css={{width: '9rem', height: '3.5rem', fontSize: '1em'}}
@@ -60,7 +63,7 @@ const style: {
 //           </Button>
 //         </Sidebar.Actions>
 //       </Sidebar>
-//     </Column>
+//     </div>
 //   )
 // }
 
@@ -68,7 +71,7 @@ const style: {
 //   const [isLeftOpen, setIsLeftOpen] = React.useState(false)
 //   const [isRightOpen, setIsRightOpen] = React.useState(false)
 //   return (
-//     <Column>
+//     <div style={{...style}}>
 //       <h3>Left Sidebar</h3>
 //       <Button
 //         css={{width: '9rem', height: '3.5rem', fontSize: '1em'}}
@@ -136,7 +139,7 @@ const style: {
 //           </Button>
 //         </Sidebar.Actions>
 //       </Sidebar>
-//     </Column>
+//     </div>
 //   )
 // }
 
