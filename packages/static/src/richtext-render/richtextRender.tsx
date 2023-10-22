@@ -23,7 +23,7 @@ const RichTextRender = React.forwardRef<HTMLInputElement, RichTextRenderProps>(
       document,
       platform = 'react',
       // element
-      ...delegates
+      ...htmlProps
     } = props
 
     const richTextRenderRef = useDOMRef<HTMLDivElement>(ref)
@@ -34,7 +34,7 @@ const RichTextRender = React.forwardRef<HTMLInputElement, RichTextRenderProps>(
           <div
             className={styles.richTextRender}
             ref={richTextRenderRef}
-            {...delegates}
+            {...htmlProps}
           >
             {document ? RenderDocument(document, platform) : null}
           </div>
