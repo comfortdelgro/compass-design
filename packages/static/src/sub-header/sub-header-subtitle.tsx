@@ -1,9 +1,11 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {StyledSubHeaderSubtitle} from './styles/sub-header-subtitle.style'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import styles from './styles/sub-header-subtitle.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   children: React.ReactNode
+  css?: unknown
+  className?: string
 }
 
 export type SubHeaderSubtitleProps = Props &
@@ -13,12 +15,18 @@ const SubHeaderSubtitle = React.forwardRef<
   HTMLDivElement,
   SubHeaderSubtitleProps
 >((props, ref) => {
-  const {children, css = {}, ...delegated} = props
+  const {children, css = {}, className = '', ...htmlProps} = props
 
   return (
-    <StyledSubHeaderSubtitle ref={ref} css={css} {...delegated}>
-      {children}
-    </StyledSubHeaderSubtitle>
+    <CssInjection css={css} childrenRef={ref}>
+      <span
+        className={`cdg-sub-header-subtitle ${className} ${styles.subHeaderSubtitle}`}
+        ref={ref}
+        {...htmlProps}
+      >
+        {children}
+      </span>
+    </CssInjection>
   )
 })
 

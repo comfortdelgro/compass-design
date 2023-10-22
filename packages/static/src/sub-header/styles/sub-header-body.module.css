@@ -1,5 +1,9 @@
 @import '../../theme/theme.module.css';
 
-.subHeaderBody {
-  padding-left: var(--cdg-spacing-4),
+@layer default;
+
+@layer default {
+  .subHeaderBody {
+    padding-left: var(--cdg-spacing-4);
+  }
 }

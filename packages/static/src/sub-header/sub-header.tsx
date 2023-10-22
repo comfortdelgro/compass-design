@@ -4,7 +4,7 @@ import SubHeaderDescription from './sub-header-description'
 import SubHeaderHeader from './sub-header-header'
 import SubHeaderImage from './sub-header-image'
 import SubHeaderTitle from './sub-header-title'
-import styles from './styles/spinner.module.css'
+import styles from './styles/sub-header.module.css'
 import CssInjection from '../utils/objectToCss/CssInjection'
 
 interface Props {
@@ -19,11 +19,11 @@ export type SubHeaderProps = Props &
 
 const SubHeader = React.forwardRef<HTMLDivElement, SubHeaderProps>(
   (props, ref) => {
-    const { children, css = {}, className = '', variant = 'default', ...delegated } = props
+    const { children, css = {}, className = '', variant = 'default', ...htmlProps } = props
 
     return (
       <CssInjection css={css} childrenRef={ref}>
-        <div className={`cdg-sub-header ${className} ${styles.SubHeader}`} ref={ref} {...delegated}>
+        <div className={`cdg-sub-header ${className} ${styles.subHeader} ${styles[`subHeader${variant.charAt(0).toUpperCase() + variant.slice(1)}`]}`} ref={ref} {...htmlProps}>
           {children}
         </div>
       </CssInjection>

@@ -1,18 +1,26 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {StyledSubHeaderBody} from './styles/sub-header-body.style'
+import styles from './styles/sub-header-body.module.css'
+import CssInjection from '../utils/objectToCss/CssInjection'
 
-export type SubHeaderBodyProps = StyledComponentProps &
-  Omit<React.HTMLAttributes<HTMLDivElement>, keyof StyledComponentProps>
+interface Props {
+  children: React.ReactNode
+  css?: unknown
+  className?: string
+}
+
+export type SubHeaderBodyProps = Props &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const SubHeaderBody = React.forwardRef<HTMLDivElement, SubHeaderBodyProps>(
   (props, ref) => {
-    const {children, css = {}, ...delegated} = props
+    const {children, css = {},className='', ...htmlProps} = props
 
     return (
-      <StyledSubHeaderBody ref={ref} css={css} {...delegated}>
+      <CssInjection css={css} childrenRef={ref}>
+      <div className={`cdg-sub-header-body ${className} ${styles.subHeaderBody}`} ref={ref}  {...htmlProps}>
         {children}
-      </StyledSubHeaderBody>
+      </div>
+      </CssInjection>
     )
   },
 )

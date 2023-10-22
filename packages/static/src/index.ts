@@ -64,6 +64,14 @@ export {default as SearchField} from './searchfield'
 export type {SearchFieldProps} from './searchfield'
 export {default as Spinner} from './spinner'
 export type {SpinnerProps} from './spinner'
+export {default as SubHeader} from './sub-header'
+export type {
+  SubHeaderDescriptionProps,
+  SubHeaderHeaderProps,
+  SubHeaderProps,
+  SubHeaderSubtitleProps,
+  SubHeaderTitleProps,
+} from './sub-header'
 export {default as Status} from './status'
 export type {StatusProps} from './status'
 export * from './theme'
