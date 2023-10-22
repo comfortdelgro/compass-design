@@ -51,10 +51,10 @@ export type {
   MultipleDropdownItemProps,
   MultipleDropdownProps,
 } from './multiple-dropdown'
-
 export {default as NoSsr} from './nossr'
 export {default as Popover} from './popover'
 export type {PopoverDirection, PopoverProps} from './popover'
+export {default as Preflight} from './preflight'
 export {default as Progress} from './progress'
 export type {CircularProgressProps, LinearProgressProps} from './progress'
 export {default as Radio} from './radio'
