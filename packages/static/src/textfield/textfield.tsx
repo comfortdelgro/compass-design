@@ -151,7 +151,7 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
         return type
       }
       return null
-    }, [password, isPassWordVisible])
+    }, [password, isPassWordVisible, type])
 
     return (
       <CssInjection css={css} childrenRef={textfieldRef}>
@@ -180,7 +180,9 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
           <div
             className={`cdg-textfield-box ${styles.textFieldBox} ${
               isDisabled ? styles.isDisabled : ''
-            } ${isErrored ? styles.isErrored : ''}`}
+            } ${isErrored ? styles.isErrored : ''} ${
+              isDarkTheme ? styles.isDarkTheme : ''
+            } ${h5 ? styles.h5 : ''}`}
           >
             {leftIcon ? (
               <div className={`left-icon ${styles.leftIcon}`}>{leftIcon}</div>
@@ -217,7 +219,11 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
               onCompositionStart={onCompositionStart}
               onCompositionUpdate={onCompositionUpdate}
               ref={inputfieldRef}
-              className={`cdg-textfield-input ${styles.textField}`}
+              className={`cdg-textfield-input ${styles.textField} ${
+                isDisabled ? styles.isDisabled : ''
+              } ${isDarkTheme ? styles.isDarkTheme : ''} ${
+                h5 ? styles.h5 : ''
+              }`}
             />
             {rightIcon ? (
               <div className={`right-icon ${styles.rightIcon}`}>
