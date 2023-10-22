@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useRef, useState } from 'react'
 import Divider from './divider'
 import { SidenavContext } from './sidenav-context'

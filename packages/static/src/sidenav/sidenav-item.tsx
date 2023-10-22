@@ -1,3 +1,5 @@
+'use client'
+
 import { ExtendedRefs, ReferenceType } from '@floating-ui/react'
 import React, { useState } from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
