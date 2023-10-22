@@ -24,7 +24,7 @@ import {
   textContent,
 } from './utils'
 
-import {Popover} from '..'
+import Popover from '../popover'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import DropdownComboBox from './dropdown.combobox'
 import DropdownSection from './dropdown.section'
