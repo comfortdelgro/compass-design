@@ -27,7 +27,9 @@ export const spacings = {
   11: '2.75rem', // 44px
   12: '3rem', // 48px
   '12_5': '3.125rem', // 50px
+  '13_5': '3.375rem', // 54px
   14: '3.5rem', // 56px
+  15: '3.75rem', // 60px
   16: '4rem', // 64px
   18: '4.5rem', // 72px
   20: '5rem', // 80px
