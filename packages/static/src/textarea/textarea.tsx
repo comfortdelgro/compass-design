@@ -138,16 +138,16 @@ const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
         <div
           className={`${className ?? 'cdg-textarea-container'} ${
             styles.textareaWrapper
-          } ${isDarkTheme ? styles.isDarkTheme : ''} ${
-            variant ? styles[variant] : ''
-          }`}
+          }  ${variant ? styles[variant] : ''}`}
           ref={wrapperRef}
           {...delegated}
         >
           {label && (
             <label
               htmlFor={textareaId}
-              className={`cdg-textarea-label ${styles.textAreaLabel}`}
+              className={`cdg-textarea-label ${styles.textAreaLabel} ${
+                variant ? styles[variant] : ''
+              }`}
             >
               {label}
               {isRequired && (
@@ -190,17 +190,26 @@ const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
             onCompositionUpdate={onCompositionUpdate}
             className={`cdg-textarea ${styles.textarea} ${
               isErrored ? styles.isErrored : ''
-            } ${resizable ? styles.resizable : ''}`}
+            } ${resizable ? styles.resizable : ''}
+            ${isDarkTheme ? styles.isDarkTheme : ''} ${
+              variant ? styles[variant] : ''
+            }`}
           />
           {wordCount && (
-            <div className={`${styles.textAreaHelperText} ${styles.wordCount}`}>
+            <div
+              className={`${styles.textAreaHelperText} ${styles.wordCount} ${
+                variant ? styles[variant] : ''
+              }`}
+            >
               {wordCountValue}
               {maxLength ? `/${maxLength}` : null}
             </div>
           )}
           {isErrored && errorMessage && (
             <div
-              className={`${styles.error} ${styles.textAreaHelperText} ${styles.wordCount} cdg-error-message`}
+              className={`${styles.error} ${styles.textAreaHelperText} ${
+                styles.wordCount
+              } cdg-error-message ${variant ? styles[variant] : ''}`}
             >
               {errorMessage}
             </div>
