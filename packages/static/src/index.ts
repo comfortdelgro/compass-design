@@ -52,6 +52,8 @@ export type {
   MultipleDropdownProps,
 } from './multiple-dropdown'
 
+export {default as Alert} from './alert'
+export type {AlertProps} from './alert'
 export {default as Popover} from './popover'
 export type {PopoverDirection, PopoverProps} from './popover'
 export {default as Progress} from './progress'
