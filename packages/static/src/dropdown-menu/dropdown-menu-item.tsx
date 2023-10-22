@@ -134,7 +134,7 @@ const DropdownMenuItem = React.forwardRef<HTMLLIElement, DropdownMenuItemProps>(
           refs.current.push(dropdownMenuItemRef)
         }
       }
-    }, [])
+    }, [dropdownMenuItemRef, isDisabled, refs])
 
     const handleItemClick = (event: React.MouseEvent<HTMLLIElement>) => {
       if (!isDisabled) {
@@ -231,7 +231,7 @@ const DropdownMenuItem = React.forwardRef<HTMLLIElement, DropdownMenuItemProps>(
           }
         }
       },
-      [subMenuChild, focusing],
+      [focusing, dropdownMenuItemRef],
     )
 
     const handleFocusItem = useCallback(
