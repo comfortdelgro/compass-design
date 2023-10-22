@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { pickChild } from '../utils/pick-child'
 import { useDOMRef } from '../utils/use-dom-ref'

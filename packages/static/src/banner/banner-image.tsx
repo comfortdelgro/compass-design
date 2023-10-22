@@ -1,4 +1,5 @@
-/* eslint-disable prettier/prettier */
+'use client'
+
 import React from 'react'
 import { useDOMRef } from '../utils/use-dom-ref'
 import CssInjection from '../utils/objectToCss/CssInjection'
