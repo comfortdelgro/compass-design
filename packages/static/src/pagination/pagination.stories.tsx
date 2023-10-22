@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from 'react'
 import Pagination from './index'
 import type { Meta } from '@storybook/react'
