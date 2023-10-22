@@ -161,9 +161,9 @@ export type {LayoutProps} from './layouts'
 export {default as Link} from './link'
 export type {LinkProps} from './link'
 export {
+  default as List,
   DragAndDropList,
   InteractiveList,
-  default as List,
   ListCard,
 } from './list'
 export type {
@@ -259,8 +259,8 @@ export type {
 } from './sidebar'
 export {default as Sidenav, SidenavContext} from './sidenav'
 export type {
-  SidenavContextValue,
   DividerProps as SidenavDividerProps,
+  SidenavContextValue,
   SidenavItemProps,
   SidenavMenuProps,
   SidenavProps,
@@ -271,6 +271,13 @@ export {default as SlideAction} from './slide-action'
 export type {SlideActionProps} from './slide-action'
 export {default as Slider} from './slider'
 export type {SliderProps} from './slider'
+export {default as Snackbar} from './snackbar'
+export type {
+  SnackbarPrefixIconProps,
+  SnackbarSuffixIconProps,
+  SnackbarTextProps,
+} from './snackbar'
+export {SnackbarContextProvider, useSnackbar} from './snackbar/service'
 export {default as SpeedDial} from './speed-dial'
 export type {SpeedDialProps} from './speed-dial'
 export {default as Spinner} from './spinner'
@@ -347,8 +354,8 @@ export type {
 export {ToastContextProvider, useToast} from './toast/service'
 export type {
   ToastItemType,
-  ToastState,
   ToastsContainerProps,
+  ToastState,
 } from './toast/service'
 export {default as Toggle} from './toggle'
 export type {ToggleProps} from './toggle'
