@@ -52,6 +52,8 @@ export type {
   MultipleDropdownProps,
 } from './multiple-dropdown'
 
+export {default as Box} from './box'
+export type {BoxProps} from './box'
 export {default as Popover} from './popover'
 export type {PopoverDirection, PopoverProps} from './popover'
 export {default as Progress} from './progress'
