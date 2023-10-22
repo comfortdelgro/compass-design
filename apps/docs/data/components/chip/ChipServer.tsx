@@ -1,9 +1,8 @@
-import {Column} from '@comfortdelgro/react-compass'
 import {Chip} from '@comfortdelgro/static'
 //import Chip from '@comfortdelgro/static/chip'
 const Default: React.FC = () => {
   return (
-    <Column>
+    <div>
       <h6> Basic Chip</h6>
       <Chip>Basic Chip</Chip>
       <h6>Close Button</h6>
@@ -34,7 +33,7 @@ const Default: React.FC = () => {
         Custom Styling
       </Chip>
       <br />
-    </Column>
+    </div>
   )
 }
 
