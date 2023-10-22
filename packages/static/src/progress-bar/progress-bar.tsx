@@ -1,3 +1,5 @@
+'use client'
+
 import clampValue from 'lodash/clamp'
 import React, { useEffect, useMemo } from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
