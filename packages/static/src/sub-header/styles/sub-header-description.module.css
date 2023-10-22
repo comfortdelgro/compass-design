@@ -18,6 +18,6 @@
   .h5 {
     font-size: var(--cdg-font-size-label1);
     font-weight: var(--cdg-font-weights-medium);
-    line-height: 20px;
+    line-height: var(--cdg-spacing-5);
   }
 }

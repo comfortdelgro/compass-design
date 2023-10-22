@@ -19,7 +19,7 @@
   }
   .h5 {
     font-size: var(--cdg-font-size-header2);
-    font-weight: 700;
-    line-height: 42px;
+    font-weight: var(--cdg-font-weight-bold);
+    line-height: var(--cdg-spacing-10_5);
   }
 }

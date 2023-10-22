@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import SubHeaderBody from './sub-header-body'
 import SubHeaderDescription from './sub-header-description'

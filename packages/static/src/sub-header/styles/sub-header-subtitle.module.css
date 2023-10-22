@@ -6,6 +6,6 @@
   .subHeaderSubtitle {
     color: inherit;
     font-size: var(--cdg-font-size-label1);
-    line-height: 21px;
+    line-height: var(--cdg-spacing-5_25);
   }
 }

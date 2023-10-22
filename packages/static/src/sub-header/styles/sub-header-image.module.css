@@ -5,6 +5,6 @@
 @layer default {
   .subHeaderImage {
     margin: 0;
-    height: 104px;
+    height: var(--cdg-spacing-26);
   }
 }

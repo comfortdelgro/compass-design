@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import styles from './styles/sub-header-body.module.css'
 import CssInjection from '../utils/objectToCss/CssInjection'

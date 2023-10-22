@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import styles from './styles/sub-header-subtitle.module.css'
