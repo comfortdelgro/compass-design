@@ -2973,6 +2973,7 @@ packages:
       '@motionone/utils': 10.16.3
       tslib: 2.6.2
 
+
   /@motionone/dom@10.16.4:
     resolution: {integrity: sha512-HPHlVo/030qpRj9R8fgY50KTN4Ko30moWRTA3L3imrsRBmob93cTYmodln49HYFbQm01lFF7X523OkKY0DX6UA==}
     dependencies:

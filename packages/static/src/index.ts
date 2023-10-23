@@ -51,6 +51,10 @@ export type {
   MultipleDropdownItemProps,
   MultipleDropdownProps,
 } from './multiple-dropdown'
+export {default as Box} from './box'
+export type {BoxProps} from './box'
+export {default as Link} from './link'
+export type {LinkProps} from './link'
 export {default as Alert} from './alert'
 export type {AlertProps} from './alert'
 export {default as AutoComplete} from './auto-complete'
@@ -79,3 +83,4 @@ export {default as TimePicker} from './time-picker'
 export type {TimePickerProps} from './time-picker'
 export {default as Transitions} from './transitions'
 export type {TransitionsProps} from './transitions'
+export {default as Typography} from './typography'
