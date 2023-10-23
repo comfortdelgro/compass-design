@@ -1,111 +1,122 @@
 @import '../../theme/theme.module.css';
 
-.textareaWrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  font-family: var(--cdg-font-sans);
-  width: 100%;
+/* 
+* variant has the second highest priority
+* default has the lowest priority
+*/
+@layer default, variant;
+
+@layer default {
+  .textareaWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-family: var(--cdg-font-sans);
+    width: 100%;
+  }
+  .wordCount {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .textarea {
+    font-size: var(--cdg-font-size-label1);
+    min-height: var(--cdg-spacing-11);
+    font-weight: var(--cdg-font-weight-medium);
+    line-height: var(--cdg-line-height-normal);
+    padding: var(--cdg-spacing-1_5) var(--cdg-spacing-3);
+    border-width: var(--cdg-border-width-light);
+    border-style: solid;
+    border-color: var(--cdg-color-divider);
+    border-radius: var(--cdg-border-radius-md);
+    color: var(--cdg-color-typeHeading);
+    background-color: var(--cdg-color-whiteText);
+    transition: border-color 250ms ease 0s;
+    width: 100%;
+    resize: none;
+    box-sizing: border-box;
+  }
+  .textarea:disabled {
+    cursor: not-allowed !important;
+    background-color: var(--cdg-color-gray20);
+  }
+  .textarea * {
+    color: var(--cdg-color-disabledText);
+    cursor: not-allowed !important;
+  }
+  .textarea.isErrored {
+    border-color: var(--cdg-color-danger);
+    border-width: var(--cdg-border-width-medium);
+  }
+  .textarea.isErrored:focus {
+    border-color: var(--cdg-color-danger);
+  }
+  .textarea.resizable {
+    resize: both;
+  }
+  .textarea.isDarkTheme {
+    color: var(--cdg-color-tertiaryText);
+    background-color: var(--cdg-color-gray20);
+  }
+  .textarea:focus.isDarkTheme {
+    outline: none;
+    border-color: var(--cdg-color-cdgBlue120);
+  }
+  .textAreaLabel {
+    font-size: var(--cdg-font-size-label1);
+    font-weight: var(--cdg-font-weight-semibold);
+    margin-bottom: var(--cdg-spacing-2);
+    display: inline-block;
+    width: 100%;
+  }
+  .asterisk {
+    margin-left: var(--cdg-spacing-1);
+    color: var(--cdg-color-danger);
+  }
+  .textAreaHelperText {
+    font-size: var(--cdg-font-size-label2);
+    font-weight: var(--cdg-font-weight-medium);
+    transition: var(--cdg-transition-default);
+    margin-top: var(--cdg-spacing-1);
+    color: var(--cdg-color-gray70);
+  }
+  .textAreaHelperText.error {
+    color: var(--cdg-color-danger);
+  }
+  .textarea:focus {
+    outline: none;
+    border-color: var(--cdg-color-cdgBlue);
+  }
 }
-.wordCount {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-}
-.textarea {
-  font-size: var(--cdg-font-size-label1);
-  min-height: var(--cdg-spacing-11);
-  font-weight: var(--cdg-font-weight-medium);
-  line-height: var(--cdg-line-height-normal);
-  padding: var(--cdg-spacing-1_5) var(--cdg-spacing-3);
-  border-width: var(--cdg-border-width-light);
-  border-style: solid;
-  border-color: var(--cdg-color-divider);
-  border-radius: var(--cdg-border-radius-md);
-  color: var(--cdg-color-typeHeading);
-  background-color: var(--cdg-color-whiteText);
-  transition: border-color 250ms ease 0s;
-  width: 100%;
-  resize: none;
-  box-sizing: border-box;
-}
-.textarea:disabled {
-  cursor: not-allowed !important;
-  background-color: var(--cdg-color-gray20);
-}
-.textarea * {
-  color: var(--cdg-color-disabledText);
-  cursor: not-allowed !important;
-}
-.textarea.isErrored {
-  border-color: var(--cdg-color-danger);
-  border-width: var(--cdg-border-width-medium);
-}
-.textarea.isErrored:focus {
-  border-color: var(--cdg-color-danger);
-}
-.textarea.resizable {
-  resize: both;
-}
-.textarea.isDarkTheme {
-  color: var(--cdg-color-tertiaryText);
-  background-color: var(--cdg-color-gray20);
-}
-.textarea:focus.isDarkTheme {
-  outline: none;
-  border-color: var(--cdg-color-cdgBlue120);
-}
-.textareaWrapper.h5 {
-  gap: 4px;
-}
-.textAreaLabel {
-  font-size: var(--cdg-font-size-label1);
-  font-weight: var(--cdg-font-weight-semibold);
-  margin-bottom: var(--cdg-spacing-2);
-  display: inline-block;
-  width: 100%;
-}
-.asterisk {
-  margin-left: var(--cdg-spacing-1);
-  color: var(--cdg-color-danger);
-}
-.textAreaHelperText {
-  font-size: var(--cdg-font-size-label2);
-  font-weight: var(--cdg-font-weight-medium);
-  transition: var(--cdg-transition-default);
-  margin-top: var(--cdg-spacing-1);
-  color: var(--cdg-color-gray70);
-}
-.textAreaHelperText.error {
-  color: var(--cdg-color-danger);
-}
-.textAreaLabel.h5 {
-  color: var(--cdg-color-grayShades80);
-  font-size: var(--cdg-font-size-label2);
-  font-weight: 500;
-  margin-bottom: 0;
-}
-.textarea.h5 {
-  padding: var(--cdg-spacing-3) var(--cdg-spacing-4);
-  border-radius: var(--cdg-border-radius-lg);
-  border: 1px solid var(--cdg-color-grayShades20);
-  background-color: var(--cdg-color-background);
-  font-size: var(--cdg-font-size-label2);
-}
-.textarea.h5::placeholder {
-  font-size: var(--cdg-font-size-label2);
-  font-weight: 400;
-  line-height: var(--cdg-line-height-tight);
-  color: var(--cdg-color-grayShades40);
-}
-.textAreaHelperText.h5 {
-  font-size: var(--cdg-font-size-label2);
-  font-weight: 500;
-  line-height: normal;
-  color: var(--cdg-color-grayShades40);
-  margin-top: 0;
-}
-.textarea:focus {
-  outline: none;
-  border-color: var(--cdg-color-cdgBlue);
+
+@layer variant {
+  .textareaWrapper.h5 {
+    gap: 4px;
+  }
+  .textAreaLabel.h5 {
+    color: var(--cdg-color-grayShades80);
+    font-size: var(--cdg-font-size-label2);
+    font-weight: 500;
+    margin-bottom: 0;
+  }
+  .textarea.h5 {
+    padding: var(--cdg-spacing-3) var(--cdg-spacing-4);
+    border-radius: var(--cdg-border-radius-lg);
+    border: 1px solid var(--cdg-color-grayShades20);
+    background-color: var(--cdg-color-background);
+    font-size: var(--cdg-font-size-label2);
+  }
+  .textarea.h5::placeholder {
+    font-size: var(--cdg-font-size-label2);
+    font-weight: 400;
+    line-height: var(--cdg-line-height-tight);
+    color: var(--cdg-color-grayShades40);
+  }
+  .textAreaHelperText.h5 {
+    font-size: var(--cdg-font-size-label2);
+    font-weight: 500;
+    line-height: normal;
+    color: var(--cdg-color-grayShades40);
+    margin-top: 0;
+  }
 }

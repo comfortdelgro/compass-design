@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import {useIsDarkTheme} from '../theme'
 import CssInjection from '../utils/objectToCss/CssInjection'
