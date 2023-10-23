@@ -66,6 +66,14 @@ export type {ImageViewerProps} from './image-viewer'
 export * from './layouts'
 export {default as Link} from './link'
 export type {LinkProps} from './link'
+export {default as Modal} from './modal'
+export type {
+  ModalActionsProps,
+  ModalDescriptionProps,
+  ModalProps,
+  ModalTitleProps,
+  ModalTriggerProps,
+} from './modal'
 export {default as MultipleChoicesSlider} from './multiple-choices-slider'
 export type {
   MultipleChoicesSliderItemProps,
