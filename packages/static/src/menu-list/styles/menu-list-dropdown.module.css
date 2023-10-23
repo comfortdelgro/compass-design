@@ -1,0 +1,22 @@
+@import '../../theme/theme.module.css';
+
+.menuListDropdown {
+  display: flex;
+  flex-direction: column;
+  color: var(--cdg-color-gray100);
+  width: 100%;
+  gap: var(--cdg-spacing-1);
+}
+
+.menuListDropdownBody {
+  flex-direction: column;
+}
+
+.open {
+  display: flex;
+  gap: var(--cdg-spacing-1);
+}
+
+.close {
+  display: none;
+}
