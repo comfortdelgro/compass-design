@@ -229,11 +229,7 @@ export const lightThemeColors = {
   grayShades80: '#3E3E3E',
   grayShades100: '#333333',
 
-  blueShades0: '',
   blueShades10: '#E6ECF7',
-  blueShades20: '',
-  blueShades40: '',
-  blueShades60: '',
   blueShades80: '#3468BF',
   blueShades100: '#0142AF',
   blueShades120: '#012158',
@@ -323,14 +319,11 @@ export const darkThemeColors = {
   grayShades80: '#E6E6E6',
   grayShades100: '#F7F8F9',
 
-  blueShades0: '',
   blueShades10: '#E6ECF7',
-  blueShades20: '',
-  blueShades40: '',
-  blueShades60: '',
   blueShades80: '#3468BF',
   blueShades100: '#0142AF',
   blueShades120: '#012158',
+
   greenShades: '#159A00',
   badgeWarningBg: '#95711F',
   snackbarWarning: '#95711F',

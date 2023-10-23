@@ -51,6 +51,8 @@ export type {
   MultipleDropdownItemProps,
   MultipleDropdownProps,
 } from './multiple-dropdown'
+export {default as Alert} from './alert'
+export type {AlertProps} from './alert'
 export {default as AutoComplete} from './auto-complete'
 export type {AutoCompleteProps} from './auto-complete'
 export {default as Badge} from './badge'
