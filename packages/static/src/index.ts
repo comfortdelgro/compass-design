@@ -31,6 +31,15 @@ export type {
   DashboardSidecardHeaderProps,
   DashboardSidecardProps,
 } from './dashboard-sidecard'
+export {default as Dialog} from './dialog'
+export type {
+  DialogActionsProps,
+  DialogDescriptionProps,
+  DialogIconProps,
+  DialogProps,
+  DialogTitleProps,
+  DialogTriggerProps,
+} from './dialog'
 export {default as Divider} from './divider'
 export type {DividerProps} from './divider'
 export {default as Drawer} from './drawer'
