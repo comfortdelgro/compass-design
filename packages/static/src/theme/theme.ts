@@ -19,6 +19,7 @@ export const spacings = {
   '6_5': '1.625rem', //26px
   7: '1.75rem', // 28px
   '7_5': '1.875rem', //30px
+
   8: '2rem', // 32px
   9: '2.25rem', // 36px
   '9_25': '2.3125rem', //37px
@@ -325,7 +326,7 @@ export const darkThemeColors = {
   blueShades80: '#3468BF',
   blueShades100: '#0142AF',
   blueShades120: '#012158',
-
+  
   greenShades: '#159A00',
   badgeWarningBg: '#95711F',
   snackbarWarning: '#95711F',
