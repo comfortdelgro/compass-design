@@ -1,3 +1,4 @@
+'use client'
 import {cloneDeep} from 'lodash'
 import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react'
 import Popover from '../popover'

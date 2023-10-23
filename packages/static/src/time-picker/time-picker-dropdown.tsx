@@ -1,3 +1,4 @@
+'use client'
 import {cloneDeep} from 'lodash'
 import React, {useCallback, useEffect, useRef, useState} from 'react'
 import Button from '../button'

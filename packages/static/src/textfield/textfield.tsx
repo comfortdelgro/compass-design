@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import {useIsDarkTheme} from '../theme'
 import CssInjection from '../utils/objectToCss/CssInjection'
@@ -153,12 +154,42 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
       return null
     }, [password, isPassWordVisible, type])
 
+    //  classes
+    const textfieldWrapperClasses = [
+      styles.textFieldWrapper,
+      isDarkTheme && styles.isDarkTheme,
+      h5 && styles.h5,
+      className,
+      'cdg-textfield-container',
+    ]
+      .filter(Boolean)
+      .join(' ')
+    const textfieldBoxWrapperClasses = [
+      styles.textFieldBox,
+      isDisabled && styles.isDisabled,
+      isErrored && styles.isErrored,
+      isDarkTheme && styles.isDarkTheme,
+      h5 && styles.h5,
+      className,
+      'cdg-textfield-box',
+    ]
+      .filter(Boolean)
+      .join(' ')
+    const textfieldInputWrapperClasses = [
+      styles.textField,
+      isDisabled && styles.isDisabled,
+      isDarkTheme && styles.isDarkTheme,
+      h5 && styles.h5,
+      className,
+      'cdg-textfield-input',
+    ]
+      .filter(Boolean)
+      .join(' ')
+
     return (
       <CssInjection css={css} childrenRef={textfieldRef}>
         <div
-          className={`cdg-textfield-container ${className} ${
-            styles.textFieldWrapper
-          } ${isDarkTheme ? styles.isDarkTheme : ''} ${h5 ? styles.h5 : ''}`}
+          className={textfieldWrapperClasses}
           ref={textfieldRef}
           {...htmlProps}
         >
@@ -177,13 +208,7 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
               )}
             </label>
           )}
-          <div
-            className={`cdg-textfield-box ${styles.textFieldBox} ${
-              isDisabled ? styles.isDisabled : ''
-            } ${isErrored ? styles.isErrored : ''} ${
-              isDarkTheme ? styles.isDarkTheme : ''
-            } ${h5 ? styles.h5 : ''}`}
-          >
+          <div className={textfieldBoxWrapperClasses}>
             {leftIcon ? (
               <div className={`left-icon ${styles.leftIcon}`}>{leftIcon}</div>
             ) : null}
@@ -219,11 +244,7 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
               onCompositionStart={onCompositionStart}
               onCompositionUpdate={onCompositionUpdate}
               ref={inputfieldRef}
-              className={`cdg-textfield-input ${styles.textField} ${
-                isDisabled ? styles.isDisabled : ''
-              } ${isDarkTheme ? styles.isDarkTheme : ''} ${
-                h5 ? styles.h5 : ''
-              }`}
+              className={textfieldInputWrapperClasses}
             />
             {rightIcon ? (
               <div className={`right-icon ${styles.rightIcon}`}>

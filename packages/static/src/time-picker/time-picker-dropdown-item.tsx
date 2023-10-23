@@ -1,3 +1,4 @@
+'use client'
 import React, {useEffect, useRef} from 'react'
 import {TIME_PICKER_MARGIN_TOP} from './constant'
 import styles from './styles/time-picker.module.css'

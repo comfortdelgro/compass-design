@@ -1,167 +1,172 @@
 @import '../../theme/theme.module.css';
 
-.textFieldLabel {
-  font-size: var(--cdg-font-size-label1);
-  font-weight: var(--cdg-font-weight-semibold);
-  margin-bottom: var(--cdg-spacing-2);
-  display: inline-block;
-  width: 100%;
-}
-.asterisk {
-  margin-left: var(--cdg-spacing-1);
-  color: var(--cdg-color-danger);
-}
-.textFieldLabel.h5 {
-  font-size: var(--cdg-font-size-label2);
-  font-weight: var(--cdg-font-weight-medium);
-  color: var(--cdg-color-grayShades80);
-  margin-bottom: var(--cdg-spacing-1);
+/* 
+* variant has the second highest priority
+* default has the lowest priority
+*/
+@layer default, variant;
+
+@layer default {
+  .textFieldLabel {
+    font-size: var(--cdg-font-size-label1);
+    font-weight: var(--cdg-font-weight-semibold);
+    margin-bottom: var(--cdg-spacing-2);
+    display: inline-block;
+    width: 100%;
+  }
+  .textFieldHelperText {
+    font-size: var(--cdg-font-size-label2);
+    font-weight: var(--cdg-font-weight-medium);
+    transition: var(--cdg-transition-default);
+    margin-top: var(--cdg-spacing-1);
+    color: var(--cdg-color-gray70);
+  }
+  .textFieldBox {
+    width: 100%;
+    height: var(--cdg-spacing-11);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-width: var(--cdg-border-width-light);
+    border-style: solid;
+    border-color: var(--cdg-color-divider);
+    border-radius: var(--cdg-border-radius-md);
+    color: var(--cdg-color-typeHeading);
+    background-color: var(--cdg-color-whiteText);
+    transition: var(--cdg-transition-default);
+  }
+
+  .leftIcon,
+  .rightIcon {
+    color: var(--cdg-color-typeHeading);
+    transition: var(--cdg-transition-default);
+  }
+  .leftIcon {
+    width: var(--cdg-spacing-5);
+    height: var(--cdg-spacing-5);
+    margin-left: var(--cdg-spacing-2_5);
+    margin-right: calc(var(--cdg-spacing-1) * -1);
+  }
+  .prefix {
+    min-width: var(--cdg-spacing-5);
+    height: var(--cdg-spacing-5);
+    margin-left: var(--cdg-spacing-2_5);
+    margin-right: calc(var(--cdg-spacing-1) * -1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .rightIcon {
+    width: var(--cdg-spacing-4);
+    height: var(--cdg-spacing-4);
+    margin-right: var(--cdg-spacing-2_5);
+    margin-left: calc(var(--cdg-spacing-1) * -1);
+  }
+  .passwordIcon {
+    font-size: 0.8em;
+    margin-right: var(--cdg-spacing-2_5);
+    margin-left: calc(var(--cdg-spacing-1) * -1);
+  }
+  .passwordIcon svg {
+    height: 1rem;
+  }
+  .textField {
+    width: 100%;
+    font-size: var(--cdg-font-size-label1);
+    font-weight: var(--cdg-font-weight-semibold);
+    line-height: var(--cdg-line-height-normal);
+    padding: var(--cdg-spacing-1_5) var(--cdg-spacing-3);
+    border: 0;
+    border-radius: var(--cdg-border-radius-md);
+    background-color: var(--cdg-color-whiteText);
+  }
+  .textFieldWrapper {
+    width: 100%;
+    display: block;
+    font-family: var(--cdg-font-sans);
+  }
+  .asterisk {
+    margin-left: var(--cdg-spacing-1);
+    color: var(--cdg-color-danger);
+  }
+  .textFieldHelperText.error {
+    color: var(--cdg-color-danger);
+  }
+  .textFieldBox.isDisabled {
+    background-color: var(--cdg-color-gray20);
+  }
+  .textFieldBox.isDisabled * {
+    color: var(--cdg-color-disabledText);
+    cursor: not-allowed;
+  }
+  .textField.isDisabled {
+    background-color: var(--cdg-color-gray20);
+  }
+  .textFieldBox.isErrored {
+    border-color: var(--cdg-color-danger);
+    border-width: var(--cdg-border-width-medium);
+  }
+  .textFieldBox.isErrored:focus-within {
+    border-color: var(--cdg-color-danger);
+  }
+  .textField:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  .textField::placeholder {
+    color: var(--cdg-color-placeholder);
+    font-size: var(--cdg-font-size-label1);
+    font-weight: var(--cdg-font-weight-semibold);
+  }
+  .textFieldBox:focus-within {
+    border-color: var(--cdg-color-cdgBlue);
+  }
+  .textFieldBox:focus-within .leftIcon {
+    color: var(--cdg-color-cdgBlue);
+  }
+
+  .textField.isDarkTheme {
+    background-color: transparent;
+    color: var(--cdg-color-tertiaryText);
+  }
+  .textFieldBox.isDarkTheme {
+    color: var(--cdg-color-tertiaryText);
+    background-color: var(--cdg-color-gray20);
+  }
+  .textFieldBox.isDarkTheme:focus-within {
+    border-color: var(--cdg-color-cdgBlue120);
+  }
+  .textFieldBox.isDarkTheme:focus-within .leftIcon {
+    color: var(--cdg-color-cdgBlue);
+  }
 }
 
-.textFieldHelperText {
-  font-size: var(--cdg-font-size-label2);
-  font-weight: var(--cdg-font-weight-medium);
-  transition: var(--cdg-transition-default);
-  margin-top: var(--cdg-spacing-1);
-  color: var(--cdg-color-gray70);
-}
-.textFieldHelperText.error {
-  color: var(--cdg-color-danger);
-}
-.textFieldBox {
-  width: 100%;
-  height: var(--cdg-spacing-11);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  border-width: var(--cdg-border-width-light);
-  border-style: solid;
-  border-color: var(--cdg-color-divider);
-  border-radius: var(--cdg-border-radius-md);
-  color: var(--cdg-color-typeHeading);
-  background-color: var(--cdg-color-whiteText);
-  transition: var(--cdg-transition-default);
-}
-
-.leftIcon,
-.rightIcon {
-  color: var(--cdg-color-typeHeading);
-  transition: var(--cdg-transition-default);
-}
-.leftIcon {
-  width: var(--cdg-spacing-5);
-  height: var(--cdg-spacing-5);
-  margin-left: var(--cdg-spacing-2_5);
-  margin-right: calc(var(--cdg-spacing-1) * -1);
-}
-.prefix {
-  min-width: var(--cdg-spacing-5);
-  height: var(--cdg-spacing-5);
-  margin-left: var(--cdg-spacing-2_5);
-  margin-right: calc(var(--cdg-spacing-1) * -1);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.rightIcon {
-  width: var(--cdg-spacing-4);
-  height: var(--cdg-spacing-4);
-  margin-right: var(--cdg-spacing-2_5);
-  margin-left: calc(var(--cdg-spacing-1) * -1);
-}
-.passwordIcon {
-  font-size: 0.8em;
-  margin-right: var(--cdg-spacing-2_5);
-  margin-left: calc(var(--cdg-spacing-1) * -1);
-}
-.passwordIcon svg {
-  height: 1rem;
-}
-.textFieldBox.isDisabled {
-  background-color: var(--cdg-color-gray20);
-}
-.textFieldBox.isDisabled * {
-  color: var(--cdg-color-disabledText);
-  cursor: not-allowed;
-}
-.textField.isDisabled {
-  background-color: var(--cdg-color-gray20);
-}
-.textFieldBox.isErrored {
-  border-color: var(--cdg-color-danger);
-  border-width: var(--cdg-border-width-medium);
-}
-.textFieldBox.isErrored:focus-within {
-  border-color: var(--cdg-color-danger);
-}
-.textField {
-  width: 100%;
-  font-size: var(--cdg-font-size-label1);
-  font-weight: var(--cdg-font-weight-semibold);
-  line-height: var(--cdg-line-height-normal);
-  padding: var(--cdg-spacing-1_5) var(--cdg-spacing-3);
-  border: 0;
-  border-radius: var(--cdg-border-radius-md);
-  background-color: var(--cdg-color-whiteText);
-}
-.textField:focus {
-  outline: none;
-  box-shadow: none;
-}
-.textField::placeholder {
-  color: var(--cdg-color-placeholder);
-  font-size: var(--cdg-font-size-label1);
-  font-weight: var(--cdg-font-weight-semibold);
-}
-.textFieldWrapper {
-  width: 100%;
-  display: block;
-  font-family: var(--cdg-font-sans);
-}
-.textField.isDarkTheme {
-  background-color: transparent;
-  color: var(--cdg-color-tertiaryText);
-}
-.textFieldBox.isDarkTheme {
-  color: var(--cdg-color-tertiaryText);
-  background-color: var(--cdg-color-gray20);
-}
-.textFieldBox.isDarkTheme:focus-within {
-  border-color: var(--cdg-color-cdgBlue120);
-}
-.textFieldBox.isDarkTheme:focus-within .leftIcon {
-  color: var(--cdg-color-cdgBlue);
-}
-.textFieldBox:focus-within {
-  border-color: var(--cdg-color-cdgBlue);
-}
-.textFieldBox:focus-within .leftIcon {
-  color: var(--cdg-color-cdgBlue);
-}
-.textFieldWrapper.h5 {
-  color: var(--cdg-color-grayShades100);
-  font-size: var(--cdg-font-size-label1);
-  line-height: var(--cdg-line-height-tight);
-  font-weight: var(--cdg-font-weight-normal);
-}
-.textFieldLabel.h5 {
-  font-size: var(--cdg-font-size-label2);
-  font-weight: var(--cdg-font-weight-medium);
-  color: var(--cdg-color-grayShades80);
-  margin-bottom: var(--cdg-spacing-1);
-}
-.textFieldBox.h5 {
-  border-radius: var(--cdg-border-radius-lg);
-}
-.textField.h5 {
-  border: none;
-  width: 100%;
-  font-size: var(--cdg-font-size-label2);
-  font-weight: var(--cdg-font-weight-normal);
-}
-.textField.h5::placeholder {
-  color: var(--cdg-color-grayShades40);
-  font-size: var(--cdg-spacing-3_5);
-  line-height: var(--cdg-line-height-tight);
-  font-weight: var(--cdg-font-weight-normal);
+@layer variant {
+  .textFieldLabel.h5 {
+    font-size: var(--cdg-font-size-label2);
+    font-weight: var(--cdg-font-weight-medium);
+    color: var(--cdg-color-grayShades80);
+    margin-bottom: var(--cdg-spacing-1);
+  }
+  .textFieldWrapper.h5 {
+    color: var(--cdg-color-grayShades100);
+    font-size: var(--cdg-font-size-label1);
+    line-height: var(--cdg-line-height-tight);
+    font-weight: var(--cdg-font-weight-normal);
+  }
+  .textFieldBox.h5 {
+    border-radius: var(--cdg-border-radius-lg);
+  }
+  .textField.h5 {
+    border: none;
+    width: 100%;
+    font-size: var(--cdg-font-size-label2);
+    font-weight: var(--cdg-font-weight-normal);
+  }
+  .textField.h5::placeholder {
+    color: var(--cdg-color-grayShades40);
+    font-size: var(--cdg-spacing-3_5);
+    line-height: var(--cdg-line-height-tight);
+    font-weight: var(--cdg-font-weight-normal);
+  }
 }
