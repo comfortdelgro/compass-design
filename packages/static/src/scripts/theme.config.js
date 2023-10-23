@@ -236,6 +236,10 @@ export const lightThemeColors = {
   blueShades80: '#3468BF',
   blueShades100: '#0142AF',
   blueShades120: '#012158',
+
+  greenShades: '#159A00',
+  badgeWarningBg: '#95711F',
+  snackbarWarning: '#95711F',
 }
 
 export const darkThemeColors = {
@@ -326,4 +330,7 @@ export const darkThemeColors = {
   blueShades80: '#3468BF',
   blueShades100: '#0142AF',
   blueShades120: '#012158',
+  greenShades: '#159A00',
+  badgeWarningBg: '#95711F',
+  snackbarWarning: '#95711F',
 }
