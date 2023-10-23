@@ -113,7 +113,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
       <CssInjection css={css} childrenRef={tabRef}>
         <div
           ref={tabRef}
-          className={`cdg-tabs ${styles.tabs} ${styles[`${variant}`]} ${styles[variant + `${orientation.charAt(0).toUpperCase() + orientation.slice(1)}`]}`}
+          className={`cdg-tabs ${styles.tabs} ${styles[`${orientation}`]} ${styles[`${variant}`]} ${styles[variant + `${orientation.charAt(0).toUpperCase() + orientation.slice(1)}`]}`}
           onKeyDown={handleKeyDown}
           role='tablist'
           aria-orientation={orientation}

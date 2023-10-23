@@ -4,6 +4,7 @@
 
 @layer default {
   .tab {
+    box-sizing: border-box;
     position: relative;
     flex-shrink: 0;
     font-family: var(--cdg-font-sans);
@@ -16,7 +17,7 @@
     align-items: center;
     width: max-content;
     transition: var(--cdg-transition-button);
-    color: var(--cdg-color-primaryText);
+    color: var(--cdg-color-cdgBlue);
   }
 
   .tab:hover,
@@ -33,6 +34,7 @@
   }
 
   .icon {
+    box-sizing: border-box;
     width: var(--cdg-spacing-4);
     height: var(--cdg-spacing-4);
     display: flex;
@@ -72,12 +74,6 @@
     box-shadow: 0px -2px var(--cdg-color-cdgBlue);
   }
 
-  .simple:hover,
-  .simple:focus-visible .icon {
-    background-color: var(--cdg-color-cdgBlue);
-    border: none;
-  }
-
   .simpleIcon svg {
     display: none;
   }
@@ -85,6 +81,12 @@
   .simpleIcon path {
     fill: var(--cdg-color-whiteText);
   }
+  .simpleIcon:hover,
+  .simpleIcon:focus-visible {
+    background-color: var(--cdg-color-cdgBlue);
+    border: none;
+  }
+
 
   .h5 {
     background: transparent;
@@ -238,10 +240,7 @@
     fill: var(--cdg-color-whiteText);
   }
 
-  .simpleActiveTrue {
-    margin-bottom: -2px;
-    border-bottom: var(--cdg-color-cdgBlue) 2px solid;
-  }
+ 
 
   .roundedDisabledTrue {
     color: var(--cdg-color-gray50);
@@ -273,7 +272,10 @@
   }
 
   .simpleActiveTrue {
+    margin-bottom: -2px;
+    border-bottom: var(--cdg-color-cdgBlue) 2px solid;
     background: transparent;
+    color: var(--cdg-color-cdgBlue);
   }
 
   .simpleActiveTrueIcon {
@@ -309,12 +311,12 @@
 
   .h5ActiveTrue:after {
     position: absolute;
-    border-radius: 1;
-    bottom: -4;
-    left: -1;
-    content: '';
+    border-radius: 1px;
+    bottom: -4px;
+    left: -1px;
+    content: "";
     width: calc(100% + 2px);
-    height: 2;
+    height: 2px;
     background: var(--cdg-color-blueShades100);
   }
 

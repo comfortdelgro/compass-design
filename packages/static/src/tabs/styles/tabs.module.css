@@ -5,10 +5,7 @@
     display: flex;
     flex-direction: column;
   }
-}
 
-/* styledTabs.module.scss */
-@layer default {
   .tabs {
     font-family: var(--cdg-font-sans);
     line-height: var(--cdg-line-height-normal);
@@ -34,11 +31,19 @@
 
   .h5 {
     background: transparent;
-    border-radius: none;
     padding: 0 0 4px 0 !important;
     gap: var(--cdg-spacing-5);
   }
 
+  .horizontal {
+    padding: var(--cdg-spacing-2);
+    grid-auto-flow: column;
+  }
+
+  .vertical {
+    padding: var(--cdg-spacing-4) var(--cdg-spacing-2);
+    grid-auto-flow: row;
+  }
 }
 
 @layer compoundVariant {
