@@ -68,6 +68,8 @@ export type {
   MultipleDropdownProps,
 } from './multiple-dropdown'
 export {default as NoSsr} from './nossr'
+export {default as OTPInput} from './otp-input'
+export type {OTPInputProps} from './otp-input'
 export {default as Popover} from './popover'
 export type {PopoverDirection, PopoverProps} from './popover'
 export {default as Preflight} from './preflight'
