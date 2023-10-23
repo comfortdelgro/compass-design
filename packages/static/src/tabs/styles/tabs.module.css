@@ -1,0 +1,50 @@
+/* styledWrapper.module.scss */
+@layer default {
+  .wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* styledTabs.module.scss */
+@layer default {
+  .tabs {
+    font-family: var(--cdg-font-sans);
+    line-height: var(--cdg-line-height-normal);
+    font-weight: var(--cdg-font-weight-semibold);
+    display: grid;
+    grid-template-columns: min-content;
+    width: fit-content;
+    margin: 0;
+    gap: var(--cdg-spacing-4);
+  }
+}
+
+@layer variant {
+  .rounded {
+    background: var(--cdg-color-background);
+    border-radius: var(--cdg-border-radius-full);
+  }
+
+  .simple {
+    background: transparent;
+    border-radius: none;
+  }
+
+  .h5 {
+    background: transparent;
+    border-radius: none;
+    padding: 0 0 4px 0 !important;
+    gap: var(--cdg-spacing-5);
+  }
+
+}
+
+@layer compoundVariant {
+  .roundedVertical {
+    border-radius: var(--cdg-border-radius-xl);
+  }
+}
+
+@layer default, variant, compoundVariant;
