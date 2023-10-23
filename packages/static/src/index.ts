@@ -52,6 +52,8 @@ export type {
   MultipleDropdownProps,
 } from './multiple-dropdown'
 
+export {default as Badge} from './badge'
+export type {BadgeProps} from './badge'
 export {default as Popover} from './popover'
 export type {PopoverDirection, PopoverProps} from './popover'
 export {default as Progress} from './progress'
