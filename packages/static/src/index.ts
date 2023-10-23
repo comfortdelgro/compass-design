@@ -52,6 +52,8 @@ export type {
   MultipleDropdownProps,
 } from './multiple-dropdown'
 
+export {default as AutoComplete} from './auto-complete'
+export type {AutoCompleteProps} from './auto-complete'
 export {default as Popover} from './popover'
 export type {PopoverDirection, PopoverProps} from './popover'
 export {default as Progress} from './progress'
