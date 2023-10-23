@@ -5,7 +5,7 @@ export type {BreadcrumbItemProps, BreadcrumbsProps} from './breadcrumbs'
 export {default as Button} from './button'
 export type {ButtonProps} from './button'
 export {default as Calendar} from './calendar'
-export type {CalendarProps} from './calendar'
+// export type {CalendarProps} from './calendar'
 export {default as Chart} from './chart'
 export type {
   AreaChartProps,
