@@ -1,7 +1,7 @@
 import React, {memo, useLayoutEffect} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledOtpSingleInput} from './styles/otpInput.styles'
+import {StyledOtpSingleInput} from './otpInput.styles'
 import usePrevious from './usePrevious'
 
 export interface SingleOTPInputProps
