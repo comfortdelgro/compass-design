@@ -27,7 +27,9 @@ export const spacings = {
   11: '2.75rem', // 44px
   12: '3rem', // 48px
   '12_5': '3.125rem', // 50px
+  '13_5': '3.375rem', // 54px
   14: '3.5rem', // 56px
+  15: '3.75rem', // 60px
   16: '4rem', // 64px
   18: '4.5rem', // 72px
   20: '5rem', // 80px
@@ -229,14 +231,14 @@ export const lightThemeColors = {
   grayShades80: '#3E3E3E',
   grayShades100: '#333333',
 
-  blueShades0: '',
   blueShades10: '#E6ECF7',
-  blueShades20: '',
-  blueShades40: '',
-  blueShades60: '',
   blueShades80: '#3468BF',
   blueShades100: '#0142AF',
   blueShades120: '#012158',
+
+  greenShades: '#159A00',
+  badgeWarningBg: '#95711F',
+  snackbarWarning: '#95711F',
 }
 
 export const darkThemeColors = {
@@ -319,14 +321,14 @@ export const darkThemeColors = {
   grayShades80: '#E6E6E6',
   grayShades100: '#F7F8F9',
 
-  blueShades0: '',
   blueShades10: '#E6ECF7',
-  blueShades20: '',
-  blueShades40: '',
-  blueShades60: '',
   blueShades80: '#3468BF',
   blueShades100: '#0142AF',
   blueShades120: '#012158',
+
+  greenShades: '#159A00',
+  badgeWarningBg: '#95711F',
+  snackbarWarning: '#95711F',
 }
 
 const theme = {

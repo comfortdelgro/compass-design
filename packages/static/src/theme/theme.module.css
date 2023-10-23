@@ -14,6 +14,7 @@
   --cdg-spacing-11 : 2.75rem;
   --cdg-spacing-12 : 3rem;
   --cdg-spacing-14 : 3.5rem;
+  --cdg-spacing-15 : 3.75rem;
   --cdg-spacing-16 : 4rem;
   --cdg-spacing-18 : 4.5rem;
   --cdg-spacing-20 : 5rem;
@@ -67,6 +68,7 @@
   --cdg-spacing-9_25 : 2.3125rem;
   --cdg-spacing-10_5 : 2.625rem;
   --cdg-spacing-12_5 : 3.125rem;
+  --cdg-spacing-13_5 : 3.375rem;
   --cdg-spacing-24_5 : 6.125rem;
   --cdg-spacing-39_25 : 9.8125rem;
   --cdg-spacing-81_75 : 20.4375rem;
@@ -189,14 +191,13 @@
   --cdg-color-grayShades60 : #757575;
   --cdg-color-grayShades80 : #3E3E3E;
   --cdg-color-grayShades100 : #333333;
-  --cdg-color-blueShades0 : ;
   --cdg-color-blueShades10 : #E6ECF7;
-  --cdg-color-blueShades20 : ;
-  --cdg-color-blueShades40 : ;
-  --cdg-color-blueShades60 : ;
   --cdg-color-blueShades80 : #3468BF;
   --cdg-color-blueShades100 : #0142AF;
   --cdg-color-blueShades120 : #012158;
+  --cdg-color-greenShades : #159A00;
+  --cdg-color-badgeWarningBg : #95711F;
+  --cdg-color-snackbarWarning : #95711F;
   
 }
 /* Dark Theme Colors */
@@ -260,12 +261,11 @@
   --cdg-color-grayShades60 : #B4B4B4;
   --cdg-color-grayShades80 : #E6E6E6;
   --cdg-color-grayShades100 : #F7F8F9;
-  --cdg-color-blueShades0 : ;
   --cdg-color-blueShades10 : #E6ECF7;
-  --cdg-color-blueShades20 : ;
-  --cdg-color-blueShades40 : ;
-  --cdg-color-blueShades60 : ;
   --cdg-color-blueShades80 : #3468BF;
   --cdg-color-blueShades100 : #0142AF;
   --cdg-color-blueShades120 : #012158;
+  --cdg-color-greenShades : #159A00;
+  --cdg-color-badgeWarningBg : #95711F;
+  --cdg-color-snackbarWarning : #95711F;
 }
