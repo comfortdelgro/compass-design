@@ -85,8 +85,13 @@ type H5DrawerProps = {
   disableResize?: boolean
 
   /**
-   * if `true`, when open a drawer, it will NOT add {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inert inert}
-   * attribute and `overflow: hidden` to the `<body>` tag.
+   * @deprecated This property now becomes useless, does nothing and will be removed in the next major release.
+   *
+   * Now respect the `<dialog />`'s default behaviors, let the browsers control if the content page below the Drawer should be rendered inert or not.
+   * ___
+   * @description
+   * if `true`, when open a drawer, it will NOT
+   *  add {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inert inert} attribute and `overflow: hidden` to the `<body>` tag.
    * @default false
    */
   disableAddBodyAttr?: boolean

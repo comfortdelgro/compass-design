@@ -11,6 +11,7 @@ import type {Meta} from '@storybook/react'
 import React from 'react'
 import Icon from '../icon'
 import Button from './index'
+import styles from './styles/stories.module.css'
 
 const Style = {
   width: '100%',
@@ -25,9 +26,6 @@ export const Variations: React.FC = () => (
   <div style={{width: '100%', height: '100%', padding: '2rem'}}>
     <h3>1. Variants</h3>
     <div style={{...Style}}>
-      <Button css={{width: '250px'}} onClick={(e) => console.log('click', e)}>
-        Primary
-      </Button>
       <Button variant='primary' onPress={() => console.log('pressed')}>
         Primary
       </Button>
@@ -51,6 +49,30 @@ export const Variations: React.FC = () => (
         Ghost
       </Button>
     </div>
+    <h4>Custom style</h4>
+    <h5>Custom style using css prop</h5>
+    <div style={{...Style}}>
+      <Button
+        css={{
+          width: 250,
+          opacity: 0.9,
+          backgroundColor: 'red',
+          '.cdg-button-content-children': {color: 'purple'},
+        }}
+        onClick={(e) => console.log('click', e)}
+      >
+        Custom width and background color
+      </Button>
+    </div>
+    <h5>Custom style using css module</h5>
+    <div style={{...Style}}>
+      <Button
+        onClick={(e) => console.log('click', e)}
+        className={styles.myButton}
+      >
+        Custom width and background color
+      </Button>
+    </div>
     <h3>2. Sizes</h3>
     <div style={{...Style}}>
       <Button size='lg'>Large</Button>
@@ -62,6 +84,12 @@ export const Variations: React.FC = () => (
           Medium (Block)
         </Button>
       </div>
+    </div>
+    <h4>Full width</h4>
+    <div style={{...Style}}>
+      <Button fullWidth onClick={(e) => console.log('click', e)}>
+        Full Width (100%)
+      </Button>
     </div>
     <h3>3. Ripple effect when being clicked</h3>
     <div style={{...Style}}>
@@ -128,7 +156,6 @@ export const Variations: React.FC = () => (
         variant='primary'
         leftIcon={<Icon icon={faChevronDown} />}
         rightIcon={<Icon icon={faMapMarkerAlt} />}
-        css={{width: '350px'}}
       >
         Primary
       </Button>

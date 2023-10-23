@@ -435,6 +435,12 @@ export const routes: TSideNavItem[] = [
           'Provides the behavior and accessibility implementation for a slider component representing one or more values.',
       },
       {
+        title: 'Snackbar',
+        pathname: '/snackbar',
+        description:
+          'Provides brief messages of a process that an app has performed or will perform at the bottom of the screen.',
+      },
+      {
         title: 'SpeedDial',
         pathname: '/speed-dial',
         description:
