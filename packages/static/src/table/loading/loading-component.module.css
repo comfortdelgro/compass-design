@@ -1,0 +1,14 @@
+@import '../../theme/theme.module.css';
+
+@layer default, variant;
+
+@layer default {
+  .cdgTableLoading {
+    height: var(--cdg-spacing-75);
+    td {
+      height: 100%;
+      margin: auto;
+      text-align: center;
+    }
+  }
+}

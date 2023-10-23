@@ -1,0 +1,8 @@
+@import '../../theme/theme.module.css';
+@layer default;
+
+@layer default {
+  .cdgTableFooter {
+    padding-top: var(--cdg-spacing-6);
+  }
+}

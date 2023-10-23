@@ -1,0 +1,16 @@
+@import '../../theme/theme.module.css';
+
+@layer default, variant;
+
+@layer default {
+  .cdgTableWrapper {
+    overflow-x: auto;
+  }
+
+  .cdgTable {
+    font-family: var(--cdg-font-sans);
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid var(--cdg-color-primaryBg);
+  }
+}

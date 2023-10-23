@@ -1,0 +1,24 @@
+@import '../../theme/theme.module.css';
+@layer default, variant;
+
+@layer default {
+  .cdgTableRow {
+    background: var(--cdg-color-whiteText);
+    background-color: transparent;
+    border-left-width: var(--cdg-border-width-medium);
+    transition: var(--cdg-transition-default);
+    border: none;
+  }
+}
+
+@layer variant {
+  .isSelected {
+    border-width: var(--cdg-border-width-light);
+    background-color: var(--cdg-color-cdgBlue10);
+    border-left: 2px solid var(--cdg-color-cdgBlue);
+  }
+
+  .isExpanded {
+    background-color: var(--cdg-color-cdgBlue10);
+  }
+}

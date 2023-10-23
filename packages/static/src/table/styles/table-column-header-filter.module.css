@@ -1,0 +1,12 @@
+@import '../../theme/theme.module.css';
+@layer default;
+
+@layer default {
+  .cdgTableCheckbox {
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+    cursor: pointer;
+  }
+}
