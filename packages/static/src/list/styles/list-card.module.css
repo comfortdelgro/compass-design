@@ -1,64 +1,68 @@
 @import '../../theme/theme.module.css';
 
-.listCard {
-  padding: var(--cdg-spacing-4);
-  border-radius: var(--cdg-border-radius-md);
-  border: 1px solid var(--cdg-color-primaryBg);
-}
+@layer default;
 
-.listCardIsDisabled {
-  cursor: not-allowed;
-}
+@layer default {
+  .listCard {
+    padding: var(--cdg-spacing-4);
+    border-radius: var(--cdg-border-radius-md);
+    border: 1px solid var(--cdg-color-primaryBg);
+  }
 
-.listCardIsDisabled .listCardTitle {
-  color: var(--cdg-color-gray60);
-}
+  .listCardIsDisabled {
+    cursor: not-allowed;
+  }
 
-.listCardIsDisabled .listCardDescription {
-  color: var(--cdg-color-gray60);
-}
+  .listCardIsDisabled .listCardTitle {
+    color: var(--cdg-color-gray60);
+  }
 
-.listCardHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+  .listCardIsDisabled .listCardDescription {
+    color: var(--cdg-color-gray60);
+  }
 
-.listCardTitle {
-  margin: 0;
-  font-size: var(--cdg-font-size-header5);
-  font-weight: var(--cdg-font-weight-semibold);
-  color: var(--cdg-color-gray100);
-  line-height: 24px;
-}
+  .listCardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-.listCardHeaderRight {
-  display: flex;
-  align-items: center;
-  gap: var(--cdg-spacing-4);
-}
+  .listCardTitle {
+    margin: 0;
+    font-size: var(--cdg-font-size-header5);
+    font-weight: var(--cdg-font-weight-semibold);
+    color: var(--cdg-color-gray100);
+    line-height: 24px;
+  }
 
-.listCardIcon {
-  width: 1.83312rem;
-  height: 1.16688rem;
-}
+  .listCardHeaderRight {
+    display: flex;
+    align-items: center;
+    gap: var(--cdg-spacing-4);
+  }
 
-.listCardDescription {
-  margin: 0;
-  margin-top: var(--cdg-spacing-2);
-  font-size: var(--cdg-font-size-body3);
-  line-height: 21px;
-  color: var(--cdg-color-gray80);
-}
+  .listCardIcon {
+    width: 1.83312rem;
+    height: 1.16688rem;
+  }
 
-.listCardFooter {
-  display: flex;
-  align-items: flex-start;
-  margin-top: var(--cdg-spacing-6);
-}
+  .listCardDescription {
+    margin: 0;
+    margin-top: var(--cdg-spacing-2);
+    font-size: var(--cdg-font-size-body3);
+    line-height: 21px;
+    color: var(--cdg-color-gray80);
+  }
 
-.listCardContent {
-  display: flex;
-  flex-wrap: wrap;
-  flex: 1;
+  .listCardFooter {
+    display: flex;
+    align-items: flex-start;
+    margin-top: var(--cdg-spacing-6);
+  }
+
+  .listCardContent {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+  }
 }
