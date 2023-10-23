@@ -282,7 +282,6 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
       const inputElement = containerRef.current
       if (inputElement) {
         const popoverWidth = inputElement.clientWidth
-        console.log('popoverWidth', popoverWidth)
         setPopoverWidth(popoverWidth)
       }
     }, [containerRef])
