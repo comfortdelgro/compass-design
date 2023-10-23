@@ -21,10 +21,7 @@ export enum SnackbarType {
 
 type SnackbarState = SnackbarItem[]
 
-const snackbarReducer = (
-  state: SnackbarState,
-  action: SnackbarAction,
-): SnackbarState => {
+const snackbarReducer = (state: SnackbarState, action: SnackbarAction): SnackbarState => {
   switch (action.type) {
     case 'ADD_SNACKBAR':
       return [...state, action.snackbar]
@@ -38,10 +35,7 @@ const snackbarReducer = (
 const useSnackbarService = () => {
   const [snackbars, dispatch] = useReducer(snackbarReducer, [])
 
-  const showSnackbar = (
-    message: string,
-    type: SnackbarType = SnackbarType.DEFAULT,
-  ) => {
+  const showSnackbar = (message: string, type: SnackbarType = SnackbarType.DEFAULT) => {
     const id = Math.random().toString()
     const snackbar: SnackbarItem = {id, message, type}
     dispatch({type: 'ADD_SNACKBAR', snackbar})
