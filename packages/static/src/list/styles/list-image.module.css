@@ -1,6 +1,6 @@
 @import '../../theme/theme.module.css';
 
-@layer default;
+@layer default, variant;
 
 @layer default {
   .image {
@@ -9,7 +9,9 @@
     border-radius: var(--cdg-border-radius-lg);
     object-fit: cover;
   }
+}
 
+@layer variant {
   .isRounded {
     border-radius: var(--cdg-border-radius-full);
   }

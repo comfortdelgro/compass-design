@@ -53,8 +53,6 @@
   }
 
   .interactiveDropdownBody {
-    /* width: var(--cdg-spacing-4);
-  height: var(--cdg-spacing-6_5); */
     color: var(--cdg-color-primaryText);
   }
 

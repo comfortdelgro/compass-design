@@ -18,15 +18,6 @@
     outline: var(--cdg-color-cdgBlue40) solid 2px;
   }
 
-  .listIsDisabled {
-    cursor: not-allowed;
-    user-select: none;
-  }
-
-  .listIsDisabled:focus-visible {
-    outline: none;
-  }
-
   .left {
     display: flex;
     gap: var(--cdg-spacing-6);
@@ -77,6 +68,15 @@
 }
 
 @layer variant {
+  .listIsDisabled {
+    cursor: not-allowed;
+    user-select: none;
+  }
+
+  .listIsDisabled:focus-visible {
+    outline: none;
+  }
+
   /* sm */
   .listSizeSM {
     padding: var(--cdg-spacing-2_5) var(--cdg-spacing-4);
