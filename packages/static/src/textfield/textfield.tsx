@@ -157,29 +157,30 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
     //  classes
     const textfieldWrapperClasses = [
       styles.textFieldWrapper,
-      isDarkTheme && styles.isDarkTheme,
-      h5 && styles.h5,
+      h5 && styles.textFieldWrapperH5,
       className,
       'cdg-textfield-container',
     ]
       .filter(Boolean)
       .join(' ')
+
     const textfieldBoxWrapperClasses = [
       styles.textFieldBox,
-      isDisabled && styles.isDisabled,
-      isErrored && styles.isErrored,
-      isDarkTheme && styles.isDarkTheme,
-      h5 && styles.h5,
+      isDisabled && styles.textFieldBoxDisabled,
+      isErrored && styles.textFieldBoxErrored,
+      isDarkTheme && styles.textFieldBoxDarkTheme,
+      h5 && styles.textFieldBoxH5,
       className,
       'cdg-textfield-box',
     ]
       .filter(Boolean)
       .join(' ')
+
     const textfieldInputWrapperClasses = [
       styles.textField,
-      isDisabled && styles.isDisabled,
-      isDarkTheme && styles.isDarkTheme,
-      h5 && styles.h5,
+      isDisabled && styles.textFieldDisabled,
+      isDarkTheme && styles.textFieldDarkTheme,
+      h5 && styles.textFieldH5,
       className,
       'cdg-textfield-input',
     ]
@@ -197,7 +198,7 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
             <label
               htmlFor={id}
               className={`cdg-textfield-label ${styles.textFieldLabel} ${
-                h5 ? styles.h5 : ''
+                h5 ? styles.textFieldLabelH5 : ''
               }`}
             >
               {label}
@@ -282,7 +283,7 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
           </div>
           {isErrored && errorMessage && (
             <div
-              className={`${styles.error} ${styles.textFieldHelperText} cdg-error-message`}
+              className={`${styles.textFieldHelperTextError} ${styles.textFieldHelperText} cdg-error-message`}
             >
               {errorMessage}
             </div>
