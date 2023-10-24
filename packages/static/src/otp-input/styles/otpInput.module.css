@@ -1,0 +1,77 @@
+/* Importing the theme module */
+@import '../../theme/theme.module.css';
+
+@layer default, variant, compoundVariant;
+
+@layer default {
+  .singleInput {
+    appearance: none;
+    background-color: transparent;
+    box-sizing: border-box;
+    padding: 0;
+    line-height: 1em;
+    width: var(--cdg-spacing-12);
+    height: var(--cdg-spacing-12);
+    margin: 0;
+    font-size: var(--cdg-spacing-8);
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+  }
+
+  .inputContainer {
+    appearance: none;
+    border: none;
+    background-color: transparent;
+    box-sizing: border-box;
+    padding: 0;
+    line-height: 1em;
+    margin: 5% auto;
+    display: flex;
+    gap: var(--cdg-spacing-8);
+  }
+
+  @media screen and (max-width: 640px) {
+    .inputContainer {
+      gap: 1rem;
+    }
+
+    .singleInput {
+      width: var(--cdg-spacing-10);
+      height: var(--cdg-spacing-10);
+      font-size: 1.8rem;
+      border-radius: 6px;
+    }
+  }
+}
+
+@layer variant {
+  .singleInput:disabled {
+    cursor: not-allowed;
+  }
+  /* when singleInput allows number only */
+  .singleInputNumber {
+    -moz-appearance: textfield;
+  }
+  .singleInputNumber::-webkit-outer-spin-button,
+  .singleInputNumber::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+/* Variant - isMobile */
+.inputContainerIsMobile {
+  margin: 0;
+}
+
+.singleInputIsMobile {
+  height: var(--cdg-spacing-16);
+  width: var(--cdg-spacing-12);
+  font-size: var(--cdg-font-size-label1);
+  line-height: var(--cdg-line-height-tight);
+  border-radius: var(--cdg-border-radius-lg);
+  border-color: var(
+    --cdg-color-grayShades20
+  ); /* Use the appropriate color value */
+}
