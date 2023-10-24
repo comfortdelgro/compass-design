@@ -159,4 +159,10 @@ export {default as TimePicker} from './time-picker'
 export type {TimePickerProps} from './time-picker'
 export {default as Transitions} from './transitions'
 export type {TransitionsProps} from './transitions'
+export {default as Sidenav, SidenavContext} from './sidenav'
+export type {SidenavContextValue,
+  DividerProps as SidenavDividerProps,
+  SidenavItemProps,
+  SidenavMenuProps,
+  SidenavProps} from './sidenav'
 export {default as Typography} from './typography'
