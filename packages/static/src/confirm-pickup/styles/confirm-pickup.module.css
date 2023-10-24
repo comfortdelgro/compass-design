@@ -1,0 +1,108 @@
+@layer default, variant, compoundVariant;
+
+@layer default {
+  .confirmPickup {
+    display: flex;
+    flex-direction: column;
+    gap: var(--cdg-spacing-4);
+    padding: var(--cdg-spacing-4_5);
+    background-color: var(--cdg-color-background);
+    border-radius: var(--cdg-border-radius-xl) var(--cdg-border-radius-xl) 0 0;
+
+    .puPointAddress {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--cdg-spacing-3);
+      background-color: var(--cdg-color-grayShades10);
+
+      & > div {
+        max-width: 80%;
+      }
+
+      .puPointAddressTitle,
+      .puPointAddressDescription {
+        overflow-x: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .puPointAddressTitle {
+        font-size: var(--cdg-font-size-label1);
+        font-weight: var(--cdg-font-weight-semibold);
+        line-height: 20px;
+        color: var(--cdg-color-cdgBlue60);
+      }
+
+      .puPointAddressDescription {
+        font-size: var(--cdg-font-size-label2);
+        font-weight: var(--cdg-font-weight-medium);
+        line-height: 18px;
+        color: var(--cdg-color-grayShades60);
+      }
+
+      .puPointAddressIcon {
+        padding: 0;
+        width: var(--cdg-spacing-6);
+        height: var(--cdg-spacing-6);
+        border: none;
+      }
+    }
+
+    .puPointLabel {
+      height: var(--cdg-spacing-5);
+      font-size: var(--cdg-font-size-label3);
+      line-height: 16px;
+      font-weight: var(--cdg-font-weight-medium);
+
+      & > div {
+        margin-bottom: 5px;
+      }
+    }
+
+    .puSpecificLocation {
+      display: flex;
+      align-items: center;
+      gap: var(--cdg-spacing-3);
+
+      padding: var(--cdg-spacing-3);
+      height: var(--cdg-spacing-10);
+      background-color: var(--cdg-color-blueShades10);
+      color: var(--cdg-color-blueShades120);
+
+      .puSpecificLocationName {
+        max-width: 90%;
+        overflow-x: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+
+    .puTextField {
+      :global .cdg-textfield-input {
+        font-weight: var(--cdg-font-weight-normal);
+        font-size: var(--cdg-font-size-body3);
+        line-height: 1.25rem;
+
+        &::placeholder {
+          font-weight: var(--cdg-font-weight-normal);
+          font-size: var(--cdg-font-size-body3);
+          line-height: 1.25rem;
+        }
+      }
+    }
+
+    .puConfirmButton {
+      height: var(--cdg-spacing-12);
+    }
+  }
+}
+
+@layer compoundVariant {
+  .puPointAddressIcon {
+    :global .cdg-button-content {
+      /* Override the Button styles from its compoundVariant layer */
+      padding: 0;
+    }
+  }
+}
