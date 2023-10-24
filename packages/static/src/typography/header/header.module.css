@@ -1,0 +1,55 @@
+@import '../../theme/theme.module.css';
+
+@layer default, variant;
+
+@layer default {
+  .header {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    color: var(--cdg-color-primaryText);
+  }
+}
+
+@layer variant {
+  /* font weight variant */
+  .bold {
+    font-weight: var(--cdg-font-weight-bold);
+  }
+
+  .semibold {
+    font-weight: var(--cdg-font-weight-semibold);
+  }
+
+  /* font size variant  */
+
+  .header0 {
+    font-size: var(--cdg-font-size-header0);
+    line-height: var(--cdg-spacing-13_5);
+  }
+
+  .header1 {
+    font-size: var(--cdg-font-size-header1);
+    line-height: var(--cdg-spacing-12);
+  }
+
+  .header2 {
+    font-size: var(--cdg-font-size-header2);
+    line-height: var(--cdg-spacing-10_5);
+  }
+
+  .header3 {
+    font-size: var(--cdg-font-size-header3);
+    line-height: var(--cdg-spacing-9);
+  }
+
+  .header4 {
+    font-size: var(--cdg-font-size-header4);
+    line-height: var(--cdg-spacing-7_5);
+  }
+
+  .header5 {
+    font-size: var(--cdg-font-size-header5);
+    line-height: var(--cdg-spacing-6);
+  }
+}
