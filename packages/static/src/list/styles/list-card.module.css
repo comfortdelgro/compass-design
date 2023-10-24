@@ -1,0 +1,68 @@
+@import '../../theme/theme.module.css';
+
+@layer default;
+
+@layer default {
+  .listCard {
+    padding: var(--cdg-spacing-4);
+    border-radius: var(--cdg-border-radius-md);
+    border: 1px solid var(--cdg-color-primaryBg);
+  }
+
+  .listCardIsDisabled {
+    cursor: not-allowed;
+  }
+
+  .listCardIsDisabled .listCardTitle {
+    color: var(--cdg-color-gray60);
+  }
+
+  .listCardIsDisabled .listCardDescription {
+    color: var(--cdg-color-gray60);
+  }
+
+  .listCardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .listCardTitle {
+    margin: 0;
+    font-size: var(--cdg-font-size-header5);
+    font-weight: var(--cdg-font-weight-semibold);
+    color: var(--cdg-color-gray100);
+    line-height: 24px;
+  }
+
+  .listCardHeaderRight {
+    display: flex;
+    align-items: center;
+    gap: var(--cdg-spacing-4);
+  }
+
+  .listCardIcon {
+    width: 1.83312rem;
+    height: 1.16688rem;
+  }
+
+  .listCardDescription {
+    margin: 0;
+    margin-top: var(--cdg-spacing-2);
+    font-size: var(--cdg-font-size-body3);
+    line-height: 21px;
+    color: var(--cdg-color-gray80);
+  }
+
+  .listCardFooter {
+    display: flex;
+    align-items: flex-start;
+    margin-top: var(--cdg-spacing-6);
+  }
+
+  .listCardContent {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+  }
+}

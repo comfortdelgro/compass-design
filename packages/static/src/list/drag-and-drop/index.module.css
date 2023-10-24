@@ -1,0 +1,37 @@
+@import '../../theme/theme.module.css';
+
+@layer default;
+
+@layer default {
+  .dnd {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    gap: var(--cdg-spacing-6);
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-inline-start: 0;
+  }
+
+  .dnd ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    border-radius: 4px;
+    touch-action: none;
+  }
+
+  .dnd li {
+    list-style: none;
+    cursor: pointer;
+  }
+
+  .dnd li:focus-visible {
+    overflow: hidden;
+    border-radius: 4px;
+    outline: 2px solid var(--cdg-color-cdgBlue);
+  }
+}
