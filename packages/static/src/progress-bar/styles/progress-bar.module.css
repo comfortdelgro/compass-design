@@ -1,9 +1,12 @@
 @import '../../theme/theme.module.css';
 
+@layer default, variant;
+
 @keyframes progressLoading {
   from {
     background-position-x: 200%;
   }
+
   to {
     background-position-x: 0;
   }
@@ -15,16 +18,19 @@
     right: 100%;
     width: 0%;
   }
+
   10% {
     left: 0%;
     right: 75%;
     width: 25%;
   }
+
   90% {
     right: 0%;
     left: 75%;
     width: 25%;
   }
+
   100% {
     left: 100%;
     right: 0%;
@@ -32,78 +38,86 @@
   }
 }
 
-.progressBarWrapper {
-  width: 100%;
-}
+@layer default {
+  .progressBarWrapper {
+    width: 100%;
+  }
 
-.progressBarLabel {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: var(--spacing-2);
-}
+  .progressBarLabel {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--cdg-spacing-2);
+  }
 
-.progressBarLabelSpan {
-  font-weight: var(--font-weight-normal);
-  font-size: var(--font-size-label1);
+  .progressBarLabelSpan {
+    font-weight: var(--cdg-font-weight-normal);
+    font-size: var(--cdg-font-size-label1);
+  }
 }
 
 /* Variants for "variant" */
-.variantRounded {
-  border-radius: var(--cdg-border-radius-full);
-}
+@layer variant {
+  .variantRounded {
+    border-radius: var(--cdg-border-radius-full);
+  }
 
-.variantRounded div {
-  border-radius: var(--cdg-border-radius-full);
-}
+  .variantRounded div {
+    border-radius: var(--cdg-border-radius-full);
+  }
 
-/* Variants for "size" */
-.sizeSm {
-  height: var(--cdg-spacing-0_5);
-}
+  /* Variants for "size" */
+  .sizeSm {
+    height: var(--cdg-spacing-0_5);
+  }
 
-.sizeMd {
-  height: var(--cdg-spacing-1);
-}
+  .sizeMd {
+    height: var(--cdg-spacing-1);
+  }
 
-.sizeLg {
-  height: var(--cdg-spacing-2);
-}
+  .sizeLg {
+    height: var(--cdg-spacing-2);
+  }
 
-.sizeXl {
-  height: var(--cdg-spacing-3);
-}
+  .sizeXl {
+    height: var(--cdg-spacing-3);
+  }
 
-.progressBar {
-  position: relative;
-}
+  .progressBar {
+    /* default css */
+    background-color: var(--cdg-color-divider);
+    position: relative;
+  }
 
-.currentProgress {
-  height: 100%;
-  transition: width 0.2s linear;
-}
+  .currentProgress {
+    height: 100%;
+    transition: width 0.2s linear;
+    /* default css */
+    background-color: var(--cdg-color-info);
+  }
 
-.loadingSlide {
-  /* styles for loading: slide would go here */
-}
+  .loadingSlide {
+    /* styles for loading: slide would go here */
+  }
 
-.loadingProgress {
-  position: absolute;
-  inset: 0;
-  height: 100%;
-}
+  .loadingProgress {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+  }
 
-/* Variants for "loading" */
-.loadingStripes {
-  width: 100%;
-  background-size: 200% 100%;
-  animation: progressLoading 10s linear infinite;
-  will-change: background-position;
-}
+  /* Variants for "loading" */
+  .loadingStripes {
+    width: 100%;
+    background-size: 200% 100%;
+    animation: progressLoading 10s linear infinite;
+    will-change: background-position;
+  }
 
-.loadingTrue {
-  animation: progressSlideLoading 2s linear infinite;
-}
+  .loadingTrue {
+    animation: progressSlideLoading 2s linear infinite;
+  }
 
-.loadingFalse {
-  display: none;
+  .loadingFalse {
+    /* styles would go here */
+  }
 }
