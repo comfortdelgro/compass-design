@@ -140,6 +140,13 @@ export {default as Spinner} from './spinner'
 export type {SpinnerProps} from './spinner'
 export {default as Status} from './status'
 export type {StatusProps} from './status'
+export {default as Sidebar} from './sidebar'
+export type {
+  SidebarActionsProps,
+  SidebarContentProps,
+  SidebarProps,
+  SidebarTitleProps,
+} from './sidebar'
 export {default as Pagination} from './pagination'
 export type {PaginationProps} from './pagination'
 export {default as Textarea} from './textarea'
