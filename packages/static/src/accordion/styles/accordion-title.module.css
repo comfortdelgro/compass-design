@@ -1,0 +1,66 @@
+@import '../../theme/theme.module.css';
+
+@layer default, variant, compoundVariant;
+
+@layer default {
+  .accordionTitleWrapper {
+    appearance: none;
+    border: none;
+    background-color: transparent;
+    box-sizing: border-box;
+    margin: 0px;
+    width: 100%;
+    min-height: 82px;
+    display: flex;
+    position: relative;
+    padding: var(--cdg-spacing-4) var(--cdg-spacing-6) var(--cdg-spacing-4)
+      var(--cdg-spacing-5);
+    border-width: var(--cdg-border-width-light);
+    border-style: solid;
+    border-color: var(--cdg-color-gray30);
+    border-radius: var(--cdg-border-radius-lg);
+    user-select: none;
+    cursor: pointer;
+  }
+
+  .accordionTitleWrapper * {
+    margin: 0;
+  }
+
+  .accordionTitle {
+    display: flex;
+    align-items: center;
+    flex: 1;
+  }
+
+  .accordionLeftIconContainer {
+    margin-right: var(--cdg-spacing-6);
+  }
+
+  .accordionTitleWrapper svg {
+    width: var(--cdg-spacing-6);
+    height: var(--cdg-spacing-6);
+    margin-top: 12px;
+  }
+
+  .accordionChevronContainer {
+    margin-left: var(--cdg-spacing-6);
+  }
+
+  .accordionChevronIcon {
+    width: var(--cdg-spacing-6);
+    height: var(--cdg-spacing-3);
+    margin-top: 12px;
+  }
+}
+
+@layer variant {
+  .open {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .open .accordionChevronIcon {
+    transform: rotate(180deg);
+  }
+}

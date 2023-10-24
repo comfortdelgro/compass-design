@@ -1,0 +1,61 @@
+@import '../../theme/theme.module.css';
+
+@layer default, variant, compoundVariant;
+
+@layer default {
+  .rangeCalendarShortcuts {
+    padding: var(--cdg-spacing-3) var(--cdg-spacing-4) var(--cdg-spacing-3)
+      var(--cdg-spacing-4);
+
+    display: flex;
+    flex-direction: column;
+    max-width: 193px;
+    gap: var(--cdg-spacing-1);
+    width: 100%;
+    border-right: 1px solid #f5f5f5;
+  }
+
+  .rangeCalendarShortcutsItem {
+    margin: 0;
+    padding: var(--cdg-spacing-3) var(--cdg-spacing-4);
+    width: 100%;
+    max-width: 160px;
+    font-size: var(--cdg-font-size-label1);
+    text-align: left;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: var(--cdg-transition-button);
+    color: var(--cdg-color-primaryText);
+  }
+
+  .rangeCalendarShortcutsItem:hover {
+    border-radius: 6px;
+    background-color: var(--cdg-color-gray20);
+    font-weight: bold;
+  }
+
+  .rangeCalendarShortcutsItem:focus-visible {
+    outline: none;
+    border-radius: 6px;
+    box-shadow: 0px 0px 0px 4px #f2f4f7;
+  }
+
+  .rangeCalendarShortcutsItem:disabled {
+    background-color: transparent;
+    font-weight: normal;
+    cursor: not-allowed;
+  }
+}
+
+@layer variant {
+  .active {
+    background-color: var(--cdg-color-cdgBlue10);
+    border-radius: 6px;
+  }
+
+  .active:focus-visible {
+    background-color: var(--cdg-color-cdgBlue10);
+    box-shadow: 0px 0px 0px 4px #f2f4f7;
+  }
+}

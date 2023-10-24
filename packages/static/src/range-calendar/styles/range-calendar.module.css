@@ -1,0 +1,56 @@
+@import '../../theme/theme.module.css';
+
+@layer default, variant, compoundVariant;
+
+@layer default {
+  .rangeCalendar {
+    width: fit-content;
+    background-color: var(--cdg-color-background);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
+    border-radius: var(--cdg-border-radius-md);
+    padding: var(--cdg-spacing-4);
+  }
+  .calendarBody {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--cdg-spacing-2);
+  }
+
+  .calendarFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--cdg-spacing-6);
+    padding-top: var(--cdg-spacing-6);
+    border-top: 1px solid var(--cdg-color-gray40);
+    color: var(--cdg-color-primaryText);
+  }
+
+  .calendarFooterRightSide {
+    display: flex;
+    align-items: center;
+    gap: var(--cdg-spacing-4);
+  }
+
+  .previewDate {
+    margin: 0;
+    font-size: var(--cdg-font-size-body3);
+  }
+
+  .calendarFooter button {
+    height: var(--cdg-spacing-8);
+    font-size: var(--cdg-font-size-label2);
+  }
+}
+
+@layer variant {
+  .extend {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+  }
+
+  .extend > div:nth-child(2) {
+    padding: var(--cdg-spacing-4);
+  }
+}
