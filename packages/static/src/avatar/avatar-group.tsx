@@ -1,9 +1,9 @@
 import {faPlus} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React from 'react'
-import Avatar from '.'
+import Avatar, {AvatarProps} from '.'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {AVATAR_SIZE_MAP, AvatarSize} from './avatar.const'
+import {AvatarSize, OFFSET_LEFT_MAP} from './avatar.const'
 import styles from './styles/avatar.module.css'
 
 interface Props {
@@ -36,21 +36,52 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
     const avatarGroupRef = useDOMRef<HTMLDivElement>(ref)
     const avatars = React.Children.toArray(children)
 
+    const addMoreSizeClassname = () => {
+      console.log(
+        'addMoreSize' +
+          size.charAt(0).toUpperCase() +
+          size.slice(1, size.length),
+      )
+      return (
+        'addMoreSize' +
+        size.charAt(0).toUpperCase() +
+        size.slice(1, size.length)
+      )
+    }
+
     return (
       <div
-        className={`${styles.avatarGroup} ${AVATAR_SIZE_MAP[size]}`}
+        className={`${styles.avatarGroup}`}
         ref={avatarGroupRef}
         {...delegated}
       >
-        {avatars.slice(0, display).map((avatar) => avatar)}
+        {avatars.slice(0, display).map((avatar) => {
+          if (React.isValidElement(avatar)) {
+            return React.cloneElement(avatar, {
+              size,
+              style: {
+                marginLeft: OFFSET_LEFT_MAP[size],
+              },
+            } as AvatarProps)
+          }
+          return avatar
+        })}
         {display < avatars.length && (
           <Avatar
             label={`+${avatars.length - display}`}
             cutOffText={false}
+            size={size}
+            style={{
+              marginLeft: OFFSET_LEFT_MAP[size],
+            }}
           ></Avatar>
         )}
         {useAddMore && (
-          <button className={styles.avatarAddMore}>
+          <button
+            className={`${styles.avatarAddMore} ${
+              styles[addMoreSizeClassname()]
+            }`}
+          >
             <FontAwesomeIcon icon={faPlus} />
           </button>
         )}
