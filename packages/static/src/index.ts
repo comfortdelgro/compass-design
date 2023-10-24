@@ -79,6 +79,16 @@ export type {
 } from './dropdown'
 export {default as File} from './file'
 export type {FilePreviewProps, FileStateProps} from './file'
+export {Footer, FooterInfo} from './footer'
+export type {
+  FooterHeaderProps,
+  FooterInfoDownloadProps,
+  FooterInfoProps,
+  FooterInfoSocialProps,
+  FooterNavigationProps,
+  FooterPolicyProps,
+  FooterProps,
+} from './footer'
 export {default as Grid} from './grid'
 export type {GridContainerProps, GridItemProps} from './grid'
 export {default as Gutter} from './gutter'
