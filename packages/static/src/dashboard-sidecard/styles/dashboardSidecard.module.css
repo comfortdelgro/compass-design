@@ -1,0 +1,71 @@
+/* Importing the theme module */
+@import '../../theme/theme.module.css';
+
+/* StyledDashboardHeader */
+.header {
+  /* reset */
+  appearance: none;
+  border: none;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+  /* styling */
+  padding-top: var(--cdg-spacing-2);
+  padding-bottom: var(--cdg-spacing-2);
+  padding-left: var(--cdg-spacing-4);
+  padding-right: var(--cdg-spacing-2);
+  background-color: var(--cdg-color-cdgBlue10);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.02);
+}
+
+.header * {
+  font-family: var(--cdg-font-sans);
+  font-weight: var(--cdg-font-weight-medium);
+  font-size: var(--cdg-font-size-body2);
+  line-height: var(--cdg-line-height-normal);
+}
+
+/* StyledDashboardContent */
+.content {
+  /* reset */
+  appearance: none;
+  border: none;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+  /* styling */
+  padding-top: var(--cdg-spacing-4);
+  padding-bottom: var(--cdg-spacing-4);
+  padding-left: var(--cdg-spacing-6);
+  padding-right: var(--cdg-spacing-6);
+  background-color: var(--cdg-color-primaryBg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--cdg-spacing-4);
+  align-items: center;
+}
+
+/* StyledDashboardSidecardContainer */
+.container {
+  /* reset */
+  appearance: none;
+  border: none;
+  background-color: transparent;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+  /* styling */
+  width: var(--cdg-spacing-90_75);
+  border-radius: var(--cdg-border-radius-lg);
+  overflow: clip;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0;
+  box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.1),
+    0px 1.6px 3.6px rgba(0, 0, 0, 0.13);
+}
