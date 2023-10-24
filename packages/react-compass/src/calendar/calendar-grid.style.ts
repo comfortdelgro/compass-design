@@ -1,13 +1,13 @@
 import {styled} from '../theme'
 
 export const StyledCalendarGrid = styled('table', {
-  marginTop: '$2',
+  marginTop: '$2_5',
   borderCollapse: 'collapse',
 
   '& tbody:before': {
     content: '@',
     display: 'block',
-    lineHeight: '12px',
+    lineHeight: '10px',
     textIndent: '-99999px',
   },
 

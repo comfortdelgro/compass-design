@@ -1,0 +1,17 @@
+@import '../../theme/theme.module.css';
+
+/* Using @layer is important because it helps users customize the styles easily because un-layered css has the highest priority*/
+
+/* 
+* compoundVariant has the highest priority
+* variant has the second highest priority
+* default has the lowest priority
+*/
+@layer default, variant, compoundVariant;
+
+@layer default {
+  .navbarSeperator {
+    display: flex;
+    flex: 1;
+  }
+}
