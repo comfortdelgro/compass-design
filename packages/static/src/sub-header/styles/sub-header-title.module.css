@@ -1,0 +1,25 @@
+@import '../../theme/theme.module.css';
+
+@layer default, variant;
+
+@layer default {
+  .subHeaderTitle {
+    margin: 0;
+    color: var(--cdg-color-grayShades100);
+  }
+}
+
+/* Variant: h5 */
+@layer variant {
+  .default {
+    /* Default variant */
+    font-weight: var(--cdg-font-weight-semibold);
+    font-size: var(--cdg-font-size-header5);
+    line-height: var(--cdg-line-height-normal);
+  }
+  .h5 {
+    font-size: var(--cdg-font-size-header2);
+    font-weight: var(--cdg-font-weight-bold);
+    line-height: var(--cdg-spacing-10_5);
+  }
+}

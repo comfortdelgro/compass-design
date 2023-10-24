@@ -1,0 +1,182 @@
+/* Importing the theme module */
+@import '../../theme/theme.module.css';
+
+@layer default, variant, compoundVariant;
+
+@layer default {
+  /* Modal Header */
+  .header {
+    appearance: none;
+    border: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    padding-left: var(--cdg-spacing-4);
+    padding-right: var(--cdg-spacing-4);
+    width: 100%;
+    height: 32.143%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* Modal Title */
+  .title {
+    appearance: none;
+    border: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding-top: var(--cdg-spacing-4);
+    padding-bottom: var(--cdg-spacing-4);
+    width: 80%;
+    height: 100%;
+    font-family: var(--cdg-font-sans);
+    font-weight: var(--cdg-font-weight-semibold);
+    font-size: var(--cdg-font-size-header3);
+    line-height: var(--cdg-line-height-normal);
+    color: var(--cdg-color-primaryText);
+  }
+
+  /* Description */
+  .description {
+    appearance: none;
+    border: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: var(--cdg-spacing-4);
+    width: 100%;
+    flex: 1;
+    font-family: var(--cdg-font-sans);
+    font-weight: var(--cdg-font-weight-normal);
+    font-size: var(--cdg-font-size-body2);
+    line-height: var(--cdg-line-height-normal);
+    color: var(--cdg-color-secondaryText);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  /* Actions Container */
+  .actionsContainer {
+    appearance: none;
+    border: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: var(--cdg-spacing-4);
+    background-color: var(--cdg-color-primaryBg);
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: var(--cdg-spacing-4);
+  }
+
+  /* Wrapper */
+  .wrapper {
+    appearance: none;
+    border: none;
+    box-sizing: border-box;
+    margin: 0;
+    background: #00000066;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 49;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Close Icon */
+  .closeIcon {
+    appearance: none;
+    border: none;
+    box-sizing: border-box;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    width: var(--cdg-spacing-4);
+    height: var(--cdg-spacing-4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: var(--cdg-color-primaryText);
+  }
+  .closeIcon * {
+    width: 100%;
+    height: 100%;
+  }
+  .closeIcon:focus-visible {
+    outline: 2px solid var(--cdg-color-cdgBlue60);
+  }
+
+  /* content */
+  .content {
+    all: unset;
+    max-height: 100%;
+    max-width: 100%;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* StyledModal */
+  .modal {
+    all: unset;
+    appearance: none;
+    border: none;
+    box-sizing: border-box;
+    margin: 0;
+    z-index: 50;
+    overflow: hidden;
+    width: var(--cdg-spacing-120);
+    min-height: var(--cdg-spacing-56);
+    max-height: calc(100vh - 40px);
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--cdg-color-background);
+    box-shadow: 0px 0.6px 1.8px rgba(0, 0, 0, 0.1),
+      0px 3.2px 7.2px rgba(0, 0, 0, 0.13);
+    border-radius: var(--cdg-border-radius-lg);
+  }
+}
+
+@layer variant {
+  .headerH5 {
+    padding-left: var(--cdg-spacing-4);
+    padding-right: var(--cdg-spacing-4);
+  }
+
+  .titleH5 {
+    font-size: var(--cdg-font-size-body1);
+    padding-top: var(--cdg-spacing-4);
+    padding-bottom: 0;
+    font-weight: var(--cdg-font-weight-bold);
+    color: var(--cdg-color-grayShades100);
+  }
+
+  .descriptionH5 {
+    padding: var(--cdg-spacing-4);
+    border: none;
+  }
+
+  /* variants for .modal */
+  .sm {
+    width: var(--cdg-spacing-75);
+  }
+  .md {
+    width: var(--cdg-spacing-125);
+  }
+  .lg {
+    width: var(--cdg-spacing-200);
+  }
+  .h5 {
+    min-height: var(--cdg-spacing-20);
+    max-width: calc(100vw - 32px);
+    border-radius: var(--cdg-border-radius-xl);
+  }
+  /* end of variants for .modal */
+}

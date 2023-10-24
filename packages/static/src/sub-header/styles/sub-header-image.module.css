@@ -1,0 +1,10 @@
+@import '../../theme/theme.module.css';
+
+@layer default;
+
+@layer default {
+  .subHeaderImage {
+    margin: 0;
+    height: var(--cdg-spacing-26);
+  }
+}
