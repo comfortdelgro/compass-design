@@ -1,0 +1,15 @@
+@layer default, variant, compoundVariant;
+
+@layer default {
+  .footerInfoDownload {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 40px;
+  }
+
+  .footerInfoDownload button {
+    height: fit-content;
+    padding: 12px;
+  }
+}

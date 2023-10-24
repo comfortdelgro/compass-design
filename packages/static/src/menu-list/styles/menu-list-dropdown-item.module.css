@@ -1,0 +1,105 @@
+@import '../../theme/theme.module.css';
+
+@layer default, variant, compoundVariant;
+
+@layer default {
+  .menuListDropdownItem {
+    min-height: var(--cdg-spacing-10);
+    display: flex;
+    flex-direction: row;
+    color: var(--cdg-color-gray80);
+    padding: var(--cdg-spacing-2) var(--cdg-spacing-3);
+    border-radius: var(--cdg-border-radius-md);
+    cursor: pointer;
+    align-items: center;
+  }
+
+  .menuListDropdownItem:hover {
+    background-color: var(--cdg-color-background);
+  }
+
+  .menuListDropdownItem:focus-visible {
+    outline: var(--cdg-color-cdgBlue80) solid 2px;
+  }
+
+  .cdgMenuListDropdownIcon {
+    margin-right: var(--cdg-spacing-2);
+    width: var(--cdg-spacing-4);
+  }
+}
+
+@layer variant {
+  .active {
+    background-color: var(--cdg-color-background);
+  }
+
+  .disabled {
+    color: var(--cdg-color-gray50);
+  }
+
+  .disabled svg {
+    color: var(--cdg-color-gray50);
+  }
+
+  .disabled:hover {
+    background-color: inherit;
+    cursor: not-allowed;
+  }
+
+  .nested {
+    padding-top: 0;
+  }
+
+  .nested:hover {
+    background-color: inherit;
+  }
+
+  .nested .menuListDropdownHeader {
+    padding: 0;
+  }
+}
+
+/* HEADER */
+
+@layer default {
+  .menuListDropdownHeader {
+    font: inherit;
+    border: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    min-height: var(--cdg-spacing-10);
+    background-color: inherit;
+    padding: var(--cdg-spacing-1_5);
+    text-align: left;
+  }
+
+  .menuListDropdownHeader:focus-visible {
+    outline: var(--cdg-color-cdgBlue80) solid 2px;
+  }
+
+  .menuListDropdownTitle {
+    color: var(--cdg-color-primaryText);
+    font-size: var(--cdg-spacing-4);
+    font-weight: var(--cdg-font-weight-semibold);
+    margin: 0;
+  }
+
+  .menuListDropdownChevronDownLeftIcon {
+    margin-right: var(--cdg-spacing-2_5);
+  }
+
+  .menuListDropdownChevronDownRightIcon {
+    margin-left: auto;
+  }
+
+  .rotatedIcon {
+    transform: rotate(180deg);
+  }
+
+  .menuListDropdownHeader svg {
+    color: var(--cdg-color-secondaryText);
+  }
+}

@@ -4,6 +4,7 @@ export const StyledRangeCalendarShorcuts = styled('div', {
   padding: '$3 $4 $3 $4',
   display: 'flex',
   flexDirection: 'column',
+  gap: '$1',
   maxWidth: '193px',
   width: '100%',
   borderRight: '1px solid #F5F5F5',

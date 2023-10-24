@@ -42,27 +42,37 @@ const Transitions = React.forwardRef<HTMLDivElement, TransitionsProps>(
 
     // This function is used to unmount children when it doesn't show. Get called on transition end
     const childrenRender = () => {
-      if (isLazyMounted == false || show == true) return
-      setMountedChilren(null)
+      if (isLazyMounted == true && show == false) {
+        setMountedChilren(null)
+      }
     }
 
     // This effect is used to mount children when it show. Get called on show change
     React.useEffect(() => {
-      if (mountedChilren == null && show == true) {
+      if (show == true) {
         setMountedChilren(children)
       }
     }, [mountedChilren, show, children, effect])
 
     // This effect is used to get children height
     React.useLayoutEffect(() => {
-      if (ChildRef.current) {
+      if (ChildRef.current && !childrenHeight) {
+        console.log('get children height from ChildRef')
         const element = ChildRef.current?.querySelector(':first-child')
         if (element instanceof HTMLElement) {
           // Check if element is an instance of HTMLElement
           setChildrenHeight(element.offsetHeight)
         }
+      } else if (TransitionWrapperRef.current && childrenHeight) {
+        console.log('get children height from TransitionWrapperRef')
+        const element =
+          TransitionWrapperRef.current?.querySelector(':first-child')
+        if (element instanceof HTMLElement) {
+          // Check if element is an instance of HTMLElement
+          setChildrenHeight(element.offsetHeight)
+        }
       }
-    }, [show, children, ChildRef])
+    }, [show, mountedChilren, ChildRef, TransitionWrapperRef, childrenHeight])
 
     // This effect is used to set transition styles
     React.useEffect(() => {
