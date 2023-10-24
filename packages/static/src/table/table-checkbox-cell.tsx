@@ -1,45 +1,47 @@
-// import React from 'react'
-// import CssInjection from '../utils/objectToCss/CssInjection'
-// import styles from './styles/table-checkbox-cell.module.css'
-// import TableV2Checkbox from './table-checkbox'
-// interface Props {
-//   children?: React.ReactNode
-//   indeterminate?: boolean
-//   className?: string
-//   disabled?: boolean
-//   checked?: boolean
-//   css?: unknown
-// }
+import React from 'react'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import styles from './styles/table-checkbox-cell.module.css'
+import TableCheckbox from './table-checkbox'
 
-// export type TableV2CheckboxCellProps = Props &
-//   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
+interface Props {
+  children?: React.ReactNode
+  indeterminate?: boolean
+  className?: string
+  disabled?: boolean
+  checked?: boolean
+  css?: unknown
+}
 
-// const TableV2CheckboxCell = ({
-//   indeterminate = false,
-//   className,
-//   disabled = false,
-//   css = {},
-//   ...rest
-// }: TableV2CheckboxCellProps) => {
-//   const checkboxCellClasses = [
-//     className,
-//     'cdg-table-checkbox-cell',
-//   ]
-//     .filter(Boolean)
-//     .join(' ')
+export type TableCheckboxCellProps = Props &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
-//   return (
-//     <CssInjection css={css}>
-//       <span>
-//         <TableV2Checkbox
-//           disabled={disabled}
-//           indeterminate={indeterminate}
-//           className={className}
-//           {...rest}
-//         />
-//       </span>
-//     </CssInjection>
-//   )
-// }
+const TableCheckboxCell = ({
+  indeterminate = false,
+  className,
+  disabled = false,
+  css = {},
+  ...rest
+}: TableCheckboxCellProps) => {
+  const checkboxCellClasses = [
+    styles.cdgTableCheckboxCell,
+    className,
+    'cdg-table-checkbox-cell',
+  ]
+    .filter(Boolean)
+    .join(' ')
 
-// export default TableV2CheckboxCell
+  return (
+    <CssInjection css={css}>
+      <span className={checkboxCellClasses}>
+        <TableCheckbox
+          disabled={disabled}
+          indeterminate={indeterminate}
+          className={className}
+          {...rest}
+        />
+      </span>
+    </CssInjection>
+  )
+}
+
+export default TableCheckboxCell

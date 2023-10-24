@@ -6,8 +6,8 @@ import {useDOMRef} from '../../utils/use-dom-ref'
 import styles from './editable-cell.module.css'
 
 interface CellProps {
-  getValue: () => never
-  cell: Cell<never, unknown>
+  getValue: () => unknown
+  cell: Cell<unknown, unknown>
   row: number
   column: string
   css?: unknown
@@ -17,7 +17,7 @@ export interface CellMetaProps<TData extends RowData, TValue>
   extends ColumnMeta<TData, TValue> {
   editable?: boolean
   template?: React.ReactNode
-  updateData?: (index: number, id: string, value: never) => void
+  updateData?: (index: number, id: string, value: unknown) => void
   revertData?: (rowIndex: number) => void
 }
 
@@ -25,7 +25,7 @@ export type EditableCellProps = CellProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof CellProps>
 
 export const [EditableCellContextProvider, useEditableCellContext] =
-  createSafeContext<never>('EditableCell was not found in tree')
+  createSafeContext<unknown>('EditableCell was not found in tree')
 
 export const EditableCell = React.forwardRef<
   HTMLTableCellElement,
@@ -35,14 +35,17 @@ export const EditableCell = React.forwardRef<
   const inputRef = useDOMRef<HTMLInputElement>(null)
   const [editing, setEditing] = React.useState(false)
   const [value, setValue] = React.useState(initialValue)
-  const tableMeta = cell.column.columnDef.meta as CellMetaProps<never, unknown>
+  const tableMeta = cell.column.columnDef.meta as CellMetaProps<
+    unknown,
+    unknown
+  >
 
   useEffect(() => {
     setValue(initialValue)
   }, [initialValue])
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value as never)
+    setValue(event.target.value as unknown)
   }
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -60,7 +63,7 @@ export const EditableCell = React.forwardRef<
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation()
     const newValue = getValue()
-    setValue(newValue as SetStateAction<never>)
+    setValue(newValue as SetStateAction<unknown>)
     setEditing(true)
   }
 
@@ -70,7 +73,7 @@ export const EditableCell = React.forwardRef<
     }
   }, [editing])
 
-  const finishTemplateEditing = (data: never) => {
+  const finishTemplateEditing = (data: unknown) => {
     setEditing(false)
     tableMeta?.updateData?.(row, column, data)
   }
@@ -93,7 +96,7 @@ export const EditableCell = React.forwardRef<
                   cell,
                   row,
                   column,
-                } as never
+                } as unknown
               }
             >
               {tableMeta.template}
@@ -103,7 +106,7 @@ export const EditableCell = React.forwardRef<
               aria-label='cell-input'
               ref={inputRef}
               type='text'
-              value={value}
+              value={value as string | number | readonly string[]}
               onChange={handleChange}
               onKeyDown={handleKeyDown}
               onBlur={handleBlur}

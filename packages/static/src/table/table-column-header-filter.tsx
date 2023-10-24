@@ -3,7 +3,6 @@ import React, {forwardRef, useState} from 'react'
 import Button from '../button'
 import Popover from '../popover'
 import TextField from '../textfield'
-import Typography from '../typography'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/table-column-header-filter.module.css'
@@ -73,9 +72,9 @@ const HeaderColumnFilter = forwardRef<
                 autoFocus
               />
 
-              <Typography.Label css={{width: 'auto', marginInline: '$2'}}>
-                &#8212;
-              </Typography.Label>
+              <label style={{width: 'auto', marginInline: '$2'}}>&#8212;</label>
+              {/* <Typography.Label css={{width: 'auto', marginInline: '$2'}}>
+              </Typography.Label> */}
 
               <TextField
                 type='number'

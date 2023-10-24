@@ -8,9 +8,9 @@ interface Props {
   className?: string
 }
 
-export type TableV2ToolbarProps = Props
+export type TableToolbarProps = Props
 
-const TableV2Toolbar = React.forwardRef<HTMLDivElement, TableV2ToolbarProps>(
+const TableToolbar = React.forwardRef<HTMLDivElement, TableToolbarProps>(
   (props, ref) => {
     const {
       // StyledComponentProps
@@ -33,4 +33,4 @@ const TableV2Toolbar = React.forwardRef<HTMLDivElement, TableV2ToolbarProps>(
   },
 )
 
-export default TableV2Toolbar
+export default TableToolbar

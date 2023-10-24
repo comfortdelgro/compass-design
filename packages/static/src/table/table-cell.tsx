@@ -14,7 +14,7 @@ export interface Props<TData, TValue> {
   onChangeCell?: (newData: object) => void
 }
 
-export type TableV2CellProps<TData = never, TValue = unknown> = Props<
+export type TableV2CellProps<TData = unknown, TValue = unknown> = Props<
   TData,
   TValue
 > &

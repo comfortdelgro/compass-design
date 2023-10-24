@@ -22,6 +22,7 @@ import LoadingComponent from './loading/loading-component'
 import styles from './styles/table.module.css'
 import TableCell from './table-cell'
 import TableCheckbox from './table-checkbox'
+import TableCheckboxCell from './table-checkbox-cell'
 import TableColumnHeader from './table-column-header'
 import TableFooter from './table-footer'
 import TableHeaderRow from './table-header-row'
@@ -42,7 +43,7 @@ export interface Options<TData> {
 export type OptionType<TData> = Options<TData>
 
 export interface Props<T> {
-  data: T[]
+  data: unknown[]
   columns: Array<ColumnDef<T>>
   options: OptionType<T>
   onManualSorting?: (sortingField: SortingState) => void
@@ -56,10 +57,11 @@ export interface Props<T> {
   css?: unknown
 }
 
-export type ReactTableProps<T = never> = Props<T> &
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type ReactTableProps<T = any> = Props<T> &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props<T>>
 
-const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
+const Table = React.forwardRef<HTMLTableElement, ReactTableProps>(
   (props, ref) => {
     const [sorting, setSorting] = useState<SortingState>([])
     const [rowSelection, setRowSelection] = useState({})
@@ -108,7 +110,8 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
       onRowSelectionChange: setRowSelection,
       debugTable: true,
       data: data,
-      columns: columns,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      columns: columns as ColumnDef<any, unknown>[],
       isMultiSortEvent: () => true,
       //enable sorting
       ...options,
@@ -204,9 +207,10 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
   },
 )
 
-export default ReactTable as typeof ReactTable & {
+export default Table as typeof Table & {
   Toolbar: typeof TableToolbar
   Footer: typeof TableFooter
   Checkbox: typeof TableCheckbox
+  CheckboxCell: typeof TableCheckboxCell
   ProgressPercentage: typeof ProgressPercentage
 }

@@ -13,16 +13,16 @@ interface Props {
   disabled?: boolean
 }
 
-export type TableV2CheckboxProps = Props
+export type TableCheckboxProps = Props
 // & Omit<HTMLAttributes<HTMLInputElement>, keyof Props>
 
-const TableV2Checkbox = ({
+const TableCheckbox = ({
   indeterminate,
   className = '',
   disabled = false,
   css = {},
   ...rest
-}: TableV2CheckboxProps) => {
+}: TableCheckboxProps) => {
   const ref = React.useRef<HTMLInputElement>(null!)
   const checkboxRef = useDOMRef<HTMLInputElement>(ref)
   const checkboxInputClasses = [
@@ -100,4 +100,4 @@ const TickIcon = () => (
   </svg>
 )
 
-export default TableV2Checkbox
+export default TableCheckbox

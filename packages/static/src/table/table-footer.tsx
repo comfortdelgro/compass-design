@@ -7,9 +7,9 @@ interface Props {
   css?: unknown
 }
 
-export type TableV2FooterProps = Props
+export type TableFooterProps = Props
 
-const TableV2Footer = React.forwardRef<HTMLDivElement, TableV2FooterProps>(
+const TableFooter = React.forwardRef<HTMLDivElement, TableFooterProps>(
   (props, ref) => {
     const {
       // StyledComponentProps
@@ -18,14 +18,14 @@ const TableV2Footer = React.forwardRef<HTMLDivElement, TableV2FooterProps>(
       children,
     } = props
 
-    const tableV2FooterRef = useDOMRef<HTMLDivElement>(ref)
+    const TableFooterRef = useDOMRef<HTMLDivElement>(ref)
 
     return (
-      <CssInjection css={css} childrenRef={tableV2FooterRef}>
+      <CssInjection css={css} childrenRef={TableFooterRef}>
         <div className={styles.cdgTableFooter}>{children}</div>
       </CssInjection>
     )
   },
 )
 
-export default TableV2Footer
+export default TableFooter
