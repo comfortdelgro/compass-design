@@ -104,6 +104,14 @@ export type {
   MultipleDropdownItemProps,
   MultipleDropdownProps,
 } from './multiple-dropdown'
+export {default as DropdownMenu} from './dropdown-menu'
+export type {
+  DropdownMenuItemProps,
+  DropdownMenuMenuProps,
+  DropdownMenuProps,
+  DropdownMenuSubmenuProps,
+  DropdownMenuToggleProps,
+} from './dropdown-menu'
 export {default as NoSsr} from './nossr'
 export {default as OTPInput} from './otp-input'
 export type {OTPInputProps} from './otp-input'
