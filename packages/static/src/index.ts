@@ -240,3 +240,5 @@ export type {SidenavContextValue,
   SidenavMenuProps,
   SidenavProps} from './sidenav'
 export {default as Typography} from './typography'
+export {default as Wizard} from './wizard'
+export type {WizardProps} from './wizard'
