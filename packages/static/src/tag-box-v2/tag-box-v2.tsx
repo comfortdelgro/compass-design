@@ -293,8 +293,7 @@ const TagBoxV2 = forwardRef<
                 <input
                   type='text'
                   style={{
-                    // display: isUsingNewTagInput ? 'inline-block' : 'none',
-                    display: 'inline-block',
+                    display: isUsingNewTagInput ? 'inline-block' : 'none',
                   }}
                   placeholder={addTagPlaceholder}
                   ref={inputRef}
