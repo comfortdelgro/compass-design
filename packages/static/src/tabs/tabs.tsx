@@ -109,7 +109,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   const tabPanelId = `${id}_${selectedItem?.key}`
 
   return (
-    <div className={`cdg-tab-wrapper ${styles.wrapper}`}>
+    <div className={`cdg-tab-wrapper ${styles.wrapper} ${className}`}>
       <CssInjection css={css} childrenRef={tabRef}>
         <div
           ref={tabRef}

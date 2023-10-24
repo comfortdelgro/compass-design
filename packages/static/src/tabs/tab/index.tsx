@@ -39,7 +39,8 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>(
       icon = 'none',
       id,
       onSelect,
-      css = {}
+      css = {},
+      ...htmlProps
     },
     ref,
   ) => {
@@ -89,6 +90,7 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>(
       .join(' ')
 
     const tabIconClassName = [
+      `cdg-tab-icon`,
       styles.icon,
       styles[`icon${icon.charAt(0).toUpperCase() + icon.slice(1)}Icon`],
       variant && styles[variant + `Icon`],
@@ -97,6 +99,7 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>(
     ].filter(Boolean)
       .join(' ')
 
+// legacy, users are advised to use className styling for customization
     const customCss = {
       [styles.simple]: {
         '&:focus-visible': {
@@ -136,6 +139,7 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>(
       },
       ...css as Object,
     }
+    
 
     return (
       <CssInjection css={customCss} childrenRef={mergeRef}>
@@ -149,10 +153,11 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>(
           onFocus={handleOnFocus}
           role='tab'
           aria-selected={isSelected}
+          {...htmlProps}
         >
           {title}
           {icon !== 'none' && (
-            <div className={tabIconClassName}>
+            <div className={`${tabIconClassName}`}>
               {disabledState ? <DisableIcon /> : <TickIcon />}
             </div>
           )}

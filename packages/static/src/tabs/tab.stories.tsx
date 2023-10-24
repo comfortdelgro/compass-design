@@ -1,6 +1,7 @@
 import React from 'react'
 import Tabs from './index'
 import type { Meta } from '@storybook/react'
+import styles from './styles/story.module.css';
 
 const style: {
   display: string
@@ -148,6 +149,25 @@ export const Icon: React.FC = () => (
     <h3>With top icon</h3>
     <div style={{ flexDirection: 'row', ...style }}>
       <Tabs variant='simple' icon='top' disabledKeys={['1']}>
+        <Tabs.Item key='1' title='Founding of Rome'>
+          Arma virumque cano, Troiae qui primus ab oris.
+        </Tabs.Item>
+        <Tabs.Item key='2' title='Monarchy and Republic'>
+          Senatus Populusque Romanus.
+        </Tabs.Item>
+        <Tabs.Item key='3' title='Empire'>
+          Alea jacta est.
+        </Tabs.Item>
+      </Tabs>
+    </div>
+  </div>
+)
+
+export const CustomCssModule: React.FC = () => (
+  <div style={{ ...style }}>
+    <h3>User can override css by create a replacement css module</h3>
+    <div style={{ flexDirection: 'row', ...style }}>
+      <Tabs icon='left' className={styles.icon}>
         <Tabs.Item key='1' title='Founding of Rome'>
           Arma virumque cano, Troiae qui primus ab oris.
         </Tabs.Item>
