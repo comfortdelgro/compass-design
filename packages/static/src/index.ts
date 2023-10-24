@@ -1,3 +1,10 @@
+export {default as Accordion} from './accordion'
+export type {
+  AccordionExpandIconProps,
+  AccordionProps,
+  AccordionTableProps,
+  AccordionTitleProps,
+} from './accordion'
 export {default as Alert} from './alert'
 export type {AlertProps} from './alert'
 export {default as AutoComplete} from './auto-complete'
