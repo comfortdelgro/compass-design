@@ -238,6 +238,8 @@ export type {
   SubBannerProps,
   SubBannerTitleProps,
 } from './subBanner'
+export {default as TagBoxV2} from './tag-box-v2'
+export type {Tag, TagBoxV2Props} from './tag-box-v2'
 export {default as Textarea} from './textarea'
 export type {TextareaProps} from './textarea'
 export {default as TextField} from './textfield'
