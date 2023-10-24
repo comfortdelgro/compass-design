@@ -1,0 +1,25 @@
+@import '../../theme/theme.module.css';
+
+@layer default, variant, compoundVariant;
+
+@layer default {
+  .accordion {
+    appearance: 'none';
+    border: none;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    min-height: 82px;
+    position: relative;
+    background-color: var(--cdg-color-background);
+    color: var(--cdg-color-primaryText);
+    border-radius: var(--cdg-border-radius-lg);
+    line-height: var(--cdg-line-height-normal);
+  }
+
+  .accordionBodyInner {
+    padding: var(--cdg-spacing-4) var(--cdg-spacing-6) var(--cdg-spacing-4)
+      var(--cdg-spacing-5);
+  }
+}

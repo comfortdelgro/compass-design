@@ -1,0 +1,84 @@
+@import '../../theme/theme.module.css';
+
+@layer default, variant;
+
+/* LEVEL1 */
+@layer default {
+  .pagination {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--cdg-spacing-4);
+    padding: var(--cdg-spacing-2) var(--cdg-spacing-6);
+    flex-wrap: wrap;
+  }
+
+  .paginationItemCounting {
+    font-weight: 600;
+  }
+
+  .paginationRowsCounting {
+    font-weight: 600;
+    display: flex;
+    white-space: nowrap;
+    margin-right: auto;
+    align-items: center;
+    gap: var(--cdg-spacing-2_5);
+  }
+
+  .paginationItem {
+    min-width: var(--cdg-spacing-8);
+    height: var(--cdg-spacing-8);
+    border-radius: var(--cdg-border-radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-width: var(--cdg-border-width-light);
+    border-style: solid;
+    border-color: transparent;
+    font-size: var(--cdg-font-size-label1);
+    font-weight: var(--cdg-font-weight-semibold);
+    color: var(--cdg-color-primaryText);
+    background: transparent;
+    transition: var(--cdg-transition-default);
+    cursor: pointer;
+  }
+
+  .paginationItem:hover {
+    background: var(--cdg-color-cdgBlue10);
+  }
+
+
+  .ellipsis {
+    background: var(--cdg-color-background);
+  }
+}
+
+
+/* LEVEL2 */
+
+@layer variant {
+  .paginationItemSvg {
+    height: 1em;
+    overflow: visible;
+    vertical-align: -0.125em;
+  }
+
+  .paginationItemActive {
+    color: var(--cdg-color-whiteText);
+    background: var(--cdg-color-cdgBlue);
+  }
+
+  .paginationItemActive:hover {
+    background: var(--cdg-color-cdgBlue);
+  }
+
+
+  .paginationItemDisabled {
+    cursor: initial;
+  }
+
+  .paginationItemDisabled:hover {
+    background: initial;
+  }
+}
