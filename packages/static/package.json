@@ -36,6 +36,9 @@
   },
   "dependencies": {
     "@comfortdelgro/compass-icons": "*",
+    "@contentful/rich-text-html-renderer": "^16.0.2",
+    "@contentful/rich-text-react-renderer": "^15.16.2",
+    "@contentful/rich-text-types": "^16.0.2",
     "@floating-ui/react": "^0.24.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
@@ -64,6 +67,7 @@
     "chart.js": "3.9.1",
     "clsx": "1.2.1",
     "colorjs.io": "^0.4.3",
+    "framer-motion": "^7.6.1",
     "install": "^0.13.0",
     "lodash": "4.17.21",
     "react": "^18.2.0",
