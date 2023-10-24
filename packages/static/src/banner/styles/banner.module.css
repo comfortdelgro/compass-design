@@ -1,0 +1,114 @@
+@import '../../theme/theme.module.css';
+
+@layer default, variant;
+
+/* level 1 css */
+@layer default {
+  .bannerImage {
+    appearance: none;
+    border: none;
+    background-color: transparent;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+  }
+
+  .bannerImageFallback {
+    appearance: none;
+    border: none;
+    box-sizing: border-box;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+    background-color: grey;
+    padding: 1rem;
+  }
+
+  .bannerTitle {
+    appearance: none;
+    border: none;
+    background-color: transparent;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: var(--cdg-font-sans);
+    font-size: var(--cdg-font-size-header0);
+    color: var(--cdg-color-whiteText);
+    line-height: var(--cdg-line-height-normal);
+    font-weight: var(--cdg-font-weight-bold);
+  }
+
+  .bannerDescription {
+    appearance: none;
+    border: none;
+    background-color: transparent;
+    box-sizing: border-box;
+    margin: 0;
+    margin-top: var(--cdg-spacing-1_5);
+    padding: 0;
+    font-family: var(--cdg-font-sans);
+    font-size: var(--cdg-font-size-body3);
+    color: var(--cdg-color-whiteText);
+    line-height: var(--cdg-line-height-normal);
+    font-weight: var(--cdg-font-weight-normal);
+  }
+
+  .contentContainer {
+    appearance: none;
+    border: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    padding-left: var(--cdg-spacing-26);
+    padding-right: var(--cdg-spacing-48);
+    padding-top: var(--cdg-spacing-50);
+  }
+
+  .banner {
+    appearance: none;
+    border: none;
+    background-color: transparent;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    height: var(--cdg-spacing-128);
+    width: var(--cdg-spacing-206);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+}
+
+
+/* level 2 css */
+@layer variant {
+  /* Variants */
+
+  /* size: sm */
+  .bannerSizeSm {
+    width: var(--cdg-spacing-206);
+  }
+
+  /* size: md */
+  .bannerSizeMd {
+    width: var(--cdg-spacing-269);
+  }
+
+  /* size: lg */
+  .bannerSizeLg {
+    width: var(--cdg-spacing-328);
+  }
+
+  /* size: full */
+  .bannerSizeFull {
+    width: 100%;
+  }
+}

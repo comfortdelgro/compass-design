@@ -1,0 +1,20 @@
+@import '../../theme/theme.module.css';
+
+@layer default, variant, compoundVariant;
+
+@layer default {
+  .menuList {
+    width: var(--cdg-spacing-48);
+    background: var(--cdg-color-primaryBg);
+    border-right: 1px solid var(--cdg-color-gray50);
+    padding: var(--cdg-spacing-4) var(--cdg-spacing-2);
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--cdg-spacing-1);
+  }
+
+  .menuList * {
+    box-sizing: border-box;
+  }
+}

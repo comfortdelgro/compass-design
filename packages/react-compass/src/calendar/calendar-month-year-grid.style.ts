@@ -3,7 +3,7 @@ import {styled} from '../theme'
 export const StyledCalendarMonthGrid = styled('div', {
   display: 'grid',
   gridTemplateColumns: 'repeat(3,1fr)',
-  marginTop: '12px',
+  marginTop: '10px',
 })
 
 export const StyledCalendarMonthYearCell = styled('button', {

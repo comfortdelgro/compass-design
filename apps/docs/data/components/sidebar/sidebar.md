@@ -29,6 +29,10 @@ import Sidebar from '@comfortdelgro/react-compass/sidebar'
 
 {{"demo": "SidebarSecondary.tsx"}}
 
+<!-- ### Sidebar Server (Experimental)
+
+{{"demo": "SidebarServer.tsx"}} -->
+
 ## Props
 
 | Name        | Type                     | Default   | Description                                                                             |
