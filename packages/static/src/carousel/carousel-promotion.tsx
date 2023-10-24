@@ -11,6 +11,7 @@ import {
   SocicalIcon,
 } from './carousel.const'
 
+import {capitalizeFirstLetter} from '../utils/string'
 import CarouselSlide from './carousel-slide'
 import styles from './styles/carousel.module.css'
 
@@ -55,7 +56,7 @@ const CarouselPromotion = React.forwardRef<
 
   const toCamelCase = (option: NinePartAlignment) => {
     const parts = option.split('-')
-    return parts[0] + parts[1].charAt(0).toUpperCase() + parts[1].slice(1)
+    return parts[0] + capitalizeFirstLetter(parts[1])
   }
 
   return (

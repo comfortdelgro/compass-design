@@ -1,5 +1,6 @@
 import React from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
+import {capitalizeFirstLetter} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import GridItem from './grid-item'
 import styles from './styles/grid.module.css'
@@ -34,8 +35,6 @@ const Grid = React.forwardRef<HTMLDivElement, GridContainerProps>(
     } = props
 
     const gridContainerRef = useDOMRef<HTMLDivElement>(ref)
-    const capitalizeFirstLetter = (string: string) =>
-      string.charAt(0).toUpperCase() + string.slice(1)
 
     const classNames = [
       'cdg-grid',
