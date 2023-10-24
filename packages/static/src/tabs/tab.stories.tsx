@@ -165,7 +165,7 @@ export const Icon: React.FC = () => (
 
 export const CustomCssModule: React.FC = () => (
   <div style={{ ...style }}>
-    <h3>User can override css by create a replacement css module</h3>
+    <h3>Users can customize the styling of the component by applying their own CSS</h3>
     <div style={{ flexDirection: 'row', ...style }}>
       <Tabs icon='left' className={styles.icon}>
         <Tabs.Item key='1' title='Founding of Rome'>
