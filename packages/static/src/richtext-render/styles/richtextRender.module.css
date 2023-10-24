@@ -1,0 +1,12 @@
+@import '../../theme/theme.module.css';
+
+.richTextRender {
+  appearance: none;
+  border: none;
+  background-color: transparent;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  line-height: 1em;
+  color: var(--primary-text-color);
+}
