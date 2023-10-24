@@ -2,6 +2,7 @@
 
 import React from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
+import {capitalizeFirstLetter} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/subBanner.module.css'
 
@@ -27,7 +28,9 @@ const SubBannerImage = React.forwardRef<HTMLImageElement, SubBannerImageProps>(
     return (
       <CssInjection css={css} childrenRef={subBannerImageRef}>
         <img
-          className={`cdg-sub-banner-image ${className} ${styles.subBannerImage} ${styles[`subBannerImage${variant.charAt(0).toUpperCase() + variant.slice(1)}`]}`}
+          className={`cdg-sub-banner-image ${className} ${
+            styles.subBannerImage
+          } ${styles[`subBannerImage${capitalizeFirstLetter(variant)}`]}`}
           {...htmlProps}
           ref={subBannerImageRef}
           id={id}

@@ -1,13 +1,14 @@
 'use client'
 
 import React from 'react'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import {capitalizeFirstLetter} from '../utils/string'
+import styles from './styles/sub-header.module.css'
 import SubHeaderBody from './sub-header-body'
 import SubHeaderDescription from './sub-header-description'
 import SubHeaderHeader from './sub-header-header'
 import SubHeaderImage from './sub-header-image'
 import SubHeaderTitle from './sub-header-title'
-import styles from './styles/sub-header.module.css'
-import CssInjection from '../utils/objectToCss/CssInjection'
 
 interface Props {
   children: React.ReactNode
@@ -21,11 +22,23 @@ export type SubHeaderProps = Props &
 
 const SubHeader = React.forwardRef<HTMLDivElement, SubHeaderProps>(
   (props, ref) => {
-    const { children, css = {}, className = '', variant = 'default', ...htmlProps } = props
+    const {
+      children,
+      css = {},
+      className = '',
+      variant = 'default',
+      ...htmlProps
+    } = props
 
     return (
       <CssInjection css={css} childrenRef={ref}>
-        <div className={`cdg-sub-header ${className} ${styles.subHeader} ${styles[`subHeader${variant.charAt(0).toUpperCase() + variant.slice(1)}`]}`} ref={ref} {...htmlProps}>
+        <div
+          className={`cdg-sub-header ${className} ${styles.subHeader} ${
+            styles[`subHeader${capitalizeFirstLetter(variant)}`]
+          }`}
+          ref={ref}
+          {...htmlProps}
+        >
           {children}
         </div>
       </CssInjection>
