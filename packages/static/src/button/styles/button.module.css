@@ -1,7 +1,7 @@
 /* Importing the theme module */
 @import '../../theme/theme.module.css';
 
-/* Keyframes for the blink animation */
+/* Keyframes */
 @keyframes blink {
   0% {
     opacity: 0.2;
@@ -13,8 +13,6 @@
     opacity: 0.2;
   }
 }
-
-/* Keyframes for the ripple animation */
 @keyframes rippleEffect {
   to {
     transform: scale(4);
@@ -22,269 +20,262 @@
   }
 }
 
-/* Styling for elements with class 'ripple' */
-.ripple {
-  animation: rippleEffect 0.6s linear;
+/* Using @layer is important because it helps users customize the styles easily because un-layered css has the highest priority*/
+
+/* 
+* compoundVariant has the highest priority
+* variant has the second highest priority
+* default has the lowest priority
+*/
+@layer default, variant, compoundVariant;
+
+@layer default {
+  /***** Level 1: Default styles for button and its child elements *****/
+  /* Level 1 styles will be the default and must not overwrite each other */
+  /* One element cannot have 2 classes of a same level on one render */
+  .button {
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+    flex-shrink: 0;
+    font-family: var(--cdg-font-sans);
+    line-height: var(--cdg-line-height-normal);
+    font-weight: var(--cdg-font-weight-semibold);
+    cursor: pointer;
+    border-width: var(--cdg-border-width-light);
+    border-style: solid;
+    border-radius: var(--cdg-border-radius-md);
+    transition: var(--cdg-transition-button);
+    color: var(--cdg-color-whiteText);
+    box-sizing: border-box;
+  }
+
+  .button:focus-visible {
+    outline: 1px solid var(--cdg-color-cdgBlue60);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  }
+
+  .ripple {
+    animation: rippleEffect 0.6s linear;
+  }
+
+  .content {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+  }
+
+  .children {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .leftIcon,
+  .rightIcon {
+    width: var(--cdg-spacing-4);
+    height: var(--cdg-spacing-4);
+  }
+
+  .leftIcon {
+    margin-right: var(--cdg-spacing-2);
+  }
+
+  .rightIcon {
+    margin-left: var(--cdg-spacing-2);
+  }
+  .loadingDots {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+  }
+
+  .loadingDot {
+    display: inline-block;
+    width: 0.375em;
+    height: 0.375em;
+    border-radius: 50%;
+    background-color: currentColor;
+    animation: blink 1s infinite;
+  }
+  .firstLoadingDot {
+    animation-delay: 0s;
+  }
+  .secondLoadingDot {
+    animation-delay: 0.2s;
+  }
+  .thirdLoadingDot {
+    animation-delay: 0.4s;
+  }
+  /***** End of level 1 *****/
 }
 
-/* Styling for loading dots */
-.loadingDots {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
+@layer variant {
+  /***** Level 2: Styles for basic variants of button and its child elements *****/
+  /* Level 2 styles will overwrite level 1 styles */
+  /* Styles within level 2 must not overwrite each other */
+  /* One element cannot have 2 classes of a same level on one render */
+
+  .h5 {
+    border-radius: var(--cdg-border-radius-lg);
+    font-size: var(--cdg-font-size-body2);
+    font-weight: var(--cdg-font-weight-bold);
+  }
+
+  .h5:disabled {
+    background: var(--cdg-color-grayShades20);
+    color: var(--cdg-color-grayShades60);
+    border-color: var(--cdg-color-grayShades20);
+  }
+
+  .lg {
+    font-size: var(--cdg-font-size-body2);
+  }
+
+  .md {
+    font-size: var(--cdg-font-size-body3);
+  }
+
+  .sm {
+    font-size: var(--cdg-font-size-label2);
+  }
+
+  .fullWidth {
+    width: 100%;
+  }
+
+  .isSquare {
+    aspect-ratio: 1 / 1;
+  }
+
+  .primary {
+    background: var(--cdg-color-cdgBlue);
+    color: var(--cdg-color-var(--cdg-color-whiteText));
+    border-color: var(--cdg-color-cdgBlue);
+  }
+
+  .primary:hover:enabled,
+  .primaryLink:hover {
+    /* This selector is specifically for <a/> tag */
+    background: var(--cdg-color-cdgBlue120);
+    border-color: var(--cdg-color-cdgBlue120);
+  }
+
+  .secondary {
+    background: transparent;
+    color: var(--cdg-color-cdgBlue);
+    border-color: var(--cdg-color-cdgBlue);
+  }
+
+  .secondary:hover:enabled,
+  .secondaryLink:hover {
+    /* This selector is specifically for <a/> tag */
+    color: var(--cdg-color-cdgBlue100);
+    background: var(--cdg-color-cdgBlue10);
+    border-color: var(--cdg-color-cdgBlue120);
+  }
+
+  .danger {
+    background: transparent;
+    color: var(--cdg-color-danger);
+    border-color: var(--cdg-color-danger);
+  }
+
+  .danger:hover:enabled,
+  .dangerLink:hover {
+    /* This selector is specifically for <a/> tag */
+    background: var(--cdg-color-dangerBg);
+    border-color: var(--cdg-color-dangerBg);
+    color: var(--cdg-color-danger);
+  }
+
+  .ghost {
+    background: transparent;
+    color: var(--cdg-color-typeHeading);
+    border-color: transparent;
+  }
+
+  .ghost:hover:enabled,
+  .ghostLink:hover {
+    /* This selector is specifically for <a/> tag */
+    color: var(--cdg-color-cdgBlue);
+    background: var(--cdg-color-cdgBlue10);
+  }
+
+  .loading {
+    height: 2.1875rem;
+    width: 5.625rem;
+  }
+  /***** End of level 2 *****/
 }
 
-.loadingDots span {
-  display: inline-block;
-  width: 0.375em;
-  height: 0.375em;
-  border-radius: 50%;
-  background-color: currentColor;
-  animation: blink 1s infinite;
-}
+@layer compoundVariant {
+  /***** Level 3: Compound variants *****/
+  /* Styles of level 3 will overwrite level 2 styles */
+  /* Styles within the same level must not overwrite each other */
+  /* One element cannot have 2 classes of a same level on one render */
 
-/* Animation delay for loading dots */
-.loadingDots span:nth-child(1) {
-  animation-delay: 0s;
-}
-.loadingDots span:nth-child(2) {
-  animation-delay: 0.2s;
-}
-.loadingDots span:nth-child(3) {
-  animation-delay: 0.4s;
-}
+  .smContent {
+    padding: var(--cdg-spacing-1) var(--cdg-spacing-2_5);
+  }
 
-/* Common styles for various button types: button, primary, secondary, danger, ghost, h5 */
+  .mdContent {
+    padding: var(--cdg-spacing-1_5) var(--cdg-spacing-4);
+  }
 
-.button,
-.button.primary,
-.button.primary:hover:enabled,
-.button.secondary,
-.button.secondary:hover:enabled,
-.button.danger,
-.button.danger:hover:enabled,
-.button.ghost,
-.button.ghost:hover:enabled,
-.button.h5,
-.button.h5:disabled,
-.button.primary.h5,
-.button.primary.h5:hover:enabled,
-.button.secondary.h5,
-.button.secondary.h5:hover:enabled,
-.button.danger.h5,
-.button.danger.h5:hover:enabled {
-  text-decoration: none;
-  flex-shrink: 0;
-  font-family: var(--cdg-font-sans);
-  line-height: var(--cdg-line-height-normal);
-  font-weight: var(--cdg-font-weight-semibold);
-  cursor: pointer;
-  border-width: var(--cdg-border-width-light);
-  border-style: solid;
-  border-radius: var(--cdg-border-radius-md);
-  transition: var(--cdg-transition-button);
-  color: var(--cdg-color-whiteText);
-}
+  .lgContent {
+    padding: var(--cdg-spacing-2) var(--cdg-spacing-5);
+  }
 
-/* Common styles for button icons */
-.leftIcon,
-.rightIcon,
-.iconOnly .children {
-  width: var(--cdg-spacing-4);
-  height: var(--cdg-spacing-4);
-}
-.children {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+  .h5Content {
+    padding: var(--cdg-spacing-1_5) var(--cdg-spacing-4);
+  }
 
-/* Styling for left icon */
-.leftIcon {
-  margin-right: var(--cdg-spacing-2);
-}
+  .primaryH5 {
+    background: var(--cdg-color-blueShades100);
+    color: var(--cdg-color-whiteText);
+    border-color: var(--cdg-color-grayShades20);
+  }
 
-/* Styling for button container */
+  .primaryH5:hover:enabled {
+    background: var(--cdg-color-blueShades120);
+    border-color: var(--cdg-color-grayShades20);
+  }
 
-.buttonContainer {
-  width: fit-content;
-  height: fit-content;
-}
+  .secondaryH5 {
+    background: transparent;
+    color: var(--cdg-color-blueShades100);
+    border-color: var(--cdg-color-blueShades100);
+  }
 
-/* Styling for right icon */
-.rightIcon {
-  margin-left: var(--cdg-spacing-2);
-}
+  .secondaryH5:hover:enabled {
+    color: var(--cdg-color-blueShades120);
+    background: var(--cdg-color-grayShades10);
+    border-color: var(--cdg-color-blueShades120);
+  }
 
-/* Focus styles for buttons */
-.button:focus-visible {
-  outline: 1px solid var(--cdg-color-cdgBlue60);
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
+  .dangerH5 {
+    background: transparent;
+    color: var(--cdg-color-dangerShades);
+    border-color: var(--cdg-color-dangerShades);
+  }
 
-/* Other button styles: lg, md, sm, fullWidth, isSquare, iconOnly */
-.button.lg {
-  font-size: var(--cdg-font-size-body2);
-  padding: var(--cdg-spacing-2) var(--cdg-spacing-5);
-}
+  .dangerH5:hover:enabled {
+    background: var(--cdg-color-grayShades10);
+    border-color: var(--cdg-color-dangerShades);
+    color: var(--cdg-color-dangerShades);
+  }
 
-.button.md {
-  font-size: var(--cdg-font-size-body3);
-  padding: var(--cdg-spacing-1_5) var(--cdg-spacing-4);
-}
-
-.button.sm {
-  font-size: var(--cdg-font-size-label2);
-  padding: var(--cdg-spacing-1) var(--cdg-spacing-2_5);
-}
-
-.button.fullWidth {
-  width: 100%;
-}
-
-.buttonContainer.fullWidth {
-  width: 100%;
-}
-
-/* Square button styles */
-.button.isSquare,
-.button.lg.iconOnly,
-.button.md.iconOnly,
-.button.sm.iconOnly {
-  aspect-ratio: 1 / 1;
-}
-
-/* Styles for primary button */
-.button.primary {
-  background: var(--cdg-color-cdgBlue);
-  color: var(--cdg-color-var(--cdg-color-whiteText));
-  border-color: var(--cdg-color-cdgBlue);
-}
-
-.button.primary:hover:enabled,
-.button.primary.cdgLinkButton:hover {
-  background: var(--cdg-color-cdgBlue120);
-  border-color: var(--cdg-color-cdgBlue120);
-}
-
-/* Styles for secondary button */
-.button.secondary {
-  background: transparent;
-  color: var(--cdg-color-cdgBlue);
-  border-color: var(--cdg-color-cdgBlue);
-}
-
-.button.secondary:hover:enabled,
-.button.secondary.cdgLinkButton:hover {
-  color: var(--cdg-color-cdgBlue100);
-  background: var(--cdg-color-cdgBlue10);
-  border-color: var(--cdg-color-cdgBlue120);
-}
-
-/* Styles for danger button */
-.button.danger {
-  background: transparent;
-  color: var(--cdg-color-danger);
-  border-color: var(--cdg-color-danger);
-}
-
-.button.danger:hover:enabled,
-.button.danger.cdgLinkButton:hover {
-  background: var(--cdg-color-dangerBg);
-  border-color: var(--cdg-color-dangerBg);
-  color: var(--cdg-color-danger);
-}
-
-/* Styles for ghost button */
-.button.ghost {
-  background: transparent;
-  color: var(--cdg-color-typeHeading);
-  border-color: transparent;
-}
-
-.button.ghost:hover:enabled,
-.button.ghost.cdgLinkButton:hover {
-  color: var(--cdg-color-cdgBlue);
-  background: var(--cdg-color-cdgBlue10);
-}
-
-/* Disabled button styles */
-.button:disabled {
-  background: var(--cdg-color-divider);
-  color: var(--cdg-color-disabledText);
-  border-color: var(--cdg-color-divider);
-  cursor: not-allowed;
-}
-
-/*  Styling for loading button */
-.button.loading {
-  height: 100%;
-  width: 100%;
-}
-.buttonContainer.loading {
-  height: 2.1875rem;
-  width: 5.625rem;
-}
-
-/* Styles for h5 class buttons */
-.button.h5,
-.button.h5:disabled,
-.button.primary.h5,
-.button.primary.h5:hover:enabled,
-.button.secondary.h5,
-.button.secondary.h5:hover:enabled,
-.button.danger.h5,
-.button.danger.h5:hover:enabled {
-  border-radius: var(--cdg-border-radius-lg);
-  padding: 11px var(--cdg-spacing-4);
-  font-size: var(--cdg-font-size-body2);
-  font-weight: var(--cdg-font-weight-bold);
-}
-
-.button.h5:disabled {
-  background: var(--cdg-color-grayShades20);
-  color: var(--cdg-color-grayShades60);
-  border-color: var(--cdg-color-grayShades20);
-}
-
-/* Styles for primary button with h5 class */
-.button.primary.h5 {
-  background: var(--cdg-color-blueShades100);
-  color: var(--cdg-color-whiteText);
-  border-color: var(--cdg-color-grayShades20);
-}
-
-.button.primary.h5:hover:enabled {
-  background: var(--cdg-color-blueShades120);
-  border-color: var(--cdg-color-grayShades20);
-}
-
-/* Styles for secondary button with h5 class */
-.button.secondary.h5 {
-  background: transparent;
-  color: var(--cdg-color-blueShades100);
-  border-color: var(--cdg-color-blueShades100);
-}
-
-.button.secondary.h5:hover:enabled {
-  color: var(--cdg-color-blueShades120);
-  background: var(--cdg-color-grayShades10);
-  border-color: var(--cdg-color-blueShades120);
-}
-
-/* Styles for danger button with h5 class */
-.button.danger.h5 {
-  background: transparent;
-  color: var(--cdg-color-dangerShades);
-  border-color: var(--cdg-color-dangerShades);
-}
-
-.button.danger.h5:hover:enabled {
-  background: var(--cdg-color-grayShades10);
-  border-color: var(--cdg-color-dangerShades);
-  color: var(--cdg-color-dangerShades);
+  /* this styling for disabled is not compound variant but it overrides all variants' styles so I put it here */
+  .button:disabled {
+    background: var(--cdg-color-divider);
+    color: var(--cdg-color-disabledText);
+    border-color: var(--cdg-color-divider);
+    cursor: not-allowed;
+  }
+  /***** End of Level 3 *****/
 }

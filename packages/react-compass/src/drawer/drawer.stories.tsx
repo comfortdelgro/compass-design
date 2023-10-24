@@ -21,7 +21,6 @@ const imgSrc =
 
 const h5DrawerDefaultConfig: Partial<DrawerH5Props> = {
   disableResize: false,
-  disableAddBodyAttr: false,
   disableDragClose: false,
   preventClose: false,
 }
@@ -228,24 +227,6 @@ export function H5() {
           }
         >
           Toggle Draggable
-        </Button>
-        <hr />
-
-        <p>
-          Should block the below layer from scrolling and tell the browser to
-          ignore its elements (inert)?{' '}
-          <strong>{`${!drawerConfig.disableAddBodyAttr}`}</strong>
-        </p>
-        <Button
-          type='button'
-          onClick={() =>
-            setDrawerConfig((currState) => ({
-              ...currState,
-              disableAddBodyAttr: !currState.disableAddBodyAttr,
-            }))
-          }
-        >
-          Toggle Block
         </Button>
         <hr />
 
