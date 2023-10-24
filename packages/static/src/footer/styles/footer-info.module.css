@@ -1,21 +1,25 @@
-.footerInfo {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
+@layer default, variant, compoundVariant;
 
-@media screen and (max-width: 600px) {
+@layer default {
   .footerInfo {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
+    flex-direction: row;
+    justify-content: space-between;
   }
 
-  .footerInfo div:last-child {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
+  @media screen and (max-width: 600px) {
+    .footerInfo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .footerInfo div:last-child {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
   }
 }

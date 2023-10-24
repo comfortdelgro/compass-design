@@ -1,10 +1,14 @@
 @import '../../theme/theme.module.css';
 
-.footerHeader {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+@layer default, variant, compoundVariant;
+
+@layer default {
+  .footerHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
 @media screen and (max-width: 600px) {

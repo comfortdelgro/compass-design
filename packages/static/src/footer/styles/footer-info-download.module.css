@@ -1,11 +1,15 @@
-.footerInfoDownload {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 40px;
-}
+@layer default, variant, compoundVariant;
 
-.footerInfoDownload button {
-  height: fit-content;
-  padding: 12px;
+@layer default {
+  .footerInfoDownload {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 40px;
+  }
+
+  .footerInfoDownload button {
+    height: fit-content;
+    padding: 12px;
+  }
 }

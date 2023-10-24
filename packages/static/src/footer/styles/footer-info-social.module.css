@@ -1,18 +1,22 @@
 @import '../../theme/theme.module.css';
 
-.footerInfoSocial {
-  display: flex;
-  gap: 16px;
-  margin-bottom: 24px;
-}
+@layer default, variant, compoundVariant;
 
-.footerInfoSocial svg {
-  width: 22px;
-  height: 22px;
-}
-
-@media screen and (max-width: 600px) {
+@layer default {
   .footerInfoSocial {
-    gap: 32px
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .footerInfoSocial svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  @media screen and (max-width: 600px) {
+    .footerInfoSocial {
+      gap: 32px;
+    }
   }
 }
