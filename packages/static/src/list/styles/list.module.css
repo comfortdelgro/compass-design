@@ -1,0 +1,252 @@
+@import '../../theme/theme.module.css';
+
+@layer default, variant, compoundVariant;
+
+@layer default {
+  .list {
+    display: flex;
+    flex-direction: row;
+    padding: var(--cdg-spacing-4);
+    justify-content: space-between;
+    align-items: center;
+    border-radius: var(--cdg-border-radius-md);
+    cursor: pointer;
+    outline: none;
+  }
+
+  .list:focus-visible {
+    outline: var(--cdg-color-cdgBlue40) solid 2px;
+  }
+
+  .left {
+    display: flex;
+    gap: var(--cdg-spacing-6);
+    align-items: center;
+  }
+
+  .left svg {
+    width: var(--cdg-spacing-5_5);
+    height: var(--cdg-spacing-5_5);
+  }
+
+  .leftInfo {
+    display: flex;
+    align-items: center;
+  }
+
+  .leftText {
+    display: flex;
+    flex-direction: column;
+    gap: var(--cdg-spacing-1);
+  }
+
+  .leftTitle {
+    margin: 0;
+    font-size: var(--cdg-font-size-header4);
+    font-weight: var(--cdg-font-weight-semibold);
+  }
+
+  .leftDescription {
+    font-size: var(--cdg-font-size-body3);
+  }
+
+  .right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .right svg {
+    width: var(--cdg-spacing-3_5);
+    height: var(--cdg-spacing-6);
+  }
+
+  .rightText {
+    font-size: var(--cdg-font-size-body3);
+  }
+}
+
+@layer variant {
+  .listIsDisabled {
+    cursor: not-allowed;
+    user-select: none;
+  }
+
+  .listIsDisabled:focus-visible {
+    outline: none;
+  }
+
+  /* sm */
+  .listSizeSM {
+    padding: var(--cdg-spacing-2_5) var(--cdg-spacing-4);
+  }
+
+  .leftInfoSizeSM {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--cdg-spacing-8);
+    height: var(--cdg-spacing-8);
+    border-radius: 100%;
+    background-color: var(--cdg-color-background);
+  }
+
+  .leftInfoSizeSM svg {
+    width: var(--cdg-spacing-3_5);
+    height: var(--cdg-spacing-3_5);
+    color: var(--cdg-color-gray60);
+  }
+
+  .listSizeSM:hover .leftInfoSizeSM {
+    background-color: var(--cdg-color-cdgBlue100);
+    color: var(--cdg-color-whiteText);
+  }
+
+  .leftTextSizeSM {
+    gap: var(--cdg-spacing-2);
+  }
+
+  .leftTitleSizeSM {
+    font-size: var(--cdg-font-size-label2);
+    font-weight: var(--cdg-font-weight-normal);
+    color: var(--cdg-color-gray60);
+  }
+
+  .listSizeSM:hover .leftTitleSizeSM {
+    color: var(--cdg-color-cdgBlue60);
+  }
+
+  .listSizeSM:hover .leftInfoSizeSM svg {
+    color: var(--cdg-color-whiteText);
+  }
+
+  .leftDescriptionSizeSM {
+    font-size: var(--cdg-font-size-body3);
+    color: var(--cdg-color-gray70);
+  }
+
+  /* Interactive */
+  .listVariantInteractive {
+    background-color: var(--cdg-color-background);
+  }
+
+  .listVariantInteractive:hover {
+    background-color: var(--cdg-color-cdgBlue10);
+  }
+
+  .leftDescriptionVariantInteractive {
+    color: var(--cdg-color-gray80);
+  }
+
+  /* Item */
+  .listVariantItem {
+    background-color: transparent;
+    color: var(--cdg-color-gray80);
+  }
+
+  .listVariantItem:hover {
+    color: var(--cdg-color-cdgBlue40);
+  }
+}
+
+@layer compoundVariant {
+  /* 
+    variant: interactive
+    isPressed: true
+  */
+  .listVariantInteractiveIsPressed {
+    background-color: var(--cdg-color-cdgBlue100);
+    color: var(--cdg-color-whiteText);
+  }
+
+  .listVariantInteractiveIsPressed:hover {
+    background-color: var(--cdg-color-cdgBlue100);
+  }
+
+  /* 
+    variant: interactive
+    isDisabled: true
+  */
+  .listVariantInteractiveIsDisabled {
+    background-color: var(--cdg-color-grayShades20);
+  }
+
+  .listVariantInteractiveIsDisabled:hover {
+    background-color: var(--cdg-color-grayShades20);
+  }
+
+  .leftDescriptionVariantInteractiveIsDisabled {
+    color: var(--cdg-color-gray80);
+  }
+
+  .rightTextVariantInteractiveIsDisabled {
+    color: var(--cdg-color-gray90);
+  }
+
+  /* 
+    variant: item
+    isPressed: true
+  */
+  .listVariantItemIsPressed:hover {
+    color: var(--cdg-color-cdgBlue100);
+  }
+
+  .listSizeSM:hover .leftTitleSizeSMIsPressed {
+    color: var(--cdg-color-whiteText);
+  }
+
+  /* 
+    variant: item
+    isDisabled: true
+  */
+  .listVariantItemIsDisabled {
+    color: var(--cdg-color-gray60);
+  }
+
+  .listVariantItemIsDisabled:hover {
+    color: var(--cdg-color-gray60);
+  }
+
+  /* 
+    size: sm
+    isPressed: true
+  */
+  .leftTextSizeSMIsPressed {
+    color: var(--cdg-color-whiteText);
+  }
+
+  .leftTitleSizeSMIsPressed {
+    color: var(--cdg-color-whiteText);
+  }
+
+  .leftDescriptionSizeSMIsPressed {
+    color: var(--cdg-color-whiteText);
+  }
+
+  .listSizeSM:hover .leftInfoSizeSMIsPressed {
+    background-color: var(--cdg-color-background);
+    color: var(--cdg-color-gray60);
+  }
+
+  .listSizeSM:hover .leftInfoSizeSMIsPressed svg {
+    color: var(--cdg-color-gray60);
+  }
+
+  /* 
+    size: sm
+    isDisabled: true
+  */
+  .listSizeSM:hover.listIsDisabled .leftInfoSizeSM svg {
+    color: var(--cdg-color-gray60);
+  }
+
+  .listSizeSM:hover.listIsDisabled .leftInfoSizeSM {
+    background-color: var(--cdg-color-background);
+    color: var(--cdg-color-gray60);
+  }
+
+  .listSizeSM:hover.listIsDisabled .leftTitleSizeSM {
+    color: var(--cdg-color-gray60);
+  }
+}

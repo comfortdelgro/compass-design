@@ -17,6 +17,7 @@ import {
 import {useDateFormatter, useLocale} from '../internationalized/i18n'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
+import {useMediaQuery} from '../utils/use-media-query'
 import RangeCalendarShorcuts, {
   CustomShortcutsProps,
 } from './range-calendar-shortcuts'
@@ -64,13 +65,17 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
       ...delegated
     } = props
 
+    const isMobileView = useMediaQuery('(max-width: 768px)')
+
+    const responsiveVisibleMonths = isMobileView ? 1 : visibleMonths
+
     const {locale} = useLocale()
     const state = useRangeCalendarState({
       ...delegated,
       value: props.state
         ? (props.state?.value as RangeValue<DateValue>)
         : (props.value as RangeValue<DateValue>),
-      visibleDuration: {months: visibleMonths},
+      visibleDuration: {months: responsiveVisibleMonths},
       locale,
       createCalendar,
     })
@@ -130,7 +135,7 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
       return isTodayInvalid
     }, [delegated.minValue, maxValue])
 
-    const isRangeCalendar = visibleMonths === 1 ? false : true
+    const isRangeCalendar = responsiveVisibleMonths === 1 ? false : true
 
     const showShortcut = isRangeCalendar && hasShortcuts ? true : false
 

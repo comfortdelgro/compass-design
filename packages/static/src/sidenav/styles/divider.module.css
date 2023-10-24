@@ -1,0 +1,11 @@
+@import '../../theme/theme.module.css';
+
+@layer default;
+
+@layer default {
+  .divider {
+    width: 100%;
+    height: var(--cdg-spacing-0_25);
+    background-color: var(--cdg-color-gray50);
+  }
+}

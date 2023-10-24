@@ -1,0 +1,9 @@
+@import '../../theme/theme.module.css';
+
+@layer default;
+
+@layer default {
+  .subHeaderBody {
+    padding-left: var(--cdg-spacing-4);
+  }
+}
