@@ -3,11 +3,11 @@
 @layer default;
 
 @layer default {
-  .timePickerContainer .timePickerInput :global .right-icon {
+  .timePickerInput :global .right-icon {
     width: var(--cdg-spacing-6);
     height: var(--cdg-spacing-6);
   }
-  .timePickerContainer .timePickerInputIcon {
+  .timePickerInputIcon {
     display: flex;
     cursor: pointer;
     border-radius: var(--cdg-border-radius-full);
@@ -15,14 +15,14 @@
     border: none;
     padding: var(--cdg-spacing-1);
   }
-  .timePickerContainer .timePickerInputIcon:active {
+  .timePickerInputIcon:active {
     background-color: var(--cdg-color-gray20);
   }
-  .timePickerContainer .timePickerInputIcon svg {
+  .timePickerInputIcon svg {
     width: var(--cdg-spacing-4);
     height: var(--cdg-spacing-4);
   }
-  .timePickerContainer .timePickerInputIcon path {
+  .timePickerInputIcon path {
     fill: var(--cdg-color-secondaryText);
   }
   .timePickerDropdownItem {

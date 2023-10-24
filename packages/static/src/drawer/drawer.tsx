@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-
-// 'use client'
+'use client'
 
 import clsx from 'clsx'
 import {

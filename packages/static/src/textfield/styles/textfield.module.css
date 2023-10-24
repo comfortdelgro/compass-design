@@ -89,26 +89,6 @@
     margin-left: var(--cdg-spacing-1);
     color: var(--cdg-color-danger);
   }
-  .textFieldHelperText.error {
-    color: var(--cdg-color-danger);
-  }
-  .textFieldBox.isDisabled {
-    background-color: var(--cdg-color-gray20);
-  }
-  .textFieldBox.isDisabled * {
-    color: var(--cdg-color-disabledText);
-    cursor: not-allowed;
-  }
-  .textField.isDisabled {
-    background-color: var(--cdg-color-gray20);
-  }
-  .textFieldBox.isErrored {
-    border-color: var(--cdg-color-danger);
-    border-width: var(--cdg-border-width-medium);
-  }
-  .textFieldBox.isErrored:focus-within {
-    border-color: var(--cdg-color-danger);
-  }
   .textField:focus {
     outline: none;
     box-shadow: none;
@@ -124,46 +104,68 @@
   .textFieldBox:focus-within .leftIcon {
     color: var(--cdg-color-cdgBlue);
   }
-
-  .textField.isDarkTheme {
-    background-color: transparent;
-    color: var(--cdg-color-tertiaryText);
-  }
-  .textFieldBox.isDarkTheme {
-    color: var(--cdg-color-tertiaryText);
-    background-color: var(--cdg-color-gray20);
-  }
-  .textFieldBox.isDarkTheme:focus-within {
-    border-color: var(--cdg-color-cdgBlue120);
-  }
-  .textFieldBox.isDarkTheme:focus-within .leftIcon {
-    color: var(--cdg-color-cdgBlue);
-  }
 }
 
 @layer variant {
-  .textFieldLabel.h5 {
+  .textFieldHelperTextError {
+    color: var(--cdg-color-danger);
+  }
+  .textFieldBoxErrored {
+    border-color: var(--cdg-color-danger);
+    border-width: var(--cdg-border-width-medium);
+  }
+  .textFieldBoxErrored:focus-within {
+    border-color: var(--cdg-color-danger);
+  }
+
+  .textFieldDarkTheme {
+    background-color: transparent;
+    color: var(--cdg-color-tertiaryText);
+  }
+  .textFieldBoxDarkTheme {
+    color: var(--cdg-color-tertiaryText);
+    background-color: var(--cdg-color-gray20);
+  }
+  .textFieldBoxDarkTheme:focus-within {
+    border-color: var(--cdg-color-cdgBlue120);
+  }
+  .textFieldBoxDarkTheme:focus-within .leftIcon {
+    color: var(--cdg-color-cdgBlue);
+  }
+
+  .textFieldBoxDisabled {
+    background-color: var(--cdg-color-gray20);
+  }
+  .textFieldBoxDisabled * {
+    color: var(--cdg-color-disabledText);
+    cursor: not-allowed;
+  }
+  .textFieldDisabled {
+    background-color: var(--cdg-color-gray20);
+  }
+
+  .textFieldLabelH5 {
     font-size: var(--cdg-font-size-label2);
     font-weight: var(--cdg-font-weight-medium);
     color: var(--cdg-color-grayShades80);
     margin-bottom: var(--cdg-spacing-1);
   }
-  .textFieldWrapper.h5 {
+  .textFieldWrapperH5 {
     color: var(--cdg-color-grayShades100);
     font-size: var(--cdg-font-size-label1);
     line-height: var(--cdg-line-height-tight);
     font-weight: var(--cdg-font-weight-normal);
   }
-  .textFieldBox.h5 {
+  .textFieldBoxH5 {
     border-radius: var(--cdg-border-radius-lg);
   }
-  .textField.h5 {
+  .textFieldH5 {
     border: none;
     width: 100%;
     font-size: var(--cdg-font-size-label2);
     font-weight: var(--cdg-font-weight-normal);
   }
-  .textField.h5::placeholder {
+  .textFieldH5::placeholder {
     color: var(--cdg-color-grayShades40);
     font-size: var(--cdg-spacing-3_5);
     line-height: var(--cdg-line-height-tight);

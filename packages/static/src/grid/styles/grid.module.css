@@ -1,0 +1,359 @@
+/* Importing the theme module */
+@import '../../theme/theme.module.css';
+
+@layer default, variant, compoundVariant;
+
+@layer default {
+  /* Grid Item */
+  .item {
+    /* reset */
+    appearance: none;
+    border: none;
+    background-color: transparent;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+    /* custom */
+    display: block;
+  }
+
+  /* Grid container */
+  .container {
+    /* Reset */
+    appearance: none;
+    border: none;
+    background-color: transparent;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+    /* Styling */
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+@layer variant {
+  /* Variants of Grid Items */
+  /* Small spacing */
+  .itemSpacingSm {
+    padding: 8px;
+  }
+
+  /* Medium spacing */
+  .itemSpacingMd {
+    padding: 16px;
+  }
+
+  /* Large spacing */
+  .itemSpacingLg {
+    padding: 24px;
+  }
+
+  /* These are grid items designed for the extra-small (xs) size, each specifying the number of columns it occupies. */
+  @media screen and (min-width: 0px) and (max-width: 600px) {
+    .itemXs1 {
+      flex-basis: calc((1 / 12) * 100%);
+    }
+    .itemXs2 {
+      flex-basis: calc((2 / 12) * 100%);
+    }
+    .itemXs3 {
+      flex-basis: calc((3 / 12) * 100%);
+    }
+    .itemXs4 {
+      flex-basis: calc((4 / 12) * 100%);
+    }
+    .itemXs5 {
+      flex-basis: calc((5 / 12) * 100%);
+    }
+    .itemXs6 {
+      flex-basis: calc((6 / 12) * 100%);
+    }
+    .itemXs7 {
+      flex-basis: calc((7 / 12) * 100%);
+    }
+    .itemXs8 {
+      flex-basis: calc((8 / 12) * 100%);
+    }
+    .itemXs9 {
+      flex-basis: calc((9 / 12) * 100%);
+    }
+    .itemXs10 {
+      flex-basis: calc((10 / 12) * 100%);
+    }
+    .itemXs11 {
+      flex-basis: calc((11 / 12) * 100%);
+    }
+    .itemXs12 {
+      flex-basis: calc((12 / 12) * 100%);
+    }
+  }
+
+  /* These grid items are tailored for the small (sm) size, with each one indicating the number of columns it covers. */
+  @media screen and (min-width: 600px) and (max-width: 900px) {
+    .itemSm1 {
+      flex-basis: calc((1 / 12) * 100%);
+    }
+    .itemSm2 {
+      flex-basis: calc((2 / 12) * 100%);
+    }
+    .itemSm3 {
+      flex-basis: calc((3 / 12) * 100%);
+    }
+    .itemSm4 {
+      flex-basis: calc((4 / 12) * 100%);
+    }
+    .itemSm5 {
+      flex-basis: calc((5 / 12) * 100%);
+    }
+    .itemSm6 {
+      flex-basis: calc((6 / 12) * 100%);
+    }
+    .itemSm7 {
+      flex-basis: calc((7 / 12) * 100%);
+    }
+    .itemSm8 {
+      flex-basis: calc((8 / 12) * 100%);
+    }
+    .itemSm9 {
+      flex-basis: calc((9 / 12) * 100%);
+    }
+    .itemSm10 {
+      flex-basis: calc((10 / 12) * 100%);
+    }
+    .itemSm11 {
+      flex-basis: calc((11 / 12) * 100%);
+    }
+    .itemSm12 {
+      flex-basis: calc((12 / 12) * 100%);
+    }
+  }
+
+  /* These grid items are designed for the medium (md) size, with each item specifying the number of columns it takes up. */
+  @media screen and (min-width: 900px) and (max-width: 1200px) {
+    .itemMd1 {
+      flex-basis: calc((1 / 12) * 100%);
+    }
+    .itemMd2 {
+      flex-basis: calc((2 / 12) * 100%);
+    }
+    .itemMd3 {
+      flex-basis: calc((3 / 12) * 100%);
+    }
+    .itemMd4 {
+      flex-basis: calc((4 / 12) * 100%);
+    }
+    .itemMd5 {
+      flex-basis: calc((5 / 12) * 100%);
+    }
+    .itemMd6 {
+      flex-basis: calc((6 / 12) * 100%);
+    }
+    .itemMd7 {
+      flex-basis: calc((7 / 12) * 100%);
+    }
+    .itemMd8 {
+      flex-basis: calc((8 / 12) * 100%);
+    }
+    .itemMd9 {
+      flex-basis: calc((9 / 12) * 100%);
+    }
+    .itemMd10 {
+      flex-basis: calc((10 / 12) * 100%);
+    }
+    .itemMd11 {
+      flex-basis: calc((11 / 12) * 100%);
+    }
+    .itemMd12 {
+      flex-basis: calc((12 / 12) * 100%);
+    }
+  }
+
+  /* These grid items are optimized for the large (lg) size, and each item defines the number of columns it spans. */
+  @media screen and (min-width: 1200px) and (max-width: 1536px) {
+    .itemLg1 {
+      flex-basis: calc((1 / 12) * 100%);
+    }
+    .itemLg2 {
+      flex-basis: calc((2 / 12) * 100%);
+    }
+    .itemLg3 {
+      flex-basis: calc((3 / 12) * 100%);
+    }
+    .itemLg4 {
+      flex-basis: calc((4 / 12) * 100%);
+    }
+    .itemLg5 {
+      flex-basis: calc((5 / 12) * 100%);
+    }
+    .itemLg6 {
+      flex-basis: calc((6 / 12) * 100%);
+    }
+    .itemLg7 {
+      flex-basis: calc((7 / 12) * 100%);
+    }
+    .itemLg8 {
+      flex-basis: calc((8 / 12) * 100%);
+    }
+    .itemLg9 {
+      flex-basis: calc((9 / 12) * 100%);
+    }
+    .itemLg10 {
+      flex-basis: calc((10 / 12) * 100%);
+    }
+    .itemLg11 {
+      flex-basis: calc((11 / 12) * 100%);
+    }
+    .itemLg12 {
+      flex-basis: calc((12 / 12) * 100%);
+    }
+  }
+
+  /* These grid items are created for the extra-large (xl) size, with each item indicating the number of columns it occupies. */
+  @media screen and (min-width: 1536px) and (max-width: 1920px) {
+    .itemXl1 {
+      flex-basis: calc((1 / 12) * 100%);
+    }
+    .itemXl2 {
+      flex-basis: calc((2 / 12) * 100%);
+    }
+    .itemXl3 {
+      flex-basis: calc((3 / 12) * 100%);
+    }
+    .itemXl4 {
+      flex-basis: calc((4 / 12) * 100%);
+    }
+    .itemXl5 {
+      flex-basis: calc((5 / 12) * 100%);
+    }
+    .itemXl6 {
+      flex-basis: calc((6 / 12) * 100%);
+    }
+    .itemXl7 {
+      flex-basis: calc((7 / 12) * 100%);
+    }
+    .itemXl8 {
+      flex-basis: calc((8 / 12) * 100%);
+    }
+    .itemXl9 {
+      flex-basis: calc((9 / 12) * 100%);
+    }
+    .itemXl10 {
+      flex-basis: calc((10 / 12) * 100%);
+    }
+    .itemXl11 {
+      flex-basis: calc((11 / 12) * 100%);
+    }
+    .itemXl12 {
+      flex-basis: calc((12 / 12) * 100%);
+    }
+  }
+
+  /* These grid items are intended for the extra-extra-large (xxl) size, with each item specifying the number of columns it covers. */
+  @media screen and (min-width: 1920px) {
+    .itemXxl1 {
+      flex-basis: calc((1 / 12) * 100%);
+    }
+    .itemXxl2 {
+      flex-basis: calc((2 / 12) * 100%);
+    }
+    .itemXxl3 {
+      flex-basis: calc((3 / 12) * 100%);
+    }
+    .itemXxl4 {
+      flex-basis: calc((4 / 12) * 100%);
+    }
+    .itemXxl5 {
+      flex-basis: calc((5 / 12) * 100%);
+    }
+    .itemXxl6 {
+      flex-basis: calc((6 / 12) * 100%);
+    }
+    .itemXxl7 {
+      flex-basis: calc((7 / 12) * 100%);
+    }
+    .itemXxl8 {
+      flex-basis: calc((8 / 12) * 100%);
+    }
+    .itemXxl9 {
+      flex-basis: calc((9 / 12) * 100%);
+    }
+    .itemXxl10 {
+      flex-basis: calc((10 / 12) * 100%);
+    }
+    .itemXxl11 {
+      flex-basis: calc((11 / 12) * 100%);
+    }
+    .itemXxl12 {
+      flex-basis: calc((12 / 12) * 100%);
+    }
+  }
+  /* End of variants of Grid Item */
+  /* Variants of grid container */
+  /* Small spacing */
+  .containerSpacingSm {
+    margin: -8px;
+  }
+
+  /* Medium spacing */
+  .containerSpacingMd {
+    margin: -16px;
+  }
+
+  /* Large spacing */
+  .containerSpacingLg {
+    margin: -24px;
+  }
+
+  /* justify-content */
+
+  .containerJustifyContentFlexStart {
+    justify-content: flex-start;
+  }
+
+  .containerJustifyContentFlexEnd {
+    justify-content: flex-end;
+  }
+
+  .containerJustifyContentCenter {
+    justify-content: center;
+  }
+
+  .containerJustifyContentSpaceBetween {
+    justify-content: space-between;
+  }
+
+  .containerJustifyContentSpaceAround {
+    justify-content: space-around;
+  }
+
+  .containerJustifyContentSpaceEvenly {
+    justify-content: space-evenly;
+  }
+
+  /* align-items */
+
+  .containerAlignItemsFlexStart {
+    align-items: flex-start;
+  }
+
+  .containerAlignItemsFlexEnd {
+    align-items: flex-end;
+  }
+
+  .containerAlignItemsCenter {
+    align-items: center;
+  }
+
+  .containerAlignItemsBaseline {
+    align-items: baseline;
+  }
+
+  .containerAlignItemsStretch {
+    align-items: stretch;
+  }
+
+  /* End variants of grid container */
+}

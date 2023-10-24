@@ -1,6 +1,9 @@
 import {SnackbarActions, SnackbarState} from './types'
 
-export const snackbarReducer = (state: SnackbarState, action: SnackbarActions) => {
+export const snackbarReducer = (
+  state: SnackbarState,
+  action: SnackbarActions,
+) => {
   switch (action.type) {
     case 'ADD_SNACKBAR':
       return {
@@ -10,7 +13,9 @@ export const snackbarReducer = (state: SnackbarState, action: SnackbarActions) =
     case 'DELETE_SNACKBAR':
       return {
         ...state,
-        snackbars: state.snackbars.filter((snackbar) => snackbar.id !== action.payload),
+        snackbars: state.snackbars.filter(
+          (snackbar) => snackbar.id !== action.payload,
+        ),
       }
     case 'CLEAR_SNACKBAR':
       return {
