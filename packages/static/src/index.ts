@@ -33,6 +33,15 @@ export type {
   DashboardSidecardHeaderProps,
   DashboardSidecardProps,
 } from './dashboard-sidecard'
+export {default as Dialog} from './dialog'
+export type {
+  DialogActionsProps,
+  DialogDescriptionProps,
+  DialogIconProps,
+  DialogProps,
+  DialogTitleProps,
+  DialogTriggerProps,
+} from './dialog'
 export {default as Divider} from './divider'
 export type {DividerProps} from './divider'
 export {default as Drawer} from './drawer'
@@ -77,6 +86,14 @@ export type {
 } from './list'
 export {default as Link} from './link'
 export type {LinkProps} from './link'
+export {default as Modal} from './modal'
+export type {
+  ModalActionsProps,
+  ModalDescriptionProps,
+  ModalProps,
+  ModalTitleProps,
+  ModalTriggerProps,
+} from './modal'
 export {default as MultipleChoicesSlider} from './multiple-choices-slider'
 export type {
   MultipleChoicesSliderItemProps,

@@ -29,6 +29,7 @@ export const spacings = {
   '12_5': '3.125rem', // 50px
   '13_5': '3.375rem', // 54px
   14: '3.5rem', // 56px
+  '14_25': '3.5625rem', //57px
   15: '3.75rem', // 60px
   16: '4rem', // 64px
   18: '4.5rem', // 72px
@@ -325,7 +326,7 @@ export const darkThemeColors = {
   blueShades80: '#3468BF',
   blueShades100: '#0142AF',
   blueShades120: '#012158',
-  
+
   greenShades: '#159A00',
   badgeWarningBg: '#95711F',
   snackbarWarning: '#95711F',
