@@ -1,131 +1,136 @@
-.drawer {
-  position: fixed;
-  inset-block: 0;
+@layer default, variant, compoundVariant;
 
-  padding: 0;
-  max-height: 100%;
-  max-width: unset;
-
-  flex-direction: column;
-
-  border: none;
-  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  pointer-events: none;
-  z-index: 48;
-}
-
-.drawer,
-.drawer * {
-  box-sizing: border-box;
-}
-
-.drawer:focus-visible {
-  outline: none;
-}
-
-.drawer::backdrop {
-  background: rgba(0, 0, 0, 0.4);
-}
-
-.drawer[open] {
-  display: flex;
-  pointer-events: auto;
-}
-
-/* 
-  ========================================
-  Variants 
-  ========================================
-*/
-.drawer.default {
-  height: 100dvh;
-  width: 100%;
-}
-
-.drawer.h5 {
-  height: 40dvh;
-  max-height: calc(100dvh - 1rem);
-  border-radius: var(--cdg-border-radius-xl) var(--cdg-border-radius-xl) 0 0;
-}
-
-.drawer.h5.drawerExpanded {
-  height: calc(100dvh - 1rem);
-}
-
-.drawer.non-modal {
-  overflow: hidden;
-}
-
-.drawer.left {
-  inset-inline: 0 auto;
-  animation-name: slideOutLeft;
-}
-
-.drawer.left[open] {
-  animation-name: slideInLeft;
-}
-
-.drawer.right {
-  inset-inline: auto 0;
-  animation-name: slideOutRight;
-}
-
-.drawer.right[open] {
-  animation-name: slideInRight;
-}
-
-.drawer.bottom {
-  height: 40dvh;
-  width: 100%;
-  inset-block: auto 0;
-
-  box-shadow: 0 -4px 6px -1px rgb(0 0 0 / 0.1), 0 -2px 4px -2px rgb(0 0 0 / 0.1);
-  animation-name: slideOutUp;
-}
-
-.drawer.bottom[open] {
-  animation-name: slideInUp;
-}
-
-.drawerHeader {
-  padding: var(--cdg-spacing-4);
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--cdg-spacing-4);
-}
-
-.drawerContent {
-  flex: 1;
-  padding: var(--cdg-spacing-4);
-
-  max-height: 100%;
-  width: 100%;
-  overflow: hidden auto;
-}
-
-.drawerFooter {
-  padding: var(--cdg-spacing-4);
-}
-
-@media (min-width: 600px) {
-  .drawer.default:not(.bottom) {
-    width: clamp(30vw, var(--cdg-spacing-160), 50vw);
+@layer default {
+  .drawer,
+  .drawerHeader,
+  .drawerContent,
+  .drawerFooter {
+    box-sizing: border-box;
   }
-}
 
-@media (prefers-reduced-motion: no-preference) {
   .drawer {
-    display: flex;
-    opacity: 0;
-    animation: 0.2s cubic-bezier(0.25, 0, 0.3, 1) forwards;
-    transition: height 0.2s ease, opacity 0.2s ease;
+    position: fixed;
+    inset-block: 0;
+
+    padding: 0;
+    max-height: 100%;
+    max-width: unset;
+
+    flex-direction: column;
+
+    border: none;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+      0 4px 6px -4px rgb(0 0 0 / 0.1);
+    pointer-events: none;
+    z-index: 48;
+  }
+
+  .drawer:focus-visible {
+    outline: none;
+  }
+
+  .drawer::backdrop {
+    background: rgba(0, 0, 0, 0.4);
   }
 
   .drawer[open] {
-    opacity: 1;
-    animation: 0.4s cubic-bezier(0.25, 0, 0.3, 1) forwards;
+    display: flex;
+    pointer-events: auto;
+  }
+
+  .drawerHeader {
+    padding: var(--cdg-spacing-4);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--cdg-spacing-4);
+  }
+
+  .drawerContent {
+    flex: 1;
+    padding: var(--cdg-spacing-4);
+
+    max-height: 100%;
+    width: 100%;
+    overflow: hidden auto;
+  }
+
+  .drawerFooter {
+    padding: var(--cdg-spacing-4);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .drawer {
+      display: flex;
+      opacity: 0;
+      animation: 0.2s cubic-bezier(0.25, 0, 0.3, 1) forwards;
+      transition: height 0.2s ease, opacity 0.2s ease;
+    }
+
+    .drawer[open] {
+      opacity: 1;
+      animation: 0.4s cubic-bezier(0.25, 0, 0.3, 1) forwards;
+    }
+  }
+}
+
+@layer compoundVariant {
+  .drawer.default {
+    height: 100dvh;
+    width: 100%;
+  }
+
+  .drawer.h5 {
+    height: 40dvh;
+    max-height: calc(100dvh - 1rem);
+    border-radius: var(--cdg-border-radius-xl) var(--cdg-border-radius-xl) 0 0;
+  }
+
+  .drawer.h5.drawerExpanded {
+    height: calc(100dvh - 1rem);
+  }
+
+  .drawer.non-modal {
+    overflow: hidden;
+  }
+
+  .drawer.left {
+    inset-inline: 0 auto;
+    animation-name: slideOutLeft;
+  }
+
+  .drawer.left[open] {
+    animation-name: slideInLeft;
+  }
+
+  .drawer.right {
+    inset-inline: auto 0;
+    animation-name: slideOutRight;
+  }
+
+  .drawer.right[open] {
+    animation-name: slideInRight;
+  }
+
+  .drawer.bottom {
+    height: 40dvh;
+    width: 100%;
+    inset-block: auto 0;
+
+    box-shadow: 0 -4px 6px -1px rgb(0 0 0 / 0.1),
+      0 -2px 4px -2px rgb(0 0 0 / 0.1);
+    animation-name: slideOutUp;
+  }
+
+  .drawer.bottom[open] {
+    animation-name: slideInUp;
+  }
+
+  @media (min-width: 600px) {
+    .drawer.default:not(.bottom) {
+      width: clamp(30vw, var(--cdg-spacing-160), 50vw);
+    }
   }
 }
 
