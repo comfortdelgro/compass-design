@@ -267,6 +267,13 @@ export type {
 } from './toast/service'
 export {default as Transitions} from './transitions'
 export type {TransitionsProps} from './transitions'
+export {default as SubBanner} from './subBanner'
+export type {
+  SubBannerDescriptionProps,
+  SubBannerImageProps,
+  SubBannerProps,
+  SubBannerTitleProps,
+} from './subBanner'
 export {default as Sidenav, SidenavContext} from './sidenav'
 export type {SidenavContextValue,
   DividerProps as SidenavDividerProps,
