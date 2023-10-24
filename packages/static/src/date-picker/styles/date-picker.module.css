@@ -1,10 +1,14 @@
 @import '../../theme/theme.module.css';
 
-.datePicker {
-  width: fit-content;
-}
+@layer default, variant, compoundVariant;
 
-.dateRangeFields{
-  display: flex;
-  gap: var(--cdg-spacing-6);
+@layer default {
+  .datePicker {
+    width: fit-content;
+  }
+
+  .dateRangeFields {
+    display: flex;
+    gap: var(--cdg-spacing-6);
+  }
 }
