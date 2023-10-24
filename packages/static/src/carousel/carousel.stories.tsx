@@ -10,7 +10,7 @@ import {
   CarouselSliderItem,
   SocicalIcon,
 } from './carousel.const'
-import styles from './styles/demo.module.css'
+import styles from './styles/stories.module.css'
 
 const socials: SocicalIcon[] = [
   {
