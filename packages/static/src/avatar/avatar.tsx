@@ -65,7 +65,9 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
               {(cutOffText && calculateInitials(label, size)) || label}
             </span>
           ) : null}
-          {icon ? <div className={`cdg-avatar-icon ${styles.avatarIcon}`}>{icon}</div> : null}
+          {icon ? (
+            <div className={`cdg-avatar-icon ${styles.avatarIcon}`}>{icon}</div>
+          ) : null}
           {image ? (
             <img
               className={`cdg-avatar-image ${styles.avatarImage}`}
