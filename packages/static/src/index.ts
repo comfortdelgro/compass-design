@@ -104,6 +104,14 @@ export type {
   MultipleDropdownItemProps,
   MultipleDropdownProps,
 } from './multiple-dropdown'
+export {default as DropdownMenu} from './dropdown-menu'
+export type {
+  DropdownMenuItemProps,
+  DropdownMenuMenuProps,
+  DropdownMenuProps,
+  DropdownMenuSubmenuProps,
+  DropdownMenuToggleProps,
+} from './dropdown-menu'
 export {default as NoSsr} from './nossr'
 export {default as OTPInput} from './otp-input'
 export type {OTPInputProps} from './otp-input'
@@ -122,6 +130,8 @@ export {default as RichTextRender} from './richtext-render'
 export type {Document, RichTextRenderProps} from './richtext-render'
 export {default as SearchField} from './searchfield'
 export type {SearchFieldProps} from './searchfield'
+export {default as SlideAction} from './slide-action'
+export type {SlideActionProps} from './slide-action'
 export {default as Slider} from './slider'
 export type {SliderProps} from './slider'
 export {default as Skeleton} from './skeleton'
@@ -132,6 +142,8 @@ export {default as Status} from './status'
 export type {StatusProps} from './status'
 export {default as Pagination} from './pagination'
 export type {PaginationProps} from './pagination'
+export {default as Textarea} from './textarea'
+export type {TextareaProps} from './textarea'
 export {default as TextField} from './textfield'
 export type {TextFieldProps} from './textfield'
 export * from './theme'
