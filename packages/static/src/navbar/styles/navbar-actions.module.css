@@ -1,0 +1,39 @@
+@import '../../theme/theme.module.css';
+
+/* Using @layer is important because it helps users customize the styles easily because un-layered css has the highest priority*/
+
+/* 
+* compoundVariant has the highest priority
+* variant has the second highest priority
+* default has the lowest priority
+*/
+@layer default, variant, compoundVariant;
+
+@layer default {
+  .navbarActions {
+    display: flex;
+    align-items: center;
+  }
+
+  .defaultNavbarActions {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: var(--cdg-spacing-2);
+    margin: 0 var(--cdg-spacing-4);
+  }
+}
+
+@layer variant {
+  @media screen and (max-width: 768px) {
+    .hasAlternative {
+      display: none;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    .alternativeNavbarActions {
+      display: none;
+    }
+  }
+}
