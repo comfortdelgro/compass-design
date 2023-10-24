@@ -1,14 +1,14 @@
 @import '../../theme/theme.module.css';
 
 .calendarGrid {
-  margin-top: var(--cdg-spacing-2);
+  margin-top: var(--cdg-spacing-2_5);
   border-collapse: collapse;
 }
 
 .calendarGrid tbody::before {
   content: '@';
   display: block;
-  line-height: 12px;
+  line-height: 10px;
   text-indent: -99999px;
 }
 
