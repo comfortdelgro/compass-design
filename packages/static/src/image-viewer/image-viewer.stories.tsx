@@ -1,6 +1,6 @@
 import type {Meta} from '@storybook/react'
 import {useState} from 'react'
-import {Button} from '..'
+import Button from '../button'
 import Viewer from './Viewer'
 const images = Array.from(Array(8).keys()).map((index) => {
   return {

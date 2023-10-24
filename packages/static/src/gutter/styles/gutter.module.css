@@ -1,0 +1,75 @@
+/* Importing the theme module */
+@import '../../theme/theme.module.css';
+
+@layer default, variant, compoundVariant;
+
+@layer default {
+  .gutter {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: var(--cdg-spacing-3);
+    background-color: transparent;
+    cursor: col-resize;
+    right: 0;
+    touch-action: none;
+  }
+
+  .gutter::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    height: 100%;
+    right: 0;
+    width: var(--cdg-spacing-0_5);
+    background: var(--cdg-color-gray40);
+    transition: background-color 0.25s ease-in-out;
+  }
+
+  .gutter:hover::after {
+    background: var(--cdg-color-cdgBlue);
+  }
+
+  .gutter:hover .collapse {
+    opacity: 1;
+  }
+
+  .collapse {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--cdg-spacing-6);
+    height: var(--cdg-spacing-6);
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: var(--cdg-spacing-5);
+    border-radius: 100%;
+    border: 1px solid transparent;
+    background-color: var(--cdg-color-background);
+    box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.1),
+      0px 1.6px 3.6px rgba(0, 0, 0, 0.13);
+    cursor: pointer;
+    font-size: var(--cdg-color-body1);
+    transition: background-color 0.25s ease-in-out, opacity 0.25s ease-in-out;
+    opacity: 0;
+  }
+
+  .collapse:hover {
+    color: var(--cdg-color-cdgBlue);
+    background-color: var(--cdg-color-darkerBg);
+    border: 1px solid var(--cdg-color-darkerBg);
+  }
+}
+
+@layer variant {
+  /* Side: left */
+  .gutterVariantLeft {
+    left: 0;
+  }
+
+  /* Side: right  */
+  .gutterVariantRight {
+    right: 0;
+  }
+}

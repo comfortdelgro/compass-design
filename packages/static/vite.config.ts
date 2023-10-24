@@ -1,4 +1,5 @@
 import react from '@vitejs/plugin-react-swc'
+import swcPreserveDirectives from 'rollup-swc-preserve-directives'
 import {defineConfig} from 'vite'
 import dts from 'vite-plugin-dts'
 
@@ -16,6 +17,7 @@ export default defineConfig({
       ],
       include: ['src'],
     }),
+    swcPreserveDirectives(),
   ],
   // library mode
   build: {

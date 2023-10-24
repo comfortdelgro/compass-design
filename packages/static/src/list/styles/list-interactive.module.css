@@ -1,0 +1,70 @@
+@import '../../theme/theme.module.css';
+
+@layer default;
+
+@layer default {
+  .interactive {
+    padding: var(--cdg-spacing-4);
+    background-color: var(--cdg-color-background);
+    border-radius: var(--cdg-border-radius-md);
+  }
+
+  .interactiveAvatar {
+    flex-shrink: 1;
+  }
+
+  .interactiveHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .interactiveTitle {
+    margin: 0;
+    font-size: var(--cdg-font-size-body5);
+    color: var(--cdg-color-gray90);
+    line-height: 24px;
+    font-weight: bold;
+  }
+
+  .interactiveBody {
+    display: flex;
+    flex-direction: column;
+    gap: var(--cdg-spacing-2);
+    margin-top: var(--cdg-spacing-6);
+  }
+
+  .interactiveDescription {
+    margin: 0;
+    line-height: 21px;
+    color: var(--cdg-color-gray70);
+    font-size: var(--cdg-font-size-body3);
+  }
+
+  .interactiveIconWrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .interactiveIcon {
+    width: var(--cdg-spacing-4);
+    height: var(--cdg-spacing-6_5);
+    color: var(--cdg-color-primaryText);
+  }
+
+  .interactiveDropdownBody {
+    color: var(--cdg-color-primaryText);
+  }
+
+  .interactiveVariantDropdown {
+    display: flex;
+    flex-direction: row;
+    gap: var(--cdg-spacing-2);
+  }
+
+  .interactiveVariantDropdown .interactiveDropdownBody {
+    display: flex;
+    flex-direction: column;
+    gap: var(--cdg-spacing-2);
+  }
+}
