@@ -1,6 +1,7 @@
 import React from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import {pickChild} from '../utils/pick-child'
+import {capitalizeFirstLetter} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import DialogActions from './dialog-actions'
 import DialogDescription from './dialog-description'
@@ -157,13 +158,9 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
     }
   }, [DialogRef, FirstFocusableRef, LastFocusableRef])
 
-  const capitalizeTheFirstLetter = (word: string) => {
-    return word.charAt(0).toUpperCase() + word.slice(1)
-  }
-
   const dialogClassNames = [
     styles.dialog,
-    variant && styles['dialog' + capitalizeTheFirstLetter(variant)],
+    variant && styles['dialog' + capitalizeFirstLetter(variant)],
     className,
     'cdg-dialog-container',
   ]
