@@ -1,7 +1,7 @@
 import {faBug} from '@fortawesome/free-solid-svg-icons/faBug'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {Meta} from '@storybook/react'
-import {Status} from '..'
+import Status from './../status'
 import Avatar from './index'
 
 const images = [

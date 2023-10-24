@@ -1,0 +1,92 @@
+/* Importing the theme module */
+@import '../../theme/theme.module.css';
+
+/* Keyframes */
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes wave {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@layer default, variant, compoundVariant;
+
+@layer default {
+  .skeleton {
+    display: block;
+    background-color: var(--skeleton-color);
+    height: 1.2em;
+  }
+}
+
+@layer variant {
+  .skeletonVariantText {
+    margin-top: 0;
+    margin-bottom: 0;
+    height: auto;
+    transform-origin: 0 55%;
+    transform: scale(1, 0.6);
+    border-radius: 4px / 6.7px;
+  }
+
+  .skeletonVariantText:empty:before {
+    content: '\00a0';
+  }
+
+  .skeletonVariantCircular {
+    border-radius: 50%;
+  }
+
+  .skeletonVariantRounded {
+    border-radius: 4px;
+  }
+
+  .skeletonAnimationPulse {
+    animation: pulse 1.5s ease-in-out 0.5s infinite;
+  }
+
+  .skeletonAnimationWave {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skeletonAnimationWave::after {
+    content: '';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    transform: translateX(-100%);
+    animation: wave 1.6s linear 0.5s infinite;
+    background: linear-gradient(90deg, transparent, #0000000a, transparent);
+  }
+
+  .skeletonHasChildren > * {
+    visibility: hidden;
+  }
+}
+
+@layer compoundVariant {
+  .skeletonHasChildrenNotHasWidth {
+    max-width: fit-content;
+    height: auto;
+  }
+}
