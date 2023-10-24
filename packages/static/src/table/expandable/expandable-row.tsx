@@ -14,23 +14,23 @@ interface Props {
 export type ExpandableRowProps = Props &
   Omit<React.HTMLAttributes<HTMLTableRowElement>, keyof Props>
 
-export const ExpandableRow = React.forwardRef<
-  HTMLTableRowElement,
-  ExpandableRowProps
->((props, ref) => {
-  const {colSpan, isExpanded, children, css = {}} = props
+const ExpandableRow = React.forwardRef<HTMLTableRowElement, ExpandableRowProps>(
+  (props, ref) => {
+    const {colSpan, isExpanded, children, css = {}} = props
 
-  const rowRef = useDOMRef<HTMLTableRowElement>(ref)
+    const rowRef = useDOMRef<HTMLTableRowElement>(ref)
 
-  return (
-    <CssInjection css={css}>
-      <tr ref={rowRef} className={styles.cdgTableExpandableRow}>
-        <td colSpan={colSpan}>
-          <Transitions effect='collapse' show={isExpanded} speed={0.5}>
-            {children}
-          </Transitions>
-        </td>
-      </tr>
-    </CssInjection>
-  )
-})
+    return (
+      <CssInjection css={css}>
+        <tr ref={rowRef} className={styles.cdgTableExpandableRow}>
+          <td colSpan={colSpan}>
+            <Transitions effect='collapse' show={isExpanded} speed={0.5}>
+              {children}
+            </Transitions>
+          </td>
+        </tr>
+      </CssInjection>
+    )
+  },
+)
+export default ExpandableRow

@@ -14,7 +14,7 @@ interface Props<TData, TValue> {
   css?: unknown
   className?: string
 }
-export type TableV2ColumnHeaderProps<TData = any, TValue = unknown> = Props<
+export type TableV2ColumnHeaderProps<TData = never, TValue = unknown> = Props<
   TData,
   TValue
 > &

@@ -6,8 +6,8 @@ import {useDOMRef} from '../../utils/use-dom-ref'
 import styles from './editable-cell.module.css'
 
 interface CellProps {
-  getValue: () => any
-  cell: Cell<any, unknown>
+  getValue: () => never
+  cell: Cell<never, unknown>
   row: number
   column: string
   css?: unknown
@@ -17,7 +17,7 @@ export interface CellMetaProps<TData extends RowData, TValue>
   extends ColumnMeta<TData, TValue> {
   editable?: boolean
   template?: React.ReactNode
-  updateData?: (index: number, id: string, value: any) => void
+  updateData?: (index: number, id: string, value: never) => void
   revertData?: (rowIndex: number) => void
 }
 
@@ -25,7 +25,7 @@ export type EditableCellProps = CellProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof CellProps>
 
 export const [EditableCellContextProvider, useEditableCellContext] =
-  createSafeContext<any>('EditableCell was not found in tree')
+  createSafeContext<never>('EditableCell was not found in tree')
 
 export const EditableCell = React.forwardRef<
   HTMLTableCellElement,
@@ -35,14 +35,14 @@ export const EditableCell = React.forwardRef<
   const inputRef = useDOMRef<HTMLInputElement>(null)
   const [editing, setEditing] = React.useState(false)
   const [value, setValue] = React.useState(initialValue)
-  const tableMeta = cell.column.columnDef.meta as CellMetaProps<any, unknown>
+  const tableMeta = cell.column.columnDef.meta as CellMetaProps<never, unknown>
 
   useEffect(() => {
     setValue(initialValue)
   }, [initialValue])
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value)
+    setValue(event.target.value as never)
   }
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -60,7 +60,7 @@ export const EditableCell = React.forwardRef<
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation()
     const newValue = getValue()
-    setValue(newValue as SetStateAction<string>)
+    setValue(newValue as SetStateAction<never>)
     setEditing(true)
   }
 
@@ -70,7 +70,7 @@ export const EditableCell = React.forwardRef<
     }
   }, [editing])
 
-  const finishTemplateEditing = (data: any) => {
+  const finishTemplateEditing = (data: never) => {
     setEditing(false)
     tableMeta?.updateData?.(row, column, data)
   }
@@ -85,14 +85,16 @@ export const EditableCell = React.forwardRef<
         {editing ? (
           tableMeta.template ? (
             <EditableCellContextProvider
-              value={{
-                finishTemplateEditing,
-                cancelTemplateEditing,
-                initialValue,
-                cell,
-                row,
-                column,
-              }}
+              value={
+                {
+                  finishTemplateEditing,
+                  cancelTemplateEditing,
+                  initialValue,
+                  cell,
+                  row,
+                  column,
+                } as never
+              }
             >
               {tableMeta.template}
             </EditableCellContextProvider>

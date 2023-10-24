@@ -14,7 +14,7 @@ export interface Props<TData, TValue> {
   onChangeCell?: (newData: object) => void
 }
 
-export type TableV2CellProps<TData = any, TValue = unknown> = Props<
+export type TableV2CellProps<TData = never, TValue = unknown> = Props<
   TData,
   TValue
 > &
@@ -28,7 +28,10 @@ const TableV2Cell = React.forwardRef<HTMLTableCellElement, TableV2CellProps>(
       row: {index},
       column: {id},
     } = cell
-    const tableMeta = cell.column.columnDef.meta as CellMetaProps<any, unknown>
+    const tableMeta = cell.column.columnDef.meta as CellMetaProps<
+      never,
+      unknown
+    >
     const isCellEditable = tableMeta?.editable
 
     const cellClasses = [
@@ -57,7 +60,7 @@ const TableV2Cell = React.forwardRef<HTMLTableCellElement, TableV2CellProps>(
         {isCellEditable ? (
           <EditableCell
             cell={cell}
-            getValue={getValue}
+            getValue={getValue as never}
             row={index}
             column={id}
           />

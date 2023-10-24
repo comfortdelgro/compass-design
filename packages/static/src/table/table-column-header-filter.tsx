@@ -15,7 +15,7 @@ interface Props<TData, TValue> {
   className?: string
 }
 
-export type HeaderColumnFilterProps<TData = any, TValue = unknown> = Props<
+export type HeaderColumnFilterProps<TData = unknown, TValue = unknown> = Props<
   TData,
   TValue
 > &
