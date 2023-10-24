@@ -1,0 +1,295 @@
+@import '../../theme/theme.module.css';
+
+@layer default, variant, compoundVariant;
+
+@layer default {
+  .badge {
+    box-sizing: border-box;
+    font-family: var(--cdg-font-sans);
+    font-weight: var(--cdg-font-weight-semibold);
+    padding: var(--cdg-spacing-1) var(--cdg-spacing-3);
+    border-width: var(--cdg-border-width-light);
+    border-style: solid;
+    border-color: transparent;
+    border-radius: var(--cdg-border-radius-full);
+    width: fit-content;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    gap: var(--cdg-spacing-2);
+    height: var(--cdg-spacing-6_5);
+    font-size: var(--cdg-font-size-label2);
+    line-height: 18px;
+  }
+
+  .icon {
+    height: 100%;
+    width: var(--cdg-spacing-3_5);
+    display: flex;
+    align-items: center;
+    justify-content: start;
+  }
+
+  .label {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+  }
+}
+
+@layer variant {
+  .status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .h5 {
+    background: var(--cdg-color-background);
+    color: var(--cdg-color-grayShades100);
+    border-color: var(--cdg-color-blueShades80);
+    padding: 3px var(--cdg-spacing-2) 3px 3px;
+    font-size: var(--cdg-font-size-label2);
+    line-height: var(--cdg-spacing-4_5);
+    font-weight: var(--cdg-font-weight-medium);
+    gap: var(--cdg-spacing-1);
+  }
+
+  .h5Label {
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    display: -webkit-box;
+  }
+
+  .h5Destination {
+    background: var(--cdg-color-blueShades80);
+    display: flex;
+    min-width: 19px;
+    min-height: var(--cdg-spacing-4_5);
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    color: var(--cdg-color-white);
+    line-height: var(--cdg-spacing-4_5);
+  }
+  .rounded {
+    border-radius: 50%;
+    justify-content: center;
+  }
+
+  .roundedLabel {
+    display: none;
+  }
+
+  .statusSize8 {
+    width: var(--cdg-spacing-2);
+    height: var(--cdg-spacing-2);
+    padding: 0;
+  }
+
+  .statusSize8Icon {
+    width: var(--cdg-spacing-1);
+  }
+
+  .statusSize12 {
+    width: var(--cdg-spacing-3);
+    height: var(--cdg-spacing-3);
+    padding: 0;
+  }
+
+  .statusSize12Icon {
+    width: var(--cdg-spacing-2);
+  }
+
+  .statusSize16 {
+    width: var(--cdg-spacing-4);
+    height: var(--cdg-spacing-4);
+    padding: 0;
+  }
+
+  .statusSize16Icon {
+    width: var(--cdg-spacing-2);
+  }
+
+  .statusSize20 {
+    width: var(--cdg-spacing-5);
+    height: var(--cdg-spacing-5);
+    padding: 0;
+  }
+
+  .statusSize20Icon {
+    width: var(--cdg-spacing-3);
+  }
+
+  .statusSize24 {
+    width: var(--cdg-spacing-6);
+    height: var(--cdg-spacing-6);
+    padding: 0;
+  }
+
+  .statusSize24Icon {
+    width: var(--cdg-spacing-4);
+  }
+
+  .statusSize24Icon > svg {
+    width: var(--cdg-spacing-4);
+    height: var(--cdg-spacing-4);
+  }
+
+  .statusSize28 {
+    width: var(--cdg-spacing-7);
+    height: var(--cdg-spacing-7);
+    padding: 0;
+  }
+
+  .statusSize28Icon {
+    width: var(--cdg-spacing-5);
+  }
+
+  .statusSize28Icon > svg {
+    width: var(--cdg-spacing-5);
+    height: var(--cdg-spacing-5);
+  }
+
+  .isRevert {
+    flex-direction: row-reverse;
+    padding: 3px 3px 3px var(--cdg-spacing-2);
+  }
+
+  .sm {
+    height: var(--cdg-spacing-4_5);
+    font-size: var(--cdg-font-size-label2);
+    line-height: var(--cdg-spacing-4_5);
+  }
+
+  .lg {
+    height: var(--cdg-spacing-6_5);
+    font-size: var(--cdg-font-size-body2);
+    line-height: var(--cdg-spacing-6);
+  }
+}
+
+@layer compoundVariant {
+}
+
+/* Compound Variants */
+
+.statusIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Info */
+
+.infoPrimary {
+  /* when color == info, variant == primary and isDisabled == false */
+  background: var(--cdg-color-info);
+  color: var(--cdg-color-whiteText);
+}
+
+.infoSecondary {
+  /* when color == info, variant == secondary and isDisabled == false */
+  background: var(--cdg-color-infoBg);
+  color: var(--cdg-color-info);
+}
+
+.infoOutline {
+  /* when color == info, variant == outline and isDisabled == false */
+  background: var(--cdg-color-infoBg);
+  color: var(--cdg-color-info);
+  border-color: var(--cdg-color-info);
+}
+
+/* Success */
+.successPrimary {
+  /* when color == successs, variant == Primary and isDisabled == false */
+  background: var(--cdg-color-success);
+  color: var(--cdg-color-whiteText);
+}
+
+.successSecondary {
+  /* when color == successs, variant == secondary and isDisabled == false */
+  background: var(--cdg-color-successBg);
+  color: var(--cdg-color-success);
+}
+
+.successOutline {
+  /* when color == successs, variant == outline and isDisabled == false */
+  background: var(--cdg-color-successBg);
+  color: var(--cdg-color-success);
+  border-color: var(--cdg-color-success);
+}
+
+.onlineRounded {
+  /* when its status is online and isDisabled == false */
+  background-color: var(--cdg-color-success);
+  color: var(--cdg-color-whiteText);
+}
+
+/* Warning */
+.warningPrimary {
+  /* when color == warning, variant == primary and isDisabled == false */
+  background: var(--cdg-color-badgeWarningBg);
+  color: var(--cdg-color-warningBg);
+}
+
+.warningSecondary {
+  /* when color == warning, variant == secondary and isDisabled == false */
+  background: var(--cdg-color-warningBg);
+  color: var(--cdg-color-badgeWarningBg);
+}
+
+.warningOutline {
+  /* when color == warning, variant == outline and isDisabled == false */
+  background: var(--cdg-color-warningBg);
+  color: var(--cdg-color-badgeWarningBg);
+  border-color: var(--cdg-color-warningBg);
+}
+
+.awayRounded {
+  /* when its status is away, variant == rounded and isDisabled == false */
+  background-color: var(--cdg-color-badgeWarningBg);
+  color: var(--cdg-color-whiteText);
+}
+
+/* Danger */
+.dangerPrimary {
+  /* when color == danger, variant == primary and isDisabled == false */
+  background: var(--cdg-color-danger);
+  color: var(--cdg-color-whiteText);
+}
+
+.dangerSecondary {
+  /* when color == danger, variant == secondary and isDisabled == false */
+  background: var(--cdg-color-dangerBg);
+  color: var(--cdg-color-danger);
+}
+
+.dangerOutline {
+  /* when color == danger, variant == outline and isDisabled == false */
+  background: var(--cdg-color-dangerBg);
+  color: var(--cdg-color-danger);
+  border-color: var(--cdg-color-danger);
+}
+
+.busyRounded {
+  /* when its status is busy, variant == rounded and isDisabled == false */
+  background-color: var(--cdg-color-danger);
+  color: var(--cdg-color-whiteText);
+}
+
+/* Offline */
+.offlineRounded {
+  /* when its status is offline, variant == rounded and isDisabled == false */
+  background-color: var(--cdg-color-white);
+  color: var(--cdg-color-whiteText);
+  border: var(--cdg-spacing-0_5) solid var(--cdg-color-gray70);
+}
+
+.isDisabled {
+  /* when color == info, variant == primary and isDisabled == true */
+  background: var(--cdg-color-gray20);
+  color: var(--cdg-color-gray60);
+}

@@ -1,0 +1,44 @@
+@import '../../theme/theme.module.css';
+
+/* Using @layer is important because it helps users customize the styles easily because un-layered css has the highest priority*/
+
+/* 
+* compoundVariant has the highest priority
+* variant has the second highest priority
+* default has the lowest priority
+*/
+
+@layer default, variant, compoundVariant;
+
+@layer default {
+  .accordionButton {
+    appearance: none;
+    border: none;
+    background-color: transparent;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    text-align: unset;
+    position: relative;
+    border-radius: var(--cdg-border-radius-lg);
+    color: var(--cdg-color-primaryText);
+  }
+
+  .accordionButton:focus-visible {
+    outline: none;
+    box-shadow: 0 0 2px 2px #ccd9ef;
+  }
+}
+
+@layer variant {
+  .close {
+    background-color: var(--cdg-color-background);
+  }
+
+  .open {
+    background-color: var(--cdg-color-gray20);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
