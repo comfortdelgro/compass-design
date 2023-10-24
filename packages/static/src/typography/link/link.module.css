@@ -1,0 +1,41 @@
+@import '../../theme/theme.module.css';
+
+@layer default, variant;
+
+@layer default {
+  .link {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    color: var(--cdg-color-info);
+    text-decoration: underline;
+  }
+}
+
+@layer variant {
+  /* font weight variant */
+  .bold {
+    font-weight: var(--cdg-font-weight-bold);
+  }
+
+  .semibold {
+    font-weight: var(--cdg-font-weight-semibold);
+  }
+
+  /* font size variant  */
+
+  .link1 {
+    font-size: var(--cdg-font-size-link1);
+    line-height: var(--cdg-spacing-7_5);
+  }
+
+  .link2 {
+    font-size: var(--cdg-font-size-link2);
+    line-height: var(--cdg-spacing-4_5);
+  }
+
+  .link3 {
+    font-size: var(--cdg-font-size-link3);
+    line-height: '0.9375rem'; /* too odd to include in theme */
+  }
+}

@@ -4,7 +4,6 @@ import {
   DragEvent,
   KeyboardEvent,
   MouseEvent,
-  PointerEvent,
   ReactNode,
   TouchEvent,
 } from 'react'
@@ -143,9 +142,9 @@ export interface DOMAttributes extends AriaLabelingProps {
   onKeyDown: (e: KeyboardEvent<FocusableElement>) => void
   onKeyUp: (e: KeyboardEvent<FocusableElement>) => void
   onClick: (e: MouseEvent<FocusableElement>) => void
-  onPointerDown?: (e: PointerEvent<FocusableElement>) => void
+  onPointerDown?: (e: React.PointerEvent<FocusableElement>) => void
   onMouseDown?: (e: MouseEvent<FocusableElement>) => void
-  onPointerUp?: (e: PointerEvent<FocusableElement>) => void
+  onPointerUp?: (e: React.PointerEvent<FocusableElement>) => void
   onDragStart?: (e: DragEvent<FocusableElement>) => void
   onMouseEnter?: (e: MouseEvent<FocusableElement>) => void
   onMouseLeave?: (e: MouseEvent<FocusableElement>) => void
@@ -155,7 +154,7 @@ export interface DOMAttributes extends AriaLabelingProps {
   onTouchEnd?: (e: TouchEvent<FocusableElement>) => void
   onTouchCancel?: (e: TouchEvent<FocusableElement>) => void
   onFocus?: () => void
-  onPointerEnter?: (e: PointerEvent<FocusableElement>) => void
+  onPointerEnter?: (e: React.PointerEvent<FocusableElement>) => void
   onContextMenu?: (e: MouseEvent<FocusableElement>) => void
 }
 
