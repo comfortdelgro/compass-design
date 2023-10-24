@@ -1,10 +1,10 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledTableV2Footer} from './table-footer.styles'
-
-interface Props extends StyledComponentProps {
+import styles from './styles/table-footer.module.css'
+interface Props {
   children?: React.ReactNode
+  css?: unknown
 }
 
 export type TableV2FooterProps = Props
@@ -18,12 +18,12 @@ const TableV2Footer = React.forwardRef<HTMLDivElement, TableV2FooterProps>(
       children,
     } = props
 
-    const TableV2FooterRef = useDOMRef<HTMLDivElement>(ref)
+    const tableV2FooterRef = useDOMRef<HTMLDivElement>(ref)
 
     return (
-      <StyledTableV2Footer css={css} ref={TableV2FooterRef}>
-        {children}
-      </StyledTableV2Footer>
+      <CssInjection css={css} childrenRef={tableV2FooterRef}>
+        <div className={styles.cdgTableFooter}>{children}</div>
+      </CssInjection>
     )
   },
 )

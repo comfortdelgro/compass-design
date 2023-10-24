@@ -1,5 +1,5 @@
-import {styled} from '../theme'
+// import {styled} from '../theme'
 
-export const StyledTableV2Footer = styled('div', {
-  paddingTop: '$6',
-})
+// export const StyledTableV2Footer = styled('div', {
+//   paddingTop: '$6',
+// })

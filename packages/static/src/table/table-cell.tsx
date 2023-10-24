@@ -1,13 +1,16 @@
 import {Cell, flexRender, Row} from '@tanstack/react-table'
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {CellMetaProps, EditableCell} from './editable/editable-cell'
-import {StyledTableV2Cell} from './table-cell.styles'
 
-export interface Props<TData, TValue> extends StyledComponentProps {
+import styles from './styles/table-cell.module.css'
+
+export interface Props<TData, TValue> {
   cell: Cell<TData, TValue>
   row: Row<TData>
+  css?: unknown
+  className?: string
   onChangeCell?: (newData: object) => void
 }
 
@@ -18,7 +21,7 @@ export type TableV2CellProps<TData = any, TValue = unknown> = Props<
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props<TData, TValue>>
 
 const TableV2Cell = React.forwardRef<HTMLTableCellElement, TableV2CellProps>(
-  ({cell, row}, ref) => {
+  ({cell, row, className, css = {}}, ref) => {
     const TableV2CellRef = useDOMRef<HTMLTableCellElement>(ref)
     const {
       getValue,
@@ -27,18 +30,30 @@ const TableV2Cell = React.forwardRef<HTMLTableCellElement, TableV2CellProps>(
     } = cell
     const tableMeta = cell.column.columnDef.meta as CellMetaProps<any, unknown>
     const isCellEditable = tableMeta?.editable
+
+    const cellClasses = [
+      styles.cdgTableCell,
+      cell.getIsGrouped() && styles.isGrouped,
+      cell.getIsAggregated() && styles.isAggregated,
+      cell.getIsPlaceholder() && styles.isPlaceholder,
+      className,
+      'cdg-table-cell',
+    ]
+      .filter(Boolean)
+      .join(' ')
+
     return (
-      <StyledTableV2Cell
-        ref={TableV2CellRef}
-        key={cell.id}
-        isGrouped={cell.getIsGrouped()}
-        isAggregated={cell.getIsAggregated()}
-        isPlaceholder={cell.getIsPlaceholder()}
-        css={{
-          width: cell.column.getSize(),
-        }}
-        role='cell'
-      >
+      <CssInjection css={css}>
+        <td
+          className={cellClasses}
+          ref={TableV2CellRef}
+          key={cell.id}
+          style={{
+            width: cell.column.getSize(),
+          }}
+          role='cell'
+        ></td>
+
         {isCellEditable ? (
           <EditableCell
             cell={cell}
@@ -90,7 +105,7 @@ const TableV2Cell = React.forwardRef<HTMLTableCellElement, TableV2CellProps>(
         ) : cell.getIsPlaceholder() ? null : (
           flexRender(cell.column.columnDef.cell, cell.getContext())
         )}
-      </StyledTableV2Cell>
+      </CssInjection>
     )
   },
 )

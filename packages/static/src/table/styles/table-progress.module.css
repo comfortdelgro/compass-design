@@ -21,13 +21,13 @@
     transition: 'width 0.5s ease-in-out';
   }
 
-  .progresslow {
+  .progressLow {
     background-color: var(--cdg-color-danger);
   }
-  .progressaverage {
+  .progressAverage {
     background-color: var(--cdg-color-warning);
   }
-  .progresshigh {
+  .progressHigh {
     background-color: var(--cdg-color-success);
   }
 }

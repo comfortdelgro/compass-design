@@ -2,20 +2,17 @@ import {flexRender, Header, Table} from '@tanstack/react-table'
 import React, {useMemo} from 'react'
 import {useIsDarkTheme} from '../theme'
 import {EKeyboardKey} from '../utils/keyboard.enum'
-import {CSS, StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
+import styles from './styles/table-column-header.module.css'
 import HeaderColumnFilter from './table-column-header-filter'
-import {
-  StyledTableV2ColumnHeader,
-  StyledTableV2ColumnHeaderContent,
-  StyledTableV2SortingIndicator,
-} from './table-column-header.styles'
 import TableV2Resizer from './table-resizer'
 
-interface Props<TData, TValue> extends StyledComponentProps {
+interface Props<TData, TValue> {
   headerProps: Header<TData, TValue>
   tableOption: Table<TData>
-  css?: CSS
+  css?: unknown
+  className?: string
 }
 export type TableV2ColumnHeaderProps<TData = any, TValue = unknown> = Props<
   TData,
@@ -35,7 +32,7 @@ const TableV2ColumnHeader = React.forwardRef<
   const isGroupedColumn =
     headerProps.column.columnDef.enableGrouping === true &&
     headerProps.column.getIsGrouped()
-  const tableRowRef = useDOMRef<HTMLTableCellElement>(ref)
+  const tableColumnHeaderRef = useDOMRef<HTMLTableCellElement>(ref)
   const sortDirection = headerProps.column.getIsSorted()
   const directions = {
     asc: <ArrowUpIcon />,
@@ -76,63 +73,67 @@ const TableV2ColumnHeader = React.forwardRef<
     }
   }, [sortDirection])
 
+  const headerContentClass = [headerProps.column.getCanSort() && styles.canSort]
+    .filter(Boolean)
+    .join(' ')
+
   return (
-    <StyledTableV2ColumnHeader
-      ref={tableRowRef}
-      key={headerProps.id}
-      colSpan={headerProps.colSpan}
-      onClick={headerProps.column.getToggleSortingHandler()}
-      onKeyDown={handleOnKeyDown}
-      css={{
-        width: headerProps.getSize(),
-        ...css,
-      }}
-      role='columnheader'
-      aria-sort={ariaSort}
-      tabIndex={isSortableColumn || isFilterableColumn ? 0 : -1}
-    >
-      {headerProps.isPlaceholder ? null : (
-        <StyledTableV2ColumnHeaderContent
-          canSort={headerProps.column.getCanSort()}
-        >
-          {
-            <div
-              onClick={
-                headerProps.column.columnDef.enableGrouping === true
-                  ? headerProps.column.getToggleGroupingHandler()
-                  : undefined
-              }
-            >
-              {isGroupedColumn ? (
-                <span>({headerProps.column.getGroupedIndex()})</span>
-              ) : (
-                <></>
-              )}
-              {flexRender(
-                headerProps.column.columnDef.header,
-                headerProps.getContext(),
-              )}
-            </div>
-          }
-          {sortDirection && directions[sortDirection]}
-          {isFilterableColumn ? (
-            <HeaderColumnFilter
-              column={headerProps.column}
-              table={tableOption}
-            />
-          ) : null}
-        </StyledTableV2ColumnHeaderContent>
-      )}
-      {enableResizing && (
-        <TableV2Resizer resizeHandler={headerProps.getResizeHandler()} />
-      )}
-    </StyledTableV2ColumnHeader>
+    <CssInjection css={css} childrenRef={tableColumnHeaderRef}>
+      <th
+        ref={tableColumnHeaderRef}
+        className={styles.cdgTableColumnHeader}
+        key={headerProps.id}
+        colSpan={headerProps.colSpan}
+        onClick={headerProps.column.getToggleSortingHandler()}
+        onKeyDown={handleOnKeyDown}
+        role='columnheader'
+        aria-sort={ariaSort}
+        tabIndex={isSortableColumn || isFilterableColumn ? 0 : -1}
+        style={{
+          width: headerProps.getSize(),
+        }}
+      >
+        {headerProps.isPlaceholder ? null : (
+          <div className={headerContentClass}>
+            {
+              <div
+                onClick={
+                  headerProps.column.columnDef.enableGrouping === true
+                    ? headerProps.column.getToggleGroupingHandler()
+                    : undefined
+                }
+              >
+                {isGroupedColumn ? (
+                  <span>({headerProps.column.getGroupedIndex()})</span>
+                ) : (
+                  <></>
+                )}
+                {flexRender(
+                  headerProps.column.columnDef.header,
+                  headerProps.getContext(),
+                )}
+              </div>
+            }
+            {sortDirection && directions[sortDirection]}
+            {isFilterableColumn ? (
+              <HeaderColumnFilter
+                column={headerProps.column}
+                table={tableOption}
+              />
+            ) : null}
+          </div>
+        )}
+        {enableResizing && (
+          <TableV2Resizer resizeHandler={headerProps.getResizeHandler()} />
+        )}
+      </th>
+    </CssInjection>
   )
 })
 const ArrowDownIcon = () => {
   const isDarkTheme = useIsDarkTheme()
   return (
-    <StyledTableV2SortingIndicator aria-hidden='true'>
+    <span aria-hidden='true' className={styles.cdgTableSortingIndicator}>
       <svg width='24' height='26' viewBox='0 0 24 26' fill='none'>
         <path
           d='M12.8476 4.34166C12.379 3.88611 11.6181 3.88611 11.1495 4.34166L6.35152 9.00651C6.00666 9.34179 5.90546 9.84108 6.09288 10.2784C6.2803 10.7157 6.71512 11 7.20242 11H16.7984C17.282 11 17.7205 10.7157 17.908 10.2784C18.0954 9.84108 17.9904 9.34179 17.6493 9.00651L12.8513 4.34166H12.8476Z'
@@ -143,11 +144,11 @@ const ArrowDownIcon = () => {
           fill={isDarkTheme ? '#A6AABF' : '#3B3A39'}
         />
       </svg>
-    </StyledTableV2SortingIndicator>
+    </span>
   )
 }
 const ArrowUpIcon = () => (
-  <StyledTableV2SortingIndicator aria-hidden='true'>
+  <span aria-hidden='true' className={styles.cdgTableSortingIndicator}>
     <svg width='24' height='26' viewBox='0 0 24 26' fill='none'>
       <path
         d='M12.8476 4.34166C12.379 3.88611 11.6181 3.88611 11.1495 4.34166L6.35152 9.00651C6.00666 9.34179 5.90546 9.84108 6.09288 10.2784C6.2803 10.7157 6.71512 11 7.20242 11H16.7984C17.282 11 17.7205 10.7157 17.908 10.2784C18.0954 9.84108 17.9904 9.34179 17.6493 9.00651L12.8513 4.34166H12.8476Z'
@@ -158,6 +159,6 @@ const ArrowUpIcon = () => (
         fill={'#EDEBE9'}
       />
     </svg>
-  </StyledTableV2SortingIndicator>
+  </span>
 )
 export default TableV2ColumnHeader

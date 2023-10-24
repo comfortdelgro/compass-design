@@ -12,10 +12,10 @@
     cursor: 'col-resize';
     opacity: 0;
   }
-  &:hover {
+  .cdgTableResizer:hover {
     opacity: 1;
   }
-  &:active {
+  .cdgTableResizer:active {
     user-select: none;
   }
 }

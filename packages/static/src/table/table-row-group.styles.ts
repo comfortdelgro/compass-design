@@ -1,3 +1,3 @@
-import {styled} from '../theme'
+// import {styled} from '../theme'
 
-export const StyledTableV2RowGroup = styled('tbody', {})
+// export const StyledTableV2RowGroup = styled('tbody', {})

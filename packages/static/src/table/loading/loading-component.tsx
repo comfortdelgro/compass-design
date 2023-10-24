@@ -1,11 +1,12 @@
 import React, {HTMLAttributes} from 'react'
-import {StyledComponentProps} from '../../utils/stitches.types'
+import CssInjection from '../../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../../utils/use-dom-ref'
-import {StyledLoadingComponent} from './loading-component.styles'
+import styles from './loading-component.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   colSpan: number
   loadingIndicator: React.ReactNode
+  css?: unknown
 }
 
 export type LoadingComponentProps = Props &
@@ -13,12 +14,18 @@ export type LoadingComponentProps = Props &
 const LoadingComponent = React.forwardRef<
   HTMLTableRowElement,
   LoadingComponentProps
->(({colSpan, loadingIndicator, ...delegated}, ref) => {
+>(({colSpan, loadingIndicator, css = {}, ...delegated}, ref) => {
   const loadingComponentRef = useDOMRef(ref)
   return (
-    <StyledLoadingComponent ref={loadingComponentRef} {...delegated}>
-      <td colSpan={colSpan}>{loadingIndicator}</td>
-    </StyledLoadingComponent>
+    <CssInjection css={css}>
+      <tr
+        className={styles.cdgTableLoading}
+        ref={loadingComponentRef}
+        {...delegated}
+      >
+        <td colSpan={colSpan}>{loadingIndicator}</td>
+      </tr>
+    </CssInjection>
   )
 })
 

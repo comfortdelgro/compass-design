@@ -105,11 +105,13 @@ export const EditableCell = React.forwardRef<
               onChange={handleChange}
               onKeyDown={handleKeyDown}
               onBlur={handleBlur}
-              style={{textAlign: 'center', outlineColor: '#0142AF'}}
+              className={styles.editableCellInput}
             />
           )
         ) : (
-          <p>{flexRender(cell.column.columnDef.cell, cell.getContext())}</p>
+          <p className={styles.editableCellContent}>
+            {flexRender(cell.column.columnDef.cell, cell.getContext())}
+          </p>
         )}
       </div>
     </CssInjection>

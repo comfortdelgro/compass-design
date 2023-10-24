@@ -1,19 +1,23 @@
 import React from 'react'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledTableV2HeaderRow} from './table-header-row.styles'
+import styles from './styles/table-header-row.module.css'
 
 interface Props {
   children: React.ReactNode
+  css?: unknown
 }
 
 const TableV2HeaderRow = React.forwardRef<HTMLTableRowElement, Props>(
-  ({children}, ref) => {
+  ({children, css = {}}, ref) => {
     const TableV2HeaderRowRef = useDOMRef<HTMLTableRowElement>(ref)
 
     return (
-      <StyledTableV2HeaderRow ref={TableV2HeaderRowRef} role='row'>
-        {children}
-      </StyledTableV2HeaderRow>
+      <CssInjection css={css} childrenRef={TableV2HeaderRowRef}>
+        <tr role='row' className={styles.cdgTableHeaderRow}>
+          {children}
+        </tr>
+      </CssInjection>
     )
   },
 )

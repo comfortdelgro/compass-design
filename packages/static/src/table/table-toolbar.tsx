@@ -1,10 +1,11 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledTableV2Toolbar} from './table-toolbar.styles'
-
-interface Props extends StyledComponentProps {
+import styles from './styles/table-toolbar.module.css'
+interface Props {
   children?: React.ReactNode
+  css?: unknown
+  className?: string
 }
 
 export type TableV2ToolbarProps = Props
@@ -14,16 +15,20 @@ const TableV2Toolbar = React.forwardRef<HTMLDivElement, TableV2ToolbarProps>(
     const {
       // StyledComponentProps
       css = {},
+      className,
       // ComponentProps
       children,
     } = props
 
+    const toolbarClass = [styles.cdgTableToolbar, className].join(' ')
     const tableToolbarRef = useDOMRef<HTMLDivElement>(ref)
 
     return (
-      <StyledTableV2Toolbar css={css} ref={tableToolbarRef}>
-        {children}
-      </StyledTableV2Toolbar>
+      <CssInjection css={css} childrenRef={tableToolbarRef}>
+        <div ref={tableToolbarRef} className={toolbarClass}>
+          {children}
+        </div>
+      </CssInjection>
     )
   },
 )

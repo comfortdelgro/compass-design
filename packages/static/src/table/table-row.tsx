@@ -1,29 +1,32 @@
 import React from 'react'
-import {CSS, StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledTableV2Row} from './table-row.styles'
+import styles from './styles/table-row.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   children: React.ReactNode
   isSelected: boolean
   isExpanded: boolean
-  css?: CSS
+  css?: unknown
+  className?: string
 }
 
 const TableV2Row = React.forwardRef<HTMLTableRowElement, Props>(
-  ({children, isSelected, isExpanded, css = {}}, ref) => {
+  ({children, isSelected, isExpanded, css = {}, className}, ref) => {
     const tableRowRef = useDOMRef<HTMLTableRowElement>(ref)
-
+    const rowClasses = [
+      isSelected && styles.isSelected,
+      isExpanded && styles.isExpanded,
+      className,
+    ]
+      .filter(Boolean)
+      .join(' ')
     return (
-      <StyledTableV2Row
-        isSelected={isSelected}
-        isExpanded={isExpanded}
-        ref={tableRowRef}
-        css={css}
-        role='row'
-      >
-        {children}
-      </StyledTableV2Row>
+      <CssInjection childrenRef={tableRowRef} css={css}>
+        <div role='row' className={rowClasses} ref={tableRowRef}>
+          {children}
+        </div>
+      </CssInjection>
     )
   },
 )

@@ -1,9 +1,10 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledTableV2Resizer} from './table-resizer.styles'
-export interface Props extends StyledComponentProps {
+import styles from './styles/table-resizer.module.css'
+export interface Props {
   resizeHandler: (e: unknown) => void
+  css?: unknown
 }
 
 export type TableV2ResizerProps = Props
@@ -11,14 +12,17 @@ export type TableV2ResizerProps = Props
 const TableV2Resizer = React.forwardRef<
   HTMLTableCellElement,
   TableV2ResizerProps
->(({resizeHandler}, ref) => {
+>(({resizeHandler, css = {}}, ref) => {
   const TableV2ResizerRef = useDOMRef<HTMLDivElement>(ref)
   return (
-    <StyledTableV2Resizer
-      onMouseDown={resizeHandler}
-      onTouchStart={resizeHandler}
-      ref={TableV2ResizerRef}
-    />
+    <CssInjection css={css} childrenRef={ref}>
+      <div
+        className={styles.cdgTableResizer}
+        onMouseDown={resizeHandler}
+        onTouchStart={resizeHandler}
+        ref={TableV2ResizerRef}
+      ></div>
+    </CssInjection>
   )
 })
 

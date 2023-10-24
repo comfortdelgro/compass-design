@@ -1,22 +1,20 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {
-  StyledTableV2Progress,
-  StyledTableV2ProgressBar,
-  StyledTableV2ProgressLabel,
-  TableV2ProgressBarVariantProps,
-} from './table-progress.styles'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import styles from './styles/table-progress.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   progress: number
+  css?: unknown
+  className?: string
 }
 
 export type ProgressPercentageProps = Props &
-  TableV2ProgressBarVariantProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const ProgressPercentage: React.FC<ProgressPercentageProps> = ({
   progress,
+  css = {},
+  className,
 }: ProgressPercentageProps) => {
   let status = ''
   if (progress >= 0 && progress <= 30) {
@@ -26,15 +24,23 @@ const ProgressPercentage: React.FC<ProgressPercentageProps> = ({
   } else {
     status = 'high'
   }
-
+  const ref = React.useRef()
+  const progressClass = [
+    styles.cdgTableProgress,
+    status === 'low' && styles.progressLow,
+    status === 'average' && styles.progressAverage,
+    status === 'high' && styles.progressHigh,
+    className,
+  ]
+    .filter(Boolean)
+    .join(' ')
   return (
-    <StyledTableV2ProgressBar className='progress-bar'>
-      <StyledTableV2Progress
-        className={`progress ${status}`}
-        css={{width: `${progress}%`}}
-      ></StyledTableV2Progress>
-      <StyledTableV2ProgressLabel className='progress-label'>{`${progress}%`}</StyledTableV2ProgressLabel>
-    </StyledTableV2ProgressBar>
+    <CssInjection css={css} childrenRef={ref}>
+      <div className={styles.cdgTableProgressBar}>
+        <div className={progressClass} style={{width: `${progress}%`}}></div>
+        <span className={styles.cdgTableProgressLabel}>{`${progress}%`}</span>
+      </div>
+    </CssInjection>
   )
 }
 
