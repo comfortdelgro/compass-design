@@ -1,4 +1,5 @@
-/* styledWrapper.module.scss */
+@import '../../theme/theme.module.css';
+
 @layer default {
   .wrapper {
     width: 100%;

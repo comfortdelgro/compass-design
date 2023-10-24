@@ -1,4 +1,4 @@
-/* styledTab.module.scss */
+@import '../../theme/theme.module.css';
 
 @layer default, variant, compoundVariant;
 
