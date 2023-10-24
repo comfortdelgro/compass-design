@@ -1,0 +1,107 @@
+@import '../../theme/theme.module.css';
+
+@layer default, variant;
+
+@layer default {
+  /* StyledPopover */
+  .popover {
+    appearance: none;
+    background-color: transparent;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    background: var(--cdg-color-background);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: var(--cdg-border-radius-md);
+    min-height: var(--cdg-spacing-8);
+    max-height: var(--cdg-spacing-64);
+    overflow-y: auto;
+  }
+
+  /* StyledEmptyMessage */
+  .emptyMessage {
+    appearance: none;
+    background-color: transparent;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    font-size: var(--cdg-font-size-label2);
+    font-family: var(--cdg-font-size-header5);
+    color: var(--cdg-color-disabledText);
+    width: 100%;
+    min-height: var(--cdg-spacing-8);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* StyledOption */
+  .option {
+    appearance: none;
+    background-color: transparent;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    margin: 0;
+    width: 100%;
+    font-size: var(--cdg-font-size-label1);
+    line-height: var(--cdg-spacing-4);
+    font-family: var(--cdg-font-sans);
+    font-weight: var(--cdg-font-weight-medium);
+    padding: var(--cdg-spacing-2) var(--cdg-spacing-4);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: var(--cdg-spacing-2);
+  }
+
+  .option:hover,
+  .hover {
+    background-color: var(--cdg-color-gray20);
+  }
+
+  .option:focus-visible {
+    background-color: var(--cdg-color-cdgBlue20);
+  }
+
+  /* StyledAutoComplete */
+  .autoComplete {
+    appearance: none;
+    background-color: transparent;
+    height: fit-content;
+    width: fit-content;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .autoComplete:focus-visible {
+    outline: none;
+    border: none;
+    border-color: transparent;
+  }
+}
+
+@layer variant {
+  /* isFocused, isSelected and isDisabled for option */
+  /* .option.isFocused,
+  .option.isSelected {
+    background-color: var(--cdg-color-gray20);
+  }
+
+  .option.isDisabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  } */
+  /* end of  isFocused, isSelected and isDisabled for option */
+}
+
+/* AutoCompleteVariantProps */
+/* No specific CSS for AutoCompleteVariantProps */

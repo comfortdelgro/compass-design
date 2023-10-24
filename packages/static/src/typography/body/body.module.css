@@ -1,0 +1,40 @@
+@import '../../theme/theme.module.css';
+
+@layer default, variant;
+
+@layer default {
+  .header {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    color: var(--cdg-color-primaryText);
+  }
+}
+
+@layer variant {
+  /* font weight variant */
+  .bold {
+    font-weight: var(--cdg-font-weight-bold);
+  }
+
+  .semibold {
+    font-weight: var(--cdg-font-weight-semibold);
+  }
+
+  /* font size variant  */
+
+  .body1 {
+    font-size: var(--cdg-font-size-body1);
+    line-height: var(--cdg-spacing-7_5);
+  }
+
+  .body2 {
+    font-size: var(--cdg-font-size-body2);
+    line-height: var(--cdg-spacing-6);
+  }
+
+  .body3 {
+    font-size: var(--cdg-font-size-body3);
+    line-height: var(--cdg-spacing-5_25);
+  }
+}
