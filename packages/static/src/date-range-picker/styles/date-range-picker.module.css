@@ -1,21 +1,25 @@
 @import '../../theme/theme.module.css';
 
-.dateRangePicker {
-  width: fit-content;
-}
+@layer default, variant, compoundVariant;
 
-.dateRangeFields {
-  display: flex;
-  gap: var(--cdg-spacing-6);
-}
+@layer default {
+  .dateRangePicker {
+    width: fit-content;
+  }
 
-@media screen and (max-width: 768px) {
   .dateRangeFields {
-    flex-direction: column;
+    display: flex;
     gap: var(--cdg-spacing-6);
   }
 
-  .dateRangePicker {
-    width: 100%;
+  @media screen and (max-width: 768px) {
+    .dateRangeFields {
+      flex-direction: column;
+      gap: var(--cdg-spacing-6);
+    }
+
+    .dateRangePicker {
+      width: 100%;
+    }
   }
 }
