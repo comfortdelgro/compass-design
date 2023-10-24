@@ -123,6 +123,8 @@ export type {
   MultipleDropdownItemProps,
   MultipleDropdownProps,
 } from './multiple-dropdown'
+export {default as Navbar} from './navbar'
+export type {NavbarBrandProps, NavbarProps} from './navbar'
 export { default as Popover } from './popover'
 export type { PopoverDirection, PopoverProps } from './popover'
 export { default as Progress } from './progress'
