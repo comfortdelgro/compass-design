@@ -1,0 +1,89 @@
+@import '../../theme/theme.module.css';
+
+@layer default;
+
+@layer default {
+  .timePickerInput :global .right-icon {
+    width: var(--cdg-spacing-6);
+    height: var(--cdg-spacing-6);
+  }
+  .timePickerInputIcon {
+    display: flex;
+    cursor: pointer;
+    border-radius: var(--cdg-border-radius-full);
+    background-color: transparent;
+    border: none;
+    padding: var(--cdg-spacing-1);
+  }
+  .timePickerInputIcon:active {
+    background-color: var(--cdg-color-gray20);
+  }
+  .timePickerInputIcon svg {
+    width: var(--cdg-spacing-4);
+    height: var(--cdg-spacing-4);
+  }
+  .timePickerInputIcon path {
+    fill: var(--cdg-color-secondaryText);
+  }
+  .timePickerDropdownItem {
+    background-color: var(--cdg-color-white);
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--cdg-spacing-3);
+    border-radius: var(--cdg-border-radius-md);
+    width: var(--cdg-spacing-10_5);
+    height: var(--cdg-spacing-10_5);
+    cursor: pointer;
+    font-weight: 500;
+    box-sizing: border-box;
+    font-size: var(--cdg-font-size-body3);
+    line-height: var(--cdg-spacing-5_25);
+  }
+  .timePickerDropdownItem:hover {
+    background-color: var(--cdg-color-primaryBg);
+  }
+  .timePickerDropdownItem.active {
+    background-color: var(--cdg-color-cdgBlue100);
+    color: var(--cdg-color-background);
+  }
+  .timePickerDropdownWrapper {
+    background: var(--cdg-color-background);
+    border: 1px solid var(--cdg-color-divider);
+    border-radius: var(--cdg-border-radius-md);
+    z-index: 9999;
+  }
+  .timePickerDropdownContent {
+    display: flex;
+    height: var(--cdg-spacing-80);
+    width: 100%;
+    overflow-y: hidden;
+    margin-top: var(--cdg-spacing-1);
+  }
+  .timePickerDropdownControl {
+    padding: var(--cdg-spacing-1);
+    overflow-y: hidden;
+    overflow-x: hidden;
+    height: 100%;
+    width: var(--cdg-spacing-12_5);
+    position: relative;
+  }
+  .timePickerDropdownControl:hover {
+    overflow-y: auto;
+  }
+  .timePickerDropdownControl:not(:last-child) {
+    border-right: 1px solid var(--cdg-color-divider);
+  }
+  .timePickerDropdownFooter {
+    padding: var(--cdg-spacing-2);
+    display: flex;
+    justify-content: flex-end;
+    border-right: 1px solid var(--cdg-color-divider);
+  }
+  .timePickerDropdownFooter button {
+    font-weight: 500;
+    font-size: var(--cdg-font-size-body3);
+    line-height: var(--cdg-spacing-5_25);
+  }
+}

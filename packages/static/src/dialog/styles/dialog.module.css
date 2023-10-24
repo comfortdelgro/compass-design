@@ -1,0 +1,143 @@
+/* Importing the theme module */
+@import '../../theme/theme.module.css';
+
+@layer default, variant, compoundVariant;
+
+@layer default {
+  /* Icon Container */
+  .iconContainer {
+    appearance: none;
+    border: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: var(--cdg-spacing-14_25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .iconContainer * {
+    height: 100%;
+  }
+
+  /* Title */
+  .title {
+    appearance: none;
+    border: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-family: var(--cdg-font-sans);
+    font-weight: var(--cdg-font-weight-semibold);
+    font-size: var(--cdg-font-size-header3);
+    line-height: var(--cdg-line-height-normal);
+    color: var(--cdg-color-primaryText);
+  }
+
+  /* Dialog Description */
+  .description {
+    appearance: none;
+    border: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    flex-grow: 1;
+    width: 100%;
+    font-family: var(--cdg-font-sans);
+    font-weight: var(--cdg-line-height-normal);
+    font-size: var(--cdg-font-size-body2);
+    line-height: var(--cdg-line-height-normal);
+    color: var(--cdg-color-secondaryText);
+  }
+
+  /* Actions Container */
+  .actionsContainer {
+    appearance: none;
+    border: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: var(--cdg-spacing-2);
+  }
+
+  /* Wrapper */
+  .wrapper {
+    appearance: none;
+    border: none;
+    box-sizing: border-box;
+    margin: 0;
+    background: var(--cdg-color-overlayDark);
+    padding: var(--cdg-spacing-4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 49;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* content */
+  .content {
+    all: unset;
+    max-height: 100%;
+    max-width: 100%;
+    overflow: auto;
+    padding: var(--cdg-spacing-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--cdg-spacing-6);
+  }
+
+  /* dialog */
+  .dialog {
+    all: unset;
+    appearance: none;
+    border: none;
+    box-sizing: border-box;
+    margin: 0;
+    z-index: 50;
+    width: var(--cdg-spacing-120);
+    height: fit-content;
+    overflow: auto;
+    background-color: var(--cdg-color-background);
+    box-shadow: 0px 0.6px 1.8px rgba(0, 0, 0, 0.1),
+      0px 3.2px 7.2px rgba(0, 0, 0, 0.13);
+    border-radius: var(--cdg-border-radius-lg);
+  }
+}
+
+@layer variant {
+  @media (max-width: 900px) {
+    /* style action container when responsive == true */
+    .actionsContainerResponsive {
+      flex-direction: column;
+    }
+  }
+
+  .actionsContainerResponsive button div {
+    display: block;
+  }
+  .dialogAlert .actionsContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .dialogAlert .dialogTitle,
+  .dialogAlert .dialogDescription {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+}
