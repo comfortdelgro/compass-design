@@ -215,6 +215,22 @@ export * from './theme'
 export {default as ThemeStaticProvider} from './theme/ThemeProvider'
 export {default as TimePicker} from './time-picker'
 export type {TimePickerProps} from './time-picker'
+export {default as Toast} from './toast'
+export type {
+  ToastActionsProps,
+  ToastCloseIconProps,
+  ToastIconProps,
+  ToastLabelProps,
+  ToastMessageProps,
+  ToastProps,
+  ToastTitleProps,
+} from './toast'
+export {ToastContextProvider, useToast} from './toast/service'
+export type {
+  ToastItemType,
+  ToastState,
+  ToastsContainerProps,
+} from './toast/service'
 export {default as Transitions} from './transitions'
 export type {TransitionsProps} from './transitions'
 export {default as Sidenav, SidenavContext} from './sidenav'
