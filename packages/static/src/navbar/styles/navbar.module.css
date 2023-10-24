@@ -1,0 +1,73 @@
+@import '../../theme/theme.module.css';
+
+/* Using @layer is important because it helps users customize the styles easily because un-layered css has the highest priority*/
+
+/* 
+* compoundVariant has the highest priority
+* variant has the second highest priority
+* default has the lowest priority
+*/
+@layer default, variant, compoundVariant;
+
+  .navbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: var(--cdg-spacing-2) var(--cdg-spacing-4);
+    gap: var(--cdg-spacing-4);
+    container-name: navbar;
+    container-type: inline-size;
+  }
+
+  .navbar * {
+    box-sizing: border-box;
+  }
+
+  .navbarBrand {
+    color: var(--cdg-color-whiteText);
+  }
+
+  .navbarBrandTitle {
+    font-size: var(--cdg-spacing-4);
+    font-weight: var(--cdg-font-weight-semibold);
+    color: inherit;
+    margin: 0;
+  }
+
+  @media screen and (max-width: 1199px) {
+    .hiddenOnMobile.navbarBrand {
+      display: none;
+    }
+  }
+
+@layer variant {
+  .white {
+    background-color: var(--cdg-color-background);
+  }
+
+  .white .navbarBrand {
+    color: var(--cdg-color-gray100);
+  }
+
+  .blue {
+    background-color: var(--cdg-color-cdgBlue);
+  }
+
+  .website {
+    min-height: var(--cdg-spacing-22);
+    padding: var(--cdg-spacing-4) var(--cdg-spacing-16);
+  }
+
+  @media screen and (max-width: 768px) {
+    .website {
+      padding: var(--cdg-spacing-4) var(--cdg-spacing-12);
+    }
+  }
+
+  @media screen and (max-width: 428px) {
+    .website {
+      padding: var(--cdg-spacing-4) var(--cdg-spacing-4);
+    }
+  }
+}
