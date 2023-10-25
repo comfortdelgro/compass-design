@@ -3,6 +3,7 @@
 import React from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import {pickChild} from '../utils/pick-child'
+import {capitalizeFirstLetter} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import SidebarActions from './sidebar-actions'
 import SidebarContent from './sidebar-content'
@@ -83,20 +84,10 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>((props, ref) => {
         >
           <div
             className={`cdg-sidebar ${styles.sidebar} ${
-              variant
-                ? styles[
-                    `sidebar${
-                      variant.charAt(0).toUpperCase() + variant.slice(1)
-                    }`
-                  ]
-                : ''
+              variant ? styles[`sidebar${capitalizeFirstLetter(variant)}`] : ''
             } ${
               position
-                ? styles[
-                    `sidebar${
-                      position.charAt(0).toUpperCase() + position.slice(1)
-                    }`
-                  ]
+                ? styles[`sidebar${capitalizeFirstLetter(position)}`]
                 : ''
             }`}
             ref={sidebarRef}
