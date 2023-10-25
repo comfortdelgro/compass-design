@@ -34,7 +34,6 @@ const BannerImage = React.forwardRef<HTMLImageElement, BannerImageProps>(
           <img
             className={`cdg-banner-image ${styles.bannerImage} ${className}`}
             ref={bannerImageRef}
-            id={id}
             alt='banner image'
             onError={handleImageError}
             {...delegated}
