@@ -98,14 +98,23 @@ function handleVariables<T>(
 
 function objectToCSS(obj: StyleObject, selector = '', indent = ''): string {
   let css = ''
+  let mediaCss = ''
   // eslint-disable-next-line prefer-const
   let map = new Map<string, string>()
   const space = ' ' // space between parent class and child class
 
   for (const key in obj) {
-    if (typeof obj[key] === 'object') {
+    if (key.startsWith('@')) {
+      const mediaQuery = key
+      const mediaQueryCSS = objectToCSS(
+        obj[key] as StyleObject,
+        selector,
+        indent + '  ',
+      )
+      mediaCss += `${mediaQuery} {\n${mediaQueryCSS}\n}\n`
+    } else if (typeof obj[key] === 'object') {
       const newSelector = `${selector}${space}${key.replace(/&/g, '')}`.trim()
-      css += objectToCSS(obj[key] as StyleObject, newSelector, indent)
+      css = objectToCSS(obj[key] as StyleObject, newSelector, indent)
     } else {
       // Convert the key from camelCase to kebab-case
       const kebabKey = key.replace(/([A-Z])/g, '-$1').toLowerCase()
@@ -131,6 +140,7 @@ function objectToCSS(obj: StyleObject, selector = '', indent = ''): string {
   for (const [selector, value] of map) {
     css += `${indent}${selector} {\n${indent}  ${value};\n${indent}}\n`
   }
+  css += mediaCss 
   return css
 }
 

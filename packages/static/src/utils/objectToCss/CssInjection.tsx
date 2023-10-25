@@ -1,6 +1,6 @@
 import React from 'react'
 import generateRandomString from '../generateRandomString'
-import objectToCSS, { StyleObject } from './object-to-css'
+import objectToCSS, {StyleObject} from './object-to-css'
 
 export interface Props {
   children?: React.ReactNode
@@ -9,7 +9,7 @@ export interface Props {
 }
 
 const CssInjection = React.forwardRef<HTMLElement, Props>((props) => {
-  const { children, css, childrenRef } = props
+  const {children, css, childrenRef} = props
 
   // Generate a unique class name for the children
   const [additionalClasses, setAdditionalClasses] = React.useState('')
@@ -28,8 +28,9 @@ const CssInjection = React.forwardRef<HTMLElement, Props>((props) => {
       >
       // Clone the child element and add additional classes
       return React.cloneElement(childWithClassName, {
-        className: `${childWithClassName.props.className || ''
-          } ${additionalClasses}`,
+        className: `${
+          childWithClassName.props.className || ''
+        } ${additionalClasses}`,
       })
     }
     return child
@@ -39,19 +40,10 @@ const CssInjection = React.forwardRef<HTMLElement, Props>((props) => {
   React.useEffect(() => {
     if (additionalClasses === '') return
     if (!css) return
-    let cssStringParts = ''
-    for (const key in css as Object) {
-      if (key.startsWith('@')) {
-        const mediaQueryStyles = objectToCSS(css[key], `.${additionalClasses}`);
-        cssStringParts += `${key} { ${mediaQueryStyles} }`;
-      }
-    }
-    const regularStyles = objectToCSS(css as StyleObject, `.${additionalClasses}`);
-    cssStringParts += regularStyles;
-    console.log(cssStringParts)
+    const cssString = objectToCSS(css as StyleObject, `.${additionalClasses}`)
     const styleElement = document.createElement('style')
     styleElement.setAttribute('data-cdg', 'css')
-    styleElement.textContent = cssStringParts
+    styleElement.textContent = cssString
     document.head.appendChild(styleElement)
     return () => {
       document.head.removeChild(styleElement)
