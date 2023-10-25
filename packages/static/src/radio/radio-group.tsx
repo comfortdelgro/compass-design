@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import React, {useCallback, useEffect, useState} from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
+import {capitalizeFirstLetter} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/radio-group.module.css'
 
@@ -81,11 +82,7 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
         <div
           className={`cdg-radio-group ${styles.radioGroup} ${
             orientation
-              ? styles[
-                  `radioGroup${
-                    orientation.charAt(0).toUpperCase() + orientation.slice(1)
-                  }`
-                ]
+              ? styles[`radioGroup${capitalizeFirstLetter(orientation)}`]
               : ''
           }`}
           ref={groupRef}
