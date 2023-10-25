@@ -181,7 +181,6 @@ You have to make sure your components in old react-compass sync with new react-c
 - Sub Banner
 - Tabs
 - Tag Box
-- Tag Box v2
 - Upload
 - Upload V2
 - Video Player
@@ -204,6 +203,7 @@ You have to make sure your components in old react-compass sync with new react-c
 - Text Field
 - Time Picker
 - Toast
+- Tag Box v2
 
 ### Minh
 

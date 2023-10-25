@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
+import {capitalizeFirstLetter} from '../utils/string'
 import RadioGroup, {RadioContext} from './radio-group'
 import styles from './styles/radio.module.css'
 import Tooltip from './tooltip'
@@ -52,24 +53,14 @@ const Radio: React.FC<RadioProps> = (props) => {
   }, [state.value])
 
   const internalRadioClassName = `${
-    variant
-      ? styles[
-          `radioVariant${variant.charAt(0).toUpperCase() + variant.slice(1)}`
-        ]
-      : ''
+    variant ? styles[`radioVariant${capitalizeFirstLetter(variant)}`] : ''
   } ${inputPosition === 'left' ? '' : styles.radioInputPositionRight} ${
     isDisabled ? styles.radioDisabled : ''
   }
   `
 
   const internalRadioInputClassName = `${
-    variant
-      ? styles[
-          `radioInputVariant${
-            variant.charAt(0).toUpperCase() + variant.slice(1)
-          }`
-        ]
-      : ''
+    variant ? styles[`radioInputVariant${capitalizeFirstLetter(variant)}`] : ''
   } ${isChecked ? styles.radioInputActive : ''} ${
     isDisabled ? styles.radioInputDisabled : ''
   }
