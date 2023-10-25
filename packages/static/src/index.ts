@@ -57,14 +57,16 @@ export {default as Chip} from './chip'
 export type {ChipProps} from './chip'
 export {default as ConfirmPUPoint} from './confirm-pickup'
 export type {ConfirmPUPointProps} from './confirm-pickup'
+export {default as DatePicker} from './date-picker'
+export type {DatePickerProps} from './date-picker'
+export {default as DateRangePicker} from './date-range-picker'
+export type {DateRangePickerProps} from './date-range-picker'
 export {default as DashboardSidecard} from './dashboard-sidecard'
 export type {
   DashboardSidecardContentProps,
   DashboardSidecardHeaderProps,
   DashboardSidecardProps,
 } from './dashboard-sidecard'
-export {default as DatePicker} from './date-picker'
-export type {DatePickerProps} from './date-picker'
 export {default as Dialog} from './dialog'
 export type {
   DialogActionsProps,
