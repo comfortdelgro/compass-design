@@ -2,6 +2,7 @@ import React from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/grid.module.css'
+import { capitalizeFirstLetter } from '../utils/string'
 
 interface Props {
   children?: React.ReactNode
@@ -35,8 +36,6 @@ const GridItem = React.forwardRef<HTMLDivElement, GridItemProps>(
     } = props
 
     const gridItemRef = useDOMRef<HTMLDivElement>(ref)
-    const capitalizeFirstLetter = (string: string) =>
-      string.charAt(0).toUpperCase() + string.slice(1)
 
     const classNames = [
       styles.item,
