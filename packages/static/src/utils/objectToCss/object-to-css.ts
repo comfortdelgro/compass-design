@@ -102,7 +102,7 @@ function objectToCSS(obj: StyleObject, selector = '', indent = ''): string {
   // eslint-disable-next-line prefer-const
   let map = new Map<string, string>()
   const space = ' ' // space between parent class and child class
-
+  // logic check if contain @ responsive mark
   for (const key in obj) {
     if (key.startsWith('@')) {
       const mediaQuery = key
@@ -140,7 +140,8 @@ function objectToCSS(obj: StyleObject, selector = '', indent = ''): string {
   for (const [selector, value] of map) {
     css += `${indent}${selector} {\n${indent}  ${value};\n${indent}}\n`
   }
-  css += mediaCss 
+  // push media css config to below for higher priority
+  css += mediaCss
   return css
 }
 
