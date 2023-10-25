@@ -40,7 +40,8 @@ const TagBoxItem = React.forwardRef<HTMLDivElement, BannerProps>(
 
     const onValueClick = () => {
       if (!isDisabled) {
-        addInputRef.current.disabled = true;
+        if(addInputRef.current)
+          addInputRef.current.disabled = true;
         setEditable(true)
         setTimeout(() => {
           inputRef?.current?.focus()
@@ -91,7 +92,8 @@ const TagBoxItem = React.forwardRef<HTMLDivElement, BannerProps>(
       const value = (e.target as HTMLInputElement).value
       if (value !== '' && e.key === 'Enter') {
         onEdit?.(id, value)
-        addInputRef.current.disabled = false;
+        if(addInputRef.current)
+          addInputRef.current.disabled = false;
         inputRef?.current?.blur()
       }
       if (e.key == 'Escape' || e.keyCode == 27) {
@@ -118,7 +120,8 @@ const TagBoxItem = React.forwardRef<HTMLDivElement, BannerProps>(
     const onBlur = () => {
       setInputValue(value)
       setEditable(false)
-      addInputRef.current.disabled = false;
+      if(addInputRef.current)
+        addInputRef.current.disabled = false;
       caculateWidth(value, (w: number) => {
         if (inputRef.current) inputRef.current.style.width = `${w + 4}px`
       })
