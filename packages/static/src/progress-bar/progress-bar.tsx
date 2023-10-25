@@ -142,14 +142,14 @@ const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
                 ...(loading === 'stripes'
                   ? {
                     backgroundImage: `repeating-linear-gradient(-45deg,transparent 0 1.5%,${color} 1.5% 3%)`,
-                    '@sm': {
+                    '@media (max-width: 600px)': {
                       backgroundImage: `repeating-linear-gradient(-45deg,transparent 0 .8%,${color} .8% 1.6%)`,
                     },
                   }
                   : {
                     backgroundColor: color,
                   }),
-              }} childrenRef={loadingProgressRef}>
+              }} childrenRef={currentProgressRef}>
                 <div
                   className={`progress-bar__loading ${styles.loadingProgress} ${styles[
                     `loading${loading.toString().charAt(0).toUpperCase() +
