@@ -89,24 +89,26 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
   }, [items])
 
   const calculateRemainingItems = () => {
-    let total = bodyContentRef.current?.clientWidth ?? 0
-    let count = 0
-    for (const i of elRefs) {
-      if (i.current) i.current.removeAttribute('style')
-    }
-    for (const i of elRefs) {
-      const w = i.current?.clientWidth
-      if (w) {
-        const t = total - w - 16
-        if (t > 37) {
-          total = t
-        } else {
-          i.current.style.display = 'none'
-          count++
+    if (!isOpen) {
+      let total = bodyContentRef.current?.clientWidth ?? 0
+      let count = 0
+      for (const i of elRefs) {
+        if (i.current) i.current.removeAttribute('style')
+      }
+      for (const i of elRefs) {
+        const w = i.current?.clientWidth
+        if (w) {
+          const t = total - w - 16
+          if (t > 37) {
+            total = t
+          } else {
+            i.current.style.display = 'none'
+            count++
+          }
         }
       }
+      setRemainingCount(Math.min(count, 99))
     }
-    setRemainingCount(Math.min(count, 99))
   }
 
   const focusInput = () => {
@@ -217,6 +219,7 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
                     icon={item.icon}
                     value={item.value}
                     ref={elRefs[index]}
+                    addInputRef={inputRef}
                     isError={!!item.isError}
                     wrapperRef={bodyContentRef}
                     isDisabled={!!item.isDisabled}

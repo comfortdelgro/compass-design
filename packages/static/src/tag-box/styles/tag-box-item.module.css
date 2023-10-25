@@ -21,20 +21,23 @@
     background-color: var(--cdg-color-darkerBg);
   }
 
-  .item svg {
+  .itemSvg {
     width: var(--cdg-spacing-3);
     height: var(--cdg-spacing-3);
   }
 
-  .item input {
+  .itemInput {
     margin: 0;
     padding: 0;
+    border: none;
+    outline: none;
     height: fit-content;
+    background: transparent;
     font-size: var(--cdg-font-size-label2);
     font-weight: var(--cdg-font-weight-semibold);
   }
 
-  .item button {
+  .itemButton {
     margin: 0;
     border: 0;
     padding: 0;

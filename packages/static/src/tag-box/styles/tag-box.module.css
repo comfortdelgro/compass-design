@@ -51,13 +51,14 @@
     gap: var(--cdg-spacing-4);
   }
 
-  .bodyContent input {
+  .bodyContentInput {
     padding: 0;
     width: 4px;
     border: none;
     outline: none;
     background: transparent;
-    font-size: var(--cdg-font-size-body3);
+    font-size: var(--cdg-font-size-label2);
+    font-weight: var(--cdg-font-weight-semibold);
   }
 
   .icon {
@@ -71,7 +72,7 @@
     margin-top: var(--cdg-spacing-1);
   }
 
-  .icon svg {
+  .icon > svg {
     width: var(--cdg-spacing-4);
     height: var(--cdg-spacing-4);
   }
@@ -102,7 +103,7 @@
     font-weight: var(--cdg-font-weight-semibold);
   }
 
-  .action span {
+  .action > span {
     flex-grow: 1;
   }
 }
