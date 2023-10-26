@@ -138,7 +138,6 @@ export const StyledSidebar = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   position: 'absolute',
-
   // variants
   variants: {
     position: {

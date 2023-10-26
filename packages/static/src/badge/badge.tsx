@@ -2,6 +2,7 @@ import {toUpper} from 'lodash'
 import React from 'react'
 import {getIconFromColor} from '../utils/get-icon-from-color'
 import CssInjection from '../utils/objectToCss/CssInjection'
+import {capitalizeFirstLetter} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/badge.module.css'
 
@@ -40,8 +41,6 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
   } = props
 
   const badgeRef = useDOMRef<HTMLDivElement>(ref)
-  const capitalizeFirstLetter = (word: string) =>
-    word.charAt(0).toUpperCase() + word.slice(1)
 
   const classNames = [
     styles.badge,

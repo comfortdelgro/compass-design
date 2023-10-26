@@ -1,124 +1,129 @@
 /* Importing the theme module */
 @import '../../../theme/theme.module.css';
 
+@layer default, variant, compoundVariant;
+
 /* Level 1 */
 
-.dateField {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+@layer default {
+  .dateField {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .dateFieldInput {
+    min-width: var(--cdg-spacing-49);
+    height: var(--cdg-spacing-11);
+    display: flex;
+    align-items: center;
+    padding: 0 0 0 var(--cdg-spacing-4);
+    background-color: var(--cdg-color-background);
+    border: 1px solid var(--cdg-color-gray30);
+    border-radius: var(--cdg-border-radius-md);
+  }
+
+  .dateFieldInput:focus-within {
+    border: 1px solid var(--cdg-color-cdgBlue100);
+    border-radius: var(--cdg-border-radius-md);
+  }
+
+  .dateFieldLabel {
+    font-size: var(--cdg-font-size-label1);
+    font-weight: var(--cdg-font-weight-semibold);
+    margin-bottom: var(--cdg-spacing-2);
+    display: inline-block;
+    width: 100%;
+  }
+
+  .dateFieldLabel span {
+    margin-left: var(--cdg-spacing-1);
+    color: var(--cdg-color-danger);
+  }
+
+  .calendarToggleIcon {
+    width: var(--cdg-spacing-4);
+    height: var(--cdg-spacing-4);
+  }
+
+  .expandButton {
+    border: none;
+    margin: 0;
+    margin-left: auto;
+    width: auto;
+    overflow: visible;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    line-height: normal;
+    font-smooth: inherit;
+    -webkit-appearance: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: var(--cdg-spacing-2) var(--cdg-spacing-4);
+  }
+
+  .textFieldHelperText {
+    font-size: var(--cdg-font-size-label2);
+    font-weight: var(--cdg-font-weight-medium);
+    transition: var(--cdg-transition-default);
+    margin-top: var(--cdg-spacing-1);
+    color: var(--cdg-color-gray70);
+  }
+
+  .icon {
+    color: var(--cdg-color-primaryText);
+  }
 }
 
-.dateFieldInput {
-  min-width: var(--cdg-spacing-49);
-  height: var(--cdg-spacing-11);
-  display: flex;
-  align-items: center;
-  padding: 0 0 0 var(--cdg-spacing-4);
-  background-color: var(--cdg-color-background);
-  border: 1px solid var(--cdg-color-gray30);
-  border-radius: var(--cdg-border-radius-md);
+@layer variant {
+  /* level 2 */
+
+  .mobile:active {
+    background-color: var(--cdg-color-gray10);
+  }
+
+  .disabled .dateFieldInput {
+    background-color: var(--cdg-color-gray20);
+    cursor: not-allowed;
+  }
+
+  .disabled .dateFieldInput * {
+    color: var(--cdg-color-disabledText);
+    cursor: not-allowed;
+  }
+
+  .invalid .dateFieldInput {
+    border-color: var(--cdg-color-danger);
+  }
+
+  /*  */
+
+  .error {
+    color: var(--cdg-color-danger);
+  }
+
+  .text {
+    font-size: var(--cdg-font-size-label2);
+  }
+
+  /*  */
+
+  .expandButton:focus {
+    box-shadow: none;
+  }
+
+  .expandButton:focus-visible {
+    outline: 2px solid var(--cdg-color-cdgBlue80);
+    border-radius: 2px;
+  }
+
+  /*  */
+
+  .helperTextError {
+    color: var(--cdg-color-danger);
+  }
 }
-
-.dateFieldInput:focus-within {
-  border: 1px solid var(--cdg-color-cdgBlue100);
-  border-radius: var(--cdg-border-radius-md);
-}
-
-.dateFieldLabel {
-  font-size: var(--cdg-font-size-label1);
-  font-weight: var(--cdg-font-weight-semibold);
-  margin-bottom: var(--cdg-spacing-2);
-  display: inline-block;
-  width: 100%;
-}
-
-.dateFieldLabel span {
-  margin-left: var(--cdg-spacing-1);
-  color: var(--cdg-color-danger);
-}
-
-.calendarToggleIcon {
-  width: var(--cdg-spacing-3);
-  height: var(--cdg-spacing-3);
-}
-
-.expandButton {
-  border: none;
-  margin: 0;
-  margin-left: auto;
-  width: auto;
-  overflow: visible;
-  background: transparent;
-  color: inherit;
-  font: inherit;
-  line-height: normal;
-  font-smooth: inherit;
-  -webkit-appearance: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  padding: var(--cdg-spacing-2) var(--cdg-spacing-4);
-}
-
-.textFieldHelperText {
-  font-size: var(--cdg-font-size-label2);
-  font-weight: var(--cdg-font-weight-medium);
-  transition: var(--cdg-transition-default);
-  margin-top: var(--cdg-spacing-1);
-  color: var(--cdg-color-gray70);
-}
-
-.icon {
-  color: var(--cdg-color-primaryText);
-}
-
-/* level 2 */
-
-.mobile:active {
-  background-color: var(--cdg-color-gray10);
-}
-
-.disabled .dateFieldInput {
-  background-color: var(--cdg-color-gray20);
-  cursor: not-allowed;
-}
-
-.disabled .dateFieldInput * {
-  color: var(--cdg-color-disabledText);
-  cursor: not-allowed;
-}
-
-.invalid .dateFieldInput {
-  border-color: var(--cdg-color-danger);
-}
-
-/*  */
-
-.error {
-  color: var(--cdg-color-danger);
-}
-
-.text {
-  font-size: var(--cdg-font-size-label2);
-}
-
-/*  */
-
-.expandButton:focus {
-  box-shadow: none;
-}
-
-.expandButton:focus-visible {
-  outline: 2px solid var(--cdg-color-cdgBlue80);
-  border-radius: 2px;
-}
-
-/*  */
-
-.helperTextError {
-  color: var(--cdg-color-danger);
-}
-
 /*  */
