@@ -74,7 +74,7 @@ const Divider = React.forwardRef<HTMLElement, DividerProps>((props, ref) => {
   const bodyClass = React.useMemo(() => {
     return [
       styles.body,
-      (orientation === 'vertical') && styles.bodyOrientationVertical,
+      orientation === 'vertical' && styles.bodyOrientationVertical,
       'cdg-divider-body',
     ]
       .filter(Boolean)
