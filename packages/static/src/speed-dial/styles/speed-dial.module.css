@@ -1,0 +1,152 @@
+@import '../../theme/theme.module.css';
+
+@layer default,variant;
+
+@layer default {
+  .speedDial {
+    box-sizing: border-box;
+    width: fit-content;
+    display: flex;
+  }
+  .speedDialTrigger {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--cdg-spacing-16);
+    height: var(--cdg-spacing-16);
+    background-color: var(--cdg-color-cdgBlue100);
+    box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+      0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+    color: var(--cdg-color-background);
+    border: none;
+    border-radius: var(--cdg-border-radius-full);
+    font-size: var(--cdg-font-size-header3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .speedDialTriggerContent {
+    box-sizing: border-box;
+    display: inline-block;
+    width: var(--cdg-spacing-6);
+    height: var(--cdg-spacing-7);
+  }
+
+  .speedDialActions {
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    display: flex;
+  }
+
+  .speedDialAction {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--cdg-spacing-12_5);
+    height: var(--cdg-spacing-12_5);
+    background-color: var(--cdg-color-cdgBlue100);
+    color: var(--cdg-color-background);
+    border: none;
+    border-radius: var(--cdg-border-radius-full);
+    font-size: var(--cdg-font-size-header3);
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+      0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+  }
+
+  .speedDialIcon {
+    margin-right: 0;
+  }
+
+  .speedDialName {
+    display: none;
+  }
+}
+
+@layer variant {
+  .speedDialUp {
+    flex-direction: column-reverse;
+  }
+
+  .speedDialDown {
+    flex-direction: column;
+  }
+
+  .speedDialLeft {
+    flex-direction: row-reverse;
+  }
+
+  .speedDialRight {
+    flex-direction: row;
+  }
+
+  .speedDialTriggerOpen {
+    background-color: var(--cdg-color-cdgBlue120);
+  }
+
+  .speedDialTriggerSpan {
+    transform: rotate(0deg);
+    transition: all 0.3s ease;
+  }
+
+  .speedDialTriggerOpenSpan {
+    transform: rotate(45deg);
+  }
+
+  .speedDialActionsOpen {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .speedDialActionsUp {
+    flex-direction: column-reverse;
+  }
+
+  .speedDialActionsDown {
+    flex-direction: column;
+  }
+
+  .speedDialActionsLeft {
+    flex-direction: row-reverse;
+  }
+
+  .speedDialActionsRight {
+    flex-direction: row;
+  }
+
+  .speedDialAction:hover {
+    background-color: var(--cdg-color-cdgBlue120);
+  }
+
+  .speedDialActionUp {
+    margin-bottom: var(--cdg-spacing-2_5);
+  }
+
+  .speedDialActionDown {
+    margin-top: var(--cdg-spacing-2_5);
+  }
+
+  .speedDialActionRight {
+    margin-left: var(--cdg-spacing-2_5);
+  }
+
+  .speedDialActionLeft {
+    margin-right: var(--cdg-spacing-2_5);
+  }
+
+  .isVisibleTrue {
+    cursor: pointer;
+  }
+
+  .isVisibleFalse {
+    cursor: default;
+  }
+}
