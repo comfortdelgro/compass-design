@@ -150,10 +150,7 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
               ))}
             </TableV2RowGroup>
             {
-              <TableV2RowGroup
-                as='tbody'
-                css={{height: isLoading ? '300px' : undefined}}
-              >
+              <TableV2RowGroup as='tbody'>
                 {tableRows.length ? (
                   tableRows.map((row) => {
                     return (
