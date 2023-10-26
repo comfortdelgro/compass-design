@@ -10,9 +10,9 @@ interface Props {
   absolute?: boolean
   children?: React.ReactNode
   component?: keyof JSX.IntrinsicElements
-  textAlign?: 'center' | 'right' | 'left' | 'top' | 'bottom'
   orientation?: 'vertical' | 'horizontal'
   variant?: 'fullWidth' | 'inset' | 'middle'
+  textAlign?: 'center' | 'right' | 'left' | 'top' | 'bottom'
 }
 
 export type DividerProps = Props &
@@ -36,45 +36,49 @@ const Divider = React.forwardRef<HTMLElement, DividerProps>((props, ref) => {
   const dividerRef = useDOMRef<HTMLElement>(ref)
 
   const dividerClass = React.useMemo(() => {
-    let classes = `cdg-divider ${styles.divider}`
-    if (className) classes += ` ${className}`
-    if (absolute) classes += ` ${styles.absolute}`
-    if (flexItem) classes += ` ${styles.flexItem}`
-    if (children) classes += ` ${styles.hasChildren}`
-    if (variant === 'inset') classes += ` ${styles.variantInset}`
-    if (orientation === 'vertical') classes += ` ${styles.orientationVertical}`
-
-    if (variant === 'middle' && orientation === 'horizontal')
-      classes += ` ${styles.variantMiddleOrientationHorizontal}`
-
-    if (variant === 'middle' && orientation === 'vertical')
-      classes += ` ${styles.variantMiddleOrientationVertical}`
-
-    if (children && orientation === 'vertical')
-      classes += ` ${styles.hasChildrenOrientationVertical}`
-
-    if (textAlign === 'right' && orientation === 'horizontal')
-      classes += ` ${styles.textAlignRightOrientationHorizontal}`
-
-    if (textAlign === 'left' && orientation === 'horizontal')
-      classes += ` ${styles.textAlignLeftOrientationHorizontal}`
-
-    if (textAlign === 'top' && orientation === 'vertical')
-      classes += ` ${styles.textAlignTopOrientationVertical}`
-
-    if (textAlign === 'bottom' && orientation === 'vertical')
-      classes += ` ${styles.textAlignBottomOrientationVertical}`
-
-    return classes
+    return [
+      styles.divider,
+      absolute && styles.absolute,
+      flexItem && styles.flexItem,
+      children && styles.hasChildren,
+      variant === 'inset' && styles.variantInset,
+      orientation === 'vertical' && styles.orientationVertical,
+      variant === 'middle' &&
+        orientation === 'horizontal' &&
+        styles.variantMiddleOrientationHorizontal,
+      variant === 'middle' &&
+        orientation === 'vertical' &&
+        styles.variantMiddleOrientationVertical,
+      children &&
+        orientation === 'vertical' &&
+        styles.hasChildrenOrientationVertical,
+      textAlign === 'right' &&
+        orientation === 'horizontal' &&
+        styles.textAlignRightOrientationHorizontal,
+      textAlign === 'left' &&
+        orientation === 'horizontal' &&
+        styles.textAlignLeftOrientationHorizontal,
+      textAlign === 'top' &&
+        orientation === 'vertical' &&
+        styles.textAlignTopOrientationVertical,
+      textAlign === 'bottom' &&
+        orientation === 'vertical' &&
+        styles.textAlignBottomOrientationVertical,
+      'cdg-divider',
+      className,
+    ]
+      .filter(Boolean)
+      .join(' ')
   }, [className, absolute, flexItem, children, variant, orientation, textAlign])
 
   const bodyClass = React.useMemo(() => {
-    let classes = `cdg-divider-body ${styles.body}`
-
-    if (orientation === 'vertical')
-      classes += ` ${styles.bodyOrientationVertical}`
-
-    return classes
+    return [
+      styles.body,
+      (orientation === 'vertical') && styles.bodyOrientationVertical,
+      'cdg-divider-body',
+    ]
+      .filter(Boolean)
+      .join(' ')
   }, [orientation])
 
   return (
@@ -83,7 +87,7 @@ const Divider = React.forwardRef<HTMLElement, DividerProps>((props, ref) => {
         component,
         {
           ...delegated,
-          classes: dividerClass,
+          className: dividerClass,
           style: {'--divider-color': color},
           ref: dividerRef,
         },
