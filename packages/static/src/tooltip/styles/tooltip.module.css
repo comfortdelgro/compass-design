@@ -15,7 +15,6 @@
 /* StyledTooltip */
 .tooltip {
   /* ... Other styles ... */
-  /* $$themeColor: '$cdgBlue', */
   box-sizing: border-box;
   position: 'absolute';
   padding: var(--cdg-spacing-4);
