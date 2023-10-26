@@ -3,13 +3,13 @@
 
 @layer default {
   .cdgTableResizer {
-    position: 'absolute';
+    position: absolute;
     right: 0;
     top: 0;
-    height: '100%';
-    width: '5px';
-    background: 'rgba(0; 0; 0; 0.5)';
-    cursor: 'col-resize';
+    height: 100%;
+    width: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    cursor: col-resize;
     opacity: 0;
   }
   .cdgTableResizer:hover {

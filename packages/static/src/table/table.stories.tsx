@@ -1,14 +1,14 @@
 import {
-faDashboard,
-faFileLines,
-faTrashAlt,
+  faDashboard,
+  faFileLines,
+  faTrashAlt,
 } from '@fortawesome/free-solid-svg-icons'
-import { Meta } from '@storybook/react'
-import React,{ useState } from 'react'
-import Table,{ TableColumnDef,TableSortingState } from '.'
-import { Button,Icon,Pagination,SearchField } from '..'
-import { Person,makeData } from './makeData'
-import { OptionType } from './table'
+import {Meta} from '@storybook/react'
+import React, {useState} from 'react'
+import Table, {TableColumnDef, TableSortingState} from '.'
+import {Button, Icon, Pagination, SearchField} from '..'
+import {Person, makeData} from './makeData'
+import {OptionType} from './table'
 export const Basic: React.FC = () => {
   const [page, setPage] = useState(1)
   const [data, setData] = useState<Person[]>(() => makeData(10))
@@ -82,22 +82,22 @@ export const Basic: React.FC = () => {
             enableGrouping: false,
             enableColumnFilter: true,
             sortDescriptor: 'asc',
-            meta: {
-              editable: true,
-              updateData: (rowIndex: number, id: string, value: unknown) => {
-                setData((old: Person[]) =>
-                  old.map((row, index) => {
-                    if (index === rowIndex) {
-                      return {
-                        ...old[rowIndex],
-                        [id]: value,
-                      } as Person
-                    }
-                    return row
-                  }),
-                )
-              },
-            },
+            // meta: {
+            //   editable: true,
+            //   updateData: (rowIndex: number, id: string, value: unknown) => {
+            //     setData((old: Person[]) =>
+            //       old.map((row, index) => {
+            //         if (index === rowIndex) {
+            //           return {
+            //             ...old[rowIndex],
+            //             [id]: value,
+            //           } as Person
+            //         }
+            //         return row
+            //       }),
+            //     )
+            //   },
+            // },
           },
           {
             accessorFn: (row) => row.lastName,
@@ -152,76 +152,74 @@ export const Basic: React.FC = () => {
     [],
   )
   return (
-    <div>
-      <Table
-        data={data}
-        columns={columns}
-        options={options}
-        onManualSorting={onSorting}
-        onChangeRowSelection={onChangeRowSelection}
+    <Table
+      data={data}
+      columns={columns}
+      options={options}
+      onManualSorting={onSorting}
+      onChangeRowSelection={onChangeRowSelection}
+    >
+      <Table.Toolbar
+        css={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+        }}
       >
-        <Table.Toolbar
-          css={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-          }}
-        >
-          <SearchField placeholder='Search' />
+        <SearchField placeholder='Search' />
 
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: '0.5rem',
-            }}
-          >
-            <Button variant='primary'>Button</Button>
-            <Button variant='secondary'>Button</Button>
-            <Button variant='ghost' aria-label='Delete'>
-              <Icon icon={faTrashAlt} />
-            </Button>
-            <Button variant='ghost' aria-label='Dashboard'>
-              <Icon icon={faDashboard} />
-            </Button>
-            <Button variant='ghost'>
-              <Icon icon={faFileLines} aria-label='File' />
-            </Button>
-          </div>
-        </Table.Toolbar>
-        <Table.Footer
-          css={{
+        <div
+          style={{
             display: 'flex',
             flexDirection: 'row',
-            justifyContent: 'space-between',
+            alignItems: 'center',
+            gap: '0.5rem',
           }}
         >
-          <div>{/* Todo: Dropdown */}</div>
+          <Button variant='primary'>Button</Button>
+          <Button variant='secondary'>Button</Button>
+          <Button variant='ghost' aria-label='Delete'>
+            <Icon icon={faTrashAlt} />
+          </Button>
+          <Button variant='ghost' aria-label='Dashboard'>
+            <Icon icon={faDashboard} />
+          </Button>
+          <Button variant='ghost'>
+            <Icon icon={faFileLines} aria-label='File' />
+          </Button>
+        </div>
+      </Table.Toolbar>
+      <Table.Footer
+        css={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+        }}
+      >
+        <div>{/* Todo: Dropdown */}</div>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            gap: '0.5rem',
+          }}
+        >
           <div
             style={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: '0.5rem',
+              fontWeight: '600',
             }}
           >
-            <div
-              style={{
-                fontWeight: '600',
-              }}
-            >
-              {(page - 1) * 10 + 1} - {(page - 1) * 10 + 10} of 100
-            </div>
-            <Pagination
-              page={page}
-              onChange={(page) => setPage(page)}
-              total={10}
-            />
+            {(page - 1) * 10 + 1} - {(page - 1) * 10 + 10} of 100
           </div>
-        </Table.Footer>
-      </Table>
-    </div>
+          <Pagination
+            page={page}
+            onChange={(page) => setPage(page)}
+            total={10}
+          />
+        </div>
+      </Table.Footer>
+    </Table>
   )
 }
 

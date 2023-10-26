@@ -1,5 +1,6 @@
 import {Column, Table} from '@tanstack/react-table'
 import React, {forwardRef, useState} from 'react'
+import {Typography} from '..'
 import Button from '../button'
 import Popover from '../popover'
 import TextField from '../textfield'
@@ -29,6 +30,7 @@ const HeaderColumnFilter = forwardRef<
   const firstValue = table
     .getPreFilteredRowModel()
     .flatRows[0]?.getValue(column.id)
+  console.log({isFiltering})
 
   const columnFilterValue = column.getFilterValue()
 
@@ -50,7 +52,6 @@ const HeaderColumnFilter = forwardRef<
           </Button>
         }
         direction='bottom-end'
-        onClose={() => setIsFiltering(false)}
       >
         <div
           className={`${styles.cdgTableHeaderFilter} ${className}`}
@@ -72,9 +73,9 @@ const HeaderColumnFilter = forwardRef<
                 autoFocus
               />
 
-              <label style={{width: 'auto', marginInline: '$2'}}>&#8212;</label>
-              {/* <Typography.Label css={{width: 'auto', marginInline: '$2'}}>
-              </Typography.Label> */}
+              <Typography.Label css={{width: 'auto', marginInline: '$2'}}>
+                &#8212;
+              </Typography.Label>
 
               <TextField
                 type='number'

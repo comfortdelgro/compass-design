@@ -14,7 +14,7 @@ interface Props {
 }
 
 export type TableCheckboxProps = Props
-// & Omit<HTMLAttributes<HTMLInputElement>, keyof Props>
+// Omit<HTMLAttributes<HTMLInputElement>, keyof Props>
 
 const TableCheckbox = ({
   indeterminate,
@@ -34,17 +34,12 @@ const TableCheckbox = ({
     .filter(Boolean)
     .join(' ')
 
-  const checkboxBoxClass = [
-    checkboxStyles.checkboxBox,
-    className,
-    'cdg-table-cell',
-    'cursor-pointer',
-  ]
+  const checkboxBoxClass = [styles.checkboxBox, className]
     .filter(Boolean)
     .join(' ')
 
   React.useEffect(() => {
-    if (typeof indeterminate === 'boolean') {
+    if (typeof indeterminate === 'boolean' && ref.current) {
       ref.current.indeterminate =
         !(rest as HTMLInputElement).checked && indeterminate
     }
@@ -55,7 +50,7 @@ const TableCheckbox = ({
       <label className={checkboxStyles.label}>
         <input
           type='checkbox'
-          ref={ref}
+          ref={checkboxRef}
           disabled={disabled}
           className={checkboxInputClasses}
           {...rest}

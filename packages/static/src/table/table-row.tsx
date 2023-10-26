@@ -15,6 +15,7 @@ const TableV2Row = React.forwardRef<HTMLTableRowElement, Props>(
   ({children, isSelected, isExpanded, css = {}, className}, ref) => {
     const tableRowRef = useDOMRef<HTMLTableRowElement>(ref)
     const rowClasses = [
+      styles.cdgTableRow,
       isSelected && styles.isSelected,
       isExpanded && styles.isExpanded,
       className,
@@ -23,9 +24,9 @@ const TableV2Row = React.forwardRef<HTMLTableRowElement, Props>(
       .join(' ')
     return (
       <CssInjection childrenRef={tableRowRef} css={css}>
-        <div role='row' className={rowClasses} ref={tableRowRef}>
+        <tr role='row' className={rowClasses} ref={tableRowRef}>
           {children}
-        </div>
+        </tr>
       </CssInjection>
     )
   },

@@ -5,7 +5,7 @@
   .cdgTableRow {
     background: var(--cdg-color-whiteText);
     background-color: transparent;
-    border-left-width: var(--cdg-border-width-medium);
+    /* border-left-width: var(--cdg-border-width-medium); */
     transition: var(--cdg-transition-default);
     border: none;
   }
