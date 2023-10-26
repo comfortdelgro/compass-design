@@ -162,6 +162,14 @@ export type {NavbarBrandProps, NavbarProps} from './navbar'
 export {default as NoSsr} from './nossr'
 export {default as OTPInput} from './otp-input'
 export type {OTPInputProps} from './otp-input'
+export {default as PageHeader} from './page-header'
+export type {
+  PageHeaderDescriptionProps,
+  PageHeaderHeaderProps,
+  PageHeaderProps,
+  PageHeaderSubtitleProps,
+  PageHeaderTitleProps,
+} from './page-header'
 export {default as Pagination} from './pagination'
 export type {PaginationProps} from './pagination'
 export {default as Popover} from './popover'
