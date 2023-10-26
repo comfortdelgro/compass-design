@@ -3,6 +3,7 @@ import Button from '../button'
 import {Placement} from './index'
 import Tooltip from './tooltip'
 import TooltipTrigger from './tooltip-trigger'
+import { Meta } from '@storybook/react'
 
 export const Controlled: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -199,3 +200,16 @@ export const Delay: React.FC = () => {
     </>
   )
 }
+
+const meta = {
+  title: 'Example/Tooltip Server',
+  component: Controlled,
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
+  tags: ['autodocs'],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof Controlled>
+
+export default meta
