@@ -244,6 +244,8 @@ export type {
   ToastsContainerProps,
   ToastState,
 } from './toast/service'
+export {default as Toggle} from './toggle'
+export type {ToggleProps} from './toggle'
 export {default as Transitions} from './transitions'
 export type {TransitionsProps} from './transitions'
 export {default as Typography} from './typography'
