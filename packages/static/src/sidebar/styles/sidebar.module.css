@@ -51,7 +51,7 @@
     border: none;
     box-sizing: border-box;
     margin: 0px;
-    padding: var(--cdg-spacing-4);
+    padding: 0 var(--cdg-spacing-4);
     background: transparent;
     overflow: auto;
     flex: 1;
@@ -159,6 +159,7 @@
 
   /* variant styles */
   .sidebarSecondary {
+    width: 498px;
     background-color: var(--cdg-color-background);
     padding: var(--cdg-spacing-12);
   }
