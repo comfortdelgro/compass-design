@@ -5,7 +5,9 @@ import Skeleton from './index'
 export const Variants: React.FC = () => (
   <div>
     <h3>Text</h3>
-    <Skeleton variant='text'><h1>Text</h1></Skeleton>
+    <Skeleton variant='text'>
+      <h1>Text</h1>
+    </Skeleton>
     <h3>Circular</h3>
     <Skeleton variant='circular' width={40} height={40} />
     <h3>Rectangular</h3>

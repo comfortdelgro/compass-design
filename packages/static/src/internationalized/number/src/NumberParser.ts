@@ -273,10 +273,10 @@ function getSymbols(
   const pluralLiterals = allParts
     .filter((p) => !nonLiteralParts.has(p.type))
     .map((p) => escapeRegex(p.value))
-    const singularLiterals = singularParts
+  const singularLiterals = singularParts
     .filter((p) => !nonLiteralParts.has(p.type))
     .map((p) => escapeRegex(p.value))
-    const sortedLiterals = [
+  const sortedLiterals = [
     ...new Set([...singularLiterals, ...pluralLiterals]),
   ].sort((a, b) => b.length - a.length)
   const literals =

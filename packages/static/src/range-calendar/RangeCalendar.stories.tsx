@@ -1,28 +1,37 @@
-import { Meta } from "@storybook/react"
-import React from "react"
-import RangeCalendar, { RangeCalendarShorcutItem, RangeValue } from "."
-import { Button, CalendarProps } from ".."
-import { DateValue, endOfWeek, getLocalTimeZone, parseDate, startOfWeek, today } from "../internationalized/date"
-import { useDateFormatter, useLocale } from "../internationalized/i18n"
+import {Meta} from '@storybook/react'
+import React from 'react'
+import RangeCalendar, {RangeCalendarShorcutItem, RangeValue} from '.'
+import {Button, CalendarProps} from '..'
+import {
+  DateValue,
+  endOfWeek,
+  getLocalTimeZone,
+  parseDate,
+  startOfWeek,
+  today,
+} from '../internationalized/date'
+import {useDateFormatter, useLocale} from '../internationalized/i18n'
 
 export const Controlled = () => {
   const [range, setRange] = React.useState<RangeValue<CalendarProps | null>>({
     start: parseDate('2020-02-03'),
     end: parseDate('2020-02-08'),
   })
-  const formatter = useDateFormatter({ dateStyle: 'long' })
+  const formatter = useDateFormatter({dateStyle: 'long'})
   return (
-    <div style={{ padding: '1rem', backgroundColor: 'var(--cdg-color-gray20)' }}>
+    <div style={{padding: '1rem', backgroundColor: 'var(--cdg-color-gray20)'}}>
       {range.start && range.end
         ? formatter.formatRange(
-          range.start.toDate(getLocalTimeZone()),
-          range.end.toDate(getLocalTimeZone()),
-        )
-        : `${range.start &&
-        formatter.format(range.start.toDate(getLocalTimeZone()))
-        } - ${range.end && formatter.format(range.end.toDate(getLocalTimeZone()))
-        }`}
-      { }
+            range.start.toDate(getLocalTimeZone()),
+            range.end.toDate(getLocalTimeZone()),
+          )
+        : `${
+            range.start &&
+            formatter.format(range.start.toDate(getLocalTimeZone()))
+          } - ${
+            range.end && formatter.format(range.end.toDate(getLocalTimeZone()))
+          }`}
+      {}
 
       <RangeCalendar
         value={range}
@@ -36,7 +45,7 @@ export const Controlled = () => {
 }
 
 export const Variants: React.FC = () => {
-  const { locale } = useLocale()
+  const {locale} = useLocale()
 
   const dayOfTwoWeeksAgo = today(getLocalTimeZone()).subtract({
     weeks: 2,
@@ -45,7 +54,7 @@ export const Variants: React.FC = () => {
   const endOfTwoWeeksAgo = endOfWeek(dayOfTwoWeeksAgo, locale)
 
   return (
-    <div style={{ padding: '1rem', backgroundColor: 'var(--cdg-color-gray20)' }}>
+    <div style={{padding: '1rem', backgroundColor: 'var(--cdg-color-gray20)'}}>
       <h3>Footer</h3>
       <RangeCalendar hasFooter />
       <h3>Footer & Shorcuts</h3>
@@ -67,7 +76,7 @@ export const Variants: React.FC = () => {
               isDisable:
                 isInvalid(startOfTwoWeeksAgo) || isInvalid(endOfTwoWeeksAgo),
               getValue: () => {
-                return { start: startOfTwoWeeksAgo, end: endOfTwoWeeksAgo }
+                return {start: startOfTwoWeeksAgo, end: endOfTwoWeeksAgo}
               },
             },
           ]
@@ -88,23 +97,25 @@ export const Variants: React.FC = () => {
 }
 
 export const Custom = () => {
-  return <div style={{ padding: '1rem' }}>
-    <RangeCalendar
-      css={{
-        backgroundColor: 'var(--cdg-color-gray20)',
-        border: '1px solid var(--cdg-color-gray50)',
-        '& .disabled': {
-          color: 'var(--cdg-color-gray60)',
-          backgroundColor: 'var(--cdg-color-gray40)',
-        },
-        '& .disabled:hover': {
-          color: 'var(--cdg-color-gray60)',
-        }
-      }}
-      hasFooter
-      hasShortcuts
-    />
-  </div>
+  return (
+    <div style={{padding: '1rem'}}>
+      <RangeCalendar
+        css={{
+          backgroundColor: 'var(--cdg-color-gray20)',
+          border: '1px solid var(--cdg-color-gray50)',
+          '& .disabled': {
+            color: 'var(--cdg-color-gray60)',
+            backgroundColor: 'var(--cdg-color-gray40)',
+          },
+          '& .disabled:hover': {
+            color: 'var(--cdg-color-gray60)',
+          },
+        }}
+        hasFooter
+        hasShortcuts
+      />
+    </div>
+  )
 }
 
 const meta = {

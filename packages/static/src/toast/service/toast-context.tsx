@@ -1,4 +1,4 @@
-import React, {createContext, ReactNode, useReducer} from 'react'
+import {createContext, ReactNode, useReducer} from 'react'
 import ToastsContainer from './toast-container'
 import {toastReducer} from './toast-reducer'
 import {ToastItemType} from './types'

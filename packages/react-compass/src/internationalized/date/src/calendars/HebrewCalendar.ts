@@ -10,7 +10,7 @@
 
 import {CalendarDate} from '../CalendarDate'
 import {AnyCalendarDate, Calendar} from '../types'
-import {Mutable, mod} from '../utils'
+import {mod, Mutable} from '../utils'
 
 const HEBREW_EPOCH = 347997
 

@@ -21,7 +21,7 @@ const style: {
 
 export const Default: React.FC = () => {
   return (
-    <div style={{padding:'3em'}}>
+    <div style={{padding: '3em'}}>
       <div style={{marginBottom: '2rem', ...style, alignItems: 'flex-start'}}>
         <h3>Default</h3>
         <SubHeader>

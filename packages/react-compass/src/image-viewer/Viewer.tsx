@@ -1,6 +1,6 @@
 import * as React from 'react'
-import ViewerCore from './ViewerCore'
 import {IViewerProps} from './types'
+import ViewerCore from './ViewerCore'
 
 export default (props: IViewerProps) => {
   const [init, setInit] = React.useState(false)

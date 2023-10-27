@@ -41,7 +41,11 @@ const Wizard = React.forwardRef<HTMLDivElement, WizardProps>((props, ref) => {
 
   return (
     <CssInjection css={css}>
-      <div ref={wizardRef} className={`${styles.wizard} cdg-wizard`} {...htmlProps}>
+      <div
+        ref={wizardRef}
+        className={`${styles.wizard} cdg-wizard`}
+        {...htmlProps}
+      >
         <div className={`${styles.track} cdg-wizard-track`}>
           {list.map((item, index: number) => (
             <div

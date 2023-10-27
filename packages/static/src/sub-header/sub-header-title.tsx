@@ -26,13 +26,15 @@ const SubHeaderTitle = React.forwardRef<HTMLDivElement, SubHeaderTitleProps>(
 
     return (
       <CssInjection css={css} childrenRef={ref}>
-      <h1
-      className={`cdg-sub-header-title ${className} ${styles.subHeaderTitle} ${styles[`${variant}`]}`}
-        ref={ref}
-        {...htmlProps}
-      >
-        {children}
-      </h1>
+        <h1
+          className={`cdg-sub-header-title ${className} ${
+            styles.subHeaderTitle
+          } ${styles[`${variant}`]}`}
+          ref={ref}
+          {...htmlProps}
+        >
+          {children}
+        </h1>
       </CssInjection>
     )
   },

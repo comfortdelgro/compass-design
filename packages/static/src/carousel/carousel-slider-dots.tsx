@@ -27,7 +27,11 @@ const CarouselSliderDots = React.forwardRef<HTMLDivElement, Props>(
 
     return (
       <CssInjection css={css} childrenRef={slideDotsRef}>
-        <div className={`content-slider-dots ${styles.contentSliderDots}`} style={style} {...htmlProps}>
+        <div
+          className={`content-slider-dots ${styles.contentSliderDots}`}
+          style={style}
+          {...htmlProps}
+        >
           {Array(length)
             .fill(0)
             .map((item: any, index: number) => {

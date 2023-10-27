@@ -19,9 +19,9 @@ import {DateValue} from '../../internationalized/date'
 import {focusManagerSymbol, roleSymbol} from '../constants/focus.constant'
 import {
   AriaDateFieldOptions,
-  DOMAttributes,
   DateFieldAria,
   DateFieldState,
+  DOMAttributes,
 } from '../types'
 import {createFocusManager, filterDOMProps, hookData} from '../utils'
 import {useDatePickerGroup} from './useDatePickerGroup'
