@@ -2,13 +2,12 @@ import {faBug} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {Meta} from '@storybook/react'
 import React from 'react'
-import DatePicker from '../../../react-compass/src/date-picker'
-import Textarea from '../../../react-compass/src/textarea'
-import Upload from '../../../react-compass/src/upload'
 import Button from '../button'
 import Checkbox from '../checkbox'
 import TextField from '../textfield'
 import Typography from '../typography'
+import DatePicker from './../date-picker'
+import Textarea from './../textarea'
 import Dialog from './index'
 
 export const Default: React.FC = () => {
@@ -16,10 +15,6 @@ export const Default: React.FC = () => {
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. pariatur.'
   const [defaultOpen, setDefaultOpen] = React.useState(false)
 
-  const getFileFunc = (file: File[]) => {
-    if (file.length < 1) return
-    console.log(file)
-  }
   return (
     <div>
       <h3>Default dialog is confirmation variant</h3>
@@ -39,12 +34,6 @@ export const Default: React.FC = () => {
               id='avatar'
               name='avatar'
               accept='image/png, image/jpeg'
-            />
-            <Upload
-              css={{marginTop: '1rem'}}
-              getFile={getFileFunc}
-              accept='image/*, .docs, .docx'
-              fileSizeLimit={30000}
             />
           </Dialog.Description>
           <Dialog.Actions>

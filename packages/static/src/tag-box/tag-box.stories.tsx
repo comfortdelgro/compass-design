@@ -1,15 +1,11 @@
-import {
-  Button,
-  Column,
-  Icon,
-  TagBox,
-  Typography,
-} from '@comfortdelgro/react-compass'
-// import {TagBox as StaticTagBox} from '@comfortdelgro/static'
 import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons'
+import type {Meta} from '@storybook/react'
 import React from 'react'
+import Button from '../button'
+import Icon from '../icon'
+import TagBox from './index'
 
-const items = [
+const items: any[] = [
   {
     id: `cdg-id-${Math.random().toString(36).substring(2)}`,
     value: 'Item 1',
@@ -105,7 +101,7 @@ const onEdit = (
     return items
   })
 
-const TagBoxs: React.FC = () => {
+export const TagBoxs: React.FC = () => {
   const [list, setList] = React.useState<Item[]>(items)
 
   const removeItem = (id: string | number) => onRemove(id, setList)
@@ -116,8 +112,8 @@ const TagBoxs: React.FC = () => {
     onEdit(id, value, setList)
 
   return (
-    <Column>
-      <Typography.Header variant='header3'>Fully Functional</Typography.Header>
+    <div>
+      <h3>Fully Functional</h3>
       <TagBox
         label='Text Label'
         items={list}
@@ -132,25 +128,12 @@ const TagBoxs: React.FC = () => {
           <Button>Call to action</Button>
         </TagBox.Action>
       </TagBox>
-      {/* <StaticTagBox
-        label='Text Label'
-        items={list}
-        icon={<Icon icon={faExclamationTriangle} />}
-        isRequired
-        onAdd={addItem}
-        onEdit={editItem}
-        onRemove={removeItem}
-        helperText='Helper text'
-      >
-        <StaticTagBox.Action>
-          <Button>Call to action</Button>
-        </StaticTagBox.Action>
-      </StaticTagBox> */}
-      <Typography.Header variant='header3'>Typeable</Typography.Header>
+      <h3>Typeable</h3>
       <TagBox
         label='Text Label'
         items={list}
         typeable
+        collaspable
         icon={<Icon icon={faExclamationTriangle} />}
         onAdd={addItem}
         onEdit={editItem}
@@ -161,21 +144,7 @@ const TagBoxs: React.FC = () => {
           <Button>Call to action</Button>
         </TagBox.Action>
       </TagBox>
-      {/* <StaticTagBox
-        label='Text Label'
-        items={list}
-        typeable
-        icon={<Icon icon={faExclamationTriangle} />}
-        onAdd={addItem}
-        onEdit={editItem}
-        onRemove={removeItem}
-        helperText='Helper text'
-      >
-        <StaticTagBox.Action>
-          <Button>Call to action</Button>
-        </StaticTagBox.Action>
-      </StaticTagBox> */}
-      <Typography.Header variant='header3'>Error</Typography.Header>
+      <h3>Error</h3>
       <TagBox
         label='Text Label'
         items={list}
@@ -191,22 +160,7 @@ const TagBoxs: React.FC = () => {
           <Button>Call to action</Button>
         </TagBox.Action>
       </TagBox>
-      {/* <StaticTagBox
-        label='Text Label'
-        items={list}
-        icon={<Icon icon={faExclamationTriangle} />}
-        onAdd={addItem}
-        onEdit={editItem}
-        onRemove={removeItem}
-        isErrored
-        errorMessage='Error Message'
-        helperText='Helper text'
-      >
-        <StaticTagBox.Action>
-          <Button>Call to action</Button>
-        </StaticTagBox.Action>
-      </StaticTagBox> */}
-      <Typography.Header variant='header3'>Positioned Label</Typography.Header>
+      <h3>Positioned Label</h3>
       <TagBox
         items={list}
         onAdd={addItem}
@@ -220,20 +174,7 @@ const TagBoxs: React.FC = () => {
           <Button>Call to action</Button>
         </TagBox.Action>
       </TagBox>
-      {/* <StaticTagBox
-        items={list}
-        onAdd={addItem}
-        onEdit={editItem}
-        onRemove={removeItem}
-        labelPosition='left'
-        label='Text Label'
-        helperText='Helper text'
-      >
-        <StaticTagBox.Action>
-          <Button>Call to action</Button>
-        </StaticTagBox.Action>
-      </StaticTagBox> */}
-      <Typography.Header variant='header3'>No Action</Typography.Header>
+      <h3>No Action</h3>
       <TagBox
         label='Text Label'
         items={list}
@@ -242,17 +183,7 @@ const TagBoxs: React.FC = () => {
         onRemove={removeItem}
         helperText='Helper text'
       />
-      {/* <StaticTagBox
-        label='Text Label'
-        items={list}
-        onAdd={addItem}
-        onEdit={editItem}
-        onRemove={removeItem}
-        helperText='Helper text'
-      /> */}
-      <Typography.Header variant='header3'>
-        No Helper text and Action
-      </Typography.Header>
+      <h3>No Helper text and Action</h3>
       <TagBox
         label='Text Label'
         items={list}
@@ -260,16 +191,118 @@ const TagBoxs: React.FC = () => {
         onEdit={editItem}
         onRemove={removeItem}
       />
-      {/* <StaticTagBox
-        label='Text Label'
-        items={list}
-        onAdd={addItem}
-        onEdit={editItem}
-        onRemove={removeItem}
-        helperText='Helper text'
-      /> */}
-    </Column>
+    </div>
   )
 }
 
-export default TagBoxs
+export const Collaspable: React.FC = () => {
+  const [list, setList] = React.useState<Item[]>(items)
+
+  const removeItem = (id: string | number) => onRemove(id, setList)
+
+  const addItem = (value: string) => onAdd(value, setList)
+
+  const editItem = (id: string | number, value: string) =>
+    onEdit(id, value, setList)
+
+  return (
+    <div>
+      <h3>Fully Functional</h3>
+      <TagBox
+        label='Text Label'
+        collaspable
+        isRequired
+        items={list}
+        icon={<Icon icon={faExclamationTriangle} />}
+        onAdd={addItem}
+        onEdit={editItem}
+        onRemove={removeItem}
+        helperText='Helper text'
+      >
+        <TagBox.Action>
+          <Button>Call to action</Button>
+        </TagBox.Action>
+      </TagBox>
+      <h3>Typeable</h3>
+      <TagBox
+        label='Text Label'
+        collaspable
+        typeable
+        items={list}
+        icon={<Icon icon={faExclamationTriangle} />}
+        onAdd={addItem}
+        onEdit={editItem}
+        onRemove={removeItem}
+        helperText='Helper text'
+      >
+        <TagBox.Action>
+          <Button>Call to action</Button>
+        </TagBox.Action>
+      </TagBox>
+      <h3>Error</h3>
+      <TagBox
+        label='Text Label'
+        collaspable
+        items={list}
+        icon={<Icon icon={faExclamationTriangle} />}
+        onAdd={addItem}
+        onEdit={editItem}
+        onRemove={removeItem}
+        isErrored
+        errorMessage='Error Message'
+        helperText='Helper text'
+      >
+        <TagBox.Action>
+          <Button>Call to action</Button>
+        </TagBox.Action>
+      </TagBox>
+      <h3>Positioned Label</h3>
+      <TagBox
+        collaspable
+        items={list}
+        onAdd={addItem}
+        onEdit={editItem}
+        onRemove={removeItem}
+        labelPosition='left'
+        label='Text Label'
+        helperText='Helper text'
+      >
+        <TagBox.Action>
+          <Button>Call to action</Button>
+        </TagBox.Action>
+      </TagBox>
+      <h3>No Action</h3>
+      <TagBox
+        label='Text Label'
+        collaspable
+        items={list}
+        onAdd={addItem}
+        onEdit={editItem}
+        onRemove={removeItem}
+        helperText='Helper text'
+      />
+      <h3>No Helper text and Action</h3>
+      <TagBox
+        collaspable
+        label='Text Label'
+        items={list}
+        onAdd={addItem}
+        onEdit={editItem}
+        onRemove={removeItem}
+      />
+    </div>
+  )
+}
+
+const meta = {
+  title: 'Example/Tag Box',
+  component: TagBoxs,
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
+  tags: ['autodocs'],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof TagBoxs>
+
+export default meta
