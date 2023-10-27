@@ -4,7 +4,6 @@ export {
   Time,
   ZonedDateTime,
 } from './CalendarDate'
-export {DateFormatter} from './DateFormatter'
 export {BuddhistCalendar} from './calendars/BuddhistCalendar'
 export {
   CopticCalendar,
@@ -32,6 +31,7 @@ export {
   toZoned,
 } from './conversion'
 export {createCalendar} from './createCalendar'
+export {DateFormatter} from './DateFormatter'
 export {
   endOfMonth,
   endOfWeek,

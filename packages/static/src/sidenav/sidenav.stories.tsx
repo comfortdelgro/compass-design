@@ -10,12 +10,12 @@ import {
   faTractor,
   IconDefinition,
 } from '@fortawesome/free-solid-svg-icons'
-import React, { useState } from 'react'
+import {Meta} from '@storybook/react'
+import React, {useState} from 'react'
 import Avatar from '../avatar'
 import Icon from '../icon'
 import Sidenav from './index'
 import SidenavMenu from './sidenav-menu'
-import { Meta } from '@storybook/react'
 
 const style: {
   display: string
@@ -40,7 +40,7 @@ const styleServiceMenuWrapper = {
   alignItems: 'center',
   gap: '12px',
   width: '100%',
-};
+}
 
 const styleContent = {
   padding: '10px 5px',
@@ -49,7 +49,7 @@ const styleContent = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-};
+}
 
 const styleTitleWrapper = {
   margin: 0,
@@ -58,7 +58,7 @@ const styleTitleWrapper = {
   fontSize: 12,
   fontFamily: 'Poppins',
   paddingRight: 3,
-};
+}
 
 const styleDetailWrapper = {
   display: 'flex',
@@ -66,14 +66,14 @@ const styleDetailWrapper = {
   fontFamily: 'Poppins',
   justifyContent: 'center',
   marginLeft: 8,
-};
+}
 
 const styleDetailTitleWrapper = {
   fontSize: 14,
   lineHeight: '21px',
   color: '#323130',
   margin: 0,
-};
+}
 
 const styleDetailTimeWrapper = {
   fontSize: 12,
@@ -82,7 +82,7 @@ const styleDetailTimeWrapper = {
   overflow: 'hidden',
   textOverflow: 'ellipsis',
   color: '#A19F9D',
-};
+}
 
 interface ItemBase {
   id: number
@@ -109,41 +109,41 @@ export const Default: React.FC = () => {
             'Placeholder item with a really long name that makes this menu item width over screen to test the layout',
           icon: faCar,
         },
-        { id: 12, title: 'Placeholder', icon: faCar },
+        {id: 12, title: 'Placeholder', icon: faCar},
         {
           id: 13,
           title: 'Placeholder',
           icon: faCar,
           children: [
-            { id: 11, title: 'Placeholder', icon: faCar },
+            {id: 11, title: 'Placeholder', icon: faCar},
             {
               id: 12,
               title: 'Placeholder',
               icon: faCar,
               children: [
-                { id: 11, title: 'Placeholder', icon: faCar },
-                { id: 12, title: 'Placeholder', icon: faCar },
+                {id: 11, title: 'Placeholder', icon: faCar},
+                {id: 12, title: 'Placeholder', icon: faCar},
                 {
                   id: 13,
                   title: 'Placeholder',
                   icon: faCar,
                   children: [
-                    { id: 11, title: 'Placeholder', icon: faCar },
-                    { id: 12, title: 'Placeholder', icon: faCar },
-                    { id: 13, title: 'Placeholder', icon: faCar },
+                    {id: 11, title: 'Placeholder', icon: faCar},
+                    {id: 12, title: 'Placeholder', icon: faCar},
+                    {id: 13, title: 'Placeholder', icon: faCar},
                   ],
                 },
               ],
             },
-            { id: 13, title: 'Placeholder', icon: faCar },
+            {id: 13, title: 'Placeholder', icon: faCar},
           ],
         },
       ],
     },
-    { id: 2, icon: faAmbulance, title: 'Placeholder' },
-    { id: 3, icon: faPlane, title: 'Placeholder' },
-    { id: 4, icon: faHelicopter, title: 'Placeholder' },
-    { id: 5, icon: faTractor, title: 'Placeholder' },
+    {id: 2, icon: faAmbulance, title: 'Placeholder'},
+    {id: 3, icon: faPlane, title: 'Placeholder'},
+    {id: 4, icon: faHelicopter, title: 'Placeholder'},
+    {id: 5, icon: faTractor, title: 'Placeholder'},
   ]
 
   const handleOnClick = (
@@ -154,8 +154,8 @@ export const Default: React.FC = () => {
     setCurrentPage(id)
   }
 
-  const CustomSizenavItem = (props: ItemType & { isMenu?: boolean }) => {
-    const { id, icon, title, children, isMenu } = props
+  const CustomSizenavItem = (props: ItemType & {isMenu?: boolean}) => {
+    const {id, icon, title, children, isMenu} = props
     return (
       <Sidenav.Item isActive={isMenu ? false : currentPage === id}>
         {icon ? <Icon icon={icon}></Icon> : <></>}
@@ -182,7 +182,14 @@ export const Default: React.FC = () => {
   }
 
   return (
-    <div style={{ flexDirection: 'row', position: 'relative', justifyContent: 'flex-start', ...style }}>
+    <div
+      style={{
+        flexDirection: 'row',
+        position: 'relative',
+        justifyContent: 'flex-start',
+        ...style,
+      }}
+    >
       <Sidenav
         css={{
           height: '800px',
@@ -194,21 +201,21 @@ export const Default: React.FC = () => {
         expand={false}
         delay={200}
       >
-        <Sidenav.Item css={{ '&.cdg-sidenav-item': { marginBottom: '36px' } }}>
-          <div style={{ width: '40px' }}>
+        <Sidenav.Item css={{'&.cdg-sidenav-item': {marginBottom: '36px'}}}>
+          <div style={{width: '40px'}}>
             <Avatar label='M' />
           </div>
-          <h2 style={{ fontSize: '24px', marginLeft: '22px', color: '#323130' }}>
+          <h2 style={{fontSize: '24px', marginLeft: '22px', color: '#323130'}}>
             Workbench
           </h2>
         </Sidenav.Item>
-        <Sidenav.Item css={{ '&.cdg-sidenav-item': { marginBottom: '36px' } }}>
+        <Sidenav.Item css={{'&.cdg-sidenav-item': {marginBottom: '36px'}}}>
           <div style={styleServiceMenuWrapper}>
             <div style={styleContent}>
               <p style={styleTitleWrapper}>ZB</p>
               <Icon
                 icon={faChevronDown}
-                style={{ width: 11, height: 7, color: '#333333', marginLeft: 0 }}
+                style={{width: 11, height: 7, color: '#333333', marginLeft: 0}}
               />
             </div>
             <div style={styleDetailWrapper}>
@@ -217,7 +224,7 @@ export const Default: React.FC = () => {
             </div>
           </div>
         </Sidenav.Item>
-        <Sidenav.Divider style={{ marginBottom: '8px' }} />
+        <Sidenav.Divider style={{marginBottom: '8px'}} />
         {items.map((item) => {
           return (
             <a
@@ -236,8 +243,8 @@ export const Default: React.FC = () => {
             </a>
           )
         })}
-        <Sidenav.Divider style={{ margin: '8px 0' }} />
-        <Sidenav.Item css={{ marginTop: 'auto' }}>
+        <Sidenav.Divider style={{margin: '8px 0'}} />
+        <Sidenav.Item css={{marginTop: 'auto'}}>
           <Icon icon={faBank}></Icon>
           <span>Placeholder</span>
         </Sidenav.Item>

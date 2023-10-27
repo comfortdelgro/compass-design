@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import {HTMLAttributes, ReactNode, forwardRef, useCallback} from 'react'
+import {forwardRef, HTMLAttributes, ReactNode, useCallback} from 'react'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/multiple-choices-slider.module.css'
 

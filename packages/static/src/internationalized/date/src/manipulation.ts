@@ -618,7 +618,12 @@ export function cycleZoned(
     case 'year':
     case 'month':
     case 'day': {
-      const res = cycleDate(toCalendarDateTime(dateTime), field, amount, options)
+      const res = cycleDate(
+        toCalendarDateTime(dateTime),
+        field,
+        amount,
+        options,
+      )
       const ms = toAbsolute(res, dateTime.timeZone)
       return toCalendar(fromAbsolute(ms, dateTime.timeZone), dateTime.calendar)
     }

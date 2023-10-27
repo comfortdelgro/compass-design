@@ -1,6 +1,6 @@
+import clsx from 'clsx'
 import React from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
-import clsx from 'clsx'
 import styles from './styles/menu-list.module.css'
 
 interface Props {

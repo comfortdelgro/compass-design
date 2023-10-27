@@ -17,7 +17,7 @@ import {
   useInteractions,
   useRole,
 } from '@floating-ui/react'
-import React, { useContext, useEffect, useMemo, useState } from 'react'
+import React, {useContext, useEffect, useMemo, useState} from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import styles from './styles/sidenav-menu.module.css'
 
@@ -72,7 +72,7 @@ const SidenavMenu = React.forwardRef<HTMLDivElement, SidenavMenuProps>(
       false,
     )
     // context: to set the [isNestedMenuOpen] state for the parent node
-    const { setIsChildOpen } = useContext(SideMenuContext)
+    const {setIsChildOpen} = useContext(SideMenuContext)
 
     // if no children menu open and the mouse leaving menu area -> close all menus
     useEffect(() => {
@@ -82,7 +82,7 @@ const SidenavMenu = React.forwardRef<HTMLDivElement, SidenavMenuProps>(
       }
     }, [isNestedMenuOpen])
 
-    const { refs, floatingStyles, context } = useFloating({
+    const {refs, floatingStyles, context} = useFloating({
       open: isInternalOpen,
       onOpenChange: (s) => {
         onOpenChange?.(s)
@@ -106,7 +106,7 @@ const SidenavMenu = React.forwardRef<HTMLDivElement, SidenavMenuProps>(
     const dismiss = useDismiss(context)
     const role = useRole(context)
 
-    const { getReferenceProps, getFloatingProps } = useInteractions([
+    const {getReferenceProps, getFloatingProps} = useInteractions([
       hover,
       dismiss,
       role,
@@ -152,26 +152,26 @@ const SidenavMenu = React.forwardRef<HTMLDivElement, SidenavMenuProps>(
           <FloatingPortal>
             <FloatingFocusManager context={context} modal={false}>
               <CssInjection css={css} childrenRef={mergeRefs}>
-              <div
-                className={`cdg-sidenav-menu ${className} ${styles.sidenavMenu}`}
-                ref={mergeRefs}
-                style={{ ...floatingStyles }}
-                aria-labelledby={headingId}
-                {...getFloatingProps()}
-                onMouseLeave={() => {
-                  setIsMouseLeave(true)
-                }}
-                onMouseOver={() => {
-                  setIsMouseLeave(false)
-                }}
-                {...delegated}
-              >
-                <SideMenuContext.Provider
-                  value={{ setIsChildOpen: setIsNestedMenuOpen }}
+                <div
+                  className={`cdg-sidenav-menu ${className} ${styles.sidenavMenu}`}
+                  ref={mergeRefs}
+                  style={{...floatingStyles}}
+                  aria-labelledby={headingId}
+                  {...getFloatingProps()}
+                  onMouseLeave={() => {
+                    setIsMouseLeave(true)
+                  }}
+                  onMouseOver={() => {
+                    setIsMouseLeave(false)
+                  }}
+                  {...delegated}
                 >
-                  {children}
-                </SideMenuContext.Provider>
-              </div>
+                  <SideMenuContext.Provider
+                    value={{setIsChildOpen: setIsNestedMenuOpen}}
+                  >
+                    {children}
+                  </SideMenuContext.Provider>
+                </div>
               </CssInjection>
             </FloatingFocusManager>
           </FloatingPortal>

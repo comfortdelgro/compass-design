@@ -1,13 +1,19 @@
-import { Meta } from "@storybook/react"
-import Navbar from "."
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faBars, faBell, faChartGantt, faQuestionCircle, faSearch } from "@fortawesome/free-solid-svg-icons"
 import Workbench from '@comfortdelgro/compass-icons/react/colorful/workbench'
 import MenuIcon from '@comfortdelgro/compass-icons/react/menu'
-import { Avatar, Button, Icon, SearchField } from ".."
-import { NavbarLinks } from "./navbar-links"
-import { NavbarSeperator } from "./navbar-seperator"
-import NavbarActions from "./navbar-actions"
+import {
+  faBars,
+  faBell,
+  faChartGantt,
+  faQuestionCircle,
+  faSearch,
+} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {Meta} from '@storybook/react'
+import Navbar from '.'
+import {Avatar, Button, Icon, SearchField} from '..'
+import NavbarActions from './navbar-actions'
+import {NavbarLinks} from './navbar-links'
+import {NavbarSeperator} from './navbar-seperator'
 
 const imageSrc = 'https://i.pravatar.cc/150?img=32'
 
@@ -19,7 +25,15 @@ export const Basic = () => {
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', padding: '1rem', backgroundColor: 'var(--cdg-color-gray30)' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        padding: '1rem',
+        backgroundColor: 'var(--cdg-color-gray30)',
+      }}
+    >
       <h2>Portal Navbar</h2>
       <h3>Blue color</h3>
       <Navbar>
@@ -35,7 +49,7 @@ export const Basic = () => {
           />
         </a>
         <Navbar.Brand>Workbench Title</Navbar.Brand>
-        <SearchField placeholder='Search' css={{ minWidth: 'unset' }} />
+        <SearchField placeholder='Search' css={{minWidth: 'unset'}} />
         <NavbarLinks>
           <Button href='#'>Home</Button>
           <Button href='#'>Services</Button>
@@ -85,17 +99,11 @@ export const Basic = () => {
           <FontAwesomeIcon icon={faBars} />
         </a>
         <Navbar.Brand>Workbench Title</Navbar.Brand>
-        <SearchField placeholder='Search' css={{ minWidth: 'unset' }} />
+        <SearchField placeholder='Search' css={{minWidth: 'unset'}} />
         <NavbarLinks>
-          <Button variant='ghost'>
-            Home
-          </Button>
-          <Button variant='ghost'>
-            Services
-          </Button>
-          <Button variant='ghost'>
-            Products
-          </Button>
+          <Button variant='ghost'>Home</Button>
+          <Button variant='ghost'>Services</Button>
+          <Button variant='ghost'>Products</Button>
         </NavbarLinks>
         <NavbarSeperator />
         <NavbarActions>
@@ -153,11 +161,11 @@ export const Basic = () => {
       </Navbar>
       <h3>With alternative element (change screen size to less than 768px)</h3>
       <Navbar>
-        <a href='#' style={{ backgroundColor: 'white', borderRadius: '100%' }}>
+        <a href='#' style={{backgroundColor: 'white', borderRadius: '100%'}}>
           <Workbench width={'28px'} height={'24px'} />
         </a>
         <Navbar.Brand>Workbench Title</Navbar.Brand>
-        <SearchField placeholder='Search' css={{ minWidth: 'unset' }} />
+        <SearchField placeholder='Search' css={{minWidth: 'unset'}} />
         <NavbarLinks>
           <Button>Home</Button>
           <Button>Services</Button>

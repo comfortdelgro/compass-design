@@ -54,7 +54,7 @@ export function useCalendarBase(
     // @ts-ignore
     ariaLabelledBy: props['aria-labelledby'],
     errorMessageId,
-    selectedDateDescription: ''
+    selectedDateDescription: '',
   })
 
   // If the next or previous buttons become disabled while they are focused, move focus to the calendar body.

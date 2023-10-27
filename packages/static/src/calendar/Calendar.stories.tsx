@@ -1,21 +1,21 @@
-import type { Meta } from '@storybook/react'
-import Calendar, { CalendarProps } from '.'
+import type {Meta} from '@storybook/react'
 import React from 'react'
+import Calendar, {CalendarProps} from '.'
 
-const { useDateFormatter } = Calendar.I18N
-const { getLocalTimeZone, parseDate, today } = Calendar.InternationalizedDate
+const {useDateFormatter} = Calendar.I18N
+const {getLocalTimeZone, parseDate, today} = Calendar.InternationalizedDate
 
 export const Basic = () => {
   const [date, setDate] = React.useState<CalendarProps>(
     parseDate(today(getLocalTimeZone()).toString()),
   )
-  const formatter = useDateFormatter({ dateStyle: 'full' })
+  const formatter = useDateFormatter({dateStyle: 'full'})
 
   return (
-    <div style={{ padding: '1rem', backgroundColor: 'var(--cdg-color-gray20)' }}>
+    <div style={{padding: '1rem', backgroundColor: 'var(--cdg-color-gray20)'}}>
       <p>
         <b>Selected date:</b>
-        <span style={{ marginLeft: '4px' }}>
+        <span style={{marginLeft: '4px'}}>
           {date
             ? formatter.format(date.toDate(getLocalTimeZone()))
             : 'Invalid date'}
@@ -34,19 +34,23 @@ export const Basic = () => {
 }
 
 export const Customized = () => {
-  return <div style={{ padding: '1rem', backgroundColor: 'var(--cdg-color-white)' }}>
-    <Calendar css={{
-      backgroundColor: 'var(--cdg-color-gray20)',
-      border: '1px solid var(--cdg-color-gray50)',
-      '& .disabled': {
-        color: 'var(--cdg-color-gray60)',
-        backgroundColor: 'var(--cdg-color-gray40)',
-      },
-      '& .disabled:hover': {
-        color: 'var(--cdg-color-gray60)',
-      }
-    }} />
-  </div>
+  return (
+    <div style={{padding: '1rem', backgroundColor: 'var(--cdg-color-white)'}}>
+      <Calendar
+        css={{
+          backgroundColor: 'var(--cdg-color-gray20)',
+          border: '1px solid var(--cdg-color-gray50)',
+          '& .disabled': {
+            color: 'var(--cdg-color-gray60)',
+            backgroundColor: 'var(--cdg-color-gray40)',
+          },
+          '& .disabled:hover': {
+            color: 'var(--cdg-color-gray60)',
+          },
+        }}
+      />
+    </div>
+  )
 }
 
 const meta = {

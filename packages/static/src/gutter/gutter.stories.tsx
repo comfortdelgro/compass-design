@@ -66,7 +66,9 @@ export const BothSide: React.FC = () => {
     useState<CSSProperties['width']>(undefined)
 
   return (
-    <div style={{display: 'flex', height: '100%', minHeight: '400px', margin: 50}}>
+    <div
+      style={{display: 'flex', height: '100%', minHeight: '400px', margin: 50}}
+    >
       <div
         ref={rightGutterRef}
         style={{
@@ -111,7 +113,9 @@ export const ControlledCollapse: React.FC = () => {
   const [isExpand, setIsExpand] = useState(false)
 
   return (
-    <div style={{display: 'flex', height: '100%', minHeight: '400px', margin: 50}}>
+    <div
+      style={{display: 'flex', height: '100%', minHeight: '400px', margin: 50}}
+    >
       <div
         ref={ref}
         style={{
