@@ -1,0 +1,41 @@
+@import '../../theme/theme.module.css';
+
+@layer default, variant, compoundVariant;
+
+@layer default {
+  .calendarGrid {
+    margin-top: var(--cdg-spacing-2);
+    border-collapse: collapse;
+  }
+
+  .calendarGrid tbody::before {
+    content: '@';
+    display: block;
+    line-height: 12px;
+    text-indent: -99999px;
+  }
+
+  .calendarWeekday {
+    font-size: var(--cdg-font-size-label2);
+    font-weight: var(--cdg-font-weight-semi-bold);
+    color: var(--cdg-color-cdgBlue120);
+  }
+
+  .calendarGrid th,
+  .calendarGrid td {
+    width: var(--cdg-spacing-10);
+  }
+
+  .calendarGrid td {
+    height: var(--cdg-spacing-8);
+  }
+
+  .calendarGrid td > div {
+    display: flex;
+    justify-content: center;
+  }
+
+  .rowPlaceholder {
+    height: var(--cdg-spacing-8);
+  }
+}

@@ -1,0 +1,32 @@
+/* Importing the theme module */
+@import '../../../theme/theme.module.css';
+
+@layer default, variant, compoundVariant;
+
+@layer default {
+  .dateSegment {
+    color: var(--cdg-color-gray50);
+    font-size: var(--cdg-font-size-body3);
+    font-weight: var(--cdg-font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .dateSegment:focus {
+    box-shadow: none;
+  }
+
+  .dateSegment:focus-visible {
+    padding: var(--cdg-spacing-0_5) 0;
+    outline: none;
+    box-shadow: none;
+    color: var(--cdg-color-whiteText);
+    background-color: var(--cdg-color-cdgBlue);
+  }
+}
+
+@layer variant {
+  .number {
+    color: var(--cdg-color-primaryText);
+  }
+}

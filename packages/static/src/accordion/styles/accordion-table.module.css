@@ -1,0 +1,37 @@
+@import '../../theme/theme.module.css';
+
+/* Using @layer is important because it helps users customize the styles easily because un-layered css has the highest priority*/
+
+/* 
+* compoundVariant has the highest priority
+* variant has the second highest priority
+* default has the lowest priority
+*/
+
+@layer default, variant, compoundVariant;
+
+@layer default {
+  .accordionTable {
+    appearance: none;
+    border: none;
+    background-color: transparent;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--cdg-spacing-4) var(--cdg-spacing-12);
+  }
+
+  .accordionTable > * {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .accordionTable > * > * {
+    width: 50%;
+  }
+}

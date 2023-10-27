@@ -1,4 +1,5 @@
 import {Avatar, Badge, ListCard} from '@comfortdelgro/react-compass'
+// import {ListCard as StaticListCard, Avatar as StaticAvatar} from '@comfortdelgro/static'
 
 function ListCardExmaple() {
   return (
@@ -111,6 +112,107 @@ function ListCardExmaple() {
           }
         />
       </ListCard>
+
+      {/* <StaticListCard
+        showActionButton
+        title='Lorem Ipsum'
+        description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+        badge={<Badge label='Active' color='success' variant='secondary' />}
+        css={{width: '347px', border: 'var(--cdg-color-blueShades120) 1px solid'}}
+      >
+        <StaticListCard.Detail
+          title='Detail 1'
+          avatar={<StaticAvatar label='A' />}
+          description='Lorem Ipsum'
+        />
+        <StaticListCard.Detail
+          title='Detail 1'
+          avatar={<StaticAvatar label='A' />}
+          description='Lorem Ipsum'
+        />
+      </StaticListCard>
+      <StaticListCard
+        showActionButton
+        title='Lorem Ipsum'
+        description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+        badge={<Badge label='Active' color='success' variant='secondary' />}
+        css={{width: '347px', border: 'var(--cdg-color-blueShades120) 1px solid'}}
+      >
+        <StaticListCard.Detail
+          title='Detail 1'
+          avatar={
+            <StaticAvatar.Group>
+              <StaticAvatar
+                image={
+                  'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+                }
+              />
+              <StaticAvatar
+                image={
+                  'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+                }
+              />
+              <StaticAvatar
+                image={
+                  'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+                }
+              />
+              <StaticAvatar
+                image={
+                  'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+                }
+              />
+              <StaticAvatar
+                image={
+                  'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+                }
+              />
+              <StaticAvatar
+                image={
+                  'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+                }
+              />
+            </StaticAvatar.Group>
+          }
+        />
+        <StaticListCard.Detail
+          title='Detail 1'
+          avatar={
+            <StaticAvatar.Group>
+              <StaticAvatar
+                image={
+                  'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+                }
+              />
+              <StaticAvatar
+                image={
+                  'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+                }
+              />
+              <StaticAvatar
+                image={
+                  'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+                }
+              />
+              <StaticAvatar
+                image={
+                  'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+                }
+              />
+              <StaticAvatar
+                image={
+                  'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+                }
+              />
+              <StaticAvatar
+                image={
+                  'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+                }
+              />
+            </StaticAvatar.Group>
+          }
+        />
+      </StaticListCard> */}
     </div>
   )
 }

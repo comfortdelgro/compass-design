@@ -1,0 +1,27 @@
+@import '../../theme/theme.module.css';
+
+@layer default, variant, compoundVariant;
+
+@layer default {
+  .calendar {
+    width: fit-content;
+    background-color: var(--cdg-color-background);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
+    border-radius: var(--cdg-border-radius-md);
+    padding: var(--cdg-spacing-4);
+  }
+
+  .calendar .calendarFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--cdg-spacing-2);
+    padding-top: var(--cdg-spacing-6);
+    margin-top: var(--cdg-spacing-6);
+    border-top: 1px solid var(--cdg-color-gray60);
+  }
+
+  .calendar .calendarFooter button {
+    font-size: var(--cdg-font-size-label2);
+  }
+}

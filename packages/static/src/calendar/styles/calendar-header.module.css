@@ -1,0 +1,64 @@
+@import '../../theme/theme.module.css';
+
+/* level 1 */
+
+@layer default, variant, compoundVariant;
+
+@layer default {
+  .calendarHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .calendarHeaderLeftSide,
+  .calendarHeaderRightSide {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    gap: 8px;
+  }
+
+  .calendarHeaderRightSide {
+    justify-content: flex-end;
+  }
+
+  .calendarHeaderMiddle {
+    font-weight: var(--cdg-font-weight-semi-bold);
+    font-size: var(--cdg-font-size-body3);
+    color: var(--cdg-color-cdgBlue100);
+    background-color: var(--cdg-color-cdgBlue10);
+    border: none;
+    cursor: pointer;
+    flex: 1;
+    transition: var(--cdg-transition-button);
+    border-radius: var(--cdg-border-radius-md);
+    padding: 8px;
+  }
+
+  .calendarHeaderMiddle:hover {
+    background-color: var(--cdg-color-cdgBlue20);
+  }
+
+  .calendarHeaderMiddle:focus-visible {
+    border: 1px solid var(--cdg-color-cdgBlue);
+    outline: none;
+  }
+
+  .calendarHeader button {
+    background-color: var(--cdg-color-primaryBg);
+  }
+
+  .calendarHeaderTitle {
+    font-weight: var(--cdg-font-weight-semi-bold);
+    font-size: var(--cdg-font-size-body3);
+    color: var(--cdg-color-cdgBlue100);
+    flex: 1;
+    text-align: center;
+  }
+
+  .calendarHeaderIcon {
+    width: var(--cdg-spacing-3);
+    height: var(--cdg-spacing-3);
+  }
+}

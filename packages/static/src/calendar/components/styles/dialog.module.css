@@ -1,0 +1,10 @@
+/* Importing the theme module */
+@import '../../../theme/theme.module.css';
+
+@layer default, variant, compoundVariant;
+
+@layer default {
+  .dialog:focus-visible {
+    outline: 1px solid var(--cdg-color-cdgBlue100);
+  }
+}
