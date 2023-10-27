@@ -580,8 +580,8 @@
       "levels": [
         "Drawer"
       ],
-      "locStart": 542,
-      "locEnd": 812,
+      "locStart": 523,
+      "locEnd": 793,
       "filePath": "src/drawer/drawer.stories.tsx",
       "meta": {}
     },
@@ -590,8 +590,8 @@
       "levels": [
         "Drawer"
       ],
-      "locStart": 29,
-      "locEnd": 540,
+      "locStart": 28,
+      "locEnd": 521,
       "filePath": "src/drawer/drawer.stories.tsx",
       "meta": {}
     },
@@ -1273,6 +1273,26 @@
       "locStart": 4,
       "locEnd": 18,
       "filePath": "src/slider/slider.stories.tsx",
+      "meta": {}
+    },
+    "snackbar--default": {
+      "name": "Default",
+      "levels": [
+        "Snackbar"
+      ],
+      "locStart": 11,
+      "locEnd": 67,
+      "filePath": "src/snackbar/snackbar.stories.tsx",
+      "meta": {}
+    },
+    "snackbar--multiple": {
+      "name": "Multiple",
+      "levels": [
+        "Snackbar"
+      ],
+      "locStart": 155,
+      "locEnd": 164,
+      "filePath": "src/snackbar/snackbar.stories.tsx",
       "meta": {}
     },
     "speed-dial--positions": {
