@@ -23,8 +23,8 @@ const FilePreview = React.forwardRef<HTMLDivElement, FilePreviewProps>(
         [
           styles.preview,
           !!imageSrc && !failed
-            ? styles.previewVariantImageLoadedTrue
-            : styles.previewVariantImageLoadedFalse,
+            ? styles.previewImageLoadedTrue
+            : styles.previewImageLoadedFalse,
           'cdg-file-preview',
           className,
         ]
