@@ -1,17 +1,23 @@
 @import '../../theme/theme.module.css';
 
-.breadcrumbsItem {
-  text-decoration: none;
-  font-weight: 400;
-  transition: var(--cdg-transition-default);
-  color: var(--cdg-color-info);
+@layer default, variant;
+
+@layer default {
+  .breadcrumbsItem {
+    text-decoration: none;
+    font-weight: 400;
+    transition: var(--cdg-transition-default);
+    color: var(--cdg-color-info);
+  }
 }
 
-.active {
-  color: var(--cdg-color-typeHeading);
-}
+@layer variant {
+  .isActive {
+    color: var(--cdg-color-typeHeading);
+  }
 
-.disabled {
-  color: var(--cdg-color-disabledText);
-  cursor: not-allowed;
+  .isDisabled {
+    color: var(--cdg-color-disabledText);
+    cursor: not-allowed;
+  }
 }
