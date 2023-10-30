@@ -24,22 +24,6 @@
     font-size: var(--cdg-font-size-label2);
     font-weight: var(--cdg-font-weight-semibold);
   }
-
-  .loading :global(.cdg-spinner-ring) {
-    width: 16px;
-    height: 16px;
-  }
-
-  .loading :global(.cdg-spinner-ring) div {
-    width: 16px;
-    height: 16px;
-    border-width: 4px;
-  }
-
-  .loading :global(.cdg-spinner-ring) :global(.cdg-spinner-segment) {
-    border-color: #009eda transparent transparent transparent;
-  }
-
   .icon,
   .image {
     display: flex;
@@ -51,4 +35,20 @@
     width: var(--cdg-spacing-4);
     height: var(--cdg-spacing-4);
   }
+}
+
+/* Styling for spinner, no need to wrap inside layers (will not be applied) */
+.loading :global(.cdg-spinner-ring) {
+  width: 16px;
+  height: 16px;
+}
+
+.loading :global(.cdg-spinner-ring) div {
+  width: 16px;
+  height: 16px;
+  border-width: 4px;
+}
+
+.loading :global(.cdg-spinner-ring) :global(.cdg-spinner-segment) {
+  border-color: #009eda transparent transparent transparent;
 }
