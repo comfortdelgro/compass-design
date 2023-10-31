@@ -5,13 +5,20 @@ import {
   StyledRatingv2Component,
 } from './rating-v2.styles'
 
+interface StarProps {
+  isFilled: boolean
+  value: number
+  icon: React.ReactNode
+  filledIcon: React.ReactNode
+}
+
 export type RatingV2Props = {
   maxRating?: number
   currentRating?: number
   onChange?: (newRating: number) => void
   disabled?: boolean
   readOnly?: boolean
-  renderStar?: (isFilled: boolean, value: number) => React.ReactNode
+  renderStarList?: StarProps[]
   className?: string
 }
 
@@ -23,7 +30,7 @@ const RatingV2 = React.forwardRef<HTMLDivElement, RatingV2Props>(
       onChange,
       disabled,
       readOnly,
-      renderStar,
+      renderStarList,
       ...delegated
     } = props
     const [rating, setRating] = useState(currentRating)
@@ -83,11 +90,18 @@ const RatingV2 = React.forwardRef<HTMLDivElement, RatingV2Props>(
       </span>
     )
 
+    const renderStar = (renderStarList: StarProps[]) => {
+      return (
+        <span style={{margin: '0 5px'}}>
+          {renderStarList.isFilled ? '🌟' : '⭐'}
+        </span>
+      )
+    }
+
     const stars = Array.from({length: maxRating}, (_, index) => {
       const value = index + 1
-      const isFilled = value <= rating
+      const isFilled = renderStarList ? value === rating : value <= rating
       const checked = rating === value
-
       const starVisual = renderStar
         ? renderStar(isFilled, value)
         : defaultRenderStarVisual(isFilled)

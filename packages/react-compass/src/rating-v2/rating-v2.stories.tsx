@@ -40,11 +40,6 @@ export const Default: React.FC = () => {
           onChange={(value) => {
             console.log('Star rating changed to:', value)
           }}
-          renderStar={(isFilled, value) => {
-            return (
-              <span style={{margin: '0 5px'}}>{isFilled ? '🌟' : '⭐'}</span>
-            )
-          }}
         />
       </Column>
     </>
