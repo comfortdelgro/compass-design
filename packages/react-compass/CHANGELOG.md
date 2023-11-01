@@ -1,5 +1,11 @@
 ## 2.9.0
 
+## 2.24.0
+
+### Minor Changes
+
+- d0f6269b: Fix bugs in otp input
+
 ## 2.23.0
 
 ### Minor Changes
