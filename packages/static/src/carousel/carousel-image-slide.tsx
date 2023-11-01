@@ -13,30 +13,25 @@ interface Props {
 export type CarouselImageSlideProps = Props &
   Omit<React.HTMLAttributes<HTMLImageElement>, keyof Props>
 
-const CarouselImageSlide = React.forwardRef<HTMLDivElement, CarouselImageSlideProps>(
-  (props, ref) => {
-    const {
-      css = {},
-      imageUrl,
-      active,
-      className,
-      ...htmlProps
-    } = props
+const CarouselImageSlide = React.forwardRef<
+  HTMLDivElement,
+  CarouselImageSlideProps
+>((props, ref) => {
+  const {css = {}, imageUrl, active, className, ...htmlProps} = props
 
-    const buttonRef = useDOMRef<HTMLDivElement>(ref)
+  const buttonRef = useDOMRef<HTMLDivElement>(ref)
 
-    return (
-      <CssInjection css={css} childrenRef={buttonRef}>
-        <img
-          className={`slider-slide ${className ? className : ''} ${
-            styles.carouselImageSlide
-          } ${active ? styles.sliderSlideActive : ''}`}
-          src={imageUrl}
-          {...htmlProps}
-        />
-      </CssInjection>
-    )
-  },
-)
+  return (
+    <CssInjection css={css} childrenRef={buttonRef}>
+      <img
+        className={`slider-slide ${className ? className : ''} ${
+          styles.carouselImageSlide
+        } ${active ? styles.sliderSlideActive : ''}`}
+        src={imageUrl}
+        {...htmlProps}
+      />
+    </CssInjection>
+  )
+})
 
 export default CarouselImageSlide

@@ -27,7 +27,7 @@ const backgroundSrc =
 
 export const Basic: React.FC = () => {
   return (
-    <div style={{ ...style }}>
+    <div style={{...style}}>
       <h3>Default banner is medium sized</h3>
       <Banner>
         <Banner.Image src={backgroundSrc} />
@@ -43,7 +43,7 @@ export const Basic: React.FC = () => {
 
 export const Sizes: React.FC = () => {
   return (
-    <div style={{ ...style }}>
+    <div style={{...style}}>
       <h3>Small sized Banner</h3>
       <Banner size='sm'>
         <Banner.Image src={backgroundSrc} />

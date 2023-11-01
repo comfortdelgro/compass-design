@@ -81,7 +81,6 @@ export const Variants: React.FC = () => {
   )
 }
 
-
 const meta = {
   title: 'Example/Quantity Toggle',
   component: Variants,

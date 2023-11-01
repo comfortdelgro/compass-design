@@ -1,8 +1,8 @@
 'use client'
 
-import React, { useState } from 'react'
+import type {Meta} from '@storybook/react'
+import {useState} from 'react'
 import Pagination from './index'
-import type { Meta } from '@storybook/react'
 
 const style: {
   display: string
@@ -25,7 +25,7 @@ const style: {
 export const Variants = () => {
   const [page, setPage] = useState(1)
   return (
-    <div style={{ ...style }}>
+    <div style={{...style}}>
       <h3>1. Total pages prop</h3>
       <Pagination total={1000000000} />
       <h3>2. Current page prop</h3>

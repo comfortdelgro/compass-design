@@ -1,8 +1,7 @@
-import React from 'react'
 import {CalendarDate} from '../internationalized/date'
 import {MONTH_YEAR_STATE, useMonthYearCalendar} from './hooks/useMonthYearState'
-import {CalendarState, DateValue, RangeCalendarState} from './types'
 import styles from './styles/calendar-month-year-grid.module.css'
+import {CalendarState, DateValue, RangeCalendarState} from './types'
 interface Props {
   state: CalendarState | RangeCalendarState
   maxValue?: DateValue | null | undefined

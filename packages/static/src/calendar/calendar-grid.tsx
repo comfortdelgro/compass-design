@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, {useRef} from 'react'
 import {
   CalendarDate,
   DateValue,
@@ -6,12 +6,12 @@ import {
   getWeeksInMonth,
   parseDate,
 } from '../internationalized/date'
-import { useLocale } from '../internationalized/i18n'
-import CalendarCell from './calendar-cell'
-import { useCalendarGrid } from './hooks/useCalendarGrid'
-import { CalendarState, DateDuration, RangeCalendarState } from './types'
+import {useLocale} from '../internationalized/i18n'
 import CssInjection from '../utils/objectToCss/CssInjection'
+import CalendarCell from './calendar-cell'
+import {useCalendarGrid} from './hooks/useCalendarGrid'
 import styles from './styles/calendar-grid.module.css'
+import {CalendarState, DateDuration, RangeCalendarState} from './types'
 
 interface Props {
   css?: unknown
@@ -35,13 +35,13 @@ const CalendarGrid = (props: Props) => {
     css = {},
     maxValue = parseDate('2999-02-17'),
   } = props
-  const tableRef = useRef(null);
-  const { locale } = useLocale()
+  const tableRef = useRef(null)
+  const {locale} = useLocale()
   const startDate = state?.visibleRange?.start?.add(offset) as CalendarDate
   const endDate = endOfMonth(startDate)
 
   // eslint-disable-next-line
-  const { gridProps, headerProps, weekDays } = useCalendarGrid(
+  const {gridProps, headerProps, weekDays} = useCalendarGrid(
     {
       startDate,
       endDate,
@@ -64,7 +64,10 @@ const CalendarGrid = (props: Props) => {
         <thead {...headerProps}>
           <tr>
             {weekDays.map((day, index) => (
-              <th key={index} className={`calendar-weekday ${styles.calendarWeekday}`}>
+              <th
+                key={index}
+                className={`calendar-weekday ${styles.calendarWeekday}`}
+              >
                 {day}
               </th>
             ))}
