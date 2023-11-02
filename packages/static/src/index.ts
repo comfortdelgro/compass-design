@@ -1,3 +1,5 @@
+export {default as AppNav} from './appnav'
+export type {AppNavProps} from './appnav'
 export {default as Avatar} from './avatar'
 export type {AvatarProps} from './avatar'
 export {default as Badge} from './badge'
