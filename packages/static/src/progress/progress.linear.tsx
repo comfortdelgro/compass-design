@@ -39,26 +39,30 @@ const LinearProgress = React.forwardRef<HTMLDivElement, LinearProgressProps>(
     )
 
     const linearClass = React.useMemo(() => {
-      let classes = `cdg-progress-linear ${styles.linear}`
-      if (variant === 'indeterminate')
-        classes += ` ${styles.linearVariantIndeterminate}`
-      if (variant === 'determinate')
-        classes += ` ${styles.linearVariantDeterminate}`
-      if (variant === 'buffer') classes += ` ${styles.linearVariantBuffer}`
-      if (rounded) classes += ` ${styles.linearRounded}`
-      if (className) classes += ` ${className}`
-      return classes
+      return [
+        styles.linear,
+        variant === 'indeterminate' && styles.linearVariantIndeterminate,
+        variant === 'determinate' && styles.linearVariantDeterminate,
+        variant === 'buffer' && styles.linearVariantBuffer,
+        rounded && styles.linearRounded,
+        'cdg-progress-linear',
+        className,
+      ]
+        .filter(Boolean)
+        .join(' ')
     }, [variant, rounded, className])
 
     const bar1Class = React.useMemo(() => {
-      let classes = `cdg-progress-bar1 ${styles.bar1}`
-      if (variant === 'indeterminate')
-        classes += ` ${styles.bar1VariantIndeterminate}`
-      if (variant === 'determinate')
-        classes += ` ${styles.bar1VariantDeterminate}`
-      if (variant === 'buffer') classes += ` ${styles.bar1VariantBuffer}`
-      if (rounded) classes += ` ${styles.linearRounded}`
-      return classes
+      return [
+        styles.bar1,
+        variant === 'indeterminate' && styles.bar1VariantIndeterminate,
+        variant === 'determinate' && styles.bar1VariantDeterminate,
+        variant === 'buffer' && styles.bar1VariantBuffer,
+        rounded && styles.linearRounded,
+        'cdg-progress-bar1',
+      ]
+        .filter(Boolean)
+        .join(' ')
     }, [rounded, variant])
 
     const bar1Style = useMemo(() => {
@@ -73,14 +77,16 @@ const LinearProgress = React.forwardRef<HTMLDivElement, LinearProgressProps>(
     }, [value, variant])
 
     const bar2Class = React.useMemo(() => {
-      let classes = `cdg-progress-bar2 ${styles.bar2}`
-      if (variant === 'indeterminate')
-        classes += ` ${styles.bar2VariantIndeterminate}`
-      if (variant === 'determinate')
-        classes += ` ${styles.bar2VariantDeterminate}`
-      if (variant === 'buffer') classes += ` ${styles.bar2VariantBuffer}`
-      if (rounded) classes += ` ${styles.linearRounded}`
-      return classes
+      return [
+        styles.bar2,
+        variant === 'indeterminate' && styles.bar2VariantIndeterminate,
+        variant === 'determinate' && styles.bar2VariantDeterminate,
+        variant === 'buffer' && styles.bar2VariantBuffer,
+        rounded && styles.linearRounded,
+        'cdg-progress-bar2',
+      ]
+        .filter(Boolean)
+        .join(' ')
     }, [rounded, variant])
 
     const bar2Syle = useMemo(() => {
@@ -109,7 +115,7 @@ const LinearProgress = React.forwardRef<HTMLDivElement, LinearProgressProps>(
         >
           {variant === 'buffer' && (
             <div
-              className={`cdg-progress-linear-dashed ${styles.dashed}`}
+              className={`${styles.dashed} cdg-progress-linear-dashed`}
               style={
                 {
                   '--cdg-progress-linear-color': color,
