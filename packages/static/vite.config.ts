@@ -1,4 +1,5 @@
 import react from '@vitejs/plugin-react-swc'
+import swcPreserveDirectives from 'rollup-swc-preserve-directives'
 import {defineConfig} from 'vite'
 import dts from 'vite-plugin-dts'
 
@@ -8,9 +9,15 @@ export default defineConfig({
     react(),
     dts({
       insertTypesEntry: true,
-      exclude: ['**/__tests__/**/*', '**/*.test-d.ts', '  .stories'],
+      exclude: [
+        '**/__tests__/**/*',
+        '**/*.test-d.ts',
+        '*.stories',
+        '.storybook',
+      ],
       include: ['src'],
     }),
+    swcPreserveDirectives(),
   ],
   // library mode
   build: {

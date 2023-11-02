@@ -1,0 +1,12 @@
+@import '../../theme/theme.module.css';
+
+@layer default;
+
+@layer default {
+  .subHeaderHeader {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--cdg-spacing-3);
+  }
+}

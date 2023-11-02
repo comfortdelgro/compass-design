@@ -13,22 +13,23 @@ export const StyledTooltip = styled('div', {
   position: 'absolute',
   padding: '$4',
   maxWidth: '$96',
-  background: '$cdgBlue',
+  background: '$typeHeading',
   lineHeight: '$normal',
   borderRadius: '$md',
   boxShadow:
     '0px 0.3px 0.9px rgba(0, 0, 0, 0.1), 0px 1.6px 3.6px rgba(0, 0, 0, 0.13)',
   color: '$whiteText',
+  fontSize: '14px',
 
   '& .tooltip-header': {
     display: 'flex',
     alignItems: 'flex-start',
-    marginBottom: '$4',
+    fontSize: '$5',
+    lineHeight: '$7',
+    marginBottom: '$2',
   },
 
-  '& .tooltip-title': {
-    fontSize: '$5',
-    lineHeight: '$loose',
+  '.tooltip-title': {
     margin: 0,
     marginRight: '$4',
   },
@@ -46,5 +47,9 @@ export const StyledTooltip = styled('div', {
   '& .tooltip-close-icon': {
     width: '$4',
     height: '$4',
+  },
+
+  '&.no-title': {
+    padding: '$2 $4',
   },
 })

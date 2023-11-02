@@ -1,0 +1,5 @@
+<Skeleton />
+
+<Skeleton animation='wave' />
+
+<Skeleton animation={false} />

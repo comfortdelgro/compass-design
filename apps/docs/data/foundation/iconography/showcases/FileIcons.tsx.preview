@@ -1,150 +1,450 @@
-<AepGrayFile width={40} height={40} /> 
-<AepSolidFile width={40} height={40} /> 
-<AepFile width={40} height={40} /> 
-<AiGrayFile width={40} height={40} /> 
-<AiSolidFile width={40} height={40} /> 
-<AiFile width={40} height={40} /> 
-<AudioGrayFile width={40} height={40} /> 
-<AudioSolidFile width={40} height={40} /> 
-<AudioFile width={40} height={40} /> 
-<AviGrayFile width={40} height={40} /> 
-<AviSolidFile width={40} height={40} /> 
-<AviFile width={40} height={40} /> 
-<CodeGrayFile width={40} height={40} /> 
-<CodeSolidFile width={40} height={40} /> 
-<CodeFile width={40} height={40} /> 
-<CssGrayFile width={40} height={40} /> 
-<CssSolidFile width={40} height={40} /> 
-<CssFile width={40} height={40} /> 
-<CsvGrayFile width={40} height={40} /> 
-<CsvSolidFile width={40} height={40} /> 
-<CsvFile width={40} height={40} /> 
-<DmgGrayFile width={40} height={40} /> 
-<DmgSolidFile width={40} height={40} /> 
-<DmgFile width={40} height={40} /> 
-<DocGrayFile width={40} height={40} /> 
-<DocSolidFile width={40} height={40} /> 
-<DocFile width={40} height={40} /> 
-<DocumentGrayFile width={40} height={40} /> 
-<DocumentSolidFile width={40} height={40} /> 
-<DocumentFile width={40} height={40} /> 
-<DocxGrayFile width={40} height={40} /> 
-<DocxSolidFile width={40} height={40} /> 
-<DocxFile width={40} height={40} /> 
-<EmptyGrayFile width={40} height={40} /> 
-<EmptySolidFile width={40} height={40} /> 
-<EmptyFile width={40} height={40} /> 
-<EspGrayFile width={40} height={40} /> 
-<EspSolidFile width={40} height={40} /> 
-<EspFile width={40} height={40} /> 
-<ExeGrayFile width={40} height={40} /> 
-<ExeSolidFile width={40} height={40} /> 
-<ExeFile width={40} height={40} /> 
-<FigGrayFile width={40} height={40} /> 
-<FigSolidFile width={40} height={40} /> 
-<FigFile width={40} height={40} /> 
-<FolderGrayFile width={40} height={40} /> 
-<FolderSolidFile width={40} height={40} /> 
-<FolderFile width={40} height={40} /> 
-<GifGrayFile width={40} height={40} /> 
-<GifSolidFile width={40} height={40} /> 
-<GifFile width={40} height={40} /> 
-<HtmlGrayFile width={40} height={40} /> 
-<HtmlSolidFile width={40} height={40} /> 
-<HtmlFile width={40} height={40} /> 
-<ImageGrayFile width={40} height={40} /> 
-<ImageSolidFile width={40} height={40} /> 
-<ImageFile width={40} height={40} /> 
-<ImgGrayFile width={40} height={40} /> 
-<ImgSolidFile width={40} height={40} /> 
-<ImgFile width={40} height={40} /> 
-<InddGrayFile width={40} height={40} /> 
-<InddSolidFile width={40} height={40} /> 
-<InddFile width={40} height={40} /> 
-<JavaGrayFile width={40} height={40} /> 
-<JavaSolidFile width={40} height={40} /> 
-<JavaFile width={40} height={40} /> 
-<JpegGrayFile width={40} height={40} /> 
-<JpegSolidFile width={40} height={40} /> 
-<JpegFile width={40} height={40} /> 
-<JpgGrayFile width={40} height={40} /> 
-<JpgSolidFile width={40} height={40} /> 
-<JpgFile width={40} height={40} /> 
-<JsGrayFile width={40} height={40} /> 
-<JsSolidFile width={40} height={40} /> 
-<JsFile width={40} height={40} /> 
-<JsonGrayFile width={40} height={40} /> 
-<JsonSolidFile width={40} height={40} /> 
-<JsonFile width={40} height={40} /> 
-<MkvGrayFile width={40} height={40} /> 
-<MkvSolidFile width={40} height={40} /> 
-<MkvFile width={40} height={40} /> 
-<Mp3GrayFile width={40} height={40} /> 
-<Mp3SolidFile width={40} height={40} /> 
-<Mp3File width={40} height={40} /> 
-<Mp4GrayFile width={40} height={40} /> 
-<Mp4SolidFile width={40} height={40} /> 
-<Mp4File width={40} height={40} /> 
-<MpegGrayFile width={40} height={40} /> 
-<MpegSolidFile width={40} height={40} /> 
-<MpegFile width={40} height={40} /> 
-<PdfGrayFile width={40} height={40} /> 
-<PdfSolidFile width={40} height={40} /> 
-<PdfFile width={40} height={40} /> 
-<Pdf2GrayFile width={40} height={40} /> 
-<Pdf2SolidFile width={40} height={40} /> 
-<Pdf2File width={40} height={40} /> 
-<PngGrayFile width={40} height={40} /> 
-<PngSolidFile width={40} height={40} /> 
-<PngFile width={40} height={40} /> 
-<PsdGrayFile width={40} height={40} /> 
-<PsdSolidFile width={40} height={40} /> 
-<PsdFile width={40} height={40} /> 
-<PttGrayFile width={40} height={40} /> 
-<PttSolidFile width={40} height={40} /> 
-<PttFile width={40} height={40} /> 
-<PttxGrayFile width={40} height={40} /> 
-<PttxSolidFile width={40} height={40} /> 
-<PttxFile width={40} height={40} /> 
-<RarGrayFile width={40} height={40} /> 
-<RarSolidFile width={40} height={40} /> 
-<RarFile width={40} height={40} /> 
-<RssGrayFile width={40} height={40} /> 
-<RssSolidFile width={40} height={40} /> 
-<RssFile width={40} height={40} /> 
-<SpreadsheetGrayFile width={40} height={40} /> 
-<SpreadsheetSolidFile width={40} height={40} /> 
-<SpreadsheetFile width={40} height={40} /> 
-<SqlGrayFile width={40} height={40} /> 
-<SqlSolidFile width={40} height={40} /> 
-<SqlFile width={40} height={40} /> 
-<SvgGrayFile width={40} height={40} /> 
-<SvgSolidFile width={40} height={40} /> 
-<SvgFile width={40} height={40} /> 
-<TiffGrayFile width={40} height={40} /> 
-<TiffSolidFile width={40} height={40} /> 
-<TiffFile width={40} height={40} /> 
-<TxtGrayFile width={40} height={40} /> 
-<TxtSolidFile width={40} height={40} /> 
-<TxtFile width={40} height={40} /> 
-<Video01GrayFile width={40} height={40} /> 
-<Video01SolidFile width={40} height={40} /> 
-<Video01File width={40} height={40} /> 
-<Video02GrayFile width={40} height={40} /> 
-<Video02SolidFile width={40} height={40} /> 
-<Video02File width={40} height={40} /> 
-<WavGrayFile width={40} height={40} /> 
-<WavSolidFile width={40} height={40} /> 
-<WavFile width={40} height={40} /> 
-<WebpGrayFile width={40} height={40} /> 
-<WebpSolidFile width={40} height={40} /> 
-<WebpFile width={40} height={40} /> 
-<XlsxGrayFile width={40} height={40} /> 
-<XlsxSolidFile width={40} height={40} /> 
-<XlsxFile width={40} height={40} /> 
-<XmlGrayFile width={40} height={40} /> 
-<XmlSolidFile width={40} height={40} /> 
-<XmlFile width={40} height={40} /> 
-<ZipGrayFile width={40} height={40} /> 
-<ZipSolidFile width={40} height={40} /> 
-<ZipFile width={40} height={40} /> 
+<AepGray width={40} height={40} /> 
+<Icon icon={aepGray} width={40} height={40} /> 
+
+<AepSolid width={40} height={40} /> 
+<Icon icon={aepSolid} width={40} height={40} /> 
+
+<Aep width={40} height={40} /> 
+<Icon icon={aep} width={40} height={40} /> 
+
+<AiGray width={40} height={40} /> 
+<Icon icon={aiGray} width={40} height={40} /> 
+
+<AiSolid width={40} height={40} /> 
+<Icon icon={aiSolid} width={40} height={40} /> 
+
+<Ai width={40} height={40} /> 
+<Icon icon={ai} width={40} height={40} /> 
+
+<AudioGray width={40} height={40} /> 
+<Icon icon={audioGray} width={40} height={40} /> 
+
+<AudioSolid width={40} height={40} /> 
+<Icon icon={audioSolid} width={40} height={40} /> 
+
+<Audio width={40} height={40} /> 
+<Icon icon={audio} width={40} height={40} /> 
+
+<AviGray width={40} height={40} /> 
+<Icon icon={aviGray} width={40} height={40} /> 
+
+<AviSolid width={40} height={40} /> 
+<Icon icon={aviSolid} width={40} height={40} /> 
+
+<Avi width={40} height={40} /> 
+<Icon icon={avi} width={40} height={40} /> 
+
+<CodeGray width={40} height={40} /> 
+<Icon icon={codeGray} width={40} height={40} /> 
+
+<CodeSolid width={40} height={40} /> 
+<Icon icon={codeSolid} width={40} height={40} /> 
+
+<Code width={40} height={40} /> 
+<Icon icon={code} width={40} height={40} /> 
+
+<CssGray width={40} height={40} /> 
+<Icon icon={cssGray} width={40} height={40} /> 
+
+<CssSolid width={40} height={40} /> 
+<Icon icon={cssSolid} width={40} height={40} /> 
+
+<Css width={40} height={40} /> 
+<Icon icon={css} width={40} height={40} /> 
+
+<CsvGray width={40} height={40} /> 
+<Icon icon={csvGray} width={40} height={40} /> 
+
+<CsvSolid width={40} height={40} /> 
+<Icon icon={csvSolid} width={40} height={40} /> 
+
+<Csv width={40} height={40} /> 
+<Icon icon={csv} width={40} height={40} /> 
+
+<DmgGray width={40} height={40} /> 
+<Icon icon={dmgGray} width={40} height={40} /> 
+
+<DmgSolid width={40} height={40} /> 
+<Icon icon={dmgSolid} width={40} height={40} /> 
+
+<Dmg width={40} height={40} /> 
+<Icon icon={dmg} width={40} height={40} /> 
+
+<DocGray width={40} height={40} /> 
+<Icon icon={docGray} width={40} height={40} /> 
+
+<DocSolid width={40} height={40} /> 
+<Icon icon={docSolid} width={40} height={40} /> 
+
+<Doc width={40} height={40} /> 
+<Icon icon={doc} width={40} height={40} /> 
+
+<DocumentGray width={40} height={40} /> 
+<Icon icon={documentGray} width={40} height={40} /> 
+
+<DocumentSolid width={40} height={40} /> 
+<Icon icon={documentSolid} width={40} height={40} /> 
+
+<Document width={40} height={40} /> 
+<Icon icon={document} width={40} height={40} /> 
+
+<DocxGray width={40} height={40} /> 
+<Icon icon={docxGray} width={40} height={40} /> 
+
+<DocxSolid width={40} height={40} /> 
+<Icon icon={docxSolid} width={40} height={40} /> 
+
+<Docx width={40} height={40} /> 
+<Icon icon={docx} width={40} height={40} /> 
+
+<EmptyGray width={40} height={40} /> 
+<Icon icon={emptyGray} width={40} height={40} /> 
+
+<EmptySolid width={40} height={40} /> 
+<Icon icon={emptySolid} width={40} height={40} /> 
+
+<Empty width={40} height={40} /> 
+<Icon icon={empty} width={40} height={40} /> 
+
+<EspGray width={40} height={40} /> 
+<Icon icon={espGray} width={40} height={40} /> 
+
+<EspSolid width={40} height={40} /> 
+<Icon icon={espSolid} width={40} height={40} /> 
+
+<Esp width={40} height={40} /> 
+<Icon icon={esp} width={40} height={40} /> 
+
+<ExeGray width={40} height={40} /> 
+<Icon icon={exeGray} width={40} height={40} /> 
+
+<ExeSolid width={40} height={40} /> 
+<Icon icon={exeSolid} width={40} height={40} /> 
+
+<Exe width={40} height={40} /> 
+<Icon icon={exe} width={40} height={40} /> 
+
+<FigGray width={40} height={40} /> 
+<Icon icon={figGray} width={40} height={40} /> 
+
+<FigSolid width={40} height={40} /> 
+<Icon icon={figSolid} width={40} height={40} /> 
+
+<Fig width={40} height={40} /> 
+<Icon icon={fig} width={40} height={40} /> 
+
+<FolderGray width={40} height={40} /> 
+<Icon icon={folderGray} width={40} height={40} /> 
+
+<FolderSolid width={40} height={40} /> 
+<Icon icon={folderSolid} width={40} height={40} /> 
+
+<Folder width={40} height={40} /> 
+<Icon icon={folder} width={40} height={40} /> 
+
+<GifGray width={40} height={40} /> 
+<Icon icon={gifGray} width={40} height={40} /> 
+
+<GifSolid width={40} height={40} /> 
+<Icon icon={gifSolid} width={40} height={40} /> 
+
+<Gif width={40} height={40} /> 
+<Icon icon={gif} width={40} height={40} /> 
+
+<HtmlGray width={40} height={40} /> 
+<Icon icon={htmlGray} width={40} height={40} /> 
+
+<HtmlSolid width={40} height={40} /> 
+<Icon icon={htmlSolid} width={40} height={40} /> 
+
+<Html width={40} height={40} /> 
+<Icon icon={html} width={40} height={40} /> 
+
+<ImageGray width={40} height={40} /> 
+<Icon icon={imageGray} width={40} height={40} /> 
+
+<ImageSolid width={40} height={40} /> 
+<Icon icon={imageSolid} width={40} height={40} /> 
+
+<Image width={40} height={40} /> 
+<Icon icon={image} width={40} height={40} /> 
+
+<ImgGray width={40} height={40} /> 
+<Icon icon={imgGray} width={40} height={40} /> 
+
+<ImgSolid width={40} height={40} /> 
+<Icon icon={imgSolid} width={40} height={40} /> 
+
+<Img width={40} height={40} /> 
+<Icon icon={img} width={40} height={40} /> 
+
+<InddGray width={40} height={40} /> 
+<Icon icon={inddGray} width={40} height={40} /> 
+
+<InddSolid width={40} height={40} /> 
+<Icon icon={inddSolid} width={40} height={40} /> 
+
+<Indd width={40} height={40} /> 
+<Icon icon={indd} width={40} height={40} /> 
+
+<JavaGray width={40} height={40} /> 
+<Icon icon={javaGray} width={40} height={40} /> 
+
+<JavaSolid width={40} height={40} /> 
+<Icon icon={javaSolid} width={40} height={40} /> 
+
+<Java width={40} height={40} /> 
+<Icon icon={java} width={40} height={40} /> 
+
+<JpegGray width={40} height={40} /> 
+<Icon icon={jpegGray} width={40} height={40} /> 
+
+<JpegSolid width={40} height={40} /> 
+<Icon icon={jpegSolid} width={40} height={40} /> 
+
+<Jpeg width={40} height={40} /> 
+<Icon icon={jpeg} width={40} height={40} /> 
+
+<JpgGray width={40} height={40} /> 
+<Icon icon={jpgGray} width={40} height={40} /> 
+
+<JpgSolid width={40} height={40} /> 
+<Icon icon={jpgSolid} width={40} height={40} /> 
+
+<Jpg width={40} height={40} /> 
+<Icon icon={jpg} width={40} height={40} /> 
+
+<JsGray width={40} height={40} /> 
+<Icon icon={jsGray} width={40} height={40} /> 
+
+<JsSolid width={40} height={40} /> 
+<Icon icon={jsSolid} width={40} height={40} /> 
+
+<Js width={40} height={40} /> 
+<Icon icon={js} width={40} height={40} /> 
+
+<JsonGray width={40} height={40} /> 
+<Icon icon={jsonGray} width={40} height={40} /> 
+
+<JsonSolid width={40} height={40} /> 
+<Icon icon={jsonSolid} width={40} height={40} /> 
+
+<Json width={40} height={40} /> 
+<Icon icon={json} width={40} height={40} /> 
+
+<MkvGray width={40} height={40} /> 
+<Icon icon={mkvGray} width={40} height={40} /> 
+
+<MkvSolid width={40} height={40} /> 
+<Icon icon={mkvSolid} width={40} height={40} /> 
+
+<Mkv width={40} height={40} /> 
+<Icon icon={mkv} width={40} height={40} /> 
+
+<Mp3Gray width={40} height={40} /> 
+<Icon icon={mp3Gray} width={40} height={40} /> 
+
+<Mp3Solid width={40} height={40} /> 
+<Icon icon={mp3Solid} width={40} height={40} /> 
+
+<Mp3 width={40} height={40} /> 
+<Icon icon={mp3} width={40} height={40} /> 
+
+<Mp4Gray width={40} height={40} /> 
+<Icon icon={mp4Gray} width={40} height={40} /> 
+
+<Mp4Solid width={40} height={40} /> 
+<Icon icon={mp4Solid} width={40} height={40} /> 
+
+<Mp4 width={40} height={40} /> 
+<Icon icon={mp4} width={40} height={40} /> 
+
+<MpegGray width={40} height={40} /> 
+<Icon icon={mpegGray} width={40} height={40} /> 
+
+<MpegSolid width={40} height={40} /> 
+<Icon icon={mpegSolid} width={40} height={40} /> 
+
+<Mpeg width={40} height={40} /> 
+<Icon icon={mpeg} width={40} height={40} /> 
+
+<PdfGray width={40} height={40} /> 
+<Icon icon={pdfGray} width={40} height={40} /> 
+
+<PdfSolid width={40} height={40} /> 
+<Icon icon={pdfSolid} width={40} height={40} /> 
+
+<Pdf width={40} height={40} /> 
+<Icon icon={pdf} width={40} height={40} /> 
+
+<Pdf2Gray width={40} height={40} /> 
+<Icon icon={pdf2Gray} width={40} height={40} /> 
+
+<Pdf2Solid width={40} height={40} /> 
+<Icon icon={pdf2Solid} width={40} height={40} /> 
+
+<Pdf2 width={40} height={40} /> 
+<Icon icon={pdf2} width={40} height={40} /> 
+
+<PngGray width={40} height={40} /> 
+<Icon icon={pngGray} width={40} height={40} /> 
+
+<PngSolid width={40} height={40} /> 
+<Icon icon={pngSolid} width={40} height={40} /> 
+
+<Png width={40} height={40} /> 
+<Icon icon={png} width={40} height={40} /> 
+
+<PsdGray width={40} height={40} /> 
+<Icon icon={psdGray} width={40} height={40} /> 
+
+<PsdSolid width={40} height={40} /> 
+<Icon icon={psdSolid} width={40} height={40} /> 
+
+<Psd width={40} height={40} /> 
+<Icon icon={psd} width={40} height={40} /> 
+
+<PttGray width={40} height={40} /> 
+<Icon icon={pttGray} width={40} height={40} /> 
+
+<PttSolid width={40} height={40} /> 
+<Icon icon={pttSolid} width={40} height={40} /> 
+
+<Ptt width={40} height={40} /> 
+<Icon icon={ptt} width={40} height={40} /> 
+
+<PttxGray width={40} height={40} /> 
+<Icon icon={pttxGray} width={40} height={40} /> 
+
+<PttxSolid width={40} height={40} /> 
+<Icon icon={pttxSolid} width={40} height={40} /> 
+
+<Pttx width={40} height={40} /> 
+<Icon icon={pttx} width={40} height={40} /> 
+
+<RarGray width={40} height={40} /> 
+<Icon icon={rarGray} width={40} height={40} /> 
+
+<RarSolid width={40} height={40} /> 
+<Icon icon={rarSolid} width={40} height={40} /> 
+
+<Rar width={40} height={40} /> 
+<Icon icon={rar} width={40} height={40} /> 
+
+<RssGray width={40} height={40} /> 
+<Icon icon={rssGray} width={40} height={40} /> 
+
+<RssSolid width={40} height={40} /> 
+<Icon icon={rssSolid} width={40} height={40} /> 
+
+<Rss width={40} height={40} /> 
+<Icon icon={rss} width={40} height={40} /> 
+
+<SpreadsheetGray width={40} height={40} /> 
+<Icon icon={spreadsheetGray} width={40} height={40} /> 
+
+<SpreadsheetSolid width={40} height={40} /> 
+<Icon icon={spreadsheetSolid} width={40} height={40} /> 
+
+<Spreadsheet width={40} height={40} /> 
+<Icon icon={spreadsheet} width={40} height={40} /> 
+
+<SqlGray width={40} height={40} /> 
+<Icon icon={sqlGray} width={40} height={40} /> 
+
+<SqlSolid width={40} height={40} /> 
+<Icon icon={sqlSolid} width={40} height={40} /> 
+
+<Sql width={40} height={40} /> 
+<Icon icon={sql} width={40} height={40} /> 
+
+<SvgGray width={40} height={40} /> 
+<Icon icon={svgGray} width={40} height={40} /> 
+
+<SvgSolid width={40} height={40} /> 
+<Icon icon={svgSolid} width={40} height={40} /> 
+
+<Svg width={40} height={40} /> 
+<Icon icon={svg} width={40} height={40} /> 
+
+<TiffGray width={40} height={40} /> 
+<Icon icon={tiffGray} width={40} height={40} /> 
+
+<TiffSolid width={40} height={40} /> 
+<Icon icon={tiffSolid} width={40} height={40} /> 
+
+<Tiff width={40} height={40} /> 
+<Icon icon={tiff} width={40} height={40} /> 
+
+<TxtGray width={40} height={40} /> 
+<Icon icon={txtGray} width={40} height={40} /> 
+
+<TxtSolid width={40} height={40} /> 
+<Icon icon={txtSolid} width={40} height={40} /> 
+
+<Txt width={40} height={40} /> 
+<Icon icon={txt} width={40} height={40} /> 
+
+<Video01Gray width={40} height={40} /> 
+<Icon icon={video01Gray} width={40} height={40} /> 
+
+<Video01Solid width={40} height={40} /> 
+<Icon icon={video01Solid} width={40} height={40} /> 
+
+<Video01 width={40} height={40} /> 
+<Icon icon={video01} width={40} height={40} /> 
+
+<Video02Gray width={40} height={40} /> 
+<Icon icon={video02Gray} width={40} height={40} /> 
+
+<Video02Solid width={40} height={40} /> 
+<Icon icon={video02Solid} width={40} height={40} /> 
+
+<Video02 width={40} height={40} /> 
+<Icon icon={video02} width={40} height={40} /> 
+
+<WavGray width={40} height={40} /> 
+<Icon icon={wavGray} width={40} height={40} /> 
+
+<WavSolid width={40} height={40} /> 
+<Icon icon={wavSolid} width={40} height={40} /> 
+
+<Wav width={40} height={40} /> 
+<Icon icon={wav} width={40} height={40} /> 
+
+<WebpGray width={40} height={40} /> 
+<Icon icon={webpGray} width={40} height={40} /> 
+
+<WebpSolid width={40} height={40} /> 
+<Icon icon={webpSolid} width={40} height={40} /> 
+
+<Webp width={40} height={40} /> 
+<Icon icon={webp} width={40} height={40} /> 
+
+<XlsxGray width={40} height={40} /> 
+<Icon icon={xlsxGray} width={40} height={40} /> 
+
+<XlsxSolid width={40} height={40} /> 
+<Icon icon={xlsxSolid} width={40} height={40} /> 
+
+<Xlsx width={40} height={40} /> 
+<Icon icon={xlsx} width={40} height={40} /> 
+
+<XmlGray width={40} height={40} /> 
+<Icon icon={xmlGray} width={40} height={40} /> 
+
+<XmlSolid width={40} height={40} /> 
+<Icon icon={xmlSolid} width={40} height={40} /> 
+
+<Xml width={40} height={40} /> 
+<Icon icon={xml} width={40} height={40} /> 
+
+<ZipGray width={40} height={40} /> 
+<Icon icon={zipGray} width={40} height={40} /> 
+
+<ZipSolid width={40} height={40} /> 
+<Icon icon={zipSolid} width={40} height={40} /> 
+
+<Zip width={40} height={40} /> 
+<Icon icon={zip} width={40} height={40} /> 
+

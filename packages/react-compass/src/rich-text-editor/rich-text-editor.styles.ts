@@ -10,7 +10,7 @@ export const StyledEditorContent = styled('div', {
   backgroundColor: '$background',
   color: '$primaryText',
   height: '$125',
-  overflow: 'scroll',
+  overflow: 'auto',
   // styling
 })
 
@@ -24,7 +24,7 @@ export const StyledRichTextEditor = styled('div', {
 
   // Styling for ProposeMirror
   '& .ProseMirror': {
-    padding: '10px',
+    padding: '$4',
     minHeight: '100px',
     outline: 'none',
   },

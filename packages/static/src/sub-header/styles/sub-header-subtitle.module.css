@@ -1,0 +1,11 @@
+@import '../../theme/theme.module.css';
+
+@layer default;
+
+@layer default{
+  .subHeaderSubtitle {
+    color: inherit;
+    font-size: var(--cdg-font-size-label1);
+    line-height: var(--cdg-spacing-5_25);
+  }
+}

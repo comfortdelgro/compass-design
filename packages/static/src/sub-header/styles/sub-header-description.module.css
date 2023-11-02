@@ -1,0 +1,23 @@
+@import '../../theme/theme.module.css';
+
+@layer default, variant;
+
+@layer default {
+  .subHeaderDescription {
+    margin: 0;
+  }
+}
+
+@layer variant {
+  /* Variant: h5 */
+  .default {
+    /* Default variant */
+    font-size: var(--cdg-font-size-label1);
+    color: var(--cdg-color-gray70);
+  }
+  .h5 {
+    font-size: var(--cdg-font-size-label1);
+    font-weight: var(--cdg-font-weights-medium);
+    line-height: var(--cdg-spacing-5);
+  }
+}

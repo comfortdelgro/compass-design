@@ -1,0 +1,139 @@
+@import '../../theme/theme.module.css';
+
+@layer default, variant;
+
+/* level 1 css */
+@layer default {
+  .subBannerImage {
+    /* reset */
+    appearance: none;
+    border: none;
+    background-color: transparent;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+    /* img */
+    width: 100%;
+    height: 64.67%;
+  }
+
+  .subBannerBottom {
+    /* reset */
+    appearance: none;
+    border: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: var(--cdg-spacing-8) var(--cdg-spacing-4);
+
+    /* sub-banner bottom */
+    width: 100%;
+    height: 35.33%;
+    background-color: var(--cdg-color-cdgBlue);
+
+    /* position title & description */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--cdg-spacing-1_5);
+  }
+
+  .subBannerTitle {
+    /* reset */
+    appearance: none;
+    border: none;
+    background-color: transparent;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+    /* font style */
+    font-family: var(--cdg-font-sans);
+    font-size: var(--cdg-font-size-header3);
+    color: var(--cdg-color-whiteText);
+    line-height: var(--cdg-line-height-normal);
+    font-weight: var(--cdg-font-weight-semibold);
+  }
+
+  .subBannerDescription {
+    /* reset */
+    appearance: none;
+    border: none;
+    background-color: transparent;
+    box-sizing: border-box;
+    margin: 0;
+    margin-top: var(--cdg-spacing-1_5);
+    padding: 0;
+
+    /* font style */
+    font-family: var(--cdg-font-sans);
+    font-size: var(--cdg-font-size-label1);
+    color: var(--cdg-color-whiteText);
+    line-height: var(--cdg-line-height-normal);
+    font-weight: var(--cdg-font-weight-normal);
+  }
+
+  .bottomContentContainer {
+    /* reset */
+    appearance: none;
+    border: none;
+    box-sizing: border-box;
+    margin: 0;
+  }
+
+  .subBanner {
+    /* reset */
+    appearance: none;
+    border: none;
+    background-color: transparent;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+    /* container */
+    height: var(--cdg-spacing-108_25);
+    width: var(--cdg-spacing-80);
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+
+/* level 2 css */
+@layer variant {
+  .subBannerPrimary {
+    /* css default */
+  }
+
+  .subBannerSecondary {
+    position: relative;
+  }
+
+  .subBannerBottomPrimary {
+    /* css default */
+  }
+
+  .subBannerBottomSecondary {
+    display: none;
+  }
+
+  .bottomContentContainerPrimary {
+    /* css default */
+  }
+
+  .bottomContentContainerSecondary {
+    position: absolute;
+    bottom: var(--cdg-spacing-2);
+    padding-inline: var(--cdg-spacing-4);
+  }
+
+  .subBannerImagePrimary {
+    /* css default */
+  }
+
+  .subBannerImageSecondary {
+    position: absolute;
+    height: 100%;
+    z-index: -1;
+  }
+}

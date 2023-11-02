@@ -1,0 +1,62 @@
+@layer default, compoundVariant;
+
+@layer default {
+  .multipleChoicesSlider {
+    display: flex;
+    gap: var(--cdg-spacing-2);
+
+    padding: var(--cdg-spacing-2) var(--cdg-spacing-4);
+    width: 100%;
+
+    white-space: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+
+  .multipleChoicesSliderItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--cdg-spacing-2);
+
+    padding-block: var(--cdg-spacing-2);
+    min-width: 154px;
+    height: 95px;
+
+    border: none;
+    outline: none;
+    border-radius: var(--cdg-border-radius-xl);
+    background-color: var(--cdg-color-grayShades10);
+    color: var(--cdg-color-primaryText);
+    font-weight: var(--cdg-font-weight-medium);
+    font-size: var(--cdg-font-size-body3);
+
+    cursor: pointer;
+    scroll-snap-align: center;
+  }
+
+  .multipleChoicesSliderItem:focus-visible {
+    outline: var(--cdg-color-cdgBlue40) solid 2px;
+  }
+
+  .multipleChoicesSliderItem > svg {
+    flex: 1;
+  }
+
+  .multipleChoicesSliderItem > .itemLabel {
+    display: block;
+    width: 100%;
+
+    text-align: center;
+    word-wrap: break-word;
+    white-space: normal;
+    user-select: none;
+  }
+}
+
+@layer compoundVariant {
+  .multipleChoicesSliderItem.isActive {
+    background-color: var(--cdg-color-cdgBlue40);
+  }
+}

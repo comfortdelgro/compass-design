@@ -1,4 +1,3 @@
-'use client'
 import React from 'react'
 import generateRandomString from '../generateRandomString'
 import objectToCSS, {StyleObject} from './object-to-css'
@@ -6,17 +5,17 @@ import objectToCSS, {StyleObject} from './object-to-css'
 export interface Props {
   children?: React.ReactNode
   css?: unknown
-  childrenRef?: React.Ref<HTMLDivElement>
+  childrenRef?: React.Ref<HTMLElement>
 }
 
-const CssInjection = React.forwardRef<HTMLDivElement, Props>((props) => {
+const CssInjection = React.forwardRef<HTMLElement, Props>((props) => {
   const {children, css, childrenRef} = props
 
   // Generate a unique class name for the children
   const [additionalClasses, setAdditionalClasses] = React.useState('')
 
   React.useEffect(() => {
-    const childClassName: string = generateRandomString('cdg-chip')
+    const childClassName: string = generateRandomString('cdg')
     setAdditionalClasses(childClassName)
   }, [childrenRef])
 
@@ -37,12 +36,13 @@ const CssInjection = React.forwardRef<HTMLDivElement, Props>((props) => {
     return child
   })
 
-  // should have used useInsertionEffect() but its need typescript 5 as dependency, not sure if it works for all cdg's projects.
+  // should have used useInsertionEffect() but it needs typescript 5 as dependency, not sure if it works for all cdg's projects.
   React.useEffect(() => {
     if (additionalClasses === '') return
     if (!css) return
     const cssString = objectToCSS(css as StyleObject, `.${additionalClasses}`)
     const styleElement = document.createElement('style')
+    styleElement.setAttribute('data-cdg', 'css')
     styleElement.textContent = cssString
     document.head.appendChild(styleElement)
     return () => {

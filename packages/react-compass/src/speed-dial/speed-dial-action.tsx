@@ -13,6 +13,7 @@ interface Props extends StyledComponentProps {
   icon?: React.ReactNode
   name?: string
   position?: 'up' | 'right' | 'down' | 'left' | undefined
+  isVisible?: boolean
 }
 
 type SpeedDialActionProps = Props &
@@ -22,7 +23,7 @@ export const SpeedDialAction = React.forwardRef<
   HTMLButtonElement,
   SpeedDialActionProps
 >((props, ref) => {
-  const {...delegated} = props
+  const {isVisible = false, ...delegated} = props
   const {useDescendant} = useKeyboardNavigationState()
   const {selected, onMouseMove} = useKeyboardNavigation()
   const {icon, name, position} = props
@@ -42,6 +43,7 @@ export const SpeedDialAction = React.forwardRef<
       tabIndex={-1}
       type='button'
       role='menuitem'
+      isVisible={isVisible}
       {...delegated}
     >
       <SpeedDialIcon className='speed-dial__action-icon'>{icon}</SpeedDialIcon>

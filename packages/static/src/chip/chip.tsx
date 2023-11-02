@@ -1,17 +1,19 @@
-'use client'
 import React from 'react'
-import {useIsLightTheme} from '../theme'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import darkThemeStyles from './styles/dark.module.css'
-import lightThemeStyles from './styles/light.module.css'
+import styles from './styles/chip.module.css'
 
 export interface Props {
   children?: React.ReactNode
   hasCloseButton?: boolean
   isErrored?: boolean
-  onClose?: (event: React.MouseEvent<HTMLDivElement>) => void
   css?: unknown
+  className?: string
+  tabIndex?: number
+  onClose?: (event: React.MouseEvent<HTMLDivElement>) => void
+  onClick?: (event: React.MouseEvent<HTMLDivElement>) => void
+  onKeyDown?: (event: React.KeyboardEvent<HTMLDivElement>) => void
+  onCloseClick?: (event: React.MouseEvent<HTMLDivElement>) => void
 }
 
 const Chip = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
@@ -19,27 +21,56 @@ const Chip = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     children,
     hasCloseButton = false,
     isErrored = false,
-    onClose,
     css,
+    className,
+    tabIndex,
+    onCloseClick,
+    onClick,
+    onKeyDown,
     ...delegated
   } = props
 
   const chipRef = useDOMRef<HTMLDivElement>(ref)
+  const closeButtonRef = useDOMRef<HTMLDivElement>(null)
 
-  const styles = useIsLightTheme() ? lightThemeStyles : darkThemeStyles
+  const handleChipKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    onKeyDown?.(event)
+    switch (event.code) {
+      case 'Backspace':
+      case 'Delete':
+        closeButtonRef.current?.click()
+        break
+      case 'Escape':
+        chipRef.current?.blur()
+        break
+      default:
+        break
+    }
+  }
+
+  const handleCloseIconClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation()
+    onCloseClick?.(event)
+  }
 
   return (
     <CssInjection css={css} childrenRef={chipRef}>
       <div
         ref={chipRef}
-        className={` ${styles.chip} ${isErrored ? styles.isErrored : ''}`}
+        className={` ${className} ${styles.chip} ${
+          isErrored ? styles.isErrored : ''
+        }`}
+        tabIndex={hasCloseButton || onClick ? tabIndex || 0 : -1}
+        onClick={onClick}
+        onKeyDown={handleChipKeyDown}
         {...delegated}
       >
-        {children}
+        <div className={`${styles.cdgChipContent}`}>{children}</div>
         {hasCloseButton && (
           <div
             className={`${styles['close-icon-container']}`}
-            onClick={onClose}
+            onClick={handleCloseIconClick}
+            ref={closeButtonRef}
           >
             <svg width='10' height='10' viewBox='0 0 10 10'>
               <g clipPath='url(#clip0_5299_13653)'>

@@ -38,6 +38,10 @@ With css prop, you can basically do anything that css can do.
 
 {{"demo": "BannerCustom.tsx"}}
 
+<!-- ## Banner Server (Experimental)
+
+{{"demo": "BannerServer.tsx"}} -->
+
 ## Props
 
 | Name    | Type              | Default | Description                                                                                 |

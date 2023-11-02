@@ -40,6 +40,10 @@ export const StyledCalendarCell = styled('td', {
     color: '$whiteText',
   },
 
+  '&.today .calendar-cell-value:hover': {
+    color: '$gray50',
+  },
+
   '& .calendar-cell-value': {
     display: 'flex',
     justifyContent: 'center',

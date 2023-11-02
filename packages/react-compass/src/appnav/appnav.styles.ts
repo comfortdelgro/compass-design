@@ -2,14 +2,12 @@ import {styled} from '../theme'
 import {VariantProps} from '../utils/stitches.types'
 
 export const StyledAppNav = styled('nav', {
-  // width: '375px',
-  height: '102px',
   backgroundColor: '$background',
-  padding: '$6 $6 34px $6',
+  padding: '$4 0',
   display: 'flex',
   alignItems: 'center',
   position: 'fixed',
-  justifyContent: 'space-between',
+  justifyContent: 'center',
 
   left: 0,
   right: 0,
@@ -37,7 +35,8 @@ export const StyledAppNavSection = styled('button', {
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'space-between',
-  position: 'relative',
+
+  flex: 1,
   span: {
     fontSize: '$label3',
     lineHeight: '1rem',
@@ -45,6 +44,10 @@ export const StyledAppNavSection = styled('button', {
   },
   '&:focus-visible': {
     outline: '2px solid $cdgBlue',
+  },
+  '& .icon': {
+    flex: 1,
+    position: 'relative',
   },
   variants: {
     isActive: {

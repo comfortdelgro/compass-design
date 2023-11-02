@@ -83,8 +83,7 @@ export const StyledTextareaWrapper = styled('div', {
   flexDirection: 'column',
   alignItems: 'flex-start',
   fontFamily: '$sans',
-  width: 'fit-content',
-
+  width: '100%',
   '.cdg-word-count': {
     width: '100%',
     display: 'flex',
@@ -130,7 +129,7 @@ export const StyledTextareaWrapper = styled('div', {
             fontSize: '$label2',
             fontWeight: 400,
             lineHeight: '$tight',
-            color: '$grayShades40',
+            color: '$placeholder',
           },
         },
         [`${StyledTextAreaHelperText}`]: {

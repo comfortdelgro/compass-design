@@ -1,0 +1,15 @@
+<List
+    size='sm'
+    leftInfo={<Icon icon={faBug} />}
+    title='Title'
+    description='Lorem Ipsum'
+    css={{maxWidth: '198px'}}
+/>
+<List
+    size='sm'
+    isDisabled
+    leftInfo={<Icon icon={faBug} />}
+    title='Title'
+    description='Lorem Ipsum'
+    css={{maxWidth: '198px'}}
+/>

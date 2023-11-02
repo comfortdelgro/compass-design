@@ -1,9 +1,10 @@
+import {Typography} from '@comfortdelgro/react-compass'
 import Radio from '@comfortdelgro/react-compass/radio'
 
 function RadioOrientation() {
   return (
     <div>
-      <h3>Horizontal</h3>
+      <Typography.Header variant='header4'>Horizontal</Typography.Header>
       <Radio.Group orientation='horizontal'>
         <Radio
           label='test'
@@ -17,7 +18,7 @@ function RadioOrientation() {
           value='2'
         />
       </Radio.Group>
-      <h3>Vertical</h3>
+      <Typography.Header variant='header4'>Vertical</Typography.Header>
       <Radio.Group orientation='vertical'>
         <Radio
           label='test'

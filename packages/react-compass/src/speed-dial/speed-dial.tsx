@@ -50,6 +50,11 @@ const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
     const handleMouseEnter = () => {
       setIsOpen(true)
     }
+    const handleFocus = () => {
+      if (isOpen === false) {
+        setIsOpen(true)
+      }
+    }
 
     const handleMouseLeave = () => {
       setIsOpen(false)
@@ -108,7 +113,7 @@ const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
         <SpeedDialTrigger
           className={`speed-dial__trigger ${isOpen ? 'open' : ''}`}
           onMouseEnter={handleMouseEnter}
-          onFocus={handleMouseEnter}
+          onFocus={handleFocus}
           onClick={toggleOpen}
           aria-expanded={isOpen}
           aria-haspopup={true}
@@ -121,7 +126,6 @@ const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
           className={`speed-dial__actions speed-dial__actions--${
             position || 'up'
           } ${isOpen ? 'open' : ''}`}
-          isOpenAction={isOpen}
           role='menu'
         >
           {actions.map(({name, icon, onClick}, index) => (
@@ -131,6 +135,8 @@ const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
               icon={icon}
               name={name}
               position={position}
+              isVisible={isOpen}
+              disabled={!isOpen}
             />
           ))}
         </StyledSpeedDialActions>

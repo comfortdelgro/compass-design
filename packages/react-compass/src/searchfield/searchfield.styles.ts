@@ -12,7 +12,7 @@ export const StyledSearchFieldInput = styled('input', {
   borderRadius: '$md',
   backgroundColor: 'transparent',
   '&::placeholder': {
-    color: '#B4B4B4',
+    color: '$placeholder',
     fontSize: '$label1',
     fontWeight: '$semibold',
   },
@@ -95,6 +95,31 @@ export const StyledSearchFieldBox = styled('div', {
         '&:focus-within': {
           borderColor: '$cdgBlue',
         },
+      },
+    },
+    h5: {
+      true: {
+        flexDirection: 'row-reverse',
+        gap: '$2',
+        padding: '$2 $4',
+        borderRadius: '$lg',
+        height: '$12',
+        [`${StyledButton}`]: {
+          padding: 0,
+          color: '$grayShades60',
+        },
+        [`${StyledSearchFieldInput}`]: {
+          padding: 0,
+          '&::placeholder': {
+            fontSize: '$3_5',
+            fontStyle: 'normal',
+            fontWeight: '$medium',
+            lineHeight: '20px',
+          },
+        },
+      },
+      false: {
+        flexDirection: 'row',
       },
     },
   },

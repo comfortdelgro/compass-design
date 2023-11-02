@@ -112,6 +112,11 @@ export type {
   DropdownMenuSubmenuProps,
   DropdownMenuToggleProps,
 } from './dropdown-menu'
+export {default as DropdownTextfield} from './dropdown-textfield'
+export type {
+  DropdownOptions,
+  DropdownTextfieldProps,
+} from './dropdown-textfield'
 export {default as Error} from './error'
 export type {
   ErrorActionProps,
@@ -268,6 +273,13 @@ export {default as SlideAction} from './slide-action'
 export type {SlideActionProps} from './slide-action'
 export {default as Slider} from './slider'
 export type {SliderProps} from './slider'
+export {default as Snackbar} from './snackbar'
+export type {
+  SnackbarPrefixIconProps,
+  SnackbarSuffixIconProps,
+  SnackbarTextProps,
+} from './snackbar'
+export {SnackbarContextProvider, useSnackbar} from './snackbar/service'
 export {default as SpeedDial} from './speed-dial'
 export type {SpeedDialProps} from './speed-dial'
 export {default as Spinner} from './spinner'

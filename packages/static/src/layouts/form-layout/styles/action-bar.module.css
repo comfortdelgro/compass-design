@@ -1,0 +1,46 @@
+@import '../../../theme/theme.module.css';
+@layer default, small;
+
+@layer default {
+  .formLayout {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: var(--cdg-spacing-4);
+    container-type: inline-size;
+    container-name: 'formLayout';
+  }
+
+  .column1 {
+    grid-template-columns: 1fr;
+  }
+
+  .column2 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .column3 {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .formLayoutRow {
+    display: grid;
+    gap: var(--cdg-spacing-4);
+  }
+
+  .formLayoutGroup {
+    width: 100%;
+  }
+
+  .formExplaination {
+    width: 100%;
+  }
+}
+
+@layer small {
+  @container formLayout (max-width: 640px): {
+    .breaksOnSmall {
+      grid-template-columns: 1fr;
+    }
+  }
+}

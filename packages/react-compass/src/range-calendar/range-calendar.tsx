@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react'
+import React, {useCallback, useMemo} from 'react'
 import Box from '../box'
 import Button, {ButtonProps} from '../button'
 import CalendarGrid from '../calendar/calendar-grid'
@@ -6,6 +6,7 @@ import CalendarHeader from '../calendar/calendar-header'
 import {useRangeCalendar} from '../calendar/hooks/useRangeCalendar'
 import {useRangeCalendarState} from '../calendar/hooks/useRangeCalendarState'
 import {DateRangePickerState, DateValue, RangeValue} from '../calendar/types'
+import {isInvalid} from '../calendar/utils'
 import {useDatePickerContext} from '../date-picker/date-picker-context'
 import * as InternationalizedDate from '../internationalized/date'
 import {
@@ -16,6 +17,7 @@ import {
 import {useDateFormatter, useLocale} from '../internationalized/i18n'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
+import {useMediaQuery} from '../utils/use-media-query'
 import RangeCalendarShorcuts, {
   CustomShortcutsProps,
 } from './range-calendar-shortcuts'
@@ -63,13 +65,17 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
       ...delegated
     } = props
 
+    const isMobileView = useMediaQuery('(max-width: 768px)')
+
+    const responsiveVisibleMonths = isMobileView ? 1 : visibleMonths
+
     const {locale} = useLocale()
     const state = useRangeCalendarState({
       ...delegated,
       value: props.state
         ? (props.state?.value as RangeValue<DateValue>)
         : (props.value as RangeValue<DateValue>),
-      visibleDuration: {months: visibleMonths},
+      visibleDuration: {months: responsiveVisibleMonths},
       locale,
       createCalendar,
     })
@@ -119,7 +125,17 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
       )
     }
 
-    const isRangeCalendar = visibleMonths === 1 ? false : true
+    const isTodayButtonDisabled = useMemo(() => {
+      const today = InternationalizedDate.today(
+        InternationalizedDate.getLocalTimeZone(),
+      )
+
+      const isTodayInvalid = isInvalid(today, delegated.minValue, maxValue)
+
+      return isTodayInvalid
+    }, [delegated.minValue, maxValue])
+
+    const isRangeCalendar = responsiveVisibleMonths === 1 ? false : true
 
     const showShortcut = isRangeCalendar && hasShortcuts ? true : false
 
@@ -135,7 +151,11 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
           )
         } else {
           return (
-            <Button variant='primary' onPress={handleTodayButtonClick}>
+            <Button
+              variant='primary'
+              onPress={handleTodayButtonClick}
+              isDisabled={isTodayButtonDisabled}
+            >
               Today
             </Button>
           )

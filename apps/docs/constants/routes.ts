@@ -1,4 +1,5 @@
 import {
+  faCog,
   faFile,
   faHouse,
   faSquarePen,
@@ -100,10 +101,22 @@ export const routes: TSideNavItem[] = [
           "Avatars can be used in everything including a person's profile picture, dialog menu, ext.",
       },
       {
+        title: 'App Navigation',
+        pathname: '/app-navigation',
+        description:
+          'A navigation bar containing a number of destinations at the top or bottom of the screen .',
+      },
+      {
         title: 'Button',
         pathname: '/button',
         description:
           'Buttons allow users to take actions, and make choices, with a single tap.',
+      },
+      {
+        title: 'Dropdown Textfield',
+        pathname: '/dropdown-textfield',
+        description:
+          'The combination of dropdown and textfield in one component.',
       },
       {
         title: 'Action Bar',
@@ -289,11 +302,6 @@ export const routes: TSideNavItem[] = [
           'No-SSR ensures components are not rendered on the server.',
       },
       {
-        title: 'Preflight',
-        pathname: '/preflight',
-        description: 'Preflight sets baseline styles for consistent rendering.',
-      },
-      {
         title: 'Progress Bar',
         pathname: '/progress-bar',
         description: 'Progress Bar indicates completion of a task.',
@@ -432,6 +440,12 @@ export const routes: TSideNavItem[] = [
           'Provides the behavior and accessibility implementation for a slider component representing one or more values.',
       },
       {
+        title: 'Snackbar',
+        pathname: '/snackbar',
+        description:
+          'Provides brief messages of a process that an app has performed or will perform at the bottom of the screen.',
+      },
+      {
         title: 'SpeedDial',
         pathname: '/speed-dial',
         description:
@@ -534,6 +548,86 @@ export const routes: TSideNavItem[] = [
         title: 'Toast',
         pathname: '/toast',
         description: 'The toast component displays a message.',
+      },
+    ],
+  },
+
+  {
+    pathname: '/utilities',
+    title: 'Utilities',
+    icon: faCog,
+    children: [
+      {
+        title: 'Calendar',
+        pathname: '/date/calendar',
+        description:
+          'The Calendar represents a calendar system, including information about how days, months, years, eras are organized, and methods to perform arithmetic on dates.',
+      },
+      {
+        title: 'CalendarDate',
+        pathname: '/date/calendar-date',
+        description:
+          'A CalendarDate represents a date without any time components in a specific calendar system.',
+      },
+      {
+        title: 'CalendarDateTime',
+        pathname: '/date/calendar-date-time',
+        description:
+          'A CalendarDateTime represents a date and time without a time zone, in a specific calendar system.',
+      },
+      {
+        title: 'DateFormatter',
+        pathname: '/date/date-formatter',
+        description:
+          'A wrapper around Intl.DateTimeFormat that fixes various browser bugs, and polyfills new features.',
+      },
+      {
+        title: 'Time',
+        pathname: '/date/time',
+        description:
+          'A Time represents a clock time without any date components.',
+      },
+      {
+        title: 'ZonedDateTime',
+        pathname: '/date/zoned-date-time',
+        description:
+          'A ZonedDateTime represents a date and time in a specific time zone and calendar system.',
+      },
+      {
+        title: 'NumberParser',
+        pathname: '/number/number-parser',
+        description:
+          'A NumberParser can be used to perform locale-aware parsing of numbers from Unicode strings, as well as validation of partial user input. ',
+      },
+      {
+        title: 'NumberFormatter',
+        pathname: '/number/number-formatter',
+        description:
+          'A wrapper around Intl.NumberFormat providing additional options, polyfills, and caching for performance.',
+      },
+      {
+        title: 'I18nProvider',
+        pathname: '/i18n/i18nProvider',
+        description:
+          'Provides the locale for the application to all child components.',
+      },
+      {
+        title: 'useCollator',
+        pathname: '/i18n/useCollator',
+        description:
+          'Provides localized string collation for the current locale.',
+      },
+      {
+        title: 'useDateFormatter',
+        pathname: '/i18n/useDateFormatter',
+        description:
+          'Provides localized date formatting for the current locale.',
+      },
+      {
+        title: 'useFilter',
+        pathname: '/i18n/useFilter',
+        description:
+          'Provides localized string search functionality that is useful for filtering or matching items in a list.',
       },
     ],
   },

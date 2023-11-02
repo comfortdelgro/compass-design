@@ -1,0 +1,68 @@
+@import '../../../theme/theme.module.css';
+@layer default;
+
+@layer default {
+  .layout {
+    display: flex;
+    overflow: auto;
+  }
+
+  .row {
+    flex-direction: row;
+  }
+
+  .column {
+    flex-direction: column;
+  }
+
+  .startStart {
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  .centerStart {
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .endStart {
+    align-items: flex-start;
+    justify-content: flex-end;
+  }
+
+  .startCenter {
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+  }
+
+  .centerCenter {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .endCenter {
+    align-items: center;
+    justify-content: flex-end;
+    text-align: right;
+  }
+
+  .startEnd {
+    align-items: flex-end;
+    justify-content: flex-start;
+    text-align: right;
+  }
+
+  .centerEnd {
+    align-items: flex-end;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .endEnd {
+    align-items: flex-end;
+    justify-content: flex-end;
+    text-align: right;
+  }
+}

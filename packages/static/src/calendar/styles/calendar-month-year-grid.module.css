@@ -1,0 +1,48 @@
+@import '../../theme/theme.module.css';
+
+@layer default, variant, compoundVariant;
+
+@layer default {
+  .calendarMonthYearGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 12px;
+  }
+
+  .calendarMonthYearCell {
+    width: 94px;
+    height: 47.5px;
+    background-color: transparent;
+    border: none;
+    border-radius: var(--cdg-border-radius-md);
+    cursor: pointer;
+    font-size: var(--cdg-font-size-link3);
+    color: var(--cdg-color-primaryText);
+  }
+
+  .calendarMonthYearCell:hover,
+  .calendarMonthYearCell:focus-visible {
+    background-color: var(--cdg-color-cdgBlue100);
+    color: white;
+    font-weight: normal;
+    outline: none;
+  }
+
+  .calendarMonthYearCell:disabled,
+  .calendarMonthYearCell:disabled:hover {
+    background-color: inherit;
+    color: var(--cdg-color-gray50);
+    cursor: not-allowed;
+  }
+}
+
+@layer variant {
+  .highlighted {
+    color: var(--cdg-color-cdgBlue100);
+    font-weight: bold;
+  }
+
+  .highlighted:hover {
+    color: white;
+  }
+}

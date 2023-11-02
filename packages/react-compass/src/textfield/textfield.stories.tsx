@@ -166,6 +166,27 @@ export const Variants: React.FC = () => {
   )
 }
 
+export const ForH5Variant = () => {
+  const [value, setValue] = React.useState('')
+  return (
+    <Column>
+      <Row>
+        <Textfield
+          type='text'
+          label='Name'
+          placeholder='Enter your name'
+          // isErrored
+          helperText='my helper text'
+          errorMessage='my error message'
+          className='my-class'
+          onKeyDown={(e) => console.log('onKeyDownTest', e)}
+          h5
+        />
+      </Row>
+    </Column>
+  )
+}
+
 export default {
   decorators: [
     (Component) => (

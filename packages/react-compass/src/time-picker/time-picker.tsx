@@ -32,6 +32,7 @@ interface Props extends StyledComponentProps {
   views?: ViewType[]
   defaultValue?: string
   onTimeChange?: (time: string) => void
+  onOpenChange?: (open: boolean) => void
 }
 
 export type TimePickerProps = Props &
@@ -53,6 +54,7 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
       views = DEFAULT_VIEWS,
       defaultValue,
       onTimeChange,
+      onOpenChange,
       ...delegated
     } = props
 
@@ -142,7 +144,10 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
           setSelectedDropdownValue(cloneDeep(EMPTY_DISPLAY_TIME_DROPDOWN_LIST))
         }
         // Close popover when click outside
-        isClosePopover && setIsOpen(false)
+        if (isClosePopover) {
+          setIsOpen(false)
+          onOpenChange?.(false)
+        }
         // Clear selection position of input
         setSelectedSelectionInput(cloneDeep(EMPTY_TIME_PICKER_FORMAT))
       }
@@ -503,7 +508,10 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
       event.stopPropagation()
       event.preventDefault()
       if (delegated.isDisabled) return
-      setIsOpen(true)
+      setIsOpen((isOpen) => {
+        onOpenChange?.(!isOpen)
+        return !isOpen
+      })
     }
 
     /**
@@ -511,6 +519,7 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
      */
     const handleOkClick = () => {
       setIsOpen(false)
+      onOpenChange?.(false)
     }
 
     /**

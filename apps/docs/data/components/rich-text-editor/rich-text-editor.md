@@ -29,7 +29,17 @@ import {
 
 ## Example
 
+### Rich Text Editor
+
 {{"demo": "RichTextEditor.tsx"}}
+
+### Placeholder
+
+{{"demo": "Placeholder.tsx"}}
+
+### Read-only
+
+{{"demo": "ReadOnly.tsx"}}
 
 ## Components
 

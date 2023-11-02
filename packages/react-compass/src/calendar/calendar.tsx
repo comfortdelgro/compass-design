@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react'
+import React, {useCallback, useMemo} from 'react'
 import Button from '../button'
 import {useDatePickerContext} from '../date-picker/date-picker-context'
 import * as InternationalizedDate from '../internationalized/date'
@@ -16,6 +16,7 @@ import {useCalendar} from './hooks/useCalendar'
 import {useCalendarState} from './hooks/useCalendarState'
 import {MONTH_YEAR_STATE, useMonthYearCalendar} from './hooks/useMonthYearState'
 import {DatePickerState, ValueBase} from './types'
+import {isInvalid} from './utils'
 interface Props extends StyledComponentProps, ValueBase<DateValue> {
   children?: React.ReactNode
   state?: DatePickerState
@@ -111,6 +112,16 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     }
   }
 
+  const isTodayButtonDisabled = useMemo(() => {
+    const today = InternationalizedDate.today(
+      InternationalizedDate.getLocalTimeZone(),
+    )
+
+    const isTodayInvalid = isInvalid(today, delegated.minValue, maxValue)
+
+    return isTodayInvalid
+  }, [delegated.minValue, maxValue])
+
   const renderCTAButton = useCallback(() => {
     if (ctaButtonRender) {
       return ctaButtonRender
@@ -122,6 +133,7 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
             monthYearState.setMonthYearState(MONTH_YEAR_STATE.DATE)
             handleTodayButtonClick()
           }}
+          isDisabled={isTodayButtonDisabled}
         >
           Today
         </Button>

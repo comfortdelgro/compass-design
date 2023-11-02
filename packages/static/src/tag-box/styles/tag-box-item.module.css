@@ -1,0 +1,63 @@
+@import '../../theme/theme.module.css';
+
+@layer default, variant;
+
+@layer default {
+  .item {
+    display: flex;
+    height: min-content;
+    align-items: center;
+    justify-content: center;
+    gap: var(--cdg-spacing-3);
+    padding: var(--cdg-spacing-2);
+    font-size: var(--cdg-font-size-label2);
+    border-radius: var(--cdg-border-radius-md);
+    font-weight: var(--cdg-font-weight-semibold);
+    background-color: var(--cdg-color-primaryBg);
+  }
+
+  .item:hover {
+    color: var(--cdg-color-black);
+    background-color: var(--cdg-color-darkerBg);
+  }
+
+  .itemSvg {
+    width: var(--cdg-spacing-3);
+    height: var(--cdg-spacing-3);
+  }
+
+  .itemInput {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    height: fit-content;
+    background: transparent;
+    font-size: var(--cdg-font-size-label2);
+    font-weight: var(--cdg-font-weight-semibold);
+  }
+
+  .itemButton {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--cdg-spacing-4);
+    height: var(--cdg-spacing-4);
+    background-color: transparent;
+  }
+}
+
+@layer variant {
+  .itemIsDisabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    background-color: var(--cdg-color-secondaryBg);
+  }
+
+  .itemIsErrored {
+    border: 1px solid var(--cdg-color-danger)
+  }
+}

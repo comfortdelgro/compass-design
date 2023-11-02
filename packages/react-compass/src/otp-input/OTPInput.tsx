@@ -8,11 +8,13 @@ import {
 import SingleInput from './SingleInput'
 
 export interface Props extends StyledComponentProps {
-  length: number
-  onChangeOTP: (otp: string) => unknown
+  /** @default 6 */
+  length?: number
+  onChangeOTP: (otp: string) => void
   autoFocus?: boolean
   isNumberInput?: boolean
   disabled?: boolean
+  isMobile?: boolean
 }
 export type OTPInputProps = Props &
   OtpInputContainerVariantProps &
@@ -22,10 +24,11 @@ const OTPInputComponent = React.forwardRef<HTMLDivElement, OTPInputProps>(
   (props, ref) => {
     const {
       css = {},
-      length,
+      length = 6,
       isNumberInput,
       autoFocus,
       disabled,
+      isMobile = false,
       onChangeOTP,
       ...delegated
     } = props
@@ -59,6 +62,10 @@ const OTPInputComponent = React.forwardRef<HTMLDivElement, OTPInputProps>(
       (str: string) => {
         const updatedOTPValues = [...otpValues]
         updatedOTPValues[activeInput] = str[0] || ''
+        if (otpValues[activeInput] === updatedOTPValues[activeInput]) {
+          return
+        }
+
         setOTPValues(updatedOTPValues)
         handleOtpChange(updatedOTPValues)
       },
@@ -90,8 +97,8 @@ const OTPInputComponent = React.forwardRef<HTMLDivElement, OTPInputProps>(
       [focusInput],
     )
 
-    // Handle onChange value for each input
-    const handleOnChange = useCallback(
+    // Handle onInput event for each input
+    const handleOnInput = useCallback(
       (e: React.ChangeEvent<HTMLInputElement>) => {
         const val = getRightValue(e.currentTarget.value)
         if (!val) {
@@ -118,9 +125,9 @@ const OTPInputComponent = React.forwardRef<HTMLDivElement, OTPInputProps>(
             e.preventDefault()
             if (otpValues[activeInput]) {
               changeCodeAtFocus('')
-            } else {
-              focusPrevInput()
             }
+
+            focusPrevInput()
             break
           }
           case 'ArrowLeft': {
@@ -171,30 +178,39 @@ const OTPInputComponent = React.forwardRef<HTMLDivElement, OTPInputProps>(
             }
           })
           setOTPValues(updatedOTPValues)
+          handleOtpChange(updatedOTPValues)
           setActiveInput(Math.min(nextFocusIndex + 1, length - 1))
         }
       },
-      [activeInput, getRightValue, length, otpValues],
+      [activeInput, getRightValue, handleOtpChange, length, otpValues],
     )
 
     return (
-      <StyledOtpInputContainer css={css} ref={inputRef} {...delegated}>
-        {Array(length)
-          .fill('')
-          .map((_, index) => (
-            <SingleInput
-              key={`SingleInput-${index}`}
-              focus={activeInput === index}
-              autoFocus={autoFocus}
-              value={otpValues && otpValues[index]}
-              onFocus={handleOnFocus(index)}
-              onChange={handleOnChange}
-              onKeyDown={handleOnKeyDown}
-              onBlur={onBlur}
-              onPaste={handleOnPaste}
-              disabled={disabled}
-            />
-          ))}
+      <StyledOtpInputContainer
+        css={css}
+        ref={inputRef}
+        isMobile={isMobile}
+        {...delegated}
+      >
+        {Array.from(Array(length).keys()).map((index) => (
+          <SingleInput
+            key={`SingleInput-${index}`}
+            focus={activeInput === index}
+            autoFocus={autoFocus}
+            index={index}
+            value={otpValues && otpValues[index]}
+            onFocus={handleOnFocus(index)}
+            onInput={handleOnInput}
+            onKeyDown={handleOnKeyDown}
+            onBlur={onBlur}
+            onPaste={handleOnPaste}
+            {...(isNumberInput
+              ? {type: 'number', pattern: 'd{1}', inputMode: 'numeric'}
+              : undefined)}
+            autoComplete='one-time-code'
+            disabled={disabled}
+          />
+        ))}
       </StyledOtpInputContainer>
     )
   },

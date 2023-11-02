@@ -1,42 +1,126 @@
-<AdminPotalLightColorful width={40} height={40} /> 
-<AdminPotalColorful width={40} height={40} /> 
-<CabyPortalLightColorful width={40} height={40} /> 
-<CabyPortalColorful width={40} height={40} /> 
-<ClubhouseColorful width={40} height={40} /> 
-<CmsLightColorful width={40} height={40} /> 
-<CmsColorful width={40} height={40} /> 
-<ComfortConnectLightColorful width={40} height={40} /> 
-<ComfortConnectColorful width={40} height={40} /> 
-<CompassColorful width={40} height={40} /> 
-<CrownColorful width={40} height={40} /> 
-<DiscordColorful width={40} height={40} /> 
-<DoctypeColorful width={40} height={40} /> 
-<DribbbleColorful width={40} height={40} /> 
-<FacebookColorful width={40} height={40} /> 
-<FigmaColorful width={40} height={40} /> 
-<FmsLightColorful width={40} height={40} /> 
-<FmsColorful width={40} height={40} /> 
-<FnbLightColorful width={40} height={40} /> 
-<FnbColorful width={40} height={40} /> 
-<GoogleColorful width={40} height={40} /> 
-<LinkedinColorful width={40} height={40} /> 
-<PinterestColorful width={40} height={40} /> 
-<RedditColorful width={40} height={40} /> 
-<SignalColorful width={40} height={40} /> 
-<SnapchatColorful width={40} height={40} /> 
-<TelegramColorful width={40} height={40} /> 
-<TemLightColorful width={40} height={40} /> 
-<TemColorful width={40} height={40} /> 
-<TiktokColorful width={40} height={40} /> 
-<TumblrColorful width={40} height={40} /> 
-<TwitterColorful width={40} height={40} /> 
-<WorkbenchLightColorful width={40} height={40} /> 
-<WorkbenchTextColorful width={40} height={40} /> 
-<WorkbenchColorful width={40} height={40} /> 
-<YoutubeColorful width={40} height={40} /> 
-<ZigBizSquareColorful width={40} height={40} /> 
-<ZigBizTsmColorful width={40} height={40} /> 
-<ZigBizWhiteColorful width={40} height={40} /> 
-<ZigBizColorful width={40} height={40} /> 
-<ZigStoreLightColorful width={40} height={40} /> 
-<ZigStoreColorful width={40} height={40} /> 
+<AdminPotalLight width={40} height={40} /> 
+<Icon icon={adminPotalLight} width={40} height={40} /> 
+
+<AdminPotal width={40} height={40} /> 
+<Icon icon={adminPotal} width={40} height={40} /> 
+
+<CabyPortalLight width={40} height={40} /> 
+<Icon icon={cabyPortalLight} width={40} height={40} /> 
+
+<CabyPortal width={40} height={40} /> 
+<Icon icon={cabyPortal} width={40} height={40} /> 
+
+<Clubhouse width={40} height={40} /> 
+<Icon icon={clubhouse} width={40} height={40} /> 
+
+<CmsLight width={40} height={40} /> 
+<Icon icon={cmsLight} width={40} height={40} /> 
+
+<Cms width={40} height={40} /> 
+<Icon icon={cms} width={40} height={40} /> 
+
+<ComfortConnectLight width={40} height={40} /> 
+<Icon icon={comfortConnectLight} width={40} height={40} /> 
+
+<ComfortConnect width={40} height={40} /> 
+<Icon icon={comfortConnect} width={40} height={40} /> 
+
+<Compass width={40} height={40} /> 
+<Icon icon={compass} width={40} height={40} /> 
+
+<Crown width={40} height={40} /> 
+<Icon icon={crown} width={40} height={40} /> 
+
+<Discord width={40} height={40} /> 
+<Icon icon={discord} width={40} height={40} /> 
+
+<Doctype width={40} height={40} /> 
+<Icon icon={doctype} width={40} height={40} /> 
+
+<Dribbble width={40} height={40} /> 
+<Icon icon={dribbble} width={40} height={40} /> 
+
+<Facebook width={40} height={40} /> 
+<Icon icon={facebook} width={40} height={40} /> 
+
+<Figma width={40} height={40} /> 
+<Icon icon={figma} width={40} height={40} /> 
+
+<FmsLight width={40} height={40} /> 
+<Icon icon={fmsLight} width={40} height={40} /> 
+
+<Fms width={40} height={40} /> 
+<Icon icon={fms} width={40} height={40} /> 
+
+<FnbLight width={40} height={40} /> 
+<Icon icon={fnbLight} width={40} height={40} /> 
+
+<Fnb width={40} height={40} /> 
+<Icon icon={fnb} width={40} height={40} /> 
+
+<Google width={40} height={40} /> 
+<Icon icon={google} width={40} height={40} /> 
+
+<Linkedin width={40} height={40} /> 
+<Icon icon={linkedin} width={40} height={40} /> 
+
+<Pinterest width={40} height={40} /> 
+<Icon icon={pinterest} width={40} height={40} /> 
+
+<Reddit width={40} height={40} /> 
+<Icon icon={reddit} width={40} height={40} /> 
+
+<Signal width={40} height={40} /> 
+<Icon icon={signal} width={40} height={40} /> 
+
+<Snapchat width={40} height={40} /> 
+<Icon icon={snapchat} width={40} height={40} /> 
+
+<Telegram width={40} height={40} /> 
+<Icon icon={telegram} width={40} height={40} /> 
+
+<TemLight width={40} height={40} /> 
+<Icon icon={temLight} width={40} height={40} /> 
+
+<Tem width={40} height={40} /> 
+<Icon icon={tem} width={40} height={40} /> 
+
+<Tiktok width={40} height={40} /> 
+<Icon icon={tiktok} width={40} height={40} /> 
+
+<Tumblr width={40} height={40} /> 
+<Icon icon={tumblr} width={40} height={40} /> 
+
+<Twitter width={40} height={40} /> 
+<Icon icon={twitter} width={40} height={40} /> 
+
+<WorkbenchLight width={40} height={40} /> 
+<Icon icon={workbenchLight} width={40} height={40} /> 
+
+<WorkbenchText width={40} height={40} /> 
+<Icon icon={workbenchText} width={40} height={40} /> 
+
+<Workbench width={40} height={40} /> 
+<Icon icon={workbench} width={40} height={40} /> 
+
+<Youtube width={40} height={40} /> 
+<Icon icon={youtube} width={40} height={40} /> 
+
+<ZigBizSquare width={40} height={40} /> 
+<Icon icon={zigBizSquare} width={40} height={40} /> 
+
+<ZigBizTsm width={40} height={40} /> 
+<Icon icon={zigBizTsm} width={40} height={40} /> 
+
+<ZigBizWhite width={40} height={40} /> 
+<Icon icon={zigBizWhite} width={40} height={40} /> 
+
+<ZigBiz width={40} height={40} /> 
+<Icon icon={zigBiz} width={40} height={40} /> 
+
+<ZigStoreLight width={40} height={40} /> 
+<Icon icon={zigStoreLight} width={40} height={40} /> 
+
+<ZigStore width={40} height={40} /> 
+<Icon icon={zigStore} width={40} height={40} /> 
+

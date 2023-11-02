@@ -17,7 +17,6 @@ export const Variants: React.FC = () => {
 
       <h2>6 Numbers</h2>
       <OTPInput
-        length={6}
         isNumberInput
         autoFocus
         onChangeOTP={(otp) => console.log('Number OTP: ', otp)}
@@ -32,10 +31,19 @@ export const Variants: React.FC = () => {
 
       <h2>Disabled</h2>
       <OTPInput
-        autoFocus
         disabled
         length={4}
         onChangeOTP={(otp) => console.log('String OTP: ', otp)}
+      />
+
+      <h2>Mobile view</h2>
+      <OTPInput
+        css={{marginBottom: '$8'}}
+        length={4}
+        onChangeOTP={(otp) => console.log('String OTP: ', otp)}
+        autoFocus
+        isNumberInput
+        isMobile
       />
     </Column>
   )
@@ -47,7 +55,7 @@ export default {
       <div>
         <style
           dangerouslySetInnerHTML={{
-            __html: `.ladle-main { background: #eee; }`,
+            __html: `.ladle-main { background: #F7F8F9; }`,
           }}
         ></style>
         <Component />

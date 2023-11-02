@@ -8,6 +8,7 @@
   width: 100%;
   height: 100%;
   z-index: 0;
+  object-fit: cover;
 }
 
 .hero-content-wrapper {
@@ -151,3 +152,11 @@
   background: var(--colors-gray80);
   border-radius: 10px;
 }
+
+/* :root {
+  --cdg-color-danger: yellow;
+}
+
+[data-cdg-theme='dark'] {
+  --cdg-color-danger: green;
+} */

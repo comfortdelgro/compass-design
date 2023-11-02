@@ -1,0 +1,26 @@
+@import '../../../theme/theme.module.css';
+@layer default;
+
+@layer default {
+  .actionBar {
+    display: flex;
+    gap: var(--cdg-spacing-4);
+  }
+
+  .actionBarRightGroup,
+  .actionBarCenterGroup,
+  .actionBarLeftGroup {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    gap: var(--cdg-spacing-2_5);
+  }
+
+  .actionBarCenterGroup {
+    justify-content: center;
+  }
+
+  .actionBarRightGroup {
+    justify-content: flex-end;
+  }
+}

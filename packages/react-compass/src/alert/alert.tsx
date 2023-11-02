@@ -39,16 +39,15 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
       : icon === false
       ? null
       : icon
-
   return (
     <StyledAlert css={css} ref={alertRef} {...variantProps} {...delegates}>
-      <StyledIcon>{displayedIcon}</StyledIcon>
+      {icon !== false && <StyledIcon>{displayedIcon}</StyledIcon>}
       <div className='alert-content'>{children}</div>
       {dismissible && (
         <Button
           size='sm'
           variant='ghost'
-          className='alert-dismiss-button'
+          className='alert-dismiss-button custom'
           onPress={() => onDismiss?.()}
         >
           <svg className='alert-close-icon' viewBox='0 0 384 512'>

@@ -1,0 +1,110 @@
+@import '../../theme/theme.module.css';
+
+@layer default, variant, compoundVariant;
+
+@layer default {
+  .wizard {
+    width: 100%;
+    position: relative;
+  }
+
+  .track {
+    width: 100%;
+    display: flex;
+  }
+
+  .trackItem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .title {
+    width: 100%;
+    display: flex;
+    margin-top: var(--cdg-spacing-2);
+  }
+
+  .titleItem {
+    display: flex;
+    user-select: none;
+    align-items: center;
+    justify-content: center;
+    color: var(--cdg-color-gray70);
+    font-size: var(--cdg-font-size-label2);
+    line-height: var(--cdg-line-height-tight);
+    font-weight: var(--cdg-font-weight-medium);
+  }
+
+
+  .line {
+    z-index: 0;
+    flex-grow: 1;
+    height: 0.125rem;
+    background-color: var(--cdg-color-cdgBlue10);
+  }
+
+  .item {
+    z-index: 2;
+    display: flex;
+    user-select: none;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    width: var(--cdg-spacing-5);
+    height: var(--cdg-spacing-5);
+    color: var(--cdg-color-cdgBlue120);
+    font-size: var(--cdg-font-size-label2);
+    line-height: var(--cdg-line-height-tight);
+    font-weight: var(--cdg-font-weight-medium);
+    border-radius: var(--cdg-border-radius-full);
+    background-color: var(--cdg-color-cdgBlue10);
+  }
+}
+
+@layer variant {
+  .lineIsActive {
+    background-color: var(--cdg-color-cdgBlue100);
+  }
+
+  .itemIsActive {
+    color: var(--cdg-color-whiteText);
+    background-color: var(--cdg-color-cdgBlue100);
+  }
+  
+  .itemIsActive:hover::after {
+    width: var(--cdg-spacing-7);
+    height: var(--cdg-spacing-7);
+  }
+
+  .itemIsActive::after {
+    content: '';
+    z-index: 1;
+    opacity: 0.2;
+    position: absolute;
+    background-color: inherit;
+    width: var(--cdg-spacing-6);
+    height: var(--cdg-spacing-6);
+    border-radius: var(--cdg-border-radius-full);
+  }
+
+  .titleItemIsActive {
+    color: var(--cdg-color-gray100);
+  }
+}
+
+@layer compoundVariant {
+  .lineSideLeftBordered {
+    border-top-left-radius: var(--cdg-border-radius-full);
+    border-bottom-left-radius: var(--cdg-border-radius-full);
+  }
+
+  .lineSideRightBordered {
+    border-top-right-radius: var(--cdg-border-radius-full);
+    border-bottom-right-radius: var(--cdg-border-radius-full);
+  }
+
+  .lineIsActiveIsErrored, .itemIsActiveIsErrored {
+    background-color: var(--cdg-color-danger);
+  }
+}

@@ -17,17 +17,7 @@ export function DeferredAppSearch() {
     setMounted(true)
   }, [])
 
-  return (
-    <React.Fragment>
-      {mounted ? (
-        // <React.Suspense fallback={<Box>Error</Box>}>
-        <AppSearch />
-      ) : (
-        // </React.Suspense>
-        <Box />
-      )}
-    </React.Fragment>
-  )
+  return <React.Fragment>{mounted ? <AppSearch /> : <Box />}</React.Fragment>
 }
 
 export default function DocsAppFrame(props: {children: React.ReactNode}) {
@@ -80,7 +70,7 @@ export default function DocsAppFrame(props: {children: React.ReactNode}) {
       if (path === sideNavItem.pathname) {
         return {
           ...sideNavItem,
-          isExpanded: true,
+          isExpanded: !sideNavItem.isExpanded,
         }
       }
       return {

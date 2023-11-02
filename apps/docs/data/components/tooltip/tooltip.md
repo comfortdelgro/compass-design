@@ -25,9 +25,23 @@ import Tooltip from '@comfortdelgro/react-compass/tooltip'
 
 {{"demo": "TooltipBasic.tsx"}}
 
-### Custom styling
+### Title
 
-#### Child element
+{{"demo": "TooltipTitle.tsx"}}
+
+### Tooltip Delay
+
+{{"demo": "TooltipDelay.tsx"}}
+
+### Tooltip Offset
+
+{{"demo": "TooltipOffset.tsx"}}
+
+### Tooltip Direction
+
+{{"demo": "TooltipDirection.tsx"}}
+
+### Child element
 
 The tooltip needs to apply DOM event listeners to its child element. If the child is a custom React element, you need to make sure that it spreads its props to the underlying DOM element.
 
@@ -49,6 +63,12 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 ```
 
 {{"demo": "TooltipCustom.tsx"}}
+
+{{"demo": "TooltipBackground.tsx"}}
+
+### Placement
+
+{{"demo": "TooltipPlacement.tsx"}}
 
 ## Props
 

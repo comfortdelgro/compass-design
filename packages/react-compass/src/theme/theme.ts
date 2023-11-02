@@ -31,8 +31,10 @@ const spacings = {
   11: '2.75rem', // 44px
   12: '3rem', // 48px
   '12_5': '3.125rem', // 50px
+  13: '3.25rem', // 52px
   14: '3.5rem', // 56px
   16: '4rem', // 64px
+  17: '4.25rem', // 68px
   18: '4.5rem', // 72px
   20: '5rem', // 80px
   22: '5.5rem', // 88px
@@ -56,6 +58,7 @@ const spacings = {
   57: '14.25rem', // 228px
   60: '15rem', // 240px
   64: '16rem', // 256px
+  '67_5': '16.875rem', // 270px
   72: '18rem', // 288px
   75: '18.75rem', //300px
   80: '20rem', // 320px
@@ -169,6 +172,7 @@ export const lightTheme = defineTheme({
     divider: '#EDEBE9', // Body Divider
     border: '#8A8886', // Input Border
     activeBorder: '#323130', // Input-Hover Border
+    placeholder: '#C5C6CF',
 
     // Secondary
 
@@ -244,6 +248,7 @@ export const lightTheme = defineTheme({
     greenShades: '#159A00',
 
     badgeWarningBg: '#95711F',
+    snackbarWarning: '#95711F',
   },
   fonts,
   fontSizes,
@@ -276,6 +281,7 @@ export const darkTheme = createTheme('dark-theme', {
     divider: '#45464E', // Body Divider
     border: '#8A8886', // Input Border
     activeBorder: '#323130', // Input-Hover Border
+    placeholder: '#C5C6CF',
 
     // Secondary
 
@@ -348,6 +354,10 @@ export const darkTheme = createTheme('dark-theme', {
     gradientOrangeBlue: '#AA1022, #027FB9',
 
     greenShades: '#159A00',
+
+    badgeWarningBg: '#95711F',
+
+    snackbarWarning: '#95711F',
   },
   fonts,
   fontSizes,

@@ -11,6 +11,16 @@ export const StyledTextFieldLabel = styled('label', {
     marginLeft: '$1',
     color: '$danger',
   },
+  variants: {
+    h5: {
+      true: {
+        fontSize: '$label2',
+        fontWeight: '$medium',
+        color: '$grayShades80',
+        marginBottom: '$1',
+      },
+    },
+  },
 })
 
 export const StyledTextFieldBox = styled('div', {
@@ -107,7 +117,7 @@ export const StyledTextField = styled('input', {
   },
 
   '&::placeholder': {
-    color: '$tertiaryText',
+    color: '$placeholder',
     fontSize: '$label1',
     fontWeight: '$semibold',
   },
@@ -158,6 +168,36 @@ export const StyledTextFieldWrapper = styled('div', {
             '.left-icon': {
               color: '$cdgBlue',
             },
+          },
+        },
+      },
+    },
+    h5: {
+      true: {
+        color: '$grayShades100',
+        fontSize: '$label2',
+        lineHeight: '$tight',
+        fontWeight: '$normal',
+        [`${StyledTextFieldLabel}`]: {
+          fontSize: '$label2',
+          fontWeight: '$medium',
+          color: '$grayShades80',
+          marginBottom: '$1',
+        },
+        [`${StyledTextFieldBox}`]: {
+          borderRadius: '$lg',
+        },
+        [`${StyledTextField}`]: {
+          border: 'none',
+          width: '100%',
+          fontSize: '$label1',
+          fontWeight: '$normal',
+          lineHeight: '20px',
+          '&::placeholder': {
+            color: '$grayShades40',
+            fontSize: '$label1',
+            fontWeight: '$normal',
+            lineHeight: '20px',
           },
         },
       },

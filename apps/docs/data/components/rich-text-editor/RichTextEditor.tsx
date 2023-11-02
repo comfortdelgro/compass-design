@@ -39,7 +39,7 @@ const WithContent: React.FC = () => {
       content={content}
       placeholder='Type something...'
       isEditable={false}
-      characterCount={500}
+      characterCount={707}
     >
       <RichTextEditor.Toolbar>
         <RichTextEditor.ControlsGroup>

@@ -1,7 +1,7 @@
 import {styled} from '../../theme'
 import {VariantProps} from '../../utils/stitches.types'
 
-export const StyledDragAndDrop = styled('ul', {
+export const StyledDragAndDrop = styled('div', {
   width: '100%',
   display: 'flex',
   flexDirection: 'column',
@@ -16,9 +16,19 @@ export const StyledDragAndDrop = styled('ul', {
     background: '$cdgBlue',
     height: 2,
   },
+  ul: {
+    padding: 0,
+    margin: 0,
+    listStyle: 'none',
+    borderRadius: '4px',
+    touchAction: 'none',
+  },
   li: {
+    listStyle: 'none',
     cursor: 'pointer',
     '&:focus-visible': {
+      overflow: 'hidden',
+      borderRadius: '4px',
       outline: '2px solid $cdgBlue',
     },
   },

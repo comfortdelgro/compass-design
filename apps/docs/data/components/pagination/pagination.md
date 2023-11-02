@@ -27,11 +27,21 @@ import Pagination from '@comfortdelgro/react-compass/pagination'
 
 {{"demo": "PaginationControlled.tsx"}}
 
-## Props:
+## Items Counting Pagination
 
-| Name     | Type       | Default | Description                                                                             |
-| :------- | :--------- | :------ | :-------------------------------------------------------------------------------------- |
-| total    | `number`   | `1`     | Total pages to be displayed.                                                            |
-| page     | `number`   | `1`     | Currenty selected page.                                                                 |
-| onChange | `function` | —       | Callback to catch current page.                                                         |
-| css      | `CSS`      | —       | The system prop that allows defining system overrides as well as additional CSS styles. |
+{{"demo": "PaginationItemsCounting.tsx"}}
+
+<!-- ## Pagination Server (Experimental)
+{{"demo": "PaginationServer.tsx"}} -->
+
+## Props
+
+| Name                | Type       | Default           | Description                                    |
+| :------------------ | :--------- | :---------------- | :--------------------------------------------- |
+| total               | `number`   | `1`               | Total pages to be displayed.                   |
+| page                | `number`   | `1`               | Currenty selected page.                        |
+| onChange            | `function` | —                 | Callback to catch current page.                |
+| count               | `number`   | —                 | The total items.                               |
+| rowsPerPage         | `number`   | —                 | The rows display in one page.                  |
+| rowsOptions         | `number[]` | `[5,10,15,20,25]` | The arrays of rows display in dropdown select. |
+| onRowsPerPageChange | `function` | —                 | Callback to catch current rows per page.       |

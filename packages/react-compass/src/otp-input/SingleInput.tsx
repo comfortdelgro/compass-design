@@ -7,6 +7,7 @@ import usePrevious from './usePrevious'
 export interface SingleOTPInputProps
   extends StyledComponentProps,
     React.InputHTMLAttributes<HTMLInputElement> {
+  index: number
   focus?: boolean
 }
 
@@ -14,18 +15,27 @@ const SingleOTPInputComponent = React.forwardRef<
   HTMLInputElement,
   SingleOTPInputProps
 >((props, ref) => {
-  const {css = {}, focus, autoFocus, ...delegated} = props
+  const {css = {}, index, focus, autoFocus, ...delegated} = props
   const inputRef = useDOMRef<HTMLInputElement>(ref)
   const prevFocus = usePrevious(!!focus)
+
   useLayoutEffect(() => {
-    if (inputRef.current) {
-      if (focus && autoFocus) {
-        inputRef.current.focus()
-      }
-      if (focus && autoFocus && focus !== prevFocus) {
+    if (!inputRef.current) {
+      return
+    }
+
+    if (index === 0) {
+      if (focus && (autoFocus || focus !== prevFocus)) {
         inputRef.current.focus()
         inputRef.current.select()
       }
+
+      return
+    }
+
+    if (focus && focus !== prevFocus) {
+      inputRef.current.focus()
+      inputRef.current.select()
     }
   }, [autoFocus, focus, prevFocus])
 

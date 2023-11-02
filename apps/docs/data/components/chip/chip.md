@@ -25,6 +25,7 @@ import Chip from '@comfortdelgro/react-compass/chip'
 
 <!-- ## Chip Server (Experimental)
 {{"demo": "ChipServer.tsx"}} -->
+
 ## Props
 
 | Name           | Type        | Default | Description                                                                             |

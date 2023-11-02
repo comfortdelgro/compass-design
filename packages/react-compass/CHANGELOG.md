@@ -1,5 +1,35 @@
 ## 2.9.0
 
+## 2.23.0
+
+### Minor Changes
+
+- fffbfa11: Fix bugs and h5 components
+
+## 2.22.0
+
+### Minor Changes
+
+- 1494dfd8: Fix minor bugs
+
+## 2.21.0
+
+### Minor Changes
+
+- 8994780b: Fix bugs
+
+## 2.20.0
+
+### Minor Changes
+
+- 412ffa63: Fix bugs
+
+## 2.19.0
+
+### Minor Changes
+
+- f11d685b: Fix bugs in react-compass and the documentation website
+
 ## 2.18.0
 
 ### Minor Changes

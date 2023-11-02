@@ -1,4 +1,5 @@
 import {Column, Divider} from '@comfortdelgro/react-compass'
+// import {Divider as StaticDivider} from '@comfortdelgro/static'
 
 const Basic: React.FC = () => {
   return (
@@ -13,6 +14,11 @@ const Basic: React.FC = () => {
       <div style={{height: 200}}>
         <Divider orientation='vertical'></Divider>
       </div>
+
+      {/* <StaticDivider />
+      <div style={{height: 200}}>
+        <StaticDivider orientation='vertical'></StaticDivider>
+      </div> */}
     </Column>
   )
 }

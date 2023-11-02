@@ -61,9 +61,6 @@ export const StyledSidebarActions = styled('div', {
   display: 'flex',
   justifyContent: 'space-between',
   backgroundColor: '$background',
-  position: 'absolute',
-  bottom: '0',
-  left: '0',
 })
 
 export const StyledSidebarContent = styled('div', {
@@ -74,7 +71,10 @@ export const StyledSidebarContent = styled('div', {
   margin: '0px',
   padding: '$4',
   background: 'transparent',
-  overflow: 'hidden',
+  overflow: 'auto',
+  flex: 1,
+  display: 'flex',
+  flexDirection: 'column',
 
   // header style
   width: '100%',
@@ -91,10 +91,11 @@ export const StyledSidebarHeader = styled('div', {
   borderBottom: '0.5px solid $gray60',
 
   // header style
+  color: '$typeHeading',
   width: '100%',
   height: '$10',
   paddingLeft: '$4',
-  paddingRight: '$4',
+  paddingRight: '$2',
   paddingTop: '$2',
   paddingBottom: '$2',
   display: 'flex',
@@ -132,11 +133,11 @@ export const StyledSidebar = styled('div', {
   // sidebar styling
   width: '$88',
   height: '100vh',
-  position: 'absolute',
-  top: '0',
   zIndex: '50',
   backgroundColor: '$primaryBg',
-
+  display: 'flex',
+  flexDirection: 'column',
+  position: 'absolute',
   // variants
   variants: {
     position: {
