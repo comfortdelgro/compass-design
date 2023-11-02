@@ -31,13 +31,7 @@ const FileState = React.forwardRef<HTMLDivElement, FileStateProps>(
 
     const stateClasses = React.useMemo(
       () =>
-        [
-          styles.state,
-          'cdg-file-state',
-          className,
-        ]
-          .filter(Boolean)
-          .join(' '),
+        [styles.state, 'cdg-file-state', className].filter(Boolean).join(' '),
       [className],
     )
 

@@ -5,7 +5,7 @@ import Button from '../button'
 import Icon from '../icon'
 import TagBox from './index'
 
-const items: any[] = [
+const items = [
   {
     id: `cdg-id-${Math.random().toString(36).substring(2)}`,
     value: 'Item 1',
@@ -296,11 +296,8 @@ export const Collaspable: React.FC = () => {
 
 const meta = {
   title: 'Example/Tag Box',
-  component: TagBoxs,
-  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
-  tags: ['autodocs'],
+  component: TagBoxs,tags: ['autodocs'],
   parameters: {
-    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
     layout: 'fullscreen',
   },
 } satisfies Meta<typeof TagBoxs>

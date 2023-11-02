@@ -39,7 +39,7 @@ export const useRangeCalendarShortcuts = (
     ) {
       setSelectedItem(null)
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.value])
 
   const timeZone = new Intl.DateTimeFormat(locale).resolvedOptions().timeZone

@@ -1,5 +1,11 @@
 ## 2.9.0
 
+## 2.23.0
+
+### Minor Changes
+
+- fffbfa11: Fix bugs and h5 components
+
 ## 2.22.0
 
 ### Minor Changes

@@ -1,6 +1,6 @@
+import clsx from 'clsx'
 import React from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
-import clsx from 'clsx'
 import styles from './styles/navbar.module.css'
 
 interface Props {
@@ -40,14 +40,14 @@ const NavbarBrand = React.forwardRef<HTMLDivElement, NavbarBrandProps>(
             'navbar-brand': true,
             [className]: true,
             [styles.navbarBrand]: true,
-            [styles.hiddenOnMobile]: hiddenOnMobile
+            [styles.hiddenOnMobile]: hiddenOnMobile,
           })}
           ref={ref}
           {...delegated}
         >
           {renderChildren()}
         </div>
-      </CssInjection >
+      </CssInjection>
     )
   },
 )

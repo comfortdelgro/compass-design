@@ -1,14 +1,14 @@
-import { useMergeRefs } from '@floating-ui/react'
-import React, { HTMLAttributes } from 'react'
+import {useMergeRefs} from '@floating-ui/react'
+import React, {HTMLAttributes} from 'react'
 import {
   useKeyboardNavigation,
   useKeyboardNavigationState,
 } from '../../utils/hooks'
-import { useDOMRef } from '../../utils/use-dom-ref'
-import { TabItemProps } from '../item'
-import { Icon, Variant } from '../utils'
-import styles from '../styles/tab.module.css'
 import CssInjection from '../../utils/objectToCss/CssInjection'
+import {useDOMRef} from '../../utils/use-dom-ref'
+import {TabItemProps} from '../item'
+import styles from '../styles/tab.module.css'
+import {Icon, Variant} from '../utils'
 
 interface Props {
   textColor: string
@@ -44,7 +44,7 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>(
     },
     ref,
   ) => {
-    const { title } = item.props
+    const {title} = item.props
     const tabRef = useDOMRef<HTMLDivElement>(ref)
     const isSelected = React.useMemo(
       () => currentKey === item.key,
@@ -68,9 +68,9 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>(
       }
     }
 
-    const { useDescendant } = useKeyboardNavigationState()
-    const { index, register } = useDescendant({ disabled: disabledState })
-    const { onFocus } = useKeyboardNavigation()
+    const {useDescendant} = useKeyboardNavigationState()
+    const {index, register} = useDescendant({disabled: disabledState})
+    const {onFocus} = useKeyboardNavigation()
 
     const handleOnFocus = () => {
       onFocus?.(index)()
@@ -85,8 +85,9 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>(
       styles[`active${isSelected ? 'True' : 'False'}`],
       styles[`disabled${!!disabledState ? 'True' : 'False'}`],
       styles[variant + `Disabled${!!disabledState ? 'True' : 'False'}`],
-      styles[variant + `Active${!!isSelected ? 'True' : 'False'}`]
-    ].filter(Boolean)
+      styles[variant + `Active${!!isSelected ? 'True' : 'False'}`],
+    ]
+      .filter(Boolean)
       .join(' ')
 
     const tabIconClassName = [
@@ -94,12 +95,17 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>(
       styles.icon,
       styles[`icon${icon.charAt(0).toUpperCase() + icon.slice(1)}Icon`],
       variant && styles[variant + `Icon`],
-      variant && disabledState && styles[variant + `Disabled${!!disabledState ? 'True' : 'False'}Icon`],
-      variant && isSelected && styles[variant + `Active${!!isSelected ? 'True' : 'False'}Icon`]
-    ].filter(Boolean)
+      variant &&
+        disabledState &&
+        styles[variant + `Disabled${!!disabledState ? 'True' : 'False'}Icon`],
+      variant &&
+        isSelected &&
+        styles[variant + `Active${!!isSelected ? 'True' : 'False'}Icon`],
+    ]
+      .filter(Boolean)
       .join(' ')
 
-// legacy, users are advised to use className styling for customization
+    // legacy, users are advised to use className styling for customization
     const customCss = {
       [styles.simple]: {
         '&:focus-visible': {
@@ -137,9 +143,8 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>(
       [styles.activeTrue]: {
         backgroundColor: `${textColor}`,
       },
-      ...css as Object,
+      ...(css as Object),
     }
-    
 
     return (
       <CssInjection css={customCss} childrenRef={mergeRef}>

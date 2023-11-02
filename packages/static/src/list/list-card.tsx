@@ -54,8 +54,14 @@ const ListCard = React.forwardRef<HTMLDivElement, ListCardProps>(
       <CssInjection css={css} childrenRef={ref}>
         <div ref={ref} className={rootClass} {...delegated}>
           <div className={`${styles.listCardHeader} cdg-list-card-header`}>
-            {title && <h2 className={`${styles.listCardTitle} cdg-list-card-title`}>{title}</h2>}
-            <div className={`${styles.listCardHeaderRight} cdg-list-card-header-right`}>
+            {title && (
+              <h2 className={`${styles.listCardTitle} cdg-list-card-title`}>
+                {title}
+              </h2>
+            )}
+            <div
+              className={`${styles.listCardHeaderRight} cdg-list-card-header-right`}
+            >
               {badge ? badge : null}
               {!children && showActionButton ? (
                 <Button
@@ -73,7 +79,9 @@ const ListCard = React.forwardRef<HTMLDivElement, ListCardProps>(
               ) : null}
             </div>
           </div>
-          <div className={`${styles.listCardDescription} cdg-list-card-description`}>
+          <div
+            className={`${styles.listCardDescription} cdg-list-card-description`}
+          >
             {description && <span>{description}</span>}
           </div>
           <div className={`${styles.listCardFooter} cdg-list-card-footer`}>

@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import { MenuListContext } from './menu-list-context'
+import clsx from 'clsx'
+import React, {useState} from 'react'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import {MenuListContext} from './menu-list-context'
 import MenuListDropdownHeader from './menu-list-dropdown-header'
 import MenuListDropdownItem from './menu-list-dropdown-item'
-import CssInjection from '../utils/objectToCss/CssInjection'
-import clsx from 'clsx'
 import styles from './styles/menu-list-dropdown.module.css'
 
 interface Props {
@@ -62,13 +62,19 @@ const MenuListDropdown = React.forwardRef<
     <CssInjection css={css} childrenRef={ref}>
       <div
         // className={`${className} menu-list-dropdown`}
-        className={clsx(styles.menuListDropdown, className, 'menu-list-dropdown')}
+        className={clsx(
+          styles.menuListDropdown,
+          className,
+          'menu-list-dropdown',
+        )}
         ref={ref}
         {...delegated}
       >
-        <MenuListContext.Provider value={{ isOpen: isOpen, toggleOpen }}>
+        <MenuListContext.Provider value={{isOpen: isOpen, toggleOpen}}>
           {title}
-          <div className={clsx(styles.menuListDropdownBody, styles[bodyOpenState])}>
+          <div
+            className={clsx(styles.menuListDropdownBody, styles[bodyOpenState])}
+          >
             {body}
           </div>
         </MenuListContext.Provider>
