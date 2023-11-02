@@ -110,12 +110,10 @@ export const H5Checkbox = () => {
 }
 
 const meta = {
-  title: 'Example/Checkbox Server',
+  title: 'Example/Checkbox',
   component: Variants,
-  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],
   parameters: {
-    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
     layout: 'center',
   },
 } satisfies Meta<typeof Variants>

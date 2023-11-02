@@ -70,7 +70,10 @@ export function getTimeZoneOffset(ms: number, timeZone: string) {
     return new Date(ms).getTimezoneOffset() * -60 * 1000
   }
 
-  const {year, month, day, hour, minute, second} = getTimeZoneParts(ms, timeZone)
+  const {year, month, day, hour, minute, second} = getTimeZoneParts(
+    ms,
+    timeZone,
+  )
   const utc = epochFromParts(year, month, day, hour, minute, second, 0)
   return utc - Math.floor(ms / 1000) * 1000
 }
@@ -305,13 +308,13 @@ export function toCalendarDateTime(
     second = 0,
     millisecond = 0
   if ('timeZone' in date) {
-    ({hour, minute, second, millisecond} = date)
+    ;({hour, minute, second, millisecond} = date)
   } else if ('hour' in date && !time) {
     return date
   }
 
   if (time) {
-    ({hour, minute, second, millisecond} = time)
+    ;({hour, minute, second, millisecond} = time)
   }
 
   return new CalendarDateTime(

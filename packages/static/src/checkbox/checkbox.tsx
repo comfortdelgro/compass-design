@@ -29,6 +29,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     const {
       css = {},
       children,
+      className,
       isSelected,
       validationState,
       isDisabled = false,
@@ -72,26 +73,36 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       setChecked((isSelected || defaultSelected) ?? false)
     }, [defaultSelected, isSelected])
 
+    const rootClass = React.useMemo(() => {
+      return [styles.checkbox, 'cdg-checkbox', className]
+        .filter(Boolean)
+        .join(' ')
+    }, [className])
+
     const labelClass = React.useMemo(() => {
-      let classes = `cdg-checkbox-label ${styles.label}`
-      if (variant === 'h5') classes += ` ${styles.labelVariantH5}`
-      if (variant === 'h5' && checked)
-        classes += ` ${styles.labelVariantH5Checked}`
-      return classes
+      return [
+        styles.label,
+        variant === 'h5' && styles.labelVariantH5,
+        variant === 'h5' && checked && styles.labelVariantH5Checked,
+        'cdg-checkbox-label',
+      ]
+        .filter(Boolean)
+        .join(' ')
     }, [checked, variant])
 
-    const checkboxBoxClass = React.useMemo(() => {
-      let classes = `cdg-checkbox-checkboxBox ${styles.checkboxBox}`
-      if (variant === 'rounded') classes += ` ${styles.rounded}`
-      return classes
+    const boxClass = React.useMemo(() => {
+      return [
+        styles.box,
+        variant === 'rounded' && styles.rounded,
+        'cdg-checkbox-box',
+      ]
+        .filter(Boolean)
+        .join(' ')
     }, [variant])
 
     return (
       <CssInjection css={css} childrenRef={checkboxRef}>
-        <div
-          className={`cdg-checkbox-wrapper ${styles.wrapper}`}
-          {...htmlProps}
-        >
+        <div className={rootClass} {...htmlProps}>
           <label className={labelClass}>
             <CssInjection css={cssCheckBoxInput} childrenRef={checkboxRef}>
               <input
@@ -101,7 +112,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
                 checked={checked}
                 disabled={isDisabled}
                 readOnly={isReadOnly}
-                className={`cdg-checkbox-input ${styles.input}`}
+                className={`${styles.input} cdg-checkbox-input`}
                 aria-readonly={isReadOnly === true ? 'true' : undefined}
                 aria-invalid={
                   validationState === 'invalid' ? 'true' : undefined
@@ -113,11 +124,11 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
             <div
               tabIndex={0}
               role='checkbox'
+              className={boxClass}
               aria-checked={checked}
-              className={checkboxBoxClass}
               onKeyDown={handleKeyDown}
             >
-              <span className={`cdg-checkbox-checkmark ${styles.checkmark}`}>
+              <span className={`${styles.checkmark} cdg-checkbox-checkmark`}>
                 {isIndeterminate ? <InterminateIcon /> : <TickIcon />}
               </span>
             </div>
@@ -132,7 +143,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
 
 const InterminateIcon = () => (
   <svg
-    className={`cdg-checkbox-checkmarkIcon ${styles.checkmarkIcon}`}
+    className={`${styles.checkmarkIcon} cdg-checkbox-icon`}
     viewBox='0 0 448 512'
   >
     <path
@@ -144,7 +155,7 @@ const InterminateIcon = () => (
 
 const TickIcon = () => (
   <svg
-    className={`cdg-checkbox-checkmarkIcon ${styles.checkmarkIcon}`}
+    className={`${styles.checkmarkIcon} cdg-checkbox-icon`}
     viewBox='0 0 448 512'
   >
     <path

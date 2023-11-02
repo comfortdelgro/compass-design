@@ -1,17 +1,17 @@
 import DragAndDropList from './drag-and-drop'
 import DragAndDropListItem from './drag-and-drop/item'
-import InteractiveList from './list-interactive'
 import List from './list'
 import ListCard from './list-card'
 import ListCardDetail from './list-card-detail'
 import ListImage from './list-image'
+import InteractiveList from './list-interactive'
 
 export type {DragAndDropListProps} from './drag-and-drop'
-export type {InteractiveListProps} from './list-interactive'
 export type {ListProps} from './list'
 export type {ListCardProps} from './list-card'
 export type {ListCardDetailProps} from './list-card-detail'
 export type {ListImageProps} from './list-image'
+export type {InteractiveListProps} from './list-interactive'
 export {DragAndDropList, InteractiveList, ListCard}
 
 List.Image = ListImage

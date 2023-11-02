@@ -9,8 +9,6 @@ components: Tabs
 
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
-
-
 ```jsx
 import {Tabs, TabsProps} from '@comfortdelgro/react-compass'
 ```

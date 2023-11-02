@@ -1,14 +1,13 @@
-import React from 'react'
-import { CalendarProps } from '../calendar'
+import {CalendarProps} from '../calendar'
 import {
   DateRangePickerState,
   DateValue,
   RangeCalendarState,
   RangeValue,
 } from '../calendar/types'
-import { CalendarDate } from '../internationalized/date'
-import { useRangeCalendarShortcuts } from './useRangeCalendarShorcuts'
+import {CalendarDate} from '../internationalized/date'
 import styles from './styles/range-calendar-shortcuts.module.css'
+import {useRangeCalendarShortcuts} from './useRangeCalendarShorcuts'
 
 export interface RangeCalendarShorcutItem {
   label: string
@@ -18,9 +17,9 @@ export interface RangeCalendarShorcutItem {
 
 export type CustomShortcutsProps =
   | ((
-    shortcuts: RangeCalendarShorcutItem[],
-    isInvalid: (date: DateValue | null | undefined) => boolean,
-  ) => RangeCalendarShorcutItem[])
+      shortcuts: RangeCalendarShorcutItem[],
+      isInvalid: (date: DateValue | null | undefined) => boolean,
+    ) => RangeCalendarShorcutItem[])
   | undefined
 
 export interface RangeCalendarShortcutsProps {
@@ -30,9 +29,9 @@ export interface RangeCalendarShortcutsProps {
 }
 
 const RangeCalendarShorcuts = (props: RangeCalendarShortcutsProps) => {
-  const { state, pickerState } = props
+  const {state, pickerState} = props
 
-  const { shorcuts, selectedItem, setSelectedItem, setCurrentRangeDate } =
+  const {shorcuts, selectedItem, setSelectedItem, setCurrentRangeDate} =
     useRangeCalendarShortcuts(props)
 
   const handleShortcutClick = (shorcut: RangeCalendarShorcutItem) => {
@@ -53,7 +52,10 @@ const RangeCalendarShorcuts = (props: RangeCalendarShortcutsProps) => {
       {shorcuts &&
         shorcuts.map((shorcut) => {
           return (
-            <button className={`${styles.rangeCalendarShortcutsItem} ${selectedItem === shorcut.label ? styles.active : ''}`}
+            <button
+              className={`${styles.rangeCalendarShortcutsItem} ${
+                selectedItem === shorcut.label ? styles.active : ''
+              }`}
               key={shorcut.label}
               aria-disabled={shorcut.isDisable}
               type='button'

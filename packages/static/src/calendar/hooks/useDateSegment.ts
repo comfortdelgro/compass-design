@@ -28,6 +28,7 @@ import {
   useFilter,
   useLocale,
 } from '../../internationalized/i18n'
+import {NumberParser} from '../../internationalized/number'
 import {
   DateFieldState,
   DateSegment,
@@ -46,7 +47,6 @@ import {useEvent} from './useEvent'
 import {useId} from './useId'
 import {useLabels} from './useLabels'
 import {useSpinButton} from './useSpinButton'
-import { NumberParser } from '../../internationalized/number'
 
 export interface DateSegmentAria {
   /** Props for the segment element. */
