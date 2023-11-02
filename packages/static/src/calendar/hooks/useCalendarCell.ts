@@ -10,13 +10,7 @@
 
 /* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
 /* eslint-disable @typescript-eslint/no-unnecessary-condition */
-import {
-  MouseEvent,
-  RefObject,
-  useEffect,
-  useMemo,
-  useRef,
-} from 'react'
+import {MouseEvent, RefObject, useEffect, useMemo, useRef} from 'react'
 import {
   CalendarDate,
   DateFormatter,

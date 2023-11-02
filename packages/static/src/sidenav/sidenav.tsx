@@ -1,11 +1,11 @@
 'use client'
 
-import React, { useRef, useState } from 'react'
+import React, {useRef, useState} from 'react'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import Divider from './divider'
-import { SidenavContext } from './sidenav-context'
+import {SidenavContext} from './sidenav-context'
 import SidenavItem from './sidenav-item'
 import SidenavMenu from './sidenav-menu'
-import CssInjection from '../utils/objectToCss/CssInjection'
 import styles from './styles/sidenav.module.css'
 
 interface Props {
@@ -72,12 +72,14 @@ const Sidenav = React.forwardRef<HTMLDivElement, SidenavProps>((props, ref) => {
     <CssInjection css={css} childrenRef={ref}>
       <div
         ref={ref}
-        className={`cdg-sidenav ${styles.sidenav} ${className} ${expandOnHover ? 'sidenav-expanded' : ''} ${isExpand ? `${styles.sidenavFull}` : 'default'}`}
+        className={`cdg-sidenav ${styles.sidenav} ${className} ${
+          expandOnHover ? 'sidenav-expanded' : ''
+        } ${isExpand ? `${styles.sidenavFull}` : 'default'}`}
         onMouseOver={handleMouseOver}
         onMouseLeave={handleMouseLeave}
         {...htmlProps}
       >
-        <SidenavContext.Provider value={{ isExpand: isExpand }}>
+        <SidenavContext.Provider value={{isExpand: isExpand}}>
           {children}
         </SidenavContext.Provider>
       </div>

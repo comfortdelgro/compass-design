@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/unbound-method */
-import React, { useRef } from 'react'
-import { ButtonProps } from '../button'
-import Calendar, { CalendarProps } from '../calendar/calendar'
+import React, {useRef} from 'react'
+import {ButtonProps} from '../button'
+import Calendar, {CalendarProps} from '../calendar/calendar'
+import DateField from '../calendar/components/date-field'
 import Dialog from '../calendar/components/dialog'
 import Popover from '../calendar/components/popover'
-import { useDatePicker } from '../calendar/hooks/useDatePicker'
-import { useDatePickerState } from '../calendar/hooks/useDatePickerState'
+import {useDatePicker} from '../calendar/hooks/useDatePicker'
+import {useDatePickerState} from '../calendar/hooks/useDatePickerState'
 import {
   AriaDatePickerProps,
   AriaDialogProps,
@@ -14,14 +15,12 @@ import {
   DOMAttributes,
   SpectrumDatePickerProps,
 } from '../calendar/types'
-import { DateValue, parseDate } from '../internationalized/date'
-import { useDOMRef } from '../utils/use-dom-ref'
-import DatePickerProvider from './date-picker-context'
-import DateField from '../calendar/components/date-field'
+import {DateValue, parseDate} from '../internationalized/date'
 import CssInjection from '../utils/objectToCss/CssInjection'
+import {useDOMRef} from '../utils/use-dom-ref'
+import DatePickerProvider from './date-picker-context'
 import styles from './styles/date-picker.module.css'
-interface Props extends
-  SpectrumDatePickerProps<DateValue> {
+interface Props extends SpectrumDatePickerProps<DateValue> {
   css?: unknown
   children?: React.ReactNode
   label?: string | React.ReactNode
@@ -37,7 +36,7 @@ interface Props extends
 export type DatePickerProps = Props
 
 const DatePicker = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
-  const { css = {}, maxValue = parseDate('2999-03-10'), ctaButtonRender } = props
+  const {css = {}, maxValue = parseDate('2999-03-10'), ctaButtonRender} = props
   const state = useDatePickerState({
     ...props,
     // mobile styles: prevent date field from user input, click on any place in date field will open calendar
@@ -50,7 +49,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
 
   const calendarRef = useDOMRef(ref)
 
-  const { groupProps, fieldProps, buttonProps, dialogProps, calendarProps } =
+  const {groupProps, fieldProps, buttonProps, dialogProps, calendarProps} =
     useDatePicker(
       {
         ...props,

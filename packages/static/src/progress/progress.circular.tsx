@@ -53,21 +53,29 @@ const CircularProgress = React.forwardRef<
   }, [thickness, value, variant])
 
   const circularClass = React.useMemo(() => {
-    let classes = `cdg-progress-circular ${styles.circular}`
-    if (variant === 'indeterminate')
-      classes += ` ${styles.circularVariantIndeterminate}`
-    if (className) classes += ` ${className}`
-    return classes
+    return [
+      styles.circular,
+      variant === 'indeterminate' && styles.circularVariantIndeterminate,
+      'cdg-progress-circular',
+      className,
+    ]
+      .filter(Boolean)
+      .join(' ')
   }, [variant, className])
 
   const svgCircleClass = React.useMemo(() => {
-    let classes = `cdg-progress-svgCircle ${styles.svgCircle}`
-    if (variant === 'determinate')
-      classes += ` ${styles.svgCircleVariantDeterminate}`
-    else classes += ` ${styles.svgCircleVariantIndeterminate}`
-    if (variant === 'indeterminate' && !disableShrink)
-      classes += ` ${styles.svgCircleVariantDeterminateDisableShrink}`
-    return classes
+    return [
+      styles.svgCircle,
+      variant === 'determinate'
+        ? styles.svgCircleVariantDeterminate
+        : styles.svgCircleVariantIndeterminate,
+      variant === 'indeterminate' &&
+        !disableShrink &&
+        styles.svgCircleVariantDeterminateDisableShrink,
+      'cdg-progress-svgCircle',
+    ]
+      .filter(Boolean)
+      .join(' ')
   }, [variant, disableShrink])
 
   return (
@@ -79,7 +87,7 @@ const CircularProgress = React.forwardRef<
         style={{color: color, width: size, height: size, ...rootStyle}}
       >
         <svg
-          className={`cdg-progress-svg ${styles.svg}`}
+          className={`${styles.svg} cdg-progress-svg`}
           viewBox={`${SIZE / 2} ${SIZE / 2} ${SIZE} ${SIZE}`}
         >
           <circle

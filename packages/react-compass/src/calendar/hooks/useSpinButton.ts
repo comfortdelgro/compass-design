@@ -15,7 +15,7 @@
 /* eslint-disable @typescript-eslint/unbound-method */
 /* eslint-disable prefer-const */
 import {useCallback, useEffect, useRef} from 'react'
-import {SpinButtonProps, SpinbuttonAria} from '../types'
+import {SpinbuttonAria, SpinButtonProps} from '../types'
 import {useGlobalListeners} from './useGlobalListeners'
 
 export function useSpinButton(props: SpinButtonProps): SpinbuttonAria {

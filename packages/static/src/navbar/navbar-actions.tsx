@@ -1,7 +1,7 @@
+import clsx from 'clsx'
 import React from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import styles from './styles/navbar-actions.module.css'
-import clsx from 'clsx'
 
 interface Props {
   css?: unknown
@@ -14,22 +14,39 @@ export type NavbarActionsProps = Props &
 
 const NavbarActions = React.forwardRef<HTMLDivElement, NavbarActionsProps>(
   (props, ref) => {
-    const { children, css = {}, alternativeElement, className, ...delegated } = props
+    const {
+      children,
+      css = {},
+      alternativeElement,
+      className,
+      ...delegated
+    } = props
     return (
       <CssInjection css={css} childrenRef={ref}>
-        <div className={clsx(styles.navbarActions, className)} ref={ref} {...delegated}>
+        <div
+          className={clsx(styles.navbarActions, className)}
+          ref={ref}
+          {...delegated}
+        >
           <div
             className={clsx({
               'default-navbar-actions': true,
               [styles.defaultNavbarActions]: true,
               [styles.hasAlternative]: !!alternativeElement,
-              'has-alternative': !!alternativeElement
+              'has-alternative': !!alternativeElement,
             })}
           >
             {children}
           </div>
           {alternativeElement ? (
-            <div className={clsx('alternative-navbar-actions', styles.alternativeNavbarActions)}>{alternativeElement}</div>
+            <div
+              className={clsx(
+                'alternative-navbar-actions',
+                styles.alternativeNavbarActions,
+              )}
+            >
+              {alternativeElement}
+            </div>
           ) : (
             <></>
           )}

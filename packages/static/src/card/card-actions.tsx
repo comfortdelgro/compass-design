@@ -12,7 +12,7 @@ export type CardActionProps = Props &
 
 const CardAction = React.forwardRef<HTMLDivElement, CardActionProps>(
   (props, ref) => {
-    const { children, css = {}, className, ...htmlProps } = props
+    const {children, css = {}, className, ...htmlProps} = props
 
     return (
       <CssInjection css={css} childrenRef={ref}>

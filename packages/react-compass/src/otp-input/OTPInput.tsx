@@ -1,11 +1,11 @@
 import React, {memo, useCallback, useState} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
-import SingleInput from './SingleInput'
 import {
   OtpInputContainerVariantProps,
   StyledOtpInputContainer,
 } from './otpInput.styles'
+import SingleInput from './SingleInput'
 
 export interface Props extends StyledComponentProps {
   /** @default 6 */
@@ -178,10 +178,11 @@ const OTPInputComponent = React.forwardRef<HTMLDivElement, OTPInputProps>(
             }
           })
           setOTPValues(updatedOTPValues)
+          handleOtpChange(updatedOTPValues)
           setActiveInput(Math.min(nextFocusIndex + 1, length - 1))
         }
       },
-      [activeInput, getRightValue, length, otpValues],
+      [activeInput, getRightValue, handleOtpChange, length, otpValues],
     )
 
     return (

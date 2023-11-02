@@ -31,11 +31,15 @@ const BreadcrumbItem = React.forwardRef<HTMLAnchorElement, BreadcrumbItemProps>(
     const linkRef = useDOMRef<HTMLAnchorElement>(ref)
 
     const itemClass = React.useMemo(() => {
-      let classes = `cdg-breadcrumb-item ${styles.breadcrumbsItem}`
-      if (className) classes += ` ${className}`
-      if (isCurrent) classes += ` ${styles.active}`
-      if (isDisabled) classes += ` ${styles.disabled}`
-      return classes
+      return [
+        styles.breadcrumbsItem,
+        isCurrent && styles.isActive,
+        isDisabled && styles.isDisabled,
+        'cdg-breadcrumb-item',
+        className,
+      ]
+        .filter(Boolean)
+        .join(' ')
     }, [isCurrent, isDisabled, className])
 
     return (
