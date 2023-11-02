@@ -1,6 +1,6 @@
 import React from 'react'
-import {useDOMRef} from '../utils/use-dom-ref'
 import CssInjection from '../utils/objectToCss/CssInjection'
+import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/skeleton.module.css'
 
 interface Props {

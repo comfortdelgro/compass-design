@@ -1,0 +1,62 @@
+@import '../../theme/theme.module.css';
+
+@layer default;
+
+@layer default{
+/* StyledTooltipArrow */
+.tooltipArrow {
+  background-color: inherit;
+  transform: rotate(45deg);
+  width: var(--cdg-spacing-2_5);
+  height: var(--cdg-spacing-2_5);
+  position: absolute;
+}
+
+/* StyledTooltip */
+.tooltip {
+  /* ... Other styles ... */
+  box-sizing: border-box;
+  position: 'absolute';
+  padding: var(--cdg-spacing-4);
+  max-width: var(--cdg-spacing-96);
+  background: var(--cdg-color-typeHeading);
+  line-height: var(--cdg-line-height-normal);
+  border-radius: var(--cdg-border-radius-md);
+  box-shadow:
+    '0px 0.3px 0.9px rgba(0, 0, 0, 0.1), 0px 1.6px 3.6px rgba(0, 0, 0, 0.13)';
+  color: var(--cdg-color-whiteText);
+  font-size: var(--cdg-font-size-label1);
+}
+
+.tooltipHeader {
+  display: flex;
+  align-items: flex-start;
+  font-size: var(--cdg-font-size-header5);
+  line-height: var(--cdg-line-height-normal);
+  margin-bottom: var(--cdg-spacing-2);
+}
+
+.tooltipTitle {
+  margin: 0;
+  margin-right: var(--cdg-spacing-4);
+}
+
+.tooltipCloseButton {
+  margin-left: auto;
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.tooltipCloseIcon {
+  width: var(--cdg-spacing-4);
+  height: var(--cdg-spacing-4);
+}
+
+.noTitle {
+  padding: var(--cdg-spacing-2) var(--cdg-spacing-4);
+}
+}

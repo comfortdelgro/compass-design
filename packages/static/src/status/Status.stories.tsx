@@ -3,7 +3,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import type {Meta} from '@storybook/react'
 import React from 'react'
 import Status from './index'
-import {STATUS_SIZE_MAP, StatusSize} from './status.const'
+import {StatusSize, STATUS_SIZE_MAP} from './status.const'
 
 const style: {
   display: string

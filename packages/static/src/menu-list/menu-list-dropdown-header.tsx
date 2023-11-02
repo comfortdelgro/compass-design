@@ -1,8 +1,8 @@
-import React, { SyntheticEvent, useContext } from 'react'
-import { useDOMRef } from '../utils/use-dom-ref'
-import { MenuListContext } from './menu-list-context'
-import CssInjection from '../utils/objectToCss/CssInjection'
 import clsx from 'clsx'
+import React, {SyntheticEvent, useContext} from 'react'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import {useDOMRef} from '../utils/use-dom-ref'
+import {MenuListContext} from './menu-list-context'
 import styles from './styles/menu-list-dropdown-item.module.css'
 
 interface Props {
@@ -33,7 +33,7 @@ const MenuListDropdownHeader = React.forwardRef<
     ...delegated
   } = props
 
-  const { isOpen, toggleOpen } = useContext(MenuListContext)
+  const {isOpen, toggleOpen} = useContext(MenuListContext)
 
   const buttonRef = useDOMRef<HTMLButtonElement>(ref)
 
@@ -55,7 +55,7 @@ const MenuListDropdownHeader = React.forwardRef<
             [styles.menuListDropdownChevronDownLeftIcon]: true,
             [styles.rotatedIcon]: isOpen,
             'menu-list-dropdown-chevron-down-left-icon': true,
-            'rotated-icon': isOpen
+            'rotated-icon': isOpen,
           })}
         >
           <ChevronIcon />
@@ -70,7 +70,7 @@ const MenuListDropdownHeader = React.forwardRef<
             [styles.menuListDropdownChevronDownLeftIcon]: true,
             [styles.rotatedIcon]: isOpen,
             'menu-list-dropdown-chevron-down-left-icon': true,
-            'rotated-icon': isOpen
+            'rotated-icon': isOpen,
           })}
         >
           {leftIcon}
@@ -87,7 +87,7 @@ const MenuListDropdownHeader = React.forwardRef<
             [styles.menuListDropdownChevronDownRightIcon]: true,
             [styles.rotatedIcon]: isOpen,
             'menu-list-dropdown-chevron-down-right-icon': true,
-            'rotated-icon': isOpen
+            'rotated-icon': isOpen,
           })}
         >
           <ChevronIcon />
@@ -102,7 +102,7 @@ const MenuListDropdownHeader = React.forwardRef<
             [styles.menuListDropdownChevronDownRightIcon]: true,
             [styles.rotatedIcon]: isOpen,
             'menu-list-dropdown-chevron-down-right-icon': true,
-            'rotated-icon': isOpen
+            'rotated-icon': isOpen,
           })}
         >
           {rightIcon}
@@ -113,7 +113,16 @@ const MenuListDropdownHeader = React.forwardRef<
 
   const renderTitle = () => {
     if (typeof children === 'string') {
-      return <h2 className={clsx(styles.menuListDropdownTitle, 'menu-list-dropdown-title')}>{children}</h2>
+      return (
+        <h2
+          className={clsx(
+            styles.menuListDropdownTitle,
+            'menu-list-dropdown-title',
+          )}
+        >
+          {children}
+        </h2>
+      )
     }
     return children
   }
@@ -122,7 +131,11 @@ const MenuListDropdownHeader = React.forwardRef<
     <CssInjection css={css} childrenRef={buttonRef}>
       <button
         // className={`${className} menu-list-dropdown-header`}
-        className={clsx('menu-list-dropdown-header', styles.menuListDropdownHeader, className)}
+        className={clsx(
+          'menu-list-dropdown-header',
+          styles.menuListDropdownHeader,
+          className,
+        )}
         ref={buttonRef}
         onClick={handleOnClick}
         aria-expanded={isOpen}

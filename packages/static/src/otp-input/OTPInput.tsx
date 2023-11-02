@@ -175,10 +175,11 @@ const OTPInputComponent = React.forwardRef<HTMLDivElement, OTPInputProps>(
             }
           })
           setOTPValues(updatedOTPValues)
+          handleOtpChange(updatedOTPValues)
           setActiveInput(Math.min(nextFocusIndex + 1, length - 1))
         }
       },
-      [activeInput, getRightValue, length, otpValues],
+      [activeInput, getRightValue, handleOtpChange, length, otpValues],
     )
 
     const classNames = [

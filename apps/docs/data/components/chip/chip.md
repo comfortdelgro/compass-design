@@ -23,8 +23,8 @@ import Chip from '@comfortdelgro/react-compass/chip'
 
 {{"demo": "Chip.tsx"}}
 
-## Chip Server (Experimental)
-{{"demo": "ChipServer.tsx"}}
+<!-- ## Chip Server (Experimental)
+{{"demo": "ChipServer.tsx"}} -->
 
 ## Props
 

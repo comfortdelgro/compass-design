@@ -30,9 +30,9 @@ import {
   useLocale,
 } from '../../internationalized/i18n'
 import {
-  DOMAttributes,
   DateFieldState,
   DateSegment,
+  DOMAttributes,
   FocusableElement,
 } from '../types'
 import {

@@ -87,8 +87,8 @@ export class GregorianCalendar implements Calendar {
       quad * 4 +
       yindex +
       (cent !== 4 && yindex !== 4 ? 1 : 0)
-      const [era, year] = fromExtendedYear(extendedYear)
-      const yearDay = jd0 - gregorianToJulianDay(era, year, 1, 1)
+    const [era, year] = fromExtendedYear(extendedYear)
+    const yearDay = jd0 - gregorianToJulianDay(era, year, 1, 1)
     let leapAdj = 2
     if (jd0 < gregorianToJulianDay(era, year, 3, 1)) {
       leapAdj = 0
