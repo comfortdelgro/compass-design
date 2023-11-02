@@ -247,5 +247,7 @@ export type {
 export {default as Transitions} from './transitions'
 export type {TransitionsProps} from './transitions'
 export {default as Typography} from './typography'
+export {default as Upload} from './upload'
+export type {UploadDragAndDropProps, UploadProps} from './upload'
 export {default as Wizard} from './wizard'
 export type {WizardProps} from './wizard'

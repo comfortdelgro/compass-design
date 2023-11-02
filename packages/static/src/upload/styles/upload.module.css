@@ -1,0 +1,172 @@
+@import '../../theme/theme.module.css';
+
+/* 
+* variant has the second highest priority
+* default has the lowest priority
+*/
+@layer default, variant;
+
+@layer default {
+  .uploadWrapper {
+    appearance: none;
+    border: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    box-shadow: 1px solid var(--cdg-color-divider);
+    min-width: var(--cdg-spacing-96);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: var(--cdg-spacing-2);
+  }
+  .uploadWrapper input {
+    display: none;
+  }
+  .browseFile {
+    appearance: none;
+    border: none;
+    box-sizing: border-box;
+    margin: 0;
+    width: min-content;
+    flex-shrink: 0;
+    padding: 0 var(--cdg-spacing-3);
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--cdg-font-size-label1);
+    font-weight: var(--cdg-font-weight-semibold);
+    line-height: var(--cdg-line-height-normal);
+    cursor: pointer;
+    background-color: var(--cdg-color-gray10);
+  }
+  .browseFile:hover {
+    background-color: var(--cdg-color-gray20);
+  }
+  .browseFile:focus-visible {
+    outline: none;
+  }
+  .browseFileSpan {
+    width: max-content;
+  }
+  .uploadContent {
+    appearance: none;
+    border: none;
+    box-sizing: border-box;
+    margin: 0;
+    flex-grow: 1px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    border-left: 1px solid var(--cdg-color-divider);
+    padding: 0 var(--cdg-spacing-4);
+    font-size: var(--cdg-font-size-body3);
+    font-weight: var(--cdg-font-weight-semibold);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    color: var(--cdg-color-grayShades40);
+    background: transparent;
+  }
+  .uploadContentText {
+    margin: 0;
+    padding: 0;
+    word-wrap: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .label {
+    appearance: none;
+    border: none;
+    box-sizing: border-box;
+    margin: 0;
+    background: transparent;
+    width: 100%;
+    height: var(--cdg-spacing-4_5);
+    font-family: var(--cdg-font-sans);
+    font-size: var(--cdg-font-size-label1);
+    line-height: var(--cdg-line-height-normal);
+    font-weight: var(--cdg-font-weight-semibold);
+  }
+  .isRequiredSign {
+    color: var(--cdg-color-danger);
+  }
+  .uploadContainer {
+    appearance: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    width: 100%;
+    height: var(--cdg-spacing-11);
+    border: 1px solid var(--cdg-color-divider);
+    overflow: hidden;
+    border-radius: var(--cdg-border-radius-lg);
+    display: flex;
+    gap: 0;
+    transition: border 200ms ease-in-out;
+  }
+  .uploadContainer:focus-within {
+    border: 1px solid var(--cdg-color-cdgBlue);
+  }
+  .uploadError {
+    appearance: none;
+    border: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    font-family: var(--cdg-font-sans);
+    font-weight: var(--cdg-font-weight-medium);
+    font-size: var(--cdg-font-size-label2);
+    line-height: var(--cdg-line-height-normal);
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    color: var(--cdg-color-dangerShades);
+  }
+  .helperText {
+    appearance: none;
+    border: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    font-family: var(--cdg-font-sans);
+    font-weight: var(--cdg-font-weight-medium);
+    font-size: var(--cdg-font-size-label2);
+    line-height: var(--cdg-line-height-normal);
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    color: var(--cdg-color-grayShades40);
+  }
+}
+
+@layer variant {
+  .fileSelected {
+    color: var(--cdg-color-grayShades100);
+  }
+  .browseFileIsDisabled {
+    background-color: var(--cdg-color-gray40);
+    color: var(--cdg-color-gray70);
+    cursor: not-allowed;
+    border: none;
+  }
+  .browseFileIsDarkTheme {
+    background-color: var(--cdg-color-cdgBlue120);
+    color: var(--cdg-color-cdgBlue40);
+  }
+  .uploadContentIsDisabled {
+    background-color: var(--cdg-color-gray20);
+    color: var(--cdg-color-grayShades40);
+    cursor: not-allowed;
+    border: none;
+  }
+  .uploadContentIsDarkTheme {
+    background: var(--cdg-color-gray20);
+  }
+}
