@@ -260,6 +260,8 @@ export type {
   ToastsContainerProps,
   ToastState,
 } from './toast/service'
+export {default as Toggle} from './toggle'
+export type {ToggleProps} from './toggle'
 export {Tooltip, TooltipTrigger} from './tooltip'
 export type {Placement, TooltipProps, TooltipTriggerProps} from './tooltip'
 export {default as Transitions} from './transitions'
