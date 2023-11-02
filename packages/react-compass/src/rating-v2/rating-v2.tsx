@@ -90,21 +90,44 @@ const RatingV2 = React.forwardRef<HTMLDivElement, RatingV2Props>(
       </span>
     )
 
-    const renderStar = (renderStarList: StarProps[]) => {
-      return (
-        <span style={{margin: '0 5px'}}>
-          {renderStarList.isFilled ? '🌟' : '⭐'}
-        </span>
-      )
-    }
-
-    const stars = Array.from({length: maxRating}, (_, index) => {
+    const customStars = renderStarList?.map((starProps, index) => {
+      if (!starProps) {
+        console.error(`Star props for index ${index} is undefined.`)
+        return null
+      }
       const value = index + 1
-      const isFilled = renderStarList ? value === rating : value <= rating
       const checked = rating === value
-      const starVisual = renderStar
-        ? renderStar(isFilled, value)
-        : defaultRenderStarVisual(isFilled)
+      const starVisual = checked ? starProps.filledIcon : starProps.icon
+
+      return (
+        <React.Fragment key={value}>
+          <StyledInputStarWrapper
+            htmlFor={`${groupName}-${value}`}
+            className={`noOutline-${noOutline}`}
+          >
+            <StyledInputStar
+              type='radio'
+              role='radio'
+              id={`${groupName}-${value}`}
+              name={groupName}
+              value={value}
+              checked={checked}
+              disabled={disabled || readOnly}
+              aria-checked={checked}
+              aria-disabled={disabled || readOnly}
+              onChange={() => handleChange(value)}
+            />
+            {starVisual}
+          </StyledInputStarWrapper>
+        </React.Fragment>
+      )
+    })
+
+    const defaultStars = Array.from({length: maxRating}, (_, index) => {
+      const value = index + 1
+      const isFilled = value <= rating
+      const checked = rating === value
+      const starVisual = defaultRenderStarVisual(isFilled)
 
       return (
         <React.Fragment key={value}>
@@ -138,7 +161,7 @@ const RatingV2 = React.forwardRef<HTMLDivElement, RatingV2Props>(
         aria-readonly={readOnly}
         {...delegated}
       >
-        {stars}
+        {renderStarList ? customStars : defaultStars}
       </StyledRatingv2Component>
     )
   },

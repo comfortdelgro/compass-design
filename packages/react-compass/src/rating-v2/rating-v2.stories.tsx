@@ -37,6 +37,38 @@ export const Default: React.FC = () => {
       <Column>
         <h3>Custom rating</h3>
         <RatingComponent
+          renderStarList={[
+            {
+              isFilled: false,
+              value: 1,
+              icon: <div>Empty 1</div>,
+              filledIcon: <div>Filled 1</div>,
+            },
+            {
+              isFilled: false,
+              value: 2,
+              icon: <div>Empty 2</div>,
+              filledIcon: <div>Filled 2</div>,
+            },
+            {
+              isFilled: false,
+              value: 3,
+              icon: <div>Empty 3</div>,
+              filledIcon: <div>Filled 3</div>,
+            },
+            {
+              isFilled: false,
+              value: 4,
+              icon: <div>Empty 4</div>,
+              filledIcon: <div>Filled 4</div>,
+            },
+            {
+              isFilled: false,
+              value: 5,
+              icon: <div>Empty 5</div>,
+              filledIcon: <div>Filled 5</div>,
+            },
+          ]}
           onChange={(value) => {
             console.log('Star rating changed to:', value)
           }}
