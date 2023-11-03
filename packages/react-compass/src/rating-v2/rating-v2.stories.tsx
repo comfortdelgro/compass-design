@@ -1,5 +1,12 @@
 import React from 'react'
 import {Column} from '../utils/components'
+import {
+  FaceFrown,
+  FaceMeh,
+  FaceSadTear,
+  FaceSmile,
+  FaceSmileHeart,
+} from './constants'
 import RatingComponent from './rating-v2'
 
 export const Default: React.FC = () => {
@@ -41,32 +48,32 @@ export const Default: React.FC = () => {
             {
               isFilled: false,
               value: 1,
-              icon: <div>Empty 1</div>,
-              filledIcon: <div>Filled 1</div>,
+              icon: FaceSadTear('black'),
+              filledIcon: FaceSadTear('red'),
             },
             {
               isFilled: false,
               value: 2,
-              icon: <div>Empty 2</div>,
-              filledIcon: <div>Filled 2</div>,
+              icon: FaceFrown('black'),
+              filledIcon: FaceFrown('red'),
             },
             {
               isFilled: false,
               value: 3,
-              icon: <div>Empty 3</div>,
-              filledIcon: <div>Filled 3</div>,
+              icon: FaceMeh('black'),
+              filledIcon: FaceMeh('yellow'),
             },
             {
               isFilled: false,
               value: 4,
-              icon: <div>Empty 4</div>,
-              filledIcon: <div>Filled 4</div>,
+              icon: FaceSmile('black'),
+              filledIcon: FaceSmile('green'),
             },
             {
               isFilled: false,
               value: 5,
-              icon: <div>Empty 5</div>,
-              filledIcon: <div>Filled 5</div>,
+              icon: FaceSmileHeart('black'),
+              filledIcon: FaceSmileHeart('green'),
             },
           ]}
           onChange={(value) => {
