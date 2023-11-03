@@ -3,12 +3,9 @@
 @layer default, variant;
 
 @layer default {
-  .cdgTableLoading {
+  .cdgTableLoading td {
     height: var(--cdg-spacing-75);
-    td {
-      height: 100%;
-      margin: auto;
-      text-align: center;
-    }
+    margin: auto;
+    text-align: center;
   }
 }

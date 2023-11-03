@@ -25,7 +25,18 @@ export type EditableCellProps = CellProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof CellProps>
 
 export const [EditableCellContextProvider, useEditableCellContext] =
-  createSafeContext<unknown>('EditableCell was not found in tree')
+  createSafeContext<EditableCellContextType>(
+    'EditableCell was not found in tree',
+  )
+
+export type EditableCellContextType = {
+  finishTemplateEditing: (data: unknown) => void
+  cancelTemplateEditing: () => void
+  initialValue: unknown
+  cell: Cell<unknown, unknown>
+  row: number
+  column: string
+}
 
 export const EditableCell = React.forwardRef<
   HTMLTableCellElement,
@@ -88,16 +99,14 @@ export const EditableCell = React.forwardRef<
         {editing ? (
           tableMeta.template ? (
             <EditableCellContextProvider
-              value={
-                {
-                  finishTemplateEditing,
-                  cancelTemplateEditing,
-                  initialValue,
-                  cell,
-                  row,
-                  column,
-                } as unknown
-              }
+              value={{
+                finishTemplateEditing,
+                cancelTemplateEditing,
+                initialValue,
+                cell,
+                row,
+                column,
+              }}
             >
               {tableMeta.template}
             </EditableCellContextProvider>

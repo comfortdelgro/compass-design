@@ -6,7 +6,7 @@
   .cdgTableCheckboxCell {
     text-align: 'left';
     font-size: var(--cdg-font-size-label1);
-    padding: var(--cdg-spacing-4) var(--cdg-spacing-3);
+    /* padding: var(--cdg-spacing-4) var(--cdg-spacing-3); */
     line-height: var(--cdg-spacing-5_25);
   }
 }
