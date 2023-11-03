@@ -1,11 +1,11 @@
-import React from "react"
-import { useDOMRef } from "../utils/use-dom-ref"
-import CssInjection from "../utils/objectToCss/CssInjection"
+import React from 'react'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import {useDOMRef} from '../utils/use-dom-ref'
+import CardAction from './card-actions'
+import CardBody from './card-body'
+import CardImage from './card-image'
+import CardTitle from './card-title'
 import styles from './styles/card.module.css'
-import CardBody from "./card-body"
-import CardImage from "./card-image"
-import CardTitle from "./card-title"
-import CardAction from "./card-actions"
 
 interface Props {
   css?: unknown
@@ -13,7 +13,7 @@ interface Props {
   isDisabled?: boolean
   isShadowless?: boolean
   isClickable?: boolean
-  size?: "lg" | "full" | "sm"
+  size?: 'lg' | 'full' | 'sm'
 }
 
 export type CardProps = Props &
@@ -34,23 +34,32 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
     ...htmlProps
   } = props
 
-
   const cardRef = useDOMRef<HTMLDivElement>(ref)
 
-  const buttonProps = isClickable ? { tabIndex: 1, role: 'button' } : {}
+  const buttonProps = isClickable ? {tabIndex: 1, role: 'button'} : {}
 
-  return <CssInjection css={css} childrenRef={cardRef}>
-    <div
-      className={
-        `${styles.card} ${isDisabled ? styles.disabled : ''} ${isShadowless ? styles.shadowless : ''} ${isClickable ? styles.clickable : ''} ${size === 'full' ? styles.full : size === 'lg' ? styles.lg : size === 'sm' ? styles.sm : ''} ${className ?? ''}`
-      }
-      ref={cardRef}
-      {...buttonProps}
-      {...htmlProps}
-    >
-      {children}
-    </div>
-  </CssInjection>
+  return (
+    <CssInjection css={css} childrenRef={cardRef}>
+      <div
+        className={`${styles.card} ${isDisabled ? styles.disabled : ''} ${
+          isShadowless ? styles.shadowless : ''
+        } ${isClickable ? styles.clickable : ''} ${
+          size === 'full'
+            ? styles.full
+            : size === 'lg'
+            ? styles.lg
+            : size === 'sm'
+            ? styles.sm
+            : ''
+        } ${className ?? ''}`}
+        ref={cardRef}
+        {...buttonProps}
+        {...htmlProps}
+      >
+        {children}
+      </div>
+    </CssInjection>
+  )
 })
 
 export default Card as typeof Card & {

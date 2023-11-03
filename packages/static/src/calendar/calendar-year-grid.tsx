@@ -1,8 +1,7 @@
-import React from 'react'
-import { CalendarDate } from '../internationalized/date'
-import { MonthYearState } from './hooks/useMonthYearState'
-import { CalendarState, DateValue, RangeCalendarState } from './types'
+import {CalendarDate} from '../internationalized/date'
+import {MonthYearState} from './hooks/useMonthYearState'
 import styles from './styles/calendar-month-year-grid.module.css'
+import {CalendarState, DateValue, RangeCalendarState} from './types'
 
 interface Props {
   state: CalendarState | RangeCalendarState
@@ -11,7 +10,7 @@ interface Props {
 }
 
 const CalendarYearGrid = (props: Props) => {
-  const { state, monthYearState, maxValue } = props
+  const {state, monthYearState, maxValue} = props
 
   const handleYearClick = (year: number) => {
     const focusedDate = state.focusedDate
@@ -49,8 +48,11 @@ const CalendarYearGrid = (props: Props) => {
           return (
             <button
               type='button'
-              className={`calendar-year-cell ${isDisabled ? 'disabled' : ''} ${isCurrentYear ? 'highlighted' : ''
-                } ${styles.calendarMonthYearCell} ${isCurrentYear ? styles.highlighted : ''}`}
+              className={`calendar-year-cell ${isDisabled ? 'disabled' : ''} ${
+                isCurrentYear ? 'highlighted' : ''
+              } ${styles.calendarMonthYearCell} ${
+                isCurrentYear ? styles.highlighted : ''
+              }`}
               aria-label={year.toString()}
               onClick={handleYearClick(year)}
               disabled={isDisabled}

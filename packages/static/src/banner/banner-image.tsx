@@ -1,8 +1,8 @@
 'use client'
 
 import React from 'react'
-import { useDOMRef } from '../utils/use-dom-ref'
 import CssInjection from '../utils/objectToCss/CssInjection'
+import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/banner.module.css'
 
 interface Props {
@@ -15,7 +15,7 @@ export type BannerImageProps = Props &
 
 const BannerImage = React.forwardRef<HTMLImageElement, BannerImageProps>(
   (props, ref) => {
-    const { css = {}, className = '', onError, ...delegated } = props
+    const {css = {}, className = '', onError, ...delegated} = props
     const [imageError, setImageError] = React.useState(false)
     const bannerImageRef = useDOMRef<HTMLImageElement>(ref)
 
@@ -34,13 +34,14 @@ const BannerImage = React.forwardRef<HTMLImageElement, BannerImageProps>(
           <img
             className={`cdg-banner-image ${styles.bannerImage} ${className}`}
             ref={bannerImageRef}
-            id={id}
             alt='banner image'
             onError={handleImageError}
             {...delegated}
           />
         ) : (
-          <div className={`cdg-banner-image-fallback ${styles.bannerImageFallback}`}>
+          <div
+            className={`cdg-banner-image-fallback ${styles.bannerImageFallback}`}
+          >
             Image failed to load. Please try again later.
           </div>
         )}

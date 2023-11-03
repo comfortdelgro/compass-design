@@ -1,7 +1,7 @@
 'use client'
 
-import { ExtendedRefs, ReferenceType } from '@floating-ui/react'
-import React, { useState } from 'react'
+import {ExtendedRefs, ReferenceType} from '@floating-ui/react'
+import React, {useState} from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import styles from './styles/sidenav-item.module.css'
 
@@ -45,7 +45,7 @@ const SidenavItem = React.forwardRef<HTMLDivElement, SidenavItemProps>(
         userProps?: React.HTMLProps<Element> | undefined,
       ) => Record<string, unknown>,
     ) => {
-      setMenuParentProps({ ref, getReferenceProps })
+      setMenuParentProps({ref, getReferenceProps})
     }
 
     const clonedMenu = menu ? (
@@ -71,20 +71,32 @@ const SidenavItem = React.forwardRef<HTMLDivElement, SidenavItemProps>(
       <CssInjection css={css} childrenRef={mergeRefs}>
         <div
           ref={mergeRefs}
-          className={`cdg-sidenav-item ${className} ${styles.sidenavItem} ${isActive ? `${styles.sidenavItemActive} sidenav-item-active` : 'default'}`}
+          className={`cdg-sidenav-item ${className} ${styles.sidenavItem} ${
+            isActive
+              ? `${styles.sidenavItemActive} sidenav-item-active`
+              : 'default'
+          }`}
           onMouseEnter={() => {
             setOpenMenu(true)
           }}
           {...delegated}
           {...menuParenProps?.getReferenceProps()}
         >
-          <div className={`cdg-sidenav-item-icon ${styles.cdgSidenavItemIcon} ${isActive ? `${styles.cdgSidenavItemActiveIcon}` : ''}`}>
+          <div
+            className={`cdg-sidenav-item-icon ${styles.cdgSidenavItemIcon} ${
+              isActive ? `${styles.cdgSidenavItemActiveIcon}` : ''
+            }`}
+          >
             {icon}
           </div>
-          <div className={`cdg-sidenav-item-title ${styles.cdgSidenavItemTitle}`}>{title}</div>
+          <div
+            className={`cdg-sidenav-item-title ${styles.cdgSidenavItemTitle}`}
+          >
+            {title}
+          </div>
           {clonedMenu}
         </div>
-      </CssInjection >
+      </CssInjection>
     )
   },
 )
