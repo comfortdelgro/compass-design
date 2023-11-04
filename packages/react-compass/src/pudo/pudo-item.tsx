@@ -15,7 +15,7 @@ const PudoItem = <TItemName extends string | number | symbol>({
   type = 'input',
   value = '',
   placeholder = '',
-  title = '',
+  title,
   content,
 
   onValueChange,
@@ -79,10 +79,12 @@ const PudoItem = <TItemName extends string | number | symbol>({
       case 'custom':
         return (
           <div className='pudo-item__custom'>
-            {title && (
+            {typeof title === 'string' && title ? (
               <div className='pudo-item__custom-title' title={title}>
                 {title}
               </div>
+            ) : (
+              title
             )}
             {typeof content === 'string' && content ? (
               <p className='pudo-item__custom-content'>{content}</p>

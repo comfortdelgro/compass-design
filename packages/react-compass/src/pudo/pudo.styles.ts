@@ -76,11 +76,11 @@ export const StyledPUDOItem = styled('div', {
     },
 
     '&:before': {
-      top: 'calc(var(--cdg-pudo-dot-size) * -1)',
+      top: 'calc(var(--cdg-pudo-dot-size) * -2)',
     },
 
     '&:after': {
-      bottom: 'calc(var(--cdg-pudo-dot-size) * -1)',
+      bottom: 'calc(var(--cdg-pudo-dot-size) * -2)',
     },
   },
 
@@ -192,6 +192,14 @@ export const StyledPUDOItem = styled('div', {
           '&:before, &:after': {
             height: 'calc(50% - $5 / 2 + var(--cdg-pudo-dot-size) / 2)',
           },
+
+          '&:before': {
+            top: 'calc(var(--cdg-pudo-dot-size) * -1)',
+          },
+
+          '&:after': {
+            bottom: 'calc(var(--cdg-pudo-dot-size) * -1)',
+          },
         },
       },
       sm: {
@@ -200,7 +208,7 @@ export const StyledPUDOItem = styled('div', {
             borderTop: 'none',
           },
         },
-        '.pudo-item__custom': {paddingBlock: '$2'},
+        '.pudo-item__custom': {paddingBlock: '0.4rem'},
 
         '.pudo-item__input': {
           input: {
@@ -212,6 +220,14 @@ export const StyledPUDOItem = styled('div', {
         '.pudo-item__icon': {
           '&:before, &:after': {
             height: 'calc(50% - $5 / 2 + var(--cdg-pudo-dot-size) / 2)',
+          },
+
+          '&:before': {
+            top: 'calc(var(--cdg-pudo-dot-size) * -1)',
+          },
+
+          '&:after': {
+            bottom: 'calc(var(--cdg-pudo-dot-size) * -1)',
           },
         },
       },

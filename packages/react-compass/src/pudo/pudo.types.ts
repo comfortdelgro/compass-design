@@ -91,7 +91,7 @@ export type PudoItemProps<TName extends string | number | symbol = string> = {
   /** `placeholder` is used for `'input'` type item. */
   placeholder?: string
   /** `title` is used for `'custom'` type item. */
-  title?: string
+  title?: ReactNode
   /** `content` is used for `'custom'` type item. */
   content?: ReactNode
 

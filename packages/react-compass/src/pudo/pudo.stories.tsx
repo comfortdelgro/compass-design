@@ -3,6 +3,7 @@ import InfoOutlined from '@comfortdelgro/compass-icons/react/outlined/info-outli
 import debounce from 'lodash/debounce'
 import React, {useCallback, useState} from 'react'
 import Button from '../button'
+import SlideAction from '../slide-action'
 import {styled} from '../theme'
 import Typography from '../typography'
 import Pudo from './pudo'
@@ -161,18 +162,36 @@ export function Default() {
           },
           {
             name: 'item2',
-            title: `Title only: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum
-          assumenda officiis voluptates quam rem qui libero commodi veritatis.`,
+            title: (
+              <>
+                <p style={{marginBlock: '0 1rem', color: 'blueviolet'}}>
+                  <strong>Title only:</strong> Lorem ipsum dolor sit, amet
+                  consectetur adipisicing elit. Laborum assumenda officiis
+                  voluptates quam rem qui libero commodi veritatis.
+                </p>
+                <SlideAction
+                  css={{marginBlock: '0.5rem'}}
+                  label='Some danger action on title'
+                  labelType='slide'
+                />
+              </>
+            ),
           },
           {
             name: 'item3',
-            content: `Content only: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum
-          assumenda officiis voluptates quam rem qui libero commodi veritatis.
-          deserunt harum voluptatum beatae perferendis, vitae minus magnam facere
-          quidem tempora iusto? Tempore praesentium accusamus mollitia, inventore
-          quos tenetur, aspernatur eos, in id corporis veniam blanditiis error. Est
-          illo temporibus velit, beatae dolores accusantium quis vel corporis neque
-          harum? Accusantium, voluptates consequuntur?`,
+            content: (
+              <p style={{marginBlock: '0'}}>
+                This item has <strong>content only</strong> ✨. Lorem ipsum
+                dolor sit, amet consectetur adipisicing elit. Laborum assumenda
+                officiis voluptates quam rem qui libero commodi veritatis.
+                deserunt harum voluptatum beatae perferendis, vitae minus magnam
+                facere quidem tempora iusto? Tempore praesentium accusamus
+                mollitia, inventore quos tenetur, aspernatur eos, in id corporis
+                veniam blanditiis error. Est illo temporibus velit, beatae
+                dolores accusantium quis vel corporis neque harum? Accusantium,
+                voluptates consequuntur?
+              </p>
+            ),
           },
         ]}
         type='custom'
