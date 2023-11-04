@@ -2,28 +2,18 @@ import React from 'react'
 
 export const DefaultIcons = [
   <svg
-    width='20'
-    height='18'
-    viewBox='0 0 20 18'
-    fill='none'
     xmlns='http://www.w3.org/2000/svg'
+    width='14'
+    height='14'
+    viewBox='0 0 14 14'
+    fill='none'
   >
-    <g id='Frame 427319545'>
-      <path
-        id='Ellipse 1649'
-        d='M10 17C14.4183 17 18 13.4183 18 9C18 4.58172 14.4183 1 10 1C5.58172 1 2 4.58172 2 9C2 13.4183 5.58172 17 10 17Z'
-        fill='white'
-        stroke='white'
-        strokeWidth='2'
-      />
-      <path
-        id='Ellipse 1649 (Stroke)'
-        fillRule='evenodd'
-        clipRule='evenodd'
-        d='M10 12.5C11.933 12.5 13.5 10.933 13.5 9C13.5 7.067 11.933 5.5 10 5.5C8.067 5.5 6.5 7.067 6.5 9C6.5 10.933 8.067 12.5 10 12.5ZM10 16C13.866 16 17 12.866 17 9C17 5.13401 13.866 2 10 2C6.13401 2 3 5.13401 3 9C3 12.866 6.13401 16 10 16Z'
-        fill='#159A00'
-      />
-    </g>
+    <path
+      fillRule='evenodd'
+      clipRule='evenodd'
+      d='M7 10.5C8.933 10.5 10.5 8.933 10.5 7C10.5 5.067 8.933 3.5 7 3.5C5.067 3.5 3.5 5.067 3.5 7C3.5 8.933 5.067 10.5 7 10.5ZM7 14C10.866 14 14 10.866 14 7C14 3.13401 10.866 0 7 0C3.13401 0 0 3.13401 0 7C0 10.866 3.13401 14 7 14Z'
+      fill='#159A00'
+    />
   </svg>,
 
   <svg

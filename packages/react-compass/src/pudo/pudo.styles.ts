@@ -8,6 +8,7 @@ const fadeIn = keyframes({
 })
 
 export const StyledPUDO = styled('div', {
+  '--cdg-pudo-dot-size': '3px',
   maxWidth: '100%',
 
   '.pudo-items-wrapper': {
@@ -36,52 +37,6 @@ export const StyledPUDO = styled('div', {
       },
     },
   },
-
-  variants: {
-    compact: {
-      md: {
-        '.pudo-items-wrapper .pudo-item': {
-          '.pudo-item__input, .pudo-item__label': {
-            borderTop: 'none',
-          },
-          '.pudo-item__label': {
-            paddingBlock: '$3',
-          },
-          '.pudo-item__input': {
-            input: {
-              height: '$10',
-            },
-          },
-          '.pudo-item__connect-icon': {
-            height: '$5',
-            bottom: '-$2',
-            overflow: 'hidden',
-          },
-        },
-      },
-      sm: {
-        '.pudo-items-wrapper .pudo-item': {
-          '.pudo-item__input, .pudo-item__label': {
-            borderTop: 'none',
-          },
-          '.pudo-item__label': {
-            paddingBlock: '$2',
-          },
-          '.pudo-item__input': {
-            input: {
-              paddingBlock: '$1',
-              height: 'auto',
-            },
-          },
-          '.pudo-item__connect-icon': {
-            height: '$2_5',
-            bottom: '-$1',
-            overflow: 'hidden',
-          },
-        },
-      },
-    },
-  },
 })
 
 export const StyledPUDOItem = styled('div', {
@@ -94,19 +49,39 @@ export const StyledPUDOItem = styled('div', {
   animation: `${fadeIn} .2s cubic-bezier(.25,0,.3,1) forwards`,
 
   '.pudo-item__icon': {
+    position: 'relative',
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center',
-    height: '$5',
+    alignSelf: 'stretch',
     width: '$5',
-    textAlign: 'center',
-  },
 
-  '.pudo-item__connect-icon': {
-    position: 'absolute',
-    left: '$4',
-    bottom: '-$4_5',
-    zIndex: 1,
+    '&>*': {
+      display: 'block',
+      width: '100%',
+    },
+
+    '&:before, &:after': {
+      content: '',
+      position: 'absolute',
+      insetInline: 0,
+      zIndex: -1,
+      width: '100%',
+      height: 'calc(50% - $5 / 2 + 4px)',
+      backgroundImage:
+        'radial-gradient(circle closest-side, #B4B4B4 100%, transparent 100%)',
+      backgroundRepeat: 'repeat-y',
+      backgroundPositionX: 'center',
+      backgroundSize:
+        'var(--cdg-pudo-dot-size) calc(var(--cdg-pudo-dot-size) * 2)',
+    },
+
+    '&:before': {
+      top: 'calc(var(--cdg-pudo-dot-size) * -1)',
+    },
+
+    '&:after': {
+      bottom: 'calc(var(--cdg-pudo-dot-size) * -1)',
+    },
   },
 
   '.pudo-item__swap-icon': {
@@ -128,8 +103,20 @@ export const StyledPUDOItem = styled('div', {
     },
   },
 
+  '&:first-child': {
+    '.pudo-item__icon:before': {
+      display: 'none',
+    },
+  },
+
+  '&~ .pudo-item': {
+    '.pudo-item__label, .pudo-item__input, .pudo-item__custom': {
+      borderTop: '1px solid $grayShades20',
+    },
+  },
+
   '&:last-child': {
-    '.pudo-item__connect-icon, .pudo-item__swap-icon': {
+    '.pudo-item__icon:after, .pudo-item__swap-icon': {
       display: 'none',
     },
   },
@@ -137,11 +124,6 @@ export const StyledPUDOItem = styled('div', {
   variants: {
     type: {
       input: {
-        '&~ .pudo-item': {
-          '.pudo-item__input': {
-            borderTop: '1px solid $grayShades20',
-          },
-        },
         '&:has(.pudo-item__input:focus-within)': {
           backgroundColor: '$grayShades10',
         },
@@ -162,14 +144,132 @@ export const StyledPUDOItem = styled('div', {
           fontWeight: '$normal',
           lineHeight: '$tight',
         },
+      },
+      custom: {
+        paddingInline: '$4',
+
+        '.pudo-item__custom': {
+          paddingBlock: '$4',
+          overflow: 'auto',
+          width: '100%',
+
+          fontSize: '$label1',
+          fontWeight: '$normal',
+          lineHeight: '$tight',
+
+          '.pudo-item__custom-title': {
+            whiteSpace: 'nowrap',
+            textOverflow: 'ellipsis',
+            overflow: 'hidden',
+
+            '&:not(:only-child)': {
+              marginBottom: '$2',
+            },
+          },
+
+          '.pudo-item__custom-content': {
+            marginBlock: 0,
+          },
+        },
+      },
+    },
+    compact: {
+      md: {
         '&~ .pudo-item': {
-          '.pudo-item__label': {
-            borderTop: '1px solid $grayShades20',
+          '.pudo-item__label, .pudo-item__input, .pudo-item__custom': {
+            borderTop: 'none',
+          },
+        },
+
+        '.pudo-item__input': {
+          input: {
+            height: '$10',
+          },
+        },
+        '.pudo-item__custom': {paddingBlock: '$3'},
+
+        '.pudo-item__icon': {
+          '&:before, &:after': {
+            height: 'calc(50% - $5 / 2 + var(--cdg-pudo-dot-size) / 2)',
+          },
+        },
+      },
+      sm: {
+        '&~ .pudo-item': {
+          '.pudo-item__label, .pudo-item__input, .pudo-item__custom': {
+            borderTop: 'none',
+          },
+        },
+        '.pudo-item__custom': {paddingBlock: '$2'},
+
+        '.pudo-item__input': {
+          input: {
+            paddingBlock: '$1',
+            height: 'auto',
+          },
+        },
+
+        '.pudo-item__icon': {
+          '&:before, &:after': {
+            height: 'calc(50% - $5 / 2 + var(--cdg-pudo-dot-size) / 2)',
+          },
+        },
+      },
+    },
+    alignIcon: {
+      center: {
+        '.pudo-item__icon': {
+          alignItems: 'center',
+        },
+      },
+      top: {
+        '.pudo-item__icon': {
+          paddingTop: '$4',
+
+          '&:before': {
+            height: 'calc($5 - var(--cdg-pudo-dot-size))',
+          },
+          '&:after': {
+            height: 'calc(100% - $5 * 2 + var(--cdg-pudo-dot-size))',
           },
         },
       },
     },
   },
+  compoundVariants: [
+    {
+      compact: 'md',
+      type: 'label',
+      css: {'.pudo-item__label': {paddingBlock: '$3'}},
+    },
+    {
+      compact: 'sm',
+      type: 'label',
+      css: {'.pudo-item__label': {paddingBlock: '$2'}},
+    },
+    {
+      compact: 'md',
+      alignIcon: 'top',
+      css: {
+        '.pudo-item__icon': {
+          '&:before, &:after': {
+            height: 'calc(50% - $5 / 2 + 4px)',
+          },
+        },
+      },
+    },
+    {
+      compact: 'sm',
+      alignIcon: 'top',
+      css: {
+        '.pudo-item__icon': {
+          '&:before, &:after': {
+            height: 'calc(50% - $5 / 2 + 4px)',
+          },
+        },
+      },
+    },
+  ],
 })
 
 export type PudoItemVariantProps = VariantProps<typeof StyledPUDOItem>

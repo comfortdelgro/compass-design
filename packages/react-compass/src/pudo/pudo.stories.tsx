@@ -55,7 +55,7 @@ export function Default() {
   )
   const [formValues, setFormValues] = useState<
     PudoValueChange<PudoItemAllKeys>
-  >(pudoItems.map(({name, value}) => ({name, value})))
+  >(pudoItems.map(({name, value = ''}) => ({name, value})))
 
   const debounceUpdate = useCallback(
     debounce((newValue: PudoValueChange) => {
@@ -90,7 +90,9 @@ export function Default() {
 
   return (
     <>
-      <h4>PUDO</h4>
+      <Typography.Header variant='header4' css={{marginTop: '$8'}}>
+        PUDO
+      </Typography.Header>
       <Typography.Body
         variant='body3'
         css={{color: '$grayShades60', marginBlock: '$2 $4'}}
@@ -107,7 +109,9 @@ export function Default() {
       </Button>
       <PreviewCode>{JSON.stringify(exampleValues, null, 2)}</PreviewCode>
 
-      <h4>Swap, add and remove items</h4>
+      <Typography.Header variant='header4' css={{marginTop: '$8'}}>
+        Swap, add and remove items
+      </Typography.Header>
       <Typography.Body
         variant='body3'
         css={{color: '$grayShades60', marginBlock: '$2 $4'}}
@@ -130,82 +134,169 @@ export function Default() {
         <PreviewCode>{JSON.stringify(formValues, null, 2)}</PreviewCode>
       )}
 
-      <h4>Label view</h4>
+      <Typography.Header variant='header4' css={{marginTop: '$8'}}>
+        Item type: <code>custom</code>
+      </Typography.Header>
       <Pudo
         css={{marginBlock: '$4'}}
         items={[
           {
             name: 'item1',
-            value: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum
-          assumenda officiis voluptates quam rem qui libero commodi veritatis
+            title: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum
+          assumenda officiis voluptates quam rem qui libero commodi veritatis.`,
+            content: (
+              <>
+                <p style={{color: 'var(--colors-grayShades60)'}}>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Earum, praesentium. Fuga recusandae maxime molestias velit
+                  doloremque soluta modi suscipit quia fugit vitae, non
+                  laboriosam perferendis accusantium deserunt officiis eligendi.
+                  Dolore!
+                </p>
+                <Button type='button' variant='secondary' size='sm'>
+                  Some action
+                </Button>
+              </>
+            ),
+          },
+          {
+            name: 'item2',
+            title: `Title only: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum
+          assumenda officiis voluptates quam rem qui libero commodi veritatis.`,
+          },
+          {
+            name: 'item3',
+            content: `Content only: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum
+          assumenda officiis voluptates quam rem qui libero commodi veritatis.
           deserunt harum voluptatum beatae perferendis, vitae minus magnam facere
           quidem tempora iusto? Tempore praesentium accusamus mollitia, inventore
           quos tenetur, aspernatur eos, in id corporis veniam blanditiis error. Est
           illo temporibus velit, beatae dolores accusantium quis vel corporis neque
           harum? Accusantium, voluptates consequuntur?`,
-            placeholder: 'item1',
           },
-          {name: 'item2', value: 'Destination', placeholder: 'item2'},
         ]}
-        type='label'
+        type='custom'
       />
 
-      <h4>Compact</h4>
+      <Typography.Header variant='header4' css={{marginTop: '$8'}}>
+        Align Icon: <code>top</code>
+      </Typography.Header>
       <Pudo
+        css={{marginBlock: '$4'}}
+        alignIcon='top'
         items={[
-          {name: 'item1', value: '', placeholder: 'item 1'},
-          {name: 'item2', value: '', placeholder: 'item 2'},
+          {
+            name: 'item1',
+            title: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum
+          assumenda officiis voluptates quam rem qui libero commodi veritatis.`,
+            content: (
+              <>
+                <p
+                  style={{
+                    color: 'var(--colors-grayShades60)',
+                    fontStyle: 'italic',
+                  }}
+                >
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Earum, praesentium. Fuga recusandae maxime molestias velit
+                  doloremque soluta modi suscipit quia fugit vitae, non
+                  laboriosam perferendis accusantium deserunt officiis eligendi.
+                  Dolore!
+                </p>
+                <Button type='button' variant='secondary' size='sm'>
+                  Some action
+                </Button>
+              </>
+            ),
+          },
+          {
+            name: 'item2',
+            title: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum
+          assumenda officiis voluptates quam rem qui libero commodi veritatis.`,
+          },
+          {
+            name: 'item3',
+            content: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum
+            assumenda officiis voluptates quam rem qui libero commodi veritatis
+            deserunt harum voluptatum beatae perferendis, vitae minus magnam facere
+            quidem tempora iusto? Tempore praesentium accusamus mollitia, inventore
+            quos tenetur, aspernatur eos, in id corporis veniam blanditiis error. Est
+            illo temporibus velit, beatae dolores accusantium quis vel corporis neque
+            harum? Accusantium, voluptates consequuntur?`,
+          },
         ]}
-        compact='md'
+        type='custom'
       />
 
-      <h4>Compact - Label view</h4>
+      <Typography.Header variant='header4' css={{marginTop: '$8'}}>
+        Compact
+      </Typography.Header>
       <Typography.Body
         variant='body3'
         css={{color: '$grayShades60', marginBlock: '$2 $4'}}
       >
-        Compact size: sm (left), md (right)
+        Compact size: sm (1st example), md (2nd example)
       </Typography.Body>
+      <CompactContainer>
+        <Pudo
+          items={[
+            {name: 'item1', value: '', placeholder: 'item1'},
+            {name: 'item2', value: '', placeholder: 'item2'},
+          ]}
+          compact='sm'
+        />
+        <Pudo
+          items={[
+            {name: 'item1', value: '', placeholder: 'item1'},
+            {name: 'item2', value: '', placeholder: 'item2'},
+          ]}
+          compact='md'
+        />
+      </CompactContainer>
+
+      <Typography.Header variant='header5' css={{marginBlock: '$2'}}>
+        Type <code>custom</code>
+      </Typography.Header>
       <CompactContainer>
         <Pudo
           items={[
             {
               name: 'item1',
-              value: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum
+              title: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum
           assumenda officiis voluptates quam rem qui libero commodi veritatis
           deserunt harum voluptatum beatae perferendis, vitae minus magnam facere
           quidem tempora iusto? Tempore praesentium accusamus mollitia, inventore
           quos tenetur, aspernatur eos, in id corporis veniam blanditiis error. Est
           illo temporibus velit, beatae dolores accusantium quis vel corporis neque
           harum? Accusantium, voluptates consequuntur?`,
-              placeholder: 'item1',
             },
-            {name: 'item2', value: 'Destination', placeholder: 'item2'},
+            {name: 'item2', title: 'Destination'},
           ]}
-          type='label'
+          type='custom'
           compact='sm'
         />
         <Pudo
           items={[
             {
               name: 'item1',
-              value: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum
+              title: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum
           assumenda officiis voluptates quam rem qui libero commodi veritatis
           deserunt harum voluptatum beatae perferendis, vitae minus magnam facere
           quidem tempora iusto? Tempore praesentium accusamus mollitia, inventore
           quos tenetur, aspernatur eos, in id corporis veniam blanditiis error. Est
           illo temporibus velit, beatae dolores accusantium quis vel corporis neque
           harum? Accusantium, voluptates consequuntur?`,
-              placeholder: 'item1',
             },
-            {name: 'item2', value: 'Destination', placeholder: 'item2'},
+            {name: 'item2', title: 'Destination'},
           ]}
-          type='label'
+          type='custom'
           compact='md'
         />
       </CompactContainer>
 
-      <h4>Styling</h4>
+      <Typography.Header variant='header4' css={{marginTop: '$8'}}>
+        Styling
+      </Typography.Header>
       <Pudo
         css={{
           marginBlock: '$4',

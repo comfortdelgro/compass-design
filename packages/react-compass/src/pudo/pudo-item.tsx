@@ -10,17 +10,22 @@ const PudoItem = <TItemName extends string | number | symbol>({
   name,
   className = '',
   css = {},
-  type = 'input',
   icon,
+
+  type = 'input',
   value = '',
+  placeholder = '',
+  title = '',
+  content,
+
   onValueChange,
   onInputFocus,
   allowSwap = false,
   handleSwap,
-  placeholder = '',
   maxLength = 255,
   isRequired = false,
-  ...delegated
+  alignIcon = 'center',
+  compact,
 }: PudoItemPrivateProps<TItemName>) => {
   const pudoItemCSS = useMemo(
     () => ({...css, zIndex: itemsLength - 1 - index ?? undefined}),
@@ -29,6 +34,10 @@ const PudoItem = <TItemName extends string | number | symbol>({
 
   const renderPudoContent = useCallback(() => {
     switch (type) {
+      /**
+       * @deprecated
+       * @todo remove label type when `@comfortdelgro/react-compass@3.x` is planned to be released soon.
+       */
       case 'label':
         return (
           <p className='pudo-item__label' title={value}>
@@ -67,34 +76,44 @@ const PudoItem = <TItemName extends string | number | symbol>({
           />
         )
 
+      case 'custom':
+        return (
+          <div className='pudo-item__custom'>
+            {title && (
+              <div className='pudo-item__custom-title' title={title}>
+                {title}
+              </div>
+            )}
+            {typeof content === 'string' && content ? (
+              <p className='pudo-item__custom-content'>{content}</p>
+            ) : (
+              content
+            )}
+          </div>
+        )
+
       default:
         return <></>
     }
   }, [type, value, onValueChange])
 
+  if (
+    (type === 'custom' && !title && !content) ||
+    (type === 'label' && !value)
+  ) {
+    return <></>
+  }
+
   return (
     <StyledPUDOItem
       css={pudoItemCSS}
       className={`pudo-item ${className}`}
-      {...{type}}
-      {...delegated}
+      type={type}
+      alignIcon={alignIcon}
+      {...(compact ? {compact} : undefined)}
     >
       <div className='pudo-item__icon'>{icon || DefaultIcons[index]}</div>
       {renderPudoContent()}
-      <div className='pudo-item__connect-icon'>
-        <svg
-          width='20'
-          height='29'
-          viewBox='0 0 20 29'
-          fill='none'
-          xmlns='http://www.w3.org/2000/svg'
-        >
-          <circle cx='10' cy='5.5' r='1.5' fill='#B4B4B4' />
-          <circle cx='10' cy='11.5' r='1.5' fill='#B4B4B4' />
-          <circle cx='10' cy='17.5' r='1.5' fill='#B4B4B4' />
-          <circle cx='10' cy='23.5' r='1.5' fill='#B4B4B4' />
-        </svg>
-      </div>
 
       {allowSwap && type === 'input' ? (
         <button
