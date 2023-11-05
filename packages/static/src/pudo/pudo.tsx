@@ -209,14 +209,16 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
     <CssInjection css={css} childrenRef={PudoRef}>
       <div
         ref={PudoRef}
-        className={clsx(classes.pudoContainer, 'pudo-container', className)}
+        className={clsx(classes.pudoContainer, 'cdg-pudo-container', className)}
         {...htmlDivAttributes}
       >
-        <div className={clsx(classes.pudoItemsWrapper, 'pudo-items-wrapper')}>
+        <div
+          className={clsx(classes.pudoItemsWrapper, 'cdg-pudo-items-wrapper')}
+        >
           {renderPudoItems}
         </div>
 
-        <div className={clsx(classes.pudoActions, 'pudo-actions')}>
+        <div className={clsx(classes.pudoActions, 'cdg-pudo-actions')}>
           {showAddButton && (
             <Button
               className={classes.pudoActionButton}

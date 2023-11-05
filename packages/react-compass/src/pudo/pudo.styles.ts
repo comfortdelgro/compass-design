@@ -11,13 +11,13 @@ export const StyledPUDO = styled('div', {
   '--cdg-pudo-dot-size': '3px',
   maxWidth: '100%',
 
-  '.pudo-items-wrapper': {
+  '.cdg-pudo-items-wrapper': {
     borderRadius: '$lg',
     border: '1px solid $grayShades20',
     overflow: 'hidden',
   },
 
-  '.pudo-actions': {
+  '.cdg-pudo-actions': {
     paddingBlock: '$3',
     display: 'flex',
     alignItems: 'center',
@@ -48,7 +48,7 @@ export const StyledPUDOItem = styled('div', {
   transition: 'background-color .2s ease-in-out',
   animation: `${fadeIn} .2s cubic-bezier(.25,0,.3,1) forwards`,
 
-  '.pudo-item__icon': {
+  '.cdg-pudo-item__icon': {
     position: 'relative',
     display: 'flex',
     justifyContent: 'center',
@@ -85,7 +85,7 @@ export const StyledPUDOItem = styled('div', {
     },
   },
 
-  '.pudo-item__swap-icon': {
+  '.cdg-pudo-item__swap-icon': {
     all: 'unset',
     position: 'absolute',
     right: '$1',
@@ -105,19 +105,19 @@ export const StyledPUDOItem = styled('div', {
   },
 
   '&:first-child': {
-    '.pudo-item__icon:before': {
+    '.cdg-pudo-item__icon:before': {
       display: 'none',
     },
   },
 
-  '&~ .pudo-item': {
-    '.pudo-item__label, .pudo-item__input, .pudo-item__custom': {
+  '&~ .cdg-pudo-item': {
+    '.cdg-pudo-item__label, .cdg-pudo-item__input, .cdg-pudo-item__custom': {
       borderTop: '1px solid $grayShades20',
     },
   },
 
   '&:last-child': {
-    '.pudo-item__icon:after, .pudo-item__swap-icon': {
+    '.cdg-pudo-item__icon:after, .cdg-pudo-item__swap-icon': {
       display: 'none',
     },
   },
@@ -125,14 +125,14 @@ export const StyledPUDOItem = styled('div', {
   variants: {
     type: {
       input: {
-        '&:has(.pudo-item__input:focus-within)': {
+        '&:has(.cdg-pudo-item__input:focus-within)': {
           backgroundColor: '$grayShades10',
         },
       },
       label: {
         paddingInline: '$4',
 
-        '.pudo-item__label': {
+        '.cdg-pudo-item__label': {
           marginBlock: 0,
           paddingBlock: '$4',
           width: '100%',
@@ -149,7 +149,7 @@ export const StyledPUDOItem = styled('div', {
       custom: {
         paddingInline: '$4',
 
-        '.pudo-item__custom': {
+        '.cdg-pudo-item__custom': {
           paddingBlock: '$4',
           overflow: 'auto',
           width: '100%',
@@ -158,7 +158,7 @@ export const StyledPUDOItem = styled('div', {
           fontWeight: '$normal',
           lineHeight: '$tight',
 
-          '.pudo-item__custom-title': {
+          '.cdg-pudo-item__custom-title': {
             whiteSpace: 'nowrap',
             textOverflow: 'ellipsis',
             overflow: 'hidden',
@@ -168,7 +168,7 @@ export const StyledPUDOItem = styled('div', {
             },
           },
 
-          '.pudo-item__custom-content': {
+          '.cdg-pudo-item__custom-content': {
             marginBlock: 0,
           },
         },
@@ -176,20 +176,21 @@ export const StyledPUDOItem = styled('div', {
     },
     compact: {
       md: {
-        '&~ .pudo-item': {
-          '.pudo-item__label, .pudo-item__input, .pudo-item__custom': {
-            borderTop: 'none',
-          },
+        '&~ .cdg-pudo-item': {
+          '.cdg-pudo-item__label, .cdg-pudo-item__input, .cdg-pudo-item__custom':
+            {
+              borderTop: 'none',
+            },
         },
 
-        '.pudo-item__input': {
+        '.cdg-pudo-item__input': {
           input: {
             height: '$10',
           },
         },
-        '.pudo-item__custom': {paddingBlock: '$3'},
+        '.cdg-pudo-item__custom': {paddingBlock: '$3'},
 
-        '.pudo-item__icon': {
+        '.cdg-pudo-item__icon': {
           '&:before, &:after': {
             height: 'calc(50% - $5 / 2 + var(--cdg-pudo-dot-size) / 2)',
           },
@@ -204,21 +205,22 @@ export const StyledPUDOItem = styled('div', {
         },
       },
       sm: {
-        '&~ .pudo-item': {
-          '.pudo-item__label, .pudo-item__input, .pudo-item__custom': {
-            borderTop: 'none',
-          },
+        '&~ .cdg-pudo-item': {
+          '.cdg-pudo-item__label, .cdg-pudo-item__input, .cdg-pudo-item__custom':
+            {
+              borderTop: 'none',
+            },
         },
-        '.pudo-item__custom': {paddingBlock: '0.4rem'},
+        '.cdg-pudo-item__custom': {paddingBlock: '0.4rem'},
 
-        '.pudo-item__input': {
+        '.cdg-pudo-item__input': {
           input: {
             paddingBlock: '$1',
             height: 'auto',
           },
         },
 
-        '.pudo-item__icon': {
+        '.cdg-pudo-item__icon': {
           '&:before, &:after': {
             height: 'calc(50% - $5 / 2 + var(--cdg-pudo-dot-size) / 2)',
           },
@@ -235,12 +237,12 @@ export const StyledPUDOItem = styled('div', {
     },
     alignIcon: {
       center: {
-        '.pudo-item__icon': {
+        '.cdg-pudo-item__icon': {
           alignItems: 'center',
         },
       },
       top: {
-        '.pudo-item__icon': {
+        '.cdg-pudo-item__icon': {
           paddingTop: '$4',
 
           '&:before': {
@@ -257,18 +259,18 @@ export const StyledPUDOItem = styled('div', {
     {
       compact: 'md',
       type: 'label',
-      css: {'.pudo-item__label': {paddingBlock: '$3'}},
+      css: {'.cdg-pudo-item__label': {paddingBlock: '$3'}},
     },
     {
       compact: 'sm',
       type: 'label',
-      css: {'.pudo-item__label': {paddingBlock: '$2'}},
+      css: {'.cdg-pudo-item__label': {paddingBlock: '$2'}},
     },
     {
       compact: 'md',
       alignIcon: 'top',
       css: {
-        '.pudo-item__icon': {
+        '.cdg-pudo-item__icon': {
           '&:before, &:after': {
             height: 'calc(50% - $5 / 2 + 4px)',
           },
@@ -279,7 +281,7 @@ export const StyledPUDOItem = styled('div', {
       compact: 'sm',
       alignIcon: 'top',
       css: {
-        '.pudo-item__icon': {
+        '.cdg-pudo-item__icon': {
           '&:before, &:after': {
             height: 'calc(50% - $5 / 2 + 4px)',
           },

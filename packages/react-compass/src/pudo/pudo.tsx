@@ -200,13 +200,13 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
   return (
     <StyledPUDO
       ref={PudoRef}
-      className={`${className} pudo-container`}
+      className={`${className} cdg-pudo-container`}
       css={css}
       {...htmlDivAttributes}
     >
-      <div className='pudo-items-wrapper'>{renderPudoItems}</div>
+      <div className='cdg-pudo-items-wrapper'>{renderPudoItems}</div>
 
-      <div className='pudo-actions'>
+      <div className='cdg-pudo-actions'>
         {showAddButton && (
           <Button
             variant='ghost'

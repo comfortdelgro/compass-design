@@ -3,6 +3,8 @@
 @layer default {
   .pudoContainer {
     --cdg-pudo-dot-size: 3px;
+    --cdg-pudo-icon-height: var(--cdg-spacing-5);
+
     max-width: 100%;
     box-sizing: border-box;
 
@@ -78,7 +80,7 @@
         z-index: -1;
 
         width: 100%;
-        height: calc(50% - var(--cdg-spacing-5) / 2 + 0.25rem);
+        height: calc(50% - var(--cdg-pudo-icon-height) / 2 + 0.25rem);
         background-image: radial-gradient(
           circle closest-side,
           var(--cdg-color-grayShades40) 100%,
@@ -178,7 +180,7 @@
       &::before,
       &::after {
         height: calc(
-          50% - var(--cdg-spacing-5) / 2 + var(--cdg-pudo-dot-size) / 2
+          50% - var(--cdg-pudo-icon-height) / 2 + var(--cdg-pudo-dot-size) / 2
         );
       }
 
@@ -266,11 +268,11 @@
     padding-top: var(--cdg-spacing-4);
 
     &::before {
-      height: calc(var(--cdg-spacing-5) - var(--cdg-pudo-dot-size));
+      height: calc(var(--cdg-pudo-icon-height) - var(--cdg-pudo-dot-size));
     }
 
     &::after {
-      height: calc(100% - var(--cdg-spacing-5) * 2 + var(--cdg-pudo-dot-size));
+      height: calc(100% - var(--cdg-pudo-icon-height) * 2 + var(--cdg-pudo-dot-size));
     }
   }
 }
@@ -293,7 +295,7 @@
   .pudoItem.sm.alignIcon--top .pudoItemIcon {
     &::before,
     &::after {
-      height: calc(50% - var(--cdg-spacing-5) / 2 + 4px);
+      height: calc(50% - var(--cdg-pudo-icon-height) / 2 + 4px);
     }
   }
 }

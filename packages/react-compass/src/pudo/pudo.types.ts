@@ -16,7 +16,7 @@ type PudoItemType =
        *
        * Consider use `custom` item type instead.
        */
-      type?: 'label'
+      type: 'label'
     }
 
 export type PudoValueChange<

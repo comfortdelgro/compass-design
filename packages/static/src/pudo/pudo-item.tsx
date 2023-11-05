@@ -36,7 +36,7 @@ const PudoItemComponent = <TItemName extends string | number | symbol>({
       case 'label':
         return (
           <p
-            className={clsx(classes.pudoItemLabel, 'pudo-item__label')}
+            className={clsx(classes.pudoItemLabel, 'cdg-pudo-item__label')}
             title={value}
           >
             {value}
@@ -46,7 +46,7 @@ const PudoItemComponent = <TItemName extends string | number | symbol>({
       case 'input':
         return (
           <TextField
-            className={clsx(classes.pudoItemInput, 'pudo-item__input')}
+            className={clsx(classes.pudoItemInput, 'cdg-pudo-item__input')}
             type='text'
             name={name.toString()}
             value={value}
@@ -60,12 +60,14 @@ const PudoItemComponent = <TItemName extends string | number | symbol>({
 
       case 'custom':
         return (
-          <div className={clsx(classes.pudoItemCustom, 'pudo-item__custom')}>
+          <div
+            className={clsx(classes.pudoItemCustom, 'cdg-pudo-item__custom')}
+          >
             {typeof title === 'string' && title ? (
               <div
                 className={clsx(
                   classes.pudoItemCustomTitle,
-                  'pudo-item__custom-title',
+                  'cdg-pudo-item__custom-title',
                 )}
                 title={title}
               >
@@ -78,7 +80,7 @@ const PudoItemComponent = <TItemName extends string | number | symbol>({
               <p
                 className={clsx(
                   classes.pudoItemCustomContent,
-                  'pudo-item__custom-content',
+                  'cdg-pudo-item__custom-content',
                 )}
               >
                 {content}
@@ -108,19 +110,19 @@ const PudoItemComponent = <TItemName extends string | number | symbol>({
         type && classes[type],
         alignIcon && classes[`alignIcon--${alignIcon}`],
         compact && classes[compact],
-        'pudo-item',
+        'cdg-pudo-item',
         className,
       )}
       style={{zIndex: itemsLength - 1 - index ?? undefined}}
     >
-      <div className={clsx(classes.pudoItemIcon, 'pudo-item__icon')}>
+      <div className={clsx(classes.pudoItemIcon, 'cdg-pudo-item__icon')}>
         {icon || DefaultIcons[index]}
       </div>
       {renderPudoContent()}
 
       {allowSwap && type === 'input' ? (
         <button
-          className={clsx(classes.pudoItemSwapIcon, 'pudo-item__swap-icon')}
+          className={clsx(classes.pudoItemSwapIcon, 'cdg-pudo-item__swap-icon')}
           type='button'
           onClick={() => handleSwap?.()}
         >

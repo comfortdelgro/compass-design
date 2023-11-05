@@ -40,7 +40,7 @@ const PudoItem = <TItemName extends string | number | symbol>({
        */
       case 'label':
         return (
-          <p className='pudo-item__label' title={value}>
+          <p className='cdg-pudo-item__label' title={value}>
             {value}
           </p>
         )
@@ -48,9 +48,9 @@ const PudoItem = <TItemName extends string | number | symbol>({
       case 'input':
         return (
           <TextField
-            className='pudo-item__input'
+            className='cdg-pudo-item__input'
             css={{
-              '&.pudo-item__input > div': {
+              '&.cdg-pudo-item__input > div': {
                 border: 'none',
                 height: 'unset',
                 backgroundColor: 'inherit',
@@ -78,16 +78,16 @@ const PudoItem = <TItemName extends string | number | symbol>({
 
       case 'custom':
         return (
-          <div className='pudo-item__custom'>
+          <div className='cdg-pudo-item__custom'>
             {typeof title === 'string' && title ? (
-              <div className='pudo-item__custom-title' title={title}>
+              <div className='cdg-pudo-item__custom-title' title={title}>
                 {title}
               </div>
             ) : (
               title
             )}
             {typeof content === 'string' && content ? (
-              <p className='pudo-item__custom-content'>{content}</p>
+              <p className='cdg-pudo-item__custom-content'>{content}</p>
             ) : (
               content
             )}
@@ -109,17 +109,17 @@ const PudoItem = <TItemName extends string | number | symbol>({
   return (
     <StyledPUDOItem
       css={pudoItemCSS}
-      className={`pudo-item ${className}`}
+      className={`cdg-pudo-item ${className}`}
       type={type}
       alignIcon={alignIcon}
       {...(compact ? {compact} : undefined)}
     >
-      <div className='pudo-item__icon'>{icon || DefaultIcons[index]}</div>
+      <div className='cdg-pudo-item__icon'>{icon || DefaultIcons[index]}</div>
       {renderPudoContent()}
 
       {allowSwap && type === 'input' ? (
         <button
-          className='pudo-item__swap-icon'
+          className='cdg-pudo-item__swap-icon'
           type='button'
           onClick={() => handleSwap?.()}
         >

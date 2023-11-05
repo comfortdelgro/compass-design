@@ -324,7 +324,7 @@ export function Default() {
       <Pudo
         css={{
           marginBlock: '$4',
-          '.pudo-items-wrapper': {
+          '.cdg-pudo-items-wrapper': {
             border: 'none',
             boxShadow: '0px 4px 8px 0px rgba(0, 0, 0, 0.16)',
           },
@@ -372,7 +372,7 @@ const CompactContainer = styled('div', {
   '@sm': {
     flexDirection: 'row',
 
-    '& > .pudo-container': {
+    '& > .cdg-pudo-container': {
       width: 'calc(100% / 2 - $2)',
     },
   },
