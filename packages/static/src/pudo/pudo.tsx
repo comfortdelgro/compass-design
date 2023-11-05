@@ -31,6 +31,7 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
     addItems = [],
     addItemsLabel = 'Add',
     compact,
+    alignIcon,
     ...htmlDivAttributes
   }: PudoProps<TItemKeys>,
   ref: Ref<HTMLDivElement>,
@@ -65,7 +66,7 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
   )
 
   const showAddButton = useMemo(() => {
-    if (type === 'label') {
+    if (type === 'label' || type === 'custom') {
       return false
     }
 
@@ -77,7 +78,7 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
   }, [type, pudoItems, dedupedAddItems, maxLength])
 
   const showRemoveButton = useMemo(() => {
-    if (type === 'label') {
+    if (type === 'label' || type === 'custom') {
       return false
     }
 
@@ -102,7 +103,7 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
 
     const newPudoArrValues = [
       ...arrPudoValues,
-      ...allowToAdd.map(({name, value}) => ({name, value})),
+      ...allowToAdd.map(({name, value = ''}) => ({name, value})),
     ]
     setArrPudoValues(newPudoArrValues)
     onValuesChange?.(newPudoArrValues)
@@ -188,6 +189,8 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
         setArrPudoValues(newArrayPudoValues)
         onValuesChange?.(newArrayPudoValues)
       }}
+      alignIcon={alignIcon || itemProps.alignIcon || 'center'}
+      compact={compact}
     />
   ))
 
@@ -197,7 +200,7 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
         index === currArr.findIndex((compareItem) => compareItem.name === name),
     )
 
-    const pudoValue = dedupedItems.map(({name, value}) => ({name, value}))
+    const pudoValue = dedupedItems.map(({name, value = ''}) => ({name, value}))
     setPudoItems(dedupedItems)
     setArrPudoValues(pudoValue)
   }, [items])
@@ -206,12 +209,7 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
     <CssInjection css={css} childrenRef={PudoRef}>
       <div
         ref={PudoRef}
-        className={clsx(
-          classes.pudoContainer,
-          compact && classes[compact],
-          'pudo-container',
-          className,
-        )}
+        className={clsx(classes.pudoContainer, 'pudo-container', className)}
         {...htmlDivAttributes}
       >
         <div className={clsx(classes.pudoItemsWrapper, 'pudo-items-wrapper')}>

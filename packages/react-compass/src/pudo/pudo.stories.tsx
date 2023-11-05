@@ -147,7 +147,12 @@ export function Default() {
           assumenda officiis voluptates quam rem qui libero commodi veritatis.`,
             content: (
               <>
-                <p style={{color: 'var(--colors-grayShades60)'}}>
+                <p
+                  style={{
+                    color: 'var(--colors-grayShades60)',
+                    fontStyle: 'italic',
+                  }}
+                >
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                   Earum, praesentium. Fuga recusandae maxime molestias velit
                   doloremque soluta modi suscipit quia fugit vitae, non

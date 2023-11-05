@@ -30,7 +30,7 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
     addItemsLabel = 'Add',
     compact,
     alignIcon,
-    ...delegated
+    ...htmlDivAttributes
   }: PudoProps<TItemKeys>,
   ref: Ref<HTMLDivElement>,
 ) => {
@@ -202,7 +202,7 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
       ref={PudoRef}
       className={`${className} pudo-container`}
       css={css}
-      {...delegated}
+      {...htmlDivAttributes}
     >
       <div className='pudo-items-wrapper'>{renderPudoItems}</div>
 

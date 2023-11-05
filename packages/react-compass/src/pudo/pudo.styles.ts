@@ -54,6 +54,7 @@ export const StyledPUDOItem = styled('div', {
     justifyContent: 'center',
     alignSelf: 'stretch',
     width: '$5',
+    textAlign: 'center',
 
     '&>*': {
       display: 'block',

@@ -6,12 +6,16 @@
     margin-block: var(--cdg-spacing-4);
   }
 
-  h4 {
+  > h4 {
     margin-block: var(--cdg-spacing-6) var(--cdg-spacing-2);
 
     &:first-child {
       margin-block: 0;
     }
+  }
+
+  > h5 {
+    margin-block: var(--cdg-spacing-4) var(--cdg-spacing-1);
   }
 
   .description {
