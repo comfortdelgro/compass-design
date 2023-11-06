@@ -1,0 +1,413 @@
+/* Roboto Black */
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    src: local('Roboto Black'), local('Roboto-Black'),
+        url('./fonts/roboto/Roboto-Black.woff2') format('woff2');
+}
+
+/* Roboto Black Italic */
+@font-face {
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 900;
+    src: local('Roboto Black Italic'), local('Roboto-BlackItalic'),
+        url('./fonts/roboto/Roboto-BlackItalic.woff2') format('woff2');
+}
+
+/* Roboto Bold */
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Roboto Bold'), local('Roboto-Bold'),
+        url('./fonts/roboto/Roboto-Bold.woff2') format('woff2');
+}
+
+/* Roboto Bold Italic */
+@font-face {
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 700;
+    src: local('Roboto Bold Italic'), local('Roboto-BoldItalic'),
+        url('./fonts/roboto/Roboto-BoldItalic.woff2') format('woff2');
+}
+
+/* Roboto Italic */
+@font-face {
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 400;
+    src: local('Roboto Italic'), local('Roboto-Italic'),
+        url('./fonts/roboto/Roboto-Italic.woff2') format('woff2');
+}
+
+/* Roboto Light */
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Roboto Light'), local('Roboto-Light'),
+        url('./fonts/roboto/Roboto-Light.woff2') format('woff2');
+}
+
+/* Roboto Light Italic */
+@font-face {
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 300;
+    src: local('Roboto Light Italic'), local('Roboto-LightItalic'),
+        url('./fonts/roboto/Roboto-LightItalic.woff2') format('woff2');
+}
+
+/* Roboto Medium */
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    src: local('Roboto Medium'), local('Roboto-Medium'),
+        url('./fonts/roboto/Roboto-Medium.woff2') format('woff2');
+}
+
+/* Roboto Medium Italic */
+@font-face {
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 500;
+    src: local('Roboto Medium Italic'), local('Roboto-MediumItalic'),
+        url('./fonts/roboto/Roboto-MediumItalic.woff2') format('woff2');
+}
+
+/* Roboto Regular */
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Roboto Regular'), local('Roboto-Regular'),
+        url('./fonts/roboto/Roboto-Regular.woff2') format('woff2');
+}
+
+/* Roboto Thin */
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 100;
+    src: local('Roboto Thin'), local('Roboto-Thin'),
+        url('./fonts/roboto/Roboto-Thin.woff2') format('woff2');
+}
+
+/* Roboto Thin Italic */
+@font-face {
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 100;
+    src: local('Roboto Thin Italic'), local('Roboto-ThinItalic'),
+        url('./fonts/roboto/Roboto-ThinItalic.woff2') format('woff2');
+}
+
+/* Poppins Black */
+@font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 900;
+    src: local('Poppins Black'), local('Poppins-Black'),
+        url('./fonts/poppins/Poppins-Black.woff2') format('woff2');
+}
+
+/* Poppins Black Italic */
+@font-face {
+    font-family: 'Poppins';
+    font-style: italic;
+    font-weight: 900;
+    src: local('Poppins Black Italic'), local('Poppins-BlackItalic'),
+        url('./fonts/poppins/Poppins-BlackItalic.woff2') format('woff2');
+}
+
+/* Poppins Bold */
+@font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Poppins Bold'), local('Poppins-Bold'),
+        url('./fonts/poppins/Poppins-Bold.woff2') format('woff2');
+}
+
+/* Poppins Bold Italic */
+@font-face {
+    font-family: 'Poppins';
+    font-style: italic;
+    font-weight: 700;
+    src: local('Poppins Bold Italic'), local('Poppins-BoldItalic'),
+        url('./fonts/poppins/Poppins-BoldItalic.woff2') format('woff2');
+}
+
+/* Poppins Extra Bold */
+@font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 800;
+    src: local('Poppins Extra Bold'), local('Poppins-ExtraBold'),
+        url('./fonts/poppins/Poppins-ExtraBold.woff2') format('woff2');
+}
+
+/* Poppins Extra Bold Italic */
+@font-face {
+    font-family: 'Poppins';
+    font-style: italic;
+    font-weight: 800;
+    src: local('Poppins Extra Bold Italic'), local('Poppins-ExtraBoldItalic'),
+        url('./fonts/poppins/Poppins-ExtraBoldItalic.woff2') format('woff2');
+}
+
+/* Poppins Extra Light */
+@font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 200;
+    src: local('Poppins Extra Light'), local('Poppins-ExtraLight'),
+        url('./fonts/poppins/Poppins-ExtraLight.woff2') format('woff2');
+}
+
+/* Poppins Extra Light Italic */
+@font-face {
+    font-family: 'Poppins';
+    font-style: italic;
+    font-weight: 200;
+    src: local('Poppins Extra Light Italic'), local('Poppins-ExtraLightItalic'),
+        url('./fonts/poppins/Poppins-ExtraLightItalic.woff2') format('woff2');
+}
+
+/* Poppins Italic */
+@font-face {
+    font-family: 'Poppins';
+    font-style: italic;
+    font-weight: 400;
+    src: local('Poppins Italic'), local('Poppins-Italic'),
+        url('./fonts/poppins/Poppins-Italic.woff2') format('woff2');
+}
+
+/* Poppins Light */
+@font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Poppins Light'), local('Poppins-Light'),
+        url('./fonts/poppins/Poppins-Light.woff2') format('woff2');
+}
+
+/* Poppins Light Italic */
+@font-face {
+    font-family: 'Poppins';
+    font-style: italic;
+    font-weight: 300;
+    src: local('Poppins Light Italic'), local('Poppins-LightItalic'),
+        url('./fonts/poppins/Poppins-LightItalic.woff2') format('woff2');
+}
+
+/* Poppins Medium */
+@font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    src: local('Poppins Medium'), local('Poppins-Medium'),
+        url('./fonts/poppins/Poppins-Medium.woff2') format('woff2');
+}
+
+/* Poppins Medium Italic */
+@font-face {
+    font-family: 'Poppins';
+    font-style: italic;
+    font-weight: 500;
+    src: local('Poppins Medium Italic'), local('Poppins-MediumItalic'),
+        url('./fonts/poppins/Poppins-MediumItalic.woff2') format('woff2');
+}
+
+/* Poppins Regular */
+@font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Poppins Regular'), local('Poppins-Regular'),
+        url('./fonts/poppins/Poppins-Regular.woff2') format('woff2');
+}
+
+/* Poppins Semi Bold */
+@font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    src: local('Poppins Semi Bold'), local('Poppins-SemiBold'),
+        url('./fonts/poppins/Poppins-SemiBold.woff2') format('woff2');
+}
+
+/* Poppins Semi Bold Italic */
+@font-face {
+    font-family: 'Poppins';
+    font-style: italic;
+    font-weight: 600;
+    src: local('Poppins Semi Bold Italic'), local('Poppins-SemiBoldItalic'),
+        url('./fonts/poppins/Poppins-SemiBoldItalic.woff2') format('woff2');
+}
+
+/* Poppins Thin */
+@font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 100;
+    src: local('Poppins Thin'), local('Poppins-Thin'),
+        url('./fonts/poppins/Poppins-Thin.woff2') format('woff2');
+}
+
+/* Poppins Thin Italic */
+@font-face {
+    font-family: 'Poppins';
+    font-style: italic;
+    font-weight: 100;
+    src: local('Poppins Thin Italic'), local('Poppins-ThinItalic'),
+        url('./fonts/poppins/Poppins-ThinItalic.woff2') format('woff2');
+}
+
+/* NotoSans ExtraLight */
+@font-face {
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 200;
+    src: local('NotoSans-ExtraLight'), url('./fonts/noto-sans/NotoSans-ExtraLight.woff2') format('woff2');
+}
+
+/* NotoSans ExtraLight Italic */
+@font-face {
+    font-family: 'Noto Sans';
+    font-style: italic;
+    font-weight: 200;
+    src: local('NotoSans-ExtraLightItalic'), url('./fonts/noto-sans/NotoSans-ExtraLightItalic.woff2') format('woff2');
+}
+
+/* NotoSans Italic */
+@font-face {
+    font-family: 'Noto Sans';
+    font-style: italic;
+    font-weight: 400;
+    src: local('NotoSans-Italic'), url('./fonts/noto-sans/NotoSans-Italic.woff2') format('woff2');
+}
+
+/* NotoSans Light */
+@font-face {
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 300;
+    src: local('NotoSans-Light'), url('./fonts/noto-sans/NotoSans-Light.woff2') format('woff2');
+}
+
+/* NotoSans Light Italic */
+@font-face {
+    font-family: 'Noto Sans';
+    font-style: italic;
+    font-weight: 300;
+    src: local('NotoSans-LightItalic'), url('./fonts/noto-sans/NotoSans-LightItalic.woff2') format('woff2');
+}
+
+/* NotoSans Medium */
+@font-face {
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 500;
+    src: local('NotoSans-Medium'), url('./fonts/noto-sans/NotoSans-Medium.woff2') format('woff2');
+}
+
+/* NotoSans Medium Italic */
+@font-face {
+    font-family: 'Noto Sans';
+    font-style: italic;
+    font-weight: 500;
+    src: local('NotoSans-MediumItalic'), url('./fonts/noto-sans/NotoSans-MediumItalic.woff2') format('woff2');
+}
+
+/* NotoSans Regular */
+@font-face {
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local('NotoSans-Regular'), url('./fonts/noto-sans/NotoSans-Regular.woff2') format('woff2');
+}
+
+/* NotoSans SemiBold */
+@font-face {
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 600;
+    src: local('NotoSans-SemiBold'), url('./fonts/noto-sans/NotoSans-SemiBold.woff2') format('woff2');
+}
+
+/* NotoSans SemiBold Italic */
+@font-face {
+    font-family: 'Noto Sans';
+    font-style: italic;
+    font-weight: 600;
+    src: local('NotoSans-SemiBoldItalic'), url('./fonts/noto-sans/NotoSans-SemiBoldItalic.woff2') format('woff2');
+}
+
+/* NotoSans Thin */
+@font-face {
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 100;
+    src: local('NotoSans-Thin'), url('./fonts/noto-sans/NotoSans-Thin.woff2') format('woff2');
+}
+
+/* NotoSans Thin Italic */
+@font-face {
+    font-family: 'Noto Sans';
+    font-style: italic;
+    font-weight: 100;
+    src: local('NotoSans-ThinItalic'), url('./fonts/noto-sans/NotoSans-ThinItalic.woff2') format('woff2');
+}
+
+/* NotoSans Black */
+@font-face {
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 900;
+    src: local('NotoSans-Black'), url('./fonts/noto-sans/NotoSans-Black.woff2') format('woff2');
+}
+
+/* NotoSans Black Italic */
+@font-face {
+    font-family: 'Noto Sans';
+    font-style: italic;
+    font-weight: 900;
+    src: local('NotoSans-BlackItalic'), url('./fonts/noto-sans/NotoSans-BlackItalic.woff2') format('woff2');
+}
+
+/* NotoSans Bold */
+@font-face {
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 700;
+    src: local('NotoSans-Bold'), url('./fonts/noto-sans/NotoSans-Bold.woff2') format('woff2');
+}
+
+/* NotoSans Bold Italic */
+@font-face {
+    font-family: 'Noto Sans';
+    font-style: italic;
+    font-weight: 700;
+    src: local('NotoSans-BoldItalic'), url('./fonts/noto-sans/NotoSans-BoldItalic.woff2') format('woff2');
+}
+
+/* NotoSans ExtraBold */
+@font-face {
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 800;
+    src: local('NotoSans-ExtraBold'), url('./fonts/noto-sans/NotoSans-ExtraBold.woff2') format('woff2');
+}
+
+/* NotoSans ExtraBold Italic */
+@font-face {
+    font-family: 'Noto Sans';
+    font-style: italic;
+    font-weight: 800;
+    src: local('NotoSans-ExtraBoldItalic'), url('./fonts/noto-sans/NotoSans-ExtraBoldItalic.woff2') format('woff2');
+}

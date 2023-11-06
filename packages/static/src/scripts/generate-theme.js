@@ -84,6 +84,7 @@ for (const key in darkThemeColors) {
 }
 
 const cssData = `/* THIS FILE IS AUTO GENERATED. DO NOT MODIFY!  */
+@import './fonts.module.css';
 :root {
   ${cssVariables.join('\n  ')}
 }`
