@@ -1260,7 +1260,7 @@ export const DataGrid: React.FC = () => {
 }
 
 const meta = {
-  title: 'Example/Table',
+  title: 'Example/Table Server',
   component: Basic,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],
