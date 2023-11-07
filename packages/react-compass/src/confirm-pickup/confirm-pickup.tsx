@@ -1,10 +1,4 @@
-import React, {
-  forwardRef,
-  HTMLAttributes,
-  memo,
-  useCallback,
-  useState,
-} from 'react'
+import React, {forwardRef, HTMLAttributes, memo, useState} from 'react'
 import Button from '../button'
 import Divider from '../divider'
 import TextField from '../textfield'
@@ -48,9 +42,9 @@ const ConfirmPUPoint = forwardRef<HTMLDivElement, ConfirmPUPointProps>(
       initialSpecificPUPoint,
     )
 
-    const handleConfirmPickup = useCallback(() => {
+    const handleConfirmPickup = () => {
       onConfirmPickup(specificPUPoint)
-    }, [specificPUPoint])
+    }
 
     return (
       <StyledConfirmPUPoint ref={componentRef} css={css} {...htmlDivAttributes}>

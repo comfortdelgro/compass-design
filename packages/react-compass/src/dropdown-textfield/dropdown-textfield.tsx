@@ -1,4 +1,4 @@
-import React, {Key, useRef} from 'react'
+import React, {Key} from 'react'
 import Dropdown from '../dropdown'
 import TextField from '../textfield'
 import {StyledTextFieldLabel} from '../textfield/textfield.styles'
@@ -109,7 +109,7 @@ const DropdownTextfield = React.forwardRef<
     h5 = false,
   } = props
   const componentRef = useDOMRef(ref)
-  const isFirstRun = useRef(true)
+  // const isFirstRun = useRef(true)
 
   const [selectedDropdownKey, setDropdownKey] = React.useState<Key>('')
   const [textfieldValue, setTextfieldValue] = React.useState<Key>(
@@ -118,20 +118,24 @@ const DropdownTextfield = React.forwardRef<
 
   const handleDropdownChange = (newValue: Key) => {
     setDropdownKey(newValue)
+    onDropdownInputChange?.(String(newValue), textfieldValue)
   }
   const handleInputChange = (value: string | number) => {
     setTextfieldValue(value)
+    onDropdownInputChange?.(String(selectedDropdownKey), value)
   }
 
-  React.useEffect(() => {
-    if (isFirstRun.current) {
-      isFirstRun.current = false
-    } else {
-      if (onDropdownInputChange) {
-        onDropdownInputChange(String(selectedDropdownKey), textfieldValue)
-      }
-    }
-  }, [selectedDropdownKey, textfieldValue])
+  // React.useEffect(() => {
+  //   if (isFirstRun.current) {
+  //     isFirstRun.current = false
+  //   } else {
+  //     if (onDropdownInputChange) {
+  //       console.log('onDropdownInputChange')
+
+  //       onDropdownInputChange(String(selectedDropdownKey), textfieldValue)
+  //     }
+  //   }
+  // }, [selectedDropdownKey, textfieldValue])
   return (
     <StyledDropdownTextfield ref={componentRef} className={className}>
       {label && (
