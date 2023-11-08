@@ -134,7 +134,7 @@
       cursor: pointer;
       z-index: 1;
 
-      svg {
+      & svg {
         display: block;
       }
 
@@ -272,7 +272,9 @@
     }
 
     &::after {
-      height: calc(100% - var(--cdg-pudo-icon-height) * 2 + var(--cdg-pudo-dot-size));
+      height: calc(
+        100% - var(--cdg-pudo-icon-height) * 2 + var(--cdg-pudo-dot-size)
+      );
     }
   }
 }
