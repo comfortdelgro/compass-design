@@ -1,0 +1,17 @@
+@import '../../theme/theme.module.css';
+
+@layer default, variant;
+
+@layer default {
+  .cdgTableWrapper {
+    width: 100%;
+  }
+  .cdgTableContainer {
+    overflow-x: auto;
+  }
+
+  .cdgTable {
+    border-collapse: collapse;
+    width: 100%;
+  }
+}

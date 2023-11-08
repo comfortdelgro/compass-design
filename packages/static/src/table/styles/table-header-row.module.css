@@ -1,0 +1,8 @@
+@import '../../theme/theme.module.css';
+@layer default;
+
+@layer default {
+  .cdgTableHeaderRow {
+    background-color: var(--cdg-color-primaryBg);
+  }
+}

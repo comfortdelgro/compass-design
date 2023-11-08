@@ -230,6 +230,21 @@ export type {
   SubHeaderTitleProps,
 } from './sub-header'
 export {default as SubBanner} from './subBanner'
+export {default as Table} from './table'
+export type {
+  OptionType,
+  TableAccessorColumnDef,
+  TableCell,
+  TableCellContext,
+  TableColumnDef,
+  TableDisplayColumnDef,
+  TableGroupColumnDef,
+  TableHeaderContext,
+  TableProps,
+  TableRow,
+  TableSortingState,
+  TableType,
+} from './table'
 export {default as Tabs} from './tabs'
 export type {TabsProps} from './tabs'
 export {default as TagBox} from './tag-box'
