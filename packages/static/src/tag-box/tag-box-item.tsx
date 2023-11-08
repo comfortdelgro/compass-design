@@ -48,24 +48,27 @@ const TagBoxItem = React.forwardRef<HTMLDivElement, BannerProps>(
       }
     }
 
-    const caculateWidth = (string: string, callback: (w: number) => void) => {
-      const fakeEle = document.createElement('div')
-      fakeEle.style.position = 'absolute'
-      fakeEle.style.top = '0'
-      fakeEle.style.left = '-9999px'
-      fakeEle.style.overflow = 'hidden'
-      fakeEle.style.visibility = 'hidden'
-      fakeEle.style.whiteSpace = 'nowrap'
-      fakeEle.style.height = '0'
-      fakeEle.style.width = 'fit-content'
-      fakeEle.style.fontSize = '12px'
-      fakeEle.style.fontWeight = '600'
-      fakeEle.style.maxWidth = `${wrapperRef.current!.clientWidth - 62}px`
-      fakeEle.innerHTML = string.replace(/\s/g, '&' + 'nbsp;')
-      document.body.appendChild(fakeEle)
-      callback(fakeEle.clientWidth)
-      fakeEle.remove()
-    }
+    const caculateWidth = React.useCallback(
+      (string: string, callback: (w: number) => void) => {
+        const fakeEle = document.createElement('div')
+        fakeEle.style.position = 'absolute'
+        fakeEle.style.top = '0'
+        fakeEle.style.left = '-9999px'
+        fakeEle.style.overflow = 'hidden'
+        fakeEle.style.visibility = 'hidden'
+        fakeEle.style.whiteSpace = 'nowrap'
+        fakeEle.style.height = '0'
+        fakeEle.style.width = 'fit-content'
+        fakeEle.style.fontSize = '12px'
+        fakeEle.style.fontWeight = '600'
+        fakeEle.style.maxWidth = `${wrapperRef.current!.clientWidth - 62}px`
+        fakeEle.innerHTML = string.replace(/\s/g, '&' + 'nbsp;')
+        document.body.appendChild(fakeEle)
+        callback(fakeEle.clientWidth)
+        fakeEle.remove()
+      },
+      [wrapperRef],
+    )
 
     const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const string = e.target.value
@@ -113,7 +116,7 @@ const TagBoxItem = React.forwardRef<HTMLDivElement, BannerProps>(
         })
       }
       setInputValue(value)
-    }, [value])
+    }, [caculateWidth, value, wrapperRef])
 
     const onBlur = () => {
       setInputValue(value)

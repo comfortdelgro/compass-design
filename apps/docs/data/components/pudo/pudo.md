@@ -39,9 +39,13 @@ This example is just for demo the swap, add & remove features. To prevent render
 
 {{"demo": "PudoManipulation.tsx"}}
 
-### Label view
+### Item type: `custom`
 
-{{"demo": "PudoLabelView.tsx"}}
+{{"demo": "PudoCustomType.tsx"}}
+
+### Align Icon
+
+{{"demo": "PudoAlignIcon.tsx"}}
 
 ### Compact
 
@@ -51,32 +55,36 @@ This example is just for demo the swap, add & remove features. To prevent render
 
 Type: `PudoProps<TItemKeys extends string | number | symbol = string>`<sup>(1)</sup>
 
-| Name             | Type                   | Default    | Description                                                                                                             |
-| :--------------- | :--------------------- | :--------- | :---------------------------------------------------------------------------------------------------------------------- |
-| `css`            | `CSS`                  | —          | The system prop that allows defining system overrides as well as additional CSS styles.                                 |
-| `items`\*        | `PudoItemProps[]`      | —          |                                                                                                                         |
-| `type`           | `"input"` \| `"label"` | —          | If provided, this prop will override the `type` of all items.                                                           |
-| `onValuesChange` | `(values) => void`     | —          |                                                                                                                         |
-| `minLength`      | `number`               | `2`        | Minimum length of list items.                                                                                           |
-| `maxLength`      | `number`               | `3`        | Maximum length of list items.                                                                                           |
-| `addItems`       | `PudoItemProps[]`      | —          | Provide a items list to add to the existing item list.<br/><small>This list will be automatically deduplicated.</small> |
-| `addItemsLabel`  | `string`               | `"Add"`    | Label for the "add" button.                                                                                             |
-| `removableItems` | `TItemKeys[]`          | —          | A list of item name that allowed to remove.<br/><small>This list will be automatically deduplicated.</small>            |
-| `removableLabel` | `string`               | `"Remove"` | Label for the "remove" button.                                                                                          |
-| `compact`        | `"sm" \| "md"`         | —          | Compact size                                                                                                            |
+| Name             | Type                                                       | Default    | Description                                                                                                                                                                                     |
+| :--------------- | :--------------------------------------------------------- | :--------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `css`            | `CSS`                                                      | —          | The system prop that allows defining system overrides as well as additional CSS styles.                                                                                                         |
+| `items`\*        | `PudoItemProps[]`                                          | —          |                                                                                                                                                                                                 |
+| `type`           | `"input"` \| `"custom"` \| <code><del>"label"</del></code> | —          | If provided, this prop will override the `type` of all items.<br/><small>`label` is a redundant item type and will be removed on the next major release.<br/>Use `custom` type instead.</small> |
+| `onValuesChange` | `(values) => void`                                         | —          |                                                                                                                                                                                                 |
+| `minLength`      | `number`                                                   | `2`        | Minimum length of list items.                                                                                                                                                                   |
+| `maxLength`      | `number`                                                   | `3`        | Maximum length of list items.                                                                                                                                                                   |
+| `addItems`       | `PudoItemProps[]`                                          | —          | Provide a items list to add to the existing item list.<br/><small>This list will be automatically deduplicated.</small>                                                                         |
+| `addItemsLabel`  | `string`                                                   | `"Add"`    | Label for the "add" button.                                                                                                                                                                     |
+| `removableItems` | `TItemKeys[]`                                              | —          | A list of item name that allowed to remove.<br/><small>This list will be automatically deduplicated.</small>                                                                                    |
+| `removableLabel` | `string`                                                   | `"Remove"` | Label for the "remove" button.                                                                                                                                                                  |
+| `compact`        | `"sm" \| "md"`                                             | —          | Compact size                                                                                                                                                                                    |
+| `alignIcon`      | `"top"` \| `"center"`                                      | —          | If provided, this prop will override the `alignIcon` of all items.                                                                                                                              |
 
 ### `PudoItemProps`
 
-| Name          | Type                         | Default                                  | Description                                                              |
-| :------------ | :--------------------------- | :--------------------------------------- | :----------------------------------------------------------------------- |
-| `name`\*      | Inference type<sup>(1)</sup> | `string`                                 | Item Key and also input's `name` attribute.                              |
-| `icon`        | `ReactNode`                  | Only the first 3 items have default icon |                                                                          |
-| `type`        | `"input"` \| `"label"`       | `"input"`                                | Decide what the purpose of this item is, used for input or display text. |
-| `allowSwap`   | `boolean`                    | `false`                                  | Allow this item to swap value with the below one.                        |
-| `value`\*     | `string`                     | `""`                                     | Item's value.                                                            |
-| `placeholder` | `string`                     | `"" `                                    |                                                                          |
-| `maxLength`   | `number`                     | `255`                                    | Maximum characters.                                                      |
-| `isRequired`  | `boolean`                    | `false`                                  | Required state.                                                          |
+| Name          | Type                                                       | Default                                  | Description                                                                                                                                                                                                   |
+| :------------ | :--------------------------------------------------------- | :--------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `name`\*      | Inference type<sup>(1)</sup>                               | `string`                                 | Item Key and also is input's `name` attribute.                                                                                                                                                                |
+| `type`        | `"input"` \| `"custom"` \| <code><del>"label"</del></code> | `"input"`                                | Decide what the purpose of this item is, used for input or can be customizable.<br/><small>`label` is a redundant item type and will be removed on the next major release. Use `custom` type instead.</small> |
+| `icon`        | `ReactNode`                                                | Only the first 3 items have default icon |                                                                                                                                                                                                               |
+| `alignIcon`   | `"top"` \| `"center"`                                      | `"center"`                               | Change the item icon's vertical alignment.                                                                                                                                                                    |
+| `allowSwap`   | `boolean`                                                  | `false`                                  | Allow this item to swap value with the below one.                                                                                                                                                             |
+| `value`       | `string`                                                   | `""`                                     | Input value.<br/><small>Only use for `input` type, will be ignored on `custom` type</small>                                                                                                                   |
+| `placeholder` | `string`                                                   | `"" `                                    | Input placeholder.<br/><small>Only use for `input` type, will be ignored on `custom` type</small>                                                                                                             |
+| `title`       | `ReactNode`                                                | —                                        | Title section for the `custom` item type.                                                                                                                                                                     |
+| `content`     | `ReactNode`                                                | —                                        | Content, description, etc,... for the `custom` item type.                                                                                                                                                     |
+| `maxLength`   | `number`                                                   | `255`                                    | Maximum characters.                                                                                                                                                                                           |
+| `isRequired`  | `boolean`                                                  | `false`                                  | Required state.                                                                                                                                                                                               |
 
 \*: Required.
 

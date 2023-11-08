@@ -1,34 +1,5 @@
 @import '../../theme/theme.module.css';
 
-.circular {
-  display: inline-block;
-}
-
-.circularVariantIndeterminate {
-  animation: circularRotateKeyframe 1.4s linear infinite;
-}
-
-.svg {
-  display: block;
-}
-
-.svgCircle {
-  stroke: currentColor;
-}
-
-.svgCircleVariantIndeterminate {
-  stroke-dasharray: 80px, 200px;
-  stroke-dashoffset: 0;
-}
-
-.svgCircleVariantDeterminate {
-  transition: stroke-dashoffset 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-}
-
-.svgCircleVariantDeterminateDisableShrink {
-  animation: circularDashKeyframe 1.4s ease-in-out infinite;
-}
-
 @keyframes circularRotateKeyframe {
   0% {
     transform: rotate(0deg);
@@ -50,5 +21,44 @@
   100% {
     stroke-dasharray: 100px, 200px;
     stroke-dashoffset: -125px;
+  }
+}
+
+@layer default, variant, compoundVariant;
+
+@layer default {
+  .circular {
+    display: inline-block;
+  }
+
+  .svg {
+    display: block;
+  }
+
+  .svgCircle {
+    stroke: currentColor;
+  }
+}
+
+@layer variant {
+  /* Variant: Indeterminate */
+  .circularVariantIndeterminate {
+    animation: circularRotateKeyframe 1.4s linear infinite;
+  }
+
+  .svgCircleVariantIndeterminate {
+    stroke-dasharray: 80px, 200px;
+    stroke-dashoffset: 0;
+  }
+
+  /* Variant: Determinate */
+  .svgCircleVariantDeterminate {
+    transition: stroke-dashoffset 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  }
+}
+
+@layer compoundVariant {
+  .svgCircleVariantDeterminateDisableShrink {
+    animation: circularDashKeyframe 1.4s ease-in-out infinite;
   }
 }

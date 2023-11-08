@@ -345,7 +345,7 @@ const theme = {
   sizes: spacings,
   transitions,
 }
-
+   
 export default theme
-
+   
 export type Colors = typeof lightThemeColors

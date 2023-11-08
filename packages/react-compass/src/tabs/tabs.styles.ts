@@ -11,8 +11,7 @@ export const StyledTabs = styled('div', {
   fontFamily: '$sans',
   lineHeight: '$normal',
   fontWeight: '$semibold',
-  display: 'grid',
-  gridTemplateColumns: 'min-content',
+  display: 'flex',
   width: 'fit-content',
   margin: '0',
   gap: '$4',
@@ -37,11 +36,11 @@ export const StyledTabs = styled('div', {
     orientation: {
       horizontal: {
         padding: '$2',
-        gridAutoFlow: 'column',
+        flexDirection: 'row',
       },
       vertical: {
         padding: '$4 $2',
-        gridAutoFlow: 'row',
+        flexDirection: 'column',
       },
     },
   },
