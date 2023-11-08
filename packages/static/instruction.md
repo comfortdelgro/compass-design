@@ -169,7 +169,6 @@ You have to make sure your components in old react-compass sync with new react-c
 
 - Pagination
 - Spinner
-- Progress
 - Progress Bar
 - Radio
 - Rating
@@ -180,7 +179,6 @@ You have to make sure your components in old react-compass sync with new react-c
 - Banner
 - Sub Banner
 - Tabs
-- Tag Box
 - Upload
 - Upload V2
 - Video Player
@@ -228,8 +226,10 @@ You have to make sure your components in old react-compass sync with new react-c
 - File
 - Gutter
 - List
+- Progress
 - Quantity toggle
 - Skeleton
+- Tag Box
 - Wizard
 
 ### Hoa

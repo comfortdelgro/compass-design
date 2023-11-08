@@ -11,8 +11,7 @@
     font-family: var(--cdg-font-sans);
     line-height: var(--cdg-line-height-normal);
     font-weight: var(--cdg-font-weight-semibold);
-    display: grid;
-    grid-template-columns: min-content;
+    display: flex;
     width: fit-content;
     margin: 0;
     gap: var(--cdg-spacing-4);
@@ -38,12 +37,12 @@
 
   .horizontal {
     padding: var(--cdg-spacing-2);
-    grid-auto-flow: column;
+    flex-direction: row;
   }
 
   .vertical {
     padding: var(--cdg-spacing-4) var(--cdg-spacing-2);
-    grid-auto-flow: row;
+    flex-direction: column;
   }
 }
 

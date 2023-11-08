@@ -81,14 +81,13 @@ export const State: React.FC = () => (
 export const Preview: React.FC = () => (
   <>
     <div style={{width: '100%'}}>
-      <File.Preview
+      <File.Preview  
         css={{
           '.cdg-file-preview-image': {
-            background: 'red',
-          },
+            background: 'red'
+          }
         }}
-        imageSrc='https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_square.jpg'
-      />
+        imageSrc='https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_square.jpg' />
     </div>
 
     <h3>With File.State</h3>
@@ -113,10 +112,8 @@ export const Preview: React.FC = () => (
 const meta = {
   title: 'Example/File',
   component: State,
-  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],
   parameters: {
-    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
     layout: 'fullscreen',
   },
 } satisfies Meta<typeof State>
