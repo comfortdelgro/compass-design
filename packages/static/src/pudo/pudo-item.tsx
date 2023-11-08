@@ -10,23 +10,33 @@ const PudoItemComponent = <TItemName extends string | number | symbol>({
   itemsLength,
   name,
   className = '',
-  type = 'input',
   icon,
+
+  type = 'input',
   value = '',
+  placeholder = '',
+  title,
+  content,
+
   onValueChange,
   onInputFocus,
   allowSwap = false,
   handleSwap,
-  placeholder = '',
   maxLength = 255,
   isRequired = false,
+  alignIcon = 'center',
+  compact,
 }: PudoItemPrivateProps<TItemName>) => {
   const renderPudoContent = () => {
     switch (type) {
+      /**
+       * @deprecated
+       * @todo remove label type when `@comfortdelgro/react-compass@3.x` is planned to be released soon.
+       */
       case 'label':
         return (
           <p
-            className={clsx(classes.pudoItemLabel, 'pudo-item__label')}
+            className={clsx(classes.pudoItemLabel, 'cdg-pudo-item__label')}
             title={value}
           >
             {value}
@@ -36,7 +46,7 @@ const PudoItemComponent = <TItemName extends string | number | symbol>({
       case 'input':
         return (
           <TextField
-            className={clsx(classes.pudoItemInput, 'pudo-item__input')}
+            className={clsx(classes.pudoItemInput, 'cdg-pudo-item__input')}
             type='text'
             name={name.toString()}
             value={value}
@@ -48,9 +58,49 @@ const PudoItemComponent = <TItemName extends string | number | symbol>({
           />
         )
 
+      case 'custom':
+        return (
+          <div
+            className={clsx(classes.pudoItemCustom, 'cdg-pudo-item__custom')}
+          >
+            {typeof title === 'string' && title ? (
+              <div
+                className={clsx(
+                  classes.pudoItemCustomTitle,
+                  'cdg-pudo-item__custom-title',
+                )}
+                title={title}
+              >
+                {title}
+              </div>
+            ) : (
+              title
+            )}
+            {typeof content === 'string' && content ? (
+              <p
+                className={clsx(
+                  classes.pudoItemCustomContent,
+                  'cdg-pudo-item__custom-content',
+                )}
+              >
+                {content}
+              </p>
+            ) : (
+              content
+            )}
+          </div>
+        )
+
       default:
         return <></>
     }
+  }
+
+  if (
+    (type === 'custom' && !title && !content) ||
+    (type === 'label' && !value)
+  ) {
+    return <></>
   }
 
   return (
@@ -58,35 +108,21 @@ const PudoItemComponent = <TItemName extends string | number | symbol>({
       className={clsx(
         classes.pudoItem,
         type && classes[type],
-        'pudo-item ',
+        alignIcon && classes[`alignIcon--${alignIcon}`],
+        compact && classes[compact],
+        'cdg-pudo-item',
         className,
       )}
       style={{zIndex: itemsLength - 1 - index ?? undefined}}
     >
-      <div className={clsx(classes.pudoItemIcon, 'pudo-item__icon')}>
+      <div className={clsx(classes.pudoItemIcon, 'cdg-pudo-item__icon')}>
         {icon || DefaultIcons[index]}
       </div>
       {renderPudoContent()}
-      <div
-        className={clsx(classes.pudoItemConnectIcon, 'pudo-item__connect-icon')}
-      >
-        <svg
-          width='20'
-          height='29'
-          viewBox='0 0 20 29'
-          fill='none'
-          xmlns='http://www.w3.org/2000/svg'
-        >
-          <circle cx='10' cy='5.5' r='1.5' fill='#B4B4B4' />
-          <circle cx='10' cy='11.5' r='1.5' fill='#B4B4B4' />
-          <circle cx='10' cy='17.5' r='1.5' fill='#B4B4B4' />
-          <circle cx='10' cy='23.5' r='1.5' fill='#B4B4B4' />
-        </svg>
-      </div>
 
       {allowSwap && type === 'input' ? (
         <button
-          className={clsx(classes.pudoItemSwapIcon, 'pudo-item__swap-icon')}
+          className={clsx(classes.pudoItemSwapIcon, 'cdg-pudo-item__swap-icon')}
           type='button'
           onClick={() => handleSwap?.()}
         >
