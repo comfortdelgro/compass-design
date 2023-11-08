@@ -1,16 +1,16 @@
+import {Meta} from '@storybook/react'
 import React, {useState} from 'react'
 import Button from '../button'
 import {Placement} from './index'
 import Tooltip from './tooltip'
 import TooltipTrigger from './tooltip-trigger'
-import { Meta } from '@storybook/react'
 
 export const Controlled: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isOpenSimple, setIsOpenSimple] = useState(false)
 
   return (
-    <div style={{marginLeft:'1.5rem'}}>
+    <div style={{marginLeft: '1.5rem'}}>
       <h3>Tooltip State: {isOpen ? 'opened' : 'closed'}</h3>
       <TooltipTrigger
         isOpen={isOpen}
@@ -59,7 +59,7 @@ export const Placements: React.FC = () => {
   const [currentPlacement, setCurrentPlacement] = useState<Placement>('bottom')
 
   return (
-    <div style={{marginLeft:'1.5rem'}}>
+    <div style={{marginLeft: '1.5rem'}}>
       <h3>Select direction for testing</h3>
       <select
         onChange={(e) => {
@@ -102,7 +102,7 @@ export const Offset: React.FC = () => {
   const [mainAxis, setMainAxis] = useState(0)
 
   return (
-    <div style={{marginLeft:'1.5rem'}}>
+    <div style={{marginLeft: '1.5rem'}}>
       <h3>Offset</h3>
       <div
         style={{
@@ -164,7 +164,7 @@ export const Offset: React.FC = () => {
 export const Delay: React.FC = () => {
   const [delayTime, setDelayTime] = useState(0)
   return (
-    <div style={{marginLeft:'1.5rem'}}>
+    <div style={{marginLeft: '1.5rem'}}>
       <h3>Delay</h3>
       <div
         style={{

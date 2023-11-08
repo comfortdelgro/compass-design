@@ -1,8 +1,8 @@
-import React, { HTMLAttributes } from 'react'
-import { useDOMRef } from '../utils/use-dom-ref'
-import { AppNavSection, AppNavSectionProps } from './appnav-section'
-import CssInjection from '../utils/objectToCss/CssInjection'
 import clsx from 'clsx'
+import React, {HTMLAttributes} from 'react'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import {useDOMRef} from '../utils/use-dom-ref'
+import {AppNavSection, AppNavSectionProps} from './appnav-section'
 import styles from './styles/appnav.module.css'
 
 interface Props {
@@ -32,7 +32,7 @@ const AppNav = React.forwardRef<HTMLDivElement, AppNavProps>((props, ref) => {
       <nav
         className={clsx({
           [styles.appNav]: true,
-          [styles[position]]: true
+          [styles[position]]: true,
         })}
         ref={navBarRef}
         {...delegated}
@@ -43,7 +43,7 @@ const AppNav = React.forwardRef<HTMLDivElement, AppNavProps>((props, ref) => {
           }
           const childToClone = child as React.ReactElement<AppNavSectionProps>
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          const { isActive, index, onChange, ...rest } = childToClone.props // filter out unnecessary props when using <AppNav.Section />
+          const {isActive, index, onChange, ...rest} = childToClone.props // filter out unnecessary props when using <AppNav.Section />
           const props = {} as AppNavSectionProps
           props.isActive = childIndex === AppNavIndex
           props.index = childIndex

@@ -296,7 +296,8 @@ export const Collaspable: React.FC = () => {
 
 const meta = {
   title: 'Example/Tag Box',
-  component: TagBoxs,tags: ['autodocs'],
+  component: TagBoxs,
+  tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
   },
