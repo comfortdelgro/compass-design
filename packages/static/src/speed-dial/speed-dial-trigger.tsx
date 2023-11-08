@@ -16,7 +16,7 @@ export const SpeedDialTrigger = React.forwardRef<
   HTMLButtonElement,
   SpeedDialTriggerProps
 >((props, ref) => {
-  const {children,isOpen, ...htmlProps} = props
+  const {children, isOpen, ...htmlProps} = props
   const {useDescendant} = useKeyboardNavigationState()
   const {onMouseMove} = useKeyboardNavigation()
   const {register, index} = useDescendant()

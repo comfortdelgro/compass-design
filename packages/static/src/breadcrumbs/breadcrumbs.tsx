@@ -38,11 +38,7 @@ const Breadcrumbs = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   const items = React.Children.toArray(children)
 
   const wrapperClass = React.useMemo(() => {
-    return [
-      styles.breadcrumbs,
-      'cdg-breadcrumbs',
-      className,
-    ]
+    return [styles.breadcrumbs, 'cdg-breadcrumbs', className]
       .filter(Boolean)
       .join(' ')
   }, [className])

@@ -1,5 +1,11 @@
 ## 2.9.0
 
+## 2.25.0
+
+### Minor Changes
+
+- ad5ae9d5: Add new features to pudo
+
 ## 2.24.0
 
 ### Minor Changes

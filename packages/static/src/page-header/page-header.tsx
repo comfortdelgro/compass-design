@@ -1,10 +1,10 @@
+import clsx from 'clsx'
 import React from 'react'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import PageHeaderDescription from './page-header-description'
 import PageHeaderHeader from './page-header-header'
 import PageHeaderSubtitle from './page-header-subtitle'
 import PageHeaderTitle from './page-header-title'
-import CssInjection from '../utils/objectToCss/CssInjection'
-import clsx from 'clsx'
 import styles from './styles/page-header-description.module.css'
 
 interface Props {
@@ -19,7 +19,7 @@ export type PageHeaderProps = Props &
 // eslint-disable-next-line react-refresh/only-export-components
 const PageHeader = React.forwardRef<HTMLDivElement, PageHeaderProps>(
   (props, ref) => {
-    const { children, color = 'white', css = {}, ...delegated } = props
+    const {children, color = 'white', css = {}, ...delegated} = props
 
     return (
       <CssInjection css={css} childrenRef={ref}>
@@ -28,7 +28,8 @@ const PageHeader = React.forwardRef<HTMLDivElement, PageHeaderProps>(
             [styles.pageHeader]: true,
             [styles[color]]: true,
           })}
-          ref={ref} {...delegated}
+          ref={ref}
+          {...delegated}
         >
           {children}
         </div>

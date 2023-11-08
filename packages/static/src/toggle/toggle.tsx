@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, {useRef} from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import {capitalizeFirstLetter} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -58,7 +58,7 @@ const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>((props, ref) => {
   )
   const toggleId = useId(id)
   const toggleRef = useDOMRef<HTMLInputElement>(ref)
-  const toggleWrapperRef = useRef<HTMLDivElement>(null);
+  const toggleWrapperRef = useRef<HTMLDivElement>(null)
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.checked
