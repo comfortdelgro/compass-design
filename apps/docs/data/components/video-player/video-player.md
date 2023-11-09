@@ -26,6 +26,10 @@ import {
 
 {{"demo": "VideoPlayer.tsx"}}
 
+<!-- ## Video Player Server (Experimental)
+
+{{"demo": "VideoPlayerServer.tsx"}} -->
+
 ## Props
 
 ### TooltipTrigger Props:
