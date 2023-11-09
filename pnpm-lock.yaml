@@ -386,9 +386,6 @@ importers:
       '@fortawesome/react-fontawesome':
         specifier: ^0.2.0
         version: 0.2.0(@fortawesome/fontawesome-svg-core@6.4.2)(react@18.2.0)
-      '@internationalized/number':
-        specifier: 3.2.0
-        version: 3.2.0
       '@react-aria/dialog':
         specifier: ^3.4.1
         version: 3.5.5(react-dom@18.2.0)(react@18.2.0)
@@ -735,7 +732,6 @@ packages:
       '@babel/helper-simple-access': 7.22.5
       '@babel/helper-split-export-declaration': 7.22.6
       '@babel/helper-validator-identifier': 7.22.20
-    dev: true
 
   /@babel/helper-optimise-call-expression@7.22.5:
     resolution: {integrity: sha512-HBwaojN0xFRx4yIvpwGqxiV2tUfl7401jlok564NgB9EHS1y6QT17FmKWm4ztqjeVdXLuC4fSvHc5ePpQjoTbw==}
@@ -5587,6 +5583,7 @@ packages:
     resolution: {integrity: sha512-H72tXQ5rkVCkAhFaf08fbEU7EBUCK0uocsqOF+4th9sOlrhfgyJtc8Jv5EXPDpxNgG5jixSqWBo0zKXQm9s9eg==}
     peerDependencies:
       '@tiptap/core': ^2.0.0
+      '@tiptap/pm': ^2.0.0
     dependencies:
       '@tiptap/core': 2.1.10(@tiptap/pm@2.0.3)
       '@tiptap/pm': 2.0.3(@tiptap/core@2.1.10)
@@ -5621,6 +5618,7 @@ packages:
     resolution: {integrity: sha512-lwtNmMZpxvQBGP72/zrdPFOmn/3QNZAKpkrfrK95Ri4TU6LPeDDwPsP81s9mkAFZPuDQ1i8SPakl+RivWa6qtA==}
     peerDependencies:
       '@tiptap/core': ^2.0.0
+      '@tiptap/pm': ^2.0.0
     dependencies:
       '@tiptap/core': 2.1.10(@tiptap/pm@2.0.3)
       '@tiptap/pm': 2.0.3(@tiptap/core@2.1.10)
@@ -9312,7 +9310,6 @@ packages:
       tslib: 2.4.0
     optionalDependencies:
       '@emotion/is-prop-valid': 0.8.8
-    dev: true
 
   /fresh@0.5.2:
     resolution: {integrity: sha512-zJ2mQYM18rEFOudeV4GShTGIQ7RbzA7ozbU9I/XBpm7kqgMywgmylMwXHxZJmkVoYkna9d2pVXVXPdYTP9ej8Q==}
@@ -14434,7 +14431,7 @@ packages:
       typescript: '>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta'
     dependencies:
       tslib: 1.14.1
-      typescript: 5.2.2
+      typescript: 4.9.5
     dev: true
 
   /tsutils@3.21.0(typescript@5.2.2):
@@ -14444,7 +14441,7 @@ packages:
       typescript: '>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta'
     dependencies:
       tslib: 1.14.1
-      typescript: 4.9.5
+      typescript: 5.2.2
     dev: true
 
   /tsx@3.12.10:
@@ -15101,7 +15098,6 @@ packages:
       rollup: 3.29.2
     optionalDependencies:
       fsevents: 2.3.3
-    dev: true
 
   /vue-template-compiler@2.7.14:
     resolution: {integrity: sha512-zyA5Y3ArvVG0NacJDkkzJuPQDF8RFeRlzV2vLeSnhSpieO6LK2OVbdLPi5MPPs09Ii+gMO8nY4S3iKQxBxDmWQ==}
