@@ -230,6 +230,21 @@ export type {
   SubHeaderTitleProps,
 } from './sub-header'
 export {default as SubBanner} from './subBanner'
+export {default as Table} from './table'
+export type {
+  OptionType,
+  TableAccessorColumnDef,
+  TableCell,
+  TableCellContext,
+  TableColumnDef,
+  TableDisplayColumnDef,
+  TableGroupColumnDef,
+  TableHeaderContext,
+  TableProps,
+  TableRow,
+  TableSortingState,
+  TableType,
+} from './table'
 export {default as Tabs} from './tabs'
 export type {TabsProps} from './tabs'
 export {default as TagBox} from './tag-box'
@@ -267,5 +282,7 @@ export type {Placement, TooltipProps, TooltipTriggerProps} from './tooltip'
 export {default as Transitions} from './transitions'
 export type {TransitionsProps} from './transitions'
 export {default as Typography} from './typography'
+export {default as VideoPlayer} from './video-player'
+export type {VideoPlayerProps} from './video-player'
 export {default as Wizard} from './wizard'
 export type {WizardProps} from './wizard'

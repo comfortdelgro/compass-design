@@ -1,0 +1,30 @@
+@import '../../theme/theme.module.css';
+@layer default, variant;
+
+@layer default {
+  .cdgTableSortingIndicator {
+    color: var(--cdg-color-gray30);
+    text-align: left;
+    visibility: visible;
+  }
+
+  .cdgTableColumnHeader {
+    font-size: var(--cdg-font-size-label1);
+    font-weight: var(--cdg-font-weight-semibold);
+    padding: var(--cdg-spacing-4) var(--cdg-spacing-3);
+    position: relative;
+    line-height: var(--cdg-spacing-5_25);
+    outline-color: var(--cdg-color-cdgBlue);
+  }
+}
+
+@layer variant {
+  .canSort {
+    display: flex;
+    min-height: var(--cdg-spacing-7_5);
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+  }
+}

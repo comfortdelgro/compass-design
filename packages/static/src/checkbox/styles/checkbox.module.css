@@ -41,12 +41,12 @@
     position: absolute;
   }
 
-  .input:checked ~ .checkboxBox {
+  .input:checked ~ .box {
     border-color: var(--cdg-color-cdgBlue);
     background-color: var(--cdg-color-cdgBlue);
   }
 
-  .input:disabled:checked ~ .checkboxBox {
+  .input:disabled:checked ~ .box {
     border-color: var(--cdg-color-gray50);
     background-color: var(--cdg-color-gray50);
   }

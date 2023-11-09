@@ -1,0 +1,47 @@
+@import '../../theme/theme.module.css';
+
+@layer default;
+
+@layer default {
+  .cdgTableCheckbox {
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+    cursor: pointer;
+  }
+
+  .cdgTableCheckbox:checked ~ .checkboxBox {
+    border-color: var(--cdg-color-cdgBlue);
+    background-color: var(--cdg-color-cdgBlue);
+  }
+
+  .cdgTableCheckbox:disabled ~ .checkboxBox {
+    border-color: var(--cdg-color-gray50);
+    background-color: var(--cdg-color-whiteText);
+  }
+
+  .checkboxBox {
+    height: var(--cdg-spacing-4);
+    width: var(--cdg-spacing-4);
+    background-color: var(--cdg-color-whiteText);
+    border-width: var(--cdg-border-width-light);
+    border-style: solid;
+    border-color: var(--cdg-color-activeBorder);
+    border-radius: var(--cdg-border-radius-md);
+    transition: var(--cdg-transition-button);
+  }
+  .checkmark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .checkmarkIcon {
+    color: var(--cdg-color-whiteText);
+    height: var(--cdg-spacing-3);
+    width: var(--cdg-spacing-3);
+  }
+}

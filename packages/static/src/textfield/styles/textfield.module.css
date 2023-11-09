@@ -45,13 +45,14 @@
     width: var(--cdg-spacing-5);
     height: var(--cdg-spacing-5);
     margin-left: var(--cdg-spacing-2_5);
-    margin-right: calc(var(--cdg-spacing-1) * -1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .prefix {
     min-width: var(--cdg-spacing-5);
     height: var(--cdg-spacing-5);
     margin-left: var(--cdg-spacing-2_5);
-    margin-right: calc(var(--cdg-spacing-1) * -1);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -60,12 +61,13 @@
     width: var(--cdg-spacing-4);
     height: var(--cdg-spacing-4);
     margin-right: var(--cdg-spacing-2_5);
-    margin-left: calc(var(--cdg-spacing-1) * -1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .passwordIcon {
     font-size: 0.8em;
     margin-right: var(--cdg-spacing-2_5);
-    margin-left: calc(var(--cdg-spacing-1) * -1);
   }
   .passwordIcon svg {
     height: 1rem;

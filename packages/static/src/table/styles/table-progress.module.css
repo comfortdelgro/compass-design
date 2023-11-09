@@ -1,0 +1,33 @@
+@import '../../theme/theme.module.css';
+@layer default;
+
+@layer default {
+  .cdgTableProgressBar {
+    width: var(--cdg-spacing-50);
+    height: var(--cdg-spacing-5);
+    background-color: var(--cdg-color-secondaryBg);
+    border-radius: var(--cdg-border-radius-lg);
+    position: relative;
+  }
+
+  .cdgTableProgress {
+    height: 100%;
+    border-radius: var(--cdg-border-radius-lg);
+    transition: 'width 0.5s ease-in-out';
+  }
+  .cdgTableProgressLabel {
+    height: 100%;
+    border-radius: var(--cdg-border-radius-lg);
+    transition: 'width 0.5s ease-in-out';
+  }
+
+  .progressLow {
+    background-color: var(--cdg-color-danger);
+  }
+  .progressAverage {
+    background-color: var(--cdg-color-warning);
+  }
+  .progressHigh {
+    background-color: var(--cdg-color-success);
+  }
+}
