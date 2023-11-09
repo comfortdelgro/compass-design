@@ -29,7 +29,7 @@ export type MonthYearPickerProps = Props &
 
 const MonthYearPicker = React.forwardRef<HTMLDivElement, MonthYearPickerProps>(
   (props, ref) => {
-    const {month = 0, year = 0, onChange} = props
+    const {month = 0, year = 0, onChange, css = {}} = props
     const pickerRef = useDOMRef(ref)
 
     const monthNames = [
@@ -62,13 +62,16 @@ const MonthYearPicker = React.forwardRef<HTMLDivElement, MonthYearPickerProps>(
       onChange?.(month, data.abs + MIN_YEAR)
     }
     return (
-      <StyledMonthYearPicker ref={pickerRef} className='cdg-month-year-picker'>
+      <StyledMonthYearPicker
+        ref={pickerRef}
+        className='cdg-month-year-picker'
+        css={css}
+      >
         <Box
-          css={{height: '180px', width: '50%', minWidth: '112px'}}
-          className='cdg-month-year-picker__left'
+          css={{height: '168px', width: '50%', minWidth: '112px'}}
+          className='cdg-month-year-picker-left'
         >
           <Wheel
-            loop={false}
             length={12}
             width={145}
             defaultValue={month > 11 || month < 0 ? 0 : month}
@@ -77,13 +80,12 @@ const MonthYearPicker = React.forwardRef<HTMLDivElement, MonthYearPickerProps>(
           />
         </Box>
         <Box
-          css={{height: '180px', width: '50%', minWidth: '112px'}}
-          className='cdg-month-year-picker__right'
+          css={{height: '168px', width: '50%', minWidth: '112px'}}
+          className='cdg-month-year-picker-right'
         >
           <Wheel
-            loop={false}
             length={new Date().getFullYear() + 1 - MIN_YEAR}
-            width={145}
+            width={50}
             perspective='right'
             defaultValue={year - MIN_YEAR}
             setValue={formatYear}

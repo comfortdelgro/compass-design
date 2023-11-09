@@ -1,6 +1,14 @@
 import {KeenSliderOptions, TrackDetails, useKeenSlider} from 'keen-slider/react'
 import React, {useRef} from 'react'
-import {StyledWheel, StyledWheelInner} from './month-year-picker.styles'
+import {
+  StyledWheel,
+  StyledWheelInner,
+  WheelLabel,
+  WheelShadowBottom,
+  WheelShadowTop,
+  WheelSlide,
+  WheelSlides,
+} from './month-year-picker.styles'
 export default function Wheel(props: {
   defaultValue?: number
   label?: string
@@ -23,7 +31,7 @@ export default function Wheel(props: {
   const options = useRef<KeenSliderOptions>({
     slides: {
       number: slides,
-      origin: props.loop ? 'center' : 'auto',
+      origin: 'auto',
       perView: slidesPerView,
     },
 
@@ -50,8 +58,10 @@ export default function Wheel(props: {
       setSliderState(s.track.details)
     },
     animationEnded: (s) => {
+      console.log(s)
       props.onChange?.(s.track.details)
     },
+
     rubberband: !props.loop,
     mode: 'free-snap',
   })
@@ -77,6 +87,7 @@ export default function Wheel(props: {
         Math.abs(distance) > wheelSize / 2
           ? 180
           : distance * (360 / wheelSize) * -1
+
       const style = {
         transform: `rotateX(${rotate}deg) translateZ(${radius}px)`,
         WebkitTransform: `rotateX(${rotate}deg) translateZ(${radius}px)`,
@@ -84,7 +95,7 @@ export default function Wheel(props: {
       const value = props.setValue
         ? props.setValue(i, sliderState.abs + Math.round(distance))
         : i
-      values.push({style, value})
+      values.push({style, value, rotate})
     }
     return values
   }
@@ -92,36 +103,46 @@ export default function Wheel(props: {
   return (
     <>
       <StyledWheel perspective={perspective} ref={sliderRef}>
-        <div
-          className='wheel__shadow-top'
-          style={{
+        <WheelShadowTop
+          className='wheel-shadow-top'
+          css={{
             transform: `translateZ(${radius}px)`,
             WebkitTransform: `translateZ(${radius}px)`,
           }}
         />
         <StyledWheelInner className='wheel_inner'>
-          <div className='wheel__slides' style={{width: props.width + 'px'}}>
-            {slideValues().map(({style, value}, idx) => (
-              <div className='wheel__slide' style={style} key={idx}>
+          <WheelSlides className='wheel-slides' css={{width: props.width}}>
+            {slideValues().map(({style, value, rotate}, idx) => (
+              <WheelSlide
+                className='wheel-slide'
+                css={{
+                  ...style,
+                  color:
+                    Math.round(rotate) >= -7 && Math.round(rotate) <= 7
+                      ? '$blueShades100'
+                      : '$grayShades40',
+                }}
+                key={idx}
+              >
                 <span>{value}</span>
-              </div>
+              </WheelSlide>
             ))}
-          </div>
+          </WheelSlides>
           {props.label && (
-            <div
-              className='wheel__label'
-              style={{
+            <WheelLabel
+              className='wheel-label'
+              css={{
                 transform: `translateZ(${radius}px)`,
                 WebkitTransform: `translateZ(${radius}px)`,
               }}
             >
               {props.label}
-            </div>
+            </WheelLabel>
           )}
         </StyledWheelInner>
-        <div
-          className='wheel__shadow-bottom'
-          style={{
+        <WheelShadowBottom
+          className='wheel-shadow-bottom'
+          css={{
             transform: `translateZ(${radius}px)`,
             WebkitTransform: `translateZ(${radius}px)`,
           }}
