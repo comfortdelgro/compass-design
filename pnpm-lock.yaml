@@ -386,9 +386,6 @@ importers:
       '@fortawesome/react-fontawesome':
         specifier: ^0.2.0
         version: 0.2.0(@fortawesome/fontawesome-svg-core@6.4.2)(react@18.2.0)
-      '@internationalized/number':
-        specifier: 3.2.0
-        version: 3.2.0
       '@react-aria/dialog':
         specifier: ^3.4.1
         version: 3.5.5(react-dom@18.2.0)(react@18.2.0)
@@ -1358,6 +1355,7 @@ packages:
       '@babel/core': 7.22.20
       '@babel/helper-module-transforms': 7.22.20(@babel/core@7.22.20)
       '@babel/helper-plugin-utils': 7.22.5
+      '@babel/helper-simple-access': 7.22.5
     dev: true
 
   /@babel/plugin-transform-modules-commonjs@7.22.15(@babel/core@7.22.20):
