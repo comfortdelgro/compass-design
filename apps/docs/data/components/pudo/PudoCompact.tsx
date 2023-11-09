@@ -74,7 +74,7 @@ const CompactExampleContainer = styled('div', {
   '@sm': {
     flexDirection: 'row',
 
-    '& > .pudo-container': {
+    '& > .cdg-pudo-container': {
       width: 'calc(100% / 2 - $2)',
     },
   },
