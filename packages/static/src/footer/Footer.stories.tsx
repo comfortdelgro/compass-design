@@ -1,4 +1,7 @@
-import { Meta } from "@storybook/react"
+import {faCamera, faGlobe} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {Meta} from '@storybook/react'
+import {Button} from '..'
 import Footer from './footer'
 import FooterHeader from './footer-header'
 import FooterInfo from './footer-info'
@@ -6,10 +9,6 @@ import FooterInfoDownload from './footer-info-download'
 import FooterInfoSocial from './footer-info-social'
 import FooterNavigation from './footer-nav'
 import FooterPolicy from './footer-policy'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCamera, faGlobe } from "@fortawesome/free-solid-svg-icons"
-import { Button } from ".."
-
 
 const zigLogo = (
   <svg
@@ -43,65 +42,67 @@ export const Basic = () => {
     {
       title: 'About us',
       children: [
-        { link: '*', name: 'Profile' },
-        { link: '*', name: 'Milestones' },
-        { link: '*', name: 'Sustainability' },
-        { link: '*', name: 'ConfortUnited' },
-        { link: '*', name: 'Careers' },
+        {link: '*', name: 'Profile'},
+        {link: '*', name: 'Milestones'},
+        {link: '*', name: 'Sustainability'},
+        {link: '*', name: 'ConfortUnited'},
+        {link: '*', name: 'Careers'},
       ],
     },
     {
       title: 'Promotions',
       children: [
-        { link: '*', name: 'Latest Promotions' },
-        { link: '*', name: 'Latest Promotions' },
-        { link: '*', name: 'Latest Promotions' },
+        {link: '*', name: 'Latest Promotions'},
+        {link: '*', name: 'Latest Promotions'},
+        {link: '*', name: 'Latest Promotions'},
       ],
     },
     {
       title: 'Drive with us',
       children: [
-        { link: '*', name: 'Register As A Cabby' },
-        { link: '*', name: 'Cabby Portal' },
-        { link: '*', name: 'Useful Links' },
+        {link: '*', name: 'Register As A Cabby'},
+        {link: '*', name: 'Cabby Portal'},
+        {link: '*', name: 'Useful Links'},
       ],
     },
     {
       title: 'News & Media',
       children: [
-        { link: '*', name: 'Register As A Cabby' },
-        { link: '*', name: 'Cabby Portal' },
+        {link: '*', name: 'Register As A Cabby'},
+        {link: '*', name: 'Cabby Portal'},
       ],
     },
     {
       title: 'Ride with us',
       children: [
-        { link: '*', name: 'App Features' },
-        { link: '*', name: 'ComfortPoints' },
-        { link: '*', name: 'Fares' },
-        { link: '*', name: 'Cabcharge' },
-        { link: '*', name: 'Seating Capacity' },
-        { link: '*', name: 'Cabcharge' },
+        {link: '*', name: 'App Features'},
+        {link: '*', name: 'ComfortPoints'},
+        {link: '*', name: 'Fares'},
+        {link: '*', name: 'Cabcharge'},
+        {link: '*', name: 'Seating Capacity'},
+        {link: '*', name: 'Cabcharge'},
       ],
     },
     {
       title: 'Train with us',
       children: [
-        { link: '*', name: 'Apply Now' },
-        { link: '*', name: 'TDVL / PDVL Courses' },
-        { link: '*', name: 'Taxi Refresher Course' },
+        {link: '*', name: 'Apply Now'},
+        {link: '*', name: 'TDVL / PDVL Courses'},
+        {link: '*', name: 'Taxi Refresher Course'},
       ],
     },
   ]
 
   return (
-    <div style={{
-      display: 'flex',
-      width: '100%',
-      flexDirection: 'column',
-      gap: '1rem',
-      padding: '1rem',
-    }}>
+    <div
+      style={{
+        display: 'flex',
+        width: '100%',
+        flexDirection: 'column',
+        gap: '1rem',
+        padding: '1rem',
+      }}
+    >
       <h3>White variant</h3>
       <Footer
         css={{
@@ -127,7 +128,7 @@ export const Basic = () => {
           <p>
             <FontAwesomeIcon
               icon={faGlobe}
-              style={{ marginRight: '8px' }}
+              style={{marginRight: '8px'}}
             ></FontAwesomeIcon>
             English
           </p>
@@ -146,7 +147,7 @@ export const Basic = () => {
           {navLinks.map((navItem) => {
             return (
               <div>
-                <h2 className='footer-nav-title' style={{ fontWeight: 'bold' }}>
+                <h2 className='footer-nav-title' style={{fontWeight: 'bold'}}>
                   {navItem.title}
                 </h2>
                 {navItem.children.map((child) => {
@@ -158,7 +159,7 @@ export const Basic = () => {
         </FooterNavigation>
         <FooterInfo
           css={{
-            '& span': { fontSize: '14px', fontWeight: '600', lineHeight: '21px' },
+            '& span': {fontSize: '14px', fontWeight: '600', lineHeight: '21px'},
           }}
         >
           <div>
@@ -172,21 +173,28 @@ export const Basic = () => {
             <span>Singapore 575717</span>
           </div>
           <FooterInfoDownload>
-            <Button css={{ width: '136px', background: 'black' }}>
+            <Button css={{width: '136px', background: 'black'}}>
               {' '}
               Appstore
             </Button>
-            <Button css={{ width: '136px', background: 'black' }}>
+            <Button css={{width: '136px', background: 'black'}}>
               {' '}
               Google Play
             </Button>
           </FooterInfoDownload>
         </FooterInfo>
         <FooterPolicy>
-          <p style={{ margin: '0px', lineHeight: '21px' }}>
+          <p style={{margin: '0px', lineHeight: '21px'}}>
             2022 ComfortDelGroTaxi. All rights reserved
           </p>
-          <div style={{ display: 'flex', width: 'fit-content', gap: '16px', flexWrap: 'wrap' }}>
+          <div
+            style={{
+              display: 'flex',
+              width: 'fit-content',
+              gap: '16px',
+              flexWrap: 'wrap',
+            }}
+          >
             <a href='#'>Privacy</a>
             <a href='#'>Accessibility</a>
             <a href='#'>Terms</a>
@@ -220,7 +228,7 @@ export const Basic = () => {
           <p>
             <FontAwesomeIcon
               icon={faGlobe}
-              style={{ marginRight: '8px' }}
+              style={{marginRight: '8px'}}
             ></FontAwesomeIcon>
             English
           </p>
@@ -239,7 +247,7 @@ export const Basic = () => {
           {navLinks.map((navItem) => {
             return (
               <div>
-                <h3 className='footer-nav-title' style={{ fontWeight: 'bold' }}>
+                <h3 className='footer-nav-title' style={{fontWeight: 'bold'}}>
                   {navItem.title}
                 </h3>
                 {navItem.children.map((child) => {
@@ -251,7 +259,7 @@ export const Basic = () => {
         </FooterNavigation>
         <FooterInfo
           css={{
-            '& span': { fontSize: '14px', fontWeight: '600', lineHeight: '21px' },
+            '& span': {fontSize: '14px', fontWeight: '600', lineHeight: '21px'},
           }}
         >
           <div>
@@ -265,21 +273,28 @@ export const Basic = () => {
             <span>Singapore 575717</span>
           </div>
           <FooterInfoDownload>
-            <Button css={{ width: '136px', background: 'black' }}>
+            <Button css={{width: '136px', background: 'black'}}>
               {' '}
               Appstore
             </Button>
-            <Button css={{ width: '136px', background: 'black' }}>
+            <Button css={{width: '136px', background: 'black'}}>
               {' '}
               Google Play
             </Button>
           </FooterInfoDownload>
         </FooterInfo>
         <FooterPolicy>
-          <p style={{ margin: '0px', lineHeight: '21px' }}>
+          <p style={{margin: '0px', lineHeight: '21px'}}>
             2022 ComfortDelGroTaxi. All rights reserved
           </p>
-          <div style={{ display: 'flex', width: 'fit-content', gap: '16px', flexWrap: 'wrap' }}>
+          <div
+            style={{
+              display: 'flex',
+              width: 'fit-content',
+              gap: '16px',
+              flexWrap: 'wrap',
+            }}
+          >
             <a href='#'>Privacy</a>
             <a href='#'>Accessibility</a>
             <a href='#'>Terms</a>
@@ -313,7 +328,7 @@ export const Basic = () => {
           <p>
             <FontAwesomeIcon
               icon={faGlobe}
-              style={{ marginRight: '8px' }}
+              style={{marginRight: '8px'}}
             ></FontAwesomeIcon>
             English
           </p>
@@ -332,7 +347,7 @@ export const Basic = () => {
           {navLinks.map((navItem) => {
             return (
               <div>
-                <h2 className='footer-nav-title' style={{ fontWeight: 'bold' }}>
+                <h2 className='footer-nav-title' style={{fontWeight: 'bold'}}>
                   {navItem.title}
                 </h2>
                 {navItem.children.map((child) => {
@@ -344,7 +359,7 @@ export const Basic = () => {
         </FooterNavigation>
         <FooterInfo
           css={{
-            '& span': { fontSize: '14px', fontWeight: '600', lineHeight: '21px' },
+            '& span': {fontSize: '14px', fontWeight: '600', lineHeight: '21px'},
           }}
         >
           <div>
@@ -358,21 +373,28 @@ export const Basic = () => {
             <span>Singapore 575717</span>
           </div>
           <FooterInfoDownload>
-            <Button css={{ width: '136px', background: 'black' }}>
+            <Button css={{width: '136px', background: 'black'}}>
               {' '}
               Appstore
             </Button>
-            <Button css={{ width: '136px', background: 'black' }}>
+            <Button css={{width: '136px', background: 'black'}}>
               {' '}
               Google Play
             </Button>
           </FooterInfoDownload>
         </FooterInfo>
         <FooterPolicy>
-          <p style={{ margin: '0px', lineHeight: '21px' }}>
+          <p style={{margin: '0px', lineHeight: '21px'}}>
             2022 ComfortDelGroTaxi. All rights reserved
           </p>
-          <div style={{ display: 'flex', width: 'fit-content', gap: '16px', flexWrap: 'wrap' }}>
+          <div
+            style={{
+              display: 'flex',
+              width: 'fit-content',
+              gap: '16px',
+              flexWrap: 'wrap',
+            }}
+          >
             <a href='#'>Privacy</a>
             <a href='#'>Accessibility</a>
             <a href='#'>Terms</a>

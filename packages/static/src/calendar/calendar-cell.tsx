@@ -1,5 +1,5 @@
-import { useFocusRing } from '@react-aria/focus'
-import React, { useRef } from 'react'
+import {useFocusRing} from '@react-aria/focus'
+import React, {useRef} from 'react'
 import {
   CalendarDate,
   DateValue,
@@ -9,11 +9,11 @@ import {
   isToday as isTodayFunction,
   parseDate,
 } from '../internationalized/date'
-import { useDOMRef } from '../utils/use-dom-ref'
-import { useCalendarCell } from './hooks/useCalendarCell'
-import { CalendarState, RangeCalendarState } from './types'
-import styles from './styles/calendar-cell.module.css'
 import CssInjection from '../utils/objectToCss/CssInjection'
+import {useDOMRef} from '../utils/use-dom-ref'
+import {useCalendarCell} from './hooks/useCalendarCell'
+import styles from './styles/calendar-cell.module.css'
+import {CalendarState, RangeCalendarState} from './types'
 
 interface Props {
   css?: unknown
@@ -35,10 +35,10 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
 
     const cellRef = useDOMRef(ref)
 
-    const { cellProps, buttonProps, isSelected, isUnavailable, formattedDate } =
-      useCalendarCell({ date }, state, cellRef)
+    const {cellProps, buttonProps, isSelected, isUnavailable, formattedDate} =
+      useCalendarCell({date}, state, cellRef)
 
-    let { isDisabled } = useCalendarCell({ date }, state, cellRef)
+    let {isDisabled} = useCalendarCell({date}, state, cellRef)
 
     const isOutsideMonth = !isSameMonth(currentMonth, date)
 
@@ -63,9 +63,12 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
     const classNameCombine = () => {
       let className = `${styles.calendarCell} `
       if (isFocusVisible) className += `focused ${styles.focused} `
-      if (isSelected && isRangeCalendar) className += `selected ${styles.selected} `
-      else if (isSelected && !isRangeCalendar) className += `highlighted ${styles.highlighted} `
-      if (isSelectionStart || isSelectionEnd) className += `highlighted ${styles.highlighted} `
+      if (isSelected && isRangeCalendar)
+        className += `selected ${styles.selected} `
+      else if (isSelected && !isRangeCalendar)
+        className += `highlighted ${styles.highlighted} `
+      if (isSelectionStart || isSelectionEnd)
+        className += `highlighted ${styles.highlighted} `
       if (isUnavailable) className += `unavailable ${styles.unavailable} `
       if (isToday) className += `today ${styles.today} `
       return className
@@ -79,9 +82,9 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
     }
     maxValueClassFunc()
 
-    const { focusProps, isFocusVisible } = useFocusRing()
+    const {focusProps, isFocusVisible} = useFocusRing()
 
-    const cellWrapperRef = useRef(null);
+    const cellWrapperRef = useRef(null)
 
     return (
       <>
@@ -97,8 +100,9 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
               <div
                 ref={cellRef}
                 hidden={isOutsideMonth}
-                className={`calendar-cell-value  ${'disabled'} ${isSelected ? 'selected' : ''
-                  } ${styles.calendarCellValue} ${styles.disabled}`}
+                className={`calendar-cell-value  ${'disabled'} ${
+                  isSelected ? 'selected' : ''
+                } ${styles.calendarCellValue} ${styles.disabled}`}
               >
                 {formattedDate}
               </div>
@@ -118,8 +122,11 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
                 role={buttonProps['role']}
                 ref={cellRef}
                 hidden={isOutsideMonth}
-                className={`calendar-cell-value  ${isDisabled ? 'disabled' : ''
-                  } ${isSelected ? 'selected' : ''} ${styles.calendarCellValue} ${isDisabled ? styles.disabled : ''}`}
+                className={`calendar-cell-value  ${
+                  isDisabled ? 'disabled' : ''
+                } ${isSelected ? 'selected' : ''} ${styles.calendarCellValue} ${
+                  isDisabled ? styles.disabled : ''
+                }`}
                 {...focusProps}
                 {...buttonProps}
                 tabIndex={buttonProps['tabIndex']}

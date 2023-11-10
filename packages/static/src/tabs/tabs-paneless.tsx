@@ -1,6 +1,6 @@
-import React, { Key } from 'react'
+import React, {Key} from 'react'
 import TabItem from './item'
-import Tabs, { TabsProps } from './tabs'
+import Tabs, {TabsProps} from './tabs'
 interface ItemProps {
   key: Key
   title: string

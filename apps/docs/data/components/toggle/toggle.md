@@ -43,6 +43,10 @@ import Toggle from '@comfortdelgro/react-compass/toggle'
 
 {{"demo": "ToggleCustomStyling.tsx"}}
 
+<!-- ## Toggle Server (Experimental)
+
+{{"demo": "ToggleServer.tsx"}} -->
+
 ## Props
 
 | Name            | Type                            | Default | Description                                                                             |

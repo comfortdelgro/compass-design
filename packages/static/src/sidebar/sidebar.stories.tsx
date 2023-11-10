@@ -4,7 +4,6 @@ import {Meta} from '@storybook/react'
 import React from 'react'
 import Button from './../button'
 import Sidebar from './index'
-import { Dropdown } from '..'
 
 const style: {
   display: string

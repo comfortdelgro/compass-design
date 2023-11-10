@@ -98,14 +98,27 @@ function handleVariables<T>(
 
 function objectToCSS(obj: StyleObject, selector = '', indent = ''): string {
   let css = ''
+  //add new variable for responsive case css
+  let mediaCss = ''
+  //add new variable for responsive case css
   // eslint-disable-next-line prefer-const
   let map = new Map<string, string>()
   const space = ' ' // space between parent class and child class
-
   for (const key in obj) {
-    if (typeof obj[key] === 'object') {
+    //add new logic for responsive case css
+    // logic check if contain @ responsive mark
+    if (key.startsWith('@')) {
+      const mediaQuery = key
+      const mediaQueryCSS = objectToCSS(
+        obj[key] as StyleObject,
+        selector,
+        indent + '  ',
+      )
+      mediaCss += `${mediaQuery} {\n${mediaQueryCSS}\n}\n`
+      //add new logic for responsive case css
+    } else if (typeof obj[key] === 'object') {
       const newSelector = `${selector}${space}${key.replace(/&/g, '')}`.trim()
-      css += objectToCSS(obj[key] as StyleObject, newSelector, indent)
+      css = objectToCSS(obj[key] as StyleObject, newSelector, indent)
     } else {
       // Convert the key from camelCase to kebab-case
       const kebabKey = key.replace(/([A-Z])/g, '-$1').toLowerCase()
@@ -131,6 +144,8 @@ function objectToCSS(obj: StyleObject, selector = '', indent = ''): string {
   for (const [selector, value] of map) {
     css += `${indent}${selector} {\n${indent}  ${value};\n${indent}}\n`
   }
+  // push media css config to below for higher priority
+  css += mediaCss
   return css
 }
 

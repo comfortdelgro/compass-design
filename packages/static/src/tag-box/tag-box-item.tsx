@@ -40,8 +40,7 @@ const TagBoxItem = React.forwardRef<HTMLDivElement, BannerProps>(
 
     const onValueClick = () => {
       if (!isDisabled) {
-        if(addInputRef.current)
-          addInputRef.current.disabled = true;
+        if (addInputRef.current) addInputRef.current.disabled = true
         setEditable(true)
         setTimeout(() => {
           inputRef?.current?.focus()
@@ -49,24 +48,27 @@ const TagBoxItem = React.forwardRef<HTMLDivElement, BannerProps>(
       }
     }
 
-    const caculateWidth = (string: string, callback: (w: number) => void) => {
-      const fakeEle = document.createElement('div')
-      fakeEle.style.position = 'absolute'
-      fakeEle.style.top = '0'
-      fakeEle.style.left = '-9999px'
-      fakeEle.style.overflow = 'hidden'
-      fakeEle.style.visibility = 'hidden'
-      fakeEle.style.whiteSpace = 'nowrap'
-      fakeEle.style.height = '0'
-      fakeEle.style.width = 'fit-content'
-      fakeEle.style.fontSize = '12px'
-      fakeEle.style.fontWeight = '600'
-      fakeEle.style.maxWidth = `${wrapperRef.current!.clientWidth - 62}px`
-      fakeEle.innerHTML = string.replace(/\s/g, '&' + 'nbsp;')
-      document.body.appendChild(fakeEle)
-      callback(fakeEle.clientWidth)
-      fakeEle.remove()
-    }
+    const caculateWidth = React.useCallback(
+      (string: string, callback: (w: number) => void) => {
+        const fakeEle = document.createElement('div')
+        fakeEle.style.position = 'absolute'
+        fakeEle.style.top = '0'
+        fakeEle.style.left = '-9999px'
+        fakeEle.style.overflow = 'hidden'
+        fakeEle.style.visibility = 'hidden'
+        fakeEle.style.whiteSpace = 'nowrap'
+        fakeEle.style.height = '0'
+        fakeEle.style.width = 'fit-content'
+        fakeEle.style.fontSize = '12px'
+        fakeEle.style.fontWeight = '600'
+        fakeEle.style.maxWidth = `${wrapperRef.current!.clientWidth - 62}px`
+        fakeEle.innerHTML = string.replace(/\s/g, '&' + 'nbsp;')
+        document.body.appendChild(fakeEle)
+        callback(fakeEle.clientWidth)
+        fakeEle.remove()
+      },
+      [wrapperRef],
+    )
 
     const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const string = e.target.value
@@ -92,8 +94,7 @@ const TagBoxItem = React.forwardRef<HTMLDivElement, BannerProps>(
       const value = (e.target as HTMLInputElement).value
       if (value !== '' && e.key === 'Enter') {
         onEdit?.(id, value)
-        if(addInputRef.current)
-          addInputRef.current.disabled = false;
+        if (addInputRef.current) addInputRef.current.disabled = false
         inputRef?.current?.blur()
       }
       if (e.key == 'Escape' || e.keyCode == 27) {
@@ -115,13 +116,12 @@ const TagBoxItem = React.forwardRef<HTMLDivElement, BannerProps>(
         })
       }
       setInputValue(value)
-    }, [value])
+    }, [caculateWidth, value, wrapperRef])
 
     const onBlur = () => {
       setInputValue(value)
       setEditable(false)
-      if(addInputRef.current)
-        addInputRef.current.disabled = false;
+      if (addInputRef.current) addInputRef.current.disabled = false
       caculateWidth(value, (w: number) => {
         if (inputRef.current) inputRef.current.style.width = `${w + 4}px`
       })

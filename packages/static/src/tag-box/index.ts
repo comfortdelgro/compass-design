@@ -4,9 +4,13 @@ import TagBoxAction from './tag-box-action'
 export type {TagBoxProps} from './tag-box'
 export type {TagBoxActionProps} from './tag-box-action'
 
-TagBox.Action = TagBoxAction
+const ComposableTagBox = TagBox as typeof TagBox & {
+  Action: typeof TagBoxAction
+}
 
-TagBox.displayName = 'TagBox'
-TagBox.Action.displayName = 'TagBox.Action'
+ComposableTagBox.Action = TagBoxAction
 
-export default TagBox
+ComposableTagBox.displayName = 'TagBox'
+ComposableTagBox.Action.displayName = 'TagBox.Action'
+
+export default ComposableTagBox

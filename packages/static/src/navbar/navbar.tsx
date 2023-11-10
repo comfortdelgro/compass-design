@@ -1,11 +1,11 @@
+import clsx from 'clsx'
 import React from 'react'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import NavbarActions from './navbar-actions'
 import NavbarBrand from './navbar-brand'
-import { NavbarLinks } from './navbar-links'
-import CssInjection from '../utils/objectToCss/CssInjection'
-import clsx from 'clsx'
+import {NavbarLinks} from './navbar-links'
+import {NavbarSeperator} from './navbar-seperator'
 import styles from './styles/navbar.module.css'
-import { NavbarSeperator } from './navbar-seperator'
 
 interface Props {
   css?: unknown
@@ -45,7 +45,7 @@ const Navbar = React.forwardRef<HTMLDivElement, NavbarProps>((props, ref) => {
           [styles.blue]: color === 'blue',
           [styles.white]: color === 'white',
           [styles.website]: variant === 'website',
-          [className]: true
+          [className]: true,
         })}
         ref={ref}
         role='navigation'

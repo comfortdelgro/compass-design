@@ -39,9 +39,14 @@ const FooterNavigation = React.forwardRef<
         {
           ...delegated,
           className: styles.footerNav,
-          style: { '--gridNumber': gridNumber, '--tabletGridNumber': tabletGridNumber },
+          style: {
+            '--gridNumber': gridNumber,
+            '--tabletGridNumber': tabletGridNumber,
+          },
           ref: ref,
-        }, children)}
+        },
+        children,
+      )}
     </CssInjection>
   )
 })
