@@ -44,6 +44,7 @@ interface Props
   hasShortcuts?: boolean
   ctaButtonRender?: React.ReactNode
   visibleMonths?: 1 | 2
+  shouldOnChangeTriggerOnSameDate?: boolean
   onSearchButtonClick?: (
     e:
       | React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -69,6 +70,7 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
       visibleMonths,
       onSearchButtonClick,
       customShortcuts,
+      shouldOnChangeTriggerOnSameDate,
       ...delegated
     } = props
 
@@ -157,6 +159,7 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
             calendarProps={calendarProps}
             hasShortcuts={hasShortcuts}
             ctaButtonRender={ctaButtonRender}
+            shouldOnChangeTriggerOnSameDate={shouldOnChangeTriggerOnSameDate}
             onSearchButtonClick={onSearchButtonClick}
             customShortcuts={customShortcuts}
             css={props.calendarCSS}
@@ -246,6 +249,7 @@ interface DateRangeCalendarWrapperProps {
   hasShortcuts?: boolean | undefined
   ctaButtonRender?: React.ReactNode | undefined
   visibleMonths?: 1 | 2 | undefined
+  shouldOnChangeTriggerOnSameDate?: boolean | undefined
   onSearchButtonClick?:
     | ((
         e:
@@ -267,6 +271,7 @@ const DateRangeCalendarWrapper = (props: DateRangeCalendarWrapperProps) => {
     maxValue = parseDate('2999-03-10'),
     ctaButtonRender,
     visibleMonths,
+    shouldOnChangeTriggerOnSameDate,
     onSearchButtonClick,
     customShortcuts,
   } = props
@@ -305,6 +310,9 @@ const DateRangeCalendarWrapper = (props: DateRangeCalendarWrapperProps) => {
               maxValue={maxValue}
               hasShortcuts={hasShortcuts}
               ctaButtonRender={ctaButtonRender}
+              shouldOnChangeTriggerOnSameDate={
+                !!shouldOnChangeTriggerOnSameDate
+              }
               onSearchButtonClick={onSearchButtonClick}
               customShortcuts={customShortcuts}
               visibleMonths={

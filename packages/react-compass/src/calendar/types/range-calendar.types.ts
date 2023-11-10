@@ -8,6 +8,7 @@ export interface RangeCalendarProps<T extends DateValue>
   extends CalendarPropsBase,
     ValueBase<RangeValue<T> | null> {
   allowsNonContiguousRanges?: boolean
+  shouldOnChangeTriggerOnSameDate?: boolean
 }
 
 export interface RangeCalendarStateOptions<T extends DateValue = DateValue>
