@@ -1,5 +1,5 @@
 import {IconButton} from '@storybook/components'
-import {useCallback, useEffect, useState} from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import {TOOL_ID} from './constants'
 
 export const Tool = () => {
