@@ -92,6 +92,15 @@ export type {
   DropdownMenuSubmenuProps,
   DropdownMenuToggleProps,
 } from './dropdown-menu'
+export {default as Error} from './error'
+export type {
+  ErrorActionProps,
+  ErrorDescriptionProps,
+  ErrorIconProps,
+  ErrorImageProps,
+  ErrorProps,
+  ErrorTitleProps,
+} from './error'
 export {default as File} from './file'
 export type {FilePreviewProps, FileStateProps} from './file'
 export {Footer, FooterInfo} from './footer'
