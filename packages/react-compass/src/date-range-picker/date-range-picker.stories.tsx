@@ -116,6 +116,9 @@ const MaxDateFirstChosenRangePicker = () => {
       shouldOnChangeTriggerOnSameDate
       maxValue={maxValue}
       onOpenChange={(isOpen) => {
+        if (value?.start && !value.end) {
+          return
+        }
         if (isOpen) {
           setMaxValue(null)
         }

@@ -1,5 +1,5 @@
 import {Meta} from '@storybook/react'
-import React from 'react'
+import React, { useState } from 'react'
 import {Button, CalendarProps, RangeCalendarShorcutItem, RangeValue} from '..'
 import {
   DateValue,
@@ -83,6 +83,8 @@ export const Variants = () => {
             minValue={today(getLocalTimeZone()).add({days: 1})}
             maxValue={today(getLocalTimeZone()).add({days: 7})}
           />
+          <h3>Max range on first chosen date</h3>
+          <MaxDateFirstChosenRangePicker />
           <h3>Is Mobile</h3>
           <DateRangePicker
             startDateLabel='Start date'
@@ -133,6 +135,36 @@ export const Variants = () => {
         </div>
       </I18nProvider>
     </div>
+  )
+}
+
+const MaxDateFirstChosenRangePicker = () => {
+  const [value, setValue] = useState<RangeValue<DateValue | null> | null>(null)
+  const [maxValue, setMaxValue] = useState<DateValue | null>(null)
+
+  const onChange = (value: RangeValue<DateValue | null> | null) => {
+    setValue(value)
+    if (value && value.start && !value.end && 30) {
+      setMaxValue(value.start.subtract({days: -30}))
+    }
+  }
+
+  return (
+    <DateRangePicker
+      value={value}
+      onChange={onChange}
+      shouldCloseOnSelect
+      shouldOnChangeTriggerOnSameDate
+      maxValue={maxValue}
+      onOpenChange={(isOpen) => {
+        if(value?.start && !value.end) {
+          return;
+        }
+        if (isOpen) {
+          setMaxValue(null)
+        }
+      }}
+    />
   )
 }
 
