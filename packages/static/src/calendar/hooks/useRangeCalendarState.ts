@@ -48,6 +48,7 @@ export function useRangeCalendarState<T extends DateValue = DateValue>(
     visibleDuration = {months: 1},
     minValue,
     maxValue,
+    shouldOnChangeTriggerOnSameDate,
     ...calendarProps
   } = props
   const [value, setValue] = useControlledState(
@@ -171,7 +172,8 @@ export function useRangeCalendarState<T extends DateValue = DateValue>(
       // @ts-ignore
       onChange?.({start: date, end: null as unknown as DateValue})
     } else {
-      if (anchorDate.compare(date) > 0) {
+      // reset anchor date if anchor date is greater than choosen date
+      if (anchorDate.compare(date) > 0 || value?.end?.compare(date) === 0) {
         setAnchorDate(date)
         // @ts-ignore
         onChange?.({start: date, end: null as unknown as DateValue})
@@ -219,15 +221,12 @@ export function useRangeCalendarState<T extends DateValue = DateValue>(
   // @ts-ignore
   return {
     ...calendar,
-    // @ts-ignore
     value,
-    // @ts-ignore
+    shouldOnChangeTriggerOnSameDate,
     setValue,
     anchorDate,
     setAnchorDate,
-    // @ts-ignore
     highlightedRange,
-    // @ts-ignore
     validationState,
     selectFocusedDate() {
       selectDate(calendar.focusedDate as CalendarDate)
@@ -271,7 +270,7 @@ function makeRange(start: DateValue, end: DateValue): RangeValue<CalendarDate> {
   }
 
   if (end.compare(start) < 0) {
-    ;[start, end] = [end, start]
+    [start, end] = [end, start]
   }
 
   return {start: toCalendarDate(start), end: toCalendarDate(end)}
