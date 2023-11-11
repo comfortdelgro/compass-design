@@ -1,6 +1,6 @@
 import React from 'react'
-import { useDOMRef } from '../utils/use-dom-ref'
 import CssInjection from '../utils/objectToCss/CssInjection'
+import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/error.module.css'
 
 interface Props {
@@ -15,7 +15,13 @@ export type ErrorTitleProps = Props &
 
 const ErrorTitle = React.forwardRef<HTMLHeadingElement, ErrorTitleProps>(
   (props, ref) => {
-    const { children, css = {}, variant = 'primary', className = '', ...htmlProps } = props
+    const {
+      children,
+      css = {},
+      variant = 'primary',
+      className = '',
+      ...htmlProps
+    } = props
     const errorTitleRef = useDOMRef<HTMLHeadingElement>(ref)
 
     const errorTitleClasses = [
@@ -23,7 +29,8 @@ const ErrorTitle = React.forwardRef<HTMLHeadingElement, ErrorTitleProps>(
       className,
       variant && styles[`${variant}VariantErrorTitle`],
       styles.errorTitle,
-    ].filter(Boolean)
+    ]
+      .filter(Boolean)
       .join(' ')
 
     return (

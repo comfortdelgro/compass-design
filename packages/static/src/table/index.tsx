@@ -14,9 +14,9 @@ import TableCheckbox from './table-checkbox'
 import TableToolbar from './table-toolbar'
 
 import ReactTable from './table'
+import TableCheckboxCell from './table-checkbox-cell'
 import TableFooter from './table-footer'
 import ProgressPercentage from './table-progress'
-import TableCheckboxCell from './table-checkbox-cell'
 export {
   EditableCellContextProvider,
   useEditableCellContext,

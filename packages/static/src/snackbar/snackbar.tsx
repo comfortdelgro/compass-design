@@ -1,12 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { pickChild } from '../utils/pick-child'
-import { useDOMRef } from '../utils/use-dom-ref'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import {pickChild} from '../utils/pick-child'
+import {useDOMRef} from '../utils/use-dom-ref'
 import SnackbarPrefixIcon from './snackbar-prefix-icon'
 import SnackbarSuffixIcon from './snackbar-suffix-icon'
 import SnackbarText from './snackbar-text'
 import styles from './styles/snackbar.module.css'
-import CssInjection from '../utils/objectToCss/CssInjection'
 
 interface Props {
   id?: number | string
@@ -18,7 +18,7 @@ interface Props {
   autoClose?: false | number
   css?: unknown
   className?: string
-  type?: "success" | "warning" | "default" | "error" | "reminder" | "ongoing";
+  type?: 'success' | 'warning' | 'default' | 'error' | 'reminder' | 'ongoing'
 }
 
 export type SnackbarProps = Props &
@@ -46,15 +46,15 @@ const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
 
     const snackbarRef = useDOMRef<HTMLDivElement>(ref)
 
-    const { child: SnackbarSuffixIconElement } = pickChild<
+    const {child: SnackbarSuffixIconElement} = pickChild<
       typeof SnackbarSuffixIcon
     >(children, SnackbarSuffixIcon)
 
-    const { child: SnackbarPrefixIconElement } = pickChild<
+    const {child: SnackbarPrefixIconElement} = pickChild<
       typeof SnackbarPrefixIcon
     >(children, SnackbarPrefixIcon)
 
-    const { child: SnackbarTextElement } = pickChild<typeof SnackbarText>(
+    const {child: SnackbarTextElement} = pickChild<typeof SnackbarText>(
       children,
       SnackbarText,
     )
@@ -82,7 +82,7 @@ const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
       'cdg-snackbar',
       styles.snackbar,
       type && styles[`${type}Type`],
-      className
+      className,
     ]
       .filter(Boolean)
       .join(' ')
@@ -99,7 +99,9 @@ const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
               >
                 {SnackbarPrefixIconElement}
                 {SnackbarTextElement}
-                <div className={`cdg-snackbar-right-section ${styles.snackbarRightSection}`}>
+                <div
+                  className={`cdg-snackbar-right-section ${styles.snackbarRightSection}`}
+                >
                   {SnackbarSuffixIconElement &&
                     React.cloneElement(
                       SnackbarSuffixIconElement as unknown as JSX.Element,

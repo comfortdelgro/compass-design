@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import {ReactNode} from 'react'
 
 export interface SnackbarItemType {
   id?: number
@@ -17,13 +17,13 @@ export interface SnackbarState {
 
 export type SnackbarActions =
   | {
-    type: 'ADD_SNACKBAR'
-    payload: SnackbarItemType
-  }
+      type: 'ADD_SNACKBAR'
+      payload: SnackbarItemType
+    }
   | {
-    type: 'DELETE_SNACKBAR'
-    payload: number
-  }
+      type: 'DELETE_SNACKBAR'
+      payload: number
+    }
   | {
-    type: 'CLEAR_SNACKBAR'
-  }
+      type: 'CLEAR_SNACKBAR'
+    }

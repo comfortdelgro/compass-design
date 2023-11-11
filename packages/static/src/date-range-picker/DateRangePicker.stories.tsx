@@ -1,5 +1,5 @@
 import {Meta} from '@storybook/react'
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import {Button, CalendarProps, RangeCalendarShorcutItem, RangeValue} from '..'
 import {
   DateValue,
@@ -157,8 +157,8 @@ const MaxDateFirstChosenRangePicker = () => {
       shouldOnChangeTriggerOnSameDate
       maxValue={maxValue}
       onOpenChange={(isOpen) => {
-        if(value?.start && !value.end) {
-          return;
+        if (value?.start && !value.end) {
+          return
         }
         if (isOpen) {
           setMaxValue(null)

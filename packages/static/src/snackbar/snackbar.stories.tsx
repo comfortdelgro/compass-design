@@ -1,13 +1,13 @@
 import CloseIcon from '@comfortdelgro/compass-icons/react/h5-close'
 import WarningIcon from '@comfortdelgro/compass-icons/react/warning-filled'
-import { faImage, faXmark } from '@fortawesome/free-solid-svg-icons'
-import React, { Key } from 'react'
+import {faImage, faXmark} from '@fortawesome/free-solid-svg-icons'
+import {Meta} from '@storybook/react'
+import React, {Key} from 'react'
 import Snackbar from '.'
 import Button from '../button/button'
 import Dropdown from '../dropdown'
-import { Icon } from '../icon'
-import { SnackbarContextProvider, useSnackbar } from './service'
-import { Meta } from '@storybook/react'
+import {Icon} from '../icon'
+import {SnackbarContextProvider, useSnackbar} from './service'
 
 const style: {
   display: string
@@ -26,7 +26,7 @@ const style: {
   height: '100%',
   width: '100%',
   padding: '3rem',
-  gap: '0.5rem'
+  gap: '0.5rem',
 }
 
 export const Default: React.FC = () => {
@@ -36,10 +36,10 @@ export const Default: React.FC = () => {
   const [isDefaultOpen, setIsDefaultOpen] = React.useState(false)
 
   return (
-    <div style={{ ...style }}>
+    <div style={{...style}}>
       <h3>Default snackbar</h3>
       <Dropdown.Select
-        css={{ width: '44rem' }}
+        css={{width: '44rem'}}
         isRequired
         label='Please select type'
         placeholder='Choose a type'
@@ -47,12 +47,12 @@ export const Default: React.FC = () => {
         onSelectionChange={(k: Key) =>
           setType(
             k as
-            | 'default'
-            | 'error'
-            | 'success'
-            | 'warning'
-            | 'reminder'
-            | 'ongoing',
+              | 'default'
+              | 'error'
+              | 'success'
+              | 'warning'
+              | 'reminder'
+              | 'ongoing',
           )
         }
       >
@@ -63,7 +63,7 @@ export const Default: React.FC = () => {
         <Dropdown.Item key='reminder'>Reminder</Dropdown.Item>
         <Dropdown.Item key='ongoing'>Ongoing</Dropdown.Item>
       </Dropdown.Select>
-      <Button css={{ width: '10rem' }} onPress={() => setIsDefaultOpen(true)}>
+      <Button css={{width: '10rem'}} onPress={() => setIsDefaultOpen(true)}>
         Open Snackbar
       </Button>
       <Snackbar
@@ -99,7 +99,7 @@ const SubService = () => {
       }}
     >
       <Button
-        css={{ width: 'fit-content', marginBottom: '1rem' }}
+        css={{width: 'fit-content', marginBottom: '1rem'}}
         onClick={() =>
           snackbar.show({
             type: 'success',
@@ -113,7 +113,7 @@ const SubService = () => {
         Open snackbar
       </Button>
       <Button
-        css={{ width: 'fit-content', marginBottom: '1rem' }}
+        css={{width: 'fit-content', marginBottom: '1rem'}}
         onClick={() =>
           snackbar.show({
             text: 'Lorem ipsum dolor, sit amet consectetur',
@@ -126,7 +126,7 @@ const SubService = () => {
         Without suffix icon
       </Button>
       <Button
-        css={{ width: 'fit-content', marginBottom: '1rem' }}
+        css={{width: 'fit-content', marginBottom: '1rem'}}
         onClick={() =>
           snackbar.show({
             text: 'Lorem ipsum dolor, sit amet consectetur',
@@ -139,7 +139,7 @@ const SubService = () => {
         Without prefix icon
       </Button>
       <Button
-        css={{ width: 'fit-content', marginBottom: '1rem' }}
+        css={{width: 'fit-content', marginBottom: '1rem'}}
         onClick={() =>
           snackbar.show({
             text: 'Lorem ipsum dolor, sit amet consectetur',
@@ -152,7 +152,7 @@ const SubService = () => {
         With text only
       </Button>
       <Button
-        css={{ width: 'fit-content', marginBottom: '1rem' }}
+        css={{width: 'fit-content', marginBottom: '1rem'}}
         onClick={() =>
           snackbar.show({
             text: 'Lorem ipsum dolor, sit amet consectetur',
@@ -165,7 +165,7 @@ const SubService = () => {
         Autoclose after 3000ms
       </Button>
       <Button
-        css={{ width: 'fit-content', marginBottom: '1rem' }}
+        css={{width: 'fit-content', marginBottom: '1rem'}}
         onClick={() => snackbar.clearAll()}
       >
         Clear all snackbars
@@ -176,7 +176,7 @@ const SubService = () => {
 
 export const Multiple: React.FC = () => {
   return (
-    <div style={{ ...style }}>
+    <div style={{...style}}>
       <h3>Snackbar as a service</h3>
       <SnackbarContextProvider>
         <SubService />

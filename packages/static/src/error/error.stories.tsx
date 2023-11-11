@@ -1,9 +1,9 @@
-import { faBug } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faBug} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {Meta} from '@storybook/react'
 import React from 'react'
 import Button from '../button'
 import Error from './index'
-import { Meta } from '@storybook/react'
 
 const style: {
   display: string
@@ -28,7 +28,7 @@ export const Default: React.FC = () => {
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. pariatur.'
 
   return (
-    <div style={{ ...style }}>
+    <div style={{...style}}>
       <h3>Default error is primary variant</h3>
 
       <Error>
@@ -56,7 +56,7 @@ export const Variant: React.FC = () => {
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. pariatur.'
 
   return (
-    <div style={{ ...style }}>
+    <div style={{...style}}>
       <h3>Primary variant</h3>
       <Error variant='primary'>
         <Error.Icon>
@@ -78,7 +78,7 @@ export const Variant: React.FC = () => {
       <h3>Secondary variant</h3>
       <Error variant='secondary'>
         <Error.Image>
-          <FontAwesomeIcon icon={faBug} style={{ height: 'inherit' }} />
+          <FontAwesomeIcon icon={faBug} style={{height: 'inherit'}} />
         </Error.Image>
         <Error.Title>Error: some bugs</Error.Title>
         <Error.Description>{lorem}</Error.Description>

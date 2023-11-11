@@ -1,7 +1,7 @@
-import React, { createContext, ReactNode, useReducer } from 'react'
+import {createContext, ReactNode, useReducer} from 'react'
 import SnackbarsContainer from './snackbar-container'
-import { snackbarReducer } from './snackbar-reducer'
-import { SnackbarItemType } from './types'
+import {snackbarReducer} from './snackbar-reducer'
+import {SnackbarItemType} from './types'
 
 export const SnackbarContext = createContext<SnackbarContextValue>({
   show: () => {
@@ -40,7 +40,7 @@ export const SnackbarContextProvider = ({
     const id = Date.now()
     dispatch({
       type: 'ADD_SNACKBAR',
-      payload: { ...item, id },
+      payload: {...item, id},
     })
   }
 
@@ -49,14 +49,14 @@ export const SnackbarContextProvider = ({
   }
 
   const remove = (id: number) => {
-    dispatch({ type: 'DELETE_SNACKBAR', payload: id })
+    dispatch({type: 'DELETE_SNACKBAR', payload: id})
   }
 
   const clearAll = () => {
-    dispatch({ type: 'CLEAR_SNACKBAR' })
+    dispatch({type: 'CLEAR_SNACKBAR'})
   }
 
-  const value: SnackbarContextValue = { show, remove, clearAll }
+  const value: SnackbarContextValue = {show, remove, clearAll}
 
   return (
     <SnackbarContext.Provider value={value}>
