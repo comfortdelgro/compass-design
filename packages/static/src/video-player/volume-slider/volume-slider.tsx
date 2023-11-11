@@ -1,7 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react'
 import styles from '../styles/volume-slider.module.css'
 
-
 interface VerticalSliderProps {
   value: number
   onChange: (value: number) => void
@@ -69,7 +68,7 @@ const VolumeSlider: React.FC<VerticalSliderProps> = ({value, onChange}) => {
     }
     return (
       <div>
-        <div className={styles.progressBar} style={progressBarStyles}/>
+        <div className={styles.progressBar} style={progressBarStyles} />
       </div>
     )
   }

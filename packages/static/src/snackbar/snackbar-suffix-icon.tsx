@@ -1,7 +1,7 @@
 import React from 'react'
-import { useDOMRef } from '../utils/use-dom-ref'
-import styles from './styles/snackbar.module.css'
 import CssInjection from '../utils/objectToCss/CssInjection'
+import {useDOMRef} from '../utils/use-dom-ref'
+import styles from './styles/snackbar.module.css'
 
 interface Props {
   children?: React.ReactNode
@@ -17,7 +17,7 @@ const SnackbarSuffixIcon = React.forwardRef<
   HTMLDivElement,
   SnackbarSuffixIconProps
 >((props, ref) => {
-  const { children, css = {}, className = '', onClose, ...htmlProps } = props
+  const {children, css = {}, className = '', onClose, ...htmlProps} = props
   const snackbarSuffixIconRef = useDOMRef<HTMLDivElement>(ref)
   return (
     <CssInjection css={css} childrenRef={snackbarSuffixIconRef}>

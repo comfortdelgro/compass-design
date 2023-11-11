@@ -1,40 +1,40 @@
 import {
-faCheck,
-faChevronDown,
-faChevronRight,
-faClose,
-faDashboard,
-faFileLines,
-faPencil,
-faTrashAlt,
+  faCheck,
+  faChevronDown,
+  faChevronRight,
+  faClose,
+  faDashboard,
+  faFileLines,
+  faPencil,
+  faTrashAlt,
 } from '@fortawesome/free-solid-svg-icons'
-import { Meta } from '@storybook/react'
-import React,{ Key,MouseEvent,TouchEvent,useState } from 'react'
-import Table,{
-TableCellContext,
-TableColumnDef,
-TableHeaderContext,
-TableSortingState,
-useEditableCellContext,
+import {Meta} from '@storybook/react'
+import React, {Key, MouseEvent, TouchEvent, useState} from 'react'
+import Table, {
+  TableCellContext,
+  TableColumnDef,
+  TableHeaderContext,
+  TableSortingState,
+  useEditableCellContext,
 } from '.'
 import {
-Button,
-Dropdown,
-Grid,
-Icon,
-Pagination,
-SearchField,
-Spinner,
-TextField,
+  Button,
+  Dropdown,
+  Grid,
+  Icon,
+  Pagination,
+  SearchField,
+  Spinner,
+  TextField,
 } from '..'
 import StatusComponent from './for story/person-status'
 import {
-LimitRequestStatus,
-Person,
-makeData,
-makeRequestStatusData,
+  LimitRequestStatus,
+  makeData,
+  makeRequestStatusData,
+  Person,
 } from './makeData'
-import { OptionType } from './table'
+import {OptionType} from './table'
 import ProgressPercentage from './table-progress'
 export const Basic: React.FC = () => {
   const [page, setPage] = useState(1)

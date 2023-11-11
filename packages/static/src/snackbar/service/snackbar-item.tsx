@@ -1,9 +1,9 @@
-import React, { useRef } from 'react'
-import { useSnackbar } from '../hooks/useSnackbar'
+import React, {useRef} from 'react'
+import CssInjection from '../../utils/objectToCss/CssInjection'
+import {useSnackbar} from '../hooks/useSnackbar'
 import Snackbar from '../snackbar'
 import styles from '../styles/snackbar-item.module.css'
-import { SnackbarItemType } from './types'
-import CssInjection from '../../utils/objectToCss/CssInjection'
+import {SnackbarItemType} from './types'
 
 export type SnackbarItemProps = SnackbarItemType & {
   snackbarItemClassName?: string
@@ -41,13 +41,9 @@ const SnackbarItem = ({
     }
   }
 
-  const contentClasses = [
-    'cdg-snackbar-item',
-    styles.snackbarItem,
-  ]
+  const contentClasses = ['cdg-snackbar-item', styles.snackbarItem]
     .filter(Boolean)
     .join(' ')
-
 
   return (
     <CssInjection>
@@ -61,8 +57,12 @@ const SnackbarItem = ({
           css={css}
           onClick={handleClick}
         >
-          {prefixIcon && <Snackbar.PrefixIcon>{prefixIcon}</Snackbar.PrefixIcon>}
-          {suffixIcon && <Snackbar.SuffixIcon>{suffixIcon}</Snackbar.SuffixIcon>}
+          {prefixIcon && (
+            <Snackbar.PrefixIcon>{prefixIcon}</Snackbar.PrefixIcon>
+          )}
+          {suffixIcon && (
+            <Snackbar.SuffixIcon>{suffixIcon}</Snackbar.SuffixIcon>
+          )}
 
           {text && <Snackbar.Text>{text}</Snackbar.Text>}
         </Snackbar>

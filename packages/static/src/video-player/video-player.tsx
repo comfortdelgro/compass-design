@@ -185,7 +185,6 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
     }
   }
 
-
   return (
     <div
       className={`cdg-video-player ${styles.videoPlayer}`}
@@ -193,9 +192,7 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
       onKeyDown={handleWrapperKeyDown}
     >
       {loadError && (
-        <div
-          className={`cdg-load-error ${styles.videoLoadError}`}
-        >
+        <div className={`cdg-load-error ${styles.videoLoadError}`}>
           Sorry, the video failed to load. Please try again later.
         </div>
       )}
