@@ -38,6 +38,7 @@ interface Props {
   hasShortcuts?: boolean
   ctaButtonRender?: React.ReactNode
   visibleMonths?: 1 | 2
+  shouldOnChangeTriggerOnSameDate?: boolean
   onSearchButtonClick?:
     | ((
         e:

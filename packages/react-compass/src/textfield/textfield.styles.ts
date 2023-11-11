@@ -46,14 +46,15 @@ export const StyledTextFieldBox = styled('div', {
     width: '$5',
     height: '$5',
     marginLeft: '$2_5',
-    marginRight: '-$1',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
   '.prefix': {
     minWidth: '$5',
     height: '$5',
     marginLeft: '$2_5',
-    marginRight: '-$1',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -63,13 +64,14 @@ export const StyledTextFieldBox = styled('div', {
     width: '$4',
     height: '$4',
     marginRight: '$2_5',
-    marginLeft: '-$1',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
   '.password-icon': {
     fontSize: '0.8em',
     marginRight: '$2_5',
-    marginLeft: '-$1',
     svg: {
       height: '1rem',
     },
@@ -102,11 +104,11 @@ export const StyledTextFieldBox = styled('div', {
 })
 
 export const StyledTextField = styled('input', {
-  width: '100%',
+  flex: 1,
   fontSize: '$label1',
   fontWeight: '$semibold',
   lineHeight: '$normal',
-  padding: '$1_5 $3',
+  padding: '$1_5 $2',
   border: 0,
   borderRadius: '$md',
   backgroundColor: '$whiteText',

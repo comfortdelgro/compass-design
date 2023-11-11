@@ -1,0 +1,32 @@
+@import '../../theme/theme.module.css';
+
+@layer default;
+
+@layer default {
+  .sliderContainer {
+    position: relative;
+    height: 100%;
+    width: var(--cdg-spacing-3);
+    background: var(--cdg-color-gray50);
+    cursor: pointer;
+    border-radius: var(--cdg-border-radius-full);
+  }
+
+  .thumb {
+    right: 0;
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    transform: translate3d(100%, -50%, 0);
+    cursor: pointer;
+    opacity: 0;
+  }
+
+  .progressBar{
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: var(--cdg-color-background);
+      border-radius: var(--cdg-border-radius-full);
+  }
+}

@@ -1,0 +1,222 @@
+@import '../../theme/theme.module.css';
+
+@layer default, variant;
+
+@layer default {
+
+  /* ErrorImage.module.css */
+  .errorImage {
+    /* reset */
+    appearance: none;
+    border: none;
+    box-sizing: border-box;
+    background: transparent;
+    margin: 0px;
+    padding: 0px;
+
+    /* image styling */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .errorImage * {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* ErrorAction.module.css */
+  .errorAction {
+    /* reset */
+    appearance: none;
+    border: none;
+    box-sizing: border-box;
+    background: transparent;
+    margin: 0px;
+    padding: 0px;
+
+    /* error title */
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--cdg-spacing-6);
+  }
+
+  /* ErrorDescription.module.css */
+  .errorDescription {
+    /* reset */
+    appearance: none;
+    border: none;
+    box-sizing: border-box;
+    background: transparent;
+    margin: 0px;
+    padding: 0px;
+
+    /* error title */
+    font-family: var(--cdg-font-sans);
+    size: var(--cdg-font-size-body2);
+    line-height: var(--cdg-line-height-normal);
+    font-weight: var(--cdg-font-weight-normal);
+    color: var(--cdg-color-secondaryText);
+  }
+
+  /* ErrorTitle.module.css */
+  .errorTitle {
+    /* reset */
+    appearance: none;
+    border: none;
+    box-sizing: border-box;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+
+    /* error title */
+    height: 100%;
+    font-family: var(--cdg-font-sans);
+    font-size: var(--cdg-font-size-header5);
+    line-height: var(--cdg-line-height-normal);
+    font-weight: var(--cdg-font-weight-semibold);
+    display: flex;
+    align-items: center;
+    color: var(--cdg-color-primaryText);
+  }
+
+  /* ErrorIcon.module.css */
+  .errorIcon {
+    /* reset */
+    appearance: none;
+    border: none;
+    box-sizing: border-box;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+
+    /* error icon styling */
+    width: var(--cdg-spacing-5_5);
+    height: var(--cdg-spacing-4_5);
+    display: flex;
+    align-items: center;
+  }
+
+  /* ErrorHeader.module.css */
+  .errorHeader {
+    /* reset */
+    appearance: none;
+    border: none;
+    box-sizing: border-box;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+
+    /* header styling */
+    width: 100%;
+    height: var(--cdg-spacing-9);
+    display: flex;
+    align-items: center;
+    gap: var(--cdg-spacing-4);
+  }
+
+  /* ErrorContainer.module.css */
+  .errorContainer {
+    /* reset */
+    appearance: none;
+    border: none;
+    box-sizing: border-box;
+    background: transparent;
+    margin: 0;
+    padding: var(--cdg-spacing-6);
+
+    /* error container */
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: var(--cdg-spacing-6);
+    border-radius: var(--cdg-border-width-light);
+    display: flex;
+  }
+
+  /* Responsive gap for mobile */
+  @media (max-width: 600px) {
+    .errorContainer {
+      gap: var(--cdg-spacing-2);
+    }
+  }
+}
+
+@layer variant {
+  /* Primary variant */
+  .primaryVariant {
+    max-width: var(--cdg-spacing-138);
+    box-shadow: 0px 0.6px 1.8px rgba(0, 0, 0, 0.1), 0px 3.2px 7.2px rgba(0, 0, 0, 0.13);
+    background-color: var(--cdg-color-background);
+    color: var(--cdg-color-primaryText);
+  }
+
+  /* Secondary variant */
+  .secondaryVariant {
+    max-width: var(--cdg-spacing-127_25);
+    min-height: var(--cdg-spacing-96);
+    padding: var(--cdg-spacing-8);
+    background-color: transparent;
+    border-radius: 0px var(--cdg-border-radius-md) var(--cdg-border-radius-md) 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  @media (max-width: 600px) {
+    .secondaryVariant {
+      padding: var(--cdg-spacing-4);
+    }
+  }
+
+  .primaryVariantErrorImage {
+    width: 100%;
+  }
+
+  .secondaryVariantErrorImage {
+    height: 66%;
+  }
+
+  @media (max-width: 600px) {
+    .secondaryVariantErrorImage {
+      font-size: '$header3';
+      height: 44%;
+    }
+  }
+
+  .primaryVariantErrorTitle {
+    height: 100%;
+  }
+
+  .secondaryVariantErrorTitle {
+    min-height: var(--cdg-spacing-12);
+    display: block;
+    font-size: var(--cdg-font-size-header1);
+    justify-content: center;
+  }
+
+  @media (max-width: 600px) {
+    .secondaryVariantErrorTitle {
+      font-size: var(--cdg-font-size-header3);
+    }
+  }
+
+  .primaryVariantErrorDescription {
+    color: var(--cdg-color-secondaryText);
+  }
+
+  .secondaryVariantErrorDescription {
+    font-size: var(--cdg-font-size-body3);
+    justify-content: center;
+  }
+
+  .primaryVariantErrorAction {
+    justify-content: flex-end;
+  }
+
+  .secondaryVariantErrorAction {
+    justify-content: center;
+  }
+}
