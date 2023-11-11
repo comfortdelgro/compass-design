@@ -1,0 +1,1 @@
+import{E as e,r as s}from"./index-bac5e390.js";function u(){const[t,n]=s.useState(!1);function r(){n(document.body.classList.contains("dark-theme"))}return s.useEffect(()=>{r(),new MutationObserver(r).observe(document.body,{attributes:!0})},[]),t?e.Dark:e.Light}function m(){return u()===e.Dark}export{m as u};

@@ -510,8 +510,8 @@
       "levels": [
         "Date range picker"
       ],
-      "locStart": 98,
-      "locEnd": 131,
+      "locStart": 130,
+      "locEnd": 163,
       "filePath": "src/date-range-picker/date-range-picker.stories.tsx",
       "meta": {}
     },
@@ -520,8 +520,8 @@
       "levels": [
         "Date range picker"
       ],
-      "locStart": 133,
-      "locEnd": 135,
+      "locStart": 165,
+      "locEnd": 167,
       "filePath": "src/date-range-picker/date-range-picker.stories.tsx",
       "meta": {}
     },
@@ -531,7 +531,7 @@
         "Date range picker"
       ],
       "locStart": 14,
-      "locEnd": 96,
+      "locEnd": 98,
       "filePath": "src/date-range-picker/date-range-picker.stories.tsx",
       "meta": {}
     },
