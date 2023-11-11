@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../components.module.css'; 
+import styles from './components.module.css'; 
 import { useDOMRef } from '../use-dom-ref';
 import CssInjection from '../objectToCss/CssInjection';
 
