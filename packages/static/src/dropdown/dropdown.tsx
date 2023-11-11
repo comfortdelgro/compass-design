@@ -598,7 +598,9 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
               onClick={handleDropdownToggle}
               onBlur={handleInputComboboxBlur}
               onFocus={onFocus}
-              className={`${styles.dropdownSelectButton} cdg-dropdown-button`}
+              className={`${styles.dropdownSelectButton} ${
+                h5 ? styles.dropdownSelectButtonH5 : ''
+              } cdg-dropdown-button`}
               autoFocus={autoFocus}
             >
               {prefix}

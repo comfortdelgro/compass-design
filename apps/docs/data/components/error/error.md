@@ -33,6 +33,9 @@ import Error from '@comfortdelgro/react-compass/error'
 
 {{"demo": "ErrorCss.tsx"}}
 
+<!-- ## Error Server (Experimental)
+{{"demo": "ErrorServer.tsx"}} -->
+
 ## Props
 
 | Name    | Type                     | Default | Description                |

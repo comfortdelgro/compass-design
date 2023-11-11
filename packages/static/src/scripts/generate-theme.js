@@ -1,6 +1,6 @@
 import fs from 'fs'
-import path, {dirname} from 'path'
-import {fileURLToPath} from 'url'
+import path, { dirname } from 'path'
+import { fileURLToPath } from 'url'
 import {
   borderWidths,
   darkThemeColors,
@@ -12,6 +12,7 @@ import {
   radius,
   spacings,
   transitions,
+  filesImportUrl,
 } from './theme.config.js'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -27,6 +28,7 @@ const writeToFile = (rootPath, data) => {
 }
 
 const cssVariables = []
+const filesImport = []
 
 cssVariables.push('/* Spacings */')
 for (const key in spacings) {
@@ -83,10 +85,16 @@ for (const key in darkThemeColors) {
   cssVariables.push(`--cdg-color-${key} : ${darkThemeColors[key]};`)
 }
 
+for (const fileUrl of filesImportUrl) {
+  filesImport.push(`@import "${fileUrl}";`)
+}
+
 const cssData = `/* THIS FILE IS AUTO GENERATED. DO NOT MODIFY!  */
+${filesImport.join('\n  ')}
 :root {
   ${cssVariables.join('\n  ')}
-}`
+}
+`
 
 writeToFile(themeModuleCssPath, cssData)
 

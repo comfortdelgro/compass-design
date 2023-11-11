@@ -1,0 +1,30 @@
+@import '../theme/theme.module.css';
+
+@layer default;
+
+@layer default {
+
+  /* Flexbox.module.css */
+  .flexbox {
+    display: flex;
+    width: 100%;
+    gap: var(--cdg-spacing-2);
+  }
+
+  /* Row.module.css */
+  .row {
+    display: flex;
+    width: 100%;
+    gap: var(--cdg-spacing-2);
+    flex-direction: row;
+    align-items: center;
+  }
+
+  /* Column.module.css */
+  .column {
+    display: flex;
+    width: 100%;
+    gap: var(--cdg-spacing-2);
+    flex-direction: column;
+  }
+}
