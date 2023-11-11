@@ -92,6 +92,11 @@ export type {
   DropdownMenuSubmenuProps,
   DropdownMenuToggleProps,
 } from './dropdown-menu'
+export {default as DropdownTextfield} from './dropdown-textfield'
+export type {
+  DropdownOptions,
+  DropdownTextfieldProps,
+} from './dropdown-textfield'
 export {default as Error} from './error'
 export type {
   ErrorActionProps,
@@ -101,11 +106,6 @@ export type {
   ErrorProps,
   ErrorTitleProps,
 } from './error'
-export {default as DropdownTextfield} from './dropdown-textfield'
-export type {
-  DropdownOptions,
-  DropdownTextfieldProps,
-} from './dropdown-textfield'
 export {default as File} from './file'
 export type {FilePreviewProps, FileStateProps} from './file'
 export {Footer, FooterInfo} from './footer'
@@ -303,6 +303,8 @@ export type {Placement, TooltipProps, TooltipTriggerProps} from './tooltip'
 export {default as Transitions} from './transitions'
 export type {TransitionsProps} from './transitions'
 export {default as Typography} from './typography'
+export {default as Upload} from './upload'
+export type {UploadDragAndDropProps, UploadProps} from './upload'
 export {default as VideoPlayer} from './video-player'
 export type {VideoPlayerProps} from './video-player'
 export {default as Wizard} from './wizard'
