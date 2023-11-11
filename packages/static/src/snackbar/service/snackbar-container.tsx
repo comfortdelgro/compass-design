@@ -1,8 +1,8 @@
 import React from 'react'
 import Portal from '../../portal'
-import SnackbarItem from './snackbar-item'
-import { SnackbarItemType } from './types'
 import styles from '../styles/snackbar-item.module.css'
+import SnackbarItem from './snackbar-item'
+import {SnackbarItemType} from './types'
 
 interface Props {
   snackbars: SnackbarItemType[]
@@ -36,19 +36,17 @@ const SnackbarsContainer = (props: SnackbarsContainerProps) => {
 
   return (
     <Portal open={snackbars.length > 0}>
-        <div
-          {...htmlProps}
-          className={contentClasses}
-        >
-          {snackbars.map((snackbar) => (
-            <SnackbarItem
-              key={snackbar.id}
-              {...snackbar}
-              snackbarItemClassName={`${styles.cdgSnackbarItem} ${snackbarItemClassName || ''
-                }`}
-            />
-          ))}
-        </div>
+      <div {...htmlProps} className={contentClasses}>
+        {snackbars.map((snackbar) => (
+          <SnackbarItem
+            key={snackbar.id}
+            {...snackbar}
+            snackbarItemClassName={`${styles.cdgSnackbarItem} ${
+              snackbarItemClassName || ''
+            }`}
+          />
+        ))}
+      </div>
     </Portal>
   )
 }

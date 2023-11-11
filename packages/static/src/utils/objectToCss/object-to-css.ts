@@ -98,15 +98,12 @@ function handleVariables<T>(
 
 function objectToCSS(obj: StyleObject, selector = '', indent = ''): string {
   let css = ''
-  //add new variable for responsive case css
   let mediaCss = ''
-  //add new variable for responsive case css
   // eslint-disable-next-line prefer-const
   let map = new Map<string, string>()
   const space = ' ' // space between parent class and child class
+  // logic check if contain @ responsive mark
   for (const key in obj) {
-    //add new logic for responsive case css
-    // logic check if contain @ responsive mark
     if (key.startsWith('@')) {
       const mediaQuery = key
       const mediaQueryCSS = objectToCSS(
@@ -115,7 +112,6 @@ function objectToCSS(obj: StyleObject, selector = '', indent = ''): string {
         indent + '  ',
       )
       mediaCss += `${mediaQuery} {\n${mediaQueryCSS}\n}\n`
-      //add new logic for responsive case css
     } else if (typeof obj[key] === 'object') {
       const newSelector = `${selector}${space}${key.replace(/&/g, '')}`.trim()
       css = objectToCSS(obj[key] as StyleObject, newSelector, indent)

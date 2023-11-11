@@ -1,6 +1,6 @@
+import {Meta} from '@storybook/react'
 import React from 'react'
 import Toggle from './index'
-import { Meta } from '@storybook/react'
 
 const style: {
   display: string
@@ -47,14 +47,10 @@ export const Variants: React.FC = () => (
 )
 
 export const State: React.FC = () => {
-
   return (
     <div style={{...style}}>
       <h3>Controlled</h3>
-      <Toggle
-        size='lg'
-        isSelected={true}
-      />
+      <Toggle size='lg' isSelected={true} />
 
       <h3>UnControlled</h3>
       <Toggle size='lg' defaultSelected={true} />

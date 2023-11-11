@@ -1,6 +1,6 @@
 import React from 'react'
-import { useDOMRef } from '../utils/use-dom-ref'
 import CssInjection from '../utils/objectToCss/CssInjection'
+import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/error.module.css'
 
 interface Props {
@@ -17,7 +17,13 @@ const ErrorDescription = React.forwardRef<
   HTMLParagraphElement,
   ErrorDescriptionProps
 >((props, ref) => {
-  const { children, css = {}, variant = 'primary', className = '', ...htmlProps } = props
+  const {
+    children,
+    css = {},
+    variant = 'primary',
+    className = '',
+    ...htmlProps
+  } = props
   const errorDescriptionRef = useDOMRef<HTMLParagraphElement>(ref)
 
   const ErrorDescriptionClasses = [
@@ -25,12 +31,17 @@ const ErrorDescription = React.forwardRef<
     className,
     variant && styles[`${variant}VariantErrorDescription`],
     styles.errorDescription,
-  ].filter(Boolean)
+  ]
+    .filter(Boolean)
     .join(' ')
 
   return (
     <CssInjection css={css} childrenRef={errorDescriptionRef}>
-      <p className={ErrorDescriptionClasses} ref={errorDescriptionRef} {...htmlProps}>
+      <p
+        className={ErrorDescriptionClasses}
+        ref={errorDescriptionRef}
+        {...htmlProps}
+      >
         {children}
       </p>
     </CssInjection>

@@ -1,7 +1,7 @@
 import React from 'react'
-import { useDOMRef } from '../utils/use-dom-ref'
-import styles from './styles/error.module.css'
 import CssInjection from '../utils/objectToCss/CssInjection'
+import {useDOMRef} from '../utils/use-dom-ref'
+import styles from './styles/error.module.css'
 
 interface Props {
   children?: React.ReactNode
@@ -15,7 +15,13 @@ export type ErrorActionProps = Props &
 
 const ErrorAction = React.forwardRef<HTMLDivElement, ErrorActionProps>(
   (props, ref) => {
-    const { children, css = {}, variant = 'primary', className = '', ...htmlProps } = props
+    const {
+      children,
+      css = {},
+      variant = 'primary',
+      className = '',
+      ...htmlProps
+    } = props
     const errorActionRef = useDOMRef<HTMLDivElement>(ref)
 
     const errorActionClasses = [
@@ -23,7 +29,8 @@ const ErrorAction = React.forwardRef<HTMLDivElement, ErrorActionProps>(
       className,
       variant && styles[`${variant}VariantErrorAction`],
       styles.errorTitle,
-    ].filter(Boolean)
+    ]
+      .filter(Boolean)
       .join(' ')
 
     return (

@@ -1,10 +1,10 @@
-import { isNil } from 'lodash'
-import React, { HTMLAttributes, useCallback } from 'react'
-import Badge from '../badge'
-import { useDOMRef } from '../utils/use-dom-ref'
-import CssInjection from '../utils/objectToCss/CssInjection'
-import styles from './styles/appnav.module.css'
 import clsx from 'clsx'
+import {isNil} from 'lodash'
+import React, {HTMLAttributes, useCallback} from 'react'
+import Badge from '../badge'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import {useDOMRef} from '../utils/use-dom-ref'
+import styles from './styles/appnav.module.css'
 
 interface Props {
   css?: unknown
@@ -52,7 +52,7 @@ export const AppNavSection = React.forwardRef<
         className={clsx({
           [styles.appNavSection]: true,
           [styles.isActive]: isActive,
-          [styles.isInactive]: !isActive
+          [styles.isInactive]: !isActive,
         })}
         onClick={handleClick}
         tabIndex={0}

@@ -270,7 +270,7 @@ function makeRange(start: DateValue, end: DateValue): RangeValue<CalendarDate> {
   }
 
   if (end.compare(start) < 0) {
-    [start, end] = [end, start]
+    ;[start, end] = [end, start]
   }
 
   return {start: toCalendarDate(start), end: toCalendarDate(end)}
