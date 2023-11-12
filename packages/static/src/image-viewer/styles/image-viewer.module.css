@@ -1,86 +1,89 @@
-.imageViewerWrap {
-  appearance: none;
-  border: none;
-  box-sizing: border-box;
-  margin: 0;
-  z-index: 51;
-  background-color: rgba(0, 0, 0, 0.6);
-  position: fixed;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-  width: 100vw;
-  height: 100vh;
-}
-
-.toolbarWrap {
-  z-index: 52;
-  position: fixed;
-  margin-bottom: 20px;
-  top: 20px;
-  left: 0;
-  display: flex;
-  flex-direction: row;
-  width: 100vw;
-  align-items: center;
-  justify-content: center;
-}
-
-.imageInformationWrap {
-  z-index: 52;
-  position: fixed;
-  bottom: 60px;
-  left: 0;
-  display: flex;
-  width: 100vw;
-  align-items: center;
-  justify-content: center;
-}
-
-.imageInformationWrap {
-  text-align: center;
-  color: var(--cdg-color-primaryText);
-}
-
-.toolbar {
-  display: flex;
-  width: 100vw;
-  align-items: center;
-  justify-content: center;
-}
-
-.navbar {
-  z-index: 52;
-  position: fixed;
-  height: 50px;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
-}
-
-.navbarItem {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  z-index: 53;
-  height: 50px;
-  margin-bottom: 10px;
-}
-
-.navbarItem img {
-  width: 60px;
-  height: 50px;
-  opacity: 0.5;
-  margin-right: 2px;
-  margin-left: 2px;
-  border-radius: 4px;
-}
-
-.navbarItemActive {
-  opacity: 1 !important;
-  border: 2px solid var(--cdg-color-cdgBlue80);
+@layer default {
+  .imageViewerWrap {
+    appearance: none;
+    border: none;
+    box-sizing: border-box;
+    margin: 0;
+    z-index: 51;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+  }
+  
+  .toolbarWrap {
+    z-index: 52;
+    position: fixed;
+    margin-bottom: 20px;
+    top: 20px;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .imageInformationWrap {
+    z-index: 52;
+    position: fixed;
+    bottom: 60px;
+    left: 0;
+    display: flex;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .imageInformationWrap {
+    text-align: center;
+    color: var(--cdg-color-primaryText);
+  }
+  
+  .toolbar {
+    display: flex;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .navbar {
+    z-index: 52;
+    position: fixed;
+    height: 50px;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+  }
+  
+  .navbarItem {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 53;
+    height: 50px;
+    margin-bottom: 10px;
+  }
+  
+  .navbarItem img {
+    width: 60px;
+    height: 50px;
+    opacity: 0.5;
+    margin-right: 2px;
+    margin-left: 2px;
+    border-radius: 4px;
+  }
+  
+  .navbarItemActive {
+    opacity: 1 !important;
+    border: 2px solid var(--cdg-color-cdgBlue80);
+  }
+  
 }

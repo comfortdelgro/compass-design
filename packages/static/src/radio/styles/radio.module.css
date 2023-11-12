@@ -1,5 +1,7 @@
 @import '../../theme/theme.module.css';
 
+@layer default {
+
 .radio {
   position: relative;
   display: flex;
@@ -158,4 +160,6 @@
 }
 .radioInputVariantH5.radioInputActive::after {
   display: none;
+}
+
 }
