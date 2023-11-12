@@ -1,4 +1,4 @@
-import Gutter from '@comfortdelgro/react-compass/gutter'
+import Gutter from '@comfortdelgro/react-compass-old/gutter'
 // import {Gutter as StaticGutter} from '@comfortdelgro/static'
 import React, {CSSProperties} from 'react'
 

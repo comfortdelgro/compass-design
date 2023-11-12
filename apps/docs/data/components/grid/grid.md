@@ -10,13 +10,13 @@ components: Grid
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Grid} from '@comfortdelgro/react-compass'
+import {Grid} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```jsx
-import Grid from '@comfortdelgro/react-compass/grid'
+import Grid from '@comfortdelgro/react-compass-old/grid'
 ```
 
 ## Example

@@ -1,5 +1,5 @@
-import {Typography} from '@comfortdelgro/react-compass'
-import Radio from '@comfortdelgro/react-compass/radio'
+import {Typography} from '@comfortdelgro/react-compass-old'
+import Radio from '@comfortdelgro/react-compass-old/radio'
 
 function RadioOrientation() {
   return (

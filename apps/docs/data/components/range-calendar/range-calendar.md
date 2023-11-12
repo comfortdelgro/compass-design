@@ -16,7 +16,7 @@ components: RangeCalendar
 How to use
 
 ```jsx
-import Calendar from '@comfortdelgro/react-compass/calendar'
+import Calendar from '@comfortdelgro/react-compass-old/calendar'
 
 const {
   /** any function in react aria i18n */
@@ -32,7 +32,7 @@ I18nProvider allows you to override the default locale as determined by the brow
 In this docs, we will use English(Singapore) `en-SG` as default locale
 
 ```jsx
-import Calendar from '@comfortdelgro/react-compass/calendar'
+import Calendar from '@comfortdelgro/react-compass-old/calendar'
 
 const {
   I18nProvider
@@ -47,13 +47,13 @@ const {
 ### Import
 
 ```jsx
-import {RangeCalendar} from '@comfortdelgro/react-compass'
+import {RangeCalendar} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```jsx
-import RangeCalendar from '@comfortdelgro/react-compass/range-calendar'
+import RangeCalendar from '@comfortdelgro/react-compass-old/range-calendar'
 ```
 
 ## Example

@@ -5,7 +5,7 @@ import {
   Icon,
   Tooltip,
   TooltipTrigger,
-} from '@comfortdelgro/react-compass'
+} from '@comfortdelgro/react-compass-old'
 import {
   faCode,
   faCodeFork,

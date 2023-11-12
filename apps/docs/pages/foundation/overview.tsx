@@ -1,4 +1,4 @@
-import {Box, Grid, Typography} from '@comfortdelgro/react-compass'
+import {Box, Grid, Typography} from '@comfortdelgro/react-compass-old'
 import DocsAppCustomLayout from 'components/layouts/DocsAppCustomLayout'
 import {usePageProps} from 'contexts/PageProps'
 import Image from 'next/image'

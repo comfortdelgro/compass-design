@@ -19,7 +19,7 @@ import {
   GregorianCalendar,
   HebrewCalendar,
   toCalendar,
-} from '@comfortdelgro/react-compass'
+} from '@comfortdelgro/react-compass-old'
 
 let hebrewDate = new CalendarDate(new HebrewCalendar(), 5781, 1, 1)
 toCalendar(hebrewDate, new GregorianCalendar())
@@ -31,7 +31,7 @@ toCalendar(hebrewDate, new GregorianCalendar())
 While it is possible to construct `Calendar` objects manually, a common usecase is to get a calendar object for a certain locale. Each calendar has an associated string identifier that can be used to retrieve an instance of that calendar using the <TypeLink links={docs.links} type={docs.exports.createCalendar} /> function. A list of supported calendar identifiers is available [below](#implementations).
 
 ```tsx
-import {createCalendar} from '@comfortdelgro/react-compass'
+import {createCalendar} from '@comfortdelgro/react-compass-old'
 
 createCalendar('gregory')
 createCalendar('hebrew')
@@ -62,7 +62,7 @@ createCalendar(calendarIdentifier) // new IndianCalendar()
 **Note**: importing `createCalendar` into your project will result in all available calendars being included in your bundle. If you wish to limit the supported calendars to reduce bundle sizes, you can create your own implementation that only imports the desired classes. This way, your bundler can tree-shake the unused calendar implementations.
 
 ```tsx
-import {GregorianCalendar, JapaneseCalendar} from '@comfortdelgro/react-compass'
+import {GregorianCalendar, JapaneseCalendar} from '@comfortdelgro/react-compass-old'
 
 function createCalendar(identifier) {
   switch (identifier) {

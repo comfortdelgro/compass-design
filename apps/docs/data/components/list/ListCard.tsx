@@ -1,4 +1,4 @@
-import {Avatar, Badge, ListCard} from '@comfortdelgro/react-compass'
+import {Avatar, Badge, ListCard} from '@comfortdelgro/react-compass-old'
 // import {ListCard as StaticListCard, Avatar as StaticAvatar} from '@comfortdelgro/static'
 
 function ListCardExmaple() {

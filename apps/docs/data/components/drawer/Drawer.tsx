@@ -7,7 +7,7 @@ import {
   Row,
   TextField,
   Typography,
-} from '@comfortdelgro/react-compass'
+} from '@comfortdelgro/react-compass-old'
 import {FormEventHandler, useState} from 'react'
 
 export default function DrawerDocs() {

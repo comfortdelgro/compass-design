@@ -1,5 +1,5 @@
 import prism from '@comfortdelgro/markdown/prism'
-import {Box, styled} from '@comfortdelgro/react-compass'
+import {Box, styled} from '@comfortdelgro/react-compass-old'
 import MarkdownElement from 'components/common/MarkdownElement'
 import * as React from 'react'
 import SimpleCodeEditor from 'react-simple-code-editor'

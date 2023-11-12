@@ -1,4 +1,4 @@
-import {SubBanner} from '@comfortdelgro/react-compass'
+import {SubBanner} from '@comfortdelgro/react-compass-old'
 
 function SubBannerPrimary() {
   return (

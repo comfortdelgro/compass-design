@@ -1,4 +1,4 @@
-import {Box, Typography} from '@comfortdelgro/react-compass'
+import {Box, Typography} from '@comfortdelgro/react-compass-old'
 
 const FontWeightExample = () => {
   return (

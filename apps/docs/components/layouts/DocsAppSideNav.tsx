@@ -7,7 +7,7 @@ import {
   MenuList,
   MenuListDropdown,
   Sidenav,
-} from '@comfortdelgro/react-compass'
+} from '@comfortdelgro/react-compass-old'
 
 import {useSidenavContext} from 'contexts/SideNav'
 import {isNil} from 'lodash'

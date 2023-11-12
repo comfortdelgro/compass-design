@@ -8,7 +8,7 @@ import {
   styled,
   TextField,
   Typography,
-} from '@comfortdelgro/react-compass'
+} from '@comfortdelgro/react-compass-old'
 import {faChevronRight, faClose} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {useIsTabletScreen} from 'hooks'

@@ -1,4 +1,4 @@
-import {styled} from '@comfortdelgro/react-compass'
+import {styled} from '@comfortdelgro/react-compass-old'
 import DemoErrorBoundary from 'components/common/DemoErrorBoundary'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'

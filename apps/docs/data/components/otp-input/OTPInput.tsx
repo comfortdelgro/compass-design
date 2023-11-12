@@ -1,4 +1,4 @@
-import {Column, OTPInput, Typography} from '@comfortdelgro/react-compass'
+import {Column, OTPInput, Typography} from '@comfortdelgro/react-compass-old'
 
 function Default() {
   return (

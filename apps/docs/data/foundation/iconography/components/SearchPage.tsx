@@ -5,7 +5,7 @@ import {
   Tabs,
   Toast,
   Typography,
-} from '@comfortdelgro/react-compass'
+} from '@comfortdelgro/react-compass-old'
 import {faXmark} from '@fortawesome/free-solid-svg-icons'
 import {useRouter, useSearchParams} from 'next/navigation'
 import React from 'react'

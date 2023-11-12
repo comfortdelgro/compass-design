@@ -1,4 +1,9 @@
-import {Button, Column, Pudo, SlideAction} from '@comfortdelgro/react-compass'
+import {
+  Button,
+  Column,
+  Pudo,
+  SlideAction,
+} from '@comfortdelgro/react-compass-old'
 
 export default function PudoCustomTypeDocs() {
   return (

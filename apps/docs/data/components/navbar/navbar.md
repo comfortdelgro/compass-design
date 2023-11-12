@@ -10,13 +10,13 @@ components: Navbar
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Navbar} from '@comfortdelgro/react-compass'
+import {Navbar} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```jsx
-import Navbar from '@comfortdelgro/react-compass/navbar'
+import Navbar from '@comfortdelgro/react-compass-old/navbar'
 ```
 
 ## Example

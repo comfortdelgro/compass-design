@@ -1,4 +1,4 @@
-import {Wizard} from '@comfortdelgro/react-compass'
+import {Wizard} from '@comfortdelgro/react-compass-old'
 // import {Wizard as StaticsWizard} from '@comfortdelgro/static'
 
 function BasicExample() {

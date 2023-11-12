@@ -6,7 +6,7 @@ import {
   Drawer,
   DrawerProps,
   Row,
-} from '@comfortdelgro/react-compass'
+} from '@comfortdelgro/react-compass-old'
 import {useState} from 'react'
 
 export default function DrawerPositionDocs() {

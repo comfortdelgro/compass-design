@@ -10,13 +10,13 @@ components: Avatar, AvatarGroup, Badge
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Avatar} from '@comfortdelgro/react-compass'
+import {Avatar} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```jsx
-import Avatar from '@comfortdelgro/react-compass/avatar'
+import Avatar from '@comfortdelgro/react-compass-old/avatar'
 ```
 
 ## Examples

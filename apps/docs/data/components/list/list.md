@@ -10,7 +10,7 @@ components: List
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {List, ListCard, InteractiveList} from '@comfortdelgro/react-compass'
+import {List, ListCard, InteractiveList} from '@comfortdelgro/react-compass-old'
 ```
 
 or
@@ -20,7 +20,7 @@ import {
   List,
   ListCard,
   InteractiveList,
-} from '@comfortdelgro/react-compass/list'
+} from '@comfortdelgro/react-compass-old/list'
 ```
 
 ## Example

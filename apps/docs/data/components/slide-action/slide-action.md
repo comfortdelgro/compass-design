@@ -11,13 +11,13 @@ components: Slide Action
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {SlideAction} from '@comfortdelgro/react-compass'
+import {SlideAction} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```jsx
-import SlideAction from '@comfortdelgro/react-compass/slide-action'
+import SlideAction from '@comfortdelgro/react-compass-old/slide-action'
 ```
 
 ## Usage

@@ -10,13 +10,13 @@ components: Dropdown
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Dropdown} from '@comfortdelgro/react-compass'
+import {Dropdown} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```jsx
-import Dropdown from '@comfortdelgro/react-compass/dropdown'
+import Dropdown from '@comfortdelgro/react-compass-old/dropdown'
 ```
 
 ## Example

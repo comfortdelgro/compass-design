@@ -1,4 +1,4 @@
-import MultipleDropdown from '@comfortdelgro/react-compass/multiple-dropdown'
+import MultipleDropdown from '@comfortdelgro/react-compass-old/multiple-dropdown'
 
 function MultipleDropdownWithSection() {
   return (

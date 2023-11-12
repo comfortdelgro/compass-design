@@ -1,4 +1,4 @@
-import {Column, Skeleton, Typography} from '@comfortdelgro/react-compass'
+import {Column, Skeleton, Typography} from '@comfortdelgro/react-compass-old'
 // import {Skeleton as StaticSkeleton} from '@comfortdelgro/static'
 
 const Animations: React.FC = () => (

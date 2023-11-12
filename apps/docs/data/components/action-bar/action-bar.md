@@ -10,13 +10,13 @@ components: Action Bar
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {ActionBar} from '@comfortdelgro/react-compass'
+import {ActionBar} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```jsx
-import ActionBar from '@comfortdelgro/react-compass/action-bar'
+import ActionBar from '@comfortdelgro/react-compass-old/action-bar'
 ```
 
 ## Example

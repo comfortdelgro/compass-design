@@ -1,4 +1,4 @@
-import {ActionBar, Button, Column, Icon} from '@comfortdelgro/react-compass'
+import {ActionBar, Button, Column, Icon} from '@comfortdelgro/react-compass-old'
 import {
   faExclamationTriangle,
   faUserEdit,

@@ -4,7 +4,7 @@ import {
   Button,
   SnackbarContextProvider,
   useSnackbar,
-} from '@comfortdelgro/react-compass'
+} from '@comfortdelgro/react-compass-old'
 import React from 'react'
 const SubService = () => {
   const snackbar = useSnackbar()

@@ -10,13 +10,13 @@ components: SearchField
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {SearchField} from '@comfortdelgro/react-compass'
+import {SearchField} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```jsx
-import SearchField from '@comfortdelgro/react-compass/searchfield'
+import SearchField from '@comfortdelgro/react-compass-old/searchfield'
 ```
 
 ## Example

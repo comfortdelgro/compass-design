@@ -3,7 +3,7 @@ import {
   Breadcrumbs,
   Button,
   PageHeader,
-} from '@comfortdelgro/react-compass'
+} from '@comfortdelgro/react-compass-old'
 
 function ColorFeature() {
   return (

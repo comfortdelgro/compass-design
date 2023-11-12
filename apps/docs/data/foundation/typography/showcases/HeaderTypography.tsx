@@ -1,4 +1,4 @@
-import {Column, Typography} from '@comfortdelgro/react-compass'
+import {Column, Typography} from '@comfortdelgro/react-compass-old'
 
 const HeaderTypography = () => {
   return (

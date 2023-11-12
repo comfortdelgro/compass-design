@@ -1,4 +1,9 @@
-import {Column, Pudo, styled, Typography} from '@comfortdelgro/react-compass'
+import {
+  Column,
+  Pudo,
+  styled,
+  Typography,
+} from '@comfortdelgro/react-compass-old'
 
 export default function PudoCompact() {
   return (

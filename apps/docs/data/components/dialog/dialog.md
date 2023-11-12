@@ -11,13 +11,13 @@ components: Dialog
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Dialog} from '@comfortdelgro/react-compass'
+import {Dialog} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```jsx
-import Dialog from '@comfortdelgro/react-compass/dialog'
+import Dialog from '@comfortdelgro/react-compass-old/dialog'
 ```
 
 ## Example

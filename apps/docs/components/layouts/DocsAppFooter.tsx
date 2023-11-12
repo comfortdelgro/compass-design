@@ -1,6 +1,6 @@
 import ArrowLeft from '@comfortdelgro/compass-icons/react/arrow-left'
 import ArrowRight from '@comfortdelgro/compass-icons/react/arrow-right'
-import {Box, Button} from '@comfortdelgro/react-compass'
+import {Box, Button} from '@comfortdelgro/react-compass-old'
 import Link from 'next/link'
 
 function orderedPages(pages: any, current = []) {
