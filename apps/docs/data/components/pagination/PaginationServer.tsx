@@ -1,5 +1,6 @@
 import {Typography} from '@comfortdelgro/react-compass'
-import {Pagination} from '@comfortdelgro/static'
+// import {Pagination} from '@comfortdelgro/static'
+import {Pagination} from '@comfortdelgro/react-compass'
 import {useState} from 'react'
 
 function PaginationBasic() {

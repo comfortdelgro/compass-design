@@ -1,4 +1,6 @@
-import {SubBanner} from '@comfortdelgro/static'
+// import {SubBanner} from '@comfortdelgro/static'
+
+import { SubBanner } from "@comfortdelgro/react-compass"
 
 function SubBannerPrimary() {
   return (
