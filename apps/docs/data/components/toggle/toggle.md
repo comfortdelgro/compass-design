@@ -10,13 +10,13 @@ components: Toggle
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Toggle} from '@comfortdelgro/react-compass'
+import {Toggle} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```jsx
-import Toggle from '@comfortdelgro/react-compass/toggle'
+import Toggle from '@comfortdelgro/react-compass-old/toggle'
 ```
 
 ## Controlled

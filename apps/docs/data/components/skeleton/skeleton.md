@@ -10,13 +10,13 @@ components: Skeleton
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Skeleton} from '@comfortdelgro/react-compass'
+import {Skeleton} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```jsx
-import Skeleton from '@comfortdelgro/react-compass/skeleton'
+import Skeleton from '@comfortdelgro/react-compass-old/skeleton'
 ```
 
 ## Example

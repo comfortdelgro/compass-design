@@ -5,7 +5,7 @@ import {
   RangeCalendar,
   RangeValue,
   useDateFormatter,
-} from '@comfortdelgro/react-compass'
+} from '@comfortdelgro/react-compass-old'
 import React from 'react'
 
 function ControlledRangeCalendar() {

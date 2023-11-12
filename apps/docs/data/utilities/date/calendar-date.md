@@ -15,7 +15,7 @@ A `CalendarDate` object represents a date without any time components, in a spec
 A `CalendarDate` can be created using the constructor. This example creates a date that represents February 3rd, 2022 in the Gregorian calendar system.
 
 ```tsx
-import {CalendarDate} from '@comfortdelgro/react-compass'
+import {CalendarDate} from '@comfortdelgro/react-compass-old'
 
 let date = new CalendarDate(2022, 2, 3)
 ```
@@ -23,7 +23,7 @@ let date = new CalendarDate(2022, 2, 3)
 You can also create a `CalendarDate` by parsing an [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) formatted string using the <TypeLink links={docs.links} type={docs.exports.parseDate} /> function.
 
 ```tsx
-import {parseDate} from '@comfortdelgro/react-compass'
+import {parseDate} from '@comfortdelgro/react-compass-old'
 
 let date = parseDate('2022-02-03')
 ```
@@ -31,7 +31,7 @@ let date = parseDate('2022-02-03')
 Today's date can be retrieved using the <TypeLink links={docs.links} type={docs.exports.today} /> function. This requires a time zone identifier to be provided, which is used to determine the local date. The <TypeLink links={docs.links} type={docs.exports.getLocalTimeZone} /> function can be used to retrieve the user's current time zone.
 
 ```tsx
-import {getLocalTimeZone, today} from '@comfortdelgro/react-compass'
+import {getLocalTimeZone, today} from '@comfortdelgro/react-compass-old'
 
 let nyDate = today('America/New_York')
 let localDate = today(getLocalTimeZone())
@@ -70,7 +70,7 @@ By default, `CalendarDate` uses the Gregorian calendar system, but many other ca
 This example creates a date in the Buddhist calendar system, which is equivalent to April 4th, 2020 in the Gregorian calendar.
 
 ```tsx
-import {BuddhistCalendar} from '@comfortdelgro/react-compass'
+import {BuddhistCalendar} from '@comfortdelgro/react-compass-old'
 
 let date = new CalendarDate(new BuddhistCalendar(), 2563, 4, 30)
 ```
@@ -84,7 +84,7 @@ Many calendar systems have only one era, or a modern era and a pre-modern era (e
 This example creates a date in the Japanese calendar system, which is equivalent to April 4th, 2020 in the Gregorian calendar.
 
 ```tsx
-import {JapaneseCalendar} from '@comfortdelgro/react-compass'
+import {JapaneseCalendar} from '@comfortdelgro/react-compass-old'
 
 let date = new CalendarDate(new JapaneseCalendar(), 'heisei', 31, 4, 30)
 ```
@@ -98,7 +98,7 @@ The <TypeLink links={docs.links} type={docs.exports.toCalendar} /> function can 
 This example converts a Gregorian date to a Hebrew one.
 
 ```tsx
-import {HebrewCalendar, toCalendar} from '@comfortdelgro/react-compass'
+import {HebrewCalendar, toCalendar} from '@comfortdelgro/react-compass-old'
 
 let gregorianDate = new CalendarDate(2020, 9, 19)
 let hebrewDate = toCalendar(gregorianDate, new HebrewCalendar())
@@ -202,7 +202,7 @@ A `CalendarDate` can be converted to a native JavaScript `Date` object using the
 Because a `Date` represents an exact time, a time zone identifier is required to be passed to the `toDate` method. The time of the returned date will be set to midnight in that time zone. The <TypeLink links={docs.links} type={docs.exports.getLocalTimeZone} /> function can be used to retrieve the user's current time zone.
 
 ```tsx
-import {getLocalTimeZone} from '@comfortdelgro/react-compass'
+import {getLocalTimeZone} from '@comfortdelgro/react-compass-old'
 
 let date = new CalendarDate(2022, 2, 3)
 date.toDate('America/Los_Angeles') // Thu Feb 03 2022 00:00:00 GMT-0800 (Pacific Standard Time)
@@ -218,7 +218,7 @@ A <TypeLink links={docs.links} type={docs.exports.CalendarDateTime} /> represent
 Use the <TypeLink links={docs.links} type={docs.exports.toCalendarDateTime} /> function to convert a `CalendarDate` to a `CalendarDateTime`. By default, the time will be set to midnight. You can also pass a <TypeLink links={docs.links} type={docs.exports.Time} /> object to set the time to a specific value.
 
 ```tsx
-import {Time, toCalendarDateTime} from '@comfortdelgro/react-compass'
+import {Time, toCalendarDateTime} from '@comfortdelgro/react-compass-old'
 
 let date = new CalendarDate(2022, 2, 3)
 
@@ -231,7 +231,7 @@ A <TypeLink links={docs.links} type={docs.exports.ZonedDateTime} /> represents a
 Use the <TypeLink links={docs.links} type={docs.exports.toZoned} /> function to convert a `CalendarDate` to a `ZonedDateTime`. The time will be set to midnight in the given time zone. If you need to set a specific time, convert the `CalendarDate` to a `CalendarDateTime` first as described above, and pass the result to `toZoned`.
 
 ```tsx
-import {Time, toCalendarDateTime, toZoned} from '@comfortdelgro/react-compass'
+import {Time, toCalendarDateTime, toZoned} from '@comfortdelgro/react-compass-old'
 
 let date = new CalendarDate(2022, 2, 3)
 toZoned(date, 'America/Los_Angeles') // 2021-02-03T00:00-07:00[America/Los_Angeles]
@@ -266,7 +266,7 @@ In addition, the following functions can be used to perform a partial comparison
 import {
   IslamicUmalquraCalendar,
   isSameMonth,
-} from '@comfortdelgro/react-compass'
+} from '@comfortdelgro/react-compass-old'
 
 isSameMonth(new CalendarDate(2021, 4, 16), new CalendarDate(2021, 4, 30)) // true
 isSameMonth(new CalendarDate(2021, 4, 16), new CalendarDate(2021, 8, 2)) // false
@@ -298,7 +298,7 @@ import {
   startOfMonth,
   startOfWeek,
   startOfYear,
-} from '@comfortdelgro/react-compass'
+} from '@comfortdelgro/react-compass-old'
 
 let date = new CalendarDate(2022, 2, 3)
 
@@ -313,7 +313,7 @@ startOfWeek(date, 'fr-FR') // 2022-01-31
 The `getDayOfWeek` function returns the day of the week for the given date and locale. Days are numbered from zero to six, where zero is the first day of the week in the given locale. For example, in the United States, the first day of the week is Sunday, but in France it is Monday.
 
 ```tsx
-import {getDayOfWeek} from '@comfortdelgro/react-compass'
+import {getDayOfWeek} from '@comfortdelgro/react-compass-old'
 
 let date = new CalendarDate(2022, 2, 6) // a Sunday
 
@@ -326,7 +326,7 @@ getDayOfWeek(date, 'fr-FR') // 6
 The `getWeeksInMonth` function returns the number of weeks in the given month. This depends on the number of days in the month, what day of the week the month starts on, and the given locale. For example, in the United States, the first day of the week is Sunday, but in France it is Monday.
 
 ```tsx
-import {getWeeksInMonth} from '@comfortdelgro/react-compass'
+import {getWeeksInMonth} from '@comfortdelgro/react-compass-old'
 
 let date = new CalendarDate(2021, 1, 1)
 

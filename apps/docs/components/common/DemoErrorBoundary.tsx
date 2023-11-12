@@ -1,4 +1,4 @@
-import {Button, Typography} from '@comfortdelgro/react-compass'
+import {Button, Typography} from '@comfortdelgro/react-compass-old'
 import * as React from 'react'
 
 export default class DemoErrorBoundary extends React.Component {

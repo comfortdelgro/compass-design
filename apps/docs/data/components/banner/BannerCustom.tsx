@@ -1,4 +1,4 @@
-import {Banner} from '@comfortdelgro/react-compass'
+import {Banner} from '@comfortdelgro/react-compass-old'
 
 function Custom() {
   return (

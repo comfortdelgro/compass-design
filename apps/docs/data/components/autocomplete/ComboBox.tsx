@@ -1,4 +1,8 @@
-import {AutoComplete, Column, SearchField} from '@comfortdelgro/react-compass'
+import {
+  AutoComplete,
+  Column,
+  SearchField,
+} from '@comfortdelgro/react-compass-old'
 import React from 'react'
 
 const FullFeatured: React.FC = () => {

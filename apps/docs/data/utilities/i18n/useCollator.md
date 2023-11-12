@@ -25,7 +25,7 @@ useCollator(options?: Intl.CollatorOptions): Intl.Collator
 This example includes two textfields and compares the values of the two fields using a collator according to the current locale.
 
 ```tsx example
-import {useCollator} from '@comfortdelgro/react-compass'
+import {useCollator} from '@comfortdelgro/react-compass-old'
 
 function Example() {
   let [first, setFirst] = React.useState('')

@@ -1,4 +1,4 @@
-import {Accordion} from '@comfortdelgro/react-compass'
+import {Accordion} from '@comfortdelgro/react-compass-old'
 
 function TableAccordion() {
   const lorem = `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi,

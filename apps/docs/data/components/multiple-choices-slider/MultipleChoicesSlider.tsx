@@ -4,7 +4,7 @@ import Google from '@comfortdelgro/compass-icons/react/colorful/google'
 import Linkedin from '@comfortdelgro/compass-icons/react/colorful/linkedin'
 import Pinterest from '@comfortdelgro/compass-icons/react/colorful/pinterest'
 import Twitter from '@comfortdelgro/compass-icons/react/colorful/twitter'
-import {MultipleChoicesSlider} from '@comfortdelgro/react-compass'
+import {MultipleChoicesSlider} from '@comfortdelgro/react-compass-old'
 import IconBox from 'data/foundation/iconography/components/IconBox'
 import React from 'react'
 

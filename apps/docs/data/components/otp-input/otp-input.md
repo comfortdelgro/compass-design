@@ -10,13 +10,13 @@ components: OTPInput
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {OTPInput} from '@comfortdelgro/react-compass'
+import {OTPInput} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```jsx
-import OTPInput from '@comfortdelgro/react-compass/otp-input'
+import OTPInput from '@comfortdelgro/react-compass-old/otp-input'
 ```
 
 ## Examples

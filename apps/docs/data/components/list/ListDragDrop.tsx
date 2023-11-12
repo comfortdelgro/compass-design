@@ -1,4 +1,4 @@
-import {DragAndDropList} from '@comfortdelgro/react-compass'
+import {DragAndDropList} from '@comfortdelgro/react-compass-old'
 // import {DragAndDropList as StaticDragAndDropList} from '@comfortdelgro/static'
 
 import React, {Key} from 'react'

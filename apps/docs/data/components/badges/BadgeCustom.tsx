@@ -1,4 +1,4 @@
-import {Badge} from '@comfortdelgro/react-compass'
+import {Badge} from '@comfortdelgro/react-compass-old'
 
 function Customized() {
   return (

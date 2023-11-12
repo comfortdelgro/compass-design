@@ -1,4 +1,4 @@
-import {Icon, Sidenav} from '@comfortdelgro/react-compass'
+import {Icon, Sidenav} from '@comfortdelgro/react-compass-old'
 import {faHelicopter} from '@fortawesome/free-solid-svg-icons'
 
 function DelayExample() {

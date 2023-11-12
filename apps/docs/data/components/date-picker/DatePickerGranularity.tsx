@@ -1,4 +1,4 @@
-import {DatePicker} from '@comfortdelgro/react-compass'
+import {DatePicker} from '@comfortdelgro/react-compass-old'
 
 function DatePickerGranularity() {
   return (

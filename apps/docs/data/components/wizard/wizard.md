@@ -10,13 +10,13 @@ components: Wizard
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Wizard} from '@comfortdelgro/react-compass'
+import {Wizard} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```jsx
-import Wizard from '@comfortdelgro/react-compass/wizard'
+import Wizard from '@comfortdelgro/react-compass-old/wizard'
 ```
 
 ## Content

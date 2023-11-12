@@ -10,13 +10,13 @@ components: SubBanner
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {SubBanner} from '@comfortdelgro/react-compass'
+import {SubBanner} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```jsx
-import SubBanner from '@comfortdelgro/react-compass/sub-banner'
+import SubBanner from '@comfortdelgro/react-compass-old/sub-banner'
 ```
 
 ## Example

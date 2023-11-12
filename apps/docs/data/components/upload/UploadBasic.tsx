@@ -1,4 +1,4 @@
-import {Typography, Upload} from '@comfortdelgro/react-compass'
+import {Typography, Upload} from '@comfortdelgro/react-compass-old'
 import React from 'react'
 
 const getFileFunc = (file: File[]) => {

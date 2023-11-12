@@ -1,4 +1,4 @@
-import {Column, Divider, Typography} from '@comfortdelgro/react-compass'
+import {Column, Divider, Typography} from '@comfortdelgro/react-compass-old'
 // import {Divider as StaticDivider} from '@comfortdelgro/static'
 
 const Align: React.FC = () => {

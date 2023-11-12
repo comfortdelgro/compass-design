@@ -1,4 +1,4 @@
-import {Column, Divider, ProgressBar} from '@comfortdelgro/react-compass'
+import {Column, Divider, ProgressBar} from '@comfortdelgro/react-compass-old'
 
 export default function ProgressBarLoadingDocs() {
   return (

@@ -1,4 +1,8 @@
-import {Avatar, Button, DashboardSidecard} from '@comfortdelgro/react-compass'
+import {
+  Avatar,
+  Button,
+  DashboardSidecard,
+} from '@comfortdelgro/react-compass-old'
 
 const Default: React.FC = () => {
   return (

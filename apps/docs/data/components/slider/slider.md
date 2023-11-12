@@ -10,13 +10,13 @@ components: Slider
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Slider} from '@comfortdelgro/react-compass'
+import {Slider} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```jsx
-import Slider from '@comfortdelgro/react-compass/slider'
+import Slider from '@comfortdelgro/react-compass-old/slider'
 ```
 
 ## Example

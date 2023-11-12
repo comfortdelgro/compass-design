@@ -10,13 +10,13 @@ components: Sidebar
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Sidebar} from '@comfortdelgro/react-compass'
+import {Sidebar} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```jsx
-import Sidebar from '@comfortdelgro/react-compass/sidebar'
+import Sidebar from '@comfortdelgro/react-compass-old/sidebar'
 ```
 
 ## Example

@@ -4,7 +4,7 @@ import {
   Icon,
   TagBox,
   Typography,
-} from '@comfortdelgro/react-compass'
+} from '@comfortdelgro/react-compass-old'
 // import {TagBox as StaticTagBox} from '@comfortdelgro/static'
 import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons'
 import React from 'react'

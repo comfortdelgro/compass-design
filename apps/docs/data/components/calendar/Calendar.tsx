@@ -1,4 +1,4 @@
-import {Calendar, CalendarProps, Column} from '@comfortdelgro/react-compass'
+import {Calendar, CalendarProps, Column} from '@comfortdelgro/react-compass-old'
 import React from 'react'
 
 const {useDateFormatter} = Calendar.I18N

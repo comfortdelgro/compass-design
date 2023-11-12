@@ -1,4 +1,4 @@
-import Alert from '@comfortdelgro/react-compass/alert'
+import Alert from '@comfortdelgro/react-compass-old/alert'
 
 function AlertCustom() {
   return (

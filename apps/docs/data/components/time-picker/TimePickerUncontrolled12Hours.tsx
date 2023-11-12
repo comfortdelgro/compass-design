@@ -1,4 +1,4 @@
-import TimePicker from '@comfortdelgro/react-compass/time-picker'
+import TimePicker from '@comfortdelgro/react-compass-old/time-picker'
 
 function TimePickerUncontrolled12Hours() {
   return (

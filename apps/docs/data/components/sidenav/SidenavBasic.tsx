@@ -1,4 +1,4 @@
-import {Avatar, Icon, Sidenav} from '@comfortdelgro/react-compass'
+import {Avatar, Icon, Sidenav} from '@comfortdelgro/react-compass-old'
 import {
   faAmbulance,
   faBank,

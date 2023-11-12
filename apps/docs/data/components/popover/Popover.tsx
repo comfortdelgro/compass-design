@@ -1,5 +1,7 @@
-import Button from '@comfortdelgro/react-compass/button'
-import Popover, {PopoverDirection} from '@comfortdelgro/react-compass/popover'
+import Button from '@comfortdelgro/react-compass-old/button'
+import Popover, {
+  PopoverDirection,
+} from '@comfortdelgro/react-compass-old/popover'
 import {useState} from 'react'
 
 const SamplePopover = () => {

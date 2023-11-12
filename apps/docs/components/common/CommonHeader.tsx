@@ -4,7 +4,7 @@ import {
   Column,
   Row,
   Typography,
-} from '@comfortdelgro/react-compass'
+} from '@comfortdelgro/react-compass-old'
 import {usePageProps} from 'contexts/PageProps'
 import _ from 'lodash'
 import {useRouter} from 'next/router'

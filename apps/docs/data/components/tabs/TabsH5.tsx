@@ -1,4 +1,4 @@
-import {Column, Row, Tabs} from '@comfortdelgro/react-compass'
+import {Column, Row, Tabs} from '@comfortdelgro/react-compass-old'
 
 const Variants: React.FC = () => (
   <Column>

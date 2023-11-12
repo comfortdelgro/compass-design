@@ -1,6 +1,9 @@
 import Singapore from '@comfortdelgro/compass-icons/react/flag-sgp'
 import USA from '@comfortdelgro/compass-icons/react/flag-usa'
-import {DropdownOptions, DropdownTextfield} from '@comfortdelgro/react-compass'
+import {
+  DropdownOptions,
+  DropdownTextfield,
+} from '@comfortdelgro/react-compass-old'
 import React from 'react'
 function Controlled() {
   const phoneDropdownOptions: DropdownOptions[] = [

@@ -1,4 +1,4 @@
-import OTPInput from '@comfortdelgro/react-compass/otp-input'
+import OTPInput from '@comfortdelgro/react-compass-old/otp-input'
 
 export default function OTPInputMobileView() {
   return (

@@ -2,8 +2,8 @@ import {
   SSRProvider,
   ThemeProvider,
   ToastContextProvider,
-} from '@comfortdelgro/react-compass'
-import Preflight from '@comfortdelgro/react-compass/preflight'
+} from '@comfortdelgro/react-compass-old'
+import Preflight from '@comfortdelgro/react-compass-old/preflight'
 //import {ThemeStaticProvider} from '@comfortdelgro/static'
 //import '@comfortdelgro/static/style.css'
 import 'components/common/bootstrap'

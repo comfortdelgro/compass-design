@@ -1,68 +1,70 @@
 @import '../../theme/theme.module.css';
 
-.status {
-  display: flex;
-  width: 14px;
-  height: 14px;
-}
-
-.status.xs {
-  width: 10px;
-  height: 10px;
-}
-
-.status.sm {
-  width: 12px;
-  height: 12px;
-}
-
-.status.md {
-  width: 14px;
-  height: 14px;
-}
-
-.status.lg {
-  width: 16px;
-  height: 16px;
-}
-
-.status.xl {
-  width: 18px;
-  height: 18px;
-}
-
-.status.xxl {
-  width: 20px;
-  height: 20px;
-}
-
-.status.xxxl {
-  width: 24px;
-  height: 24px;
-}
-
-.status.xxxxl {
-  width: 32px;
-  height: 32px;
-}
-
-.statusIcon {
-  width: 100%;
-  height: 100%;
-}
-
-.statusElement {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  border: 1.5px solid var(--cdg-color-white);
-  box-sizing: border-box;
-}
-
-.statusElement.online {
-  background-color: var(--cdg-color-success);
-}
-
-.statusElement.offline {
-  background-color: var(--light-theme-thematics-secondary-grey-90, #e8e8e8);
+@layer default {
+  .status {
+    display: flex;
+    width: 14px;
+    height: 14px;
+  }
+  
+  .status.xs {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .status.sm {
+    width: 12px;
+    height: 12px;
+  }
+  
+  .status.md {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .status.lg {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .status.xl {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .status.xxl {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .status.xxxl {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .status.xxxxl {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .statusIcon {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .statusElement {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 1.5px solid var(--cdg-color-white);
+    box-sizing: border-box;
+  }
+  
+  .statusElement.online {
+    background-color: var(--cdg-color-success);
+  }
+  
+  .statusElement.offline {
+    background-color: var(--light-theme-thematics-secondary-grey-90, #e8e8e8);
+  }
 }

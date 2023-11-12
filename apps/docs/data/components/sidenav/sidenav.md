@@ -10,13 +10,13 @@ components: Sidenav
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Sidenav} from '@comfortdelgro/react-compass'
+import {Sidenav} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```jsx
-import Sidenav from '@comfortdelgro/react-compass/sidenav'
+import Sidenav from '@comfortdelgro/react-compass-old/sidenav'
 ```
 
 ## Example

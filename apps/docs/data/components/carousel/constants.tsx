@@ -3,7 +3,7 @@ import {
   CarouselSliderButton,
   CarouselSliderItem,
   SocicalIcon,
-} from '@comfortdelgro/react-compass'
+} from '@comfortdelgro/react-compass-old'
 
 export const socials: SocicalIcon[] = [
   {
