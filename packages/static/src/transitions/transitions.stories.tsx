@@ -2,7 +2,7 @@ import type {Meta} from '@storybook/react'
 import React from 'react'
 
 // replace this ass static toggle asap
-import Toggle from '../../../react-compass/src/toggle'
+import Toggle from './../toggle'
 import Transitions from './index'
 
 export const Variants: React.FC = () => {
