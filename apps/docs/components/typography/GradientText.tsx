@@ -1,4 +1,4 @@
-import {styled} from '@comfortdelgro/react-compass'
+import {styled} from '@comfortdelgro/react-compass-old'
 
 const GradientText = styled('span', {
   background: 'linear-gradient(to right, #007FFF, #0059B2)',

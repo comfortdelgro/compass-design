@@ -3,7 +3,7 @@ import {
   Pudo,
   PudoValueChange,
   Typography,
-} from '@comfortdelgro/react-compass'
+} from '@comfortdelgro/react-compass-old'
 import {useState} from 'react'
 import {PreviewCode} from './Pudo'
 

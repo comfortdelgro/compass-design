@@ -10,13 +10,13 @@ components: Tabs
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Tabs, TabsProps} from '@comfortdelgro/react-compass'
+import {Tabs, TabsProps} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```jsx
-import {Tabs, TabsProps} from '@comfortdelgro/react-compass/tabs'
+import {Tabs, TabsProps} from '@comfortdelgro/react-compass-old/tabs'
 ```
 
 ## Note

@@ -14,7 +14,7 @@ import {
   RichTextEditor,
   JSONContent,
   Content,
-} from '@comfortdelgro/react-compass'
+} from '@comfortdelgro/react-compass-old'
 ```
 
 or
@@ -24,7 +24,7 @@ import {
   RichTextEditor,
   JSONContent,
   Content,
-} from '@comfortdelgro/react-compass/rich-text-editor'
+} from '@comfortdelgro/react-compass-old/rich-text-editor'
 ```
 
 ## Example

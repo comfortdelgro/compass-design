@@ -1,4 +1,4 @@
-import {Breadcrumbs} from '@comfortdelgro/react-compass'
+import {Breadcrumbs} from '@comfortdelgro/react-compass-old'
 // import {Breadcrumbs as StaticBreadcrumbs} from '@comfortdelgro/static'
 import {faBug} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'

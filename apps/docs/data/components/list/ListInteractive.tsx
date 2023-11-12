@@ -1,4 +1,4 @@
-import {Avatar, InteractiveList} from '@comfortdelgro/react-compass'
+import {Avatar, InteractiveList} from '@comfortdelgro/react-compass-old'
 // import {Avatar as StaticAvatar, InteractiveList as StaticInteractiveList} from '@comfortdelgro/static'
 
 function ListInteractive() {

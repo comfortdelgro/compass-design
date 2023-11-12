@@ -5,7 +5,7 @@ import {
   DrawerH5Props,
   Row,
   Typography,
-} from '@comfortdelgro/react-compass'
+} from '@comfortdelgro/react-compass-old'
 import {useState} from 'react'
 
 const h5DrawerDefaultConfig: Partial<DrawerH5Props> = {

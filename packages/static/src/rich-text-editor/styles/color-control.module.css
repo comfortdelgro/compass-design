@@ -1,7 +1,9 @@
 @import '../../theme/theme.module.css';
 
-.rteColorControl {
-  border-radius: 4px;
-  width: 24px;
-  height: 24px;
+@layer default {
+  .rteColorControl {
+    border-radius: 4px;
+    width: 24px;
+    height: 24px;
+  }
 }

@@ -1,4 +1,4 @@
-import {Divider} from '@comfortdelgro/react-compass'
+import {Divider} from '@comfortdelgro/react-compass-old'
 import Head from 'components/common/Head'
 import MarkdownLinks from 'components/common/MarkdownLinks'
 import Banner from 'components/home/Banner'

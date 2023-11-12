@@ -10,13 +10,13 @@ components: Upload
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Upload} from '@comfortdelgro/react-compass'
+import {Upload} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```jsx
-import Upload from '@comfortdelgro/react-compass/upload'
+import Upload from '@comfortdelgro/react-compass-old/upload'
 ```
 
 ## Example

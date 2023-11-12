@@ -1,4 +1,4 @@
-import {SlideAction} from '@comfortdelgro/react-compass'
+import {SlideAction} from '@comfortdelgro/react-compass-old'
 
 <SlideAction
   label='Swipe to purchase'

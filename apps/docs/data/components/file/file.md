@@ -13,13 +13,13 @@ The File component allows you to display state and preview of the file uploaded.
 ## Import
 
 ```js
-import {File} from '@comfortdelgro/react-compass'
+import {File} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```js
-import File from '@comfortdelgro/react-compass/file'
+import File from '@comfortdelgro/react-compass-old/file'
 ```
 
 ### Basic States

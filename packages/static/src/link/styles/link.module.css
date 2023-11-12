@@ -1,9 +1,11 @@
 @import '../../theme/theme.module.css';
 
-.link {
-  font-family: inherit;
-  font-weight: var(--cdg-font-weight-medium);
-  color: var(--cdg-color-info);
-  text-decoration: none;
-  transition: var(--cdg-transition-default);
+@layer default {
+  .link {
+    font-family: inherit;
+    font-weight: var(--cdg-font-weight-medium);
+    color: var(--cdg-color-info);
+    text-decoration: none;
+    transition: var(--cdg-transition-default);
+  }
 }

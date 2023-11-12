@@ -10,7 +10,7 @@ components: VideoPlayer
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {VideoPlayer, VideoPlayerProps} from '@comfortdelgro/react-compass'
+import {VideoPlayer, VideoPlayerProps} from '@comfortdelgro/react-compass-old'
 ```
 
 or
@@ -19,7 +19,7 @@ or
 import {
   VideoPlayer,
   VideoPlayerProps,
-} from '@comfortdelgro/react-compass/video-player'
+} from '@comfortdelgro/react-compass-old/video-player'
 ```
 
 ## Example

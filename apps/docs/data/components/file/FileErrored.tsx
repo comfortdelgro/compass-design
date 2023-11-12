@@ -1,5 +1,5 @@
-import {Icon} from '@comfortdelgro/react-compass'
-import File from '@comfortdelgro/react-compass/file'
+import {Icon} from '@comfortdelgro/react-compass-old'
+import File from '@comfortdelgro/react-compass-old/file'
 // import {File as StaticFile} from '@comfortdelgro/static'
 import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons'
 

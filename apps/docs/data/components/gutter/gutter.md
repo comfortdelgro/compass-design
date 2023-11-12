@@ -10,13 +10,13 @@ components: Gutter
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Gutter} from '@comfortdelgro/react-compass'
+import {Gutter} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```jsx
-import Gutter from '@comfortdelgro/react-compass/gutter'
+import Gutter from '@comfortdelgro/react-compass-old/gutter'
 ```
 
 ## Basic

@@ -1,4 +1,4 @@
-import {Calendar, isWeekend, useLocale} from '@comfortdelgro/react-compass'
+import {Calendar, isWeekend, useLocale} from '@comfortdelgro/react-compass-old'
 
 function ValidatedCalendar() {
   const {locale} = useLocale()

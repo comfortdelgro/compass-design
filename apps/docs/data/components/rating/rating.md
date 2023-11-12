@@ -10,13 +10,13 @@ components: Rating
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Rating} from '@comfortdelgro/react-compass'
+import {Rating} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```jsx
-import Rating from '@comfortdelgro/react-compass/rating'
+import Rating from '@comfortdelgro/react-compass-old/rating'
 ```
 
 ## Example

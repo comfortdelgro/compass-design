@@ -10,13 +10,13 @@ components: Divider
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Divider} from '@comfortdelgro/react-compass'
+import {Divider} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```jsx
-import Divider from '@comfortdelgro/react-compass/divider'
+import Divider from '@comfortdelgro/react-compass-old/divider'
 ```
 
 ## Example

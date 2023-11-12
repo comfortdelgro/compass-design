@@ -1,5 +1,5 @@
-import {Column} from '@comfortdelgro/react-compass'
-import ProgressBar from '@comfortdelgro/react-compass/progress-bar'
+import {Column} from '@comfortdelgro/react-compass-old'
+import ProgressBar from '@comfortdelgro/react-compass-old/progress-bar'
 
 export default function ProgressBarVariantDocs() {
   return (

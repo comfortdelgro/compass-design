@@ -1,4 +1,4 @@
-import Chart from '@comfortdelgro/react-compass/chart'
+import Chart from '@comfortdelgro/react-compass-old/chart'
 // import {Chart as StaticChart} from '@comfortdelgro/static'
 
 function ChartLine() {

@@ -1,5 +1,5 @@
 'use client'
-import Progress from '@comfortdelgro/react-compass/progress'
+import Progress from '@comfortdelgro/react-compass-old/progress'
 // import {Progress as StaticProgress} from '@comfortdelgro/static'
 import React from 'react'
 

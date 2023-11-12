@@ -10,13 +10,13 @@ components: TagBox
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {TagBox} from '@comfortdelgro/react-compass'
+import {TagBox} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```jsx
-import TagBox from '@comfortdelgro/react-compass/tag-box'
+import TagBox from '@comfortdelgro/react-compass-old/tag-box'
 ```
 
 ## Example

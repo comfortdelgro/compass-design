@@ -1,5 +1,5 @@
-import Toggle from '@comfortdelgro/react-compass/toggle'
-import Transitions from '@comfortdelgro/react-compass/transitions'
+import Toggle from '@comfortdelgro/react-compass-old/toggle'
+import Transitions from '@comfortdelgro/react-compass-old/transitions'
 import React from 'react'
 
 const Slide: React.FC = () => {

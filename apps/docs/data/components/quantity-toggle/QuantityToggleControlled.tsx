@@ -1,4 +1,4 @@
-import {QuantityToggle} from '@comfortdelgro/react-compass'
+import {QuantityToggle} from '@comfortdelgro/react-compass-old'
 // import {QuantityToggle as StaticsQuantityToggle} from '@comfortdelgro/static'
 import {useState} from 'react'
 

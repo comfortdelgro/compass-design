@@ -6,7 +6,7 @@ import {
   Icon,
   Navbar,
   Typography,
-} from '@comfortdelgro/react-compass'
+} from '@comfortdelgro/react-compass-old'
 import {faClose} from '@fortawesome/free-solid-svg-icons'
 import SvgLogo from 'components/icons/SvgLogo'
 import routes from 'constants/routes'

@@ -1,4 +1,4 @@
-import Toggle from '@comfortdelgro/react-compass/toggle'
+import Toggle from '@comfortdelgro/react-compass-old/toggle'
 
 function ToggleSizes() {
   return (

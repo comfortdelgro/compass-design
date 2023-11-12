@@ -10,13 +10,13 @@ components: ReactTable
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {ReactTable} from '@comfortdelgro/react-compass'
+import {ReactTable} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```jsx
-import ReactTable from '@comfortdelgro/react-compass/table-v2'
+import ReactTable from '@comfortdelgro/react-compass-old/table-v2'
 ```
 
 ## Example

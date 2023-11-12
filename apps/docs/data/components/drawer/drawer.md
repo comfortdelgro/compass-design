@@ -11,13 +11,13 @@ components: Drawer
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Drawer} from '@comfortdelgro/react-compass'
+import {Drawer} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```jsx
-import Drawer from '@comfortdelgro/react-compass/drawer'
+import Drawer from '@comfortdelgro/react-compass-old/drawer'
 ```
 
 ## Usage

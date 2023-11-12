@@ -10,13 +10,13 @@ components: PUDO
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Pudo} from '@comfortdelgro/react-compass'
+import {Pudo} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```jsx
-import Pudo from '@comfortdelgro/react-compass/pudo'
+import Pudo from '@comfortdelgro/react-compass-old/pudo'
 ```
 
 ## Usage

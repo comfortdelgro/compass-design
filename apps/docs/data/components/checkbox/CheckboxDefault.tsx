@@ -1,4 +1,4 @@
-import {Checkbox, Column} from '@comfortdelgro/react-compass'
+import {Checkbox, Column} from '@comfortdelgro/react-compass-old'
 // import {Checkbox as StaticCheckbox} from '@comfortdelgro/static'
 import React, {useState} from 'react'
 

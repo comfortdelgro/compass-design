@@ -1,4 +1,4 @@
-import {Box, Typography} from '@comfortdelgro/react-compass'
+import {Box, Typography} from '@comfortdelgro/react-compass-old'
 import {shouldHandleLinkClick} from 'components/common/MarkdownLinks'
 import {useIsTabletScreen} from 'hooks'
 import {noop} from 'lodash'

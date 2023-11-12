@@ -1,4 +1,4 @@
-import {Column, SlideAction} from '@comfortdelgro/react-compass'
+import {Column, SlideAction} from '@comfortdelgro/react-compass-old'
 
 export default function SliderCompactDocs() {
   return (

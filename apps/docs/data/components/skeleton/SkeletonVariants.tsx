@@ -1,4 +1,4 @@
-import {Skeleton} from '@comfortdelgro/react-compass'
+import {Skeleton} from '@comfortdelgro/react-compass-old'
 // import {Skeleton as StaticSkeleton} from '@comfortdelgro/static'
 
 function SkeletonVariants() {

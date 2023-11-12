@@ -1,19 +1,21 @@
 @import '../../theme/theme.module.css';
 
-.radioGroup {
-  position: relative;
-  width: 100%;
-  padding: var(--cdg-spacing-2) var(--cdg-spacing-4);
-  display: flex;
-  gap: var(--cdg-spacing-4);
-}
-
-.radioGroupHorizontal {
-  flex-direction: row;
-}
-
-.radioGroupVertical {
-  flex-direction: column;
+@layer default {
+  .radioGroup {
+    position: relative;
+    width: 100%;
+    padding: var(--cdg-spacing-2) var(--cdg-spacing-4);
+    display: flex;
+    gap: var(--cdg-spacing-4);
+  }
+  
+  .radioGroupHorizontal {
+    flex-direction: row;
+  }
+  
+  .radioGroupVertical {
+    flex-direction: column;
+  }
 }
 
 

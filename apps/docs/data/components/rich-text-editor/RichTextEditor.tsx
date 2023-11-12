@@ -1,4 +1,4 @@
-import {Content, RichTextEditor} from '@comfortdelgro/react-compass'
+import {Content, RichTextEditor} from '@comfortdelgro/react-compass-old'
 
 const content: Content = `
     <h1>What is Lorem Ipsum?</h1>

@@ -10,13 +10,13 @@ components: Carousel
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Carousel} from '@comfortdelgro/react-compass'
+import {Carousel} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```jsx
-import Carousel from '@comfortdelgro/react-compass/carousel'
+import Carousel from '@comfortdelgro/react-compass-old/carousel'
 ```
 
 ## Example

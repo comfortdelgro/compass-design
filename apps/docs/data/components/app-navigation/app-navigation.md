@@ -10,13 +10,13 @@ components: AppNav
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {AppNav} from '@comfortdelgro/react-compass'
+import {AppNav} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```jsx
-import AppNav from '@comfortdelgro/react-compass/appnav'
+import AppNav from '@comfortdelgro/react-compass-old/appnav'
 ```
 
 ## Example

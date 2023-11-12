@@ -10,13 +10,13 @@ components: QuantityToggle
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {QuantityToggle} from '@comfortdelgro/react-compass'
+import {QuantityToggle} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```jsx
-import QuantityToggle from '@comfortdelgro/react-compass/quantity-toggle'
+import QuantityToggle from '@comfortdelgro/react-compass-old/quantity-toggle'
 ```
 
 ## Support
