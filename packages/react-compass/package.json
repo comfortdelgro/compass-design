@@ -109,7 +109,7 @@
   },
   "publishConfig": {
     "access": "public",
-    "directory": "dist",
+    "directory": ".",
     "linkDirectory": true
   }
 }
