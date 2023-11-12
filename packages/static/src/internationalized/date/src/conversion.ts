@@ -14,7 +14,7 @@ import {
   Time,
   ZonedDateTime,
 } from './CalendarDate'
-import {getExtendedYear, GregorianCalendar} from './calendars/GregorianCalendar'
+import {GregorianCalendar, getExtendedYear} from './calendars/GregorianCalendar'
 import {constrain} from './manipulation'
 import {getLocalTimeZone} from './queries'
 import {

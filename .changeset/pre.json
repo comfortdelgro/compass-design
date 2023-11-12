@@ -7,5 +7,7 @@
     "@comfortdelgro/react-compass-old": "2.26.0",
     "@comfortdelgro/react-compass": "2.26.0"
   },
-  "changesets": []
+  "changesets": [
+    "rotten-goats-stare"
+  ]
 }

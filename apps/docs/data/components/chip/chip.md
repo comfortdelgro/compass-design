@@ -24,7 +24,7 @@ import Chip from '@comfortdelgro/react-compass-old/chip'
 {{"demo": "Chip.tsx"}}
 
 ## Chip Server (Experimental)
-    
+
 {{"demo": "ChipServer.tsx"}}
 
 ## Props

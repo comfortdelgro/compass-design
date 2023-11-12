@@ -10,13 +10,13 @@ import {
   TABBABLE_ELEMENT_SELECTOR,
 } from '../constants/focus.constant'
 import {
-  FocusableElement,
   FocusManager,
   FocusManagerOptions,
+  FocusableElement,
   Modality,
   ScopeRef,
-  ScrollableElement,
   ScrollIntoViewportOpts,
+  ScrollableElement,
 } from '../types'
 import {isAndroid} from './platform'
 import {runAfterTransition} from './text'
