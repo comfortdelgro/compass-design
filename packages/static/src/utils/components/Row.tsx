@@ -1,21 +1,21 @@
-import React from 'react';
-import styles from './components.module.css'; 
-import { useDOMRef } from '../use-dom-ref';
-import CssInjection from '../objectToCss/CssInjection';
+import React from 'react'
+import CssInjection from '../objectToCss/CssInjection'
+import {useDOMRef} from '../use-dom-ref'
+import styles from './components.module.css'
 
 interface RowProps {
-  children?: React.ReactNode;
-  css?: unknown;
-  className?: string;
+  children?: React.ReactNode
+  css?: unknown
+  className?: string
 }
 
 export type RowComponentProps = RowProps &
-  Omit<React.HTMLAttributes<HTMLDivElement>, keyof RowProps>;
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof RowProps>
 
 const Row = React.forwardRef<HTMLDivElement, RowComponentProps>(
   (props, ref) => {
-    const { children, css = {}, className = '', ...htmlProps } = props;
-    const rowRef = useDOMRef<HTMLDivElement>(ref);
+    const {children, css = {}, className = '', ...htmlProps} = props
+    const rowRef = useDOMRef<HTMLDivElement>(ref)
 
     return (
       <CssInjection css={css} childrenRef={rowRef}>
@@ -27,8 +27,8 @@ const Row = React.forwardRef<HTMLDivElement, RowComponentProps>(
           {children}
         </div>
       </CssInjection>
-    );
-  }
-);
+    )
+  },
+)
 
-export default Row;
+export default Row

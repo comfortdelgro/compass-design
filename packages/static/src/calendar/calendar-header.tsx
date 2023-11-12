@@ -6,7 +6,7 @@ import Button, {ButtonProps} from '../button'
 import {DateValue} from '../internationalized/date'
 import {useDateFormatter} from '../internationalized/i18n'
 import CssInjection from '../utils/objectToCss/CssInjection'
-import {MonthYearState, MONTH_YEAR_STATE} from './hooks/useMonthYearState'
+import {MONTH_YEAR_STATE, MonthYearState} from './hooks/useMonthYearState'
 import styles from './styles/calendar-header.module.css'
 import {AriaLabelingProps, DOMProps} from './types'
 import {

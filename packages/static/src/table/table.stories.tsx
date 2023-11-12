@@ -30,9 +30,9 @@ import {
 import StatusComponent from './for story/person-status'
 import {
   LimitRequestStatus,
+  Person,
   makeData,
   makeRequestStatusData,
-  Person,
 } from './makeData'
 import {OptionType} from './table'
 import ProgressPercentage from './table-progress'
