@@ -1,7 +1,6 @@
 import {Skeleton} from '@comfortdelgro/react-compass'
 // import {Skeleton as StaticSkeleton} from '@comfortdelgro/static'
 
-
 function SkeletonVariants() {
   return (
     <div

@@ -1,6 +1,5 @@
 import {Column, Row, Typography} from '@comfortdelgro/react-compass'
-// import {Tabs} from '@comfortdelgro/static'
-import {Tabs} from '@comfortdelgro/react-compass'
+import {Tabs} from '@comfortdelgro/static'
 import styles from './tabServer.module.css'
 
 const Icon: React.FC = () => (

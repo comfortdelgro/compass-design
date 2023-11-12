@@ -52,7 +52,10 @@ importers:
         version: link:../../packages/markdown
       '@comfortdelgro/react-compass':
         specifier: workspace:*
-        version: link:../../packages/static/dist
+        version: link:../../packages/react-compass/dist
+      '@comfortdelgro/static':
+        specifier: workspace:*
+        version: link:../../packages/static
       '@fortawesome/fontawesome-svg-core':
         specifier: ^6.4.0
         version: 6.4.2
@@ -558,7 +561,6 @@ importers:
       vite:
         specifier: ^4.4.9
         version: 4.4.9(@types/node@18.17.17)
-    publishDirectory: dist
 
 packages:
 

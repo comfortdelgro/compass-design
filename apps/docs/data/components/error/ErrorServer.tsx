@@ -1,5 +1,4 @@
-// import {Button, Error, Icon} from '@comfortdelgro/static'
-import {Button, Error, Icon} from '@comfortdelgro/react-compass'
+import {Button, Error, Icon} from '@comfortdelgro/static'
 import {faBug} from '@fortawesome/free-solid-svg-icons'
 
 function BasicExample() {

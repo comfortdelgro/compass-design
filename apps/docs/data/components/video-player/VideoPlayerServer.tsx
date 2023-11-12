@@ -1,5 +1,4 @@
-//import {VideoPlayer} from '@comfortdelgro/static'
-import { VideoPlayer } from "@comfortdelgro/react-compass"
+import {VideoPlayer} from '@comfortdelgro/static'
 
 function BasicExample() {
   return (
