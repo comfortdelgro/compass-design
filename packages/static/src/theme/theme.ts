@@ -333,9 +333,11 @@ export const darkThemeColors = {
   snackbarWarning: '#95711F',
 }
 
-// Import file
+// Import file 
 
-export const filesImportUrl = ['./fonts.module.css']
+export const filesImportUrl = [
+  './fonts.module.css',
+]
 
 const theme = {
   colors: lightThemeColors,

@@ -129,13 +129,6 @@ export type {
   FooterPolicyProps,
   FooterProps,
 } from './footer'
-export {default as FormLayout} from './layouts/form-layout'
-export type {
-  FormExplainationProps,
-  FormGroupProps,
-  FormLayoutProps,
-  FormRowProps,
-} from './layouts/form-layout'
 export {default as Grid} from './grid'
 export type {GridContainerProps, GridItemProps} from './grid'
 export {default as Gutter} from './gutter'
