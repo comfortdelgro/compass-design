@@ -30,9 +30,9 @@ import {
 } from '../../internationalized/i18n'
 import {NumberParser} from '../../internationalized/number'
 import {
+  DOMAttributes,
   DateFieldState,
   DateSegment,
-  DOMAttributes,
   FocusableElement,
 } from '../types'
 import {

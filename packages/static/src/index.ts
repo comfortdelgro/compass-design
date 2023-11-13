@@ -5,19 +5,12 @@ export type {
   AccordionTableProps,
   AccordionTitleProps,
 } from './accordion'
-export {default as ActionBar} from './layouts/action-bar'
-export type {
-  ActionBarCenterGroupProps,
-  ActionBarLeftGroupProps,
-  ActionBarProps,
-  ActionBarRightGroupProps,
-} from './layouts/action-bar'
 export {default as Alert} from './alert'
 export type {AlertProps} from './alert'
-export {default as AutoComplete} from './auto-complete'
-export type {AutoCompleteProps} from './auto-complete'
 export {default as AppNav} from './appnav'
 export type {AppNavProps} from './appnav'
+export {default as AutoComplete} from './auto-complete'
+export type {AutoCompleteProps} from './auto-complete'
 export {default as Avatar} from './avatar'
 export type {AvatarProps} from './avatar'
 export {default as Badge} from './badge'
@@ -152,12 +145,26 @@ export type {IconProp} from './icon'
 export {default as ImageViewer} from './image-viewer'
 export type {ImageViewerProps} from './image-viewer'
 export * from './layouts'
+export {default as ActionBar} from './layouts/action-bar'
+export type {
+  ActionBarCenterGroupProps,
+  ActionBarLeftGroupProps,
+  ActionBarProps,
+  ActionBarRightGroupProps,
+} from './layouts/action-bar'
+export {default as FormLayout} from './layouts/form-layout'
+export type {
+  FormExplainationProps,
+  FormGroupProps,
+  FormLayoutProps,
+  FormRowProps,
+} from './layouts/form-layout'
 export {default as Link} from './link'
 export type {LinkProps} from './link'
 export {
-  default as List,
   DragAndDropList,
   InteractiveList,
+  default as List,
   ListCard,
 } from './list'
 export type {
@@ -253,8 +260,8 @@ export type {
 } from './sidebar'
 export {default as Sidenav, SidenavContext} from './sidenav'
 export type {
-  DividerProps as SidenavDividerProps,
   SidenavContextValue,
+  DividerProps as SidenavDividerProps,
   SidenavItemProps,
   SidenavMenuProps,
   SidenavProps,
@@ -329,8 +336,8 @@ export type {
 export {ToastContextProvider, useToast} from './toast/service'
 export type {
   ToastItemType,
-  ToastsContainerProps,
   ToastState,
+  ToastsContainerProps,
 } from './toast/service'
 export {default as Toggle} from './toggle'
 export type {ToggleProps} from './toggle'
