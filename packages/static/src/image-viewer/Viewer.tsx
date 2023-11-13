@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react'
-import {ImageViewerProps} from './types'
 import ViewerCore from './ViewerCore'
+import {ImageViewerProps} from './types'
 
 const Viewer = (props: ImageViewerProps) => {
   const [init, setInit] = useState(false)

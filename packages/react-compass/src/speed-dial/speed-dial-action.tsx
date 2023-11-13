@@ -4,9 +4,9 @@ import {useKeyboardNavigation, useKeyboardNavigationState} from '../utils/hooks'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
-  SpeedDialAction as StyledSpeedDialAction,
   SpeedDialIcon,
   SpeedDialName,
+  SpeedDialAction as StyledSpeedDialAction,
 } from './speed-dial.styles'
 
 interface Props extends StyledComponentProps {

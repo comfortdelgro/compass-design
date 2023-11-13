@@ -32,6 +32,7 @@ importers:
       turbo:
         specifier: ^1.5.6
         version: 1.10.16
+    publishDirectory: ./packages/static
 
   apps/docs:
     dependencies:
@@ -558,7 +559,6 @@ importers:
       vite:
         specifier: ^4.4.9
         version: 4.5.0(@types/node@18.18.9)
-    publishDirectory: dist
 
 packages:
 

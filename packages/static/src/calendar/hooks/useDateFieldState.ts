@@ -19,9 +19,9 @@ import {
   Calendar,
   CalendarDate,
   DateFormatter,
+  GregorianCalendar,
   getMinimumDayInMonth,
   getMinimumMonthInYear,
-  GregorianCalendar,
   toCalendar,
 } from '../../internationalized/date'
 import {MIN_YEAR} from '../constants/common'

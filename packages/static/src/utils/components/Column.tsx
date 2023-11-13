@@ -1,21 +1,21 @@
-import React from 'react';
-import styles from './components.module.css'; 
-import { useDOMRef } from '../use-dom-ref';
-import CssInjection from '../objectToCss/CssInjection';
+import React from 'react'
+import CssInjection from '../objectToCss/CssInjection'
+import {useDOMRef} from '../use-dom-ref'
+import styles from './components.module.css'
 
 interface ColumnProps {
-  children?: React.ReactNode;
-  css?: unknown;
-  className?: string;
+  children?: React.ReactNode
+  css?: unknown
+  className?: string
 }
 
 export type ColumnComponentProps = ColumnProps &
-  Omit<React.HTMLAttributes<HTMLDivElement>, keyof ColumnProps>;
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof ColumnProps>
 
 const Column = React.forwardRef<HTMLDivElement, ColumnComponentProps>(
   (props, ref) => {
-    const { children, css = {}, className = '', ...htmlProps } = props;
-    const columnRef = useDOMRef<HTMLDivElement>(ref);
+    const {children, css = {}, className = '', ...htmlProps} = props
+    const columnRef = useDOMRef<HTMLDivElement>(ref)
 
     return (
       <CssInjection css={css} childrenRef={columnRef}>
@@ -27,8 +27,8 @@ const Column = React.forwardRef<HTMLDivElement, ColumnComponentProps>(
           {children}
         </div>
       </CssInjection>
-    );
-  }
-);
+    )
+  },
+)
 
-export default Column;
+export default Column

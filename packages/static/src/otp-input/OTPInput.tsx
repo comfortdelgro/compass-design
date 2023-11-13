@@ -2,7 +2,7 @@ import React, {memo, useCallback, useState} from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
 import SingleInput from './SingleInput'
-import styles from './styles/OTPInput.module.css'
+import styles from './styles/otpInput.module.css'
 
 export interface Props {
   /** @default 6 */
