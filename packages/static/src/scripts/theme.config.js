@@ -233,6 +233,7 @@ export const lightThemeColors = {
   grayShades100: '#333333',
 
   blueShades10: '#E6ECF7',
+  blueShades20: '#CCD9EF',
   blueShades80: '#3468BF',
   blueShades100: '#0142AF',
   blueShades120: '#012158',
@@ -323,6 +324,7 @@ export const darkThemeColors = {
   grayShades100: '#F7F8F9',
 
   blueShades10: '#E6ECF7',
+  blueShades20: '#CCD9EF',
   blueShades80: '#3468BF',
   blueShades100: '#0142AF',
   blueShades120: '#012158',

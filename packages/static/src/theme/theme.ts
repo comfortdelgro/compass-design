@@ -234,6 +234,7 @@ export const lightThemeColors = {
   grayShades100: '#333333',
 
   blueShades10: '#E6ECF7',
+  blueShades20: '#CCD9EF',
   blueShades80: '#3468BF',
   blueShades100: '#0142AF',
   blueShades120: '#012158',
@@ -324,6 +325,7 @@ export const darkThemeColors = {
   grayShades100: '#F7F8F9',
 
   blueShades10: '#E6ECF7',
+  blueShades20: '#CCD9EF',
   blueShades80: '#3468BF',
   blueShades100: '#0142AF',
   blueShades120: '#012158',
@@ -332,12 +334,6 @@ export const darkThemeColors = {
   badgeWarningBg: '#95711F',
   snackbarWarning: '#95711F',
 }
-
-// Import file 
-
-export const filesImportUrl = [
-  './fonts.module.css',
-]
 
 const theme = {
   colors: lightThemeColors,
