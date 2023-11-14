@@ -10,13 +10,13 @@ components: Pagination
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Pagination} from '@comfortdelgro/react-compass-old'
+import {Pagination} from '@comfortdelgro/react-compass'
 ```
 
 or
 
 ```jsx
-import Pagination from '@comfortdelgro/react-compass-old/pagination'
+import Pagination from '@comfortdelgro/react-compass/pagination'
 ```
 
 ## Basic
@@ -30,9 +30,6 @@ import Pagination from '@comfortdelgro/react-compass-old/pagination'
 ## Items Counting Pagination
 
 {{"demo": "PaginationItemsCounting.tsx"}}
-
-<!-- ## Pagination Server (Experimental)
-{{"demo": "PaginationServer.tsx"}} -->
 
 ## Props
 

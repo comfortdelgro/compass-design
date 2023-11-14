@@ -1,8 +1,6 @@
 import Button from '@comfortdelgro/react-compass-old/button'
-import Popover, {
-  PopoverDirection,
-} from '@comfortdelgro/react-compass-old/popover'
-import {useState} from 'react'
+import Popover, { PopoverDirection } from '@comfortdelgro/react-compass-old/popover'
+import { useState } from 'react'
 
 const SamplePopover = () => {
   return (
@@ -69,7 +67,7 @@ const Popovers = () => {
           }}
         >
           <label
-            style={{fontSize: '0.85em', color: 'red'}}
+            style={{ fontSize: '0.85em', color: 'red' }}
             htmlFor='directionSelect'
           >
             Direction
@@ -79,7 +77,7 @@ const Popovers = () => {
             onChange={(e) => {
               setCurrentDirection(e.target.value as PopoverDirection)
             }}
-            style={{width: '6rem', height: '1.8rem'}}
+            style={{ width: '6rem', height: '1.8rem' }}
           >
             {directions.map((direction) => {
               return (
@@ -98,14 +96,14 @@ const Popovers = () => {
           }}
         >
           <label
-            style={{fontSize: '0.85em', color: 'red'}}
+            style={{ fontSize: '0.85em', color: 'red' }}
             htmlFor='offsetInput'
           >
             Offset
           </label>
           <input
             id='offsetInput'
-            style={{width: '6rem', height: '1.8rem'}}
+            style={{ width: '6rem', height: '1.8rem' }}
             type='number'
             value={currentOffset}
             onChange={(e) => setCurrentOffset(Number(e.target.value))}
