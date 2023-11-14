@@ -331,9 +331,3 @@ export const darkThemeColors = {
   badgeWarningBg: '#95711F',
   snackbarWarning: '#95711F',
 }
-
-// Import file 
-
-export const filesImportUrl = [
-  './fonts.module.css',
-]

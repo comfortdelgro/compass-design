@@ -31,8 +31,8 @@ import Pagination from '@comfortdelgro/react-compass-old/pagination'
 
 {{"demo": "PaginationItemsCounting.tsx"}}
 
-<!-- ## Pagination Server (Experimental)
-{{"demo": "PaginationServer.tsx"}} -->
+## Pagination Server (Experimental)
+{{"demo": "PaginationServer.tsx"}}
 
 ## Props
 
