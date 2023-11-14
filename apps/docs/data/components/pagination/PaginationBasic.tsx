@@ -1,4 +1,4 @@
-import Pagination from '@comfortdelgro/react-compass-old/pagination'
+import {Pagination} from '@comfortdelgro/react-compass'
 
 function PaginationBasic() {
   return (
