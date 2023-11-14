@@ -6,10 +6,8 @@
 
 For the components in the `@comfortdelgro/react-compass` package to work correctly, it is essential to use the **Poppins font** from Google Fonts. This is because most components in React Compass are designed with the Poppins font.
 
-### Steps to Include Poppins Font in Your Project:
+### Step to Include Poppins Font in Your Project:
 
-**Add the Poppins Font Link**:
-  
   Include the following link in the `<head>` section of your HTML file (usually `index.html` in a React project):
 
    ```html
