@@ -8,29 +8,18 @@ For the components in the `@comfortdelgro/react-compass` package to work correct
 
 ### Steps to Include Poppins Font in Your Project:
 
-1. **Add the Poppins Font Link**:
+**Add the Poppins Font Link**:
   
-   Include the following link in the `<head>` section of your HTML file (usually `index.html` in a React project):
+  Include the following link in the `<head>` section of your HTML file (usually `index.html` in a React project):
 
    ```html
     <link rel='preconnect' href='https://fonts.googleapis.com' />
     <link rel='preconnect' href='https://fonts.gstatic.com' cross-origin />
-   ```
-
-   This tells the browser to establish an early connection to the domain which is where the font files are hosted.
-
-    ```html
-      <link
-        href='https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'
-        rel='stylesheet'
-      />
-    ```
-
-   This is the actual link to the stylesheet for the "Poppins" font family from Google Fonts. The URL includes parameters specifying the different styles and weights of the font that you want to load (e.g., italic, various weights from 100 to 900). The display=swap parameter ensures that if the font takes time to load, the browser will display a fallback font and then swap it with the Google font once it's fully loaded.
-
-2. **Testing the Font**:
-   
-   After adding the font, run your application to ensure that the font is applied correctly. Check different components to verify that they display as expected.
+    <link
+      href='https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'
+      rel='stylesheet'
+    />
+  ```
 
 ## Default installation
 
