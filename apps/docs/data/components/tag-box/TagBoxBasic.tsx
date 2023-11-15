@@ -4,8 +4,7 @@ import {
   Icon,
   TagBox,
   Typography,
-} from '@comfortdelgro/react-compass-old'
-// import {TagBox as StaticTagBox} from '@comfortdelgro/static'
+} from '@comfortdelgro/react-compass'
 import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
 
@@ -132,20 +131,6 @@ const TagBoxs: React.FC = () => {
           <Button>Call to action</Button>
         </TagBox.Action>
       </TagBox>
-      {/* <StaticTagBox
-        label='Text Label'
-        items={list}
-        icon={<Icon icon={faExclamationTriangle} />}
-        isRequired
-        onAdd={addItem}
-        onEdit={editItem}
-        onRemove={removeItem}
-        helperText='Helper text'
-      >
-        <StaticTagBox.Action>
-          <Button>Call to action</Button>
-        </StaticTagBox.Action>
-      </StaticTagBox> */}
       <Typography.Header variant='header3'>Typeable</Typography.Header>
       <TagBox
         label='Text Label'
@@ -161,20 +146,6 @@ const TagBoxs: React.FC = () => {
           <Button>Call to action</Button>
         </TagBox.Action>
       </TagBox>
-      {/* <StaticTagBox
-        label='Text Label'
-        items={list}
-        typeable
-        icon={<Icon icon={faExclamationTriangle} />}
-        onAdd={addItem}
-        onEdit={editItem}
-        onRemove={removeItem}
-        helperText='Helper text'
-      >
-        <StaticTagBox.Action>
-          <Button>Call to action</Button>
-        </StaticTagBox.Action>
-      </StaticTagBox> */}
       <Typography.Header variant='header3'>Error</Typography.Header>
       <TagBox
         label='Text Label'
@@ -191,21 +162,6 @@ const TagBoxs: React.FC = () => {
           <Button>Call to action</Button>
         </TagBox.Action>
       </TagBox>
-      {/* <StaticTagBox
-        label='Text Label'
-        items={list}
-        icon={<Icon icon={faExclamationTriangle} />}
-        onAdd={addItem}
-        onEdit={editItem}
-        onRemove={removeItem}
-        isErrored
-        errorMessage='Error Message'
-        helperText='Helper text'
-      >
-        <StaticTagBox.Action>
-          <Button>Call to action</Button>
-        </StaticTagBox.Action>
-      </StaticTagBox> */}
       <Typography.Header variant='header3'>Positioned Label</Typography.Header>
       <TagBox
         items={list}
@@ -220,19 +176,6 @@ const TagBoxs: React.FC = () => {
           <Button>Call to action</Button>
         </TagBox.Action>
       </TagBox>
-      {/* <StaticTagBox
-        items={list}
-        onAdd={addItem}
-        onEdit={editItem}
-        onRemove={removeItem}
-        labelPosition='left'
-        label='Text Label'
-        helperText='Helper text'
-      >
-        <StaticTagBox.Action>
-          <Button>Call to action</Button>
-        </StaticTagBox.Action>
-      </StaticTagBox> */}
       <Typography.Header variant='header3'>No Action</Typography.Header>
       <TagBox
         label='Text Label'
@@ -242,14 +185,6 @@ const TagBoxs: React.FC = () => {
         onRemove={removeItem}
         helperText='Helper text'
       />
-      {/* <StaticTagBox
-        label='Text Label'
-        items={list}
-        onAdd={addItem}
-        onEdit={editItem}
-        onRemove={removeItem}
-        helperText='Helper text'
-      /> */}
       <Typography.Header variant='header3'>
         No Helper text and Action
       </Typography.Header>
@@ -260,14 +195,6 @@ const TagBoxs: React.FC = () => {
         onEdit={editItem}
         onRemove={removeItem}
       />
-      {/* <StaticTagBox
-        label='Text Label'
-        items={list}
-        onAdd={addItem}
-        onEdit={editItem}
-        onRemove={removeItem}
-        helperText='Helper text'
-      /> */}
     </Column>
   )
 }
