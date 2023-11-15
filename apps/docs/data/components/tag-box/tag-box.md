@@ -25,6 +25,22 @@ import TagBox from '@comfortdelgro/react-compass/tag-box'
 
 {{"demo": "TagBoxBasic.tsx"}}
 
+### Typeable
+
+{{"demo": "TagBoxTypeable.tsx"}}
+
+### Error
+
+{{"demo": "TagBoxError.tsx"}}
+
+### Positioned Label
+
+{{"demo": "TagBoxPositionedLabel.tsx"}}
+
+### No Action
+
+{{"demo": "TagBoxNoAction.tsx"}}
+
 ## Props
 
 ### TagBox

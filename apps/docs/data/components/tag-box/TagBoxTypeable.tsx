@@ -112,8 +112,8 @@ const TagBoxs: React.FC = () => {
     <TagBox
       label='Text Label'
       items={list}
+      typeable
       icon={<Icon icon={faExclamationTriangle} />}
-      isRequired
       onAdd={addItem}
       onEdit={editItem}
       onRemove={removeItem}
