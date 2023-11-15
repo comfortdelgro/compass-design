@@ -54,7 +54,7 @@ export const preflightStyles = globalCss({
    * 2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
    */
   hr: {
-    height: 0,
+    // height: 0,
     color: 'inherit',
   },
 
