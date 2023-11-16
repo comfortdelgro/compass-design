@@ -55,11 +55,14 @@ const ItemCounting: React.FC<
   React.ComponentPropsWithoutRef<typeof StyledPagination> & {
     count: number
     page: number
+    rowsPerPage: number
   }
-> = ({count, page, ...props}) => {
+> = ({count, page, rowsPerPage, ...props}) => {
   const layout = useMemo(() => {
-    return `${(page - 1) * 10 + 1} - ${(page - 1) * 10 + 10} of ${count}`
-  }, [count, page])
+    const start = (page - 1) * rowsPerPage + 1
+    const end = Math.min(page * rowsPerPage, count)
+    return `${start} - ${end} of ${count}`
+  }, [count, page, rowsPerPage])
 
   return (
     <StyledPaginationItemCounting {...props}>
@@ -118,7 +121,7 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
       initialPage = 1,
       onChange,
       count,
-      rowsPerPage,
+      rowsPerPage = 10,
       onRowsPerPageChange,
       rowsOptions = [5, 10, 15, 20, 25],
       // html props
@@ -187,7 +190,9 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
             }
           />
         )}
-        {count && <ItemCounting count={count} page={page} />}
+        {count && (
+          <ItemCounting count={count} page={page} rowsPerPage={rowsPerPage} />
+        )}
         <StyledPaginationItem
           onClick={previous}
           aria-label='previous page'
