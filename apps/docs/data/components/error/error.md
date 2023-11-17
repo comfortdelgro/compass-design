@@ -10,13 +10,13 @@ components: Error
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Error} from '@comfortdelgro/react-compass-old'
+import {Error} from '@comfortdelgro/react-compass'
 ```
 
 or
 
 ```jsx
-import Error from '@comfortdelgro/react-compass-old/error'
+import Error from '@comfortdelgro/react-compass/error'
 ```
 
 ## Example
@@ -32,9 +32,6 @@ import Error from '@comfortdelgro/react-compass-old/error'
 ### With Css
 
 {{"demo": "ErrorCss.tsx"}}
-
-<!-- ## Error Server (Experimental)
-{{"demo": "ErrorServer.tsx"}} -->
 
 ## Props
 

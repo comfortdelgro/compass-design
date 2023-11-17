@@ -12,13 +12,13 @@ components: Banner
 ## Import
 
 ```js
-import {Banner} from '@comfortdelgro/react-compass-old'
+import {Banner} from '@comfortdelgro/react-compass'
 ```
 
 or
 
 ```js
-import Banner from '@comfortdelgro/react-compass-old/banner'
+import Banner from '@comfortdelgro/react-compass/banner'
 ```
 
 ## Example
@@ -37,10 +37,6 @@ You can style React Compass's components with the css prop.<br>
 With css prop, you can basically do anything that css can do.
 
 {{"demo": "BannerCustom.tsx"}}
-
-<!-- ## Banner Server (Experimental)
-
-{{"demo": "BannerServer.tsx"}} -->
 
 ## Props
 

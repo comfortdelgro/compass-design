@@ -5,7 +5,7 @@ import {
   ProgressBar,
   Row,
   Typography,
-} from '@comfortdelgro/react-compass-old'
+} from '@comfortdelgro/react-compass'
 import {useEffect, useState} from 'react'
 
 const INIT_VALUE = 5

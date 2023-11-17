@@ -1,4 +1,4 @@
-import Spinner from '@comfortdelgro/react-compass-old/spinner'
+import {Spinner} from '@comfortdelgro/react-compass'
 
 function SpinnerWithoutLabel() {
   return (
