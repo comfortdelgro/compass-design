@@ -3,7 +3,7 @@ import {
   Column,
   Pudo,
   SlideAction,
-} from '@comfortdelgro/react-compass-old'
+} from '@comfortdelgro/react-compass'
 
 export default function PudoCustomTypeDocs() {
   return (

@@ -8,9 +8,8 @@ import {
   PudoValueChange,
   Row,
   Typography,
-} from '@comfortdelgro/react-compass-old'
+} from '@comfortdelgro/react-compass'
 import {useState} from 'react'
-import {PreviewCode} from './Pudo'
 
 const addItemsPool = [
   {name: 'des2', value: '', placeholder: 'Where to', allowSwap: true},
@@ -86,7 +85,23 @@ export default function PudoManipulationDocs() {
       {formValues && (
         <>
           <Typography.Body variant='body3'>Values:</Typography.Body>
-          <PreviewCode>{JSON.stringify(formValues, null, 2)}</PreviewCode>
+          <div
+            style={{
+              padding: '$2',
+              margin: '0',
+
+              width: '100%',
+              minHeight: '1.25rem',
+              borderRadius: '8px',
+
+              backgroundColor: '#FAF9F8',
+              fontSize: '0.875rem',
+              whiteSpace: 'pre-wrap',
+              overflowWrap: 'anywhere',
+            }}
+          >
+            {JSON.stringify(formValues, null, 2)}
+          </div>
         </>
       )}
     </Column>
