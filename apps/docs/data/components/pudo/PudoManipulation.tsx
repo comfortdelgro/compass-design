@@ -87,7 +87,7 @@ export default function PudoManipulationDocs() {
           <Typography.Body variant='body3'>Values:</Typography.Body>
           <pre
             style={{
-              padding: '$2',
+              padding: '0.5rem',
               margin: '0',
 
               width: '100%',

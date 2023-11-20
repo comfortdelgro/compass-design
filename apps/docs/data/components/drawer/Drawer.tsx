@@ -48,11 +48,11 @@ export default function DrawerDocs() {
       <Typography.Body variant='body2'>Submitted form values:</Typography.Body>
       <pre
         style={{
-          padding: '$2',
+          padding: '0.5rem',
           margin: '0',
 
           width: '100%',
-          minHeight: '1.25rem',
+          minHeight: '2rem',
           borderRadius: '8px',
 
           backgroundColor: '#FAF9F8',

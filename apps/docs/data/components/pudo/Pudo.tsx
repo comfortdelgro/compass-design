@@ -45,7 +45,7 @@ export default function PudoDocs() {
           </Typography.Body>
           <pre
             style={{
-              padding: '$2',
+              padding: '0.5rem',
               margin: '0',
 
               width: '100%',
