@@ -3,8 +3,8 @@ import {
   Icon,
   ToastContextProvider,
   useToast,
-} from '@comfortdelgro/react-compass'
-import Dropdown from '@comfortdelgro/react-compass/dropdown'
+} from '@comfortdelgro/react-compass-old'
+import Dropdown from '@comfortdelgro/react-compass-old/dropdown'
 import {faImage} from '@fortawesome/free-solid-svg-icons'
 import React, {Key} from 'react'
 

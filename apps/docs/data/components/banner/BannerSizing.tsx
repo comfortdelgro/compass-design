@@ -1,4 +1,4 @@
-import {Banner, Flexbox} from '@comfortdelgro/react-compass'
+import {Banner, Flexbox} from '@comfortdelgro/react-compass-old'
 
 function Sizing() {
   return (

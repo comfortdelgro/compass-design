@@ -1,5 +1,5 @@
 import BugIcon from '@comfortdelgro/compass-icons/react/bug'
-import {Avatar, Flexbox} from '@comfortdelgro/react-compass'
+import {Avatar, Flexbox} from '@comfortdelgro/react-compass-old'
 
 export function IconAvatars() {
   return (

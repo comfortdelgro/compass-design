@@ -10,8 +10,8 @@ import {
   Radio,
   Row,
   Typography,
-} from '@comfortdelgro/react-compass'
-import ListImage from '@comfortdelgro/react-compass/list/list-image'
+} from '@comfortdelgro/react-compass-old'
+import ListImage from '@comfortdelgro/react-compass-old/list/list-image'
 import {
   faChevronDown,
   faChevronRight,

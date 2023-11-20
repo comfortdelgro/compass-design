@@ -1,4 +1,5 @@
-import {Banner} from '@comfortdelgro/static'
+//import {Banner} from '@comfortdelgro/static'
+import {Banner} from '@comfortdelgro/react-compass-old'
 
 function BasicExample() {
   return (

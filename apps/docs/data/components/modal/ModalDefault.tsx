@@ -1,4 +1,4 @@
-import {Button, Column, Modal} from '@comfortdelgro/react-compass'
+import {Button, Column, Modal} from '@comfortdelgro/react-compass-old'
 import {faXmark} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React from 'react'

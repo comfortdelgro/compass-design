@@ -1,5 +1,5 @@
 import Github from '@comfortdelgro/compass-icons/react/github'
-import {Button} from '@comfortdelgro/react-compass'
+import {Button} from '@comfortdelgro/react-compass-old'
 import Link from 'next/link'
 
 export default function EditPage(props: {sourceLocation: string}) {

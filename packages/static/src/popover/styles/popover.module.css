@@ -1,4 +1,5 @@
-/* StyledPopoverWrapper */
+@layer default {
+  /* StyledPopoverWrapper */
 .popoverWrapper {
   /* Reset */
   appearance: none;
@@ -22,4 +23,5 @@
   background: transparent;
   width: fit-content;
   height: fit-content;
+}
 }

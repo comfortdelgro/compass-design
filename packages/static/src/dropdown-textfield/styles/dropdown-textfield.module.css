@@ -1,0 +1,58 @@
+@import '../../theme/theme.module.css';
+
+/* 
+* default has the lowest priority
+*/
+@layer default, variant;
+
+@layer default {
+  .inputWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: var(--cdg-spacing-1);
+  }
+  .dropdownTextfield {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+  }
+  .textFieldLabel {
+    font-size: var(--cdg-font-size-label1);
+    font-weight: var(--cdg-font-weight-semibold);
+    margin-bottom: var(--cdg-spacing-2);
+    display: inline-block;
+    width: 100%;
+  }
+
+  .dropdownTextfieldError {
+    margin-top: var(--cdg-spacing-1);
+    color: var(--cdg-color-danger);
+    font-size: var(--cdg-font-size-label2);
+    font-weight: var(--cdg-font-weight-medium);
+  }
+
+  .asterisk {
+    margin-left: var(--cdg-spacing-1);
+    color: var(--cdg-color-danger);
+  }
+
+  .dropdownTextfieldSelect {
+    width: 25%;
+  }
+  .dropdownTextfieldInput {
+    width: 75%;
+  }
+}
+
+@layer variant {
+  .textFieldLabelH5 {
+    font-size: var(--cdg-font-size-label2);
+    font-weight: var(--cdg-font-weight-medium);
+    color: var(--cdg-color-grayShades80);
+    margin-bottom: var(--cdg-spacing-1);
+  }
+}

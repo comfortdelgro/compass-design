@@ -1,4 +1,4 @@
-import {SlideAction, Typography} from '@comfortdelgro/react-compass'
+import {SlideAction, Typography} from '@comfortdelgro/react-compass-old'
 import {useState} from 'react'
 
 export default function SliderActionBehaviorDocs() {

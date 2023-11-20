@@ -1,7 +1,7 @@
 import React from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StatusSize, StatusType, STATUS_SIZE_MAP} from './status.const'
+import {STATUS_SIZE_MAP, StatusSize, StatusType} from './status.const'
 import Offline from './status/offline'
 import Online from './status/online'
 import Verified from './status/verified'

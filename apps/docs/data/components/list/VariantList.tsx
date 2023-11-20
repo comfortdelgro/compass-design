@@ -1,4 +1,4 @@
-import {Avatar, Icon, List} from '@comfortdelgro/react-compass'
+import {Avatar, Icon, List} from '@comfortdelgro/react-compass-old'
 // import {List as StaticList} from '@comfortdelgro/static'
 import {faBug, faChevronRight} from '@fortawesome/free-solid-svg-icons'
 

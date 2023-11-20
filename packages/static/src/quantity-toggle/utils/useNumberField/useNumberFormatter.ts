@@ -8,8 +8,13 @@
  * found in the LICENSE.txt file at the root directory of this source tree.
  */
 
-import {NumberFormatOptions, NumberFormatter} from '@internationalized/number'
 import {useMemo} from 'react'
+import {NumberFormatter} from '../../../internationalized/number'
+
+interface NumberFormatOptions extends Intl.NumberFormatOptions {
+  /** Overrides default numbering system for the current locale. */
+  numberingSystem?: string
+}
 
 export function useNumberFormatter(
   options: NumberFormatOptions = {},

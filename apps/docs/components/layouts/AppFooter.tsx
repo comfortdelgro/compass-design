@@ -1,5 +1,5 @@
 import Compass from '@comfortdelgro/compass-icons/react/colorful/compass'
-import {Box, Typography} from '@comfortdelgro/react-compass'
+import {Box, Typography} from '@comfortdelgro/react-compass-old'
 import Link from 'next/link'
 import Container from './Container'
 

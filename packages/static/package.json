@@ -1,13 +1,23 @@
 {
-  "name": "@comfortdelgro/static",
-  "version": "0.0.0",
-  "private": true,
+  "name": "@comfortdelgro/react-compass",
+  "version": "3.0.0-beta.0",
   "description": "React Compass Design System by ComfortDelGro Corporation",
   "keywords": [
     "design system",
     "react compass",
     "react component library"
   ],
+  "homepage": "https://github.com/comfortdelgro/compass-design#readme",
+  "bugs": {
+    "url": "https://github.com/comfortdelgro/compass-design/issues/new?labels=bug&template=bug.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/comfortdelgro/compass-design",
+    "directory": "packages/react-compass"
+  },
+  "license": "MIT",
+  "author": "ComfortDelGro Corporation Limited (https://www.comfortdelgro.com/)",
   "type": "module",
   "exports": {
     ".": {
@@ -51,6 +61,7 @@
     "@storybook/builder-vite": "^7.4.2",
     "@storybook/core-server": "^7.4.2",
     "@swc/core": "^1.3.10",
+    "@tanstack/react-table": "8.7.6",
     "@tiptap/core": "^2.0.3",
     "@tiptap/extension-character-count": "2.0.3",
     "@tiptap/extension-color": "2.0.3",
@@ -88,6 +99,7 @@
     "@storybook/react": "7.4.2",
     "@storybook/react-vite": "7.4.2",
     "@storybook/testing-library": "0.2.1",
+    "@types/lodash": "^4.14.194",
     "@types/node": "^18.11.0",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
@@ -101,5 +113,13 @@
     "storybook": "7.4.2",
     "typescript": "^5.2.2",
     "vite": "^4.4.9"
+  },
+  "peerDependencies": {
+    "react": ">=17.0.2",
+    "react-dom": ">=17.0.2"
+  },
+  "publishConfig": {
+    "access": "public",
+    "linkDirectory": true
   }
 }

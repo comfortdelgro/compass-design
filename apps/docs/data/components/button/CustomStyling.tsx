@@ -1,4 +1,4 @@
-import {Button, Flexbox, Icon} from '@comfortdelgro/react-compass'
+import {Button, Flexbox, Icon} from '@comfortdelgro/react-compass-old'
 import {faThumbsUp} from '@fortawesome/free-solid-svg-icons'
 
 export default function CustomStyling() {

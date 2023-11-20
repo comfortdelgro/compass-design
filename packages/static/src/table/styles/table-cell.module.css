@@ -1,0 +1,28 @@
+@import '../../theme/theme.module.css';
+
+@layer default, variant;
+
+@layer default {
+  .cdgTableCell {
+    position: relative;
+    font-size: var(--cdg-font-size-label1);
+    font-weight: var(--cdg-font-weight-normal);
+    padding: var(--cdg-spacing-4) var(--cdg-spacing-3);
+    color: var(--cdg-color-primaryText);
+    line-height: var(--cdg-spacing-5_25);
+  }
+}
+
+@layer variant {
+  .isGrouped {
+    background-color: var(--cdg-color-successBg);
+  }
+
+  .isAggregated {
+    background-color: var(--cdg-color-warningBg);
+  }
+
+  .isPlaceholder {
+    background-color: var(--cdg-color-severeWarningBg);
+  }
+}

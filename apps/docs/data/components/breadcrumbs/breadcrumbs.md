@@ -10,13 +10,13 @@ components: Breadcrumbs
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Breadcrumbs} from '@comfortdelgro/react-compass'
+import {Breadcrumbs} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```jsx
-import Breadcrumbs from '@comfortdelgro/react-compass/breadcrumbs'
+import Breadcrumbs from '@comfortdelgro/react-compass-old/breadcrumbs'
 ```
 
 ## Example

@@ -15,13 +15,13 @@ Footer component is an additional navigation used for displaying general informa
 ## Import
 
 ```js
-import {Footer, FooterInfo} from '@comfortdelgro/react-compass'
+import {Footer, FooterInfo} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```js
-import {Footer, FooterInfo} from '@comfortdelgro/react-compass/footer'
+import {Footer, FooterInfo} from '@comfortdelgro/react-compass-old/footer'
 ```
 
 ### Footer Color Variants

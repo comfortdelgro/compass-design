@@ -23,7 +23,7 @@ To create a `NumberParser`, call the constructor with a locale string and option
 This example creates a parser than accepts values in inches in the `en-US` locale.
 
 ```tsx
-import {NumberParser} from '@comfortdelgro/react-compass'
+import {NumberParser} from '@comfortdelgro/react-compass-old'
 
 let parser = new NumberParser('en-US', {style: 'unit', unit: 'inch'})
 parser.parse('10 in') // 10

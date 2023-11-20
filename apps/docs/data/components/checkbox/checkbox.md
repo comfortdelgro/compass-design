@@ -10,13 +10,13 @@ components: Checkbox
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Checkbox} from '@comfortdelgro/react-compass'
+import {Checkbox} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```jsx
-import Checkbox from '@comfortdelgro/react-compass/checkbox'
+import Checkbox from '@comfortdelgro/react-compass-old/checkbox'
 ```
 
 ## Example

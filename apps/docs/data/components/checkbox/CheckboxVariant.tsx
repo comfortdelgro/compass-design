@@ -1,4 +1,9 @@
-import {Checkbox, Column, Row, Typography} from '@comfortdelgro/react-compass'
+import {
+  Checkbox,
+  Column,
+  Row,
+  Typography,
+} from '@comfortdelgro/react-compass-old'
 // import {Checkbox as StaticCheckbox} from '@comfortdelgro/static'
 
 const Variants: React.FC = () => (

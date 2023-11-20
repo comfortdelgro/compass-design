@@ -1,4 +1,4 @@
-import {Box, Button} from '@comfortdelgro/react-compass'
+import {Box, Button} from '@comfortdelgro/react-compass-old'
 import HighlightedCode from 'components/common/HighlightedCode'
 import MarkdownElement from '../../markdown/MarkdownElement'
 import ShowcaseContainer from './ShowcaseContainer'

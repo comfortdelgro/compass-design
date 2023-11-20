@@ -8,7 +8,7 @@ import {
   PudoValueChange,
   Row,
   Typography,
-} from '@comfortdelgro/react-compass'
+} from '@comfortdelgro/react-compass-old'
 import {useState} from 'react'
 import {PreviewCode} from './Pudo'
 
@@ -41,7 +41,7 @@ export default function PudoManipulationDocs() {
   const [maxLength, setMaxLength] = useState(3)
   const [formValues, setFormValues] = useState<
     PudoValueChange<PudoItemAllKeys>
-  >(defaultItems.map(({name, value}) => ({name, value})))
+  >(defaultItems.map(({name, value = ''}) => ({name, value})))
 
   const pendingAddItemsCount =
     addItemsPool.length + defaultItems.length - formValues.length

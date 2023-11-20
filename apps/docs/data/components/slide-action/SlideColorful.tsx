@@ -4,7 +4,7 @@ import {
   SlideAction,
   styled,
   Typography,
-} from '@comfortdelgro/react-compass'
+} from '@comfortdelgro/react-compass-old'
 import {useState} from 'react'
 
 // Slate, Orange, Emerald, CdgBlue, Cyan, Violet, Rose

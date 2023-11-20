@@ -10,13 +10,13 @@ components: Progress
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Progress} from '@comfortdelgro/react-compass'
+import {Progress} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```jsx
-import Progress from '@comfortdelgro/react-compass/progress'
+import Progress from '@comfortdelgro/react-compass-old/progress'
 ```
 
 ## Circular

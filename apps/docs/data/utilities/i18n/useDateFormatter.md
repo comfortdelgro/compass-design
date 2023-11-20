@@ -26,7 +26,7 @@ This example displays the current date for two locales: USA, and Russia. Two ins
 using the [I18nProvider](I18nProvider.html) to specify the locale to display.
 
 ```tsx example
-import {I18nProvider, useDateFormatter} from '@comfortdelgro/react-compass'
+import {I18nProvider, useDateFormatter} from '@comfortdelgro/react-compass-old'
 
 function CurrentDate() {
   let formatter = useDateFormatter()

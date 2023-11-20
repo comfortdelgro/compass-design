@@ -12,13 +12,13 @@ components: Banner
 ## Import
 
 ```js
-import {Banner} from '@comfortdelgro/react-compass'
+import {Banner} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```js
-import Banner from '@comfortdelgro/react-compass/banner'
+import Banner from '@comfortdelgro/react-compass-old/banner'
 ```
 
 ## Example

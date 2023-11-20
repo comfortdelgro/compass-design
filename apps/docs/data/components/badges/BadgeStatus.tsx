@@ -1,5 +1,5 @@
 import Tick from '@comfortdelgro/compass-icons/react/tick'
-import {Badge, Flexbox} from '@comfortdelgro/react-compass'
+import {Badge, Flexbox} from '@comfortdelgro/react-compass-old'
 function BadgeIcon() {
   return (
     <>

@@ -1,6 +1,6 @@
 // ImageViewer.tsx
-import Button from '@comfortdelgro/react-compass/button'
-import ImageViewer from '@comfortdelgro/react-compass/image-viewer'
+import Button from '@comfortdelgro/react-compass-old/button'
+import ImageViewer from '@comfortdelgro/react-compass-old/image-viewer'
 import React from 'react'
 
 const images = Array.from(Array(8).keys()).map((index) => {

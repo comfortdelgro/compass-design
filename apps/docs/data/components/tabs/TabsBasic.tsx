@@ -1,4 +1,4 @@
-import {Column, Row, Tabs, Typography} from '@comfortdelgro/react-compass'
+import {Column, Row, Tabs, Typography} from '@comfortdelgro/react-compass-old'
 
 const Icon: React.FC = () => (
   <Column>

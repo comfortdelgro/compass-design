@@ -1,4 +1,4 @@
-import {Button, Sidebar} from '@comfortdelgro/react-compass'
+import {Button, Sidebar} from '@comfortdelgro/react-compass-old'
 import React from 'react'
 
 interface PrimarySidebarProps {

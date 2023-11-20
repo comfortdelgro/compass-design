@@ -7,7 +7,7 @@
 The following code snippet demonstrates a simple app that uses the React Compass Button
 
 ```jsx
-import Preflight from '@comfortdelgro/react-compass/preflight'
+import Preflight from '@comfortdelgro/react-compass-old/preflight'
 import Document, {
   DocumentContext,
   Head,

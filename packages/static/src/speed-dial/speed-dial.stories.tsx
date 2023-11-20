@@ -1,7 +1,7 @@
+import {Meta} from '@storybook/react'
 import React from 'react'
 import Radio from '../radio'
 import SpeedDial from '../speed-dial/speed-dial'
-import { Meta } from '@storybook/react'
 
 const style: {
   display: string

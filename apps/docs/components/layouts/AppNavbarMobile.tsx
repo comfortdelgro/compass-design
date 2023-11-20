@@ -1,5 +1,5 @@
 import AlignRight from '@comfortdelgro/compass-icons/react/align-right'
-import {Box, Button, Drawer, Icon} from '@comfortdelgro/react-compass'
+import {Box, Button, Drawer, Icon} from '@comfortdelgro/react-compass-old'
 import {faClose} from '@fortawesome/free-solid-svg-icons'
 import {GITHUB_REPOSITORY} from 'constants/index'
 import Link from 'next/link'

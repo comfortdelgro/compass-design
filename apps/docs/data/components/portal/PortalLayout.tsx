@@ -8,7 +8,7 @@ import {
   Navbar,
   PageHeader,
   Sidenav,
-} from '@comfortdelgro/react-compass'
+} from '@comfortdelgro/react-compass-old'
 import {
   faAmbulance,
   faBank,

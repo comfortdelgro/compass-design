@@ -12,7 +12,7 @@ import styles from './styles/tabs.module.css'
 import Tab from './tab'
 import TabPanel from './tab-panel'
 import TabsPaneless from './tabs-paneless'
-import {Icon, useTab, Variant} from './utils'
+import {Icon, Variant, useTab} from './utils'
 
 interface Props {
   id?: string

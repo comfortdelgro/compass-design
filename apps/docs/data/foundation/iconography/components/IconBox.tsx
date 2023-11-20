@@ -1,4 +1,4 @@
-import {Icon, Toast, useColors} from '@comfortdelgro/react-compass'
+import {Icon, Toast, useColors} from '@comfortdelgro/react-compass-old'
 import {faXmark} from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
 interface Props {

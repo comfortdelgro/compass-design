@@ -6,7 +6,7 @@ import {
   startOfWeek,
   today,
   useLocale,
-} from '@comfortdelgro/react-compass'
+} from '@comfortdelgro/react-compass-old'
 
 function CustomizeShorcutsRangeCalendar() {
   const {locale} = useLocale()

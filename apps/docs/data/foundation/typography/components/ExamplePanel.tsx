@@ -1,4 +1,4 @@
-import {Box, Typography} from '@comfortdelgro/react-compass'
+import {Box, Typography} from '@comfortdelgro/react-compass-old'
 
 const ExamplePanel = () => {
   const exampleText = 'Poppins Display '

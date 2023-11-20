@@ -1,4 +1,4 @@
-import File from '@comfortdelgro/react-compass/file'
+import File from '@comfortdelgro/react-compass-old/file'
 // import {File as StaticFile} from '@comfortdelgro/static'
 
 function FilePreview() {
