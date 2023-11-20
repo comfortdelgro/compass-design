@@ -1,4 +1,4 @@
-import {Box, Button, styled} from '@comfortdelgro/react-compass-old'
+import {Box, Button} from '@comfortdelgro/react-compass-old'
 import DemoEditor from 'components/common/DemoEditor'
 import DemoEditorError from 'components/common/DemoEditorError'
 import DemoSandbox from 'components/common/DemoSandbox'
@@ -7,6 +7,7 @@ import ReactRunner from 'components/common/ReactRunner'
 import {debounce, uniqueId} from 'lodash'
 import * as React from 'react'
 import {useCodeVariant} from 'utils/codeVariant'
+import styles from './styles/DemoCodeViewer.module.css'
 
 function trimLeadingSpaces(input = '') {
   return input.replace(/^\s+/gm, '')
@@ -99,16 +100,6 @@ function useDemoElement({
     ? BundledComponent
     : LiveComponent
 }
-
-const DemoCodeViewer = styled(HighlightedCode, {
-  position: 'relative',
-  '& pre': {
-    margin: 0,
-    maxHeight: 'min(68vh, 1000px)',
-    maxWidth: 'initial',
-    borderRadius: 0,
-  },
-})
 
 export default function Demo(props: any) {
   const {demo, demoOptions, githubLocation} = props
@@ -278,7 +269,8 @@ export default function Demo(props: any) {
       </React.Suspense>
       <Box>
         {!codeOpen ? (
-          <DemoCodeViewer
+          <HighlightedCode
+            className={styles.demoCodeViewer}
             code={editorCode.value}
             id={demoSourceId}
             language={demoData.sourceLanguage}

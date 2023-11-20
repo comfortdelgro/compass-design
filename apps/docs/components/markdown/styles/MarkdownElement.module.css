@@ -1,0 +1,19 @@
+.markdownElement {
+  color: var(--colors-primaryText);
+}
+
+.markdownElement pre {
+  background-color: var(--colors-cdgBlue140);
+  color: #f8f8f2;
+  overflow: auto;
+  margin: 0;
+  -webkit-overflow-scrolling: touch;
+  max-width: calc(100vw - 32px);
+}
+
+.markdownElement code {
+  font-family: var(--fonts-mono);
+  font-weight: 400;
+  --webkit-font-smoothing: subpixel-antialiased;
+  font-size: 1em;
+}

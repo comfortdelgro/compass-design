@@ -1,0 +1,16 @@
+.colorPicker {
+  height: var(--space-10);
+  width: var(--space-20);
+  font-weight: var(--fontWeights-semibold);
+  color: var(--colors-whiteText);
+  font-size: var(--fontSizes-label2);
+  border: none;
+  border-radius: var(--radii-md);
+  opacity: 0.8;
+  transition: opacity .2 ease;
+  cursor: pointer;
+}
+
+.colorPicker:hover {
+  opacity: 1;
+}

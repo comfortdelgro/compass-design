@@ -1,0 +1,11 @@
+.previewCode {
+  padding: var(--space-2);
+  margin: 0;
+  width: '100%';
+  min-height: var(--space-5);
+  border-radius: var(----radii-lg);
+  background-color: var(--colors-gray10);
+  font-size: var(--fontSizes-label1);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}

@@ -1,0 +1,27 @@
+.simpleCodeEditor {
+  font-size: 12px;
+  font-weight: 400;
+  -webkit-font-smoothing: subpixel-antialiased;
+  color: #f8f8f2;
+  direction: ltr;
+  float: left;
+  min-width: 100%;
+}
+
+.simpleCodeEditor textarea {
+  outline: 0;
+  font-family: var(--fonts-mono) !important;
+  letter-spacing: normal !important;
+  word-wrap: normal !important;
+  word-break: normal !important;
+  white-space-collapse: preserve !important;
+  font-weight: 400 !important;
+  white-space: pre !important;
+  line-height: 19.25px  !important;
+  text-indent: 0px !important;
+  tab-size: 4;
+}
+
+.simpleCodeEditor > textarea, .simpleCodeEditor > pre {
+  white-space: pre !important;
+}

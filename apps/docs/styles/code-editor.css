@@ -1,0 +1,553 @@
+.markDownElement {
+  line-height: 1.5625;
+  word-break: break-word;
+}
+
+.markDownElement pre {
+  line-height: 1.5;
+  margin: var(--space-2) 0;
+  padding: var(--space-2);
+  background-color: var(--colors-gray20);
+  color: #f8f8f2;
+  border: 1px solid;
+  border-color: var(--colors-gray30);
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  font-size: 13px;
+  max-width: calc(100vw - 32px);
+  max-height: 400px;
+  margin-top: 0;
+}
+
+.markDownElement code {
+  font-weight: 400;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+.markDownElement pre > code {
+  font-size: inherit;
+  color: var(--colors-gray110);
+}
+
+.markDownElement :not(pre) > code {
+  display: inline-block;
+  padding: 0 5px;
+  color: var(--colors-primaryText);
+  background-color: var(--colors-primaryBg);
+  border-radius: 5;
+  font-size: 13px;
+  direction: ltr;
+}
+
+.markDownElement h1 {
+  font-size: 36px;
+  margin: 10px 0;
+  color: var(--colors-cdgBlue140);
+  font-weight: 800;
+}
+
+.markDownElement .description {
+  font-weight: 400;
+  margin: 0 0 28px;
+}
+
+.markDownElement .component-tabs {
+  margin: 0 0 40px;
+}
+
+.markDownElement h2 {
+  font-weight: 700;
+  color: var(--colors-gray110);
+  margin: 40px 0 4px;
+}
+
+.markDownElement h3 {
+  font-weight: bold;
+  color: var(--colors-gray110);
+  margin: 24px 0 8px;
+}
+
+.markDownElement h4 {
+  font-weight: bold;
+  color: var(--colors-gray110);
+  margin: 24px 0 8px;
+}
+
+.markDownElement h5 {
+  font-weight: bold;
+  color: var(--colors-gray110);
+  margin: 20px 0 8px;
+}
+
+.markDownElement p,
+.markDownElement ul,
+.markDownElement ol {
+  margin-top: 0px;
+  margin-bottom: 16px;
+  color: var(--colors-gray110);
+}
+
+.markDownElement ul {
+  padding-left: 30px;
+}
+
+.markDownElement h1,
+.markDownElement h2,
+.markDownElement h3,
+.markDownElement h4 {
+  position: relative;
+  padding-right: 26px * 2px + 10px;
+}
+
+.markDownElement h1 code,
+.markDownElement h2 code,
+.markDownElement h3 code,
+.markDownElement h4 code {
+  font-size: inherit;
+  line-height: inherit;
+  word-break: break-all;
+}
+
+.markDownElement h1 .anchor-link,
+.markDownElement h2 .anchor-link,
+.markDownElement h3 .anchor-link,
+.markDownElement h4 .anchor-link {
+  display: none;
+}
+
+.markDownElement h1 a:not(.anchor-link):hover,
+.markDownElement h2 a:not(.anchor-link):hover,
+.markDownElement h3 a:not(.anchor-link):hover,
+.markDownElement h4 a:not(.anchor-link):hover {
+  color: currentColor;
+  border-bottom: 1px solid currentColor;
+  text-decoration: none;
+}
+
+.markDownElement h2:hover .anchor-link,
+.markDownElement h1:hover .anchor-link,
+.markDownElement h3:hover .anchor-link,
+.markDownElement h4:hover .anchor-link,
+.markDownElement h2 .comment-link,
+.markDownElement h1 .comment-link,
+.markDownElement h3 .comment-link,
+.markDownElement h4 .comment-link {
+  line-height: 21.5px;
+  position: absolute;
+  text-align: center;
+  margin-left: 10px;
+  margin-top: 5px;
+  height: 26px;
+  width: 26px;
+  background-color: var(--colors-cdgBlue70);
+  border: 1px solid;
+  border-color: var(--colors-gray30);
+  border-radius: 8px;
+  color: var(--colors-primaryText);
+  cursor: pointer;
+  display: inline-block;
+}
+
+.markDownElement h1:hover .anchor-link:hover,
+.markDownElement h2:hover .anchor-link:hover,
+.markDownElement h3:hover .anchor-link:hover,
+.markDownElement h4:hover .anchor-link:hover,
+.markDownElement h2 .comment-link:hover,
+.markDownElement h1 .comment-link:hover,
+.markDownElement h3 .comment-link:hover,
+.markDownElement h4 .comment-link:hover {
+  background-color: var(--colors-gray50);
+  border-color: var(--colors-gray10);
+  color: var(--colors-primaryText);
+}
+
+.markDownElement h2:hover .anchor-link svg,
+.markDownElement h1:hover .anchor-link svg,
+.markDownElement h3:hover .anchor-link svg,
+.markDownElement h4:hover .anchor-link svg,
+.markDownElement h2 .comment-link svg,
+.markDownElement h1 .comment-link svg,
+.markDownElement h3 .comment-link svg,
+.markDownElement h4 .comment-link svg {
+  width: 0.875rem;
+  height: 0.875rem;
+  fill: currentColor;
+  pointer-events: none;
+}
+
+.markDownElement h1 code,
+.markDownElement h2 code,
+.markDownElement h3 code {
+  color: var(--colors-gray110);
+}
+
+.markDownElement h1 code {
+  font-weight: bold;
+}
+
+.markDownElement h2 code {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.markDownElement h3 code {
+  font-size: 18px;
+}
+
+.markDownElement table {
+  width: 100%;
+  display: table;
+  word-break: normal;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  border-spacing: 0;
+  border: 1px solid var(--colors-gray40);
+  border-radius: 12px;
+}
+
+.markDownElement table .prop-name,
+.markDownElement table .prop-type,
+.markDownElement table .prop-default,
+.markDownElement table .slot-name,
+.markDownElement table .slot-defaultClass,
+.markDownElement table .slot-default {
+  font-weight: 400;
+  -webkit-font-smoothing: subpixel-antialiased;
+  font-size: 13px;
+}
+
+.markDownElement table .required {
+  color: #006500;
+}
+
+.markDownElement table .optional {
+  color: #45529f;
+}
+
+.markDownElement table .prop-type,
+.markDownElement table .slot-defaultClass {
+  color: #932981;
+}
+
+.markDownElement table .prop-default,
+.markDownElement table .slot-default {
+  border-bottom: 1px dotted var(--colors-gray40);
+}
+
+.markDownElement table td {
+  border-bottom: 1px solid var(--colors-gray40);
+  padding: var(--space-3);
+  color: var(--colors-primaryText);
+}
+
+.markDownElement table td code {
+  line-height: 1.6;
+}
+
+.markDownElement table th {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--colors-primaryText);
+  background: var(--colors-gray20);
+  white-space: pre;
+  border-bottom: 1px solid var(--colors-gray40);
+  padding: var(--space-3);
+}
+
+.markDownElement table blockquote {
+  border-radius: 12px;
+  border: 1px solid;
+  border-left: 8px solid;
+  border-color: var(--colors-warning);
+  background-color: var(--colors-warningBg);
+  padding: 10px 20px;
+  margin: 20px 0;
+}
+
+.markDownElement table blockquote p {
+  margin-top: 10px;
+  color: var(--colors-warning);
+}
+
+.markDownElement .CdgCallout-root {
+  padding: 16px;
+  margin: 16px 0;
+  border: 1px solid;
+  border-radius: 12px;
+}
+
+.markDownElement .CdgCallout-root > ul .markDownElement:last-child,
+.markDownElement .CdgCallout-root > p .markDownElement:last-child {
+  margin: 0;
+}
+
+.markDownElement .CdgCallout-root > p,
+.markDownElement .CdgCallout-root ul,
+.markDownElement .CdgCallout-root li {
+  color: inherit;
+}
+
+.markDownElement.CdgCallout-error {
+  color: var(--colors-danger);
+  background-color: var(--colors-dangerBg);
+  border-color: var(--colors-dangerBg);
+}
+
+.markDownElement.CdgCallout-error strong {
+  color: var(--colors-danger);
+  font-weight: bold;
+}
+
+.markDownElement.CdgCallout-error a {
+  color: red;
+}
+
+.markDownElement.CdgCallout-error a:hover {
+  text-decoration-color: inherit;
+}
+
+.markDownElement.CdgCallout-info {
+  color: var(--colors-info);
+  background-color: var(--colors-infoBg);
+  border-color: var(--colors-info);
+}
+
+.markDownElement.CdgCallout-info .strong {
+  color: var(--colors-info);
+}
+
+.markDownElement.CdgCallout-success {
+  color: var(--colors-success);
+  background-color: var(--colors-successBg);
+  border-color: var(--colors-success);
+}
+
+.markDownElement.CdgCallout-success .strong {
+  color: green;
+  font-weight: bold;
+}
+
+.markDownElement.CdgCallout-success a {
+  color: var(--colors-success);
+}
+
+.markDownElement.CdgCallout-success a:hover {
+  text-decoration-color: inherit;
+}
+
+.markDownElement.CdgCallout-warning {
+  color: var(--colors-warning);
+  background-color: var(--colors-warningBg);
+  border-color: var(--colors-warning);
+}
+
+.markDownElement.CdgCallout-warning strong {
+  color: var(--colors-warning);
+}
+
+.markDownElement.CdgCallout-warning a {
+  color: var(--colors-warning);
+  text-decoration-color: var(--colors-warning);
+}
+
+.markDownElement.CdgCallout-warning a:hover {
+  text-decoration-color: inherit;
+}
+
+.markDownElement a,
+.markDownElement a code {
+  color: var(--colors-cdgBlue80);
+  text-decoration: none;
+}
+
+.markDownElement a:hover,
+.markDownElement a code:hover {
+  text-decoration-color: inherit;
+}
+
+.markDownElement a code {
+  color: red;
+}
+
+.markDownElement img,
+.markDownElement video {
+  max-width: 100% !important;
+  height: auto;
+}
+
+.markDownElement img {
+  display: inline-block;
+  border-radius: 2;
+}
+
+.markDownElement hr {
+  height: 1px;
+  margin: var(--space-5) 0;
+  border: 0;
+  flex-shrink: 0;
+  background-color: #201f1e;
+}
+
+.markDownElement kbd.key {
+  padding: 5px;
+  display: inline-block;
+  white-space: nowrap;
+  margin: 0 1px;
+  font: 11px Consolas, Liberation Mono, Menlo, monospace;
+  line-height: 10px;
+  color: var(--colors-primaryText);
+  vertical-align: middle;
+  background-color: var(--colors-gray50);
+  border: 1px solid var(--colors-gray30);
+  border-radius: 5px;
+  box-shadow: inset 0 -1px 0 var(--colors-gray30);
+}
+
+.markDownElement details {
+  margin-bottom: 15px;
+  padding: 10px;
+}
+
+.markDownElement pre {
+  margin-top: 10px;
+}
+
+.markDownElement summary {
+  cursor: pointer;
+}
+
+.markDownElement .cdg-root {
+  direction: ltr;
+  position: relative;
+  font-size: 10px;
+}
+
+.markDownElement .cdg-copy {
+  display: inline-flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  position: absolute;
+  top: var(--space-1);
+  right: var(--space-1);
+  padding: var(--space-1);
+  font-family: inherit;
+  font-weight: 500;
+  border-radius: 6px;
+  border: none;
+  background-color: transparent;
+  color: #fff;
+  opacity: 0.6;
+}
+
+.markDownElement .cdg-copy svg {
+  user-select: none;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  fill: var(--colors-gray110);
+  flex-shrink: 0;
+  font-size: 18px;
+  margin: auto;
+  color: var(--colors-gray110);
+}
+
+.markDownElement .cdg-copy .cdg-copied-icon {
+  display: none;
+}
+
+.markDownElement .cdg-copy:hover,
+.markDownElement .cdg-copy:focus {
+  opacity: 1;
+  background-color: var(--colors-gray40);
+}
+
+.markDownElement .cdg-copy:hover .cdg-copyKeypress,
+.markDownElement .cdg-copy:focus .cdg-copyKeypress {
+  color: var(--colors-gray110);
+  display: block;
+}
+
+@media (any-hover: hover) {
+  .markDownElement .cdg-copy:hover .cdg-copyKeypress,
+  .markDownElement .cdg-copy:focus .cdg-copyKeypress {
+    color: var(--colors-gray110);
+    display: block;
+  }
+}
+
+.markDownElement .cdg-copy .cdg-copyKeypress {
+  display: none;
+  position: absolute;
+  right: 26px;
+}
+
+.markDownElement .cdg-copy[data-copied] {
+  border-color: var(--colors-cdgBlue60);
+  color: #fff;
+  background-color: var(--colors-cdgBlue40);
+}
+
+.markDownElement .cdg-copy[data-copied] .cdg-copy-icon {
+  display: none;
+}
+
+.markDownElement .cdg-copy[data-copied] .cdg-copied-icon {
+  display: block;
+}
+
+.markDownElement:focus-visible {
+  outline: 2px solid;
+  outline-offset: 2;
+  outline-color: var(--colors-cdgBlue40);
+}
+
+.markDownElement .cdg-copyKeypress {
+  pointer-events: none;
+  user-select: none;
+  margin-right: var(--space-1);
+  margin-bottom: var(--space-1);
+  white-space: nowrap;
+  opacity: 0.6;
+}
+
+.markDownElement li {
+  margin-bottom: 4px;
+}
+
+.markDownElement li pre {
+  margin-top: var(--space-1);
+}
+
+.markDownElement li p {
+  margin-bottom: var(--space-1);
+}
+
+.markDownElement sup {
+  top: unset;
+  font-size: smaller;
+  vertical-align: super;
+}
+
+.markDownElement .scrollContainer {
+  max-height: min(68vh, 1000px);
+  padding: var(--space-4);
+  overflow: auto;
+  background-color: var(--colors-gray20);
+  margin-top: -1;
+  border: 1px solid var(--colors-divider);
+  color-scheme: dark;
+}
+
+.markDownElement .scrollContainer:hover {
+  box-shadow: 0 0 0 3px var(--colors-gray50);
+}
+
+.markDownElement .scrollContainer:focus-within {
+  box-shadow: 0 0 0 2px var(--colors-gray60);
+}
+

@@ -5,7 +5,6 @@ import {
   Column,
   Modal,
   SearchField,
-  styled,
   TextField,
   Typography,
 } from '@comfortdelgro/react-compass-old'
@@ -16,15 +15,7 @@ import {map, replace, toLower, uniqBy} from 'lodash'
 import {useRouter} from 'next/router'
 import {useCallback, useEffect, useMemo, useRef, useState} from 'react'
 import {getDataSearch} from 'utils'
-
-const Shortcut = styled('div', {
-  fontSize: 12,
-  fontWeight: 500,
-  lineHeight: '20px',
-  backgroundColor: '$cdgBlue60',
-  padding: '4px $2',
-  borderRadius: 4,
-})
+import styles from './styles/Shortcut.module.css'
 
 const dataSearch = getDataSearch()
 
@@ -147,9 +138,9 @@ export default function AppSearch(props: any) {
               onClick={onOpen}
               placeholder='Search...'
             />
-            <Shortcut style={{position: 'absolute', top: 3, right: 3}}>
+            <div className={styles.shortcut} style={{position: 'absolute', top: 3, right: 3}}>
               {macOS ? '⌘' : 'Ctrl+'}K
-            </Shortcut>
+            </div>
           </>
         )}
       </Box>

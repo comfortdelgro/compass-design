@@ -2,13 +2,14 @@ import {
   Column,
   Pudo,
   PudoValueChange,
-  styled,
   Typography,
 } from '@comfortdelgro/react-compass-old'
-import {useState} from 'react'
+import { useState } from 'react'
+import styles from './styles/PrewviewCode.module.css'
+
 
 const exampleItems = [
-  {name: 'item1', value: '', placeholder: 'item1'},
+  { name: 'item1', value: '', placeholder: 'item1' },
   {
     name: 'item2',
     value: '',
@@ -29,7 +30,7 @@ export default function PudoDocs() {
     <Column>
       <Typography.Body
         variant='body3'
-        css={{color: '$grayShades60', marginBlock: '$2 $4'}}
+        css={{ color: '$grayShades60', marginBlock: '$2 $4' }}
       >
         Default config: Minlength <strong>2</strong>, Maxlength{' '}
         <strong>3</strong>, Input&#39;s maxlength <strong>255</strong>
@@ -41,7 +42,7 @@ export default function PudoDocs() {
 
       {exampleValues && (
         <>
-          <Typography.Body variant='body3' css={{marginTop: '$4'}}>
+          <Typography.Body variant='body3' css={{ marginTop: '$4' }}>
             Values:
           </Typography.Body>
           <PreviewCode>{JSON.stringify(exampleValues, null, 2)}</PreviewCode>
@@ -51,16 +52,7 @@ export default function PudoDocs() {
   )
 }
 
-export const PreviewCode = styled('pre', {
-  padding: '$2',
-  margin: '0',
 
-  width: '100%',
-  minHeight: '$5',
-  borderRadius: '$lg',
-
-  backgroundColor: '$gray10',
-  fontSize: '$label1',
-  whiteSpace: 'pre-wrap',
-  overflowWrap: 'anywhere',
-})
+export const PreviewCode = (props: React.HTMLAttributes<HTMLPreElement>) => {
+  return <pre className={styles.previewCode} {...props}>{props.children}</pre>
+}
