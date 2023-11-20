@@ -194,8 +194,6 @@ export type {
   ModalTitleProps,
   ModalTriggerProps,
 } from './modal'
-export {default as MonthYearPicker} from './month-year-picker'
-export type {MonthYearPickerProps} from './month-year-picker'
 export {default as MultipleChoicesSlider} from './multiple-choices-slider'
 export type {
   MultipleChoicesSliderItemProps,

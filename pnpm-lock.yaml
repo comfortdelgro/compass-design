@@ -273,9 +273,6 @@ importers:
       colorjs.io:
         specifier: ^0.4.3
         version: 0.4.5
-      keen-slider:
-        specifier: ^6.8.6
-        version: 6.8.6
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -10629,10 +10626,6 @@ packages:
       json-schema: 0.4.0
       verror: 1.10.0
     dev: true
-
-  /keen-slider@6.8.6:
-    resolution: {integrity: sha512-dcEQ7GDBpCjUQA8XZeWh3oBBLLmyn8aoeIQFGL/NTVkoEOsmlnXqA4QykUm/SncolAZYGsEk/PfUhLZ7mwMM2w==}
-    dev: false
 
   /keygrip@1.1.0:
     resolution: {integrity: sha512-iYSchDJ+liQ8iwbSI2QqsQOvqv58eJCEanyJPJi+Khyu8smkcKSFUCbPwzFcL7YVtZ6eONjqRX/38caJ7QjRAQ==}

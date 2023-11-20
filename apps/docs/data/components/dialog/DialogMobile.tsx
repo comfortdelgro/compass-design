@@ -7,14 +7,13 @@ import {
   Dialog,
   Dropdown,
   List,
-  MonthYearPicker,
   Radio,
   Textarea,
   Typography,
 } from '@comfortdelgro/react-compass'
 import Image from 'next/image'
 import React from 'react'
-import {getStaticPath} from 'utils'
+import { getStaticPath } from 'utils'
 
 const DialogMobile: React.FC = () => {
   const contents: any = {
@@ -104,13 +103,6 @@ const DialogMobile: React.FC = () => {
         height={200}
       />
     ),
-    monthYearPicker: (
-      <MonthYearPicker
-        month={4}
-        year={2020}
-        css={{'&.wheel__slides .wheel__slide': {width: '80%'}}}
-      />
-    ),
   }
   const [defaultOpen, setDefaultOpen] = React.useState(false)
   const [type, setType] = React.useState<string>('text')
@@ -130,7 +122,6 @@ const DialogMobile: React.FC = () => {
         <Dropdown.Item value='calendar'>Calendar</Dropdown.Item>
         <Dropdown.Item value='avatar'>Avatar</Dropdown.Item>
         <Dropdown.Item value='image'>Image</Dropdown.Item>
-        <Dropdown.Item value='monthYearPicker'>Month-Year Picker</Dropdown.Item>
         <Dropdown.Item value='radios'>Radio</Dropdown.Item>
       </Dropdown.Select>
       <Button
