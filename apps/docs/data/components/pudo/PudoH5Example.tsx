@@ -26,7 +26,7 @@ export default function PudoH5ExampleDocs() {
       {exampleValues && (
         <>
           <Typography.Body variant='body3'>Values:</Typography.Body>
-          <div
+          <pre
             style={{
               padding: '$2',
               margin: '0',
@@ -42,7 +42,7 @@ export default function PudoH5ExampleDocs() {
             }}
           >
             {JSON.stringify(exampleValues, null, 2)}
-          </div>
+          </pre>
         </>
       )}
     </Column>

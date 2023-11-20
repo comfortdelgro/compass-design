@@ -43,7 +43,7 @@ export default function PudoDocs() {
           <Typography.Body variant='body3' css={{marginTop: '$4'}}>
             Values:
           </Typography.Body>
-          <div
+          <pre
             style={{
               padding: '$2',
               margin: '0',
@@ -59,7 +59,7 @@ export default function PudoDocs() {
             }}
           >
             {JSON.stringify(exampleValues, null, 2)}
-          </div>
+          </pre>
         </>
       )}
     </Column>

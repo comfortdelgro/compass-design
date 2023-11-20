@@ -85,7 +85,7 @@ export default function PudoManipulationDocs() {
       {formValues && (
         <>
           <Typography.Body variant='body3'>Values:</Typography.Body>
-          <div
+          <pre
             style={{
               padding: '$2',
               margin: '0',
@@ -101,7 +101,7 @@ export default function PudoManipulationDocs() {
             }}
           >
             {JSON.stringify(formValues, null, 2)}
-          </div>
+          </pre>
         </>
       )}
     </Column>
