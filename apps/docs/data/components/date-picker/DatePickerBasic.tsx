@@ -1,4 +1,4 @@
-import DatePicker from '@comfortdelgro/react-compass-old/date-picker'
+import { DatePicker } from '@comfortdelgro/react-compass'
 
 function DatePickerBasic() {
   return (

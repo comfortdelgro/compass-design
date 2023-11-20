@@ -15,6 +15,13 @@
   .dateSegment:focus {
     box-shadow: none;
   }
+  
+}
+
+@layer variant {
+  .number {
+    color: var(--cdg-color-primaryText);
+  }
 
   .dateSegment:focus-visible {
     padding: var(--cdg-spacing-0_5) 0;
@@ -22,11 +29,5 @@
     box-shadow: none;
     color: var(--cdg-color-whiteText);
     background-color: var(--cdg-color-cdgBlue);
-  }
-}
-
-@layer variant {
-  .number {
-    color: var(--cdg-color-primaryText);
   }
 }

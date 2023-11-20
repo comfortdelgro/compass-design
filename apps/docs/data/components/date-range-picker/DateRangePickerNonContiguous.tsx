@@ -1,6 +1,8 @@
-import DateRangePicker from '@comfortdelgro/react-compass-old/date-range-picker'
+import {DateRangePicker, isWeekend, useLocale} from '@comfortdelgro/react-compass'
 
 function DateRangePickerNonContiguous() {
+  const {locale} = useLocale()
+
   return (
     <div>
       <DateRangePicker
@@ -12,6 +14,13 @@ function DateRangePickerNonContiguous() {
           },
         }}
         allowsNonContiguousRanges
+        isDateUnavailable={(date) => {
+          if (!date) {
+            return true
+          } else {
+            return isWeekend(date, locale)
+          }
+        }}
       />
     </div>
   )

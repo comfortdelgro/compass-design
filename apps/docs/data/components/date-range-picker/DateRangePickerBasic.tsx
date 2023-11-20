@@ -1,4 +1,4 @@
-import DateRangePicker from '@comfortdelgro/react-compass-old/date-range-picker'
+import {DateRangePicker} from '@comfortdelgro/react-compass'
 
 function DateRangePickerBasic() {
   return (

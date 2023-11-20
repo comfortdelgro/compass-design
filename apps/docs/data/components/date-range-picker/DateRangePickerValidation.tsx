@@ -1,5 +1,4 @@
-import {isWeekend, useLocale} from '@comfortdelgro/react-compass-old'
-import DateRangePicker from '@comfortdelgro/react-compass-old/date-range-picker'
+import {isWeekend, useLocale, DateRangePicker} from '@comfortdelgro/react-compass'
 
 function DateRangePickerValidation() {
   const {locale} = useLocale()

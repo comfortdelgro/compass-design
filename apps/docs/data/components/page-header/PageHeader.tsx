@@ -3,7 +3,7 @@ import {
   Breadcrumbs,
   Button,
   PageHeader,
-} from '@comfortdelgro/react-compass-old'
+} from '@comfortdelgro/react-compass'
 
 function FullFeature() {
   const isCurrent = (i: number) => {

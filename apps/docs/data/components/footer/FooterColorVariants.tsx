@@ -1,7 +1,4 @@
-import Button from '@comfortdelgro/react-compass-old/button'
-import {Footer, FooterInfo} from '@comfortdelgro/react-compass-old/footer'
-import Icon from '@comfortdelgro/react-compass-old/icon'
-import Link from '@comfortdelgro/react-compass-old/link'
+import {Icon, Footer, FooterInfo, Link, Button} from '@comfortdelgro/react-compass'
 import {faCamera, faGlobe} from '@fortawesome/free-solid-svg-icons'
 
 type FooterColor = 'black' | 'white' | 'blue'
@@ -154,14 +151,14 @@ const MyFooter: React.FC<MyFooterProps> = ({color = 'white'}) => {
         <FooterInfo.Download>
           <Button
             variant='secondary'
-            css={{width: '136px', background: 'black'}}
+            css={{width: '150pxpx', background: 'black'}}
           >
             {' '}
             Appstore
           </Button>
           <Button
             variant='secondary'
-            css={{width: '136px', background: 'black'}}
+            css={{width: '150pxpx', background: 'black'}}
           >
             {' '}
             Google Play

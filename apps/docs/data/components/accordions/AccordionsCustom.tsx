@@ -1,4 +1,4 @@
-import {Accordion} from '@comfortdelgro/react-compass-old'
+import {Accordion} from '@comfortdelgro/react-compass'
 
 function CustomizedColors() {
   return (

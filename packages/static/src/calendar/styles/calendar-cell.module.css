@@ -23,14 +23,15 @@
     border-radius: var(--cdg-border-radius-md);
   }
 
-  .calendarCell:hover {
-    background-color: var(--cdg-color-cdgBlue40);
-    border-radius: var(--cdg-border-radius-md);
-  }
 }
 
 @layer variant {
   /* Level 2 */
+
+  .today .calendar-cell-value{
+    color: var(--cdg-color-cdgBlue);
+    font-weight: bold;
+  }
 
   .focused {
     height: 100%;
@@ -68,5 +69,10 @@
 
   .calendarCellValue.disabled:hover {
     color: var(--cdg-color-gray50);
+  }
+
+  .calendarCell:hover {
+    background-color: var(--cdg-color-cdgBlue40);
+    border-radius: var(--cdg-border-radius-md);
   }
 }

@@ -3,7 +3,7 @@ import {
   CalendarProps,
   DatePicker,
   useDateFormatter,
-} from '@comfortdelgro/react-compass-old'
+} from '@comfortdelgro/react-compass'
 import React from 'react'
 
 const {getLocalTimeZone, today, parseDate} = Calendar.InternationalizedDate

@@ -4,21 +4,21 @@ import {
   DateRangePicker,
   RangeValue,
   useDateFormatter,
-} from '@comfortdelgro/react-compass-old'
+} from '@comfortdelgro/react-compass'
 import React from 'react'
 
 const {getLocalTimeZone, parseDate} = Calendar.InternationalizedDate
 
 function ControlledDateRangePicker() {
   const [range, setRange] =
-    React.useState<RangeValue<CalendarProps | null> | null>({
+    React.useState<RangeValue<CalendarProps> | null>({
       start: parseDate('2020-02-03'),
       end: parseDate('2020-02-08'),
     })
   const formatter = useDateFormatter({dateStyle: 'long'})
 
   const onChangeDateRangePicker = (
-    value: RangeValue<CalendarProps | null> | null,
+    value: RangeValue<CalendarProps> | null,
   ) => {
     setRange(value as RangeValue<CalendarProps>)
   }

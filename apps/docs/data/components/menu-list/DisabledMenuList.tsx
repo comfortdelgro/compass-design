@@ -3,7 +3,7 @@ import {
   Column,
   MenuList,
   MenuListDropdown,
-} from '@comfortdelgro/react-compass-old'
+} from '@comfortdelgro/react-compass'
 
 const DisabledItem: React.FC = () => {
   return (
