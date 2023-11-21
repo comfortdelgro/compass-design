@@ -197,8 +197,8 @@ const TooltipTrigger = React.forwardRef<HTMLDivElement, TooltipTriggerProps>(
     return (
       <>
         {clonedTriggerElement}
-        <FloatingPortal>
-          {(isOpenProp != null ? isOpenProp : isOpen) && (
+        {(isOpenProp != null ? isOpenProp : isOpen) && (
+          <FloatingPortal>
             <TooltipContext.Provider
               value={{
                 tooltipRef: refs.setFloating,
@@ -211,8 +211,8 @@ const TooltipTrigger = React.forwardRef<HTMLDivElement, TooltipTriggerProps>(
             >
               {tooltipElement}
             </TooltipContext.Provider>
-          )}
-        </FloatingPortal>
+          </FloatingPortal>
+        )}
       </>
     )
   },
