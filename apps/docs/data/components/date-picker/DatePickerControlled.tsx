@@ -24,13 +24,6 @@ function DatePickerControlled() {
         </span>
       </p>
       <DatePicker
-        calendarCSS={{
-          '.cdg-calendar-today-btn': {
-            background: 'var(--colors-cdgBlue)',
-            color: 'var(--colors-whiteText)',
-            borderColor: 'var(--colors-cdgBlue)',
-          },
-        }}
         label='Date'
         value={date}
         defaultValue={today(getLocalTimeZone())}

@@ -1,4 +1,4 @@
-import {Box} from '@comfortdelgro/react-compass-old'
+import {Box} from '@comfortdelgro/react-compass'
 
 interface AppFooterProps {
   children: React.ReactNode
@@ -16,16 +16,16 @@ export default function Container({
       className={`container ${className}`}
       css={{
         '@media (min-width: 1200px)': {
-          maxWidth: 1200,
+          maxWidth: '1200px',
           margin: 'auto',
         },
         '@media (min-width: 600px)': {
-          paddingLeft: 24,
-          paddingRight: 24,
+          paddingLeft: '24px',
+          paddingRight: '24px',
         },
         '@media (max-width: 599px)': {
-          paddingLeft: 16,
-          paddingRight: 16,
+          paddingLeft: '16px',
+          paddingRight: '16px',
         },
         ...css,
       }}

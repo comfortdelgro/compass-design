@@ -1,4 +1,4 @@
-import {Box, Typography} from '@comfortdelgro/react-compass-old'
+import {Box, Typography} from '@comfortdelgro/react-compass'
 import {shouldHandleLinkClick} from 'components/common/MarkdownLinks'
 import {useIsTabletScreen} from 'hooks'
 import {noop} from 'lodash'
@@ -143,7 +143,7 @@ export default function DocsAppToc(props: any) {
         width: 300,
         maxHeight: 'calc(100vh - 51px)',
         overflowY: 'scroll',
-        padding: '$4',
+        padding: 'var(--cdg-spacing-4)',
         position: 'sticky',
         top: 0,
       }}
@@ -153,7 +153,7 @@ export default function DocsAppToc(props: any) {
           <Typography.Header
             variant='header5'
             css={{
-              marginBottom: '$2',
+              marginBottom: 'var(--cdg-spacing-2)',
               fontWeight: 'bold',
             }}
           >
@@ -168,7 +168,7 @@ export default function DocsAppToc(props: any) {
                     {item.children.map((subitem: any) => (
                       <Box
                         css={{
-                          paddingLeft: '$3',
+                          paddingLeft: 'var(--cdg-spacing-3)',
                         }}
                         key={subitem.text}
                       >

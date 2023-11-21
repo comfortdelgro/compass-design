@@ -5,13 +5,6 @@ function DateRangePickerValidation() {
   return (
     <div>
       <DateRangePicker
-        calendarCSS={{
-          '& .calendar-footer button:nth-child(2)': {
-            background: 'var(--colors-cdgBlue)',
-            color: 'var(--colors-whiteText)',
-            borderColor: 'var(--colors-cdgBlue)',
-          },
-        }}
         isDateUnavailable={(date) => {
           if (!date) {
             return true

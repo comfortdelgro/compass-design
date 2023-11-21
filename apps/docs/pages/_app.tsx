@@ -17,6 +17,7 @@ import {CodeCopyProvider} from 'utils/CodeCopy'
 import useLazyCSS from 'utils/useLazyCSS'
 import '../styles/code-editor.css'
 import './global.css'
+import { ThemeStaticProvider } from '@comfortdelgro/react-compass'
 
 let dependenciesLoaded = false
 
@@ -61,15 +62,15 @@ function AppWrapper(props: any) {
         <ToastContextProvider
           anchorOrigin={{horizontal: 'right', vertical: 'top'}}
         >
-          {/* <ThemeStaticProvider changeBy={mode}> */}
-          <ThemeProvider changeBy={mode}>
+          <ThemeStaticProvider changeBy={mode}>
+          {/* <ThemeProvider changeBy={mode}> */}
             <CodeCopyProvider>
               <Preflight />
               <AppHeader handleChangeThemeMode={handleChangeThemeMode} />
               {children}
             </CodeCopyProvider>
-          </ThemeProvider>
-          {/* </ThemeStaticProvider> */}
+          {/* </ThemeProvider> */}
+          </ThemeStaticProvider>
         </ToastContextProvider>
       </ThemeContext.Provider>
     </React.Fragment>

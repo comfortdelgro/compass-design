@@ -2,7 +2,7 @@
   font-size: 12px;
   font-weight: 500;
   line-height: 20px;
-  background-color: var(--colors-cdgBlue60);
-  padding: 4px var(--space-2);
+  background-color: var(--cdg-color-cdgBlue60);
+  padding: 4px var(--cdg-spacing-2);
   border-radius: 4px;
 }

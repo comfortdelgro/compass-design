@@ -7,7 +7,7 @@ import {
   MenuList,
   MenuListDropdown,
   Sidenav,
-} from '@comfortdelgro/react-compass-old'
+} from '@comfortdelgro/react-compass'
 
 import {useSidenavContext} from 'contexts/SideNav'
 import {isNil} from 'lodash'
@@ -29,8 +29,8 @@ const DocsAppSideNav = (props: TDocsAppSideNav) => {
       css={{
         height: '93vh',
         position: 'relative',
-        background: '$background',
-        width: 312,
+        background: 'var(--cdg-color-background)',
+        width: '312px',
         overflowY: 'scroll',
         filter: 'none',
         '.sidenav-item-title': {
@@ -107,7 +107,7 @@ const CustomSidenavItem = (props: TCustomSideNavItem) => {
           <MenuList
             css={{
               overflow: 'initial',
-              padding: '$1 $4',
+              padding: 'var(--cdg-spacing-1) var(--cdg-spacing-4)',
               width: '100%',
               borderRadius: 8,
               border: 'none',
@@ -115,8 +115,8 @@ const CustomSidenavItem = (props: TCustomSideNavItem) => {
               fontWeight: 600,
               '.active': {
                 transition: 'all .3s',
-                background: '$cdgBlue20',
-                color: '$cdgBlue100',
+                background: 'var(--cdg-spacing-cdgBlue20)',
+                color: 'var(--cdg-spacing-cdgBlue100)',
               },
             }}
           >
@@ -133,8 +133,8 @@ const CustomSidenavItem = (props: TCustomSideNavItem) => {
                     isActive={child.isActive}
                     css={{
                       '&:hover': {
-                        background: '$cdgBlue10',
-                        color: '$cdgBlue80',
+                        background: 'var(--cdg-spacing-cdgBlue10)',
+                        color: 'var(--cdg-spacing-cdgBlue80)',
                         transition: 'all .2s',
                       },
                     }}

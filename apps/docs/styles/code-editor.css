@@ -5,12 +5,12 @@
 
 .markDownElement pre {
   line-height: 1.5;
-  margin: var(--space-2) 0;
-  padding: var(--space-2);
-  background-color: var(--colors-gray20);
+  margin: var(--cdg-spacing-2) 0;
+  padding: var(--cdg-spacing-2);
+  background-color: var(--cdg-color-gray20);
   color: #f8f8f2;
   border: 1px solid;
-  border-color: var(--colors-gray30);
+  border-color: var(--cdg-color-gray30);
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   font-size: 13px;
@@ -26,14 +26,14 @@
 
 .markDownElement pre > code {
   font-size: inherit;
-  color: var(--colors-gray110);
+  color: var(--cdg-color-gray110);
 }
 
 .markDownElement :not(pre) > code {
   display: inline-block;
   padding: 0 5px;
-  color: var(--colors-primaryText);
-  background-color: var(--colors-primaryBg);
+  color: var(--cdg-color-primaryText);
+  background-color: var(--cdg-color-primaryBg);
   border-radius: 5;
   font-size: 13px;
   direction: ltr;
@@ -42,7 +42,7 @@
 .markDownElement h1 {
   font-size: 36px;
   margin: 10px 0;
-  color: var(--colors-cdgBlue140);
+  color: var(--cdg-color-cdgBlue140);
   font-weight: 800;
 }
 
@@ -57,25 +57,25 @@
 
 .markDownElement h2 {
   font-weight: 700;
-  color: var(--colors-gray110);
+  color: var(--cdg-color-gray110);
   margin: 40px 0 4px;
 }
 
 .markDownElement h3 {
   font-weight: bold;
-  color: var(--colors-gray110);
+  color: var(--cdg-color-gray110);
   margin: 24px 0 8px;
 }
 
 .markDownElement h4 {
   font-weight: bold;
-  color: var(--colors-gray110);
+  color: var(--cdg-color-gray110);
   margin: 24px 0 8px;
 }
 
 .markDownElement h5 {
   font-weight: bold;
-  color: var(--colors-gray110);
+  color: var(--cdg-color-gray110);
   margin: 20px 0 8px;
 }
 
@@ -84,7 +84,7 @@
 .markDownElement ol {
   margin-top: 0px;
   margin-bottom: 16px;
-  color: var(--colors-gray110);
+  color: var(--cdg-color-gray110);
 }
 
 .markDownElement ul {
@@ -139,11 +139,11 @@
   margin-top: 5px;
   height: 26px;
   width: 26px;
-  background-color: var(--colors-cdgBlue70);
+  background-color: var(--cdg-color-cdgBlue70);
   border: 1px solid;
-  border-color: var(--colors-gray30);
+  border-color: var(--cdg-color-gray30);
   border-radius: 8px;
-  color: var(--colors-primaryText);
+  color: var(--cdg-color-primaryText);
   cursor: pointer;
   display: inline-block;
 }
@@ -156,9 +156,9 @@
 .markDownElement h1 .comment-link:hover,
 .markDownElement h3 .comment-link:hover,
 .markDownElement h4 .comment-link:hover {
-  background-color: var(--colors-gray50);
-  border-color: var(--colors-gray10);
-  color: var(--colors-primaryText);
+  background-color: var(--cdg-color-gray50);
+  border-color: var(--cdg-color-gray10);
+  color: var(--cdg-color-primaryText);
 }
 
 .markDownElement h2:hover .anchor-link svg,
@@ -178,7 +178,7 @@
 .markDownElement h1 code,
 .markDownElement h2 code,
 .markDownElement h3 code {
-  color: var(--colors-gray110);
+  color: var(--cdg-color-gray110);
 }
 
 .markDownElement h1 code {
@@ -203,7 +203,7 @@
   border-collapse: collapse;
   margin-bottom: 20px;
   border-spacing: 0;
-  border: 1px solid var(--colors-gray40);
+  border: 1px solid var(--cdg-color-gray40);
   border-radius: 12px;
 }
 
@@ -233,13 +233,13 @@
 
 .markDownElement table .prop-default,
 .markDownElement table .slot-default {
-  border-bottom: 1px dotted var(--colors-gray40);
+  border-bottom: 1px dotted var(--cdg-color-gray40);
 }
 
 .markDownElement table td {
-  border-bottom: 1px solid var(--colors-gray40);
-  padding: var(--space-3);
-  color: var(--colors-primaryText);
+  border-bottom: 1px solid var(--cdg-color-gray40);
+  padding: var(--cdg-spacing-3);
+  color: var(--cdg-color-primaryText);
 }
 
 .markDownElement table td code {
@@ -249,26 +249,26 @@
 .markDownElement table th {
   font-size: 14px;
   font-weight: 500;
-  color: var(--colors-primaryText);
-  background: var(--colors-gray20);
+  color: var(--cdg-color-primaryText);
+  background: var(--cdg-color-gray20);
   white-space: pre;
-  border-bottom: 1px solid var(--colors-gray40);
-  padding: var(--space-3);
+  border-bottom: 1px solid var(--cdg-color-gray40);
+  padding: var(--cdg-spacing-3);
 }
 
 .markDownElement table blockquote {
   border-radius: 12px;
   border: 1px solid;
   border-left: 8px solid;
-  border-color: var(--colors-warning);
-  background-color: var(--colors-warningBg);
+  border-color: var(--cdg-color-warning);
+  background-color: var(--cdg-color-warningBg);
   padding: 10px 20px;
   margin: 20px 0;
 }
 
 .markDownElement table blockquote p {
   margin-top: 10px;
-  color: var(--colors-warning);
+  color: var(--cdg-color-warning);
 }
 
 .markDownElement .CdgCallout-root {
@@ -290,13 +290,13 @@
 }
 
 .markDownElement.CdgCallout-error {
-  color: var(--colors-danger);
-  background-color: var(--colors-dangerBg);
-  border-color: var(--colors-dangerBg);
+  color: var(--cdg-color-danger);
+  background-color: var(--cdg-color-dangerBg);
+  border-color: var(--cdg-color-dangerBg);
 }
 
 .markDownElement.CdgCallout-error strong {
-  color: var(--colors-danger);
+  color: var(--cdg-color-danger);
   font-weight: bold;
 }
 
@@ -309,19 +309,19 @@
 }
 
 .markDownElement.CdgCallout-info {
-  color: var(--colors-info);
-  background-color: var(--colors-infoBg);
-  border-color: var(--colors-info);
+  color: var(--cdg-color-info);
+  background-color: var(--cdg-color-infoBg);
+  border-color: var(--cdg-color-info);
 }
 
 .markDownElement.CdgCallout-info .strong {
-  color: var(--colors-info);
+  color: var(--cdg-color-info);
 }
 
 .markDownElement.CdgCallout-success {
-  color: var(--colors-success);
-  background-color: var(--colors-successBg);
-  border-color: var(--colors-success);
+  color: var(--cdg-color-success);
+  background-color: var(--cdg-color-successBg);
+  border-color: var(--cdg-color-success);
 }
 
 .markDownElement.CdgCallout-success .strong {
@@ -330,7 +330,7 @@
 }
 
 .markDownElement.CdgCallout-success a {
-  color: var(--colors-success);
+  color: var(--cdg-color-success);
 }
 
 .markDownElement.CdgCallout-success a:hover {
@@ -338,18 +338,18 @@
 }
 
 .markDownElement.CdgCallout-warning {
-  color: var(--colors-warning);
-  background-color: var(--colors-warningBg);
-  border-color: var(--colors-warning);
+  color: var(--cdg-color-warning);
+  background-color: var(--cdg-color-warningBg);
+  border-color: var(--cdg-color-warning);
 }
 
 .markDownElement.CdgCallout-warning strong {
-  color: var(--colors-warning);
+  color: var(--cdg-color-warning);
 }
 
 .markDownElement.CdgCallout-warning a {
-  color: var(--colors-warning);
-  text-decoration-color: var(--colors-warning);
+  color: var(--cdg-color-warning);
+  text-decoration-color: var(--cdg-color-warning);
 }
 
 .markDownElement.CdgCallout-warning a:hover {
@@ -358,7 +358,7 @@
 
 .markDownElement a,
 .markDownElement a code {
-  color: var(--colors-cdgBlue80);
+  color: var(--cdg-color-cdgBlue80);
   text-decoration: none;
 }
 
@@ -384,7 +384,7 @@
 
 .markDownElement hr {
   height: 1px;
-  margin: var(--space-5) 0;
+  margin: var(--cdg-spacing-5) 0;
   border: 0;
   flex-shrink: 0;
   background-color: #201f1e;
@@ -397,12 +397,12 @@
   margin: 0 1px;
   font: 11px Consolas, Liberation Mono, Menlo, monospace;
   line-height: 10px;
-  color: var(--colors-primaryText);
+  color: var(--cdg-color-primaryText);
   vertical-align: middle;
-  background-color: var(--colors-gray50);
-  border: 1px solid var(--colors-gray30);
+  background-color: var(--cdg-color-gray50);
+  border: 1px solid var(--cdg-color-gray30);
   border-radius: 5px;
-  box-shadow: inset 0 -1px 0 var(--colors-gray30);
+  box-shadow: inset 0 -1px 0 var(--cdg-color-gray30);
 }
 
 .markDownElement details {
@@ -432,9 +432,9 @@
   height: 26px;
   cursor: pointer;
   position: absolute;
-  top: var(--space-1);
-  right: var(--space-1);
-  padding: var(--space-1);
+  top: var(--cdg-spacing-1);
+  right: var(--cdg-spacing-1);
+  padding: var(--cdg-spacing-1);
   font-family: inherit;
   font-weight: 500;
   border-radius: 6px;
@@ -449,11 +449,11 @@
   width: 16px;
   height: 16px;
   display: inline-block;
-  fill: var(--colors-gray110);
+  fill: var(--cdg-color-gray110);
   flex-shrink: 0;
   font-size: 18px;
   margin: auto;
-  color: var(--colors-gray110);
+  color: var(--cdg-color-gray110);
 }
 
 .markDownElement .cdg-copy .cdg-copied-icon {
@@ -463,19 +463,19 @@
 .markDownElement .cdg-copy:hover,
 .markDownElement .cdg-copy:focus {
   opacity: 1;
-  background-color: var(--colors-gray40);
+  background-color: var(--cdg-color-gray40);
 }
 
 .markDownElement .cdg-copy:hover .cdg-copyKeypress,
 .markDownElement .cdg-copy:focus .cdg-copyKeypress {
-  color: var(--colors-gray110);
+  color: var(--cdg-color-gray110);
   display: block;
 }
 
 @media (any-hover: hover) {
   .markDownElement .cdg-copy:hover .cdg-copyKeypress,
   .markDownElement .cdg-copy:focus .cdg-copyKeypress {
-    color: var(--colors-gray110);
+    color: var(--cdg-color-gray110);
     display: block;
   }
 }
@@ -487,9 +487,9 @@
 }
 
 .markDownElement .cdg-copy[data-copied] {
-  border-color: var(--colors-cdgBlue60);
+  border-color: var(--cdg-color-cdgBlue60);
   color: #fff;
-  background-color: var(--colors-cdgBlue40);
+  background-color: var(--cdg-color-cdgBlue40);
 }
 
 .markDownElement .cdg-copy[data-copied] .cdg-copy-icon {
@@ -503,14 +503,14 @@
 .markDownElement:focus-visible {
   outline: 2px solid;
   outline-offset: 2;
-  outline-color: var(--colors-cdgBlue40);
+  outline-color: var(--cdg-color-cdgBlue40);
 }
 
 .markDownElement .cdg-copyKeypress {
   pointer-events: none;
   user-select: none;
-  margin-right: var(--space-1);
-  margin-bottom: var(--space-1);
+  margin-right: var(--cdg-spacing-1);
+  margin-bottom: var(--cdg-spacing-1);
   white-space: nowrap;
   opacity: 0.6;
 }
@@ -520,11 +520,11 @@
 }
 
 .markDownElement li pre {
-  margin-top: var(--space-1);
+  margin-top: var(--cdg-spacing-1);
 }
 
 .markDownElement li p {
-  margin-bottom: var(--space-1);
+  margin-bottom: var(--cdg-spacing-1);
 }
 
 .markDownElement sup {
@@ -535,19 +535,19 @@
 
 .markDownElement .scrollContainer {
   max-height: min(68vh, 1000px);
-  padding: var(--space-4);
+  padding: var(--cdg-spacing-4);
   overflow: auto;
-  background-color: var(--colors-gray20);
+  background-color: var(--cdg-color-gray20);
   margin-top: -1;
-  border: 1px solid var(--colors-divider);
+  border: 1px solid var(--cdg-color-divider);
   color-scheme: dark;
 }
 
 .markDownElement .scrollContainer:hover {
-  box-shadow: 0 0 0 3px var(--colors-gray50);
+  box-shadow: 0 0 0 3px var(--cdg-color-gray50);
 }
 
 .markDownElement .scrollContainer:focus-within {
-  box-shadow: 0 0 0 2px var(--colors-gray60);
+  box-shadow: 0 0 0 2px var(--cdg-color-gray60);
 }
 

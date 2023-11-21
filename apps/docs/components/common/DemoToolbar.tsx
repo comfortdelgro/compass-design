@@ -5,7 +5,7 @@ import {
   Icon,
   Tooltip,
   TooltipTrigger,
-} from '@comfortdelgro/react-compass-old'
+} from '@comfortdelgro/react-compass'
 import {
   faCode,
   faCodeFork,
@@ -50,11 +50,11 @@ export default function DemoToolbar(props: any) {
     <>
       <Box
         css={{
-          background: '$gray30',
-          borderTop: '1px solid $gray40',
-          borderRight: '1px solid $gray40',
-          borderLeft: '1px solid $gray40',
-          padding: '$2 $3',
+          background: 'var(--cdg-color-gray30)',
+          borderTop: '1px solid var(--cdg-color-gray40)',
+          borderRight: '1px solid var(--cdg-color-gray40)',
+          borderLeft: '1px solid var(--cdg-color-gray40)',
+          padding: 'var(--cdg-spacing-2) var(--cdg-spacing-3)',
           display: 'flex',
           justifyContent: 'space-between',
         }}
@@ -64,8 +64,8 @@ export default function DemoToolbar(props: any) {
             <Badge
               label='Typescript'
               css={{
-                color: '$gray80',
-                backgroundColor: '$gray40',
+                color: 'var(--cdg-color-gray80)',
+                backgroundColor: 'var(--cdg-color-gray40)',
                 '&:hover': {backgroundColor: 'grey'},
               }}
             />
