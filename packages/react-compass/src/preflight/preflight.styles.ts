@@ -136,7 +136,7 @@ export const preflightStyles = globalCss({
     fontFamily: 'inherit',
     fontSize: '100%',
     lineHeight: 1.15,
-    margin: 0,
+    // margin: 0,
   },
 
   /**

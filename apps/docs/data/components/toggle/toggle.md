@@ -31,9 +31,9 @@ import Toggle from '@comfortdelgro/react-compass-old/toggle'
 
 {{"demo": "ToggleIsDisabled.tsx"}}
 
-## isReadOnly
+<!-- ## isReadOnly -->
 
-{{"demo": "ToggleIsReadOnly.tsx"}}
+<!-- {{"demo": "ToggleIsReadOnly.tsx"}} -->
 
 ## Sizes
 
