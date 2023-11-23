@@ -3,6 +3,7 @@ import React from 'react'
 import {useIsDarkTheme} from '../theme'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
+import {useId} from '../utils/useId'
 import styles from './styles/textarea.module.css'
 
 interface Props {
@@ -32,6 +33,7 @@ interface Props {
   pattern?: string
   excludeFromTabOrder?: boolean
   errorMessage?: string
+  textareaRef?: React.RefObject<HTMLTextAreaElement>
   onChangeEvent?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void
   onChange?: (value: string) => void
   onCopy?: React.ClipboardEventHandler<HTMLTextAreaElement>
@@ -80,7 +82,7 @@ const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
       css = {},
       // ComponentProps
       label,
-      id = `cdg-element-${Math.random().toString(36).substring(2)}`,
+      id,
       name,
       value,
       cols,
@@ -99,6 +101,8 @@ const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
       autoFocus,
       className,
       placeholder,
+      textareaRef,
+      helperText,
       onChange,
       onChangeEvent,
       onCut = () => null,
@@ -116,12 +120,17 @@ const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
       onKeyUp = () => null,
       resizable = true,
       variant,
-      ...delegated
+      ...ariaSafeProps
     } = props
     const isDarkTheme = useIsDarkTheme()
-    const textareaId = id
+    const htmlProps = {...ariaSafeProps} as unknown as Omit<
+      React.HTMLAttributes<HTMLTextAreaElement>,
+      keyof Props
+    >
+
+    const textareaId = useId(id)
     const wrapperRef = useDOMRef<HTMLDivElement>(ref)
-    const textareaRef = useDOMRef<HTMLTextAreaElement>(null)
+    const textareaFieldRef = useDOMRef<HTMLTextAreaElement>(textareaRef)
     const [wordCountValue, setWordCountValue] = React.useState(0)
 
     const handleOnChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -134,32 +143,90 @@ const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
       setWordCountValue(value?.length || 0) // word count on mount
     }, [value?.length])
 
+    //  classes
+    const wrapperClasses = React.useMemo(() => {
+      return [
+        styles.textareaWrapper,
+        variant && styles[variant],
+        className,
+        'cdg-textarea-container',
+      ]
+        .filter(Boolean)
+        .join(' ')
+    }, [className, variant])
+
+    const labelClasses = React.useMemo(() => {
+      return [
+        styles.textAreaLabel,
+        variant && styles[variant],
+        'cdg-textarea-label',
+      ]
+        .filter(Boolean)
+        .join(' ')
+    }, [variant])
+
+    const textareaClasses = React.useMemo(() => {
+      return [
+        styles.textarea,
+        isErrored && styles.isErrored,
+        resizable && styles.resizable,
+        isDarkTheme && styles.isDarkTheme,
+        variant && styles[variant],
+        'cdg-textarea',
+      ]
+        .filter(Boolean)
+        .join(' ')
+    }, [isDarkTheme, isErrored, resizable, variant])
+
+    const wordCountClasses = React.useMemo(() => {
+      return [
+        styles.textAreaHelperText,
+        styles.wordCount,
+        variant && styles[variant],
+        'cdg-textarea-word-count',
+      ]
+        .filter(Boolean)
+        .join(' ')
+    }, [variant])
+
+    const helperTextClasses = React.useMemo(() => {
+      return [
+        styles.textAreaHelperText,
+        variant && styles[variant],
+        'cdg-textarea-helper-text',
+      ]
+        .filter(Boolean)
+        .join(' ')
+    }, [variant])
+
+    const errorMessageClasses = React.useMemo(() => {
+      return [
+        styles.error,
+        styles.textAreaHelperText,
+        variant && styles[variant],
+        'cdg-textarea-error-message',
+      ]
+        .filter(Boolean)
+        .join(' ')
+    }, [variant])
+
     return (
       <CssInjection css={css} childrenRef={wrapperRef}>
-        <div
-          className={`${className ?? 'cdg-textarea-container'} ${
-            styles.textareaWrapper
-          }  ${variant ? styles[variant] : ''}`}
-          ref={wrapperRef}
-          {...delegated}
-        >
+        <div className={wrapperClasses} ref={wrapperRef}>
           {label && (
-            <label
-              htmlFor={textareaId}
-              className={`cdg-textarea-label ${styles.textAreaLabel} ${
-                variant ? styles[variant] : ''
-              }`}
-            >
+            <label htmlFor={textareaId} className={labelClasses}>
               {label}
               {isRequired && (
-                <span className={`cdg-textarea-asterisk ${styles.asterisk}`}>
+                <span className={`${styles.asterisk} cdg-textarea-asterisk`}>
                   *
                 </span>
               )}
             </label>
           )}
           <textarea
-            ref={textareaRef}
+            {...htmlProps}
+            ref={textareaFieldRef}
+            className={textareaClasses}
             id={textareaId}
             cols={cols}
             rows={rows}
@@ -189,32 +256,17 @@ const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
             onCompositionEnd={onCompositionEnd}
             onCompositionStart={onCompositionStart}
             onCompositionUpdate={onCompositionUpdate}
-            className={`cdg-textarea ${styles.textarea} ${
-              isErrored ? styles.isErrored : ''
-            } ${resizable ? styles.resizable : ''}
-            ${isDarkTheme ? styles.isDarkTheme : ''} ${
-              variant ? styles[variant] : ''
-            }`}
           />
           {wordCount && (
-            <div
-              className={`${styles.textAreaHelperText} ${styles.wordCount} ${
-                variant ? styles[variant] : ''
-              }`}
-            >
+            <div className={wordCountClasses}>
               {wordCountValue}
               {maxLength ? `/${maxLength}` : null}
             </div>
           )}
           {isErrored && errorMessage && (
-            <div
-              className={`${styles.error} ${styles.textAreaHelperText} ${
-                styles.wordCount
-              } cdg-error-message ${variant ? styles[variant] : ''}`}
-            >
-              {errorMessage}
-            </div>
+            <div className={errorMessageClasses}>{errorMessage}</div>
           )}
+          {helperText && <div className={helperTextClasses}>{helperText}</div>}
         </div>
       </CssInjection>
     )
