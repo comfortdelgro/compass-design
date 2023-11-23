@@ -109,7 +109,6 @@ const DropdownTextfield = React.forwardRef<
     h5 = false,
   } = props
   const componentRef = useDOMRef(ref)
-  // const isFirstRun = useRef(true)
 
   const [selectedDropdownKey, setDropdownKey] = React.useState<Key>('')
   const [textfieldValue, setTextfieldValue] = React.useState<Key>(
@@ -125,17 +124,6 @@ const DropdownTextfield = React.forwardRef<
     onDropdownInputChange?.(String(selectedDropdownKey), value)
   }
 
-  // React.useEffect(() => {
-  //   if (isFirstRun.current) {
-  //     isFirstRun.current = false
-  //   } else {
-  //     if (onDropdownInputChange) {
-  //       console.log('onDropdownInputChange')
-
-  //       onDropdownInputChange(String(selectedDropdownKey), textfieldValue)
-  //     }
-  //   }
-  // }, [selectedDropdownKey, textfieldValue])
   return (
     <StyledDropdownTextfield ref={componentRef} className={className}>
       {label && (
