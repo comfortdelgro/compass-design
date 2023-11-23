@@ -1,6 +1,5 @@
 'use client'
-import Progress from '@comfortdelgro/react-compass-old/progress'
-// import {Progress as StaticProgress} from '@comfortdelgro/static'
+import {Progress} from '@comfortdelgro/react-compass'
 import React from 'react'
 
 function LinearBuffer() {
@@ -34,10 +33,7 @@ function LinearBuffer() {
     }
   }, [])
   return (
-    <div>
-      <Progress.Linear variant='buffer' value={progress} valueBuffer={buffer} />
-      {/* <StaticProgress.Linear variant='buffer' value={progress} valueBuffer={buffer} /> */}
-    </div>
+    <Progress.Linear variant='buffer' value={progress} valueBuffer={buffer} />
   )
 }
 

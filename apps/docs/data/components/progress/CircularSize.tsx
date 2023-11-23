@@ -1,5 +1,4 @@
-import Progress from '@comfortdelgro/react-compass-old/progress'
-// import {Progress as StaticProgress} from '@comfortdelgro/static'
+import {Progress} from '@comfortdelgro/react-compass'
 
 function CircularSize() {
   return (
@@ -12,13 +11,7 @@ function CircularSize() {
         gap: '2rem',
       }}
     >
-      <span>
-        The default height/width is 40px. In this example, we tailored it to be
-        70px
-      </span>
-      <br />
       <Progress.Circular variant='indeterminate' size={70} />
-      {/* <StaticProgress.Circular variant='indeterminate' size={70} /> */}
     </div>
   )
 }

@@ -1,5 +1,4 @@
-import {Column, Divider, Typography} from '@comfortdelgro/react-compass-old'
-// import {Divider as StaticDivider} from '@comfortdelgro/static'
+import {Column, Divider, Typography} from '@comfortdelgro/react-compass'
 
 const Align: React.FC = () => {
   return (
@@ -13,16 +12,6 @@ const Align: React.FC = () => {
       <Divider textAlign='right'>
         <Typography.Label>Right</Typography.Label>
       </Divider>
-
-      {/* <StaticDivider textAlign='left'>
-        <Typography.Label>Left</Typography.Label>
-      </StaticDivider>
-      <StaticDivider textAlign='center'>
-        <Typography.Label>Center</Typography.Label>
-      </StaticDivider>
-      <StaticDivider textAlign='right'>
-        <Typography.Label>Right</Typography.Label>
-      </StaticDivider> */}
     </Column>
   )
 }

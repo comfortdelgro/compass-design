@@ -190,7 +190,7 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
               )}
             </label>
           )}
-          <div>
+          <div className={`${styles.bodyWrapper} cdg-tag-box-body-wrapper`}>
             <div
               id={id}
               tabIndex={0}

@@ -10,7 +10,7 @@ import {
   Radio,
   Textarea,
   Typography,
-} from '@comfortdelgro/react-compass'
+} from '@comfortdelgro/react-compass-old'
 import Image from 'next/image'
 import React from 'react'
 import { getStaticPath } from 'utils'

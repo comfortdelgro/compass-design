@@ -37,7 +37,7 @@ export const usePagination = ({
         setActivePage(newPage)
       }
     },
-    [total],
+    [total, onChange],
   )
 
   const next = () => setPage(active + 1)

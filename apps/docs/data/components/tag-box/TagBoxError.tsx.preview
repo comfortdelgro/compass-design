@@ -1,0 +1,15 @@
+<TagBox
+    label='Text Label'
+    items={list}
+    icon={<Icon icon={faExclamationTriangle} />}
+    onAdd={addItem}
+    onEdit={editItem}
+    onRemove={removeItem}
+    isErrored
+    errorMessage='Error Message'
+    helperText='Helper text'
+>
+    <TagBox.Action>
+    <Button>Call to action</Button>
+    </TagBox.Action>
+</TagBox>

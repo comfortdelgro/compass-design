@@ -10,7 +10,7 @@ components: VideoPlayer
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {VideoPlayer, VideoPlayerProps} from '@comfortdelgro/react-compass-old'
+import {VideoPlayer, VideoPlayerProps} from '@comfortdelgro/react-compass'
 ```
 
 or
@@ -19,16 +19,12 @@ or
 import {
   VideoPlayer,
   VideoPlayerProps,
-} from '@comfortdelgro/react-compass-old/video-player'
+} from '@comfortdelgro/react-compass/video-player'
 ```
 
 ## Example
 
 {{"demo": "VideoPlayer.tsx"}}
-
-<!-- ## Video Player Server (Experimental)
-
-{{"demo": "VideoPlayerServer.tsx"}} -->
 
 ## Props
 

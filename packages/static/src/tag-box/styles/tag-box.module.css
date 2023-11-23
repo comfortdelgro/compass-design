@@ -24,6 +24,10 @@
     margin-left: var(--cdg-spacing-1);
   }
 
+  .bodyWrapper {
+    flex-grow: 1;
+  }
+
   .body {
     flex-grow: 1;
     display: flex;

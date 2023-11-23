@@ -52,9 +52,6 @@ const Rating = React.forwardRef<HTMLDivElement, RatingProps>((props, ref) => {
     return (
       <>
         <Button
-          css={{
-            backgroundColor: 'black',
-          }}
           className={`${styles.rating} ${
             activeIndex === 0 ? `${styles.active}` : ''
           } ${styles.customButton}`}

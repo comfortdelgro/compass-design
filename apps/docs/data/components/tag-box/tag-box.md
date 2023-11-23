@@ -10,13 +10,13 @@ components: TagBox
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {TagBox} from '@comfortdelgro/react-compass-old'
+import {TagBox} from '@comfortdelgro/react-compass'
 ```
 
 or
 
 ```jsx
-import TagBox from '@comfortdelgro/react-compass-old/tag-box'
+import TagBox from '@comfortdelgro/react-compass/tag-box'
 ```
 
 ## Example
@@ -24,6 +24,22 @@ import TagBox from '@comfortdelgro/react-compass-old/tag-box'
 ### Full features
 
 {{"demo": "TagBoxBasic.tsx"}}
+
+### Typeable
+
+{{"demo": "TagBoxTypeable.tsx"}}
+
+### Error
+
+{{"demo": "TagBoxError.tsx"}}
+
+### Positioned Label
+
+{{"demo": "TagBoxPositionedLabel.tsx"}}
+
+### No Action
+
+{{"demo": "TagBoxNoAction.tsx"}}
 
 ## Props
 

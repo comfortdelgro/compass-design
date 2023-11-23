@@ -1,12 +1,8 @@
-import Progress from '@comfortdelgro/react-compass-old/progress'
-// import {Progress as StaticProgress} from '@comfortdelgro/static'
+import {Progress} from '@comfortdelgro/react-compass'
 
 function LinearRounded() {
   return (
-    <div>
-      <Progress.Linear variant='indeterminate' size={10} rounded />
-      {/* <StaticProgress.Linear variant='indeterminate' size={10} rounded /> */}
-    </div>
+    <Progress.Linear variant='indeterminate' size={10} rounded />
   )
 }
 
