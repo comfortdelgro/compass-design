@@ -70,7 +70,7 @@ export default function ViewerCanvas(props: ViewerCanvasProps) {
     return () => {
       bindEvent(true)
     }
-  }, [props.drag, props.visible])
+  }, [props.drag, props.visible, props.width, props.height])
 
   React.useEffect(() => {
     const diffX = position.x - prePosition.current.x
@@ -123,6 +123,7 @@ export default function ViewerCanvas(props: ViewerCanvasProps) {
 
   function handleMouseUp() {
     isMouseDown.current = false
+    handleResize()
   }
 
   function bindWindowResizeEvent(remove?: boolean) {
