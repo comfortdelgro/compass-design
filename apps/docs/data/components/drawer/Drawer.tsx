@@ -7,7 +7,7 @@ import {
   Row,
   TextField,
   Typography,
-} from '@comfortdelgro/react-compass-old'
+} from '@comfortdelgro/react-compass'
 import {FormEventHandler, useState} from 'react'
 
 export default function DrawerDocs() {
@@ -46,7 +46,23 @@ export default function DrawerDocs() {
       </Row>
 
       <Typography.Body variant='body2'>Submitted form values:</Typography.Body>
-      <pre>{JSON.stringify({keyword}, null, 2)}</pre>
+      <pre
+        style={{
+          padding: '0.5rem',
+          margin: '0',
+
+          width: '100%',
+          minHeight: '2rem',
+          borderRadius: '8px',
+
+          backgroundColor: '#FAF9F8',
+          fontSize: '0.875rem',
+          whiteSpace: 'pre-wrap',
+          overflowWrap: 'anywhere',
+        }}
+      >
+        {JSON.stringify({keyword}, null, 2)}
+      </pre>
 
       <Drawer open={openDrawer} onClose={listenOnCloseDrawer}>
         <Drawer.Header>

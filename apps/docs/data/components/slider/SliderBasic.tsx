@@ -1,4 +1,4 @@
-import {Slider} from '@comfortdelgro/react-compass-old'
+import {Slider} from '@comfortdelgro/react-compass'
 
 function BasicExample() {
   return (

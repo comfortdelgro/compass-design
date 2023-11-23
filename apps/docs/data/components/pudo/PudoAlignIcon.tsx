@@ -1,4 +1,4 @@
-import {Button, Column, Pudo} from '@comfortdelgro/react-compass-old'
+import {Button, Column, Pudo} from '@comfortdelgro/react-compass'
 
 export default function PudoAlignIconDocs() {
   return (
