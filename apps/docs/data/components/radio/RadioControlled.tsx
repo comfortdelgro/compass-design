@@ -1,4 +1,4 @@
-import Radio from '@comfortdelgro/react-compass-old/radio'
+import {Radio} from '@comfortdelgro/react-compass'
 import React from 'react'
 
 function RadioControlled() {

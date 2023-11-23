@@ -10,13 +10,13 @@ components: Radio
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Radio} from '@comfortdelgro/react-compass-old'
+import {Radio} from '@comfortdelgro/react-compass'
 ```
 
 or
 
 ```jsx
-import Radio from '@comfortdelgro/react-compass-old/radio'
+import Radio from '@comfortdelgro/react-compass/radio'
 ```
 
 ## Outline

@@ -1,4 +1,4 @@
-import {SearchField} from '@comfortdelgro/react-compass-old'
+import {SearchField} from '@comfortdelgro/react-compass'
 
 function H5Example() {
   return (
@@ -6,12 +6,12 @@ function H5Example() {
       <SearchField
         placeholder='Search'
         onSubmit={(text) => console.log(text)}
-        isH5Variant
+        h5
       />
       <SearchField
         isDisabled
         placeholder='Search'
-        isH5Variant
+        h5
         onSubmit={(text) => console.log(text)}
       />
     </div>

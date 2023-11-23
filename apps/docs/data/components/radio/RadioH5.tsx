@@ -3,7 +3,7 @@ import {
   Divider,
   Radio,
   Typography,
-} from '@comfortdelgro/react-compass-old'
+} from '@comfortdelgro/react-compass'
 
 const H5RadioData = [
   {label: 'General'},
