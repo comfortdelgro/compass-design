@@ -1,5 +1,4 @@
-import {Checkbox, Column} from '@comfortdelgro/react-compass-old'
-// import {Checkbox as StaticCheckbox} from '@comfortdelgro/static'
+import {Checkbox, Column} from '@comfortdelgro/react-compass'
 import React, {useState} from 'react'
 
 const Basic: React.FC = () => {
@@ -12,13 +11,6 @@ const Basic: React.FC = () => {
       >
         {isSelected ? 'Selected' : 'Unselected'}
       </Checkbox>
-
-      {/* <StaticCheckbox
-        isSelected={isSelected}
-        onChange={() => setIsSelected(!isSelected)}
-      >
-        {isSelected ? 'Selected' : 'Unselected'}
-      </StaticCheckbox> */}
     </Column>
   )
 }

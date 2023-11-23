@@ -1,12 +1,8 @@
-import Progress from '@comfortdelgro/react-compass-old/progress'
-// import {Progress as StaticProgress} from '@comfortdelgro/static'
+import {Progress} from '@comfortdelgro/react-compass'
 
 function LinearIndeterminate() {
   return (
-    <div>
-      <Progress.Linear variant='indeterminate' />
-      {/* <StaticProgress.Linear variant='indeterminate' /> */}
-    </div>
+    <Progress.Linear variant='indeterminate' />
   )
 }
 

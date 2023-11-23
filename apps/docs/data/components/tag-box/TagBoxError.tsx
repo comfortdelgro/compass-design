@@ -113,10 +113,11 @@ const TagBoxs: React.FC = () => {
       label='Text Label'
       items={list}
       icon={<Icon icon={faExclamationTriangle} />}
-      isRequired
       onAdd={addItem}
       onEdit={editItem}
       onRemove={removeItem}
+      isErrored
+      errorMessage='Error Message'
       helperText='Helper text'
     >
       <TagBox.Action>
