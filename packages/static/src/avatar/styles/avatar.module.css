@@ -47,6 +47,14 @@
 
   .avatarIcon {
     background-color: var(--cdg-color-infoBg);
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    display: grid;
+    place-items: center;
   }
 
   .avatarGroup {
