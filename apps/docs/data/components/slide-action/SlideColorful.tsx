@@ -2,10 +2,9 @@ import {
   Column,
   Divider,
   SlideAction,
-  styled,
   Typography,
 } from '@comfortdelgro/react-compass'
-import {useState} from 'react'
+import {ReactNode, useState} from 'react'
 
 // Slate, Orange, Emerald, CdgBlue, Cyan, Violet, Rose
 const slideBgColors = [
@@ -32,20 +31,18 @@ export default function SliderColorfulDocs() {
       <Divider />
 
       <Typography.Header variant='header4'>More colors 🎨</Typography.Header>
-      <StyledColorPickerWrapper css={{marginBottom: '$4'}}>
+      <StyledColorPickerWrapper styles={{marginBottom: '$4'}}>
         {slideBgColors.map((color) => (
           <StyledColorPicker
             key={color}
             title={color}
-            css={{backgroundColor: color}}
-            type='button'
+            styles={{backgroundColor: color}}
             onClick={() => setColorBg(color)}
           />
         ))}
 
         <StyledColorPicker
-          type='button'
-          css={{
+          styles={{
             background:
               'linear-gradient(to right top, #fff6f2, #ffd4c1, #ffb194, #f98d6b, #f16645, #dc5135, #c63a26, #b12118, #8d2318, #6a2117, #481d15, #281713)',
           }}
@@ -82,27 +79,52 @@ export default function SliderColorfulDocs() {
   )
 }
 
-const StyledColorPickerWrapper = styled('div', {
-  display: 'flex',
-  alignItems: 'center',
-  flexWrap: 'wrap',
-  gap: '$2',
-})
+const StyledColorPickerWrapper = (props: {
+  children: ReactNode
+  styles: object
+}) => (
+  <div
+    {...props}
+    style={{
+      ...props.styles,
+      display: 'flex',
+      alignItems: 'center',
+      flexWrap: 'wrap',
+      gap: '0.5rem',
+    }}
+  >
+    {props.children}
+  </div>
+)
 
-const StyledColorPicker = styled('button', {
-  height: '$10',
-  width: '$20',
-  fontWeight: '$semibold',
-  color: '$whiteText',
-  fontSize: '$label2',
+const StyledColorPicker = (props: {
+  children?: ReactNode
+  title?: string
+  styles: object
+  onClick: () => void
+}) => (
+  <button
+    {...props}
+    type='button'
+    style={{
+      ...props.styles,
+      height: '2.5rem',
+      width: '5rem',
+      fontWeight: '600',
+      color: '#FFF',
+      fontSize: '0.75rem',
 
-  border: 'none',
-  borderRadius: '$md',
-  opacity: 0.8,
-  transition: 'opacity .2s ease',
-  cursor: 'pointer',
+      border: 'none',
+      borderRadius: '4px',
+      opacity: 0.8,
+      transition: 'opacity .2s ease',
+      cursor: 'pointer',
 
-  '&:hover': {
-    opacity: 1,
-  },
-})
+      // '&:hover': {
+      //   opacity: 1,
+      // },
+    }}
+  >
+    {props.children}
+  </button>
+)

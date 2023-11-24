@@ -1,4 +1,4 @@
-import {CarouselSlider} from '@comfortdelgro/react-compass'
+import {CarouselSlider} from '@comfortdelgro/react-compass-old'
 import {useState} from 'react'
 
 const Sliders = () => {

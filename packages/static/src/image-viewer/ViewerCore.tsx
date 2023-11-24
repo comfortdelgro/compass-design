@@ -4,10 +4,13 @@ import {useCallback, useEffect, useReducer, useRef} from 'react'
 import Button from '../button'
 import Icon from '../icon'
 import CssInjection from '../utils/objectToCss/CssInjection'
-import * as constants from './constants'
-import {Z_INDEX} from './constants'
 import {ActionTypeEnum} from './Icon'
 import ImageInformation from './ImageInformation'
+import ViewerCanvas from './ViewerCanvas'
+import ViewerNav from './ViewerNav'
+import ViewerToolbar, {defaultToolbars} from './ViewerToolbar'
+import * as constants from './constants'
+import {Z_INDEX} from './constants'
 import styles from './styles/image-viewer.module.css'
 import {
   ActionEnum,
@@ -17,9 +20,6 @@ import {
   ImageViewerProps,
   ToolbarConfig,
 } from './types'
-import ViewerCanvas from './ViewerCanvas'
-import ViewerNav from './ViewerNav'
-import ViewerToolbar, {defaultToolbars} from './ViewerToolbar'
 
 function createAction(
   type: ActionEnum,

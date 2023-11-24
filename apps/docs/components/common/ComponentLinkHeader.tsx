@@ -1,4 +1,4 @@
-import {Badge, Flexbox} from '@comfortdelgro/react-compass'
+import {Badge, Flexbox} from '@comfortdelgro/react-compass-old'
 import Link from 'next/link'
 
 export default function ComponentLinkHeader() {

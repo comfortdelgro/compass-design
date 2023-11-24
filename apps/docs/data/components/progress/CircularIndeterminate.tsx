@@ -1,5 +1,4 @@
-import Progress from '@comfortdelgro/react-compass/progress'
-// import {Progress as StaticProgress} from '@comfortdelgro/static'
+import {Progress} from '@comfortdelgro/react-compass'
 
 function CircularIndeterminate() {
   return (
@@ -7,7 +6,6 @@ function CircularIndeterminate() {
       style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}
     >
       <Progress.Circular variant='indeterminate' />
-      {/* <StaticProgress.Circular variant='indeterminate' /> */}
     </div>
   )
 }

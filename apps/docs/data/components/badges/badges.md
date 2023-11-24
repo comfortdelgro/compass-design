@@ -12,13 +12,13 @@ components: Badges
 ## Import
 
 ```js
-import {Badge} from '@comfortdelgro/react-compass'
+import {Badge} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```js
-import Badge from '@comfortdelgro/react-compass/badge'
+import Badge from '@comfortdelgro/react-compass-old/badge'
 ```
 
 ## Example

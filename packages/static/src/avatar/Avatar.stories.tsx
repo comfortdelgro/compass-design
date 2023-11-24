@@ -141,17 +141,39 @@ export const Individual: React.FC = () => (
     <h3>3. Icon Avatar</h3>
     <div style={{display: 'flex', gap: '8px'}}>
       <Avatar
+        label='Albert Einstein'
         icon={<FontAwesomeIcon icon={faBug} />}
         style={{width: '160px', height: '160px'}}
       />
-      <Avatar icon={<FontAwesomeIcon icon={faBug} />} size='lg' />
-      <Avatar icon={<FontAwesomeIcon icon={faBug} />} size='md' />
-      <Avatar icon={<FontAwesomeIcon icon={faBug} />} size='sm' />
-      <Avatar icon={<FontAwesomeIcon icon={faBug} />} size='xs' />
-      <Avatar icon={<FontAwesomeIcon icon={faBug} />} size='xxs' />
+      <Avatar
+        label='Albert Einstein'
+        icon={<FontAwesomeIcon icon={faBug} />}
+        size='lg'
+      />
+      <Avatar
+        label='Albert Einstein'
+        icon={<FontAwesomeIcon icon={faBug} />}
+        size='md'
+      />
+      <Avatar
+        label='Albert Einstein'
+        icon={<FontAwesomeIcon icon={faBug} />}
+        size='sm'
+      />
+      <Avatar
+        label='Albert Einstein'
+        icon={<FontAwesomeIcon icon={faBug} />}
+        size='xs'
+      />
+      <Avatar
+        label='Albert Einstein'
+        icon={<FontAwesomeIcon icon={faBug} />}
+        size='xxs'
+      />
     </div>
     <div style={{display: 'flex', gap: '8px'}}>
       <Avatar
+        label='Albert Einstein'
         icon={<FontAwesomeIcon icon={faBug} />}
         style={{width: '160px', height: '160px'}}
         status={
@@ -163,16 +185,19 @@ export const Individual: React.FC = () => (
         }
       />
       <Avatar
+        label='Albert Einstein'
         icon={<FontAwesomeIcon icon={faBug} />}
         size='lg'
         status={<Status type='offline' size='md'></Status>}
       />
       <Avatar
+        label='Albert Einstein'
         icon={<FontAwesomeIcon icon={faBug} />}
         size='md'
         status={<Status type='verified' size='sm'></Status>}
       />
       <Avatar
+        label='Albert Einstein'
         icon={<FontAwesomeIcon icon={faBug} />}
         size='sm'
         status={<Status type='zig' size='xs'></Status>}

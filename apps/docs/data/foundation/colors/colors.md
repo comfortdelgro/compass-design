@@ -11,7 +11,7 @@ imgSrc: /static/images/colors-background.png
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {theme} from '@comfortdelgro/react-compass/theme'
+import {theme} from '@comfortdelgro/react-compass-old/theme'
 ```
 
 ## Palette

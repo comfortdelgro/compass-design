@@ -1,4 +1,4 @@
-import Grid from '@comfortdelgro/react-compass/grid'
+import Grid from '@comfortdelgro/react-compass-old/grid'
 
 function GridBasic() {
   return (

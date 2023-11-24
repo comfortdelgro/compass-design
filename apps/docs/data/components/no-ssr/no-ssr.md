@@ -10,13 +10,13 @@ components: No-SSR
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {NoSsr} from '@comfortdelgro/react-compass'
+import {NoSsr} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```jsx
-import NoSsr from '@comfortdelgro/react-compass/nossr'
+import NoSsr from '@comfortdelgro/react-compass-old/nossr'
 ```
 
 ## No-SSR is a component that prevents rendering its children on the server. It has various uses:

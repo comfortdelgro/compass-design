@@ -1,5 +1,23 @@
 ## 2.9.0
 
+## 2.26.0
+
+### Minor Changes
+
+- 61e2d54f: Fix bugs
+
+## 2.25.0
+
+### Minor Changes
+
+- ad5ae9d5: Add new features to pudo
+
+## 2.24.0
+
+### Minor Changes
+
+- d0f6269b: Fix bugs in otp input
+
 ## 2.23.0
 
 ### Minor Changes

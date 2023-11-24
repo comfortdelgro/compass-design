@@ -1,4 +1,4 @@
-import SearchField from '@comfortdelgro/react-compass/searchfield'
+import SearchField from '@comfortdelgro/react-compass-old/searchfield'
 
 function RadioCustomStyling() {
   return (

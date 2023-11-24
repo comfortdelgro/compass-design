@@ -1,6 +1,3 @@
-import { Meta } from "@storybook/react"
-import React from "react"
-import AppNav from "."
 import Activity from '@comfortdelgro/compass-icons/react/activity'
 import ActivityOutlined from '@comfortdelgro/compass-icons/react/address-book-outlined'
 import CreditCard from '@comfortdelgro/compass-icons/react/credit-card-filled'
@@ -9,11 +6,14 @@ import Home from '@comfortdelgro/compass-icons/react/home'
 import Notification from '@comfortdelgro/compass-icons/react/notification-filled'
 import NotificationOutlined from '@comfortdelgro/compass-icons/react/notification-outlined'
 import User from '@comfortdelgro/compass-icons/react/user-duotone'
+import {Meta} from '@storybook/react'
+import React from 'react'
+import AppNav from '.'
 
 export const FourSections = () => {
   const [index, setIndex] = React.useState<number>(0)
   return (
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
+    <div style={{display: 'flex', flexDirection: 'column'}}>
       <h3>Bottom app nav with four sections</h3>
       <div
         style={{

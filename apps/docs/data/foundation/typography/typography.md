@@ -11,13 +11,13 @@ imgSrc: /static/images/typography-background.png
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Typography} from '@comfortdelgro/react-compass'
+import {Typography} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```jsx
-import Typography from '@comfortdelgro/react-compass/typography'
+import Typography from '@comfortdelgro/react-compass-old/typography'
 ```
 
 ## Brand typography

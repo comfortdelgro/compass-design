@@ -1,64 +1,67 @@
 @import '../../theme/theme.module.css';
 
-.rteOption {
-  font-size: var(--cdg-font-size-label1);
-  font-weight: var(--cdg-font-weight-medium);
-  padding: var(--cdg-spacing-2) var(--cdg-spacing-4);
-  outline: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: var(--cdg-spacing-2);
-  color: var(--cdg-color-gray100);
-}
-
-.rteOption:hover {
-  background-color: var(--cdg-color-gray20);
-}
-
-.rteOption.isFocused {
-  background-color: var(--cdg-color-gray20);
-}
-.rteOption.isSelected {
-  background-color: var(--cdg-color-gray20);
-}
-.rteOption.isDisabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-.rteOption.isColor {
-  position: relative;
-}
-
-.rightIcon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: var(--cdg-spacing-6);
-  height: var(--cdg-spacing-6);
-}
-
-.rightIcon.isUnselected > svg {
-  display: none;
-}
-.rightIcon.typeColor {
-  position: absolute;
-  color: var(--cdg-color-whiteText);
-  /* z-index: 1; */
-}
-.rightIcon.typeHeading {
-  color: var(--cdg-color-cdgBlue);
-}
-
-.optionContent {
-  display: flex;
-  align-items: center;
-  flex-grow: 1;
-}
-
-.colorItem {
-  border-radius: 4px;
-  width: 24px;
-  height: 24px;
+@layer default {
+  .rteOption {
+    font-size: var(--cdg-font-size-label1);
+    font-weight: var(--cdg-font-weight-medium);
+    padding: var(--cdg-spacing-2) var(--cdg-spacing-4);
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: var(--cdg-spacing-2);
+    color: var(--cdg-color-gray100);
+  }
+  
+  .rteOption:hover {
+    background-color: var(--cdg-color-gray20);
+  }
+  
+  .rteOption.isFocused {
+    background-color: var(--cdg-color-gray20);
+  }
+  .rteOption.isSelected {
+    background-color: var(--cdg-color-gray20);
+  }
+  .rteOption.isDisabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  .rteOption.isColor {
+    position: relative;
+  }
+  
+  .rightIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: var(--cdg-spacing-6);
+    height: var(--cdg-spacing-6);
+  }
+  
+  .rightIcon.isUnselected > svg {
+    display: none;
+  }
+  .rightIcon.typeColor {
+    position: absolute;
+    color: var(--cdg-color-whiteText);
+    /* z-index: 1; */
+  }
+  .rightIcon.typeHeading {
+    color: var(--cdg-color-cdgBlue);
+  }
+  
+  .optionContent {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+  }
+  
+  .colorItem {
+    border-radius: 4px;
+    width: 24px;
+    height: 24px;
+  }
+  
 }

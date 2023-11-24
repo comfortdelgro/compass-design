@@ -10,13 +10,13 @@ components: TextField
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {AutoComplete} from '@comfortdelgro/react-compass'
+import {AutoComplete} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```jsx
-import AutoComplete from '@comfortdelgro/react-compass/auto-complete'
+import AutoComplete from '@comfortdelgro/react-compass-old/auto-complete'
 ```
 
 ## Combo box

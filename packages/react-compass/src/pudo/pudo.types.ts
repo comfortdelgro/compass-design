@@ -1,6 +1,23 @@
 import {CSSProperties, FocusEvent, ReactNode} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
-import {PudoItemVariantProps} from './pudo.styles'
+
+type PudoItemType =
+  | {
+      /**
+       * `type` of each item will be overwritten
+       * if provided in the PUDO component.
+       * @default 'input'
+       */
+      type?: 'input' | 'custom'
+    }
+  | {
+      /**
+       * @deprecated `label` type will be removed on next major release - `@comfortdelgro/react-compass@3.x`
+       *
+       * Consider use `custom` item type instead.
+       */
+      type: 'label'
+    }
 
 export type PudoValueChange<
   TItemKeys extends string | number | symbol = string,
@@ -19,10 +36,6 @@ export type PudoProps<TItemKeys extends string | number | symbol> = {
    * This item list will be automatically de-duplicated (by `name`).
    */
   items: Readonly<Array<PudoItemProps<TItemKeys>>>
-  /**
-   * This will override the `type` of all items.
-   */
-  type?: PudoItemProps<TItemKeys>['type']
   onValuesChange?: (values: PudoValueChange<TItemKeys>) => void
   /**
    * Min length of item list.
@@ -60,21 +73,27 @@ export type PudoProps<TItemKeys extends string | number | symbol> = {
   addItems?: Readonly<Array<PudoItemProps<TItemKeys>>>
   /** @default "Add" */
   addItemsLabel?: string
-  compact?: 'sm' | 'md'
-} & StyledComponentProps
+  compact?: 'sm' | 'md' | undefined
+  /**
+   * if provided, `alignIcon` of all items will be overwritten
+   */
+  alignIcon?: PudoItemProps['alignIcon']
+} & PudoItemType &
+  StyledComponentProps
 
 export type PudoItemProps<TName extends string | number | symbol = string> = {
   name: TName
   className?: string
   icon?: ReactNode
-  /**
-   * `type` of each item will be overwritten
-   * if provided in the PUDO component.
-   * @default 'input'
-   */
-  type?: 'input' | 'label'
-  value: string
+
+  /** `value` is used for `'input'` type item. */
+  value?: string
+  /** `placeholder` is used for `'input'` type item. */
   placeholder?: string
+  /** `title` is used for `'custom'` type item. */
+  title?: ReactNode
+  /** `content` is used for `'custom'` type item. */
+  content?: ReactNode
 
   /** @default false */
   allowSwap?: boolean
@@ -83,13 +102,17 @@ export type PudoItemProps<TName extends string | number | symbol = string> = {
   maxLength?: number
 
   isRequired?: boolean
-} & StyledComponentProps
+
+  /** @default "center" */
+  alignIcon?: 'top' | 'center'
+} & PudoItemType &
+  StyledComponentProps
 
 export type PudoItemPrivateProps<TName extends string | number | symbol> = {
   index: number
   itemsLength: number
+  compact?: PudoProps<TName>['compact']
   onValueChange?: (value: string) => void
   handleSwap?: () => void
   onInputFocus?: (e: FocusEvent<HTMLInputElement>) => void
-} & PudoItemProps<TName> &
-  PudoItemVariantProps
+} & PudoItemProps<TName>

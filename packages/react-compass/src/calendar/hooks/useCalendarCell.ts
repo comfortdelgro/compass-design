@@ -229,6 +229,15 @@ export function useCalendarCell(
           // start a new selection on press up to also allow dragging the date to
           // change the existing range.
           state.setAnchorDate(date)
+          // options for user to choose whether the datepicker fire onchange on same first date clicked or not
+          // if user click end date, treat it like picking new dates from start
+          if (
+            (state.value.start?.compare(date) === 0 &&
+              state.shouldOnChangeTriggerOnSameDate) ||
+            state.value.end?.compare(date) === 0
+          ) {
+            state.selectDate?.(date)
+          }
         } else if (state.anchorDate && !isAnchorPressed.current) {
           // When releasing a drag or pressing the end date of a range, select it.
           state.selectDate?.(date)

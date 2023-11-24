@@ -82,7 +82,7 @@ export const spacings = {
 }
 
 export const fonts = {
-  sans: 'Poppins, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+  sans: 'Poppins, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
   serif: 'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
   mono: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
 }
@@ -234,6 +234,7 @@ export const lightThemeColors = {
   grayShades100: '#333333',
 
   blueShades10: '#E6ECF7',
+  blueShades20: '#CCD9EF',
   blueShades80: '#3468BF',
   blueShades100: '#0142AF',
   blueShades120: '#012158',
@@ -324,6 +325,7 @@ export const darkThemeColors = {
   grayShades100: '#F7F8F9',
 
   blueShades10: '#E6ECF7',
+  blueShades20: '#CCD9EF',
   blueShades80: '#3468BF',
   blueShades100: '#0142AF',
   blueShades120: '#012158',
@@ -345,7 +347,7 @@ const theme = {
   sizes: spacings,
   transitions,
 }
-
+   
 export default theme
-
+   
 export type Colors = typeof lightThemeColors

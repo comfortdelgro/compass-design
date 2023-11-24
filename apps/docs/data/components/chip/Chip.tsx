@@ -1,4 +1,4 @@
-import {Chip, Column, Typography} from '@comfortdelgro/react-compass'
+import {Chip, Column, Typography} from '@comfortdelgro/react-compass-old'
 
 const Default: React.FC = () => {
   return (

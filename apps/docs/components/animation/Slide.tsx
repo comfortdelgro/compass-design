@@ -1,4 +1,4 @@
-import {Box} from '@comfortdelgro/react-compass'
+import {Box} from '@comfortdelgro/react-compass-old'
 
 export default function Slide({
   animationName,

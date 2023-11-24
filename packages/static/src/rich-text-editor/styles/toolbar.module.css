@@ -1,13 +1,15 @@
 @import '../../theme/theme.module.css';
 
-.rteToolbar {
-  appearance: none;
-  border: none;
-  box-sizing: border-box;
-  margin: 0px;
-  padding: var(--cdg-spacing-2) var(--cdg-spacing-4);
-  background-color: var(--cdg-color-gray20);
-  overflow: hidden;
-  max-height: 44px;
-  position: relative;
+@layer default {
+  .rteToolbar {
+    appearance: none;
+    border: none;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: var(--cdg-spacing-2) var(--cdg-spacing-4);
+    background-color: var(--cdg-color-gray20);
+    overflow: hidden;
+    max-height: 44px;
+    position: relative;
+  }
 }

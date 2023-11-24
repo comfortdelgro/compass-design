@@ -3,6 +3,7 @@ import InfoOutlined from '@comfortdelgro/compass-icons/react/outlined/info-outli
 import {Meta} from '@storybook/react'
 import debounce from 'lodash/debounce'
 import {useCallback, useState} from 'react'
+import {SlideAction} from '..'
 import Button from '../button'
 import Typography from '../typography'
 import Pudo from './pudo'
@@ -56,7 +57,7 @@ export function Default() {
   )
   const [formValues, setFormValues] = useState<
     PudoValueChange<PudoItemAllKeys>
-  >(pudoItems.map(({name, value}) => ({name, value})))
+  >(pudoItems.map(({name, value = ''}) => ({name, value})))
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debounceUpdate = useCallback(
@@ -130,73 +131,182 @@ export function Default() {
         </pre>
       )}
 
-      <h4>Label view</h4>
+      <h4>
+        Item type: <code>custom</code>
+      </h4>
       <Pudo
         items={[
           {
             name: 'item1',
-            value: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum
-          assumenda officiis voluptates quam rem qui libero commodi veritatis
-          deserunt harum voluptatum beatae perferendis, vitae minus magnam facere
-          quidem tempora iusto? Tempore praesentium accusamus mollitia, inventore
-          quos tenetur, aspernatur eos, in id corporis veniam blanditiis error. Est
-          illo temporibus velit, beatae dolores accusantium quis vel corporis neque
-          harum? Accusantium, voluptates consequuntur?`,
-            placeholder: 'item1',
+            title: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum
+          assumenda officiis voluptates quam rem qui libero commodi veritatis.`,
+            content: (
+              <>
+                <p
+                  style={{
+                    color: 'var(--colors-grayShades60)',
+                    fontStyle: 'italic',
+                  }}
+                >
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Earum, praesentium.{' '}
+                  <del>
+                    Fuga recusandae maxime molestias velit doloremque soluta
+                    modi suscipit quia fugit vitae, non laboriosam perferendis
+                    accusantium deserunt officiis eligendi.
+                  </del>{' '}
+                  Dolore! Fuga recusandae maxime molestias velit doloremque
+                  soluta modi suscipit quia fugit vitae, non laboriosam.
+                </p>
+                <Button type='button' variant='secondary' size='sm'>
+                  Some action
+                </Button>
+              </>
+            ),
           },
-          {name: 'item2', value: 'Destination', placeholder: 'item2'},
+          {
+            name: 'item2',
+            title: (
+              <>
+                <p style={{marginBlock: '0 1rem', color: 'blueviolet'}}>
+                  <strong>Title only:</strong> Lorem ipsum dolor sit, amet
+                  consectetur adipisicing elit. Laborum assumenda officiis
+                  voluptates quam rem qui libero commodi veritatis.
+                </p>
+                <SlideAction
+                  css={{marginBlock: '0.5rem'}}
+                  label='Some danger action on title'
+                  labelType='slide'
+                />
+              </>
+            ),
+          },
+          {
+            name: 'item3',
+            content: (
+              <p style={{marginBlock: '0'}}>
+                This item has <strong>content only</strong> ✨. Lorem ipsum
+                dolor sit, amet consectetur adipisicing elit. Laborum assumenda
+                officiis voluptates quam rem qui libero commodi veritatis.
+                deserunt harum voluptatum beatae perferendis, vitae minus magnam
+                facere quidem tempora iusto? Tempore praesentium accusamus
+                mollitia, inventore quos tenetur, aspernatur eos, in id corporis
+                veniam blanditiis error. Est illo temporibus velit, beatae
+                dolores accusantium quis vel corporis neque harum? Accusantium,
+                voluptates consequuntur?
+              </p>
+            ),
+          },
         ]}
-        type='label'
+        type='custom'
+      />
+
+      <h4>
+        Align Icon: <code>top</code>
+      </h4>
+      <Pudo
+        alignIcon='top'
+        items={[
+          {
+            name: 'item1',
+            title: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum
+          assumenda officiis voluptates quam rem qui libero commodi veritatis.`,
+            content: (
+              <>
+                <p
+                  style={{
+                    color: 'var(--colors-grayShades60)',
+                    fontStyle: 'italic',
+                  }}
+                >
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Earum, praesentium. Fuga recusandae maxime molestias velit
+                  doloremque soluta modi suscipit quia fugit vitae, non
+                  laboriosam perferendis accusantium deserunt officiis eligendi.
+                  Dolore!
+                </p>
+                <Button type='button' variant='secondary' size='sm'>
+                  Some action
+                </Button>
+              </>
+            ),
+          },
+          {
+            name: 'item2',
+            title: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum
+          assumenda officiis voluptates quam rem qui libero commodi veritatis.`,
+          },
+          {
+            name: 'item3',
+            content: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum
+            assumenda officiis voluptates quam rem qui libero commodi veritatis
+            deserunt harum voluptatum beatae perferendis, vitae minus magnam facere
+            quidem tempora iusto? Tempore praesentium accusamus mollitia, inventore
+            quos tenetur, aspernatur eos, in id corporis veniam blanditiis error. Est
+            illo temporibus velit, beatae dolores accusantium quis vel corporis neque
+            harum? Accusantium, voluptates consequuntur?`,
+          },
+        ]}
+        type='custom'
       />
 
       <h4>Compact</h4>
-      <Pudo
-        items={[
-          {name: 'item1', value: '', placeholder: 'item 1'},
-          {name: 'item2', value: '', placeholder: 'item 2'},
-        ]}
-        compact='md'
-      />
-
-      <h4>Compact - Label view</h4>
       <Typography.Body variant='body3' className={classes.description}>
-        Compact size: sm (left), md (right)
+        Compact size: sm (1st example), md (2nd example)
       </Typography.Body>
+      <div className={classes.compactContainer}>
+        <Pudo
+          items={[
+            {name: 'item1', value: '', placeholder: 'item1'},
+            {name: 'item2', value: '', placeholder: 'item2'},
+          ]}
+          compact='sm'
+        />
+        <Pudo
+          items={[
+            {name: 'item1', value: '', placeholder: 'item1'},
+            {name: 'item2', value: '', placeholder: 'item2'},
+          ]}
+          compact='md'
+        />
+      </div>
+
+      <h5>
+        Type <code>custom</code>
+      </h5>
       <div className={classes.compactContainer}>
         <Pudo
           items={[
             {
               name: 'item1',
-              value: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum
+              title: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum
           assumenda officiis voluptates quam rem qui libero commodi veritatis
           deserunt harum voluptatum beatae perferendis, vitae minus magnam facere
           quidem tempora iusto? Tempore praesentium accusamus mollitia, inventore
           quos tenetur, aspernatur eos, in id corporis veniam blanditiis error. Est
           illo temporibus velit, beatae dolores accusantium quis vel corporis neque
           harum? Accusantium, voluptates consequuntur?`,
-              placeholder: 'item1',
             },
-            {name: 'item2', value: 'Destination', placeholder: 'item2'},
+            {name: 'item2', title: 'Destination'},
           ]}
-          type='label'
+          type='custom'
           compact='sm'
         />
         <Pudo
           items={[
             {
               name: 'item1',
-              value: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum
+              title: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum
           assumenda officiis voluptates quam rem qui libero commodi veritatis
           deserunt harum voluptatum beatae perferendis, vitae minus magnam facere
           quidem tempora iusto? Tempore praesentium accusamus mollitia, inventore
           quos tenetur, aspernatur eos, in id corporis veniam blanditiis error. Est
           illo temporibus velit, beatae dolores accusantium quis vel corporis neque
           harum? Accusantium, voluptates consequuntur?`,
-              placeholder: 'item1',
             },
-            {name: 'item2', value: 'Destination', placeholder: 'item2'},
+            {name: 'item2', title: 'Destination'},
           ]}
-          type='label'
+          type='custom'
           compact='md'
         />
       </div>

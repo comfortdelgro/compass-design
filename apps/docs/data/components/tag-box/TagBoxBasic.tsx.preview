@@ -7,8 +7,8 @@
     onEdit={editItem}
     onRemove={removeItem}
     helperText='Helper text'
-    >
+>
     <TagBox.Action>
-        <Button>Call to action</Button>
+    <Button>Call to action</Button>
     </TagBox.Action>
 </TagBox>

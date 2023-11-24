@@ -14,8 +14,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import {NumberFormatter, NumberParser} from '@internationalized/number'
 import {useCallback, useMemo, useRef, useState} from 'react'
+import {NumberFormatter, NumberParser} from '../../../internationalized/number'
 import {clamp, snapValueToStep} from '../number'
 import {NumberFieldProps} from '../types'
 import {useControlledState} from './useControlledState'

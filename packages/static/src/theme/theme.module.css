@@ -80,7 +80,7 @@
   --cdg-spacing-110_5 : 27.625rem;
   --cdg-spacing-127_25 : 31.8125rem;
   /* Fonts */
-  --cdg-font-sans : Poppins, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --cdg-font-sans : Poppins, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --cdg-font-serif : ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   --cdg-font-mono : ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   /* Font Sizes */
@@ -193,6 +193,7 @@
   --cdg-color-grayShades80 : #3E3E3E;
   --cdg-color-grayShades100 : #333333;
   --cdg-color-blueShades10 : #E6ECF7;
+  --cdg-color-blueShades20 : #CCD9EF;
   --cdg-color-blueShades80 : #3468BF;
   --cdg-color-blueShades100 : #0142AF;
   --cdg-color-blueShades120 : #012158;
@@ -263,6 +264,7 @@
   --cdg-color-grayShades80 : #E6E6E6;
   --cdg-color-grayShades100 : #F7F8F9;
   --cdg-color-blueShades10 : #E6ECF7;
+  --cdg-color-blueShades20 : #CCD9EF;
   --cdg-color-blueShades80 : #3468BF;
   --cdg-color-blueShades100 : #0142AF;
   --cdg-color-blueShades120 : #012158;

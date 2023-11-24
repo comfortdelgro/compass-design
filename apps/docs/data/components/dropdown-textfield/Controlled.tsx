@@ -1,7 +1,11 @@
 import Singapore from '@comfortdelgro/compass-icons/react/flag-sgp'
 import USA from '@comfortdelgro/compass-icons/react/flag-usa'
-import {DropdownOptions, DropdownTextfield} from '@comfortdelgro/react-compass'
+import {
+  DropdownOptions,
+  DropdownTextfield,
+} from '@comfortdelgro/react-compass-old'
 import React from 'react'
+
 function Controlled() {
   const phoneDropdownOptions: DropdownOptions[] = [
     {
@@ -19,11 +23,11 @@ function Controlled() {
   const [textfieldValue, setTextfieldValue] = React.useState<string>('Foo')
   const [dropdownValue, setDropdownValue] = React.useState<string>('')
   const handleChange = (dropdownValue: string, inputValue: string) => {
+    console.log({dropdownValue, inputValue})
     setTextfieldValue(inputValue)
     setDropdownValue(dropdownValue)
   }
 
-  console.log({textfieldValue, dropdownValue})
   return (
     <>
       <DropdownTextfield

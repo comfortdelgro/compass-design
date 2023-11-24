@@ -4,7 +4,7 @@ import {
   DateRangePicker,
   RangeValue,
   useDateFormatter,
-} from '@comfortdelgro/react-compass'
+} from '@comfortdelgro/react-compass-old'
 import React from 'react'
 
 const {getLocalTimeZone, parseDate} = Calendar.InternationalizedDate

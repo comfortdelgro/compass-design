@@ -1,6 +1,6 @@
 import fs from 'fs'
-import path, {dirname} from 'path'
-import {fileURLToPath} from 'url'
+import path, { dirname } from 'path'
+import { fileURLToPath } from 'url'
 import {
   borderWidths,
   darkThemeColors,
@@ -86,7 +86,8 @@ for (const key in darkThemeColors) {
 const cssData = `/* THIS FILE IS AUTO GENERATED. DO NOT MODIFY!  */
 :root {
   ${cssVariables.join('\n  ')}
-}`
+}
+`
 
 writeToFile(themeModuleCssPath, cssData)
 

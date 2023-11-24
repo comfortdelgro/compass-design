@@ -49,10 +49,6 @@ import {Tabs, TabsProps} from '@comfortdelgro/react-compass/tabs'
 
 {{"demo": "TabsH5.tsx"}}
 
-<!-- ## Override css with Css module (Experimental)
-
-{{"demo": "TabsServer.tsx"}} -->
-
 ## Props
 
 ### `<Tabs/>` | `<Tabs.Paneless/>`:

@@ -1,0 +1,88 @@
+@import '../../theme/theme.module.css';
+
+@layer default, variant, compoundVariant;
+
+@layer default {
+  .toggle {
+    box-sizing: border-box;
+    width: var(--cdg-spacing-8);
+    height: var(--cdg-spacing-4);
+    padding: var(--cdg-spacing-0_5);
+    display: flex;
+    cursor: pointer;
+    border-radius: var(--cdg-border-radius-full);
+    background-color: var(--cdg-color-gray70);
+    transition: background-color 500ms ease;
+  }
+
+  .toggleCircle {
+    width: var(--cdg-spacing-3);
+    height: var(--cdg-spacing-3);
+    border-radius: var(--cdg-border-radius-full);
+    background-color: var(--cdg-color-background);
+  }
+
+  .toggleInput {
+    visibility: hidden;
+    position: absolute;
+  }
+
+  .toggle:focus-within {
+    box-sizing: border-box;
+    border: var(--cdg-spacing-0_5) solid var(--cdg-color-cdgBlue60);
+    outline: none;
+    padding: 0;
+  }
+
+  .toggle:hover {
+    box-sizing: border-box;
+    border: 1px solid var(--cdg-color-border);
+    outline: none;
+    padding: var(--cdg-spacing-0_25);
+  }
+}
+
+@layer variant {
+  .toggleSizeLg {
+    width: var(--cdg-spacing-10);
+    height: var(--cdg-spacing-6);
+  }
+  .toggleSizeSm {
+    /* default css */
+  }
+
+  .toggleCircleLg {
+    width: var(--cdg-spacing-5);
+    height: var(--cdg-spacing-5);
+  }
+
+  .toggleDisabled {
+    cursor: not-allowed;
+    background-color: var(--cdg-color-gray50);
+    pointer-events: none;
+  }
+  .toggleActive{
+    background-color: var(--cdg-color-success);
+    justify-content: flex-end;
+  }
+
+  .toggleH5 {
+    width: var(--cdg-spacing-12);
+    height: var(--cdg-spacing-7);
+  }
+
+  .toggleCircleH5 {
+    width: var(--cdg-spacing-6);
+    height: var(--cdg-spacing-6);
+  }
+}
+
+@layer compoundVariant {
+  .toggleActiveDisabled {
+    background-color: var(--cdg-color-successBg);
+  }
+
+  .toggleActiveH5 {
+    background-color: var(--cdg-color-greenShades);
+  }
+}

@@ -7,12 +7,12 @@ import {
   Pagination,
   ReactTable,
   TableV2Options,
-} from '@comfortdelgro/react-compass'
+} from '@comfortdelgro/react-compass-old'
 import {
   TableV2CellContext,
   TableV2ColumnDef,
   TableV2HeaderContext,
-} from '@comfortdelgro/react-compass/table-v2'
+} from '@comfortdelgro/react-compass-old/table-v2'
 import React, {useState} from 'react'
 
 export type Person = {

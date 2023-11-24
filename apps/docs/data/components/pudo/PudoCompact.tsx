@@ -1,26 +1,41 @@
-import {Column, Pudo, styled, Typography} from '@comfortdelgro/react-compass'
+import {Column, Pudo, Typography} from '@comfortdelgro/react-compass'
 
 export default function PudoCompact() {
   return (
     <Column>
-      <Pudo
-        items={[
-          {name: 'item1', value: '', placeholder: 'item 1'},
-          {name: 'item2', value: '', placeholder: 'item 2'},
-        ]}
-        compact='md'
-      />
+      <Typography.Body variant='body3'>
+        Compact size: sm (1st example), md (2nd example)
+      </Typography.Body>
+      <div style={{display: 'flex', flexDirection: 'column', gap: '1rem'}}>
+        <Pudo
+          items={[
+            {name: 'item1', value: '', placeholder: 'item 1'},
+            {name: 'item2', value: '', placeholder: 'item 2'},
+          ]}
+          compact='sm'
+        />
+        <Pudo
+          items={[
+            {name: 'item1', value: '', placeholder: 'item 1'},
+            {name: 'item2', value: '', placeholder: 'item 2'},
+          ]}
+          compact='md'
+        />
+      </div>
 
-      <Typography.Body variant='body3' css={{marginTop: '$4'}}>
-        Compact size: sm (left), md (right)
+      <Typography.Header variant='header5' css={{marginTop: '$4'}}>
+        Type <code>custom</code>
+      </Typography.Header>
+      <Typography.Body variant='body3'>
+        Compact size: sm (1st example), md (2nd example)
       </Typography.Body>
 
-      <CompactExampleContainer>
+      <div style={{display: 'flex', flexDirection: 'column', gap: '1rem'}}>
         <Pudo
           items={[
             {
               name: 'item1',
-              value: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum
+              title: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum
           assumenda officiis voluptates quam rem qui libero commodi veritatis
           deserunt harum voluptatum beatae perferendis, vitae minus magnam facere
           quidem tempora iusto? Tempore praesentium accusamus mollitia, inventore
@@ -28,9 +43,9 @@ export default function PudoCompact() {
           illo temporibus velit, beatae dolores accusantium quis vel corporis neque
           harum? Accusantium, voluptates consequuntur?`,
             },
-            {name: 'item2', value: 'Destination'},
+            {name: 'item2', title: 'Destination'},
           ]}
-          type='label'
+          type='custom'
           compact='sm'
         />
 
@@ -38,29 +53,29 @@ export default function PudoCompact() {
           items={[
             {
               name: 'item1',
-              value:
+              title:
                 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum assumenda officiis voluptates quam rem qui libero commodi veritatis?',
             },
-            {name: 'item2', value: 'Destination'},
+            {name: 'item2', title: 'Destination'},
           ]}
-          type='label'
+          type='custom'
           compact='md'
         />
-      </CompactExampleContainer>
+      </div>
     </Column>
   )
 }
 
-const CompactExampleContainer = styled('div', {
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '$4',
+// const CompactExampleContainer = styled('div', {
+//   display: 'flex',
+//   flexDirection: 'column',
+//   gap: '$4',
 
-  '@sm': {
-    flexDirection: 'row',
+//   '@sm': {
+//     flexDirection: 'row',
 
-    '& > .pudo-container': {
-      width: 'calc(100% / 2 - $2)',
-    },
-  },
-})
+//     '& > .cdg-pudo-container': {
+//       width: 'calc(100% / 2 - $2)',
+//     },
+//   },
+// })

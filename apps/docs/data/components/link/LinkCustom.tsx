@@ -1,4 +1,4 @@
-import {Link} from '@comfortdelgro/react-compass'
+import {Link} from '@comfortdelgro/react-compass-old'
 
 function CustomExample() {
   return (

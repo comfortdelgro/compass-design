@@ -1,5 +1,4 @@
 import {Avatar, Icon, List} from '@comfortdelgro/react-compass'
-// import {List as StaticList} from '@comfortdelgro/static'
 import {faBug, faChevronRight} from '@fortawesome/free-solid-svg-icons'
 
 function BasicExample() {

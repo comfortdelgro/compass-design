@@ -2,7 +2,7 @@ import React from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
 import type AvatarGroup from './avatar-group'
-import {AvatarSize, AVATAR_SIZE_MAP} from './avatar.const'
+import {AVATAR_SIZE_MAP, AvatarSize} from './avatar.const'
 import styles from './styles/avatar.module.css'
 
 const calculateInitials = (name: string, size: AvatarSize) => {

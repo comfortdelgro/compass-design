@@ -1,26 +1,28 @@
 @import '../../theme/theme.module.css';
 
-.tooltip {
-  position: relative;
-  margin-left: var(--cdg-spacing-2);
-  display: flex;
-  align-items: center;
-}
-
-.tooltipContent {
-  position: absolute;
-  left: var(--cdg-spacing-6);
-  border: var(---cdg-color-gray90) thin solid;
-  border-radius: var(--cdg-border-radius-md);
-  display: none;
-  padding: var(--cdg-spacing-1) var(--cdg-spacing-2);
-  font-size: var(--cdg-font-size-label1);
-  font-weight: var(--cdg-font-weight-medium);
-  color: var(--cdg-color-gray90);
-  background: var(--cdg-color-background);
-  width: max-content;
-}
-
-.tooltip:hover .tooltipContent {
-  display: block;
+@layer default {
+  .tooltip {
+    position: relative;
+    margin-left: var(--cdg-spacing-2);
+    display: flex;
+    align-items: center;
+  }
+  
+  .tooltipContent {
+    position: absolute;
+    left: var(--cdg-spacing-6);
+    border: var(---cdg-color-gray90) thin solid;
+    border-radius: var(--cdg-border-radius-md);
+    display: none;
+    padding: var(--cdg-spacing-1) var(--cdg-spacing-2);
+    font-size: var(--cdg-font-size-label1);
+    font-weight: var(--cdg-font-weight-medium);
+    color: var(--cdg-color-gray90);
+    background: var(--cdg-color-background);
+    width: max-content;
+  }
+  
+  .tooltip:hover .tooltipContent {
+    display: block;
+  }
 }

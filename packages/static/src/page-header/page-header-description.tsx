@@ -1,7 +1,7 @@
+import clsx from 'clsx'
 import React from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import styles from './styles/page-header-description.module.css'
-import clsx from 'clsx'
 
 interface Props {
   css?: unknown
@@ -15,11 +15,15 @@ const PageHeaderDescription = React.forwardRef<
   HTMLDivElement,
   PageHeaderDescriptionProps
 >((props, ref) => {
-  const { children, css = {}, className, ...delegated } = props
+  const {children, css = {}, className, ...delegated} = props
 
   return (
     <CssInjection css={css} childrenRef={ref}>
-      <p className={clsx(styles.pageHeaderDescription, className)} ref={ref}{...delegated}>
+      <p
+        className={clsx(styles.pageHeaderDescription, className)}
+        ref={ref}
+        {...delegated}
+      >
         {children}
       </p>
     </CssInjection>

@@ -1,4 +1,4 @@
-import DatePicker from '@comfortdelgro/react-compass/date-picker'
+import DatePicker from '@comfortdelgro/react-compass-old/date-picker'
 
 function DatePickerIsMobile() {
   return (

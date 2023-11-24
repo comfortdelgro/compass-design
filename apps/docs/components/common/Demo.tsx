@@ -1,4 +1,4 @@
-import {Box, Button, styled} from '@comfortdelgro/react-compass'
+import {Box, Button, styled} from '@comfortdelgro/react-compass-old'
 import DemoEditor from 'components/common/DemoEditor'
 import DemoEditorError from 'components/common/DemoEditorError'
 import DemoSandbox from 'components/common/DemoSandbox'
