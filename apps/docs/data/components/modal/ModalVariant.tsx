@@ -1,4 +1,4 @@
-import {Button, Column, Modal} from '@comfortdelgro/react-compass'
+import {Button, Column, Modal} from '@comfortdelgro/react-compass-old'
 import React from 'react'
 
 const Variants: React.FC = () => {

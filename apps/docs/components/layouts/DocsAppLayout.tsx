@@ -1,4 +1,4 @@
-import {Box} from '@comfortdelgro/react-compass'
+import {Box} from '@comfortdelgro/react-compass-old'
 import EditPage from 'components/common/EditPage'
 import Head from 'components/common/Head'
 import AppFrame from 'components/layouts/DocsAppFrame'

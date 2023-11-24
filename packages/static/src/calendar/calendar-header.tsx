@@ -1,19 +1,19 @@
 import ArrowLeft from '@comfortdelgro/compass-icons/react/arrow-left'
 import ArrowRight from '@comfortdelgro/compass-icons/react/arrow-right'
-import { VisuallyHidden } from '@react-aria/visually-hidden'
+import {VisuallyHidden} from '@react-aria/visually-hidden'
 import React from 'react'
-import Button, { ButtonProps } from '../button'
-import { DateValue } from '../internationalized/date'
-import { useDateFormatter } from '../internationalized/i18n'
-import { MonthYearState, MONTH_YEAR_STATE } from './hooks/useMonthYearState'
-import { AriaLabelingProps, DOMProps } from './types'
+import Button, {ButtonProps} from '../button'
+import {DateValue} from '../internationalized/date'
+import {useDateFormatter} from '../internationalized/i18n'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import {MONTH_YEAR_STATE, MonthYearState} from './hooks/useMonthYearState'
+import styles from './styles/calendar-header.module.css'
+import {AriaLabelingProps, DOMProps} from './types'
 import {
   CalendarState,
   DOMAttributes,
   RangeCalendarState,
 } from './types/calendar.types'
-import styles from './styles/calendar-header.module.css'
-import CssInjection from '../utils/objectToCss/CssInjection'
 
 interface Props {
   css?: unknown
@@ -77,29 +77,31 @@ const CalendarHeader = (props: Props) => {
       middleButtonProps.currentState === MONTH_YEAR_STATE.YEAR
         ? yearPrevButtonProps
         : middleButtonProps.currentState === MONTH_YEAR_STATE.DATE
-          ? datePrevButtonProps
-          : { isDisabled: true }
+        ? datePrevButtonProps
+        : {isDisabled: true}
 
     nextButtonProps =
       middleButtonProps.currentState === MONTH_YEAR_STATE.YEAR
         ? yearNextButtonProps
         : middleButtonProps.currentState === MONTH_YEAR_STATE.DATE
-          ? dateNextButtonProps
-          : { isDisabled: true }
+        ? dateNextButtonProps
+        : {isDisabled: true}
   }
 
   return (
     <CssInjection css={css}>
       <div className={styles.calendarHeader}>
         {/* Add a screen reader only description of the entire visible range rather than
-       * a separate heading above each month grid. This is placed first in the DOM order
-       * so that it is the first thing a touch screen reader user encounters.
-       * In addition, VoiceOver on iOS does not announce the aria-label of the grid
-       * elements, so the aria-label of the Calendar is included here as well. */}
+         * a separate heading above each month grid. This is placed first in the DOM order
+         * so that it is the first thing a touch screen reader user encounters.
+         * In addition, VoiceOver on iOS does not announce the aria-label of the grid
+         * elements, so the aria-label of the Calendar is included here as well. */}
         <VisuallyHidden>
           <h2>{(calendarProps as AriaLabelingProps)['aria-label']}</h2>
         </VisuallyHidden>
-        <div className={`calendar-header-left-side ${styles.calendarHeaderLeftSide}`}>
+        <div
+          className={`calendar-header-left-side ${styles.calendarHeaderLeftSide}`}
+        >
           <Button
             variant='ghost'
             type='button'
@@ -157,12 +159,14 @@ const CalendarHeader = (props: Props) => {
           )}
         </div>
         {variant === 'range' && (
-          <div className={`calendar-header-right-side ${styles.calendarHeaderRightSide}`}>
+          <div
+            className={`calendar-header-right-side ${styles.calendarHeaderRightSide}`}
+          >
             <h2 className={styles.calendarHeaderTitle}>
               {renderMiddleButtonContent(
                 monthDateFormatter.format(
                   state?.visibleRange?.start
-                    ?.add({ months: 1 })
+                    ?.add({months: 1})
                     .toDate(state.timeZone ?? 'UTC') as Date,
                 ),
               )}

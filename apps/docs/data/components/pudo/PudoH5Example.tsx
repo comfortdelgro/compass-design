@@ -5,7 +5,6 @@ import {
   Typography,
 } from '@comfortdelgro/react-compass'
 import {useState} from 'react'
-import {PreviewCode} from './Pudo'
 
 export default function PudoH5ExampleDocs() {
   const [exampleValues, setExampleValues] = useState<PudoValueChange>()
@@ -27,7 +26,23 @@ export default function PudoH5ExampleDocs() {
       {exampleValues && (
         <>
           <Typography.Body variant='body3'>Values:</Typography.Body>
-          <PreviewCode>{JSON.stringify(exampleValues, null, 2)}</PreviewCode>
+          <pre
+            style={{
+              padding: '0.5rem',
+              margin: '0',
+
+              width: '100%',
+              minHeight: '1.25rem',
+              borderRadius: '8px',
+
+              backgroundColor: '#FAF9F8',
+              fontSize: '0.875rem',
+              whiteSpace: 'pre-wrap',
+              overflowWrap: 'anywhere',
+            }}
+          >
+            {JSON.stringify(exampleValues, null, 2)}
+          </pre>
         </>
       )}
     </Column>

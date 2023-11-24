@@ -1,5 +1,4 @@
-import Gutter from '@comfortdelgro/react-compass/gutter'
-// import {Gutter as StaticGutter} from '@comfortdelgro/static'
+import {Gutter} from '@comfortdelgro/react-compass'
 import React, {CSSProperties} from 'react'
 function GutterExtendButton() {
   const ref = React.useRef<HTMLDivElement>(null)
@@ -22,23 +21,6 @@ function GutterExtendButton() {
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </div>
       </div>
-
-      {/* <div style={{display: 'flex', height: '100%', flex: 1}}>
-        <div
-          ref={ref}
-          style={{
-            position: 'relative',
-            width: width,
-          }}
-        >
-          <div style={{overflow: 'hidden'}}>Right side</div>
-          <StaticGutter parentRef={ref} onChange={setWidth} hasExpandButton />
-        </div>
-        <div style={{flex: 1}}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </div>
-      </div> */}
     </div>
   )
 }

@@ -10,13 +10,13 @@ components: Modal
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Modal} from '@comfortdelgro/react-compass'
+import {Modal} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```jsx
-import Modal from '@comfortdelgro/react-compass/modal'
+import Modal from '@comfortdelgro/react-compass-old/modal'
 ```
 
 ## Example

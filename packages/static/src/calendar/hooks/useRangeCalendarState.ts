@@ -13,7 +13,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/prefer-ts-expect-error */
-import { useMemo, useRef, useState } from 'react'
+import {useMemo, useRef, useState} from 'react'
 import {
   CalendarDate,
   DateValue,
@@ -24,8 +24,8 @@ import {
   toCalendar,
   toCalendarDate,
 } from '../../internationalized/date'
-import { RangeCalendarState, RangeValue } from '../types'
-import { RangeCalendarStateOptions } from '../types/range-calendar.types'
+import {RangeCalendarState, RangeValue} from '../types'
+import {RangeCalendarStateOptions} from '../types/range-calendar.types'
 import {
   alignCenter,
   constrainValue,
@@ -33,8 +33,8 @@ import {
   nextUnavailableDate,
   previousAvailableDate,
 } from '../utils'
-import { useCalendarState } from './useCalendarState'
-import { useControlledState } from './useControlledState'
+import {useCalendarState} from './useCalendarState'
+import {useControlledState} from './useControlledState'
 
 export function useRangeCalendarState<T extends DateValue = DateValue>(
   props: RangeCalendarStateOptions<T>,
@@ -45,9 +45,10 @@ export function useRangeCalendarState<T extends DateValue = DateValue>(
     onChange,
     createCalendar,
     locale,
-    visibleDuration = { months: 1 },
+    visibleDuration = {months: 1},
     minValue,
     maxValue,
+    shouldOnChangeTriggerOnSameDate,
     ...calendarProps
   } = props
   const [value, setValue] = useControlledState(
@@ -68,7 +69,7 @@ export function useRangeCalendarState<T extends DateValue = DateValue>(
       minValue,
       maxValue,
     )
-    const end = start.add(visibleDuration).subtract({ days: 1 })
+    const end = start.add(visibleDuration).subtract({days: 1})
 
     if (value.end.compare(end) > 0) {
       alignment = 'start'
@@ -169,12 +170,13 @@ export function useRangeCalendarState<T extends DateValue = DateValue>(
     if (!anchorDate) {
       setAnchorDate(date)
       // @ts-ignore
-      onChange?.({ start: date, end: null as unknown as DateValue })
+      onChange?.({start: date, end: null as unknown as DateValue})
     } else {
-      if (anchorDate.compare(date) > 0) {
+      // reset anchor date if anchor date is greater than choosen date
+      if (anchorDate.compare(date) > 0 || value?.end?.compare(date) === 0) {
         setAnchorDate(date)
         // @ts-ignore
-        onChange?.({ start: date, end: null as unknown as DateValue })
+        onChange?.({start: date, end: null as unknown as DateValue})
         //
       } else {
         const range = makeRange(anchorDate, date)
@@ -192,7 +194,7 @@ export function useRangeCalendarState<T extends DateValue = DateValue>(
 
   const [isDragging, setDragging] = useState(false)
 
-  const { isDateUnavailable } = props
+  const {isDateUnavailable} = props
   const isInvalidSelection = useMemo(() => {
     if (!value || anchorDate) {
       return false
@@ -219,15 +221,12 @@ export function useRangeCalendarState<T extends DateValue = DateValue>(
   // @ts-ignore
   return {
     ...calendar,
-    // @ts-ignore
     value,
-    // @ts-ignore
+    shouldOnChangeTriggerOnSameDate,
     setValue,
     anchorDate,
     setAnchorDate,
-    // @ts-ignore
     highlightedRange,
-    // @ts-ignore
     validationState,
     selectFocusedDate() {
       selectDate(calendar.focusedDate as CalendarDate)
@@ -271,10 +270,10 @@ function makeRange(start: DateValue, end: DateValue): RangeValue<CalendarDate> {
   }
 
   if (end.compare(start) < 0) {
-    [start, end] = [end, start]
+    ;[start, end] = [end, start]
   }
 
-  return { start: toCalendarDate(start), end: toCalendarDate(end) }
+  return {start: toCalendarDate(start), end: toCalendarDate(end)}
 }
 
 function convertValue(newValue: CalendarDate, oldValue: DateValue) {

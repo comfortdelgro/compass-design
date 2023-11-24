@@ -13,13 +13,13 @@ The FormLayout component is a convenient way to build form layout.</p>
 ## Import
 
 ```js
-import {FormLayout} from '@comfortdelgro/react-compass'
+import {FormLayout} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```js
-import {FormLayout} from '@comfortdelgro/react-compass/form-layout'
+import {FormLayout} from '@comfortdelgro/react-compass-old/form-layout'
 ```
 
 ## Example

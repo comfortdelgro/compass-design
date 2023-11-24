@@ -1,4 +1,4 @@
-import {Textarea} from '@comfortdelgro/react-compass'
+import {Textarea} from '@comfortdelgro/react-compass-old'
 
 function TextareaH5() {
   return (

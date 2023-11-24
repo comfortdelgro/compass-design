@@ -1,4 +1,9 @@
-import {Column, Divider, Radio, Typography} from '@comfortdelgro/react-compass'
+import {
+  Column,
+  Divider,
+  Radio,
+  Typography,
+} from '@comfortdelgro/react-compass'
 
 const H5RadioData = [
   {label: 'General'},

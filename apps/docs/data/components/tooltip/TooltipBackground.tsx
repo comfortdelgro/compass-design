@@ -1,4 +1,8 @@
-import {Checkbox, Tooltip, TooltipTrigger} from '@comfortdelgro/react-compass'
+import {
+  Checkbox,
+  Tooltip,
+  TooltipTrigger,
+} from '@comfortdelgro/react-compass-old'
 import {useState} from 'react'
 
 function BasicExample() {

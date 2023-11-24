@@ -1,5 +1,5 @@
 import BugIcon from '@comfortdelgro/compass-icons/react/bug'
-import {Badge, Flexbox} from '@comfortdelgro/react-compass'
+import {Badge, Flexbox} from '@comfortdelgro/react-compass-old'
 
 function BadgeIcon() {
   return (

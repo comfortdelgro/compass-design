@@ -1,4 +1,4 @@
-import {RangeCalendar} from '@comfortdelgro/react-compass'
+import {RangeCalendar} from '@comfortdelgro/react-compass-old'
 
 function BasicExample() {
   return <RangeCalendar />

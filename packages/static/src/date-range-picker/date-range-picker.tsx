@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/unbound-method */
 import React from 'react'
-import { ButtonProps } from '../button'
+import {ButtonProps} from '../button'
+import DateField from '../calendar/components/date-field'
 import Dialog from '../calendar/components/dialog'
 import Popover from '../calendar/components/popover'
-import { useDateRangePicker } from '../calendar/hooks/useDateRangePicker'
-import { useDateRangePickerState } from '../calendar/hooks/useDateRangePickerState'
+import {useDateRangePicker} from '../calendar/hooks/useDateRangePicker'
+import {useDateRangePickerState} from '../calendar/hooks/useDateRangePickerState'
 import {
   AriaDatePickerProps,
   AriaDialogProps,
@@ -15,14 +16,13 @@ import {
   SpectrumDateRangePickerProps,
 } from '../calendar/types'
 import DatePickerProvider from '../date-picker/date-picker-context'
-import { DateValue, parseDate } from '../internationalized/date'
+import {DateValue, parseDate} from '../internationalized/date'
 import RangeCalendar from '../range-calendar/range-calendar'
-import { CustomShortcutsProps } from '../range-calendar/range-calendar-shortcuts'
-import { useDOMRef } from '../utils/use-dom-ref'
-import { useMediaQuery } from '../utils/use-media-query'
-import DateField from '../calendar/components/date-field'
-import styles from './styles/date-range-picker.module.css'
+import {CustomShortcutsProps} from '../range-calendar/range-calendar-shortcuts'
 import CssInjection from '../utils/objectToCss/CssInjection'
+import {useDOMRef} from '../utils/use-dom-ref'
+import {useMediaQuery} from '../utils/use-media-query'
+import styles from './styles/date-range-picker.module.css'
 
 interface Props extends SpectrumDateRangePickerProps<DateValue> {
   css?: unknown
@@ -39,6 +39,7 @@ interface Props extends SpectrumDateRangePickerProps<DateValue> {
   hasShortcuts?: boolean
   ctaButtonRender?: React.ReactNode
   visibleMonths?: 1 | 2
+  shouldOnChangeTriggerOnSameDate?: boolean
   onSearchButtonClick?: (
     e:
       | React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -62,6 +63,7 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
       hasShortcuts,
       ctaButtonRender,
       visibleMonths,
+      shouldOnChangeTriggerOnSameDate,
       onSearchButtonClick,
       customShortcuts,
       ...delegated
@@ -156,6 +158,7 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
               customShortcuts={customShortcuts}
               css={props.calendarCSS}
               visibleMonths={visibleMonths}
+              shouldOnChangeTriggerOnSameDate={shouldOnChangeTriggerOnSameDate}
             />
           </DatePickerProvider>
         </div>
@@ -242,13 +245,14 @@ interface DateRangeCalendarWrapperProps {
   hasShortcuts?: boolean | undefined
   ctaButtonRender?: React.ReactNode | undefined
   visibleMonths?: 1 | 2 | undefined
+  shouldOnChangeTriggerOnSameDate?: boolean | undefined
   onSearchButtonClick?:
-  | ((
-    e:
-      | React.MouseEvent<HTMLButtonElement, MouseEvent>
-      | React.TouchEvent<HTMLButtonElement>,
-  ) => void)
-  | undefined
+    | ((
+        e:
+          | React.MouseEvent<HTMLButtonElement, MouseEvent>
+          | React.TouchEvent<HTMLButtonElement>,
+      ) => void)
+    | undefined
   customShortcuts?: CustomShortcutsProps
 }
 
@@ -263,11 +267,12 @@ const DateRangeCalendarWrapper = (props: DateRangeCalendarWrapperProps) => {
     maxValue = parseDate('2999-03-10'),
     ctaButtonRender,
     visibleMonths,
+    shouldOnChangeTriggerOnSameDate,
     onSearchButtonClick,
     customShortcuts,
   } = props
 
-  const { value, onChange, ...resCalendarProps } = calendarProps
+  const {value, onChange, ...resCalendarProps} = calendarProps
   const isMobileView = useMediaQuery('(max-width: 768px)')
 
   const onChangeRangeCalendar = (e: unknown) => {
@@ -295,7 +300,7 @@ const DateRangeCalendarWrapper = (props: DateRangeCalendarWrapperProps) => {
               hasFooter={true}
               aria-label=''
               aria-labelledby=''
-              {...(value ? { value } : {})}
+              {...(value ? {value} : {})}
               onChange={onChangeRangeCalendar}
               {...resCalendarProps}
               maxValue={maxValue}
@@ -305,6 +310,9 @@ const DateRangeCalendarWrapper = (props: DateRangeCalendarWrapperProps) => {
               customShortcuts={customShortcuts}
               visibleMonths={
                 visibleMonths ? visibleMonths : isMobileView ? 1 : 2
+              }
+              shouldOnChangeTriggerOnSameDate={
+                !!shouldOnChangeTriggerOnSameDate
               }
             />
           </Dialog>

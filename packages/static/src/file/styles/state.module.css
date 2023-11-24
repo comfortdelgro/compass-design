@@ -1,27 +1,43 @@
 @import '../../theme/theme.module.css';
 
-.state {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  box-sizing: border-box;
-  gap: var(--cdg-spacing-2);
-  height: var(--cdg-spacing-10);
-  color: var(--cdg-color-primaryText);
-  background-color: var(--cdg-color-primaryBg);
-  border-radius: var(--cdg-border-radius-md);
-  padding: var(--cdg-spacing-2_5) var(--cdg-spacing-3);
+@layer default;
+
+@layer default {
+  .state {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    gap: var(--cdg-spacing-2);
+    height: var(--cdg-spacing-10);
+    color: var(--cdg-color-primaryText);
+    background-color: var(--cdg-color-primaryBg);
+    border-radius: var(--cdg-border-radius-md);
+    padding: var(--cdg-spacing-2_5) var(--cdg-spacing-3);
+  }
+
+  .name {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    gap: var(--cdg-spacing-2);
+    font-size: var(--cdg-font-size-label2);
+    font-weight: var(--cdg-font-weight-semibold);
+  }
+  .icon,
+  .image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .image {
+    width: var(--cdg-spacing-4);
+    height: var(--cdg-spacing-4);
+  }
 }
 
-.name {
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
-  gap: var(--cdg-spacing-2);
-  font-size: var(--cdg-font-size-label2);
-  font-weight: var(--cdg-font-weight-semibold);
-}
-
+/* Styling for spinner, no need to wrap inside layers (will not be applied) */
 .loading :global(.cdg-spinner-ring) {
   width: 16px;
   height: 16px;
@@ -34,17 +50,5 @@
 }
 
 .loading :global(.cdg-spinner-ring) :global(.cdg-spinner-segment) {
-  border-color: #009EDA transparent transparent transparent;
-}
-
-.icon,
-.image {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.image {
-  width: var(--cdg-spacing-4);
-  height: var(--cdg-spacing-4);
+  border-color: #009eda transparent transparent transparent;
 }

@@ -9,8 +9,6 @@ components: Tabs
 
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
-
-
 ```jsx
 import {Tabs, TabsProps} from '@comfortdelgro/react-compass'
 ```
@@ -50,10 +48,6 @@ import {Tabs, TabsProps} from '@comfortdelgro/react-compass/tabs'
 ### H5 Project
 
 {{"demo": "TabsH5.tsx"}}
-
-<!-- ## Override css with Css module (Experimental)
-
-{{"demo": "TabsServer.tsx"}} -->
 
 ## Props
 

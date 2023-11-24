@@ -1,26 +1,26 @@
-import React, { useCallback, useMemo } from 'react'
-import Button, { ButtonProps } from '../button'
+import React, {useCallback, useMemo} from 'react'
+import Button, {ButtonProps} from '../button'
 import CalendarGrid from '../calendar/calendar-grid'
 import CalendarHeader from '../calendar/calendar-header'
-import { useRangeCalendar } from '../calendar/hooks/useRangeCalendar'
-import { useRangeCalendarState } from '../calendar/hooks/useRangeCalendarState'
-import { DateRangePickerState, DateValue, RangeValue } from '../calendar/types'
-import { isInvalid } from '../calendar/utils'
-import { useDatePickerContext } from '../date-picker/date-picker-context'
+import {useRangeCalendar} from '../calendar/hooks/useRangeCalendar'
+import {useRangeCalendarState} from '../calendar/hooks/useRangeCalendarState'
+import {DateRangePickerState, DateValue, RangeValue} from '../calendar/types'
+import {isInvalid} from '../calendar/utils'
+import {useDatePickerContext} from '../date-picker/date-picker-context'
 import * as InternationalizedDate from '../internationalized/date'
 import {
   createCalendar,
   getLocalTimeZone,
   parseDate,
 } from '../internationalized/date'
-import { useDateFormatter, useLocale } from '../internationalized/i18n'
-import { useDOMRef } from '../utils/use-dom-ref'
+import {useDateFormatter, useLocale} from '../internationalized/i18n'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import {useDOMRef} from '../utils/use-dom-ref'
+import {useMediaQuery} from '../utils/use-media-query'
 import RangeCalendarShorcuts, {
   CustomShortcutsProps,
 } from './range-calendar-shortcuts'
 import styles from './styles/range-calendar.module.css'
-import CssInjection from '../utils/objectToCss/CssInjection'
-import { useMediaQuery } from '../utils/use-media-query'
 
 interface Props {
   css?: unknown
@@ -38,13 +38,14 @@ interface Props {
   hasShortcuts?: boolean
   ctaButtonRender?: React.ReactNode
   visibleMonths?: 1 | 2
+  shouldOnChangeTriggerOnSameDate?: boolean
   onSearchButtonClick?:
-  | ((
-    e:
-      | React.MouseEvent<HTMLButtonElement, MouseEvent>
-      | React.TouchEvent<HTMLButtonElement>,
-  ) => void)
-  | undefined
+    | ((
+        e:
+          | React.MouseEvent<HTMLButtonElement, MouseEvent>
+          | React.TouchEvent<HTMLButtonElement>,
+      ) => void)
+    | undefined
   customShortcuts?: CustomShortcutsProps
 }
 
@@ -69,20 +70,20 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
 
     const responsiveVisibleMonths = isMobileView ? 1 : visibleMonths
 
-    const { locale } = useLocale()
+    const {locale} = useLocale()
     const state = useRangeCalendarState({
       ...delegated,
       value: props.state
         ? (props.state?.value as RangeValue<DateValue>)
         : (props.value as RangeValue<DateValue>),
-      visibleDuration: { months: responsiveVisibleMonths },
+      visibleDuration: {months: responsiveVisibleMonths},
       locale,
       createCalendar,
     })
 
     const rangeCalendarRef = useDOMRef(ref)
 
-    const { calendarProps, prevButtonProps, nextButtonProps } = useRangeCalendar(
+    const {calendarProps, prevButtonProps, nextButtonProps} = useRangeCalendar(
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       delegated,
@@ -92,10 +93,10 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
 
     const formatter = useDateFormatter({})
 
-    const { setIsReset } = useDatePickerContext()
+    const {setIsReset} = useDatePickerContext()
 
     const handleClearButtonClick = () => {
-      state.setValue({ start: null, end: null })
+      state.setValue({start: null, end: null})
 
       state.setAnchorDate(null)
 
@@ -161,14 +162,16 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
           )
         }
       }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ctaButtonRender, showShortcut])
 
     return (
       <CssInjection css={css} childrenRef={rangeCalendarRef}>
         <div
           ref={rangeCalendarRef}
-          className={`${styles.rangeCalendar} ${showShortcut ? styles.extend : ''}`}
+          className={`${styles.rangeCalendar} ${
+            showShortcut ? styles.extend : ''
+          }`}
         >
           {showShortcut ? (
             <RangeCalendarShorcuts
@@ -192,7 +195,7 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
               {isRangeCalendar ? (
                 <CalendarGrid
                   state={state}
-                  offset={{ months: 1 }}
+                  offset={{months: 1}}
                   maxValue={maxValue}
                 />
               ) : (
@@ -204,24 +207,28 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
                 <Button variant='ghost' onPress={handleClearButtonClick}>
                   Clear
                 </Button>
-                <div className={`calendar-footer-right-side ${styles.calendarFooterRightSide}`}>
+                <div
+                  className={`calendar-footer-right-side ${styles.calendarFooterRightSide}`}
+                >
                   <p className={`preview-date ${styles.previewDate}`}>
                     {state?.value?.start && state?.value?.end
                       ? formatter.formatRange(
-                        state.value.start.toDate(getLocalTimeZone()),
-                        state.value.end.toDate(getLocalTimeZone()),
-                      )
-                      : `${state?.value?.start
-                        ? formatter.format(
                           state.value.start.toDate(getLocalTimeZone()),
-                        )
-                        : ''
-                      } - ${state?.value?.end
-                        ? formatter.format(
                           state.value.end.toDate(getLocalTimeZone()),
                         )
-                        : ''
-                      }`}
+                      : `${
+                          state?.value?.start
+                            ? formatter.format(
+                                state.value.start.toDate(getLocalTimeZone()),
+                              )
+                            : ''
+                        } - ${
+                          state?.value?.end
+                            ? formatter.format(
+                                state.value.end.toDate(getLocalTimeZone()),
+                              )
+                            : ''
+                        }`}
                   </p>
                   {renderCTAButton()}
                 </div>

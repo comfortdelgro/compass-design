@@ -1,4 +1,4 @@
-import {Avatar, Flexbox} from '@comfortdelgro/react-compass'
+import {Avatar, Flexbox} from '@comfortdelgro/react-compass-old'
 
 export function CustomAvatars() {
   return (

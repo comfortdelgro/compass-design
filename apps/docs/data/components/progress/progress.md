@@ -35,6 +35,8 @@ import Progress from '@comfortdelgro/react-compass/progress'
 
 ### Circular size
 
+The default height/width is 40px. In this example, we tailored it to be 70px
+
 {{"demo": "CircularSize.tsx"}}
 
 ## Linear
@@ -56,6 +58,8 @@ import Progress from '@comfortdelgro/react-compass/progress'
 {{"demo": "LinearColor.tsx"}}
 
 ### Linear Size
+
+The default height is 4px. In this example, we tailored it to be 10px.
 
 {{"demo": "LinearSize.tsx"}}
 

@@ -100,6 +100,7 @@ export interface RangeCalendarState extends CalendarStateBase {
   setAnchorDate(date: CalendarDate | null): void
   readonly highlightedRange: RangeValue<CalendarDate>
   readonly isDragging: boolean
+  readonly shouldOnChangeTriggerOnSameDate?: boolean
   setDragging(isDragging: boolean): void
   close: () => void
 }

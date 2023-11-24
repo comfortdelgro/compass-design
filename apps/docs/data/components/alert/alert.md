@@ -12,13 +12,13 @@ components: Alert
 ## Import
 
 ```js
-import {Alert} from '@comfortdelgro/react-compass'
+import {Alert} from '@comfortdelgro/react-compass-old'
 ```
 
 or
 
 ```js
-import Alert from '@comfortdelgro/react-compass/alert'
+import Alert from '@comfortdelgro/react-compass-old/alert'
 ```
 
 ## Example

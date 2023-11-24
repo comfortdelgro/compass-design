@@ -1,5 +1,7 @@
 @import '../../theme/theme.module.css';
 
+@layer default {
+
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -423,4 +425,6 @@
 
 .dropdownPopover .multipleDropdownList:focus {
   outline: none;
+}
+
 }

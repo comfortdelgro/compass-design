@@ -29,9 +29,6 @@ import SubBanner from '@comfortdelgro/react-compass/sub-banner'
 
 {{"demo": "SubBannerSecondary.tsx"}}
 
-<!-- ## SubBanner Server (Experimental)
-{{"demo": "SubBannerServer.tsx"}} -->
-
 ## Props
 
 | Name    | Type                     | Default   | Description                                                                             |

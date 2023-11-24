@@ -10,7 +10,7 @@
 
 import {CalendarDate} from '../CalendarDate'
 import {AnyCalendarDate, Calendar} from '../types'
-import {mod, Mutable} from '../utils'
+import {Mutable, mod} from '../utils'
 
 const EPOCH = 1721426 // 001/01/03 Julian C.E.
 export function gregorianToJulianDay(
@@ -87,8 +87,8 @@ export class GregorianCalendar implements Calendar {
       quad * 4 +
       yindex +
       (cent !== 4 && yindex !== 4 ? 1 : 0)
-      const [era, year] = fromExtendedYear(extendedYear)
-      const yearDay = jd0 - gregorianToJulianDay(era, year, 1, 1)
+    const [era, year] = fromExtendedYear(extendedYear)
+    const yearDay = jd0 - gregorianToJulianDay(era, year, 1, 1)
     let leapAdj = 2
     if (jd0 < gregorianToJulianDay(era, year, 3, 1)) {
       leapAdj = 0

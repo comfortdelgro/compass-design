@@ -1,11 +1,11 @@
 'use client'
 
-import React, { useCallback, useMemo } from 'react'
+import React, {useCallback, useMemo} from 'react'
 import Dropdown from '../dropdown'
-import { useDOMRef } from '../utils/use-dom-ref'
-import { usePagination } from './pagination.hooks'
-import styles from './styles/pagination.module.css'
 import CssInjection from '../utils/objectToCss/CssInjection'
+import {useDOMRef} from '../utils/use-dom-ref'
+import {usePagination} from './pagination.hooks'
+import styles from './styles/pagination.module.css'
 
 interface Props {
   page?: number
@@ -22,7 +22,7 @@ interface Props {
 export type PaginationProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
-const Ellipsis: React.FC<React.HTMLProps<HTMLDivElement>> = ({ ...props }) => {
+const Ellipsis: React.FC<React.HTMLProps<HTMLDivElement>> = ({...props}) => {
   const svgIcon = (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -41,35 +41,35 @@ const Ellipsis: React.FC<React.HTMLProps<HTMLDivElement>> = ({ ...props }) => {
   return (
     <div
       className={`cdg-pagination-item ${styles.paginationItem} ${styles.ellipsis}`}
-      {...props}>
+      {...props}
+    >
       {svgIcon}
     </div>
   )
 }
 
 const ItemCounting: React.FC<{
-  count: number;
-  page: number;
-}> = ({ count, page }) => {
+  count: number
+  page: number
+  rowsPerPage: number
+}> = ({ count, page, rowsPerPage }) => {
   const layout = useMemo(() => {
-    return `${(page - 1) * 10 + 1} - ${(page - 1) * 10 + 10} of ${count}`;
-  }, [count, page]);
+    const start = (page - 1) * rowsPerPage + 1;
+    const end = Math.min(page * rowsPerPage, count);
+    return `${start} - ${end} of ${count}`;
+  }, [count, page, rowsPerPage]);
 
-  return (
-    <div className={styles.paginationItemCounting}>
-      {layout}
-    </div>
-  );
-};
+  return <div className={styles.paginationItemCounting}>{layout}</div>
+}
 
 const RowsCounting: React.FC<{
-  rowsPerPage: number;
-  rowsOptions: number[];
-  onRowsPerPageChange: (newValue: number) => void | undefined;
-}> = ({ rowsPerPage, onRowsPerPageChange, rowsOptions, ...props }) => {
+  rowsPerPage: number
+  rowsOptions: number[]
+  onRowsPerPageChange: (newValue: number) => void | undefined
+}> = ({rowsPerPage, onRowsPerPageChange, rowsOptions, ...props}) => {
   const dropdown = (
     <Dropdown.Select
-      style={{ width: '138px', gap: '4px' }}
+      style={{width: '138px', gap: '4px'}}
       defaultValue={rowsPerPage.toString()}
       onValueChange={(k) =>
         onRowsPerPageChange && onRowsPerPageChange(Number(k))
@@ -83,22 +83,18 @@ const RowsCounting: React.FC<{
         </Dropdown.Item>
       ))}
     </Dropdown.Select>
-  );
+  )
 
   const layout = useMemo(() => {
     return (
       <>
         <span>Rows per page:</span> {dropdown}
       </>
-    );
-  }, [rowsPerPage]);
+    )
+  }, [rowsPerPage])
 
-  return (
-    <div className={styles.paginationRowsCounting}>
-      {layout}
-    </div>
-  );
-};
+  return <div className={styles.paginationRowsCounting}>{layout}</div>
+}
 
 const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
   (props, ref) => {
@@ -111,14 +107,14 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
       initialPage = 1,
       onChange,
       count,
-      rowsPerPage,
+      rowsPerPage = 10,
       onRowsPerPageChange,
       rowsOptions = [5, 10, 15, 20, 25],
       // html props
       ...delegated
     } = props
     const paginationRef = useDOMRef<HTMLDivElement>(ref)
-    const { items, active, setPage, next, previous } = usePagination({
+    const {items, active, setPage, next, previous} = usePagination({
       page,
       total,
       initialPage,
@@ -146,7 +142,9 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
 
         return (
           <div
-            className={`cdg-pagination-item ${styles.paginationItem} ${item === active ? `${styles.paginationItemActive}` : ''}`}
+            className={`cdg-pagination-item ${styles.paginationItem} ${
+              item === active ? `${styles.paginationItemActive}` : ''
+            }`}
             key={index}
             onClick={() => item !== active && setPage(item)}
             aria-label={`page ${item}`}
@@ -176,18 +174,23 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
                 onRowsPerPageChange
                   ? onRowsPerPageChange
                   : (rows: number) => {
-                    console.log(rows)
-                  }
+                      console.log(rows)
+                    }
               }
             />
           )}
-          {count && <ItemCounting count={count} page={page} />}
+          {count && <ItemCounting count={count} page={page} rowsPerPage={rowsPerPage}/>}
           <div
-            className={`cdg-pagination-item ${styles.paginationItem} ${active === 1 ? `${styles.paginationItemDisabled}` : ''}`}
+            className={`cdg-pagination-item ${styles.paginationItem} ${
+              active === 1 ? `${styles.paginationItemDisabled}` : ''
+            }`}
             onClick={previous}
             aria-label='previous page'
           >
-            <svg viewBox='0 0 320 512' className={`cdg-pagination-item-svg ${styles.paginationItemSvg}`}>
+            <svg
+              viewBox='0 0 320 512'
+              className={`cdg-pagination-item-svg ${styles.paginationItemSvg}`}
+            >
               <path
                 fill={active === 1 ? '#D2D0CE' : '#201F1E'}
                 d='M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z'
@@ -196,11 +199,16 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
           </div>
           {items.map(renderItem)}
           <div
-            className={`cdg-pagination-item ${styles.paginationItem} ${active === total ? `${styles.paginationItemDisabled}` : ''}`}
+            className={`cdg-pagination-item ${styles.paginationItem} ${
+              active === total ? `${styles.paginationItemDisabled}` : ''
+            }`}
             onClick={next}
             aria-label='next page'
           >
-            <svg viewBox='0 0 320 512' className={`cdg-pagination-item-svg ${styles.paginationItemSvg}`} >
+            <svg
+              viewBox='0 0 320 512'
+              className={`cdg-pagination-item-svg ${styles.paginationItemSvg}`}
+            >
               <path
                 fill={active === total ? '#D2D0CE' : '#201F1E'}
                 d='M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z'
@@ -208,7 +216,7 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
             </svg>
           </div>
         </div>
-      </CssInjection >
+      </CssInjection>
     )
   },
 )

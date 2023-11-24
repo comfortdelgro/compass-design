@@ -1,5 +1,5 @@
-import React from "react"
-import { useDOMRef } from "../utils/use-dom-ref"
+import React from 'react'
+import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/accordion-title.module.css'
 
 interface Props {
@@ -18,7 +18,7 @@ const AccordionExpandIcon = React.forwardRef<
   HTMLDivElement,
   AccordionExpandIconProps
 >((props: AccordionExpandIconProps, ref) => {
-  const { children, css = {} } = props
+  const {children, css = {}} = props
 
   const expandRef = useDOMRef<HTMLDivElement>(ref)
 

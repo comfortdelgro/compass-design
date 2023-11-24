@@ -1,6 +1,5 @@
 'use client'
-import Progress from '@comfortdelgro/react-compass/progress'
-// import {Progress as StaticProgress} from '@comfortdelgro/static'
+import {Progress} from '@comfortdelgro/react-compass'
 import React from 'react'
 
 function CircularDeterminate() {
@@ -22,7 +21,6 @@ function CircularDeterminate() {
       style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}
     >
       <Progress.Circular variant='determinate' value={progress} />
-      {/* <StaticProgress.Circular variant='determinate' value={progress} /> */}
     </div>
   )
 }

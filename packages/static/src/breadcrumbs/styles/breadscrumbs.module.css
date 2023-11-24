@@ -1,27 +1,31 @@
 @import '../../theme/theme.module.css';
 
-.breadcrumbs {
-  font-family: var(--cdg-font-sans);
-}
+@layer default;
 
-.breadcrumbsList {
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--cdg-spacing-2);
-  flex-direction: row;
-  align-items: center;
-  list-style: none;
-}
+@layer default {
+  .breadcrumbs {
+    font-family: var(--cdg-font-sans);
+  }
 
-.divider {
-  color: var(--cdg-color-primaryText);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
+  .breadcrumbsList {
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--cdg-spacing-2);
+    flex-direction: row;
+    align-items: center;
+    list-style: none;
+  }
 
-.divider > svg {
-  width: var(--cdg-spacing-3_5);
-  height: var(--cdg-spacing-3_5);
+  .divider {
+    color: var(--cdg-color-primaryText);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .divider > svg {
+    width: var(--cdg-spacing-3_5);
+    height: var(--cdg-spacing-3_5);
+  }
 }

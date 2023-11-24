@@ -1,4 +1,4 @@
-import {Box, Column, TextField} from '@comfortdelgro/react-compass'
+import {Box, Column, TextField} from '@comfortdelgro/react-compass-old'
 import {useState} from 'react'
 
 const ElementMapping: React.FC = () => {

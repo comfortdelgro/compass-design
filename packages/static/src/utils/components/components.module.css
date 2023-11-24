@@ -1,0 +1,27 @@
+@import '../../theme/theme.module.css';
+
+@layer default;
+
+@layer default {
+
+  .flexbox {
+    display: flex;
+    width: 100%;
+    gap: var(--cdg-spacing-2);
+  }
+
+  .row {
+    display: flex;
+    width: 100%;
+    gap: var(--cdg-spacing-2);
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .column {
+    display: flex;
+    width: 100%;
+    gap: var(--cdg-spacing-2);
+    flex-direction: column;
+  }
+}

@@ -1,4 +1,4 @@
-import MultipleDropdown from '@comfortdelgro/react-compass/multiple-dropdown'
+import MultipleDropdown from '@comfortdelgro/react-compass-old/multiple-dropdown'
 import {faBug} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React, {Key} from 'react'
