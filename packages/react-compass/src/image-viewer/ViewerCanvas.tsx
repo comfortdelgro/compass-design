@@ -150,7 +150,7 @@ export default function ViewerCanvas(props: ViewerCanvasProps) {
     width: `${props.width}px`,
     height: `${props.height}px`,
     transform: `translateX(${
-      props.left !== null ? `${props.left}px` : 'aoto'
+      props.left !== null ? `${props.left}px` : 'auto'
     }) translateY(${props.top}px)
     rotate(${props.rotate}deg) scaleX(${props.scaleX}) scaleY(${props.scaleY})`,
   }

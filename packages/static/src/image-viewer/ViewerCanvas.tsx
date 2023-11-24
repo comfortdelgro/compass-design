@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useRef, useState } from 'react'
 import Spinner from '../spinner'
 
@@ -47,7 +48,6 @@ export default function ViewerCanvas(props: ViewerCanvasProps) {
       bindEvent(true)
       bindWindowResizeEvent(true)
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
@@ -68,7 +68,6 @@ export default function ViewerCanvas(props: ViewerCanvasProps) {
     return () => {
       bindEvent(true)
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.drag, props.visible, props.width, props.height])
 
   useEffect(() => {
@@ -84,7 +83,6 @@ export default function ViewerCanvas(props: ViewerCanvasProps) {
       props.top + diffY,
       props.left + diffX,
     )
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [position])
 
   const handleResize = () => {
@@ -146,7 +144,7 @@ export default function ViewerCanvas(props: ViewerCanvasProps) {
   const imgStyle: React.CSSProperties = {
     width: `${props.width}px`,
     height: `${props.height}px`,
-    transform: `translateX(${props.left !== null ? `${props.left}px` : 'aoto'
+    transform: `translateX(${props.left !== null ? `${props.left}px` : 'auto'
       }) translateY(${props.top}px)
     rotate(${props.rotate}deg) scaleX(${props.scaleX}) scaleY(${props.scaleY})`,
   }
