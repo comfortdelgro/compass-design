@@ -95,14 +95,14 @@ export default function DrawerModeDocs() {
           <Typography.Body
             variant='body3'
             weight='semibold'
-            css={{color: '$grayShades10', width: 'fit-content'}}
+            css={{color: '$grayShades10', width: 'fit-content', margin: 0}}
           >
             Drawer Header
           </Typography.Body>
           <Typography.Body
             variant='body3'
             weight='semibold'
-            css={{color: '$grayShades10', width: 'fit-content'}}
+            css={{color: '$grayShades10', width: 'fit-content', margin: 0}}
           >
             Non-modal Mode
           </Typography.Body>

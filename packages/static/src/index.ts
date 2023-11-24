@@ -89,6 +89,7 @@ export type {
   DrawerH5Props,
   DrawerHeaderProps,
   DrawerProps,
+  DrawerRef,
 } from './drawer'
 export {default as Dropdown} from './dropdown'
 export type {

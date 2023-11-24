@@ -1,0 +1,14 @@
+import {Button, Drawer} from '@comfortdelgro/react-compass'
+
+<Drawer variant='h5'>
+  {({triggerCollapse, ...otherParameters}) => (
+    <>
+      <Drawer.Header>
+        Get drawer's parameters and collapse it programmatically
+      </Drawer.Header>
+      <Button type='button' onClick={() => triggerCollapse()}>
+        Collapse this drawer
+      </Button>
+    </>
+  )}
+</Drawer>
