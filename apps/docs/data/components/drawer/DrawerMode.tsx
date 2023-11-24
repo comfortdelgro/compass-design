@@ -6,7 +6,7 @@ import {
   Modal,
   Row,
   Typography,
-} from '@comfortdelgro/react-compass-old'
+} from '@comfortdelgro/react-compass'
 import {useState} from 'react'
 
 export default function DrawerModeDocs() {

@@ -1,4 +1,4 @@
-import {Column, SlideAction, Typography} from '@comfortdelgro/react-compass-old'
+import {Column, SlideAction, Typography} from '@comfortdelgro/react-compass'
 
 export default function SliderEffectDocs() {
   return (

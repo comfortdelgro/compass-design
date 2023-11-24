@@ -1,0 +1,13 @@
+<TagBox
+    items={list}
+    onAdd={addItem}
+    onEdit={editItem}
+    onRemove={removeItem}
+    labelPosition='left'
+    label='Text Label'
+    helperText='Helper text'
+>
+    <TagBox.Action>
+    <Button>Call to action</Button>
+    </TagBox.Action>
+</TagBox>

@@ -1,4 +1,4 @@
-import {Rating} from '@comfortdelgro/react-compass-old'
+import {Rating} from '@comfortdelgro/react-compass'
 
 function IconRating() {
   return <Rating useIcons />

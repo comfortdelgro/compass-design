@@ -3,10 +3,8 @@ import {
   Pudo,
   PudoValueChange,
   Typography,
-} from '@comfortdelgro/react-compass-old'
-import { useState } from 'react'
-import styles from './styles/PrewviewCode.module.css'
-
+} from '@comfortdelgro/react-compass'
+import {useState} from 'react'
 
 const exampleItems = [
   { name: 'item1', value: '', placeholder: 'item1' },
@@ -45,14 +43,25 @@ export default function PudoDocs() {
           <Typography.Body variant='body3' css={{ marginTop: '$4' }}>
             Values:
           </Typography.Body>
-          <PreviewCode>{JSON.stringify(exampleValues, null, 2)}</PreviewCode>
+          <pre
+            style={{
+              padding: '0.5rem',
+              margin: '0',
+
+              width: '100%',
+              minHeight: '1.25rem',
+              borderRadius: '8px',
+
+              backgroundColor: '#FAF9F8',
+              fontSize: '0.875rem',
+              whiteSpace: 'pre-wrap',
+              overflowWrap: 'anywhere',
+            }}
+          >
+            {JSON.stringify(exampleValues, null, 2)}
+          </pre>
         </>
       )}
     </Column>
   )
-}
-
-
-export const PreviewCode = (props: React.HTMLAttributes<HTMLPreElement>) => {
-  return <pre className={styles.previewCode} {...props}>{props.children}</pre>
 }

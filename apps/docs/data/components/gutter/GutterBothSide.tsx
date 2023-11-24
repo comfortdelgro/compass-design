@@ -1,5 +1,4 @@
-import Gutter from '@comfortdelgro/react-compass-old/gutter'
-// import {Gutter as StaticGutter} from '@comfortdelgro/static'
+import {Gutter} from '@comfortdelgro/react-compass'
 import React, {CSSProperties} from 'react'
 function GutterBothSide() {
   const rightGutterRef = React.useRef<HTMLDivElement>(null)
@@ -41,41 +40,6 @@ function GutterBothSide() {
           />
         </div>
       </div>
-
-      {/* <div style={{display: 'flex', height: '100%', flex: 1}}>
-        <div
-          ref={rightGutterRef}
-          style={{
-            position: 'relative',
-            width: rightGutterWidth,
-          }}
-        >
-          <div style={{overflow: 'hidden'}}>Right side</div>
-          <StaticGutter
-            parentRef={rightGutterRef}
-            onChange={setRightGutterWidth}
-          />
-        </div>
-        <div style={{flex: 1}}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </div>
-        <div
-          ref={leftGutterRef}
-          style={{
-            position: 'relative',
-            width: leftGutterWidth,
-            paddingLeft: '12px',
-          }}
-        >
-          <div style={{overflow: 'hidden'}}>Left side</div>
-          <StaticGutter
-            parentRef={leftGutterRef}
-            onChange={setLeftGutterWidth}
-            side='left'
-          />
-        </div>
-      </div> */}
     </div>
   )
 }

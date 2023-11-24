@@ -1,4 +1,4 @@
-import {SubHeader} from '@comfortdelgro/react-compass-old'
+import {SubHeader} from '@comfortdelgro/react-compass'
 
 function BasicExample() {
   return (

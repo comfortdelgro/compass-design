@@ -12,13 +12,13 @@ components: MultipleChoicesSlider
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {MultipleChoicesSlider} from '@comfortdelgro/react-compass-old'
+import {MultipleChoicesSlider} from '@comfortdelgro/react-compass'
 ```
 
 or
 
 ```jsx
-import MultipleChoicesSlider from '@comfortdelgro/react-compass-old/multiple-choices-slider'
+import MultipleChoicesSlider from '@comfortdelgro/react-compass/multiple-choices-slider'
 ```
 
 ## Example

@@ -38,12 +38,14 @@ export type {
   CardProps,
   CardTitleProps,
 } from './card'
-export {default as Carousel} from './carousel'
+export {default as CarouselSlider} from './carousel'
 export type {
   CarouselImageSlideProps,
   CarouselMobileProps,
   CarouselPromotionProps,
   CarouselSlideProps,
+  CarouselSliderButton,
+  CarouselSliderItem,
   CarouselSliderProps,
 } from './carousel'
 export {default as Chart} from './chart'
