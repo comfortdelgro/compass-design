@@ -4,7 +4,12 @@ import DrawerHeader from './drawer-header'
 
 export type {DrawerFooterProps} from './drawer-footer'
 export type {DrawerHeaderProps} from './drawer-header'
-export type {DrawerDefaultProps, DrawerH5Props, DrawerProps} from './types'
+export type {
+  DrawerDefaultProps,
+  DrawerH5Props,
+  DrawerProps,
+  DrawerRef,
+} from './types'
 
 Drawer.Header = DrawerHeader
 Drawer.Footer = DrawerFooter

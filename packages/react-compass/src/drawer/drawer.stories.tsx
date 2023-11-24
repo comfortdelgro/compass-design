@@ -3,8 +3,9 @@ import ArrowRight from '@comfortdelgro/compass-icons/react/arrow-right'
 import CrossIcon from '@comfortdelgro/compass-icons/react/cross'
 import {faChevronRight, faFaceSmile} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import React, {FormEventHandler, useState} from 'react'
+import React, {FormEventHandler, useRef, useState} from 'react'
 import Button from '../button'
+import Divider from '../divider'
 import Link from '../link'
 import List from '../list'
 import ListImage from '../list/list-image'
@@ -14,7 +15,7 @@ import {styled} from '../theme'
 import Typography from '../typography'
 import {Row} from '../utils'
 import {Column} from '../utils/components'
-import Drawer, {DrawerH5Props, DrawerProps} from './index'
+import Drawer, {DrawerH5Props, DrawerProps, DrawerRef} from './index'
 
 const imgSrc =
   'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
@@ -31,6 +32,11 @@ export function H5() {
   const [openNonModalDrawer, setOpenNonModalDrawer] = useState(false)
   const [openDemoTripDrawer, setOpenDemoTripDrawer] = useState(false)
   const [openConfirmModal, setOpenConfirmModal] = useState(false)
+
+  const collapseDrawerRef = useRef<DrawerRef>(null)
+  const [openTriggerCollapseDrawer, setOpenTriggerCollapseDrawer] =
+    useState(false)
+  const [openParameterDrawer, setOpenParameterDrawer] = useState(false)
 
   const [openNoFocusDrawer, setOpenNoFocusDrawer] = useState({
     open: false,
@@ -53,20 +59,6 @@ export function H5() {
         Open Customizable Drawer
       </Button>
 
-      <h4>Demo Trip information</h4>
-      <Typography.Body
-        variant='body3'
-        css={{color: '$grayShades60', marginBlock: '$2 $4'}}
-      >
-        Drawer's maximum expanded height will be half of current viewport with
-        autoclose disabled.
-        <br />
-        Better view on mobile screen
-      </Typography.Body>
-      <Button type='button' onClick={() => setOpenDemoTripDrawer(true)}>
-        Open Drawer
-      </Button>
-
       <h4>Non-modal mode</h4>
       <Typography.Body
         variant='body3'
@@ -85,6 +77,61 @@ export function H5() {
       >
         Toggle Non-modal Drawer
       </Button>
+
+      <h4>Drawer's parameters and manipulation</h4>
+      <Typography.Body
+        variant='body3'
+        css={{color: '$grayShades60', marginBlock: '$2 $4'}}
+      >
+        Get Drawer's parameters and programmatically collapse the drawer
+      </Typography.Body>
+
+      <div>
+        <Typography.Body variant='body2'>
+          There are two ways to achieve it.
+        </Typography.Body>
+
+        <h5>1. Use ref</h5>
+        <Typography.Body
+          variant='body2'
+          css={{'&>code': {fontWeight: '$semibold'}}}
+        >
+          Use <code>ref</code> to call the Drawer's <code>triggerCollapse</code>{' '}
+          function
+        </Typography.Body>
+        <Button
+          css={{marginBlock: '$4'}}
+          type='button'
+          onClick={() => setOpenTriggerCollapseDrawer(true)}
+        >
+          Open Drawer
+        </Button>
+
+        <Divider />
+
+        <h5>2. Children as function</h5>
+        <Typography.Body
+          variant='body2'
+          css={{'&>code': {fontWeight: '$semibold'}}}
+        >
+          When using this method, you pass children as a function which allows
+          you to access the <code>triggerCollapse</code> function and also some
+          Drawer's parameters too.
+          <br />
+          <br />
+          <strong>Note:</strong> you should wrap your Drawer's content inside a{' '}
+          <code>{'<Fragment>'}</code> otherwise, the content may appear
+          incorrectly.
+        </Typography.Body>
+        <Button
+          css={{marginBlock: '$4'}}
+          type='button'
+          onClick={() => setOpenParameterDrawer(true)}
+        >
+          Open Drawer
+        </Button>
+        <Divider />
+      </div>
 
       <h4>Disable autofocus on the first nested focusable element</h4>
       <Typography.Body
@@ -119,6 +166,20 @@ export function H5() {
         }
       >
         Open autofocus disabled Drawer
+      </Button>
+
+      <h4>Demo Trip information</h4>
+      <Typography.Body
+        variant='body3'
+        css={{color: '$grayShades60', marginBlock: '$2 $4'}}
+      >
+        Drawer's maximum expanded height will be half of current viewport with
+        autoclose disabled.
+        <br />
+        Better view on mobile screen
+      </Typography.Body>
+      <Button type='button' onClick={() => setOpenDemoTripDrawer(true)}>
+        Open Drawer
       </Button>
 
       <Drawer
@@ -462,6 +523,52 @@ export function H5() {
       </Drawer>
 
       <Drawer
+        ref={collapseDrawerRef}
+        open={openTriggerCollapseDrawer}
+        variant='h5'
+        onExpandChange={(isExpanded) => console.log(isExpanded)}
+        onHeightChange={(height) => console.log('height', height)}
+        onClose={() => setOpenTriggerCollapseDrawer(false)}
+      >
+        <Drawer.Header>
+          Get drawer's parameters and collapse it programmatically
+        </Drawer.Header>
+
+        <Button
+          css={{marginTop: '$4'}}
+          type='button'
+          onClick={() => collapseDrawerRef.current?.triggerCollapse()}
+        >
+          Collapse this drawer
+        </Button>
+      </Drawer>
+
+      <Drawer
+        open={openParameterDrawer}
+        variant='h5'
+        onClose={() => setOpenParameterDrawer(false)}
+      >
+        {({triggerCollapse, ...otherParameters}) => (
+          <>
+            <Drawer.Header>
+              Get drawer's parameters and collapse it programmatically
+            </Drawer.Header>
+
+            <PreviewCode>
+              {JSON.stringify(otherParameters, null, 4)}
+            </PreviewCode>
+            <Button
+              css={{marginTop: '$4'}}
+              type='button'
+              onClick={() => triggerCollapse()}
+            >
+              Collapse this drawer
+            </Button>
+          </>
+        )}
+      </Drawer>
+
+      <Drawer
         open={openNoFocusDrawer.open}
         css={{height: '30dvh'}}
         onClose={() => setOpenNoFocusDrawer({open: false, preventFocus: false})}
@@ -802,4 +909,18 @@ const StyledContainer = styled('div', {
   'h4 + button': {
     marginTop: '$4',
   },
+})
+
+const PreviewCode = styled('pre', {
+  padding: '$2',
+  margin: '0',
+
+  width: '100%',
+  minHeight: '$5',
+  borderRadius: '$lg',
+
+  backgroundColor: '$secondaryBg',
+  fontSize: '$label1',
+  whiteSpace: 'pre-wrap',
+  overflowWrap: 'anywhere',
 })
