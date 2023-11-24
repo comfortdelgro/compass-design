@@ -1,5 +1,5 @@
 import AlignRight from '@comfortdelgro/compass-icons/react/align-right'
-import {Box, Button, Drawer, Icon} from '@comfortdelgro/react-compass-old'
+import {Box, Button, Drawer, Icon} from '@comfortdelgro/react-compass'
 import {faClose} from '@fortawesome/free-solid-svg-icons'
 import {GITHUB_REPOSITORY} from 'constants/index'
 import Link from 'next/link'
@@ -11,7 +11,7 @@ export default function AppNavbarMobile(props: any) {
   return (
     <>
       <Button
-        css={{padding: '$1'}}
+        css={{padding: 'var(--cdg-spacing-1)'}}
         type='button'
         onClick={() => setIsShowDrawer(true)}
       >
@@ -29,7 +29,7 @@ export default function AppNavbarMobile(props: any) {
         position='right'
       >
         <Box
-          padding='7px $3'
+          padding='7px var(--cdg-spacing-3)'
           css={{
             display: 'flex',
             alignItems: 'center',
@@ -37,13 +37,13 @@ export default function AppNavbarMobile(props: any) {
             position: 'sticky',
             top: 0,
             zIndex: 99,
-            background: '$background',
+            background: 'var(--cdg-color-background)',
           }}
         >
           <Button
             variant='ghost'
             onClick={() => setIsShowDrawer(false)}
-            css={{padding: '$1'}}
+            css={{padding: 'var(--cdg-spacing-1)'}}
           >
             <Icon icon={faClose} />
           </Button>
@@ -51,9 +51,9 @@ export default function AppNavbarMobile(props: any) {
 
         <Box
           css={{
-            padding: '$3',
+            padding: 'var(--cdg-spacing-3)',
             display: 'flex',
-            gap: '$1',
+            gap: 'var(--cdg-spacing-1)',
             flexDirection: 'column',
           }}
         >

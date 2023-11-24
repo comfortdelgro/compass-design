@@ -1,12 +1,13 @@
-import {Box, Button, styled} from '@comfortdelgro/react-compass-old'
+import { Box, Button } from '@comfortdelgro/react-compass'
 import DemoEditor from 'components/common/DemoEditor'
 import DemoEditorError from 'components/common/DemoEditorError'
 import DemoSandbox from 'components/common/DemoSandbox'
 import HighlightedCode from 'components/common/HighlightedCode'
 import ReactRunner from 'components/common/ReactRunner'
-import {debounce, uniqueId} from 'lodash'
+import { debounce, uniqueId } from 'lodash'
 import * as React from 'react'
-import {useCodeVariant} from 'utils/codeVariant'
+import { useCodeVariant } from 'utils/codeVariant'
+import styles from './styles/DemoCodeViewer.module.css'
 
 function trimLeadingSpaces(input = '') {
   return input.replace(/^\s+/gm, '')
@@ -83,9 +84,9 @@ function useDemoElement({
         code={
           editorCode.isPreview
             ? trimLeadingSpaces(demoData.raw).replace(
-                trimLeadingSpaces(demoData.jsxPreview),
-                editorCode.value,
-              )
+              trimLeadingSpaces(demoData.jsxPreview),
+              editorCode.value,
+            )
             : editorCode.value
         }
       />
@@ -100,18 +101,8 @@ function useDemoElement({
     : LiveComponent
 }
 
-const DemoCodeViewer = styled(HighlightedCode, {
-  position: 'relative',
-  '& pre': {
-    margin: 0,
-    maxHeight: 'min(68vh, 1000px)',
-    maxWidth: 'initial',
-    borderRadius: 0,
-  },
-})
-
 export default function Demo(props: any) {
-  const {demo, demoOptions, githubLocation} = props
+  const { demo, demoOptions, githubLocation } = props
 
   const codeVariant = useCodeVariant()
 
@@ -213,14 +204,14 @@ export default function Demo(props: any) {
           margin: 'auto',
           display: 'block',
           justifyContent: 'center',
-          background: '$background',
-          padding: '$8 $4',
-          borderTopRightRadius: 12,
-          borderTopLeftRadius: 12,
-          borderRight: '1px solid $gray40',
-          borderTop: '1px solid $gray40',
-          borderLeft: '1px solid $gray40',
-          marginTop: '$8 !important',
+          background: 'var(--cdg-color-background)',
+          padding: 'var(--cdg-spacing-8) var(--cdg-spacing-4)',
+          borderTopRightRadius: '12px',
+          borderTopLeftRadius: '12px',
+          borderRight: '1px solid var(--cdg-color-gray40)',
+          borderTop: '1px solid var(--cdg-color-gray40)',
+          borderLeft: '1px solid var(--cdg-color-gray40)',
+          marginTop: 'var(--cdg-spacing-8) !important',
           overflow: 'hidden',
         }}
         onMouseEnter={handleDemoHover}
@@ -232,17 +223,17 @@ export default function Demo(props: any) {
           css={{
             position: 'absolute',
             display: 'none',
-            top: 5,
-            left: 5,
-            width: 10,
-            maxWidth: 12,
-            height: 12,
+            top: '5px',
+            left: '5px',
+            width: '10px',
+            maxWidth: '12px',
+            height: '12px',
             pointerEvents: 'none',
-            background: '$gray40',
-            borderRadius: 10,
+            background: 'var(--cdg-color-gray40)',
+            borderRadius: '10px',
             border: 'none',
             '&:focus': {
-              background: '$cdgBlue40',
+              background: 'var(--cdg-color-cdgBlue40)',
             },
           }}
         />
@@ -278,7 +269,8 @@ export default function Demo(props: any) {
       </React.Suspense>
       <Box>
         {!codeOpen ? (
-          <DemoCodeViewer
+          <HighlightedCode
+            className={styles.demoCodeViewer}
             code={editorCode.value}
             id={demoSourceId}
             language={demoData.sourceLanguage}

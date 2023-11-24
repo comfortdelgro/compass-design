@@ -10,7 +10,7 @@ components: MenuList
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {MenuList, MenuListDropdown} from '@comfortdelgro/react-compass-old'
+import {MenuList, MenuListDropdown} from '@comfortdelgro/react-compass'
 ```
 
 or
@@ -18,7 +18,7 @@ or
 ```jsx
 import MenuList, {
   MenuListDropdown,
-} from '@comfortdelgro/react-compass-old/MenuList'
+} from '@comfortdelgro/react-compass/MenuList'
 ```
 
 ## Example

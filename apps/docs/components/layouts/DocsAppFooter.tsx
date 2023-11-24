@@ -1,6 +1,6 @@
 import ArrowLeft from '@comfortdelgro/compass-icons/react/arrow-left'
 import ArrowRight from '@comfortdelgro/compass-icons/react/arrow-right'
-import {Box, Button} from '@comfortdelgro/react-compass-old'
+import {Box, Button} from '@comfortdelgro/react-compass'
 import Link from 'next/link'
 
 function orderedPages(pages: any, current = []) {
@@ -45,9 +45,9 @@ export default function DocsAppFooter(props: any) {
         css={{
           display: 'flex',
           justifyContent: 'space-between',
-          padding: '$4 0',
+          padding: 'var(--cdg-spacing-4) 0',
           // borderTop: '1px solid #c4c4c4',
-          marginTop: '$4',
+          marginTop: 'var(--cdg-spacing-4)',
         }}
       >
         {prevPage !== null ? (

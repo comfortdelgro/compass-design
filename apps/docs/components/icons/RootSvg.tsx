@@ -1,10 +1,7 @@
-import {styled} from '@comfortdelgro/react-compass-old'
+import styles from './styles/RootSvg.module.css'
 
-const Svg = styled('svg', {
-  verticalAlign: 'bottom',
-  svg: {
-    fill: 'red',
-  },
-})
+const Svg = (props: React.SVGProps<SVGSVGElement>) => {
+  return <svg className={styles.rootSvg} {...props}>{props.children}</svg>
+}
 
 export default Svg

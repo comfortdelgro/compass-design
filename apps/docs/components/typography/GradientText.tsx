@@ -1,9 +1,7 @@
-import {styled} from '@comfortdelgro/react-compass-old'
+import styles from './styles/GradientText.module.css'
 
-const GradientText = styled('span', {
-  background: 'linear-gradient(to right, #007FFF, #0059B2)',
-  WebkitBackgroundClip: 'text',
-  WebkitTextFillColor: 'transparent',
-})
+export const GradientText = (props: React.HTMLAttributes<HTMLSpanElement>) => {
+  return <span className={styles.gradientText} {...props}>{props.children}</span>
+}
 
 export default GradientText

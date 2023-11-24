@@ -1,0 +1,6 @@
+.demoIframe {
+  background-color: black;
+  flex-grow: 1;
+  height: 400;
+  border: 0;
+}

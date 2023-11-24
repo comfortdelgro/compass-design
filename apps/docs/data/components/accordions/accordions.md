@@ -12,13 +12,13 @@ components: TextField
 ## Import
 
 ```js
-import {Accordion} from '@comfortdelgro/react-compass-old'
+import {Accordion} from '@comfortdelgro/react-compass'
 ```
 
 or
 
 ```js
-import Accordion from '@comfortdelgro/react-compass-old/accordion'
+import Accordion from '@comfortdelgro/react-compass/accordion'
 ```
 
 ## Example

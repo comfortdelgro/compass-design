@@ -1,5 +1,5 @@
 // import {Button, ImageViewer} from '@comfortdelgro/static'
-import {Button, ImageViewer} from '@comfortdelgro/react-compass-old'
+import {Button, ImageViewer} from '@comfortdelgro/react-compass'
 import React from 'react'
 
 const images = Array.from(Array(8).keys()).map((index) => {

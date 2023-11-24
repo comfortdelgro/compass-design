@@ -1,57 +1,9 @@
 import prism from '@comfortdelgro/markdown/prism'
-import {Box, styled} from '@comfortdelgro/react-compass-old'
-import MarkdownElement from 'components/common/MarkdownElement'
+import { Box } from '@comfortdelgro/react-compass'
 import * as React from 'react'
 import SimpleCodeEditor from 'react-simple-code-editor'
-import {useCodeCopy} from 'utils/CodeCopy'
-
-const StyledMarkdownElement = styled(MarkdownElement, {
-  '& .scrollContainer': {
-    maxHeight: 'min(68vh, 1000px)',
-    padding: '$4',
-    overflow: 'auto',
-    backgroundColor: '$gray20',
-    marginTop: -1,
-    border: `1px solid $divider`,
-    colorScheme: 'dark',
-    '&:hover': {
-      boxShadow: `0 0 0 3px $gray50`,
-    },
-    '&:focus-within': {
-      boxShadow: `0 0 0 2px $gray60`,
-    },
-  },
-  '& pre': {
-    maxWidth: 'initial',
-    maxHeight: 'initial',
-  },
-})
-
-const StyledSimpleCodeEditor = styled(SimpleCodeEditor, {
-  fontSize: 12,
-  fontWeight: 400,
-  WebkitFontSmoothing: 'subpixel-antialiased',
-  color: '#f8f8f2',
-  direction: 'ltr /*! @noflip */' as any,
-  float: 'left',
-  minWidth: '100%',
-  '& textarea': {
-    outline: 0,
-    fontFamily: '$mono !important',
-    letterSpacing: '0.13px !important',
-    wordWrap: 'normal !important',
-    wordBreak: 'normal !important',
-    whiteSpaceCollapse: 'preserve !important',
-    fontWeight: '400 !important',
-    whiteSpace: 'pre !important',
-    lineHeight: '19.25px !important',
-    textIndent: '0px !important',
-    tabSize: 4,
-  },
-  '& > textarea, & > pre': {
-    whiteSpace: 'pre !important',
-  },
-})
+import { useCodeCopy } from 'utils/CodeCopy'
+import simpleCodeStyles from './styles/SimpleCodeEditor.module.css'
 
 interface DemoEditorProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode
@@ -62,13 +14,14 @@ interface DemoEditorProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export default function DemoEditor(props: DemoEditorProps) {
-  const {language, value, onChange, children, id, ...other} = props
-  const wrapperRef = React.useRef<HTMLElement | null>(null)
+  const { language, value, onChange, children, id, ...other } = props
+  const wrapperRef = React.useRef<HTMLDivElement | null>(null)
   const enterRef = React.useRef<HTMLElement | null>(null)
   const handlers = useCodeCopy()
 
   return (
-    <StyledMarkdownElement
+    <div
+      className={'markDownElement'}
       ref={wrapperRef}
       onKeyDown={(event: React.KeyboardEvent) => {
         if (event.key === 'Tab') {
@@ -91,10 +44,11 @@ export default function DemoEditor(props: DemoEditorProps) {
       }}
       {...other}
     >
-      <div className='cdg-root' {...handlers}>
-        <div className='scrollContainer'>
+      <div className={`cdg-root ${'cdg-root'}`} {...handlers}>
+        <div className={`scrollContainer ${'scrollContainer'}`}>
           {/* @ts-ignore */}
-          <StyledSimpleCodeEditor
+          <SimpleCodeEditor
+            className={simpleCodeStyles.simpleCodeEditor}
             highlight={(code: any) =>
               `<code class="language-${language}">${prism(
                 code,
@@ -147,6 +101,6 @@ export default function DemoEditor(props: DemoEditorProps) {
         </NoSsr> */}
         {children}
       </div>
-    </StyledMarkdownElement>
+    </div>
   )
 }

@@ -1,4 +1,4 @@
-import {Accordion, Flexbox} from '@comfortdelgro/react-compass-old'
+import {Accordion, Flexbox} from '@comfortdelgro/react-compass'
 import {useState} from 'react'
 
 function ControlledAccordion() {

@@ -1,5 +1,5 @@
 import Compass from '@comfortdelgro/compass-icons/react/colorful/compass'
-import {Box, Typography} from '@comfortdelgro/react-compass-old'
+import {Box, Typography} from '@comfortdelgro/react-compass'
 import Link from 'next/link'
 import Container from './Container'
 
@@ -9,8 +9,8 @@ interface AppFooterProps {
 
 export default function AppFooter(props: AppFooterProps) {
   return (
-    <Box css={{padding: '$6 0', background: '$gray20'}}>
-      <Container css={{display: 'flex', justifyContent: 'space-between'}}>
+    <Box css={{padding: 'var(--cdg-spacing-6) 0', background: 'var(--cdg-color-gray20)'}}>
+      <Container css={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
         <Box
           css={{
             display: 'flex',

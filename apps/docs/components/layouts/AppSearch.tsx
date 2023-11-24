@@ -5,10 +5,9 @@ import {
   Column,
   Modal,
   SearchField,
-  styled,
   TextField,
   Typography,
-} from '@comfortdelgro/react-compass-old'
+} from '@comfortdelgro/react-compass'
 import {faChevronRight, faClose} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {useIsTabletScreen} from 'hooks'
@@ -16,15 +15,7 @@ import {map, replace, toLower, uniqBy} from 'lodash'
 import {useRouter} from 'next/router'
 import {useCallback, useEffect, useMemo, useRef, useState} from 'react'
 import {getDataSearch} from 'utils'
-
-const Shortcut = styled('div', {
-  fontSize: 12,
-  fontWeight: 500,
-  lineHeight: '20px',
-  backgroundColor: '$cdgBlue60',
-  padding: '4px $2',
-  borderRadius: 4,
-})
+import styles from './styles/Shortcut.module.css'
 
 const dataSearch = getDataSearch()
 
@@ -97,12 +88,12 @@ export default function AppSearch(props: any) {
         title: replace(
           toLower(item.title),
           keywordLower,
-          `<span style="color: var(--colors-cdgBlue80)">${keywordLower}</span>`,
+          `<span style="color: var(--cdg-colors-cdgBlue80)">${keywordLower}</span>`,
         ),
         description: replace(
           toLower(item.description),
           keywordLower,
-          `<span style="color: var(--colors-cdgBlue80)">${keywordLower}</span>`,
+          `<span style="color: var(--cdg-colors-cdgBlue80)">${keywordLower}</span>`,
         ),
       }
     })
@@ -121,7 +112,7 @@ export default function AppSearch(props: any) {
             variant='primary'
             onClick={onOpen}
             css={{
-              border: '1px solid $cdgBlue60',
+              border: '1px solid var(--cdg-color-cdgBlue60)',
               height: 34,
               width: 34,
               borderRadius: 4,
@@ -136,10 +127,10 @@ export default function AppSearch(props: any) {
           <>
             <TextField
               css={{
-                background: '$cdgBlue !important',
+                background: 'var(--cdg-color-cdgBlue) !important',
                 height: 34,
                 ':first-child': {
-                  borderColor: '$cdgBlue60',
+                  borderColor: 'var(--cdg-color-cdgBlue60)',
                   height: 34,
                   overflow: 'hidden',
                 },
@@ -147,9 +138,9 @@ export default function AppSearch(props: any) {
               onClick={onOpen}
               placeholder='Search...'
             />
-            <Shortcut style={{position: 'absolute', top: 3, right: 3}}>
+            <div className={styles.shortcut} style={{position: 'absolute', top: 3, right: 3}}>
               {macOS ? '⌘' : 'Ctrl+'}K
-            </Shortcut>
+            </div>
           </>
         )}
       </Box>
@@ -180,8 +171,8 @@ export default function AppSearch(props: any) {
                     as={'button'}
                     {...(index === 0 ? {ref: firstItemRef} : {})}
                     css={{
-                      background: '$gray10',
-                      padding: '$3',
+                      background: 'var(--cdg-color-gray10)',
+                      padding: 'var(--cdg-spacing-3)',
                       margin: 1,
                       borderRadius: 8,
                       cursor: 'pointer',
@@ -189,7 +180,7 @@ export default function AppSearch(props: any) {
                       justifyContent: 'space-between',
                       alignItems: 'center',
                       '&:hover': {
-                        background: '$cdgBlue10',
+                        background: 'var(--cdg-color-cdgBlue10)',
                       },
                     }}
                     onClick={() => handleClickItemSearch(searchItem.pathname)}
@@ -211,8 +202,8 @@ export default function AppSearch(props: any) {
                         variant='label1'
                         css={{
                           textAlign: 'left',
-                          color: '$gray80',
-                          marginTop: '$1',
+                          color: 'var(--cdg-color-gray80)',
+                          marginTop: 'var(--cdg-spacing-gray80)',
                           textTransform: 'capitalize',
                         }}
                         dangerouslySetInnerHTML={{

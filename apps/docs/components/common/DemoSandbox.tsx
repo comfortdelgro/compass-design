@@ -1,14 +1,7 @@
-import {styled} from '@comfortdelgro/react-compass-old'
 import DemoErrorBoundary from 'components/common/DemoErrorBoundary'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-
-const Iframe = styled('iframe', {
-  backgroundColor: 'black',
-  flexGrow: 1,
-  height: 400,
-  border: 0,
-})
+import styles from './styles/DemoSandbox.module.css'
 
 function DemoIframe(props: any) {
   const {children, name, ...other} = props
@@ -34,7 +27,8 @@ function DemoIframe(props: any) {
   const document = frameRef.current?.contentDocument
   return (
     <React.Fragment>
-      <Iframe
+      <iframe
+        className={styles.demoIframe}
         onLoad={onLoad}
         ref={frameRef}
         title={`${name} demo`}

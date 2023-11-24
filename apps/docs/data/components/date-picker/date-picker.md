@@ -12,13 +12,13 @@ components: Date Picker
 ## Import
 
 ```js
-import {DatePicker} from '@comfortdelgro/react-compass-old'
+import {DatePicker} from '@comfortdelgro/react-compass'
 ```
 
 or
 
 ```js
-import DatePicker from '@comfortdelgro/react-compass-old/date-picker'
+import DatePicker from '@comfortdelgro/react-compass/date-picker'
 ```
 
 ### I18nProvider
@@ -27,7 +27,7 @@ I18nProvider allows you to override the default locale as determined by the brow
 In this docs, we will use English(Singapore) `en-SG` as default locale
 
 ```js
-import Calendar from '@comfortdelgro/react-compass-old/calendar'
+import Calendar from '@comfortdelgro/react-compass/calendar'
 
 const {
   I18nProvider
