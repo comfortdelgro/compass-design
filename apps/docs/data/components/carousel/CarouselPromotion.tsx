@@ -1,7 +1,4 @@
-import {
-  CarouselSlider,
-  CarouselSliderItem,
-} from '@comfortdelgro/react-compass-old'
+import {CarouselSlider, CarouselSliderItem} from '@comfortdelgro/react-compass'
 
 const slideData: CarouselSliderItem[] = [
   {

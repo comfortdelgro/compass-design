@@ -10,13 +10,7 @@ components: ImageViewer
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {ImageViewer} from '@comfortdelgro/react-compass-old'
-```
-
-or
-
-```jsx
-import ImageViewer from '@comfortdelgro/react-compass-old/image-viewer'
+import {ImageViewer} from '@comfortdelgro/react-compass'
 ```
 
 ## Example

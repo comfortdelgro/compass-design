@@ -3,7 +3,7 @@ import {
   Divider,
   Typography,
   useIsDarkTheme,
-} from '@comfortdelgro/react-compass-old'
+} from '@comfortdelgro/react-compass'
 import Container from 'components/layouts/Container'
 import {getStaticPath} from 'utils'
 import Item from '../Introduction/item'

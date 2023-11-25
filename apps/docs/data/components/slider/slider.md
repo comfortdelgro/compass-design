@@ -13,11 +13,6 @@ components: Slider
 import {Slider} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import Slider from '@comfortdelgro/react-compass/slider'
-```
 
 ## Example
 

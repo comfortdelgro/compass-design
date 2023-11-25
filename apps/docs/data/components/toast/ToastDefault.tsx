@@ -1,6 +1,4 @@
-import Button from '@comfortdelgro/react-compass-old/button'
-import Icon from '@comfortdelgro/react-compass-old/icon'
-import Toast from '@comfortdelgro/react-compass-old/toast'
+import {Button, Icon, Toast} from '@comfortdelgro/react-compass'
 import {faImage, faXmark} from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
 

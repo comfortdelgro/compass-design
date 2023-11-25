@@ -191,7 +191,7 @@ import ZoomIn from '@comfortdelgro/compass-icons/react/zoom-in'
 import ZoomMinus from '@comfortdelgro/compass-icons/react/zoom-minus'
 import ZoomOut from '@comfortdelgro/compass-icons/react/zoom-out'
 import ZoomPlus from '@comfortdelgro/compass-icons/react/zoom-plus'
-import {Flexbox} from '@comfortdelgro/react-compass-old'
+import {Flexbox} from '@comfortdelgro/react-compass'
 import IconBox from 'data/foundation/iconography/components/IconBox'
 
 export default function Icons() {

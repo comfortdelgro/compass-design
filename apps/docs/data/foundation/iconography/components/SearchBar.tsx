@@ -1,4 +1,4 @@
-import SearchField from '@comfortdelgro/react-compass-old/searchfield'
+import {SearchField} from '@comfortdelgro/react-compass'
 import {useRouter} from 'next/navigation'
 
 interface Props {

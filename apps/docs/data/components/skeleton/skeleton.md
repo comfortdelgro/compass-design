@@ -13,11 +13,6 @@ components: Skeleton
 import {Skeleton} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import Skeleton from '@comfortdelgro/react-compass/skeleton'
-```
 
 ## Example
 

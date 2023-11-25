@@ -29,7 +29,7 @@ You can see [theme configuration variables here](https://github.com/comfortdelgr
 When using Compass Design's theme, it can be convenient to add additional variables to the theme so you can use them everywhere. For instance:
 
 ```js
-import createTheme from '@comfortdelgro/react-compass/theme/theme'
+import createTheme from '@comfortdelgro/react-compass-old/theme/theme'
 
 export const lightThemeCustom = createTheme('light-theme-custom', {
   colors: {
@@ -223,7 +223,7 @@ You can customize variables by overriding them in the global css file, below is 
 This component takes a theme prop and applies it to the entire React tree that it is wrapping around. It should preferably be used at _the root of your component tree_.
 
 ```js
-import {ThemeProvider} from '@comfortdelgro/react-compass-old'
+import {ThemeProvider} from '@comfortdelgro/react-compass'
 ```
 
 **Props:**

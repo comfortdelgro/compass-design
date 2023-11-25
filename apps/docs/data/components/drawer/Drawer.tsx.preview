@@ -1,4 +1,4 @@
-import {Button, Drawer} from '@comfortdelgro/react-compass-old'
+import {Button, Drawer} from '@comfortdelgro/react-compass'
 
 const [openDrawer, setOpenDrawer] = useState(false)
 

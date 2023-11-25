@@ -13,11 +13,6 @@ components: Sidenav
 import {Sidenav} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import Sidenav from '@comfortdelgro/react-compass/sidenav'
-```
 
 ## Example
 

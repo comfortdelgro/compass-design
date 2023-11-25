@@ -13,11 +13,6 @@ components: Radio
 import {Radio} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import Radio from '@comfortdelgro/react-compass/radio'
-```
 
 ## Outline
 

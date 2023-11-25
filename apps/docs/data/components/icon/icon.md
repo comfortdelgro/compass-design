@@ -17,7 +17,7 @@ or with iconify
 
 ```jsx
 import {Icon} from '@iconify/react'
-import activityIcon from '@comfortdelgro/compass-icons/iconify/activity'rom '@comfortdelgro/react-compass-old/icon'
+import activityIcon from '@comfortdelgro/compass-icons/iconify/activity'
 ```
 
 ## Example

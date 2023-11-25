@@ -1,7 +1,5 @@
 import CloseIcon from '@comfortdelgro/compass-icons/react/h5-close'
-import {Button, Dropdown} from '@comfortdelgro/react-compass-old'
-import Icon from '@comfortdelgro/react-compass-old/icon'
-import Snackbar from '@comfortdelgro/react-compass-old/snackbar'
+import {Button, Dropdown, Icon, Snackbar} from '@comfortdelgro/react-compass'
 import {faImage} from '@fortawesome/free-solid-svg-icons'
 import React, {Key} from 'react'
 const Default: React.FC = () => {

@@ -13,14 +13,6 @@ components: VideoPlayer
 import {VideoPlayer, VideoPlayerProps} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import {
-  VideoPlayer,
-  VideoPlayerProps,
-} from '@comfortdelgro/react-compass/video-player'
-```
 
 ## Example
 

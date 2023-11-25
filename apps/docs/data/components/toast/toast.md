@@ -9,14 +9,9 @@ components: Toast
 
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
-```jsx
-import Toast from '@comfortdelgro/react-compass-old/toast'
-```
-
-or
 
 ```jsx
-import {Toast} from '@comfortdelgro/react-compass-old'
+import {Toast} from '@comfortdelgro/react-compass'
 ```
 
 ## Examples

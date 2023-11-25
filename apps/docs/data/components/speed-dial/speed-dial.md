@@ -10,14 +10,9 @@ components: SpeedDial
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {SpeedDial} from '@comfortdelgro/react-compass-old'
+import {SpeedDial} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import SpeedDial from '@comfortdelgro/react-compass-old/speed-dial'
-```
 
 ## Example
 

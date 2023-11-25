@@ -37,7 +37,7 @@ import Visa from '@comfortdelgro/compass-icons/react/payment/visa'
 import WeChat from '@comfortdelgro/compass-icons/react/payment/we-chat'
 import WebMoney from '@comfortdelgro/compass-icons/react/payment/web-money'
 import Yandex from '@comfortdelgro/compass-icons/react/payment/yandex'
-import {Flexbox} from '@comfortdelgro/react-compass-old'
+import {Flexbox} from '@comfortdelgro/react-compass'
 import IconBox from 'data/foundation/iconography/components/IconBox'
 
 export default function paymentIcons() {

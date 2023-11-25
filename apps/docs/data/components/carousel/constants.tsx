@@ -2,8 +2,10 @@ import BugIcon from '@comfortdelgro/compass-icons/react/bug'
 import {
   CarouselSliderButton,
   CarouselSliderItem,
-  SocicalIcon,
-} from '@comfortdelgro/react-compass-old'
+} from '@comfortdelgro/react-compass'
+
+// static doesn't have it yet
+import {SocicalIcon} from '@comfortdelgro/react-compass-old'
 
 export const socials: SocicalIcon[] = [
   {

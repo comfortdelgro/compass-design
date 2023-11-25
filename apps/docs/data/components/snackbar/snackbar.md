@@ -10,14 +10,9 @@ components: Snackbar
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import Snackbar from '@comfortdelgro/react-compass-old/snackbar'
+import {Snackbar} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import {Snackbar} from '@comfortdelgro/react-compass-old'
-```
 
 ## Examples
 

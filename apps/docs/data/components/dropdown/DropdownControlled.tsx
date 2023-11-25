@@ -1,5 +1,5 @@
 import BugIcon from '@comfortdelgro/compass-icons/react/bug'
-import {Dropdown} from '@comfortdelgro/react-compass-old'
+import {Dropdown} from '@comfortdelgro/react-compass'
 import React from 'react'
 
 const ControlledDropdown = () => {

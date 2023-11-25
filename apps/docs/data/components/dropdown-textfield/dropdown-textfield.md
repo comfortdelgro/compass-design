@@ -10,14 +10,9 @@ components: DropdownTextfield
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {DropdownTextfield} from '@comfortdelgro/react-compass-old'
+import {DropdownTextfield} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import DropdownTextfield from '@comfortdelgro/react-compass-old/dropdown-textfield'
-```
 
 ## Example
 

@@ -34,7 +34,7 @@ The following example implements a filterable list using a `contains` matching s
 and diacritics.
 
 ```tsx example
-import {useFilter} from '@comfortdelgro/react-compass-old'
+import {useFilter} from '@comfortdelgro/react-compass'
 
 function Example() {
   const composers = [

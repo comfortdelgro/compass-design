@@ -1,4 +1,4 @@
-import {Box} from '@comfortdelgro/react-compass-old'
+import {Box} from '@comfortdelgro/react-compass'
 import * as React from 'react'
 
 export default function DemoEditorError(props: {children: React.ReactNode}) {

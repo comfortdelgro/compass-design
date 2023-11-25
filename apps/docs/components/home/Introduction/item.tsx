@@ -1,4 +1,4 @@
-import {Box, Typography} from '@comfortdelgro/react-compass-old'
+import {Box, Typography} from '@comfortdelgro/react-compass'
 import Image from 'next/image'
 import Link from 'next/link'
 

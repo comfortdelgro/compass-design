@@ -1,4 +1,4 @@
-import Toggle from '@comfortdelgro/react-compass-old/toggle'
+import {Toggle} from '@comfortdelgro/react-compass'
 import React from 'react'
 
 function ToggleControlled() {

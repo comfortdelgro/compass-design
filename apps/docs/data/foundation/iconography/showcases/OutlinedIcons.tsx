@@ -25,7 +25,7 @@ import TrashOutlined from '@comfortdelgro/compass-icons/react/outlined/trash-out
 import UserAddOutlined from '@comfortdelgro/compass-icons/react/outlined/user-add-outlined'
 import UserGroupOutlined from '@comfortdelgro/compass-icons/react/outlined/user-group-outlined'
 import WarningOutlined from '@comfortdelgro/compass-icons/react/outlined/warning-outlined'
-import {Flexbox} from '@comfortdelgro/react-compass-old'
+import {Flexbox} from '@comfortdelgro/react-compass'
 import IconBox from 'data/foundation/iconography/components/IconBox'
 
 export default function outlinedIcons() {
