@@ -10,13 +10,13 @@ components: Chip
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Chip} from '@comfortdelgro/react-compass-old'
+import {Chip} from '@comfortdelgro/react-compass'
 ```
 
 or
 
 ```jsx
-import Chip from '@comfortdelgro/react-compass-old/chip'
+import Chip from '@comfortdelgro/react-compass/chip'
 ```
 
 ## Chip
