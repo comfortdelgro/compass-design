@@ -12,7 +12,7 @@ export default function ReadyToUse() {
           <Typography.Header variant='header0' className='section-big-header'>
             Ready to use Design components
           </Typography.Header>
-          <Box css={{padding: '$6 0'}}>
+          <Box style={{padding: 'var(--cdg-spacing-6) 0'}}>
             <Typography.Body variant='body2'>
               React Compass offers a comprehensive suite of UI tools to help you
               ship new features faster. Start with React Compass, our

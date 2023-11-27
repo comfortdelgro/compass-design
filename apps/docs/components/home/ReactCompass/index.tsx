@@ -14,20 +14,20 @@ function ReactCompass() {
   const isDarkTheme = useIsDarkTheme()
   return (
     <Box
-      css={{
+      style={{
         padding: '4rem 0',
-        background: isDarkTheme ? '$gray90' : '#ECE2EF',
+        background: isDarkTheme ? 'var(--colors-gray90)' : '#ECE2EF',
       }}
     >
       <Container>
         <Box>
           <Typography.Header>Usage</Typography.Header>
-          <Typography.Body variant='body2' css={{padding: '$5 0 $3 0'}}>
+          <Typography.Body variant='body2' style={{padding: 'var(--cdg-spacing-5) 0 var(--cdg-spacing-3) 0'}}>
             There are three parts of the package: CSS, Javascript, and Icon or
             Image resource. We are fetching icon and images from cdn by default.
           </Typography.Body>
         </Box>
-        <Box css={{paddingTop: '$4'}}>
+        <Box style={{paddingTop: 'var(cdg-spacing-4)'}}>
           <div className='cdg-card-row'>
             <Item
               title='Latest updates'
@@ -47,15 +47,15 @@ function ReactCompass() {
             />
           </div>
         </Box>
-        <Divider css={{padding: '$4'}} />
-        <Box css={{paddingTop: '$8'}}>
-          <Typography.Header css={{paddingBottom: '$3'}}>
+        <Divider style={{padding: 'var(--cdg-spacing-4)'}} />
+        <Box style={{paddingTop: 'var(--cdg-spacing-8)'}}>
+          <Typography.Header style={{paddingBottom: 'var(--cdg-spacing-3)'}}>
             Add preflight flushing styles for SSR.
           </Typography.Header>
           <CoreShowcase />
         </Box>
-        <Box css={{paddingTop: '$8'}}>
-          <Typography.Header css={{paddingBottom: '$3'}}>
+        <Box style={{paddingTop: 'var(--cdg-spacing-8)'}}>
+          <Typography.Header style={{paddingBottom: 'var(--cdg-spacing-3)'}}>
             Add Preflight component for better CSS resets according to design
             guidelines.
           </Typography.Header>

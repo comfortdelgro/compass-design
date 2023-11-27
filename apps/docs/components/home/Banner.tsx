@@ -17,8 +17,8 @@ const Banner = () => {
         <Box className='hero-content'>
           <Typography.Header
             variant='header4'
-            css={{
-              color: '$whiteText',
+            style={{
+              color: 'var(--colors-background)',
               fontSize: '1.125rem',
               textAlign: 'center',
               fontWeight: 'bold',
@@ -27,8 +27,8 @@ const Banner = () => {
             WELCOME TO
           </Typography.Header>
           <Typography.Header
-            css={{
-              color: '$whiteText',
+            style={{
+              color: 'var(--colors-background)',
               fontSize: '2.875rem',
               textAlign: 'center',
               lineHeight: '69px',
@@ -42,8 +42,8 @@ const Banner = () => {
           </Typography.Header>
           <Typography.Header
             variant='header5'
-            css={{
-              color: '$whiteText',
+            style={{
+              color: 'var(--colors-background)',
               fontSize: '1.125rem',
               textAlign: 'center',
             }}
