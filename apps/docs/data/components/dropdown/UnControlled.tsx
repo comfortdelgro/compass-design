@@ -1,4 +1,4 @@
-import {Dropdown} from '@comfortdelgro/react-compass-old'
+import {Dropdown} from '@comfortdelgro/react-compass'
 
 const UnControlledDropdown = () => {
   return (
