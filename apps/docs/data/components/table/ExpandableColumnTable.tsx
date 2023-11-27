@@ -6,13 +6,11 @@ import {
   Icon,
   Pagination,
   Table,
-} from '@comfortdelgro/react-compass-old'
-import {
   TableCellContext,
   TableColumnDef,
   TableHeaderContext,
   TableOptions,
-} from '@comfortdelgro/react-compass-old/table'
+} from '@comfortdelgro/react-compass'
 import React, {useState} from 'react'
 
 export type Person = {

@@ -10,14 +10,12 @@ import {
   Pagination,
   SearchField,
   Table,
-} from '@comfortdelgro/react-compass-old'
-import {
   TableCellContext,
   TableColumnDef,
   TableHeaderContext,
   TableOptions,
   TableSortingState,
-} from '@comfortdelgro/react-compass-old/table'
+} from '@comfortdelgro/react-compass'
 import React, {useState} from 'react'
 
 export type Person = {
