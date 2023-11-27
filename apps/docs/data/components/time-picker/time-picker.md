@@ -10,13 +10,13 @@ components: Time Picker
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {TimePicker} from '@comfortdelgro/react-compass-old'
+import {TimePicker} from '@comfortdelgro/react-compass'
 ```
 
 or
 
 ```jsx
-import TimePicker from '@comfortdelgro/react-compass-old/time-picker'
+import {TimePicker} from '@comfortdelgro/react-compass'
 ```
 
 ## Basic
