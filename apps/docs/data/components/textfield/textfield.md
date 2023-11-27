@@ -10,13 +10,13 @@ components: Textfield
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Textfield} from '@comfortdelgro/react-compass-old'
+import {Textfield} from '@comfortdelgro/react-compass'
 ```
 
 or
 
 ```jsx
-import Textfield from '@comfortdelgro/react-compass-old/textfield'
+import Textfield from '@comfortdelgro/react-compass/textfield'
 ```
 
 ## Example
