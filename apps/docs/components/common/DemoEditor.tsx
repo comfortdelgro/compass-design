@@ -64,36 +64,6 @@ export default function DemoEditor(props: DemoEditorProps) {
           ref={enterRef}
           tabIndex={0}
           className={`${styles.CdgDemoEditorInfo} asdasd`}
-          // css={{
-          //   color: 'var(--cdg-color-gray80)',
-          //   position: 'absolute',
-          //   top: 'var(--cdg-spacing-1)',
-          //   padding: 'var(--cdg-spacing-1)',
-          //   outline: 0,
-          //   left: '50%',
-          //   border: '1px solid',
-          //   borderColor: '#6B89F7',
-          //   backgroundColor: '#91A7F9',
-          //   transform: 'translateX(-50%)',
-          //   borderRadius: '6px',
-          //   fontSize: 12,
-          //   transition: 'all 0.3s',
-          //   boxShadow: '0 2px 4px rgba(0,0,0,0.5)',
-          //   '&:not(:focus)': {
-          //     top: 0,
-          //     opacity: 0,
-          //     pointerEvents: 'none',
-          //   },
-          //   '> kbd': {
-          //     color: 'var(--cdg-color-whiteText)',
-          //     padding: 'var(--cdg-spacing-1)',
-          //     backgroundColor: 'var(--cdg-color-cdgBlue60)',
-          //     fontSize: 11,
-          //     borderRadius: '6px',
-          //     border: '1px solid',
-          //     borderColor: 'var(--cdg-color-cdgBlue40)',
-          //   },
-          // }}
           dangerouslySetInnerHTML={{
             __html: 'Press <kbd>Enter</kbd> to start editing',
           }}
