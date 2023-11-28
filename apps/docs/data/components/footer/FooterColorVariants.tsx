@@ -1,4 +1,10 @@
-import {Icon, Footer, FooterInfo, Link, Button} from '@comfortdelgro/react-compass'
+import {
+  Button,
+  Footer,
+  FooterInfo,
+  Icon,
+  Link,
+} from '@comfortdelgro/react-compass'
 import {faCamera, faGlobe} from '@fortawesome/free-solid-svg-icons'
 
 type FooterColor = 'black' | 'white' | 'blue'

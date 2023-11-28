@@ -7,11 +7,17 @@ export default function Introduction() {
   const isDarkTheme = useIsDarkTheme()
   return (
     <Box
-      style={{background: isDarkTheme ? 'var(--colors-gray70)' : '#E2DEEB', padding: 'var(--cdg-spacing-14) 0'}}
+      style={{
+        background: isDarkTheme ? 'var(--colors-gray70)' : '#E2DEEB',
+        padding: 'var(--cdg-spacing-14) 0',
+      }}
     >
       <Container>
         <Typography.Header>Introduction</Typography.Header>
-        <Typography.Body variant='body2' style={{padding: 'var(--cdg-spacing-5) 0 var(--cdg-spacing-3) 0'}}>
+        <Typography.Body
+          variant='body2'
+          style={{padding: 'var(--cdg-spacing-5) 0 var(--cdg-spacing-3) 0'}}
+        >
           This is guideline page for ComfortDelGro's Workbench Design System
           library. Which a set of components that created using web component
           and can be used to implement user experiences consistent with

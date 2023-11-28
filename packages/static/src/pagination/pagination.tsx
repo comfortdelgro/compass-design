@@ -52,12 +52,12 @@ const ItemCounting: React.FC<{
   count: number
   page: number
   rowsPerPage: number
-}> = ({ count, page, rowsPerPage }) => {
+}> = ({count, page, rowsPerPage}) => {
   const layout = useMemo(() => {
-    const start = (page - 1) * rowsPerPage + 1;
-    const end = Math.min(page * rowsPerPage, count);
-    return `${start} - ${end} of ${count}`;
-  }, [count, page, rowsPerPage]);
+    const start = (page - 1) * rowsPerPage + 1
+    const end = Math.min(page * rowsPerPage, count)
+    return `${start} - ${end} of ${count}`
+  }, [count, page, rowsPerPage])
 
   return <div className={styles.paginationItemCounting}>{layout}</div>
 }
@@ -179,7 +179,9 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
               }
             />
           )}
-          {count && <ItemCounting count={count} page={page} rowsPerPage={rowsPerPage}/>}
+          {count && (
+            <ItemCounting count={count} page={page} rowsPerPage={rowsPerPage} />
+          )}
           <div
             className={`cdg-pagination-item ${styles.paginationItem} ${
               active === 1 ? `${styles.paginationItemDisabled}` : ''

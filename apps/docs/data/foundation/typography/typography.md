@@ -14,7 +14,6 @@ imgSrc: /static/images/typography-background.png
 import {Typography} from '@comfortdelgro/react-compass'
 ```
 
-
 ## Brand typography
 
 <p>

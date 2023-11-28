@@ -13,7 +13,6 @@ components: Error
 import {Error} from '@comfortdelgro/react-compass'
 ```
 
-
 ## Example
 
 ### Default

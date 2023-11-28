@@ -1,5 +1,15 @@
 ## 2.9.0
 
+## 3.0.0
+
+### Major Changes
+
+- 21dbca04: Static Css
+
+### Minor Changes
+
+- 956f9a41: Fix bugs and release update for H5
+
 ## 2.26.0
 
 ### Minor Changes

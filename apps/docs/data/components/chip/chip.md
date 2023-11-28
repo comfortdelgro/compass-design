@@ -13,8 +13,6 @@ components: Chip
 import {Chip} from '@comfortdelgro/react-compass'
 ```
 
-
 ## Chip
 
 {{"demo": "Chip.tsx"}}
-

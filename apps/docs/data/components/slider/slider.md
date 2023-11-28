@@ -13,7 +13,6 @@ components: Slider
 import {Slider} from '@comfortdelgro/react-compass'
 ```
 
-
 ## Example
 
 ### Basic Usage

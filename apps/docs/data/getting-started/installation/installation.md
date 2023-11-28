@@ -8,16 +8,16 @@ For the components in the `@comfortdelgro/react-compass` package to work correct
 
 ### Step to Include Poppins Font in Your Project:
 
-  Include the following link in the `<head>` section of your HTML file (usually `index.html` in a React project):
+Include the following link in the `<head>` section of your HTML file (usually `index.html` in a React project):
 
-   ```html
-    <link rel='preconnect' href='https://fonts.googleapis.com' />
-    <link rel='preconnect' href='https://fonts.gstatic.com' cross-origin />
-    <link
-      href='https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'
-      rel='stylesheet'
-    />
-  ```
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" cross-origin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+  rel="stylesheet"
+/>
+```
 
 ## Default installation
 

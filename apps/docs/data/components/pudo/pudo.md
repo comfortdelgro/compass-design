@@ -13,7 +13,6 @@ components: PUDO
 import {Pudo} from '@comfortdelgro/react-compass'
 ```
 
-
 ## Usage
 
 ### Basic

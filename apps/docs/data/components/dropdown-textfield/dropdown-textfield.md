@@ -13,7 +13,6 @@ components: DropdownTextfield
 import {DropdownTextfield} from '@comfortdelgro/react-compass'
 ```
 
-
 ## Example
 
 ### Basic

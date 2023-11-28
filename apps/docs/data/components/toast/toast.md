@@ -9,7 +9,6 @@ components: Toast
 
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
-
 ```jsx
 import {Toast} from '@comfortdelgro/react-compass'
 ```
