@@ -6,7 +6,7 @@ import {
   Icon,
   Navbar,
   Typography,
-} from '@comfortdelgro/react-compass-old'
+} from '@comfortdelgro/react-compass'
 import {faClose} from '@fortawesome/free-solid-svg-icons'
 import SvgLogo from 'components/icons/SvgLogo'
 import routes from 'constants/routes'
@@ -119,7 +119,7 @@ export default function DocsAppSideNavMobile(props: any) {
                 <SvgLogo />
                 <Typography.Header
                   variant='header4'
-                  css={{marginLeft: 10, fontWeight: 'bold'}}
+                  css={{marginLeft: '10px', fontWeight: 'bold'}}
                 >
                   REACT COMPASS
                 </Typography.Header>
@@ -129,7 +129,7 @@ export default function DocsAppSideNavMobile(props: any) {
           <Button
             variant='ghost'
             onClick={() => setIsShowDrawer(false)}
-            css={{padding: '$1'}}
+            css={{padding: 'var(--cdg-spacing-1)'}}
           >
             <Icon icon={faClose} />
           </Button>

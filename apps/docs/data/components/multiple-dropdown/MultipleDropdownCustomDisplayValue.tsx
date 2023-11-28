@@ -1,4 +1,4 @@
-import MultipleDropdown from '@comfortdelgro/react-compass-old/multiple-dropdown'
+import {MultipleDropdown} from '@comfortdelgro/react-compass'
 import React, {Key} from 'react'
 
 function MultipleDropdownCustomDisplayValue() {

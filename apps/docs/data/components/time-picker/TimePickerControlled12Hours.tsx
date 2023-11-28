@@ -1,4 +1,4 @@
-import TimePicker from '@comfortdelgro/react-compass-old/time-picker'
+import {TimePicker} from '@comfortdelgro/react-compass'
 import {useState} from 'react'
 
 function Time12HoursPickerControlled() {

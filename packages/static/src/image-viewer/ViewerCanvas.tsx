@@ -1,4 +1,5 @@
-import {useEffect, useRef, useState} from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useRef, useState } from 'react'
 import Spinner from '../spinner'
 
 export interface ViewerCanvasProps {
@@ -67,7 +68,7 @@ export default function ViewerCanvas(props: ViewerCanvasProps) {
     return () => {
       bindEvent(true)
     }
-  }, [props.drag, props.visible])
+  }, [props.drag, props.visible, props.width, props.height])
 
   useEffect(() => {
     const diffX = position.x - prePosition.current.x
@@ -120,6 +121,7 @@ export default function ViewerCanvas(props: ViewerCanvasProps) {
 
   const handleMouseUp = () => {
     isMouseDown.current = false
+    handleResize()
   }
 
   const bindWindowResizeEvent = (remove?: boolean) => {
@@ -142,9 +144,8 @@ export default function ViewerCanvas(props: ViewerCanvasProps) {
   const imgStyle: React.CSSProperties = {
     width: `${props.width}px`,
     height: `${props.height}px`,
-    transform: `translateX(${
-      props.left !== null ? `${props.left}px` : 'aoto'
-    }) translateY(${props.top}px)
+    transform: `translateX(${props.left !== null ? `${props.left}px` : 'auto'
+      }) translateY(${props.top}px)
     rotate(${props.rotate}deg) scaleX(${props.scaleX}) scaleY(${props.scaleY})`,
   }
 
@@ -170,7 +171,7 @@ export default function ViewerCanvas(props: ViewerCanvasProps) {
   }
 
   return (
-    <div onMouseDown={handleCanvasMouseDown} style={{zIndex: props.zIndex}}>
+    <div onMouseDown={handleCanvasMouseDown} style={{ zIndex: props.zIndex }}>
       {imgNode}
     </div>
   )

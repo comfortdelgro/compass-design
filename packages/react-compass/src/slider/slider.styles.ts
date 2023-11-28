@@ -1,6 +1,21 @@
 import {styled} from '../theme'
 import type {VariantProps} from '../utils/stitches.types'
 
+export const Thumb = styled('div', {
+  right: '0',
+  boxSizing: 'border-box',
+  width: '$4',
+  height: '$4',
+  borderRadius: '50%',
+  background: '$background',
+  border: '1px solid $cdgBlue10',
+  boxShadow: '0px 2px 4px $overlayDark',
+  position: 'absolute',
+  top: '50%',
+  transform: 'translate3d(100%, -50%, 0)',
+  cursor: 'pointer',
+})
+
 export const RangeSliderContainer = styled('div', {
   display: 'flex',
   width: '100%',
@@ -9,6 +24,10 @@ export const RangeSliderContainer = styled('div', {
   borderRadius: '6.25rem',
   position: ' relative',
   cursor: 'pointer',
+  outline: 'none',
+  [`&:focus ${Thumb}`]: {
+    border: '2px solid $cdgBlue',
+  },
   '&:focus .cdg-thumb-tooltips::after': {
     content: 'attr(value)',
     position: 'absolute',
@@ -55,21 +74,6 @@ export const RangeSlider = styled('div', {
   background: '$cdgBlue100',
   height: '100%',
   position: 'relative',
-})
-
-export const Thumb = styled('div', {
-  right: '0',
-  boxSizing: 'border-box',
-  width: '$4',
-  height: '$4',
-  borderRadius: '50%',
-  background: '$background',
-  border: '1px solid $cdgBlue10',
-  boxShadow: '0px 2px 4px $overlayDark',
-  position: 'absolute',
-  top: '50%',
-  transform: 'translate3d(100%, -50%, 0)',
-  cursor: 'pointer',
 })
 
 export type SliderVariantProps = VariantProps<typeof RangeSliderContainer>

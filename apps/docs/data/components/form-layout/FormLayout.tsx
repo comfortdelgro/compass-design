@@ -7,7 +7,7 @@ import {
   Radio,
   TextField,
   Upload,
-} from '@comfortdelgro/react-compass-old'
+} from '@comfortdelgro/react-compass'
 
 const Default: React.FC = () => {
   return (

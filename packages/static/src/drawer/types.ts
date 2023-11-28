@@ -1,4 +1,4 @@
-import {DialogHTMLAttributes} from 'react'
+import {DialogHTMLAttributes, ReactNode} from 'react'
 
 type DrawerSharedProps = {
   /**
@@ -43,12 +43,26 @@ type DefaultDrawerProps = {
 
   expanderCSS?: never
   onExpandChange?: never
+  onHeightChange?: never
   expandedPoint?: never
   expandableLine?: never
   disableResize?: never
-  disableAddBodyAttr?: never
   disableDragClose?: never
 }
+
+type H5DrawerChildrenAsFunctionOptions = {
+  triggerCollapse: () => void
+  isExpanded: boolean
+  height: number
+} & Omit<
+  H5DrawerProps,
+  | 'variant'
+  | 'position'
+  | 'expanderCSS'
+  | 'onExpandChange'
+  | 'onHeightChange'
+  | 'children'
+>
 
 type H5DrawerProps = {
   variant: 'h5'
@@ -85,18 +99,6 @@ type H5DrawerProps = {
   disableResize?: boolean
 
   /**
-   * @deprecated This property now becomes useless, does nothing and will be removed in the next major release.
-   *
-   * Now respect the `<dialog />`'s default behaviors, let the browsers control if the content page below the Drawer should be rendered inert or not.
-   * ___
-   * @description
-   * if `true`, when open a drawer, it will NOT
-   *  add {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inert inert} attribute and `overflow: hidden` to the `<body>` tag.
-   * @default false
-   */
-  disableAddBodyAttr?: boolean
-
-  /**
    * Close the H5 drawer if the user drags and drops it below the default height.
    *
    * Note that if `disableResize` is true, users can't drag the the drawer.
@@ -104,6 +106,12 @@ type H5DrawerProps = {
    * @default false
    */
   disableDragClose?: boolean
+
+  onHeightChange?: (height: number) => void
+
+  children?:
+    | ReactNode
+    | ((options: H5DrawerChildrenAsFunctionOptions) => ReactNode)
 }
 
 export type DrawerH5Props = DrawerSharedProps & H5DrawerProps
@@ -117,3 +125,7 @@ export type DrawerProps = Props &
     DialogHTMLAttributes<HTMLDialogElement>,
     keyof Props | 'tabIndex' | 'autoFocus'
   >
+
+export type DrawerRef = HTMLDialogElement & {
+  triggerCollapse: () => void
+}

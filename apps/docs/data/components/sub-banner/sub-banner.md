@@ -10,13 +10,7 @@ components: SubBanner
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {SubBanner} from '@comfortdelgro/react-compass-old'
-```
-
-or
-
-```jsx
-import SubBanner from '@comfortdelgro/react-compass-old/sub-banner'
+import {SubBanner} from '@comfortdelgro/react-compass'
 ```
 
 ## Example
@@ -28,9 +22,6 @@ import SubBanner from '@comfortdelgro/react-compass-old/sub-banner'
 ### Secondary
 
 {{"demo": "SubBannerSecondary.tsx"}}
-
-<!-- ## SubBanner Server (Experimental)
-{{"demo": "SubBannerServer.tsx"}} -->
 
 ## Props
 

@@ -1,4 +1,4 @@
-import {Column, Tag, TagBoxV2} from '@comfortdelgro/react-compass-old'
+import {Column, Tag, TagBoxV2} from '@comfortdelgro/react-compass'
 import {useEffect, useState} from 'react'
 
 const mockApiCall = (): Promise<Tag[]> => {

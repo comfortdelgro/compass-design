@@ -49,7 +49,7 @@ export const darkThemeCustom = createTheme('dark-theme-custom', {
 This component takes a theme prop and applies it to the entire React tree that it is wrapping around. It should preferably be used at _the root of your component tree_.
 
 ```js
-import {ThemeProvider} from '@comfortdelgro/react-compass-old'
+import {ThemeProvider} from '@comfortdelgro/react-compass'
 ```
 
 **Props:**
@@ -223,7 +223,7 @@ You can customize variables by overriding them in the global css file, below is 
 This component takes a theme prop and applies it to the entire React tree that it is wrapping around. It should preferably be used at _the root of your component tree_.
 
 ```js
-import {ThemeProvider} from '@comfortdelgro/react-compass-old'
+import {ThemeProvider} from '@comfortdelgro/react-compass'
 ```
 
 **Props:**

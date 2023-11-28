@@ -1,12 +1,12 @@
-import Toggle from '@comfortdelgro/react-compass-old/toggle'
+import {Toggle} from '@comfortdelgro/react-compass'
 
 function ToggleSizes() {
   return (
     <div>
       <h3>Small</h3>
-      <Toggle size='sm' isReadOnly />
+      <Toggle size='sm' />
       <h3>Large</h3>
-      <Toggle size='lg' isReadOnly />
+      <Toggle size='lg' isSelected={true} />
     </div>
   )
 }

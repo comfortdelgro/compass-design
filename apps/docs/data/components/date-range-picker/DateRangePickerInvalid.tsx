@@ -1,4 +1,4 @@
-import {DateRangePicker} from '@comfortdelgro/react-compass-old'
+import {DateRangePicker} from '@comfortdelgro/react-compass'
 
 function DateRangePickerInValid() {
   return (

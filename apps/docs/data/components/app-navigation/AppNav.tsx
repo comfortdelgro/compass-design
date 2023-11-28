@@ -2,7 +2,7 @@ import Activity from '@comfortdelgro/compass-icons/react/activity'
 import Home from '@comfortdelgro/compass-icons/react/home'
 import NotificationOutlined from '@comfortdelgro/compass-icons/react/notification-outlined'
 import User from '@comfortdelgro/compass-icons/react/user-duotone'
-import AppNav from '@comfortdelgro/react-compass-old/appnav'
+import {AppNav} from '@comfortdelgro/react-compass'
 import React from 'react'
 const AppNavComponent: React.FC = () => {
   const [index, setIndex] = React.useState<number>(0)

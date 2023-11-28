@@ -10,8 +10,7 @@ import {
   Radio,
   Row,
   Typography,
-} from '@comfortdelgro/react-compass-old'
-import ListImage from '@comfortdelgro/react-compass-old/list/list-image'
+} from '@comfortdelgro/react-compass'
 import {
   faChevronDown,
   faChevronRight,
@@ -43,7 +42,7 @@ export default function DrawerH5Docs() {
       }
       variant='h5'
       leftInfo={
-        <ListImage variant='h5' isRounded src={imgSrc} alt='singapore' />
+        <List.Image variant='h5' isRounded src={imgSrc} alt='singapore' />
       }
       rightInfo={{
         text: '$9.90',

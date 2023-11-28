@@ -11,14 +11,9 @@ components: Dialog
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Dialog} from '@comfortdelgro/react-compass-old'
+import {Dialog} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import Dialog from '@comfortdelgro/react-compass-old/dialog'
-```
 
 ## Example
 
@@ -33,6 +28,10 @@ import Dialog from '@comfortdelgro/react-compass-old/dialog'
 ### Nested Dialog
 
 {{"demo": "DialogNested.tsx"}}
+
+### Mobile Dialog
+
+{{"demo": "DialogMobile.tsx"}}
 
 ## Props
 

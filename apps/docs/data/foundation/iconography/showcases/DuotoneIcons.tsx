@@ -11,7 +11,7 @@ import OrgChartDuotone from '@comfortdelgro/compass-icons/react/duotone/org-char
 import PasswordDuotone from '@comfortdelgro/compass-icons/react/duotone/password-duotone'
 import TrashDuotone from '@comfortdelgro/compass-icons/react/duotone/trash-duotone'
 import UserDuotone from '@comfortdelgro/compass-icons/react/duotone/user-duotone'
-import {Flexbox} from '@comfortdelgro/react-compass-old'
+import {Flexbox} from '@comfortdelgro/react-compass'
 import IconBox from 'data/foundation/iconography/components/IconBox'
 
 export default function duotoneIcons() {

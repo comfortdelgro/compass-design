@@ -11,7 +11,13 @@
     height: var(--cdg-spacing-125);
     overflow: auto;
   }
-  
+
+  /** All of images inside the editorContent will be smaller than 100% **/
+  /** To avoid overflow scrolling **/
+  .editorContent img {
+    max-width: 100%;
+  }
+
   .cdgRichTextEditor {
     appearance: none;
     box-sizing: border-box;
@@ -22,22 +28,22 @@
     border: 1px solid var(--cdg-color-gray40);
     overflow: clip;
   }
-  
+
   .editorContent div:first-child {
     padding: var(--cdg-spacing-4);
     min-height: 100px;
     outline: none;
   }
-  
+
   .ProseMirror:focus-visible {
     outline: none;
   }
-  
+
   .editorContent blockquote {
     border-left: 3px solid var(--cdg-color-border);
     padding-left: var(--cdg-spacing-4);
   }
-  
+
   .editorContent code {
     margin-top: 0.75em;
   }
@@ -56,7 +62,7 @@
   .editorContent sup {
     top: -0.5em;
   }
-  
+
   .editorContent a {
     color: var(--cdg-color-info);
     text-decoration: underline;
@@ -69,7 +75,7 @@
     height: 0;
     pointer-events: none;
   }
-  
+
   .editorContent h1 {
     display: block;
     font-size: 2em;
@@ -112,7 +118,7 @@
     margin: unset;
     padding-left: 20px;
   }
-  
+
   .characterCount {
     color: var(--cdg-color-secondaryText);
     padding-top: 1rem;

@@ -1,4 +1,4 @@
-import {RichTextEditor} from '@comfortdelgro/react-compass-old'
+import {RichTextEditor} from '@comfortdelgro/react-compass'
 
 const Placeholder: React.FC = () => {
   return (

@@ -15,7 +15,7 @@ A `Time` object represents a clock time without any date components. If you need
 A `Time` can be created using the constructor. This example creates a time that represents 9:45 AM.
 
 ```tsx
-import {Time} from '@comfortdelgro/react-compass-old'
+import {Time} from '@comfortdelgro/react-compass'
 
 let time = new Time(9, 45)
 ```
@@ -23,7 +23,7 @@ let time = new Time(9, 45)
 You can also create a `Time` by parsing an [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) formatted string using the <TypeLink links={docs.links} type={docs.exports.parseTime} /> function.
 
 ```tsx
-import {parseTime} from '@comfortdelgro/react-compass-old'
+import {parseTime} from '@comfortdelgro/react-compass'
 
 let time = parseTime('09:45')
 ```
@@ -161,7 +161,7 @@ A `Time` can be combined with a `CalendarDate` to produce a `CalendarDateTime` o
 import {
   CalendarDate,
   toCalendarDateTime,
-} from '@comfortdelgro/react-compass-old'
+} from '@comfortdelgro/react-compass'
 
 let date = new CalendarDate(2022, 2, 3)
 let time = new Time(8, 30)
@@ -178,7 +178,7 @@ import {
   CalendarDate,
   toCalendarDateTime,
   toZoned,
-} from '@comfortdelgro/react-compass-old'
+} from '@comfortdelgro/react-compass'
 
 let date = new CalendarDate(2022, 2, 3)
 let time = new Time(8, 30)

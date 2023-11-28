@@ -5,10 +5,11 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 // import {faChevronRight} from '@fortawesome/free-solid-svg-icons/faChevronRight'
 import {Meta} from '@storybook/react'
-import {FormEventHandler, useState} from 'react'
+import {FormEventHandler, useRef, useState} from 'react'
+import {Divider, Modal, Typography} from '..'
 import Button from '../button'
 import Icon from '../icon'
-import Drawer, {DrawerH5Props, DrawerProps} from './index'
+import Drawer, {DrawerH5Props, DrawerProps, DrawerRef} from './index'
 import storiesStyles from './styles/drawer-stories.module.css'
 
 export function Default() {
@@ -53,11 +54,7 @@ export function Default() {
       <h4>Drawer</h4>
       <p>Drawer form value: {keyword}</p>
 
-      <Button
-        css={{marginBlock: '$4'}}
-        type='button'
-        onClick={() => setOpenDrawer(true)}
-      >
+      <Button type='button' onClick={() => setOpenDrawer(true)}>
         Open Drawer
       </Button>
 
@@ -297,9 +294,14 @@ const h5DrawerDefaultConfig: Partial<DrawerH5Props> = {
 export function H5() {
   const [openDrawer, setOpenDrawer] = useState(false)
   const [openDemoDrawer, setOpenDemoDrawer] = useState(false)
-  // const [openNonModalDrawer, setOpenNonModalDrawer] = useState(false)
+  const [openNonModalDrawer, setOpenNonModalDrawer] = useState(false)
   // const [openDemoTripDrawer, setOpenDemoTripDrawer] = useState(false)
-  // const [openConfirmModal, setOpenConfirmModal] = useState(false)
+  const [openConfirmModal, setOpenConfirmModal] = useState(false)
+
+  const collapseDrawerRef = useRef<DrawerRef>(null)
+  const [openTriggerCollapseDrawer, setOpenTriggerCollapseDrawer] =
+    useState(false)
+  const [openParameterDrawer, setOpenParameterDrawer] = useState(false)
 
   const [openNoFocusDrawer, setOpenNoFocusDrawer] = useState({
     open: false,
@@ -322,7 +324,7 @@ export function H5() {
         Open Customizable Drawer
       </Button>
 
-      {/* <h4>Non-modal mode</h4>
+      <h4>Non-modal mode</h4>
       <p className={storiesStyles.description}>
         A Drawer that has no backdrop and also doesn't render on the top-layer.
         It can <strong>NOT</strong> be closed by pressing the <kbd>ESC</kbd>{' '}
@@ -336,7 +338,47 @@ export function H5() {
         onClick={() => setOpenNonModalDrawer(!openNonModalDrawer)}
       >
         Toggle Non-modal Drawer
-      </Button> */}
+      </Button>
+
+      <h4>Drawer's parameters and manipulation</h4>
+      <p className={storiesStyles.description}>
+        Get Drawer's parameters and programmatically collapse the drawer
+      </p>
+
+      <div>
+        <Typography.Body variant='body2'>
+          There are two ways to achieve it:
+        </Typography.Body>
+
+        <h5>1. Use ref</h5>
+        <Typography.Body variant='body2'>
+          Use <code>ref</code> to call the Drawer's <code>triggerCollapse</code>{' '}
+          function
+        </Typography.Body>
+        <Button
+          type='button'
+          onClick={() => setOpenTriggerCollapseDrawer(true)}
+        >
+          Open Drawer
+        </Button>
+
+        <Divider css={{marginTop: '1rem'}} />
+
+        <h5>2. Children as function</h5>
+        <Typography.Body variant='body2'>
+          When using this method, you pass children as a function which allows
+          you to access the <code>triggerCollapse</code> function and also some
+          Drawer's parameters too.
+          <br />
+          <br />
+          <strong>Note:</strong> you should wrap your Drawer's content inside a{' '}
+          <code>{'<Fragment/>'}</code> otherwise, the content may appear
+          incorrectly.
+        </Typography.Body>
+        <Button type='button' onClick={() => setOpenParameterDrawer(true)}>
+          Open Drawer
+        </Button>
+      </div>
 
       <h4>Disable autofocus on the first nested focusable element</h4>
       <p className={storiesStyles.description}>
@@ -457,40 +499,21 @@ export function H5() {
         )}
       </Drawer>
 
-      {/* <Drawer
+      <Drawer
+        className={storiesStyles.drawerH5Example}
         open={openNonModalDrawer}
         css={{height: '30dvh'}}
-        expanderCSS={{
-          background: 'var(--cdg-color-blueShades100)',
-          paddingBlock: '$2 $6',
-        }}
         onClose={() => setOpenNonModalDrawer(false)}
         variant='h5'
         expandedPoint={80}
         expandableLine={60}
         drawerMode='non-modal'
       >
-        <Drawer.Header
-          css={{
-            display: 'flex',
-            paddingTop: 0,
-            gap: '$2',
-            justifyContent: 'space-between',
-            backgroundColor: 'var(--cdg-color-blueShades100)',
-          }}
-        >
-          <Typography.Body
-            variant='body3'
-            weight='semibold'
-            css={{color: 'var(--cdg-color-grayShades10)', width: 'fit-content'}}
-          >
+        <Drawer.Header>
+          <Typography.Body variant='body3' weight='semibold'>
             Your ride is on the way
           </Typography.Body>
-          <Typography.Body
-            variant='body3'
-            weight='semibold'
-            css={{color: 'var(--cdg-color-grayShades10)', width: 'fit-content'}}
-          >
+          <Typography.Body variant='body3' weight='semibold'>
             Arriving in 8 - 10 min
           </Typography.Body>
         </Drawer.Header>
@@ -545,7 +568,51 @@ export function H5() {
             </Modal.Actions>
           </Modal>
         </Modal.Trigger>
-      </Drawer> */}
+      </Drawer>
+
+      <Drawer
+        ref={collapseDrawerRef}
+        open={openTriggerCollapseDrawer}
+        variant='h5'
+        onExpandChange={(isExpanded) => console.log(isExpanded)}
+        onHeightChange={(height) => console.log('height', height)}
+        onClose={() => setOpenTriggerCollapseDrawer(false)}
+      >
+        <Drawer.Header>
+          Get drawer's parameters and collapse it programmatically
+        </Drawer.Header>
+
+        <Button
+          type='button'
+          onClick={() => collapseDrawerRef.current?.triggerCollapse()}
+        >
+          Collapse this drawer
+        </Button>
+      </Drawer>
+
+      <Drawer
+        className={storiesStyles.drawerH5Example}
+        open={openParameterDrawer}
+        variant='h5'
+        onClose={() => setOpenParameterDrawer(false)}
+      >
+        {({triggerCollapse, ...otherParameters}) => (
+          <>
+            <Drawer.Header>
+              <Typography.Body variant='body3' weight='semibold'>
+                Get drawer's parameters and collapse it programmatically
+              </Typography.Body>
+            </Drawer.Header>
+
+            <pre className={storiesStyles.previewCode}>
+              {JSON.stringify(otherParameters, null, 4)}
+            </pre>
+            <Button type='button' onClick={() => triggerCollapse()}>
+              Collapse this drawer
+            </Button>
+          </>
+        )}
+      </Drawer>
 
       <Drawer
         open={openNoFocusDrawer.open}

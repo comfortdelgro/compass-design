@@ -1,5 +1,4 @@
-import {Icon, List} from '@comfortdelgro/react-compass-old'
-// import {List as StaticList} from '@comfortdelgro/static'
+import {Icon, List} from '@comfortdelgro/react-compass'
 import {faBug} from '@fortawesome/free-solid-svg-icons'
 
 function SizeExample() {
@@ -28,22 +27,6 @@ function SizeExample() {
         description='Lorem Ipsum'
         css={{maxWidth: '198px'}}
       />
-
-      {/* <StaticList
-        size='sm'
-        leftInfo={<Icon icon={faBug} />}
-        title='Title'
-        description='Lorem Ipsum'
-        css={{maxWidth: '198px'}}
-      />
-      <StaticList
-        size='sm'
-        isDisabled
-        leftInfo={<Icon icon={faBug} />}
-        title='Title'
-        description='Lorem Ipsum'
-        css={{maxWidth: '198px'}}
-      /> */}
     </div>
   )
 }

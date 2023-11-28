@@ -1,4 +1,4 @@
-import {ActionBar, Button, Column} from '@comfortdelgro/react-compass-old'
+import {ActionBar, Button, Column} from '@comfortdelgro/react-compass'
 import React from 'react'
 
 const Right: React.FC = () => {

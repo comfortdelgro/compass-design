@@ -11,30 +11,31 @@ components: Drawer
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Drawer} from '@comfortdelgro/react-compass-old'
+import {Drawer} from '@comfortdelgro/react-compass'
 ```
 
-or
 
-```jsx
-import Drawer from '@comfortdelgro/react-compass-old/drawer'
-```
-
-## Usage
-
-### Basic
+## Basic
 
 {{"demo": "Drawer.tsx"}}
 
-### Positions
+## Positions
 
 {{"demo": "DrawerPosition.tsx"}}
 
-### H5 variant
+## H5 Drawer
 
 {{"demo": "DrawerH5.tsx"}}
 
-### Non-modal mode
+### Collapse the H5 drawer programmatically
+
+There are two ways to achieve it:
+
+{{"demo": "DrawerCollapseRef.tsx"}}
+
+{{"demo": "DrawerExpose.tsx"}}
+
+## Non-modal mode
 
 A Drawer that has no backdrop and also doesn't render on the top-layer. It can NOT be closed by pressing the `ESC` key.
 The content below the non-modal drawer can be interacted.
@@ -86,6 +87,7 @@ By default, it respects the default accessibility behavior and settings of a `<d
 | Name               | Type                          | Default                                                              | Description                                                                                                                                                                                                                                |
 | :----------------- | :---------------------------- | :------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `expanderCSS`      | `CSS`                         | —                                                                    | Allows to custom CSS styles for the expander (use for drag & drop).                                                                                                                                                                        |
+| `onHeightChange`   | `(height: number) => void`    | —                                                                    | Trigger when the H5 drawer's height changes.                                                                                                                                                                                               |
 | `onExpandChange`   | `(isExpand: boolean) => void` | —                                                                    | Trigger when the H5 drawer expanded.                                                                                                                                                                                                       |
 | `expandedPoint`    | `number`                      | `100` - <small>the top edge of available viewport</small>            | How many **percentage** of the viewport height that the drawer will be fully expanded.<br/><small>Accepted value range: `0` - `100`<br/>Must be greater than `expandableLine` and the drawer initialization height (percent).</small>      |
 | `expandableLine`   | `number`                      | `67` - <small>2/3 viewport from bottom of available viewport</small> | A boundary to tell the drawer to fully expand when its top crosses this line.<br/><small>Accepted value range: `0` - `100`<br/>It must be smaller than `expandedPoint` and greater than drawer initialization height (percentage).</small> |

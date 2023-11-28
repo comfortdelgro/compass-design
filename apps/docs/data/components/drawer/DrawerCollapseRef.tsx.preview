@@ -1,0 +1,12 @@
+import {Drawer, DrawerRef, Button} from '@comfortdelgro/react-compass'
+
+const drawerRef = useRef<DrawerRef>(null)
+
+<Drawer
+  ref={drawerRef}
+  variant='h5'
+>
+  <Button type='button' onClick={() => drawerRef.current?.triggerCollapse()}>
+    Collapse this drawer
+  </Button>
+</Drawer>

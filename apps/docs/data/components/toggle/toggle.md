@@ -10,13 +10,7 @@ components: Toggle
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Toggle} from '@comfortdelgro/react-compass-old'
-```
-
-or
-
-```jsx
-import Toggle from '@comfortdelgro/react-compass-old/toggle'
+import {Toggle} from '@comfortdelgro/react-compass'
 ```
 
 ## Controlled
@@ -31,9 +25,9 @@ import Toggle from '@comfortdelgro/react-compass-old/toggle'
 
 {{"demo": "ToggleIsDisabled.tsx"}}
 
-## isReadOnly
+<!-- ## isReadOnly -->
 
-{{"demo": "ToggleIsReadOnly.tsx"}}
+<!-- {{"demo": "ToggleIsReadOnly.tsx"}} -->
 
 ## Sizes
 

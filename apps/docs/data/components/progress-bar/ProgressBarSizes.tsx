@@ -1,4 +1,4 @@
-import {Column, ProgressBar} from '@comfortdelgro/react-compass-old'
+import {Column, ProgressBar} from '@comfortdelgro/react-compass'
 
 export default function ProgressBarSizeDocs() {
   return (

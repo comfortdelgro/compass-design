@@ -1,6 +1,6 @@
 import Copy from '@comfortdelgro/compass-icons/react/copy'
 import TickCircle from '@comfortdelgro/compass-icons/react/tick-circle'
-import {useToast} from '@comfortdelgro/react-compass-old'
+import {useToast} from '@comfortdelgro/react-compass'
 import {useEffect, useState} from 'react'
 import useClipboardCopy from 'utils/useClipboardCopy'
 
@@ -23,7 +23,7 @@ export default function CodeCopyButton(props: CodeCopyButtonProps) {
       {...other}
       aria-label='Copy the code'
       type='button'
-      className='cdg-copy'
+      className={'cdg-copy'}
       onClick={async (event) => {
         event.stopPropagation()
         await copy(code)
@@ -34,7 +34,7 @@ export default function CodeCopyButton(props: CodeCopyButtonProps) {
       }}
     >
       {isCopied ? <TickCircle /> : <Copy />}
-      <span className='cdg-copyKeypress'>
+      <span className={'cdg-copyKeypress'}>
         <span>(or</span> {key}C<span>)</span>
       </span>
     </button>

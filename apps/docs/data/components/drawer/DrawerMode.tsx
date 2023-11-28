@@ -6,7 +6,7 @@ import {
   Modal,
   Row,
   Typography,
-} from '@comfortdelgro/react-compass-old'
+} from '@comfortdelgro/react-compass'
 import {useState} from 'react'
 
 export default function DrawerModeDocs() {
@@ -95,14 +95,14 @@ export default function DrawerModeDocs() {
           <Typography.Body
             variant='body3'
             weight='semibold'
-            css={{color: '$grayShades10', width: 'fit-content'}}
+            css={{color: '$grayShades10', width: 'fit-content', margin: 0}}
           >
             Drawer Header
           </Typography.Body>
           <Typography.Body
             variant='body3'
             weight='semibold'
-            css={{color: '$grayShades10', width: 'fit-content'}}
+            css={{color: '$grayShades10', width: 'fit-content', margin: 0}}
           >
             Non-modal Mode
           </Typography.Body>

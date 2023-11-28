@@ -4,7 +4,7 @@ import {
   Dialog,
   Icon,
   Typography,
-} from '@comfortdelgro/react-compass-old'
+} from '@comfortdelgro/react-compass'
 import {faBug} from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
 

@@ -1,10 +1,10 @@
 import {
   Button,
+  Dropdown,
   Icon,
   ToastContextProvider,
   useToast,
-} from '@comfortdelgro/react-compass-old'
-import Dropdown from '@comfortdelgro/react-compass-old/dropdown'
+} from '@comfortdelgro/react-compass'
 import {faImage} from '@fortawesome/free-solid-svg-icons'
 import React, {Key} from 'react'
 

@@ -1,4 +1,4 @@
-import {Box} from '@comfortdelgro/react-compass-old'
+import {Box} from '@comfortdelgro/react-compass'
 import EditPage from 'components/common/EditPage'
 import Head from 'components/common/Head'
 import AppFrame from 'components/layouts/DocsAppFrame'
@@ -36,10 +36,10 @@ export default function AppLayoutDocs(props: any) {
         >
           <Box
             css={{
-              padding: '$5 $16',
+              padding: 'var(--cdg-spacing-5) var(--cdg-spacing-16)',
               width: '100%',
               '@max_1024': {
-                padding: '$4',
+                padding: 'var(--cdg-spacing-4)',
               },
             }}
           >

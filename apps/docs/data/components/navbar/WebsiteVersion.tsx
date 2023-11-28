@@ -1,5 +1,5 @@
 import Workbench from '@comfortdelgro/compass-icons/react/colorful/workbench'
-import {Button, Column, Navbar} from '@comfortdelgro/react-compass-old'
+import {Button, Column, Navbar} from '@comfortdelgro/react-compass'
 
 const Variants: React.FC = () => {
   return (

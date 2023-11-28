@@ -67,7 +67,7 @@
   }
 
   .appNavSection.isInactive svg,
-  .appNavSection.isActive span {
+  .appNavSection.isInactive span {
     color: var(--cdg-color-grayShades60);
   }
 }

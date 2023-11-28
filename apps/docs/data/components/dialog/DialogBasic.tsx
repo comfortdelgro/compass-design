@@ -1,4 +1,4 @@
-import {Button, Column, Dialog} from '@comfortdelgro/react-compass-old'
+import {Button, Column, Dialog} from '@comfortdelgro/react-compass'
 import React from 'react'
 
 const Default: React.FC = () => {

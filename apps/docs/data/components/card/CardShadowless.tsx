@@ -1,5 +1,5 @@
 import Edit from '@comfortdelgro/compass-icons/react/edit'
-import {Button, Card, Column} from '@comfortdelgro/react-compass-old'
+import {Button, Card, Column} from '@comfortdelgro/react-compass'
 
 const lorem = ` Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste
 corrupti esse qui earum dolorum nulla assumenda excepturi, a
@@ -15,7 +15,7 @@ const Variants: React.FC = () => {
       <Card size='lg' isShadowless={true}>
         <Card.Body>
           <Card.Title style={{display: 'flex', alignItems: 'center'}}>
-            <h3 className='card-title'>Card title</h3>
+            <h3 className='card-title' style={{fontSize: 'inherit', margin: 0, width: '100%'}}>Card title</h3>
             <Button variant='ghost'>
               <Edit />
             </Button>

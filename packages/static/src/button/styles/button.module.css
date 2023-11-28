@@ -27,7 +27,7 @@
 * variant has the second highest priority
 * default has the lowest priority
 */
-@layer default, variant, compoundVariant;
+@layer default, variant, compoundVariant, custom;
 
 @layer default {
   /***** Level 1: Default styles for button and its child elements *****/

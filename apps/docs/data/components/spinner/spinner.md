@@ -10,14 +10,9 @@ components: Spinner
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Spinner} from '@comfortdelgro/react-compass-old'
+import {Spinner} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import Spinner from '@comfortdelgro/react-compass-old/spinner'
-```
 
 ## Basic
 

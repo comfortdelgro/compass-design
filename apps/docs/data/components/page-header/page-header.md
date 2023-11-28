@@ -10,14 +10,9 @@ components: PageHeader
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {PageHeader} from '@comfortdelgro/react-compass-old'
+import {PageHeader} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import PageHeader from '@comfortdelgro/react-compass-old/page-header'
-```
 
 ## Example
 

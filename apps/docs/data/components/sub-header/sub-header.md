@@ -10,13 +10,7 @@ components: SubHeader
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {SubHeader} from '@comfortdelgro/react-compass-old'
-```
-
-or
-
-```jsx
-import SubHeader from '@comfortdelgro/react-compass-old/page-header'
+import {SubHeader} from '@comfortdelgro/react-compass'
 ```
 
 ## Example

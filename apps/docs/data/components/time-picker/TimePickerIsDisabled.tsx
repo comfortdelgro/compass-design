@@ -1,4 +1,4 @@
-import TimePicker from '@comfortdelgro/react-compass-old/time-picker'
+import {TimePicker} from '@comfortdelgro/react-compass'
 
 function TimePickerIsDisabled() {
   return (

@@ -1,0 +1,7 @@
+.rootSvg {
+  vertical-align: bottom;
+}
+
+.rootSvg svg {
+  fill: red;
+}

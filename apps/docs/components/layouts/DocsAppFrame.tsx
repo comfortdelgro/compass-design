@@ -1,4 +1,4 @@
-import {Box} from '@comfortdelgro/react-compass-old'
+import {Box} from '@comfortdelgro/react-compass'
 import {CommonHeader} from 'components/common/CommonHeader'
 import MarkdownLinks from 'components/common/MarkdownLinks'
 import routes from 'constants/routes'
@@ -89,7 +89,7 @@ export default function DocsAppFrame(props: {children: React.ReactNode}) {
           width: '100vw',
           height: 'calc(100vh - 54px)',
           overflow: 'hidden',
-          background: '$background',
+          background: 'var(--cdg-color-background)',
         }}
       >
         <Box css={{width: '100%', display: 'flex'}}>

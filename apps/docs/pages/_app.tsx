@@ -1,11 +1,10 @@
 import {
-  SSRProvider,
-  ThemeProvider,
+  Preflight,
+  ThemeStaticProvider,
   ToastContextProvider,
-} from '@comfortdelgro/react-compass-old'
-import Preflight from '@comfortdelgro/react-compass-old/preflight'
-//import {ThemeStaticProvider} from '@comfortdelgro/static'
-//import '@comfortdelgro/static/style.css'
+} from '@comfortdelgro/react-compass'
+import {SSRProvider} from '@comfortdelgro/react-compass-old'
+import '@comfortdelgro/react-compass/style.css'
 import 'components/common/bootstrap'
 import AppHeader from 'components/layouts/AppHeader'
 import {ETheme} from 'constants/index'
@@ -16,6 +15,7 @@ import * as React from 'react'
 import {getStaticPath} from 'utils'
 import {CodeCopyProvider} from 'utils/CodeCopy'
 import useLazyCSS from 'utils/useLazyCSS'
+import '../styles/code-editor.css'
 import './global.css'
 
 let dependenciesLoaded = false
@@ -61,15 +61,15 @@ function AppWrapper(props: any) {
         <ToastContextProvider
           anchorOrigin={{horizontal: 'right', vertical: 'top'}}
         >
-          {/* <ThemeStaticProvider changeBy={mode}> */}
-          <ThemeProvider changeBy={mode}>
+          <ThemeStaticProvider changeBy={mode}>
+            {/* <ThemeProvider changeBy={mode}> */}
             <CodeCopyProvider>
               <Preflight />
               <AppHeader handleChangeThemeMode={handleChangeThemeMode} />
               {children}
             </CodeCopyProvider>
-          </ThemeProvider>
-          {/* </ThemeStaticProvider> */}
+            {/* </ThemeProvider> */}
+          </ThemeStaticProvider>
         </ToastContextProvider>
       </ThemeContext.Provider>
     </React.Fragment>

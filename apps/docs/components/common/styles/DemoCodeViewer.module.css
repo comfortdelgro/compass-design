@@ -1,0 +1,10 @@
+.demoCodeViewer {
+  position: relative;
+}
+
+.demoCodeViewer pre{
+  margin: 0;
+  max-height: min(68vh, 1000px);
+  max-width: initial;
+  border-radius: 0;
+}

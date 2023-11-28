@@ -69,7 +69,7 @@ export const StyledSidebarContent = styled('div', {
   border: 'none',
   boxSizing: 'border-box',
   margin: '0px',
-  padding: '$4',
+  padding: '0 $4',
   background: 'transparent',
   overflow: 'auto',
   flex: 1,
@@ -131,7 +131,6 @@ export const StyledSidebar = styled('div', {
   overflow: 'hidden',
 
   // sidebar styling
-  width: '$88',
   height: '100vh',
   zIndex: '50',
   backgroundColor: '$primaryBg',
@@ -149,8 +148,14 @@ export const StyledSidebar = styled('div', {
       },
     },
     variant: {
-      primary: {},
-      secondary: {backgroundColor: '$background', padding: '$12'},
+      primary: {
+        width: '$88',
+      },
+      secondary: {
+        width: '498px',
+        backgroundColor: '$background',
+        padding: '$8',
+      },
     },
   },
 

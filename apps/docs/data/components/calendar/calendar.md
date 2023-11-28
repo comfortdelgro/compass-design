@@ -10,14 +10,9 @@ components: Calendar
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Calendar} from '@comfortdelgro/react-compass-old'
+import {Calendar} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import Calendar from '@comfortdelgro/react-compass-old/calendar'
-```
 
 ## Example
 

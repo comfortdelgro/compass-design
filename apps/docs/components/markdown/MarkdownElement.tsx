@@ -1,26 +1,6 @@
-import {styled} from '@comfortdelgro/react-compass-old'
 import clsx from 'clsx'
 import * as React from 'react'
-
-const Root = styled('div', {
-  color: '$primaryText',
-  '& pre': {
-    backgroundColor: '$cdgBlue140',
-    color: '#f8f8f2', // fallback color until Prism's theme is loaded
-    overflow: 'auto',
-    margin: 0,
-    WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
-    maxWidth: 'calc(100vw - 32px)',
-  },
-  '& code': {
-    fontFamily: '$mono !important',
-    fontWeight: 400,
-    WebkitFontSmoothing: 'subpixel-antialiased',
-    // Reset for Safari
-    // https://github.com/necolas/normalize.css/blob/master/normalize.css#L102
-    fontSize: '1em',
-  },
-})
+import styles from './styles/MarkdownElement.module.css'
 
 type MarkdownElementProps = {
   renderedMarkdown: string
@@ -38,8 +18,8 @@ const MarkdownElement = React.forwardRef<HTMLDivElement, MarkdownElementProps>(
     }
 
     return (
-      <Root
-        className={clsx('markdown-body', className)}
+      <div
+        className={clsx('markdown-body', className, styles.markdownElement)}
         {...more}
         {...other}
         ref={ref}

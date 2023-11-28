@@ -10,13 +10,7 @@ components: Card
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Card} from '@comfortdelgro/react-compass-old'
-```
-
-or
-
-```jsx
-import Card from '@comfortdelgro/react-compass-old/card'
+import {Card} from '@comfortdelgro/react-compass'
 ```
 
 ## Example

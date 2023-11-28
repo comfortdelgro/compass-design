@@ -10,13 +10,7 @@ components: Progress
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Progress} from '@comfortdelgro/react-compass-old'
-```
-
-or
-
-```jsx
-import Progress from '@comfortdelgro/react-compass-old/progress'
+import {Progress} from '@comfortdelgro/react-compass'
 ```
 
 ## Circular
@@ -34,6 +28,8 @@ import Progress from '@comfortdelgro/react-compass-old/progress'
 {{"demo": "CircularColor.tsx"}}
 
 ### Circular size
+
+The default height/width is 40px. In this example, we tailored it to be 70px
 
 {{"demo": "CircularSize.tsx"}}
 
@@ -56,6 +52,8 @@ import Progress from '@comfortdelgro/react-compass-old/progress'
 {{"demo": "LinearColor.tsx"}}
 
 ### Linear Size
+
+The default height is 4px. In this example, we tailored it to be 10px.
 
 {{"demo": "LinearSize.tsx"}}
 

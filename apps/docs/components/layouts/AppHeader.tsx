@@ -1,7 +1,4 @@
-import {Box, Button, Navbar, Typography} from '@comfortdelgro/react-compass-old'
-import NavbarActions from '@comfortdelgro/react-compass-old/navbar/navbar-actions'
-import {NavbarLinks} from '@comfortdelgro/react-compass-old/navbar/navbar-links'
-import {NavbarSeperator} from '@comfortdelgro/react-compass-old/navbar/navbar-seperator.style'
+import {Box, Button, Navbar, Typography} from '@comfortdelgro/react-compass'
 import ThemeModeToggle from 'components/header/ThemeModeToggle'
 import SvgGithub from 'components/icons/SvgGithub'
 import SvgLogo from 'components/icons/SvgLogo'
@@ -43,7 +40,7 @@ export default function AppHeader(props: AppHeaderProps) {
         </Link>
       </Navbar.Brand>
       {!isTabletScreen && (
-        <NavbarLinks>
+        <Navbar.Links>
           <Link href='/foundation/overview'>
             <Button>Document</Button>
           </Link>
@@ -53,10 +50,10 @@ export default function AppHeader(props: AppHeaderProps) {
           >
             <Button>Ladle</Button>
           </Link>
-        </NavbarLinks>
+        </Navbar.Links>
       )}
-      <NavbarSeperator />
-      <NavbarActions
+      <Navbar.Separator />
+      <Navbar.Actions
         css={{
           '.default-navbar-actions': {
             justifyContent: 'flex-end',
@@ -89,7 +86,7 @@ export default function AppHeader(props: AppHeaderProps) {
           onChange={handleChangeThemeMode}
         />
         {isTabletScreen && <AppNavbarMobile />}
-      </NavbarActions>
+      </Navbar.Actions>
     </Navbar>
   )
 }

@@ -38,13 +38,20 @@ export type {
   CardProps,
   CardTitleProps,
 } from './card'
-export {default as Carousel} from './carousel'
+export {default as CarouselSlider} from './carousel'
 export type {
   CarouselImageSlideProps,
   CarouselMobileProps,
   CarouselPromotionProps,
   CarouselSlideProps,
+  CarouselSliderButton,
+  CarouselSliderItem,
   CarouselSliderProps,
+  ButtonType,
+  CarouselOptions,
+  NinePartAlignment,
+  NavigationButtonType,
+  SocicalIcon
 } from './carousel'
 export {default as Chart} from './chart'
 export type {
@@ -87,6 +94,7 @@ export type {
   DrawerH5Props,
   DrawerHeaderProps,
   DrawerProps,
+  DrawerRef,
 } from './drawer'
 export {default as Dropdown} from './dropdown'
 export type {
@@ -137,6 +145,10 @@ export {default as Icon} from './icon'
 export type {IconProp} from './icon'
 export {default as ImageViewer} from './image-viewer'
 export type {ImageViewerProps} from './image-viewer'
+export * from './internationalized/date'
+export * from './internationalized/i18n'
+export * from './internationalized/number'
+export * from './internationalized/string'
 export * from './layouts'
 export {default as ActionBar} from './layouts/action-bar'
 export type {
