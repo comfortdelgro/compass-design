@@ -7,9 +7,5 @@
   "access": "restricted",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": [
-    "@comfortdelgro/compass-design-website",
-    "@comfortdelgro/react-compass-old",
-    "@comfortdelgro/markdown"
-  ]
+  "ignore": ["@comfortdelgro/compass-design-website", "@comfortdelgro/markdown"]
 }
