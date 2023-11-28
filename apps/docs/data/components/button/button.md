@@ -10,7 +10,6 @@
 import {Button} from '@comfortdelgro/react-compass'
 ```
 
-
 ## Button Sizes
 
 {{"demo": "ButtonSize.tsx"}}

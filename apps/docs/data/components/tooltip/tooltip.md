@@ -13,7 +13,6 @@ components: Tooltip
 import {Tooltip} from '@comfortdelgro/react-compass'
 ```
 
-
 ## Example
 
 ### Basic

@@ -1,6 +1,6 @@
 import React from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
-import { useDOMRef } from '../utils/use-dom-ref'
+import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/box.module.css'
 
 export type BoxProps = Props &

@@ -15,7 +15,6 @@ components: TextField
 import {Accordion} from '@comfortdelgro/react-compass'
 ```
 
-
 ## Example
 
 ### Basic Example

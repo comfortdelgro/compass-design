@@ -15,7 +15,6 @@ components: Alert
 import {Alert} from '@comfortdelgro/react-compass'
 ```
 
-
 ## Example
 
 ### Basic Example

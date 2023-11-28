@@ -40,18 +40,18 @@ export type {
 } from './card'
 export {default as CarouselSlider} from './carousel'
 export type {
+  ButtonType,
   CarouselImageSlideProps,
   CarouselMobileProps,
+  CarouselOptions,
   CarouselPromotionProps,
   CarouselSlideProps,
   CarouselSliderButton,
   CarouselSliderItem,
   CarouselSliderProps,
-  ButtonType,
-  CarouselOptions,
-  NinePartAlignment,
   NavigationButtonType,
-  SocicalIcon
+  NinePartAlignment,
+  SocicalIcon,
 } from './carousel'
 export {default as Chart} from './chart'
 export type {

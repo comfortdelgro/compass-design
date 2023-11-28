@@ -13,7 +13,6 @@ components: ReactTable
 import {ReactTable} from '@comfortdelgro/react-compass'
 ```
 
-
 ## Example
 
 ### Full features

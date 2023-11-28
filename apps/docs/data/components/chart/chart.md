@@ -23,7 +23,6 @@ const nextConfig = {
 import {Chart} from '@comfortdelgro/react-compass'
 ```
 
-
 ## Example
 
 ### Column

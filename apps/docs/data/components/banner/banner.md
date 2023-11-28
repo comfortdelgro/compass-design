@@ -15,7 +15,6 @@ components: Banner
 import {Banner} from '@comfortdelgro/react-compass'
 ```
 
-
 ## Example
 
 ### Basic
