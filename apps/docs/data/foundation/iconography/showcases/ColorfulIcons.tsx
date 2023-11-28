@@ -40,7 +40,7 @@ import ZigBizTsmColorful from '@comfortdelgro/compass-icons/react/colorful/zig-b
 import ZigBizWhiteColorful from '@comfortdelgro/compass-icons/react/colorful/zig-biz-white'
 import ZigStoreColorful from '@comfortdelgro/compass-icons/react/colorful/zig-store'
 import ZigStoreLightColorful from '@comfortdelgro/compass-icons/react/colorful/zig-store-light'
-import {Flexbox} from '@comfortdelgro/react-compass-old'
+import {Flexbox} from '@comfortdelgro/react-compass'
 import IconBox from 'data/foundation/iconography/components/IconBox'
 
 export default function colorfulIcons() {

@@ -1,4 +1,4 @@
-import {ActionBar, Button, Column, Icon} from '@comfortdelgro/react-compass-old'
+import {ActionBar, Button, Column, Icon} from '@comfortdelgro/react-compass'
 import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
 

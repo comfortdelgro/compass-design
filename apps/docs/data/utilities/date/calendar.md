@@ -19,7 +19,7 @@ import {
   GregorianCalendar,
   HebrewCalendar,
   toCalendar,
-} from '@comfortdelgro/react-compass-old'
+} from '@comfortdelgro/react-compass'
 
 let hebrewDate = new CalendarDate(new HebrewCalendar(), 5781, 1, 1)
 toCalendar(hebrewDate, new GregorianCalendar())
@@ -31,7 +31,7 @@ toCalendar(hebrewDate, new GregorianCalendar())
 While it is possible to construct `Calendar` objects manually, a common usecase is to get a calendar object for a certain locale. Each calendar has an associated string identifier that can be used to retrieve an instance of that calendar using the <TypeLink links={docs.links} type={docs.exports.createCalendar} /> function. A list of supported calendar identifiers is available [below](#implementations).
 
 ```tsx
-import {createCalendar} from '@comfortdelgro/react-compass-old'
+import {createCalendar} from '@comfortdelgro/react-compass'
 
 createCalendar('gregory')
 createCalendar('hebrew')
@@ -65,7 +65,7 @@ createCalendar(calendarIdentifier) // new IndianCalendar()
 import {
   GregorianCalendar,
   JapaneseCalendar,
-} from '@comfortdelgro/react-compass-old'
+} from '@comfortdelgro/react-compass'
 
 function createCalendar(identifier) {
   switch (identifier) {

@@ -13,11 +13,6 @@ components: Error
 import {Error} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import Error from '@comfortdelgro/react-compass/error'
-```
 
 ## Example
 

@@ -13,11 +13,6 @@ components: PUDO
 import {Pudo} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import Pudo from '@comfortdelgro/react-compass/pudo'
-```
 
 ## Usage
 

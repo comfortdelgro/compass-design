@@ -4,7 +4,7 @@ import {
   Column,
   Navbar,
   SearchField,
-} from '@comfortdelgro/react-compass-old'
+} from '@comfortdelgro/react-compass'
 import NavbarActions from '@comfortdelgro/react-compass-old/navbar/navbar-actions'
 import {NavbarLinks} from '@comfortdelgro/react-compass-old/navbar/navbar-links'
 import {NavbarSeperator} from '@comfortdelgro/react-compass-old/navbar/navbar-seperator.style'

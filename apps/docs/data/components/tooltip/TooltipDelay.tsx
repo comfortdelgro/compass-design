@@ -1,4 +1,4 @@
-import {Button, Tooltip, TooltipTrigger} from '@comfortdelgro/react-compass-old'
+import {Button, Tooltip, TooltipTrigger} from '@comfortdelgro/react-compass'
 import {useState} from 'react'
 
 const Delay: React.FC = () => {

@@ -1,4 +1,4 @@
-import {SpeedDial} from '@comfortdelgro/react-compass-old'
+import {SpeedDial} from '@comfortdelgro/react-compass'
 
 function SpeedDialExample() {
   return (

@@ -16,7 +16,7 @@ import {SearchField} from '@comfortdelgro/react-compass'
 or
 
 ```jsx
-import SearchField from '@comfortdelgro/react-compass/searchfield'
+import {SearchField} from '@comfortdelgro/react-compass'
 ```
 
 ## Example

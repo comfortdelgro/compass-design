@@ -13,12 +13,6 @@ components: SubBanner
 import {SubBanner} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import SubBanner from '@comfortdelgro/react-compass/sub-banner'
-```
-
 ## Example
 
 ### Primary

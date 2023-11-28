@@ -13,12 +13,6 @@ components: SubHeader
 import {SubHeader} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import SubHeader from '@comfortdelgro/react-compass/page-header'
-```
-
 ## Example
 
 ### Basic

@@ -10,13 +10,7 @@ components: Textarea
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Textarea} from '@comfortdelgro/react-compass-old'
-```
-
-or
-
-```jsx
-import Textarea from '@comfortdelgro/react-compass-old/textarea'
+import {Textarea} from '@comfortdelgro/react-compass'
 ```
 
 ## Example

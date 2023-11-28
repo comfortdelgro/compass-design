@@ -10,14 +10,9 @@ components: Box
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Box} from '@comfortdelgro/react-compass-old'
+import {Box} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import Box from '@comfortdelgro/react-compass-old/box'
-```
 
 ## Example
 

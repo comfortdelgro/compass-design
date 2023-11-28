@@ -13,11 +13,6 @@ components: AppNav
 import {AppNav} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import AppNav from '@comfortdelgro/react-compass/appnav'
-```
 
 ## Example
 

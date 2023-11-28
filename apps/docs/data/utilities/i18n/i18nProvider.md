@@ -25,7 +25,7 @@ information via `useLocale`.
 ## Example
 
 ```tsx
-import {I18nProvider} from '@comfortdelgro/react-compass-old'
+import {I18nProvider} from '@comfortdelgro/react-compass'
 
 function Example() {
   return (

@@ -15,11 +15,6 @@ components: Banner
 import {Banner} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```js
-import Banner from '@comfortdelgro/react-compass/banner'
-```
 
 ## Example
 

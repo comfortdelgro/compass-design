@@ -1,4 +1,4 @@
-import CarouselSlider from '@comfortdelgro/react-compass-old/carousel'
+import {CarouselSlider} from '@comfortdelgro/react-compass'
 import {useEffect, useState} from 'react'
 import style from './sample.module.css'
 

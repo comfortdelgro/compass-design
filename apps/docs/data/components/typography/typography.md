@@ -10,13 +10,7 @@ components: Typography
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Typography} from '@comfortdelgro/react-compass-old'
-```
-
-or
-
-```jsx
-import Typography from '@comfortdelgro/react-compass-old/link'
+import {Typography} from '@comfortdelgro/react-compass'
 ```
 
 ## Example

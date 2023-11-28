@@ -4,7 +4,7 @@ import {
   Drawer,
   Row,
   Typography,
-} from '@comfortdelgro/react-compass-old'
+} from '@comfortdelgro/react-compass'
 import {useState} from 'react'
 
 export default function DrawerExposeDocs() {
@@ -12,7 +12,9 @@ export default function DrawerExposeDocs() {
 
   return (
     <Column>
-      <Typography.Header variant='header4'>children as function</Typography.Header>
+      <Typography.Header variant='header4'>
+        children as function
+      </Typography.Header>
       <Typography.Body
         variant='body2'
         css={{'&>code': {fontFamily: '$mono', fontWeight: '$semibold'}}}

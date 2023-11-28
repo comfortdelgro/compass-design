@@ -1,4 +1,4 @@
-import {Column, Tag, TagBoxV2} from '@comfortdelgro/react-compass-old'
+import {Column, Tag, TagBoxV2} from '@comfortdelgro/react-compass'
 import {useState} from 'react'
 
 const Basic: React.FC = () => {

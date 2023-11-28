@@ -10,14 +10,9 @@ components: Grid
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Grid} from '@comfortdelgro/react-compass-old'
+import {Grid} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import Grid from '@comfortdelgro/react-compass-old/grid'
-```
 
 ## Example
 

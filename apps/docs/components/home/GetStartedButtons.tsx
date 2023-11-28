@@ -1,4 +1,4 @@
-import {Box, Button} from '@comfortdelgro/react-compass-old'
+import {Box, Button} from '@comfortdelgro/react-compass'
 import copy from 'clipboard-copy'
 import * as React from 'react'
 
@@ -8,7 +8,7 @@ import Tick from '@comfortdelgro/compass-icons/react/tick'
 
 export default function GetStartedButtons() {
   const [copied, setCopied] = React.useState(false)
-  const installation = 'npm install @comfortdelgro/react-compass-old'
+  const installation = 'npm install @comfortdelgro/react-compass'
   const handleCopy = () => {
     setCopied(true)
     copy(installation).then(() => {

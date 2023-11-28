@@ -13,12 +13,6 @@ components: Progress
 import {Progress} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import Progress from '@comfortdelgro/react-compass/progress'
-```
-
 ## Circular
 
 ### Circular indeterminate

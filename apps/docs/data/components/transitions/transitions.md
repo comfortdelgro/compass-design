@@ -10,14 +10,9 @@ components: Transitions
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Transitions} from '@comfortdelgro/react-compass-old'
+import {Transitions} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import Transitions from '@comfortdelgro/react-compass-old/transitions'
-```
 
 ## Fade
 
