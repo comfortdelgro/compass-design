@@ -18,7 +18,7 @@ export default function DemoEditorError(props: {children: React.ReactNode}) {
         background: '$dangerBg',
         color: '$danger',
         border: '1px solid $danger',
-        padding: '$2',
+        padding: 'var(--cdg-spacing-2)',
         borderRadius: 8,
       }}
     >

@@ -4,8 +4,8 @@ import Link from 'next/link'
 export default function ComponentLinkHeader() {
   return (
     <Flexbox
-      css={{
-        marginBottom: '$4',
+      style={{
+        marginBottom: 'var(--cdg-spacing-4)',
       }}
     >
       <Link

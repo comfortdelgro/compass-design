@@ -25,7 +25,7 @@ export const CommonHeader = () => {
   }
 
   return (
-    <Row css={{padding: hasImage ? '$4 20px' : '0', gap: '$4'}}>
+    <Row css={{padding: hasImage ? 'var(--cdg-spacing-4) 20px' : '0', gap: 'var(--cdg-spacing-4)'}}>
       <CommonHeaderTitle />
       {hasImage ? (
         <Box
