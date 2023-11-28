@@ -5,7 +5,7 @@ import {noop} from 'lodash'
 import throttle from 'lodash/throttle'
 import Link from 'next/link'
 import * as React from 'react'
-
+import styles from './styles/DocsAppToc.module.css'
 // @ts-ignore
 function useThrottledOnScroll(callback, delay) {
   const throttledCallback = React.useMemo(
@@ -118,18 +118,18 @@ export default function DocsAppToc(props: any) {
       }}
     >
       <Box
+        className={styles.DocsTOC}
         dangerouslySetInnerHTML={{__html: item.text}}
         css={{
-          color: activeState === item.hash ? '$gray100' : '$gray70',
-          background: activeState === item.hash ? '$gray30' : 'none',
+          color: activeState === item.hash ? 'var(--cdg-color-gray80)' : 'var(--cdg-color-gray70)',
+          background: activeState === item.hash ? 'var(--cdg-color-gray30)' : 'none',
           borderRadius: 5,
           textDecoration: 'none',
           fontWeight: activeState === item.hash ? 'bold' : '600',
           fontSize: 14,
-          padding: children ? '2px 5px' : '5px',
-          '&:hover': {
-            background: '$gray30',
-          },
+          paddingTop: !children ? 'var(--cdg-spacing-2)' : 'var(--cdg-spacing-1)',
+          paddingBottom: !children ? 'var(--cdg-spacing-1)' : 'var(--cdg-spacing-1)',
+          paddingLeft: 'var(--cdg-spacing-2)',
         }}
       />
     </Link>

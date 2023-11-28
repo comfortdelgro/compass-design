@@ -1,6 +1,6 @@
 import Copy from '@comfortdelgro/compass-icons/react/copy'
 import TickCircle from '@comfortdelgro/compass-icons/react/tick-circle'
-import { useToast } from '@comfortdelgro/react-compass-old'
+import { useToast } from '@comfortdelgro/react-compass'
 import { useEffect, useState } from 'react'
 import useClipboardCopy from 'utils/useClipboardCopy'
 

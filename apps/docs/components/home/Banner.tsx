@@ -8,6 +8,9 @@ const Banner = () => {
       <Image
         className='hero-background'
         src={getStaticPath('/static/images/home-background.png')}
+        style={{
+          filter: 'brightness(0.7)'
+        }}
         alt='Big hero banner'
         sizes='100vw'
         width={0}

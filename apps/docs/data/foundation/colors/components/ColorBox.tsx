@@ -1,4 +1,5 @@
-import {useEffect, useState} from 'react'
+import { useToast } from '@comfortdelgro/react-compass'
+import { useEffect, useState } from 'react'
 
 interface Props {
   color: {
@@ -17,8 +18,8 @@ function rgba2hex(color: string) {
     alpha = ((rgb && rgb[4]) || '').trim(),
     hex = rgb
       ? (Number(rgb[1]) | (1 << 8)).toString(16).slice(1) +
-        (Number(rgb[2]) | (1 << 8)).toString(16).slice(1) +
-        (Number(rgb[3]) | (1 << 8)).toString(16).slice(1)
+      (Number(rgb[2]) | (1 << 8)).toString(16).slice(1) +
+      (Number(rgb[3]) | (1 << 8)).toString(16).slice(1)
       : color
 
   if (alpha !== '') {
@@ -82,7 +83,7 @@ const getResolvedColor = (color: string) => {
   return color
 }
 
-const ColorBox: React.FC<Props> = ({color, gradient = false}) => {
+const ColorBox: React.FC<Props> = ({ color, gradient = false }) => {
   const [resolvedColor, setResolvedColor] = useState<string | null>(null)
   const [resolvedColorOpacity, setResolvedColorOpacity] = useState<number>(1)
 
@@ -92,6 +93,18 @@ const ColorBox: React.FC<Props> = ({color, gradient = false}) => {
       setResolvedColorOpacity(resolvedColorOpacity)
     }
   }, [color.value, gradient, resolvedColorOpacity])
+
+  const toast = useToast()
+
+  const handleColorClick = () => {
+    console.log(toast)
+    navigator && navigator.clipboard.writeText(resolvedColor || '')
+    toast.show({
+      color: 'positive',
+      title: 'Copy successfully',
+    })
+  }
+
 
   return (
     <div
@@ -119,9 +132,7 @@ const ColorBox: React.FC<Props> = ({color, gradient = false}) => {
         opacity: resolvedColorOpacity,
         color: resolvedColor ? getAccessibleColor(resolvedColor) : '#000',
       }}
-      onClick={() => {
-        navigator && navigator.clipboard.writeText(resolvedColor || '')
-      }}
+      onClick={handleColorClick}
     >
       <div>{color.token}</div>
       <div>{gradient ? color.value : resolvedColor}</div>

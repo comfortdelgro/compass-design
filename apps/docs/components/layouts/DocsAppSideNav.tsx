@@ -6,14 +6,16 @@ import {
   Icon,
   MenuList,
   MenuListDropdown,
+  MenuListDropdownItemProps,
   Sidenav,
 } from '@comfortdelgro/react-compass'
-
-import {useSidenavContext} from 'contexts/SideNav'
-import {isNil} from 'lodash'
+import styles from './styles/Menulist.module.css'
+import sidenavStyles from './styles/Sidenav.module.css'
+import { useSidenavContext } from 'contexts/SideNav'
+import { isNil } from 'lodash'
 import Link from 'next/link'
-import {useCallback} from 'react'
-import {TSideNavItem} from 'types/common'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { TSideNavItem } from 'types/common'
 
 type TDocsAppSideNav = {
   handleExpandSidenav: (path: string) => void
@@ -21,22 +23,17 @@ type TDocsAppSideNav = {
 }
 
 const DocsAppSideNav = (props: TDocsAppSideNav) => {
-  const {handleExpandSidenav, onClickItem} = props
+  const { handleExpandSidenav, onClickItem } = props
   const sideNavs = useSidenavContext()
 
   return (
     <Sidenav
       css={{
-        height: '93vh',
-        position: 'relative',
-        background: 'var(--cdg-color-background)',
-        width: '312px',
-        overflowY: 'scroll',
-        filter: 'none',
         '.sidenav-item-title': {
           width: '100%',
         },
       }}
+      className={sidenavStyles.CdgSidenav}
       expand={true}
       delay={200}
     >
@@ -64,14 +61,19 @@ const CustomSidenavItem = (props: TCustomSideNavItem) => {
     icon,
     title,
     children,
-    isExpanded,
+    isExpanded: isExpandedProps,
     pathname,
     handleExpandSidenav,
     onClickItem,
   } = props
 
+  const [isInternalExpanded, setInternalIsExpanded] = useState(isExpandedProps)
+
+  const isExpanded = isInternalExpanded
+
   const handleClickSidenav = () => {
-    if (isNil(isExpanded)) return
+    if (isNil(isExpandedProps)) return
+    setInternalIsExpanded((prev) => !prev)
     handleExpandSidenav(pathname)
   }
 
@@ -81,27 +83,42 @@ const CustomSidenavItem = (props: TCustomSideNavItem) => {
 
   return (
     <>
-      <Sidenav.Item
-        isActive={isExpanded}
-        // @ts-ignore
+      <button
+        style={{ margin: 0, padding: 0, border: 'none', fontFamily: 'unset', backgroundColor: 'transparent' }}
         onClick={handleClickSidenav}
-        css={{
-          marginBottom: '0 !important',
-          overflow: 'initial',
-          minHeight: 40,
-        }}
       >
-        {icon ? <Icon icon={icon}></Icon> : <></>}
-        <Flexbox css={{justifyContent: 'space-between', width: '100%'}}>
-          {title && <span style={{fontSize: 16}}>{title}</span>}
-          {isExpanded ? (
-            <ArrowDown style={{width: 15, height: 15}} />
-          ) : (
-            <ArrowRight style={{width: 15, height: 15}} />
-          )}
-        </Flexbox>
-      </Sidenav.Item>
-
+        <Sidenav.Item
+          isActive={isExpanded}
+          // @ts-ignore
+          css={{
+            marginBottom: '0 !important',
+            overflow: 'initial',
+            minHeight: 46,
+            height: 'auto',
+            '&.sidenav-item-active, &:hover': {
+              color: 'var(--cdg-color-cdgBlue100)'
+            },
+            '& .cdg-sidenav-item-icon svg': {
+              width: '20px',
+              height: '20px'
+            },
+          }}
+        >
+          {icon ? <Icon icon={icon} size='xs'></Icon> : <></>}
+          <Flexbox css={{ justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+            {title && <span style={{ fontSize: 16 }}>{title}</span>}
+            {isExpanded ? (
+              <Box css={{ width: 15, height: 15 }}>
+                <ArrowDown style={{ width: 15, height: 15 }} />
+              </Box>
+            ) : (
+              <Box css={{ width: 15, height: 15 }}>
+                <ArrowRight style={{ width: 15, height: 15 }} />
+              </Box>
+            )}
+          </Flexbox>
+        </Sidenav.Item>
+      </button>
       {isExpanded && children && children.length > 0 && (
         <Box>
           <MenuList
@@ -115,8 +132,8 @@ const CustomSidenavItem = (props: TCustomSideNavItem) => {
               fontWeight: 600,
               '.active': {
                 transition: 'all .3s',
-                background: 'var(--cdg-spacing-cdgBlue20)',
-                color: 'var(--cdg-spacing-cdgBlue100)',
+                background: 'var(--cdg-color-cdgBlue20)',
+                color: 'var(--cdg-color-cdgBlue100)',
               },
             }}
           >
@@ -125,23 +142,17 @@ const CustomSidenavItem = (props: TCustomSideNavItem) => {
                 <Link
                   key={`${child.pathname}${index}`}
                   href={child.pathname}
-                  style={{textDecoration: 'none'}}
+                  style={{ textDecoration: 'none' }}
                   onClick={handleOnClickItem}
                 >
-                  <MenuListDropdown.Item
+                  <MenuListDropdownItem
                     key={child.pathname}
                     isActive={child.isActive}
-                    css={{
-                      '&:hover': {
-                        background: 'var(--cdg-spacing-cdgBlue10)',
-                        color: 'var(--cdg-spacing-cdgBlue80)',
-                        transition: 'all .2s',
-                      },
-                    }}
-                    className={child.isActive ? 'active' : ''}
+                    tabIndex={-1}
+                    className={`${styles.CdgMenuListItem} ${child.isActive ? 'active' : ''}`}
                   >
                     {child.title}
-                  </MenuListDropdown.Item>
+                  </MenuListDropdownItem>
                 </Link>
               ))}
             </MenuListDropdown>
@@ -150,6 +161,23 @@ const CustomSidenavItem = (props: TCustomSideNavItem) => {
       )}
     </>
   )
+}
+
+const MenuListDropdownItem = (props: MenuListDropdownItemProps) => {
+  const { css = {}, ...delegated } = props
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (props.isActive) {
+      ref.current?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+        inline: 'center'
+      })
+    }
+  }, [])
+
+  return <MenuListDropdown.Item ref={ref} css={css} {...delegated} />
 }
 
 export default DocsAppSideNav

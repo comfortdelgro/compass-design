@@ -1,10 +1,10 @@
-import {Box, Grid, Typography} from '@comfortdelgro/react-compass-old'
+import { Box, Grid, Typography } from '@comfortdelgro/react-compass-old'
 import DocsAppCustomLayout from 'components/layouts/DocsAppCustomLayout'
-import {usePageProps} from 'contexts/PageProps'
+import { usePageProps } from 'contexts/PageProps'
 import Image from 'next/image'
 import Link from 'next/link'
-import {useEffect} from 'react'
-import {getStaticPath} from 'utils'
+import { useEffect } from 'react'
+import { getStaticPath } from 'utils'
 
 const introduces = [
   {
@@ -51,7 +51,7 @@ const introduces = [
 ]
 
 export default function Page() {
-  const {setPageProps} = usePageProps()
+  const { setPageProps } = usePageProps()
 
   // Overview not using any data of context, so clear it before loading
   useEffect(() => {
@@ -117,24 +117,35 @@ export default function Page() {
           </Box>
         </Box>
       </Box>
-      <Box css={{padding: '$5 $16', width: '100%'}}>
-        <Grid spacing='sm' alignItems='center' style={{width: '100%'}}>
+      <Box
+        css={{
+          padding: '$5 $16',
+          width: '100%',
+        }}
+      >
+        <Grid spacing='sm' alignItems='center' style={{ width: '100%' }}>
           {introduces.map((introduce, index) => (
-            <Grid.Item xs={12} sm={6} md={4} lg={4} xl={4} key={index}>
-              <Link href={introduce.url} style={{textDecoration: 'none'}}>
+            <Grid.Item xs={12} sm={6} md={4} lg={4} xl={4} key={index} css={{
+              flexGrow: 1,
+              minWidth: 0,
+            }}>
+              <Link href={introduce.url} style={{ textDecoration: 'none' }}>
                 <Box
                   css={{
                     backgroundImage: `url('${introduce.image}')`,
                     backgroundPosition: 'center',
-                    backgroundSize: 'cover',
+                    backgroundSize: '100%',
+                    backgroundRepeat: 'no-repeat',
                     height: '275px',
                     borderRadius: '12px',
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'flex-end',
+                    transition: 'background-size 0.25s',
                     boxShadow:
                       '0px 1.6px 3.6px 0px rgba(0, 0, 0, 0.13), 0px 0.3px 0.9px 0px rgba(0, 0, 0, 0.10)',
                     '&:hover': {
+                      backgroundSize: '120%',
                       boxShadow:
                         '0px 4px 8px 0px rgba(0, 0, 0, 0.13), 0px 0.5px 1px 0px rgba(0, 0, 0, 0.10)',
                     },
@@ -145,6 +156,7 @@ export default function Page() {
                       zIndex: 1,
                       display: 'flex',
                       alignItems: 'center',
+                      justifyContent: 'center',
                       padding: '0.75rem',
                       background: 'rgba(0, 0, 0, 0.31)',
                       backdropFilter: 'blur(50px)',
@@ -153,7 +165,10 @@ export default function Page() {
                       height: '40%',
                     }}
                   >
-                    <Box>
+                    <Box css={{
+                      flexGrow: 1,
+                      minWidth: 0,
+                    }}>
                       <Typography.Header
                         variant='header5'
                         css={{
@@ -167,12 +182,18 @@ export default function Page() {
                       </Typography.Header>
                       <Typography.Body
                         variant='body2'
+                        title={introduce.description}
                         css={{
                           textAlign: 'center',
                           fontSize: '0.875rem',
                           color: 'white',
                           fontWeight: '400',
                           marginBottom: '$2',
+                          '@max_1200': {
+                            whiteSpace: 'nowrap',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                          }
                         }}
                       >
                         {introduce.description}

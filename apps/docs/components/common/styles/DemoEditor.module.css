@@ -1,0 +1,32 @@
+.CdgDemoEditorInfo {
+  color: var(--cdg-color-gray10);
+  position: absolute;
+  top: var(--cdg-spacing-1);
+  padding: var(--cdg-spacing-1);
+  outline: 0;
+  left: 50%;
+  border: 1px solid;
+  border-color: #6B89F7;
+  background-color: #91A7F9;
+  transform: translateX(-50%);
+  border-radius: 6px;
+  font-size: 12px;
+  transition: all 0.3s;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.CdgDemoEditorInfo:not(:focus) {
+  top: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.CdgDemoEditorInfo > kbd {
+  color: var(--cdg-color-whiteText);
+  padding: var(--cdg-spacing-1);
+  background-color: var(--cdg-color-cdgBlue60);
+  font-size: 11px;
+  border-radius: 6px;
+  border: 1px solid;
+  border-color: var(--cdg-color-cdgBlue40);
+}
