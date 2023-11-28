@@ -47,6 +47,11 @@ export type {
   CarouselSliderButton,
   CarouselSliderItem,
   CarouselSliderProps,
+  ButtonType,
+  CarouselOptions,
+  NinePartAlignment,
+  NavigationButtonType,
+  SocicalIcon
 } from './carousel'
 export {default as Chart} from './chart'
 export type {

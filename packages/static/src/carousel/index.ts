@@ -9,7 +9,15 @@ export type {CarouselMobileProps} from './carousel-mobile'
 export type {CarouselPromotionProps} from './carousel-promotion'
 export type {CarouselSlideProps} from './carousel-slide'
 export type {CarouselSliderProps} from './carousel-slider'
-export type {CarouselSliderButton, CarouselSliderItem} from './carousel.const'
+export type {
+  ButtonType,
+  CarouselOptions,
+  CarouselSliderButton,
+  CarouselSliderItem,
+  NavigationButtonType,
+  NinePartAlignment,
+  SocicalIcon,
+} from './carousel.const'
 
 CarouselSlider.displayName = 'CarouselSlider'
 CarouselSlider.Slide = CarouselSlide
