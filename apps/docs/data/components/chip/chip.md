@@ -12,6 +12,7 @@ components: Chip
 ```jsx
 import {Chip} from '@comfortdelgro/react-compass'
 ```
+
 ## Chip
 
 {{"demo": "Chip.tsx"}}
