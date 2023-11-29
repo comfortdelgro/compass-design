@@ -3,7 +3,8 @@
 @layer default {
   .pudoContainer {
     --cdg-pudo-dot-size: 3px;
-    --cdg-pudo-icon-height: var(--cdg-spacing-5);
+    --cdg-pudo-icon-height: var(--cdg-spacing-6, 1.5rem);
+    --cdg-pudo-item-padding-block: var(--cdg-spacing-4, 1rem);
 
     max-width: 100%;
     box-sizing: border-box;
@@ -70,6 +71,7 @@
       & > * {
         display: block;
         width: 100%;
+        height: var(--cdg-pudo-icon-height);
       }
 
       &::before,
@@ -80,7 +82,9 @@
         z-index: -1;
 
         width: 100%;
-        height: calc(50% - var(--cdg-pudo-icon-height) / 2 + 0.25rem);
+        height: calc(
+          50% - var(--cdg-pudo-icon-height) / 2 + var(--cdg-pudo-dot-size) * 2
+        );
         background-image: radial-gradient(
           circle closest-side,
           var(--cdg-color-grayShades40) 100%,
@@ -152,7 +156,6 @@
 
     & ~ .pudoItem {
       .pudoItemInput,
-      .pudoItemLabel,
       .pudoItemCustom {
         border-top: 1px solid var(--cdg-color-grayShades20);
       }
@@ -168,10 +171,20 @@
 }
 
 @layer variant {
+  .pudoItem.alignIcon--center .pudoItemIcon {
+    align-items: center;
+
+    &::before,
+    &::after {
+      height: calc(
+        50% - var(--cdg-pudo-icon-height) / 2 + var(--cdg-pudo-dot-size) * 2
+      );
+    }
+  }
+
   .pudoItem.md,
   .pudoItem.sm {
     .pudoItemInput,
-    .pudoItemLabel,
     .pudoItemCustom {
       border-top: none;
     }
@@ -180,7 +193,7 @@
       &::before,
       &::after {
         height: calc(
-          50% - var(--cdg-pudo-icon-height) / 2 + var(--cdg-pudo-dot-size) / 2
+          50% - var(--cdg-pudo-icon-height) / 2 + var(--cdg-pudo-dot-size) * 1.5
         );
       }
 
@@ -195,12 +208,16 @@
   }
 
   .pudoItem.md {
+    --cdg-pudo-item-padding-block: calc(var(--cdg-pudo-dot-size) * 4);
+
     .pudoItemInput input {
       height: var(--cdg-spacing-10);
     }
   }
 
   .pudoItem.sm {
+    --cdg-pudo-item-padding-block: calc(var(--cdg-pudo-dot-size) * 2);
+
     .pudoItemInput input {
       padding-block: var(--cdg-spacing-1);
       height: auto;
@@ -213,29 +230,11 @@
     }
   }
 
-  .pudoItem.label {
-    padding-inline: var(--cdg-spacing-4);
-
-    .pudoItemLabel {
-      margin-block: 0;
-      padding-block: var(--cdg-spacing-4);
-      width: 100%;
-
-      font-size: var(--cdg-font-size-label1);
-      font-weight: var(--cdg-font-weight-normal);
-      line-height: var(--cdg-line-height-tight);
-
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
-    }
-  }
-
   .pudoItem.custom {
     padding-inline: var(--cdg-spacing-4);
 
     .pudoItemCustom {
-      padding-block: var(--cdg-spacing-4);
+      padding-block: var(--cdg-pudo-item-padding-block);
       width: 100%;
 
       font-size: var(--cdg-font-size-label1);
@@ -260,44 +259,49 @@
     }
   }
 
-  .pudoItem.alignIcon--center .pudoItemIcon {
-    align-items: center;
-  }
-
   .pudoItem.alignIcon--top .pudoItemIcon {
-    padding-top: var(--cdg-spacing-4);
+    padding-top: var(--cdg-pudo-item-padding-block);
 
     &::before {
-      height: calc(var(--cdg-pudo-icon-height) - var(--cdg-pudo-dot-size));
+      top: 0;
+      height: calc(
+        var(--cdg-pudo-item-padding-block) + var(--cdg-pudo-dot-size)
+      );
     }
 
     &::after {
+      bottom: 0;
       height: calc(
-        100% - var(--cdg-pudo-icon-height) * 2 + var(--cdg-pudo-dot-size)
+        100% - var(--cdg-pudo-icon-height) - var(--cdg-pudo-item-padding-block) +
+          var(--cdg-pudo-dot-size)
       );
     }
   }
 }
 
 @layer compoundVariant {
-  .pudoItem.md.label .pudoItemLabel,
-  .pudoItem.md.custom .pudoItemCustom {
-    padding-block: var(--cdg-spacing-3);
-  }
-
-  .pudoItem.sm.label .pudoItemLabel {
-    padding-block: var(--cdg-spacing-2);
-  }
-
-  .pudoItem.sm.custom .pudoItemCustom {
-    padding-block: 0.4rem;
+  .pudoItem.md.custom.alignIcon--center .pudoItemIcon,
+  .pudoItem.sm.custom.alignIcon--center .pudoItemIcon {
+    &::before,
+    &::after {
+      height: calc(
+        50% - var(--cdg-pudo-icon-height) / 2 + var(--cdg-pudo-dot-size)
+      );
+    }
   }
 
   .pudoItem.md.alignIcon--top .pudoItemIcon,
   .pudoItem.sm.alignIcon--top .pudoItemIcon {
-    &::before,
+    &::before {
+      top: 0;
+      height: var(--cdg-pudo-item-padding-block);
+    }
+
     &::after {
-      height: calc(50% - var(--cdg-pudo-icon-height) / 2 + 4px);
+      bottom: 0;
+      height: calc(
+        100% - var(--cdg-pudo-icon-height) - var(--cdg-pudo-item-padding-block)
+      );
     }
   }
 }

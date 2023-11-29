@@ -34,17 +34,6 @@ const PudoItem = <TItemName extends string | number | symbol>({
 
   const renderPudoContent = useCallback(() => {
     switch (type) {
-      /**
-       * @deprecated
-       * @todo remove label type when `@comfortdelgro/react-compass@3.x` is planned to be released soon.
-       */
-      case 'label':
-        return (
-          <p className='cdg-pudo-item__label' title={value}>
-            {value}
-          </p>
-        )
-
       case 'input':
         return (
           <TextField
@@ -99,10 +88,7 @@ const PudoItem = <TItemName extends string | number | symbol>({
     }
   }, [type, value, onValueChange])
 
-  if (
-    (type === 'custom' && !title && !content) ||
-    (type === 'label' && !value)
-  ) {
+  if (type === 'custom' && !title && !content) {
     return <></>
   }
 
