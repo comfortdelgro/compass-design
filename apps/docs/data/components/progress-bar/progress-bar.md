@@ -13,12 +13,6 @@ components: Progress Bar
 import {ProgressBar} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import ProgressBar from '@comfortdelgro/react-compass/progress-bar'
-```
-
 ## Usage
 
 {{"demo": "ProgressBarBasic.tsx"}}

@@ -13,11 +13,6 @@ components: Rating
 import {Rating} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import Rating from '@comfortdelgro/react-compass/rating'
-```
 
 ## Example
 

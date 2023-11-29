@@ -1,4 +1,4 @@
-import {Column, Typography} from '@comfortdelgro/react-compass-old'
+import {Column, Typography} from '@comfortdelgro/react-compass'
 
 const DisplayTypography = () => {
   return (

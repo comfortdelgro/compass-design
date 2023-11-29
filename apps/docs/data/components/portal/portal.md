@@ -10,14 +10,9 @@ components: Portal
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Portal} from '@comfortdelgro/react-compass-old'
+import {Portal} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import Portal from '@comfortdelgro/react-compass-old/portal'
-```
 
 ## Example
 

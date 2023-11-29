@@ -10,13 +10,7 @@ components: DashBoard SideCard
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {DashboardSidecard} from '@comfortdelgro/react-compass-old'
-```
-
-or
-
-```jsx
-import DashboardSidecard from '@comfortdelgro/react-compass-old/dashboard-sidecard'
+import {DashboardSidecard} from '@comfortdelgro/react-compass'
 ```
 
 ## Example

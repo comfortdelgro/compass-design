@@ -1,13 +1,7 @@
-import {Button} from '@comfortdelgro/react-compass-old'
-import Box from '@comfortdelgro/react-compass-old/box'
+import {Box, Button} from '@comfortdelgro/react-compass'
 import React from 'react'
 
 const MyNoSsr: React.FC = () => {
-  function LargeTree(): any {
-    return Array.from(new Array(5000)).map((_, index) => (
-      <span key={index}>.</span>
-    ))
-  }
   const [state, setState] = React.useState({
     open: false,
     defer: false,

@@ -1,9 +1,6 @@
 import Singapore from '@comfortdelgro/compass-icons/react/flag-sgp'
 import USA from '@comfortdelgro/compass-icons/react/flag-usa'
-import {
-  DropdownOptions,
-  DropdownTextfield,
-} from '@comfortdelgro/react-compass-old'
+import {DropdownOptions, DropdownTextfield} from '@comfortdelgro/react-compass'
 import React from 'react'
 
 function Controlled() {
@@ -35,7 +32,9 @@ function Controlled() {
         label='Enter your mobile number'
         dropdownPlaceholder='Select country'
         textfieldPlaceholder='Enter you number'
-        onChange={handleChange}
+        onChange={(dropdownValue: string, inputValue: string | number) =>
+          handleChange(dropdownValue as string, inputValue as string)
+        }
         isRequired={true}
         defaultInputValue={textfieldValue}
       />

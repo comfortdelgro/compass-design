@@ -10,14 +10,10 @@ components: Modal
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Modal} from '@comfortdelgro/react-compass-old'
+import {Modal} from '@comfortdelgro/react-compass'
 ```
 
-or
 
-```jsx
-import Modal from '@comfortdelgro/react-compass-old/modal'
-```
 
 ## Example
 

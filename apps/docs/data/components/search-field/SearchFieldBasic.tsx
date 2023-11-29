@@ -1,4 +1,4 @@
-import SearchField from '@comfortdelgro/react-compass-old/searchfield'
+import {SearchField} from '@comfortdelgro/react-compass'
 
 function SearchFieldBasic() {
   return (

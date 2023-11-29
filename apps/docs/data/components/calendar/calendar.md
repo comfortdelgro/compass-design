@@ -13,11 +13,6 @@ components: Calendar
 import {Calendar} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import Calendar from '@comfortdelgro/react-compass/calendar'
-```
 
 ## Example
 

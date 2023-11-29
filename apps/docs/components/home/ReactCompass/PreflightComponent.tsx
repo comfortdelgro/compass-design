@@ -1,9 +1,9 @@
-import {Box, Button} from '@comfortdelgro/react-compass-old'
+import {Box, Button} from '@comfortdelgro/react-compass'
 import HighlightedCode from 'components/common/HighlightedCode'
 import MarkdownElement from '../../markdown/MarkdownElement'
 import ShowcaseContainer from './ShowcaseContainer'
 
-const componentCode = `import Preflight from '@comfortdelgro/react-compass-old/preflight'
+const componentCode = `import {Preflight} from '@comfortdelgro/react-compass'
 import {AppProps} from 'next/app'
  
 const App: React.FC<AppProps> = ({Component, pageProps}) => {

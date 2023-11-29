@@ -26,19 +26,19 @@ Run one of the following commands to add React Compass to your project:
 ### npm
 
 ```bash
-npm i @comfortdelgro/react-compass-old
+npm i @comfortdelgro/react-compass
 ```
 
 ### yarn
 
 ```bash
-yarn add @comfortdelgro/react-compass-old
+yarn add @comfortdelgro/react-compass
 ```
 
 ### pnpm
 
 ```bash
-pnpm add @comfortdelgro/react-compass-old
+pnpm add @comfortdelgro/react-compass
 ```
 
 ### Fix package
@@ -46,8 +46,8 @@ pnpm add @comfortdelgro/react-compass-old
 ```diff
   "dependencies": {
     ...
--   "@comfortdelgro/react-compass-old": "^5.0.0",
-+   "@comfortdelgro/react-compass-old": "5.0.0",
+-   "@comfortdelgro/react-compass": "^5.0.0",
++   "@comfortdelgro/react-compass": "5.0.0",
     ...
   },
 ```
@@ -59,19 +59,19 @@ Run one of the following commands to add React Compass to your project:
 ### npm 2
 
 ```bash
-npm i @comfortdelgro/react-compass-old
+npm i @comfortdelgro/react-compass
 ```
 
 ### yarn 2
 
 ```bash
-yarn add @comfortdelgro/react-compass-old
+yarn add @comfortdelgro/react-compass
 ```
 
 ### pnpm 2
 
 ```bash
-pnpm add @comfortdelgro/react-compass-old
+pnpm add @comfortdelgro/react-compass
 ```
 
 ### Fix package 2
@@ -79,8 +79,8 @@ pnpm add @comfortdelgro/react-compass-old
 ```diff
   "dependencies": {
     ...
--   "@comfortdelgro/react-compass-old": "^5.0.0",
-+   "@comfortdelgro/react-compass-old": "5.0.0",
+-   "@comfortdelgro/react-compass": "^5.0.0",
++   "@comfortdelgro/react-compass": "5.0.0",
     ...
   },
 ```
@@ -92,19 +92,19 @@ Run one of the following commands to add React Compass to your project:
 ### npm 3
 
 ```bash
-npm i @comfortdelgro/react-compass-old
+npm i @comfortdelgro/react-compass
 ```
 
 ### yarn 3
 
 ```bash
-yarn add @comfortdelgro/react-compass-old
+yarn add @comfortdelgro/react-compass
 ```
 
 ### pnpm 3
 
 ```bash
-pnpm add @comfortdelgro/react-compass-old
+pnpm add @comfortdelgro/react-compass
 ```
 
 ### Fix package 3
@@ -112,8 +112,8 @@ pnpm add @comfortdelgro/react-compass-old
 ```diff
   "dependencies": {
     ...
--   "@comfortdelgro/react-compass-old": "^5.0.0",
-+   "@comfortdelgro/react-compass-old": "5.0.0",
+-   "@comfortdelgro/react-compass": "^5.0.0",
++   "@comfortdelgro/react-compass": "5.0.0",
     ...
   },
 ```

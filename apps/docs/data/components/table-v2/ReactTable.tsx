@@ -8,10 +8,9 @@ import {
   Button,
   Icon,
   Pagination,
-  ReactTable,
   SearchField,
-  TableV2Options,
-} from '@comfortdelgro/react-compass-old'
+} from '@comfortdelgro/react-compass'
+import {ReactTable, TableV2Options} from '@comfortdelgro/react-compass-old'
 import {
   TableV2CellContext,
   TableV2ColumnDef,

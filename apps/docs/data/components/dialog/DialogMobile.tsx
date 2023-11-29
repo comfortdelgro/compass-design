@@ -10,10 +10,10 @@ import {
   Radio,
   Textarea,
   Typography,
-} from '@comfortdelgro/react-compass-old'
+} from '@comfortdelgro/react-compass'
 import Image from 'next/image'
 import React from 'react'
-import { getStaticPath } from 'utils'
+import {getStaticPath} from 'utils'
 
 const DialogMobile: React.FC = () => {
   const contents: any = {
@@ -71,7 +71,6 @@ const DialogMobile: React.FC = () => {
           label='Albert Einstein'
           image='https://i.pravatar.cc/150?u=a0425e81423429026704d'
           size='lg'
-          css={{opacity: '0.8', '&:hover': {opacity: '0.5', cursor: 'pointer'}}}
         />
         <Typography.Header>Avatar name</Typography.Header>
         <Typography.Body>Avatar description</Typography.Body>

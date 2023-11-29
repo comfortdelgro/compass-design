@@ -10,14 +10,9 @@ components: Tooltip
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Tooltip} from '@comfortdelgro/react-compass-old'
+import {Tooltip} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import Tooltip from '@comfortdelgro/react-compass-old/tooltip'
-```
 
 ## Example
 

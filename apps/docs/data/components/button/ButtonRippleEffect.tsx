@@ -1,4 +1,4 @@
-import {Button, Flexbox} from '@comfortdelgro/react-compass-old'
+import {Button, Flexbox} from '@comfortdelgro/react-compass'
 
 export default function ButtonRippleEffect() {
   return (

@@ -1,18 +1,13 @@
 import {faChevronDown, faChevronRight} from '@fortawesome/free-solid-svg-icons'
 
+import {Divider, Dropdown, Icon, Pagination} from '@comfortdelgro/react-compass'
 import {
-  Divider,
-  Dropdown,
-  Icon,
-  Pagination,
   ReactTable,
-  TableV2Options,
-} from '@comfortdelgro/react-compass-old'
-import {
   TableV2CellContext,
   TableV2ColumnDef,
   TableV2HeaderContext,
-} from '@comfortdelgro/react-compass-old/table-v2'
+  TableV2Options,
+} from '@comfortdelgro/react-compass-old'
 import React, {useState} from 'react'
 
 export type Person = {

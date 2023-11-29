@@ -24,7 +24,7 @@ import ThumbtackFilled from '@comfortdelgro/compass-icons/react/filled/thumbtack
 import TrashFilled from '@comfortdelgro/compass-icons/react/filled/trash-filled'
 import UserAddFilled from '@comfortdelgro/compass-icons/react/filled/user-add-filled'
 import WarningFilled from '@comfortdelgro/compass-icons/react/filled/warning-filled'
-import {Flexbox} from '@comfortdelgro/react-compass-old'
+import {Flexbox} from '@comfortdelgro/react-compass'
 import IconBox from 'data/foundation/iconography/components/IconBox'
 
 export default function filledIcons() {

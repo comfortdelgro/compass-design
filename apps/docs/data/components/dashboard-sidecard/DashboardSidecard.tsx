@@ -2,7 +2,7 @@ import {
   Avatar,
   Button,
   DashboardSidecard,
-} from '@comfortdelgro/react-compass-old'
+} from '@comfortdelgro/react-compass'
 
 const Default: React.FC = () => {
   return (
