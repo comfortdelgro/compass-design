@@ -13,7 +13,6 @@ components: DropdownMenu
 import {DropdownMenu} from '@comfortdelgro/react-compass'
 ```
 
-
 ## Example
 
 ### Basic

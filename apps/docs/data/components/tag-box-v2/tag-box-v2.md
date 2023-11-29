@@ -13,7 +13,6 @@ components: TagBoxV2
 import {TagBoxV2} from '@comfortdelgro/react-compass'
 ```
 
-
 ## Example
 
 ### Basic

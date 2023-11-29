@@ -13,7 +13,6 @@ components: Time Picker
 import {TimePicker} from '@comfortdelgro/react-compass'
 ```
 
-
 ## Basic
 
 {{"demo": "TimePickerBasic.tsx"}}

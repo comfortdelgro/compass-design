@@ -25,7 +25,7 @@ const Default: React.FC = () => {
           console.log('Close button click')
         }}
         onClick={() => console.log('clicked...')}
-        css={{width: '350px'}}
+        css={{maxWidth: '350px'}}
       >
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
         mollitia, molestiae quas vel sint commodi repudiandae consequuntur
