@@ -13,11 +13,6 @@ components: Spinner
 import {Spinner} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import Spinner from '@comfortdelgro/react-compass/spinner'
-```
 
 ## Basic
 

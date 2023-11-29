@@ -13,11 +13,6 @@ components: PageHeader
 import {PageHeader} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import PageHeader from '@comfortdelgro/react-compass/page-header'
-```
 
 ## Example
 

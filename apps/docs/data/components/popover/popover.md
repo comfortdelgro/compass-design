@@ -10,14 +10,9 @@ components: Popover
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Popover} from '@comfortdelgro/react-compass-old'
+import {Popover} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import Popover from '@comfortdelgro/react-compass-old/popover'
-```
 
 ## Example
 

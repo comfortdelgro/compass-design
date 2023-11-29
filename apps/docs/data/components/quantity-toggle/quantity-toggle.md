@@ -13,11 +13,6 @@ components: QuantityToggle
 import {QuantityToggle} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import QuantityToggle from '@comfortdelgro/react-compass/quantity-toggle'
-```
 
 ## Support
 

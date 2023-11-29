@@ -19,7 +19,7 @@ const exampleItem = [
   },
   {
     name: 'item3',
-    icon: <MapMarked />,
+    icon: <MapMarked style={{height: '0.875rem'}} />,
     value: '',
     placeholder: 'item3',
   },
@@ -343,8 +343,6 @@ export function Default() {
           },
           {name: 'item2', value: 'Destination', placeholder: 'item2'},
         ]}
-        type='label'
-        compact='md'
       />
     </>
   )

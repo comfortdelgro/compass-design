@@ -13,12 +13,6 @@ components: Pagination
 import {Pagination} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import Pagination from '@comfortdelgro/react-compass/pagination'
-```
-
 ## Basic
 
 {{"demo": "PaginationBasic.tsx"}}

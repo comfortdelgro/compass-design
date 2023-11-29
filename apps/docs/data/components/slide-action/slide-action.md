@@ -14,11 +14,6 @@ components: Slide Action
 import {SlideAction} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import SlideAction from '@comfortdelgro/react-compass/slide-action'
-```
 
 ## Usage
 

@@ -13,11 +13,6 @@ components: Upload
 import {Upload} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import Upload from '@comfortdelgro/react-compass/upload'
-```
 
 ## Example
 

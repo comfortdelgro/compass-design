@@ -1,4 +1,4 @@
-import {Button, DropdownMenu} from '@comfortdelgro/react-compass-old'
+import {Button, DropdownMenu} from '@comfortdelgro/react-compass'
 
 function BasicExample() {
   return (

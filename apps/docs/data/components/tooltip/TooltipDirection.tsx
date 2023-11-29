@@ -3,7 +3,7 @@ import {
   Placement,
   Tooltip,
   TooltipTrigger,
-} from '@comfortdelgro/react-compass-old'
+} from '@comfortdelgro/react-compass'
 import {useState} from 'react'
 
 const Placements: React.FC = () => {

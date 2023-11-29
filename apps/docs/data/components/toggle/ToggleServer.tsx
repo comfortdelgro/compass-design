@@ -1,5 +1,5 @@
 // import {Toggle} from '@comfortdelgro/static'
-import {Toggle} from '@comfortdelgro/react-compass-old'
+import {Toggle} from '@comfortdelgro/react-compass'
 
 function ToggleUnControlled() {
   return (

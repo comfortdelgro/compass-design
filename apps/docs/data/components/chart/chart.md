@@ -23,11 +23,6 @@ const nextConfig = {
 import {Chart} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```js
-import Chart from '@comfortdelgro/react-compass/chart'
-```
 
 ## Example
 

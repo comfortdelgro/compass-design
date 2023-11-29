@@ -1,23 +1,5 @@
 import {CSSProperties, FocusEvent, ReactNode} from 'react'
 
-type PudoItemType =
-  | {
-      /**
-       * `type` of each item will be overwritten
-       * if provided in the PUDO component.
-       * @default 'input'
-       */
-      type?: 'input' | 'custom'
-    }
-  | {
-      /**
-       * @deprecated `label` type will be removed on next major release - `@comfortdelgro/react-compass@3.x`
-       *
-       * Consider use `custom` item type instead.
-       */
-      type: 'label'
-    }
-
 export type PudoValueChange<
   TItemKeys extends string | number | symbol = string,
 > = Array<{
@@ -37,6 +19,10 @@ export type PudoProps<TItemKeys extends string | number | symbol> = {
    */
   items: Readonly<Array<PudoItemProps<TItemKeys>>>
   onValuesChange?: (values: PudoValueChange<TItemKeys>) => void
+  /**
+   * This will override the `type` of all items.
+   */
+  type?: PudoItemProps<TItemKeys>['type']
   /**
    * Min length of item list.
    * ___
@@ -59,7 +45,7 @@ export type PudoProps<TItemKeys extends string | number | symbol> = {
    * Remove all items by its `name` according to provided keys.
    * ___
    * This array will be de-duplicated automatically and will be ignored
-   * if PUDO's `type` is `'label'`.
+   * if PUDO's `type` is `'custom'`.
    */
   removableItems?: TItemKeys[]
   /** @default "Remove" */
@@ -68,7 +54,7 @@ export type PudoProps<TItemKeys extends string | number | symbol> = {
    * Add all provided items to the existing item list.
    * ___
    * This array will be de-duplicated automatically (by `name`) and will be ignored
-   * if PUDO's `type` is `'label'`.
+   * if PUDO's `type` is `'custom'`.
    */
   addItems?: Readonly<Array<PudoItemProps<TItemKeys>>>
   /** @default "Add" */
@@ -78,13 +64,18 @@ export type PudoProps<TItemKeys extends string | number | symbol> = {
    * if provided, `alignIcon` of all items will be overwritten
    */
   alignIcon?: PudoItemProps['alignIcon']
-} & PudoItemType
+}
 
 export type PudoItemProps<TName extends string | number | symbol = string> = {
   name: TName
   className?: string
   icon?: ReactNode
-
+  /**
+   * `type` of each item will be overwritten
+   * if provided in the PUDO component.
+   * @default 'input'
+   */
+  type?: 'input' | 'custom'
   /** `value` is used for `'input'` type item. */
   value?: string
   /** `placeholder` is used for `'input'` type item. */
@@ -103,7 +94,7 @@ export type PudoItemProps<TName extends string | number | symbol = string> = {
   isRequired?: boolean
   /** @default "center" */
   alignIcon?: 'top' | 'center'
-} & PudoItemType
+}
 
 export type PudoItemPrivateProps<TName extends string | number | symbol> = {
   index: number

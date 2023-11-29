@@ -64,7 +64,7 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
   )
 
   const showAddButton = useMemo(() => {
-    if (type === 'label' || type === 'custom') {
+    if (type === 'custom') {
       return false
     }
 
@@ -76,7 +76,7 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
   }, [type, pudoItems, dedupedAddItems, maxLength])
 
   const showRemoveButton = useMemo(() => {
-    if (type === 'label' || type === 'custom') {
+    if (type === 'custom') {
       return false
     }
 
@@ -84,12 +84,21 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
       return false
     }
 
+    // hide remove button if there are no items that allowed to be removed.
     if (!pudoItems.some(({name}) => removableItems.includes(name))) {
       return false
     }
 
     return true
-  }, [type, pudoItems, dedupedRemoveKeys, minLength])
+  }, [type, dedupedRemoveKeys.length, pudoItems, minLength, removableItems])
+
+  const handleUpdatePudoValues = useCallback(
+    (newValues: PudoValueChange<TItemKeys>) => {
+      setArrPudoValues(newValues)
+      onValuesChange?.(newValues)
+    },
+    [onValuesChange],
+  )
 
   const handleAddItems = useCallback(() => {
     if (!dedupedAddItems.length) {
@@ -98,14 +107,17 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
 
     const allowToAdd = dedupedAddItems.slice(0, maxLength - pudoItems.length)
     setPudoItems((currState) => [...currState, ...allowToAdd])
-
-    const newPudoArrValues = [
+    handleUpdatePudoValues([
       ...arrPudoValues,
       ...allowToAdd.map(({name, value = ''}) => ({name, value})),
-    ]
-    setArrPudoValues(newPudoArrValues)
-    onValuesChange?.(newPudoArrValues)
-  }, [pudoItems, arrPudoValues, dedupedAddItems, maxLength])
+    ])
+  }, [
+    pudoItems,
+    arrPudoValues,
+    dedupedAddItems,
+    maxLength,
+    handleUpdatePudoValues,
+  ])
 
   const handleRemoveItems = useCallback(() => {
     if (!dedupedRemoveKeys.length) {
@@ -129,59 +141,72 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
     }
 
     setPudoItems(newPudoItems)
-    setArrPudoValues(newPudoArrValues)
-    onValuesChange?.(newPudoArrValues)
-  }, [pudoItems, arrPudoValues, dedupedRemoveKeys, minLength])
+    handleUpdatePudoValues(newPudoArrValues)
+  }, [
+    pudoItems,
+    arrPudoValues,
+    dedupedRemoveKeys,
+    handleUpdatePudoValues,
+    minLength,
+  ])
+
+  const handleSwapPudoItems = useCallback(
+    (
+      itemName: PudoItemProps<TItemKeys>['name'],
+      index: number,
+      currPudoItemList: PudoItemProps<TItemKeys>[],
+    ) => {
+      const swapKey = currPudoItemList[index + 1]?.name
+      if (!swapKey) {
+        return
+      }
+
+      // structuredClone requires at least node@17, it might break vendor's apps.
+      const newArrayPudoValues = arrPudoValues.slice()
+      newArrayPudoValues[index] = {
+        name: itemName,
+        value: arrPudoValues[index + 1]?.value ?? '',
+        isFocusing: false,
+      }
+      newArrayPudoValues[index + 1] = {
+        name: swapKey,
+        value: arrPudoValues[index]?.value ?? '',
+        isFocusing: false,
+      }
+
+      handleUpdatePudoValues(newArrayPudoValues)
+    },
+    [arrPudoValues, handleUpdatePudoValues],
+  )
 
   const renderPudoItems = pudoItems.map((itemProps, index, currArr) => (
     <PudoItem
       key={itemProps.name.toString()}
       {...itemProps}
-      type={type || itemProps.type || 'input'}
+      type={type || itemProps.type}
       index={index}
       itemsLength={currArr.length}
       value={arrPudoValues[index]?.value ?? ''}
       allowSwap={!!itemProps.allowSwap}
-      handleSwap={() => {
-        const swapKey = currArr[index + 1]?.name
-        if (!swapKey) {
-          return
-        }
-
-        // structuredClone requires at least node@17, it might break vendor's apps.
-        const newArrayPudoValues = arrPudoValues.slice()
-        newArrayPudoValues[index] = {
-          name: itemProps.name,
-          value: arrPudoValues[index + 1]?.value ?? '',
-          isFocusing: false,
-        }
-        newArrayPudoValues[index + 1] = {
-          name: swapKey,
-          value: arrPudoValues[index]?.value ?? '',
-          isFocusing: false,
-        }
-
-        setArrPudoValues(newArrayPudoValues)
-        onValuesChange?.(newArrayPudoValues)
-      }}
-      onValueChange={(value) => {
-        const newArrayPudoValues = arrPudoValues.map((currValue) =>
-          currValue.name === itemProps.name
-            ? {name: itemProps.name, value, isFocusing: true}
-            : {...currValue, isFocusing: false},
+      handleSwap={() => handleSwapPudoItems(itemProps.name, index, currArr)}
+      onValueChange={(value) =>
+        handleUpdatePudoValues(
+          arrPudoValues.map((currValue) =>
+            currValue.name === itemProps.name
+              ? {name: itemProps.name, value, isFocusing: true}
+              : {...currValue, isFocusing: false},
+          ),
         )
-        setArrPudoValues(newArrayPudoValues)
-        onValuesChange?.(newArrayPudoValues)
-      }}
-      onInputFocus={() => {
-        const newArrayPudoValues = arrPudoValues.map((currValue) => ({
-          ...currValue,
-          isFocusing: currValue.name === itemProps.name,
-        }))
-        setArrPudoValues(newArrayPudoValues)
-        onValuesChange?.(newArrayPudoValues)
-      }}
-      alignIcon={alignIcon || itemProps.alignIcon || 'center'}
+      }
+      onInputFocus={() =>
+        handleUpdatePudoValues(
+          arrPudoValues.map((currValue) => ({
+            ...currValue,
+            isFocusing: currValue.name === itemProps.name,
+          })),
+        )
+      }
+      alignIcon={alignIcon || itemProps.alignIcon}
       compact={compact}
     />
   ))

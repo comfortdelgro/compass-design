@@ -1,10 +1,11 @@
-import { Box, Grid, Typography } from '@comfortdelgro/react-compass-old'
+import {Box, Grid, Typography} from '@comfortdelgro/react-compass'
 import DocsAppCustomLayout from 'components/layouts/DocsAppCustomLayout'
 import { usePageProps } from 'contexts/PageProps'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect } from 'react'
-import { getStaticPath } from 'utils'
+import {useEffect} from 'react'
+import {getStaticPath} from 'utils'
+import styles from './styles/overview.module.css'
 
 const introduces = [
   {
@@ -57,11 +58,10 @@ export default function Page() {
   useEffect(() => {
     setPageProps?.({})
   }, [])
-
   return (
     <DocsAppCustomLayout>
       <Box
-        css={{
+        style={{
           position: 'relative',
         }}
       >
@@ -74,41 +74,21 @@ export default function Page() {
           height={0}
         />
         <Box
-          css={{
+          style={{
             position: 'relative',
             zIndex: 1,
             display: 'flex',
             alignItems: 'center',
-            padding: '80px $16',
+            padding: '80px var(--cdg-spacing-6)',
           }}
         >
           <Box>
-            <Typography.Header
-              css={{
-                color: '#6A1D0C',
-                fontSize: '2.875rem',
-                lineHeight: '69px',
-                marginBottom: '$2',
-                '@media screen and (max-width: 768px)': {
-                  fontSize: '2rem',
-                  lineHeight: '32px',
-                },
-              }}
-            >
+            <Typography.Header className={styles.headerTypography}>
               Foundation
             </Typography.Header>
             <Typography.Header
               variant='header4'
-              css={{
-                fontSize: '1.125rem',
-                color: '#6A1D0C',
-                fontWeight: '400',
-                width: '50%',
-                marginBottom: '$2',
-                '@media screen and (max-width: 768px)': {
-                  width: '100%',
-                },
-              }}
+              className={styles.header4Typography}
             >
               Foundations inform the basis of any great user interface, from
               accessibility standards to essential patterns for layout and
@@ -118,12 +98,12 @@ export default function Page() {
         </Box>
       </Box>
       <Box
-        css={{
-          padding: '$5 $16',
+        style={{
+          padding: 'var(--cdg-spacing-5) var(--cdg-spacing-16)',
           width: '100%',
         }}
       >
-        <Grid spacing='sm' alignItems='center' style={{ width: '100%' }}>
+        <Grid spacing='sm' alignItems='center' style={{width: '100%'}}>
           {introduces.map((introduce, index) => (
             <Grid.Item xs={12} sm={6} md={4} lg={4} xl={4} key={index} css={{
               flexGrow: 1,
@@ -131,28 +111,11 @@ export default function Page() {
             }}>
               <Link href={introduce.url} style={{ textDecoration: 'none' }}>
                 <Box
-                  css={{
-                    backgroundImage: `url('${introduce.image}')`,
-                    backgroundPosition: 'center',
-                    backgroundSize: '100%',
-                    backgroundRepeat: 'no-repeat',
-                    height: '275px',
-                    borderRadius: '12px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'flex-end',
-                    transition: 'background-size 0.25s',
-                    boxShadow:
-                      '0px 1.6px 3.6px 0px rgba(0, 0, 0, 0.13), 0px 0.3px 0.9px 0px rgba(0, 0, 0, 0.10)',
-                    '&:hover': {
-                      backgroundSize: '120%',
-                      boxShadow:
-                        '0px 4px 8px 0px rgba(0, 0, 0, 0.13), 0px 0.5px 1px 0px rgba(0, 0, 0, 0.10)',
-                    },
-                  }}
+                  style={{backgroundImage: `url('${introduce.image}')`}}
+                  className={styles.box}
                 >
                   <Box
-                    css={{
+                    style={{
                       zIndex: 1,
                       display: 'flex',
                       alignItems: 'center',
@@ -171,29 +134,23 @@ export default function Page() {
                     }}>
                       <Typography.Header
                         variant='header5'
-                        css={{
+                        style={{
                           textAlign: 'center',
                           fontSize: '1.25rem',
                           color: 'white',
-                          marginBottom: '$2',
+                          marginBottom: 'var(--cdg-spacing-2)',
                         }}
                       >
                         {introduce.title}
                       </Typography.Header>
                       <Typography.Body
                         variant='body2'
-                        title={introduce.description}
-                        css={{
+                        style={{
                           textAlign: 'center',
                           fontSize: '0.875rem',
                           color: 'white',
                           fontWeight: '400',
-                          marginBottom: '$2',
-                          '@max_1200': {
-                            whiteSpace: 'nowrap',
-                            overflow: 'hidden',
-                            textOverflow: 'ellipsis',
-                          }
+                          marginBottom: 'var(--cdg-spacing-2)',
                         }}
                       >
                         {introduce.description}

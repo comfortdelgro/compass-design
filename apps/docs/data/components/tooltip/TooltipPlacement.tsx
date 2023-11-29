@@ -3,7 +3,7 @@ import {
   Placement,
   Tooltip,
   TooltipTrigger,
-} from '@comfortdelgro/react-compass-old'
+} from '@comfortdelgro/react-compass'
 import React from 'react'
 
 function BasicExample() {

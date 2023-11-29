@@ -10,14 +10,9 @@ components: Timeline
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Timeline} from '@comfortdelgro/react-compass-old'
+import {Timeline} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import Timeline from '@comfortdelgro/react-compass-old/timeline'
-```
 
 ## Example
 

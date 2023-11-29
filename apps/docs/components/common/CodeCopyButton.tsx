@@ -1,7 +1,7 @@
 import Copy from '@comfortdelgro/compass-icons/react/copy'
 import TickCircle from '@comfortdelgro/compass-icons/react/tick-circle'
-import { useToast } from '@comfortdelgro/react-compass'
-import { useEffect, useState } from 'react'
+import {useToast} from '@comfortdelgro/react-compass'
+import {useEffect, useState} from 'react'
 import useClipboardCopy from 'utils/useClipboardCopy'
 
 interface CodeCopyButtonProps {
@@ -9,8 +9,8 @@ interface CodeCopyButtonProps {
 }
 
 export default function CodeCopyButton(props: CodeCopyButtonProps) {
-  const { code, ...other } = props
-  const { copy, isCopied } = useClipboardCopy()
+  const {code, ...other} = props
+  const {copy, isCopied} = useClipboardCopy()
   const toast = useToast()
   const [key, setKey] = useState('Ctrl +')
   useEffect(() => {

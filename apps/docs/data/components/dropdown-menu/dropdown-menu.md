@@ -10,14 +10,9 @@ components: DropdownMenu
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {DropdownMenu} from '@comfortdelgro/react-compass-old'
+import {DropdownMenu} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import DropdownMenu from '@comfortdelgro/react-compass-old/dropdown-menu'
-```
 
 ## Example
 

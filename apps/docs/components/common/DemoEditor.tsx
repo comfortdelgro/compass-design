@@ -1,8 +1,8 @@
 import prism from '@comfortdelgro/markdown/prism'
-import { Box } from '@comfortdelgro/react-compass'
+import {Box} from '@comfortdelgro/react-compass'
 import * as React from 'react'
 import SimpleCodeEditor from 'react-simple-code-editor'
-import { useCodeCopy } from 'utils/CodeCopy'
+import {useCodeCopy} from 'utils/CodeCopy'
 import simpleCodeStyles from './styles/SimpleCodeEditor.module.css'
 import styles from './styles/DemoEditor.module.css'
 interface DemoEditorProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -14,7 +14,7 @@ interface DemoEditorProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export default function DemoEditor(props: DemoEditorProps) {
-  const { language, value, onChange, children, id, ...other } = props
+  const {language, value, onChange, children, id, ...other} = props
   const wrapperRef = React.useRef<HTMLDivElement | null>(null)
   const enterRef = React.useRef<HTMLElement | null>(null)
   const handlers = useCodeCopy()
@@ -63,7 +63,7 @@ export default function DemoEditor(props: DemoEditorProps) {
         <Box
           ref={enterRef}
           tabIndex={0}
-          className={`${styles.CdgDemoEditorInfo} asdasd`}
+          className={`${styles.CdgDemoEditorInfo}`}
           dangerouslySetInnerHTML={{
             __html: 'Press <kbd>Enter</kbd> to start editing',
           }}

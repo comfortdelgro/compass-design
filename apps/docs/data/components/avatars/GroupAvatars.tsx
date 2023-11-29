@@ -1,4 +1,4 @@
-import {Avatar, Flexbox} from '@comfortdelgro/react-compass-old'
+import {Avatar, Flexbox} from '@comfortdelgro/react-compass'
 
 export default function GroupAvatars() {
   const images = [

@@ -10,14 +10,9 @@ components: Link
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Link} from '@comfortdelgro/react-compass-old'
+import {Link} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import Link from '@comfortdelgro/react-compass-old/link'
-```
 
 ## Example
 

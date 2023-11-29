@@ -10,6 +10,7 @@ export type BoxProps = Props &
 interface Props {
   children?: React.ReactNode
   css?: unknown
+  className?: string
   as?: React.ElementType
   className?: string
   border?: string
@@ -101,6 +102,7 @@ const Box = React.forwardRef<HTMLElement, BoxProps>((props, ref) => {
     children,
     // styled component props
     css = {},
+    className = '',
     // custom props
     as: asProp = 'div',
     border,
@@ -199,7 +201,7 @@ const Box = React.forwardRef<HTMLElement, BoxProps>((props, ref) => {
         <Component
           {...htmlProps}
           ref={BoxRef as never}
-          className={clsx(className, styles.box)}
+          className={clsx('cdg-box', className, styles.box)}
           style={{
             border,
             borderBottom,

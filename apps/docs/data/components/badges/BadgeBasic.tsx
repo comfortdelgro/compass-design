@@ -1,4 +1,4 @@
-import {Badge} from '@comfortdelgro/react-compass-old'
+import {Badge} from '@comfortdelgro/react-compass'
 
 function BasicExample() {
   return <Badge label='Default' />

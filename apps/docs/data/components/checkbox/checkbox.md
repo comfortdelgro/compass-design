@@ -13,11 +13,6 @@ components: Checkbox
 import {Checkbox} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import Checkbox from '@comfortdelgro/react-compass/checkbox'
-```
 
 ## Example
 

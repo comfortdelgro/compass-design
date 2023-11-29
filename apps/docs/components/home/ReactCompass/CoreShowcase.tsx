@@ -1,4 +1,4 @@
-import {Box, Button} from '@comfortdelgro/react-compass-old'
+import {Box, Button} from '@comfortdelgro/react-compass'
 import HighlightedCode from 'components/common/HighlightedCode'
 import MarkdownElement from '../../markdown/MarkdownElement'
 import ShowcaseContainer from './ShowcaseContainer'
@@ -7,11 +7,6 @@ import {componentCode} from './ShowcaseDemo'
 export default function CoreShowcase() {
   return (
     <ShowcaseContainer
-      // preview={
-      // <Box css={{padding: '$8'}}>
-      // {/* <ShowcaseDemo /> */}
-      // </Box>
-      // }
       code={
         <Box>
           <Box

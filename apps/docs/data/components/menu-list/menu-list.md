@@ -13,14 +13,6 @@ components: MenuList
 import {MenuList, MenuListDropdown} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import MenuList, {
-  MenuListDropdown,
-} from '@comfortdelgro/react-compass/MenuList'
-```
-
 ## Example
 
 ### Menu List

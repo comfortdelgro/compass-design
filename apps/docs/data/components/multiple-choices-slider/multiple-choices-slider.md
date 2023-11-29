@@ -15,11 +15,6 @@ components: MultipleChoicesSlider
 import {MultipleChoicesSlider} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import MultipleChoicesSlider from '@comfortdelgro/react-compass/multiple-choices-slider'
-```
 
 ## Example
 

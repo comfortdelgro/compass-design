@@ -13,12 +13,6 @@ components: Card
 import {Card} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import Card from '@comfortdelgro/react-compass/card'
-```
-
 ## Example
 
 ### Sizes

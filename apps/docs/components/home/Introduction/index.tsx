@@ -1,4 +1,4 @@
-import {Box, Typography, useIsDarkTheme} from '@comfortdelgro/react-compass-old'
+import {Box, Typography, useIsDarkTheme} from '@comfortdelgro/react-compass'
 import Container from 'components/layouts/Container'
 import {getStaticPath} from 'utils'
 import Item from './item'
@@ -7,11 +7,11 @@ export default function Introduction() {
   const isDarkTheme = useIsDarkTheme()
   return (
     <Box
-      css={{background: isDarkTheme ? '$gray70' : '#E2DEEB', padding: '$14 0'}}
+      style={{background: isDarkTheme ? 'var(--colors-gray70)' : '#E2DEEB', padding: 'var(--cdg-spacing-14) 0'}}
     >
       <Container>
         <Typography.Header>Introduction</Typography.Header>
-        <Typography.Body variant='body2' css={{padding: '$5 0 $3 0'}}>
+        <Typography.Body variant='body2' style={{padding: 'var(--cdg-spacing-5) 0 var(--cdg-spacing-3) 0'}}>
           This is guideline page for ComfortDelGro's Workbench Design System
           library. Which a set of components that created using web component
           and can be used to implement user experiences consistent with
@@ -19,7 +19,7 @@ export default function Introduction() {
           any other library like jQuery, Angular, VueJS, React and can run on
           most of modern browsers. Refer Workbench Design System
         </Typography.Body>
-        <Box css={{paddingTop: '$4'}}>
+        <Box style={{paddingTop: 'var(--cdg-spacing-4)'}}>
           <div className='cdg-card-row'>
             <Item
               title='Design'

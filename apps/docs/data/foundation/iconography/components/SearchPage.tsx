@@ -6,8 +6,8 @@ import {
   Toast,
   Typography,
 } from '@comfortdelgro/react-compass'
-import { faXmark } from '@fortawesome/free-solid-svg-icons'
-import { useRouter, useSearchParams } from 'next/navigation'
+import {faXmark} from '@fortawesome/free-solid-svg-icons'
+import {useRouter, useSearchParams} from 'next/navigation'
 import React from 'react'
 import { icons } from './constants'
 import { Grid } from '@comfortdelgro/react-compass'

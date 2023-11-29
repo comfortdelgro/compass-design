@@ -1,4 +1,4 @@
-import {Calendar, RangeCalendar, RangeValue} from '@comfortdelgro/react-compass-old'
+import {Calendar, RangeCalendar, RangeValue} from '@comfortdelgro/react-compass'
 import {
   DateValue,
   getLocalTimeZone,

@@ -1,4 +1,4 @@
-import { Box, Button } from '@comfortdelgro/react-compass-old'
+import {Box, Button} from '@comfortdelgro/react-compass'
 import copy from 'clipboard-copy'
 import * as React from 'react'
 
