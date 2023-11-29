@@ -64,6 +64,21 @@ export type PudoProps<TItemKeys extends string | number | symbol> = {
    * if provided, `alignIcon` of all items will be overwritten
    */
   alignIcon?: PudoItemProps['alignIcon']
+  /**
+   * Background color of PUDO items wrapper.
+   *
+   * `bgColor` will be ignored if `data-background` is provided.
+   */
+  bgColor?: string
+
+  /**
+   * ~ `[data-*]` - any data attributes are accepted.
+   *
+   * Data attributes list:
+   *
+   * - `data-background`: PUDO items wrapper's background color.
+   */
+  [key: `data-${string}`]: string
 }
 
 export type PudoItemProps<TName extends string | number | symbol = string> = {

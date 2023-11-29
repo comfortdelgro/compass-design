@@ -20,7 +20,6 @@ const exampleItem = [
   },
   {
     name: 'item3',
-    icon: <MapMarked style={{height: '0.875rem'}} />,
     value: '',
     placeholder: 'item3',
   },
@@ -35,7 +34,7 @@ const pendingAddItems = [
   {name: 'des2', value: '', placeholder: 'Where to', allowSwap: true},
   {
     name: 'des3',
-    icon: <MapMarked />,
+    icon: <MapMarked style={{height: '0.875rem'}} />,
     value: '',
     placeholder: 'New destination',
     allowSwap: true,

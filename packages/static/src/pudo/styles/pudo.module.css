@@ -4,7 +4,18 @@
   .pudoContainer {
     --cdg-pudo-dot-size: 3px;
     --cdg-pudo-icon-height: var(--cdg-spacing-6, 1.5rem);
+    --cdg-pudo-bg: var(--cdg-color-background, inherit);
+    --_cdg-pudo-icon-shape-bg: transparent;
     --cdg-pudo-item-padding-block: var(--cdg-spacing-4, 1rem);
+
+    /* 
+    Currently, attr's color & fallback only stable on Firefox. For now use JS instead.
+    &[data-background] {
+      --cdg-pudo-bg: attr(
+        data-background color,
+        var(--cdg-color-background, inherit)
+      );
+    } */
 
     max-width: 100%;
     box-sizing: border-box;
@@ -17,6 +28,7 @@
     .pudoItemsWrapper {
       border-radius: var(--cdg-border-radius-lg);
       border: 1px solid var(--cdg-color-grayShades20);
+      background-color: var(--cdg-pudo-bg);
       overflow: hidden;
     }
 
@@ -56,7 +68,8 @@
 
     .pudoItemIcon,
     .pudoItemInput,
-    .pudoItemSwapIcon {
+    .pudoItemSwapIcon,
+    .pudoItemIconShape {
       box-sizing: border-box;
     }
 
@@ -68,23 +81,38 @@
       width: var(--cdg-spacing-5);
       text-align: center;
 
-      & > * {
-        display: block;
-        width: 100%;
+      .pudoItemIconShape {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: var(--cdg-spacing-8);
         height: var(--cdg-pudo-icon-height);
+        border-radius: var(--cdg-border-radius-md);
+
+        background-color: var(--_cdg-pudo-icon-shape-bg);
+        transition: background-color 0.2s ease-in-out;
+
+        & > svg,
+        & > object,
+        & > img {
+          display: block;
+          max-width: 100%;
+          max-height: 100%;
+          object-fit: cover;
+          object-position: center;
+        }
       }
 
-      &::before,
-      &::after {
+      &::before {
         content: '';
         position: absolute;
+        top: 0;
         inset-inline: 0;
         z-index: -1;
 
         width: 100%;
-        height: calc(
-          50% - var(--cdg-pudo-icon-height) / 2 + var(--cdg-pudo-dot-size) * 2
-        );
+        height: 100%;
+
         background-image: radial-gradient(
           circle closest-side,
           var(--cdg-color-grayShades40) 100%,
@@ -94,14 +122,6 @@
         background-position-x: center;
         background-size: var(--cdg-pudo-dot-size)
           calc(var(--cdg-pudo-dot-size) * 2);
-      }
-
-      &::before {
-        top: calc(var(--cdg-pudo-dot-size) * -2);
-      }
-
-      &::after {
-        bottom: calc(var(--cdg-pudo-dot-size) * -2);
       }
     }
 
@@ -148,12 +168,6 @@
       }
     }
 
-    &:first-child {
-      .pudoItemIcon::before {
-        display: none;
-      }
-    }
-
     & ~ .pudoItem {
       .pudoItemInput,
       .pudoItemCustom {
@@ -162,7 +176,6 @@
     }
 
     &:last-child {
-      .pudoItemIcon::after,
       .pudoItemSwapIcon {
         display: none;
       }
@@ -171,15 +184,42 @@
 }
 
 @layer variant {
+  .pudoItem.alignIcon--center {
+    &:first-child,
+    &:last-child {
+      .pudoItemIcon::before {
+        height: 50%;
+      }
+    }
+
+    &:first-child {
+      .pudoItemIcon::before {
+        top: 50%;
+      }
+    }
+  }
+
+  .pudoItem.alignIcon--top {
+    &:first-child {
+      .pudoItemIcon::before {
+        top: calc(
+          var(--cdg-pudo-item-padding-block) + var(--cdg-pudo-dot-size)
+        );
+        height: calc(
+          100% - var(--cdg-pudo-item-padding-block) - var(--cdg-pudo-dot-size) *
+            2
+        );
+      }
+    }
+    &:last-child {
+      .pudoItemIcon::before {
+        height: var(--cdg-pudo-item-padding-block);
+      }
+    }
+  }
+
   .pudoItem.alignIcon--center .pudoItemIcon {
     align-items: center;
-
-    &::before,
-    &::after {
-      height: calc(
-        50% - var(--cdg-pudo-icon-height) / 2 + var(--cdg-pudo-dot-size) * 2
-      );
-    }
   }
 
   .pudoItem.md,
@@ -187,23 +227,6 @@
     .pudoItemInput,
     .pudoItemCustom {
       border-top: none;
-    }
-
-    .pudoItemIcon {
-      &::before,
-      &::after {
-        height: calc(
-          50% - var(--cdg-pudo-icon-height) / 2 + var(--cdg-pudo-dot-size) * 1.5
-        );
-      }
-
-      &::before {
-        top: calc(var(--cdg-pudo-dot-size) * -1);
-      }
-
-      &::after {
-        bottom: calc(var(--cdg-pudo-dot-size) * -1);
-      }
     }
   }
 
@@ -224,9 +247,15 @@
     }
   }
 
+  .pudoItem.input:not(.sm, .md) {
+    --_cdg-pudo-icon-shape-bg: var(--cdg-pudo-bg, transparent);
+  }
+
   .pudoItem.input {
     &:has(.pudoItemInput:focus-within) {
       background-color: var(--cdg-color-grayShades10);
+
+      --_cdg-pudo-icon-shape-bg: var(--cdg-color-grayShades10);
     }
   }
 
@@ -261,47 +290,33 @@
 
   .pudoItem.alignIcon--top .pudoItemIcon {
     padding-top: var(--cdg-pudo-item-padding-block);
-
-    &::before {
-      top: 0;
-      height: calc(
-        var(--cdg-pudo-item-padding-block) + var(--cdg-pudo-dot-size)
-      );
-    }
-
-    &::after {
-      bottom: 0;
-      height: calc(
-        100% - var(--cdg-pudo-icon-height) - var(--cdg-pudo-item-padding-block) +
-          var(--cdg-pudo-dot-size)
-      );
-    }
   }
 }
 
 @layer compoundVariant {
-  .pudoItem.md.custom.alignIcon--center .pudoItemIcon,
-  .pudoItem.sm.custom.alignIcon--center .pudoItemIcon {
-    &::before,
-    &::after {
-      height: calc(
-        50% - var(--cdg-pudo-icon-height) / 2 + var(--cdg-pudo-dot-size)
-      );
-    }
-  }
-
-  .pudoItem.md.alignIcon--top .pudoItemIcon,
-  .pudoItem.sm.alignIcon--top .pudoItemIcon {
-    &::before {
-      top: 0;
-      height: var(--cdg-pudo-item-padding-block);
+  .pudoItem.alignIcon--center:is(.sm, .md) {
+    .pudoItemIcon:before {
+      top: calc(var(--cdg-pudo-dot-size) * -1);
+      height: calc(100% + var(--cdg-pudo-dot-size));
     }
 
-    &::after {
-      bottom: 0;
-      height: calc(
-        100% - var(--cdg-pudo-icon-height) - var(--cdg-pudo-item-padding-block)
-      );
+    &:first-child {
+      .pudoItemIcon:before {
+        top: calc(
+          50% + var(--cdg-pudo-icon-height) / 2 - var(--cdg-pudo-dot-size) / 2
+        );
+        height: calc(
+          50% - var(--cdg-pudo-icon-height) / 2 - var(--cdg-pudo-dot-size) / 2
+        );
+      }
+    }
+
+    &:last-child {
+      .pudoItemIcon:before {
+        height: calc(
+          50% - var(--cdg-pudo-icon-height) / 2 + var(--cdg-pudo-dot-size) * 1.5
+        );
+      }
     }
   }
 }

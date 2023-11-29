@@ -30,10 +30,13 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
     addItemsLabel = 'Add',
     compact,
     alignIcon,
-    ...htmlDivAttributes
+    bgColor,
+    style,
+    ...htmlDataAttributes
   }: PudoProps<TItemKeys>,
   ref: Ref<HTMLDivElement>,
 ) => {
+  const wrapperBg = htmlDataAttributes['data-background'] || bgColor
   const maxLength =
     unCheckedMaxLength < minLength ? minLength : unCheckedMaxLength
 
@@ -226,14 +229,18 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
     <StyledPUDO
       ref={PudoRef}
       className={`${className} cdg-pudo-container`}
-      css={css}
-      {...htmlDivAttributes}
+      css={{
+        ...css,
+        ...(wrapperBg ? {'--cdg-pudo-bg': wrapperBg} : undefined),
+      }}
+      {...htmlDataAttributes}
     >
       <div className='cdg-pudo-items-wrapper'>{renderPudoItems}</div>
 
       <div className='cdg-pudo-actions'>
         {showAddButton && (
           <Button
+            className='cdg-pudo-action-button'
             variant='ghost'
             type='button'
             size='sm'
@@ -259,6 +266,7 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
 
         {showRemoveButton && (
           <Button
+            className='cdg-pudo-action-button'
             variant='danger'
             type='button'
             size='sm'
