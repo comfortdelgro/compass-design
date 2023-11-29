@@ -19,4 +19,10 @@
       gap: 32px;
     }
   }
+  
+  @container CdgFooter (max-width: 490px) {
+    .footerInfoSocial {
+      gap: 32px;
+    }
+  }
 }

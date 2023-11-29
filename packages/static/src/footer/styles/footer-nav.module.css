@@ -4,10 +4,8 @@
 
 @layer default {
   .footerNav {
-    display: grid;
-    grid-template-columns: repeat(var(--gridNumber), 1fr);
+    display: flex;
     gap: 32px;
-    overflow: hidden;
   }
 
   .footerNav > div {
@@ -16,13 +14,29 @@
     gap: 24px;
   }
 
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 768px) {
     .footerNav {
-      grid-template-columns: repeat(var(--tabletGridNumber), 1fr);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      row-gap: 56px;
     }
   }
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 490px) {
+    .footerNav {
+      display: none;
+    }
+  }
+
+  @container CdgFooter (max-width: 768px) {
+    .footerNav {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      row-gap: 56px;
+    }
+  }
+
+  @container CdgFooter (max-width: 490px) {
     .footerNav {
       display: none;
     }
