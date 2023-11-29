@@ -13,12 +13,6 @@ components: Multiple Dropdown
 import {Dropdown} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import Dropdown from '@comfortdelgro/react-compass/dropdown'
-```
-
 ## Controlled
 
 {{"demo": "MultipleDropdownControlled.tsx"}}
