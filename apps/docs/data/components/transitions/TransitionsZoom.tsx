@@ -1,5 +1,4 @@
-import Toggle from '@comfortdelgro/react-compass-old/toggle'
-import Transitions from '@comfortdelgro/react-compass-old/transitions'
+import {Toggle, Transitions} from '@comfortdelgro/react-compass'
 import React from 'react'
 
 const Zoom: React.FC = () => {

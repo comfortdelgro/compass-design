@@ -14,18 +14,9 @@ import {
   RichTextEditor,
   JSONContent,
   Content,
-} from '@comfortdelgro/react-compass-old'
+} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import {
-  RichTextEditor,
-  JSONContent,
-  Content,
-} from '@comfortdelgro/react-compass-old/rich-text-editor'
-```
 
 ## Example
 

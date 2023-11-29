@@ -3,7 +3,7 @@ import {
   Tooltip,
   TooltipTrigger,
   Typography,
-} from '@comfortdelgro/react-compass-old'
+} from '@comfortdelgro/react-compass'
 import SvgDarkMode from 'components/icons/SvgDarkMode'
 import SvgLightMode from 'components/icons/SvgLightMode'
 

@@ -1,4 +1,4 @@
-import {Badge, Flexbox} from '@comfortdelgro/react-compass-old'
+import {Badge, Flexbox} from '@comfortdelgro/react-compass'
 
 function BadgeIcon() {
   return (

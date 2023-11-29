@@ -13,11 +13,6 @@ components: Breadcrumbs
 import {Breadcrumbs} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import Breadcrumbs from '@comfortdelgro/react-compass/breadcrumbs'
-```
 
 ## Example
 

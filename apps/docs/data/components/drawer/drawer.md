@@ -14,11 +14,6 @@ components: Drawer
 import {Drawer} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import Drawer from '@comfortdelgro/react-compass/drawer'
-```
 
 ## Basic
 

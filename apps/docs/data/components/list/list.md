@@ -13,16 +13,6 @@ components: List
 import {List, ListCard, InteractiveList} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import {
-  List,
-  ListCard,
-  InteractiveList,
-} from '@comfortdelgro/react-compass/list'
-```
-
 ## Example
 
 ### Basic

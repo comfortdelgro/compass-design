@@ -13,11 +13,6 @@ components: Gutter
 import {Gutter} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import Gutter from '@comfortdelgro/react-compass/gutter'
-```
 
 ## Basic
 

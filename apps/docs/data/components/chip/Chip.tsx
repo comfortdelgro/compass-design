@@ -1,4 +1,4 @@
-import {Chip, Column, Typography} from '@comfortdelgro/react-compass-old'
+import {Chip, Column, Typography} from '@comfortdelgro/react-compass'
 
 const Default: React.FC = () => {
   return (
@@ -25,7 +25,7 @@ const Default: React.FC = () => {
           console.log('Close button click')
         }}
         onClick={() => console.log('clicked...')}
-        style={{maxWidth: '350px'}}
+        css={{maxWidth: '350px'}}
       >
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
         mollitia, molestiae quas vel sint commodi repudiandae consequuntur

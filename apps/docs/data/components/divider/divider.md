@@ -15,9 +15,6 @@ import {Divider} from '@comfortdelgro/react-compass'
 
 or
 
-```jsx
-import Divider from '@comfortdelgro/react-compass/divider'
-```
 
 ## Example
 

@@ -13,11 +13,6 @@ components: Sidebar
 import {Sidebar} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import Sidebar from '@comfortdelgro/react-compass/sidebar'
-```
 
 ## Example
 

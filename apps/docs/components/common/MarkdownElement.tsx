@@ -1,4 +1,3 @@
-import {styled} from '@comfortdelgro/react-compass-old'
 import clsx from 'clsx'
 import * as React from 'react'
 

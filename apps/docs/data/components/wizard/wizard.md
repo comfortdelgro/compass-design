@@ -13,11 +13,6 @@ components: Wizard
 import {Wizard} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import Wizard from '@comfortdelgro/react-compass/wizard'
-```
 
 ## Content
 

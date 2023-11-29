@@ -26,7 +26,7 @@ import H5Search from '@comfortdelgro/compass-icons/react/h5/h5-search'
 import H5Share from '@comfortdelgro/compass-icons/react/h5/h5-share'
 import H5Smile from '@comfortdelgro/compass-icons/react/h5/h5-smile'
 import H5Switch from '@comfortdelgro/compass-icons/react/h5/h5-switch'
-import {Flexbox} from '@comfortdelgro/react-compass-old'
+import {Flexbox} from '@comfortdelgro/react-compass'
 import IconBox from 'data/foundation/iconography/components/IconBox'
 
 export default function h5Icons() {

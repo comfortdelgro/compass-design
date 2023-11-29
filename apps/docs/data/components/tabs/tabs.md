@@ -13,12 +13,6 @@ components: Tabs
 import {Tabs, TabsProps} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import {Tabs, TabsProps} from '@comfortdelgro/react-compass/tabs'
-```
-
 ## Note
 
 **Note:** [We are going to use css module intead of old stiches]

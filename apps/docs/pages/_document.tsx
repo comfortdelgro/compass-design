@@ -1,4 +1,4 @@
-import Preflight from '@comfortdelgro/react-compass-old/preflight'
+import {Preflight} from '@comfortdelgro/react-compass'
 import Document, {Head, Html, Main, NextScript} from 'next/document'
 import * as React from 'react'
 import {getStaticPath} from 'utils'

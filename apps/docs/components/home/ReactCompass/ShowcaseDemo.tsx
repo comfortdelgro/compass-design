@@ -1,7 +1,7 @@
-import {Button, Card} from '@comfortdelgro/react-compass-old'
+import {Button, Card} from '@comfortdelgro/react-compass'
 
 export const componentCode = `
-import Preflight from '@comfortdelgro/react-compass-old/preflight'
+import {Preflight} from '@comfortdelgro/react-compass'
 import Document, {
   DocumentContext,
   Head,

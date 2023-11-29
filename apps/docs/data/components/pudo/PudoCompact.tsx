@@ -1,7 +1,5 @@
 import {Column, Pudo, Typography} from '@comfortdelgro/react-compass'
 
-import styles from './styles/CompactExampleContainer.module.css'
-
 export default function PudoCompact() {
   return (
     <Column>

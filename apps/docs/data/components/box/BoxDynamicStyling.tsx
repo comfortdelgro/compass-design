@@ -1,4 +1,4 @@
-import {Box, Column} from '@comfortdelgro/react-compass-old'
+import {Box, Column} from '@comfortdelgro/react-compass'
 
 const DynamicStyling: React.FC = () => {
   return (

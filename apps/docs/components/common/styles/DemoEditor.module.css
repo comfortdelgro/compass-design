@@ -1,0 +1,31 @@
+.box {
+  position: absolute;
+  top: var(--cdg-spacing-1);
+  padding: var(--cdg-spacing-1);
+  outline: 0;
+  left: 50%;
+  border: 1px solid;
+  border-color: #6b89f7;
+  background-color: #91a7f9;
+  color: #fff;
+  transform: translateX(-50%);
+  border-radius: 6px;
+  font-size: 13px;
+  transition: all 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.box:not(:focus) {
+  top: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.box > kbd {
+  padding: var(--cdg-spacing-1);
+  background-color: var(--colors-cdgBlue60);
+  font-size: 11px;
+  border-radius: 6px;
+  border: 1px solid;
+  border-color: var(--colors-cdgBlue40);
+}

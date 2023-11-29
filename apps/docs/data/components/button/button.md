@@ -7,14 +7,9 @@
 ## Import
 
 ```js
-import {Button} from '@comfortdelgro/react-compass-old'
+import {Button} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```js
-import Button from '@comfortdelgro/react-compass-old/button'
-```
 
 ## Button Sizes
 

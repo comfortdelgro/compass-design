@@ -2,7 +2,7 @@ import {
   AutoComplete,
   Column,
   SearchField,
-} from '@comfortdelgro/react-compass-old'
+} from '@comfortdelgro/react-compass'
 import React from 'react'
 
 const FullFeatured: React.FC = () => {

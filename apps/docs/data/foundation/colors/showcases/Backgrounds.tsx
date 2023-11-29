@@ -1,4 +1,5 @@
-import {Box, theme} from '@comfortdelgro/react-compass-old'
+import {Box} from '@comfortdelgro/react-compass'
+import {theme} from '@comfortdelgro/react-compass-old'
 import ColorBox from '../components/ColorBox'
 
 const DemoColors = () => {

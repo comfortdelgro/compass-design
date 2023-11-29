@@ -13,12 +13,6 @@ components: TagBox
 import {TagBox} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import TagBox from '@comfortdelgro/react-compass/tag-box'
-```
-
 ## Example
 
 ### Full features
