@@ -13,12 +13,6 @@ components: Dropdown
 import {Dropdown} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import Dropdown from '@comfortdelgro/react-compass/dropdown'
-```
-
 ## Example
 
 ### Select Controlled:

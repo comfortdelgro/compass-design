@@ -13,12 +13,6 @@ components: Textfield
 import {Textfield} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import Textfield from '@comfortdelgro/react-compass/textfield'
-```
-
 ## Example
 
 ### Basic

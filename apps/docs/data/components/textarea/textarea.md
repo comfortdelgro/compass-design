@@ -13,12 +13,6 @@ components: Textarea
 import {Textarea} from '@comfortdelgro/react-compass'
 ```
 
-or
-
-```jsx
-import Textarea from '@comfortdelgro/react-compass/textarea'
-```
-
 ## Example
 
 ### Basic

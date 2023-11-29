@@ -13,12 +13,6 @@ components: Toast
 import Toast from '@comfortdelgro/react-compass/toast'
 ```
 
-or
-
-```jsx
-import {Toast} from '@comfortdelgro/react-compass'
-```
-
 ## Examples
 
 ### Default
