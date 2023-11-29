@@ -13,12 +13,9 @@ export default function DrawerExposeDocs() {
   return (
     <Column>
       <Typography.Header variant='header4'>
-        children as function
+        2. <code>children</code> as a function
       </Typography.Header>
-      <Typography.Body
-        variant='body2'
-        css={{'&>code': {fontFamily: '$mono', fontWeight: '$semibold'}}}
-      >
+      <Typography.Body variant='body2'>
         When using this method, you pass children as a function which allows you
         to access the <code>triggerCollapse</code> function and also some
         Drawer's parameters too.
