@@ -5,7 +5,6 @@ import SimpleCodeEditor from 'react-simple-code-editor'
 import {useCodeCopy} from 'utils/CodeCopy'
 import simpleCodeStyles from './styles/SimpleCodeEditor.module.css'
 import styles from './styles/DemoEditor.module.css'
-
 interface DemoEditorProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode
   id: string
@@ -64,7 +63,7 @@ export default function DemoEditor(props: DemoEditorProps) {
         <Box
           ref={enterRef}
           tabIndex={0}
-          className={styles.box}
+          className={`${styles.CdgDemoEditorInfo}`}
           dangerouslySetInnerHTML={{
             __html: 'Press <kbd>Enter</kbd> to start editing',
           }}

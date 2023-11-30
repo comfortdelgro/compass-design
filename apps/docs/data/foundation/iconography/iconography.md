@@ -10,13 +10,13 @@ imgSrc: /static/images/iconography-background.png
 
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
-{{"component": "data/foundation/iconography/components/SearchBar.tsx"}}
-
 ## Icons
 
 Icons should be used to maximize comprehension and reduce cognitive load when you need to call attention to a particular action, command, or section. Our icons are designed with our brand personality baked in.
 
 We have supported 2 types of icons: react and iconify, for iconify you can checkout the web site of [iconify](https://iconify.design/docs/icon-components/react/) for usage and installation
+
+{{"component": "data/foundation/iconography/components/SearchBar.tsx"}}
 
 ## Import
 
