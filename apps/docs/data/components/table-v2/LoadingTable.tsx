@@ -1,11 +1,11 @@
-import {Pagination} from '@comfortdelgro/react-compass'
 import {
+  Pagination,
   ReactTable,
   TableV2CellContext,
   TableV2ColumnDef,
   TableV2HeaderContext,
   TableV2Options,
-} from '@comfortdelgro/react-compass-old'
+} from '@comfortdelgro/react-compass'
 import React, {useState} from 'react'
 
 const TableWithLoading: React.FC = () => {
