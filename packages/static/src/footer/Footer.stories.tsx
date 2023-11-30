@@ -146,7 +146,15 @@ export const Basic = () => {
         >
           {navLinks.map((navItem) => {
             return (
-              <div>
+              <div
+                className='footer-column'
+                style={{
+                  flex: '1',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '24px',
+                }}
+              >
                 <h2 className='footer-nav-title' style={{fontWeight: 'bold'}}>
                   {navItem.title}
                 </h2>
@@ -246,7 +254,15 @@ export const Basic = () => {
         >
           {navLinks.map((navItem) => {
             return (
-              <div>
+              <div
+                className='footer-column'
+                style={{
+                  flex: '1',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '24px',
+                }}
+              >
                 <h3 className='footer-nav-title' style={{fontWeight: 'bold'}}>
                   {navItem.title}
                 </h3>
@@ -346,7 +362,15 @@ export const Basic = () => {
         >
           {navLinks.map((navItem) => {
             return (
-              <div>
+              <div
+                className='footer-column'
+                style={{
+                  flex: '1',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '24px',
+                }}
+              >
                 <h2 className='footer-nav-title' style={{fontWeight: 'bold'}}>
                   {navItem.title}
                 </h2>

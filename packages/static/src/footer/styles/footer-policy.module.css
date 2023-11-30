@@ -18,4 +18,11 @@
       align-items: flex-start;
     }
   }
+
+  @container CdgFooter (max-width: 490px) {
+    .footerPolicy {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+    }
+  }
 }

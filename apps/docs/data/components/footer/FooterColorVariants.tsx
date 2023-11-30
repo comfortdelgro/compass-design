@@ -1,4 +1,10 @@
-import {Icon, Footer, FooterInfo, Link, Button} from '@comfortdelgro/react-compass'
+import {
+  Button,
+  Footer,
+  FooterInfo,
+  Icon,
+  Link,
+} from '@comfortdelgro/react-compass'
 import {faCamera, faGlobe} from '@fortawesome/free-solid-svg-icons'
 
 type FooterColor = 'black' | 'white' | 'blue'
@@ -35,6 +41,61 @@ const zigLogo = (
 )
 
 const MyFooter: React.FC<MyFooterProps> = ({color = 'white'}) => {
+  const navLinks = [
+    {
+      title: 'About us',
+      children: [
+        {link: '*', name: 'Profile'},
+        {link: '*', name: 'Milestones'},
+        {link: '*', name: 'Sustainability'},
+        {link: '*', name: 'ConfortUnited'},
+        {link: '*', name: 'Careers'},
+      ],
+    },
+    {
+      title: 'Promotions',
+      children: [
+        {link: '*', name: 'Latest Promotions'},
+        {link: '*', name: 'Latest Promotions'},
+        {link: '*', name: 'Latest Promotions'},
+      ],
+    },
+    {
+      title: 'Drive with us',
+      children: [
+        {link: '*', name: 'Register As A Cabby'},
+        {link: '*', name: 'Cabby Portal'},
+        {link: '*', name: 'Useful Links'},
+      ],
+    },
+    {
+      title: 'News & Media',
+      children: [
+        {link: '*', name: 'Register As A Cabby'},
+        {link: '*', name: 'Cabby Portal'},
+      ],
+    },
+    {
+      title: 'Ride with us',
+      children: [
+        {link: '*', name: 'App Features'},
+        {link: '*', name: 'ComfortPoints'},
+        {link: '*', name: 'Fares'},
+        {link: '*', name: 'Cabcharge'},
+        {link: '*', name: 'Seating Capacity'},
+        {link: '*', name: 'Cabcharge'},
+      ],
+    },
+    {
+      title: 'Train with us',
+      children: [
+        {link: '*', name: 'Apply Now'},
+        {link: '*', name: 'TDVL / PDVL Courses'},
+        {link: '*', name: 'Taxi Refresher Course'},
+      ],
+    },
+  ]
+
   return (
     <Footer
       color={color}
@@ -75,7 +136,6 @@ const MyFooter: React.FC<MyFooterProps> = ({color = 'white'}) => {
       </Footer.Header>
       <Footer.Nav
         className='center-items'
-        gridNumber={6}
         css={{
           '& .footer-nav-title': {
             fontSize: '16px',
@@ -84,54 +144,26 @@ const MyFooter: React.FC<MyFooterProps> = ({color = 'white'}) => {
           },
         }}
       >
-        <div>
-          <h3 className='footer-nav-title' style={{fontWeight: 'bold'}}>
-            About us
-          </h3>
-          <Link href='#'>Profile</Link>
-          <Link href='#'>Milestones</Link>
-          <Link href='#'>Careers</Link>
-        </div>
-        <div>
-          <h3 className='footer-nav-title' style={{fontWeight: 'bold'}}>
-            About us
-          </h3>
-          <Link href='#'>Profile</Link>
-          <Link href='#'>Milestones</Link>
-          <Link href='#'>Careers</Link>
-        </div>
-        <div>
-          <h3 className='footer-nav-title' style={{fontWeight: 'bold'}}>
-            About us
-          </h3>
-          <Link href='#'>Profile</Link>
-          <Link href='#'>Milestones</Link>
-          <Link href='#'>Careers</Link>
-        </div>
-        <div>
-          <h3 className='footer-nav-title' style={{fontWeight: 'bold'}}>
-            About us
-          </h3>
-          <Link href='#'>Profile</Link>
-          <Link href='#'>Milestones</Link>
-          <Link href='#'>Careers</Link>
-        </div>
-        <div>
-          <h3 className='footer-nav-title' style={{fontWeight: 'bold'}}>
-            About us
-          </h3>
-          <Link href='#'>Profile</Link>
-          <Link href='#'>Milestones</Link>
-          <Link href='#'>Careers</Link>
-        </div>
-        <div>
-          <h3 className='footer-nav-title' style={{fontWeight: 'bold'}}>
-            About us
-          </h3>
-          <Link href='#'>Profile</Link>
-          <Link href='#'>Milestones</Link>
-          <Link href='#'>Careers</Link>
-        </div>
+        {navLinks.map((navItem) => {
+          return (
+            <div
+              className='footer-column'
+              style={{
+                flex: '1',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '24px',
+              }}
+            >
+              <h2 className='footer-nav-title' style={{fontWeight: 'bold'}}>
+                {navItem.title}
+              </h2>
+              {navItem.children.map((child) => {
+                return <a href={child.link}>{child.name}</a>
+              })}
+            </div>
+          )
+        })}
       </Footer.Nav>
       <FooterInfo
         css={{
