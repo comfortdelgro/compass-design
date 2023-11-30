@@ -13,7 +13,7 @@ import {
 import TableCheckbox from '../table/table-checkbox'
 import TableToolbar from '../table/table-toolbar'
 
-import Table from '../table/table'
+import Table from '../table'
 import TableCheckboxCell from '../table/table-checkbox-cell'
 import TableFooter from '../table/table-footer'
 import ProgressPercentage from '../table/table-progress'

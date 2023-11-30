@@ -315,21 +315,21 @@ export type {
   TableType,
 } from './table'
 
-export {default as ReactTable} from './table-v2'
-export type {
-  ReactTableProps,
-  TableV2AccessorColumnDef,
-  TableV2Cell,
-  TableV2CellContext,
-  TableV2ColumnDef,
-  TableV2DisplayColumnDef,
-  TableV2GroupColumnDef,
-  TableV2HeaderContext,
-  OptionType as TableV2Options,
-  TableV2Row,
-  TableV2SortingState,
-  TableV2Table,
-} from './table-v2'
+// export {default as ReactTable} from './table-v2'
+// export type {
+//   ReactTableProps,
+//   TableV2AccessorColumnDef,
+//   TableV2Cell,
+//   TableV2CellContext,
+//   TableV2ColumnDef,
+//   TableV2DisplayColumnDef,
+//   TableV2GroupColumnDef,
+//   TableV2HeaderContext,
+//   OptionType as TableV2Options,
+//   TableV2Row,
+//   TableV2SortingState,
+//   TableV2Table,
+// } from './table-v2'
 export {default as Tabs} from './tabs'
 export type {TabsProps} from './tabs'
 export {default as TagBox} from './tag-box'
