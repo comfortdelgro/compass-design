@@ -134,7 +134,7 @@ export const preflightStyles = globalCss({
    */
   'button, input, optgroup, select, textarea': {
     fontFamily: 'inherit',
-    fontSize: '100%',
+    // fontSize: '100%',
     lineHeight: 1.15,
     // margin: 0,
   },
