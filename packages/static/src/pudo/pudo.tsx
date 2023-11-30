@@ -2,6 +2,7 @@
 
 import clsx from 'clsx'
 import {
+  CSSProperties,
   forwardRef,
   ReactElement,
   Ref,
@@ -16,6 +17,24 @@ import {useDOMRef} from '../utils/use-dom-ref'
 import PudoItem from './pudo-item'
 import type {PudoItemProps, PudoProps, PudoValueChange} from './pudo.types'
 import classes from './styles/pudo.module.css'
+
+const getCSSVariableValue = (colorInput: string): string => {
+  if (typeof window === 'undefined' || typeof document === 'undefined') {
+    return colorInput
+  }
+
+  if (
+    !window
+      .getComputedStyle(document.documentElement)
+      .getPropertyValue(colorInput)
+      .trim()
+  ) {
+    // if input is NOT a valid color variable name
+    return colorInput
+  }
+
+  return `var(${colorInput})`
+}
 
 const PudoRefComponent = <TItemKeys extends string | number | symbol>(
   {
@@ -32,7 +51,9 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
     addItemsLabel = 'Add',
     compact,
     alignIcon,
-    ...htmlDivAttributes
+    bgColor,
+    style,
+    ...htmlDataAttributes
   }: PudoProps<TItemKeys>,
   ref: Ref<HTMLDivElement>,
 ) => {
@@ -229,7 +250,15 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
       <div
         ref={PudoRef}
         className={clsx(classes.pudoContainer, 'cdg-pudo-container', className)}
-        {...htmlDivAttributes}
+        {...htmlDataAttributes}
+        style={
+          {
+            ...style,
+            '--cdg-pudo-bg': getCSSVariableValue(
+              htmlDataAttributes['data-background'] || bgColor,
+            ),
+          } as CSSProperties
+        }
       >
         <div
           className={clsx(classes.pudoItemsWrapper, 'cdg-pudo-items-wrapper')}
@@ -240,7 +269,10 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
         <div className={clsx(classes.pudoActions, 'cdg-pudo-actions')}>
           {showAddButton && (
             <Button
-              className={classes.pudoActionButton}
+              className={clsx(
+                classes.pudoActionButton,
+                'cdg-pudo-action-button',
+              )}
               variant='ghost'
               type='button'
               size='sm'
@@ -266,7 +298,10 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
 
           {showRemoveButton && (
             <Button
-              className={classes.pudoActionButton}
+              className={clsx(
+                classes.pudoActionButton,
+                'cdg-pudo-action-button',
+              )}
               variant='danger'
               type='button'
               size='sm'

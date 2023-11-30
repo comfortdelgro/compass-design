@@ -39,7 +39,7 @@ const PudoItem = <TItemName extends string | number | symbol>({
           <TextField
             className='cdg-pudo-item__input'
             css={{
-              '&.cdg-pudo-item__input > div': {
+              '& > div': {
                 border: 'none',
                 height: 'unset',
                 backgroundColor: 'inherit',
@@ -100,7 +100,11 @@ const PudoItem = <TItemName extends string | number | symbol>({
       alignIcon={alignIcon}
       {...(compact ? {compact} : undefined)}
     >
-      <div className='cdg-pudo-item__icon'>{icon || DefaultIcons[index]}</div>
+      <div className='cdg-pudo-item__icon'>
+        <div className='cdg-pudo-item__icon-shape'>
+          {icon || DefaultIcons[index]}
+        </div>
+      </div>
       {renderPudoContent()}
 
       {allowSwap && type === 'input' ? (

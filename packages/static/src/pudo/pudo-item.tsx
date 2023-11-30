@@ -99,7 +99,14 @@ const PudoItemComponent = <TItemName extends string | number | symbol>({
       style={{zIndex: itemsLength - 1 - index ?? undefined}}
     >
       <div className={clsx(classes.pudoItemIcon, 'cdg-pudo-item__icon')}>
-        {icon || DefaultIcons[index]}
+        <div
+          className={clsx(
+            classes.pudoItemIconShape,
+            'cdg-pudo-item__icon-shape',
+          )}
+        >
+          {icon || DefaultIcons[index]}
+        </div>
       </div>
       {renderPudoContent()}
 
