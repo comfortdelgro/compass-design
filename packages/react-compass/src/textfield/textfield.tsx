@@ -136,7 +136,7 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
     } = props
     const isDarkTheme = useIsDarkTheme()
     const htmlProps = {...ariaSafeProps} as Omit<
-      React.HTMLAttributes<HTMLInputElement>,
+      React.HTMLAttributes<HTMLDivElement>,
       keyof Props
     >
 
@@ -161,6 +161,7 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
 
     return (
       <StyledTextFieldWrapper
+        {...htmlProps}
         css={css}
         ref={textfieldRef}
         isDarkTheme={isDarkTheme}
@@ -176,7 +177,6 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
           {leftIcon ? <div className='left-icon'>{leftIcon}</div> : null}
           {prefix ? <div className='prefix'>{prefix}</div> : null}
           <StyledTextField
-            {...htmlProps}
             id={id}
             prefix=''
             placeholder={placeholder}
