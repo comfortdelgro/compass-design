@@ -124,7 +124,7 @@ const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
     } = props
     const isDarkTheme = useIsDarkTheme()
     const htmlProps = {...ariaSafeProps} as unknown as Omit<
-      React.HTMLAttributes<HTMLTextAreaElement>,
+      React.HTMLAttributes<HTMLDivElement>,
       keyof Props
     >
 
@@ -212,7 +212,7 @@ const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
 
     return (
       <CssInjection css={css} childrenRef={wrapperRef}>
-        <div className={wrapperClasses} ref={wrapperRef}>
+        <div {...htmlProps} className={wrapperClasses} ref={wrapperRef}>
           {label && (
             <label htmlFor={textareaId} className={labelClasses}>
               {label}
@@ -224,7 +224,6 @@ const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
             </label>
           )}
           <textarea
-            {...htmlProps}
             ref={textareaFieldRef}
             className={textareaClasses}
             id={textareaId}

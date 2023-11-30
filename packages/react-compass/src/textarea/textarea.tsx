@@ -126,7 +126,7 @@ const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
     } = props
     const isDarkTheme = useIsDarkTheme()
     const htmlProps = {...ariaSafeProps} as Omit<
-      React.HTMLAttributes<HTMLTextAreaElement>,
+      React.HTMLAttributes<HTMLDivElement>,
       keyof Props
     >
     const textareaId = id
@@ -145,6 +145,7 @@ const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
     }, [])
     return (
       <StyledTextareaWrapper
+        {...htmlProps}
         css={css}
         className={className ?? 'cdg-textarea-container'}
         ref={wrapperRef}
@@ -161,7 +162,6 @@ const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
           </StyledTextAreaLabel>
         )}
         <StyledTextarea
-          {...htmlProps}
           ref={textareaRef}
           id={textareaId}
           cols={cols}

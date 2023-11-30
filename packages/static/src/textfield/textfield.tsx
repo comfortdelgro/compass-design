@@ -132,7 +132,7 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
     } = props
     const isDarkTheme = useIsDarkTheme()
     const htmlProps = {...ariaSafeProps} as Omit<
-      React.HTMLAttributes<HTMLInputElement>,
+      React.HTMLAttributes<HTMLDivElement>,
       keyof Props
     >
 
@@ -221,7 +221,11 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
 
     return (
       <CssInjection css={css} childrenRef={textfieldRef}>
-        <div className={textfieldWrapperClasses} ref={textfieldRef}>
+        <div
+          {...htmlProps}
+          className={textfieldWrapperClasses}
+          ref={textfieldRef}
+        >
           {label && (
             <label htmlFor={id} className={labelClasses}>
               {label}
@@ -244,7 +248,6 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
               </div>
             )}
             <input
-              {...htmlProps}
               ref={inputfieldRef}
               id={inputId}
               prefix=''
