@@ -1,0 +1,23 @@
+<SpeedDial2
+    showing={showing}
+    actions={
+        <SpeedDial2.Actions position={'left'}>
+            <SpeedDial2.Button>
+                <FontAwesomeIcon icon={faBagShopping} />
+            </SpeedDial2.Button>
+            <SpeedDial2.Button>
+                <FontAwesomeIcon icon={faChair} />
+            </SpeedDial2.Button>
+        </SpeedDial2.Actions>
+    }
+>
+    <SpeedDial2.Button onClick={() => toggleSpeedDial()}>
+        <FontAwesomeIcon
+        icon={faPlus}
+        style={{
+            ...(showing && {transform: 'rotate(45deg)'}),
+            ...{transition: 'all 0.2s'},
+        }}
+        />
+    </SpeedDial2.Button>
+</SpeedDial2>

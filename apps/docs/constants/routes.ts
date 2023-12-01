@@ -447,6 +447,12 @@ export const routes: TSideNavItem[] = [
           'Provides the behavior and accessibility implementation for a speed-dial component.',
       },
       {
+        title: 'SpeedDial2',
+        pathname: '/speed-dial2',
+        description:
+          'Provides the behavior and accessibility implementation for a speed-dial component.',
+      },
+      {
         title: 'SubHeader',
         pathname: '/sub-header',
         description:
