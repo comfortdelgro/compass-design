@@ -17,14 +17,17 @@ import Table from '../table'
 import TableCheckboxCell from '../table/table-checkbox-cell'
 import TableFooter from '../table/table-footer'
 import ProgressPercentage from '../table/table-progress'
-export type {OptionType, TableProps as ReactTableProps} from '../table'
+export type {
+  OptionType,
+  ReactTableCheckboxProps,
+  ReactTableFooterProps,
+  TableProps as ReactTableProps,
+  ReactTableToolbarProps,
+} from '../table'
 export {
   EditableCellContextProvider,
   useEditableCellContext,
 } from '../table/editable/editable-cell'
-export type {TableCheckboxProps as ReactTableCheckboxProps} from '../table/table-checkbox'
-export type {TableFooterProps as ReactTableFooterProps} from '../table/table-footer'
-export type {TableToolbarProps as ReactTableToolbarProps} from '../table/table-toolbar'
 
 Table.Toolbar = TableToolbar
 Table.Footer = TableFooter

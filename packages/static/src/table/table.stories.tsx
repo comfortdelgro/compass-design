@@ -833,10 +833,6 @@ export const EditableTemplateCell: React.FC = () => {
     enableMultiSort: true,
     columnResizeMode: 'onChange',
     manualSorting: false,
-    initialSortBy: [
-      { id: 'firstName', desc: true },
-      { id: 'lastName', desc: false },
-    ],
     enableRowSelection: (row) => row.original.age > 30,
   }
 
