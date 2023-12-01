@@ -45,17 +45,30 @@ export const ColorControl = ({colors = defaultColors}: ColorControlProps) => {
       onSelectionChange={handleSelectionChange}
       type='color'
       css={{
-        width: '70px',
-        height: '28px',
-        float: 'left',
-        margin: '0 var(--cdg-spacing-2) var(--cdg-spacing-2)',
         button: {
           color: '$gray110',
+          width: '70px',
+          height: '28px',
         },
       }}
     >
       {[...colorSet].map((color) => (
-        <Select.Item key={color}>
+        <Select.Item
+          key={color}
+          renderAs={
+            <div
+              className='colorItem'
+              style={{
+                boxSizing: 'border-box',
+                backgroundColor: color,
+                width: '20px',
+                height: '20px',
+                borderRadius: '4px',
+                border: '1px #323130 solid',
+              }}
+            />
+          }
+        >
           <div
             className='colorItem'
             style={{
@@ -64,7 +77,7 @@ export const ColorControl = ({colors = defaultColors}: ColorControlProps) => {
               height: '24px',
               borderRadius: '4px',
             }}
-          ></div>
+          />
         </Select.Item>
       ))}
     </Select>

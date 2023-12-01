@@ -115,10 +115,10 @@ export const HeadingsControl = () => {
       selectedKey={selectedHeadingLevel}
       type='heading'
       css={{
-        width: '124px',
-        height: '28px',
-        float: 'left',
-        margin: '0 var(--cdg-spacing-2) var(--cdg-spacing-2)',
+        button: {
+          width: '124px',
+          height: '28px',
+        }
       }}
     >
       {heading.map((h) => (
