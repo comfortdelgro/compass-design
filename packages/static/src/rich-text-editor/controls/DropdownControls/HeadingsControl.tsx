@@ -65,7 +65,7 @@ const heading = [
   },
 ]
 
-export const HeadingsControl = () => {
+export const HeadingsControl = (props: React.HTMLAttributes<HTMLDivElement>) => {
   const {editor} = useRichTextEditorContext()
   const [selectedHeadingLevel, setLevel] = React.useState<string>('0')
   const handleSelectionChange = React.useCallback(
@@ -108,6 +108,8 @@ export const HeadingsControl = () => {
       setLevel('0')
     }
   }
+
+  console.log(props)
 
   return (
     <Select

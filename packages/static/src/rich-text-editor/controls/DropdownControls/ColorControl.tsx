@@ -47,7 +47,7 @@ export const ColorControl = ({colors = defaultColors}: ColorControlProps) => {
       css={{
         button: {
           color: '$gray110',
-          width: '70px',
+          width: '60px',
           height: '28px',
         },
       }}

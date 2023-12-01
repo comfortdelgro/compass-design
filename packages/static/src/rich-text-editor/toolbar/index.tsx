@@ -39,14 +39,16 @@ const Toolbar = React.forwardRef<HTMLDivElement, ToolbarProps>((props, ref) => {
   }
 
   useEffect(() => {
-    const rect = toolbarRef.current?.getBoundingClientRect()
-    ;[...toolbarRef.current.children].forEach((node) => {
-      const r = node.getBoundingClientRect()
-      if (expanded) node['style'].visibility = null
-      if (r.right > rect.right) {
-        node['style'].visibility = 'hidden'
-      }
-    })
+    setTimeout(() => {
+      const rect = toolbarRef.current?.getBoundingClientRect()
+      ;[...toolbarRef.current.children].forEach((node) => {
+        const r = node.getBoundingClientRect()
+        if (expanded) node['style'].visibility = null
+        if (r.right > rect.right) {
+          node['style'].visibility = 'hidden'
+        }
+      })
+    }, 10)
   }, [toolbarRef, expanded])
 
   // Get data map of toolbar to see summary of toolbar
@@ -84,7 +86,7 @@ const Toolbar = React.forwardRef<HTMLDivElement, ToolbarProps>((props, ref) => {
 
               if (isGroup) {
                 // There is a group so need to loop again
-                const childrenData = {
+                const currentItem = {
                   index: toolbarIndex,
                   isGroup: !!child.props.children,
                 }
@@ -96,31 +98,42 @@ const Toolbar = React.forwardRef<HTMLDivElement, ToolbarProps>((props, ref) => {
 
                     // Caculate margin of group item
                     if (dataMap.length > 0) {
-                      const preItem = dataMap[childrenData.index - 1]
+                      const preItem = dataMap[currentItem.index - 1]
                       // If prev item is group and current item is not group
-                      if (preItem?.isGroup && !childrenData.isGroup) {
-                        marginLeft = "var(--cdg-spacing-2)"
+                      if (preItem?.isGroup && !currentItem.isGroup) {
+                        marginLeft = 'var(--cdg-spacing-2)'
+                      }
+                      // If prev item is not group and current item is group
+                      if (!preItem?.isGroup && currentItem.isGroup) {
+                        marginLeft = 'var(--cdg-spacing-2)'
                       }
                       // If prev item is group and current item is group
-                      if (preItem?.isGroup && childrenData.isGroup) {
-                        marginLeft = "var(--cdg-spacing-1)"
+                      if (preItem?.isGroup && currentItem.isGroup) {
+                        marginLeft = 'var(--cdg-spacing-1)'
                       }
 
-                      const nextItem = dataMap[childrenData.index + 1]
+                      const nextItem = dataMap[currentItem.index + 1]
                       // If next item is group and current item is not group
-                      if (nextItem?.isGroup && !childrenData.isGroup) {
-                        marginRight = "var(--cdg-spacing-2)"
+                      if (nextItem?.isGroup && !currentItem.isGroup) {
+                        marginRight = 'var(--cdg-spacing-2)'
+                      }
+                      // If next item is not group and current item is group
+                      if (!nextItem?.isGroup && currentItem.isGroup) {
+                        marginRight = 'var(--cdg-spacing-2)'
                       }
                       // If next item is group and current item is group
-                      if (nextItem?.isGroup && childrenData.isGroup) {
-                        marginRight = "var(--cdg-spacing-1)"
+                      if (nextItem?.isGroup && currentItem.isGroup) {
+                        marginRight = 'var(--cdg-spacing-1)'
                       }
                     }
 
-                    // Render group item
+                    // Render group items
                     return React.cloneElement(groupItemChild, {
                       style: {
-                        marginLeft: groupIndex === 0 ? marginLeft : 0,
+                        marginLeft:
+                          groupIndex === 0 && currentItem.index !== 0
+                            ? marginLeft
+                            : 0,
                         marginRight:
                           groupIndex === toolbarItemChildrenLength - 1
                             ? marginRight
