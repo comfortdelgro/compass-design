@@ -59,20 +59,93 @@ const Toolbar = React.forwardRef<HTMLDivElement, ToolbarProps>((props, ref) => {
     hideOverflowItem()
   }, [hideOverflowItem, expanded])
 
-  // Get data map of toolbar to see summary of toolbar
-  const dataMap = React.useMemo(
-    () =>
-      React.Children.map(
-        children,
-        (child: React.ReactElement<Child>, index) => {
-          return {
-            index: index,
+  const calcultedChildren = React.useMemo(() => {
+    // Get data map of toolbar to see summary of toolbar
+    const dataMap = React.Children.map(
+      children,
+      (child: React.ReactElement<Child>, index) => {
+        return {
+          index: index,
+          isGroup: !!child.props.children,
+        }
+      },
+    )
+
+    return React.Children.map(
+      children,
+      (child: React.ReactElement<Child>, toolbarIndex) => {
+        // Loop throught each of item of toolbar
+
+        // Current item in toolbar is group or not
+        const isGroup = !!child.props.children
+        const toolbarItemChildren = child.props.children
+        const toolbarItemChildrenLength =
+          React.Children.toArray(toolbarItemChildren).length
+
+        if (isGroup) {
+          // There is a group so need to loop again
+          const currentItem = {
+            index: toolbarIndex,
             isGroup: !!child.props.children,
           }
-        },
-      ),
-    [children],
-  )
+          return React.Children.map(
+            toolbarItemChildren,
+            (groupItemChild: React.ReactElement, groupIndex: number) => {
+              let marginLeft = '0'
+              let marginRight = '0'
+
+              // Caculate margin of group item
+              if (dataMap.length > 0) {
+                const preItem = dataMap[currentItem.index - 1]
+                // If prev item is group and current item is not group
+                if (preItem?.isGroup && !currentItem.isGroup) {
+                  marginLeft = 'var(--cdg-spacing-2)'
+                }
+                // If prev item is not group and current item is group
+                if (!preItem?.isGroup && currentItem.isGroup) {
+                  marginLeft = 'var(--cdg-spacing-2)'
+                }
+                // If prev item is group and current item is group
+                if (preItem?.isGroup && currentItem.isGroup) {
+                  marginLeft = 'var(--cdg-spacing-1)'
+                }
+
+                const nextItem = dataMap[currentItem.index + 1]
+                // If next item is group and current item is not group
+                if (nextItem?.isGroup && !currentItem.isGroup) {
+                  marginRight = 'var(--cdg-spacing-2)'
+                }
+                // If next item is not group and current item is group
+                if (!nextItem?.isGroup && currentItem.isGroup) {
+                  marginRight = 'var(--cdg-spacing-2)'
+                }
+                // If next item is group and current item is group
+                if (nextItem?.isGroup && currentItem.isGroup) {
+                  marginRight = 'var(--cdg-spacing-1)'
+                }
+              }
+
+              // Render group items
+              return React.cloneElement(groupItemChild, {
+                style: {
+                  marginLeft:
+                    groupIndex === 0 && currentItem.index !== 0
+                      ? marginLeft
+                      : 0,
+                  marginRight:
+                    groupIndex === toolbarItemChildrenLength - 1
+                      ? marginRight
+                      : 0,
+                },
+              })
+            },
+          )
+        }
+
+        return child
+      },
+    )
+  }, [children])
 
   return (
     <CssInjection css={css} childrenRef={toolbarRef}>
@@ -81,80 +154,7 @@ const Toolbar = React.forwardRef<HTMLDivElement, ToolbarProps>((props, ref) => {
         {...delegates}
       >
         <div ref={toolbarRef} className={styles.rteToolbar}>
-          {React.Children.map(
-            children,
-            (child: React.ReactElement<Child>, toolbarIndex) => {
-              // Loop throught each of item of toolbar
-
-              // Current item in toolbar is group or not
-              const isGroup = !!child.props.children
-              const toolbarItemChildren = child.props.children
-              const toolbarItemChildrenLength =
-                React.Children.toArray(toolbarItemChildren).length
-
-              if (isGroup) {
-                // There is a group so need to loop again
-                const currentItem = {
-                  index: toolbarIndex,
-                  isGroup: !!child.props.children,
-                }
-                return React.Children.map(
-                  toolbarItemChildren,
-                  (groupItemChild: React.ReactElement, groupIndex: number) => {
-                    let marginLeft = '0'
-                    let marginRight = '0'
-
-                    // Caculate margin of group item
-                    if (dataMap.length > 0) {
-                      const preItem = dataMap[currentItem.index - 1]
-                      // If prev item is group and current item is not group
-                      if (preItem?.isGroup && !currentItem.isGroup) {
-                        marginLeft = 'var(--cdg-spacing-2)'
-                      }
-                      // If prev item is not group and current item is group
-                      if (!preItem?.isGroup && currentItem.isGroup) {
-                        marginLeft = 'var(--cdg-spacing-2)'
-                      }
-                      // If prev item is group and current item is group
-                      if (preItem?.isGroup && currentItem.isGroup) {
-                        marginLeft = 'var(--cdg-spacing-1)'
-                      }
-
-                      const nextItem = dataMap[currentItem.index + 1]
-                      // If next item is group and current item is not group
-                      if (nextItem?.isGroup && !currentItem.isGroup) {
-                        marginRight = 'var(--cdg-spacing-2)'
-                      }
-                      // If next item is not group and current item is group
-                      if (!nextItem?.isGroup && currentItem.isGroup) {
-                        marginRight = 'var(--cdg-spacing-2)'
-                      }
-                      // If next item is group and current item is group
-                      if (nextItem?.isGroup && currentItem.isGroup) {
-                        marginRight = 'var(--cdg-spacing-1)'
-                      }
-                    }
-
-                    // Render group items
-                    return React.cloneElement(groupItemChild, {
-                      style: {
-                        marginLeft:
-                          groupIndex === 0 && currentItem.index !== 0
-                            ? marginLeft
-                            : 0,
-                        marginRight:
-                          groupIndex === toolbarItemChildrenLength - 1
-                            ? marginRight
-                            : 0,
-                      },
-                    })
-                  },
-                )
-              }
-
-              return child
-            },
-          )}
+          {calcultedChildren}
         </div>
         <Control onClick={handleMoreBtnClick} id='more-button' active={false}>
           <svg className='accordion-chevron-icon' viewBox='0 0 448 512'>
