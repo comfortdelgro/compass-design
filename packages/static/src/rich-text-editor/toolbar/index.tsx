@@ -38,18 +38,26 @@ const Toolbar = React.forwardRef<HTMLDivElement, ToolbarProps>((props, ref) => {
     }
   }
 
+  const hideOverflowItem = React.useCallback(() => {
+    const rect = toolbarRef.current?.getBoundingClientRect()
+    ;[...toolbarRef.current.children].forEach((node) => {
+      const r = node.getBoundingClientRect()
+      if (expanded) node['style'].visibility = null
+      if (r.right > rect.right) {
+        node['style'].visibility = 'hidden'
+      }
+    })
+  }, [toolbarRef, expanded])
+
   useEffect(() => {
     setTimeout(() => {
-      const rect = toolbarRef.current?.getBoundingClientRect()
-      ;[...toolbarRef.current.children].forEach((node) => {
-        const r = node.getBoundingClientRect()
-        if (expanded) node['style'].visibility = null
-        if (r.right > rect.right) {
-          node['style'].visibility = 'hidden'
-        }
-      })
-    }, 10)
-  }, [toolbarRef, expanded])
+      hideOverflowItem()
+    }, 50)
+  }, [hideOverflowItem, toolbarRef])
+
+  useEffect(() => {
+    hideOverflowItem()
+  }, [hideOverflowItem, expanded])
 
   // Get data map of toolbar to see summary of toolbar
   const dataMap = React.useMemo(
