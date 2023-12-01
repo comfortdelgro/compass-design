@@ -95,6 +95,12 @@ export const Positions: React.FC = () => {
               bottom: '20px',
             }
           }
+          onMouseLeave={() => {
+            if (!useHover) {
+              return
+            }
+            setShowing(false)
+          }}
         >
           <SpeedDial2.Button
             onClick={() => toggleSpeedDial()}
@@ -103,12 +109,6 @@ export const Positions: React.FC = () => {
                 return
               }
               setShowing(true)
-            }}
-            onMouseLeave={() => {
-              if (!useHover) {
-                return
-              }
-              setShowing(false)
             }}
           >
             <FontAwesomeIcon

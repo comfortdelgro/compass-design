@@ -36,7 +36,8 @@
     justify-content: center;
     position: absolute;
     width: 100%;
-    bottom: 72px;
+    bottom: 52px;
+    padding-bottom: 20px;
   }
 
   .speedDialActions .floatButton {
@@ -49,7 +50,9 @@
 @layer variants {
   .down {
     bottom: auto;
-    top: 72px;
+    top: 52px;
+    padding-top: 20px;
+    padding-bottom: 0;
   }
 
   .left,
@@ -61,10 +64,14 @@
   }
 
   .left {
-    right: 72px;
+    right: 52px;
+    padding-right: 20px;
+    padding-bottom: 0;
   }
 
   .right {
-    left: 72px;
+    left: 52px;
+    padding-left: 20px;
+    padding-bottom: 0;
   }
 }
