@@ -71,11 +71,10 @@ const Toolbar = React.forwardRef<HTMLDivElement, ToolbarProps>((props, ref) => {
       },
     )
 
+    // Loop throught each of item of toolbar
     return React.Children.map(
       children,
       (child: React.ReactElement<Child>, toolbarIndex) => {
-        // Loop throught each of item of toolbar
-
         // Current item in toolbar is group or not
         const isGroup = !!child.props.children
         const toolbarItemChildren = child.props.children
