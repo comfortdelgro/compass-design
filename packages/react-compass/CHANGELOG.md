@@ -1,5 +1,11 @@
 ## 2.9.0
 
+## 3.1.0
+
+### Minor Changes
+
+- 0f21bb9c: Release for F5
+
 ## 3.0.0
 
 ### Major Changes
