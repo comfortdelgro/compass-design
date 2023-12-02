@@ -284,7 +284,9 @@ const Drawer = forwardRef<DrawerRef, DrawerProps>((props, ref) => {
   }, [open, DrawerElement, preventFocus, handleCloseDrawer])
 
   useEffect(() => {
-    setDrawerHeight(drawerInitHeight)
+    if (!open && drawerInitHeight) {
+      setDrawerHeight(drawerInitHeight)
+    }
     setDrawerStartingHeight(drawerInitHeight)
   }, [open, drawerInitHeight])
 
