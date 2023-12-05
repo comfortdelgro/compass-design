@@ -5,33 +5,47 @@ import SingleInput from './SingleInput'
 import styles from './styles/otpInput.module.css'
 
 export interface Props {
-  /** @default 6 */
+  otp?: string
+  css?: unknown
   length?: number
-  onChangeOTP: (otp: string) => void
-  autoFocus?: boolean
-  isNumberInput?: boolean
   disabled?: boolean
   isMobile?: boolean
-  css?: unknown
+  autoFocus?: boolean
+  isErrored?: boolean
+  isNumberInput?: boolean
+  onChangeOTP: (otp: string) => void
 }
 export type OTPInputProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
+const DEFAULT_OTP_LENGTH = 6
+
 const OTPInputComponent = React.forwardRef<HTMLDivElement, OTPInputProps>(
   (props, ref) => {
     const {
+      otp,
       css = {},
-      length = 6,
-      isNumberInput,
-      autoFocus,
       disabled,
+      autoFocus,
+      className,
+      isNumberInput,
       isMobile = false,
+      isErrored = false,
+      length = DEFAULT_OTP_LENGTH,
       onChangeOTP,
       ...htmlProps
     } = props
     const inputRef = useDOMRef<HTMLDivElement>(ref)
     const [activeInput, setActiveInput] = useState(0)
-    const [otpValues, setOTPValues] = useState(Array<string>(length).fill(''))
+    const [otpValues, setOTPValues] = useState(
+      otp ? otp.split('').slice(0, length) : Array<string>(length).fill(''),
+    )
+
+    React.useEffect(() => {
+      if (otp) {
+        setOTPValues(otp.split('').slice(0, length))
+      }
+    }, [length, otp])
 
     // Helper to return OTP from inputs
     const handleOtpChange = useCallback(
@@ -183,9 +197,10 @@ const OTPInputComponent = React.forwardRef<HTMLDivElement, OTPInputProps>(
     )
 
     const classNames = [
-      'cdg-otp-input',
-      isMobile && styles.inputContainerIsMobile,
       styles.inputContainer,
+      isMobile && styles.inputContainerIsMobile,
+      'cdg-otp-input',
+      className,
     ]
       .filter(Boolean)
       .join(' ')
@@ -195,23 +210,24 @@ const OTPInputComponent = React.forwardRef<HTMLDivElement, OTPInputProps>(
         <div ref={inputRef} className={classNames} {...htmlProps}>
           {Array.from(Array(length).keys()).map((index) => (
             <SingleInput
+              index={index}
+              disabled={disabled}
+              isMobile={isMobile}
+              autoFocus={autoFocus}
+              isErrored={isErrored}
+              autoComplete='one-time-code'
               key={`SingleInput-${index}`}
               focus={activeInput === index}
-              autoFocus={autoFocus}
-              index={index}
-              value={otpValues && otpValues[index]}
-              onFocus={handleOnFocus(index)}
-              onInput={handleOnInput}
-              onKeyDown={handleOnKeyDown}
-              onBlur={onBlur}
-              onPaste={handleOnPaste}
               isNumberInput={isNumberInput}
-              isMobile={isMobile}
+              value={otpValues && otpValues[index]}
               {...(isNumberInput
                 ? {type: 'number', pattern: 'd{1}', inputMode: 'numeric'}
                 : undefined)}
-              autoComplete='one-time-code'
-              disabled={disabled}
+              onBlur={onBlur}
+              onInput={handleOnInput}
+              onPaste={handleOnPaste}
+              onKeyDown={handleOnKeyDown}
+              onFocus={handleOnFocus(index)}
             />
           ))}
         </div>
