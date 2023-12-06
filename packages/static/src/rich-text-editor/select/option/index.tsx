@@ -51,24 +51,34 @@ const Option = React.forwardRef<HTMLLIElement, OptionProps>(
       if (item.key && !isDisabled) onSelect(item.key)
     }
 
+    const optionClasses = React.useMemo(() => {
+      return [
+        styles.rteOption,
+        isFocused && styles.isFocused,
+        isSelected && styles.isSelected,
+        isDisabled && styles.isDisabled,
+        className,
+      ]
+        .filter(Boolean)
+        .join(' ')
+    }, [className, isDisabled, isFocused, isSelected])
+
+    const rightIconClasses = React.useMemo(() => {
+      return [
+        styles.rightIcon,
+        isSelected ? '' : styles.isUnselected,
+        type === 'color' && styles.typeColor,
+        type === 'heading' && styles.typeHeading,
+      ]
+        .filter(Boolean)
+        .join(' ')
+    }, [isSelected, type])
+
     return (
       <CssInjection css={css} childrenRef={optionRef}>
-        <li
-          className={`${className} ${styles.rteOption} ${
-            isFocused ? styles.isFocused : ''
-          } ${isSelected ? styles.isSelected : ''} ${
-            isDisabled ? styles.isDisabled : ''
-          }`}
-          onClick={handleSelect}
-        >
-          <div className={`${styles.optionContent}`}>{children}</div>
-          <div
-            className={`${styles.rightIcon} ${
-              isSelected ? '' : styles.isUnselected
-            } ${type === 'color' ? styles.typeColor : ''} ${
-              type === 'heading' ? styles.typeHeading : ''
-            }`}
-          >
+        <li className={optionClasses} onClick={handleSelect}>
+          <div className={styles.optionContent}>{children}</div>
+          <div className={rightIconClasses}>
             <svg
               width='16'
               height='17'

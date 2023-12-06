@@ -146,12 +146,15 @@ const Toolbar = React.forwardRef<HTMLDivElement, ToolbarProps>((props, ref) => {
     )
   }, [children])
 
+  const toolbarWrapperClasses = React.useMemo(() => {
+    return [styles.rteToolbarWrapper, className, 'cdg-rte-toolbar']
+      .filter(Boolean)
+      .join(' ')
+  }, [className])
+
   return (
     <CssInjection css={css} childrenRef={toolbarRef}>
-      <div
-        className={`cdg-rte-toolbar ${className} ${styles.rteToolbarWrapper}`}
-        {...delegates}
-      >
+      <div {...delegates} className={toolbarWrapperClasses}>
         <div ref={toolbarRef} className={styles.rteToolbar}>
           {calcultedChildren}
         </div>

@@ -106,6 +106,12 @@ const RichTextEditor = React.forwardRef<HTMLDivElement, RichTextEditorProps>(
 
     const textEditorRef = useDOMRef<HTMLDivElement>(ref)
 
+    const rootClasses = React.useMemo(() => {
+      return [styles.cdgRichTextEditor, className, 'cdg-rich-text-editor']
+        .filter(Boolean)
+        .join(' ')
+    }, [className])
+
     return (
       <RichTextEditorProvider
         value={{
@@ -113,15 +119,11 @@ const RichTextEditor = React.forwardRef<HTMLDivElement, RichTextEditorProps>(
         }}
       >
         <CssInjection childrenRef={textEditorRef} css={css}>
-          <div
-            ref={textEditorRef}
-            {...htmlProps}
-            className={`cdg-rich-text-editor ${className} ${styles.cdgRichTextEditor}`}
-          >
+          <div {...htmlProps} ref={textEditorRef} className={rootClasses}>
             {children}
             <EditorContent
               editor={editor}
-              className={`cdg-rich-text-editor-content ${styles.editorContent}`}
+              className={`${styles.editorContent} cdg-rich-text-editor-content`}
             />
             {characterCount && (
               <div className={`${styles.characterCount}`}>
