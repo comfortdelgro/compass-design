@@ -13,7 +13,6 @@ components: PUDO
 import {Pudo} from '@comfortdelgro/react-compass'
 ```
 
-
 ## Usage
 
 ### Basic
@@ -48,22 +47,24 @@ This example is just for demo the swap, add & remove features. To prevent render
 
 ## Component Props
 
-Type: `PudoProps<TItemKeys extends string | number | symbol = string>`<sup>(1)</sup>
+Type: `PudoProps<TItemKeys extends PropertyKey = string>`<sup>(1)</sup>
 
-| Name             | Type                    | Default    | Description                                                                                                             |
-| :--------------- | :---------------------- | :--------- | :---------------------------------------------------------------------------------------------------------------------- |
-| `css`            | `CSS`                   | —          | The system prop that allows defining system overrides as well as additional CSS styles.                                 |
-| `items`\*        | `PudoItemProps[]`       | —          |                                                                                                                         |
-| `type`           | `"input"` \| `"custom"` | —          | If provided, this prop will override the `type` of all items.                                                           |
-| `onValuesChange` | `(values) => void`      | —          |                                                                                                                         |
-| `minLength`      | `number`                | `2`        | Minimum length of list items.                                                                                           |
-| `maxLength`      | `number`                | `3`        | Maximum length of list items.                                                                                           |
-| `addItems`       | `PudoItemProps[]`       | —          | Provide a items list to add to the existing item list.<br/><small>This list will be automatically deduplicated.</small> |
-| `addItemsLabel`  | `string`                | `"Add"`    | Label for the "add" button.                                                                                             |
-| `removableItems` | `TItemKeys[]`           | —          | A list of item name that allowed to remove.<br/><small>This list will be automatically deduplicated.</small>            |
-| `removableLabel` | `string`                | `"Remove"` | Label for the "remove" button.                                                                                          |
-| `compact`        | `"sm" \| "md"`          | —          | Compact size                                                                                                            |
-| `alignIcon`      | `"top"` \| `"center"`   | —          | If provided, this prop will override the `alignIcon` of all items.                                                      |
+| Name                | Type                                           | Default    | Description                                                                                                                 |
+| :------------------ | :--------------------------------------------- | :--------- | :-------------------------------------------------------------------------------------------------------------------------- |
+| `css`               | `CSS`                                          | —          | The system prop that allows defining system overrides as well as additional CSS styles.                                     |
+| `items`\*           | `PudoItemProps[]`                              | —          |                                                                                                                             |
+| `type`              | `"input"` \| `"custom"`                        | —          | If provided, this prop will override the `type` of all items.                                                               |
+| `onValuesChange`    | `(values: PudoValueChange<TItemKeys>) => void` | —          |                                                                                                                             |
+| `onItemFocusChange` | `(focusingItem?: TItemKeys) => void`           | —          | `focusingItem` is the name of the focused item.<br/><small>If no items are focusing, the value will be `undefined`.</small> |
+| `minLength`         | `number`                                       | `2`        | Minimum length of list items.                                                                                               |
+| `maxLength`         | `number`                                       | `3`        | Maximum length of list items.                                                                                               |
+| `addItems`          | `PudoItemProps[]`                              | —          | Provide a items list to add to the existing item list.<br/><small>This list will be automatically deduplicated.</small>     |
+| `addItemsLabel`     | `string`                                       | `"Add"`    | Label for the "add" button.                                                                                                 |
+| `removableItems`    | `TItemKeys[]`                                  | —          | A list of item name that allowed to remove.<br/><small>This list will be automatically deduplicated.</small>                |
+| `removableLabel`    | `string`                                       | `"Remove"` | Label for the "remove" button.                                                                                              |
+| `compact`           | `"sm" \| "md"`                                 | —          | Compact size                                                                                                                |
+| `alignIcon`         | `"top"` \| `"center"`                          | —          | If provided, this prop will override the `alignIcon` of all items.                                                          |
+| `isClearable`       | `boolean`                                      | —          | If provided, this prop will override the `isClearable` of all items.                                                        |
 
 ### `PudoItemProps`
 
@@ -80,6 +81,15 @@ Type: `PudoProps<TItemKeys extends string | number | symbol = string>`<sup>(1)</
 | `content`     | `ReactNode`                  | —                                        | Content, description, etc,... for the `custom` item type.                                         |
 | `maxLength`   | `number`                     | `255`                                    | Maximum characters.                                                                               |
 | `isRequired`  | `boolean`                    | `false`                                  | Required state.                                                                                   |
+| `isClearable` | `boolean`                    | `false`                                  | Add clear value button for each input field.                                                      |
+
+### `PudoValueChange`
+
+| Name                               | Type                         | Default | Description                                                                                                                                                                         |
+| :--------------------------------- | :--------------------------- | :------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`\*                           | Inference type<sup>(1)</sup> | —       | Same order and name as Pudo's`items` props.<br/>Item Key and also is input's `name` attribute.                                                                                      |
+| `value`                            | `string`                     | `""`    | Input's value.                                                                                                                                                                      |
+| <code><del>isFocusing</del></code> | `boolean`                    | `false` | Focus status of each items.<br/><small>Deprecated and will be removed on next major release.<br/>To track item's focus status, consider using `onFocusChange` prop instead.</small> |
 
 \*: Required.
 
