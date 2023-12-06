@@ -1,4 +1,4 @@
-import React, {HTMLAttributes, useEffect, useState} from 'react'
+import React, {HTMLAttributes, useState} from 'react'
 import CssInjection from '../../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import Control from '../controls/Control'
@@ -40,7 +40,8 @@ const Toolbar = React.forwardRef<HTMLDivElement, ToolbarProps>((props, ref) => {
 
   const hideOverflowItem = React.useCallback(() => {
     const rect = toolbarRef.current?.getBoundingClientRect()
-    ;[...toolbarRef.current.children].forEach((node) => {
+    const listOfChildren = [...toolbarRef.current.children]
+    listOfChildren.forEach((node) => {
       const r = node.getBoundingClientRect()
       if (expanded) node['style'].visibility = null
       if (r.right > rect.right) {
@@ -49,15 +50,17 @@ const Toolbar = React.forwardRef<HTMLDivElement, ToolbarProps>((props, ref) => {
     })
   }, [toolbarRef, expanded])
 
-  useEffect(() => {
-    setTimeout(() => {
+  React.useEffect(() => {
+    const element = toolbarRef.current
+    if (!element) return
+    const observer = new ResizeObserver(() => {
       hideOverflowItem()
-    }, 50)
-  }, [hideOverflowItem, toolbarRef])
-
-  useEffect(() => {
-    hideOverflowItem()
-  }, [hideOverflowItem, expanded])
+    })
+    observer.observe(element)
+    return () => {
+      observer.disconnect()
+    }
+  }, [hideOverflowItem, expanded, toolbarRef])
 
   const calcultedChildren = React.useMemo(() => {
     // Get data map of toolbar to see summary of toolbar
