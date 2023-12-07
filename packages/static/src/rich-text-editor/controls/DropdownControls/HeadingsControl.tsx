@@ -109,8 +109,6 @@ export const HeadingsControl = (props: React.HTMLAttributes<HTMLDivElement>) => 
     }
   }
 
-  console.log(props)
-
   return (
     <Select
       onSelectionChange={handleSelectionChange}
