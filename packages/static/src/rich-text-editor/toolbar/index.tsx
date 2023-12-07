@@ -51,16 +51,16 @@ const Toolbar = React.forwardRef<HTMLDivElement, ToolbarProps>((props, ref) => {
   }, [toolbarRef, expanded])
 
   React.useEffect(() => {
-    const element = toolbarRef.current
-    if (!element) return
-    const observer = new ResizeObserver(() => {
+    if (!expanded) {
       hideOverflowItem()
-    })
-    observer.observe(element)
-    return () => {
-      observer.disconnect()
     }
-  }, [hideOverflowItem, expanded, toolbarRef])
+  }, [hideOverflowItem, expanded])
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      hideOverflowItem()
+    }, 50)
+  }, [hideOverflowItem])
 
   const calcultedChildren = React.useMemo(() => {
     // Get data map of toolbar to see summary of toolbar
