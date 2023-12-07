@@ -120,6 +120,8 @@ export const HeadingsControl = (props: React.HTMLAttributes<HTMLDivElement>) => 
         button: {
           width: '124px',
           height: '28px',
+          fontSize: 'var(--cdg-font-size-label1)',
+          fontWeight: 'var(--cdg-font-weight-semibold)',
         }
       }}
     >

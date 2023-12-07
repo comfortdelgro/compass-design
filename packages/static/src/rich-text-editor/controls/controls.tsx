@@ -20,6 +20,7 @@ export const UndoControl = createControl({
   onClick: (editor) =>
     editor !== null ? editor.chain().focus().undo().run() : false,
 })
+
 export const RedoControl = createControl({
   label: 'redo',
   icon: () => (
@@ -40,6 +41,7 @@ export const RedoControl = createControl({
   onClick: (editor) =>
     editor !== null ? editor.chain().focus().redo().run() : false,
 })
+
 export const BoldControl = createControl({
   label: 'bold',
   icon: () => (
