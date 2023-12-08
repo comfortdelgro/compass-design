@@ -31,7 +31,7 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
       count,
       css = {},
       // ComponentProps
-      page = 1000,
+      page = 1,
       total = 1,
       initialPage = 1,
       rowsPerPage = 10,
