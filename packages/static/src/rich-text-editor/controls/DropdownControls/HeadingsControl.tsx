@@ -65,7 +65,7 @@ const heading = [
   },
 ]
 
-export const HeadingsControl = () => {
+export const HeadingsControl = (props: React.HTMLAttributes<HTMLDivElement>) => {
   const {editor} = useRichTextEditorContext()
   const [selectedHeadingLevel, setLevel] = React.useState<string>('0')
   const handleSelectionChange = React.useCallback(
@@ -109,16 +109,18 @@ export const HeadingsControl = () => {
     }
   }
 
+  console.log(props)
+
   return (
     <Select
       onSelectionChange={handleSelectionChange}
       selectedKey={selectedHeadingLevel}
       type='heading'
       css={{
-        width: '124px',
-        height: '28px',
-        float: 'left',
-        margin: '0 var(--cdg-spacing-2) var(--cdg-spacing-2)',
+        button: {
+          width: '124px',
+          height: '28px',
+        }
       }}
     >
       {heading.map((h) => (

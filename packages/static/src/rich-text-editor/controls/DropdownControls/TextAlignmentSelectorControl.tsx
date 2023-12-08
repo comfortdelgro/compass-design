@@ -40,10 +40,10 @@ export const TextAlignmentSelectorControl = () => {
       selectedKey={selectedKey}
       type='alignment'
       css={{
-        width: '56px',
-        height: '28px',
-        float: 'left',
-        margin: '0 var(--cdg-spacing-2) var(--cdg-spacing-2)',
+        button: {
+          width: '56px',
+          height: '28px',
+        }
       }}
     >
       <Select.Item

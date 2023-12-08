@@ -1,7 +1,7 @@
 @import '../../theme/theme.module.css';
 
 @layer default {
-  .rteToolbar {
+  .rteToolbarWrapper {
     appearance: none;
     border: none;
     box-sizing: border-box;
@@ -9,7 +9,14 @@
     padding: var(--cdg-spacing-2) var(--cdg-spacing-4);
     background-color: var(--cdg-color-gray20);
     overflow: hidden;
-    max-height: 44px;
-    position: relative;
+    height: fit-content;
+    display: flex;
+  }
+
+  .rteToolbar {
+    flex-grow: 1;
+    display: flex;
+    overflow: hidden;
+    gap: var(--cdg-spacing-2);
   }
 }
