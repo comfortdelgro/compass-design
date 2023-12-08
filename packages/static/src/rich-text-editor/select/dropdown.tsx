@@ -104,7 +104,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     const newValue = getDefaultValue(selectedKey, defaultSelectedKey)
     setCurrentKey(newValue)
     setFocusKey(newValue)
-  }, [selectedKey])
+  }, [defaultSelectedKey, selectedKey])
 
   React.useEffect(() => {
     props.onOpenChange?.(open)
@@ -113,7 +113,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     } else {
       selectRef.current?.blur()
     }
-  }, [open])
+  }, [open, props, selectRef])
 
   React.useEffect(() => {
     if (currentKey !== undefined) {
