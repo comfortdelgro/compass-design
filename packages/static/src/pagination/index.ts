@@ -3,8 +3,11 @@ import Pagination from './pagination'
 
 export type {PaginationProps} from './pagination'
 
-Pagination.displayName = 'Pagination'
-
-export default Pagination as typeof Pagination & {
-  ItemsCounting: typeof ItemCounting
+const ComposablePagination = Pagination as typeof Pagination & {
+  ItemCounting: typeof ItemCounting
 }
+
+ComposablePagination.displayName = 'Pagination'
+ComposablePagination.ItemCounting = ItemCounting
+
+export default ComposablePagination
