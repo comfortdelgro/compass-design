@@ -12,7 +12,6 @@ interface Props {
   css?: unknown
   className?: string
   as?: React.ElementType
-  className?: string
   border?: string
   borderBottom?: string
   borderColor?: string
@@ -102,7 +101,6 @@ const Box = React.forwardRef<HTMLElement, BoxProps>((props, ref) => {
     children,
     // styled component props
     css = {},
-    className = '',
     // custom props
     as: asProp = 'div',
     border,
