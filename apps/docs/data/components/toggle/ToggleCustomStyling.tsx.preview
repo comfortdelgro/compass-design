@@ -1,0 +1,1 @@
+<Toggle css={{'&:hover': {background: 'red'}}} />
