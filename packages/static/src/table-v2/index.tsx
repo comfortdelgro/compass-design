@@ -10,13 +10,13 @@ import {
   SortingState,
   Table as TanstackTable,
 } from '@tanstack/react-table'
-import TableCheckbox from '../table/table-checkbox'
-import TableToolbar from '../table/table-toolbar'
 
-import Table from '../table'
+import TableCheckbox from '../table/table-checkbox'
 import TableCheckboxCell from '../table/table-checkbox-cell'
 import TableFooter from '../table/table-footer'
 import ProgressPercentage from '../table/table-progress'
+import TableToolbar from '../table/table-toolbar'
+import TableV2 from './table-v2'
 export type {
   OptionType,
   ReactTableCheckboxProps,
@@ -29,16 +29,16 @@ export {
   useEditableCellContext,
 } from '../table/editable/editable-cell'
 
-Table.Toolbar = TableToolbar
-Table.Footer = TableFooter
-Table.Checkbox = TableCheckbox
-Table.CheckboxCell = TableCheckboxCell
-Table.ProgressPercentage = ProgressPercentage
-Table.ProgressPercentage.displayName = 'ProgressPercentage'
-Table.Toolbar.displayName = 'Table.Toolbar'
-Table.Footer.displayName = 'Table.Footer'
+TableV2.Toolbar = TableToolbar
+TableV2.Footer = TableFooter
+TableV2.Checkbox = TableCheckbox
+TableV2.CheckboxCell = TableCheckboxCell
+TableV2.ProgressPercentage = ProgressPercentage
+TableV2.ProgressPercentage.displayName = 'ProgressPercentage'
+TableV2.Toolbar.displayName = 'TableV2.Toolbar'
+TableV2.Footer.displayName = 'TableV2.Footer'
 
-Table.displayName = 'Table'
+TableV2.displayName = 'TableV2'
 
 export type TableV2ColumnDef<T> = ColumnDef<T>
 export type TableV2AccessorColumnDef<T> = AccessorColumnDef<T>
@@ -50,4 +50,5 @@ export type TableV2Cell<TData, TValue> = Cell<TData, TValue>
 export type TableV2HeaderContext<TData, TValue> = HeaderContext<TData, TValue>
 export type TableV2CellContext<TData, TValue> = CellContext<TData, TValue>
 export type TableV2Table<T> = TanstackTable<T>
-export default Table
+
+export default TableV2
