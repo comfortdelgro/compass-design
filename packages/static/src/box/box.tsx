@@ -1,8 +1,8 @@
+import clsx from 'clsx'
 import React from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/box.module.css'
-import clsx from 'clsx'
 
 export type BoxProps = Props &
   Omit<React.HTMLAttributes<HTMLElement>, keyof Props>
