@@ -40,18 +40,18 @@ export type {
 } from './card'
 export {default as CarouselSlider} from './carousel'
 export type {
+  ButtonType,
   CarouselImageSlideProps,
   CarouselMobileProps,
+  CarouselOptions,
   CarouselPromotionProps,
   CarouselSlideProps,
   CarouselSliderButton,
   CarouselSliderItem,
   CarouselSliderProps,
-  ButtonType,
-  CarouselOptions,
-  NinePartAlignment,
   NavigationButtonType,
-  SocicalIcon
+  NinePartAlignment,
+  SocicalIcon,
 } from './carousel'
 export {default as Chart} from './chart'
 export type {
@@ -286,6 +286,12 @@ export type {
 export {SnackbarContextProvider, useSnackbar} from './snackbar/service'
 export {default as SpeedDial} from './speed-dial'
 export type {SpeedDialProps} from './speed-dial'
+export {default as SpeedDial2} from './speed-dial-2'
+export type {
+  SpeedDialActionsProps,
+  SpeedDialButtonProps,
+  SpeedDial2Props,
+} from './speed-dial-2'
 export {default as Spinner} from './spinner'
 export type {SpinnerProps} from './spinner'
 export {default as Status} from './status'
