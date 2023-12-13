@@ -1,6 +1,9 @@
 import {Column, OTPInput, Typography} from '@comfortdelgro/react-compass'
+import React from 'react'
 
 function Default() {
+  const [value, setValue] = React.useState('12345678')
+
   return (
     <Column>
       <Typography.Label css={{justifyContent: 'center', display: 'flex'}}>
@@ -25,6 +28,24 @@ function Default() {
       </Typography.Label>
       <OTPInput
         length={4}
+        isNumberInput
+        autoFocus
+        onChangeOTP={(otp) => console.log('Number OTP: ', otp)}
+      />
+
+      <Typography.Label css={{justifyContent: 'center', display: 'flex'}}>
+        Controlled
+      </Typography.Label>
+      <OTPInput
+        otp={value}
+        onChangeOTP={(otp) => setValue(otp)}
+      />
+
+      <Typography.Label css={{justifyContent: 'center', display: 'flex'}}>
+        Error
+      </Typography.Label>
+      <OTPInput
+        isErrored
         isNumberInput
         autoFocus
         onChangeOTP={(otp) => console.log('Number OTP: ', otp)}

@@ -12,6 +12,7 @@ export interface SingleOTPInputProps
   css?: unknown
   isNumberInput?: boolean
   isMobile?: boolean
+  isErrored?: boolean
 }
 
 const SingleOTPInputComponent = React.forwardRef<
@@ -24,6 +25,7 @@ const SingleOTPInputComponent = React.forwardRef<
     index,
     focus,
     autoFocus,
+    isErrored,
     isNumberInput,
     isMobile,
     ...htmlProps
@@ -50,21 +52,22 @@ const SingleOTPInputComponent = React.forwardRef<
       inputRef.current.focus()
       inputRef.current.select()
     }
-  }, [autoFocus, focus, prevFocus])
+  }, [autoFocus, focus, index, inputRef, prevFocus])
 
   const classNames = [
-    'cdg-otp-single-input',
-    className,
     styles.singleInput,
     isNumberInput && styles.singleInputNumber,
     isMobile && styles.singleInputIsMobile,
+    isErrored && styles.singleInputisErrored,
+    'cdg-otp-single-input',
+    className,
   ]
     .filter(Boolean)
     .join(' ')
 
   return (
     <CssInjection css={css}>
-      <input ref={inputRef} className={classNames} {...htmlProps} />
+      <input {...htmlProps} ref={inputRef} className={classNames} />
     </CssInjection>
   )
 })
