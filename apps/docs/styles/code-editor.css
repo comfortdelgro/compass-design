@@ -537,7 +537,7 @@
   max-height: min(68vh, 1000px);
   padding: var(--cdg-spacing-4);
   overflow: auto;
-  background-color: var(--cdg-color-gray20);
+  background-color: var(--cdg-color-gray10);
   margin-top: -1;
   border: 1px solid var(--cdg-color-divider);
   color-scheme: dark;

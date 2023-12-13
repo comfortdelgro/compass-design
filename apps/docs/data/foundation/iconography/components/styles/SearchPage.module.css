@@ -1,0 +1,11 @@
+.BoxItem {
+  cursor: pointer;
+  border-radius: 8px;
+  position: relative;
+  background: #E6ECF7;
+  padding: 24px 12px 16px;
+}
+
+.BoxItem:hover {
+  background-color: #ccd8f0;
+}

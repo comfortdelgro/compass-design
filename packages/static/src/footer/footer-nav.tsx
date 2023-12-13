@@ -5,7 +5,7 @@ import styles from './styles/footer-nav.module.css'
 interface Props {
   css?: unknown
   children?: React.ReactNode
-  gridNumber: number
+  gridNumber?: number
   tabletGridNumber?: number
   component?: keyof JSX.IntrinsicElements
 }
@@ -19,9 +19,9 @@ const FooterNavigation = React.forwardRef<
 >((props, ref) => {
   const {
     children,
-    gridNumber,
+    // gridNumber,
     // tablet grid column number will be 3 by default if grid column number is greater than 3
-    tabletGridNumber = gridNumber >= 3 ? 3 : gridNumber,
+    // tabletGridNumber = gridNumber >= 3 ? 3 : gridNumber,
     css = {},
     ...delegated
   } = props
@@ -40,8 +40,8 @@ const FooterNavigation = React.forwardRef<
           ...delegated,
           className: styles.footerNav,
           style: {
-            '--gridNumber': gridNumber,
-            '--tabletGridNumber': tabletGridNumber,
+            // '--gridNumber': gridNumber,
+            // '--tabletGridNumber': tabletGridNumber,
           },
           ref: ref,
         },

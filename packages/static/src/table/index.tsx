@@ -13,7 +13,7 @@ import {
 import TableCheckbox from './table-checkbox'
 import TableToolbar from './table-toolbar'
 
-import ReactTable from './table'
+import Table from './table'
 import TableCheckboxCell from './table-checkbox-cell'
 import TableFooter from './table-footer'
 import ProgressPercentage from './table-progress'
@@ -26,16 +26,16 @@ export type {TableCheckboxProps as ReactTableCheckboxProps} from './table-checkb
 export type {TableFooterProps as ReactTableFooterProps} from './table-footer'
 export type {TableToolbarProps as ReactTableToolbarProps} from './table-toolbar'
 
-ReactTable.Toolbar = TableToolbar
-ReactTable.Footer = TableFooter
-ReactTable.Checkbox = TableCheckbox
-ReactTable.CheckboxCell = TableCheckboxCell
-ReactTable.ProgressPercentage = ProgressPercentage
-ReactTable.ProgressPercentage.displayName = 'ProgressPercentage'
-ReactTable.Toolbar.displayName = 'ReactTable.Toolbar'
-ReactTable.Footer.displayName = 'ReactTable.Footer'
+Table.Toolbar = TableToolbar
+Table.Footer = TableFooter
+Table.Checkbox = TableCheckbox
+Table.CheckboxCell = TableCheckboxCell
+Table.ProgressPercentage = ProgressPercentage
+Table.ProgressPercentage.displayName = 'ProgressPercentage'
+Table.Toolbar.displayName = 'Table.Toolbar'
+Table.Footer.displayName = 'Table.Footer'
 
-ReactTable.displayName = 'ReactTable'
+Table.displayName = 'Table'
 
 export type TableColumnDef<T> = ColumnDef<T>
 export type TableAccessorColumnDef<T> = AccessorColumnDef<T>
@@ -47,4 +47,4 @@ export type TableCell<TData, TValue> = Cell<TData, TValue>
 export type TableHeaderContext<TData, TValue> = HeaderContext<TData, TValue>
 export type TableCellContext<TData, TValue> = CellContext<TData, TValue>
 export type TableType<T> = TanstackTable<T>
-export default ReactTable
+export default Table

@@ -25,6 +25,7 @@ export default function AppFooter(props: AppFooterProps) {
         <Box
           css={{
             display: 'flex',
+            alignItems: 'center'
           }}
         >
           <Link href='/'>

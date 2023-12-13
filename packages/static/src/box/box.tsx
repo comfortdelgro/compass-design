@@ -2,6 +2,7 @@ import React from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/box.module.css'
+import clsx from 'clsx'
 
 export type BoxProps = Props &
   Omit<React.HTMLAttributes<HTMLElement>, keyof Props>
@@ -100,7 +101,6 @@ const Box = React.forwardRef<HTMLElement, BoxProps>((props, ref) => {
     children,
     // styled component props
     css = {},
-    className = '',
     // custom props
     as: asProp = 'div',
     border,
@@ -111,6 +111,7 @@ const Box = React.forwardRef<HTMLElement, BoxProps>((props, ref) => {
     borderRight,
     borderTop,
     boxShadow,
+    className,
     displayPrint,
     displayRaw,
     alignContent,
@@ -198,7 +199,7 @@ const Box = React.forwardRef<HTMLElement, BoxProps>((props, ref) => {
         <Component
           {...htmlProps}
           ref={BoxRef as never}
-          className={`cdg-box ${className} ${styles.box}`}
+          className={clsx('cdg-box', className, styles.box)}
           style={{
             border,
             borderBottom,

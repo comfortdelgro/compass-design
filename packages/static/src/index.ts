@@ -286,6 +286,12 @@ export type {
 export {SnackbarContextProvider, useSnackbar} from './snackbar/service'
 export {default as SpeedDial} from './speed-dial'
 export type {SpeedDialProps} from './speed-dial'
+export {default as SpeedDial2} from './speed-dial-2'
+export type {
+  SpeedDialActionsProps,
+  SpeedDialButtonProps,
+  SpeedDial2Props,
+} from './speed-dial-2'
 export {default as Spinner} from './spinner'
 export type {SpinnerProps} from './spinner'
 export {default as Status} from './status'
@@ -301,7 +307,6 @@ export type {
 export {default as SubBanner} from './subBanner'
 export {default as Table} from './table'
 export type {
-  OptionType,
   TableAccessorColumnDef,
   TableCell,
   TableCellContext,
@@ -309,11 +314,28 @@ export type {
   TableDisplayColumnDef,
   TableGroupColumnDef,
   TableHeaderContext,
+  OptionType as TableOptions,
   TableProps,
   TableRow,
   TableSortingState,
   TableType,
 } from './table'
+
+export {default as ReactTable} from './table-v2'
+export type {
+  ReactTableProps,
+  TableV2AccessorColumnDef,
+  TableV2Cell,
+  TableV2CellContext,
+  TableV2ColumnDef,
+  TableV2DisplayColumnDef,
+  TableV2GroupColumnDef,
+  TableV2HeaderContext,
+  OptionType as TableV2Options,
+  TableV2Row,
+  TableV2SortingState,
+  TableV2Table,
+} from './table-v2'
 export {default as Tabs} from './tabs'
 export type {TabsProps} from './tabs'
 export {default as TagBox} from './tag-box'

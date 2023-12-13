@@ -40,11 +40,11 @@ const MenuListDropdownItem = React.forwardRef<
       <div
         // className={`${className} menu-list-dropdown-item`}
         className={clsx({
+          [className]: true,
           [styles.menuListDropdownItem]: true,
           [styles.nested]: isNested,
           [styles.active]: isActive,
           [styles.disabled]: isDisabled,
-          className,
         })}
         ref={ref}
         tabIndex={tabIndex}

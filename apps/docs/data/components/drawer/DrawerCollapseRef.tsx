@@ -16,10 +16,7 @@ export default function DrawerCollapseRefDocs() {
   return (
     <Column>
       <Typography.Header variant='header4'>1. Use ref</Typography.Header>
-      <Typography.Body
-        variant='body2'
-        css={{'&>code': {fontFamily: '$mono', fontWeight: '$semibold'}}}
-      >
+      <Typography.Body variant='body2'>
         Use <code>ref</code> to call the Drawer's <code>triggerCollapse</code>{' '}
         function
       </Typography.Body>

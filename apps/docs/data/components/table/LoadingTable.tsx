@@ -4,9 +4,9 @@ import {
   TableCellContext,
   TableColumnDef,
   TableHeaderContext,
+  TableOptions,
 } from '@comfortdelgro/react-compass'
 
-import {TableOptions} from '@comfortdelgro/react-compass-old/table'
 import React, {useState} from 'react'
 
 const TableWithLoading: React.FC = () => {

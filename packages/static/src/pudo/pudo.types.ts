@@ -1,32 +1,19 @@
-import {CSSProperties, FocusEvent, ReactNode} from 'react'
+import {CSSProperties, FocusEventHandler, ReactNode} from 'react'
 
-type PudoItemType =
-  | {
-      /**
-       * `type` of each item will be overwritten
-       * if provided in the PUDO component.
-       * @default 'input'
-       */
-      type?: 'input' | 'custom'
-    }
-  | {
-      /**
-       * @deprecated `label` type will be removed on next major release - `@comfortdelgro/react-compass@3.x`
-       *
-       * Consider use `custom` item type instead.
-       */
-      type: 'label'
-    }
-
-export type PudoValueChange<
-  TItemKeys extends string | number | symbol = string,
-> = Array<{
+export type PudoValueChange<TItemKeys extends PropertyKey = string> = Array<{
   name: TItemKeys
   value: string
+  /**
+   * @deprecated `isFocusing` will be removed on next major release (`@comfortdelgro/react-compass@4.x`)
+   *
+   * Why? **Bad decision!** Tracking focus status should be seperated from `onValuesChange`.
+   * ___
+   * `isFocusing` still works as expected but consider using `onFocusChange` prop instead to track item's focus status.
+   */
   isFocusing?: boolean
 }>
 
-export type PudoProps<TItemKeys extends string | number | symbol> = {
+export type PudoProps<TItemKeys extends PropertyKey> = {
   className?: string
   css?: unknown
   style?: CSSProperties
@@ -37,6 +24,15 @@ export type PudoProps<TItemKeys extends string | number | symbol> = {
    */
   items: Readonly<Array<PudoItemProps<TItemKeys>>>
   onValuesChange?: (values: PudoValueChange<TItemKeys>) => void
+  /**
+   * @param focusingItem the input name of the focused item.
+   * If no items are focusing, the value will be `undefined`.
+   */
+  onItemFocusChange?: (focusingItem?: TItemKeys) => void
+  /**
+   * This will override the `type` of all items.
+   */
+  type?: PudoItemProps<TItemKeys>['type']
   /**
    * Min length of item list.
    * ___
@@ -59,7 +55,7 @@ export type PudoProps<TItemKeys extends string | number | symbol> = {
    * Remove all items by its `name` according to provided keys.
    * ___
    * This array will be de-duplicated automatically and will be ignored
-   * if PUDO's `type` is `'label'`.
+   * if PUDO's `type` is `'custom'`.
    */
   removableItems?: TItemKeys[]
   /** @default "Remove" */
@@ -68,7 +64,7 @@ export type PudoProps<TItemKeys extends string | number | symbol> = {
    * Add all provided items to the existing item list.
    * ___
    * This array will be de-duplicated automatically (by `name`) and will be ignored
-   * if PUDO's `type` is `'label'`.
+   * if PUDO's `type` is `'custom'`.
    */
   addItems?: Readonly<Array<PudoItemProps<TItemKeys>>>
   /** @default "Add" */
@@ -78,13 +74,35 @@ export type PudoProps<TItemKeys extends string | number | symbol> = {
    * if provided, `alignIcon` of all items will be overwritten
    */
   alignIcon?: PudoItemProps['alignIcon']
-} & PudoItemType
+  /**
+   * Background color of PUDO items wrapper.
+   *
+   * `bgColor` will be ignored if `data-background` is provided.
+   */
+  bgColor?: string
+  /** if provided, `isClearable` of all items will be overwritten */
+  isClearable?: boolean
 
-export type PudoItemProps<TName extends string | number | symbol = string> = {
+  /**
+   * ~ `[data-*]` - any data attributes are accepted.
+   *
+   * Data attributes list:
+   *
+   * - `data-background`: PUDO items wrapper's background color.
+   */
+  [key: `data-${string}`]: string
+}
+
+export type PudoItemProps<TName extends PropertyKey = string> = {
   name: TName
   className?: string
   icon?: ReactNode
-
+  /**
+   * `type` of each item will be overwritten
+   * if provided in the PUDO component.
+   * @default 'input'
+   */
+  type?: 'input' | 'custom'
   /** `value` is used for `'input'` type item. */
   value?: string
   /** `placeholder` is used for `'input'` type item. */
@@ -93,23 +111,23 @@ export type PudoItemProps<TName extends string | number | symbol = string> = {
   title?: ReactNode
   /** `content` is used for `'custom'` type item. */
   content?: ReactNode
-
   /** @default false */
   allowSwap?: boolean
-
   /** @default 255 */
   maxLength?: number
-
+  /** @default false */
   isRequired?: boolean
   /** @default "center" */
   alignIcon?: 'top' | 'center'
-} & PudoItemType
+  /** @default false */
+  isClearable?: boolean
+}
 
-export type PudoItemPrivateProps<TName extends string | number | symbol> = {
+export type PudoItemPrivateProps<TName extends PropertyKey> = {
   index: number
   itemsLength: number
   compact?: PudoProps<TName>['compact']
   onValueChange?: (value: string) => void
   handleSwap?: () => void
-  onInputFocus?: (e: FocusEvent<HTMLInputElement>) => void
+  onInputFocus?: FocusEventHandler<HTMLInputElement>
 } & PudoItemProps<TName>

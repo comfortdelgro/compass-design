@@ -104,7 +104,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     const newValue = getDefaultValue(selectedKey, defaultSelectedKey)
     setCurrentKey(newValue)
     setFocusKey(newValue)
-  }, [selectedKey])
+  }, [defaultSelectedKey, selectedKey])
 
   React.useEffect(() => {
     props.onOpenChange?.(open)
@@ -113,7 +113,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     } else {
       selectRef.current?.blur()
     }
-  }, [open])
+  }, [open, props, selectRef])
 
   React.useEffect(() => {
     if (currentKey !== undefined) {
@@ -186,16 +186,25 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     setFocusKey(currentKey)
   }
 
+  const dropdownClasses = React.useMemo(() => {
+    return [
+      styles.rteDropdown,
+      !selectedItem && styles.isEmpty,
+      isDisabled && styles.isDisabled,
+      className,
+    ]
+      .filter(Boolean)
+      .join(' ')
+  }, [className, isDisabled, selectedItem])
+
   // ====================================== RENDER ======================================
   return (
     <CssInjection css={css} childrenRef={selectRef}>
       <div
-        ref={refs.setReference}
-        className={`${className} ${styles.rteDropdown} ${
-          !selectedItem && styles.isEmpty
-        } ${isDisabled && styles.isDisabled}`}
-        {...getReferenceProps}
         {...htmlProps}
+        {...getReferenceProps}
+        ref={refs.setReference}
+        className={dropdownClasses}
       >
         <button
           id={id}

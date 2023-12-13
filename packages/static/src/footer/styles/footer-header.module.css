@@ -17,5 +17,12 @@
       gap: 24px;
     }
   }
-}
 
+  @container CdgFooter (max-width: 490px) {
+    .footerHeader {
+      flex-direction: column;
+      justify-content: center;
+      gap: 24px;
+    }
+  }
+}

@@ -122,9 +122,13 @@ const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
       onKeyUp = () => null,
       resizable = true,
       variant,
-      ...delegated
+      ...ariaSafeProps
     } = props
     const isDarkTheme = useIsDarkTheme()
+    const htmlProps = {...ariaSafeProps} as Omit<
+      React.HTMLAttributes<HTMLDivElement>,
+      keyof Props
+    >
     const textareaId = id
     const wrapperRef = useDOMRef<HTMLDivElement>(ref)
     const textareaRef = useDOMRef<HTMLTextAreaElement>(null)
@@ -141,10 +145,10 @@ const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
     }, [])
     return (
       <StyledTextareaWrapper
+        {...htmlProps}
         css={css}
         className={className ?? 'cdg-textarea-container'}
         ref={wrapperRef}
-        {...delegated}
         isDarkTheme={isDarkTheme}
         {...(variant ? {variant} : {})}
       >

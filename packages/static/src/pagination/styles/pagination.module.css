@@ -41,6 +41,7 @@
     color: var(--cdg-color-primaryText);
     background: transparent;
     transition: var(--cdg-transition-default);
+    user-select: none;
     cursor: pointer;
   }
 
@@ -73,8 +74,11 @@
     background: var(--cdg-color-cdgBlue);
   }
 
-
   .paginationItemDisabled {
+    cursor: initial;
+  }
+
+  .paginationItemDisabled svg {
     cursor: initial;
   }
 

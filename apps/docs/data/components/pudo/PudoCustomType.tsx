@@ -49,11 +49,14 @@ export default function PudoCustomTypeDocs() {
                 dolor sit, amet consectetur adipisicing elit. Laborum assumenda
                 officiis voluptates quam rem qui libero commodi veritatis.
                 deserunt harum voluptatum beatae perferendis, vitae minus magnam
-                facere quidem tempora iusto? Tempore praesentium accusamus
-                mollitia, inventore quos tenetur, aspernatur eos, in id corporis
-                veniam blanditiis error. Est illo temporibus velit, beatae
-                dolores accusantium quis vel corporis neque harum? Accusantium,
-                voluptates consequuntur?
+                facere quidem tempora iusto?{' '}
+                <del>
+                  Tempore praesentium accusamus mollitia, inventore quos
+                  tenetur, aspernatur eos, in id corporis veniam blanditiis
+                  error.
+                </del>{' '}
+                Est illo temporibus velit, beatae dolores accusantium quis vel
+                corporis neque harum? Accusantium, voluptates consequuntur?
               </p>
             ),
           },

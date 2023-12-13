@@ -20,6 +20,11 @@
   line-height: 19.25px  !important;
   text-indent: 0px !important;
   tab-size: 4;
+  caret-color: var(--cdg-color-cdgBlue100);
+}
+
+.simpleCodeEditor pre {
+  font-family: var(--fonts-mono) !important;
 }
 
 .simpleCodeEditor > textarea, .simpleCodeEditor > pre {

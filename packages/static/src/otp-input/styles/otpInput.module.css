@@ -58,6 +58,14 @@
     -webkit-appearance: none;
     margin: 0;
   }
+
+  .singleInputIsError {
+    border-color: var(--cdg-color-danger);
+  }
+
+  .singleInputIsError:focus-visible {
+    outline-color: var(--cdg-color-danger);
+  }
 }
 
 /* Variant - isMobile */
