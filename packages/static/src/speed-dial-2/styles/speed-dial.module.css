@@ -1,0 +1,77 @@
+@import '../../theme/theme.module.css';
+@layer default, variants;
+
+@layer default {
+  .speedDial {
+    display: inline-flex;
+    position: relative;
+  }
+
+  .floatButton {
+    appearance: none;
+    border: none;
+    background-color: var(--cdg-color-cdgBlue100);
+    color: var(--cdg-color-white);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .showing > .floatButton,
+  .floatButton:hover {
+    background-color: var(--cdg-color-cdgBlue120);
+  }
+
+  .speedDialActions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    bottom: 52px;
+    padding-bottom: 20px;
+  }
+
+  .speedDialActions .floatButton {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+}
+
+@layer variants {
+  .down {
+    bottom: auto;
+    top: 52px;
+    padding-top: 20px;
+    padding-bottom: 0;
+  }
+
+  .left,
+  .right {
+    bottom: auto;
+    width: auto;
+    height: 100%;
+    flex-direction: row;
+  }
+
+  .left {
+    right: 52px;
+    padding-right: 20px;
+    padding-bottom: 0;
+  }
+
+  .right {
+    left: 52px;
+    padding-left: 20px;
+    padding-bottom: 0;
+  }
+}

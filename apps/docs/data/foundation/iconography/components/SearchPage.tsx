@@ -9,14 +9,15 @@ import {
 import {faXmark} from '@fortawesome/free-solid-svg-icons'
 import {useRouter, useSearchParams} from 'next/navigation'
 import React from 'react'
-import {icons} from './constants'
-
+import { icons } from './constants'
+import { Grid } from '@comfortdelgro/react-compass'
+import styles from './styles/SearchPage.module.css'
 interface Props {
   component: React.ReactNode
   name: string
 }
 
-const DEFAULT_TAB_ITEMS = [{key: 'all', title: 'All'}]
+const DEFAULT_TAB_ITEMS = [{ key: 'all', title: 'All' }]
 
 const IconBox: React.FC<Props> = () => {
   const router = useRouter()
@@ -39,7 +40,7 @@ const IconBox: React.FC<Props> = () => {
       .filter((icon) => icon.name.includes(search))
       .filter((icon) => icon.type)
       .forEach((icon) => typeSet.add(icon.type))
-    typeSet.forEach((type) => temp.push({key: type, title: type}))
+    typeSet.forEach((type) => temp.push({ key: type, title: type }))
     setTabItems(temp)
   }, [search])
 
@@ -60,6 +61,7 @@ const IconBox: React.FC<Props> = () => {
         onSubmit={navigate}
         onClear={navigate}
         placeholder='Search for any icon...'
+        css={{margin: '8px 0'}}
       />
       {searchList.length !== 0 ? (
         <Box margin='16px 0'>
@@ -72,27 +74,22 @@ const IconBox: React.FC<Props> = () => {
               gridTemplateColumns: 'repeat(auto-fill)',
             }}
           />
-          <Box
-            css={{
-              gap: '32px 16px',
-              display: 'grid',
-              marginTop: '16px',
-              gridTemplateColumns: 'repeat(5, minmax(0, 1fr))',
-            }}
-          >
+          <Grid spacing='sm' css={{marginTop: '8px'}}>
             {searchList.map((icon, idx) =>
               tab === 'all' || tab === icon.type ? (
-                <BoxItem icon={icon} key={idx} />
-              ) : null,
+                <Grid.Item key={idx} xs={4} sm={4} md={3} lg={2} xl={2}>
+                  <BoxItem icon={icon} />
+                </Grid.Item>
+              ) : <></>,
             )}
-          </Box>
+          </Grid>
         </Box>
       ) : (
         <Typography.Display
           variant='display3'
-          css={{marginTop: 16, textAlign: 'center'}}
+          css={{ marginTop: 16, textAlign: 'center' }}
         >
-          Happiness is made, <span style={{color: '#A4262C'}}>NOT FOUND</span>
+          Happiness is made, <span style={{ color: '#A4262C' }}>NOT FOUND</span>
         </Typography.Display>
       )}
     </Box>
@@ -107,21 +104,11 @@ interface BoxItemProps {
   }
 }
 
-const BoxItem = ({icon}: BoxItemProps) => {
+const BoxItem = ({ icon }: BoxItemProps) => {
   const [isOpen, setIsOpen] = React.useState(false)
   return (
     <Box
-      css={{
-        width: '100%',
-        cursor: 'pointer',
-        borderRadius: '8px',
-        position: 'relative',
-        background: '#E6ECF7',
-        padding: '24px 12px 16px',
-        '&:hover': {
-          background: '#ffd43b',
-        },
-      }}
+      className={styles.BoxItem}
       onClick={() => {
         navigator && navigator.clipboard.writeText(icon.name)
         setIsOpen(true)
@@ -173,7 +160,7 @@ const BoxItem = ({icon}: BoxItemProps) => {
         handleClose={() => setIsOpen(false)}
         autoClose={2000}
         color='informative'
-        anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+        anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
       >
         <Toast.Title>Copied Successfully</Toast.Title>
         <Toast.CloseIcon>

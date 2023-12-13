@@ -2,7 +2,6 @@
 
 @layer default {
   .rteControl {
-    position: relative;
     flex-shrink: 0;
     line-height: var(--cdg-line-height-normal);
     font-weight: var(--cdg-font-weight-semibold);
@@ -10,14 +9,12 @@
     border-radius: 4px;
     cursor: pointer;
     background-color: transparent;
-    display: inline-flex;
+    display: flex;
     align-items: center;
     width: var(--cdg-spacing-8);
     height: var(--cdg-spacing-7);
     justify-content: center;
     padding: 0;
-    margin: 0 var(--cdg-spacing-2) var(--cdg-spacing-2) var(--cdg-spacing-2);
-    float: left;
     color: var(--cdg-color-gray110);
   }
   

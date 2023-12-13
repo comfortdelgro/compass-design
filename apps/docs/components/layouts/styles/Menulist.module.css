@@ -1,0 +1,5 @@
+.CdgMenuListItem:hover {
+  background: var(--cdg-color-cdgBlue10);
+  color: var(--cdg-color-cdgBlue80);
+  transition: all .2s;
+}

@@ -68,7 +68,7 @@ export default function AppHeader(props: AppHeaderProps) {
             <Button
               variant='primary'
               css={{
-                border: '1px solid $cdgBlue60',
+                border: '1px solid var(--cdg-color-cdgBlue60)',
                 height: 34,
                 width: 34,
                 borderRadius: 4,

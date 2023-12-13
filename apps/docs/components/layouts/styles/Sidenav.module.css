@@ -1,0 +1,8 @@
+.CdgSidenav {
+  height: 93vh;
+  position: relative;
+  background-color: var(--cdg-color-background);
+  width: 321px;
+  overflow-y: scroll;
+  filter: none;
+}

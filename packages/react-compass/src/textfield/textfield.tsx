@@ -161,8 +161,8 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
 
     return (
       <StyledTextFieldWrapper
-        css={css}
         {...htmlProps}
+        css={css}
         ref={textfieldRef}
         isDarkTheme={isDarkTheme}
         h5={h5}

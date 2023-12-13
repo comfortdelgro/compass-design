@@ -10,7 +10,7 @@ components: Multiple Dropdown
 {{"component": "components/common/ComponentLinkHeader.tsx"}}
 
 ```jsx
-import {Dropdown} from '@comfortdelgro/react-compass'
+import {MultipleDropdown} from '@comfortdelgro/react-compass'
 ```
 
 ## Controlled

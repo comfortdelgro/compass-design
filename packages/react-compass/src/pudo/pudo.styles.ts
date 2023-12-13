@@ -1,6 +1,5 @@
 import {styled} from '../theme'
 import {keyframes} from '../theme/stitches.config'
-import {VariantProps} from '../utils/stitches.types'
 
 const fadeIn = keyframes({
   from: {opacity: '0'},
@@ -9,11 +8,17 @@ const fadeIn = keyframes({
 
 export const StyledPUDO = styled('div', {
   '--cdg-pudo-dot-size': '3px',
+  '--cdg-pudo-icon-height': 'var(--space-6, 1.5rem)',
+  '--cdg-pudo-bg': 'var(--colors-background, inherit)',
+  '--_cdg-pudo-icon-shape-bg': 'transparent',
+  '--cdg-pudo-item-padding-block': 'var(--space-4, 1rem)',
+
   maxWidth: '100%',
 
   '.cdg-pudo-items-wrapper': {
     borderRadius: '$lg',
     border: '1px solid $grayShades20',
+    backgroundColor: 'var(--cdg-pudo-bg)',
     overflow: 'hidden',
   },
 
@@ -56,32 +61,42 @@ export const StyledPUDOItem = styled('div', {
     width: '$5',
     textAlign: 'center',
 
-    '&>*': {
-      display: 'block',
-      width: '100%',
+    '&>.cdg-pudo-item__icon-shape': {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: '$8',
+      height: 'var(--cdg-pudo-icon-height)',
+      borderRadius: '$md',
+
+      backgroundColor: 'var(--_cdg-pudo-icon-shape-bg)',
+      transition: 'background-color 0.2s ease-in-out',
+
+      '&>svg, &>img, &>object': {
+        display: 'block',
+        maxWidth: '100%',
+        maxHeight: '100%',
+        objectFit: 'cover',
+        objectPosition: 'center',
+      },
     },
 
-    '&:before, &:after': {
+    '&:before': {
       content: '',
       position: 'absolute',
+      top: 0,
       insetInline: 0,
       zIndex: -1,
+
       width: '100%',
-      height: 'calc(50% - $5 / 2 + 4px)',
+      height: '100%',
+
       backgroundImage:
         'radial-gradient(circle closest-side, #B4B4B4 100%, transparent 100%)',
       backgroundRepeat: 'repeat-y',
       backgroundPositionX: 'center',
       backgroundSize:
         'var(--cdg-pudo-dot-size) calc(var(--cdg-pudo-dot-size) * 2)',
-    },
-
-    '&:before': {
-      top: 'calc(var(--cdg-pudo-dot-size) * -2)',
-    },
-
-    '&:after': {
-      bottom: 'calc(var(--cdg-pudo-dot-size) * -2)',
     },
   },
 
@@ -104,20 +119,14 @@ export const StyledPUDOItem = styled('div', {
     },
   },
 
-  '&:first-child': {
-    '.cdg-pudo-item__icon:before': {
-      display: 'none',
-    },
-  },
-
   '&~ .cdg-pudo-item': {
-    '.cdg-pudo-item__label, .cdg-pudo-item__input, .cdg-pudo-item__custom': {
+    '.cdg-pudo-item__input, .cdg-pudo-item__custom': {
       borderTop: '1px solid $grayShades20',
     },
   },
 
   '&:last-child': {
-    '.cdg-pudo-item__icon:after, .cdg-pudo-item__swap-icon': {
+    '.cdg-pudo-item__swap-icon': {
       display: 'none',
     },
   },
@@ -127,30 +136,15 @@ export const StyledPUDOItem = styled('div', {
       input: {
         '&:has(.cdg-pudo-item__input:focus-within)': {
           backgroundColor: '$grayShades10',
-        },
-      },
-      label: {
-        paddingInline: '$4',
 
-        '.cdg-pudo-item__label': {
-          marginBlock: 0,
-          paddingBlock: '$4',
-          width: '100%',
-
-          whiteSpace: 'nowrap',
-          textOverflow: 'ellipsis',
-          overflow: 'hidden',
-
-          fontSize: '$label1',
-          fontWeight: '$normal',
-          lineHeight: '$tight',
+          '--_cdg-pudo-icon-shape-bg': 'var(--colors-grayShades10)',
         },
       },
       custom: {
         paddingInline: '$4',
 
         '.cdg-pudo-item__custom': {
-          paddingBlock: '$4',
+          paddingBlock: 'var(--cdg-pudo-item-padding-block)',
           overflow: 'auto',
           width: '100%',
 
@@ -176,11 +170,11 @@ export const StyledPUDOItem = styled('div', {
     },
     compact: {
       md: {
+        '--cdg-pudo-item-padding-block': 'calc(var(--cdg-pudo-dot-size) * 4)',
         '&~ .cdg-pudo-item': {
-          '.cdg-pudo-item__label, .cdg-pudo-item__input, .cdg-pudo-item__custom':
-            {
-              borderTop: 'none',
-            },
+          '.cdg-pudo-item__input, .cdg-pudo-item__custom': {
+            borderTop: 'none',
+          },
         },
 
         '.cdg-pudo-item__input': {
@@ -188,30 +182,14 @@ export const StyledPUDOItem = styled('div', {
             height: '$10',
           },
         },
-        '.cdg-pudo-item__custom': {paddingBlock: '$3'},
-
-        '.cdg-pudo-item__icon': {
-          '&:before, &:after': {
-            height: 'calc(50% - $5 / 2 + var(--cdg-pudo-dot-size) / 2)',
-          },
-
-          '&:before': {
-            top: 'calc(var(--cdg-pudo-dot-size) * -1)',
-          },
-
-          '&:after': {
-            bottom: 'calc(var(--cdg-pudo-dot-size) * -1)',
-          },
-        },
       },
       sm: {
+        '--cdg-pudo-item-padding-block': 'calc(var(--cdg-pudo-dot-size) * 2)',
         '&~ .cdg-pudo-item': {
-          '.cdg-pudo-item__label, .cdg-pudo-item__input, .cdg-pudo-item__custom':
-            {
-              borderTop: 'none',
-            },
+          '.cdg-pudo-item__input, .cdg-pudo-item__custom': {
+            borderTop: 'none',
+          },
         },
-        '.cdg-pudo-item__custom': {paddingBlock: '0.4rem'},
 
         '.cdg-pudo-item__input': {
           input: {
@@ -219,37 +197,41 @@ export const StyledPUDOItem = styled('div', {
             height: 'auto',
           },
         },
-
-        '.cdg-pudo-item__icon': {
-          '&:before, &:after': {
-            height: 'calc(50% - $5 / 2 + var(--cdg-pudo-dot-size) / 2)',
-          },
-
-          '&:before': {
-            top: 'calc(var(--cdg-pudo-dot-size) * -1)',
-          },
-
-          '&:after': {
-            bottom: 'calc(var(--cdg-pudo-dot-size) * -1)',
-          },
-        },
       },
+      undefined: {},
     },
     alignIcon: {
       center: {
-        '.cdg-pudo-item__icon': {
-          alignItems: 'center',
+        '.cdg-pudo-item__icon': {alignItems: 'center'},
+
+        '&:first-child, &:last-child': {
+          '.cdg-pudo-item__icon::before': {
+            height: '50%',
+          },
+        },
+
+        '&:first-child': {
+          '.cdg-pudo-item__icon::before': {
+            top: '50%',
+          },
         },
       },
       top: {
         '.cdg-pudo-item__icon': {
-          paddingTop: '$4',
+          paddingTop: 'var(--cdg-pudo-item-padding-block)',
+        },
 
-          '&:before': {
-            height: 'calc($5 - var(--cdg-pudo-dot-size))',
+        '&:first-child': {
+          '.cdg-pudo-item__icon::before': {
+            top: 'calc(var(--cdg-pudo-item-padding-block) + var(--cdg-pudo-dot-size))',
+            height:
+              'calc(100% - var(--cdg-pudo-item-padding-block) - var(--cdg-pudo-dot-size) * 2)',
           },
-          '&:after': {
-            height: 'calc(100% - $5 * 2 + var(--cdg-pudo-dot-size))',
+        },
+
+        '&:last-child': {
+          '.cdg-pudo-item__icon::before': {
+            height: 'var(--cdg-pudo-item-padding-block)',
           },
         },
       },
@@ -257,39 +239,66 @@ export const StyledPUDOItem = styled('div', {
   },
   compoundVariants: [
     {
-      compact: 'md',
-      type: 'label',
-      css: {'.cdg-pudo-item__label': {paddingBlock: '$3'}},
+      type: 'input',
+      compact: 'undefined',
+      css: {'--_cdg-pudo-icon-shape-bg': 'var(--cdg-pudo-bg, transparent)'},
     },
     {
-      compact: 'sm',
-      type: 'label',
-      css: {'.cdg-pudo-item__label': {paddingBlock: '$2'}},
-    },
-    {
+      alignIcon: 'center',
       compact: 'md',
-      alignIcon: 'top',
       css: {
         '.cdg-pudo-item__icon': {
-          '&:before, &:after': {
-            height: 'calc(50% - $5 / 2 + 4px)',
+          '&:before': {
+            top: 'calc(var(--cdg-pudo-dot-size) * -1)',
+            height: 'calc(100% + var(--cdg-pudo-dot-size))',
+          },
+        },
+
+        '&:first-child': {
+          '.cdg-pudo-item__icon::before': {
+            top: 'calc(50% + var(--cdg-pudo-icon-height) / 2 - var(--cdg-pudo-dot-size) / 2)',
+            height:
+              'calc(50% - var(--cdg-pudo-icon-height) / 2 - var(--cdg-pudo-dot-size) / 2)',
+          },
+        },
+
+        '&:last-child': {
+          '.cdg-pudo-item__icon::before': {
+            height:
+              'calc(50% - var(--cdg-pudo-icon-height) / 2 + var(--cdg-pudo-dot-size) * 1.5)',
           },
         },
       },
     },
     {
+      alignIcon: 'center',
       compact: 'sm',
-      alignIcon: 'top',
       css: {
         '.cdg-pudo-item__icon': {
-          '&:before, &:after': {
-            height: 'calc(50% - $5 / 2 + 4px)',
+          '&:before': {
+            top: 'calc(var(--cdg-pudo-dot-size) * -1)',
+            height: 'calc(100% + var(--cdg-pudo-dot-size))',
+          },
+        },
+
+        '&:first-child': {
+          '.cdg-pudo-item__icon::before': {
+            top: 'calc(50% + var(--cdg-pudo-icon-height) / 2 - var(--cdg-pudo-dot-size) / 2)',
+            height:
+              'calc(50% - var(--cdg-pudo-icon-height) / 2 - var(--cdg-pudo-dot-size) / 2)',
+          },
+        },
+
+        '&:last-child': {
+          '.cdg-pudo-item__icon::before': {
+            height:
+              'calc(50% - var(--cdg-pudo-icon-height) / 2 + var(--cdg-pudo-dot-size) * 1.5)',
           },
         },
       },
     },
   ],
+  defaultVariants: {
+    compact: 'undefined',
+  },
 })
-
-export type PudoItemVariantProps = VariantProps<typeof StyledPUDOItem>
-export type PudoVariantProps = VariantProps<typeof StyledPUDO>

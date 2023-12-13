@@ -242,12 +242,10 @@ export const Variants: React.FC = () => {
 }
 
 const meta = {
-  title: 'Example/Rich Text Editor Server',
+  title: 'Example/Rich Text Editor',
   component: Basic,
-  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],
   parameters: {
-    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
     layout: 'fullscreen',
   },
 } satisfies Meta<typeof Basic>

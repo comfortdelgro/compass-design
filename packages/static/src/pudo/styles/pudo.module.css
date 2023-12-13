@@ -3,7 +3,19 @@
 @layer default {
   .pudoContainer {
     --cdg-pudo-dot-size: 3px;
-    --cdg-pudo-icon-height: var(--cdg-spacing-5);
+    --cdg-pudo-icon-height: var(--cdg-spacing-6, 1.5rem);
+    --cdg-pudo-bg: var(--cdg-color-background, inherit);
+    --_cdg-pudo-icon-shape-bg: transparent;
+    --cdg-pudo-item-padding-block: var(--cdg-spacing-4, 1rem);
+
+    /* 
+    Currently, attr's color & fallback only stable on Firefox. For now use JS instead.
+    &[data-background] {
+      --cdg-pudo-bg: attr(
+        data-background color,
+        var(--cdg-color-background, inherit)
+      );
+    } */
 
     max-width: 100%;
     box-sizing: border-box;
@@ -16,6 +28,7 @@
     .pudoItemsWrapper {
       border-radius: var(--cdg-border-radius-lg);
       border: 1px solid var(--cdg-color-grayShades20);
+      background-color: var(--cdg-pudo-bg);
       overflow: hidden;
     }
 
@@ -55,7 +68,8 @@
 
     .pudoItemIcon,
     .pudoItemInput,
-    .pudoItemSwapIcon {
+    .pudoItemSwapIcon,
+    .pudoItemIconShape {
       box-sizing: border-box;
     }
 
@@ -67,20 +81,38 @@
       width: var(--cdg-spacing-5);
       text-align: center;
 
-      & > * {
-        display: block;
-        width: 100%;
+      .pudoItemIconShape {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: var(--cdg-spacing-8);
+        height: var(--cdg-pudo-icon-height);
+        border-radius: var(--cdg-border-radius-md);
+
+        background-color: var(--_cdg-pudo-icon-shape-bg);
+        transition: background-color 0.2s ease-in-out;
+
+        & > svg,
+        & > object,
+        & > img {
+          display: block;
+          max-width: 100%;
+          max-height: 100%;
+          object-fit: cover;
+          object-position: center;
+        }
       }
 
-      &::before,
-      &::after {
+      &::before {
         content: '';
         position: absolute;
+        top: 0;
         inset-inline: 0;
         z-index: -1;
 
         width: 100%;
-        height: calc(50% - var(--cdg-pudo-icon-height) / 2 + 0.25rem);
+        height: 100%;
+
         background-image: radial-gradient(
           circle closest-side,
           var(--cdg-color-grayShades40) 100%,
@@ -90,14 +122,6 @@
         background-position-x: center;
         background-size: var(--cdg-pudo-dot-size)
           calc(var(--cdg-pudo-dot-size) * 2);
-      }
-
-      &::before {
-        top: calc(var(--cdg-pudo-dot-size) * -2);
-      }
-
-      &::after {
-        bottom: calc(var(--cdg-pudo-dot-size) * -2);
       }
     }
 
@@ -144,22 +168,14 @@
       }
     }
 
-    &:first-child {
-      .pudoItemIcon::before {
-        display: none;
-      }
-    }
-
     & ~ .pudoItem {
       .pudoItemInput,
-      .pudoItemLabel,
       .pudoItemCustom {
         border-top: 1px solid var(--cdg-color-grayShades20);
       }
     }
 
     &:last-child {
-      .pudoItemIcon::after,
       .pudoItemSwapIcon {
         display: none;
       }
@@ -168,66 +184,95 @@
 }
 
 @layer variant {
-  .pudoItem.md,
-  .pudoItem.sm {
-    .pudoItemInput,
-    .pudoItemLabel,
-    .pudoItemCustom {
-      border-top: none;
+  .pudoItem.alignIcon--center {
+    &:first-child,
+    &:last-child {
+      .pudoItemIcon::before {
+        height: 50%;
+      }
     }
 
-    .pudoItemIcon {
-      &::before,
-      &::after {
-        height: calc(
-          50% - var(--cdg-pudo-icon-height) / 2 + var(--cdg-pudo-dot-size) / 2
-        );
-      }
-
-      &::before {
-        top: calc(var(--cdg-pudo-dot-size) * -1);
-      }
-
-      &::after {
-        bottom: calc(var(--cdg-pudo-dot-size) * -1);
+    &:first-child {
+      .pudoItemIcon::before {
+        top: 50%;
       }
     }
   }
 
+  .pudoItem.alignIcon--top {
+    &:first-child {
+      .pudoItemIcon::before {
+        top: calc(
+          var(--cdg-pudo-item-padding-block) + var(--cdg-pudo-dot-size)
+        );
+        height: calc(
+          100% - var(--cdg-pudo-item-padding-block) - var(--cdg-pudo-dot-size) *
+            2
+        );
+      }
+    }
+    &:last-child {
+      .pudoItemIcon::before {
+        height: var(--cdg-pudo-item-padding-block);
+      }
+    }
+  }
+
+  .pudoItem.alignIcon--center .pudoItemIcon {
+    align-items: center;
+  }
+
+  .pudoItem.md,
+  .pudoItem.sm {
+    .pudoItemInput,
+    .pudoItemCustom {
+      border-top: none;
+    }
+  }
+
   .pudoItem.md {
+    --cdg-pudo-item-padding-block: calc(var(--cdg-pudo-dot-size) * 4);
+
     .pudoItemInput input {
       height: var(--cdg-spacing-10);
     }
   }
 
   .pudoItem.sm {
+    --cdg-pudo-item-padding-block: calc(var(--cdg-pudo-dot-size) * 2);
+
     .pudoItemInput input {
       padding-block: var(--cdg-spacing-1);
       height: auto;
     }
   }
 
+  .pudoItem.input:not(.sm, .md) {
+    --_cdg-pudo-icon-shape-bg: var(--cdg-pudo-bg, transparent);
+  }
+
   .pudoItem.input {
     &:has(.pudoItemInput:focus-within) {
       background-color: var(--cdg-color-grayShades10);
+
+      --_cdg-pudo-icon-shape-bg: var(--cdg-color-grayShades10);
     }
-  }
 
-  .pudoItem.label {
-    padding-inline: var(--cdg-spacing-4);
+    :global(.cdg-textfield-right-icon) {
+      margin-right: 0;
+    }
 
-    .pudoItemLabel {
-      margin-block: 0;
-      padding-block: var(--cdg-spacing-4);
-      width: 100%;
+    .pudoItemInputBtnClear {
+      width: var(--cdg-spacing-6);
+      height: var(--cdg-spacing-6);
 
-      font-size: var(--cdg-font-size-label1);
-      font-weight: var(--cdg-font-weight-normal);
-      line-height: var(--cdg-line-height-tight);
+      & svg {
+        display: block;
+      }
 
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
+      &.pudoItemInputBtnClearHidden {
+        display: none;
+      }
     }
   }
 
@@ -235,7 +280,7 @@
     padding-inline: var(--cdg-spacing-4);
 
     .pudoItemCustom {
-      padding-block: var(--cdg-spacing-4);
+      padding-block: var(--cdg-pudo-item-padding-block);
       width: 100%;
 
       font-size: var(--cdg-font-size-label1);
@@ -260,44 +305,39 @@
     }
   }
 
-  .pudoItem.alignIcon--center .pudoItemIcon {
-    align-items: center;
-  }
-
   .pudoItem.alignIcon--top .pudoItemIcon {
-    padding-top: var(--cdg-spacing-4);
-
-    &::before {
-      height: calc(var(--cdg-pudo-icon-height) - var(--cdg-pudo-dot-size));
-    }
-
-    &::after {
-      height: calc(
-        100% - var(--cdg-pudo-icon-height) * 2 + var(--cdg-pudo-dot-size)
-      );
-    }
+    padding-top: var(--cdg-pudo-item-padding-block);
   }
 }
 
 @layer compoundVariant {
-  .pudoItem.md.label .pudoItemLabel,
-  .pudoItem.md.custom .pudoItemCustom {
-    padding-block: var(--cdg-spacing-3);
+  .pudoItem.input .pudoItemInputBtnClear:global(> .cdg-button-content) {
+    padding: 0;
   }
 
-  .pudoItem.sm.label .pudoItemLabel {
-    padding-block: var(--cdg-spacing-2);
-  }
+  .pudoItem.alignIcon--center:is(.sm, .md) {
+    .pudoItemIcon:before {
+      top: calc(var(--cdg-pudo-dot-size) * -1);
+      height: calc(100% + var(--cdg-pudo-dot-size));
+    }
 
-  .pudoItem.sm.custom .pudoItemCustom {
-    padding-block: 0.4rem;
-  }
+    &:first-child {
+      .pudoItemIcon:before {
+        top: calc(
+          50% + var(--cdg-pudo-icon-height) / 2 - var(--cdg-pudo-dot-size) / 2
+        );
+        height: calc(
+          50% - var(--cdg-pudo-icon-height) / 2 - var(--cdg-pudo-dot-size) / 2
+        );
+      }
+    }
 
-  .pudoItem.md.alignIcon--top .pudoItemIcon,
-  .pudoItem.sm.alignIcon--top .pudoItemIcon {
-    &::before,
-    &::after {
-      height: calc(50% - var(--cdg-pudo-icon-height) / 2 + 4px);
+    &:last-child {
+      .pudoItemIcon:before {
+        height: calc(
+          50% - var(--cdg-pudo-icon-height) / 2 + var(--cdg-pudo-dot-size) * 1.5
+        );
+      }
     }
   }
 }

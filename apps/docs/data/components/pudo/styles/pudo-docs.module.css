@@ -1,0 +1,27 @@
+.compactExampleContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.previewCode {
+  padding: var(--space-2);
+  margin: 0;
+  width: 100%;
+  min-height: var(--space-5);
+  border-radius: var(----radii-lg);
+  background-color: var(--cdg-color-gray10);
+  font-size: var(--fontSizes-label1);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+@media screen and (max-width: 768px) {
+  .compactExampleContainer {
+    flex-direction: row;
+  }
+
+  .compactExampleContainer > .cdg-pudo-container {
+    width: calc(100% / 2 - var(--space-4));
+  }
+}

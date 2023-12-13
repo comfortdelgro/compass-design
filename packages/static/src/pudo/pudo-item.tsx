@@ -1,11 +1,12 @@
 import clsx from 'clsx'
-import {memo} from 'react'
+import {memo, useCallback, useRef} from 'react'
+import {Button} from '..'
 import TextField from '../textfield'
 import {DefaultIcons} from './pudo.config'
 import {PudoItemPrivateProps} from './pudo.types'
 import classes from './styles/pudo.module.css'
 
-const PudoItemComponent = <TItemName extends string | number | symbol>({
+const PudoItemComponent = <TItemName extends PropertyKey>({
   index,
   itemsLength,
   name,
@@ -26,26 +27,21 @@ const PudoItemComponent = <TItemName extends string | number | symbol>({
   isRequired = false,
   alignIcon = 'center',
   compact,
+  isClearable = false,
 }: PudoItemPrivateProps<TItemName>) => {
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  const handleClearInput = useCallback(() => {
+    onValueChange?.('')
+    inputRef.current?.focus()
+  }, [onValueChange])
+
   const renderPudoContent = () => {
     switch (type) {
-      /**
-       * @deprecated
-       * @todo remove label type when `@comfortdelgro/react-compass@3.x` is planned to be released soon.
-       */
-      case 'label':
-        return (
-          <p
-            className={clsx(classes.pudoItemLabel, 'cdg-pudo-item__label')}
-            title={value}
-          >
-            {value}
-          </p>
-        )
-
       case 'input':
         return (
           <TextField
+            inputRef={inputRef}
             className={clsx(classes.pudoItemInput, 'cdg-pudo-item__input')}
             type='text'
             name={name.toString()}
@@ -55,6 +51,34 @@ const PudoItemComponent = <TItemName extends string | number | symbol>({
             placeholder={placeholder}
             maxLength={maxLength}
             isRequired={isRequired}
+            rightIcon={
+              <Button
+                className={clsx(
+                  classes.pudoItemInputBtnClear,
+                  'cdg-pudo-item__input-btn-clear',
+                  !value || !isClearable
+                    ? classes.pudoItemInputBtnClearHidden
+                    : '',
+                )}
+                variant='ghost'
+                type='button'
+                onClick={() => handleClearInput()}
+                aria-label='Clear input'
+              >
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  width='16'
+                  height='16'
+                  viewBox='0 0 16 16'
+                  fill='none'
+                >
+                  <path
+                    d='M7.29289 5.73746C7.68342 6.12798 8.31658 6.12798 8.70711 5.73746L12.7376 1.70698C13.1281 1.31646 13.7613 1.31646 14.1518 1.70699L14.2929 1.84808C14.6834 2.23861 14.6834 2.87177 14.2929 3.2623L10.2624 7.29277C9.87189 7.68329 9.87189 8.31646 10.2624 8.70698L14.2929 12.7375C14.6834 13.128 14.6834 13.7612 14.2929 14.1517L14.1518 14.2928C13.7613 14.6833 13.1281 14.6833 12.7376 14.2928L8.70711 10.2623C8.31658 9.87177 7.68342 9.87177 7.29289 10.2623L3.26242 14.2928C2.87189 14.6833 2.23873 14.6833 1.8482 14.2928L1.70711 14.1517C1.31658 13.7611 1.31658 13.128 1.70711 12.7375L5.73758 8.70698C6.12811 8.31646 6.12811 7.6833 5.73758 7.29277L1.70711 3.2623C1.31658 2.87177 1.31658 2.23861 1.70711 1.84808L1.8482 1.70698C2.23873 1.31646 2.87189 1.31646 3.26242 1.70698L7.29289 5.73746Z'
+                    fill='#B4B4B4'
+                  />
+                </svg>
+              </Button>
+            }
           />
         )
 
@@ -96,10 +120,7 @@ const PudoItemComponent = <TItemName extends string | number | symbol>({
     }
   }
 
-  if (
-    (type === 'custom' && !title && !content) ||
-    (type === 'label' && !value)
-  ) {
+  if (type === 'custom' && !title && !content) {
     return <></>
   }
 
@@ -116,7 +137,14 @@ const PudoItemComponent = <TItemName extends string | number | symbol>({
       style={{zIndex: itemsLength - 1 - index ?? undefined}}
     >
       <div className={clsx(classes.pudoItemIcon, 'cdg-pudo-item__icon')}>
-        {icon || DefaultIcons[index]}
+        <div
+          className={clsx(
+            classes.pudoItemIconShape,
+            'cdg-pudo-item__icon-shape',
+          )}
+        >
+          {icon || DefaultIcons[index]}
+        </div>
       </div>
       {renderPudoContent()}
 

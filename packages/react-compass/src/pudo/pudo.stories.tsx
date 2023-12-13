@@ -19,7 +19,6 @@ const exampleItem = [
   },
   {
     name: 'item3',
-    icon: <MapMarked />,
     value: '',
     placeholder: 'item3',
   },
@@ -34,7 +33,7 @@ const pendingAddItems = [
   {name: 'des2', value: '', placeholder: 'Where to', allowSwap: true},
   {
     name: 'des3',
-    icon: <MapMarked />,
+    icon: <MapMarked style={{height: '0.875rem'}} />,
     value: '',
     placeholder: 'New destination',
     allowSwap: true,
@@ -104,6 +103,7 @@ export function Default() {
         css={{marginBlock: '$4'}}
         items={exampleItems}
         onValuesChange={debounceUpdate}
+        isClearable
       />
       <Button size='sm' css={{marginBottom: '$4'}} onClick={handleAddLocation}>
         Update first item
@@ -130,6 +130,7 @@ export function Default() {
         removableLabel='Remove extra destination'
         minLength={2} // default value
         maxLength={3} // default value
+        isClearable
       />
       {formValues && (
         <PreviewCode>{JSON.stringify(formValues, null, 2)}</PreviewCode>
@@ -343,8 +344,6 @@ export function Default() {
           },
           {name: 'item2', value: 'Destination', placeholder: 'item2'},
         ]}
-        type='label'
-        compact='md'
       />
     </>
   )
