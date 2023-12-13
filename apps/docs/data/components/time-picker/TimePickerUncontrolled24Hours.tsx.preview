@@ -1,0 +1,6 @@
+<TimePicker
+  formatTime='HH:mm:ss'
+  views={['hours24', 'minutes', 'seconds']}
+  hasFooter
+  defaultValue={'05:05:55'}
+/>

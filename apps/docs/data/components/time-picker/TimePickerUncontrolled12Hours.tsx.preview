@@ -1,0 +1,5 @@
+<TimePicker
+  formatTime='hh:mm:ss AA'
+  views={['hours12', 'minutes', 'seconds', 'sessions']}
+  defaultValue={'11:05:50 PM'}
+/>
