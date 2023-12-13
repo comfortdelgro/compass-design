@@ -1,5 +1,11 @@
 ## 2.9.0
 
+## 3.2.0
+
+### Minor Changes
+
+- 8091a0c6: Enhancements for H5
+
 ## 3.1.0
 
 ### Minor Changes

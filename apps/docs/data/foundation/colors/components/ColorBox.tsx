@@ -1,5 +1,5 @@
-import { useToast } from '@comfortdelgro/react-compass'
-import { useEffect, useState } from 'react'
+import {useToast} from '@comfortdelgro/react-compass'
+import {useEffect, useState} from 'react'
 
 interface Props {
   color: {
@@ -18,8 +18,8 @@ function rgba2hex(color: string) {
     alpha = ((rgb && rgb[4]) || '').trim(),
     hex = rgb
       ? (Number(rgb[1]) | (1 << 8)).toString(16).slice(1) +
-      (Number(rgb[2]) | (1 << 8)).toString(16).slice(1) +
-      (Number(rgb[3]) | (1 << 8)).toString(16).slice(1)
+        (Number(rgb[2]) | (1 << 8)).toString(16).slice(1) +
+        (Number(rgb[3]) | (1 << 8)).toString(16).slice(1)
       : color
 
   if (alpha !== '') {
@@ -83,7 +83,7 @@ const getResolvedColor = (color: string) => {
   return color
 }
 
-const ColorBox: React.FC<Props> = ({ color, gradient = false }) => {
+const ColorBox: React.FC<Props> = ({color, gradient = false}) => {
   const [resolvedColor, setResolvedColor] = useState<string | null>(null)
   const [resolvedColorOpacity, setResolvedColorOpacity] = useState<number>(1)
 
@@ -104,7 +104,6 @@ const ColorBox: React.FC<Props> = ({ color, gradient = false }) => {
       title: 'Copy successfully',
     })
   }
-
 
   return (
     <div
