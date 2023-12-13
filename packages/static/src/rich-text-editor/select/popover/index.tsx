@@ -32,7 +32,18 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
       return () => {
         onBlur()
       }
-    }, [])
+    }, [onBlur, onFocus])
+
+    const popoverClasses = React.useMemo(() => {
+      return [
+        styles.rtePopover,
+        type === 'color' ? styles.typeColor : '',
+        type === 'heading' ? styles.typeHeading : '',
+        className,
+      ]
+        .filter(Boolean)
+        .join(' ')
+    }, [className, type])
 
     return (
       <CssInjection childrenRef={popoverRef}>
@@ -40,9 +51,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
           style={{
             display: isEmpty ? 'none' : '',
           }}
-          className={`${className} ${styles.rtePopover} 
-          ${type === 'color' ? styles.typeColor : ''} 
-          ${type === 'heading' ? styles.typeHeading : ''}`}
+          className={popoverClasses}
         >
           {children}
         </div>

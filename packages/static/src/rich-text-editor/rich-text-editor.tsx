@@ -15,12 +15,8 @@ import isEqual from 'lodash/isEqual'
 import React from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import * as controls from './controls'
-import Control from './controls/Control'
-import ControlsGroup from './controls/ControlsGroup'
 import {RichTextEditorProvider} from './rich-text-editor.context'
 import styles from './styles/rich-text-editor.module.css'
-import Toolbar from './toolbar'
 
 interface Props {
   children?: React.ReactNode
@@ -106,6 +102,12 @@ const RichTextEditor = React.forwardRef<HTMLDivElement, RichTextEditorProps>(
 
     const textEditorRef = useDOMRef<HTMLDivElement>(ref)
 
+    const rootClasses = React.useMemo(() => {
+      return [styles.cdgRichTextEditor, className, 'cdg-rich-text-editor']
+        .filter(Boolean)
+        .join(' ')
+    }, [className])
+
     return (
       <RichTextEditorProvider
         value={{
@@ -113,15 +115,11 @@ const RichTextEditor = React.forwardRef<HTMLDivElement, RichTextEditorProps>(
         }}
       >
         <CssInjection childrenRef={textEditorRef} css={css}>
-          <div
-            ref={textEditorRef}
-            {...htmlProps}
-            className={`cdg-rich-text-editor ${className} ${styles.cdgRichTextEditor}`}
-          >
+          <div {...htmlProps} ref={textEditorRef} className={rootClasses}>
             {children}
             <EditorContent
               editor={editor}
-              className={`cdg-rich-text-editor-content ${styles.editorContent}`}
+              className={`${styles.editorContent} cdg-rich-text-editor-content`}
             />
             {characterCount && (
               <div className={`${styles.characterCount}`}>
@@ -134,37 +132,4 @@ const RichTextEditor = React.forwardRef<HTMLDivElement, RichTextEditorProps>(
     )
   },
 )
-export default RichTextEditor as typeof RichTextEditor & {
-  Control: typeof Control
-  ControlsGroup: typeof ControlsGroup
-  Toolbar: typeof Toolbar
-  Bold: typeof controls.BoldControl
-  Italic: typeof controls.ItalicControl
-  Strikethrough: typeof controls.StrikeThroughControl
-  Underline: typeof controls.UnderlineControl
-  H1: typeof controls.H1Control
-  H2: typeof controls.H2Control
-  H3: typeof controls.H3Control
-  H4: typeof controls.H4Control
-  H5: typeof controls.H5Control
-  H6: typeof controls.H6Control
-  BulletList: typeof controls.BulletListControl
-  OrderedList: typeof controls.OrderedListControl
-  Link: typeof controls.LinkControl
-  Unlink: typeof controls.UnlinkControl
-  Image: typeof controls.ImageControl
-  Blockquote: typeof controls.BlockquoteControl
-  AlignLeft: typeof controls.AlignLeftControl
-  AlignRight: typeof controls.AlignRightControl
-  AlignCenter: typeof controls.AlignCenterControl
-  AlignJustify: typeof controls.AlignJustifyControl
-  Superscript: typeof controls.SuperscriptControl
-  Subscript: typeof controls.SubscriptControl
-  CodeBlock: typeof controls.CodeBlockControl
-  ColorControl: typeof controls.ColorControl
-  HeadingsControl: typeof controls.HeadingsControl
-  TextAlginmentSelector: typeof controls.TextAlignmentSelectorControl
-  Hr: typeof controls.HrControl
-  Undo: typeof controls.UndoControl
-  Redo: typeof controls.RedoControl
-}
+export default RichTextEditor
