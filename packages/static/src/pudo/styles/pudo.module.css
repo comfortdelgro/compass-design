@@ -257,6 +257,23 @@
 
       --_cdg-pudo-icon-shape-bg: var(--cdg-color-grayShades10);
     }
+
+    :global(.cdg-textfield-right-icon) {
+      margin-right: 0;
+    }
+
+    .pudoItemInputBtnClear {
+      width: var(--cdg-spacing-6);
+      height: var(--cdg-spacing-6);
+
+      & svg {
+        display: block;
+      }
+
+      &.pudoItemInputBtnClearHidden {
+        display: none;
+      }
+    }
   }
 
   .pudoItem.custom {
@@ -294,6 +311,10 @@
 }
 
 @layer compoundVariant {
+  .pudoItem.input .pudoItemInputBtnClear:global(> .cdg-button-content) {
+    padding: 0;
+  }
+
   .pudoItem.alignIcon--center:is(.sm, .md) {
     .pudoItemIcon:before {
       top: calc(var(--cdg-pudo-dot-size) * -1);

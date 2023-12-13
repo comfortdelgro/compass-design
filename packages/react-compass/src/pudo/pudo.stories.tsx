@@ -103,6 +103,7 @@ export function Default() {
         css={{marginBlock: '$4'}}
         items={exampleItems}
         onValuesChange={debounceUpdate}
+        isClearable
       />
       <Button size='sm' css={{marginBottom: '$4'}} onClick={handleAddLocation}>
         Update first item
@@ -129,6 +130,7 @@ export function Default() {
         removableLabel='Remove extra destination'
         minLength={2} // default value
         maxLength={3} // default value
+        isClearable
       />
       {formValues && (
         <PreviewCode>{JSON.stringify(formValues, null, 2)}</PreviewCode>
