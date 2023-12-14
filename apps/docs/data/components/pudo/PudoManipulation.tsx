@@ -81,6 +81,7 @@ export default function PudoManipulationDocs() {
         removableLabel='Remove extra destination'
         minLength={2} // default value: 2
         maxLength={maxLength} // default value: 3
+        isClearable
       />
       {formValues && (
         <>

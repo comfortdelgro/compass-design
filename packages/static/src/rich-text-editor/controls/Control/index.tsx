@@ -36,27 +36,37 @@ const Control = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
     const {children, className, active, css = {}, onClick, ...htmlProps} = props
     const buttonRef = useDOMRef<HTMLButtonElement>(ref)
+
+    const rootClasses = React.useMemo(() => {
+      return [
+        styles.rteControl,
+        active && styles.active,
+        'cdg-rte-control',
+        className,
+      ]
+        .filter(Boolean)
+        .join(' ')
+    }, [active, className])
+
     return (
       <CssInjection css={css} childrenRef={buttonRef}>
         <button
           ref={buttonRef}
-          className={`cdg-rte-control ${className} ${styles.rteControl} ${
-            active ? styles.active : ''
-          }`}
-          onClick={onClick}
+          className={rootClasses}
+          tabIndex={props.tabIndex}
+          aria-pressed={props['aria-pressed']}
           aria-controls={props['aria-controls']}
           aria-expanded={props['aria-expanded']}
           aria-haspopup={props['aria-haspopup']}
-          aria-pressed={props['aria-pressed']}
-          tabIndex={props.tabIndex}
+          onClick={onClick}
           onBlur={props.onBlur}
-          onDragStart={props.onDragStart}
           onFocus={props.onFocus}
-          onKeyDown={props.onKeyDown}
           onKeyUp={props.onKeyUp}
-          onPointerDown={props.onPointerDown}
-          onPointerUp={props.onPointerUp}
+          onKeyDown={props.onKeyDown}
           onTouchEnd={props.onTouchEnd}
+          onDragStart={props.onDragStart}
+          onPointerUp={props.onPointerUp}
+          onPointerDown={props.onPointerDown}
           {...htmlProps}
         >
           {children}

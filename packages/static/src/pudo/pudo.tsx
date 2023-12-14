@@ -3,6 +3,7 @@
 import clsx from 'clsx'
 import {
   CSSProperties,
+  FocusEventHandler,
   forwardRef,
   ReactElement,
   Ref,
@@ -14,6 +15,7 @@ import Button from '../button'
 import {useDeepCompareEffect} from '../utils/hooks'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
+import {useStateWithCallback} from './hooks/useStateWithCallback'
 import PudoItem from './pudo-item'
 import type {PudoItemProps, PudoProps, PudoValueChange} from './pudo.types'
 import classes from './styles/pudo.module.css'
@@ -36,13 +38,14 @@ const getCSSVariableValue = (colorInput: string): string => {
   return `var(${colorInput})`
 }
 
-const PudoRefComponent = <TItemKeys extends string | number | symbol>(
+const PudoRefComponent = <TItemKeys extends PropertyKey>(
   {
     items,
     className = '',
     css = {},
     type,
     onValuesChange,
+    onItemFocusChange,
     minLength = 2,
     maxLength: unCheckedMaxLength = 3,
     removableItems = [],
@@ -52,6 +55,7 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
     compact,
     alignIcon,
     bgColor,
+    isClearable,
     style,
     ...htmlDataAttributes
   }: PudoProps<TItemKeys>,
@@ -66,7 +70,7 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
   const [pudoItems, setPudoItems] = useState<Array<PudoItemProps<TItemKeys>>>(
     [],
   )
-  const [arrPudoValues, setArrPudoValues] = useState<
+  const [arrPudoValues, setArrPudoValues] = useStateWithCallback<
     PudoValueChange<TItemKeys>
   >([])
 
@@ -120,6 +124,20 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
       setArrPudoValues(newValues)
       onValuesChange?.(newValues)
     },
+    [onValuesChange],
+  )
+
+  /**
+   * @deprecated
+   * @todo remove this function when `isFocusing` is removed from `PudoValueChange`.
+   * No need to prevent batching state updates anymore.
+   */
+  const handleNoBatchingUpdatePudoValues = useCallback(
+    (
+      processedValues: (
+        prevValue: PudoValueChange<TItemKeys>,
+      ) => PudoValueChange<TItemKeys>,
+    ) => setArrPudoValues(processedValues, onValuesChange),
     [onValuesChange],
   )
 
@@ -202,6 +220,20 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
     [arrPudoValues, handleUpdatePudoValues],
   )
 
+  const handlePudoItemsWrapperBlur = useCallback<
+    FocusEventHandler<HTMLDivElement>
+  >(
+    (blurEvent) => {
+      if (blurEvent.currentTarget.contains(blurEvent.relatedTarget)) {
+        // prevent trigger onItemFocusChange when there is a PUDO input item receives focus.
+        return
+      }
+
+      onItemFocusChange?.(undefined)
+    },
+    [onItemFocusChange],
+  )
+
   const renderPudoItems = pudoItems.map((itemProps, index, currArr) => (
     <PudoItem
       key={itemProps.name.toString()}
@@ -213,23 +245,39 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
       allowSwap={!!itemProps.allowSwap}
       handleSwap={() => handleSwapPudoItems(itemProps.name, index, currArr)}
       onValueChange={(value) =>
-        handleUpdatePudoValues(
-          arrPudoValues.map((currValue) =>
-            currValue.name === itemProps.name
+        /**
+         * @todo Use handleUpdatePudoValues function instead when `isFocusing` is removed from `PudoValueChange`
+         * no need to prevent batching state updates anymore.
+         */
+        handleNoBatchingUpdatePudoValues((currentValue) =>
+          currentValue.map((currentItemValue) =>
+            currentItemValue.name === itemProps.name
               ? {name: itemProps.name, value, isFocusing: true}
-              : {...currValue, isFocusing: false},
+              : {...currentItemValue, isFocusing: false},
           ),
         )
       }
-      onInputFocus={() =>
-        handleUpdatePudoValues(
-          arrPudoValues.map((currValue) => ({
-            ...currValue,
-            isFocusing: currValue.name === itemProps.name,
+      onInputFocus={() => {
+        onItemFocusChange?.(itemProps.name)
+
+        /**
+         * There are changes that `onInputFocus` fire on the same render cycle with `onValueChange`, which is
+         * also update the `arrPudoValues` state.
+         * React batches state updates, only the last state changes will be accepted, so update based on value on callback instead.
+         *
+         * @todo Remove the logic below when `isFocusing` is removed from `PudoValueChange`
+         */
+        handleNoBatchingUpdatePudoValues((currentValue) =>
+          currentValue.map((currentItemValue) => ({
+            ...currentItemValue,
+            isFocusing: currentItemValue.name === itemProps.name,
           })),
         )
-      }
+      }}
       alignIcon={alignIcon || itemProps.alignIcon}
+      isClearable={
+        isClearable === undefined ? itemProps.isClearable : isClearable
+      }
       compact={compact}
     />
   ))
@@ -262,6 +310,7 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
       >
         <div
           className={clsx(classes.pudoItemsWrapper, 'cdg-pudo-items-wrapper')}
+          onBlur={handlePudoItemsWrapperBlur}
         >
           {renderPudoItems}
         </div>
@@ -330,9 +379,7 @@ const PudoRefComponent = <TItemKeys extends string | number | symbol>(
   )
 }
 
-const Pudo = forwardRef(PudoRefComponent) as <
-  ItemKeys extends string | number | symbol,
->(
+const Pudo = forwardRef(PudoRefComponent) as <ItemKeys extends PropertyKey>(
   p: PudoProps<ItemKeys> & {ref?: Ref<Omit<HTMLDivElement, 'onChange'>>},
 ) => ReactElement
 

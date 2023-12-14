@@ -1,4 +1,4 @@
-import React, {HTMLAttributes, useEffect, useState} from 'react'
+import React, {HTMLAttributes, useState} from 'react'
 import CssInjection from '../../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import Control from '../controls/Control'
@@ -40,7 +40,8 @@ const Toolbar = React.forwardRef<HTMLDivElement, ToolbarProps>((props, ref) => {
 
   const hideOverflowItem = React.useCallback(() => {
     const rect = toolbarRef.current?.getBoundingClientRect()
-    ;[...toolbarRef.current.children].forEach((node) => {
+    const listOfChildren = [...toolbarRef.current.children]
+    listOfChildren.forEach((node) => {
       const r = node.getBoundingClientRect()
       if (expanded) node['style'].visibility = null
       if (r.right > rect.right) {
@@ -49,15 +50,17 @@ const Toolbar = React.forwardRef<HTMLDivElement, ToolbarProps>((props, ref) => {
     })
   }, [toolbarRef, expanded])
 
-  useEffect(() => {
+  React.useEffect(() => {
+    if (!expanded) {
+      hideOverflowItem()
+    }
+  }, [hideOverflowItem, expanded])
+
+  React.useEffect(() => {
     setTimeout(() => {
       hideOverflowItem()
     }, 50)
-  }, [hideOverflowItem, toolbarRef])
-
-  useEffect(() => {
-    hideOverflowItem()
-  }, [hideOverflowItem, expanded])
+  }, [hideOverflowItem])
 
   const calcultedChildren = React.useMemo(() => {
     // Get data map of toolbar to see summary of toolbar
@@ -146,12 +149,15 @@ const Toolbar = React.forwardRef<HTMLDivElement, ToolbarProps>((props, ref) => {
     )
   }, [children])
 
+  const toolbarWrapperClasses = React.useMemo(() => {
+    return [styles.rteToolbarWrapper, className, 'cdg-rte-toolbar']
+      .filter(Boolean)
+      .join(' ')
+  }, [className])
+
   return (
     <CssInjection css={css} childrenRef={toolbarRef}>
-      <div
-        className={`cdg-rte-toolbar ${className} ${styles.rteToolbarWrapper}`}
-        {...delegates}
-      >
+      <div {...delegates} className={toolbarWrapperClasses}>
         <div ref={toolbarRef} className={styles.rteToolbar}>
           {calcultedChildren}
         </div>

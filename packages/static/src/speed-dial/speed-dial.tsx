@@ -162,4 +162,7 @@ export const SpeedDialContextWrapper = React.forwardRef<
   )
 })
 
+/**
+ * @deprecate SpeedDial will be replaced by new SpeedDial2
+ */
 export default SpeedDialContextWrapper

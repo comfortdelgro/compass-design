@@ -1,0 +1,2 @@
+<Toggle size='lg' isDisabled />
+<Toggle size='lg' isSelected={true} isDisabled />

@@ -123,6 +123,7 @@ export function Default() {
         removableLabel='Remove extra destination'
         minLength={2} // default value
         maxLength={3} // default value
+        isClearable
       />
       {formValues && (
         <pre className={classes.previewCode}>
