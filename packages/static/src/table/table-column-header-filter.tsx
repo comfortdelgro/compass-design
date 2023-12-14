@@ -30,7 +30,6 @@ const HeaderColumnFilter = forwardRef<
   const firstValue = table
     .getPreFilteredRowModel()
     .flatRows[0]?.getValue(column.id)
-  console.log({isFiltering})
 
   const columnFilterValue = column.getFilterValue()
 
