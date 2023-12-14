@@ -101,6 +101,7 @@ const Box = React.forwardRef<HTMLElement, BoxProps>((props, ref) => {
     children,
     // styled component props
     css = {},
+    className = '',
     // custom props
     as: asProp = 'div',
     border,
