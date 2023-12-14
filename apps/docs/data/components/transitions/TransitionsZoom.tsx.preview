@@ -1,0 +1,7 @@
+<Transitions effect='zoom' show={show}>
+  <div style={style}>Basic</div>
+</Transitions>
+
+<Transitions effect='zoom' show={show} speed={2}>
+  <div style={style}>Custom Speed: 2s</div>
+</Transitions>
