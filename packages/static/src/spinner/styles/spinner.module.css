@@ -89,7 +89,7 @@
     border-width: 0.625rem;
   }
   
-  .fontXl {
+  .labelXl {
     font-size: var(--cdg-font-size-body2);
   }
   /* lg styles */
@@ -101,7 +101,7 @@
     border-width: 0.5rem;
   }
   
-  .fontLg {
+  .labelLg {
     font-size: var(--cdg-font-size-label1);
   }
   
@@ -115,7 +115,7 @@
     border-width: 0.375rem;
   }
   
-  .fontMd {
+  .labelMd {
     font-size: var(--cdg-font-size-label2);
   }
   
@@ -128,7 +128,7 @@
     border-width: 0.25rem;
   }
   
-  .fontSm {
+  .labelSm {
     font-size: var(--cdg-font-size-label3);
   }
   
