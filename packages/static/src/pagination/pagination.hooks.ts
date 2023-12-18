@@ -19,13 +19,13 @@ export const usePagination = ({
   const [active, setActive] = useState(page ?? initialPage)
 
   useEffect(() => {
-    if (page && page !== active) setActive(page)
+    if (page) setActive(page)
   }, [page])
 
-  const setActivePage = (newPage: number) => {
+  const setActivePage = useCallback((newPage: number) => {
     setActive(newPage)
     onChange?.(newPage)
-  }
+  }, [onChange])
 
   const setPage = useCallback(
     (newPage: number) => {
@@ -37,7 +37,7 @@ export const usePagination = ({
         setActivePage(newPage)
       }
     },
-    [total, onChange],
+    [total, setActivePage],
   )
 
   const next = () => setPage(active + 1)
