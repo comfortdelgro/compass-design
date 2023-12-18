@@ -1,6 +1,7 @@
 import Singapore from '@comfortdelgro/compass-icons/react/flag-sgp'
 import USA from '@comfortdelgro/compass-icons/react/flag-usa'
-import React from 'react'
+import {toString} from 'lodash'
+import React, {useEffect, useState} from 'react'
 import Dropdown from '../dropdown'
 import Textarea from '../textarea'
 import TextField from '../textfield'
@@ -37,9 +38,20 @@ const phoneDropdownOptions: DropdownOptions[] = [
   },
 ]
 export const Variants: React.FC = () => {
+  const [dropdownKey, setDropdownKey] = useState<string>('')
+  const [textfieldValue, setTextfieldValue] = useState<string>('')
   const handleInputsChange = (selectedKey: string, value: string | number) => {
-    console.log({selectedKey, value})
+    setDropdownKey(selectedKey)
+    setTextfieldValue(toString(value))
   }
+
+  useEffect(() => {
+    setTimeout(() => {
+      setDropdownKey('mr')
+      setTextfieldValue('test')
+    }, 1000)
+  }, [])
+
   return (
     <>
       <Column>
@@ -49,6 +61,8 @@ export const Variants: React.FC = () => {
           options={dropdownOptions}
           inputType='text'
           onChange={handleInputsChange}
+          defaultInputValue={textfieldValue}
+          defaultSelectedKey={dropdownKey}
           label='Name'
         />
         <h3>Errored</h3>

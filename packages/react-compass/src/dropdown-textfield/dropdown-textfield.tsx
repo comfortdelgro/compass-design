@@ -1,4 +1,4 @@
-import React, {Key} from 'react'
+import React, {Key, useEffect} from 'react'
 import Dropdown from '../dropdown'
 import TextField from '../textfield'
 import {StyledTextFieldLabel} from '../textfield/textfield.styles'
@@ -79,7 +79,7 @@ const DropdownTextfield = React.forwardRef<
     className,
     options,
     defaultSelectedKey,
-    defaultInputValue,
+    defaultInputValue = '',
     isErrored = false,
     isReadOnly = false,
     isRequired = false,
@@ -111,9 +111,14 @@ const DropdownTextfield = React.forwardRef<
   const componentRef = useDOMRef(ref)
 
   const [selectedDropdownKey, setDropdownKey] = React.useState<Key>('')
-  const [textfieldValue, setTextfieldValue] = React.useState<Key>(
-    defaultInputValue ?? '',
+  const [textfieldValue, setTextfieldValue] = React.useState<string | number>(
+    '',
   )
+
+  useEffect(() => {
+    setDropdownKey(defaultSelectedKey as Key)
+    setTextfieldValue(defaultInputValue)
+  }, [defaultSelectedKey, defaultInputValue])
 
   const handleDropdownChange = (newValue: Key) => {
     setDropdownKey(newValue)
