@@ -1,4 +1,4 @@
-import React, {Key, useRef} from 'react'
+import React, {Key} from 'react'
 import Dropdown from '../dropdown'
 import TextField from '../textfield'
 import CssInjection from '../utils/objectToCss/CssInjection'
@@ -107,7 +107,6 @@ const DropdownTextfield = React.forwardRef<
     css = {},
   } = props
   const componentRef = useDOMRef(ref)
-  const isFirstRun = useRef(true)
 
   const [selectedDropdownKey, setDropdownKey] = React.useState<Key>('')
   const [textfieldValue, setTextfieldValue] = React.useState<Key>(
@@ -116,20 +115,17 @@ const DropdownTextfield = React.forwardRef<
 
   const handleDropdownChange = (newValue: Key) => {
     setDropdownKey(newValue)
+    onDropdownInputChange?.(String(newValue), textfieldValue)
   }
   const handleInputChange = (value: string | number) => {
     setTextfieldValue(value)
+    onDropdownInputChange?.(String(selectedDropdownKey), value)
   }
 
   React.useEffect(() => {
-    if (isFirstRun.current) {
-      isFirstRun.current = false
-    } else {
-      if (onDropdownInputChange) {
-        onDropdownInputChange(String(selectedDropdownKey), textfieldValue)
-      }
-    }
-  }, [onDropdownInputChange, selectedDropdownKey, textfieldValue])
+    setDropdownKey(defaultSelectedKey as Key)
+    setTextfieldValue(defaultInputValue)
+  }, [defaultSelectedKey, defaultInputValue])
 
   return (
     <CssInjection css={css} childrenRef={componentRef}>
