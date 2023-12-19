@@ -1,0 +1,15 @@
+<Toast isOpen={isOpen} handleClose={() => setIsOpen(false)}>
+  <Toast.Icon>
+    <Icon icon={faImage} />
+  </Toast.Icon>
+  <Toast.Title>My Title</Toast.Title>
+  <Toast.Label>a few minutes ago</Toast.Label>
+  <Toast.CloseIcon>
+    <Icon icon={faXmark} />
+  </Toast.CloseIcon>
+  <Toast.Message>Lorem ipsum dolor, sit amet consectetur.</Toast.Message>
+  <Toast.Actions>
+    <Button>Take action</Button>
+    <Button>Take action</Button>
+  </Toast.Actions>
+</Toast>

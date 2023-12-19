@@ -3,15 +3,14 @@ import {faImage, faXmark} from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
 
 const Default: React.FC = () => {
-  const [isDefaultOpen, setIsDefaultOpen] = React.useState(false)
+  const [isOpen, setIsOpen] = React.useState(false)
 
   return (
-    <div>
-      <h3>Default toast</h3>
-      <Button css={{width: '8rem'}} onPress={() => setIsDefaultOpen(true)}>
+    <>
+      <Button css={{width: '8rem'}} onPress={() => setIsOpen(true)}>
         Open toast
       </Button>
-      <Toast isOpen={isDefaultOpen} handleClose={() => setIsDefaultOpen(false)}>
+      <Toast isOpen={isOpen} handleClose={() => setIsOpen(false)}>
         <Toast.Icon>
           <Icon icon={faImage} />
         </Toast.Icon>
@@ -26,7 +25,7 @@ const Default: React.FC = () => {
           <Button>Take action</Button>
         </Toast.Actions>
       </Toast>
-    </div>
+    </>
   )
 }
 

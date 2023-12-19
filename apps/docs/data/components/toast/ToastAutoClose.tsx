@@ -3,18 +3,16 @@ import {faImage, faXmark} from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
 
 const AutoClose: React.FC = () => {
-  const [isAutoCloseOpen, setIsAutoCloseOpen] = React.useState(false)
+  const [isOpen, setIsOpen] = React.useState(false)
   return (
-    <div>
-      <h3>Auto-close toast</h3>
-      <Button css={{width: '8rem'}} onPress={() => setIsAutoCloseOpen(true)}>
+    <>
+      <Button css={{width: '8rem'}} onPress={() => setIsOpen(true)}>
         Open toast
       </Button>
       <Toast
-        isOpen={isAutoCloseOpen}
-        handleClose={() => setIsAutoCloseOpen(false)}
-        autoClose={500}
-        color='informative'
+        isOpen={isOpen}
+        handleClose={() => setIsOpen(false)}
+        autoClose={1000}
       >
         <Toast.Icon>
           <Icon icon={faImage} />
@@ -30,7 +28,7 @@ const AutoClose: React.FC = () => {
           <Button>Take action</Button>
         </Toast.Actions>
       </Toast>
-    </div>
+    </>
   )
 }
 
