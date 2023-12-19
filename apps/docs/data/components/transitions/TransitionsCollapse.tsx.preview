@@ -1,0 +1,15 @@
+<Transitions effect='collapse' show={show}>
+  <div style={style}>Basic</div>
+</Transitions>
+
+<Transitions effect='collapse' show={show} speed={2}>
+  <div style={style}>Custom Speed: 2s</div>
+</Transitions>
+
+<Transitions effect='collapse' show={show} collapsedSize='100px'>
+  <div style={style}>Custom Collapsed Size: 100px. Default is 1000px</div>
+</Transitions>
+
+<Transitions effect='collapse' show={show} orientation='horizontal'>
+  <div style={style}>Horizontal</div>
+</Transitions>
