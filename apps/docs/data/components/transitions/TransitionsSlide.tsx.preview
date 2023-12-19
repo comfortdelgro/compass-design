@@ -1,0 +1,16 @@
+<Transitions effect='slide' show={show}>
+  <div style={style}>Basic</div>
+</Transitions>
+
+<Transitions effect='slide' show={show} speed={2}>
+  <div style={style}>Custom Speed: 2s</div>
+</Transitions>
+
+<Transitions
+  effect='slide'
+  show={show}
+  speed={2}
+  slideDirection='top'
+>
+  <div style={style}>Custom Direction: top</div>
+</Transitions>
