@@ -1,13 +1,13 @@
 'use client'
 
 import clsx from 'clsx'
-import React, {useCallback} from 'react'
+import React, { useCallback } from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
-import {useDOMRef} from '../utils/use-dom-ref'
+import { useDOMRef } from '../utils/use-dom-ref'
 import Ellipsis from './components/Ellipsis'
 import ItemCounting from './components/ItemCounting'
 import RowsCounting from './components/RowsCounting'
-import {usePagination} from './pagination.hooks'
+import { usePagination } from './pagination.hooks'
 import styles from './styles/pagination.module.css'
 
 interface Props {
@@ -34,14 +34,14 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
       page = 1,
       total = 1,
       initialPage = 1,
-      rowsPerPage = 10,
+      rowsPerPage,
       rowsOptions = [5, 10, 15, 20, 25],
       onChange,
       onRowsPerPageChange,
       ...htmlProps
     } = props
     const paginationRef = useDOMRef<HTMLDivElement>(ref)
-    const {items, active, setPage, next, previous} = usePagination({
+    const { items, active, setPage, next, previous } = usePagination({
       page,
       total,
       initialPage,
@@ -67,11 +67,11 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
             />
           )
         }
-        const itemStyle = 
+        const itemStyle =
           item.toString().length > 3
             ? {
-                padding: '0 4px',
-              }
+              padding: '0 4px',
+            }
             : undefined
 
         return (
@@ -106,12 +106,12 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
           {rowsPerPage && (
             <RowsCounting
               rowsOptions={rowsOptions}
-              rowsPerPage={5}
+              rowsPerPage={rowsPerPage}
               onRowsPerPageChange={onRowsPerPageChange}
             />
           )}
           {count && (
-            <ItemCounting count={count} page={page} rowsPerPage={rowsPerPage} />
+            <ItemCounting count={count} page={page} rowsPerPage={rowsPerPage ?? 0} />
           )}
           <div
             onClick={previous}
