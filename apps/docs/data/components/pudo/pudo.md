@@ -89,7 +89,7 @@ Type: `PudoProps<TItemKeys extends PropertyKey = string>`<sup>(1)</sup>
 | :--------------------------------- | :--------------------------- | :------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `name`\*                           | Inference type<sup>(1)</sup> | —       | Same order and name as Pudo's`items` props.<br/>Item Key and also is input's `name` attribute.                                                                                      |
 | `value`                            | `string`                     | `""`    | Input's value.                                                                                                                                                                      |
-| <code><del>isFocusing</del></code> | `boolean`                    | `false` | Focus status of each items.<br/><small>Deprecated and will be removed on next major release.<br/>To track item's focus status, consider using `onFocusChange` prop instead.</small> |
+| <code><del>isFocusing</del></code> | `boolean`                    | `false` | Focus status of each items.<br/><small>Deprecated and will be removed on next major release.<br/>To track item's focus status, consider using `onItemFocusChange` prop instead.</small> |
 
 \*: Required.
 
