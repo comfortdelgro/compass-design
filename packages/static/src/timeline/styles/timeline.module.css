@@ -1,0 +1,289 @@
+@import '../../theme/theme.module.css';
+
+@layer default, variant, compoundVariant;
+
+@layer default {
+  .itemContentWrapper {
+    appearance: none;
+    border: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    height: fit-content;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .itemDot {
+    appearance: none;
+    border: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1.625rem;
+    height: 1.625rem;
+    border-radius: var(--cdg-border-radius-full);
+    background-color: var(--cdg-color-cdgBlue);
+  }
+
+  .itemLabel {
+    appearance: none;
+    border: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 1.625rem;
+    height: 1.625rem;
+    font-family: var(--cdg-font-sans);
+    font-weight: var(--cdg-font-weight-bold);
+    font-size: var(--cdg-font-size-header5);
+  }
+
+  .itemHeaderContainer {
+    appearance: none;
+    border: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    height: fit-content;
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 1.5rem;
+  }
+
+  .timeline {
+    appearance: none;
+    border: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    width: fit-content;
+    height: fit-content;
+
+    box-shadow: -1px 0 0 0 #edebe9;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 1rem;
+    padding-left: 2.3125rem;
+    padding-right: 2.3125rem;
+  }
+
+  .timelineContainer {
+    appearance: none;
+    border: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    height: fit-content;
+    width: fit-content;
+  }
+}
+
+@layer variant {
+}
+
+@layer compoundVariant {
+  .timeline-vertical-right-right {
+    /* vertical mode + right label + right item */
+  }
+
+  .timeline-vertical-left-left {
+    /* vertical mode + left label + left item */
+    box-shadow: 1px 0 0 0 #edebe9;
+    padding-left: 0px;
+
+    .itemHeaderContainer {
+      flex-direction: row-reverse;
+      gap: 1.5rem;
+      position: relative;
+      left: 3.9rem;
+    }
+    .itemLabel {
+      justify-content: flex-end;
+    }
+  }
+
+  .timeline-vertical-left-right {
+    /* vertical mode + left label + right item */
+    padding-right: 0px;
+
+    .itemHeaderContainer {
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      gap: 1.5rem;
+      position: relative;
+      left: 6.3rem;
+    }
+    .itemLabel {
+      justify-content: flex-end;
+    }
+  }
+
+  .timeline-vertical-right-left {
+    /* vertical mode + left label + left item */
+    box-shadow: 1px 0 0 0 #edebe9;
+    padding-left: 0px;
+
+    .itemHeaderContainer {
+      position: relative;
+      left: 7rem;
+    }
+  }
+
+  .timeline-vertical-alternate-alternate {
+    /* vertical mode + alternate label + alternate item */
+    .header-even {
+      position: relative;
+      right: 3.2rem;
+    }
+
+    .header-odd {
+      display: flex;
+      flex-direction: row-reverse;
+      position: relative;
+      right: 6.3rem;
+    }
+
+    .label-odd {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .content-even {
+      position: relative;
+      right: 10.1rem;
+    }
+  }
+
+  .timeline-horizontal-top-bottom {
+    /* horizontal mode + top label + bottom item */
+    box-shadow: 0 -1px 0 0 #edebe9;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 0;
+    gap: 9.75rem;
+    padding-bottom: 0;
+
+    .itemHeaderContainer {
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 0.5rem;
+      right: 0;
+    }
+    .itemContainer {
+      position: relative;
+      bottom: 3rem;
+      display: flex;
+      justify-content: flex-start;
+    }
+  }
+
+  .timeline-horizontal-bottom-top {
+    /* horizontal mode + bottom label + top item */
+    box-shadow: 0 1px 0 0 #edebe9;
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    gap: 9.75rem;
+    padding-top: 0;
+
+    .itemHeaderContainer {
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 0.5rem;
+      right: 0;
+    }
+    .itemContainer {
+      position: relative;
+      bottom: 3rem;
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: column-reverse;
+    }
+  }
+
+  .timeline-horizontal-alternate-alternate {
+    /* horizontal mode + alternate label + alternate item */
+    box-shadow: 0 1px 0 0 #edebe9;
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    gap: 9.75rem;
+
+    .itemHeaderContainer {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      right: 0;
+    }
+    .itemContainer {
+      position: relative;
+      bottom: 3rem;
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: column-reverse;
+    }
+
+    .itemContainer-even {
+      flex-direction: column;
+      top: 9.2rem;
+    }
+
+    .header-even {
+      flex-direction: column-reverse;
+    }
+  }
+
+  .timelineContainer-vertical-right-right {
+    /* vertical mode + right label + right item */
+  }
+
+  .timelineContainer-vertical-left-left {
+    /* vertical mode + left label + left item */
+    padding-right: 0.9rem;
+  }
+
+  .timelineContainer-vertical-left-right {
+    /* vertical mode + left label + right item */
+    padding-left: 6.5rem;
+  }
+
+  .timelineContainer-vertical-right-left {
+    /* vertical mode + right label + left item */
+    padding-right: 6.5rem;
+  }
+
+  .timelineContainer-vertical-alternate-alternate {
+    /* vertical mode + alternate label + alternate item */
+    padding-left: 8rem;
+  }
+
+  .timelineContainer-horizontal-top-bottom {
+    /* horizontal mode + top label + bottom item */
+    padding-top: 4rem;
+  }
+
+  .timelineContainer-horizontal-bottom-top {
+    /* horizontal mode + horizontal label + top item */
+    padding-bottom: 4rem;
+  }
+
+  .timelineContainer-horizontal-alternate-alternate {
+    /* horizontal mode + horizontal label + top item */
+    padding-bottom: 8rem;
+  }
+}
