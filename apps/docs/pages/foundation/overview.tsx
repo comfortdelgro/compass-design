@@ -61,7 +61,7 @@ export default function Page() {
   return (
     <DocsAppCustomLayout>
       <Box
-        style={{
+        css={{
           position: 'relative',
         }}
       >
@@ -74,7 +74,7 @@ export default function Page() {
           height={0}
         />
         <Box
-          style={{
+          css={{
             position: 'relative',
             zIndex: 1,
             display: 'flex',
@@ -98,12 +98,12 @@ export default function Page() {
         </Box>
       </Box>
       <Box
-        style={{
+        css={{
           padding: 'var(--cdg-spacing-5) var(--cdg-spacing-16)',
           width: '100%',
         }}
       >
-        <Grid spacing='sm' alignItems='center' style={{width: '100%'}}>
+        <Grid spacing='sm' alignItems='center' css={{width: '100%'}}>
           {introduces.map((introduce, index) => (
             <Grid.Item xs={12} sm={6} md={4} lg={4} xl={4} key={index} css={{
               flexGrow: 1,
@@ -111,11 +111,11 @@ export default function Page() {
             }}>
               <Link href={introduce.url} style={{ textDecoration: 'none' }}>
                 <Box
-                  style={{backgroundImage: `url('${introduce.image}')`}}
+                  css={{backgroundImage: `url('${introduce.image}')`}}
                   className={styles.box}
                 >
                   <Box
-                    style={{
+                    css={{
                       zIndex: 1,
                       display: 'flex',
                       alignItems: 'center',
@@ -134,7 +134,7 @@ export default function Page() {
                     }}>
                       <Typography.Header
                         variant='header5'
-                        style={{
+                        css={{
                           textAlign: 'center',
                           fontSize: '1.25rem',
                           color: 'white',
@@ -145,7 +145,7 @@ export default function Page() {
                       </Typography.Header>
                       <Typography.Body
                         variant='body2'
-                        style={{
+                        css={{
                           textAlign: 'center',
                           fontSize: '0.875rem',
                           color: 'white',
