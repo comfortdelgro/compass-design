@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 
-import clsx from 'clsx'
 import {
   forwardRef,
   MouseEvent,
@@ -18,7 +17,7 @@ import DrawerExpander, {DrawerExpanderProps} from './drawer-expander'
 import DrawerFooter from './drawer-footer'
 import DrawerHeader from './drawer-header'
 import {drawerPickChild} from './drawer-pick-child'
-import drawerStyles from './styles/drawer.module.css'
+import styles from './styles/drawer.module.css'
 import {DrawerProps, DrawerRef} from './types'
 
 const DEFAULT_EXPANDED_POINT = 100
@@ -294,18 +293,23 @@ const Drawer = forwardRef<DrawerRef, DrawerProps>((props, ref) => {
     setDrawerInitHeight(DrawerElement?.offsetHeight ?? 0)
   }, [DrawerElement])
 
+  const rootClasses = [
+    styles.drawer,
+    styles[drawerMode],
+    styles[variant],
+    styles[position],
+    isExpanded && `${styles.drawerExpanded} cdg-drawer-expanded`,
+    className,
+    'cdg-drawer',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
     <CssInjection css={css} childrenRef={DrawerRef}>
       <dialog
         ref={DrawerRef}
-        className={clsx(
-          drawerStyles.drawer,
-          drawerStyles[drawerMode],
-          drawerStyles[variant],
-          drawerStyles[position],
-          className,
-          isExpanded && `${drawerStyles.drawerExpanded} drawer-expanded`,
-        )}
+        className={rootClasses}
         {...htmlDialogAttributes}
         style={{
           ...style,
@@ -321,16 +325,16 @@ const Drawer = forwardRef<DrawerRef, DrawerProps>((props, ref) => {
         {variant === 'h5' && !disableResize && (
           <DrawerExpander
             drawerOpen={open}
-            className='drawer-expander'
             css={expanderCSS}
             onDragStart={handleExpanderDragStart}
             onDragPositionYChange={handleExpanderDrag}
             onDragEnd={handleExpanderDragEnd}
           />
         )}
+
         {DrawerHeaderElement}
 
-        <article className={clsx(drawerStyles.drawerContent, 'drawer-content')}>
+        <article className={`${styles.drawerContent} cdg-drawer-content`}>
           {OtherElements}
         </article>
 
