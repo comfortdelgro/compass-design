@@ -31,6 +31,7 @@ interface Props extends StyledComponentProps {
   hasFooter?: boolean
   views?: ViewType[]
   defaultValue?: string
+  minTime?: string
   onTimeChange?: (time: string) => void
   onOpenChange?: (open: boolean) => void
 }
@@ -53,6 +54,7 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
       formatTime = 'hh:mm AA',
       views = DEFAULT_VIEWS,
       defaultValue,
+      minTime = '',
       onTimeChange,
       onOpenChange,
       ...delegated
@@ -63,6 +65,10 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
       cloneDeep(EMPTY_TIME_PICKER_FORMAT),
     )
     const [selectedDropdownValue, setSelectedDropdownValue] =
+      useState<TimePickerDropdownSelectedDisplayList>(
+        cloneDeep(EMPTY_DISPLAY_TIME_DROPDOWN_LIST),
+      )
+    const [minTimeDropdownValue, setMinTimeDropdownValue] =
       useState<TimePickerDropdownSelectedDisplayList>(
         cloneDeep(EMPTY_DISPLAY_TIME_DROPDOWN_LIST),
       )
@@ -81,6 +87,29 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
       () => splitTimeFormat(formatTime),
       [formatTime],
     )
+
+    useEffect(() => {
+      if (minTime && selectedDropdownValue) {
+        const {hour, minute, second, session} = splittedTimeFormat
+        const minTimeDropdown = {
+          hour: minTime.substring(hour.start, hour.end),
+          minute: minTime.substring(minute.start, minute.end),
+          second: minTime.substring(second.start, second.end),
+          session: minTime.substring(session.start, session.end),
+        }
+        if (Number(selectedDropdownValue.hour) > Number(minTimeDropdown.hour)) {
+          minTimeDropdown.minute = '0'
+          minTimeDropdown.second = '0'
+          minTimeDropdown.session = ''
+        } else if (
+          Number(selectedDropdownValue.minute) > Number(minTimeDropdown.minute)
+        ) {
+          minTimeDropdown.second = '0'
+          minTimeDropdown.session = ''
+        }
+        setMinTimeDropdownValue(minTimeDropdown)
+      }
+    }, [minTime, selectedDropdownValue])
 
     useEffect(() => {
       const newValue = value ?? defaultValue
@@ -122,6 +151,54 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
       [hasFooter, formatTime, isUncontrolledComponent, onTimeChange],
     )
 
+    const resetToMinTime = () => {
+      let needUpdatValue = false
+      const newSelectedDropdownValue = {...selectedDropdownValue}
+      // Reset hour to min hour
+      if (
+        Number(newSelectedDropdownValue.hour) <
+        Number(minTimeDropdownValue.hour)
+      ) {
+        needUpdatValue = true
+        newSelectedDropdownValue.hour = minTimeDropdownValue.hour
+      }
+      // Reset minute to min minute
+      if (
+        Number(newSelectedDropdownValue.minute) <
+        Number(minTimeDropdownValue.minute)
+      ) {
+        needUpdatValue = true
+        newSelectedDropdownValue.minute = minTimeDropdownValue.minute
+      }
+      // Reset second to min second
+      if (
+        Number(newSelectedDropdownValue.second) <
+        Number(minTimeDropdownValue.second)
+      ) {
+        needUpdatValue = true
+        newSelectedDropdownValue.second = minTimeDropdownValue.second
+      }
+      const dataValue = formatTime
+        .replace('hh', String(newSelectedDropdownValue.hour).padStart(2, '0'))
+        .replace('HH', String(newSelectedDropdownValue.hour).padStart(2, '0'))
+        .replace('mm', String(newSelectedDropdownValue.minute).padStart(2, '0'))
+        .replace('ss', String(newSelectedDropdownValue.second).padStart(2, '0'))
+        .replace('AA', String(newSelectedDropdownValue.session))
+
+      // // Convert from format and selected value to display data
+      if (
+        needUpdatValue &&
+        isUncontrolledComponent &&
+        timePickerInputRef.current
+      ) {
+        timePickerInputRef.current.value = dataValue
+      }
+      if (needUpdatValue) {
+        setSelectedDropdownValue(newSelectedDropdownValue)
+        onTimeChange && onTimeChange(dataValue)
+      }
+    }
+
     /**
      * Emits when clicking outside popover or blur input
      * @param isClosePopover boolean
@@ -142,6 +219,8 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             timePickerInputRef.current.value = ''
           }
           setSelectedDropdownValue(cloneDeep(EMPTY_DISPLAY_TIME_DROPDOWN_LIST))
+        } else {
+          resetToMinTime()
         }
         // Close popover when click outside
         if (isClosePopover) {
@@ -518,6 +597,8 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
      * Emits when clicking button Ok at the bottom
      */
     const handleOkClick = () => {
+      resetToMinTime()
+
       setIsOpen(false)
       onOpenChange?.(false)
     }
@@ -584,6 +665,7 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             hasFooter={hasFooter}
             isReadOnly={!!delegated.isReadOnly}
             onEscapeKeyDown={handleEscapeKeyDown}
+            minTimeDropdownValue={minTimeDropdownValue}
           />
         </Popover>
       </TimePickerContainer>

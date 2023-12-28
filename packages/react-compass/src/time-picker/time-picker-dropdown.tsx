@@ -31,6 +31,7 @@ interface TimePickerDropdownProps {
   isReadOnly?: boolean
   views?: ViewType[]
   isUncontrolledComponent: boolean
+  minTimeDropdownValue?: TimePickerDropdownSelectedDisplayList
   onItemClick: (value: TimePickerDropdownSelectedDisplayList) => void
   onOkClick?: () => void
   onEscapeKeyDown?: () => void
@@ -66,6 +67,7 @@ function TimePickerDropdown(props: TimePickerDropdownProps) {
     isUncontrolledComponent = true,
     views = DEFAULT_VIEWS,
     isReadOnly,
+    minTimeDropdownValue = EMPTY_DISPLAY_TIME_DROPDOWN_LIST,
     onItemClick,
     onOkClick,
     onEscapeKeyDown,
@@ -206,7 +208,10 @@ function TimePickerDropdown(props: TimePickerDropdownProps) {
       )
     } else {
       const control = displayList[Number(controlIndex)]
-      if (control) {
+      const nextButton = ref.current?.querySelector(
+        `.cdg-timepicker-dropdown-item__${controlIndex}-${nextItemIndex}`,
+      ) as HTMLButtonElement
+      if (control && !nextButton?.disabled) {
         setFocusingItemId(`${controlIndex}-${nextItemIndex}`)
       }
     }
@@ -309,6 +314,7 @@ function TimePickerDropdown(props: TimePickerDropdownProps) {
                   selectedDisplayList={selectedDisplayList}
                   time={time.toString().padStart(2, '0')}
                   selectedTime={selectedDisplayList[displayData.type]}
+                  minTime={minTimeDropdownValue[displayData.type]}
                   displayDataType={displayData.type}
                   onClickItem={handleTimeItemClick}
                 />
