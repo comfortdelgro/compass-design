@@ -197,7 +197,7 @@ export const ForH5Variant = () => {
 }
 
 const meta = {
-  title: 'Example/Textfield Server',
+  title: 'Example/Textfield ',
   component: Basic,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],

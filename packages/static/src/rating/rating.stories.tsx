@@ -52,7 +52,7 @@ export const UsingIcons: React.FC = () => {
 }
 
 const meta = {
-  title: 'Example/Rating Server',
+  title: 'Example/Rating',
   component: Default,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],

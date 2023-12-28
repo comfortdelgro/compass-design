@@ -198,7 +198,7 @@ export const Variants: React.FC = () => {
   )
 }
 const meta = {
-  title: 'Example/Sidebar Server',
+  title: 'Example/Sidebar',
   component: Variants,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],

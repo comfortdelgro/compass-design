@@ -100,7 +100,7 @@ export const Default: React.FC = () => {
 }
 
 const meta = {
-  title: 'Example/Sub Header Server',
+  title: 'Example/Sub Header',
   component: Default,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],

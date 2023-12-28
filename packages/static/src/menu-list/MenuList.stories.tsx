@@ -54,7 +54,7 @@ export const Basic = () => {
 }
 
 const meta = {
-  title: 'Example/MenuList Server',
+  title: 'Example/MenuList',
   component: Basic,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],
