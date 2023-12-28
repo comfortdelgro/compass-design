@@ -18,6 +18,7 @@ const styleRow: React.CSSProperties = {
 export const Basic: React.FC = () => {
   const [value, setValue] = useState('')
   const [value24H, setValue24H] = useState('')
+  const [valueMinTime, setValueMinTime] = useState('15:00:00')
 
   return (
     <div style={{...style}}>
@@ -78,6 +79,20 @@ export const Basic: React.FC = () => {
             console.log('Value 24-hours changed: ', value24H)
             setValue24H(value)
           }}
+        />
+      </div>
+      <h3>Disabled dropdown with min times</h3>
+      <div style={{...styleRow}}>
+        <TimePicker
+          formatTime='HH:mm:ss'
+          views={['hours24', 'minutes', 'seconds']}
+          hasFooter
+          value={valueMinTime}
+          onTimeChange={(value: string) => {
+            console.log('Value 24-hours changed: ', value)
+            setValueMinTime(value)
+          }}
+          minTime={value24H}
         />
       </div>
     </div>
