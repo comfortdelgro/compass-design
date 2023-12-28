@@ -1,4 +1,3 @@
-import clsx from 'clsx'
 import React from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import styles from './styles/footer-policy.module.css'
@@ -14,13 +13,14 @@ export type FooterPolicyProps = Props &
 const FooterPolicy = React.forwardRef<HTMLDivElement, FooterPolicyProps>(
   (props, ref) => {
     const {children, css = {}, className, ...delegated} = props
+
+    const rootClasses = [styles.footerPolicy, className, 'cdg-footer-policy']
+      .filter(Boolean)
+      .join(' ')
+
     return (
       <CssInjection css={css} childrenRef={ref}>
-        <div
-          className={clsx(styles.footerPolicy, className)}
-          ref={ref}
-          {...delegated}
-        >
+        <div className={rootClasses} ref={ref} {...delegated}>
           {children}
         </div>
       </CssInjection>
