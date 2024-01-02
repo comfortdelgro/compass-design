@@ -1,4 +1,3 @@
-import clsx from 'clsx'
 import React from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import styles from './styles/navbar.module.css'
@@ -33,18 +32,18 @@ const NavbarBrand = React.forwardRef<HTMLDivElement, NavbarBrandProps>(
       return children
     }
 
+    const rootClasses = [
+      styles.navbarBrand,
+      hiddenOnMobile && styles.hiddenOnMobile,
+      className,
+      'cdg-navbar-brand',
+    ]
+      .filter(Boolean)
+      .join(' ')
+
     return (
       <CssInjection css={css} childrenRef={ref}>
-        <div
-          className={clsx({
-            'navbar-brand': true,
-            [className]: true,
-            [styles.navbarBrand]: true,
-            [styles.hiddenOnMobile]: hiddenOnMobile,
-          })}
-          ref={ref}
-          {...delegated}
-        >
+        <div className={rootClasses} ref={ref} {...delegated}>
           {renderChildren()}
         </div>
       </CssInjection>
